@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`StoryShot Testing - Full Render Storyshots tags/Tag.stories.tsx Tag 1`] = `
+<div
+  className="Tag__CCTag-sc-14qhh7d-0 eOWOYV"
+  label="Tag"
+>
+  <i
+    className="Tag__StyledIconLeft-sc-14qhh7d-1 kiuzFx"
+    size={12}
+  >
+    pepople
+  </i>
+  <h1
+    className="Tag__Title-sc-14qhh7d-2 cNiFSt"
+  >
+    Tag
+  </h1>
+</div>
+`;

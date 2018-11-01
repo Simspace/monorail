@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`StoryShot Testing - Full Render Storyshots toggle/Toggle.stories.tsx Toggle 1`] = `
+<label
+  checked={true}
+  className="Toggle__CCToggle-sc-1fkb984-0 kgOqW"
+>
+  <input
+    checked={true}
+    className="Toggle__Input-sc-1fkb984-4 gUsIqU"
+    onChange={[Function]}
+    type="checkbox"
+  />
+  <div
+    className="Toggle__Slider-sc-1fkb984-3 eollRD"
+  >
+    <i
+      className="Toggle__StyledIconChecked-sc-1fkb984-1 iIJezL Icon-sc-1sf5jhi-0 bFFIwX"
+    >
+      check
+    </i>
+    <i
+      className="Toggle__StyledIconNotChecked-sc-1fkb984-2 jeoAmw Icon-sc-1sf5jhi-0 bFFIwX"
+    >
+      close
+    </i>
+  </div>
+</label>
+`;

@@ -1,0 +1,69 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`StoryShot Testing - Full Render Storyshots typography/SectionHeader.stories.tsx Section Header | Double Icon 1`] = `
+<div
+  className="SectionHeader__CCSectionHeader-sc-1i7w3sz-0 bvvmdx"
+>
+  <i
+    className="SectionHeader__StyledIconLeft-sc-1i7w3sz-2 fgAJfq"
+  >
+    access_alarm
+  </i>
+  <h1
+    className="SectionHeader__Title-sc-1i7w3sz-1 gDPHxM"
+  >
+    Section Header | Double Icon
+  </h1>
+  <i
+    className="SectionHeader__StyledIconRight-sc-1i7w3sz-3 iCPdmL"
+  >
+    access_alarm
+  </i>
+</div>
+`;
+
+exports[`StoryShot Testing - Full Render Storyshots typography/SectionHeader.stories.tsx Section Header | Icon Left 1`] = `
+<div
+  className="SectionHeader__CCSectionHeader-sc-1i7w3sz-0 bvvmdx"
+>
+  <i
+    className="SectionHeader__StyledIconLeft-sc-1i7w3sz-2 fgAJfq"
+  >
+    access_alarm
+  </i>
+  <h1
+    className="SectionHeader__Title-sc-1i7w3sz-1 gDPHxM"
+  >
+    Section Header | Icon Left
+  </h1>
+</div>
+`;
+
+exports[`StoryShot Testing - Full Render Storyshots typography/SectionHeader.stories.tsx Section Header | Icon Right 1`] = `
+<div
+  className="SectionHeader__CCSectionHeader-sc-1i7w3sz-0 bvvmdx"
+>
+  <h1
+    className="SectionHeader__Title-sc-1i7w3sz-1 gDPHxM"
+  >
+    Section Header | Icon Right
+  </h1>
+  <i
+    className="SectionHeader__StyledIconRight-sc-1i7w3sz-3 iCPdmL"
+  >
+    access_alarm
+  </i>
+</div>
+`;
+
+exports[`StoryShot Testing - Full Render Storyshots typography/SectionHeader.stories.tsx Section Header 1`] = `
+<div
+  className="SectionHeader__CCSectionHeader-sc-1i7w3sz-0 bvvmdx"
+>
+  <h1
+    className="SectionHeader__Title-sc-1i7w3sz-1 gDPHxM"
+  >
+    Section Header
+  </h1>
+</div>
+`;

@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`StoryShot Testing - Shallow Render Storyshots buttons/IconButton.stories.tsx Icon Button 1`] = `
+Array [
+  <IconButton
+    icon="arrow_back"
+  />,
+  <IconButton
+    icon="arrow_back"
+    secondary={true}
+  />,
+  <IconButton
+    icon="arrow_back"
+    outline={true}
+  />,
+  <IconButton
+    chromeless={true}
+    icon="arrow_back"
+  />,
+  <IconButton
+    icon="arrow_back"
+    large={true}
+  />,
+  <IconButton
+    icon="arrow_back"
+    large={true}
+    secondary={true}
+  />,
+  <IconButton
+    icon="arrow_back"
+    large={true}
+    outline={true}
+  />,
+  <IconButton
+    chromeless={true}
+    icon="arrow_back"
+    large={true}
+  />,
+  <IconButton
+    circle={true}
+    icon="close"
+  />,
+  <IconButton
+    circle={true}
+    icon="close"
+    large={true}
+  />,
+  <IconButton
+    circle={true}
+    dense={true}
+    icon="close"
+  />,
+]
+`;

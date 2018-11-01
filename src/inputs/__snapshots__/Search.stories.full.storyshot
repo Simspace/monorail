@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`StoryShot Testing - Full Render Storyshots inputs/Search.stories.tsx Search 1`] = `
+<div
+  className="Search__BBSearchContainer-p3rbvk-0 cQOebZ"
+>
+  <i
+    className="Search__BBSearchIcon-p3rbvk-1 cIBZSR Icon-sc-1sf5jhi-0 bFFIwX"
+  >
+    search_icon
+  </i>
+  <input
+    className="new-input Search__BBSearchInput-p3rbvk-2 dYIONg"
+    onChange={[Function]}
+    placeholder="Search"
+    type="text"
+    value=""
+  />
+  <button
+    className="new-button IconButton__CCIconButton-sc-14675o7-0 kqBkJT"
+    onClick={[Function]}
+  >
+    <i
+      className="Icon-sc-1sf5jhi-0 bFFIwX"
+    >
+      close
+    </i>
+  </button>
+</div>
+`;

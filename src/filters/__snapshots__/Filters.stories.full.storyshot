@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`StoryShot Testing - Full Render Storyshots filters/Filters.stories.tsx Filter 1`] = `
+Array [
+  <div
+    className="Filter__CCFilter-ph59hb-0 giumNY"
+    onClick={[Function]}
+  >
+    <span
+      className="Filter__FilterText-ph59hb-1 fpiGGa"
+    >
+      Filter Left
+    </span>
+    <i
+      className="Filter__FilterIcon-ph59hb-2 ixkCkb"
+    >
+      arrow_drop_down
+    </i>
+  </div>,
+  <portal-dummy />,
+  <div
+    className="Filter__CCFilter-ph59hb-0 BZkng"
+    onClick={[Function]}
+  >
+    <span
+      className="Filter__FilterText-ph59hb-1 fpiGGa"
+    >
+      Filter Right
+    </span>
+    <i
+      className="Filter__FilterIcon-ph59hb-2 ixkCkb"
+    >
+      arrow_drop_down
+    </i>
+  </div>,
+  <portal-dummy />,
+]
+`;

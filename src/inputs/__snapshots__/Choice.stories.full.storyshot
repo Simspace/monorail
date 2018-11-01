@@ -1,0 +1,206 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`StoryShot Testing - Full Render Storyshots inputs/Choice.stories.tsx Radio 1`] = `
+Array [
+  <label
+    className="Choice__CCChoice-j50sk3-2 iswDeM"
+  >
+    <i
+      className="IncorrectIcon Icon-sc-1sf5jhi-0 bFFIwX"
+    >
+      highlight_off
+    </i>
+    <i
+      className="CorrectIcon Icon-sc-1sf5jhi-0 bFFIwX"
+    >
+      check_circle
+    </i>
+    <input
+      className="RealInput Choice__BBChoiceInput-j50sk3-0 iGuNOD"
+      type="radio"
+    />
+    <i
+      className="ChoiceButtonUnchecked Icon-sc-1sf5jhi-0 bFFIwX"
+    >
+      radio_button_unchecked
+    </i>
+    <i
+      className="ChoiceButtonChecked Icon-sc-1sf5jhi-0 bFFIwX"
+    >
+      radio_button_checked
+    </i>
+    <span
+      className="Choice__BBChoiceFakeLabel-j50sk3-1 jMSOAH"
+    >
+      I'm a radio
+    </span>
+  </label>,
+  <label
+    className="Choice__CCChoice-j50sk3-2 iswDeM"
+  >
+    <i
+      className="IncorrectIcon Icon-sc-1sf5jhi-0 bFFIwX"
+    >
+      highlight_off
+    </i>
+    <i
+      className="CorrectIcon Icon-sc-1sf5jhi-0 bFFIwX"
+    >
+      check_circle
+    </i>
+    <input
+      className="RealInput Choice__BBChoiceInput-j50sk3-0 iGuNOD"
+      type="checkbox"
+    />
+    <i
+      className="ChoiceButtonUnchecked Icon-sc-1sf5jhi-0 bFFIwX"
+    >
+      check_box_outline_blank
+    </i>
+    <i
+      className="ChoiceButtonChecked Icon-sc-1sf5jhi-0 bFFIwX"
+    >
+      check_box
+    </i>
+    <span
+      className="Choice__BBChoiceFakeLabel-j50sk3-1 jMSOAH"
+    >
+      I'm a checkbox
+    </span>
+  </label>,
+  <label
+    className="Choice__CCChoice-j50sk3-2 klJJaD"
+    disabled={true}
+  >
+    <i
+      className="IncorrectIcon Icon-sc-1sf5jhi-0 bFFIwX"
+    >
+      highlight_off
+    </i>
+    <i
+      className="CorrectIcon Icon-sc-1sf5jhi-0 bFFIwX"
+    >
+      check_circle
+    </i>
+    <input
+      className="RealInput Choice__BBChoiceInput-j50sk3-0 iGuNOD"
+      type="radio"
+    />
+    <i
+      className="ChoiceButtonUnchecked Icon-sc-1sf5jhi-0 bFFIwX"
+    >
+      radio_button_unchecked
+    </i>
+    <i
+      className="ChoiceButtonChecked Icon-sc-1sf5jhi-0 bFFIwX"
+    >
+      radio_button_checked
+    </i>
+    <span
+      className="Choice__BBChoiceFakeLabel-j50sk3-1 jMSOAH"
+    >
+      I'm a disabled radio
+    </span>
+  </label>,
+  <label
+    className="Choice__CCChoice-j50sk3-2 klJJaD"
+    disabled={true}
+  >
+    <i
+      className="IncorrectIcon Icon-sc-1sf5jhi-0 bFFIwX"
+    >
+      highlight_off
+    </i>
+    <i
+      className="CorrectIcon Icon-sc-1sf5jhi-0 bFFIwX"
+    >
+      check_circle
+    </i>
+    <input
+      className="RealInput Choice__BBChoiceInput-j50sk3-0 iGuNOD"
+      type="checkbox"
+    />
+    <i
+      className="ChoiceButtonUnchecked Icon-sc-1sf5jhi-0 bFFIwX"
+    >
+      check_box_outline_blank
+    </i>
+    <i
+      className="ChoiceButtonChecked Icon-sc-1sf5jhi-0 bFFIwX"
+    >
+      check_box
+    </i>
+    <span
+      className="Choice__BBChoiceFakeLabel-j50sk3-1 jMSOAH"
+    >
+      I'm a disabled checkbox&gt;
+    </span>
+  </label>,
+  <label
+    className="Choice__CCChoice-j50sk3-2 dnORqn"
+  >
+    <i
+      className="IncorrectIcon Icon-sc-1sf5jhi-0 bFFIwX"
+    >
+      highlight_off
+    </i>
+    <i
+      className="CorrectIcon Icon-sc-1sf5jhi-0 bFFIwX"
+    >
+      check_circle
+    </i>
+    <input
+      className="RealInput Choice__BBChoiceInput-j50sk3-0 iGuNOD"
+      type="radio"
+    />
+    <i
+      className="ChoiceButtonUnchecked Icon-sc-1sf5jhi-0 bFFIwX"
+    >
+      radio_button_unchecked
+    </i>
+    <i
+      className="ChoiceButtonChecked Icon-sc-1sf5jhi-0 bFFIwX"
+    >
+      radio_button_checked
+    </i>
+    <span
+      className="Choice__BBChoiceFakeLabel-j50sk3-1 jMSOAH"
+    >
+      I'm a correct radio
+    </span>
+  </label>,
+  <label
+    className="Choice__CCChoice-j50sk3-2 fHGvGP"
+  >
+    <i
+      className="IncorrectIcon Icon-sc-1sf5jhi-0 bFFIwX"
+    >
+      highlight_off
+    </i>
+    <i
+      className="CorrectIcon Icon-sc-1sf5jhi-0 bFFIwX"
+    >
+      check_circle
+    </i>
+    <input
+      className="RealInput Choice__BBChoiceInput-j50sk3-0 iGuNOD"
+      type="checkbox"
+    />
+    <i
+      className="ChoiceButtonUnchecked Icon-sc-1sf5jhi-0 bFFIwX"
+    >
+      check_box_outline_blank
+    </i>
+    <i
+      className="ChoiceButtonChecked Icon-sc-1sf5jhi-0 bFFIwX"
+    >
+      check_box
+    </i>
+    <span
+      className="Choice__BBChoiceFakeLabel-j50sk3-1 jMSOAH"
+    >
+      I'm an incorrect checkbox
+    </span>
+  </label>,
+]
+`;

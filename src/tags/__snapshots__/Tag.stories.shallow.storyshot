@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`StoryShot Testing - Shallow Render Storyshots tags/Tag.stories.tsx Tag 1`] = `
+<ForwardRef
+  label="Tag"
+>
+  <ForwardRef
+    icon="pepople"
+    size={12}
+  />
+  <ForwardRef>
+    Tag
+  </ForwardRef>
+</ForwardRef>
+`;

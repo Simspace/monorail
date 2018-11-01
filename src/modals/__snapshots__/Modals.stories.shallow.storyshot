@@ -1,0 +1,208 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`StoryShot Testing - Shallow Render Storyshots modals/Modals.stories.tsx Modal 1`] = `
+Array [
+  <ForwardRef
+    css={
+      Array [
+        "
+            margin: 16px;
+          ",
+      ]
+    }
+    mini={true}
+  >
+    <BBModalHeader
+      iconLeft="add"
+      mini={true}
+      title="Modal Title"
+    />
+    <p
+      style={
+        Object {
+          "margin": "12px",
+        }
+      }
+    >
+      Modal Content
+    </p>
+    <ForwardRef>
+      <Button
+        css={
+          Array [
+            "
+                margin-right: 8px;
+              ",
+          ]
+        }
+        display={3}
+        size={2}
+        type="button"
+      >
+        Cancel
+      </Button>
+      <Button
+        display={0}
+        size={2}
+        type="button"
+      >
+        Submit
+      </Button>
+    </ForwardRef>
+  </ForwardRef>,
+  <ForwardRef
+    css={
+      Array [
+        "
+            margin: 16px;
+          ",
+      ]
+    }
+    mini={true}
+  >
+    <BBModalHeader
+      iconLeft="add"
+      mini={true}
+      title="Modal Title"
+    >
+      <Search
+        darkMode={true}
+        onChange={[Function]}
+        placeholder="Search"
+        value=""
+      />
+    </BBModalHeader>
+    <p
+      style={
+        Object {
+          "margin": "12px",
+        }
+      }
+    >
+      Modal Content
+    </p>
+    <ForwardRef>
+      <Button
+        css={
+          Array [
+            "
+                margin-right: 8px;
+              ",
+          ]
+        }
+        display={3}
+        size={2}
+        type="button"
+      >
+        Cancel
+      </Button>
+      <Button
+        display={0}
+        size={2}
+        type="button"
+      >
+        Submit
+      </Button>
+    </ForwardRef>
+  </ForwardRef>,
+  <ForwardRef
+    css={
+      Array [
+        "
+            margin: 16px;
+          ",
+      ]
+    }
+  >
+    <BBModalHeader
+      iconLeft="add"
+      title="Modal Title"
+    />
+    <p
+      style={
+        Object {
+          "margin": "12px",
+        }
+      }
+    >
+      Modal Content
+    </p>
+    <ForwardRef>
+      <Button
+        css={
+          Array [
+            "
+                margin-right: 8px;
+              ",
+          ]
+        }
+        display={3}
+        size={2}
+        type="button"
+      >
+        Cancel
+      </Button>
+      <Button
+        display={0}
+        size={2}
+        type="button"
+      >
+        Submit
+      </Button>
+    </ForwardRef>
+  </ForwardRef>,
+  <ForwardRef
+    css={
+      Array [
+        "
+            margin: 16px;
+          ",
+      ]
+    }
+  >
+    <BBModalHeader
+      iconLeft="add"
+      title="Modal Title"
+    >
+      <Search
+        darkMode={true}
+        onChange={[Function]}
+        placeholder="Search"
+        value=""
+      />
+    </BBModalHeader>
+    <p
+      style={
+        Object {
+          "margin": "12px",
+        }
+      }
+    >
+      Modal Content
+    </p>
+    <ForwardRef>
+      <Button
+        css={
+          Array [
+            "
+                margin-right: 8px;
+              ",
+          ]
+        }
+        display={3}
+        size={2}
+        type="button"
+      >
+        Cancel
+      </Button>
+      <Button
+        display={0}
+        size={2}
+        type="button"
+      >
+        Submit
+      </Button>
+    </ForwardRef>
+  </ForwardRef>,
+]
+`;

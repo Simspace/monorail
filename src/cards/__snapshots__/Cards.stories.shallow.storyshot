@@ -1,0 +1,75 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`StoryShot Testing - Shallow Render Storyshots cards/Cards.stories.tsx Card 1`] = `
+<StyledComponent
+  css={
+    Array [
+      "
+          width: 240px;
+        ",
+    ]
+  }
+  forwardedClass={
+    Object {
+      "$$typeof": Symbol(react.forward_ref),
+      "attrs": undefined,
+      "componentStyle": ComponentStyle {
+        "componentId": "Cards__BBCardBackground-wyqx8r-0",
+        "isStatic": false,
+        "lastClassName": "hwmqMO",
+        "rules": Array [
+          "
+  ",
+          [Function],
+          ";
+  ",
+          [Function],
+          ";
+
+  ",
+          "display: flex; flex-flow: column nowrap;",
+          ";
+  ",
+          "
+    border-radius: ",
+          "4",
+          "px;
+  ",
+          ";
+
+  background: ",
+          "hsla(0, 0%, 100%, 1)",
+          ";
+  overflow: hidden;
+
+  ",
+          [Function],
+          ";
+",
+        ],
+      },
+      "displayName": "Cards__BBCardBackground",
+      "render": [Function],
+      "styledComponentId": "Cards__BBCardBackground-wyqx8r-0",
+      "target": "div",
+      "warnTooManyClasses": [Function],
+      "withComponent": [Function],
+    }
+  }
+  forwardedRef={null}
+>
+  <BBCardHeader
+    iconLeft="add"
+    title="Card Title"
+  />
+  <p
+    style={
+      Object {
+        "margin": "12px",
+      }
+    }
+  >
+    Card Content
+  </p>
+</StyledComponent>
+`;

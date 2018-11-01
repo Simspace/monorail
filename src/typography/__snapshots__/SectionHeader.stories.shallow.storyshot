@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`StoryShot Testing - Shallow Render Storyshots typography/SectionHeader.stories.tsx Section Header | Double Icon 1`] = `
+<ForwardRef>
+  <ForwardRef
+    icon="access_alarm"
+  />
+  <ForwardRef>
+    Section Header | Double Icon
+  </ForwardRef>
+  <ForwardRef
+    icon="access_alarm"
+  />
+</ForwardRef>
+`;
+
+exports[`StoryShot Testing - Shallow Render Storyshots typography/SectionHeader.stories.tsx Section Header | Icon Left 1`] = `
+<ForwardRef>
+  <ForwardRef
+    icon="access_alarm"
+  />
+  <ForwardRef>
+    Section Header | Icon Left
+  </ForwardRef>
+</ForwardRef>
+`;
+
+exports[`StoryShot Testing - Shallow Render Storyshots typography/SectionHeader.stories.tsx Section Header | Icon Right 1`] = `
+<ForwardRef>
+  <ForwardRef>
+    Section Header | Icon Right
+  </ForwardRef>
+  <ForwardRef
+    icon="access_alarm"
+  />
+</ForwardRef>
+`;
+
+exports[`StoryShot Testing - Shallow Render Storyshots typography/SectionHeader.stories.tsx Section Header 1`] = `
+<ForwardRef>
+  <ForwardRef>
+    Section Header
+  </ForwardRef>
+</ForwardRef>
+`;

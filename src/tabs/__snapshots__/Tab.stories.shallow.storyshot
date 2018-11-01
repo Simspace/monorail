@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`StoryShot Testing - Shallow Render Storyshots tabs/Tab.stories.tsx Tab 1`] = `
+<ForwardRef
+  isActive={false}
+  onClick={[Function]}
+>
+  Tab
+</ForwardRef>
+`;

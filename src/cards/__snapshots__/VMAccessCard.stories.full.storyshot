@@ -1,0 +1,186 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`StoryShot Testing - Full Render Storyshots cards/VMAccessCard.stories.tsx VM Access Card 1`] = `
+<div
+  className="Cards__BBCardBackground-wyqx8r-0 hwmqMO"
+>
+  <div
+    className="Cards__BBCardHeaderContainer-wyqx8r-1 kLEFEM"
+  >
+    <div
+<<<<<<< HEAD
+      className="Cards__StyledAppIconLeft-wyqx8r-3 fbgFKh AppIcon__CCAppIcon-sc-1orlcph-0 iHozAg"
+=======
+      className="sc-iwsKbI dyiHvI sc-bwzfXH jxgLLO"
+>>>>>>> origin/dev
+    >
+      <svg
+        className="sc-bdVaJa mIWOE"
+        fill="none"
+        height="24"
+        viewBox="0 0 24 24"
+        width="24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M16.1297 18.8826C16.1297 18.5286 16.4101 18.2415 16.756 18.2415C17.1018 18.2415 17.3823 18.5286 17.3823 18.8826C17.3823 19.2367 17.1018 19.5238 16.756 19.5238C16.4101 19.5238 16.1297 19.2367 16.1297 18.8826ZM16.1297 16.9272C16.1297 16.5732 16.4101 16.2861 16.756 16.2861C17.1018 16.2861 17.3823 16.5732 17.3823 16.9272C17.3823 17.2814 17.1018 17.5683 16.756 17.5683C16.4101 17.5683 16.1297 17.2814 16.1297 16.9272ZM16.0984 15.0681V9.16982L17.3495 9.16991V15.0681H16.0984ZM18.4156 20.261L18.4157 8.17611C18.4157 7.96457 18.2465 7.79152 18.0399 7.79152H15.4408C15.2342 7.79152 15.065 7.96457 15.065 8.17611V20.261C15.065 20.4726 15.2341 20.6457 15.4408 20.6457H18.0398C18.2465 20.6457 18.4156 20.4726 18.4156 20.261Z"
+        />
+        <path
+          d="M11.21 19.8655C11.21 19.4368 11.5495 19.0893 11.9683 19.0893C12.387 19.0893 12.7265 19.4368 12.7265 19.8655C12.7264 20.2942 12.387 20.6417 11.9683 20.6417C11.5495 20.6417 11.21 20.2941 11.21 19.8655ZM11.21 17.4981C11.21 17.0694 11.5495 16.722 11.9683 16.722C12.387 16.722 12.7265 17.0694 12.7265 17.4981C12.7265 17.9268 12.387 18.2743 11.9683 18.2743C11.5495 18.2743 11.21 17.9268 11.21 17.4981ZM11.1721 15.2472L11.1722 8.10643H12.6868V15.2472H11.1721ZM13.9775 21.5343L13.9776 6.90332C13.9776 6.64723 13.7729 6.43765 13.5227 6.43765H10.376C10.1258 6.43765 9.92112 6.64715 9.92112 6.90332L9.92103 21.5343C9.92103 21.7904 10.1258 21.9999 10.376 21.9999L13.5226 22C13.7728 22 13.9775 21.7904 13.9775 21.5343Z"
+        />
+        <path
+          d="M6.6103 18.8826C6.6103 18.5286 6.89072 18.2415 7.23658 18.2415C7.58244 18.2415 7.86286 18.5286 7.86286 18.8826C7.86286 19.2367 7.58244 19.5237 7.23658 19.5237C6.89072 19.5237 6.6103 19.2367 6.6103 18.8826ZM6.6103 16.9272C6.6103 16.5731 6.89072 16.2861 7.23658 16.2861C7.58244 16.2861 7.86286 16.5731 7.86286 16.9272C7.86286 17.2813 7.58244 17.5683 7.23658 17.5683C6.89072 17.5683 6.6103 17.2813 6.6103 16.9272ZM6.57904 15.068V9.16978L7.8301 9.16987V15.068H6.57904ZM8.89618 20.261L8.89627 8.17608C8.89627 7.96453 8.72713 7.79148 8.52048 7.79148H5.92142C5.71477 7.79148 5.54563 7.96453 5.54563 8.17608V20.261C5.54563 20.4725 5.71469 20.6457 5.92142 20.6457H8.5204C8.72713 20.6457 8.89618 20.4725 8.89618 20.261Z"
+        />
+        <path
+          d="M3.35184 12.1474C3.39935 7.29921 7.25273 3.38385 12 3.38385C16.7474 3.38385 20.6006 7.29921 20.6482 12.1474H22C21.9524 6.53496 17.4939 2 12 2C6.50616 2 2.0476 6.53496 2 12.1474H3.35184Z"
+        />
+      </svg>
+    </div>
+    <h1
+      className="Cards__BBCardHeaderTitle-wyqx8r-2 itOKqf"
+    >
+      VM Access
+    </h1>
+    <div
+      className="Cards__BBCardBottomBorder-wyqx8r-6 kuARMi"
+    />
+  </div>
+  <div
+<<<<<<< HEAD
+    className="StyleHelpers__Div-sc-1l3soa-0 koMSyx"
+  >
+    <div
+      className="StyleHelpers__Div-sc-1l3soa-0 fJZdcz"
+    >
+      <i
+        className="Icon-sc-1sf5jhi-0 emGUQE"
+=======
+    className="sc-fjdhpX eWIIOc"
+  >
+    <div
+      className="sc-fjdhpX eQhiqf"
+    >
+      <i
+        className="sc-bdVaJa mIWOE"
+>>>>>>> origin/dev
+      >
+        desktop_windows
+      </i>
+      <div
+<<<<<<< HEAD
+        className="StyleHelpers__Div-sc-1l3soa-0 hKDPpB"
+=======
+        className="sc-fjdhpX cqGGQo"
+>>>>>>> origin/dev
+      >
+        <h1
+          className="VMAccessCard__VMName-sc-1ryqph5-0 cwancW"
+        >
+          windows-hunt-1
+        </h1>
+        <div
+<<<<<<< HEAD
+          className="StyleHelpers__Div-sc-1l3soa-0 lidRfQ"
+=======
+          className="sc-fjdhpX jRBWbl"
+>>>>>>> origin/dev
+        >
+          <div
+            className="Details__BBDetailsContainer-sc-1r0av7h-2 fHhHFy"
+          >
+            <h2
+              className="Details__BBDetailsProperty-sc-1r0av7h-0 cgRzEa"
+            >
+              Username
+            </h2>
+            <h2
+              className="Details__BBDetailsValue-sc-1r0av7h-1 cAePeK"
+            >
+              yoloyoloyoloyoloyoloyoloyoloyolo
+            </h2>
+          </div>
+          <div
+            className="Details__BBDetailsContainer-sc-1r0av7h-2 hTdHWU"
+          >
+            <h2
+              className="Details__BBDetailsProperty-sc-1r0av7h-0 cgRzEa"
+            >
+              Password
+            </h2>
+            <h2
+              className="Details__BBDetailsValue-sc-1r0av7h-1 cAePeK"
+            >
+              swag
+            </h2>
+          </div>
+        </div>
+        <button
+<<<<<<< HEAD
+          className="new-button Button__CCButton-uj0ipi-0 ePiTRs"
+=======
+          className="new-button sc-EHOje bfokSa"
+>>>>>>> origin/dev
+          display={3}
+          onClick={[Function]}
+          size={1}
+          type="button"
+        >
+          Open Console
+        </button>
+        <div
+          className="VMAccessCard__Divider-sc-1ryqph5-2 dVVKiz"
+        />
+      </div>
+    </div>
+    <div
+<<<<<<< HEAD
+      className="StyleHelpers__Div-sc-1l3soa-0 fJZdcz"
+    >
+      <i
+        className="Icon-sc-1sf5jhi-0 emGUQE"
+=======
+      className="sc-fjdhpX eQhiqf"
+    >
+      <i
+        className="sc-bdVaJa mIWOE"
+>>>>>>> origin/dev
+      >
+        desktop_windows
+      </i>
+      <div
+<<<<<<< HEAD
+        className="StyleHelpers__Div-sc-1l3soa-0 hKDPpB"
+=======
+        className="sc-fjdhpX cqGGQo"
+>>>>>>> origin/dev
+      >
+        <h1
+          className="VMAccessCard__VMName-sc-1ryqph5-0 cwancW"
+        >
+          linux-wkstn-01
+        </h1>
+        <h2
+          className="VMAccessCard__Description-sc-1ryqph5-1 dzQugY"
+        >
+          Open source vista i have never honestly thrown a chair in my life there's no chance that the iPhone is going to get any significant market share innovation linux is not in the public domain. Microsoft word powerpoint presentation linux is a cancer no i do not have an ipod vista. I don't know what a monopoly is linux is a cancer no i do not have an ipod DEVELOPERS google is not a real company Whoo! most people steal music powerpoint presentation there's no chance that the iPhone is going to get any significant market share. Outlook bing winning i've got my kids brainwashed linux is a cancer windows windows will be everywhere.
+
+Leadership i have never honestly thrown a chair in my life there's no chance that the iPhone is going to get any significant market share outlook linux is not in the public domain. I've got my kids brainwashed windows will be everywhere bing outlook. Innovation microsoft word bing there's no chance that the iPhone is going to get any significant market share i don't know what a monopoly is linux is a cancer. DEVELOPERS most people steal music google is not a real company bing.
+        </h2>
+        <button
+<<<<<<< HEAD
+          className="new-button Button__CCButton-uj0ipi-0 ePiTRs"
+=======
+          className="new-button sc-EHOje bfokSa"
+>>>>>>> origin/dev
+          display={3}
+          onClick={[Function]}
+          size={1}
+          type="button"
+        >
+          Open Console
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;

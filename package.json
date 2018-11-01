@@ -1,0 +1,43 @@
+{
+  "name": "@simspace/monorail",
+  "version": "0.0.2",
+  "description": "SimSpace Design System",
+  "scripts": {
+    "build": "rm -rf dist && babel src -d dist --extensions \".js,.jsx,.ts,.tsx\" --ignore \"src/**/*.doc.tsx\",\"src/**/*.stories.tsx\" && cp package.json dist/package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Simspace/monorail.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Simspace/monorail/issues"
+  },
+  "homepage": "https://github.com/Simspace/monorail#readme",
+  "dependencies": {
+    "@material-ui/core": "^3.3.2",
+    "styled-components": "4.0.2"
+  },
+  "peerDependencies": {
+    "react": "~16.6.0",
+    "react-dom": "~16.6.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "7.1.2",
+    "@babel/core": "7.1.2",
+    "@babel/plugin-proposal-class-properties": "7.1.0",
+    "@babel/plugin-proposal-decorators": "7.1.2",
+    "@babel/plugin-proposal-object-rest-spread": "7.0.0",
+    "@babel/plugin-transform-react-constant-elements": "7.0.0",
+    "@babel/plugin-transform-react-inline-elements": "7.0.0",
+    "@babel/preset-env": "7.1.0",
+    "@babel/preset-react": "^7.0.0",
+    "@babel/preset-typescript": "7.1.0",
+    "@babel/register": "7.0.0",
+    "babel-plugin-module-resolver": "3.1.1",
+    "react": "~16.6.0",
+    "react-dom": "~16.6.0",
+    "typescript": "^3.1.5"
+  }
+}

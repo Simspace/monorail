@@ -1,0 +1,87 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`StoryShot Testing - Full Render Storyshots pageHeader/PageHeader.stories.tsx Page Header | Back Arrow 1`] = `
+<div
+  className="PageHeader__CCPageHeader-sc-4wbjop-0 jozKec"
+>
+  <div
+    className="PageHeader__CCBreadCrumbsContainer-sc-4wbjop-1 cYHisi"
+  />
+  <div
+    className="PageHeader__TitleContainer-sc-4wbjop-3 hPhaWZ"
+  >
+    <button
+      className="new-button IconButton__CCIconButton-sc-14675o7-0 euiIGl"
+      onClick={[Function]}
+    >
+      <i
+        className="Icon-sc-1sf5jhi-0 bFFIwX"
+      >
+        arrow_back
+      </i>
+    </button>
+    <h1
+      className="PageHeader__Title-sc-4wbjop-4 drvVTZ"
+    >
+      Page Header | Back Arrow
+    </h1>
+  </div>
+</div>
+`;
+
+exports[`StoryShot Testing - Full Render Storyshots pageHeader/PageHeader.stories.tsx Page Header | Bread Crumbs 1`] = `
+<div
+  className="PageHeader__CCPageHeader-sc-4wbjop-0 kxekZh"
+>
+  <div
+    className="PageHeader__CCBreadCrumbsContainer-sc-4wbjop-1 cYHisi"
+  >
+    <a
+      className="PageHeader__BreadCrumb-sc-4wbjop-2 dWDwdd"
+      onClick={[Function]}
+    >
+      foo
+    </a>
+    <i
+      className="Icon-sc-1sf5jhi-0 acYxr"
+      size={12}
+    >
+      chevron_right
+    </i>
+    <a
+      className="PageHeader__BreadCrumb-sc-4wbjop-2 dWDwdd"
+      onClick={[Function]}
+    >
+      bar
+    </a>
+  </div>
+  <div
+    className="PageHeader__TitleContainer-sc-4wbjop-3 hPhaWZ"
+  >
+    <h1
+      className="PageHeader__Title-sc-4wbjop-4 drvVTZ"
+    >
+      Page Header
+    </h1>
+  </div>
+</div>
+`;
+
+exports[`StoryShot Testing - Full Render Storyshots pageHeader/PageHeader.stories.tsx Page Header 1`] = `
+<div
+  className="PageHeader__CCPageHeader-sc-4wbjop-0 jozKec"
+>
+  <div
+    className="PageHeader__CCBreadCrumbsContainer-sc-4wbjop-1 cYHisi"
+  />
+  <div
+    className="PageHeader__TitleContainer-sc-4wbjop-3 hPhaWZ"
+  >
+    <h1
+      className="PageHeader__Title-sc-4wbjop-4 drvVTZ"
+    >
+      Page Header
+    </h1>
+  </div>
+</div>
+`;

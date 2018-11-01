@@ -1,0 +1,147 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`StoryShot Testing - Full Render Storyshots buttons/Button.stories.tsx Button 1`] = `
+Array [
+  <button
+    className="new-button Button__CCButton-uj0ipi-0 lphzlF"
+    display={0}
+    size={2}
+    type="button"
+  >
+    Button
+  </button>,
+  <button
+    className="new-button Button__CCButton-uj0ipi-0 lphzlF"
+    display={0}
+    size={2}
+    type="button"
+  >
+    <i
+      className="Icon-sc-1sf5jhi-0 bFFIwX"
+    >
+      add
+    </i>
+    Button
+  </button>,
+  <button
+    className="new-button Button__CCButton-uj0ipi-0 iAruxr"
+    display={1}
+    size={2}
+    type="button"
+  >
+    Button
+  </button>,
+  <button
+    className="new-button Button__CCButton-uj0ipi-0 fPPjHu"
+    display={2}
+    size={2}
+    type="button"
+  >
+    Button
+  </button>,
+  <button
+    className="new-button Button__CCButton-uj0ipi-0 jYabKu"
+    display={3}
+    size={2}
+    type="button"
+  >
+    Button
+  </button>,
+  <button
+    className="new-button Button__CCButton-uj0ipi-0 bNlijl"
+    display={0}
+    size={0}
+    type="button"
+  >
+    Button
+  </button>,
+  <button
+    className="new-button Button__CCButton-uj0ipi-0 kRfzin"
+    display={1}
+    size={0}
+    type="button"
+  >
+    Button
+  </button>,
+  <button
+    className="new-button Button__CCButton-uj0ipi-0 jofOWP"
+    display={2}
+    size={0}
+    type="button"
+  >
+    Button
+  </button>,
+  <button
+    className="new-button Button__CCButton-uj0ipi-0 gdqCbA"
+    display={3}
+    size={0}
+    type="button"
+  >
+    Button
+  </button>,
+  <button
+    className="new-button Button__CCButton-uj0ipi-0 fGOxns"
+    display={0}
+    size={1}
+    type="button"
+  >
+    Button
+  </button>,
+  <button
+    className="new-button Button__CCButton-uj0ipi-0 exdPlD"
+    display={1}
+    size={1}
+    type="button"
+  >
+    Button
+  </button>,
+  <button
+    className="new-button Button__CCButton-uj0ipi-0 evQPtq"
+    display={2}
+    size={1}
+    type="button"
+  >
+    Button
+  </button>,
+  <button
+    className="new-button Button__CCButton-uj0ipi-0 kIkpnO"
+    display={3}
+    size={1}
+    type="button"
+  >
+    Button
+  </button>,
+  <button
+    className="new-button Button__CCButton-uj0ipi-0 KiWUI"
+    display={0}
+    size={3}
+    type="button"
+  >
+    Button
+  </button>,
+  <button
+    className="new-button Button__CCButton-uj0ipi-0 UfHaQ"
+    display={1}
+    size={3}
+    type="button"
+  >
+    Button
+  </button>,
+  <button
+    className="new-button Button__CCButton-uj0ipi-0 dVxKfV"
+    display={2}
+    size={3}
+    type="button"
+  >
+    Button
+  </button>,
+  <button
+    className="new-button Button__CCButton-uj0ipi-0 byMUjE"
+    display={3}
+    size={3}
+    type="button"
+  >
+    Button
+  </button>,
+]
+`;

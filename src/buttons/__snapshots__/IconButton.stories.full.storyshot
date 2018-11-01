@@ -1,0 +1,105 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`StoryShot Testing - Full Render Storyshots buttons/IconButton.stories.tsx Icon Button 1`] = `
+Array [
+  <button
+    className="new-button IconButton__CCIconButton-sc-14675o7-0 fhasyH"
+  >
+    <i
+      className="Icon-sc-1sf5jhi-0 bFFIwX"
+    >
+      arrow_back
+    </i>
+  </button>,
+  <button
+    className="new-button IconButton__CCIconButton-sc-14675o7-0 bFpQtu"
+  >
+    <i
+      className="Icon-sc-1sf5jhi-0 bFFIwX"
+    >
+      arrow_back
+    </i>
+  </button>,
+  <button
+    className="new-button IconButton__CCIconButton-sc-14675o7-0 eqrVs"
+  >
+    <i
+      className="Icon-sc-1sf5jhi-0 bFFIwX"
+    >
+      arrow_back
+    </i>
+  </button>,
+  <button
+    className="new-button IconButton__CCIconButton-sc-14675o7-0 gWdFBU"
+  >
+    <i
+      className="Icon-sc-1sf5jhi-0 bFFIwX"
+    >
+      arrow_back
+    </i>
+  </button>,
+  <button
+    className="new-button IconButton__CCIconButton-sc-14675o7-0 cpeSBE"
+  >
+    <i
+      className="Icon-sc-1sf5jhi-0 bFFIwX"
+    >
+      arrow_back
+    </i>
+  </button>,
+  <button
+    className="new-button IconButton__CCIconButton-sc-14675o7-0 jibHFZ"
+  >
+    <i
+      className="Icon-sc-1sf5jhi-0 bFFIwX"
+    >
+      arrow_back
+    </i>
+  </button>,
+  <button
+    className="new-button IconButton__CCIconButton-sc-14675o7-0 ciMouq"
+  >
+    <i
+      className="Icon-sc-1sf5jhi-0 bFFIwX"
+    >
+      arrow_back
+    </i>
+  </button>,
+  <button
+    className="new-button IconButton__CCIconButton-sc-14675o7-0 kuDChJ"
+  >
+    <i
+      className="Icon-sc-1sf5jhi-0 bFFIwX"
+    >
+      arrow_back
+    </i>
+  </button>,
+  <button
+    className="new-button IconButton__CCIconButton-sc-14675o7-0 cyFmHd"
+  >
+    <i
+      className="Icon-sc-1sf5jhi-0 bFFIwX"
+    >
+      close
+    </i>
+  </button>,
+  <button
+    className="new-button IconButton__CCIconButton-sc-14675o7-0 dgWfwT"
+  >
+    <i
+      className="Icon-sc-1sf5jhi-0 bFFIwX"
+    >
+      close
+    </i>
+  </button>,
+  <button
+    className="new-button IconButton__CCIconButton-sc-14675o7-0 jqepTS"
+  >
+    <i
+      className="Icon-sc-1sf5jhi-0 bFFIwX"
+    >
+      close
+    </i>
+  </button>,
+]
+`;
