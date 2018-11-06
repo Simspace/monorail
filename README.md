@@ -1,6 +1,32 @@
-# 🚝 Monorail
+# 🚝 Monorail | Cyber Design System
 
-Hello. Words go here.
+Monorail for React helps developers execute the [Monorail Design Language](https://design.simspace.com). Developed by the core team of engineers and UX designers at SimSpace, these components enable a reliable development workflow to build beautiful and functional web projects.
+
+
+## Quick Start
+
+Add Monorail to your React application.
+
+```
+yarn add @simspace/monorail
+```
+
+Import the components you want and use them
+
+```jsx
+import { Button } from '@simspace/monorail/buttons/Button'
+
+...
+
+render() {
+  return (
+    <Button>Monorail</Button>
+  )	
+}
+```
+
+Check out our documentation site, [design.simspace.com](https://design.simspace.com) to see all the components that are available, and how to use them.
+
 
 ## Cutting a new release
 
