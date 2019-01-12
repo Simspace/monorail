@@ -1,10 +1,7 @@
-import React, { ChangeEvent, Fragment, Component, ReactNode } from 'react'
-import {
-  TextField,
-  TextArea,
-} from 'inputs/TextField'
-import { Search } from 'inputs/Search'
-import { Choice } from 'inputs/Choice'
+import React, { ChangeEvent, Fragment, Component, ReactNode } from "react";
+import { TextField, TextArea } from "inputs/TextField";
+import { Search } from "inputs/Search";
+import { Choice } from "inputs/Choice";
 import {
   ComponentShowcase,
   ComponentExample,
@@ -15,40 +12,40 @@ import {
   DocHeading,
   DocPage,
   DocSection,
-  DocTitle,
-} from 'src/design/Components/Documentation'
-import { SmartFrame } from 'src/design/Components/SmartFrame'
-import { css } from 'styled-components'
+  DocTitle
+} from "src/design/Components/Documentation";
+import { SmartFrame } from "src/design/Components/SmartFrame";
+import { css } from "styled-components";
 
 type Props = {
   children: (
     params: {
-      value: string
-      onChange: (value: string) => void
-    },
-  ) => ReactNode
-}
+      value: string;
+      onChange: (value: string) => void;
+    }
+  ) => ReactNode;
+};
 
 type State = {
-  value: string
-}
+  value: string;
+};
 
 class TextInputController extends Component<Props, State> {
   state: State = {
-    value: '',
-  }
+    value: ""
+  };
 
   toggleActive = (value: string) => {
     this.setState(() => ({
-      value,
-    }))
-  }
+      value
+    }));
+  };
 
   render() {
-    const { children } = this.props
-    const { value } = this.state
+    const { children } = this.props;
+    const { value } = this.state;
 
-    return children({ value, onChange: this.toggleActive })
+    return children({ value, onChange: this.toggleActive });
   }
 }
 
@@ -302,4 +299,4 @@ export const InputsDoc = () => (
       />
     </DocSection>
   </DocPage>
-)
+);

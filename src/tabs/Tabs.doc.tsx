@@ -1,15 +1,15 @@
-import React from 'react'
-import { TabBar } from 'tabs/TabBar'
-import { Tab } from 'tabs/Tab'
+import React from "react";
+import { TabBar } from "tabs/TabBar";
+import { Tab } from "tabs/Tab";
 import {
   ComponentShowcase,
   DocByLine,
   DocPage,
   DocSection,
-  DocTitle,
-} from 'src/design/Components/Documentation'
-import { SmartFrame } from 'src/design/Components/SmartFrame'
-import { css } from 'styled-components'
+  DocTitle
+} from "src/design/Components/Documentation";
+import { SmartFrame } from "src/design/Components/SmartFrame";
+import { css } from "styled-components";
 
 export const TabsDoc = () => (
   <DocPage>
@@ -34,4 +34,4 @@ export const TabsDoc = () => (
       </SmartFrame>
     </DocSection>
   </DocPage>
-)
+);

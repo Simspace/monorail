@@ -1,11 +1,8 @@
-import React, { Component, ReactNode, createRef } from 'react'
-import styled, { SimpleInterpolation } from 'styled-components'
-import { isNil, StyledHtmlElement } from 'src/common/util/CoreUtils'
-import { PopOverChildProps } from 'popOver/PopOver'
-import {
-  BBModalOverlay,
-  BBModalContainer,
-} from 'modals/Modals'
+import React, { Component, ReactNode, createRef } from "react";
+import styled, { SimpleInterpolation } from "styled-components";
+import { isNil, StyledHtmlElement } from "src/common/util/CoreUtils";
+import { PopOverChildProps } from "popOver/PopOver";
+import { BBModalOverlay, BBModalContainer } from "modals/Modals";
 import {
   BorderRadius,
   borderRadius,
@@ -14,15 +11,15 @@ import {
   ElevationRange,
   generateScaleAnimation,
   getElevation,
-  sizes,
-} from 'CommonStyles'
+  sizes
+} from "CommonStyles";
 
 type MenuProps = {
-  children: ReactNode
-  css?: SimpleInterpolation
-}
-type CCMenu = StyledHtmlElement<HTMLDivElement, MenuProps>
-const CCMenu = styled<MenuProps, 'div'>('div')`
+  children: ReactNode;
+  css?: SimpleInterpolation;
+};
+type CCMenu = StyledHtmlElement<HTMLDivElement, MenuProps>;
+const CCMenu = styled<MenuProps, "div">("div")`
   ${borderRadius(BorderRadius.Medium)};
   ${getElevation(ElevationRange.Elevation6)};
 
@@ -32,57 +29,57 @@ const CCMenu = styled<MenuProps, 'div'>('div')`
   width: ${sizes.menu.width}px;
 
   ${({ css: cssOverrides }) => cssOverrides};
-`
+`;
 
-type ModalContentProps = { css?: SimpleInterpolation }
-const ModalContent = styled<ModalContentProps, 'div'>('div')``
+type ModalContentProps = { css?: SimpleInterpolation };
+const ModalContent = styled<ModalContentProps, "div">("div")``;
 
 type State = {
-  menuHeight: number
-}
+  menuHeight: number;
+};
 
 export class Menu extends Component<PopOverChildProps, State> {
   state: State = {
-    menuHeight: 0,
-  }
+    menuHeight: 0
+  };
 
-  menuRef = createRef<CCMenu>()
+  menuRef = createRef<CCMenu>();
 
   componentDidMount() {
-    this.updateMenuHeight()
+    this.updateMenuHeight();
   }
 
   componentDidUpdate() {
-    this.updateMenuHeight()
+    this.updateMenuHeight();
   }
 
   updateMenuHeight = () => {
-    const { menuHeight } = this.state
+    const { menuHeight } = this.state;
 
     // Have to do this for storyshots. It can't get the deep ref to get offsetHeight from the styled-component.
     const newMenuHeight = isNil(this.menuRef.current)
       ? 0
-      : this.menuRef.current.offsetHeight
+      : this.menuRef.current.offsetHeight;
 
     if (menuHeight === newMenuHeight) {
-      return null
+      return null;
     }
 
     return this.setState(() => ({
-      menuHeight: newMenuHeight,
-    }))
-  }
+      menuHeight: newMenuHeight
+    }));
+  };
 
   render() {
-    const { isOpen, position, onClick, children } = this.props
-    const { menuHeight } = this.state
+    const { isOpen, position, onClick, children } = this.props;
+    const { menuHeight } = this.state;
 
     const scaleAnimation = generateScaleAnimation({
       elementHeight: menuHeight,
       elementWidth: sizes.menu.width,
       isOpen,
-      position,
-    })
+      position
+    });
 
     return (
       <BBModalContainer isOpen={isOpen}>
@@ -93,6 +90,6 @@ export class Menu extends Component<PopOverChildProps, State> {
           </ModalContent>
         </CCMenu>
       </BBModalContainer>
-    )
+    );
   }
 }

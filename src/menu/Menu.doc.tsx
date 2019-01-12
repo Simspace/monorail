@@ -1,17 +1,17 @@
-import React from 'react'
-import { Menu } from 'menu/Menu'
+import React from "react";
+import { Menu } from "menu/Menu";
 import {
   ComponentShowcase,
   DocByLine,
   DocPage,
   DocSection,
-  DocTitle,
-} from 'src/design/Components/Documentation'
-import { SmartFrame } from 'src/design/Components/SmartFrame'
-import { css } from 'styled-components'
-import { PopOver } from 'popOver/PopOver'
-import { Button } from 'buttons/Button'
-import { ListItem } from 'list/List'
+  DocTitle
+} from "src/design/Components/Documentation";
+import { SmartFrame } from "src/design/Components/SmartFrame";
+import { css } from "styled-components";
+import { PopOver } from "popOver/PopOver";
+import { Button } from "buttons/Button";
+import { ListItem } from "list/List";
 
 export const MenuDoc = () => (
   <DocPage>
@@ -39,4 +39,4 @@ export const MenuDoc = () => (
       </SmartFrame>
     </DocSection>
   </DocPage>
-)
+);

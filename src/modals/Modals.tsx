@@ -1,6 +1,6 @@
-import React, { MouseEvent, ReactNode, StatelessComponent } from 'react'
-import { AppIcon } from 'appIcon/AppIcon'
-import { Icon } from 'icon/Icon'
+import React, { MouseEvent, ReactNode, StatelessComponent } from "react";
+import { AppIcon } from "appIcon/AppIcon";
+import { Icon } from "icon/Icon";
 import {
   AppName,
   BorderRadius,
@@ -13,35 +13,35 @@ import {
   getElevation,
   sizes,
   typography,
-  visible,
-} from 'CommonStyles'
-import styled, { css, SimpleInterpolation } from 'styled-components'
-import { BBSearchContainer } from '../inputs/Search'
-import { IconButton } from 'buttons/IconButton'
+  visible
+} from "CommonStyles";
+import styled, { css, SimpleInterpolation } from "styled-components";
+import { BBSearchContainer } from "../inputs/Search";
+import { IconButton } from "buttons/IconButton";
 
 /*
-*
-* Modal Background
-*
-*/
+ *
+ * Modal Background
+ *
+ */
 
 /*
-* Types
-*/
+ * Types
+ */
 
 type BBModalSize = {
-  mini?: boolean
-}
+  mini?: boolean;
+};
 
 type BBModalBackgroundProps = BBModalSize & {
-  css?: SimpleInterpolation
-}
+  css?: SimpleInterpolation;
+};
 
 /*
-* Component
-*/
+ * Component
+ */
 
-export const BBModalBackground = styled<BBModalBackgroundProps, 'div'>('div')`
+export const BBModalBackground = styled<BBModalBackgroundProps, "div">("div")`
   ${({ mini }) =>
     mini &&
     css`
@@ -60,20 +60,20 @@ export const BBModalBackground = styled<BBModalBackgroundProps, 'div'>('div')`
   will-change: transform;
 
   ${({ css: cssOverrides }) => cssOverrides};
-`
+`;
 
 /*
-*
-* Modal Header
-*
-*/
+ *
+ * Modal Header
+ *
+ */
 
 /*
-* Styles
-*/
+ * Styles
+ */
 
-const BBModalHeaderContainer = styled<BBModalSize, 'div'>('div')`
-  ${({ mini }) => flexFlow(mini ? 'column' : 'row')};
+const BBModalHeaderContainer = styled<BBModalSize, "div">("div")`
+  ${({ mini }) => flexFlow(mini ? "column" : "row")};
 
   ${getElevation(ElevationRange.Elevation2)};
 
@@ -91,18 +91,18 @@ const BBModalHeaderContainer = styled<BBModalSize, 'div'>('div')`
             margin: auto 16px auto auto;
           `};
   }
-`
+`;
 
-const BBModalHeaderRow = styled<BBModalSize, 'div'>('div')`
-  ${flexFlow('row')};
+const BBModalHeaderRow = styled<BBModalSize, "div">("div")`
+  ${flexFlow("row")};
 
   align-items: center;
   height: ${({ mini }) => (mini ? 48 : 56)}px;
   padding: 0 16px;
   width: 100%;
-`
+`;
 
-const BBModalHeaderTitle = styled<BBModalSize, 'h1'>('h1')`
+const BBModalHeaderTitle = styled<BBModalSize, "h1">("h1")`
   ${({ mini }) =>
     mini
       ? typography(700, FontSizes.Title4)
@@ -110,43 +110,43 @@ const BBModalHeaderTitle = styled<BBModalSize, 'h1'>('h1')`
 
   color: ${colors(Colors.White)};
   margin: 0;
-`
+`;
 
 const baseIconStyles = css`
   color: ${colors(Colors.White)};
-`
+`;
 
 const StyledAppIconLeft = styled(AppIcon)`
   ${baseIconStyles};
   margin-right: 16px;
-`
+`;
 
 const StyledIconLeft = styled(Icon)`
   ${baseIconStyles};
   margin-right: 16px;
-`
+`;
 
 const StyledIconRight = styled(Icon)`
   ${baseIconStyles};
   margin-left: 16px;
-`
+`;
 
 /*
-* Types
-*/
+ * Types
+ */
 
 type BBModalHeaderProps = BBModalSize & {
-  appIcon?: AppName
-  headerRowChildren?: ReactNode
-  iconLeft?: string
-  iconRight?: string
-  onClose?: (event: MouseEvent) => void
-  title: string
-}
+  appIcon?: AppName;
+  headerRowChildren?: ReactNode;
+  iconLeft?: string;
+  iconRight?: string;
+  onClose?: (event: MouseEvent) => void;
+  title: string;
+};
 
 /*
-* Component
-*/
+ * Component
+ */
 
 export const BBModalHeader: StatelessComponent<BBModalHeaderProps> = ({
   appIcon,
@@ -156,7 +156,7 @@ export const BBModalHeader: StatelessComponent<BBModalHeaderProps> = ({
   iconRight,
   mini,
   onClose,
-  title,
+  title
 }) => (
   <BBModalHeaderContainer mini={mini}>
     <BBModalHeaderRow mini={mini}>
@@ -165,39 +165,38 @@ export const BBModalHeader: StatelessComponent<BBModalHeaderProps> = ({
       <BBModalHeaderTitle mini={mini}>{title}</BBModalHeaderTitle>
       {headerRowChildren}
       {iconRight && <StyledIconRight icon={iconRight} />}
-      {!mini &&
-        onClose && (
-          <IconButton
-            css={
-              headerRowChildren
-                ? css``
-                : css`
-                    margin-left: auto;
-                  `
-            }
-            icon="close"
-            darkMode
-            onClick={onClose}
-            chromeless
-          />
-        )}
+      {!mini && onClose && (
+        <IconButton
+          css={
+            headerRowChildren
+              ? css``
+              : css`
+                  margin-left: auto;
+                `
+          }
+          icon="close"
+          darkMode
+          onClick={onClose}
+          chromeless
+        />
+      )}
     </BBModalHeaderRow>
     {children}
   </BBModalHeaderContainer>
-)
+);
 
 /*
-*
-* Modal Footer
-*
-*/
+ *
+ * Modal Footer
+ *
+ */
 
 /*
-* Styles
-*/
+ * Styles
+ */
 
-export const BBModalFooter = styled('div')`
-  ${flexFlow('row')};
+export const BBModalFooter = styled("div")`
+  ${flexFlow("row")};
   ${getElevation(ElevationRange.Elevation6)};
 
   align-items: center;
@@ -206,18 +205,18 @@ export const BBModalFooter = styled('div')`
   justify-content: flex-end;
   margin: auto 0 0;
   padding: 0 16px;
-`
+`;
 /*
-*
-* Modal Overlay
-*
+ *
+ * Modal Overlay
+ *
  */
 
 /*
-* Styles
-*/
+ * Styles
+ */
 
-const BBModalOverlayContainer = styled<BBModalOverlayProps, 'div'>('div')`
+const BBModalOverlayContainer = styled<BBModalOverlayProps, "div">("div")`
   ${({ isOpen }) => visible(isOpen)};
   ${({ chromeless }) =>
     !chromeless &&
@@ -231,27 +230,27 @@ const BBModalOverlayContainer = styled<BBModalOverlayProps, 'div'>('div')`
   position: fixed;
   right: 0;
   top: 0;
-`
+`;
 
 /*
-* Types
-*/
+ * Types
+ */
 
 type BBModalOverlayProps = {
-  isOpen: boolean
-  onClick?: (event: MouseEvent<HTMLDivElement>) => void
-  chromeless?: boolean
-}
+  isOpen: boolean;
+  onClick?: (event: MouseEvent<HTMLDivElement>) => void;
+  chromeless?: boolean;
+};
 
 /*
-* Component
-*/
+ * Component
+ */
 
 export const BBModalOverlay: StatelessComponent<BBModalOverlayProps> = ({
   children,
   chromeless,
   isOpen,
-  onClick,
+  onClick
 }) => (
   <BBModalOverlayContainer
     isOpen={isOpen}
@@ -260,7 +259,7 @@ export const BBModalOverlay: StatelessComponent<BBModalOverlayProps> = ({
       onClick
         ? (event: MouseEvent<HTMLDivElement>) => {
             if (event.target === event.currentTarget) {
-              onClick(event)
+              onClick(event);
             }
           }
         : undefined
@@ -268,19 +267,19 @@ export const BBModalOverlay: StatelessComponent<BBModalOverlayProps> = ({
   >
     {children}
   </BBModalOverlayContainer>
-)
+);
 
 /*
-*
-* Modal Container
-*
+ *
+ * Modal Container
+ *
  */
 
 /*
-* Styles
-*/
+ * Styles
+ */
 
-export const BBModalContainer = styled<{ isOpen: boolean }, 'div'>('div')`
+export const BBModalContainer = styled<{ isOpen: boolean }, "div">("div")`
   ${({ isOpen }) =>
     isOpen
       ? css`
@@ -314,20 +313,20 @@ export const BBModalContainer = styled<{ isOpen: boolean }, 'div'>('div')`
 
     transition: all ease 100ms;
   }
-`
+`;
 
 /*
-*
-* Modal Content
-*
+ *
+ * Modal Content
+ *
  */
 
 /*
-* Styles
-*/
+ * Styles
+ */
 
-export const BBModalContent = styled<{ css?: SimpleInterpolation }, 'div'>(
-  'div',
+export const BBModalContent = styled<{ css?: SimpleInterpolation }, "div">(
+  "div"
 )`
   ${flexFlow()};
   height: 100%;
@@ -335,4 +334,4 @@ export const BBModalContent = styled<{ css?: SimpleInterpolation }, 'div'>(
   overflow: auto;
 
   ${({ css: cssOverrides }) => cssOverrides};
-`
+`;

@@ -3,7 +3,11 @@
   "version": "0.0.2",
   "description": "SimSpace Design System",
   "scripts": {
-    "build": "rm -rf dist && babel src -d dist --extensions \".js,.jsx,.ts,.tsx\" --ignore \"src/**/*.doc.tsx\",\"src/**/*.stories.tsx\" && cp package.json dist/package.json"
+    "build": "rm -rf dist && babel src -d dist --extensions \".js,.jsx,.ts,.tsx\" --ignore \"src/**/*.doc.tsx\",\"src/**/*.stories.tsx\" && cp package.json dist/package.json",
+    "prettier-eslint-conflict-check": "eslint --print-config .eslintrc | eslint-config-prettier-check",
+    "prettier-formatting-check": "prettier --list-different \"./{src,webpack}/**/*.{js,json,ts,tsx}\"",
+    "prettier-format": "prettier --write \"./{src,webpack}/**/*.{js,json,ts,tsx}\"",
+    "prettier-all": "prettier --write \"./**/*.{js,json,ts,tsx}\""
   },
   "repository": {
     "type": "git",

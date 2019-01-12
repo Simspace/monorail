@@ -1,14 +1,14 @@
-import React, { ComponentType, MouseEvent } from 'react'
-import styled, { css, SimpleInterpolation } from 'styled-components'
-import { Admin } from 'icon/custom/Admin'
-import { Colors, colors } from 'CommonStyles'
-import { Dashboard } from 'icon/custom/Dashboard'
-import { Omit } from 'typelevel-ts'
-import { Range } from 'icon/custom/Range'
-import { Tracker } from 'icon/custom/Tracker'
-import { Hardhat } from 'icon/custom/Hardhat'
-import { Academy } from 'icon/custom/Academy'
-import { Impact } from 'icon/custom/Impact'
+import React, { ComponentType, MouseEvent } from "react";
+import styled, { css, SimpleInterpolation } from "styled-components";
+import { Admin } from "icon/custom/Admin";
+import { Colors, colors } from "CommonStyles";
+import { Dashboard } from "icon/custom/Dashboard";
+import { Omit } from "typelevel-ts";
+import { Range } from "icon/custom/Range";
+import { Tracker } from "icon/custom/Tracker";
+import { Hardhat } from "icon/custom/Hardhat";
+import { Academy } from "icon/custom/Academy";
+import { Impact } from "icon/custom/Impact";
 
 const customIcons: { [key: string]: ComponentType<CustomIconProps> } = {
   academy: Academy,
@@ -18,17 +18,17 @@ const customIcons: { [key: string]: ComponentType<CustomIconProps> } = {
   impact: Impact,
   range: Range,
   tracker: Tracker,
-  training: Academy,
-}
+  training: Academy
+};
 
 export const Icon = styled<IconProps>(({ icon, ...otherProps }: IconProps) => {
-  const CustomIcon = customIcons[icon]
+  const CustomIcon = customIcons[icon];
 
   if (CustomIcon) {
-    return <CustomIcon {...otherProps} />
+    return <CustomIcon {...otherProps} />;
   }
 
-  return <i {...otherProps}>{icon}</i>
+  return <i {...otherProps}>{icon}</i>;
 })`
   ${({ size }) =>
     size
@@ -43,7 +43,7 @@ export const Icon = styled<IconProps>(({ icon, ...otherProps }: IconProps) => {
   direction: ltr;
   display: inline-block;
   fill: currentColor; /* Custom icons are svg and need this so that color works correct. */
-  font-family: 'Material Icons'; /* stylelint-disable-line font-family-no-missing-generic-family-keyword */
+  font-family: "Material Icons"; /* stylelint-disable-line font-family-no-missing-generic-family-keyword */
   font-style: normal;
   font-weight: normal;
   height: 1em;
@@ -64,17 +64,17 @@ export const Icon = styled<IconProps>(({ icon, ...otherProps }: IconProps) => {
   -moz-osx-font-smoothing: grayscale;
 
   /* Support for IE. */
-  font-feature-settings: 'liga';
+  font-feature-settings: "liga";
 
   ${({ css: cssOverrides }) => cssOverrides};
-`
+`;
 
 export type IconProps = {
-  className?: string
-  css?: SimpleInterpolation
-  icon: string
-  onClick?: (event: MouseEvent<Element>) => void
-  size?: number
-}
+  className?: string;
+  css?: SimpleInterpolation;
+  icon: string;
+  onClick?: (event: MouseEvent<Element>) => void;
+  size?: number;
+};
 
-export type CustomIconProps = Omit<IconProps, 'icon'>
+export type CustomIconProps = Omit<IconProps, "icon">;

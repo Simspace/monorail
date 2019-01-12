@@ -1,16 +1,10 @@
-import React, { Component, ReactNode, createRef, MouseEvent } from 'react'
-import styled, { SimpleInterpolation } from 'styled-components'
-import { isNil, StyledHtmlElement } from 'src/common/util/CoreUtils'
-import {
-  Colors,
-  colors,
-  flexFlow,
-  FontSizes,
-  typography,
-} from 'CommonStyles'
+import React, { Component, ReactNode, createRef, MouseEvent } from "react";
+import styled, { SimpleInterpolation } from "styled-components";
+import { isNil, StyledHtmlElement } from "src/common/util/CoreUtils";
+import { Colors, colors, flexFlow, FontSizes, typography } from "CommonStyles";
 
-const CCTab = styled<CCTabProps, 'div'>('div')`
-  ${flexFlow('row')};
+const CCTab = styled<CCTabProps, "div">("div")`
+  ${flexFlow("row")};
   ${typography(700, FontSizes.Title5)};
 
   align-items: center;
@@ -30,46 +24,46 @@ const CCTab = styled<CCTabProps, 'div'>('div')`
   }
 
   ${({ css: cssOverrides }) => cssOverrides};
-`
+`;
 
 type CCTabProps = {
-  children: ReactNode
-  onClick?: (event: MouseEvent<HTMLDivElement>) => void
-  isActive: boolean
-  css?: SimpleInterpolation
-}
+  children: ReactNode;
+  onClick?: (event: MouseEvent<HTMLDivElement>) => void;
+  isActive: boolean;
+  css?: SimpleInterpolation;
+};
 
 export type TabProps = {
-  index?: number
-  setIndicator: (width: number, offsetLeft: number) => void
-  updateIsActive: (i: number) => void
-} & CCTabProps
+  index?: number;
+  setIndicator: (width: number, offsetLeft: number) => void;
+  updateIsActive: (i: number) => void;
+} & CCTabProps;
 
-type CCTab = StyledHtmlElement<HTMLDivElement, CCTabProps>
+type CCTab = StyledHtmlElement<HTMLDivElement, CCTabProps>;
 
 export class Tab extends Component<TabProps> {
   static defaultProps = {
     isActive: false,
     setIndicator: () => {},
-    updateIsActive: () => {},
-  }
+    updateIsActive: () => {}
+  };
 
-  tabRef = createRef<CCTab>()
+  tabRef = createRef<CCTab>();
 
   componentDidMount() {
-    this.callSetIndicator()
+    this.callSetIndicator();
   }
 
   componentDidUpdate(prevProps: TabProps) {
     if (prevProps.isActive === this.props.isActive) {
-      return
+      return;
     }
 
-    this.callSetIndicator()
+    this.callSetIndicator();
   }
 
   callSetIndicator = () => {
-    const { isActive, setIndicator } = this.props
+    const { isActive, setIndicator } = this.props;
 
     if (
       !isNil(isActive) &&
@@ -79,25 +73,25 @@ export class Tab extends Component<TabProps> {
     ) {
       setIndicator(
         this.tabRef.current.getBoundingClientRect().width,
-        this.tabRef.current.offsetLeft,
-      )
+        this.tabRef.current.offsetLeft
+      );
     }
-  }
+  };
 
   onClick = (event: MouseEvent<HTMLDivElement>) => {
-    const { updateIsActive, onClick, index } = this.props
+    const { updateIsActive, onClick, index } = this.props;
 
     if (!isNil(updateIsActive) && !isNil(index)) {
-      updateIsActive(index)
+      updateIsActive(index);
     }
 
     if (!isNil(onClick)) {
-      onClick(event)
+      onClick(event);
     }
-  }
+  };
 
   render() {
-    const { isActive, children, css: cssOverrides } = this.props
+    const { isActive, children, css: cssOverrides } = this.props;
 
     return (
       <CCTab
@@ -108,6 +102,6 @@ export class Tab extends Component<TabProps> {
       >
         {children}
       </CCTab>
-    )
+    );
   }
 }

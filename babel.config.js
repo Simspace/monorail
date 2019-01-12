@@ -1,14 +1,14 @@
 module.exports = {
   presets: [
-    '@babel/preset-react',
-    '@babel/preset-typescript',
+    "@babel/preset-react",
+    "@babel/preset-typescript",
     [
-      '@babel/preset-env',
+      "@babel/preset-env",
       {
-        targets: 'Chrome >= 69',
-        modules: 'commonjs',
-      },
-    ],
+        targets: "Chrome >= 69",
+        modules: "commonjs"
+      }
+    ]
   ],
   plugins: [
     [
@@ -16,24 +16,24 @@ module.exports = {
        * Rewrite our "shortcut" requires to relative paths so we can package correctly.
        * Transforms `require 'src/foo/bar/baz'` to `require '../baz'`
        */
-      'module-resolver',
+      "module-resolver",
       {
-        root: ['./src'],
-        extensions: ['.js', '.jsx', '.ts', '.tsx'],
-      },
+        root: ["./src"],
+        extensions: [".js", ".jsx", ".ts", ".tsx"]
+      }
     ],
     [
-      '@babel/plugin-proposal-decorators',
+      "@babel/plugin-proposal-decorators",
       {
-        legacy: true,
-      },
+        legacy: true
+      }
     ],
     [
-      '@babel/plugin-proposal-class-properties',
+      "@babel/plugin-proposal-class-properties",
       {
-        loose: true,
-      },
-    ],
+        loose: true
+      }
+    ]
     // [
     //   'styled-components',
     //   {
@@ -43,5 +43,5 @@ module.exports = {
     // '@babel/plugin-transform-react-inline-elements',
     // 'transform-react-remove-prop-types',
     // 'transform-react-pure-class-to-function',
-  ],
+  ]
 };

@@ -1,8 +1,8 @@
-import React, { Component, ReactNode } from 'react'
-import { isNil } from 'src/common/util/CoreUtils'
-import styled, { css, SimpleInterpolation } from 'styled-components'
+import React, { Component, ReactNode } from "react";
+import { isNil } from "src/common/util/CoreUtils";
+import styled, { css, SimpleInterpolation } from "styled-components";
 
-import { Icon } from 'icon/Icon'
+import { Icon } from "icon/Icon";
 import {
   basePrimaryStyles,
   baseSecondaryStyles,
@@ -12,12 +12,12 @@ import {
   colors,
   flexFlow,
   FontSizes,
-  typography,
-} from 'CommonStyles'
-import { PopOver } from 'popOver/PopOver'
-import { Menu } from 'menu/Menu'
+  typography
+} from "CommonStyles";
+import { PopOver } from "popOver/PopOver";
+import { Menu } from "menu/Menu";
 
-const CCFilter = styled<CCFilterProps, 'div'>('div')`
+const CCFilter = styled<CCFilterProps, "div">("div")`
   ${({ isOpen, isActive }) =>
     isActive || isOpen
       ? basePrimaryStyles(Colors.BrandDarkBlue)
@@ -28,7 +28,7 @@ const CCFilter = styled<CCFilterProps, 'div'>('div')`
 
   ${borderRadius()};
   ${buttonTransiton};
-  ${flexFlow('row')};
+  ${flexFlow("row")};
 
   align-items: center;
   cursor: pointer;
@@ -38,35 +38,35 @@ const CCFilter = styled<CCFilterProps, 'div'>('div')`
   width: fit-content;
 
   ${({ css: cssOverrides }) => cssOverrides};
-`
+`;
 
-const FilterText = styled('span')`
-  ${flexFlow('row')};
+const FilterText = styled("span")`
+  ${flexFlow("row")};
   ${typography(700, FontSizes.Title5)};
 
   color: currentColor;
   text-transform: uppercase;
   white-space: nowrap;
-`
+`;
 
 const FilterIcon = styled(Icon)`
   color: currentColor;
-`
+`;
 
 type CCFilterProps = {
-  css?: SimpleInterpolation
-  isOpen: boolean
-  isActive: boolean
-}
+  css?: SimpleInterpolation;
+  isOpen: boolean;
+  isActive: boolean;
+};
 
 type Props = CCFilterProps & {
-  title: ReactNode
-  content?: ReactNode
-}
+  title: ReactNode;
+  content?: ReactNode;
+};
 
 export class Filter extends Component<Props> {
   render() {
-    const { css: cssOverrides, title, content, isActive } = this.props
+    const { css: cssOverrides, title, content, isActive } = this.props;
 
     return (
       <PopOver
@@ -78,6 +78,6 @@ export class Filter extends Component<Props> {
         )}
         popOver={props => !isNil(content) && <Menu {...props}>{content}</Menu>}
       />
-    )
+    );
   }
 }

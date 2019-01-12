@@ -1,21 +1,21 @@
-import React, { Component } from 'react'
-import styled, { css, SimpleInterpolation } from 'styled-components'
+import React, { Component } from "react";
+import styled, { css, SimpleInterpolation } from "styled-components";
 import {
   AppName,
   borderRadius,
   colors,
   Colors,
   convertAppNameToColor,
-  flexFlow,
-} from 'CommonStyles'
-import { Icon } from 'icon/Icon'
+  flexFlow
+} from "CommonStyles";
+import { Icon } from "icon/Icon";
 
-const CCAppIcon = styled<AppIconProps, 'div'>('div')`
+const CCAppIcon = styled<AppIconProps, "div">("div")`
   ${({ appName }) => css`
     background: ${colors(convertAppNameToColor(appName))};
   `};
 
-  ${flexFlow('row')};
+  ${flexFlow("row")};
   ${borderRadius()};
 
   box-sizing: border-box;
@@ -30,42 +30,42 @@ const CCAppIcon = styled<AppIconProps, 'div'>('div')`
   }
 
   ${({ css: cssOverrides }) => cssOverrides};
-`
+`;
 
 type AppIconProps = {
-  appName: AppName
-  css?: SimpleInterpolation
-}
+  appName: AppName;
+  css?: SimpleInterpolation;
+};
 
 export class AppIcon extends Component<AppIconProps> {
   convertAppNameToString = () => {
-    const { appName } = this.props
+    const { appName } = this.props;
 
     switch (appName) {
       default:
       case AppName.Admin:
-        return 'admin'
+        return "admin";
       case AppName.Dashboard:
-        return 'dashboard'
+        return "dashboard";
       case AppName.Hardhat:
-        return 'hardhat'
+        return "hardhat";
       case AppName.Impact:
-        return 'impact'
+        return "impact";
       case AppName.Range:
-        return 'range'
+        return "range";
       case AppName.Tracker:
-        return 'tracker'
+        return "tracker";
       case AppName.Training:
-        return 'training'
+        return "training";
     }
-  }
+  };
 
   render() {
-    const { appName, ...otherProps } = this.props
+    const { appName, ...otherProps } = this.props;
     return (
       <CCAppIcon appName={appName} {...otherProps}>
         <Icon icon={this.convertAppNameToString()} />
       </CCAppIcon>
-    )
+    );
   }
 }

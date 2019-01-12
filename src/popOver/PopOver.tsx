@@ -1,101 +1,101 @@
-import React, { Component, Fragment, MouseEvent, ReactNode } from 'react'
+import React, { Component, Fragment, MouseEvent, ReactNode } from "react";
 
-import { Portal } from 'portal/Portal'
+import { Portal } from "portal/Portal";
 
 export type PopOverPosition = {
-  dropXAmount: number
-  dropXDirection: 'left' | 'right'
-  dropYAmount: number
-  dropYDirection: 'top' | 'bottom'
-  gap: number
-  maxHeight: number
-  maxWidth: number
-  originHeight: number
-  originWidth: number
-}
+  dropXAmount: number;
+  dropXDirection: "left" | "right";
+  dropYAmount: number;
+  dropYDirection: "top" | "bottom";
+  gap: number;
+  maxHeight: number;
+  maxWidth: number;
+  originHeight: number;
+  originWidth: number;
+};
 
 export type ToggleChildProps = {
-  onClick: (event: MouseEvent) => void
-  isOpen: boolean
-}
+  onClick: (event: MouseEvent) => void;
+  isOpen: boolean;
+};
 
 export type PopOverChildProps = {
-  isOpen: boolean
-  position: PopOverPosition
-  onClick: (event: MouseEvent) => void
-}
+  isOpen: boolean;
+  position: PopOverPosition;
+  onClick: (event: MouseEvent) => void;
+};
 
 type PopOverProps = {
-  gap?: number
-  popOver: (props: PopOverChildProps) => ReactNode
-  toggle: (props: ToggleChildProps) => ReactNode
-  document?: Document
-}
+  gap?: number;
+  popOver: (props: PopOverChildProps) => ReactNode;
+  toggle: (props: ToggleChildProps) => ReactNode;
+  document?: Document;
+};
 
 type PopOverState = {
-  isOpen: boolean
-  position: PopOverPosition
-}
+  isOpen: boolean;
+  position: PopOverPosition;
+};
 
 export class PopOver extends Component<PopOverProps, PopOverState> {
   state: PopOverState = {
     isOpen: false,
     position: {
       dropXAmount: 0,
-      dropXDirection: 'left',
+      dropXDirection: "left",
       dropYAmount: 0,
-      dropYDirection: 'top',
+      dropYDirection: "top",
       gap: 0,
       maxHeight: 360,
       maxWidth: 304,
       originHeight: 0,
-      originWidth: 0,
-    },
-  }
+      originWidth: 0
+    }
+  };
 
   togglePopOver = () => {
-    this.setState(({ isOpen }) => ({ isOpen: !isOpen }))
-  }
+    this.setState(({ isOpen }) => ({ isOpen: !isOpen }));
+  };
 
   onClick = (event: MouseEvent) => {
-    const { gap = 8 } = this.props
+    const { gap = 8 } = this.props;
 
     // Get basic dimensions about the the Toggle and the window.
-    const boundingRect = event.currentTarget.getBoundingClientRect()
-    const innerWidth = window.innerWidth
-    const innerHeight = window.innerHeight
+    const boundingRect = event.currentTarget.getBoundingClientRect();
+    const innerWidth = window.innerWidth;
+    const innerHeight = window.innerHeight;
 
     // Determine the direction the PopOver should go.
     const dropYDirection =
       innerHeight / 2 > boundingRect.top + boundingRect.height / 2
-        ? 'top'
-        : 'bottom'
+        ? "top"
+        : "bottom";
     const dropXDirection =
       innerWidth / 2 > boundingRect.left + boundingRect.width / 2
-        ? 'left'
-        : 'right'
+        ? "left"
+        : "right";
 
     // Figure out the value for the direction.
     const dropYAmount =
-      dropYDirection === 'top'
+      dropYDirection === "top"
         ? boundingRect.top
-        : innerHeight - boundingRect.bottom
+        : innerHeight - boundingRect.bottom;
     const dropXAmount =
-      dropXDirection === 'left'
+      dropXDirection === "left"
         ? boundingRect.left
-        : innerWidth - boundingRect.right
+        : innerWidth - boundingRect.right;
 
     // Figure out the max amount the element can go in that direction.
     const maxHeight =
-      (dropYDirection === 'top'
+      (dropYDirection === "top"
         ? innerHeight - (boundingRect.top + boundingRect.height)
         : boundingRect.top) -
-      gap * 2
+      gap * 2;
     const maxWidth =
-      (dropXDirection === 'left'
+      (dropXDirection === "left"
         ? innerWidth - boundingRect.left
         : boundingRect.left + boundingRect.width) -
-      gap * 2
+      gap * 2;
 
     this.setState(({ isOpen }) => ({
       isOpen: !isOpen,
@@ -108,14 +108,14 @@ export class PopOver extends Component<PopOverProps, PopOverState> {
         maxHeight,
         maxWidth,
         originHeight: boundingRect.height,
-        originWidth: boundingRect.width,
-      },
-    }))
-  }
+        originWidth: boundingRect.width
+      }
+    }));
+  };
 
   render() {
-    const { popOver, toggle, document } = this.props
-    const { isOpen, position } = this.state
+    const { popOver, toggle, document } = this.props;
+    const { isOpen, position } = this.state;
 
     return (
       <Fragment>
@@ -124,10 +124,10 @@ export class PopOver extends Component<PopOverProps, PopOverState> {
           {popOver({
             isOpen,
             position,
-            onClick: this.togglePopOver,
+            onClick: this.togglePopOver
           })}
         </Portal>
       </Fragment>
-    )
+    );
   }
 }

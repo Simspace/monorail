@@ -1,22 +1,22 @@
-import React, { Component } from 'react'
-import ReactDOM from 'react-dom'
-import { isNil } from 'src/common/util/CoreUtils'
+import React, { Component } from "react";
+import ReactDOM from "react-dom";
+import { isNil } from "src/common/util/CoreUtils";
 
-if (!isNil(document.getElementById('modal-root'))) {
-  const newModalRoot = document.createElement('div')
-  newModalRoot.setAttribute('id', 'modal-root')
+if (!isNil(document.getElementById("modal-root"))) {
+  const newModalRoot = document.createElement("div");
+  newModalRoot.setAttribute("id", "modal-root");
 
-  document.body.appendChild(newModalRoot)
+  document.body.appendChild(newModalRoot);
 }
 
 export class Portal extends Component<{ document?: Document }> {
   modalRoot = !isNil(this.props.document)
-    ? this.props.document.getElementById('modal-root')
-    : document.getElementById('modal-root')
+    ? this.props.document.getElementById("modal-root")
+    : document.getElementById("modal-root");
 
   portalElement = !isNil(this.props.document)
-    ? this.props.document.createElement('span')
-    : document.createElement('div')
+    ? this.props.document.createElement("span")
+    : document.createElement("div");
 
   componentDidMount() {
     // The portal element is inserted in the DOM tree after
@@ -29,17 +29,17 @@ export class Portal extends Component<{ document?: Document }> {
     // is inserted in the DOM tree.
 
     if (!isNil(this.modalRoot)) {
-      this.modalRoot.appendChild(this.portalElement)
+      this.modalRoot.appendChild(this.portalElement);
     }
   }
 
   componentWillUnmount() {
     if (!isNil(this.modalRoot)) {
-      this.modalRoot.removeChild(this.portalElement)
+      this.modalRoot.removeChild(this.portalElement);
     }
   }
 
   render() {
-    return ReactDOM.createPortal(this.props.children, this.portalElement)
+    return ReactDOM.createPortal(this.props.children, this.portalElement);
   }
 }

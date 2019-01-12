@@ -2,12 +2,12 @@ export enum ButtonDisplay {
   Primary,
   Secondary,
   Outline,
-  Chromeless,
+  Chromeless
 }
 
 export enum ButtonSize {
   Dense,
   Compact,
   Default,
-  Large,
+  Large
 }

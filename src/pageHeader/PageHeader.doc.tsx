@@ -1,14 +1,14 @@
-import React from 'react'
-import { PageHeader } from 'pageHeader/PageHeader'
+import React from "react";
+import { PageHeader } from "pageHeader/PageHeader";
 import {
   ComponentShowcase,
   DocByLine,
   DocPage,
   DocSection,
-  DocTitle,
-} from 'src/design/Components/Documentation'
-import { SmartFrame } from 'src/design/Components/SmartFrame'
-import { css } from 'styled-components'
+  DocTitle
+} from "src/design/Components/Documentation";
+import { SmartFrame } from "src/design/Components/SmartFrame";
+import { css } from "styled-components";
 
 export const PageHeaderDoc = () => (
   <DocPage>
@@ -35,4 +35,4 @@ export const PageHeaderDoc = () => (
       </SmartFrame>
     </DocSection>
   </DocPage>
-)
+);

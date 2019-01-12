@@ -1,40 +1,40 @@
-import React, { ChangeEvent, MouseEvent, Component } from 'react'
-import styled, { css, SimpleInterpolation } from 'styled-components'
+import React, { ChangeEvent, MouseEvent, Component } from "react";
+import styled, { css, SimpleInterpolation } from "styled-components";
 
-import { Icon, IconProps } from 'icon/Icon'
-import { IconButton } from 'buttons/IconButton'
+import { Icon, IconProps } from "icon/Icon";
+import { IconButton } from "buttons/IconButton";
 import {
   buttonTransiton,
   Colors,
   colors,
   FontSizes,
   typography,
-  visible,
-} from 'CommonStyles'
-import { Overwrite } from 'src/common/util/CoreUtils'
+  visible
+} from "CommonStyles";
+import { Overwrite } from "src/common/util/CoreUtils";
 
 //
 // Styles
 //
 
-export const BBSearchContainer = styled<BBSearchContainerProps, 'div'>('div')`
+export const BBSearchContainer = styled<BBSearchContainerProps, "div">("div")`
   position: relative; /* position: relative; so that BBSearchIcon can be positioned absolute to this. */
   height: 24px;
 
   ${({ css: cssOverrides }) => cssOverrides};
-`
+`;
 
 const BBSearchIcon = styled<{ darkMode?: boolean } & IconProps>(
-  ({ darkMode, ...otherProps }) => <Icon {...otherProps} />,
+  ({ darkMode, ...otherProps }) => <Icon {...otherProps} />
 )`
   color: ${({ darkMode }) => darkMode && colors(Colors.White)};
   left: 8px;
   pointer-events: none;
   position: absolute;
   top: 4px;
-`
+`;
 
-const BBSearchInput = styled<BBSearchInputProps, 'input'>('input')`
+const BBSearchInput = styled<BBSearchInputProps, "input">("input")`
   ${({ darkMode }) =>
     darkMode
       ? css`
@@ -79,31 +79,31 @@ const BBSearchInput = styled<BBSearchInputProps, 'input'>('input')`
   width: 100%;
 
   ${buttonTransiton};
-`
+`;
 
 //
 // Types
 //
 
 type BBSearchContainerProps = {
-  css?: SimpleInterpolation
-}
+  css?: SimpleInterpolation;
+};
 
 type BBSearchInputProps = {
-  darkMode: boolean
-  onChange: (event: ChangeEvent<HTMLInputElement>) => void
-  onClick?: (event: MouseEvent<HTMLInputElement>) => void
-  placeholder: string
-  value: string
-}
+  darkMode: boolean;
+  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
+  onClick?: (event: MouseEvent<HTMLInputElement>) => void;
+  placeholder: string;
+  value: string;
+};
 
 type SearchProps = BBSearchContainerProps &
   Overwrite<
     BBSearchInputProps,
     {
-      onChange: (value: string, event?: ChangeEvent<HTMLInputElement>) => void
+      onChange: (value: string, event?: ChangeEvent<HTMLInputElement>) => void;
     }
-  > & {}
+  > & {};
 
 //
 // Component
@@ -112,18 +112,18 @@ type SearchProps = BBSearchContainerProps &
 export class Search extends Component<SearchProps> {
   static defaultProps = {
     darkMode: false,
-    placeholder: 'Search',
-  }
+    placeholder: "Search"
+  };
 
   render() {
     const {
       css: overrideCss,
       darkMode,
       onChange,
-      placeholder = 'Search',
+      placeholder = "Search",
       value,
-      onClick,
-    } = this.props
+      onClick
+    } = this.props;
 
     return (
       <BBSearchContainer css={overrideCss}>
@@ -133,7 +133,7 @@ export class Search extends Component<SearchProps> {
           className="new-input"
           darkMode={darkMode}
           onChange={(event: ChangeEvent<HTMLInputElement>) => {
-            onChange(event.currentTarget.value, event)
+            onChange(event.currentTarget.value, event);
           }}
           placeholder={placeholder}
           type="text"
@@ -153,11 +153,11 @@ export class Search extends Component<SearchProps> {
           dense
           icon="close"
           onClick={event => {
-            event.preventDefault()
-            onChange('')
+            event.preventDefault();
+            onChange("");
           }}
         />
       </BBSearchContainer>
-    )
+    );
   }
 }

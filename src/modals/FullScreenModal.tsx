@@ -1,19 +1,19 @@
-import React, { Component, ReactNode } from 'react'
-import { css } from 'styled-components'
+import React, { Component, ReactNode } from "react";
+import { css } from "styled-components";
 
-import { PopOverChildProps } from 'popOver/PopOver'
+import { PopOverChildProps } from "popOver/PopOver";
 import {
   BBModalBackground,
   BBModalContainer,
   BBModalHeader,
-  BBModalOverlay,
-} from 'modals/Modals'
+  BBModalOverlay
+} from "modals/Modals";
 
 type Props = PopOverChildProps & {
-  headerChildren?: ReactNode
-  iconLeft?: string
-  title: string
-}
+  headerChildren?: ReactNode;
+  iconLeft?: string;
+  title: string;
+};
 
 export class FullScreenModal extends Component<Props> {
   render() {
@@ -23,8 +23,8 @@ export class FullScreenModal extends Component<Props> {
       iconLeft,
       isOpen,
       onClick,
-      title,
-    } = this.props
+      title
+    } = this.props;
 
     return (
       <BBModalContainer isOpen={isOpen}>
@@ -45,6 +45,6 @@ export class FullScreenModal extends Component<Props> {
           {children}
         </BBModalBackground>
       </BBModalContainer>
-    )
+    );
   }
 }

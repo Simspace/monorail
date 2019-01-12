@@ -1,5 +1,5 @@
-import React, { ComponentType } from 'react'
-import { CustomIconProps } from 'icon/Icon'
+import React, { ComponentType } from "react";
+import { CustomIconProps } from "icon/Icon";
 
 export const Academy: ComponentType<CustomIconProps> = props => (
   <svg
@@ -26,4 +26,4 @@ export const Academy: ComponentType<CustomIconProps> = props => (
       d="M20.25 15C20.25 15.4208 19.9819 15.7809 19.6024 15.9285L20.9375 18.6667C20.3646 18.8889 19.7917 19 19.2188 19C18.6458 19 18.0729 18.8889 17.5 18.6667L18.8351 15.9285C18.4556 15.7809 18.1875 15.4208 18.1875 15C18.1875 14.5646 18.4745 14.1942 18.875 14.0569V9.33333H19.5625V14.0569C19.963 14.1942 20.25 14.5646 20.25 15Z"
     />
   </svg>
-)
+);

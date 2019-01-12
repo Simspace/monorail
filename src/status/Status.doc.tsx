@@ -1,14 +1,14 @@
-import React from 'react'
-import { Status } from 'status/Status'
+import React from "react";
+import { Status } from "status/Status";
 import {
   ComponentShowcase,
   DocByLine,
   DocPage,
   DocSection,
-  DocTitle,
-} from 'src/design/Components/Documentation'
-import { SmartFrame } from 'src/design/Components/SmartFrame'
-import { css } from 'styled-components'
+  DocTitle
+} from "src/design/Components/Documentation";
+import { SmartFrame } from "src/design/Components/SmartFrame";
+import { css } from "styled-components";
 
 export const StatusDoc = () => (
   <DocPage>
@@ -28,4 +28,4 @@ export const StatusDoc = () => (
       </SmartFrame>
     </DocSection>
   </DocPage>
-)
+);

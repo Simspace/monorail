@@ -1,19 +1,16 @@
-import React from 'react'
-import {
-  BBCardBackground,
-  BBCardHeader,
-} from 'cards/Cards'
+import React from "react";
+import { BBCardBackground, BBCardHeader } from "cards/Cards";
 import {
   ComponentShowcase,
   DocByLine,
   DocPage,
   DocSection,
-  DocTitle,
-} from 'src/design/Components/Documentation'
-import { SmartFrame } from 'src/design/Components/SmartFrame'
-import { css } from 'styled-components'
-import { Div } from 'StyleHelpers'
-import { FontSizes, typography } from 'CommonStyles'
+  DocTitle
+} from "src/design/Components/Documentation";
+import { SmartFrame } from "src/design/Components/SmartFrame";
+import { css } from "styled-components";
+import { Div } from "StyleHelpers";
+import { FontSizes, typography } from "CommonStyles";
 
 export const CardsDoc = () => (
   <DocPage>
@@ -38,7 +35,7 @@ export const CardsDoc = () => (
             <BBCardHeader title="card" />
             <Div
               css={css`
-                ${typography(400, FontSizes.Content, '16px 0')};
+                ${typography(400, FontSizes.Content, "16px 0")};
 
                 margin-left: 16px;
                 margin-right: 16px;
@@ -54,4 +51,4 @@ export const CardsDoc = () => (
       </SmartFrame>
     </DocSection>
   </DocPage>
-)
+);

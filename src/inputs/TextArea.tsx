@@ -1,5 +1,5 @@
-import React, { ChangeEvent, Component } from 'react'
-import styled, { css, SimpleInterpolation } from 'styled-components'
+import React, { ChangeEvent, Component } from "react";
+import styled, { css, SimpleInterpolation } from "styled-components";
 
 import {
   borderRadius,
@@ -8,14 +8,14 @@ import {
   colors,
   flexFlow,
   FontSizes,
-  typography,
-} from 'CommonStyles'
+  typography
+} from "CommonStyles";
 
 /*
-* Styles
-*/
+ * Styles
+ */
 
-const BBTextAreaContainer = styled<TextAreaProps, 'label'>('label')`
+const BBTextAreaContainer = styled<TextAreaProps, "label">("label")`
   ${flexFlow()};
 
   max-width: 256px;
@@ -23,14 +23,14 @@ const BBTextAreaContainer = styled<TextAreaProps, 'label'>('label')`
   position: relative; /* position: relative; so that the icons can be absolutely positioned. */
 
   ${({ css }) => css};
-`
+`;
 
-const BBTextAreaLabel = styled('p')`
+const BBTextAreaLabel = styled("p")`
   ${typography(500, FontSizes.Title5)};
   margin: 4px 0;
-`
+`;
 
-const BBTextAreaInput = styled<BBTextAreaInputProps, 'textarea'>('textarea')`
+const BBTextAreaInput = styled<BBTextAreaInputProps, "textarea">("textarea")`
   ${typography(400, FontSizes.Title5)};
   ${borderRadius()};
 
@@ -57,30 +57,30 @@ const BBTextAreaInput = styled<BBTextAreaInputProps, 'textarea'>('textarea')`
   &:active {
     border-color: ${colors(Colors.BrandLightBlue)};
   }
-`
+`;
 
 /*
-* Types
-*/
+ * Types
+ */
 
 type BBTextAreaContainerProps = {
-  css?: SimpleInterpolation
-}
+  css?: SimpleInterpolation;
+};
 
 type BBTextAreaInputProps = {
-  disabled?: boolean
-  label?: string | number
-  onChange?: (event: ChangeEvent<HTMLTextAreaElement>) => void
-  placeholder?: string
-  readOnly?: boolean
-  value?: string
-}
+  disabled?: boolean;
+  label?: string | number;
+  onChange?: (event: ChangeEvent<HTMLTextAreaElement>) => void;
+  placeholder?: string;
+  readOnly?: boolean;
+  value?: string;
+};
 
-type TextAreaProps = BBTextAreaContainerProps & BBTextAreaInputProps & {}
+type TextAreaProps = BBTextAreaContainerProps & BBTextAreaInputProps & {};
 
 /*
-* Component
-*/
+ * Component
+ */
 
 export class TextArea extends Component<TextAreaProps> {
   render() {
@@ -93,7 +93,7 @@ export class TextArea extends Component<TextAreaProps> {
       readOnly,
       value,
       ...otherProps
-    } = this.props
+    } = this.props;
 
     return (
       <BBTextAreaContainer css={css}>
@@ -109,6 +109,6 @@ export class TextArea extends Component<TextAreaProps> {
           {...otherProps}
         />
       </BBTextAreaContainer>
-    )
+    );
   }
 }

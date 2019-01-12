@@ -1,5 +1,5 @@
-import React, { Fragment } from 'react'
-import { Avatar } from 'avatar/Avatar'
+import React, { Fragment } from "react";
+import { Avatar } from "avatar/Avatar";
 import {
   ComponentExample,
   ComponentShowcase,
@@ -10,10 +10,10 @@ import {
   DocSection,
   DocSubHeading,
   DocThreeColumn,
-  DocTitle,
-} from 'src/design/Components/Documentation'
-import { SmartFrame } from 'src/design/Components/SmartFrame'
-import { css } from 'styled-components'
+  DocTitle
+} from "src/design/Components/Documentation";
+import { SmartFrame } from "src/design/Components/SmartFrame";
+import { css } from "styled-components";
 
 export const AvatarDoc = () => (
   <DocPage>
@@ -72,4 +72,4 @@ export const AvatarDoc = () => (
       />
     </DocSection>
   </DocPage>
-)
+);

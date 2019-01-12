@@ -3,13 +3,13 @@ import {
   SimpleInterpolation,
   keyframes,
   Keyframes,
-  Styles,
-} from 'styled-components'
-import { PopOverPosition } from 'popOver/PopOver'
+  Styles
+} from "styled-components";
+import { PopOverPosition } from "popOver/PopOver";
 
 /*
-* Elevation
-*/
+ * Elevation
+ */
 
 export enum ElevationRange {
   Elevation0,
@@ -36,84 +36,84 @@ export enum ElevationRange {
   Elevation21,
   Elevation22,
   Elevation23,
-  Elevation24,
+  Elevation24
 }
 
 const elevationStyles = {
   [ElevationRange.Elevation0]:
-    '0 0 0 0 rgba(0,0,0,.2),0 0 0 0 rgba(0,0,0,.14),0 0 0 0 rgba(0,0,0,.12)',
+    "0 0 0 0 rgba(0,0,0,.2),0 0 0 0 rgba(0,0,0,.14),0 0 0 0 rgba(0,0,0,.12)",
   [ElevationRange.Elevation1]:
-    '0 2px 1px -1px rgba(0,0,0,.2),0 1px 1px 0 rgba(0,0,0,.14),0 1px 3px 0 rgba(0,0,0,.12)',
+    "0 2px 1px -1px rgba(0,0,0,.2),0 1px 1px 0 rgba(0,0,0,.14),0 1px 3px 0 rgba(0,0,0,.12)",
   [ElevationRange.Elevation2]:
-    '0 3px 1px -2px rgba(0,0,0,.2),0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12)',
+    "0 3px 1px -2px rgba(0,0,0,.2),0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12)",
   [ElevationRange.Elevation3]:
-    '0 3px 3px -2px rgba(0,0,0,.2),0 3px 4px 0 rgba(0,0,0,.14),0 1px 8px 0 rgba(0,0,0,.12)',
+    "0 3px 3px -2px rgba(0,0,0,.2),0 3px 4px 0 rgba(0,0,0,.14),0 1px 8px 0 rgba(0,0,0,.12)",
   [ElevationRange.Elevation4]:
-    '0 2px 4px -1px rgba(0,0,0,.2),0 4px 5px 0 rgba(0,0,0,.14),0 1px 10px 0 rgba(0,0,0,.12)',
+    "0 2px 4px -1px rgba(0,0,0,.2),0 4px 5px 0 rgba(0,0,0,.14),0 1px 10px 0 rgba(0,0,0,.12)",
   [ElevationRange.Elevation5]:
-    '0 3px 5px -1px rgba(0,0,0,.2),0 5px 8px 0 rgba(0,0,0,.14),0 1px 14px 0 rgba(0,0,0,.12)',
+    "0 3px 5px -1px rgba(0,0,0,.2),0 5px 8px 0 rgba(0,0,0,.14),0 1px 14px 0 rgba(0,0,0,.12)",
   [ElevationRange.Elevation6]:
-    '0 3px 5px -1px rgba(0,0,0,.2),0 6px 10px 0 rgba(0,0,0,.14),0 1px 18px 0 rgba(0,0,0,.12)',
+    "0 3px 5px -1px rgba(0,0,0,.2),0 6px 10px 0 rgba(0,0,0,.14),0 1px 18px 0 rgba(0,0,0,.12)",
   [ElevationRange.Elevation7]:
-    '0 4px 5px -2px rgba(0,0,0,.2),0 7px 10px 1px rgba(0,0,0,.14),0 2px 16px 1px rgba(0,0,0,.12)',
+    "0 4px 5px -2px rgba(0,0,0,.2),0 7px 10px 1px rgba(0,0,0,.14),0 2px 16px 1px rgba(0,0,0,.12)",
   [ElevationRange.Elevation8]:
-    '0 5px 5px -3px rgba(0,0,0,.2),0 8px 10px 1px rgba(0,0,0,.14),0 3px 14px 2px rgba(0,0,0,.12)',
+    "0 5px 5px -3px rgba(0,0,0,.2),0 8px 10px 1px rgba(0,0,0,.14),0 3px 14px 2px rgba(0,0,0,.12)",
   [ElevationRange.Elevation9]:
-    '0 5px 6px -3px rgba(0,0,0,.2),0 9px 12px 1px rgba(0,0,0,.14),0 3px 16px 2px rgba(0,0,0,.12)',
+    "0 5px 6px -3px rgba(0,0,0,.2),0 9px 12px 1px rgba(0,0,0,.14),0 3px 16px 2px rgba(0,0,0,.12)",
   [ElevationRange.Elevation10]:
-    '0 6px 6px -3px rgba(0,0,0,.2),0 10px 14px 1px rgba(0,0,0,.14),0 4px 18px 3px rgba(0,0,0,.12)',
+    "0 6px 6px -3px rgba(0,0,0,.2),0 10px 14px 1px rgba(0,0,0,.14),0 4px 18px 3px rgba(0,0,0,.12)",
   [ElevationRange.Elevation11]:
-    '0 6px 7px -4px rgba(0,0,0,.2),0 11px 15px 1px rgba(0,0,0,.14),0 4px 20px 3px rgba(0,0,0,.12)',
+    "0 6px 7px -4px rgba(0,0,0,.2),0 11px 15px 1px rgba(0,0,0,.14),0 4px 20px 3px rgba(0,0,0,.12)",
   [ElevationRange.Elevation12]:
-    '0 7px 8px -4px rgba(0,0,0,.2),0 12px 17px 2px rgba(0,0,0,.14),0 5px 22px 4px rgba(0,0,0,.12)',
+    "0 7px 8px -4px rgba(0,0,0,.2),0 12px 17px 2px rgba(0,0,0,.14),0 5px 22px 4px rgba(0,0,0,.12)",
   [ElevationRange.Elevation13]:
-    '0 7px 8px -4px rgba(0,0,0,.2),0 13px 19px 2px rgba(0,0,0,.14),0 5px 24px 4px rgba(0,0,0,.12)',
+    "0 7px 8px -4px rgba(0,0,0,.2),0 13px 19px 2px rgba(0,0,0,.14),0 5px 24px 4px rgba(0,0,0,.12)",
   [ElevationRange.Elevation14]:
-    '0 7px 9px -4px rgba(0,0,0,.2),0 14px 21px 2px rgba(0,0,0,.14),0 5px 26px 4px rgba(0,0,0,.12)',
+    "0 7px 9px -4px rgba(0,0,0,.2),0 14px 21px 2px rgba(0,0,0,.14),0 5px 26px 4px rgba(0,0,0,.12)",
   [ElevationRange.Elevation15]:
-    '0 8px 9px -5px rgba(0,0,0,.2),0 15px 22px 2px rgba(0,0,0,.14),0 6px 28px 5px rgba(0,0,0,.12)',
+    "0 8px 9px -5px rgba(0,0,0,.2),0 15px 22px 2px rgba(0,0,0,.14),0 6px 28px 5px rgba(0,0,0,.12)",
   [ElevationRange.Elevation16]:
-    '0 8px 10px -5px rgba(0,0,0,.2),0 16px 24px 2px rgba(0,0,0,.14),0 6px 30px 5px rgba(0,0,0,.12)',
+    "0 8px 10px -5px rgba(0,0,0,.2),0 16px 24px 2px rgba(0,0,0,.14),0 6px 30px 5px rgba(0,0,0,.12)",
   [ElevationRange.Elevation17]:
-    '0 8px 11px -5px rgba(0,0,0,.2),0 17px 26px 2px rgba(0,0,0,.14),0 6px 32px 5px rgba(0,0,0,.12)',
+    "0 8px 11px -5px rgba(0,0,0,.2),0 17px 26px 2px rgba(0,0,0,.14),0 6px 32px 5px rgba(0,0,0,.12)",
   [ElevationRange.Elevation18]:
-    '0 9px 11px -5px rgba(0,0,0,.2),0 18px 28px 2px rgba(0,0,0,.14),0 7px 34px 6px rgba(0,0,0,.12)',
+    "0 9px 11px -5px rgba(0,0,0,.2),0 18px 28px 2px rgba(0,0,0,.14),0 7px 34px 6px rgba(0,0,0,.12)",
   [ElevationRange.Elevation19]:
-    '0 9px 12px -6px rgba(0,0,0,.2),0 19px 29px 2px rgba(0,0,0,.14),0 7px 36px 6px rgba(0,0,0,.12)',
+    "0 9px 12px -6px rgba(0,0,0,.2),0 19px 29px 2px rgba(0,0,0,.14),0 7px 36px 6px rgba(0,0,0,.12)",
   [ElevationRange.Elevation20]:
-    '0 10px 13px -6px rgba(0,0,0,.2),0 20px 31px 3px rgba(0,0,0,.14),0 8px 38px 7px rgba(0,0,0,.12)',
+    "0 10px 13px -6px rgba(0,0,0,.2),0 20px 31px 3px rgba(0,0,0,.14),0 8px 38px 7px rgba(0,0,0,.12)",
   [ElevationRange.Elevation21]:
-    '0 10px 13px -6px rgba(0,0,0,.2),0 21px 33px 3px rgba(0,0,0,.14),0 8px 40px 7px rgba(0,0,0,.12)',
+    "0 10px 13px -6px rgba(0,0,0,.2),0 21px 33px 3px rgba(0,0,0,.14),0 8px 40px 7px rgba(0,0,0,.12)",
   [ElevationRange.Elevation22]:
-    '0 10px 14px -6px rgba(0,0,0,.2),0 22px 35px 3px rgba(0,0,0,.14),0 8px 42px 7px rgba(0,0,0,.12)',
+    "0 10px 14px -6px rgba(0,0,0,.2),0 22px 35px 3px rgba(0,0,0,.14),0 8px 42px 7px rgba(0,0,0,.12)",
   [ElevationRange.Elevation23]:
-    '0 11px 14px -7px rgba(0,0,0,.2),0 23px 36px 3px rgba(0,0,0,.14),0 9px 44px 8px rgba(0,0,0,.12)',
+    "0 11px 14px -7px rgba(0,0,0,.2),0 23px 36px 3px rgba(0,0,0,.14),0 9px 44px 8px rgba(0,0,0,.12)",
   [ElevationRange.Elevation24]:
-    '0 11px 15px -7px rgba(0,0,0,.2),0 24px 38px 3px rgba(0,0,0,.14),0 9px 46px 8px rgba(0,0,0,.12)',
-}
+    "0 11px 15px -7px rgba(0,0,0,.2),0 24px 38px 3px rgba(0,0,0,.14),0 9px 46px 8px rgba(0,0,0,.12)"
+};
 
 export const getElevation = (elevation: ElevationRange): Styles => ({
-  boxShadow: elevationStyles[elevation],
-})
+  boxShadow: elevationStyles[elevation]
+});
 
 /*
-* Flex Helpers
-*/
+ * Flex Helpers
+ */
 
-const defaultDirection = 'column'
-const defaultWrap = 'nowrap'
+const defaultDirection = "column";
+const defaultWrap = "nowrap";
 
 export const flexFlow = (
   direction = defaultDirection,
-  wrap = defaultWrap,
+  wrap = defaultWrap
 ): Styles => ({
-  display: 'flex',
-  flexFlow: `${direction} ${wrap}`,
-})
+  display: "flex",
+  flexFlow: `${direction} ${wrap}`
+});
 
 /*
-* Typography
-*/
+ * Typography
+ */
 
 export enum FontSizes {
   Hyper1,
@@ -126,176 +126,176 @@ export enum FontSizes {
   Title4,
   Title5,
   Content,
-  Micro,
+  Micro
 }
 
 const fontSizeLookUp = {
   [FontSizes.Hyper1]: {
-    fontSize: '44px',
-    lineHeight: '56px',
+    fontSize: "44px",
+    lineHeight: "56px"
   },
   [FontSizes.Hyper2]: {
-    fontSize: '38px',
-    lineHeight: '40px',
+    fontSize: "38px",
+    lineHeight: "40px"
   },
   [FontSizes.Hyper3]: {
-    fontSize: '33px',
-    lineHeight: '36px',
+    fontSize: "33px",
+    lineHeight: "36px"
   },
   [FontSizes.Hyper4]: {
-    fontSize: '25px',
-    lineHeight: '32px',
+    fontSize: "25px",
+    lineHeight: "32px"
   },
   [FontSizes.Title1]: {
-    fontSize: '22px',
-    lineHeight: '28px',
+    fontSize: "22px",
+    lineHeight: "28px"
   },
   [FontSizes.Title2]: {
-    fontSize: '19px',
-    lineHeight: '24px',
+    fontSize: "19px",
+    lineHeight: "24px"
   },
   [FontSizes.Title3]: {
-    fontSize: '16px',
-    lineHeight: '20px',
+    fontSize: "16px",
+    lineHeight: "20px"
   },
   [FontSizes.Title4]: {
-    fontSize: '14px',
-    lineHeight: '18px',
+    fontSize: "14px",
+    lineHeight: "18px"
   },
   [FontSizes.Title5]: {
-    fontSize: '11px',
-    lineHeight: '16px',
+    fontSize: "11px",
+    lineHeight: "16px"
   },
   [FontSizes.Content]: {
-    fontSize: '8px',
-    lineHeight: '10px',
+    fontSize: "8px",
+    lineHeight: "10px"
   },
   [FontSizes.Micro]: {
-    fontSize: '5px',
-    lineHeight: '6px',
-  },
-}
+    fontSize: "5px",
+    lineHeight: "6px"
+  }
+};
 
 export const typography = (
   weight: number,
   size: FontSizes,
-  margin?: string,
+  margin?: string
 ): Styles => ({
   fontWeight: weight,
   ...fontSizeLookUp[size],
-  ...(margin ? typographyMargin(size, margin) : {}),
-})
+  ...(margin ? typographyMargin(size, margin) : {})
+});
 
 export type Margin = {
-  bottom?: number | 'auto'
-  left?: number | 'auto'
-  right?: number | 'auto'
-  top?: number | 'auto'
-}
+  bottom?: number | "auto";
+  left?: number | "auto";
+  right?: number | "auto";
+  top?: number | "auto";
+};
 
 const fontMarginLookUp: { [key in FontSizes]: Margin } = {
   [FontSizes.Hyper1]: {
     top: -11,
-    bottom: -13,
+    bottom: -13
   },
   [FontSizes.Hyper2]: {
     top: -5,
-    bottom: -7,
+    bottom: -7
   },
   [FontSizes.Hyper3]: {
     top: -6,
-    bottom: -6,
+    bottom: -6
   },
   [FontSizes.Hyper4]: {
     top: -7,
-    bottom: -7,
+    bottom: -7
   },
   [FontSizes.Title1]: {
     top: -6,
-    bottom: -6,
+    bottom: -6
   },
   [FontSizes.Title2]: {
     top: -4,
-    bottom: -6,
+    bottom: -6
   },
   [FontSizes.Title3]: {
     top: -3,
-    bottom: -5,
+    bottom: -5
   },
   [FontSizes.Title4]: {
     top: -4,
-    bottom: -4,
+    bottom: -4
   },
   [FontSizes.Title5]: {
     top: -4,
-    bottom: -5,
+    bottom: -5
   },
   [FontSizes.Content]: {
     top: -2,
-    bottom: -2,
+    bottom: -2
   },
   [FontSizes.Micro]: {
     top: -1,
-    bottom: -1,
-  },
-}
+    bottom: -1
+  }
+};
 
 export const typographyMargin = (
   size: FontSizes,
-  margin: string = '',
+  margin: string = ""
 ): { margin: string } => {
-  const fontSizeMargins = fontMarginLookUp[size]
-  const marginObject = shortHandDeconstruction(margin)
+  const fontSizeMargins = fontMarginLookUp[size];
+  const marginObject = shortHandDeconstruction(margin);
 
   const mergedObject = {
     top: mergeValues(marginObject.top, fontSizeMargins.top),
     right: mergeValues(marginObject.right, fontSizeMargins.right),
     bottom: mergeValues(marginObject.bottom, fontSizeMargins.bottom),
-    left: mergeValues(marginObject.left, fontSizeMargins.left),
-  }
+    left: mergeValues(marginObject.left, fontSizeMargins.left)
+  };
 
   return {
-    margin: sizingObjectToString(mergedObject),
-  }
-}
+    margin: sizingObjectToString(mergedObject)
+  };
+};
 
 const mergeValues = (
-  firstValue: number | 'auto' = 0,
-  secondValue: number | 'auto' = 0,
-): number | 'auto' => {
-  if (firstValue === 'auto' || secondValue === 'auto') {
-    return 'auto'
+  firstValue: number | "auto" = 0,
+  secondValue: number | "auto" = 0
+): number | "auto" => {
+  if (firstValue === "auto" || secondValue === "auto") {
+    return "auto";
   }
 
-  return firstValue + secondValue
-}
+  return firstValue + secondValue;
+};
 
-const stripPx = (value: string): number | 'auto' => {
-  if (value === 'auto') {
-    return value
+const stripPx = (value: string): number | "auto" => {
+  if (value === "auto") {
+    return value;
   }
 
-  return Number(value.replace(/px/gi, ''))
-}
+  return Number(value.replace(/px/gi, ""));
+};
 
-const addPx = (value?: number | 'auto'): string => {
+const addPx = (value?: number | "auto"): string => {
   if (!value) {
-    return '0px'
+    return "0px";
   }
 
-  if (value === 'auto') {
-    return value
+  if (value === "auto") {
+    return value;
   }
 
-  return value + 'px'
-}
+  return value + "px";
+};
 
 export const shortHandDeconstruction = (value: string): Margin => {
-  if (value === '') {
-    return {}
+  if (value === "") {
+    return {};
   }
 
-  const spiltValue = value.split(' ').map(stripPx)
+  const spiltValue = value.split(" ").map(stripPx);
 
   switch (spiltValue.length) {
     case 4:
@@ -303,42 +303,42 @@ export const shortHandDeconstruction = (value: string): Margin => {
         top: spiltValue[0],
         right: spiltValue[1],
         bottom: spiltValue[2],
-        left: spiltValue[3],
-      }
+        left: spiltValue[3]
+      };
     case 3:
       return {
         top: spiltValue[0],
         right: spiltValue[1],
         bottom: spiltValue[2],
-        left: spiltValue[1],
-      }
+        left: spiltValue[1]
+      };
     case 2:
       return {
         top: spiltValue[0],
         right: spiltValue[1],
         bottom: spiltValue[0],
-        left: spiltValue[1],
-      }
+        left: spiltValue[1]
+      };
     default:
     case 1:
       return {
         top: spiltValue[0],
         right: spiltValue[0],
         bottom: spiltValue[0],
-        left: spiltValue[0],
-      }
+        left: spiltValue[0]
+      };
   }
-}
+};
 
 const sizingObjectToString = (size: Margin): string => {
   return `${addPx(size.top)} ${addPx(size.right)} ${addPx(size.bottom)} ${addPx(
-    size.left,
-  )}`
-}
+    size.left
+  )}`;
+};
 
 /*
-* Color
-*/
+ * Color
+ */
 
 export enum AppName {
   Admin,
@@ -347,7 +347,7 @@ export enum AppName {
   Impact,
   Range,
   Tracker,
-  Training,
+  Training
 }
 
 export enum EventState {
@@ -362,7 +362,7 @@ export enum EventState {
   // Pending
   Requested,
   // Paused
-  Inactive,
+  Inactive
 }
 
 export enum Colors {
@@ -404,48 +404,48 @@ export enum Colors {
 
   Green,
   Red,
-  Amber,
+  Amber
 }
 
 export const convertAppNameToColor: (appNames: AppName) => Colors = (
-  appNames: AppName,
+  appNames: AppName
 ) => {
   switch (appNames) {
     default:
     case AppName.Admin:
-      return Colors.Admin
+      return Colors.Admin;
     case AppName.Dashboard:
-      return Colors.Dashboard
+      return Colors.Dashboard;
     case AppName.Range:
-      return Colors.Range
+      return Colors.Range;
     case AppName.Tracker:
-      return Colors.Tracker
+      return Colors.Tracker;
     case AppName.Hardhat:
-      return Colors.Hardhat
+      return Colors.Hardhat;
     case AppName.Training:
-      return Colors.Training
+      return Colors.Training;
   }
-}
+};
 
 export const convertEventStateToColor: (eventState: EventState) => Colors = (
-  eventState: EventState,
+  eventState: EventState
 ) => {
   switch (eventState) {
     default:
     case EventState.Active:
-      return Colors.Active
+      return Colors.Active;
     case EventState.Inactive:
-      return Colors.Inactive
+      return Colors.Inactive;
     case EventState.Finished:
-      return Colors.Finished
+      return Colors.Finished;
     case EventState.Scheduled:
-      return Colors.Scheduled
+      return Colors.Scheduled;
     case EventState.Requested:
-      return Colors.Requested
+      return Colors.Requested;
     case EventState.Canceled:
-      return Colors.Canceled
+      return Colors.Canceled;
   }
-}
+};
 
 export const colors = (color: Colors, alpha = 1) => {
   const baseColors = {
@@ -493,15 +493,15 @@ export const colors = (color: Colors, alpha = 1) => {
     // State
     [Colors.Green]: { h: 145, s: 68, l: 45, a: alpha },
     [Colors.Red]: { h: 4, s: 90, l: 58, a: alpha },
-    [Colors.Amber]: { h: 45, s: 100, l: 51, a: alpha },
-  }
+    [Colors.Amber]: { h: 45, s: 100, l: 51, a: alpha }
+  };
 
-  const selectedColor = baseColors[color]
+  const selectedColor = baseColors[color];
 
   return `hsla(${selectedColor.h}, ${selectedColor.s}%, ${selectedColor.l}%, ${
     selectedColor.a
-  })`
-}
+  })`;
+};
 
 export const baseOutlineStyles = (color: Colors = Colors.BrandLightBlue) => css`
   background: transparent;
@@ -515,10 +515,10 @@ export const baseOutlineStyles = (color: Colors = Colors.BrandLightBlue) => css`
   &:active {
     background: ${colors(color, 0.16)};
   }
-`
+`;
 
 export const baseChromelessStyles = (
-  color: Colors = Colors.BrandLightBlue,
+  color: Colors = Colors.BrandLightBlue
 ) => css`
   background: transparent;
 
@@ -530,11 +530,11 @@ export const baseChromelessStyles = (
   &:active {
     background: ${colors(color, 0.2)};
   }
-`
+`;
 
 export const baseSecondaryStyles = (
   color: Colors = Colors.BrandLightBlue,
-  isActive?: boolean,
+  isActive?: boolean
 ) => css`
   background: ${isActive ? colors(color, 0.24) : colors(color, 0.08)};
   border: 0;
@@ -547,7 +547,7 @@ export const baseSecondaryStyles = (
   &:active {
     background: ${colors(color, 0.24)};
   }
-`
+`;
 
 export const basePrimaryStyles = (color: Colors = Colors.BrandLightBlue) => css`
   background: ${colors(color)};
@@ -560,71 +560,71 @@ export const basePrimaryStyles = (color: Colors = Colors.BrandLightBlue) => css`
   &:active {
     background: ${colors(color, 0.7)};
   }
-`
+`;
 
 export const baseDisabledStyles = css`
   cursor: default;
   opacity: 0.4;
   pointer-events: none;
-`
+`;
 
 /*
-* Border Radius
-*/
+ * Border Radius
+ */
 
 export enum BorderRadius {
   Small = 2,
   Medium = 4,
   Large = 8,
-  Round = 1000,
+  Round = 1000
 }
 
 export const borderRadius = (borderRadius: BorderRadius = BorderRadius.Small) =>
   css`
     border-radius: ${borderRadius}px;
-  `
+  `;
 
 /*
-* Animation
-*/
+ * Animation
+ */
 
 const easeCurve: (v: number, pow?: number) => number = (v, pow = 4) => {
-  return 1 - Math.pow(1 - Math.max(v, Math.min(0, 1)), pow)
-}
+  return 1 - Math.pow(1 - Math.max(v, Math.min(0, 1)), pow);
+};
 
 function range(start: number, end: number, length: number) {
-  const step = Math.abs(start - end) / length
+  const step = Math.abs(start - end) / length;
   return Array(length + 1)
     .fill(undefined)
     .map((value, index) => {
       // let easedStep = easeCurve(index / length)
 
-      return start < end ? start + index * step : start - index * step
-    })
+      return start < end ? start + index * step : start - index * step;
+    });
 }
 
 // https://developers.google.com/web/updates/2017/03/performant-expand-and-collapse
 
-const frameTime = 1000 / 60
+const frameTime = 1000 / 60;
 const nFrames: (duration: number) => number = duration =>
-  Math.round(duration / frameTime)
+  Math.round(duration / frameTime);
 
 const append: (
   params: {
-    endX: number
-    endY: number
-    i: number
-    innerAnimation: string[]
-    isOpen: boolean
-    movementArray: number[]
-    nFramesDuration: number
-    outerAnimation: string[]
-    percentage: string
-    startX: number
-    startY: number
-    step: number
-    transformYFrames: number
-  },
+    endX: number;
+    endY: number;
+    i: number;
+    innerAnimation: string[];
+    isOpen: boolean;
+    movementArray: number[];
+    nFramesDuration: number;
+    outerAnimation: string[];
+    percentage: string;
+    startX: number;
+    startY: number;
+    step: number;
+    transformYFrames: number;
+  }
 ) => void = ({
   endX,
   endY,
@@ -638,13 +638,13 @@ const append: (
   startX,
   startY,
   step,
-  transformYFrames,
+  transformYFrames
 }) => {
-  const xScale = startX + (endX - startX) * step
-  const yScale = startY + (endY - startY) * step
+  const xScale = startX + (endX - startX) * step;
+  const yScale = startY + (endY - startY) * step;
 
-  const invScaleX = (1 / xScale).toFixed(5)
-  const invScaleY = (1 / yScale).toFixed(5)
+  const invScaleX = (1 / xScale).toFixed(5);
+  const invScaleY = (1 / yScale).toFixed(5);
 
   outerAnimation.push(`
       ${percentage}% {
@@ -657,48 +657,48 @@ const append: (
             : nFramesDuration - i
         ]
   }px);
-      }`)
+      }`);
 
   innerAnimation.push(`
       ${percentage}% {
         transform: scale(${invScaleX}, ${invScaleY});
-      }`)
-}
+      }`);
+};
 
 const createEaseAnimations: (
   props: {
-    animationDuration: number
-    isOpen: boolean
-    position: PopOverPosition
-    x: number
-    y: number
-  },
+    animationDuration: number;
+    isOpen: boolean;
+    position: PopOverPosition;
+    x: number;
+    y: number;
+  }
 ) => {
-  menuAnimation: Keyframes
-  menuContentsAnimation: Keyframes
+  menuAnimation: Keyframes;
+  menuContentsAnimation: Keyframes;
 } = ({ isOpen, position, x, y, animationDuration }) => {
-  const menuExpandAnimation: string[] = []
-  const menuExpandContentsAnimation: string[] = []
-  const menuCollapseAnimation: string[] = []
-  const menuCollapseContentsAnimation: string[] = []
+  const menuExpandAnimation: string[] = [];
+  const menuExpandContentsAnimation: string[] = [];
+  const menuCollapseAnimation: string[] = [];
+  const menuCollapseContentsAnimation: string[] = [];
 
-  const nFramesDuration = nFrames(animationDuration)
-  const percentIncrement = 100 / nFramesDuration
-  const transformYFrames = Math.ceil(20 / percentIncrement)
+  const nFramesDuration = nFrames(animationDuration);
+  const percentIncrement = 100 / nFramesDuration;
+  const transformYFrames = Math.ceil(20 / percentIncrement);
 
   const movementArray = range(
     0,
-    position.dropYDirection === 'top'
+    position.dropYDirection === "top"
       ? position.originHeight + position.gap
       : -(position.originHeight + position.gap),
-    transformYFrames,
-  )
+    transformYFrames
+  );
 
   for (let i = 0; i <= nFramesDuration; i++) {
-    const step = easeCurve(i / nFramesDuration)
-    const percentage = (i * percentIncrement).toFixed(5)
-    const endX = 1
-    const endY = 1
+    const step = easeCurve(i / nFramesDuration);
+    const percentage = (i * percentIncrement).toFixed(5);
+    const endX = 1;
+    const endY = 1;
 
     // Expand animation.
     append({
@@ -714,8 +714,8 @@ const createEaseAnimations: (
       startX: x,
       startY: y,
       step,
-      transformYFrames,
-    })
+      transformYFrames
+    });
 
     // Collapse animation.
     append({
@@ -731,40 +731,40 @@ const createEaseAnimations: (
       startX: 1,
       startY: 1,
       step,
-      transformYFrames,
-    })
+      transformYFrames
+    });
   }
 
   return {
     menuAnimation: isOpen
-      ? keyframes`${menuExpandAnimation.join('')}`
-      : keyframes`${menuCollapseAnimation.join('')}`,
+      ? keyframes`${menuExpandAnimation.join("")}`
+      : keyframes`${menuCollapseAnimation.join("")}`,
     menuContentsAnimation: isOpen
-      ? keyframes`${menuExpandContentsAnimation.join('')}`
-      : keyframes`${menuCollapseContentsAnimation.join('')}`,
-  }
-}
+      ? keyframes`${menuExpandContentsAnimation.join("")}`
+      : keyframes`${menuCollapseContentsAnimation.join("")}`
+  };
+};
 
 export const generateScaleAnimation: (
   params: {
-    position: PopOverPosition
-    isOpen: boolean
-    elementHeight: number
-    elementWidth: number
-  },
+    position: PopOverPosition;
+    isOpen: boolean;
+    elementHeight: number;
+    elementWidth: number;
+  }
 ) => {
-  outSideContentStyles: SimpleInterpolation
-  inSideContentStyles: SimpleInterpolation
+  outSideContentStyles: SimpleInterpolation;
+  inSideContentStyles: SimpleInterpolation;
 } = ({ position, isOpen, elementHeight, elementWidth }) => {
-  const animationDuration = 150
+  const animationDuration = 150;
 
   const keyFrame = createEaseAnimations({
     animationDuration,
     isOpen,
     position,
     x: position.originWidth / Math.min(position.maxWidth, elementWidth),
-    y: position.originHeight / Math.min(position.maxHeight, elementHeight),
-  })
+    y: position.originHeight / Math.min(position.maxHeight, elementHeight)
+  });
 
   return {
     outSideContentStyles: css`
@@ -791,42 +791,42 @@ export const generateScaleAnimation: (
         forwards;
 
       will-change: transform;
-    `,
-  }
-}
+    `
+  };
+};
 
-export const ease = (isActive: boolean) => (isActive ? 'ease-in' : 'ease-out')
+export const ease = (isActive: boolean) => (isActive ? "ease-in" : "ease-out");
 
 export const visible = (isVisible = false): Styles =>
   isVisible
     ? {
-        visibility: 'visible',
-        opacity: 0.9999, // Doing .9999 keeps the GPU activated on this element so that it can quickly change back to 0.
+        visibility: "visible",
+        opacity: 0.9999 // Doing .9999 keeps the GPU activated on this element so that it can quickly change back to 0.
       }
     : {
-        visibility: 'hidden',
-        opacity: 0,
-      }
+        visibility: "hidden",
+        opacity: 0
+      };
 
 export const buttonTransiton = css`
   transition: all ease 75ms;
-`
+`;
 
 /*
-* Size
-*/
+ * Size
+ */
 
 export const sizes = {
   modals: {
     mini: {
       height: 360,
-      width: 304,
-    },
+      width: 304
+    }
   },
   menu: {
-    width: 128,
-  },
-}
+    width: 128
+  }
+};
 
 export enum Sizes {
   DP8 = 8,
@@ -836,5 +836,5 @@ export enum Sizes {
   DP40 = 40,
   DP48 = 48,
   DP56 = 56,
-  DP64 = 64,
+  DP64 = 64
 }

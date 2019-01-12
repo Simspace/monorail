@@ -1,25 +1,20 @@
-import React, { Component, Fragment, ReactNode } from 'react'
-import styled, { css, SimpleInterpolation } from 'styled-components'
-import {
-  ease,
-  flexFlow,
-  visible,
-  typography,
-  FontSizes,
-} from 'CommonStyles'
-import { Div } from 'StyleHelpers'
+import React, { Component, Fragment, ReactNode } from "react";
+import styled, { css, SimpleInterpolation } from "styled-components";
+import { ease, flexFlow, visible, typography, FontSizes } from "CommonStyles";
+import { Div } from "StyleHelpers";
 
-import { Filter } from 'filters/Filter'
-import { Search } from 'inputs/Search'
-import { Choice } from 'inputs/Choice'
-import { Status } from 'status/Status'
-import { Button } from 'buttons/Button'
+import { Filter } from "filters/Filter";
+import { Search } from "inputs/Search";
+import { Choice } from "inputs/Choice";
+import { Status } from "status/Status";
+import { Button } from "buttons/Button";
 
-import { FilterGroupsWithData, FilterGroupWithData, SorterGroup } from './types'
 import {
-  ButtonDisplay,
-  ButtonSize,
-} from 'buttons/buttonTypes'
+  FilterGroupsWithData,
+  FilterGroupWithData,
+  SorterGroup
+} from "./types";
+import { ButtonDisplay, ButtonSize } from "buttons/buttonTypes";
 
 const sorterItemStyle = (selected: boolean) => css`
   ${typography(500, FontSizes.Content)};
@@ -35,33 +30,33 @@ const sorterItemStyle = (selected: boolean) => css`
   :hover {
     background: hsla(219, 100%, 54%, 0.1);
   }
-`
+`;
 
-const BBFilterBar = styled<{ css?: SimpleInterpolation }, 'div'>('div')`
-  ${flexFlow('row')};
+const BBFilterBar = styled<{ css?: SimpleInterpolation }, "div">("div")`
+  ${flexFlow("row")};
 
   margin-left: -4px;
 
   ${({ css: cssOverrides }) => cssOverrides};
-`
+`;
 
 type Props = {
-  css?: SimpleInterpolation
-  filterGroups: FilterGroupsWithData
-  sorterGroup?: SorterGroup
-  isFiltered: boolean
-  onFilterChange: (group: string, filter: string, value: boolean) => void
-  onSearchChange: (searchText: string) => void
-  onSorterChange?: (key: string) => void
-  resetFilters: () => void
-  searchText: string
-}
+  css?: SimpleInterpolation;
+  filterGroups: FilterGroupsWithData;
+  sorterGroup?: SorterGroup;
+  isFiltered: boolean;
+  onFilterChange: (group: string, filter: string, value: boolean) => void;
+  onSearchChange: (searchText: string) => void;
+  onSorterChange?: (key: string) => void;
+  resetFilters: () => void;
+  searchText: string;
+};
 
 export class FilterBar extends Component<Props> {
   renderFilterName = (filterGroup: FilterGroupWithData): ReactNode => {
     if (filterGroup.activeFilterCount === filterGroup.filters.length) {
       // If unchanged, just show label
-      return filterGroup.label
+      return filterGroup.label;
     } else if (filterGroup.activeFilterCount > 1) {
       // If changed and label is greater than 1, show the count
       return (
@@ -75,18 +70,18 @@ export class FilterBar extends Component<Props> {
             {filterGroup.activeFilterCount}
           </Status>
         </Fragment>
-      )
+      );
     } else if (filterGroup.activeFilterCount === 1) {
       // If equal to 1, show the label and the single active filter
-      return `${filterGroup.label} - ${filterGroup.filters[0].label}`
+      return `${filterGroup.label} - ${filterGroup.filters[0].label}`;
     } else {
       // Otherwise no filters are checked, so show None
-      return `${filterGroup.label} - None`
+      return `${filterGroup.label} - None`;
     }
-  }
+  };
 
   renderFilters = () => {
-    const { filterGroups, onFilterChange } = this.props
+    const { filterGroups, onFilterChange } = this.props;
 
     return filterGroups.map(group => (
       <Filter
@@ -96,7 +91,7 @@ export class FilterBar extends Component<Props> {
               onFilterChange(
                 group.key,
                 filter.key,
-                event!.currentTarget.checked,
+                event!.currentTarget.checked
               )
             }
             type="checkbox"
@@ -114,11 +109,11 @@ export class FilterBar extends Component<Props> {
         key={group.key}
         title={this.renderFilterName(group)}
       />
-    ))
-  }
+    ));
+  };
 
   renderSorters = () => {
-    const { sorterGroup, onSorterChange } = this.props
+    const { sorterGroup, onSorterChange } = this.props;
 
     return sorterGroup ? (
       <Filter
@@ -143,8 +138,8 @@ export class FilterBar extends Component<Props> {
       />
     ) : (
       undefined
-    )
-  }
+    );
+  };
 
   render() {
     const {
@@ -152,8 +147,8 @@ export class FilterBar extends Component<Props> {
       onSearchChange,
       isFiltered,
       resetFilters,
-      css: cssOverrides,
-    } = this.props
+      css: cssOverrides
+    } = this.props;
 
     return (
       <BBFilterBar css={cssOverrides}>
@@ -185,6 +180,6 @@ export class FilterBar extends Component<Props> {
           onChange={onSearchChange}
         />
       </BBFilterBar>
-    )
+    );
   }
 }

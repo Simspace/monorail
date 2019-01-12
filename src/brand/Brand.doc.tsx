@@ -1,11 +1,6 @@
-import React, { Fragment } from 'react'
-import { LogoBox } from 'brand/LogoBox'
-import {
-  Point3,
-  Miter,
-  SimSpaceLogo,
-  SimSpaceLogoFlat,
-} from 'brand/Logo'
+import React, { Fragment } from "react";
+import { LogoBox } from "brand/LogoBox";
+import { Point3, Miter, SimSpaceLogo, SimSpaceLogoFlat } from "brand/Logo";
 import {
   ComponentExample,
   ComponentShowcase,
@@ -17,16 +12,16 @@ import {
   DocSubHeading,
   DocThreeColumn,
   DocTitle,
-  DocTwoColumn,
-} from 'src/design/Components/Documentation'
-import { SmartFrame } from 'src/design/Components/SmartFrame'
-import { css } from 'styled-components'
-import { CodeHighlight } from 'src/design/Components/CodeHighlight'
-import { BorderRadius, borderRadius } from 'CommonStyles'
+  DocTwoColumn
+} from "src/design/Components/Documentation";
+import { SmartFrame } from "src/design/Components/SmartFrame";
+import { css } from "styled-components";
+import { CodeHighlight } from "src/design/Components/CodeHighlight";
+import { BorderRadius, borderRadius } from "CommonStyles";
 
 const logoCss = css`
   height: 32px;
-`
+`;
 
 export const BrandDoc = () => (
   <Fragment>
@@ -109,7 +104,8 @@ export const BrandDoc = () => (
         </DocHeading>
         <DocByLine>
           Logo Box allows to display logos in a standardized way across the
-          platform.<br />
+          platform.
+          <br />
           <br />
           It should be used anytime the author logo is displayed as a part of a
           content preview or detail.
@@ -123,9 +119,10 @@ export const BrandDoc = () => (
           }
           content={
             <Fragment>
-              It creates a container with white background and rounded corners.{' '}
+              It creates a container with white background and rounded corners.{" "}
               <br />
-              <br />The Logo Box is by default positioned relative.
+              <br />
+              The Logo Box is by default positioned relative.
             </Fragment>
           }
           code={`<LogoBox><SimSpaceLogo /></LogoBox>`}
@@ -139,7 +136,7 @@ export const BrandDoc = () => (
           }
           content={
             <Fragment>
-              It can be aligned to the top left including the prop{' '}
+              It can be aligned to the top left including the prop{" "}
               <b>alignLeft</b>
             </Fragment>
           }
@@ -154,7 +151,7 @@ export const BrandDoc = () => (
           }
           content={
             <Fragment>
-              Similarly, it can be aligned to the top right including the prop{' '}
+              Similarly, it can be aligned to the top right including the prop{" "}
               <b>alignRight</b>
             </Fragment>
           }
@@ -163,4 +160,4 @@ export const BrandDoc = () => (
       </DocSection>
     </DocPage>
   </Fragment>
-)
+);

@@ -1,18 +1,18 @@
-import styled from 'styled-components'
-import { CommonComponent } from 'types'
+import styled from "styled-components";
+import { CommonComponent } from "types";
 import {
   BorderRadius,
   borderRadius,
   colors,
   Colors,
-  flexFlow,
-} from 'CommonStyles'
+  flexFlow
+} from "CommonStyles";
 
 export const Tile = styled<
-  CommonComponent & { direction?: 'row' | 'column' },
-  'div'
->('div')`
-  ${({ direction = 'column' }) => flexFlow(direction)};
+  CommonComponent & { direction?: "row" | "column" },
+  "div"
+>("div")`
+  ${({ direction = "column" }) => flexFlow(direction)};
   ${borderRadius(BorderRadius.Medium)};
 
   background: ${colors(Colors.White)};
@@ -22,4 +22,4 @@ export const Tile = styled<
   justify-content: space-between;
 
   ${({ css: cssOverride }) => cssOverride};
-`
+`;

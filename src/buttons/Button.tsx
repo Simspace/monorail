@@ -1,5 +1,5 @@
-import React, { Component, MouseEvent } from 'react'
-import styled, { css, SimpleInterpolation } from 'styled-components'
+import React, { Component, MouseEvent } from "react";
+import styled, { css, SimpleInterpolation } from "styled-components";
 
 import {
   baseChromelessStyles,
@@ -12,13 +12,10 @@ import {
   Colors,
   colors,
   FontSizes,
-  typography,
-} from 'CommonStyles'
-import {
-  ButtonDisplay,
-  ButtonSize,
-} from 'buttons/buttonTypes'
-import { Icon } from 'icon/Icon'
+  typography
+} from "CommonStyles";
+import { ButtonDisplay, ButtonSize } from "buttons/buttonTypes";
+import { Icon } from "icon/Icon";
 
 const ButtonDisplayCss = {
   [ButtonDisplay.Primary]: css`
@@ -34,8 +31,8 @@ const ButtonDisplayCss = {
     border: 0;
     color: ${colors(Colors.BrandLightBlue)};
     line-height: 25px;
-  `,
-}
+  `
+};
 
 const ButtonSizeCss = {
   [ButtonSize.Dense]: css`
@@ -53,10 +50,10 @@ const ButtonSizeCss = {
   [ButtonSize.Large]: css`
     height: 32px;
     padding: 0 15px;
-  `,
-}
+  `
+};
 
-const CCButton = styled<ButtonProps, 'button'>('button')`
+const CCButton = styled<ButtonProps, "button">("button")`
   ${({ display }) => ButtonDisplayCss[display]};
   ${({ size }) => ButtonSizeCss[size]};
   ${({ disabled }) => disabled && baseDisabledStyles};
@@ -83,32 +80,32 @@ const CCButton = styled<ButtonProps, 'button'>('button')`
   }
 
   ${({ css: cssOverrides }) => cssOverrides};
-`
+`;
 
 export type ButtonProps = {
-  size: ButtonSize
-  display: ButtonDisplay
-  css?: SimpleInterpolation
-  disabled?: boolean
-  secondary?: boolean
-  onClick?: (event: MouseEvent<HTMLButtonElement>) => void
-  type: string
-}
+  size: ButtonSize;
+  display: ButtonDisplay;
+  css?: SimpleInterpolation;
+  disabled?: boolean;
+  secondary?: boolean;
+  onClick?: (event: MouseEvent<HTMLButtonElement>) => void;
+  type: string;
+};
 
 export class Button extends Component<ButtonProps> {
   static defaultProps = {
     display: ButtonDisplay.Primary,
     size: ButtonSize.Default,
-    type: 'button',
-  }
+    type: "button"
+  };
 
   render() {
-    const { children, ...otherProps } = this.props
+    const { children, ...otherProps } = this.props;
 
     return (
       <CCButton className="new-button" {...otherProps}>
         {children}
       </CCButton>
-    )
+    );
   }
 }
