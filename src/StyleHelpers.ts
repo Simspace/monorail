@@ -1,15 +1,15 @@
-import React from "react";
-import { default as styledOrig, SimpleInterpolation } from "styled-components";
+import React from 'react'
+import { default as styledOrig, SimpleInterpolation } from 'styled-components'
 
 /**
  * TODO: Get rid of this. This was something Dan added that isn't correctly typed. Any references should be replaced
  * with styled<Props, 'div'>('div')
  */
 export const styled = <P, E = HTMLDivElement>(
-  tagName: string | React.ComponentType<P>
-) => styledOrig<P & React.HTMLProps<E>, any>(tagName);
+  tagName: string | React.ComponentType<P>,
+) => styledOrig<P & React.HTMLProps<E>, any>(tagName)
 
-type DivProps = { css?: SimpleInterpolation };
+type DivProps = { css?: SimpleInterpolation }
 
 /**
  * The Div helper is a component that accepts `css` prop so we can easily inline CSS Objects with TypeScript support.
@@ -23,6 +23,6 @@ type DivProps = { css?: SimpleInterpolation };
   />
  ```
  */
-export const Div = styledOrig<DivProps, "div">("div")`
+export const Div = styledOrig<DivProps, 'div'>('div')`
   ${({ css: cssOverrides }) => cssOverrides}
-`;
+`

@@ -1,31 +1,31 @@
-import React, { Component } from "react";
-import styled, { css, SimpleInterpolation } from "styled-components";
-import { Colors, colors, flexFlow, FontSizes, typography } from "CommonStyles";
-import { CCTag } from "tags/Tag";
+import React, { Component } from 'react'
+import styled, { css, SimpleInterpolation } from 'styled-components'
+import { Colors, colors, flexFlow, FontSizes, typography } from 'CommonStyles'
+import { CCTag } from 'tags/Tag'
 
 // Property Styles
 const primaryPropertyStyles = css`
   ${typography(500, FontSizes.Content)};
   color: ${colors(Colors.Black74)};
-`;
+`
 const compactPropertyStyles = css`
   ${typography(500, FontSizes.Content)};
   color: ${colors(Colors.Black54)};
   text-transform: uppercase;
-`;
+`
 const largePropertyStyles = css`
   ${typography(700, FontSizes.Content)};
   color: ${colors(Colors.Black74)};
-`;
+`
 
-const BBDetailsProperty = styled<BBDetailsSize, "h2">("h2")`
+const BBDetailsProperty = styled<BBDetailsSize, 'h2'>('h2')`
   ${({ compact, large }) => {
     if (compact) {
-      return compactPropertyStyles;
+      return compactPropertyStyles
     } else if (large) {
-      return largePropertyStyles;
+      return largePropertyStyles
     } else {
-      return primaryPropertyStyles;
+      return primaryPropertyStyles
     }
   }};
 
@@ -36,30 +36,30 @@ const BBDetailsProperty = styled<BBDetailsSize, "h2">("h2")`
     `};
 
   margin: 0;
-`;
+`
 
 // Value Styles
 const primaryValueStyles = css`
   ${typography(200, FontSizes.Title3)};
   color: ${colors(Colors.Black89)};
-`;
+`
 const compactValueStyles = css`
   ${typography(600, FontSizes.Title5)};
   color: ${colors(Colors.Black74)};
-`;
+`
 const largeValueStyles = css`
   ${typography(200, FontSizes.Title1)};
   color: ${colors(Colors.Black89)};
-`;
+`
 
-const BBDetailsValue = styled<BBDetailsSize, "h2">("h2")`
+const BBDetailsValue = styled<BBDetailsSize, 'h2'>('h2')`
   ${({ compact, large }) => {
     if (compact) {
-      return compactValueStyles;
+      return compactValueStyles
     } else if (large) {
-      return largeValueStyles;
+      return largeValueStyles
     } else {
-      return primaryValueStyles;
+      return primaryValueStyles
     }
   }};
   ${({ darkMode }) =>
@@ -69,9 +69,9 @@ const BBDetailsValue = styled<BBDetailsSize, "h2">("h2")`
     `};
 
   margin: 0;
-`;
+`
 
-const BBDetailsContainer = styled<BBDetailsContainerProps, "div">("div")`
+const BBDetailsContainer = styled<BBDetailsContainerProps, 'div'>('div')`
   ${flexFlow()};
 
   ${CCTag} {
@@ -79,23 +79,23 @@ const BBDetailsContainer = styled<BBDetailsContainerProps, "div">("div")`
   }
 
   ${({ css: cssOverrides }) => cssOverrides};
-`;
+`
 
 type BBDetailsSize = {
-  compact?: boolean;
-  darkMode?: boolean;
-  large?: boolean;
-};
+  compact?: boolean
+  darkMode?: boolean
+  large?: boolean
+}
 
 type BBDetailsContainerProps = {
-  css?: SimpleInterpolation;
-};
+  css?: SimpleInterpolation
+}
 
 type CCDetailsProps = BBDetailsSize &
   BBDetailsContainerProps & {
-    property: string;
-    value?: string | number;
-  };
+    property: string
+    value?: string | number
+  }
 
 export class CCDetails extends Component<CCDetailsProps> {
   render() {
@@ -106,8 +106,8 @@ export class CCDetails extends Component<CCDetailsProps> {
       darkMode,
       large,
       property,
-      value
-    } = this.props;
+      value,
+    } = this.props
 
     return (
       <BBDetailsContainer css={cssOverrides}>
@@ -122,6 +122,6 @@ export class CCDetails extends Component<CCDetailsProps> {
 
         {children}
       </BBDetailsContainer>
-    );
+    )
   }
 }

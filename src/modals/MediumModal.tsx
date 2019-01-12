@@ -1,21 +1,21 @@
-import React, { Component } from "react";
+import React, { Component } from 'react'
 
-import { PopOverChildProps } from "popOver/PopOver";
+import { PopOverChildProps } from 'popOver/PopOver'
 import {
   BBModalBackground,
   BBModalContainer,
   BBModalHeader,
-  BBModalOverlay
-} from "modals/Modals";
+  BBModalOverlay,
+} from 'modals/Modals'
 
 type Props = PopOverChildProps & {
-  title: string;
-  iconLeft?: string;
-};
+  title: string
+  iconLeft?: string
+}
 
 export class MediumModal extends Component<Props> {
   render() {
-    const { isOpen, onClick, children, title, iconLeft } = this.props;
+    const { isOpen, onClick, children, title, iconLeft } = this.props
 
     return (
       <BBModalContainer isOpen={isOpen}>
@@ -25,6 +25,6 @@ export class MediumModal extends Component<Props> {
           {children}
         </BBModalBackground>
       </BBModalContainer>
-    );
+    )
   }
 }

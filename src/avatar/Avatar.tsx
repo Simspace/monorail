@@ -1,16 +1,16 @@
-import React, { StatelessComponent } from "react";
-import styled, { css, SimpleInterpolation } from "styled-components";
+import React, { StatelessComponent } from 'react'
+import styled, { css, SimpleInterpolation } from 'styled-components'
 
-import { borderRadius, Colors, colors } from "CommonStyles";
+import { borderRadius, Colors, colors } from 'CommonStyles'
 
 type CCAvatarProps = {
-  css?: SimpleInterpolation;
-  team?: boolean;
-};
+  css?: SimpleInterpolation
+  team?: boolean
+}
 
-const size = 24;
+const size = 24
 
-const CCAvatar = styled<CCAvatarProps, "div">("div")`
+const CCAvatar = styled<CCAvatarProps, 'div'>('div')`
   ${({ team }) =>
     team
       ? css`
@@ -35,20 +35,20 @@ const CCAvatar = styled<CCAvatarProps, "div">("div")`
   width: ${size}px;
 
   ${({ css: cssOverrides }) => cssOverrides};
-`;
+`
 type AvatarProps = CCAvatarProps & {
-  first: string;
-  last: string;
-};
+  first: string
+  last: string
+}
 
 export const Avatar: StatelessComponent<AvatarProps> = ({
   css: cssOverrides,
   first,
   last,
-  team
+  team,
 }) => (
   <CCAvatar css={cssOverrides} team={team}>
     {first.charAt(0)}
     {last.charAt(0)}
   </CCAvatar>
-);
+)

@@ -1,5 +1,5 @@
-import React, { Component, ReactNode } from "react";
-import { Icon } from "icon/Icon";
+import React, { Component, ReactNode } from 'react'
+import { Icon } from 'icon/Icon'
 import {
   baseChromelessStyles,
   baseDisabledStyles,
@@ -10,21 +10,21 @@ import {
   flexFlow,
   FontSizes,
   typography,
-  visible
-} from "CommonStyles";
-import styled, { css, SimpleInterpolation } from "styled-components";
+  visible,
+} from 'CommonStyles'
+import styled, { css, SimpleInterpolation } from 'styled-components'
 
 /*
  * Styles
  */
 
-const BBChoiceInput = styled<BBChoiceInputProps, "input">("input")`
+const BBChoiceInput = styled<BBChoiceInputProps, 'input'>('input')`
   opacity: 0; /* Hiding the input. */
   position: absolute; /* position: absolute; so that the Icons can be position: absolute; and so that the input doesn't effect the layout. */
   z-index: -1;
-`;
+`
 
-const BBChoiceFakeLabel = styled<AnsweredProps, "span">("span")`
+const BBChoiceFakeLabel = styled<AnsweredProps, 'span'>('span')`
   ${({ answered }) =>
     answered &&
     css`
@@ -36,9 +36,9 @@ const BBChoiceFakeLabel = styled<AnsweredProps, "span">("span")`
   word-break: break-word;
 
   transition: all ease 150ms;
-`;
+`
 
-const CCChoice = styled<CCChoiceProps, "label">("label")`
+const CCChoice = styled<CCChoiceProps, 'label'>('label')`
   ${({ disabled }) => disabled && baseDisabledStyles};
 
   ${({ readOnly, incorrect, correct }) =>
@@ -49,7 +49,7 @@ const CCChoice = styled<CCChoiceProps, "label">("label")`
     `};
 
   ${baseChromelessStyles()};
-  ${flexFlow("row")};
+  ${flexFlow('row')};
   ${borderRadius()};
 
   align-items: center;
@@ -109,44 +109,44 @@ const CCChoice = styled<CCChoiceProps, "label">("label")`
   }
 
   ${({ css: cssOverrides }) => cssOverrides};
-`;
+`
 
 /*
  * Types
  */
 
 type AnsweredProps = {
-  answered?: boolean;
-  htmlFor?: string;
-};
+  answered?: boolean
+  htmlFor?: string
+}
 
 type BBGradeIconProps = {
-  correct?: boolean;
-  incorrect?: boolean;
-};
+  correct?: boolean
+  incorrect?: boolean
+}
 
 type BBChoiceInputProps = AnsweredProps & {
-  checked?: boolean;
-  onChange?: (event?: React.ChangeEvent<HTMLInputElement>) => void;
-};
+  checked?: boolean
+  onChange?: (event?: React.ChangeEvent<HTMLInputElement>) => void
+}
 
 type CCChoiceProps = AnsweredProps &
   BBGradeIconProps & {
-    css?: SimpleInterpolation;
-    disabled?: boolean;
-    readOnly?: boolean;
-    value?: string | number | string[];
-    required?: boolean;
-    name?: string;
-  };
+    css?: SimpleInterpolation
+    disabled?: boolean
+    readOnly?: boolean
+    value?: string | number | string[]
+    required?: boolean
+    name?: string
+  }
 
 export type ChoiceProps = BBGradeIconProps &
   CCChoiceProps &
   BBChoiceInputProps & {
-    key?: any;
-    type: "radio" | "checkbox";
-    children?: ReactNode;
-  };
+    key?: any
+    type: 'radio' | 'checkbox'
+    children?: ReactNode
+  }
 
 /*
  * Component
@@ -154,11 +154,11 @@ export type ChoiceProps = BBGradeIconProps &
 
 export class Choice extends Component<ChoiceProps> {
   renderFakeInputIcons = () => {
-    const { type } = this.props;
+    const { type } = this.props
 
     switch (type) {
       default:
-      case "radio":
+      case 'radio':
         return [
           <Icon
             key="radioNotChecked"
@@ -169,9 +169,9 @@ export class Choice extends Component<ChoiceProps> {
             key="radioChecked"
             className="ChoiceButtonChecked"
             icon="radio_button_checked"
-          />
-        ];
-      case "checkbox":
+          />,
+        ]
+      case 'checkbox':
         return [
           <Icon
             key="radioNotChecked"
@@ -182,10 +182,10 @@ export class Choice extends Component<ChoiceProps> {
             key="radioChecked"
             className="ChoiceButtonChecked"
             icon="check_box"
-          />
-        ];
+          />,
+        ]
     }
-  };
+  }
 
   render() {
     const {
@@ -201,8 +201,8 @@ export class Choice extends Component<ChoiceProps> {
       type,
       value,
       required,
-      name
-    } = this.props;
+      name,
+    } = this.props
 
     return (
       <CCChoice
@@ -228,6 +228,6 @@ export class Choice extends Component<ChoiceProps> {
         {this.renderFakeInputIcons()}
         <BBChoiceFakeLabel answered={answered}>{children}</BBChoiceFakeLabel>
       </CCChoice>
-    );
+    )
   }
 }

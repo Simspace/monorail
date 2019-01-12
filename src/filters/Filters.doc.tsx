@@ -1,14 +1,14 @@
-import React from "react";
-import { Filter } from "filters/Filter";
+import React from 'react'
+import { Filter } from 'filters/Filter'
 import {
   ComponentShowcase,
   DocByLine,
   DocPage,
   DocSection,
-  DocTitle
-} from "src/design/Components/Documentation";
-import { SmartFrame } from "src/design/Components/SmartFrame";
-import { css } from "styled-components";
+  DocTitle,
+} from 'src/design/Components/Documentation'
+import { SmartFrame } from 'src/design/Components/SmartFrame'
+import { css } from 'styled-components'
 
 export const FiltersDoc = () => (
   <DocPage>
@@ -29,4 +29,4 @@ export const FiltersDoc = () => (
       </SmartFrame>
     </DocSection>
   </DocPage>
-);
+)

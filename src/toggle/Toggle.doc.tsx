@@ -1,5 +1,5 @@
-import React, { Component, Fragment, ReactNode } from "react";
-import { Toggle } from "toggle/Toggle";
+import React, { Component, Fragment, ReactNode } from 'react'
+import { Toggle } from 'toggle/Toggle'
 import {
   ComponentExample,
   ComponentShowcase,
@@ -10,39 +10,39 @@ import {
   DocSection,
   DocSubHeading,
   DocThreeColumn,
-  DocTitle
-} from "src/design/Components/Documentation";
-import { SmartFrame } from "src/design/Components/SmartFrame";
-import { css } from "styled-components";
-import { Icon } from "icon/Icon";
+  DocTitle,
+} from 'src/design/Components/Documentation'
+import { SmartFrame } from 'src/design/Components/SmartFrame'
+import { css } from 'styled-components'
+import { Icon } from 'icon/Icon'
 
 type Props = {
   children: (
     params: {
-      checked: boolean;
-      onChange: () => void;
-    }
-  ) => ReactNode;
-};
+      checked: boolean
+      onChange: () => void
+    },
+  ) => ReactNode
+}
 
 type State = {
-  checked: boolean;
-};
+  checked: boolean
+}
 
 class ToggleController extends Component<Props, State> {
   state: State = {
-    checked: true
-  };
+    checked: true,
+  }
 
   toggleActive = () => {
     this.setState(({ checked }) => ({
-      checked: !checked
-    }));
-  };
+      checked: !checked,
+    }))
+  }
 
   render() {
-    const { children } = this.props;
-    const { checked } = this.state;
+    const { children } = this.props
+    const { checked } = this.state
 
     return (
       <>
@@ -55,7 +55,7 @@ class ToggleController extends Component<Props, State> {
         />
         {children({ checked, onChange: this.toggleActive })}
       </>
-    );
+    )
   }
 }
 
@@ -167,4 +167,4 @@ export const ToggleDoc = () => (
       />
     </DocSection>
   </DocPage>
-);
+)

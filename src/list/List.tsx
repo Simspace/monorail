@@ -3,9 +3,9 @@ import React, {
   CSSProperties,
   MouseEvent,
   StatelessComponent,
-  ReactType
-} from "react";
-import styled, { css, SimpleInterpolation } from "styled-components";
+  ReactType,
+} from 'react'
+import styled, { css, SimpleInterpolation } from 'styled-components'
 
 import {
   baseChromelessStyles,
@@ -15,11 +15,11 @@ import {
   flexFlow,
   FontSizes,
   Sizes,
-  typography
-} from "CommonStyles";
-import { Icon, IconProps } from "icon/Icon";
-import TextTruncate from "react-truncate";
-import { isNil } from "src/common/util/CoreUtils";
+  typography,
+} from 'CommonStyles'
+import { Icon, IconProps } from 'icon/Icon'
+import TextTruncate from 'react-truncate'
+import { isNil } from 'src/common/util/CoreUtils'
 
 /*
  *
@@ -31,26 +31,26 @@ import { isNil } from "src/common/util/CoreUtils";
  * Styles
  */
 
-const BBListContainer = styled<BBListContainerProps, "div">("div")`
+const BBListContainer = styled<BBListContainerProps, 'div'>('div')`
   ${flexFlow()};
 
   overflow-y: auto;
   padding: 8px 0;
 
   ${({ css: cssOverrides }) => cssOverrides};
-`;
+`
 
 /*
  * Types
  */
 
 type BBListContainerProps = {
-  css?: SimpleInterpolation;
-};
+  css?: SimpleInterpolation
+}
 
 type ListContainerProps = BBListContainerProps & {
-  emptyText?: string;
-};
+  emptyText?: string
+}
 
 /*
  * Component
@@ -59,7 +59,7 @@ type ListContainerProps = BBListContainerProps & {
 export const ListContainer: StatelessComponent<ListContainerProps> = ({
   children,
   css: cssOverrides,
-  emptyText = "I'm empty :("
+  emptyText = "I'm empty :(",
 }) => (
   <BBListContainer css={cssOverrides}>
     {Children.count(children) ? (
@@ -74,7 +74,7 @@ export const ListContainer: StatelessComponent<ListContainerProps> = ({
       </ListItem>
     )}
   </BBListContainer>
-);
+)
 
 /*
  *
@@ -86,7 +86,7 @@ export const ListContainer: StatelessComponent<ListContainerProps> = ({
  * Styles
  */
 
-const BBListItemContainer = styled<BBListItemContainerProps, "div">("div")`
+const BBListItemContainer = styled<BBListItemContainerProps, 'div'>('div')`
   ${({ onClick, as }) =>
     ((!isNil(onClick) && onClick) || (!isNil(as) && as)) &&
     css`
@@ -98,7 +98,7 @@ const BBListItemContainer = styled<BBListItemContainerProps, "div">("div")`
       ${baseChromelessStyles()};
     `};
 
-  ${flexFlow("row")};
+  ${flexFlow('row')};
 
   background: transparent;
   box-sizing: border-box;
@@ -107,62 +107,62 @@ const BBListItemContainer = styled<BBListItemContainerProps, "div">("div")`
   padding: ${({ size }) => {
       switch (size) {
         case Sizes.DP32:
-          return 3;
+          return 3
         case Sizes.DP40:
-          return 7;
+          return 7
         default:
-          return 0;
+          return 0
       }
     }}px
     ${({ dense }) => (dense ? 8 : 16)}px;
   position: relative;
 
   ${({ css: cssOverrides }) => cssOverrides};
-`;
-type BBListSizeIconProps = BBListSizeProps & { icon: string };
+`
+type BBListSizeIconProps = BBListSizeProps & { icon: string }
 const StyledLeftIcon = styled<BBListSizeIconProps & IconProps>(
-  ({ dense, ...otherProps }) => <Icon {...otherProps} />
+  ({ dense, ...otherProps }) => <Icon {...otherProps} />,
 )`
   margin-right: ${({ dense }) => (dense ? 8 : 16)}px;
   margin-top: 4px;
-`;
+`
 
 // Have to do this span so that TextTruncate gets the right width because of padding.
-const BBListItemContent = styled("span")`
+const BBListItemContent = styled('span')`
   ${typography(500, FontSizes.Title5)};
 
   padding-top: 5px;
   padding-bottom: 3px;
   width: 100%;
-`;
+`
 
 /*
  * Types
  */
 type LinkProps = {
-  activeClassName?: string;
-  activeStyle?: CSSProperties;
-  onlyActiveOnIndex?: boolean;
-  to?: string;
-};
+  activeClassName?: string
+  activeStyle?: CSSProperties
+  onlyActiveOnIndex?: boolean
+  to?: string
+}
 
 type BBListSizeProps = {
-  dense?: boolean;
-};
+  dense?: boolean
+}
 
 type BBListItemContainerProps = LinkProps &
   BBListSizeProps & {
-    as?: ReactType;
-    css?: SimpleInterpolation;
-    onClick?: (event: MouseEvent<HTMLDivElement>) => void;
-    size?: Sizes;
-    className?: string;
-  };
+    as?: ReactType
+    css?: SimpleInterpolation
+    onClick?: (event: MouseEvent<HTMLDivElement>) => void
+    size?: Sizes
+    className?: string
+  }
 
 type ListItemProps = BBListItemContainerProps & {
-  leftIcon?: string;
-  rightItem?: React.ReactNode;
-};
+  leftIcon?: string
+  rightItem?: React.ReactNode
+}
 
 /*
  * Component
@@ -188,4 +188,4 @@ export const ListItem: StatelessComponent<ListItemProps> = ({
     </BBListItemContent>
     {rightItem}
   </BBListItemContainer>
-);
+)

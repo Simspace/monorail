@@ -1,5 +1,5 @@
-import React, { ComponentType } from "react";
-import { CustomIconProps } from "icon/Icon";
+import React, { ComponentType } from 'react'
+import { CustomIconProps } from 'icon/Icon'
 
 export const Tracker: ComponentType<CustomIconProps> = props => (
   <svg
@@ -20,4 +20,4 @@ export const Tracker: ComponentType<CustomIconProps> = props => (
     <path d="M13.09 11.9949C13.09 12.5822 12.6138 13.0584 12.0264 13.0584C11.439 13.0584 10.9628 12.5822 10.9628 11.9949C10.9628 11.4075 11.439 10.9313 12.0264 10.9313C12.6138 10.9313 13.09 11.4075 13.09 11.9949Z" />
     <path d="M20.3614 16.6625L12.0264 12.2449L12.1931 11.9115L21.3616 14.3287L20.3614 16.6625Z" />
   </svg>
-);
+)

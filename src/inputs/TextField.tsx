@@ -1,5 +1,5 @@
-import React, { ChangeEvent, Component } from "react";
-import styled, { css, SimpleInterpolation } from "styled-components";
+import React, { ChangeEvent, Component } from 'react'
+import styled, { css, SimpleInterpolation } from 'styled-components'
 
 import {
   borderRadius,
@@ -8,15 +8,15 @@ import {
   colors,
   flexFlow,
   FontSizes,
-  typography
-} from "CommonStyles";
-import { Icon } from "icon/Icon";
+  typography,
+} from 'CommonStyles'
+import { Icon } from 'icon/Icon'
 
 /*
  * Styles
  */
 
-const BBTextFieldContainer = styled<TextFieldProps, "label">("label")`
+const BBTextFieldContainer = styled<TextFieldProps, 'label'>('label')`
   ${flexFlow()};
 
   float: none;
@@ -25,30 +25,30 @@ const BBTextFieldContainer = styled<TextFieldProps, "label">("label")`
   position: relative; /* position: relative; so that the icons can be absolutely positioned. */
 
   ${({ css: cssOverrides }) => cssOverrides};
-`;
+`
 
-export const BBTextFieldLabel = styled("p")`
+export const BBTextFieldLabel = styled('p')`
   ${typography(500, FontSizes.Title5)};
   margin: 4px 0;
-`;
+`
 
 const baseIconStyles = css`
   position: absolute;
   bottom: 4px;
-`;
+`
 
 const StyledLeftIcon = styled(Icon)`
   ${baseIconStyles};
 
   left: 8px;
-`;
+`
 const StyledRightIcon = styled(Icon)`
   ${baseIconStyles};
 
   right: 8px;
-`;
+`
 
-const BBTextFieldInput = styled<BBTextFieldInputProps, "input">("input")`
+const BBTextFieldInput = styled<BBTextFieldInputProps, 'input'>('input')`
   ${typography(400, FontSizes.Title5)};
   ${borderRadius()};
 
@@ -76,10 +76,10 @@ const BBTextFieldInput = styled<BBTextFieldInputProps, "input">("input")`
   &:active {
     border-color: ${colors(Colors.BrandLightBlue)};
   }
-`;
+`
 
 // TODO: Much duplication from TextInput
-const BBTextAreaInput = styled<BBTextFieldInputProps, "textarea">("textarea")`
+const BBTextAreaInput = styled<BBTextFieldInputProps, 'textarea'>('textarea')`
   ${typography(400, FontSizes.Title5)};
   ${borderRadius()};
 
@@ -107,32 +107,32 @@ const BBTextAreaInput = styled<BBTextFieldInputProps, "textarea">("textarea")`
   &:active {
     border-color: ${colors(Colors.BrandLightBlue)};
   }
-`;
+`
 
 /*
  * Types
  */
 
 type BBTextFieldContainerProps = {
-  css?: SimpleInterpolation;
-};
+  css?: SimpleInterpolation
+}
 
 type BBTextFieldInputProps = {
-  iconLeft?: string;
-  iconRight?: string;
-  label?: string | number;
+  iconLeft?: string
+  iconRight?: string
+  label?: string | number
   onChange?: (
-    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => void;
-  placeholder?: string;
-  value?: string;
-  disabled?: boolean;
-  readOnly?: boolean;
-  required?: boolean;
-  type?: string;
-};
+    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => void
+  placeholder?: string
+  value?: string
+  disabled?: boolean
+  readOnly?: boolean
+  required?: boolean
+  type?: string
+}
 
-type TextFieldProps = BBTextFieldContainerProps & BBTextFieldInputProps & {};
+type TextFieldProps = BBTextFieldContainerProps & BBTextFieldInputProps & {}
 
 /*
  * Component
@@ -153,7 +153,7 @@ export class TextField extends Component<TextFieldProps> {
       required,
       type,
       ...otherProps
-    } = this.props;
+    } = this.props
 
     return (
       <BBTextFieldContainer css={cssOverrides}>
@@ -166,7 +166,7 @@ export class TextField extends Component<TextFieldProps> {
           iconRight={iconRight}
           onChange={onChange}
           placeholder={placeholder}
-          type={type || "string"}
+          type={type || 'string'}
           value={value}
           disabled={disabled}
           readOnly={readOnly}
@@ -174,7 +174,7 @@ export class TextField extends Component<TextFieldProps> {
           {...otherProps}
         />
       </BBTextFieldContainer>
-    );
+    )
   }
 }
 
@@ -194,7 +194,7 @@ export class TextArea extends Component<TextFieldProps> {
       required,
       type,
       ...otherProps
-    } = this.props;
+    } = this.props
 
     return (
       <BBTextFieldContainer css={css}>
@@ -207,7 +207,7 @@ export class TextArea extends Component<TextFieldProps> {
           iconRight={iconRight}
           onChange={onChange}
           placeholder={placeholder}
-          type={type || "string"}
+          type={type || 'string'}
           value={value}
           disabled={disabled}
           readOnly={readOnly}
@@ -215,6 +215,6 @@ export class TextArea extends Component<TextFieldProps> {
           {...otherProps}
         />
       </BBTextFieldContainer>
-    );
+    )
   }
 }

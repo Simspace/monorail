@@ -1,16 +1,16 @@
-import React from "react";
+import React from 'react'
 import {
   ComponentShowcase,
   DocByLine,
   DocPage,
   DocSection,
-  DocTitle
-} from "src/design/Components/Documentation";
-import { SmartFrame } from "src/design/Components/SmartFrame";
-import { css } from "styled-components";
-import { Button } from "buttons/Button";
-import { PopOver } from "popOver/PopOver";
-import { MediumModal } from "modals/MediumModal";
+  DocTitle,
+} from 'src/design/Components/Documentation'
+import { SmartFrame } from 'src/design/Components/SmartFrame'
+import { css } from 'styled-components'
+import { Button } from 'buttons/Button'
+import { PopOver } from 'popOver/PopOver'
+import { MediumModal } from 'modals/MediumModal'
 
 export const ModalsDoc = () => (
   <DocPage>
@@ -40,4 +40,4 @@ export const ModalsDoc = () => (
       </SmartFrame>
     </DocSection>
   </DocPage>
-);
+)

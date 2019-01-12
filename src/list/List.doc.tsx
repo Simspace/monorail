@@ -1,15 +1,15 @@
-import React from "react";
-import { ListItem } from "list/List";
+import React from 'react'
+import { ListItem } from 'list/List'
 import {
   ComponentShowcase,
   DocByLine,
   DocPage,
   DocSection,
-  DocTitle
-} from "src/design/Components/Documentation";
-import { SmartFrame } from "src/design/Components/SmartFrame";
-import { css } from "styled-components";
-import { Colors, colors } from "CommonStyles";
+  DocTitle,
+} from 'src/design/Components/Documentation'
+import { SmartFrame } from 'src/design/Components/SmartFrame'
+import { css } from 'styled-components'
+import { Colors, colors } from 'CommonStyles'
 
 export const ListDoc = () => (
   <DocPage>
@@ -38,4 +38,4 @@ export const ListDoc = () => (
       </SmartFrame>
     </DocSection>
   </DocPage>
-);
+)

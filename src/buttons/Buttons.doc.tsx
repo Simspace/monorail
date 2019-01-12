@@ -1,5 +1,5 @@
-import React, { Fragment } from "react";
-import { Button } from "buttons/Button";
+import React, { Fragment } from 'react'
+import { Button } from 'buttons/Button'
 import {
   ComponentExample,
   ComponentShowcase,
@@ -10,11 +10,11 @@ import {
   DocSection,
   DocSubHeading,
   DocThreeColumn,
-  DocTitle
-} from "src/design/Components/Documentation";
-import { SmartFrame } from "src/design/Components/SmartFrame";
-import { css } from "styled-components";
-import { ButtonDisplay, ButtonSize } from "buttons/buttonTypes";
+  DocTitle,
+} from 'src/design/Components/Documentation'
+import { SmartFrame } from 'src/design/Components/SmartFrame'
+import { css } from 'styled-components'
+import { ButtonDisplay, ButtonSize } from 'buttons/buttonTypes'
 
 export const ButtonsDoc = () => (
   <DocPage>
@@ -165,4 +165,4 @@ export const ButtonsDoc = () => (
       />
     </DocSection>
   </DocPage>
-);
+)

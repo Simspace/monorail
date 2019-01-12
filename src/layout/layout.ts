@@ -1,8 +1,8 @@
-import styled from "styled-components";
-import { Colors, colors, flexFlow } from "CommonStyles";
-import { CommonComponent } from "types";
+import styled from 'styled-components'
+import { Colors, colors, flexFlow } from 'CommonStyles'
+import { CommonComponent } from 'types'
 
-export const PageContainer = styled<CommonComponent, "section">("section")`
+export const PageContainer = styled<CommonComponent, 'section'>('section')`
   ${flexFlow()};
 
   background: ${colors(Colors.Grey98)};
@@ -10,4 +10,4 @@ export const PageContainer = styled<CommonComponent, "section">("section")`
   overflow-y: auto;
 
   ${({ css: cssOverride }) => cssOverride};
-`;
+`

@@ -1,19 +1,19 @@
-import styled, { SimpleInterpolation } from "styled-components";
+import styled, { SimpleInterpolation } from 'styled-components'
 import {
   borderRadius,
   Colors,
   colors,
   ElevationRange,
-  getElevation
-} from "CommonStyles";
+  getElevation,
+} from 'CommonStyles'
 
 type LogoBoxProps = {
-  alignRight?: boolean;
-  alignLeft?: boolean;
-  css?: SimpleInterpolation;
-};
+  alignRight?: boolean
+  alignLeft?: boolean
+  css?: SimpleInterpolation
+}
 
-export const LogoBox = styled<LogoBoxProps, "div">("div")`
+export const LogoBox = styled<LogoBoxProps, 'div'>('div')`
   ${getElevation(ElevationRange.Elevation0)};
   ${borderRadius()};
 
@@ -29,4 +29,4 @@ export const LogoBox = styled<LogoBoxProps, "div">("div")`
     alignRight && `position: absolute; right: 8px; top:8px;`}
 
   ${({ css: cssOverrides }) => cssOverrides};
-`;
+`

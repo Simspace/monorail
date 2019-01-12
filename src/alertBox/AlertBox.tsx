@@ -1,18 +1,24 @@
-import React, { Component, ReactNode } from "react";
-import styled, { SimpleInterpolation } from "styled-components";
+import React, { Component, ReactNode } from 'react'
+import styled, { SimpleInterpolation } from 'styled-components'
 
-import { Icon } from "icon/Icon";
-import { Colors, colors, flexFlow, FontSizes, typography } from "CommonStyles";
+import { Icon } from 'src/icon/Icon'
+import {
+  Colors,
+  colors,
+  flexFlow,
+  FontSizes,
+  typography,
+} from 'src/CommonStyles'
 
-const iconSize = 32;
+const iconSize = 32
 
 type CCAlertBoxProps = {
-  css?: SimpleInterpolation;
-  label?: ReactNode;
-};
+  css?: SimpleInterpolation
+  label?: ReactNode
+}
 
-export const CCAlertBox = styled<CCAlertBoxProps, "div">("div")`
-  ${flexFlow("row")};
+export const CCAlertBox = styled<CCAlertBoxProps, 'div'>('div')`
+  ${flexFlow('row')};
 
   background-color: ${colors(Colors.Red, 0.15)};
   border-radius: 4px;
@@ -22,41 +28,41 @@ export const CCAlertBox = styled<CCAlertBoxProps, "div">("div")`
 
   &::before {
     bottom: 8px;
-    content: "";
+    content: '';
     left: 16px;
     position: absolute;
     width: 32px;
   }
 
   ${({ css: cssOverrides }) => cssOverrides};
-`;
+`
 
 const StyledIconLeft = styled(Icon)`
   color: #f44336;
   margin: 8px 12px 8px 16px;
   position: relative; /* give z-index so ::before bg is behind icon */
-`;
+`
 
-const Title = styled("h1")`
+const Title = styled('h1')`
   ${typography(700, FontSizes.Title3)};
   color: ${colors(Colors.Black89)};
   margin: 16px 0;
-`;
+`
 
-const AlertDetails = styled("span")`
+const AlertDetails = styled('span')`
   ${typography(300, FontSizes.Content)};
   color: ${colors(Colors.Black89)};
   margin: auto 48px auto auto;
-`;
+`
 
 type AlertBoxProps = CCAlertBoxProps & {
-  icon: string;
-  key?: string | number;
-};
+  icon: string
+  key?: string | number
+}
 
 export class AlertBox extends Component<AlertBoxProps> {
   render() {
-    const { icon, label, css: cssOverrides } = this.props;
+    const { icon, label, css: cssOverrides } = this.props
 
     return (
       <CCAlertBox label={label} css={cssOverrides}>
@@ -69,6 +75,6 @@ export class AlertBox extends Component<AlertBoxProps> {
           </ul>
         </AlertDetails>
       </CCAlertBox>
-    );
+    )
   }
 }

@@ -1,5 +1,5 @@
-import React from "react";
-import { Tag } from "tags/Tag";
+import React from 'react'
+import { Tag } from 'tags/Tag'
 import {
   ComponentExample,
   ComponentShowcase,
@@ -10,10 +10,10 @@ import {
   DocSection,
   DocSubHeading,
   DocThreeColumn,
-  DocTitle
-} from "src/design/Components/Documentation";
-import { SmartFrame } from "src/design/Components/SmartFrame";
-import { css } from "styled-components";
+  DocTitle,
+} from 'src/design/Components/Documentation'
+import { SmartFrame } from 'src/design/Components/SmartFrame'
+import { css } from 'styled-components'
 
 export const TagsDoc = () => (
   <DocPage>
@@ -96,4 +96,4 @@ export const TagsDoc = () => (
       />
     </DocSection>
   </DocPage>
-);
+)

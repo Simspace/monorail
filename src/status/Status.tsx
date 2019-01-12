@@ -1,11 +1,11 @@
-import React from "react";
-import styled, { SimpleInterpolation } from "styled-components";
+import React from 'react'
+import styled, { SimpleInterpolation } from 'styled-components'
 
-import { Colors, colors, FontSizes, typography } from "CommonStyles";
+import { Colors, colors, FontSizes, typography } from 'CommonStyles'
 
-const size = 16;
+const size = 16
 
-export const Status = styled<{ css?: SimpleInterpolation }, "div">("div")`
+export const Status = styled<{ css?: SimpleInterpolation }, 'div'>('div')`
   ${typography(700, FontSizes.Title5)};
 
   background: ${colors(Colors.BrandLightBlue)};
@@ -16,4 +16,4 @@ export const Status = styled<{ css?: SimpleInterpolation }, "div">("div")`
   text-align: center;
 
   ${({ css: cssOverrides }) => cssOverrides};
-`;
+`

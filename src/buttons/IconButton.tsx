@@ -1,5 +1,5 @@
-import React, { Component, MouseEvent } from "react";
-import styled, { css, SimpleInterpolation } from "styled-components";
+import React, { Component, MouseEvent } from 'react'
+import styled, { css, SimpleInterpolation } from 'styled-components'
 
 import {
   baseChromelessStyles,
@@ -10,15 +10,15 @@ import {
   buttonTransiton,
   Colors,
   colors,
-  flexFlow
-} from "CommonStyles";
-import { Icon } from "icon/Icon";
+  flexFlow,
+} from 'CommonStyles'
+import { Icon } from 'icon/Icon'
 
 const primaryStyles = css`
   ${basePrimaryStyles()};
 
   border: 0;
-`;
+`
 
 const secondaryStyles = css`
   background: ${colors(Colors.BrandLightBlue, 0.08)};
@@ -32,17 +32,17 @@ const secondaryStyles = css`
   &:active {
     background: ${colors(Colors.BrandLightBlue, 0.24)};
   }
-`;
+`
 
 const outlineStyles = css`
   ${baseOutlineStyles()};
-`;
+`
 
 const chromelessStyles = css`
   ${baseChromelessStyles()};
   border: 0;
   color: ${colors(Colors.Black74)};
-`;
+`
 
 const circleStyles = css`
   background: ${colors(Colors.Black24)};
@@ -59,7 +59,7 @@ const circleStyles = css`
   &:active {
     background: ${colors(Colors.Black24)};
   }
-`;
+`
 
 const largeStyles = css`
   height: 32px;
@@ -68,7 +68,7 @@ const largeStyles = css`
   ${Icon} {
     font-size: 24px;
   }
-`;
+`
 const denseStyles = css`
   height: 16px;
   width: 16px;
@@ -76,48 +76,48 @@ const denseStyles = css`
   ${Icon} {
     font-size: 12px;
   }
-`;
+`
 const defaultStyles = css`
   height: 24px;
   width: 24px;
-`;
+`
 
 type CCIconButtonProps = {
-  chromeless?: boolean;
-  css?: SimpleInterpolation;
-  darkMode?: boolean;
-  dense?: boolean;
-  iconCss?: SimpleInterpolation;
-  large?: boolean;
-  onClick?: (event: MouseEvent<Element>) => void;
-  outline?: boolean;
-  secondary?: boolean;
-  circle?: boolean;
-  type?: string;
-};
+  chromeless?: boolean
+  css?: SimpleInterpolation
+  darkMode?: boolean
+  dense?: boolean
+  iconCss?: SimpleInterpolation
+  large?: boolean
+  onClick?: (event: MouseEvent<Element>) => void
+  outline?: boolean
+  secondary?: boolean
+  circle?: boolean
+  type?: string
+}
 
-const CCIconButton = styled<CCIconButtonProps, "button">("button")`
+const CCIconButton = styled<CCIconButtonProps, 'button'>('button')`
   ${({ chromeless, outline, secondary, circle }) => {
     if (outline) {
-      return outlineStyles;
+      return outlineStyles
     } else if (chromeless) {
-      return chromelessStyles;
+      return chromelessStyles
     } else if (circle) {
-      return circleStyles;
+      return circleStyles
     } else if (secondary) {
-      return secondaryStyles;
+      return secondaryStyles
     } else {
-      return primaryStyles;
+      return primaryStyles
     }
   }};
 
   ${({ large, dense }) => {
     if (large) {
-      return largeStyles;
+      return largeStyles
     } else if (dense) {
-      return denseStyles;
+      return denseStyles
     } else {
-      return defaultStyles;
+      return defaultStyles
     }
   }};
 
@@ -148,20 +148,20 @@ const CCIconButton = styled<CCIconButtonProps, "button">("button")`
   }
 
   ${({ css: cssOverrides }) => cssOverrides};
-`;
+`
 
 type IconButtonProps = CCIconButtonProps & {
-  icon: string;
-};
+  icon: string
+}
 
 export class IconButton extends Component<IconButtonProps> {
   render() {
-    const { icon, ...otherProps } = this.props;
+    const { icon, ...otherProps } = this.props
 
     return (
       <CCIconButton className="new-button" {...otherProps}>
         <Icon icon={icon} />
       </CCIconButton>
-    );
+    )
   }
 }

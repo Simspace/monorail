@@ -1,14 +1,14 @@
-import React from "react";
+import React from 'react'
 import {
   ComponentShowcase,
   DocByLine,
   DocPage,
   DocSection,
-  DocTitle
-} from "src/design/Components/Documentation";
-import { SmartFrame } from "src/design/Components/SmartFrame";
-import { css } from "styled-components";
-import { Button } from "buttons/Button";
+  DocTitle,
+} from 'src/design/Components/Documentation'
+import { SmartFrame } from 'src/design/Components/SmartFrame'
+import { css } from 'styled-components'
+import { Button } from 'buttons/Button'
 
 export const PopOverDoc = () => (
   <DocPage>
@@ -29,4 +29,4 @@ export const PopOverDoc = () => (
       </SmartFrame>
     </DocSection>
   </DocPage>
-);
+)

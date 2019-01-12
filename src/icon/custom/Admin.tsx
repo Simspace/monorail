@@ -1,5 +1,5 @@
-import React, { ComponentType } from "react";
-import { CustomIconProps } from "icon/Icon";
+import React, { ComponentType } from 'react'
+import { CustomIconProps } from 'icon/Icon'
 
 export const Admin: ComponentType<CustomIconProps> = props => (
   <svg
@@ -15,4 +15,4 @@ export const Admin: ComponentType<CustomIconProps> = props => (
     <path d="M10.7327 13.2879H12.9324L12.6116 15.053H11.0535L10.7327 13.2879Z" />
     <path d="M10.7327 17.2826L11.8212 19.3134L12.9324 17.2826L12.6116 15.5175H11.0535L10.7327 17.2826Z" />
   </svg>
-);
+)

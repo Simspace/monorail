@@ -1,5 +1,5 @@
-import React, { ComponentType } from "react";
-import { CustomIconProps } from "icon/Icon";
+import React, { ComponentType } from 'react'
+import { CustomIconProps } from 'icon/Icon'
 
 export const Dashboard: ComponentType<CustomIconProps> = props => (
   <svg
@@ -20,4 +20,4 @@ export const Dashboard: ComponentType<CustomIconProps> = props => (
     <path d="M10.2875 6.68438C10.1088 6.68438 9.96252 6.53684 9.96252 6.35653V4.95994C9.96252 4.77964 10.1088 4.63209 10.2875 4.63209C10.4662 4.63209 10.6125 4.77964 10.6125 4.95994L10.6124 6.35653C10.6124 6.53684 10.4662 6.68438 10.2875 6.68438Z" />
     <path d="M13.6667 8.18231C13.7953 8.30744 14.0021 8.30365 14.1261 8.17387L15.0868 7.16844C15.2109 7.03866 15.2071 6.83001 15.0784 6.70489C14.9498 6.57968 14.7431 6.58355 14.619 6.71334L13.6583 7.71876C13.5342 7.84854 13.5381 8.05719 13.6667 8.18231Z" />
   </svg>
-);
+)

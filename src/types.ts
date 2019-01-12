@@ -1,9 +1,9 @@
-import { SimpleInterpolation } from "styled-components";
+import { SimpleInterpolation } from 'styled-components'
 
 export type CommonComponent = {
-  css?: SimpleInterpolation;
-};
+  css?: SimpleInterpolation
+}
 
 export type TypographyComponent = {
-  margin?: string;
-};
+  margin?: string
+}

@@ -1,8 +1,8 @@
-import React, { Fragment } from "react";
-import { css } from "styled-components";
+import React, { Fragment } from 'react'
+import { css } from 'styled-components'
 
-import { AppIcon } from "appIcon/AppIcon";
-import { AppName, BorderRadius, borderRadius } from "CommonStyles";
+import { AppIcon } from 'appIcon/AppIcon'
+import { AppName, BorderRadius, borderRadius } from 'CommonStyles'
 import {
   ComponentExample,
   ComponentShowcase,
@@ -14,16 +14,16 @@ import {
   DocSubHeading,
   DocThreeColumn,
   DocTitle,
-  DocTwoColumn
-} from "src/design/Components/Documentation";
-import { SmartFrame } from "src/design/Components/SmartFrame";
+  DocTwoColumn,
+} from 'src/design/Components/Documentation'
+import { SmartFrame } from 'src/design/Components/SmartFrame'
 
 const appIconCss = css`
   ${borderRadius(BorderRadius.Large)};
 
   height: 64px;
   width: 64px;
-`;
+`
 
 export const AppIconDoc = () => (
   <DocPage>
@@ -133,4 +133,4 @@ export const AppIconDoc = () => (
       />
     </DocSection>
   </DocPage>
-);
+)

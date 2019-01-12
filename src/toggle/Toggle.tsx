@@ -1,19 +1,19 @@
-import React, { Component } from "react";
-import { Icon, IconProps } from "icon/Icon";
+import React, { Component } from 'react'
+import { Icon, IconProps } from 'icon/Icon'
 import {
   Colors,
   colors,
   ElevationRange,
   getElevation,
-  visible
-} from "CommonStyles";
-import styled, { css, SimpleInterpolation } from "styled-components";
+  visible,
+} from 'CommonStyles'
+import styled, { css, SimpleInterpolation } from 'styled-components'
 
-const toggleWidth = 18;
-const toggleHeight = 10;
-const iconSize = 8;
+const toggleWidth = 18
+const toggleHeight = 10
+const iconSize = 8
 
-const CCToggle = styled<ToggleProps, "label">("label")`
+const CCToggle = styled<ToggleProps, 'label'>('label')`
   border-radius: ${toggleHeight + 2 / 2}px;
   border: 1px solid;
   cursor: pointer;
@@ -37,10 +37,10 @@ const CCToggle = styled<ToggleProps, "label">("label")`
         `};
 
   ${({ css: cssOverrides }) => cssOverrides};
-`;
+`
 
 const StyledIconChecked = styled<{ checked: boolean } & IconProps>(
-  ({ checked, ...otherProps }) => <Icon {...otherProps} />
+  ({ checked, ...otherProps }) => <Icon {...otherProps} />,
 )`
   ${({ checked }) => visible(checked)};
 
@@ -50,10 +50,10 @@ const StyledIconChecked = styled<{ checked: boolean } & IconProps>(
   position: absolute; /* give z-index so ::before bg is behind icon */
 
   transition: all ease-in 75ms;
-`;
+`
 
 const StyledIconNotChecked = styled<{ checked: boolean } & IconProps>(
-  ({ checked, ...otherProps }) => <Icon {...otherProps} />
+  ({ checked, ...otherProps }) => <Icon {...otherProps} />,
 )`
   ${({ checked }) => visible(!checked)};
 
@@ -63,21 +63,21 @@ const StyledIconNotChecked = styled<{ checked: boolean } & IconProps>(
   position: absolute; /* give z-index so ::before bg is behind icon */
 
   transition: all ease-in 75ms;
-`;
+`
 
-const Slider = styled<Slider, "div">("div")`
+const Slider = styled<Slider, 'div'>('div')`
   ${getElevation(ElevationRange.Elevation1)};
   background-color: ${colors(Colors.White)};
   border-radius: 50%;
   bottom: 0;
-  content: "";
+  content: '';
   height: 10px;
   left: 0;
   position: absolute;
   width: 10px;
 
   transition: all ease-in 75ms;
-`;
+`
 
 const Input = styled.input`
   display: none; /* Hide default HTML checkbox */
@@ -94,19 +94,19 @@ const Input = styled.input`
     ${visible(false)};
     color: ${colors(Colors.BrandLightBlue)};
   }
-`;
+`
 
-type Slider = {};
+type Slider = {}
 
 type ToggleProps = {
-  checked: boolean;
-  css?: SimpleInterpolation;
-  onChange?: (checked: boolean) => void;
-};
+  checked: boolean
+  css?: SimpleInterpolation
+  onChange?: (checked: boolean) => void
+}
 
 export class Toggle extends Component<ToggleProps> {
   render() {
-    const { css: cssOverrides, checked, onChange } = this.props;
+    const { css: cssOverrides, checked, onChange } = this.props
 
     return (
       <CCToggle css={cssOverrides} checked={checked}>
@@ -114,7 +114,7 @@ export class Toggle extends Component<ToggleProps> {
           type="checkbox"
           checked={checked}
           onChange={event => {
-            onChange && onChange(event.currentTarget.checked);
+            onChange && onChange(event.currentTarget.checked)
           }}
         />
         <Slider>
@@ -122,7 +122,7 @@ export class Toggle extends Component<ToggleProps> {
           <StyledIconNotChecked icon="close" checked={checked} />
         </Slider>
       </CCToggle>
-    );
+    )
   }
 }
 

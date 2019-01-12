@@ -1,14 +1,14 @@
-import React from "react";
-import { CCDetails } from "typography/Details";
-import { SectionHeader } from "typography/SectionHeader";
+import React from 'react'
+import { CCDetails } from 'typography/Details'
+import { SectionHeader } from 'typography/SectionHeader'
 import {
   ComponentShowcase,
   DocByLine,
   DocPage,
   DocSection,
-  DocTitle
-} from "src/design/Components/Documentation";
-import { SmartFrame } from "src/design/Components/SmartFrame";
+  DocTitle,
+} from 'src/design/Components/Documentation'
+import { SmartFrame } from 'src/design/Components/SmartFrame'
 
 export const TypographyDoc = () => (
   <DocPage>
@@ -25,4 +25,4 @@ export const TypographyDoc = () => (
       </SmartFrame>
     </DocSection>
   </DocPage>
-);
+)
