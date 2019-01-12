@@ -1,6 +1,6 @@
 import React, { Component, Fragment, MouseEvent, ReactNode } from 'react'
 
-import { Portal } from 'portal/Portal'
+import { Portal } from 'src/portal/Portal'
 
 export type PopOverPosition = {
   dropXAmount: number

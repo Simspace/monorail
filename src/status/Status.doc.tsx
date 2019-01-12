@@ -1,5 +1,5 @@
 import React from 'react'
-import { Status } from 'status/Status'
+import { Status } from 'src/status/Status'
 import {
   ComponentShowcase,
   DocByLine,

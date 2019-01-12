@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react'
-import { Avatar } from 'avatar/Avatar'
+import { Avatar } from 'src/avatar/Avatar'
 import {
   ComponentExample,
   ComponentShowcase,

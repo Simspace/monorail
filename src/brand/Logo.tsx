@@ -1,5 +1,5 @@
 import React, { ComponentType, ReactNode } from 'react'
-import { colors, Colors } from 'CommonStyles'
+import { colors, Colors } from 'src/CommonStyles'
 import styled, { SimpleInterpolation } from 'styled-components'
 
 export const Point3 = () => (

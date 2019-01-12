@@ -1,6 +1,6 @@
 import React, { StatelessComponent } from 'react'
-import { AppIcon } from 'appIcon/AppIcon'
-import { Icon } from 'icon/Icon'
+import { AppIcon } from 'src/appIcon/AppIcon'
+import { Icon } from 'src/icon/Icon'
 import {
   AppName,
   BorderRadius,
@@ -12,7 +12,7 @@ import {
   FontSizes,
   getElevation,
   typography,
-} from 'CommonStyles'
+} from 'src/CommonStyles'
 import styled, { css, SimpleInterpolation } from 'styled-components'
 
 // building-blocks/cards/background

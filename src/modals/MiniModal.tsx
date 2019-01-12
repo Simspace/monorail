@@ -1,14 +1,14 @@
 import React, { Component, ReactNode } from 'react'
 
-import { PopOverChildProps } from 'popOver/PopOver'
+import { PopOverChildProps } from 'src/popOver/PopOver'
 import {
   BBModalBackground,
   BBModalContainer,
   BBModalContent,
   BBModalHeader,
   BBModalOverlay,
-} from 'modals/Modals'
-import { generateScaleAnimation, sizes } from 'CommonStyles'
+} from 'src/modals/Modals'
+import { generateScaleAnimation, sizes } from 'src/CommonStyles'
 
 type Props = PopOverChildProps & {
   title: string

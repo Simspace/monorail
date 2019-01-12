@@ -1,6 +1,6 @@
 import styled from 'styled-components'
-import { Colors, colors, flexFlow } from 'CommonStyles'
-import { CommonComponent } from 'types'
+import { Colors, colors, flexFlow } from 'src/CommonStyles'
+import { CommonComponent } from 'src/types'
 
 export const PageContainer = styled<CommonComponent, 'section'>('section')`
   ${flexFlow()};

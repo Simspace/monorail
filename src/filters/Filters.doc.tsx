@@ -1,5 +1,5 @@
 import React from 'react'
-import { Filter } from 'filters/Filter'
+import { Filter } from 'src/filters/Filter'
 import {
   ComponentShowcase,
   DocByLine,

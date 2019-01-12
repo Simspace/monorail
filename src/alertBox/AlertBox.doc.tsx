@@ -1,5 +1,5 @@
 // import React from 'react'
-// import { AlertBox } from 'alertBox/AlertBox'
+// import { AlertBox } from 'src/alertBox/AlertBox'
 // import { DocPage } from 'src/design/Components/Documentation'
 
 // export const AlertBoxDoc = () => (

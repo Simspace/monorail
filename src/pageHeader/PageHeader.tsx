@@ -11,9 +11,9 @@ import {
   getElevation,
   Sizes,
   typography,
-} from 'CommonStyles'
-import { Icon } from 'icon/Icon'
-import { IconButton } from 'buttons/IconButton'
+} from 'src/CommonStyles'
+import { Icon } from 'src/icon/Icon'
+import { IconButton } from 'src/buttons/IconButton'
 
 /*
  * Styles

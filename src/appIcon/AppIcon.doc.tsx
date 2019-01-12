@@ -1,8 +1,8 @@
 import React, { Fragment } from 'react'
 import { css } from 'styled-components'
 
-import { AppIcon } from 'appIcon/AppIcon'
-import { AppName, BorderRadius, borderRadius } from 'CommonStyles'
+import { AppIcon } from 'src/appIcon/AppIcon'
+import { AppName, BorderRadius, borderRadius } from 'src/CommonStyles'
 import {
   ComponentExample,
   ComponentShowcase,
@@ -14,7 +14,6 @@ import {
   DocSubHeading,
   DocThreeColumn,
   DocTitle,
-  DocTwoColumn,
 } from 'src/design/Components/Documentation'
 import { SmartFrame } from 'src/design/Components/SmartFrame'
 

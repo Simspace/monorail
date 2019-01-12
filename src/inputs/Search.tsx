@@ -1,8 +1,8 @@
 import React, { ChangeEvent, MouseEvent, Component } from 'react'
 import styled, { css, SimpleInterpolation } from 'styled-components'
 
-import { Icon, IconProps } from 'icon/Icon'
-import { IconButton } from 'buttons/IconButton'
+import { Icon, IconProps } from 'src/icon/Icon'
+import { IconButton } from 'src/buttons/IconButton'
 import {
   buttonTransiton,
   Colors,
@@ -10,8 +10,8 @@ import {
   FontSizes,
   typography,
   visible,
-} from 'CommonStyles'
-import { Overwrite } from 'src/common/util/CoreUtils'
+} from 'src/CommonStyles'
+import { Overwrite } from 'typelevel-ts'
 
 //
 // Styles

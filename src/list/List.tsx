@@ -16,10 +16,10 @@ import {
   FontSizes,
   Sizes,
   typography,
-} from 'CommonStyles'
-import { Icon, IconProps } from 'icon/Icon'
+} from 'src/CommonStyles'
+import { Icon, IconProps } from 'src/icon/Icon'
 import TextTruncate from 'react-truncate'
-import { isNil } from 'src/common/util/CoreUtils'
+import { isNil } from 'src/utils'
 
 /*
  *

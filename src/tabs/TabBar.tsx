@@ -1,6 +1,6 @@
 import React, { Component, ReactElement } from 'react'
-import { isNil } from 'src/common/util/CoreUtils'
-import { Colors, colors, flexFlow, Sizes } from 'CommonStyles'
+import { isNil } from 'src/utils'
+import { Colors, colors, flexFlow, Sizes } from 'src/CommonStyles'
 import styled, { css, SimpleInterpolation } from 'styled-components'
 import { TabProps } from './Tab'
 

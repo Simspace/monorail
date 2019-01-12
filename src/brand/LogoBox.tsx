@@ -5,7 +5,7 @@ import {
   colors,
   ElevationRange,
   getElevation,
-} from 'CommonStyles'
+} from 'src/CommonStyles'
 
 type LogoBoxProps = {
   alignRight?: boolean

@@ -39,11 +39,16 @@
     "@babel/preset-react": "^7.0.0",
     "@babel/preset-typescript": "7.1.0",
     "@babel/register": "7.0.0",
+    "@types/ramda": "^0.25.46",
+    "@types/react": "^16.7.18",
+    "@types/react-truncate": "^2.3.3",
     "@types/styled-components": "4.0.3",
     "babel-plugin-module-resolver": "3.1.1",
     "prettier": "^1.15.3",
+    "ramda": "^0.26.1",
     "react": "~16.6.0",
     "react-dom": "~16.6.0",
+    "react-truncate": "^2.4.0",
     "typelevel-ts": "^0.3.5",
     "typescript": "^3.1.5"
   }

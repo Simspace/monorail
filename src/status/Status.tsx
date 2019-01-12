@@ -1,7 +1,7 @@
 import React from 'react'
 import styled, { SimpleInterpolation } from 'styled-components'
 
-import { Colors, colors, FontSizes, typography } from 'CommonStyles'
+import { Colors, colors, FontSizes, typography } from 'src/CommonStyles'
 
 const size = 16
 

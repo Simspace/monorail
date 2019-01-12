@@ -1,7 +1,7 @@
 import React, { StatelessComponent } from 'react'
 import styled, { css, SimpleInterpolation } from 'styled-components'
 
-import { borderRadius, Colors, colors } from 'CommonStyles'
+import { borderRadius, Colors, colors } from 'src/CommonStyles'
 
 type CCAvatarProps = {
   css?: SimpleInterpolation

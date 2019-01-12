@@ -13,9 +13,9 @@ import {
   colors,
   FontSizes,
   typography,
-} from 'CommonStyles'
-import { ButtonDisplay, ButtonSize } from 'buttons/buttonTypes'
-import { Icon } from 'icon/Icon'
+} from 'src/CommonStyles'
+import { ButtonDisplay, ButtonSize } from 'src/buttons/buttonTypes'
+import { Icon } from 'src/icon/Icon'
 
 const ButtonDisplayCss = {
   [ButtonDisplay.Primary]: css`

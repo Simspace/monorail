@@ -1,6 +1,6 @@
 import styled from 'styled-components'
-import { typography, FontSizes } from 'CommonStyles'
-import { CommonComponent, TypographyComponent } from 'types'
+import { typography, FontSizes } from 'src/CommonStyles'
+import { CommonComponent, TypographyComponent } from 'src/types'
 
 export const SectionTitle = styled<CommonComponent & TypographyComponent, 'h1'>(
   'h1',

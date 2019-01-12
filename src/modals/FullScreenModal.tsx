@@ -1,13 +1,13 @@
 import React, { Component, ReactNode } from 'react'
 import { css } from 'styled-components'
 
-import { PopOverChildProps } from 'popOver/PopOver'
+import { PopOverChildProps } from 'src/popOver/PopOver'
 import {
   BBModalBackground,
   BBModalContainer,
   BBModalHeader,
   BBModalOverlay,
-} from 'modals/Modals'
+} from 'src/modals/Modals'
 
 type Props = PopOverChildProps & {
   headerChildren?: ReactNode

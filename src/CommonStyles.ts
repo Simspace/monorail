@@ -5,7 +5,7 @@ import {
   Keyframes,
   Styles,
 } from 'styled-components'
-import { PopOverPosition } from 'popOver/PopOver'
+import { PopOverPosition } from 'src/popOver/PopOver'
 
 /*
  * Elevation

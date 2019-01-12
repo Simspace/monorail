@@ -1,6 +1,6 @@
 import React from 'react'
-import { CCDetails } from 'typography/Details'
-import { SectionHeader } from 'typography/SectionHeader'
+import { CCDetails } from 'src/typography/Details'
+import { SectionHeader } from 'src/typography/SectionHeader'
 import {
   ComponentShowcase,
   DocByLine,

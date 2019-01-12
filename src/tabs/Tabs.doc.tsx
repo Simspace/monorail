@@ -1,6 +1,6 @@
 import React from 'react'
-import { TabBar } from 'tabs/TabBar'
-import { Tab } from 'tabs/Tab'
+import { TabBar } from 'src/tabs/TabBar'
+import { Tab } from 'src/tabs/Tab'
 import {
   ComponentShowcase,
   DocByLine,

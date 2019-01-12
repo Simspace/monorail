@@ -7,8 +7,8 @@ import {
   Colors,
   convertAppNameToColor,
   flexFlow,
-} from 'CommonStyles'
-import { Icon } from 'icon/Icon'
+} from 'src/CommonStyles'
+import { Icon } from 'src/icon/Icon'
 
 const CCAppIcon = styled<AppIconProps, 'div'>('div')`
   ${({ appName }) => css`

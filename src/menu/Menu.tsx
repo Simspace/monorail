@@ -1,8 +1,8 @@
 import React, { Component, ReactNode, createRef } from 'react'
 import styled, { SimpleInterpolation } from 'styled-components'
-import { isNil, StyledHtmlElement } from 'src/common/util/CoreUtils'
-import { PopOverChildProps } from 'popOver/PopOver'
-import { BBModalOverlay, BBModalContainer } from 'modals/Modals'
+import { isNil, StyledHtmlElement } from 'src/utils'
+import { PopOverChildProps } from 'src/popOver/PopOver'
+import { BBModalOverlay, BBModalContainer } from 'src/modals/Modals'
 import {
   BorderRadius,
   borderRadius,
@@ -12,7 +12,7 @@ import {
   generateScaleAnimation,
   getElevation,
   sizes,
-} from 'CommonStyles'
+} from 'src/CommonStyles'
 
 type MenuProps = {
   children: ReactNode

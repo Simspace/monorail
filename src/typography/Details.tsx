@@ -1,7 +1,13 @@
 import React, { Component } from 'react'
 import styled, { css, SimpleInterpolation } from 'styled-components'
-import { Colors, colors, flexFlow, FontSizes, typography } from 'CommonStyles'
-import { CCTag } from 'tags/Tag'
+import {
+  Colors,
+  colors,
+  flexFlow,
+  FontSizes,
+  typography,
+} from 'src/CommonStyles'
+import { CCTag } from 'src/tags/Tag'
 
 // Property Styles
 const primaryPropertyStyles = css`

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Icon } from 'icon/Icon'
+import { Icon } from 'src/icon/Icon'
 import {
   ComponentShowcase,
   DocByLine,

@@ -1,5 +1,5 @@
 import React from 'react'
-import { ListItem } from 'list/List'
+import { ListItem } from 'src/list/List'
 import {
   ComponentShowcase,
   DocByLine,
@@ -9,7 +9,7 @@ import {
 } from 'src/design/Components/Documentation'
 import { SmartFrame } from 'src/design/Components/SmartFrame'
 import { css } from 'styled-components'
-import { Colors, colors } from 'CommonStyles'
+import { Colors, colors } from 'src/CommonStyles'
 
 export const ListDoc = () => (
   <DocPage>

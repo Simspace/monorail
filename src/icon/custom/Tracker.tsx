@@ -1,5 +1,5 @@
 import React, { ComponentType } from 'react'
-import { CustomIconProps } from 'icon/Icon'
+import { CustomIconProps } from 'src/icon/Icon'
 
 export const Tracker: ComponentType<CustomIconProps> = props => (
   <svg

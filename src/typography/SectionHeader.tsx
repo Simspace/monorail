@@ -1,8 +1,14 @@
 import React, { Component } from 'react'
 import styled, { SimpleInterpolation } from 'styled-components'
 
-import { Icon } from 'icon/Icon'
-import { Colors, colors, flexFlow, FontSizes, typography } from 'CommonStyles'
+import { Icon } from 'src/icon/Icon'
+import {
+  Colors,
+  colors,
+  flexFlow,
+  FontSizes,
+  typography,
+} from 'src/CommonStyles'
 
 type CCSectionHeaderProps = {
   css?: SimpleInterpolation

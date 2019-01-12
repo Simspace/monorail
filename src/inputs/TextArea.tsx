@@ -9,7 +9,7 @@ import {
   flexFlow,
   FontSizes,
   typography,
-} from 'CommonStyles'
+} from 'src/CommonStyles'
 
 /*
  * Styles

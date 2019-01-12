@@ -1,8 +1,8 @@
 import React, { Component, ReactNode } from 'react'
-import { isNil } from 'src/common/util/CoreUtils'
+import { isNil } from 'src/utils'
 import styled, { css, SimpleInterpolation } from 'styled-components'
 
-import { Icon } from 'icon/Icon'
+import { Icon } from 'src/icon/Icon'
 import {
   basePrimaryStyles,
   baseSecondaryStyles,
@@ -13,9 +13,9 @@ import {
   flexFlow,
   FontSizes,
   typography,
-} from 'CommonStyles'
-import { PopOver } from 'popOver/PopOver'
-import { Menu } from 'menu/Menu'
+} from 'src/CommonStyles'
+import { PopOver } from 'src/popOver/PopOver'
+import { Menu } from 'src/menu/Menu'
 
 const CCFilter = styled<CCFilterProps, 'div'>('div')`
   ${({ isOpen, isActive }) =>

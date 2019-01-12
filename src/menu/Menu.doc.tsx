@@ -1,5 +1,5 @@
 import React from 'react'
-import { Menu } from 'menu/Menu'
+import { Menu } from 'src/menu/Menu'
 import {
   ComponentShowcase,
   DocByLine,
@@ -9,9 +9,9 @@ import {
 } from 'src/design/Components/Documentation'
 import { SmartFrame } from 'src/design/Components/SmartFrame'
 import { css } from 'styled-components'
-import { PopOver } from 'popOver/PopOver'
-import { Button } from 'buttons/Button'
-import { ListItem } from 'list/List'
+import { PopOver } from 'src/popOver/PopOver'
+import { Button } from 'src/buttons/Button'
+import { ListItem } from 'src/list/List'
 
 export const MenuDoc = () => (
   <DocPage>

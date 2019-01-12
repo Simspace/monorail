@@ -1,6 +1,6 @@
 import React, { MouseEvent, ReactNode, StatelessComponent } from 'react'
-import { AppIcon } from 'appIcon/AppIcon'
-import { Icon } from 'icon/Icon'
+import { AppIcon } from 'src/appIcon/AppIcon'
+import { Icon } from 'src/icon/Icon'
 import {
   AppName,
   BorderRadius,
@@ -14,10 +14,10 @@ import {
   sizes,
   typography,
   visible,
-} from 'CommonStyles'
+} from 'src/CommonStyles'
 import styled, { css, SimpleInterpolation } from 'styled-components'
 import { BBSearchContainer } from '../inputs/Search'
-import { IconButton } from 'buttons/IconButton'
+import { IconButton } from 'src/buttons/IconButton'
 
 /*
  *

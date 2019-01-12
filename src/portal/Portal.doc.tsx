@@ -8,7 +8,7 @@ import {
 } from 'src/design/Components/Documentation'
 import { SmartFrame } from 'src/design/Components/SmartFrame'
 import { css } from 'styled-components'
-import { Button } from 'buttons/Button'
+import { Button } from 'src/buttons/Button'
 
 export const PortalPage = () => (
   <DocPage>

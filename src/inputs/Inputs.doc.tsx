@@ -1,7 +1,7 @@
 import React, { ChangeEvent, Fragment, Component, ReactNode } from 'react'
-import { TextField, TextArea } from 'inputs/TextField'
-import { Search } from 'inputs/Search'
-import { Choice } from 'inputs/Choice'
+import { TextField, TextArea } from 'src/inputs/TextField'
+import { Search } from 'src/inputs/Search'
+import { Choice } from 'src/inputs/Choice'
 import {
   ComponentShowcase,
   ComponentExample,

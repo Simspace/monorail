@@ -1,7 +1,13 @@
 import React, { Component, ReactNode, createRef, MouseEvent } from 'react'
 import styled, { SimpleInterpolation } from 'styled-components'
-import { isNil, StyledHtmlElement } from 'src/common/util/CoreUtils'
-import { Colors, colors, flexFlow, FontSizes, typography } from 'CommonStyles'
+import { isNil, StyledHtmlElement } from 'src/utils'
+import {
+  Colors,
+  colors,
+  flexFlow,
+  FontSizes,
+  typography,
+} from 'src/CommonStyles'
 
 const CCTab = styled<CCTabProps, 'div'>('div')`
   ${flexFlow('row')};

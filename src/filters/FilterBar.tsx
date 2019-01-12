@@ -1,16 +1,22 @@
 import React, { Component, Fragment, ReactNode } from 'react'
 import styled, { css, SimpleInterpolation } from 'styled-components'
-import { ease, flexFlow, visible, typography, FontSizes } from 'CommonStyles'
-import { Div } from 'StyleHelpers'
+import {
+  ease,
+  flexFlow,
+  visible,
+  typography,
+  FontSizes,
+} from 'src/CommonStyles'
+import { Div } from 'src/StyleHelpers'
 
-import { Filter } from 'filters/Filter'
-import { Search } from 'inputs/Search'
-import { Choice } from 'inputs/Choice'
-import { Status } from 'status/Status'
-import { Button } from 'buttons/Button'
+import { Filter } from 'src/filters/Filter'
+import { Search } from 'src/inputs/Search'
+import { Choice } from 'src/inputs/Choice'
+import { Status } from 'src/status/Status'
+import { Button } from 'src/buttons/Button'
 
 import { FilterGroupsWithData, FilterGroupWithData, SorterGroup } from './types'
-import { ButtonDisplay, ButtonSize } from 'buttons/buttonTypes'
+import { ButtonDisplay, ButtonSize } from 'src/buttons/buttonTypes'
 
 const sorterItemStyle = (selected: boolean) => css`
   ${typography(500, FontSizes.Content)};

@@ -1,14 +1,14 @@
 import React, { ComponentType, MouseEvent } from 'react'
 import styled, { css, SimpleInterpolation } from 'styled-components'
-import { Admin } from 'icon/custom/Admin'
-import { Colors, colors } from 'CommonStyles'
-import { Dashboard } from 'icon/custom/Dashboard'
+import { Admin } from 'src/icon/custom/Admin'
+import { Colors, colors } from 'src/CommonStyles'
+import { Dashboard } from 'src/icon/custom/Dashboard'
 import { Omit } from 'typelevel-ts'
-import { Range } from 'icon/custom/Range'
-import { Tracker } from 'icon/custom/Tracker'
-import { Hardhat } from 'icon/custom/Hardhat'
-import { Academy } from 'icon/custom/Academy'
-import { Impact } from 'icon/custom/Impact'
+import { Range } from 'src/icon/custom/Range'
+import { Tracker } from 'src/icon/custom/Tracker'
+import { Hardhat } from 'src/icon/custom/Hardhat'
+import { Academy } from 'src/icon/custom/Academy'
+import { Impact } from 'src/icon/custom/Impact'
 
 const customIcons: { [key: string]: ComponentType<CustomIconProps> } = {
   academy: Academy,

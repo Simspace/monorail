@@ -8,9 +8,9 @@ import {
 } from 'src/design/Components/Documentation'
 import { SmartFrame } from 'src/design/Components/SmartFrame'
 import { css } from 'styled-components'
-import { Button } from 'buttons/Button'
-import { PopOver } from 'popOver/PopOver'
-import { MediumModal } from 'modals/MediumModal'
+import { Button } from 'src/buttons/Button'
+import { PopOver } from 'src/popOver/PopOver'
+import { MediumModal } from 'src/modals/MediumModal'
 
 export const ModalsDoc = () => (
   <DocPage>

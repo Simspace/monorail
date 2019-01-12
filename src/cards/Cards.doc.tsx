@@ -1,5 +1,5 @@
 import React from 'react'
-import { BBCardBackground, BBCardHeader } from 'cards/Cards'
+import { BBCardBackground, BBCardHeader } from 'src/cards/Cards'
 import {
   ComponentShowcase,
   DocByLine,
@@ -9,8 +9,8 @@ import {
 } from 'src/design/Components/Documentation'
 import { SmartFrame } from 'src/design/Components/SmartFrame'
 import { css } from 'styled-components'
-import { Div } from 'StyleHelpers'
-import { FontSizes, typography } from 'CommonStyles'
+import { Div } from 'src/StyleHelpers'
+import { FontSizes, typography } from 'src/CommonStyles'
 
 export const CardsDoc = () => (
   <DocPage>

@@ -1,5 +1,5 @@
 import React, { Component, Fragment, ReactNode } from 'react'
-import { Toggle } from 'toggle/Toggle'
+import { Toggle } from 'src/toggle/Toggle'
 import {
   ComponentExample,
   ComponentShowcase,
@@ -14,7 +14,7 @@ import {
 } from 'src/design/Components/Documentation'
 import { SmartFrame } from 'src/design/Components/SmartFrame'
 import { css } from 'styled-components'
-import { Icon } from 'icon/Icon'
+import { Icon } from 'src/icon/Icon'
 
 type Props = {
   children: (

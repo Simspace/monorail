@@ -1,5 +1,5 @@
 import React from 'react'
-import { Tag } from 'tags/Tag'
+import { Tag } from 'src/tags/Tag'
 import {
   ComponentExample,
   ComponentShowcase,

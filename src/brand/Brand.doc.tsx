@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
-import { LogoBox } from 'brand/LogoBox'
-import { Point3, Miter, SimSpaceLogo, SimSpaceLogoFlat } from 'brand/Logo'
+import { LogoBox } from 'src/brand/LogoBox'
+import { Point3, Miter, SimSpaceLogo, SimSpaceLogoFlat } from 'src/brand/Logo'
 import {
   ComponentExample,
   ComponentShowcase,
@@ -17,7 +17,7 @@ import {
 import { SmartFrame } from 'src/design/Components/SmartFrame'
 import { css } from 'styled-components'
 import { CodeHighlight } from 'src/design/Components/CodeHighlight'
-import { BorderRadius, borderRadius } from 'CommonStyles'
+import { BorderRadius, borderRadius } from 'src/CommonStyles'
 
 const logoCss = css`
   height: 32px;

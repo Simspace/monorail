@@ -1,8 +1,8 @@
 import React, { Component, ReactNode } from 'react'
 import { css } from 'styled-components'
 
-import { BBCardGrid } from 'cards/Cards'
-import { FilterBar } from 'filters/FilterBar'
+import { BBCardGrid } from 'src/cards/Cards'
+import { FilterBar } from 'src/filters/FilterBar'
 import * as R from 'ramda'
 import { FilterGroups, SorterGroup } from './types'
 

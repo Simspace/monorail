@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
-import { Icon, IconProps } from 'icon/Icon'
+import { Icon, IconProps } from 'src/icon/Icon'
 import {
   Colors,
   colors,
   ElevationRange,
   getElevation,
   visible,
-} from 'CommonStyles'
+} from 'src/CommonStyles'
 import styled, { css, SimpleInterpolation } from 'styled-components'
 
 const toggleWidth = 18

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
-import { isNil } from 'src/common/util/CoreUtils'
+import { isNil } from 'src/utils'
 
 if (!isNil(document.getElementById('modal-root'))) {
   const newModalRoot = document.createElement('div')

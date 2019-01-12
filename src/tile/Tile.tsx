@@ -1,12 +1,12 @@
 import styled from 'styled-components'
-import { CommonComponent } from 'types'
+import { CommonComponent } from 'src/types'
 import {
   BorderRadius,
   borderRadius,
   colors,
   Colors,
   flexFlow,
-} from 'CommonStyles'
+} from 'src/CommonStyles'
 
 export const Tile = styled<
   CommonComponent & { direction?: 'row' | 'column' },

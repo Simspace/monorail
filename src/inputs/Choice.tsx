@@ -1,5 +1,5 @@
 import React, { Component, ReactNode } from 'react'
-import { Icon } from 'icon/Icon'
+import { Icon } from 'src/icon/Icon'
 import {
   baseChromelessStyles,
   baseDisabledStyles,
@@ -11,7 +11,7 @@ import {
   FontSizes,
   typography,
   visible,
-} from 'CommonStyles'
+} from 'src/CommonStyles'
 import styled, { css, SimpleInterpolation } from 'styled-components'
 
 /*

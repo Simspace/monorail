@@ -9,8 +9,8 @@ import {
   flexFlow,
   FontSizes,
   typography,
-} from 'CommonStyles'
-import { Icon } from 'icon/Icon'
+} from 'src/CommonStyles'
+import { Icon } from 'src/icon/Icon'
 
 /*
  * Styles

@@ -11,8 +11,8 @@ import {
   Colors,
   colors,
   flexFlow,
-} from 'CommonStyles'
-import { Icon } from 'icon/Icon'
+} from 'src/CommonStyles'
+import { Icon } from 'src/icon/Icon'
 
 const primaryStyles = css`
   ${basePrimaryStyles()};
