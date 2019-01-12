@@ -1,0 +1,35 @@
+{
+  "compilerOptions": {
+    // specify an output directory to mute some TS errors
+    "outDir": "ts-dist",
+    "preserveWatchOutput": true,
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "forceConsistentCasingInFileNames": true,
+    "jsx": "react",
+    "moduleResolution": "node",
+    "noErrorTruncation": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": false,
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "strict": true,
+    "target": "esnext",
+    "typeRoots": ["./node_modules/@types", "./src/typings"],
+    "lib": ["dom", "es2015", "es2016", "es2017", "es2018", "esnext"],
+    "baseUrl": ".",
+    "paths": {
+      "src/*": ["src/*"]
+    },
+    "plugins": [
+      {
+        // Enable styled-plugin for VSCode when using workspace version of TypeScript
+        "name": "typescript-styled-plugin"
+      }
+    ]
+  },
+  "include": ["src"],
+  "exclude": ["src/**/*.js"]
+}
