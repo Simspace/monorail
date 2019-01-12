@@ -1,14 +1,14 @@
-import React, { ComponentType, MouseEvent } from 'react';
-import styled, { css, SimpleInterpolation } from 'styled-components';
-import { Admin } from 'icon/custom/Admin';
-import { Colors, colors } from 'CommonStyles';
-import { Dashboard } from 'icon/custom/Dashboard';
-import { Omit } from 'src/common/util/CoreUtils';
-import { Range } from 'icon/custom/Range';
-import { Tracker } from 'icon/custom/Tracker';
-import { Hardhat } from 'icon/custom/Hardhat';
-import { Academy } from 'icon/custom/Academy';
-import { Impact } from 'icon/custom/Impact';
+import React, { ComponentType, MouseEvent } from 'react'
+import styled, { css, SimpleInterpolation } from 'styled-components'
+import { Admin } from 'icon/custom/Admin'
+import { Colors, colors } from 'CommonStyles'
+import { Dashboard } from 'icon/custom/Dashboard'
+import { Omit } from 'typelevel-ts'
+import { Range } from 'icon/custom/Range'
+import { Tracker } from 'icon/custom/Tracker'
+import { Hardhat } from 'icon/custom/Hardhat'
+import { Academy } from 'icon/custom/Academy'
+import { Impact } from 'icon/custom/Impact'
 
 const customIcons: { [key: string]: ComponentType<CustomIconProps> } = {
   academy: Academy,
@@ -19,16 +19,16 @@ const customIcons: { [key: string]: ComponentType<CustomIconProps> } = {
   range: Range,
   tracker: Tracker,
   training: Academy,
-};
+}
 
 export const Icon = styled<IconProps>(({ icon, ...otherProps }: IconProps) => {
-  const CustomIcon = customIcons[icon];
+  const CustomIcon = customIcons[icon]
 
   if (CustomIcon) {
-    return <CustomIcon {...otherProps} />;
+    return <CustomIcon {...otherProps} />
   }
 
-  return <i {...otherProps}>{icon}</i>;
+  return <i {...otherProps}>{icon}</i>
 })`
   ${({ size }) =>
     size
@@ -67,14 +67,14 @@ export const Icon = styled<IconProps>(({ icon, ...otherProps }: IconProps) => {
   font-feature-settings: 'liga';
 
   ${({ css: cssOverrides }) => cssOverrides};
-`;
+`
 
 export type IconProps = {
-  className?: string;
-  css?: SimpleInterpolation;
-  icon: string;
-  onClick?: (event: MouseEvent<Element>) => void;
-  size?: number;
-};
+  className?: string
+  css?: SimpleInterpolation
+  icon: string
+  onClick?: (event: MouseEvent<Element>) => void
+  size?: number
+}
 
-export type CustomIconProps = Omit<IconProps, 'icon'>;
+export type CustomIconProps = Omit<IconProps, 'icon'>
