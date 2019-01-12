@@ -1,6 +1,6 @@
 # 🚝 Monorail | Cyber Design System
 
-Monorail for React helps developers execute the [Monorail Design Language](https://design.simspace.com). Developed by the core team UX engineers/designers at SimSpace, these components enable a reliable development workflow to build beautiful and functional web projects.
+Monorail for React helps developers execute the [Monorail Design Language](https://design.simspace.com). Developed by the core UX engineers/designers at SimSpace, these components enable a reliable development workflow to build beautiful and functional web projects.
 
 ## NOTE: This library is currently in a very, very alpha stage and may have problems. Proceed with caution.
 
