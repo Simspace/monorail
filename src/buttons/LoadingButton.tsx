@@ -1,10 +1,7 @@
 import React, { Component, MouseEvent } from 'react'
 import { Button, ButtonProps } from './Button'
 import { Omit } from 'src/training/shared/tsHelpers'
-import {
-  ButtonDisplay,
-  ButtonSize,
-} from 'buttons/buttonTypes'
+import { ButtonDisplay, ButtonSize } from 'buttons/buttonTypes'
 
 type Props = Omit<ButtonProps, 'onClick'> & {
   loadingText?: string
