@@ -1,5 +1,15 @@
 import React from 'react'
-import { default as styledOrig, SimpleInterpolation } from 'styled-components'
+import {
+  default as styledOrig,
+  FlattenInterpolation,
+  SimpleInterpolation,
+  ThemeProps,
+} from 'styled-components'
+import { GlobalAppThemeInterface } from '@monorail/globalAppTheme'
+
+export type StyledComponentCssOverrides = {
+  cssOverrides?: SimpleInterpolation
+}
 
 /**
  * TODO: Get rid of this. This was something Dan added that isn't correctly typed. Any references should be replaced
@@ -9,7 +19,11 @@ export const styled = <P, E = HTMLDivElement>(
   tagName: string | React.ComponentType<P>,
 ) => styledOrig<P & React.HTMLProps<E>, any>(tagName)
 
-type DivProps = { css?: SimpleInterpolation }
+type Props = {
+  css?:
+    | SimpleInterpolation
+    | FlattenInterpolation<ThemeProps<GlobalAppThemeInterface>>[]
+}
 
 /**
  * The Div helper is a component that accepts `css` prop so we can easily inline CSS Objects with TypeScript support.
@@ -23,6 +37,10 @@ type DivProps = { css?: SimpleInterpolation }
   />
  ```
  */
-export const Div = styledOrig<DivProps, 'div'>('div')`
+export const Div = styledOrig<Props, 'div'>('div')`
+  ${({ css: cssOverrides }) => cssOverrides}
+`
+
+export const Form = styledOrig<Props, 'form'>('form')`
   ${({ css: cssOverrides }) => cssOverrides}
 `

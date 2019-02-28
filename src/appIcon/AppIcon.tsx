@@ -1,16 +1,28 @@
-import React, { Component } from 'react'
-import styled, { css, SimpleInterpolation } from 'styled-components'
+import React from 'react'
+import styled, { css } from 'styled-components'
 import {
-  AppName,
+  AppOrAuthSubAppName,
   borderRadius,
   colors,
   Colors,
   convertAppNameToColor,
+  convertAppNameToString,
   flexFlow,
-} from 'CommonStyles'
-import { Icon } from 'icon/Icon'
+} from '@monorail/CommonStyles'
+import { Icon } from '@monorail/icon/Icon'
+import { CommonComponentType } from '@monorail/types'
 
-const CCAppIcon = styled<AppIconProps, 'div'>('div')`
+type AppIconProps = CommonComponentType & {
+  appName: AppOrAuthSubAppName
+}
+
+export const AppIcon = styled<AppIconProps>(
+  ({ appName, css: cssOverrides, ...otherProps }) => (
+    <div {...otherProps}>
+      <Icon icon={convertAppNameToString(appName)} />
+    </div>
+  ),
+)`
   ${({ appName }) => css`
     background: ${colors(convertAppNameToColor(appName))};
   `};
@@ -24,48 +36,10 @@ const CCAppIcon = styled<AppIconProps, 'div'>('div')`
 
   ${Icon} {
     fill: ${colors(Colors.White)};
-    height: 80%;
+    height: 100%;
     margin: auto;
-    width: 80%;
+    width: 100%;
   }
 
   ${({ css: cssOverrides }) => cssOverrides};
 `
-
-type AppIconProps = {
-  appName: AppName
-  css?: SimpleInterpolation
-}
-
-export class AppIcon extends Component<AppIconProps> {
-  convertAppNameToString = () => {
-    const { appName } = this.props
-
-    switch (appName) {
-      default:
-      case AppName.Admin:
-        return 'admin'
-      case AppName.Dashboard:
-        return 'dashboard'
-      case AppName.Hardhat:
-        return 'hardhat'
-      case AppName.Impact:
-        return 'impact'
-      case AppName.Range:
-        return 'range'
-      case AppName.Tracker:
-        return 'tracker'
-      case AppName.Training:
-        return 'training'
-    }
-  }
-
-  render() {
-    const { appName, ...otherProps } = this.props
-    return (
-      <CCAppIcon appName={appName} {...otherProps}>
-        <Icon icon={this.convertAppNameToString()} />
-      </CCAppIcon>
-    )
-  }
-}

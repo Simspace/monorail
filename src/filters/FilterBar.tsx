@@ -1,25 +1,27 @@
-import React, { Component, Fragment, ReactNode } from 'react'
+import { prop } from '@monorail/CoreUtils/Record'
+import { len } from '@monorail/CoreUtils/Array'
+import { fold } from '@monorail/CoreUtils/Option'
+import { array, head } from 'fp-ts/lib/Array'
+import React, { Component, ReactNode } from 'react'
 import styled, { css, SimpleInterpolation } from 'styled-components'
+
 import {
   ease,
   flexFlow,
   visible,
   typography,
   FontSizes,
-} from 'CommonStyles'
-import { Div } from 'StyleHelpers'
+} from '@monorail/CommonStyles'
+import { Div } from '@monorail/StyleHelpers'
 
-import { Filter } from 'filters/Filter'
-import { Search } from 'inputs/Search'
-import { Choice } from 'inputs/Choice'
-import { Status } from 'status/Status'
-import { Button } from 'buttons/Button'
+import { Filter } from '@monorail/filters/Filter'
+import { Search } from '@monorail/inputs/Search'
+import { Choice } from '@monorail/inputs/Choice'
+import { Status } from '@monorail/status/Status'
+import { Button } from '@monorail/buttons/Button'
 
-import { FilterGroupsWithData, FilterGroupWithData, SorterGroup } from './types'
-import {
-  ButtonDisplay,
-  ButtonSize,
-} from 'buttons/buttonTypes'
+import { FilterGroupWithData, SorterGroup } from './types'
+import { ButtonDisplay, ButtonSize } from '@monorail/buttons/buttonTypes'
 
 const sorterItemStyle = (selected: boolean) => css`
   ${typography(500, FontSizes.Content)};
@@ -45,27 +47,36 @@ const BBFilterBar = styled<{ css?: SimpleInterpolation }, 'div'>('div')`
   ${({ css: cssOverrides }) => cssOverrides};
 `
 
-type Props = {
+type Props<
+  CollectionItem extends object,
+  FilterByKey extends keyof CollectionItem & string
+> = {
   css?: SimpleInterpolation
-  filterGroups: FilterGroupsWithData
-  sorterGroup?: SorterGroup
+  filterGroups: Array<FilterGroupWithData<CollectionItem, FilterByKey>>
+  sorterGroup?: SorterGroup<CollectionItem>
   isFiltered: boolean
   onFilterChange: (group: string, filter: string, value: boolean) => void
   onSearchChange: (searchText: string) => void
   onSorterChange?: (key: string) => void
   resetFilters: () => void
   searchText: string
+  document?: Document
 }
 
-export class FilterBar extends Component<Props> {
-  renderFilterName = (filterGroup: FilterGroupWithData): ReactNode => {
-    if (filterGroup.activeFilterCount === filterGroup.filters.length) {
+export class FilterBar<
+  CollectionItem extends object,
+  FilterByKey extends keyof CollectionItem & string
+> extends Component<Props<CollectionItem, FilterByKey>> {
+  renderFilterName = (
+    filterGroup: FilterGroupWithData<CollectionItem, FilterByKey>,
+  ): ReactNode => {
+    if (filterGroup.activeFilterCount === len(filterGroup.filters)) {
       // If unchanged, just show label
       return filterGroup.label
     } else if (filterGroup.activeFilterCount > 1) {
       // If changed and label is greater than 1, show the count
       return (
-        <Fragment>
+        <>
           {filterGroup.label}
           <Status
             css={css`
@@ -74,11 +85,13 @@ export class FilterBar extends Component<Props> {
           >
             {filterGroup.activeFilterCount}
           </Status>
-        </Fragment>
+        </>
       )
     } else if (filterGroup.activeFilterCount === 1) {
+      const headFilterOpt = head(filterGroup.filters)
+      const activeFilterLabel = fold(headFilterOpt, '', prop('label'))
       // If equal to 1, show the label and the single active filter
-      return `${filterGroup.label} - ${filterGroup.filters[0].label}`
+      return `${filterGroup.label} - ${activeFilterLabel}`
     } else {
       // Otherwise no filters are checked, so show None
       return `${filterGroup.label} - None`
@@ -86,22 +99,23 @@ export class FilterBar extends Component<Props> {
   }
 
   renderFilters = () => {
-    const { filterGroups, onFilterChange } = this.props
+    const { document, filterGroups, onFilterChange } = this.props
 
-    return filterGroups.map(group => (
+    return array.map(filterGroups, group => (
       <Filter
-        content={group.filters.map(filter => (
+        document={document}
+        content={array.map(group.filters, filter => (
           <Choice
             onChange={event =>
               onFilterChange(
-                group.key,
-                filter.key,
-                event!.currentTarget.checked,
+                group.filterKey,
+                filter.value,
+                event.currentTarget.checked,
               )
             }
             type="checkbox"
             checked={filter.checked}
-            key={filter.key}
+            key={filter.value}
           >
             {filter.label}
           </Choice>
@@ -109,20 +123,20 @@ export class FilterBar extends Component<Props> {
         css={css`
           margin: 4px;
         `}
-        isOpen={false}
         isActive={group.activeFilterCount !== group.filters.length}
-        key={group.key}
+        key={group.filterKey}
         title={this.renderFilterName(group)}
       />
     ))
   }
 
   renderSorters = () => {
-    const { sorterGroup, onSorterChange } = this.props
+    const { document, sorterGroup, onSorterChange } = this.props
 
     return sorterGroup ? (
       <Filter
-        content={sorterGroup.sorters.map(sorter => (
+        document={document}
+        content={array.map(sorterGroup.sorters, sorter => (
           <Div
             css={sorterItemStyle(sorter.selected)}
             onClick={() =>
@@ -136,7 +150,6 @@ export class FilterBar extends Component<Props> {
         css={css`
           margin: 4px;
         `}
-        isOpen={false}
         isActive={false}
         key={sorterGroup.key}
         title={sorterGroup.label}
@@ -180,6 +193,7 @@ export class FilterBar extends Component<Props> {
             margin: auto 0 auto auto;
             max-width: 256px;
             width: 100%;
+            flex-shrink: 1;
           `}
           value={searchText}
           onChange={onSearchChange}

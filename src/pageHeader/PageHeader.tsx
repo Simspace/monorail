@@ -1,65 +1,114 @@
-import React, { Component, MouseEvent, ReactNode } from 'react'
-import styled, { css, SimpleInterpolation } from 'styled-components'
+import React, {
+  Component,
+  createRef,
+  MouseEvent as ReactMouseEvent,
+  ReactNode,
+  RefObject,
+} from 'react'
+import styled, { css } from 'styled-components'
 
 import {
   Colors,
   colors,
-  ease,
   ElevationRange,
   flexFlow,
   FontSizes,
   getElevation,
-  Sizes,
   typography,
-} from 'CommonStyles'
-import { Icon } from 'icon/Icon'
-import { IconButton } from 'buttons/IconButton'
+} from '@monorail/CommonStyles'
+import { Icon } from '@monorail/icon/Icon'
+
+import { ButtonDisplay, ButtonSize } from '@monorail/buttons/buttonTypes'
+import { isNil } from '@monorail/CoreUtils/primitive-guards'
+import { StyledHtmlElement } from '@monorail/CoreUtils/type-level'
+import { Button } from '@monorail/buttons/Button'
+import { CommonComponentType } from '@monorail/types'
+import { TabBarContainer } from '@monorail/tabs/TabBar'
 
 /*
 * Styles
 */
 
-const pageHeaderHeight: (size?: Sizes) => number = (size = Sizes.DP40) => size
-const breadCrumbsContainerHeight = 24
-
-const pageHeaderPadding = css`
-  padding: 0 16px;
-`
-
-const CCPageHeader = styled<CCPageHeaderProps, 'div'>('div')`
+const PageHeaderContainer = styled<PageHeaderContainerProps, 'div'>('div')`
   ${flexFlow('column')};
-  ${getElevation(ElevationRange.Elevation1)};
 
   background: ${colors(Colors.White)};
   flex-shrink: 0;
-  height: ${({ breadCrumbs, size }) =>
-    breadCrumbs
-      ? pageHeaderHeight(size) + breadCrumbsContainerHeight
-      : pageHeaderHeight(size)}px;
-  overflow: hidden;
+
+  /* Instead of hiding overflow errors, let's see them and fix them. This was causing buttons to be hidden in error. */
+  overflow: visible;
+
   position: relative; /* Has this so that the shadow goes over the content below it. */
   z-index: 1; /* Has this so that the shadow goes over the content below it. */
 
-  ${({ css: cssOverride }) => cssOverride};
+  &::before {
+    ${({ flush }) =>
+      flush &&
+      css`
+        border-bottom: 1px solid ${colors(Colors.Grey94)};
+      `};
+
+    background: ${colors(Colors.White)};
+    bottom: 0;
+    content: '';
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: -5;
+  }
+
+  ${TabBarContainer} {
+    padding: 0 24px;
+
+    ${({ hasAboveContent }) =>
+      !hasAboveContent &&
+      css`
+        margin-top: -8px;
+      `};
+  }
+
+  ${({ css: cssOverrides }) => cssOverrides};
 `
 
-const CCBreadCrumbsContainer = styled<CCBreadCrumbsContainerProps, 'div'>(
-  'div',
-)`
+const pageHeaderPadding = css`
+  padding: 0 32px;
+`
+
+const PageHeaderShadow = styled.div<PageHeaderShadowProps>`
+  ${getElevation(ElevationRange.Elevation6)};
+
+  background: ${colors(Colors.White)};
+  bottom: 6px;
+  content: '';
+  left: -2px;
+  position: absolute;
+  right: -2px;
+  top: 0;
+  z-index: -10;
+
+  ${({ willAnimateShadow, flush }) =>
+    (flush || willAnimateShadow) &&
+    css`
+      opacity: 0;
+    `};
+`
+
+const BreadCrumbsContainer = styled.div<BreadCrumbsContainerProps>`
   ${flexFlow('row')};
   ${pageHeaderPadding};
 
   align-items: center;
-  background: ${colors(Colors.Grey97)};
-  height: 24px;
+  height: 32px;
 `
 
-const BreadCrumb = styled('a')`
-  ${typography(500, FontSizes.Content)};
+const BreadCrumb = styled.a`
+  ${typography(500, FontSizes.Title5)};
 
   color: ${colors(Colors.Black54)};
   cursor: pointer;
   padding: 6px 2px;
+  text-transform: none;
   user-select: none;
 
   &:hover {
@@ -67,48 +116,79 @@ const BreadCrumb = styled('a')`
   }
 `
 
-const TitleContainer = styled<{ size?: Sizes }, 'div'>('div')`
-  ${flexFlow('row')};
-  ${pageHeaderPadding};
+export const TitleContainer = styled.div<{ hasAboveContent: boolean }>`
+  ${({ hasAboveContent }) => css`
+    ${flexFlow('row')};
+    ${pageHeaderPadding};
 
-  align-items: center;
-  height: ${({ size }) => pageHeaderHeight(size)}px;
-  flex-shrink: 0;
+    align-items: center;
+    flex-shrink: 0;
+    grid-column: -1 / 1;
+    height: ${hasAboveContent ? 48 : 64}px;
+  `};
 `
 
 const Title = styled('h1')`
-  ${typography(700, FontSizes.Title3)};
+  ${typography(700, FontSizes.Title1)};
 
+  color: ${colors(Colors.BrandDarkBlue)};
   margin-left: 0;
+  white-space: nowrap;
 `
 
 /*
 * Types
 */
 
-type CCBreadCrumbsContainerProps = {
-  breadCrumbs?: {
+type PageHeaderContainerRefType = StyledHtmlElement<
+  HTMLDivElement,
+  PageHeaderContainerProps
+>
+
+export type PageHeaderShadowRefType = StyledHtmlElement<
+  HTMLDivElement,
+  PageHeaderShadowProps
+>
+
+type PageHeaderShadowProps = {
+  willAnimateShadow: boolean
+  flush: boolean
+}
+
+type BreadCrumbsContainerProps = {
+  breadCrumbs?: Array<{
     title: string
-    path: (event: MouseEvent<HTMLAnchorElement>) => void
-  }[]
+    path?: (event: ReactMouseEvent<HTMLAnchorElement>) => void
+  }>
 }
 
-type CCPageHeaderProps = CCBreadCrumbsContainerProps & {
-  css?: SimpleInterpolation
-  size?: Sizes
+type PageHeaderContainerProps = CommonComponentType & {
+  flush: boolean
+  hasAboveContent: boolean
 }
 
-type PageHeaderProps = CCPageHeaderProps & {
-  goBack?: (event: MouseEvent<Element>) => void
-  title: string
-  action?: ReactNode
-}
+type PageHeaderProps = CommonComponentType &
+  BreadCrumbsContainerProps & {
+    goBack?: (event: ReactMouseEvent<Element>) => void
+    title: string
+    action?: ReactNode
+    shadowRef?: RefObject<PageHeaderShadowRefType>
+    willAnimateShadow: boolean
+    flush: boolean
+  }
 
 /*
 * Components
 */
 
 export class PageHeader extends Component<PageHeaderProps> {
+  static defaultProps = {
+    willAnimateShadow: false,
+    flush: false,
+  }
+
+  pageHeaderContainerRef = createRef<PageHeaderContainerRefType>()
+
   renderBreadCrumbs = () => {
     const { breadCrumbs } = this.props
 
@@ -128,40 +208,60 @@ export class PageHeader extends Component<PageHeaderProps> {
 
   render() {
     const {
-      title,
-      goBack,
+      action,
+      breadCrumbs,
       children,
       css: overrideCss,
-      breadCrumbs,
-      size,
-      action,
+      flush,
+      goBack,
+      shadowRef,
+      title,
+      willAnimateShadow,
     } = this.props
 
-    return (
-      <CCPageHeader size={size} css={overrideCss} breadCrumbs={breadCrumbs}>
-        <CCBreadCrumbsContainer breadCrumbs={breadCrumbs}>
-          {this.renderBreadCrumbs()}
-        </CCBreadCrumbsContainer>
+    const hasAboveContent = !isNil(breadCrumbs) || !isNil(goBack)
 
-        <TitleContainer size={size}>
-          {goBack &&
-            !breadCrumbs && (
-              <IconButton
-                chromeless
+    return (
+      <PageHeaderContainer
+        css={css`
+          ${overrideCss};
+        `}
+        hasAboveContent={hasAboveContent}
+        ref={this.pageHeaderContainerRef}
+        flush={flush}
+      >
+        {(!isNil(breadCrumbs) || !isNil(goBack)) && (
+          <BreadCrumbsContainer>
+            {goBack && (
+              <Button
+                size={ButtonSize.Compact}
+                display={ButtonDisplay.Chromeless}
+                onClick={goBack}
                 css={css`
                   margin-left: -4px;
-                  margin-right: 12px;
                 `}
-                large
-                icon="arrow_back"
-                onClick={goBack}
-              />
+              >
+                <Icon icon="circle_arrow_left" />
+                Go Back
+              </Button>
             )}
+
+            {this.renderBreadCrumbs()}
+          </BreadCrumbsContainer>
+        )}
+
+        <TitleContainer hasAboveContent={hasAboveContent}>
           <Title>{title}</Title>
           {action}
         </TitleContainer>
         {children}
-      </CCPageHeader>
+
+        <PageHeaderShadow
+          willAnimateShadow={willAnimateShadow}
+          flush={flush}
+          ref={shadowRef}
+        />
+      </PageHeaderContainer>
     )
   }
 }

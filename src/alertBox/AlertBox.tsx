@@ -1,14 +1,14 @@
 import React, { Component, ReactNode } from 'react'
 import styled, { SimpleInterpolation } from 'styled-components'
 
-import { Icon } from 'icon/Icon'
+import { Icon } from '@monorail/icon/Icon'
 import {
   Colors,
   colors,
   flexFlow,
   FontSizes,
   typography,
-} from 'CommonStyles'
+} from '@monorail/CommonStyles'
 
 const iconSize = 32
 

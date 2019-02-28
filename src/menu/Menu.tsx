@@ -1,52 +1,72 @@
 import React, { Component, ReactNode, createRef } from 'react'
-import styled, { SimpleInterpolation } from 'styled-components'
-import { isNil, StyledHtmlElement } from 'src/common/util/CoreUtils'
-import { PopOverChildProps } from 'popOver/PopOver'
-import {
-  BBModalOverlay,
-  BBModalContainer,
-} from 'modals/Modals'
+import styled, { css, SimpleInterpolation } from 'styled-components'
+import { StyledHtmlElement } from '@monorail/CoreUtils/type-level'
+import { PopOverChildProps } from '@monorail/popOver/PopOver'
 import {
   BorderRadius,
   borderRadius,
   Colors,
   colors,
   ElevationRange,
+  flexFlow,
   generateScaleAnimation,
   getElevation,
   sizes,
-} from 'CommonStyles'
+} from '@monorail/CommonStyles'
+import { Overlay } from '@monorail/toggle/Overlay'
+import { fromNullable } from 'fp-ts/lib/Option'
+import { isNil } from '@monorail/CoreUtils/primitive-guards'
 
 type MenuProps = {
   children: ReactNode
   css?: SimpleInterpolation
+  width: string
 }
-type CCMenu = StyledHtmlElement<HTMLDivElement, MenuProps>
+type MenuRef = StyledHtmlElement<HTMLDivElement, MenuProps>
 const CCMenu = styled<MenuProps, 'div'>('div')`
   ${borderRadius(BorderRadius.Medium)};
+  ${flexFlow()};
   ${getElevation(ElevationRange.Elevation6)};
 
   background: ${colors(Colors.White)};
-  padding: 4px 0;
+  overflow: hidden;
   position: fixed;
-  width: ${sizes.menu.width}px;
+  width: ${({ width }) => width};
+  min-width: ${sizes.menu.width}px;
 
   ${({ css: cssOverrides }) => cssOverrides};
 `
 
 type ModalContentProps = { css?: SimpleInterpolation }
-const ModalContent = styled<ModalContentProps, 'div'>('div')``
+const MenuContent = styled<ModalContentProps, 'div'>('div')`
+  ${({ css: cssOverride }) => css`
+    ${flexFlow()};
+
+    height: 100%;
+    overflow: auto;
+    padding: 4px 0;
+    width: 100%;
+
+    ${cssOverride};
+  `};
+`
+
+type Props = PopOverChildProps & {
+  width?: number
+}
 
 type State = {
   menuHeight: number
+  menuWidth: number
 }
 
-export class Menu extends Component<PopOverChildProps, State> {
+export class Menu extends Component<Props, State> {
   state: State = {
     menuHeight: 0,
+    menuWidth: 0,
   }
 
-  menuRef = createRef<CCMenu>()
+  menuRef = createRef<MenuRef>()
 
   componentDidMount() {
     this.updateMenuHeight()
@@ -57,42 +77,58 @@ export class Menu extends Component<PopOverChildProps, State> {
   }
 
   updateMenuHeight = () => {
-    const { menuHeight } = this.state
+    const { menuHeight, menuWidth } = this.state
 
-    // Have to do this for storyshots. It can't get the deep ref to get offsetHeight from the styled-component.
-    const newMenuHeight = isNil(this.menuRef.current)
-      ? 0
-      : this.menuRef.current.offsetHeight
+    const currentOpt = fromNullable(this.menuRef.current)
+    const newMenuHeight = currentOpt.fold(0, ({ offsetHeight }) => offsetHeight)
+    const newMenuWidth = currentOpt.fold(0, ({ offsetWidth }) => offsetWidth)
 
-    if (menuHeight === newMenuHeight) {
-      return null
+    if (menuHeight !== newMenuHeight || menuWidth !== newMenuWidth) {
+      this.setState(() => ({
+        menuHeight: newMenuHeight,
+        menuWidth: newMenuWidth,
+      }))
     }
-
-    return this.setState(() => ({
-      menuHeight: newMenuHeight,
-    }))
   }
 
   render() {
-    const { isOpen, position, onClick, children } = this.props
-    const { menuHeight } = this.state
+    const {
+      isOpen,
+      position,
+      onClick,
+      children,
+      width,
+      togglePopOver,
+    } = this.props
+    const { menuHeight, menuWidth } = this.state
 
     const scaleAnimation = generateScaleAnimation({
       elementHeight: menuHeight,
-      elementWidth: sizes.menu.width,
+      elementWidth: Math.max(
+        isNil(width) ? menuWidth : width,
+        sizes.menu.width,
+      ),
       isOpen,
       position,
     })
 
     return (
-      <BBModalContainer isOpen={isOpen}>
-        <BBModalOverlay chromeless isOpen={isOpen} onClick={onClick} />
-        <CCMenu ref={this.menuRef} css={scaleAnimation.outSideContentStyles}>
-          <ModalContent css={scaleAnimation.inSideContentStyles}>
+      <Overlay
+        isOpen={isOpen}
+        onClick={onClick}
+        overlayProps={{ chromeless: true }}
+        togglePopOver={togglePopOver}
+      >
+        <CCMenu
+          width={isNil(width) ? 'auto' : `${width}px`}
+          ref={this.menuRef}
+          css={scaleAnimation.outSideContentStyles}
+        >
+          <MenuContent css={scaleAnimation.inSideContentStyles}>
             {children}
-          </ModalContent>
+          </MenuContent>
         </CCMenu>
-      </BBModalContainer>
+      </Overlay>
     )
   }
 }

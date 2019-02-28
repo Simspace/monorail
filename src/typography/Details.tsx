@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { isNil } from '@monorail/CoreUtils/primitive-guards'
 import styled, { css, SimpleInterpolation } from 'styled-components'
 import {
   Colors,
@@ -6,8 +7,8 @@ import {
   flexFlow,
   FontSizes,
   typography,
-} from 'CommonStyles'
-import { CCTag } from 'tags/Tag'
+} from '@monorail/CommonStyles'
+import { CCTag } from '@monorail/tags/Tag'
 
 // Property Styles
 const primaryPropertyStyles = css`
@@ -120,11 +121,11 @@ export class CCDetails extends Component<CCDetailsProps> {
         <BBDetailsProperty compact={compact} large={large} darkMode={darkMode}>
           {property}
         </BBDetailsProperty>
-        {value !== undefined ? (
+        {!isNil(value) && (
           <BBDetailsValue compact={compact} large={large} darkMode={darkMode}>
             {value}
           </BBDetailsValue>
-        ) : null}
+        )}
 
         {children}
       </BBDetailsContainer>

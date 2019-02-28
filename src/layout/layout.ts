@@ -1,13 +1,23 @@
 import styled from 'styled-components'
-import { Colors, colors, flexFlow } from 'CommonStyles'
-import { CommonComponent } from 'types'
+import { Colors, colors, flexFlow } from '@monorail/CommonStyles'
+import { CommonComponentType } from '@monorail/types'
 
-export const PageContainer = styled<CommonComponent, 'section'>('section')`
+export const AppBody = styled<CommonComponentType, 'div'>('div')`
+  ${flexFlow('row')};
+
+  flex: 1;
+  overflow: hidden;
+`
+
+export const AppContainer = styled<CommonComponentType, 'div'>('div')`
   ${flexFlow()};
 
-  background: ${colors(Colors.Grey98)};
-  flex: 1 1 100%;
-  overflow-y: auto;
+  flex: 1;
+  overflow: hidden;
+`
+export const PageContent = styled<CommonComponentType, 'div'>('div')`
+  ${flexFlow()};
 
-  ${({ css: cssOverride }) => cssOverride};
+  flex: 1;
+  overflow: hidden;
 `

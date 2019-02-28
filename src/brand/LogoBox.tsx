@@ -5,7 +5,7 @@ import {
   colors,
   ElevationRange,
   getElevation,
-} from 'CommonStyles'
+} from '@monorail/CommonStyles'
 
 type LogoBoxProps = {
   alignRight?: boolean

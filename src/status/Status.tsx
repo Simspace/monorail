@@ -1,24 +1,29 @@
 import React from 'react'
-import styled, { SimpleInterpolation } from 'styled-components'
+import styled, { css } from 'styled-components'
 
-import {
-  Colors,
-  colors,
-  FontSizes,
-  typography,
-} from 'CommonStyles'
+import { Colors, colors } from '@monorail/CommonStyles'
+import { CommonComponentType } from '@monorail/types'
 
-const size = 16
+type Props = CommonComponentType & {
+  size?: number
+  inactive?: boolean
+}
 
-export const Status = styled<{ css?: SimpleInterpolation }, 'div'>('div')`
-  ${typography(700, FontSizes.Title5)};
+export const Status = styled<Props, 'div'>('div')`
+  ${({ css: cssOverrides, size = 16, inactive = false }) => css`
+    background: ${colors(Colors.BrandLightBlue)};
+    background: ${colors(inactive ? Colors.Black54 : Colors.BrandLightBlue)};
+    border-radius: ${size / 2}px;
+    color: ${colors(Colors.White)};
+    flex-shrink: 0;
+    font-size: ${size - 5}px;
+    font-weight: 700;
+    height: ${size}px;
+    min-width: ${size}px;
+    padding: 0 ${size / 4}px;
+    text-align: center;
+    line-height: ${size}px;
 
-  background: ${colors(Colors.BrandLightBlue)};
-  border-radius: ${size / 2}px;
-  color: ${colors(Colors.White)};
-  height: ${size}px;
-  min-width: ${size}px;
-  text-align: center;
-
-  ${({ css: cssOverrides }) => cssOverrides};
+    ${cssOverrides};
+  `};
 `
