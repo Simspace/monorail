@@ -5,59 +5,59 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.Icon = void 0;
 
-var _CommonStyles = require("../../CommonStyles");
+var _CommonStyles = require("../CommonStyles");
 
-var _Academy = require("../../icon/custom/Academy");
+var _Academy = require("./custom/Academy");
 
-var _Admin = require("../../icon/custom/Admin");
+var _Admin = require("./custom/Admin");
 
-var _Catalog = require("../../icon/custom/Catalog");
+var _Catalog = require("./custom/Catalog");
 
-var _Certificate = require("../../icon/custom/Certificate");
+var _Certificate = require("./custom/Certificate");
 
-var _ChevronDoubleLeft = require("../../icon/custom/ChevronDoubleLeft");
+var _ChevronDoubleLeft = require("./custom/ChevronDoubleLeft");
 
-var _CircleArrowLeft = require("../../icon/custom/CircleArrowLeft");
+var _CircleArrowLeft = require("./custom/CircleArrowLeft");
 
-var _Dashboard = require("../../icon/custom/Dashboard");
+var _Dashboard = require("./custom/Dashboard");
 
-var _ErrorRobot = require("../../icon/custom/ErrorRobot");
+var _ErrorRobot = require("./custom/ErrorRobot");
 
-var _Filter = require("../../icon/custom/Filter");
+var _Filter = require("./custom/Filter");
 
-var _Gauge = require("../../icon/custom/Gauge");
+var _Gauge = require("./custom/Gauge");
 
-var _Hardhat = require("../../icon/custom/Hardhat");
+var _Hardhat = require("./custom/Hardhat");
 
-var _Impact = require("../../icon/custom/Impact");
+var _Impact = require("./custom/Impact");
 
-var _LMS = require("../../icon/custom/LMS");
+var _LMS = require("./custom/LMS");
 
-var _Range = require("../../icon/custom/Range");
+var _Range = require("./custom/Range");
 
-var _Retry = require("../../icon/custom/Retry");
+var _Retry = require("./custom/Retry");
 
-var _ServerNetwork = require("../../icon/custom/ServerNetwork");
+var _ServerNetwork = require("./custom/ServerNetwork");
 
-var _SortAscending = require("../../icon/custom/SortAscending");
+var _SortAscending = require("./custom/SortAscending");
 
-var _SortDescending = require("../../icon/custom/SortDescending");
+var _SortDescending = require("./custom/SortDescending");
 
-var _StarFilled = require("../../icon/custom/StarFilled");
+var _StarFilled = require("./custom/StarFilled");
 
-var _StarHalf = require("../../icon/custom/StarHalf");
+var _StarHalf = require("./custom/StarHalf");
 
-var _StarOutline = require("../../icon/custom/StarOutline");
+var _StarOutline = require("./custom/StarOutline");
 
-var _TechOps = require("../../icon/custom/TechOps");
+var _TechOps = require("./custom/TechOps");
 
-var _ThreeGears = require("../../icon/custom/ThreeGears");
+var _ThreeGears = require("./custom/ThreeGears");
 
-var _Tracker = require("../../icon/custom/Tracker");
+var _Tracker = require("./custom/Tracker");
 
-var _Unscored = require("../../icon/custom/Unscored");
+var _Unscored = require("./custom/Unscored");
 
-var _VCenter = require("../../icon/custom/VCenter");
+var _VCenter = require("./custom/VCenter");
 
 var _react = _interopRequireDefault(require("react"));
 

@@ -11,11 +11,11 @@ var _reactDom = require("react-dom");
 
 var _reactRouter = require("react-router");
 
-var _CommonStyles = require("../../CommonStyles");
+var _CommonStyles = require("../CommonStyles");
 
 var _styledComponents = _interopRequireDefault(require("styled-components"));
 
-var _primitiveGuards = require("../../CoreUtils/primitive-guards");
+var _primitiveGuards = require("../CoreUtils/primitive-guards");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 

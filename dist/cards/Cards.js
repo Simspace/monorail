@@ -7,11 +7,11 @@ exports.BBCardGrid = exports.BBCardHeader = exports.BBCardBackground = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _AppIcon = require("../../appIcon/AppIcon");
+var _AppIcon = require("../appIcon/AppIcon");
 
-var _Icon = require("../../icon/Icon");
+var _Icon = require("../icon/Icon");
 
-var _CommonStyles = require("../../CommonStyles");
+var _CommonStyles = require("../CommonStyles");
 
 var _styledComponents = _interopRequireWildcard(require("styled-components"));
 

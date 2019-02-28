@@ -11,7 +11,7 @@ var _styledComponents = _interopRequireWildcard(require("styled-components"));
 
 var _Select = require("./Select");
 
-var _CommonStyles = require("../../CommonStyles");
+var _CommonStyles = require("../CommonStyles");
 
 var _Choice = require("./Choice");
 

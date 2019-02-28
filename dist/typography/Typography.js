@@ -7,7 +7,7 @@ exports.SectionTitle = void 0;
 
 var _styledComponents = _interopRequireDefault(require("styled-components"));
 
-var _CommonStyles = require("../../CommonStyles");
+var _CommonStyles = require("../CommonStyles");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 

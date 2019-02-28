@@ -7,9 +7,9 @@ exports.Choice = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _Icon = require("../../icon/Icon");
+var _Icon = require("../icon/Icon");
 
-var _CommonStyles = require("../../CommonStyles");
+var _CommonStyles = require("../CommonStyles");
 
 var _styledComponents = _interopRequireWildcard(require("styled-components"));
 

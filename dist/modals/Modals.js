@@ -7,19 +7,19 @@ exports.BBModalContent = exports.BBModalContainer = exports.BBModalOverlay = exp
 
 var _react = _interopRequireDefault(require("react"));
 
-var _AppIcon = require("../../appIcon/AppIcon");
+var _AppIcon = require("../appIcon/AppIcon");
 
-var _Icon = require("../../icon/Icon");
+var _Icon = require("../icon/Icon");
 
-var _CommonStyles = require("../../CommonStyles");
+var _CommonStyles = require("../CommonStyles");
 
 var _styledComponents = _interopRequireWildcard(require("styled-components"));
 
 var _Search = require("../inputs/Search");
 
-var _IconButton = require("../../buttons/IconButton");
+var _IconButton = require("../buttons/IconButton");
 
-var _buttonTypes = require("../../buttons/buttonTypes");
+var _buttonTypes = require("../buttons/buttonTypes");
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 

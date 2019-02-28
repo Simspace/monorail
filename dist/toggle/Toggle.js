@@ -7,11 +7,11 @@ exports.Toggle = exports.Slider = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _Icon = require("../../icon/Icon");
+var _Icon = require("../icon/Icon");
 
-var _CommonStyles = require("../../CommonStyles");
+var _CommonStyles = require("../CommonStyles");
 
-var _toggleTypes = require("../../toggle/toggleTypes");
+var _toggleTypes = require("./toggleTypes");
 
 var _styledComponents = _interopRequireWildcard(require("styled-components"));
 

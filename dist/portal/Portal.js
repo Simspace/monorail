@@ -9,7 +9,7 @@ var _react = require("react");
 
 var _reactDom = _interopRequireDefault(require("react-dom"));
 
-var _primitiveGuards = require("../../CoreUtils/primitive-guards");
+var _primitiveGuards = require("../CoreUtils/primitive-guards");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 

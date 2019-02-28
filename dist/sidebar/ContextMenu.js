@@ -7,25 +7,25 @@ exports.ContextMenu = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _SidebarDropDown = require("../../sidebar/SidebarDropDown");
+var _SidebarDropDown = require("./SidebarDropDown");
 
-var _Search = require("../../inputs/Search");
+var _Search = require("../inputs/Search");
 
-var _List = require("../../list/List");
+var _List = require("../list/List");
 
 var _Link = _interopRequireDefault(require("react-router/lib/Link"));
 
-var _CommonStyles = require("../../CommonStyles");
+var _CommonStyles = require("../CommonStyles");
 
 var _styledComponents = _interopRequireWildcard(require("styled-components"));
 
-var _SearchController = require("../../inputs/SearchController");
+var _SearchController = require("../inputs/SearchController");
 
 var _Array = require("fp-ts/lib/Array");
 
 var _Option = require("fp-ts/lib/Option");
 
-var _primitiveGuards = require("../../CoreUtils/primitive-guards");
+var _primitiveGuards = require("../CoreUtils/primitive-guards");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 

@@ -7,11 +7,11 @@ exports.MiniModal = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _Modals = require("../../modals/Modals");
+var _Modals = require("./Modals");
 
-var _CommonStyles = require("../../CommonStyles");
+var _CommonStyles = require("../CommonStyles");
 
-var _Overlay = require("../../toggle/Overlay");
+var _Overlay = require("../toggle/Overlay");
 
 var _styledComponents = require("styled-components");
 

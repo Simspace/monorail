@@ -7,7 +7,7 @@ exports.PCTELogoMark = exports.SimSpaceLogoFlat = exports.SimSpaceLogoMark = exp
 
 var _react = _interopRequireDefault(require("react"));
 
-var _CommonStyles = require("../../CommonStyles");
+var _CommonStyles = require("../CommonStyles");
 
 var _styledComponents = _interopRequireDefault(require("styled-components"));
 

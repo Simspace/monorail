@@ -5,19 +5,19 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.FilterCollection = exports.createFilterGroup = void 0;
 
-var _IO = require("../../CoreUtils/IO");
+var _IO = require("../CoreUtils/IO");
 
-var _general = require("../../CoreUtils/general");
+var _general = require("../CoreUtils/general");
 
-var _optics = require("../../CoreUtils/optics");
+var _optics = require("../CoreUtils/optics");
 
-var _String = require("../../CoreUtils/String");
+var _String = require("../CoreUtils/String");
 
-var _Array = require("../../CoreUtils/Array");
+var _Array = require("../CoreUtils/Array");
 
-var _Option = require("../../CoreUtils/Option");
+var _Option = require("../CoreUtils/Option");
 
-var _primitiveGuards = require("../../CoreUtils/primitive-guards");
+var _primitiveGuards = require("../CoreUtils/primitive-guards");
 
 var _Array2 = require("fp-ts/lib/Array");
 

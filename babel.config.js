@@ -21,7 +21,7 @@ module.exports = {
       {
         root: ['./src'],
         alias: {
-          '@monorail': './',
+          '@monorail': './src',
         },
         extensions: ['.js', '.jsx', '.ts', '.tsx'],
       },

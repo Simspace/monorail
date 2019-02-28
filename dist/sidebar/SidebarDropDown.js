@@ -7,13 +7,13 @@ exports.SidebarDropDown = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _Cards = require("../../cards/Cards");
+var _Cards = require("../cards/Cards");
 
 var _styledComponents = _interopRequireWildcard(require("styled-components"));
 
-var _CommonStyles = require("../../CommonStyles");
+var _CommonStyles = require("../CommonStyles");
 
-var _Overlay = require("../../toggle/Overlay");
+var _Overlay = require("../toggle/Overlay");
 
 var _Option = require("fp-ts/lib/Option");
 

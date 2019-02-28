@@ -9,9 +9,9 @@ var _react = _interopRequireDefault(require("react"));
 
 var _styledComponents = _interopRequireWildcard(require("styled-components"));
 
-var _CommonStyles = require("../../CommonStyles");
+var _CommonStyles = require("../CommonStyles");
 
-var _List = require("../../list/List");
+var _List = require("../list/List");
 
 var _reactPose = _interopRequireDefault(require("react-pose"));
 

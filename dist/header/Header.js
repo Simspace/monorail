@@ -5,15 +5,15 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.Header = void 0;
 
-var _AppIcon = require("../../appIcon/AppIcon");
+var _AppIcon = require("../appIcon/AppIcon");
 
-var _buttonTypes = require("../../buttons/buttonTypes");
+var _buttonTypes = require("../buttons/buttonTypes");
 
-var _IconButton = require("../../buttons/IconButton");
+var _IconButton = require("../buttons/IconButton");
 
-var _CommonStyles = require("../../CommonStyles");
+var _CommonStyles = require("../CommonStyles");
 
-var _Icon = require("../../icon/Icon");
+var _Icon = require("../icon/Icon");
 
 var _react = _interopRequireDefault(require("react"));
 

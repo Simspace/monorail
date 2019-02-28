@@ -7,7 +7,7 @@ exports.ScrollAnimation = void 0;
 
 var _react = require("react");
 
-var _primitiveGuards = require("../../CoreUtils/primitive-guards");
+var _primitiveGuards = require("../CoreUtils/primitive-guards");
 
 class ScrollAnimation extends _react.Component {
   constructor(...args) {
