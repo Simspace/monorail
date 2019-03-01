@@ -1,26 +1,87 @@
 import React, { Component } from 'react'
-import { Icon, IconProps } from 'icon/Icon'
+import { Icon, IconProps } from '@monorail/icon/Icon'
 import {
   Colors,
   colors,
   ElevationRange,
   getElevation,
   visible,
-} from 'CommonStyles'
+  flexFlow,
+} from '@monorail/CommonStyles'
+import { ToggleSize } from '@monorail/toggle/toggleTypes'
 import styled, { css, SimpleInterpolation } from 'styled-components'
 
 const toggleWidth = 18
 const toggleHeight = 10
 const iconSize = 8
 
+const toggleSizeCss = {
+  [ToggleSize.Default]: css`
+    height: ${toggleHeight}px;
+    width: ${toggleWidth}px;
+    border: 1px solid;
+    border-radius: ${toggleHeight + 2 / 2}px;
+  `,
+  [ToggleSize.Large]: css`
+    height: ${toggleHeight * 1.5}px;
+    width: ${toggleWidth * 1.5}px;
+    border: 1px solid;
+    border-radius: ${toggleHeight * 1.5 + 3 / 2}px;
+  `,
+  [ToggleSize.Xlarge]: css`
+    height: ${toggleHeight * 2}px;
+    width: ${toggleWidth * 2}px;
+    border: 2px solid;
+    border-radius: ${toggleHeight * 2 + 4 / 2}px;
+  `,
+}
+
+const sliderSizeCss = {
+  [ToggleSize.Default]: css`
+    width: 10px;
+    height: 10px;
+  `,
+  [ToggleSize.Large]: css`
+    width: 15px;
+    height: 15px;
+  `,
+  [ToggleSize.Xlarge]: css`
+    width: 20px;
+    height: 20px;
+  `,
+}
+
+const inputSizeCss = {
+  [ToggleSize.Default]: css`
+    transform: translateX(8px);
+  `,
+  [ToggleSize.Large]: css`
+    transform: translateX(12px);
+  `,
+  [ToggleSize.Xlarge]: css`
+    transform: translateX(16px);
+  `,
+}
+
+const iconSizeCss = {
+  [ToggleSize.Default]: css`
+    font-size: ${iconSize}px;
+  `,
+  [ToggleSize.Large]: css`
+    font-size: ${iconSize * 1.5}px;
+  `,
+  [ToggleSize.Xlarge]: css`
+    font-size: ${iconSize * 2}px;
+  `,
+}
+
 const CCToggle = styled<ToggleProps, 'label'>('label')`
-  border-radius: ${toggleHeight + 2 / 2}px;
-  border: 1px solid;
+  ${({ toggleSize }) => toggleSizeCss[toggleSize]};
+
+  box-sizing: content-box;
   cursor: pointer;
   display: inline-block;
-  height: ${toggleHeight}px;
   position: relative; /* Slider is pos:abs to this element */
-  width: ${toggleWidth}px;
 
   transition: all ease-in 150ms;
 
@@ -39,52 +100,53 @@ const CCToggle = styled<ToggleProps, 'label'>('label')`
   ${({ css: cssOverrides }) => cssOverrides};
 `
 
-const StyledIconChecked = styled<{ checked: boolean } & IconProps>(
+const StyledIconChecked = styled<{ checked: boolean } & SliderIconProps>(
   ({ checked, ...otherProps }) => <Icon {...otherProps} />,
 )`
+  ${({ toggleSize }) => iconSizeCss[toggleSize]};
   ${({ checked }) => visible(checked)};
 
   color: ${colors(Colors.BrandLightBlue)};
-  font-size: ${iconSize}px;
-  margin: 1px 1px;
   position: absolute; /* give z-index so ::before bg is behind icon */
 
   transition: all ease-in 75ms;
 `
 
-const StyledIconNotChecked = styled<{ checked: boolean } & IconProps>(
+const StyledIconNotChecked = styled<{ checked: boolean } & SliderIconProps>(
   ({ checked, ...otherProps }) => <Icon {...otherProps} />,
 )`
+  ${({ toggleSize }) => iconSizeCss[toggleSize]};
+
   ${({ checked }) => visible(!checked)};
 
   color: ${colors(Colors.Black24)};
-  font-size: ${iconSize}px;
-  margin: 1px 1px;
   position: absolute; /* give z-index so ::before bg is behind icon */
 
   transition: all ease-in 75ms;
 `
 
-const Slider = styled<Slider, 'div'>('div')`
+export const Slider = styled<Slider, 'div'>('div')`
+  ${({ toggleSize }) => sliderSizeCss[toggleSize]};
   ${getElevation(ElevationRange.Elevation1)};
+  ${flexFlow('row')};
+
   background-color: ${colors(Colors.White)};
   border-radius: 50%;
   bottom: 0;
   content: '';
-  height: 10px;
   left: 0;
-  position: absolute;
-  width: 10px;
+  justify-content: center;
+  align-items: center;
 
   transition: all ease-in 75ms;
 `
 
-const Input = styled.input`
+const Input = styled<Input, 'input'>('input')`
   display: none; /* Hide default HTML checkbox */
 
   /* Move Slider Circle */
   &:checked + ${/* sc-selector */ Slider} {
-    transform: translateX(8px);
+    ${({ toggleSize }) => inputSizeCss[toggleSize]};
   }
 
   /* Change Icon: 'check' | Change Color: Blue */
@@ -96,30 +158,54 @@ const Input = styled.input`
   }
 `
 
-type Slider = {}
+type Slider = {
+  toggleSize: ToggleSize
+}
 
 type ToggleProps = {
+  toggleSize: ToggleSize
   checked: boolean
   css?: SimpleInterpolation
   onChange?: (checked: boolean) => void
 }
 
+type Input = {
+  toggleSize: ToggleSize
+}
+
+type SliderIconProps = IconProps & {
+  toggleSize: ToggleSize
+}
+
 export class Toggle extends Component<ToggleProps> {
+  static defaultProps = {
+    toggleSize: ToggleSize.Default,
+  }
+
   render() {
-    const { css: cssOverrides, checked, onChange } = this.props
+    const { css: cssOverrides, checked, onChange, toggleSize } = this.props
 
     return (
-      <CCToggle css={cssOverrides} checked={checked}>
+      <CCToggle css={cssOverrides} checked={checked} toggleSize={toggleSize}>
         <Input
           type="checkbox"
           checked={checked}
           onChange={event => {
             onChange && onChange(event.currentTarget.checked)
           }}
+          toggleSize={toggleSize}
         />
-        <Slider>
-          <StyledIconChecked icon="check" checked={checked} />
-          <StyledIconNotChecked icon="close" checked={checked} />
+        <Slider toggleSize={toggleSize}>
+          <StyledIconChecked
+            icon="check"
+            checked={checked}
+            toggleSize={toggleSize}
+          />
+          <StyledIconNotChecked
+            icon="close"
+            checked={checked}
+            toggleSize={toggleSize}
+          />
         </Slider>
       </CCToggle>
     )

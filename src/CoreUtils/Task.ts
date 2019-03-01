@@ -1,0 +1,18 @@
+import { Task } from 'fp-ts/lib/Task'
+import { Lazy } from 'fp-ts/lib/function'
+
+/**
+ * Task constructor function
+ *
+ */
+export const mkTask = <A>(f: () => Promise<A>): Task<A> => new Task(f)
+
+/**
+ * Run a Task (a lazy Promise)
+ */
+export const runTask = <A>(x: Task<A>): Promise<A> => x.run()
+
+/**
+ * Returns the run function for a Task<A>
+ */
+export const constRunTask = <A>(x: Task<A>): Lazy<Promise<A>> => x.run

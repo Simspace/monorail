@@ -2,24 +2,26 @@ import React, {
   Children,
   CSSProperties,
   MouseEvent,
+  ReactNode,
   StatelessComponent,
-  ReactType,
 } from 'react'
+
 import styled, { css, SimpleInterpolation } from 'styled-components'
 
 import {
-  baseChromelessStyles,
-  buttonTransiton,
+  baseFocusStyles,
+  buttonTransition,
   Colors,
   colors,
+  ellipsis,
   flexFlow,
   FontSizes,
   Sizes,
   typography,
-} from 'CommonStyles'
-import { Icon, IconProps } from 'icon/Icon'
-import TextTruncate from 'react-truncate'
-import { isNil } from 'src/common/util/CoreUtils'
+} from '@monorail/CommonStyles'
+import { Icon, IconProps } from '@monorail/icon/Icon'
+import { CommonComponentType } from '@monorail/types'
+import { isNil } from '@monorail/CoreUtils/primitive-guards'
 
 /*
 *
@@ -62,7 +64,7 @@ export const ListContainer: StatelessComponent<ListContainerProps> = ({
   emptyText = "I'm empty :(",
 }) => (
   <BBListContainer css={cssOverrides}>
-    {Children.count(children) ? (
+    {Children.count(children) > 0 ? (
       children
     ) : (
       <ListItem
@@ -83,109 +85,199 @@ export const ListContainer: StatelessComponent<ListContainerProps> = ({
 */
 
 /*
-* Styles
-*/
-
-const BBListItemContainer = styled<BBListItemContainerProps, 'div'>('div')`
-  ${({ onClick, as }) =>
-    ((!isNil(onClick) && onClick) || (!isNil(as) && as)) &&
-    css`
-      cursor: pointer;
-      user-select: none;
-
-      ${buttonTransiton};
-
-      ${baseChromelessStyles()};
-    `};
-
-  ${flexFlow('row')};
-
-  background: transparent;
-  box-sizing: border-box;
-  flex-shrink: 0;
-  min-height: ${({ size = Sizes.DP24 }) => size}px;
-  padding: ${({ size }) => {
-      switch (size) {
-        case Sizes.DP32:
-          return 3
-        case Sizes.DP40:
-          return 7
-        default:
-          return 0
-      }
-    }}px
-    ${({ dense }) => (dense ? 8 : 16)}px;
-  position: relative;
-
-  ${({ css: cssOverrides }) => cssOverrides};
-`
-type BBListSizeIconProps = BBListSizeProps & { icon: string }
-const StyledLeftIcon = styled<BBListSizeIconProps & IconProps>(
-  ({ dense, ...otherProps }) => <Icon {...otherProps} />,
-)`
-  margin-right: ${({ dense }) => (dense ? 8 : 16)}px;
-  margin-top: 4px;
-`
-
-// Have to do this span so that TextTruncate gets the right width because of padding.
-const BBListItemContent = styled('span')`
-  ${typography(500, FontSizes.Title5)};
-
-  padding-top: 5px;
-  padding-bottom: 3px;
-  width: 100%;
-`
-
-/*
 * Types
 */
-type LinkProps = {
+
+export type LinkProps = {
   activeClassName?: string
   activeStyle?: CSSProperties
   onlyActiveOnIndex?: boolean
   to?: string
 }
 
-type BBListSizeProps = {
+type ListSizeProps = {
   dense?: boolean
 }
 
-type BBListItemContainerProps = LinkProps &
-  BBListSizeProps & {
-    as?: ReactType
-    css?: SimpleInterpolation
+type ListItemProps = LinkProps &
+  ListSizeProps &
+  CommonComponentType & {
     onClick?: (event: MouseEvent<HTMLDivElement>) => void
     size?: Sizes
-    className?: string
+    disabled?: boolean
   }
 
-type ListItemProps = BBListItemContainerProps & {
-  leftIcon?: string
-  rightItem?: React.ReactNode
-}
-
 /*
-* Component
+* Styles
 */
 
-export const ListItem: StatelessComponent<ListItemProps> = ({
-  children,
+export const ListItemText = styled<CommonComponentType, 'div'>('div')`
+  /* This is row wrap instead of column nowrap because IE11 doesn't give the item height when it is a column. */
+  ${flexFlow('row', 'wrap')};
+
+  overflow: hidden;
+  width: 100%;
+
+  ${({ css: cssOverrides }) => cssOverrides};
+`
+
+export const ListItemPrimaryText = styled<CommonComponentType, 'span'>('span')`
+  ${({ css: cssOverrides }) => css`
+    ${typography(500, FontSizes.Title5, 'auto 6px')};
+    ${ellipsis};
+
+    color: currentColor;
+    flex: 1 1 100%;
+
+    ${cssOverrides};
+  `};
+`
+
+export const ListItemSecondaryText = styled<CommonComponentType, 'span'>(
+  'span',
+)`
+  ${typography(500, FontSizes.Content, 'auto 6px')};
+  ${ellipsis};
+
+  color: ${colors(Colors.Black62)};
+  flex: 1 1 100%;
+
+  ${({ css: cssOverrides }) => cssOverrides};
+`
+
+type BBListSizeIconProps = ListSizeProps & { icon: string }
+
+export const ListItemGraphic = styled<BBListSizeIconProps & IconProps>(
+  ({ dense, ...otherProps }) => <Icon {...otherProps} />,
+)`
+  ${({ dense }) => css`
+    margin: auto ${dense ? 4 : 6}px;
+  `};
+
+  ${buttonTransition};
+
+  ${({ css: cssOverrides }) => cssOverrides};
+`
+
+export const ListItem = styled<ListItemProps>(
+  ({ css: cssOverrides, children, activeClassName, ...otherProps }) => (
+    <div {...otherProps}>{children}</div>
+  ),
+)`
+  ${({
+    as,
+    css: cssOverrides,
+    dense,
+    disabled,
+    onClick,
+    size = Sizes.DP24,
+  }) => css`
+    ${!isNil(onClick) || !isNil(as)
+      ? css`
+          background: transparent;
+          color: ${colors(Colors.BrandDarkBlue)};
+          cursor: pointer;
+          text-transform: none; /* IE 11 */
+          user-select: none;
+
+          ${buttonTransition};
+
+          &:hover,
+          &.is-active {
+            background: hsla(225, 6%, 13%, 0.06);
+          }
+
+          &:active {
+            background: #e0eafd;
+            opacity: 1;
+          }
+
+          /* stylelint-disable selector-type-no-unknown */
+          &.is-active,
+          &:active,
+          &:active ${ListItemGraphic}, &.is-active ${ListItemGraphic} {
+            color: ${colors(Colors.BrandLightBlue)};
+          }
+          /* stylelint-enable selector-type-no-unknown */
+
+          ${baseFocusStyles()};
+        `
+      : css`
+          color: ${colors(Colors.Black89)};
+          background: transparent;
+        `};
+    ${disabled &&
+      css`
+        opacity: 0.54;
+        pointer-events: none;
+      `};
+
+    ${flexFlow('row')};
+
+    align-items: center;
+    box-sizing: border-box;
+    color: ${colors(Colors.Black89)};
+    flex-shrink: 0;
+    min-height: ${size}px;
+    padding: 0 ${dense ? 4 : 10}px;
+    position: relative;
+    text-transform: initial;
+
+    &:hover,
+    &:focus,
+    &:active {
+      text-decoration: none;
+    }
+
+    ${cssOverrides};
+  `};
+`
+
+ListItem.defaultProps = {
+  activeClassName: 'is-active',
+}
+
+type SimpleListItemProps = CommonComponentType &
+  LinkProps & {
+    dense?: boolean
+    disabled?: boolean
+    leftIcon?: string
+    onClick?: (event: MouseEvent<HTMLDivElement>) => void
+    primaryText?: ReactNode
+    rightIcon?: string
+    secondaryText?: ReactNode
+    size?: Sizes
+    meta?: ReactNode
+  }
+
+export const SimpleListItem: StatelessComponent<SimpleListItemProps> = ({
   leftIcon,
-  rightItem,
+  rightIcon,
+  primaryText,
+  secondaryText,
+  children,
   dense,
+  meta,
+  size,
   ...otherProps
 }) => (
-  <BBListItemContainer
-    activeClassName="is-active"
-    dense={dense}
-    {...otherProps}
-  >
-    {leftIcon && <StyledLeftIcon dense={dense} icon={leftIcon} />}
-    <BBListItemContent>
-      <TextTruncate lines={2} trimWhitespace>
-        {children}
-      </TextTruncate>
-    </BBListItemContent>
-    {rightItem}
-  </BBListItemContainer>
+  <ListItem dense={dense} size={size} {...otherProps}>
+    {!isNil(leftIcon) && <ListItemGraphic icon={leftIcon} dense={dense} />}
+
+    {isNil(secondaryText) || isNil(meta) ? (
+      <ListItemPrimaryText>{primaryText}</ListItemPrimaryText>
+    ) : (
+      <ListItemText>
+        <ListItemPrimaryText>{primaryText}</ListItemPrimaryText>
+        {isNil(secondaryText) ? null : (
+          <ListItemSecondaryText>{secondaryText}</ListItemSecondaryText>
+        )}
+
+        {meta}
+      </ListItemText>
+    )}
+
+    {!isNil(rightIcon) && <ListItemGraphic icon={rightIcon} dense={dense} />}
+    {children}
+  </ListItem>
 )

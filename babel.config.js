@@ -1,4 +1,5 @@
 module.exports = {
+  only: ['./src'],
   presets: [
     '@babel/preset-react',
     '@babel/preset-typescript',
@@ -19,6 +20,9 @@ module.exports = {
       'module-resolver',
       {
         root: ['./src'],
+        alias: {
+          '@monorail': './src',
+        },
         extensions: ['.js', '.jsx', '.ts', '.tsx'],
       },
     ],
@@ -44,4 +48,4 @@ module.exports = {
     // 'transform-react-remove-prop-types',
     // 'transform-react-pure-class-to-function',
   ],
-};
+}

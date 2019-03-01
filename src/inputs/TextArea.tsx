@@ -1,15 +1,17 @@
+import { isNil } from '@monorail/CoreUtils/primitive-guards'
+import { StyledHtmlElement } from '@monorail/CoreUtils/type-level'
 import React, { ChangeEvent, Component } from 'react'
 import styled, { css, SimpleInterpolation } from 'styled-components'
 
 import {
   borderRadius,
-  buttonTransiton,
+  buttonTransition,
   Colors,
   colors,
   flexFlow,
   FontSizes,
   typography,
-} from 'CommonStyles'
+} from '@monorail/CommonStyles'
 
 /*
 * Styles
@@ -22,7 +24,7 @@ const BBTextAreaContainer = styled<TextAreaProps, 'label'>('label')`
   width: 100%;
   position: relative; /* position: relative; so that the icons can be absolutely positioned. */
 
-  ${({ css }) => css};
+  ${({ css: cssOverrides }) => cssOverrides};
 `
 
 const BBTextAreaLabel = styled('p')`
@@ -30,6 +32,10 @@ const BBTextAreaLabel = styled('p')`
   margin: 4px 0;
 `
 
+type BBTextAreaInput = StyledHtmlElement<
+  HTMLTextAreaElement,
+  BBTextAreaInputProps
+>
 const BBTextAreaInput = styled<BBTextAreaInputProps, 'textarea'>('textarea')`
   ${typography(400, FontSizes.Title5)};
   ${borderRadius()};
@@ -42,7 +48,7 @@ const BBTextAreaInput = styled<BBTextAreaInputProps, 'textarea'>('textarea')`
   resize: none;
   width: 100%;
 
-  ${buttonTransiton};
+  ${buttonTransition};
 
   ::placeholder {
     color: ${colors(Colors.Black54)};
@@ -50,13 +56,25 @@ const BBTextAreaInput = styled<BBTextAreaInputProps, 'textarea'>('textarea')`
   }
 
   &:hover {
-    border-color: ${colors(Colors.Black, 0.3)};
+    border: 1px solid ${colors(Colors.Black, 0.3)};
   }
 
   &:focus,
   &:active {
-    border-color: ${colors(Colors.BrandLightBlue)};
+    border: 1px solid ${colors(Colors.BrandLightBlue)};
   }
+
+  ${({ chromeless }) =>
+    chromeless &&
+    css`
+      border: 1px solid transparent;
+    `};
+
+  ${({ compact }) =>
+    compact &&
+    css`
+      overflow: hidden;
+    `};
 `
 
 /*
@@ -68,43 +86,86 @@ type BBTextAreaContainerProps = {
 }
 
 type BBTextAreaInputProps = {
+  chromeless?: boolean
+  compact?: boolean
   disabled?: boolean
   label?: string | number
   onChange?: (event: ChangeEvent<HTMLTextAreaElement>) => void
   placeholder?: string
   readOnly?: boolean
+  required?: boolean
   value?: string
 }
 
-type TextAreaProps = BBTextAreaContainerProps & BBTextAreaInputProps & {}
+export type TextAreaProps = BBTextAreaContainerProps & BBTextAreaInputProps & {}
 
 /*
 * Component
 */
 
 export class TextArea extends Component<TextAreaProps> {
+  textArea = React.createRef<BBTextAreaInput>()
+
+  setCompactHeight = () => {
+    const { compact } = this.props
+
+    if (compact) {
+      const current = this.textArea.current
+
+      if (!isNil(current)) {
+        window.requestAnimationFrame(() => {
+          current.style.height = 'auto'
+          current.style.height = current.scrollHeight + 'px'
+        })
+      }
+    }
+  }
+
+  componentDidUpdate() {
+    this.setCompactHeight()
+  }
+
+  componentDidMount() {
+    this.setCompactHeight()
+  }
+
+  onChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    const { onChange } = this.props
+
+    this.setCompactHeight()
+
+    onChange && onChange(e)
+  }
+
   render() {
     const {
-      css,
+      chromeless,
+      compact,
+      css: cssOverrides,
       disabled,
       label,
       onChange,
       placeholder,
       readOnly,
+      required,
       value,
       ...otherProps
     } = this.props
 
     return (
-      <BBTextAreaContainer css={css}>
-        {label !== undefined && <BBTextAreaLabel>{label}</BBTextAreaLabel>}
+      <BBTextAreaContainer css={cssOverrides}>
+        {!isNil(label) && <BBTextAreaLabel>{label}</BBTextAreaLabel>}
         <BBTextAreaInput
-          className="new-input"
+          chromeless={chromeless}
+          className="new-textarea"
+          compact={compact}
           disabled={disabled}
-          onChange={onChange}
+          ref={this.textArea}
+          onChange={this.onChange}
           placeholder={placeholder}
           readOnly={readOnly}
-          rows={3}
+          required={required}
+          rows={compact ? 1 : 3}
           value={value}
           {...otherProps}
         />

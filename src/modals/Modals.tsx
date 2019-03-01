@@ -1,6 +1,6 @@
 import React, { MouseEvent, ReactNode, StatelessComponent } from 'react'
-import { AppIcon } from 'appIcon/AppIcon'
-import { Icon } from 'icon/Icon'
+import { AppIcon } from '@monorail/appIcon/AppIcon'
+import { Icon } from '@monorail/icon/Icon'
 import {
   AppName,
   BorderRadius,
@@ -11,13 +11,16 @@ import {
   flexFlow,
   FontSizes,
   getElevation,
+  gothamFontFamily,
   sizes,
   typography,
   visible,
-} from 'CommonStyles'
+} from '@monorail/CommonStyles'
 import styled, { css, SimpleInterpolation } from 'styled-components'
 import { BBSearchContainer } from '../inputs/Search'
-import { IconButton } from 'buttons/IconButton'
+import { IconButton } from '@monorail/buttons/IconButton'
+import { IconButtonDisplay } from '@monorail/buttons/buttonTypes'
+import { CommonComponentType } from '@monorail/types'
 
 /*
 *
@@ -33,9 +36,7 @@ type BBModalSize = {
   mini?: boolean
 }
 
-type BBModalBackgroundProps = BBModalSize & {
-  css?: SimpleInterpolation
-}
+export type BBModalBackgroundProps = BBModalSize & CommonComponentType
 
 /*
 * Component
@@ -48,7 +49,7 @@ export const BBModalBackground = styled<BBModalBackgroundProps, 'div'>('div')`
       height: ${sizes.modals.mini.height}px;
     `};
 
-  ${borderRadius(BorderRadius.Large)};
+  ${borderRadius(BorderRadius.XLarge)};
   ${flexFlow()};
   ${getElevation(ElevationRange.Elevation24)};
 
@@ -80,6 +81,7 @@ const BBModalHeaderContainer = styled<BBModalSize, 'div'>('div')`
   background: ${colors(Colors.BrandDarkBlue)};
   flex-shrink: 0;
   user-select: none;
+  z-index: 1;
 
   ${BBSearchContainer} {
     ${({ mini }) =>
@@ -109,6 +111,7 @@ const BBModalHeaderTitle = styled<BBModalSize, 'h1'>('h1')`
       : typography(700, FontSizes.Title3)};
 
   color: ${colors(Colors.White)};
+  white-space: nowrap;
   margin: 0;
 `
 
@@ -137,6 +140,7 @@ const StyledIconRight = styled(Icon)`
 
 type BBModalHeaderProps = BBModalSize & {
   appIcon?: AppName
+  customCloseButton?: ReactNode
   headerRowChildren?: ReactNode
   iconLeft?: string
   iconRight?: string
@@ -144,13 +148,38 @@ type BBModalHeaderProps = BBModalSize & {
   title: string
 }
 
+type DefaultCloseButtonProps = Pick<
+  BBModalHeaderProps,
+  'headerRowChildren' | 'onClose'
+>
+
 /*
 * Component
 */
 
+export const DefaultCloseButton = ({
+  headerRowChildren,
+  onClose,
+}: DefaultCloseButtonProps) => (
+  <IconButton
+    css={
+      headerRowChildren
+        ? css``
+        : css`
+            margin-left: auto;
+          `
+    }
+    icon="close"
+    darkMode
+    onClick={onClose}
+    display={IconButtonDisplay.Chromeless}
+  />
+)
+
 export const BBModalHeader: StatelessComponent<BBModalHeaderProps> = ({
   appIcon,
   children,
+  customCloseButton,
   headerRowChildren,
   iconLeft,
   iconRight,
@@ -162,25 +191,19 @@ export const BBModalHeader: StatelessComponent<BBModalHeaderProps> = ({
     <BBModalHeaderRow mini={mini}>
       {appIcon && <StyledAppIconLeft appName={appIcon} />}
       {iconLeft && <StyledIconLeft icon={iconLeft} />}
-      <BBModalHeaderTitle mini={mini}>{title}</BBModalHeaderTitle>
+      <BBModalHeaderTitle mini={mini} data-test-id="modal-header-title">
+        {title}
+      </BBModalHeaderTitle>
       {headerRowChildren}
       {iconRight && <StyledIconRight icon={iconRight} />}
-      {!mini &&
-        onClose && (
-          <IconButton
-            css={
-              headerRowChildren
-                ? css``
-                : css`
-                    margin-left: auto;
-                  `
-            }
-            icon="close"
-            darkMode
-            onClick={onClose}
-            chromeless
-          />
-        )}
+      {!mini && onClose && customCloseButton ? (
+        customCloseButton
+      ) : (
+        <DefaultCloseButton
+          headerRowChildren={headerRowChildren}
+          onClose={onClose}
+        />
+      )}
     </BBModalHeaderRow>
     {children}
   </BBModalHeaderContainer>
@@ -206,6 +229,7 @@ export const BBModalFooter = styled('div')`
   justify-content: flex-end;
   margin: auto 0 0;
   padding: 0 16px;
+  flex-shrink: 0;
 `
 /*
 *
@@ -231,13 +255,17 @@ const BBModalOverlayContainer = styled<BBModalOverlayProps, 'div'>('div')`
   position: fixed;
   right: 0;
   top: 0;
+
+  transition: all ease 150ms;
+
+  ${({ css: cssOverride }) => cssOverride};
 `
 
 /*
 * Types
 */
 
-type BBModalOverlayProps = {
+export type BBModalOverlayProps = CommonComponentType & {
   isOpen: boolean
   onClick?: (event: MouseEvent<HTMLDivElement>) => void
   chromeless?: boolean
@@ -252,10 +280,12 @@ export const BBModalOverlay: StatelessComponent<BBModalOverlayProps> = ({
   chromeless,
   isOpen,
   onClick,
+  css: cssOverrides,
 }) => (
   <BBModalOverlayContainer
     isOpen={isOpen}
     chromeless={chromeless}
+    css={cssOverrides}
     onClick={
       onClick
         ? (event: MouseEvent<HTMLDivElement>) => {
@@ -280,9 +310,12 @@ export const BBModalOverlay: StatelessComponent<BBModalOverlayProps> = ({
 * Styles
 */
 
-export const BBModalContainer = styled<{ isOpen: boolean }, 'div'>('div')`
-  ${({ isOpen }) =>
-    isOpen
+export const BBModalContainer = styled<
+  CommonComponentType & { isOpen: boolean; usesScaleAnimation: boolean },
+  'div'
+>('div')`
+  ${({ isOpen, usesScaleAnimation, css: cssOverrides }) => css`
+    ${isOpen
       ? css`
           pointer-events: all;
         `
@@ -290,30 +323,36 @@ export const BBModalContainer = styled<{ isOpen: boolean }, 'div'>('div')`
           pointer-events: none;
         `};
 
-  ${flexFlow()};
+    ${flexFlow()};
+    ${gothamFontFamily};
 
-  align-items: center;
-  bottom: 0;
-  justify-content: center;
-  left: 0;
-  position: fixed;
-  right: 0;
-  top: 0;
-  z-index: 5;
+    align-items: center;
+    bottom: 0;
+    justify-content: center;
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 9998;
 
-  ${BBModalBackground} {
-    ${({ isOpen }) =>
-      isOpen
-        ? css`
-            transform: scale(1) translateY(0);
-          `
-        : css`
-            transform: scale(0.8) translateY(64px);
-          `};
-    ${({ isOpen }) => visible(isOpen)};
+    ${!usesScaleAnimation &&
+      css`
+        ${BBModalBackground} {
+          ${isOpen
+            ? css`
+                transform: scale(1) translateY(0);
+              `
+            : css`
+                transform: scale(0.8) translateY(64px);
+              `};
+          ${visible(isOpen)};
 
-    transition: all ease 100ms;
-  }
+          transition: all ease 100ms;
+        }
+      `};
+
+    ${cssOverrides};
+  `};
 `
 
 /*

@@ -1,14 +1,15 @@
 import React, { Component } from 'react'
 import styled, { css, SimpleInterpolation } from 'styled-components'
 
-import { Icon } from 'icon/Icon'
+import { Icon } from '@monorail/icon/Icon'
 import {
   Colors,
   colors,
   flexFlow,
   FontSizes,
   typography,
-} from 'CommonStyles'
+} from '@monorail/CommonStyles'
+import { isNil } from '@monorail/CoreUtils/primitive-guards'
 
 const tagHeight = 24
 const circleWidth = tagHeight - 4
@@ -22,7 +23,7 @@ type CCTagProps = {
 
 export const CCTag = styled<CCTagProps, 'div'>('div')`
   ${({ label }) =>
-    label &&
+    isNil(label) &&
     css`
       width: ${tagHeight}px;
     `};
@@ -35,7 +36,6 @@ export const CCTag = styled<CCTagProps, 'div'>('div')`
   position: relative; /* ::before circle is pos: abs to this element. */
   text-transform: uppercase;
   user-select: none;
-  width: fit-content;
 
   &::before {
     background: ${colors(Colors.White)};

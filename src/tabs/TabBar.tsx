@@ -1,26 +1,24 @@
-import React, { Component, ReactElement } from 'react'
-import { isNil } from 'src/common/util/CoreUtils'
-import {
-  Colors,
-  colors,
-  flexFlow,
-  Sizes,
-} from 'CommonStyles'
+import React, { Component, ReactNode } from 'react'
+import { isNil } from '@monorail/CoreUtils/primitive-guards'
 import styled, { css, SimpleInterpolation } from 'styled-components'
+import { Colors, colors, flexFlow, Sizes } from '@monorail/CommonStyles'
 import { TabProps } from './Tab'
 
 // TabBarIndicator is pos:abs to this element. Also we use offsetLeft on the Tab which references this position.
-const CCTabBar = styled<CCTabBarProps, 'div'>('div')`
+export const TabBarContainer = styled<CCTabBarProps, 'div'>('div')`
   ${flexFlow('row')};
 
   height: ${({ size }) => size}px;
   padding: 0 8px;
   position: relative;
+  box-sizing: border-box;
+  border-bottom: 1px solid ${colors(Colors.Grey94)};
+  flex-shrink: 0;
 
   ${({ css: cssOverrides }) => cssOverrides};
 `
 
-const CCTabBarIndicator = styled<TabBarIndicator, 'div'>('div')`
+const TabBarIndicator = styled<TabBarIndicatorProps, 'div'>('div')`
   ${({ left, width, duration }) => css`
     left: ${left}px;
     width: ${width}px;
@@ -36,12 +34,21 @@ const CCTabBarIndicator = styled<TabBarIndicator, 'div'>('div')`
   transition-timing-function: ease-in-out;
 `
 
+const TabBarActions = styled.div`
+  ${flexFlow('row')};
+
+  align-items: center;
+  margin-left: auto;
+  margin-right: 8px;
+`
+
 type CCTabBarProps = {
   css?: SimpleInterpolation
   size: Sizes
+  activeTabIndex?: number
 }
 
-type TabBarIndicator = {
+type TabBarIndicatorProps = {
   left: number
   width: number
   duration: number
@@ -49,6 +56,7 @@ type TabBarIndicator = {
 
 type TabBarProps = CCTabBarProps & {
   getActiveTabIndex?: (activeTabIndex: number) => void
+  actions?: ReactNode
 }
 
 type TabBarState = {
@@ -64,7 +72,7 @@ export class TabBar extends Component<TabBarProps, TabBarState> {
   }
 
   state: TabBarState = {
-    activeTabIndex: 0,
+    activeTabIndex: this.props.activeTabIndex || 0,
     indicatorLeft: 0,
     indicatorTransitionDuration: 0,
     indicatorWidth: 0,
@@ -77,6 +85,13 @@ export class TabBar extends Component<TabBarProps, TabBarState> {
         indicatorTransitionDuration: Math.abs(
           prevState.indicatorLeft - this.state.indicatorLeft,
         ),
+      }))
+    }
+
+    // Check if the activeTabIndex needs to change
+    if (prevProps.activeTabIndex !== this.props.activeTabIndex) {
+      this.setState(() => ({
+        activeTabIndex: this.props.activeTabIndex || 0,
       }))
     }
   }
@@ -98,6 +113,12 @@ export class TabBar extends Component<TabBarProps, TabBarState> {
     const { children } = this.props
     const { activeTabIndex } = this.state
 
+    /**
+     * If we're controlling the activeTabIndex with a prop,
+     * then we set updateIsActive to undefined to prevent
+     * automatic updates on Tab click.
+     */
+
     return React.Children.map(
       children,
       (child, index: number) =>
@@ -107,13 +128,15 @@ export class TabBar extends Component<TabBarProps, TabBarState> {
           index,
           isActive: index === activeTabIndex,
           setIndicator: this.setIndicator,
-          updateIsActive: this.updateActiveTab,
+          updateIsActive: isNil(this.props.activeTabIndex)
+            ? this.updateActiveTab
+            : undefined,
         }),
     )
   }
 
   render() {
-    const { css: cssOverrides, size } = this.props
+    const { css: cssOverrides, size, actions } = this.props
     const {
       indicatorLeft,
       indicatorWidth,
@@ -121,14 +144,18 @@ export class TabBar extends Component<TabBarProps, TabBarState> {
     } = this.state
 
     return (
-      <CCTabBar css={cssOverrides} size={size}>
+      <TabBarContainer css={cssOverrides} size={size}>
         {this.renderTabs()}
-        <CCTabBarIndicator
+
+        {!isNil(actions) && (
+          <TabBarActions id="tabBarActions">{actions}</TabBarActions>
+        )}
+        <TabBarIndicator
           width={indicatorWidth}
           left={indicatorLeft}
           duration={indicatorTransitionDuration}
         />
-      </CCTabBar>
+      </TabBarContainer>
     )
   }
 }

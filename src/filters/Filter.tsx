@@ -1,21 +1,21 @@
 import React, { Component, ReactNode } from 'react'
-import { isNil } from 'src/common/util/CoreUtils'
+import { isNil } from '@monorail/CoreUtils/primitive-guards'
 import styled, { css, SimpleInterpolation } from 'styled-components'
 
-import { Icon } from 'icon/Icon'
+import { Icon } from '@monorail/icon/Icon'
 import {
   basePrimaryStyles,
   baseSecondaryStyles,
   borderRadius,
-  buttonTransiton,
+  buttonTransition,
   Colors,
   colors,
   flexFlow,
   FontSizes,
   typography,
-} from 'CommonStyles'
-import { PopOver } from 'popOver/PopOver'
-import { Menu } from 'menu/Menu'
+} from '@monorail/CommonStyles'
+import { PopOver } from '@monorail/popOver/PopOver'
+import { Menu } from '@monorail/menu/Menu'
 
 const CCFilter = styled<CCFilterProps, 'div'>('div')`
   ${({ isOpen, isActive }) =>
@@ -27,7 +27,7 @@ const CCFilter = styled<CCFilterProps, 'div'>('div')`
         `};
 
   ${borderRadius()};
-  ${buttonTransiton};
+  ${buttonTransition};
   ${flexFlow('row')};
 
   align-items: center;
@@ -35,7 +35,7 @@ const CCFilter = styled<CCFilterProps, 'div'>('div')`
   height: 24px;
   padding: 0 4px 0 8px;
   user-select: none;
-  width: fit-content;
+  flex-shrink: 0; /* Needs this for IE11 but not Chrome. */
 
   ${({ css: cssOverrides }) => cssOverrides};
 `
@@ -55,21 +55,30 @@ const FilterIcon = styled(Icon)`
 
 type CCFilterProps = {
   css?: SimpleInterpolation
-  isOpen: boolean
+  isOpen?: boolean
   isActive: boolean
+  onToggle?: (isOpen: boolean) => void
 }
 
 type Props = CCFilterProps & {
+  document?: Document
   title: ReactNode
-  content?: ReactNode
+  content: ReactNode
 }
 
 export class Filter extends Component<Props> {
   render() {
-    const { css: cssOverrides, title, content, isActive } = this.props
+    const {
+      css: cssOverrides,
+      title,
+      content,
+      isActive,
+      ...otherProps
+    } = this.props
 
     return (
       <PopOver
+        {...otherProps}
         toggle={props => (
           <CCFilter {...props} css={cssOverrides} isActive={isActive}>
             <FilterText>{title}</FilterText>

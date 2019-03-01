@@ -1,19 +1,20 @@
 import React, { Component, ReactNode } from 'react'
 
-import { PopOverChildProps } from 'popOver/PopOver'
+import { PopOverChildProps } from '@monorail/popOver/PopOver'
 import {
   BBModalBackground,
-  BBModalContainer,
   BBModalContent,
   BBModalHeader,
-  BBModalOverlay,
-} from 'modals/Modals'
-import { generateScaleAnimation, sizes } from 'CommonStyles'
+} from '@monorail/modals/Modals'
+import { generateScaleAnimation, sizes } from '@monorail/CommonStyles'
+import { Overlay } from '@monorail/toggle/Overlay'
+import { css, SimpleInterpolation } from 'styled-components'
 
 type Props = PopOverChildProps & {
   title: string
   iconLeft?: string
   headerChildren?: ReactNode
+  modalBackgroundCss?: SimpleInterpolation
 }
 
 export class MiniModal extends Component<Props> {
@@ -23,9 +24,11 @@ export class MiniModal extends Component<Props> {
       headerChildren,
       iconLeft,
       isOpen,
+      modalBackgroundCss,
       onClick,
       position,
       title,
+      togglePopOver,
     } = this.props
 
     const scaleAnimation = generateScaleAnimation({
@@ -36,17 +39,32 @@ export class MiniModal extends Component<Props> {
     })
 
     return (
-      <BBModalContainer isOpen={isOpen}>
-        <BBModalOverlay chromeless isOpen={isOpen} onClick={onClick} />
-        <BBModalBackground mini css={scaleAnimation.outSideContentStyles}>
+      <Overlay
+        isOpen={isOpen}
+        onClick={onClick}
+        overlayProps={{ chromeless: true }}
+        togglePopOver={togglePopOver}
+        usesScaleAnimation={true}
+      >
+        <BBModalBackground
+          mini
+          css={css`
+            ${scaleAnimation.outSideContentStyles} ${modalBackgroundCss};
+          `}
+        >
           <BBModalContent css={scaleAnimation.inSideContentStyles}>
-            <BBModalHeader mini title={title} iconLeft={iconLeft}>
+            <BBModalHeader
+              mini
+              onClose={onClick}
+              title={title}
+              iconLeft={iconLeft}
+            >
               {headerChildren}
             </BBModalHeader>
             {children}
           </BBModalContent>
         </BBModalBackground>
-      </BBModalContainer>
+      </Overlay>
     )
   }
 }

@@ -1,15 +1,15 @@
 import styled from 'styled-components'
-import { CommonComponent } from 'types'
+import { CommonComponentType } from '@monorail/types'
 import {
   BorderRadius,
   borderRadius,
   colors,
   Colors,
   flexFlow,
-} from 'CommonStyles'
+} from '@monorail/CommonStyles'
 
 export const Tile = styled<
-  CommonComponent & { direction?: 'row' | 'column' },
+  CommonComponentType & { direction?: 'row' | 'column' },
   'div'
 >('div')`
   ${({ direction = 'column' }) => flexFlow(direction)};

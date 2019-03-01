@@ -4,23 +4,21 @@ import styled, { css, SimpleInterpolation } from 'styled-components'
 import {
   baseChromelessStyles,
   baseDisabledStyles,
+  baseFocusStyles,
   baseOutlineStyles,
   basePrimaryStyles,
   baseSecondaryStyles,
   borderRadius,
-  buttonTransiton,
+  buttonTransition,
   Colors,
   colors,
   FontSizes,
   typography,
-} from 'CommonStyles'
-import {
-  ButtonDisplay,
-  ButtonSize,
-} from 'buttons/buttonTypes'
-import { Icon } from 'icon/Icon'
+} from '@monorail/CommonStyles'
+import { ButtonDisplay, ButtonSize } from '@monorail/buttons/buttonTypes'
+import { Icon } from '@monorail/icon/Icon'
 
-const ButtonDisplayCss = {
+export const buttonDisplayCss = {
   [ButtonDisplay.Primary]: css`
     ${basePrimaryStyles()};
 
@@ -37,7 +35,7 @@ const ButtonDisplayCss = {
   `,
 }
 
-const ButtonSizeCss = {
+export const buttonSizeCss = {
   [ButtonSize.Dense]: css`
     height: 16px;
     padding: 0 7px;
@@ -57,10 +55,9 @@ const ButtonSizeCss = {
 }
 
 const CCButton = styled<ButtonProps, 'button'>('button')`
-  ${({ display }) => ButtonDisplayCss[display]};
-  ${({ size }) => ButtonSizeCss[size]};
+  ${({ display }) => buttonDisplayCss[display]};
+  ${({ size }) => buttonSizeCss[size]};
   ${({ disabled }) => disabled && baseDisabledStyles};
-  ${({ secondary }) => secondary && ButtonDisplayCss[ButtonDisplay.Secondary]};
 
   ${typography(700, FontSizes.Title5)};
   ${borderRadius()};
@@ -71,7 +68,7 @@ const CCButton = styled<ButtonProps, 'button'>('button')`
   text-transform: uppercase;
   user-select: none;
 
-  ${buttonTransiton};
+  ${buttonTransition};
 
   ${Icon} {
     color: currentColor;
@@ -82,6 +79,8 @@ const CCButton = styled<ButtonProps, 'button'>('button')`
     top: 4px;
   }
 
+  ${baseFocusStyles()};
+
   ${({ css: cssOverrides }) => cssOverrides};
 `
 
@@ -90,7 +89,6 @@ export type ButtonProps = {
   display: ButtonDisplay
   css?: SimpleInterpolation
   disabled?: boolean
-  secondary?: boolean
   onClick?: (event: MouseEvent<HTMLButtonElement>) => void
   type: string
 }
