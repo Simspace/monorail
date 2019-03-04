@@ -11,10 +11,18 @@ Add Monorail to your React application.
 yarn add @simspace/monorail
 ```
 
+You will also need our `peerDependencies`.
+
+```
+yarn add react react-dom styled-components
+```
+
+Check the accepted version range in `package.json` for compatibility.
+
 Import the components you want and use them
 
 ```jsx
-import { Button } from '@simspace/monorail/buttons/Button'
+import { Button } from '@simspace/monorail/dist/buttons/Button'
 
 ...
 
