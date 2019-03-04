@@ -4,6 +4,7 @@ import { css } from 'styled-components'
 import { PopOverChildProps } from '@monorail/popOver/PopOver'
 import { BBModalBackground, BBModalHeader } from '@monorail/modals/Modals'
 import { Overlay } from '@monorail/toggle/Overlay'
+import { isNil } from '@monorail/CoreUtils/primitive-guards'
 
 type Props = PopOverChildProps & {
   customCloseButton?: ReactNode
@@ -11,6 +12,7 @@ type Props = PopOverChildProps & {
   headerChildren?: ReactNode
   iconLeft?: string
   title: string
+  noHeader?: boolean
 }
 
 export class FullScreenModal extends Component<Props> {
@@ -22,6 +24,7 @@ export class FullScreenModal extends Component<Props> {
       headerChildren,
       iconLeft,
       isOpen,
+      noHeader,
       onClick,
       title,
       togglePopOver,
@@ -42,13 +45,15 @@ export class FullScreenModal extends Component<Props> {
             border-radius: 0;
           `}
         >
-          <BBModalHeader
-            customCloseButton={customCloseButton}
-            headerRowChildren={headerChildren}
-            iconLeft={iconLeft}
-            onClose={onClick}
-            title={title}
-          />
+          {isNil(noHeader) && (
+            <BBModalHeader
+              customCloseButton={customCloseButton}
+              headerRowChildren={headerChildren}
+              iconLeft={iconLeft}
+              onClose={onClick}
+              title={title}
+            />
+          )}
           {children}
         </BBModalBackground>
       </Overlay>

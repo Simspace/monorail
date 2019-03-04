@@ -70,6 +70,6 @@ export function trim(str: string): string {
   return str.trim()
 }
 
-export function join(separator: string, arr: Array<any>): string {
+export function join<T>(separator: string, arr: Array<T>): string {
   return arr.join(separator)
 }

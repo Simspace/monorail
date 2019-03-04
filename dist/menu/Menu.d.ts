@@ -16,7 +16,7 @@ declare type State = {
 };
 export declare class Menu extends Component<Props, State> {
     state: State;
-    menuRef: React.RefObject<StyledHtmlElement<HTMLDivElement, MenuProps, any>>;
+    menuRef: React.RefObject<StyledHtmlElement<HTMLDivElement, MenuProps, unknown>>;
     componentDidMount(): void;
     componentDidUpdate(): void;
     updateMenuHeight: () => void;

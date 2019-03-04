@@ -1,4 +1,4 @@
-import React, { forwardRef, MouseEvent, StatelessComponent } from 'react'
+import React, { forwardRef, MouseEvent, StatelessComponent, Ref } from 'react'
 import { AppIcon } from '@monorail/appIcon/AppIcon'
 import { Icon } from '@monorail/icon/Icon'
 import {
@@ -33,7 +33,7 @@ export type BBCardBackgroundProps = CommonComponentType & {
   hover?: boolean
   elevation?: ElevationRange
   onClick?: (event: MouseEvent) => void
-  ref?: any
+  ref?: Ref<any> // tslint:disable-line:no-any
   cssCardContent?: SimpleInterpolation
 }
 

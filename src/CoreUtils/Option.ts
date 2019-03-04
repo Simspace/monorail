@@ -10,6 +10,7 @@ import { isFalsey } from './general'
 /**
  * type guard for Option
  */
+// tslint:disable-next-line:no-any
 export const isOption = <A>(x: any): x is Option<A> =>
   !isNil(x) && !isNil(x.isSome) && !isNil(x.isNone)
 

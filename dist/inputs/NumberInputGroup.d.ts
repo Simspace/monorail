@@ -8,8 +8,8 @@ declare type InputItem = {
 declare type Props = {
     label?: string;
     items: InputItem[];
-    onSelect: (key: string, value: any) => void;
-    value: any;
+    onSelect: (key: string, value: number) => void;
+    value: Record<string, number>;
     required?: boolean;
 };
 export declare const NumberInputGroup: SFC<Props>;

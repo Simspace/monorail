@@ -14,6 +14,8 @@ export const oLens = <S, A, B>(f: Lens<S, A>, g: Lens<A, B>): Lens<S, B> =>
 /**
  * Helper that extracts the S type from a Lens<S, A>
  */
+
+/* tslint:disable:no-any */
 export type ExtractSFromLens<L extends Lens<any, any>> = L extends Lens<
   infer S,
   any
@@ -30,6 +32,8 @@ export type ExtractAFromLens<L extends Lens<any, any>> = L extends Lens<
 >
   ? A
   : never
+
+/* tslint:enable:no-any */
 
 /**
  * A function that generates monocle-ts Lenses for all top-level key-val pairs

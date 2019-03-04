@@ -16,7 +16,7 @@ declare type Props = PopOverChildProps & {
     width?: number;
 };
 export declare class ContextMenu extends Component<Props> {
-    searchRef: React.RefObject<import("../CoreUtils/type-level").StyledHtmlElement<HTMLInputElement, import("../inputs/Search").BBSearchInputProps, any>>;
+    searchRef: React.RefObject<import("../CoreUtils/type-level").StyledHtmlElement<HTMLInputElement, import("../inputs/Search").BBSearchInputProps, unknown>>;
     componentDidUpdate(prevProps: Readonly<Props>): void;
     renderContextMenuItems: (compareSearch: (stringToCompare: string) => boolean) => import("fp-ts/lib/Option").Option<(JSX.Element | JSX.Element[])[]>[];
     render(): JSX.Element;

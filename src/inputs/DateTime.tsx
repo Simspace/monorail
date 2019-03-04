@@ -4,7 +4,7 @@ import Datetime, { DatetimepickerProps } from 'react-datetime'
 export const TypedDatetime = Datetime as React.ComponentType<
   DatetimepickerProps & {
     renderInput?: (
-      props: any,
+      props: DateInputProps,
       openCalendar: () => void,
       closeCalendar: () => void,
     ) => void

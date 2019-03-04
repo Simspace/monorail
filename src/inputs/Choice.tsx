@@ -146,7 +146,7 @@ type CCChoiceProps = AnsweredProps &
 export type ChoiceProps = BBGradeIconProps &
   CCChoiceProps &
   BBChoiceInputProps & {
-    key?: any
+    key?: string | number
     type: 'radio' | 'checkbox'
     children?: ReactNode
   }

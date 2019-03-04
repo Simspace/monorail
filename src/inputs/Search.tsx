@@ -15,7 +15,7 @@ import {
 
 import {
   ButtonSize,
-  IconButtonDisplay,
+  ButtonDisplay,
   IconButtonShape,
 } from '@monorail/buttons/buttonTypes'
 import { StyledHtmlElement } from '@monorail/CoreUtils/type-level'
@@ -200,10 +200,24 @@ export class Search extends Component<SearchProps> {
         />
 
         <IconButton
-          display={IconButtonDisplay.Circle}
-          shape={IconButtonShape.Circle}
+          darkMode
           css={css`
             ${visible(!!value)};
+
+            background: ${colors(Colors.Black24)};
+            border: 0;
+
+            ${Icon} {
+              color: ${colors(Colors.White)};
+            }
+
+            &:hover {
+              background: ${colors(Colors.Black54)};
+            }
+
+            &:active {
+              background: ${colors(Colors.Black24)};
+            }
 
             position: absolute;
             top: ${BBSearchIconPos}px;

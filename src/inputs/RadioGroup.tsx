@@ -1,4 +1,4 @@
-import React, { SFC } from 'react'
+import React, { SFC, ChangeEvent } from 'react'
 import styled, { css } from 'styled-components'
 
 import { typography, FontSizes } from '@monorail/CommonStyles'
@@ -24,9 +24,8 @@ type ChoiceOption = {
 
 type Props = {
   label?: string
-  // options: any[] // TODO
   options: ChoiceOption[]
-  onSelect: any // TODO
+  onSelect: (key: string, val: ChangeEvent<HTMLInputElement>) => void
   value: string
   required?: boolean
 }

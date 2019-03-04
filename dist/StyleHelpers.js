@@ -13,7 +13,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * TODO: Get rid of this. This was something Dan added that isn't correctly typed. Any references should be replaced
  * with styled<Props, 'div'>('div')
  */
-const styled = tagName => (0, _styledComponents.default)(tagName);
+const styled = tagName => (0, _styledComponents.default)(tagName); // tslint:disable-line:no-any
+
 
 exports.styled = styled;
 

@@ -1,4 +1,4 @@
-import { SFC } from 'react';
+import { SFC, ChangeEvent } from 'react';
 declare type ChoiceOption = {
     label: string;
     key: string;
@@ -6,7 +6,7 @@ declare type ChoiceOption = {
 declare type Props = {
     label?: string;
     options: ChoiceOption[];
-    onSelect: any;
+    onSelect: (key: string, val: ChangeEvent<HTMLInputElement>) => void;
     value: string;
     required?: boolean;
 };

@@ -101,7 +101,7 @@ const CCToggle = styled<ToggleProps, 'label'>('label')`
 `
 
 const StyledIconChecked = styled<{ checked: boolean } & SliderIconProps>(
-  ({ checked, ...otherProps }) => <Icon {...otherProps} />,
+  ({ checked, toggleSize, ...otherProps }) => <Icon {...otherProps} />,
 )`
   ${({ toggleSize }) => iconSizeCss[toggleSize]};
   ${({ checked }) => visible(checked)};
@@ -113,7 +113,7 @@ const StyledIconChecked = styled<{ checked: boolean } & SliderIconProps>(
 `
 
 const StyledIconNotChecked = styled<{ checked: boolean } & SliderIconProps>(
-  ({ checked, ...otherProps }) => <Icon {...otherProps} />,
+  ({ checked, toggleSize, ...otherProps }) => <Icon {...otherProps} />,
 )`
   ${({ toggleSize }) => iconSizeCss[toggleSize]};
 

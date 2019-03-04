@@ -35,7 +35,7 @@ export declare type ExtractFromArray<A> = A extends Array<infer B> ? B : never;
  * to components made by the `styled` function of
  * styled-components when extending an HTMLElement
  */
-export declare type StyledHtmlElement<BaseType, BaseTypeProps, ThemeType = any> = BaseType & Component<ThemedOuterStyledProps<BaseTypeProps & ClassAttributes<BaseType> & HTMLAttributes<BaseType>, ThemeType>, ComponentState>;
+export declare type StyledHtmlElement<BaseType, BaseTypeProps, ThemeType = unknown> = BaseType & Component<ThemedOuterStyledProps<BaseTypeProps & ClassAttributes<BaseType> & HTMLAttributes<BaseType>, ThemeType>, ComponentState>;
 /**
  * Generic nullable type for unions with `null`
  */

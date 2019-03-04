@@ -37,4 +37,4 @@ export declare const createOptionFromJSON: <C extends t.Mixed>(codec: C, name?: 
  * Helper utility for creating selectors that automatically handle decoding
  * JSONOptions back into Options when given a codec and a lens
  */
-export declare const mkJSONOptionDecoderSelector: <A>(codec: t.Type<Option<A>, JSONOption<A>, unknown>) => <S>(lens: Lens<S, JSONOption<A>>) => (urls: S) => Option<A>;
+export declare const mkJSONOptionDecoderSelector: <A>(codec: t.Type<Option<A>, JSONOption<A>, unknown>) => <S>(lens: Lens<S, JSONOption<A>>) => (s: S) => Option<A>;

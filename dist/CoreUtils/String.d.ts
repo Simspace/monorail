@@ -36,4 +36,4 @@ export declare const ordAlpha: Ord<string>;
  * Takes a string and removes the spaces at the end of strings
  */
 export declare function trim(str: string): string;
-export declare function join(separator: string, arr: Array<any>): string;
+export declare function join<T>(separator: string, arr: Array<T>): string;

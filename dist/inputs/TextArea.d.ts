@@ -17,7 +17,7 @@ declare type BBTextAreaInputProps = {
 };
 export declare type TextAreaProps = BBTextAreaContainerProps & BBTextAreaInputProps & {};
 export declare class TextArea extends Component<TextAreaProps> {
-    textArea: React.RefObject<StyledHtmlElement<HTMLTextAreaElement, BBTextAreaInputProps, any>>;
+    textArea: React.RefObject<StyledHtmlElement<HTMLTextAreaElement, BBTextAreaInputProps, unknown>>;
     setCompactHeight: () => void;
     componentDidUpdate(): void;
     componentDidMount(): void;

@@ -133,6 +133,8 @@ const Title = styled('h1')`
 
   color: ${colors(Colors.BrandDarkBlue)};
   margin-left: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
   white-space: nowrap;
 `
 
@@ -150,7 +152,7 @@ export type PageHeaderShadowRefType = StyledHtmlElement<
   PageHeaderShadowProps
 >
 
-type PageHeaderShadowProps = {
+export type PageHeaderShadowProps = {
   willAnimateShadow: boolean
   flush: boolean
 }

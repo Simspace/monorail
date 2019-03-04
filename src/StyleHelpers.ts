@@ -17,7 +17,7 @@ export type StyledComponentCssOverrides = {
  */
 export const styled = <P, E = HTMLDivElement>(
   tagName: string | React.ComponentType<P>,
-) => styledOrig<P & React.HTMLProps<E>, any>(tagName)
+) => styledOrig<P & React.HTMLProps<E>, any>(tagName) // tslint:disable-line:no-any
 
 type Props = {
   css?:

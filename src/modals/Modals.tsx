@@ -19,7 +19,7 @@ import {
 import styled, { css, SimpleInterpolation } from 'styled-components'
 import { BBSearchContainer } from '../inputs/Search'
 import { IconButton } from '@monorail/buttons/IconButton'
-import { IconButtonDisplay } from '@monorail/buttons/buttonTypes'
+import { ButtonDisplay, IconButtonShape } from '@monorail/buttons/buttonTypes'
 import { CommonComponentType } from '@monorail/types'
 
 /*
@@ -172,7 +172,8 @@ export const DefaultCloseButton = ({
     icon="close"
     darkMode
     onClick={onClose}
-    display={IconButtonDisplay.Chromeless}
+    shape={IconButtonShape.Square}
+    display={ButtonDisplay.Chromeless}
   />
 )
 

@@ -21,7 +21,7 @@ declare type CCChoiceProps = AnsweredProps & BBGradeIconProps & {
     name?: string;
 };
 export declare type ChoiceProps = BBGradeIconProps & CCChoiceProps & BBChoiceInputProps & {
-    key?: any;
+    key?: string | number;
     type: 'radio' | 'checkbox';
     children?: ReactNode;
 };

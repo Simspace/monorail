@@ -1,8 +1,9 @@
 import React, { Component, RefObject } from 'react';
 import { StyledHtmlElement } from '@monorail/CoreUtils/type-level';
+import { PageHeaderShadowProps } from '../pageHeader/PageHeader';
 declare type Props = {
-    scrollContainer: RefObject<StyledHtmlElement<HTMLDivElement, any>>;
-    animatingElement: RefObject<StyledHtmlElement<HTMLDivElement, any>>;
+    scrollContainer: RefObject<StyledHtmlElement<HTMLDivElement, {}>>;
+    animatingElement: RefObject<StyledHtmlElement<HTMLDivElement, PageHeaderShadowProps>>;
     animationFunction: (props: {
         scrollAmount: number;
         animationTermination: number;

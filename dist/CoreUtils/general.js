@@ -64,6 +64,7 @@ const makeConstantActionType = (...args) => args[0];
 /**
  * Type guard for the Falsey type
  */
+// tslint:disable-next-line:no-any
 
 
 exports.makeConstantActionType = makeConstantActionType;

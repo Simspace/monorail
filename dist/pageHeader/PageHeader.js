@@ -130,6 +130,8 @@ const Title = (0, _styledComponents.default)('h1')`
 
   color: ${(0, _CommonStyles.colors)(_CommonStyles.Colors.BrandDarkBlue)};
   margin-left: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
   white-space: nowrap;
 `;
 /*

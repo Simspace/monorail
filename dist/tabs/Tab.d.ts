@@ -17,7 +17,7 @@ export declare class Tab extends Component<TabProps> {
         setIndicator: () => void;
         updateIsActive: () => void;
     };
-    tabRef: React.RefObject<StyledHtmlElement<HTMLDivElement, CCTabProps, any>>;
+    tabRef: React.RefObject<StyledHtmlElement<HTMLDivElement, CCTabProps, unknown>>;
     componentDidMount(): void;
     componentDidUpdate(prevProps: TabProps): void;
     callSetIndicator: () => void;

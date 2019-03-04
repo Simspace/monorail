@@ -13,7 +13,7 @@ export declare class SidebarDropDown extends Component<Props, State> {
         width: number;
     };
     state: State;
-    dropDownRef: React.RefObject<StyledHtmlElement<HTMLDivElement, BBCardBackgroundProps, any>>;
+    dropDownRef: React.RefObject<StyledHtmlElement<HTMLDivElement, BBCardBackgroundProps, unknown>>;
     componentDidMount(): void;
     componentDidUpdate(): void;
     updateMenuHeight: () => void;

@@ -1,6 +1,8 @@
+import React, { ReactNode } from 'react'
+import styled, { css, SimpleInterpolation } from 'styled-components'
 import { AppIcon } from '@monorail/appIcon/AppIcon'
-import { IconButtonDisplay } from '@monorail/buttons/buttonTypes'
-import { IconButton } from '@monorail/buttons/IconButton'
+import { CommonComponentType } from '@monorail/types'
+import { Icon } from '@monorail/icon/Icon'
 import {
   AppOrAuthSubAppName,
   Colors,
@@ -10,10 +12,6 @@ import {
   FontSizes,
   typography,
 } from '@monorail/CommonStyles'
-import { Icon } from '@monorail/icon/Icon'
-import { CommonComponentType } from '@monorail/types'
-import React, { ReactNode } from 'react'
-import styled, { css, SimpleInterpolation } from 'styled-components'
 
 const HeaderRow = styled.div<CommonComponentType>`
   color: ${colors(Colors.BrandDarkBlue)};
@@ -24,6 +22,8 @@ const HeaderRow = styled.div<CommonComponentType>`
   flex-shrink: 0;
   height: 48px;
   padding: 0 16px;
+
+  ${({ css: cssOverrides }) => cssOverrides};
 `
 
 const iconRightCss = css`
@@ -42,8 +42,7 @@ type Props = CommonComponentType & {
   actions?: ReactNode
   appIcon?: AppOrAuthSubAppName
   cssHeaderRow?: SimpleInterpolation
-  iconLeft?: { icon: string; onClick?: (e: React.MouseEvent<Element>) => void }
-  iconRight?: { icon: string; onClick?: (e: React.MouseEvent<Element>) => void }
+  iconLeft?: string
   noBorder?: boolean
   title: string
 }
@@ -56,7 +55,6 @@ export const Header = styled<Props>(
     css: cssOverrides,
     cssHeaderRow,
     iconLeft,
-    iconRight,
     noBorder = false,
     title,
     ...otherProps
@@ -64,38 +62,9 @@ export const Header = styled<Props>(
     <div {...otherProps}>
       <HeaderRow css={cssHeaderRow}>
         {appIcon && <AppIcon css={iconRightCss} appName={appIcon} />}
-        {iconLeft &&
-          (iconLeft.onClick ? (
-            <IconButton
-              css={iconRightCss}
-              icon={iconLeft.icon}
-              onClick={iconLeft.onClick}
-              display={IconButtonDisplay.Chromeless}
-            />
-          ) : (
-            <Icon
-              css={iconRightCss}
-              icon={iconLeft.icon}
-              onClick={iconLeft.onClick}
-            />
-          ))}
+        {iconLeft && <Icon css={iconRightCss} icon={iconLeft} />}
         {title}
         {actions}
-        {iconRight &&
-          (iconRight.onClick ? (
-            <IconButton
-              css={iconLeftCss}
-              icon={iconRight.icon}
-              onClick={iconRight.onClick}
-              display={IconButtonDisplay.Chromeless}
-            />
-          ) : (
-            <Icon
-              css={iconLeftCss}
-              icon={iconRight.icon}
-              onClick={iconRight.onClick}
-            />
-          ))}
       </HeaderRow>
 
       {children}

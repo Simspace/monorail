@@ -7,7 +7,7 @@ export declare const TitleContainer: import("styled-components").StyledComponent
     hasAboveContent: boolean;
 }>;
 export declare type PageHeaderShadowRefType = StyledHtmlElement<HTMLDivElement, PageHeaderShadowProps>;
-declare type PageHeaderShadowProps = {
+export declare type PageHeaderShadowProps = {
     willAnimateShadow: boolean;
     flush: boolean;
 };
@@ -34,7 +34,7 @@ export declare class PageHeader extends Component<PageHeaderProps> {
         willAnimateShadow: boolean;
         flush: boolean;
     };
-    pageHeaderContainerRef: React.RefObject<StyledHtmlElement<HTMLDivElement, PageHeaderContainerProps, any>>;
+    pageHeaderContainerRef: React.RefObject<StyledHtmlElement<HTMLDivElement, PageHeaderContainerProps, unknown>>;
     renderBreadCrumbs: () => (false | JSX.Element)[][] | null;
     render(): JSX.Element;
 }

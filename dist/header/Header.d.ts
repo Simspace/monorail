@@ -1,23 +1,16 @@
-import { AppOrAuthSubAppName } from '@monorail/CommonStyles';
-import { CommonComponentType } from '@monorail/types';
-import React, { ReactNode } from 'react';
+import { ReactNode } from 'react';
 import { SimpleInterpolation } from 'styled-components';
+import { CommonComponentType } from '@monorail/types';
+import { AppOrAuthSubAppName } from '@monorail/CommonStyles';
 declare type Props = CommonComponentType & {
     actions?: ReactNode;
     appIcon?: AppOrAuthSubAppName;
     cssHeaderRow?: SimpleInterpolation;
-    iconLeft?: {
-        icon: string;
-        onClick?: (e: React.MouseEvent<Element>) => void;
-    };
-    iconRight?: {
-        icon: string;
-        onClick?: (e: React.MouseEvent<Element>) => void;
-    };
+    iconLeft?: string;
     noBorder?: boolean;
     title: string;
 };
-export declare const Header: import("styled-components").StyledComponentClass<Props, any, Pick<Props, "title" | "id" | "css" | "className" | "as" | "tabIndex" | "appIcon" | "iconLeft" | "iconRight" | "noBorder" | "actions" | "cssHeaderRow"> & {
+export declare const Header: import("styled-components").StyledComponentClass<Props, any, Pick<Props, "title" | "id" | "css" | "className" | "as" | "tabIndex" | "appIcon" | "iconLeft" | "noBorder" | "actions" | "cssHeaderRow"> & {
     theme?: any;
 }>;
 export {};

@@ -12,7 +12,7 @@ declare type Props = {
     css?: SimpleInterpolation;
     label?: string;
     items: CheckmarkSelect[];
-    onSelect: (key: string, value: any) => void;
+    onSelect: (key: string, value: string | number | string[] | undefined) => void;
     onCheck: (key: string, checked: boolean) => void;
 };
 export declare const CheckmarkSelectGroup: SFC<Props>;

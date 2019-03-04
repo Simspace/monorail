@@ -10,11 +10,8 @@ declare type Props = {
     content: ReactNode;
 };
 export declare class SingleCollection extends Component<Props> {
-    singleCollectionContainer: React.RefObject<StyledHtmlElement<HTMLDivElement, {}, any>>;
-    pageHeaderShadow: React.RefObject<StyledHtmlElement<HTMLDivElement, {
-        willAnimateShadow: boolean;
-        flush: boolean;
-    }, any>>;
+    singleCollectionContainer: React.RefObject<StyledHtmlElement<HTMLDivElement, {}, unknown>>;
+    pageHeaderShadow: React.RefObject<StyledHtmlElement<HTMLDivElement, import("../pageHeader/PageHeader").PageHeaderShadowProps, unknown>>;
     render(): JSX.Element;
 }
 export {};

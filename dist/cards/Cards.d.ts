@@ -1,4 +1,4 @@
-import React, { MouseEvent, StatelessComponent } from 'react';
+import React, { MouseEvent, StatelessComponent, Ref } from 'react';
 import { AppName, ElevationRange } from '@monorail/CommonStyles';
 import { SimpleInterpolation } from 'styled-components';
 import { CommonComponentType } from '@monorail/types';
@@ -6,7 +6,7 @@ export declare type BBCardBackgroundProps = CommonComponentType & {
     hover?: boolean;
     elevation?: ElevationRange;
     onClick?: (event: MouseEvent) => void;
-    ref?: any;
+    ref?: Ref<any>;
     cssCardContent?: SimpleInterpolation;
 };
 export declare const BBCardBackground: import("styled-components").StyledComponentClass<BBCardBackgroundProps, any, Pick<BBCardBackgroundProps, "id" | "ref" | "css" | "className" | "onClick" | "as" | "tabIndex" | "elevation" | "hover" | "cssCardContent"> & {

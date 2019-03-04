@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.ButtonSize = exports.IconButtonDisplay = exports.IconButtonShape = exports.ButtonDisplay = void 0;
+exports.ButtonSize = exports.IconButtonShape = exports.ButtonDisplay = void 0;
 let ButtonDisplay;
 exports.ButtonDisplay = ButtonDisplay;
 
@@ -19,19 +19,8 @@ exports.IconButtonShape = IconButtonShape;
 
 (function (IconButtonShape) {
   IconButtonShape["Default"] = "default";
-  IconButtonShape["Circle"] = "circle";
+  IconButtonShape["Square"] = "square";
 })(IconButtonShape || (exports.IconButtonShape = IconButtonShape = {}));
-
-let IconButtonDisplay;
-exports.IconButtonDisplay = IconButtonDisplay;
-
-(function (IconButtonDisplay) {
-  IconButtonDisplay["Primary"] = "primary";
-  IconButtonDisplay["Secondary"] = "secondary";
-  IconButtonDisplay["Outline"] = "outline";
-  IconButtonDisplay["Chromeless"] = "chromeless";
-  IconButtonDisplay["Circle"] = "circle";
-})(IconButtonDisplay || (exports.IconButtonDisplay = IconButtonDisplay = {}));
 
 let ButtonSize;
 exports.ButtonSize = ButtonSize;
