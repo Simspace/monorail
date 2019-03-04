@@ -250,7 +250,7 @@ export class FilterCollection<
       )
 
       if (typeof searchValue !== 'string') {
-        console.error('tried to search non-string value') // tslint:disable-line
+        console.error('tried to search non-string value') // tslint:disable-line:no-console
       } else if (len(searchText) > 0 && isNotFound(searchValue)) {
         return false
       }
@@ -273,7 +273,7 @@ export class FilterCollection<
             const errorMsg =
               `error: lookup value for ${group.filterKey}` +
               `must be a string, but received a ${typeof value} (${value})`
-            console.error(errorMsg) // tslint:disable-line
+            console.error(errorMsg) // tslint:disable-line:no-console
             throw new Error(errorMsg)
           }
         }

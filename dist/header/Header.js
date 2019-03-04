@@ -5,19 +5,15 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.Header = void 0;
 
-var _AppIcon = require("../appIcon/AppIcon");
-
-var _buttonTypes = require("../buttons/buttonTypes");
-
-var _IconButton = require("../buttons/IconButton");
-
-var _CommonStyles = require("../CommonStyles");
-
-var _Icon = require("../icon/Icon");
-
 var _react = _interopRequireDefault(require("react"));
 
 var _styledComponents = _interopRequireWildcard(require("styled-components"));
+
+var _AppIcon = require("../appIcon/AppIcon");
+
+var _Icon = require("../icon/Icon");
+
+var _CommonStyles = require("../CommonStyles");
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
@@ -32,6 +28,10 @@ const HeaderRow = _styledComponents.default.div`
   flex-shrink: 0;
   height: 48px;
   padding: 0 16px;
+
+  ${({
+  css: cssOverrides
+}) => cssOverrides};
 `;
 const iconRightCss = _styledComponents.css`
   color: ${(0, _CommonStyles.colors)(_CommonStyles.Colors.BrandDarkBlue)};
@@ -50,7 +50,6 @@ const Header = (0, _styledComponents.default)(({
   css: cssOverrides,
   cssHeaderRow,
   iconLeft,
-  iconRight,
   noBorder = false,
   title,
   ...otherProps
@@ -59,25 +58,10 @@ const Header = (0, _styledComponents.default)(({
 }, appIcon && _react.default.createElement(_AppIcon.AppIcon, {
   css: iconRightCss,
   appName: appIcon
-}), iconLeft && (iconLeft.onClick ? _react.default.createElement(_IconButton.IconButton, {
+}), iconLeft && _react.default.createElement(_Icon.Icon, {
   css: iconRightCss,
-  icon: iconLeft.icon,
-  onClick: iconLeft.onClick,
-  display: _buttonTypes.IconButtonDisplay.Chromeless
-}) : _react.default.createElement(_Icon.Icon, {
-  css: iconRightCss,
-  icon: iconLeft.icon,
-  onClick: iconLeft.onClick
-})), title, actions, iconRight && (iconRight.onClick ? _react.default.createElement(_IconButton.IconButton, {
-  css: iconLeftCss,
-  icon: iconRight.icon,
-  onClick: iconRight.onClick,
-  display: _buttonTypes.IconButtonDisplay.Chromeless
-}) : _react.default.createElement(_Icon.Icon, {
-  css: iconLeftCss,
-  icon: iconRight.icon,
-  onClick: iconRight.onClick
-}))), children))`
+  icon: iconLeft
+}), title, actions), children))`
   ${({
   noBorder,
   appIcon,

@@ -20,12 +20,12 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
 const iconButtonDisplayCss = {
-  [_buttonTypes.IconButtonDisplay.Primary]: _styledComponents.css`
+  [_buttonTypes.ButtonDisplay.Primary]: _styledComponents.css`
     ${(0, _CommonStyles.basePrimaryStyles)()};
 
     border: 0;
   `,
-  [_buttonTypes.IconButtonDisplay.Secondary]: _styledComponents.css`
+  [_buttonTypes.ButtonDisplay.Secondary]: _styledComponents.css`
     background: ${(0, _CommonStyles.colors)(_CommonStyles.Colors.BrandLightBlue, 0.08)};
     border: 0;
     color: ${(0, _CommonStyles.colors)(_CommonStyles.Colors.BrandLightBlue)};
@@ -38,29 +38,17 @@ const iconButtonDisplayCss = {
       background: ${(0, _CommonStyles.colors)(_CommonStyles.Colors.BrandLightBlue, 0.24)};
     }
   `,
-  [_buttonTypes.IconButtonDisplay.Outline]: _styledComponents.css`
+  [_buttonTypes.ButtonDisplay.Outline]: _styledComponents.css`
     ${(0, _CommonStyles.baseOutlineStyles)()};
   `,
-  [_buttonTypes.IconButtonDisplay.Chromeless]: _styledComponents.css`
+  [_buttonTypes.ButtonDisplay.Chromeless]: _styledComponents.css`
     ${(0, _CommonStyles.baseChromelessStyles)()};
 
     border: 0;
     color: ${(0, _CommonStyles.colors)(_CommonStyles.Colors.Black74)};
-  `,
-  [_buttonTypes.IconButtonDisplay.Circle]: _styledComponents.css`
-    background: ${(0, _CommonStyles.colors)(_CommonStyles.Colors.Black24)};
-    border: 0;
 
-    ${_Icon.Icon} {
-      color: ${(0, _CommonStyles.colors)(_CommonStyles.Colors.White)};
-    }
-
-    &:hover {
-      background: ${(0, _CommonStyles.colors)(_CommonStyles.Colors.Black54)};
-    }
-
-    &:active {
-      background: ${(0, _CommonStyles.colors)(_CommonStyles.Colors.Black24)};
+    &:focus {
+      background: ${(0, _CommonStyles.colors)(_CommonStyles.Colors.BrandLightBlue, 0.16)};
     }
   `
 };
@@ -103,7 +91,7 @@ const CCIconButton = (0, _styledComponents.default)('button')`
 }) => disabled && _CommonStyles.baseDisabledStyles};
   ${({
   shape
-}) => (0, _CommonStyles.borderRadius)(shape === _buttonTypes.IconButtonShape.Circle ? _CommonStyles.BorderRadius.Round : _CommonStyles.BorderRadius.Medium)};
+}) => (0, _CommonStyles.borderRadius)(shape === _buttonTypes.IconButtonShape.Default ? _CommonStyles.BorderRadius.Round : _CommonStyles.BorderRadius.Medium)};
 
   ${(0, _CommonStyles.flexFlow)()};
 
@@ -121,9 +109,8 @@ const CCIconButton = (0, _styledComponents.default)('button')`
 
   ${_Icon.Icon} {
     ${({
-  darkMode,
-  display
-}) => darkMode || display === _buttonTypes.IconButtonDisplay.Circle ? _styledComponents.css`
+  darkMode
+}) => darkMode ? _styledComponents.css`
             color: ${(0, _CommonStyles.colors)(_CommonStyles.Colors.White)};
           ` : _styledComponents.css`
             color: currentColor;
@@ -159,7 +146,7 @@ class IconButton extends _react.Component {
 
 exports.IconButton = IconButton;
 IconButton.defaultProps = {
-  display: _buttonTypes.IconButtonDisplay.Primary,
+  display: _buttonTypes.ButtonDisplay.Primary,
   size: _buttonTypes.ButtonSize.Default,
   shape: _buttonTypes.IconButtonShape.Default,
   type: 'button'

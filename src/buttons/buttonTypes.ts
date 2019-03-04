@@ -7,15 +7,7 @@ export enum ButtonDisplay {
 
 export enum IconButtonShape {
   Default = 'default',
-  Circle = 'circle',
-}
-
-export enum IconButtonDisplay {
-  Primary = 'primary',
-  Secondary = 'secondary',
-  Outline = 'outline',
-  Chromeless = 'chromeless',
-  Circle = 'circle',
+  Square = 'square',
 }
 
 export enum ButtonSize {

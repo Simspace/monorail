@@ -136,7 +136,8 @@ const DefaultCloseButton = ({
   icon: "close",
   darkMode: true,
   onClick: onClose,
-  display: _buttonTypes.IconButtonDisplay.Chromeless
+  shape: _buttonTypes.IconButtonShape.Square,
+  display: _buttonTypes.ButtonDisplay.Chromeless
 });
 
 exports.DefaultCloseButton = DefaultCloseButton;

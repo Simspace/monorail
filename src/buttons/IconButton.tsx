@@ -17,17 +17,17 @@ import {
 import { Icon } from '@monorail/icon/Icon'
 import {
   ButtonSize,
-  IconButtonDisplay,
+  ButtonDisplay,
   IconButtonShape,
 } from '@monorail/buttons/buttonTypes'
 
 const iconButtonDisplayCss = {
-  [IconButtonDisplay.Primary]: css`
+  [ButtonDisplay.Primary]: css`
     ${basePrimaryStyles()};
 
     border: 0;
   `,
-  [IconButtonDisplay.Secondary]: css`
+  [ButtonDisplay.Secondary]: css`
     background: ${colors(Colors.BrandLightBlue, 0.08)};
     border: 0;
     color: ${colors(Colors.BrandLightBlue)};
@@ -40,29 +40,17 @@ const iconButtonDisplayCss = {
       background: ${colors(Colors.BrandLightBlue, 0.24)};
     }
   `,
-  [IconButtonDisplay.Outline]: css`
+  [ButtonDisplay.Outline]: css`
     ${baseOutlineStyles()};
   `,
-  [IconButtonDisplay.Chromeless]: css`
+  [ButtonDisplay.Chromeless]: css`
     ${baseChromelessStyles()};
 
     border: 0;
     color: ${colors(Colors.Black74)};
-  `,
-  [IconButtonDisplay.Circle]: css`
-    background: ${colors(Colors.Black24)};
-    border: 0;
 
-    ${Icon} {
-      color: ${colors(Colors.White)};
-    }
-
-    &:hover {
-      background: ${colors(Colors.Black54)};
-    }
-
-    &:active {
-      background: ${colors(Colors.Black24)};
+    &:focus {
+      background: ${colors(Colors.BrandLightBlue, 0.16)};
     }
   `,
 }
@@ -101,7 +89,7 @@ export const CCIconButton = styled<CCIconButtonProps, 'button'>('button')`
   ${({ disabled }) => disabled && baseDisabledStyles};
   ${({ shape }) =>
     borderRadius(
-      shape === IconButtonShape.Circle
+      shape === IconButtonShape.Default
         ? BorderRadius.Round
         : BorderRadius.Medium,
     )};
@@ -121,8 +109,8 @@ export const CCIconButton = styled<CCIconButtonProps, 'button'>('button')`
   ${buttonTransition};
 
   ${Icon} {
-    ${({ darkMode, display }) =>
-      darkMode || display === IconButtonDisplay.Circle
+    ${({ darkMode }) =>
+      darkMode
         ? css`
             color: ${colors(Colors.White)};
           `
@@ -142,7 +130,7 @@ type CCIconButtonProps = {
   css?: SimpleInterpolation
   darkMode?: boolean
   disabled?: boolean
-  display: IconButtonDisplay
+  display: ButtonDisplay
   shape?: IconButtonShape
   iconCss?: SimpleInterpolation
   onClick?: (event: MouseEvent<Element>) => void
@@ -156,7 +144,7 @@ export type IconButtonProps = CCIconButtonProps & {
 
 export class IconButton extends Component<IconButtonProps> {
   static defaultProps = {
-    display: IconButtonDisplay.Primary,
+    display: ButtonDisplay.Primary,
     size: ButtonSize.Default,
     shape: IconButtonShape.Default,
     type: 'button',

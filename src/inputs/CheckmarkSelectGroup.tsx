@@ -52,7 +52,7 @@ type Props = {
   css?: SimpleInterpolation
   label?: string
   items: CheckmarkSelect[]
-  onSelect: (key: string, value: any) => void // TODO
+  onSelect: (key: string, value: string | number | string[] | undefined) => void // TODO
   onCheck: (key: string, checked: boolean) => void
 }
 

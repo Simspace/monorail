@@ -22,8 +22,12 @@ const oLens = (f, g) => f.compose(g);
  * Helper that extracts the S type from a Lens<S, A>
  */
 
+/* tslint:disable:no-any */
+
 
 exports.oLens = oLens;
+
+/* tslint:enable:no-any */
 
 /**
  * A function that generates monocle-ts Lenses for all top-level key-val pairs

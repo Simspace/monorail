@@ -1,4 +1,4 @@
-import { array, head } from 'fp-ts/lib/Array'
+import { array } from 'fp-ts/lib/Array'
 import React, { Component, ReactNode } from 'react'
 import { Status } from '@monorail/status/Status'
 import { css } from 'styled-components'
@@ -124,7 +124,7 @@ type BasicSorterControllerProps = {
       isActive: boolean
       title: ReactNode
       key: string
-      style: (selected: boolean) => any
+      style: (selected: boolean) => any // tslint:disable-line:no-any
       onChange: (key: string) => void
     },
   ) => ReactNode

@@ -20,6 +20,7 @@ var _general = require("./general");
 /**
  * type guard for Option
  */
+// tslint:disable-next-line:no-any
 const isOption = x => !(0, _primitiveGuards.isNil)(x) && !(0, _primitiveGuards.isNil)(x.isSome) && !(0, _primitiveGuards.isNil)(x.isNone);
 /**
  * Standalone version of fp-ts' `fold` for Options. Like `getOrElse`,

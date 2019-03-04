@@ -1,14 +1,20 @@
 {
   "name": "@simspace/monorail",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "SimSpace Design System",
   "resolutions": {
+    "@types/react": "16.8.2",
+    "@types/react-dom": "16.8.0",
     "fp-ts": "1.13.0",
     "monocle-ts": "1.5.3"
   },
   "scripts": {
-    "build": "yarn typecheck && rm -rf dist && babel src -d dist --extensions \".js,.jsx,.ts,.tsx\" && cp package.json dist/package.json",
-    "typecheck": "tsc --project tsconfig.json --noEmit"
+    "babel-build": "babel src -d dist --extensions \".js,.jsx,.ts,.tsx\"",
+    "build": "yarn type-check && yarn clean-dist && yarn babel-build && yarn generate-type-declarations && yarn copy-package-json",
+    "clean-dist": "rm -rf dist",
+    "copy-package-json": "cp package.json dist/package.json",
+    "generate-type-declarations": "tsc --project tsconfig.json --allowJs false --declaration --declarationDir \"dist\" --emitDeclarationOnly --rootDir \"src\"",
+    "type-check": "tsc --project tsconfig.json --noEmit"
   },
   "repository": {
     "type": "git",

@@ -1,5 +1,6 @@
 import React, { SFC } from 'react'
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
+import { lookup } from 'fp-ts/lib/Record'
 
 import { typography, FontSizes } from '@monorail/CommonStyles'
 
@@ -44,8 +45,8 @@ type InputItem = {
 type Props = {
   label?: string
   items: InputItem[]
-  onSelect: (key: string, value: any) => void // TODO
-  value: any
+  onSelect: (key: string, value: number) => void
+  value: Record<string, number>
   required?: boolean
 }
 
@@ -64,21 +65,24 @@ export const NumberInputGroup: SFC<Props> = ({
           {required && '*'}
         </Label>
       )}
-      {items.map((item: InputItem, k) => (
-        <InputItemWrapper key={k}>
-          <InputItemLabel>{item.label}</InputItemLabel>
-          <Input
-            min={item.min}
-            max={item.max}
-            type="number"
-            name={label}
-            key={k}
-            value={value[item.key]}
-            onChange={v => onSelect(item.key, Number(v.target.value))}
-            required={required}
-          />
-        </InputItemWrapper>
-      ))}
+      {items.map((item: InputItem, k) => {
+        const val = lookup(item.key, value).getOrElse(0)
+        return (
+          <InputItemWrapper key={k}>
+            <InputItemLabel>{item.label}</InputItemLabel>
+            <Input
+              min={item.min}
+              max={item.max}
+              type="number"
+              name={label}
+              key={k}
+              value={val}
+              onChange={v => onSelect(item.key, Number(v.target.value))}
+              required={required}
+            />
+          </InputItemWrapper>
+        )
+      })}
     </NumberInputGroupWrapper>
   )
 }

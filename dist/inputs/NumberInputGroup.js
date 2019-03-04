@@ -9,6 +9,8 @@ var _react = _interopRequireDefault(require("react"));
 
 var _styledComponents = _interopRequireDefault(require("styled-components"));
 
+var _Record = require("fp-ts/lib/Record");
+
 var _CommonStyles = require("../CommonStyles");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -47,18 +49,21 @@ const NumberInputGroup = ({
   value,
   required
 }) => {
-  return _react.default.createElement(NumberInputGroupWrapper, null, label && _react.default.createElement(Label, null, label, required && '*'), items.map((item, k) => _react.default.createElement(InputItemWrapper, {
-    key: k
-  }, _react.default.createElement(InputItemLabel, null, item.label), _react.default.createElement(Input, {
-    min: item.min,
-    max: item.max,
-    type: "number",
-    name: label,
-    key: k,
-    value: value[item.key],
-    onChange: v => onSelect(item.key, Number(v.target.value)),
-    required: required
-  }))));
+  return _react.default.createElement(NumberInputGroupWrapper, null, label && _react.default.createElement(Label, null, label, required && '*'), items.map((item, k) => {
+    const val = (0, _Record.lookup)(item.key, value).getOrElse(0);
+    return _react.default.createElement(InputItemWrapper, {
+      key: k
+    }, _react.default.createElement(InputItemLabel, null, item.label), _react.default.createElement(Input, {
+      min: item.min,
+      max: item.max,
+      type: "number",
+      name: label,
+      key: k,
+      value: val,
+      onChange: v => onSelect(item.key, Number(v.target.value)),
+      required: required
+    }));
+  }));
 };
 
 exports.NumberInputGroup = NumberInputGroup;

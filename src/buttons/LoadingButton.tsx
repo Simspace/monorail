@@ -30,7 +30,7 @@ export class LoadingButton extends Component<Props, State> {
     this._isMounted = false
   }
 
-  onClick = async (e: MouseEvent<HTMLButtonElement>) => {
+  private onClick = async (e: MouseEvent<HTMLButtonElement>) => {
     const origOnClick = this.props.onClick
 
     if (!origOnClick) {

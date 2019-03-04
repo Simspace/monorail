@@ -83,8 +83,8 @@ export const createOptionFromJSON = <C extends t.Mixed>(
  */
 export const mkJSONOptionDecoderSelector = <A>(
   codec: t.Type<Option<A>, JSONOption<A>, t.mixed>,
-) => <S>(lens: Lens<S, JSONOption<A>>) => (urls: S): Option<A> => {
-  const encoded = lens.get(urls)
+) => <S>(lens: Lens<S, JSONOption<A>>) => (s: S): Option<A> => {
+  const encoded = lens.get(s)
   const decoded = codec.decode(encoded)
 
   const noOpIO = new IO(constVoid)

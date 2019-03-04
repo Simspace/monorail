@@ -105,6 +105,7 @@ const CCToggle = (0, _styledComponents.default)('label')`
 `;
 const StyledIconChecked = (0, _styledComponents.default)(({
   checked,
+  toggleSize,
   ...otherProps
 }) => _react.default.createElement(_Icon.Icon, otherProps))`
   ${({
@@ -121,6 +122,7 @@ const StyledIconChecked = (0, _styledComponents.default)(({
 `;
 const StyledIconNotChecked = (0, _styledComponents.default)(({
   checked,
+  toggleSize,
   ...otherProps
 }) => _react.default.createElement(_Icon.Icon, otherProps))`
   ${({

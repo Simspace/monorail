@@ -99,8 +99,8 @@ const createOptionFromJSON = (codec, name = `Option<${codec.name}>`) => {
 
 exports.createOptionFromJSON = createOptionFromJSON;
 
-const mkJSONOptionDecoderSelector = codec => lens => urls => {
-  const encoded = lens.get(urls);
+const mkJSONOptionDecoderSelector = codec => lens => s => {
+  const encoded = lens.get(s);
   const decoded = codec.decode(encoded);
   const noOpIO = new _IO.IO(_general.constVoid);
   const constNoOpIO = (0, _function.constant)(noOpIO); // TODO: consider better error handling

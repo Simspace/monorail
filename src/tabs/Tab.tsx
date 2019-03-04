@@ -96,7 +96,7 @@ export class Tab extends Component<TabProps> {
     }
   }
 
-  onClick = (event: MouseEvent<HTMLDivElement>) => {
+  private onClick = (event: MouseEvent<HTMLDivElement>) => {
     const { updateIsActive, onClick, index } = this.props
 
     if (!isNil(updateIsActive) && !isNil(index)) {

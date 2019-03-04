@@ -51,7 +51,7 @@ export type ExtractFromArray<A> = A extends Array<infer B> ? B : never
 export type StyledHtmlElement<
   BaseType,
   BaseTypeProps,
-  ThemeType = any
+  ThemeType = unknown
 > = BaseType &
   Component<
     ThemedOuterStyledProps<

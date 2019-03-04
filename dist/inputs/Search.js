@@ -157,10 +157,24 @@ class Search extends _react.Component {
       onClick: onClick,
       ref: searchRef
     }), _react.default.createElement(_IconButton.IconButton, {
-      display: _buttonTypes.IconButtonDisplay.Circle,
-      shape: _buttonTypes.IconButtonShape.Circle,
+      darkMode: true,
       css: _styledComponents.css`
             ${(0, _CommonStyles.visible)(!!value)};
+
+            background: ${(0, _CommonStyles.colors)(_CommonStyles.Colors.Black24)};
+            border: 0;
+
+            ${_Icon.Icon} {
+              color: ${(0, _CommonStyles.colors)(_CommonStyles.Colors.White)};
+            }
+
+            &:hover {
+              background: ${(0, _CommonStyles.colors)(_CommonStyles.Colors.Black54)};
+            }
+
+            &:active {
+              background: ${(0, _CommonStyles.colors)(_CommonStyles.Colors.Black24)};
+            }
 
             position: absolute;
             top: ${BBSearchIconPos}px;

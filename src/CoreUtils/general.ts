@@ -67,6 +67,7 @@ export const makeConstantActionType = <A extends [string]>(...args: A): A[0] =>
 /**
  * Type guard for the Falsey type
  */
+// tslint:disable-next-line:no-any
 export const isFalsey = (x: any): x is Falsey =>
   isNil(x) ||
   isFalse(x) ||
