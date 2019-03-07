@@ -9,7 +9,7 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _styledComponents = _interopRequireDefault(require("styled-components"));
 
-var R = _interopRequireWildcard(require("ramda"));
+var _primitiveGuards = require("../CoreUtils/primitive-guards");
 
 var _Icon = require("../icon/Icon");
 
@@ -42,7 +42,7 @@ const NumberWrapper =
 (0, _styledComponents.default)('div').withConfig({
   displayName: "HorizontalStepper__NumberWrapper",
   componentId: "sc-1nopkhd-3"
-})(["padding:10px;flex:0 0 45px;height:45px;position:relative;background-color:", ";.icon{position:absolute;left:5px;top:5px;svg{fill:#1465ff;}}"], props => props.darkMode ? 'hsla(234,56%,20%,1)' : 'white');
+})(["padding:10px;position:relative;background-color:", ";.icon{position:absolute;left:5px;top:5px;svg{fill:#1465ff;}}"], props => props.darkMode ? 'hsla(234,56%,20%,1)' : 'white');
 const Number =
 /*#__PURE__*/
 (0, _styledComponents.default)('div').withConfig({
@@ -75,7 +75,7 @@ const Subtitle =
 (0, _styledComponents.default)('div').withConfig({
   displayName: "HorizontalStepper__Subtitle",
   componentId: "sc-1nopkhd-8"
-})(["color:", ";font-size:11px;opacity:0.7;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;width:80px;"], props => props.darkMode ? 'white' : 'black');
+})(["color:", ";font-size:11px;opacity:0.7;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"], props => props.darkMode ? 'white' : 'black');
 const Line =
 /*#__PURE__*/
 (0, _styledComponents.default)('div').withConfig({
@@ -136,7 +136,7 @@ class HorizontalStepper extends _react.Component {
       darkMode: this.props.darkMode
     }, _react.default.createElement(Title, {
       darkMode: this.props.darkMode
-    }, step.label), !R.isNil(step.subtitle) && _react.default.createElement(Subtitle, {
+    }, step.label), !(0, _primitiveGuards.isNil)(step.subtitle) && _react.default.createElement(Subtitle, {
       darkMode: this.props.darkMode
     }, step.subtitle))), index !== 0 && _react.default.createElement(LeftLine, null), index !== this.props.steps.length - 1 && _react.default.createElement(RightLine, null));
   }

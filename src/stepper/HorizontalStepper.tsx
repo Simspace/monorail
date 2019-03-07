@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import styled, { SimpleInterpolation, css } from 'styled-components'
-import * as R from 'ramda'
+import styled, { SimpleInterpolation } from 'styled-components'
+import { isNil } from '@monorail/CoreUtils/primitive-guards'
 
 import { Icon } from '@monorail/icon/Icon'
 
@@ -76,8 +76,6 @@ const Body = styled('div')`
 
 const NumberWrapper = styled<StyleOptions, 'div'>('div')`
   padding: 10px;
-  flex: 0 0 45px;
-  height: 45px;
   position: relative;
   background-color: ${props =>
     props.darkMode ? 'hsla(234,56%,20%,1)' : 'white'};
@@ -142,7 +140,6 @@ const Subtitle = styled<StyleOptions, 'div'>('div')`
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  width: 80px;
 `
 
 const Line = styled('div')`
@@ -200,7 +197,7 @@ export class HorizontalStepper extends Component<Props & StyleOptions> {
         </NumberWrapper>
         <Text className="text" darkMode={this.props.darkMode}>
           <Title darkMode={this.props.darkMode}>{step.label}</Title>
-          {!R.isNil(step.subtitle) && (
+          {!isNil(step.subtitle) && (
             <Subtitle darkMode={this.props.darkMode}>{step.subtitle}</Subtitle>
           )}
         </Text>

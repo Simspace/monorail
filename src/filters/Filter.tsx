@@ -45,6 +45,7 @@ const FilterText = styled('span')`
   ${typography(700, FontSizes.Title5)};
 
   color: currentColor;
+  flex: 1 1 100%;
   text-transform: uppercase;
   white-space: nowrap;
 `

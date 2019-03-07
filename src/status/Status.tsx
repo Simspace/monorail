@@ -23,6 +23,7 @@ export const Status = styled<Props, 'div'>('div')`
     padding: 0 ${size / 4}px;
     text-align: center;
     line-height: ${size}px;
+    display: inline-block;
 
     ${cssOverrides};
   `};

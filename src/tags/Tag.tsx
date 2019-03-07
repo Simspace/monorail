@@ -29,6 +29,7 @@ export const CCTag = styled<CCTagProps, 'div'>('div')`
     `};
 
   ${flexFlow('row')};
+  display: inline-flex;
   align-items: center;
   background: ${colors(Colors.Black, 0.07)};
   border-radius: ${tagHeight / 2}px;

@@ -26,7 +26,7 @@ const CCTag =
 (0, _styledComponents.default)('div').withConfig({
   displayName: "Tag__CCTag",
   componentId: "rxfsom-0"
-})(["", ";", ";align-items:center;background:", ";border-radius:", "px;height:", "px;position:relative;text-transform:uppercase;user-select:none;&::before{background:", ";border-radius:", "px;bottom:2px;content:'';left:2px;position:absolute;top:2px;width:", "px;}", ";"], ({
+})(["", ";", ";display:inline-flex;align-items:center;background:", ";border-radius:", "px;height:", "px;position:relative;text-transform:uppercase;user-select:none;&::before{background:", ";border-radius:", "px;bottom:2px;content:'';left:2px;position:absolute;top:2px;width:", "px;}", ";"], ({
   label
 }) => (0, _primitiveGuards.isNil)(label) && (0, _styledComponents.css)(["width:", "px;"], tagHeight), (0, _CommonStyles.flexFlow)('row'), (0, _CommonStyles.colors)(_CommonStyles.Colors.Black, 0.07), tagHeight / 2, tagHeight, (0, _CommonStyles.colors)(_CommonStyles.Colors.White), circleRadius, circleWidth, ({
   cssOverrides

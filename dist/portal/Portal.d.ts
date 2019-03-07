@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+/// <reference path="../../src/typings/cssprop.d.ts" />
+import { Component } from 'react';
 export declare class Portal extends Component<{
     document?: Document;
 }> {
@@ -6,5 +7,5 @@ export declare class Portal extends Component<{
     portalElement: HTMLSpanElement;
     componentDidMount(): void;
     componentWillUnmount(): void;
-    render(): React.ReactPortal;
+    render(): import("react").ReactPortal;
 }
