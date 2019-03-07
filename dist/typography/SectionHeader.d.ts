@@ -2,7 +2,7 @@ import { Component } from 'react';
 import { SimpleInterpolation } from 'styled-components';
 import { AppName } from '@monorail/CommonStyles';
 declare type CCSectionHeaderProps = {
-    css?: SimpleInterpolation;
+    cssOverrides?: SimpleInterpolation;
 };
 declare type SectionHeaderProps = CCSectionHeaderProps & {
     iconLeft?: string | AppName;

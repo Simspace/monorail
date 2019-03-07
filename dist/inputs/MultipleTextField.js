@@ -22,34 +22,36 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
 // TODO - duplicate from text field container
-const MultipleTextFieldContainer = (0, _styledComponents.default)('label')`
-  ${(0, _CommonStyles.flexFlow)()};
-
-  float: none;
-  width: 100%;
-  position: relative; /* position: relative; so that the icons can be absolutely positioned. */
-
-  ${({
+const MultipleTextFieldContainer =
+/*#__PURE__*/
+(0, _styledComponents.default)('label').withConfig({
+  displayName: "MultipleTextField__MultipleTextFieldContainer",
+  componentId: "vlh0z2-0"
+})(["", ";float:none;width:100%;position:relative;", ";"], (0, _CommonStyles.flexFlow)(), ({
   cssOverrides
-}) => cssOverrides};
-`; // TODO - consolidate label into a common component
+}) => cssOverrides); // TODO - consolidate label into a common component
 
-const BBTextFieldLabel = (0, _styledComponents.default)('p')`
-  ${(0, _CommonStyles.typography)(500, _CommonStyles.FontSizes.Title5)};
-  margin: 4px 0;
-`;
+const BBTextFieldLabel =
+/*#__PURE__*/
+(0, _styledComponents.default)('p').withConfig({
+  displayName: "MultipleTextField__BBTextFieldLabel",
+  componentId: "vlh0z2-1"
+})(["", ";margin:4px 0;"], (0, _CommonStyles.typography)(500, _CommonStyles.FontSizes.Title5));
 exports.BBTextFieldLabel = BBTextFieldLabel;
-const TextFieldsWrapper = _styledComponents.default.div`
-  display: flex;
-  align-items: center;
-`;
+
+const TextFieldsWrapper =
+/*#__PURE__*/
+_styledComponents.default.div.withConfig({
+  displayName: "MultipleTextField__TextFieldsWrapper",
+  componentId: "vlh0z2-2"
+})(["display:flex;align-items:center;"]);
 
 class MultipleTextField extends _react.Component {
   render() {
     const {
       label,
       textFields,
-      css: cssOverrides,
+      cssOverrides,
       onChange,
       children
     } = this.props;
@@ -59,10 +61,10 @@ class MultipleTextField extends _react.Component {
       key: k
     }, t, {
       onChange: e => onChange(t.key, t.type === 'number' ? Number(e.target.value) : e.target.value),
-      css: {
+      cssOverrides: {
         paddingLeft: k === 0 ? '0px' : '4px',
         paddingRight: k === textFields.length - 1 ? '0px' : '4px',
-        ...(t.css || {})
+        ...(t.cssOverrides || {})
       }
     }))), children && children));
   }

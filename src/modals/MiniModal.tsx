@@ -48,11 +48,11 @@ export class MiniModal extends Component<Props> {
       >
         <BBModalBackground
           mini
-          css={css`
+          cssOverrides={css`
             ${scaleAnimation.outSideContentStyles} ${modalBackgroundCss};
           `}
         >
-          <BBModalContent css={scaleAnimation.inSideContentStyles}>
+          <BBModalContent cssOverrides={scaleAnimation.inSideContentStyles}>
             <BBModalHeader
               mini
               onClose={onClick}

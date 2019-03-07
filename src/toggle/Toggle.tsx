@@ -97,7 +97,7 @@ const CCToggle = styled<ToggleProps, 'label'>('label')`
           border-color: ${colors(Colors.Black, 0.06)};
         `};
 
-  ${({ css: cssOverrides }) => cssOverrides};
+  ${({ cssOverrides }) => cssOverrides};
 `
 
 const StyledIconChecked = styled<{ checked: boolean } & SliderIconProps>(
@@ -165,7 +165,7 @@ type Slider = {
 type ToggleProps = {
   toggleSize: ToggleSize
   checked: boolean
-  css?: SimpleInterpolation
+  cssOverrides?: SimpleInterpolation
   onChange?: (checked: boolean) => void
 }
 
@@ -183,10 +183,14 @@ export class Toggle extends Component<ToggleProps> {
   }
 
   render() {
-    const { css: cssOverrides, checked, onChange, toggleSize } = this.props
+    const { cssOverrides, checked, onChange, toggleSize } = this.props
 
     return (
-      <CCToggle css={cssOverrides} checked={checked} toggleSize={toggleSize}>
+      <CCToggle
+        cssOverrides={cssOverrides}
+        checked={checked}
+        toggleSize={toggleSize}
+      >
         <Input
           type="checkbox"
           checked={checked}

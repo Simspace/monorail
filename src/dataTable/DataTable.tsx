@@ -80,7 +80,7 @@ export const TableContainer = styled<CommonComponentType, 'div'>('div')`
   height: 100%;
   overflow: hidden;
 
-  ${({ css: cssOverrides }) => cssOverrides};
+  ${({ cssOverrides }) => cssOverrides};
 `
 
 // Header Components
@@ -91,7 +91,7 @@ export const TableHeaderContainer = styled<
 >('div')`
   ${({
     collapsible = false,
-    css: cssOverrides,
+    cssOverrides,
     dense = false,
     singleCollection = false,
   }) => css`
@@ -112,7 +112,7 @@ export const TableHeaderData = styled<
   CommonComponentType & TableDataType & { hasSorter?: boolean },
   'div'
 >('div')`
-  ${({ css: cssOverrides, flex, hasSorter = false, textAlign, width }) => css`
+  ${({ cssOverrides, flex, hasSorter = false, textAlign, width }) => css`
     ${flexFlow('row')};
     ${typography(500, FontSizes.Title5)};
 
@@ -145,7 +145,7 @@ export const TableBody = styled<CommonComponentType, 'div'>('div')`
   flex: 1 1 100%;
   overflow-y: auto;
 
-  ${({ css: cssOverrides }) => cssOverrides};
+  ${({ cssOverrides }) => cssOverrides};
 `
 
 export const TableRowContainer = styled<
@@ -154,7 +154,7 @@ export const TableRowContainer = styled<
 >('div')`
   ${({
     collapsible = false,
-    css: cssOverrides,
+    cssOverrides,
     dense = false,
     singleCollection = false,
   }) => css`
@@ -184,7 +184,7 @@ export const TableRowContainer = styled<
 export const TableRowData = styled<CommonComponentType & TableDataType, 'div'>(
   'div',
 )`
-  ${({ textAlign, width, flex, css: cssOverrides }) => css`
+  ${({ textAlign, width, flex, cssOverrides }) => css`
     ${flexFlow('row')};
     ${typography(400, FontSizes.Title5)};
 
@@ -205,7 +205,7 @@ export const TableRowGroupHeader = styled<
 >('div')`
   ${({
     collapsible = false,
-    css: cssOverrides,
+    cssOverrides,
     dense = false,
     singleCollection = false,
   }) => css`
@@ -229,7 +229,7 @@ export const TableFooterContainer = styled<
 >('div')`
   ${({
     collapsible = false,
-    css: cssOverrides,
+    cssOverrides,
     dense = false,
     singleCollection = false,
   }) => css`

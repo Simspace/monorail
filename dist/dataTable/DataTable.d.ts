@@ -1,3 +1,4 @@
+/// <reference path="../../src/typings/cssprop.d.ts" />
 /// <reference types="react" />
 import { CommonComponentType } from '@monorail/types';
 declare type TableSizeType = {

@@ -17,12 +17,12 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
-const SingleCollectionContainer = _styledComponents.default.div`
-  ${(0, _CommonStyles.flexFlow)()};
-
-  overflow-x: auto;
-  height: 100%;
-`;
+const SingleCollectionContainer =
+/*#__PURE__*/
+_styledComponents.default.div.withConfig({
+  displayName: "SingleCollection__SingleCollectionContainer",
+  componentId: "sc-1n69vuw-0"
+})(["", ";overflow-x:auto;height:100%;"], (0, _CommonStyles.flexFlow)());
 
 class SingleCollection extends _react.Component {
   constructor(...args) {

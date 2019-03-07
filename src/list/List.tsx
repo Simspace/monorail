@@ -39,7 +39,7 @@ const BBListContainer = styled<BBListContainerProps, 'div'>('div')`
   overflow-y: auto;
   padding: 8px 0;
 
-  ${({ css: cssOverrides }) => cssOverrides};
+  ${({ cssOverrides }) => cssOverrides};
 `
 
 /*
@@ -47,7 +47,7 @@ const BBListContainer = styled<BBListContainerProps, 'div'>('div')`
 */
 
 type BBListContainerProps = {
-  css?: SimpleInterpolation
+  cssOverrides?: SimpleInterpolation
 }
 
 type ListContainerProps = BBListContainerProps & {
@@ -60,15 +60,15 @@ type ListContainerProps = BBListContainerProps & {
 
 export const ListContainer: StatelessComponent<ListContainerProps> = ({
   children,
-  css: cssOverrides,
+  cssOverrides,
   emptyText = "I'm empty :(",
 }) => (
-  <BBListContainer css={cssOverrides}>
+  <BBListContainer cssOverrides={cssOverrides}>
     {Children.count(children) > 0 ? (
       children
     ) : (
       <ListItem
-        css={css`
+        cssOverrides={css`
           color: ${colors(Colors.Black54)};
         `}
       >
@@ -118,11 +118,11 @@ export const ListItemText = styled<CommonComponentType, 'div'>('div')`
   overflow: hidden;
   width: 100%;
 
-  ${({ css: cssOverrides }) => cssOverrides};
+  ${({ cssOverrides }) => cssOverrides};
 `
 
 export const ListItemPrimaryText = styled<CommonComponentType, 'span'>('span')`
-  ${({ css: cssOverrides }) => css`
+  ${({ cssOverrides }) => css`
     ${typography(500, FontSizes.Title5, 'auto 6px')};
     ${ellipsis};
 
@@ -142,7 +142,7 @@ export const ListItemSecondaryText = styled<CommonComponentType, 'span'>(
   color: ${colors(Colors.Black62)};
   flex: 1 1 100%;
 
-  ${({ css: cssOverrides }) => cssOverrides};
+  ${({ cssOverrides }) => cssOverrides};
 `
 
 type BBListSizeIconProps = ListSizeProps & { icon: string }
@@ -156,22 +156,15 @@ export const ListItemGraphic = styled<BBListSizeIconProps & IconProps>(
 
   ${buttonTransition};
 
-  ${({ css: cssOverrides }) => cssOverrides};
+  ${({ cssOverrides }) => cssOverrides};
 `
 
 export const ListItem = styled<ListItemProps>(
-  ({ css: cssOverrides, children, activeClassName, ...otherProps }) => (
+  ({ cssOverrides, children, activeClassName, ...otherProps }) => (
     <div {...otherProps}>{children}</div>
   ),
 )`
-  ${({
-    as,
-    css: cssOverrides,
-    dense,
-    disabled,
-    onClick,
-    size = Sizes.DP24,
-  }) => css`
+  ${({ as, cssOverrides, dense, disabled, onClick, size = Sizes.DP24 }) => css`
     ${!isNil(onClick) || !isNil(as)
       ? css`
           background: transparent;
@@ -237,7 +230,7 @@ ListItem.defaultProps = {
   activeClassName: 'is-active',
 }
 
-type SimpleListItemProps = CommonComponentType &
+export type SimpleListItemProps = CommonComponentType &
   LinkProps & {
     dense?: boolean
     disabled?: boolean

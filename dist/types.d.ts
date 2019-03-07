@@ -3,7 +3,7 @@ import { ReactType } from 'react';
 export declare type CommonComponentType = {
     as?: ReactType;
     className?: string;
-    css?: SimpleInterpolation;
+    cssOverrides?: SimpleInterpolation;
     id?: string;
     tabIndex?: number;
 };

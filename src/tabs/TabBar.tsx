@@ -15,7 +15,7 @@ export const TabBarContainer = styled<CCTabBarProps, 'div'>('div')`
   border-bottom: 1px solid ${colors(Colors.Grey94)};
   flex-shrink: 0;
 
-  ${({ css: cssOverrides }) => cssOverrides};
+  ${({ cssOverrides }) => cssOverrides};
 `
 
 const TabBarIndicator = styled<TabBarIndicatorProps, 'div'>('div')`
@@ -43,7 +43,7 @@ const TabBarActions = styled.div`
 `
 
 type CCTabBarProps = {
-  css?: SimpleInterpolation
+  cssOverrides?: SimpleInterpolation
   size: Sizes
   activeTabIndex?: number
 }
@@ -136,7 +136,7 @@ export class TabBar extends Component<TabBarProps, TabBarState> {
   }
 
   render() {
-    const { css: cssOverrides, size, actions } = this.props
+    const { cssOverrides, size, actions } = this.props
     const {
       indicatorLeft,
       indicatorWidth,
@@ -144,7 +144,7 @@ export class TabBar extends Component<TabBarProps, TabBarState> {
     } = this.state
 
     return (
-      <TabBarContainer css={cssOverrides} size={size}>
+      <TabBarContainer cssOverrides={cssOverrides} size={size}>
         {this.renderTabs()}
 
         {!isNil(actions) && (

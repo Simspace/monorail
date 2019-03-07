@@ -23,7 +23,7 @@ const HeaderRow = styled.div<CommonComponentType>`
   height: 48px;
   padding: 0 16px;
 
-  ${({ css: cssOverrides }) => cssOverrides};
+  ${({ cssOverrides }) => cssOverrides};
 `
 
 const iconRightCss = css`
@@ -52,7 +52,7 @@ export const Header = styled<Props>(
     actions,
     appIcon,
     children,
-    css: cssOverrides,
+    cssOverrides,
     cssHeaderRow,
     iconLeft,
     noBorder = false,
@@ -60,9 +60,9 @@ export const Header = styled<Props>(
     ...otherProps
   }) => (
     <div {...otherProps}>
-      <HeaderRow css={cssHeaderRow}>
-        {appIcon && <AppIcon css={iconRightCss} appName={appIcon} />}
-        {iconLeft && <Icon css={iconRightCss} icon={iconLeft} />}
+      <HeaderRow cssOverrides={cssHeaderRow}>
+        {appIcon && <AppIcon cssOverrides={iconRightCss} appName={appIcon} />}
+        {iconLeft && <Icon cssOverrides={iconRightCss} icon={iconLeft} />}
         {title}
         {actions}
       </HeaderRow>
@@ -71,7 +71,7 @@ export const Header = styled<Props>(
     </div>
   ),
 )`
-  ${({ noBorder, appIcon, css: cssOverride }) => css`
+  ${({ noBorder, appIcon, cssOverrides }) => css`
     ${!noBorder &&
       css`
         &::after {
@@ -91,6 +91,6 @@ export const Header = styled<Props>(
     position: relative;
     flex-shrink: 0;
 
-    ${cssOverride};
+    ${cssOverrides};
   `};
 `

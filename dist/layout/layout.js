@@ -11,24 +11,24 @@ var _CommonStyles = require("../CommonStyles");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-const AppBody = (0, _styledComponents.default)('div')`
-  ${(0, _CommonStyles.flexFlow)('row')};
-
-  flex: 1;
-  overflow: hidden;
-`;
+const AppBody =
+/*#__PURE__*/
+(0, _styledComponents.default)('div').withConfig({
+  displayName: "layout__AppBody",
+  componentId: "sc-1ygcav0-0"
+})(["", ";flex:1;overflow:hidden;"], (0, _CommonStyles.flexFlow)('row'));
 exports.AppBody = AppBody;
-const AppContainer = (0, _styledComponents.default)('div')`
-  ${(0, _CommonStyles.flexFlow)()};
-
-  flex: 1;
-  overflow: hidden;
-`;
+const AppContainer =
+/*#__PURE__*/
+(0, _styledComponents.default)('div').withConfig({
+  displayName: "layout__AppContainer",
+  componentId: "sc-1ygcav0-1"
+})(["", ";flex:1;overflow:hidden;"], (0, _CommonStyles.flexFlow)());
 exports.AppContainer = AppContainer;
-const PageContent = (0, _styledComponents.default)('div')`
-  ${(0, _CommonStyles.flexFlow)()};
-
-  flex: 1;
-  overflow: hidden;
-`;
+const PageContent =
+/*#__PURE__*/
+(0, _styledComponents.default)('div').withConfig({
+  displayName: "layout__PageContent",
+  componentId: "sc-1ygcav0-2"
+})(["", ";flex:1;overflow:hidden;"], (0, _CommonStyles.flexFlow)());
 exports.PageContent = PageContent;

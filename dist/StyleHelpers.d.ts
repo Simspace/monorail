@@ -10,7 +10,7 @@ export declare type StyledComponentCssOverrides = {
  */
 export declare const styled: <P, E = HTMLDivElement>(tagName: string | React.ComponentClass<P, any> | React.FunctionComponent<P>) => import("styled-components").ThemedStyledFunction<P & React.HTMLProps<E>, any, any>;
 declare type Props = {
-    css?: SimpleInterpolation | FlattenInterpolation<ThemeProps<GlobalAppThemeInterface>>[];
+    cssOverrides?: SimpleInterpolation | FlattenInterpolation<ThemeProps<GlobalAppThemeInterface>>[];
 };
 /**
  * The Div helper is a component that accepts `css` prop so we can easily inline CSS Objects with TypeScript support.
@@ -19,7 +19,7 @@ declare type Props = {
  * Usage:
  ```
   <Div
-    css={{ display: 'flex'}}
+    cssOverrides={{ display: 'flex'}}
     cssLoose={{ '& > div': { display: 'flex' }}}
   />
  ```

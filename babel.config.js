@@ -38,12 +38,12 @@ module.exports = {
         loose: true,
       },
     ],
-    // [
-    //   'styled-components',
-    //   {
-    //     pure: true,
-    //   },
-    // ],
+    [
+      'styled-components',
+      {
+        pure: true,
+      },
+    ],
     // '@babel/plugin-transform-react-inline-elements',
     // 'transform-react-remove-prop-types',
     // 'transform-react-pure-class-to-function',

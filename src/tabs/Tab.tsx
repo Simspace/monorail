@@ -43,7 +43,7 @@ const CCTab = styled<CCTabProps, 'div'>('div')`
 
   ${baseFocusStyles()};
 
-  ${({ css: cssOverrides }) => cssOverrides};
+  ${({ cssOverrides }) => cssOverrides};
 `
 
 type CCTabProps = CommonComponentType &
@@ -109,14 +109,14 @@ export class Tab extends Component<TabProps> {
   }
 
   render() {
-    const { isActive, children, css: cssOverrides, as, to } = this.props
+    const { isActive, children, cssOverrides, as, to } = this.props
 
     return (
       <CCTab
         onClick={this.onClick}
         ref={this.tabRef}
         isActive={isActive}
-        css={cssOverrides}
+        cssOverrides={cssOverrides}
         as={as}
         to={to}
       >

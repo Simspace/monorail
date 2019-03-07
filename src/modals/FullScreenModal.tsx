@@ -38,7 +38,7 @@ export class FullScreenModal extends Component<Props> {
         togglePopOver={togglePopOver}
       >
         <BBModalBackground
-          css={css`
+          cssOverrides={css`
             height: 100%;
             width: 100%;
             margin: 0;

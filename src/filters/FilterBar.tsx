@@ -39,19 +39,21 @@ const sorterItemStyle = (selected: boolean) => css`
   }
 `
 
-const BBFilterBar = styled<{ css?: SimpleInterpolation }, 'div'>('div')`
+const BBFilterBar = styled<{ cssOverrides?: SimpleInterpolation }, 'div'>(
+  'div',
+)`
   ${flexFlow('row')};
 
   margin-left: -4px;
 
-  ${({ css: cssOverrides }) => cssOverrides};
+  ${({ cssOverrides }) => cssOverrides};
 `
 
 type Props<
   CollectionItem extends object,
   FilterByKey extends keyof CollectionItem & string
 > = {
-  css?: SimpleInterpolation
+  cssOverrides?: SimpleInterpolation
   filterGroups: Array<FilterGroupWithData<CollectionItem, FilterByKey>>
   sorterGroup?: SorterGroup<CollectionItem>
   isFiltered: boolean
@@ -79,7 +81,7 @@ export class FilterBar<
         <>
           {filterGroup.label}
           <Status
-            css={css`
+            cssOverrides={css`
               margin-left: 4px;
             `}
           >
@@ -120,7 +122,7 @@ export class FilterBar<
             {filter.label}
           </Choice>
         ))}
-        css={css`
+        cssOverrides={css`
           margin: 4px;
         `}
         isActive={group.activeFilterCount !== group.filters.length}
@@ -138,7 +140,7 @@ export class FilterBar<
         document={document}
         content={array.map(sorterGroup.sorters, sorter => (
           <Div
-            css={sorterItemStyle(sorter.selected)}
+            cssOverrides={sorterItemStyle(sorter.selected)}
             onClick={() =>
               onSorterChange ? onSorterChange(sorter.key) : undefined
             }
@@ -147,7 +149,7 @@ export class FilterBar<
             {sorter.label}
           </Div>
         ))}
-        css={css`
+        cssOverrides={css`
           margin: 4px;
         `}
         isActive={false}
@@ -165,17 +167,17 @@ export class FilterBar<
       onSearchChange,
       isFiltered,
       resetFilters,
-      css: cssOverrides,
+      cssOverrides,
     } = this.props
 
     return (
-      <BBFilterBar css={cssOverrides}>
+      <BBFilterBar cssOverrides={cssOverrides}>
         {this.renderFilters()}
         {this.renderSorters()}
         <Button
           size={ButtonSize.Compact}
           display={ButtonDisplay.Secondary}
-          css={css`
+          cssOverrides={css`
             ${visible(isFiltered)};
             margin: 4px;
             transform: translateX(${isFiltered ? 0 : -32}px);
@@ -189,7 +191,7 @@ export class FilterBar<
           Clear Filters
         </Button>
         <Search
-          css={css`
+          cssOverrides={css`
             margin: auto 0 auto auto;
             max-width: 256px;
             width: 100%;

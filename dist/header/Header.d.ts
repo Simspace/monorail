@@ -10,7 +10,7 @@ declare type Props = CommonComponentType & {
     noBorder?: boolean;
     title: string;
 };
-export declare const Header: import("styled-components").StyledComponentClass<Props, any, Pick<Props, "title" | "id" | "css" | "className" | "as" | "tabIndex" | "appIcon" | "iconLeft" | "noBorder" | "actions" | "cssHeaderRow"> & {
+export declare const Header: import("styled-components").StyledComponentClass<Props, any, Pick<Props, "title" | "id" | "cssOverrides" | "className" | "as" | "tabIndex" | "appIcon" | "iconLeft" | "noBorder" | "actions" | "cssHeaderRow"> & {
     theme?: any;
 }>;
 export {};

@@ -6,7 +6,7 @@ export declare const BBSearchContainer: import("styled-components").StyledCompon
 export declare const BBSearchInput: import("styled-components").StyledComponentClass<React.ClassAttributes<HTMLInputElement> & React.InputHTMLAttributes<HTMLInputElement> & BBSearchInputProps, any, React.ClassAttributes<HTMLInputElement> & React.InputHTMLAttributes<HTMLInputElement> & BBSearchInputProps>;
 export declare type BBSearchInput = StyledHtmlElement<HTMLInputElement, BBSearchInputProps>;
 export declare type BBSearchContainerProps = {
-    css?: SimpleInterpolation;
+    cssOverrides?: SimpleInterpolation;
     searchRef?: RefObject<SearchRefType>;
     darkMode: boolean;
 };

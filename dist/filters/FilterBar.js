@@ -35,30 +35,16 @@ var _buttonTypes = require("../buttons/buttonTypes");
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
-const sorterItemStyle = selected => _styledComponents.css`
-  ${(0, _CommonStyles.typography)(500, _CommonStyles.FontSizes.Content)};
+const sorterItemStyle = selected => (0, _styledComponents.css)(["", ";cursor:pointer;padding:8px;", ";:hover{background:hsla(219,100%,54%,0.1);}"], (0, _CommonStyles.typography)(500, _CommonStyles.FontSizes.Content), selected && (0, _styledComponents.css)(["background:hsla(219,100%,54%,0.1);"]));
 
-  cursor: pointer;
-  padding: 8px;
-
-  ${selected && _styledComponents.css`
-      background: hsla(219, 100%, 54%, 0.1);
-    `};
-
-  :hover {
-    background: hsla(219, 100%, 54%, 0.1);
-  }
-`;
-
-const BBFilterBar = (0, _styledComponents.default)('div')`
-  ${(0, _CommonStyles.flexFlow)('row')};
-
-  margin-left: -4px;
-
-  ${({
-  css: cssOverrides
-}) => cssOverrides};
-`;
+const BBFilterBar =
+/*#__PURE__*/
+(0, _styledComponents.default)('div').withConfig({
+  displayName: "FilterBar__BBFilterBar",
+  componentId: "sc-1g2tevy-0"
+})(["", ";margin-left:-4px;", ";"], (0, _CommonStyles.flexFlow)('row'), ({
+  cssOverrides
+}) => cssOverrides);
 
 class FilterBar extends _react.Component {
   constructor(...args) {
@@ -71,9 +57,7 @@ class FilterBar extends _react.Component {
       } else if (filterGroup.activeFilterCount > 1) {
         // If changed and label is greater than 1, show the count
         return _react.default.createElement(_react.default.Fragment, null, filterGroup.label, _react.default.createElement(_Status.Status, {
-          css: _styledComponents.css`
-              margin-left: 4px;
-            `
+          cssOverrides: (0, _styledComponents.css)(["margin-left:4px;"])
         }, filterGroup.activeFilterCount));
       } else if (filterGroup.activeFilterCount === 1) {
         const headFilterOpt = (0, _Array2.head)(filterGroup.filters);
@@ -100,9 +84,7 @@ class FilterBar extends _react.Component {
           checked: filter.checked,
           key: filter.value
         }, filter.label)),
-        css: _styledComponents.css`
-          margin: 4px;
-        `,
+        cssOverrides: (0, _styledComponents.css)(["margin:4px;"]),
         isActive: group.activeFilterCount !== group.filters.length,
         key: group.filterKey,
         title: this.renderFilterName(group)
@@ -118,13 +100,11 @@ class FilterBar extends _react.Component {
       return sorterGroup ? _react.default.createElement(_Filter.Filter, {
         document: document,
         content: _Array2.array.map(sorterGroup.sorters, sorter => _react.default.createElement(_StyleHelpers.Div, {
-          css: sorterItemStyle(sorter.selected),
+          cssOverrides: sorterItemStyle(sorter.selected),
           onClick: () => onSorterChange ? onSorterChange(sorter.key) : undefined,
           key: sorter.key
         }, sorter.label)),
-        css: _styledComponents.css`
-          margin: 4px;
-        `,
+        cssOverrides: (0, _styledComponents.css)(["margin:4px;"]),
         isActive: false,
         key: sorterGroup.key,
         title: sorterGroup.label
@@ -138,30 +118,17 @@ class FilterBar extends _react.Component {
       onSearchChange,
       isFiltered,
       resetFilters,
-      css: cssOverrides
+      cssOverrides
     } = this.props;
     return _react.default.createElement(BBFilterBar, {
-      css: cssOverrides
+      cssOverrides: cssOverrides
     }, this.renderFilters(), this.renderSorters(), _react.default.createElement(_Button.Button, {
       size: _buttonTypes.ButtonSize.Compact,
       display: _buttonTypes.ButtonDisplay.Secondary,
-      css: _styledComponents.css`
-            ${(0, _CommonStyles.visible)(isFiltered)};
-            margin: 4px;
-            transform: translateX(${isFiltered ? 0 : -32}px);
-            transition: background ease 75ms,
-              visibility ${(0, _CommonStyles.ease)(isFiltered)} 150ms,
-              opacity ${(0, _CommonStyles.ease)(isFiltered)} 150ms,
-              transform ${(0, _CommonStyles.ease)(isFiltered)} 150ms;
-          `,
+      cssOverrides: (0, _styledComponents.css)(["", ";margin:4px;transform:translateX(", "px);transition:background ease 75ms,visibility ", " 150ms,opacity ", " 150ms,transform ", " 150ms;"], (0, _CommonStyles.visible)(isFiltered), isFiltered ? 0 : -32, (0, _CommonStyles.ease)(isFiltered), (0, _CommonStyles.ease)(isFiltered), (0, _CommonStyles.ease)(isFiltered)),
       onClick: resetFilters
     }, "Clear Filters"), _react.default.createElement(_Search.Search, {
-      css: _styledComponents.css`
-            margin: auto 0 auto auto;
-            max-width: 256px;
-            width: 100%;
-            flex-shrink: 1;
-          `,
+      cssOverrides: (0, _styledComponents.css)(["margin:auto 0 auto auto;max-width:256px;width:100%;flex-shrink:1;"]),
       value: searchText,
       onChange: onSearchChange
     }));

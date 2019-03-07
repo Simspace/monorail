@@ -81,13 +81,13 @@ const CCButton = styled<ButtonProps, 'button'>('button')`
 
   ${baseFocusStyles()};
 
-  ${({ css: cssOverrides }) => cssOverrides};
+  ${({ cssOverrides }) => cssOverrides};
 `
 
 export type ButtonProps = {
   size: ButtonSize
   display: ButtonDisplay
-  css?: SimpleInterpolation
+  cssOverrides?: SimpleInterpolation
   disabled?: boolean
   onClick?: (event: MouseEvent<HTMLButtonElement>) => void
   type: string

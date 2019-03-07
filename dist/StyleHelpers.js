@@ -25,20 +25,26 @@ exports.styled = styled;
  * Usage:
  ```
   <Div
-    css={{ display: 'flex'}}
+    cssOverrides={{ display: 'flex'}}
     cssLoose={{ '& > div': { display: 'flex' }}}
   />
  ```
  */
-const Div = (0, _styledComponents.default)('div')`
-  ${({
-  css: cssOverrides
-}) => cssOverrides}
-`;
+const Div =
+/*#__PURE__*/
+(0, _styledComponents.default)('div').withConfig({
+  displayName: "StyleHelpers__Div",
+  componentId: "pyarqy-0"
+})(["", ""], ({
+  cssOverrides
+}) => cssOverrides);
 exports.Div = Div;
-const Form = (0, _styledComponents.default)('form')`
-  ${({
-  css: cssOverrides
-}) => cssOverrides}
-`;
+const Form =
+/*#__PURE__*/
+(0, _styledComponents.default)('form').withConfig({
+  displayName: "StyleHelpers__Form",
+  componentId: "pyarqy-1"
+})(["", ""], ({
+  cssOverrides
+}) => cssOverrides);
 exports.Form = Form;

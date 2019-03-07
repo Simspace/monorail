@@ -33,23 +33,27 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
-const MenuHeader = (0, _styledComponents.default)('span')`
-  ${(0, _CommonStyles.typography)(500, _CommonStyles.FontSizes.Title5, '12px')};
-  ${_CommonStyles.ellipsis};
+const SearchContainer =
+/*#__PURE__*/
+_styledComponents.default.div.withConfig({
+  displayName: "ContextMenu__SearchContainer",
+  componentId: "n6aqip-0"
+})(["display:flex;align-items:center;"]);
 
-  color: ${(0, _CommonStyles.colors)(_CommonStyles.Colors.Black62)};
-  flex-shrink: 0;
-
-  ${({
-  css: cssOverrides
-}) => cssOverrides};
-`;
-const MenuItemIconRow = (0, _styledComponents.default)('div')`
-  ${(0, _CommonStyles.flexFlow)('row')};
-
-  flex: 1 1 100%;
-  margin: 8px 6px 12px;
-`;
+const MenuHeader =
+/*#__PURE__*/
+(0, _styledComponents.default)('span').withConfig({
+  displayName: "ContextMenu__MenuHeader",
+  componentId: "n6aqip-1"
+})(["", ";", ";color:", ";flex-shrink:0;", ";"], (0, _CommonStyles.typography)(500, _CommonStyles.FontSizes.Title5, '12px'), _CommonStyles.ellipsis, (0, _CommonStyles.colors)(_CommonStyles.Colors.Black62), ({
+  cssOverrides
+}) => cssOverrides);
+const MenuItemIconRow =
+/*#__PURE__*/
+(0, _styledComponents.default)('div').withConfig({
+  displayName: "ContextMenu__MenuItemIconRow",
+  componentId: "n6aqip-2"
+})(["", ";flex:1 1 100%;margin:8px 6px 12px;"], (0, _CommonStyles.flexFlow)('row'));
 
 const ContextMenuItem = ({
   leftIcon,
@@ -60,34 +64,22 @@ const ContextMenuItem = ({
   dense,
   meta,
   size,
-  css: cssOverrides,
+  cssOverrides,
   ...otherProps
 }) => _react.default.createElement(_List.ListItem, _extends({
   dense: dense,
   size: size,
-  css: _styledComponents.css`
-      padding: 0 6px;
-
-      ${cssOverrides};
-    `
+  cssOverrides: (0, _styledComponents.css)(["padding:0 6px;", ";"], cssOverrides)
 }, otherProps), !(0, _primitiveGuards.isNil)(leftIcon) && _react.default.createElement(_List.ListItemGraphic, {
   icon: leftIcon,
   dense: dense,
-  css: _styledComponents.css`
-          margin-top: 12px;
-        `
+  cssOverrides: (0, _styledComponents.css)(["margin-top:12px;"])
 }), (0, _primitiveGuards.isNil)(secondaryText) && (0, _primitiveGuards.isNil)(meta) ? _react.default.createElement(_List.ListItemPrimaryText, {
-  css: _styledComponents.css`
-          margin-top: 12px;
-        `
+  cssOverrides: (0, _styledComponents.css)(["margin-top:12px;"])
 }, primaryText) : _react.default.createElement(_List.ListItemText, null, _react.default.createElement(_List.ListItemPrimaryText, {
-  css: _styledComponents.css`
-            margin-top: 6px;
-          `
+  cssOverrides: (0, _styledComponents.css)(["margin-top:6px;"])
 }, primaryText), (0, _primitiveGuards.isNil)(secondaryText) ? null : _react.default.createElement(_List.ListItemSecondaryText, {
-  css: _styledComponents.css`
-              margin-bottom: 6px;
-            `
+  cssOverrides: (0, _styledComponents.css)(["margin-bottom:6px;"])
 }, secondaryText), meta), !(0, _primitiveGuards.isNil)(rightIcon) && _react.default.createElement(_List.ListItemGraphic, {
   icon: rightIcon,
   dense: dense
@@ -110,7 +102,25 @@ class ContextMenu extends _react.Component {
         }, event.title);
 
         const items = event.items.filter(item => compareSearch(item.title) || compareSearch(item.description) || compareSearch(event.title)).map(item => _react.default.createElement(ContextMenuItem, {
-          as: _Link.default,
+          as: (0, _styledComponents.default)(props => {
+            const {
+              as: _as,
+              cssOverrides: _cssOverrides,
+              to,
+              ...linkProps
+            } = props;
+
+            if (typeof to === 'string') {
+              return _react.default.createElement(_Link.default, _extends({}, linkProps, {
+                to: to
+              }));
+            }
+
+            return _react.default.createElement(ContextMenuItem, props);
+          }).withConfig({
+            displayName: "ContextMenu__items",
+            componentId: "n6aqip-3"
+          })([""]),
           key: item.key,
           leftIcon: icon,
           primaryText: item.title,
@@ -139,6 +149,7 @@ class ContextMenu extends _react.Component {
       isOpen,
       position,
       onClick,
+      renderFilter,
       togglePopOver,
       width
     } = this.props;
@@ -155,19 +166,15 @@ class ContextMenu extends _react.Component {
     }) => {
       const contextMenuItems = _Array.array.compact(this.renderContextMenuItems(compareSearch));
 
-      return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_Search.Search, {
+      return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(SearchContainer, null, _react.default.createElement(_Search.Search, {
         value: value,
         onChange: onChange,
-        css: _styledComponents.css`
-                    margin: 12px;
-                  `,
+        cssOverrides: (0, _styledComponents.css)(["flex-grow:1;margin:12px;"]),
         searchRef: this.searchRef
-      }), _react.default.createElement(_List.ListContainer, {
-        css: _styledComponents.css`
-                    padding: 0 0 4px;
-                  `,
+      }), renderFilter()), _react.default.createElement(_List.ListContainer, {
+        cssOverrides: (0, _styledComponents.css)(["padding:0 0 4px;"]),
         emptyText: "Loading..."
-      }, !(0, _primitiveGuards.isEmptyString)(value) && (0, _Array.isEmpty)(contextMenuItems) ? _react.default.createElement(ContextMenuItem, {
+      }, (0, _Array.isEmpty)(contextMenuItems) ? _react.default.createElement(ContextMenuItem, {
         size: _CommonStyles.Sizes.DP40,
         primaryText: "No results."
       }) : contextMenuItems));
@@ -177,3 +184,6 @@ class ContextMenu extends _react.Component {
 }
 
 exports.ContextMenu = ContextMenu;
+ContextMenu.defaultProps = {
+  renderFilter: () => null
+};

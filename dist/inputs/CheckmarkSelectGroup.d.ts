@@ -9,7 +9,7 @@ declare type CheckmarkSelect = {
     enabled: boolean;
 };
 declare type Props = {
-    css?: SimpleInterpolation;
+    cssOverrides?: SimpleInterpolation;
     label?: string;
     items: CheckmarkSelect[];
     onSelect: (key: string, value: string | number | string[] | undefined) => void;

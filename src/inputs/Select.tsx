@@ -55,7 +55,7 @@ type Props = {
   value?: string | string[] | number
   placeholder?: string
   required?: boolean
-  css?: SimpleInterpolation
+  cssOverrides?: SimpleInterpolation
   name?: string
   onChange?: ((event: React.ChangeEvent<HTMLSelectElement>) => void)
 }
@@ -68,7 +68,7 @@ export const Select: SFC<Props> = ({
   required,
   placeholder,
   options,
-  css: cssOverrides,
+  cssOverrides,
   name,
   onChange,
 }) => {

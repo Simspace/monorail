@@ -18,113 +18,42 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 /*
 * Styles
 */
-const BBChoiceInput = (0, _styledComponents.default)('input')`
-  opacity: 0; /* Hiding the input. */
-  position: absolute; /* position: absolute; so that the Icons can be position: absolute; and so that the input doesn't effect the layout. */
-  z-index: -1;
-`;
-const BBChoiceFakeLabel = (0, _styledComponents.default)('div')`
-  ${({
+const BBChoiceInput =
+/*#__PURE__*/
+(0, _styledComponents.default)('input').withConfig({
+  displayName: "Choice__BBChoiceInput",
+  componentId: "sc-16u3c70-0"
+})(["opacity:0;position:absolute;z-index:-1;"]);
+const BBChoiceFakeLabel =
+/*#__PURE__*/
+(0, _styledComponents.default)('div').withConfig({
+  displayName: "Choice__BBChoiceFakeLabel",
+  componentId: "sc-16u3c70-1"
+})(["", ";", ";flex-grow:1;word-break:break-word;transition:all ease 150ms;"], ({
   answered
-}) => answered && _styledComponents.css`
-      transform: translateX(24px);
-    `};
-
-  ${(0, _CommonStyles.typography)(500, _CommonStyles.FontSizes.Title5)};
-  flex-grow: 1;
-  word-break: break-word;
-
-  transition: all ease 150ms;
-`;
-const CCChoice = (0, _styledComponents.default)('label')`
-  ${({
+}) => answered && (0, _styledComponents.css)(["transform:translateX(24px);"]), (0, _CommonStyles.typography)(500, _CommonStyles.FontSizes.Title5));
+const CCChoice =
+/*#__PURE__*/
+(0, _styledComponents.default)('label').withConfig({
+  displayName: "Choice__CCChoice",
+  componentId: "sc-16u3c70-2"
+})(["", ";", ";", ";", ";", ";align-items:center;box-sizing:border-box;cursor:pointer;display:flex;flex-direction:row;min-height:24px;padding:4px 4px 4px 32px;position:relative;user-select:none;width:100%;", ";.ChoiceButtonChecked{color:", ";transform:translateX(", "px);}.ChoiceButtonUnchecked{color:", ";transform:translateX(", "px);}.RealInput:checked ~ .ChoiceButtonChecked{", ";}.RealInput:checked ~ .ChoiceButtonUnchecked{", ";}.RealInput:not(:checked) ~ .ChoiceButtonChecked{", ";}.RealInput:not(:checked) ~ .ChoiceButtonUnchecked{", ";}.IncorrectIcon{color:", ";", ";}.CorrectIcon{color:", ";", ";}", "{left:8px;position:absolute;font-size:16px;transition:all ease 150ms;}", ";"], ({
   disabled
-}) => disabled && _CommonStyles.baseDisabledStyles};
-
-  ${({
+}) => disabled && _CommonStyles.baseDisabledStyles, ({
   readOnly,
   incorrect,
   correct
-}) => (readOnly || incorrect || correct) && _styledComponents.css`
-      cursor: default;
-      pointer-events: none;
-    `};
-
-  ${(0, _CommonStyles.baseChromelessStyles)()};
-  ${(0, _CommonStyles.flexFlow)('row')};
-  ${(0, _CommonStyles.borderRadius)()};
-
-  align-items: center;
-  box-sizing: border-box;
-  cursor: pointer;
-  display: flex;
-  flex-direction: row;
-  min-height: 24px;
-  padding: 4px 4px 4px 32px;
-  position: relative; /* position: relative; so that the input can be position: absolute; */
-  user-select: none;
-  width: 100%;
-
-  ${_CommonStyles.buttonTransition};
-
-  .ChoiceButtonChecked {
-    color: ${(0, _CommonStyles.colors)(_CommonStyles.Colors.BrandLightBlue)};
-
-    transform: translateX(${({
+}) => (readOnly || incorrect || correct) && (0, _styledComponents.css)(["cursor:default;pointer-events:none;"]), (0, _CommonStyles.baseChromelessStyles)(), (0, _CommonStyles.flexFlow)('row'), (0, _CommonStyles.borderRadius)(), _CommonStyles.buttonTransition, (0, _CommonStyles.colors)(_CommonStyles.Colors.BrandLightBlue), ({
   answered
-}) => answered ? 24 : 0}px);
-  }
-
-  .ChoiceButtonUnchecked {
-    color: ${(0, _CommonStyles.colors)(_CommonStyles.Colors.Black54)};
-
-    transform: translateX(${({
+}) => answered ? 24 : 0, (0, _CommonStyles.colors)(_CommonStyles.Colors.Black54), ({
   answered
-}) => answered ? 24 : 0}px);
-  }
-
-  .RealInput:checked ~ .ChoiceButtonChecked {
-    ${(0, _CommonStyles.visible)(true)};
-  }
-
-  .RealInput:checked ~ .ChoiceButtonUnchecked {
-    ${(0, _CommonStyles.visible)(false)};
-  }
-
-  .RealInput:not(:checked) ~ .ChoiceButtonChecked {
-    ${(0, _CommonStyles.visible)(false)};
-  }
-
-  .RealInput:not(:checked) ~ .ChoiceButtonUnchecked {
-    ${(0, _CommonStyles.visible)(true)};
-  }
-
-  .IncorrectIcon {
-    color: ${(0, _CommonStyles.colors)(_CommonStyles.Colors.Red)};
-    ${({
+}) => answered ? 24 : 0, (0, _CommonStyles.visible)(true), (0, _CommonStyles.visible)(false), (0, _CommonStyles.visible)(false), (0, _CommonStyles.visible)(true), (0, _CommonStyles.colors)(_CommonStyles.Colors.Red), ({
   incorrect
-}) => (0, _CommonStyles.visible)(incorrect)};
-  }
-
-  .CorrectIcon {
-    color: ${(0, _CommonStyles.colors)(_CommonStyles.Colors.Green)};
-    ${({
+}) => (0, _CommonStyles.visible)(incorrect), (0, _CommonStyles.colors)(_CommonStyles.Colors.Green), ({
   correct
-}) => (0, _CommonStyles.visible)(correct)};
-  }
-
-  ${_Icon.Icon} {
-    left: 8px;
-    position: absolute;
-    /* top: 4px; */
-    font-size: 16px;
-    transition: all ease 150ms;
-  }
-
-  ${({
-  css: cssOverrides
-}) => cssOverrides};
-`;
+}) => (0, _CommonStyles.visible)(correct), _Icon.Icon, ({
+  cssOverrides
+}) => cssOverrides);
 /*
 * Types
 */
@@ -173,7 +102,7 @@ class Choice extends _react.Component {
       answered,
       checked,
       correct,
-      css: cssOverrides,
+      cssOverrides,
       disabled,
       incorrect,
       onChange,
@@ -186,7 +115,7 @@ class Choice extends _react.Component {
     } = this.props;
     return _react.default.createElement(CCChoice, {
       correct: correct,
-      css: cssOverrides,
+      cssOverrides: cssOverrides,
       disabled: disabled,
       incorrect: incorrect,
       readOnly: readOnly,

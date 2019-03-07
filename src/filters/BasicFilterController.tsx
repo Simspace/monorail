@@ -79,7 +79,7 @@ export class BasicFilterController extends Component<
       return (
         <>
           {group.label}
-          <Status css={FilterStatusCSS}>{activeFilterCount}</Status>
+          <Status cssOverrides={FilterStatusCSS}>{activeFilterCount}</Status>
         </>
       )
     } else {

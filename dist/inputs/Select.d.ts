@@ -12,7 +12,7 @@ declare type Props = {
     value?: string | string[] | number;
     placeholder?: string;
     required?: boolean;
-    css?: SimpleInterpolation;
+    cssOverrides?: SimpleInterpolation;
     name?: string;
     onChange?: ((event: React.ChangeEvent<HTMLSelectElement>) => void);
 };

@@ -98,7 +98,10 @@ const customIcons = {
   star_outline: _StarOutline.StarOutline,
   star_half: _StarHalf.StarHalf
 };
-const Icon = (0, _styledComponents.default)(({
+const Icon =
+/*#__PURE__*/
+(0, _styledComponents.default)(({
+  cssOverrides: _cssOverrides,
   icon,
   ...otherProps
 }) => {
@@ -109,45 +112,12 @@ const Icon = (0, _styledComponents.default)(({
   }
 
   return _react.default.createElement("i", otherProps, icon);
-})`
-  ${({
+}).withConfig({
+  displayName: "Icon",
+  componentId: "sc-17ga27i-0"
+})(["", ";color:", ";direction:ltr;display:inline-block;fill:currentColor;flex-shrink:0;font-family:'Material Icons';font-style:normal;font-weight:normal;height:1em;letter-spacing:normal;line-height:1;text-transform:none;user-select:none;white-space:nowrap;width:1em;word-wrap:normal;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;-moz-osx-font-smoothing:grayscale;font-feature-settings:'liga';", ";"], ({
   size
-}) => size ? _styledComponents.css`
-          font-size: ${size}px;
-        ` : _styledComponents.css`
-          font-size: 16px;
-        `};
-
-  color: ${(0, _CommonStyles.colors)(_CommonStyles.Colors.Black54)};
-  direction: ltr;
-  display: inline-block;
-  fill: currentColor; /* Custom icons are svg and need this so that color works correct. */
-  flex-shrink: 0; /* Fixes custom icons shrinking when font icons wont. */
-  font-family: 'Material Icons'; /* stylelint-disable-line font-family-no-missing-generic-family-keyword */
-  font-style: normal;
-  font-weight: normal;
-  height: 1em;
-  letter-spacing: normal;
-  line-height: 1;
-  text-transform: none;
-  user-select: none;
-  white-space: nowrap;
-  width: 1em;
-  word-wrap: normal;
-
-  /* Support for all WebKit browsers. */
-  -webkit-font-smoothing: antialiased;
-  /* Support for Safari and Chrome. */
-  text-rendering: optimizeLegibility;
-
-  /* Support for Firefox. */
-  -moz-osx-font-smoothing: grayscale;
-
-  /* Support for IE. */
-  font-feature-settings: 'liga';
-
-  ${({
-  css: cssOverrides
-}) => cssOverrides};
-`;
+}) => size ? (0, _styledComponents.css)(["font-size:", "px;"], size) : (0, _styledComponents.css)(["font-size:16px;"]), (0, _CommonStyles.colors)(_CommonStyles.Colors.Black54), ({
+  cssOverrides
+}) => cssOverrides);
 exports.Icon = Icon;

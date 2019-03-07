@@ -20,7 +20,7 @@ export const styled = <P, E = HTMLDivElement>(
 ) => styledOrig<P & React.HTMLProps<E>, any>(tagName) // tslint:disable-line:no-any
 
 type Props = {
-  css?:
+  cssOverrides?:
     | SimpleInterpolation
     | FlattenInterpolation<ThemeProps<GlobalAppThemeInterface>>[]
 }
@@ -32,15 +32,15 @@ type Props = {
  * Usage:
  ```
   <Div
-    css={{ display: 'flex'}}
+    cssOverrides={{ display: 'flex'}}
     cssLoose={{ '& > div': { display: 'flex' }}}
   />
  ```
  */
 export const Div = styledOrig<Props, 'div'>('div')`
-  ${({ css: cssOverrides }) => cssOverrides}
+  ${({ cssOverrides }) => cssOverrides}
 `
 
 export const Form = styledOrig<Props, 'form'>('form')`
-  ${({ css: cssOverrides }) => cssOverrides}
+  ${({ cssOverrides }) => cssOverrides}
 `

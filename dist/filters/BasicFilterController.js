@@ -17,27 +17,16 @@ var _CommonStyles = require("../CommonStyles");
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
-const FilterStatusCSS = _styledComponents.css`
-  margin-left: 4px;
-`;
-const ChoiceSorterCss = _styledComponents.css`
-  ${(0, _CommonStyles.typography)(500, _CommonStyles.FontSizes.Content)};
-
-  cursor: pointer;
-  padding: 8px;
-
-  :hover {
-    background: hsla(219, 100%, 54%, 0.1);
-  }
-
-  i {
-    display: none;
-  }
-`;
+const FilterStatusCSS =
+/*#__PURE__*/
+(0, _styledComponents.css)(["margin-left:4px;"]);
+const ChoiceSorterCss =
+/*#__PURE__*/
+(0, _styledComponents.css)(["", ";cursor:pointer;padding:8px;:hover{background:hsla(219,100%,54%,0.1);}i{display:none;}"], (0, _CommonStyles.typography)(500, _CommonStyles.FontSizes.Content));
 exports.ChoiceSorterCss = ChoiceSorterCss;
-const ChoiceSorterSelectedCss = _styledComponents.css`
-  background: hsla(219, 100%, 54%, 0.1);
-`;
+const ChoiceSorterSelectedCss =
+/*#__PURE__*/
+(0, _styledComponents.css)(["background:hsla(219,100%,54%,0.1);"]);
 
 class BasicFilterController extends _react.Component {
   constructor(...args) {
@@ -61,7 +50,7 @@ class BasicFilterController extends _react.Component {
       } else if (activeFilterCount > 1) {
         // If changed and label is greater than 1, show the count
         return _react.default.createElement(_react.default.Fragment, null, group.label, _react.default.createElement(_Status.Status, {
-          css: FilterStatusCSS
+          cssOverrides: FilterStatusCSS
         }, activeFilterCount));
       } else {
         // If equal to 1, show the label and the single active filter

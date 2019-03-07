@@ -111,7 +111,7 @@ const CCChoice = styled<CCChoiceProps, 'label'>('label')`
     transition: all ease 150ms;
   }
 
-  ${({ css: cssOverrides }) => cssOverrides};
+  ${({ cssOverrides }) => cssOverrides};
 `
 
 /*
@@ -135,7 +135,7 @@ type BBChoiceInputProps = AnsweredProps & {
 
 type CCChoiceProps = AnsweredProps &
   BBGradeIconProps & {
-    css?: SimpleInterpolation
+    cssOverrides?: SimpleInterpolation
     disabled?: boolean
     readOnly?: boolean
     value?: string | number | string[]
@@ -195,7 +195,7 @@ export class Choice extends Component<ChoiceProps> {
       answered,
       checked,
       correct,
-      css: cssOverrides,
+      cssOverrides,
       disabled,
       incorrect,
       onChange,
@@ -210,7 +210,7 @@ export class Choice extends Component<ChoiceProps> {
     return (
       <CCChoice
         correct={correct}
-        css={cssOverrides}
+        cssOverrides={cssOverrides}
         disabled={disabled}
         incorrect={incorrect}
         readOnly={readOnly}

@@ -2,7 +2,7 @@ import React, { ChangeEvent, Component } from 'react';
 import { SimpleInterpolation } from 'styled-components';
 export declare const BBTextFieldLabel: import("styled-components").StyledComponentClass<{}, any, React.DetailedHTMLProps<React.HTMLAttributes<HTMLParagraphElement>, HTMLParagraphElement>>;
 declare type BBTextFieldContainerProps = {
-    css?: SimpleInterpolation;
+    cssOverrides?: SimpleInterpolation;
 };
 declare type BBTextFieldInputProps = {
     chromeless?: boolean;

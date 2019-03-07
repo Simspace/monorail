@@ -15,7 +15,7 @@ export declare const SidebarContainer: import("styled-components").StyledCompone
     pose: string;
 }, any, Pick<CommonComponentType & {
     pose: string;
-}, "id" | "css" | "className" | "as" | "tabIndex" | "pose"> & {
+}, "id" | "cssOverrides" | "className" | "as" | "tabIndex" | "pose"> & {
     theme?: any;
 }>;
 export declare const SidebarMenuContainer: import("styled-components").StyledComponentClass<CommonComponentType, any, CommonComponentType & React.ClassAttributes<HTMLDivElement> & React.HTMLAttributes<HTMLDivElement>>;
@@ -31,7 +31,7 @@ export declare const SidebarMenuItemDropDownToggle: import("styled-components").
     subtitle?: string | undefined;
     iconName: string;
     isSideBarCollapsed: boolean;
-}, "title" | "id" | "isOpen" | "css" | "className" | "onClick" | "as" | "tabIndex" | "disabled" | "isSideBarCollapsed" | "subtitle" | "iconName"> & {
+}, "title" | "id" | "isOpen" | "cssOverrides" | "className" | "onClick" | "as" | "tabIndex" | "disabled" | "isSideBarCollapsed" | "subtitle" | "iconName"> & {
     theme?: any;
 }>;
 export declare const SidebarMenuContextRibbon: import("styled-components").StyledComponentClass<CommonComponentType, any, CommonComponentType & React.ClassAttributes<HTMLDivElement> & React.HTMLAttributes<HTMLDivElement>>;

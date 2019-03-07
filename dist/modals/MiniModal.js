@@ -46,11 +46,9 @@ class MiniModal extends _react.Component {
       usesScaleAnimation: true
     }, _react.default.createElement(_Modals.BBModalBackground, {
       mini: true,
-      css: _styledComponents.css`
-            ${scaleAnimation.outSideContentStyles} ${modalBackgroundCss};
-          `
+      cssOverrides: (0, _styledComponents.css)(["", " ", ";"], scaleAnimation.outSideContentStyles, modalBackgroundCss)
     }, _react.default.createElement(_Modals.BBModalContent, {
-      css: scaleAnimation.inSideContentStyles
+      cssOverrides: scaleAnimation.inSideContentStyles
     }, _react.default.createElement(_Modals.BBModalHeader, {
       mini: true,
       onClose: onClick,

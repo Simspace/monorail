@@ -8,9 +8,12 @@
     "fp-ts": "1.13.0",
     "monocle-ts": "1.5.3"
   },
+  "engines": {
+    "node": "10.15.1"
+  },
   "scripts": {
     "babel-build": "babel src -d dist --extensions \".js,.jsx,.ts,.tsx\"",
-    "build": "yarn type-check && yarn clean-dist && yarn babel-build && yarn generate-type-declarations && yarn copy-package-json",
+    "build": "yarn clean-dist && yarn && yarn type-check && yarn babel-build && yarn generate-type-declarations && yarn copy-package-json",
     "clean-dist": "rm -rf dist",
     "copy-package-json": "cp package.json dist/package.json",
     "generate-type-declarations": "tsc --project tsconfig.json --allowJs false --declaration --declarationDir \"dist\" --emitDeclarationOnly --rootDir \"src\"",
@@ -28,8 +31,10 @@
   "homepage": "https://github.com/Simspace/monorail#readme",
   "dependencies": {},
   "peerDependencies": {
+    "fp-ts": "~1.13.0",
     "react": "~16.6.0",
     "react-dom": "~16.6.0",
+    "react-router": "~3.2.0",
     "styled-components": "~4.0.0"
   },
   "devDependencies": {
@@ -45,17 +50,16 @@
     "@babel/preset-typescript": "7.1.0",
     "@babel/register": "7.0.0",
     "@types/jest": "23.1.5",
-    "@types/ramda": "0.25.43",
     "@types/react": "16.8.2",
     "@types/react-dom": "16.8.0",
     "@types/react-router": "3",
     "@types/styled-components": "4.0.3",
     "babel-plugin-module-resolver": "3.1.1",
+    "babel-plugin-styled-components": "1.10.0",
     "fp-ts": "1.13.0",
     "io-ts": "1.7.1",
     "io-ts-types": "0.4.2",
     "monocle-ts": "1.5.3",
-    "ramda": "0.25.0",
     "react": "16.8.1",
     "react-datetime": "2.14.0",
     "react-dom": "16.8.1",
