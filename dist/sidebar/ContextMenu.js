@@ -102,25 +102,11 @@ class ContextMenu extends _react.Component {
         }, event.title);
 
         const items = event.items.filter(item => compareSearch(item.title) || compareSearch(item.description) || compareSearch(event.title)).map(item => _react.default.createElement(ContextMenuItem, {
-          as: (0, _styledComponents.default)(props => {
-            const {
-              as: _as,
-              cssOverrides: _cssOverrides,
-              to,
-              ...linkProps
-            } = props;
-
-            if (typeof to === 'string') {
-              return _react.default.createElement(_Link.default, _extends({}, linkProps, {
-                to: to
-              }));
-            }
-
-            return _react.default.createElement(ContextMenuItem, props);
-          }).withConfig({
-            displayName: "ContextMenu__items",
-            componentId: "n6aqip-3"
-          })([""]),
+          as: ({
+            as: _as,
+            cssOverrides: _cssOverrides,
+            ...linkProps
+          }) => _react.default.createElement(_Link.default, linkProps),
           key: item.key,
           leftIcon: icon,
           primaryText: item.title,

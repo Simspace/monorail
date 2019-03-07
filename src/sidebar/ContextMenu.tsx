@@ -188,20 +188,9 @@ export class ContextMenu extends Component<Props> {
         )
         .map(item => (
           <ContextMenuItem
-            as={styled<SimpleListItemProps>(props => {
-              const {
-                as: _as,
-                cssOverrides: _cssOverrides,
-                to,
-                ...linkProps
-              } = props
-
-              if (typeof to === 'string') {
-                return <Link {...linkProps} to={to} />
-              }
-
-              return <ContextMenuItem {...props} />
-            })``}
+            as={({ as: _as, cssOverrides: _cssOverrides, ...linkProps }) => (
+              <Link {...linkProps} />
+            )}
             key={item.key}
             leftIcon={icon}
             primaryText={item.title}

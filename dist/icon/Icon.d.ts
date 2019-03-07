@@ -1,6 +1,7 @@
 import { MouseEvent } from 'react';
 import { SimpleInterpolation } from 'styled-components';
 import { Omit } from 'typelevel-ts';
+export declare const MaterialIconFontFace: import("styled-components").GlobalStyleClass<{}, import("styled-components").DefaultTheme>;
 export declare const Icon: import("styled-components").StyledComponentClass<IconProps, any, Pick<IconProps, "cssOverrides" | "icon" | "className" | "onClick" | "size"> & {
     theme?: any;
 }>;
