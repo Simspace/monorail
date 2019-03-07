@@ -8,14 +8,14 @@ import { Overlay } from '@monorail/toggle/Overlay'
 import { fromNullable } from 'fp-ts/lib/Option'
 import { StyledHtmlElement } from '@monorail/CoreUtils/type-level'
 
-type DropDownContentProps = { css?: SimpleInterpolation }
+type DropDownContentProps = { cssOverrides?: SimpleInterpolation }
 const DropDownContent = styled<DropDownContentProps, 'div'>('div')`
-  ${({ css: cssOverride }) => css`
+  ${({ cssOverrides }) => css`
     ${flexFlow()};
 
     overflow: hidden;
 
-    ${cssOverride};
+    ${cssOverrides};
   `};
 `
 
@@ -94,13 +94,13 @@ export class SidebarDropDown extends Component<Props, State> {
       >
         <BBCardBackground
           ref={this.dropDownRef}
-          css={css`
+          cssOverrides={css`
             width: ${width}px;
 
             ${scaleAnimation.outSideContentStyles};
           `}
         >
-          <DropDownContent css={scaleAnimation.inSideContentStyles}>
+          <DropDownContent cssOverrides={scaleAnimation.inSideContentStyles}>
             {children}
           </DropDownContent>
         </BBCardBackground>

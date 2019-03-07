@@ -21,37 +21,14 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
-const CCTab = (0, _styledComponents.default)('div')`
-  ${(0, _CommonStyles.flexFlow)('row')};
-  ${(0, _CommonStyles.typography)(700, _CommonStyles.FontSizes.Title5)};
-
-  align-items: center;
-  color: ${(0, _CommonStyles.colors)(_CommonStyles.Colors.BrandLightBlue)};
-  cursor: pointer;
-  min-height: 24px;
-  padding: 0 8px;
-  text-transform: uppercase;
-  user-select: none;
-
-  &:hover,
-  &:focus {
-    text-decoration: none;
-  }
-
-  &:hover {
-    background: ${(0, _CommonStyles.colors)(_CommonStyles.Colors.BrandLightBlue, 0.08)};
-  }
-
-  &:active {
-    background: ${(0, _CommonStyles.colors)(_CommonStyles.Colors.BrandLightBlue, 0.16)};
-  }
-
-  ${(0, _CommonStyles.baseFocusStyles)()};
-
-  ${({
-  css: cssOverrides
-}) => cssOverrides};
-`;
+const CCTab =
+/*#__PURE__*/
+(0, _styledComponents.default)('div').withConfig({
+  displayName: "Tab__CCTab",
+  componentId: "vx48hj-0"
+})(["", ";", ";align-items:center;color:", ";cursor:pointer;min-height:24px;padding:0 8px;text-transform:uppercase;user-select:none;&:hover,&:focus{text-decoration:none;}&:hover{background:", ";}&:active{background:", ";}", ";", ";"], (0, _CommonStyles.flexFlow)('row'), (0, _CommonStyles.typography)(700, _CommonStyles.FontSizes.Title5), (0, _CommonStyles.colors)(_CommonStyles.Colors.BrandLightBlue), (0, _CommonStyles.colors)(_CommonStyles.Colors.BrandLightBlue, 0.08), (0, _CommonStyles.colors)(_CommonStyles.Colors.BrandLightBlue, 0.16), (0, _CommonStyles.baseFocusStyles)(), ({
+  cssOverrides
+}) => cssOverrides);
 
 class Tab extends _react.Component {
   constructor(...args) {
@@ -106,7 +83,7 @@ class Tab extends _react.Component {
     const {
       isActive,
       children,
-      css: cssOverrides,
+      cssOverrides,
       as,
       to
     } = this.props;
@@ -114,7 +91,7 @@ class Tab extends _react.Component {
       onClick: this.onClick,
       ref: this.tabRef,
       isActive: isActive,
-      css: cssOverrides,
+      cssOverrides: cssOverrides,
       as: as,
       to: to
     }, children);

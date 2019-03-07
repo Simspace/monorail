@@ -24,7 +24,7 @@ const BBTextAreaContainer = styled<TextAreaProps, 'label'>('label')`
   width: 100%;
   position: relative; /* position: relative; so that the icons can be absolutely positioned. */
 
-  ${({ css: cssOverrides }) => cssOverrides};
+  ${({ cssOverrides }) => cssOverrides};
 `
 
 const BBTextAreaLabel = styled('p')`
@@ -82,7 +82,7 @@ const BBTextAreaInput = styled<BBTextAreaInputProps, 'textarea'>('textarea')`
 */
 
 type BBTextAreaContainerProps = {
-  css?: SimpleInterpolation
+  cssOverrides?: SimpleInterpolation
 }
 
 type BBTextAreaInputProps = {
@@ -141,7 +141,7 @@ export class TextArea extends Component<TextAreaProps> {
     const {
       chromeless,
       compact,
-      css: cssOverrides,
+      cssOverrides,
       disabled,
       label,
       onChange,
@@ -153,7 +153,7 @@ export class TextArea extends Component<TextAreaProps> {
     } = this.props
 
     return (
-      <BBTextAreaContainer css={cssOverrides}>
+      <BBTextAreaContainer cssOverrides={cssOverrides}>
         {!isNil(label) && <BBTextAreaLabel>{label}</BBTextAreaLabel>}
         <BBTextAreaInput
           chromeless={chromeless}

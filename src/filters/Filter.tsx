@@ -37,7 +37,7 @@ const CCFilter = styled<CCFilterProps, 'div'>('div')`
   user-select: none;
   flex-shrink: 0; /* Needs this for IE11 but not Chrome. */
 
-  ${({ css: cssOverrides }) => cssOverrides};
+  ${({ cssOverrides }) => cssOverrides};
 `
 
 const FilterText = styled('span')`
@@ -54,7 +54,7 @@ const FilterIcon = styled(Icon)`
 `
 
 type CCFilterProps = {
-  css?: SimpleInterpolation
+  cssOverrides?: SimpleInterpolation
   isOpen?: boolean
   isActive: boolean
   onToggle?: (isOpen: boolean) => void
@@ -68,19 +68,13 @@ type Props = CCFilterProps & {
 
 export class Filter extends Component<Props> {
   render() {
-    const {
-      css: cssOverrides,
-      title,
-      content,
-      isActive,
-      ...otherProps
-    } = this.props
+    const { cssOverrides, title, content, isActive, ...otherProps } = this.props
 
     return (
       <PopOver
         {...otherProps}
         toggle={props => (
-          <CCFilter {...props} css={cssOverrides} isActive={isActive}>
+          <CCFilter {...props} cssOverrides={cssOverrides} isActive={isActive}>
             <FilterText>{title}</FilterText>
             <FilterIcon icon="arrow_drop_down" />
           </CCFilter>

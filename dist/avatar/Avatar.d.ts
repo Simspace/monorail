@@ -1,7 +1,7 @@
 import { StatelessComponent } from 'react';
 import { SimpleInterpolation } from 'styled-components';
 declare type CCAvatarProps = {
-    css?: SimpleInterpolation;
+    cssOverrides?: SimpleInterpolation;
     team?: boolean;
 };
 declare type AvatarProps = CCAvatarProps & {

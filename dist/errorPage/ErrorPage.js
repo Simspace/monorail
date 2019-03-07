@@ -22,42 +22,42 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 /*
 * Styles
 */
-const CCErrorPage = (0, _styledComponents.default)('div')`
-  ${(0, _CommonStyles.flexFlow)('column')};
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-`;
-const IconCircle = (0, _styledComponents.default)('div')`
-  ${(0, _CommonStyles.flexFlow)('column')};
-  width: 120px;
-  height: 120px;
-  background: #ed6d6e;
-  border-radius: 50%;
-`;
-const StyledIcon = (0, _styledComponents.default)(_Icon.Icon)`
-  color: ${(0, _CommonStyles.colors)(_CommonStyles.Colors.White)};
-  margin: auto auto;
-`;
-const FourZeroFourIcon = (0, _styledComponents.default)('div')`
-  color: #ed6d6e;
-  font-size: 88px;
-  font-weight: 500;
-  margin: auto auto;
-`;
-const Title = (0, _styledComponents.default)('h1')`
-  ${(0, _CommonStyles.typography)(700, _CommonStyles.FontSizes.Title1)};
-  color: ${(0, _CommonStyles.colors)(_CommonStyles.Colors.Black89)};
-  margin: 32px 0 32px 0;
-`;
-const ErrorMessage = (0, _styledComponents.default)('div')`
-  ${(0, _CommonStyles.typography)(400, _CommonStyles.FontSizes.Title3)};
-  color: ${(0, _CommonStyles.colors)(_CommonStyles.Colors.Black89)};
-  text-align: center;
-  width: 100%;
-  max-width: 448px;
-`;
+const CCErrorPage =
+/*#__PURE__*/
+(0, _styledComponents.default)('div').withConfig({
+  displayName: "ErrorPage__CCErrorPage",
+  componentId: "r46uot-0"
+})(["", ";justify-content:center;align-items:center;width:100%;height:100%;"], (0, _CommonStyles.flexFlow)('column'));
+const IconCircle =
+/*#__PURE__*/
+(0, _styledComponents.default)('div').withConfig({
+  displayName: "ErrorPage__IconCircle",
+  componentId: "r46uot-1"
+})(["", ";width:120px;height:120px;background:#ed6d6e;border-radius:50%;"], (0, _CommonStyles.flexFlow)('column'));
+const StyledIcon =
+/*#__PURE__*/
+(0, _styledComponents.default)(_Icon.Icon).withConfig({
+  displayName: "ErrorPage__StyledIcon",
+  componentId: "r46uot-2"
+})(["color:", ";margin:auto auto;"], (0, _CommonStyles.colors)(_CommonStyles.Colors.White));
+const FourZeroFourIcon =
+/*#__PURE__*/
+(0, _styledComponents.default)('div').withConfig({
+  displayName: "ErrorPage__FourZeroFourIcon",
+  componentId: "r46uot-3"
+})(["color:#ed6d6e;font-size:88px;font-weight:500;margin:auto auto;"]);
+const Title =
+/*#__PURE__*/
+(0, _styledComponents.default)('h1').withConfig({
+  displayName: "ErrorPage__Title",
+  componentId: "r46uot-4"
+})(["", ";color:", ";margin:32px 0 32px 0;"], (0, _CommonStyles.typography)(700, _CommonStyles.FontSizes.Title1), (0, _CommonStyles.colors)(_CommonStyles.Colors.Black89));
+const ErrorMessage =
+/*#__PURE__*/
+(0, _styledComponents.default)('div').withConfig({
+  displayName: "ErrorPage__ErrorMessage",
+  componentId: "r46uot-5"
+})(["", ";color:", ";text-align:center;width:100%;max-width:448px;"], (0, _CommonStyles.typography)(400, _CommonStyles.FontSizes.Title3), (0, _CommonStyles.colors)(_CommonStyles.Colors.Black89));
 /*
 * Types
 */

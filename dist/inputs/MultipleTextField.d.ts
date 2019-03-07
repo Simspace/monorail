@@ -8,7 +8,7 @@ declare type MultipleTextFieldProps = TextFieldProps & {
 declare type Props = {
     label?: string;
     onChange: (key: string, value: string | number) => void;
-    css?: SimpleInterpolation;
+    cssOverrides?: SimpleInterpolation;
     textFields: MultipleTextFieldProps[];
     children?: ReactNode;
 };

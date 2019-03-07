@@ -4,7 +4,7 @@ import { Sizes } from '@monorail/CommonStyles';
 import { IconProps } from '@monorail/icon/Icon';
 import { CommonComponentType } from '@monorail/types';
 declare type BBListContainerProps = {
-    css?: SimpleInterpolation;
+    cssOverrides?: SimpleInterpolation;
 };
 declare type ListContainerProps = BBListContainerProps & {
     emptyText?: string;
@@ -31,13 +31,13 @@ export declare const ListItemGraphic: import("styled-components").StyledComponen
     icon: string;
 } & IconProps, any, Pick<ListSizeProps & {
     icon: string;
-} & IconProps, "css" | "icon" | "className" | "onClick" | "size" | "dense"> & {
+} & IconProps, "cssOverrides" | "icon" | "className" | "onClick" | "size" | "dense"> & {
     theme?: any;
 }>;
-export declare const ListItem: import("styled-components").StyledComponentClass<ListItemProps, any, Pick<ListItemProps, "id" | "css" | "className" | "onClick" | "size" | "as" | "tabIndex" | "to" | "disabled" | "dense" | "activeClassName" | "activeStyle" | "onlyActiveOnIndex"> & {
+export declare const ListItem: import("styled-components").StyledComponentClass<ListItemProps, any, Pick<ListItemProps, "id" | "cssOverrides" | "className" | "onClick" | "size" | "as" | "tabIndex" | "to" | "disabled" | "dense" | "activeClassName" | "activeStyle" | "onlyActiveOnIndex"> & {
     theme?: any;
 }>;
-declare type SimpleListItemProps = CommonComponentType & LinkProps & {
+export declare type SimpleListItemProps = CommonComponentType & LinkProps & {
     dense?: boolean;
     disabled?: boolean;
     leftIcon?: string;

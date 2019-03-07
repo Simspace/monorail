@@ -9,7 +9,7 @@ export declare type BBCardBackgroundProps = CommonComponentType & {
     ref?: Ref<any>;
     cssCardContent?: SimpleInterpolation;
 };
-export declare const BBCardBackground: import("styled-components").StyledComponentClass<BBCardBackgroundProps, any, Pick<BBCardBackgroundProps, "id" | "ref" | "css" | "className" | "onClick" | "as" | "tabIndex" | "elevation" | "hover" | "cssCardContent"> & {
+export declare const BBCardBackground: import("styled-components").StyledComponentClass<BBCardBackgroundProps, any, Pick<BBCardBackgroundProps, "id" | "ref" | "cssOverrides" | "className" | "onClick" | "as" | "tabIndex" | "elevation" | "hover" | "cssCardContent"> & {
     theme?: any;
 }>;
 declare type BBCardBottomBorderProps = {
@@ -17,7 +17,7 @@ declare type BBCardBottomBorderProps = {
 };
 declare type BBCardHeaderProps = BBCardBottomBorderProps & {
     appIcon?: AppName;
-    css?: SimpleInterpolation;
+    cssOverrides?: SimpleInterpolation;
     iconLeft?: string;
     iconRight?: string;
     noBorder?: boolean;
@@ -26,7 +26,7 @@ declare type BBCardHeaderProps = BBCardBottomBorderProps & {
 export declare const BBCardHeader: StatelessComponent<BBCardHeaderProps>;
 declare type BBCardGridProps = {
     cardWidth?: number;
-    css?: SimpleInterpolation;
+    cssOverrides?: SimpleInterpolation;
 };
 export declare const BBCardGrid: import("styled-components").StyledComponentClass<BBCardGridProps, any, BBCardGridProps & React.ClassAttributes<HTMLDivElement> & React.HTMLAttributes<HTMLDivElement>>;
 export {};

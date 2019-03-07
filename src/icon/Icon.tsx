@@ -61,15 +61,17 @@ const customIcons: { [key: string]: ComponentType<CustomIconProps> } = {
   star_half: StarHalf,
 }
 
-export const Icon = styled<IconProps>(({ icon, ...otherProps }: IconProps) => {
-  const CustomIcon = customIcons[icon]
+export const Icon = styled<IconProps>(
+  ({ cssOverrides: _cssOverrides, icon, ...otherProps }: IconProps) => {
+    const CustomIcon = customIcons[icon]
 
-  if (CustomIcon) {
-    return <CustomIcon {...otherProps} />
-  }
+    if (CustomIcon) {
+      return <CustomIcon {...otherProps} />
+    }
 
-  return <i {...otherProps}>{icon}</i>
-})`
+    return <i {...otherProps}>{icon}</i>
+  },
+)`
   ${({ size }) =>
     size
       ? css`
@@ -107,12 +109,12 @@ export const Icon = styled<IconProps>(({ icon, ...otherProps }: IconProps) => {
   /* Support for IE. */
   font-feature-settings: 'liga';
 
-  ${({ css: cssOverrides }) => cssOverrides};
+  ${({ cssOverrides }) => cssOverrides};
 `
 
 export type IconProps = {
   className?: string
-  css?: SimpleInterpolation
+  cssOverrides?: SimpleInterpolation
   icon: string
   onClick?: (event: MouseEvent<Element>) => void
   size?: number

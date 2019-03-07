@@ -34,20 +34,14 @@ type MultipleTextFieldProps = TextFieldProps & { key: string }
 type Props = {
   label?: string
   onChange: (key: string, value: string | number) => void
-  css?: SimpleInterpolation
+  cssOverrides?: SimpleInterpolation
   textFields: MultipleTextFieldProps[]
   children?: ReactNode
 }
 
 export class MultipleTextField extends Component<Props> {
   render() {
-    const {
-      label,
-      textFields,
-      css: cssOverrides,
-      onChange,
-      children,
-    } = this.props
+    const { label, textFields, cssOverrides, onChange, children } = this.props
     return (
       <MultipleTextFieldContainer cssOverrides={cssOverrides}>
         {!isNil(label) && <BBTextFieldLabel>{label}</BBTextFieldLabel>}
@@ -62,10 +56,10 @@ export class MultipleTextField extends Component<Props> {
                   t.type === 'number' ? Number(e.target.value) : e.target.value,
                 )
               }
-              css={{
+              cssOverrides={{
                 paddingLeft: k === 0 ? '0px' : '4px',
                 paddingRight: k === textFields.length - 1 ? '0px' : '4px',
-                ...((t.css || {}) as object), // TODO - hacky
+                ...((t.cssOverrides || {}) as object), // TODO - hacky
               }}
             />
           ))}

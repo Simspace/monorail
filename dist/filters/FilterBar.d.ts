@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { SimpleInterpolation } from 'styled-components';
 import { FilterGroupWithData, SorterGroup } from './types';
 declare type Props<CollectionItem extends object, FilterByKey extends keyof CollectionItem & string> = {
-    css?: SimpleInterpolation;
+    cssOverrides?: SimpleInterpolation;
     filterGroups: Array<FilterGroupWithData<CollectionItem, FilterByKey>>;
     sorterGroup?: SorterGroup<CollectionItem>;
     isFiltered: boolean;

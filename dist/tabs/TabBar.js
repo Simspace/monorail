@@ -16,49 +16,34 @@ var _CommonStyles = require("../CommonStyles");
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
 // TabBarIndicator is pos:abs to this element. Also we use offsetLeft on the Tab which references this position.
-const TabBarContainer = (0, _styledComponents.default)('div')`
-  ${(0, _CommonStyles.flexFlow)('row')};
-
-  height: ${({
+const TabBarContainer =
+/*#__PURE__*/
+(0, _styledComponents.default)('div').withConfig({
+  displayName: "TabBar__TabBarContainer",
+  componentId: "sc-1hr19pz-0"
+})(["", ";height:", "px;padding:0 8px;position:relative;box-sizing:border-box;border-bottom:1px solid ", ";flex-shrink:0;", ";"], (0, _CommonStyles.flexFlow)('row'), ({
   size
-}) => size}px;
-  padding: 0 8px;
-  position: relative;
-  box-sizing: border-box;
-  border-bottom: 1px solid ${(0, _CommonStyles.colors)(_CommonStyles.Colors.Grey94)};
-  flex-shrink: 0;
-
-  ${({
-  css: cssOverrides
-}) => cssOverrides};
-`;
+}) => size, (0, _CommonStyles.colors)(_CommonStyles.Colors.Grey94), ({
+  cssOverrides
+}) => cssOverrides);
 exports.TabBarContainer = TabBarContainer;
-const TabBarIndicator = (0, _styledComponents.default)('div')`
-  ${({
+const TabBarIndicator =
+/*#__PURE__*/
+(0, _styledComponents.default)('div').withConfig({
+  displayName: "TabBar__TabBarIndicator",
+  componentId: "sc-1hr19pz-1"
+})(["", ";background:", ";border-radius:3px 3px 0 0;bottom:0;height:3px;position:absolute;transition-property:all;transition-timing-function:ease-in-out;"], ({
   left,
   width,
   duration
-}) => _styledComponents.css`
-    left: ${left}px;
-    width: ${width}px;
-    transition-duration: ${duration * 1.4}ms;
-  `};
+}) => (0, _styledComponents.css)(["left:", "px;width:", "px;transition-duration:", "ms;"], left, width, duration * 1.4), (0, _CommonStyles.colors)(_CommonStyles.Colors.BrandLightBlue));
 
-  background: ${(0, _CommonStyles.colors)(_CommonStyles.Colors.BrandLightBlue)};
-  border-radius: 3px 3px 0 0;
-  bottom: 0;
-  height: 3px;
-  position: absolute;
-  transition-property: all;
-  transition-timing-function: ease-in-out;
-`;
-const TabBarActions = _styledComponents.default.div`
-  ${(0, _CommonStyles.flexFlow)('row')};
-
-  align-items: center;
-  margin-left: auto;
-  margin-right: 8px;
-`;
+const TabBarActions =
+/*#__PURE__*/
+_styledComponents.default.div.withConfig({
+  displayName: "TabBar__TabBarActions",
+  componentId: "sc-1hr19pz-2"
+})(["", ";align-items:center;margin-left:auto;margin-right:8px;"], (0, _CommonStyles.flexFlow)('row'));
 
 class TabBar extends _react.Component {
   constructor(...args) {
@@ -125,7 +110,7 @@ class TabBar extends _react.Component {
 
   render() {
     const {
-      css: cssOverrides,
+      cssOverrides,
       size,
       actions
     } = this.props;
@@ -135,7 +120,7 @@ class TabBar extends _react.Component {
       indicatorTransitionDuration
     } = this.state;
     return _react.default.createElement(TabBarContainer, {
-      css: cssOverrides,
+      cssOverrides: cssOverrides,
       size: size
     }, this.renderTabs(), !(0, _primitiveGuards.isNil)(actions) && _react.default.createElement(TabBarActions, {
       id: "tabBarActions"

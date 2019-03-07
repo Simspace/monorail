@@ -62,7 +62,7 @@ export const BBSearchContainer = styled.label<BBSearchContainerProps>`
   height: 24px;
   flex-shrink: 0;
 
-  ${({ css: cssOverrides }) => cssOverrides};
+  ${({ cssOverrides }) => cssOverrides};
 `
 
 const BBSearchIcon = styled<{ darkMode?: boolean } & IconProps>(
@@ -135,7 +135,7 @@ export type BBSearchInput = StyledHtmlElement<
 //
 
 export type BBSearchContainerProps = {
-  css?: SimpleInterpolation
+  cssOverrides?: SimpleInterpolation
   searchRef?: RefObject<SearchRefType>
   darkMode: boolean
 }
@@ -173,7 +173,7 @@ export class Search extends Component<SearchProps> {
 
   render() {
     const {
-      css: overrideCss,
+      cssOverrides,
       darkMode,
       onChange,
       placeholder = 'Search',
@@ -183,7 +183,7 @@ export class Search extends Component<SearchProps> {
     } = this.props
 
     return (
-      <BBSearchContainer css={overrideCss} darkMode={darkMode}>
+      <BBSearchContainer cssOverrides={cssOverrides} darkMode={darkMode}>
         <BBSearchIcon icon="search_icon" darkMode={darkMode} />
 
         <BBSearchInput
@@ -201,7 +201,7 @@ export class Search extends Component<SearchProps> {
 
         <IconButton
           darkMode
-          css={css`
+          cssOverrides={css`
             ${visible(!!value)};
 
             background: ${colors(Colors.Black24)};

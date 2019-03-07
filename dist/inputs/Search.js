@@ -23,106 +23,40 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 // Styles
 //
 const BBSearchIconPos = 3;
-const BBSearchContainer = _styledComponents.default.label`
-  ${({
+
+const BBSearchContainer =
+/*#__PURE__*/
+_styledComponents.default.label.withConfig({
+  displayName: "Search__BBSearchContainer",
+  componentId: "zpwvd9-0"
+})(["", ";", ";border-radius:100px;box-sizing:border-box;overflow:hidden;position:relative;height:24px;flex-shrink:0;", ";"], ({
   darkMode
-}) => darkMode ? _styledComponents.css`
-          background: ${(0, _CommonStyles.colors)(_CommonStyles.Colors.White, 0.2)};
-          border: 1px solid ${(0, _CommonStyles.colors)(_CommonStyles.Colors.White, 0.2)};
+}) => darkMode ? (0, _styledComponents.css)(["background:", ";border:1px solid ", ";&:hover{background:", ";}&:focus{background:", ";}"], (0, _CommonStyles.colors)(_CommonStyles.Colors.White, 0.2), (0, _CommonStyles.colors)(_CommonStyles.Colors.White, 0.2), (0, _CommonStyles.colors)(_CommonStyles.Colors.White, 0.22), (0, _CommonStyles.colors)(_CommonStyles.Colors.White, 0.24)) : (0, _styledComponents.css)(["border:1px solid ", ";&:hover{border-color:", ";}&:focus{border-color:", ";}"], (0, _CommonStyles.colors)(_CommonStyles.Colors.Black, 0.08), (0, _CommonStyles.colors)(_CommonStyles.Colors.BrandLightBlue, 0.5), (0, _CommonStyles.colors)(_CommonStyles.Colors.BrandLightBlue)), (0, _CommonStyles.flexFlow)('row'), ({
+  cssOverrides
+}) => cssOverrides);
 
-          &:hover {
-            background: ${(0, _CommonStyles.colors)(_CommonStyles.Colors.White, 0.22)};
-          }
-
-          &:focus {
-            background: ${(0, _CommonStyles.colors)(_CommonStyles.Colors.White, 0.24)};
-          }
-        ` : _styledComponents.css`
-          border: 1px solid ${(0, _CommonStyles.colors)(_CommonStyles.Colors.Black, 0.08)};
-
-          &:hover {
-            border-color: ${(0, _CommonStyles.colors)(_CommonStyles.Colors.BrandLightBlue, 0.5)};
-          }
-
-          &:focus {
-            border-color: ${(0, _CommonStyles.colors)(_CommonStyles.Colors.BrandLightBlue)};
-          }
-        `};
-
-  ${(0, _CommonStyles.flexFlow)('row')};
-  border-radius: 100px;
-  box-sizing: border-box;
-  overflow: hidden; /* So the child element (BBSearchInput) doesn't cut into BBSearchContainer's border */
-  position: relative; /* position: relative; so that BBSearchIcon can be positioned absolute to this. */
-  height: 24px;
-  flex-shrink: 0;
-
-  ${({
-  css: cssOverrides
-}) => cssOverrides};
-`;
 exports.BBSearchContainer = BBSearchContainer;
-const BBSearchIcon = (0, _styledComponents.default)(({
+const BBSearchIcon =
+/*#__PURE__*/
+(0, _styledComponents.default)(({
   darkMode,
   ...otherProps
-}) => _react.default.createElement(_Icon.Icon, otherProps))`
-  color: ${({
+}) => _react.default.createElement(_Icon.Icon, otherProps)).withConfig({
+  displayName: "Search__BBSearchIcon",
+  componentId: "zpwvd9-1"
+})(["color:", ";left:8px;pointer-events:none;position:absolute;top:", "px;"], ({
   darkMode
-}) => darkMode && (0, _CommonStyles.colors)(_CommonStyles.Colors.White)};
-  left: 8px;
-  pointer-events: none;
-  position: absolute;
-  top: ${BBSearchIconPos}px;
-`;
-const BBSearchInput = _styledComponents.default.input`
-  ${({
+}) => darkMode && (0, _CommonStyles.colors)(_CommonStyles.Colors.White), BBSearchIconPos);
+
+const BBSearchInput =
+/*#__PURE__*/
+_styledComponents.default.input.withConfig({
+  displayName: "Search__BBSearchInput",
+  componentId: "zpwvd9-2"
+})(["", ";", ";border:0;flex:1 1 100%;height:100%;outline:none;padding:0 22px 0 28px;border-radius:100px;box-sizing:border-box;", ";"], ({
   darkMode
-}) => darkMode ? _styledComponents.css`
-          background: ${(0, _CommonStyles.colors)(_CommonStyles.Colors.White, 0.2)};
-          border: 0;
-          color: ${(0, _CommonStyles.colors)(_CommonStyles.Colors.White)};
+}) => darkMode ? (0, _styledComponents.css)(["background:", ";border:0;color:", ";::placeholder{color:", ";}&:hover{background:", ";}&:focus{background:", ";}"], (0, _CommonStyles.colors)(_CommonStyles.Colors.White, 0.2), (0, _CommonStyles.colors)(_CommonStyles.Colors.White), (0, _CommonStyles.colors)(_CommonStyles.Colors.White), (0, _CommonStyles.colors)(_CommonStyles.Colors.White, 0.22), (0, _CommonStyles.colors)(_CommonStyles.Colors.White, 0.24)) : (0, _styledComponents.css)(["border:1px solid ", ";::placeholder{color:", ";font-style:italic;font-weight:300;}&:hover{border-color:", ";}&:focus{border-color:", ";}"], (0, _CommonStyles.colors)(_CommonStyles.Colors.Black, 0.08), (0, _CommonStyles.colors)(_CommonStyles.Colors.Black54), (0, _CommonStyles.colors)(_CommonStyles.Colors.BrandLightBlue, 0.5), (0, _CommonStyles.colors)(_CommonStyles.Colors.BrandLightBlue)), (0, _CommonStyles.typography)(500, _CommonStyles.FontSizes.Title5), _CommonStyles.buttonTransition);
 
-          ::placeholder {
-            color: ${(0, _CommonStyles.colors)(_CommonStyles.Colors.White)};
-          }
-
-          &:hover {
-            background: ${(0, _CommonStyles.colors)(_CommonStyles.Colors.White, 0.22)};
-          }
-
-          &:focus {
-            background: ${(0, _CommonStyles.colors)(_CommonStyles.Colors.White, 0.24)};
-          }
-        ` : _styledComponents.css`
-          border: 1px solid ${(0, _CommonStyles.colors)(_CommonStyles.Colors.Black, 0.08)};
-
-          ::placeholder {
-            color: ${(0, _CommonStyles.colors)(_CommonStyles.Colors.Black54)};
-            font-style: italic;
-            font-weight: 300;
-          }
-
-          &:hover {
-            border-color: ${(0, _CommonStyles.colors)(_CommonStyles.Colors.BrandLightBlue, 0.5)};
-          }
-
-          &:focus {
-            border-color: ${(0, _CommonStyles.colors)(_CommonStyles.Colors.BrandLightBlue)};
-          }
-        `};
-
-  ${(0, _CommonStyles.typography)(500, _CommonStyles.FontSizes.Title5)};
-  border: 0;
-  flex: 1 1 100%;
-  height: 100%;
-  outline: none;
-  padding: 0 22px 0 28px;
-
-  border-radius: 100px;
-  box-sizing: border-box;
-
-  ${_CommonStyles.buttonTransition};
-`;
 exports.BBSearchInput = BBSearchInput;
 
 //
@@ -131,7 +65,7 @@ exports.BBSearchInput = BBSearchInput;
 class Search extends _react.Component {
   render() {
     const {
-      css: overrideCss,
+      cssOverrides,
       darkMode,
       onChange,
       placeholder = 'Search',
@@ -140,7 +74,7 @@ class Search extends _react.Component {
       searchRef
     } = this.props;
     return _react.default.createElement(BBSearchContainer, {
-      css: overrideCss,
+      cssOverrides: cssOverrides,
       darkMode: darkMode
     }, _react.default.createElement(BBSearchIcon, {
       icon: "search_icon",
@@ -158,28 +92,7 @@ class Search extends _react.Component {
       ref: searchRef
     }), _react.default.createElement(_IconButton.IconButton, {
       darkMode: true,
-      css: _styledComponents.css`
-            ${(0, _CommonStyles.visible)(!!value)};
-
-            background: ${(0, _CommonStyles.colors)(_CommonStyles.Colors.Black24)};
-            border: 0;
-
-            ${_Icon.Icon} {
-              color: ${(0, _CommonStyles.colors)(_CommonStyles.Colors.White)};
-            }
-
-            &:hover {
-              background: ${(0, _CommonStyles.colors)(_CommonStyles.Colors.Black54)};
-            }
-
-            &:active {
-              background: ${(0, _CommonStyles.colors)(_CommonStyles.Colors.Black24)};
-            }
-
-            position: absolute;
-            top: ${BBSearchIconPos}px;
-            right: ${BBSearchIconPos}px;
-          `,
+      cssOverrides: (0, _styledComponents.css)(["", ";background:", ";border:0;", "{color:", ";}&:hover{background:", ";}&:active{background:", ";}position:absolute;top:", "px;right:", "px;"], (0, _CommonStyles.visible)(!!value), (0, _CommonStyles.colors)(_CommonStyles.Colors.Black24), _Icon.Icon, (0, _CommonStyles.colors)(_CommonStyles.Colors.White), (0, _CommonStyles.colors)(_CommonStyles.Colors.Black54), (0, _CommonStyles.colors)(_CommonStyles.Colors.Black24), BBSearchIconPos, BBSearchIconPos),
       size: _buttonTypes.ButtonSize.Dense,
       icon: "close",
       onClick: event => {

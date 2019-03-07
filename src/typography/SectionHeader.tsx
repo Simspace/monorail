@@ -13,7 +13,7 @@ import {
 } from '@monorail/CommonStyles'
 
 type CCSectionHeaderProps = {
-  css?: SimpleInterpolation
+  cssOverrides?: SimpleInterpolation
 }
 
 const CCSectionHeader = styled<CCSectionHeaderProps, 'div'>('div')`
@@ -24,7 +24,7 @@ const CCSectionHeader = styled<CCSectionHeaderProps, 'div'>('div')`
    ${typography(700, FontSizes.Title5)}
   color: ${colors(Colors.Black74)};
 
-  ${({ css: cssOverrides }) => cssOverrides};
+  ${({ cssOverrides }) => cssOverrides};
 `
 
 const Title = styled('h1')`
@@ -63,26 +63,20 @@ function isAppName(iconName: IconPropType): iconName is AppName {
 
 export class SectionHeader extends Component<SectionHeaderProps> {
   render() {
-    const {
-      title,
-      iconLeft,
-      iconRight,
-      css: cssOverrides,
-      children,
-    } = this.props
+    const { title, iconLeft, iconRight, cssOverrides, children } = this.props
 
     return (
-      <CCSectionHeader css={cssOverrides}>
+      <CCSectionHeader cssOverrides={cssOverrides}>
         {iconLeft &&
           (isAppName(iconLeft) ? (
-            <AppIcon appName={iconLeft} css={iconLeftStyle} />
+            <AppIcon appName={iconLeft} cssOverrides={iconLeftStyle} />
           ) : (
             <StyledIconLeft icon={iconLeft} />
           ))}
         <Title>{title}</Title>
         {iconRight &&
           (isAppName(iconRight) ? (
-            <AppIcon appName={iconRight} css={iconRightStyle} />
+            <AppIcon appName={iconRight} cssOverrides={iconRightStyle} />
           ) : (
             <StyledIconRight icon={iconRight} />
           ))}

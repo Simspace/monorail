@@ -19,37 +19,24 @@ var _primitiveGuards = require("../CoreUtils/primitive-guards");
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
-const CCMenu = (0, _styledComponents.default)('div')`
-  ${(0, _CommonStyles.borderRadius)(_CommonStyles.BorderRadius.Medium)};
-  ${(0, _CommonStyles.flexFlow)()};
-  ${(0, _CommonStyles.getElevation)(_CommonStyles.ElevationRange.Elevation6)};
-
-  background: ${(0, _CommonStyles.colors)(_CommonStyles.Colors.White)};
-  overflow: hidden;
-  position: fixed;
-  width: ${({
+const CCMenu =
+/*#__PURE__*/
+(0, _styledComponents.default)('div').withConfig({
+  displayName: "Menu__CCMenu",
+  componentId: "qsgmyf-0"
+})(["", ";", ";", ";background:", ";overflow:hidden;position:fixed;width:", ";min-width:", "px;", ";"], (0, _CommonStyles.borderRadius)(_CommonStyles.BorderRadius.Medium), (0, _CommonStyles.flexFlow)(), (0, _CommonStyles.getElevation)(_CommonStyles.ElevationRange.Elevation6), (0, _CommonStyles.colors)(_CommonStyles.Colors.White), ({
   width
-}) => width};
-  min-width: ${_CommonStyles.sizes.menu.width}px;
-
-  ${({
-  css: cssOverrides
-}) => cssOverrides};
-`;
-const MenuContent = (0, _styledComponents.default)('div')`
-  ${({
-  css: cssOverride
-}) => _styledComponents.css`
-    ${(0, _CommonStyles.flexFlow)()};
-
-    height: 100%;
-    overflow: auto;
-    padding: 4px 0;
-    width: 100%;
-
-    ${cssOverride};
-  `};
-`;
+}) => width, _CommonStyles.sizes.menu.width, ({
+  cssOverrides
+}) => cssOverrides);
+const MenuContent =
+/*#__PURE__*/
+(0, _styledComponents.default)('div').withConfig({
+  displayName: "Menu__MenuContent",
+  componentId: "qsgmyf-1"
+})(["", ";"], ({
+  cssOverrides
+}) => (0, _styledComponents.css)(["", ";height:100%;overflow:auto;padding:4px 0;width:100%;", ";"], (0, _CommonStyles.flexFlow)(), cssOverrides));
 
 class Menu extends _react.Component {
   constructor(...args) {
@@ -119,9 +106,9 @@ class Menu extends _react.Component {
     }, _react.default.createElement(CCMenu, {
       width: (0, _primitiveGuards.isNil)(width) ? 'auto' : `${width}px`,
       ref: this.menuRef,
-      css: scaleAnimation.outSideContentStyles
+      cssOverrides: scaleAnimation.outSideContentStyles
     }, _react.default.createElement(MenuContent, {
-      css: scaleAnimation.inSideContentStyles
+      cssOverrides: scaleAnimation.inSideContentStyles
     }, children)));
   }
 

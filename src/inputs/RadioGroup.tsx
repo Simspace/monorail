@@ -55,7 +55,7 @@ export const RadioGroup: SFC<Props> = ({
           onChange={e => onSelect(o.key, e)}
           required={required}
           readOnly={false}
-          css={{ margin: '8px 0' }}
+          cssOverrides={{ margin: '8px 0' }}
         >
           {o.label}
         </Choice>

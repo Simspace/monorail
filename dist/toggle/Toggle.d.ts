@@ -8,7 +8,7 @@ declare type Slider = {
 declare type ToggleProps = {
     toggleSize: ToggleSize;
     checked: boolean;
-    css?: SimpleInterpolation;
+    cssOverrides?: SimpleInterpolation;
     onChange?: (checked: boolean) => void;
 };
 export declare class Toggle extends Component<ToggleProps> {

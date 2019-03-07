@@ -15,16 +15,19 @@ var _Choice = require("./Choice");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-const RadioGroupWrapper = _styledComponents.default.fieldset`
-  margin: 0;
-  padding: 0;
-  border: 0;
-`;
-const Label = _styledComponents.default.p`
-  ${(0, _CommonStyles.typography)(500, _CommonStyles.FontSizes.Title5)};
-  margin-bottom: 8px;
-  height: 16px;
-`;
+const RadioGroupWrapper =
+/*#__PURE__*/
+_styledComponents.default.fieldset.withConfig({
+  displayName: "RadioGroup__RadioGroupWrapper",
+  componentId: "sc-1dxzruk-0"
+})(["margin:0;padding:0;border:0;"]);
+
+const Label =
+/*#__PURE__*/
+_styledComponents.default.p.withConfig({
+  displayName: "RadioGroup__Label",
+  componentId: "sc-1dxzruk-1"
+})(["", ";margin-bottom:8px;height:16px;"], (0, _CommonStyles.typography)(500, _CommonStyles.FontSizes.Title5));
 
 const RadioGroup = ({
   label,
@@ -42,7 +45,7 @@ const RadioGroup = ({
     onChange: e => onSelect(o.key, e),
     required: required,
     readOnly: false,
-    css: {
+    cssOverrides: {
       margin: '8px 0'
     }
   }, o.label)));

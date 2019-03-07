@@ -4,7 +4,7 @@ import { Sizes } from '@monorail/CommonStyles';
 import { TabProps } from './Tab';
 export declare const TabBarContainer: import("styled-components").StyledComponentClass<CCTabBarProps, any, CCTabBarProps & React.ClassAttributes<HTMLDivElement> & React.HTMLAttributes<HTMLDivElement>>;
 declare type CCTabBarProps = {
-    css?: SimpleInterpolation;
+    cssOverrides?: SimpleInterpolation;
     size: Sizes;
     activeTabIndex?: number;
 };

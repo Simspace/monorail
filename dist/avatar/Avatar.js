@@ -18,42 +18,25 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
 const size = 24;
-const CCAvatar = (0, _styledComponents.default)('div')`
-  ${({
+const CCAvatar =
+/*#__PURE__*/
+(0, _styledComponents.default)('div').withConfig({
+  displayName: "Avatar__CCAvatar",
+  componentId: "sc-1c6ik2-0"
+})(["", ";color:", ";flex-shrink:0;font-size:9.89px;font-weight:900;height:", "px;line-height:", "px;text-align:center;text-transform:uppercase;user-select:none;width:", "px;", ";"], ({
   team
-}) => team ? _styledComponents.css`
-          ${(0, _CommonStyles.borderRadius)()};
-
-          background: ${(0, _CommonStyles.colors)(_CommonStyles.Colors.BrandDarkBlue)};
-        ` : _styledComponents.css`
-          background: ${(0, _CommonStyles.colors)(_CommonStyles.Colors.BrandLightBlue)};
-          border-radius: ${size / 2}px;
-        `};
-
-  color: ${(0, _CommonStyles.colors)(_CommonStyles.Colors.White)};
-  flex-shrink: 0;
-  font-size: 9.89px;
-  font-weight: 900;
-  height: ${size}px;
-  line-height: ${size}px;
-  text-align: center;
-  text-transform: uppercase;
-  user-select: none;
-  width: ${size}px;
-
-  ${({
-  css: cssOverrides
-}) => cssOverrides};
-`;
+}) => team ? (0, _styledComponents.css)(["", ";background:", ";"], (0, _CommonStyles.borderRadius)(), (0, _CommonStyles.colors)(_CommonStyles.Colors.BrandDarkBlue)) : (0, _styledComponents.css)(["background:", ";border-radius:", "px;"], (0, _CommonStyles.colors)(_CommonStyles.Colors.BrandLightBlue), size / 2), (0, _CommonStyles.colors)(_CommonStyles.Colors.White), size, size, size, ({
+  cssOverrides
+}) => cssOverrides);
 
 const Avatar = ({
-  css: cssOverrides,
+  cssOverrides,
   first,
   last,
   team,
   ...otherProps
 }) => _react.default.createElement(CCAvatar, _extends({
-  css: cssOverrides,
+  cssOverrides: cssOverrides,
   team: team
 }, otherProps), first.charAt(0), last.charAt(0));
 

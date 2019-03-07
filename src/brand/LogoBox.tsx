@@ -10,7 +10,7 @@ import {
 type LogoBoxProps = {
   alignRight?: boolean
   alignLeft?: boolean
-  css?: SimpleInterpolation
+  cssOverrides?: SimpleInterpolation
 }
 
 export const LogoBox = styled<LogoBoxProps, 'div'>('div')`
@@ -28,5 +28,5 @@ export const LogoBox = styled<LogoBoxProps, 'div'>('div')`
   ${({ alignRight }) =>
     alignRight && `position: absolute; right: 8px; top:8px;`}
 
-  ${({ css: cssOverrides }) => cssOverrides};
+  ${({ cssOverrides }) => cssOverrides};
 `

@@ -19,71 +19,47 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-const HeaderRow = _styledComponents.default.div`
-  color: ${(0, _CommonStyles.colors)(_CommonStyles.Colors.BrandDarkBlue)};
-  ${(0, _CommonStyles.flexFlow)('row')};
-  ${(0, _CommonStyles.typography)(500, _CommonStyles.FontSizes.Title3)};
+const HeaderRow =
+/*#__PURE__*/
+_styledComponents.default.div.withConfig({
+  displayName: "Header__HeaderRow",
+  componentId: "muzh11-0"
+})(["color:", ";", ";", ";align-items:center;flex-shrink:0;height:48px;padding:0 16px;", ";"], (0, _CommonStyles.colors)(_CommonStyles.Colors.BrandDarkBlue), (0, _CommonStyles.flexFlow)('row'), (0, _CommonStyles.typography)(500, _CommonStyles.FontSizes.Title3), ({
+  cssOverrides
+}) => cssOverrides);
 
-  align-items: center;
-  flex-shrink: 0;
-  height: 48px;
-  padding: 0 16px;
-
-  ${({
-  css: cssOverrides
-}) => cssOverrides};
-`;
-const iconRightCss = _styledComponents.css`
-  color: ${(0, _CommonStyles.colors)(_CommonStyles.Colors.BrandDarkBlue)};
-  flex-shrink: 0;
-  margin-right: 12px;
-`;
-const iconLeftCss = _styledComponents.css`
-  color: ${(0, _CommonStyles.colors)(_CommonStyles.Colors.BrandDarkBlue)};
-  flex-shrink: 0;
-  margin-left: 12px;
-`;
-const Header = (0, _styledComponents.default)(({
+const iconRightCss =
+/*#__PURE__*/
+(0, _styledComponents.css)(["color:", ";flex-shrink:0;margin-right:12px;"], (0, _CommonStyles.colors)(_CommonStyles.Colors.BrandDarkBlue));
+const iconLeftCss =
+/*#__PURE__*/
+(0, _styledComponents.css)(["color:", ";flex-shrink:0;margin-left:12px;"], (0, _CommonStyles.colors)(_CommonStyles.Colors.BrandDarkBlue));
+const Header =
+/*#__PURE__*/
+(0, _styledComponents.default)(({
   actions,
   appIcon,
   children,
-  css: cssOverrides,
+  cssOverrides,
   cssHeaderRow,
   iconLeft,
   noBorder = false,
   title,
   ...otherProps
 }) => _react.default.createElement("div", otherProps, _react.default.createElement(HeaderRow, {
-  css: cssHeaderRow
+  cssOverrides: cssHeaderRow
 }, appIcon && _react.default.createElement(_AppIcon.AppIcon, {
-  css: iconRightCss,
+  cssOverrides: iconRightCss,
   appName: appIcon
 }), iconLeft && _react.default.createElement(_Icon.Icon, {
-  css: iconRightCss,
+  cssOverrides: iconRightCss,
   icon: iconLeft
-}), title, actions), children))`
-  ${({
+}), title, actions), children)).withConfig({
+  displayName: "Header",
+  componentId: "muzh11-1"
+})(["", ";"], ({
   noBorder,
   appIcon,
-  css: cssOverride
-}) => _styledComponents.css`
-    ${!noBorder && _styledComponents.css`
-        &::after {
-          content: '';
-          background: ${appIcon ? (0, _CommonStyles.colors)((0, _CommonStyles.convertAppNameToColor)(appIcon)) : '#ebebeb'};
-          bottom: 0;
-          height: 1px;
-          left: 0;
-          position: absolute;
-          right: 0;
-        }
-      `};
-
-    ${(0, _CommonStyles.flexFlow)()};
-    position: relative;
-    flex-shrink: 0;
-
-    ${cssOverride};
-  `};
-`;
+  cssOverrides
+}) => (0, _styledComponents.css)(["", ";", ";position:relative;flex-shrink:0;", ";"], !noBorder && (0, _styledComponents.css)(["&::after{content:'';background:", ";bottom:0;height:1px;left:0;position:absolute;right:0;}"], appIcon ? (0, _CommonStyles.colors)((0, _CommonStyles.convertAppNameToColor)(appIcon)) : '#ebebeb'), (0, _CommonStyles.flexFlow)(), cssOverrides));
 exports.Header = Header;

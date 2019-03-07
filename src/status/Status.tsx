@@ -10,7 +10,7 @@ type Props = CommonComponentType & {
 }
 
 export const Status = styled<Props, 'div'>('div')`
-  ${({ css: cssOverrides, size = 16, inactive = false }) => css`
+  ${({ cssOverrides, size = 16, inactive = false }) => css`
     background: ${colors(Colors.BrandLightBlue)};
     background: ${colors(inactive ? Colors.Black54 : Colors.BrandLightBlue)};
     border-radius: ${size / 2}px;

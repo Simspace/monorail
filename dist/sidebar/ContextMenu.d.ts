@@ -13,9 +13,13 @@ declare type Props = PopOverChildProps & {
         }>;
     }>;
     icon: string;
+    renderFilter: () => ReactNode;
     width?: number;
 };
 export declare class ContextMenu extends Component<Props> {
+    static defaultProps: {
+        renderFilter: () => null;
+    };
     searchRef: React.RefObject<import("../CoreUtils/type-level").StyledHtmlElement<HTMLInputElement, import("../inputs/Search").BBSearchInputProps, unknown>>;
     componentDidUpdate(prevProps: Readonly<Props>): void;
     renderContextMenuItems: (compareSearch: (stringToCompare: string) => boolean) => import("fp-ts/lib/Option").Option<(JSX.Element | JSX.Element[])[]>[];

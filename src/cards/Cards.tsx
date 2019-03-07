@@ -25,7 +25,7 @@ const BBCardContent = styled<CommonComponentType, 'div'>('div')`
   width: 100%;
   position: relative; /* Needs pos:rel; so that it doesn't get placed under the shadow pseudo elements. */
 
-  ${({ css: cssOverrides }) => cssOverrides};
+  ${({ cssOverrides }) => cssOverrides};
 `
 
 // building-blocks/cards/background
@@ -42,7 +42,7 @@ export const BBCardBackground = styled<BBCardBackgroundProps>(
     (
       {
         children,
-        css: cssOverrides,
+        cssOverrides,
         hover,
         elevation,
         cssCardContent,
@@ -51,7 +51,7 @@ export const BBCardBackground = styled<BBCardBackgroundProps>(
       ref,
     ) => (
       <div ref={ref} {...otherProps}>
-        <BBCardContent css={cssCardContent}>{children}</BBCardContent>
+        <BBCardContent cssOverrides={cssCardContent}>{children}</BBCardContent>
       </div>
     ),
   ),
@@ -76,7 +76,7 @@ export const BBCardBackground = styled<BBCardBackgroundProps>(
   position: relative; /* pos:re; because the shadow pseudo element is pos:abs; */
   z-index: 0; /* mythical z-index: 0. The shadow pseudo element needs a negative z-index, but then it disappears. Have to reset the z-index to the zero value so that it appears above the background of the page but under the background of the card. */
 
-  ${({ css: cssOverrides }) => cssOverrides};
+  ${({ cssOverrides }) => cssOverrides};
 
   &::before {
     border-radius: inherit;
@@ -106,9 +106,10 @@ export const BBCardBackground = styled<BBCardBackgroundProps>(
   }
 `
 
-const BBCardHeaderContainer = styled<{ css: SimpleInterpolation }, 'div'>(
-  'div',
-)`
+const BBCardHeaderContainer = styled<
+  { cssOverrides: SimpleInterpolation },
+  'div'
+>('div')`
   ${flexFlow('row')};
   align-items: center;
   flex-shrink: 0;
@@ -116,7 +117,7 @@ const BBCardHeaderContainer = styled<{ css: SimpleInterpolation }, 'div'>(
   padding: 0 16px;
   position: relative; /* BBCardBottomBorder is pos:abs relative to this. */
 
-  ${({ css: cssOverrides }) => cssOverrides};
+  ${({ cssOverrides }) => cssOverrides};
 `
 
 const BBCardHeaderTitle = styled('h1')`
@@ -160,7 +161,7 @@ const BBCardBottomBorder = styled<BBCardBottomBorderProps, 'div'>('div')`
 
 type BBCardHeaderProps = BBCardBottomBorderProps & {
   appIcon?: AppName
-  css?: SimpleInterpolation
+  cssOverrides?: SimpleInterpolation
   iconLeft?: string
   iconRight?: string
   noBorder?: boolean
@@ -172,13 +173,13 @@ export const BBCardHeader: StatelessComponent<BBCardHeaderProps> = ({
   accentColor = colors(Colors.BrandLightBlue),
   appIcon,
   children,
-  css: cssOverrides,
+  cssOverrides,
   iconLeft,
   iconRight,
   noBorder,
   title,
 }) => (
-  <BBCardHeaderContainer css={cssOverrides}>
+  <BBCardHeaderContainer cssOverrides={cssOverrides}>
     {appIcon && <StyledAppIconLeft appName={appIcon} />}
     {iconLeft && <StyledIconLeft icon={iconLeft} />}
     <BBCardHeaderTitle>{title}</BBCardHeaderTitle>
@@ -191,7 +192,7 @@ export const BBCardHeader: StatelessComponent<BBCardHeaderProps> = ({
 // building-blocks/cards/card-grid
 type BBCardGridProps = {
   cardWidth?: number
-  css?: SimpleInterpolation
+  cssOverrides?: SimpleInterpolation
 }
 
 export const BBCardGrid = styled<BBCardGridProps, 'div'>('div')`
@@ -210,5 +211,5 @@ export const BBCardGrid = styled<BBCardGridProps, 'div'>('div')`
   flex-flow: row wrap;
   align-content: flex-start;
 
-  ${({ css: cssOverrides }) => cssOverrides};
+  ${({ cssOverrides }) => cssOverrides};
 `

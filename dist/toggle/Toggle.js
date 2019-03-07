@@ -21,176 +21,99 @@ const toggleWidth = 18;
 const toggleHeight = 10;
 const iconSize = 8;
 const toggleSizeCss = {
-  [_toggleTypes.ToggleSize.Default]: _styledComponents.css`
-    height: ${toggleHeight}px;
-    width: ${toggleWidth}px;
-    border: 1px solid;
-    border-radius: ${toggleHeight + 2 / 2}px;
-  `,
-  [_toggleTypes.ToggleSize.Large]: _styledComponents.css`
-    height: ${toggleHeight * 1.5}px;
-    width: ${toggleWidth * 1.5}px;
-    border: 1px solid;
-    border-radius: ${toggleHeight * 1.5 + 3 / 2}px;
-  `,
-  [_toggleTypes.ToggleSize.Xlarge]: _styledComponents.css`
-    height: ${toggleHeight * 2}px;
-    width: ${toggleWidth * 2}px;
-    border: 2px solid;
-    border-radius: ${toggleHeight * 2 + 4 / 2}px;
-  `
+  [_toggleTypes.ToggleSize.Default]: (0, _styledComponents.css)(["height:", "px;width:", "px;border:1px solid;border-radius:", "px;"], toggleHeight, toggleWidth, toggleHeight + 2 / 2),
+  [_toggleTypes.ToggleSize.Large]: (0, _styledComponents.css)(["height:", "px;width:", "px;border:1px solid;border-radius:", "px;"], toggleHeight * 1.5, toggleWidth * 1.5, toggleHeight * 1.5 + 3 / 2),
+  [_toggleTypes.ToggleSize.Xlarge]: (0, _styledComponents.css)(["height:", "px;width:", "px;border:2px solid;border-radius:", "px;"], toggleHeight * 2, toggleWidth * 2, toggleHeight * 2 + 4 / 2)
 };
 const sliderSizeCss = {
-  [_toggleTypes.ToggleSize.Default]: _styledComponents.css`
-    width: 10px;
-    height: 10px;
-  `,
-  [_toggleTypes.ToggleSize.Large]: _styledComponents.css`
-    width: 15px;
-    height: 15px;
-  `,
-  [_toggleTypes.ToggleSize.Xlarge]: _styledComponents.css`
-    width: 20px;
-    height: 20px;
-  `
+  [_toggleTypes.ToggleSize.Default]: (0, _styledComponents.css)(["width:10px;height:10px;"]),
+  [_toggleTypes.ToggleSize.Large]: (0, _styledComponents.css)(["width:15px;height:15px;"]),
+  [_toggleTypes.ToggleSize.Xlarge]: (0, _styledComponents.css)(["width:20px;height:20px;"])
 };
 const inputSizeCss = {
-  [_toggleTypes.ToggleSize.Default]: _styledComponents.css`
-    transform: translateX(8px);
-  `,
-  [_toggleTypes.ToggleSize.Large]: _styledComponents.css`
-    transform: translateX(12px);
-  `,
-  [_toggleTypes.ToggleSize.Xlarge]: _styledComponents.css`
-    transform: translateX(16px);
-  `
+  [_toggleTypes.ToggleSize.Default]: (0, _styledComponents.css)(["transform:translateX(8px);"]),
+  [_toggleTypes.ToggleSize.Large]: (0, _styledComponents.css)(["transform:translateX(12px);"]),
+  [_toggleTypes.ToggleSize.Xlarge]: (0, _styledComponents.css)(["transform:translateX(16px);"])
 };
 const iconSizeCss = {
-  [_toggleTypes.ToggleSize.Default]: _styledComponents.css`
-    font-size: ${iconSize}px;
-  `,
-  [_toggleTypes.ToggleSize.Large]: _styledComponents.css`
-    font-size: ${iconSize * 1.5}px;
-  `,
-  [_toggleTypes.ToggleSize.Xlarge]: _styledComponents.css`
-    font-size: ${iconSize * 2}px;
-  `
+  [_toggleTypes.ToggleSize.Default]: (0, _styledComponents.css)(["font-size:", "px;"], iconSize),
+  [_toggleTypes.ToggleSize.Large]: (0, _styledComponents.css)(["font-size:", "px;"], iconSize * 1.5),
+  [_toggleTypes.ToggleSize.Xlarge]: (0, _styledComponents.css)(["font-size:", "px;"], iconSize * 2)
 };
-const CCToggle = (0, _styledComponents.default)('label')`
-  ${({
+const CCToggle =
+/*#__PURE__*/
+(0, _styledComponents.default)('label').withConfig({
+  displayName: "Toggle__CCToggle",
+  componentId: "sc-14ermjw-0"
+})(["", ";box-sizing:content-box;cursor:pointer;display:inline-block;position:relative;transition:all ease-in 150ms;", ";", ";"], ({
   toggleSize
-}) => toggleSizeCss[toggleSize]};
-
-  box-sizing: content-box;
-  cursor: pointer;
-  display: inline-block;
-  position: relative; /* Slider is pos:abs to this element */
-
-  transition: all ease-in 150ms;
-
-  /* Change Slider BG/Border Color */
-  ${({
+}) => toggleSizeCss[toggleSize], ({
   checked
-}) => checked ? _styledComponents.css`
-          background-color: ${(0, _CommonStyles.colors)(_CommonStyles.Colors.BrandLightBlue)};
-          border-color: ${(0, _CommonStyles.colors)(_CommonStyles.Colors.BrandLightBlue)};
-        ` : _styledComponents.css`
-          background-color: ${(0, _CommonStyles.colors)(_CommonStyles.Colors.White)};
-          border-color: ${(0, _CommonStyles.colors)(_CommonStyles.Colors.Black, 0.06)};
-        `};
-
-  ${({
-  css: cssOverrides
-}) => cssOverrides};
-`;
-const StyledIconChecked = (0, _styledComponents.default)(({
+}) => checked ? (0, _styledComponents.css)(["background-color:", ";border-color:", ";"], (0, _CommonStyles.colors)(_CommonStyles.Colors.BrandLightBlue), (0, _CommonStyles.colors)(_CommonStyles.Colors.BrandLightBlue)) : (0, _styledComponents.css)(["background-color:", ";border-color:", ";"], (0, _CommonStyles.colors)(_CommonStyles.Colors.White), (0, _CommonStyles.colors)(_CommonStyles.Colors.Black, 0.06)), ({
+  cssOverrides
+}) => cssOverrides);
+const StyledIconChecked =
+/*#__PURE__*/
+(0, _styledComponents.default)(({
   checked,
   toggleSize,
   ...otherProps
-}) => _react.default.createElement(_Icon.Icon, otherProps))`
-  ${({
+}) => _react.default.createElement(_Icon.Icon, otherProps)).withConfig({
+  displayName: "Toggle__StyledIconChecked",
+  componentId: "sc-14ermjw-1"
+})(["", ";", ";color:", ";position:absolute;transition:all ease-in 75ms;"], ({
   toggleSize
-}) => iconSizeCss[toggleSize]};
-  ${({
+}) => iconSizeCss[toggleSize], ({
   checked
-}) => (0, _CommonStyles.visible)(checked)};
-
-  color: ${(0, _CommonStyles.colors)(_CommonStyles.Colors.BrandLightBlue)};
-  position: absolute; /* give z-index so ::before bg is behind icon */
-
-  transition: all ease-in 75ms;
-`;
-const StyledIconNotChecked = (0, _styledComponents.default)(({
+}) => (0, _CommonStyles.visible)(checked), (0, _CommonStyles.colors)(_CommonStyles.Colors.BrandLightBlue));
+const StyledIconNotChecked =
+/*#__PURE__*/
+(0, _styledComponents.default)(({
   checked,
   toggleSize,
   ...otherProps
-}) => _react.default.createElement(_Icon.Icon, otherProps))`
-  ${({
+}) => _react.default.createElement(_Icon.Icon, otherProps)).withConfig({
+  displayName: "Toggle__StyledIconNotChecked",
+  componentId: "sc-14ermjw-2"
+})(["", ";", ";color:", ";position:absolute;transition:all ease-in 75ms;"], ({
   toggleSize
-}) => iconSizeCss[toggleSize]};
-
-  ${({
+}) => iconSizeCss[toggleSize], ({
   checked
-}) => (0, _CommonStyles.visible)(!checked)};
-
-  color: ${(0, _CommonStyles.colors)(_CommonStyles.Colors.Black24)};
-  position: absolute; /* give z-index so ::before bg is behind icon */
-
-  transition: all ease-in 75ms;
-`;
-const Slider = (0, _styledComponents.default)('div')`
-  ${({
+}) => (0, _CommonStyles.visible)(!checked), (0, _CommonStyles.colors)(_CommonStyles.Colors.Black24));
+const Slider =
+/*#__PURE__*/
+(0, _styledComponents.default)('div').withConfig({
+  displayName: "Toggle__Slider",
+  componentId: "sc-14ermjw-3"
+})(["", ";", ";", ";background-color:", ";border-radius:50%;bottom:0;content:'';left:0;justify-content:center;align-items:center;transition:all ease-in 75ms;"], ({
   toggleSize
-}) => sliderSizeCss[toggleSize]};
-  ${(0, _CommonStyles.getElevation)(_CommonStyles.ElevationRange.Elevation1)};
-  ${(0, _CommonStyles.flexFlow)('row')};
-
-  background-color: ${(0, _CommonStyles.colors)(_CommonStyles.Colors.White)};
-  border-radius: 50%;
-  bottom: 0;
-  content: '';
-  left: 0;
-  justify-content: center;
-  align-items: center;
-
-  transition: all ease-in 75ms;
-`;
+}) => sliderSizeCss[toggleSize], (0, _CommonStyles.getElevation)(_CommonStyles.ElevationRange.Elevation1), (0, _CommonStyles.flexFlow)('row'), (0, _CommonStyles.colors)(_CommonStyles.Colors.White));
 exports.Slider = Slider;
-const Input = (0, _styledComponents.default)('input')`
-  display: none; /* Hide default HTML checkbox */
-
-  /* Move Slider Circle */
-  &:checked + ${
+const Input =
+/*#__PURE__*/
+(0, _styledComponents.default)('input').withConfig({
+  displayName: "Toggle__Input",
+  componentId: "sc-14ermjw-4"
+})(["display:none;&:checked + ", "{", ";}&:checked + ", " > ", "{", ";color:", ";}"],
 /* sc-selector */
-Slider} {
-    ${({
+Slider, ({
   toggleSize
-}) => inputSizeCss[toggleSize]};
-  }
-
-  /* Change Icon: 'check' | Change Color: Blue */
-  &:checked
-    + ${
+}) => inputSizeCss[toggleSize],
 /* sc-selector */
-Slider}
-    > ${
+Slider,
 /* sc-selector */
-StyledIconChecked} {
-    ${(0, _CommonStyles.visible)(false)};
-    color: ${(0, _CommonStyles.colors)(_CommonStyles.Colors.BrandLightBlue)};
-  }
-`;
+StyledIconChecked, (0, _CommonStyles.visible)(false), (0, _CommonStyles.colors)(_CommonStyles.Colors.BrandLightBlue));
 
 class Toggle extends _react.Component {
   render() {
     const {
-      css: cssOverrides,
+      cssOverrides,
       checked,
       onChange,
       toggleSize
     } = this.props;
     return _react.default.createElement(CCToggle, {
-      css: cssOverrides,
+      cssOverrides: cssOverrides,
       checked: checked,
       toggleSize: toggleSize
     }, _react.default.createElement(Input, {

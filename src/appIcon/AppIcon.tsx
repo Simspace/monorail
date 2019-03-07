@@ -17,7 +17,7 @@ type AppIconProps = CommonComponentType & {
 }
 
 export const AppIcon = styled<AppIconProps>(
-  ({ appName, css: cssOverrides, ...otherProps }) => (
+  ({ appName, cssOverrides, ...otherProps }) => (
     <div {...otherProps}>
       <Icon icon={convertAppNameToString(appName)} />
     </div>
@@ -41,5 +41,5 @@ export const AppIcon = styled<AppIconProps>(
     width: 100%;
   }
 
-  ${({ css: cssOverrides }) => cssOverrides};
+  ${({ cssOverrides }) => cssOverrides};
 `

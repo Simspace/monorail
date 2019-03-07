@@ -7,7 +7,7 @@ import { Icon } from '@monorail/icon/Icon'
 import { Step as StepType } from './types'
 
 type StyleOptions = {
-  css?: SimpleInterpolation
+  cssOverrides?: SimpleInterpolation
   darkMode?: boolean
 }
 
@@ -22,7 +22,7 @@ const HorizontalStepperContainer = styled<StyleOptions, 'div'>('div')`
   width: 100%;
   justify-content: center;
 
-  ${({ css: cssOverrides }) => cssOverrides};
+  ${({ cssOverrides }) => cssOverrides};
 `
 
 const Step = styled<StyleOptions, 'div'>('div')`
@@ -211,10 +211,10 @@ export class HorizontalStepper extends Component<Props & StyleOptions> {
   )
 
   render() {
-    const { css: overrideCss, darkMode } = this.props
+    const { cssOverrides, darkMode } = this.props
     return (
       <HorizontalStepperContainer
-        css={overrideCss}
+        cssOverrides={cssOverrides}
         className={darkMode ? 'dark' : 'light'}
       >
         {this.props.steps.map(this.renderSection)}

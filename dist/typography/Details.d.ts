@@ -6,7 +6,7 @@ declare type BBDetailsSize = {
     large?: boolean;
 };
 declare type BBDetailsContainerProps = {
-    css?: SimpleInterpolation;
+    cssOverrides?: SimpleInterpolation;
 };
 declare type CCDetailsProps = BBDetailsSize & BBDetailsContainerProps & {
     property: string;

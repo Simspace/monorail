@@ -24,7 +24,7 @@ const BBTextFieldContainer = styled<TextFieldProps, 'label'>('label')`
   width: 100%;
   position: relative; /* position: relative; so that the icons can be absolutely positioned. */
 
-  ${({ css: cssOverrides }) => cssOverrides};
+  ${({ cssOverrides }) => cssOverrides};
 `
 
 export const BBTextFieldLabel = styled('p')`
@@ -124,7 +124,7 @@ const BBTextAreaInput = styled<BBTextFieldInputProps, 'textarea'>('textarea')`
 */
 
 type BBTextFieldContainerProps = {
-  css?: SimpleInterpolation
+  cssOverrides?: SimpleInterpolation
 }
 
 type BBTextFieldInputProps = {
@@ -154,7 +154,7 @@ export class TextField extends Component<TextFieldProps> {
   render() {
     const {
       chromeless,
-      css: cssOverrides,
+      cssOverrides,
       iconLeft,
       iconRight,
       label,
@@ -169,7 +169,7 @@ export class TextField extends Component<TextFieldProps> {
     } = this.props
 
     return (
-      <BBTextFieldContainer css={cssOverrides}>
+      <BBTextFieldContainer cssOverrides={cssOverrides}>
         {label !== undefined && <BBTextFieldLabel>{label}</BBTextFieldLabel>}
         {iconLeft && <StyledLeftIcon icon={iconLeft} />}
         {iconRight && <StyledRightIcon icon={iconRight} />}
@@ -197,7 +197,7 @@ export class TextField extends Component<TextFieldProps> {
 export class TextArea extends Component<TextFieldProps> {
   render() {
     const {
-      css: cssOverrides,
+      cssOverrides,
       iconLeft,
       iconRight,
       label,
@@ -212,7 +212,7 @@ export class TextArea extends Component<TextFieldProps> {
     } = this.props
 
     return (
-      <BBTextFieldContainer css={cssOverrides}>
+      <BBTextFieldContainer cssOverrides={cssOverrides}>
         {label !== undefined && <BBTextFieldLabel>{label}</BBTextFieldLabel>}
         {iconLeft && <StyledLeftIcon icon={iconLeft} />}
         {iconRight && <StyledRightIcon icon={iconRight} />}
