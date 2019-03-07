@@ -51,6 +51,7 @@
     "@types/react-router": "3",
     "@types/styled-components": "4.0.3",
     "babel-plugin-module-resolver": "3.1.1",
+    "babel-plugin-styled-components": "1.10.0",
     "fp-ts": "1.13.0",
     "io-ts": "1.7.1",
     "io-ts-types": "0.4.2",
