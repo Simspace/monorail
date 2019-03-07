@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.Icon = void 0;
+exports.Icon = exports.MaterialIconFontFace = void 0;
 
 var _CommonStyles = require("../CommonStyles");
 
@@ -67,7 +67,24 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// TODO: Refactor [key: string] to more concrete type
+// https://fonts.googleapis.com/icon?family=Material+Icons&style=baseline
+const MaterialIconFontFace =
+/*#__PURE__*/
+_styledComponents.createGlobalStyle`
+  @font-face {
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../assets/fonts/MaterialIcons-Regular.eot'); /* For IE6-8 */
+    src: local('Material Icons'),
+    local('MaterialIcons-Regular'),
+    url('../assets/fonts/MaterialIcons-Regular.woff2') format('woff2'),
+    url('../assets/fonts/MaterialIcons-Regular.woff') format('woff'),
+    url('../assets/fonts/MaterialIcons-Regular.ttf') format('truetype');
+  }
+`; // TODO: Refactor [key: string] to more concrete type
+
+exports.MaterialIconFontFace = MaterialIconFontFace;
 const customIcons = {
   academy: _Academy.Academy,
   admin: _Admin.Admin,
