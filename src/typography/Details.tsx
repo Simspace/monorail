@@ -85,7 +85,7 @@ const BBDetailsContainer = styled<BBDetailsContainerProps, 'div'>('div')`
     margin-top: 6px;
   }
 
-  ${({ css: cssOverrides }) => cssOverrides};
+  ${({ cssOverrides }) => cssOverrides};
 `
 
 type BBDetailsSize = {
@@ -95,7 +95,7 @@ type BBDetailsSize = {
 }
 
 type BBDetailsContainerProps = {
-  css?: SimpleInterpolation
+  cssOverrides?: SimpleInterpolation
 }
 
 type CCDetailsProps = BBDetailsSize &
@@ -109,7 +109,7 @@ export class CCDetails extends Component<CCDetailsProps> {
     const {
       children,
       compact,
-      css: cssOverrides,
+      cssOverrides,
       darkMode,
       large,
       property,
@@ -117,7 +117,7 @@ export class CCDetails extends Component<CCDetailsProps> {
     } = this.props
 
     return (
-      <BBDetailsContainer css={cssOverrides}>
+      <BBDetailsContainer cssOverrides={cssOverrides}>
         <BBDetailsProperty compact={compact} large={large} darkMode={darkMode}>
           {property}
         </BBDetailsProperty>

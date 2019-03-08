@@ -18,23 +18,15 @@ const rowPadding = ({
 }) => {
   if (singleCollection) {
     if (collapsible) {
-      return _styledComponents.css`
-        padding: 0 24px 0 8px;
-      `;
+      return (0, _styledComponents.css)(["padding:0 24px 0 8px;"]);
     } else {
-      return _styledComponents.css`
-        padding: 0 24px;
-      `;
+      return (0, _styledComponents.css)(["padding:0 24px;"]);
     }
   } else {
     if (collapsible) {
-      return _styledComponents.css`
-        padding: 0 8px;
-      `;
+      return (0, _styledComponents.css)(["padding:0 8px;"]);
     } else {
-      return _styledComponents.css`
-        padding: 0 8px;
-      `;
+      return (0, _styledComponents.css)(["padding:0 8px;"]);
     }
   }
 };
@@ -43,213 +35,132 @@ const tableDataStyles = ({
   textAlign,
   flex,
   width
-}) => _styledComponents.css`
-  ${textAlign && _styledComponents.css`
-      text-align: ${textAlign};
-    `};
-  ${flex && _styledComponents.css`
-      flex: ${flex};
-    `};
-  ${width && _styledComponents.css`
-      width: ${width}px;
-    `};
-`; // Components
+}) => (0, _styledComponents.css)(["", ";", ";", ";"], textAlign && (0, _styledComponents.css)(["text-align:", ";"], textAlign), flex && (0, _styledComponents.css)(["flex:", ";"], flex), width && (0, _styledComponents.css)(["width:", "px;"], width)); // Components
 // Main Wrapper
 
 
-const TableContainer = (0, _styledComponents.default)('div')`
-  ${(0, _CommonStyles.flexFlow)()};
-
-  height: 100%;
-  overflow: hidden;
-
-  ${({
-  css: cssOverrides
-}) => cssOverrides};
-`; // Header Components
+const TableContainer =
+/*#__PURE__*/
+(0, _styledComponents.default)('div').withConfig({
+  displayName: "DataTable__TableContainer",
+  componentId: "sc-18e9kui-0"
+})(["", ";height:100%;overflow:hidden;", ";"], (0, _CommonStyles.flexFlow)(), ({
+  cssOverrides
+}) => cssOverrides); // Header Components
 
 exports.TableContainer = TableContainer;
-const TableHeaderContainer = (0, _styledComponents.default)('div')`
-  ${({
+const TableHeaderContainer =
+/*#__PURE__*/
+(0, _styledComponents.default)('div').withConfig({
+  displayName: "DataTable__TableHeaderContainer",
+  componentId: "sc-18e9kui-1"
+})(["", ";"], ({
   collapsible = false,
-  css: cssOverrides,
+  cssOverrides,
   dense = false,
   singleCollection = false
-}) => _styledComponents.css`
-    ${(0, _CommonStyles.flexFlow)('row')};
-    ${rowPadding({
+}) => (0, _styledComponents.css)(["", ";", ";align-items:center;border-bottom:1px solid ", ";box-sizing:border-box;flex-shrink:0;min-height:32px;", ";"], (0, _CommonStyles.flexFlow)('row'), rowPadding({
   singleCollection,
   dense,
   collapsible
-})};
-
-    align-items: center;
-    border-bottom: 1px solid ${(0, _CommonStyles.colors)(_CommonStyles.Colors.Grey94)};
-    box-sizing: border-box;
-    flex-shrink: 0;
-    min-height: 32px;
-
-    ${cssOverrides};
-  `};
-`;
+}), (0, _CommonStyles.colors)(_CommonStyles.Colors.Grey94), cssOverrides));
 exports.TableHeaderContainer = TableHeaderContainer;
-const TableHeaderData = (0, _styledComponents.default)('div')`
-  ${({
-  css: cssOverrides,
+const TableHeaderData =
+/*#__PURE__*/
+(0, _styledComponents.default)('div').withConfig({
+  displayName: "DataTable__TableHeaderData",
+  componentId: "sc-18e9kui-2"
+})(["", ";"], ({
+  cssOverrides,
   flex,
   hasSorter = false,
   textAlign,
   width
-}) => _styledComponents.css`
-    ${(0, _CommonStyles.flexFlow)('row')};
-    ${(0, _CommonStyles.typography)(500, _CommonStyles.FontSizes.Title5)};
-
-    align-items: center;
-    color: ${(0, _CommonStyles.colors)(_CommonStyles.Colors.Black89)};
-    height: 100%;
-    padding: 8px 8px 7px; /* 7px bottom because of the bottomBorder on the row. */
-
-    ${tableDataStyles({
+}) => (0, _styledComponents.css)(["", ";", ";align-items:center;color:", ";height:100%;padding:8px 8px 7px;", ";", ";", ";"], (0, _CommonStyles.flexFlow)('row'), (0, _CommonStyles.typography)(500, _CommonStyles.FontSizes.Title5), (0, _CommonStyles.colors)(_CommonStyles.Colors.Black89), tableDataStyles({
   textAlign,
   width,
   flex
-})};
-
-    ${hasSorter && _styledComponents.css`
-        cursor: pointer;
-        user-select: none;
-
-        &:hover {
-          background: ${(0, _CommonStyles.colors)(_CommonStyles.Colors.Grey94)};
-        }
-      `};
-
-    ${cssOverrides};
-  `};
-`; // Body Components
+}), hasSorter && (0, _styledComponents.css)(["cursor:pointer;user-select:none;&:hover{background:", ";}"], (0, _CommonStyles.colors)(_CommonStyles.Colors.Grey94)), cssOverrides)); // Body Components
 
 exports.TableHeaderData = TableHeaderData;
-const TableBody = (0, _styledComponents.default)('div')`
-  ${(0, _CommonStyles.flexFlow)()};
-
-  flex: 1 1 100%;
-  overflow-y: auto;
-
-  ${({
-  css: cssOverrides
-}) => cssOverrides};
-`;
+const TableBody =
+/*#__PURE__*/
+(0, _styledComponents.default)('div').withConfig({
+  displayName: "DataTable__TableBody",
+  componentId: "sc-18e9kui-3"
+})(["", ";flex:1 1 100%;overflow-y:auto;", ";"], (0, _CommonStyles.flexFlow)(), ({
+  cssOverrides
+}) => cssOverrides);
 exports.TableBody = TableBody;
-const TableRowContainer = (0, _styledComponents.default)('div')`
-  ${({
+const TableRowContainer =
+/*#__PURE__*/
+(0, _styledComponents.default)('div').withConfig({
+  displayName: "DataTable__TableRowContainer",
+  componentId: "sc-18e9kui-4"
+})(["", ";"], ({
   collapsible = false,
-  css: cssOverrides,
+  cssOverrides,
   dense = false,
   singleCollection = false
-}) => _styledComponents.css`
-    ${(0, _CommonStyles.flexFlow)('row')};
-    ${rowPadding({
+}) => (0, _styledComponents.css)(["", ";", ";align-items:center;flex-shrink:0;min-height:", "px;position:relative;&::after{background:", ";bottom:0;content:'';height:1px;left:6px;position:absolute;right:6px;z-index:-5;}", ";"], (0, _CommonStyles.flexFlow)('row'), rowPadding({
   singleCollection,
   dense,
   collapsible
-})};
-
-    align-items: center;
-    flex-shrink: 0;
-    min-height: ${dense ? 32 : 40}px;
-    position: relative; /* Need pos:rel so that the pseudo element for the indented border works. */
-
-    &::after {
-      background: ${(0, _CommonStyles.colors)(_CommonStyles.Colors.Grey96)};
-      bottom: 0;
-      content: '';
-      height: 1px;
-      left: 6px;
-      position: absolute;
-      right: 6px;
-      z-index: -5; /* Needs negative z-index so that it appears below the scroll bar. */
-    }
-
-    ${cssOverrides};
-  `};
-`;
+}), dense ? 32 : 40, (0, _CommonStyles.colors)(_CommonStyles.Colors.Grey96), cssOverrides));
 exports.TableRowContainer = TableRowContainer;
-const TableRowData = (0, _styledComponents.default)('div')`
-  ${({
+const TableRowData =
+/*#__PURE__*/
+(0, _styledComponents.default)('div').withConfig({
+  displayName: "DataTable__TableRowData",
+  componentId: "sc-18e9kui-5"
+})(["", ";"], ({
   textAlign,
   width,
   flex,
-  css: cssOverrides
-}) => _styledComponents.css`
-    ${(0, _CommonStyles.flexFlow)('row')};
-    ${(0, _CommonStyles.typography)(400, _CommonStyles.FontSizes.Title5)};
-
-    align-items: center;
-    color: ${(0, _CommonStyles.colors)(_CommonStyles.Colors.Black89)};
-    padding: 12px 8px;
-    height: 100%;
-
-    ${tableDataStyles({
+  cssOverrides
+}) => (0, _styledComponents.css)(["", ";", ";align-items:center;color:", ";padding:12px 8px;height:100%;", ";", ";"], (0, _CommonStyles.flexFlow)('row'), (0, _CommonStyles.typography)(400, _CommonStyles.FontSizes.Title5), (0, _CommonStyles.colors)(_CommonStyles.Colors.Black89), tableDataStyles({
   textAlign,
   width,
   flex
-})};
-
-    ${cssOverrides};
-  `};
-`;
+}), cssOverrides));
 exports.TableRowData = TableRowData;
-const TableRowGroupHeader = (0, _styledComponents.default)('div')`
-  ${({
+const TableRowGroupHeader =
+/*#__PURE__*/
+(0, _styledComponents.default)('div').withConfig({
+  displayName: "DataTable__TableRowGroupHeader",
+  componentId: "sc-18e9kui-6"
+})(["", ";"], ({
   collapsible = false,
-  css: cssOverrides,
+  cssOverrides,
   dense = false,
   singleCollection = false
-}) => _styledComponents.css`
-    ${(0, _CommonStyles.flexFlow)('row')};
-    ${rowPadding({
+}) => (0, _styledComponents.css)(["", ";", ";align-items:center;cursor:pointer;height:40px;user-select:none;", ";"], (0, _CommonStyles.flexFlow)('row'), rowPadding({
   singleCollection,
   dense,
   collapsible
-})};
-
-    align-items: center;
-    cursor: pointer;
-    height: 40px;
-    user-select: none;
-
-    ${cssOverrides};
-  `};
-`; // Table Footer
+}), cssOverrides)); // Table Footer
 
 exports.TableRowGroupHeader = TableRowGroupHeader;
-const TableFooterContainer = (0, _styledComponents.default)('div')`
-  ${({
+const TableFooterContainer =
+/*#__PURE__*/
+(0, _styledComponents.default)('div').withConfig({
+  displayName: "DataTable__TableFooterContainer",
+  componentId: "sc-18e9kui-7"
+})(["", ";"], ({
   collapsible = false,
-  css: cssOverrides,
+  cssOverrides,
   dense = false,
   singleCollection = false
-}) => _styledComponents.css`
-    ${(0, _CommonStyles.flexFlow)('row')};
-    ${rowPadding({
+}) => (0, _styledComponents.css)(["", ";", ";align-items:center;background:", ";flex-shrink:0;height:24px;", ";"], (0, _CommonStyles.flexFlow)('row'), rowPadding({
   singleCollection,
   dense,
   collapsible
-})};
-
-    align-items: center;
-    background: ${(0, _CommonStyles.colors)(_CommonStyles.Colors.Grey99)};
-    flex-shrink: 0;
-    height: 24px;
-
-    ${cssOverrides};
-  `};
-`;
+}), (0, _CommonStyles.colors)(_CommonStyles.Colors.Grey99), cssOverrides));
 exports.TableFooterContainer = TableFooterContainer;
-const TableFooterMeta = (0, _styledComponents.default)('div')`
-  ${(0, _CommonStyles.typography)(400, _CommonStyles.FontSizes.Title5)};
-
-  color: ${(0, _CommonStyles.colors)(_CommonStyles.Colors.Black74)};
-  margin-left: auto;
-`;
+const TableFooterMeta =
+/*#__PURE__*/
+(0, _styledComponents.default)('div').withConfig({
+  displayName: "DataTable__TableFooterMeta",
+  componentId: "sc-18e9kui-8"
+})(["", ";color:", ";margin-left:auto;"], (0, _CommonStyles.typography)(400, _CommonStyles.FontSizes.Title5), (0, _CommonStyles.colors)(_CommonStyles.Colors.Black74));
 exports.TableFooterMeta = TableFooterMeta;

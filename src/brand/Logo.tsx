@@ -2,16 +2,16 @@ import React, { ComponentType } from 'react'
 import { colors, Colors } from '@monorail/CommonStyles'
 import styled, { SimpleInterpolation } from 'styled-components'
 
-const LogoSvg = styled<{ css?: SimpleInterpolation }, 'svg'>('svg')`
+const LogoSvg = styled<{ cssOverrides?: SimpleInterpolation }, 'svg'>('svg')`
   height: 100%;
   width: auto;
 
-  ${({ css: cssOverride }) => cssOverride};
+  ${({ cssOverrides }) => cssOverrides};
 `
 
 export const SimSpaceLogo: ComponentType<{
   background?: Colors.BrandDarkBlue | Colors.BrandLightBlue
-  css?: SimpleInterpolation
+  cssOverrides?: SimpleInterpolation
 }> = ({ background, ...otherProps }) => {
   let primaryColor
   let secondaryColor
@@ -90,7 +90,7 @@ export const SimSpaceLogo: ComponentType<{
 
 export const SimSpaceLogoMark: ComponentType<{
   background?: Colors.BrandDarkBlue | Colors.BrandLightBlue
-  css?: SimpleInterpolation
+  cssOverrides?: SimpleInterpolation
 }> = ({ background, ...otherProps }) => {
   let primaryColor
   let secondaryColor
@@ -137,7 +137,7 @@ export const SimSpaceLogoMark: ComponentType<{
 
 export const SimSpaceLogoFlat: ComponentType<{
   background?: Colors.BrandDarkBlue | Colors.BrandLightBlue
-  css?: SimpleInterpolation
+  cssOverrides?: SimpleInterpolation
 }> = ({ background, ...otherProps }) => {
   let primaryColor
 
@@ -167,7 +167,7 @@ export const SimSpaceLogoFlat: ComponentType<{
 }
 
 export const PCTELogoMark: ComponentType<{
-  css?: SimpleInterpolation
+  cssOverrides?: SimpleInterpolation
 }> = props => (
   <LogoSvg
     xmlns="http://www.w3.org/2000/svg"

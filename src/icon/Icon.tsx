@@ -26,8 +26,27 @@ import { Tracker } from '@monorail/icon/custom/Tracker'
 import { Unscored } from '@monorail/icon/custom/Unscored'
 import { VCenter } from '@monorail/icon/custom/VCenter'
 import React, { ComponentType, MouseEvent } from 'react'
-import styled, { css, SimpleInterpolation } from 'styled-components'
+import styled, {
+  css,
+  SimpleInterpolation,
+  createGlobalStyle,
+} from 'styled-components'
 import { Omit } from 'typelevel-ts'
+
+// https://fonts.googleapis.com/icon?family=Material+Icons&style=baseline
+export const MaterialIconFontFace = createGlobalStyle`
+  @font-face {
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../assets/fonts/MaterialIcons-Regular.eot'); /* For IE6-8 */
+    src: local('Material Icons'),
+    local('MaterialIcons-Regular'),
+    url('../assets/fonts/MaterialIcons-Regular.woff2') format('woff2'),
+    url('../assets/fonts/MaterialIcons-Regular.woff') format('woff'),
+    url('../assets/fonts/MaterialIcons-Regular.ttf') format('truetype');
+  }
+`
 
 // TODO: Refactor [key: string] to more concrete type
 const customIcons: { [key: string]: ComponentType<CustomIconProps> } = {
@@ -61,15 +80,17 @@ const customIcons: { [key: string]: ComponentType<CustomIconProps> } = {
   star_half: StarHalf,
 }
 
-export const Icon = styled<IconProps>(({ icon, ...otherProps }: IconProps) => {
-  const CustomIcon = customIcons[icon]
+export const Icon = styled<IconProps>(
+  ({ cssOverrides: _cssOverrides, icon, ...otherProps }: IconProps) => {
+    const CustomIcon = customIcons[icon]
 
-  if (CustomIcon) {
-    return <CustomIcon {...otherProps} />
-  }
+    if (CustomIcon) {
+      return <CustomIcon {...otherProps} />
+    }
 
-  return <i {...otherProps}>{icon}</i>
-})`
+    return <i {...otherProps}>{icon}</i>
+  },
+)`
   ${({ size }) =>
     size
       ? css`
@@ -107,12 +128,12 @@ export const Icon = styled<IconProps>(({ icon, ...otherProps }: IconProps) => {
   /* Support for IE. */
   font-feature-settings: 'liga';
 
-  ${({ css: cssOverrides }) => cssOverrides};
+  ${({ cssOverrides }) => cssOverrides};
 `
 
 export type IconProps = {
   className?: string
-  css?: SimpleInterpolation
+  cssOverrides?: SimpleInterpolation
   icon: string
   onClick?: (event: MouseEvent<Element>) => void
   size?: number

@@ -8,5 +8,5 @@ export const SectionTitle = styled<
 >('h1')`
   ${({ margin = '16px' }) => typography(500, FontSizes.Title3, margin)};
 
-  ${({ css: cssOverride }) => cssOverride};
+  ${({ cssOverrides }) => cssOverrides};
 `

@@ -49,7 +49,7 @@ type CheckmarkSelect = {
 }
 
 type Props = {
-  css?: SimpleInterpolation
+  cssOverrides?: SimpleInterpolation
   label?: string
   items: CheckmarkSelect[]
   onSelect: (key: string, value: string | number | string[] | undefined) => void // TODO
@@ -57,7 +57,7 @@ type Props = {
 }
 
 export const CheckmarkSelectGroup: SFC<Props> = ({
-  css: cssOverrides,
+  cssOverrides,
   label,
   items,
   onSelect,
@@ -83,7 +83,7 @@ export const CheckmarkSelectGroup: SFC<Props> = ({
                 <Select
                   {...otherProps}
                   onSelect={v => onSelect(otherProps.key, v)}
-                  css={{
+                  cssOverrides={{
                     flex: '0 0 100px',
                   }}
                 />

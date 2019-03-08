@@ -33,8 +33,8 @@ export declare const BBModalContainer: import("styled-components").StyledCompone
     usesScaleAnimation: boolean;
 } & React.ClassAttributes<HTMLDivElement> & React.HTMLAttributes<HTMLDivElement>>;
 export declare const BBModalContent: import("styled-components").StyledComponentClass<{
-    css?: SimpleInterpolation;
+    cssOverrides?: SimpleInterpolation;
 }, any, {
-    css?: SimpleInterpolation;
+    cssOverrides?: SimpleInterpolation;
 } & React.ClassAttributes<HTMLDivElement> & React.HTMLAttributes<HTMLDivElement>>;
 export {};

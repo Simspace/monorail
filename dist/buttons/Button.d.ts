@@ -16,7 +16,7 @@ export declare const buttonSizeCss: {
 export declare type ButtonProps = {
     size: ButtonSize;
     display: ButtonDisplay;
-    css?: SimpleInterpolation;
+    cssOverrides?: SimpleInterpolation;
     disabled?: boolean;
     onClick?: (event: MouseEvent<HTMLButtonElement>) => void;
     type: string;

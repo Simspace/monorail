@@ -19,7 +19,7 @@ import { isNil } from '@monorail/CoreUtils/primitive-guards'
 
 type MenuProps = {
   children: ReactNode
-  css?: SimpleInterpolation
+  cssOverrides?: SimpleInterpolation
   width: string
 }
 type MenuRef = StyledHtmlElement<HTMLDivElement, MenuProps>
@@ -34,12 +34,12 @@ const CCMenu = styled<MenuProps, 'div'>('div')`
   width: ${({ width }) => width};
   min-width: ${sizes.menu.width}px;
 
-  ${({ css: cssOverrides }) => cssOverrides};
+  ${({ cssOverrides }) => cssOverrides};
 `
 
-type ModalContentProps = { css?: SimpleInterpolation }
+type ModalContentProps = { cssOverrides?: SimpleInterpolation }
 const MenuContent = styled<ModalContentProps, 'div'>('div')`
-  ${({ css: cssOverride }) => css`
+  ${({ cssOverrides }) => css`
     ${flexFlow()};
 
     height: 100%;
@@ -47,7 +47,7 @@ const MenuContent = styled<ModalContentProps, 'div'>('div')`
     padding: 4px 0;
     width: 100%;
 
-    ${cssOverride};
+    ${cssOverrides};
   `};
 `
 
@@ -122,9 +122,9 @@ export class Menu extends Component<Props, State> {
         <CCMenu
           width={isNil(width) ? 'auto' : `${width}px`}
           ref={this.menuRef}
-          css={scaleAnimation.outSideContentStyles}
+          cssOverrides={scaleAnimation.outSideContentStyles}
         >
-          <MenuContent css={scaleAnimation.inSideContentStyles}>
+          <MenuContent cssOverrides={scaleAnimation.inSideContentStyles}>
             {children}
           </MenuContent>
         </CCMenu>

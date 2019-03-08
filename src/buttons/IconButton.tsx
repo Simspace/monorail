@@ -123,11 +123,11 @@ export const CCIconButton = styled<CCIconButtonProps, 'button'>('button')`
 
   ${baseFocusStyles()};
 
-  ${({ css: cssOverrides }) => cssOverrides};
+  ${({ cssOverrides }) => cssOverrides};
 `
 
 type CCIconButtonProps = {
-  css?: SimpleInterpolation
+  cssOverrides?: SimpleInterpolation
   darkMode?: boolean
   disabled?: boolean
   display: ButtonDisplay

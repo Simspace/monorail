@@ -13,7 +13,7 @@ declare type BBChoiceInputProps = AnsweredProps & {
     onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 };
 declare type CCChoiceProps = AnsweredProps & BBGradeIconProps & {
-    css?: SimpleInterpolation;
+    cssOverrides?: SimpleInterpolation;
     disabled?: boolean;
     readOnly?: boolean;
     value?: string | number | string[];

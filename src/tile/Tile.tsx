@@ -21,5 +21,5 @@ export const Tile = styled<
   flex-shrink: 0;
   justify-content: space-between;
 
-  ${({ css: cssOverride }) => cssOverride};
+  ${({ cssOverrides }) => cssOverrides};
 `

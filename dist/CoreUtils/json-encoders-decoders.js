@@ -3,6 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.transformDecodeError = transformDecodeError;
 exports.mkJSONOptionDecoderSelector = exports.createOptionFromJSON = exports.fold = exports.isJSONSome = exports.isJSONNone = exports.jsonSome = exports.jsonNone = void 0;
 
 var t = _interopRequireWildcard(require("io-ts"));
@@ -69,7 +70,7 @@ const fold = (fa, onNone, onSome) => isJSONNone(fa) ? onNone : onSome(fa.value);
 exports.fold = fold;
 
 const createOptionFromJSON = (codec, name = `Option<${codec.name}>`) => {
-  /** create an io-ts repesentation of JSONNone | JSONSome<A> */
+  /** create an io-ts representation of JSONNone | JSONSome<A> */
   const JSONOption_ = t.taggedUnion('_tag', [t.type({
     _tag: t.literal('None')
   }), t.type({
@@ -99,8 +100,8 @@ const createOptionFromJSON = (codec, name = `Option<${codec.name}>`) => {
 
 exports.createOptionFromJSON = createOptionFromJSON;
 
-const mkJSONOptionDecoderSelector = codec => lens => s => {
-  const encoded = lens.get(s);
+const mkJSONOptionDecoderSelector = codec => getter => s => {
+  const encoded = getter.get(s);
   const decoded = codec.decode(encoded);
   const noOpIO = new _IO.IO(_general.constVoid);
   const constNoOpIO = (0, _function.constant)(noOpIO); // TODO: consider better error handling
@@ -119,3 +120,16 @@ const mkJSONOptionDecoderSelector = codec => lens => s => {
 };
 
 exports.mkJSONOptionDecoderSelector = mkJSONOptionDecoderSelector;
+
+function transformDecodeError(errs) {
+  const errors = errs.reduce((acc, err) => {
+    // err.context is a read-only array so doesn't work with fp-ts/lib/Array
+    if (err.context && err.context[1] && err.context[1].key) {
+      const key = err.context[1].key;
+      acc.push(key);
+    }
+
+    return acc;
+  }, []);
+  return `The following keys erred when decoding: ${errors.join(', ')}.`;
+}

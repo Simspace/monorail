@@ -28,30 +28,18 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 /*
 * Component
 */
-const BBModalBackground = (0, _styledComponents.default)('div')`
-  ${({
+const BBModalBackground =
+/*#__PURE__*/
+(0, _styledComponents.default)('div').withConfig({
+  displayName: "Modals__BBModalBackground",
+  componentId: "sc-1y5a2ts-0"
+})(["", ";", ";", ";", ";background:", ";overflow:hidden;width:", "px;position:relative;will-change:transform;", ";"], ({
   mini
-}) => mini && _styledComponents.css`
-      height: ${_CommonStyles.sizes.modals.mini.height}px;
-    `};
-
-  ${(0, _CommonStyles.borderRadius)(_CommonStyles.BorderRadius.XLarge)};
-  ${(0, _CommonStyles.flexFlow)()};
-  ${(0, _CommonStyles.getElevation)(_CommonStyles.ElevationRange.Elevation24)};
-
-  background: ${(0, _CommonStyles.colors)(_CommonStyles.Colors.White)};
-  overflow: hidden;
-  width: ${({
+}) => mini && (0, _styledComponents.css)(["height:", "px;"], _CommonStyles.sizes.modals.mini.height), (0, _CommonStyles.borderRadius)(_CommonStyles.BorderRadius.XLarge), (0, _CommonStyles.flexFlow)(), (0, _CommonStyles.getElevation)(_CommonStyles.ElevationRange.Elevation24), (0, _CommonStyles.colors)(_CommonStyles.Colors.White), ({
   mini
-}) => mini ? _CommonStyles.sizes.modals.mini.width : 584}px;
-  position: relative; /* position: relative; so that the shadow works when on the BBModalOverlay */
-
-  will-change: transform;
-
-  ${({
-  css: cssOverrides
-}) => cssOverrides};
-`;
+}) => mini ? _CommonStyles.sizes.modals.mini.width : 584, ({
+  cssOverrides
+}) => cssOverrides);
 /*
 *
 * Modal Header
@@ -63,62 +51,53 @@ const BBModalBackground = (0, _styledComponents.default)('div')`
 */
 
 exports.BBModalBackground = BBModalBackground;
-const BBModalHeaderContainer = (0, _styledComponents.default)('div')`
-  ${({
+const BBModalHeaderContainer =
+/*#__PURE__*/
+(0, _styledComponents.default)('div').withConfig({
+  displayName: "Modals__BBModalHeaderContainer",
+  componentId: "sc-1y5a2ts-1"
+})(["", ";", ";background:", ";flex-shrink:0;user-select:none;z-index:1;", "{", ";}"], ({
   mini
-}) => (0, _CommonStyles.flexFlow)(mini ? 'column' : 'row')};
-
-  ${(0, _CommonStyles.getElevation)(_CommonStyles.ElevationRange.Elevation2)};
-
-  background: ${(0, _CommonStyles.colors)(_CommonStyles.Colors.BrandDarkBlue)};
-  flex-shrink: 0;
-  user-select: none;
-  z-index: 1;
-
-  ${_Search.BBSearchContainer} {
-    ${({
+}) => (0, _CommonStyles.flexFlow)(mini ? 'column' : 'row'), (0, _CommonStyles.getElevation)(_CommonStyles.ElevationRange.Elevation2), (0, _CommonStyles.colors)(_CommonStyles.Colors.BrandDarkBlue), _Search.BBSearchContainer, ({
   mini
-}) => mini ? _styledComponents.css`
-            margin: 8px 16px 16px;
-          ` : _styledComponents.css`
-            margin: auto 16px auto auto;
-          `};
-  }
-`;
-const BBModalHeaderRow = (0, _styledComponents.default)('div')`
-  ${(0, _CommonStyles.flexFlow)('row')};
-
-  align-items: center;
-  height: ${({
+}) => mini ? (0, _styledComponents.css)(["margin:8px 16px 16px;"]) : (0, _styledComponents.css)(["margin:auto 16px auto auto;"]));
+const BBModalHeaderRow =
+/*#__PURE__*/
+(0, _styledComponents.default)('div').withConfig({
+  displayName: "Modals__BBModalHeaderRow",
+  componentId: "sc-1y5a2ts-2"
+})(["", ";align-items:center;height:", "px;padding:0 16px;width:100%;"], (0, _CommonStyles.flexFlow)('row'), ({
   mini
-}) => mini ? 48 : 56}px;
-  padding: 0 16px;
-  width: 100%;
-`;
-const BBModalHeaderTitle = (0, _styledComponents.default)('h1')`
-  ${({
+}) => mini ? 48 : 56);
+const BBModalHeaderTitle =
+/*#__PURE__*/
+(0, _styledComponents.default)('h1').withConfig({
+  displayName: "Modals__BBModalHeaderTitle",
+  componentId: "sc-1y5a2ts-3"
+})(["", ";color:", ";white-space:nowrap;margin:0;"], ({
   mini
-}) => mini ? (0, _CommonStyles.typography)(700, _CommonStyles.FontSizes.Title4) : (0, _CommonStyles.typography)(700, _CommonStyles.FontSizes.Title3)};
-
-  color: ${(0, _CommonStyles.colors)(_CommonStyles.Colors.White)};
-  white-space: nowrap;
-  margin: 0;
-`;
-const baseIconStyles = _styledComponents.css`
-  color: ${(0, _CommonStyles.colors)(_CommonStyles.Colors.White)};
-`;
-const StyledAppIconLeft = (0, _styledComponents.default)(_AppIcon.AppIcon)`
-  ${baseIconStyles};
-  margin-right: 16px;
-`;
-const StyledIconLeft = (0, _styledComponents.default)(_Icon.Icon)`
-  ${baseIconStyles};
-  margin-right: 16px;
-`;
-const StyledIconRight = (0, _styledComponents.default)(_Icon.Icon)`
-  ${baseIconStyles};
-  margin-left: 16px;
-`;
+}) => mini ? (0, _CommonStyles.typography)(700, _CommonStyles.FontSizes.Title4) : (0, _CommonStyles.typography)(700, _CommonStyles.FontSizes.Title3), (0, _CommonStyles.colors)(_CommonStyles.Colors.White));
+const baseIconStyles =
+/*#__PURE__*/
+(0, _styledComponents.css)(["color:", ";"], (0, _CommonStyles.colors)(_CommonStyles.Colors.White));
+const StyledAppIconLeft =
+/*#__PURE__*/
+(0, _styledComponents.default)(_AppIcon.AppIcon).withConfig({
+  displayName: "Modals__StyledAppIconLeft",
+  componentId: "sc-1y5a2ts-4"
+})(["", ";margin-right:16px;"], baseIconStyles);
+const StyledIconLeft =
+/*#__PURE__*/
+(0, _styledComponents.default)(_Icon.Icon).withConfig({
+  displayName: "Modals__StyledIconLeft",
+  componentId: "sc-1y5a2ts-5"
+})(["", ";margin-right:16px;"], baseIconStyles);
+const StyledIconRight =
+/*#__PURE__*/
+(0, _styledComponents.default)(_Icon.Icon).withConfig({
+  displayName: "Modals__StyledIconRight",
+  componentId: "sc-1y5a2ts-6"
+})(["", ";margin-left:16px;"], baseIconStyles);
 /*
 * Types
 */
@@ -130,9 +109,7 @@ const DefaultCloseButton = ({
   headerRowChildren,
   onClose
 }) => _react.default.createElement(_IconButton.IconButton, {
-  css: headerRowChildren ? _styledComponents.css`` : _styledComponents.css`
-            margin-left: auto;
-          `,
+  cssOverrides: headerRowChildren ? (0, _styledComponents.css)([""]) : (0, _styledComponents.css)(["margin-left:auto;"]),
   icon: "close",
   darkMode: true,
   onClick: onClose,
@@ -181,18 +158,12 @@ const BBModalHeader = ({
 
 
 exports.BBModalHeader = BBModalHeader;
-const BBModalFooter = (0, _styledComponents.default)('div')`
-  ${(0, _CommonStyles.flexFlow)('row')};
-  ${(0, _CommonStyles.getElevation)(_CommonStyles.ElevationRange.Elevation6)};
-
-  align-items: center;
-  background: ${(0, _CommonStyles.colors)(_CommonStyles.Colors.Grey98)};
-  height: 48px;
-  justify-content: flex-end;
-  margin: auto 0 0;
-  padding: 0 16px;
-  flex-shrink: 0;
-`;
+const BBModalFooter =
+/*#__PURE__*/
+(0, _styledComponents.default)('div').withConfig({
+  displayName: "Modals__BBModalFooter",
+  componentId: "sc-1y5a2ts-7"
+})(["", ";", ";align-items:center;background:", ";height:48px;justify-content:flex-end;margin:auto 0 0;padding:0 16px;flex-shrink:0;"], (0, _CommonStyles.flexFlow)('row'), (0, _CommonStyles.getElevation)(_CommonStyles.ElevationRange.Elevation6), (0, _CommonStyles.colors)(_CommonStyles.Colors.Grey98));
 /*
 *
 * Modal Overlay
@@ -204,29 +175,18 @@ const BBModalFooter = (0, _styledComponents.default)('div')`
 */
 
 exports.BBModalFooter = BBModalFooter;
-const BBModalOverlayContainer = (0, _styledComponents.default)('div')`
-  ${({
+const BBModalOverlayContainer =
+/*#__PURE__*/
+(0, _styledComponents.default)('div').withConfig({
+  displayName: "Modals__BBModalOverlayContainer",
+  componentId: "sc-1y5a2ts-8"
+})(["", ";", ";bottom:0;cursor:pointer;left:0;position:fixed;right:0;top:0;transition:all ease 150ms;", ";"], ({
   isOpen
-}) => (0, _CommonStyles.visible)(isOpen)};
-  ${({
+}) => (0, _CommonStyles.visible)(isOpen), ({
   chromeless
-}) => !chromeless && _styledComponents.css`
-      background: ${(0, _CommonStyles.colors)(_CommonStyles.Colors.Black, 0.36)};
-    `};
-
-  bottom: 0;
-  cursor: pointer;
-  left: 0;
-  position: fixed;
-  right: 0;
-  top: 0;
-
-  transition: all ease 150ms;
-
-  ${({
-  css: cssOverride
-}) => cssOverride};
-`;
+}) => !chromeless && (0, _styledComponents.css)(["background:", ";"], (0, _CommonStyles.colors)(_CommonStyles.Colors.Black, 0.36)), ({
+  cssOverrides
+}) => cssOverrides);
 /*
 * Types
 */
@@ -239,11 +199,11 @@ const BBModalOverlay = ({
   chromeless,
   isOpen,
   onClick,
-  css: cssOverrides
+  cssOverrides
 }) => _react.default.createElement(BBModalOverlayContainer, {
   isOpen: isOpen,
   chromeless: chromeless,
-  css: cssOverrides,
+  cssOverrides: cssOverrides,
   onClick: onClick ? event => {
     if (event.target === event.currentTarget) {
       onClick(event);
@@ -262,46 +222,16 @@ const BBModalOverlay = ({
 
 
 exports.BBModalOverlay = BBModalOverlay;
-const BBModalContainer = (0, _styledComponents.default)('div')`
-  ${({
+const BBModalContainer =
+/*#__PURE__*/
+(0, _styledComponents.default)('div').withConfig({
+  displayName: "Modals__BBModalContainer",
+  componentId: "sc-1y5a2ts-9"
+})(["", ";"], ({
   isOpen,
   usesScaleAnimation,
-  css: cssOverrides
-}) => _styledComponents.css`
-    ${isOpen ? _styledComponents.css`
-          pointer-events: all;
-        ` : _styledComponents.css`
-          pointer-events: none;
-        `};
-
-    ${(0, _CommonStyles.flexFlow)()};
-    ${_CommonStyles.gothamFontFamily};
-
-    align-items: center;
-    bottom: 0;
-    justify-content: center;
-    left: 0;
-    position: fixed;
-    right: 0;
-    top: 0;
-    z-index: 9998;
-
-    ${!usesScaleAnimation && _styledComponents.css`
-        ${BBModalBackground} {
-          ${isOpen ? _styledComponents.css`
-                transform: scale(1) translateY(0);
-              ` : _styledComponents.css`
-                transform: scale(0.8) translateY(64px);
-              `};
-          ${(0, _CommonStyles.visible)(isOpen)};
-
-          transition: all ease 100ms;
-        }
-      `};
-
-    ${cssOverrides};
-  `};
-`;
+  cssOverrides
+}) => (0, _styledComponents.css)(["", ";", ";", ";align-items:center;bottom:0;justify-content:center;left:0;position:fixed;right:0;top:0;z-index:9998;", ";", ";"], isOpen ? (0, _styledComponents.css)(["pointer-events:all;"]) : (0, _styledComponents.css)(["pointer-events:none;"]), (0, _CommonStyles.flexFlow)(), _CommonStyles.gothamFontFamily, !usesScaleAnimation && (0, _styledComponents.css)(["", "{", ";", ";transition:all ease 100ms;}"], BBModalBackground, isOpen ? (0, _styledComponents.css)(["transform:scale(1) translateY(0);"]) : (0, _styledComponents.css)(["transform:scale(0.8) translateY(64px);"]), (0, _CommonStyles.visible)(isOpen)), cssOverrides));
 /*
 *
 * Modal Content
@@ -313,14 +243,12 @@ const BBModalContainer = (0, _styledComponents.default)('div')`
 */
 
 exports.BBModalContainer = BBModalContainer;
-const BBModalContent = (0, _styledComponents.default)('div')`
-  ${(0, _CommonStyles.flexFlow)()};
-  height: 100%;
-  max-height: 100%;
-  overflow: auto;
-
-  ${({
-  css: cssOverrides
-}) => cssOverrides};
-`;
+const BBModalContent =
+/*#__PURE__*/
+(0, _styledComponents.default)('div').withConfig({
+  displayName: "Modals__BBModalContent",
+  componentId: "sc-1y5a2ts-10"
+})(["", ";height:100%;max-height:100%;overflow:auto;", ";"], (0, _CommonStyles.flexFlow)(), ({
+  cssOverrides
+}) => cssOverrides);
 exports.BBModalContent = BBModalContent;

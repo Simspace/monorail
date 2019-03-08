@@ -115,11 +115,9 @@ const flexFlow = (direction = defaultDirection, wrap = defaultWrap) => ({
 
 
 exports.flexFlow = flexFlow;
-const ellipsis = _styledComponents.css`
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-`;
+const ellipsis =
+/*#__PURE__*/
+(0, _styledComponents.css)(["overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"]);
 exports.ellipsis = ellipsis;
 let FontWeights;
 exports.FontWeights = FontWeights;
@@ -344,15 +342,9 @@ const sizingObjectToString = size => {
   return `${addPx(size.top)} ${addPx(size.right)} ${addPx(size.bottom)} ${addPx(size.left)}`;
 };
 
-const gothamFontFamily = _styledComponents.css`
-  font-family: 'Gotham SSm A', 'Gotham SSm B', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji',
-    'Segoe UI Emoji', 'Segoe UI Symbol';
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  letter-spacing: initial;
-  text-rendering: optimizeLegibility;
-`; //#region App Name
+const gothamFontFamily =
+/*#__PURE__*/
+(0, _styledComponents.css)(["font-family:'Gotham SSm A','Gotham SSm B',-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol';-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;letter-spacing:initial;text-rendering:optimizeLegibility;"]); //#region App Name
 
 /**
  * App Name
@@ -909,103 +901,28 @@ const colors = (color, alpha = 1) => convertHSLAMapToCss(colorHSLAMap({
 
 exports.colors = colors;
 
-const baseFocusStyles = (addPositionToParent = true) => _styledComponents.css`
-  ${addPositionToParent && _styledComponents.css`
-      position: relative;
-    `};
-
-  &::after {
-    ${visible(false)};
-
-    border-radius: inherit;
-    border: 1px solid ${colors(Colors.BrandLightBlue)};
-    bottom: 0;
-    content: '';
-    left: 0;
-    pointer-events: none;
-    position: absolute;
-    right: 0;
-    top: 0;
-  }
-
-  &:focus {
-    opacity: 0.85;
-    outline: none;
-
-    &::after {
-      ${visible(true)};
-    }
-  }
-`;
+const baseFocusStyles = (addPositionToParent = true) => (0, _styledComponents.css)(["", ";&::after{", ";border-radius:inherit;border:1px solid ", ";bottom:0;content:'';left:0;pointer-events:none;position:absolute;right:0;top:0;}&:focus{opacity:0.85;outline:none;&::after{", ";}}"], addPositionToParent && (0, _styledComponents.css)(["position:relative;"]), visible(false), colors(Colors.BrandLightBlue), visible(true));
 
 exports.baseFocusStyles = baseFocusStyles;
 
-const baseOutlineStyles = (color = Colors.BrandLightBlue) => _styledComponents.css`
-  background: transparent;
-  border: 1px solid ${colors(color)};
-  color: ${colors(color)};
-
-  &:hover {
-    background: ${colors(color, 0.08)};
-  }
-
-  &:active {
-    background: ${colors(color, 0.16)};
-  }
-`;
+const baseOutlineStyles = (color = Colors.BrandLightBlue) => (0, _styledComponents.css)(["background:transparent;border:1px solid ", ";color:", ";&:hover{background:", ";}&:active{background:", ";}"], colors(color), colors(color), colors(color, 0.08), colors(color, 0.16));
 
 exports.baseOutlineStyles = baseOutlineStyles;
 
-const baseChromelessStyles = (color = Colors.BrandLightBlue, isActive) => _styledComponents.css`
-  background: ${isActive ? colors(color, 0.2) : 'transparent'};
-
-  &:hover {
-    background: ${isActive ? colors(color, 0.2) : colors(color, 0.1)};
-  }
-
-  &.is-active,
-  &:active {
-    background: ${colors(color, 0.2)};
-  }
-`;
+const baseChromelessStyles = (color = Colors.BrandLightBlue, isActive) => (0, _styledComponents.css)(["background:", ";&:hover{background:", ";}&.is-active,&:active{background:", ";}"], isActive ? colors(color, 0.2) : 'transparent', isActive ? colors(color, 0.2) : colors(color, 0.1), colors(color, 0.2));
 
 exports.baseChromelessStyles = baseChromelessStyles;
 
-const baseSecondaryStyles = (color = Colors.BrandLightBlue, isActive) => _styledComponents.css`
-  background: ${isActive ? colors(color, 0.24) : colors(color, 0.08)};
-  border: 0;
-  color: ${colors(color)};
-
-  &:hover {
-    background: ${isActive ? colors(color, 0.24) : colors(color, 0.16)};
-  }
-
-  &:active {
-    background: ${colors(color, 0.24)};
-  }
-`;
+const baseSecondaryStyles = (color = Colors.BrandLightBlue, isActive) => (0, _styledComponents.css)(["background:", ";border:0;color:", ";&:hover{background:", ";}&:active{background:", ";}"], isActive ? colors(color, 0.24) : colors(color, 0.08), colors(color), isActive ? colors(color, 0.24) : colors(color, 0.16), colors(color, 0.24));
 
 exports.baseSecondaryStyles = baseSecondaryStyles;
 
-const basePrimaryStyles = (color = Colors.BrandLightBlue) => _styledComponents.css`
-  background: ${colors(color)};
-  color: ${colors(Colors.White)};
-
-  &:hover {
-    background: ${colors(color, 0.85)};
-  }
-
-  &:active {
-    background: ${colors(color, 0.7)};
-  }
-`;
+const basePrimaryStyles = (color = Colors.BrandLightBlue) => (0, _styledComponents.css)(["background:", ";color:", ";&:hover{background:", ";}&:active{background:", ";}"], colors(color), colors(Colors.White), colors(color, 0.85), colors(color, 0.7));
 
 exports.basePrimaryStyles = basePrimaryStyles;
-const baseDisabledStyles = _styledComponents.css`
-  cursor: default;
-  opacity: 0.4;
-  pointer-events: none;
-`;
+const baseDisabledStyles =
+/*#__PURE__*/
+(0, _styledComponents.css)(["cursor:default;opacity:0.4;pointer-events:none;"]);
 /*
 * Border Radius
 */
@@ -1022,9 +939,7 @@ exports.BorderRadius = BorderRadius;
   BorderRadius[BorderRadius["Round"] = 1000] = "Round";
 })(BorderRadius || (exports.BorderRadius = BorderRadius = {}));
 
-const borderRadius = (borderRadius2 = BorderRadius.Small) => _styledComponents.css`
-    border-radius: ${borderRadius2}px;
-  `;
+const borderRadius = (borderRadius2 = BorderRadius.Small) => (0, _styledComponents.css)(["border-radius:", "px;"], borderRadius2);
 /*
 * Animation
 */
@@ -1118,8 +1033,8 @@ const createEaseAnimations = ({
   }
 
   return {
-    menuAnimation: isOpen ? _styledComponents.keyframes`${menuExpandAnimation.join('')}` : _styledComponents.keyframes`${menuCollapseAnimation.join('')}`,
-    menuContentsAnimation: isOpen ? _styledComponents.keyframes`${menuExpandContentsAnimation.join('')}` : _styledComponents.keyframes`${menuCollapseContentsAnimation.join('')}`
+    menuAnimation: isOpen ? (0, _styledComponents.keyframes)(["", ""], menuExpandAnimation.join('')) : (0, _styledComponents.keyframes)(["", ""], menuCollapseAnimation.join('')),
+    menuContentsAnimation: isOpen ? (0, _styledComponents.keyframes)(["", ""], menuExpandContentsAnimation.join('')) : (0, _styledComponents.keyframes)(["", ""], menuCollapseContentsAnimation.join(''))
   };
 };
 
@@ -1138,31 +1053,8 @@ const generateScaleAnimation = ({
     y: position.originHeight / Math.min(position.maxHeight, elementHeight)
   });
   return {
-    outSideContentStyles: _styledComponents.css`
-      ${position.dropXDirection}: ${position.dropXAmount}px;
-      ${position.dropYDirection}: ${position.dropYAmount}px;
-      ${visible(isOpen)};
-
-      max-height: ${position.maxHeightCalc};
-      max-width: ${position.maxWidthCalc};
-      position: fixed;
-      transform-origin: ${position.dropYDirection} ${position.dropXDirection};
-      will-change: transform, opacity, visibility;
-
-      transition: opacity ${animationDuration}ms ease-in,
-        visibility ${animationDuration}ms ease-in;
-
-      animation: ${keyFrame.menuAnimation} linear ${animationDuration}ms
-        forwards;
-    `,
-    inSideContentStyles: _styledComponents.css`
-      transform-origin: ${position.dropYDirection} ${position.dropXDirection};
-
-      animation: ${keyFrame.menuContentsAnimation} linear ${animationDuration}ms
-        forwards;
-
-      will-change: transform;
-    `
+    outSideContentStyles: (0, _styledComponents.css)(["", ":", "px;", ":", "px;", ";max-height:", ";max-width:", ";position:fixed;transform-origin:", " ", ";will-change:transform,opacity,visibility;transition:opacity ", "ms ease-in,visibility ", "ms ease-in;animation:", " linear ", "ms forwards;"], position.dropXDirection, position.dropXAmount, position.dropYDirection, position.dropYAmount, visible(isOpen), position.maxHeightCalc, position.maxWidthCalc, position.dropYDirection, position.dropXDirection, animationDuration, animationDuration, keyFrame.menuAnimation, animationDuration),
+    inSideContentStyles: (0, _styledComponents.css)(["transform-origin:", " ", ";animation:", " linear ", "ms forwards;will-change:transform;"], position.dropYDirection, position.dropXDirection, keyFrame.menuContentsAnimation, animationDuration)
   };
 };
 
@@ -1171,9 +1063,9 @@ exports.generateScaleAnimation = generateScaleAnimation;
 const ease = isActive => isActive ? 'ease-in' : 'ease-out';
 
 exports.ease = ease;
-const buttonTransition = _styledComponents.css`
-  transition: all ease 75ms;
-`;
+const buttonTransition =
+/*#__PURE__*/
+(0, _styledComponents.css)(["transition:all ease 75ms;"]);
 exports.buttonTransition = buttonTransition;
 
 const transition = ({
@@ -1181,9 +1073,7 @@ const transition = ({
   easing,
   duration
 }) => {
-  return _styledComponents.css`
-    transition: ${properties.map(property => `${property} ${easing} ${duration}ms`).join()};
-  `;
+  return (0, _styledComponents.css)(["transition:", ";"], properties.map(property => `${property} ${easing} ${duration}ms`).join());
 };
 /*
 * Size

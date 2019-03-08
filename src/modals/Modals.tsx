@@ -60,7 +60,7 @@ export const BBModalBackground = styled<BBModalBackgroundProps, 'div'>('div')`
 
   will-change: transform;
 
-  ${({ css: cssOverrides }) => cssOverrides};
+  ${({ cssOverrides }) => cssOverrides};
 `
 
 /*
@@ -162,7 +162,7 @@ export const DefaultCloseButton = ({
   onClose,
 }: DefaultCloseButtonProps) => (
   <IconButton
-    css={
+    cssOverrides={
       headerRowChildren
         ? css``
         : css`
@@ -259,7 +259,7 @@ const BBModalOverlayContainer = styled<BBModalOverlayProps, 'div'>('div')`
 
   transition: all ease 150ms;
 
-  ${({ css: cssOverride }) => cssOverride};
+  ${({ cssOverrides }) => cssOverrides};
 `
 
 /*
@@ -281,12 +281,12 @@ export const BBModalOverlay: StatelessComponent<BBModalOverlayProps> = ({
   chromeless,
   isOpen,
   onClick,
-  css: cssOverrides,
+  cssOverrides,
 }) => (
   <BBModalOverlayContainer
     isOpen={isOpen}
     chromeless={chromeless}
-    css={cssOverrides}
+    cssOverrides={cssOverrides}
     onClick={
       onClick
         ? (event: MouseEvent<HTMLDivElement>) => {
@@ -315,7 +315,7 @@ export const BBModalContainer = styled<
   CommonComponentType & { isOpen: boolean; usesScaleAnimation: boolean },
   'div'
 >('div')`
-  ${({ isOpen, usesScaleAnimation, css: cssOverrides }) => css`
+  ${({ isOpen, usesScaleAnimation, cssOverrides }) => css`
     ${isOpen
       ? css`
           pointer-events: all;
@@ -366,13 +366,14 @@ export const BBModalContainer = styled<
 * Styles
 */
 
-export const BBModalContent = styled<{ css?: SimpleInterpolation }, 'div'>(
-  'div',
-)`
+export const BBModalContent = styled<
+  { cssOverrides?: SimpleInterpolation },
+  'div'
+>('div')`
   ${flexFlow()};
   height: 100%;
   max-height: 100%;
   overflow: auto;
 
-  ${({ css: cssOverrides }) => cssOverrides};
+  ${({ cssOverrides }) => cssOverrides};
 `

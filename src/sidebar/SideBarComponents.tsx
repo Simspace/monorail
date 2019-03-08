@@ -103,7 +103,7 @@ export const SidebarMenuContainer = styled<CommonComponentType, 'div'>('div')`
   overflow-y: auto;
   padding: 0 8px;
 
-  ${({ css: cssOverride }) => cssOverride};
+  ${({ cssOverrides }) => cssOverrides};
 `
 
 export const SidebarMenuItemDropDownToggle = styled<
@@ -121,12 +121,12 @@ export const SidebarMenuItemDropDownToggle = styled<
     subtitle,
     iconName,
     isOpen,
-    css: cssOverrides,
+    cssOverrides,
     isSideBarCollapsed,
     ...otherProps
   }) => (
     <ListItem
-      css={css`
+      cssOverrides={css`
         ${borderRadius(BorderRadius.Medium)};
         ${cssOverrides};
       `}
@@ -135,7 +135,7 @@ export const SidebarMenuItemDropDownToggle = styled<
     >
       <ListItemGraphic
         icon={iconName}
-        css={css`
+        cssOverrides={css`
           color: currentColor;
 
           transform: translateX(${isSideBarCollapsed ? -6 : 0}px);
@@ -148,7 +148,7 @@ export const SidebarMenuItemDropDownToggle = styled<
       <ListItemText>
         <ListItemPrimaryText>{title}</ListItemPrimaryText>
         <ListItemSecondaryText
-          css={
+          cssOverrides={
             isOpen &&
             css`
               color: ${colors(Colors.AccentPurple700)};
@@ -160,7 +160,7 @@ export const SidebarMenuItemDropDownToggle = styled<
       </ListItemText>
       <ListItemGraphic
         icon={isOpen ? 'arrow_drop_up' : 'arrow_drop_down'}
-        css={css`
+        cssOverrides={css`
           transform: translateX(${isSideBarCollapsed ? -18 : 0}px);
 
           transition: all ease 75ms,
@@ -171,7 +171,7 @@ export const SidebarMenuItemDropDownToggle = styled<
     </ListItem>
   ),
 )`
-  ${({ isOpen, isSideBarCollapsed, css: cssOverrides, disabled }) => css`
+  ${({ isOpen, isSideBarCollapsed, cssOverrides, disabled }) => css`
     ${disabled && baseDisabledStyles}
 
     background: ${colors(Colors.White)};

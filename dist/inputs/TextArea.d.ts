@@ -2,7 +2,7 @@ import { StyledHtmlElement } from '@monorail/CoreUtils/type-level';
 import React, { ChangeEvent, Component } from 'react';
 import { SimpleInterpolation } from 'styled-components';
 declare type BBTextAreaContainerProps = {
-    css?: SimpleInterpolation;
+    cssOverrides?: SimpleInterpolation;
 };
 declare type BBTextAreaInputProps = {
     chromeless?: boolean;

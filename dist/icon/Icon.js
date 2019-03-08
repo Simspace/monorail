@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.Icon = void 0;
+exports.Icon = exports.MaterialIconFontFace = void 0;
 
 var _CommonStyles = require("../CommonStyles");
 
@@ -67,7 +67,24 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// TODO: Refactor [key: string] to more concrete type
+// https://fonts.googleapis.com/icon?family=Material+Icons&style=baseline
+const MaterialIconFontFace =
+/*#__PURE__*/
+_styledComponents.createGlobalStyle`
+  @font-face {
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../assets/fonts/MaterialIcons-Regular.eot'); /* For IE6-8 */
+    src: local('Material Icons'),
+    local('MaterialIcons-Regular'),
+    url('../assets/fonts/MaterialIcons-Regular.woff2') format('woff2'),
+    url('../assets/fonts/MaterialIcons-Regular.woff') format('woff'),
+    url('../assets/fonts/MaterialIcons-Regular.ttf') format('truetype');
+  }
+`; // TODO: Refactor [key: string] to more concrete type
+
+exports.MaterialIconFontFace = MaterialIconFontFace;
 const customIcons = {
   academy: _Academy.Academy,
   admin: _Admin.Admin,
@@ -98,7 +115,10 @@ const customIcons = {
   star_outline: _StarOutline.StarOutline,
   star_half: _StarHalf.StarHalf
 };
-const Icon = (0, _styledComponents.default)(({
+const Icon =
+/*#__PURE__*/
+(0, _styledComponents.default)(({
+  cssOverrides: _cssOverrides,
   icon,
   ...otherProps
 }) => {
@@ -109,45 +129,12 @@ const Icon = (0, _styledComponents.default)(({
   }
 
   return _react.default.createElement("i", otherProps, icon);
-})`
-  ${({
+}).withConfig({
+  displayName: "Icon",
+  componentId: "sc-17ga27i-0"
+})(["", ";color:", ";direction:ltr;display:inline-block;fill:currentColor;flex-shrink:0;font-family:'Material Icons';font-style:normal;font-weight:normal;height:1em;letter-spacing:normal;line-height:1;text-transform:none;user-select:none;white-space:nowrap;width:1em;word-wrap:normal;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;-moz-osx-font-smoothing:grayscale;font-feature-settings:'liga';", ";"], ({
   size
-}) => size ? _styledComponents.css`
-          font-size: ${size}px;
-        ` : _styledComponents.css`
-          font-size: 16px;
-        `};
-
-  color: ${(0, _CommonStyles.colors)(_CommonStyles.Colors.Black54)};
-  direction: ltr;
-  display: inline-block;
-  fill: currentColor; /* Custom icons are svg and need this so that color works correct. */
-  flex-shrink: 0; /* Fixes custom icons shrinking when font icons wont. */
-  font-family: 'Material Icons'; /* stylelint-disable-line font-family-no-missing-generic-family-keyword */
-  font-style: normal;
-  font-weight: normal;
-  height: 1em;
-  letter-spacing: normal;
-  line-height: 1;
-  text-transform: none;
-  user-select: none;
-  white-space: nowrap;
-  width: 1em;
-  word-wrap: normal;
-
-  /* Support for all WebKit browsers. */
-  -webkit-font-smoothing: antialiased;
-  /* Support for Safari and Chrome. */
-  text-rendering: optimizeLegibility;
-
-  /* Support for Firefox. */
-  -moz-osx-font-smoothing: grayscale;
-
-  /* Support for IE. */
-  font-feature-settings: 'liga';
-
-  ${({
-  css: cssOverrides
-}) => cssOverrides};
-`;
+}) => size ? (0, _styledComponents.css)(["font-size:", "px;"], size) : (0, _styledComponents.css)(["font-size:16px;"]), (0, _CommonStyles.colors)(_CommonStyles.Colors.Black54), ({
+  cssOverrides
+}) => cssOverrides);
 exports.Icon = Icon;

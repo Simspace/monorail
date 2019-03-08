@@ -34,6 +34,11 @@ import { array, isEmpty } from 'fp-ts/lib/Array'
 import { some, none } from 'fp-ts/lib/Option'
 import { isEmptyString, isNil } from '@monorail/CoreUtils/primitive-guards'
 
+const SearchContainer = styled.div`
+  display: flex;
+  align-items: center;
+`
+
 const MenuHeader = styled<CommonComponentType, 'span'>('span')`
   ${typography(500, FontSizes.Title5, '12px')};
   ${ellipsis};
@@ -41,7 +46,7 @@ const MenuHeader = styled<CommonComponentType, 'span'>('span')`
   color: ${colors(Colors.Black62)};
   flex-shrink: 0;
 
-  ${({ css: cssOverrides }) => cssOverrides};
+  ${({ cssOverrides }) => cssOverrides};
 `
 
 const MenuItemIconRow = styled('div')`
@@ -73,13 +78,13 @@ const ContextMenuItem: StatelessComponent<SimpleListItemProps> = ({
   dense,
   meta,
   size,
-  css: cssOverrides,
+  cssOverrides,
   ...otherProps
 }) => (
   <ListItem
     dense={dense}
     size={size}
-    css={css`
+    cssOverrides={css`
       padding: 0 6px;
 
       ${cssOverrides};
@@ -90,7 +95,7 @@ const ContextMenuItem: StatelessComponent<SimpleListItemProps> = ({
       <ListItemGraphic
         icon={leftIcon}
         dense={dense}
-        css={css`
+        cssOverrides={css`
           margin-top: 12px;
         `}
       />
@@ -98,7 +103,7 @@ const ContextMenuItem: StatelessComponent<SimpleListItemProps> = ({
 
     {isNil(secondaryText) && isNil(meta) ? (
       <ListItemPrimaryText
-        css={css`
+        cssOverrides={css`
           margin-top: 12px;
         `}
       >
@@ -107,7 +112,7 @@ const ContextMenuItem: StatelessComponent<SimpleListItemProps> = ({
     ) : (
       <ListItemText>
         <ListItemPrimaryText
-          css={css`
+          cssOverrides={css`
             margin-top: 6px;
           `}
         >
@@ -115,7 +120,7 @@ const ContextMenuItem: StatelessComponent<SimpleListItemProps> = ({
         </ListItemPrimaryText>
         {isNil(secondaryText) ? null : (
           <ListItemSecondaryText
-            css={css`
+            cssOverrides={css`
               margin-bottom: 6px;
             `}
           >
@@ -145,10 +150,15 @@ type Props = PopOverChildProps & {
     }>
   }>
   icon: string
+  renderFilter: () => ReactNode
   width?: number
 }
 
 export class ContextMenu extends Component<Props> {
+  static defaultProps = {
+    renderFilter: () => null,
+  }
+
   searchRef = createRef<SearchRefType>()
 
   componentDidUpdate(prevProps: Readonly<Props>) {
@@ -178,7 +188,9 @@ export class ContextMenu extends Component<Props> {
         )
         .map(item => (
           <ContextMenuItem
-            as={Link}
+            as={({ as: _as, cssOverrides: _cssOverrides, ...linkProps }) => (
+              <Link {...linkProps} />
+            )}
             key={item.key}
             leftIcon={icon}
             primaryText={item.title}
@@ -200,7 +212,14 @@ export class ContextMenu extends Component<Props> {
   }
 
   render() {
-    const { isOpen, position, onClick, togglePopOver, width } = this.props
+    const {
+      isOpen,
+      position,
+      onClick,
+      renderFilter,
+      togglePopOver,
+      width,
+    } = this.props
 
     return (
       <SidebarDropDown
@@ -218,22 +237,27 @@ export class ContextMenu extends Component<Props> {
 
             return (
               <>
-                <Search
-                  value={value}
-                  onChange={onChange}
-                  css={css`
-                    margin: 12px;
-                  `}
-                  searchRef={this.searchRef}
-                />
+                <SearchContainer>
+                  <Search
+                    value={value}
+                    onChange={onChange}
+                    cssOverrides={css`
+                      flex-grow: 1;
+                      margin: 12px;
+                    `}
+                    searchRef={this.searchRef}
+                  />
+
+                  {renderFilter()}
+                </SearchContainer>
 
                 <ListContainer
-                  css={css`
+                  cssOverrides={css`
                     padding: 0 0 4px;
                   `}
                   emptyText="Loading..."
                 >
-                  {!isEmptyString(value) && isEmpty(contextMenuItems) ? (
+                  {isEmpty(contextMenuItems) ? (
                     <ContextMenuItem
                       size={Sizes.DP40}
                       primaryText="No results."

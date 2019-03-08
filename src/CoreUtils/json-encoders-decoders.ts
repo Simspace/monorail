@@ -2,7 +2,7 @@ import * as t from 'io-ts'
 import { Option, None, Some, none, fromEither } from 'fp-ts/lib/Option'
 import { error } from 'fp-ts/lib/Console'
 import { IO } from 'fp-ts/lib/IO'
-import { Lens } from 'monocle-ts'
+import { Getter } from 'monocle-ts'
 import { constant } from 'fp-ts/lib/function'
 import { constVoid } from '@monorail/CoreUtils/general'
 
@@ -51,7 +51,7 @@ export const createOptionFromJSON = <C extends t.Mixed>(
   codec: C,
   name: string = `Option<${codec.name}>`,
 ): t.Type<Option<t.TypeOf<C>>, JSONOption<t.OutputOf<C>>, t.mixed> => {
-  /** create an io-ts repesentation of JSONNone | JSONSome<A> */
+  /** create an io-ts representation of JSONNone | JSONSome<A> */
   const JSONOption_ = t.taggedUnion('_tag', [
     t.type({ _tag: t.literal('None') }),
     t.type({ _tag: t.literal('Some'), value: codec }),
@@ -83,8 +83,8 @@ export const createOptionFromJSON = <C extends t.Mixed>(
  */
 export const mkJSONOptionDecoderSelector = <A>(
   codec: t.Type<Option<A>, JSONOption<A>, t.mixed>,
-) => <S>(lens: Lens<S, JSONOption<A>>) => (s: S): Option<A> => {
-  const encoded = lens.get(s)
+) => <S>(getter: Getter<S, JSONOption<A>>) => (s: S): Option<A> => {
+  const encoded = getter.get(s)
   const decoded = codec.decode(encoded)
 
   const noOpIO = new IO(constVoid)
@@ -108,4 +108,17 @@ export const mkJSONOptionDecoderSelector = <A>(
 
   // log error & then convert to options + continue on like nothing happened
   return logErrorIO.chain(constToOptionIO).run()
+}
+
+export function transformDecodeError(errs: t.Errors) {
+  const errors = errs.reduce((acc: string[], err: t.ValidationError) => {
+    // err.context is a read-only array so doesn't work with fp-ts/lib/Array
+    if (err.context && err.context[1] && err.context[1].key) {
+      const key = err.context[1].key
+      acc.push(key)
+    }
+    return acc
+  }, [])
+
+  return `The following keys erred when decoding: ${errors.join(', ')}.`
 }

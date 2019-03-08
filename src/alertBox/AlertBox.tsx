@@ -13,7 +13,7 @@ import {
 const iconSize = 32
 
 type CCAlertBoxProps = {
-  css?: SimpleInterpolation
+  cssOverrides?: SimpleInterpolation
   label?: ReactNode
 }
 
@@ -34,7 +34,7 @@ export const CCAlertBox = styled<CCAlertBoxProps, 'div'>('div')`
     width: 32px;
   }
 
-  ${({ css: cssOverrides }) => cssOverrides};
+  ${({ cssOverrides }) => cssOverrides};
 `
 
 const StyledIconLeft = styled(Icon)`
@@ -62,10 +62,10 @@ type AlertBoxProps = CCAlertBoxProps & {
 
 export class AlertBox extends Component<AlertBoxProps> {
   render() {
-    const { icon, label, css: cssOverrides } = this.props
+    const { icon, label, cssOverrides } = this.props
 
     return (
-      <CCAlertBox label={label} css={cssOverrides}>
+      <CCAlertBox label={label} cssOverrides={cssOverrides}>
         <StyledIconLeft icon={icon} size={iconSize} />
 
         {label && <Title>{label}</Title>}

@@ -68,7 +68,7 @@ const PageHeaderContainer = styled<PageHeaderContainerProps, 'div'>('div')`
       `};
   }
 
-  ${({ css: cssOverrides }) => cssOverrides};
+  ${({ cssOverrides }) => cssOverrides};
 `
 
 const pageHeaderPadding = css`
@@ -213,7 +213,7 @@ export class PageHeader extends Component<PageHeaderProps> {
       action,
       breadCrumbs,
       children,
-      css: overrideCss,
+      cssOverrides,
       flush,
       goBack,
       shadowRef,
@@ -225,8 +225,8 @@ export class PageHeader extends Component<PageHeaderProps> {
 
     return (
       <PageHeaderContainer
-        css={css`
-          ${overrideCss};
+        cssOverrides={css`
+          ${cssOverrides};
         `}
         hasAboveContent={hasAboveContent}
         ref={this.pageHeaderContainerRef}
@@ -239,7 +239,7 @@ export class PageHeader extends Component<PageHeaderProps> {
                 size={ButtonSize.Compact}
                 display={ButtonDisplay.Chromeless}
                 onClick={goBack}
-                css={css`
+                cssOverrides={css`
                   margin-left: -4px;
                 `}
               >

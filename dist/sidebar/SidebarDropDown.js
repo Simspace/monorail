@@ -19,17 +19,14 @@ var _Option = require("fp-ts/lib/Option");
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
-const DropDownContent = (0, _styledComponents.default)('div')`
-  ${({
-  css: cssOverride
-}) => _styledComponents.css`
-    ${(0, _CommonStyles.flexFlow)()};
-
-    overflow: hidden;
-
-    ${cssOverride};
-  `};
-`;
+const DropDownContent =
+/*#__PURE__*/
+(0, _styledComponents.default)('div').withConfig({
+  displayName: "SidebarDropDown__DropDownContent",
+  componentId: "sc-18l3je-0"
+})(["", ";"], ({
+  cssOverrides
+}) => (0, _styledComponents.css)(["", ";overflow:hidden;", ";"], (0, _CommonStyles.flexFlow)(), cssOverrides));
 
 class SidebarDropDown extends _react.Component {
   constructor(...args) {
@@ -91,13 +88,9 @@ class SidebarDropDown extends _react.Component {
       togglePopOver: togglePopOver
     }, _react.default.createElement(_Cards.BBCardBackground, {
       ref: this.dropDownRef,
-      css: _styledComponents.css`
-            width: ${width}px;
-
-            ${scaleAnimation.outSideContentStyles};
-          `
+      cssOverrides: (0, _styledComponents.css)(["width:", "px;", ";"], width, scaleAnimation.outSideContentStyles)
     }, _react.default.createElement(DropDownContent, {
-      css: scaleAnimation.inSideContentStyles
+      cssOverrides: scaleAnimation.inSideContentStyles
     }, children)));
   }
 

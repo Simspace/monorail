@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { SimpleInterpolation } from 'styled-components';
 declare type CCTagProps = {
-    css?: SimpleInterpolation;
+    cssOverrides?: SimpleInterpolation;
     label?: string;
 };
 export declare const CCTag: import("styled-components").StyledComponentClass<CCTagProps, any, CCTagProps & React.ClassAttributes<HTMLDivElement> & React.HTMLAttributes<HTMLDivElement>>;

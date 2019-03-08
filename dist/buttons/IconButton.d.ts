@@ -3,7 +3,7 @@ import { SimpleInterpolation } from 'styled-components';
 import { ButtonSize, ButtonDisplay, IconButtonShape } from '@monorail/buttons/buttonTypes';
 export declare const CCIconButton: import("styled-components").StyledComponentClass<CCIconButtonProps, any, CCIconButtonProps & React.ClassAttributes<HTMLButtonElement> & React.ButtonHTMLAttributes<HTMLButtonElement>>;
 declare type CCIconButtonProps = {
-    css?: SimpleInterpolation;
+    cssOverrides?: SimpleInterpolation;
     darkMode?: boolean;
     disabled?: boolean;
     display: ButtonDisplay;

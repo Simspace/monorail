@@ -37,12 +37,7 @@ class FullScreenModal extends _react.Component {
       onClick: onClick,
       togglePopOver: togglePopOver
     }, _react.default.createElement(_Modals.BBModalBackground, {
-      css: _styledComponents.css`
-            height: 100%;
-            width: 100%;
-            margin: 0;
-            border-radius: 0;
-          `
+      cssOverrides: (0, _styledComponents.css)(["height:100%;width:100%;margin:0;border-radius:0;"])
     }, (0, _primitiveGuards.isNil)(noHeader) && _react.default.createElement(_Modals.BBModalHeader, {
       customCloseButton: customCloseButton,
       headerRowChildren: headerChildren,

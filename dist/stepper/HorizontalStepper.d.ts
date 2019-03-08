@@ -2,7 +2,7 @@ import { Component } from 'react';
 import { SimpleInterpolation } from 'styled-components';
 import { Step as StepType } from './types';
 declare type StyleOptions = {
-    css?: SimpleInterpolation;
+    cssOverrides?: SimpleInterpolation;
     darkMode?: boolean;
 };
 declare type Props = {

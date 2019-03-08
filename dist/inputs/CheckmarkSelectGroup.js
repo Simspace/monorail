@@ -7,7 +7,7 @@ exports.CheckmarkSelectGroup = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
-var _styledComponents = _interopRequireWildcard(require("styled-components"));
+var _styledComponents = _interopRequireDefault(require("styled-components"));
 
 var _Select = require("./Select");
 
@@ -15,43 +15,51 @@ var _CommonStyles = require("../CommonStyles");
 
 var _Choice = require("./Choice");
 
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
-const CheckmarkSelectGroupWrapper = (0, _styledComponents.default)('div')`
-  ${({
+const CheckmarkSelectGroupWrapper =
+/*#__PURE__*/
+(0, _styledComponents.default)('div').withConfig({
+  displayName: "CheckmarkSelectGroup__CheckmarkSelectGroupWrapper",
+  componentId: "sc-9lupgs-0"
+})(["", ";"], ({
   cssOverrides
-}) => cssOverrides};
-`;
-const Label = _styledComponents.default.p`
-  ${(0, _CommonStyles.typography)(500, _CommonStyles.FontSizes.Title5)};
-  margin-bottom: 4px;
-  height: 16px;
-`;
-const CheckmarkSelectWrapper = (0, _styledComponents.default)('div')`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  ${({
+}) => cssOverrides);
+
+const Label =
+/*#__PURE__*/
+_styledComponents.default.p.withConfig({
+  displayName: "CheckmarkSelectGroup__Label",
+  componentId: "sc-9lupgs-1"
+})(["", ";margin-bottom:4px;height:16px;"], (0, _CommonStyles.typography)(500, _CommonStyles.FontSizes.Title5));
+
+const CheckmarkSelectWrapper =
+/*#__PURE__*/
+(0, _styledComponents.default)('div').withConfig({
+  displayName: "CheckmarkSelectGroup__CheckmarkSelectWrapper",
+  componentId: "sc-9lupgs-2"
+})(["display:flex;flex-direction:row;justify-content:space-between;align-items:center;", ";"], ({
   cssOverrides
-}) => cssOverrides};
-`;
-const CheckmarkSelectLabel = _styledComponents.default.p`
-  ${(0, _CommonStyles.typography)(500, _CommonStyles.FontSizes.Title5)};
-  flex-grow: 1;
-`;
-const CheckmarkSelectContent = _styledComponents.default.div`
-  display: flex;
-  align-items: center;
-  width: 100%;
-`;
+}) => cssOverrides);
+
+const CheckmarkSelectLabel =
+/*#__PURE__*/
+_styledComponents.default.p.withConfig({
+  displayName: "CheckmarkSelectGroup__CheckmarkSelectLabel",
+  componentId: "sc-9lupgs-3"
+})(["", ";flex-grow:1;"], (0, _CommonStyles.typography)(500, _CommonStyles.FontSizes.Title5));
+
+const CheckmarkSelectContent =
+/*#__PURE__*/
+_styledComponents.default.div.withConfig({
+  displayName: "CheckmarkSelectGroup__CheckmarkSelectContent",
+  componentId: "sc-9lupgs-4"
+})(["display:flex;align-items:center;width:100%;"]);
 
 const CheckmarkSelectGroup = ({
-  css: cssOverrides,
+  cssOverrides,
   label,
   items,
   onSelect,
@@ -76,7 +84,7 @@ const CheckmarkSelectGroup = ({
       onChange: () => onCheck(otherProps.key, !enabled)
     }, _react.default.createElement(CheckmarkSelectContent, null, _react.default.createElement(CheckmarkSelectLabel, null, itemLabel), _react.default.createElement(_Select.Select, _extends({}, otherProps, {
       onSelect: v => onSelect(otherProps.key, v),
-      css: {
+      cssOverrides: {
         flex: '0 0 100px'
       }
     })))));

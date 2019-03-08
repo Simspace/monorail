@@ -1,6 +1,6 @@
 import * as t from 'io-ts';
 import { Option } from 'fp-ts/lib/Option';
-import { Lens } from 'monocle-ts';
+import { Getter } from 'monocle-ts';
 export declare type JSONNone = {
     _tag: 'None';
 };
@@ -37,4 +37,5 @@ export declare const createOptionFromJSON: <C extends t.Mixed>(codec: C, name?: 
  * Helper utility for creating selectors that automatically handle decoding
  * JSONOptions back into Options when given a codec and a lens
  */
-export declare const mkJSONOptionDecoderSelector: <A>(codec: t.Type<Option<A>, JSONOption<A>, unknown>) => <S>(lens: Lens<S, JSONOption<A>>) => (s: S) => Option<A>;
+export declare const mkJSONOptionDecoderSelector: <A>(codec: t.Type<Option<A>, JSONOption<A>, unknown>) => <S>(getter: Getter<S, JSONOption<A>>) => (s: S) => Option<A>;
+export declare function transformDecodeError(errs: t.Errors): string;

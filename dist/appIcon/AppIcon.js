@@ -17,35 +17,20 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-const AppIcon = (0, _styledComponents.default)(({
+const AppIcon =
+/*#__PURE__*/
+(0, _styledComponents.default)(({
   appName,
-  css: cssOverrides,
+  cssOverrides,
   ...otherProps
 }) => _react.default.createElement("div", otherProps, _react.default.createElement(_Icon.Icon, {
   icon: (0, _CommonStyles.convertAppNameToString)(appName)
-})))`
-  ${({
+}))).withConfig({
+  displayName: "AppIcon",
+  componentId: "akmtp-0"
+})(["", ";", ";", ";box-sizing:border-box;height:16px;width:16px;", "{fill:", ";height:100%;margin:auto;width:100%;}", ";"], ({
   appName
-}) => _styledComponents.css`
-    background: ${(0, _CommonStyles.colors)((0, _CommonStyles.convertAppNameToColor)(appName))};
-  `};
-
-  ${(0, _CommonStyles.flexFlow)('row')};
-  ${(0, _CommonStyles.borderRadius)()};
-
-  box-sizing: border-box;
-  height: 16px;
-  width: 16px;
-
-  ${_Icon.Icon} {
-    fill: ${(0, _CommonStyles.colors)(_CommonStyles.Colors.White)};
-    height: 100%;
-    margin: auto;
-    width: 100%;
-  }
-
-  ${({
-  css: cssOverrides
-}) => cssOverrides};
-`;
+}) => (0, _styledComponents.css)(["background:", ";"], (0, _CommonStyles.colors)((0, _CommonStyles.convertAppNameToColor)(appName))), (0, _CommonStyles.flexFlow)('row'), (0, _CommonStyles.borderRadius)(), _Icon.Icon, (0, _CommonStyles.colors)(_CommonStyles.Colors.White), ({
+  cssOverrides
+}) => cssOverrides);
 exports.AppIcon = AppIcon;

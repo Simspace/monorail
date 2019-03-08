@@ -4,7 +4,7 @@ import { StyledHtmlElement } from '@monorail/CoreUtils/type-level';
 import { PopOverChildProps } from '@monorail/popOver/PopOver';
 declare type MenuProps = {
     children: ReactNode;
-    css?: SimpleInterpolation;
+    cssOverrides?: SimpleInterpolation;
     width: string;
 };
 declare type Props = PopOverChildProps & {

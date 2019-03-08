@@ -17,7 +17,7 @@ const circleRadius = circleWidth / 2
 const iconSize = tagHeight / 2
 
 type CCTagProps = {
-  css?: SimpleInterpolation
+  cssOverrides?: SimpleInterpolation
   label?: string
 }
 
@@ -29,6 +29,7 @@ export const CCTag = styled<CCTagProps, 'div'>('div')`
     `};
 
   ${flexFlow('row')};
+  display: inline-flex;
   align-items: center;
   background: ${colors(Colors.Black, 0.07)};
   border-radius: ${tagHeight / 2}px;
@@ -48,7 +49,7 @@ export const CCTag = styled<CCTagProps, 'div'>('div')`
     width: ${circleWidth}px;
   }
 
-  ${({ css: cssOverrides }) => cssOverrides};
+  ${({ cssOverrides }) => cssOverrides};
 `
 
 const StyledIconLeft = styled(Icon)`
@@ -70,10 +71,10 @@ type TagProps = CCTagProps & {
 
 export class Tag extends Component<TagProps> {
   render() {
-    const { icon, label, css: cssOverrides } = this.props
+    const { icon, label, cssOverrides } = this.props
 
     return (
-      <CCTag label={label} css={cssOverrides}>
+      <CCTag label={label} cssOverrides={cssOverrides}>
         <StyledIconLeft icon={icon} size={iconSize} />
 
         {label && <Title>{label}</Title>}
