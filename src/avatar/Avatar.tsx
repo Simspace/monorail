@@ -1,10 +1,10 @@
 import React, { StatelessComponent } from 'react'
 import styled, { css, SimpleInterpolation } from 'styled-components'
 
-import { borderRadius, Colors, colors } from 'CommonStyles'
+import { borderRadius, Colors, colors } from '@monorail/CommonStyles'
 
 type CCAvatarProps = {
-  css?: SimpleInterpolation
+  cssOverrides?: SimpleInterpolation
   team?: boolean
 }
 
@@ -34,7 +34,7 @@ const CCAvatar = styled<CCAvatarProps, 'div'>('div')`
   user-select: none;
   width: ${size}px;
 
-  ${({ css: cssOverrides }) => cssOverrides};
+  ${({ cssOverrides }) => cssOverrides};
 `
 type AvatarProps = CCAvatarProps & {
   first: string
@@ -42,13 +42,23 @@ type AvatarProps = CCAvatarProps & {
 }
 
 export const Avatar: StatelessComponent<AvatarProps> = ({
-  css: cssOverrides,
+  cssOverrides,
   first,
   last,
   team,
+  ...otherProps
 }) => (
-  <CCAvatar css={cssOverrides} team={team}>
+  <CCAvatar cssOverrides={cssOverrides} team={team} {...otherProps}>
     {first.charAt(0)}
     {last.charAt(0)}
   </CCAvatar>
 )
+
+export const getAvatarInitials = (fullName: string) => {
+  const initials = fullName.match(/\b\w/g) || []
+
+  return {
+    first: initials.shift() || '',
+    last: initials.pop() || '',
+  }
+}
