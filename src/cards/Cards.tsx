@@ -1,6 +1,6 @@
-import React, { StatelessComponent } from 'react'
-import { AppIcon } from 'appIcon/AppIcon'
-import { Icon } from 'icon/Icon'
+import React, { forwardRef, MouseEvent, StatelessComponent, Ref } from 'react'
+import { AppIcon } from '@monorail/appIcon/AppIcon'
+import { Icon } from '@monorail/icon/Icon'
 import {
   AppName,
   BorderRadius,
@@ -12,45 +12,112 @@ import {
   FontSizes,
   getElevation,
   typography,
-} from 'CommonStyles'
+} from '@monorail/CommonStyles'
 import styled, { css, SimpleInterpolation } from 'styled-components'
+import { CommonComponentType } from '@monorail/types'
+
+const BBCardContent = styled<CommonComponentType, 'div'>('div')`
+  ${flexFlow()};
+
+  border-radius: inherit;
+  height: 100%;
+  overflow: hidden;
+  width: 100%;
+  position: relative; /* Needs pos:rel; so that it doesn't get placed under the shadow pseudo elements. */
+
+  ${({ cssOverrides }) => cssOverrides};
+`
 
 // building-blocks/cards/background
-type BBCardBackgroundProps = {
-  css?: SimpleInterpolation
+export type BBCardBackgroundProps = CommonComponentType & {
   hover?: boolean
   elevation?: ElevationRange
+  onClick?: (event: MouseEvent) => void
+  ref?: Ref<any> // tslint:disable-line:no-any
+  cssCardContent?: SimpleInterpolation
 }
 
-export const BBCardBackground = styled<BBCardBackgroundProps, 'div'>('div')`
+export const BBCardBackground = styled<BBCardBackgroundProps>(
+  forwardRef(
+    (
+      {
+        children,
+        cssOverrides,
+        hover,
+        elevation,
+        cssCardContent,
+        ...otherProps
+      },
+      ref,
+    ) => (
+      <div ref={ref} {...otherProps}>
+        <BBCardContent cssOverrides={cssCardContent}>{children}</BBCardContent>
+      </div>
+    ),
+  ),
+)`
   ${({ hover }) =>
     hover &&
     css`
       cursor: pointer;
-      transition: box-shadow ease 125ms;
 
       &:hover {
-        ${getElevation(ElevationRange.Elevation5)};
+        &::after {
+          transition: box-shadow ease 125ms;
+          ${getElevation(ElevationRange.Elevation10)};
+        }
       }
     `};
-  ${({ elevation = ElevationRange.Elevation1 }) => getElevation(elevation)};
 
   ${flexFlow()};
-  ${borderRadius(BorderRadius.Medium)};
+  ${borderRadius(BorderRadius.Large)};
 
   background: ${colors(Colors.White)};
-  overflow: hidden;
+  position: relative; /* pos:re; because the shadow pseudo element is pos:abs; */
+  z-index: 0; /* mythical z-index: 0. The shadow pseudo element needs a negative z-index, but then it disappears. Have to reset the z-index to the zero value so that it appears above the background of the page but under the background of the card. */
 
-  ${({ css: cssOverrides }) => cssOverrides};
+  ${({ cssOverrides }) => cssOverrides};
+
+  &::before {
+    border-radius: inherit;
+    background: ${colors(Colors.White)};
+    bottom: 0;
+    content: '';
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 0;
+  }
+
+  &::after {
+    ${borderRadius(BorderRadius.Medium)};
+
+    ${({ elevation = ElevationRange.Elevation6 }) => getElevation(elevation)};
+
+    background: ${colors(Colors.White)};
+    bottom: 2px;
+    content: '';
+    left: 2px;
+    position: absolute;
+    right: 2px;
+    top: 2px;
+    z-index: -5;
+  }
 `
 
-const BBCardHeaderContainer = styled('div')`
+const BBCardHeaderContainer = styled<
+  { cssOverrides: SimpleInterpolation },
+  'div'
+>('div')`
   ${flexFlow('row')};
   align-items: center;
   flex-shrink: 0;
   height: 32px;
   padding: 0 16px;
   position: relative; /* BBCardBottomBorder is pos:abs relative to this. */
+
+  ${({ cssOverrides }) => cssOverrides};
 `
 
 const BBCardHeaderTitle = styled('h1')`
@@ -94,6 +161,7 @@ const BBCardBottomBorder = styled<BBCardBottomBorderProps, 'div'>('div')`
 
 type BBCardHeaderProps = BBCardBottomBorderProps & {
   appIcon?: AppName
+  cssOverrides?: SimpleInterpolation
   iconLeft?: string
   iconRight?: string
   noBorder?: boolean
@@ -105,12 +173,13 @@ export const BBCardHeader: StatelessComponent<BBCardHeaderProps> = ({
   accentColor = colors(Colors.BrandLightBlue),
   appIcon,
   children,
+  cssOverrides,
   iconLeft,
   iconRight,
   noBorder,
   title,
 }) => (
-  <BBCardHeaderContainer>
+  <BBCardHeaderContainer cssOverrides={cssOverrides}>
     {appIcon && <StyledAppIconLeft appName={appIcon} />}
     {iconLeft && <StyledIconLeft icon={iconLeft} />}
     <BBCardHeaderTitle>{title}</BBCardHeaderTitle>
@@ -123,22 +192,24 @@ export const BBCardHeader: StatelessComponent<BBCardHeaderProps> = ({
 // building-blocks/cards/card-grid
 type BBCardGridProps = {
   cardWidth?: number
-  css?: SimpleInterpolation
+  cssOverrides?: SimpleInterpolation
 }
 
 export const BBCardGrid = styled<BBCardGridProps, 'div'>('div')`
-  background: ${colors(Colors.Grey99)};
   display: grid;
   flex-grow: 1;
   grid-auto-rows: max-content;
-  grid-gap: 16px;
   grid-template-columns: repeat(
     auto-fill,
-    ${({ cardWidth = 256 }) => cardWidth}px
+    ${({ cardWidth = 272 }) => cardWidth}px
   );
   justify-content: center;
-  overflow-y: auto;
   padding: 20px 32px 14px;
 
-  ${({ css: cssOverrides }) => cssOverrides};
+  /* IE11 doesn't work with grid that auto places content. Here starts the hacks to get it working with flex. */
+  display: -ms-flexbox; /* stylelint-disable-line */
+  flex-flow: row wrap;
+  align-content: flex-start;
+
+  ${({ cssOverrides }) => cssOverrides};
 `

@@ -5,38 +5,60 @@ import {
   Keyframes,
   Styles,
 } from 'styled-components'
-import { PopOverPosition } from 'popOver/PopOver'
+import { PopOverPosition } from '@monorail/popOver/PopOver'
+
+enum AuthSubAppName {
+  Academy = 'academy',
+  Admin = 'admin',
+  Catalog = 'catalog',
+  Dashboard = 'dashboard',
+  Hardhat = 'hardhat',
+  Range = 'range',
+  TechOps = 'techops',
+  Tracker = 'tracker',
+}
+
+export const visible = (isVisible = false): Styles =>
+  isVisible
+    ? {
+        visibility: 'visible',
+        opacity: 0.9999, // Doing .9999 keeps the GPU activated on this element so that it can quickly change back to 0.
+      }
+    : {
+        visibility: 'hidden',
+        opacity: 0,
+      }
 
 /*
 * Elevation
 */
 
 export enum ElevationRange {
-  Elevation0,
-  Elevation1,
-  Elevation2,
-  Elevation3,
-  Elevation4,
-  Elevation5,
-  Elevation6,
-  Elevation7,
-  Elevation8,
-  Elevation9,
-  Elevation10,
-  Elevation11,
-  Elevation12,
-  Elevation13,
-  Elevation14,
-  Elevation15,
-  Elevation16,
-  Elevation17,
-  Elevation18,
-  Elevation19,
-  Elevation20,
-  Elevation21,
-  Elevation22,
-  Elevation23,
-  Elevation24,
+  Elevation0 = 'elevation0',
+  Elevation1 = 'elevation1',
+  Elevation2 = 'elevation2',
+  Elevation3 = 'elevation3',
+  Elevation4 = 'elevation4',
+  Elevation5 = 'elevation5',
+  Elevation6 = 'elevation6',
+  Elevation7 = 'elevation7',
+  Elevation8 = 'elevation8',
+  Elevation9 = 'elevation9',
+  Elevation10 = 'elevation10',
+  Elevation11 = 'elevation11',
+  Elevation12 = 'elevation12',
+  Elevation13 = 'elevation13',
+  Elevation14 = 'elevation14',
+  Elevation15 = 'elevation15',
+  Elevation16 = 'elevation16',
+  Elevation17 = 'elevation17',
+  Elevation18 = 'elevation18',
+  Elevation19 = 'elevation19',
+  Elevation20 = 'elevation20',
+  Elevation21 = 'elevation21',
+  Elevation22 = 'elevation22',
+  Elevation23 = 'elevation23',
+  Elevation24 = 'elevation24',
 }
 
 const elevationStyles = {
@@ -115,18 +137,33 @@ export const flexFlow = (
 * Typography
 */
 
+export const ellipsis = css`
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+`
+
+export enum FontWeights {
+  ExtraLight = 200,
+  Light = 300,
+  Book = 400,
+  Medium = 500,
+  Bold = 700,
+  Black = 800,
+}
+
 export enum FontSizes {
-  Hyper1,
-  Hyper2,
-  Hyper3,
-  Hyper4,
-  Title1,
-  Title2,
-  Title3,
-  Title4,
-  Title5,
-  Content,
-  Micro,
+  Hyper1 = 'hyper1',
+  Hyper2 = 'hyper2',
+  Hyper3 = 'hyper3',
+  Hyper4 = 'hyper4',
+  Title1 = 'title1',
+  Title2 = 'title2',
+  Title3 = 'title3',
+  Title4 = 'title4',
+  Title5 = 'title5',
+  Content = 'content',
+  Micro = 'micro',
 }
 
 const fontSizeLookUp = {
@@ -219,7 +256,7 @@ const fontMarginLookUp: { [key in FontSizes]: Margin } = {
     bottom: -6,
   },
   [FontSizes.Title3]: {
-    top: -3,
+    top: -5,
     bottom: -5,
   },
   [FontSizes.Title4]: {
@@ -228,7 +265,7 @@ const fontMarginLookUp: { [key in FontSizes]: Margin } = {
   },
   [FontSizes.Title5]: {
     top: -4,
-    bottom: -5,
+    bottom: -4,
   },
   [FontSizes.Content]: {
     top: -2,
@@ -336,102 +373,247 @@ const sizingObjectToString = (size: Margin): string => {
   )}`
 }
 
-/*
-* Color
-*/
+export const gothamFontFamily = css`
+  font-family: 'Gotham SSm A', 'Gotham SSm B', -apple-system, BlinkMacSystemFont,
+    'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol';
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  letter-spacing: initial;
+  text-rendering: optimizeLegibility;
+`
+
+//#region App Name
+
+/**
+ * App Name
+ */
 
 export enum AppName {
-  Admin,
-  Dashboard,
-  Hardhat,
-  Impact,
-  Range,
-  Tracker,
-  Training,
+  Admin = 'admin',
+  Dashboard = 'dashboard',
+  Hardhat = 'hardhat',
+  Impact = 'impact',
+  LMS = 'externalLms',
+  Range = 'range',
+  Repo = 'repo',
+  TechOps = 'techops',
+  Tracker = 'tracker',
+  Training = 'training',
 }
+
+//#endregion App Name
 
 export enum EventState {
   // In Progress
-  Active,
+  Active = 'active',
   // Canceled
-  Canceled,
+  Canceled = 'canceled',
   // Complete
-  Finished,
+  Finished = 'finished',
   // Enrolled
-  Scheduled,
+  Scheduled = 'scheduled',
   // Pending
-  Requested,
+  Requested = 'requested',
   // Paused
-  Inactive,
+  Inactive = 'inactive',
 }
 
 export enum Colors {
-  Black24,
-  Black54,
-  Black74,
-  Black89,
-  Black,
-  White89,
-  White,
-  Grey94,
-  Grey96,
-  Grey97,
-  Grey98,
-  Grey99,
-  BrandLightBlue,
-  BrandDarkBlue,
+  // Black, Gray, and White.
+  Black24 = 'black24',
+  Black54 = 'black54',
+  Black62 = 'black62',
+  Black74 = 'black74',
+  Black89 = 'black89',
+  Black = 'black',
+  White89 = 'white89',
+  White = 'white',
+  Grey94 = 'grey94',
+  Grey96 = 'grey96',
+  Grey97 = 'grey97',
+  Grey98 = 'grey98',
+  Grey99 = 'grey99',
+
+  // Brand Colors
+  BrandLightBlue = 'brandLightBlue',
+  BrandDarkBlue = 'brandDarkBlue',
+
+  // PCTE Brand
+  PCTEPurple = 'PCTEPurple',
+
+  // Accent
+  // Blue
+  AccentBlue300 = 'accentBlue300',
+  AccentBlue400 = 'accentBlue400',
+  AccentBlue500 = 'accentBlue500',
+  AccentBlue600 = 'accentBlue600',
+  AccentBlue700 = 'accentBlue700',
+
+  // Purple
+  AccentPurple500 = 'accentPurple500',
+  AccentPurple700 = 'accentPurple700',
 
   // In Progress
-  Active,
+  Active = 'active',
   // Canceled
-  Canceled,
+  Canceled = 'canceled',
   // Complete
-  Finished,
+  Finished = 'finished',
   // Enrolled
-  Scheduled,
+  Scheduled = 'scheduled',
   // Pending
-  Requested,
+  Requested = 'requested',
   // Paused
-  Inactive,
+  Inactive = 'inactive',
 
-  Admin,
-  Dashboard,
-  Range,
-  Tracker,
-  Hardhat,
-  Training,
-  Impact,
+  Academy = 'academy',
+  Admin = 'admin',
+  Catalog = 'catalog',
+  Dashboard = 'dashboard',
+  Range = 'range',
+  Tracker = 'tracker',
+  Hardhat = 'hardhat',
+  Impact = 'impact',
+  Training = 'training',
+  TechOps = 'techops',
+  Repo = 'repo',
+  LMS = 'externalLms',
 
-  Green,
-  Red,
-  Amber,
+  Green = 'green',
+  Red = 'red',
+  Amber = 'amber',
 }
 
-export const convertAppNameToColor: (appNames: AppName) => Colors = (
-  appNames: AppName,
-) => {
+export type AppOrAuthSubAppName = AppName | AuthSubAppName
+export type AppOrAuthSubAppNameString =
+  | 'admin'
+  | 'academy'
+  | 'catalog'
+  | 'dashboard'
+  | 'range'
+  | 'tracker'
+  | 'hardhat'
+  | 'impact'
+  | 'training'
+  | 'techops'
+  | 'repo'
+  | 'externalLms'
+
+const assertUnreachable = (msg: string): never => {
+  throw new Error(msg)
+}
+
+export const convertAppNameToColor = (
+  appNames: AppOrAuthSubAppName,
+): Colors => {
   switch (appNames) {
-    default:
     case AppName.Admin:
+    case AuthSubAppName.Admin:
       return Colors.Admin
+    case AuthSubAppName.Academy:
+      return Colors.Academy
+    case AuthSubAppName.Catalog:
+      return Colors.Catalog
     case AppName.Dashboard:
+    case AuthSubAppName.Dashboard:
       return Colors.Dashboard
     case AppName.Range:
+    case AuthSubAppName.Range:
       return Colors.Range
     case AppName.Tracker:
+    case AuthSubAppName.Tracker:
       return Colors.Tracker
     case AppName.Hardhat:
+    case AuthSubAppName.Hardhat:
       return Colors.Hardhat
+    case AppName.Impact:
+      return Colors.Impact
     case AppName.Training:
       return Colors.Training
+    case AppName.TechOps:
+    case AuthSubAppName.TechOps:
+      return Colors.TechOps
+    case AppName.Repo:
+      return Colors.Repo
+    case AppName.LMS:
+      return Colors.LMS
   }
 }
 
-export const convertEventStateToColor: (eventState: EventState) => Colors = (
-  eventState: EventState,
-) => {
-  switch (eventState) {
+// TODO: lock down appNameString type to only valid appName strings for safety
+export const convertStringToAppName = (
+  appNameString: string,
+): AppOrAuthSubAppName => {
+  switch (appNameString) {
+    case 'admin':
+      return AppName.Admin
+    case 'academy':
+      return AuthSubAppName.Academy
+    case 'catalog':
+      return AuthSubAppName.Catalog
+    case 'dashboard':
+      return AppName.Dashboard
+    case 'range':
+      return AppName.Range
+    case 'tracker':
+      return AppName.Tracker
+    case 'hardhat':
+      return AppName.Hardhat
+    case 'impact':
+      return AppName.Impact
+    case 'training':
+      return AppName.Training
+    case 'techops':
+      return AppName.TechOps
+    case 'repo':
+      return AppName.Repo
+    case 'externalLms':
+      return AppName.LMS
     default:
+      return assertUnreachable('Invalid appName')
+  }
+}
+
+export const convertAppNameToString = (
+  appName: AppOrAuthSubAppName,
+): AppOrAuthSubAppNameString => {
+  switch (appName) {
+    case AppName.Admin:
+    case AuthSubAppName.Admin:
+      return 'admin'
+    case AuthSubAppName.Academy:
+      return 'academy'
+    case AuthSubAppName.Catalog:
+      return 'catalog'
+    case AppName.Dashboard:
+    case AuthSubAppName.Dashboard:
+      return 'dashboard'
+    case AppName.Range:
+    case AuthSubAppName.Range:
+      return 'range'
+    case AppName.Tracker:
+    case AuthSubAppName.Tracker:
+      return 'tracker'
+    case AppName.Hardhat:
+    case AuthSubAppName.Hardhat:
+      return 'hardhat'
+    case AppName.Impact:
+      return 'impact'
+    case AppName.Training:
+      return 'training'
+    case AppName.TechOps:
+    case AuthSubAppName.TechOps:
+      return 'techops'
+    case AppName.Repo:
+      return 'repo'
+    case AppName.LMS:
+      return 'externalLms'
+  }
+}
+
+export const convertEventStateToColor = (eventState: EventState): Colors => {
+  switch (eventState) {
     case EventState.Active:
       return Colors.Active
     case EventState.Inactive:
@@ -447,11 +629,25 @@ export const convertEventStateToColor: (eventState: EventState) => Colors = (
   }
 }
 
-export const colors = (color: Colors, alpha = 1) => {
+type HSLAMapType = {
+  h: number
+  s: number
+  l: number
+  a: number
+}
+
+export const colorHSLAMap = ({
+  color,
+  alpha = 1,
+}: {
+  color: Colors
+  alpha: number
+}): HSLAMapType => {
   const baseColors = {
     // Base Colors
     [Colors.Black24]: { h: 0, s: 0, l: 0, a: 0.24 },
     [Colors.Black54]: { h: 0, s: 0, l: 0, a: 0.54 },
+    [Colors.Black62]: { h: 0, s: 0, l: 0, a: 0.62 },
     [Colors.Black74]: { h: 0, s: 0, l: 0, a: 0.74 },
     [Colors.Black89]: { h: 0, s: 0, l: 0, a: 0.89 },
     [Colors.Black]: { h: 0, s: 0, l: 0, a: alpha },
@@ -467,14 +663,34 @@ export const colors = (color: Colors, alpha = 1) => {
     [Colors.BrandLightBlue]: { h: 219, s: 100, l: 54, a: alpha },
     [Colors.BrandDarkBlue]: { h: 234, s: 56, l: 20, a: alpha },
 
+    // PCTE
+    [Colors.PCTEPurple]: { h: 285, s: 52, l: 25, a: alpha },
+
+    // Accent
+    // Blue
+    [Colors.AccentBlue300]: { h: 219, s: 100, l: 54, a: alpha },
+    [Colors.AccentBlue400]: { h: 219, s: 85, l: 48, a: alpha },
+    [Colors.AccentBlue500]: { h: 219, s: 85, l: 43, a: alpha },
+    [Colors.AccentBlue600]: { h: 219, s: 85, l: 37, a: alpha },
+    [Colors.AccentBlue700]: { h: 219, s: 85, l: 32, a: alpha },
+
+    // Purple
+    [Colors.AccentPurple500]: { h: 299, s: 43, l: 48, a: alpha },
+    [Colors.AccentPurple700]: { h: 295, s: 42, l: 32, a: alpha },
+
     // App Colors
+    [Colors.Academy]: { h: 196, s: 75, l: 50, a: alpha },
     [Colors.Admin]: { h: 210, s: 82, l: 54, a: alpha },
+    [Colors.Catalog]: { h: 79, s: 59, l: 49, a: alpha },
     [Colors.Dashboard]: { h: 257, s: 70, l: 60, a: alpha },
     [Colors.Range]: { h: 37, s: 84, l: 50, a: alpha },
     [Colors.Tracker]: { h: 145, s: 63, l: 42, a: alpha },
     [Colors.Hardhat]: { h: 12, s: 98, l: 59, a: alpha },
-    [Colors.Training]: { h: 196, s: 75, l: 50, a: alpha },
     [Colors.Impact]: { h: 353, s: 52, l: 42, a: alpha },
+    [Colors.Training]: { h: 196, s: 75, l: 50, a: alpha },
+    [Colors.TechOps]: { h: 324, s: 60, l: 60, a: alpha },
+    [Colors.Repo]: { h: 79, s: 59, l: 49, a: alpha },
+    [Colors.LMS]: { h: 2, s: 61, l: 50, a: alpha },
 
     // Event Status
     // In Progress
@@ -496,12 +712,46 @@ export const colors = (color: Colors, alpha = 1) => {
     [Colors.Amber]: { h: 45, s: 100, l: 51, a: alpha },
   }
 
-  const selectedColor = baseColors[color]
-
-  return `hsla(${selectedColor.h}, ${selectedColor.s}%, ${selectedColor.l}%, ${
-    selectedColor.a
-  })`
+  return baseColors[color]
 }
+
+export const convertHSLAMapToCss = (HSLAMap: HSLAMapType): string =>
+  `hsla(${HSLAMap.h}, ${HSLAMap.s}%, ${HSLAMap.l}%, ${HSLAMap.a})`
+
+export const colors = (color: Colors, alpha = 1) =>
+  convertHSLAMapToCss(colorHSLAMap({ color, alpha }))
+
+export const baseFocusStyles: (
+  addPositionToParent?: boolean,
+) => SimpleInterpolation = (addPositionToParent = true) => css`
+  ${addPositionToParent &&
+    css`
+      position: relative;
+    `};
+
+  &::after {
+    ${visible(false)};
+
+    border-radius: inherit;
+    border: 1px solid ${colors(Colors.BrandLightBlue)};
+    bottom: 0;
+    content: '';
+    left: 0;
+    pointer-events: none;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
+  &:focus {
+    opacity: 0.85;
+    outline: none;
+
+    &::after {
+      ${visible(true)};
+    }
+  }
+`
 
 export const baseOutlineStyles = (color: Colors = Colors.BrandLightBlue) => css`
   background: transparent;
@@ -519,11 +769,12 @@ export const baseOutlineStyles = (color: Colors = Colors.BrandLightBlue) => css`
 
 export const baseChromelessStyles = (
   color: Colors = Colors.BrandLightBlue,
+  isActive?: boolean,
 ) => css`
-  background: transparent;
+  background: ${isActive ? colors(color, 0.2) : 'transparent'};
 
   &:hover {
-    background: ${colors(color, 0.1)};
+    background: ${isActive ? colors(color, 0.2) : colors(color, 0.1)};
   }
 
   &.is-active,
@@ -573,15 +824,18 @@ export const baseDisabledStyles = css`
 */
 
 export enum BorderRadius {
-  Small = 2,
+  Small = 3,
   Medium = 4,
-  Large = 8,
+  Large = 6,
+  XLarge = 8,
   Round = 1000,
 }
 
-export const borderRadius = (borderRadius: BorderRadius = BorderRadius.Small) =>
+export const borderRadius = (
+  borderRadius2: BorderRadius = BorderRadius.Small,
+) =>
   css`
-    border-radius: ${borderRadius}px;
+    border-radius: ${borderRadius2}px;
   `
 
 /*
@@ -590,17 +844,6 @@ export const borderRadius = (borderRadius: BorderRadius = BorderRadius.Small) =>
 
 const easeCurve: (v: number, pow?: number) => number = (v, pow = 4) => {
   return 1 - Math.pow(1 - Math.max(v, Math.min(0, 1)), pow)
-}
-
-function range(start: number, end: number, length: number) {
-  const step = Math.abs(start - end) / length
-  return Array(length + 1)
-    .fill(undefined)
-    .map((value, index) => {
-      // let easedStep = easeCurve(index / length)
-
-      return start < end ? start + index * step : start - index * step
-    })
 }
 
 // https://developers.google.com/web/updates/2017/03/performant-expand-and-collapse
@@ -616,14 +859,12 @@ const append: (
     i: number
     innerAnimation: string[]
     isOpen: boolean
-    movementArray: number[]
     nFramesDuration: number
     outerAnimation: string[]
     percentage: string
     startX: number
     startY: number
     step: number
-    transformYFrames: number
   },
 ) => void = ({
   endX,
@@ -631,14 +872,12 @@ const append: (
   i,
   innerAnimation,
   isOpen,
-  movementArray,
   nFramesDuration,
   outerAnimation,
   percentage,
   startX,
   startY,
   step,
-  transformYFrames,
 }) => {
   const xScale = startX + (endX - startX) * step
   const yScale = startY + (endY - startY) * step
@@ -648,15 +887,7 @@ const append: (
 
   outerAnimation.push(`
       ${percentage}% {
-        transform: scale(${xScale}, ${yScale}) translateY(${
-    isOpen
-      ? movementArray[i > transformYFrames ? transformYFrames : i]
-      : movementArray[
-          nFramesDuration - i > transformYFrames
-            ? transformYFrames
-            : nFramesDuration - i
-        ]
-  }px);
+        transform: scale(${xScale}, ${yScale});
       }`)
 
   innerAnimation.push(`
@@ -684,15 +915,6 @@ const createEaseAnimations: (
 
   const nFramesDuration = nFrames(animationDuration)
   const percentIncrement = 100 / nFramesDuration
-  const transformYFrames = Math.ceil(20 / percentIncrement)
-
-  const movementArray = range(
-    0,
-    position.dropYDirection === 'top'
-      ? position.originHeight + position.gap
-      : -(position.originHeight + position.gap),
-    transformYFrames,
-  )
 
   for (let i = 0; i <= nFramesDuration; i++) {
     const step = easeCurve(i / nFramesDuration)
@@ -707,14 +929,12 @@ const createEaseAnimations: (
       i,
       innerAnimation: menuExpandContentsAnimation,
       isOpen,
-      movementArray,
       nFramesDuration,
       outerAnimation: menuExpandAnimation,
       percentage,
       startX: x,
       startY: y,
       step,
-      transformYFrames,
     })
 
     // Collapse animation.
@@ -724,14 +944,12 @@ const createEaseAnimations: (
       i,
       innerAnimation: menuCollapseContentsAnimation,
       isOpen,
-      movementArray,
       nFramesDuration,
       outerAnimation: menuCollapseAnimation,
       percentage,
       startX: 1,
       startY: 1,
       step,
-      transformYFrames,
     })
   }
 
@@ -772,8 +990,8 @@ export const generateScaleAnimation: (
       ${position.dropYDirection}: ${position.dropYAmount}px;
       ${visible(isOpen)};
 
-      max-height: ${position.maxHeight}px;
-      max-width: ${position.maxWidth}px;
+      max-height: ${position.maxHeightCalc};
+      max-width: ${position.maxWidthCalc};
       position: fixed;
       transform-origin: ${position.dropYDirection} ${position.dropXDirection};
       will-change: transform, opacity, visibility;
@@ -797,20 +1015,23 @@ export const generateScaleAnimation: (
 
 export const ease = (isActive: boolean) => (isActive ? 'ease-in' : 'ease-out')
 
-export const visible = (isVisible = false): Styles =>
-  isVisible
-    ? {
-        visibility: 'visible',
-        opacity: 0.9999, // Doing .9999 keeps the GPU activated on this element so that it can quickly change back to 0.
-      }
-    : {
-        visibility: 'hidden',
-        opacity: 0,
-      }
-
-export const buttonTransiton = css`
+export const buttonTransition = css`
   transition: all ease 75ms;
 `
+
+export const transition: (
+  props: {
+    properties?: Array<string>
+    easing: string
+    duration: number
+  },
+) => SimpleInterpolation = ({ properties = ['all'], easing, duration }) => {
+  return css`
+    transition: ${properties
+      .map(property => `${property} ${easing} ${duration}ms`)
+      .join()};
+  `
+}
 
 /*
 * Size
@@ -824,7 +1045,10 @@ export const sizes = {
     },
   },
   menu: {
-    width: 128,
+    width: 176,
+  },
+  appSwitcher: {
+    width: 368,
   },
 }
 

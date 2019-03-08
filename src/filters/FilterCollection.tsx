@@ -1,208 +1,362 @@
+import { mkIO, runIO } from '@monorail/CoreUtils/IO'
+import { constVoid, o } from '@monorail/CoreUtils/general'
+import { mkRecordKeyOptional } from '@monorail/CoreUtils/optics'
+import { findIndex, toLocaleLower } from '@monorail/CoreUtils/String'
+import { len, map, notAny } from '@monorail/CoreUtils/Array'
+import { fold } from '@monorail/CoreUtils/Option'
+import { isNil } from '@monorail/CoreUtils/primitive-guards'
+import { array, findFirst, snoc } from 'fp-ts/lib/Array'
+import { constant } from 'fp-ts/lib/function'
+import { isNone, Option, fromNullable } from 'fp-ts/lib/Option'
+import { insert } from 'fp-ts/lib/Record'
+import { Lens, Optional } from 'monocle-ts'
 import React, { Component, ReactNode } from 'react'
-import { css } from 'styled-components'
+import {
+  AppliedFilterGroup,
+  FilterOption,
+  FilterGroup,
+  FilterGroupWithData,
+  FilterState,
+  FilterWithCheckedData,
+  Sorter,
+  SorterGroup,
+  StrBoolMap,
+} from './types'
 
-import { BBCardGrid } from 'cards/Cards'
-import { FilterBar } from 'filters/FilterBar'
-import * as R from 'ramda'
-import { FilterGroups, SorterGroup } from './types'
+const intializeFilterState = <
+  CollectionItem extends object,
+  FilterKey extends keyof CollectionItem & string
+>(
+  filterGroups: Array<FilterGroup<CollectionItem, FilterKey>>,
+): FilterState => {
+  const initStrMap: StrBoolMap = {}
+  const initFilterState: FilterState = {}
 
-type Props = {
-  catalog: Array<{}>
-  itemRender: (item: any) => ReactNode
-  searchKey: string
-  filterGroups: FilterGroups
-  sorterGroup?: SorterGroup
+  return array.reduce(
+    filterGroups,
+    initFilterState,
+    (groups, group): FilterState =>
+      insert(
+        group.id,
+        array.reduce(
+          group.filters,
+          initStrMap,
+          (filters, filterItem): Record<string, boolean> =>
+            insert(filterItem.value, true, filters),
+        ),
+        groups,
+      ),
+  )
 }
 
-type FilterState = {
-  [key: string]: {
-    [key: string]: boolean
-  }
+/**
+ * Helper function to reduce the boilerplate of creating typed a `FilterGroup`
+ */
+export const createFilterGroup = <
+  CollectionItem extends object,
+  FilterKey extends keyof CollectionItem & string
+>(
+  collectionItem: FilterGroup<CollectionItem, FilterKey>,
+): FilterGroup<CollectionItem, FilterKey> => collectionItem
+
+type Props<
+  CollectionItem extends object,
+  SearchByKey extends keyof CollectionItem & string,
+  FilterKey extends keyof CollectionItem & string
+> = {
+  catalog: CollectionItem[]
+  itemRender: (item: CollectionItem) => ReactNode
+  searchByKey: SearchByKey
+  filterGroups: Array<FilterGroup<CollectionItem, FilterKey>>
+  // TODO: Refactor to use Option instead of possibly undefined
+  sorterGroup?: SorterGroup<CollectionItem>
+  children: (
+    props: {
+      filters: {
+        resetFilters: () => void
+        filterGroups: Array<FilterGroupWithData<CollectionItem, FilterKey>>
+        onFilterChange: (
+          groupKey: string,
+          filterKey: string,
+          value: boolean,
+        ) => void
+        isFiltered: boolean
+      }
+      sorters: {
+        // TODO: Refactor to use Option instead of possibly undefined
+        sorterGroup?: SorterGroup<CollectionItem>
+        onSorterChange: (key: string) => void
+      }
+      search: {
+        onSearchChange: (searchText: string) => void
+        searchText: string
+      }
+      collection: Array<ReactNode>
+    },
+  ) => ReactNode
 }
 
-type State = {
+/**
+ * Type-level helper utility to extract the possible "lookup" values
+ * for the `filterKey` key of the `FilterGroup` items in an Array
+ */
+export type GetFilterKeyType<A> = A extends Array<{
+  filterKey: infer Value
+}>
+  ? Value
+  : never
+
+type State<CollectionItem> = {
   searchText: string
   filterState: FilterState
-  sorterGroup?: SorterGroup
+  // TODO: Refactor to use Option instead of possibly undefined
+  sorterGroup?: SorterGroup<CollectionItem>
 }
 
-// Initializes the filter groups state
-const initializeFilterState = (filterGroups: FilterGroups) =>
-  filterGroups.reduce(
-    (groups, group) => ({
-      ...groups,
-      [group.key]: group.filters.reduce(
-        (filters, filter) => ({
-          ...filters,
-          [filter.key]: true, // setting this default true for now
-        }),
-        {},
-      ),
-    }),
-    {},
+export class FilterCollection<
+  CollectionItem extends object,
+  SearchByKey extends keyof CollectionItem & string,
+  FilterKey extends keyof CollectionItem & string
+> extends Component<
+  Props<CollectionItem, SearchByKey, FilterKey>,
+  State<CollectionItem>
+> {
+  initialFilterState: FilterState = intializeFilterState<
+    CollectionItem,
+    FilterKey
+  >(this.props.filterGroups)
+
+  state: State<CollectionItem> = {
+    searchText: '',
+    filterState: this.initialFilterState,
+    sorterGroup: this.props.sorterGroup,
+  }
+
+  mkStatePropLens = Lens.fromProp<State<CollectionItem>>()
+
+  stateToFilterStateLens = this.mkStatePropLens('filterState')
+
+  stateToSearchTextLens = this.mkStatePropLens('searchText')
+
+  stateToSorterGroupOptional = Optional.fromNullableProp<
+    State<CollectionItem>
+  >()('sorterGroup')
+
+  sorterGroupToSortersLens = Lens.fromProp<SorterGroup<CollectionItem>>()(
+    'sorters',
   )
 
-export class FilterCollection extends Component<Props, State> {
-  initialFilterState: FilterState
-  constructor(props: Props) {
-    super(props)
-    this.initialFilterState = initializeFilterState(props.filterGroups)
-    this.state = {
-      searchText: '',
-      filterState: this.initialFilterState,
-      sorterGroup: this.props.sorterGroup,
-    }
-  }
+  stateToSortersOptional = this.stateToSorterGroupOptional.composeLens(
+    this.sorterGroupToSortersLens,
+  )
 
   onSorterChange = (key: string) => {
     const { sorterGroup } = this.state
 
-    sorterGroup &&
-      this.setState(({}) => ({
-        sorterGroup: R.set(
-          R.lensProp('sorters'),
-          R.map(s => {
-            if (s.key === key || s.selected) {
-              s.selected = !s.selected
-            }
+    const sorterGroupOpt = fromNullable(sorterGroup)
 
-            return s
-          }, sorterGroup.sorters),
-          sorterGroup,
-        ),
-      }))
+    const toggleSelected = (s: Sorter<CollectionItem>) =>
+      s.key === key || s.selected ? { ...s, selected: !s.selected } : s
+
+    const transition = this.stateToSortersOptional.modify(map(toggleSelected))
+    const setStateIO = mkIO(() => this.setState(transition))
+    const constSetStateIO = constant(setStateIO)
+    const noOpIO = mkIO(constVoid)
+
+    const onSorterChangeIO = sorterGroupOpt.fold(noOpIO, constSetStateIO)
+
+    runIO(onSorterChangeIO)
   }
 
   onFilterChange = (groupKey: string, filterKey: string, value: boolean) => {
-    this.setState(state =>
-      R.set(R.lensPath(['filterState', groupKey, filterKey]), value, state),
-    )
+    const stateToFilterKeyOptional = this.stateToFilterStateLens
+      .composeOptional(mkRecordKeyOptional(groupKey))
+      .composeOptional(mkRecordKeyOptional(filterKey))
+
+    const transition = stateToFilterKeyOptional.set(value)
+    const setStateIO = mkIO(() => this.setState(transition))
+
+    runIO(setStateIO)
   }
 
   resetFilters = () => {
-    this.setState(() => ({
-      filterState: this.initialFilterState,
-    }))
+    const transition = this.stateToFilterStateLens.set(this.initialFilterState)
+    const setStateIO = mkIO(() => this.setState(transition))
+
+    runIO(setStateIO)
   }
 
   onSearchChange = (searchText: string) => {
-    this.setState(() => ({
-      searchText,
-    }))
+    const transition = this.stateToSearchTextLens.set(searchText)
+    const setStateIO = mkIO(() => this.setState(transition))
+
+    runIO(setStateIO)
   }
 
-  renderCatalog = () => {
+  renderCollection = () => {
     const {
       catalog,
       itemRender,
-      searchKey,
+      searchByKey,
       filterGroups,
       sorterGroup,
     } = this.props
     const { searchText, filterState } = this.state
 
     // sanitize search text
-    const sanitizedSearchText = searchText.toLocaleLowerCase()
+    const sanitizedSearchText = toLocaleLower(searchText)
 
     // Here we loop through all the filter groups and filter out the
     // filters that are unchecked. This is an optimization so
     // we don't need to do this work every time in the below map
-    const appliedFilterGroups = filterGroups.map(group => ({
-      ...group,
-      filters: group.filters.reduce(
-        (appliedFilters: string[], filter) =>
-          // if the filter is true, add it to the applied filters array
-          filterState[group.key][filter.key]
-            ? [...appliedFilters, filter.key]
-            : appliedFilters,
-        [],
-      ),
-    }))
+    const initStrArr: string[] = []
+    const getMakeAppliedFilters = (
+      group: FilterGroup<CollectionItem, FilterKey>,
+    ) => (appliedFilters: string[], filterItem: FilterOption): string[] =>
+      // if the filter is true, add it to the applied filters array
+      filterState[group.id][filterItem.value]
+        ? snoc(appliedFilters, filterItem.value)
+        : appliedFilters
+    const toAppliedFilterGroup = (
+      group: FilterGroup<CollectionItem, FilterKey>,
+    ): AppliedFilterGroup<CollectionItem, FilterKey> => {
+      // couldn't use spread without casting due to below issue:
+      // https://github.com/Microsoft/TypeScript/pull/13288
+      const result = {
+        label: group.label,
+        filterKey: group.filterKey,
+        transform: group.transform,
+        filters: array.reduce(
+          group.filters,
+          initStrArr,
+          getMakeAppliedFilters(group),
+        ),
+      } as AppliedFilterGroup<CollectionItem, FilterKey>
+      return result
+    }
+    const appliedFilterGroups = array.map(filterGroups, toAppliedFilterGroup)
 
-    const filtered = R.filter((catalogItem: { [key: string]: string }) => {
+    const filtered = array.filter(catalog, catalogItem => {
       // If search exists and item does not match, filter it out
-      if (
-        searchText.length > 0 &&
-        catalogItem[searchKey]
-          .toLocaleLowerCase()
-          .indexOf(sanitizedSearchText) === -1
-      ) {
+      const searchValue = catalogItem[searchByKey]
+
+      const findIndexLocaleLower = o(
+        findIndex(sanitizedSearchText),
+        toLocaleLower,
+      )
+      const isNotFound = o(
+        (x: Option<number>) => isNone(x),
+        findIndexLocaleLower,
+      )
+
+      if (typeof searchValue !== 'string') {
+        console.error('tried to search non-string value') // tslint:disable-line:no-console
+      } else if (len(searchText) > 0 && isNotFound(searchValue)) {
         return false
       }
 
       // Otherwise loop through filters groups and make sure that for
       // each filter group that at least one of the applied filters matches
       // the item, otherwise filter the item out
-      const doesMatchFilter = !appliedFilterGroups.some(
-        group =>
-          // If none of the filters match, this will return
-          // true and exit the .some early
-          !group.filters.some(
-            filter =>
-              // Check if the filter matches the item data after
-              // its been run through the filter transform
-              filter ===
-              (group.transform || R.identity)(R.prop(group.key, catalogItem)),
-          ),
-      )
+      const doesMatchFilter = notAny(appliedFilterGroups, group => {
+        // Check if the filter matches the item data after
+        // its been run through the filter transform
+        const matches = (filterTerm: string) => {
+          const target = group.filterKey
+          const value = catalogItem[target]
+
+          if (isNil(group.transform) && typeof value === 'string') {
+            return filterTerm === value
+          } else if (!isNil(group.transform)) {
+            return filterTerm === group.transform(value)
+          } else {
+            const errorMsg =
+              `error: lookup value for ${group.filterKey}` +
+              `must be a string, but received a ${typeof value} (${value})`
+            console.error(errorMsg) // tslint:disable-line:no-console
+            throw new Error(errorMsg)
+          }
+        }
+
+        // If none of the filters match, this will return
+        // true and exit early
+        return notAny(group.filters, matches)
+      })
 
       return doesMatchFilter
-    }, catalog)
+    })
+
+    const filteredReactNodes = array.map(filtered, itemRender)
 
     // sort filtered items
     if (!sorterGroup) {
-      return R.map(itemRender, filtered)
+      return filteredReactNodes
     }
 
-    const foundSorter = R.find(s => s.selected, sorterGroup.sorters)
+    const foundSorter = findFirst(sorterGroup.sorters, s => s.selected)
 
-    return foundSorter
-      ? R.map(itemRender, foundSorter.onSort(filtered))
-      : R.map(itemRender, filtered)
+    const toSortedFilteredReactNodes = (x: Sorter<CollectionItem>) =>
+      array.map(x.onSort(filtered), itemRender)
+
+    return fold(foundSorter, filteredReactNodes, toSortedFilteredReactNodes)
   }
 
   render() {
-    const { filterGroups } = this.props
+    const { filterGroups, children } = this.props
     const { searchText, filterState, sorterGroup } = this.state
 
     // add the checked value to each filter item and compute
     // how many filters in each group are applied (we need this
     // for the filter button rendering)
-    const filterGroupsWithStateData = filterGroups.map(g => {
-      const filters = g.filters.map(f => ({
-        ...f,
-        checked: filterState[g.key][f.key],
-      }))
-      const activeFilterCount = filters.filter(f => f.checked).length
+    const filterGroupsWithStateData: Array<
+      FilterGroupWithData<CollectionItem, FilterKey>
+    > = array.map(filterGroups, g => {
+      const filtersWithCheckedData = array.map(g.filters, f => {
+        const filterStateMap = filterState[g.id]
+        const checked = filterStateMap[f.value]
+        const filterWithCheckedData: FilterWithCheckedData = {
+          ...f,
+          checked,
+        }
+        return filterWithCheckedData
+      })
+      const activeFilterCount = array.filter(
+        filtersWithCheckedData,
+        f => f.checked,
+      ).length
 
-      return {
-        ...g,
+      // couldn't use spread without casting due to below issue:
+      // https://github.com/Microsoft/TypeScript/pull/13288
+      const filterGroupWithData = {
+        label: g.label,
+        filterKey: g.id,
+        transform: g.transform,
         activeFilterCount,
-        filters,
-      }
+        filters: filtersWithCheckedData,
+      } as FilterGroupWithData<CollectionItem, FilterKey>
+      return filterGroupWithData
     })
 
     // Check if the filter state has changed, we need this to know
     // whether or not to show the reset button
-    const isFiltered = !R.equals(this.initialFilterState, filterState)
+    const isFiltered = this.initialFilterState !== filterState
 
-    return (
-      <BBCardGrid>
-        <FilterBar
-          resetFilters={this.resetFilters}
-          filterGroups={filterGroupsWithStateData}
-          sorterGroup={sorterGroup}
-          onSearchChange={this.onSearchChange}
-          searchText={searchText}
-          onFilterChange={this.onFilterChange}
-          onSorterChange={this.onSorterChange}
-          isFiltered={isFiltered}
-          css={css`
-            grid-column: -1 / 1;
-          `}
-        />
-        {this.renderCatalog()}
-      </BBCardGrid>
-    )
+    return children({
+      filters: {
+        resetFilters: this.resetFilters,
+        filterGroups: filterGroupsWithStateData,
+        onFilterChange: this.onFilterChange,
+        isFiltered,
+      },
+      sorters: {
+        sorterGroup,
+        onSorterChange: this.onSorterChange,
+      },
+      search: {
+        onSearchChange: this.onSearchChange,
+        searchText,
+      },
+      collection: this.renderCollection(),
+    })
   }
 }

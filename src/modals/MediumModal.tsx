@@ -1,12 +1,8 @@
 import React, { Component } from 'react'
 
-import { PopOverChildProps } from 'popOver/PopOver'
-import {
-  BBModalBackground,
-  BBModalContainer,
-  BBModalHeader,
-  BBModalOverlay,
-} from 'modals/Modals'
+import { PopOverChildProps } from '@monorail/popOver/PopOver'
+import { BBModalBackground, BBModalHeader } from '@monorail/modals/Modals'
+import { Overlay } from '@monorail/toggle/Overlay'
 
 type Props = PopOverChildProps & {
   title: string
@@ -15,16 +11,22 @@ type Props = PopOverChildProps & {
 
 export class MediumModal extends Component<Props> {
   render() {
-    const { isOpen, onClick, children, title, iconLeft } = this.props
+    const {
+      isOpen,
+      onClick,
+      children,
+      title,
+      iconLeft,
+      togglePopOver,
+    } = this.props
 
     return (
-      <BBModalContainer isOpen={isOpen}>
-        <BBModalOverlay isOpen={isOpen} onClick={onClick} />
+      <Overlay isOpen={isOpen} onClick={onClick} togglePopOver={togglePopOver}>
         <BBModalBackground>
           <BBModalHeader title={title} iconLeft={iconLeft} onClose={onClick} />
           {children}
         </BBModalBackground>
-      </BBModalContainer>
+      </Overlay>
     )
   }
 }

@@ -3,14 +3,14 @@ import styled, { css, SimpleInterpolation } from 'styled-components'
 
 import {
   borderRadius,
-  buttonTransiton,
+  buttonTransition,
   Colors,
   colors,
   flexFlow,
   FontSizes,
   typography,
-} from 'CommonStyles'
-import { Icon } from 'icon/Icon'
+} from '@monorail/CommonStyles'
+import { Icon } from '@monorail/icon/Icon'
 
 /*
 * Styles
@@ -24,7 +24,7 @@ const BBTextFieldContainer = styled<TextFieldProps, 'label'>('label')`
   width: 100%;
   position: relative; /* position: relative; so that the icons can be absolutely positioned. */
 
-  ${({ css: cssOverrides }) => cssOverrides};
+  ${({ cssOverrides }) => cssOverrides};
 `
 
 export const BBTextFieldLabel = styled('p')`
@@ -52,7 +52,10 @@ const BBTextFieldInput = styled<BBTextFieldInputProps, 'input'>('input')`
   ${typography(400, FontSizes.Title5)};
   ${borderRadius()};
 
-  border: 1px solid ${colors(Colors.Black, 0.12)};
+  border: ${({ chromeless }) =>
+    chromeless
+      ? `1px solid transparent`
+      : `1px solid ${colors(Colors.Black, 0.12)}`};
   box-sizing: border-box;
   color: ${colors(Colors.Black89)};
   height: 24px;
@@ -61,7 +64,14 @@ const BBTextFieldInput = styled<BBTextFieldInputProps, 'input'>('input')`
     ${({ iconLeft }) => (iconLeft ? 30 : 6)}px;
   width: 100%;
 
-  ${buttonTransiton};
+  ${buttonTransition};
+
+  &[type='number'] {
+    &::-webkit-inner-spin-button,
+    &::-webkit-outer-spin-button {
+      opacity: 1;
+    }
+  }
 
   ::placeholder {
     color: ${colors(Colors.Black54)};
@@ -92,7 +102,7 @@ const BBTextAreaInput = styled<BBTextFieldInputProps, 'textarea'>('textarea')`
     ${({ iconLeft }) => (iconLeft ? 30 : 6)}px;
   width: 100%;
 
-  ${buttonTransiton};
+  ${buttonTransition};
 
   ::placeholder {
     color: ${colors(Colors.Black54)};
@@ -114,10 +124,11 @@ const BBTextAreaInput = styled<BBTextFieldInputProps, 'textarea'>('textarea')`
 */
 
 type BBTextFieldContainerProps = {
-  css?: SimpleInterpolation
+  cssOverrides?: SimpleInterpolation
 }
 
 type BBTextFieldInputProps = {
+  chromeless?: boolean
   iconLeft?: string
   iconRight?: string
   label?: string | number
@@ -125,14 +136,15 @@ type BBTextFieldInputProps = {
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => void
   placeholder?: string
-  value?: string
+  value?: string | number // TODO - split into number component
   disabled?: boolean
   readOnly?: boolean
   required?: boolean
   type?: string
 }
 
-type TextFieldProps = BBTextFieldContainerProps & BBTextFieldInputProps & {}
+export type TextFieldProps = BBTextFieldContainerProps &
+  BBTextFieldInputProps & {}
 
 /*
 * Component
@@ -141,7 +153,8 @@ type TextFieldProps = BBTextFieldContainerProps & BBTextFieldInputProps & {}
 export class TextField extends Component<TextFieldProps> {
   render() {
     const {
-      css: cssOverrides,
+      chromeless,
+      cssOverrides,
       iconLeft,
       iconRight,
       label,
@@ -156,17 +169,19 @@ export class TextField extends Component<TextFieldProps> {
     } = this.props
 
     return (
-      <BBTextFieldContainer css={cssOverrides}>
+      <BBTextFieldContainer cssOverrides={cssOverrides}>
         {label !== undefined && <BBTextFieldLabel>{label}</BBTextFieldLabel>}
         {iconLeft && <StyledLeftIcon icon={iconLeft} />}
         {iconRight && <StyledRightIcon icon={iconRight} />}
         <BBTextFieldInput
+          data-lpignore="true" // 🖕 u LastPass: https://goo.gl/Ez3eS1
+          chromeless={chromeless}
           className="new-input"
           iconLeft={iconLeft}
           iconRight={iconRight}
           onChange={onChange}
           placeholder={placeholder}
-          type={type || 'string'}
+          type={type}
           value={value}
           disabled={disabled}
           readOnly={readOnly}
@@ -182,7 +197,7 @@ export class TextField extends Component<TextFieldProps> {
 export class TextArea extends Component<TextFieldProps> {
   render() {
     const {
-      css,
+      cssOverrides,
       iconLeft,
       iconRight,
       label,
@@ -197,12 +212,12 @@ export class TextArea extends Component<TextFieldProps> {
     } = this.props
 
     return (
-      <BBTextFieldContainer css={css}>
-        {label != undefined && <BBTextFieldLabel>{label}</BBTextFieldLabel>}
+      <BBTextFieldContainer cssOverrides={cssOverrides}>
+        {label !== undefined && <BBTextFieldLabel>{label}</BBTextFieldLabel>}
         {iconLeft && <StyledLeftIcon icon={iconLeft} />}
         {iconRight && <StyledRightIcon icon={iconRight} />}
         <BBTextAreaInput
-          className="new-input"
+          className="new-textarea"
           iconLeft={iconLeft}
           iconRight={iconRight}
           onChange={onChange}

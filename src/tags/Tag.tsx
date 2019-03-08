@@ -1,14 +1,15 @@
 import React, { Component } from 'react'
 import styled, { css, SimpleInterpolation } from 'styled-components'
 
-import { Icon } from 'icon/Icon'
+import { Icon } from '@monorail/icon/Icon'
 import {
   Colors,
   colors,
   flexFlow,
   FontSizes,
   typography,
-} from 'CommonStyles'
+} from '@monorail/CommonStyles'
+import { isNil } from '@monorail/CoreUtils/primitive-guards'
 
 const tagHeight = 24
 const circleWidth = tagHeight - 4
@@ -16,18 +17,19 @@ const circleRadius = circleWidth / 2
 const iconSize = tagHeight / 2
 
 type CCTagProps = {
-  css?: SimpleInterpolation
+  cssOverrides?: SimpleInterpolation
   label?: string
 }
 
 export const CCTag = styled<CCTagProps, 'div'>('div')`
   ${({ label }) =>
-    label &&
+    isNil(label) &&
     css`
       width: ${tagHeight}px;
     `};
 
   ${flexFlow('row')};
+  display: inline-flex;
   align-items: center;
   background: ${colors(Colors.Black, 0.07)};
   border-radius: ${tagHeight / 2}px;
@@ -35,7 +37,6 @@ export const CCTag = styled<CCTagProps, 'div'>('div')`
   position: relative; /* ::before circle is pos: abs to this element. */
   text-transform: uppercase;
   user-select: none;
-  width: fit-content;
 
   &::before {
     background: ${colors(Colors.White)};
@@ -48,7 +49,7 @@ export const CCTag = styled<CCTagProps, 'div'>('div')`
     width: ${circleWidth}px;
   }
 
-  ${({ css: cssOverrides }) => cssOverrides};
+  ${({ cssOverrides }) => cssOverrides};
 `
 
 const StyledIconLeft = styled(Icon)`
@@ -70,10 +71,10 @@ type TagProps = CCTagProps & {
 
 export class Tag extends Component<TagProps> {
   render() {
-    const { icon, label, css: cssOverrides } = this.props
+    const { icon, label, cssOverrides } = this.props
 
     return (
-      <CCTag label={label} css={cssOverrides}>
+      <CCTag label={label} cssOverrides={cssOverrides}>
         <StyledIconLeft icon={icon} size={iconSize} />
 
         {label && <Title>{label}</Title>}

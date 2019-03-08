@@ -1,17 +1,17 @@
 import React, { Component, ReactNode } from 'react'
-import { Icon } from 'icon/Icon'
+import { Icon } from '@monorail/icon/Icon'
 import {
   baseChromelessStyles,
   baseDisabledStyles,
   borderRadius,
-  buttonTransiton,
+  buttonTransition,
   Colors,
   colors,
   flexFlow,
   FontSizes,
   typography,
   visible,
-} from 'CommonStyles'
+} from '@monorail/CommonStyles'
 import styled, { css, SimpleInterpolation } from 'styled-components'
 
 /*
@@ -24,7 +24,7 @@ const BBChoiceInput = styled<BBChoiceInputProps, 'input'>('input')`
   z-index: -1;
 `
 
-const BBChoiceFakeLabel = styled<AnsweredProps, 'span'>('span')`
+const BBChoiceFakeLabel = styled<AnsweredProps, 'div'>('div')`
   ${({ answered }) =>
     answered &&
     css`
@@ -32,7 +32,7 @@ const BBChoiceFakeLabel = styled<AnsweredProps, 'span'>('span')`
     `};
 
   ${typography(500, FontSizes.Title5)};
-
+  flex-grow: 1;
   word-break: break-word;
 
   transition: all ease 150ms;
@@ -55,12 +55,15 @@ const CCChoice = styled<CCChoiceProps, 'label'>('label')`
   align-items: center;
   box-sizing: border-box;
   cursor: pointer;
+  display: flex;
+  flex-direction: row;
   min-height: 24px;
-  padding: 4px 16px 4px 32px;
+  padding: 4px 4px 4px 32px;
   position: relative; /* position: relative; so that the input can be position: absolute; */
   user-select: none;
+  width: 100%;
 
-  ${buttonTransiton};
+  ${buttonTransition};
 
   .ChoiceButtonChecked {
     color: ${colors(Colors.BrandLightBlue)};
@@ -108,7 +111,7 @@ const CCChoice = styled<CCChoiceProps, 'label'>('label')`
     transition: all ease 150ms;
   }
 
-  ${({ css: cssOverrides }) => cssOverrides};
+  ${({ cssOverrides }) => cssOverrides};
 `
 
 /*
@@ -127,12 +130,12 @@ type BBGradeIconProps = {
 
 type BBChoiceInputProps = AnsweredProps & {
   checked?: boolean
-  onChange?: (event?: React.ChangeEvent<HTMLInputElement>) => void
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
 }
 
 type CCChoiceProps = AnsweredProps &
   BBGradeIconProps & {
-    css?: SimpleInterpolation
+    cssOverrides?: SimpleInterpolation
     disabled?: boolean
     readOnly?: boolean
     value?: string | number | string[]
@@ -143,7 +146,7 @@ type CCChoiceProps = AnsweredProps &
 export type ChoiceProps = BBGradeIconProps &
   CCChoiceProps &
   BBChoiceInputProps & {
-    key?: any
+    key?: string | number
     type: 'radio' | 'checkbox'
     children?: ReactNode
   }
@@ -192,7 +195,7 @@ export class Choice extends Component<ChoiceProps> {
       answered,
       checked,
       correct,
-      css: cssOverrides,
+      cssOverrides,
       disabled,
       incorrect,
       onChange,
@@ -207,7 +210,7 @@ export class Choice extends Component<ChoiceProps> {
     return (
       <CCChoice
         correct={correct}
-        css={cssOverrides}
+        cssOverrides={cssOverrides}
         disabled={disabled}
         incorrect={incorrect}
         readOnly={readOnly}

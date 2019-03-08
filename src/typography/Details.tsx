@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { isNil } from '@monorail/CoreUtils/primitive-guards'
 import styled, { css, SimpleInterpolation } from 'styled-components'
 import {
   Colors,
@@ -6,8 +7,8 @@ import {
   flexFlow,
   FontSizes,
   typography,
-} from 'CommonStyles'
-import { CCTag } from 'tags/Tag'
+} from '@monorail/CommonStyles'
+import { CCTag } from '@monorail/tags/Tag'
 
 // Property Styles
 const primaryPropertyStyles = css`
@@ -84,7 +85,7 @@ const BBDetailsContainer = styled<BBDetailsContainerProps, 'div'>('div')`
     margin-top: 6px;
   }
 
-  ${({ css: cssOverrides }) => cssOverrides};
+  ${({ cssOverrides }) => cssOverrides};
 `
 
 type BBDetailsSize = {
@@ -94,7 +95,7 @@ type BBDetailsSize = {
 }
 
 type BBDetailsContainerProps = {
-  css?: SimpleInterpolation
+  cssOverrides?: SimpleInterpolation
 }
 
 type CCDetailsProps = BBDetailsSize &
@@ -108,7 +109,7 @@ export class CCDetails extends Component<CCDetailsProps> {
     const {
       children,
       compact,
-      css: cssOverrides,
+      cssOverrides,
       darkMode,
       large,
       property,
@@ -116,15 +117,15 @@ export class CCDetails extends Component<CCDetailsProps> {
     } = this.props
 
     return (
-      <BBDetailsContainer css={cssOverrides}>
+      <BBDetailsContainer cssOverrides={cssOverrides}>
         <BBDetailsProperty compact={compact} large={large} darkMode={darkMode}>
           {property}
         </BBDetailsProperty>
-        {value !== undefined ? (
+        {!isNil(value) && (
           <BBDetailsValue compact={compact} large={large} darkMode={darkMode}>
             {value}
           </BBDetailsValue>
-        ) : null}
+        )}
 
         {children}
       </BBDetailsContainer>

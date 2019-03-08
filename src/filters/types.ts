@@ -1,34 +1,97 @@
-export type Filter = {
+export type FilterOption = {
   label: string
-  key: string
+  value: string
 }
 
-export type FilterWithData = Filter & {
+export type CheckedFilterData = {
   checked: boolean
 }
 
-export type FilterGroup<FilterType> = {
-  label: string
-  key: string
-  transform?: Function
-  filters: FilterType[]
-}
+export type FilterWithCheckedData = FilterOption & CheckedFilterData
 
-export type FilterGroupWithData = FilterGroup<FilterWithData> & {
+export type ActiveFilterCountData = {
   activeFilterCount: number
 }
 
-export type FilterGroups = Array<FilterGroup<Filter>>
-export type FilterGroupsWithData = FilterGroupWithData[]
+type CheckedFiltersData = { filters: FilterWithCheckedData[] }
 
-export type Sorter = {
+export type FilterGroupWithData<
+  CollectionItem extends object,
+  FilterKey extends keyof CollectionItem & string
+> = CollectionItem[FilterKey] extends string
+  ? {
+      label: string
+      filterKey: FilterKey
+      transform?: <A extends CollectionItem[FilterKey]>(
+        searchValue: A,
+      ) => string
+    } & ActiveFilterCountData &
+      CheckedFiltersData
+  : {
+      label: string
+      filterKey: FilterKey
+      transform: <A extends CollectionItem[FilterKey]>(searchValue: A) => string
+    } & ActiveFilterCountData &
+      CheckedFiltersData
+
+type FilterOptionsData = { filters: FilterOption[] }
+
+export type FilterGroup<
+  CollectionItem extends object,
+  FilterKey extends keyof CollectionItem & string
+> = CollectionItem[FilterKey] extends string
+  ? {
+      label: string
+      filterKey: FilterKey
+      /**
+       * FilterCollection will reference id
+       * instead of filterKey in state,
+       * so FilterGroups won't get mixed up.
+       */
+      id: string
+      transform?: <A extends CollectionItem[FilterKey]>(
+        searchValue: A,
+      ) => string
+    } & FilterOptionsData
+  : {
+      label: string
+      filterKey: FilterKey
+      id: string
+      transform: <A extends CollectionItem[FilterKey]>(searchValue: A) => string
+    } & FilterOptionsData
+
+export type AppliedFilters = { filters: string[] }
+
+export type AppliedFilterGroup<
+  CollectionItem extends object,
+  FilterKey extends keyof CollectionItem & string
+> = CollectionItem[FilterKey] extends string
+  ? {
+      label: string
+      filterKey: FilterKey
+      id: string
+      transform?: <A extends CollectionItem[FilterKey]>(
+        searchValue: A,
+      ) => string
+    } & AppliedFilters
+  : {
+      label: string
+      filterKey: FilterKey
+      id: string
+      transform: <A extends CollectionItem[FilterKey]>(searchValue: A) => string
+    } & AppliedFilters
+
+export type StrBoolMap = Record<string, boolean>
+export type FilterState = Record<string, StrBoolMap>
+
+export type Sorter<CollectionItem> = {
   label: string
   key: string
-  onSort: Function
+  onSort: (xs: CollectionItem[]) => CollectionItem[]
   selected: boolean
 }
-export type SorterGroup = {
+export type SorterGroup<CollectionItem> = {
   label: string
   key: string
-  sorters: Sorter[]
+  sorters: Array<Sorter<CollectionItem>>
 }
