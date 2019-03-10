@@ -1,18 +1,18 @@
-import React, { SFC } from 'react'
-import styled, { css, SimpleInterpolation } from 'styled-components'
+import React, { SFC } from "react";
+import styled, { css, SimpleInterpolation } from "styled-components";
 
-import { typography, FontSizes } from '@monorail/CommonStyles'
+import { typography, FontSizes } from "@monorail/CommonStyles";
 
 const SelectGroupWrapper = styled<
   { cssOverrides?: SimpleInterpolation },
-  'div'
->('div')`
+  "div"
+>("div")`
   margin: 0;
   padding: 0;
   border: 0;
 
   ${({ cssOverrides }) => cssOverrides};
-`
+`;
 
 const SelectElementWrapper = styled.div`
   background-color: white;
@@ -25,7 +25,7 @@ const SelectElementWrapper = styled.div`
   &:hover {
     cursor: pointer;
   }
-`
+`;
 
 const SelectElement = styled.select`
   width: calc(100% - 8px);
@@ -34,31 +34,31 @@ const SelectElement = styled.select`
   border: none;
   outline: none;
   cursor: pointer;
-`
+`;
 
 const Label = styled.p`
   ${typography(500, FontSizes.Title5)};
   margin-bottom: 4px;
   height: 16px;
-`
+`;
 
 export type SelectOption = {
-  label: string
-  value: string
-}
+  label: string;
+  value: string;
+};
 
 type Props = {
-  label?: string
-  options: SelectOption[]
-  onSelect?: (e: string | string[] | number | undefined) => void
-  onBlur?: (e: React.SyntheticEvent) => void
-  value?: string | string[] | number
-  placeholder?: string
-  required?: boolean
-  cssOverrides?: SimpleInterpolation
-  name?: string
-  onChange?: ((event: React.ChangeEvent<HTMLSelectElement>) => void)
-}
+  label?: string;
+  options: SelectOption[];
+  onSelect?: (e: string | string[] | number | undefined) => void;
+  onBlur?: (e: React.SyntheticEvent) => void;
+  value?: string | string[] | number;
+  placeholder?: string;
+  required?: boolean;
+  cssOverrides?: SimpleInterpolation;
+  name?: string;
+  onChange?: (event: React.ChangeEvent<HTMLSelectElement>) => void;
+};
 
 export const Select: SFC<Props> = ({
   label,
@@ -70,27 +70,35 @@ export const Select: SFC<Props> = ({
   options,
   cssOverrides,
   name,
-  onChange,
+  onChange
 }) => {
   return (
     <SelectGroupWrapper cssOverrides={cssOverrides}>
       {label && (
         <Label>
           {label}
-          {required && '*'}
+          {required && "*"}
         </Label>
       )}
       <SelectElementWrapper>
         <SelectElement
           name={name}
-          placeholder={placeholder || 'Select'}
           value={value}
           onBlur={onBlur}
           onChange={e => {
-            onChange && onChange(e)
-            onSelect && onSelect(e.target.value)
+            onChange && onChange(e);
+            onSelect && onSelect(e.target.value);
           }}
         >
+          {placeholder ? (
+            <option value="placeholder" disabled hidden>
+              {placeholder}
+            </option>
+          ) : (
+            <option value="placeholder" disabled hidden>
+              Select
+            </option>
+          )}
           {options.map((o: SelectOption, key: number) => (
             <option key={o.value} value={o.value}>
               {o.label}
@@ -99,5 +107,5 @@ export const Select: SFC<Props> = ({
         </SelectElement>
       </SelectElementWrapper>
     </SelectGroupWrapper>
-  )
-}
+  );
+};
