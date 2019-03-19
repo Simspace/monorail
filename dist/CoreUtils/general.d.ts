@@ -1,5 +1,5 @@
 import { Function2 } from 'fp-ts/lib/function';
-import { Falsey } from './type-level';
+import { Falsy } from './type-level';
 export declare const constVoid: () => void;
 /**
  * Flips the order of the arguments to an uncurried function taking two
@@ -37,6 +37,6 @@ export declare const makeApiActionTypes: <A extends [string, string, string, str
  */
 export declare const makeConstantActionType: <A extends [string]>(...args: A) => A[0];
 /**
- * Type guard for the Falsey type
+ * Type guard for the Falsy type
  */
-export declare const isFalsey: (x: any) => x is Falsey;
+export declare const isFalsy: (x: any) => x is Falsy;

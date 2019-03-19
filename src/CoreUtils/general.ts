@@ -9,7 +9,7 @@ import {
   isEmptyString,
   isZero,
 } from './primitive-guards'
-import { Falsey } from './type-level'
+import { Falsy } from './type-level'
 
 export const constVoid = (): void => {}
 
@@ -65,10 +65,10 @@ export const makeConstantActionType = <A extends [string]>(...args: A): A[0] =>
   args[0]
 
 /**
- * Type guard for the Falsey type
+ * Type guard for the Falsy type
  */
 // tslint:disable-next-line:no-any
-export const isFalsey = (x: any): x is Falsey =>
+export const isFalsy = (x: any): x is Falsy =>
   isNil(x) ||
   isFalse(x) ||
   isEmptyString(x) ||

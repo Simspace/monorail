@@ -2,7 +2,7 @@ import { Option } from 'fp-ts/lib/Option';
 import { Ord } from 'fp-ts/lib/Ord';
 import { Ordering } from 'fp-ts/lib/Ordering';
 import { Setoid } from 'fp-ts/lib/Setoid';
-import { ExtractFromOption, SafePrimitive } from './type-level';
+import { SafePrimitive } from './type-level';
 /**
  * Retrieves the keys of an object while retaining keyof type information
  */
@@ -44,10 +44,10 @@ export declare const pick: <A extends {
 }, K extends keyof A & string>(rec: A, ks: K[]) => { [P in K]: A[P]; };
 export declare const sequenceMixedRecordOptions: <A extends {
     [key: string]: Option<SafePrimitive>;
-}, B extends { [P in keyof A & string]: ExtractFromOption<A[P]>; }>(rec: A) => Option<B>;
+}, B extends { [P in keyof A & string]: import("./type-level").ExtractFromHKT1<A[P]>; }>(rec: A) => Option<B>;
 export declare const traverseMixedRecordOptions: <A extends {
     [key: string]: SafePrimitive;
-}, B extends { [P in keyof A]: A[P]; }, F extends (x: B[keyof B]) => Option<unknown>>(rec: A, f: F) => Option<{ [P in keyof B & string]: ExtractFromOption<ReturnType<F>>; }>;
+}, B extends { [P in keyof A]: A[P]; }, F extends (x: B[keyof B]) => Option<unknown>>(rec: A, f: F) => Option<{ [P in keyof B & string]: import("./type-level").ExtractFromHKT1<ReturnType<F>>; }>;
 /**
  * Interface for records extending a { name: string } key-val pair
  */

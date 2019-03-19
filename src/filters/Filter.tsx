@@ -41,11 +41,9 @@ const CCFilter = styled<CCFilterProps, 'div'>('div')`
 `
 
 const FilterText = styled('span')`
-  ${flexFlow('row')};
   ${typography(700, FontSizes.Title5)};
 
   color: currentColor;
-  flex: 1 1 100%;
   text-transform: uppercase;
   white-space: nowrap;
 `

@@ -1,6 +1,6 @@
 {
   "name": "@simspace/monorail",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "SimSpace Design System",
   "resolutions": {
     "@types/react": "16.8.2",
@@ -31,11 +31,11 @@
   "homepage": "https://github.com/Simspace/monorail#readme",
   "dependencies": {},
   "peerDependencies": {
-    "fp-ts": "~1.13.0",
-    "react": "~16.6.0",
-    "react-dom": "~16.6.0",
-    "react-router": "~3.2.0",
-    "styled-components": "~4.0.0"
+    "fp-ts": "^1.13.0",
+    "react": "^16.6.0",
+    "react-dom": "^16.6.0",
+    "react-router": "^3.2.0",
+    "styled-components": "^4.0.0"
   },
   "devDependencies": {
     "@babel/cli": "7.1.2",

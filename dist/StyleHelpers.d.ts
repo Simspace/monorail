@@ -1,8 +1,9 @@
 import React from 'react';
 import { FlattenInterpolation, SimpleInterpolation, ThemeProps } from 'styled-components';
 import { GlobalAppThemeInterface } from '@monorail/globalAppTheme';
+export declare type CssOverrides = SimpleInterpolation | FlattenInterpolation<ThemeProps<GlobalAppThemeInterface>>[];
 export declare type StyledComponentCssOverrides = {
-    cssOverrides?: SimpleInterpolation;
+    cssOverrides?: CssOverrides;
 };
 /**
  * TODO: Get rid of this. This was something Dan added that isn't correctly typed. Any references should be replaced
@@ -10,7 +11,7 @@ export declare type StyledComponentCssOverrides = {
  */
 export declare const styled: <P, E = HTMLDivElement>(tagName: string | React.ComponentClass<P, any> | React.FunctionComponent<P>) => import("styled-components").ThemedStyledFunction<P & React.HTMLProps<E>, any, any>;
 declare type Props = {
-    cssOverrides?: SimpleInterpolation | FlattenInterpolation<ThemeProps<GlobalAppThemeInterface>>[];
+    cssOverrides?: CssOverrides;
 };
 /**
  * The Div helper is a component that accepts `css` prop so we can easily inline CSS Objects with TypeScript support.

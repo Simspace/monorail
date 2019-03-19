@@ -221,6 +221,12 @@ export const TableRowGroupHeader = styled<
   `};
 `
 
+export const TableEmptyMessage = styled.div`
+  padding: 16px;
+
+  ${typography(400, FontSizes.Title5)};
+`
+
 // Table Footer
 
 export const TableFooterContainer = styled<

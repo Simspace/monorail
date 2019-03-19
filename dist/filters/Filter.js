@@ -39,7 +39,7 @@ const FilterText =
 (0, _styledComponents.default)('span').withConfig({
   displayName: "Filter__FilterText",
   componentId: "sc-131i0x6-1"
-})(["", ";", ";color:currentColor;flex:1 1 100%;text-transform:uppercase;white-space:nowrap;"], (0, _CommonStyles.flexFlow)('row'), (0, _CommonStyles.typography)(700, _CommonStyles.FontSizes.Title5));
+})(["", ";color:currentColor;text-transform:uppercase;white-space:nowrap;"], (0, _CommonStyles.typography)(700, _CommonStyles.FontSizes.Title5));
 const FilterIcon =
 /*#__PURE__*/
 (0, _styledComponents.default)(_Icon.Icon).withConfig({
