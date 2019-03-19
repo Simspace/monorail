@@ -7,8 +7,12 @@ import {
 } from 'styled-components'
 import { GlobalAppThemeInterface } from '@monorail/globalAppTheme'
 
+export type CssOverrides =
+  | SimpleInterpolation
+  | FlattenInterpolation<ThemeProps<GlobalAppThemeInterface>>[]
+
 export type StyledComponentCssOverrides = {
-  cssOverrides?: SimpleInterpolation
+  cssOverrides?: CssOverrides
 }
 
 /**
@@ -20,9 +24,7 @@ export const styled = <P, E = HTMLDivElement>(
 ) => styledOrig<P & React.HTMLProps<E>, any>(tagName) // tslint:disable-line:no-any
 
 type Props = {
-  cssOverrides?:
-    | SimpleInterpolation
-    | FlattenInterpolation<ThemeProps<GlobalAppThemeInterface>>[]
+  cssOverrides?: CssOverrides
 }
 
 /**

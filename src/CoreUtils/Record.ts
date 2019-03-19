@@ -6,7 +6,7 @@ import { sort } from 'fp-ts/lib/Array'
 import { Setoid } from 'fp-ts/lib/Setoid'
 
 import { forEach } from './Array'
-import { ExtractFromOption, SafePrimitive } from './type-level'
+import { ExtractAFromOption, SafePrimitive } from './type-level'
 import { toLower } from './String'
 
 /**
@@ -95,7 +95,7 @@ export const sequenceMixedRecordOptions = <
   A extends {
     [key: string]: Option<SafePrimitive>
   },
-  B extends { [P in keyof A & string]: ExtractFromOption<A[P]> }
+  B extends { [P in keyof A & string]: ExtractAFromOption<A[P]> }
 >(
   rec: A,
 ): Option<B> => {
@@ -123,9 +123,9 @@ export const traverseMixedRecordOptions = <
 >(
   rec: A,
   f: F,
-): Option<{ [P in keyof B & string]: ExtractFromOption<ReturnType<F>> }> => {
+): Option<{ [P in keyof B & string]: ExtractAFromOption<ReturnType<F>> }> => {
   const result = {} as {
-    [P in keyof B & string]: ExtractFromOption<ReturnType<F>>
+    [P in keyof B & string]: ExtractAFromOption<ReturnType<F>>
   } & {
     [key: string]: unknown
   }

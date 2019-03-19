@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.toSpreadable = exports.prism = exports.toBoolean = exports.fromTruthyFalsey = exports.getOrZero = exports.getOrEmptyString = exports.getOrEmptyArray = exports.getOrElse = exports.renderOnSome = exports.fold = exports.isOption = void 0;
+exports.toSpreadable = exports.prism = exports.toBoolean = exports.fromTruthyFalsy = exports.getOrZero = exports.getOrEmptyString = exports.getOrEmptyArray = exports.getOrElse = exports.renderOnSome = exports.fold = exports.isOption = void 0;
 
 var _Foldable2v = require("fp-ts/lib/Foldable2v");
 
@@ -76,20 +76,20 @@ const getOrEmptyString = getOrElse('');
 exports.getOrEmptyString = getOrEmptyString;
 const getOrZero = getOrElse(0);
 /**
- * Converts truthy/falsey values into Options, like `fromNullable` from
- * fp-ts, but converts all falsey values, instead of just null or undefined,
+ * Converts truthy/falsy values into Options, like `fromNullable` from
+ * fp-ts, but converts all falsy values, instead of just null or undefined,
  * into Nones
  */
 
 exports.getOrZero = getOrZero;
 
-const fromTruthyFalsey = x => (0, _general.isFalsey)(x) ? _Option.none : (0, _Option.some)(x);
+const fromTruthyFalsy = x => (0, _general.isFalsy)(x) ? _Option.none : (0, _Option.some)(x);
 /**
  * Converts a None into false, and a Some<T> into a boolean
  */
 
 
-exports.fromTruthyFalsey = fromTruthyFalsey;
+exports.fromTruthyFalsy = fromTruthyFalsy;
 
 const toBoolean = x => fold(x, false, _function.constTrue);
 /**

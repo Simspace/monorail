@@ -38,11 +38,11 @@ export declare const getOrEmptyString: (b: Option<string>) => string;
  */
 export declare const getOrZero: (b: Option<number>) => number;
 /**
- * Converts truthy/falsey values into Options, like `fromNullable` from
- * fp-ts, but converts all falsey values, instead of just null or undefined,
+ * Converts truthy/falsy values into Options, like `fromNullable` from
+ * fp-ts, but converts all falsy values, instead of just null or undefined,
  * into Nones
  */
-export declare const fromTruthyFalsey: <A>(x: A) => Option<A>;
+export declare const fromTruthyFalsy: <A>(x: A) => Option<A>;
 /**
  * Converts a None into false, and a Some<T> into a boolean
  */

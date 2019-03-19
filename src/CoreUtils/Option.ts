@@ -5,7 +5,7 @@ import { Prism } from 'monocle-ts'
 import { ReactNode } from 'react'
 
 import { isNil } from './primitive-guards'
-import { isFalsey } from './general'
+import { isFalsy } from './general'
 
 /**
  * type guard for Option
@@ -58,12 +58,12 @@ export const getOrEmptyString = getOrElse('')
 export const getOrZero = getOrElse(0)
 
 /**
- * Converts truthy/falsey values into Options, like `fromNullable` from
- * fp-ts, but converts all falsey values, instead of just null or undefined,
+ * Converts truthy/falsy values into Options, like `fromNullable` from
+ * fp-ts, but converts all falsy values, instead of just null or undefined,
  * into Nones
  */
-export const fromTruthyFalsey = <A>(x: A): Option<A> =>
-  isFalsey(x) ? none : some(x)
+export const fromTruthyFalsy = <A>(x: A): Option<A> =>
+  isFalsy(x) ? none : some(x)
 
 /**
  * Converts a None into false, and a Some<T> into a boolean

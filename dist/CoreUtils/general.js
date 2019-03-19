@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.isFalsey = exports.makeConstantActionType = exports.makeApiActionTypes = exports.o = exports.flip_ = exports.constVoid = void 0;
+exports.isFalsy = exports.makeConstantActionType = exports.makeApiActionTypes = exports.o = exports.flip_ = exports.constVoid = void 0;
 
 var _newtypes = require("./newtypes");
 
@@ -62,13 +62,13 @@ exports.makeApiActionTypes = makeApiActionTypes;
 
 const makeConstantActionType = (...args) => args[0];
 /**
- * Type guard for the Falsey type
+ * Type guard for the Falsy type
  */
 // tslint:disable-next-line:no-any
 
 
 exports.makeConstantActionType = makeConstantActionType;
 
-const isFalsey = x => (0, _primitiveGuards.isNil)(x) || (0, _primitiveGuards.isFalse)(x) || (0, _primitiveGuards.isEmptyString)(x) || (0, _primitiveGuards.isZero)(x) || (0, _primitiveGuards.isNumber)(x) && (0, _newtypes.isNewtypeNaN)(x);
+const isFalsy = x => (0, _primitiveGuards.isNil)(x) || (0, _primitiveGuards.isFalse)(x) || (0, _primitiveGuards.isEmptyString)(x) || (0, _primitiveGuards.isZero)(x) || (0, _primitiveGuards.isNumber)(x) && (0, _newtypes.isNewtypeNaN)(x);
 
-exports.isFalsey = isFalsey;
+exports.isFalsy = isFalsy;

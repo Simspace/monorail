@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.TableFooterMeta = exports.TableFooterContainer = exports.TableRowGroupHeader = exports.TableRowData = exports.TableRowContainer = exports.TableBody = exports.TableHeaderData = exports.TableHeaderContainer = exports.TableContainer = void 0;
+exports.TableFooterMeta = exports.TableFooterContainer = exports.TableEmptyMessage = exports.TableRowGroupHeader = exports.TableRowData = exports.TableRowContainer = exports.TableBody = exports.TableHeaderData = exports.TableHeaderContainer = exports.TableContainer = void 0;
 
 var _styledComponents = _interopRequireWildcard(require("styled-components"));
 
@@ -138,14 +138,23 @@ const TableRowGroupHeader =
   singleCollection,
   dense,
   collapsible
-}), cssOverrides)); // Table Footer
-
+}), cssOverrides));
 exports.TableRowGroupHeader = TableRowGroupHeader;
+
+const TableEmptyMessage =
+/*#__PURE__*/
+_styledComponents.default.div.withConfig({
+  displayName: "DataTable__TableEmptyMessage",
+  componentId: "sc-18e9kui-7"
+})(["padding:16px;", ";"], (0, _CommonStyles.typography)(400, _CommonStyles.FontSizes.Title5)); // Table Footer
+
+
+exports.TableEmptyMessage = TableEmptyMessage;
 const TableFooterContainer =
 /*#__PURE__*/
 (0, _styledComponents.default)('div').withConfig({
   displayName: "DataTable__TableFooterContainer",
-  componentId: "sc-18e9kui-7"
+  componentId: "sc-18e9kui-8"
 })(["", ";"], ({
   collapsible = false,
   cssOverrides,
@@ -161,6 +170,6 @@ const TableFooterMeta =
 /*#__PURE__*/
 (0, _styledComponents.default)('div').withConfig({
   displayName: "DataTable__TableFooterMeta",
-  componentId: "sc-18e9kui-8"
+  componentId: "sc-18e9kui-9"
 })(["", ";color:", ";margin-left:auto;"], (0, _CommonStyles.typography)(400, _CommonStyles.FontSizes.Title5), (0, _CommonStyles.colors)(_CommonStyles.Colors.Black74));
 exports.TableFooterMeta = TableFooterMeta;
