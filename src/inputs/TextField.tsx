@@ -141,6 +141,8 @@ type BBTextFieldInputProps = {
   readOnly?: boolean
   required?: boolean
   type?: string
+  min?: string | number
+  max?: string | number
 }
 
 export type TextFieldProps = BBTextFieldContainerProps &
