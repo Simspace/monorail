@@ -1,9 +1,10 @@
-import styled, { SimpleInterpolation } from 'styled-components'
+import styled, { css, SimpleInterpolation } from 'styled-components'
 import {
   borderRadius,
   Colors,
   colors,
   ElevationRange,
+  flexFlow,
   getElevation,
 } from '@monorail/CommonStyles'
 
@@ -13,20 +14,31 @@ type LogoBoxProps = {
   cssOverrides?: SimpleInterpolation
 }
 
-export const LogoBox = styled<LogoBoxProps, 'div'>('div')`
-  ${getElevation(ElevationRange.Elevation0)};
-  ${borderRadius()};
+export const LogoBox = styled.div<LogoBoxProps>(
+  ({ alignLeft, alignRight, cssOverrides }) => css`
+    ${borderRadius()};
+    ${flexFlow('column')};
+    ${getElevation(ElevationRange.Elevation0)};
 
   background: ${colors(Colors.White)};
-  display: inline-block;
   height: 32px;
-  max-width: 200px;
+  justify-content: center;
+  max-width: 144px;
   padding: 4px 8px;
   position: relative;
 
-  ${({ alignLeft }) => alignLeft && `position: absolute; left: 8px; top:8px;`}
-  ${({ alignRight }) =>
-    alignRight && `position: absolute; right: 8px; top:8px;`}
-
-  ${({ cssOverrides }) => cssOverrides};
-`
+    ${alignLeft &&
+      css`
+        position: absolute;
+        left: 8px;
+        top: 8px;
+      `}
+    ${alignRight &&
+      css`
+        position: absolute;
+        right: 8px;
+        top: 8px;
+      `}
+    ${cssOverrides};
+  `,
+)

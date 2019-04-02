@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import { ToggleSize } from '@monorail/toggle/toggleTypes';
 import { SimpleInterpolation } from 'styled-components';
-export declare const Slider: import("styled-components").StyledComponentClass<Slider, any, Slider & React.ClassAttributes<HTMLDivElement> & React.HTMLAttributes<HTMLDivElement>>;
+export declare const Slider: import("styled-components").StyledComponent<"div", any, Slider, never>;
 declare type Slider = {
     toggleSize: ToggleSize;
 };

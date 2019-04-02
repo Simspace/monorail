@@ -21,7 +21,7 @@ import {
 } from '@monorail/CommonStyles'
 import { Icon, IconProps } from '@monorail/icon/Icon'
 import { CommonComponentType } from '@monorail/types'
-import { isNil } from '@monorail/CoreUtils/primitive-guards'
+import { isNil } from '@monorail/sharedHelpers/typeGuards'
 
 /*
 *
@@ -33,14 +33,16 @@ import { isNil } from '@monorail/CoreUtils/primitive-guards'
 * Styles
 */
 
-const BBListContainer = styled<BBListContainerProps, 'div'>('div')`
-  ${flexFlow()};
+const BBListContainer = styled.div<BBListContainerProps>(
+  ({ cssOverrides }) => css`
+    ${flexFlow()};
 
-  overflow-y: auto;
-  padding: 8px 0;
+    overflow-y: auto;
+    padding: 8px 0;
 
-  ${({ cssOverrides }) => cssOverrides};
-`
+    ${cssOverrides};
+  `,
+)
 
 /*
 * Types
@@ -111,18 +113,20 @@ type ListItemProps = LinkProps &
 * Styles
 */
 
-export const ListItemText = styled<CommonComponentType, 'div'>('div')`
-  /* This is row wrap instead of column nowrap because IE11 doesn't give the item height when it is a column. */
-  ${flexFlow('row', 'wrap')};
+export const ListItemText = styled.div<CommonComponentType>(
+  ({ cssOverrides }) => css`
+    /* This is row wrap instead of column nowrap because IE11 doesn't give the item height when it is a column. */
+    ${flexFlow('row', 'wrap')};
 
-  overflow: hidden;
-  width: 100%;
+    overflow: hidden;
+    width: 100%;
 
-  ${({ cssOverrides }) => cssOverrides};
-`
+    ${cssOverrides};
+  `,
+)
 
-export const ListItemPrimaryText = styled<CommonComponentType, 'span'>('span')`
-  ${({ cssOverrides }) => css`
+export const ListItemPrimaryText = styled.span<CommonComponentType>(
+  ({ cssOverrides }) => css`
     ${typography(500, FontSizes.Title5, 'auto 6px')};
     ${ellipsis};
 
@@ -130,41 +134,41 @@ export const ListItemPrimaryText = styled<CommonComponentType, 'span'>('span')`
     flex: 1 1 100%;
 
     ${cssOverrides};
-  `};
-`
+  `,
+)
 
-export const ListItemSecondaryText = styled<CommonComponentType, 'span'>(
-  'span',
-)`
-  ${typography(500, FontSizes.Content, 'auto 6px')};
-  ${ellipsis};
+export const ListItemSecondaryText = styled.span<CommonComponentType>(
+  ({ cssOverrides }) => css`
+    ${typography(500, FontSizes.Content, 'auto 6px')};
+    ${ellipsis};
 
-  color: ${colors(Colors.Black62)};
-  flex: 1 1 100%;
+    color: ${colors(Colors.Black62)};
+    flex: 1 1 100%;
 
-  ${({ cssOverrides }) => cssOverrides};
-`
+    ${cssOverrides};
+  `,
+)
 
 type BBListSizeIconProps = ListSizeProps & { icon: string }
 
-export const ListItemGraphic = styled<BBListSizeIconProps & IconProps>(
-  ({ dense, ...otherProps }) => <Icon {...otherProps} />,
-)`
-  ${({ dense }) => css`
+export const ListItemGraphic = styled(({ dense, ...otherProps }) => (
+  <Icon {...otherProps} />
+))<BBListSizeIconProps & IconProps>(
+  ({ dense, cssOverrides }) => css`
     margin: auto ${dense ? 4 : 6}px;
-  `};
 
-  ${buttonTransition};
+    ${buttonTransition};
 
-  ${({ cssOverrides }) => cssOverrides};
-`
+    ${cssOverrides};
+  `,
+)
 
-export const ListItem = styled<ListItemProps>(
+export const ListItem = styled(
   ({ cssOverrides, children, activeClassName, ...otherProps }) => (
     <div {...otherProps}>{children}</div>
   ),
-)`
-  ${({ as, cssOverrides, dense, disabled, onClick, size = Sizes.DP24 }) => css`
+)<ListItemProps>(
+  ({ as, cssOverrides, dense, disabled, onClick, size = Sizes.DP24 }) => css`
     ${!isNil(onClick) || !isNil(as)
       ? css`
           background: transparent;
@@ -223,8 +227,8 @@ export const ListItem = styled<ListItemProps>(
     }
 
     ${cssOverrides};
-  `};
-`
+  `,
+)
 
 ListItem.defaultProps = {
   activeClassName: 'is-active',

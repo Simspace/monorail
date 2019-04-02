@@ -19,8 +19,7 @@ import {
 import { Icon } from '@monorail/icon/Icon'
 
 import { ButtonDisplay, ButtonSize } from '@monorail/buttons/buttonTypes'
-import { isNil } from '@monorail/CoreUtils/primitive-guards'
-import { StyledHtmlElement } from '@monorail/CoreUtils/type-level'
+import { isNil } from '@monorail/sharedHelpers/typeGuards'
 import { Button } from '@monorail/buttons/Button'
 import { CommonComponentType } from '@monorail/types'
 import { TabBarContainer } from '@monorail/tabs/TabBar'
@@ -29,70 +28,71 @@ import { TabBarContainer } from '@monorail/tabs/TabBar'
 * Styles
 */
 
-const PageHeaderContainer = styled<PageHeaderContainerProps, 'div'>('div')`
-  ${flexFlow('column')};
-
-  background: ${colors(Colors.White)};
-  flex-shrink: 0;
-
-  /* Instead of hiding overflow errors, let's see them and fix them. This was causing buttons to be hidden in error. */
-  overflow: visible;
-
-  position: relative; /* Has this so that the shadow goes over the content below it. */
-  z-index: 1; /* Has this so that the shadow goes over the content below it. */
-
-  &::before {
-    ${({ flush }) =>
-      flush &&
-      css`
-        border-bottom: 1px solid ${colors(Colors.Grey94)};
-      `};
+const PageHeaderContainer = styled.div<PageHeaderContainerProps>(
+  ({ flush, cssOverrides, hasAboveContent }) => css`
+    ${flexFlow('column')};
 
     background: ${colors(Colors.White)};
-    bottom: 0;
-    content: '';
-    left: 0;
-    position: absolute;
-    right: 0;
-    top: 0;
-    z-index: -5;
-  }
+    flex-shrink: 0;
 
-  ${TabBarContainer} {
-    padding: 0 24px;
+    /* Instead of hiding overflow errors, let's see them and fix them. This was causing buttons to be hidden in error. */
+    overflow: visible;
 
-    ${({ hasAboveContent }) =>
-      !hasAboveContent &&
-      css`
-        margin-top: -8px;
-      `};
-  }
+    position: relative; /* Has this so that the shadow goes over the content below it. */
+    z-index: 1; /* Has this so that the shadow goes over the content below it. */
 
-  ${({ cssOverrides }) => cssOverrides};
-`
+    &::before {
+      ${flush &&
+        css`
+          border-bottom: 1px solid ${colors(Colors.Grey94)};
+        `};
+
+      background: ${colors(Colors.White)};
+      bottom: 0;
+      content: '';
+      left: 0;
+      position: absolute;
+      right: 0;
+      top: 0;
+      z-index: -5;
+    }
+
+    ${TabBarContainer} {
+      padding: 0 24px;
+
+      ${!hasAboveContent &&
+        css`
+          margin-top: -8px;
+        `};
+    }
+
+    ${cssOverrides};
+  `,
+)
 
 const pageHeaderPadding = css`
   padding: 0 32px;
 `
 
-const PageHeaderShadow = styled.div<PageHeaderShadowProps>`
-  ${getElevation(ElevationRange.Elevation6)};
+const PageHeaderShadow = styled.div<PageHeaderShadowProps>(
+  ({ willAnimateShadow, flush }) => css`
+    ${getElevation(ElevationRange.Elevation6)};
 
-  background: ${colors(Colors.White)};
-  bottom: 6px;
-  content: '';
-  left: -2px;
-  position: absolute;
-  right: -2px;
-  top: 0;
-  z-index: -10;
+    background: ${colors(Colors.White)};
+    bottom: 6px;
+    content: '';
+    left: -2px;
+    position: absolute;
+    right: -2px;
+    top: 0;
+    z-index: -10;
 
-  ${({ willAnimateShadow, flush }) =>
-    (flush || willAnimateShadow) &&
-    css`
-      opacity: 0;
-    `};
-`
+    ${(flush || willAnimateShadow) &&
+      css`
+        opacity: 0;
+      `};
+  `,
+)
 
 const BreadCrumbsContainer = styled.div<BreadCrumbsContainerProps>`
   ${flexFlow('row')};
@@ -116,8 +116,8 @@ const BreadCrumb = styled.a`
   }
 `
 
-export const TitleContainer = styled.div<{ hasAboveContent: boolean }>`
-  ${({ hasAboveContent }) => css`
+export const TitleContainer = styled.div<{ hasAboveContent: boolean }>(
+  ({ hasAboveContent }) => css`
     ${flexFlow('row')};
     ${pageHeaderPadding};
 
@@ -125,10 +125,10 @@ export const TitleContainer = styled.div<{ hasAboveContent: boolean }>`
     flex-shrink: 0;
     grid-column: -1 / 1;
     height: ${hasAboveContent ? 48 : 64}px;
-  `};
-`
+  `,
+)
 
-const Title = styled('h1')`
+const Title = styled.h1`
   ${typography(700, FontSizes.Title1)};
 
   color: ${colors(Colors.BrandDarkBlue)};
@@ -141,17 +141,6 @@ const Title = styled('h1')`
 /*
 * Types
 */
-
-type PageHeaderContainerRefType = StyledHtmlElement<
-  HTMLDivElement,
-  PageHeaderContainerProps
->
-
-export type PageHeaderShadowRefType = StyledHtmlElement<
-  HTMLDivElement,
-  PageHeaderShadowProps
->
-
 export type PageHeaderShadowProps = {
   willAnimateShadow: boolean
   flush: boolean
@@ -174,7 +163,7 @@ type PageHeaderProps = CommonComponentType &
     goBack?: (event: ReactMouseEvent<Element>) => void
     title: string
     action?: ReactNode
-    shadowRef?: RefObject<PageHeaderShadowRefType>
+    shadowRef?: RefObject<HTMLDivElement>
     willAnimateShadow: boolean
     flush: boolean
   }
@@ -189,7 +178,7 @@ export class PageHeader extends Component<PageHeaderProps> {
     flush: false,
   }
 
-  pageHeaderContainerRef = createRef<PageHeaderContainerRefType>()
+  pageHeaderContainerRef = createRef<HTMLDivElement>()
 
   renderBreadCrumbs = () => {
     const { breadCrumbs } = this.props
@@ -241,6 +230,7 @@ export class PageHeader extends Component<PageHeaderProps> {
                 onClick={goBack}
                 cssOverrides={css`
                   margin-left: -4px;
+                  margin-right: 8px;
                 `}
               >
                 <Icon icon="circle_arrow_left" />

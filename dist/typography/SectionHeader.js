@@ -19,18 +19,20 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 const CCSectionHeader =
 /*#__PURE__*/
-(0, _styledComponents.default)('div').withConfig({
+_styledComponents.default.div.withConfig({
   displayName: "SectionHeader__CCSectionHeader",
   componentId: "jqmo3c-0"
-})(["", " align-items:center;flex-shrink:0;height:40px;padding:0 16px;", " color:", ";", ";"], (0, _CommonStyles.flexFlow)('row'), (0, _CommonStyles.typography)(700, _CommonStyles.FontSizes.Title5), (0, _CommonStyles.colors)(_CommonStyles.Colors.Black74), ({
+})(({
   cssOverrides
-}) => cssOverrides);
+}) => (0, _styledComponents.css)(["", ";", " align-items:center;color:", ";flex-shrink:0;height:40px;padding:0 16px;", ";"], (0, _CommonStyles.flexFlow)('row'), (0, _CommonStyles.typography)(700, _CommonStyles.FontSizes.Title5), (0, _CommonStyles.colors)(_CommonStyles.Colors.Black74), cssOverrides));
+
 const Title =
 /*#__PURE__*/
-(0, _styledComponents.default)('h1').withConfig({
+_styledComponents.default.h1.withConfig({
   displayName: "SectionHeader__Title",
   componentId: "jqmo3c-1"
 })(["", " color:", ";flex:1;"], (0, _CommonStyles.typography)(700, _CommonStyles.FontSizes.Title5), (0, _CommonStyles.colors)(_CommonStyles.Colors.Black74));
+
 const iconLeftStyle =
 /*#__PURE__*/
 (0, _styledComponents.css)(["margin-right:8px;"]);
@@ -50,10 +52,6 @@ const StyledIconRight =
   componentId: "jqmo3c-3"
 })(["", ";"], iconRightStyle);
 
-function isAppName(iconName) {
-  return Object.values(_CommonStyles.AppName).includes(iconName);
-}
-
 class SectionHeader extends _react.Component {
   render() {
     const {
@@ -65,12 +63,12 @@ class SectionHeader extends _react.Component {
     } = this.props;
     return _react.default.createElement(CCSectionHeader, {
       cssOverrides: cssOverrides
-    }, iconLeft && (isAppName(iconLeft) ? _react.default.createElement(_AppIcon.AppIcon, {
+    }, iconLeft && ((0, _CommonStyles.isAppName)(iconLeft) ? _react.default.createElement(_AppIcon.AppIcon, {
       appName: iconLeft,
       cssOverrides: iconLeftStyle
     }) : _react.default.createElement(StyledIconLeft, {
       icon: iconLeft
-    })), _react.default.createElement(Title, null, title), iconRight && (isAppName(iconRight) ? _react.default.createElement(_AppIcon.AppIcon, {
+    })), _react.default.createElement(Title, null, title), iconRight && ((0, _CommonStyles.isAppName)(iconRight) ? _react.default.createElement(_AppIcon.AppIcon, {
       appName: iconRight,
       cssOverrides: iconRightStyle
     }) : _react.default.createElement(StyledIconRight, {

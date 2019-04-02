@@ -7,7 +7,7 @@ import React, {
 } from 'react'
 import { SidebarDropDown } from '@monorail/sidebar/SidebarDropDown'
 import { PopOverChildProps } from '@monorail/popOver/PopOver'
-import { Search, SearchRefType } from '@monorail/inputs/Search'
+import { Search } from '@monorail/inputs/Search'
 import {
   ListContainer,
   ListItemGraphic,
@@ -32,24 +32,28 @@ import { CommonComponentType } from '@monorail/types'
 import { SearchController } from '@monorail/inputs/SearchController'
 import { array, isEmpty } from 'fp-ts/lib/Array'
 import { some, none } from 'fp-ts/lib/Option'
-import { isEmptyString, isNil } from '@monorail/CoreUtils/primitive-guards'
+import { isNil } from '@monorail/sharedHelpers/typeGuards'
 
 const SearchContainer = styled.div`
-  display: flex;
+  ${flexFlow('row')};
+
   align-items: center;
-`
-
-const MenuHeader = styled<CommonComponentType, 'span'>('span')`
-  ${typography(500, FontSizes.Title5, '12px')};
-  ${ellipsis};
-
-  color: ${colors(Colors.Black62)};
   flex-shrink: 0;
-
-  ${({ cssOverrides }) => cssOverrides};
 `
 
-const MenuItemIconRow = styled('div')`
+const MenuHeader = styled.span<CommonComponentType>(
+  ({ cssOverrides }) => css`
+    ${typography(500, FontSizes.Title5, '12px')};
+    ${ellipsis};
+
+    color: ${colors(Colors.Black62)};
+    flex-shrink: 0;
+
+    ${cssOverrides};
+  `,
+)
+
+const MenuItemIconRow = styled.div`
   ${flexFlow('row')};
 
   flex: 1 1 100%;
@@ -159,7 +163,7 @@ export class ContextMenu extends Component<Props> {
     renderFilter: () => null,
   }
 
-  searchRef = createRef<SearchRefType>()
+  searchRef = createRef<HTMLInputElement>()
 
   componentDidUpdate(prevProps: Readonly<Props>) {
     const searchRef = this.searchRef.current
@@ -244,6 +248,7 @@ export class ContextMenu extends Component<Props> {
                     cssOverrides={css`
                       flex-grow: 1;
                       margin: 12px;
+                      flex-shrink: unset;
                     `}
                     searchRef={this.searchRef}
                   />

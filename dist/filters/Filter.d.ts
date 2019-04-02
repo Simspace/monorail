@@ -10,6 +10,7 @@ declare type Props = CCFilterProps & {
     document?: Document;
     title: ReactNode;
     content: ReactNode;
+    zIndex?: number;
 };
 export declare class Filter extends Component<Props> {
     render(): JSX.Element;

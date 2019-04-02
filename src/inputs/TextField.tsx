@@ -16,18 +16,20 @@ import { Icon } from '@monorail/icon/Icon'
 * Styles
 */
 
-const BBTextFieldContainer = styled<TextFieldProps, 'label'>('label')`
-  ${flexFlow()};
+const BBTextFieldContainer = styled.label<TextFieldProps>(
+  ({ cssOverrides }) => css`
+    ${flexFlow()};
 
-  float: none;
-  max-width: 256px;
-  width: 100%;
-  position: relative; /* position: relative; so that the icons can be absolutely positioned. */
+    float: none;
+    max-width: 256px;
+    width: 100%;
+    position: relative; /* position: relative; so that the icons can be absolutely positioned. */
 
-  ${({ cssOverrides }) => cssOverrides};
-`
+    ${cssOverrides};
+  `,
+)
 
-export const BBTextFieldLabel = styled('p')`
+export const BBTextFieldLabel = styled.p`
   ${typography(500, FontSizes.Title5)};
   margin: 4px 0;
 `
@@ -48,76 +50,77 @@ const StyledRightIcon = styled(Icon)`
   right: 8px;
 `
 
-const BBTextFieldInput = styled<BBTextFieldInputProps, 'input'>('input')`
-  ${typography(400, FontSizes.Title5)};
-  ${borderRadius()};
+const BBTextFieldInput = styled.input<BBTextFieldInputProps>(
+  ({ chromeless, iconLeft, iconRight }) => css`
+    ${typography(400, FontSizes.Title5)};
+    ${borderRadius()};
 
-  border: ${({ chromeless }) =>
-    chromeless
+    border: ${chromeless
       ? `1px solid transparent`
       : `1px solid ${colors(Colors.Black, 0.12)}`};
-  box-sizing: border-box;
-  color: ${colors(Colors.Black89)};
-  height: 24px;
-  outline: none;
-  padding: 4px ${({ iconRight }) => (iconRight ? 30 : 6)}px 4px
-    ${({ iconLeft }) => (iconLeft ? 30 : 6)}px;
-  width: 100%;
+    box-sizing: border-box;
+    color: ${colors(Colors.Black89)};
+    height: 24px;
+    outline: none;
+    padding: 4px ${iconRight ? 30 : 6}px 4px ${iconLeft ? 30 : 6}px;
+    width: 100%;
 
-  ${buttonTransition};
+    ${buttonTransition};
 
-  &[type='number'] {
-    &::-webkit-inner-spin-button,
-    &::-webkit-outer-spin-button {
-      opacity: 1;
+    &[type='number'] {
+      &::-webkit-inner-spin-button,
+      &::-webkit-outer-spin-button {
+        opacity: 1;
+      }
     }
-  }
 
-  ::placeholder {
-    color: ${colors(Colors.Black54)};
-    font-style: italic;
-  }
+    ::placeholder {
+      color: ${colors(Colors.Black54)};
+      font-style: italic;
+    }
 
-  &:hover {
-    border-color: ${colors(Colors.Black, 0.3)};
-  }
+    &:hover {
+      border-color: ${colors(Colors.Black, 0.3)};
+    }
 
-  &:focus,
-  &:active {
-    border-color: ${colors(Colors.BrandLightBlue)};
-  }
-`
+    &:focus,
+    &:active {
+      border-color: ${colors(Colors.BrandLightBlue)};
+    }
+  `,
+)
 
 // TODO: Much duplication from TextInput
-const BBTextAreaInput = styled<BBTextFieldInputProps, 'textarea'>('textarea')`
-  ${typography(400, FontSizes.Title5)};
-  ${borderRadius()};
+const BBTextAreaInput = styled.textarea<BBTextFieldInputProps>(
+  ({ iconLeft, iconRight }) => css`
+    ${typography(400, FontSizes.Title5)};
+    ${borderRadius()};
 
-  border: 1px solid ${colors(Colors.Black, 0.12)};
-  box-sizing: border-box;
-  color: ${colors(Colors.Black89)};
-  height: 5em;
-  outline: none;
-  padding: 4px ${({ iconRight }) => (iconRight ? 30 : 6)}px 4px
-    ${({ iconLeft }) => (iconLeft ? 30 : 6)}px;
-  width: 100%;
+    border: 1px solid ${colors(Colors.Black, 0.12)};
+    box-sizing: border-box;
+    color: ${colors(Colors.Black89)};
+    height: 5em;
+    outline: none;
+    padding: 4px ${iconRight ? 30 : 6}px 4px ${iconLeft ? 30 : 6}px;
+    width: 100%;
 
-  ${buttonTransition};
+    ${buttonTransition};
 
-  ::placeholder {
-    color: ${colors(Colors.Black54)};
-    font-style: italic;
-  }
+    ::placeholder {
+      color: ${colors(Colors.Black54)};
+      font-style: italic;
+    }
 
-  &:hover {
-    border-color: ${colors(Colors.Black, 0.3)};
-  }
+    &:hover {
+      border-color: ${colors(Colors.Black, 0.3)};
+    }
 
-  &:focus,
-  &:active {
-    border-color: ${colors(Colors.BrandLightBlue)};
-  }
-`
+    &:focus,
+    &:active {
+      border-color: ${colors(Colors.BrandLightBlue)};
+    }
+  `,
+)
 
 /*
 * Types
@@ -141,6 +144,8 @@ type BBTextFieldInputProps = {
   readOnly?: boolean
   required?: boolean
   type?: string
+  min?: number
+  max?: number
 }
 
 export type TextFieldProps = BBTextFieldContainerProps &
@@ -165,6 +170,8 @@ export class TextField extends Component<TextFieldProps> {
       readOnly,
       required,
       type,
+      min,
+      max,
       ...otherProps
     } = this.props
 
@@ -186,6 +193,8 @@ export class TextField extends Component<TextFieldProps> {
           disabled={disabled}
           readOnly={readOnly}
           required={required}
+          min={min}
+          max={max}
           {...otherProps}
         />
       </BBTextFieldContainer>

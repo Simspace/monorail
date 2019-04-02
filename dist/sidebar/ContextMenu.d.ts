@@ -20,7 +20,7 @@ export declare class ContextMenu extends Component<Props> {
     static defaultProps: {
         renderFilter: () => null;
     };
-    searchRef: React.RefObject<import("../CoreUtils/type-level").StyledHtmlElement<HTMLInputElement, import("../inputs/Search").BBSearchInputProps, unknown>>;
+    searchRef: React.RefObject<HTMLInputElement>;
     componentDidUpdate(prevProps: Readonly<Props>): void;
     renderContextMenuItems: (compareSearch: (stringToCompare: string) => boolean) => import("fp-ts/lib/Option").Option<(JSX.Element | JSX.Element[])[]>[];
     render(): JSX.Element;

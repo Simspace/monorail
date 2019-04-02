@@ -44,7 +44,7 @@ declare type State<CollectionItem> = {
 export declare class FilterCollection<CollectionItem extends object, SearchByKey extends keyof CollectionItem & string, FilterKey extends keyof CollectionItem & string> extends Component<Props<CollectionItem, SearchByKey, FilterKey>, State<CollectionItem>> {
     initialFilterState: FilterState;
     state: State<CollectionItem>;
-    mkStatePropLens: <P extends "sorterGroup" | "searchText" | "filterState">(prop: P) => Lens<State<CollectionItem>, State<CollectionItem>[P]>;
+    mkStatePropLens: <P extends "searchText" | "sorterGroup" | "filterState">(prop: P) => Lens<State<CollectionItem>, State<CollectionItem>[P]>;
     stateToFilterStateLens: Lens<State<CollectionItem>, Record<string, Record<string, boolean>>>;
     stateToSearchTextLens: Lens<State<CollectionItem>, string>;
     stateToSorterGroupOptional: Optional<State<CollectionItem>, SorterGroup<CollectionItem>>;

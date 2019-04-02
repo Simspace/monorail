@@ -42,26 +42,27 @@ export type BBModalBackgroundProps = BBModalSize & CommonComponentType
 * Component
 */
 
-export const BBModalBackground = styled<BBModalBackgroundProps, 'div'>('div')`
-  ${({ mini }) =>
-    mini &&
-    css`
-      height: ${sizes.modals.mini.height}px;
-    `};
+export const BBModalBackground = styled.div<BBModalBackgroundProps>(
+  ({ mini, cssOverrides }) => css`
+    ${mini &&
+      css`
+        height: ${sizes.modals.mini.height}px;
+      `};
 
-  ${borderRadius(BorderRadius.XLarge)};
-  ${flexFlow()};
-  ${getElevation(ElevationRange.Elevation24)};
+    ${borderRadius(BorderRadius.XLarge)};
+    ${flexFlow()};
+    ${getElevation(ElevationRange.Elevation24)};
 
-  background: ${colors(Colors.White)};
-  overflow: hidden;
-  width: ${({ mini }) => (mini ? sizes.modals.mini.width : 584)}px;
-  position: relative; /* position: relative; so that the shadow works when on the BBModalOverlay */
+    background: ${colors(Colors.White)};
+    overflow: hidden;
+    width: ${mini ? sizes.modals.mini.width : 584}px;
+    position: relative; /* position: relative; so that the shadow works when on the BBModalOverlay */
 
-  will-change: transform;
+    will-change: transform;
 
-  ${({ cssOverrides }) => cssOverrides};
-`
+    ${cssOverrides};
+  `,
+)
 
 /*
 *
@@ -73,47 +74,55 @@ export const BBModalBackground = styled<BBModalBackgroundProps, 'div'>('div')`
 * Styles
 */
 
-const BBModalHeaderContainer = styled<BBModalSize, 'div'>('div')`
-  ${({ mini }) => flexFlow(mini ? 'column' : 'row')};
+const BBModalHeaderContainer = styled.div<
+  BBModalSize & { cssOverrides: SimpleInterpolation }
+>(
+  ({ mini, cssOverrides }) => css`
+    ${flexFlow(mini ? 'column' : 'row')};
 
-  ${getElevation(ElevationRange.Elevation2)};
+    ${getElevation(ElevationRange.Elevation2)};
 
-  background: ${colors(Colors.BrandDarkBlue)};
-  flex-shrink: 0;
-  user-select: none;
-  z-index: 1;
+    background: ${colors(Colors.BrandDarkBlue)};
+    flex-shrink: 0;
+    user-select: none;
+    z-index: 1;
 
-  ${BBSearchContainer} {
-    ${({ mini }) =>
-      mini
+    ${BBSearchContainer} {
+      ${mini
         ? css`
             margin: 8px 16px 16px;
           `
         : css`
             margin: auto 16px auto auto;
           `};
-  }
-`
+    }
 
-const BBModalHeaderRow = styled<BBModalSize, 'div'>('div')`
-  ${flexFlow('row')};
+    ${cssOverrides};
+  `,
+)
 
-  align-items: center;
-  height: ${({ mini }) => (mini ? 48 : 56)}px;
-  padding: 0 16px;
-  width: 100%;
-`
+const BBModalHeaderRow = styled.div<BBModalSize>(
+  ({ mini }) => css`
+    ${flexFlow('row')};
 
-const BBModalHeaderTitle = styled<BBModalSize, 'h1'>('h1')`
-  ${({ mini }) =>
-    mini
+    align-items: center;
+    height: ${mini ? 48 : 56}px;
+    padding: 0 16px;
+    width: 100%;
+  `,
+)
+
+const BBModalHeaderTitle = styled.h1<BBModalSize>(
+  ({ mini }) => css`
+    ${mini
       ? typography(700, FontSizes.Title4)
       : typography(700, FontSizes.Title3)};
 
-  color: ${colors(Colors.White)};
-  white-space: nowrap;
-  margin: 0;
-`
+    color: ${colors(Colors.White)};
+    white-space: nowrap;
+    margin: 0;
+  `,
+)
 
 const baseIconStyles = css`
   color: ${colors(Colors.White)};
@@ -146,6 +155,7 @@ type BBModalHeaderProps = BBModalSize & {
   iconRight?: string
   onClose?: (event: MouseEvent) => void
   title: string
+  cssOverrides?: SimpleInterpolation
 }
 
 type DefaultCloseButtonProps = Pick<
@@ -187,8 +197,9 @@ export const BBModalHeader: StatelessComponent<BBModalHeaderProps> = ({
   mini,
   onClose,
   title,
+  cssOverrides,
 }) => (
-  <BBModalHeaderContainer mini={mini}>
+  <BBModalHeaderContainer mini={mini} cssOverrides={cssOverrides}>
     <BBModalHeaderRow mini={mini}>
       {appIcon && <StyledAppIconLeft appName={appIcon} />}
       {iconLeft && <StyledIconLeft icon={iconLeft} />}
@@ -220,7 +231,7 @@ export const BBModalHeader: StatelessComponent<BBModalHeaderProps> = ({
 * Styles
 */
 
-export const BBModalFooter = styled('div')`
+export const BBModalFooter = styled.div`
   ${flexFlow('row')};
   ${getElevation(ElevationRange.Elevation6)};
 
@@ -242,25 +253,26 @@ export const BBModalFooter = styled('div')`
 * Styles
 */
 
-const BBModalOverlayContainer = styled<BBModalOverlayProps, 'div'>('div')`
-  ${({ isOpen }) => visible(isOpen)};
-  ${({ chromeless }) =>
-    !chromeless &&
-    css`
-      background: ${colors(Colors.Black, 0.36)};
-    `};
+const BBModalOverlayContainer = styled.div<BBModalOverlayProps>(
+  ({ isOpen, chromeless, cssOverrides }) => css`
+    ${visible(isOpen)};
+    ${!chromeless &&
+      css`
+        background: ${colors(Colors.Black, 0.36)};
+      `};
 
-  bottom: 0;
-  cursor: pointer;
-  left: 0;
-  position: fixed;
-  right: 0;
-  top: 0;
+    bottom: 0;
+    cursor: pointer;
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
 
-  transition: all ease 150ms;
+    transition: all ease 150ms;
 
-  ${({ cssOverrides }) => cssOverrides};
-`
+    ${cssOverrides};
+  `,
+)
 
 /*
 * Types
@@ -311,11 +323,14 @@ export const BBModalOverlay: StatelessComponent<BBModalOverlayProps> = ({
 * Styles
 */
 
-export const BBModalContainer = styled<
-  CommonComponentType & { isOpen: boolean; usesScaleAnimation: boolean },
-  'div'
->('div')`
-  ${({ isOpen, usesScaleAnimation, cssOverrides }) => css`
+export const BBModalContainer = styled.div<
+  CommonComponentType & {
+    isOpen: boolean
+    usesScaleAnimation: boolean
+    zIndex?: number
+  }
+>(
+  ({ isOpen, usesScaleAnimation, cssOverrides, zIndex }) => css`
     ${isOpen
       ? css`
           pointer-events: all;
@@ -334,7 +349,7 @@ export const BBModalContainer = styled<
     position: fixed;
     right: 0;
     top: 0;
-    z-index: 9998;
+    z-index: ${zIndex};
 
     ${!usesScaleAnimation &&
       css`
@@ -353,8 +368,8 @@ export const BBModalContainer = styled<
       `};
 
     ${cssOverrides};
-  `};
-`
+  `,
+)
 
 /*
 *
@@ -366,14 +381,13 @@ export const BBModalContainer = styled<
 * Styles
 */
 
-export const BBModalContent = styled<
-  { cssOverrides?: SimpleInterpolation },
-  'div'
->('div')`
-  ${flexFlow()};
-  height: 100%;
-  max-height: 100%;
-  overflow: auto;
+export const BBModalContent = styled.div<CommonComponentType>(
+  ({ cssOverrides }) => css`
+    ${flexFlow()};
+    height: 100%;
+    max-height: 100%;
+    overflow: auto;
 
-  ${({ cssOverrides }) => cssOverrides};
-`
+    ${cssOverrides};
+  `,
+)

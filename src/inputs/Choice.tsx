@@ -18,101 +18,102 @@ import styled, { css, SimpleInterpolation } from 'styled-components'
 * Styles
 */
 
-const BBChoiceInput = styled<BBChoiceInputProps, 'input'>('input')`
+const BBChoiceInput = styled.input<BBChoiceInputProps>`
   opacity: 0; /* Hiding the input. */
   position: absolute; /* position: absolute; so that the Icons can be position: absolute; and so that the input doesn't effect the layout. */
   z-index: -1;
 `
 
-const BBChoiceFakeLabel = styled<AnsweredProps, 'div'>('div')`
-  ${({ answered }) =>
-    answered &&
-    css`
-      transform: translateX(24px);
-    `};
+const BBChoiceFakeLabel = styled.div<AnsweredProps>(
+  ({ answered }) => css`
+    ${answered &&
+      css`
+        transform: translateX(24px);
+      `};
 
-  ${typography(500, FontSizes.Title5)};
-  flex-grow: 1;
-  word-break: break-word;
+    ${typography(500, FontSizes.Title5)};
+    flex-grow: 1;
+    word-break: break-word;
 
-  transition: all ease 150ms;
-`
-
-const CCChoice = styled<CCChoiceProps, 'label'>('label')`
-  ${({ disabled }) => disabled && baseDisabledStyles};
-
-  ${({ readOnly, incorrect, correct }) =>
-    (readOnly || incorrect || correct) &&
-    css`
-      cursor: default;
-      pointer-events: none;
-    `};
-
-  ${baseChromelessStyles()};
-  ${flexFlow('row')};
-  ${borderRadius()};
-
-  align-items: center;
-  box-sizing: border-box;
-  cursor: pointer;
-  display: flex;
-  flex-direction: row;
-  min-height: 24px;
-  padding: 4px 4px 4px 32px;
-  position: relative; /* position: relative; so that the input can be position: absolute; */
-  user-select: none;
-  width: 100%;
-
-  ${buttonTransition};
-
-  .ChoiceButtonChecked {
-    color: ${colors(Colors.BrandLightBlue)};
-
-    transform: translateX(${({ answered }) => (answered ? 24 : 0)}px);
-  }
-
-  .ChoiceButtonUnchecked {
-    color: ${colors(Colors.Black54)};
-
-    transform: translateX(${({ answered }) => (answered ? 24 : 0)}px);
-  }
-
-  .RealInput:checked ~ .ChoiceButtonChecked {
-    ${visible(true)};
-  }
-
-  .RealInput:checked ~ .ChoiceButtonUnchecked {
-    ${visible(false)};
-  }
-
-  .RealInput:not(:checked) ~ .ChoiceButtonChecked {
-    ${visible(false)};
-  }
-
-  .RealInput:not(:checked) ~ .ChoiceButtonUnchecked {
-    ${visible(true)};
-  }
-
-  .IncorrectIcon {
-    color: ${colors(Colors.Red)};
-    ${({ incorrect }) => visible(incorrect)};
-  }
-
-  .CorrectIcon {
-    color: ${colors(Colors.Green)};
-    ${({ correct }) => visible(correct)};
-  }
-
-  ${Icon} {
-    left: 8px;
-    position: absolute;
-    /* top: 4px; */
-    font-size: 16px;
     transition: all ease 150ms;
-  }
+  `,
+)
 
-  ${({ cssOverrides }) => cssOverrides};
-`
+const CCChoice = styled.label<CCChoiceProps>(
+  ({ disabled, readOnly, incorrect, correct, cssOverrides, answered }) => css`
+    ${disabled && baseDisabledStyles};
+
+    ${(readOnly || incorrect || correct) &&
+      css`
+        cursor: default;
+        pointer-events: none;
+      `};
+
+    ${baseChromelessStyles()};
+    ${flexFlow('row')};
+    ${borderRadius()};
+
+    align-items: center;
+    box-sizing: border-box;
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    min-height: 24px;
+    padding: 4px 4px 4px 32px;
+    position: relative; /* position: relative; so that the input can be position: absolute; */
+    user-select: none;
+    width: 100%;
+
+    ${buttonTransition};
+
+    .ChoiceButtonChecked {
+      color: ${colors(Colors.BrandLightBlue)};
+
+      transform: translateX(${answered ? 24 : 0}px);
+    }
+
+    .ChoiceButtonUnchecked {
+      color: ${colors(Colors.Black54)};
+
+      transform: translateX(${answered ? 24 : 0}px);
+    }
+
+    .RealInput:checked ~ .ChoiceButtonChecked {
+      ${visible(true)};
+    }
+
+    .RealInput:checked ~ .ChoiceButtonUnchecked {
+      ${visible(false)};
+    }
+
+    .RealInput:not(:checked) ~ .ChoiceButtonChecked {
+      ${visible(false)};
+    }
+
+    .RealInput:not(:checked) ~ .ChoiceButtonUnchecked {
+      ${visible(true)};
+    }
+
+    .IncorrectIcon {
+      color: ${colors(Colors.Red)};
+      ${visible(incorrect)};
+    }
+
+    .CorrectIcon {
+      color: ${colors(Colors.Green)};
+      ${visible(correct)};
+    }
+
+    ${Icon} {
+      left: 8px;
+      position: absolute;
+      font-size: 16px;
+      transition: all ease 150ms;
+    }
+
+    ${cssOverrides};
+  `,
+)
 
 /*
 * Types

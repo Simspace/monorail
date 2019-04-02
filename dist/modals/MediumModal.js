@@ -21,7 +21,8 @@ class MediumModal extends _react.Component {
       children,
       title,
       iconLeft,
-      togglePopOver
+      togglePopOver,
+      headerStyles
     } = this.props;
     return _react.default.createElement(_Overlay.Overlay, {
       isOpen: isOpen,
@@ -30,7 +31,8 @@ class MediumModal extends _react.Component {
     }, _react.default.createElement(_Modals.BBModalBackground, null, _react.default.createElement(_Modals.BBModalHeader, {
       title: title,
       iconLeft: iconLeft,
-      onClose: onClick
+      onClose: onClick,
+      cssOverrides: headerStyles
     }), children));
   }
 

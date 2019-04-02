@@ -7,9 +7,9 @@ import { CommonComponentType } from '@monorail/types'
 * Styles
 */
 
-export const Divider = styled<CCDividerProps, 'div'>('div')`
-  ${({ isVertical = false }) =>
-    isVertical
+export const Divider = styled.div<CCDividerProps>(
+  ({ isVertical }) => css`
+    ${isVertical
       ? css`
         width: 1px
         height: 100%;
@@ -19,8 +19,9 @@ export const Divider = styled<CCDividerProps, 'div'>('div')`
           height: 1px;
         `};
 
-  background: ${colors(Colors.Grey94)};
-`
+    background: ${colors(Colors.Grey94)};
+  `,
+)
 
 Divider.defaultProps = {
   isVertical: false,

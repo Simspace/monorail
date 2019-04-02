@@ -7,7 +7,7 @@ exports.CheckmarkSelectGroup = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
-var _styledComponents = _interopRequireDefault(require("styled-components"));
+var _styledComponents = _interopRequireWildcard(require("styled-components"));
 
 var _Select = require("./Select");
 
@@ -15,18 +15,20 @@ var _CommonStyles = require("../CommonStyles");
 
 var _Choice = require("./Choice");
 
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
 const CheckmarkSelectGroupWrapper =
 /*#__PURE__*/
-(0, _styledComponents.default)('div').withConfig({
+_styledComponents.default.div.withConfig({
   displayName: "CheckmarkSelectGroup__CheckmarkSelectGroupWrapper",
   componentId: "sc-9lupgs-0"
-})(["", ";"], ({
+})(({
   cssOverrides
-}) => cssOverrides);
+}) => (0, _styledComponents.css)(["", ";"], cssOverrides));
 
 const Label =
 /*#__PURE__*/
@@ -37,12 +39,12 @@ _styledComponents.default.p.withConfig({
 
 const CheckmarkSelectWrapper =
 /*#__PURE__*/
-(0, _styledComponents.default)('div').withConfig({
+_styledComponents.default.div.withConfig({
   displayName: "CheckmarkSelectGroup__CheckmarkSelectWrapper",
   componentId: "sc-9lupgs-2"
-})(["display:flex;flex-direction:row;justify-content:space-between;align-items:center;", ";"], ({
+})(({
   cssOverrides
-}) => cssOverrides);
+}) => (0, _styledComponents.css)(["display:flex;flex-direction:row;justify-content:space-between;align-items:center;", ";"], cssOverrides));
 
 const CheckmarkSelectLabel =
 /*#__PURE__*/

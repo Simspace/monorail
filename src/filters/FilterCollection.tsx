@@ -1,10 +1,10 @@
-import { mkIO, runIO } from '@monorail/CoreUtils/IO'
-import { constVoid, o } from '@monorail/CoreUtils/general'
-import { mkRecordKeyOptional } from '@monorail/CoreUtils/optics'
-import { findIndex, toLocaleLower } from '@monorail/CoreUtils/String'
-import { len, map, notAny } from '@monorail/CoreUtils/Array'
-import { fold } from '@monorail/CoreUtils/Option'
-import { isNil } from '@monorail/CoreUtils/primitive-guards'
+import { newIO, runIO } from '@monorail/sharedHelpers/fp-ts-ext/IO'
+import { constVoid, o } from '@monorail/sharedHelpers/fp-ts-ext/function'
+import { mkRecordKeyOptional } from '@monorail/sharedHelpers/optics'
+import { findIndex, toLower } from '@monorail/sharedHelpers/strings'
+import { len, map, notAny } from '@monorail/sharedHelpers/fp-ts-ext/Array'
+import { fold } from '@monorail/sharedHelpers/fp-ts-ext/Option'
+import { isNil } from '@monorail/sharedHelpers/typeGuards'
 import { array, findFirst, snoc } from 'fp-ts/lib/Array'
 import { constant } from 'fp-ts/lib/function'
 import { isNone, Option, fromNullable } from 'fp-ts/lib/Option'
@@ -159,9 +159,9 @@ export class FilterCollection<
       s.key === key || s.selected ? { ...s, selected: !s.selected } : s
 
     const transition = this.stateToSortersOptional.modify(map(toggleSelected))
-    const setStateIO = mkIO(() => this.setState(transition))
+    const setStateIO = newIO(() => this.setState(transition))
     const constSetStateIO = constant(setStateIO)
-    const noOpIO = mkIO(constVoid)
+    const noOpIO = newIO(constVoid)
 
     const onSorterChangeIO = sorterGroupOpt.fold(noOpIO, constSetStateIO)
 
@@ -174,21 +174,21 @@ export class FilterCollection<
       .composeOptional(mkRecordKeyOptional(filterKey))
 
     const transition = stateToFilterKeyOptional.set(value)
-    const setStateIO = mkIO(() => this.setState(transition))
+    const setStateIO = newIO(() => this.setState(transition))
 
     runIO(setStateIO)
   }
 
   resetFilters = () => {
     const transition = this.stateToFilterStateLens.set(this.initialFilterState)
-    const setStateIO = mkIO(() => this.setState(transition))
+    const setStateIO = newIO(() => this.setState(transition))
 
     runIO(setStateIO)
   }
 
   onSearchChange = (searchText: string) => {
     const transition = this.stateToSearchTextLens.set(searchText)
-    const setStateIO = mkIO(() => this.setState(transition))
+    const setStateIO = newIO(() => this.setState(transition))
 
     runIO(setStateIO)
   }
@@ -204,7 +204,7 @@ export class FilterCollection<
     const { searchText, filterState } = this.state
 
     // sanitize search text
-    const sanitizedSearchText = toLocaleLower(searchText)
+    const sanitizedSearchText = toLower(searchText)
 
     // Here we loop through all the filter groups and filter out the
     // filters that are unchecked. This is an optimization so
@@ -240,10 +240,7 @@ export class FilterCollection<
       // If search exists and item does not match, filter it out
       const searchValue = catalogItem[searchByKey]
 
-      const findIndexLocaleLower = o(
-        findIndex(sanitizedSearchText),
-        toLocaleLower,
-      )
+      const findIndexLocaleLower = o(findIndex(sanitizedSearchText), toLower)
       const isNotFound = o(
         (x: Option<number>) => isNone(x),
         findIndexLocaleLower,

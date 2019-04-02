@@ -15,26 +15,26 @@ var _Overlay = require("../toggle/Overlay");
 
 var _Option = require("fp-ts/lib/Option");
 
-var _primitiveGuards = require("../CoreUtils/primitive-guards");
+var _typeGuards = require("../sharedHelpers/typeGuards");
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
 const CCMenu =
 /*#__PURE__*/
-(0, _styledComponents.default)('div').withConfig({
+_styledComponents.default.div.withConfig({
   displayName: "Menu__CCMenu",
   componentId: "qsgmyf-0"
-})(["", ";", ";", ";background:", ";overflow:hidden;position:fixed;width:", ";min-width:", "px;", ";"], (0, _CommonStyles.borderRadius)(_CommonStyles.BorderRadius.Medium), (0, _CommonStyles.flexFlow)(), (0, _CommonStyles.getElevation)(_CommonStyles.ElevationRange.Elevation6), (0, _CommonStyles.colors)(_CommonStyles.Colors.White), ({
-  width
-}) => width, _CommonStyles.sizes.menu.width, ({
+})(({
+  width,
   cssOverrides
-}) => cssOverrides);
+}) => (0, _styledComponents.css)(["", ";", ";", ";background:", ";overflow:hidden;position:fixed;width:", ";min-width:", "px;", ";"], (0, _CommonStyles.borderRadius)(_CommonStyles.BorderRadius.Medium), (0, _CommonStyles.flexFlow)(), (0, _CommonStyles.getElevation)(_CommonStyles.ElevationRange.Elevation6), (0, _CommonStyles.colors)(_CommonStyles.Colors.White), width, _CommonStyles.sizes.menu.width, cssOverrides));
+
 const MenuContent =
 /*#__PURE__*/
-(0, _styledComponents.default)('div').withConfig({
+_styledComponents.default.div.withConfig({
   displayName: "Menu__MenuContent",
   componentId: "qsgmyf-1"
-})(["", ";"], ({
+})(({
   cssOverrides
 }) => (0, _styledComponents.css)(["", ";height:100%;overflow:auto;padding:4px 0;width:100%;", ";"], (0, _CommonStyles.flexFlow)(), cssOverrides));
 
@@ -84,7 +84,8 @@ class Menu extends _react.Component {
       onClick,
       children,
       width,
-      togglePopOver
+      togglePopOver,
+      zIndex
     } = this.props;
     const {
       menuHeight,
@@ -92,7 +93,7 @@ class Menu extends _react.Component {
     } = this.state;
     const scaleAnimation = (0, _CommonStyles.generateScaleAnimation)({
       elementHeight: menuHeight,
-      elementWidth: Math.max((0, _primitiveGuards.isNil)(width) ? menuWidth : width, _CommonStyles.sizes.menu.width),
+      elementWidth: Math.max((0, _typeGuards.isNil)(width) ? menuWidth : width, _CommonStyles.sizes.menu.width),
       isOpen,
       position
     });
@@ -102,9 +103,10 @@ class Menu extends _react.Component {
       overlayProps: {
         chromeless: true
       },
-      togglePopOver: togglePopOver
+      togglePopOver: togglePopOver,
+      zIndex: zIndex
     }, _react.default.createElement(CCMenu, {
-      width: (0, _primitiveGuards.isNil)(width) ? 'auto' : `${width}px`,
+      width: (0, _typeGuards.isNil)(width) ? 'auto' : `${width}px`,
       ref: this.menuRef,
       cssOverrides: scaleAnimation.outSideContentStyles
     }, _react.default.createElement(MenuContent, {
@@ -115,3 +117,6 @@ class Menu extends _react.Component {
 }
 
 exports.Menu = Menu;
+Menu.defaultProps = {
+  zIndex: 9998
+};

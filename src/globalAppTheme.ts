@@ -1,5 +1,5 @@
 import { Colors } from '@monorail/CommonStyles'
-import { isNil } from '@monorail/CoreUtils/primitive-guards'
+import { isNil } from '@monorail/sharedHelpers/typeGuards'
 
 export interface GlobalAppThemeInterface {
   linkColor: Colors

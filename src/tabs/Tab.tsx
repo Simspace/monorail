@@ -12,39 +12,40 @@ import {
 
 import { LinkProps } from '@monorail/list/List'
 import { CommonComponentType } from '@monorail/types'
-import styled from 'styled-components'
-import { isNil } from '@monorail/CoreUtils/primitive-guards'
-import { StyledHtmlElement } from '@monorail/CoreUtils/type-level'
+import { isNil } from '@monorail/sharedHelpers/typeGuards'
+import styled, { css } from 'styled-components'
 
-const CCTab = styled<CCTabProps, 'div'>('div')`
-  ${flexFlow('row')};
-  ${typography(700, FontSizes.Title5)};
+const CCTab = styled.div<CCTabProps>(
+  ({ cssOverrides }) => css`
+    ${flexFlow('row')};
+    ${typography(700, FontSizes.Title5)};
 
-  align-items: center;
-  color: ${colors(Colors.BrandLightBlue)};
-  cursor: pointer;
-  min-height: 24px;
-  padding: 0 8px;
-  text-transform: uppercase;
-  user-select: none;
+    align-items: center;
+    color: ${colors(Colors.BrandLightBlue)};
+    cursor: pointer;
+    min-height: 24px;
+    padding: 0 8px;
+    text-transform: uppercase;
+    user-select: none;
 
-  &:hover,
-  &:focus {
-    text-decoration: none;
-  }
+    &:hover,
+    &:focus {
+      text-decoration: none;
+    }
 
-  &:hover {
-    background: ${colors(Colors.BrandLightBlue, 0.08)};
-  }
+    &:hover {
+      background: ${colors(Colors.BrandLightBlue, 0.08)};
+    }
 
-  &:active {
-    background: ${colors(Colors.BrandLightBlue, 0.16)};
-  }
+    &:active {
+      background: ${colors(Colors.BrandLightBlue, 0.16)};
+    }
 
-  ${baseFocusStyles()};
+    ${baseFocusStyles()};
 
-  ${({ cssOverrides }) => cssOverrides};
-`
+    ${cssOverrides};
+  `,
+)
 
 type CCTabProps = CommonComponentType &
   LinkProps & {
@@ -58,8 +59,6 @@ export type TabProps = CCTabProps & {
   updateIsActive: (i: number) => void
 }
 
-type TabRefType = StyledHtmlElement<HTMLDivElement, CCTabProps>
-
 export class Tab extends Component<TabProps> {
   static defaultProps = {
     isActive: false,
@@ -67,7 +66,7 @@ export class Tab extends Component<TabProps> {
     updateIsActive: () => {},
   }
 
-  tabRef = createRef<TabRefType>()
+  tabRef = createRef<HTMLDivElement>()
 
   componentDidMount() {
     this.callSetIndicator()

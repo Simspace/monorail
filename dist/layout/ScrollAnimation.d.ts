@@ -1,9 +1,7 @@
 import React, { Component, RefObject } from 'react';
-import { StyledHtmlElement } from '@monorail/CoreUtils/type-level';
-import { PageHeaderShadowProps } from '../pageHeader/PageHeader';
 declare type Props = {
-    scrollContainer: RefObject<StyledHtmlElement<HTMLDivElement, {}>>;
-    animatingElement: RefObject<StyledHtmlElement<HTMLDivElement, PageHeaderShadowProps>>;
+    scrollContainer: RefObject<HTMLDivElement>;
+    animatingElement: RefObject<HTMLDivElement>;
     animationFunction: (props: {
         scrollAmount: number;
         animationTermination: number;
@@ -18,7 +16,7 @@ export declare class ScrollAnimation extends Component<Props, State> {
     componentDidMount(): void;
     componentDidUpdate(): void;
     componentWillUnmount(): void;
-    handleScroll: (event: UIEvent) => void;
+    handleScroll: EventListener;
     render(): React.ReactNode;
 }
 export {};

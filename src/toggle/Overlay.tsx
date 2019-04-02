@@ -11,12 +11,14 @@ type Props = Omit<PopOverChildProps, 'position'> & {
   overlayProps?: Omit<BBModalOverlayProps, 'isOpen' | 'onClick'>
   escToClose: boolean
   usesScaleAnimation: boolean
+  zIndex: number
 }
 
 export class Overlay extends Component<Props> {
   static defaultProps = {
     usesScaleAnimation: false,
     escToClose: true,
+    zIndex: 9998,
   }
 
   componentDidMount() {
@@ -47,11 +49,12 @@ export class Overlay extends Component<Props> {
 
   render() {
     const {
+      children,
       isOpen,
       onClick,
-      children,
       overlayProps,
       usesScaleAnimation,
+      zIndex,
     } = this.props
 
     return (
@@ -59,6 +62,7 @@ export class Overlay extends Component<Props> {
         onClick={e => e.stopPropagation()}
         usesScaleAnimation={usesScaleAnimation}
         isOpen={isOpen}
+        zIndex={zIndex}
       >
         <BBModalOverlay isOpen={isOpen} onClick={onClick} {...overlayProps} />
 

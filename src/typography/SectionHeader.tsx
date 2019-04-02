@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import styled, { css, SimpleInterpolation } from 'styled-components'
+import styled, { css } from 'styled-components'
 
 import { Icon } from '@monorail/icon/Icon'
 import { AppIcon } from '@monorail/appIcon/AppIcon'
@@ -10,24 +10,24 @@ import {
   flexFlow,
   FontSizes,
   typography,
+  isAppName,
 } from '@monorail/CommonStyles'
+import { CommonComponentType } from '@monorail/types'
 
-type CCSectionHeaderProps = {
-  cssOverrides?: SimpleInterpolation
-}
+const CCSectionHeader = styled.div<CommonComponentType>(
+  ({ cssOverrides }) => css`
+    ${flexFlow('row')};
+    ${typography(700, FontSizes.Title5)} align-items: center;
+    color: ${colors(Colors.Black74)};
+    flex-shrink: 0;
+    height: 40px;
+    padding: 0 16px;
 
-const CCSectionHeader = styled<CCSectionHeaderProps, 'div'>('div')`
-  ${flexFlow('row')} align-items: center;
-  flex-shrink: 0;
-  height: 40px;
-  padding: 0 16px;
-   ${typography(700, FontSizes.Title5)}
-  color: ${colors(Colors.Black74)};
+    ${cssOverrides};
+  `,
+)
 
-  ${({ cssOverrides }) => cssOverrides};
-`
-
-const Title = styled('h1')`
+const Title = styled.h1`
   ${typography(700, FontSizes.Title5)}
   color: ${colors(Colors.Black74)};
   flex: 1;
@@ -49,16 +49,10 @@ const StyledIconRight = styled(Icon)`
   ${iconRightStyle};
 `
 
-type SectionHeaderProps = CCSectionHeaderProps & {
+type SectionHeaderProps = CommonComponentType & {
   iconLeft?: string | AppName
   iconRight?: string | AppName
   title: string
-}
-
-type IconPropType = string | AppName
-
-function isAppName(iconName: IconPropType): iconName is AppName {
-  return Object.values(AppName).includes(iconName)
 }
 
 export class SectionHeader extends Component<SectionHeaderProps> {

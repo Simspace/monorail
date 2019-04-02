@@ -1,17 +1,16 @@
-import React, { MouseEvent, StatelessComponent, Ref } from 'react';
-import { AppName, ElevationRange } from '@monorail/CommonStyles';
+import React, { MouseEvent, Ref, StatelessComponent, ReactNode } from 'react';
 import { SimpleInterpolation } from 'styled-components';
 import { CommonComponentType } from '@monorail/types';
+import { AppName, ElevationRange } from '@monorail/CommonStyles';
 export declare type BBCardBackgroundProps = CommonComponentType & {
     hover?: boolean;
     elevation?: ElevationRange;
     onClick?: (event: MouseEvent) => void;
     ref?: Ref<any>;
     cssCardContent?: SimpleInterpolation;
+    children?: ReactNode;
 };
-export declare const BBCardBackground: import("styled-components").StyledComponentClass<BBCardBackgroundProps, any, Pick<BBCardBackgroundProps, "id" | "ref" | "cssOverrides" | "className" | "onClick" | "as" | "tabIndex" | "elevation" | "hover" | "cssCardContent"> & {
-    theme?: any;
-}>;
+export declare const BBCardBackground: import("styled-components").StyledComponent<React.ForwardRefExoticComponent<Pick<BBCardBackgroundProps, "id" | "children" | "className" | "tabIndex" | "onClick" | "cssOverrides" | "elevation" | "as" | "hover" | "cssCardContent"> & React.RefAttributes<HTMLDivElement>>, any, BBCardBackgroundProps, never>;
 declare type BBCardBottomBorderProps = {
     accentColor?: string;
 };
@@ -28,5 +27,5 @@ declare type BBCardGridProps = {
     cardWidth?: number;
     cssOverrides?: SimpleInterpolation;
 };
-export declare const BBCardGrid: import("styled-components").StyledComponentClass<BBCardGridProps, any, BBCardGridProps & React.ClassAttributes<HTMLDivElement> & React.HTMLAttributes<HTMLDivElement>>;
+export declare const BBCardGrid: import("styled-components").StyledComponent<"div", any, BBCardGridProps, never>;
 export {};

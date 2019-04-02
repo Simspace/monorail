@@ -1,13 +1,16 @@
 import React, { ComponentType } from 'react'
+import styled, { css, SimpleInterpolation } from 'styled-components'
 import { colors, Colors } from '@monorail/CommonStyles'
-import styled, { SimpleInterpolation } from 'styled-components'
+import { CommonComponentType } from '@monorail/types'
 
-const LogoSvg = styled<{ cssOverrides?: SimpleInterpolation }, 'svg'>('svg')`
-  height: 100%;
-  width: auto;
+const LogoSvg = styled.svg<CommonComponentType>(
+  ({ cssOverrides }) => css`
+    height: 100%;
+    width: auto;
 
-  ${({ cssOverrides }) => cssOverrides};
-`
+    ${cssOverrides};
+  `,
+)
 
 export const SimSpaceLogo: ComponentType<{
   background?: Colors.BrandDarkBlue | Colors.BrandLightBlue

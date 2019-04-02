@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.TextArea = void 0;
 
-var _primitiveGuards = require("../CoreUtils/primitive-guards");
+var _typeGuards = require("../sharedHelpers/typeGuards");
 
 var _react = _interopRequireWildcard(require("react"));
 
@@ -22,31 +22,33 @@ function _extends() { _extends = Object.assign || function (target) { for (var i
 */
 const BBTextAreaContainer =
 /*#__PURE__*/
-(0, _styledComponents.default)('label').withConfig({
+_styledComponents.default.label.withConfig({
   displayName: "TextArea__BBTextAreaContainer",
   componentId: "zv28js-0"
-})(["", ";max-width:256px;width:100%;position:relative;", ";"], (0, _CommonStyles.flexFlow)(), ({
+})(({
   cssOverrides
-}) => cssOverrides);
+}) => (0, _styledComponents.css)(["", ";max-width:256px;width:100%;position:relative;", ";"], (0, _CommonStyles.flexFlow)(), cssOverrides));
+
 const BBTextAreaLabel =
 /*#__PURE__*/
-(0, _styledComponents.default)('p').withConfig({
+_styledComponents.default.p.withConfig({
   displayName: "TextArea__BBTextAreaLabel",
   componentId: "zv28js-1"
 })(["", ";margin:4px 0;"], (0, _CommonStyles.typography)(500, _CommonStyles.FontSizes.Title5));
+
 const BBTextAreaInput =
 /*#__PURE__*/
-(0, _styledComponents.default)('textarea').withConfig({
+_styledComponents.default.textarea.withConfig({
   displayName: "TextArea__BBTextAreaInput",
   componentId: "zv28js-2"
-})(["", ";", ";border:1px solid ", ";box-sizing:border-box;color:", ";outline:none;padding:4px 6px 4px 6px;resize:none;width:100%;", ";::placeholder{color:", ";font-style:italic;}&:hover{border:1px solid ", ";}&:focus,&:active{border:1px solid ", ";}", ";", ";"], (0, _CommonStyles.typography)(400, _CommonStyles.FontSizes.Title5), (0, _CommonStyles.borderRadius)(), (0, _CommonStyles.colors)(_CommonStyles.Colors.Black, 0.12), (0, _CommonStyles.colors)(_CommonStyles.Colors.Black89), _CommonStyles.buttonTransition, (0, _CommonStyles.colors)(_CommonStyles.Colors.Black54), (0, _CommonStyles.colors)(_CommonStyles.Colors.Black, 0.3), (0, _CommonStyles.colors)(_CommonStyles.Colors.BrandLightBlue), ({
-  chromeless
-}) => chromeless && (0, _styledComponents.css)(["border:1px solid transparent;"]), ({
+})(({
+  chromeless,
   compact
-}) => compact && (0, _styledComponents.css)(["overflow:hidden;"]));
+}) => (0, _styledComponents.css)(["", ";", ";border:1px solid ", ";box-sizing:border-box;color:", ";outline:none;padding:4px 6px 4px 6px;resize:none;width:100%;", ";::placeholder{color:", ";font-style:italic;}&:hover{border:1px solid ", ";}&:focus,&:active{border:1px solid ", ";}", ";", ";"], (0, _CommonStyles.typography)(400, _CommonStyles.FontSizes.Title5), (0, _CommonStyles.borderRadius)(), (0, _CommonStyles.colors)(_CommonStyles.Colors.Black, 0.12), (0, _CommonStyles.colors)(_CommonStyles.Colors.Black89), _CommonStyles.buttonTransition, (0, _CommonStyles.colors)(_CommonStyles.Colors.Black54), (0, _CommonStyles.colors)(_CommonStyles.Colors.Black, 0.3), (0, _CommonStyles.colors)(_CommonStyles.Colors.BrandLightBlue), chromeless && (0, _styledComponents.css)(["border:1px solid transparent;"]), compact && (0, _styledComponents.css)(["overflow:hidden;"])));
 /*
 * Types
 */
+
 
 /*
 * Component
@@ -64,7 +66,7 @@ class TextArea extends _react.Component {
       if (compact) {
         const current = this.textArea.current;
 
-        if (!(0, _primitiveGuards.isNil)(current)) {
+        if (!(0, _typeGuards.isNil)(current)) {
           window.requestAnimationFrame(() => {
             current.style.height = 'auto';
             current.style.height = current.scrollHeight + 'px';
@@ -106,7 +108,7 @@ class TextArea extends _react.Component {
     } = this.props;
     return _react.default.createElement(BBTextAreaContainer, {
       cssOverrides: cssOverrides
-    }, !(0, _primitiveGuards.isNil)(label) && _react.default.createElement(BBTextAreaLabel, null, label), _react.default.createElement(BBTextAreaInput, _extends({
+    }, !(0, _typeGuards.isNil)(label) && _react.default.createElement(BBTextAreaLabel, null, label), _react.default.createElement(BBTextAreaInput, _extends({
       chromeless: chromeless,
       className: "new-textarea",
       compact: compact,

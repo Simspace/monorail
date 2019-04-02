@@ -22,18 +22,20 @@ function _extends() { _extends = Object.assign || function (target) { for (var i
 */
 const BBTextFieldContainer =
 /*#__PURE__*/
-(0, _styledComponents.default)('label').withConfig({
+_styledComponents.default.label.withConfig({
   displayName: "TextField__BBTextFieldContainer",
   componentId: "sc-1nq70vt-0"
-})(["", ";float:none;max-width:256px;width:100%;position:relative;", ";"], (0, _CommonStyles.flexFlow)(), ({
+})(({
   cssOverrides
-}) => cssOverrides);
+}) => (0, _styledComponents.css)(["", ";float:none;max-width:256px;width:100%;position:relative;", ";"], (0, _CommonStyles.flexFlow)(), cssOverrides));
+
 const BBTextFieldLabel =
 /*#__PURE__*/
-(0, _styledComponents.default)('p').withConfig({
+_styledComponents.default.p.withConfig({
   displayName: "TextField__BBTextFieldLabel",
   componentId: "sc-1nq70vt-1"
 })(["", ";margin:4px 0;"], (0, _CommonStyles.typography)(500, _CommonStyles.FontSizes.Title5));
+
 exports.BBTextFieldLabel = BBTextFieldLabel;
 const baseIconStyles =
 /*#__PURE__*/
@@ -50,32 +52,32 @@ const StyledRightIcon =
   displayName: "TextField__StyledRightIcon",
   componentId: "sc-1nq70vt-3"
 })(["", ";right:8px;"], baseIconStyles);
+
 const BBTextFieldInput =
 /*#__PURE__*/
-(0, _styledComponents.default)('input').withConfig({
+_styledComponents.default.input.withConfig({
   displayName: "TextField__BBTextFieldInput",
   componentId: "sc-1nq70vt-4"
-})(["", ";", ";border:", ";box-sizing:border-box;color:", ";height:24px;outline:none;padding:4px ", "px 4px ", "px;width:100%;", ";&[type='number']{&::-webkit-inner-spin-button,&::-webkit-outer-spin-button{opacity:1;}}::placeholder{color:", ";font-style:italic;}&:hover{border-color:", ";}&:focus,&:active{border-color:", ";}"], (0, _CommonStyles.typography)(400, _CommonStyles.FontSizes.Title5), (0, _CommonStyles.borderRadius)(), ({
-  chromeless
-}) => chromeless ? `1px solid transparent` : `1px solid ${(0, _CommonStyles.colors)(_CommonStyles.Colors.Black, 0.12)}`, (0, _CommonStyles.colors)(_CommonStyles.Colors.Black89), ({
+})(({
+  chromeless,
+  iconLeft,
   iconRight
-}) => iconRight ? 30 : 6, ({
-  iconLeft
-}) => iconLeft ? 30 : 6, _CommonStyles.buttonTransition, (0, _CommonStyles.colors)(_CommonStyles.Colors.Black54), (0, _CommonStyles.colors)(_CommonStyles.Colors.Black, 0.3), (0, _CommonStyles.colors)(_CommonStyles.Colors.BrandLightBlue)); // TODO: Much duplication from TextInput
+}) => (0, _styledComponents.css)(["", ";", ";border:", ";box-sizing:border-box;color:", ";height:24px;outline:none;padding:4px ", "px 4px ", "px;width:100%;", ";&[type='number']{&::-webkit-inner-spin-button,&::-webkit-outer-spin-button{opacity:1;}}::placeholder{color:", ";font-style:italic;}&:hover{border-color:", ";}&:focus,&:active{border-color:", ";}"], (0, _CommonStyles.typography)(400, _CommonStyles.FontSizes.Title5), (0, _CommonStyles.borderRadius)(), chromeless ? `1px solid transparent` : `1px solid ${(0, _CommonStyles.colors)(_CommonStyles.Colors.Black, 0.12)}`, (0, _CommonStyles.colors)(_CommonStyles.Colors.Black89), iconRight ? 30 : 6, iconLeft ? 30 : 6, _CommonStyles.buttonTransition, (0, _CommonStyles.colors)(_CommonStyles.Colors.Black54), (0, _CommonStyles.colors)(_CommonStyles.Colors.Black, 0.3), (0, _CommonStyles.colors)(_CommonStyles.Colors.BrandLightBlue))); // TODO: Much duplication from TextInput
+
 
 const BBTextAreaInput =
 /*#__PURE__*/
-(0, _styledComponents.default)('textarea').withConfig({
+_styledComponents.default.textarea.withConfig({
   displayName: "TextField__BBTextAreaInput",
   componentId: "sc-1nq70vt-5"
-})(["", ";", ";border:1px solid ", ";box-sizing:border-box;color:", ";height:5em;outline:none;padding:4px ", "px 4px ", "px;width:100%;", ";::placeholder{color:", ";font-style:italic;}&:hover{border-color:", ";}&:focus,&:active{border-color:", ";}"], (0, _CommonStyles.typography)(400, _CommonStyles.FontSizes.Title5), (0, _CommonStyles.borderRadius)(), (0, _CommonStyles.colors)(_CommonStyles.Colors.Black, 0.12), (0, _CommonStyles.colors)(_CommonStyles.Colors.Black89), ({
+})(({
+  iconLeft,
   iconRight
-}) => iconRight ? 30 : 6, ({
-  iconLeft
-}) => iconLeft ? 30 : 6, _CommonStyles.buttonTransition, (0, _CommonStyles.colors)(_CommonStyles.Colors.Black54), (0, _CommonStyles.colors)(_CommonStyles.Colors.Black, 0.3), (0, _CommonStyles.colors)(_CommonStyles.Colors.BrandLightBlue));
+}) => (0, _styledComponents.css)(["", ";", ";border:1px solid ", ";box-sizing:border-box;color:", ";height:5em;outline:none;padding:4px ", "px 4px ", "px;width:100%;", ";::placeholder{color:", ";font-style:italic;}&:hover{border-color:", ";}&:focus,&:active{border-color:", ";}"], (0, _CommonStyles.typography)(400, _CommonStyles.FontSizes.Title5), (0, _CommonStyles.borderRadius)(), (0, _CommonStyles.colors)(_CommonStyles.Colors.Black, 0.12), (0, _CommonStyles.colors)(_CommonStyles.Colors.Black89), iconRight ? 30 : 6, iconLeft ? 30 : 6, _CommonStyles.buttonTransition, (0, _CommonStyles.colors)(_CommonStyles.Colors.Black54), (0, _CommonStyles.colors)(_CommonStyles.Colors.Black, 0.3), (0, _CommonStyles.colors)(_CommonStyles.Colors.BrandLightBlue)));
 /*
 * Types
 */
+
 
 /*
 * Component
@@ -95,6 +97,8 @@ class TextField extends _react.Component {
       readOnly,
       required,
       type,
+      min,
+      max,
       ...otherProps
     } = this.props;
     return _react.default.createElement(BBTextFieldContainer, {
@@ -116,7 +120,9 @@ class TextField extends _react.Component {
       value: value,
       disabled: disabled,
       readOnly: readOnly,
-      required: required
+      required: required,
+      min: min,
+      max: max
     }, otherProps)));
   }
 

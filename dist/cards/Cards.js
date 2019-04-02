@@ -7,13 +7,13 @@ exports.BBCardGrid = exports.BBCardHeader = exports.BBCardBackground = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
+var _styledComponents = _interopRequireWildcard(require("styled-components"));
+
 var _AppIcon = require("../appIcon/AppIcon");
 
 var _Icon = require("../icon/Icon");
 
 var _CommonStyles = require("../CommonStyles");
-
-var _styledComponents = _interopRequireWildcard(require("styled-components"));
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
@@ -21,12 +21,13 @@ function _extends() { _extends = Object.assign || function (target) { for (var i
 
 const BBCardContent =
 /*#__PURE__*/
-(0, _styledComponents.default)('div').withConfig({
+_styledComponents.default.div.withConfig({
   displayName: "Cards__BBCardContent",
   componentId: "mqkraz-0"
-})(["", ";border-radius:inherit;height:100%;overflow:hidden;width:100%;position:relative;", ";"], (0, _CommonStyles.flexFlow)(), ({
+})(({
   cssOverrides
-}) => cssOverrides); // building-blocks/cards/background
+}) => (0, _styledComponents.css)(["", ";border-radius:inherit;height:100%;overflow:hidden;width:100%;position:relative;", ";"], (0, _CommonStyles.flexFlow)(), cssOverrides)); // building-blocks/cards/background
+
 
 const BBCardBackground =
 /*#__PURE__*/
@@ -41,57 +42,56 @@ const BBCardBackground =
   ref: ref
 }, otherProps), _react.default.createElement(BBCardContent, {
   cssOverrides: cssCardContent
-}, children)))).withConfig({
-  displayName: "Cards__BBCardBackground",
-  componentId: "mqkraz-1"
-})(["", ";", ";", ";background:", ";position:relative;z-index:0;", ";&::before{border-radius:inherit;background:", ";bottom:0;content:'';left:0;position:absolute;right:0;top:0;z-index:0;}&::after{", ";", ";background:", ";bottom:2px;content:'';left:2px;position:absolute;right:2px;top:2px;z-index:-5;}"], ({
-  hover
-}) => hover && (0, _styledComponents.css)(["cursor:pointer;&:hover{&::after{transition:box-shadow ease 125ms;", ";}}"], (0, _CommonStyles.getElevation)(_CommonStyles.ElevationRange.Elevation10)), (0, _CommonStyles.flexFlow)(), (0, _CommonStyles.borderRadius)(_CommonStyles.BorderRadius.Large), (0, _CommonStyles.colors)(_CommonStyles.Colors.White), ({
-  cssOverrides
-}) => cssOverrides, (0, _CommonStyles.colors)(_CommonStyles.Colors.White), (0, _CommonStyles.borderRadius)(_CommonStyles.BorderRadius.Medium), ({
+}, children))))(({
+  hover,
+  cssOverrides,
   elevation = _CommonStyles.ElevationRange.Elevation6
-}) => (0, _CommonStyles.getElevation)(elevation), (0, _CommonStyles.colors)(_CommonStyles.Colors.White));
+}) => (0, _styledComponents.css)(["", ";", ";", ";background:", ";position:relative;z-index:0;", ";&::before{border-radius:inherit;background:", ";bottom:0;content:'';left:0;position:absolute;right:0;top:0;z-index:0;}&::after{", ";", ";background:", ";bottom:2px;content:'';left:2px;position:absolute;right:2px;top:2px;z-index:-5;}"], hover && (0, _styledComponents.css)(["cursor:pointer;&:hover{&::after{transition:box-shadow ease 125ms;", ";}}"], (0, _CommonStyles.getElevation)(_CommonStyles.ElevationRange.Elevation10)), (0, _CommonStyles.flexFlow)(), (0, _CommonStyles.borderRadius)(_CommonStyles.BorderRadius.Large), (0, _CommonStyles.colors)(_CommonStyles.Colors.White), cssOverrides, (0, _CommonStyles.colors)(_CommonStyles.Colors.White), (0, _CommonStyles.borderRadius)(_CommonStyles.BorderRadius.Medium), (0, _CommonStyles.getElevation)(elevation), (0, _CommonStyles.colors)(_CommonStyles.Colors.White)));
 exports.BBCardBackground = BBCardBackground;
+
 const BBCardHeaderContainer =
 /*#__PURE__*/
-(0, _styledComponents.default)('div').withConfig({
+_styledComponents.default.div.withConfig({
   displayName: "Cards__BBCardHeaderContainer",
-  componentId: "mqkraz-2"
-})(["", ";align-items:center;flex-shrink:0;height:32px;padding:0 16px;position:relative;", ";"], (0, _CommonStyles.flexFlow)('row'), ({
+  componentId: "mqkraz-1"
+})(({
   cssOverrides
-}) => cssOverrides);
+}) => (0, _styledComponents.css)(["", ";align-items:center;flex-shrink:0;height:32px;padding:0 16px;position:relative;", ";"], (0, _CommonStyles.flexFlow)('row'), cssOverrides));
+
 const BBCardHeaderTitle =
 /*#__PURE__*/
-(0, _styledComponents.default)('h1').withConfig({
+_styledComponents.default.h1.withConfig({
   displayName: "Cards__BBCardHeaderTitle",
-  componentId: "mqkraz-3"
+  componentId: "mqkraz-2"
 })(["", ";margin:0;"], (0, _CommonStyles.typography)(700, _CommonStyles.FontSizes.Title5));
+
 const StyledAppIconLeft =
 /*#__PURE__*/
 (0, _styledComponents.default)(_AppIcon.AppIcon).withConfig({
   displayName: "Cards__StyledAppIconLeft",
-  componentId: "mqkraz-4"
+  componentId: "mqkraz-3"
 })(["margin-right:16px;"]);
 const StyledIconLeft =
 /*#__PURE__*/
 (0, _styledComponents.default)(_Icon.Icon).withConfig({
   displayName: "Cards__StyledIconLeft",
-  componentId: "mqkraz-5"
+  componentId: "mqkraz-4"
 })(["margin-right:16px;"]);
 const StyledIconRight =
 /*#__PURE__*/
 (0, _styledComponents.default)(_Icon.Icon).withConfig({
   displayName: "Cards__StyledIconRight",
-  componentId: "mqkraz-6"
+  componentId: "mqkraz-5"
 })(["margin-left:16px;"]);
+
 const BBCardBottomBorder =
 /*#__PURE__*/
-(0, _styledComponents.default)('div').withConfig({
+_styledComponents.default.div.withConfig({
   displayName: "Cards__BBCardBottomBorder",
-  componentId: "mqkraz-7"
-})(["", ";bottom:0;height:1px;left:0;position:absolute;right:0;"], ({
+  componentId: "mqkraz-6"
+})(({
   accentColor
-}) => (0, _styledComponents.css)(["background:linear-gradient( to right,", " 0,", " 16px,", " calc(100% - 16px),", " 100% );"], (0, _CommonStyles.colors)(_CommonStyles.Colors.White, 0), accentColor, accentColor, (0, _CommonStyles.colors)(_CommonStyles.Colors.White, 0)));
+}) => (0, _styledComponents.css)(["background:linear-gradient( to right,", " 0,", " 16px,", " calc(100% - 16px),", " 100% );bottom:0;height:1px;left:0;position:absolute;right:0;"], (0, _CommonStyles.colors)(_CommonStyles.Colors.White, 0), accentColor, accentColor, (0, _CommonStyles.colors)(_CommonStyles.Colors.White, 0)));
 
 // building-blocks/cards/header
 const BBCardHeader = ({
@@ -117,14 +117,15 @@ const BBCardHeader = ({
 
 
 exports.BBCardHeader = BBCardHeader;
+
 const BBCardGrid =
 /*#__PURE__*/
-(0, _styledComponents.default)('div').withConfig({
+_styledComponents.default.div.withConfig({
   displayName: "Cards__BBCardGrid",
-  componentId: "mqkraz-8"
-})(["display:grid;flex-grow:1;grid-auto-rows:max-content;grid-template-columns:repeat( auto-fill,", "px );justify-content:center;padding:20px 32px 14px;display:-ms-flexbox;flex-flow:row wrap;align-content:flex-start;", ";"], ({
+  componentId: "mqkraz-7"
+})(({
+  cssOverrides,
   cardWidth = 272
-}) => cardWidth, ({
-  cssOverrides
-}) => cssOverrides);
+}) => (0, _styledComponents.css)(["display:grid;flex-grow:1;grid-auto-rows:max-content;grid-template-columns:repeat(auto-fill,", "px);justify-content:center;padding:20px 32px 14px;display:-ms-flexbox;flex-flow:row wrap;align-content:flex-start;align-items:flex-start;", ";"], cardWidth, cssOverrides));
+
 exports.BBCardGrid = BBCardGrid;

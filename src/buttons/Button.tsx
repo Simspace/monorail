@@ -1,5 +1,5 @@
 import React, { Component, MouseEvent } from 'react'
-import styled, { css, SimpleInterpolation } from 'styled-components'
+import styled, { css } from 'styled-components'
 
 import {
   baseChromelessStyles,
@@ -12,11 +12,14 @@ import {
   buttonTransition,
   Colors,
   colors,
+  flexFlow,
   FontSizes,
   typography,
 } from '@monorail/CommonStyles'
 import { ButtonDisplay, ButtonSize } from '@monorail/buttons/buttonTypes'
 import { Icon } from '@monorail/icon/Icon'
+import { CommonComponentType } from '@monorail/types'
+import { LinkProps } from '@monorail/list/List'
 
 export const buttonDisplayCss = {
   [ButtonDisplay.Primary]: css`
@@ -54,44 +57,45 @@ export const buttonSizeCss = {
   `,
 }
 
-const CCButton = styled<ButtonProps, 'button'>('button')`
-  ${({ display }) => buttonDisplayCss[display]};
-  ${({ size }) => buttonSizeCss[size]};
-  ${({ disabled }) => disabled && baseDisabledStyles};
+const CCButton = styled.button<ButtonProps>(
+  ({ disabled, size, display, cssOverrides }) => css`
+    ${buttonDisplayCss[display]};
+    ${buttonSizeCss[size]};
+    ${disabled && baseDisabledStyles};
 
-  ${typography(700, FontSizes.Title5)};
-  ${borderRadius()};
+    ${typography(700, FontSizes.Title5)};
+    ${borderRadius()};
+    ${flexFlow('row')};
 
-  cursor: pointer;
-  flex-shrink: 0;
-  outline: none;
-  text-transform: uppercase;
-  user-select: none;
+    align-items: center;
+    cursor: pointer;
+    flex-shrink: 0;
+    outline: none;
+    text-transform: uppercase;
+    user-select: none;
+    justify-content: center;
 
-  ${buttonTransition};
+    ${buttonTransition};
 
-  ${Icon} {
-    color: currentColor;
-    margin-left: -4px;
-    margin-right: 4px;
-    margin-top: -16px;
-    position: relative; /* Needs position: relative; so that you can do the top hack. */
-    top: 4px;
+    ${Icon} {
+      color: currentColor;
+      margin: auto 4px auto - 4px;
+    }
+
+    ${baseFocusStyles()};
+
+    ${cssOverrides};
+  `,
+)
+
+export type ButtonProps = CommonComponentType &
+  LinkProps & {
+    size: ButtonSize
+    display: ButtonDisplay
+    disabled?: boolean
+    onClick?: (event: MouseEvent<HTMLButtonElement>) => void
+    type: 'button' | 'reset' | 'submit'
   }
-
-  ${baseFocusStyles()};
-
-  ${({ cssOverrides }) => cssOverrides};
-`
-
-export type ButtonProps = {
-  size: ButtonSize
-  display: ButtonDisplay
-  cssOverrides?: SimpleInterpolation
-  disabled?: boolean
-  onClick?: (event: MouseEvent<HTMLButtonElement>) => void
-  type: string
-}
 
 export class Button extends Component<ButtonProps> {
   static defaultProps = {

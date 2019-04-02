@@ -21,10 +21,10 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 const DropDownContent =
 /*#__PURE__*/
-(0, _styledComponents.default)('div').withConfig({
+_styledComponents.default.div.withConfig({
   displayName: "SidebarDropDown__DropDownContent",
   componentId: "sc-18l3je-0"
-})(["", ";"], ({
+})(({
   cssOverrides
 }) => (0, _styledComponents.css)(["", ";overflow:hidden;", ";"], (0, _CommonStyles.flexFlow)(), cssOverrides));
 

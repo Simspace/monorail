@@ -40,69 +40,64 @@ const iconSizeCss = {
   [_toggleTypes.ToggleSize.Large]: (0, _styledComponents.css)(["font-size:", "px;"], iconSize * 1.5),
   [_toggleTypes.ToggleSize.Xlarge]: (0, _styledComponents.css)(["font-size:", "px;"], iconSize * 2)
 };
+
 const CCToggle =
 /*#__PURE__*/
-(0, _styledComponents.default)('label').withConfig({
+_styledComponents.default.label.withConfig({
   displayName: "Toggle__CCToggle",
   componentId: "sc-14ermjw-0"
-})(["", ";box-sizing:content-box;cursor:pointer;display:inline-block;position:relative;transition:all ease-in 150ms;", ";", ";"], ({
-  toggleSize
-}) => toggleSizeCss[toggleSize], ({
-  checked
-}) => checked ? (0, _styledComponents.css)(["background-color:", ";border-color:", ";"], (0, _CommonStyles.colors)(_CommonStyles.Colors.BrandLightBlue), (0, _CommonStyles.colors)(_CommonStyles.Colors.BrandLightBlue)) : (0, _styledComponents.css)(["background-color:", ";border-color:", ";"], (0, _CommonStyles.colors)(_CommonStyles.Colors.White), (0, _CommonStyles.colors)(_CommonStyles.Colors.Black, 0.06)), ({
+})(({
+  toggleSize,
+  checked,
   cssOverrides
-}) => cssOverrides);
+}) => (0, _styledComponents.css)(["", ";box-sizing:content-box;cursor:pointer;display:inline-block;position:relative;transition:all ease-in 150ms;", ";", ";"], toggleSizeCss[toggleSize], checked ? (0, _styledComponents.css)(["background-color:", ";border-color:", ";"], (0, _CommonStyles.colors)(_CommonStyles.Colors.BrandLightBlue), (0, _CommonStyles.colors)(_CommonStyles.Colors.BrandLightBlue)) : (0, _styledComponents.css)(["background-color:", ";border-color:", ";"], (0, _CommonStyles.colors)(_CommonStyles.Colors.White), (0, _CommonStyles.colors)(_CommonStyles.Colors.Black, 0.06)), cssOverrides));
+
 const StyledIconChecked =
 /*#__PURE__*/
 (0, _styledComponents.default)(({
   checked,
   toggleSize,
   ...otherProps
-}) => _react.default.createElement(_Icon.Icon, otherProps)).withConfig({
-  displayName: "Toggle__StyledIconChecked",
-  componentId: "sc-14ermjw-1"
-})(["", ";", ";color:", ";position:absolute;transition:all ease-in 75ms;"], ({
-  toggleSize
-}) => iconSizeCss[toggleSize], ({
+}) => _react.default.createElement(_Icon.Icon, otherProps))(({
+  toggleSize,
   checked
-}) => (0, _CommonStyles.visible)(checked), (0, _CommonStyles.colors)(_CommonStyles.Colors.BrandLightBlue));
+}) => (0, _styledComponents.css)(["", ";", ";color:", ";position:absolute;transition:all ease-in 75ms;"], iconSizeCss[toggleSize], (0, _CommonStyles.visible)(checked), (0, _CommonStyles.colors)(_CommonStyles.Colors.BrandLightBlue)));
 const StyledIconNotChecked =
 /*#__PURE__*/
 (0, _styledComponents.default)(({
   checked,
   toggleSize,
   ...otherProps
-}) => _react.default.createElement(_Icon.Icon, otherProps)).withConfig({
-  displayName: "Toggle__StyledIconNotChecked",
-  componentId: "sc-14ermjw-2"
-})(["", ";", ";color:", ";position:absolute;transition:all ease-in 75ms;"], ({
+}) => _react.default.createElement(_Icon.Icon, otherProps))(({
+  checked,
   toggleSize
-}) => iconSizeCss[toggleSize], ({
-  checked
-}) => (0, _CommonStyles.visible)(!checked), (0, _CommonStyles.colors)(_CommonStyles.Colors.Black24));
+}) => (0, _styledComponents.css)(["", ";", ";color:", ";position:absolute;transition:all ease-in 75ms;"], iconSizeCss[toggleSize], (0, _CommonStyles.visible)(!checked), (0, _CommonStyles.colors)(_CommonStyles.Colors.Black24)));
+
 const Slider =
 /*#__PURE__*/
-(0, _styledComponents.default)('div').withConfig({
+_styledComponents.default.div.withConfig({
   displayName: "Toggle__Slider",
-  componentId: "sc-14ermjw-3"
-})(["", ";", ";", ";background-color:", ";border-radius:50%;bottom:0;content:'';left:0;justify-content:center;align-items:center;transition:all ease-in 75ms;"], ({
+  componentId: "sc-14ermjw-1"
+})(({
   toggleSize
-}) => sliderSizeCss[toggleSize], (0, _CommonStyles.getElevation)(_CommonStyles.ElevationRange.Elevation1), (0, _CommonStyles.flexFlow)('row'), (0, _CommonStyles.colors)(_CommonStyles.Colors.White));
+}) => (0, _styledComponents.css)(["", ";", ";", ";background-color:", ";border-radius:50%;bottom:0;content:'';left:0;justify-content:center;align-items:center;transition:all ease-in 75ms;"], sliderSizeCss[toggleSize], (0, _CommonStyles.getElevation)(_CommonStyles.ElevationRange.Elevation1), (0, _CommonStyles.flexFlow)('row'), (0, _CommonStyles.colors)(_CommonStyles.Colors.White)));
+
 exports.Slider = Slider;
+
 const Input =
 /*#__PURE__*/
-(0, _styledComponents.default)('input').withConfig({
+_styledComponents.default.input.withConfig({
   displayName: "Toggle__Input",
-  componentId: "sc-14ermjw-4"
-})(["display:none;&:checked + ", "{", ";}&:checked + ", " > ", "{", ";color:", ";}"],
-/* sc-selector */
-Slider, ({
+  componentId: "sc-14ermjw-2"
+})(({
   toggleSize
-}) => inputSizeCss[toggleSize],
+}) => (0, _styledComponents.css)(["display:none;&:checked + ", "{", ";}&:checked + ", " > ", "{", ";color:", ";}"],
+/* sc-selector */
+Slider, inputSizeCss[toggleSize],
 /* sc-selector */
 Slider,
 /* sc-selector */
-StyledIconChecked, (0, _CommonStyles.visible)(false), (0, _CommonStyles.colors)(_CommonStyles.Colors.BrandLightBlue));
+StyledIconChecked, (0, _CommonStyles.visible)(false), (0, _CommonStyles.colors)(_CommonStyles.Colors.BrandLightBlue)));
 
 class Toggle extends _react.Component {
   render() {

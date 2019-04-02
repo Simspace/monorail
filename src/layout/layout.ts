@@ -1,21 +1,21 @@
 import styled from 'styled-components'
-import { Colors, colors, flexFlow } from '@monorail/CommonStyles'
+import { flexFlow, gothamFontFamily } from '@monorail/CommonStyles'
 import { CommonComponentType } from '@monorail/types'
 
-export const AppBody = styled<CommonComponentType, 'div'>('div')`
-  ${flexFlow('row')};
-
-  flex: 1;
-  overflow: hidden;
-`
-
-export const AppContainer = styled<CommonComponentType, 'div'>('div')`
+export const AppContainer = styled.div<CommonComponentType>`
   ${flexFlow()};
 
   flex: 1;
   overflow: hidden;
+
+  &.event-design,
+  &.events:not(.execution),
+  &.home {
+    ${gothamFontFamily};
+  }
 `
-export const PageContent = styled<CommonComponentType, 'div'>('div')`
+
+export const PageContent = styled.div<CommonComponentType>`
   ${flexFlow()};
 
   flex: 1;

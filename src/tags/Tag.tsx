@@ -9,7 +9,7 @@ import {
   FontSizes,
   typography,
 } from '@monorail/CommonStyles'
-import { isNil } from '@monorail/CoreUtils/primitive-guards'
+import { isNil } from '@monorail/sharedHelpers/typeGuards'
 
 const tagHeight = 24
 const circleWidth = tagHeight - 4
@@ -21,36 +21,37 @@ type CCTagProps = {
   label?: string
 }
 
-export const CCTag = styled<CCTagProps, 'div'>('div')`
-  ${({ label }) =>
-    isNil(label) &&
-    css`
-      width: ${tagHeight}px;
-    `};
+export const CCTag = styled.div<CCTagProps>(
+  ({ label, cssOverrides }) => css`
+    ${isNil(label) &&
+      css`
+        width: ${tagHeight}px;
+      `};
 
-  ${flexFlow('row')};
-  display: inline-flex;
-  align-items: center;
-  background: ${colors(Colors.Black, 0.07)};
-  border-radius: ${tagHeight / 2}px;
-  height: ${tagHeight}px;
-  position: relative; /* ::before circle is pos: abs to this element. */
-  text-transform: uppercase;
-  user-select: none;
+    ${flexFlow('row')};
+    display: inline-flex;
+    align-items: center;
+    background: ${colors(Colors.Black, 0.07)};
+    border-radius: ${tagHeight / 2}px;
+    height: ${tagHeight}px;
+    position: relative; /* ::before circle is pos: abs to this element. */
+    text-transform: uppercase;
+    user-select: none;
 
-  &::before {
-    background: ${colors(Colors.White)};
-    border-radius: ${circleRadius}px;
-    bottom: 2px;
-    content: '';
-    left: 2px;
-    position: absolute;
-    top: 2px;
-    width: ${circleWidth}px;
-  }
+    &::before {
+      background: ${colors(Colors.White)};
+      border-radius: ${circleRadius}px;
+      bottom: 2px;
+      content: '';
+      left: 2px;
+      position: absolute;
+      top: 2px;
+      width: ${circleWidth}px;
+    }
 
-  ${({ cssOverrides }) => cssOverrides};
-`
+    ${cssOverrides};
+  `,
+)
 
 const StyledIconLeft = styled(Icon)`
   color: ${colors(Colors.BrandLightBlue)};
@@ -58,7 +59,7 @@ const StyledIconLeft = styled(Icon)`
   position: relative; /* give z-index so ::before bg is behind icon */
 `
 
-const Title = styled('h1')`
+const Title = styled.h1`
   ${typography(700, FontSizes.Content)};
   color: ${colors(Colors.Black89)};
   margin: 0 10px 0 2px;

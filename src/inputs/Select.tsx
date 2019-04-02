@@ -2,17 +2,17 @@ import React, { SFC } from 'react'
 import styled, { css, SimpleInterpolation } from 'styled-components'
 
 import { typography, FontSizes } from '@monorail/CommonStyles'
+import { CommonComponentType } from '@monorail/types'
 
-const SelectGroupWrapper = styled<
-  { cssOverrides?: SimpleInterpolation },
-  'div'
->('div')`
-  margin: 0;
-  padding: 0;
-  border: 0;
+const SelectGroupWrapper = styled.div<CommonComponentType>(
+  ({ cssOverrides }) => css`
+    margin: 0;
+    padding: 0;
+    border: 0;
 
-  ${({ cssOverrides }) => cssOverrides};
-`
+    ${cssOverrides};
+  `,
+)
 
 const SelectElementWrapper = styled.div`
   background-color: white;

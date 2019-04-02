@@ -9,11 +9,11 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _styledComponents = _interopRequireDefault(require("styled-components"));
 
+var _errorTypes = require("./errorTypes");
+
 var _Icon = require("../icon/Icon");
 
 var _CommonStyles = require("../CommonStyles");
-
-var _errorTypes = require("./errorTypes");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -24,43 +24,49 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 */
 const CCErrorPage =
 /*#__PURE__*/
-(0, _styledComponents.default)('div').withConfig({
+_styledComponents.default.div.withConfig({
   displayName: "ErrorPage__CCErrorPage",
   componentId: "r46uot-0"
-})(["", ";justify-content:center;align-items:center;width:100%;height:100%;"], (0, _CommonStyles.flexFlow)('column'));
+})(["", ";align-items:center;height:100%;justify-content:center;width:100%;"], (0, _CommonStyles.flexFlow)('column'));
+
 const IconCircle =
 /*#__PURE__*/
-(0, _styledComponents.default)('div').withConfig({
+_styledComponents.default.div.withConfig({
   displayName: "ErrorPage__IconCircle",
   componentId: "r46uot-1"
-})(["", ";width:120px;height:120px;background:#ed6d6e;border-radius:50%;"], (0, _CommonStyles.flexFlow)('column'));
+})(["", ";background:#ed6d6e;border-radius:50%;height:120px;width:120px;"], (0, _CommonStyles.flexFlow)('column'));
+
 const StyledIcon =
 /*#__PURE__*/
 (0, _styledComponents.default)(_Icon.Icon).withConfig({
   displayName: "ErrorPage__StyledIcon",
   componentId: "r46uot-2"
 })(["color:", ";margin:auto auto;"], (0, _CommonStyles.colors)(_CommonStyles.Colors.White));
+
 const FourZeroFourIcon =
 /*#__PURE__*/
-(0, _styledComponents.default)('div').withConfig({
+_styledComponents.default.div.withConfig({
   displayName: "ErrorPage__FourZeroFourIcon",
   componentId: "r46uot-3"
 })(["color:#ed6d6e;font-size:88px;font-weight:500;margin:auto auto;"]);
+
 const Title =
 /*#__PURE__*/
-(0, _styledComponents.default)('h1').withConfig({
+_styledComponents.default.h1.withConfig({
   displayName: "ErrorPage__Title",
   componentId: "r46uot-4"
 })(["", ";color:", ";margin:32px 0 32px 0;"], (0, _CommonStyles.typography)(700, _CommonStyles.FontSizes.Title1), (0, _CommonStyles.colors)(_CommonStyles.Colors.Black89));
+
 const ErrorMessage =
 /*#__PURE__*/
-(0, _styledComponents.default)('div').withConfig({
+_styledComponents.default.div.withConfig({
   displayName: "ErrorPage__ErrorMessage",
   componentId: "r46uot-5"
-})(["", ";color:", ";text-align:center;width:100%;max-width:448px;"], (0, _CommonStyles.typography)(400, _CommonStyles.FontSizes.Title3), (0, _CommonStyles.colors)(_CommonStyles.Colors.Black89));
+})(["", ";color:", ";max-width:448px;text-align:center;width:100%;"], (0, _CommonStyles.typography)(400, _CommonStyles.FontSizes.Title3), (0, _CommonStyles.colors)(_CommonStyles.Colors.Black89));
 /*
 * Types
 */
+
 
 /*
 * Components

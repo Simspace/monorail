@@ -9,14 +9,14 @@ var _react = require("react");
 
 var _reactDom = _interopRequireDefault(require("react-dom"));
 
-var _primitiveGuards = require("../CoreUtils/primitive-guards");
+var _typeGuards = require("../sharedHelpers/typeGuards");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /**
  * Creates a modal-root at body level if it doesn't exist already
  */
-if ((0, _primitiveGuards.isNil)(document.getElementById('modal-root'))) {
+if ((0, _typeGuards.isNil)(document.getElementById('modal-root'))) {
   const newModalRoot = document.createElement('div');
   newModalRoot.setAttribute('id', 'modal-root');
   document.body.appendChild(newModalRoot);
@@ -25,8 +25,8 @@ if ((0, _primitiveGuards.isNil)(document.getElementById('modal-root'))) {
 class Portal extends _react.Component {
   constructor(...args) {
     super(...args);
-    this.modalRoot = !(0, _primitiveGuards.isNil)(this.props.document) ? this.props.document.getElementById('modal-root') : document.getElementById('modal-root');
-    this.portalElement = !(0, _primitiveGuards.isNil)(this.props.document) ? this.props.document.createElement('span') : document.createElement('div');
+    this.modalRoot = !(0, _typeGuards.isNil)(this.props.document) ? this.props.document.getElementById('modal-root') : document.getElementById('modal-root');
+    this.portalElement = !(0, _typeGuards.isNil)(this.props.document) ? this.props.document.createElement('span') : document.createElement('div');
   }
 
   componentDidMount() {
@@ -38,13 +38,13 @@ class Portal extends _react.Component {
     // DOM node, or uses 'autoFocus' in a descendant, add
     // state to Modal and only render the children when Modal
     // is inserted in the DOM tree.
-    if (!(0, _primitiveGuards.isNil)(this.modalRoot)) {
+    if (!(0, _typeGuards.isNil)(this.modalRoot)) {
       this.modalRoot.appendChild(this.portalElement);
     }
   }
 
   componentWillUnmount() {
-    if (!(0, _primitiveGuards.isNil)(this.modalRoot)) {
+    if (!(0, _typeGuards.isNil)(this.modalRoot)) {
       this.modalRoot.removeChild(this.portalElement);
     }
   }

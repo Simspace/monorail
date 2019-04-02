@@ -1,5 +1,14 @@
-import React, { forwardRef, MouseEvent, StatelessComponent, Ref } from 'react'
+import React, {
+  forwardRef,
+  MouseEvent,
+  Ref,
+  StatelessComponent,
+  Children,
+  ReactNode,
+} from 'react'
+import styled, { css, SimpleInterpolation } from 'styled-components'
 import { AppIcon } from '@monorail/appIcon/AppIcon'
+import { CommonComponentType } from '@monorail/types'
 import { Icon } from '@monorail/icon/Icon'
 import {
   AppName,
@@ -13,20 +22,20 @@ import {
   getElevation,
   typography,
 } from '@monorail/CommonStyles'
-import styled, { css, SimpleInterpolation } from 'styled-components'
-import { CommonComponentType } from '@monorail/types'
 
-const BBCardContent = styled<CommonComponentType, 'div'>('div')`
-  ${flexFlow()};
+const BBCardContent = styled.div<CommonComponentType>(
+  ({ cssOverrides }) => css`
+    ${flexFlow()};
 
-  border-radius: inherit;
-  height: 100%;
-  overflow: hidden;
-  width: 100%;
-  position: relative; /* Needs pos:rel; so that it doesn't get placed under the shadow pseudo elements. */
+    border-radius: inherit;
+    height: 100%;
+    overflow: hidden;
+    width: 100%;
+    position: relative; /* Needs pos:rel; so that it doesn't get placed under the shadow pseudo elements. */
 
-  ${({ cssOverrides }) => cssOverrides};
-`
+    ${cssOverrides};
+  `,
+)
 
 // building-blocks/cards/background
 export type BBCardBackgroundProps = CommonComponentType & {
@@ -35,10 +44,11 @@ export type BBCardBackgroundProps = CommonComponentType & {
   onClick?: (event: MouseEvent) => void
   ref?: Ref<any> // tslint:disable-line:no-any
   cssCardContent?: SimpleInterpolation
+  children?: ReactNode
 }
 
-export const BBCardBackground = styled<BBCardBackgroundProps>(
-  forwardRef(
+export const BBCardBackground = styled(
+  forwardRef<HTMLDivElement, BBCardBackgroundProps>(
     (
       {
         children,
@@ -55,72 +65,73 @@ export const BBCardBackground = styled<BBCardBackgroundProps>(
       </div>
     ),
   ),
-)`
-  ${({ hover }) =>
-    hover &&
-    css`
-      cursor: pointer;
+)<BBCardBackgroundProps>(
+  ({ hover, cssOverrides, elevation = ElevationRange.Elevation6 }) => css`
+    ${hover &&
+      css`
+        cursor: pointer;
 
-      &:hover {
-        &::after {
-          transition: box-shadow ease 125ms;
-          ${getElevation(ElevationRange.Elevation10)};
+        &:hover {
+          &::after {
+            transition: box-shadow ease 125ms;
+            ${getElevation(ElevationRange.Elevation10)};
+          }
         }
-      }
-    `};
+      `};
 
-  ${flexFlow()};
-  ${borderRadius(BorderRadius.Large)};
-
-  background: ${colors(Colors.White)};
-  position: relative; /* pos:re; because the shadow pseudo element is pos:abs; */
-  z-index: 0; /* mythical z-index: 0. The shadow pseudo element needs a negative z-index, but then it disappears. Have to reset the z-index to the zero value so that it appears above the background of the page but under the background of the card. */
-
-  ${({ cssOverrides }) => cssOverrides};
-
-  &::before {
-    border-radius: inherit;
-    background: ${colors(Colors.White)};
-    bottom: 0;
-    content: '';
-    left: 0;
-    position: absolute;
-    right: 0;
-    top: 0;
-    z-index: 0;
-  }
-
-  &::after {
-    ${borderRadius(BorderRadius.Medium)};
-
-    ${({ elevation = ElevationRange.Elevation6 }) => getElevation(elevation)};
+    ${flexFlow()};
+    ${borderRadius(BorderRadius.Large)};
 
     background: ${colors(Colors.White)};
-    bottom: 2px;
-    content: '';
-    left: 2px;
-    position: absolute;
-    right: 2px;
-    top: 2px;
-    z-index: -5;
-  }
-`
+    position: relative; /* pos:re; because the shadow pseudo element is pos:abs; */
+    z-index: 0; /* mythical z-index: 0. The shadow pseudo element needs a negative z-index, but then it disappears. Have to reset the z-index to the zero value so that it appears above the background of the page but under the background of the card. */
 
-const BBCardHeaderContainer = styled<
-  { cssOverrides: SimpleInterpolation },
-  'div'
->('div')`
-  ${flexFlow('row')};
-  align-items: center;
-  flex-shrink: 0;
-  height: 32px;
-  padding: 0 16px;
-  position: relative; /* BBCardBottomBorder is pos:abs relative to this. */
+    ${cssOverrides};
 
-  ${({ cssOverrides }) => cssOverrides};
-`
+    &::before {
+      border-radius: inherit;
+      background: ${colors(Colors.White)};
+      bottom: 0;
+      content: '';
+      left: 0;
+      position: absolute;
+      right: 0;
+      top: 0;
+      z-index: 0;
+    }
 
-const BBCardHeaderTitle = styled('h1')`
+    &::after {
+      ${borderRadius(BorderRadius.Medium)};
+
+      ${getElevation(elevation)};
+
+      background: ${colors(Colors.White)};
+      bottom: 2px;
+      content: '';
+      left: 2px;
+      position: absolute;
+      right: 2px;
+      top: 2px;
+      z-index: -5;
+    }
+  `,
+)
+
+const BBCardHeaderContainer = styled.div<CommonComponentType>(
+  ({ cssOverrides }) => css`
+    ${flexFlow('row')};
+
+    align-items: center;
+    flex-shrink: 0;
+    height: 32px;
+    padding: 0 16px;
+    position: relative; /* BBCardBottomBorder is pos:abs relative to this. */
+
+    ${cssOverrides};
+  `,
+)
+
+const BBCardHeaderTitle = styled.h1`
   ${typography(700, FontSizes.Title5)};
   margin: 0;
 `
@@ -141,8 +152,8 @@ type BBCardBottomBorderProps = {
   accentColor?: string
 }
 
-const BBCardBottomBorder = styled<BBCardBottomBorderProps, 'div'>('div')`
-  ${({ accentColor }) => css`
+const BBCardBottomBorder = styled.div<BBCardBottomBorderProps>(
+  ({ accentColor }) => css`
     background: linear-gradient(
       to right,
       ${colors(Colors.White, 0)} 0,
@@ -150,14 +161,14 @@ const BBCardBottomBorder = styled<BBCardBottomBorderProps, 'div'>('div')`
       ${accentColor} calc(100% - 16px),
       ${colors(Colors.White, 0)} 100%
     );
-  `};
 
-  bottom: 0;
-  height: 1px;
-  left: 0;
-  position: absolute;
-  right: 0;
-`
+    bottom: 0;
+    height: 1px;
+    left: 0;
+    position: absolute;
+    right: 0;
+  `,
+)
 
 type BBCardHeaderProps = BBCardBottomBorderProps & {
   appIcon?: AppName
@@ -195,21 +206,21 @@ type BBCardGridProps = {
   cssOverrides?: SimpleInterpolation
 }
 
-export const BBCardGrid = styled<BBCardGridProps, 'div'>('div')`
-  display: grid;
-  flex-grow: 1;
-  grid-auto-rows: max-content;
-  grid-template-columns: repeat(
-    auto-fill,
-    ${({ cardWidth = 272 }) => cardWidth}px
-  );
-  justify-content: center;
-  padding: 20px 32px 14px;
+export const BBCardGrid = styled.div<BBCardGridProps>(
+  ({ cssOverrides, cardWidth = 272 }) => css`
+    display: grid;
+    flex-grow: 1;
+    grid-auto-rows: max-content;
+    grid-template-columns: repeat(auto-fill, ${cardWidth}px);
+    justify-content: center;
+    padding: 20px 32px 14px;
 
-  /* IE11 doesn't work with grid that auto places content. Here starts the hacks to get it working with flex. */
-  display: -ms-flexbox; /* stylelint-disable-line */
-  flex-flow: row wrap;
-  align-content: flex-start;
+    /* IE11 doesn't work with grid that auto places content. Here starts the hacks to get it working with flex. */
+    display: -ms-flexbox; /* stylelint-disable-line */
+    flex-flow: row wrap;
+    align-content: flex-start;
+    align-items: flex-start;
 
-  ${({ cssOverrides }) => cssOverrides};
-`
+    ${cssOverrides};
+  `,
+)

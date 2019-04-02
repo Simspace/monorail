@@ -9,9 +9,9 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _styledComponents = _interopRequireWildcard(require("styled-components"));
 
-var _CommonStyles = require("../CommonStyles");
-
 var _Icon = require("../icon/Icon");
+
+var _CommonStyles = require("../CommonStyles");
 
 var _buttonTypes = require("./buttonTypes");
 
@@ -31,36 +31,33 @@ const iconButtonSizeCss = {
   [_buttonTypes.ButtonSize.Default]: (0, _styledComponents.css)(["height:24px;width:24px;"]),
   [_buttonTypes.ButtonSize.Large]: (0, _styledComponents.css)(["height:32px;width:32px;", "{font-size:24px;}"], _Icon.Icon)
 };
+
 const CCIconButton =
 /*#__PURE__*/
-(0, _styledComponents.default)('button').withConfig({
+_styledComponents.default.button.withConfig({
   displayName: "IconButton__CCIconButton",
   componentId: "sc-6j6oar-0"
-})(["", ";", ";", ";", ";", ";align-items:center;box-sizing:border-box;cursor:pointer;flex-shrink:0;justify-content:center;outline:none;padding:0;text-transform:uppercase;user-select:none;", ";", "{", ";", ";}", ";", ";"], ({
-  display
-}) => iconButtonDisplayCss[display], ({
-  size
-}) => iconButtonSizeCss[size], ({
-  disabled
-}) => disabled && _CommonStyles.baseDisabledStyles, ({
-  shape
-}) => (0, _CommonStyles.borderRadius)(shape === _buttonTypes.IconButtonShape.Default ? _CommonStyles.BorderRadius.Round : _CommonStyles.BorderRadius.Medium), (0, _CommonStyles.flexFlow)(), _CommonStyles.buttonTransition, _Icon.Icon, ({
-  darkMode
-}) => darkMode ? (0, _styledComponents.css)(["color:", ";"], (0, _CommonStyles.colors)(_CommonStyles.Colors.White)) : (0, _styledComponents.css)(["color:currentColor;"]), ({
+})(({
+  disabled,
+  display,
+  size,
+  shape,
+  cssOverrides,
+  darkMode,
   iconCss
-}) => iconCss, (0, _CommonStyles.baseFocusStyles)(), ({
-  cssOverrides
-}) => cssOverrides);
+}) => (0, _styledComponents.css)(["", ";", ";", ";", ";", ";align-items:center;box-sizing:border-box;cursor:pointer;flex-shrink:0;justify-content:center;outline:none;padding:0;text-transform:uppercase;user-select:none;", ";", "{", ";", ";}", ";", ";"], iconButtonDisplayCss[display], iconButtonSizeCss[size], disabled && _CommonStyles.baseDisabledStyles, (0, _CommonStyles.borderRadius)(shape === _buttonTypes.IconButtonShape.Default ? _CommonStyles.BorderRadius.Round : _CommonStyles.BorderRadius.Medium), (0, _CommonStyles.flexFlow)(), _CommonStyles.buttonTransition, _Icon.Icon, darkMode ? (0, _styledComponents.css)(["color:", ";"], (0, _CommonStyles.colors)(_CommonStyles.Colors.White)) : (0, _styledComponents.css)(["color:currentColor;"]), iconCss, (0, _CommonStyles.baseFocusStyles)(), cssOverrides));
+
 exports.CCIconButton = CCIconButton;
 
 class IconButton extends _react.Component {
   render() {
     const {
       icon,
+      className,
       ...otherProps
     } = this.props;
     return _react.default.createElement(CCIconButton, _extends({
-      className: "new-button"
+      className: `new-button ${className}`
     }, otherProps), _react.default.createElement(_Icon.Icon, {
       icon: icon
     }));

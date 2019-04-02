@@ -1,7 +1,7 @@
 import { Component, MouseEvent } from 'react';
 import { ButtonProps } from './Button';
-import { Omit } from 'typelevel-ts';
 import { ButtonDisplay, ButtonSize } from '@monorail/buttons/buttonTypes';
+import { Omit } from 'typelevel-ts';
 declare type Props = Omit<ButtonProps, 'onClick'> & {
     loadingText?: string;
     onClick?: (event: MouseEvent<HTMLButtonElement>) => Promise<void>;

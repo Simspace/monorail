@@ -33,20 +33,18 @@ const buttonSizeCss = {
   [_buttonTypes.ButtonSize.Large]: (0, _styledComponents.css)(["height:32px;padding:0 15px;"])
 };
 exports.buttonSizeCss = buttonSizeCss;
+
 const CCButton =
 /*#__PURE__*/
-(0, _styledComponents.default)('button').withConfig({
+_styledComponents.default.button.withConfig({
   displayName: "Button__CCButton",
   componentId: "sc-1yaavbq-0"
-})(["", ";", ";", ";", ";", ";cursor:pointer;flex-shrink:0;outline:none;text-transform:uppercase;user-select:none;", ";", "{color:currentColor;margin-left:-4px;margin-right:4px;margin-top:-16px;position:relative;top:4px;}", ";", ";"], ({
-  display
-}) => buttonDisplayCss[display], ({
-  size
-}) => buttonSizeCss[size], ({
-  disabled
-}) => disabled && _CommonStyles.baseDisabledStyles, (0, _CommonStyles.typography)(700, _CommonStyles.FontSizes.Title5), (0, _CommonStyles.borderRadius)(), _CommonStyles.buttonTransition, _Icon.Icon, (0, _CommonStyles.baseFocusStyles)(), ({
+})(({
+  disabled,
+  size,
+  display,
   cssOverrides
-}) => cssOverrides);
+}) => (0, _styledComponents.css)(["", ";", ";", ";", ";", ";", ";align-items:center;cursor:pointer;flex-shrink:0;outline:none;text-transform:uppercase;user-select:none;justify-content:center;", ";", "{color:currentColor;margin:auto 4px auto - 4px;}", ";", ";"], buttonDisplayCss[display], buttonSizeCss[size], disabled && _CommonStyles.baseDisabledStyles, (0, _CommonStyles.typography)(700, _CommonStyles.FontSizes.Title5), (0, _CommonStyles.borderRadius)(), (0, _CommonStyles.flexFlow)('row'), _CommonStyles.buttonTransition, _Icon.Icon, (0, _CommonStyles.baseFocusStyles)(), cssOverrides));
 
 class Button extends _react.Component {
   render() {

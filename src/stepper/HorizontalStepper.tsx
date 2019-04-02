@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import styled, { SimpleInterpolation } from 'styled-components'
-import { isNil } from '@monorail/CoreUtils/primitive-guards'
+import { isNil } from '@monorail/sharedHelpers/typeGuards'
+import styled, { css, SimpleInterpolation } from 'styled-components'
 
 import { Icon } from '@monorail/icon/Icon'
 
@@ -16,16 +16,16 @@ type Props = {
   onStepClick: (step: StepType, index: number) => void
 }
 
-const HorizontalStepperContainer = styled<StyleOptions, 'div'>('div')`
-  display: flex;
-  height: 100%;
-  width: 100%;
-  justify-content: center;
+const HorizontalStepperContainer = styled.div<StyleOptions>(
+  ({ cssOverrides }) => css`
+    display: flex;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+  `,
+)
 
-  ${({ cssOverrides }) => cssOverrides};
-`
-
-const Step = styled<StyleOptions, 'div'>('div')`
+const Step = styled.div<StyleOptions>`
   align-items: center;
   display: flex;
   justify-content: center;
@@ -66,7 +66,7 @@ const Step = styled<StyleOptions, 'div'>('div')`
     }
   }
 `
-const Body = styled('div')`
+const Body = styled.div`
   align-items: center;
   display: flex;
   z-index: 1;
@@ -74,75 +74,85 @@ const Body = styled('div')`
   overflow: hidden;
 `
 
-const NumberWrapper = styled<StyleOptions, 'div'>('div')`
-  padding: 10px;
-  position: relative;
-  background-color: ${props =>
-    props.darkMode ? 'hsla(234,56%,20%,1)' : 'white'};
+const NumberWrapper = styled.div<StyleOptions>(
+  ({ darkMode }) => css`
+    padding: 10px;
+    position: relative;
+    background-color: ${darkMode ? 'hsla(234,56%,20%,1)' : 'white'};
 
-  .icon {
-    position: absolute;
-    left: 5px;
-    top: 5px;
+    .icon {
+      position: absolute;
+      left: 5px;
+      top: 5px;
 
-    svg {
-      fill: #1465ff;
+      svg {
+        fill: #1465ff;
+      }
     }
-  }
-`
+  `,
+)
 
-const Number = styled<StyleOptions, 'div'>('div')`
-  border-style: solid;
-  border-width: 2px;
-  border-color: ${props => (props.darkMode ? 'white' : 'rgba(0, 0, 0, 0.54)')};
-  align-items: center;
-  border-radius: 50%;
-  width: 25px;
-  height: 25px;
-  position: relative;
-`
+const Number = styled.div<StyleOptions>(
+  ({ darkMode }) => css`
+    border-style: solid;
+    border-width: 2px;
+    border-color: ${darkMode ? 'white' : 'rgba(0, 0, 0, 0.54)'};
+    align-items: center;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    position: relative;
+  `,
+)
 
 // Needed to have this because otherwise
 // the number would bounce around when
 // swapping between checkmark and digit
-const Digit = styled<StyleOptions, 'div'>('div')`
-  color: ${props => (props.darkMode ? 'white' : 'rgba(0, 0, 0, 0.54)')};
-  font-weight: bold;
-  position: absolute;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  width: 100%;
-  display: flex;
-`
+const Digit = styled.div<StyleOptions>(
+  ({ darkMode }) => css`
+    color: ${darkMode ? 'white' : 'rgba(0, 0, 0, 0.54)'};
+    font-weight: bold;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    display: flex;
+  `,
+)
 
-const Text = styled<StyleOptions, 'div'>('div')`
-  display: flex;
-  flex-direction: column;
-  background-color: ${props =>
-    props.darkMode ? 'hsla(234,56%,20%,1)' : 'white'};
-  padding-right: 10px;
-`
+const Text = styled.div<StyleOptions>(
+  ({ darkMode }) => css`
+    display: flex;
+    flex-direction: column;
+    background-color: ${darkMode ? 'hsla(234,56%,20%,1)' : 'white'};
+    padding-right: 10px;
+  `,
+)
 
-const Title = styled<StyleOptions, 'div'>('div')`
-  color: ${props => (props.darkMode ? 'white' : 'black')};
-  font-size: 13px;
-  font-weight: bold;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-`
+const Title = styled.div<StyleOptions>(
+  ({ darkMode }) => css`
+    color: ${darkMode ? 'white' : 'black'};
+    font-size: 13px;
+    font-weight: bold;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  `,
+)
 
-const Subtitle = styled<StyleOptions, 'div'>('div')`
-  color: ${props => (props.darkMode ? 'white' : 'black')};
-  font-size: 11px;
-  opacity: 0.7;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-`
+const Subtitle = styled.div<StyleOptions>(
+  ({ darkMode }) => css`
+    color: ${darkMode ? 'white' : 'black'};
+    font-size: 11px;
+    opacity: 0.7;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  `,
+)
 
-const Line = styled('div')`
+const Line = styled.div`
   height: 1px;
   width: 50%;
   background-color: #c4c4c4;

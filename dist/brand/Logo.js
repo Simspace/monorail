@@ -7,9 +7,11 @@ exports.PCTELogoMark = exports.SimSpaceLogoFlat = exports.SimSpaceLogoMark = exp
 
 var _react = _interopRequireDefault(require("react"));
 
+var _styledComponents = _interopRequireWildcard(require("styled-components"));
+
 var _CommonStyles = require("../CommonStyles");
 
-var _styledComponents = _interopRequireDefault(require("styled-components"));
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -17,12 +19,12 @@ function _extends() { _extends = Object.assign || function (target) { for (var i
 
 const LogoSvg =
 /*#__PURE__*/
-(0, _styledComponents.default)('svg').withConfig({
+_styledComponents.default.svg.withConfig({
   displayName: "Logo__LogoSvg",
   componentId: "zbc3vb-0"
-})(["height:100%;width:auto;", ";"], ({
+})(({
   cssOverrides
-}) => cssOverrides);
+}) => (0, _styledComponents.css)(["height:100%;width:auto;", ";"], cssOverrides));
 
 const SimSpaceLogo = ({
   background,

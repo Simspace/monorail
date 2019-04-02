@@ -1,6 +1,6 @@
 import { Component } from 'react'
 import ReactDOM from 'react-dom'
-import { isNil } from '@monorail/CoreUtils/primitive-guards'
+import { isNil } from '@monorail/sharedHelpers/typeGuards'
 
 /**
  * Creates a modal-root at body level if it doesn't exist already

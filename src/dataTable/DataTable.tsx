@@ -74,22 +74,23 @@ const tableDataStyles: (props: TableDataType) => SimpleInterpolation = ({
 
 // Main Wrapper
 
-export const TableContainer = styled<CommonComponentType, 'div'>('div')`
-  ${flexFlow()};
+export const TableContainer = styled.div<CommonComponentType>(
+  ({ cssOverrides }) => css`
+    ${flexFlow()};
 
-  height: 100%;
-  overflow: hidden;
+    height: 100%;
+    overflow: hidden;
 
-  ${({ cssOverrides }) => cssOverrides};
-`
+    ${cssOverrides};
+  `,
+)
 
 // Header Components
 
-export const TableHeaderContainer = styled<
-  CommonComponentType & TableSizeType,
-  'div'
->('div')`
-  ${({
+export const TableHeaderContainer = styled.div<
+  CommonComponentType & TableSizeType
+>(
+  ({
     collapsible = false,
     cssOverrides,
     dense = false,
@@ -105,14 +106,13 @@ export const TableHeaderContainer = styled<
     min-height: 32px;
 
     ${cssOverrides};
-  `};
-`
+  `,
+)
 
-export const TableHeaderData = styled<
-  CommonComponentType & TableDataType & { hasSorter?: boolean },
-  'div'
->('div')`
-  ${({ cssOverrides, flex, hasSorter = false, textAlign, width }) => css`
+export const TableHeaderData = styled.div<
+  CommonComponentType & TableDataType & { hasSorter?: boolean }
+>(
+  ({ cssOverrides, flex, hasSorter = false, textAlign, width }) => css`
     ${flexFlow('row')};
     ${typography(500, FontSizes.Title5)};
 
@@ -134,25 +134,26 @@ export const TableHeaderData = styled<
       `};
 
     ${cssOverrides};
-  `};
-`
+  `,
+)
 
 // Body Components
 
-export const TableBody = styled<CommonComponentType, 'div'>('div')`
-  ${flexFlow()};
+export const TableBody = styled.div<CommonComponentType>(
+  ({ cssOverrides }) => css`
+    ${flexFlow()};
 
-  flex: 1 1 100%;
-  overflow-y: auto;
+    flex: 1 1 100%;
+    overflow-y: auto;
 
-  ${({ cssOverrides }) => cssOverrides};
-`
+    ${cssOverrides};
+  `,
+)
 
-export const TableRowContainer = styled<
-  CommonComponentType & TableSizeType,
-  'div'
->('div')`
-  ${({
+export const TableRowContainer = styled.div<
+  CommonComponentType & TableSizeType
+>(
+  ({
     collapsible = false,
     cssOverrides,
     dense = false,
@@ -178,13 +179,11 @@ export const TableRowContainer = styled<
     }
 
     ${cssOverrides};
-  `};
-`
+  `,
+)
 
-export const TableRowData = styled<CommonComponentType & TableDataType, 'div'>(
-  'div',
-)`
-  ${({ textAlign, width, flex, cssOverrides }) => css`
+export const TableRowData = styled.div<CommonComponentType & TableDataType>(
+  ({ textAlign, width, flex, cssOverrides }) => css`
     ${flexFlow('row')};
     ${typography(400, FontSizes.Title5)};
 
@@ -196,14 +195,13 @@ export const TableRowData = styled<CommonComponentType & TableDataType, 'div'>(
     ${tableDataStyles({ textAlign, width, flex })};
 
     ${cssOverrides};
-  `};
-`
+  `,
+)
 
-export const TableRowGroupHeader = styled<
-  CommonComponentType & TableSizeType,
-  'div'
->('div')`
-  ${({
+export const TableRowGroupHeader = styled.div<
+  CommonComponentType & TableSizeType
+>(
+  ({
     collapsible = false,
     cssOverrides,
     dense = false,
@@ -218,8 +216,8 @@ export const TableRowGroupHeader = styled<
     user-select: none;
 
     ${cssOverrides};
-  `};
-`
+  `,
+)
 
 export const TableEmptyMessage = styled.div`
   padding: 16px;
@@ -229,11 +227,10 @@ export const TableEmptyMessage = styled.div`
 
 // Table Footer
 
-export const TableFooterContainer = styled<
-  CommonComponentType & TableSizeType,
-  'div'
->('div')`
-  ${({
+export const TableFooterContainer = styled.div<
+  CommonComponentType & TableSizeType
+>(
+  ({
     collapsible = false,
     cssOverrides,
     dense = false,
@@ -248,12 +245,16 @@ export const TableFooterContainer = styled<
     height: 24px;
 
     ${cssOverrides};
-  `};
-`
+  `,
+)
 
-export const TableFooterMeta = styled<CommonComponentType, 'div'>('div')`
-  ${typography(400, FontSizes.Title5)};
+export const TableFooterMeta = styled.div<CommonComponentType>(
+  ({ cssOverrides }) => css`
+    ${typography(400, FontSizes.Title5)};
 
-  color: ${colors(Colors.Black74)};
-  margin-left: auto;
-`
+    color: ${colors(Colors.Black74)};
+    margin-left: auto;
+
+    ${cssOverrides};
+  `,
+)

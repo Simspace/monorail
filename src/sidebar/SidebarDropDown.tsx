@@ -6,23 +6,18 @@ import { flexFlow, generateScaleAnimation } from '@monorail/CommonStyles'
 import { Overlay } from '@monorail/toggle/Overlay'
 
 import { fromNullable } from 'fp-ts/lib/Option'
-import { StyledHtmlElement } from '@monorail/CoreUtils/type-level'
 
 type DropDownContentProps = { cssOverrides?: SimpleInterpolation }
-const DropDownContent = styled<DropDownContentProps, 'div'>('div')`
-  ${({ cssOverrides }) => css`
+
+const DropDownContent = styled.div<DropDownContentProps>(
+  ({ cssOverrides }) => css`
     ${flexFlow()};
 
     overflow: hidden;
 
     ${cssOverrides};
-  `};
-`
-
-type BBCardBackgroundRefType = StyledHtmlElement<
-  HTMLDivElement,
-  BBCardBackgroundProps
->
+  `,
+)
 
 type Props = PopOverChildProps & {
   width: number
@@ -41,7 +36,7 @@ export class SidebarDropDown extends Component<Props, State> {
     dropDownHeight: 0,
   }
 
-  dropDownRef = createRef<BBCardBackgroundRefType>()
+  dropDownRef = createRef<HTMLDivElement>()
 
   componentDidMount() {
     this.updateMenuHeight()

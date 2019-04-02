@@ -7,7 +7,7 @@ exports.TabBar = exports.TabBarContainer = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _primitiveGuards = require("../CoreUtils/primitive-guards");
+var _typeGuards = require("../sharedHelpers/typeGuards");
 
 var _styledComponents = _interopRequireWildcard(require("styled-components"));
 
@@ -18,25 +18,26 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 // TabBarIndicator is pos:abs to this element. Also we use offsetLeft on the Tab which references this position.
 const TabBarContainer =
 /*#__PURE__*/
-(0, _styledComponents.default)('div').withConfig({
+_styledComponents.default.div.withConfig({
   displayName: "TabBar__TabBarContainer",
   componentId: "sc-1hr19pz-0"
-})(["", ";height:", "px;padding:0 8px;position:relative;box-sizing:border-box;border-bottom:1px solid ", ";flex-shrink:0;", ";"], (0, _CommonStyles.flexFlow)('row'), ({
+})(({
+  cssOverrides,
   size
-}) => size, (0, _CommonStyles.colors)(_CommonStyles.Colors.Grey94), ({
-  cssOverrides
-}) => cssOverrides);
+}) => (0, _styledComponents.css)(["", ";height:", "px;padding:0 8px;position:relative;box-sizing:border-box;border-bottom:1px solid ", ";flex-shrink:0;", ";"], (0, _CommonStyles.flexFlow)('row'), size, (0, _CommonStyles.colors)(_CommonStyles.Colors.Grey94), cssOverrides));
+
 exports.TabBarContainer = TabBarContainer;
+
 const TabBarIndicator =
 /*#__PURE__*/
-(0, _styledComponents.default)('div').withConfig({
+_styledComponents.default.div.withConfig({
   displayName: "TabBar__TabBarIndicator",
   componentId: "sc-1hr19pz-1"
-})(["", ";background:", ";border-radius:3px 3px 0 0;bottom:0;height:3px;position:absolute;transition-property:all;transition-timing-function:ease-in-out;"], ({
+})(({
   left,
   width,
   duration
-}) => (0, _styledComponents.css)(["left:", "px;width:", "px;transition-duration:", "ms;"], left, width, duration * 1.4), (0, _CommonStyles.colors)(_CommonStyles.Colors.BrandLightBlue));
+}) => (0, _styledComponents.css)(["background:", ";border-radius:3px 3px 0 0;bottom:0;height:3px;left:", "px;position:absolute;transition-duration:", "ms;transition-property:all;transition-timing-function:ease-in-out;width:", "px;"], (0, _CommonStyles.colors)(_CommonStyles.Colors.BrandLightBlue), left, duration * 1.4, width));
 
 const TabBarActions =
 /*#__PURE__*/
@@ -100,11 +101,11 @@ class TabBar extends _react.Component {
      * automatic updates on Tab click.
      */
 
-    return _react.default.Children.map(children, (child, index) => !(0, _primitiveGuards.isNil)(child) && _react.default.isValidElement(child) && _react.default.cloneElement(child, {
+    return _react.default.Children.map(children, (child, index) => !(0, _typeGuards.isNil)(child) && _react.default.isValidElement(child) && _react.default.cloneElement(child, {
       index,
       isActive: index === activeTabIndex,
       setIndicator: this.setIndicator,
-      updateIsActive: (0, _primitiveGuards.isNil)(this.props.activeTabIndex) ? this.updateActiveTab : undefined
+      updateIsActive: (0, _typeGuards.isNil)(this.props.activeTabIndex) ? this.updateActiveTab : undefined
     }));
   }
 
@@ -122,7 +123,7 @@ class TabBar extends _react.Component {
     return _react.default.createElement(TabBarContainer, {
       cssOverrides: cssOverrides,
       size: size
-    }, this.renderTabs(), !(0, _primitiveGuards.isNil)(actions) && _react.default.createElement(TabBarActions, {
+    }, this.renderTabs(), !(0, _typeGuards.isNil)(actions) && _react.default.createElement(TabBarActions, {
       id: "tabBarActions"
     }, actions), _react.default.createElement(TabBarIndicator, {
       width: indicatorWidth,

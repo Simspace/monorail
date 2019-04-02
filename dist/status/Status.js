@@ -13,12 +13,13 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 const Status =
 /*#__PURE__*/
-(0, _styledComponents.default)('div').withConfig({
+_styledComponents.default.div.withConfig({
   displayName: "Status",
   componentId: "kuxbp5-0"
-})(["", ";"], ({
+})(({
   cssOverrides,
   size = 16,
   inactive = false
 }) => (0, _styledComponents.css)(["background:", ";background:", ";border-radius:", "px;color:", ";flex-shrink:0;font-size:", "px;font-weight:700;height:", "px;min-width:", "px;padding:0 ", "px;text-align:center;line-height:", "px;display:inline-block;", ";"], (0, _CommonStyles.colors)(_CommonStyles.Colors.BrandLightBlue), (0, _CommonStyles.colors)(inactive ? _CommonStyles.Colors.Black54 : _CommonStyles.Colors.BrandLightBlue), size / 2, (0, _CommonStyles.colors)(_CommonStyles.Colors.White), size - 5, size, size, size / 4, size, cssOverrides));
+
 exports.Status = Status;

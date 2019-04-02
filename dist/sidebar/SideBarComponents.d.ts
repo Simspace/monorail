@@ -11,28 +11,16 @@ export declare enum SidebarContainerAnimationPose {
     Open = "open",
     Collapsed = "collapsed"
 }
-export declare const SidebarContainer: import("styled-components").StyledComponentClass<CommonComponentType & {
+export declare const SidebarContainer: import("styled-components").StyledComponent<React.ComponentType<any>, any, CommonComponentType & {
     pose: string;
-}, any, Pick<CommonComponentType & {
-    pose: string;
-}, "id" | "cssOverrides" | "className" | "as" | "tabIndex" | "pose"> & {
-    theme?: any;
-}>;
-export declare const SidebarMenuContainer: import("styled-components").StyledComponentClass<CommonComponentType, any, CommonComponentType & React.ClassAttributes<HTMLDivElement> & React.HTMLAttributes<HTMLDivElement>>;
-export declare const SidebarMenuItemDropDownToggle: import("styled-components").StyledComponentClass<CommonComponentType & PopOverToggleProps & {
+}, never>;
+export declare const SidebarMenuContainer: import("styled-components").StyledComponent<"div", any, CommonComponentType, never>;
+export declare const SidebarMenuItemDropDownToggle: import("styled-components").StyledComponent<({ title, subtitle, iconName, isOpen, cssOverrides, isSideBarCollapsed, ...otherProps }: any) => JSX.Element, any, CommonComponentType & PopOverToggleProps & {
     disabled?: boolean | undefined;
     title: string;
     subtitle?: string | undefined;
     iconName: string;
     isSideBarCollapsed: boolean;
-}, any, Pick<CommonComponentType & PopOverToggleProps & {
-    disabled?: boolean | undefined;
-    title: string;
-    subtitle?: string | undefined;
-    iconName: string;
-    isSideBarCollapsed: boolean;
-}, "title" | "id" | "isOpen" | "cssOverrides" | "className" | "onClick" | "as" | "tabIndex" | "disabled" | "isSideBarCollapsed" | "subtitle" | "iconName"> & {
-    theme?: any;
-}>;
-export declare const SidebarMenuContextRibbon: import("styled-components").StyledComponentClass<CommonComponentType, any, CommonComponentType & React.ClassAttributes<HTMLDivElement> & React.HTMLAttributes<HTMLDivElement>>;
-export declare const SideBarMenuDivider: import("styled-components").StyledComponentClass<{}, any, React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>>;
+}, never>;
+export declare const SidebarMenuContextRibbon: import("styled-components").StyledComponent<"div", any, CommonComponentType, never>;
+export declare const SideBarMenuDivider: import("styled-components").StyledComponent<"div", any, {}, never>;
