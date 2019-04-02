@@ -1,7 +1,6 @@
 import React, { Component, MouseEvent } from 'react';
 import { LinkProps } from '@monorail/list/List';
 import { CommonComponentType } from '@monorail/types';
-import { StyledHtmlElement } from '@monorail/CoreUtils/type-level';
 declare type CCTabProps = CommonComponentType & LinkProps & {
     onClick?: (event: MouseEvent<HTMLDivElement>) => void;
     isActive: boolean;
@@ -17,7 +16,7 @@ export declare class Tab extends Component<TabProps> {
         setIndicator: () => void;
         updateIsActive: () => void;
     };
-    tabRef: React.RefObject<StyledHtmlElement<HTMLDivElement, CCTabProps, unknown>>;
+    tabRef: React.RefObject<HTMLDivElement>;
     componentDidMount(): void;
     componentDidUpdate(prevProps: TabProps): void;
     callSetIndicator: () => void;

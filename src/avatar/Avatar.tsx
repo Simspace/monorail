@@ -1,6 +1,5 @@
 import React, { StatelessComponent } from 'react'
 import styled, { css, SimpleInterpolation } from 'styled-components'
-
 import { borderRadius, Colors, colors } from '@monorail/CommonStyles'
 
 type CCAvatarProps = {
@@ -10,9 +9,9 @@ type CCAvatarProps = {
 
 const size = 24
 
-const CCAvatar = styled<CCAvatarProps, 'div'>('div')`
-  ${({ team }) =>
-    team
+const CCAvatar = styled.div<CCAvatarProps>(
+  ({ team, cssOverrides }) => css`
+    ${team
       ? css`
           ${borderRadius()};
 
@@ -23,19 +22,21 @@ const CCAvatar = styled<CCAvatarProps, 'div'>('div')`
           border-radius: ${size / 2}px;
         `};
 
-  color: ${colors(Colors.White)};
-  flex-shrink: 0;
-  font-size: 9.89px;
-  font-weight: 900;
-  height: ${size}px;
-  line-height: ${size}px;
-  text-align: center;
-  text-transform: uppercase;
-  user-select: none;
-  width: ${size}px;
+    color: ${colors(Colors.White)};
+    flex-shrink: 0;
+    font-size: 9.89px;
+    font-weight: 900;
+    height: ${size}px;
+    line-height: ${size}px;
+    text-align: center;
+    text-transform: uppercase;
+    user-select: none;
+    width: ${size}px;
 
-  ${({ cssOverrides }) => cssOverrides};
-`
+    ${cssOverrides};
+  `,
+)
+
 type AvatarProps = CCAvatarProps & {
   first: string
   last: string

@@ -13,18 +13,20 @@ import {
   typography,
 } from '@monorail/CommonStyles'
 
-const HeaderRow = styled.div<CommonComponentType>`
-  color: ${colors(Colors.BrandDarkBlue)};
-  ${flexFlow('row')};
-  ${typography(500, FontSizes.Title3)};
+const HeaderRow = styled.div<CommonComponentType>(
+  ({ cssOverrides }) => css`
+    color: ${colors(Colors.BrandDarkBlue)};
+    ${flexFlow('row')};
+    ${typography(500, FontSizes.Title3)};
 
-  align-items: center;
-  flex-shrink: 0;
-  height: 48px;
-  padding: 0 16px;
+    align-items: center;
+    flex-shrink: 0;
+    height: 48px;
+    padding: 0 16px;
 
-  ${({ cssOverrides }) => cssOverrides};
-`
+    ${cssOverrides};
+  `,
+)
 
 const iconRightCss = css`
   color: ${colors(Colors.BrandDarkBlue)};
@@ -44,10 +46,10 @@ type Props = CommonComponentType & {
   cssHeaderRow?: SimpleInterpolation
   iconLeft?: string
   noBorder?: boolean
-  title: string
+  title: ReactNode
 }
 
-export const Header = styled<Props>(
+export const Header = styled(
   ({
     actions,
     appIcon,
@@ -70,8 +72,8 @@ export const Header = styled<Props>(
       {children}
     </div>
   ),
-)`
-  ${({ noBorder, appIcon, cssOverrides }) => css`
+)<Props>(
+  ({ noBorder, appIcon, cssOverrides }) => css`
     ${!noBorder &&
       css`
         &::after {
@@ -92,5 +94,5 @@ export const Header = styled<Props>(
     flex-shrink: 0;
 
     ${cssOverrides};
-  `};
-`
+  `,
+)

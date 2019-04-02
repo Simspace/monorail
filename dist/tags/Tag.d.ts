@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import { SimpleInterpolation } from 'styled-components';
 declare type CCTagProps = {
     cssOverrides?: SimpleInterpolation;
     label?: string;
 };
-export declare const CCTag: import("styled-components").StyledComponentClass<CCTagProps, any, CCTagProps & React.ClassAttributes<HTMLDivElement> & React.HTMLAttributes<HTMLDivElement>>;
+export declare const CCTag: import("styled-components").StyledComponent<"div", any, CCTagProps, never>;
 declare type TagProps = CCTagProps & {
     icon: string;
     key?: string | number;

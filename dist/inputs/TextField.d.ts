@@ -1,6 +1,6 @@
-import React, { ChangeEvent, Component } from 'react';
+import { ChangeEvent, Component } from 'react';
 import { SimpleInterpolation } from 'styled-components';
-export declare const BBTextFieldLabel: import("styled-components").StyledComponentClass<{}, any, React.DetailedHTMLProps<React.HTMLAttributes<HTMLParagraphElement>, HTMLParagraphElement>>;
+export declare const BBTextFieldLabel: import("styled-components").StyledComponent<"p", any, {}, never>;
 declare type BBTextFieldContainerProps = {
     cssOverrides?: SimpleInterpolation;
 };
@@ -16,6 +16,8 @@ declare type BBTextFieldInputProps = {
     readOnly?: boolean;
     required?: boolean;
     type?: string;
+    min?: number;
+    max?: number;
 };
 export declare type TextFieldProps = BBTextFieldContainerProps & BBTextFieldInputProps & {};
 export declare class TextField extends Component<TextFieldProps> {

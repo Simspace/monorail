@@ -1,4 +1,4 @@
-import React, { CSSProperties, MouseEvent, ReactNode, StatelessComponent } from 'react';
+import { CSSProperties, MouseEvent, ReactNode, StatelessComponent } from 'react';
 import { SimpleInterpolation } from 'styled-components';
 import { Sizes } from '@monorail/CommonStyles';
 import { IconProps } from '@monorail/icon/Icon';
@@ -24,19 +24,13 @@ declare type ListItemProps = LinkProps & ListSizeProps & CommonComponentType & {
     size?: Sizes;
     disabled?: boolean;
 };
-export declare const ListItemText: import("styled-components").StyledComponentClass<CommonComponentType, any, CommonComponentType & React.ClassAttributes<HTMLDivElement> & React.HTMLAttributes<HTMLDivElement>>;
-export declare const ListItemPrimaryText: import("styled-components").StyledComponentClass<CommonComponentType, any, CommonComponentType & React.ClassAttributes<HTMLSpanElement> & React.HTMLAttributes<HTMLSpanElement>>;
-export declare const ListItemSecondaryText: import("styled-components").StyledComponentClass<CommonComponentType, any, CommonComponentType & React.ClassAttributes<HTMLSpanElement> & React.HTMLAttributes<HTMLSpanElement>>;
-export declare const ListItemGraphic: import("styled-components").StyledComponentClass<ListSizeProps & {
+export declare const ListItemText: import("styled-components").StyledComponent<"div", any, CommonComponentType, never>;
+export declare const ListItemPrimaryText: import("styled-components").StyledComponent<"span", any, CommonComponentType, never>;
+export declare const ListItemSecondaryText: import("styled-components").StyledComponent<"span", any, CommonComponentType, never>;
+export declare const ListItemGraphic: import("styled-components").StyledComponent<({ dense, ...otherProps }: any) => JSX.Element, any, ListSizeProps & {
     icon: string;
-} & IconProps, any, Pick<ListSizeProps & {
-    icon: string;
-} & IconProps, "cssOverrides" | "icon" | "className" | "onClick" | "size" | "dense"> & {
-    theme?: any;
-}>;
-export declare const ListItem: import("styled-components").StyledComponentClass<ListItemProps, any, Pick<ListItemProps, "id" | "cssOverrides" | "className" | "onClick" | "size" | "as" | "tabIndex" | "to" | "disabled" | "dense" | "activeClassName" | "activeStyle" | "onlyActiveOnIndex"> & {
-    theme?: any;
-}>;
+} & IconProps, never>;
+export declare const ListItem: import("styled-components").StyledComponent<({ cssOverrides, children, activeClassName, ...otherProps }: any) => JSX.Element, any, ListItemProps, never>;
 export declare type SimpleListItemProps = CommonComponentType & LinkProps & {
     dense?: boolean;
     disabled?: boolean;

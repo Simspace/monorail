@@ -1,5 +1,5 @@
 import React, { Component, ReactNode } from 'react'
-import { isNil } from '@monorail/CoreUtils/primitive-guards'
+import { isNil } from '@monorail/sharedHelpers/typeGuards'
 import styled, { css, SimpleInterpolation } from 'styled-components'
 
 import { Icon } from '@monorail/icon/Icon'
@@ -17,30 +17,31 @@ import {
 import { PopOver } from '@monorail/popOver/PopOver'
 import { Menu } from '@monorail/menu/Menu'
 
-const CCFilter = styled<CCFilterProps, 'div'>('div')`
-  ${({ isOpen, isActive }) =>
-    isActive || isOpen
+const CCFilter = styled.div<CCFilterProps>(
+  ({ isOpen, isActive, cssOverrides }) => css`
+    ${isActive || isOpen
       ? basePrimaryStyles(Colors.BrandDarkBlue)
       : css`
           ${baseSecondaryStyles(Colors.BrandDarkBlue, isOpen)};
           color: ${colors(Colors.Black74)};
         `};
 
-  ${borderRadius()};
-  ${buttonTransition};
-  ${flexFlow('row')};
+    ${borderRadius()};
+    ${buttonTransition};
+    ${flexFlow('row')};
 
-  align-items: center;
-  cursor: pointer;
-  height: 24px;
-  padding: 0 4px 0 8px;
-  user-select: none;
-  flex-shrink: 0; /* Needs this for IE11 but not Chrome. */
+    align-items: center;
+    cursor: pointer;
+    height: 24px;
+    padding: 0 4px 0 8px;
+    user-select: none;
+    flex-shrink: 0; /* Needs this for IE11 but not Chrome. */
 
-  ${({ cssOverrides }) => cssOverrides};
-`
+    ${cssOverrides};
+  `,
+)
 
-const FilterText = styled('span')`
+const FilterText = styled.span`
   ${typography(700, FontSizes.Title5)};
 
   color: currentColor;
@@ -63,11 +64,19 @@ type Props = CCFilterProps & {
   document?: Document
   title: ReactNode
   content: ReactNode
+  zIndex?: number
 }
 
 export class Filter extends Component<Props> {
   render() {
-    const { cssOverrides, title, content, isActive, ...otherProps } = this.props
+    const {
+      cssOverrides,
+      title,
+      content,
+      isActive,
+      zIndex,
+      ...otherProps
+    } = this.props
 
     return (
       <PopOver
@@ -78,7 +87,13 @@ export class Filter extends Component<Props> {
             <FilterIcon icon="arrow_drop_down" />
           </CCFilter>
         )}
-        popOver={props => !isNil(content) && <Menu {...props}>{content}</Menu>}
+        popOver={props =>
+          !isNil(content) && (
+            <Menu zIndex={zIndex} {...props}>
+              {content}
+            </Menu>
+          )
+        }
       />
     )
   }

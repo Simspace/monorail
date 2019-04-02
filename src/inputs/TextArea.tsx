@@ -1,5 +1,4 @@
-import { isNil } from '@monorail/CoreUtils/primitive-guards'
-import { StyledHtmlElement } from '@monorail/CoreUtils/type-level'
+import { isNil } from '@monorail/sharedHelpers/typeGuards'
 import React, { ChangeEvent, Component } from 'react'
 import styled, { css, SimpleInterpolation } from 'styled-components'
 
@@ -17,65 +16,63 @@ import {
 * Styles
 */
 
-const BBTextAreaContainer = styled<TextAreaProps, 'label'>('label')`
-  ${flexFlow()};
+const BBTextAreaContainer = styled.label<TextAreaProps>(
+  ({ cssOverrides }) => css`
+    ${flexFlow()};
 
-  max-width: 256px;
-  width: 100%;
-  position: relative; /* position: relative; so that the icons can be absolutely positioned. */
+    max-width: 256px;
+    width: 100%;
+    position: relative; /* position: relative; so that the icons can be absolutely positioned. */
 
-  ${({ cssOverrides }) => cssOverrides};
-`
+    ${cssOverrides};
+  `,
+)
 
-const BBTextAreaLabel = styled('p')`
+const BBTextAreaLabel = styled.p`
   ${typography(500, FontSizes.Title5)};
   margin: 4px 0;
 `
 
-type BBTextAreaInput = StyledHtmlElement<
-  HTMLTextAreaElement,
-  BBTextAreaInputProps
->
-const BBTextAreaInput = styled<BBTextAreaInputProps, 'textarea'>('textarea')`
-  ${typography(400, FontSizes.Title5)};
-  ${borderRadius()};
+const BBTextAreaInput = styled.textarea<BBTextAreaInputProps>(
+  ({ chromeless, compact }) => css`
+    ${typography(400, FontSizes.Title5)};
+    ${borderRadius()};
 
-  border: 1px solid ${colors(Colors.Black, 0.12)};
-  box-sizing: border-box;
-  color: ${colors(Colors.Black89)};
-  outline: none;
-  padding: 4px 6px 4px 6px;
-  resize: none;
-  width: 100%;
+    border: 1px solid ${colors(Colors.Black, 0.12)};
+    box-sizing: border-box;
+    color: ${colors(Colors.Black89)};
+    outline: none;
+    padding: 4px 6px 4px 6px;
+    resize: none;
+    width: 100%;
 
-  ${buttonTransition};
+    ${buttonTransition};
 
-  ::placeholder {
-    color: ${colors(Colors.Black54)};
-    font-style: italic;
-  }
+    ::placeholder {
+      color: ${colors(Colors.Black54)};
+      font-style: italic;
+    }
 
-  &:hover {
-    border: 1px solid ${colors(Colors.Black, 0.3)};
-  }
+    &:hover {
+      border: 1px solid ${colors(Colors.Black, 0.3)};
+    }
 
-  &:focus,
-  &:active {
-    border: 1px solid ${colors(Colors.BrandLightBlue)};
-  }
+    &:focus,
+    &:active {
+      border: 1px solid ${colors(Colors.BrandLightBlue)};
+    }
 
-  ${({ chromeless }) =>
-    chromeless &&
-    css`
-      border: 1px solid transparent;
-    `};
+    ${chromeless &&
+      css`
+        border: 1px solid transparent;
+      `};
 
-  ${({ compact }) =>
-    compact &&
-    css`
-      overflow: hidden;
-    `};
-`
+    ${compact &&
+      css`
+        overflow: hidden;
+      `};
+  `,
+)
 
 /*
 * Types
@@ -104,7 +101,7 @@ export type TextAreaProps = BBTextAreaContainerProps & BBTextAreaInputProps & {}
 */
 
 export class TextArea extends Component<TextAreaProps> {
-  textArea = React.createRef<BBTextAreaInput>()
+  textArea = React.createRef<HTMLTextAreaElement>()
 
   setCompactHeight = () => {
     const { compact } = this.props

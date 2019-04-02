@@ -4,7 +4,7 @@ import { css } from 'styled-components'
 import { PopOverChildProps } from '@monorail/popOver/PopOver'
 import { BBModalBackground, BBModalHeader } from '@monorail/modals/Modals'
 import { Overlay } from '@monorail/toggle/Overlay'
-import { isNil } from '@monorail/CoreUtils/primitive-guards'
+import { isNil } from '@monorail/sharedHelpers/typeGuards'
 
 type Props = PopOverChildProps & {
   customCloseButton?: ReactNode

@@ -6,11 +6,13 @@ declare type Props = Omit<PopOverChildProps, 'position'> & {
     overlayProps?: Omit<BBModalOverlayProps, 'isOpen' | 'onClick'>;
     escToClose: boolean;
     usesScaleAnimation: boolean;
+    zIndex: number;
 };
 export declare class Overlay extends Component<Props> {
     static defaultProps: {
         usesScaleAnimation: boolean;
         escToClose: boolean;
+        zIndex: number;
     };
     componentDidMount(): void;
     componentWillUnmount(): void;

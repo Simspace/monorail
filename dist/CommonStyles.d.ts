@@ -1,4 +1,4 @@
-import { SimpleInterpolation, Styles } from 'styled-components';
+import { SimpleInterpolation } from 'styled-components';
 import { PopOverPosition } from '@monorail/popOver/PopOver';
 declare enum AuthSubAppName {
     Academy = "academy",
@@ -8,9 +8,13 @@ declare enum AuthSubAppName {
     Hardhat = "hardhat",
     Range = "range",
     TechOps = "techops",
-    Tracker = "tracker"
+    Tracker = "tracker",
+    Execution = "execution",
+    Home = "home",
+    Events = "events",
+    EventDesign = "event-design"
 }
-export declare const visible: (isVisible?: boolean) => Styles;
+export declare const visible: (isVisible?: boolean) => import("styled-components").FlattenSimpleInterpolation;
 export declare enum ElevationRange {
     Elevation0 = "elevation0",
     Elevation1 = "elevation1",
@@ -38,9 +42,9 @@ export declare enum ElevationRange {
     Elevation23 = "elevation23",
     Elevation24 = "elevation24"
 }
-export declare const getElevation: (elevation: ElevationRange) => Styles;
-export declare const flexFlow: (direction?: string, wrap?: string) => Styles;
-export declare const ellipsis: import("styled-components").InterpolationValue[];
+export declare const getElevation: (elevation: ElevationRange) => import("styled-components").FlattenSimpleInterpolation;
+export declare const flexFlow: (direction?: string, wrap?: string) => import("styled-components").FlattenSimpleInterpolation;
+export declare const ellipsis: import("styled-components").FlattenSimpleInterpolation;
 export declare enum FontWeights {
     ExtraLight = 200,
     Light = 300,
@@ -62,7 +66,106 @@ export declare enum FontSizes {
     Content = "content",
     Micro = "micro"
 }
-export declare const typography: (weight: number, size: FontSizes, margin?: string | undefined) => Styles;
+export declare const typography: (weight: number, size: FontSizes, margin?: string | undefined) => {
+    margin: string;
+    fontSize: string;
+    lineHeight: string;
+    fontWeight: number;
+} | {
+    fontSize: string;
+    lineHeight: string;
+    fontWeight: number;
+} | {
+    margin: string;
+    fontSize: string;
+    lineHeight: string;
+    fontWeight: number;
+} | {
+    fontSize: string;
+    lineHeight: string;
+    fontWeight: number;
+} | {
+    margin: string;
+    fontSize: string;
+    lineHeight: string;
+    fontWeight: number;
+} | {
+    fontSize: string;
+    lineHeight: string;
+    fontWeight: number;
+} | {
+    margin: string;
+    fontSize: string;
+    lineHeight: string;
+    fontWeight: number;
+} | {
+    fontSize: string;
+    lineHeight: string;
+    fontWeight: number;
+} | {
+    margin: string;
+    fontSize: string;
+    lineHeight: string;
+    fontWeight: number;
+} | {
+    fontSize: string;
+    lineHeight: string;
+    fontWeight: number;
+} | {
+    margin: string;
+    fontSize: string;
+    lineHeight: string;
+    fontWeight: number;
+} | {
+    fontSize: string;
+    lineHeight: string;
+    fontWeight: number;
+} | {
+    margin: string;
+    fontSize: string;
+    lineHeight: string;
+    fontWeight: number;
+} | {
+    fontSize: string;
+    lineHeight: string;
+    fontWeight: number;
+} | {
+    margin: string;
+    fontSize: string;
+    lineHeight: string;
+    fontWeight: number;
+} | {
+    fontSize: string;
+    lineHeight: string;
+    fontWeight: number;
+} | {
+    margin: string;
+    fontSize: string;
+    lineHeight: string;
+    fontWeight: number;
+} | {
+    fontSize: string;
+    lineHeight: string;
+    fontWeight: number;
+} | {
+    margin: string;
+    fontSize: string;
+    lineHeight: string;
+    fontWeight: number;
+} | {
+    fontSize: string;
+    lineHeight: string;
+    fontWeight: number;
+} | {
+    margin: string;
+    fontSize: string;
+    lineHeight: string;
+    fontWeight: number;
+} | {
+    fontSize: string;
+    lineHeight: string;
+    fontWeight: number;
+};
 export declare type Margin = {
     bottom?: number | 'auto';
     left?: number | 'auto';
@@ -73,7 +176,7 @@ export declare const typographyMargin: (size: FontSizes, margin?: string) => {
     margin: string;
 };
 export declare const shortHandDeconstruction: (value: string) => Margin;
-export declare const gothamFontFamily: import("styled-components").InterpolationValue[];
+export declare const gothamFontFamily: import("styled-components").FlattenSimpleInterpolation;
 /**
  * App Name
  */
@@ -87,7 +190,11 @@ export declare enum AppName {
     Repo = "repo",
     TechOps = "techops",
     Tracker = "tracker",
-    Training = "training"
+    Training = "training",
+    Execution = "execution",
+    Home = "home",
+    Events = "events",
+    EventDesign = "event-design"
 }
 export declare enum EventState {
     Active = "active",
@@ -128,6 +235,7 @@ export declare enum Colors {
     Requested = "requested",
     Inactive = "inactive",
     Academy = "academy",
+    Execution = "execution",
     Admin = "admin",
     Catalog = "catalog",
     Dashboard = "dashboard",
@@ -144,10 +252,11 @@ export declare enum Colors {
     Amber = "amber"
 }
 export declare type AppOrAuthSubAppName = AppName | AuthSubAppName;
-export declare type AppOrAuthSubAppNameString = 'admin' | 'academy' | 'catalog' | 'dashboard' | 'range' | 'tracker' | 'hardhat' | 'impact' | 'training' | 'techops' | 'repo' | 'externalLms';
+export declare type AppOrAuthSubAppNameString = 'admin' | 'academy' | 'catalog' | 'dashboard' | 'range' | 'tracker' | 'hardhat' | 'impact' | 'training' | 'techops' | 'repo' | 'externalLms' | 'execution' | 'home' | 'events' | 'event-design';
 export declare const convertAppNameToColor: (appNames: AppOrAuthSubAppName) => Colors;
 export declare const convertStringToAppName: (appNameString: string) => AppOrAuthSubAppName;
 export declare const convertAppNameToString: (appName: AppOrAuthSubAppName) => AppOrAuthSubAppNameString;
+export declare const isAppName: (name: string) => name is AppName;
 export declare const convertEventStateToColor: (eventState: EventState) => Colors;
 declare type HSLAMapType = {
     h: number;
@@ -162,11 +271,11 @@ export declare const colorHSLAMap: ({ color, alpha, }: {
 export declare const convertHSLAMapToCss: (HSLAMap: HSLAMapType) => string;
 export declare const colors: (color: Colors, alpha?: number) => string;
 export declare const baseFocusStyles: (addPositionToParent?: boolean) => SimpleInterpolation;
-export declare const baseOutlineStyles: (color?: Colors) => import("styled-components").InterpolationValue[];
-export declare const baseChromelessStyles: (color?: Colors, isActive?: boolean | undefined) => import("styled-components").InterpolationValue[];
-export declare const baseSecondaryStyles: (color?: Colors, isActive?: boolean | undefined) => import("styled-components").InterpolationValue[];
-export declare const basePrimaryStyles: (color?: Colors) => import("styled-components").InterpolationValue[];
-export declare const baseDisabledStyles: import("styled-components").InterpolationValue[];
+export declare const baseOutlineStyles: (color?: Colors) => import("styled-components").FlattenSimpleInterpolation;
+export declare const baseChromelessStyles: (color?: Colors, isActive?: boolean | undefined) => import("styled-components").FlattenSimpleInterpolation;
+export declare const baseSecondaryStyles: (color?: Colors, isActive?: boolean | undefined) => import("styled-components").FlattenSimpleInterpolation;
+export declare const basePrimaryStyles: (color?: Colors) => import("styled-components").FlattenSimpleInterpolation;
+export declare const baseDisabledStyles: import("styled-components").FlattenSimpleInterpolation;
 export declare enum BorderRadius {
     Small = 3,
     Medium = 4,
@@ -174,7 +283,7 @@ export declare enum BorderRadius {
     XLarge = 8,
     Round = 1000
 }
-export declare const borderRadius: (borderRadius2?: BorderRadius) => import("styled-components").InterpolationValue[];
+export declare const borderRadius: (borderRadius2?: BorderRadius) => import("styled-components").FlattenSimpleInterpolation;
 export declare const generateScaleAnimation: (params: {
     position: PopOverPosition;
     isOpen: boolean;
@@ -185,7 +294,7 @@ export declare const generateScaleAnimation: (params: {
     inSideContentStyles: SimpleInterpolation;
 };
 export declare const ease: (isActive: boolean) => "ease-in" | "ease-out";
-export declare const buttonTransition: import("styled-components").InterpolationValue[];
+export declare const buttonTransition: import("styled-components").FlattenSimpleInterpolation;
 export declare const transition: (props: {
     properties?: Array<string>;
     easing: string;

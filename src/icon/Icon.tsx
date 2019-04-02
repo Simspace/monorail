@@ -1,19 +1,35 @@
-import { Colors, colors } from '@monorail/CommonStyles'
+import React, { ComponentType, MouseEvent } from 'react'
+import styled, {
+  css,
+  SimpleInterpolation,
+  createGlobalStyle,
+} from 'styled-components'
 import { Academy } from '@monorail/icon/custom/Academy'
 import { Admin } from '@monorail/icon/custom/Admin'
 import { Catalog } from '@monorail/icon/custom/Catalog'
 import { Certificate } from '@monorail/icon/custom/Certificate'
 import { ChevronDoubleLeft } from '@monorail/icon/custom/ChevronDoubleLeft'
 import { CircleArrowLeft } from '@monorail/icon/custom/CircleArrowLeft'
+import {
+  Colors,
+  colors,
+  convertAppNameToString,
+  isAppName,
+} from '@monorail/CommonStyles'
 import { Dashboard } from '@monorail/icon/custom/Dashboard'
 import { ErrorRobot } from '@monorail/icon/custom/ErrorRobot'
+import { EventDesign } from '@monorail/icon/custom/EventDesign'
+import { Events } from '@monorail/icon/custom/Events'
 import { Filter } from '@monorail/icon/custom/Filter'
 import { Gauge } from '@monorail/icon/custom/Gauge'
 import { Hardhat } from '@monorail/icon/custom/Hardhat'
+import { Home } from '@monorail/icon/custom/Home'
 import { Impact } from '@monorail/icon/custom/Impact'
 import { LMS } from '@monorail/icon/custom/LMS'
+import { Omit } from 'typelevel-ts'
 import { Range } from '@monorail/icon/custom/Range'
 import { Retry } from '@monorail/icon/custom/Retry'
+import { Robot } from '@monorail/icon/custom/Robot'
 import { ServerNetwork } from '@monorail/icon/custom/ServerNetwork'
 import { SortAscending } from '@monorail/icon/custom/SortAscending'
 import { SortDescending } from '@monorail/icon/custom/SortDescending'
@@ -25,13 +41,6 @@ import { ThreeGears } from '@monorail/icon/custom/ThreeGears'
 import { Tracker } from '@monorail/icon/custom/Tracker'
 import { Unscored } from '@monorail/icon/custom/Unscored'
 import { VCenter } from '@monorail/icon/custom/VCenter'
-import React, { ComponentType, MouseEvent } from 'react'
-import styled, {
-  css,
-  SimpleInterpolation,
-  createGlobalStyle,
-} from 'styled-components'
-import { Omit } from 'typelevel-ts'
 
 // https://fonts.googleapis.com/icon?family=Material+Icons&style=baseline
 export const MaterialIconFontFace = createGlobalStyle`
@@ -50,39 +59,45 @@ export const MaterialIconFontFace = createGlobalStyle`
 
 // TODO: Refactor [key: string] to more concrete type
 const customIcons: { [key: string]: ComponentType<CustomIconProps> } = {
-  academy: Academy,
-  admin: Admin,
-  catalog: Catalog,
+  'academy-app': Academy,
+  'admin-app': Admin,
+  'catalog-app': Catalog,
+  'dashboard-app': Dashboard,
+  'event-design-app': EventDesign,
+  'events-app': Events,
+  'externalLms-app': LMS,
+  'hardhat-app': Hardhat,
+  'home-app': Home,
+  'impact-app': Impact,
+  'range-app': Range,
+  'repo-app': Catalog,
+  'techops-app': TechOps,
+  'tracker-app': Tracker,
+  'training-app': Academy,
   certificate: Certificate,
   chevron_double_left: ChevronDoubleLeft,
   circle_arrow_left: CircleArrowLeft,
-  dashboard: Dashboard,
   errorRobot: ErrorRobot,
-  externalLms: LMS,
   filter: Filter,
   gauge: Gauge,
-  hardhat: Hardhat,
-  impact: Impact,
-  range: Range,
-  repo: Catalog,
+  retry: Retry,
+  robot: Robot,
   server_network: ServerNetwork,
   sort_ascending: SortAscending,
   sort_descending: SortDescending,
-  techops: TechOps,
+  star_filled: StarFilled,
+  star_half: StarHalf,
+  star_outline: StarOutline,
   threeGears: ThreeGears,
-  tracker: Tracker,
-  training: Academy,
   unscored: Unscored,
   vcenter: VCenter,
-  retry: Retry,
-  star_filled: StarFilled,
-  star_outline: StarOutline,
-  star_half: StarHalf,
 }
 
-export const Icon = styled<IconProps>(
+export const Icon = styled(
   ({ cssOverrides: _cssOverrides, icon, ...otherProps }: IconProps) => {
-    const CustomIcon = customIcons[icon]
+    const CustomIcon =
+      customIcons[icon] ||
+      (isAppName(icon) && customIcons[`${convertAppNameToString(icon)}-app`])
 
     if (CustomIcon) {
       return <CustomIcon {...otherProps} />
@@ -90,9 +105,9 @@ export const Icon = styled<IconProps>(
 
     return <i {...otherProps}>{icon}</i>
   },
-)`
-  ${({ size }) =>
-    size
+)<IconProps>(
+  ({ size, cssOverrides }) => css`
+    ${size
       ? css`
           font-size: ${size}px;
         `
@@ -100,36 +115,37 @@ export const Icon = styled<IconProps>(
           font-size: 16px;
         `};
 
-  color: ${colors(Colors.Black54)};
-  direction: ltr;
-  display: inline-block;
-  fill: currentColor; /* Custom icons are svg and need this so that color works correct. */
-  flex-shrink: 0; /* Fixes custom icons shrinking when font icons wont. */
-  font-family: 'Material Icons'; /* stylelint-disable-line font-family-no-missing-generic-family-keyword */
-  font-style: normal;
-  font-weight: normal;
-  height: 1em;
-  letter-spacing: normal;
-  line-height: 1;
-  text-transform: none;
-  user-select: none;
-  white-space: nowrap;
-  width: 1em;
-  word-wrap: normal;
+    color: ${colors(Colors.Black54)};
+    direction: ltr;
+    display: inline-block;
+    fill: currentColor; /* Custom icons are svg and need this so that color works correct. */
+    flex-shrink: 0; /* Fixes custom icons shrinking when font icons wont. */
+    font-family: 'Material Icons'; /* stylelint-disable-line font-family-no-missing-generic-family-keyword */
+    font-style: normal;
+    font-weight: normal;
+    height: 1em;
+    letter-spacing: normal;
+    line-height: 1;
+    text-transform: none;
+    user-select: none;
+    white-space: nowrap;
+    width: 1em;
+    word-wrap: normal;
 
-  /* Support for all WebKit browsers. */
-  -webkit-font-smoothing: antialiased;
-  /* Support for Safari and Chrome. */
-  text-rendering: optimizeLegibility;
+    /* Support for all WebKit browsers. */
+    -webkit-font-smoothing: antialiased;
+    /* Support for Safari and Chrome. */
+    text-rendering: optimizeLegibility;
 
-  /* Support for Firefox. */
-  -moz-osx-font-smoothing: grayscale;
+    /* Support for Firefox. */
+    -moz-osx-font-smoothing: grayscale;
 
-  /* Support for IE. */
-  font-feature-settings: 'liga';
+    /* Support for IE. */
+    font-feature-settings: 'liga';
 
-  ${({ cssOverrides }) => cssOverrides};
-`
+    ${cssOverrides};
+  `,
+)
 
 export type IconProps = {
   className?: string

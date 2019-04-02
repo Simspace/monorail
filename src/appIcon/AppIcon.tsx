@@ -1,45 +1,41 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
+import { CommonComponentType } from '@monorail/types'
+import { Icon } from '@monorail/icon/Icon'
 import {
   AppOrAuthSubAppName,
+  Colors,
   borderRadius,
   colors,
-  Colors,
   convertAppNameToColor,
-  convertAppNameToString,
   flexFlow,
 } from '@monorail/CommonStyles'
-import { Icon } from '@monorail/icon/Icon'
-import { CommonComponentType } from '@monorail/types'
 
 type AppIconProps = CommonComponentType & {
   appName: AppOrAuthSubAppName
 }
 
-export const AppIcon = styled<AppIconProps>(
-  ({ appName, cssOverrides, ...otherProps }) => (
-    <div {...otherProps}>
-      <Icon icon={convertAppNameToString(appName)} />
-    </div>
-  ),
-)`
-  ${({ appName }) => css`
+export const AppIcon = styled(({ appName, cssOverrides, ...otherProps }) => (
+  <div {...otherProps}>
+    <Icon icon={appName} />
+  </div>
+))<AppIconProps>(
+  ({ appName, cssOverrides }) => css`
+    ${flexFlow('row')};
+    ${borderRadius()};
+
     background: ${colors(convertAppNameToColor(appName))};
-  `};
+    box-sizing: border-box;
+    height: 16px;
+    width: 16px;
 
-  ${flexFlow('row')};
-  ${borderRadius()};
+    ${Icon} {
+      fill: ${colors(Colors.White)};
+      height: 100%;
+      margin: auto;
+      width: 100%;
+    }
 
-  box-sizing: border-box;
-  height: 16px;
-  width: 16px;
-
-  ${Icon} {
-    fill: ${colors(Colors.White)};
-    height: 100%;
-    margin: auto;
-    width: 100%;
-  }
-
-  ${({ cssOverrides }) => cssOverrides};
-`
+    ${cssOverrides};
+  `,
+)

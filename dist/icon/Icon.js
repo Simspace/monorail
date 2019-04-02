@@ -5,7 +5,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.Icon = exports.MaterialIconFontFace = void 0;
 
-var _CommonStyles = require("../CommonStyles");
+var _react = _interopRequireDefault(require("react"));
+
+var _styledComponents = _interopRequireWildcard(require("styled-components"));
 
 var _Academy = require("./custom/Academy");
 
@@ -19,15 +21,23 @@ var _ChevronDoubleLeft = require("./custom/ChevronDoubleLeft");
 
 var _CircleArrowLeft = require("./custom/CircleArrowLeft");
 
+var _CommonStyles = require("../CommonStyles");
+
 var _Dashboard = require("./custom/Dashboard");
 
 var _ErrorRobot = require("./custom/ErrorRobot");
+
+var _EventDesign = require("./custom/EventDesign");
+
+var _Events = require("./custom/Events");
 
 var _Filter = require("./custom/Filter");
 
 var _Gauge = require("./custom/Gauge");
 
 var _Hardhat = require("./custom/Hardhat");
+
+var _Home = require("./custom/Home");
 
 var _Impact = require("./custom/Impact");
 
@@ -36,6 +46,8 @@ var _LMS = require("./custom/LMS");
 var _Range = require("./custom/Range");
 
 var _Retry = require("./custom/Retry");
+
+var _Robot = require("./custom/Robot");
 
 var _ServerNetwork = require("./custom/ServerNetwork");
 
@@ -58,10 +70,6 @@ var _Tracker = require("./custom/Tracker");
 var _Unscored = require("./custom/Unscored");
 
 var _VCenter = require("./custom/VCenter");
-
-var _react = _interopRequireDefault(require("react"));
-
-var _styledComponents = _interopRequireWildcard(require("styled-components"));
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
@@ -86,34 +94,38 @@ _styledComponents.createGlobalStyle`
 
 exports.MaterialIconFontFace = MaterialIconFontFace;
 const customIcons = {
-  academy: _Academy.Academy,
-  admin: _Admin.Admin,
-  catalog: _Catalog.Catalog,
+  'academy-app': _Academy.Academy,
+  'admin-app': _Admin.Admin,
+  'catalog-app': _Catalog.Catalog,
+  'dashboard-app': _Dashboard.Dashboard,
+  'event-design-app': _EventDesign.EventDesign,
+  'events-app': _Events.Events,
+  'externalLms-app': _LMS.LMS,
+  'hardhat-app': _Hardhat.Hardhat,
+  'home-app': _Home.Home,
+  'impact-app': _Impact.Impact,
+  'range-app': _Range.Range,
+  'repo-app': _Catalog.Catalog,
+  'techops-app': _TechOps.TechOps,
+  'tracker-app': _Tracker.Tracker,
+  'training-app': _Academy.Academy,
   certificate: _Certificate.Certificate,
   chevron_double_left: _ChevronDoubleLeft.ChevronDoubleLeft,
   circle_arrow_left: _CircleArrowLeft.CircleArrowLeft,
-  dashboard: _Dashboard.Dashboard,
   errorRobot: _ErrorRobot.ErrorRobot,
-  externalLms: _LMS.LMS,
   filter: _Filter.Filter,
   gauge: _Gauge.Gauge,
-  hardhat: _Hardhat.Hardhat,
-  impact: _Impact.Impact,
-  range: _Range.Range,
-  repo: _Catalog.Catalog,
+  retry: _Retry.Retry,
+  robot: _Robot.Robot,
   server_network: _ServerNetwork.ServerNetwork,
   sort_ascending: _SortAscending.SortAscending,
   sort_descending: _SortDescending.SortDescending,
-  techops: _TechOps.TechOps,
-  threeGears: _ThreeGears.ThreeGears,
-  tracker: _Tracker.Tracker,
-  training: _Academy.Academy,
-  unscored: _Unscored.Unscored,
-  vcenter: _VCenter.VCenter,
-  retry: _Retry.Retry,
   star_filled: _StarFilled.StarFilled,
+  star_half: _StarHalf.StarHalf,
   star_outline: _StarOutline.StarOutline,
-  star_half: _StarHalf.StarHalf
+  threeGears: _ThreeGears.ThreeGears,
+  unscored: _Unscored.Unscored,
+  vcenter: _VCenter.VCenter
 };
 const Icon =
 /*#__PURE__*/
@@ -122,19 +134,15 @@ const Icon =
   icon,
   ...otherProps
 }) => {
-  const CustomIcon = customIcons[icon];
+  const CustomIcon = customIcons[icon] || (0, _CommonStyles.isAppName)(icon) && customIcons[`${(0, _CommonStyles.convertAppNameToString)(icon)}-app`];
 
   if (CustomIcon) {
     return _react.default.createElement(CustomIcon, otherProps);
   }
 
   return _react.default.createElement("i", otherProps, icon);
-}).withConfig({
-  displayName: "Icon",
-  componentId: "sc-17ga27i-0"
-})(["", ";color:", ";direction:ltr;display:inline-block;fill:currentColor;flex-shrink:0;font-family:'Material Icons';font-style:normal;font-weight:normal;height:1em;letter-spacing:normal;line-height:1;text-transform:none;user-select:none;white-space:nowrap;width:1em;word-wrap:normal;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;-moz-osx-font-smoothing:grayscale;font-feature-settings:'liga';", ";"], ({
-  size
-}) => size ? (0, _styledComponents.css)(["font-size:", "px;"], size) : (0, _styledComponents.css)(["font-size:16px;"]), (0, _CommonStyles.colors)(_CommonStyles.Colors.Black54), ({
+})(({
+  size,
   cssOverrides
-}) => cssOverrides);
+}) => (0, _styledComponents.css)(["", ";color:", ";direction:ltr;display:inline-block;fill:currentColor;flex-shrink:0;font-family:'Material Icons';font-style:normal;font-weight:normal;height:1em;letter-spacing:normal;line-height:1;text-transform:none;user-select:none;white-space:nowrap;width:1em;word-wrap:normal;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;-moz-osx-font-smoothing:grayscale;font-feature-settings:'liga';", ";"], size ? (0, _styledComponents.css)(["font-size:", "px;"], size) : (0, _styledComponents.css)(["font-size:16px;"]), (0, _CommonStyles.colors)(_CommonStyles.Colors.Black54), cssOverrides));
 exports.Icon = Icon;

@@ -1,12 +1,8 @@
 import React, { Component, MouseEvent as ReactMouseEvent, ReactNode, RefObject } from 'react';
-import { StyledHtmlElement } from '@monorail/CoreUtils/type-level';
 import { CommonComponentType } from '@monorail/types';
-export declare const TitleContainer: import("styled-components").StyledComponentClass<React.ClassAttributes<HTMLDivElement> & React.HTMLAttributes<HTMLDivElement> & {
+export declare const TitleContainer: import("styled-components").StyledComponent<"div", any, {
     hasAboveContent: boolean;
-}, any, React.ClassAttributes<HTMLDivElement> & React.HTMLAttributes<HTMLDivElement> & {
-    hasAboveContent: boolean;
-}>;
-export declare type PageHeaderShadowRefType = StyledHtmlElement<HTMLDivElement, PageHeaderShadowProps>;
+}, never>;
 export declare type PageHeaderShadowProps = {
     willAnimateShadow: boolean;
     flush: boolean;
@@ -17,15 +13,11 @@ declare type BreadCrumbsContainerProps = {
         path?: (event: ReactMouseEvent<HTMLAnchorElement>) => void;
     }>;
 };
-declare type PageHeaderContainerProps = CommonComponentType & {
-    flush: boolean;
-    hasAboveContent: boolean;
-};
 declare type PageHeaderProps = CommonComponentType & BreadCrumbsContainerProps & {
     goBack?: (event: ReactMouseEvent<Element>) => void;
     title: string;
     action?: ReactNode;
-    shadowRef?: RefObject<PageHeaderShadowRefType>;
+    shadowRef?: RefObject<HTMLDivElement>;
     willAnimateShadow: boolean;
     flush: boolean;
 };
@@ -34,7 +26,7 @@ export declare class PageHeader extends Component<PageHeaderProps> {
         willAnimateShadow: boolean;
         flush: boolean;
     };
-    pageHeaderContainerRef: React.RefObject<StyledHtmlElement<HTMLDivElement, PageHeaderContainerProps, unknown>>;
+    pageHeaderContainerRef: React.RefObject<HTMLDivElement>;
     renderBreadCrumbs: () => (false | JSX.Element)[][] | null;
     render(): JSX.Element;
 }

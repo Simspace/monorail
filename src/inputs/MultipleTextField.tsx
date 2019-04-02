@@ -1,25 +1,25 @@
 import React, { Component, ReactNode } from 'react'
-import styled, { SimpleInterpolation } from 'styled-components'
-import { isNil } from '@monorail/CoreUtils/primitive-guards'
+import styled, { css, SimpleInterpolation } from 'styled-components'
+import { isNil } from '@monorail/sharedHelpers/typeGuards'
 
 import { TextFieldProps, TextField } from './TextField'
 import { flexFlow, typography, FontSizes } from '@monorail/CommonStyles'
+import { CommonComponentType } from '@monorail/types'
 
 // TODO - duplicate from text field container
-const MultipleTextFieldContainer = styled<
-  { cssOverrides?: SimpleInterpolation },
-  'label'
->('label')`
-  ${flexFlow()};
+const MultipleTextFieldContainer = styled.label<CommonComponentType>(
+  ({ cssOverrides }) => css`
+    ${flexFlow()};
 
-  float: none;
-  width: 100%;
-  position: relative; /* position: relative; so that the icons can be absolutely positioned. */
+    float: none;
+    width: 100%;
+    position: relative; /* position: relative; so that the icons can be absolutely positioned. */
 
-  ${({ cssOverrides }) => cssOverrides};
-`
+    ${cssOverrides};
+  `,
+)
 // TODO - consolidate label into a common component
-export const BBTextFieldLabel = styled('p')`
+export const BBTextFieldLabel = styled.p`
   ${typography(500, FontSizes.Title5)};
   margin: 4px 0;
 `

@@ -1,7 +1,7 @@
 import React, { Component, MouseEvent } from 'react'
 import { Button, ButtonProps } from './Button'
-import { Omit } from 'typelevel-ts'
 import { ButtonDisplay, ButtonSize } from '@monorail/buttons/buttonTypes'
+import { Omit } from 'typelevel-ts'
 
 type Props = Omit<ButtonProps, 'onClick'> & {
   loadingText?: string

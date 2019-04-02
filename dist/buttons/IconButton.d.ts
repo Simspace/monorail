@@ -1,7 +1,7 @@
-import React, { Component, MouseEvent } from 'react';
+import { Component, MouseEvent } from 'react';
 import { SimpleInterpolation } from 'styled-components';
 import { ButtonSize, ButtonDisplay, IconButtonShape } from '@monorail/buttons/buttonTypes';
-export declare const CCIconButton: import("styled-components").StyledComponentClass<CCIconButtonProps, any, CCIconButtonProps & React.ClassAttributes<HTMLButtonElement> & React.ButtonHTMLAttributes<HTMLButtonElement>>;
+export declare const CCIconButton: import("styled-components").StyledComponent<"button", any, CCIconButtonProps, never>;
 declare type CCIconButtonProps = {
     cssOverrides?: SimpleInterpolation;
     darkMode?: boolean;
@@ -11,7 +11,8 @@ declare type CCIconButtonProps = {
     iconCss?: SimpleInterpolation;
     onClick?: (event: MouseEvent<Element>) => void;
     size: ButtonSize;
-    type: string;
+    type: 'button' | 'reset' | 'submit';
+    className?: string;
 };
 export declare type IconButtonProps = CCIconButtonProps & {
     icon: string;

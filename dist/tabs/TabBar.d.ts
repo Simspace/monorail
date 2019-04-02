@@ -2,7 +2,7 @@ import React, { Component, ReactNode } from 'react';
 import { SimpleInterpolation } from 'styled-components';
 import { Sizes } from '@monorail/CommonStyles';
 import { TabProps } from './Tab';
-export declare const TabBarContainer: import("styled-components").StyledComponentClass<CCTabBarProps, any, CCTabBarProps & React.ClassAttributes<HTMLDivElement> & React.HTMLAttributes<HTMLDivElement>>;
+export declare const TabBarContainer: import("styled-components").StyledComponent<"div", any, CCTabBarProps, never>;
 declare type CCTabBarProps = {
     cssOverrides?: SimpleInterpolation;
     size: Sizes;

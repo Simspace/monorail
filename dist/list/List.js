@@ -13,7 +13,7 @@ var _CommonStyles = require("../CommonStyles");
 
 var _Icon = require("../icon/Icon");
 
-var _primitiveGuards = require("../CoreUtils/primitive-guards");
+var _typeGuards = require("../sharedHelpers/typeGuards");
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
@@ -30,15 +30,16 @@ function _extends() { _extends = Object.assign || function (target) { for (var i
 */
 const BBListContainer =
 /*#__PURE__*/
-(0, _styledComponents.default)('div').withConfig({
+_styledComponents.default.div.withConfig({
   displayName: "List__BBListContainer",
   componentId: "sc-10dx7oa-0"
-})(["", ";overflow-y:auto;padding:8px 0;", ";"], (0, _CommonStyles.flexFlow)(), ({
+})(({
   cssOverrides
-}) => cssOverrides);
+}) => (0, _styledComponents.css)(["", ";overflow-y:auto;padding:8px 0;", ";"], (0, _CommonStyles.flexFlow)(), cssOverrides));
 /*
 * Types
 */
+
 
 /*
 * Component
@@ -70,44 +71,45 @@ exports.ListContainer = ListContainer;
 */
 const ListItemText =
 /*#__PURE__*/
-(0, _styledComponents.default)('div').withConfig({
+_styledComponents.default.div.withConfig({
   displayName: "List__ListItemText",
   componentId: "sc-10dx7oa-1"
-})(["", ";overflow:hidden;width:100%;", ";"], (0, _CommonStyles.flexFlow)('row', 'wrap'), ({
+})(({
   cssOverrides
-}) => cssOverrides);
+}) => (0, _styledComponents.css)(["", ";overflow:hidden;width:100%;", ";"], (0, _CommonStyles.flexFlow)('row', 'wrap'), cssOverrides));
+
 exports.ListItemText = ListItemText;
+
 const ListItemPrimaryText =
 /*#__PURE__*/
-(0, _styledComponents.default)('span').withConfig({
+_styledComponents.default.span.withConfig({
   displayName: "List__ListItemPrimaryText",
   componentId: "sc-10dx7oa-2"
-})(["", ";"], ({
+})(({
   cssOverrides
 }) => (0, _styledComponents.css)(["", ";", ";color:currentColor;flex:1 1 100%;", ";"], (0, _CommonStyles.typography)(500, _CommonStyles.FontSizes.Title5, 'auto 6px'), _CommonStyles.ellipsis, cssOverrides));
+
 exports.ListItemPrimaryText = ListItemPrimaryText;
+
 const ListItemSecondaryText =
 /*#__PURE__*/
-(0, _styledComponents.default)('span').withConfig({
+_styledComponents.default.span.withConfig({
   displayName: "List__ListItemSecondaryText",
   componentId: "sc-10dx7oa-3"
-})(["", ";", ";color:", ";flex:1 1 100%;", ";"], (0, _CommonStyles.typography)(500, _CommonStyles.FontSizes.Content, 'auto 6px'), _CommonStyles.ellipsis, (0, _CommonStyles.colors)(_CommonStyles.Colors.Black62), ({
+})(({
   cssOverrides
-}) => cssOverrides);
+}) => (0, _styledComponents.css)(["", ";", ";color:", ";flex:1 1 100%;", ";"], (0, _CommonStyles.typography)(500, _CommonStyles.FontSizes.Content, 'auto 6px'), _CommonStyles.ellipsis, (0, _CommonStyles.colors)(_CommonStyles.Colors.Black62), cssOverrides));
+
 exports.ListItemSecondaryText = ListItemSecondaryText;
 const ListItemGraphic =
 /*#__PURE__*/
 (0, _styledComponents.default)(({
   dense,
   ...otherProps
-}) => _react.default.createElement(_Icon.Icon, otherProps)).withConfig({
-  displayName: "List__ListItemGraphic",
-  componentId: "sc-10dx7oa-4"
-})(["", ";", ";", ";"], ({
-  dense
-}) => (0, _styledComponents.css)(["margin:auto ", "px;"], dense ? 4 : 6), _CommonStyles.buttonTransition, ({
+}) => _react.default.createElement(_Icon.Icon, otherProps))(({
+  dense,
   cssOverrides
-}) => cssOverrides);
+}) => (0, _styledComponents.css)(["margin:auto ", "px;", ";", ";"], dense ? 4 : 6, _CommonStyles.buttonTransition, cssOverrides));
 exports.ListItemGraphic = ListItemGraphic;
 const ListItem =
 /*#__PURE__*/
@@ -116,17 +118,14 @@ const ListItem =
   children,
   activeClassName,
   ...otherProps
-}) => _react.default.createElement("div", otherProps, children)).withConfig({
-  displayName: "List__ListItem",
-  componentId: "sc-10dx7oa-5"
-})(["", ";"], ({
+}) => _react.default.createElement("div", otherProps, children))(({
   as,
   cssOverrides,
   dense,
   disabled,
   onClick,
   size = _CommonStyles.Sizes.DP24
-}) => (0, _styledComponents.css)(["", ";", ";", ";align-items:center;box-sizing:border-box;color:", ";flex-shrink:0;min-height:", "px;padding:0 ", "px;position:relative;text-transform:initial;&:hover,&:focus,&:active{text-decoration:none;}", ";"], !(0, _primitiveGuards.isNil)(onClick) || !(0, _primitiveGuards.isNil)(as) ? (0, _styledComponents.css)(["background:transparent;color:", ";cursor:pointer;text-transform:none;user-select:none;", ";&:hover,&.is-active{background:hsla(225,6%,13%,0.06);}&:active{background:#e0eafd;opacity:1;}&.is-active,&:active,&:active ", ",&.is-active ", "{color:", ";}", ";"], (0, _CommonStyles.colors)(_CommonStyles.Colors.BrandDarkBlue), _CommonStyles.buttonTransition, ListItemGraphic, ListItemGraphic, (0, _CommonStyles.colors)(_CommonStyles.Colors.BrandLightBlue), (0, _CommonStyles.baseFocusStyles)()) : (0, _styledComponents.css)(["color:", ";background:transparent;"], (0, _CommonStyles.colors)(_CommonStyles.Colors.Black89)), disabled && (0, _styledComponents.css)(["opacity:0.54;pointer-events:none;"]), (0, _CommonStyles.flexFlow)('row'), (0, _CommonStyles.colors)(_CommonStyles.Colors.Black89), size, dense ? 4 : 10, cssOverrides));
+}) => (0, _styledComponents.css)(["", ";", ";", ";align-items:center;box-sizing:border-box;color:", ";flex-shrink:0;min-height:", "px;padding:0 ", "px;position:relative;text-transform:initial;&:hover,&:focus,&:active{text-decoration:none;}", ";"], !(0, _typeGuards.isNil)(onClick) || !(0, _typeGuards.isNil)(as) ? (0, _styledComponents.css)(["background:transparent;color:", ";cursor:pointer;text-transform:none;user-select:none;", ";&:hover,&.is-active{background:hsla(225,6%,13%,0.06);}&:active{background:#e0eafd;opacity:1;}&.is-active,&:active,&:active ", ",&.is-active ", "{color:", ";}", ";"], (0, _CommonStyles.colors)(_CommonStyles.Colors.BrandDarkBlue), _CommonStyles.buttonTransition, ListItemGraphic, ListItemGraphic, (0, _CommonStyles.colors)(_CommonStyles.Colors.BrandLightBlue), (0, _CommonStyles.baseFocusStyles)()) : (0, _styledComponents.css)(["color:", ";background:transparent;"], (0, _CommonStyles.colors)(_CommonStyles.Colors.Black89)), disabled && (0, _styledComponents.css)(["opacity:0.54;pointer-events:none;"]), (0, _CommonStyles.flexFlow)('row'), (0, _CommonStyles.colors)(_CommonStyles.Colors.Black89), size, dense ? 4 : 10, cssOverrides));
 exports.ListItem = ListItem;
 ListItem.defaultProps = {
   activeClassName: 'is-active'
@@ -145,10 +144,10 @@ const SimpleListItem = ({
 }) => _react.default.createElement(ListItem, _extends({
   dense: dense,
   size: size
-}, otherProps), !(0, _primitiveGuards.isNil)(leftIcon) && _react.default.createElement(ListItemGraphic, {
+}, otherProps), !(0, _typeGuards.isNil)(leftIcon) && _react.default.createElement(ListItemGraphic, {
   icon: leftIcon,
   dense: dense
-}), (0, _primitiveGuards.isNil)(secondaryText) || (0, _primitiveGuards.isNil)(meta) ? _react.default.createElement(ListItemPrimaryText, null, primaryText) : _react.default.createElement(ListItemText, null, _react.default.createElement(ListItemPrimaryText, null, primaryText), (0, _primitiveGuards.isNil)(secondaryText) ? null : _react.default.createElement(ListItemSecondaryText, null, secondaryText), meta), !(0, _primitiveGuards.isNil)(rightIcon) && _react.default.createElement(ListItemGraphic, {
+}), (0, _typeGuards.isNil)(secondaryText) || (0, _typeGuards.isNil)(meta) ? _react.default.createElement(ListItemPrimaryText, null, primaryText) : _react.default.createElement(ListItemText, null, _react.default.createElement(ListItemPrimaryText, null, primaryText), (0, _typeGuards.isNil)(secondaryText) ? null : _react.default.createElement(ListItemSecondaryText, null, secondaryText), meta), !(0, _typeGuards.isNil)(rightIcon) && _react.default.createElement(ListItemGraphic, {
   icon: rightIcon,
   dense: dense
 }), children);

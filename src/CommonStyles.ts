@@ -3,7 +3,6 @@ import {
   SimpleInterpolation,
   keyframes,
   Keyframes,
-  Styles,
 } from 'styled-components'
 import { PopOverPosition } from '@monorail/popOver/PopOver'
 
@@ -16,18 +15,22 @@ enum AuthSubAppName {
   Range = 'range',
   TechOps = 'techops',
   Tracker = 'tracker',
+  Execution = 'execution',
+  Home = 'home',
+  Events = 'events',
+  EventDesign = 'event-design',
 }
 
-export const visible = (isVisible = false): Styles =>
+export const visible = (isVisible = false) =>
   isVisible
-    ? {
-        visibility: 'visible',
-        opacity: 0.9999, // Doing .9999 keeps the GPU activated on this element so that it can quickly change back to 0.
-      }
-    : {
-        visibility: 'hidden',
-        opacity: 0,
-      }
+    ? css`
+        visibility: visible;
+        opacity: 0.9999; /* Doing .9999 keeps the GPU activated on this element so that it can quickly change back to 0. */
+      `
+    : css`
+        visibility: hidden;
+        opacity: 0;
+      `
 
 /*
 * Elevation
@@ -114,9 +117,9 @@ const elevationStyles = {
     '0 11px 15px -7px rgba(0,0,0,.2),0 24px 38px 3px rgba(0,0,0,.14),0 9px 46px 8px rgba(0,0,0,.12)',
 }
 
-export const getElevation = (elevation: ElevationRange): Styles => ({
-  boxShadow: elevationStyles[elevation],
-})
+export const getElevation = (elevation: ElevationRange) => css`
+  box-shadow: ${elevationStyles[elevation]};
+`
 
 /*
 * Flex Helpers
@@ -128,10 +131,10 @@ const defaultWrap = 'nowrap'
 export const flexFlow = (
   direction = defaultDirection,
   wrap = defaultWrap,
-): Styles => ({
-  display: 'flex',
-  flexFlow: `${direction} ${wrap}`,
-})
+) => css`
+  display: flex;
+  flex-flow: ${direction} ${wrap};
+`
 
 /*
 * Typography
@@ -217,7 +220,7 @@ export const typography = (
   weight: number,
   size: FontSizes,
   margin?: string,
-): Styles => ({
+) => ({
   fontWeight: weight,
   ...fontSizeLookUp[size],
   ...(margin ? typographyMargin(size, margin) : {}),
@@ -400,6 +403,10 @@ export enum AppName {
   TechOps = 'techops',
   Tracker = 'tracker',
   Training = 'training',
+  Execution = 'execution',
+  Home = 'home',
+  Events = 'events',
+  EventDesign = 'event-design',
 }
 
 //#endregion App Name
@@ -468,6 +475,7 @@ export enum Colors {
   Inactive = 'inactive',
 
   Academy = 'academy',
+  Execution = 'execution',
   Admin = 'admin',
   Catalog = 'catalog',
   Dashboard = 'dashboard',
@@ -499,6 +507,10 @@ export type AppOrAuthSubAppNameString =
   | 'techops'
   | 'repo'
   | 'externalLms'
+  | 'execution'
+  | 'home'
+  | 'events'
+  | 'event-design'
 
 const assertUnreachable = (msg: string): never => {
   throw new Error(msg)
@@ -518,6 +530,15 @@ export const convertAppNameToColor = (
     case AppName.Dashboard:
     case AuthSubAppName.Dashboard:
       return Colors.Dashboard
+    case AppName.Home:
+    case AuthSubAppName.Home:
+    case AppName.Events:
+    case AuthSubAppName.Events:
+    case AppName.EventDesign:
+    case AuthSubAppName.EventDesign:
+    case AuthSubAppName.Execution:
+    case AppName.Execution:
+      return Colors.White
     case AppName.Range:
     case AuthSubAppName.Range:
       return Colors.Range
@@ -570,6 +591,14 @@ export const convertStringToAppName = (
       return AppName.Repo
     case 'externalLms':
       return AppName.LMS
+    case 'execution':
+      return AppName.Execution
+    case 'home':
+      return AppName.Home
+    case 'events':
+      return AppName.Events
+    case 'event-design':
+      return AppName.EventDesign
     default:
       return assertUnreachable('Invalid appName')
   }
@@ -609,8 +638,24 @@ export const convertAppNameToString = (
       return 'repo'
     case AppName.LMS:
       return 'externalLms'
+    case AppName.Home:
+    case AuthSubAppName.Home:
+      return 'home'
+    case AppName.Events:
+    case AuthSubAppName.Events:
+    case AppName.Execution:
+    case AuthSubAppName.Execution:
+      return 'events'
+    case AppName.EventDesign:
+    case AuthSubAppName.EventDesign:
+      return 'event-design'
   }
 }
+
+type AppNameType = string | AppName
+
+export const isAppName = (name: AppNameType): name is AppName =>
+  Object.values(AppName).includes(name)
 
 export const convertEventStateToColor = (eventState: EventState): Colors => {
   switch (eventState) {
@@ -691,6 +736,7 @@ export const colorHSLAMap = ({
     [Colors.TechOps]: { h: 324, s: 60, l: 60, a: alpha },
     [Colors.Repo]: { h: 79, s: 59, l: 49, a: alpha },
     [Colors.LMS]: { h: 2, s: 61, l: 50, a: alpha },
+    [Colors.Execution]: { h: 196, s: 75, l: 50, a: alpha },
 
     // Event Status
     // In Progress
@@ -1048,7 +1094,7 @@ export const sizes = {
     width: 176,
   },
   appSwitcher: {
-    width: 368,
+    width: 376,
   },
 }
 

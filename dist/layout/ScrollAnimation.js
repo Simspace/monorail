@@ -7,7 +7,7 @@ exports.ScrollAnimation = void 0;
 
 var _react = require("react");
 
-var _primitiveGuards = require("../CoreUtils/primitive-guards");
+var _typeGuards = require("../sharedHelpers/typeGuards");
 
 class ScrollAnimation extends _react.Component {
   constructor(...args) {
@@ -25,7 +25,7 @@ class ScrollAnimation extends _react.Component {
         animationFunction
       } = this.props;
 
-      if (!(0, _primitiveGuards.isNil)(event.currentTarget) && !(0, _primitiveGuards.isNil)(animatingElement)) {
+      if (!(0, _typeGuards.isNil)(event.currentTarget) && !(0, _typeGuards.isNil)(animatingElement)) {
         const scrollElement = event.currentTarget;
         /* Josh don't hate me! */
 
@@ -50,7 +50,7 @@ class ScrollAnimation extends _react.Component {
       hasEventHandler
     } = this.state;
 
-    if (!hasEventHandler && !(0, _primitiveGuards.isNil)(scrollContainer.current)) {
+    if (!hasEventHandler && !(0, _typeGuards.isNil)(scrollContainer.current)) {
       this.setState(() => ({
         hasEventHandler: true
       }));
@@ -68,7 +68,7 @@ class ScrollAnimation extends _react.Component {
       hasEventHandler
     } = this.state;
 
-    if (!hasEventHandler && !(0, _primitiveGuards.isNil)(scrollContainer)) {
+    if (!hasEventHandler && !(0, _typeGuards.isNil)(scrollContainer)) {
       this.setState(() => ({
         hasEventHandler: true
       }));
@@ -83,7 +83,7 @@ class ScrollAnimation extends _react.Component {
       }
     } = this.props;
 
-    if (!(0, _primitiveGuards.isNil)(scrollContainer)) {
+    if (!(0, _typeGuards.isNil)(scrollContainer)) {
       scrollContainer.removeEventListener('scroll', this.handleScroll);
     }
   }

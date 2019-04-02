@@ -5,11 +5,11 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.FilterBar = void 0;
 
-var _Record = require("../CoreUtils/Record");
+var _Record = require("../sharedHelpers/fp-ts-ext/Record");
 
-var _Array = require("../CoreUtils/Array");
+var _Array = require("../sharedHelpers/fp-ts-ext/Array");
 
-var _Option = require("../CoreUtils/Option");
+var _Option = require("../sharedHelpers/fp-ts-ext/Option");
 
 var _Array2 = require("fp-ts/lib/Array");
 
@@ -17,7 +17,11 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _styledComponents = _interopRequireWildcard(require("styled-components"));
 
-var _CommonStyles = require("../CommonStyles");
+var _Button = require("../buttons/Button");
+
+var _buttonTypes = require("../buttons/buttonTypes");
+
+var _Choice = require("../inputs/Choice");
 
 var _StyleHelpers = require("../StyleHelpers");
 
@@ -25,13 +29,9 @@ var _Filter = require("./Filter");
 
 var _Search = require("../inputs/Search");
 
-var _Choice = require("../inputs/Choice");
-
 var _Status = require("../status/Status");
 
-var _Button = require("../buttons/Button");
-
-var _buttonTypes = require("../buttons/buttonTypes");
+var _CommonStyles = require("../CommonStyles");
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
@@ -39,12 +39,12 @@ const sorterItemStyle = selected => (0, _styledComponents.css)(["", ";cursor:poi
 
 const BBFilterBar =
 /*#__PURE__*/
-(0, _styledComponents.default)('div').withConfig({
+_styledComponents.default.div.withConfig({
   displayName: "FilterBar__BBFilterBar",
   componentId: "sc-1g2tevy-0"
-})(["", ";margin-left:-4px;", ";"], (0, _CommonStyles.flexFlow)('row'), ({
+})(({
   cssOverrides
-}) => cssOverrides);
+}) => (0, _styledComponents.css)(["", ";margin-left:-4px;", ";"], (0, _CommonStyles.flexFlow)('row'), cssOverrides));
 
 class FilterBar extends _react.Component {
   constructor(...args) {
@@ -60,7 +60,8 @@ class FilterBar extends _react.Component {
           cssOverrides: (0, _styledComponents.css)(["margin-left:4px;"])
         }, filterGroup.activeFilterCount));
       } else if (filterGroup.activeFilterCount === 1) {
-        const headFilterOpt = (0, _Array2.head)(filterGroup.filters);
+        // Get checked filter option
+        const headFilterOpt = (0, _Array2.head)(filterGroup.filters.filter(item => item.checked));
         const activeFilterLabel = (0, _Option.fold)(headFilterOpt, '', (0, _Record.prop)('label')); // If equal to 1, show the label and the single active filter
 
         return `${filterGroup.label} - ${activeFilterLabel}`;

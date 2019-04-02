@@ -1,13 +1,9 @@
 import React, { Component, RefObject } from 'react'
-import { isNil } from '@monorail/CoreUtils/primitive-guards'
-import { StyledHtmlElement } from '@monorail/CoreUtils/type-level'
-import { PageHeaderShadowProps } from '../pageHeader/PageHeader'
+import { isNil } from '@monorail/sharedHelpers/typeGuards'
 
 type Props = {
-  scrollContainer: RefObject<StyledHtmlElement<HTMLDivElement, {}>>
-  animatingElement: RefObject<
-    StyledHtmlElement<HTMLDivElement, PageHeaderShadowProps>
-  >
+  scrollContainer: RefObject<HTMLDivElement>
+  animatingElement: RefObject<HTMLDivElement>
   animationFunction: (
     props: { scrollAmount: number; animationTermination: number },
   ) => string
@@ -57,7 +53,7 @@ export class ScrollAnimation extends Component<Props, State> {
     }
   }
 
-  handleScroll = (event: UIEvent) => {
+  handleScroll: EventListener = event => {
     const {
       animationTermination,
       animatingElement: { current: animatingElement },

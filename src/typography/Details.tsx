@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { isNil } from '@monorail/CoreUtils/primitive-guards'
+import { isNil } from '@monorail/sharedHelpers/typeGuards'
 import styled, { css, SimpleInterpolation } from 'styled-components'
 import {
   Colors,
@@ -25,25 +25,26 @@ const largePropertyStyles = css`
   color: ${colors(Colors.Black74)};
 `
 
-const BBDetailsProperty = styled<BBDetailsSize, 'h2'>('h2')`
-  ${({ compact, large }) => {
-    if (compact) {
-      return compactPropertyStyles
-    } else if (large) {
-      return largePropertyStyles
-    } else {
-      return primaryPropertyStyles
-    }
-  }};
+const BBDetailsProperty = styled.h2<BBDetailsSize>(
+  ({ compact, large, darkMode }) => css`
+    ${() => {
+      if (compact) {
+        return compactPropertyStyles
+      } else if (large) {
+        return largePropertyStyles
+      } else {
+        return primaryPropertyStyles
+      }
+    }};
 
-  ${({ darkMode }) =>
-    darkMode &&
-    css`
-      color: ${colors(Colors.White)};
-    `};
+    ${darkMode &&
+      css`
+        color: ${colors(Colors.White)};
+      `};
 
-  margin: 0;
-`
+    margin: 0;
+  `,
+)
 
 // Value Styles
 const primaryValueStyles = css`
@@ -59,34 +60,37 @@ const largeValueStyles = css`
   color: ${colors(Colors.Black89)};
 `
 
-const BBDetailsValue = styled<BBDetailsSize, 'h2'>('h2')`
-  ${({ compact, large }) => {
-    if (compact) {
-      return compactValueStyles
-    } else if (large) {
-      return largeValueStyles
-    } else {
-      return primaryValueStyles
+const BBDetailsValue = styled.h2<BBDetailsSize>(
+  ({ compact, large, darkMode }) => css`
+    ${() => {
+      if (compact) {
+        return compactValueStyles
+      } else if (large) {
+        return largeValueStyles
+      } else {
+        return primaryValueStyles
+      }
+    }};
+    ${darkMode &&
+      css`
+        color: ${colors(Colors.White)};
+      `};
+
+    margin: 0;
+  `,
+)
+
+const BBDetailsContainer = styled.div<BBDetailsContainerProps>(
+  ({ cssOverrides }) => css`
+    ${flexFlow()};
+
+    ${CCTag} {
+      margin-top: 6px;
     }
-  }};
-  ${({ darkMode }) =>
-    darkMode &&
-    css`
-      color: ${colors(Colors.White)};
-    `};
 
-  margin: 0;
-`
-
-const BBDetailsContainer = styled<BBDetailsContainerProps, 'div'>('div')`
-  ${flexFlow()};
-
-  ${CCTag} {
-    margin-top: 6px;
-  }
-
-  ${({ cssOverrides }) => cssOverrides};
-`
+    ${cssOverrides};
+  `,
+)
 
 type BBDetailsSize = {
   compact?: boolean

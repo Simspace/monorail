@@ -1,6 +1,8 @@
 import React, { Component, ReactNode } from 'react'
 import styled from 'styled-components'
+import { ErrorType } from '@monorail/errorPage/errorTypes'
 import { Icon } from '@monorail/icon/Icon'
+import { TypeOf } from 'io-ts'
 import {
   Colors,
   colors,
@@ -8,27 +10,27 @@ import {
   FontSizes,
   typography,
 } from '@monorail/CommonStyles'
-import { ErrorType } from '@monorail/errorPage/errorTypes'
-import { TypeOf } from 'io-ts'
 
 /*
 * Styles
 */
 
-const CCErrorPage = styled('div')`
+const CCErrorPage = styled.div`
   ${flexFlow('column')};
-  justify-content: center;
+
   align-items: center;
-  width: 100%;
   height: 100%;
+  justify-content: center;
+  width: 100%;
 `
 
-const IconCircle = styled('div')`
+const IconCircle = styled.div`
   ${flexFlow('column')};
-  width: 120px;
-  height: 120px;
+
   background: #ed6d6e;
   border-radius: 50%;
+  height: 120px;
+  width: 120px;
 `
 
 const StyledIcon = styled(Icon)`
@@ -36,25 +38,27 @@ const StyledIcon = styled(Icon)`
   margin: auto auto;
 `
 
-const FourZeroFourIcon = styled('div')`
+const FourZeroFourIcon = styled.div`
   color: #ed6d6e;
   font-size: 88px;
   font-weight: 500;
   margin: auto auto;
 `
 
-const Title = styled('h1')`
+const Title = styled.h1`
   ${typography(700, FontSizes.Title1)};
+
   color: ${colors(Colors.Black89)};
   margin: 32px 0 32px 0;
 `
 
-const ErrorMessage = styled('div')`
+const ErrorMessage = styled.div`
   ${typography(400, FontSizes.Title3)};
+
   color: ${colors(Colors.Black89)};
+  max-width: 448px;
   text-align: center;
   width: 100%;
-  max-width: 448px;
 `
 
 /*
@@ -62,9 +66,9 @@ const ErrorMessage = styled('div')`
 */
 
 type ErrorPageProps = {
+  errorMessage?: ReactNode
   errorType: ErrorType
   title?: ReactNode
-  errorMessage?: ReactNode
 }
 
 /*

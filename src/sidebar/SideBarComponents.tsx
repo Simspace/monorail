@@ -4,16 +4,16 @@ import {
   baseDisabledStyles,
   BorderRadius,
   borderRadius,
-  ease,
   Colors,
   colors,
+  ease,
   flexFlow,
   FontSizes,
   gothamFontFamily,
   Sizes,
+  transition,
   typography,
   visible,
-  transition,
 } from '@monorail/CommonStyles'
 import { CommonComponentType } from '@monorail/types'
 import { PopOverToggleProps } from '@monorail/popOver/PopOver'
@@ -24,6 +24,8 @@ import {
   ListItemSecondaryText,
   ListItemText,
 } from '@monorail/list/List'
+import posed from 'react-pose'
+import { zIndex, ZIndexNodeName } from '@monorail/commonStyles/zindex'
 
 export const sideBarCollapsedTransitionDuration = 150
 
@@ -39,18 +41,12 @@ export const sideBarCollapsedTransition: (
     duration: sideBarCollapsedTransitionDuration,
   })
 
-import posed from 'react-pose'
-
 export enum SidebarContainerAnimationPose {
   Open = 'open',
   Collapsed = 'collapsed',
 }
 
-export const SidebarContainer = styled<
-  CommonComponentType & {
-    pose: string
-  }
->(
+export const SidebarContainer = styled(
   posed.div({
     [SidebarContainerAnimationPose.Open]: {
       width: 224,
@@ -67,15 +63,19 @@ export const SidebarContainer = styled<
       },
     },
   }),
-)`
+)<
+  CommonComponentType & {
+    pose: string
+  }
+>`
   ${flexFlow()};
   ${gothamFontFamily};
+  ${zIndex(ZIndexNodeName.SidebarContainer)};
 
   background: #f4f4f7;
   box-sizing: border-box;
   flex-shrink: 0;
   position: relative;
-  z-index: 5;
 
   will-change: width;
 
@@ -96,26 +96,19 @@ export const SidebarContainer = styled<
   }
 `
 
-export const SidebarMenuContainer = styled<CommonComponentType, 'div'>('div')`
-  ${flexFlow()};
+export const SidebarMenuContainer = styled.div<CommonComponentType>(
+  ({ cssOverrides }) => css`
+    ${flexFlow()};
 
-  flex: 1;
-  overflow-y: auto;
-  padding: 0 8px;
+    flex: 1;
+    overflow-y: auto;
+    padding: 0 8px;
 
-  ${({ cssOverrides }) => cssOverrides};
-`
+    ${cssOverrides};
+  `,
+)
 
-export const SidebarMenuItemDropDownToggle = styled<
-  CommonComponentType &
-    PopOverToggleProps & {
-      disabled?: boolean
-      title: string
-      subtitle?: string
-      iconName: string
-      isSideBarCollapsed: boolean
-    }
->(
+export const SidebarMenuItemDropDownToggle = styled(
   ({
     title,
     subtitle,
@@ -170,17 +163,26 @@ export const SidebarMenuItemDropDownToggle = styled<
       />
     </ListItem>
   ),
-)`
-  ${({ isOpen, isSideBarCollapsed, cssOverrides, disabled }) => css`
-    ${disabled && baseDisabledStyles}
+)<
+  CommonComponentType &
+    PopOverToggleProps & {
+      disabled?: boolean
+      title: string
+      subtitle?: string
+      iconName: string
+      isSideBarCollapsed: boolean
+    }
+>(
+  ({ isOpen, isSideBarCollapsed, cssOverrides, disabled }) => css`
+    ${disabled && baseDisabledStyles};
 
     background: ${colors(Colors.White)};
     margin: 0 8px 8px;
     border: 1px solid
       ${isOpen ? colors(Colors.AccentPurple700) : colors(Colors.White)};
-    color: ${
-      isOpen ? colors(Colors.AccentPurple700) : colors(Colors.BrandDarkBlue)
-    };
+    color: ${isOpen
+      ? colors(Colors.AccentPurple700)
+      : colors(Colors.BrandDarkBlue)};
 
     &:hover,
     &:active {
@@ -197,7 +199,8 @@ export const SidebarMenuItemDropDownToggle = styled<
     }
 
     &:active,
-    &:active ${ListItemGraphic} { /* stylelint-disable-line selector-type-no-unknown */
+    &:active ${ListItemGraphic} {
+      /* stylelint-disable-line selector-type-no-unknown */
       color: ${colors(Colors.AccentPurple700)};
     }
 
@@ -207,18 +210,16 @@ export const SidebarMenuItemDropDownToggle = styled<
     }
 
     ${cssOverrides};
-  `};
-`
+  `,
+)
 
-export const SidebarMenuContextRibbon = styled<CommonComponentType, 'div'>(
-  'div',
-)`
+export const SidebarMenuContextRibbon = styled.div<CommonComponentType>`
   ${typography(500, FontSizes.Title5, '12px 12px 13px 20px')};
 
   color: ${colors(Colors.Black62)};
 `
 
-export const SideBarMenuDivider = styled('div')`
+export const SideBarMenuDivider = styled.div`
   background: #e2e4ea;
   height: 1px;
   margin: 15px 8px 16px;

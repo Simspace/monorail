@@ -1,9 +1,7 @@
 import React, { Component, createRef, ReactNode, RefObject } from 'react'
 import styled from 'styled-components'
 import { flexFlow } from '@monorail/CommonStyles'
-import { StyledHtmlElement } from '@monorail/CoreUtils/type-level'
 import { ScrollAnimation } from '@monorail/layout/ScrollAnimation'
-import { PageHeaderShadowRefType } from '@monorail/pageHeader/PageHeader'
 
 const SingleCollectionContainer = styled.div`
   ${flexFlow()};
@@ -12,21 +10,19 @@ const SingleCollectionContainer = styled.div`
   height: 100%;
 `
 
-export type SingleCollectionContainerRef = StyledHtmlElement<HTMLDivElement, {}>
+export type SingleCollectionHeaderProps = {
+  shadowRef: RefObject<HTMLDivElement>
+  willAnimateShadow: boolean
+}
 
 type Props = {
-  header: (
-    props: {
-      shadowRef: RefObject<PageHeaderShadowRefType>
-      willAnimateShadow: boolean
-    },
-  ) => ReactNode
+  header: (props: SingleCollectionHeaderProps) => ReactNode
   content: ReactNode
 }
 
 export class SingleCollection extends Component<Props> {
-  singleCollectionContainer = createRef<SingleCollectionContainerRef>()
-  pageHeaderShadow = createRef<PageHeaderShadowRefType>()
+  singleCollectionContainer = createRef<HTMLDivElement>()
+  pageHeaderShadow = createRef<HTMLDivElement>()
 
   render() {
     const { header, content } = this.props

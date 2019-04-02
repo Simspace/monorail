@@ -41,20 +41,22 @@ const tableDataStyles = ({
 
 const TableContainer =
 /*#__PURE__*/
-(0, _styledComponents.default)('div').withConfig({
+_styledComponents.default.div.withConfig({
   displayName: "DataTable__TableContainer",
   componentId: "sc-18e9kui-0"
-})(["", ";height:100%;overflow:hidden;", ";"], (0, _CommonStyles.flexFlow)(), ({
+})(({
   cssOverrides
-}) => cssOverrides); // Header Components
+}) => (0, _styledComponents.css)(["", ";height:100%;overflow:hidden;", ";"], (0, _CommonStyles.flexFlow)(), cssOverrides)); // Header Components
+
 
 exports.TableContainer = TableContainer;
+
 const TableHeaderContainer =
 /*#__PURE__*/
-(0, _styledComponents.default)('div').withConfig({
+_styledComponents.default.div.withConfig({
   displayName: "DataTable__TableHeaderContainer",
   componentId: "sc-18e9kui-1"
-})(["", ";"], ({
+})(({
   collapsible = false,
   cssOverrides,
   dense = false,
@@ -64,13 +66,15 @@ const TableHeaderContainer =
   dense,
   collapsible
 }), (0, _CommonStyles.colors)(_CommonStyles.Colors.Grey94), cssOverrides));
+
 exports.TableHeaderContainer = TableHeaderContainer;
+
 const TableHeaderData =
 /*#__PURE__*/
-(0, _styledComponents.default)('div').withConfig({
+_styledComponents.default.div.withConfig({
   displayName: "DataTable__TableHeaderData",
   componentId: "sc-18e9kui-2"
-})(["", ";"], ({
+})(({
   cssOverrides,
   flex,
   hasSorter = false,
@@ -82,22 +86,26 @@ const TableHeaderData =
   flex
 }), hasSorter && (0, _styledComponents.css)(["cursor:pointer;user-select:none;&:hover{background:", ";}"], (0, _CommonStyles.colors)(_CommonStyles.Colors.Grey94)), cssOverrides)); // Body Components
 
+
 exports.TableHeaderData = TableHeaderData;
+
 const TableBody =
 /*#__PURE__*/
-(0, _styledComponents.default)('div').withConfig({
+_styledComponents.default.div.withConfig({
   displayName: "DataTable__TableBody",
   componentId: "sc-18e9kui-3"
-})(["", ";flex:1 1 100%;overflow-y:auto;", ";"], (0, _CommonStyles.flexFlow)(), ({
+})(({
   cssOverrides
-}) => cssOverrides);
+}) => (0, _styledComponents.css)(["", ";flex:1 1 100%;overflow-y:auto;", ";"], (0, _CommonStyles.flexFlow)(), cssOverrides));
+
 exports.TableBody = TableBody;
+
 const TableRowContainer =
 /*#__PURE__*/
-(0, _styledComponents.default)('div').withConfig({
+_styledComponents.default.div.withConfig({
   displayName: "DataTable__TableRowContainer",
   componentId: "sc-18e9kui-4"
-})(["", ";"], ({
+})(({
   collapsible = false,
   cssOverrides,
   dense = false,
@@ -107,13 +115,15 @@ const TableRowContainer =
   dense,
   collapsible
 }), dense ? 32 : 40, (0, _CommonStyles.colors)(_CommonStyles.Colors.Grey96), cssOverrides));
+
 exports.TableRowContainer = TableRowContainer;
+
 const TableRowData =
 /*#__PURE__*/
-(0, _styledComponents.default)('div').withConfig({
+_styledComponents.default.div.withConfig({
   displayName: "DataTable__TableRowData",
   componentId: "sc-18e9kui-5"
-})(["", ";"], ({
+})(({
   textAlign,
   width,
   flex,
@@ -123,13 +133,15 @@ const TableRowData =
   width,
   flex
 }), cssOverrides));
+
 exports.TableRowData = TableRowData;
+
 const TableRowGroupHeader =
 /*#__PURE__*/
-(0, _styledComponents.default)('div').withConfig({
+_styledComponents.default.div.withConfig({
   displayName: "DataTable__TableRowGroupHeader",
   componentId: "sc-18e9kui-6"
-})(["", ";"], ({
+})(({
   collapsible = false,
   cssOverrides,
   dense = false,
@@ -139,6 +151,7 @@ const TableRowGroupHeader =
   dense,
   collapsible
 }), cssOverrides));
+
 exports.TableRowGroupHeader = TableRowGroupHeader;
 
 const TableEmptyMessage =
@@ -150,12 +163,13 @@ _styledComponents.default.div.withConfig({
 
 
 exports.TableEmptyMessage = TableEmptyMessage;
+
 const TableFooterContainer =
 /*#__PURE__*/
-(0, _styledComponents.default)('div').withConfig({
+_styledComponents.default.div.withConfig({
   displayName: "DataTable__TableFooterContainer",
   componentId: "sc-18e9kui-8"
-})(["", ";"], ({
+})(({
   collapsible = false,
   cssOverrides,
   dense = false,
@@ -165,11 +179,16 @@ const TableFooterContainer =
   dense,
   collapsible
 }), (0, _CommonStyles.colors)(_CommonStyles.Colors.Grey99), cssOverrides));
+
 exports.TableFooterContainer = TableFooterContainer;
+
 const TableFooterMeta =
 /*#__PURE__*/
-(0, _styledComponents.default)('div').withConfig({
+_styledComponents.default.div.withConfig({
   displayName: "DataTable__TableFooterMeta",
   componentId: "sc-18e9kui-9"
-})(["", ";color:", ";margin-left:auto;"], (0, _CommonStyles.typography)(400, _CommonStyles.FontSizes.Title5), (0, _CommonStyles.colors)(_CommonStyles.Colors.Black74));
+})(({
+  cssOverrides
+}) => (0, _styledComponents.css)(["", ";color:", ";margin-left:auto;", ";"], (0, _CommonStyles.typography)(400, _CommonStyles.FontSizes.Title5), (0, _CommonStyles.colors)(_CommonStyles.Colors.Black74), cssOverrides));
+
 exports.TableFooterMeta = TableFooterMeta;

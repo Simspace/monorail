@@ -75,19 +75,19 @@ const iconSizeCss = {
   `,
 }
 
-const CCToggle = styled<ToggleProps, 'label'>('label')`
-  ${({ toggleSize }) => toggleSizeCss[toggleSize]};
+const CCToggle = styled.label<ToggleProps>(
+  ({ toggleSize, checked, cssOverrides }) => css`
+    ${toggleSizeCss[toggleSize]};
 
-  box-sizing: content-box;
-  cursor: pointer;
-  display: inline-block;
-  position: relative; /* Slider is pos:abs to this element */
+    box-sizing: content-box;
+    cursor: pointer;
+    display: inline-block;
+    position: relative; /* Slider is pos:abs to this element */
 
-  transition: all ease-in 150ms;
+    transition: all ease-in 150ms;
 
-  /* Change Slider BG/Border Color */
-  ${({ checked }) =>
-    checked
+    /* Change Slider BG/Border Color */
+    ${checked
       ? css`
           background-color: ${colors(Colors.BrandLightBlue)};
           border-color: ${colors(Colors.BrandLightBlue)};
@@ -97,66 +97,75 @@ const CCToggle = styled<ToggleProps, 'label'>('label')`
           border-color: ${colors(Colors.Black, 0.06)};
         `};
 
-  ${({ cssOverrides }) => cssOverrides};
-`
+    ${cssOverrides};
+  `,
+)
 
-const StyledIconChecked = styled<{ checked: boolean } & SliderIconProps>(
-  ({ checked, toggleSize, ...otherProps }) => <Icon {...otherProps} />,
-)`
-  ${({ toggleSize }) => iconSizeCss[toggleSize]};
-  ${({ checked }) => visible(checked)};
+const StyledIconChecked = styled(({ checked, toggleSize, ...otherProps }) => (
+  <Icon {...otherProps} />
+))<{ checked: boolean } & SliderIconProps>(
+  ({ toggleSize, checked }: { checked: boolean } & SliderIconProps) => css`
+    ${iconSizeCss[toggleSize]};
+    ${visible(checked)};
 
-  color: ${colors(Colors.BrandLightBlue)};
-  position: absolute; /* give z-index so ::before bg is behind icon */
-
-  transition: all ease-in 75ms;
-`
-
-const StyledIconNotChecked = styled<{ checked: boolean } & SliderIconProps>(
-  ({ checked, toggleSize, ...otherProps }) => <Icon {...otherProps} />,
-)`
-  ${({ toggleSize }) => iconSizeCss[toggleSize]};
-
-  ${({ checked }) => visible(!checked)};
-
-  color: ${colors(Colors.Black24)};
-  position: absolute; /* give z-index so ::before bg is behind icon */
-
-  transition: all ease-in 75ms;
-`
-
-export const Slider = styled<Slider, 'div'>('div')`
-  ${({ toggleSize }) => sliderSizeCss[toggleSize]};
-  ${getElevation(ElevationRange.Elevation1)};
-  ${flexFlow('row')};
-
-  background-color: ${colors(Colors.White)};
-  border-radius: 50%;
-  bottom: 0;
-  content: '';
-  left: 0;
-  justify-content: center;
-  align-items: center;
-
-  transition: all ease-in 75ms;
-`
-
-const Input = styled<Input, 'input'>('input')`
-  display: none; /* Hide default HTML checkbox */
-
-  /* Move Slider Circle */
-  &:checked + ${/* sc-selector */ Slider} {
-    ${({ toggleSize }) => inputSizeCss[toggleSize]};
-  }
-
-  /* Change Icon: 'check' | Change Color: Blue */
-  &:checked
-    + ${/* sc-selector */ Slider}
-    > ${/* sc-selector */ StyledIconChecked} {
-    ${visible(false)};
     color: ${colors(Colors.BrandLightBlue)};
-  }
-`
+    position: absolute; /* give z-index so ::before bg is behind icon */
+
+    transition: all ease-in 75ms;
+  `,
+)
+
+const StyledIconNotChecked = styled(
+  ({ checked, toggleSize, ...otherProps }) => <Icon {...otherProps} />,
+)<{ checked: boolean } & SliderIconProps>(
+  ({ checked, toggleSize }: { checked: boolean } & SliderIconProps) => css`
+    ${iconSizeCss[toggleSize]};
+
+    ${visible(!checked)};
+
+    color: ${colors(Colors.Black24)};
+    position: absolute; /* give z-index so ::before bg is behind icon */
+
+    transition: all ease-in 75ms;
+  `,
+)
+
+export const Slider = styled.div<Slider>(
+  ({ toggleSize }) => css`
+    ${sliderSizeCss[toggleSize]};
+    ${getElevation(ElevationRange.Elevation1)};
+    ${flexFlow('row')};
+
+    background-color: ${colors(Colors.White)};
+    border-radius: 50%;
+    bottom: 0;
+    content: '';
+    left: 0;
+    justify-content: center;
+    align-items: center;
+
+    transition: all ease-in 75ms;
+  `,
+)
+
+const Input = styled.input<InputProps>(
+  ({ toggleSize }) => css`
+    display: none; /* Hide default HTML checkbox */
+
+    /* Move Slider Circle */
+    &:checked + ${/* sc-selector */ Slider} {
+      ${inputSizeCss[toggleSize]};
+    }
+
+    /* Change Icon: 'check' | Change Color: Blue */
+    &:checked
+      + ${/* sc-selector */ Slider}
+      > ${/* sc-selector */ StyledIconChecked} {
+      ${visible(false)};
+      color: ${colors(Colors.BrandLightBlue)};
+    }
+  `,
+)
 
 type Slider = {
   toggleSize: ToggleSize
@@ -169,7 +178,7 @@ type ToggleProps = {
   onChange?: (checked: boolean) => void
 }
 
-type Input = {
+type InputProps = {
   toggleSize: ToggleSize
 }
 

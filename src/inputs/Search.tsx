@@ -1,5 +1,6 @@
 import React, { ChangeEvent, Component, MouseEvent, RefObject } from 'react'
 import styled, { css, SimpleInterpolation } from 'styled-components'
+import { Overwrite } from 'typelevel-ts'
 
 import { Icon, IconProps } from '@monorail/icon/Icon'
 import { IconButton } from '@monorail/buttons/IconButton'
@@ -12,14 +13,7 @@ import {
   typography,
   visible,
 } from '@monorail/CommonStyles'
-
-import {
-  ButtonSize,
-  ButtonDisplay,
-  IconButtonShape,
-} from '@monorail/buttons/buttonTypes'
-import { StyledHtmlElement } from '@monorail/CoreUtils/type-level'
-import { Overwrite } from 'typelevel-ts'
+import { ButtonSize } from '@monorail/buttons/buttonTypes'
 
 //
 // Styles
@@ -27,9 +21,9 @@ import { Overwrite } from 'typelevel-ts'
 
 const BBSearchIconPos = 3
 
-export const BBSearchContainer = styled.label<BBSearchContainerProps>`
-  ${({ darkMode }) =>
-    darkMode
+export const BBSearchContainer = styled.label<BBSearchContainerProps>(
+  ({ darkMode, cssOverrides }) => css`
+    ${darkMode
       ? css`
           background: ${colors(Colors.White, 0.2)};
           border: 1px solid ${colors(Colors.White, 0.2)};
@@ -54,30 +48,33 @@ export const BBSearchContainer = styled.label<BBSearchContainerProps>`
           }
         `};
 
-  ${flexFlow('row')};
-  border-radius: 100px;
-  box-sizing: border-box;
-  overflow: hidden; /* So the child element (BBSearchInput) doesn't cut into BBSearchContainer's border */
-  position: relative; /* position: relative; so that BBSearchIcon can be positioned absolute to this. */
-  height: 24px;
-  flex-shrink: 0;
+    ${flexFlow('row')};
+    border-radius: 100px;
+    box-sizing: border-box;
+    overflow: hidden; /* So the child element (BBSearchInput) doesn't cut into BBSearchContainer's border */
+    position: relative; /* position: relative; so that BBSearchIcon can be positioned absolute to this. */
+    height: 24px;
+    flex-shrink: 0;
 
-  ${({ cssOverrides }) => cssOverrides};
-`
+    ${cssOverrides};
+  `,
+)
 
-const BBSearchIcon = styled<{ darkMode?: boolean } & IconProps>(
-  ({ darkMode, ...otherProps }) => <Icon {...otherProps} />,
-)`
-  color: ${({ darkMode }) => darkMode && colors(Colors.White)};
-  left: 8px;
-  pointer-events: none;
-  position: absolute;
-  top: ${BBSearchIconPos}px;
-`
+const BBSearchIcon = styled(({ darkMode, ...otherProps }) => (
+  <Icon {...otherProps} />
+))<{ darkMode?: boolean } & IconProps>(
+  ({ darkMode }) => css`
+    color: ${darkMode && colors(Colors.White)};
+    left: 8px;
+    pointer-events: none;
+    position: absolute;
+    top: ${BBSearchIconPos}px;
+  `,
+)
 
-export const BBSearchInput = styled.input<BBSearchInputProps>`
-  ${({ darkMode }) =>
-    darkMode
+export const BBSearchInput = styled.input<BBSearchInputProps>(
+  ({ darkMode }) => css`
+    ${darkMode
       ? css`
           background: ${colors(Colors.White, 0.2)};
           border: 0;
@@ -113,22 +110,19 @@ export const BBSearchInput = styled.input<BBSearchInputProps>`
           }
         `};
 
-  ${typography(500, FontSizes.Title5)};
-  border: 0;
-  flex: 1 1 100%;
-  height: 100%;
-  outline: none;
-  padding: 0 22px 0 28px;
+    ${typography(500, FontSizes.Title5)};
+    border: 0;
+    flex: 1 1 100%;
+    height: 100%;
+    outline: none;
+    padding: 0 22px 0 28px;
 
-  border-radius: 100px;
-  box-sizing: border-box;
+    border-radius: 100px;
+    box-sizing: border-box;
 
-  ${buttonTransition};
-`
-export type BBSearchInput = StyledHtmlElement<
-  HTMLInputElement,
-  BBSearchInputProps
->
+    ${buttonTransition};
+  `,
+)
 
 //
 // Types
@@ -136,22 +130,16 @@ export type BBSearchInput = StyledHtmlElement<
 
 export type BBSearchContainerProps = {
   cssOverrides?: SimpleInterpolation
-  searchRef?: RefObject<SearchRefType>
+  searchRef?: RefObject<HTMLInputElement>
   darkMode: boolean
 }
 
 export type BBSearchInputProps = {
   darkMode: boolean
-  // onChange: (event: ChangeEvent<HTMLInputElement>) => void
   onClick?: (event: MouseEvent<HTMLInputElement>) => void
   placeholder: string
   value?: string
 }
-
-export type SearchRefType = StyledHtmlElement<
-  HTMLInputElement,
-  BBSearchInputProps
->
 
 type SearchProps = BBSearchContainerProps &
   Overwrite<
@@ -180,10 +168,15 @@ export class Search extends Component<SearchProps> {
       value,
       onClick,
       searchRef,
+      ...otherProps
     } = this.props
 
     return (
-      <BBSearchContainer cssOverrides={cssOverrides} darkMode={darkMode}>
+      <BBSearchContainer
+        cssOverrides={cssOverrides}
+        darkMode={darkMode}
+        {...otherProps}
+      >
         <BBSearchIcon icon="search_icon" darkMode={darkMode} />
 
         <BBSearchInput

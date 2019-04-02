@@ -19,6 +19,8 @@ var _buttonTypes = require("../buttons/buttonTypes");
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
 //
 // Styles
 //
@@ -29,11 +31,10 @@ const BBSearchContainer =
 _styledComponents.default.label.withConfig({
   displayName: "Search__BBSearchContainer",
   componentId: "zpwvd9-0"
-})(["", ";", ";border-radius:100px;box-sizing:border-box;overflow:hidden;position:relative;height:24px;flex-shrink:0;", ";"], ({
-  darkMode
-}) => darkMode ? (0, _styledComponents.css)(["background:", ";border:1px solid ", ";&:hover{background:", ";}&:focus{background:", ";}"], (0, _CommonStyles.colors)(_CommonStyles.Colors.White, 0.2), (0, _CommonStyles.colors)(_CommonStyles.Colors.White, 0.2), (0, _CommonStyles.colors)(_CommonStyles.Colors.White, 0.22), (0, _CommonStyles.colors)(_CommonStyles.Colors.White, 0.24)) : (0, _styledComponents.css)(["border:1px solid ", ";&:hover{border-color:", ";}&:focus{border-color:", ";}"], (0, _CommonStyles.colors)(_CommonStyles.Colors.Black, 0.08), (0, _CommonStyles.colors)(_CommonStyles.Colors.BrandLightBlue, 0.5), (0, _CommonStyles.colors)(_CommonStyles.Colors.BrandLightBlue)), (0, _CommonStyles.flexFlow)('row'), ({
+})(({
+  darkMode,
   cssOverrides
-}) => cssOverrides);
+}) => (0, _styledComponents.css)(["", ";", ";border-radius:100px;box-sizing:border-box;overflow:hidden;position:relative;height:24px;flex-shrink:0;", ";"], darkMode ? (0, _styledComponents.css)(["background:", ";border:1px solid ", ";&:hover{background:", ";}&:focus{background:", ";}"], (0, _CommonStyles.colors)(_CommonStyles.Colors.White, 0.2), (0, _CommonStyles.colors)(_CommonStyles.Colors.White, 0.2), (0, _CommonStyles.colors)(_CommonStyles.Colors.White, 0.22), (0, _CommonStyles.colors)(_CommonStyles.Colors.White, 0.24)) : (0, _styledComponents.css)(["border:1px solid ", ";&:hover{border-color:", ";}&:focus{border-color:", ";}"], (0, _CommonStyles.colors)(_CommonStyles.Colors.Black, 0.08), (0, _CommonStyles.colors)(_CommonStyles.Colors.BrandLightBlue, 0.5), (0, _CommonStyles.colors)(_CommonStyles.Colors.BrandLightBlue)), (0, _CommonStyles.flexFlow)('row'), cssOverrides));
 
 exports.BBSearchContainer = BBSearchContainer;
 const BBSearchIcon =
@@ -41,21 +42,21 @@ const BBSearchIcon =
 (0, _styledComponents.default)(({
   darkMode,
   ...otherProps
-}) => _react.default.createElement(_Icon.Icon, otherProps)).withConfig({
-  displayName: "Search__BBSearchIcon",
-  componentId: "zpwvd9-1"
-})(["color:", ";left:8px;pointer-events:none;position:absolute;top:", "px;"], ({
+}) => _react.default.createElement(_Icon.Icon, otherProps))(({
   darkMode
-}) => darkMode && (0, _CommonStyles.colors)(_CommonStyles.Colors.White), BBSearchIconPos);
+}) => (0, _styledComponents.css)(["color:", ";left:8px;pointer-events:none;position:absolute;top:", "px;"], darkMode && (0, _CommonStyles.colors)(_CommonStyles.Colors.White), BBSearchIconPos));
 
 const BBSearchInput =
 /*#__PURE__*/
 _styledComponents.default.input.withConfig({
   displayName: "Search__BBSearchInput",
-  componentId: "zpwvd9-2"
-})(["", ";", ";border:0;flex:1 1 100%;height:100%;outline:none;padding:0 22px 0 28px;border-radius:100px;box-sizing:border-box;", ";"], ({
+  componentId: "zpwvd9-1"
+})(({
   darkMode
-}) => darkMode ? (0, _styledComponents.css)(["background:", ";border:0;color:", ";::placeholder{color:", ";}&:hover{background:", ";}&:focus{background:", ";}"], (0, _CommonStyles.colors)(_CommonStyles.Colors.White, 0.2), (0, _CommonStyles.colors)(_CommonStyles.Colors.White), (0, _CommonStyles.colors)(_CommonStyles.Colors.White), (0, _CommonStyles.colors)(_CommonStyles.Colors.White, 0.22), (0, _CommonStyles.colors)(_CommonStyles.Colors.White, 0.24)) : (0, _styledComponents.css)(["border:1px solid ", ";::placeholder{color:", ";font-style:italic;font-weight:300;}&:hover{border-color:", ";}&:focus{border-color:", ";}"], (0, _CommonStyles.colors)(_CommonStyles.Colors.Black, 0.08), (0, _CommonStyles.colors)(_CommonStyles.Colors.Black54), (0, _CommonStyles.colors)(_CommonStyles.Colors.BrandLightBlue, 0.5), (0, _CommonStyles.colors)(_CommonStyles.Colors.BrandLightBlue)), (0, _CommonStyles.typography)(500, _CommonStyles.FontSizes.Title5), _CommonStyles.buttonTransition);
+}) => (0, _styledComponents.css)(["", ";", ";border:0;flex:1 1 100%;height:100%;outline:none;padding:0 22px 0 28px;border-radius:100px;box-sizing:border-box;", ";"], darkMode ? (0, _styledComponents.css)(["background:", ";border:0;color:", ";::placeholder{color:", ";}&:hover{background:", ";}&:focus{background:", ";}"], (0, _CommonStyles.colors)(_CommonStyles.Colors.White, 0.2), (0, _CommonStyles.colors)(_CommonStyles.Colors.White), (0, _CommonStyles.colors)(_CommonStyles.Colors.White), (0, _CommonStyles.colors)(_CommonStyles.Colors.White, 0.22), (0, _CommonStyles.colors)(_CommonStyles.Colors.White, 0.24)) : (0, _styledComponents.css)(["border:1px solid ", ";::placeholder{color:", ";font-style:italic;font-weight:300;}&:hover{border-color:", ";}&:focus{border-color:", ";}"], (0, _CommonStyles.colors)(_CommonStyles.Colors.Black, 0.08), (0, _CommonStyles.colors)(_CommonStyles.Colors.Black54), (0, _CommonStyles.colors)(_CommonStyles.Colors.BrandLightBlue, 0.5), (0, _CommonStyles.colors)(_CommonStyles.Colors.BrandLightBlue)), (0, _CommonStyles.typography)(500, _CommonStyles.FontSizes.Title5), _CommonStyles.buttonTransition)); //
+// Types
+//
+
 
 exports.BBSearchInput = BBSearchInput;
 
@@ -71,12 +72,13 @@ class Search extends _react.Component {
       placeholder = 'Search',
       value,
       onClick,
-      searchRef
+      searchRef,
+      ...otherProps
     } = this.props;
-    return _react.default.createElement(BBSearchContainer, {
+    return _react.default.createElement(BBSearchContainer, _extends({
       cssOverrides: cssOverrides,
       darkMode: darkMode
-    }, _react.default.createElement(BBSearchIcon, {
+    }, otherProps), _react.default.createElement(BBSearchIcon, {
       icon: "search_icon",
       darkMode: darkMode
     }), _react.default.createElement(BBSearchInput, {

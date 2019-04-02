@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.Sizes = exports.sizes = exports.transition = exports.buttonTransition = exports.ease = exports.generateScaleAnimation = exports.borderRadius = exports.BorderRadius = exports.baseDisabledStyles = exports.basePrimaryStyles = exports.baseSecondaryStyles = exports.baseChromelessStyles = exports.baseOutlineStyles = exports.baseFocusStyles = exports.colors = exports.convertHSLAMapToCss = exports.colorHSLAMap = exports.convertEventStateToColor = exports.convertAppNameToString = exports.convertStringToAppName = exports.convertAppNameToColor = exports.Colors = exports.EventState = exports.AppName = exports.gothamFontFamily = exports.shortHandDeconstruction = exports.typographyMargin = exports.typography = exports.FontSizes = exports.FontWeights = exports.ellipsis = exports.flexFlow = exports.getElevation = exports.ElevationRange = exports.visible = void 0;
+exports.Sizes = exports.sizes = exports.transition = exports.buttonTransition = exports.ease = exports.generateScaleAnimation = exports.borderRadius = exports.BorderRadius = exports.baseDisabledStyles = exports.basePrimaryStyles = exports.baseSecondaryStyles = exports.baseChromelessStyles = exports.baseOutlineStyles = exports.baseFocusStyles = exports.colors = exports.convertHSLAMapToCss = exports.colorHSLAMap = exports.convertEventStateToColor = exports.isAppName = exports.convertAppNameToString = exports.convertStringToAppName = exports.convertAppNameToColor = exports.Colors = exports.EventState = exports.AppName = exports.gothamFontFamily = exports.shortHandDeconstruction = exports.typographyMargin = exports.typography = exports.FontSizes = exports.FontWeights = exports.ellipsis = exports.flexFlow = exports.getElevation = exports.ElevationRange = exports.visible = void 0;
 
 var _styledComponents = require("styled-components");
 
@@ -18,20 +18,17 @@ var AuthSubAppName;
   AuthSubAppName["Range"] = "range";
   AuthSubAppName["TechOps"] = "techops";
   AuthSubAppName["Tracker"] = "tracker";
+  AuthSubAppName["Execution"] = "execution";
+  AuthSubAppName["Home"] = "home";
+  AuthSubAppName["Events"] = "events";
+  AuthSubAppName["EventDesign"] = "event-design";
 })(AuthSubAppName || (AuthSubAppName = {}));
 
-const visible = (isVisible = false) => isVisible ? {
-  visibility: 'visible',
-  opacity: 0.9999 // Doing .9999 keeps the GPU activated on this element so that it can quickly change back to 0.
+const visible = (isVisible = false) => isVisible ? (0, _styledComponents.css)(["visibility:visible;opacity:0.9999;"]) : (0, _styledComponents.css)(["visibility:hidden;opacity:0;"]);
+/*
+* Elevation
+*/
 
-} : {
-  visibility: 'hidden',
-  opacity: 0
-  /*
-  * Elevation
-  */
-
-};
 
 exports.visible = visible;
 let ElevationRange;
@@ -93,9 +90,7 @@ const elevationStyles = {
   [ElevationRange.Elevation24]: '0 11px 15px -7px rgba(0,0,0,.2),0 24px 38px 3px rgba(0,0,0,.14),0 9px 46px 8px rgba(0,0,0,.12)'
 };
 
-const getElevation = elevation => ({
-  boxShadow: elevationStyles[elevation]
-});
+const getElevation = elevation => (0, _styledComponents.css)(["box-shadow:", ";"], elevationStyles[elevation]);
 /*
 * Flex Helpers
 */
@@ -105,10 +100,7 @@ exports.getElevation = getElevation;
 const defaultDirection = 'column';
 const defaultWrap = 'nowrap';
 
-const flexFlow = (direction = defaultDirection, wrap = defaultWrap) => ({
-  display: 'flex',
-  flexFlow: `${direction} ${wrap}`
-});
+const flexFlow = (direction = defaultDirection, wrap = defaultWrap) => (0, _styledComponents.css)(["display:flex;flex-flow:", " ", ";"], direction, wrap);
 /*
 * Typography
 */
@@ -366,6 +358,10 @@ exports.AppName = AppName;
   AppName["TechOps"] = "techops";
   AppName["Tracker"] = "tracker";
   AppName["Training"] = "training";
+  AppName["Execution"] = "execution";
+  AppName["Home"] = "home";
+  AppName["Events"] = "events";
+  AppName["EventDesign"] = "event-design";
 })(AppName || (exports.AppName = AppName = {}));
 
 let EventState;
@@ -414,6 +410,7 @@ exports.Colors = Colors;
   Colors["Requested"] = "requested";
   Colors["Inactive"] = "inactive";
   Colors["Academy"] = "academy";
+  Colors["Execution"] = "execution";
   Colors["Admin"] = "admin";
   Colors["Catalog"] = "catalog";
   Colors["Dashboard"] = "dashboard";
@@ -449,6 +446,16 @@ const convertAppNameToColor = appNames => {
     case AppName.Dashboard:
     case AuthSubAppName.Dashboard:
       return Colors.Dashboard;
+
+    case AppName.Home:
+    case AuthSubAppName.Home:
+    case AppName.Events:
+    case AuthSubAppName.Events:
+    case AppName.EventDesign:
+    case AuthSubAppName.EventDesign:
+    case AuthSubAppName.Execution:
+    case AppName.Execution:
+      return Colors.White;
 
     case AppName.Range:
     case AuthSubAppName.Range:
@@ -521,6 +528,18 @@ const convertStringToAppName = appNameString => {
     case 'externalLms':
       return AppName.LMS;
 
+    case 'execution':
+      return AppName.Execution;
+
+    case 'home':
+      return AppName.Home;
+
+    case 'events':
+      return AppName.Events;
+
+    case 'event-design':
+      return AppName.EventDesign;
+
     default:
       return assertUnreachable('Invalid appName');
   }
@@ -571,10 +590,28 @@ const convertAppNameToString = appName => {
 
     case AppName.LMS:
       return 'externalLms';
+
+    case AppName.Home:
+    case AuthSubAppName.Home:
+      return 'home';
+
+    case AppName.Events:
+    case AuthSubAppName.Events:
+    case AppName.Execution:
+    case AuthSubAppName.Execution:
+      return 'events';
+
+    case AppName.EventDesign:
+    case AuthSubAppName.EventDesign:
+      return 'event-design';
   }
 };
 
 exports.convertAppNameToString = convertAppNameToString;
+
+const isAppName = name => Object.values(AppName).includes(name);
+
+exports.isAppName = isAppName;
 
 const convertEventStateToColor = eventState => {
   switch (eventState) {
@@ -819,6 +856,12 @@ const colorHSLAMap = ({
     [Colors.LMS]: {
       h: 2,
       s: 61,
+      l: 50,
+      a: alpha
+    },
+    [Colors.Execution]: {
+      h: 196,
+      s: 75,
       l: 50,
       a: alpha
     },
@@ -1092,7 +1135,7 @@ const sizes = {
     width: 176
   },
   appSwitcher: {
-    width: 368
+    width: 376
   }
 };
 exports.sizes = sizes;

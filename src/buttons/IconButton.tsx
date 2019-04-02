@@ -1,6 +1,6 @@
 import React, { Component, MouseEvent } from 'react'
 import styled, { css, SimpleInterpolation } from 'styled-components'
-
+import { Icon } from '@monorail/icon/Icon'
 import {
   baseChromelessStyles,
   baseDisabledStyles,
@@ -14,7 +14,6 @@ import {
   colors,
   flexFlow,
 } from '@monorail/CommonStyles'
-import { Icon } from '@monorail/icon/Icon'
 import {
   ButtonSize,
   ButtonDisplay,
@@ -83,34 +82,33 @@ const iconButtonSizeCss = {
   `,
 }
 
-export const CCIconButton = styled<CCIconButtonProps, 'button'>('button')`
-  ${({ display }) => iconButtonDisplayCss[display]};
-  ${({ size }) => iconButtonSizeCss[size]};
-  ${({ disabled }) => disabled && baseDisabledStyles};
-  ${({ shape }) =>
-    borderRadius(
+export const CCIconButton = styled.button<CCIconButtonProps>(
+  ({ disabled, display, size, shape, cssOverrides, darkMode, iconCss }) => css`
+    ${iconButtonDisplayCss[display]};
+    ${iconButtonSizeCss[size]};
+    ${disabled && baseDisabledStyles};
+    ${borderRadius(
       shape === IconButtonShape.Default
         ? BorderRadius.Round
         : BorderRadius.Medium,
     )};
 
-  ${flexFlow()};
+    ${flexFlow()};
 
-  align-items: center;
-  box-sizing: border-box;
-  cursor: pointer;
-  flex-shrink: 0;
-  justify-content: center;
-  outline: none;
-  padding: 0;
-  text-transform: uppercase;
-  user-select: none;
+    align-items: center;
+    box-sizing: border-box;
+    cursor: pointer;
+    flex-shrink: 0;
+    justify-content: center;
+    outline: none;
+    padding: 0;
+    text-transform: uppercase;
+    user-select: none;
 
-  ${buttonTransition};
+    ${buttonTransition};
 
-  ${Icon} {
-    ${({ darkMode }) =>
-      darkMode
+    ${Icon} {
+      ${darkMode
         ? css`
             color: ${colors(Colors.White)};
           `
@@ -118,13 +116,14 @@ export const CCIconButton = styled<CCIconButtonProps, 'button'>('button')`
             color: currentColor;
           `};
 
-    ${({ iconCss }) => iconCss};
-  }
+      ${iconCss};
+    }
 
-  ${baseFocusStyles()};
+    ${baseFocusStyles()};
 
-  ${({ cssOverrides }) => cssOverrides};
-`
+    ${cssOverrides};
+  `,
+)
 
 type CCIconButtonProps = {
   cssOverrides?: SimpleInterpolation
@@ -135,7 +134,8 @@ type CCIconButtonProps = {
   iconCss?: SimpleInterpolation
   onClick?: (event: MouseEvent<Element>) => void
   size: ButtonSize
-  type: string
+  type: 'button' | 'reset' | 'submit'
+  className?: string
 }
 
 export type IconButtonProps = CCIconButtonProps & {
@@ -151,9 +151,9 @@ export class IconButton extends Component<IconButtonProps> {
   }
 
   render() {
-    const { icon, ...otherProps } = this.props
+    const { icon, className, ...otherProps } = this.props
     return (
-      <CCIconButton className="new-button" {...otherProps}>
+      <CCIconButton className={`new-button ${className}`} {...otherProps}>
         <Icon icon={icon} />
       </CCIconButton>
     )

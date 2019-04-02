@@ -1,5 +1,5 @@
 import React, { Component, ReactNode } from 'react';
-export declare const ChoiceSorterCss: import("styled-components").InterpolationValue[];
+export declare const ChoiceSorterCss: import("styled-components").FlattenSimpleInterpolation;
 export declare type BasicOption = {
     label: string;
     value: string;
@@ -50,7 +50,7 @@ export declare class BasicSorterController extends Component<BasicSorterControll
     state: TitleState;
     getTitle: () => React.ReactNode;
     updateTitle: () => void;
-    sorterItemStyle: (selected: boolean) => false | import("styled-components").InterpolationValue[];
+    sorterItemStyle: (selected: boolean) => false | import("styled-components").FlattenSimpleInterpolation;
     onSorterChange: (key: string) => void;
     componentDidMount: () => void;
     render(): React.ReactNode;

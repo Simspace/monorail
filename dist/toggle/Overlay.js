@@ -56,16 +56,18 @@ class Overlay extends _react.Component {
 
   render() {
     const {
+      children,
       isOpen,
       onClick,
-      children,
       overlayProps,
-      usesScaleAnimation
+      usesScaleAnimation,
+      zIndex
     } = this.props;
     return _react.default.createElement(_Modals.BBModalContainer, {
       onClick: e => e.stopPropagation(),
       usesScaleAnimation: usesScaleAnimation,
-      isOpen: isOpen
+      isOpen: isOpen,
+      zIndex: zIndex
     }, _react.default.createElement(_Modals.BBModalOverlay, _extends({
       isOpen: isOpen,
       onClick: onClick
@@ -77,5 +79,6 @@ class Overlay extends _react.Component {
 exports.Overlay = Overlay;
 Overlay.defaultProps = {
   usesScaleAnimation: false,
-  escToClose: true
+  escToClose: true,
+  zIndex: 9998
 };

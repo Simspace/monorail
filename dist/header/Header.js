@@ -24,9 +24,9 @@ const HeaderRow =
 _styledComponents.default.div.withConfig({
   displayName: "Header__HeaderRow",
   componentId: "muzh11-0"
-})(["color:", ";", ";", ";align-items:center;flex-shrink:0;height:48px;padding:0 16px;", ";"], (0, _CommonStyles.colors)(_CommonStyles.Colors.BrandDarkBlue), (0, _CommonStyles.flexFlow)('row'), (0, _CommonStyles.typography)(500, _CommonStyles.FontSizes.Title3), ({
+})(({
   cssOverrides
-}) => cssOverrides);
+}) => (0, _styledComponents.css)(["color:", ";", ";", ";align-items:center;flex-shrink:0;height:48px;padding:0 16px;", ";"], (0, _CommonStyles.colors)(_CommonStyles.Colors.BrandDarkBlue), (0, _CommonStyles.flexFlow)('row'), (0, _CommonStyles.typography)(500, _CommonStyles.FontSizes.Title3), cssOverrides));
 
 const iconRightCss =
 /*#__PURE__*/
@@ -54,10 +54,7 @@ const Header =
 }), iconLeft && _react.default.createElement(_Icon.Icon, {
   cssOverrides: iconRightCss,
   icon: iconLeft
-}), title, actions), children)).withConfig({
-  displayName: "Header",
-  componentId: "muzh11-1"
-})(["", ";"], ({
+}), title, actions), children))(({
   noBorder,
   appIcon,
   cssOverrides

@@ -1,10 +1,18 @@
-import { prop } from '@monorail/CoreUtils/Record'
-import { len } from '@monorail/CoreUtils/Array'
-import { fold } from '@monorail/CoreUtils/Option'
+import { prop } from '@monorail/sharedHelpers/fp-ts-ext/Record'
+import { len } from '@monorail/sharedHelpers/fp-ts-ext/Array'
+import { fold } from '@monorail/sharedHelpers/fp-ts-ext/Option'
 import { array, head } from 'fp-ts/lib/Array'
 import React, { Component, ReactNode } from 'react'
 import styled, { css, SimpleInterpolation } from 'styled-components'
-
+import { Button } from '@monorail/buttons/Button'
+import { ButtonDisplay, ButtonSize } from '@monorail/buttons/buttonTypes'
+import { Choice } from '@monorail/inputs/Choice'
+import { CommonComponentType } from '@monorail/types'
+import { Div } from '@monorail/StyleHelpers'
+import { Filter } from '@monorail/filters/Filter'
+import { FilterGroupWithData, SorterGroup } from './types'
+import { Search } from '@monorail/inputs/Search'
+import { Status } from '@monorail/status/Status'
 import {
   ease,
   flexFlow,
@@ -12,16 +20,6 @@ import {
   typography,
   FontSizes,
 } from '@monorail/CommonStyles'
-import { Div } from '@monorail/StyleHelpers'
-
-import { Filter } from '@monorail/filters/Filter'
-import { Search } from '@monorail/inputs/Search'
-import { Choice } from '@monorail/inputs/Choice'
-import { Status } from '@monorail/status/Status'
-import { Button } from '@monorail/buttons/Button'
-
-import { FilterGroupWithData, SorterGroup } from './types'
-import { ButtonDisplay, ButtonSize } from '@monorail/buttons/buttonTypes'
 
 const sorterItemStyle = (selected: boolean) => css`
   ${typography(500, FontSizes.Content)};
@@ -39,15 +37,15 @@ const sorterItemStyle = (selected: boolean) => css`
   }
 `
 
-const BBFilterBar = styled<{ cssOverrides?: SimpleInterpolation }, 'div'>(
-  'div',
-)`
-  ${flexFlow('row')};
+const BBFilterBar = styled.div<CommonComponentType>(
+  ({ cssOverrides }) => css`
+    ${flexFlow('row')};
 
-  margin-left: -4px;
+    margin-left: -4px;
 
-  ${({ cssOverrides }) => cssOverrides};
-`
+    ${cssOverrides};
+  `,
+)
 
 type Props<
   CollectionItem extends object,
@@ -90,7 +88,10 @@ export class FilterBar<
         </>
       )
     } else if (filterGroup.activeFilterCount === 1) {
-      const headFilterOpt = head(filterGroup.filters)
+      // Get checked filter option
+      const headFilterOpt = head(
+        filterGroup.filters.filter(item => item.checked),
+      )
       const activeFilterLabel = fold(headFilterOpt, '', prop('label'))
       // If equal to 1, show the label and the single active filter
       return `${filterGroup.label} - ${activeFilterLabel}`

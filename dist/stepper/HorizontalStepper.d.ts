@@ -10,7 +10,7 @@ declare type Props = {
     onStepClick: (step: StepType, index: number) => void;
 };
 export declare class HorizontalStepper extends Component<Props & StyleOptions> {
-    getClassname: (step: StepType) => "" | "active" | "completed" | "disabled";
+    getClassname: (step: StepType) => "" | "active" | "disabled" | "completed";
     renderSection: (step: StepType, index: number) => JSX.Element;
     render(): JSX.Element;
 }

@@ -4,30 +4,30 @@ import styled, { css, SimpleInterpolation } from 'styled-components'
 import { SelectOption, Select } from './Select'
 import { typography, FontSizes } from '@monorail/CommonStyles'
 import { Choice } from './Choice'
+import { CommonComponentType } from '@monorail/types'
 
-const CheckmarkSelectGroupWrapper = styled<
-  { cssOverrides?: SimpleInterpolation },
-  'div'
->('div')`
-  ${({ cssOverrides }) => cssOverrides};
-`
+const CheckmarkSelectGroupWrapper = styled.div<CommonComponentType>(
+  ({ cssOverrides }) => css`
+    ${cssOverrides};
+  `,
+)
 
 const Label = styled.p`
   ${typography(500, FontSizes.Title5)};
+
   margin-bottom: 4px;
   height: 16px;
 `
 
-const CheckmarkSelectWrapper = styled<
-  { cssOverrides?: SimpleInterpolation },
-  'div'
->('div')`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  ${({ cssOverrides }) => cssOverrides};
-`
+const CheckmarkSelectWrapper = styled.div<CommonComponentType>(
+  ({ cssOverrides }) => css`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    ${cssOverrides};
+  `,
+)
 
 const CheckmarkSelectLabel = styled.p`
   ${typography(500, FontSizes.Title5)};

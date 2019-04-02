@@ -5,23 +5,23 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.FilterCollection = exports.createFilterGroup = void 0;
 
-var _IO = require("../CoreUtils/IO");
+var _IO = require("../sharedHelpers/fp-ts-ext/IO");
 
-var _general = require("../CoreUtils/general");
+var _function = require("../sharedHelpers/fp-ts-ext/function");
 
-var _optics = require("../CoreUtils/optics");
+var _optics = require("../sharedHelpers/optics");
 
-var _String = require("../CoreUtils/String");
+var _strings = require("../sharedHelpers/strings");
 
-var _Array = require("../CoreUtils/Array");
+var _Array = require("../sharedHelpers/fp-ts-ext/Array");
 
-var _Option = require("../CoreUtils/Option");
+var _Option = require("../sharedHelpers/fp-ts-ext/Option");
 
-var _primitiveGuards = require("../CoreUtils/primitive-guards");
+var _typeGuards = require("../sharedHelpers/typeGuards");
 
 var _Array2 = require("fp-ts/lib/Array");
 
-var _function = require("fp-ts/lib/function");
+var _function2 = require("fp-ts/lib/function");
 
 var _Option2 = require("fp-ts/lib/Option");
 
@@ -72,9 +72,9 @@ class FilterCollection extends _react.Component {
       } : s;
 
       const transition = this.stateToSortersOptional.modify((0, _Array.map)(toggleSelected));
-      const setStateIO = (0, _IO.mkIO)(() => this.setState(transition));
-      const constSetStateIO = (0, _function.constant)(setStateIO);
-      const noOpIO = (0, _IO.mkIO)(_general.constVoid);
+      const setStateIO = (0, _IO.newIO)(() => this.setState(transition));
+      const constSetStateIO = (0, _function2.constant)(setStateIO);
+      const noOpIO = (0, _IO.newIO)(_function.constVoid);
       const onSorterChangeIO = sorterGroupOpt.fold(noOpIO, constSetStateIO);
       (0, _IO.runIO)(onSorterChangeIO);
     };
@@ -82,19 +82,19 @@ class FilterCollection extends _react.Component {
     this.onFilterChange = (groupKey, filterKey, value) => {
       const stateToFilterKeyOptional = this.stateToFilterStateLens.composeOptional((0, _optics.mkRecordKeyOptional)(groupKey)).composeOptional((0, _optics.mkRecordKeyOptional)(filterKey));
       const transition = stateToFilterKeyOptional.set(value);
-      const setStateIO = (0, _IO.mkIO)(() => this.setState(transition));
+      const setStateIO = (0, _IO.newIO)(() => this.setState(transition));
       (0, _IO.runIO)(setStateIO);
     };
 
     this.resetFilters = () => {
       const transition = this.stateToFilterStateLens.set(this.initialFilterState);
-      const setStateIO = (0, _IO.mkIO)(() => this.setState(transition));
+      const setStateIO = (0, _IO.newIO)(() => this.setState(transition));
       (0, _IO.runIO)(setStateIO);
     };
 
     this.onSearchChange = searchText => {
       const transition = this.stateToSearchTextLens.set(searchText);
-      const setStateIO = (0, _IO.mkIO)(() => this.setState(transition));
+      const setStateIO = (0, _IO.newIO)(() => this.setState(transition));
       (0, _IO.runIO)(setStateIO);
     };
 
@@ -111,7 +111,7 @@ class FilterCollection extends _react.Component {
         filterState
       } = this.state; // sanitize search text
 
-      const sanitizedSearchText = (0, _String.toLocaleLower)(searchText); // Here we loop through all the filter groups and filter out the
+      const sanitizedSearchText = (0, _strings.toLower)(searchText); // Here we loop through all the filter groups and filter out the
       // filters that are unchecked. This is an optimization so
       // we don't need to do this work every time in the below map
 
@@ -137,8 +137,8 @@ class FilterCollection extends _react.Component {
       const filtered = _Array2.array.filter(catalog, catalogItem => {
         // If search exists and item does not match, filter it out
         const searchValue = catalogItem[searchByKey];
-        const findIndexLocaleLower = (0, _general.o)((0, _String.findIndex)(sanitizedSearchText), _String.toLocaleLower);
-        const isNotFound = (0, _general.o)(x => (0, _Option2.isNone)(x), findIndexLocaleLower);
+        const findIndexLocaleLower = (0, _function.o)((0, _strings.findIndex)(sanitizedSearchText), _strings.toLower);
+        const isNotFound = (0, _function.o)(x => (0, _Option2.isNone)(x), findIndexLocaleLower);
 
         if (typeof searchValue !== 'string') {
           console.error('tried to search non-string value'); // tslint:disable-line:no-console
@@ -156,9 +156,9 @@ class FilterCollection extends _react.Component {
             const target = group.filterKey;
             const value = catalogItem[target];
 
-            if ((0, _primitiveGuards.isNil)(group.transform) && typeof value === 'string') {
+            if ((0, _typeGuards.isNil)(group.transform) && typeof value === 'string') {
               return filterTerm === value;
-            } else if (!(0, _primitiveGuards.isNil)(group.transform)) {
+            } else if (!(0, _typeGuards.isNil)(group.transform)) {
               return filterTerm === group.transform(value);
             } else {
               const errorMsg = `error: lookup value for ${group.filterKey}` + `must be a string, but received a ${typeof value} (${value})`;

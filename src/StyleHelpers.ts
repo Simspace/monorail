@@ -1,27 +1,18 @@
-import React from 'react'
-import {
-  default as styledOrig,
+import { GlobalAppThemeInterface } from '@monorail/globalAppTheme'
+import styled, {
   FlattenInterpolation,
   SimpleInterpolation,
   ThemeProps,
+  css,
 } from 'styled-components'
-import { GlobalAppThemeInterface } from '@monorail/globalAppTheme'
 
 export type CssOverrides =
   | SimpleInterpolation
-  | FlattenInterpolation<ThemeProps<GlobalAppThemeInterface>>[]
+  | FlattenInterpolation<ThemeProps<GlobalAppThemeInterface>>
 
 export type StyledComponentCssOverrides = {
   cssOverrides?: CssOverrides
 }
-
-/**
- * TODO: Get rid of this. This was something Dan added that isn't correctly typed. Any references should be replaced
- * with styled<Props, 'div'>('div')
- */
-export const styled = <P, E = HTMLDivElement>(
-  tagName: string | React.ComponentType<P>,
-) => styledOrig<P & React.HTMLProps<E>, any>(tagName) // tslint:disable-line:no-any
 
 type Props = {
   cssOverrides?: CssOverrides
@@ -39,10 +30,17 @@ type Props = {
   />
  ```
  */
-export const Div = styledOrig<Props, 'div'>('div')`
-  ${({ cssOverrides }) => cssOverrides}
-`
 
-export const Form = styledOrig<Props, 'form'>('form')`
-  ${({ cssOverrides }) => cssOverrides}
-`
+export const Div = styled.div<Props>(
+  ({ cssOverrides }) =>
+    css`
+      ${cssOverrides};
+    `,
+)
+
+export const Form = styled.form<Props>(
+  ({ cssOverrides }) =>
+    css`
+      ${cssOverrides};
+    `,
+)

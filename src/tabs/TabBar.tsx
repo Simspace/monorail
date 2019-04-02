@@ -1,38 +1,39 @@
 import React, { Component, ReactNode } from 'react'
-import { isNil } from '@monorail/CoreUtils/primitive-guards'
+import { isNil } from '@monorail/sharedHelpers/typeGuards'
 import styled, { css, SimpleInterpolation } from 'styled-components'
 import { Colors, colors, flexFlow, Sizes } from '@monorail/CommonStyles'
 import { TabProps } from './Tab'
 
 // TabBarIndicator is pos:abs to this element. Also we use offsetLeft on the Tab which references this position.
-export const TabBarContainer = styled<CCTabBarProps, 'div'>('div')`
-  ${flexFlow('row')};
+export const TabBarContainer = styled.div<CCTabBarProps>(
+  ({ cssOverrides, size }) => css`
+    ${flexFlow('row')};
 
-  height: ${({ size }) => size}px;
-  padding: 0 8px;
-  position: relative;
-  box-sizing: border-box;
-  border-bottom: 1px solid ${colors(Colors.Grey94)};
-  flex-shrink: 0;
+    height: ${size}px;
+    padding: 0 8px;
+    position: relative;
+    box-sizing: border-box;
+    border-bottom: 1px solid ${colors(Colors.Grey94)};
+    flex-shrink: 0;
 
-  ${({ cssOverrides }) => cssOverrides};
-`
+    ${cssOverrides};
+  `,
+)
 
-const TabBarIndicator = styled<TabBarIndicatorProps, 'div'>('div')`
-  ${({ left, width, duration }) => css`
+const TabBarIndicator = styled.div<TabBarIndicatorProps>(
+  ({ left, width, duration }) => css`
+    background: ${colors(Colors.BrandLightBlue)};
+    border-radius: 3px 3px 0 0;
+    bottom: 0;
+    height: 3px;
     left: ${left}px;
-    width: ${width}px;
+    position: absolute;
     transition-duration: ${duration * 1.4}ms;
-  `};
-
-  background: ${colors(Colors.BrandLightBlue)};
-  border-radius: 3px 3px 0 0;
-  bottom: 0;
-  height: 3px;
-  position: absolute;
-  transition-property: all;
-  transition-timing-function: ease-in-out;
-`
+    transition-property: all;
+    transition-timing-function: ease-in-out;
+    width: ${width}px;
+  `,
+)
 
 const TabBarActions = styled.div`
   ${flexFlow('row')};

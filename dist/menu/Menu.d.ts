@@ -1,22 +1,19 @@
-import React, { Component, ReactNode } from 'react';
-import { SimpleInterpolation } from 'styled-components';
-import { StyledHtmlElement } from '@monorail/CoreUtils/type-level';
+import React, { Component } from 'react';
 import { PopOverChildProps } from '@monorail/popOver/PopOver';
-declare type MenuProps = {
-    children: ReactNode;
-    cssOverrides?: SimpleInterpolation;
-    width: string;
-};
 declare type Props = PopOverChildProps & {
     width?: number;
+    zIndex: number;
 };
 declare type State = {
     menuHeight: number;
     menuWidth: number;
 };
 export declare class Menu extends Component<Props, State> {
+    static defaultProps: {
+        zIndex: number;
+    };
     state: State;
-    menuRef: React.RefObject<StyledHtmlElement<HTMLDivElement, MenuProps, unknown>>;
+    menuRef: React.RefObject<HTMLDivElement>;
     componentDidMount(): void;
     componentDidUpdate(): void;
     updateMenuHeight: () => void;

@@ -1,4 +1,3 @@
-import { StyledHtmlElement } from '@monorail/CoreUtils/type-level';
 import React, { ChangeEvent, Component } from 'react';
 import { SimpleInterpolation } from 'styled-components';
 declare type BBTextAreaContainerProps = {
@@ -17,7 +16,7 @@ declare type BBTextAreaInputProps = {
 };
 export declare type TextAreaProps = BBTextAreaContainerProps & BBTextAreaInputProps & {};
 export declare class TextArea extends Component<TextAreaProps> {
-    textArea: React.RefObject<StyledHtmlElement<HTMLTextAreaElement, BBTextAreaInputProps, unknown>>;
+    textArea: React.RefObject<HTMLTextAreaElement>;
     setCompactHeight: () => void;
     componentDidUpdate(): void;
     componentDidMount(): void;

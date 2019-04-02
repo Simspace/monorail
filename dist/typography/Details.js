@@ -7,7 +7,7 @@ exports.CCDetails = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _primitiveGuards = require("../CoreUtils/primitive-guards");
+var _typeGuards = require("../sharedHelpers/typeGuards");
 
 var _styledComponents = _interopRequireWildcard(require("styled-components"));
 
@@ -27,15 +27,17 @@ const compactPropertyStyles =
 const largePropertyStyles =
 /*#__PURE__*/
 (0, _styledComponents.css)(["", ";color:", ";"], (0, _CommonStyles.typography)(700, _CommonStyles.FontSizes.Content), (0, _CommonStyles.colors)(_CommonStyles.Colors.Black74));
+
 const BBDetailsProperty =
 /*#__PURE__*/
-(0, _styledComponents.default)('h2').withConfig({
+_styledComponents.default.h2.withConfig({
   displayName: "Details__BBDetailsProperty",
   componentId: "xo061-0"
-})(["", ";", ";margin:0;"], ({
+})(({
   compact,
-  large
-}) => {
+  large,
+  darkMode
+}) => (0, _styledComponents.css)(["", ";", ";margin:0;"], () => {
   if (compact) {
     return compactPropertyStyles;
   } else if (large) {
@@ -43,9 +45,8 @@ const BBDetailsProperty =
   } else {
     return primaryPropertyStyles;
   }
-}, ({
-  darkMode
-}) => darkMode && (0, _styledComponents.css)(["color:", ";"], (0, _CommonStyles.colors)(_CommonStyles.Colors.White))); // Value Styles
+}, darkMode && (0, _styledComponents.css)(["color:", ";"], (0, _CommonStyles.colors)(_CommonStyles.Colors.White)))); // Value Styles
+
 
 const primaryValueStyles =
 /*#__PURE__*/
@@ -56,15 +57,17 @@ const compactValueStyles =
 const largeValueStyles =
 /*#__PURE__*/
 (0, _styledComponents.css)(["", ";color:", ";"], (0, _CommonStyles.typography)(200, _CommonStyles.FontSizes.Title1), (0, _CommonStyles.colors)(_CommonStyles.Colors.Black89));
+
 const BBDetailsValue =
 /*#__PURE__*/
-(0, _styledComponents.default)('h2').withConfig({
+_styledComponents.default.h2.withConfig({
   displayName: "Details__BBDetailsValue",
   componentId: "xo061-1"
-})(["", ";", ";margin:0;"], ({
+})(({
   compact,
-  large
-}) => {
+  large,
+  darkMode
+}) => (0, _styledComponents.css)(["", ";", ";margin:0;"], () => {
   if (compact) {
     return compactValueStyles;
   } else if (large) {
@@ -72,17 +75,16 @@ const BBDetailsValue =
   } else {
     return primaryValueStyles;
   }
-}, ({
-  darkMode
-}) => darkMode && (0, _styledComponents.css)(["color:", ";"], (0, _CommonStyles.colors)(_CommonStyles.Colors.White)));
+}, darkMode && (0, _styledComponents.css)(["color:", ";"], (0, _CommonStyles.colors)(_CommonStyles.Colors.White))));
+
 const BBDetailsContainer =
 /*#__PURE__*/
-(0, _styledComponents.default)('div').withConfig({
+_styledComponents.default.div.withConfig({
   displayName: "Details__BBDetailsContainer",
   componentId: "xo061-2"
-})(["", ";", "{margin-top:6px;}", ";"], (0, _CommonStyles.flexFlow)(), _Tag.CCTag, ({
+})(({
   cssOverrides
-}) => cssOverrides);
+}) => (0, _styledComponents.css)(["", ";", "{margin-top:6px;}", ";"], (0, _CommonStyles.flexFlow)(), _Tag.CCTag, cssOverrides));
 
 class CCDetails extends _react.Component {
   render() {
@@ -101,7 +103,7 @@ class CCDetails extends _react.Component {
       compact: compact,
       large: large,
       darkMode: darkMode
-    }, property), !(0, _primitiveGuards.isNil)(value) && _react.default.createElement(BBDetailsValue, {
+    }, property), !(0, _typeGuards.isNil)(value) && _react.default.createElement(BBDetailsValue, {
       compact: compact,
       large: large,
       darkMode: darkMode

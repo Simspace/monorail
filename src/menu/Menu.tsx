@@ -1,6 +1,5 @@
 import React, { Component, ReactNode, createRef } from 'react'
 import styled, { css, SimpleInterpolation } from 'styled-components'
-import { StyledHtmlElement } from '@monorail/CoreUtils/type-level'
 import { PopOverChildProps } from '@monorail/popOver/PopOver'
 import {
   BorderRadius,
@@ -15,31 +14,33 @@ import {
 } from '@monorail/CommonStyles'
 import { Overlay } from '@monorail/toggle/Overlay'
 import { fromNullable } from 'fp-ts/lib/Option'
-import { isNil } from '@monorail/CoreUtils/primitive-guards'
+import { isNil } from '@monorail/sharedHelpers/typeGuards'
 
 type MenuProps = {
   children: ReactNode
   cssOverrides?: SimpleInterpolation
   width: string
 }
-type MenuRef = StyledHtmlElement<HTMLDivElement, MenuProps>
-const CCMenu = styled<MenuProps, 'div'>('div')`
-  ${borderRadius(BorderRadius.Medium)};
-  ${flexFlow()};
-  ${getElevation(ElevationRange.Elevation6)};
 
-  background: ${colors(Colors.White)};
-  overflow: hidden;
-  position: fixed;
-  width: ${({ width }) => width};
-  min-width: ${sizes.menu.width}px;
+const CCMenu = styled.div<MenuProps>(
+  ({ width, cssOverrides }) => css`
+    ${borderRadius(BorderRadius.Medium)};
+    ${flexFlow()};
+    ${getElevation(ElevationRange.Elevation6)};
 
-  ${({ cssOverrides }) => cssOverrides};
-`
+    background: ${colors(Colors.White)};
+    overflow: hidden;
+    position: fixed;
+    width: ${width};
+    min-width: ${sizes.menu.width}px;
+
+    ${cssOverrides};
+  `,
+)
 
 type ModalContentProps = { cssOverrides?: SimpleInterpolation }
-const MenuContent = styled<ModalContentProps, 'div'>('div')`
-  ${({ cssOverrides }) => css`
+const MenuContent = styled.div<ModalContentProps>(
+  ({ cssOverrides }) => css`
     ${flexFlow()};
 
     height: 100%;
@@ -48,11 +49,12 @@ const MenuContent = styled<ModalContentProps, 'div'>('div')`
     width: 100%;
 
     ${cssOverrides};
-  `};
-`
+  `,
+)
 
 type Props = PopOverChildProps & {
   width?: number
+  zIndex: number
 }
 
 type State = {
@@ -61,12 +63,16 @@ type State = {
 }
 
 export class Menu extends Component<Props, State> {
+  static defaultProps = {
+    zIndex: 9998,
+  }
+
   state: State = {
     menuHeight: 0,
     menuWidth: 0,
   }
 
-  menuRef = createRef<MenuRef>()
+  menuRef = createRef<HTMLDivElement>()
 
   componentDidMount() {
     this.updateMenuHeight()
@@ -99,6 +105,7 @@ export class Menu extends Component<Props, State> {
       children,
       width,
       togglePopOver,
+      zIndex,
     } = this.props
     const { menuHeight, menuWidth } = this.state
 
@@ -118,6 +125,7 @@ export class Menu extends Component<Props, State> {
         onClick={onClick}
         overlayProps={{ chromeless: true }}
         togglePopOver={togglePopOver}
+        zIndex={zIndex}
       >
         <CCMenu
           width={isNil(width) ? 'auto' : `${width}px`}

@@ -1,9 +1,9 @@
 import { Component, ReactNode } from 'react';
 import { ErrorType } from '@monorail/errorPage/errorTypes';
 declare type ErrorPageProps = {
+    errorMessage?: ReactNode;
     errorType: ErrorType;
     title?: ReactNode;
-    errorMessage?: ReactNode;
 };
 export declare class ErrorPage extends Component<ErrorPageProps> {
     static defaultProps: {
