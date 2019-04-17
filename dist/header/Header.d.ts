@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 import { SimpleInterpolation } from 'styled-components';
 import { CommonComponentType } from '@monorail/types';
-import { AppOrAuthSubAppName } from '@monorail/CommonStyles';
+import { AppOrAuthSubAppName } from '@monorail/helpers/exports';
 declare type Props = CommonComponentType & {
     actions?: ReactNode;
     appIcon?: AppOrAuthSubAppName;

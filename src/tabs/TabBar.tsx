@@ -1,7 +1,7 @@
 import React, { Component, ReactNode } from 'react'
 import { isNil } from '@monorail/sharedHelpers/typeGuards'
 import styled, { css, SimpleInterpolation } from 'styled-components'
-import { Colors, colors, flexFlow, Sizes } from '@monorail/CommonStyles'
+import { Colors, getColor, flexFlow, Sizes } from '@monorail/helpers/exports'
 import { TabProps } from './Tab'
 
 // TabBarIndicator is pos:abs to this element. Also we use offsetLeft on the Tab which references this position.
@@ -13,7 +13,7 @@ export const TabBarContainer = styled.div<CCTabBarProps>(
     padding: 0 8px;
     position: relative;
     box-sizing: border-box;
-    border-bottom: 1px solid ${colors(Colors.Grey94)};
+    border-bottom: 1px solid ${getColor(Colors.Grey94)};
     flex-shrink: 0;
 
     ${cssOverrides};
@@ -22,7 +22,7 @@ export const TabBarContainer = styled.div<CCTabBarProps>(
 
 const TabBarIndicator = styled.div<TabBarIndicatorProps>(
   ({ left, width, duration }) => css`
-    background: ${colors(Colors.BrandLightBlue)};
+    background: ${getColor(Colors.BrandLightBlue)};
     border-radius: 3px 3px 0 0;
     bottom: 0;
     height: 3px;

@@ -32,8 +32,9 @@ export const ActionsMenu: FC<ActionsMenuProps> = ({ menuItems }) => (
       <PopOver
         popOver={props => (
           <Menu {...props}>
-            {menuItems.map(menuItem => (
+            {menuItems.map((menuItem, idx) => (
               <SimpleListItem
+                key={idx + menuItem.label}
                 size={32}
                 leftIcon={menuItem.iconName}
                 primaryText={menuItem.label}

@@ -16,6 +16,11 @@ export const isUndefined = (x: unknown): x is undefined => x === undefined
 export const isNil = (x: unknown): x is Nil => isNull(x) || isUndefined(x)
 
 /**
+ * Tests whether or not an argument is null or undefined (type guard)
+ */
+export const isNotNil = <T>(x: T | Nil): x is T => !isNil(x)
+
+/**
  * Type guard for the `false` literal of the `boolean` primitive
  */
 export const isFalse = (x: unknown): x is false =>

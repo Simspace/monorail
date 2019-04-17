@@ -2,7 +2,7 @@ import React, { SFC } from 'react'
 import styled, { css, SimpleInterpolation } from 'styled-components'
 
 import { SelectOption, Select } from './Select'
-import { typography, FontSizes } from '@monorail/CommonStyles'
+import { typography, FontSizes } from '@monorail/helpers/exports'
 import { Choice } from './Choice'
 import { CommonComponentType } from '@monorail/types'
 
@@ -43,7 +43,7 @@ const CheckmarkSelectContent = styled.div`
 type CheckmarkSelect = {
   label: string
   key: string
-  options: SelectOption[]
+  options: Array<SelectOption>
   value: string
   enabled: boolean
 }
@@ -51,8 +51,11 @@ type CheckmarkSelect = {
 type Props = {
   cssOverrides?: SimpleInterpolation
   label?: string
-  items: CheckmarkSelect[]
-  onSelect: (key: string, value: string | number | string[] | undefined) => void // TODO
+  items: Array<CheckmarkSelect>
+  onSelect: (
+    key: string,
+    value: string | number | Array<string> | undefined,
+  ) => void // TODO
   onCheck: (key: string, checked: boolean) => void
 }
 

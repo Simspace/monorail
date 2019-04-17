@@ -12,13 +12,13 @@ import {
   baseFocusStyles,
   buttonTransition,
   Colors,
-  colors,
+  getColor,
   ellipsis,
   flexFlow,
   FontSizes,
   Sizes,
   typography,
-} from '@monorail/CommonStyles'
+} from '@monorail/helpers/exports'
 import { Icon, IconProps } from '@monorail/icon/Icon'
 import { CommonComponentType } from '@monorail/types'
 import { isNil } from '@monorail/sharedHelpers/typeGuards'
@@ -71,7 +71,7 @@ export const ListContainer: StatelessComponent<ListContainerProps> = ({
     ) : (
       <ListItem
         cssOverrides={css`
-          color: ${colors(Colors.Black54)};
+          color: ${getColor(Colors.Black54)};
         `}
       >
         {emptyText}
@@ -142,7 +142,7 @@ export const ListItemSecondaryText = styled.span<CommonComponentType>(
     ${typography(500, FontSizes.Content, 'auto 6px')};
     ${ellipsis};
 
-    color: ${colors(Colors.Black62)};
+    color: ${getColor(Colors.Black62)};
     flex: 1 1 100%;
 
     ${cssOverrides};
@@ -172,7 +172,7 @@ export const ListItem = styled(
     ${!isNil(onClick) || !isNil(as)
       ? css`
           background: transparent;
-          color: ${colors(Colors.BrandDarkBlue)};
+          color: ${getColor(Colors.BrandDarkBlue)};
           cursor: pointer;
           text-transform: none; /* IE 11 */
           user-select: none;
@@ -193,14 +193,14 @@ export const ListItem = styled(
           &.is-active,
           &:active,
           &:active ${ListItemGraphic}, &.is-active ${ListItemGraphic} {
-            color: ${colors(Colors.BrandLightBlue)};
+            color: ${getColor(Colors.BrandLightBlue)};
           }
           /* stylelint-enable selector-type-no-unknown */
 
           ${baseFocusStyles()};
         `
       : css`
-          color: ${colors(Colors.Black89)};
+          color: ${getColor(Colors.Black89)};
           background: transparent;
         `};
     ${disabled &&
@@ -213,7 +213,7 @@ export const ListItem = styled(
 
     align-items: center;
     box-sizing: border-box;
-    color: ${colors(Colors.Black89)};
+    color: ${getColor(Colors.Black89)};
     flex-shrink: 0;
     min-height: ${size}px;
     padding: 0 ${dense ? 4 : 10}px;

@@ -40,7 +40,7 @@ export declare type TaggedUnionExt<DataConstructorTagKey extends TagKeyOf<A>, A 
 } & {
     fold: Fold<A, DataConstructorTagKey>;
 } & {
-    tags: string[];
+    tags: Array<string>;
 };
 export declare const mkTaggedUnionCustom: <A extends object>() => <DataConstructorTagKey extends TagKeyOf<A>, MemberTagsRecord extends Exact<{ [K in DataConstructorTagValue<A, DataConstructorTagKey>]: "__"; }, MemberTagsRecord>>(tag: DataConstructorTagKey, memberTagsRecord: MemberTagsRecord) => TaggedUnionExt<DataConstructorTagKey, A>;
 export interface MinimalTaggedUnionMember {

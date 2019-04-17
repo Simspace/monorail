@@ -24,15 +24,15 @@ export const shallowEqual = <
   ) {
     return false
   }
-  const keysA = Object.keys(objA) as KA[]
-  const keysB = Object.keys(objB) as KB[]
+  const keysA = Object.keys(objA) as Array<KA>
+  const keysB = Object.keys(objB) as Array<KB>
   if (keysA.length !== keysB.length) {
     return false
   }
   for (let i = 0; i < keysA.length; i++) {
     if (
       !Object.prototype.hasOwnProperty.call(objB, keysA[i]) ||
-      !Object.is(objA[keysA[i]], objB[((keysA as unknown) as KB[])[i]])
+      !Object.is(objA[keysA[i]], objB[((keysA as unknown) as Array<KB>)[i]])
     ) {
       return false
     }

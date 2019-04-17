@@ -2,7 +2,7 @@ import React, { SFC } from 'react'
 import styled from 'styled-components'
 import { lookup } from 'fp-ts/lib/Record'
 
-import { typography, FontSizes } from '@monorail/CommonStyles'
+import { typography, FontSizes } from '@monorail/helpers/exports'
 
 const NumberInputGroupWrapper = styled.div``
 
@@ -44,7 +44,7 @@ type InputItem = {
 
 type Props = {
   label?: string
-  items: InputItem[]
+  items: Array<InputItem>
   onSelect: (key: string, value: number) => void
   value: Record<string, number>
   required?: boolean

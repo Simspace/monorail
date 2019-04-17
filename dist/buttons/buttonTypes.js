@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.ButtonSize = exports.IconButtonShape = exports.ButtonDisplay = void 0;
+exports.ButtonsBarMode = exports.ButtonSize = exports.IconButtonShape = exports.ButtonMode = exports.ButtonDisplay = void 0;
 let ButtonDisplay;
 exports.ButtonDisplay = ButtonDisplay;
 
@@ -12,7 +12,17 @@ exports.ButtonDisplay = ButtonDisplay;
   ButtonDisplay["Secondary"] = "secondary";
   ButtonDisplay["Outline"] = "outline";
   ButtonDisplay["Chromeless"] = "chromeless";
+  ButtonDisplay["ButtonBar"] = "buttonbar";
+  ButtonDisplay["Toolbar"] = "toolbar";
 })(ButtonDisplay || (exports.ButtonDisplay = ButtonDisplay = {}));
+
+let ButtonMode;
+exports.ButtonMode = ButtonMode;
+
+(function (ButtonMode) {
+  ButtonMode["Default"] = "default";
+  ButtonMode["Push"] = "push";
+})(ButtonMode || (exports.ButtonMode = ButtonMode = {}));
 
 let IconButtonShape;
 exports.IconButtonShape = IconButtonShape;
@@ -31,3 +41,11 @@ exports.ButtonSize = ButtonSize;
   ButtonSize["Default"] = "default";
   ButtonSize["Large"] = "large";
 })(ButtonSize || (exports.ButtonSize = ButtonSize = {}));
+
+let ButtonsBarMode;
+exports.ButtonsBarMode = ButtonsBarMode;
+
+(function (ButtonsBarMode) {
+  ButtonsBarMode["Default"] = "default";
+  ButtonsBarMode["Toolbar"] = "toolbar";
+})(ButtonsBarMode || (exports.ButtonsBarMode = ButtonsBarMode = {}));

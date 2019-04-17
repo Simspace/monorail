@@ -13,7 +13,7 @@ var _Icon = require("../icon/Icon");
 
 var _IconButton = require("../buttons/IconButton");
 
-var _CommonStyles = require("../CommonStyles");
+var _exports = require("../helpers/exports");
 
 var _buttonTypes = require("../buttons/buttonTypes");
 
@@ -34,7 +34,7 @@ _styledComponents.default.label.withConfig({
 })(({
   darkMode,
   cssOverrides
-}) => (0, _styledComponents.css)(["", ";", ";border-radius:100px;box-sizing:border-box;overflow:hidden;position:relative;height:24px;flex-shrink:0;", ";"], darkMode ? (0, _styledComponents.css)(["background:", ";border:1px solid ", ";&:hover{background:", ";}&:focus{background:", ";}"], (0, _CommonStyles.colors)(_CommonStyles.Colors.White, 0.2), (0, _CommonStyles.colors)(_CommonStyles.Colors.White, 0.2), (0, _CommonStyles.colors)(_CommonStyles.Colors.White, 0.22), (0, _CommonStyles.colors)(_CommonStyles.Colors.White, 0.24)) : (0, _styledComponents.css)(["border:1px solid ", ";&:hover{border-color:", ";}&:focus{border-color:", ";}"], (0, _CommonStyles.colors)(_CommonStyles.Colors.Black, 0.08), (0, _CommonStyles.colors)(_CommonStyles.Colors.BrandLightBlue, 0.5), (0, _CommonStyles.colors)(_CommonStyles.Colors.BrandLightBlue)), (0, _CommonStyles.flexFlow)('row'), cssOverrides));
+}) => (0, _styledComponents.css)(["", ";", ";border-radius:100px;box-sizing:border-box;overflow:hidden;position:relative;height:24px;flex-shrink:0;", ";"], darkMode ? (0, _styledComponents.css)(["background:", ";border:1px solid ", ";&:hover{background:", ";}&:focus{background:", ";}"], (0, _exports.getColor)(_exports.Colors.White, 0.2), (0, _exports.getColor)(_exports.Colors.White, 0.2), (0, _exports.getColor)(_exports.Colors.White, 0.22), (0, _exports.getColor)(_exports.Colors.White, 0.24)) : (0, _styledComponents.css)(["border:1px solid ", ";&:hover{border-color:", ";}&:focus{border-color:", ";}"], (0, _exports.getColor)(_exports.Colors.Black, 0.08), (0, _exports.getColor)(_exports.Colors.BrandLightBlue, 0.5), (0, _exports.getColor)(_exports.Colors.BrandLightBlue)), (0, _exports.flexFlow)('row'), cssOverrides));
 
 exports.BBSearchContainer = BBSearchContainer;
 const BBSearchIcon =
@@ -44,7 +44,7 @@ const BBSearchIcon =
   ...otherProps
 }) => _react.default.createElement(_Icon.Icon, otherProps))(({
   darkMode
-}) => (0, _styledComponents.css)(["color:", ";left:8px;pointer-events:none;position:absolute;top:", "px;"], darkMode && (0, _CommonStyles.colors)(_CommonStyles.Colors.White), BBSearchIconPos));
+}) => (0, _styledComponents.css)(["color:", ";left:8px;pointer-events:none;position:absolute;top:", "px;"], darkMode && (0, _exports.getColor)(_exports.Colors.White), BBSearchIconPos));
 
 const BBSearchInput =
 /*#__PURE__*/
@@ -53,7 +53,7 @@ _styledComponents.default.input.withConfig({
   componentId: "zpwvd9-1"
 })(({
   darkMode
-}) => (0, _styledComponents.css)(["", ";", ";border:0;flex:1 1 100%;height:100%;outline:none;padding:0 22px 0 28px;border-radius:100px;box-sizing:border-box;", ";"], darkMode ? (0, _styledComponents.css)(["background:", ";border:0;color:", ";::placeholder{color:", ";}&:hover{background:", ";}&:focus{background:", ";}"], (0, _CommonStyles.colors)(_CommonStyles.Colors.White, 0.2), (0, _CommonStyles.colors)(_CommonStyles.Colors.White), (0, _CommonStyles.colors)(_CommonStyles.Colors.White), (0, _CommonStyles.colors)(_CommonStyles.Colors.White, 0.22), (0, _CommonStyles.colors)(_CommonStyles.Colors.White, 0.24)) : (0, _styledComponents.css)(["border:1px solid ", ";::placeholder{color:", ";font-style:italic;font-weight:300;}&:hover{border-color:", ";}&:focus{border-color:", ";}"], (0, _CommonStyles.colors)(_CommonStyles.Colors.Black, 0.08), (0, _CommonStyles.colors)(_CommonStyles.Colors.Black54), (0, _CommonStyles.colors)(_CommonStyles.Colors.BrandLightBlue, 0.5), (0, _CommonStyles.colors)(_CommonStyles.Colors.BrandLightBlue)), (0, _CommonStyles.typography)(500, _CommonStyles.FontSizes.Title5), _CommonStyles.buttonTransition)); //
+}) => (0, _styledComponents.css)(["", ";", ";border:0;flex:1 1 100%;height:100%;outline:none;padding:0 22px 0 28px;border-radius:100px;box-sizing:border-box;", ";"], darkMode ? (0, _styledComponents.css)(["background:", ";border:0;color:", ";::placeholder{color:", ";}&:hover{background:", ";}&:focus{background:", ";}"], (0, _exports.getColor)(_exports.Colors.White, 0.2), (0, _exports.getColor)(_exports.Colors.White), (0, _exports.getColor)(_exports.Colors.White), (0, _exports.getColor)(_exports.Colors.White, 0.22), (0, _exports.getColor)(_exports.Colors.White, 0.24)) : (0, _styledComponents.css)(["border:1px solid ", ";::placeholder{color:", ";font-style:italic;font-weight:300;}&:hover{border-color:", ";}&:focus{border-color:", ";}"], (0, _exports.getColor)(_exports.Colors.Black, 0.08), (0, _exports.getColor)(_exports.Colors.Black54), (0, _exports.getColor)(_exports.Colors.BrandLightBlue, 0.5), (0, _exports.getColor)(_exports.Colors.BrandLightBlue)), (0, _exports.typography)(500, _exports.FontSizes.Title5), _exports.buttonTransition)); //
 // Types
 //
 
@@ -94,7 +94,7 @@ class Search extends _react.Component {
       ref: searchRef
     }), _react.default.createElement(_IconButton.IconButton, {
       darkMode: true,
-      cssOverrides: (0, _styledComponents.css)(["", ";background:", ";border:0;", "{color:", ";}&:hover{background:", ";}&:active{background:", ";}position:absolute;top:", "px;right:", "px;"], (0, _CommonStyles.visible)(!!value), (0, _CommonStyles.colors)(_CommonStyles.Colors.Black24), _Icon.Icon, (0, _CommonStyles.colors)(_CommonStyles.Colors.White), (0, _CommonStyles.colors)(_CommonStyles.Colors.Black54), (0, _CommonStyles.colors)(_CommonStyles.Colors.Black24), BBSearchIconPos, BBSearchIconPos),
+      cssOverrides: (0, _styledComponents.css)(["", ";background:", ";border:0;", "{color:", ";}&:hover{background:", ";&:before{background:transparent;}}&:active{background:", ";}position:absolute;top:", "px;right:", "px;"], (0, _exports.visible)(!!value), (0, _exports.getColor)(_exports.Colors.Black24), _Icon.Icon, (0, _exports.getColor)(_exports.Colors.White), (0, _exports.getColor)(_exports.Colors.Black54), (0, _exports.getColor)(_exports.Colors.Black24), BBSearchIconPos, BBSearchIconPos),
       size: _buttonTypes.ButtonSize.Dense,
       icon: "close",
       onClick: event => {

@@ -1,7 +1,7 @@
 import React, { SFC } from 'react'
 import styled, { css, SimpleInterpolation } from 'styled-components'
 
-import { typography, FontSizes } from '@monorail/CommonStyles'
+import { typography, FontSizes } from '@monorail/helpers/exports'
 import { CommonComponentType } from '@monorail/types'
 
 const SelectGroupWrapper = styled.div<CommonComponentType>(
@@ -49,10 +49,10 @@ export type SelectOption = {
 
 type Props = {
   label?: string
-  options: SelectOption[]
-  onSelect?: (e: string | string[] | number | undefined) => void
+  options: Array<SelectOption>
+  onSelect?: (e: string | Array<string> | number | undefined) => void
   onBlur?: (e: React.SyntheticEvent) => void
-  value?: string | string[] | number
+  value?: string | Array<string> | number
   placeholder?: string
   required?: boolean
   cssOverrides?: SimpleInterpolation

@@ -19,7 +19,7 @@ import {
   visible,
   typography,
   FontSizes,
-} from '@monorail/CommonStyles'
+} from '@monorail/helpers/exports'
 
 const sorterItemStyle = (selected: boolean) => css`
   ${typography(500, FontSizes.Content)};

@@ -11,7 +11,7 @@ var _typeGuards = require("../sharedHelpers/typeGuards");
 
 var _styledComponents = _interopRequireWildcard(require("styled-components"));
 
-var _CommonStyles = require("../CommonStyles");
+var _exports = require("../helpers/exports");
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
@@ -24,7 +24,7 @@ _styledComponents.default.div.withConfig({
 })(({
   cssOverrides,
   size
-}) => (0, _styledComponents.css)(["", ";height:", "px;padding:0 8px;position:relative;box-sizing:border-box;border-bottom:1px solid ", ";flex-shrink:0;", ";"], (0, _CommonStyles.flexFlow)('row'), size, (0, _CommonStyles.colors)(_CommonStyles.Colors.Grey94), cssOverrides));
+}) => (0, _styledComponents.css)(["", ";height:", "px;padding:0 8px;position:relative;box-sizing:border-box;border-bottom:1px solid ", ";flex-shrink:0;", ";"], (0, _exports.flexFlow)('row'), size, (0, _exports.getColor)(_exports.Colors.Grey94), cssOverrides));
 
 exports.TabBarContainer = TabBarContainer;
 
@@ -37,14 +37,14 @@ _styledComponents.default.div.withConfig({
   left,
   width,
   duration
-}) => (0, _styledComponents.css)(["background:", ";border-radius:3px 3px 0 0;bottom:0;height:3px;left:", "px;position:absolute;transition-duration:", "ms;transition-property:all;transition-timing-function:ease-in-out;width:", "px;"], (0, _CommonStyles.colors)(_CommonStyles.Colors.BrandLightBlue), left, duration * 1.4, width));
+}) => (0, _styledComponents.css)(["background:", ";border-radius:3px 3px 0 0;bottom:0;height:3px;left:", "px;position:absolute;transition-duration:", "ms;transition-property:all;transition-timing-function:ease-in-out;width:", "px;"], (0, _exports.getColor)(_exports.Colors.BrandLightBlue), left, duration * 1.4, width));
 
 const TabBarActions =
 /*#__PURE__*/
 _styledComponents.default.div.withConfig({
   displayName: "TabBar__TabBarActions",
   componentId: "sc-1hr19pz-2"
-})(["", ";align-items:center;margin-left:auto;margin-right:8px;"], (0, _CommonStyles.flexFlow)('row'));
+})(["", ";align-items:center;margin-left:auto;margin-right:8px;"], (0, _exports.flexFlow)('row'));
 
 class TabBar extends _react.Component {
   constructor(...args) {
@@ -136,5 +136,5 @@ class TabBar extends _react.Component {
 
 exports.TabBar = TabBar;
 TabBar.defaultProps = {
-  size: _CommonStyles.Sizes.DP24
+  size: _exports.Sizes.DP24
 };

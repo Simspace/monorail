@@ -9,7 +9,7 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _Modals = require("./Modals");
 
-var _CommonStyles = require("../CommonStyles");
+var _exports = require("../helpers/exports");
 
 var _Overlay = require("../toggle/Overlay");
 
@@ -30,9 +30,9 @@ class MiniModal extends _react.Component {
       title,
       togglePopOver
     } = this.props;
-    const scaleAnimation = (0, _CommonStyles.generateScaleAnimation)({
-      elementHeight: _CommonStyles.sizes.modals.mini.height,
-      elementWidth: _CommonStyles.sizes.modals.mini.width,
+    const scaleAnimation = (0, _exports.generateScaleAnimation)({
+      elementHeight: _exports.sizes.modals.mini.height,
+      elementWidth: _exports.sizes.modals.mini.width,
       isOpen,
       position
     });

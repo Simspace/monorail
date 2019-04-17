@@ -1,6 +1,6 @@
 /// <reference types="react" />
 import { CommonComponentType } from '@monorail/types';
-import { AppOrAuthSubAppName } from '@monorail/CommonStyles';
+import { AppOrAuthSubAppName } from '@monorail/helpers/exports';
 declare type AppIconProps = CommonComponentType & {
     appName: AppOrAuthSubAppName;
 };

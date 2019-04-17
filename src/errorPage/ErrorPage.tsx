@@ -2,14 +2,13 @@ import React, { Component, ReactNode } from 'react'
 import styled from 'styled-components'
 import { ErrorType } from '@monorail/errorPage/errorTypes'
 import { Icon } from '@monorail/icon/Icon'
-import { TypeOf } from 'io-ts'
 import {
   Colors,
-  colors,
+  getColor,
   flexFlow,
   FontSizes,
   typography,
-} from '@monorail/CommonStyles'
+} from '@monorail/helpers/exports'
 
 /*
 * Styles
@@ -34,7 +33,7 @@ const IconCircle = styled.div`
 `
 
 const StyledIcon = styled(Icon)`
-  color: ${colors(Colors.White)};
+  color: ${getColor(Colors.White)};
   margin: auto auto;
 `
 
@@ -48,14 +47,14 @@ const FourZeroFourIcon = styled.div`
 const Title = styled.h1`
   ${typography(700, FontSizes.Title1)};
 
-  color: ${colors(Colors.Black89)};
+  color: ${getColor(Colors.Black89)};
   margin: 32px 0 32px 0;
 `
 
 const ErrorMessage = styled.div`
   ${typography(400, FontSizes.Title3)};
 
-  color: ${colors(Colors.Black89)};
+  color: ${getColor(Colors.Black89)};
   max-width: 448px;
   text-align: center;
   width: 100%;

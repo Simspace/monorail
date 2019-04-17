@@ -6,11 +6,11 @@ import {
   borderRadius,
   buttonTransition,
   Colors,
-  colors,
+  getColor,
   flexFlow,
   FontSizes,
   typography,
-} from '@monorail/CommonStyles'
+} from '@monorail/helpers/exports'
 
 /*
 * Styles
@@ -38,9 +38,9 @@ const BBTextAreaInput = styled.textarea<BBTextAreaInputProps>(
     ${typography(400, FontSizes.Title5)};
     ${borderRadius()};
 
-    border: 1px solid ${colors(Colors.Black, 0.12)};
+    border: 1px solid ${getColor(Colors.Black, 0.12)};
     box-sizing: border-box;
-    color: ${colors(Colors.Black89)};
+    color: ${getColor(Colors.Black89)};
     outline: none;
     padding: 4px 6px 4px 6px;
     resize: none;
@@ -49,17 +49,17 @@ const BBTextAreaInput = styled.textarea<BBTextAreaInputProps>(
     ${buttonTransition};
 
     ::placeholder {
-      color: ${colors(Colors.Black54)};
+      color: ${getColor(Colors.Black54)};
       font-style: italic;
     }
 
     &:hover {
-      border: 1px solid ${colors(Colors.Black, 0.3)};
+      border: 1px solid ${getColor(Colors.Black, 0.3)};
     }
 
     &:focus,
     &:active {
-      border: 1px solid ${colors(Colors.BrandLightBlue)};
+      border: 1px solid ${getColor(Colors.BrandLightBlue)};
     }
 
     ${chromeless &&

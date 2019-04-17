@@ -2,12 +2,12 @@ import React, { Component } from 'react'
 import { Icon, IconProps } from '@monorail/icon/Icon'
 import {
   Colors,
-  colors,
+  getColor,
   ElevationRange,
   getElevation,
   visible,
   flexFlow,
-} from '@monorail/CommonStyles'
+} from '@monorail/helpers/exports'
 import { ToggleSize } from '@monorail/toggle/toggleTypes'
 import styled, { css, SimpleInterpolation } from 'styled-components'
 
@@ -89,12 +89,12 @@ const CCToggle = styled.label<ToggleProps>(
     /* Change Slider BG/Border Color */
     ${checked
       ? css`
-          background-color: ${colors(Colors.BrandLightBlue)};
-          border-color: ${colors(Colors.BrandLightBlue)};
+          background-color: ${getColor(Colors.BrandLightBlue)};
+          border-color: ${getColor(Colors.BrandLightBlue)};
         `
       : css`
-          background-color: ${colors(Colors.White)};
-          border-color: ${colors(Colors.Black, 0.06)};
+          background-color: ${getColor(Colors.White)};
+          border-color: ${getColor(Colors.Black, 0.06)};
         `};
 
     ${cssOverrides};
@@ -108,7 +108,7 @@ const StyledIconChecked = styled(({ checked, toggleSize, ...otherProps }) => (
     ${iconSizeCss[toggleSize]};
     ${visible(checked)};
 
-    color: ${colors(Colors.BrandLightBlue)};
+    color: ${getColor(Colors.BrandLightBlue)};
     position: absolute; /* give z-index so ::before bg is behind icon */
 
     transition: all ease-in 75ms;
@@ -123,7 +123,7 @@ const StyledIconNotChecked = styled(
 
     ${visible(!checked)};
 
-    color: ${colors(Colors.Black24)};
+    color: ${getColor(Colors.Black24)};
     position: absolute; /* give z-index so ::before bg is behind icon */
 
     transition: all ease-in 75ms;
@@ -136,7 +136,7 @@ export const Slider = styled.div<Slider>(
     ${getElevation(ElevationRange.Elevation1)};
     ${flexFlow('row')};
 
-    background-color: ${colors(Colors.White)};
+    background-color: ${getColor(Colors.White)};
     border-radius: 50%;
     bottom: 0;
     content: '';
@@ -162,7 +162,7 @@ const Input = styled.input<InputProps>(
       + ${/* sc-selector */ Slider}
       > ${/* sc-selector */ StyledIconChecked} {
       ${visible(false)};
-      color: ${colors(Colors.BrandLightBlue)};
+      color: ${getColor(Colors.BrandLightBlue)};
     }
   `,
 )

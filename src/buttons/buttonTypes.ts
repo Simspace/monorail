@@ -3,6 +3,13 @@ export enum ButtonDisplay {
   Secondary = 'secondary',
   Outline = 'outline',
   Chromeless = 'chromeless',
+  ButtonBar = 'buttonbar',
+  Toolbar = 'toolbar',
+}
+
+export enum ButtonMode {
+  Default = 'default',
+  Push = 'push',
 }
 
 export enum IconButtonShape {
@@ -15,4 +22,9 @@ export enum ButtonSize {
   Compact = 'compact',
   Default = 'default',
   Large = 'large',
+}
+
+export enum ButtonsBarMode {
+  Default = 'default',
+  Toolbar = 'toolbar',
 }

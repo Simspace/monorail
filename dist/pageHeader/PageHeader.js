@@ -9,7 +9,7 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _styledComponents = _interopRequireWildcard(require("styled-components"));
 
-var _CommonStyles = require("../CommonStyles");
+var _exports = require("../helpers/exports");
 
 var _Icon = require("../icon/Icon");
 
@@ -35,7 +35,7 @@ _styledComponents.default.div.withConfig({
   flush,
   cssOverrides,
   hasAboveContent
-}) => (0, _styledComponents.css)(["", ";background:", ";flex-shrink:0;overflow:visible;position:relative;z-index:1;&::before{", ";background:", ";bottom:0;content:'';left:0;position:absolute;right:0;top:0;z-index:-5;}", "{padding:0 24px;", ";}", ";"], (0, _CommonStyles.flexFlow)('column'), (0, _CommonStyles.colors)(_CommonStyles.Colors.White), flush && (0, _styledComponents.css)(["border-bottom:1px solid ", ";"], (0, _CommonStyles.colors)(_CommonStyles.Colors.Grey94)), (0, _CommonStyles.colors)(_CommonStyles.Colors.White), _TabBar.TabBarContainer, !hasAboveContent && (0, _styledComponents.css)(["margin-top:-8px;"]), cssOverrides));
+}) => (0, _styledComponents.css)(["", ";background:", ";flex-shrink:0;overflow:visible;position:relative;z-index:1;&::before{", ";background:", ";bottom:0;content:'';left:0;position:absolute;right:0;top:0;z-index:-5;}", "{padding:0 24px;", ";}", ";"], (0, _exports.flexFlow)('column'), (0, _exports.getColor)(_exports.Colors.White), flush && (0, _styledComponents.css)(["border-bottom:1px solid ", ";"], (0, _exports.getColor)(_exports.Colors.Grey94)), (0, _exports.getColor)(_exports.Colors.White), _TabBar.TabBarContainer, !hasAboveContent && (0, _styledComponents.css)(["margin-top:-8px;"]), cssOverrides));
 
 const pageHeaderPadding =
 /*#__PURE__*/
@@ -49,21 +49,21 @@ _styledComponents.default.div.withConfig({
 })(({
   willAnimateShadow,
   flush
-}) => (0, _styledComponents.css)(["", ";background:", ";bottom:6px;content:'';left:-2px;position:absolute;right:-2px;top:0;z-index:-10;", ";"], (0, _CommonStyles.getElevation)(_CommonStyles.ElevationRange.Elevation6), (0, _CommonStyles.colors)(_CommonStyles.Colors.White), (flush || willAnimateShadow) && (0, _styledComponents.css)(["opacity:0;"])));
+}) => (0, _styledComponents.css)(["bottom:-20px;left:0;overflow:hidden;pointer-events:none;position:absolute;right:0;top:0;z-index:-10;&:before{", ";background:", ";bottom:26px;content:'';left:-10px;position:absolute;right:-10px;top:0;}", ";"], (0, _exports.getElevation)(_exports.ElevationRange.Elevation6), (0, _exports.getColor)(_exports.Colors.White), (flush || willAnimateShadow) && (0, _styledComponents.css)(["opacity:0;"])));
 
 const BreadCrumbsContainer =
 /*#__PURE__*/
 _styledComponents.default.div.withConfig({
   displayName: "PageHeader__BreadCrumbsContainer",
   componentId: "sc-1tofzk7-2"
-})(["", ";", ";align-items:center;height:32px;"], (0, _CommonStyles.flexFlow)('row'), pageHeaderPadding);
+})(["", ";", ";align-items:center;height:32px;"], (0, _exports.flexFlow)('row'), pageHeaderPadding);
 
 const BreadCrumb =
 /*#__PURE__*/
 _styledComponents.default.a.withConfig({
   displayName: "PageHeader__BreadCrumb",
   componentId: "sc-1tofzk7-3"
-})(["", ";color:", ";cursor:pointer;padding:6px 2px;text-transform:none;user-select:none;&:hover{color:", ";}"], (0, _CommonStyles.typography)(500, _CommonStyles.FontSizes.Title5), (0, _CommonStyles.colors)(_CommonStyles.Colors.Black54), (0, _CommonStyles.colors)(_CommonStyles.Colors.BrandLightBlue));
+})(["", ";color:", ";cursor:pointer;padding:6px 2px;text-transform:none;user-select:none;&:hover{color:", ";}"], (0, _exports.typography)(500, _exports.FontSizes.Title5), (0, _exports.getColor)(_exports.Colors.Black54), (0, _exports.getColor)(_exports.Colors.BrandLightBlue));
 
 const TitleContainer =
 /*#__PURE__*/
@@ -72,7 +72,7 @@ _styledComponents.default.div.withConfig({
   componentId: "sc-1tofzk7-4"
 })(({
   hasAboveContent
-}) => (0, _styledComponents.css)(["", ";", ";align-items:center;flex-shrink:0;grid-column:-1 / 1;height:", "px;"], (0, _CommonStyles.flexFlow)('row'), pageHeaderPadding, hasAboveContent ? 48 : 64));
+}) => (0, _styledComponents.css)(["", ";", ";align-items:center;flex-shrink:0;grid-column:-1 / 1;height:", "px;"], (0, _exports.flexFlow)('row'), pageHeaderPadding, hasAboveContent ? 48 : 64));
 
 exports.TitleContainer = TitleContainer;
 
@@ -81,7 +81,7 @@ const Title =
 _styledComponents.default.h1.withConfig({
   displayName: "PageHeader__Title",
   componentId: "sc-1tofzk7-5"
-})(["", ";color:", ";margin-left:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"], (0, _CommonStyles.typography)(700, _CommonStyles.FontSizes.Title1), (0, _CommonStyles.colors)(_CommonStyles.Colors.BrandDarkBlue));
+})(["", ";color:", ";margin-left:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"], (0, _exports.typography)(700, _exports.FontSizes.Title1), (0, _exports.getColor)(_exports.Colors.BrandDarkBlue));
 /*
 * Types
 */

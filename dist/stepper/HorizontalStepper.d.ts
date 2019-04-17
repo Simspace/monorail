@@ -1,16 +1,23 @@
-import { Component } from 'react';
-import { SimpleInterpolation } from 'styled-components';
+import React, { Component } from 'react';
 import { Step as StepType } from './types';
-declare type StyleOptions = {
-    cssOverrides?: SimpleInterpolation;
-    darkMode?: boolean;
-};
-declare type Props = {
-    steps: StepType[];
+import { CommonComponentType } from '@monorail/types';
+declare type Props = CommonComponentType & {
+    className?: string;
+    darkMode: boolean;
     onStepClick: (step: StepType, index: number) => void;
+    steps: Array<StepType>;
 };
-export declare class HorizontalStepper extends Component<Props & StyleOptions> {
-    getClassname: (step: StepType) => "" | "active" | "disabled" | "completed";
+declare type State = {
+    activeStepIndex: number;
+};
+export declare class HorizontalStepper extends Component<Props, State> {
+    static defaultProps: {
+        darkMode: boolean;
+    };
+    state: State;
+    activeStepRef: React.RefObject<HTMLDivElement>;
+    scrollStepIntoView: () => void;
+    componentDidUpdate(prevProps: Props, prevState: State): void;
     renderSection: (step: StepType, index: number) => JSX.Element;
     render(): JSX.Element;
 }

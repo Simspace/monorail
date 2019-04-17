@@ -6,12 +6,12 @@ import {
   borderRadius,
   buttonTransition,
   Colors,
-  colors,
+  getColor,
   flexFlow,
   FontSizes,
   typography,
   visible,
-} from '@monorail/CommonStyles'
+} from '@monorail/helpers/exports'
 import styled, { css, SimpleInterpolation } from 'styled-components'
 
 /*
@@ -25,11 +25,13 @@ const BBChoiceInput = styled.input<BBChoiceInputProps>`
 `
 
 const BBChoiceFakeLabel = styled.div<AnsweredProps>(
-  ({ answered }) => css`
+  ({ answered, disabled }) => css`
     ${answered &&
       css`
         transform: translateX(24px);
       `};
+
+    ${disabled && baseDisabledStyles};
 
     ${typography(500, FontSizes.Title5)};
     flex-grow: 1;
@@ -41,8 +43,6 @@ const BBChoiceFakeLabel = styled.div<AnsweredProps>(
 
 const CCChoice = styled.label<CCChoiceProps>(
   ({ disabled, readOnly, incorrect, correct, cssOverrides, answered }) => css`
-    ${disabled && baseDisabledStyles};
-
     ${(readOnly || incorrect || correct) &&
       css`
         cursor: default;
@@ -67,19 +67,19 @@ const CCChoice = styled.label<CCChoiceProps>(
     ${buttonTransition};
 
     .ChoiceButtonChecked {
-      color: ${colors(Colors.BrandLightBlue)};
+      color: ${getColor(Colors.BrandLightBlue)};
 
       transform: translateX(${answered ? 24 : 0}px);
     }
 
     .ChoiceButtonUnchecked {
-      color: ${colors(Colors.Black54)};
+      color: ${getColor(Colors.Black54)};
 
       transform: translateX(${answered ? 24 : 0}px);
     }
 
     .RealInput:checked ~ .ChoiceButtonChecked {
-      ${visible(true)};
+      ${disabled && baseDisabledStyles};
     }
 
     .RealInput:checked ~ .ChoiceButtonUnchecked {
@@ -91,16 +91,16 @@ const CCChoice = styled.label<CCChoiceProps>(
     }
 
     .RealInput:not(:checked) ~ .ChoiceButtonUnchecked {
-      ${visible(true)};
+      ${disabled && baseDisabledStyles};
     }
 
     .IncorrectIcon {
-      color: ${colors(Colors.Red)};
+      color: ${getColor(Colors.Red)};
       ${visible(incorrect)};
     }
 
     .CorrectIcon {
-      color: ${colors(Colors.Green)};
+      color: ${getColor(Colors.Green)};
       ${visible(correct)};
     }
 
@@ -122,6 +122,7 @@ const CCChoice = styled.label<CCChoiceProps>(
 type AnsweredProps = {
   answered?: boolean
   htmlFor?: string
+  disabled?: boolean
 }
 
 type BBGradeIconProps = {
@@ -131,6 +132,7 @@ type BBGradeIconProps = {
 
 type BBChoiceInputProps = AnsweredProps & {
   checked?: boolean
+  defaultChecked?: boolean
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
 }
 
@@ -139,7 +141,7 @@ type CCChoiceProps = AnsweredProps &
     cssOverrides?: SimpleInterpolation
     disabled?: boolean
     readOnly?: boolean
-    value?: string | number | string[]
+    value?: string | number | Array<string>
     required?: boolean
     name?: string
   }
@@ -212,14 +214,15 @@ export class Choice extends Component<ChoiceProps> {
       <CCChoice
         correct={correct}
         cssOverrides={cssOverrides}
-        disabled={disabled}
         incorrect={incorrect}
+        disabled={disabled}
         readOnly={readOnly}
         answered={answered}
       >
-        <Icon icon="highlight_off" className="IncorrectIcon" />
+        <Icon icon="cancel" className="IncorrectIcon" />
         <Icon icon="check_circle" className="CorrectIcon" />
         <BBChoiceInput
+          disabled={disabled}
           onChange={onChange}
           className="RealInput"
           checked={checked}
@@ -230,7 +233,9 @@ export class Choice extends Component<ChoiceProps> {
           name={name}
         />
         {this.renderFakeInputIcons()}
-        <BBChoiceFakeLabel answered={answered}>{children}</BBChoiceFakeLabel>
+        <BBChoiceFakeLabel answered={answered} disabled={disabled}>
+          {children}
+        </BBChoiceFakeLabel>
       </CCChoice>
     )
   }

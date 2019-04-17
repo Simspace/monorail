@@ -11,7 +11,7 @@ var _reactDom = require("react-dom");
 
 var _reactRouter = require("react-router");
 
-var _CommonStyles = require("../CommonStyles");
+var _exports = require("../helpers/exports");
 
 var _typeGuards = require("../sharedHelpers/typeGuards");
 
@@ -26,7 +26,7 @@ _styledComponents.default.div.withConfig({
   componentId: "vx48hj-0"
 })(({
   cssOverrides
-}) => (0, _styledComponents.css)(["", ";", ";align-items:center;color:", ";cursor:pointer;min-height:24px;padding:0 8px;text-transform:uppercase;user-select:none;&:hover,&:focus{text-decoration:none;}&:hover{background:", ";}&:active{background:", ";}", ";", ";"], (0, _CommonStyles.flexFlow)('row'), (0, _CommonStyles.typography)(700, _CommonStyles.FontSizes.Title5), (0, _CommonStyles.colors)(_CommonStyles.Colors.BrandLightBlue), (0, _CommonStyles.colors)(_CommonStyles.Colors.BrandLightBlue, 0.08), (0, _CommonStyles.colors)(_CommonStyles.Colors.BrandLightBlue, 0.16), (0, _CommonStyles.baseFocusStyles)(), cssOverrides));
+}) => (0, _styledComponents.css)(["", ";", ";align-items:center;color:", ";cursor:pointer;min-height:24px;padding:0 8px;text-transform:uppercase;user-select:none;&:hover,&:focus{text-decoration:none;}&:hover{background:", ";}&:active{background:", ";}", ";", ";"], (0, _exports.flexFlow)('row'), (0, _exports.typography)(700, _exports.FontSizes.Title5), (0, _exports.getColor)(_exports.Colors.BrandLightBlue), (0, _exports.getColor)(_exports.Colors.BrandLightBlue, 0.08), (0, _exports.getColor)(_exports.Colors.BrandLightBlue, 0.16), (0, _exports.baseFocusStyles)(), cssOverrides));
 
 class Tab extends _react.Component {
   constructor(...args) {

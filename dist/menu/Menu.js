@@ -9,7 +9,7 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _styledComponents = _interopRequireWildcard(require("styled-components"));
 
-var _CommonStyles = require("../CommonStyles");
+var _exports = require("../helpers/exports");
 
 var _Overlay = require("../toggle/Overlay");
 
@@ -27,7 +27,7 @@ _styledComponents.default.div.withConfig({
 })(({
   width,
   cssOverrides
-}) => (0, _styledComponents.css)(["", ";", ";", ";background:", ";overflow:hidden;position:fixed;width:", ";min-width:", "px;", ";"], (0, _CommonStyles.borderRadius)(_CommonStyles.BorderRadius.Medium), (0, _CommonStyles.flexFlow)(), (0, _CommonStyles.getElevation)(_CommonStyles.ElevationRange.Elevation6), (0, _CommonStyles.colors)(_CommonStyles.Colors.White), width, _CommonStyles.sizes.menu.width, cssOverrides));
+}) => (0, _styledComponents.css)(["", ";", ";", ";background:", ";overflow:hidden;position:fixed;width:", ";min-width:", "px;", ";"], (0, _exports.borderRadius)(_exports.BorderRadius.Medium), (0, _exports.flexFlow)(), (0, _exports.getElevation)(_exports.ElevationRange.Elevation6), (0, _exports.getColor)(_exports.Colors.White), width, _exports.sizes.menu.width, cssOverrides));
 
 const MenuContent =
 /*#__PURE__*/
@@ -36,7 +36,7 @@ _styledComponents.default.div.withConfig({
   componentId: "qsgmyf-1"
 })(({
   cssOverrides
-}) => (0, _styledComponents.css)(["", ";height:100%;overflow:auto;padding:4px 0;width:100%;", ";"], (0, _CommonStyles.flexFlow)(), cssOverrides));
+}) => (0, _styledComponents.css)(["", ";height:100%;overflow:auto;padding:4px 0;width:100%;", ";"], (0, _exports.flexFlow)(), cssOverrides));
 
 class Menu extends _react.Component {
   constructor(...args) {
@@ -91,9 +91,9 @@ class Menu extends _react.Component {
       menuHeight,
       menuWidth
     } = this.state;
-    const scaleAnimation = (0, _CommonStyles.generateScaleAnimation)({
+    const scaleAnimation = (0, _exports.generateScaleAnimation)({
       elementHeight: menuHeight,
-      elementWidth: Math.max((0, _typeGuards.isNil)(width) ? menuWidth : width, _CommonStyles.sizes.menu.width),
+      elementWidth: Math.max((0, _typeGuards.isNil)(width) ? menuWidth : width, _exports.sizes.menu.width),
       isOpen,
       position
     });

@@ -11,6 +11,7 @@ import { isNone, Option, fromNullable } from 'fp-ts/lib/Option'
 import { insert } from 'fp-ts/lib/Record'
 import { Lens, Optional } from 'monocle-ts'
 import React, { Component, ReactNode } from 'react'
+import { isEqual } from 'lodash/fp'
 import {
   AppliedFilterGroup,
   FilterOption,
@@ -64,7 +65,7 @@ type Props<
   SearchByKey extends keyof CollectionItem & string,
   FilterKey extends keyof CollectionItem & string
 > = {
-  catalog: CollectionItem[]
+  catalog: Array<CollectionItem>
   itemRender: (item: CollectionItem) => ReactNode
   searchByKey: SearchByKey
   filterGroups: Array<FilterGroup<CollectionItem, FilterKey>>
@@ -209,10 +210,13 @@ export class FilterCollection<
     // Here we loop through all the filter groups and filter out the
     // filters that are unchecked. This is an optimization so
     // we don't need to do this work every time in the below map
-    const initStrArr: string[] = []
+    const initStrArr: Array<string> = []
     const getMakeAppliedFilters = (
       group: FilterGroup<CollectionItem, FilterKey>,
-    ) => (appliedFilters: string[], filterItem: FilterOption): string[] =>
+    ) => (
+      appliedFilters: Array<string>,
+      filterItem: FilterOption,
+    ): Array<string> =>
       // if the filter is true, add it to the applied filters array
       filterState[group.id][filterItem.value]
         ? snoc(appliedFilters, filterItem.value)
@@ -336,7 +340,7 @@ export class FilterCollection<
 
     // Check if the filter state has changed, we need this to know
     // whether or not to show the reset button
-    const isFiltered = this.initialFilterState !== filterState
+    const isFiltered = !isEqual(this.initialFilterState, filterState)
 
     return children({
       filters: {

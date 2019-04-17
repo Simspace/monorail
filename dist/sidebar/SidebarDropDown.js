@@ -11,7 +11,7 @@ var _Cards = require("../cards/Cards");
 
 var _styledComponents = _interopRequireWildcard(require("styled-components"));
 
-var _CommonStyles = require("../CommonStyles");
+var _exports = require("../helpers/exports");
 
 var _Overlay = require("../toggle/Overlay");
 
@@ -26,7 +26,7 @@ _styledComponents.default.div.withConfig({
   componentId: "sc-18l3je-0"
 })(({
   cssOverrides
-}) => (0, _styledComponents.css)(["", ";overflow:hidden;", ";"], (0, _CommonStyles.flexFlow)(), cssOverrides));
+}) => (0, _styledComponents.css)(["", ";overflow:hidden;", ";"], (0, _exports.flexFlow)(), cssOverrides));
 
 class SidebarDropDown extends _react.Component {
   constructor(...args) {
@@ -73,7 +73,7 @@ class SidebarDropDown extends _react.Component {
     const {
       dropDownHeight
     } = this.state;
-    const scaleAnimation = (0, _CommonStyles.generateScaleAnimation)({
+    const scaleAnimation = (0, _exports.generateScaleAnimation)({
       elementHeight: dropDownHeight,
       elementWidth: width,
       isOpen,

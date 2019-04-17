@@ -1,7 +1,7 @@
 import React, { MouseEvent, Ref, StatelessComponent, ReactNode } from 'react';
 import { SimpleInterpolation } from 'styled-components';
 import { CommonComponentType } from '@monorail/types';
-import { AppName, ElevationRange } from '@monorail/CommonStyles';
+import { AppName, ElevationRange } from '@monorail/helpers/exports';
 export declare type BBCardBackgroundProps = CommonComponentType & {
     hover?: boolean;
     elevation?: ElevationRange;

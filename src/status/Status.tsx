@@ -1,7 +1,7 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
 
-import { Colors, colors } from '@monorail/CommonStyles'
+import { Colors, getColor } from '@monorail/helpers/exports'
 import { CommonComponentType } from '@monorail/types'
 
 type Props = CommonComponentType & {
@@ -11,10 +11,10 @@ type Props = CommonComponentType & {
 
 export const Status = styled.div<Props>(
   ({ cssOverrides, size = 16, inactive = false }) => css`
-    background: ${colors(Colors.BrandLightBlue)};
-    background: ${colors(inactive ? Colors.Black54 : Colors.BrandLightBlue)};
+    background: ${getColor(Colors.BrandLightBlue)};
+    background: ${getColor(inactive ? Colors.Black54 : Colors.BrandLightBlue)};
     border-radius: ${size / 2}px;
-    color: ${colors(Colors.White)};
+    color: ${getColor(Colors.White)};
     flex-shrink: 0;
     font-size: ${size - 5}px;
     font-weight: 700;

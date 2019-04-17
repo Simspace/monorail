@@ -1,6 +1,6 @@
 import { CSSProperties, MouseEvent, ReactNode, StatelessComponent } from 'react';
 import { SimpleInterpolation } from 'styled-components';
-import { Sizes } from '@monorail/CommonStyles';
+import { Sizes } from '@monorail/helpers/exports';
 import { IconProps } from '@monorail/icon/Icon';
 import { CommonComponentType } from '@monorail/types';
 declare type BBListContainerProps = {

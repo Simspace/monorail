@@ -3,26 +3,26 @@ import { isNil } from '@monorail/sharedHelpers/typeGuards'
 import styled, { css, SimpleInterpolation } from 'styled-components'
 import {
   Colors,
-  colors,
+  getColor,
   flexFlow,
   FontSizes,
   typography,
-} from '@monorail/CommonStyles'
+} from '@monorail/helpers/exports'
 import { CCTag } from '@monorail/tags/Tag'
 
 // Property Styles
 const primaryPropertyStyles = css`
   ${typography(500, FontSizes.Content)};
-  color: ${colors(Colors.Black74)};
+  color: ${getColor(Colors.Black74)};
 `
 const compactPropertyStyles = css`
   ${typography(500, FontSizes.Content)};
-  color: ${colors(Colors.Black54)};
+  color: ${getColor(Colors.Black54)};
   text-transform: uppercase;
 `
 const largePropertyStyles = css`
   ${typography(700, FontSizes.Content)};
-  color: ${colors(Colors.Black74)};
+  color: ${getColor(Colors.Black74)};
 `
 
 const BBDetailsProperty = styled.h2<BBDetailsSize>(
@@ -39,7 +39,7 @@ const BBDetailsProperty = styled.h2<BBDetailsSize>(
 
     ${darkMode &&
       css`
-        color: ${colors(Colors.White)};
+        color: ${getColor(Colors.White)};
       `};
 
     margin: 0;
@@ -49,15 +49,15 @@ const BBDetailsProperty = styled.h2<BBDetailsSize>(
 // Value Styles
 const primaryValueStyles = css`
   ${typography(200, FontSizes.Title3)};
-  color: ${colors(Colors.Black89)};
+  color: ${getColor(Colors.Black89)};
 `
 const compactValueStyles = css`
   ${typography(600, FontSizes.Title5)};
-  color: ${colors(Colors.Black74)};
+  color: ${getColor(Colors.Black74)};
 `
 const largeValueStyles = css`
   ${typography(200, FontSizes.Title1)};
-  color: ${colors(Colors.Black89)};
+  color: ${getColor(Colors.Black89)};
 `
 
 const BBDetailsValue = styled.h2<BBDetailsSize>(
@@ -73,7 +73,7 @@ const BBDetailsValue = styled.h2<BBDetailsSize>(
     }};
     ${darkMode &&
       css`
-        color: ${colors(Colors.White)};
+        color: ${getColor(Colors.White)};
       `};
 
     margin: 0;

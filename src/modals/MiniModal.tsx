@@ -6,7 +6,7 @@ import {
   BBModalContent,
   BBModalHeader,
 } from '@monorail/modals/Modals'
-import { generateScaleAnimation, sizes } from '@monorail/CommonStyles'
+import { generateScaleAnimation, sizes } from '@monorail/helpers/exports'
 import { Overlay } from '@monorail/toggle/Overlay'
 import { css, SimpleInterpolation } from 'styled-components'
 

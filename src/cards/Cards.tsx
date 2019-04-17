@@ -15,13 +15,13 @@ import {
   BorderRadius,
   borderRadius,
   Colors,
-  colors,
+  getColor,
   ElevationRange,
   flexFlow,
   FontSizes,
   getElevation,
   typography,
-} from '@monorail/CommonStyles'
+} from '@monorail/helpers/exports'
 
 const BBCardContent = styled.div<CommonComponentType>(
   ({ cssOverrides }) => css`
@@ -82,7 +82,7 @@ export const BBCardBackground = styled(
     ${flexFlow()};
     ${borderRadius(BorderRadius.Large)};
 
-    background: ${colors(Colors.White)};
+    background: ${getColor(Colors.White)};
     position: relative; /* pos:re; because the shadow pseudo element is pos:abs; */
     z-index: 0; /* mythical z-index: 0. The shadow pseudo element needs a negative z-index, but then it disappears. Have to reset the z-index to the zero value so that it appears above the background of the page but under the background of the card. */
 
@@ -90,7 +90,7 @@ export const BBCardBackground = styled(
 
     &::before {
       border-radius: inherit;
-      background: ${colors(Colors.White)};
+      background: ${getColor(Colors.White)};
       bottom: 0;
       content: '';
       left: 0;
@@ -105,7 +105,7 @@ export const BBCardBackground = styled(
 
       ${getElevation(elevation)};
 
-      background: ${colors(Colors.White)};
+      background: ${getColor(Colors.White)};
       bottom: 2px;
       content: '';
       left: 2px;
@@ -156,10 +156,10 @@ const BBCardBottomBorder = styled.div<BBCardBottomBorderProps>(
   ({ accentColor }) => css`
     background: linear-gradient(
       to right,
-      ${colors(Colors.White, 0)} 0,
+      ${getColor(Colors.White, 0)} 0,
       ${accentColor} 16px,
       ${accentColor} calc(100% - 16px),
-      ${colors(Colors.White, 0)} 100%
+      ${getColor(Colors.White, 0)} 100%
     );
 
     bottom: 0;
@@ -181,7 +181,7 @@ type BBCardHeaderProps = BBCardBottomBorderProps & {
 
 // building-blocks/cards/header
 export const BBCardHeader: StatelessComponent<BBCardHeaderProps> = ({
-  accentColor = colors(Colors.BrandLightBlue),
+  accentColor = getColor(Colors.BrandLightBlue),
   appIcon,
   children,
   cssOverrides,

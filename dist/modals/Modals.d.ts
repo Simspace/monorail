@@ -1,5 +1,5 @@
 import { MouseEvent, ReactNode, StatelessComponent } from 'react';
-import { AppName } from '@monorail/CommonStyles';
+import { AppName } from '@monorail/helpers/exports';
 import { SimpleInterpolation } from 'styled-components';
 import { CommonComponentType } from '@monorail/types';
 declare type BBModalSize = {

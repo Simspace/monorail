@@ -1,6 +1,6 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
-import { Colors, colors } from '@monorail/CommonStyles'
+import { Colors, getColor } from '@monorail/helpers/exports'
 import { CommonComponentType } from '@monorail/types'
 
 /*
@@ -19,7 +19,7 @@ export const Divider = styled.div<CCDividerProps>(
           height: 1px;
         `};
 
-    background: ${colors(Colors.Grey94)};
+    background: ${getColor(Colors.Grey94)};
   `,
 )
 

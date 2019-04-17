@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.trim = trim;
 exports.join = join;
-exports.toLower = exports.findIndex = exports.splitName = exports.replace = exports.split = void 0;
+exports.includes = exports.truncate = exports.toLocaleLower = exports.toLower = exports.findIndex = exports.splitName = exports.replace = exports.split = void 0;
 
 var _Array = require("fp-ts/lib/Array");
 
@@ -66,11 +66,19 @@ exports.findIndex = findIndex;
 
 const toLower = x => x.toLowerCase();
 /**
- * Takes a string and removes the spaces at the end of strings
+ * Converts all alphabetic characters to local lower case
  */
 
 
 exports.toLower = toLower;
+
+const toLocaleLower = target => target.toLocaleLowerCase();
+/**
+ * Takes a string and removes the spaces at the end of strings
+ */
+
+
+exports.toLocaleLower = toLocaleLower;
 
 function trim(str) {
   return str.trim();
@@ -79,3 +87,15 @@ function trim(str) {
 function join(separator, arr) {
   return arr.join(separator);
 }
+
+const truncate = maxLength => value => {
+  return value.length > maxLength ? value.slice(0, maxLength - 3).trim().concat('...') : value;
+};
+
+exports.truncate = truncate;
+
+const includes = target => source => {
+  return source.includes(target);
+};
+
+exports.includes = includes;

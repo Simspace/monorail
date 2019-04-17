@@ -27,7 +27,13 @@ export declare const findIndex: (substring: string) => (xs: string) => Option<nu
  */
 export declare const toLower: (x: string) => string;
 /**
+ * Converts all alphabetic characters to local lower case
+ */
+export declare const toLocaleLower: (target: string) => string;
+/**
  * Takes a string and removes the spaces at the end of strings
  */
 export declare function trim(str: string): string;
 export declare function join<T>(separator: string, arr: Array<T>): string;
+export declare const truncate: (maxLength: number) => (value: string) => string;
+export declare const includes: (target: string) => (source: string) => boolean;

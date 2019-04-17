@@ -20,13 +20,13 @@ import {
 import Link from 'react-router/lib/Link'
 import {
   Colors,
-  colors,
+  getColor,
   ellipsis,
   flexFlow,
   FontSizes,
   Sizes,
   typography,
-} from '@monorail/CommonStyles'
+} from '@monorail/helpers/exports'
 import styled, { css } from 'styled-components'
 import { CommonComponentType } from '@monorail/types'
 import { SearchController } from '@monorail/inputs/SearchController'
@@ -46,7 +46,7 @@ const MenuHeader = styled.span<CommonComponentType>(
     ${typography(500, FontSizes.Title5, '12px')};
     ${ellipsis};
 
-    color: ${colors(Colors.Black62)};
+    color: ${getColor(Colors.Black62)};
     flex-shrink: 0;
 
     ${cssOverrides};

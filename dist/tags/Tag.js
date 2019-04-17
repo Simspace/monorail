@@ -11,7 +11,7 @@ var _styledComponents = _interopRequireWildcard(require("styled-components"));
 
 var _Icon = require("../icon/Icon");
 
-var _CommonStyles = require("../CommonStyles");
+var _exports = require("../helpers/exports");
 
 var _typeGuards = require("../sharedHelpers/typeGuards");
 
@@ -30,7 +30,7 @@ _styledComponents.default.div.withConfig({
 })(({
   label,
   cssOverrides
-}) => (0, _styledComponents.css)(["", ";", ";display:inline-flex;align-items:center;background:", ";border-radius:", "px;height:", "px;position:relative;text-transform:uppercase;user-select:none;&::before{background:", ";border-radius:", "px;bottom:2px;content:'';left:2px;position:absolute;top:2px;width:", "px;}", ";"], (0, _typeGuards.isNil)(label) && (0, _styledComponents.css)(["width:", "px;"], tagHeight), (0, _CommonStyles.flexFlow)('row'), (0, _CommonStyles.colors)(_CommonStyles.Colors.Black, 0.07), tagHeight / 2, tagHeight, (0, _CommonStyles.colors)(_CommonStyles.Colors.White), circleRadius, circleWidth, cssOverrides));
+}) => (0, _styledComponents.css)(["", ";", ";display:inline-flex;align-items:center;background:", ";border-radius:", "px;height:", "px;position:relative;text-transform:uppercase;user-select:none;&::before{background:", ";border-radius:", "px;bottom:2px;content:'';left:2px;position:absolute;top:2px;width:", "px;}", ";"], (0, _typeGuards.isNil)(label) && (0, _styledComponents.css)(["width:", "px;"], tagHeight), (0, _exports.flexFlow)('row'), (0, _exports.getColor)(_exports.Colors.Black, 0.07), tagHeight / 2, tagHeight, (0, _exports.getColor)(_exports.Colors.White), circleRadius, circleWidth, cssOverrides));
 
 exports.CCTag = CCTag;
 const StyledIconLeft =
@@ -38,14 +38,14 @@ const StyledIconLeft =
 (0, _styledComponents.default)(_Icon.Icon).withConfig({
   displayName: "Tag__StyledIconLeft",
   componentId: "rxfsom-1"
-})(["color:", ";margin:0 ", "px;position:relative;"], (0, _CommonStyles.colors)(_CommonStyles.Colors.BrandLightBlue), iconSize / 2);
+})(["color:", ";margin:0 ", "px;position:relative;"], (0, _exports.getColor)(_exports.Colors.BrandLightBlue), iconSize / 2);
 
 const Title =
 /*#__PURE__*/
 _styledComponents.default.h1.withConfig({
   displayName: "Tag__Title",
   componentId: "rxfsom-2"
-})(["", ";color:", ";margin:0 10px 0 2px;"], (0, _CommonStyles.typography)(700, _CommonStyles.FontSizes.Content), (0, _CommonStyles.colors)(_CommonStyles.Colors.Black89));
+})(["", ";color:", ";margin:0 10px 0 2px;"], (0, _exports.typography)(700, _exports.FontSizes.Content), (0, _exports.getColor)(_exports.Colors.Black89));
 
 class Tag extends _react.Component {
   render() {

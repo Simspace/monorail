@@ -6,16 +6,16 @@ import { Icon } from '@monorail/icon/Icon'
 import {
   AppOrAuthSubAppName,
   Colors,
-  colors,
+  getColor,
   convertAppNameToColor,
   flexFlow,
   FontSizes,
   typography,
-} from '@monorail/CommonStyles'
+} from '@monorail/helpers/exports'
 
 const HeaderRow = styled.div<CommonComponentType>(
   ({ cssOverrides }) => css`
-    color: ${colors(Colors.BrandDarkBlue)};
+    color: ${getColor(Colors.BrandDarkBlue)};
     ${flexFlow('row')};
     ${typography(500, FontSizes.Title3)};
 
@@ -29,13 +29,13 @@ const HeaderRow = styled.div<CommonComponentType>(
 )
 
 const iconRightCss = css`
-  color: ${colors(Colors.BrandDarkBlue)};
+  color: ${getColor(Colors.BrandDarkBlue)};
   flex-shrink: 0;
   margin-right: 12px;
 `
 
 const iconLeftCss = css`
-  color: ${colors(Colors.BrandDarkBlue)};
+  color: ${getColor(Colors.BrandDarkBlue)};
   flex-shrink: 0;
   margin-left: 12px;
 `
@@ -79,7 +79,7 @@ export const Header = styled(
         &::after {
           content: '';
           background: ${appIcon
-            ? colors(convertAppNameToColor(appIcon))
+            ? getColor(convertAppNameToColor(appIcon))
             : '#ebebeb'};
           bottom: 0;
           height: 1px;

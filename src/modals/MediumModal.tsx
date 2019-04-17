@@ -21,11 +21,12 @@ export class MediumModal extends Component<Props> {
       iconLeft,
       togglePopOver,
       headerStyles,
+      ...otherProps
     } = this.props
 
     return (
       <Overlay isOpen={isOpen} onClick={onClick} togglePopOver={togglePopOver}>
-        <BBModalBackground>
+        <BBModalBackground {...otherProps}>
           <BBModalHeader
             title={title}
             iconLeft={iconLeft}

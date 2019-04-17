@@ -5,13 +5,13 @@ import {
   BorderRadius,
   borderRadius,
   Colors,
-  colors,
+  getColor,
   ElevationRange,
   flexFlow,
   generateScaleAnimation,
   getElevation,
   sizes,
-} from '@monorail/CommonStyles'
+} from '@monorail/helpers/exports'
 import { Overlay } from '@monorail/toggle/Overlay'
 import { fromNullable } from 'fp-ts/lib/Option'
 import { isNil } from '@monorail/sharedHelpers/typeGuards'
@@ -28,7 +28,7 @@ const CCMenu = styled.div<MenuProps>(
     ${flexFlow()};
     ${getElevation(ElevationRange.Elevation6)};
 
-    background: ${colors(Colors.White)};
+    background: ${getColor(Colors.White)};
     overflow: hidden;
     position: fixed;
     width: ${width};

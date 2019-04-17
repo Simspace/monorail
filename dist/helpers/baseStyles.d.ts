@@ -1,0 +1,12 @@
+import { Colors } from '@monorail/helpers/color';
+import { SimpleInterpolation } from 'styled-components';
+export declare const baseFocusStyles: (addPositionToParent?: boolean) => SimpleInterpolation;
+export declare const floatingOutlineStyles: (color?: string) => import("styled-components").FlattenSimpleInterpolation;
+export declare const floatingBackgroundStyles: (color?: string) => import("styled-components").FlattenSimpleInterpolation;
+export declare const baseOutlineStyles: (color?: Colors, focusColor?: Colors) => import("styled-components").FlattenSimpleInterpolation;
+export declare const baseChromelessStyles: (color?: Colors) => import("styled-components").FlattenSimpleInterpolation;
+export declare const baseSecondaryStyles: (color?: Colors) => import("styled-components").FlattenSimpleInterpolation;
+export declare const basePrimaryStyles: (color?: Colors, backgroundColor?: Colors) => import("styled-components").FlattenSimpleInterpolation;
+export declare const baseButtonBarStyles: (color?: Colors) => import("styled-components").FlattenSimpleInterpolation;
+export declare const baseToolBarStyles: (color?: Colors) => import("styled-components").FlattenSimpleInterpolation;
+export declare const baseDisabledStyles: import("styled-components").FlattenSimpleInterpolation;

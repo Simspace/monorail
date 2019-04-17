@@ -6,7 +6,7 @@ import {
   BorderRadius,
   borderRadius,
   Colors,
-  colors,
+  getColor,
   ElevationRange,
   flexFlow,
   FontSizes,
@@ -15,7 +15,7 @@ import {
   sizes,
   typography,
   visible,
-} from '@monorail/CommonStyles'
+} from '@monorail/helpers/exports'
 import styled, { css, SimpleInterpolation } from 'styled-components'
 import { BBSearchContainer } from '../inputs/Search'
 import { IconButton } from '@monorail/buttons/IconButton'
@@ -53,7 +53,8 @@ export const BBModalBackground = styled.div<BBModalBackgroundProps>(
     ${flexFlow()};
     ${getElevation(ElevationRange.Elevation24)};
 
-    background: ${colors(Colors.White)};
+    margin: 16px;
+    background: ${getColor(Colors.White)};
     overflow: hidden;
     width: ${mini ? sizes.modals.mini.width : 584}px;
     position: relative; /* position: relative; so that the shadow works when on the BBModalOverlay */
@@ -82,7 +83,7 @@ const BBModalHeaderContainer = styled.div<
 
     ${getElevation(ElevationRange.Elevation2)};
 
-    background: ${colors(Colors.BrandDarkBlue)};
+    background: ${getColor(Colors.BrandDarkBlue)};
     flex-shrink: 0;
     user-select: none;
     z-index: 1;
@@ -109,6 +110,7 @@ const BBModalHeaderRow = styled.div<BBModalSize>(
     height: ${mini ? 48 : 56}px;
     padding: 0 16px;
     width: 100%;
+    overflow: hidden;
   `,
 )
 
@@ -118,14 +120,14 @@ const BBModalHeaderTitle = styled.h1<BBModalSize>(
       ? typography(700, FontSizes.Title4)
       : typography(700, FontSizes.Title3)};
 
-    color: ${colors(Colors.White)};
+    color: ${getColor(Colors.White)};
     white-space: nowrap;
     margin: 0;
   `,
 )
 
 const baseIconStyles = css`
-  color: ${colors(Colors.White)};
+  color: ${getColor(Colors.White)};
 `
 
 const StyledAppIconLeft = styled(AppIcon)`
@@ -236,7 +238,7 @@ export const BBModalFooter = styled.div`
   ${getElevation(ElevationRange.Elevation6)};
 
   align-items: center;
-  background: ${colors(Colors.Grey98)};
+  background: ${getColor(Colors.Grey98)};
   height: 48px;
   justify-content: flex-end;
   margin: auto 0 0;
@@ -258,7 +260,7 @@ const BBModalOverlayContainer = styled.div<BBModalOverlayProps>(
     ${visible(isOpen)};
     ${!chromeless &&
       css`
-        background: ${colors(Colors.Black, 0.36)};
+        background: ${getColor(Colors.Black, 0.36)};
       `};
 
     bottom: 0;

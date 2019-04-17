@@ -1,7 +1,6 @@
 {
   "compilerOptions": {
     // specify an output directory to mute some TS errors
-    "rootDir": ".",
     "outDir": "ts-dist",
     "preserveWatchOutput": true,
     "allowJs": true,

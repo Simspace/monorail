@@ -1,6 +1,6 @@
 import React, { StatelessComponent } from 'react'
 import styled, { css, SimpleInterpolation } from 'styled-components'
-import { borderRadius, Colors, colors } from '@monorail/CommonStyles'
+import { borderRadius, Colors, getColor } from '@monorail/helpers/exports'
 
 type CCAvatarProps = {
   cssOverrides?: SimpleInterpolation
@@ -15,14 +15,14 @@ const CCAvatar = styled.div<CCAvatarProps>(
       ? css`
           ${borderRadius()};
 
-          background: ${colors(Colors.BrandDarkBlue)};
+          background: ${getColor(Colors.BrandDarkBlue)};
         `
       : css`
-          background: ${colors(Colors.BrandLightBlue)};
+          background: ${getColor(Colors.BrandLightBlue)};
           border-radius: ${size / 2}px;
         `};
 
-    color: ${colors(Colors.White)};
+    color: ${getColor(Colors.White)};
     flex-shrink: 0;
     font-size: 9.89px;
     font-weight: 900;

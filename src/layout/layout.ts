@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { flexFlow, gothamFontFamily } from '@monorail/CommonStyles'
+import { flexFlow, gothamFontFamily } from '@monorail/helpers/exports'
 import { CommonComponentType } from '@monorail/types'
 
 export const AppContainer = styled.div<CommonComponentType>`
@@ -10,7 +10,8 @@ export const AppContainer = styled.div<CommonComponentType>`
 
   &.event-design,
   &.events:not(.execution),
-  &.home {
+  &.home,
+  &.reports-analytics {
     ${gothamFontFamily};
   }
 `

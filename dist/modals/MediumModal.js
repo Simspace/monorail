@@ -22,13 +22,14 @@ class MediumModal extends _react.Component {
       title,
       iconLeft,
       togglePopOver,
-      headerStyles
+      headerStyles,
+      ...otherProps
     } = this.props;
     return _react.default.createElement(_Overlay.Overlay, {
       isOpen: isOpen,
       onClick: onClick,
       togglePopOver: togglePopOver
-    }, _react.default.createElement(_Modals.BBModalBackground, null, _react.default.createElement(_Modals.BBModalHeader, {
+    }, _react.default.createElement(_Modals.BBModalBackground, otherProps, _react.default.createElement(_Modals.BBModalHeader, {
       title: title,
       iconLeft: iconLeft,
       onClose: onClick,

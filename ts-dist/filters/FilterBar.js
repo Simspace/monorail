@@ -1,0 +1,100 @@
+import { prop } from '@monorail/sharedHelpers/fp-ts-ext/Record';
+import { len } from '@monorail/sharedHelpers/fp-ts-ext/Array';
+import { fold } from '@monorail/sharedHelpers/fp-ts-ext/Option';
+import { array, head } from 'fp-ts/lib/Array';
+import React, { Component } from 'react';
+import styled, { css } from 'styled-components';
+import { Button } from '@monorail/buttons/Button';
+import { ButtonDisplay, ButtonSize } from '@monorail/buttons/buttonTypes';
+import { Choice } from '@monorail/inputs/Choice';
+import { Div } from '@monorail/StyleHelpers';
+import { Filter } from '@monorail/filters/Filter';
+import { Search } from '@monorail/inputs/Search';
+import { Status } from '@monorail/status/Status';
+import { ease, flexFlow, visible, typography, FontSizes, } from '@monorail/helpers/exports';
+const sorterItemStyle = (selected) => css `
+  ${typography(500, FontSizes.Content)};
+
+  cursor: pointer;
+  padding: 8px;
+
+  ${selected &&
+    css `
+      background: hsla(219, 100%, 54%, 0.1);
+    `};
+
+  :hover {
+    background: hsla(219, 100%, 54%, 0.1);
+  }
+`;
+const BBFilterBar = styled.div(({ cssOverrides }) => css `
+    ${flexFlow('row')};
+
+    margin-left: -4px;
+
+    ${cssOverrides};
+  `);
+export class FilterBar extends Component {
+    constructor() {
+        super(...arguments);
+        this.renderFilterName = (filterGroup) => {
+            if (filterGroup.activeFilterCount === len(filterGroup.filters)) {
+                // If unchanged, just show label
+                return filterGroup.label;
+            }
+            else if (filterGroup.activeFilterCount > 1) {
+                // If changed and label is greater than 1, show the count
+                return (React.createElement(React.Fragment, null,
+                    filterGroup.label,
+                    React.createElement(Status, { cssOverrides: css `
+              margin-left: 4px;
+            ` }, filterGroup.activeFilterCount)));
+            }
+            else if (filterGroup.activeFilterCount === 1) {
+                // Get checked filter option
+                const headFilterOpt = head(filterGroup.filters.filter(item => item.checked));
+                const activeFilterLabel = fold(headFilterOpt, '', prop('label'));
+                // If equal to 1, show the label and the single active filter
+                return `${filterGroup.label} - ${activeFilterLabel}`;
+            }
+            else {
+                // Otherwise no filters are checked, so show None
+                return `${filterGroup.label} - None`;
+            }
+        };
+        this.renderFilters = () => {
+            const { document, filterGroups, onFilterChange } = this.props;
+            return array.map(filterGroups, group => (React.createElement(Filter, { document: document, content: array.map(group.filters, filter => (React.createElement(Choice, { onChange: event => onFilterChange(group.filterKey, filter.value, event.currentTarget.checked), type: "checkbox", checked: filter.checked, key: filter.value }, filter.label))), cssOverrides: css `
+          margin: 4px;
+        `, isActive: group.activeFilterCount !== group.filters.length, key: group.filterKey, title: this.renderFilterName(group) })));
+        };
+        this.renderSorters = () => {
+            const { document, sorterGroup, onSorterChange } = this.props;
+            return sorterGroup ? (React.createElement(Filter, { document: document, content: array.map(sorterGroup.sorters, sorter => (React.createElement(Div, { cssOverrides: sorterItemStyle(sorter.selected), onClick: () => onSorterChange ? onSorterChange(sorter.key) : undefined, key: sorter.key }, sorter.label))), cssOverrides: css `
+          margin: 4px;
+        `, isActive: false, key: sorterGroup.key, title: sorterGroup.label })) : (undefined);
+        };
+    }
+    render() {
+        const { searchText, onSearchChange, isFiltered, resetFilters, cssOverrides, } = this.props;
+        return (React.createElement(BBFilterBar, { cssOverrides: cssOverrides },
+            this.renderFilters(),
+            this.renderSorters(),
+            React.createElement(Button, { size: ButtonSize.Compact, display: ButtonDisplay.Secondary, cssOverrides: css `
+            ${visible(isFiltered)};
+            margin: 4px;
+            transform: translateX(${isFiltered ? 0 : -32}px);
+            transition: background ease 75ms,
+              visibility ${ease(isFiltered)} 150ms,
+              opacity ${ease(isFiltered)} 150ms,
+              transform ${ease(isFiltered)} 150ms;
+          `, onClick: resetFilters }, "Clear Filters"),
+            React.createElement(Search, { cssOverrides: css `
+            margin: auto 0 auto auto;
+            max-width: 256px;
+            width: 100%;
+            flex-shrink: 1;
+          `, value: searchText, onChange: onSearchChange })));
+    }
+}
+//# sourceMappingURL=FilterBar.js.map

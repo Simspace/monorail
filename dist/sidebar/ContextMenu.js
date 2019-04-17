@@ -15,7 +15,7 @@ var _List = require("../list/List");
 
 var _Link = _interopRequireDefault(require("react-router/lib/Link"));
 
-var _CommonStyles = require("../CommonStyles");
+var _exports = require("../helpers/exports");
 
 var _styledComponents = _interopRequireWildcard(require("styled-components"));
 
@@ -38,7 +38,7 @@ const SearchContainer =
 _styledComponents.default.div.withConfig({
   displayName: "ContextMenu__SearchContainer",
   componentId: "n6aqip-0"
-})(["", ";align-items:center;flex-shrink:0;"], (0, _CommonStyles.flexFlow)('row'));
+})(["", ";align-items:center;flex-shrink:0;"], (0, _exports.flexFlow)('row'));
 
 const MenuHeader =
 /*#__PURE__*/
@@ -47,14 +47,14 @@ _styledComponents.default.span.withConfig({
   componentId: "n6aqip-1"
 })(({
   cssOverrides
-}) => (0, _styledComponents.css)(["", ";", ";color:", ";flex-shrink:0;", ";"], (0, _CommonStyles.typography)(500, _CommonStyles.FontSizes.Title5, '12px'), _CommonStyles.ellipsis, (0, _CommonStyles.colors)(_CommonStyles.Colors.Black62), cssOverrides));
+}) => (0, _styledComponents.css)(["", ";", ";color:", ";flex-shrink:0;", ";"], (0, _exports.typography)(500, _exports.FontSizes.Title5, '12px'), _exports.ellipsis, (0, _exports.getColor)(_exports.Colors.Black62), cssOverrides));
 
 const MenuItemIconRow =
 /*#__PURE__*/
 _styledComponents.default.div.withConfig({
   displayName: "ContextMenu__MenuItemIconRow",
   componentId: "n6aqip-2"
-})(["", ";flex:1 1 100%;margin:8px 6px 12px;"], (0, _CommonStyles.flexFlow)('row'));
+})(["", ";flex:1 1 100%;margin:8px 6px 12px;"], (0, _exports.flexFlow)('row'));
 
 const ContextMenuItem = ({
   leftIcon,
@@ -112,7 +112,7 @@ class ContextMenu extends _react.Component {
           leftIcon: icon,
           primaryText: item.title,
           secondaryText: item.description,
-          size: _CommonStyles.Sizes.DP40,
+          size: _exports.Sizes.DP40,
           to: item.link,
           onClick: onClick,
           tabIndex: 1,
@@ -162,7 +162,7 @@ class ContextMenu extends _react.Component {
         cssOverrides: (0, _styledComponents.css)(["padding:0 0 4px;"]),
         emptyText: "Loading..."
       }, (0, _Array.isEmpty)(contextMenuItems) ? _react.default.createElement(ContextMenuItem, {
-        size: _CommonStyles.Sizes.DP40,
+        size: _exports.Sizes.DP40,
         primaryText: "No results."
       }) : contextMenuItems));
     }));

@@ -1,10 +1,9 @@
 import { Component, MouseEvent } from 'react';
 import { ButtonProps } from './Button';
-import { ButtonDisplay, ButtonSize } from '@monorail/buttons/buttonTypes';
 import { Omit } from 'typelevel-ts';
 declare type Props = Omit<ButtonProps, 'onClick'> & {
-    loadingText?: string;
-    onClick?: (event: MouseEvent<HTMLButtonElement>) => Promise<void>;
+    loadingText: string;
+    onClick: (event: MouseEvent<HTMLButtonElement>) => Promise<void>;
 };
 declare type State = {
     loading: boolean;
@@ -14,9 +13,14 @@ declare type State = {
  */
 export declare class LoadingButton extends Component<Props, State> {
     static defaultProps: {
-        display: ButtonDisplay;
-        size: ButtonSize;
+        loadingText: string;
+        display: import("./buttonTypes").ButtonDisplay;
+        size: import("./buttonTypes").ButtonSize;
         type: string;
+        onClick: () => void;
+        disabled: boolean;
+        pressed: boolean;
+        mode: import("./buttonTypes").ButtonMode;
     };
     state: State;
     _isMounted: boolean;

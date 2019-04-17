@@ -11,7 +11,7 @@ var _styledComponents = _interopRequireWildcard(require("styled-components"));
 
 var _Select = require("./Select");
 
-var _CommonStyles = require("../CommonStyles");
+var _exports = require("../helpers/exports");
 
 var _Choice = require("./Choice");
 
@@ -35,7 +35,7 @@ const Label =
 _styledComponents.default.p.withConfig({
   displayName: "CheckmarkSelectGroup__Label",
   componentId: "sc-9lupgs-1"
-})(["", ";margin-bottom:4px;height:16px;"], (0, _CommonStyles.typography)(500, _CommonStyles.FontSizes.Title5));
+})(["", ";margin-bottom:4px;height:16px;"], (0, _exports.typography)(500, _exports.FontSizes.Title5));
 
 const CheckmarkSelectWrapper =
 /*#__PURE__*/
@@ -51,7 +51,7 @@ const CheckmarkSelectLabel =
 _styledComponents.default.p.withConfig({
   displayName: "CheckmarkSelectGroup__CheckmarkSelectLabel",
   componentId: "sc-9lupgs-3"
-})(["", ";flex-grow:1;"], (0, _CommonStyles.typography)(500, _CommonStyles.FontSizes.Title5));
+})(["", ";flex-grow:1;"], (0, _exports.typography)(500, _exports.FontSizes.Title5));
 
 const CheckmarkSelectContent =
 /*#__PURE__*/

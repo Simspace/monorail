@@ -21,7 +21,7 @@ var _ChevronDoubleLeft = require("./custom/ChevronDoubleLeft");
 
 var _CircleArrowLeft = require("./custom/CircleArrowLeft");
 
-var _CommonStyles = require("../CommonStyles");
+var _exports = require("../helpers/exports");
 
 var _Dashboard = require("./custom/Dashboard");
 
@@ -44,6 +44,8 @@ var _Impact = require("./custom/Impact");
 var _LMS = require("./custom/LMS");
 
 var _Range = require("./custom/Range");
+
+var _ReportsAnalytics = require("./custom/ReportsAnalytics");
 
 var _Retry = require("./custom/Retry");
 
@@ -106,6 +108,7 @@ const customIcons = {
   'impact-app': _Impact.Impact,
   'range-app': _Range.Range,
   'repo-app': _Catalog.Catalog,
+  'reports-analytics-app': _ReportsAnalytics.ReportsAnalytics,
   'techops-app': _TechOps.TechOps,
   'tracker-app': _Tracker.Tracker,
   'training-app': _Academy.Academy,
@@ -134,7 +137,7 @@ const Icon =
   icon,
   ...otherProps
 }) => {
-  const CustomIcon = customIcons[icon] || (0, _CommonStyles.isAppName)(icon) && customIcons[`${(0, _CommonStyles.convertAppNameToString)(icon)}-app`];
+  const CustomIcon = customIcons[icon] || (0, _exports.isAppName)(icon) && customIcons[`${(0, _exports.convertAppNameToString)(icon)}-app`];
 
   if (CustomIcon) {
     return _react.default.createElement(CustomIcon, otherProps);
@@ -144,5 +147,5 @@ const Icon =
 })(({
   size,
   cssOverrides
-}) => (0, _styledComponents.css)(["", ";color:", ";direction:ltr;display:inline-block;fill:currentColor;flex-shrink:0;font-family:'Material Icons';font-style:normal;font-weight:normal;height:1em;letter-spacing:normal;line-height:1;text-transform:none;user-select:none;white-space:nowrap;width:1em;word-wrap:normal;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;-moz-osx-font-smoothing:grayscale;font-feature-settings:'liga';", ";"], size ? (0, _styledComponents.css)(["font-size:", "px;"], size) : (0, _styledComponents.css)(["font-size:16px;"]), (0, _CommonStyles.colors)(_CommonStyles.Colors.Black54), cssOverrides));
+}) => (0, _styledComponents.css)(["", ";color:", ";direction:ltr;display:inline-block;fill:currentColor;flex-shrink:0;font-family:'Material Icons';font-style:normal;font-weight:normal;height:1em;letter-spacing:normal;line-height:1;text-transform:none;user-select:none;white-space:nowrap;width:1em;word-wrap:normal;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;-moz-osx-font-smoothing:grayscale;font-feature-settings:'liga';", ";"], size ? (0, _styledComponents.css)(["font-size:", "px;"], size) : (0, _styledComponents.css)(["font-size:16px;"]), (0, _exports.getColor)(_exports.Colors.Black54), cssOverrides));
 exports.Icon = Icon;

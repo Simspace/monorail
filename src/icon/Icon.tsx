@@ -12,10 +12,10 @@ import { ChevronDoubleLeft } from '@monorail/icon/custom/ChevronDoubleLeft'
 import { CircleArrowLeft } from '@monorail/icon/custom/CircleArrowLeft'
 import {
   Colors,
-  colors,
+  getColor,
   convertAppNameToString,
   isAppName,
-} from '@monorail/CommonStyles'
+} from '@monorail/helpers/exports'
 import { Dashboard } from '@monorail/icon/custom/Dashboard'
 import { ErrorRobot } from '@monorail/icon/custom/ErrorRobot'
 import { EventDesign } from '@monorail/icon/custom/EventDesign'
@@ -28,6 +28,7 @@ import { Impact } from '@monorail/icon/custom/Impact'
 import { LMS } from '@monorail/icon/custom/LMS'
 import { Omit } from 'typelevel-ts'
 import { Range } from '@monorail/icon/custom/Range'
+import { ReportsAnalytics } from '@monorail/icon/custom/ReportsAnalytics'
 import { Retry } from '@monorail/icon/custom/Retry'
 import { Robot } from '@monorail/icon/custom/Robot'
 import { ServerNetwork } from '@monorail/icon/custom/ServerNetwork'
@@ -71,6 +72,7 @@ const customIcons: { [key: string]: ComponentType<CustomIconProps> } = {
   'impact-app': Impact,
   'range-app': Range,
   'repo-app': Catalog,
+  'reports-analytics-app': ReportsAnalytics,
   'techops-app': TechOps,
   'tracker-app': Tracker,
   'training-app': Academy,
@@ -115,7 +117,7 @@ export const Icon = styled(
           font-size: 16px;
         `};
 
-    color: ${colors(Colors.Black54)};
+    color: ${getColor(Colors.Black54)};
     direction: ltr;
     display: inline-block;
     fill: currentColor; /* Custom icons are svg and need this so that color works correct. */

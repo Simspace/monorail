@@ -2,7 +2,7 @@ import { array } from 'fp-ts/lib/Array'
 import React, { Component, ReactNode } from 'react'
 import { Status } from '@monorail/status/Status'
 import { css } from 'styled-components'
-import { FontSizes, typography } from '@monorail/CommonStyles'
+import { FontSizes, typography } from '@monorail/helpers/exports'
 
 const FilterStatusCSS = css`
   margin-left: 4px;
@@ -35,7 +35,7 @@ export type BasicOption = {
 export type BasicOptionGroup = {
   label: string
   key: string
-  items: BasicOption[]
+  items: Array<BasicOption>
 }
 
 type BasicFilterControllerProps = {
@@ -43,7 +43,7 @@ type BasicFilterControllerProps = {
   group: BasicOptionGroup
   children: (
     params: {
-      collection: BasicOption[]
+      collection: Array<BasicOption>
       document?: Document
       isActive: boolean
       title: ReactNode
@@ -119,7 +119,7 @@ type BasicSorterControllerProps = {
   group: BasicOptionGroup
   children: (
     params: {
-      collection: BasicOption[]
+      collection: Array<BasicOption>
       document?: Document
       isActive: boolean
       title: ReactNode

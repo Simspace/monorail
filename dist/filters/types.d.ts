@@ -10,7 +10,7 @@ export declare type ActiveFilterCountData = {
     activeFilterCount: number;
 };
 declare type CheckedFiltersData = {
-    filters: FilterWithCheckedData[];
+    filters: Array<FilterWithCheckedData>;
 };
 export declare type FilterGroupWithData<CollectionItem extends object, FilterKey extends keyof CollectionItem & string> = CollectionItem[FilterKey] extends string ? {
     label: string;
@@ -22,7 +22,7 @@ export declare type FilterGroupWithData<CollectionItem extends object, FilterKey
     transform: <A extends CollectionItem[FilterKey]>(searchValue: A) => string;
 } & ActiveFilterCountData & CheckedFiltersData;
 declare type FilterOptionsData = {
-    filters: FilterOption[];
+    filters: Array<FilterOption>;
 };
 export declare type FilterGroup<CollectionItem extends object, FilterKey extends keyof CollectionItem & string> = CollectionItem[FilterKey] extends string ? {
     label: string;
@@ -41,7 +41,7 @@ export declare type FilterGroup<CollectionItem extends object, FilterKey extends
     transform: <A extends CollectionItem[FilterKey]>(searchValue: A) => string;
 } & FilterOptionsData;
 export declare type AppliedFilters = {
-    filters: string[];
+    filters: Array<string>;
 };
 export declare type AppliedFilterGroup<CollectionItem extends object, FilterKey extends keyof CollectionItem & string> = CollectionItem[FilterKey] extends string ? {
     label: string;
@@ -59,7 +59,7 @@ export declare type FilterState = Record<string, StrBoolMap>;
 export declare type Sorter<CollectionItem> = {
     label: string;
     key: string;
-    onSort: (xs: CollectionItem[]) => CollectionItem[];
+    onSort: (xs: Array<CollectionItem>) => Array<CollectionItem>;
     selected: boolean;
 };
 export declare type SorterGroup<CollectionItem> = {

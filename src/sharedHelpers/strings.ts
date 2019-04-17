@@ -30,7 +30,7 @@ export const splitName = (
   last: string
 } => {
   const xs = split(' ')(name)
-  const safeGetVia = (f: (as: string[]) => Option<string>) =>
+  const safeGetVia = (f: (as: Array<string>) => Option<string>) =>
     o(getOrEmptyString, f)(xs)
 
   return {
@@ -56,6 +56,12 @@ export const findIndex = (substring: string) => (
 export const toLower = (x: string) => x.toLowerCase()
 
 /**
+ * Converts all alphabetic characters to local lower case
+ */
+
+export const toLocaleLower = (target: string) => target.toLocaleLowerCase()
+
+/**
  * Takes a string and removes the spaces at the end of strings
  */
 export function trim(str: string): string {
@@ -64,4 +70,17 @@ export function trim(str: string): string {
 
 export function join<T>(separator: string, arr: Array<T>): string {
   return arr.join(separator)
+}
+
+export const truncate = (maxLength: number) => (value: string) => {
+  return value.length > maxLength
+    ? value
+        .slice(0, maxLength - 3)
+        .trim()
+        .concat('...')
+    : value
+}
+
+export const includes = (target: string) => (source: string) => {
+  return source.includes(target)
 }

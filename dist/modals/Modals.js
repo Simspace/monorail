@@ -11,7 +11,7 @@ var _AppIcon = require("../appIcon/AppIcon");
 
 var _Icon = require("../icon/Icon");
 
-var _CommonStyles = require("../CommonStyles");
+var _exports = require("../helpers/exports");
 
 var _styledComponents = _interopRequireWildcard(require("styled-components"));
 
@@ -36,7 +36,7 @@ _styledComponents.default.div.withConfig({
 })(({
   mini,
   cssOverrides
-}) => (0, _styledComponents.css)(["", ";", ";", ";", ";background:", ";overflow:hidden;width:", "px;position:relative;will-change:transform;", ";"], mini && (0, _styledComponents.css)(["height:", "px;"], _CommonStyles.sizes.modals.mini.height), (0, _CommonStyles.borderRadius)(_CommonStyles.BorderRadius.XLarge), (0, _CommonStyles.flexFlow)(), (0, _CommonStyles.getElevation)(_CommonStyles.ElevationRange.Elevation24), (0, _CommonStyles.colors)(_CommonStyles.Colors.White), mini ? _CommonStyles.sizes.modals.mini.width : 584, cssOverrides));
+}) => (0, _styledComponents.css)(["", ";", ";", ";", ";margin:16px;background:", ";overflow:hidden;width:", "px;position:relative;will-change:transform;", ";"], mini && (0, _styledComponents.css)(["height:", "px;"], _exports.sizes.modals.mini.height), (0, _exports.borderRadius)(_exports.BorderRadius.XLarge), (0, _exports.flexFlow)(), (0, _exports.getElevation)(_exports.ElevationRange.Elevation24), (0, _exports.getColor)(_exports.Colors.White), mini ? _exports.sizes.modals.mini.width : 584, cssOverrides));
 /*
 *
 * Modal Header
@@ -58,7 +58,7 @@ _styledComponents.default.div.withConfig({
 })(({
   mini,
   cssOverrides
-}) => (0, _styledComponents.css)(["", ";", ";background:", ";flex-shrink:0;user-select:none;z-index:1;", "{", ";}", ";"], (0, _CommonStyles.flexFlow)(mini ? 'column' : 'row'), (0, _CommonStyles.getElevation)(_CommonStyles.ElevationRange.Elevation2), (0, _CommonStyles.colors)(_CommonStyles.Colors.BrandDarkBlue), _Search.BBSearchContainer, mini ? (0, _styledComponents.css)(["margin:8px 16px 16px;"]) : (0, _styledComponents.css)(["margin:auto 16px auto auto;"]), cssOverrides));
+}) => (0, _styledComponents.css)(["", ";", ";background:", ";flex-shrink:0;user-select:none;z-index:1;", "{", ";}", ";"], (0, _exports.flexFlow)(mini ? 'column' : 'row'), (0, _exports.getElevation)(_exports.ElevationRange.Elevation2), (0, _exports.getColor)(_exports.Colors.BrandDarkBlue), _Search.BBSearchContainer, mini ? (0, _styledComponents.css)(["margin:8px 16px 16px;"]) : (0, _styledComponents.css)(["margin:auto 16px auto auto;"]), cssOverrides));
 
 const BBModalHeaderRow =
 /*#__PURE__*/
@@ -67,7 +67,7 @@ _styledComponents.default.div.withConfig({
   componentId: "sc-1y5a2ts-2"
 })(({
   mini
-}) => (0, _styledComponents.css)(["", ";align-items:center;height:", "px;padding:0 16px;width:100%;"], (0, _CommonStyles.flexFlow)('row'), mini ? 48 : 56));
+}) => (0, _styledComponents.css)(["", ";align-items:center;height:", "px;padding:0 16px;width:100%;overflow:hidden;"], (0, _exports.flexFlow)('row'), mini ? 48 : 56));
 
 const BBModalHeaderTitle =
 /*#__PURE__*/
@@ -76,11 +76,11 @@ _styledComponents.default.h1.withConfig({
   componentId: "sc-1y5a2ts-3"
 })(({
   mini
-}) => (0, _styledComponents.css)(["", ";color:", ";white-space:nowrap;margin:0;"], mini ? (0, _CommonStyles.typography)(700, _CommonStyles.FontSizes.Title4) : (0, _CommonStyles.typography)(700, _CommonStyles.FontSizes.Title3), (0, _CommonStyles.colors)(_CommonStyles.Colors.White)));
+}) => (0, _styledComponents.css)(["", ";color:", ";white-space:nowrap;margin:0;"], mini ? (0, _exports.typography)(700, _exports.FontSizes.Title4) : (0, _exports.typography)(700, _exports.FontSizes.Title3), (0, _exports.getColor)(_exports.Colors.White)));
 
 const baseIconStyles =
 /*#__PURE__*/
-(0, _styledComponents.css)(["color:", ";"], (0, _CommonStyles.colors)(_CommonStyles.Colors.White));
+(0, _styledComponents.css)(["color:", ";"], (0, _exports.getColor)(_exports.Colors.White));
 const StyledAppIconLeft =
 /*#__PURE__*/
 (0, _styledComponents.default)(_AppIcon.AppIcon).withConfig({
@@ -167,7 +167,7 @@ const BBModalFooter =
 _styledComponents.default.div.withConfig({
   displayName: "Modals__BBModalFooter",
   componentId: "sc-1y5a2ts-7"
-})(["", ";", ";align-items:center;background:", ";height:48px;justify-content:flex-end;margin:auto 0 0;padding:0 16px;flex-shrink:0;"], (0, _CommonStyles.flexFlow)('row'), (0, _CommonStyles.getElevation)(_CommonStyles.ElevationRange.Elevation6), (0, _CommonStyles.colors)(_CommonStyles.Colors.Grey98));
+})(["", ";", ";align-items:center;background:", ";height:48px;justify-content:flex-end;margin:auto 0 0;padding:0 16px;flex-shrink:0;"], (0, _exports.flexFlow)('row'), (0, _exports.getElevation)(_exports.ElevationRange.Elevation6), (0, _exports.getColor)(_exports.Colors.Grey98));
 /*
 *
 * Modal Overlay
@@ -190,7 +190,7 @@ _styledComponents.default.div.withConfig({
   isOpen,
   chromeless,
   cssOverrides
-}) => (0, _styledComponents.css)(["", ";", ";bottom:0;cursor:pointer;left:0;position:fixed;right:0;top:0;transition:all ease 150ms;", ";"], (0, _CommonStyles.visible)(isOpen), !chromeless && (0, _styledComponents.css)(["background:", ";"], (0, _CommonStyles.colors)(_CommonStyles.Colors.Black, 0.36)), cssOverrides));
+}) => (0, _styledComponents.css)(["", ";", ";bottom:0;cursor:pointer;left:0;position:fixed;right:0;top:0;transition:all ease 150ms;", ";"], (0, _exports.visible)(isOpen), !chromeless && (0, _styledComponents.css)(["background:", ";"], (0, _exports.getColor)(_exports.Colors.Black, 0.36)), cssOverrides));
 /*
 * Types
 */
@@ -238,7 +238,7 @@ _styledComponents.default.div.withConfig({
   usesScaleAnimation,
   cssOverrides,
   zIndex
-}) => (0, _styledComponents.css)(["", ";", ";", ";align-items:center;bottom:0;justify-content:center;left:0;position:fixed;right:0;top:0;z-index:", ";", ";", ";"], isOpen ? (0, _styledComponents.css)(["pointer-events:all;"]) : (0, _styledComponents.css)(["pointer-events:none;"]), (0, _CommonStyles.flexFlow)(), _CommonStyles.gothamFontFamily, zIndex, !usesScaleAnimation && (0, _styledComponents.css)(["", "{", ";", ";transition:all ease 100ms;}"], BBModalBackground, isOpen ? (0, _styledComponents.css)(["transform:scale(1) translateY(0);"]) : (0, _styledComponents.css)(["transform:scale(0.8) translateY(64px);"]), (0, _CommonStyles.visible)(isOpen)), cssOverrides));
+}) => (0, _styledComponents.css)(["", ";", ";", ";align-items:center;bottom:0;justify-content:center;left:0;position:fixed;right:0;top:0;z-index:", ";", ";", ";"], isOpen ? (0, _styledComponents.css)(["pointer-events:all;"]) : (0, _styledComponents.css)(["pointer-events:none;"]), (0, _exports.flexFlow)(), _exports.gothamFontFamily, zIndex, !usesScaleAnimation && (0, _styledComponents.css)(["", "{", ";", ";transition:all ease 100ms;}"], BBModalBackground, isOpen ? (0, _styledComponents.css)(["transform:scale(1) translateY(0);"]) : (0, _styledComponents.css)(["transform:scale(0.8) translateY(64px);"]), (0, _exports.visible)(isOpen)), cssOverrides));
 /*
 *
 * Modal Content
@@ -259,6 +259,6 @@ _styledComponents.default.div.withConfig({
   componentId: "sc-1y5a2ts-10"
 })(({
   cssOverrides
-}) => (0, _styledComponents.css)(["", ";height:100%;max-height:100%;overflow:auto;", ";"], (0, _CommonStyles.flexFlow)(), cssOverrides));
+}) => (0, _styledComponents.css)(["", ";height:100%;max-height:100%;overflow:auto;", ";"], (0, _exports.flexFlow)(), cssOverrides));
 
 exports.BBModalContent = BBModalContent;

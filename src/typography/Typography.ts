@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components'
-import { typography, FontSizes } from '@monorail/CommonStyles'
+import { typography, FontSizes } from '@monorail/helpers/exports'
 import { CommonComponentType, TypographyComponent } from '@monorail/types'
 
 export const SectionTitle = styled.h1<
