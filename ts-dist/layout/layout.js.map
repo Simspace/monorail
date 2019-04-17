@@ -1,1 +1,0 @@
-{"version":3,"file":"layout.js","sourceRoot":"","sources":["../../src/layout/layout.ts"],"names":[],"mappings":"AAAA,OAAO,MAAM,MAAM,mBAAmB,CAAA;AACtC,OAAO,EAAE,QAAQ,EAAE,gBAAgB,EAAE,MAAM,2BAA2B,CAAA;AAGtE,MAAM,CAAC,MAAM,YAAY,GAAG,MAAM,CAAC,GAAG,CAAqB;IACvD,QAAQ,EAAE;;;;;;;;;MASR,gBAAgB;;CAErB,CAAA;AAED,MAAM,CAAC,MAAM,WAAW,GAAG,MAAM,CAAC,GAAG,CAAqB;IACtD,QAAQ,EAAE;;;;CAIb,CAAA"}
