@@ -1,12 +1,13 @@
-import { Component } from 'react';
-import { PopOverChildProps } from '@monorail/popOver/PopOver';
+import { FCwDP } from '@monorail/sharedHelpers/react';
 import { SimpleInterpolation } from 'styled-components';
-declare type Props = PopOverChildProps & {
+import { PopOverChildProps } from '@monorail/popOver/PopOver';
+declare type Props = PopOverChildProps & DefaultProps & {
     title: string;
     iconLeft?: string;
     headerStyles?: SimpleInterpolation;
 };
-export declare class MediumModal extends Component<Props> {
-    render(): JSX.Element;
-}
+declare type DefaultProps = {
+    zIndex: number;
+};
+export declare const MediumModal: FCwDP<Props, DefaultProps>;
 export {};

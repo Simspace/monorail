@@ -133,17 +133,19 @@ class ContextMenu extends _react.Component {
 
   render() {
     const {
+      closingAnimationCompleted,
       isOpen,
-      position,
       onClick,
+      position,
       renderFilter,
       togglePopOver,
       width
     } = this.props;
     return _react.default.createElement(_SidebarDropDown.SidebarDropDown, {
+      closingAnimationCompleted: closingAnimationCompleted,
       isOpen: isOpen,
-      position: position,
       onClick: onClick,
+      position: position,
       togglePopOver: togglePopOver,
       width: width
     }, _react.default.createElement(_SearchController.SearchController, null, ({

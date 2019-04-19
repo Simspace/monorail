@@ -42,10 +42,19 @@ class Tab extends _react.Component {
 
       if (isActive && !(0, _typeGuards.isNil)(this.tabRef.current)) {
         if ((0, _typeGuards.isNil)(as)) {
-          setIndicator(this.tabRef.current.offsetWidth, this.tabRef.current.offsetLeft);
+          const tabElement = this.tabRef.current;
+          const tabClientRect = tabElement.getBoundingClientRect();
+          const parentClientRect = tabElement.parentElement ? tabElement.parentElement.getBoundingClientRect() : {
+            left: 0
+          };
+          setIndicator(tabClientRect.width, tabClientRect.left - parentClientRect.left);
         } else if (as === _reactRouter.Link) {
-          const tabLinkRef = (0, _reactDom.findDOMNode)(this.tabRef.current);
-          setIndicator(tabLinkRef.offsetWidth, tabLinkRef.offsetLeft);
+          const tabElement = (0, _reactDom.findDOMNode)(this.tabRef.current);
+          const tabClientRect = tabElement.getBoundingClientRect();
+          const parentClientRect = tabElement.parentElement ? tabElement.parentElement.getBoundingClientRect() : {
+            left: 0
+          };
+          setIndicator(tabClientRect.width, tabClientRect.left - parentClientRect.left);
         }
       }
     };

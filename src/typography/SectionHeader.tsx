@@ -38,11 +38,11 @@ type DefaultProps = {
   iconRight: string | AppName
 }
 
-type Props = DefaultProps & {
+type RequiredProps = {
   title: string
 }
 
-export const SectionHeader: FCwDP<Props, DefaultProps> = ({
+export const SectionHeader: FCwDP<RequiredProps, DefaultProps> = ({
   children,
   iconLeft,
   iconRight,

@@ -29,7 +29,6 @@ import { LMS } from '@monorail/icon/custom/LMS'
 import { Omit } from 'typelevel-ts'
 import { Range } from '@monorail/icon/custom/Range'
 import { ReportsAnalytics } from '@monorail/icon/custom/ReportsAnalytics'
-import { Retry } from '@monorail/icon/custom/Retry'
 import { Robot } from '@monorail/icon/custom/Robot'
 import { ServerNetwork } from '@monorail/icon/custom/ServerNetwork'
 import { SortAscending } from '@monorail/icon/custom/SortAscending'
@@ -82,7 +81,6 @@ const customIcons: { [key: string]: ComponentType<CustomIconProps> } = {
   errorRobot: ErrorRobot,
   filter: Filter,
   gauge: Gauge,
-  retry: Retry,
   robot: Robot,
   server_network: ServerNetwork,
   sort_ascending: SortAscending,

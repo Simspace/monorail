@@ -104,6 +104,7 @@ class TextArea extends _react.Component {
       readOnly,
       required,
       value,
+      onBlur,
       ...otherProps
     } = this.props;
     return _react.default.createElement(BBTextAreaContainer, {
@@ -119,7 +120,8 @@ class TextArea extends _react.Component {
       readOnly: readOnly,
       required: required,
       rows: compact ? 1 : 3,
-      value: value
+      value: value,
+      onBlur: onBlur
     }, otherProps)));
   }
 

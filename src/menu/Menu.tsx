@@ -1,5 +1,14 @@
-import React, { Component, ReactNode, createRef } from 'react'
-import styled, { css, SimpleInterpolation } from 'styled-components'
+import { useEventListener } from '@monorail/helpers/hooks'
+import { FCwDP } from '@monorail/sharedHelpers/react'
+import React, {
+  useLayoutEffect,
+  useCallback,
+  useMemo,
+  useRef,
+  useState,
+  useEffect,
+} from 'react'
+import styled, { css } from 'styled-components'
 import { PopOverChildProps } from '@monorail/popOver/PopOver'
 import {
   BorderRadius,
@@ -13,17 +22,14 @@ import {
   sizes,
 } from '@monorail/helpers/exports'
 import { Overlay } from '@monorail/toggle/Overlay'
-import { fromNullable } from 'fp-ts/lib/Option'
 import { isNil } from '@monorail/sharedHelpers/typeGuards'
 
 type MenuProps = {
-  children: ReactNode
-  cssOverrides?: SimpleInterpolation
   width: string
 }
 
-const CCMenu = styled.div<MenuProps>(
-  ({ width, cssOverrides }) => css`
+const MenuContainer = styled.div<MenuProps>(
+  ({ width }) => css`
     ${borderRadius(BorderRadius.Medium)};
     ${flexFlow()};
     ${getElevation(ElevationRange.Elevation6)};
@@ -33,110 +39,111 @@ const CCMenu = styled.div<MenuProps>(
     position: fixed;
     width: ${width};
     min-width: ${sizes.menu.width}px;
-
-    ${cssOverrides};
   `,
 )
 
-type ModalContentProps = { cssOverrides?: SimpleInterpolation }
-const MenuContent = styled.div<ModalContentProps>(
-  ({ cssOverrides }) => css`
-    ${flexFlow()};
+const MenuContent = styled.div`
+  ${flexFlow()};
 
-    height: 100%;
-    overflow: auto;
-    padding: 4px 0;
-    width: 100%;
+  height: 100%;
+  overflow: auto;
+  padding: 4px 0;
+  width: 100%;
+`
 
-    ${cssOverrides};
-  `,
-)
-
-type Props = PopOverChildProps & {
+type RequiredProps = PopOverChildProps & {
   width?: number
+}
+
+type DefaultProps = {
   zIndex: number
 }
 
-type State = {
-  menuHeight: number
-  menuWidth: number
-}
+export const Menu: FCwDP<RequiredProps, DefaultProps> = ({
+  children,
+  closingAnimationCompleted,
+  isOpen,
+  onClick,
+  position,
+  togglePopOver,
+  width,
+  zIndex,
+}) => {
+  const menuRef = useRef<HTMLDivElement>(null)
 
-export class Menu extends Component<Props, State> {
-  static defaultProps = {
-    zIndex: 9998,
-  }
+  const [menuHeight, setMenuHeight] = useState(0)
+  const [menuWidth, setMenuWidth] = useState(0)
+  const [isRendered, setIsRendered] = useState(false)
 
-  state: State = {
-    menuHeight: 0,
-    menuWidth: 0,
-  }
+  const scaleAnimation = useMemo(
+    () => {
+      const elementHeight = menuHeight
 
-  menuRef = createRef<HTMLDivElement>()
-
-  componentDidMount() {
-    this.updateMenuHeight()
-  }
-
-  componentDidUpdate() {
-    this.updateMenuHeight()
-  }
-
-  updateMenuHeight = () => {
-    const { menuHeight, menuWidth } = this.state
-
-    const currentOpt = fromNullable(this.menuRef.current)
-    const newMenuHeight = currentOpt.fold(0, ({ offsetHeight }) => offsetHeight)
-    const newMenuWidth = currentOpt.fold(0, ({ offsetWidth }) => offsetWidth)
-
-    if (menuHeight !== newMenuHeight || menuWidth !== newMenuWidth) {
-      this.setState(() => ({
-        menuHeight: newMenuHeight,
-        menuWidth: newMenuWidth,
-      }))
-    }
-  }
-
-  render() {
-    const {
-      isOpen,
-      position,
-      onClick,
-      children,
-      width,
-      togglePopOver,
-      zIndex,
-    } = this.props
-    const { menuHeight, menuWidth } = this.state
-
-    const scaleAnimation = generateScaleAnimation({
-      elementHeight: menuHeight,
-      elementWidth: Math.max(
+      const elementWidth = Math.max(
         isNil(width) ? menuWidth : width,
         sizes.menu.width,
-      ),
-      isOpen,
-      position,
-    })
+      )
 
-    return (
-      <Overlay
-        isOpen={isOpen}
-        onClick={onClick}
-        overlayProps={{ chromeless: true }}
-        togglePopOver={togglePopOver}
-        zIndex={zIndex}
+      return generateScaleAnimation({
+        elementHeight,
+        elementWidth,
+        isOpen,
+        position,
+      })
+    },
+    [isOpen, menuHeight, menuWidth, position, width],
+  )
+
+  useEffect(() => setIsRendered(true), [])
+
+  useLayoutEffect(
+    () => {
+      const menuElement = menuRef.current
+
+      if (menuElement) {
+        setMenuHeight(menuElement.offsetHeight)
+        setMenuWidth(menuElement.offsetWidth)
+      }
+    },
+    [menuRef.current],
+  )
+
+  const eventListener = useCallback<EventListener>(
+    event => {
+      if (menuRef.current === event.target && !isOpen) {
+        closingAnimationCompleted()
+      }
+    },
+    [closingAnimationCompleted, isOpen],
+  )
+
+  useEventListener<HTMLDivElement>({
+    eventName: 'animationend',
+    eventListener,
+    element: menuRef.current,
+  })
+
+  return (
+    <Overlay
+      isOpen={isOpen}
+      onClick={onClick}
+      overlayProps={{ chromeless: true }}
+      togglePopOver={togglePopOver}
+      zIndex={zIndex}
+    >
+      <MenuContainer
+        css={isRendered ? scaleAnimation.outSideContentStyles : ''}
+        ref={menuRef}
+        width={isNil(width) ? 'auto' : `${width}px`}
       >
-        <CCMenu
-          width={isNil(width) ? 'auto' : `${width}px`}
-          ref={this.menuRef}
-          cssOverrides={scaleAnimation.outSideContentStyles}
-        >
-          <MenuContent cssOverrides={scaleAnimation.inSideContentStyles}>
-            {children}
-          </MenuContent>
-        </CCMenu>
-      </Overlay>
-    )
-  }
+        <MenuContent css={isRendered ? scaleAnimation.inSideContentStyles : ''}>
+          {children}
+        </MenuContent>
+      </MenuContainer>
+    </Overlay>
+  )
+}
+
+Menu.defaultProps = {
+  zIndex: 9998,
 }

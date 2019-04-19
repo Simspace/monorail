@@ -838,9 +838,9 @@
   integrity sha512-DT25xX/YgyPKiHFOpNuANIQIVvYEwCWXgK2jYYwqgaMrYE6+tq+DtmMwlD3drl6DJbUwtlIDnn0d7tIn/EbXBg==
 
 "@types/prop-types@*":
-  version "15.7.0"
-  resolved "https://registry.yarnpkg.com/@types/prop-types/-/prop-types-15.7.0.tgz#4c48fed958d6dcf9487195a0ef6456d5f6e0163a"
-  integrity sha512-eItQyV43bj4rR3JPV0Skpl1SncRCdziTEK9/v8VwXmV6d/qOUO8/EuWeHBbCZcsfSHfzI5UyMJLCSXtxxznyZg==
+  version "15.7.1"
+  resolved "https://registry.yarnpkg.com/@types/prop-types/-/prop-types-15.7.1.tgz#f1a11e7babb0c3cad68100be381d1e064c68f1f6"
+  integrity sha512-CFzn9idOEpHrgdw8JsoTkaDDyRWk1jrzIV8djzcgpq0y9tG4B4lFT+Nxh52DVpDXV+n4+NPNv7M1Dj5uMp6XFg==
 
 "@types/react-dom@16.8.3":
   version "16.8.3"
@@ -850,9 +850,9 @@
     "@types/react" "*"
 
 "@types/react-native@*":
-  version "0.57.45"
-  resolved "https://registry.yarnpkg.com/@types/react-native/-/react-native-0.57.45.tgz#bc341b2fbe879aec6d52f799f7342f674e045c4f"
-  integrity sha512-XHo3buFjgCs5WmycCBoc71QAa+mayQgDf+igRKgt3rle8rxW/fKtQny6quSabR+YcT55PsOE2qBQ4S5ra9ds2g==
+  version "0.57.46"
+  resolved "https://registry.yarnpkg.com/@types/react-native/-/react-native-0.57.46.tgz#a209b0878ceed10dd6aaa4c19e0a13cb092a81a8"
+  integrity sha512-ldA3P77u6ROmKxVQixCfNoJI/O2qrk+eFRtlenKeZc720gfi1kBBRdT1SzeFgQJAUjmiJf5JCDr69KaBglqWeQ==
   dependencies:
     "@types/prop-types" "*"
     "@types/react" "*"
@@ -1119,9 +1119,9 @@ camelize@^1.0.0:
   integrity sha1-FkpUg+Yw+kMh5a8HAg5TGDGyYJs=
 
 caniuse-lite@^1.0.30000940, caniuse-lite@^1.0.30000960:
-  version "1.0.30000960"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30000960.tgz#ec48297037e5607f582f246ae7b12bee66a78999"
-  integrity sha512-7nK5qs17icQaX6V3/RYrJkOsZyRNnroA4+ZwxaKJzIKy+crIy0Mz5CBlLySd2SNV+4nbUZeqeNfiaEieUBu3aA==
+  version "1.0.30000962"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30000962.tgz#6c10c3ab304b89bea905e66adf98c0905088ee44"
+  integrity sha512-WXYsW38HK+6eaj5IZR16Rn91TGhU3OhbwjKZvJ4HN/XBIABLKfbij9Mnd3pM0VEwZSlltWjoWg3I8FQ0DGgNOA==
 
 chalk@^2.0.0, chalk@^2.4.2:
   version "2.4.2"

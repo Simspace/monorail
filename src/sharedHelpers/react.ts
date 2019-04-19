@@ -4,5 +4,7 @@ type HasDefaultProps<DefaultProps> = {
   defaultProps: DefaultProps
 }
 
-export type FCwDP<Props, DefaultProps> = FunctionComponent<Props> &
+export type FCwDP<RequiredProps, DefaultProps> = FunctionComponent<
+  RequiredProps & DefaultProps
+> &
   HasDefaultProps<DefaultProps>

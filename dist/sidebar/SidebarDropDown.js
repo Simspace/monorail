@@ -32,7 +32,8 @@ class SidebarDropDown extends _react.Component {
   constructor(...args) {
     super(...args);
     this.state = {
-      dropDownHeight: 0
+      dropDownHeight: 0,
+      isRendered: false
     };
     this.dropDownRef = (0, _react.createRef)();
 
@@ -55,6 +56,9 @@ class SidebarDropDown extends _react.Component {
 
   componentDidMount() {
     this.updateMenuHeight();
+    this.setState(() => ({
+      isRendered: true
+    }));
   }
 
   componentDidUpdate() {
@@ -71,12 +75,13 @@ class SidebarDropDown extends _react.Component {
       width
     } = this.props;
     const {
-      dropDownHeight
+      dropDownHeight,
+      isRendered
     } = this.state;
     const scaleAnimation = (0, _exports.generateScaleAnimation)({
       elementHeight: dropDownHeight,
       elementWidth: width,
-      isOpen,
+      isOpen: isRendered && isOpen,
       position
     });
     return _react.default.createElement(_Overlay.Overlay, {

@@ -27,21 +27,23 @@ export type PopOverChildProps = {
   position: PopOverPosition
   onClick: (event: SyntheticEvent) => void
   togglePopOver: () => void
+  closingAnimationCompleted: () => void
 }
 
 type PopOverProps = {
-  gap: number
-  popOver: (props: PopOverChildProps) => ReactNode
-  toggle: (props: PopOverToggleProps) => ReactNode
+  alwaysRender: boolean
   document?: Document
-  toSide: boolean
+  gap: number
   isOpen?: boolean
   onToggle?: (isOpen: boolean) => void
-  optimize?: boolean
+  popOver: (props: PopOverChildProps) => ReactNode
+  toggle: (props: PopOverToggleProps) => ReactNode
+  toSide: boolean
 }
 
 type PopOverState = {
   isOpen: boolean
+  isRendered: boolean
   position: PopOverPosition
 }
 
@@ -218,10 +220,12 @@ export class PopOver extends Component<PopOverProps, PopOverState> {
   static defaultProps = {
     gap: 8,
     toSide: false,
+    alwaysRender: false,
   }
 
   state: PopOverState = {
     isOpen: false,
+    isRendered: this.props.alwaysRender,
     position: {
       dropXAmount: 0,
       dropXDirection: 'left',
@@ -238,14 +242,30 @@ export class PopOver extends Component<PopOverProps, PopOverState> {
   }
 
   togglePopOver = () => {
-    this.setState(({ isOpen }) => {
-      this.props.onToggle && this.props.onToggle(!isOpen)
-      return { isOpen: !isOpen }
+    const { onToggle } = this.props
+
+    this.setState(({ isOpen, isRendered }) => {
+      const newIsOpen = !isOpen
+
+      const newIsRendered = newIsOpen ? true : isRendered
+
+      onToggle && onToggle(newIsOpen)
+
+      return {
+        isOpen: newIsOpen,
+        isRendered: newIsRendered,
+      }
     })
   }
 
+  closingAnimationCompleted = () => {
+    this.setState(() => ({
+      isRendered: false,
+    }))
+  }
+
   onClick = (event: SyntheticEvent) => {
-    const { gap, toSide } = this.props
+    const { gap, toSide, onToggle } = this.props
 
     // Get basic dimensions about the the Toggle and the window.
     const boundingRect = event.currentTarget.getBoundingClientRect()
@@ -255,53 +275,60 @@ export class PopOver extends Component<PopOverProps, PopOverState> {
     // Determine the direction the PopOver should go.
     const dropYDirection =
       innerHeight / 2 > boundingRect.top + boundingRect.height / 2
-        ? 'top'
-        : 'bottom'
+        ? ('top' as 'top')
+        : ('bottom' as 'bottom')
     const dropXDirection =
       innerWidth / 2 > boundingRect.left + boundingRect.width / 2
-        ? 'left'
-        : 'right'
+        ? ('left' as 'left')
+        : ('right' as 'right')
 
-    this.setState(({ isOpen }) => {
-      this.props.onToggle && this.props.onToggle(!isOpen)
+    const position = {
+      ...getDropAmounts({
+        boundingRect,
+        dropXDirection,
+        dropYDirection,
+        gap,
+        innerHeight,
+        innerWidth,
+        toSide,
+      }),
+      dropXDirection,
+      dropYDirection,
+      gap,
+      originHeight: boundingRect.height,
+      originWidth: boundingRect.width,
+    }
+
+    this.setState(({ isOpen, isRendered }) => {
+      const newIsOpen = !isOpen
+
+      const newIsRendered = newIsOpen ? true : isRendered
+
+      onToggle && onToggle(newIsOpen)
+
       return {
-        isOpen: !isOpen,
-        position: {
-          ...getDropAmounts({
-            boundingRect,
-            dropXDirection,
-            dropYDirection,
-            gap,
-            innerHeight,
-            innerWidth,
-            toSide,
-          }),
-          dropXDirection,
-          dropYDirection,
-          gap,
-          originHeight: boundingRect.height,
-          originWidth: boundingRect.width,
-        },
+        isOpen: newIsOpen,
+        isRendered: newIsRendered,
+        position,
       }
     })
   }
 
   render() {
     const { popOver, toggle, document } = this.props
-    const { isOpen, position } = this.state
-
-    const shouldRender = !this.props.optimize || isOpen
+    const { isRendered, isOpen, position } = this.state
 
     return (
       <>
         {toggle({ onClick: this.onClick, isOpen })}
-        {shouldRender && (
+        {isRendered && (
           <Portal document={document}>
             {popOver({
               isOpen,
               position,
               onClick: this.togglePopOver,
               togglePopOver: this.togglePopOver,
+              closingAnimationCompleted: this.closingAnimationCompleted,
             })}
           </Portal>
         )}

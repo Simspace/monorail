@@ -25,25 +25,26 @@ const frameTime = 1000 / 60;
 const nFrames = duration => Math.round(duration / frameTime);
 
 const append = ({
+  endOpacity,
   endX,
   endY,
-  i,
   innerAnimation,
-  isOpen,
-  nFramesDuration,
   outerAnimation,
   percentage,
+  startOpacity,
   startX,
   startY,
   step
 }) => {
   const xScale = startX + (endX - startX) * step;
   const yScale = startY + (endY - startY) * step;
+  const opacity = startOpacity + (endOpacity - startOpacity) * step;
   const invScaleX = (1 / xScale).toFixed(5);
   const invScaleY = (1 / yScale).toFixed(5);
   outerAnimation.push(`
       ${percentage}% {
         transform: scale(${xScale}, ${yScale});
+        opacity: ${opacity};
       }`);
   innerAnimation.push(`
       ${percentage}% {
@@ -53,7 +54,6 @@ const append = ({
 
 const createEaseAnimations = ({
   isOpen,
-  position,
   x,
   y,
   animationDuration
@@ -64,6 +64,8 @@ const createEaseAnimations = ({
   const menuCollapseContentsAnimation = [];
   const nFramesDuration = nFrames(animationDuration);
   const percentIncrement = 100 / nFramesDuration;
+  const closedOpacity = 0;
+  const openOpacity = 0.9999;
 
   for (let i = 0; i <= nFramesDuration; i++) {
     const step = easeCurve(i / nFramesDuration);
@@ -74,28 +76,26 @@ const createEaseAnimations = ({
     append({
       endX,
       endY,
-      i,
       innerAnimation: menuExpandContentsAnimation,
-      isOpen,
-      nFramesDuration,
       outerAnimation: menuExpandAnimation,
       percentage,
       startX: x,
       startY: y,
+      startOpacity: closedOpacity,
+      endOpacity: openOpacity,
       step
     }); // Collapse animation.
 
     append({
       endX: x,
       endY: y,
-      i,
       innerAnimation: menuCollapseContentsAnimation,
-      isOpen,
-      nFramesDuration,
       outerAnimation: menuCollapseAnimation,
       percentage,
       startX: 1,
       startY: 1,
+      startOpacity: openOpacity,
+      endOpacity: closedOpacity,
       step
     });
   }
@@ -121,7 +121,7 @@ const generateScaleAnimation = ({
     y: position.originHeight / Math.min(position.maxHeight, elementHeight)
   });
   return {
-    outSideContentStyles: (0, _styledComponents.css)(["", ":", "px;", ":", "px;", ";max-height:", ";max-width:", ";position:fixed;transform-origin:", " ", ";will-change:transform,opacity,visibility;transition:opacity ", "ms ease-in,visibility ", "ms ease-in;animation:", " linear ", "ms forwards;"], position.dropXDirection, position.dropXAmount, position.dropYDirection, position.dropYAmount, visible(isOpen), position.maxHeightCalc, position.maxWidthCalc, position.dropYDirection, position.dropXDirection, animationDuration, animationDuration, keyFrame.menuAnimation, animationDuration),
+    outSideContentStyles: (0, _styledComponents.css)(["", ":", "px;", ":", "px;max-height:", ";max-width:", ";position:fixed;transform-origin:", " ", ";will-change:transform,opacity;animation:", " linear ", "ms forwards;"], position.dropXDirection, position.dropXAmount, position.dropYDirection, position.dropYAmount, position.maxHeightCalc, position.maxWidthCalc, position.dropYDirection, position.dropXDirection, keyFrame.menuAnimation, animationDuration),
     inSideContentStyles: (0, _styledComponents.css)(["transform-origin:", " ", ";animation:", " linear ", "ms forwards;will-change:transform;"], position.dropYDirection, position.dropXDirection, keyFrame.menuContentsAnimation, animationDuration)
   };
 };

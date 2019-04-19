@@ -83,14 +83,27 @@ export class Tab extends Component<TabProps> {
 
     if (isActive && !isNil(this.tabRef.current)) {
       if (isNil(as)) {
+        const tabElement = this.tabRef.current
+        const tabClientRect = tabElement.getBoundingClientRect()
+        const parentClientRect = tabElement.parentElement
+          ? tabElement.parentElement.getBoundingClientRect()
+          : { left: 0 }
+
         setIndicator(
-          this.tabRef.current.offsetWidth,
-          this.tabRef.current.offsetLeft,
+          tabClientRect.width,
+          tabClientRect.left - parentClientRect.left,
         )
       } else if (as === Link) {
-        const tabLinkRef = findDOMNode(this.tabRef.current) as HTMLAnchorElement
+        const tabElement = findDOMNode(this.tabRef.current) as HTMLAnchorElement
+        const tabClientRect = tabElement.getBoundingClientRect()
+        const parentClientRect = tabElement.parentElement
+          ? tabElement.parentElement.getBoundingClientRect()
+          : { left: 0 }
 
-        setIndicator(tabLinkRef.offsetWidth, tabLinkRef.offsetLeft)
+        setIndicator(
+          tabClientRect.width,
+          tabClientRect.left - parentClientRect.left,
+        )
       }
     }
   }

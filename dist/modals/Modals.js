@@ -3,9 +3,12 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.BBModalContent = exports.BBModalContainer = exports.BBModalOverlay = exports.BBModalFooter = exports.BBModalHeader = exports.DefaultCloseButton = exports.BBModalBackground = void 0;
+exports.useModalAnimation = useModalAnimation;
+exports.BBModalContent = exports.BBModalContainer = exports.BBModalOverlay = exports.BBModalFooter = exports.BBModalHeader = exports.DefaultCloseButton = exports.BBModalBackground = exports.overlayCloseAnimation = exports.overlayOpenAnimation = exports.fullScreenModalCloseAnimation = exports.fullScreenModalOpenAnimation = exports.mediumModalCloseAnimation = exports.mediumModalOpenAnimation = exports.modalAnimationDuration = void 0;
 
-var _react = _interopRequireDefault(require("react"));
+var _react = _interopRequireWildcard(require("react"));
+
+var _hooks = require("../helpers/hooks");
 
 var _AppIcon = require("../appIcon/AppIcon");
 
@@ -23,7 +26,74 @@ var _buttonTypes = require("../buttons/buttonTypes");
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+function useModalAnimation(params) {
+  const {
+    closingAnimationCompleted,
+    isOpen
+  } = params;
+  const modalBackgroundRef = (0, _react.useRef)(null);
+  const [isRendered, setIsRendered] = (0, _react.useState)(false);
+  (0, _react.useEffect)(() => setIsRendered(true), []);
+  const eventListener = (0, _react.useCallback)(event => {
+    if (modalBackgroundRef.current === event.target && !isOpen) {
+      closingAnimationCompleted();
+    }
+  }, [closingAnimationCompleted, isOpen]);
+  (0, _hooks.useEventListener)({
+    eventName: 'animationend',
+    eventListener,
+    element: modalBackgroundRef.current
+  });
+  return {
+    modalBackgroundRef,
+    isRendered
+  };
+}
+/*
+*
+* Modal Animation
+*
+*/
+
+
+const modalAnimationDuration = 100;
+exports.modalAnimationDuration = modalAnimationDuration;
+const mediumModalOpenAnimation =
+/*#__PURE__*/
+(0, _styledComponents.keyframes)(["from{opacity:0;transform:rotateX(15deg) translateY(16px);}to{opacity:0.9999;transform:rotateX(0) translateY(0);}"]);
+exports.mediumModalOpenAnimation = mediumModalOpenAnimation;
+const mediumModalCloseAnimation =
+/*#__PURE__*/
+(0, _styledComponents.keyframes)(["from{opacity:0.9999;transform:rotateX(0) translateY(0);}to{opacity:0;transform:rotateX(15deg) translateY(16px);}"]);
+exports.mediumModalCloseAnimation = mediumModalCloseAnimation;
+const fullScreenModalOpenAnimation =
+/*#__PURE__*/
+(0, _styledComponents.keyframes)(["from{opacity:0;}to{opacity:0.9999;}"]);
+exports.fullScreenModalOpenAnimation = fullScreenModalOpenAnimation;
+const fullScreenModalCloseAnimation =
+/*#__PURE__*/
+(0, _styledComponents.keyframes)(["from{opacity:0.9999;}to{opacity:0;}"]);
+exports.fullScreenModalCloseAnimation = fullScreenModalCloseAnimation;
+const overlayOpenAnimation =
+/*#__PURE__*/
+(0, _styledComponents.keyframes)(["from{opacity:0;}to{opacity:0.9999;}"]);
+exports.overlayOpenAnimation = overlayOpenAnimation;
+const overlayCloseAnimation =
+/*#__PURE__*/
+(0, _styledComponents.keyframes)(["from{opacity:0.9999;}to{opacity:0;}"]);
+/*
+*
+* Modal Background
+*
+*/
+
+/*
+* Types
+*/
+
+exports.overlayCloseAnimation = overlayCloseAnimation;
 
 /*
 * Component
@@ -36,7 +106,7 @@ _styledComponents.default.div.withConfig({
 })(({
   mini,
   cssOverrides
-}) => (0, _styledComponents.css)(["", ";", ";", ";", ";margin:16px;background:", ";overflow:hidden;width:", "px;position:relative;will-change:transform;", ";"], mini && (0, _styledComponents.css)(["height:", "px;"], _exports.sizes.modals.mini.height), (0, _exports.borderRadius)(_exports.BorderRadius.XLarge), (0, _exports.flexFlow)(), (0, _exports.getElevation)(_exports.ElevationRange.Elevation24), (0, _exports.getColor)(_exports.Colors.White), mini ? _exports.sizes.modals.mini.width : 584, cssOverrides));
+}) => (0, _styledComponents.css)(["", ";", ";", ";", ";background:", ";overflow:hidden;position:relative;width:", "px;will-change:transform,opacity;transform-origin:100% 100%;", ";"], mini ? (0, _styledComponents.css)(["height:", "px;"], _exports.sizes.modals.mini.height) : (0, _styledComponents.css)(["margin:16px;"]), (0, _exports.borderRadius)(_exports.BorderRadius.XLarge), (0, _exports.flexFlow)(), (0, _exports.getElevation)(_exports.ElevationRange.Elevation24), (0, _exports.getColor)(_exports.Colors.White), mini ? _exports.sizes.modals.mini.width : 584, cssOverrides));
 /*
 *
 * Modal Header
@@ -190,7 +260,7 @@ _styledComponents.default.div.withConfig({
   isOpen,
   chromeless,
   cssOverrides
-}) => (0, _styledComponents.css)(["", ";", ";bottom:0;cursor:pointer;left:0;position:fixed;right:0;top:0;transition:all ease 150ms;", ";"], (0, _exports.visible)(isOpen), !chromeless && (0, _styledComponents.css)(["background:", ";"], (0, _exports.getColor)(_exports.Colors.Black, 0.36)), cssOverrides));
+}) => (0, _styledComponents.css)(["", ";bottom:0;cursor:pointer;left:0;position:fixed;right:0;top:0;", ";"], !chromeless && (0, _styledComponents.css)(["background:", ";"], (0, _exports.getColor)(_exports.Colors.Black, 0.36)), cssOverrides));
 /*
 * Types
 */
@@ -204,8 +274,9 @@ const BBModalOverlay = ({
   chromeless,
   isOpen,
   onClick,
-  cssOverrides
-}) => _react.default.createElement(BBModalOverlayContainer, {
+  cssOverrides,
+  ...otherProps
+}) => _react.default.createElement(BBModalOverlayContainer, _extends({
   isOpen: isOpen,
   chromeless: chromeless,
   cssOverrides: cssOverrides,
@@ -214,7 +285,7 @@ const BBModalOverlay = ({
       onClick(event);
     }
   } : undefined
-}, children);
+}, otherProps), children);
 /*
 *
 * Modal Container
@@ -235,10 +306,9 @@ _styledComponents.default.div.withConfig({
   componentId: "sc-1y5a2ts-9"
 })(({
   isOpen,
-  usesScaleAnimation,
   cssOverrides,
   zIndex
-}) => (0, _styledComponents.css)(["", ";", ";", ";align-items:center;bottom:0;justify-content:center;left:0;position:fixed;right:0;top:0;z-index:", ";", ";", ";"], isOpen ? (0, _styledComponents.css)(["pointer-events:all;"]) : (0, _styledComponents.css)(["pointer-events:none;"]), (0, _exports.flexFlow)(), _exports.gothamFontFamily, zIndex, !usesScaleAnimation && (0, _styledComponents.css)(["", "{", ";", ";transition:all ease 100ms;}"], BBModalBackground, isOpen ? (0, _styledComponents.css)(["transform:scale(1) translateY(0);"]) : (0, _styledComponents.css)(["transform:scale(0.8) translateY(64px);"]), (0, _exports.visible)(isOpen)), cssOverrides));
+}) => (0, _styledComponents.css)(["", ";", ";", ";align-items:center;bottom:0;justify-content:center;left:0;perspective:1500px;position:fixed;right:0;top:0;z-index:", ";", ";"], isOpen ? (0, _styledComponents.css)(["pointer-events:all;"]) : (0, _styledComponents.css)(["pointer-events:none;"]), (0, _exports.flexFlow)(), _exports.gothamFontFamily, zIndex, cssOverrides));
 /*
 *
 * Modal Content

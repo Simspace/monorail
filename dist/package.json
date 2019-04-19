@@ -36,6 +36,7 @@
   "dependencies": {},
   "peerDependencies": {
     "fp-ts": "1.15.0",
+    "fp-ts-contrib": "0.0.2",
     "react": "^16.6.0",
     "react-dom": "^16.6.0",
     "react-router": "^3.2.0",

@@ -47,8 +47,6 @@ var _Range = require("./custom/Range");
 
 var _ReportsAnalytics = require("./custom/ReportsAnalytics");
 
-var _Retry = require("./custom/Retry");
-
 var _Robot = require("./custom/Robot");
 
 var _ServerNetwork = require("./custom/ServerNetwork");
@@ -118,7 +116,6 @@ const customIcons = {
   errorRobot: _ErrorRobot.ErrorRobot,
   filter: _Filter.Filter,
   gauge: _Gauge.Gauge,
-  retry: _Retry.Retry,
   robot: _Robot.Robot,
   server_network: _ServerNetwork.ServerNetwork,
   sort_ascending: _SortAscending.SortAscending,

@@ -104,12 +104,25 @@ const PageHeaderShadow = styled.div<PageHeaderShadowProps>(
   `,
 )
 
-const BreadCrumbsContainer = styled.div<BreadCrumbsContainerProps>`
+const PageHeaderNavigation = styled.div<PageHeaderNavigationProps>`
   ${flexFlow('row')};
   ${pageHeaderPadding};
 
   align-items: center;
   height: 32px;
+`
+
+const BreadCrumbsContainer = styled.div`
+  ${flexFlow('row')};
+  align-items: center;
+
+  &::before {
+    background: ${getColor(Colors.Black24)};
+    width: 1px;
+    height: 20px;
+    content: '';
+    margin-right: 12px;
+  }
 `
 
 const BreadCrumb = styled.a`
@@ -156,7 +169,7 @@ export type PageHeaderShadowProps = {
   flush: boolean
 }
 
-type BreadCrumbsContainerProps = {
+type PageHeaderNavigationProps = {
   breadCrumbs?: Array<{
     title: string
     path?: (event: ReactMouseEvent<HTMLAnchorElement>) => void
@@ -169,7 +182,7 @@ type PageHeaderContainerProps = CommonComponentType & {
 }
 
 type PageHeaderProps = CommonComponentType &
-  BreadCrumbsContainerProps & {
+  PageHeaderNavigationProps & {
     goBack?: (event: ReactMouseEvent<Element>) => void
     title: string
     action?: ReactNode
@@ -232,7 +245,7 @@ export class PageHeader extends Component<PageHeaderProps> {
         flush={flush}
       >
         {(!isNil(breadCrumbs) || !isNil(goBack)) && (
-          <BreadCrumbsContainer>
+          <PageHeaderNavigation>
             {goBack && (
               <Button
                 size={ButtonSize.Compact}
@@ -247,9 +260,12 @@ export class PageHeader extends Component<PageHeaderProps> {
                 Go Back
               </Button>
             )}
-
-            {this.renderBreadCrumbs()}
-          </BreadCrumbsContainer>
+            {breadCrumbs && (
+              <BreadCrumbsContainer>
+                {this.renderBreadCrumbs()}
+              </BreadCrumbsContainer>
+            )}
+          </PageHeaderNavigation>
         )}
 
         <TitleContainer hasAboveContent={hasAboveContent}>

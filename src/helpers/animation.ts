@@ -32,33 +32,32 @@ const nFrames: (duration: number) => number = duration =>
 
 const append: (
   params: {
+    endOpacity: number
     endX: number
     endY: number
-    i: number
     innerAnimation: Array<string>
-    isOpen: boolean
-    nFramesDuration: number
     outerAnimation: Array<string>
     percentage: string
+    startOpacity: number
     startX: number
     startY: number
     step: number
   },
 ) => void = ({
+  endOpacity,
   endX,
   endY,
-  i,
   innerAnimation,
-  isOpen,
-  nFramesDuration,
   outerAnimation,
   percentage,
+  startOpacity,
   startX,
   startY,
   step,
 }) => {
   const xScale = startX + (endX - startX) * step
   const yScale = startY + (endY - startY) * step
+  const opacity = startOpacity + (endOpacity - startOpacity) * step
 
   const invScaleX = (1 / xScale).toFixed(5)
   const invScaleY = (1 / yScale).toFixed(5)
@@ -66,6 +65,7 @@ const append: (
   outerAnimation.push(`
       ${percentage}% {
         transform: scale(${xScale}, ${yScale});
+        opacity: ${opacity};
       }`)
 
   innerAnimation.push(`
@@ -85,7 +85,7 @@ const createEaseAnimations: (
 ) => {
   menuAnimation: Keyframes
   menuContentsAnimation: Keyframes
-} = ({ isOpen, position, x, y, animationDuration }) => {
+} = ({ isOpen, x, y, animationDuration }) => {
   const menuExpandAnimation: Array<string> = []
   const menuExpandContentsAnimation: Array<string> = []
   const menuCollapseAnimation: Array<string> = []
@@ -93,6 +93,8 @@ const createEaseAnimations: (
 
   const nFramesDuration = nFrames(animationDuration)
   const percentIncrement = 100 / nFramesDuration
+  const closedOpacity = 0
+  const openOpacity = 0.9999
 
   for (let i = 0; i <= nFramesDuration; i++) {
     const step = easeCurve(i / nFramesDuration)
@@ -104,14 +106,13 @@ const createEaseAnimations: (
     append({
       endX,
       endY,
-      i,
       innerAnimation: menuExpandContentsAnimation,
-      isOpen,
-      nFramesDuration,
       outerAnimation: menuExpandAnimation,
       percentage,
       startX: x,
       startY: y,
+      startOpacity: closedOpacity,
+      endOpacity: openOpacity,
       step,
     })
 
@@ -119,14 +120,13 @@ const createEaseAnimations: (
     append({
       endX: x,
       endY: y,
-      i,
       innerAnimation: menuCollapseContentsAnimation,
-      isOpen,
-      nFramesDuration,
       outerAnimation: menuCollapseAnimation,
       percentage,
       startX: 1,
       startY: 1,
+      startOpacity: openOpacity,
+      endOpacity: closedOpacity,
       step,
     })
   }
@@ -165,16 +165,12 @@ export const generateScaleAnimation: (
     outSideContentStyles: css`
       ${position.dropXDirection}: ${position.dropXAmount}px;
       ${position.dropYDirection}: ${position.dropYAmount}px;
-      ${visible(isOpen)};
 
       max-height: ${position.maxHeightCalc};
       max-width: ${position.maxWidthCalc};
       position: fixed;
       transform-origin: ${position.dropYDirection} ${position.dropXDirection};
-      will-change: transform, opacity, visibility;
-
-      transition: opacity ${animationDuration}ms ease-in,
-        visibility ${animationDuration}ms ease-in;
+      will-change: transform, opacity;
 
       animation: ${keyFrame.menuAnimation} linear ${animationDuration}ms
         forwards;

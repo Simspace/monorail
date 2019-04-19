@@ -1,7 +1,25 @@
-import { MouseEvent, ReactNode, StatelessComponent } from 'react';
+import React, { MouseEvent, ReactNode, StatelessComponent } from 'react';
 import { AppName } from '@monorail/helpers/exports';
 import { SimpleInterpolation } from 'styled-components';
 import { CommonComponentType } from '@monorail/types';
+/**
+ * Modal Hooks
+ */
+declare type UseModalAnimationParams = {
+    closingAnimationCompleted: () => void;
+    isOpen: boolean;
+};
+export declare function useModalAnimation<E extends HTMLElement>(params: UseModalAnimationParams): {
+    modalBackgroundRef: React.RefObject<E>;
+    isRendered: boolean;
+};
+export declare const modalAnimationDuration = 100;
+export declare const mediumModalOpenAnimation: import("styled-components").Keyframes;
+export declare const mediumModalCloseAnimation: import("styled-components").Keyframes;
+export declare const fullScreenModalOpenAnimation: import("styled-components").Keyframes;
+export declare const fullScreenModalCloseAnimation: import("styled-components").Keyframes;
+export declare const overlayOpenAnimation: import("styled-components").Keyframes;
+export declare const overlayCloseAnimation: import("styled-components").Keyframes;
 declare type BBModalSize = {
     mini?: boolean;
 };

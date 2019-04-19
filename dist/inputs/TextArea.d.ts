@@ -13,6 +13,7 @@ declare type BBTextAreaInputProps = {
     readOnly?: boolean;
     required?: boolean;
     value?: string;
+    onBlur?: (e: React.FocusEvent<HTMLTextAreaElement>) => void;
 };
 export declare type TextAreaProps = BBTextAreaContainerProps & BBTextAreaInputProps & {};
 export declare class TextArea extends Component<TextAreaProps> {

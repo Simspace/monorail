@@ -1,4 +1,13 @@
-import React, { MouseEvent, ReactNode, StatelessComponent } from 'react'
+import React, {
+  MouseEvent,
+  ReactNode,
+  StatelessComponent,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from 'react'
+import { useEventListener } from '@monorail/helpers/hooks'
 import { AppIcon } from '@monorail/appIcon/AppIcon'
 import { Icon } from '@monorail/icon/Icon'
 import {
@@ -14,13 +23,129 @@ import {
   gothamFontFamily,
   sizes,
   typography,
-  visible,
 } from '@monorail/helpers/exports'
-import styled, { css, SimpleInterpolation } from 'styled-components'
+import styled, { css, keyframes, SimpleInterpolation } from 'styled-components'
 import { BBSearchContainer } from '../inputs/Search'
 import { IconButton } from '@monorail/buttons/IconButton'
 import { ButtonDisplay, IconButtonShape } from '@monorail/buttons/buttonTypes'
 import { CommonComponentType } from '@monorail/types'
+
+/**
+ * Modal Hooks
+ */
+
+type UseModalAnimationParams = {
+  closingAnimationCompleted: () => void
+  isOpen: boolean
+}
+
+export function useModalAnimation<E extends HTMLElement>(
+  params: UseModalAnimationParams,
+) {
+  const { closingAnimationCompleted, isOpen } = params
+
+  const modalBackgroundRef = useRef<E>(null)
+
+  const [isRendered, setIsRendered] = useState(false)
+
+  useEffect(() => setIsRendered(true), [])
+
+  const eventListener = useCallback<EventListener>(
+    event => {
+      if (modalBackgroundRef.current === event.target && !isOpen) {
+        closingAnimationCompleted()
+      }
+    },
+    [closingAnimationCompleted, isOpen],
+  )
+
+  useEventListener<E>({
+    eventName: 'animationend',
+    eventListener,
+    element: modalBackgroundRef.current,
+  })
+
+  return {
+    modalBackgroundRef,
+    isRendered,
+  }
+}
+
+/*
+*
+* Modal Animation
+*
+*/
+
+export const modalAnimationDuration = 100
+
+export const mediumModalOpenAnimation = keyframes`
+  from {
+    opacity: 0;
+    transform: rotateX(15deg) translateY(16px);
+  }
+
+  to {
+    opacity: 0.9999;
+    transform: rotateX(0) translateY(0);
+
+  }
+`
+
+export const mediumModalCloseAnimation = keyframes`
+  from {
+    opacity: 0.9999;
+    transform: rotateX(0) translateY(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: rotateX(15deg) translateY(16px);
+  }
+`
+
+export const fullScreenModalOpenAnimation = keyframes`
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 0.9999;
+
+  }
+`
+
+export const fullScreenModalCloseAnimation = keyframes`
+  from {
+    opacity: 0.9999;
+  }
+
+  to {
+    opacity: 0;
+  }
+`
+
+export const overlayOpenAnimation = keyframes`
+  from {
+    opacity: 0;
+  
+  }
+  
+  to {
+    opacity: 0.9999;
+  }
+`
+
+export const overlayCloseAnimation = keyframes`
+  from {
+    opacity: 0.9999;
+  
+  }
+  
+  to {
+    opacity: 0;
+  }
+`
 
 /*
 *
@@ -44,22 +169,24 @@ export type BBModalBackgroundProps = BBModalSize & CommonComponentType
 
 export const BBModalBackground = styled.div<BBModalBackgroundProps>(
   ({ mini, cssOverrides }) => css`
-    ${mini &&
-      css`
-        height: ${sizes.modals.mini.height}px;
-      `};
+    ${mini
+      ? css`
+          height: ${sizes.modals.mini.height}px;
+        `
+      : css`
+          margin: 16px;
+        `};
 
     ${borderRadius(BorderRadius.XLarge)};
     ${flexFlow()};
     ${getElevation(ElevationRange.Elevation24)};
 
-    margin: 16px;
     background: ${getColor(Colors.White)};
     overflow: hidden;
-    width: ${mini ? sizes.modals.mini.width : 584}px;
     position: relative; /* position: relative; so that the shadow works when on the BBModalOverlay */
-
-    will-change: transform;
+    width: ${mini ? sizes.modals.mini.width : 584}px;
+    will-change: transform, opacity;
+    transform-origin: 100% 100%;
 
     ${cssOverrides};
   `,
@@ -257,7 +384,6 @@ export const BBModalFooter = styled.div`
 
 const BBModalOverlayContainer = styled.div<BBModalOverlayProps>(
   ({ isOpen, chromeless, cssOverrides }) => css`
-    ${visible(isOpen)};
     ${!chromeless &&
       css`
         background: ${getColor(Colors.Black, 0.36)};
@@ -269,8 +395,6 @@ const BBModalOverlayContainer = styled.div<BBModalOverlayProps>(
     position: fixed;
     right: 0;
     top: 0;
-
-    transition: all ease 150ms;
 
     ${cssOverrides};
   `,
@@ -296,6 +420,7 @@ export const BBModalOverlay: StatelessComponent<BBModalOverlayProps> = ({
   isOpen,
   onClick,
   cssOverrides,
+  ...otherProps
 }) => (
   <BBModalOverlayContainer
     isOpen={isOpen}
@@ -310,6 +435,7 @@ export const BBModalOverlay: StatelessComponent<BBModalOverlayProps> = ({
           }
         : undefined
     }
+    {...otherProps}
   >
     {children}
   </BBModalOverlayContainer>
@@ -332,7 +458,7 @@ export const BBModalContainer = styled.div<
     zIndex?: number
   }
 >(
-  ({ isOpen, usesScaleAnimation, cssOverrides, zIndex }) => css`
+  ({ isOpen, cssOverrides, zIndex }) => css`
     ${isOpen
       ? css`
           pointer-events: all;
@@ -348,26 +474,11 @@ export const BBModalContainer = styled.div<
     bottom: 0;
     justify-content: center;
     left: 0;
+    perspective: 1500px;
     position: fixed;
     right: 0;
     top: 0;
     z-index: ${zIndex};
-
-    ${!usesScaleAnimation &&
-      css`
-        ${BBModalBackground} {
-          ${isOpen
-            ? css`
-                transform: scale(1) translateY(0);
-              `
-            : css`
-                transform: scale(0.8) translateY(64px);
-              `};
-          ${visible(isOpen)};
-
-          transition: all ease 100ms;
-        }
-      `};
 
     ${cssOverrides};
   `,

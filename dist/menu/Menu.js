@@ -5,118 +5,101 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.Menu = void 0;
 
-var _react = _interopRequireWildcard(require("react"));
-
 var _styledComponents = _interopRequireWildcard(require("styled-components"));
+
+var _hooks = require("../helpers/hooks");
+
+var _react = _interopRequireWildcard(require("react"));
 
 var _exports = require("../helpers/exports");
 
 var _Overlay = require("../toggle/Overlay");
 
-var _Option = require("fp-ts/lib/Option");
-
 var _typeGuards = require("../sharedHelpers/typeGuards");
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
-const CCMenu =
+const MenuContainer =
 /*#__PURE__*/
 _styledComponents.default.div.withConfig({
-  displayName: "Menu__CCMenu",
+  displayName: "Menu__MenuContainer",
   componentId: "qsgmyf-0"
 })(({
-  width,
-  cssOverrides
-}) => (0, _styledComponents.css)(["", ";", ";", ";background:", ";overflow:hidden;position:fixed;width:", ";min-width:", "px;", ";"], (0, _exports.borderRadius)(_exports.BorderRadius.Medium), (0, _exports.flexFlow)(), (0, _exports.getElevation)(_exports.ElevationRange.Elevation6), (0, _exports.getColor)(_exports.Colors.White), width, _exports.sizes.menu.width, cssOverrides));
+  width
+}) => (0, _styledComponents.css)(["", ";", ";", ";background:", ";overflow:hidden;position:fixed;width:", ";min-width:", "px;"], (0, _exports.borderRadius)(_exports.BorderRadius.Medium), (0, _exports.flexFlow)(), (0, _exports.getElevation)(_exports.ElevationRange.Elevation6), (0, _exports.getColor)(_exports.Colors.White), width, _exports.sizes.menu.width));
 
 const MenuContent =
 /*#__PURE__*/
 _styledComponents.default.div.withConfig({
   displayName: "Menu__MenuContent",
   componentId: "qsgmyf-1"
-})(({
-  cssOverrides
-}) => (0, _styledComponents.css)(["", ";height:100%;overflow:auto;padding:4px 0;width:100%;", ";"], (0, _exports.flexFlow)(), cssOverrides));
+})(["", ";height:100%;overflow:auto;padding:4px 0;width:100%;"], (0, _exports.flexFlow)());
 
-class Menu extends _react.Component {
-  constructor(...args) {
-    super(...args);
-    this.state = {
-      menuHeight: 0,
-      menuWidth: 0
-    };
-    this.menuRef = (0, _react.createRef)();
-
-    this.updateMenuHeight = () => {
-      const {
-        menuHeight,
-        menuWidth
-      } = this.state;
-      const currentOpt = (0, _Option.fromNullable)(this.menuRef.current);
-      const newMenuHeight = currentOpt.fold(0, ({
-        offsetHeight
-      }) => offsetHeight);
-      const newMenuWidth = currentOpt.fold(0, ({
-        offsetWidth
-      }) => offsetWidth);
-
-      if (menuHeight !== newMenuHeight || menuWidth !== newMenuWidth) {
-        this.setState(() => ({
-          menuHeight: newMenuHeight,
-          menuWidth: newMenuWidth
-        }));
-      }
-    };
-  }
-
-  componentDidMount() {
-    this.updateMenuHeight();
-  }
-
-  componentDidUpdate() {
-    this.updateMenuHeight();
-  }
-
-  render() {
-    const {
-      isOpen,
-      position,
-      onClick,
-      children,
-      width,
-      togglePopOver,
-      zIndex
-    } = this.props;
-    const {
-      menuHeight,
-      menuWidth
-    } = this.state;
-    const scaleAnimation = (0, _exports.generateScaleAnimation)({
-      elementHeight: menuHeight,
-      elementWidth: Math.max((0, _typeGuards.isNil)(width) ? menuWidth : width, _exports.sizes.menu.width),
+const Menu = ({
+  children,
+  closingAnimationCompleted,
+  isOpen,
+  onClick,
+  position,
+  togglePopOver,
+  width,
+  zIndex
+}) => {
+  const menuRef = (0, _react.useRef)(null);
+  const [menuHeight, setMenuHeight] = (0, _react.useState)(0);
+  const [menuWidth, setMenuWidth] = (0, _react.useState)(0);
+  const [isRendered, setIsRendered] = (0, _react.useState)(false);
+  const scaleAnimation = (0, _react.useMemo)(() => {
+    const elementHeight = menuHeight;
+    const elementWidth = Math.max((0, _typeGuards.isNil)(width) ? menuWidth : width, _exports.sizes.menu.width);
+    return (0, _exports.generateScaleAnimation)({
+      elementHeight,
+      elementWidth,
       isOpen,
       position
     });
-    return _react.default.createElement(_Overlay.Overlay, {
-      isOpen: isOpen,
-      onClick: onClick,
-      overlayProps: {
-        chromeless: true
-      },
-      togglePopOver: togglePopOver,
-      zIndex: zIndex
-    }, _react.default.createElement(CCMenu, {
-      width: (0, _typeGuards.isNil)(width) ? 'auto' : `${width}px`,
-      ref: this.menuRef,
-      cssOverrides: scaleAnimation.outSideContentStyles
-    }, _react.default.createElement(MenuContent, {
-      cssOverrides: scaleAnimation.inSideContentStyles
-    }, children)));
-  }
+  }, [isOpen, menuHeight, menuWidth, position, width]);
+  (0, _react.useEffect)(() => setIsRendered(true), []);
+  (0, _react.useLayoutEffect)(() => {
+    const menuElement = menuRef.current;
 
-}
+    if (menuElement) {
+      setMenuHeight(menuElement.offsetHeight);
+      setMenuWidth(menuElement.offsetWidth);
+    }
+  }, [menuRef.current]);
+  const eventListener = (0, _react.useCallback)(event => {
+    if (menuRef.current === event.target && !isOpen) {
+      closingAnimationCompleted();
+    }
+  }, [closingAnimationCompleted, isOpen]);
+  (0, _hooks.useEventListener)({
+    eventName: 'animationend',
+    eventListener,
+    element: menuRef.current
+  });
+  return _react.default.createElement(_Overlay.Overlay, {
+    isOpen: isOpen,
+    onClick: onClick,
+    overlayProps: {
+      chromeless: true
+    },
+    togglePopOver: togglePopOver,
+    zIndex: zIndex
+  }, _react.default.createElement(_StyledMenuContainer, {
+    ref: menuRef,
+    width: (0, _typeGuards.isNil)(width) ? 'auto' : `${width}px`,
+    _css: isRendered ? scaleAnimation.outSideContentStyles : ''
+  }, _react.default.createElement(_StyledMenuContent, {
+    _css2: isRendered ? scaleAnimation.inSideContentStyles : ''
+  }, children)));
+};
 
 exports.Menu = Menu;
 Menu.defaultProps = {
   zIndex: 9998
 };
+
+var _StyledMenuContainer = (0, _styledComponents.default)(MenuContainer)`${p => p._css}`;
+
+var _StyledMenuContent = (0, _styledComponents.default)(MenuContent)`${p => p._css2}`;

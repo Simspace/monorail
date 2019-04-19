@@ -217,9 +217,10 @@ export class ContextMenu extends Component<Props> {
 
   render() {
     const {
+      closingAnimationCompleted,
       isOpen,
-      position,
       onClick,
+      position,
       renderFilter,
       togglePopOver,
       width,
@@ -227,9 +228,10 @@ export class ContextMenu extends Component<Props> {
 
     return (
       <SidebarDropDown
+        closingAnimationCompleted={closingAnimationCompleted}
         isOpen={isOpen}
-        position={position}
         onClick={onClick}
+        position={position}
         togglePopOver={togglePopOver}
         width={width}
       >

@@ -4,8 +4,8 @@ declare type DefaultProps = {
     iconLeft: string | AppName;
     iconRight: string | AppName;
 };
-declare type Props = DefaultProps & {
+declare type RequiredProps = {
     title: string;
 };
-export declare const SectionHeader: FCwDP<Props, DefaultProps>;
+export declare const SectionHeader: FCwDP<RequiredProps, DefaultProps>;
 export {};

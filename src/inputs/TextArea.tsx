@@ -92,6 +92,7 @@ type BBTextAreaInputProps = {
   readOnly?: boolean
   required?: boolean
   value?: string
+  onBlur?: (e: React.FocusEvent<HTMLTextAreaElement>) => void
 }
 
 export type TextAreaProps = BBTextAreaContainerProps & BBTextAreaInputProps & {}
@@ -146,6 +147,7 @@ export class TextArea extends Component<TextAreaProps> {
       readOnly,
       required,
       value,
+      onBlur,
       ...otherProps
     } = this.props
 
@@ -164,6 +166,7 @@ export class TextArea extends Component<TextAreaProps> {
           required={required}
           rows={compact ? 1 : 3}
           value={value}
+          onBlur={onBlur}
           {...otherProps}
         />
       </BBTextAreaContainer>

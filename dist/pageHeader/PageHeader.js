@@ -51,25 +51,32 @@ _styledComponents.default.div.withConfig({
   flush
 }) => (0, _styledComponents.css)(["bottom:-20px;left:0;overflow:hidden;pointer-events:none;position:absolute;right:0;top:0;z-index:-10;&:before{", ";background:", ";bottom:26px;content:'';left:-10px;position:absolute;right:-10px;top:0;}", ";"], (0, _exports.getElevation)(_exports.ElevationRange.Elevation6), (0, _exports.getColor)(_exports.Colors.White), (flush || willAnimateShadow) && (0, _styledComponents.css)(["opacity:0;"])));
 
+const PageHeaderNavigation =
+/*#__PURE__*/
+_styledComponents.default.div.withConfig({
+  displayName: "PageHeader__PageHeaderNavigation",
+  componentId: "sc-1tofzk7-2"
+})(["", ";", ";align-items:center;height:32px;"], (0, _exports.flexFlow)('row'), pageHeaderPadding);
+
 const BreadCrumbsContainer =
 /*#__PURE__*/
 _styledComponents.default.div.withConfig({
   displayName: "PageHeader__BreadCrumbsContainer",
-  componentId: "sc-1tofzk7-2"
-})(["", ";", ";align-items:center;height:32px;"], (0, _exports.flexFlow)('row'), pageHeaderPadding);
+  componentId: "sc-1tofzk7-3"
+})(["", ";align-items:center;&::before{background:", ";width:1px;height:20px;content:'';margin-right:12px;}"], (0, _exports.flexFlow)('row'), (0, _exports.getColor)(_exports.Colors.Black24));
 
 const BreadCrumb =
 /*#__PURE__*/
 _styledComponents.default.a.withConfig({
   displayName: "PageHeader__BreadCrumb",
-  componentId: "sc-1tofzk7-3"
+  componentId: "sc-1tofzk7-4"
 })(["", ";color:", ";cursor:pointer;padding:6px 2px;text-transform:none;user-select:none;&:hover{color:", ";}"], (0, _exports.typography)(500, _exports.FontSizes.Title5), (0, _exports.getColor)(_exports.Colors.Black54), (0, _exports.getColor)(_exports.Colors.BrandLightBlue));
 
 const TitleContainer =
 /*#__PURE__*/
 _styledComponents.default.div.withConfig({
   displayName: "PageHeader__TitleContainer",
-  componentId: "sc-1tofzk7-4"
+  componentId: "sc-1tofzk7-5"
 })(({
   hasAboveContent
 }) => (0, _styledComponents.css)(["", ";", ";align-items:center;flex-shrink:0;grid-column:-1 / 1;height:", "px;"], (0, _exports.flexFlow)('row'), pageHeaderPadding, hasAboveContent ? 48 : 64));
@@ -80,7 +87,7 @@ const Title =
 /*#__PURE__*/
 _styledComponents.default.h1.withConfig({
   displayName: "PageHeader__Title",
-  componentId: "sc-1tofzk7-5"
+  componentId: "sc-1tofzk7-6"
 })(["", ";color:", ";margin-left:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"], (0, _exports.typography)(700, _exports.FontSizes.Title1), (0, _exports.getColor)(_exports.Colors.BrandDarkBlue));
 /*
 * Types
@@ -136,14 +143,14 @@ class PageHeader extends _react.Component {
       hasAboveContent: hasAboveContent,
       ref: this.pageHeaderContainerRef,
       flush: flush
-    }, (!(0, _typeGuards.isNil)(breadCrumbs) || !(0, _typeGuards.isNil)(goBack)) && _react.default.createElement(BreadCrumbsContainer, null, goBack && _react.default.createElement(_Button.Button, {
+    }, (!(0, _typeGuards.isNil)(breadCrumbs) || !(0, _typeGuards.isNil)(goBack)) && _react.default.createElement(PageHeaderNavigation, null, goBack && _react.default.createElement(_Button.Button, {
       size: _buttonTypes.ButtonSize.Compact,
       display: _buttonTypes.ButtonDisplay.Chromeless,
       onClick: goBack,
       cssOverrides: (0, _styledComponents.css)(["margin-left:-4px;margin-right:8px;"])
     }, _react.default.createElement(_Icon.Icon, {
       icon: "circle_arrow_left"
-    }), "Go Back"), this.renderBreadCrumbs()), _react.default.createElement(TitleContainer, {
+    }), "Go Back"), breadCrumbs && _react.default.createElement(BreadCrumbsContainer, null, this.renderBreadCrumbs())), _react.default.createElement(TitleContainer, {
       hasAboveContent: hasAboveContent
     }, _react.default.createElement(Title, null, title), action), children, _react.default.createElement(PageHeaderShadow, {
       willAnimateShadow: willAnimateShadow,

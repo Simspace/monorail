@@ -20,18 +20,77 @@ export const TabBarContainer = styled.div<CCTabBarProps>(
   `,
 )
 
-const TabBarIndicator = styled.div<TabBarIndicatorProps>(
-  ({ left, width, duration }) => css`
-    background: ${getColor(Colors.BrandLightBlue)};
-    border-radius: 3px 3px 0 0;
+const tabBarIndicatorSideWidth = 3
+const tabBarIndicatorBodyWidth = 10
+
+const TabBarIndicatorContainer = styled(
+  ({ left, width, duration, ...otherProps }) => (
+    <div {...otherProps}>
+      <TabBarIndicatorLeft />
+      <TabBarIndicatorBody duration={duration} width={width} />
+      <TabBarIndicatorRight duration={duration} width={width} />
+    </div>
+  ),
+)<TabBarIndicatorProps>(
+  ({ left, duration }) => css`
+    ${flexFlow('row')};
     bottom: 0;
     height: 3px;
-    left: ${left}px;
+    left: 0;
     position: absolute;
-    transition-duration: ${duration * 1.4}ms;
+    transition-duration: ${duration}ms;
     transition-property: all;
     transition-timing-function: ease-in-out;
-    width: ${width}px;
+    transform-origin: bottom left;
+
+    transform: translateX(${left}px);
+  `,
+)
+
+const TabBarIndicatorLeft = styled.div`
+  background: ${getColor(Colors.BrandLightBlue)};
+  border-radius: 3px 0 0 0;
+  height: 100%;
+  width: ${tabBarIndicatorSideWidth + 1}px;
+  position: absolute;
+  left: 0;
+`
+
+const TabBarIndicatorRight = styled(({ duration, width, ...otherProps }) => (
+  <div {...otherProps} />
+))<{ duration: number; width: number }>(
+  ({ duration, width }) => css`
+    background: ${getColor(Colors.BrandLightBlue)};
+    border-radius: 0 3px 0 0;
+    height: 100%;
+    width: ${tabBarIndicatorSideWidth + 1}px;
+    transition-duration: ${duration}ms;
+    transition-property: all;
+    transition-timing-function: ease-in-out;
+    transform-origin: bottom left;
+
+    transform: translateX(
+      ${width - tabBarIndicatorBodyWidth - tabBarIndicatorSideWidth - 1}px
+    );
+  `,
+)
+
+const TabBarIndicatorBody = styled(({ duration, width, ...otherProps }) => (
+  <div {...otherProps} />
+))<{ duration: number; width: number }>(
+  ({ duration, width }) => css`
+    background: ${getColor(Colors.BrandLightBlue)};
+    height: 100%;
+    width: ${tabBarIndicatorBodyWidth}px;
+    transition-duration: ${duration}ms;
+    transition-property: all;
+    transition-timing-function: ease-in-out;
+    transform-origin: bottom left;
+
+    transform: translateX(${tabBarIndicatorSideWidth}px)
+      scaleX(
+        ${(width - tabBarIndicatorSideWidth * 2) / tabBarIndicatorBodyWidth}
+      );
   `,
 )
 
@@ -151,7 +210,7 @@ export class TabBar extends Component<TabBarProps, TabBarState> {
         {!isNil(actions) && (
           <TabBarActions id="tabBarActions">{actions}</TabBarActions>
         )}
-        <TabBarIndicator
+        <TabBarIndicatorContainer
           width={indicatorWidth}
           left={indicatorLeft}
           duration={indicatorTransitionDuration}
