@@ -7,12 +7,12 @@ import { IconButton } from '@monorail/buttons/IconButton'
 import {
   buttonTransition,
   Colors,
-  colors,
+  getColor,
   FontSizes,
   flexFlow,
   typography,
   visible,
-} from '@monorail/CommonStyles'
+} from '@monorail/helpers/exports'
 import { ButtonSize } from '@monorail/buttons/buttonTypes'
 
 //
@@ -25,26 +25,26 @@ export const BBSearchContainer = styled.label<BBSearchContainerProps>(
   ({ darkMode, cssOverrides }) => css`
     ${darkMode
       ? css`
-          background: ${colors(Colors.White, 0.2)};
-          border: 1px solid ${colors(Colors.White, 0.2)};
+          background: ${getColor(Colors.White, 0.2)};
+          border: 1px solid ${getColor(Colors.White, 0.2)};
 
           &:hover {
-            background: ${colors(Colors.White, 0.22)};
+            background: ${getColor(Colors.White, 0.22)};
           }
 
           &:focus {
-            background: ${colors(Colors.White, 0.24)};
+            background: ${getColor(Colors.White, 0.24)};
           }
         `
       : css`
-          border: 1px solid ${colors(Colors.Black, 0.08)};
+          border: 1px solid ${getColor(Colors.Black, 0.08)};
 
           &:hover {
-            border-color: ${colors(Colors.BrandLightBlue, 0.5)};
+            border-color: ${getColor(Colors.BrandLightBlue, 0.5)};
           }
 
           &:focus {
-            border-color: ${colors(Colors.BrandLightBlue)};
+            border-color: ${getColor(Colors.BrandLightBlue)};
           }
         `};
 
@@ -64,7 +64,7 @@ const BBSearchIcon = styled(({ darkMode, ...otherProps }) => (
   <Icon {...otherProps} />
 ))<{ darkMode?: boolean } & IconProps>(
   ({ darkMode }) => css`
-    color: ${darkMode && colors(Colors.White)};
+    color: ${darkMode && getColor(Colors.White)};
     left: 8px;
     pointer-events: none;
     position: absolute;
@@ -76,37 +76,37 @@ export const BBSearchInput = styled.input<BBSearchInputProps>(
   ({ darkMode }) => css`
     ${darkMode
       ? css`
-          background: ${colors(Colors.White, 0.2)};
+          background: ${getColor(Colors.White, 0.2)};
           border: 0;
-          color: ${colors(Colors.White)};
+          color: ${getColor(Colors.White)};
 
           ::placeholder {
-            color: ${colors(Colors.White)};
+            color: ${getColor(Colors.White)};
           }
 
           &:hover {
-            background: ${colors(Colors.White, 0.22)};
+            background: ${getColor(Colors.White, 0.22)};
           }
 
           &:focus {
-            background: ${colors(Colors.White, 0.24)};
+            background: ${getColor(Colors.White, 0.24)};
           }
         `
       : css`
-          border: 1px solid ${colors(Colors.Black, 0.08)};
+          border: 1px solid ${getColor(Colors.Black, 0.08)};
 
           ::placeholder {
-            color: ${colors(Colors.Black54)};
+            color: ${getColor(Colors.Black54)};
             font-style: italic;
             font-weight: 300;
           }
 
           &:hover {
-            border-color: ${colors(Colors.BrandLightBlue, 0.5)};
+            border-color: ${getColor(Colors.BrandLightBlue, 0.5)};
           }
 
           &:focus {
-            border-color: ${colors(Colors.BrandLightBlue)};
+            border-color: ${getColor(Colors.BrandLightBlue)};
           }
         `};
 
@@ -197,19 +197,23 @@ export class Search extends Component<SearchProps> {
           cssOverrides={css`
             ${visible(!!value)};
 
-            background: ${colors(Colors.Black24)};
+            background: ${getColor(Colors.Black24)};
             border: 0;
 
             ${Icon} {
-              color: ${colors(Colors.White)};
+              color: ${getColor(Colors.White)};
             }
 
             &:hover {
-              background: ${colors(Colors.Black54)};
+              background: ${getColor(Colors.Black54)};
+
+              &:before {
+                background: transparent;
+              }
             }
 
             &:active {
-              background: ${colors(Colors.Black24)};
+              background: ${getColor(Colors.Black24)};
             }
 
             position: absolute;

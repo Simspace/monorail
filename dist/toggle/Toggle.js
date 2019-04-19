@@ -9,7 +9,7 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _Icon = require("../icon/Icon");
 
-var _CommonStyles = require("../CommonStyles");
+var _exports = require("../helpers/exports");
 
 var _toggleTypes = require("./toggleTypes");
 
@@ -50,7 +50,7 @@ _styledComponents.default.label.withConfig({
   toggleSize,
   checked,
   cssOverrides
-}) => (0, _styledComponents.css)(["", ";box-sizing:content-box;cursor:pointer;display:inline-block;position:relative;transition:all ease-in 150ms;", ";", ";"], toggleSizeCss[toggleSize], checked ? (0, _styledComponents.css)(["background-color:", ";border-color:", ";"], (0, _CommonStyles.colors)(_CommonStyles.Colors.BrandLightBlue), (0, _CommonStyles.colors)(_CommonStyles.Colors.BrandLightBlue)) : (0, _styledComponents.css)(["background-color:", ";border-color:", ";"], (0, _CommonStyles.colors)(_CommonStyles.Colors.White), (0, _CommonStyles.colors)(_CommonStyles.Colors.Black, 0.06)), cssOverrides));
+}) => (0, _styledComponents.css)(["", ";box-sizing:content-box;cursor:pointer;display:inline-block;position:relative;transition:all ease-in 150ms;", ";", ";"], toggleSizeCss[toggleSize], checked ? (0, _styledComponents.css)(["background-color:", ";border-color:", ";"], (0, _exports.getColor)(_exports.Colors.BrandLightBlue), (0, _exports.getColor)(_exports.Colors.BrandLightBlue)) : (0, _styledComponents.css)(["background-color:", ";border-color:", ";"], (0, _exports.getColor)(_exports.Colors.White), (0, _exports.getColor)(_exports.Colors.Black, 0.06)), cssOverrides));
 
 const StyledIconChecked =
 /*#__PURE__*/
@@ -61,7 +61,7 @@ const StyledIconChecked =
 }) => _react.default.createElement(_Icon.Icon, otherProps))(({
   toggleSize,
   checked
-}) => (0, _styledComponents.css)(["", ";", ";color:", ";position:absolute;transition:all ease-in 75ms;"], iconSizeCss[toggleSize], (0, _CommonStyles.visible)(checked), (0, _CommonStyles.colors)(_CommonStyles.Colors.BrandLightBlue)));
+}) => (0, _styledComponents.css)(["", ";", ";color:", ";position:absolute;transition:all ease-in 75ms;"], iconSizeCss[toggleSize], (0, _exports.visible)(checked), (0, _exports.getColor)(_exports.Colors.BrandLightBlue)));
 const StyledIconNotChecked =
 /*#__PURE__*/
 (0, _styledComponents.default)(({
@@ -71,7 +71,7 @@ const StyledIconNotChecked =
 }) => _react.default.createElement(_Icon.Icon, otherProps))(({
   checked,
   toggleSize
-}) => (0, _styledComponents.css)(["", ";", ";color:", ";position:absolute;transition:all ease-in 75ms;"], iconSizeCss[toggleSize], (0, _CommonStyles.visible)(!checked), (0, _CommonStyles.colors)(_CommonStyles.Colors.Black24)));
+}) => (0, _styledComponents.css)(["", ";", ";color:", ";position:absolute;transition:all ease-in 75ms;"], iconSizeCss[toggleSize], (0, _exports.visible)(!checked), (0, _exports.getColor)(_exports.Colors.Black24)));
 
 const Slider =
 /*#__PURE__*/
@@ -80,7 +80,7 @@ _styledComponents.default.div.withConfig({
   componentId: "sc-14ermjw-1"
 })(({
   toggleSize
-}) => (0, _styledComponents.css)(["", ";", ";", ";background-color:", ";border-radius:50%;bottom:0;content:'';left:0;justify-content:center;align-items:center;transition:all ease-in 75ms;"], sliderSizeCss[toggleSize], (0, _CommonStyles.getElevation)(_CommonStyles.ElevationRange.Elevation1), (0, _CommonStyles.flexFlow)('row'), (0, _CommonStyles.colors)(_CommonStyles.Colors.White)));
+}) => (0, _styledComponents.css)(["", ";", ";", ";background-color:", ";border-radius:50%;bottom:0;content:'';left:0;justify-content:center;align-items:center;transition:all ease-in 75ms;"], sliderSizeCss[toggleSize], (0, _exports.getElevation)(_exports.ElevationRange.Elevation1), (0, _exports.flexFlow)('row'), (0, _exports.getColor)(_exports.Colors.White)));
 
 exports.Slider = Slider;
 
@@ -97,7 +97,7 @@ Slider, inputSizeCss[toggleSize],
 /* sc-selector */
 Slider,
 /* sc-selector */
-StyledIconChecked, (0, _CommonStyles.visible)(false), (0, _CommonStyles.colors)(_CommonStyles.Colors.BrandLightBlue)));
+StyledIconChecked, (0, _exports.visible)(false), (0, _exports.getColor)(_exports.Colors.BrandLightBlue)));
 
 class Toggle extends _react.Component {
   render() {

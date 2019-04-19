@@ -9,7 +9,7 @@ var _react = _interopRequireDefault(require("react"));
 
 var _styledComponents = _interopRequireWildcard(require("styled-components"));
 
-var _CommonStyles = require("../CommonStyles");
+var _exports = require("../helpers/exports");
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
@@ -43,7 +43,7 @@ const Label =
 _styledComponents.default.p.withConfig({
   displayName: "Select__Label",
   componentId: "sc-1lva6s2-3"
-})(["", ";margin-bottom:4px;height:16px;"], (0, _CommonStyles.typography)(500, _CommonStyles.FontSizes.Title5));
+})(["", ";margin-bottom:4px;height:16px;"], (0, _exports.typography)(500, _exports.FontSizes.Title5));
 
 const Select = ({
   label,

@@ -21,19 +21,21 @@ export declare type PopOverChildProps = {
     position: PopOverPosition;
     onClick: (event: SyntheticEvent) => void;
     togglePopOver: () => void;
+    closingAnimationCompleted: () => void;
 };
 declare type PopOverProps = {
-    gap: number;
-    popOver: (props: PopOverChildProps) => ReactNode;
-    toggle: (props: PopOverToggleProps) => ReactNode;
+    alwaysRender: boolean;
     document?: Document;
-    toSide: boolean;
+    gap: number;
     isOpen?: boolean;
     onToggle?: (isOpen: boolean) => void;
-    optimize?: boolean;
+    popOver: (props: PopOverChildProps) => ReactNode;
+    toggle: (props: PopOverToggleProps) => ReactNode;
+    toSide: boolean;
 };
 declare type PopOverState = {
     isOpen: boolean;
+    isRendered: boolean;
     position: PopOverPosition;
 };
 export declare class PopOver extends Component<PopOverProps, PopOverState> {
@@ -41,9 +43,11 @@ export declare class PopOver extends Component<PopOverProps, PopOverState> {
     static defaultProps: {
         gap: number;
         toSide: boolean;
+        alwaysRender: boolean;
     };
     state: PopOverState;
     togglePopOver: () => void;
+    closingAnimationCompleted: () => void;
     onClick: (event: React.SyntheticEvent<Element, Event>) => void;
     render(): JSX.Element;
 }

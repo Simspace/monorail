@@ -5,6 +5,7 @@ declare type Props = PopOverChildProps & {
 };
 declare type State = {
     dropDownHeight: number;
+    isRendered: boolean;
 };
 export declare class SidebarDropDown extends Component<Props, State> {
     static defaultProps: {

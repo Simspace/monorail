@@ -1,81 +1,75 @@
-import React, { Component } from 'react'
-import styled, { css } from 'styled-components'
-
-import { Icon } from '@monorail/icon/Icon'
 import { AppIcon } from '@monorail/appIcon/AppIcon'
 import {
   AppName,
   Colors,
-  colors,
   flexFlow,
   FontSizes,
-  typography,
+  getColor,
   isAppName,
-} from '@monorail/CommonStyles'
-import { CommonComponentType } from '@monorail/types'
+  typography,
+} from '@monorail/helpers/exports'
+import { Icon } from '@monorail/icon/Icon'
+import { FCwDP } from '@monorail/sharedHelpers/react'
+import { isEmptyString } from '@monorail/sharedHelpers/typeGuards'
+import { Text } from '@monorail/typography/Text'
+import React from 'react'
+import styled, { css } from 'styled-components'
 
-const CCSectionHeader = styled.div<CommonComponentType>(
-  ({ cssOverrides }) => css`
-    ${flexFlow('row')};
-    ${typography(700, FontSizes.Title5)} align-items: center;
-    color: ${colors(Colors.Black74)};
-    flex-shrink: 0;
-    height: 40px;
-    padding: 0 16px;
-
-    ${cssOverrides};
-  `,
-)
-
-const Title = styled.h1`
-  ${typography(700, FontSizes.Title5)}
-  color: ${colors(Colors.Black74)};
-  flex: 1;
+const SectionHeaderContainer = styled.div`
+  ${flexFlow('row')};
+  ${typography(700, FontSizes.Title5)};
+  align-items: center;
+  color: ${getColor(Colors.Black74)};
+  flex-shrink: 0;
+  height: 40px;
+  padding: 0 16px;
 `
 
 const iconLeftStyle = css`
   margin-right: 8px;
 `
 
-const StyledIconLeft = styled(Icon)`
-  ${iconLeftStyle};
-`
-
 const iconRightStyle = css`
   margin-left: 8px;
 `
 
-const StyledIconRight = styled(Icon)`
-  ${iconRightStyle};
-`
+type DefaultProps = {
+  iconLeft: string | AppName
+  iconRight: string | AppName
+}
 
-type SectionHeaderProps = CommonComponentType & {
-  iconLeft?: string | AppName
-  iconRight?: string | AppName
+type RequiredProps = {
   title: string
 }
 
-export class SectionHeader extends Component<SectionHeaderProps> {
-  render() {
-    const { title, iconLeft, iconRight, cssOverrides, children } = this.props
+export const SectionHeader: FCwDP<RequiredProps, DefaultProps> = ({
+  children,
+  iconLeft,
+  iconRight,
+  title,
+  ...otherProps
+}) => (
+  <SectionHeaderContainer {...otherProps}>
+    {!isEmptyString(iconLeft) &&
+      (isAppName(iconLeft) ? (
+        <AppIcon appName={iconLeft} cssOverrides={iconLeftStyle} />
+      ) : (
+        <Icon css={iconLeftStyle} icon={iconLeft} />
+      ))}
+    <Text fontWeight={700} fontSize={FontSizes.Title5} as="h1">
+      {title}
+    </Text>
+    {!isEmptyString(iconRight) &&
+      (isAppName(iconRight) ? (
+        <AppIcon appName={iconRight} cssOverrides={iconRightStyle} />
+      ) : (
+        <Icon css={iconRightStyle} icon={iconRight} />
+      ))}
+    {children}
+  </SectionHeaderContainer>
+)
 
-    return (
-      <CCSectionHeader cssOverrides={cssOverrides}>
-        {iconLeft &&
-          (isAppName(iconLeft) ? (
-            <AppIcon appName={iconLeft} cssOverrides={iconLeftStyle} />
-          ) : (
-            <StyledIconLeft icon={iconLeft} />
-          ))}
-        <Title>{title}</Title>
-        {iconRight &&
-          (isAppName(iconRight) ? (
-            <AppIcon appName={iconRight} cssOverrides={iconRightStyle} />
-          ) : (
-            <StyledIconRight icon={iconRight} />
-          ))}
-        {children}
-      </CCSectionHeader>
-    )
-  }
+SectionHeader.defaultProps = {
+  iconLeft: '',
+  iconRight: '',
 }

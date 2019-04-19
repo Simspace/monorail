@@ -9,7 +9,7 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _Icon = require("../icon/Icon");
 
-var _CommonStyles = require("../CommonStyles");
+var _exports = require("../helpers/exports");
 
 var _styledComponents = _interopRequireWildcard(require("styled-components"));
 
@@ -31,8 +31,9 @@ _styledComponents.default.div.withConfig({
   displayName: "Choice__BBChoiceFakeLabel",
   componentId: "sc-16u3c70-1"
 })(({
-  answered
-}) => (0, _styledComponents.css)(["", ";", ";flex-grow:1;word-break:break-word;transition:all ease 150ms;"], answered && (0, _styledComponents.css)(["transform:translateX(24px);"]), (0, _CommonStyles.typography)(500, _CommonStyles.FontSizes.Title5)));
+  answered,
+  disabled
+}) => (0, _styledComponents.css)(["", ";", ";", ";flex-grow:1;word-break:break-word;transition:all ease 150ms;"], answered && (0, _styledComponents.css)(["transform:translateX(24px);"]), disabled && _exports.baseDisabledStyles, (0, _exports.typography)(500, _exports.FontSizes.Title5)));
 
 const CCChoice =
 /*#__PURE__*/
@@ -46,7 +47,7 @@ _styledComponents.default.label.withConfig({
   correct,
   cssOverrides,
   answered
-}) => (0, _styledComponents.css)(["", ";", ";", ";", ";", ";align-items:center;box-sizing:border-box;cursor:pointer;display:flex;flex-direction:row;min-height:24px;padding:4px 4px 4px 32px;position:relative;user-select:none;width:100%;", ";.ChoiceButtonChecked{color:", ";transform:translateX(", "px);}.ChoiceButtonUnchecked{color:", ";transform:translateX(", "px);}.RealInput:checked ~ .ChoiceButtonChecked{", ";}.RealInput:checked ~ .ChoiceButtonUnchecked{", ";}.RealInput:not(:checked) ~ .ChoiceButtonChecked{", ";}.RealInput:not(:checked) ~ .ChoiceButtonUnchecked{", ";}.IncorrectIcon{color:", ";", ";}.CorrectIcon{color:", ";", ";}", "{left:8px;position:absolute;font-size:16px;transition:all ease 150ms;}", ";"], disabled && _CommonStyles.baseDisabledStyles, (readOnly || incorrect || correct) && (0, _styledComponents.css)(["cursor:default;pointer-events:none;"]), (0, _CommonStyles.baseChromelessStyles)(), (0, _CommonStyles.flexFlow)('row'), (0, _CommonStyles.borderRadius)(), _CommonStyles.buttonTransition, (0, _CommonStyles.colors)(_CommonStyles.Colors.BrandLightBlue), answered ? 24 : 0, (0, _CommonStyles.colors)(_CommonStyles.Colors.Black54), answered ? 24 : 0, (0, _CommonStyles.visible)(true), (0, _CommonStyles.visible)(false), (0, _CommonStyles.visible)(false), (0, _CommonStyles.visible)(true), (0, _CommonStyles.colors)(_CommonStyles.Colors.Red), (0, _CommonStyles.visible)(incorrect), (0, _CommonStyles.colors)(_CommonStyles.Colors.Green), (0, _CommonStyles.visible)(correct), _Icon.Icon, cssOverrides));
+}) => (0, _styledComponents.css)(["", ";", ";", ";", ";align-items:center;box-sizing:border-box;cursor:pointer;display:flex;flex-direction:row;min-height:24px;padding:4px 4px 4px 32px;position:relative;user-select:none;width:100%;", ";.ChoiceButtonChecked{color:", ";transform:translateX(", "px);}.ChoiceButtonUnchecked{color:", ";transform:translateX(", "px);}.RealInput:checked ~ .ChoiceButtonChecked{", ";}.RealInput:checked ~ .ChoiceButtonUnchecked{", ";}.RealInput:not(:checked) ~ .ChoiceButtonChecked{", ";}.RealInput:not(:checked) ~ .ChoiceButtonUnchecked{", ";}.IncorrectIcon{color:", ";", ";}.CorrectIcon{color:", ";", ";}", "{left:8px;position:absolute;font-size:16px;transition:all ease 150ms;}", ";"], (readOnly || incorrect || correct) && (0, _styledComponents.css)(["cursor:default;pointer-events:none;"]), (0, _exports.baseChromelessStyles)(), (0, _exports.flexFlow)('row'), (0, _exports.borderRadius)(), _exports.buttonTransition, (0, _exports.getColor)(_exports.Colors.BrandLightBlue), answered ? 24 : 0, (0, _exports.getColor)(_exports.Colors.Black54), answered ? 24 : 0, disabled && _exports.baseDisabledStyles, (0, _exports.visible)(false), (0, _exports.visible)(false), disabled && _exports.baseDisabledStyles, (0, _exports.getColor)(_exports.Colors.Red), (0, _exports.visible)(incorrect), (0, _exports.getColor)(_exports.Colors.Green), (0, _exports.visible)(correct), _Icon.Icon, cssOverrides));
 /*
 * Types
 */
@@ -110,17 +111,18 @@ class Choice extends _react.Component {
     return _react.default.createElement(CCChoice, {
       correct: correct,
       cssOverrides: cssOverrides,
-      disabled: disabled,
       incorrect: incorrect,
+      disabled: disabled,
       readOnly: readOnly,
       answered: answered
     }, _react.default.createElement(_Icon.Icon, {
-      icon: "highlight_off",
+      icon: "cancel",
       className: "IncorrectIcon"
     }), _react.default.createElement(_Icon.Icon, {
       icon: "check_circle",
       className: "CorrectIcon"
     }), _react.default.createElement(BBChoiceInput, {
+      disabled: disabled,
       onChange: onChange,
       className: "RealInput",
       checked: checked,
@@ -130,7 +132,8 @@ class Choice extends _react.Component {
       required: required,
       name: name
     }), this.renderFakeInputIcons(), _react.default.createElement(BBChoiceFakeLabel, {
-      answered: answered
+      answered: answered,
+      disabled: disabled
     }, children));
   }
 

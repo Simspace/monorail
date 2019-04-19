@@ -2,11 +2,11 @@ import styled, { css, SimpleInterpolation } from 'styled-components'
 import {
   borderRadius,
   Colors,
-  colors,
+  getColor,
   ElevationRange,
   flexFlow,
   getElevation,
-} from '@monorail/CommonStyles'
+} from '@monorail/helpers/exports'
 
 type LogoBoxProps = {
   alignRight?: boolean
@@ -20,7 +20,7 @@ export const LogoBox = styled.div<LogoBoxProps>(
     ${flexFlow('column')};
     ${getElevation(ElevationRange.Elevation0)};
 
-  background: ${colors(Colors.White)};
+  background: ${getColor(Colors.White)};
   height: 32px;
   justify-content: center;
   max-width: 144px;

@@ -11,7 +11,7 @@ var _typeGuards = require("../sharedHelpers/typeGuards");
 
 var _styledComponents = _interopRequireWildcard(require("styled-components"));
 
-var _CommonStyles = require("../CommonStyles");
+var _exports = require("../helpers/exports");
 
 var _Tag = require("../tags/Tag");
 
@@ -20,13 +20,13 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 // Property Styles
 const primaryPropertyStyles =
 /*#__PURE__*/
-(0, _styledComponents.css)(["", ";color:", ";"], (0, _CommonStyles.typography)(500, _CommonStyles.FontSizes.Content), (0, _CommonStyles.colors)(_CommonStyles.Colors.Black74));
+(0, _styledComponents.css)(["", ";color:", ";"], (0, _exports.typography)(500, _exports.FontSizes.Content), (0, _exports.getColor)(_exports.Colors.Black74));
 const compactPropertyStyles =
 /*#__PURE__*/
-(0, _styledComponents.css)(["", ";color:", ";text-transform:uppercase;"], (0, _CommonStyles.typography)(500, _CommonStyles.FontSizes.Content), (0, _CommonStyles.colors)(_CommonStyles.Colors.Black54));
+(0, _styledComponents.css)(["", ";color:", ";text-transform:uppercase;"], (0, _exports.typography)(500, _exports.FontSizes.Content), (0, _exports.getColor)(_exports.Colors.Black54));
 const largePropertyStyles =
 /*#__PURE__*/
-(0, _styledComponents.css)(["", ";color:", ";"], (0, _CommonStyles.typography)(700, _CommonStyles.FontSizes.Content), (0, _CommonStyles.colors)(_CommonStyles.Colors.Black74));
+(0, _styledComponents.css)(["", ";color:", ";"], (0, _exports.typography)(700, _exports.FontSizes.Content), (0, _exports.getColor)(_exports.Colors.Black74));
 
 const BBDetailsProperty =
 /*#__PURE__*/
@@ -45,18 +45,18 @@ _styledComponents.default.h2.withConfig({
   } else {
     return primaryPropertyStyles;
   }
-}, darkMode && (0, _styledComponents.css)(["color:", ";"], (0, _CommonStyles.colors)(_CommonStyles.Colors.White)))); // Value Styles
+}, darkMode && (0, _styledComponents.css)(["color:", ";"], (0, _exports.getColor)(_exports.Colors.White)))); // Value Styles
 
 
 const primaryValueStyles =
 /*#__PURE__*/
-(0, _styledComponents.css)(["", ";color:", ";"], (0, _CommonStyles.typography)(200, _CommonStyles.FontSizes.Title3), (0, _CommonStyles.colors)(_CommonStyles.Colors.Black89));
+(0, _styledComponents.css)(["", ";color:", ";"], (0, _exports.typography)(200, _exports.FontSizes.Title3), (0, _exports.getColor)(_exports.Colors.Black89));
 const compactValueStyles =
 /*#__PURE__*/
-(0, _styledComponents.css)(["", ";color:", ";"], (0, _CommonStyles.typography)(600, _CommonStyles.FontSizes.Title5), (0, _CommonStyles.colors)(_CommonStyles.Colors.Black74));
+(0, _styledComponents.css)(["", ";color:", ";"], (0, _exports.typography)(600, _exports.FontSizes.Title5), (0, _exports.getColor)(_exports.Colors.Black74));
 const largeValueStyles =
 /*#__PURE__*/
-(0, _styledComponents.css)(["", ";color:", ";"], (0, _CommonStyles.typography)(200, _CommonStyles.FontSizes.Title1), (0, _CommonStyles.colors)(_CommonStyles.Colors.Black89));
+(0, _styledComponents.css)(["", ";color:", ";"], (0, _exports.typography)(200, _exports.FontSizes.Title1), (0, _exports.getColor)(_exports.Colors.Black89));
 
 const BBDetailsValue =
 /*#__PURE__*/
@@ -75,7 +75,7 @@ _styledComponents.default.h2.withConfig({
   } else {
     return primaryValueStyles;
   }
-}, darkMode && (0, _styledComponents.css)(["color:", ";"], (0, _CommonStyles.colors)(_CommonStyles.Colors.White))));
+}, darkMode && (0, _styledComponents.css)(["color:", ";"], (0, _exports.getColor)(_exports.Colors.White))));
 
 const BBDetailsContainer =
 /*#__PURE__*/
@@ -84,7 +84,7 @@ _styledComponents.default.div.withConfig({
   componentId: "xo061-2"
 })(({
   cssOverrides
-}) => (0, _styledComponents.css)(["", ";", "{margin-top:6px;}", ";"], (0, _CommonStyles.flexFlow)(), _Tag.CCTag, cssOverrides));
+}) => (0, _styledComponents.css)(["", ";", "{margin-top:6px;}", ";"], (0, _exports.flexFlow)(), _Tag.CCTag, cssOverrides));
 
 class CCDetails extends _react.Component {
   render() {

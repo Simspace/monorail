@@ -11,7 +11,7 @@ var _styledComponents = _interopRequireDefault(require("styled-components"));
 
 var _Record = require("fp-ts/lib/Record");
 
-var _CommonStyles = require("../CommonStyles");
+var _exports = require("../helpers/exports");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -27,7 +27,7 @@ const Label =
 _styledComponents.default.p.withConfig({
   displayName: "NumberInputGroup__Label",
   componentId: "bcz8dj-1"
-})(["", ";margin-bottom:8px;height:16px;"], (0, _CommonStyles.typography)(500, _CommonStyles.FontSizes.Title5));
+})(["", ";margin-bottom:8px;height:16px;"], (0, _exports.typography)(500, _exports.FontSizes.Title5));
 
 const Input =
 /*#__PURE__*/
@@ -48,7 +48,7 @@ const InputItemLabel =
 _styledComponents.default.p.withConfig({
   displayName: "NumberInputGroup__InputItemLabel",
   componentId: "bcz8dj-4"
-})(["", ";"], (0, _CommonStyles.typography)(500, _CommonStyles.FontSizes.Title5));
+})(["", ";"], (0, _exports.typography)(500, _exports.FontSizes.Title5));
 
 const NumberInputGroup = ({
   label,

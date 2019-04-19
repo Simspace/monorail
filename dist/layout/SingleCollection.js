@@ -9,7 +9,7 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _styledComponents = _interopRequireDefault(require("styled-components"));
 
-var _CommonStyles = require("../CommonStyles");
+var _exports = require("../helpers/exports");
 
 var _ScrollAnimation = require("./ScrollAnimation");
 
@@ -22,7 +22,7 @@ const SingleCollectionContainer =
 _styledComponents.default.div.withConfig({
   displayName: "SingleCollection__SingleCollectionContainer",
   componentId: "sc-1n69vuw-0"
-})(["", ";overflow-x:auto;height:100%;"], (0, _CommonStyles.flexFlow)());
+})(["", ";overflow-x:auto;height:100%;"], (0, _exports.flexFlow)());
 
 class SingleCollection extends _react.Component {
   constructor(...args) {

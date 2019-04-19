@@ -1,8 +1,8 @@
 import React, { Component, createRef } from 'react'
 import { PopOverChildProps } from '@monorail/popOver/PopOver'
-import { BBCardBackground, BBCardBackgroundProps } from '@monorail/cards/Cards'
+import { BBCardBackground } from '@monorail/cards/Cards'
 import styled, { css, SimpleInterpolation } from 'styled-components'
-import { flexFlow, generateScaleAnimation } from '@monorail/CommonStyles'
+import { flexFlow, generateScaleAnimation } from '@monorail/helpers/exports'
 import { Overlay } from '@monorail/toggle/Overlay'
 
 import { fromNullable } from 'fp-ts/lib/Option'
@@ -25,6 +25,7 @@ type Props = PopOverChildProps & {
 
 type State = {
   dropDownHeight: number
+  isRendered: boolean
 }
 
 export class SidebarDropDown extends Component<Props, State> {
@@ -34,12 +35,17 @@ export class SidebarDropDown extends Component<Props, State> {
 
   state: State = {
     dropDownHeight: 0,
+    isRendered: false,
   }
 
   dropDownRef = createRef<HTMLDivElement>()
 
   componentDidMount() {
     this.updateMenuHeight()
+
+    this.setState(() => ({
+      isRendered: true,
+    }))
   }
 
   componentDidUpdate() {
@@ -71,12 +77,12 @@ export class SidebarDropDown extends Component<Props, State> {
       togglePopOver,
       width,
     } = this.props
-    const { dropDownHeight } = this.state
+    const { dropDownHeight, isRendered } = this.state
 
     const scaleAnimation = generateScaleAnimation({
       elementHeight: dropDownHeight,
       elementWidth: width,
-      isOpen,
+      isOpen: isRendered && isOpen,
       position,
     })
 

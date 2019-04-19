@@ -11,7 +11,7 @@ var _styledComponents = _interopRequireWildcard(require("styled-components"));
 
 var _Icon = require("../icon/Icon");
 
-var _CommonStyles = require("../CommonStyles");
+var _exports = require("../helpers/exports");
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
@@ -28,5 +28,5 @@ const AppIcon =
 })))(({
   appName,
   cssOverrides
-}) => (0, _styledComponents.css)(["", ";", ";background:", ";box-sizing:border-box;height:16px;width:16px;", "{fill:", ";height:100%;margin:auto;width:100%;}", ";"], (0, _CommonStyles.flexFlow)('row'), (0, _CommonStyles.borderRadius)(), (0, _CommonStyles.colors)((0, _CommonStyles.convertAppNameToColor)(appName)), _Icon.Icon, (0, _CommonStyles.colors)(_CommonStyles.Colors.White), cssOverrides));
+}) => (0, _styledComponents.css)(["", ";", ";background:", ";box-sizing:border-box;height:16px;width:16px;", "{fill:", ";height:100%;margin:auto;width:100%;}", ";"], (0, _exports.flexFlow)('row'), (0, _exports.borderRadius)(), (0, _exports.getColor)((0, _exports.convertAppNameToColor)(appName)), _Icon.Icon, (0, _exports.getColor)(_exports.Colors.White), cssOverrides));
 exports.AppIcon = AppIcon;

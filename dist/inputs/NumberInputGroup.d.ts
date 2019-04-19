@@ -7,7 +7,7 @@ declare type InputItem = {
 };
 declare type Props = {
     label?: string;
-    items: InputItem[];
+    items: Array<InputItem>;
     onSelect: (key: string, value: number) => void;
     value: Record<string, number>;
     required?: boolean;

@@ -4,11 +4,11 @@ import styled, { css, SimpleInterpolation } from 'styled-components'
 import { Icon } from '@monorail/icon/Icon'
 import {
   Colors,
-  colors,
+  getColor,
   flexFlow,
   FontSizes,
   typography,
-} from '@monorail/CommonStyles'
+} from '@monorail/helpers/exports'
 
 const iconSize = 32
 
@@ -21,7 +21,7 @@ export const CCAlertBox = styled.div<CCAlertBoxProps>(
   ({ cssOverrides }) => css`
     ${flexFlow('row')};
 
-    background-color: ${colors(Colors.Red, 0.15)};
+    background-color: ${getColor(Colors.Red, 0.15)};
     border-radius: 4px;
     flex-shrink: 0;
     height: 48px;
@@ -48,14 +48,14 @@ const StyledIconLeft = styled(Icon)`
 const Title = styled.h1`
   ${typography(700, FontSizes.Title3)};
 
-  color: ${colors(Colors.Black89)};
+  color: ${getColor(Colors.Black89)};
   margin: 16px 0;
 `
 
 const AlertDetails = styled.span`
   ${typography(300, FontSizes.Content)};
 
-  color: ${colors(Colors.Black89)};
+  color: ${getColor(Colors.Black89)};
   margin: auto 48px auto auto;
 `
 

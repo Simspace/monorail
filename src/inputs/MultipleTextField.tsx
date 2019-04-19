@@ -3,7 +3,7 @@ import styled, { css, SimpleInterpolation } from 'styled-components'
 import { isNil } from '@monorail/sharedHelpers/typeGuards'
 
 import { TextFieldProps, TextField } from './TextField'
-import { flexFlow, typography, FontSizes } from '@monorail/CommonStyles'
+import { flexFlow, typography, FontSizes } from '@monorail/helpers/exports'
 import { CommonComponentType } from '@monorail/types'
 
 // TODO - duplicate from text field container
@@ -35,7 +35,7 @@ type Props = {
   label?: string
   onChange: (key: string, value: string | number) => void
   cssOverrides?: SimpleInterpolation
-  textFields: MultipleTextFieldProps[]
+  textFields: Array<MultipleTextFieldProps>
   children?: ReactNode
 }
 

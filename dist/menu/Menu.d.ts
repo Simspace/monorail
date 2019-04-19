@@ -1,22 +1,10 @@
-import React, { Component } from 'react';
+import { FCwDP } from '@monorail/sharedHelpers/react';
 import { PopOverChildProps } from '@monorail/popOver/PopOver';
-declare type Props = PopOverChildProps & {
+declare type RequiredProps = PopOverChildProps & {
     width?: number;
+};
+declare type DefaultProps = {
     zIndex: number;
 };
-declare type State = {
-    menuHeight: number;
-    menuWidth: number;
-};
-export declare class Menu extends Component<Props, State> {
-    static defaultProps: {
-        zIndex: number;
-    };
-    state: State;
-    menuRef: React.RefObject<HTMLDivElement>;
-    componentDidMount(): void;
-    componentDidUpdate(): void;
-    updateMenuHeight: () => void;
-    render(): JSX.Element;
-}
+export declare const Menu: FCwDP<RequiredProps, DefaultProps>;
 export {};

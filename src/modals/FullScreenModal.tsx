@@ -1,62 +1,92 @@
-import React, { Component, ReactNode } from 'react'
+import { FCwDP } from '@monorail/sharedHelpers/react'
+import React, { ReactNode } from 'react'
+import {
+  BBModalBackground,
+  BBModalHeader,
+  modalAnimationDuration,
+  fullScreenModalCloseAnimation,
+  fullScreenModalOpenAnimation,
+  useModalAnimation,
+} from '@monorail/modals/Modals'
 import { css } from 'styled-components'
-
-import { PopOverChildProps } from '@monorail/popOver/PopOver'
-import { BBModalBackground, BBModalHeader } from '@monorail/modals/Modals'
 import { Overlay } from '@monorail/toggle/Overlay'
-import { isNil } from '@monorail/sharedHelpers/typeGuards'
+import { PopOverChildProps } from '@monorail/popOver/PopOver'
 
-type Props = PopOverChildProps & {
-  customCloseButton?: ReactNode
-  escToClose?: boolean
-  headerChildren?: ReactNode
-  iconLeft?: string
-  title: string
-  noHeader?: boolean
+type Props = PopOverChildProps &
+  DefaultProps & {
+    customCloseButton?: ReactNode
+    headerChildren?: ReactNode
+    title: string
+  }
+
+type DefaultProps = {
+  escToClose: boolean
+  iconLeft: string
+  noHeader: boolean
 }
 
-export class FullScreenModal extends Component<Props> {
-  render() {
-    const {
-      children,
-      customCloseButton,
-      escToClose,
-      headerChildren,
-      iconLeft,
-      isOpen,
-      noHeader,
-      onClick,
-      title,
-      togglePopOver,
-    } = this.props
+export const FullScreenModal: FCwDP<Props, DefaultProps> = ({
+  children,
+  customCloseButton,
+  escToClose,
+  headerChildren,
+  iconLeft,
+  isOpen,
+  noHeader,
+  onClick,
+  title,
+  togglePopOver,
+  closingAnimationCompleted,
+  ...otherProps
+}) => {
+  const { modalBackgroundRef, isRendered } = useModalAnimation<HTMLDivElement>({
+    closingAnimationCompleted,
+    isOpen,
+  })
 
-    return (
-      <Overlay
-        escToClose={escToClose}
-        isOpen={isOpen}
-        onClick={onClick}
-        togglePopOver={togglePopOver}
+  return (
+    <Overlay
+      escToClose={escToClose}
+      isOpen={isOpen}
+      onClick={onClick}
+      togglePopOver={togglePopOver}
+    >
+      <BBModalBackground
+        ref={modalBackgroundRef}
+        css={
+          isRendered
+            ? css`
+                height: 100%;
+                width: 100%;
+                margin: 0;
+                border-radius: 0;
+
+                animation: ${isOpen
+                    ? fullScreenModalOpenAnimation
+                    : fullScreenModalCloseAnimation}
+                  linear ${modalAnimationDuration}ms forwards;
+              `
+            : ''
+        }
+        {...otherProps}
       >
-        <BBModalBackground
-          cssOverrides={css`
-            height: 100%;
-            width: 100%;
-            margin: 0;
-            border-radius: 0;
-          `}
-        >
-          {isNil(noHeader) && (
-            <BBModalHeader
-              customCloseButton={customCloseButton}
-              headerRowChildren={headerChildren}
-              iconLeft={iconLeft}
-              onClose={onClick}
-              title={title}
-            />
-          )}
-          {children}
-        </BBModalBackground>
-      </Overlay>
-    )
-  }
+        {!noHeader && (
+          <BBModalHeader
+            customCloseButton={customCloseButton}
+            headerRowChildren={headerChildren}
+            iconLeft={iconLeft}
+            onClose={onClick}
+            title={title}
+          />
+        )}
+        {children}
+      </BBModalBackground>
+    </Overlay>
+  )
+}
+
+FullScreenModal.defaultProps = {
+  escToClose: true,
+  iconLeft: '',
+  noHeader: false,
 }

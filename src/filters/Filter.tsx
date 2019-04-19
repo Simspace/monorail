@@ -9,11 +9,11 @@ import {
   borderRadius,
   buttonTransition,
   Colors,
-  colors,
+  getColor,
   flexFlow,
   FontSizes,
   typography,
-} from '@monorail/CommonStyles'
+} from '@monorail/helpers/exports'
 import { PopOver } from '@monorail/popOver/PopOver'
 import { Menu } from '@monorail/menu/Menu'
 
@@ -22,8 +22,8 @@ const CCFilter = styled.div<CCFilterProps>(
     ${isActive || isOpen
       ? basePrimaryStyles(Colors.BrandDarkBlue)
       : css`
-          ${baseSecondaryStyles(Colors.BrandDarkBlue, isOpen)};
-          color: ${colors(Colors.Black74)};
+          ${baseSecondaryStyles(Colors.BrandDarkBlue)};
+          color: ${getColor(Colors.Black74)};
         `};
 
     ${borderRadius()};

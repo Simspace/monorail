@@ -78,8 +78,8 @@ export declare const traverseTaskEithers: <FL, A, B>(ta: A[], f: (a: A) => impor
  * Type representing the Left and Right values of an Array of Eithers
  */
 export interface LeftsAndRights<L, A> {
-    lefts: L[];
-    rights: A[];
+    lefts: Array<L>;
+    rights: Array<A>;
 }
 /**
  * Gets both the Lefts and Rights from an Array of Eithers simultaneously

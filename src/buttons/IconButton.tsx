@@ -1,79 +1,38 @@
-import React, { Component, MouseEvent } from 'react'
-import styled, { css, SimpleInterpolation } from 'styled-components'
+import React, { Component } from 'react'
+import { css, SimpleInterpolation } from 'styled-components'
 import { Icon } from '@monorail/icon/Icon'
 import {
-  baseChromelessStyles,
-  baseDisabledStyles,
-  baseFocusStyles,
-  baseOutlineStyles,
-  basePrimaryStyles,
   BorderRadius,
   borderRadius,
-  buttonTransition,
   Colors,
-  colors,
-  flexFlow,
-} from '@monorail/CommonStyles'
+  getColor,
+} from '@monorail/helpers/exports'
 import {
-  ButtonSize,
   ButtonDisplay,
+  ButtonSize,
   IconButtonShape,
 } from '@monorail/buttons/buttonTypes'
-
-const iconButtonDisplayCss = {
-  [ButtonDisplay.Primary]: css`
-    ${basePrimaryStyles()};
-
-    border: 0;
-  `,
-  [ButtonDisplay.Secondary]: css`
-    background: ${colors(Colors.BrandLightBlue, 0.08)};
-    border: 0;
-    color: ${colors(Colors.BrandLightBlue)};
-
-    &:hover {
-      background: ${colors(Colors.BrandLightBlue, 0.16)};
-    }
-
-    &:active {
-      background: ${colors(Colors.BrandLightBlue, 0.24)};
-    }
-  `,
-  [ButtonDisplay.Outline]: css`
-    ${baseOutlineStyles()};
-  `,
-  [ButtonDisplay.Chromeless]: css`
-    ${baseChromelessStyles()};
-
-    border: 0;
-    color: ${colors(Colors.Black74)};
-
-    &:focus {
-      background: ${colors(Colors.BrandLightBlue, 0.16)};
-    }
-  `,
-}
+import {
+  Button,
+  ButtonProps,
+  buttonDefaultProps,
+} from '@monorail/buttons/Button'
 
 const iconButtonSizeCss = {
   [ButtonSize.Dense]: css`
-    height: 16px;
     width: 16px;
-    padding: 0 7px;
 
     ${Icon} {
       font-size: 12px;
     }
   `,
   [ButtonSize.Compact]: css`
-    height: 24px;
-    padding: 0 7px;
+    width: 24px;
   `,
   [ButtonSize.Default]: css`
-    height: 24px;
     width: 24px;
   `,
   [ButtonSize.Large]: css`
-    height: 32px;
     width: 32px;
 
     ${Icon} {
@@ -82,60 +41,52 @@ const iconButtonSizeCss = {
   `,
 }
 
-export const CCIconButton = styled.button<CCIconButtonProps>(
-  ({ disabled, display, size, shape, cssOverrides, darkMode, iconCss }) => css`
-    ${iconButtonDisplayCss[display]};
-    ${iconButtonSizeCss[size]};
-    ${disabled && baseDisabledStyles};
-    ${borderRadius(
-      shape === IconButtonShape.Default
-        ? BorderRadius.Round
-        : BorderRadius.Medium,
-    )};
+const iconButtonDisplayCss = (display: ButtonDisplay) => {
+  switch (display) {
+    case ButtonDisplay.Chromeless:
+      return css`
+        color: ${getColor(Colors.Black74)};
+      `
+      break
+  }
 
-    ${flexFlow()};
+  return css``
+}
 
-    align-items: center;
-    box-sizing: border-box;
-    cursor: pointer;
-    flex-shrink: 0;
-    justify-content: center;
-    outline: none;
-    padding: 0;
-    text-transform: uppercase;
-    user-select: none;
+const iconButtonCSS = (
+  display: ButtonDisplay,
+  size: ButtonSize,
+  shape: IconButtonShape,
+  darkMode: boolean,
+  cssOverrides: SimpleInterpolation,
+) => css`
+  ${iconButtonDisplayCss(display)};
+  ${iconButtonSizeCss[size]};
+  ${borderRadius(
+    shape === IconButtonShape.Default
+      ? BorderRadius.Round
+      : BorderRadius.Medium,
+  )};
 
-    ${buttonTransition};
+  ${Icon} {
+    ${darkMode
+      ? css`
+          color: ${getColor(Colors.White)};
+        `
+      : css`
+          color: currentColor;
+        `};
 
-    ${Icon} {
-      ${darkMode
-        ? css`
-            color: ${colors(Colors.White)};
-          `
-        : css`
-            color: currentColor;
-          `};
+    margin: 0;
+  }
 
-      ${iconCss};
-    }
+  ${cssOverrides};
+`
 
-    ${baseFocusStyles()};
-
-    ${cssOverrides};
-  `,
-)
-
-type CCIconButtonProps = {
-  cssOverrides?: SimpleInterpolation
-  darkMode?: boolean
-  disabled?: boolean
-  display: ButtonDisplay
-  shape?: IconButtonShape
-  iconCss?: SimpleInterpolation
-  onClick?: (event: MouseEvent<Element>) => void
-  size: ButtonSize
-  type: 'button' | 'reset' | 'submit'
-  className?: string
+type CCIconButtonProps = ButtonProps & {
+  darkMode: boolean
+  shape: IconButtonShape
+  iconCss: SimpleInterpolation
 }
 
 export type IconButtonProps = CCIconButtonProps & {
@@ -144,18 +95,38 @@ export type IconButtonProps = CCIconButtonProps & {
 
 export class IconButton extends Component<IconButtonProps> {
   static defaultProps = {
-    display: ButtonDisplay.Primary,
-    size: ButtonSize.Default,
+    ...buttonDefaultProps,
+    darkMode: false,
     shape: IconButtonShape.Default,
-    type: 'button',
+    iconCss: css``,
   }
 
   render() {
-    const { icon, className, ...otherProps } = this.props
+    const {
+      display,
+      icon,
+      darkMode,
+      size,
+      shape,
+      cssOverrides,
+      iconCss,
+      ...otherProps
+    } = this.props
     return (
-      <CCIconButton className={`new-button ${className}`} {...otherProps}>
-        <Icon icon={icon} />
-      </CCIconButton>
+      <Button
+        {...otherProps}
+        display={display}
+        size={size}
+        cssOverrides={iconButtonCSS(
+          display,
+          size,
+          shape,
+          darkMode,
+          cssOverrides,
+        )}
+      >
+        <Icon icon={icon} css={iconCss} />
+      </Button>
     )
   }
 }

@@ -13,7 +13,7 @@ var _AppIcon = require("../appIcon/AppIcon");
 
 var _Icon = require("../icon/Icon");
 
-var _CommonStyles = require("../CommonStyles");
+var _exports = require("../helpers/exports");
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
@@ -26,7 +26,7 @@ _styledComponents.default.div.withConfig({
   componentId: "mqkraz-0"
 })(({
   cssOverrides
-}) => (0, _styledComponents.css)(["", ";border-radius:inherit;height:100%;overflow:hidden;width:100%;position:relative;", ";"], (0, _CommonStyles.flexFlow)(), cssOverrides)); // building-blocks/cards/background
+}) => (0, _styledComponents.css)(["", ";border-radius:inherit;height:100%;overflow:hidden;width:100%;position:relative;", ";"], (0, _exports.flexFlow)(), cssOverrides)); // building-blocks/cards/background
 
 
 const BBCardBackground =
@@ -45,8 +45,8 @@ const BBCardBackground =
 }, children))))(({
   hover,
   cssOverrides,
-  elevation = _CommonStyles.ElevationRange.Elevation6
-}) => (0, _styledComponents.css)(["", ";", ";", ";background:", ";position:relative;z-index:0;", ";&::before{border-radius:inherit;background:", ";bottom:0;content:'';left:0;position:absolute;right:0;top:0;z-index:0;}&::after{", ";", ";background:", ";bottom:2px;content:'';left:2px;position:absolute;right:2px;top:2px;z-index:-5;}"], hover && (0, _styledComponents.css)(["cursor:pointer;&:hover{&::after{transition:box-shadow ease 125ms;", ";}}"], (0, _CommonStyles.getElevation)(_CommonStyles.ElevationRange.Elevation10)), (0, _CommonStyles.flexFlow)(), (0, _CommonStyles.borderRadius)(_CommonStyles.BorderRadius.Large), (0, _CommonStyles.colors)(_CommonStyles.Colors.White), cssOverrides, (0, _CommonStyles.colors)(_CommonStyles.Colors.White), (0, _CommonStyles.borderRadius)(_CommonStyles.BorderRadius.Medium), (0, _CommonStyles.getElevation)(elevation), (0, _CommonStyles.colors)(_CommonStyles.Colors.White)));
+  elevation = _exports.ElevationRange.Elevation6
+}) => (0, _styledComponents.css)(["", ";", ";", ";background:", ";position:relative;z-index:0;", ";&::before{border-radius:inherit;background:", ";bottom:0;content:'';left:0;position:absolute;right:0;top:0;z-index:0;}&::after{", ";", ";background:", ";bottom:2px;content:'';left:2px;position:absolute;right:2px;top:2px;z-index:-5;}"], hover && (0, _styledComponents.css)(["cursor:pointer;&:hover{&::after{transition:box-shadow ease 125ms;", ";}}"], (0, _exports.getElevation)(_exports.ElevationRange.Elevation10)), (0, _exports.flexFlow)(), (0, _exports.borderRadius)(_exports.BorderRadius.Large), (0, _exports.getColor)(_exports.Colors.White), cssOverrides, (0, _exports.getColor)(_exports.Colors.White), (0, _exports.borderRadius)(_exports.BorderRadius.Medium), (0, _exports.getElevation)(elevation), (0, _exports.getColor)(_exports.Colors.White)));
 exports.BBCardBackground = BBCardBackground;
 
 const BBCardHeaderContainer =
@@ -56,14 +56,14 @@ _styledComponents.default.div.withConfig({
   componentId: "mqkraz-1"
 })(({
   cssOverrides
-}) => (0, _styledComponents.css)(["", ";align-items:center;flex-shrink:0;height:32px;padding:0 16px;position:relative;", ";"], (0, _CommonStyles.flexFlow)('row'), cssOverrides));
+}) => (0, _styledComponents.css)(["", ";align-items:center;flex-shrink:0;height:32px;padding:0 16px;position:relative;", ";"], (0, _exports.flexFlow)('row'), cssOverrides));
 
 const BBCardHeaderTitle =
 /*#__PURE__*/
 _styledComponents.default.h1.withConfig({
   displayName: "Cards__BBCardHeaderTitle",
   componentId: "mqkraz-2"
-})(["", ";margin:0;"], (0, _CommonStyles.typography)(700, _CommonStyles.FontSizes.Title5));
+})(["", ";margin:0;"], (0, _exports.typography)(700, _exports.FontSizes.Title5));
 
 const StyledAppIconLeft =
 /*#__PURE__*/
@@ -91,11 +91,11 @@ _styledComponents.default.div.withConfig({
   componentId: "mqkraz-6"
 })(({
   accentColor
-}) => (0, _styledComponents.css)(["background:linear-gradient( to right,", " 0,", " 16px,", " calc(100% - 16px),", " 100% );bottom:0;height:1px;left:0;position:absolute;right:0;"], (0, _CommonStyles.colors)(_CommonStyles.Colors.White, 0), accentColor, accentColor, (0, _CommonStyles.colors)(_CommonStyles.Colors.White, 0)));
+}) => (0, _styledComponents.css)(["background:linear-gradient( to right,", " 0,", " 16px,", " calc(100% - 16px),", " 100% );bottom:0;height:1px;left:0;position:absolute;right:0;"], (0, _exports.getColor)(_exports.Colors.White, 0), accentColor, accentColor, (0, _exports.getColor)(_exports.Colors.White, 0)));
 
 // building-blocks/cards/header
 const BBCardHeader = ({
-  accentColor = (0, _CommonStyles.colors)(_CommonStyles.Colors.BrandLightBlue),
+  accentColor = (0, _exports.getColor)(_exports.Colors.BrandLightBlue),
   appIcon,
   children,
   cssOverrides,

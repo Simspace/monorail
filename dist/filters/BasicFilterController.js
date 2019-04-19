@@ -13,7 +13,7 @@ var _Status = require("../status/Status");
 
 var _styledComponents = require("styled-components");
 
-var _CommonStyles = require("../CommonStyles");
+var _exports = require("../helpers/exports");
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
@@ -22,7 +22,7 @@ const FilterStatusCSS =
 (0, _styledComponents.css)(["margin-left:4px;"]);
 const ChoiceSorterCss =
 /*#__PURE__*/
-(0, _styledComponents.css)(["", ";cursor:pointer;padding:8px;:hover{background:hsla(219,100%,54%,0.1);}i{display:none;}"], (0, _CommonStyles.typography)(500, _CommonStyles.FontSizes.Content));
+(0, _styledComponents.css)(["", ";cursor:pointer;padding:8px;:hover{background:hsla(219,100%,54%,0.1);}i{display:none;}"], (0, _exports.typography)(500, _exports.FontSizes.Content));
 exports.ChoiceSorterCss = ChoiceSorterCss;
 const ChoiceSorterSelectedCss =
 /*#__PURE__*/

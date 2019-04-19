@@ -13,7 +13,7 @@ var _styledComponents = _interopRequireWildcard(require("styled-components"));
 
 var _Icon = require("../icon/Icon");
 
-var _CommonStyles = require("../CommonStyles");
+var _exports = require("../helpers/exports");
 
 var _PopOver = require("../popOver/PopOver");
 
@@ -32,14 +32,14 @@ _styledComponents.default.div.withConfig({
   isOpen,
   isActive,
   cssOverrides
-}) => (0, _styledComponents.css)(["", ";", ";", ";", ";align-items:center;cursor:pointer;height:24px;padding:0 4px 0 8px;user-select:none;flex-shrink:0;", ";"], isActive || isOpen ? (0, _CommonStyles.basePrimaryStyles)(_CommonStyles.Colors.BrandDarkBlue) : (0, _styledComponents.css)(["", ";color:", ";"], (0, _CommonStyles.baseSecondaryStyles)(_CommonStyles.Colors.BrandDarkBlue, isOpen), (0, _CommonStyles.colors)(_CommonStyles.Colors.Black74)), (0, _CommonStyles.borderRadius)(), _CommonStyles.buttonTransition, (0, _CommonStyles.flexFlow)('row'), cssOverrides));
+}) => (0, _styledComponents.css)(["", ";", ";", ";", ";align-items:center;cursor:pointer;height:24px;padding:0 4px 0 8px;user-select:none;flex-shrink:0;", ";"], isActive || isOpen ? (0, _exports.basePrimaryStyles)(_exports.Colors.BrandDarkBlue) : (0, _styledComponents.css)(["", ";color:", ";"], (0, _exports.baseSecondaryStyles)(_exports.Colors.BrandDarkBlue), (0, _exports.getColor)(_exports.Colors.Black74)), (0, _exports.borderRadius)(), _exports.buttonTransition, (0, _exports.flexFlow)('row'), cssOverrides));
 
 const FilterText =
 /*#__PURE__*/
 _styledComponents.default.span.withConfig({
   displayName: "Filter__FilterText",
   componentId: "sc-131i0x6-1"
-})(["", ";color:currentColor;text-transform:uppercase;white-space:nowrap;"], (0, _CommonStyles.typography)(700, _CommonStyles.FontSizes.Title5));
+})(["", ";color:currentColor;text-transform:uppercase;white-space:nowrap;"], (0, _exports.typography)(700, _exports.FontSizes.Title5));
 
 const FilterIcon =
 /*#__PURE__*/

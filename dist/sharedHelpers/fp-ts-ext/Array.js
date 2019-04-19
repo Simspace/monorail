@@ -17,8 +17,6 @@ var _function = require("fp-ts/lib/function");
 
 var _Option = require("fp-ts/lib/Option");
 
-var _Setoid = require("./Setoid");
-
 var _Task = require("fp-ts/lib/Task");
 
 var _TaskEither = require("fp-ts/lib/TaskEither");
@@ -28,6 +26,8 @@ var _IO = require("./IO");
 var _Ord = require("./Ord");
 
 var _Option2 = require("./Option");
+
+var _Setoid = require("./Setoid");
 
 /**
  * Curried version of fp-ts' `map` for Arrays

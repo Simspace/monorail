@@ -1,7 +1,7 @@
 import React, { Component, ReactNode } from 'react'
 import { isNil } from '@monorail/sharedHelpers/typeGuards'
 import styled, { css, SimpleInterpolation } from 'styled-components'
-import { Colors, colors, flexFlow, Sizes } from '@monorail/CommonStyles'
+import { Colors, getColor, flexFlow, Sizes } from '@monorail/helpers/exports'
 import { TabProps } from './Tab'
 
 // TabBarIndicator is pos:abs to this element. Also we use offsetLeft on the Tab which references this position.
@@ -13,25 +13,84 @@ export const TabBarContainer = styled.div<CCTabBarProps>(
     padding: 0 8px;
     position: relative;
     box-sizing: border-box;
-    border-bottom: 1px solid ${colors(Colors.Grey94)};
+    border-bottom: 1px solid ${getColor(Colors.Grey94)};
     flex-shrink: 0;
 
     ${cssOverrides};
   `,
 )
 
-const TabBarIndicator = styled.div<TabBarIndicatorProps>(
-  ({ left, width, duration }) => css`
-    background: ${colors(Colors.BrandLightBlue)};
-    border-radius: 3px 3px 0 0;
+const tabBarIndicatorSideWidth = 3
+const tabBarIndicatorBodyWidth = 10
+
+const TabBarIndicatorContainer = styled(
+  ({ left, width, duration, ...otherProps }) => (
+    <div {...otherProps}>
+      <TabBarIndicatorLeft />
+      <TabBarIndicatorBody duration={duration} width={width} />
+      <TabBarIndicatorRight duration={duration} width={width} />
+    </div>
+  ),
+)<TabBarIndicatorProps>(
+  ({ left, duration }) => css`
+    ${flexFlow('row')};
     bottom: 0;
     height: 3px;
-    left: ${left}px;
+    left: 0;
     position: absolute;
-    transition-duration: ${duration * 1.4}ms;
+    transition-duration: ${duration}ms;
     transition-property: all;
     transition-timing-function: ease-in-out;
-    width: ${width}px;
+    transform-origin: bottom left;
+
+    transform: translateX(${left}px);
+  `,
+)
+
+const TabBarIndicatorLeft = styled.div`
+  background: ${getColor(Colors.BrandLightBlue)};
+  border-radius: 3px 0 0 0;
+  height: 100%;
+  width: ${tabBarIndicatorSideWidth + 1}px;
+  position: absolute;
+  left: 0;
+`
+
+const TabBarIndicatorRight = styled(({ duration, width, ...otherProps }) => (
+  <div {...otherProps} />
+))<{ duration: number; width: number }>(
+  ({ duration, width }) => css`
+    background: ${getColor(Colors.BrandLightBlue)};
+    border-radius: 0 3px 0 0;
+    height: 100%;
+    width: ${tabBarIndicatorSideWidth + 1}px;
+    transition-duration: ${duration}ms;
+    transition-property: all;
+    transition-timing-function: ease-in-out;
+    transform-origin: bottom left;
+
+    transform: translateX(
+      ${width - tabBarIndicatorBodyWidth - tabBarIndicatorSideWidth - 1}px
+    );
+  `,
+)
+
+const TabBarIndicatorBody = styled(({ duration, width, ...otherProps }) => (
+  <div {...otherProps} />
+))<{ duration: number; width: number }>(
+  ({ duration, width }) => css`
+    background: ${getColor(Colors.BrandLightBlue)};
+    height: 100%;
+    width: ${tabBarIndicatorBodyWidth}px;
+    transition-duration: ${duration}ms;
+    transition-property: all;
+    transition-timing-function: ease-in-out;
+    transform-origin: bottom left;
+
+    transform: translateX(${tabBarIndicatorSideWidth}px)
+      scaleX(
+        ${(width - tabBarIndicatorSideWidth * 2) / tabBarIndicatorBodyWidth}
+      );
   `,
 )
 
@@ -151,7 +210,7 @@ export class TabBar extends Component<TabBarProps, TabBarState> {
         {!isNil(actions) && (
           <TabBarActions id="tabBarActions">{actions}</TabBarActions>
         )}
-        <TabBarIndicator
+        <TabBarIndicatorContainer
           width={indicatorWidth}
           left={indicatorLeft}
           duration={indicatorTransitionDuration}

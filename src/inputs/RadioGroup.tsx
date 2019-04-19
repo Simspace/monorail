@@ -1,7 +1,7 @@
 import React, { SFC, ChangeEvent } from 'react'
 import styled, { css } from 'styled-components'
-
-import { typography, FontSizes } from '@monorail/CommonStyles'
+import { isEmptyString } from '@monorail/sharedHelpers/typeGuards'
+import { typography, FontSizes } from '@monorail/helpers/exports'
 
 import { Choice } from './Choice'
 
@@ -17,17 +17,29 @@ const Label = styled.p`
   height: 16px;
 `
 
+const InfoText = styled.p`
+  ${typography(300, FontSizes.Title5)};
+  margin-left: 32px;
+`
+
 type ChoiceOption = {
   label: string
   key: string
+  info: string
 }
 
 type Props = {
-  label?: string
-  options: ChoiceOption[]
+  label: string
+  options: Array<ChoiceOption>
   onSelect: (key: string, val: ChangeEvent<HTMLInputElement>) => void
   value: string
-  required?: boolean
+  required: boolean
+}
+
+const defaultOptions = {
+  label: '',
+  key: '',
+  info: '',
 }
 
 export const RadioGroup: SFC<Props> = ({
@@ -36,30 +48,37 @@ export const RadioGroup: SFC<Props> = ({
   onSelect,
   value,
   required,
+  ...otherProps
 }) => {
   return (
-    <RadioGroupWrapper>
-      {label && (
+    <RadioGroupWrapper {...otherProps}>
+      {!isEmptyString(label) && (
         <Label>
           {label}
           {required && '*'}
         </Label>
       )}
-      {options.map((o: ChoiceOption, k) => (
-        <Choice
-          type="radio"
-          name={label}
-          checked={o.key === value}
-          key={k}
-          value={o.key}
-          onChange={e => onSelect(o.key, e)}
-          required={required}
-          readOnly={false}
-          cssOverrides={{ margin: '8px 0' }}
-        >
-          {o.label}
-        </Choice>
+      {options.map((o: ChoiceOption = defaultOptions, k) => (
+        <div key={k + o.label}>
+          <Choice
+            type="radio"
+            name={label}
+            checked={o.key === value}
+            value={o.key}
+            onChange={e => onSelect(o.key, e)}
+            required={required}
+            readOnly={false}
+          >
+            {o.label}
+          </Choice>
+          <InfoText>{o.key === value && !isEmptyString(o.info)}</InfoText>
+        </div>
       ))}
     </RadioGroupWrapper>
   )
+}
+
+RadioGroup.defaultProps = {
+  label: '',
+  required: false,
 }

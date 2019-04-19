@@ -3,6 +3,7 @@ import { SimpleInterpolation } from 'styled-components';
 declare type AnsweredProps = {
     answered?: boolean;
     htmlFor?: string;
+    disabled?: boolean;
 };
 declare type BBGradeIconProps = {
     correct?: boolean;
@@ -10,13 +11,14 @@ declare type BBGradeIconProps = {
 };
 declare type BBChoiceInputProps = AnsweredProps & {
     checked?: boolean;
+    defaultChecked?: boolean;
     onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 };
 declare type CCChoiceProps = AnsweredProps & BBGradeIconProps & {
     cssOverrides?: SimpleInterpolation;
     disabled?: boolean;
     readOnly?: boolean;
-    value?: string | number | string[];
+    value?: string | number | Array<string>;
     required?: boolean;
     name?: string;
 };

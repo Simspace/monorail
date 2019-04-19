@@ -27,7 +27,8 @@ function _extends() { _extends = Object.assign || function (target) { for (var i
 const ActionsMenu = ({
   menuItems
 }) => _react.default.createElement(_react.default.Fragment, null, menuItems.length > 0 && _react.default.createElement(_PopOver.PopOver, {
-  popOver: props => _react.default.createElement(_Menu.Menu, props, menuItems.map(menuItem => _react.default.createElement(_List.SimpleListItem, {
+  popOver: props => _react.default.createElement(_Menu.Menu, props, menuItems.map((menuItem, idx) => _react.default.createElement(_List.SimpleListItem, {
+    key: idx + menuItem.label,
     size: 32,
     leftIcon: menuItem.iconName,
     primaryText: menuItem.label,

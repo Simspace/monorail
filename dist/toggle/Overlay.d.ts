@@ -1,19 +1,24 @@
-import { Component } from 'react';
+import { Component, RefObject } from 'react';
 import { BBModalOverlayProps } from '@monorail/modals/Modals';
 import { PopOverChildProps } from '@monorail/popOver/PopOver';
 import { Omit } from 'typelevel-ts';
-declare type Props = Omit<PopOverChildProps, 'position'> & {
+declare type Props = Omit<PopOverChildProps, 'position' | 'closingAnimationCompleted'> & {
     overlayProps?: Omit<BBModalOverlayProps, 'isOpen' | 'onClick'>;
     escToClose: boolean;
     usesScaleAnimation: boolean;
     zIndex: number;
+    modalContainerRef?: RefObject<HTMLDivElement>;
 };
-export declare class Overlay extends Component<Props> {
+declare type State = {
+    isRendered: boolean;
+};
+export declare class Overlay extends Component<Props, State> {
     static defaultProps: {
         usesScaleAnimation: boolean;
         escToClose: boolean;
         zIndex: number;
     };
+    state: State;
     componentDidMount(): void;
     componentWillUnmount(): void;
     escFunction: (event: KeyboardEvent) => null;

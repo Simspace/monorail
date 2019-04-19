@@ -9,7 +9,7 @@ declare type Props = {
     label?: string;
     onChange: (key: string, value: string | number) => void;
     cssOverrides?: SimpleInterpolation;
-    textFields: MultipleTextFieldProps[];
+    textFields: Array<MultipleTextFieldProps>;
     children?: ReactNode;
 };
 export declare class MultipleTextField extends Component<Props> {

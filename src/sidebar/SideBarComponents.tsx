@@ -5,7 +5,7 @@ import {
   BorderRadius,
   borderRadius,
   Colors,
-  colors,
+  getColor,
   ease,
   flexFlow,
   FontSizes,
@@ -14,7 +14,7 @@ import {
   transition,
   typography,
   visible,
-} from '@monorail/CommonStyles'
+} from '@monorail/helpers/exports'
 import { CommonComponentType } from '@monorail/types'
 import { PopOverToggleProps } from '@monorail/popOver/PopOver'
 import {
@@ -25,7 +25,7 @@ import {
   ListItemText,
 } from '@monorail/list/List'
 import posed from 'react-pose'
-import { zIndex, ZIndexNodeName } from '@monorail/commonStyles/zindex'
+import { zIndex, ZIndexNodeName } from '@monorail/helpers/zIndex'
 
 export const sideBarCollapsedTransitionDuration = 150
 
@@ -144,7 +144,7 @@ export const SidebarMenuItemDropDownToggle = styled(
           cssOverrides={
             isOpen &&
             css`
-              color: ${colors(Colors.AccentPurple700)};
+              color: ${getColor(Colors.AccentPurple700)};
             `
           }
         >
@@ -176,32 +176,32 @@ export const SidebarMenuItemDropDownToggle = styled(
   ({ isOpen, isSideBarCollapsed, cssOverrides, disabled }) => css`
     ${disabled && baseDisabledStyles};
 
-    background: ${colors(Colors.White)};
+    background: ${getColor(Colors.White)};
     margin: 0 8px 8px;
     border: 1px solid
-      ${isOpen ? colors(Colors.AccentPurple700) : colors(Colors.White)};
+      ${isOpen ? getColor(Colors.AccentPurple700) : getColor(Colors.White)};
     color: ${isOpen
-      ? colors(Colors.AccentPurple700)
-      : colors(Colors.BrandDarkBlue)};
+      ? getColor(Colors.AccentPurple700)
+      : getColor(Colors.BrandDarkBlue)};
 
     &:hover,
     &:active {
-      background: ${colors(Colors.White)};
+      background: ${getColor(Colors.White)};
     }
 
     &:hover {
-      border-color: ${!isOpen && colors(Colors.AccentPurple500)};
+      border-color: ${!isOpen && getColor(Colors.AccentPurple500)};
     }
 
     &:active {
-      border-color: ${colors(Colors.AccentPurple700)};
-      color: ${colors(Colors.AccentPurple700)};
+      border-color: ${getColor(Colors.AccentPurple700)};
+      color: ${getColor(Colors.AccentPurple700)};
     }
 
     &:active,
     &:active ${ListItemGraphic} {
       /* stylelint-disable-line selector-type-no-unknown */
-      color: ${colors(Colors.AccentPurple700)};
+      color: ${getColor(Colors.AccentPurple700)};
     }
 
     ${ListItemText} {
@@ -216,7 +216,7 @@ export const SidebarMenuItemDropDownToggle = styled(
 export const SidebarMenuContextRibbon = styled.div<CommonComponentType>`
   ${typography(500, FontSizes.Title5, '12px 12px 13px 20px')};
 
-  color: ${colors(Colors.Black62)};
+  color: ${getColor(Colors.Black62)};
 `
 
 export const SideBarMenuDivider = styled.div`

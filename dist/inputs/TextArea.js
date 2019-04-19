@@ -11,7 +11,7 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _styledComponents = _interopRequireWildcard(require("styled-components"));
 
-var _CommonStyles = require("../CommonStyles");
+var _exports = require("../helpers/exports");
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
@@ -27,14 +27,14 @@ _styledComponents.default.label.withConfig({
   componentId: "zv28js-0"
 })(({
   cssOverrides
-}) => (0, _styledComponents.css)(["", ";max-width:256px;width:100%;position:relative;", ";"], (0, _CommonStyles.flexFlow)(), cssOverrides));
+}) => (0, _styledComponents.css)(["", ";max-width:256px;width:100%;position:relative;", ";"], (0, _exports.flexFlow)(), cssOverrides));
 
 const BBTextAreaLabel =
 /*#__PURE__*/
 _styledComponents.default.p.withConfig({
   displayName: "TextArea__BBTextAreaLabel",
   componentId: "zv28js-1"
-})(["", ";margin:4px 0;"], (0, _CommonStyles.typography)(500, _CommonStyles.FontSizes.Title5));
+})(["", ";margin:4px 0;"], (0, _exports.typography)(500, _exports.FontSizes.Title5));
 
 const BBTextAreaInput =
 /*#__PURE__*/
@@ -44,7 +44,7 @@ _styledComponents.default.textarea.withConfig({
 })(({
   chromeless,
   compact
-}) => (0, _styledComponents.css)(["", ";", ";border:1px solid ", ";box-sizing:border-box;color:", ";outline:none;padding:4px 6px 4px 6px;resize:none;width:100%;", ";::placeholder{color:", ";font-style:italic;}&:hover{border:1px solid ", ";}&:focus,&:active{border:1px solid ", ";}", ";", ";"], (0, _CommonStyles.typography)(400, _CommonStyles.FontSizes.Title5), (0, _CommonStyles.borderRadius)(), (0, _CommonStyles.colors)(_CommonStyles.Colors.Black, 0.12), (0, _CommonStyles.colors)(_CommonStyles.Colors.Black89), _CommonStyles.buttonTransition, (0, _CommonStyles.colors)(_CommonStyles.Colors.Black54), (0, _CommonStyles.colors)(_CommonStyles.Colors.Black, 0.3), (0, _CommonStyles.colors)(_CommonStyles.Colors.BrandLightBlue), chromeless && (0, _styledComponents.css)(["border:1px solid transparent;"]), compact && (0, _styledComponents.css)(["overflow:hidden;"])));
+}) => (0, _styledComponents.css)(["", ";", ";border:1px solid ", ";box-sizing:border-box;color:", ";outline:none;padding:4px 6px 4px 6px;resize:none;width:100%;", ";::placeholder{color:", ";font-style:italic;}&:hover{border:1px solid ", ";}&:focus,&:active{border:1px solid ", ";}", ";", ";"], (0, _exports.typography)(400, _exports.FontSizes.Title5), (0, _exports.borderRadius)(), (0, _exports.getColor)(_exports.Colors.Black, 0.12), (0, _exports.getColor)(_exports.Colors.Black89), _exports.buttonTransition, (0, _exports.getColor)(_exports.Colors.Black54), (0, _exports.getColor)(_exports.Colors.Black, 0.3), (0, _exports.getColor)(_exports.Colors.BrandLightBlue), chromeless && (0, _styledComponents.css)(["border:1px solid transparent;"]), compact && (0, _styledComponents.css)(["overflow:hidden;"])));
 /*
 * Types
 */
@@ -104,6 +104,7 @@ class TextArea extends _react.Component {
       readOnly,
       required,
       value,
+      onBlur,
       ...otherProps
     } = this.props;
     return _react.default.createElement(BBTextAreaContainer, {
@@ -119,7 +120,8 @@ class TextArea extends _react.Component {
       readOnly: readOnly,
       required: required,
       rows: compact ? 1 : 3,
-      value: value
+      value: value,
+      onBlur: onBlur
     }, otherProps)));
   }
 

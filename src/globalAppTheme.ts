@@ -1,4 +1,4 @@
-import { Colors } from '@monorail/CommonStyles'
+import { Colors } from '@monorail/helpers/exports'
 import { isNil } from '@monorail/sharedHelpers/typeGuards'
 
 export interface GlobalAppThemeInterface {

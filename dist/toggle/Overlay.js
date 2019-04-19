@@ -5,6 +5,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.Overlay = void 0;
 
+var _styledComponents = _interopRequireWildcard(require("styled-components"));
+
 var _react = _interopRequireWildcard(require("react"));
 
 var _Modals = require("../modals/Modals");
@@ -16,6 +18,9 @@ function _extends() { _extends = Object.assign || function (target) { for (var i
 class Overlay extends _react.Component {
   constructor(...args) {
     super(...args);
+    this.state = {
+      isRendered: false
+    };
 
     this.escFunction = event => {
       const {
@@ -42,6 +47,10 @@ class Overlay extends _react.Component {
     if (escToClose) {
       document.addEventListener('keydown', this.escFunction, false);
     }
+
+    this.setState(() => ({
+      isRendered: true
+    }));
   }
 
   componentWillUnmount() {
@@ -61,17 +70,24 @@ class Overlay extends _react.Component {
       onClick,
       overlayProps,
       usesScaleAnimation,
-      zIndex
+      zIndex,
+      modalContainerRef
     } = this.props;
+    const {
+      isRendered
+    } = this.state;
     return _react.default.createElement(_Modals.BBModalContainer, {
       onClick: e => e.stopPropagation(),
       usesScaleAnimation: usesScaleAnimation,
-      isOpen: isOpen,
-      zIndex: zIndex
-    }, _react.default.createElement(_Modals.BBModalOverlay, _extends({
-      isOpen: isOpen,
+      isOpen: isRendered && isOpen,
+      zIndex: zIndex,
+      ref: modalContainerRef
+    }, _react.default.createElement(_StyledBBModalOverlay, _extends({
+      isOpen: isRendered && isOpen,
       onClick: onClick
-    }, overlayProps)), children);
+    }, overlayProps, {
+      _css: isRendered && (0, _styledComponents.css)(["animation:", " linear ", "ms forwards;"], isOpen ? _Modals.overlayOpenAnimation : _Modals.overlayCloseAnimation, _Modals.modalAnimationDuration)
+    })), children);
   }
 
 }
@@ -82,3 +98,5 @@ Overlay.defaultProps = {
   escToClose: true,
   zIndex: 9998
 };
+
+var _StyledBBModalOverlay = (0, _styledComponents.default)(_Modals.BBModalOverlay)`${p => p._css}`;

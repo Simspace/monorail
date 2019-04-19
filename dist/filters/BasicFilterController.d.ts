@@ -8,13 +8,13 @@ export declare type BasicOption = {
 export declare type BasicOptionGroup = {
     label: string;
     key: string;
-    items: BasicOption[];
+    items: Array<BasicOption>;
 };
 declare type BasicFilterControllerProps = {
     document?: Document;
     group: BasicOptionGroup;
     children: (params: {
-        collection: BasicOption[];
+        collection: Array<BasicOption>;
         document?: Document;
         isActive: boolean;
         title: ReactNode;
@@ -37,7 +37,7 @@ declare type BasicSorterControllerProps = {
     document?: Document;
     group: BasicOptionGroup;
     children: (params: {
-        collection: BasicOption[];
+        collection: Array<BasicOption>;
         document?: Document;
         isActive: boolean;
         title: ReactNode;

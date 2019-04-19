@@ -1,5 +1,5 @@
-import { SimpleInterpolation } from 'styled-components';
 import { ReactType } from 'react';
+import { SimpleInterpolation } from 'styled-components';
 export declare type CommonComponentType = {
     as?: ReactType;
     className?: string;

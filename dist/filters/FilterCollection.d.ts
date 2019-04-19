@@ -6,7 +6,7 @@ import { FilterGroup, FilterGroupWithData, FilterState, Sorter, SorterGroup } fr
  */
 export declare const createFilterGroup: <CollectionItem extends object, FilterKey extends keyof CollectionItem & string>(collectionItem: FilterGroup<CollectionItem, FilterKey>) => FilterGroup<CollectionItem, FilterKey>;
 declare type Props<CollectionItem extends object, SearchByKey extends keyof CollectionItem & string, FilterKey extends keyof CollectionItem & string> = {
-    catalog: CollectionItem[];
+    catalog: Array<CollectionItem>;
     itemRender: (item: CollectionItem) => ReactNode;
     searchByKey: SearchByKey;
     filterGroups: Array<FilterGroup<CollectionItem, FilterKey>>;

@@ -162,6 +162,7 @@ class PopOver extends _react.Component {
     super(...args);
     this.state = {
       isOpen: false,
+      isRendered: this.props.alwaysRender,
       position: {
         dropXAmount: 0,
         dropXDirection: 'left',
@@ -178,20 +179,34 @@ class PopOver extends _react.Component {
     };
 
     this.togglePopOver = () => {
+      const {
+        onToggle
+      } = this.props;
       this.setState(({
-        isOpen
+        isOpen,
+        isRendered
       }) => {
-        this.props.onToggle && this.props.onToggle(!isOpen);
+        const newIsOpen = !isOpen;
+        const newIsRendered = newIsOpen ? true : isRendered;
+        onToggle && onToggle(newIsOpen);
         return {
-          isOpen: !isOpen
+          isOpen: newIsOpen,
+          isRendered: newIsRendered
         };
       });
+    };
+
+    this.closingAnimationCompleted = () => {
+      this.setState(() => ({
+        isRendered: false
+      }));
     };
 
     this.onClick = event => {
       const {
         gap,
-        toSide
+        toSide,
+        onToggle
       } = this.props; // Get basic dimensions about the the Toggle and the window.
 
       const boundingRect = event.currentTarget.getBoundingClientRect();
@@ -200,27 +215,32 @@ class PopOver extends _react.Component {
 
       const dropYDirection = innerHeight / 2 > boundingRect.top + boundingRect.height / 2 ? 'top' : 'bottom';
       const dropXDirection = innerWidth / 2 > boundingRect.left + boundingRect.width / 2 ? 'left' : 'right';
+      const position = { ...getDropAmounts({
+          boundingRect,
+          dropXDirection,
+          dropYDirection,
+          gap,
+          innerHeight,
+          innerWidth,
+          toSide
+        }),
+        dropXDirection,
+        dropYDirection,
+        gap,
+        originHeight: boundingRect.height,
+        originWidth: boundingRect.width
+      };
       this.setState(({
-        isOpen
+        isOpen,
+        isRendered
       }) => {
-        this.props.onToggle && this.props.onToggle(!isOpen);
+        const newIsOpen = !isOpen;
+        const newIsRendered = newIsOpen ? true : isRendered;
+        onToggle && onToggle(newIsOpen);
         return {
-          isOpen: !isOpen,
-          position: { ...getDropAmounts({
-              boundingRect,
-              dropXDirection,
-              dropYDirection,
-              gap,
-              innerHeight,
-              innerWidth,
-              toSide
-            }),
-            dropXDirection,
-            dropYDirection,
-            gap,
-            originHeight: boundingRect.height,
-            originWidth: boundingRect.width
-          }
+          isOpen: newIsOpen,
+          isRendered: newIsRendered,
+          position
         };
       });
     };
@@ -239,20 +259,21 @@ class PopOver extends _react.Component {
       document
     } = this.props;
     const {
+      isRendered,
       isOpen,
       position
     } = this.state;
-    const shouldRender = !this.props.optimize || isOpen;
     return _react.default.createElement(_react.default.Fragment, null, toggle({
       onClick: this.onClick,
       isOpen
-    }), shouldRender && _react.default.createElement(_Portal.Portal, {
+    }), isRendered && _react.default.createElement(_Portal.Portal, {
       document: document
     }, popOver({
       isOpen,
       position,
       onClick: this.togglePopOver,
-      togglePopOver: this.togglePopOver
+      togglePopOver: this.togglePopOver,
+      closingAnimationCompleted: this.closingAnimationCompleted
     })));
   }
 
@@ -261,5 +282,6 @@ class PopOver extends _react.Component {
 exports.PopOver = PopOver;
 PopOver.defaultProps = {
   gap: 8,
-  toSide: false
+  toSide: false,
+  alwaysRender: false
 };

@@ -6,10 +6,10 @@ import {
   AppOrAuthSubAppName,
   Colors,
   borderRadius,
-  colors,
+  getColor,
   convertAppNameToColor,
   flexFlow,
-} from '@monorail/CommonStyles'
+} from '@monorail/helpers/exports'
 
 type AppIconProps = CommonComponentType & {
   appName: AppOrAuthSubAppName
@@ -24,13 +24,13 @@ export const AppIcon = styled(({ appName, cssOverrides, ...otherProps }) => (
     ${flexFlow('row')};
     ${borderRadius()};
 
-    background: ${colors(convertAppNameToColor(appName))};
+    background: ${getColor(convertAppNameToColor(appName))};
     box-sizing: border-box;
     height: 16px;
     width: 16px;
 
     ${Icon} {
-      fill: ${colors(Colors.White)};
+      fill: ${getColor(Colors.White)};
       height: 100%;
       margin: auto;
       width: 100%;

@@ -1,12 +1,11 @@
-import { Component } from 'react';
-import { AppName } from '@monorail/CommonStyles';
-import { CommonComponentType } from '@monorail/types';
-declare type SectionHeaderProps = CommonComponentType & {
-    iconLeft?: string | AppName;
-    iconRight?: string | AppName;
+import { AppName } from '@monorail/helpers/exports';
+import { FCwDP } from '@monorail/sharedHelpers/react';
+declare type DefaultProps = {
+    iconLeft: string | AppName;
+    iconRight: string | AppName;
+};
+declare type RequiredProps = {
     title: string;
 };
-export declare class SectionHeader extends Component<SectionHeaderProps> {
-    render(): JSX.Element;
-}
+export declare const SectionHeader: FCwDP<RequiredProps, DefaultProps>;
 export {};

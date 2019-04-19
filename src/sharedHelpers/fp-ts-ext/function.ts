@@ -22,7 +22,7 @@ export const o = <A, B, C>(f: (y: B) => C, g: (x: A) => B) => (x: A): C =>
 /**
  * Utility for constructing tuples with proper inference
  */
-export const tuple = <A extends Primitive[]>(...args: A) => args
+export const tuple = <A extends Array<Primitive>>(...args: A) => args
 
 /**
  * Flips the position of each item in a 2-tuple

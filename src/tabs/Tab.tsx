@@ -4,11 +4,11 @@ import { Link } from 'react-router'
 import {
   baseFocusStyles,
   Colors,
-  colors,
+  getColor,
   flexFlow,
   FontSizes,
   typography,
-} from '@monorail/CommonStyles'
+} from '@monorail/helpers/exports'
 
 import { LinkProps } from '@monorail/list/List'
 import { CommonComponentType } from '@monorail/types'
@@ -21,7 +21,7 @@ const CCTab = styled.div<CCTabProps>(
     ${typography(700, FontSizes.Title5)};
 
     align-items: center;
-    color: ${colors(Colors.BrandLightBlue)};
+    color: ${getColor(Colors.BrandLightBlue)};
     cursor: pointer;
     min-height: 24px;
     padding: 0 8px;
@@ -34,11 +34,11 @@ const CCTab = styled.div<CCTabProps>(
     }
 
     &:hover {
-      background: ${colors(Colors.BrandLightBlue, 0.08)};
+      background: ${getColor(Colors.BrandLightBlue, 0.08)};
     }
 
     &:active {
-      background: ${colors(Colors.BrandLightBlue, 0.16)};
+      background: ${getColor(Colors.BrandLightBlue, 0.16)};
     }
 
     ${baseFocusStyles()};
@@ -83,14 +83,27 @@ export class Tab extends Component<TabProps> {
 
     if (isActive && !isNil(this.tabRef.current)) {
       if (isNil(as)) {
+        const tabElement = this.tabRef.current
+        const tabClientRect = tabElement.getBoundingClientRect()
+        const parentClientRect = tabElement.parentElement
+          ? tabElement.parentElement.getBoundingClientRect()
+          : { left: 0 }
+
         setIndicator(
-          this.tabRef.current.offsetWidth,
-          this.tabRef.current.offsetLeft,
+          tabClientRect.width,
+          tabClientRect.left - parentClientRect.left,
         )
       } else if (as === Link) {
-        const tabLinkRef = findDOMNode(this.tabRef.current) as HTMLAnchorElement
+        const tabElement = findDOMNode(this.tabRef.current) as HTMLAnchorElement
+        const tabClientRect = tabElement.getBoundingClientRect()
+        const parentClientRect = tabElement.parentElement
+          ? tabElement.parentElement.getBoundingClientRect()
+          : { left: 0 }
 
-        setIndicator(tabLinkRef.offsetWidth, tabLinkRef.offsetLeft)
+        setIndicator(
+          tabClientRect.width,
+          tabClientRect.left - parentClientRect.left,
+        )
       }
     }
   }

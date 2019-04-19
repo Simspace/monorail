@@ -113,7 +113,7 @@ export const mkJSONOptionDecoderSelector = <A>(
 }
 
 export function transformDecodeError(errs: t.Errors) {
-  const errors = errs.reduce((acc: string[], err: t.ValidationError) => {
+  const errors = errs.reduce((acc: Array<string>, err: t.ValidationError) => {
     // err.context is a read-only array so doesn't work with fp-ts/lib/Array
     if (err.context && err.context[1] && err.context[1].key) {
       const key = err.context[1].key

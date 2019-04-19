@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.isFunction = exports.isObject = exports.isNumber = exports.isString = exports.isFalsy = exports.isZero = exports.isEmptyString = exports.isTrue = exports.isFalse = exports.isNil = exports.isUndefined = exports.isNull = void 0;
+exports.isFunction = exports.isObject = exports.isNumber = exports.isString = exports.isFalsy = exports.isZero = exports.isEmptyString = exports.isTrue = exports.isFalse = exports.isNotNil = exports.isNil = exports.isUndefined = exports.isNull = void 0;
 
 /**
  * Tests whether or not an argument is null (type guard)
@@ -26,11 +26,19 @@ exports.isUndefined = isUndefined;
 
 const isNil = x => isNull(x) || isUndefined(x);
 /**
- * Type guard for the `false` literal of the `boolean` primitive
+ * Tests whether or not an argument is null or undefined (type guard)
  */
 
 
 exports.isNil = isNil;
+
+const isNotNil = x => !isNil(x);
+/**
+ * Type guard for the `false` literal of the `boolean` primitive
+ */
+
+
+exports.isNotNil = isNotNil;
 
 const isFalse = x => typeof x === 'boolean' && x === false;
 /**

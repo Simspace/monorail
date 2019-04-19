@@ -1,11 +1,11 @@
 import styled, { css, SimpleInterpolation } from 'styled-components'
 import {
-  colors,
+  getColor,
   Colors,
   flexFlow,
   FontSizes,
   typography,
-} from '@monorail/CommonStyles'
+} from '@monorail/helpers/exports'
 import { CommonComponentType } from '@monorail/types'
 
 // Types
@@ -100,7 +100,7 @@ export const TableHeaderContainer = styled.div<
     ${rowPadding({ singleCollection, dense, collapsible })};
 
     align-items: center;
-    border-bottom: 1px solid ${colors(Colors.Grey94)};
+    border-bottom: 1px solid ${getColor(Colors.Grey94)};
     box-sizing: border-box;
     flex-shrink: 0;
     min-height: 32px;
@@ -117,7 +117,7 @@ export const TableHeaderData = styled.div<
     ${typography(500, FontSizes.Title5)};
 
     align-items: center;
-    color: ${colors(Colors.Black89)};
+    color: ${getColor(Colors.Black89)};
     height: 100%;
     padding: 8px 8px 7px; /* 7px bottom because of the bottomBorder on the row. */
 
@@ -129,7 +129,7 @@ export const TableHeaderData = styled.div<
         user-select: none;
 
         &:hover {
-          background: ${colors(Colors.Grey94)};
+          background: ${getColor(Colors.Grey94)};
         }
       `};
 
@@ -168,7 +168,7 @@ export const TableRowContainer = styled.div<
     position: relative; /* Need pos:rel so that the pseudo element for the indented border works. */
 
     &::after {
-      background: ${colors(Colors.Grey96)};
+      background: ${getColor(Colors.Grey96)};
       bottom: 0;
       content: '';
       height: 1px;
@@ -188,7 +188,7 @@ export const TableRowData = styled.div<CommonComponentType & TableDataType>(
     ${typography(400, FontSizes.Title5)};
 
     align-items: center;
-    color: ${colors(Colors.Black89)};
+    color: ${getColor(Colors.Black89)};
     padding: 12px 8px;
     height: 100%;
 
@@ -240,7 +240,7 @@ export const TableFooterContainer = styled.div<
     ${rowPadding({ singleCollection, dense, collapsible })};
 
     align-items: center;
-    background: ${colors(Colors.Grey99)};
+    background: ${getColor(Colors.Grey99)};
     flex-shrink: 0;
     height: 24px;
 
@@ -252,7 +252,7 @@ export const TableFooterMeta = styled.div<CommonComponentType>(
   ({ cssOverrides }) => css`
     ${typography(400, FontSizes.Title5)};
 
-    color: ${colors(Colors.Black74)};
+    color: ${getColor(Colors.Black74)};
     margin-left: auto;
 
     ${cssOverrides};

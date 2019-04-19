@@ -31,6 +31,8 @@ var _monocleTs = require("monocle-ts");
 
 var _react = require("react");
 
+var _fp = require("lodash/fp");
+
 const intializeFilterState = filterGroups => {
   const initStrMap = {};
   const initFilterState = {};
@@ -229,7 +231,7 @@ class FilterCollection extends _react.Component {
     // whether or not to show the reset button
 
 
-    const isFiltered = this.initialFilterState !== filterState;
+    const isFiltered = !(0, _fp.isEqual)(this.initialFilterState, filterState);
     return children({
       filters: {
         resetFilters: this.resetFilters,

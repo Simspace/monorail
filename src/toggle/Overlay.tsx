@@ -1,24 +1,40 @@
-import React, { Component } from 'react'
+import React, { Component, RefObject } from 'react'
 import {
   BBModalContainer,
   BBModalOverlay,
   BBModalOverlayProps,
+  modalAnimationDuration,
+  overlayCloseAnimation,
+  overlayOpenAnimation,
 } from '@monorail/modals/Modals'
 import { PopOverChildProps } from '@monorail/popOver/PopOver'
 import { Omit } from 'typelevel-ts'
+import { css } from 'styled-components'
 
-type Props = Omit<PopOverChildProps, 'position'> & {
+type Props = Omit<
+  PopOverChildProps,
+  'position' | 'closingAnimationCompleted'
+> & {
   overlayProps?: Omit<BBModalOverlayProps, 'isOpen' | 'onClick'>
   escToClose: boolean
   usesScaleAnimation: boolean
   zIndex: number
+  modalContainerRef?: RefObject<HTMLDivElement>
 }
 
-export class Overlay extends Component<Props> {
+type State = {
+  isRendered: boolean
+}
+
+export class Overlay extends Component<Props, State> {
   static defaultProps = {
     usesScaleAnimation: false,
     escToClose: true,
     zIndex: 9998,
+  }
+
+  state: State = {
+    isRendered: false,
   }
 
   componentDidMount() {
@@ -26,6 +42,10 @@ export class Overlay extends Component<Props> {
     if (escToClose) {
       document.addEventListener('keydown', this.escFunction, false)
     }
+
+    this.setState(() => ({
+      isRendered: true,
+    }))
   }
 
   componentWillUnmount() {
@@ -55,16 +75,32 @@ export class Overlay extends Component<Props> {
       overlayProps,
       usesScaleAnimation,
       zIndex,
+      modalContainerRef,
     } = this.props
+    const { isRendered } = this.state
 
     return (
       <BBModalContainer
         onClick={e => e.stopPropagation()}
         usesScaleAnimation={usesScaleAnimation}
-        isOpen={isOpen}
+        isOpen={isRendered && isOpen}
         zIndex={zIndex}
+        ref={modalContainerRef}
       >
-        <BBModalOverlay isOpen={isOpen} onClick={onClick} {...overlayProps} />
+        <BBModalOverlay
+          isOpen={isRendered && isOpen}
+          onClick={onClick}
+          css={
+            isRendered &&
+            css`
+              animation: ${isOpen
+                  ? overlayOpenAnimation
+                  : overlayCloseAnimation}
+                linear ${modalAnimationDuration}ms forwards;
+            `
+          }
+          {...overlayProps}
+        />
 
         {children}
       </BBModalContainer>

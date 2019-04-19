@@ -9,13 +9,13 @@ import styled, { css } from 'styled-components'
 
 import {
   Colors,
-  colors,
+  getColor,
   ElevationRange,
   flexFlow,
   FontSizes,
   getElevation,
   typography,
-} from '@monorail/CommonStyles'
+} from '@monorail/helpers/exports'
 import { Icon } from '@monorail/icon/Icon'
 
 import { ButtonDisplay, ButtonSize } from '@monorail/buttons/buttonTypes'
@@ -32,7 +32,7 @@ const PageHeaderContainer = styled.div<PageHeaderContainerProps>(
   ({ flush, cssOverrides, hasAboveContent }) => css`
     ${flexFlow('column')};
 
-    background: ${colors(Colors.White)};
+    background: ${getColor(Colors.White)};
     flex-shrink: 0;
 
     /* Instead of hiding overflow errors, let's see them and fix them. This was causing buttons to be hidden in error. */
@@ -44,10 +44,10 @@ const PageHeaderContainer = styled.div<PageHeaderContainerProps>(
     &::before {
       ${flush &&
         css`
-          border-bottom: 1px solid ${colors(Colors.Grey94)};
+          border-bottom: 1px solid ${getColor(Colors.Grey94)};
         `};
 
-      background: ${colors(Colors.White)};
+      background: ${getColor(Colors.White)};
       bottom: 0;
       content: '';
       left: 0;
@@ -76,16 +76,26 @@ const pageHeaderPadding = css`
 
 const PageHeaderShadow = styled.div<PageHeaderShadowProps>(
   ({ willAnimateShadow, flush }) => css`
-    ${getElevation(ElevationRange.Elevation6)};
-
-    background: ${colors(Colors.White)};
-    bottom: 6px;
-    content: '';
-    left: -2px;
+    bottom: -20px;
+    left: 0;
+    overflow: hidden;
+    pointer-events: none;
     position: absolute;
-    right: -2px;
+    right: 0;
     top: 0;
     z-index: -10;
+
+    &:before {
+      ${getElevation(ElevationRange.Elevation6)};
+
+      background: ${getColor(Colors.White)};
+      bottom: 26px;
+      content: '';
+      left: -10px;
+      position: absolute;
+      right: -10px;
+      top: 0;
+    }
 
     ${(flush || willAnimateShadow) &&
       css`
@@ -94,7 +104,7 @@ const PageHeaderShadow = styled.div<PageHeaderShadowProps>(
   `,
 )
 
-const BreadCrumbsContainer = styled.div<BreadCrumbsContainerProps>`
+const PageHeaderNavigation = styled.div<PageHeaderNavigationProps>`
   ${flexFlow('row')};
   ${pageHeaderPadding};
 
@@ -102,17 +112,30 @@ const BreadCrumbsContainer = styled.div<BreadCrumbsContainerProps>`
   height: 32px;
 `
 
+const BreadCrumbsContainer = styled.div`
+  ${flexFlow('row')};
+  align-items: center;
+
+  &::before {
+    background: ${getColor(Colors.Black24)};
+    width: 1px;
+    height: 20px;
+    content: '';
+    margin-right: 12px;
+  }
+`
+
 const BreadCrumb = styled.a`
   ${typography(500, FontSizes.Title5)};
 
-  color: ${colors(Colors.Black54)};
+  color: ${getColor(Colors.Black54)};
   cursor: pointer;
   padding: 6px 2px;
   text-transform: none;
   user-select: none;
 
   &:hover {
-    color: ${colors(Colors.BrandLightBlue)};
+    color: ${getColor(Colors.BrandLightBlue)};
   }
 `
 
@@ -131,7 +154,7 @@ export const TitleContainer = styled.div<{ hasAboveContent: boolean }>(
 const Title = styled.h1`
   ${typography(700, FontSizes.Title1)};
 
-  color: ${colors(Colors.BrandDarkBlue)};
+  color: ${getColor(Colors.BrandDarkBlue)};
   margin-left: 0;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -146,7 +169,7 @@ export type PageHeaderShadowProps = {
   flush: boolean
 }
 
-type BreadCrumbsContainerProps = {
+type PageHeaderNavigationProps = {
   breadCrumbs?: Array<{
     title: string
     path?: (event: ReactMouseEvent<HTMLAnchorElement>) => void
@@ -159,7 +182,7 @@ type PageHeaderContainerProps = CommonComponentType & {
 }
 
 type PageHeaderProps = CommonComponentType &
-  BreadCrumbsContainerProps & {
+  PageHeaderNavigationProps & {
     goBack?: (event: ReactMouseEvent<Element>) => void
     title: string
     action?: ReactNode
@@ -222,7 +245,7 @@ export class PageHeader extends Component<PageHeaderProps> {
         flush={flush}
       >
         {(!isNil(breadCrumbs) || !isNil(goBack)) && (
-          <BreadCrumbsContainer>
+          <PageHeaderNavigation>
             {goBack && (
               <Button
                 size={ButtonSize.Compact}
@@ -237,9 +260,12 @@ export class PageHeader extends Component<PageHeaderProps> {
                 Go Back
               </Button>
             )}
-
-            {this.renderBreadCrumbs()}
-          </BreadCrumbsContainer>
+            {breadCrumbs && (
+              <BreadCrumbsContainer>
+                {this.renderBreadCrumbs()}
+              </BreadCrumbsContainer>
+            )}
+          </PageHeaderNavigation>
         )}
 
         <TitleContainer hasAboveContent={hasAboveContent}>

@@ -9,7 +9,7 @@ import { isObject } from '../typeGuards'
  */
 export const keys = <A extends Record<string, unknown>, K extends keyof A>(
   x: A,
-): K[] => Object.keys(x) as K[]
+): Array<K> => Object.keys(x) as Array<K>
 
 /**
  * Retrieves the value of a given property key from an object (curried)
@@ -23,7 +23,7 @@ export const prop = <A extends Record<string, unknown>, K extends keyof A>(
  */
 export const omit = <A extends Record<string, unknown>, K extends keyof A>(
   rec: A,
-  ks: K[],
+  ks: Array<K>,
 ): { [P in Exclude<keyof A, K>]: A[P] } => {
   const { ...result } = rec
 
@@ -37,7 +37,7 @@ export const omit = <A extends Record<string, unknown>, K extends keyof A>(
  */
 export const pick = <A extends Record<string, unknown>, K extends keyof A>(
   rec: A,
-  ks: K[],
+  ks: Array<K>,
 ): { [P in K]: A[P] } => {
   const result = {} as { [P in K]: A[P] }
 

@@ -13,7 +13,7 @@ export type ActiveFilterCountData = {
   activeFilterCount: number
 }
 
-type CheckedFiltersData = { filters: FilterWithCheckedData[] }
+type CheckedFiltersData = { filters: Array<FilterWithCheckedData> }
 
 export type FilterGroupWithData<
   CollectionItem extends object,
@@ -34,7 +34,7 @@ export type FilterGroupWithData<
     } & ActiveFilterCountData &
       CheckedFiltersData
 
-type FilterOptionsData = { filters: FilterOption[] }
+type FilterOptionsData = { filters: Array<FilterOption> }
 
 export type FilterGroup<
   CollectionItem extends object,
@@ -60,7 +60,7 @@ export type FilterGroup<
       transform: <A extends CollectionItem[FilterKey]>(searchValue: A) => string
     } & FilterOptionsData
 
-export type AppliedFilters = { filters: string[] }
+export type AppliedFilters = { filters: Array<string> }
 
 export type AppliedFilterGroup<
   CollectionItem extends object,
@@ -87,7 +87,7 @@ export type FilterState = Record<string, StrBoolMap>
 export type Sorter<CollectionItem> = {
   label: string
   key: string
-  onSort: (xs: CollectionItem[]) => CollectionItem[]
+  onSort: (xs: Array<CollectionItem>) => Array<CollectionItem>
   selected: boolean
 }
 export type SorterGroup<CollectionItem> = {

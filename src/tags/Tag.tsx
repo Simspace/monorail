@@ -4,11 +4,11 @@ import styled, { css, SimpleInterpolation } from 'styled-components'
 import { Icon } from '@monorail/icon/Icon'
 import {
   Colors,
-  colors,
+  getColor,
   flexFlow,
   FontSizes,
   typography,
-} from '@monorail/CommonStyles'
+} from '@monorail/helpers/exports'
 import { isNil } from '@monorail/sharedHelpers/typeGuards'
 
 const tagHeight = 24
@@ -31,7 +31,7 @@ export const CCTag = styled.div<CCTagProps>(
     ${flexFlow('row')};
     display: inline-flex;
     align-items: center;
-    background: ${colors(Colors.Black, 0.07)};
+    background: ${getColor(Colors.Black, 0.07)};
     border-radius: ${tagHeight / 2}px;
     height: ${tagHeight}px;
     position: relative; /* ::before circle is pos: abs to this element. */
@@ -39,7 +39,7 @@ export const CCTag = styled.div<CCTagProps>(
     user-select: none;
 
     &::before {
-      background: ${colors(Colors.White)};
+      background: ${getColor(Colors.White)};
       border-radius: ${circleRadius}px;
       bottom: 2px;
       content: '';
@@ -54,14 +54,14 @@ export const CCTag = styled.div<CCTagProps>(
 )
 
 const StyledIconLeft = styled(Icon)`
-  color: ${colors(Colors.BrandLightBlue)};
+  color: ${getColor(Colors.BrandLightBlue)};
   margin: 0 ${iconSize / 2}px;
   position: relative; /* give z-index so ::before bg is behind icon */
 `
 
 const Title = styled.h1`
   ${typography(700, FontSizes.Content)};
-  color: ${colors(Colors.Black89)};
+  color: ${getColor(Colors.Black89)};
   margin: 0 10px 0 2px;
 `
 

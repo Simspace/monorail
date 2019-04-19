@@ -7,13 +7,13 @@ export declare type PageHeaderShadowProps = {
     willAnimateShadow: boolean;
     flush: boolean;
 };
-declare type BreadCrumbsContainerProps = {
+declare type PageHeaderNavigationProps = {
     breadCrumbs?: Array<{
         title: string;
         path?: (event: ReactMouseEvent<HTMLAnchorElement>) => void;
     }>;
 };
-declare type PageHeaderProps = CommonComponentType & BreadCrumbsContainerProps & {
+declare type PageHeaderProps = CommonComponentType & PageHeaderNavigationProps & {
     goBack?: (event: ReactMouseEvent<Element>) => void;
     title: string;
     action?: ReactNode;

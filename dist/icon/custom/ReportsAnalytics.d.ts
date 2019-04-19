@@ -1,3 +1,3 @@
 import { ComponentType } from 'react';
 import { CustomIconProps } from '@monorail/icon/Icon';
-export declare const Retry: ComponentType<CustomIconProps>;
+export declare const ReportsAnalytics: ComponentType<CustomIconProps>;

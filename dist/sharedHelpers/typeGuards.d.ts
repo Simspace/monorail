@@ -12,6 +12,10 @@ export declare const isUndefined: (x: unknown) => x is undefined;
  */
 export declare const isNil: (x: unknown) => x is null | undefined;
 /**
+ * Tests whether or not an argument is null or undefined (type guard)
+ */
+export declare const isNotNil: <T>(x: T | null | undefined) => x is T;
+/**
  * Type guard for the `false` literal of the `boolean` primitive
  */
 export declare const isFalse: (x: unknown) => x is false;

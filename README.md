@@ -40,6 +40,14 @@ Some Monorail components need default icons from the Material Icon's set. Link t
 
 `<link href=“https://fonts.googleapis.com/icon?family=Material+Icons” rel=“stylesheet”>`
 
+## Typescript
+
+When using Monorail with a typescript project, make sure to add the following line to the `compilerOptions` of your `tsconfig.json`.
+
+```json
+"skipLibCheck": true
+```
+
 ## Cutting a new release
 
 When it's ready, _first_ you must bump the version:

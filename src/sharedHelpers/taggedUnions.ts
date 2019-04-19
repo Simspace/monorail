@@ -181,7 +181,7 @@ export const mkGuards = <A extends object>() => <
             >
           },
     ): action is A => {
-      const guards = Object.values(result) as GuardFunction[]
+      const guards = Object.values(result) as Array<GuardFunction>
 
       if (!(tag in action)) {
         return false
@@ -207,7 +207,7 @@ export type TaggedUnionExt<
 } & {
   fold: Fold<A, DataConstructorTagKey>
 } & {
-  tags: string[]
+  tags: Array<string>
 }
 
 export const mkTaggedUnionCustom = <A extends object>() => <
