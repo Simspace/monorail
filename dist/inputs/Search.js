@@ -21,6 +21,8 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
+// TODO(unsafe-any): Fix unsafe anys
+// tslint:disable no-unsafe-any
 //
 // Styles
 //
@@ -104,7 +106,8 @@ class Search extends _react.Component {
     }));
   }
 
-}
+} // tslint:enable
+
 
 exports.Search = Search;
 Search.defaultProps = {

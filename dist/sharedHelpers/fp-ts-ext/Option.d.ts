@@ -3,7 +3,7 @@ import { ReactNode } from 'react';
 /**
  * type guard for Option
  */
-export declare const isOption: <A>(x: any) => x is Option<A>;
+export declare const isOption: <A>(x: unknown) => x is Option<A>;
 /**
  * Standalone version of fp-ts' `fold` for Options. Like `getOrElse`,
  * but with a mapping transformation for the value in a `Some`

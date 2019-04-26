@@ -7,13 +7,15 @@ exports.MiniModal = void 0;
 
 var _styledComponents = _interopRequireWildcard(require("styled-components"));
 
-var _react = _interopRequireWildcard(require("react"));
+var _exports = require("../helpers/exports");
 
 var _Modals = require("./Modals");
 
-var _exports = require("../helpers/exports");
+var _modalTypes = require("./modalTypes");
 
 var _Overlay = require("../toggle/Overlay");
+
+var _react = _interopRequireWildcard(require("react"));
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
@@ -57,13 +59,13 @@ const MiniModal = ({
     togglePopOver: togglePopOver,
     usesScaleAnimation: true
   }, _react.default.createElement(_StyledBBModalBackground, {
-    mini: true,
+    size: _modalTypes.ModalSize.Mini,
     ref: modalBackgroundRef,
     _css: isRendered ? (0, _styledComponents.css)(["", ";", ";"], scaleAnimation.outSideContentStyles, modalBackgroundCss) : ''
   }, _react.default.createElement(_StyledBBModalContent, {
     _css2: isRendered ? scaleAnimation.inSideContentStyles : ''
   }, _react.default.createElement(_Modals.BBModalHeader, {
-    mini: true,
+    size: _modalTypes.ModalSize.Mini,
     onClose: onClick,
     title: title,
     iconLeft: iconLeft

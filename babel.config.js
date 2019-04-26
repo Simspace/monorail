@@ -1,4 +1,4 @@
-module.exports = {
+const babelConfig = {
   only: ['./src'],
   presets: [
     '@babel/preset-react',
@@ -49,3 +49,5 @@ module.exports = {
     // 'transform-react-pure-class-to-function',
   ],
 }
+
+module.exports = babelConfig

@@ -15,6 +15,9 @@ import {
 } from '@monorail/helpers/exports'
 import { ButtonSize } from '@monorail/buttons/buttonTypes'
 
+// TODO(unsafe-any): Fix unsafe anys
+// tslint:disable no-unsafe-any
+
 //
 // Styles
 //
@@ -231,3 +234,4 @@ export class Search extends Component<SearchProps> {
     )
   }
 }
+// tslint:enable

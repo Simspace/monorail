@@ -1,16 +1,17 @@
-import { FCwDP } from '@monorail/sharedHelpers/react'
-import React, { ReactNode } from 'react'
 import {
   BBModalBackground,
   BBModalHeader,
-  modalAnimationDuration,
   fullScreenModalCloseAnimation,
   fullScreenModalOpenAnimation,
+  modalAnimationDuration,
   useModalAnimation,
 } from '@monorail/modals/Modals'
-import { css } from 'styled-components'
-import { Overlay } from '@monorail/toggle/Overlay'
+import { ModalSize } from '@monorail/modals/modalTypes'
 import { PopOverChildProps } from '@monorail/popOver/PopOver'
+import { FCwDP } from '@monorail/sharedHelpers/react'
+import { Overlay } from '@monorail/toggle/Overlay'
+import React, { ReactNode } from 'react'
+import { css } from 'styled-components'
 
 type Props = PopOverChildProps &
   DefaultProps & {
@@ -68,6 +69,7 @@ export const FullScreenModal: FCwDP<Props, DefaultProps> = ({
               `
             : ''
         }
+        size={ModalSize.FullScreen}
         {...otherProps}
       >
         {!noHeader && (
@@ -77,6 +79,7 @@ export const FullScreenModal: FCwDP<Props, DefaultProps> = ({
             iconLeft={iconLeft}
             onClose={onClick}
             title={title}
+            size={ModalSize.FullScreen}
           />
         )}
         {children}

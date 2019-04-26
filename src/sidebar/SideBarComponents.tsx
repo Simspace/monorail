@@ -27,14 +27,15 @@ import {
 import posed from 'react-pose'
 import { zIndex, ZIndexNodeName } from '@monorail/helpers/zIndex'
 
+// TODO(unsafe-any): Fix unsafe anys
+// tslint:disable no-unsafe-any
+
 export const sideBarCollapsedTransitionDuration = 150
 
-export const sideBarCollapsedTransition: (
-  props: {
-    properties?: Array<string>
-    isSideBarCollapsed: boolean
-  },
-) => SimpleInterpolation = ({ properties = ['all'], isSideBarCollapsed }) =>
+export const sideBarCollapsedTransition: (props: {
+  properties?: Array<string>
+  isSideBarCollapsed: boolean
+}) => SimpleInterpolation = ({ properties = ['all'], isSideBarCollapsed }) =>
   transition({
     properties,
     easing: ease(isSideBarCollapsed),
@@ -225,3 +226,4 @@ export const SideBarMenuDivider = styled.div`
   margin: 15px 8px 16px;
   flex-shrink: 0;
 `
+// tslint:enable

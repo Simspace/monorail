@@ -1,34 +1,30 @@
-import React, { Component } from 'react'
-import styled, { css, SimpleInterpolation } from 'styled-components'
-
-import { Icon } from '@monorail/icon/Icon'
+import React from 'react'
+import styled, { css } from 'styled-components'
 import {
   Colors,
-  getColor,
   flexFlow,
   FontSizes,
-  typography,
+  getColor,
 } from '@monorail/helpers/exports'
-import { isNil } from '@monorail/sharedHelpers/typeGuards'
+import { FCwDP } from '@monorail/sharedHelpers/react'
+import { Icon } from '@monorail/icon/Icon'
+import { isEmptyString } from '@monorail/sharedHelpers/typeGuards'
+import { Text } from '@monorail/typography/Text'
 
 const tagHeight = 24
 const circleWidth = tagHeight - 4
 const circleRadius = circleWidth / 2
 const iconSize = tagHeight / 2
 
-type CCTagProps = {
-  cssOverrides?: SimpleInterpolation
-  label?: string
-}
-
-export const CCTag = styled.div<CCTagProps>(
-  ({ label, cssOverrides }) => css`
-    ${isNil(label) &&
+export const TagContainer = styled.div<{ doesntHaveLabel: boolean }>(
+  ({ doesntHaveLabel }) => css`
+    ${doesntHaveLabel &&
       css`
         width: ${tagHeight}px;
       `};
 
     ${flexFlow('row')};
+
     display: inline-flex;
     align-items: center;
     background: ${getColor(Colors.Black, 0.07)};
@@ -48,38 +44,44 @@ export const CCTag = styled.div<CCTagProps>(
       top: 2px;
       width: ${circleWidth}px;
     }
-
-    ${cssOverrides};
   `,
 )
 
-const StyledIconLeft = styled(Icon)`
+const iconStyles = css`
   color: ${getColor(Colors.BrandLightBlue)};
   margin: 0 ${iconSize / 2}px;
   position: relative; /* give z-index so ::before bg is behind icon */
 `
 
-const Title = styled.h1`
-  ${typography(700, FontSizes.Content)};
+const labelStyles = css`
   color: ${getColor(Colors.Black89)};
   margin: 0 10px 0 2px;
 `
 
-type TagProps = CCTagProps & {
+type Props = {
   icon: string
-  key?: string | number
 }
 
-export class Tag extends Component<TagProps> {
-  render() {
-    const { icon, label, cssOverrides } = this.props
+type DefaultProps = {
+  label: string
+}
 
-    return (
-      <CCTag label={label} cssOverrides={cssOverrides}>
-        <StyledIconLeft icon={icon} size={iconSize} />
+export const Tag: FCwDP<Props, DefaultProps> = ({
+  label,
+  icon,
+  ...otherProps
+}) => (
+  <TagContainer doesntHaveLabel={isEmptyString(label)} {...otherProps}>
+    <Icon css={iconStyles} icon={icon} size={iconSize} />
 
-        {label && <Title>{label}</Title>}
-      </CCTag>
-    )
-  }
+    {!isEmptyString(label) && (
+      <Text css={labelStyles} fontSize={FontSizes.Content} fontWeight={700}>
+        {label}
+      </Text>
+    )}
+  </TagContainer>
+)
+
+Tag.defaultProps = {
+  label: '',
 }

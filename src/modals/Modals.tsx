@@ -1,3 +1,24 @@
+import { AppIcon } from '@monorail/appIcon/AppIcon'
+import { ButtonDisplay, IconButtonShape } from '@monorail/buttons/buttonTypes'
+import { IconButton } from '@monorail/buttons/IconButton'
+import {
+  AppName,
+  BorderRadius,
+  borderRadius,
+  Colors,
+  ElevationRange,
+  flexFlow,
+  FontSizes,
+  getColor,
+  getElevation,
+  gothamFontFamily,
+  sizes,
+  typography,
+} from '@monorail/helpers/exports'
+import { useEventListener } from '@monorail/helpers/hooks'
+import { Icon } from '@monorail/icon/Icon'
+import { ModalSize } from '@monorail/modals/modalTypes'
+import { CommonComponentType } from '@monorail/types'
 import React, {
   MouseEvent,
   ReactNode,
@@ -7,28 +28,8 @@ import React, {
   useRef,
   useState,
 } from 'react'
-import { useEventListener } from '@monorail/helpers/hooks'
-import { AppIcon } from '@monorail/appIcon/AppIcon'
-import { Icon } from '@monorail/icon/Icon'
-import {
-  AppName,
-  BorderRadius,
-  borderRadius,
-  Colors,
-  getColor,
-  ElevationRange,
-  flexFlow,
-  FontSizes,
-  getElevation,
-  gothamFontFamily,
-  sizes,
-  typography,
-} from '@monorail/helpers/exports'
 import styled, { css, keyframes, SimpleInterpolation } from 'styled-components'
 import { BBSearchContainer } from '../inputs/Search'
-import { IconButton } from '@monorail/buttons/IconButton'
-import { ButtonDisplay, IconButtonShape } from '@monorail/buttons/buttonTypes'
-import { CommonComponentType } from '@monorail/types'
 
 /**
  * Modal Hooks
@@ -72,22 +73,22 @@ export function useModalAnimation<E extends HTMLElement>(
 }
 
 /*
-*
-* Modal Animation
-*
-*/
+ *
+ * Modal Animation
+ *
+ */
 
 export const modalAnimationDuration = 100
 
 export const mediumModalOpenAnimation = keyframes`
   from {
     opacity: 0;
-    transform: rotateX(15deg) translateY(16px);
+    transform: rotateX(15deg) translateY(16px) scale(.95)
   }
 
   to {
     opacity: 0.9999;
-    transform: rotateX(0) translateY(0);
+    transform: rotateX(0) translateY(0) scale(1);
 
   }
 `
@@ -95,12 +96,37 @@ export const mediumModalOpenAnimation = keyframes`
 export const mediumModalCloseAnimation = keyframes`
   from {
     opacity: 0.9999;
-    transform: rotateX(0) translateY(0);
+    transform: rotateX(0) translateY(0) scale(1);
   }
 
   to {
     opacity: 0;
-    transform: rotateX(15deg) translateY(16px);
+    transform: rotateX(15deg) translateY(16px) scale(.95)
+  }
+`
+
+export const largeModalOpenAnimation = keyframes`
+  from {
+    opacity: 0;
+    transform: rotateX(3deg) translateY(16px) scale(.98);
+  }
+
+  to {
+    opacity: 0.9999;
+    transform: rotateX(0) translateY(0) scale(1);
+
+  }
+`
+
+export const largeModalCloseAnimation = keyframes`
+  from {
+    opacity: 0.9999;
+    transform: rotateX(0) translateY(0) scale(1);
+  }
+
+  to {
+    opacity: 0;
+    transform: rotateX(3deg) translateY(16px) scale(.98);
   }
 `
 
@@ -148,34 +174,46 @@ export const overlayCloseAnimation = keyframes`
 `
 
 /*
-*
-* Modal Background
-*
-*/
+ *
+ * Modal Background
+ *
+ */
 
 /*
-* Types
-*/
+ * Types
+ */
 
 type BBModalSize = {
-  mini?: boolean
+  size: ModalSize
 }
 
 export type BBModalBackgroundProps = BBModalSize & CommonComponentType
 
 /*
-* Component
-*/
+ * Component
+ */
+
+const modalWidth = {
+  [ModalSize.Mini]: `${sizes.modals.mini.width}px`,
+  [ModalSize.Medium]: `${sizes.modals.medium.width}px`,
+  [ModalSize.Large]: 'calc(100vw - 32px)',
+  [ModalSize.FullScreen]: '100vw',
+}
 
 export const BBModalBackground = styled.div<BBModalBackgroundProps>(
-  ({ mini, cssOverrides }) => css`
-    ${mini
+  ({ size, cssOverrides }) => css`
+    ${size === ModalSize.Mini
       ? css`
           height: ${sizes.modals.mini.height}px;
         `
       : css`
           margin: 16px;
         `};
+
+    ${size === ModalSize.Large &&
+      css`
+        height: calc(100vh - 32px);
+      `};
 
     ${borderRadius(BorderRadius.XLarge)};
     ${flexFlow()};
@@ -184,29 +222,29 @@ export const BBModalBackground = styled.div<BBModalBackgroundProps>(
     background: ${getColor(Colors.White)};
     overflow: hidden;
     position: relative; /* position: relative; so that the shadow works when on the BBModalOverlay */
-    width: ${mini ? sizes.modals.mini.width : 584}px;
+    width: ${modalWidth[size]};
     will-change: transform, opacity;
-    transform-origin: 100% 100%;
+    transform-origin: bottom center;
 
     ${cssOverrides};
   `,
 )
 
 /*
-*
-* Modal Header
-*
-*/
+ *
+ * Modal Header
+ *
+ */
 
 /*
-* Styles
-*/
+ * Styles
+ */
 
 const BBModalHeaderContainer = styled.div<
   BBModalSize & { cssOverrides: SimpleInterpolation }
 >(
-  ({ mini, cssOverrides }) => css`
-    ${flexFlow(mini ? 'column' : 'row')};
+  ({ size, cssOverrides }) => css`
+    ${flexFlow(size === ModalSize.Mini ? 'column' : 'row')};
 
     ${getElevation(ElevationRange.Elevation2)};
 
@@ -216,7 +254,7 @@ const BBModalHeaderContainer = styled.div<
     z-index: 1;
 
     ${BBSearchContainer} {
-      ${mini
+      ${size === ModalSize.Mini
         ? css`
             margin: 8px 16px 16px;
           `
@@ -230,11 +268,11 @@ const BBModalHeaderContainer = styled.div<
 )
 
 const BBModalHeaderRow = styled.div<BBModalSize>(
-  ({ mini }) => css`
+  ({ size }) => css`
     ${flexFlow('row')};
 
     align-items: center;
-    height: ${mini ? 48 : 56}px;
+    height: ${size === ModalSize.Mini ? 48 : 56}px;
     padding: 0 16px;
     width: 100%;
     overflow: hidden;
@@ -242,8 +280,8 @@ const BBModalHeaderRow = styled.div<BBModalSize>(
 )
 
 const BBModalHeaderTitle = styled.h1<BBModalSize>(
-  ({ mini }) => css`
-    ${mini
+  ({ size }) => css`
+    ${size === ModalSize.Mini
       ? typography(700, FontSizes.Title4)
       : typography(700, FontSizes.Title3)};
 
@@ -273,8 +311,8 @@ const StyledIconRight = styled(Icon)`
 `
 
 /*
-* Types
-*/
+ * Types
+ */
 
 type BBModalHeaderProps = BBModalSize & {
   appIcon?: AppName
@@ -293,8 +331,8 @@ type DefaultCloseButtonProps = Pick<
 >
 
 /*
-* Component
-*/
+ * Component
+ */
 
 export const DefaultCloseButton = ({
   headerRowChildren,
@@ -323,21 +361,21 @@ export const BBModalHeader: StatelessComponent<BBModalHeaderProps> = ({
   headerRowChildren,
   iconLeft,
   iconRight,
-  mini,
+  size,
   onClose,
   title,
   cssOverrides,
 }) => (
-  <BBModalHeaderContainer mini={mini} cssOverrides={cssOverrides}>
-    <BBModalHeaderRow mini={mini}>
+  <BBModalHeaderContainer size={size} cssOverrides={cssOverrides}>
+    <BBModalHeaderRow size={size}>
       {appIcon && <StyledAppIconLeft appName={appIcon} />}
       {iconLeft && <StyledIconLeft icon={iconLeft} />}
-      <BBModalHeaderTitle mini={mini} data-test-id="modal-header-title">
+      <BBModalHeaderTitle size={size} data-test-id="modal-header-title">
         {title}
       </BBModalHeaderTitle>
       {headerRowChildren}
       {iconRight && <StyledIconRight icon={iconRight} />}
-      {!mini && onClose && customCloseButton ? (
+      {size !== ModalSize.Mini && onClose && customCloseButton ? (
         customCloseButton
       ) : (
         <DefaultCloseButton
@@ -351,14 +389,14 @@ export const BBModalHeader: StatelessComponent<BBModalHeaderProps> = ({
 )
 
 /*
-*
-* Modal Footer
-*
-*/
+ *
+ * Modal Footer
+ *
+ */
 
 /*
-* Styles
-*/
+ * Styles
+ */
 
 export const BBModalFooter = styled.div`
   ${flexFlow('row')};
@@ -373,14 +411,14 @@ export const BBModalFooter = styled.div`
   flex-shrink: 0;
 `
 /*
-*
-* Modal Overlay
-*
+ *
+ * Modal Overlay
+ *
  */
 
 /*
-* Styles
-*/
+ * Styles
+ */
 
 const BBModalOverlayContainer = styled.div<BBModalOverlayProps>(
   ({ isOpen, chromeless, cssOverrides }) => css`
@@ -401,8 +439,8 @@ const BBModalOverlayContainer = styled.div<BBModalOverlayProps>(
 )
 
 /*
-* Types
-*/
+ * Types
+ */
 
 export type BBModalOverlayProps = CommonComponentType & {
   isOpen: boolean
@@ -411,8 +449,8 @@ export type BBModalOverlayProps = CommonComponentType & {
 }
 
 /*
-* Component
-*/
+ * Component
+ */
 
 export const BBModalOverlay: StatelessComponent<BBModalOverlayProps> = ({
   children,
@@ -442,14 +480,14 @@ export const BBModalOverlay: StatelessComponent<BBModalOverlayProps> = ({
 )
 
 /*
-*
-* Modal Container
-*
+ *
+ * Modal Container
+ *
  */
 
 /*
-* Styles
-*/
+ * Styles
+ */
 
 export const BBModalContainer = styled.div<
   CommonComponentType & {
@@ -485,14 +523,14 @@ export const BBModalContainer = styled.div<
 )
 
 /*
-*
-* Modal Content
-*
+ *
+ * Modal Content
+ *
  */
 
 /*
-* Styles
-*/
+ * Styles
+ */
 
 export const BBModalContent = styled.div<CommonComponentType>(
   ({ cssOverrides }) => css`

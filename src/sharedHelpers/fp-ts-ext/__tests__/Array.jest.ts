@@ -1,7 +1,7 @@
-import { array } from 'fp-ts/lib/Array'
+import { array, head, mapOption } from 'fp-ts/lib/Array'
 import { left, right, Either } from 'fp-ts/lib/Either'
 import { IO } from 'fp-ts/lib/IO'
-import { some } from 'fp-ts/lib/Option'
+import { some, getSetoid, fromPredicate } from 'fp-ts/lib/Option'
 
 import {
   all,
@@ -28,6 +28,8 @@ import {
   sortByAlpha,
   sortByNumeric,
 } from '../Array'
+import { setoidString } from 'fp-ts/lib/Setoid'
+import { Predicate } from 'fp-ts/lib/function'
 
 const isGreaterThanZero = (x: number): boolean => x > 0
 

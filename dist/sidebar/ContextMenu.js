@@ -102,12 +102,15 @@ class ContextMenu extends _react.Component {
           key: event.title
         }, event.title);
 
-        const items = event.items.filter(item => compareSearch(item.title) || compareSearch(item.description) || compareSearch(event.title)).map(item => _react.default.createElement(ContextMenuItem, {
+        const items = event.items.filter(item => compareSearch(item.title) || compareSearch(item.description) || compareSearch(event.title)).map(item => _react.default.createElement(ContextMenuItem // TODO(unsafe-any): Fix unsafe anys
+        // tslint:disable no-unsafe-any
+        , {
           as: ({
             as: _as,
             cssOverrides: _cssOverrides,
             ...linkProps
-          }) => _react.default.createElement(_Link.default, linkProps),
+          }) => _react.default.createElement(_Link.default, linkProps) // tslint:enable
+          ,
           key: item.key,
           leftIcon: icon,
           primaryText: item.title,

@@ -5,29 +5,32 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.SimpleListItem = exports.ListItem = exports.ListItemGraphic = exports.ListItemSecondaryText = exports.ListItemPrimaryText = exports.ListItemText = exports.ListContainer = void 0;
 
-var _react = _interopRequireWildcard(require("react"));
-
-var _styledComponents = _interopRequireWildcard(require("styled-components"));
-
 var _exports = require("../helpers/exports");
 
 var _Icon = require("../icon/Icon");
 
 var _typeGuards = require("../sharedHelpers/typeGuards");
 
+var _react = _interopRequireWildcard(require("react"));
+
+var _styledComponents = _interopRequireWildcard(require("styled-components"));
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
-/*
-*
-* List Container
-*
-*/
+// TODO(unsafe-any): Fix unsafe anys
+// tslint:disable no-unsafe-any
 
 /*
-* Styles
-*/
+ *
+ * List Container
+ *
+ */
+
+/*
+ * Styles
+ */
 const BBListContainer =
 /*#__PURE__*/
 _styledComponents.default.div.withConfig({
@@ -37,13 +40,13 @@ _styledComponents.default.div.withConfig({
   cssOverrides
 }) => (0, _styledComponents.css)(["", ";overflow-y:auto;padding:8px 0;", ";"], (0, _exports.flexFlow)(), cssOverrides));
 /*
-* Types
-*/
+ * Types
+ */
 
 
 /*
-* Component
-*/
+ * Component
+ */
 const ListContainer = ({
   children,
   cssOverrides,
@@ -54,21 +57,21 @@ const ListContainer = ({
   cssOverrides: (0, _styledComponents.css)(["color:", ";"], (0, _exports.getColor)(_exports.Colors.Black54))
 }, emptyText));
 /*
-*
-* List Item
-*
-*/
+ *
+ * List Item
+ *
+ */
 
 /*
-* Types
-*/
+ * Types
+ */
 
 
 exports.ListContainer = ListContainer;
 
 /*
-* Styles
-*/
+ * Styles
+ */
 const ListItemText =
 /*#__PURE__*/
 _styledComponents.default.div.withConfig({
@@ -150,6 +153,7 @@ const SimpleListItem = ({
 }), (0, _typeGuards.isNil)(secondaryText) || (0, _typeGuards.isNil)(meta) ? _react.default.createElement(ListItemPrimaryText, null, primaryText) : _react.default.createElement(ListItemText, null, _react.default.createElement(ListItemPrimaryText, null, primaryText), (0, _typeGuards.isNil)(secondaryText) ? null : _react.default.createElement(ListItemSecondaryText, null, secondaryText), meta), !(0, _typeGuards.isNil)(rightIcon) && _react.default.createElement(ListItemGraphic, {
   icon: rightIcon,
   dense: dense
-}), children);
+}), children); // tslint:enable
+
 
 exports.SimpleListItem = SimpleListItem;

@@ -9,6 +9,9 @@ const sizes = {
     mini: {
       height: 360,
       width: 304
+    },
+    medium: {
+      width: 584
     }
   },
   menu: {

@@ -86,7 +86,7 @@ class Overlay extends _react.Component {
       isOpen: isRendered && isOpen,
       onClick: onClick
     }, overlayProps, {
-      _css: isRendered && (0, _styledComponents.css)(["animation:", " linear ", "ms forwards;"], isOpen ? _Modals.overlayOpenAnimation : _Modals.overlayCloseAnimation, _Modals.modalAnimationDuration)
+      _css: isRendered ? (0, _styledComponents.css)(["animation:", " linear ", "ms forwards;"], isOpen ? _Modals.overlayOpenAnimation : _Modals.overlayCloseAnimation, _Modals.modalAnimationDuration) : ''
     })), children);
   }
 

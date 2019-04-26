@@ -16,8 +16,8 @@ var _typeGuards = require("../sharedHelpers/typeGuards");
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
 /*
-* Styles
-*/
+ * Styles
+ */
 const SlideContainer =
 /*#__PURE__*/
 _styledComponents.default.div.withConfig({
@@ -32,16 +32,16 @@ _styledComponents.default.div.withConfig({
   componentId: "sc-8c7x1t-1"
 })(["", ";justify-content:center;align-items:center;"], (0, _exports.flexFlow)('row'));
 /*
-* Types
-*/
+ * Types
+ */
 
 
 const defaultCurrentSlideIndex = 0;
 const defaultTranslateValue = 0;
 const defaultSlideWidth = 0;
 /*
-* Components
-*/
+ * Components
+ */
 
 const Carousel = ({
   slides,
@@ -90,7 +90,7 @@ const Carousel = ({
   return children({
     nextSlide,
     prevSlide,
-    currentSlide: currentSlideIndex,
+    currentSlide: currentSlideIndex + 1,
     totalSlides: slides.length,
     content: _react.default.createElement(_StyledSlideContainer, {
       _css: translateValue,

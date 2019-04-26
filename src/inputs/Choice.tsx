@@ -15,8 +15,8 @@ import {
 import styled, { css, SimpleInterpolation } from 'styled-components'
 
 /*
-* Styles
-*/
+ * Styles
+ */
 
 const BBChoiceInput = styled.input<BBChoiceInputProps>`
   opacity: 0; /* Hiding the input. */
@@ -116,8 +116,8 @@ const CCChoice = styled.label<CCChoiceProps>(
 )
 
 /*
-* Types
-*/
+ * Types
+ */
 
 type AnsweredProps = {
   answered?: boolean
@@ -155,8 +155,8 @@ export type ChoiceProps = BBGradeIconProps &
   }
 
 /*
-* Component
-*/
+ * Component
+ */
 
 export class Choice extends Component<ChoiceProps> {
   renderFakeInputIcons = () => {

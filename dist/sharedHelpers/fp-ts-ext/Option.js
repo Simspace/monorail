@@ -16,8 +16,14 @@ var _typeGuards = require("../typeGuards");
 /**
  * type guard for Option
  */
-// tslint:disable-next-line:no-any
-const isOption = x => !(0, _typeGuards.isNil)(x) && !(0, _typeGuards.isNil)(x.isSome) && !(0, _typeGuards.isNil)(x.isNone) && (!(0, _typeGuards.isNil)(x._tag) && x._tag === 'Some' || x._tag === 'None');
+const isOption = x => {
+  if (!(0, _typeGuards.isNil)(x)) {
+    const x_ = x;
+    return !(0, _typeGuards.isNil)(x_.isSome) && !(0, _typeGuards.isNil)(x_.isNone) && (!(0, _typeGuards.isNil)(x_._tag) && x_._tag === 'Some' || x_._tag === 'None');
+  }
+
+  return false;
+};
 /**
  * Standalone version of fp-ts' `fold` for Options. Like `getOrElse`,
  * but with a mapping transformation for the value in a `Some`

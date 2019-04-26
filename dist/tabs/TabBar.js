@@ -15,6 +15,8 @@ var _exports = require("../helpers/exports");
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
+// TODO(unsafe-any): Fix unsafe anys
+// tslint:disable no-unsafe-any
 // TabBarIndicator is pos:abs to this element. Also we use offsetLeft on the Tab which references this position.
 const TabBarContainer =
 /*#__PURE__*/
@@ -168,7 +170,8 @@ class TabBar extends _react.Component {
     }));
   }
 
-}
+} // tslint:enable
+
 
 exports.TabBar = TabBar;
 TabBar.defaultProps = {

@@ -23,6 +23,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
+// TODO(unsafe-any): Fix unsafe anys
+// tslint:disable no-unsafe-any
 const sideBarCollapsedTransitionDuration = 150;
 exports.sideBarCollapsedTransitionDuration = sideBarCollapsedTransitionDuration;
 
@@ -122,6 +124,7 @@ const SideBarMenuDivider =
 _styledComponents.default.div.withConfig({
   displayName: "SideBarComponents__SideBarMenuDivider",
   componentId: "u2fke3-3"
-})(["background:#e2e4ea;height:1px;margin:15px 8px 16px;flex-shrink:0;"]);
+})(["background:#e2e4ea;height:1px;margin:15px 8px 16px;flex-shrink:0;"]); // tslint:enable
+
 
 exports.SideBarMenuDivider = SideBarMenuDivider;

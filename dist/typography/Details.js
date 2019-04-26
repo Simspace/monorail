@@ -84,7 +84,7 @@ _styledComponents.default.div.withConfig({
   componentId: "xo061-2"
 })(({
   cssOverrides
-}) => (0, _styledComponents.css)(["", ";", "{margin-top:6px;}", ";"], (0, _exports.flexFlow)(), _Tag.CCTag, cssOverrides));
+}) => (0, _styledComponents.css)(["", ";", "{margin-top:6px;}", ";"], (0, _exports.flexFlow)(), _Tag.TagContainer, cssOverrides));
 
 class CCDetails extends _react.Component {
   render() {

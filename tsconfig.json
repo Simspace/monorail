@@ -1,28 +1,27 @@
 {
   "compilerOptions": {
-    // specify an output directory to mute some TS errors
-    "outDir": "ts-dist",
-    "preserveWatchOutput": true,
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
+    "baseUrl": ".",
     "esModuleInterop": true,
     "experimentalDecorators": true,
     "forceConsistentCasingInFileNames": true,
     "jsx": "react",
+    "lib": ["dom", "es2015", "es2016", "es2017", "es2018", "esnext"],
     "moduleResolution": "node",
     "noErrorTruncation": true,
     "noImplicitReturns": true,
     "noUnusedLocals": false,
+    /** specify an output directory to mute some TS errors */
+    "outDir": "ts-dist",
+    "paths": {
+      "@monorail/*": ["src/*"]
+    },
+    "preserveWatchOutput": true,
     "skipLibCheck": true,
     "sourceMap": true,
     "strict": true,
-    "target": "esnext",
-    "lib": ["dom", "es2015", "es2016", "es2017", "es2018", "esnext"],
-    "baseUrl": ".",
-    "paths": {
-      "@monorail/*": ["src/*"]
-    }
+    "target": "esnext"
   },
-  "include": ["src"],
-  "exclude": ["src/**/*.js", "../../src/**/*"]
+  "include": ["src"]
 }

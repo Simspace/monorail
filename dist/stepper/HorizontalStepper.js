@@ -20,8 +20,8 @@ var _baseStyles = require("../helpers/baseStyles");
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
 /*
-* Styles
-*/
+ * Styles
+ */
 const getStateStyles = (step, styles) => {
   if (step.isActive) {
     return styles.isActive;
@@ -132,13 +132,13 @@ _styledComponents.default.div.withConfig({
   darkMode
 }) => (0, _styledComponents.css)(["background-color:", ";height:1px;width:32px;margin:auto 8px;"], darkMode ? (0, _exports.getColor)(_exports.Colors.White) : (0, _exports.getColor)(_exports.Colors.Black24)));
 /*
-* Types
-*/
+ * Types
+ */
 
 
 /*
-* Components
-*/
+ * Components
+ */
 class HorizontalStepper extends _react.Component {
   constructor(...args) {
     super(...args);

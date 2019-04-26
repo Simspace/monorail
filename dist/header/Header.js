@@ -19,6 +19,8 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+// TODO(unsafe-any): Fix unsafe anys
+// tslint:disable no-unsafe-any
 const HeaderRow =
 /*#__PURE__*/
 _styledComponents.default.div.withConfig({
@@ -58,5 +60,6 @@ const Header =
   noBorder,
   appIcon,
   cssOverrides
-}) => (0, _styledComponents.css)(["", ";", ";position:relative;flex-shrink:0;", ";"], !noBorder && (0, _styledComponents.css)(["&::after{content:'';background:", ";bottom:0;height:1px;left:0;position:absolute;right:0;}"], appIcon ? (0, _exports.getColor)((0, _exports.convertAppNameToColor)(appIcon)) : '#ebebeb'), (0, _exports.flexFlow)(), cssOverrides));
+}) => (0, _styledComponents.css)(["", ";", ";position:relative;flex-shrink:0;", ";"], !noBorder && (0, _styledComponents.css)(["&::after{content:'';background:", ";bottom:0;height:1px;left:0;position:absolute;right:0;}"], appIcon ? (0, _exports.getColor)((0, _exports.convertAppNameToColor)(appIcon)) : '#ebebeb'), (0, _exports.flexFlow)(), cssOverrides)); // tslint:enable
+
 exports.Header = Header;

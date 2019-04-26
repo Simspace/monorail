@@ -23,9 +23,9 @@ var _TaskEither = require("fp-ts/lib/TaskEither");
 
 var _IO = require("./IO");
 
-var _Ord = require("./Ord");
-
 var _Option2 = require("./Option");
+
+var _Ord = require("./Ord");
 
 var _Setoid = require("./Setoid");
 

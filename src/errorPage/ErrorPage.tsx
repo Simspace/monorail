@@ -11,8 +11,8 @@ import {
 } from '@monorail/helpers/exports'
 
 /*
-* Styles
-*/
+ * Styles
+ */
 
 const CCErrorPage = styled.div`
   ${flexFlow('column')};
@@ -61,8 +61,8 @@ const ErrorMessage = styled.div`
 `
 
 /*
-* Types
-*/
+ * Types
+ */
 
 type ErrorPageProps = {
   errorMessage?: ReactNode
@@ -71,8 +71,8 @@ type ErrorPageProps = {
 }
 
 /*
-* Components
-*/
+ * Components
+ */
 
 const errorIcon = {
   [ErrorType.Default]: (

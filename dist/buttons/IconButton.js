@@ -38,7 +38,7 @@ const iconButtonDisplayCss = display => {
   return (0, _styledComponents.css)([""]);
 };
 
-const iconButtonCSS = (display, size, shape, darkMode, cssOverrides) => (0, _styledComponents.css)(["", ";", ";", ";", "{", ";margin:0;}", ";"], iconButtonDisplayCss(display), iconButtonSizeCss[size], (0, _exports.borderRadius)(shape === _buttonTypes.IconButtonShape.Default ? _exports.BorderRadius.Round : _exports.BorderRadius.Medium), _Icon.Icon, darkMode ? (0, _styledComponents.css)(["color:", ";"], (0, _exports.getColor)(_exports.Colors.White)) : (0, _styledComponents.css)(["color:currentColor;"]), cssOverrides);
+const iconButtonCSS = (display, size, shape, darkMode, cssOverrides) => (0, _styledComponents.css)(["", ";", ";", ";padding:0;", "{", ";margin:auto;}", ";"], iconButtonDisplayCss(display), iconButtonSizeCss[size], (0, _exports.borderRadius)(shape === _buttonTypes.IconButtonShape.Default ? _exports.BorderRadius.Round : _exports.BorderRadius.Medium), _Icon.Icon, darkMode ? (0, _styledComponents.css)(["color:", ";"], (0, _exports.getColor)(_exports.Colors.White)) : (0, _styledComponents.css)(["color:currentColor;"]), cssOverrides);
 
 class IconButton extends _react.Component {
   render() {

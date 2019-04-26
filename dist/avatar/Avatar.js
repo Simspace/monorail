@@ -34,11 +34,11 @@ const Avatar = ({
   first,
   last,
   team,
-  ...otherProps
+  ...domProps
 }) => _react.default.createElement(CCAvatar, _extends({
   cssOverrides: cssOverrides,
   team: team
-}, otherProps), first.charAt(0), last.charAt(0));
+}, domProps), first.charAt(0), last.charAt(0));
 
 exports.Avatar = Avatar;
 

@@ -47,9 +47,9 @@ export const Avatar: StatelessComponent<AvatarProps> = ({
   first,
   last,
   team,
-  ...otherProps
+  ...domProps
 }) => (
-  <CCAvatar cssOverrides={cssOverrides} team={team} {...otherProps}>
+  <CCAvatar cssOverrides={cssOverrides} team={team} {...domProps}>
     {first.charAt(0)}
     {last.charAt(0)}
   </CCAvatar>

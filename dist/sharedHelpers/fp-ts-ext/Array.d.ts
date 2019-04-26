@@ -1,6 +1,7 @@
 import { Either } from 'fp-ts/lib/Either';
 import { Predicate } from 'fp-ts/lib/function';
 import { IO } from 'fp-ts/lib/IO';
+import { Option } from 'fp-ts/lib/Option';
 /**
  * Curried version of fp-ts' `map` for Arrays
  */
@@ -38,7 +39,7 @@ export declare const len: (xs: string | ArrayLike<unknown>) => number;
  * sequence utility for the Option instance of Applicative and the Array
  * instance of Traversable2v1
  */
-export declare const sequenceOptions: <A>(ta: import("fp-ts/lib/Option").Option<A>[]) => import("fp-ts/lib/Option").Option<A[]>;
+export declare const sequenceOptions: <A>(ta: Option<A>[]) => Option<A[]>;
 /**
  * sequence utility for the Either instance of Applicative and the Array
  * instance of Traversable2v1
@@ -58,7 +59,7 @@ export declare const sequenceTaskEithers: <FL, A>(ta: import("fp-ts/lib/TaskEith
  * traverse utility for the Option instance of Applicative and the Array
  * instance of Traversable2v1
  */
-export declare const traverseOptions: <A, B>(ta: A[], f: (a: A) => import("fp-ts/lib/Option").Option<B>) => import("fp-ts/lib/Option").Option<B[]>;
+export declare const traverseOptions: <A, B>(ta: A[], f: (a: A) => Option<B>) => Option<B[]>;
 /**
  * traverse utility for the Either instance of Applicative and the Array
  * instance of Traversable2v1
@@ -97,7 +98,7 @@ export declare const sortByNumeric: (as: number[]) => number[];
  * Lift a function of two arguments to a function which accepts and returns
  * those same values in the context of Options
  */
-export declare const liftOption2: <A, B, C>(f: import("fp-ts/lib/function").Curried2<A, B, C>) => import("fp-ts/lib/function").Curried2<import("fp-ts/lib/Option").Option<A>, import("fp-ts/lib/Option").Option<B>, import("fp-ts/lib/Option").Option<C>>;
+export declare const liftOption2: <A, B, C>(f: import("fp-ts/lib/function").Curried2<A, B, C>) => import("fp-ts/lib/function").Curried2<Option<A>, Option<B>, Option<C>>;
 /**
  * Takes an element and a list and "intersperses", or "mixes in", that element
  * between the elements of the list

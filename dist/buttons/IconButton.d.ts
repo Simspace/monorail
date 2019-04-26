@@ -22,6 +22,8 @@ export declare class IconButton extends Component<IconButtonProps> {
         disabled: boolean;
         pressed: boolean;
         mode: import("./buttonTypes").ButtonMode;
+        iconLeft: string;
+        iconRight: string;
     };
     render(): JSX.Element;
 }

@@ -1,4 +1,4 @@
-import { ReactType } from 'react';
+import { CSSProperties, ReactType } from 'react';
 import { SimpleInterpolation } from 'styled-components';
 export declare type CommonComponentType = {
     as?: ReactType;
@@ -9,4 +9,10 @@ export declare type CommonComponentType = {
 };
 export declare type TypographyComponent = {
     margin?: string;
+};
+export declare type LinkProps = {
+    activeClassName?: string;
+    activeStyle?: CSSProperties;
+    onlyActiveOnIndex?: boolean;
+    to?: string;
 };

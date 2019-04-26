@@ -24,8 +24,8 @@ var _TabBar = require("../tabs/TabBar");
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
 /*
-* Styles
-*/
+ * Styles
+ */
 const PageHeaderContainer =
 /*#__PURE__*/
 _styledComponents.default.div.withConfig({
@@ -90,13 +90,13 @@ _styledComponents.default.h1.withConfig({
   componentId: "sc-1tofzk7-6"
 })(["", ";color:", ";margin-left:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"], (0, _exports.typography)(700, _exports.FontSizes.Title1), (0, _exports.getColor)(_exports.Colors.BrandDarkBlue));
 /*
-* Types
-*/
+ * Types
+ */
 
 
 /*
-* Components
-*/
+ * Components
+ */
 class PageHeader extends _react.Component {
   constructor(...args) {
     super(...args);
@@ -147,10 +147,9 @@ class PageHeader extends _react.Component {
       size: _buttonTypes.ButtonSize.Compact,
       display: _buttonTypes.ButtonDisplay.Chromeless,
       onClick: goBack,
-      cssOverrides: (0, _styledComponents.css)(["margin-left:-4px;margin-right:8px;"])
-    }, _react.default.createElement(_Icon.Icon, {
-      icon: "circle_arrow_left"
-    }), "Go Back"), breadCrumbs && _react.default.createElement(BreadCrumbsContainer, null, this.renderBreadCrumbs())), _react.default.createElement(TitleContainer, {
+      cssOverrides: (0, _styledComponents.css)(["margin-left:-4px;margin-right:8px;"]),
+      iconLeft: "circle_arrow_left"
+    }, "Go Back"), breadCrumbs && _react.default.createElement(BreadCrumbsContainer, null, this.renderBreadCrumbs())), _react.default.createElement(TitleContainer, {
       hasAboveContent: hasAboveContent
     }, _react.default.createElement(Title, null, title), action), children, _react.default.createElement(PageHeaderShadow, {
       willAnimateShadow: willAnimateShadow,

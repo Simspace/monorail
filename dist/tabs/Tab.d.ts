@@ -1,6 +1,5 @@
 import React, { Component, MouseEvent } from 'react';
-import { LinkProps } from '@monorail/list/List';
-import { CommonComponentType } from '@monorail/types';
+import { CommonComponentType, LinkProps } from '@monorail/types';
 declare type CCTabProps = CommonComponentType & LinkProps & {
     onClick?: (event: MouseEvent<HTMLDivElement>) => void;
     isActive: boolean;

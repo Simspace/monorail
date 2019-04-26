@@ -10,8 +10,7 @@ import {
   typography,
 } from '@monorail/helpers/exports'
 
-import { LinkProps } from '@monorail/list/List'
-import { CommonComponentType } from '@monorail/types'
+import { CommonComponentType, LinkProps } from '@monorail/types'
 import { isNil } from '@monorail/sharedHelpers/typeGuards'
 import styled, { css } from 'styled-components'
 

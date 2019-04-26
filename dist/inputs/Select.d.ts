@@ -14,7 +14,7 @@ declare type Props = {
     required?: boolean;
     cssOverrides?: SimpleInterpolation;
     name?: string;
-    onChange?: ((event: React.ChangeEvent<HTMLSelectElement>) => void);
+    onChange?: (event: React.ChangeEvent<HTMLSelectElement>) => void;
 };
 export declare const Select: SFC<Props>;
 export {};

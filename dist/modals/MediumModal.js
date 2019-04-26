@@ -7,11 +7,13 @@ exports.MediumModal = void 0;
 
 var _styledComponents = _interopRequireWildcard(require("styled-components"));
 
-var _react = _interopRequireDefault(require("react"));
-
 var _Modals = require("./Modals");
 
+var _modalTypes = require("./modalTypes");
+
 var _Overlay = require("../toggle/Overlay");
+
+var _react = _interopRequireDefault(require("react"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -44,14 +46,16 @@ const MediumModal = ({
     togglePopOver: togglePopOver,
     zIndex: zIndex
   }, _react.default.createElement(_StyledBBModalBackground, _extends({
-    ref: modalBackgroundRef
+    ref: modalBackgroundRef,
+    size: _modalTypes.ModalSize.Medium
   }, otherProps, {
-    _css: isRendered ? (0, _styledComponents.css)(["animation:", " linear 100ms forwards;"], isOpen ? _Modals.mediumModalOpenAnimation : _Modals.mediumModalCloseAnimation) : ''
+    _css: isRendered ? (0, _styledComponents.css)(["animation:", " linear ", "ms forwards;"], isOpen ? _Modals.mediumModalOpenAnimation : _Modals.mediumModalCloseAnimation, _Modals.modalAnimationDuration) : ''
   }), _react.default.createElement(_Modals.BBModalHeader, {
     title: title,
     iconLeft: iconLeft,
     onClose: onClick,
-    cssOverrides: headerStyles
+    cssOverrides: headerStyles,
+    size: _modalTypes.ModalSize.Medium
   }), children));
 };
 

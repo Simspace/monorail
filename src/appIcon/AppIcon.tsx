@@ -15,6 +15,8 @@ type AppIconProps = CommonComponentType & {
   appName: AppOrAuthSubAppName
 }
 
+// TODO(unsafe-any): Fix unsafe anys
+// tslint:disable no-unsafe-any
 export const AppIcon = styled(({ appName, cssOverrides, ...otherProps }) => (
   <div {...otherProps}>
     <Icon icon={appName} />
@@ -39,3 +41,4 @@ export const AppIcon = styled(({ appName, cssOverrides, ...otherProps }) => (
     ${cssOverrides};
   `,
 )
+// tslint:enable

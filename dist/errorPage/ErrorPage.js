@@ -20,8 +20,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
 /*
-* Styles
-*/
+ * Styles
+ */
 const CCErrorPage =
 /*#__PURE__*/
 _styledComponents.default.div.withConfig({
@@ -64,13 +64,13 @@ _styledComponents.default.div.withConfig({
   componentId: "r46uot-5"
 })(["", ";color:", ";max-width:448px;text-align:center;width:100%;"], (0, _exports.typography)(400, _exports.FontSizes.Title3), (0, _exports.getColor)(_exports.Colors.Black89));
 /*
-* Types
-*/
+ * Types
+ */
 
 
 /*
-* Components
-*/
+ * Components
+ */
 const errorIcon = {
   [_errorTypes.ErrorType.Default]: _react.default.createElement(IconCircle, null, _react.default.createElement(StyledIcon, {
     icon: "errorRobot",

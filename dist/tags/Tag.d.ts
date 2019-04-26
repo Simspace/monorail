@@ -1,15 +1,12 @@
-import { Component } from 'react';
-import { SimpleInterpolation } from 'styled-components';
-declare type CCTagProps = {
-    cssOverrides?: SimpleInterpolation;
-    label?: string;
-};
-export declare const CCTag: import("styled-components").StyledComponent<"div", any, CCTagProps, never>;
-declare type TagProps = CCTagProps & {
+import { FCwDP } from '@monorail/sharedHelpers/react';
+export declare const TagContainer: import("styled-components").StyledComponent<"div", any, {
+    doesntHaveLabel: boolean;
+}, never>;
+declare type Props = {
     icon: string;
-    key?: string | number;
 };
-export declare class Tag extends Component<TagProps> {
-    render(): JSX.Element;
-}
+declare type DefaultProps = {
+    label: string;
+};
+export declare const Tag: FCwDP<Props, DefaultProps>;
 export {};

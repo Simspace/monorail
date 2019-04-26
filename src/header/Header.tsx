@@ -13,6 +13,8 @@ import {
   typography,
 } from '@monorail/helpers/exports'
 
+// TODO(unsafe-any): Fix unsafe anys
+// tslint:disable no-unsafe-any
 const HeaderRow = styled.div<CommonComponentType>(
   ({ cssOverrides }) => css`
     color: ${getColor(Colors.BrandDarkBlue)};
@@ -96,3 +98,4 @@ export const Header = styled(
     ${cssOverrides};
   `,
 )
+// tslint:enable

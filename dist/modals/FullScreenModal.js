@@ -7,11 +7,13 @@ exports.FullScreenModal = void 0;
 
 var _styledComponents = _interopRequireWildcard(require("styled-components"));
 
-var _react = _interopRequireDefault(require("react"));
-
 var _Modals = require("./Modals");
 
+var _modalTypes = require("./modalTypes");
+
 var _Overlay = require("../toggle/Overlay");
+
+var _react = _interopRequireDefault(require("react"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -46,7 +48,8 @@ const FullScreenModal = ({
     onClick: onClick,
     togglePopOver: togglePopOver
   }, _react.default.createElement(_StyledBBModalBackground, _extends({
-    ref: modalBackgroundRef
+    ref: modalBackgroundRef,
+    size: _modalTypes.ModalSize.FullScreen
   }, otherProps, {
     _css: isRendered ? (0, _styledComponents.css)(["height:100%;width:100%;margin:0;border-radius:0;animation:", " linear ", "ms forwards;"], isOpen ? _Modals.fullScreenModalOpenAnimation : _Modals.fullScreenModalCloseAnimation, _Modals.modalAnimationDuration) : ''
   }), !noHeader && _react.default.createElement(_Modals.BBModalHeader, {
@@ -54,7 +57,8 @@ const FullScreenModal = ({
     headerRowChildren: headerChildren,
     iconLeft: iconLeft,
     onClose: onClick,
-    title: title
+    title: title,
+    size: _modalTypes.ModalSize.FullScreen
   }), children));
 };
 

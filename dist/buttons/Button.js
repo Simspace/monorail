@@ -5,9 +5,11 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.Button = exports.buttonDefaultProps = exports.StyledButton = exports.buttonSizeCss = exports.buttonPressedDisplayCss = exports.buttonDisplayCss = void 0;
 
+var _styledComponents = _interopRequireWildcard(require("styled-components"));
+
 var _react = _interopRequireWildcard(require("react"));
 
-var _styledComponents = _interopRequireWildcard(require("styled-components"));
+var _typeGuards = require("../sharedHelpers/typeGuards");
 
 var _exports = require("../helpers/exports");
 
@@ -44,6 +46,18 @@ const buttonSizeCss = {
   [_buttonTypes.ButtonSize.Large]: (0, _styledComponents.css)(["height:32px;padding:0 15px;"])
 };
 exports.buttonSizeCss = buttonSizeCss;
+const iconLeftStyles = {
+  [_buttonTypes.ButtonSize.Dense]: (0, _styledComponents.css)(["color:inherit;"]),
+  [_buttonTypes.ButtonSize.Compact]: (0, _styledComponents.css)(["color:inherit;margin-left:-6px;"]),
+  [_buttonTypes.ButtonSize.Default]: (0, _styledComponents.css)(["color:inherit;margin-left:-6px;margin-right:4px;"]),
+  [_buttonTypes.ButtonSize.Large]: (0, _styledComponents.css)(["color:inherit;margin-left:-6px;margin-right:8px;"])
+};
+const iconRightStyles = {
+  [_buttonTypes.ButtonSize.Dense]: (0, _styledComponents.css)(["color:inherit;"]),
+  [_buttonTypes.ButtonSize.Compact]: (0, _styledComponents.css)(["color:inherit;margin-right:-7px;"]),
+  [_buttonTypes.ButtonSize.Default]: (0, _styledComponents.css)(["color:inherit;margin-right:-8px;margin-left:4px;"]),
+  [_buttonTypes.ButtonSize.Large]: (0, _styledComponents.css)(["color:inherit;margin-right:-8px;margin-left:8px;"])
+};
 
 const StyledButton =
 /*#__PURE__*/
@@ -57,7 +71,7 @@ _styledComponents.default.button.withConfig({
   mode,
   pressed,
   cssOverrides
-}) => (0, _styledComponents.css)(["", ";", ";", ";", ";", ";", ";cursor:pointer;flex-shrink:0;outline:none;text-transform:uppercase;user-select:none;box-sizing:border-box;align-items:center;justify-content:center;margin:0;overflow:hidden;", ";", "{color:currentColor;margin:auto 4px auto - 4px;}", ";", ";"], mode === _buttonTypes.ButtonMode.Push && pressed ? buttonPressedDisplayCss[display] : buttonDisplayCss[display], buttonSizeCss[size], disabled && _exports.baseDisabledStyles, (0, _exports.typography)(700, _exports.FontSizes.Title5), (0, _exports.borderRadius)(), (0, _exports.flexFlow)('row'), _exports.buttonTransition, _Icon.Icon, (0, _exports.baseFocusStyles)(), cssOverrides));
+}) => (0, _styledComponents.css)(["", ";", ";", ";", ";", ";", ";cursor:pointer;flex-shrink:0;outline:none;text-transform:uppercase;user-select:none;box-sizing:border-box;align-items:center;justify-content:center;margin:0;overflow:hidden;", ";", ";", ";"], mode === _buttonTypes.ButtonMode.Push && pressed ? buttonPressedDisplayCss[display] : buttonDisplayCss[display], buttonSizeCss[size], disabled && _exports.baseDisabledStyles, (0, _exports.typography)(700, _exports.FontSizes.Title5), (0, _exports.borderRadius)(), (0, _exports.flexFlow)('row'), _exports.buttonTransition, (0, _exports.baseFocusStyles)(), cssOverrides));
 
 exports.StyledButton = StyledButton;
 const buttonDefaultProps = {
@@ -67,7 +81,9 @@ const buttonDefaultProps = {
   onClick: () => {},
   disabled: false,
   pressed: false,
-  mode: _buttonTypes.ButtonMode.Default
+  mode: _buttonTypes.ButtonMode.Default,
+  iconLeft: '',
+  iconRight: ''
 };
 exports.buttonDefaultProps = buttonDefaultProps;
 
@@ -131,20 +147,36 @@ class Button extends _react.Component {
       className,
       mode,
       onClick,
+      iconLeft,
+      iconRight,
+      size,
       ...otherProps
     } = this.props;
     const {
       pressed
     } = this.state;
-    return _react.default.createElement(StyledButton, _extends({}, otherProps, {
+    return _react.default.createElement(StyledButton, _extends({
       className: `new-button ${className}`,
       mode: mode,
       onClick: mode === _buttonTypes.ButtonMode.Push ? this.onClickHandler : onClick,
-      pressed: pressed
-    }), children);
+      pressed: pressed,
+      size: size
+    }, otherProps), !(0, _typeGuards.isEmptyString)(iconLeft) && _react.default.createElement(_StyledIcon, {
+      icon: iconLeft,
+      size: 16,
+      _css: iconLeftStyles[size]
+    }), children, !(0, _typeGuards.isEmptyString)(iconRight) && _react.default.createElement(_StyledIcon2, {
+      icon: iconRight,
+      size: 16,
+      _css2: iconRightStyles[size]
+    }));
   }
 
 }
 
 exports.Button = Button;
 Button.defaultProps = buttonDefaultProps;
+
+var _StyledIcon = (0, _styledComponents.default)(_Icon.Icon)`${p => p._css}`;
+
+var _StyledIcon2 = (0, _styledComponents.default)(_Icon.Icon)`${p => p._css2}`;

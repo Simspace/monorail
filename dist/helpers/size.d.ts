@@ -4,6 +4,9 @@ export declare const sizes: {
             height: number;
             width: number;
         };
+        medium: {
+            width: number;
+        };
     };
     menu: {
         width: number;

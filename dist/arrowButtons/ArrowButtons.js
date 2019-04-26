@@ -18,8 +18,8 @@ var _exports = require("../helpers/exports");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /*
-* Styles
-*/
+ * Styles
+ */
 const ArrowButtonsContainer =
 /*#__PURE__*/
 _styledComponents.default.div.withConfig({
@@ -34,13 +34,13 @@ _styledComponents.default.p.withConfig({
   componentId: "sc-1yyr0cr-1"
 })(["", ";color:", ";margin:auto 4px;"], (0, _exports.typography)(400, _exports.FontSizes.Title5), (0, _exports.getColor)(_exports.Colors.Black62));
 /*
-* Types
-*/
+ * Types
+ */
 
 
 /*
-* Components
-*/
+ * Components
+ */
 const ArrowButtons = props => {
   const {
     count,
@@ -51,10 +51,12 @@ const ArrowButtons = props => {
   } = props;
   return _react.default.createElement(ArrowButtonsContainer, otherProps, _react.default.createElement(_IconButton.IconButton, {
     icon: "chevron_left",
+    disabled: previous === undefined,
     onClick: previous,
     display: _buttonTypes.ButtonDisplay.Chromeless
   }), _react.default.createElement(RatioContainer, null, `${count} / ${total}`), _react.default.createElement(_IconButton.IconButton, {
     icon: "chevron_right",
+    disabled: next === undefined,
     onClick: next,
     display: _buttonTypes.ButtonDisplay.Chromeless
   }));

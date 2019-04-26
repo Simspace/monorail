@@ -47,9 +47,10 @@ export class SingleCollection extends Component<Props> {
   }
 }
 
-const calculateOpacity: (
-  props: { scrollAmount: number; animationTermination: number },
-) => string = ({ scrollAmount, animationTermination }) => {
+const calculateOpacity: (props: {
+  scrollAmount: number
+  animationTermination: number
+}) => string = ({ scrollAmount, animationTermination }) => {
   if (scrollAmount === 0) {
     return 'opacity: 0;'
   }

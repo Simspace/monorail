@@ -11,7 +11,6 @@ import { Search } from '@monorail/inputs/Search'
 import {
   ListContainer,
   ListItemGraphic,
-  LinkProps,
   ListItem,
   ListItemPrimaryText,
   ListItemText,
@@ -28,7 +27,7 @@ import {
   typography,
 } from '@monorail/helpers/exports'
 import styled, { css } from 'styled-components'
-import { CommonComponentType } from '@monorail/types'
+import { CommonComponentType, LinkProps } from '@monorail/types'
 import { SearchController } from '@monorail/inputs/SearchController'
 import { array, isEmpty } from 'fp-ts/lib/Array'
 import { some, none } from 'fp-ts/lib/Option'
@@ -192,9 +191,12 @@ export class ContextMenu extends Component<Props> {
         )
         .map(item => (
           <ContextMenuItem
+            // TODO(unsafe-any): Fix unsafe anys
+            // tslint:disable no-unsafe-any
             as={({ as: _as, cssOverrides: _cssOverrides, ...linkProps }) => (
               <Link {...linkProps} />
             )}
+            // tslint:enable
             key={item.key}
             leftIcon={icon}
             primaryText={item.title}

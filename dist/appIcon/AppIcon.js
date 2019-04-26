@@ -17,6 +17,8 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+// TODO(unsafe-any): Fix unsafe anys
+// tslint:disable no-unsafe-any
 const AppIcon =
 /*#__PURE__*/
 (0, _styledComponents.default)(({
@@ -28,5 +30,6 @@ const AppIcon =
 })))(({
   appName,
   cssOverrides
-}) => (0, _styledComponents.css)(["", ";", ";background:", ";box-sizing:border-box;height:16px;width:16px;", "{fill:", ";height:100%;margin:auto;width:100%;}", ";"], (0, _exports.flexFlow)('row'), (0, _exports.borderRadius)(), (0, _exports.getColor)((0, _exports.convertAppNameToColor)(appName)), _Icon.Icon, (0, _exports.getColor)(_exports.Colors.White), cssOverrides));
+}) => (0, _styledComponents.css)(["", ";", ";background:", ";box-sizing:border-box;height:16px;width:16px;", "{fill:", ";height:100%;margin:auto;width:100%;}", ";"], (0, _exports.flexFlow)('row'), (0, _exports.borderRadius)(), (0, _exports.getColor)((0, _exports.convertAppNameToColor)(appName)), _Icon.Icon, (0, _exports.getColor)(_exports.Colors.White), cssOverrides)); // tslint:enable
+
 exports.AppIcon = AppIcon;

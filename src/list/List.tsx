@@ -1,6 +1,19 @@
+import {
+  baseFocusStyles,
+  buttonTransition,
+  Colors,
+  ellipsis,
+  flexFlow,
+  FontSizes,
+  getColor,
+  Sizes,
+  typography,
+} from '@monorail/helpers/exports'
+import { Icon, IconProps } from '@monorail/icon/Icon'
+import { isNil } from '@monorail/sharedHelpers/typeGuards'
+import { CommonComponentType, LinkProps } from '@monorail/types'
 import React, {
   Children,
-  CSSProperties,
   MouseEvent,
   ReactNode,
   StatelessComponent,
@@ -8,30 +21,18 @@ import React, {
 
 import styled, { css, SimpleInterpolation } from 'styled-components'
 
-import {
-  baseFocusStyles,
-  buttonTransition,
-  Colors,
-  getColor,
-  ellipsis,
-  flexFlow,
-  FontSizes,
-  Sizes,
-  typography,
-} from '@monorail/helpers/exports'
-import { Icon, IconProps } from '@monorail/icon/Icon'
-import { CommonComponentType } from '@monorail/types'
-import { isNil } from '@monorail/sharedHelpers/typeGuards'
+// TODO(unsafe-any): Fix unsafe anys
+// tslint:disable no-unsafe-any
 
 /*
-*
-* List Container
-*
-*/
+ *
+ * List Container
+ *
+ */
 
 /*
-* Styles
-*/
+ * Styles
+ */
 
 const BBListContainer = styled.div<BBListContainerProps>(
   ({ cssOverrides }) => css`
@@ -45,8 +46,8 @@ const BBListContainer = styled.div<BBListContainerProps>(
 )
 
 /*
-* Types
-*/
+ * Types
+ */
 
 type BBListContainerProps = {
   cssOverrides?: SimpleInterpolation
@@ -57,8 +58,8 @@ type ListContainerProps = BBListContainerProps & {
 }
 
 /*
-* Component
-*/
+ * Component
+ */
 
 export const ListContainer: StatelessComponent<ListContainerProps> = ({
   children,
@@ -81,21 +82,14 @@ export const ListContainer: StatelessComponent<ListContainerProps> = ({
 )
 
 /*
-*
-* List Item
-*
-*/
+ *
+ * List Item
+ *
+ */
 
 /*
-* Types
-*/
-
-export type LinkProps = {
-  activeClassName?: string
-  activeStyle?: CSSProperties
-  onlyActiveOnIndex?: boolean
-  to?: string
-}
+ * Types
+ */
 
 type ListSizeProps = {
   dense?: boolean
@@ -110,8 +104,8 @@ type ListItemProps = LinkProps &
   }
 
 /*
-* Styles
-*/
+ * Styles
+ */
 
 export const ListItemText = styled.div<CommonComponentType>(
   ({ cssOverrides }) => css`
@@ -278,3 +272,4 @@ export const SimpleListItem: StatelessComponent<SimpleListItemProps> = ({
     {children}
   </ListItem>
 )
+// tslint:enable

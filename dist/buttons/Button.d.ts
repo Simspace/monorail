@@ -1,7 +1,6 @@
 import { Component, MouseEvent } from 'react';
 import { ButtonDisplay, ButtonSize, ButtonMode } from '@monorail/buttons/buttonTypes';
-import { CommonComponentType } from '@monorail/types';
-import { LinkProps } from '@monorail/list/List';
+import { CommonComponentType, LinkProps } from '@monorail/types';
 export declare const buttonDisplayCss: {
     [ButtonDisplay.Primary]: import("styled-components").FlattenSimpleInterpolation;
     [ButtonDisplay.Secondary]: import("styled-components").FlattenSimpleInterpolation;
@@ -30,6 +29,10 @@ declare type ButtonState = {
     previous: boolean;
     pressed: boolean;
 };
+declare type IconProps = {
+    iconLeft: string;
+    iconRight: string;
+};
 export declare type ButtonProps = CommonComponentType & LinkProps & {
     size: ButtonSize;
     display: ButtonDisplay;
@@ -39,6 +42,7 @@ export declare type ButtonProps = CommonComponentType & LinkProps & {
     pressed: boolean;
     type: 'button' | 'reset' | 'submit';
 };
+declare type Props = ButtonProps & IconProps;
 export declare const buttonDefaultProps: {
     display: ButtonDisplay;
     size: ButtonSize;
@@ -47,8 +51,10 @@ export declare const buttonDefaultProps: {
     disabled: boolean;
     pressed: boolean;
     mode: ButtonMode;
+    iconLeft: string;
+    iconRight: string;
 };
-export declare class Button extends Component<ButtonProps, ButtonState> {
+export declare class Button extends Component<Props, ButtonState> {
     static defaultProps: {
         display: ButtonDisplay;
         size: ButtonSize;
@@ -57,6 +63,8 @@ export declare class Button extends Component<ButtonProps, ButtonState> {
         disabled: boolean;
         pressed: boolean;
         mode: ButtonMode;
+        iconLeft: string;
+        iconRight: string;
     };
     state: ButtonState;
     /**

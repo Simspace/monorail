@@ -4,9 +4,10 @@ import { isNil } from '@monorail/sharedHelpers/typeGuards'
 type Props = {
   scrollContainer: RefObject<HTMLDivElement>
   animatingElement: RefObject<HTMLDivElement>
-  animationFunction: (
-    props: { scrollAmount: number; animationTermination: number },
-  ) => string
+  animationFunction: (props: {
+    scrollAmount: number
+    animationTermination: number
+  }) => string
   animationTermination: number
 }
 

@@ -68,6 +68,8 @@ const iconButtonCSS = (
       : BorderRadius.Medium,
   )};
 
+  padding: 0;
+
   ${Icon} {
     ${darkMode
       ? css`
@@ -77,7 +79,7 @@ const iconButtonCSS = (
           color: currentColor;
         `};
 
-    margin: 0;
+    margin: auto;
   }
 
   ${cssOverrides};
@@ -125,7 +127,12 @@ export class IconButton extends Component<IconButtonProps> {
           cssOverrides,
         )}
       >
-        <Icon icon={icon} css={iconCss} />
+        <Icon
+          icon={icon}
+          css={css`
+            ${iconCss}
+          `}
+        />
       </Button>
     )
   }

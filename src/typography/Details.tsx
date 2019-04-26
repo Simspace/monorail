@@ -8,7 +8,7 @@ import {
   FontSizes,
   typography,
 } from '@monorail/helpers/exports'
-import { CCTag } from '@monorail/tags/Tag'
+import { TagContainer } from '@monorail/tags/Tag'
 
 // Property Styles
 const primaryPropertyStyles = css`
@@ -84,7 +84,7 @@ const BBDetailsContainer = styled.div<BBDetailsContainerProps>(
   ({ cssOverrides }) => css`
     ${flexFlow()};
 
-    ${CCTag} {
+    ${TagContainer} {
       margin-top: 6px;
     }
 

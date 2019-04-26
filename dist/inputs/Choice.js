@@ -16,8 +16,8 @@ var _styledComponents = _interopRequireWildcard(require("styled-components"));
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
 /*
-* Styles
-*/
+ * Styles
+ */
 const BBChoiceInput =
 /*#__PURE__*/
 _styledComponents.default.input.withConfig({
@@ -49,13 +49,13 @@ _styledComponents.default.label.withConfig({
   answered
 }) => (0, _styledComponents.css)(["", ";", ";", ";", ";align-items:center;box-sizing:border-box;cursor:pointer;display:flex;flex-direction:row;min-height:24px;padding:4px 4px 4px 32px;position:relative;user-select:none;width:100%;", ";.ChoiceButtonChecked{color:", ";transform:translateX(", "px);}.ChoiceButtonUnchecked{color:", ";transform:translateX(", "px);}.RealInput:checked ~ .ChoiceButtonChecked{", ";}.RealInput:checked ~ .ChoiceButtonUnchecked{", ";}.RealInput:not(:checked) ~ .ChoiceButtonChecked{", ";}.RealInput:not(:checked) ~ .ChoiceButtonUnchecked{", ";}.IncorrectIcon{color:", ";", ";}.CorrectIcon{color:", ";", ";}", "{left:8px;position:absolute;font-size:16px;transition:all ease 150ms;}", ";"], (readOnly || incorrect || correct) && (0, _styledComponents.css)(["cursor:default;pointer-events:none;"]), (0, _exports.baseChromelessStyles)(), (0, _exports.flexFlow)('row'), (0, _exports.borderRadius)(), _exports.buttonTransition, (0, _exports.getColor)(_exports.Colors.BrandLightBlue), answered ? 24 : 0, (0, _exports.getColor)(_exports.Colors.Black54), answered ? 24 : 0, disabled && _exports.baseDisabledStyles, (0, _exports.visible)(false), (0, _exports.visible)(false), disabled && _exports.baseDisabledStyles, (0, _exports.getColor)(_exports.Colors.Red), (0, _exports.visible)(incorrect), (0, _exports.getColor)(_exports.Colors.Green), (0, _exports.visible)(correct), _Icon.Icon, cssOverrides));
 /*
-* Types
-*/
+ * Types
+ */
 
 
 /*
-* Component
-*/
+ * Component
+ */
 class Choice extends _react.Component {
   constructor(...args) {
     super(...args);

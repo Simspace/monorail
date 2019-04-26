@@ -21,6 +21,8 @@ export declare class LoadingButton extends Component<Props, State> {
         disabled: boolean;
         pressed: boolean;
         mode: import("./buttonTypes").ButtonMode;
+        iconLeft: string;
+        iconRight: string;
     };
     state: State;
     _isMounted: boolean;
