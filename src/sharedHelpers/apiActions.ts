@@ -5,39 +5,39 @@ import { isUndefined } from './typeGuards'
 
 export interface Optimistic<A extends string>
   extends Newtype<
-      {
-        readonly Optimistic: unique symbol
-        phantom: A
-      },
-      string
-    > {}
+    {
+      readonly Optimistic: unique symbol
+      phantom: A
+    },
+    string
+  > {}
 
 export interface Request<A extends string>
   extends Newtype<
-      {
-        readonly Request: unique symbol
-        phantom: A
-      },
-      string
-    > {}
+    {
+      readonly Request: unique symbol
+      phantom: A
+    },
+    string
+  > {}
 
 export interface Failure<A extends string>
   extends Newtype<
-      {
-        readonly Failure: unique symbol
-        phantom: A
-      },
-      string
-    > {}
+    {
+      readonly Failure: unique symbol
+      phantom: A
+    },
+    string
+  > {}
 
 export interface Success<A extends string>
   extends Newtype<
-      {
-        readonly Success: unique symbol
-        phantom: A
-      },
-      string
-    > {}
+    {
+      readonly Success: unique symbol
+      phantom: A
+    },
+    string
+  > {}
 
 export type ApiActionType<A extends string> =
   | Optimistic<A>
@@ -157,5 +157,5 @@ export const mkApiAction = <
       ? { type }
       : { type, meta }
     : isUndefined(meta)
-      ? { type, payload }
-      : { type, payload, meta }) as GeneratedApiAction<Type, Payload, Meta>
+    ? { type, payload }
+    : { type, payload, meta }) as GeneratedApiAction<Type, Payload, Meta>

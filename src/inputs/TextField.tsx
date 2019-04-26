@@ -15,8 +15,8 @@ import { Icon } from '@monorail/icon/Icon'
 import { Omit } from 'typelevel-ts'
 
 /*
-* Styles
-*/
+ * Styles
+ */
 
 const BBTextFieldContainer = styled.label<ContainerProps>(
   ({ cssOverrides }) => css`
@@ -131,8 +131,8 @@ const BBTextAreaInput = styled.textarea<
 )
 
 /*
-* Types
-*/
+ * Types
+ */
 
 type ContainerProps = {
   cssOverrides: SimpleInterpolation
@@ -196,8 +196,8 @@ export const defaultTextAreaProps = {
 }
 
 /*
-* Component
-*/
+ * Component
+ */
 
 export class TextField extends Component<TextFieldProps> {
   static defaultProps = defaultTextFieldProps

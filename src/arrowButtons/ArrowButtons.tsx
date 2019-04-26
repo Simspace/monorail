@@ -12,8 +12,8 @@ import {
 import { CommonComponentType } from '@monorail/types'
 
 /*
-* Styles
-*/
+ * Styles
+ */
 
 const ArrowButtonsContainer = styled.div`
   ${flexFlow('row')};
@@ -30,8 +30,8 @@ const RatioContainer = styled.p`
 `
 
 /*
-* Types
-*/
+ * Types
+ */
 
 type Props = CommonComponentType & {
   count?: number
@@ -41,8 +41,8 @@ type Props = CommonComponentType & {
 }
 
 /*
-* Components
-*/
+ * Components
+ */
 
 export const ArrowButtons = (props: Props) => {
   const { count, next, previous, total, ...otherProps } = props
@@ -51,12 +51,14 @@ export const ArrowButtons = (props: Props) => {
     <ArrowButtonsContainer {...otherProps}>
       <IconButton
         icon="chevron_left"
+        disabled={previous === undefined}
         onClick={previous}
         display={ButtonDisplay.Chromeless}
       />
       <RatioContainer>{`${count} / ${total}`}</RatioContainer>
       <IconButton
         icon="chevron_right"
+        disabled={next === undefined}
         onClick={next}
         display={ButtonDisplay.Chromeless}
       />

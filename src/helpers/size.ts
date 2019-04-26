@@ -4,6 +4,9 @@ export const sizes = {
       height: 360,
       width: 304,
     },
+    medium: {
+      width: 584,
+    },
   },
   menu: {
     width: 176,

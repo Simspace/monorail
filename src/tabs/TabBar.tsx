@@ -4,6 +4,9 @@ import styled, { css, SimpleInterpolation } from 'styled-components'
 import { Colors, getColor, flexFlow, Sizes } from '@monorail/helpers/exports'
 import { TabProps } from './Tab'
 
+// TODO(unsafe-any): Fix unsafe anys
+// tslint:disable no-unsafe-any
+
 // TabBarIndicator is pos:abs to this element. Also we use offsetLeft on the Tab which references this position.
 export const TabBarContainer = styled.div<CCTabBarProps>(
   ({ cssOverrides, size }) => css`
@@ -219,3 +222,4 @@ export class TabBar extends Component<TabBarProps, TabBarState> {
     )
   }
 }
+// tslint:enable

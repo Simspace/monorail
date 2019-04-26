@@ -16,8 +16,8 @@ import { CommonComponentType } from '@monorail/types'
 import { baseChromelessStyles } from '@monorail/helpers/baseStyles'
 
 /*
-* Styles
-*/
+ * Styles
+ */
 
 const getStateStyles: StateStyles = (step, styles) => {
   if (step.isActive) {
@@ -163,8 +163,8 @@ const Line = styled.div<DarkModeType>(
 )
 
 /*
-* Types
-*/
+ * Types
+ */
 
 type DarkModeType = {
   darkMode: boolean
@@ -197,8 +197,8 @@ type StateStyles = (
 ) => SimpleInterpolation
 
 /*
-* Components
-*/
+ * Components
+ */
 
 export class HorizontalStepper extends Component<Props, State> {
   static defaultProps = {

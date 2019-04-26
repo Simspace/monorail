@@ -30,20 +30,18 @@ const frameTime = 1000 / 60
 const nFrames: (duration: number) => number = duration =>
   Math.round(duration / frameTime)
 
-const append: (
-  params: {
-    endOpacity: number
-    endX: number
-    endY: number
-    innerAnimation: Array<string>
-    outerAnimation: Array<string>
-    percentage: string
-    startOpacity: number
-    startX: number
-    startY: number
-    step: number
-  },
-) => void = ({
+const append: (params: {
+  endOpacity: number
+  endX: number
+  endY: number
+  innerAnimation: Array<string>
+  outerAnimation: Array<string>
+  percentage: string
+  startOpacity: number
+  startX: number
+  startY: number
+  step: number
+}) => void = ({
   endOpacity,
   endX,
   endY,
@@ -74,15 +72,13 @@ const append: (
       }`)
 }
 
-const createEaseAnimations: (
-  props: {
-    animationDuration: number
-    isOpen: boolean
-    position: PopOverPosition
-    x: number
-    y: number
-  },
-) => {
+const createEaseAnimations: (props: {
+  animationDuration: number
+  isOpen: boolean
+  position: PopOverPosition
+  x: number
+  y: number
+}) => {
   menuAnimation: Keyframes
   menuContentsAnimation: Keyframes
 } = ({ isOpen, x, y, animationDuration }) => {
@@ -140,14 +136,12 @@ const createEaseAnimations: (
       : keyframes`${menuCollapseContentsAnimation.join('')}`,
   }
 }
-export const generateScaleAnimation: (
-  params: {
-    position: PopOverPosition
-    isOpen: boolean
-    elementHeight: number
-    elementWidth: number
-  },
-) => {
+export const generateScaleAnimation: (params: {
+  position: PopOverPosition
+  isOpen: boolean
+  elementHeight: number
+  elementWidth: number
+}) => {
   outSideContentStyles: SimpleInterpolation
   inSideContentStyles: SimpleInterpolation
 } = ({ position, isOpen, elementHeight, elementWidth }) => {
@@ -190,13 +184,11 @@ export const buttonTransition = css`
   transition: all ease 75ms;
 `
 
-export const transition: (
-  props: {
-    properties?: Array<string>
-    easing: string
-    duration: number
-  },
-) => SimpleInterpolation = ({ properties = ['all'], easing, duration }) => {
+export const transition: (props: {
+  properties?: Array<string>
+  easing: string
+  duration: number
+}) => SimpleInterpolation = ({ properties = ['all'], easing, duration }) => {
   return css`
     transition: ${properties
       .map(property => `${property} ${easing} ${duration}ms`)

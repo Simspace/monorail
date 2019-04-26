@@ -1,15 +1,17 @@
-import { FCwDP } from '@monorail/sharedHelpers/react'
-import React from 'react'
 import {
   BBModalBackground,
   BBModalHeader,
   mediumModalCloseAnimation,
   mediumModalOpenAnimation,
+  modalAnimationDuration,
   useModalAnimation,
 } from '@monorail/modals/Modals'
-import { css, SimpleInterpolation } from 'styled-components'
-import { Overlay } from '@monorail/toggle/Overlay'
+import { ModalSize } from '@monorail/modals/modalTypes'
 import { PopOverChildProps } from '@monorail/popOver/PopOver'
+import { FCwDP } from '@monorail/sharedHelpers/react'
+import { Overlay } from '@monorail/toggle/Overlay'
+import React from 'react'
+import { css, SimpleInterpolation } from 'styled-components'
 
 type Props = PopOverChildProps &
   DefaultProps & {
@@ -54,10 +56,11 @@ export const MediumModal: FCwDP<Props, DefaultProps> = ({
                 animation: ${isOpen
                     ? mediumModalOpenAnimation
                     : mediumModalCloseAnimation}
-                  linear 100ms forwards;
+                  linear ${modalAnimationDuration}ms forwards;
               `
             : ''
         }
+        size={ModalSize.Medium}
         {...otherProps}
       >
         <BBModalHeader
@@ -65,6 +68,7 @@ export const MediumModal: FCwDP<Props, DefaultProps> = ({
           iconLeft={iconLeft}
           onClose={onClick}
           cssOverrides={headerStyles}
+          size={ModalSize.Medium}
         />
         {children}
       </BBModalBackground>

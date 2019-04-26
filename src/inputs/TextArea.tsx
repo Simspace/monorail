@@ -13,8 +13,8 @@ import {
 } from '@monorail/helpers/exports'
 
 /*
-* Styles
-*/
+ * Styles
+ */
 
 const BBTextAreaContainer = styled.label<TextAreaProps>(
   ({ cssOverrides }) => css`
@@ -75,8 +75,8 @@ const BBTextAreaInput = styled.textarea<BBTextAreaInputProps>(
 )
 
 /*
-* Types
-*/
+ * Types
+ */
 
 type BBTextAreaContainerProps = {
   cssOverrides?: SimpleInterpolation
@@ -98,8 +98,8 @@ type BBTextAreaInputProps = {
 export type TextAreaProps = BBTextAreaContainerProps & BBTextAreaInputProps & {}
 
 /*
-* Component
-*/
+ * Component
+ */
 
 export class TextArea extends Component<TextAreaProps> {
   textArea = React.createRef<HTMLTextAreaElement>()

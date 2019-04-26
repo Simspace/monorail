@@ -1,13 +1,11 @@
 import React, { Component, ReactNode } from 'react'
 
 type Props = {
-  children: (
-    props: {
-      value: string
-      onChange: (newSearchString: string) => void
-      compareSearch: (stringToCompare: string) => boolean
-    },
-  ) => ReactNode
+  children: (props: {
+    value: string
+    onChange: (newSearchString: string) => void
+    compareSearch: (stringToCompare: string) => boolean
+  }) => ReactNode
 }
 
 type State = {

@@ -67,10 +67,12 @@ export type ExtractFromHKT4<F> = F extends HKT4S<
 export type ExtractFromHKTS<F extends HKTS> = F extends HKT1S
   ? ExtractFromHKT1<F>
   : F extends HKT2S
-    ? ExtractFromHKT2<F>
-    : F extends HKT3S
-      ? ExtractFromHKT3<F>
-      : F extends HKT4S ? ExtractFromHKT4<F> : never
+  ? ExtractFromHKT2<F>
+  : F extends HKT3S
+  ? ExtractFromHKT3<F>
+  : F extends HKT4S
+  ? ExtractFromHKT4<F>
+  : never
 
 export type ExtractAFromHKT<F extends HKT1S> = ExtractFromHKT1<F>
 

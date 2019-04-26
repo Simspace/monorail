@@ -75,38 +75,32 @@ export const Menu: FCwDP<RequiredProps, DefaultProps> = ({
   const [menuWidth, setMenuWidth] = useState(0)
   const [isRendered, setIsRendered] = useState(false)
 
-  const scaleAnimation = useMemo(
-    () => {
-      const elementHeight = menuHeight
+  const scaleAnimation = useMemo(() => {
+    const elementHeight = menuHeight
 
-      const elementWidth = Math.max(
-        isNil(width) ? menuWidth : width,
-        sizes.menu.width,
-      )
+    const elementWidth = Math.max(
+      isNil(width) ? menuWidth : width,
+      sizes.menu.width,
+    )
 
-      return generateScaleAnimation({
-        elementHeight,
-        elementWidth,
-        isOpen,
-        position,
-      })
-    },
-    [isOpen, menuHeight, menuWidth, position, width],
-  )
+    return generateScaleAnimation({
+      elementHeight,
+      elementWidth,
+      isOpen,
+      position,
+    })
+  }, [isOpen, menuHeight, menuWidth, position, width])
 
   useEffect(() => setIsRendered(true), [])
 
-  useLayoutEffect(
-    () => {
-      const menuElement = menuRef.current
+  useLayoutEffect(() => {
+    const menuElement = menuRef.current
 
-      if (menuElement) {
-        setMenuHeight(menuElement.offsetHeight)
-        setMenuWidth(menuElement.offsetWidth)
-      }
-    },
-    [menuRef.current],
-  )
+    if (menuElement) {
+      setMenuHeight(menuElement.offsetHeight)
+      setMenuWidth(menuElement.offsetWidth)
+    }
+  }, [menuRef.current])
 
   const eventListener = useCallback<EventListener>(
     event => {
@@ -132,11 +126,17 @@ export const Menu: FCwDP<RequiredProps, DefaultProps> = ({
       zIndex={zIndex}
     >
       <MenuContainer
-        css={isRendered ? scaleAnimation.outSideContentStyles : ''}
+        css={css`
+          ${isRendered ? scaleAnimation.outSideContentStyles : ''}
+        `}
         ref={menuRef}
         width={isNil(width) ? 'auto' : `${width}px`}
       >
-        <MenuContent css={isRendered ? scaleAnimation.inSideContentStyles : ''}>
+        <MenuContent
+          css={css`
+            ${isRendered ? scaleAnimation.inSideContentStyles : ''}
+          `}
+        >
           {children}
         </MenuContent>
       </MenuContainer>

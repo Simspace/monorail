@@ -4,8 +4,8 @@ import { Colors, getColor } from '@monorail/helpers/exports'
 import { CommonComponentType } from '@monorail/types'
 
 /*
-* Styles
-*/
+ * Styles
+ */
 
 export const Divider = styled.div<CCDividerProps>(
   ({ isVertical }) => css`
@@ -28,8 +28,8 @@ Divider.defaultProps = {
 }
 
 /*
-* Types
-*/
+ * Types
+ */
 
 type CCDividerProps = CommonComponentType & {
   isVertical?: boolean

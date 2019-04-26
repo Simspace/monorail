@@ -8,13 +8,18 @@ import { isFalsy, isNil } from '../typeGuards'
 /**
  * type guard for Option
  */
-// tslint:disable-next-line:no-any
-export const isOption = <A>(x: any): x is Option<A> =>
-  !isNil(x) &&
-  !isNil(x.isSome) &&
-  !isNil(x.isNone) &&
-  ((!isNil(x._tag) && x._tag === 'Some') || x._tag === 'None')
+export const isOption = <A>(x: unknown): x is Option<A> => {
+  if (!isNil(x)) {
+    const x_ = x as { isSome?: unknown; isNone?: unknown; _tag?: unknown }
+    return (
+      !isNil(x_.isSome) &&
+      !isNil(x_.isNone) &&
+      ((!isNil(x_._tag) && x_._tag === 'Some') || x_._tag === 'None')
+    )
+  }
 
+  return false
+}
 /**
  * Standalone version of fp-ts' `fold` for Options. Like `getOrElse`,
  * but with a mapping transformation for the value in a `Some`

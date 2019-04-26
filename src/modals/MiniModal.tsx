@@ -1,13 +1,14 @@
-import React, { FunctionComponent, ReactNode, useMemo } from 'react'
-import { PopOverChildProps } from '@monorail/popOver/PopOver'
+import { generateScaleAnimation, sizes } from '@monorail/helpers/exports'
 import {
   BBModalBackground,
   BBModalContent,
   BBModalHeader,
   useModalAnimation,
 } from '@monorail/modals/Modals'
-import { generateScaleAnimation, sizes } from '@monorail/helpers/exports'
+import { ModalSize } from '@monorail/modals/modalTypes'
+import { PopOverChildProps } from '@monorail/popOver/PopOver'
 import { Overlay } from '@monorail/toggle/Overlay'
+import React, { FunctionComponent, ReactNode, useMemo } from 'react'
 import { css, SimpleInterpolation } from 'styled-components'
 
 type Props = PopOverChildProps & {
@@ -29,19 +30,16 @@ export const MiniModal: FunctionComponent<Props> = ({
   title,
   togglePopOver,
 }) => {
-  const scaleAnimation = useMemo(
-    () => {
-      const { height: elementHeight, width: elementWidth } = sizes.modals.mini
+  const scaleAnimation = useMemo(() => {
+    const { height: elementHeight, width: elementWidth } = sizes.modals.mini
 
-      return generateScaleAnimation({
-        elementHeight,
-        elementWidth,
-        isOpen,
-        position,
-      })
-    },
-    [isOpen, position],
-  )
+    return generateScaleAnimation({
+      elementHeight,
+      elementWidth,
+      isOpen,
+      position,
+    })
+  }, [isOpen, position])
 
   const { modalBackgroundRef, isRendered } = useModalAnimation<HTMLDivElement>({
     closingAnimationCompleted,
@@ -57,7 +55,7 @@ export const MiniModal: FunctionComponent<Props> = ({
       usesScaleAnimation={true}
     >
       <BBModalBackground
-        mini
+        size={ModalSize.Mini}
         ref={modalBackgroundRef}
         css={
           isRendered
@@ -69,10 +67,12 @@ export const MiniModal: FunctionComponent<Props> = ({
         }
       >
         <BBModalContent
-          css={isRendered ? scaleAnimation.inSideContentStyles : ''}
+          css={css`
+            ${isRendered ? scaleAnimation.inSideContentStyles : ''}
+          `}
         >
           <BBModalHeader
-            mini
+            size={ModalSize.Mini}
             onClose={onClick}
             title={title}
             iconLeft={iconLeft}

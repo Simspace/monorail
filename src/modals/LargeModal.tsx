@@ -1,8 +1,8 @@
 import {
   BBModalBackground,
   BBModalHeader,
-  fullScreenModalCloseAnimation,
-  fullScreenModalOpenAnimation,
+  largeModalCloseAnimation,
+  largeModalOpenAnimation,
   modalAnimationDuration,
   useModalAnimation,
 } from '@monorail/modals/Modals'
@@ -10,34 +10,30 @@ import { ModalSize } from '@monorail/modals/modalTypes'
 import { PopOverChildProps } from '@monorail/popOver/PopOver'
 import { FCwDP } from '@monorail/sharedHelpers/react'
 import { Overlay } from '@monorail/toggle/Overlay'
-import React, { ReactNode } from 'react'
-import { css } from 'styled-components'
+import React from 'react'
+import { css, SimpleInterpolation } from 'styled-components'
 
 type Props = PopOverChildProps &
   DefaultProps & {
-    customCloseButton?: ReactNode
-    headerChildren?: ReactNode
     title: string
+    iconLeft?: string
+    headerStyles?: SimpleInterpolation
   }
 
 type DefaultProps = {
-  escToClose: boolean
-  iconLeft: string
-  noHeader: boolean
+  zIndex: number
 }
 
-export const FullScreenModal: FCwDP<Props, DefaultProps> = ({
-  children,
-  customCloseButton,
-  escToClose,
-  headerChildren,
-  iconLeft,
+export const LargeModal: FCwDP<Props, DefaultProps> = ({
   isOpen,
-  noHeader,
   onClick,
+  children,
   title,
+  iconLeft,
   togglePopOver,
+  headerStyles,
   closingAnimationCompleted,
+  zIndex,
   ...otherProps
 }) => {
   const { modalBackgroundRef, isRendered } = useModalAnimation<HTMLDivElement>({
@@ -47,49 +43,39 @@ export const FullScreenModal: FCwDP<Props, DefaultProps> = ({
 
   return (
     <Overlay
-      escToClose={escToClose}
       isOpen={isOpen}
       onClick={onClick}
       togglePopOver={togglePopOver}
+      zIndex={zIndex}
     >
       <BBModalBackground
         ref={modalBackgroundRef}
         css={
           isRendered
             ? css`
-                height: 100%;
-                width: 100%;
-                margin: 0;
-                border-radius: 0;
-
                 animation: ${isOpen
-                    ? fullScreenModalOpenAnimation
-                    : fullScreenModalCloseAnimation}
+                    ? largeModalOpenAnimation
+                    : largeModalCloseAnimation}
                   linear ${modalAnimationDuration}ms forwards;
               `
             : ''
         }
-        size={ModalSize.FullScreen}
+        size={ModalSize.Large}
         {...otherProps}
       >
-        {!noHeader && (
-          <BBModalHeader
-            customCloseButton={customCloseButton}
-            headerRowChildren={headerChildren}
-            iconLeft={iconLeft}
-            onClose={onClick}
-            title={title}
-            size={ModalSize.FullScreen}
-          />
-        )}
+        <BBModalHeader
+          title={title}
+          iconLeft={iconLeft}
+          onClose={onClick}
+          cssOverrides={headerStyles}
+          size={ModalSize.Large}
+        />
         {children}
       </BBModalBackground>
     </Overlay>
   )
 }
 
-FullScreenModal.defaultProps = {
-  escToClose: true,
-  iconLeft: '',
-  noHeader: false,
+LargeModal.defaultProps = {
+  zIndex: 9998,
 }

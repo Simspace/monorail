@@ -25,8 +25,8 @@ import { CommonComponentType } from '@monorail/types'
 import { TabBarContainer } from '@monorail/tabs/TabBar'
 
 /*
-* Styles
-*/
+ * Styles
+ */
 
 const PageHeaderContainer = styled.div<PageHeaderContainerProps>(
   ({ flush, cssOverrides, hasAboveContent }) => css`
@@ -162,8 +162,8 @@ const Title = styled.h1`
 `
 
 /*
-* Types
-*/
+ * Types
+ */
 export type PageHeaderShadowProps = {
   willAnimateShadow: boolean
   flush: boolean
@@ -192,8 +192,8 @@ type PageHeaderProps = CommonComponentType &
   }
 
 /*
-* Components
-*/
+ * Components
+ */
 
 export class PageHeader extends Component<PageHeaderProps> {
   static defaultProps = {
@@ -255,8 +255,8 @@ export class PageHeader extends Component<PageHeaderProps> {
                   margin-left: -4px;
                   margin-right: 8px;
                 `}
+                iconLeft="circle_arrow_left"
               >
-                <Icon icon="circle_arrow_left" />
                 Go Back
               </Button>
             )}

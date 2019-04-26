@@ -6,12 +6,12 @@ import { Menu } from '@monorail/menu/Menu'
 import { ButtonDisplay } from '@monorail/buttons/buttonTypes'
 
 /*
-* Styles
-*/
+ * Styles
+ */
 
 /*
-* Types
-*/
+ * Types
+ */
 
 type ActionsMenuProps = {
   menuItems: Array<{
@@ -23,10 +23,13 @@ type ActionsMenuProps = {
 }
 
 /*
-* Components
-*/
+ * Components
+ */
 
-export const ActionsMenu: FC<ActionsMenuProps> = ({ menuItems }) => (
+export const ActionsMenu: FC<ActionsMenuProps> = ({
+  menuItems,
+  ...otherProps
+}) => (
   <>
     {menuItems.length > 0 && (
       <PopOver
@@ -48,6 +51,7 @@ export const ActionsMenu: FC<ActionsMenuProps> = ({ menuItems }) => (
             icon="more_vert"
             display={ButtonDisplay.Chromeless}
             {...props}
+            {...otherProps}
           />
         )}
       />

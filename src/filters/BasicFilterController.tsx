@@ -41,16 +41,14 @@ export type BasicOptionGroup = {
 type BasicFilterControllerProps = {
   document?: Document
   group: BasicOptionGroup
-  children: (
-    params: {
-      collection: Array<BasicOption>
-      document?: Document
-      isActive: boolean
-      title: ReactNode
-      key: string
-      onChange: (filter: BasicOption) => void
-    },
-  ) => ReactNode
+  children: (params: {
+    collection: Array<BasicOption>
+    document?: Document
+    isActive: boolean
+    title: ReactNode
+    key: string
+    onChange: (filter: BasicOption) => void
+  }) => ReactNode
 }
 
 type TitleState = {
@@ -117,17 +115,15 @@ export class BasicFilterController extends Component<
 type BasicSorterControllerProps = {
   document?: Document
   group: BasicOptionGroup
-  children: (
-    params: {
-      collection: Array<BasicOption>
-      document?: Document
-      isActive: boolean
-      title: ReactNode
-      key: string
-      style: (selected: boolean) => any // tslint:disable-line:no-any
-      onChange: (key: string) => void
-    },
-  ) => ReactNode
+  children: (params: {
+    collection: Array<BasicOption>
+    document?: Document
+    isActive: boolean
+    title: ReactNode
+    key: string
+    style: (selected: boolean) => any // tslint:disable-line:no-any
+    onChange: (key: string) => void
+  }) => ReactNode
 }
 
 export class BasicSorterController extends Component<

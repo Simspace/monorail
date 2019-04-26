@@ -71,30 +71,28 @@ type Props<
   filterGroups: Array<FilterGroup<CollectionItem, FilterKey>>
   // TODO: Refactor to use Option instead of possibly undefined
   sorterGroup?: SorterGroup<CollectionItem>
-  children: (
-    props: {
-      filters: {
-        resetFilters: () => void
-        filterGroups: Array<FilterGroupWithData<CollectionItem, FilterKey>>
-        onFilterChange: (
-          groupKey: string,
-          filterKey: string,
-          value: boolean,
-        ) => void
-        isFiltered: boolean
-      }
-      sorters: {
-        // TODO: Refactor to use Option instead of possibly undefined
-        sorterGroup?: SorterGroup<CollectionItem>
-        onSorterChange: (key: string) => void
-      }
-      search: {
-        onSearchChange: (searchText: string) => void
-        searchText: string
-      }
-      collection: Array<ReactNode>
-    },
-  ) => ReactNode
+  children: (props: {
+    filters: {
+      resetFilters: () => void
+      filterGroups: Array<FilterGroupWithData<CollectionItem, FilterKey>>
+      onFilterChange: (
+        groupKey: string,
+        filterKey: string,
+        value: boolean,
+      ) => void
+      isFiltered: boolean
+    }
+    sorters: {
+      // TODO: Refactor to use Option instead of possibly undefined
+      sorterGroup?: SorterGroup<CollectionItem>
+      onSorterChange: (key: string) => void
+    }
+    search: {
+      onSearchChange: (searchText: string) => void
+      searchText: string
+    }
+    collection: Array<ReactNode>
+  }) => ReactNode
 }
 
 /**

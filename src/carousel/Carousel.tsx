@@ -10,8 +10,8 @@ import { flexFlow } from '@monorail/helpers/exports'
 import { isNil } from '@monorail/sharedHelpers/typeGuards'
 
 /*
-* Styles
-*/
+ * Styles
+ */
 
 const SlideContainer = styled.div`
   ${flexFlow('row')};
@@ -24,8 +24,8 @@ const SlideItem = styled.div`
 `
 
 /*
-* Types
-*/
+ * Types
+ */
 
 export type CarouselChildrenProps = {
   nextSlide: () => void
@@ -45,8 +45,8 @@ const defaultTranslateValue = 0
 const defaultSlideWidth = 0
 
 /*
-* Components
-*/
+ * Components
+ */
 
 export const Carousel: FC<Props> = ({ slides, children }) => {
   const slideItemRef = useRef<HTMLDivElement>(null)
@@ -57,18 +57,15 @@ export const Carousel: FC<Props> = ({ slides, children }) => {
   const [translateValue, setTranslateValue] = useState(defaultTranslateValue)
   const [slideWidth, setSlideWidth] = useState(defaultSlideWidth)
 
-  useLayoutEffect(
-    () => {
-      if (!isNil(slideItemRef) && !isNil(slideItemRef.current)) {
-        const slideItem = slideItemRef.current
+  useLayoutEffect(() => {
+    if (!isNil(slideItemRef) && !isNil(slideItemRef.current)) {
+      const slideItem = slideItemRef.current
 
-        if (slideItem) {
-          setSlideWidth(slideItem.getBoundingClientRect().width)
-        }
+      if (slideItem) {
+        setSlideWidth(slideItem.getBoundingClientRect().width)
       }
-    },
-    [slideItemRef.current, currentSlideIndex, translateValue, slideWidth],
-  )
+    }
+  }, [slideItemRef.current, currentSlideIndex, translateValue, slideWidth])
 
   const prevSlide = () => {
     const lastIndex = slides.length
@@ -103,7 +100,7 @@ export const Carousel: FC<Props> = ({ slides, children }) => {
   return children({
     nextSlide,
     prevSlide,
-    currentSlide: currentSlideIndex,
+    currentSlide: currentSlideIndex + 1,
     totalSlides: slides.length,
     content: (
       <SlideContainer
@@ -113,7 +110,9 @@ export const Carousel: FC<Props> = ({ slides, children }) => {
           width: ${slideWidth}px;
         `}
       >
-        {slides.map(slide => <SlideItem ref={slideItemRef}>{slide}</SlideItem>)}
+        {slides.map(slide => (
+          <SlideItem ref={slideItemRef}>{slide}</SlideItem>
+        ))}
       </SlideContainer>
     ),
   })

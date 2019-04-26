@@ -1,15 +1,15 @@
 import { liftA2 } from 'fp-ts/lib/Apply'
-import { array, init, last, elem, snoc, sort } from 'fp-ts/lib/Array'
+import { array, elem, init, last, snoc, sort } from 'fp-ts/lib/Array'
 import { flatten } from 'fp-ts/lib/Chain'
 import { Either, either, isRight } from 'fp-ts/lib/Either'
 import { constFalse, constTrue, Predicate, tuple } from 'fp-ts/lib/function'
 import { IO } from 'fp-ts/lib/IO'
-import { none, option, some } from 'fp-ts/lib/Option'
+import { none, option, Option, some } from 'fp-ts/lib/Option'
 import { task } from 'fp-ts/lib/Task'
 import { taskEither } from 'fp-ts/lib/TaskEither'
 import { runIO } from './IO'
+import { fold, getOrElse } from './Option'
 import { ordAlpha, ordNumeric } from './Ord'
-import { getOrElse, fold } from './Option'
 import { setoidStrict } from './Setoid'
 
 /**
@@ -34,14 +34,14 @@ export const concatFlipped = <A>(xs: Array<A>) => (ys: Array<A>): Array<A> =>
 /**
  * Function wrapper around the native `array.forEach`
  */
-export const forEach = <A>(xs: Array<A>, f: ((x: A) => void)) => xs.forEach(f)
+export const forEach = <A>(xs: Array<A>, f: (x: A) => void) => xs.forEach(f)
 
 /**
  * Function wrapper around the native `array.forEach` including an index
  */
 export const forEachWithIndex = <A>(
   xs: Array<A>,
-  f: ((x: A, i: number) => void),
+  f: (x: A, i: number) => void,
 ) => xs.forEach(f)
 
 /**

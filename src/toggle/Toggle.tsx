@@ -11,6 +11,9 @@ import {
 import { ToggleSize } from '@monorail/toggle/toggleTypes'
 import styled, { css, SimpleInterpolation } from 'styled-components'
 
+// TODO(unsafe-any): Fix unsafe anys
+// tslint:disable no-unsafe-any
+
 const toggleWidth = 18
 const toggleHeight = 10
 const iconSize = 8
@@ -224,5 +227,4 @@ export class Toggle extends Component<ToggleProps> {
     )
   }
 }
-
-//
+// tslint:enable

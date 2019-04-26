@@ -403,16 +403,15 @@ export class ButtonsBar extends Component<ButtonsBarProps, ButtonsBarState> {
 
     return (
       <StyledButtonsBar className={className} cssOverrides={cssOverrides}>
-        {!multiple &&
-          mode === ButtonsBarMode.Default && (
-            <ButtonsBarIndicator
-              display={display}
-              width={indicatorWidth}
-              active={lastActiveIndex >= 0}
-              left={indicatorLeft}
-              duration={indicatorTransitionDuration}
-            />
-          )}
+        {!multiple && mode === ButtonsBarMode.Default && (
+          <ButtonsBarIndicator
+            display={display}
+            width={indicatorWidth}
+            active={lastActiveIndex >= 0}
+            left={indicatorLeft}
+            duration={indicatorTransitionDuration}
+          />
+        )}
         <StyledButtonsGroup mode={mode}>{this.renderBar()}</StyledButtonsGroup>
       </StyledButtonsBar>
     )

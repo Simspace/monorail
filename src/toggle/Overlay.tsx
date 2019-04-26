@@ -90,15 +90,16 @@ export class Overlay extends Component<Props, State> {
         <BBModalOverlay
           isOpen={isRendered && isOpen}
           onClick={onClick}
-          css={
-            isRendered &&
-            css`
-              animation: ${isOpen
-                  ? overlayOpenAnimation
-                  : overlayCloseAnimation}
-                linear ${modalAnimationDuration}ms forwards;
-            `
-          }
+          css={css`
+            ${isRendered
+              ? css`
+                  animation: ${isOpen
+                      ? overlayOpenAnimation
+                      : overlayCloseAnimation}
+                    linear ${modalAnimationDuration}ms forwards;
+                `
+              : ''}
+          `}
           {...overlayProps}
         />
 
