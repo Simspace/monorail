@@ -1,13 +1,14 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
+
 import {
   Colors,
   flexFlow,
   FontSizes,
   getColor,
 } from '@monorail/helpers/exports'
-import { FCwDP } from '@monorail/sharedHelpers/react'
 import { Icon } from '@monorail/icon/Icon'
+import { FCwDP } from '@monorail/sharedHelpers/react'
 import { isEmptyString } from '@monorail/sharedHelpers/typeGuards'
 import { Text } from '@monorail/typography/Text'
 

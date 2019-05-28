@@ -1,7 +1,7 @@
 import { Either } from 'fp-ts/lib/Either'
+import { Lazy } from 'fp-ts/lib/function'
 import { Task } from 'fp-ts/lib/Task'
 import { TaskEither } from 'fp-ts/lib/TaskEither'
-import { Lazy } from 'fp-ts/lib/function'
 
 /**
  * TaskEither constructor function

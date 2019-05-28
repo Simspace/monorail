@@ -1,5 +1,6 @@
 import { Lazy } from 'fp-ts/lib/function'
 import { IO } from 'fp-ts/lib/IO'
+
 import { constVoid } from './function'
 
 /**

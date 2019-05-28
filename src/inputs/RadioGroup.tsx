@@ -1,7 +1,8 @@
-import React, { SFC, ChangeEvent } from 'react'
+import React, { ChangeEvent, SFC } from 'react'
 import styled, { css } from 'styled-components'
+
+import { FontSizes, typography } from '@monorail/helpers/exports'
 import { isEmptyString } from '@monorail/sharedHelpers/typeGuards'
-import { typography, FontSizes } from '@monorail/helpers/exports'
 
 import { Choice } from './Choice'
 

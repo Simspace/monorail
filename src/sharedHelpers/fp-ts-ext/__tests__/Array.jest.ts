@@ -1,7 +1,9 @@
 import { array, head, mapOption } from 'fp-ts/lib/Array'
-import { left, right, Either } from 'fp-ts/lib/Either'
+import { Either, left, right } from 'fp-ts/lib/Either'
+import { Predicate } from 'fp-ts/lib/function'
 import { IO } from 'fp-ts/lib/IO'
-import { some, getSetoid, fromPredicate } from 'fp-ts/lib/Option'
+import { fromPredicate, getSetoid, some } from 'fp-ts/lib/Option'
+import { setoidString } from 'fp-ts/lib/Setoid'
 
 import {
   all,
@@ -23,13 +25,11 @@ import {
   runIOs,
   sequenceEithers,
   sequenceOptions,
-  sequenceTasks,
   sequenceTaskEithers,
+  sequenceTasks,
   sortByAlpha,
   sortByNumeric,
 } from '../Array'
-import { setoidString } from 'fp-ts/lib/Setoid'
-import { Predicate } from 'fp-ts/lib/function'
 
 const isGreaterThanZero = (x: number): boolean => x > 0
 

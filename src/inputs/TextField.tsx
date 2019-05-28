@@ -1,18 +1,19 @@
 import React, { ChangeEvent, Component } from 'react'
 import styled, { css, SimpleInterpolation } from 'styled-components'
-import { isEmptyString } from '@monorail/sharedHelpers/typeGuards'
+import { Omit } from 'typelevel-ts'
+
 import {
+  baseDisabledStyles,
   borderRadius,
   buttonTransition,
   Colors,
-  getColor,
   flexFlow,
   FontSizes,
+  getColor,
   typography,
-  baseDisabledStyles,
 } from '@monorail/helpers/exports'
 import { Icon } from '@monorail/icon/Icon'
-import { Omit } from 'typelevel-ts'
+import { isEmptyString } from '@monorail/sharedHelpers/typeGuards'
 
 /*
  * Styles

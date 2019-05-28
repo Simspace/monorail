@@ -1,4 +1,5 @@
 import { Setoid, strictEqual } from 'fp-ts/lib/Setoid'
+
 import { shallowEqual } from '../shallowEqual'
 import { toLower } from '../strings'
 

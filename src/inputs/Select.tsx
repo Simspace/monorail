@@ -1,7 +1,7 @@
 import React, { SFC } from 'react'
 import styled, { css, SimpleInterpolation } from 'styled-components'
 
-import { typography, FontSizes } from '@monorail/helpers/exports'
+import { FontSizes, typography } from '@monorail/helpers/exports'
 import { CommonComponentType } from '@monorail/types'
 
 const SelectGroupWrapper = styled.div<CommonComponentType>(
@@ -34,6 +34,10 @@ const SelectElement = styled.select`
   border: none;
   outline: none;
   cursor: pointer;
+
+  &:disabled {
+    opacity: 0.6;
+  }
 `
 
 const Label = styled.p`
@@ -48,29 +52,31 @@ export type SelectOption = {
 }
 
 type Props = {
+  cssOverrides?: SimpleInterpolation
+  disabled?: boolean
   label?: string
-  options: Array<SelectOption>
-  onSelect?: (e: string | Array<string> | number | undefined) => void
+  name?: string
   onBlur?: (e: React.SyntheticEvent) => void
-  value?: string | Array<string> | number
+  onChange?: (event: React.ChangeEvent<HTMLSelectElement>) => void
+  onSelect?: (e: string | Array<string> | number | undefined) => void
+  options: Array<SelectOption>
   placeholder?: string
   required?: boolean
-  cssOverrides?: SimpleInterpolation
-  name?: string
-  onChange?: (event: React.ChangeEvent<HTMLSelectElement>) => void
+  value?: string | Array<string> | number
 }
 
 export const Select: SFC<Props> = ({
-  label,
-  onSelect,
-  onBlur,
-  value,
-  required,
-  placeholder,
-  options,
   cssOverrides,
+  disabled,
+  label,
   name,
+  onBlur,
   onChange,
+  onSelect,
+  options,
+  placeholder,
+  required,
+  value,
 }) => {
   return (
     <SelectGroupWrapper cssOverrides={cssOverrides}>
@@ -82,8 +88,8 @@ export const Select: SFC<Props> = ({
       )}
       <SelectElementWrapper>
         <SelectElement
+          disabled={disabled}
           name={name}
-          placeholder={placeholder || 'Select'}
           value={value}
           onBlur={onBlur}
           onChange={e => {
@@ -91,6 +97,16 @@ export const Select: SFC<Props> = ({
             onSelect && onSelect(e.target.value)
           }}
         >
+          {placeholder ? (
+            // NOTE: native <select> elements do not have a placeholder prop
+            <option value="placeholder" disabled hidden>
+              {placeholder}
+            </option>
+          ) : (
+            <option value="placeholder" disabled hidden>
+              Select
+            </option>
+          )}
           {options.map((o: SelectOption, key: number) => (
             <option key={o.value} value={o.value}>
               {o.label}

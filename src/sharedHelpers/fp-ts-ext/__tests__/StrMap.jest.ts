@@ -1,4 +1,5 @@
 import { StrMap } from 'fp-ts/lib/StrMap'
+
 import { newStrMap } from '../StrMap'
 
 describe('newStrMap', () => {

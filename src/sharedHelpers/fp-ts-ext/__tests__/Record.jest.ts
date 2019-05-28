@@ -1,5 +1,5 @@
-import { keys, prop, omit, pick, sortRecords } from '../Record'
 import { ordRecordWithNameLower } from '../Ord'
+import { keys, omit, pick, prop, sortRecords } from '../Record'
 
 describe('keys', () => {
   it('should return the keys of an object', () => {

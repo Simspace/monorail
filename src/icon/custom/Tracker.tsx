@@ -1,4 +1,5 @@
 import React, { ComponentType } from 'react'
+
 import { CustomIconProps } from '@monorail/icon/Icon'
 
 export const Tracker: ComponentType<CustomIconProps> = props => (

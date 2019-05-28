@@ -1,22 +1,24 @@
-import React, { Component } from 'react'
-import { css, SimpleInterpolation } from 'styled-components'
-import { Icon } from '@monorail/icon/Icon'
+import React, { ReactType } from 'react'
+import { SimpleInterpolation } from 'styled-components'
+import { Omit } from 'typelevel-ts'
+
 import {
-  BorderRadius,
-  borderRadius,
-  Colors,
-  getColor,
-} from '@monorail/helpers/exports'
+  Button,
+  buttonDefaultProps,
+  ButtonProps,
+} from '@monorail/buttons/Button'
 import {
   ButtonDisplay,
   ButtonSize,
   IconButtonShape,
 } from '@monorail/buttons/buttonTypes'
-import {
-  Button,
-  ButtonProps,
-  buttonDefaultProps,
-} from '@monorail/buttons/Button'
+import { baseIconButtonChromelessStyles } from '@monorail/helpers/baseStyles'
+import { BorderRadius, borderRadius } from '@monorail/helpers/borderRadius'
+import { css } from '@monorail/helpers/styled-components'
+import { getThemeColor, Mode, ThemeColors } from '@monorail/helpers/theme'
+import { Icon } from '@monorail/icon/Icon'
+import { FCwDP } from '@monorail/sharedHelpers/react'
+import { CssOverridesType } from '@monorail/types'
 
 const iconButtonSizeCss = {
   [ButtonSize.Dense]: css`
@@ -41,43 +43,47 @@ const iconButtonSizeCss = {
   `,
 }
 
-const iconButtonDisplayCss = (display: ButtonDisplay) => {
-  switch (display) {
-    case ButtonDisplay.Chromeless:
-      return css`
-        color: ${getColor(Colors.Black74)};
-      `
-      break
+const iconButtonDisplayCss = (display: ButtonDisplay, isActive: boolean) => {
+  if (display === ButtonDisplay.Chromeless) {
+    return baseIconButtonChromelessStyles(isActive)
   }
 
   return css``
 }
 
-const iconButtonCSS = (
-  display: ButtonDisplay,
-  size: ButtonSize,
-  shape: IconButtonShape,
-  darkMode: boolean,
-  cssOverrides: SimpleInterpolation,
-) => css`
-  ${iconButtonDisplayCss(display)};
+const iconButtonShapeCss = {
+  [IconButtonShape.Default]: borderRadius(BorderRadius.Round),
+  [IconButtonShape.Square]: borderRadius(BorderRadius.Medium),
+}
+
+const iconButtonCSS = ({
+  display,
+  size,
+  shape,
+  cssOverrides,
+  isActive,
+}: {
+  display: ButtonDisplay
+  size: ButtonSize
+  shape: IconButtonShape
+  cssOverrides: CssOverridesType
+  isActive: boolean
+}) => css`
+  ${iconButtonDisplayCss(display, isActive)};
   ${iconButtonSizeCss[size]};
-  ${borderRadius(
-    shape === IconButtonShape.Default
-      ? BorderRadius.Round
-      : BorderRadius.Medium,
-  )};
+  ${iconButtonShapeCss[shape]};
 
   padding: 0;
 
   ${Icon} {
-    ${darkMode
-      ? css`
-          color: ${getColor(Colors.White)};
-        `
-      : css`
-          color: currentColor;
-        `};
+    ${({ theme: { mode } }) =>
+      mode === Mode.Dark
+        ? css`
+            color: ${getThemeColor(ThemeColors.Text900)};
+          `
+        : css`
+            color: currentColor;
+          `};
 
     margin: auto;
   }
@@ -85,55 +91,54 @@ const iconButtonCSS = (
   ${cssOverrides};
 `
 
-type CCIconButtonProps = ButtonProps & {
-  darkMode: boolean
+type Props = {
+  icon: string
+  passedAs?: ReactType
+}
+
+type DefaultProps = Omit<ButtonProps, 'leftIcon' | 'rightIcon'> & {
   shape: IconButtonShape
   iconCss: SimpleInterpolation
 }
 
-export type IconButtonProps = CCIconButtonProps & {
-  icon: string
-}
+export type IconButtonProps = Props & DefaultProps
 
-export class IconButton extends Component<IconButtonProps> {
-  static defaultProps = {
-    ...buttonDefaultProps,
-    darkMode: false,
-    shape: IconButtonShape.Default,
-    iconCss: css``,
-  }
-
-  render() {
-    const {
+export const IconButton: FCwDP<Props, DefaultProps> = ({
+  cssOverrides,
+  display,
+  icon,
+  iconCss,
+  isActive,
+  shape,
+  size,
+  passedAs,
+  ...domProps
+}) => (
+  <Button
+    {...domProps}
+    as={passedAs}
+    display={display}
+    size={size}
+    isActive={isActive}
+    cssOverrides={iconButtonCSS({
       display,
-      icon,
-      darkMode,
       size,
       shape,
       cssOverrides,
-      iconCss,
-      ...otherProps
-    } = this.props
-    return (
-      <Button
-        {...otherProps}
-        display={display}
-        size={size}
-        cssOverrides={iconButtonCSS(
-          display,
-          size,
-          shape,
-          darkMode,
-          cssOverrides,
-        )}
-      >
-        <Icon
-          icon={icon}
-          css={css`
-            ${iconCss}
-          `}
-        />
-      </Button>
-    )
-  }
+      isActive,
+    })}
+  >
+    <Icon
+      icon={icon}
+      css={css`
+        ${iconCss}
+      `}
+    />
+  </Button>
+)
+
+IconButton.defaultProps = {
+  ...buttonDefaultProps,
+  shape: IconButtonShape.Default,
+  iconCss: css``,
 }

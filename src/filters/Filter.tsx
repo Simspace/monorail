@@ -1,28 +1,29 @@
 import React, { Component, ReactNode } from 'react'
-import { isNil } from '@monorail/sharedHelpers/typeGuards'
 import styled, { css, SimpleInterpolation } from 'styled-components'
 
-import { Icon } from '@monorail/icon/Icon'
 import {
   basePrimaryStyles,
   baseSecondaryStyles,
   borderRadius,
   buttonTransition,
   Colors,
-  getColor,
   flexFlow,
   FontSizes,
+  getColor,
   typography,
 } from '@monorail/helpers/exports'
-import { PopOver } from '@monorail/popOver/PopOver'
+import { ThemeColors } from '@monorail/helpers/theme'
+import { Icon } from '@monorail/icon/Icon'
 import { Menu } from '@monorail/menu/Menu'
+import { PopOver } from '@monorail/popOver/PopOver'
+import { isNil } from '@monorail/sharedHelpers/typeGuards'
 
 const CCFilter = styled.div<CCFilterProps>(
-  ({ isOpen, isActive, cssOverrides }) => css`
-    ${isActive || isOpen
-      ? basePrimaryStyles(Colors.BrandDarkBlue)
+  ({ isActive, cssOverrides }) => css`
+    ${isActive
+      ? basePrimaryStyles(ThemeColors.BrandSecondary)
       : css`
-          ${baseSecondaryStyles(Colors.BrandDarkBlue)};
+          ${baseSecondaryStyles(ThemeColors.BrandSecondary)};
           color: ${getColor(Colors.Black74)};
         `};
 
@@ -55,7 +56,6 @@ const FilterIcon = styled(Icon)`
 
 type CCFilterProps = {
   cssOverrides?: SimpleInterpolation
-  isOpen?: boolean
   isActive: boolean
   onToggle?: (isOpen: boolean) => void
 }
@@ -80,9 +80,13 @@ export class Filter extends Component<Props> {
 
     return (
       <PopOver
-        {...otherProps}
         toggle={props => (
-          <CCFilter {...props} cssOverrides={cssOverrides} isActive={isActive}>
+          <CCFilter
+            {...props}
+            {...otherProps}
+            cssOverrides={cssOverrides}
+            isActive={isActive || props.isActive}
+          >
             <FilterText>{title}</FilterText>
             <FilterIcon icon="arrow_drop_down" />
           </CCFilter>

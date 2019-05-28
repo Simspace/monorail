@@ -1,15 +1,16 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
-import { CommonComponentType } from '@monorail/types'
-import { Icon } from '@monorail/icon/Icon'
+
 import {
   AppOrAuthSubAppName,
-  Colors,
   borderRadius,
-  getColor,
+  Colors,
   convertAppNameToColor,
   flexFlow,
+  getColor,
 } from '@monorail/helpers/exports'
+import { Icon } from '@monorail/icon/Icon'
+import { CommonComponentType } from '@monorail/types'
 
 type AppIconProps = CommonComponentType & {
   appName: AppOrAuthSubAppName
@@ -22,11 +23,10 @@ export const AppIcon = styled(({ appName, cssOverrides, ...otherProps }) => (
     <Icon icon={appName} />
   </div>
 ))<AppIconProps>(
-  ({ appName, cssOverrides }) => css`
+  ({ cssOverrides }) => css`
     ${flexFlow('row')};
     ${borderRadius()};
 
-    background: ${getColor(convertAppNameToColor(appName))};
     box-sizing: border-box;
     height: 16px;
     width: 16px;

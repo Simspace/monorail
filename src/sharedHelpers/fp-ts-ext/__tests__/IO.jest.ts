@@ -1,4 +1,5 @@
 import { IO } from 'fp-ts/lib/IO'
+
 import { constRunIO, newIO, noOpIO, runIO } from '../IO'
 
 describe('constRunIO', () => {

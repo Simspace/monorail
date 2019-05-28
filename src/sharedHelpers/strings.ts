@@ -1,5 +1,5 @@
 import { head, last } from 'fp-ts/lib/Array'
-import { Option, none, some } from 'fp-ts/lib/Option'
+import { none, Option, some } from 'fp-ts/lib/Option'
 
 import { o } from './fp-ts-ext/function'
 import { getOrEmptyString } from './fp-ts-ext/Option'

@@ -4,103 +4,144 @@ enum AuthSubAppName {
   Academy = 'academy',
   Admin = 'admin',
   Catalog = 'catalog',
-  Dashboard = 'dashboard',
+  EventDesign = 'event-design',
+  Events = 'events',
+  Execution = 'execution',
   Hardhat = 'hardhat',
+  NetworkSetup = 'network-setup',
   Range = 'range',
+  ReportsAnalytics = 'reports-analytics',
   TechOps = 'techops',
   Tracker = 'tracker',
-  Execution = 'execution',
-  Home = 'home',
-  Events = 'events',
-  EventDesign = 'event-design',
-  ReportsAnalytics = 'reports-analytics',
 }
 
 export enum AppName {
   Admin = 'admin',
-  Dashboard = 'dashboard',
+  EventDesign = 'event-design',
+  Events = 'events',
+  Execution = 'execution',
   Hardhat = 'hardhat',
   Impact = 'impact',
   LMS = 'externalLms',
+  NetworkSetup = 'network-setup',
   Range = 'range',
   Repo = 'repo',
+  ReportsAnalytics = 'reports-analytics',
   TechOps = 'techops',
   Tracker = 'tracker',
   Training = 'training',
-  Execution = 'execution',
-  Home = 'home',
-  Events = 'events',
-  EventDesign = 'event-design',
-  ReportsAnalytics = 'reports-analytics',
 }
 
 export type AppOrAuthSubAppName = AppName | AuthSubAppName
 
 export type AppOrAuthSubAppNameString =
-  | 'admin'
   | 'academy'
+  | 'admin'
   | 'catalog'
-  | 'dashboard'
-  | 'range'
-  | 'tracker'
+  | 'event-design'
+  | 'events'
+  | 'execution'
+  | 'externalLms'
   | 'hardhat'
   | 'impact'
-  | 'training'
-  | 'techops'
+  | 'network-setup'
+  | 'range'
   | 'repo'
-  | 'externalLms'
-  | 'execution'
-  | 'home'
-  | 'events'
-  | 'event-design'
   | 'reports-analytics'
+  | 'techops'
+  | 'tracker'
+  | 'training'
 
 export const convertAppNameToColor = (
   appNames: AppOrAuthSubAppName,
 ): Colors => {
+  /* eslint-disable default-case */
   switch (appNames) {
-    case AppName.Admin:
-    case AuthSubAppName.Admin:
-      return Colors.Admin
-    case AuthSubAppName.Academy:
-      return Colors.Academy
-    case AuthSubAppName.Catalog:
-      return Colors.Catalog
-    case AppName.Dashboard:
-    case AuthSubAppName.Dashboard:
-      return Colors.Dashboard
-    case AppName.Home:
-    case AuthSubAppName.Home:
-    case AppName.Events:
-    case AuthSubAppName.Events:
-    case AppName.EventDesign:
-    case AuthSubAppName.EventDesign:
-    case AppName.ReportsAnalytics:
-    case AuthSubAppName.ReportsAnalytics:
-    case AuthSubAppName.Execution:
-    case AppName.Execution:
-      return Colors.White
     case AppName.Range:
     case AuthSubAppName.Range:
       return Colors.Range
+    case AppName.Events:
+    case AppName.Execution:
     case AppName.Tracker:
+    case AuthSubAppName.Events:
+    case AuthSubAppName.Execution:
     case AuthSubAppName.Tracker:
       return Colors.Tracker
+    case AppName.EventDesign:
     case AppName.Hardhat:
+    case AppName.NetworkSetup:
+    case AuthSubAppName.Academy:
+    case AuthSubAppName.Catalog:
+    case AuthSubAppName.EventDesign:
     case AuthSubAppName.Hardhat:
-      return Colors.Hardhat
+    case AuthSubAppName.NetworkSetup:
+      return Colors.Catalog
     case AppName.Impact:
+    case AppName.ReportsAnalytics:
+    case AuthSubAppName.ReportsAnalytics:
       return Colors.Impact
     case AppName.Training:
       return Colors.Training
-    case AppName.TechOps:
-    case AuthSubAppName.TechOps:
-      return Colors.TechOps
     case AppName.Repo:
       return Colors.Repo
     case AppName.LMS:
       return Colors.LMS
+    case AppName.TechOps:
+    case AuthSubAppName.TechOps:
+      return Colors.TechOps
+    case AppName.Admin:
+    case AuthSubAppName.Admin:
+      return Colors.Admin
+    default:
+      return Colors.White
   }
+  /* eslint-enable default-case */
+}
+
+export const convertAppNameToSecondaryColor = (
+  appNames: AppOrAuthSubAppName,
+): Colors => {
+  /* eslint-disable default-case */
+  switch (appNames) {
+    case AppName.Range:
+    case AuthSubAppName.Range:
+      return Colors.Range
+    case AppName.Events:
+    case AppName.Execution:
+    case AppName.Tracker:
+    case AuthSubAppName.Events:
+    case AuthSubAppName.Execution:
+    case AuthSubAppName.Tracker:
+      return Colors.TrackerAlt
+    case AppName.EventDesign:
+    case AppName.Hardhat:
+    case AppName.NetworkSetup:
+    case AuthSubAppName.Academy:
+    case AuthSubAppName.Catalog:
+    case AuthSubAppName.EventDesign:
+    case AuthSubAppName.Hardhat:
+    case AuthSubAppName.NetworkSetup:
+      return Colors.CatalogAlt
+    case AppName.Impact:
+    case AppName.ReportsAnalytics:
+    case AuthSubAppName.ReportsAnalytics:
+      return Colors.ImpactAlt
+    case AppName.Training:
+      return Colors.Training
+    case AppName.Repo:
+      return Colors.Repo
+    case AppName.LMS:
+      return Colors.LMS
+    case AppName.TechOps:
+    case AuthSubAppName.TechOps:
+      return Colors.TechOpsAlt
+    case AppName.Admin:
+    case AuthSubAppName.Admin:
+      return Colors.AdminAlt
+    default:
+      return Colors.White
+  }
+  /* eslint-enable default-case */
 }
 
 const assertUnreachable = (msg: string): never => {
@@ -114,22 +155,19 @@ export const convertStringToAppName = (
   switch (appNameString) {
     case 'admin':
       return AppName.Admin
-    case 'academy':
-      return AuthSubAppName.Academy
+    case 'hardhat':
+    case 'network-setup':
     case 'catalog':
+    case 'academy':
+    case 'event-design':
+    case 'training':
       return AuthSubAppName.Catalog
-    case 'dashboard':
-      return AppName.Dashboard
     case 'range':
       return AppName.Range
     case 'tracker':
       return AppName.Tracker
-    case 'hardhat':
-      return AppName.Hardhat
     case 'impact':
       return AppName.Impact
-    case 'training':
-      return AppName.Training
     case 'techops':
       return AppName.TechOps
     case 'repo':
@@ -138,33 +176,31 @@ export const convertStringToAppName = (
       return AppName.LMS
     case 'execution':
       return AppName.Execution
-    case 'home':
-      return AppName.Home
     case 'events':
       return AppName.Events
-    case 'event-design':
-      return AppName.EventDesign
     case 'reports-analytics':
       return AppName.ReportsAnalytics
     default:
-      return assertUnreachable('Invalid appName')
+      return AppName.Events
   }
 }
 
 export const convertAppNameToString = (
   appName: AppOrAuthSubAppName,
 ): AppOrAuthSubAppNameString => {
+  /* eslint-disable default-case */
   switch (appName) {
     case AppName.Admin:
     case AuthSubAppName.Admin:
       return 'admin'
     case AuthSubAppName.Academy:
       return 'academy'
+    case AppName.EventDesign:
+    case AppName.NetworkSetup:
     case AuthSubAppName.Catalog:
+    case AuthSubAppName.EventDesign:
+    case AuthSubAppName.NetworkSetup:
       return 'catalog'
-    case AppName.Dashboard:
-    case AuthSubAppName.Dashboard:
-      return 'dashboard'
     case AppName.Range:
     case AuthSubAppName.Range:
       return 'range'
@@ -185,21 +221,16 @@ export const convertAppNameToString = (
       return 'repo'
     case AppName.LMS:
       return 'externalLms'
-    case AppName.Home:
-    case AuthSubAppName.Home:
-      return 'home'
     case AppName.Events:
     case AuthSubAppName.Events:
     case AppName.Execution:
     case AuthSubAppName.Execution:
       return 'events'
-    case AppName.EventDesign:
-    case AuthSubAppName.EventDesign:
-      return 'event-design'
     case AppName.ReportsAnalytics:
     case AuthSubAppName.ReportsAnalytics:
       return 'reports-analytics'
   }
+  /* eslint-disable default-case */
 }
 
 type AppNameType = string | AppOrAuthSubAppName

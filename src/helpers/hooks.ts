@@ -1,5 +1,6 @@
-import { isNil } from '@monorail/sharedHelpers/typeGuards'
 import { useLayoutEffect } from 'react'
+
+import { isNil } from '@monorail/sharedHelpers/typeGuards'
 
 type UseEventListenerParams<E extends HTMLElement> = {
   element: E | null

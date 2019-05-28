@@ -18,7 +18,7 @@ export type PopOverPosition = {
 }
 
 export type PopOverToggleProps = {
-  isOpen: boolean
+  isActive: boolean
   onClick: (event: SyntheticEvent) => void
 }
 
@@ -225,7 +225,7 @@ export class PopOver extends Component<PopOverProps, PopOverState> {
 
   state: PopOverState = {
     isOpen: false,
-    isRendered: this.props.alwaysRender,
+    isRendered: false,
     position: {
       dropXAmount: 0,
       dropXDirection: 'left',
@@ -315,13 +315,13 @@ export class PopOver extends Component<PopOverProps, PopOverState> {
   }
 
   render() {
-    const { popOver, toggle, document } = this.props
+    const { popOver, toggle, document, alwaysRender } = this.props
     const { isRendered, isOpen, position } = this.state
 
     return (
       <>
-        {toggle({ onClick: this.onClick, isOpen })}
-        {isRendered && (
+        {toggle({ onClick: this.onClick, isActive: isOpen })}
+        {(isRendered || alwaysRender) && (
           <Portal document={document}>
             {popOver({
               isOpen,

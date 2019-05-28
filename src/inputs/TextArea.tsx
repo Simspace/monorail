@@ -1,4 +1,3 @@
-import { isNil } from '@monorail/sharedHelpers/typeGuards'
 import React, { ChangeEvent, Component } from 'react'
 import styled, { css, SimpleInterpolation } from 'styled-components'
 
@@ -6,11 +5,12 @@ import {
   borderRadius,
   buttonTransition,
   Colors,
-  getColor,
   flexFlow,
   FontSizes,
+  getColor,
   typography,
 } from '@monorail/helpers/exports'
+import { isNil } from '@monorail/sharedHelpers/typeGuards'
 
 /*
  * Styles

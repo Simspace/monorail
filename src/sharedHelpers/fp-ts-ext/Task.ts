@@ -1,5 +1,5 @@
-import { Task } from 'fp-ts/lib/Task'
 import { Lazy } from 'fp-ts/lib/function'
+import { Task } from 'fp-ts/lib/Task'
 
 /**
  * Task constructor function

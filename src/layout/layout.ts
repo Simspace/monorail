@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+
 import { flexFlow, gothamFontFamily } from '@monorail/helpers/exports'
 import { CommonComponentType } from '@monorail/types'
 
@@ -8,9 +9,8 @@ export const AppContainer = styled.div<CommonComponentType>`
   flex: 1;
   overflow: hidden;
 
-  &.event-design,
+  &.catalog,
   &.events:not(.execution),
-  &.home,
   &.reports-analytics {
     ${gothamFontFamily};
   }

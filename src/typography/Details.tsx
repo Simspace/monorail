@@ -1,86 +1,72 @@
-import React, { Component } from 'react'
+import React from 'react'
+import { SimpleInterpolation } from 'styled-components'
+
+import { flexFlow, FontSizes, typography } from '@monorail/helpers/exports'
+import styled, { css } from '@monorail/helpers/styled-components'
+import { getThemeColor, ThemeColors } from '@monorail/helpers/theme'
+import { FCwDP } from '@monorail/sharedHelpers/react'
 import { isNil } from '@monorail/sharedHelpers/typeGuards'
-import styled, { css, SimpleInterpolation } from 'styled-components'
-import {
-  Colors,
-  getColor,
-  flexFlow,
-  FontSizes,
-  typography,
-} from '@monorail/helpers/exports'
 import { TagContainer } from '@monorail/tags/Tag'
+import { DetailsSize } from '@monorail/typography/detailsTypes'
 
 // Property Styles
-const primaryPropertyStyles = css`
-  ${typography(500, FontSizes.Content)};
-  color: ${getColor(Colors.Black74)};
-`
-const compactPropertyStyles = css`
-  ${typography(500, FontSizes.Content)};
-  color: ${getColor(Colors.Black54)};
-  text-transform: uppercase;
-`
-const largePropertyStyles = css`
-  ${typography(700, FontSizes.Content)};
-  color: ${getColor(Colors.Black74)};
-`
 
-const BBDetailsProperty = styled.h2<BBDetailsSize>(
-  ({ compact, large, darkMode }) => css`
-    ${() => {
-      if (compact) {
-        return compactPropertyStyles
-      } else if (large) {
-        return largePropertyStyles
-      } else {
-        return primaryPropertyStyles
-      }
-    }};
+const propertySizeStyles = {
+  [DetailsSize.Compact]: css`
+    ${typography(500, FontSizes.Content)};
 
-    ${darkMode &&
-      css`
-        color: ${getColor(Colors.White)};
-      `};
+    color: ${getThemeColor(ThemeColors.Text500)};
+    text-transform: uppercase;
+  `,
+  [DetailsSize.Default]: css`
+    ${typography(500, FontSizes.Content)};
+
+    color: ${getThemeColor(ThemeColors.Text700)};
+  `,
+  [DetailsSize.Large]: css`
+    ${typography(700, FontSizes.Content)};
+
+    color: ${getThemeColor(ThemeColors.Text700)};
+  `,
+}
+
+const DetailsProperty = styled.h2<{ size: DetailsSize }>(
+  ({ size }) => css`
+    ${propertySizeStyles[size]};
 
     margin: 0;
   `,
 )
 
 // Value Styles
-const primaryValueStyles = css`
-  ${typography(200, FontSizes.Title3)};
-  color: ${getColor(Colors.Black89)};
-`
-const compactValueStyles = css`
-  ${typography(600, FontSizes.Title5)};
-  color: ${getColor(Colors.Black74)};
-`
-const largeValueStyles = css`
-  ${typography(200, FontSizes.Title1)};
-  color: ${getColor(Colors.Black89)};
-`
 
-const BBDetailsValue = styled.h2<BBDetailsSize>(
-  ({ compact, large, darkMode }) => css`
-    ${() => {
-      if (compact) {
-        return compactValueStyles
-      } else if (large) {
-        return largeValueStyles
-      } else {
-        return primaryValueStyles
-      }
-    }};
-    ${darkMode &&
-      css`
-        color: ${getColor(Colors.White)};
-      `};
+const valueSizeStyles = {
+  [DetailsSize.Compact]: css`
+    ${typography(600, FontSizes.Title5)};
+
+    color: ${getThemeColor(ThemeColors.Text700)};
+  `,
+  [DetailsSize.Default]: css`
+    ${typography(200, FontSizes.Title3)};
+
+    color: ${getThemeColor(ThemeColors.Text900)};
+  `,
+  [DetailsSize.Large]: css`
+    ${typography(200, FontSizes.Title1)};
+
+    color: ${getThemeColor(ThemeColors.Text900)};
+  `,
+}
+
+const DetailsValue = styled.h1<{ size: DetailsSize }>(
+  ({ size }) => css`
+    ${valueSizeStyles[size]};
 
     margin: 0;
   `,
 )
 
-const BBDetailsContainer = styled.div<BBDetailsContainerProps>(
+const DetailsContainer = styled.div<BBDetailsContainerProps>(
   ({ cssOverrides }) => css`
     ${flexFlow()};
 
@@ -92,47 +78,34 @@ const BBDetailsContainer = styled.div<BBDetailsContainerProps>(
   `,
 )
 
-type BBDetailsSize = {
-  compact?: boolean
-  darkMode?: boolean
-  large?: boolean
-}
-
 type BBDetailsContainerProps = {
   cssOverrides?: SimpleInterpolation
 }
 
-type CCDetailsProps = BBDetailsSize &
-  BBDetailsContainerProps & {
-    property: string
-    value?: string | number
-  }
+type DetailsProps = BBDetailsContainerProps & {
+  property: string
+  value?: string | number
+}
 
-export class CCDetails extends Component<CCDetailsProps> {
-  render() {
-    const {
-      children,
-      compact,
-      cssOverrides,
-      darkMode,
-      large,
-      property,
-      value,
-    } = this.props
+type DefaultProps = {
+  size: DetailsSize
+}
 
-    return (
-      <BBDetailsContainer cssOverrides={cssOverrides}>
-        <BBDetailsProperty compact={compact} large={large} darkMode={darkMode}>
-          {property}
-        </BBDetailsProperty>
-        {!isNil(value) && (
-          <BBDetailsValue compact={compact} large={large} darkMode={darkMode}>
-            {value}
-          </BBDetailsValue>
-        )}
+export const Details: FCwDP<DetailsProps, DefaultProps> = ({
+  children,
+  cssOverrides,
+  size,
+  property,
+  value,
+}) => (
+  <DetailsContainer cssOverrides={cssOverrides}>
+    <DetailsProperty size={size}>{property}</DetailsProperty>
+    {!isNil(value) && <DetailsValue size={size}>{value}</DetailsValue>}
 
-        {children}
-      </BBDetailsContainer>
-    )
-  }
+    {children}
+  </DetailsContainer>
+)
+
+Details.defaultProps = {
+  size: DetailsSize.Default,
 }

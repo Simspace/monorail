@@ -1,6 +1,7 @@
 import React, { Component, MouseEvent } from 'react'
-import { Button, ButtonProps, buttonDefaultProps } from './Button'
 import { Omit } from 'typelevel-ts'
+
+import { Button, buttonDefaultProps, ButtonProps } from './Button'
 
 type Props = Omit<ButtonProps, 'onClick'> & {
   loadingText: string
@@ -13,7 +14,11 @@ type State = { loading: boolean }
  */
 export class LoadingButton extends Component<Props, State> {
   static defaultProps = {
-    ...buttonDefaultProps,
+    /** override buttonDefaultProps.onClick */
+    ...{
+      ...buttonDefaultProps,
+      onClick: async () => {},
+    },
     loadingText: 'Loading...',
   }
 

@@ -1,8 +1,8 @@
+import { lookup } from 'fp-ts/lib/Record'
 import React, { SFC } from 'react'
 import styled from 'styled-components'
-import { lookup } from 'fp-ts/lib/Record'
 
-import { typography, FontSizes } from '@monorail/helpers/exports'
+import { FontSizes, typography } from '@monorail/helpers/exports'
 
 const NumberInputGroupWrapper = styled.div``
 

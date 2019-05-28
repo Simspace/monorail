@@ -1,8 +1,8 @@
 import {
   __,
+  mkActionsUnion,
   mkTaggedUnion,
   mkTaggedUnionCustom,
-  mkActionsUnion,
 } from '../taggedUnions'
 
 type TestUnionTag<A> = { tag: 'Just'; value: A } | { tag: 'Nothing' }

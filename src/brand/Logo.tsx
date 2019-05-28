@@ -1,6 +1,7 @@
 import React, { ComponentType } from 'react'
 import styled, { css, SimpleInterpolation } from 'styled-components'
-import { getColor, Colors } from '@monorail/helpers/exports'
+
+import { Colors, getColor } from '@monorail/helpers/exports'
 import { CommonComponentType } from '@monorail/types'
 
 const LogoSvg = styled.svg<CommonComponentType>(

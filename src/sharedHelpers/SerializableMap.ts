@@ -1,5 +1,5 @@
 import { array } from 'fp-ts/lib/Array'
-import { Option, fromNullable, none } from 'fp-ts/lib/Option'
+import { fromNullable, none, Option } from 'fp-ts/lib/Option'
 import { fromFoldable } from 'fp-ts/lib/Record'
 
 // TODO: Rewrite Wizard code that uses this and then delete this

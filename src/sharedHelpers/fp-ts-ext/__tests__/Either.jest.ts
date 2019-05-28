@@ -1,5 +1,6 @@
-import { fold } from '../Either'
 import { left, right } from 'fp-ts/lib/Either'
+
+import { fold } from '../Either'
 
 describe('fold (Either)', () => {
   const f = (l: string) => `Error: ${l}`

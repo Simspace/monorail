@@ -16,6 +16,7 @@ export enum EventState {
 }
 
 export const convertEventStateToColor = (eventState: EventState): Colors => {
+  /* eslint-disable default-case */
   switch (eventState) {
     case EventState.Active:
       return Colors.Active
@@ -30,4 +31,5 @@ export const convertEventStateToColor = (eventState: EventState): Colors => {
     case EventState.Canceled:
       return Colors.Canceled
   }
+  /* eslint-enable default-case */
 }

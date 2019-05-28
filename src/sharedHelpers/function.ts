@@ -1,6 +1,6 @@
 import { Function2 } from 'fp-ts/lib/function'
 
-import { isNil, isNumber, isFalse, isEmptyString, isZero } from './typeGuards'
+import { isEmptyString, isFalse, isNil, isNumber, isZero } from './typeGuards'
 
 export const constVoid = (): void => {}
 

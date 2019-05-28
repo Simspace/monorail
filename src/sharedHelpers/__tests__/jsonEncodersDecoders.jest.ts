@@ -1,6 +1,7 @@
-import * as t from 'io-ts'
 import { Either, right } from 'fp-ts/lib/Either'
-import { Option, some, none } from 'fp-ts/lib/Option'
+import { none, Option, some } from 'fp-ts/lib/Option'
+import * as t from 'io-ts'
+
 import { createOptionFromJSON } from '@monorail/sharedHelpers/jsonEncodersDecoders'
 
 type RoundTripTest<A> = {

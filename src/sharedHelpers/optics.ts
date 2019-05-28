@@ -1,6 +1,6 @@
-import { Lens, Optional } from 'monocle-ts'
-import { insert, lookup } from 'fp-ts/lib/Record'
 import { array, cons, index, updateAt } from 'fp-ts/lib/Array'
+import { insert, lookup } from 'fp-ts/lib/Record'
+import { Lens, Optional } from 'monocle-ts'
 
 /**
  * Binary composition for lenses (`monocle-ts`)

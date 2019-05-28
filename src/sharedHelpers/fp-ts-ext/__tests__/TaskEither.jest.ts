@@ -1,6 +1,7 @@
 import { left, right } from 'fp-ts/lib/Either'
 import { Task } from 'fp-ts/lib/Task'
 import { TaskEither } from 'fp-ts/lib/TaskEither'
+
 import { constRunTaskEither, newTaskEither, runTaskEither } from '../TaskEither'
 
 describe('constRunTaskEither', () => {

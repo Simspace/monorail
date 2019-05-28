@@ -1,5 +1,5 @@
-import { Exact, Omit } from 'typelevel-ts'
 import { Lazy } from 'fp-ts/lib/function'
+import { Exact, Omit } from 'typelevel-ts'
 // switch to this after updating to redux > 4.0
 // import { Action } from 'redux'
 

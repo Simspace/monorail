@@ -1,5 +1,5 @@
-import { HKT, HKT2, HKT3, HKT4, URIS, URIS2, URIS3, URIS4 } from 'fp-ts/lib/HKT'
 import { Either } from 'fp-ts/lib/Either'
+import { HKT, HKT2, HKT3, HKT4, URIS, URIS2, URIS3, URIS4 } from 'fp-ts/lib/HKT'
 import { Option } from 'fp-ts/lib/Option'
 
 import { NaN } from './newtypes'

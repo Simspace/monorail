@@ -1,8 +1,11 @@
 import React, { Component, ReactNode } from 'react'
-import { isNil } from '@monorail/sharedHelpers/typeGuards'
 import styled, { css, SimpleInterpolation } from 'styled-components'
-import { Colors, getColor, flexFlow, Sizes } from '@monorail/helpers/exports'
-import { TabProps } from './Tab'
+
+import { Colors, flexFlow, getColor, Sizes } from '@monorail/helpers/exports'
+import {
+  TabBarController,
+  TabBarIndicatorProps,
+} from '@monorail/tabs/TabBarController'
 
 // TODO(unsafe-any): Fix unsafe anys
 // tslint:disable no-unsafe-any
@@ -97,24 +100,10 @@ const TabBarIndicatorBody = styled(({ duration, width, ...otherProps }) => (
   `,
 )
 
-const TabBarActions = styled.div`
-  ${flexFlow('row')};
-
-  align-items: center;
-  margin-left: auto;
-  margin-right: 8px;
-`
-
 type CCTabBarProps = {
   cssOverrides?: SimpleInterpolation
   size: Sizes
   activeTabIndex?: number
-}
-
-type TabBarIndicatorProps = {
-  left: number
-  width: number
-  duration: number
 }
 
 type TabBarProps = CCTabBarProps & {
@@ -122,102 +111,32 @@ type TabBarProps = CCTabBarProps & {
   actions?: ReactNode
 }
 
-type TabBarState = {
-  activeTabIndex: number
-  indicatorLeft: number
-  indicatorTransitionDuration: number
-  indicatorWidth: number
-}
-
-export class TabBar extends Component<TabBarProps, TabBarState> {
+export class TabBar extends Component<TabBarProps> {
   static defaultProps = {
     size: Sizes.DP24,
   }
 
-  state: TabBarState = {
-    activeTabIndex: this.props.activeTabIndex || 0,
-    indicatorLeft: 0,
-    indicatorTransitionDuration: 0,
-    indicatorWidth: 0,
-  }
-
-  componentDidUpdate(prevProps: TabBarProps, prevState: TabBarState) {
-    // Check if the indicator needs to move, if it does set the distance of the move as the transition duration.
-    if (prevState.indicatorLeft !== this.state.indicatorLeft) {
-      this.setState(() => ({
-        indicatorTransitionDuration: Math.abs(
-          prevState.indicatorLeft - this.state.indicatorLeft,
-        ),
-      }))
-    }
-
-    // Check if the activeTabIndex needs to change
-    if (prevProps.activeTabIndex !== this.props.activeTabIndex) {
-      this.setState(() => ({
-        activeTabIndex: this.props.activeTabIndex || 0,
-      }))
-    }
-  }
-
-  setIndicator = (width: number, left: number) =>
-    this.setState(() => ({
-      indicatorWidth: width,
-      indicatorLeft: left,
-    }))
-
-  updateActiveTab = (index: number) => {
-    const { getActiveTabIndex } = this.props
-
-    this.setState(() => ({ activeTabIndex: index }))
-    getActiveTabIndex && getActiveTabIndex(index)
-  }
-
-  renderTabs() {
-    const { children } = this.props
-    const { activeTabIndex } = this.state
-
-    /**
-     * If we're controlling the activeTabIndex with a prop,
-     * then we set updateIsActive to undefined to prevent
-     * automatic updates on Tab click.
-     */
-
-    return React.Children.map(
-      children,
-      (child, index: number) =>
-        !isNil(child) &&
-        React.isValidElement<TabProps>(child) &&
-        React.cloneElement(child, {
-          index,
-          isActive: index === activeTabIndex,
-          setIndicator: this.setIndicator,
-          updateIsActive: isNil(this.props.activeTabIndex)
-            ? this.updateActiveTab
-            : undefined,
-        }),
-    )
-  }
-
   render() {
-    const { cssOverrides, size, actions } = this.props
     const {
-      indicatorLeft,
-      indicatorWidth,
-      indicatorTransitionDuration,
-    } = this.state
+      cssOverrides,
+      size,
+      actions,
+      children,
+      activeTabIndex,
+      getActiveTabIndex,
+      ...domProps
+    } = this.props
 
     return (
-      <TabBarContainer cssOverrides={cssOverrides} size={size}>
-        {this.renderTabs()}
-
-        {!isNil(actions) && (
-          <TabBarActions id="tabBarActions">{actions}</TabBarActions>
-        )}
-        <TabBarIndicatorContainer
-          width={indicatorWidth}
-          left={indicatorLeft}
-          duration={indicatorTransitionDuration}
-        />
+      <TabBarContainer cssOverrides={cssOverrides} size={size} {...domProps}>
+        <TabBarController
+          actions={actions}
+          tabBarIndicator={props => <TabBarIndicatorContainer {...props} />}
+          activeTabIndex={activeTabIndex}
+          getActiveTabIndex={getActiveTabIndex}
+        >
+          {children}
+        </TabBarController>
       </TabBarContainer>
     )
   }

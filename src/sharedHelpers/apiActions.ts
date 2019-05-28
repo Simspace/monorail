@@ -1,6 +1,7 @@
 import { Predicate } from 'fp-ts/lib/function'
 import { Prism } from 'monocle-ts'
-import { Newtype, iso, prism, unsafeCoerce } from 'newtype-ts'
+import { iso, Newtype, prism, unsafeCoerce } from 'newtype-ts'
+
 import { isUndefined } from './typeGuards'
 
 export interface Optimistic<A extends string>

@@ -1,8 +1,9 @@
 import { Ord } from 'fp-ts/lib/Ord'
 import { Ordering } from 'fp-ts/lib/Ordering'
 
-import { setoidRecordWithNameLower, setoidStrict } from './Setoid'
 import { toLower } from '../strings'
+
+import { setoidRecordWithNameLower, setoidStrict } from './Setoid'
 
 /**
  * Determines ordering of two numbers (numeric comparison)

@@ -1,8 +1,9 @@
 import { Lens } from 'monocle-ts'
+
 import {
   lensesFromRecord,
-  mkRecordKeyOptional,
   mkArrayIndexOptional,
+  mkRecordKeyOptional,
   oLens,
 } from '../optics'
 
