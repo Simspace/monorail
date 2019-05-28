@@ -12,26 +12,66 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
 const ReportsAnalytics = props => _react.default.createElement("svg", _extends({
-  width: "24",
-  height: "24",
-  viewBox: "0 0 24 24",
+  width: "40",
+  height: "40",
+  viewBox: "0 0 40 40",
   fill: "none",
   xmlns: "http://www.w3.org/2000/svg"
-}, props), _react.default.createElement("path", {
-  d: "M3 5H4.71429V17.25H21V19H3V5Z",
-  fill: "#161C4F"
-}), _react.default.createElement("path", {
-  d: "M6.42857 11.125H9V15.5H6.42857V11.125Z",
-  fill: "#161C4F"
-}), _react.default.createElement("path", {
-  d: "M9.85714 6.75H12.4286V15.5H9.85714V6.75Z",
-  fill: "#161C4F"
-}), _react.default.createElement("path", {
-  d: "M13.2857 12H15.8571V15.5H13.2857V12Z",
-  fill: "#161C4F"
-}), _react.default.createElement("path", {
-  d: "M16.7143 9.375H19.2857V15.5H16.7143V9.375Z",
-  fill: "#161C4F"
-}));
+}, props), _react.default.createElement("rect", {
+  x: "4",
+  y: "4",
+  width: "32",
+  height: "32",
+  rx: "4",
+  fill: "url(#reportsBackground)"
+}), _react.default.createElement("rect", {
+  x: "19",
+  y: "2",
+  width: "6",
+  height: "26",
+  fill: "#C32C07"
+}), _react.default.createElement("rect", {
+  x: "11",
+  y: "10",
+  width: "6",
+  height: "18",
+  fill: "#C32C07"
+}), _react.default.createElement("rect", {
+  x: "20",
+  y: "3",
+  width: "6",
+  height: "26",
+  fill: "#fff"
+}), _react.default.createElement("rect", {
+  x: "27",
+  y: "18",
+  width: "6",
+  height: "10",
+  fill: "#D13711"
+}), _react.default.createElement("rect", {
+  x: "12",
+  y: "11",
+  width: "6",
+  height: "18",
+  fill: "#fff"
+}), _react.default.createElement("rect", {
+  x: "28",
+  y: "19",
+  width: "6",
+  height: "10",
+  fill: "#fff"
+}), _react.default.createElement("defs", null, _react.default.createElement("linearGradient", {
+  id: "reportsBackground",
+  x1: "36",
+  y1: "4",
+  x2: "4",
+  y2: "36",
+  gradientUnits: "userSpaceOnUse"
+}, _react.default.createElement("stop", {
+  stopColor: "#FD5931"
+}), _react.default.createElement("stop", {
+  offset: "1",
+  stopColor: "#DE2D02"
+}))));
 
 exports.ReportsAnalytics = ReportsAnalytics;

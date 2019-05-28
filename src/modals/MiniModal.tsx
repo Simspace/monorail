@@ -1,3 +1,6 @@
+import React, { FunctionComponent, ReactNode, useMemo } from 'react'
+import { css, SimpleInterpolation } from 'styled-components'
+
 import { generateScaleAnimation, sizes } from '@monorail/helpers/exports'
 import {
   BBModalBackground,
@@ -8,8 +11,6 @@ import {
 import { ModalSize } from '@monorail/modals/modalTypes'
 import { PopOverChildProps } from '@monorail/popOver/PopOver'
 import { Overlay } from '@monorail/toggle/Overlay'
-import React, { FunctionComponent, ReactNode, useMemo } from 'react'
-import { css, SimpleInterpolation } from 'styled-components'
 
 type Props = PopOverChildProps & {
   title: string

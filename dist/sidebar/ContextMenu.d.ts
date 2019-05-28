@@ -1,17 +1,20 @@
 import React, { Component, ReactNode } from 'react';
 import { PopOverChildProps } from '@monorail/popOver/PopOver';
+export declare type ContextMenuItemProps = {
+    description: string;
+    icons?: ReactNode;
+    isLabelActive?: boolean;
+    key: number | string;
+    link: string;
+    title: string;
+};
+export declare type ContextMenuItems = Array<{
+    title: string;
+    items: Array<ContextMenuItemProps>;
+}>;
 declare type Props = PopOverChildProps & {
-    contextItems: Array<{
-        title: string;
-        items: Array<{
-            description: string;
-            icons?: ReactNode;
-            isLabelActive?: boolean;
-            key: number | string;
-            link: string;
-            title: string;
-        }>;
-    }>;
+    onItemClick?: (item: ContextMenuItemProps) => void;
+    contextItems: ContextMenuItems;
     icon: string;
     renderFilter: () => ReactNode;
     width?: number;

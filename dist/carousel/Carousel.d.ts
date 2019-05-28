@@ -1,4 +1,4 @@
-import { ReactElement, FC } from 'react';
+import { FC, ReactElement } from 'react';
 export declare type CarouselChildrenProps = {
     nextSlide: () => void;
     prevSlide: () => void;

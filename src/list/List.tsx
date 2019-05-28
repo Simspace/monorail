@@ -1,25 +1,29 @@
-import {
-  baseFocusStyles,
-  buttonTransition,
-  Colors,
-  ellipsis,
-  flexFlow,
-  FontSizes,
-  getColor,
-  Sizes,
-  typography,
-} from '@monorail/helpers/exports'
-import { Icon, IconProps } from '@monorail/icon/Icon'
-import { isNil } from '@monorail/sharedHelpers/typeGuards'
-import { CommonComponentType, LinkProps } from '@monorail/types'
 import React, {
   Children,
   MouseEvent,
   ReactNode,
+  ReactType,
   StatelessComponent,
 } from 'react'
+import { SimpleInterpolation } from 'styled-components'
+import { Omit } from 'typelevel-ts'
 
-import styled, { css, SimpleInterpolation } from 'styled-components'
+import {
+  baseChromelessStyles,
+  baseFocusStyles,
+  buttonTransition,
+  ellipsis,
+  flexFlow,
+  FontSizes,
+  Sizes,
+  typography,
+} from '@monorail/helpers/exports'
+import styled, { css } from '@monorail/helpers/styled-components'
+import { getThemeColor, ThemeColors } from '@monorail/helpers/theme'
+import { Icon, IconProps } from '@monorail/icon/Icon'
+import { FCwDP } from '@monorail/sharedHelpers/react'
+import { isEmptyString, isNil } from '@monorail/sharedHelpers/typeGuards'
+import { CommonComponentType, LinkProps } from '@monorail/types'
 
 // TODO(unsafe-any): Fix unsafe anys
 // tslint:disable no-unsafe-any
@@ -65,14 +69,15 @@ export const ListContainer: StatelessComponent<ListContainerProps> = ({
   children,
   cssOverrides,
   emptyText = "I'm empty :(",
+  ...domProps
 }) => (
-  <BBListContainer cssOverrides={cssOverrides}>
+  <BBListContainer cssOverrides={cssOverrides} {...domProps}>
     {Children.count(children) > 0 ? (
       children
     ) : (
       <ListItem
-        cssOverrides={css`
-          color: ${getColor(Colors.Black54)};
+        css={css`
+          color: ${getThemeColor(ThemeColors.Text500)};
         `}
       >
         {emptyText}
@@ -101,6 +106,7 @@ type ListItemProps = LinkProps &
     onClick?: (event: MouseEvent<HTMLDivElement>) => void
     size?: Sizes
     disabled?: boolean
+    isLink?: boolean
   }
 
 /*
@@ -124,7 +130,7 @@ export const ListItemPrimaryText = styled.span<CommonComponentType>(
     ${typography(500, FontSizes.Title5, 'auto 6px')};
     ${ellipsis};
 
-    color: currentColor;
+    color: inherit;
     flex: 1 1 100%;
 
     ${cssOverrides};
@@ -136,7 +142,7 @@ export const ListItemSecondaryText = styled.span<CommonComponentType>(
     ${typography(500, FontSizes.Content, 'auto 6px')};
     ${ellipsis};
 
-    color: ${getColor(Colors.Black62)};
+    color: ${getThemeColor(ThemeColors.Text600)};
     flex: 1 1 100%;
 
     ${cssOverrides};
@@ -145,58 +151,58 @@ export const ListItemSecondaryText = styled.span<CommonComponentType>(
 
 type BBListSizeIconProps = ListSizeProps & { icon: string }
 
-export const ListItemGraphic = styled(({ dense, ...otherProps }) => (
-  <Icon {...otherProps} />
+export const ListItemGraphic = styled(({ dense, ...domProps }) => (
+  <Icon {...domProps} />
 ))<BBListSizeIconProps & IconProps>(
   ({ dense, cssOverrides }) => css`
-    margin: auto ${dense ? 4 : 6}px;
+    && {
+      margin: auto ${dense ? 4 : 6}px;
+      color: inherit;
 
-    ${buttonTransition};
+      ${buttonTransition};
 
-    ${cssOverrides};
+      ${cssOverrides};
+    }
   `,
 )
 
-export const ListItem = styled(
-  ({ cssOverrides, children, activeClassName, ...otherProps }) => (
-    <div {...otherProps}>{children}</div>
-  ),
-)<ListItemProps>(
-  ({ as, cssOverrides, dense, disabled, onClick, size = Sizes.DP24 }) => css`
-    ${!isNil(onClick) || !isNil(as)
+export const ListItem = styled.div<ListItemProps>(
+  ({
+    cssOverrides,
+    dense,
+    disabled,
+    onClick,
+    size = Sizes.DP24,
+    isLink = false,
+  }) => css`
+    ${!isNil(onClick) || isLink
       ? css`
-          background: transparent;
-          color: ${getColor(Colors.BrandDarkBlue)};
+          ${baseFocusStyles()};
+          ${baseChromelessStyles()}
+          ${buttonTransition};
+
+          color: ${getThemeColor(
+            isLink ? ThemeColors.ActionPrimary : ThemeColors.Text900,
+          )};
           cursor: pointer;
           text-transform: none; /* IE 11 */
           user-select: none;
-
-          ${buttonTransition};
-
-          &:hover,
-          &.is-active {
-            background: hsla(225, 6%, 13%, 0.06);
-          }
-
-          &:active {
-            background: #e0eafd;
-            opacity: 1;
-          }
 
           /* stylelint-disable selector-type-no-unknown */
           &.is-active,
           &:active,
           &:active ${ListItemGraphic}, &.is-active ${ListItemGraphic} {
-            color: ${getColor(Colors.BrandLightBlue)};
+            color: ${getThemeColor(
+              isLink ? ThemeColors.ActionPrimary : ThemeColors.Text900,
+            )};
           }
           /* stylelint-enable selector-type-no-unknown */
-
-          ${baseFocusStyles()};
         `
       : css`
-          color: ${getColor(Colors.Black89)};
+          color: ${getThemeColor(ThemeColors.Text900)};
           background: transparent;
         `};
+
     ${disabled &&
       css`
         opacity: 0.54;
@@ -207,7 +213,6 @@ export const ListItem = styled(
 
     align-items: center;
     box-sizing: border-box;
-    color: ${getColor(Colors.Black89)};
     flex-shrink: 0;
     min-height: ${size}px;
     padding: 0 ${dense ? 4 : 10}px;
@@ -228,20 +233,25 @@ ListItem.defaultProps = {
   activeClassName: 'is-active',
 }
 
-export type SimpleListItemProps = CommonComponentType &
-  LinkProps & {
-    dense?: boolean
-    disabled?: boolean
-    leftIcon?: string
-    onClick?: (event: MouseEvent<HTMLDivElement>) => void
-    primaryText?: ReactNode
-    rightIcon?: string
-    secondaryText?: ReactNode
-    size?: Sizes
-    meta?: ReactNode
-  }
+type PassedProps = Omit<CommonComponentType, 'as'> &
+  LinkProps & { passedAs?: ReactType }
 
-export const SimpleListItem: StatelessComponent<SimpleListItemProps> = ({
+type DefaultProps = {
+  dense: boolean
+  disabled: boolean
+  leftIcon: string
+  onClick: (event: MouseEvent<HTMLDivElement>) => void
+  primaryText: ReactNode
+  rightIcon: string
+  secondaryText: ReactNode
+  size: Sizes
+  meta: ReactNode
+  isLink: boolean
+}
+
+export type SimpleListItemProps = PassedProps & DefaultProps
+
+export const SimpleListItem: FCwDP<PassedProps, DefaultProps> = ({
   leftIcon,
   rightIcon,
   primaryText,
@@ -250,17 +260,29 @@ export const SimpleListItem: StatelessComponent<SimpleListItemProps> = ({
   dense,
   meta,
   size,
-  ...otherProps
+  onClick,
+  isLink,
+  passedAs,
+  ...domProps
 }) => (
-  <ListItem dense={dense} size={size} {...otherProps}>
-    {!isNil(leftIcon) && <ListItemGraphic icon={leftIcon} dense={dense} />}
+  <ListItem
+    dense={dense}
+    size={size}
+    onClick={onClick}
+    isLink={isLink}
+    as={passedAs}
+    {...domProps}
+  >
+    {!isEmptyString(leftIcon) && (
+      <ListItemGraphic icon={leftIcon} dense={dense} />
+    )}
 
-    {isNil(secondaryText) || isNil(meta) ? (
+    {isEmptyString(secondaryText) || isNil(meta) ? (
       <ListItemPrimaryText>{primaryText}</ListItemPrimaryText>
     ) : (
       <ListItemText>
         <ListItemPrimaryText>{primaryText}</ListItemPrimaryText>
-        {isNil(secondaryText) ? null : (
+        {isEmptyString(secondaryText) ? null : (
           <ListItemSecondaryText>{secondaryText}</ListItemSecondaryText>
         )}
 
@@ -268,8 +290,23 @@ export const SimpleListItem: StatelessComponent<SimpleListItemProps> = ({
       </ListItemText>
     )}
 
-    {!isNil(rightIcon) && <ListItemGraphic icon={rightIcon} dense={dense} />}
+    {!isEmptyString(rightIcon) && (
+      <ListItemGraphic icon={rightIcon} dense={dense} />
+    )}
     {children}
   </ListItem>
 )
 // tslint:enable
+
+SimpleListItem.defaultProps = {
+  dense: false,
+  disabled: false,
+  leftIcon: '',
+  onClick: () => {},
+  primaryText: '',
+  rightIcon: '',
+  secondaryText: '',
+  size: Sizes.DP24,
+  meta: '',
+  isLink: false,
+}

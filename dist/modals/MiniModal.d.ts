@@ -1,6 +1,6 @@
-import { PopOverChildProps } from '@monorail/popOver/PopOver';
 import { FunctionComponent, ReactNode } from 'react';
 import { SimpleInterpolation } from 'styled-components';
+import { PopOverChildProps } from '@monorail/popOver/PopOver';
 declare type Props = PopOverChildProps & {
     title: string;
     iconLeft?: string;

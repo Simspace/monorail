@@ -1,11 +1,12 @@
 import React, {
+  FC,
+  ReactElement,
+  useLayoutEffect,
   useRef,
   useState,
-  useLayoutEffect,
-  ReactElement,
-  FC,
 } from 'react'
 import styled, { css } from 'styled-components'
+
 import { flexFlow } from '@monorail/helpers/exports'
 import { isNil } from '@monorail/sharedHelpers/typeGuards'
 
@@ -57,6 +58,7 @@ export const Carousel: FC<Props> = ({ slides, children }) => {
   const [translateValue, setTranslateValue] = useState(defaultTranslateValue)
   const [slideWidth, setSlideWidth] = useState(defaultSlideWidth)
 
+  /* eslint-disable react-hooks/exhaustive-deps */
   useLayoutEffect(() => {
     if (!isNil(slideItemRef) && !isNil(slideItemRef.current)) {
       const slideItem = slideItemRef.current
@@ -66,6 +68,7 @@ export const Carousel: FC<Props> = ({ slides, children }) => {
       }
     }
   }, [slideItemRef.current, currentSlideIndex, translateValue, slideWidth])
+  /* eslint-enable react-hooks/exhaustive-deps */
 
   const prevSlide = () => {
     const lastIndex = slides.length
@@ -110,8 +113,10 @@ export const Carousel: FC<Props> = ({ slides, children }) => {
           width: ${slideWidth}px;
         `}
       >
-        {slides.map(slide => (
-          <SlideItem ref={slideItemRef}>{slide}</SlideItem>
+        {slides.map((slide, index) => (
+          <SlideItem ref={slideItemRef} key={`slide-${index}`}>
+            {slide}
+          </SlideItem>
         ))}
       </SlideContainer>
     ),

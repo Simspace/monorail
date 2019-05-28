@@ -5,11 +5,11 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.mkRecordKeyOptional = exports.mkArrayIndexOptional = exports.lensesFromRecord = exports.oLens = void 0;
 
-var _monocleTs = require("monocle-ts");
+var _Array = require("fp-ts/lib/Array");
 
 var _Record = require("fp-ts/lib/Record");
 
-var _Array = require("fp-ts/lib/Array");
+var _monocleTs = require("monocle-ts");
 
 /**
  * Binary composition for lenses (`monocle-ts`)

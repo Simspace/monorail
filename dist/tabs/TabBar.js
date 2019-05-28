@@ -7,13 +7,15 @@ exports.TabBar = exports.TabBarContainer = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _typeGuards = require("../sharedHelpers/typeGuards");
-
 var _styledComponents = _interopRequireWildcard(require("styled-components"));
 
 var _exports = require("../helpers/exports");
 
+var _TabBarController = require("./TabBarController");
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
+
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
 // TODO(unsafe-any): Fix unsafe anys
 // tslint:disable no-unsafe-any
@@ -77,97 +79,26 @@ const TabBarIndicatorBody =
   width
 }) => (0, _styledComponents.css)(["background:", ";height:100%;width:", "px;transition-duration:", "ms;transition-property:all;transition-timing-function:ease-in-out;transform-origin:bottom left;transform:translateX(", "px) scaleX( ", " );"], (0, _exports.getColor)(_exports.Colors.BrandLightBlue), tabBarIndicatorBodyWidth, duration, tabBarIndicatorSideWidth, (width - tabBarIndicatorSideWidth * 2) / tabBarIndicatorBodyWidth));
 
-const TabBarActions =
-/*#__PURE__*/
-_styledComponents.default.div.withConfig({
-  displayName: "TabBar__TabBarActions",
-  componentId: "sc-1hr19pz-2"
-})(["", ";align-items:center;margin-left:auto;margin-right:8px;"], (0, _exports.flexFlow)('row'));
-
 class TabBar extends _react.Component {
-  constructor(...args) {
-    super(...args);
-    this.state = {
-      activeTabIndex: this.props.activeTabIndex || 0,
-      indicatorLeft: 0,
-      indicatorTransitionDuration: 0,
-      indicatorWidth: 0
-    };
-
-    this.setIndicator = (width, left) => this.setState(() => ({
-      indicatorWidth: width,
-      indicatorLeft: left
-    }));
-
-    this.updateActiveTab = index => {
-      const {
-        getActiveTabIndex
-      } = this.props;
-      this.setState(() => ({
-        activeTabIndex: index
-      }));
-      getActiveTabIndex && getActiveTabIndex(index);
-    };
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    // Check if the indicator needs to move, if it does set the distance of the move as the transition duration.
-    if (prevState.indicatorLeft !== this.state.indicatorLeft) {
-      this.setState(() => ({
-        indicatorTransitionDuration: Math.abs(prevState.indicatorLeft - this.state.indicatorLeft)
-      }));
-    } // Check if the activeTabIndex needs to change
-
-
-    if (prevProps.activeTabIndex !== this.props.activeTabIndex) {
-      this.setState(() => ({
-        activeTabIndex: this.props.activeTabIndex || 0
-      }));
-    }
-  }
-
-  renderTabs() {
-    const {
-      children
-    } = this.props;
-    const {
-      activeTabIndex
-    } = this.state;
-    /**
-     * If we're controlling the activeTabIndex with a prop,
-     * then we set updateIsActive to undefined to prevent
-     * automatic updates on Tab click.
-     */
-
-    return _react.default.Children.map(children, (child, index) => !(0, _typeGuards.isNil)(child) && _react.default.isValidElement(child) && _react.default.cloneElement(child, {
-      index,
-      isActive: index === activeTabIndex,
-      setIndicator: this.setIndicator,
-      updateIsActive: (0, _typeGuards.isNil)(this.props.activeTabIndex) ? this.updateActiveTab : undefined
-    }));
-  }
-
   render() {
     const {
       cssOverrides,
       size,
-      actions
+      actions,
+      children,
+      activeTabIndex,
+      getActiveTabIndex,
+      ...domProps
     } = this.props;
-    const {
-      indicatorLeft,
-      indicatorWidth,
-      indicatorTransitionDuration
-    } = this.state;
-    return _react.default.createElement(TabBarContainer, {
+    return _react.default.createElement(TabBarContainer, _extends({
       cssOverrides: cssOverrides,
       size: size
-    }, this.renderTabs(), !(0, _typeGuards.isNil)(actions) && _react.default.createElement(TabBarActions, {
-      id: "tabBarActions"
-    }, actions), _react.default.createElement(TabBarIndicatorContainer, {
-      width: indicatorWidth,
-      left: indicatorLeft,
-      duration: indicatorTransitionDuration
-    }));
+    }, domProps), _react.default.createElement(_TabBarController.TabBarController, {
+      actions: actions,
+      tabBarIndicator: props => _react.default.createElement(TabBarIndicatorContainer, props),
+      activeTabIndex: activeTabIndex,
+      getActiveTabIndex: getActiveTabIndex
+    }, children));
   }
 
 } // tslint:enable

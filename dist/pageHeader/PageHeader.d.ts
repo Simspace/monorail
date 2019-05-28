@@ -1,25 +1,28 @@
-import React, { Component, MouseEvent as ReactMouseEvent, ReactNode, RefObject } from 'react';
+import React, { Component, MouseEventHandler, ReactNode, RefObject } from 'react';
 import { CommonComponentType } from '@monorail/types';
-export declare const TitleContainer: import("styled-components").StyledComponent<"div", any, {
+export declare const TitleContainer: import("styled-components").StyledComponent<"div", import("../helpers/theme").GlobalAppThemeInterface, {
     hasAboveContent: boolean;
 }, never>;
 export declare type PageHeaderShadowProps = {
     willAnimateShadow: boolean;
     flush: boolean;
 };
+export declare type BreadCrumbsType = Array<{
+    title: string;
+    path: string;
+}>;
 declare type PageHeaderNavigationProps = {
-    breadCrumbs?: Array<{
-        title: string;
-        path?: (event: ReactMouseEvent<HTMLAnchorElement>) => void;
-    }>;
+    breadCrumbs?: BreadCrumbsType;
 };
 declare type PageHeaderProps = CommonComponentType & PageHeaderNavigationProps & {
-    goBack?: (event: ReactMouseEvent<Element>) => void;
+    goBack?: MouseEventHandler | string;
     title: string;
+    pageName?: string;
     action?: ReactNode;
     shadowRef?: RefObject<HTMLDivElement>;
     willAnimateShadow: boolean;
     flush: boolean;
+    noShadow?: boolean;
 };
 export declare class PageHeader extends Component<PageHeaderProps> {
     static defaultProps: {

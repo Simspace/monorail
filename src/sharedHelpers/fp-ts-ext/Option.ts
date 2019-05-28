@@ -1,6 +1,6 @@
 import { toArray } from 'fp-ts/lib/Foldable2v'
 import { constTrue } from 'fp-ts/lib/function'
-import { Option, option, none, some } from 'fp-ts/lib/Option'
+import { none, Option, option, some } from 'fp-ts/lib/Option'
 import { ReactNode } from 'react'
 
 import { isFalsy, isNil } from '../typeGuards'

@@ -1,5 +1,5 @@
-import { GlobalAppThemeInterface } from '@monorail/globalAppTheme';
 import { FlattenInterpolation, SimpleInterpolation, ThemeProps } from 'styled-components';
+import { GlobalAppThemeInterface } from '@monorail/helpers/theme';
 export declare type CssOverrides = SimpleInterpolation | FlattenInterpolation<ThemeProps<GlobalAppThemeInterface>>;
 export declare type StyledComponentCssOverrides = {
     cssOverrides?: CssOverrides;

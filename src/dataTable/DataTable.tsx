@@ -1,9 +1,10 @@
 import styled, { css, SimpleInterpolation } from 'styled-components'
+
 import {
-  getColor,
   Colors,
   flexFlow,
   FontSizes,
+  getColor,
   typography,
 } from '@monorail/helpers/exports'
 import { CommonComponentType } from '@monorail/types'

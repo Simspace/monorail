@@ -9,9 +9,9 @@ var _react = _interopRequireDefault(require("react"));
 
 var _styledComponents = _interopRequireDefault(require("styled-components"));
 
-var _typeGuards = require("../sharedHelpers/typeGuards");
-
 var _exports = require("../helpers/exports");
+
+var _typeGuards = require("../sharedHelpers/typeGuards");
 
 var _Choice = require("./Choice");
 

@@ -1,4 +1,5 @@
 import React, { Component, RefObject } from 'react'
+
 import { isNil } from '@monorail/sharedHelpers/typeGuards'
 
 type Props = {

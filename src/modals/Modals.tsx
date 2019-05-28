@@ -1,3 +1,14 @@
+import React, {
+  MouseEvent,
+  ReactNode,
+  StatelessComponent,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from 'react'
+import { SimpleInterpolation } from 'styled-components'
+
 import { AppIcon } from '@monorail/appIcon/AppIcon'
 import { ButtonDisplay, IconButtonShape } from '@monorail/buttons/buttonTypes'
 import { IconButton } from '@monorail/buttons/IconButton'
@@ -10,26 +21,23 @@ import {
   flexFlow,
   FontSizes,
   getColor,
-  getElevation,
+  getElevationShadow,
   gothamFontFamily,
   sizes,
   typography,
 } from '@monorail/helpers/exports'
 import { useEventListener } from '@monorail/helpers/hooks'
+import styled, {
+  css,
+  keyframes,
+  ThemeProvider,
+} from '@monorail/helpers/styled-components'
+import { Mode } from '@monorail/helpers/theme'
 import { Icon } from '@monorail/icon/Icon'
 import { ModalSize } from '@monorail/modals/modalTypes'
 import { CommonComponentType } from '@monorail/types'
-import React, {
-  MouseEvent,
-  ReactNode,
-  StatelessComponent,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from 'react'
-import styled, { css, keyframes, SimpleInterpolation } from 'styled-components'
-import { BBSearchContainer } from '../inputs/Search'
+
+import { SearchContainer } from '../inputs/Search'
 
 /**
  * Modal Hooks
@@ -217,7 +225,7 @@ export const BBModalBackground = styled.div<BBModalBackgroundProps>(
 
     ${borderRadius(BorderRadius.XLarge)};
     ${flexFlow()};
-    ${getElevation(ElevationRange.Elevation24)};
+    ${getElevationShadow(ElevationRange.Elevation24)};
 
     background: ${getColor(Colors.White)};
     overflow: hidden;
@@ -246,14 +254,14 @@ const BBModalHeaderContainer = styled.div<
   ({ size, cssOverrides }) => css`
     ${flexFlow(size === ModalSize.Mini ? 'column' : 'row')};
 
-    ${getElevation(ElevationRange.Elevation2)};
+    ${getElevationShadow(ElevationRange.Elevation2)};
 
     background: ${getColor(Colors.BrandDarkBlue)};
     flex-shrink: 0;
     user-select: none;
     z-index: 1;
 
-    ${BBSearchContainer} {
+    ${SearchContainer} {
       ${size === ModalSize.Mini
         ? css`
             margin: 8px 16px 16px;
@@ -347,7 +355,6 @@ export const DefaultCloseButton = ({
           `
     }
     icon="close"
-    darkMode
     onClick={onClose}
     shape={IconButtonShape.Square}
     display={ButtonDisplay.Chromeless}
@@ -366,26 +373,28 @@ export const BBModalHeader: StatelessComponent<BBModalHeaderProps> = ({
   title,
   cssOverrides,
 }) => (
-  <BBModalHeaderContainer size={size} cssOverrides={cssOverrides}>
-    <BBModalHeaderRow size={size}>
-      {appIcon && <StyledAppIconLeft appName={appIcon} />}
-      {iconLeft && <StyledIconLeft icon={iconLeft} />}
-      <BBModalHeaderTitle size={size} data-test-id="modal-header-title">
-        {title}
-      </BBModalHeaderTitle>
-      {headerRowChildren}
-      {iconRight && <StyledIconRight icon={iconRight} />}
-      {size !== ModalSize.Mini && onClose && customCloseButton ? (
-        customCloseButton
-      ) : (
-        <DefaultCloseButton
-          headerRowChildren={headerRowChildren}
-          onClose={onClose}
-        />
-      )}
-    </BBModalHeaderRow>
-    {children}
-  </BBModalHeaderContainer>
+  <ThemeProvider theme={theme => ({ ...theme, mode: Mode.Dark })}>
+    <BBModalHeaderContainer size={size} cssOverrides={cssOverrides}>
+      <BBModalHeaderRow size={size}>
+        {appIcon && <StyledAppIconLeft appName={appIcon} />}
+        {iconLeft && <StyledIconLeft icon={iconLeft} />}
+        <BBModalHeaderTitle size={size} data-test-id="modal-header-title">
+          {title}
+        </BBModalHeaderTitle>
+        {headerRowChildren}
+        {iconRight && <StyledIconRight icon={iconRight} />}
+        {size !== ModalSize.Mini && onClose && customCloseButton ? (
+          customCloseButton
+        ) : (
+          <DefaultCloseButton
+            headerRowChildren={headerRowChildren}
+            onClose={onClose}
+          />
+        )}
+      </BBModalHeaderRow>
+      {children}
+    </BBModalHeaderContainer>
+  </ThemeProvider>
 )
 
 /*
@@ -400,7 +409,7 @@ export const BBModalHeader: StatelessComponent<BBModalHeaderProps> = ({
 
 export const BBModalFooter = styled.div`
   ${flexFlow('row')};
-  ${getElevation(ElevationRange.Elevation6)};
+  ${getElevationShadow(ElevationRange.Elevation6)};
 
   align-items: center;
   background: ${getColor(Colors.Grey98)};

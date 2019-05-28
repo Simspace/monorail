@@ -1,4 +1,7 @@
 import React, { Component, RefObject } from 'react'
+import { css } from 'styled-components'
+import { Omit } from 'typelevel-ts'
+
 import {
   BBModalContainer,
   BBModalOverlay,
@@ -8,8 +11,6 @@ import {
   overlayOpenAnimation,
 } from '@monorail/modals/Modals'
 import { PopOverChildProps } from '@monorail/popOver/PopOver'
-import { Omit } from 'typelevel-ts'
-import { css } from 'styled-components'
 
 type Props = Omit<
   PopOverChildProps,

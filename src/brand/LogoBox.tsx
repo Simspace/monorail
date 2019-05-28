@@ -1,11 +1,12 @@
 import styled, { css, SimpleInterpolation } from 'styled-components'
+
 import {
   borderRadius,
   Colors,
-  getColor,
   ElevationRange,
   flexFlow,
-  getElevation,
+  getColor,
+  getElevationShadow,
 } from '@monorail/helpers/exports'
 
 type LogoBoxProps = {
@@ -18,7 +19,7 @@ export const LogoBox = styled.div<LogoBoxProps>(
   ({ alignLeft, alignRight, cssOverrides }) => css`
     ${borderRadius()};
     ${flexFlow('column')};
-    ${getElevation(ElevationRange.Elevation0)};
+    ${getElevationShadow(ElevationRange.Elevation0)};
 
   background: ${getColor(Colors.White)};
   height: 32px;

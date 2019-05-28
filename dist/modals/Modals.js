@@ -6,6 +6,8 @@ Object.defineProperty(exports, "__esModule", {
 exports.useModalAnimation = useModalAnimation;
 exports.BBModalContent = exports.BBModalContainer = exports.BBModalOverlay = exports.BBModalFooter = exports.BBModalHeader = exports.DefaultCloseButton = exports.BBModalBackground = exports.overlayCloseAnimation = exports.overlayOpenAnimation = exports.fullScreenModalCloseAnimation = exports.fullScreenModalOpenAnimation = exports.largeModalCloseAnimation = exports.largeModalOpenAnimation = exports.mediumModalCloseAnimation = exports.mediumModalOpenAnimation = exports.modalAnimationDuration = void 0;
 
+var _react = _interopRequireWildcard(require("react"));
+
 var _AppIcon = require("../appIcon/AppIcon");
 
 var _buttonTypes = require("../buttons/buttonTypes");
@@ -16,13 +18,13 @@ var _exports = require("../helpers/exports");
 
 var _hooks = require("../helpers/hooks");
 
+var _styledComponents = _interopRequireWildcard(require("../helpers/styled-components"));
+
+var _theme = require("../helpers/theme");
+
 var _Icon = require("../icon/Icon");
 
 var _modalTypes = require("./modalTypes");
-
-var _react = _interopRequireWildcard(require("react"));
-
-var _styledComponents = _interopRequireWildcard(require("styled-components"));
 
 var _Search = require("../inputs/Search");
 
@@ -123,7 +125,7 @@ _styledComponents.default.div.withConfig({
 })(({
   size,
   cssOverrides
-}) => (0, _styledComponents.css)(["", ";", ";", ";", ";", ";background:", ";overflow:hidden;position:relative;width:", ";will-change:transform,opacity;transform-origin:bottom center;", ";"], size === _modalTypes.ModalSize.Mini ? (0, _styledComponents.css)(["height:", "px;"], _exports.sizes.modals.mini.height) : (0, _styledComponents.css)(["margin:16px;"]), size === _modalTypes.ModalSize.Large && (0, _styledComponents.css)(["height:calc(100vh - 32px);"]), (0, _exports.borderRadius)(_exports.BorderRadius.XLarge), (0, _exports.flexFlow)(), (0, _exports.getElevation)(_exports.ElevationRange.Elevation24), (0, _exports.getColor)(_exports.Colors.White), modalWidth[size], cssOverrides));
+}) => (0, _styledComponents.css)(["", ";", ";", ";", ";", ";background:", ";overflow:hidden;position:relative;width:", ";will-change:transform,opacity;transform-origin:bottom center;", ";"], size === _modalTypes.ModalSize.Mini ? (0, _styledComponents.css)(["height:", "px;"], _exports.sizes.modals.mini.height) : (0, _styledComponents.css)(["margin:16px;"]), size === _modalTypes.ModalSize.Large && (0, _styledComponents.css)(["height:calc(100vh - 32px);"]), (0, _exports.borderRadius)(_exports.BorderRadius.XLarge), (0, _exports.flexFlow)(), (0, _exports.getElevationShadow)(_exports.ElevationRange.Elevation24), (0, _exports.getColor)(_exports.Colors.White), modalWidth[size], cssOverrides));
 /*
  *
  * Modal Header
@@ -145,7 +147,7 @@ _styledComponents.default.div.withConfig({
 })(({
   size,
   cssOverrides
-}) => (0, _styledComponents.css)(["", ";", ";background:", ";flex-shrink:0;user-select:none;z-index:1;", "{", ";}", ";"], (0, _exports.flexFlow)(size === _modalTypes.ModalSize.Mini ? 'column' : 'row'), (0, _exports.getElevation)(_exports.ElevationRange.Elevation2), (0, _exports.getColor)(_exports.Colors.BrandDarkBlue), _Search.BBSearchContainer, size === _modalTypes.ModalSize.Mini ? (0, _styledComponents.css)(["margin:8px 16px 16px;"]) : (0, _styledComponents.css)(["margin:auto 16px auto auto;"]), cssOverrides));
+}) => (0, _styledComponents.css)(["", ";", ";background:", ";flex-shrink:0;user-select:none;z-index:1;", "{", ";}", ";"], (0, _exports.flexFlow)(size === _modalTypes.ModalSize.Mini ? 'column' : 'row'), (0, _exports.getElevationShadow)(_exports.ElevationRange.Elevation2), (0, _exports.getColor)(_exports.Colors.BrandDarkBlue), _Search.SearchContainer, size === _modalTypes.ModalSize.Mini ? (0, _styledComponents.css)(["margin:8px 16px 16px;"]) : (0, _styledComponents.css)(["margin:auto 16px auto auto;"]), cssOverrides));
 
 const BBModalHeaderRow =
 /*#__PURE__*/
@@ -199,7 +201,6 @@ const DefaultCloseButton = ({
 }) => _react.default.createElement(_IconButton.IconButton, {
   cssOverrides: headerRowChildren ? (0, _styledComponents.css)([""]) : (0, _styledComponents.css)(["margin-left:auto;"]),
   icon: "close",
-  darkMode: true,
   onClick: onClose,
   shape: _buttonTypes.IconButtonShape.Square,
   display: _buttonTypes.ButtonDisplay.Chromeless
@@ -218,7 +219,11 @@ const BBModalHeader = ({
   onClose,
   title,
   cssOverrides
-}) => _react.default.createElement(BBModalHeaderContainer, {
+}) => _react.default.createElement(_styledComponents.ThemeProvider, {
+  theme: theme => ({ ...theme,
+    mode: _theme.Mode.Dark
+  })
+}, _react.default.createElement(BBModalHeaderContainer, {
   size: size,
   cssOverrides: cssOverrides
 }, _react.default.createElement(BBModalHeaderRow, {
@@ -235,7 +240,7 @@ const BBModalHeader = ({
 }), size !== _modalTypes.ModalSize.Mini && onClose && customCloseButton ? customCloseButton : _react.default.createElement(DefaultCloseButton, {
   headerRowChildren: headerRowChildren,
   onClose: onClose
-})), children);
+})), children));
 /*
  *
  * Modal Footer
@@ -254,7 +259,7 @@ const BBModalFooter =
 _styledComponents.default.div.withConfig({
   displayName: "Modals__BBModalFooter",
   componentId: "sc-1y5a2ts-7"
-})(["", ";", ";align-items:center;background:", ";height:48px;justify-content:flex-end;margin:auto 0 0;padding:0 16px;flex-shrink:0;"], (0, _exports.flexFlow)('row'), (0, _exports.getElevation)(_exports.ElevationRange.Elevation6), (0, _exports.getColor)(_exports.Colors.Grey98));
+})(["", ";", ";align-items:center;background:", ";height:48px;justify-content:flex-end;margin:auto 0 0;padding:0 16px;flex-shrink:0;"], (0, _exports.flexFlow)('row'), (0, _exports.getElevationShadow)(_exports.ElevationRange.Elevation6), (0, _exports.getColor)(_exports.Colors.Grey98));
 /*
  *
  * Modal Overlay

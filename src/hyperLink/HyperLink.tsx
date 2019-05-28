@@ -1,38 +1,26 @@
+import { Link, LinkProps } from 'react-router'
 import styled, { css } from 'styled-components'
-import { Colors, getColor } from '@monorail/helpers/color'
+
+import { baseHyperLinkStyles } from '@monorail/helpers/baseStyles'
 import {
   FontSizes,
   FontWeights,
   typography,
 } from '@monorail/helpers/typography'
-import { Link, LinkProps } from 'react-router'
 
 export type HyperLinkProps = LinkProps & {
   fontSize?: FontSizes
   fontWeight?: FontWeights
   margin?: string
+  isBreadcrumb?: boolean
 }
 
-export const HyperLink = styled(Link).attrs({ className: 'new-link' })<
-  HyperLinkProps
->(
+export const HyperLink = styled(Link)<HyperLinkProps>(
   ({ fontSize = FontSizes.Title5, fontWeight = 500, margin = '' }) => css`
     ${typography(fontWeight, fontSize, margin)};
-
-    color: ${getColor(Colors.BrandLightBlue)};
+    ${baseHyperLinkStyles()}
 
     transition: color ease 25ms;
-
-    &:hover {
-      color: ${getColor(Colors.BrandLightBlue, 0.8)};
-    }
-
-    &:active {
-      color: ${getColor(Colors.BrandLightBlue, 0.7)};
-    }
-
-    &:visited {
-      color: ${getColor(Colors.BrandLightBlue)};
-    }
+    text-decoration: underline;
   `,
 )

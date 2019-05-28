@@ -1,8 +1,8 @@
 "use strict";
 
-var _Record = require("../Record");
-
 var _Ord = require("../Ord");
+
+var _Record = require("../Record");
 
 describe('keys', () => {
   it('should return the keys of an object', () => {

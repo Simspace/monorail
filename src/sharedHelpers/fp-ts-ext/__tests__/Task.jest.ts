@@ -1,4 +1,5 @@
 import { Task } from 'fp-ts/lib/Task'
+
 import { constRunTask, newTask, runTask } from '../Task'
 
 describe('constRunTask', () => {

@@ -7,11 +7,11 @@ exports.ArrowButtons = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
-var _IconButton = require("../buttons/IconButton");
-
 var _styledComponents = _interopRequireDefault(require("styled-components"));
 
 var _buttonTypes = require("../buttons/buttonTypes");
+
+var _IconButton = require("../buttons/IconButton");
 
 var _exports = require("../helpers/exports");
 

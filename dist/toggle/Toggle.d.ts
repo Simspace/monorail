@@ -1,7 +1,7 @@
 import { Component } from 'react';
-import { ToggleSize } from '@monorail/toggle/toggleTypes';
 import { SimpleInterpolation } from 'styled-components';
-export declare const Slider: import("styled-components").StyledComponent<"div", any, Slider, never>;
+import { ToggleSize } from '@monorail/toggle/toggleTypes';
+export declare const Slider: import("styled-components").StyledComponent<"div", import("../helpers/theme").GlobalAppThemeInterface, Slider, never>;
 declare type Slider = {
     toggleSize: ToggleSize;
 };

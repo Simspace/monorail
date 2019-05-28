@@ -7,21 +7,31 @@ exports.PageHeader = exports.TitleContainer = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _styledComponents = _interopRequireWildcard(require("styled-components"));
+var _reactRouter = require("react-router");
 
-var _exports = require("../helpers/exports");
-
-var _Icon = require("../icon/Icon");
+var _Button = require("../buttons/Button");
 
 var _buttonTypes = require("../buttons/buttonTypes");
 
-var _typeGuards = require("../sharedHelpers/typeGuards");
+var _baseStyles = require("../helpers/baseStyles");
 
-var _Button = require("../buttons/Button");
+var _exports = require("../helpers/exports");
+
+var _styledComponents = _interopRequireWildcard(require("../helpers/styled-components"));
+
+var _theme = require("../helpers/theme");
+
+var _HyperLink = require("../hyperLink/HyperLink");
+
+var _Icon = require("../icon/Icon");
+
+var _typeGuards = require("../sharedHelpers/typeGuards");
 
 var _TabBar = require("../tabs/TabBar");
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
+
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
 /*
  * Styles
@@ -32,10 +42,11 @@ _styledComponents.default.div.withConfig({
   displayName: "PageHeader__PageHeaderContainer",
   componentId: "sc-1tofzk7-0"
 })(({
-  flush,
   cssOverrides,
   hasAboveContent
-}) => (0, _styledComponents.css)(["", ";background:", ";flex-shrink:0;overflow:visible;position:relative;z-index:1;&::before{", ";background:", ";bottom:0;content:'';left:0;position:absolute;right:0;top:0;z-index:-5;}", "{padding:0 24px;", ";}", ";"], (0, _exports.flexFlow)('column'), (0, _exports.getColor)(_exports.Colors.White), flush && (0, _styledComponents.css)(["border-bottom:1px solid ", ";"], (0, _exports.getColor)(_exports.Colors.Grey94)), (0, _exports.getColor)(_exports.Colors.White), _TabBar.TabBarContainer, !hasAboveContent && (0, _styledComponents.css)(["margin-top:-8px;"]), cssOverrides));
+}) => (0, _styledComponents.css)(["", ";background:", ";flex-shrink:0;overflow:visible;position:relative;z-index:1;&::before{border-bottom:2px solid ", ";background:inherit;bottom:0;content:'';left:0;position:absolute;right:0;top:0;z-index:-5;}", "{padding:0 24px;", ";}", ";"], (0, _exports.flexFlow)('column'), props => (0, _exports.convertHSLAMapToCss)({ ...(0, _theme.getThemeColorBase)(_theme.ThemeColors.ApplicationPrimary)(props),
+  l: 98
+}), (0, _theme.getThemeColor)(_theme.ThemeColors.ApplicationPrimary), _TabBar.TabBarContainer, !hasAboveContent && (0, _styledComponents.css)(["margin-top:-8px;"]), cssOverrides));
 
 const pageHeaderPadding =
 /*#__PURE__*/
@@ -49,7 +60,7 @@ _styledComponents.default.div.withConfig({
 })(({
   willAnimateShadow,
   flush
-}) => (0, _styledComponents.css)(["bottom:-20px;left:0;overflow:hidden;pointer-events:none;position:absolute;right:0;top:0;z-index:-10;&:before{", ";background:", ";bottom:26px;content:'';left:-10px;position:absolute;right:-10px;top:0;}", ";"], (0, _exports.getElevation)(_exports.ElevationRange.Elevation6), (0, _exports.getColor)(_exports.Colors.White), (flush || willAnimateShadow) && (0, _styledComponents.css)(["opacity:0;"])));
+}) => (0, _styledComponents.css)(["bottom:-20px;left:0;overflow:hidden;pointer-events:none;position:absolute;right:0;top:0;z-index:-10;&:before{", ";background:", ";bottom:26px;content:'';left:-10px;position:absolute;right:-10px;top:0;}", ";"], (0, _exports.getElevationShadow)(_exports.ElevationRange.Elevation6), (0, _exports.getColor)(_exports.Colors.White), (flush || willAnimateShadow) && (0, _styledComponents.css)(["opacity:0;"])));
 
 const PageHeaderNavigation =
 /*#__PURE__*/
@@ -63,20 +74,13 @@ const BreadCrumbsContainer =
 _styledComponents.default.div.withConfig({
   displayName: "PageHeader__BreadCrumbsContainer",
   componentId: "sc-1tofzk7-3"
-})(["", ";align-items:center;&::before{background:", ";width:1px;height:20px;content:'';margin-right:12px;}"], (0, _exports.flexFlow)('row'), (0, _exports.getColor)(_exports.Colors.Black24));
-
-const BreadCrumb =
-/*#__PURE__*/
-_styledComponents.default.a.withConfig({
-  displayName: "PageHeader__BreadCrumb",
-  componentId: "sc-1tofzk7-4"
-})(["", ";color:", ";cursor:pointer;padding:6px 2px;text-transform:none;user-select:none;&:hover{color:", ";}"], (0, _exports.typography)(500, _exports.FontSizes.Title5), (0, _exports.getColor)(_exports.Colors.Black54), (0, _exports.getColor)(_exports.Colors.BrandLightBlue));
+})(["", ";align-items:center;&::before{background:", ";width:1px;height:20px;content:'';margin-right:12px;}"], (0, _exports.flexFlow)('row'), (0, _theme.getThemeColor)(_theme.ThemeColors.Text200));
 
 const TitleContainer =
 /*#__PURE__*/
 _styledComponents.default.div.withConfig({
   displayName: "PageHeader__TitleContainer",
-  componentId: "sc-1tofzk7-5"
+  componentId: "sc-1tofzk7-4"
 })(({
   hasAboveContent
 }) => (0, _styledComponents.css)(["", ";", ";align-items:center;flex-shrink:0;grid-column:-1 / 1;height:", "px;"], (0, _exports.flexFlow)('row'), pageHeaderPadding, hasAboveContent ? 48 : 64));
@@ -87,12 +91,25 @@ const Title =
 /*#__PURE__*/
 _styledComponents.default.h1.withConfig({
   displayName: "PageHeader__Title",
+  componentId: "sc-1tofzk7-5"
+})(["", ";color:", ";margin-left:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"], (0, _exports.typography)(700, _exports.FontSizes.Title1), (0, _theme.getThemeColor)(_theme.ThemeColors.Text900));
+
+const PageName =
+/*#__PURE__*/
+_styledComponents.default.h5.withConfig({
+  displayName: "PageHeader__PageName",
   componentId: "sc-1tofzk7-6"
-})(["", ";color:", ";margin-left:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"], (0, _exports.typography)(700, _exports.FontSizes.Title1), (0, _exports.getColor)(_exports.Colors.BrandDarkBlue));
+})(["", ";", ";color:", ";margin:8px 0 -8px 0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"], pageHeaderPadding, (0, _exports.typography)(500, _exports.FontSizes.Title5), (0, _theme.getThemeColor)(_theme.ThemeColors.Text1000));
+
+const BreadCrumbLink =
+/*#__PURE__*/
+(0, _styledComponents.default)(_HyperLink.HyperLink).withConfig({
+  displayName: "PageHeader__BreadCrumbLink",
+  componentId: "sc-1tofzk7-7"
+})(["", " padding:6px 2px;user-select:none;text-decoration:none;"], (0, _baseStyles.baseHyperLinkStyles)(_theme.ThemeColors.Text500));
 /*
  * Types
  */
-
 
 /*
  * Components
@@ -114,8 +131,8 @@ class PageHeader extends _react.Component {
       return breadCrumbs.map(({
         title,
         path
-      }, key) => [_react.default.createElement(BreadCrumb, {
-        onClick: path,
+      }, key) => [_react.default.createElement(BreadCrumbLink, {
+        to: path,
         key: key
       }, title), key !== breadCrumbs.length - 1 && _react.default.createElement(_Icon.Icon, {
         icon: "chevron_right",
@@ -134,24 +151,34 @@ class PageHeader extends _react.Component {
       flush,
       goBack,
       shadowRef,
+      pageName,
       title,
-      willAnimateShadow
+      willAnimateShadow,
+      noShadow,
+      ...domProps
     } = this.props;
     const hasAboveContent = !(0, _typeGuards.isNil)(breadCrumbs) || !(0, _typeGuards.isNil)(goBack);
-    return _react.default.createElement(PageHeaderContainer, {
-      cssOverrides: (0, _styledComponents.css)(["", ";"], cssOverrides),
+    return _react.default.createElement(PageHeaderContainer, _extends({
+      cssOverrides: cssOverrides,
+      flush: flush,
       hasAboveContent: hasAboveContent,
-      ref: this.pageHeaderContainerRef,
-      flush: flush
-    }, (!(0, _typeGuards.isNil)(breadCrumbs) || !(0, _typeGuards.isNil)(goBack)) && _react.default.createElement(PageHeaderNavigation, null, goBack && _react.default.createElement(_Button.Button, {
+      ref: this.pageHeaderContainerRef
+    }, domProps), (!(0, _typeGuards.isNil)(breadCrumbs) || !(0, _typeGuards.isNil)(goBack)) && _react.default.createElement(PageHeaderNavigation, null, !(0, _typeGuards.isNil)(goBack) && typeof goBack === 'string' ? _react.default.createElement(_Button.Button, {
+      size: _buttonTypes.ButtonSize.Compact,
+      display: _buttonTypes.ButtonDisplay.Chromeless,
+      as: _reactRouter.Link,
+      to: goBack,
+      cssOverrides: (0, _styledComponents.css)(["margin-left:-4px;margin-right:8px;"]),
+      iconLeft: "circle_arrow_left"
+    }, "Go Back") : _react.default.createElement(_Button.Button, {
       size: _buttonTypes.ButtonSize.Compact,
       display: _buttonTypes.ButtonDisplay.Chromeless,
       onClick: goBack,
       cssOverrides: (0, _styledComponents.css)(["margin-left:-4px;margin-right:8px;"]),
       iconLeft: "circle_arrow_left"
-    }, "Go Back"), breadCrumbs && _react.default.createElement(BreadCrumbsContainer, null, this.renderBreadCrumbs())), _react.default.createElement(TitleContainer, {
+    }, "Go Back"), breadCrumbs && _react.default.createElement(BreadCrumbsContainer, null, this.renderBreadCrumbs())), pageName && _react.default.createElement(PageName, null, pageName), _react.default.createElement(TitleContainer, {
       hasAboveContent: hasAboveContent
-    }, _react.default.createElement(Title, null, title), action), children, _react.default.createElement(PageHeaderShadow, {
+    }, _react.default.createElement(Title, null, title), action), children, !noShadow && _react.default.createElement(PageHeaderShadow, {
       willAnimateShadow: willAnimateShadow,
       flush: flush,
       ref: shadowRef

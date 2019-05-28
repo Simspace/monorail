@@ -1,6 +1,6 @@
 import { strictEqual } from 'fp-ts/lib/Setoid'
-import { shallowEqual } from '../../shallowEqual'
 
+import { shallowEqual } from '../../shallowEqual'
 import {
   getSetoidShallowEq,
   getSetoidStrict,

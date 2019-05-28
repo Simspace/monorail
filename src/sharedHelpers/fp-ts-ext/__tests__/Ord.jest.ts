@@ -1,4 +1,5 @@
 import { strictEqual } from 'fp-ts/lib/Setoid'
+
 import {
   alphaCompare,
   numericCompare,

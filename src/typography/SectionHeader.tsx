@@ -1,3 +1,6 @@
+import React from 'react'
+import styled, { css } from 'styled-components'
+
 import { AppIcon } from '@monorail/appIcon/AppIcon'
 import {
   AppName,
@@ -12,8 +15,6 @@ import { Icon } from '@monorail/icon/Icon'
 import { FCwDP } from '@monorail/sharedHelpers/react'
 import { isEmptyString } from '@monorail/sharedHelpers/typeGuards'
 import { Text } from '@monorail/typography/Text'
-import React from 'react'
-import styled, { css } from 'styled-components'
 
 const SectionHeaderContainer = styled.div`
   ${flexFlow('row')};

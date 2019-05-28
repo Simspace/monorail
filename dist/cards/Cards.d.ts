@@ -1,7 +1,7 @@
-import React, { MouseEvent, Ref, StatelessComponent, ReactNode } from 'react';
+import React, { MouseEvent, ReactNode, Ref, StatelessComponent } from 'react';
 import { SimpleInterpolation } from 'styled-components';
-import { CommonComponentType } from '@monorail/types';
 import { AppName, ElevationRange } from '@monorail/helpers/exports';
+import { CommonComponentType } from '@monorail/types';
 export declare type BBCardBackgroundProps = CommonComponentType & {
     hover?: boolean;
     elevation?: ElevationRange;
@@ -10,7 +10,7 @@ export declare type BBCardBackgroundProps = CommonComponentType & {
     cssCardContent?: SimpleInterpolation;
     children?: ReactNode;
 };
-export declare const BBCardBackground: import("styled-components").StyledComponent<React.ForwardRefExoticComponent<Pick<BBCardBackgroundProps, "id" | "children" | "className" | "tabIndex" | "onClick" | "cssOverrides" | "elevation" | "as" | "hover" | "cssCardContent"> & React.RefAttributes<HTMLDivElement>>, any, BBCardBackgroundProps, never>;
+export declare const BBCardBackground: import("styled-components").StyledComponent<React.ForwardRefExoticComponent<Pick<BBCardBackgroundProps, "className" | "id" | "tabIndex" | "children" | "onClick" | "cssOverrides" | "elevation" | "as" | "hover" | "cssCardContent"> & React.RefAttributes<HTMLDivElement>>, any, BBCardBackgroundProps, never>;
 declare type BBCardBottomBorderProps = {
     accentColor?: string;
 };

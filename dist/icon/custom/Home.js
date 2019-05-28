@@ -18,11 +18,9 @@ const Home = props => _react.default.createElement("svg", _extends({
   fill: "none",
   xmlns: "http://www.w3.org/2000/svg"
 }, props), _react.default.createElement("path", {
-  d: "M10.2 20V14.6667H13.8V20H18.3V12.8889H21L12 4L3 12.8889H5.7V20H10.2Z",
-  fill: "#161C4F"
+  d: "M10.2 20V14.6667H13.8V20H18.3V12.8889H21L12 4L3 12.8889H5.7V20H10.2Z"
 }), _react.default.createElement("path", {
-  d: "M14.7 4H16.5V9.33333H14.7V4Z",
-  fill: "#161C4F"
+  d: "M14.7 4H16.5V9.33333H14.7V4Z"
 }));
 
 exports.Home = Home;

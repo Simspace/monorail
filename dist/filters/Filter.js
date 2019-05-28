@@ -7,17 +7,19 @@ exports.Filter = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _typeGuards = require("../sharedHelpers/typeGuards");
-
 var _styledComponents = _interopRequireWildcard(require("styled-components"));
-
-var _Icon = require("../icon/Icon");
 
 var _exports = require("../helpers/exports");
 
-var _PopOver = require("../popOver/PopOver");
+var _theme = require("../helpers/theme");
+
+var _Icon = require("../icon/Icon");
 
 var _Menu = require("../menu/Menu");
+
+var _PopOver = require("../popOver/PopOver");
+
+var _typeGuards = require("../sharedHelpers/typeGuards");
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
@@ -29,10 +31,9 @@ _styledComponents.default.div.withConfig({
   displayName: "Filter__CCFilter",
   componentId: "sc-131i0x6-0"
 })(({
-  isOpen,
   isActive,
   cssOverrides
-}) => (0, _styledComponents.css)(["", ";", ";", ";", ";align-items:center;cursor:pointer;height:24px;padding:0 4px 0 8px;user-select:none;flex-shrink:0;", ";"], isActive || isOpen ? (0, _exports.basePrimaryStyles)(_exports.Colors.BrandDarkBlue) : (0, _styledComponents.css)(["", ";color:", ";"], (0, _exports.baseSecondaryStyles)(_exports.Colors.BrandDarkBlue), (0, _exports.getColor)(_exports.Colors.Black74)), (0, _exports.borderRadius)(), _exports.buttonTransition, (0, _exports.flexFlow)('row'), cssOverrides));
+}) => (0, _styledComponents.css)(["", ";", ";", ";", ";align-items:center;cursor:pointer;height:24px;padding:0 4px 0 8px;user-select:none;flex-shrink:0;", ";"], isActive ? (0, _exports.basePrimaryStyles)(_theme.ThemeColors.BrandSecondary) : (0, _styledComponents.css)(["", ";color:", ";"], (0, _exports.baseSecondaryStyles)(_theme.ThemeColors.BrandSecondary), (0, _exports.getColor)(_exports.Colors.Black74)), (0, _exports.borderRadius)(), _exports.buttonTransition, (0, _exports.flexFlow)('row'), cssOverrides));
 
 const FilterText =
 /*#__PURE__*/
@@ -58,17 +59,17 @@ class Filter extends _react.Component {
       zIndex,
       ...otherProps
     } = this.props;
-    return _react.default.createElement(_PopOver.PopOver, _extends({}, otherProps, {
-      toggle: props => _react.default.createElement(CCFilter, _extends({}, props, {
+    return _react.default.createElement(_PopOver.PopOver, {
+      toggle: props => _react.default.createElement(CCFilter, _extends({}, props, otherProps, {
         cssOverrides: cssOverrides,
-        isActive: isActive
+        isActive: isActive || props.isActive
       }), _react.default.createElement(FilterText, null, title), _react.default.createElement(FilterIcon, {
         icon: "arrow_drop_down"
       })),
       popOver: props => !(0, _typeGuards.isNil)(content) && _react.default.createElement(_Menu.Menu, _extends({
         zIndex: zIndex
       }, props), content)
-    }));
+    });
   }
 
 }

@@ -1,27 +1,28 @@
 import React, { ReactNode } from 'react'
-import styled, { css, SimpleInterpolation } from 'styled-components'
+import { SimpleInterpolation } from 'styled-components'
+
 import { AppIcon } from '@monorail/appIcon/AppIcon'
-import { CommonComponentType } from '@monorail/types'
-import { Icon } from '@monorail/icon/Icon'
 import {
   AppOrAuthSubAppName,
-  Colors,
-  getColor,
   convertAppNameToColor,
   flexFlow,
   FontSizes,
+  getColor,
   typography,
 } from '@monorail/helpers/exports'
+import styled, { css } from '@monorail/helpers/styled-components'
+import { getThemeColor, ThemeColors } from '@monorail/helpers/theme'
+import { Icon } from '@monorail/icon/Icon'
+import { CommonComponentType } from '@monorail/types'
 
 // TODO(unsafe-any): Fix unsafe anys
 // tslint:disable no-unsafe-any
 const HeaderRow = styled.div<CommonComponentType>(
   ({ cssOverrides }) => css`
-    color: ${getColor(Colors.BrandDarkBlue)};
     ${flexFlow('row')};
-    ${typography(500, FontSizes.Title3)};
 
     align-items: center;
+    color: ${getThemeColor(ThemeColors.Text1000)};
     flex-shrink: 0;
     height: 48px;
     padding: 0 16px;
@@ -30,16 +31,16 @@ const HeaderRow = styled.div<CommonComponentType>(
   `,
 )
 
-const iconRightCss = css`
-  color: ${getColor(Colors.BrandDarkBlue)};
-  flex-shrink: 0;
-  margin-right: 12px;
+const HeaderContainer = styled.div``
+
+export const HeaderTitle = styled.h1`
+  ${typography(500, FontSizes.Title3)};
 `
 
 const iconLeftCss = css`
-  color: ${getColor(Colors.BrandDarkBlue)};
+  color: ${getThemeColor(ThemeColors.Text1000)};
   flex-shrink: 0;
-  margin-left: 12px;
+  margin-right: 12px;
 `
 
 type Props = CommonComponentType & {
@@ -61,18 +62,18 @@ export const Header = styled(
     iconLeft,
     noBorder = false,
     title,
-    ...otherProps
+    ...domProps
   }) => (
-    <div {...otherProps}>
+    <HeaderContainer {...domProps}>
       <HeaderRow cssOverrides={cssHeaderRow}>
-        {appIcon && <AppIcon cssOverrides={iconRightCss} appName={appIcon} />}
-        {iconLeft && <Icon cssOverrides={iconRightCss} icon={iconLeft} />}
-        {title}
+        {appIcon && <AppIcon cssOverrides={iconLeftCss} appName={appIcon} />}
+        {iconLeft && <Icon cssOverrides={iconLeftCss} icon={iconLeft} />}
+        <HeaderTitle>{title}</HeaderTitle>
         {actions}
       </HeaderRow>
 
       {children}
-    </div>
+    </HeaderContainer>
   ),
 )<Props>(
   ({ noBorder, appIcon, cssOverrides }) => css`

@@ -1,8 +1,9 @@
-import { Sizes } from '@monorail/helpers/exports';
-import { IconProps } from '@monorail/icon/Icon';
-import { CommonComponentType, LinkProps } from '@monorail/types';
-import { MouseEvent, ReactNode, StatelessComponent } from 'react';
+import { MouseEvent, ReactNode, ReactType, StatelessComponent } from 'react';
 import { SimpleInterpolation } from 'styled-components';
+import { Omit } from 'typelevel-ts';
+import { Sizes } from '@monorail/helpers/exports';
+import { FCwDP } from '@monorail/sharedHelpers/react';
+import { CommonComponentType, LinkProps } from '@monorail/types';
 declare type BBListContainerProps = {
     cssOverrides?: SimpleInterpolation;
 };
@@ -17,24 +18,35 @@ declare type ListItemProps = LinkProps & ListSizeProps & CommonComponentType & {
     onClick?: (event: MouseEvent<HTMLDivElement>) => void;
     size?: Sizes;
     disabled?: boolean;
+    isLink?: boolean;
 };
-export declare const ListItemText: import("styled-components").StyledComponent<"div", any, CommonComponentType, never>;
-export declare const ListItemPrimaryText: import("styled-components").StyledComponent<"span", any, CommonComponentType, never>;
-export declare const ListItemSecondaryText: import("styled-components").StyledComponent<"span", any, CommonComponentType, never>;
-export declare const ListItemGraphic: import("styled-components").StyledComponent<({ dense, ...otherProps }: any) => JSX.Element, any, ListSizeProps & {
+export declare const ListItemText: import("styled-components").StyledComponent<"div", import("../helpers/theme").GlobalAppThemeInterface, CommonComponentType, never>;
+export declare const ListItemPrimaryText: import("styled-components").StyledComponent<"span", import("../helpers/theme").GlobalAppThemeInterface, CommonComponentType, never>;
+export declare const ListItemSecondaryText: import("styled-components").StyledComponent<"span", import("../helpers/theme").GlobalAppThemeInterface, CommonComponentType, never>;
+export declare const ListItemGraphic: import("styled-components").StyledComponent<({ dense, ...domProps }: any) => JSX.Element, import("../helpers/theme").GlobalAppThemeInterface, ListSizeProps & {
     icon: string;
-} & IconProps, never>;
-export declare const ListItem: import("styled-components").StyledComponent<({ cssOverrides, children, activeClassName, ...otherProps }: any) => JSX.Element, any, ListItemProps, never>;
-export declare type SimpleListItemProps = CommonComponentType & LinkProps & {
-    dense?: boolean;
-    disabled?: boolean;
-    leftIcon?: string;
-    onClick?: (event: MouseEvent<HTMLDivElement>) => void;
-    primaryText?: ReactNode;
-    rightIcon?: string;
-    secondaryText?: ReactNode;
-    size?: Sizes;
-    meta?: ReactNode;
+} & CommonComponentType & {
+    className?: string | undefined;
+    icon: string;
+    onClick?: import("../icon/Icon").OnClick | undefined;
+    size?: number | undefined;
+}, never>;
+export declare const ListItem: import("styled-components").StyledComponent<"div", import("../helpers/theme").GlobalAppThemeInterface, ListItemProps, never>;
+declare type PassedProps = Omit<CommonComponentType, 'as'> & LinkProps & {
+    passedAs?: ReactType;
 };
-export declare const SimpleListItem: StatelessComponent<SimpleListItemProps>;
+declare type DefaultProps = {
+    dense: boolean;
+    disabled: boolean;
+    leftIcon: string;
+    onClick: (event: MouseEvent<HTMLDivElement>) => void;
+    primaryText: ReactNode;
+    rightIcon: string;
+    secondaryText: ReactNode;
+    size: Sizes;
+    meta: ReactNode;
+    isLink: boolean;
+};
+export declare type SimpleListItemProps = PassedProps & DefaultProps;
+export declare const SimpleListItem: FCwDP<PassedProps, DefaultProps>;
 export {};

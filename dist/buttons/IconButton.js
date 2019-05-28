@@ -5,70 +5,91 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.IconButton = void 0;
 
-var _styledComponents = _interopRequireWildcard(require("styled-components"));
+var _styledComponents = _interopRequireDefault(require("styled-components"));
 
-var _react = _interopRequireWildcard(require("react"));
-
-var _Icon = require("../icon/Icon");
-
-var _exports = require("../helpers/exports");
-
-var _buttonTypes = require("./buttonTypes");
+var _react = _interopRequireDefault(require("react"));
 
 var _Button = require("./Button");
 
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
+var _buttonTypes = require("./buttonTypes");
+
+var _baseStyles = require("../helpers/baseStyles");
+
+var _borderRadius = require("../helpers/borderRadius");
+
+var _styledComponents2 = require("../helpers/styled-components");
+
+var _theme = require("../helpers/theme");
+
+var _Icon = require("../icon/Icon");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
 const iconButtonSizeCss = {
-  [_buttonTypes.ButtonSize.Dense]: (0, _styledComponents.css)(["width:16px;", "{font-size:12px;}"], _Icon.Icon),
-  [_buttonTypes.ButtonSize.Compact]: (0, _styledComponents.css)(["width:24px;"]),
-  [_buttonTypes.ButtonSize.Default]: (0, _styledComponents.css)(["width:24px;"]),
-  [_buttonTypes.ButtonSize.Large]: (0, _styledComponents.css)(["width:32px;", "{font-size:24px;}"], _Icon.Icon)
+  [_buttonTypes.ButtonSize.Dense]: (0, _styledComponents2.css)(["width:16px;", "{font-size:12px;}"], _Icon.Icon),
+  [_buttonTypes.ButtonSize.Compact]: (0, _styledComponents2.css)(["width:24px;"]),
+  [_buttonTypes.ButtonSize.Default]: (0, _styledComponents2.css)(["width:24px;"]),
+  [_buttonTypes.ButtonSize.Large]: (0, _styledComponents2.css)(["width:32px;", "{font-size:24px;}"], _Icon.Icon)
 };
 
-const iconButtonDisplayCss = display => {
-  switch (display) {
-    case _buttonTypes.ButtonDisplay.Chromeless:
-      return (0, _styledComponents.css)(["color:", ";"], (0, _exports.getColor)(_exports.Colors.Black74));
-      break;
+const iconButtonDisplayCss = (display, isActive) => {
+  if (display === _buttonTypes.ButtonDisplay.Chromeless) {
+    return (0, _baseStyles.baseIconButtonChromelessStyles)(isActive);
   }
 
-  return (0, _styledComponents.css)([""]);
+  return (0, _styledComponents2.css)([""]);
 };
 
-const iconButtonCSS = (display, size, shape, darkMode, cssOverrides) => (0, _styledComponents.css)(["", ";", ";", ";padding:0;", "{", ";margin:auto;}", ";"], iconButtonDisplayCss(display), iconButtonSizeCss[size], (0, _exports.borderRadius)(shape === _buttonTypes.IconButtonShape.Default ? _exports.BorderRadius.Round : _exports.BorderRadius.Medium), _Icon.Icon, darkMode ? (0, _styledComponents.css)(["color:", ";"], (0, _exports.getColor)(_exports.Colors.White)) : (0, _styledComponents.css)(["color:currentColor;"]), cssOverrides);
+const iconButtonShapeCss = {
+  [_buttonTypes.IconButtonShape.Default]: (0, _borderRadius.borderRadius)(_borderRadius.BorderRadius.Round),
+  [_buttonTypes.IconButtonShape.Square]: (0, _borderRadius.borderRadius)(_borderRadius.BorderRadius.Medium)
+};
 
-class IconButton extends _react.Component {
-  render() {
-    const {
-      display,
-      icon,
-      darkMode,
-      size,
-      shape,
-      cssOverrides,
-      iconCss,
-      ...otherProps
-    } = this.props;
-    return _react.default.createElement(_Button.Button, _extends({}, otherProps, {
-      display: display,
-      size: size,
-      cssOverrides: iconButtonCSS(display, size, shape, darkMode, cssOverrides)
-    }), _react.default.createElement(_StyledIcon, {
-      icon: icon,
-      _css: iconCss
-    }));
+const iconButtonCSS = ({
+  display,
+  size,
+  shape,
+  cssOverrides,
+  isActive
+}) => (0, _styledComponents2.css)(["", ";", ";", ";padding:0;", "{", ";margin:auto;}", ";"], iconButtonDisplayCss(display, isActive), iconButtonSizeCss[size], iconButtonShapeCss[shape], _Icon.Icon, ({
+  theme: {
+    mode
   }
+}) => mode === _theme.Mode.Dark ? (0, _styledComponents2.css)(["color:", ";"], (0, _theme.getThemeColor)(_theme.ThemeColors.Text900)) : (0, _styledComponents2.css)(["color:currentColor;"]), cssOverrides);
 
-}
+const IconButton = ({
+  cssOverrides,
+  display,
+  icon,
+  iconCss,
+  isActive,
+  shape,
+  size,
+  passedAs,
+  ...domProps
+}) => _react.default.createElement(_Button.Button, _extends({}, domProps, {
+  as: passedAs,
+  display: display,
+  size: size,
+  isActive: isActive,
+  cssOverrides: iconButtonCSS({
+    display,
+    size,
+    shape,
+    cssOverrides,
+    isActive
+  })
+}), _react.default.createElement(_StyledIcon, {
+  icon: icon,
+  _css: iconCss
+}));
 
 exports.IconButton = IconButton;
 IconButton.defaultProps = { ..._Button.buttonDefaultProps,
-  darkMode: false,
   shape: _buttonTypes.IconButtonShape.Default,
-  iconCss: (0, _styledComponents.css)([""])
+  iconCss: (0, _styledComponents2.css)([""])
 };
 
 var _StyledIcon = (0, _styledComponents.default)(_Icon.Icon)`${p => p._css}`;

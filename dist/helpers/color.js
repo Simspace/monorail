@@ -21,6 +21,7 @@ exports.Colors = Colors;
   Colors["Grey97"] = "grey97";
   Colors["Grey98"] = "grey98";
   Colors["Grey99"] = "grey99";
+  Colors["DarkGrey"] = "darkGrey";
   Colors["BrandLightBlue"] = "brandLightBlue";
   Colors["BrandDarkBlue"] = "brandDarkBlue";
   Colors["PCTEPurple"] = "PCTEPurple";
@@ -40,14 +41,19 @@ exports.Colors = Colors;
   Colors["Academy"] = "academy";
   Colors["Execution"] = "execution";
   Colors["Admin"] = "admin";
+  Colors["AdminAlt"] = "adminAlt";
   Colors["Catalog"] = "catalog";
+  Colors["CatalogAlt"] = "catalogAlt";
   Colors["Dashboard"] = "dashboard";
   Colors["Range"] = "range";
   Colors["Tracker"] = "tracker";
+  Colors["TrackerAlt"] = "trackerAlt";
   Colors["Hardhat"] = "hardhat";
   Colors["Impact"] = "impact";
+  Colors["ImpactAlt"] = "impactAlt";
   Colors["Training"] = "training";
   Colors["TechOps"] = "techops";
+  Colors["TechOpsAlt"] = "techopsAlt";
   Colors["Repo"] = "repo";
   Colors["LMS"] = "externalLms";
   Colors["Green"] = "green";
@@ -65,31 +71,31 @@ const colorHSLAMap = ({
       h: 0,
       s: 0,
       l: 0,
-      a: 0.24
+      a: 0.24 * alpha
     },
     [Colors.Black54]: {
       h: 0,
       s: 0,
       l: 0,
-      a: 0.54
+      a: 0.54 * alpha
     },
     [Colors.Black62]: {
       h: 0,
       s: 0,
       l: 0,
-      a: 0.62
+      a: 0.62 * alpha
     },
     [Colors.Black74]: {
       h: 0,
       s: 0,
       l: 0,
-      a: 0.74
+      a: 0.74 * alpha
     },
     [Colors.Black89]: {
       h: 0,
       s: 0,
       l: 0,
-      a: 0.89
+      a: 0.89 * alpha
     },
     [Colors.Black]: {
       h: 0,
@@ -101,7 +107,7 @@ const colorHSLAMap = ({
       h: 0,
       s: 0,
       l: 100,
-      a: 0.89
+      a: 0.89 * alpha
     },
     [Colors.White]: {
       h: 0,
@@ -137,6 +143,12 @@ const colorHSLAMap = ({
       h: 0,
       s: 0,
       l: 99,
+      a: alpha
+    },
+    [Colors.DarkGrey]: {
+      h: 0,
+      s: 0,
+      l: 7,
       a: alpha
     },
     // Brand Colors
@@ -211,16 +223,30 @@ const colorHSLAMap = ({
       l: 50,
       a: alpha
     },
+    // [Colors.Admin]: { h: 210, s: 82, l: 54, a: alpha },
     [Colors.Admin]: {
-      h: 210,
-      s: 82,
-      l: 54,
+      h: 37,
+      s: 92,
+      l: 53,
       a: alpha
     },
+    [Colors.AdminAlt]: {
+      h: 37,
+      s: 66,
+      l: 43,
+      a: alpha
+    },
+    // [Colors.Catalog]: { h: 79, s: 59, l: 49, a: alpha },
     [Colors.Catalog]: {
-      h: 79,
-      s: 59,
-      l: 49,
+      h: 257,
+      s: 54,
+      l: 45,
+      a: alpha
+    },
+    [Colors.CatalogAlt]: {
+      h: 257,
+      s: 77,
+      l: 29,
       a: alpha
     },
     [Colors.Dashboard]: {
@@ -235,10 +261,17 @@ const colorHSLAMap = ({
       l: 50,
       a: alpha
     },
+    // [Colors.Tracker]: { h: 145, s: 63, l: 42, a: alpha },
     [Colors.Tracker]: {
-      h: 145,
-      s: 63,
-      l: 42,
+      h: 133,
+      s: 34,
+      l: 51,
+      a: alpha
+    },
+    [Colors.TrackerAlt]: {
+      h: 132,
+      s: 45,
+      l: 45,
       a: alpha
     },
     [Colors.Hardhat]: {
@@ -247,10 +280,17 @@ const colorHSLAMap = ({
       l: 59,
       a: alpha
     },
+    // [Colors.Impact]: { h: 353, s: 52, l: 42, a: alpha },
     [Colors.Impact]: {
-      h: 353,
-      s: 52,
-      l: 42,
+      h: 12,
+      s: 85,
+      l: 51,
+      a: alpha
+    },
+    [Colors.ImpactAlt]: {
+      h: 12,
+      s: 93,
+      l: 40,
       a: alpha
     },
     [Colors.Training]: {
@@ -259,10 +299,17 @@ const colorHSLAMap = ({
       l: 50,
       a: alpha
     },
+    // [Colors.TechOps]: { h: 324, s: 60, l: 60, a: alpha },
     [Colors.TechOps]: {
-      h: 324,
-      s: 60,
-      l: 60,
+      h: 325,
+      s: 58,
+      l: 52,
+      a: alpha
+    },
+    [Colors.TechOpsAlt]: {
+      h: 325,
+      s: 49,
+      l: 36,
       a: alpha
     },
     [Colors.Repo]: {

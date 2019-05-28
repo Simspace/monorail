@@ -2,7 +2,6 @@ import { Component, ReactNode } from 'react';
 import { SimpleInterpolation } from 'styled-components';
 declare type CCFilterProps = {
     cssOverrides?: SimpleInterpolation;
-    isOpen?: boolean;
     isActive: boolean;
     onToggle?: (isOpen: boolean) => void;
 };

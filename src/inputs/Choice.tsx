@@ -1,18 +1,19 @@
 import React, { Component, ReactNode } from 'react'
-import { Icon } from '@monorail/icon/Icon'
+import styled, { css, SimpleInterpolation } from 'styled-components'
+
 import {
   baseChromelessStyles,
   baseDisabledStyles,
   borderRadius,
   buttonTransition,
   Colors,
-  getColor,
   flexFlow,
   FontSizes,
+  getColor,
   typography,
   visible,
 } from '@monorail/helpers/exports'
-import styled, { css, SimpleInterpolation } from 'styled-components'
+import { Icon } from '@monorail/icon/Icon'
 
 /*
  * Styles

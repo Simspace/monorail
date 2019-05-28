@@ -20,6 +20,6 @@ _styledComponents.default.div.withConfig({
   alignLeft,
   alignRight,
   cssOverrides
-}) => (0, _styledComponents.css)(["", ";", ";", ";background:", ";height:32px;justify-content:center;max-width:144px;padding:4px 8px;position:relative;", " ", " ", ";"], (0, _exports.borderRadius)(), (0, _exports.flexFlow)('column'), (0, _exports.getElevation)(_exports.ElevationRange.Elevation0), (0, _exports.getColor)(_exports.Colors.White), alignLeft && (0, _styledComponents.css)(["position:absolute;left:8px;top:8px;"]), alignRight && (0, _styledComponents.css)(["position:absolute;right:8px;top:8px;"]), cssOverrides));
+}) => (0, _styledComponents.css)(["", ";", ";", ";background:", ";height:32px;justify-content:center;max-width:144px;padding:4px 8px;position:relative;", " ", " ", ";"], (0, _exports.borderRadius)(), (0, _exports.flexFlow)('column'), (0, _exports.getElevationShadow)(_exports.ElevationRange.Elevation0), (0, _exports.getColor)(_exports.Colors.White), alignLeft && (0, _styledComponents.css)(["position:absolute;left:8px;top:8px;"]), alignRight && (0, _styledComponents.css)(["position:absolute;right:8px;top:8px;"]), cssOverrides));
 
 exports.LogoBox = LogoBox;

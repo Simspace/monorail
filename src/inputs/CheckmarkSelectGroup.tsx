@@ -1,10 +1,11 @@
 import React, { SFC } from 'react'
 import styled, { css, SimpleInterpolation } from 'styled-components'
 
-import { SelectOption, Select } from './Select'
-import { typography, FontSizes } from '@monorail/helpers/exports'
-import { Choice } from './Choice'
+import { FontSizes, typography } from '@monorail/helpers/exports'
 import { CommonComponentType } from '@monorail/types'
+
+import { Choice } from './Choice'
+import { Select, SelectOption } from './Select'
 
 const CheckmarkSelectGroupWrapper = styled.div<CommonComponentType>(
   ({ cssOverrides }) => css`

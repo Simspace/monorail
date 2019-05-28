@@ -1,22 +1,26 @@
-import React from 'react'
+import React, { FunctionComponent } from 'react'
+import posed from 'react-pose'
+import { Link } from 'react-router'
 import styled, { css, SimpleInterpolation } from 'styled-components'
+
+import { ButtonDisplay, IconButtonShape } from '@monorail/buttons/buttonTypes'
+import { IconButton } from '@monorail/buttons/IconButton'
 import {
   baseDisabledStyles,
-  BorderRadius,
   borderRadius,
+  BorderRadius,
   Colors,
-  getColor,
   ease,
   flexFlow,
   FontSizes,
+  getColor,
   gothamFontFamily,
   Sizes,
   transition,
   typography,
   visible,
 } from '@monorail/helpers/exports'
-import { CommonComponentType } from '@monorail/types'
-import { PopOverToggleProps } from '@monorail/popOver/PopOver'
+import { zIndex, ZIndexNodeName } from '@monorail/helpers/zIndex'
 import {
   ListItem,
   ListItemGraphic,
@@ -24,8 +28,8 @@ import {
   ListItemSecondaryText,
   ListItemText,
 } from '@monorail/list/List'
-import posed from 'react-pose'
-import { zIndex, ZIndexNodeName } from '@monorail/helpers/zIndex'
+import { PopOverToggleProps } from '@monorail/popOver/PopOver'
+import { CommonComponentType } from '@monorail/types'
 
 // TODO(unsafe-any): Fix unsafe anys
 // tslint:disable no-unsafe-any
@@ -47,10 +51,11 @@ export enum SidebarContainerAnimationPose {
   Collapsed = 'collapsed',
 }
 
+/* eslint-disable no-unexpected-multiline */
 export const SidebarContainer = styled(
   posed.div({
     [SidebarContainerAnimationPose.Open]: {
-      width: 224,
+      width: 248,
       transition: {
         duration: sideBarCollapsedTransitionDuration,
         ease: 'easeIn',
@@ -96,6 +101,7 @@ export const SidebarContainer = styled(
     width: 3px;
   }
 `
+/* eslint-enable no-unexpected-multiline */
 
 export const SidebarMenuContainer = styled.div<CommonComponentType>(
   ({ cssOverrides }) => css`
@@ -103,7 +109,7 @@ export const SidebarMenuContainer = styled.div<CommonComponentType>(
 
     flex: 1;
     overflow-y: auto;
-    padding: 0 8px;
+    padding: 0 12px;
 
     ${cssOverrides};
   `,
@@ -114,22 +120,14 @@ export const SidebarMenuItemDropDownToggle = styled(
     title,
     subtitle,
     iconName,
-    isOpen,
-    cssOverrides,
+    isActive,
     isSideBarCollapsed,
-    ...otherProps
+    ...domProps
   }) => (
-    <ListItem
-      cssOverrides={css`
-        ${borderRadius(BorderRadius.Medium)};
-        ${cssOverrides};
-      `}
-      size={Sizes.DP40}
-      {...otherProps}
-    >
+    <ListItem size={Sizes.DP40} {...domProps}>
       <ListItemGraphic
         icon={iconName}
-        cssOverrides={css`
+        css={css`
           color: currentColor;
 
           transform: translateX(${isSideBarCollapsed ? -6 : 0}px);
@@ -142,8 +140,8 @@ export const SidebarMenuItemDropDownToggle = styled(
       <ListItemText>
         <ListItemPrimaryText>{title}</ListItemPrimaryText>
         <ListItemSecondaryText
-          cssOverrides={
-            isOpen &&
+          css={
+            isActive &&
             css`
               color: ${getColor(Colors.AccentPurple700)};
             `
@@ -153,8 +151,8 @@ export const SidebarMenuItemDropDownToggle = styled(
         </ListItemSecondaryText>
       </ListItemText>
       <ListItemGraphic
-        icon={isOpen ? 'arrow_drop_up' : 'arrow_drop_down'}
-        cssOverrides={css`
+        icon={isActive ? 'arrow_drop_up' : 'arrow_drop_down'}
+        css={css`
           transform: translateX(${isSideBarCollapsed ? -18 : 0}px);
 
           transition: all ease 75ms,
@@ -174,14 +172,16 @@ export const SidebarMenuItemDropDownToggle = styled(
       isSideBarCollapsed: boolean
     }
 >(
-  ({ isOpen, isSideBarCollapsed, cssOverrides, disabled }) => css`
+  ({ isActive, isSideBarCollapsed, cssOverrides, disabled }) => css`
     ${disabled && baseDisabledStyles};
 
+    ${borderRadius(BorderRadius.Medium)};
+
     background: ${getColor(Colors.White)};
-    margin: 0 8px 8px;
+    margin: 0 12px 8px;
     border: 1px solid
-      ${isOpen ? getColor(Colors.AccentPurple700) : getColor(Colors.White)};
-    color: ${isOpen
+      ${isActive ? getColor(Colors.AccentPurple700) : getColor(Colors.White)};
+    color: ${isActive
       ? getColor(Colors.AccentPurple700)
       : getColor(Colors.BrandDarkBlue)};
 
@@ -191,7 +191,7 @@ export const SidebarMenuItemDropDownToggle = styled(
     }
 
     &:hover {
-      border-color: ${!isOpen && getColor(Colors.AccentPurple500)};
+      border-color: ${!isActive && getColor(Colors.AccentPurple500)};
     }
 
     &:active {
@@ -199,11 +199,12 @@ export const SidebarMenuItemDropDownToggle = styled(
       color: ${getColor(Colors.AccentPurple700)};
     }
 
+    /* stylelint-disable selector-type-no-unknown */
     &:active,
     &:active ${ListItemGraphic} {
-      /* stylelint-disable-line selector-type-no-unknown */
       color: ${getColor(Colors.AccentPurple700)};
     }
+    /* stylelint-enable selector-type-no-unknown */
 
     ${ListItemText} {
       ${visible(!isSideBarCollapsed)};
@@ -214,16 +215,34 @@ export const SidebarMenuItemDropDownToggle = styled(
   `,
 )
 
-export const SidebarMenuContextRibbon = styled.div<CommonComponentType>`
-  ${typography(500, FontSizes.Title5, '12px 12px 13px 20px')};
-
-  color: ${getColor(Colors.Black62)};
-`
-
 export const SideBarMenuDivider = styled.div`
   background: #e2e4ea;
   height: 1px;
   margin: 15px 8px 16px;
   flex-shrink: 0;
 `
+
+export const SidebarBack: FunctionComponent<{
+  to: string
+  title: string
+  byline: string
+}> = ({ to, title, byline }) => (
+  <ListItem>
+    <IconButton
+      icon="circle_arrow_left"
+      css={css`
+        margin-right: 8px;
+      `}
+      passedAs={Link}
+      to={to}
+      display={ButtonDisplay.Secondary}
+      shape={IconButtonShape.Square}
+    />
+    <ListItemText>
+      <ListItemPrimaryText>{title}</ListItemPrimaryText>
+      <ListItemSecondaryText>{byline}</ListItemSecondaryText>
+    </ListItemText>
+  </ListItem>
+)
+
 // tslint:enable

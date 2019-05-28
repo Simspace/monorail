@@ -1,15 +1,18 @@
 import React, { Component } from 'react'
-import { Icon, IconProps } from '@monorail/icon/Icon'
+import { SimpleInterpolation } from 'styled-components'
+
 import {
   Colors,
-  getColor,
   ElevationRange,
-  getElevation,
-  visible,
   flexFlow,
+  getColor,
+  getElevationShadow,
+  visible,
 } from '@monorail/helpers/exports'
+import styled, { css } from '@monorail/helpers/styled-components'
+import { getThemeColor, Mode, ThemeColors } from '@monorail/helpers/theme'
+import { Icon, IconProps } from '@monorail/icon/Icon'
 import { ToggleSize } from '@monorail/toggle/toggleTypes'
-import styled, { css, SimpleInterpolation } from 'styled-components'
 
 // TODO(unsafe-any): Fix unsafe anys
 // tslint:disable no-unsafe-any
@@ -79,7 +82,7 @@ const iconSizeCss = {
 }
 
 const CCToggle = styled.label<ToggleProps>(
-  ({ toggleSize, checked, cssOverrides }) => css`
+  ({ toggleSize, checked, cssOverrides, theme: { mode } }) => css`
     ${toggleSizeCss[toggleSize]};
 
     box-sizing: content-box;
@@ -92,11 +95,13 @@ const CCToggle = styled.label<ToggleProps>(
     /* Change Slider BG/Border Color */
     ${checked
       ? css`
-          background-color: ${getColor(Colors.BrandLightBlue)};
-          border-color: ${getColor(Colors.BrandLightBlue)};
+          background-color: ${getThemeColor(ThemeColors.ActionPrimary)};
+          border-color: ${getThemeColor(ThemeColors.ActionPrimary)};
         `
       : css`
-          background-color: ${getColor(Colors.White)};
+          background-color: ${mode === Mode.Dark
+            ? getColor(Colors.White, 0.2)
+            : getColor(Colors.White)};
           border-color: ${getColor(Colors.Black, 0.06)};
         `};
 
@@ -136,7 +141,7 @@ const StyledIconNotChecked = styled(
 export const Slider = styled.div<Slider>(
   ({ toggleSize }) => css`
     ${sliderSizeCss[toggleSize]};
-    ${getElevation(ElevationRange.Elevation1)};
+    ${getElevationShadow(ElevationRange.Elevation1)};
     ${flexFlow('row')};
 
     background-color: ${getColor(Colors.White)};
@@ -195,13 +200,20 @@ export class Toggle extends Component<ToggleProps> {
   }
 
   render() {
-    const { cssOverrides, checked, onChange, toggleSize } = this.props
+    const {
+      cssOverrides,
+      checked,
+      onChange,
+      toggleSize,
+      ...domProps
+    } = this.props
 
     return (
       <CCToggle
         cssOverrides={cssOverrides}
         checked={checked}
         toggleSize={toggleSize}
+        {...domProps}
       >
         <Input
           type="checkbox"

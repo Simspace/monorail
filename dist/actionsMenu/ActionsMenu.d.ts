@@ -1,11 +1,18 @@
-import { FC } from 'react';
-declare type ActionsMenuProps = {
+import { ReactNode } from 'react';
+import { PopOverToggleProps } from '@monorail/popOver/PopOver';
+import { FCwDP } from '@monorail/sharedHelpers/react';
+export declare type ActionsMenuProps = {
     menuItems: Array<{
         label: string;
         iconName?: string;
-        onClick: () => void;
+        onClick: (onClickParent: () => void) => void;
         featuredAction?: boolean;
+        children?: ReactNode;
     }>;
+    document?: Document;
 };
-export declare const ActionsMenu: FC<ActionsMenuProps>;
+declare type DefaultProps = {
+    toggle: (props: PopOverToggleProps) => ReactNode;
+};
+export declare const ActionsMenu: FCwDP<ActionsMenuProps, DefaultProps>;
 export {};

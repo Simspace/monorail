@@ -1,27 +1,23 @@
-import { ChangeEvent, Component, MouseEvent, RefObject } from 'react';
+import { ChangeEvent, MouseEvent, RefObject } from 'react';
 import { SimpleInterpolation } from 'styled-components';
 import { Overwrite } from 'typelevel-ts';
-export declare const BBSearchContainer: import("styled-components").StyledComponent<"label", any, BBSearchContainerProps, never>;
-export declare const BBSearchInput: import("styled-components").StyledComponent<"input", any, BBSearchInputProps, never>;
-export declare type BBSearchContainerProps = {
+import { FCwDP } from '@monorail/sharedHelpers/react';
+export declare const SearchContainer: import("styled-components").StyledComponent<"label", import("../helpers/theme").GlobalAppThemeInterface, SearchContainerProps, never>;
+export declare const SearchInput: import("styled-components").StyledComponent<"input", import("../helpers/theme").GlobalAppThemeInterface, SearchInputProps, never>;
+export declare type SearchContainerProps = {
     cssOverrides?: SimpleInterpolation;
     searchRef?: RefObject<HTMLInputElement>;
-    darkMode: boolean;
 };
-export declare type BBSearchInputProps = {
-    darkMode: boolean;
+export declare type SearchInputProps = {
     onClick?: (event: MouseEvent<HTMLInputElement>) => void;
-    placeholder: string;
     value?: string;
+    name?: string;
 };
-declare type SearchProps = BBSearchContainerProps & Overwrite<BBSearchInputProps, {
+declare type DefaultProps = {
+    placeholder: string;
+};
+declare type SearchProps = SearchContainerProps & Overwrite<SearchInputProps, {
     onChange: (value: string, event?: ChangeEvent<HTMLInputElement>) => void;
 }>;
-export declare class Search extends Component<SearchProps> {
-    static defaultProps: {
-        darkMode: boolean;
-        placeholder: string;
-    };
-    render(): JSX.Element;
-}
+export declare const Search: FCwDP<SearchProps, DefaultProps>;
 export {};

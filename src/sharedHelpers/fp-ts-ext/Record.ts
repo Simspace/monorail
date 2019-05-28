@@ -1,8 +1,9 @@
-import { Ord } from 'fp-ts/lib/Ord'
 import { sort } from 'fp-ts/lib/Array'
+import { Ord } from 'fp-ts/lib/Ord'
+
+import { isObject } from '../typeGuards'
 
 import { forEach } from './Array'
-import { isObject } from '../typeGuards'
 
 /**
  * Retrieves the keys of an object while retaining keyof type information

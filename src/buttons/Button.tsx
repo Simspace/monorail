@@ -1,30 +1,33 @@
-import React, { Component, MouseEvent } from 'react'
-import styled, { css } from 'styled-components'
-import { isEmptyString } from '@monorail/sharedHelpers/typeGuards'
+import React, { MouseEvent } from 'react'
+
 import {
+  ButtonDisplay,
+  ButtonMode,
+  ButtonSize,
+} from '@monorail/buttons/buttonTypes'
+import {
+  baseButtonBarStyles,
   baseChromelessStyles,
   baseDisabledStyles,
   baseFocusStyles,
   baseOutlineStyles,
   basePrimaryStyles,
   baseSecondaryStyles,
+  baseToolBarStyles,
   borderRadius,
   buttonTransition,
-  getColor,
   Colors,
   flexFlow,
-  FontSizes,
-  typography,
-  baseToolBarStyles,
-  baseButtonBarStyles,
   floatingOutlineStyles,
+  FontSizes,
+  getColor,
+  typography,
 } from '@monorail/helpers/exports'
-import {
-  ButtonDisplay,
-  ButtonSize,
-  ButtonMode,
-} from '@monorail/buttons/buttonTypes'
+import styled, { css } from '@monorail/helpers/styled-components'
+import { getThemeColor, ThemeColors } from '@monorail/helpers/theme'
 import { Icon } from '@monorail/icon/Icon'
+import { FCwDP } from '@monorail/sharedHelpers/react'
+import { isEmptyString } from '@monorail/sharedHelpers/typeGuards'
 import { CommonComponentType, LinkProps } from '@monorail/types'
 
 export const buttonDisplayCss = {
@@ -34,7 +37,7 @@ export const buttonDisplayCss = {
   [ButtonDisplay.Chromeless]: css`
     ${baseChromelessStyles()};
 
-    color: ${getColor(Colors.BrandLightBlue)};
+    color: ${getThemeColor(ThemeColors.ActionSecondary)};
     line-height: 25px;
   `,
   [ButtonDisplay.ButtonBar]: css`
@@ -47,7 +50,7 @@ export const buttonDisplayCss = {
 }
 
 export const buttonPressedDisplayCss = {
-  [ButtonDisplay.Primary]: basePrimaryStyles(Colors.BrandDarkBlue),
+  [ButtonDisplay.Primary]: basePrimaryStyles(ThemeColors.BrandSecondary),
   [ButtonDisplay.Secondary]: basePrimaryStyles(),
   [ButtonDisplay.Outline]: basePrimaryStyles(),
   [ButtonDisplay.Chromeless]: basePrimaryStyles(),
@@ -92,7 +95,8 @@ const iconLeftStyles = {
   `,
   [ButtonSize.Compact]: css`
     color: inherit;
-    margin-left: -6px;
+    margin-left: -2px;
+    margin-right: 4px;
   `,
   [ButtonSize.Default]: css`
     color: inherit;
@@ -126,7 +130,7 @@ const iconRightStyles = {
   `,
 }
 
-export const StyledButton = styled.button<ButtonProps>(
+export const StyledButton = styled.button<StyleProps>(
   ({ disabled, size, display, mode, pressed, cssOverrides }) => css`
     ${mode === ButtonMode.Push && pressed
       ? buttonPressedDisplayCss[display]
@@ -157,121 +161,65 @@ export const StyledButton = styled.button<ButtonProps>(
   `,
 )
 
-type ButtonState = {
-  initial: boolean
-  previous: boolean
-  pressed: boolean
-}
-
 type IconProps = {
   iconLeft: string
   iconRight: string
 }
 
-export type ButtonProps = CommonComponentType &
-  LinkProps & {
-    size: ButtonSize
-    display: ButtonDisplay
-    disabled: boolean
-    mode: ButtonMode
-    onClick: (event: MouseEvent<HTMLButtonElement>) => void
-    pressed: boolean
-    type: 'button' | 'reset' | 'submit'
-  }
+export type OnClick = (event: MouseEvent<HTMLButtonElement>) => void
 
-type Props = ButtonProps & IconProps
+type FunctionalProps = {
+  className: string
+  disabled: boolean
+  display: ButtonDisplay
+  isActive: boolean
+  mode: ButtonMode
+  onClick: OnClick
+  onMouseDown?: OnClick
+  onMouseUp?: OnClick
+  pressed: boolean
+  size: ButtonSize
+  type: 'button' | 'reset' | 'submit'
+}
 
-export const buttonDefaultProps = {
-  display: ButtonDisplay.Primary,
-  size: ButtonSize.Default,
-  type: 'button',
-  onClick: () => {},
+type DefaultProps = IconProps & FunctionalProps
+type CommonProps = CommonComponentType & LinkProps
+
+type StyleProps = CommonProps & FunctionalProps
+
+export type ButtonProps = CommonProps & DefaultProps
+
+export const buttonDefaultProps: DefaultProps = {
+  className: '',
   disabled: false,
-  pressed: false,
-  mode: ButtonMode.Default,
+  display: ButtonDisplay.Primary,
   iconLeft: '',
   iconRight: '',
+  isActive: false,
+  mode: ButtonMode.Default,
+  onClick: () => {},
+  pressed: false,
+  size: ButtonSize.Default,
+  type: 'button',
 }
 
-export class Button extends Component<Props, ButtonState> {
-  static defaultProps = buttonDefaultProps
+export const Button: FCwDP<CommonProps, DefaultProps> = ({
+  children,
+  className,
+  iconLeft,
+  iconRight,
+  size,
+  ...domProps
+}) => (
+  <StyledButton className={`new-button ${className}`} size={size} {...domProps}>
+    {!isEmptyString(iconLeft) && (
+      <Icon icon={iconLeft} css={iconLeftStyles[size]} size={16} />
+    )}
+    {children}
+    {!isEmptyString(iconRight) && (
+      <Icon icon={iconRight} css={iconRightStyles[size]} size={16} />
+    )}
+  </StyledButton>
+)
 
-  state: ButtonState = {
-    initial: false,
-    previous: false,
-    pressed: false,
-  }
-
-  /**
-   * Keep initial pressed state to compare when new props arrive
-   */
-  componentDidMount() {
-    const { mode, pressed } = this.props
-
-    if (mode === ButtonMode.Push) {
-      this.setState(() => ({ pressed, initial: pressed, previous: pressed }))
-    }
-  }
-
-  static getDerivedStateFromProps(
-    nextProps: ButtonProps,
-    prevState: ButtonState,
-  ): ButtonState {
-    return {
-      ...prevState,
-      previous: nextProps.pressed,
-      pressed:
-        nextProps.mode === ButtonMode.Push &&
-        // Use prev button pressed state if prop has not changed
-        nextProps.pressed === prevState.initial &&
-        nextProps.pressed === prevState.previous
-          ? prevState.pressed
-          : nextProps.pressed,
-    }
-  }
-
-  /**
-   * Click event handler for Push buttons
-   */
-  private onClickHandler = (event: MouseEvent<HTMLButtonElement>) => {
-    const { onClick } = this.props
-    const { pressed } = this.state
-
-    this.setState(() => ({ pressed: !pressed }))
-
-    onClick(event)
-  }
-
-  render() {
-    const {
-      children,
-      className,
-      mode,
-      onClick,
-      iconLeft,
-      iconRight,
-      size,
-      ...otherProps
-    } = this.props
-    const { pressed } = this.state
-
-    return (
-      <StyledButton
-        className={`new-button ${className}`}
-        mode={mode}
-        onClick={mode === ButtonMode.Push ? this.onClickHandler : onClick}
-        pressed={pressed}
-        size={size}
-        {...otherProps}
-      >
-        {!isEmptyString(iconLeft) && (
-          <Icon icon={iconLeft} css={iconLeftStyles[size]} size={16} />
-        )}
-        {children}
-        {!isEmptyString(iconRight) && (
-          <Icon icon={iconRight} css={iconRightStyles[size]} size={16} />
-        )}
-      </StyledButton>
-    )
-  }
-}
+Button.defaultProps = buttonDefaultProps

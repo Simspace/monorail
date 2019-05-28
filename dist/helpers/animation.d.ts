@@ -1,5 +1,5 @@
-import { PopOverPosition } from '@monorail/popOver/PopOver';
 import { SimpleInterpolation } from 'styled-components';
+import { PopOverPosition } from '@monorail/popOver/PopOver';
 export declare const visible: (isVisible?: boolean) => import("styled-components").FlattenSimpleInterpolation;
 export declare const ease: (isActive: boolean) => "ease-in" | "ease-out";
 export declare const generateScaleAnimation: (params: {

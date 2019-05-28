@@ -7,13 +7,13 @@ exports.LargeModal = void 0;
 
 var _styledComponents = _interopRequireWildcard(require("styled-components"));
 
+var _react = _interopRequireDefault(require("react"));
+
 var _Modals = require("./Modals");
 
 var _modalTypes = require("./modalTypes");
 
 var _Overlay = require("../toggle/Overlay");
-
-var _react = _interopRequireDefault(require("react"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 

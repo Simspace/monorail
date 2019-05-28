@@ -11,9 +11,9 @@ var _styledComponents = _interopRequireWildcard(require("styled-components"));
 
 var _AppIcon = require("../appIcon/AppIcon");
 
-var _Icon = require("../icon/Icon");
-
 var _exports = require("../helpers/exports");
+
+var _Icon = require("../icon/Icon");
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
@@ -46,7 +46,7 @@ const BBCardBackground =
   hover,
   cssOverrides,
   elevation = _exports.ElevationRange.Elevation6
-}) => (0, _styledComponents.css)(["", ";", ";", ";background:", ";position:relative;z-index:0;", ";&::before{border-radius:inherit;background:", ";bottom:0;content:'';left:0;position:absolute;right:0;top:0;z-index:0;}&::after{", ";", ";background:", ";bottom:2px;content:'';left:2px;position:absolute;right:2px;top:2px;z-index:-5;}"], hover && (0, _styledComponents.css)(["cursor:pointer;&:hover{&::after{transition:box-shadow ease 125ms;", ";}}"], (0, _exports.getElevation)(_exports.ElevationRange.Elevation10)), (0, _exports.flexFlow)(), (0, _exports.borderRadius)(_exports.BorderRadius.Large), (0, _exports.getColor)(_exports.Colors.White), cssOverrides, (0, _exports.getColor)(_exports.Colors.White), (0, _exports.borderRadius)(_exports.BorderRadius.Medium), (0, _exports.getElevation)(elevation), (0, _exports.getColor)(_exports.Colors.White)));
+}) => (0, _styledComponents.css)(["", ";", ";", ";background:", ";position:relative;z-index:0;", ";&::before{border-radius:inherit;background:", ";bottom:0;content:'';left:0;position:absolute;right:0;top:0;z-index:0;}&::after{", ";", ";background:", ";bottom:2px;content:'';left:2px;position:absolute;right:2px;top:2px;z-index:-5;}"], hover && (0, _styledComponents.css)(["cursor:pointer;&:hover{&::after{transition:box-shadow ease 125ms;", ";}}"], (0, _exports.getElevationShadow)(_exports.ElevationRange.Elevation10)), (0, _exports.flexFlow)(), (0, _exports.borderRadius)(_exports.BorderRadius.Large), (0, _exports.getColor)(_exports.Colors.White), cssOverrides, (0, _exports.getColor)(_exports.Colors.White), (0, _exports.borderRadius)(_exports.BorderRadius.Medium), (0, _exports.getElevationShadow)(elevation), (0, _exports.getColor)(_exports.Colors.White)));
 exports.BBCardBackground = BBCardBackground;
 
 const BBCardHeaderContainer =

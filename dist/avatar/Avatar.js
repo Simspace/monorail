@@ -17,7 +17,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
-const size = 24;
+const defaultSize = 24;
+const fontScale = 9.89 / defaultSize;
 
 const CCAvatar =
 /*#__PURE__*/
@@ -26,18 +27,21 @@ _styledComponents.default.div.withConfig({
   componentId: "sc-1c6ik2-0"
 })(({
   team,
-  cssOverrides
-}) => (0, _styledComponents.css)(["", ";color:", ";flex-shrink:0;font-size:9.89px;font-weight:900;height:", "px;line-height:", "px;text-align:center;text-transform:uppercase;user-select:none;width:", "px;", ";"], team ? (0, _styledComponents.css)(["", ";background:", ";"], (0, _exports.borderRadius)(), (0, _exports.getColor)(_exports.Colors.BrandDarkBlue)) : (0, _styledComponents.css)(["background:", ";border-radius:", "px;"], (0, _exports.getColor)(_exports.Colors.BrandLightBlue), size / 2), (0, _exports.getColor)(_exports.Colors.White), size, size, size, cssOverrides));
+  cssOverrides,
+  size = defaultSize
+}) => (0, _styledComponents.css)(["", ";color:", ";flex-shrink:0;font-size:", "px;font-weight:900;height:", "px;line-height:", "px;text-align:center;text-transform:uppercase;user-select:none;width:", "px;", ";"], team ? (0, _styledComponents.css)(["", ";background:", ";"], (0, _exports.borderRadius)(), (0, _exports.getColor)(_exports.Colors.BrandDarkBlue)) : (0, _styledComponents.css)(["background:", ";border-radius:", "px;"], (0, _exports.getColor)(_exports.Colors.BrandLightBlue), size / 2), (0, _exports.getColor)(_exports.Colors.White), size * fontScale, size, size, size, cssOverrides));
 
 const Avatar = ({
   cssOverrides,
   first,
   last,
   team,
+  size,
   ...domProps
 }) => _react.default.createElement(CCAvatar, _extends({
   cssOverrides: cssOverrides,
-  team: team
+  team: team,
+  size: size
 }, domProps), first.charAt(0), last.charAt(0));
 
 exports.Avatar = Avatar;

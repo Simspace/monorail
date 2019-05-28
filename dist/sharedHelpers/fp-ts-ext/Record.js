@@ -7,9 +7,9 @@ exports.isRecord = exports.sortRecords = exports.pick = exports.omit = exports.p
 
 var _Array = require("fp-ts/lib/Array");
 
-var _Array2 = require("./Array");
-
 var _typeGuards = require("../typeGuards");
+
+var _Array2 = require("./Array");
 
 /**
  * Retrieves the keys of an object while retaining keyof type information

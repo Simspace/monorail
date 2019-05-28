@@ -1,8 +1,8 @@
+import React, { MouseEvent, ReactNode, StatelessComponent } from 'react';
+import { SimpleInterpolation } from 'styled-components';
 import { AppName } from '@monorail/helpers/exports';
 import { ModalSize } from '@monorail/modals/modalTypes';
 import { CommonComponentType } from '@monorail/types';
-import React, { MouseEvent, ReactNode, StatelessComponent } from 'react';
-import { SimpleInterpolation } from 'styled-components';
 /**
  * Modal Hooks
  */
@@ -27,7 +27,7 @@ declare type BBModalSize = {
     size: ModalSize;
 };
 export declare type BBModalBackgroundProps = BBModalSize & CommonComponentType;
-export declare const BBModalBackground: import("styled-components").StyledComponent<"div", any, BBModalBackgroundProps, never>;
+export declare const BBModalBackground: import("styled-components").StyledComponent<"div", import("../helpers/theme").GlobalAppThemeInterface, BBModalBackgroundProps, never>;
 declare type BBModalHeaderProps = BBModalSize & {
     appIcon?: AppName;
     customCloseButton?: ReactNode;
@@ -40,17 +40,17 @@ declare type BBModalHeaderProps = BBModalSize & {
 };
 export declare const DefaultCloseButton: ({ headerRowChildren, onClose, }: Pick<BBModalHeaderProps, "headerRowChildren" | "onClose">) => JSX.Element;
 export declare const BBModalHeader: StatelessComponent<BBModalHeaderProps>;
-export declare const BBModalFooter: import("styled-components").StyledComponent<"div", any, {}, never>;
+export declare const BBModalFooter: import("styled-components").StyledComponent<"div", import("../helpers/theme").GlobalAppThemeInterface, {}, never>;
 export declare type BBModalOverlayProps = CommonComponentType & {
     isOpen: boolean;
     onClick?: (event: MouseEvent<HTMLDivElement>) => void;
     chromeless?: boolean;
 };
 export declare const BBModalOverlay: StatelessComponent<BBModalOverlayProps>;
-export declare const BBModalContainer: import("styled-components").StyledComponent<"div", any, CommonComponentType & {
+export declare const BBModalContainer: import("styled-components").StyledComponent<"div", import("../helpers/theme").GlobalAppThemeInterface, CommonComponentType & {
     isOpen: boolean;
     usesScaleAnimation: boolean;
     zIndex?: number | undefined;
 }, never>;
-export declare const BBModalContent: import("styled-components").StyledComponent<"div", any, CommonComponentType, never>;
+export declare const BBModalContent: import("styled-components").StyledComponent<"div", import("../helpers/theme").GlobalAppThemeInterface, CommonComponentType, never>;
 export {};

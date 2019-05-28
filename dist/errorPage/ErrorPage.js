@@ -11,9 +11,9 @@ var _styledComponents = _interopRequireDefault(require("styled-components"));
 
 var _errorTypes = require("./errorTypes");
 
-var _Icon = require("../icon/Icon");
-
 var _exports = require("../helpers/exports");
+
+var _Icon = require("../icon/Icon");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 

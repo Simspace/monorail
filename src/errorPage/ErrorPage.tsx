@@ -1,14 +1,15 @@
 import React, { Component, ReactNode } from 'react'
 import styled from 'styled-components'
+
 import { ErrorType } from '@monorail/errorPage/errorTypes'
-import { Icon } from '@monorail/icon/Icon'
 import {
   Colors,
-  getColor,
   flexFlow,
   FontSizes,
+  getColor,
   typography,
 } from '@monorail/helpers/exports'
+import { Icon } from '@monorail/icon/Icon'
 
 /*
  * Styles

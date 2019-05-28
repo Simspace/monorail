@@ -1,12 +1,13 @@
 import React, { MouseEvent } from 'react'
-import { IconButton } from '@monorail/buttons/IconButton'
 import styled from 'styled-components'
+
 import { ButtonDisplay } from '@monorail/buttons/buttonTypes'
+import { IconButton } from '@monorail/buttons/IconButton'
 import {
   Colors,
-  getColor,
   flexFlow,
   FontSizes,
+  getColor,
   typography,
 } from '@monorail/helpers/exports'
 import { CommonComponentType } from '@monorail/types'

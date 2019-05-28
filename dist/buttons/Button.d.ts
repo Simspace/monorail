@@ -1,20 +1,21 @@
-import { Component, MouseEvent } from 'react';
-import { ButtonDisplay, ButtonSize, ButtonMode } from '@monorail/buttons/buttonTypes';
+import { MouseEvent } from 'react';
+import { ButtonDisplay, ButtonMode, ButtonSize } from '@monorail/buttons/buttonTypes';
+import { FCwDP } from '@monorail/sharedHelpers/react';
 import { CommonComponentType, LinkProps } from '@monorail/types';
 export declare const buttonDisplayCss: {
-    [ButtonDisplay.Primary]: import("styled-components").FlattenSimpleInterpolation;
-    [ButtonDisplay.Secondary]: import("styled-components").FlattenSimpleInterpolation;
+    [ButtonDisplay.Primary]: import("styled-components").FlattenInterpolation<import("styled-components").ThemeProps<import("../helpers/theme").GlobalAppThemeInterface>>;
+    [ButtonDisplay.Secondary]: import("styled-components").FlattenInterpolation<import("styled-components").ThemeProps<import("../helpers/theme").GlobalAppThemeInterface>>;
     [ButtonDisplay.Outline]: import("styled-components").FlattenSimpleInterpolation;
-    [ButtonDisplay.Chromeless]: import("styled-components").FlattenSimpleInterpolation;
+    [ButtonDisplay.Chromeless]: import("styled-components").FlattenInterpolation<import("styled-components").ThemeProps<import("../helpers/theme").GlobalAppThemeInterface>>;
     [ButtonDisplay.ButtonBar]: import("styled-components").FlattenSimpleInterpolation;
     [ButtonDisplay.Toolbar]: import("styled-components").FlattenSimpleInterpolation;
 };
 export declare const buttonPressedDisplayCss: {
-    [ButtonDisplay.Primary]: import("styled-components").FlattenSimpleInterpolation;
-    [ButtonDisplay.Secondary]: import("styled-components").FlattenSimpleInterpolation;
-    [ButtonDisplay.Outline]: import("styled-components").FlattenSimpleInterpolation;
-    [ButtonDisplay.Chromeless]: import("styled-components").FlattenSimpleInterpolation;
-    [ButtonDisplay.ButtonBar]: import("styled-components").FlattenSimpleInterpolation;
+    [ButtonDisplay.Primary]: import("styled-components").FlattenInterpolation<import("styled-components").ThemeProps<import("../helpers/theme").GlobalAppThemeInterface>>;
+    [ButtonDisplay.Secondary]: import("styled-components").FlattenInterpolation<import("styled-components").ThemeProps<import("../helpers/theme").GlobalAppThemeInterface>>;
+    [ButtonDisplay.Outline]: import("styled-components").FlattenInterpolation<import("styled-components").ThemeProps<import("../helpers/theme").GlobalAppThemeInterface>>;
+    [ButtonDisplay.Chromeless]: import("styled-components").FlattenInterpolation<import("styled-components").ThemeProps<import("../helpers/theme").GlobalAppThemeInterface>>;
+    [ButtonDisplay.ButtonBar]: import("styled-components").FlattenInterpolation<import("styled-components").ThemeProps<import("../helpers/theme").GlobalAppThemeInterface>>;
     [ButtonDisplay.Toolbar]: import("styled-components").FlattenSimpleInterpolation;
 };
 export declare const buttonSizeCss: {
@@ -23,59 +24,29 @@ export declare const buttonSizeCss: {
     [ButtonSize.Default]: import("styled-components").FlattenSimpleInterpolation;
     [ButtonSize.Large]: import("styled-components").FlattenSimpleInterpolation;
 };
-export declare const StyledButton: import("styled-components").StyledComponent<"button", any, ButtonProps, never>;
-declare type ButtonState = {
-    initial: boolean;
-    previous: boolean;
-    pressed: boolean;
-};
+export declare const StyledButton: import("styled-components").StyledComponent<"button", import("../helpers/theme").GlobalAppThemeInterface, StyleProps, never>;
 declare type IconProps = {
     iconLeft: string;
     iconRight: string;
 };
-export declare type ButtonProps = CommonComponentType & LinkProps & {
-    size: ButtonSize;
-    display: ButtonDisplay;
+export declare type OnClick = (event: MouseEvent<HTMLButtonElement>) => void;
+declare type FunctionalProps = {
+    className: string;
     disabled: boolean;
+    display: ButtonDisplay;
+    isActive: boolean;
     mode: ButtonMode;
-    onClick: (event: MouseEvent<HTMLButtonElement>) => void;
+    onClick: OnClick;
+    onMouseDown?: OnClick;
+    onMouseUp?: OnClick;
     pressed: boolean;
+    size: ButtonSize;
     type: 'button' | 'reset' | 'submit';
 };
-declare type Props = ButtonProps & IconProps;
-export declare const buttonDefaultProps: {
-    display: ButtonDisplay;
-    size: ButtonSize;
-    type: string;
-    onClick: () => void;
-    disabled: boolean;
-    pressed: boolean;
-    mode: ButtonMode;
-    iconLeft: string;
-    iconRight: string;
-};
-export declare class Button extends Component<Props, ButtonState> {
-    static defaultProps: {
-        display: ButtonDisplay;
-        size: ButtonSize;
-        type: string;
-        onClick: () => void;
-        disabled: boolean;
-        pressed: boolean;
-        mode: ButtonMode;
-        iconLeft: string;
-        iconRight: string;
-    };
-    state: ButtonState;
-    /**
-     * Keep initial pressed state to compare when new props arrive
-     */
-    componentDidMount(): void;
-    static getDerivedStateFromProps(nextProps: ButtonProps, prevState: ButtonState): ButtonState;
-    /**
-     * Click event handler for Push buttons
-     */
-    private onClickHandler;
-    render(): JSX.Element;
-}
+declare type DefaultProps = IconProps & FunctionalProps;
+declare type CommonProps = CommonComponentType & LinkProps;
+declare type StyleProps = CommonProps & FunctionalProps;
+export declare type ButtonProps = CommonProps & DefaultProps;
+export declare const buttonDefaultProps: DefaultProps;
+export declare const Button: FCwDP<CommonProps, DefaultProps>;
 export {};

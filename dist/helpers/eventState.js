@@ -20,6 +20,7 @@ exports.EventState = EventState;
 })(EventState || (exports.EventState = EventState = {}));
 
 const convertEventStateToColor = eventState => {
+  /* eslint-disable default-case */
   switch (eventState) {
     case EventState.Active:
       return _color.Colors.Active;
@@ -39,6 +40,8 @@ const convertEventStateToColor = eventState => {
     case EventState.Canceled:
       return _color.Colors.Canceled;
   }
+  /* eslint-enable default-case */
+
 };
 
 exports.convertEventStateToColor = convertEventStateToColor;

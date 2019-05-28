@@ -16,7 +16,7 @@ const AppContainer =
 _styledComponents.default.div.withConfig({
   displayName: "layout__AppContainer",
   componentId: "sc-1ygcav0-0"
-})(["", ";flex:1;overflow:hidden;&.event-design,&.events:not(.execution),&.home,&.reports-analytics{", ";}"], (0, _exports.flexFlow)(), _exports.gothamFontFamily);
+})(["", ";flex:1;overflow:hidden;&.catalog,&.events:not(.execution),&.reports-analytics{", ";}"], (0, _exports.flexFlow)(), _exports.gothamFontFamily);
 
 exports.AppContainer = AppContainer;
 

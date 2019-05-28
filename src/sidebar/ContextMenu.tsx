@@ -1,3 +1,5 @@
+import { array, isEmpty } from 'fp-ts/lib/Array'
+import { none, some } from 'fp-ts/lib/Option'
 import React, {
   Component,
   createRef,
@@ -5,33 +7,32 @@ import React, {
   ReactNode,
   StatelessComponent,
 } from 'react'
-import { SidebarDropDown } from '@monorail/sidebar/SidebarDropDown'
-import { PopOverChildProps } from '@monorail/popOver/PopOver'
-import { Search } from '@monorail/inputs/Search'
-import {
-  ListContainer,
-  ListItemGraphic,
-  ListItem,
-  ListItemPrimaryText,
-  ListItemText,
-  ListItemSecondaryText,
-} from '@monorail/list/List'
 import Link from 'react-router/lib/Link'
+import styled, { css } from 'styled-components'
+
 import {
   Colors,
-  getColor,
   ellipsis,
   flexFlow,
   FontSizes,
+  getColor,
   Sizes,
   typography,
 } from '@monorail/helpers/exports'
-import styled, { css } from 'styled-components'
-import { CommonComponentType, LinkProps } from '@monorail/types'
+import { Search } from '@monorail/inputs/Search'
 import { SearchController } from '@monorail/inputs/SearchController'
-import { array, isEmpty } from 'fp-ts/lib/Array'
-import { some, none } from 'fp-ts/lib/Option'
+import {
+  ListContainer,
+  ListItem,
+  ListItemGraphic,
+  ListItemPrimaryText,
+  ListItemSecondaryText,
+  ListItemText,
+} from '@monorail/list/List'
+import { PopOverChildProps } from '@monorail/popOver/PopOver'
 import { isNil } from '@monorail/sharedHelpers/typeGuards'
+import { SidebarDropDown } from '@monorail/sidebar/SidebarDropDown'
+import { CommonComponentType, LinkProps } from '@monorail/types'
 
 const SearchContainer = styled.div`
   ${flexFlow('row')};
@@ -87,10 +88,8 @@ const ContextMenuItem: StatelessComponent<SimpleListItemProps> = ({
   <ListItem
     dense={dense}
     size={size}
-    cssOverrides={css`
+    css={css`
       padding: 0 6px;
-
-      ${cssOverrides};
     `}
     {...otherProps}
   >
@@ -98,7 +97,8 @@ const ContextMenuItem: StatelessComponent<SimpleListItemProps> = ({
       <ListItemGraphic
         icon={leftIcon}
         dense={dense}
-        cssOverrides={css`
+        css={css`
+          color: ${getColor(Colors.Black62)};
           margin-top: 12px;
         `}
       />
@@ -106,7 +106,7 @@ const ContextMenuItem: StatelessComponent<SimpleListItemProps> = ({
 
     {isNil(secondaryText) && isNil(meta) ? (
       <ListItemPrimaryText
-        cssOverrides={css`
+        css={css`
           margin-top: 12px;
         `}
       >
@@ -115,7 +115,7 @@ const ContextMenuItem: StatelessComponent<SimpleListItemProps> = ({
     ) : (
       <ListItemText>
         <ListItemPrimaryText
-          cssOverrides={css`
+          css={css`
             margin-top: 6px;
           `}
         >
@@ -123,7 +123,7 @@ const ContextMenuItem: StatelessComponent<SimpleListItemProps> = ({
         </ListItemPrimaryText>
         {isNil(secondaryText) ? null : (
           <ListItemSecondaryText
-            cssOverrides={css`
+            css={css`
               margin-bottom: 6px;
             `}
           >
@@ -140,18 +140,23 @@ const ContextMenuItem: StatelessComponent<SimpleListItemProps> = ({
   </ListItem>
 )
 
+export type ContextMenuItemProps = {
+  description: string
+  icons?: ReactNode
+  isLabelActive?: boolean
+  key: number | string
+  link: string
+  title: string
+}
+
+export type ContextMenuItems = Array<{
+  title: string
+  items: Array<ContextMenuItemProps>
+}>
+
 type Props = PopOverChildProps & {
-  contextItems: Array<{
-    title: string
-    items: Array<{
-      description: string
-      icons?: ReactNode
-      isLabelActive?: boolean
-      key: number | string
-      link: string
-      title: string
-    }>
-  }>
+  onItemClick?: (item: ContextMenuItemProps) => void
+  contextItems: ContextMenuItems
   icon: string
   renderFilter: () => ReactNode
   width?: number
@@ -175,7 +180,7 @@ export class ContextMenu extends Component<Props> {
   renderContextMenuItems = (
     compareSearch: (stringToCompare: string) => boolean,
   ) => {
-    const { contextItems, icon, onClick } = this.props
+    const { contextItems, icon, onClick, onItemClick } = this.props
 
     return contextItems.map(event => {
       const groupHeader = (
@@ -203,7 +208,12 @@ export class ContextMenu extends Component<Props> {
             secondaryText={item.description}
             size={Sizes.DP40}
             to={item.link}
-            onClick={onClick}
+            onClick={(e: MouseEvent<HTMLDivElement>) => {
+              onClick(e)
+              if (onItemClick) {
+                onItemClick(item)
+              }
+            }}
             tabIndex={1}
             meta={
               isNil(item.icons) ? null : (
@@ -249,7 +259,7 @@ export class ContextMenu extends Component<Props> {
                   <Search
                     value={value}
                     onChange={onChange}
-                    cssOverrides={css`
+                    css={css`
                       flex-grow: 1;
                       margin: 12px;
                       flex-shrink: unset;
@@ -261,7 +271,7 @@ export class ContextMenu extends Component<Props> {
                 </SearchContainer>
 
                 <ListContainer
-                  cssOverrides={css`
+                  css={css`
                     padding: 0 0 4px;
                   `}
                   emptyText="Loading..."

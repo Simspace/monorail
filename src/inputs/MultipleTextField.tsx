@@ -1,10 +1,11 @@
 import React, { Component, ReactNode } from 'react'
 import styled, { css, SimpleInterpolation } from 'styled-components'
-import { isNil } from '@monorail/sharedHelpers/typeGuards'
 
-import { TextFieldProps, TextField } from './TextField'
-import { flexFlow, typography, FontSizes } from '@monorail/helpers/exports'
+import { flexFlow, FontSizes, typography } from '@monorail/helpers/exports'
+import { isNil } from '@monorail/sharedHelpers/typeGuards'
 import { CommonComponentType } from '@monorail/types'
+
+import { TextField, TextFieldProps } from './TextField'
 
 // TODO - duplicate from text field container
 const MultipleTextFieldContainer = styled.label<CommonComponentType>(

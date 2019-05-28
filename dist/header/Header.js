@@ -3,17 +3,19 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.Header = void 0;
+exports.Header = exports.HeaderTitle = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
-var _styledComponents = _interopRequireWildcard(require("styled-components"));
-
 var _AppIcon = require("../appIcon/AppIcon");
 
-var _Icon = require("../icon/Icon");
-
 var _exports = require("../helpers/exports");
+
+var _styledComponents = _interopRequireWildcard(require("../helpers/styled-components"));
+
+var _theme = require("../helpers/theme");
+
+var _Icon = require("../icon/Icon");
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
@@ -28,14 +30,26 @@ _styledComponents.default.div.withConfig({
   componentId: "muzh11-0"
 })(({
   cssOverrides
-}) => (0, _styledComponents.css)(["color:", ";", ";", ";align-items:center;flex-shrink:0;height:48px;padding:0 16px;", ";"], (0, _exports.getColor)(_exports.Colors.BrandDarkBlue), (0, _exports.flexFlow)('row'), (0, _exports.typography)(500, _exports.FontSizes.Title3), cssOverrides));
+}) => (0, _styledComponents.css)(["", ";align-items:center;color:", ";flex-shrink:0;height:48px;padding:0 16px;", ";"], (0, _exports.flexFlow)('row'), (0, _theme.getThemeColor)(_theme.ThemeColors.Text1000), cssOverrides));
 
-const iconRightCss =
+const HeaderContainer =
 /*#__PURE__*/
-(0, _styledComponents.css)(["color:", ";flex-shrink:0;margin-right:12px;"], (0, _exports.getColor)(_exports.Colors.BrandDarkBlue));
+_styledComponents.default.div.withConfig({
+  displayName: "Header__HeaderContainer",
+  componentId: "muzh11-1"
+})([""]);
+
+const HeaderTitle =
+/*#__PURE__*/
+_styledComponents.default.h1.withConfig({
+  displayName: "Header__HeaderTitle",
+  componentId: "muzh11-2"
+})(["", ";"], (0, _exports.typography)(500, _exports.FontSizes.Title3));
+
+exports.HeaderTitle = HeaderTitle;
 const iconLeftCss =
 /*#__PURE__*/
-(0, _styledComponents.css)(["color:", ";flex-shrink:0;margin-left:12px;"], (0, _exports.getColor)(_exports.Colors.BrandDarkBlue));
+(0, _styledComponents.css)(["color:", ";flex-shrink:0;margin-right:12px;"], (0, _theme.getThemeColor)(_theme.ThemeColors.Text1000));
 const Header =
 /*#__PURE__*/
 (0, _styledComponents.default)(({
@@ -47,16 +61,16 @@ const Header =
   iconLeft,
   noBorder = false,
   title,
-  ...otherProps
-}) => _react.default.createElement("div", otherProps, _react.default.createElement(HeaderRow, {
+  ...domProps
+}) => _react.default.createElement(HeaderContainer, domProps, _react.default.createElement(HeaderRow, {
   cssOverrides: cssHeaderRow
 }, appIcon && _react.default.createElement(_AppIcon.AppIcon, {
-  cssOverrides: iconRightCss,
+  cssOverrides: iconLeftCss,
   appName: appIcon
 }), iconLeft && _react.default.createElement(_Icon.Icon, {
-  cssOverrides: iconRightCss,
+  cssOverrides: iconLeftCss,
   icon: iconLeft
-}), title, actions), children))(({
+}), _react.default.createElement(HeaderTitle, null, title), actions), children))(({
   noBorder,
   appIcon,
   cssOverrides

@@ -1,28 +1,27 @@
-import { useEventListener } from '@monorail/helpers/hooks'
-import { FCwDP } from '@monorail/sharedHelpers/react'
 import React, {
-  useLayoutEffect,
   useCallback,
+  useEffect,
+  useLayoutEffect,
   useMemo,
   useRef,
   useState,
-  useEffect,
 } from 'react'
-import styled, { css } from 'styled-components'
-import { PopOverChildProps } from '@monorail/popOver/PopOver'
+
+import { generateScaleAnimation } from '@monorail/helpers/animation'
+import { BorderRadius, borderRadius } from '@monorail/helpers/borderRadius'
 import {
-  BorderRadius,
-  borderRadius,
-  Colors,
-  getColor,
   ElevationRange,
-  flexFlow,
-  generateScaleAnimation,
-  getElevation,
-  sizes,
-} from '@monorail/helpers/exports'
-import { Overlay } from '@monorail/toggle/Overlay'
+  getElevationBackground,
+  getElevationShadow,
+} from '@monorail/helpers/elevation'
+import { flexFlow } from '@monorail/helpers/flex'
+import { useEventListener } from '@monorail/helpers/hooks'
+import { sizes } from '@monorail/helpers/size'
+import styled, { css } from '@monorail/helpers/styled-components'
+import { PopOverChildProps } from '@monorail/popOver/PopOver'
+import { FCwDP } from '@monorail/sharedHelpers/react'
 import { isNil } from '@monorail/sharedHelpers/typeGuards'
+import { Overlay } from '@monorail/toggle/Overlay'
 
 type MenuProps = {
   width: string
@@ -32,9 +31,9 @@ const MenuContainer = styled.div<MenuProps>(
   ({ width }) => css`
     ${borderRadius(BorderRadius.Medium)};
     ${flexFlow()};
-    ${getElevation(ElevationRange.Elevation6)};
+    ${getElevationShadow(ElevationRange.Elevation6)};
+    ${getElevationBackground(ElevationRange.Elevation6)};
 
-    background: ${getColor(Colors.White)};
     overflow: hidden;
     position: fixed;
     width: ${width};
@@ -68,6 +67,7 @@ export const Menu: FCwDP<RequiredProps, DefaultProps> = ({
   togglePopOver,
   width,
   zIndex,
+  ...domProps
 }) => {
   const menuRef = useRef<HTMLDivElement>(null)
 
@@ -93,6 +93,7 @@ export const Menu: FCwDP<RequiredProps, DefaultProps> = ({
 
   useEffect(() => setIsRendered(true), [])
 
+  /* eslint-disable react-hooks/exhaustive-deps */
   useLayoutEffect(() => {
     const menuElement = menuRef.current
 
@@ -101,6 +102,7 @@ export const Menu: FCwDP<RequiredProps, DefaultProps> = ({
       setMenuWidth(menuElement.offsetWidth)
     }
   }, [menuRef.current])
+  /* eslint-enable react-hooks/exhaustive-deps */
 
   const eventListener = useCallback<EventListener>(
     event => {
@@ -131,6 +133,7 @@ export const Menu: FCwDP<RequiredProps, DefaultProps> = ({
         `}
         ref={menuRef}
         width={isNil(width) ? 'auto' : `${width}px`}
+        {...domProps}
       >
         <MenuContent
           css={css`

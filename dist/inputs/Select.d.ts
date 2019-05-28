@@ -5,16 +5,17 @@ export declare type SelectOption = {
     value: string;
 };
 declare type Props = {
+    cssOverrides?: SimpleInterpolation;
+    disabled?: boolean;
     label?: string;
-    options: Array<SelectOption>;
-    onSelect?: (e: string | Array<string> | number | undefined) => void;
+    name?: string;
     onBlur?: (e: React.SyntheticEvent) => void;
-    value?: string | Array<string> | number;
+    onChange?: (event: React.ChangeEvent<HTMLSelectElement>) => void;
+    onSelect?: (e: string | Array<string> | number | undefined) => void;
+    options: Array<SelectOption>;
     placeholder?: string;
     required?: boolean;
-    cssOverrides?: SimpleInterpolation;
-    name?: string;
-    onChange?: (event: React.ChangeEvent<HTMLSelectElement>) => void;
+    value?: string | Array<string> | number;
 };
 export declare const Select: SFC<Props>;
 export {};

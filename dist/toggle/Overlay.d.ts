@@ -1,7 +1,7 @@
 import { Component, RefObject } from 'react';
+import { Omit } from 'typelevel-ts';
 import { BBModalOverlayProps } from '@monorail/modals/Modals';
 import { PopOverChildProps } from '@monorail/popOver/PopOver';
-import { Omit } from 'typelevel-ts';
 declare type Props = Omit<PopOverChildProps, 'position' | 'closingAnimationCompleted'> & {
     overlayProps?: Omit<BBModalOverlayProps, 'isOpen' | 'onClick'>;
     escToClose: boolean;

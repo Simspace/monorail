@@ -51,6 +51,8 @@ const Carousel = ({
   const [currentSlideIndex, setCurrentSlideIndex] = (0, _react.useState)(defaultCurrentSlideIndex);
   const [translateValue, setTranslateValue] = (0, _react.useState)(defaultTranslateValue);
   const [slideWidth, setSlideWidth] = (0, _react.useState)(defaultSlideWidth);
+  /* eslint-disable react-hooks/exhaustive-deps */
+
   (0, _react.useLayoutEffect)(() => {
     if (!(0, _typeGuards.isNil)(slideItemRef) && !(0, _typeGuards.isNil)(slideItemRef.current)) {
       const slideItem = slideItemRef.current;
@@ -60,6 +62,7 @@ const Carousel = ({
       }
     }
   }, [slideItemRef.current, currentSlideIndex, translateValue, slideWidth]);
+  /* eslint-enable react-hooks/exhaustive-deps */
 
   const prevSlide = () => {
     const lastIndex = slides.length;
@@ -96,8 +99,9 @@ const Carousel = ({
       _css: translateValue,
       _css2: slideWidth / 2,
       _css3: slideWidth
-    }, slides.map(slide => _react.default.createElement(SlideItem, {
-      ref: slideItemRef
+    }, slides.map((slide, index) => _react.default.createElement(SlideItem, {
+      ref: slideItemRef,
+      key: `slide-${index}`
     }, slide)))
   });
 };

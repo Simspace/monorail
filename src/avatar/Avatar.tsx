@@ -1,16 +1,20 @@
 import React, { StatelessComponent } from 'react'
 import styled, { css, SimpleInterpolation } from 'styled-components'
+
 import { borderRadius, Colors, getColor } from '@monorail/helpers/exports'
+import { Sizes } from '@monorail/helpers/size'
 
 type CCAvatarProps = {
   cssOverrides?: SimpleInterpolation
   team?: boolean
+  size?: Sizes
 }
 
-const size = 24
+const defaultSize = 24
+const fontScale = 9.89 / defaultSize
 
 const CCAvatar = styled.div<CCAvatarProps>(
-  ({ team, cssOverrides }) => css`
+  ({ team, cssOverrides, size = defaultSize }) => css`
     ${team
       ? css`
           ${borderRadius()};
@@ -24,7 +28,7 @@ const CCAvatar = styled.div<CCAvatarProps>(
 
     color: ${getColor(Colors.White)};
     flex-shrink: 0;
-    font-size: 9.89px;
+    font-size: ${size * fontScale}px;
     font-weight: 900;
     height: ${size}px;
     line-height: ${size}px;
@@ -47,9 +51,10 @@ export const Avatar: StatelessComponent<AvatarProps> = ({
   first,
   last,
   team,
+  size,
   ...domProps
 }) => (
-  <CCAvatar cssOverrides={cssOverrides} team={team} {...domProps}>
+  <CCAvatar cssOverrides={cssOverrides} team={team} size={size} {...domProps}>
     {first.charAt(0)}
     {last.charAt(0)}
   </CCAvatar>

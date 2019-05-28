@@ -1,9 +1,12 @@
-import React, { FC } from 'react'
-import { PopOver } from '@monorail/popOver/PopOver'
-import { SimpleListItem } from '@monorail/list/List'
+import React, { ReactNode } from 'react'
+
+import { ButtonDisplay, IconButtonShape } from '@monorail/buttons/buttonTypes'
 import { IconButton } from '@monorail/buttons/IconButton'
+import { Sizes } from '@monorail/helpers/size'
+import { SimpleListItem } from '@monorail/list/List'
 import { Menu } from '@monorail/menu/Menu'
-import { ButtonDisplay } from '@monorail/buttons/buttonTypes'
+import { PopOver, PopOverToggleProps } from '@monorail/popOver/PopOver'
+import { FCwDP } from '@monorail/sharedHelpers/react'
 
 /*
  * Styles
@@ -13,48 +16,63 @@ import { ButtonDisplay } from '@monorail/buttons/buttonTypes'
  * Types
  */
 
-type ActionsMenuProps = {
+export type ActionsMenuProps = {
   menuItems: Array<{
     label: string
     iconName?: string
-    onClick: () => void
+    onClick: (onClickParent: () => void) => void
     featuredAction?: boolean // Will be implemented later
+    children?: ReactNode
   }>
+  document?: Document
+}
+
+type DefaultProps = {
+  toggle: (props: PopOverToggleProps) => ReactNode
 }
 
 /*
  * Components
  */
 
-export const ActionsMenu: FC<ActionsMenuProps> = ({
+export const ActionsMenu: FCwDP<ActionsMenuProps, DefaultProps> = ({
+  document,
   menuItems,
-  ...otherProps
+  toggle,
+  ...domProps
 }) => (
   <>
     {menuItems.length > 0 && (
       <PopOver
-        popOver={props => (
-          <Menu {...props}>
+        document={document}
+        popOver={({ onClick, ...otherProps }) => (
+          <Menu onClick={onClick} {...otherProps}>
             {menuItems.map((menuItem, idx) => (
               <SimpleListItem
                 key={idx + menuItem.label}
-                size={32}
+                size={Sizes.DP32}
                 leftIcon={menuItem.iconName}
                 primaryText={menuItem.label}
-                onClick={menuItem.onClick}
-              />
+                onClick={e => menuItem.onClick(() => onClick(e))}
+              >
+                {menuItem.children}
+              </SimpleListItem>
             ))}
           </Menu>
         )}
-        toggle={props => (
-          <IconButton
-            icon="more_vert"
-            display={ButtonDisplay.Chromeless}
-            {...props}
-            {...otherProps}
-          />
-        )}
+        toggle={props => toggle({ ...props, ...domProps })}
       />
     )}
   </>
 )
+
+ActionsMenu.defaultProps = {
+  toggle: props => (
+    <IconButton
+      icon="more_vert"
+      display={ButtonDisplay.Chromeless}
+      shape={IconButtonShape.Default}
+      {...props}
+    />
+  ),
+}

@@ -1,11 +1,11 @@
-import React, { Component, createRef } from 'react'
-import { PopOverChildProps } from '@monorail/popOver/PopOver'
-import { BBCardBackground } from '@monorail/cards/Cards'
-import styled, { css, SimpleInterpolation } from 'styled-components'
-import { flexFlow, generateScaleAnimation } from '@monorail/helpers/exports'
-import { Overlay } from '@monorail/toggle/Overlay'
-
 import { fromNullable } from 'fp-ts/lib/Option'
+import React, { Component, createRef } from 'react'
+import styled, { css, SimpleInterpolation } from 'styled-components'
+
+import { BBCardBackground } from '@monorail/cards/Cards'
+import { flexFlow, generateScaleAnimation } from '@monorail/helpers/exports'
+import { PopOverChildProps } from '@monorail/popOver/PopOver'
+import { Overlay } from '@monorail/toggle/Overlay'
 
 type DropDownContentProps = { cssOverrides?: SimpleInterpolation }
 
@@ -30,7 +30,7 @@ type State = {
 
 export class SidebarDropDown extends Component<Props, State> {
   static defaultProps = {
-    width: 208,
+    width: 224,
   }
 
   state: State = {

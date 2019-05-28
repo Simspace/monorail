@@ -1,5 +1,5 @@
-import { FCwDP } from '@monorail/sharedHelpers/react';
 import { PopOverChildProps } from '@monorail/popOver/PopOver';
+import { FCwDP } from '@monorail/sharedHelpers/react';
 declare type RequiredProps = PopOverChildProps & {
     width?: number;
 };

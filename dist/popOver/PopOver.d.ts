@@ -13,7 +13,7 @@ export declare type PopOverPosition = {
     maxWidthCalc: string;
 };
 export declare type PopOverToggleProps = {
-    isOpen: boolean;
+    isActive: boolean;
     onClick: (event: SyntheticEvent) => void;
 };
 export declare type PopOverChildProps = {

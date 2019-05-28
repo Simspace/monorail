@@ -5,9 +5,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.ordRecordWithNameLower = exports.recordWithNameLowerComparator = exports.ordAlpha = exports.alphaCompare = exports.ordNumeric = exports.numericCompare = void 0;
 
-var _Setoid = require("./Setoid");
-
 var _strings = require("../strings");
+
+var _Setoid = require("./Setoid");
 
 /**
  * Determines ordering of two numbers (numeric comparison)

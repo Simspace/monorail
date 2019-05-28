@@ -1,10 +1,10 @@
 "use strict";
 
-var t = _interopRequireWildcard(require("io-ts"));
-
 var _Either = require("fp-ts/lib/Either");
 
 var _Option = require("fp-ts/lib/Option");
+
+var t = _interopRequireWildcard(require("io-ts"));
 
 var _jsonEncodersDecoders = require("../jsonEncodersDecoders");
 

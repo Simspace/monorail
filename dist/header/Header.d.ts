@@ -1,7 +1,8 @@
 import { ReactNode } from 'react';
 import { SimpleInterpolation } from 'styled-components';
-import { CommonComponentType } from '@monorail/types';
 import { AppOrAuthSubAppName } from '@monorail/helpers/exports';
+import { CommonComponentType } from '@monorail/types';
+export declare const HeaderTitle: import("styled-components").StyledComponent<"h1", import("../helpers/theme").GlobalAppThemeInterface, {}, never>;
 declare type Props = CommonComponentType & {
     actions?: ReactNode;
     appIcon?: AppOrAuthSubAppName;
@@ -10,5 +11,5 @@ declare type Props = CommonComponentType & {
     noBorder?: boolean;
     title: ReactNode;
 };
-export declare const Header: import("styled-components").StyledComponent<({ actions, appIcon, children, cssOverrides, cssHeaderRow, iconLeft, noBorder, title, ...otherProps }: any) => JSX.Element, any, Props, never>;
+export declare const Header: import("styled-components").StyledComponent<({ actions, appIcon, children, cssOverrides, cssHeaderRow, iconLeft, noBorder, title, ...domProps }: any) => JSX.Element, import("../helpers/theme").GlobalAppThemeInterface, Props, never>;
 export {};

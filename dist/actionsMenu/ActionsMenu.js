@@ -7,15 +7,17 @@ exports.ActionsMenu = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
-var _PopOver = require("../popOver/PopOver");
-
-var _List = require("../list/List");
+var _buttonTypes = require("../buttons/buttonTypes");
 
 var _IconButton = require("../buttons/IconButton");
 
+var _size = require("../helpers/size");
+
+var _List = require("../list/List");
+
 var _Menu = require("../menu/Menu");
 
-var _buttonTypes = require("../buttons/buttonTypes");
+var _PopOver = require("../popOver/PopOver");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -25,20 +27,34 @@ function _extends() { _extends = Object.assign || function (target) { for (var i
  * Components
  */
 const ActionsMenu = ({
+  document,
   menuItems,
-  ...otherProps
+  toggle,
+  ...domProps
 }) => _react.default.createElement(_react.default.Fragment, null, menuItems.length > 0 && _react.default.createElement(_PopOver.PopOver, {
-  popOver: props => _react.default.createElement(_Menu.Menu, props, menuItems.map((menuItem, idx) => _react.default.createElement(_List.SimpleListItem, {
+  document: document,
+  popOver: ({
+    onClick,
+    ...otherProps
+  }) => _react.default.createElement(_Menu.Menu, _extends({
+    onClick: onClick
+  }, otherProps), menuItems.map((menuItem, idx) => _react.default.createElement(_List.SimpleListItem, {
     key: idx + menuItem.label,
-    size: 32,
+    size: _size.Sizes.DP32,
     leftIcon: menuItem.iconName,
     primaryText: menuItem.label,
-    onClick: menuItem.onClick
-  }))),
-  toggle: props => _react.default.createElement(_IconButton.IconButton, _extends({
-    icon: "more_vert",
-    display: _buttonTypes.ButtonDisplay.Chromeless
-  }, props, otherProps))
+    onClick: e => menuItem.onClick(() => onClick(e))
+  }, menuItem.children))),
+  toggle: props => toggle({ ...props,
+    ...domProps
+  })
 }));
 
 exports.ActionsMenu = ActionsMenu;
+ActionsMenu.defaultProps = {
+  toggle: props => _react.default.createElement(_IconButton.IconButton, _extends({
+    icon: "more_vert",
+    display: _buttonTypes.ButtonDisplay.Chromeless,
+    shape: _buttonTypes.IconButtonShape.Default
+  }, props))
+};

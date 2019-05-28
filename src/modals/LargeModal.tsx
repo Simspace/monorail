@@ -1,3 +1,6 @@
+import React from 'react'
+import { css, SimpleInterpolation } from 'styled-components'
+
 import {
   BBModalBackground,
   BBModalHeader,
@@ -10,8 +13,6 @@ import { ModalSize } from '@monorail/modals/modalTypes'
 import { PopOverChildProps } from '@monorail/popOver/PopOver'
 import { FCwDP } from '@monorail/sharedHelpers/react'
 import { Overlay } from '@monorail/toggle/Overlay'
-import React from 'react'
-import { css, SimpleInterpolation } from 'styled-components'
 
 type Props = PopOverChildProps &
   DefaultProps & {

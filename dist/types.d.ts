@@ -1,9 +1,12 @@
 import { CSSProperties, ReactType } from 'react';
-import { SimpleInterpolation } from 'styled-components';
+import { IndexLinkProps } from 'react-router';
+import { FlattenInterpolation, SimpleInterpolation, ThemeProps } from 'styled-components';
+import { GlobalAppThemeInterface } from '@monorail/helpers/theme';
+export declare type CssOverridesType = SimpleInterpolation | FlattenInterpolation<ThemeProps<GlobalAppThemeInterface>>;
 export declare type CommonComponentType = {
     as?: ReactType;
     className?: string;
-    cssOverrides?: SimpleInterpolation;
+    cssOverrides?: CssOverridesType;
     id?: string;
     tabIndex?: number;
 };
@@ -14,5 +17,5 @@ export declare type LinkProps = {
     activeClassName?: string;
     activeStyle?: CSSProperties;
     onlyActiveOnIndex?: boolean;
-    to?: string;
+    to?: IndexLinkProps['to'];
 };

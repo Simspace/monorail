@@ -1,10 +1,12 @@
 import { visible } from '@monorail/helpers/animation'
 import { Colors, getColor } from '@monorail/helpers/color'
-import { css, SimpleInterpolation } from 'styled-components'
+import { css } from '@monorail/helpers/styled-components'
+import { getThemeColor, Mode, ThemeColors } from '@monorail/helpers/theme'
+import { CssOverridesType } from '@monorail/types'
 
 export const baseFocusStyles: (
   addPositionToParent?: boolean,
-) => SimpleInterpolation = (addPositionToParent = true) => css`
+) => CssOverridesType = (addPositionToParent = true) => css`
   ${addPositionToParent &&
     css`
       position: relative;
@@ -14,7 +16,9 @@ export const baseFocusStyles: (
     ${visible(false)};
 
     border-radius: inherit;
-    border: 1px solid ${getColor(Colors.BrandLightBlue)};
+    border: 1px solid
+      ${({ theme: { mode } }) =>
+        getColor(mode === Mode.Dark ? Colors.White : Colors.BrandLightBlue)};
     bottom: 0;
     content: '';
     left: 0;
@@ -92,58 +96,88 @@ export const baseOutlineStyles = (
 `
 
 export const baseChromelessStyles = (
-  color: Colors = Colors.BrandLightBlue,
+  color: ThemeColors = ThemeColors.ActionSecondary,
 ) => css`
   background: transparent;
   border: 0;
 
   &:hover {
-    background: ${getColor(color, 0.1)};
+    background: ${getThemeColor(color, 0.1)};
   }
 
   &.is-active,
   &:active {
-    background: ${getColor(color, 0.2)};
+    background: ${getThemeColor(color, 0.2)};
+  }
+`
+
+export const baseIconButtonChromelessStyles = (
+  isActive: boolean = false,
+) => css`
+  background: ${isActive
+    ? getThemeColor(ThemeColors.PrimaryColor, 0.12)
+    : 'transparent'};
+  color: ${getThemeColor(isActive ? ThemeColors.Text900 : ThemeColors.Text600)};
+  border: 0;
+
+  &:hover {
+    background: ${getThemeColor(ThemeColors.PrimaryColor, 0.06)};
+    color: ${getThemeColor(
+      isActive ? ThemeColors.Text900 : ThemeColors.Text700,
+    )};
+  }
+
+  &:active {
+    background: ${getThemeColor(ThemeColors.PrimaryColor, 0.16)};
+    color: ${getThemeColor(
+      isActive ? ThemeColors.Text900 : ThemeColors.Text700,
+    )};
+  }
+
+  &.is-active {
+    background: ${getThemeColor(ThemeColors.PrimaryColor, 0.12)};
   }
 `
 
 export const baseSecondaryStyles = (
-  color: Colors = Colors.BrandLightBlue,
+  color: ThemeColors = ThemeColors.ActionSecondary,
 ) => css`
-  background: ${getColor(color, 0.08)};
+  background: ${getThemeColor(color, 0.12)};
   border: 0;
-  color: ${getColor(color)};
+  color: ${getThemeColor(color)};
 
   &:hover {
-    background: ${getColor(color, 0.16)};
+    background: ${getThemeColor(color, 0.18)};
   }
 
   &:active {
-    background: ${getColor(color, 0.24)};
+    background: ${getThemeColor(color, 0.22)};
   }
 `
 
 export const basePrimaryStyles = (
-  color: Colors = Colors.BrandLightBlue,
-  backgroundColor: Colors = Colors.White,
+  color: ThemeColors = ThemeColors.ActionPrimary,
+  backgroundColor: ThemeColors = ThemeColors.BackgroundPrimary,
 ) => css`
-  background: ${getColor(color)};
+  background: ${getThemeColor(color)};
   border: 0;
   color: ${getColor(Colors.White)};
   position: relative;
 
   &:focus {
     &:after {
-      border-color: ${getColor(backgroundColor, 0.3)};
+      border-color: ${getThemeColor(backgroundColor, 0.3)};
     }
   }
 
   &:hover {
-    ${floatingBackgroundStyles(getColor(backgroundColor, 0.15))};
+    ${props =>
+      floatingBackgroundStyles(getThemeColor(backgroundColor, 0.15)(props))};
   }
 
   &:active {
-    ${floatingBackgroundStyles(getColor(backgroundColor, 0.3))};
+    ${props =>
+      floatingBackgroundStyles(getThemeColor(backgroundColor, 0.3)(props))};
   }
 `
 
@@ -183,4 +217,22 @@ export const baseDisabledStyles = css`
   cursor: default;
   opacity: 0.4;
   pointer-events: none;
+`
+
+export const baseHyperLinkStyles = (
+  color: ThemeColors = ThemeColors.ActionPrimary,
+) => css`
+  color: ${getThemeColor(color)};
+
+  &:hover {
+    color: ${getThemeColor(color, 0.8)};
+  }
+
+  &:active {
+    color: ${getThemeColor(color, 0.7)};
+  }
+
+  &:visited {
+    color: ${getThemeColor(color)};
+  }
 `

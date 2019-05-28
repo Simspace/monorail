@@ -1,6 +1,6 @@
+import { ReactNode } from 'react';
 import { PopOverChildProps } from '@monorail/popOver/PopOver';
 import { FCwDP } from '@monorail/sharedHelpers/react';
-import { ReactNode } from 'react';
 declare type Props = PopOverChildProps & DefaultProps & {
     customCloseButton?: ReactNode;
     headerChildren?: ReactNode;

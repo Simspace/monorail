@@ -1,9 +1,10 @@
-import * as t from 'io-ts'
-import { Option, None, Some, none, fromEither } from 'fp-ts/lib/Option'
 import { error } from 'fp-ts/lib/Console'
-import { IO } from 'fp-ts/lib/IO'
-import { Getter, Lens } from 'monocle-ts'
 import { constant } from 'fp-ts/lib/function'
+import { IO } from 'fp-ts/lib/IO'
+import { fromEither, None, none, Option, Some } from 'fp-ts/lib/Option'
+import * as t from 'io-ts'
+import { Getter, Lens } from 'monocle-ts'
+
 import { constVoid } from '@monorail/sharedHelpers/fp-ts-ext/function'
 
 export type JSONNone = { _tag: 'None' }

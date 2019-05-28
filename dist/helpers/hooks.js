@@ -5,9 +5,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.useEventListener = useEventListener;
 
-var _typeGuards = require("../sharedHelpers/typeGuards");
-
 var _react = require("react");
+
+var _typeGuards = require("../sharedHelpers/typeGuards");
 
 function useEventListener({
   element,

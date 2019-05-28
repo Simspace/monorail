@@ -5,35 +5,49 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.Menu = void 0;
 
-var _styledComponents = _interopRequireWildcard(require("styled-components"));
-
-var _hooks = require("../helpers/hooks");
+var _styledComponents = _interopRequireDefault(require("styled-components"));
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _exports = require("../helpers/exports");
+var _animation = require("../helpers/animation");
 
-var _Overlay = require("../toggle/Overlay");
+var _borderRadius = require("../helpers/borderRadius");
+
+var _elevation = require("../helpers/elevation");
+
+var _flex = require("../helpers/flex");
+
+var _hooks = require("../helpers/hooks");
+
+var _size = require("../helpers/size");
+
+var _styledComponents2 = _interopRequireWildcard(require("../helpers/styled-components"));
 
 var _typeGuards = require("../sharedHelpers/typeGuards");
 
+var _Overlay = require("../toggle/Overlay");
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
 const MenuContainer =
 /*#__PURE__*/
-_styledComponents.default.div.withConfig({
+_styledComponents2.default.div.withConfig({
   displayName: "Menu__MenuContainer",
   componentId: "qsgmyf-0"
 })(({
   width
-}) => (0, _styledComponents.css)(["", ";", ";", ";background:", ";overflow:hidden;position:fixed;width:", ";min-width:", "px;"], (0, _exports.borderRadius)(_exports.BorderRadius.Medium), (0, _exports.flexFlow)(), (0, _exports.getElevation)(_exports.ElevationRange.Elevation6), (0, _exports.getColor)(_exports.Colors.White), width, _exports.sizes.menu.width));
+}) => (0, _styledComponents2.css)(["", ";", ";", ";", ";overflow:hidden;position:fixed;width:", ";min-width:", "px;"], (0, _borderRadius.borderRadius)(_borderRadius.BorderRadius.Medium), (0, _flex.flexFlow)(), (0, _elevation.getElevationShadow)(_elevation.ElevationRange.Elevation6), (0, _elevation.getElevationBackground)(_elevation.ElevationRange.Elevation6), width, _size.sizes.menu.width));
 
 const MenuContent =
 /*#__PURE__*/
-_styledComponents.default.div.withConfig({
+_styledComponents2.default.div.withConfig({
   displayName: "Menu__MenuContent",
   componentId: "qsgmyf-1"
-})(["", ";height:100%;overflow:auto;padding:4px 0;width:100%;"], (0, _exports.flexFlow)());
+})(["", ";height:100%;overflow:auto;padding:4px 0;width:100%;"], (0, _flex.flexFlow)());
 
 const Menu = ({
   children,
@@ -43,7 +57,8 @@ const Menu = ({
   position,
   togglePopOver,
   width,
-  zIndex
+  zIndex,
+  ...domProps
 }) => {
   const menuRef = (0, _react.useRef)(null);
   const [menuHeight, setMenuHeight] = (0, _react.useState)(0);
@@ -51,8 +66,8 @@ const Menu = ({
   const [isRendered, setIsRendered] = (0, _react.useState)(false);
   const scaleAnimation = (0, _react.useMemo)(() => {
     const elementHeight = menuHeight;
-    const elementWidth = Math.max((0, _typeGuards.isNil)(width) ? menuWidth : width, _exports.sizes.menu.width);
-    return (0, _exports.generateScaleAnimation)({
+    const elementWidth = Math.max((0, _typeGuards.isNil)(width) ? menuWidth : width, _size.sizes.menu.width);
+    return (0, _animation.generateScaleAnimation)({
       elementHeight,
       elementWidth,
       isOpen,
@@ -60,6 +75,8 @@ const Menu = ({
     });
   }, [isOpen, menuHeight, menuWidth, position, width]);
   (0, _react.useEffect)(() => setIsRendered(true), []);
+  /* eslint-disable react-hooks/exhaustive-deps */
+
   (0, _react.useLayoutEffect)(() => {
     const menuElement = menuRef.current;
 
@@ -68,6 +85,8 @@ const Menu = ({
       setMenuWidth(menuElement.offsetWidth);
     }
   }, [menuRef.current]);
+  /* eslint-enable react-hooks/exhaustive-deps */
+
   const eventListener = (0, _react.useCallback)(event => {
     if (menuRef.current === event.target && !isOpen) {
       closingAnimationCompleted();
@@ -86,11 +105,12 @@ const Menu = ({
     },
     togglePopOver: togglePopOver,
     zIndex: zIndex
-  }, _react.default.createElement(_StyledMenuContainer, {
+  }, _react.default.createElement(_StyledMenuContainer, _extends({
     ref: menuRef,
-    width: (0, _typeGuards.isNil)(width) ? 'auto' : `${width}px`,
+    width: (0, _typeGuards.isNil)(width) ? 'auto' : `${width}px`
+  }, domProps, {
     _css: isRendered ? scaleAnimation.outSideContentStyles : ''
-  }, _react.default.createElement(_StyledMenuContent, {
+  }), _react.default.createElement(_StyledMenuContent, {
     _css2: isRendered ? scaleAnimation.inSideContentStyles : ''
   }, children)));
 };

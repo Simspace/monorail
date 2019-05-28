@@ -1,25 +1,35 @@
 import React, { Component, createRef } from 'react'
-import styled, { css, SimpleInterpolation } from 'styled-components'
-import { isNil } from '@monorail/sharedHelpers/typeGuards'
+
+import { baseChromelessStyles } from '@monorail/helpers/baseStyles'
 import {
-  getColor,
-  Colors,
-  flexFlow,
-  typography,
-  FontSizes,
   borderRadius,
   BorderRadius,
+  Colors,
+  flexFlow,
+  FontSizes,
+  getColor,
+  typography,
 } from '@monorail/helpers/exports'
+import styled, { css } from '@monorail/helpers/styled-components'
+import { getThemeColor, ThemeColors } from '@monorail/helpers/theme'
 import { Icon } from '@monorail/icon/Icon'
+import { isNil } from '@monorail/sharedHelpers/typeGuards'
+import { CommonComponentType, CssOverridesType } from '@monorail/types'
+
 import { Step as StepType } from './types'
-import { CommonComponentType } from '@monorail/types'
-import { baseChromelessStyles } from '@monorail/helpers/baseStyles'
 
 /*
  * Styles
  */
 
-const getStateStyles: StateStyles = (step, styles) => {
+const getStateStyles = (
+  step: StepType,
+  styles: {
+    isActive: CssOverridesType
+    isCompleted: CssOverridesType
+    isDisabled: CssOverridesType
+  },
+) => {
   if (step.isActive) {
     return styles.isActive
   } else if (step.isCompleted) {
@@ -28,7 +38,7 @@ const getStateStyles: StateStyles = (step, styles) => {
   return styles.isDisabled
 }
 
-const StepStateStyles = {
+const stepStateStyles = {
   isActive: css``,
   isDisabled: css`
     pointer-events: none;
@@ -36,7 +46,7 @@ const StepStateStyles = {
   isCompleted: css``,
 }
 
-const BodyStateStyles = {
+const bodyStateStyles = {
   isActive: css``,
   isDisabled: css`
     opacity: 0.4;
@@ -44,141 +54,127 @@ const BodyStateStyles = {
   isCompleted: css``,
 }
 
-const NumberStateStyles = (darkMode: boolean) => ({
+const numberStateStyles = {
   isActive: css`
-    background-color: ${getColor(Colors.BrandLightBlue)};
-    border-color: ${getColor(Colors.BrandLightBlue)};
+    background-color: ${getThemeColor(ThemeColors.ActionPrimary)};
+    border-color: ${getThemeColor(ThemeColors.ActionPrimary)};
     color: ${getColor(Colors.White)};
   `,
-  isDisabled: css``,
+  isDisabled: css`
+    background-color: transparent;
+    border-color: ${getThemeColor(ThemeColors.Text200)};
+    color: ${getThemeColor(ThemeColors.Text200)};
+  `,
   isCompleted: css`
     background-color: ${getColor(Colors.White)};
-    border-color: ${darkMode
-      ? getColor(Colors.White)
-      : getColor(Colors.BrandLightBlue)};
+    border-color: ${getThemeColor(ThemeColors.ActionPrimary)};
   `,
-})
+}
 
 const HorizontalStepperContainer = styled.div`
   ${flexFlow('row')};
-  justify-content: flex-start;
+
   flex-shrink: 0;
+  height: 100%;
+  justify-content: flex-start;
   overflow-y: auto;
   width: 100%;
-  height: 100%;
 `
 
 const HorizontalStepperWrapper = styled.div`
   ${flexFlow('row')};
+
+  flex-shrink: 0;
   height: 100%;
   justify-content: flex-start;
-  overflow-y: auto;
-  flex-shrink: 0;
   max-width: 100%;
+  overflow-y: auto;
 `
 
 const Step = styled.div<StepPropType>(
   ({ step }) => css`
     ${flexFlow('row')};
+    ${getStateStyles(step, stepStateStyles)};
+
     align-items: center;
+    cursor: pointer;
     justify-content: center;
     position: relative;
     transition: all ease 0.25s;
-    cursor: pointer;
-
-    ${getStateStyles(step, StepStateStyles)};
+    user-select: none;
   `,
 )
 
-const Body = styled.div<DarkModeStepType>(
-  ({ step, darkMode }) => css`
+const Body = styled.div<StepPropType>(
+  ({ step }) => css`
+    ${baseChromelessStyles()};
     ${flexFlow('row')};
-    ${baseChromelessStyles(darkMode ? Colors.White : Colors.BrandLightBlue)};
+    ${getStateStyles(step, bodyStateStyles)};
+
     align-items: center;
-    padding: 8px;
     height: 100%;
-
-    ${getStateStyles(step, BodyStateStyles)};
+    padding: 8px;
   `,
 )
 
-const StyledIcon = styled(Icon)<DarkModeType>(
-  ({ darkMode }) => css`
-    color: ${darkMode
-      ? getColor(Colors.White)
-      : getColor(Colors.BrandLightBlue)};
-    margin: auto 8px;
-    flex-shrink: 0;
-  `,
-)
+const StyledIcon = styled(Icon)`
+  color: ${getThemeColor(ThemeColors.ActionSecondary)};
+  flex-shrink: 0;
+  margin: auto 8px;
+`
 
-const Number = styled.div<DarkModeStepType>(
-  ({ step, darkMode }) => css`
-    ${flexFlow('row')};
+const Number = styled.div<StepPropType>(
+  ({ step }) => css`
     ${borderRadius(BorderRadius.Round)};
-    ${typography(700, FontSizes.Title5)};
+    ${flexFlow('row')};
+    ${getStateStyles(step, numberStateStyles)};
+    ${typography(700, FontSizes.Title4)};
 
     align-items: center;
-    border: 2px solid
-      ${darkMode ? getColor(Colors.White) : getColor(Colors.Black54)};
-    color: ${darkMode ? getColor(Colors.White) : getColor(Colors.Black54)};
+    border-style: solid;
+    border-width: 2px;
     flex-shrink: 0;
     height: 20px;
     justify-content: center;
     margin: auto 8px;
     width: 20px;
-
-    ${getStateStyles(step, NumberStateStyles(darkMode))};
   `,
 )
 
-const Text = styled.div`
+const TextContainer = styled.div`
   ${flexFlow('column')};
-  padding-right: 8px;
+
+  margin-right: 8px;
 `
 
-const Title = styled.div<DarkModeType>(
-  ({ darkMode }) => css`
-    color: ${darkMode ? getColor(Colors.White) : getColor(Colors.Black74)};
-    ${typography(700, FontSizes.Title4)};
-  `,
-)
+const Title = styled.div`
+  ${typography(700, FontSizes.Title4)};
 
-const Subtitle = styled.div<DarkModeType>(
-  ({ darkMode }) => css`
-    color: ${darkMode ? getColor(Colors.White) : getColor(Colors.Black74)};
-    ${typography(300, FontSizes.Title5)};
-  `,
-)
+  color: ${getThemeColor(ThemeColors.Text700)};
+`
 
-const Line = styled.div<DarkModeType>(
-  ({ darkMode }) => css`
-    background-color: ${darkMode
-      ? getColor(Colors.White)
-      : getColor(Colors.Black24)};
-    height: 1px;
-    width: 32px;
-    margin: auto 8px;
-  `,
-)
+const Subtitle = styled.div`
+  ${typography(300, FontSizes.Title5)};
+
+  color: ${getThemeColor(ThemeColors.Text700)};
+`
+
+const Line = styled.div`
+  background-color: ${getThemeColor(ThemeColors.Text200)};
+  height: 1px;
+  margin: auto 8px;
+  width: 32px;
+`
 
 /*
  * Types
  */
 
-type DarkModeType = {
-  darkMode: boolean
-}
-
 type StepPropType = {
   step: StepType
 }
 
-type DarkModeStepType = DarkModeType & StepPropType
-
 type Props = CommonComponentType & {
-  className?: string
-  darkMode: boolean
   onStepClick: (step: StepType, index: number) => void
   steps: Array<StepType>
 }
@@ -187,24 +183,11 @@ type State = {
   activeStepIndex: number
 }
 
-type StateStyles = (
-  step: StepType,
-  stateStyles: {
-    isActive: SimpleInterpolation
-    isCompleted: SimpleInterpolation
-    isDisabled: SimpleInterpolation
-  },
-) => SimpleInterpolation
-
 /*
  * Components
  */
 
 export class HorizontalStepper extends Component<Props, State> {
-  static defaultProps = {
-    darkMode: false,
-  }
-
   state: State = {
     activeStepIndex: 0,
   }
@@ -230,7 +213,7 @@ export class HorizontalStepper extends Component<Props, State> {
   }
 
   renderSection = (step: StepType, index: number) => {
-    const { onStepClick, darkMode, steps } = this.props
+    const { onStepClick, steps } = this.props
     const { activeStepIndex } = this.state
 
     if (step.isActive && activeStepIndex !== index) {
@@ -245,36 +228,29 @@ export class HorizontalStepper extends Component<Props, State> {
         data-test-id={`horizontal-stepper-step-${index}`}
         ref={step.isActive ? this.activeStepRef : null}
       >
-        <Body darkMode={darkMode} step={step}>
+        <Body step={step}>
           {step.isCompleted && !step.isActive ? (
-            <StyledIcon
-              icon="check_circle_outline"
-              darkMode={darkMode}
-              size={20}
-            />
+            <StyledIcon icon="check_circle_outline" size={28} />
           ) : (
-            <Number darkMode={darkMode} step={step}>
-              {index + 1}
-            </Number>
+            <Number step={step}>{index + 1}</Number>
           )}
-          <Text>
-            <Title darkMode={darkMode}>{step.label}</Title>
-            {!isNil(step.subtitle) && (
-              <Subtitle darkMode={darkMode}>{step.subtitle}</Subtitle>
-            )}
-          </Text>
+          <TextContainer>
+            <Title>{step.label}</Title>
+            {!isNil(step.subtitle) && <Subtitle>{step.subtitle}</Subtitle>}
+          </TextContainer>
         </Body>
-        {index !== steps.length - 1 && <Line darkMode={darkMode} />}
+        {index !== steps.length - 1 && <Line />}
       </Step>
     )
   }
 
   render() {
-    const { className } = this.props
+    const { steps, onStepClick, ...domProps } = this.props
+
     return (
-      <HorizontalStepperContainer className={className}>
+      <HorizontalStepperContainer {...domProps}>
         <HorizontalStepperWrapper>
-          {this.props.steps.map(this.renderSection)}
+          {steps.map(this.renderSection)}
         </HorizontalStepperWrapper>
       </HorizontalStepperContainer>
     )

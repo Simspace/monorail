@@ -1,30 +1,17 @@
-import { Component } from 'react';
+import { ReactType } from 'react';
 import { SimpleInterpolation } from 'styled-components';
-import { ButtonDisplay, ButtonSize, IconButtonShape } from '@monorail/buttons/buttonTypes';
+import { Omit } from 'typelevel-ts';
 import { ButtonProps } from '@monorail/buttons/Button';
-declare type CCIconButtonProps = ButtonProps & {
-    darkMode: boolean;
+import { IconButtonShape } from '@monorail/buttons/buttonTypes';
+import { FCwDP } from '@monorail/sharedHelpers/react';
+declare type Props = {
+    icon: string;
+    passedAs?: ReactType;
+};
+declare type DefaultProps = Omit<ButtonProps, 'leftIcon' | 'rightIcon'> & {
     shape: IconButtonShape;
     iconCss: SimpleInterpolation;
 };
-export declare type IconButtonProps = CCIconButtonProps & {
-    icon: string;
-};
-export declare class IconButton extends Component<IconButtonProps> {
-    static defaultProps: {
-        darkMode: boolean;
-        shape: IconButtonShape;
-        iconCss: import("styled-components").FlattenSimpleInterpolation;
-        display: ButtonDisplay;
-        size: ButtonSize;
-        type: string;
-        onClick: () => void;
-        disabled: boolean;
-        pressed: boolean;
-        mode: import("./buttonTypes").ButtonMode;
-        iconLeft: string;
-        iconRight: string;
-    };
-    render(): JSX.Element;
-}
+export declare type IconButtonProps = Props & DefaultProps;
+export declare const IconButton: FCwDP<Props, DefaultProps>;
 export {};

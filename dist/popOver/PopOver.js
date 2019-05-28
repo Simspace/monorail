@@ -162,7 +162,7 @@ class PopOver extends _react.Component {
     super(...args);
     this.state = {
       isOpen: false,
-      isRendered: this.props.alwaysRender,
+      isRendered: false,
       position: {
         dropXAmount: 0,
         dropXDirection: 'left',
@@ -256,7 +256,8 @@ class PopOver extends _react.Component {
     const {
       popOver,
       toggle,
-      document
+      document,
+      alwaysRender
     } = this.props;
     const {
       isRendered,
@@ -265,8 +266,8 @@ class PopOver extends _react.Component {
     } = this.state;
     return _react.default.createElement(_react.default.Fragment, null, toggle({
       onClick: this.onClick,
-      isOpen
-    }), isRendered && _react.default.createElement(_Portal.Portal, {
+      isActive: isOpen
+    }), (isRendered || alwaysRender) && _react.default.createElement(_Portal.Portal, {
       document: document
     }, popOver({
       isOpen,

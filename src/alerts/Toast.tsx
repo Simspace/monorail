@@ -1,15 +1,16 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
-import { AlertColors, AlertLevel, AlertIcons } from '@monorail/alerts/types'
+
+import { AlertColors, AlertIcons, AlertLevel } from '@monorail/alerts/types'
 import { ButtonDisplay } from '@monorail/buttons/buttonTypes'
 import { IconButton } from '@monorail/buttons/IconButton'
 import { BBCardBackground } from '@monorail/cards/Cards'
 import {
+  Colors,
   ElevationRange,
   flexFlow,
   FontSizes,
   getColor,
-  Colors,
 } from '@monorail/helpers/exports'
 import { Icon } from '@monorail/icon/Icon'
 import { FCwDP } from '@monorail/sharedHelpers/react'

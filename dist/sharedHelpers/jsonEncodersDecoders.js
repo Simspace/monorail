@@ -6,15 +6,15 @@ Object.defineProperty(exports, "__esModule", {
 exports.transformDecodeError = transformDecodeError;
 exports.mkJSONOptionDecoderSelector = exports.createOptionFromJSON = exports.fold = exports.isJSONSome = exports.isJSONNone = exports.jsonSome = exports.jsonNone = void 0;
 
-var t = _interopRequireWildcard(require("io-ts"));
-
-var _Option = require("fp-ts/lib/Option");
-
 var _Console = require("fp-ts/lib/Console");
+
+var _function = require("fp-ts/lib/function");
 
 var _IO = require("fp-ts/lib/IO");
 
-var _function = require("fp-ts/lib/function");
+var _Option = require("fp-ts/lib/Option");
+
+var t = _interopRequireWildcard(require("io-ts"));
 
 var _function2 = require("./fp-ts-ext/function");
 

@@ -36,7 +36,7 @@ const SelectElement =
 _styledComponents.default.select.withConfig({
   displayName: "Select__SelectElement",
   componentId: "sc-1lva6s2-2"
-})(["width:calc(100% - 8px);height:22px;background:transparent;border:none;outline:none;cursor:pointer;"]);
+})(["width:calc(100% - 8px);height:22px;background:transparent;border:none;outline:none;cursor:pointer;&:disabled{opacity:0.6;}"]);
 
 const Label =
 /*#__PURE__*/
@@ -46,29 +46,39 @@ _styledComponents.default.p.withConfig({
 })(["", ";margin-bottom:4px;height:16px;"], (0, _exports.typography)(500, _exports.FontSizes.Title5));
 
 const Select = ({
-  label,
-  onSelect,
-  onBlur,
-  value,
-  required,
-  placeholder,
-  options,
   cssOverrides,
+  disabled,
+  label,
   name,
-  onChange
+  onBlur,
+  onChange,
+  onSelect,
+  options,
+  placeholder,
+  required,
+  value
 }) => {
   return _react.default.createElement(SelectGroupWrapper, {
     cssOverrides: cssOverrides
   }, label && _react.default.createElement(Label, null, label, required && '*'), _react.default.createElement(SelectElementWrapper, null, _react.default.createElement(SelectElement, {
+    disabled: disabled,
     name: name,
-    placeholder: placeholder || 'Select',
     value: value,
     onBlur: onBlur,
     onChange: e => {
       onChange && onChange(e);
       onSelect && onSelect(e.target.value);
     }
-  }, options.map((o, key) => _react.default.createElement("option", {
+  }, placeholder ? // NOTE: native <select> elements do not have a placeholder prop
+  _react.default.createElement("option", {
+    value: "placeholder",
+    disabled: true,
+    hidden: true
+  }, placeholder) : _react.default.createElement("option", {
+    value: "placeholder",
+    disabled: true,
+    hidden: true
+  }, "Select"), options.map((o, key) => _react.default.createElement("option", {
     key: o.value,
     value: o.value
   }, o.label)))));

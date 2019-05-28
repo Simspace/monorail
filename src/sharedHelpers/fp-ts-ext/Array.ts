@@ -7,6 +7,7 @@ import { IO } from 'fp-ts/lib/IO'
 import { none, option, Option, some } from 'fp-ts/lib/Option'
 import { task } from 'fp-ts/lib/Task'
 import { taskEither } from 'fp-ts/lib/TaskEither'
+
 import { runIO } from './IO'
 import { fold, getOrElse } from './Option'
 import { ordAlpha, ordNumeric } from './Ord'

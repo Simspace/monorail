@@ -1,4 +1,6 @@
+import { none, Option, some } from 'fp-ts/lib/Option'
 import { createElement } from 'react'
+
 import {
   fold,
   fromTruthyFalsy,
@@ -11,7 +13,6 @@ import {
   toBoolean,
   toSpreadable,
 } from '../Option'
-import { Option, none, some } from 'fp-ts/lib/Option'
 
 describe('fold (Option)', () => {
   it('should properly fold Options -- some', () => {

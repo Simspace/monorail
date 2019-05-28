@@ -1,7 +1,7 @@
 import {
   coerceApiActionTypeToString,
-  mkApiActionTypes,
   mkApiAction,
+  mkApiActionTypes,
 } from '../apiActions'
 
 describe('coerceApiActionTypeToString', () => {

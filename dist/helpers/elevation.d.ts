@@ -1,3 +1,4 @@
+import { GlobalAppThemeInterface } from '@monorail/helpers/theme';
 export declare enum ElevationRange {
     Elevation0 = "elevation0",
     Elevation1 = "elevation1",
@@ -25,4 +26,5 @@ export declare enum ElevationRange {
     Elevation23 = "elevation23",
     Elevation24 = "elevation24"
 }
-export declare const getElevation: (elevation: ElevationRange) => import("styled-components").FlattenSimpleInterpolation;
+export declare const getElevationBackground: (elevation: ElevationRange) => import("styled-components").FlattenInterpolation<import("styled-components").ThemeProps<GlobalAppThemeInterface>>;
+export declare const getElevationShadow: (elevation: ElevationRange) => import("styled-components").FlattenSimpleInterpolation;

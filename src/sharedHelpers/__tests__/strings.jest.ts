@@ -1,11 +1,11 @@
 import {
-  split,
-  replace,
-  splitName,
   findIndex,
+  join,
+  replace,
+  split,
+  splitName,
   toLower,
   trim,
-  join,
 } from '../strings'
 
 describe('split', () => {

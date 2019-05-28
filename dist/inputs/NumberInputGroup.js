@@ -5,11 +5,11 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.NumberInputGroup = void 0;
 
+var _Record = require("fp-ts/lib/Record");
+
 var _react = _interopRequireDefault(require("react"));
 
 var _styledComponents = _interopRequireDefault(require("styled-components"));
-
-var _Record = require("fp-ts/lib/Record");
 
 var _exports = require("../helpers/exports");
 

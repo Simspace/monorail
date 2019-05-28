@@ -21,7 +21,7 @@ _styledComponents.default.div.withConfig({
   componentId: "sc-1pggcc1-0"
 })(({
   isVertical
-}) => (0, _styledComponents.css)(["", ";background:", ";"], isVertical ? (0, _styledComponents.css)(["width:1px height:100%;"]) : (0, _styledComponents.css)(["width:100%;height:1px;"]), (0, _exports.getColor)(_exports.Colors.Grey94)));
+}) => (0, _styledComponents.css)(["", ";background:", ";"], isVertical ? (0, _styledComponents.css)(["width:1px;height:100%;"]) : (0, _styledComponents.css)(["width:100%;height:1px;"]), (0, _exports.getColor)(_exports.Colors.Grey94)));
 
 exports.Divider = Divider;
 Divider.defaultProps = {

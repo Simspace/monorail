@@ -1,18 +1,15 @@
-import { Component } from 'react';
 import { SimpleInterpolation } from 'styled-components';
-declare type BBDetailsSize = {
-    compact?: boolean;
-    darkMode?: boolean;
-    large?: boolean;
-};
+import { FCwDP } from '@monorail/sharedHelpers/react';
+import { DetailsSize } from '@monorail/typography/detailsTypes';
 declare type BBDetailsContainerProps = {
     cssOverrides?: SimpleInterpolation;
 };
-declare type CCDetailsProps = BBDetailsSize & BBDetailsContainerProps & {
+declare type DetailsProps = BBDetailsContainerProps & {
     property: string;
     value?: string | number;
 };
-export declare class CCDetails extends Component<CCDetailsProps> {
-    render(): JSX.Element;
-}
+declare type DefaultProps = {
+    size: DetailsSize;
+};
+export declare const Details: FCwDP<DetailsProps, DefaultProps>;
 export {};

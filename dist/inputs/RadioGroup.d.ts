@@ -1,4 +1,4 @@
-import { SFC, ChangeEvent } from 'react';
+import { ChangeEvent, SFC } from 'react';
 declare type ChoiceOption = {
     label: string;
     key: string;

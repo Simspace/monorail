@@ -1,5 +1,5 @@
-import { Exact, Omit } from 'typelevel-ts';
 import { Lazy } from 'fp-ts/lib/function';
+import { Exact, Omit } from 'typelevel-ts';
 export declare type Action<A extends string> = {
     type: A;
 };

@@ -1,19 +1,42 @@
 import React, { ComponentType } from 'react'
+
 import { CustomIconProps } from '@monorail/icon/Icon'
 
 export const ReportsAnalytics: ComponentType<CustomIconProps> = props => (
   <svg
-    width="24"
-    height="24"
-    viewBox="0 0 24 24"
+    width="40"
+    height="40"
+    viewBox="0 0 40 40"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
     {...props}
   >
-    <path d="M3 5H4.71429V17.25H21V19H3V5Z" fill="#161C4F" />
-    <path d="M6.42857 11.125H9V15.5H6.42857V11.125Z" fill="#161C4F" />
-    <path d="M9.85714 6.75H12.4286V15.5H9.85714V6.75Z" fill="#161C4F" />
-    <path d="M13.2857 12H15.8571V15.5H13.2857V12Z" fill="#161C4F" />
-    <path d="M16.7143 9.375H19.2857V15.5H16.7143V9.375Z" fill="#161C4F" />
+    <rect
+      x="4"
+      y="4"
+      width="32"
+      height="32"
+      rx="4"
+      fill="url(#reportsBackground)"
+    />
+    <rect x="19" y="2" width="6" height="26" fill="#C32C07" />
+    <rect x="11" y="10" width="6" height="18" fill="#C32C07" />
+    <rect x="20" y="3" width="6" height="26" fill="#fff" />
+    <rect x="27" y="18" width="6" height="10" fill="#D13711" />
+    <rect x="12" y="11" width="6" height="18" fill="#fff" />
+    <rect x="28" y="19" width="6" height="10" fill="#fff" />
+    <defs>
+      <linearGradient
+        id="reportsBackground"
+        x1="36"
+        y1="4"
+        x2="4"
+        y2="36"
+        gradientUnits="userSpaceOnUse"
+      >
+        <stop stopColor="#FD5931" />
+        <stop offset="1" stopColor="#DE2D02" />
+      </linearGradient>
+    </defs>
   </svg>
 )

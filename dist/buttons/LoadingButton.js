@@ -69,6 +69,10 @@ class LoadingButton extends _react.Component {
 }
 
 exports.LoadingButton = LoadingButton;
-LoadingButton.defaultProps = { ..._Button.buttonDefaultProps,
+LoadingButton.defaultProps = {
+  /** override buttonDefaultProps.onClick */
+  ...{ ..._Button.buttonDefaultProps,
+    onClick: async () => {}
+  },
   loadingText: 'Loading...'
 };

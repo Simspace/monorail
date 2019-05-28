@@ -1,10 +1,11 @@
-import { PopOverPosition } from '@monorail/popOver/PopOver'
 import {
   css,
   keyframes,
   Keyframes,
   SimpleInterpolation,
 } from 'styled-components'
+
+import { PopOverPosition } from '@monorail/popOver/PopOver'
 
 export const visible = (isVisible = false) =>
   isVisible

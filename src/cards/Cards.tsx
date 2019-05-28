@@ -1,27 +1,28 @@
 import React, {
+  Children,
   forwardRef,
   MouseEvent,
+  ReactNode,
   Ref,
   StatelessComponent,
-  Children,
-  ReactNode,
 } from 'react'
 import styled, { css, SimpleInterpolation } from 'styled-components'
+
 import { AppIcon } from '@monorail/appIcon/AppIcon'
-import { CommonComponentType } from '@monorail/types'
-import { Icon } from '@monorail/icon/Icon'
 import {
   AppName,
   BorderRadius,
   borderRadius,
   Colors,
-  getColor,
   ElevationRange,
   flexFlow,
   FontSizes,
-  getElevation,
+  getColor,
+  getElevationShadow,
   typography,
 } from '@monorail/helpers/exports'
+import { Icon } from '@monorail/icon/Icon'
+import { CommonComponentType } from '@monorail/types'
 
 const BBCardContent = styled.div<CommonComponentType>(
   ({ cssOverrides }) => css`
@@ -74,7 +75,7 @@ export const BBCardBackground = styled(
         &:hover {
           &::after {
             transition: box-shadow ease 125ms;
-            ${getElevation(ElevationRange.Elevation10)};
+            ${getElevationShadow(ElevationRange.Elevation10)};
           }
         }
       `};
@@ -103,7 +104,7 @@ export const BBCardBackground = styled(
     &::after {
       ${borderRadius(BorderRadius.Medium)};
 
-      ${getElevation(elevation)};
+      ${getElevationShadow(elevation)};
 
       background: ${getColor(Colors.White)};
       bottom: 2px;

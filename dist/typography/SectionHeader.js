@@ -7,6 +7,8 @@ exports.SectionHeader = void 0;
 
 var _styledComponents = _interopRequireWildcard(require("styled-components"));
 
+var _react = _interopRequireDefault(require("react"));
+
 var _AppIcon = require("../appIcon/AppIcon");
 
 var _exports = require("../helpers/exports");
@@ -16,8 +18,6 @@ var _Icon = require("../icon/Icon");
 var _typeGuards = require("../sharedHelpers/typeGuards");
 
 var _Text = require("./Text");
-
-var _react = _interopRequireDefault(require("react"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
