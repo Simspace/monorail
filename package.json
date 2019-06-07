@@ -1,6 +1,6 @@
 {
   "name": "@simspace/monorail",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "SimSpace Design System",
   "resolutions": {
     "@types/lodash": "4.14.110",
