@@ -3,6 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.hasKey = hasKey;
 exports.isFunction = exports.isObject = exports.isNumber = exports.isString = exports.isFalsy = exports.isZero = exports.isEmptyString = exports.isTrue = exports.isFalse = exports.isNotNil = exports.isNil = exports.isUndefined = exports.isNull = void 0;
 
 /**
@@ -106,5 +107,13 @@ const isObject = x => !isNull(x) && typeof x === 'object' && x instanceof Object
 exports.isObject = isObject;
 
 const isFunction = x => x instanceof Function;
+/**
+ * Typeguard for making sure a key is in an object when the object has no index signature
+ */
+
 
 exports.isFunction = isFunction;
+
+function hasKey(obj, key) {
+  return key in obj;
+}

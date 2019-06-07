@@ -34,7 +34,7 @@ const MappingID =
 _styledComponents.default.span.withConfig({
   displayName: "Mapping__MappingID",
   componentId: "sc-1x0g1sf-1"
-})(["", ";background:", ";color:", ";font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;font-weight:", ";margin-right:5px;padding:1px 2px 0 2px;"], (0, _exports.borderRadius)(_exports.BorderRadius.Small), (0, _exports.getColor)(_exports.Colors.Grey94), (0, _exports.getColor)(_exports.Colors.Black74), _exports.FontWeights.Book);
+})(["", ";background:", ";color:", ";font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;font-weight:600;margin-right:5px;padding:1px 2px 0 2px;"], (0, _exports.borderRadius)(_exports.BorderRadius.Small), (0, _exports.getColor)(_exports.Colors.Grey94), (0, _exports.getColor)(_exports.Colors.Black74));
 /*
  * Types
  */

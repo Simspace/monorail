@@ -1,9 +1,12 @@
-import React, { Component, ReactNode } from 'react';
+import { ChangeEvent, CSSProperties, ReactNode } from 'react';
 import { SimpleInterpolation } from 'styled-components';
+import { FCwDP } from '@monorail/sharedHelpers/react';
 declare type AnsweredProps = {
     answered?: boolean;
-    htmlFor?: string;
+    centeredInput?: boolean;
+    dense?: boolean;
     disabled?: boolean;
+    indeterminate?: boolean;
 };
 declare type BBGradeIconProps = {
     correct?: boolean;
@@ -12,11 +15,10 @@ declare type BBGradeIconProps = {
 declare type BBChoiceInputProps = AnsweredProps & {
     checked?: boolean;
     defaultChecked?: boolean;
-    onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
 };
 declare type CCChoiceProps = AnsweredProps & BBGradeIconProps & {
     cssOverrides?: SimpleInterpolation;
-    disabled?: boolean;
     readOnly?: boolean;
     value?: string | number | Array<string>;
     required?: boolean;
@@ -24,11 +26,26 @@ declare type CCChoiceProps = AnsweredProps & BBGradeIconProps & {
 };
 export declare type ChoiceProps = BBGradeIconProps & CCChoiceProps & BBChoiceInputProps & {
     key?: string | number;
-    type: 'radio' | 'checkbox';
+    type?: 'radio' | 'checkbox';
     children?: ReactNode;
+    style?: CSSProperties;
 };
-export declare class Choice extends Component<ChoiceProps> {
-    renderFakeInputIcons: () => JSX.Element[];
-    render(): JSX.Element;
-}
+declare type DefaultProps = {
+    answered: boolean;
+    disabled: boolean;
+    indeterminate: boolean;
+    correct: boolean;
+    incorrect: boolean;
+    checked: boolean;
+    defaultChecked: boolean;
+    cssOverrides: SimpleInterpolation;
+    readOnly: boolean;
+    value: string | number | Array<string>;
+    required: boolean;
+    name: string;
+    key: string | number;
+    type: 'radio' | 'checkbox';
+    children: ReactNode;
+};
+export declare const Choice: FCwDP<ChoiceProps, DefaultProps>;
 export {};

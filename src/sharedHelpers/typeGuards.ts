@@ -74,3 +74,13 @@ export const isObject = (x: unknown): x is object =>
  */
 export const isFunction = (x: unknown): x is (params: unknown) => void =>
   x instanceof Function
+
+/**
+ * Typeguard for making sure a key is in an object when the object has no index signature
+ */
+export function hasKey<O>(
+  obj: O,
+  key: string | number | symbol,
+): key is keyof O {
+  return key in obj
+}

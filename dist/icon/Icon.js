@@ -172,7 +172,7 @@ const Icon =
   icon,
   ...otherProps
 }) => {
-  const CustomIcon = customIcons[icon] || (0, _exports.isAppName)(icon) && customIcons[`${(0, _exports.convertAppNameToString)(icon)}-app`];
+  const CustomIcon = customIcons[icon];
 
   if (CustomIcon) {
     return _react.default.createElement(CustomIcon, otherProps);

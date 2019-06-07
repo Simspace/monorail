@@ -8,7 +8,9 @@ let Colors;
 exports.Colors = Colors;
 
 (function (Colors) {
+  Colors["Black12"] = "black12";
   Colors["Black24"] = "black24";
+  Colors["Black38"] = "black38";
   Colors["Black54"] = "black54";
   Colors["Black62"] = "black62";
   Colors["Black74"] = "black74";
@@ -67,11 +69,23 @@ const colorHSLAMap = ({
 }) => {
   const baseColors = {
     // Base Colors
+    [Colors.Black12]: {
+      h: 0,
+      s: 0,
+      l: 0,
+      a: 0.12 * alpha
+    },
     [Colors.Black24]: {
       h: 0,
       s: 0,
       l: 0,
       a: 0.24 * alpha
+    },
+    [Colors.Black38]: {
+      h: 0,
+      s: 0,
+      l: 0,
+      a: 0.38 * alpha
     },
     [Colors.Black54]: {
       h: 0,

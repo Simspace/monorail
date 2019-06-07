@@ -51,3 +51,7 @@ export declare const isObject: (x: unknown) => x is object;
  * Type guard for the `Function` primitive
  */
 export declare const isFunction: (x: unknown) => x is (params: unknown) => void;
+/**
+ * Typeguard for making sure a key is in an object when the object has no index signature
+ */
+export declare function hasKey<O>(obj: O, key: string | number | symbol): key is keyof O;

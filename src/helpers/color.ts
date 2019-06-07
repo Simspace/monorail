@@ -1,6 +1,8 @@
 export enum Colors {
   // Black, Gray, and White.
+  Black12 = 'black12',
   Black24 = 'black24',
+  Black38 = 'black38',
   Black54 = 'black54',
   Black62 = 'black62',
   Black74 = 'black74',
@@ -87,7 +89,9 @@ export const colorHSLAMap = ({
 }): HSLAMapType => {
   const baseColors = {
     // Base Colors
+    [Colors.Black12]: { h: 0, s: 0, l: 0, a: 0.12 * alpha },
     [Colors.Black24]: { h: 0, s: 0, l: 0, a: 0.24 * alpha },
+    [Colors.Black38]: { h: 0, s: 0, l: 0, a: 0.38 * alpha },
     [Colors.Black54]: { h: 0, s: 0, l: 0, a: 0.54 * alpha },
     [Colors.Black62]: { h: 0, s: 0, l: 0, a: 0.62 * alpha },
     [Colors.Black74]: { h: 0, s: 0, l: 0, a: 0.74 * alpha },

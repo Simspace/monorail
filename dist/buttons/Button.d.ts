@@ -41,6 +41,7 @@ declare type FunctionalProps = {
     onMouseUp?: OnClick;
     pressed: boolean;
     size: ButtonSize;
+    title?: string;
     type: 'button' | 'reset' | 'submit';
 };
 declare type DefaultProps = IconProps & FunctionalProps;

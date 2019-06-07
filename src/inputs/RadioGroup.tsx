@@ -66,7 +66,9 @@ export const RadioGroup: SFC<Props> = ({
             name={label}
             checked={o.key === value}
             value={o.key}
-            onChange={e => onSelect(o.key, e)}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              onSelect(o.key, e)
+            }
             required={required}
             readOnly={false}
           >

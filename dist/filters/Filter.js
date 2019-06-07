@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.Filter = void 0;
+exports.Filter = exports.FilterIcon = exports.FilterText = exports.CCFilter = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
@@ -35,6 +35,8 @@ _styledComponents.default.div.withConfig({
   cssOverrides
 }) => (0, _styledComponents.css)(["", ";", ";", ";", ";align-items:center;cursor:pointer;height:24px;padding:0 4px 0 8px;user-select:none;flex-shrink:0;", ";"], isActive ? (0, _exports.basePrimaryStyles)(_theme.ThemeColors.BrandSecondary) : (0, _styledComponents.css)(["", ";color:", ";"], (0, _exports.baseSecondaryStyles)(_theme.ThemeColors.BrandSecondary), (0, _exports.getColor)(_exports.Colors.Black74)), (0, _exports.borderRadius)(), _exports.buttonTransition, (0, _exports.flexFlow)('row'), cssOverrides));
 
+exports.CCFilter = CCFilter;
+
 const FilterText =
 /*#__PURE__*/
 _styledComponents.default.span.withConfig({
@@ -42,12 +44,14 @@ _styledComponents.default.span.withConfig({
   componentId: "sc-131i0x6-1"
 })(["", ";color:currentColor;text-transform:uppercase;white-space:nowrap;"], (0, _exports.typography)(700, _exports.FontSizes.Title5));
 
+exports.FilterText = FilterText;
 const FilterIcon =
 /*#__PURE__*/
 (0, _styledComponents.default)(_Icon.Icon).withConfig({
   displayName: "Filter__FilterIcon",
   componentId: "sc-131i0x6-2"
 })(["color:currentColor;"]);
+exports.FilterIcon = FilterIcon;
 
 class Filter extends _react.Component {
   render() {

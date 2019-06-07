@@ -16,4 +16,4 @@ export declare class SerializableMap<K extends string, V> extends Map<K, V> {
  * SerializableMap constructor function
  *
  */
-export declare const mkSerializableMap: <K extends string, V>(pairs: ReadonlyArray<[K, V]>) => SerializableMap<K, V>;
+export declare const mkSerializableMap: <K extends string, V>(pairs: readonly [K, V][]) => SerializableMap<K, V>;

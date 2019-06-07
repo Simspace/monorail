@@ -1,5 +1,6 @@
 import React, { ChangeEvent, Component } from 'react';
 import { SimpleInterpolation } from 'styled-components';
+export declare const BBTextAreaContainer: import("styled-components").StyledComponent<"label", any, TextAreaProps, never>;
 declare type BBTextAreaContainerProps = {
     cssOverrides?: SimpleInterpolation;
 };

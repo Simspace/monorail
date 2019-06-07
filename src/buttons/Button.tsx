@@ -179,6 +179,7 @@ type FunctionalProps = {
   onMouseUp?: OnClick
   pressed: boolean
   size: ButtonSize
+  title?: string
   type: 'button' | 'reset' | 'submit'
 }
 

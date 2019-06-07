@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.TextArea = void 0;
+exports.TextArea = exports.BBTextAreaContainer = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
@@ -28,6 +28,8 @@ _styledComponents.default.label.withConfig({
 })(({
   cssOverrides
 }) => (0, _styledComponents.css)(["", ";max-width:256px;width:100%;position:relative;", ";"], (0, _exports.flexFlow)(), cssOverrides));
+
+exports.BBTextAreaContainer = BBTextAreaContainer;
 
 const BBTextAreaLabel =
 /*#__PURE__*/

@@ -5,6 +5,12 @@ export declare type ActionsMenuProps = {
     menuItems: Array<{
         label: string;
         iconName?: string;
+        /**
+         * TODO: get rid of the need to have to pass a callback to close the popover.
+         * This onClick should match the signature of all other react onClick.
+         * If we weren't depending on asynchronous behavior in components that are consuming
+         * ActionsMenu we would just be able to stop propagation on the SyntheticEvent
+         */
         onClick: (onClickParent: () => void) => void;
         featuredAction?: boolean;
         children?: ReactNode;

@@ -16,7 +16,7 @@ import { isNil } from '@monorail/sharedHelpers/typeGuards'
  * Styles
  */
 
-const BBTextAreaContainer = styled.label<TextAreaProps>(
+export const BBTextAreaContainer = styled.label<TextAreaProps>(
   ({ cssOverrides }) => css`
     ${flexFlow()};
 
