@@ -40,7 +40,7 @@ export type ExtractAFromLens<L extends Lens<any, any>> = L extends Lens<
  * when passed an object
  */
 export const lensesFromRecord = <
-  A extends Record<string, unknown>,
+  A,
   K extends keyof A & string,
   LensRecord extends { [P in K]: Lens<A, A[P]> },
   IndexedLensRecord extends Record<string, Lens<A, A[K]>>

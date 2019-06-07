@@ -26,6 +26,7 @@ export declare class LoadingButton extends Component<Props, State> {
         onMouseUp?: import("./Button").OnClick | undefined;
         pressed: boolean;
         size: import("./buttonTypes").ButtonSize;
+        title?: string | undefined;
         type: "button" | "reset" | "submit";
     };
     state: State;

@@ -26,7 +26,7 @@ const AppIcon =
   cssOverrides,
   ...otherProps
 }) => _react.default.createElement("div", otherProps, _react.default.createElement(_Icon.Icon, {
-  icon: appName
+  icon: `${appName}-app`
 })))(({
   cssOverrides
 }) => (0, _styledComponents.css)(["", ";", ";box-sizing:border-box;height:16px;width:16px;", "{fill:", ";height:100%;margin:auto;width:100%;}", ";"], (0, _exports.flexFlow)('row'), (0, _exports.borderRadius)(), _Icon.Icon, (0, _exports.getColor)(_exports.Colors.White), cssOverrides)); // tslint:enable

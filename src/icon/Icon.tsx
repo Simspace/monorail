@@ -1,17 +1,8 @@
 import React, { ComponentType, MouseEvent } from 'react'
-import styled, {
-  createGlobalStyle,
-  css,
-  SimpleInterpolation,
-} from 'styled-components'
+import styled, { createGlobalStyle, css } from 'styled-components'
 import { Omit } from 'typelevel-ts'
 
-import {
-  Colors,
-  convertAppNameToString,
-  getColor,
-  isAppName,
-} from '@monorail/helpers/exports'
+import { Colors, getColor } from '@monorail/helpers/exports'
 import { Academy } from '@monorail/icon/custom/Academy'
 import { Admin } from '@monorail/icon/custom/Admin'
 import { Catalog } from '@monorail/icon/custom/Catalog'
@@ -125,9 +116,7 @@ const customIcons: { [key: string]: ComponentType<CustomIconProps> } = {
 
 export const Icon = styled(
   ({ cssOverrides: _cssOverrides, icon, ...otherProps }: IconProps) => {
-    const CustomIcon =
-      customIcons[icon] ||
-      (isAppName(icon) && customIcons[`${convertAppNameToString(icon)}-app`])
+    const CustomIcon = customIcons[icon]
 
     if (CustomIcon) {
       return <CustomIcon {...otherProps} />

@@ -1,5 +1,7 @@
 export declare enum Colors {
+    Black12 = "black12",
     Black24 = "black24",
+    Black38 = "black38",
     Black54 = "black54",
     Black62 = "black62",
     Black74 = "black74",

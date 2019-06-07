@@ -66,7 +66,9 @@ export const mkConstructors = <A extends object>() => <
   const result = {} as StringIndexed<Constructors<A, DataConstructorTagKey>>
 
   for (const memberTag of Object.keys(memberTagRecord)) {
-    result[memberTag] = (
+    // TODO: any cast due to TS 3.5 upgrade. Not sure how to type better. -dan
+    // tslint:disable-next-line: no-any
+    ;(result as any)[memberTag] = (
       x: Omit<
         TaggedUnionMember<
           A,
@@ -154,7 +156,9 @@ export const mkGuards = <A extends object>() => <
     }
   >
   for (const memberTag of Object.keys(memberTagRecord)) {
-    result[memberTag] = (
+    // TODO: any cast due to TS 3.5 upgrade. Not sure how to type better. -dan
+    // tslint:disable-next-line: no-any
+    ;(result as any)[memberTag] = (
       member: A,
     ): member is Extract<
       A,

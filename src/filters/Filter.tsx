@@ -18,7 +18,7 @@ import { Menu } from '@monorail/menu/Menu'
 import { PopOver } from '@monorail/popOver/PopOver'
 import { isNil } from '@monorail/sharedHelpers/typeGuards'
 
-const CCFilter = styled.div<CCFilterProps>(
+export const CCFilter = styled.div<CCFilterProps>(
   ({ isActive, cssOverrides }) => css`
     ${isActive
       ? basePrimaryStyles(ThemeColors.BrandSecondary)
@@ -42,7 +42,7 @@ const CCFilter = styled.div<CCFilterProps>(
   `,
 )
 
-const FilterText = styled.span`
+export const FilterText = styled.span`
   ${typography(700, FontSizes.Title5)};
 
   color: currentColor;
@@ -50,7 +50,7 @@ const FilterText = styled.span`
   white-space: nowrap;
 `
 
-const FilterIcon = styled(Icon)`
+export const FilterIcon = styled(Icon)`
   color: currentColor;
 `
 

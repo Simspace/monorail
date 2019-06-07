@@ -20,7 +20,7 @@ type AppIconProps = CommonComponentType & {
 // tslint:disable no-unsafe-any
 export const AppIcon = styled(({ appName, cssOverrides, ...otherProps }) => (
   <div {...otherProps}>
-    <Icon icon={appName} />
+    <Icon icon={`${appName}-app`} />
   </div>
 ))<AppIconProps>(
   ({ cssOverrides }) => css`

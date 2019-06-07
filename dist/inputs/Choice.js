@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.Choice = void 0;
 
-var _react = _interopRequireWildcard(require("react"));
+var _react = _interopRequireDefault(require("react"));
 
 var _styledComponents = _interopRequireWildcard(require("styled-components"));
 
@@ -14,6 +14,10 @@ var _exports = require("../helpers/exports");
 var _Icon = require("../icon/Icon");
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
 /*
  * Styles
@@ -41,13 +45,16 @@ _styledComponents.default.label.withConfig({
   displayName: "Choice__CCChoice",
   componentId: "sc-16u3c70-2"
 })(({
-  disabled,
+  dense,
   readOnly,
   incorrect,
   correct,
-  cssOverrides,
-  answered
-}) => (0, _styledComponents.css)(["", ";", ";", ";", ";align-items:center;box-sizing:border-box;cursor:pointer;display:flex;flex-direction:row;min-height:24px;padding:4px 4px 4px 32px;position:relative;user-select:none;width:100%;", ";.ChoiceButtonChecked{color:", ";transform:translateX(", "px);}.ChoiceButtonUnchecked{color:", ";transform:translateX(", "px);}.RealInput:checked ~ .ChoiceButtonChecked{", ";}.RealInput:checked ~ .ChoiceButtonUnchecked{", ";}.RealInput:not(:checked) ~ .ChoiceButtonChecked{", ";}.RealInput:not(:checked) ~ .ChoiceButtonUnchecked{", ";}.IncorrectIcon{color:", ";", ";}.CorrectIcon{color:", ";", ";}", "{left:8px;position:absolute;font-size:16px;transition:all ease 150ms;}", ";"], (readOnly || incorrect || correct) && (0, _styledComponents.css)(["cursor:default;pointer-events:none;"]), (0, _exports.baseChromelessStyles)(), (0, _exports.flexFlow)('row'), (0, _exports.borderRadius)(), _exports.buttonTransition, (0, _exports.getColor)(_exports.Colors.BrandLightBlue), answered ? 24 : 0, (0, _exports.getColor)(_exports.Colors.Black54), answered ? 24 : 0, disabled && _exports.baseDisabledStyles, (0, _exports.visible)(false), (0, _exports.visible)(false), disabled && _exports.baseDisabledStyles, (0, _exports.getColor)(_exports.Colors.Red), (0, _exports.visible)(incorrect), (0, _exports.getColor)(_exports.Colors.Green), (0, _exports.visible)(correct), _Icon.Icon, cssOverrides));
+  cssOverrides
+}) => (0, _styledComponents.css)(["", ";", ";", ";", ";align-items:center;box-sizing:border-box;cursor:pointer;display:flex;flex-direction:row;min-height:24px;padding:", ";position:relative;user-select:none;width:100%;", ";", ";"], (readOnly || incorrect || correct) && (0, _styledComponents.css)(["cursor:default;pointer-events:none;"]), (0, _exports.baseChromelessStyles)(), (0, _exports.flexFlow)('row'), (0, _exports.borderRadius)(), dense ? '4px 4px 4px 24px' : '8px 8px 8px 32px', _exports.buttonTransition, cssOverrides));
+
+const baseIconStyles = (answered, dense) => (0, _styledComponents.css)(["font-size:16px;left:", ";position:absolute;top:", ";transition:all ease 150ms;transform:translateX(", "px);"], dense ? '4px' : '8px', dense ? '4px' : '8px', answered ? 24 : 0);
+
+const centeredIconStyles = (answered, dense) => (0, _styledComponents.css)(["align-items:center;font-size:16px;position:absolute;left:", ";transition:all ease 150ms;transform:translateX(", "px);"], dense ? '4px' : '8px', answered ? 24 : 0);
 /*
  * Types
  */
@@ -56,87 +63,216 @@ _styledComponents.default.label.withConfig({
 /*
  * Component
  */
-class Choice extends _react.Component {
-  constructor(...args) {
-    super(...args);
+const UncheckedRadioIcon =
+/*#__PURE__*/
+(0, _styledComponents.default)(({
+  checked,
+  answered,
+  dense,
+  centeredInput,
+  ...otherProps
+}) => _react.default.createElement(_Icon.Icon, _extends({
+  icon: "radio_button_unchecked"
+}, otherProps)))(({
+  checked,
+  answered,
+  dense,
+  centeredInput
+}) => (0, _styledComponents.css)(["", ";", ";color:", ";"], (0, _exports.visible)(!checked), centeredInput ? centeredIconStyles(answered, dense) : baseIconStyles(answered, dense), (0, _exports.getColor)(_exports.Colors.Black54)));
+const CheckedRadioIcon =
+/*#__PURE__*/
+(0, _styledComponents.default)(({
+  checked,
+  answered,
+  dense,
+  centeredInput,
+  ...otherProps
+}) => _react.default.createElement(_Icon.Icon, _extends({
+  icon: "radio_button_checked"
+}, otherProps)))(({
+  checked,
+  answered,
+  dense,
+  centeredInput
+}) => (0, _styledComponents.css)(["", ";", ";color:", ";"], (0, _exports.visible)(checked), centeredInput ? centeredIconStyles(answered, dense) : baseIconStyles(answered, dense), (0, _exports.getColor)(_exports.Colors.BrandLightBlue)));
+const UncheckedCheckboxIcon =
+/*#__PURE__*/
+(0, _styledComponents.default)(({
+  checked,
+  answered,
+  dense,
+  indeterminate,
+  centeredInput,
+  ...otherProps
+}) => _react.default.createElement(_Icon.Icon, _extends({
+  icon: "check_box_outline_blank"
+}, otherProps)))(({
+  checked,
+  answered,
+  dense,
+  indeterminate,
+  centeredInput
+}) => (0, _styledComponents.css)(["", ";", ";color:", ";"], (0, _exports.visible)(!checked && !indeterminate), centeredInput ? centeredIconStyles(answered, dense) : baseIconStyles(answered, dense), (0, _exports.getColor)(_exports.Colors.Black54)));
+const CheckedCheckboxIcon =
+/*#__PURE__*/
+(0, _styledComponents.default)(({
+  checked,
+  answered,
+  dense,
+  centeredInput,
+  ...otherProps
+}) => _react.default.createElement(_Icon.Icon, _extends({
+  icon: "check_box"
+}, otherProps)))(({
+  checked,
+  answered,
+  dense,
+  centeredInput
+}) => (0, _styledComponents.css)(["", ";", ";color:", ";"], (0, _exports.visible)(checked), centeredInput ? centeredIconStyles(answered, dense) : baseIconStyles(answered, dense), (0, _exports.getColor)(_exports.Colors.BrandLightBlue)));
+const IndeterminateIcon =
+/*#__PURE__*/
+(0, _styledComponents.default)(({
+  indeterminate,
+  answered,
+  dense,
+  centeredInput,
+  ...otherProps
+}) => _react.default.createElement(_Icon.Icon, _extends({
+  icon: "indeterminate_check_box"
+}, otherProps)))(({
+  indeterminate,
+  answered,
+  dense,
+  centeredInput
+}) => (0, _styledComponents.css)(["", ";", ";color:", ";"], (0, _exports.visible)(indeterminate), centeredInput ? centeredIconStyles(answered, dense) : baseIconStyles(answered, dense), (0, _exports.getColor)(_exports.Colors.BrandLightBlue)));
+const IncorrectIcon =
+/*#__PURE__*/
+(0, _styledComponents.default)(({
+  incorrect,
+  answered,
+  dense,
+  ...otherProps
+}) => _react.default.createElement(_Icon.Icon, _extends({
+  icon: "cancel"
+}, otherProps)))(({
+  incorrect,
+  dense,
+  answered
+}) => (0, _styledComponents.css)(["", ";", ";color:", ";"], (0, _exports.visible)(incorrect), baseIconStyles(answered, dense), (0, _exports.getColor)(_exports.Colors.Red)));
+const CorrectIcon =
+/*#__PURE__*/
+(0, _styledComponents.default)(({
+  correct,
+  answered,
+  dense,
+  ...otherProps
+}) => _react.default.createElement(_Icon.Icon, _extends({
+  icon: "check_circle"
+}, otherProps)))(({
+  correct,
+  dense,
+  answered
+}) => (0, _styledComponents.css)(["", ";", ";color:", ";"], (0, _exports.visible)(correct), baseIconStyles(answered, dense), (0, _exports.getColor)(_exports.Colors.Green)));
 
-    this.renderFakeInputIcons = () => {
-      const {
-        type
-      } = this.props;
+const renderFakeInputIcons = (type, centeredInput, checked, answered, dense, indeterminate) => {
+  switch (type) {
+    default:
+    case 'radio':
+      return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(UncheckedRadioIcon, {
+        centeredInput: centeredInput,
+        checked: checked,
+        answered: answered,
+        dense: dense
+      }), _react.default.createElement(CheckedRadioIcon, {
+        centeredInput: centeredInput,
+        checked: checked,
+        answered: answered,
+        dense: dense
+      }));
 
-      switch (type) {
-        default:
-        case 'radio':
-          return [_react.default.createElement(_Icon.Icon, {
-            key: "radioNotChecked",
-            className: "ChoiceButtonUnchecked",
-            icon: "radio_button_unchecked"
-          }), _react.default.createElement(_Icon.Icon, {
-            key: "radioChecked",
-            className: "ChoiceButtonChecked",
-            icon: "radio_button_checked"
-          })];
-
-        case 'checkbox':
-          return [_react.default.createElement(_Icon.Icon, {
-            key: "radioNotChecked",
-            className: "ChoiceButtonUnchecked",
-            icon: "check_box_outline_blank"
-          }), _react.default.createElement(_Icon.Icon, {
-            key: "radioChecked",
-            className: "ChoiceButtonChecked",
-            icon: "check_box"
-          })];
-      }
-    };
+    case 'checkbox':
+      return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(UncheckedCheckboxIcon, {
+        centeredInput: centeredInput,
+        checked: checked,
+        answered: answered,
+        dense: dense
+      }), _react.default.createElement(CheckedCheckboxIcon, {
+        centeredInput: centeredInput,
+        checked: checked,
+        answered: answered,
+        dense: dense
+      }), _react.default.createElement(IndeterminateIcon, {
+        centeredInput: centeredInput,
+        indeterminate: indeterminate,
+        dense: dense
+      }));
   }
+};
 
-  render() {
-    const {
-      answered,
-      checked,
-      correct,
-      cssOverrides,
-      disabled,
-      incorrect,
-      onChange,
-      children,
-      readOnly,
-      type,
-      value,
-      required,
-      name
-    } = this.props;
-    return _react.default.createElement(CCChoice, {
-      correct: correct,
-      cssOverrides: cssOverrides,
-      incorrect: incorrect,
-      disabled: disabled,
-      readOnly: readOnly,
-      answered: answered
-    }, _react.default.createElement(_Icon.Icon, {
-      icon: "cancel",
-      className: "IncorrectIcon"
-    }), _react.default.createElement(_Icon.Icon, {
-      icon: "check_circle",
-      className: "CorrectIcon"
-    }), _react.default.createElement(BBChoiceInput, {
-      disabled: disabled,
-      onChange: onChange,
-      className: "RealInput",
-      checked: checked,
-      type: type,
-      readOnly: readOnly,
-      value: value,
-      required: required,
-      name: name
-    }), this.renderFakeInputIcons(), _react.default.createElement(BBChoiceFakeLabel, {
-      answered: answered,
-      disabled: disabled
-    }, children));
-  }
-
-}
+const Choice = ({
+  answered,
+  centeredInput,
+  checked,
+  correct,
+  cssOverrides,
+  dense,
+  disabled,
+  incorrect,
+  indeterminate,
+  onChange,
+  children,
+  readOnly,
+  type,
+  value,
+  required,
+  name,
+  style,
+  ...domProps
+}) => _react.default.createElement(CCChoice, _extends({
+  style: style,
+  correct: correct,
+  cssOverrides: cssOverrides,
+  incorrect: incorrect,
+  dense: dense,
+  disabled: disabled,
+  readOnly: readOnly,
+  answered: answered,
+  indeterminate: indeterminate
+}, domProps), _react.default.createElement(BBChoiceInput, {
+  disabled: disabled,
+  onChange: onChange,
+  checked: checked,
+  type: type,
+  readOnly: readOnly,
+  value: value,
+  required: required,
+  name: name
+}), _react.default.createElement(IncorrectIcon, {
+  incorrect: incorrect
+}), _react.default.createElement(CorrectIcon, {
+  correct: correct
+}), renderFakeInputIcons(type, centeredInput, checked, answered, dense, indeterminate), _react.default.createElement(BBChoiceFakeLabel, {
+  answered: answered,
+  disabled: disabled
+}, children));
 
 exports.Choice = Choice;
+Choice.defaultProps = {
+  answered: false,
+  centeredInput: false,
+  dense: false,
+  disabled: false,
+  indeterminate: false,
+  correct: false,
+  incorrect: false,
+  checked: false,
+  defaultChecked: false,
+  cssOverrides: '',
+  readOnly: false,
+  value: '',
+  required: false,
+  name: '',
+  key: '',
+  type: 'radio',
+  children: ''
+};

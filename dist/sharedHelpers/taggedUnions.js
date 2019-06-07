@@ -13,6 +13,10 @@ const mkConstructors = () => (tag, memberTagRecord) => {
   const result = {};
 
   for (const memberTag of Object.keys(memberTagRecord)) {
+    // TODO: any cast due to TS 3.5 upgrade. Not sure how to type better. -dan
+    // tslint:disable-next-line: no-any
+    ;
+
     result[memberTag] = x => {
       const tagPair = {
         [tag]: memberTag
@@ -39,6 +43,10 @@ const mkGuards = () => (tag, memberTagRecord) => {
   const result = {};
 
   for (const memberTag of Object.keys(memberTagRecord)) {
+    // TODO: any cast due to TS 3.5 upgrade. Not sure how to type better. -dan
+    // tslint:disable-next-line: no-any
+    ;
+
     result[memberTag] = member => member[tag] === memberTag;
   }
 

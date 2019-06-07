@@ -6,7 +6,6 @@ import {
   BorderRadius,
   Colors,
   FontSizes,
-  FontWeights,
   getColor,
   typography,
 } from '@monorail/helpers/exports'
@@ -32,7 +31,7 @@ export const MappingID = styled.span`
   color: ${getColor(Colors.Black74)};
   font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, Courier,
     monospace;
-  font-weight: ${FontWeights.Book};
+  font-weight: 600;
   margin-right: 5px;
   padding: 1px 2px 0 2px;
 `

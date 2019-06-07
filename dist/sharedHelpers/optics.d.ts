@@ -18,7 +18,7 @@ export declare type ExtractAFromLens<L extends Lens<any, any>> = L extends Lens<
  * A function that generates monocle-ts Lenses for all top-level key-val pairs
  * when passed an object
  */
-export declare const lensesFromRecord: <A extends Record<string, unknown>, K extends keyof A & string, LensRecord extends { [P in K]: Lens<A, A[P]>; }, IndexedLensRecord extends Record<string, Lens<A, A[K]>>>(x: A) => LensRecord;
+export declare const lensesFromRecord: <A, K extends keyof A & string, LensRecord extends { [P in K]: Lens<A, A[P]>; }, IndexedLensRecord extends Record<string, Lens<A, A[K]>>>(x: A) => LensRecord;
 /**
  * Creates an Optional optic for a given index in some Array<A>
  */
