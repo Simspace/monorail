@@ -21,5 +21,5 @@ const HyperLink =
   fontSize = _typography.FontSizes.Title5,
   fontWeight = 500,
   margin = ''
-}) => (0, _styledComponents.css)(["", ";", " transition:color ease 25ms;text-decoration:underline;"], (0, _typography.typography)(fontWeight, fontSize, margin), (0, _baseStyles.baseHyperLinkStyles)()));
+}) => (0, _styledComponents.css)(["", ";", ";transition:color ease 25ms;text-decoration:underline;"], (0, _typography.typography)(fontWeight, fontSize, margin), (0, _baseStyles.baseHyperLinkStyles)()));
 exports.HyperLink = HyperLink;

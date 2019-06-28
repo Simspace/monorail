@@ -1,4 +1,4 @@
-import { MouseEvent } from 'react';
+import { MouseEvent, ReactType } from 'react';
 import { ButtonDisplay, ButtonMode, ButtonSize } from '@monorail/buttons/buttonTypes';
 import { FCwDP } from '@monorail/sharedHelpers/react';
 import { CommonComponentType, LinkProps } from '@monorail/types';
@@ -45,7 +45,9 @@ declare type FunctionalProps = {
     type: 'button' | 'reset' | 'submit';
 };
 declare type DefaultProps = IconProps & FunctionalProps;
-declare type CommonProps = CommonComponentType & LinkProps;
+declare type CommonProps = CommonComponentType & LinkProps & {
+    passedAs?: ReactType;
+};
 declare type StyleProps = CommonProps & FunctionalProps;
 export declare type ButtonProps = CommonProps & DefaultProps;
 export declare const buttonDefaultProps: DefaultProps;

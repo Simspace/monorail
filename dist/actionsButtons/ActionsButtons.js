@@ -39,25 +39,27 @@ const ActionsButtons = ({
   iconOnly,
   size,
   standardActions
-}) => _react.default.createElement(_react.default.Fragment, null, featuredActions && featuredActions.map(action => iconOnly ? _react.default.createElement(_IconButton.IconButton, {
+}) => _react.default.createElement(_react.default.Fragment, null, featuredActions && featuredActions.map(action => iconOnly ? _react.default.createElement(_StyledIconButton, {
   key: `${action.label}-${action.iconName}`,
   icon: action.iconName,
   title: action.label,
   size: size,
   display: display,
   onClick: () => action.onClick(() => {})
-}) : _react.default.createElement(_Button.Button, {
+}) : _react.default.createElement(_StyledButton, {
   key: `${action.label}-${action.iconName}`,
   size: size,
   display: display,
   iconLeft: action.iconName // hacky because of the onClick type of ActionMenu's menu items
   ,
   onClick: () => action.onClick(() => {})
-}, action.label)), standardActions && _react.default.createElement(_StyledActionsMenu, {
+}, action.label)), standardActions && _react.default.createElement(_ActionsMenu.ActionsMenu, {
   document: document,
   menuItems: combineActions(standardActions, featuredActions)
 }));
 
 exports.ActionsButtons = ActionsButtons;
 
-var _StyledActionsMenu = (0, _styledComponents.default)(_ActionsMenu.ActionsMenu)`margin-left:8px;`;
+var _StyledIconButton = (0, _styledComponents.default)(_IconButton.IconButton)`margin-right:8px;`;
+
+var _StyledButton = (0, _styledComponents.default)(_Button.Button)`margin-right:8px;`;

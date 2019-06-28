@@ -30,3 +30,7 @@ export declare const sequenceTasksStruct: <R extends Record<string, import("fp-t
  * sequence utility for structs (interfaces/objects) containing TaskEithers of mixed value types
  */
 export declare const sequenceTaskEithersStruct: <L, R extends Record<string, import("fp-ts/lib/TaskEither").TaskEither<L, any>>>(r: (keyof R extends never ? never : R) & Record<string, import("fp-ts/lib/TaskEither").TaskEither<L, any>>) => import("fp-ts/lib/TaskEither").TaskEither<L, { [K in keyof R]: [R[K]] extends [import("fp-ts/lib/TaskEither").TaskEither<any, infer A>] ? A : never; }>;
+/**
+ * sequence utility for structs (interfaces/objects) containing RemoteData of mixed value types
+ */
+export declare const sequenceRemoteDataStruct: <L, R extends Record<string, import("@devexperts/remote-data-ts").RemoteData<L, any>>>(r: (keyof R extends never ? never : R) & Record<string, import("@devexperts/remote-data-ts").RemoteData<L, any>>) => import("@devexperts/remote-data-ts").RemoteData<L, { [K in keyof R]: [R[K]] extends [import("@devexperts/remote-data-ts").RemoteData<any, infer A>] ? A : never; }>;

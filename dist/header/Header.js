@@ -44,7 +44,9 @@ const HeaderTitle =
 _styledComponents.default.h1.withConfig({
   displayName: "Header__HeaderTitle",
   componentId: "muzh11-2"
-})(["", ";"], (0, _exports.typography)(500, _exports.FontSizes.Title3));
+})(({
+  cssOverrides
+}) => (0, _styledComponents.css)(["", ";", ";"], (0, _exports.typography)(500, _exports.FontSizes.Title3), cssOverrides));
 
 exports.HeaderTitle = HeaderTitle;
 const iconLeftCss =
@@ -58,6 +60,7 @@ const Header =
   children,
   cssOverrides,
   cssHeaderRow,
+  cssTitle,
   iconLeft,
   noBorder = false,
   title,
@@ -70,7 +73,9 @@ const Header =
 }), iconLeft && _react.default.createElement(_Icon.Icon, {
   cssOverrides: iconLeftCss,
   icon: iconLeft
-}), _react.default.createElement(HeaderTitle, null, title), actions), children))(({
+}), _react.default.createElement(HeaderTitle, {
+  cssOverrides: cssTitle
+}, title), actions), children))(({
   noBorder,
   appIcon,
   cssOverrides

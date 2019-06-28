@@ -3,17 +3,12 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.swap = exports.tuple = exports.o = exports.flip_ = exports.constVoid = void 0;
+exports.swap = exports.tuple = exports.o = exports.flip_ = void 0;
 
-const constVoid = () => {};
 /**
  * Flips the order of the arguments to an uncurried function taking two
  * arguments. Like `flip`, but for uncurried, not curried, functions.
  */
-
-
-exports.constVoid = constVoid;
-
 const flip_ = f => (b, a) => f(a, b);
 /**
  * Simple binary composition. Also known as `compose2`

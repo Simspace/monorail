@@ -22,6 +22,8 @@ exports.ThemeColors = ThemeColors;
   ThemeColors["AccentPrimary"] = "accentPrimary";
   ThemeColors["ActionPrimary"] = "actionPrimary";
   ThemeColors["ActionSecondary"] = "actionSecondary";
+  ThemeColors["ActivePrimary"] = "activePrimary";
+  ThemeColors["ActiveSecondary"] = "activeSecondary";
   ThemeColors["ApplicationPrimary"] = "applicationPrimary";
   ThemeColors["ApplicationSecondary"] = "applicationSecondary";
   ThemeColors["BackgroundPrimary"] = "backgroundPrimary";
@@ -54,6 +56,8 @@ const monorailTheme = {
     [ThemeColors.ActionSecondary]: _color.Colors.BrandLightBlue,
     [ThemeColors.BackgroundPrimary]: _color.Colors.White,
     [ThemeColors.BackgroundSecondary]: _color.Colors.White,
+    [ThemeColors.ActivePrimary]: _color.Colors.BrandDarkBlue,
+    [ThemeColors.ActiveSecondary]: _color.Colors.White,
     [ThemeColors.PrimaryColor]: _color.Colors.Black,
     [ThemeColors.SecondaryColor]: _color.Colors.White,
     [ThemeColors.Text200]: _color.Colors.Black24,
@@ -67,6 +71,8 @@ const monorailTheme = {
     [ThemeColors.ActionSecondary]: _color.Colors.White,
     [ThemeColors.BackgroundPrimary]: _color.Colors.DarkGrey,
     [ThemeColors.BackgroundSecondary]: _color.Colors.White,
+    [ThemeColors.ActivePrimary]: _color.Colors.AccentPurple700,
+    [ThemeColors.ActiveSecondary]: _color.Colors.White,
     [ThemeColors.PrimaryColor]: _color.Colors.White,
     [ThemeColors.SecondaryColor]: _color.Colors.Black,
     [ThemeColors.Text200]: _color.Colors.White89,

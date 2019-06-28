@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 import { css, SimpleInterpolation } from 'styled-components'
 
 import {
@@ -18,7 +18,9 @@ type Props = PopOverChildProps &
   DefaultProps & {
     title: string
     iconLeft?: string
+    headerChildren?: ReactNode
     headerStyles?: SimpleInterpolation
+    customCloseButton?: ReactNode
   }
 
 type DefaultProps = {
@@ -32,6 +34,8 @@ export const MediumModal: FCwDP<Props, DefaultProps> = ({
   title,
   iconLeft,
   togglePopOver,
+  headerChildren,
+  customCloseButton,
   headerStyles,
   closingAnimationCompleted,
   zIndex,
@@ -68,6 +72,8 @@ export const MediumModal: FCwDP<Props, DefaultProps> = ({
           title={title}
           iconLeft={iconLeft}
           onClose={onClick}
+          customCloseButton={customCloseButton}
+          headerRowChildren={headerChildren}
           cssOverrides={headerStyles}
           size={ModalSize.Medium}
         />

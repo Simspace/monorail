@@ -1,3 +1,4 @@
+import { remoteData } from '@devexperts/remote-data-ts'
 import { sequenceS, sequenceT } from 'fp-ts/lib/Apply'
 import { either } from 'fp-ts/lib/Either'
 import { option } from 'fp-ts/lib/Option'
@@ -43,3 +44,8 @@ export const sequenceTasksStruct = sequenceS(task)
  * sequence utility for structs (interfaces/objects) containing TaskEithers of mixed value types
  */
 export const sequenceTaskEithersStruct = sequenceS(taskEither)
+
+/**
+ * sequence utility for structs (interfaces/objects) containing RemoteData of mixed value types
+ */
+export const sequenceRemoteDataStruct = sequenceS(remoteData)

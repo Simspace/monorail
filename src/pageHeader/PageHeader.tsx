@@ -5,7 +5,6 @@ import React, {
   ReactNode,
   RefObject,
 } from 'react'
-import { Link } from 'react-router'
 
 import { Button } from '@monorail/buttons/Button'
 import { ButtonDisplay, ButtonSize } from '@monorail/buttons/buttonTypes'
@@ -20,13 +19,14 @@ import {
   getElevationShadow,
   typography,
 } from '@monorail/helpers/exports'
-import styled, { css, ThemeProvider } from '@monorail/helpers/styled-components'
+import styled, { css } from '@monorail/helpers/styled-components'
 import {
   getThemeColor,
   getThemeColorBase,
   Mode,
   ThemeColors,
 } from '@monorail/helpers/theme'
+import { BaseLink } from '@monorail/hyperLink/BaseLink'
 import { HyperLink } from '@monorail/hyperLink/HyperLink'
 import { Icon } from '@monorail/icon/Icon'
 import { isNil } from '@monorail/sharedHelpers/typeGuards'
@@ -83,36 +83,6 @@ const pageHeaderPadding = css`
   padding: 0 32px;
 `
 
-const PageHeaderShadow = styled.div<PageHeaderShadowProps>(
-  ({ willAnimateShadow, flush }) => css`
-    bottom: -20px;
-    left: 0;
-    overflow: hidden;
-    pointer-events: none;
-    position: absolute;
-    right: 0;
-    top: 0;
-    z-index: -10;
-
-    &:before {
-      ${getElevationShadow(ElevationRange.Elevation6)};
-
-      background: ${getColor(Colors.White)};
-      bottom: 26px;
-      content: '';
-      left: -10px;
-      position: absolute;
-      right: -10px;
-      top: 0;
-    }
-
-    ${(flush || willAnimateShadow) &&
-      css`
-        opacity: 0;
-      `};
-  `,
-)
-
 const PageHeaderNavigation = styled.div<PageHeaderNavigationProps>`
   ${flexFlow('row')};
   ${pageHeaderPadding};
@@ -168,7 +138,7 @@ const PageName = styled.h5`
 `
 
 const BreadCrumbLink = styled(HyperLink)`
-  ${baseHyperLinkStyles(ThemeColors.Text500)}
+  ${baseHyperLinkStyles(ThemeColors.Text500)};
 
   padding: 6px 2px;
   user-select: none;
@@ -178,11 +148,6 @@ const BreadCrumbLink = styled(HyperLink)`
 /*
  * Types
  */
-
-export type PageHeaderShadowProps = {
-  willAnimateShadow: boolean
-  flush: boolean
-}
 
 export type BreadCrumbsType = Array<{
   title: string
@@ -194,20 +159,15 @@ type PageHeaderNavigationProps = {
 }
 
 type PageHeaderContainerProps = CommonComponentType & {
-  flush: boolean
   hasAboveContent: boolean
 }
 
-type PageHeaderProps = CommonComponentType &
+export type PageHeaderProps = CommonComponentType &
   PageHeaderNavigationProps & {
     goBack?: MouseEventHandler | string
     title: string
     pageName?: string
-    action?: ReactNode
-    shadowRef?: RefObject<HTMLDivElement>
-    willAnimateShadow: boolean
-    flush: boolean
-    noShadow?: boolean
+    actions?: ReactNode
   }
 
 /*
@@ -215,11 +175,6 @@ type PageHeaderProps = CommonComponentType &
  */
 
 export class PageHeader extends Component<PageHeaderProps> {
-  static defaultProps = {
-    willAnimateShadow: false,
-    flush: false,
-  }
-
   pageHeaderContainerRef = createRef<HTMLDivElement>()
 
   renderBreadCrumbs = () => {
@@ -241,17 +196,13 @@ export class PageHeader extends Component<PageHeaderProps> {
 
   render() {
     const {
-      action,
+      actions,
       breadCrumbs,
       children,
       cssOverrides,
-      flush,
       goBack,
-      shadowRef,
       pageName,
       title,
-      willAnimateShadow,
-      noShadow,
       ...domProps
     } = this.props
 
@@ -260,7 +211,6 @@ export class PageHeader extends Component<PageHeaderProps> {
     return (
       <PageHeaderContainer
         cssOverrides={cssOverrides}
-        flush={flush}
         hasAboveContent={hasAboveContent}
         ref={this.pageHeaderContainerRef}
         {...domProps}
@@ -271,7 +221,7 @@ export class PageHeader extends Component<PageHeaderProps> {
               <Button
                 size={ButtonSize.Compact}
                 display={ButtonDisplay.Chromeless}
-                as={Link}
+                as={BaseLink}
                 to={goBack}
                 cssOverrides={css`
                   margin-left: -4px;
@@ -305,18 +255,10 @@ export class PageHeader extends Component<PageHeaderProps> {
         {pageName && <PageName>{pageName}</PageName>}
         <TitleContainer hasAboveContent={hasAboveContent}>
           <Title>{title}</Title>
-          {action}
+          {actions}
         </TitleContainer>
 
         {children}
-
-        {!noShadow && (
-          <PageHeaderShadow
-            willAnimateShadow={willAnimateShadow}
-            flush={flush}
-            ref={shadowRef}
-          />
-        )}
       </PageHeaderContainer>
     )
   }

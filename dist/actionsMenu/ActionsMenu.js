@@ -53,7 +53,7 @@ const ActionsMenu = ({
       leftIcon: menuItem.iconName,
       primaryText: menuItem.label,
       onClick: e => menuItem.onClick(() => onClick(e))
-    }, menuItem.children)), _react.default.createElement(_StyledDivider, null), standardItems.map((menuItem, idx) => _react.default.createElement(_List.SimpleListItem, {
+    }, menuItem.children)), featuredItems.length > 0 && standardItems.length > 0 && _react.default.createElement(_StyledDivider, null), standardItems.map((menuItem, idx) => _react.default.createElement(_List.SimpleListItem, {
       key: idx + menuItem.label,
       size: _size.Sizes.DP32,
       leftIcon: menuItem.iconName,

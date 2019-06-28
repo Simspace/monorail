@@ -18,6 +18,7 @@ exports.Colors = Colors;
   Colors["Black"] = "black";
   Colors["White89"] = "white89";
   Colors["White"] = "white";
+  Colors["Grey90"] = "grey90";
   Colors["Grey94"] = "grey94";
   Colors["Grey96"] = "grey96";
   Colors["Grey97"] = "grey97";
@@ -127,6 +128,12 @@ const colorHSLAMap = ({
       h: 0,
       s: 0,
       l: 100,
+      a: alpha
+    },
+    [Colors.Grey90]: {
+      h: 0,
+      s: 0,
+      l: 90,
       a: alpha
     },
     [Colors.Grey94]: {

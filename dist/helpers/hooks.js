@@ -4,6 +4,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.useEventListener = useEventListener;
+exports.useRefCallback = useRefCallback;
 
 var _react = require("react");
 
@@ -34,4 +35,14 @@ function useEventListener({
   *  `options`
   */
   [element, eventListener, eventName, options]);
+}
+
+function useRefCallback() {
+  const [element, setElement] = (0, _react.useState)(null);
+  const ref = (0, _react.useCallback)(node => {
+    if (node !== null) {
+      setElement(node);
+    }
+  }, []);
+  return [element, ref];
 }

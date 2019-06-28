@@ -119,7 +119,7 @@ export const IconButton: FCwDP<Props, DefaultProps> = ({
     as={passedAs}
     display={display}
     size={size}
-    isActive={isActive}
+    pressed={isActive}
     cssOverrides={iconButtonCSS({
       display,
       size,

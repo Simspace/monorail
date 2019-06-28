@@ -1,5 +1,4 @@
-import React, { FC } from 'react'
-import { Link } from 'react-router'
+import React, { FC, MouseEventHandler, ReactType } from 'react'
 
 import {
   BorderRadius,
@@ -12,8 +11,9 @@ import {
 } from '@monorail/helpers/exports'
 import styled, { css } from '@monorail/helpers/styled-components'
 import { getThemeColor, ThemeColors } from '@monorail/helpers/theme'
+import { BaseLink } from '@monorail/hyperLink/BaseLink'
 import { FramedIcon } from '@monorail/icon/FramedIcon'
-import { CommonComponentType, LinkProps } from '@monorail/types'
+import { LinkProps } from '@monorail/types'
 
 /*
  * Styles
@@ -38,36 +38,42 @@ const TileTitle = styled.div`
 // eslint-disable-next-line no-unexpected-multiline
 const TileContainer = styled.div<{
   to: LinkProps['to']
-}>`
-  ${borderRadius(BorderRadius.Large)};
-  ${flexFlow('column')};
+}>(
+  ({ to }) => css`
+    ${borderRadius(BorderRadius.Large)};
+    ${flexFlow('column')};
 
-  background: ${getColor(Colors.White)};
-  border: 1px solid ${getColor(Colors.Black24)};
-  height: 184px;
-  width: 184px;
+    background: ${getColor(Colors.White)};
+    border: 1px solid ${getColor(Colors.Black24)};
+    height: 184px;
+    width: 184px;
+    user-select: none;
 
-  &:hover {
-    ${TileTitleContainer} {
-      background: ${getColor(Colors.BrandLightBlue, 0.1)};
-    }
+    ${to &&
+      css`
+        &:hover {
+          ${TileTitleContainer} {
+            background: ${getColor(Colors.BrandLightBlue, 0.1)};
+          }
 
-    ${TileTitle} {
-      color: ${getColor(Colors.BrandLightBlue)};
-    }
-  }
+          ${TileTitle} {
+            color: ${getColor(Colors.BrandLightBlue)};
+          }
+        }
 
-  &.is-active,
-  &:active {
-    ${TileTitleContainer} {
-      background: ${getColor(Colors.BrandLightBlue, 0.2)};
-    }
+        &.is-active,
+        &:active {
+          ${TileTitleContainer} {
+            background: ${getColor(Colors.BrandLightBlue, 0.2)};
+          }
 
-    ${TileTitle} {
-      color: ${getColor(Colors.BrandLightBlue)};
-    }
-  }
-`
+          ${TileTitle} {
+            color: ${getColor(Colors.BrandLightBlue)};
+          }
+        }
+      `}
+  `,
+)
 
 const TileBody = styled.div`
   ${flexFlow('column')};
@@ -86,12 +92,14 @@ type TileProps = {
   image?: string
   name: string
   frameColor: Colors
+  isArchived?: boolean
 }
 
-type Props = CommonComponentType &
-  TileProps & {
-    to: LinkProps['to']
-  }
+type Props = TileProps & {
+  to: LinkProps['to']
+  as?: ReactType
+  onClick?: MouseEventHandler
+}
 
 /*
  * Component
@@ -103,11 +111,17 @@ export const Tile: FC<Props> = ({
   image,
   frameColor,
   to,
+  isArchived,
   ...domProps
 }) => (
-  <TileContainer as={Link} to={to} {...domProps}>
+  <TileContainer as={BaseLink} to={to} {...domProps}>
     <TileBody>
-      <FramedIcon frameColor={frameColor} icon={icon} size={64} />
+      <FramedIcon
+        frameColor={frameColor}
+        icon={icon}
+        size={64}
+        isArchived={isArchived}
+      />
     </TileBody>
     <TileTitleContainer>
       <FramedIcon
@@ -117,6 +131,7 @@ export const Tile: FC<Props> = ({
         css={css`
           margin-right: 16px;
         `}
+        isArchived={isArchived}
       />
       <TileTitle>{name}</TileTitle>
     </TileTitleContainer>

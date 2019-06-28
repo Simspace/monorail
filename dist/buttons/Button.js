@@ -37,7 +37,7 @@ const buttonDisplayCss = {
 };
 exports.buttonDisplayCss = buttonDisplayCss;
 const buttonPressedDisplayCss = {
-  [_buttonTypes.ButtonDisplay.Primary]: (0, _exports.basePrimaryStyles)(_theme.ThemeColors.BrandSecondary),
+  [_buttonTypes.ButtonDisplay.Primary]: (0, _exports.basePrimaryStyles)(_theme.ThemeColors.ActivePrimary, _theme.ThemeColors.ActiveSecondary),
   [_buttonTypes.ButtonDisplay.Secondary]: (0, _exports.basePrimaryStyles)(),
   [_buttonTypes.ButtonDisplay.Outline]: (0, _exports.basePrimaryStyles)(),
   [_buttonTypes.ButtonDisplay.Chromeless]: (0, _exports.basePrimaryStyles)(),
@@ -101,8 +101,10 @@ const Button = ({
   iconLeft,
   iconRight,
   size,
+  passedAs,
   ...domProps
 }) => _react.default.createElement(StyledButton, _extends({
+  as: passedAs,
   className: `new-button ${className}`,
   size: size
 }, domProps), !(0, _typeGuards.isEmptyString)(iconLeft) && _react.default.createElement(_StyledIcon, {

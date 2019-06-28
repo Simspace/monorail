@@ -97,7 +97,8 @@ const defaultTextFieldProps = {
   type: 'text',
   min: 0,
   max: 9999,
-  className: ''
+  className: '',
+  autoFocus: false
 };
 exports.defaultTextFieldProps = defaultTextFieldProps;
 const defaultTextAreaProps = {
@@ -112,7 +113,9 @@ const defaultTextAreaProps = {
   readOnly: false,
   required: false,
   type: 'text',
-  className: ''
+  className: '',
+  name: '',
+  autoFocus: false
   /*
    * Component
    */

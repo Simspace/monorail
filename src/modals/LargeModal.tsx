@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 import { css, SimpleInterpolation } from 'styled-components'
 
 import {
@@ -19,6 +19,7 @@ type Props = PopOverChildProps &
     title: string
     iconLeft?: string
     headerStyles?: SimpleInterpolation
+    headerRowChildren?: ReactNode
   }
 
 type DefaultProps = {
@@ -35,6 +36,7 @@ export const LargeModal: FCwDP<Props, DefaultProps> = ({
   headerStyles,
   closingAnimationCompleted,
   zIndex,
+  headerRowChildren,
   ...otherProps
 }) => {
   const { modalBackgroundRef, isRendered } = useModalAnimation<HTMLDivElement>({
@@ -70,6 +72,7 @@ export const LargeModal: FCwDP<Props, DefaultProps> = ({
           onClose={onClick}
           cssOverrides={headerStyles}
           size={ModalSize.Large}
+          headerRowChildren={headerRowChildren}
         />
         {children}
       </BBModalBackground>

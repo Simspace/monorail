@@ -31,6 +31,7 @@ const LargeModal = ({
   headerStyles,
   closingAnimationCompleted,
   zIndex,
+  headerRowChildren,
   ...otherProps
 }) => {
   const {
@@ -55,7 +56,8 @@ const LargeModal = ({
     iconLeft: iconLeft,
     onClose: onClick,
     cssOverrides: headerStyles,
-    size: _modalTypes.ModalSize.Large
+    size: _modalTypes.ModalSize.Large,
+    headerRowChildren: headerRowChildren
   }), children));
 };
 

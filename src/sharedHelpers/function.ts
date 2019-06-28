@@ -1,9 +1,5 @@
 import { Function2 } from 'fp-ts/lib/function'
 
-import { isEmptyString, isFalse, isNil, isNumber, isZero } from './typeGuards'
-
-export const constVoid = (): void => {}
-
 /**
  * Flips the order of the arguments to an uncurried function taking two
  * arguments.

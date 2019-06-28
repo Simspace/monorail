@@ -1,7 +1,7 @@
 import React, { MouseEvent } from 'react'
-import styled from 'styled-components'
+import styled, { css, SimpleInterpolation } from 'styled-components'
 
-import { ButtonDisplay } from '@monorail/buttons/buttonTypes'
+import { ButtonDisplay, ButtonSize } from '@monorail/buttons/buttonTypes'
 import { IconButton } from '@monorail/buttons/IconButton'
 import {
   Colors,
@@ -10,17 +10,19 @@ import {
   getColor,
   typography,
 } from '@monorail/helpers/exports'
+import { isUndefined } from '@monorail/sharedHelpers/typeGuards'
 import { CommonComponentType } from '@monorail/types'
 
 /*
  * Styles
  */
 
+//  TODO: remove this container and position on the arrow buttons themselves
 const ArrowButtonsContainer = styled.div`
   ${flexFlow('row')};
-
-  align-items: center; /* Need for IE 11 */
-  align-self: flex-end; /* Need for IE 11 */
+  height: 100%;
+  z-index: 5;
+  pointer-events: none;
 `
 
 const RatioContainer = styled.p`
@@ -35,10 +37,14 @@ const RatioContainer = styled.p`
  */
 
 type Props = CommonComponentType & {
-  count?: number
+  current: number
   next?: (event: MouseEvent<Element>) => void
   previous?: (event: MouseEvent<Element>) => void
-  total?: number
+  total: number
+  slideIndicatorType?: string
+  size?: ButtonSize
+  arrowColor?: Colors
+  cssArrowOverrides?: SimpleInterpolation
 }
 
 /*
@@ -46,22 +52,62 @@ type Props = CommonComponentType & {
  */
 
 export const ArrowButtons = (props: Props) => {
-  const { count, next, previous, total, ...otherProps } = props
+  const {
+    current,
+    next,
+    previous,
+    total,
+    slideIndicatorType,
+    cssArrowOverrides,
+    arrowColor = Colors.Black,
+    size,
+    ...otherProps
+  } = props
 
   return (
     <ArrowButtonsContainer {...otherProps}>
       <IconButton
         icon="chevron_left"
-        disabled={previous === undefined}
+        disabled={isUndefined(previous) || current === 0}
         onClick={previous}
         display={ButtonDisplay.Chromeless}
+        size={size}
+        cssOverrides={
+          slideIndicatorType === 'dot'
+            ? css`
+                margin: auto auto auto 16px;
+                pointer-events: all;
+                ${cssArrowOverrides};
+              `
+            : css`
+                margin: auto auto auto 0;
+                pointer-events: all;
+                ${cssArrowOverrides};
+              `
+        }
       />
-      <RatioContainer>{`${count} / ${total}`}</RatioContainer>
+      {slideIndicatorType !== 'dot' && (
+        <RatioContainer>{`${current + 1} / ${total + 1}`}</RatioContainer>
+      )}
       <IconButton
         icon="chevron_right"
-        disabled={next === undefined}
+        disabled={isUndefined(next) || current === total}
         onClick={next}
         display={ButtonDisplay.Chromeless}
+        size={size}
+        cssOverrides={
+          slideIndicatorType === 'dot'
+            ? css`
+                margin: auto 16px auto auto;
+                pointer-events: all;
+                ${cssArrowOverrides};
+              `
+            : css`
+                margin: auto 0 auto auto;
+                pointer-events: all;
+                ${cssArrowOverrides};
+              `
+        }
       />
     </ArrowButtonsContainer>
   )

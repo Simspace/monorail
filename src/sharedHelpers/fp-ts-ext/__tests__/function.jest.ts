@@ -1,18 +1,4 @@
-import { constVoid, flip_, o, swap, tuple } from '../function'
-
-describe('constVoid', () => {
-  it('should be a noOp function', () => {
-    const actual = constVoid.toString()
-    const expected = 'function constVoid() {}'
-    expect(actual).toBe(expected)
-  })
-
-  it('should return void', () => {
-    const actual = constVoid()
-    const expected = undefined
-    expect(actual).toBe(expected)
-  })
-})
+import { flip_, o, swap, tuple } from '../function'
 
 describe('flip_', () => {
   it('should flip the order of the arguments of an uncurried function', () => {

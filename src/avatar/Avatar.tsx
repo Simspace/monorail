@@ -3,6 +3,7 @@ import styled, { css, SimpleInterpolation } from 'styled-components'
 
 import { borderRadius, Colors, getColor } from '@monorail/helpers/exports'
 import { Sizes } from '@monorail/helpers/size'
+import { Icon } from '@monorail/icon/Icon'
 
 type CCAvatarProps = {
   cssOverrides?: SimpleInterpolation
@@ -12,6 +13,7 @@ type CCAvatarProps = {
 
 const defaultSize = 24
 const fontScale = 9.89 / defaultSize
+const iconScale = 10 / 16
 
 const CCAvatar = styled.div<CCAvatarProps>(
   ({ team, cssOverrides, size = defaultSize }) => css`
@@ -26,11 +28,14 @@ const CCAvatar = styled.div<CCAvatarProps>(
           border-radius: ${size / 2}px;
         `};
 
+    align-items: center;
     color: ${getColor(Colors.White)};
+    display: flex;
     flex-shrink: 0;
     font-size: ${size * fontScale}px;
     font-weight: 900;
     height: ${size}px;
+    justify-content: center;
     line-height: ${size}px;
     text-align: center;
     text-transform: uppercase;
@@ -44,6 +49,7 @@ const CCAvatar = styled.div<CCAvatarProps>(
 type AvatarProps = CCAvatarProps & {
   first: string
   last: string
+  isGroup?: boolean
 }
 
 export const Avatar: StatelessComponent<AvatarProps> = ({
@@ -52,11 +58,24 @@ export const Avatar: StatelessComponent<AvatarProps> = ({
   last,
   team,
   size,
+  isGroup = false,
   ...domProps
 }) => (
   <CCAvatar cssOverrides={cssOverrides} team={team} size={size} {...domProps}>
-    {first.charAt(0)}
-    {last.charAt(0)}
+    {isGroup ? (
+      <Icon
+        icon="org_group"
+        size={size ? iconScale * size : iconScale * defaultSize}
+        css={css`
+          color: ${getColor(Colors.White)};
+        `}
+      />
+    ) : (
+      <>
+        {first.charAt(0)}
+        {last.charAt(0)}
+      </>
+    )}
   </CCAvatar>
 )
 

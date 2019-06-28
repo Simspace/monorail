@@ -21,6 +21,7 @@ declare type BasicProps = {
     readOnly: boolean;
     required: boolean;
     type: string;
+    autoFocus: boolean;
 };
 export declare type TextFieldProps = ContainerProps & BasicProps & ExtraProps;
 export declare type TextAreaProps = ContainerProps & BasicProps;
@@ -40,6 +41,7 @@ export declare const defaultTextFieldProps: {
     min: number;
     max: number;
     className: string;
+    autoFocus: boolean;
 };
 export declare const defaultTextAreaProps: {
     cssOverrides: string;
@@ -54,6 +56,8 @@ export declare const defaultTextAreaProps: {
     required: boolean;
     type: string;
     className: string;
+    name: string;
+    autoFocus: boolean;
 };
 export declare class TextField extends Component<TextFieldProps> {
     static defaultProps: {
@@ -72,6 +76,7 @@ export declare class TextField extends Component<TextFieldProps> {
         min: number;
         max: number;
         className: string;
+        autoFocus: boolean;
     };
     render(): JSX.Element;
 }
@@ -89,6 +94,8 @@ export declare class TextArea extends Component<TextAreaProps> {
         required: boolean;
         type: string;
         className: string;
+        name: string;
+        autoFocus: boolean;
     };
     render(): JSX.Element;
 }

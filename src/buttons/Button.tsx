@@ -1,4 +1,4 @@
-import React, { MouseEvent } from 'react'
+import React, { MouseEvent, ReactType } from 'react'
 
 import {
   ButtonDisplay,
@@ -50,7 +50,10 @@ export const buttonDisplayCss = {
 }
 
 export const buttonPressedDisplayCss = {
-  [ButtonDisplay.Primary]: basePrimaryStyles(ThemeColors.BrandSecondary),
+  [ButtonDisplay.Primary]: basePrimaryStyles(
+    ThemeColors.ActivePrimary,
+    ThemeColors.ActiveSecondary,
+  ),
   [ButtonDisplay.Secondary]: basePrimaryStyles(),
   [ButtonDisplay.Outline]: basePrimaryStyles(),
   [ButtonDisplay.Chromeless]: basePrimaryStyles(),
@@ -184,7 +187,10 @@ type FunctionalProps = {
 }
 
 type DefaultProps = IconProps & FunctionalProps
-type CommonProps = CommonComponentType & LinkProps
+type CommonProps = CommonComponentType &
+  LinkProps & {
+    passedAs?: ReactType
+  }
 
 type StyleProps = CommonProps & FunctionalProps
 
@@ -210,9 +216,15 @@ export const Button: FCwDP<CommonProps, DefaultProps> = ({
   iconLeft,
   iconRight,
   size,
+  passedAs,
   ...domProps
 }) => (
-  <StyledButton className={`new-button ${className}`} size={size} {...domProps}>
+  <StyledButton
+    as={passedAs}
+    className={`new-button ${className}`}
+    size={size}
+    {...domProps}
+  >
     {!isEmptyString(iconLeft) && (
       <Icon icon={iconLeft} css={iconLeftStyles[size]} size={16} />
     )}

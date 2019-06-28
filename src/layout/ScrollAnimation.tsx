@@ -1,86 +1,106 @@
-import React, { Component, RefObject } from 'react'
+import React, { FC, useRef } from 'react'
+import styled from 'styled-components'
 
+import { Colors, getColor } from '@monorail/helpers/color'
+import { ElevationRange, getElevationShadow } from '@monorail/helpers/elevation'
+import { flexFlow } from '@monorail/helpers/flex'
+import { useEventListener, useRefCallback } from '@monorail/helpers/hooks'
 import { isNil } from '@monorail/sharedHelpers/typeGuards'
 
-type Props = {
-  scrollContainer: RefObject<HTMLDivElement>
-  animatingElement: RefObject<HTMLDivElement>
-  animationFunction: (props: {
-    scrollAmount: number
-    animationTermination: number
-  }) => string
-  animationTermination: number
-}
+const ScrollAnimationContainer = styled.div`
+  ${flexFlow()};
 
-type State = {
-  hasEventHandler: boolean
-}
+  overflow: hidden;
+  height: 100%;
 
-export class ScrollAnimation extends Component<Props, State> {
-  state: State = {
-    hasEventHandler: false,
-  }
+  position: relative;
+`
 
-  componentDidMount() {
-    const { scrollContainer } = this.props
-    const { hasEventHandler } = this.state
+const ScrollContainer = styled.div`
+  ${flexFlow()};
 
-    if (!hasEventHandler && !isNil(scrollContainer.current)) {
-      this.setState(() => ({ hasEventHandler: true }))
+  overflow-x: hidden;
+  overflow-y: auto;
+  height: 100%;
+`
 
-      scrollContainer.current.addEventListener('scroll', this.handleScroll)
-    }
-  }
+const Shadow = styled.div`
+  ${getElevationShadow(ElevationRange.Elevation6)};
 
-  componentDidUpdate() {
-    const {
-      scrollContainer: { current: scrollContainer },
-    } = this.props
-    const { hasEventHandler } = this.state
+  background: ${getColor(Colors.White)};
+  height: 16px;
+  left: -8px;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  right: -8px;
+  top: -18px;
+  z-index: 5;
+`
 
-    if (!hasEventHandler && !isNil(scrollContainer)) {
-      this.setState(() => ({ hasEventHandler: true }))
+const SCROLL_AMOUNT = 128
 
-      scrollContainer.addEventListener('scroll', this.handleScroll)
-    }
-  }
+export const ScrollAnimation: FC = ({ children, ...domProps }) => {
+  const shadow = useRef<HTMLDivElement>(null)
+  const [scrollContainer, scrollContainerRef] = useRefCallback<HTMLDivElement>()
 
-  componentWillUnmount() {
-    const {
-      scrollContainer: { current: scrollContainer },
-    } = this.props
+  const handleScroll: EventListener = event => {
+    if (!isNil(event.currentTarget) && !isNil(shadow)) {
+      const { current: shadowElement } = shadow
 
-    if (!isNil(scrollContainer)) {
-      scrollContainer.removeEventListener('scroll', this.handleScroll)
-    }
-  }
+      if (!isNil(shadowElement)) {
+        const scrollElement = event.currentTarget as HTMLDivElement /* Josh don't hate me! */
 
-  handleScroll: EventListener = event => {
-    const {
-      animationTermination,
-      animatingElement: { current: animatingElement },
-      animationFunction,
-    } = this.props
+        const scrollAmount = scrollElement.scrollTop
 
-    if (!isNil(event.currentTarget) && !isNil(animatingElement)) {
-      const scrollElement = event.currentTarget as HTMLDivElement /* Josh don't hate me! */
-
-      const scrollAmount = scrollElement.scrollTop
-
-      requestAnimationFrame(() => {
-        if (scrollAmount <= animationTermination) {
-          animatingElement.style.cssText = animationFunction({
-            scrollAmount,
-            animationTermination,
+        // Only change the scroll position if the opacity isn't correct, or we are under the scroll amount.
+        if (
+          (scrollAmount >= SCROLL_AMOUNT &&
+            shadowElement.style.opacity !== '0.9999') ||
+          scrollAmount < SCROLL_AMOUNT
+        ) {
+          requestAnimationFrame(() => {
+            shadowElement.style.cssText = calculateOpacity({
+              scrollAmount,
+              animationTermination: SCROLL_AMOUNT,
+            })
           })
         }
-      })
+      }
     }
   }
 
-  render() {
-    const { children } = this.props
+  useEventListener({
+    eventName: 'scroll',
+    eventListener: handleScroll,
+    element: scrollContainer,
+  })
 
-    return children
+  return (
+    <ScrollAnimationContainer>
+      <Shadow ref={shadow} />
+
+      <ScrollContainer ref={scrollContainerRef} {...domProps}>
+        {children}
+      </ScrollContainer>
+    </ScrollAnimationContainer>
+  )
+}
+
+const calculateOpacity: (props: {
+  scrollAmount: number
+  animationTermination: number
+}) => string = ({ scrollAmount, animationTermination }) => {
+  if (scrollAmount === 0) {
+    return 'opacity: 0;'
   }
+
+  if (scrollAmount >= animationTermination) {
+    return 'opacity: 0.9999;'
+  }
+
+  return `opacity: ${Math.min(
+    (0.9999 / animationTermination) * scrollAmount,
+    0.9999,
+  )};`
 }

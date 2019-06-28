@@ -1,3 +1,4 @@
+import { remoteData } from '@devexperts/remote-data-ts'
 import { liftA2 } from 'fp-ts/lib/Apply'
 import { array, elem, init, last, snoc, sort } from 'fp-ts/lib/Array'
 import { flatten } from 'fp-ts/lib/Chain'
@@ -84,6 +85,12 @@ export const sequenceTasks = array.sequence(task)
  * instance of Traversable2v1
  */
 export const sequenceTaskEithers = array.sequence(taskEither)
+
+/**
+ * sequence utility for the RemoteData instance of Applicative and the Array
+ * instance of Traversable2v1
+ */
+export const sequenceRemoteData = array.sequence(remoteData)
 
 /**
  * traverse utility for the Option instance of Applicative and the Array

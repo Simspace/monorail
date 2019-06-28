@@ -40,7 +40,7 @@ _react.default.createElement("div", props, _react.default.createElement(TabBarIn
 })))).withConfig({
   displayName: "PageLevelNavItem__PageLevelIndicatorContainer",
   componentId: "onrt18-0"
-})(["", ";bottom:0;height:31px;left:0;position:absolute;right:0;z-index:-5;"], (0, _exports.flexFlow)('row'));
+})(["", ";bottom:-1px;height:31px;left:0;position:absolute;right:0;z-index:-5;"], (0, _exports.flexFlow)('row'));
 
 const TabBarIndicatorLeft =
 /*#__PURE__*/

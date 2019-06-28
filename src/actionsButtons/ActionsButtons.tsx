@@ -64,6 +64,9 @@ export const ActionsButtons: FC<ActionsButtonsProps> = ({
             size={size}
             display={display}
             onClick={() => action.onClick(() => {})}
+            css={css`
+              margin-right: 8px;
+            `}
           />
         ) : (
           <Button
@@ -73,6 +76,9 @@ export const ActionsButtons: FC<ActionsButtonsProps> = ({
             iconLeft={action.iconName}
             // hacky because of the onClick type of ActionMenu's menu items
             onClick={() => action.onClick(() => {})}
+            css={css`
+              margin-right: 8px;
+            `}
           >
             {action.label}
           </Button>
@@ -80,9 +86,6 @@ export const ActionsButtons: FC<ActionsButtonsProps> = ({
       )}
     {standardActions && (
       <ActionsMenu
-        css={css`
-          margin-left: 8px;
-        `}
         document={document}
         menuItems={combineActions(standardActions, featuredActions)}
       />

@@ -3,15 +3,13 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.SidebarBack = exports.SideBarMenuDivider = exports.SidebarMenuItemDropDownToggle = exports.SidebarMenuContainer = exports.SidebarContainer = exports.SidebarContainerAnimationPose = exports.sideBarCollapsedTransition = exports.sideBarCollapsedTransitionDuration = void 0;
+exports.SidebarBack = exports.SideBarMenuHeader = exports.SideBarMenuDivider = exports.SidebarMenuItemDropDownToggle = exports.SidebarMenuContainer = exports.SidebarContainer = exports.SidebarContainerAnimationPose = exports.sideBarCollapsedTransition = exports.sideBarCollapsedTransitionDuration = void 0;
 
 var _styledComponents = _interopRequireWildcard(require("styled-components"));
 
-var _react = _interopRequireDefault(require("react"));
+var _react = _interopRequireWildcard(require("react"));
 
 var _reactPose = _interopRequireDefault(require("react-pose"));
-
-var _reactRouter = require("react-router");
 
 var _buttonTypes = require("../buttons/buttonTypes");
 
@@ -21,7 +19,11 @@ var _exports = require("../helpers/exports");
 
 var _zIndex = require("../helpers/zIndex");
 
+var _BaseLink = require("../hyperLink/BaseLink");
+
 var _List = require("../list/List");
+
+var _Text = require("../typography/Text");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -125,21 +127,52 @@ const SideBarMenuDivider =
 _styledComponents.default.div.withConfig({
   displayName: "SideBarComponents__SideBarMenuDivider",
   componentId: "u2fke3-2"
-})(["background:#e2e4ea;height:1px;margin:15px 8px 16px;flex-shrink:0;"]);
+})(({
+  isSideBarCollapsed = false
+}) => (0, _styledComponents.css)(["background:#e2e4ea;height:1px;margin:15px 8px 16px;flex-shrink:0;transition:margin ", " ", "ms;", ";"], (0, _exports.ease)(isSideBarCollapsed), sideBarCollapsedTransitionDuration, isSideBarCollapsed && (0, _styledComponents.css)(["margin-left:-12px;margin-right:-12px;"])));
 
 exports.SideBarMenuDivider = SideBarMenuDivider;
+
+const SideBarMenuHeader = ({
+  header,
+  isSideBarCollapsed
+}) => _react.default.createElement(_StyledText, {
+  fontSize: _exports.FontSizes.Title5,
+  fontWeight: 500,
+  margin: "0 0 16px",
+  color: _exports.Colors.Black62,
+  title: isSideBarCollapsed ? header : '',
+  _css6: (0, _exports.flexFlow)('row'),
+  _css7: (0, _exports.ease)(isSideBarCollapsed),
+  _css8: isSideBarCollapsed ? '0' : '14',
+  _css9: isSideBarCollapsed ? '0' : '14'
+}, _react.default.createElement(_StyledSpan, {
+  _css10: (0, _exports.ease)(isSideBarCollapsed),
+  _css11: isSideBarCollapsed ? '0' : '1'
+}, header.split(' ').map((word, index, list) => {
+  return _react.default.createElement(_react.Fragment, {
+    key: index
+  }, _react.default.createElement("span", null, word.charAt(0)), _react.default.createElement(_StyledSpan2, {
+    _css12: (0, _exports.ease)(isSideBarCollapsed),
+    _css13: index < list.length - 1 && (0, _styledComponents.css)(["padding-right:0.5em;"]),
+    _css14: isSideBarCollapsed && (0, _styledComponents.css)(["opacity:0;padding-right:0;text-indent:-150px;"])
+  }, word.slice(1)));
+})));
+
+exports.SideBarMenuHeader = SideBarMenuHeader;
 
 const SidebarBack = ({
   to,
   title,
-  byline
-}) => _react.default.createElement(_List.ListItem, null, _react.default.createElement(_StyledIconButton, {
+  byline,
+  ...domProps
+}) => _react.default.createElement(_StyledListItem, domProps, _react.default.createElement(_StyledIconButton, {
   icon: "circle_arrow_left",
-  passedAs: _reactRouter.Link,
+  passedAs: _BaseLink.BaseLink,
   to: to,
   display: _buttonTypes.ButtonDisplay.Secondary,
   shape: _buttonTypes.IconButtonShape.Square
-}), _react.default.createElement(_List.ListItemText, null, _react.default.createElement(_List.ListItemPrimaryText, null, title), _react.default.createElement(_List.ListItemSecondaryText, null, byline))); // tslint:enable
+}), _react.default.createElement(_StyledListItemText, null, _react.default.createElement(_List.ListItemPrimaryText, null, title), _react.default.createElement(_List.ListItemSecondaryText, null, byline))); // tslint:enable
 
 
 exports.SidebarBack = SidebarBack;
@@ -150,4 +183,14 @@ var _StyledListItemSecondaryText = (0, _styledComponents.default)(_List.ListItem
 
 var _StyledListItemGraphic2 = (0, _styledComponents.default)(_List.ListItemGraphic)`transform:translateX(${p => p._css4}px);transition:all ease 75ms,transform ${p => p._css5} ${sideBarCollapsedTransitionDuration}ms;`;
 
-var _StyledIconButton = (0, _styledComponents.default)(_IconButton.IconButton)`margin-right:8px;`;
+var _StyledText = (0, _styledComponents.default)(_Text.Text)`${p => p._css6} justify-content:center;transition:margin ${p => p._css7} ${sideBarCollapsedTransitionDuration}ms;margin-left:${p => p._css8}px;margin-right:${p => p._css9}px;`;
+
+var _StyledSpan = (0, _styledComponents.default)("span")`display:inline-flex;margin:0 auto;pointer-events:none;overflow:hidden;transition:flex ${p => p._css10} ${sideBarCollapsedTransitionDuration}ms;flex-grow:${p => p._css11};`;
+
+var _StyledSpan2 = (0, _styledComponents.default)("span")`overflow:hidden;transition:all ${p => p._css12} ${sideBarCollapsedTransitionDuration}ms;${p => p._css13} ${p => p._css14}`;
+
+var _StyledListItem = (0, _styledComponents.default)(_List.ListItem)`padding:0 22px;`;
+
+var _StyledIconButton = (0, _styledComponents.default)(_IconButton.IconButton)`margin-right:4px;`;
+
+var _StyledListItemText = (0, _styledComponents.default)(_List.ListItemText)`margin-left:0;`;
