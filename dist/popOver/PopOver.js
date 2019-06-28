@@ -3,13 +3,65 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.PopOver = void 0;
+exports.PopOver = exports.getDropAmounts = exports.getOverlayPosition = exports.defaultPopOverPosition = exports.dropDirections = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
 var _Portal = require("../portal/Portal");
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
+
+let dropDirections;
+exports.dropDirections = dropDirections;
+
+(function (dropDirections) {
+  dropDirections["Bottom"] = "bottom";
+  dropDirections["Left"] = "left";
+  dropDirections["Right"] = "right";
+  dropDirections["Top"] = "top";
+})(dropDirections || (exports.dropDirections = dropDirections = {}));
+
+const defaultPopOverPosition = {
+  dropXAmount: 0,
+  dropXDirection: dropDirections.Left,
+  dropYAmount: 0,
+  dropYDirection: dropDirections.Top,
+  gap: 0,
+  maxHeight: 360,
+  maxWidth: 304,
+  originHeight: 0,
+  originWidth: 0,
+  maxHeightCalc: '100vh',
+  maxWidthCalc: '100vw'
+};
+exports.defaultPopOverPosition = defaultPopOverPosition;
+
+const getOverlayPosition = (target, gap = 0, toSide = false) => {
+  // Get basic dimensions about the the Toggle and the window.
+  const boundingRect = target.getBoundingClientRect();
+  const innerWidth = window.innerWidth;
+  const innerHeight = window.innerHeight; // Determine the direction the PopOver should go.
+
+  const dropYDirection = innerHeight / 2 > boundingRect.top + boundingRect.height / 2 ? dropDirections.Top : dropDirections.Bottom;
+  const dropXDirection = innerWidth / 2 > boundingRect.left + boundingRect.width / 2 ? dropDirections.Left : dropDirections.Right;
+  return { ...getDropAmounts({
+      boundingRect,
+      dropXDirection,
+      dropYDirection,
+      gap,
+      innerHeight,
+      innerWidth,
+      toSide
+    }),
+    dropXDirection,
+    dropYDirection,
+    gap,
+    originHeight: boundingRect.height,
+    originWidth: boundingRect.width
+  };
+};
+
+exports.getOverlayPosition = getOverlayPosition;
 
 const getDropAmounts = ({
   dropXDirection,
@@ -49,6 +101,8 @@ const getDropAmounts = ({
   })
 });
 
+exports.getDropAmounts = getDropAmounts;
+
 const getDropXAmount = ({
   dropXDirection,
   innerWidth,
@@ -56,7 +110,7 @@ const getDropXAmount = ({
   toSide,
   gap
 }) => {
-  const isLeft = dropXDirection === 'left';
+  const isLeft = dropXDirection === dropDirections.Left;
 
   const dropXAmountForToSide = () => isLeft ? boundingRect.left + boundingRect.width + gap : innerWidth - boundingRect.right + boundingRect.width + gap;
 
@@ -74,7 +128,7 @@ const getDropYAmount = ({
   toSide,
   gap
 }) => {
-  const isTop = dropYDirection === 'top';
+  const isTop = dropYDirection === dropDirections.Top;
 
   const dropYAmountForToSide = () => isTop ? boundingRect.top : innerHeight - boundingRect.bottom;
 
@@ -92,7 +146,7 @@ const getMaxHeight = ({
   toSide,
   gap
 }) => {
-  const isTop = dropYDirection === 'top';
+  const isTop = dropYDirection === dropDirections.Top;
 
   const maxHeightForToSide = () => isTop ? innerHeight - boundingRect.top - gap * 2 : boundingRect.top + boundingRect.height - gap * 2;
 
@@ -110,7 +164,7 @@ const getMaxWidth = ({
   toSide,
   gap
 }) => {
-  const isLeft = dropXDirection === 'left';
+  const isLeft = dropXDirection === dropDirections.Left;
 
   const maxWidthForToSide = () => isLeft ? innerWidth - boundingRect.left - boundingRect.width - gap * 2 : boundingRect.left - gap * 2;
 
@@ -128,7 +182,7 @@ const getMaxHeightCalc = ({
   toSide,
   gap
 }) => {
-  const isTop = dropYDirection === 'top';
+  const isTop = dropYDirection === dropDirections.Top;
 
   const maxHeightForToSide = () => isTop ? `calc(100vh - ${boundingRect.bottom + gap * 2}px)` : `calc(100vh - ${innerHeight - boundingRect.bottom + gap}px)`;
 
@@ -146,7 +200,7 @@ const getMaxWidthCalc = ({
   toSide,
   gap
 }) => {
-  const isLeft = dropXDirection === 'left';
+  const isLeft = dropXDirection === dropDirections.Left;
 
   const maxWidthForToSide = () => isLeft ? `calc(100vw - ${boundingRect.right + gap * 2}px)` : `calc(100vw - ${innerWidth - boundingRect.left + gap}px)`;
 
@@ -163,19 +217,7 @@ class PopOver extends _react.Component {
     this.state = {
       isOpen: false,
       isRendered: false,
-      position: {
-        dropXAmount: 0,
-        dropXDirection: 'left',
-        dropYAmount: 0,
-        dropYDirection: 'top',
-        gap: 0,
-        maxHeight: 360,
-        maxWidth: 304,
-        originHeight: 0,
-        originWidth: 0,
-        maxHeightCalc: '100vh',
-        maxWidthCalc: '100vw'
-      }
+      position: defaultPopOverPosition
     };
 
     this.togglePopOver = () => {
@@ -207,29 +249,8 @@ class PopOver extends _react.Component {
         gap,
         toSide,
         onToggle
-      } = this.props; // Get basic dimensions about the the Toggle and the window.
-
-      const boundingRect = event.currentTarget.getBoundingClientRect();
-      const innerWidth = window.innerWidth;
-      const innerHeight = window.innerHeight; // Determine the direction the PopOver should go.
-
-      const dropYDirection = innerHeight / 2 > boundingRect.top + boundingRect.height / 2 ? 'top' : 'bottom';
-      const dropXDirection = innerWidth / 2 > boundingRect.left + boundingRect.width / 2 ? 'left' : 'right';
-      const position = { ...getDropAmounts({
-          boundingRect,
-          dropXDirection,
-          dropYDirection,
-          gap,
-          innerHeight,
-          innerWidth,
-          toSide
-        }),
-        dropXDirection,
-        dropYDirection,
-        gap,
-        originHeight: boundingRect.height,
-        originWidth: boundingRect.width
-      };
+      } = this.props;
+      const position = getOverlayPosition(event.currentTarget, gap, toSide);
       this.setState(({
         isOpen,
         isRendered

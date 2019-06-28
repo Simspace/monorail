@@ -1,8 +1,6 @@
 import { Function2 } from 'fp-ts/lib/function'
 
-import { Primitive } from '../typeLevel'
-
-export const constVoid = (): void => {}
+import { Primitive } from '@monorail/sharedHelpers/typeLevel'
 
 /**
  * Flips the order of the arguments to an uncurried function taking two

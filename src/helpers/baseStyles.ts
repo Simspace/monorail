@@ -156,28 +156,26 @@ export const baseSecondaryStyles = (
 `
 
 export const basePrimaryStyles = (
-  color: ThemeColors = ThemeColors.ActionPrimary,
-  backgroundColor: ThemeColors = ThemeColors.BackgroundPrimary,
+  backgroundColor: ThemeColors = ThemeColors.ActionPrimary,
+  color: ThemeColors = ThemeColors.BackgroundSecondary,
 ) => css`
-  background: ${getThemeColor(color)};
+  background: ${getThemeColor(backgroundColor)};
   border: 0;
-  color: ${getColor(Colors.White)};
+  color: ${getThemeColor(color)};
   position: relative;
 
   &:focus {
     &:after {
-      border-color: ${getThemeColor(backgroundColor, 0.3)};
+      border-color: ${getThemeColor(color, 0.3)};
     }
   }
 
   &:hover {
-    ${props =>
-      floatingBackgroundStyles(getThemeColor(backgroundColor, 0.15)(props))};
+    ${props => floatingBackgroundStyles(getThemeColor(color, 0.15)(props))};
   }
 
   &:active {
-    ${props =>
-      floatingBackgroundStyles(getThemeColor(backgroundColor, 0.3)(props))};
+    ${props => floatingBackgroundStyles(getThemeColor(color, 0.3)(props))};
   }
 `
 

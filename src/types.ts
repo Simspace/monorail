@@ -1,4 +1,3 @@
-import { Location, LocationDescriptor } from 'history'
 import { CSSProperties, ReactType } from 'react'
 import { IndexLinkProps } from 'react-router'
 import {
@@ -24,9 +23,6 @@ export type CommonComponentType = {
 export type TypographyComponent = {
   margin?: string
 }
-
-// Match types for "to" from LinkProps of react-router
-type ToLocationFunction = (location: Location) => LocationDescriptor
 
 export type LinkProps = {
   activeClassName?: string

@@ -248,7 +248,7 @@ export const BBModalBackground = styled.div<BBModalBackgroundProps>(
  * Styles
  */
 
-const BBModalHeaderContainer = styled.div<
+export const BBModalHeaderContainer = styled.div<
   BBModalSize & { cssOverrides: SimpleInterpolation }
 >(
   ({ size, cssOverrides }) => css`

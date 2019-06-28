@@ -33,9 +33,12 @@ const HeaderRow = styled.div<CommonComponentType>(
 
 const HeaderContainer = styled.div``
 
-export const HeaderTitle = styled.h1`
-  ${typography(500, FontSizes.Title3)};
-`
+export const HeaderTitle = styled.h1<CommonComponentType>(
+  ({ cssOverrides }) => css`
+    ${typography(500, FontSizes.Title3)};
+    ${cssOverrides};
+  `,
+)
 
 const iconLeftCss = css`
   color: ${getThemeColor(ThemeColors.Text1000)};
@@ -47,6 +50,7 @@ type Props = CommonComponentType & {
   actions?: ReactNode
   appIcon?: AppOrAuthSubAppName
   cssHeaderRow?: SimpleInterpolation
+  cssTitle?: SimpleInterpolation
   iconLeft?: string
   noBorder?: boolean
   title: ReactNode
@@ -59,6 +63,7 @@ export const Header = styled(
     children,
     cssOverrides,
     cssHeaderRow,
+    cssTitle,
     iconLeft,
     noBorder = false,
     title,
@@ -68,7 +73,7 @@ export const Header = styled(
       <HeaderRow cssOverrides={cssHeaderRow}>
         {appIcon && <AppIcon cssOverrides={iconLeftCss} appName={appIcon} />}
         {iconLeft && <Icon cssOverrides={iconLeftCss} icon={iconLeft} />}
-        <HeaderTitle>{title}</HeaderTitle>
+        <HeaderTitle cssOverrides={cssTitle}>{title}</HeaderTitle>
         {actions}
       </HeaderRow>
 

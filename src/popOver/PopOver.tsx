@@ -3,11 +3,21 @@ import { Omit } from 'typelevel-ts'
 
 import { Portal } from '@monorail/portal/Portal'
 
+export enum dropDirections {
+  Bottom = 'bottom',
+  Left = 'left',
+  Right = 'right',
+  Top = 'top',
+}
+
+export type dropXDirectionType = dropDirections.Left | dropDirections.Right
+export type dropYDirectionType = dropDirections.Top | dropDirections.Bottom
+
 export type PopOverPosition = {
   dropXAmount: number
-  dropXDirection: 'left' | 'right'
+  dropXDirection: dropXDirectionType
   dropYAmount: number
-  dropYDirection: 'top' | 'bottom'
+  dropYDirection: dropYDirectionType
   gap: number
   maxHeight: number
   maxWidth: number
@@ -15,6 +25,58 @@ export type PopOverPosition = {
   originWidth: number
   maxHeightCalc: string
   maxWidthCalc: string
+}
+
+export const defaultPopOverPosition: PopOverPosition = {
+  dropXAmount: 0,
+  dropXDirection: dropDirections.Left,
+  dropYAmount: 0,
+  dropYDirection: dropDirections.Top,
+  gap: 0,
+  maxHeight: 360,
+  maxWidth: 304,
+  originHeight: 0,
+  originWidth: 0,
+  maxHeightCalc: '100vh',
+  maxWidthCalc: '100vw',
+}
+
+export const getOverlayPosition = (
+  target: Element,
+  gap: number = 0,
+  toSide: boolean = false,
+) => {
+  // Get basic dimensions about the the Toggle and the window.
+  const boundingRect = target.getBoundingClientRect()
+  const innerWidth = window.innerWidth
+  const innerHeight = window.innerHeight
+
+  // Determine the direction the PopOver should go.
+  const dropYDirection: dropYDirectionType =
+    innerHeight / 2 > boundingRect.top + boundingRect.height / 2
+      ? dropDirections.Top
+      : dropDirections.Bottom
+  const dropXDirection: dropXDirectionType =
+    innerWidth / 2 > boundingRect.left + boundingRect.width / 2
+      ? dropDirections.Left
+      : dropDirections.Right
+
+  return {
+    ...getDropAmounts({
+      boundingRect,
+      dropXDirection,
+      dropYDirection,
+      gap,
+      innerHeight,
+      innerWidth,
+      toSide,
+    }),
+    dropXDirection,
+    dropYDirection,
+    gap,
+    originHeight: boundingRect.height,
+    originWidth: boundingRect.width,
+  }
 }
 
 export type PopOverToggleProps = {
@@ -30,10 +92,10 @@ export type PopOverChildProps = {
   closingAnimationCompleted: () => void
 }
 
-type PopOverProps = {
-  alwaysRender: boolean
+export type PopOverProps = {
+  alwaysRender?: boolean
   document?: Document
-  gap: number
+  gap?: number
   isOpen?: boolean
   onToggle?: (isOpen: boolean) => void
   popOver: (props: PopOverChildProps) => ReactNode
@@ -48,8 +110,8 @@ type PopOverState = {
 }
 
 type GetFunctionProps = {
-  dropXDirection: 'left' | 'right'
-  dropYDirection: 'top' | 'bottom'
+  dropXDirection: dropXDirectionType
+  dropYDirection: dropYDirectionType
   boundingRect: {
     top: number
     bottom: number
@@ -71,7 +133,7 @@ type GetFunctionXProps = Omit<
 
 type GetFunctionYProps = Omit<GetFunctionProps, 'dropXDirection' | 'innerWidth'>
 
-const getDropAmounts: (
+export const getDropAmounts: (
   props: GetFunctionProps,
 ) => {
   dropXAmount: number
@@ -100,7 +162,7 @@ const getDropXAmount: (
 ) => {
   dropXAmount: number
 } = ({ dropXDirection, innerWidth, boundingRect, toSide, gap }) => {
-  const isLeft = dropXDirection === 'left'
+  const isLeft = dropXDirection === dropDirections.Left
   const dropXAmountForToSide = () =>
     isLeft
       ? boundingRect.left + boundingRect.width + gap
@@ -118,7 +180,7 @@ const getDropYAmount: (
 ) => {
   dropYAmount: number
 } = ({ dropYDirection, innerHeight, boundingRect, toSide, gap }) => {
-  const isTop = dropYDirection === 'top'
+  const isTop = dropYDirection === dropDirections.Top
   const dropYAmountForToSide = () =>
     isTop ? boundingRect.top : innerHeight - boundingRect.bottom
   const dropYAmountForNotToSide = () =>
@@ -136,7 +198,7 @@ const getMaxHeight: (
 ) => {
   maxHeight: number
 } = ({ dropYDirection, innerHeight, boundingRect, toSide, gap }) => {
-  const isTop = dropYDirection === 'top'
+  const isTop = dropYDirection === dropDirections.Top
   const maxHeightForToSide = () =>
     isTop
       ? innerHeight - boundingRect.top - gap * 2
@@ -154,7 +216,7 @@ const getMaxWidth: (
 ) => {
   maxWidth: number
 } = ({ dropXDirection, innerWidth, boundingRect, toSide, gap }) => {
-  const isLeft = dropXDirection === 'left'
+  const isLeft = dropXDirection === dropDirections.Left
   const maxWidthForToSide = () =>
     isLeft
       ? innerWidth - boundingRect.left - boundingRect.width - gap * 2
@@ -172,7 +234,7 @@ const getMaxHeightCalc: (
 ) => {
   maxHeightCalc: string
 } = ({ dropYDirection, innerHeight, boundingRect, toSide, gap }) => {
-  const isTop = dropYDirection === 'top'
+  const isTop = dropYDirection === dropDirections.Top
 
   const maxHeightForToSide = () =>
     isTop
@@ -193,7 +255,7 @@ const getMaxWidthCalc: (
 ) => {
   maxWidthCalc: string
 } = ({ dropXDirection, innerWidth, boundingRect, toSide, gap }) => {
-  const isLeft = dropXDirection === 'left'
+  const isLeft = dropXDirection === dropDirections.Left
   const maxWidthForToSide = () =>
     isLeft
       ? `calc(100vw - ${boundingRect.right + gap * 2}px)`
@@ -226,19 +288,7 @@ export class PopOver extends Component<PopOverProps, PopOverState> {
   state: PopOverState = {
     isOpen: false,
     isRendered: false,
-    position: {
-      dropXAmount: 0,
-      dropXDirection: 'left',
-      dropYAmount: 0,
-      dropYDirection: 'top',
-      gap: 0,
-      maxHeight: 360,
-      maxWidth: 304,
-      originHeight: 0,
-      originWidth: 0,
-      maxHeightCalc: '100vh',
-      maxWidthCalc: '100vw',
-    },
+    position: defaultPopOverPosition,
   }
 
   togglePopOver = () => {
@@ -267,37 +317,7 @@ export class PopOver extends Component<PopOverProps, PopOverState> {
   onClick = (event: SyntheticEvent) => {
     const { gap, toSide, onToggle } = this.props
 
-    // Get basic dimensions about the the Toggle and the window.
-    const boundingRect = event.currentTarget.getBoundingClientRect()
-    const innerWidth = window.innerWidth
-    const innerHeight = window.innerHeight
-
-    // Determine the direction the PopOver should go.
-    const dropYDirection =
-      innerHeight / 2 > boundingRect.top + boundingRect.height / 2
-        ? ('top' as 'top')
-        : ('bottom' as 'bottom')
-    const dropXDirection =
-      innerWidth / 2 > boundingRect.left + boundingRect.width / 2
-        ? ('left' as 'left')
-        : ('right' as 'right')
-
-    const position = {
-      ...getDropAmounts({
-        boundingRect,
-        dropXDirection,
-        dropYDirection,
-        gap,
-        innerHeight,
-        innerWidth,
-        toSide,
-      }),
-      dropXDirection,
-      dropYDirection,
-      gap,
-      originHeight: boundingRect.height,
-      originWidth: boundingRect.width,
-    }
+    const position = getOverlayPosition(event.currentTarget, gap, toSide)
 
     this.setState(({ isOpen, isRendered }) => {
       const newIsOpen = !isOpen
@@ -326,6 +346,7 @@ export class PopOver extends Component<PopOverProps, PopOverState> {
             {popOver({
               isOpen,
               position,
+
               onClick: this.togglePopOver,
               togglePopOver: this.togglePopOver,
               closingAnimationCompleted: this.closingAnimationCompleted,

@@ -9,13 +9,13 @@ var _styledComponents = _interopRequireDefault(require("styled-components"));
 
 var _react = _interopRequireDefault(require("react"));
 
-var _reactRouter = require("react-router");
-
 var _exports = require("../helpers/exports");
 
 var _styledComponents2 = _interopRequireWildcard(require("../helpers/styled-components"));
 
 var _theme = require("../helpers/theme");
+
+var _BaseLink = require("../hyperLink/BaseLink");
 
 var _FramedIcon = require("../icon/FramedIcon");
 
@@ -48,7 +48,9 @@ const TileContainer =
 _styledComponents2.default.div.withConfig({
   displayName: "Tile__TileContainer",
   componentId: "tepisb-2"
-})(["", ";", ";background:", ";border:1px solid ", ";height:184px;width:184px;&:hover{", "{background:", ";}", "{color:", ";}}&.is-active,&:active{", "{background:", ";}", "{color:", ";}}"], (0, _exports.borderRadius)(_exports.BorderRadius.Large), (0, _exports.flexFlow)('column'), (0, _exports.getColor)(_exports.Colors.White), (0, _exports.getColor)(_exports.Colors.Black24), TileTitleContainer, (0, _exports.getColor)(_exports.Colors.BrandLightBlue, 0.1), TileTitle, (0, _exports.getColor)(_exports.Colors.BrandLightBlue), TileTitleContainer, (0, _exports.getColor)(_exports.Colors.BrandLightBlue, 0.2), TileTitle, (0, _exports.getColor)(_exports.Colors.BrandLightBlue));
+})(({
+  to
+}) => (0, _styledComponents2.css)(["", ";", ";background:", ";border:1px solid ", ";height:184px;width:184px;user-select:none;", ""], (0, _exports.borderRadius)(_exports.BorderRadius.Large), (0, _exports.flexFlow)('column'), (0, _exports.getColor)(_exports.Colors.White), (0, _exports.getColor)(_exports.Colors.Black24), to && (0, _styledComponents2.css)(["&:hover{", "{background:", ";}", "{color:", ";}}&.is-active,&:active{", "{background:", ";}", "{color:", ";}}"], TileTitleContainer, (0, _exports.getColor)(_exports.Colors.BrandLightBlue, 0.1), TileTitle, (0, _exports.getColor)(_exports.Colors.BrandLightBlue), TileTitleContainer, (0, _exports.getColor)(_exports.Colors.BrandLightBlue, 0.2), TileTitle, (0, _exports.getColor)(_exports.Colors.BrandLightBlue))));
 
 const TileBody =
 /*#__PURE__*/
@@ -70,18 +72,21 @@ const Tile = ({
   image,
   frameColor,
   to,
+  isArchived,
   ...domProps
 }) => _react.default.createElement(TileContainer, _extends({
-  as: _reactRouter.Link,
+  as: _BaseLink.BaseLink,
   to: to
 }, domProps), _react.default.createElement(TileBody, null, _react.default.createElement(_FramedIcon.FramedIcon, {
   frameColor: frameColor,
   icon: icon,
-  size: 64
+  size: 64,
+  isArchived: isArchived
 })), _react.default.createElement(TileTitleContainer, null, _react.default.createElement(_StyledFramedIcon, {
   frameColor: frameColor,
   icon: icon,
-  size: 16
+  size: 16,
+  isArchived: isArchived
 }), _react.default.createElement(TileTitle, null, name)));
 
 exports.Tile = Tile;

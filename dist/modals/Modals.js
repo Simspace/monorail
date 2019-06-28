@@ -4,7 +4,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.useModalAnimation = useModalAnimation;
-exports.BBModalContent = exports.BBModalContainer = exports.BBModalOverlay = exports.BBModalFooter = exports.BBModalHeader = exports.DefaultCloseButton = exports.BBModalBackground = exports.overlayCloseAnimation = exports.overlayOpenAnimation = exports.fullScreenModalCloseAnimation = exports.fullScreenModalOpenAnimation = exports.largeModalCloseAnimation = exports.largeModalOpenAnimation = exports.mediumModalCloseAnimation = exports.mediumModalOpenAnimation = exports.modalAnimationDuration = void 0;
+exports.BBModalContent = exports.BBModalContainer = exports.BBModalOverlay = exports.BBModalFooter = exports.BBModalHeader = exports.DefaultCloseButton = exports.BBModalHeaderContainer = exports.BBModalBackground = exports.overlayCloseAnimation = exports.overlayOpenAnimation = exports.fullScreenModalCloseAnimation = exports.fullScreenModalOpenAnimation = exports.largeModalCloseAnimation = exports.largeModalOpenAnimation = exports.mediumModalCloseAnimation = exports.mediumModalOpenAnimation = exports.modalAnimationDuration = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
@@ -148,6 +148,8 @@ _styledComponents.default.div.withConfig({
   size,
   cssOverrides
 }) => (0, _styledComponents.css)(["", ";", ";background:", ";flex-shrink:0;user-select:none;z-index:1;", "{", ";}", ";"], (0, _exports.flexFlow)(size === _modalTypes.ModalSize.Mini ? 'column' : 'row'), (0, _exports.getElevationShadow)(_exports.ElevationRange.Elevation2), (0, _exports.getColor)(_exports.Colors.BrandDarkBlue), _Search.SearchContainer, size === _modalTypes.ModalSize.Mini ? (0, _styledComponents.css)(["margin:8px 16px 16px;"]) : (0, _styledComponents.css)(["margin:auto 16px auto auto;"]), cssOverrides));
+
+exports.BBModalHeaderContainer = BBModalHeaderContainer;
 
 const BBModalHeaderRow =
 /*#__PURE__*/

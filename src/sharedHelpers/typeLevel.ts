@@ -1,6 +1,7 @@
 import { Either } from 'fp-ts/lib/Either'
 import { HKT, HKT2, HKT3, HKT4, URIS, URIS2, URIS3, URIS4 } from 'fp-ts/lib/HKT'
 import { Option } from 'fp-ts/lib/Option'
+import { ReactElement } from 'react'
 
 import { NaN } from './newtypes'
 
@@ -164,3 +165,8 @@ export type RequireNonNilable<A> = { [P in keyof A]-?: NonNilable<A[P]> }
 export type UnboxRecordPropertyOptionValues<
   R extends Record<PropertyKey, unknown>
 > = { [K in keyof R]: R[K] extends Option<infer A> ? A : R[K] }
+
+/**
+ * Alias of ReactElement | null, similar to ReactNode, but compatible with FunctionComponent
+ */
+export type ReactRenderable = Nullable<ReactElement>

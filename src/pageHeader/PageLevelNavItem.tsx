@@ -44,7 +44,7 @@ const PageLevelIndicatorContainer = styled(props => (
 ))<TabBarIndicatorProps>`
   ${flexFlow('row')};
 
-  bottom: 0;
+  bottom: -1px;
   height: 31px;
   left: 0;
   position: absolute;

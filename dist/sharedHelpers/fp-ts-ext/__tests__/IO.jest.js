@@ -35,7 +35,7 @@ describe('noOpIO', () => {
   it('should be a noOp function', () => {
     const actual = _IO2.noOpIO.run.toString();
 
-    const expected = 'function constVoid() {}';
+    const expected = ['function () {', '    return;', '}'].join('\n');
     expect(actual).toBe(expected);
   });
   it('should return void', () => {

@@ -16,6 +16,7 @@ exports.EventState = EventState;
   EventState["Finished"] = "finished";
   EventState["Scheduled"] = "scheduled";
   EventState["Requested"] = "requested";
+  EventState["Survey"] = "survey";
   EventState["Inactive"] = "inactive";
 })(EventState || (exports.EventState = EventState = {}));
 
@@ -29,6 +30,9 @@ const convertEventStateToColor = eventState => {
       return _color.Colors.Inactive;
 
     case EventState.Finished:
+      return _color.Colors.Finished;
+
+    case EventState.Survey:
       return _color.Colors.Finished;
 
     case EventState.Scheduled:

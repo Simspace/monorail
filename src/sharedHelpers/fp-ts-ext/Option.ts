@@ -1,9 +1,9 @@
 import { toArray } from 'fp-ts/lib/Foldable2v'
 import { constTrue } from 'fp-ts/lib/function'
 import { none, Option, option, some } from 'fp-ts/lib/Option'
-import { ReactNode } from 'react'
 
-import { isFalsy, isNil } from '../typeGuards'
+import { isFalsy, isNil } from '@monorail/sharedHelpers/typeGuards'
+import { ReactRenderable } from '@monorail/sharedHelpers/typeLevel'
 
 /**
  * type guard for Option
@@ -34,8 +34,8 @@ export const fold = <A, B>(a: Option<A>, onNone: B, onSome: (a: A) => B): B =>
  */
 export const renderOnSome = <A>(
   a: Option<A>,
-  onSome: (a: A) => ReactNode,
-): ReactNode => fold<A, ReactNode>(a, null, onSome)
+  onSome: (a: A) => ReactRenderable,
+): ReactRenderable => fold<A, ReactRenderable>(a, null, onSome)
 
 /**
  * Curried version of fp-ts' `getOrElse`. Used to extract the value

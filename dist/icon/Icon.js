@@ -77,6 +77,8 @@ var _StarOutline = require("./custom/StarOutline");
 
 var _Strikethrough = require("./custom/Strikethrough");
 
+var _Switch = require("./custom/Switch");
+
 var _Target = require("./custom/Target");
 
 var _TechOps = require("./custom/TechOps");
@@ -86,6 +88,8 @@ var _Temporary = require("./custom/Temporary");
 var _ThreeGears = require("./custom/ThreeGears");
 
 var _Tracker = require("./custom/Tracker");
+
+var _TreasureChest = require("./custom/TreasureChest");
 
 var _Unscored = require("./custom/Unscored");
 
@@ -157,13 +161,15 @@ const customIcons = {
   star_half: _StarHalf.StarHalf,
   star_outline: _StarOutline.StarOutline,
   strikethrough: _Strikethrough.Strikethrough,
+  switch: _Switch.Switch,
   target: _Target.Target,
   temporary: _Temporary.Temporary,
   threeGears: _ThreeGears.ThreeGears,
   unscored: _Unscored.Unscored,
   vcenter: _VCenter.VCenter,
   vmtemplates: _VMTemplates.VMTemplates,
-  wand: _Wand.Wand
+  wand: _Wand.Wand,
+  treasure_chest: _TreasureChest.TreasureChest
 };
 const Icon =
 /*#__PURE__*/

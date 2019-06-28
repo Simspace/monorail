@@ -1,10 +1,12 @@
 import React, { Component, ReactNode } from 'react'
 
+export type CompareSearchType = (stringToCompare: string) => boolean
+
 type Props = {
   children: (props: {
     value: string
     onChange: (newSearchString: string) => void
-    compareSearch: (stringToCompare: string) => boolean
+    compareSearch: CompareSearchType
   }) => ReactNode
 }
 

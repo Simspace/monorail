@@ -1,4 +1,4 @@
-import { useLayoutEffect } from 'react'
+import { useCallback, useLayoutEffect, useState } from 'react'
 
 import { isNil } from '@monorail/sharedHelpers/typeGuards'
 
@@ -33,4 +33,21 @@ export function useEventListener<E extends HTMLElement>({
    *  `eventName`
    *  `options`
    */ [element, eventListener, eventName, options])
+}
+
+type RefCallbackNullType<T extends HTMLDivElement> = T | null
+
+export function useRefCallback<T extends HTMLDivElement>(): [
+  RefCallbackNullType<T>,
+  (node: RefCallbackNullType<T>) => void
+] {
+  const [element, setElement] = useState<RefCallbackNullType<T>>(null)
+
+  const ref = useCallback((node: RefCallbackNullType<T>) => {
+    if (node !== null) {
+      setElement(node)
+    }
+  }, [])
+
+  return [element, ref]
 }

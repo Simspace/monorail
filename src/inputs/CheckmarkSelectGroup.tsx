@@ -41,7 +41,7 @@ const CheckmarkSelectContent = styled.div`
   width: 100%;
 `
 
-type CheckmarkSelect = {
+export type CheckmarkSelect = {
   label: string
   key: string
   options: Array<SelectOption>
@@ -59,7 +59,7 @@ type Props = {
   ) => void // TODO
   onCheck: (key: string, checked: boolean) => void
 }
-
+export type CheckmarkSelectProps = Props & CheckmarkSelect
 export const CheckmarkSelectGroup: SFC<Props> = ({
   cssOverrides,
   label,

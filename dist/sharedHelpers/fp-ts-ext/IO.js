@@ -5,9 +5,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.noOpIO = exports.newIO = exports.constRunIO = exports.runIO = void 0;
 
-var _IO = require("fp-ts/lib/IO");
+var _function = require("fp-ts/lib/function");
 
-var _function = require("./function");
+var _IO = require("fp-ts/lib/IO");
 
 /**
  * Run IO

@@ -45,7 +45,7 @@ const baseSecondaryStyles = (color = _theme.ThemeColors.ActionSecondary) => (0, 
 
 exports.baseSecondaryStyles = baseSecondaryStyles;
 
-const basePrimaryStyles = (color = _theme.ThemeColors.ActionPrimary, backgroundColor = _theme.ThemeColors.BackgroundPrimary) => (0, _styledComponents.css)(["background:", ";border:0;color:", ";position:relative;&:focus{&:after{border-color:", ";}}&:hover{", ";}&:active{", ";}"], (0, _theme.getThemeColor)(color), (0, _color.getColor)(_color.Colors.White), (0, _theme.getThemeColor)(backgroundColor, 0.3), props => floatingBackgroundStyles((0, _theme.getThemeColor)(backgroundColor, 0.15)(props)), props => floatingBackgroundStyles((0, _theme.getThemeColor)(backgroundColor, 0.3)(props)));
+const basePrimaryStyles = (backgroundColor = _theme.ThemeColors.ActionPrimary, color = _theme.ThemeColors.BackgroundSecondary) => (0, _styledComponents.css)(["background:", ";border:0;color:", ";position:relative;&:focus{&:after{border-color:", ";}}&:hover{", ";}&:active{", ";}"], (0, _theme.getThemeColor)(backgroundColor), (0, _theme.getThemeColor)(color), (0, _theme.getThemeColor)(color, 0.3), props => floatingBackgroundStyles((0, _theme.getThemeColor)(color, 0.15)(props)), props => floatingBackgroundStyles((0, _theme.getThemeColor)(color, 0.3)(props)));
 
 exports.basePrimaryStyles = basePrimaryStyles;
 

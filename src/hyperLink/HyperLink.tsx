@@ -18,7 +18,7 @@ export type HyperLinkProps = LinkProps & {
 export const HyperLink = styled(Link)<HyperLinkProps>(
   ({ fontSize = FontSizes.Title5, fontWeight = 500, margin = '' }) => css`
     ${typography(fontWeight, fontSize, margin)};
-    ${baseHyperLinkStyles()}
+    ${baseHyperLinkStyles()};
 
     transition: color ease 25ms;
     text-decoration: underline;

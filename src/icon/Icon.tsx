@@ -12,7 +12,6 @@ import { CircleArrowLeft } from '@monorail/icon/custom/CircleArrowLeft'
 import { Clipboard } from '@monorail/icon/custom/Clipboard'
 import { CodeBlock } from '@monorail/icon/custom/CodeBlock'
 import { Copy } from '@monorail/icon/custom/Copy'
-import { Dashboard } from '@monorail/icon/custom/Dashboard'
 import { ErrorRobot } from '@monorail/icon/custom/ErrorRobot'
 import { EventDesign } from '@monorail/icon/custom/EventDesign'
 import { Events } from '@monorail/icon/custom/Events'
@@ -21,7 +20,6 @@ import { Filter } from '@monorail/icon/custom/Filter'
 import { Gauge } from '@monorail/icon/custom/Gauge'
 import { H1 } from '@monorail/icon/custom/H1'
 import { H2 } from '@monorail/icon/custom/H2'
-import { Hardhat } from '@monorail/icon/custom/Hardhat'
 import { Home } from '@monorail/icon/custom/Home'
 import { Impact } from '@monorail/icon/custom/Impact'
 import { LMS } from '@monorail/icon/custom/LMS'
@@ -38,11 +36,13 @@ import { StarFilled } from '@monorail/icon/custom/StarFilled'
 import { StarHalf } from '@monorail/icon/custom/StarHalf'
 import { StarOutline } from '@monorail/icon/custom/StarOutline'
 import { Strikethrough } from '@monorail/icon/custom/Strikethrough'
+import { Switch } from '@monorail/icon/custom/Switch'
 import { Target } from '@monorail/icon/custom/Target'
 import { TechOps } from '@monorail/icon/custom/TechOps'
 import { Temporary } from '@monorail/icon/custom/Temporary'
 import { ThreeGears } from '@monorail/icon/custom/ThreeGears'
 import { Tracker } from '@monorail/icon/custom/Tracker'
+import { TreasureChest } from '@monorail/icon/custom/TreasureChest'
 import { Unscored } from '@monorail/icon/custom/Unscored'
 import { VCenter } from '@monorail/icon/custom/VCenter'
 import { VMTemplates } from '@monorail/icon/custom/VMTemplates'
@@ -105,6 +105,7 @@ const customIcons: { [key: string]: ComponentType<CustomIconProps> } = {
   star_half: StarHalf,
   star_outline: StarOutline,
   strikethrough: Strikethrough,
+  switch: Switch,
   target: Target,
   temporary: Temporary,
   threeGears: ThreeGears,
@@ -112,6 +113,7 @@ const customIcons: { [key: string]: ComponentType<CustomIconProps> } = {
   vcenter: VCenter,
   vmtemplates: VMTemplates,
   wand: Wand,
+  treasure_chest: TreasureChest,
 }
 
 export const Icon = styled(

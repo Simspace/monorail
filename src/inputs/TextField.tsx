@@ -157,6 +157,7 @@ type BasicProps = {
   readOnly: boolean
   required: boolean
   type: string // TO DO - List specific valid input types
+  autoFocus: boolean
 }
 
 export type TextFieldProps = ContainerProps & BasicProps & ExtraProps
@@ -179,6 +180,7 @@ export const defaultTextFieldProps = {
   min: 0,
   max: 9999,
   className: '',
+  autoFocus: false,
 }
 
 export const defaultTextAreaProps = {
@@ -194,6 +196,8 @@ export const defaultTextAreaProps = {
   required: false,
   type: 'text',
   className: '',
+  name: '',
+  autoFocus: false,
 }
 
 /*

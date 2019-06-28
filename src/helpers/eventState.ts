@@ -11,6 +11,8 @@ export enum EventState {
   Scheduled = 'scheduled',
   // Pending
   Requested = 'requested',
+  // Survey
+  Survey = 'survey',
   // Paused
   Inactive = 'inactive',
 }
@@ -23,6 +25,8 @@ export const convertEventStateToColor = (eventState: EventState): Colors => {
     case EventState.Inactive:
       return Colors.Inactive
     case EventState.Finished:
+      return Colors.Finished
+    case EventState.Survey:
       return Colors.Finished
     case EventState.Scheduled:
       return Colors.Scheduled

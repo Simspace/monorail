@@ -28,6 +28,8 @@ const MediumModal = ({
   title,
   iconLeft,
   togglePopOver,
+  headerChildren,
+  customCloseButton,
   headerStyles,
   closingAnimationCompleted,
   zIndex,
@@ -54,6 +56,8 @@ const MediumModal = ({
     title: title,
     iconLeft: iconLeft,
     onClose: onClick,
+    customCloseButton: customCloseButton,
+    headerRowChildren: headerChildren,
     cssOverrides: headerStyles,
     size: _modalTypes.ModalSize.Medium
   }), children));

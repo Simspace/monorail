@@ -2,19 +2,6 @@
 
 var _function = require("../function");
 
-describe('constVoid', () => {
-  it('should be a noOp function', () => {
-    const actual = _function.constVoid.toString();
-
-    const expected = 'function constVoid() {}';
-    expect(actual).toBe(expected);
-  });
-  it('should return void', () => {
-    const actual = (0, _function.constVoid)();
-    const expected = undefined;
-    expect(actual).toBe(expected);
-  });
-});
 describe('flip_', () => {
   it('should flip the order of the arguments of an uncurried function', () => {
     const f = (x, y) => `${x}${y}`;

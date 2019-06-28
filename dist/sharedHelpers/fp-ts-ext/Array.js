@@ -3,7 +3,9 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.notAny = exports.all = exports.any = exports.intersperseMapWithIndex = exports.intersperseMap = exports.intersperse = exports.liftOption2 = exports.sortByNumeric = exports.sortByAlpha = exports.leftsAndRights = exports.traverseTaskEithers = exports.traverseTasks = exports.traverseEithers = exports.traverseOptions = exports.sequenceTaskEithers = exports.sequenceTasks = exports.sequenceEithers = exports.sequenceOptions = exports.len = exports.contains = exports.runIOs = exports.forEachWithIndex = exports.forEach = exports.concatFlipped = exports.concat = exports.map = void 0;
+exports.notAny = exports.all = exports.any = exports.intersperseMapWithIndex = exports.intersperseMap = exports.intersperse = exports.liftOption2 = exports.sortByNumeric = exports.sortByAlpha = exports.leftsAndRights = exports.traverseTaskEithers = exports.traverseTasks = exports.traverseEithers = exports.traverseOptions = exports.sequenceRemoteData = exports.sequenceTaskEithers = exports.sequenceTasks = exports.sequenceEithers = exports.sequenceOptions = exports.len = exports.contains = exports.runIOs = exports.forEachWithIndex = exports.forEach = exports.concatFlipped = exports.concat = exports.map = void 0;
+
+var _remoteDataTs = require("@devexperts/remote-data-ts");
 
 var _Apply = require("fp-ts/lib/Apply");
 
@@ -127,12 +129,21 @@ exports.sequenceTasks = sequenceTasks;
 
 const sequenceTaskEithers = _Array.array.sequence(_TaskEither.taskEither);
 /**
- * traverse utility for the Option instance of Applicative and the Array
+ * sequence utility for the RemoteData instance of Applicative and the Array
  * instance of Traversable2v1
  */
 
 
 exports.sequenceTaskEithers = sequenceTaskEithers;
+
+const sequenceRemoteData = _Array.array.sequence(_remoteDataTs.remoteData);
+/**
+ * traverse utility for the Option instance of Applicative and the Array
+ * instance of Traversable2v1
+ */
+
+
+exports.sequenceRemoteData = sequenceRemoteData;
 
 const traverseOptions = _Array.array.traverse(_Option.option);
 /**

@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react'
 import { css } from 'styled-components'
 
-import { ButtonDisplay, IconButtonShape } from '@monorail/buttons/buttonTypes'
+import { ButtonDisplay } from '@monorail/buttons/buttonTypes'
 import { IconButton } from '@monorail/buttons/IconButton'
 import { Divider } from '@monorail/divider/Divider'
 import { Sizes } from '@monorail/helpers/size'
@@ -69,11 +69,13 @@ export const ActionsMenu: FCwDP<ActionsMenuProps, DefaultProps> = ({
                   {menuItem.children}
                 </SimpleListItem>
               ))}
-              <Divider
-                css={css`
-                  margin: 4px 0 3px;
-                `}
-              />
+              {featuredItems.length > 0 && standardItems.length > 0 && (
+                <Divider
+                  css={css`
+                    margin: 4px 0 3px;
+                  `}
+                />
+              )}
               {standardItems.map((menuItem, idx) => (
                 <SimpleListItem
                   key={idx + menuItem.label}

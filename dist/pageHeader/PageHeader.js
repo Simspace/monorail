@@ -7,8 +7,6 @@ exports.PageHeader = exports.TitleContainer = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _reactRouter = require("react-router");
-
 var _Button = require("../buttons/Button");
 
 var _buttonTypes = require("../buttons/buttonTypes");
@@ -20,6 +18,8 @@ var _exports = require("../helpers/exports");
 var _styledComponents = _interopRequireWildcard(require("../helpers/styled-components"));
 
 var _theme = require("../helpers/theme");
+
+var _BaseLink = require("../hyperLink/BaseLink");
 
 var _HyperLink = require("../hyperLink/HyperLink");
 
@@ -52,35 +52,25 @@ const pageHeaderPadding =
 /*#__PURE__*/
 (0, _styledComponents.css)(["padding:0 32px;"]);
 
-const PageHeaderShadow =
-/*#__PURE__*/
-_styledComponents.default.div.withConfig({
-  displayName: "PageHeader__PageHeaderShadow",
-  componentId: "sc-1tofzk7-1"
-})(({
-  willAnimateShadow,
-  flush
-}) => (0, _styledComponents.css)(["bottom:-20px;left:0;overflow:hidden;pointer-events:none;position:absolute;right:0;top:0;z-index:-10;&:before{", ";background:", ";bottom:26px;content:'';left:-10px;position:absolute;right:-10px;top:0;}", ";"], (0, _exports.getElevationShadow)(_exports.ElevationRange.Elevation6), (0, _exports.getColor)(_exports.Colors.White), (flush || willAnimateShadow) && (0, _styledComponents.css)(["opacity:0;"])));
-
 const PageHeaderNavigation =
 /*#__PURE__*/
 _styledComponents.default.div.withConfig({
   displayName: "PageHeader__PageHeaderNavigation",
-  componentId: "sc-1tofzk7-2"
+  componentId: "sc-1tofzk7-1"
 })(["", ";", ";align-items:center;height:32px;"], (0, _exports.flexFlow)('row'), pageHeaderPadding);
 
 const BreadCrumbsContainer =
 /*#__PURE__*/
 _styledComponents.default.div.withConfig({
   displayName: "PageHeader__BreadCrumbsContainer",
-  componentId: "sc-1tofzk7-3"
+  componentId: "sc-1tofzk7-2"
 })(["", ";align-items:center;&::before{background:", ";width:1px;height:20px;content:'';margin-right:12px;}"], (0, _exports.flexFlow)('row'), (0, _theme.getThemeColor)(_theme.ThemeColors.Text200));
 
 const TitleContainer =
 /*#__PURE__*/
 _styledComponents.default.div.withConfig({
   displayName: "PageHeader__TitleContainer",
-  componentId: "sc-1tofzk7-4"
+  componentId: "sc-1tofzk7-3"
 })(({
   hasAboveContent
 }) => (0, _styledComponents.css)(["", ";", ";align-items:center;flex-shrink:0;grid-column:-1 / 1;height:", "px;"], (0, _exports.flexFlow)('row'), pageHeaderPadding, hasAboveContent ? 48 : 64));
@@ -91,22 +81,22 @@ const Title =
 /*#__PURE__*/
 _styledComponents.default.h1.withConfig({
   displayName: "PageHeader__Title",
-  componentId: "sc-1tofzk7-5"
+  componentId: "sc-1tofzk7-4"
 })(["", ";color:", ";margin-left:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"], (0, _exports.typography)(700, _exports.FontSizes.Title1), (0, _theme.getThemeColor)(_theme.ThemeColors.Text900));
 
 const PageName =
 /*#__PURE__*/
 _styledComponents.default.h5.withConfig({
   displayName: "PageHeader__PageName",
-  componentId: "sc-1tofzk7-6"
+  componentId: "sc-1tofzk7-5"
 })(["", ";", ";color:", ";margin:8px 0 -8px 0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"], pageHeaderPadding, (0, _exports.typography)(500, _exports.FontSizes.Title5), (0, _theme.getThemeColor)(_theme.ThemeColors.Text1000));
 
 const BreadCrumbLink =
 /*#__PURE__*/
 (0, _styledComponents.default)(_HyperLink.HyperLink).withConfig({
   displayName: "PageHeader__BreadCrumbLink",
-  componentId: "sc-1tofzk7-7"
-})(["", " padding:6px 2px;user-select:none;text-decoration:none;"], (0, _baseStyles.baseHyperLinkStyles)(_theme.ThemeColors.Text500));
+  componentId: "sc-1tofzk7-6"
+})(["", ";padding:6px 2px;user-select:none;text-decoration:none;"], (0, _baseStyles.baseHyperLinkStyles)(_theme.ThemeColors.Text500));
 /*
  * Types
  */
@@ -144,29 +134,24 @@ class PageHeader extends _react.Component {
 
   render() {
     const {
-      action,
+      actions,
       breadCrumbs,
       children,
       cssOverrides,
-      flush,
       goBack,
-      shadowRef,
       pageName,
       title,
-      willAnimateShadow,
-      noShadow,
       ...domProps
     } = this.props;
     const hasAboveContent = !(0, _typeGuards.isNil)(breadCrumbs) || !(0, _typeGuards.isNil)(goBack);
     return _react.default.createElement(PageHeaderContainer, _extends({
       cssOverrides: cssOverrides,
-      flush: flush,
       hasAboveContent: hasAboveContent,
       ref: this.pageHeaderContainerRef
     }, domProps), (!(0, _typeGuards.isNil)(breadCrumbs) || !(0, _typeGuards.isNil)(goBack)) && _react.default.createElement(PageHeaderNavigation, null, !(0, _typeGuards.isNil)(goBack) && typeof goBack === 'string' ? _react.default.createElement(_Button.Button, {
       size: _buttonTypes.ButtonSize.Compact,
       display: _buttonTypes.ButtonDisplay.Chromeless,
-      as: _reactRouter.Link,
+      as: _BaseLink.BaseLink,
       to: goBack,
       cssOverrides: (0, _styledComponents.css)(["margin-left:-4px;margin-right:8px;"]),
       iconLeft: "circle_arrow_left"
@@ -178,17 +163,9 @@ class PageHeader extends _react.Component {
       iconLeft: "circle_arrow_left"
     }, "Go Back"), breadCrumbs && _react.default.createElement(BreadCrumbsContainer, null, this.renderBreadCrumbs())), pageName && _react.default.createElement(PageName, null, pageName), _react.default.createElement(TitleContainer, {
       hasAboveContent: hasAboveContent
-    }, _react.default.createElement(Title, null, title), action), children, !noShadow && _react.default.createElement(PageHeaderShadow, {
-      willAnimateShadow: willAnimateShadow,
-      flush: flush,
-      ref: shadowRef
-    }));
+    }, _react.default.createElement(Title, null, title), actions), children);
   }
 
 }
 
 exports.PageHeader = PageHeader;
-PageHeader.defaultProps = {
-  willAnimateShadow: false,
-  flush: false
-};

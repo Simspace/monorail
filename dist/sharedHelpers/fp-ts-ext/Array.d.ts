@@ -56,6 +56,11 @@ export declare const sequenceTasks: <A>(ta: import("fp-ts/lib/Task").Task<A>[]) 
  */
 export declare const sequenceTaskEithers: <FL, A>(ta: import("fp-ts/lib/TaskEither").TaskEither<FL, A>[]) => import("fp-ts/lib/TaskEither").TaskEither<FL, A[]>;
 /**
+ * sequence utility for the RemoteData instance of Applicative and the Array
+ * instance of Traversable2v1
+ */
+export declare const sequenceRemoteData: <FL, A>(ta: import("@devexperts/remote-data-ts").RemoteData<FL, A>[]) => import("@devexperts/remote-data-ts").RemoteData<FL, A[]>;
+/**
  * traverse utility for the Option instance of Applicative and the Array
  * instance of Traversable2v1
  */

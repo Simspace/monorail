@@ -3,7 +3,9 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.sequenceTaskEithersStruct = exports.sequenceTasksStruct = exports.sequenceEithersStruct = exports.sequenceOptionsStruct = exports.sequenceTaskEithersTuple = exports.sequenceTasksTuple = exports.sequenceEithersTuple = exports.sequenceOptionsTuple = void 0;
+exports.sequenceRemoteDataStruct = exports.sequenceTaskEithersStruct = exports.sequenceTasksStruct = exports.sequenceEithersStruct = exports.sequenceOptionsStruct = exports.sequenceTaskEithersTuple = exports.sequenceTasksTuple = exports.sequenceEithersTuple = exports.sequenceOptionsTuple = void 0;
+
+var _remoteDataTs = require("@devexperts/remote-data-ts");
 
 var _Apply = require("fp-ts/lib/Apply");
 
@@ -61,4 +63,10 @@ const sequenceTasksStruct = (0, _Apply.sequenceS)(_Task.task);
 
 exports.sequenceTasksStruct = sequenceTasksStruct;
 const sequenceTaskEithersStruct = (0, _Apply.sequenceS)(_TaskEither.taskEither);
+/**
+ * sequence utility for structs (interfaces/objects) containing RemoteData of mixed value types
+ */
+
 exports.sequenceTaskEithersStruct = sequenceTaskEithersStruct;
+const sequenceRemoteDataStruct = (0, _Apply.sequenceS)(_remoteDataTs.remoteData);
+exports.sequenceRemoteDataStruct = sequenceRemoteDataStruct;
