@@ -21,7 +21,7 @@ Check the accepted version range in `package.json` for compatibility.
 Import the components you want and use them
 
 ```jsx
-import { Button } from '@simspace/monorail/dist/buttons/Button'
+import { Button } from '@simspace/monorail/dist/visualComponents/buttons/Button'
 
 ...
 
