@@ -1,5 +1,6 @@
+import * as logger from 'fp-ts/lib/Console'
 import { constVoid, Lazy } from 'fp-ts/lib/function'
-import { IO } from 'fp-ts/lib/IO'
+import { IO, io } from 'fp-ts/lib/IO'
 
 /**
  * Run IO
@@ -21,3 +22,11 @@ export const newIO = <A>(f: Lazy<A>): IO<A> => new IO(f)
  * noOp IO function
  */
 export const noOpIO = new IO(constVoid)
+
+export const logIO = <T>(
+  cb: (value: T) => unknown,
+  logLevel: 'error' | 'info' | 'log' | 'warn' = 'log',
+) => (value: T): T => io.map(logger[logLevel](cb(value)), () => value).run()
+
+export const tapIO = <T>(logIO_: (value: T) => IO<void>) => (value: T): T =>
+  io.map(logIO_(value), () => value).run()

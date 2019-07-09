@@ -16,7 +16,7 @@ const categoryReadableName = entryCategory => {
       return 'Content Module';
 
     case 'hardhat-specification':
-      return 'Network Specs';
+      return 'Network Spec';
 
     case 'operating-system':
       return 'Operating System';

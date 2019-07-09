@@ -5,7 +5,7 @@ import {
   SimpleInterpolation,
 } from 'styled-components'
 
-import { PopOverPosition } from '@monorail/popOver/PopOver'
+import { PopOverPosition } from '@monorail/metaComponents/popOver/PopOver'
 
 export const visible = (isVisible = false) =>
   isVisible

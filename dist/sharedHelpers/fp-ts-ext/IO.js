@@ -3,11 +3,15 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.noOpIO = exports.newIO = exports.constRunIO = exports.runIO = void 0;
+exports.tapIO = exports.logIO = exports.noOpIO = exports.newIO = exports.constRunIO = exports.runIO = void 0;
+
+var logger = _interopRequireWildcard(require("fp-ts/lib/Console"));
 
 var _function = require("fp-ts/lib/function");
 
 var _IO = require("fp-ts/lib/IO");
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
 /**
  * Run IO
@@ -38,3 +42,11 @@ const newIO = f => new _IO.IO(f);
 exports.newIO = newIO;
 const noOpIO = new _IO.IO(_function.constVoid);
 exports.noOpIO = noOpIO;
+
+const logIO = (cb, logLevel = 'log') => value => _IO.io.map(logger[logLevel](cb(value)), () => value).run();
+
+exports.logIO = logIO;
+
+const tapIO = logIO_ => value => _IO.io.map(logIO_(value), () => value).run();
+
+exports.tapIO = tapIO;
