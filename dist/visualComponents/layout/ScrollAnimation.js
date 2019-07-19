@@ -7,8 +7,6 @@ exports.ScrollAnimation = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _styledComponents = _interopRequireDefault(require("styled-components"));
-
 var _color = require("../../helpers/color");
 
 var _elevation = require("../../helpers/elevation");
@@ -17,9 +15,9 @@ var _flex = require("../../helpers/flex");
 
 var _hooks = require("../../helpers/hooks");
 
-var _typeGuards = require("../../sharedHelpers/typeGuards");
+var _styledComponents = _interopRequireWildcard(require("../../helpers/styled-components"));
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var _typeGuards = require("../../sharedHelpers/typeGuards");
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
@@ -30,7 +28,9 @@ const ScrollAnimationContainer =
 _styledComponents.default.div.withConfig({
   displayName: "ScrollAnimation__ScrollAnimationContainer",
   componentId: "an7xln-0"
-})(["", ";overflow:hidden;height:100%;position:relative;"], (0, _flex.flexFlow)());
+})(({
+  containerCssOverrides
+}) => (0, _styledComponents.css)(["", ";overflow:hidden;height:100%;position:relative;", ";"], (0, _flex.flexFlow)(), containerCssOverrides));
 
 const ScrollContainer =
 /*#__PURE__*/
@@ -50,6 +50,7 @@ const SCROLL_AMOUNT = 128;
 
 const ScrollAnimation = ({
   children,
+  containerCssOverrides,
   ...domProps
 }) => {
   const shadow = (0, _react.useRef)(null);
@@ -84,7 +85,9 @@ const ScrollAnimation = ({
     eventListener: handleScroll,
     element: scrollContainer
   });
-  return _react.default.createElement(ScrollAnimationContainer, null, _react.default.createElement(Shadow, {
+  return _react.default.createElement(ScrollAnimationContainer, {
+    containerCssOverrides: containerCssOverrides
+  }, _react.default.createElement(Shadow, {
     ref: shadow
   }), _react.default.createElement(ScrollContainer, _extends({
     ref: scrollContainerRef

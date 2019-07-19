@@ -28,7 +28,7 @@ _styledComponents.default.div.withConfig({
 })(({
   cssOverrides,
   size
-}) => (0, _styledComponents.css)(["", ";height:", "px;padding:0 8px;position:relative;box-sizing:border-box;border-bottom:1px solid ", ";flex-shrink:0;", ";"], (0, _exports.flexFlow)('row'), size, (0, _exports.getColor)(_exports.Colors.Grey94), cssOverrides));
+}) => (0, _styledComponents.css)(["", ";height:", "px;padding:0 8px;position:relative;box-sizing:border-box;flex-shrink:0;&::after{background:", ";position:absolute;bottom:0;left:0;right:0;content:'';height:1px;}", ";"], (0, _exports.flexFlow)('row'), size, (0, _exports.getColor)(_exports.Colors.Grey94), cssOverrides));
 
 exports.TabBarContainer = TabBarContainer;
 const tabBarIndicatorSideWidth = 3;
@@ -49,7 +49,7 @@ const TabBarIndicatorContainer =
 })))(({
   left,
   duration
-}) => (0, _styledComponents.css)(["", ";bottom:0;height:3px;left:0;position:absolute;transition-duration:", "ms;transition-property:all;transition-timing-function:ease-in-out;transform-origin:bottom left;transform:translateX(", "px);"], (0, _exports.flexFlow)('row'), duration, left));
+}) => (0, _styledComponents.css)(["", ";", ";bottom:0;height:3px;left:0;position:absolute;transition-duration:", "ms;transition-property:all;transition-timing-function:ease-in-out;transform-origin:bottom left;transform:translateX(", "px);"], (0, _exports.flexFlow)('row'), (0, _exports.zIndex)(_exports.ZIndexNodeName.TabBarIndicator), duration, left));
 
 const TabBarIndicatorLeft =
 /*#__PURE__*/

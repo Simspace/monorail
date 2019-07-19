@@ -35,6 +35,11 @@ export interface GlobalAppThemeInterface {
     brandAccentColor: Colors;
     linkColor: Colors;
     mode: Mode;
+    size: {
+        page: {
+            width: 'auto' | number;
+        };
+    };
 }
 export declare const monorailTheme: GlobalAppThemeInterface;
 export declare const getThemeColor: (colorKey: ThemeColors, a?: number) => ({ theme }: {

@@ -1,2 +1,7 @@
 import { FC } from 'react';
-export declare const ScrollAnimation: FC;
+import { CssOverridesType } from '@monorail/types';
+declare type ScrollAnimationProps = {
+    containerCssOverrides?: CssOverridesType;
+};
+export declare const ScrollAnimation: FC<ScrollAnimationProps>;
+export {};

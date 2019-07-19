@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.Menu = void 0;
+exports.Menu = exports.MenuContent = void 0;
 
 var _styledComponents = _interopRequireDefault(require("styled-components"));
 
@@ -49,6 +49,8 @@ _styledComponents2.default.div.withConfig({
   componentId: "sc-2wfm6w-1"
 })(["", ";height:100%;overflow:auto;padding:4px 0;width:100%;"], (0, _flex.flexFlow)());
 
+exports.MenuContent = MenuContent;
+
 const Menu = ({
   children,
   closingAnimationCompleted,
@@ -58,6 +60,7 @@ const Menu = ({
   togglePopOver,
   width,
   zIndex,
+  cssOverrides,
   ...domProps
 }) => {
   const menuRef = (0, _react.useRef)(null);
@@ -109,9 +112,10 @@ const Menu = ({
     ref: menuRef,
     width: (0, _typeGuards.isNil)(width) ? 'auto' : `${width}px`
   }, domProps, {
-    _css: isRendered ? scaleAnimation.outSideContentStyles : ''
+    _css: isRendered ? scaleAnimation.outSideContentStyles : '',
+    _css2: cssOverrides
   }), _react.default.createElement(_StyledMenuContent, {
-    _css2: isRendered ? scaleAnimation.inSideContentStyles : ''
+    _css3: isRendered ? scaleAnimation.inSideContentStyles : ''
   }, children)));
 };
 
@@ -120,6 +124,6 @@ Menu.defaultProps = {
   zIndex: 9998
 };
 
-var _StyledMenuContainer = (0, _styledComponents.default)(MenuContainer)`${p => p._css}`;
+var _StyledMenuContainer = (0, _styledComponents.default)(MenuContainer)`${p => p._css} ${p => p._css2}`;
 
-var _StyledMenuContent = (0, _styledComponents.default)(MenuContent)`${p => p._css2}`;
+var _StyledMenuContent = (0, _styledComponents.default)(MenuContent)`${p => p._css3}`;

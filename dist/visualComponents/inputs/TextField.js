@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.TextArea = exports.TextField = exports.defaultTextAreaProps = exports.defaultTextFieldProps = exports.BBTextFieldLabel = void 0;
+exports.TextArea = exports.TextField = exports.defaultTextAreaProps = exports.defaultTextFieldProps = exports.BBTextFieldInput = exports.BBTextFieldLabel = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
@@ -67,6 +67,8 @@ _styledComponents.default.input.withConfig({
   disabled
 }) => (0, _styledComponents.css)(["", ";", ";", ";border:", ";box-sizing:border-box;color:", ";height:24px;flex:1;outline:none;padding:4px ", "px 4px ", "px;width:100%;", ";&[type='number']{&::-webkit-inner-spin-button,&::-webkit-outer-spin-button{opacity:1;}}::placeholder{color:", ";font-style:italic;}&:hover{border-color:", ";}&:focus,&:active{border-color:", ";}"], disabled && _exports.baseDisabledStyles, (0, _exports.typography)(400, _exports.FontSizes.Title5), (0, _exports.borderRadius)(), chromeless ? `1px solid transparent` : `1px solid ${(0, _exports.getColor)(_exports.Colors.Black, 0.12)}`, (0, _exports.getColor)(_exports.Colors.Black89), iconRight ? 30 : 6, iconLeft ? 30 : 6, _exports.buttonTransition, (0, _exports.getColor)(_exports.Colors.Black54), (0, _exports.getColor)(_exports.Colors.Black, 0.3), (0, _exports.getColor)(_exports.Colors.BrandLightBlue))); // TODO: Much duplication from TextInput
 
+
+exports.BBTextFieldInput = BBTextFieldInput;
 
 const BBTextAreaInput =
 /*#__PURE__*/

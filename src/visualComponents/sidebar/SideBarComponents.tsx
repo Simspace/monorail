@@ -25,6 +25,7 @@ import {
 } from '@monorail/visualComponents/buttons/buttonTypes'
 import { IconButton } from '@monorail/visualComponents/buttons/IconButton'
 import { BaseLink } from '@monorail/visualComponents/hyperLink/BaseLink'
+import { ScrollAnimation } from '@monorail/visualComponents/layout/ScrollAnimation'
 import {
   ListItem,
   ListItemGraphic,
@@ -106,14 +107,10 @@ export const SidebarContainer = styled(
 `
 /* eslint-enable no-unexpected-multiline */
 
-export const SidebarMenuContainer = styled.div<
+export const SidebarMenuContainer = styled(ScrollAnimation)<
   CommonComponentType & { isSideBarCollapsed: boolean }
 >(
-  ({ cssOverrides, isSideBarCollapsed }) => css`
-    ${flexFlow()};
-
-    flex: 1;
-    overflow-y: auto;
+  ({ isSideBarCollapsed }) => css`
     padding: 0 12px;
 
     ${SideBarMenuDivider} {
@@ -128,7 +125,6 @@ export const SidebarMenuContainer = styled.div<
           margin-right: -12px;
         }
       `};
-    ${cssOverrides};
   `,
 )
 
@@ -238,7 +234,7 @@ type SideBarMenuCollapsedProps = {
 
 export const SideBarMenuDivider = styled.div<SideBarMenuCollapsedProps>(
   ({ isSideBarCollapsed = false }) => css`
-    background: #e2e4ea;
+    background: ${getColor(Colors.Grey90)};
     height: 1px;
     margin: 15px 12px 16px;
     flex-shrink: 0;
@@ -330,7 +326,7 @@ export const SidebarBack: FunctionComponent<{
   <ListItem
     {...domProps}
     css={css`
-      padding: 0 22px;
+      padding: 0 20px;
     `}
   >
     <IconButton

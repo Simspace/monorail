@@ -23,6 +23,7 @@ import {
 import { CommonComponentType } from '@monorail/types'
 import { AppIcon } from '@monorail/visualComponents/appIcon/AppIcon'
 import { Icon } from '@monorail/visualComponents/icon/Icon'
+import { ScrollAnimation } from '@monorail/visualComponents/layout/ScrollAnimation'
 
 const BBCardContent = styled.div<CommonComponentType>(
   ({ cssOverrides }) => css`
@@ -207,7 +208,7 @@ type BBCardGridProps = {
   cssOverrides?: SimpleInterpolation
 }
 
-export const BBCardGrid = styled.div<BBCardGridProps>(
+export const BBCardGrid = styled(ScrollAnimation)<BBCardGridProps>(
   ({ cssOverrides, cardWidth = 272 }) => css`
     display: grid;
     flex-grow: 1;
@@ -215,12 +216,6 @@ export const BBCardGrid = styled.div<BBCardGridProps>(
     grid-template-columns: repeat(auto-fill, ${cardWidth}px);
     justify-content: center;
     padding: 20px 32px 14px;
-
-    /* IE11 doesn't work with grid that auto places content. Here starts the hacks to get it working with flex. */
-    display: -ms-flexbox; /* stylelint-disable-line */
-    flex-flow: row wrap;
-    align-content: flex-start;
-    align-items: flex-start;
 
     ${cssOverrides};
   `,

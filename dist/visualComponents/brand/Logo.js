@@ -93,6 +93,7 @@ exports.SimSpaceLogo = SimSpaceLogo;
 
 const SimSpaceLogoMark = ({
   background,
+  children,
   ...otherProps
 }) => {
   let primaryColor;
@@ -115,7 +116,7 @@ const SimSpaceLogoMark = ({
     viewBox: "0 0 916 916",
     fill: "none",
     xmlns: "http://www.w3.org/2000/svg"
-  }, otherProps), _react.default.createElement("path", {
+  }, otherProps), children, _react.default.createElement("path", {
     d: "M459.2 458.6C459.2 569.8 369 660 257.8 660C257.8 771.2 347.9 861.4 459.2 861.4C570.4 861.4 660.6 771.2 660.6 660C660.6 548.8 570.4 458.6 459.2 458.6Z",
     fill: (0, _exports.getColor)(secondaryColor)
   }), _react.default.createElement("path", {
@@ -160,11 +161,14 @@ const SimSpaceLogoFlat = ({
 
 exports.SimSpaceLogoFlat = SimSpaceLogoFlat;
 
-const PCTELogoMark = props => _react.default.createElement(LogoSvg, _extends({
+const PCTELogoMark = ({
+  children,
+  ...props
+}) => _react.default.createElement(LogoSvg, _extends({
   xmlns: "http://www.w3.org/2000/svg",
   xmlnsXlink: "http://www.w3.org/1999/xlink",
   viewBox: "0 0 256 256"
-}, props), _react.default.createElement("style", {
+}, props), children, _react.default.createElement("style", {
   type: "text/css",
   dangerouslySetInnerHTML: {
     __html: `

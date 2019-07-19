@@ -32,7 +32,7 @@ export const defaultPopOverPosition: PopOverPosition = {
   dropXDirection: dropDirections.Left,
   dropYAmount: 0,
   dropYDirection: dropDirections.Top,
-  gap: 0,
+  gap: 8,
   maxHeight: 360,
   maxWidth: 304,
   originHeight: 0,
@@ -43,7 +43,7 @@ export const defaultPopOverPosition: PopOverPosition = {
 
 export const getOverlayPosition = (
   target: Element,
-  gap: number = 0,
+  gap: number = 8,
   toSide: boolean = false,
 ) => {
   // Get basic dimensions about the the Toggle and the window.
@@ -276,6 +276,7 @@ export class PopOver extends Component<PopOverProps, PopOverState> {
     return {
       ...state,
       isOpen: props.isOpen !== undefined ? props.isOpen : state.isOpen,
+      isRendered: props.isOpen !== undefined ? props.isOpen : state.isRendered,
     }
   }
 

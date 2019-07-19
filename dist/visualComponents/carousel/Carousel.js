@@ -13,6 +13,8 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _exports = require("../../helpers/exports");
 
+var _hooks = require("../../helpers/hooks");
+
 var _typeGuards = require("../../sharedHelpers/typeGuards");
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
@@ -83,12 +85,20 @@ const Carousel = ({
   slides,
   indicatorDots = false,
   dotColor = _exports.Colors.BrandLightBlue,
+  loop = false,
+  timerInterval = 3000,
+  autoPlay = false,
   children
 }) => {
   const slideItemRef = (0, _react.useRef)(null);
   const [currentSlideIndex, setCurrentSlideIndex] = (0, _react.useState)(defaultCurrentSlideIndex);
   const [translateValue, setTranslateValue] = (0, _react.useState)(defaultTranslateValue);
   const [slideWidth, setSlideWidth] = (0, _react.useState)(defaultSlideWidth);
+  const [count, setCount] = (0, _react.useState)(0);
+  (0, _hooks.useInterval)(() => {
+    play();
+    setCount(count + 1);
+  }, timerInterval);
   /* eslint-disable react-hooks/exhaustive-deps */
 
   (0, _react.useLayoutEffect)(() => {
@@ -103,29 +113,35 @@ const Carousel = ({
   /* eslint-enable react-hooks/exhaustive-deps */
 
   const prevSlide = () => {
-    const lastIndex = slides.length;
-    const shouldResetIndex = currentSlideIndex === 0; // If on first slide - don't go to previous
+    const shouldResetIndex = currentSlideIndex === 0; // If on first slide & loop is false - don't go to previous
 
-    if (currentSlideIndex === 0) {
+    if (!loop && currentSlideIndex === 0) {
       return;
     }
 
-    const index = shouldResetIndex ? lastIndex : currentSlideIndex - 1;
+    const index = shouldResetIndex ? slides.length - 1 : currentSlideIndex - 1;
     setCurrentSlideIndex(index);
     setTranslateValue(translateValue + slideWidth);
   };
 
   const nextSlide = () => {
-    const lastIndex = slides.length;
-    const shouldResetIndex = currentSlideIndex === lastIndex - 1; // If on last slide - don't go to next
+    const shouldResetIndex = currentSlideIndex === slides.length - 1; // If on last slide & loop is false - don't go to next
 
-    if (currentSlideIndex === slides.length - 1) {
+    if (!loop && currentSlideIndex === slides.length - 1) {
       return;
     }
 
-    const index = shouldResetIndex ? lastIndex : currentSlideIndex + 1;
+    const index = shouldResetIndex ? 0 : currentSlideIndex + 1;
     setCurrentSlideIndex(index);
     setTranslateValue(translateValue - slideWidth);
+  };
+
+  const play = () => {
+    if (!autoPlay || slides.length < 1) {
+      return;
+    }
+
+    nextSlide();
   };
 
   const gotToSlideIndex = index => {
@@ -133,6 +149,7 @@ const Carousel = ({
   };
 
   return children({
+    loop,
     nextSlide,
     prevSlide,
     currentSlide: currentSlideIndex,

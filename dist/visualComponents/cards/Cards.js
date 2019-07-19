@@ -15,6 +15,8 @@ var _AppIcon = require("../appIcon/AppIcon");
 
 var _Icon = require("../icon/Icon");
 
+var _ScrollAnimation = require("../layout/ScrollAnimation");
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
@@ -117,15 +119,10 @@ const BBCardHeader = ({
 
 
 exports.BBCardHeader = BBCardHeader;
-
 const BBCardGrid =
 /*#__PURE__*/
-_styledComponents.default.div.withConfig({
-  displayName: "Cards__BBCardGrid",
-  componentId: "sc-1i66uhi-7"
-})(({
+(0, _styledComponents.default)(_ScrollAnimation.ScrollAnimation)(({
   cssOverrides,
   cardWidth = 272
-}) => (0, _styledComponents.css)(["display:grid;flex-grow:1;grid-auto-rows:max-content;grid-template-columns:repeat(auto-fill,", "px);justify-content:center;padding:20px 32px 14px;display:-ms-flexbox;flex-flow:row wrap;align-content:flex-start;align-items:flex-start;", ";"], cardWidth, cssOverrides));
-
+}) => (0, _styledComponents.css)(["display:grid;flex-grow:1;grid-auto-rows:max-content;grid-template-columns:repeat(auto-fill,", "px);justify-content:center;padding:20px 32px 14px;", ";"], cardWidth, cssOverrides));
 exports.BBCardGrid = BBCardGrid;

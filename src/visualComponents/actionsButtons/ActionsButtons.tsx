@@ -1,7 +1,11 @@
+import { array } from 'fp-ts/lib/Array'
+import { left, right } from 'fp-ts/lib/Either'
+import { pipe } from 'fp-ts/lib/function'
 import React, { FC, ReactNode } from 'react'
 import { css } from 'styled-components'
 
 import { PopOverToggleProps } from '@monorail/metaComponents/popOver/PopOver'
+import { map } from '@monorail/sharedHelpers/fp-ts-ext/Array'
 import {
   ActionsMenu,
   ActionsMenuProps,
@@ -13,85 +17,67 @@ import {
 } from '@monorail/visualComponents/buttons/buttonTypes'
 import { IconButton } from '@monorail/visualComponents/buttons/IconButton'
 
+type Action = Omit<ActionsMenuProps['actions'][0], 'featuredAction'>
+
 export type ActionsButtonsProps = {
   display?: ButtonDisplay
-  featuredActions?: Array<
-    Omit<ActionsMenuProps['menuItems'][0], 'featuredAction'>
-  >
-  standardActions?: Array<
-    Omit<ActionsMenuProps['menuItems'][0], 'featuredAction'>
-  >
+  actions?: Array<Action>
   size?: ButtonSize
   iconOnly?: boolean
   document?: Document
   toggle?: (props: PopOverToggleProps) => ReactNode
 }
 
-const combineActions = (
-  standardActions: ActionsButtonsProps['standardActions'] = [],
-  featuredActions: ActionsButtonsProps['featuredActions'] = [],
-) =>
-  featuredActions
-    .map(
-      (action): ActionsMenuProps['menuItems'][0] => ({
-        ...action,
-        featuredAction: true,
-        /**
-         * Remapping onClick to be able to close the action menu.
-         * This wouldn't be necessary if the interfaces were the same
-         */
-        onClick: (parentClick: () => void) => {
-          action.onClick(() => {})
-          parentClick()
-        },
-      }),
-    )
-    .concat(standardActions)
-
 export const ActionsButtons: FC<ActionsButtonsProps> = ({
   display,
   document,
-  featuredActions,
   iconOnly,
   size,
-  standardActions,
-}) => (
-  <>
-    {featuredActions &&
-      featuredActions.map(action =>
-        iconOnly ? (
-          <IconButton
-            key={`${action.label}-${action.iconName}`}
-            icon={action.iconName}
-            title={action.label}
-            size={size}
-            display={display}
-            onClick={() => action.onClick(() => {})}
-            css={css`
-              margin-right: 8px;
-            `}
-          />
-        ) : (
-          <Button
-            key={`${action.label}-${action.iconName}`}
-            size={size}
-            display={display}
-            iconLeft={action.iconName}
-            // hacky because of the onClick type of ActionMenu's menu items
-            onClick={() => action.onClick(() => {})}
-            css={css`
-              margin-right: 8px;
-            `}
-          >
-            {action.label}
-          </Button>
-        ),
+  actions = [],
+}) => {
+  const { left: standardActions, right: featuredActions } = pipe(
+    map((action: Action) =>
+      action.isFeaturedAction
+        ? right<Action, ReactNode>(
+            iconOnly ? (
+              <IconButton
+                key={`${action.label}-${action.iconName}`}
+                icon={action.iconName}
+                title={action.label}
+                size={size}
+                display={display}
+                onClick={() => action.onClick(() => {})}
+                css={css`
+                  ${actions.length > 1 && `margin-right: 8px;`}
+                `}
+              />
+            ) : (
+              <Button
+                key={`${action.label}-${action.iconName}`}
+                size={size}
+                display={display}
+                iconLeft={action.iconName}
+                // hacky because of the onClick type of ActionMenu's menu items
+                onClick={() => action.onClick(() => {})}
+                css={css`
+                  ${actions.length > 1 && `margin-right: 8px;`}
+                `}
+              >
+                {action.label}
+              </Button>
+            ),
+          )
+        : left<Action, ReactNode>(action),
+    ),
+    array.separate,
+  )(actions)
+
+  return (
+    <>
+      {featuredActions}
+      {standardActions && (
+        <ActionsMenu document={document} actions={standardActions} />
       )}
-    {standardActions && (
-      <ActionsMenu
-        document={document}
-        menuItems={combineActions(standardActions, featuredActions)}
-      />
-    )}
-  </>
-)
+    </>
+  )
+}

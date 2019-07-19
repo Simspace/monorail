@@ -1,6 +1,7 @@
-import { ChangeEvent, Component } from 'react';
+import { ChangeEvent, Component, MouseEvent } from 'react';
 import { SimpleInterpolation } from 'styled-components';
 export declare const BBTextFieldLabel: import("styled-components").StyledComponent<"p", any, {}, never>;
+export declare const BBTextFieldInput: import("styled-components").StyledComponent<"input", any, Pick<TextFieldProps, "className" | "placeholder" | "onChange" | "onClick" | "disabled" | "max" | "min" | "type" | "autoFocus" | "readOnly" | "required" | "iconLeft" | "iconRight" | "chromeless">, never>;
 declare type ContainerProps = {
     cssOverrides: SimpleInterpolation;
     className: string;
@@ -15,6 +16,7 @@ declare type BasicProps = {
     iconRight: string;
     label: string;
     onChange: (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+    onClick?: (event: MouseEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
     placeholder: string;
     value: string | number;
     disabled: boolean;

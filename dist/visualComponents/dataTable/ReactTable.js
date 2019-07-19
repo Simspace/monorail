@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.MonorailReactTableOverrides = exports.TBodyComponent = exports.TdComponent = exports.TrGroupComponent = exports.ResizerComponent = exports.FilterComponent = exports.ThComponent = exports.TheadComponent = exports.TableComponent = void 0;
+exports.MonorailReactTableOverrides = exports.NoDataContainer = exports.TBodyComponent = exports.TdComponent = exports.TrGroupComponent = exports.ResizerComponent = exports.FilterComponent = exports.ThComponent = exports.TheadComponent = exports.TableComponent = void 0;
 
 var _styledComponents = _interopRequireDefault(require("styled-components"));
 
@@ -12,6 +12,8 @@ var _react = _interopRequireDefault(require("react"));
 var _color = require("../../helpers/color");
 
 var _flex = require("../../helpers/flex");
+
+var _size = require("../../helpers/size");
 
 var _styledComponents2 = _interopRequireWildcard(require("../../helpers/styled-components"));
 
@@ -27,7 +29,11 @@ var _buttonTypes = require("../buttons/buttonTypes");
 
 var _IconButton = require("../buttons/IconButton");
 
+var _DataStates = require("../dataStates/DataStates");
+
 var _TextField = require("../inputs/TextField");
+
+var _ScrollAnimation = require("../layout/ScrollAnimation");
 
 var _Menu = require("../menu/Menu");
 
@@ -36,6 +42,8 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+const THEAD_HEIGHT = _size.Sizes.DP48;
 
 const TableComponent =
 /*#__PURE__*/
@@ -53,7 +61,7 @@ _styledComponents2.default.div.withConfig({
   componentId: "sc-1afopvo-1"
 })(({
   isFilterBar
-}) => (0, _styledComponents2.css)(["", ";height:48px;flex-shrink:0;", ";"], (0, _flex.flexFlow)('row'), isFilterBar ? (0, _styledComponents2.css)(["margin-top:-48px;pointer-events:none;"]) : (0, _styledComponents2.css)(["border-bottom:1px solid ", ";background:", ";overflow:hidden;"], (0, _color.getColor)(_color.Colors.Grey90), (0, _color.getColor)(_color.Colors.Grey99))));
+}) => (0, _styledComponents2.css)(["", ";height:", "px;flex-shrink:0;", ";"], (0, _flex.flexFlow)('row'), THEAD_HEIGHT, isFilterBar ? (0, _styledComponents2.css)(["margin-top:-", "px;pointer-events:none;"], THEAD_HEIGHT) : (0, _styledComponents2.css)(["border-bottom:1px solid ", ";background:", ";overflow:hidden;"], (0, _color.getColor)(_color.Colors.Grey90), (0, _color.getColor)(_color.Colors.Grey99))));
 
 const TheadComponent = ({
   children,
@@ -103,6 +111,10 @@ const getSortIcon = sortStatus => {
 
     case Sort.Unsorted:
       return 'sort';
+
+    default:
+      (0, _typeGuards.assertNever)(sortStatus);
+      return '';
   }
 };
 
@@ -182,7 +194,7 @@ const TrGroupComponent =
 _styledComponents2.default.div.withConfig({
   displayName: "ReactTable__TrGroupComponent",
   componentId: "sc-1afopvo-4"
-})(["", ";height:40px;position:relative;flex-shrink:0;&:hover::before{background:", ";}&::before{bottom:1px;content:'';left:0;position:absolute;right:0;top:0;}"], (0, _flex.flexFlow)('row'), (0, _color.getColor)(_color.Colors.Grey98));
+})(["", ";height:40px;position:relative;flex-shrink:0;&:hover::before{background:", ";}&:hover .actions{opacity:0.9999;}&::before{bottom:1px;content:'';left:0;position:absolute;right:0;top:0;}"], (0, _flex.flexFlow)('row'), (0, _color.getColor)(_color.Colors.Grey98));
 
 exports.TrGroupComponent = TrGroupComponent;
 
@@ -193,18 +205,27 @@ _styledComponents2.default.div.withConfig({
   componentId: "sc-1afopvo-5"
 })(({
   className
-}) => (0, _styledComponents2.css)(["", " ", ";", ";", ";color:", ";align-items:center;padding:0 12px;position:relative;&:first-of-type{padding-left:32px;}&:last-of-type{padding-right:32px;}"], !(0, _typeGuards.isNil)(className) && className.includes('actions') && 'justify-content: flex-end;', (0, _flex.flexFlow)('row'), (0, _typography.typography)(400, _typography.FontSizes.Title5), _typography.ellipsis, (0, _color.getColor)(_color.Colors.Black89)));
+}) => (0, _styledComponents2.css)(["", " ", ";", ";", ";color:", ";align-items:center;padding:0 12px;position:relative;&:first-of-type{padding-left:32px;}&:last-of-type{padding-right:32px;}"], !(0, _typeGuards.isNil)(className) && className.includes('actions') && `justify-content: flex-end;
+      opacity: 0.3;
+      `, (0, _flex.flexFlow)('row'), (0, _typography.typography)(400, _typography.FontSizes.Title5), _typography.ellipsis, (0, _color.getColor)(_color.Colors.Black89)));
 
 exports.TdComponent = TdComponent;
-
 const TBodyComponent =
 /*#__PURE__*/
-_styledComponents2.default.div.withConfig({
+(0, _styledComponents2.default)(_ScrollAnimation.ScrollAnimation).withConfig({
   displayName: "ReactTable__TBodyComponent",
   componentId: "sc-1afopvo-6"
-})(["", ";flex:1 1 100%;overflow-y:auto;overflow-x:hidden;"], (0, _flex.flexFlow)('column'));
-
+})(["overflow-x:hidden;"]);
 exports.TBodyComponent = TBodyComponent;
+
+const NoDataContainer =
+/*#__PURE__*/
+_styledComponents2.default.div.withConfig({
+  displayName: "ReactTable__NoDataContainer",
+  componentId: "sc-1afopvo-7"
+})(["", ";", ";align-items:center;bottom:0;color:", ";justify-content:center;left:0;position:absolute;right:0;top:", "px;"], (0, _flex.flexFlow)('column'), (0, _typography.typography)(400, _typography.FontSizes.Title5), (0, _color.getColor)(_color.Colors.Black62), THEAD_HEIGHT);
+
+exports.NoDataContainer = NoDataContainer;
 const MonorailReactTableOverrides = {
   FilterComponent: props => _react.default.createElement(FilterComponent, props),
   ResizerComponent: props => _react.default.createElement(ResizerComponent, props),
@@ -217,6 +238,7 @@ const MonorailReactTableOverrides = {
     children
   }) => children,
   TrGroupComponent: props => _react.default.createElement(TrGroupComponent, props),
+  NoDataComponent: props => _react.default.createElement(NoDataContainer, null, _react.default.createElement(_DataStates.EmptyTable, null)),
   getTheadFilterThProps: ({
     filtered
   }, rowInfo, column) => {
@@ -236,7 +258,10 @@ const MonorailReactTableOverrides = {
   defaultFilterMethod: (filter, row) => {
     const id = filter.pivotId || filter.id;
     return row[id] !== undefined ? String(row[id]).toLocaleLowerCase().includes(filter.value.toLocaleString().toLocaleLowerCase()) : true;
-  }
+  },
+  filterable: true,
+  resizable: true,
+  loadingText: ''
 };
 exports.MonorailReactTableOverrides = MonorailReactTableOverrides;
 

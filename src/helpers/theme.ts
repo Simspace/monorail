@@ -42,6 +42,11 @@ export interface GlobalAppThemeInterface {
   brandAccentColor: Colors
   linkColor: Colors
   mode: Mode
+  size: {
+    page: {
+      width: 'auto' | number
+    }
+  }
 }
 
 const themeBase = {
@@ -78,7 +83,7 @@ export const monorailTheme: GlobalAppThemeInterface = {
     [ThemeColors.ActionSecondary]: Colors.White,
     [ThemeColors.BackgroundPrimary]: Colors.DarkGrey,
     [ThemeColors.BackgroundSecondary]: Colors.White,
-    [ThemeColors.ActivePrimary]: Colors.AccentPurple700,
+    [ThemeColors.ActivePrimary]: Colors.AccentPurple500,
     [ThemeColors.ActiveSecondary]: Colors.White,
     [ThemeColors.PrimaryColor]: Colors.White,
     [ThemeColors.SecondaryColor]: Colors.Black,
@@ -88,6 +93,11 @@ export const monorailTheme: GlobalAppThemeInterface = {
     [ThemeColors.Text700]: Colors.White,
     [ThemeColors.Text900]: Colors.White,
     [ThemeColors.Text1000]: Colors.White,
+  },
+  size: {
+    page: {
+      width: 'auto',
+    },
   },
 }
 

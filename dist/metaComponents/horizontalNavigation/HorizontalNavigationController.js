@@ -26,7 +26,7 @@ const TabBarActions =
 _styledComponents.default.div.withConfig({
   displayName: "HorizontalNavigationController__TabBarActions",
   componentId: "rjggc0-0"
-})(["", ";align-items:center;margin-left:auto;margin-right:8px;"], (0, _exports.flexFlow)('row'));
+})(["", ";align-items:center;margin-left:auto;margin-right:0;"], (0, _exports.flexFlow)('row'));
 
 class HorizontalNavigationController extends _react.Component {
   constructor(...args) {

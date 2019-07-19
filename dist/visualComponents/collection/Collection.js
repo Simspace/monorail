@@ -35,25 +35,18 @@ var _SearchController = require("../inputs/SearchController");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-const TileContainer =
-/*#__PURE__*/
-_styledComponents2.default.div.withConfig({
-  displayName: "Collection__TileContainer",
-  componentId: "b970z1-0"
-})(["display:grid;flex-grow:1;grid-auto-rows:max-content;grid-template-columns:repeat(auto-fill,192px);justify-content:center;overflow-y:auto;padding:12px 28px;"]);
-
 const CollectionContainer =
 /*#__PURE__*/
 _styledComponents2.default.div.withConfig({
   displayName: "Collection__CollectionContainer",
-  componentId: "b970z1-1"
+  componentId: "b970z1-0"
 })(["", ";background:", ";flex:1;overflow:hidden;"], (0, _flex.flexFlow)('row'), (0, _color.getColor)(_color.Colors.White));
 
 const ControlsContainer =
 /*#__PURE__*/
 _styledComponents2.default.div.withConfig({
   displayName: "Collection__ControlsContainer",
-  componentId: "b970z1-2"
+  componentId: "b970z1-1"
 })(["", ";align-items:center;background:", ";height:40px;margin-top:4px;padding:0 32px 0 30px;"], (0, _flex.flexFlow)('row'), (0, _color.getColor)(_color.Colors.Grey99));
 
 let CollectionView;
@@ -61,7 +54,6 @@ exports.CollectionView = CollectionView;
 
 (function (CollectionView) {
   CollectionView["Table"] = "table";
-  CollectionView["Tile"] = "tile";
   CollectionView["Card"] = "card";
 })(CollectionView || (exports.CollectionView = CollectionView = {}));
 
@@ -71,7 +63,6 @@ const Collection = props => {
     columns,
     data,
     searchFilter,
-    tileRender,
     collectionView,
     setCollectionView
   } = props;
@@ -95,11 +86,12 @@ const Collection = props => {
         case CollectionView.Card:
           return cardRender(item);
 
-        case CollectionView.Tile:
-          return tileRender(item);
-
         case CollectionView.Table:
           return children;
+
+        default:
+          (0, _typeGuards.assertNever)(collectionView);
+          return _react.default.createElement(_react.default.Fragment, null);
       }
     }
 
@@ -114,11 +106,12 @@ const Collection = props => {
       case CollectionView.Card:
         return _react.default.createElement(_Cards.BBCardGrid, null, children);
 
-      case CollectionView.Tile:
-        return _react.default.createElement(TileContainer, null, children);
-
       case CollectionView.Table:
         return _react.default.createElement(_ReactTable.TBodyComponent, domProps, children);
+
+      default:
+        (0, _typeGuards.assertNever)(collectionView);
+        return _react.default.createElement(_react.default.Fragment, null);
     }
   };
 
@@ -127,12 +120,8 @@ const Collection = props => {
     children,
     ...domProps
   }) => {
-    if (!(0, _typeGuards.isNil)(item)) {
-      if (collectionView === CollectionView.Tile) {
-        return tileRender(item);
-      } else if (collectionView === CollectionView.Card) {
-        return cardRender(item);
-      }
+    if (!(0, _typeGuards.isNil)(item) && collectionView === CollectionView.Card) {
+      return cardRender(item);
     }
 
     return _react.default.createElement(_ReactTable.TrGroupComponent, domProps, children);
@@ -155,10 +144,6 @@ const Collection = props => {
       onClick: () => setCollectionView(CollectionView.Table),
       icon: "view_headline"
     }), _react.default.createElement(_IconButton.IconButton, {
-      isActive: collectionView === CollectionView.Tile,
-      onClick: () => setCollectionView(CollectionView.Tile),
-      icon: "view_comfy"
-    }), _react.default.createElement(_IconButton.IconButton, {
       isActive: collectionView === CollectionView.Card,
       onClick: () => setCollectionView(CollectionView.Card),
       icon: "view_module"
@@ -168,14 +153,11 @@ const Collection = props => {
     })), _react.default.createElement(CollectionContainer, null, _react.default.createElement(_reactTable.default, {
       columns: columns,
       data: filteredData,
-      filterable: true,
       getTrGroupProps: getReactTableComponentProps,
       getTrProps: getReactTableComponentProps,
-      resizable: true,
       TbodyComponent: getTbodyComponent,
       TrComponent: getTrComponent,
       TrGroupComponent: getTrGroupComponent,
-      loadingText: "",
       pageSize: filteredData.length
     })));
   });

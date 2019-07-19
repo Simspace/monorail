@@ -3,7 +3,24 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.Sizes = exports.sizes = void 0;
+exports.pageSizePadding = exports.pageSizeMargin = exports.sizes = exports.Sizes = void 0;
+
+var _styledComponents = require("./styled-components");
+
+let Sizes;
+exports.Sizes = Sizes;
+
+(function (Sizes) {
+  Sizes[Sizes["DP8"] = 8] = "DP8";
+  Sizes[Sizes["DP16"] = 16] = "DP16";
+  Sizes[Sizes["DP24"] = 24] = "DP24";
+  Sizes[Sizes["DP32"] = 32] = "DP32";
+  Sizes[Sizes["DP40"] = 40] = "DP40";
+  Sizes[Sizes["DP48"] = 48] = "DP48";
+  Sizes[Sizes["DP56"] = 56] = "DP56";
+  Sizes[Sizes["DP64"] = 64] = "DP64";
+})(Sizes || (exports.Sizes = Sizes = {}));
+
 const sizes = {
   modals: {
     mini: {
@@ -19,19 +36,35 @@ const sizes = {
   },
   appSwitcher: {
     width: 376
+  },
+  page: {
+    sideSpace: Sizes.DP32
   }
 };
 exports.sizes = sizes;
-let Sizes;
-exports.Sizes = Sizes;
 
-(function (Sizes) {
-  Sizes[Sizes["DP8"] = 8] = "DP8";
-  Sizes[Sizes["DP16"] = 16] = "DP16";
-  Sizes[Sizes["DP24"] = 24] = "DP24";
-  Sizes[Sizes["DP32"] = 32] = "DP32";
-  Sizes[Sizes["DP40"] = 40] = "DP40";
-  Sizes[Sizes["DP48"] = 48] = "DP48";
-  Sizes[Sizes["DP56"] = 56] = "DP56";
-  Sizes[Sizes["DP64"] = 64] = "DP64";
-})(Sizes || (exports.Sizes = Sizes = {}));
+const pageSizeMargin = (params = {
+  marginTop: 0,
+  marginBottom: 0
+}) => (0, _styledComponents.css)(["", ";"], ({
+  theme: {
+    size: {
+      page
+    }
+  }
+}) => (0, _styledComponents.css)(["max-width:", "px;margin:", "px ", "px ", "px ", "px;"], page.width, params.marginTop, sizes.page.sideSpace, params.marginBottom, sizes.page.sideSpace));
+
+exports.pageSizeMargin = pageSizeMargin;
+
+const pageSizePadding = (params = {
+  paddingTop: 0,
+  paddingBottom: 0
+}) => (0, _styledComponents.css)(["", ";"], ({
+  theme: {
+    size: {
+      page
+    }
+  }
+}) => (0, _styledComponents.css)(["box-sizing:content-box;max-width:", "px;padding:", "px ", "px ", "px ", "px;"], page.width, params.paddingTop, sizes.page.sideSpace, params.paddingBottom, sizes.page.sideSpace));
+
+exports.pageSizePadding = pageSizePadding;

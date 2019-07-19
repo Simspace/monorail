@@ -24,6 +24,7 @@ import { isNil } from '@monorail/sharedHelpers/typeGuards'
 import { CommonComponentType, LinkProps } from '@monorail/types'
 import { Search } from '@monorail/visualComponents/inputs/Search'
 import { SearchController } from '@monorail/visualComponents/inputs/SearchController'
+import { ScrollAnimation } from '@monorail/visualComponents/layout/ScrollAnimation'
 import {
   ListContainer,
   ListItem,
@@ -269,12 +270,12 @@ export class ContextMenu extends Component<Props> {
 
                   {renderFilter()}
                 </SearchContainer>
-
                 <ListContainer
                   css={css`
                     padding: 0 0 4px;
                   `}
                   emptyText="Loading..."
+                  as={ScrollAnimation}
                 >
                   {isEmpty(contextMenuItems) ? (
                     <ContextMenuItem

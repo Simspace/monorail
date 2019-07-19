@@ -21,9 +21,10 @@ import styled, { css } from '@monorail/helpers/styled-components'
 import { PopOverChildProps } from '@monorail/metaComponents/popOver/PopOver'
 import { FCwDP } from '@monorail/sharedHelpers/react'
 import { isNil } from '@monorail/sharedHelpers/typeGuards'
+import { CommonComponentType } from '@monorail/types'
 import { Overlay } from '@monorail/visualComponents/toggle/Overlay'
 
-type MenuProps = {
+type MenuProps = CommonComponentType & {
   width: string
 }
 
@@ -41,7 +42,7 @@ const MenuContainer = styled.div<MenuProps>(
   `,
 )
 
-const MenuContent = styled.div`
+export const MenuContent = styled.div`
   ${flexFlow()};
 
   height: 100%;
@@ -50,9 +51,10 @@ const MenuContent = styled.div`
   width: 100%;
 `
 
-type RequiredProps = PopOverChildProps & {
-  width?: number
-}
+type RequiredProps = CommonComponentType &
+  PopOverChildProps & {
+    width?: number
+  }
 
 type DefaultProps = {
   zIndex: number
@@ -67,6 +69,7 @@ export const Menu: FCwDP<RequiredProps, DefaultProps> = ({
   togglePopOver,
   width,
   zIndex,
+  cssOverrides,
   ...domProps
 }) => {
   const menuRef = useRef<HTMLDivElement>(null)
@@ -130,6 +133,8 @@ export const Menu: FCwDP<RequiredProps, DefaultProps> = ({
       <MenuContainer
         css={css`
           ${isRendered ? scaleAnimation.outSideContentStyles : ''}
+
+          ${cssOverrides}
         `}
         ref={menuRef}
         width={isNil(width) ? 'auto' : `${width}px`}

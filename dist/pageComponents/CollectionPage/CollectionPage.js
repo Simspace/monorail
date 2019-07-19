@@ -24,7 +24,6 @@ const CollectionPage = props => {
     data,
     searchFilter,
     setCollectionView,
-    tileRender,
     title
   } = props;
   return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_PageHeader.PageHeader, {
@@ -36,8 +35,7 @@ const CollectionPage = props => {
     columns: columns,
     data: data,
     searchFilter: searchFilter,
-    setCollectionView: setCollectionView,
-    tileRender: tileRender
+    setCollectionView: setCollectionView
   }));
 };
 

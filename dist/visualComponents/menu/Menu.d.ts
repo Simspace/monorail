@@ -1,6 +1,8 @@
 import { PopOverChildProps } from '@monorail/metaComponents/popOver/PopOver';
 import { FCwDP } from '@monorail/sharedHelpers/react';
-declare type RequiredProps = PopOverChildProps & {
+import { CommonComponentType } from '@monorail/types';
+export declare const MenuContent: import("styled-components").StyledComponent<"div", import("../../helpers/theme").GlobalAppThemeInterface, {}, never>;
+declare type RequiredProps = CommonComponentType & PopOverChildProps & {
     width?: number;
 };
 declare type DefaultProps = {

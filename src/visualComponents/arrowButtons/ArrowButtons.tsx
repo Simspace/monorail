@@ -47,6 +47,7 @@ type Props = CommonComponentType & {
   slideIndicatorType?: string
   size?: ButtonSize
   arrowColor?: Colors
+  loop?: boolean
   cssArrowOverrides?: SimpleInterpolation
 }
 
@@ -64,6 +65,7 @@ export const ArrowButtons = (props: Props) => {
     cssArrowOverrides,
     arrowColor = Colors.Black,
     size,
+    loop = false,
     ...otherProps
   } = props
 
@@ -71,7 +73,7 @@ export const ArrowButtons = (props: Props) => {
     <ArrowButtonsContainer {...otherProps}>
       <IconButton
         icon="chevron_left"
-        disabled={isUndefined(previous) || current === 0}
+        disabled={isUndefined(previous) || (current === 0 && !loop)}
         onClick={previous}
         display={ButtonDisplay.Chromeless}
         size={size}
@@ -94,7 +96,7 @@ export const ArrowButtons = (props: Props) => {
       )}
       <IconButton
         icon="chevron_right"
-        disabled={isUndefined(next) || current === total}
+        disabled={!loop && (isUndefined(next) || current === total)}
         onClick={next}
         display={ButtonDisplay.Chromeless}
         size={size}

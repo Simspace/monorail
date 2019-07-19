@@ -32,7 +32,6 @@ export const CollectionPage = <T extends unknown>(
     data,
     searchFilter,
     setCollectionView,
-    tileRender,
     title,
   } = props
 
@@ -50,7 +49,6 @@ export const CollectionPage = <T extends unknown>(
         data={data}
         searchFilter={searchFilter}
         setCollectionView={setCollectionView}
-        tileRender={tileRender}
       />
     </>
   )

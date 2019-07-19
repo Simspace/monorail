@@ -53,6 +53,8 @@ var _LMS = require("./custom/LMS");
 
 var _NetworkSetup = require("./custom/NetworkSetup");
 
+var _NoResults = require("./custom/NoResults");
+
 var _NoUsers = require("./custom/NoUsers");
 
 var _OrgGroup = require("./custom/OrgGroup");
@@ -135,6 +137,7 @@ const customIcons = {
   'home-app': _Home.Home,
   'impact-app': _Impact.Impact,
   'network-setup-app': _NetworkSetup.NetworkSetup,
+  'no-results': _NoResults.NoResults,
   'range-app': _Range.Range,
   'repo-app': _Catalog.Catalog,
   'reports-analytics-app': _ReportsAnalytics.ReportsAnalytics,
