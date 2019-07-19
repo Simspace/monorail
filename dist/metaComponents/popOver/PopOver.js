@@ -26,7 +26,7 @@ const defaultPopOverPosition = {
   dropXDirection: dropDirections.Left,
   dropYAmount: 0,
   dropYDirection: dropDirections.Top,
-  gap: 0,
+  gap: 8,
   maxHeight: 360,
   maxWidth: 304,
   originHeight: 0,
@@ -36,7 +36,7 @@ const defaultPopOverPosition = {
 };
 exports.defaultPopOverPosition = defaultPopOverPosition;
 
-const getOverlayPosition = (target, gap = 0, toSide = false) => {
+const getOverlayPosition = (target, gap = 8, toSide = false) => {
   // Get basic dimensions about the the Toggle and the window.
   const boundingRect = target.getBoundingClientRect();
   const innerWidth = window.innerWidth;
@@ -269,7 +269,8 @@ class PopOver extends _react.Component {
 
   static getDerivedStateFromProps(props, state) {
     return { ...state,
-      isOpen: props.isOpen !== undefined ? props.isOpen : state.isOpen
+      isOpen: props.isOpen !== undefined ? props.isOpen : state.isOpen,
+      isRendered: props.isOpen !== undefined ? props.isOpen : state.isRendered
     };
   }
 

@@ -56,18 +56,19 @@ const ArrowButtons = props => {
     cssArrowOverrides,
     arrowColor = _exports.Colors.Black,
     size,
+    loop = false,
     ...otherProps
   } = props;
   return _react.default.createElement(ArrowButtonsContainer, otherProps, _react.default.createElement(_IconButton.IconButton, {
     icon: "chevron_left",
-    disabled: (0, _typeGuards.isUndefined)(previous) || current === 0,
+    disabled: (0, _typeGuards.isUndefined)(previous) || current === 0 && !loop,
     onClick: previous,
     display: _buttonTypes.ButtonDisplay.Chromeless,
     size: size,
     cssOverrides: slideIndicatorType === 'dot' ? (0, _styledComponents.css)(["margin:auto auto auto 16px;pointer-events:all;", ";"], cssArrowOverrides) : (0, _styledComponents.css)(["margin:auto auto auto 0;pointer-events:all;", ";"], cssArrowOverrides)
   }), slideIndicatorType !== 'dot' && _react.default.createElement(RatioContainer, null, `${current + 1} / ${total + 1}`), _react.default.createElement(_IconButton.IconButton, {
     icon: "chevron_right",
-    disabled: (0, _typeGuards.isUndefined)(next) || current === total,
+    disabled: !loop && ((0, _typeGuards.isUndefined)(next) || current === total),
     onClick: next,
     display: _buttonTypes.ButtonDisplay.Chromeless,
     size: size,

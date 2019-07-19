@@ -25,6 +25,7 @@ import { Home } from '@monorail/visualComponents/icon/custom/Home'
 import { Impact } from '@monorail/visualComponents/icon/custom/Impact'
 import { LMS } from '@monorail/visualComponents/icon/custom/LMS'
 import { NetworkSetup } from '@monorail/visualComponents/icon/custom/NetworkSetup'
+import { NoResults } from '@monorail/visualComponents/icon/custom/NoResults'
 import { NoUsers } from '@monorail/visualComponents/icon/custom/NoUsers'
 import { OrgGroup } from '@monorail/visualComponents/icon/custom/OrgGroup'
 import { Puzzle } from '@monorail/visualComponents/icon/custom/Puzzle'
@@ -78,6 +79,7 @@ const customIcons: { [key: string]: ComponentType<CustomIconProps> } = {
   'home-app': Home,
   'impact-app': Impact,
   'network-setup-app': NetworkSetup,
+  'no-results': NoResults,
   'range-app': Range,
   'repo-app': Catalog,
   'reports-analytics-app': ReportsAnalytics,

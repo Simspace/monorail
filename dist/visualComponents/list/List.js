@@ -174,7 +174,6 @@ SimpleListItem.defaultProps = {
   dense: false,
   disabled: false,
   leftIcon: '',
-  onClick: () => {},
   primaryText: '',
   rightIcon: '',
   secondaryText: '',

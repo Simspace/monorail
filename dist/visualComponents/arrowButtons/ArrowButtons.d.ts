@@ -11,6 +11,7 @@ declare type Props = CommonComponentType & {
     slideIndicatorType?: string;
     size?: ButtonSize;
     arrowColor?: Colors;
+    loop?: boolean;
     cssArrowOverrides?: SimpleInterpolation;
 };
 export declare const ArrowButtons: (props: Props) => JSX.Element;

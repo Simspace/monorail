@@ -1,4 +1,4 @@
-import React, { ChangeEvent, Component } from 'react'
+import React, { ChangeEvent, Component, MouseEvent } from 'react'
 import styled, { css, SimpleInterpolation } from 'styled-components'
 import { Omit } from 'typelevel-ts'
 
@@ -51,7 +51,7 @@ const StyledRightIcon = styled(Icon)`
   right: 8px;
 `
 
-const BBTextFieldInput = styled.input<
+export const BBTextFieldInput = styled.input<
   Omit<TextFieldProps, 'value' | 'label' | 'cssOverrides'>
 >(
   ({ chromeless, iconLeft, iconRight, disabled }) => css`
@@ -151,6 +151,7 @@ type BasicProps = {
   iconRight: string
   label: string
   onChange: (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void
+  onClick?: (event: MouseEvent<HTMLInputElement | HTMLTextAreaElement>) => void
   placeholder: string
   value: string | number // TODO - split into number component
   disabled: boolean

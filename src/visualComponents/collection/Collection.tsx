@@ -4,7 +4,7 @@ import ReactTable, { TableProps } from 'react-table'
 import { Colors, getColor } from '@monorail/helpers/color'
 import { flexFlow } from '@monorail/helpers/flex'
 import styled from '@monorail/helpers/styled-components'
-import { isNil } from '@monorail/sharedHelpers/typeGuards'
+import { assertNever, isNil } from '@monorail/sharedHelpers/typeGuards'
 import {
   ButtonsBarMode,
   ButtonSize,
@@ -23,16 +23,6 @@ import {
   CompareSearchType,
   SearchController,
 } from '@monorail/visualComponents/inputs/SearchController'
-
-const TileContainer = styled.div`
-  display: grid;
-  flex-grow: 1;
-  grid-auto-rows: max-content;
-  grid-template-columns: repeat(auto-fill, 192px);
-  justify-content: center;
-  overflow-y: auto;
-  padding: 12px 28px;
-`
 
 const CollectionContainer = styled.div`
   ${flexFlow('row')};
@@ -54,7 +44,6 @@ const ControlsContainer = styled.div`
 
 export enum CollectionView {
   Table = 'table',
-  Tile = 'tile',
   Card = 'card',
 }
 
@@ -77,7 +66,6 @@ export type CollectionProps<I> = {
   columns: TableColumns<I>
   data: TableProps<I>['data']
   searchFilter: SearchFilterType<I>
-  tileRender: (item: I) => ReactElement
   collectionView: CollectionView
   setCollectionView: (collectionView: CollectionView) => void
 }
@@ -90,7 +78,6 @@ export const Collection = <T extends unknown>(
     columns,
     data,
     searchFilter,
-    tileRender,
     collectionView,
     setCollectionView,
   } = props
@@ -113,10 +100,11 @@ export const Collection = <T extends unknown>(
       switch (collectionView) {
         case CollectionView.Card:
           return cardRender(item)
-        case CollectionView.Tile:
-          return tileRender(item)
         case CollectionView.Table:
           return children
+        default:
+          assertNever(collectionView)
+          return <></>
       }
     }
 
@@ -130,10 +118,11 @@ export const Collection = <T extends unknown>(
     switch (collectionView) {
       case CollectionView.Card:
         return <BBCardGrid>{children}</BBCardGrid>
-      case CollectionView.Tile:
-        return <TileContainer>{children}</TileContainer>
       case CollectionView.Table:
         return <TBodyComponent {...domProps}>{children}</TBodyComponent>
+      default:
+        assertNever(collectionView)
+        return <></>
     }
   }
 
@@ -142,12 +131,8 @@ export const Collection = <T extends unknown>(
     children,
     ...domProps
   }) => {
-    if (!isNil(item)) {
-      if (collectionView === CollectionView.Tile) {
-        return tileRender(item)
-      } else if (collectionView === CollectionView.Card) {
-        return cardRender(item)
-      }
+    if (!isNil(item) && collectionView === CollectionView.Card) {
+      return cardRender(item)
     }
 
     return <TrGroupComponent {...domProps}>{children}</TrGroupComponent>
@@ -172,11 +157,6 @@ export const Collection = <T extends unknown>(
                   icon="view_headline"
                 />
                 <IconButton
-                  isActive={collectionView === CollectionView.Tile}
-                  onClick={() => setCollectionView(CollectionView.Tile)}
-                  icon="view_comfy"
-                />
-                <IconButton
                   isActive={collectionView === CollectionView.Card}
                   onClick={() => setCollectionView(CollectionView.Card)}
                   icon="view_module"
@@ -197,14 +177,11 @@ export const Collection = <T extends unknown>(
               <ReactTable<T>
                 columns={columns}
                 data={filteredData}
-                filterable
                 getTrGroupProps={getReactTableComponentProps}
                 getTrProps={getReactTableComponentProps}
-                resizable
                 TbodyComponent={getTbodyComponent}
                 TrComponent={getTrComponent}
                 TrGroupComponent={getTrGroupComponent}
-                loadingText=""
                 pageSize={filteredData.length}
               />
             </CollectionContainer>

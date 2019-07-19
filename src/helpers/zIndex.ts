@@ -5,6 +5,7 @@ export enum ZIndexNodeName {
   PageLevelNavItem = 'PageLevelNavItem',
   FramedIconBackground = 'FramedIconBackground',
   FramedIcon = 'FramedIcon',
+  TabBarIndicator = 'TabBarIndicator',
 }
 
 export const zIndex = (nodeName: ZIndexNodeName) => {
@@ -13,6 +14,7 @@ export const zIndex = (nodeName: ZIndexNodeName) => {
       return 'z-index: 10;'
     case ZIndexNodeName.NewFlowSection:
     case ZIndexNodeName.PageLevelNavItem:
+    case ZIndexNodeName.TabBarIndicator:
       return 'z-index: 5;'
     case ZIndexNodeName.FramedIconBackground:
     case ZIndexNodeName.NewFlowSectionAfter:

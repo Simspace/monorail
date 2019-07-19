@@ -23,6 +23,8 @@ var _Search = require("../inputs/Search");
 
 var _SearchController = require("../inputs/SearchController");
 
+var _ScrollAnimation = require("../layout/ScrollAnimation");
+
 var _List = require("../list/List");
 
 var _SidebarDropDown = require("./SidebarDropDown");
@@ -163,7 +165,8 @@ class ContextMenu extends _react.Component {
         onChange: onChange,
         searchRef: this.searchRef
       }), renderFilter()), _react.default.createElement(_StyledListContainer, {
-        emptyText: "Loading..."
+        emptyText: "Loading...",
+        as: _ScrollAnimation.ScrollAnimation
       }, (0, _Array.isEmpty)(contextMenuItems) ? _react.default.createElement(ContextMenuItem, {
         size: _exports.Sizes.DP40,
         primaryText: "No results."

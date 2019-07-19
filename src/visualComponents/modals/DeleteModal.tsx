@@ -4,6 +4,7 @@ import { Colors, getColor } from '@monorail/helpers/color'
 import { css } from '@monorail/helpers/styled-components'
 import { FontSizes } from '@monorail/helpers/typography'
 import { PopOverChildProps } from '@monorail/metaComponents/popOver/PopOver'
+import { isNotNil } from '@monorail/sharedHelpers/typeGuards'
 import { Button } from '@monorail/visualComponents/buttons/Button'
 import { ButtonDisplay } from '@monorail/visualComponents/buttons/buttonTypes'
 import { MediumModal } from '@monorail/visualComponents/modals/MediumModal'
@@ -23,6 +24,8 @@ const deleteModalStyles = css`
 export type DeleteModalProps = PopOverChildProps & {
   itemName: string
   onSubmit: () => void
+  titleText?: React.ReactNode
+  subtitleText?: React.ReactNode
 }
 
 export const DeleteModal: FC<DeleteModalProps> = props => {
@@ -34,6 +37,8 @@ export const DeleteModal: FC<DeleteModalProps> = props => {
     onSubmit,
     position,
     togglePopOver,
+    titleText,
+    subtitleText,
   } = props
 
   return (
@@ -49,11 +54,23 @@ export const DeleteModal: FC<DeleteModalProps> = props => {
     >
       <BBModalContent css="padding: 24px;">
         <Text fontSize={FontSizes.Title4} fontWeight={700} margin="0 0 8px">
-          Are you sure you want to delete <i>{itemName}</i>?
+          {/* Check specifically for undefined, since null is a valid JSX node */}
+          {titleText !== undefined ? (
+            titleText
+          ) : (
+            <>
+              Are you sure you want to delete <i>{itemName}</i>?
+            </>
+          )}
         </Text>
 
         <Text fontSize={FontSizes.Title5} fontWeight={400} margin="8px 0 0 ">
-          Deleting is permanent action that can not be recovered.
+          {/* Check specifically for undefined, since null is a valid JSX node */}
+          {titleText !== undefined ? (
+            subtitleText
+          ) : (
+            <>Deleting is permanent action that can not be recovered.</>
+          )}
         </Text>
       </BBModalContent>
 

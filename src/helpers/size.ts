@@ -1,3 +1,17 @@
+import { css } from '@monorail/helpers/styled-components'
+import { CssOverridesType } from '@monorail/types'
+
+export enum Sizes {
+  DP8 = 8,
+  DP16 = 16,
+  DP24 = 24,
+  DP32 = 32,
+  DP40 = 40,
+  DP48 = 48,
+  DP56 = 56,
+  DP64 = 64,
+}
+
 export const sizes = {
   modals: {
     mini: {
@@ -14,15 +28,38 @@ export const sizes = {
   appSwitcher: {
     width: 376,
   },
+  page: {
+    sideSpace: Sizes.DP32,
+  },
 }
 
-export enum Sizes {
-  DP8 = 8,
-  DP16 = 16,
-  DP24 = 24,
-  DP32 = 32,
-  DP40 = 40,
-  DP48 = 48,
-  DP56 = 56,
-  DP64 = 64,
-}
+export const pageSizeMargin: (params?: {
+  marginTop?: number
+  marginBottom?: number
+}) => CssOverridesType = (params = { marginTop: 0, marginBottom: 0 }) => css`
+  ${({
+    theme: {
+      size: { page },
+    },
+  }) => css`
+    max-width: ${page.width}px;
+    margin: ${params.marginTop}px ${sizes.page.sideSpace}px
+      ${params.marginBottom}px ${sizes.page.sideSpace}px;
+  `};
+`
+
+export const pageSizePadding: (params?: {
+  paddingTop?: number
+  paddingBottom?: number
+}) => CssOverridesType = (params = { paddingTop: 0, paddingBottom: 0 }) => css`
+  ${({
+    theme: {
+      size: { page },
+    },
+  }) => css`
+    box-sizing: content-box;
+    max-width: ${page.width}px;
+    padding: ${params.paddingTop}px ${sizes.page.sideSpace}px
+      ${params.paddingBottom}px ${sizes.page.sideSpace}px;
+  `};
+`

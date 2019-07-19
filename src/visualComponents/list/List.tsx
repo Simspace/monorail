@@ -59,6 +59,7 @@ type BBListContainerProps = {
 
 type ListContainerProps = BBListContainerProps & {
   emptyText?: string
+  as?: ReactType
 }
 
 /*
@@ -240,7 +241,7 @@ type DefaultProps = {
   dense: boolean
   disabled: boolean
   leftIcon: string
-  onClick: (event: MouseEvent<HTMLDivElement>) => void
+  onClick?: (event: MouseEvent<HTMLDivElement>) => void
   primaryText: ReactNode
   rightIcon: string
   secondaryText: ReactNode
@@ -302,7 +303,6 @@ SimpleListItem.defaultProps = {
   dense: false,
   disabled: false,
   leftIcon: '',
-  onClick: () => {},
   primaryText: '',
   rightIcon: '',
   secondaryText: '',

@@ -39,7 +39,9 @@ const DeleteModal = props => {
     onClick,
     onSubmit,
     position,
-    togglePopOver
+    togglePopOver,
+    titleText,
+    subtitleText
   } = props;
   return _react.default.createElement(_StyledMediumModal, {
     onClick: onClick,
@@ -53,11 +55,11 @@ const DeleteModal = props => {
     fontSize: _typography.FontSizes.Title4,
     fontWeight: 700,
     margin: "0 0 8px"
-  }, "Are you sure you want to delete ", _react.default.createElement("i", null, itemName), "?"), _react.default.createElement(_Text.Text, {
+  }, titleText !== undefined ? titleText : _react.default.createElement(_react.default.Fragment, null, "Are you sure you want to delete ", _react.default.createElement("i", null, itemName), "?")), _react.default.createElement(_Text.Text, {
     fontSize: _typography.FontSizes.Title5,
     fontWeight: 400,
     margin: "8px 0 0 "
-  }, "Deleting is permanent action that can not be recovered.")), _react.default.createElement(_Modals.BBModalFooter, null, _react.default.createElement(_StyledButton, {
+  }, titleText !== undefined ? subtitleText : _react.default.createElement(_react.default.Fragment, null, "Deleting is permanent action that can not be recovered."))), _react.default.createElement(_Modals.BBModalFooter, null, _react.default.createElement(_StyledButton, {
     onClick: onClick,
     display: _buttonTypes.ButtonDisplay.Chromeless
   }, "No"), _react.default.createElement(_Button.Button, {

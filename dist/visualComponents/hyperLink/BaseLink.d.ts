@@ -1,5 +1,7 @@
-import { FC } from 'react';
+import { ForwardRefExoticComponent, PropsWithoutRef, RefAttributes } from 'react';
 import { LinkProps } from 'react-router';
-export declare const BaseLink: FC<LinkProps & {
+declare type BaseLinkProps = LinkProps & {
     className?: string;
-}>;
+};
+export declare const BaseLink: ForwardRefExoticComponent<PropsWithoutRef<BaseLinkProps> & RefAttributes<HTMLAnchorElement>>;
+export {};

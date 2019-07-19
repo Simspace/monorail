@@ -1,5 +1,9 @@
 import { Falsy } from './typeLevel';
 /**
+ * Will throw a type error if switch cases aren't exhaustive.
+ */
+export declare const assertNever: (x: never) => never;
+/**
  * Tests whether or not an argument is null (type guard)
  */
 export declare const isNull: (x: unknown) => x is null;

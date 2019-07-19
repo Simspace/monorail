@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 import { PopOverToggleProps } from '@monorail/metaComponents/popOver/PopOver';
 import { FCwDP } from '@monorail/sharedHelpers/react';
 export declare type ActionsMenuProps = {
-    menuItems: Array<{
+    actions: Array<{
         label: string;
         iconName?: string;
         /**
@@ -12,7 +12,7 @@ export declare type ActionsMenuProps = {
          * ActionsMenu we would just be able to stop propagation on the SyntheticEvent
          */
         onClick: (onClickParent: () => void) => void;
-        featuredAction?: boolean;
+        isFeaturedAction?: boolean;
         children?: ReactNode;
     }>;
     document?: Document;

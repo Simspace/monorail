@@ -1,7 +1,14 @@
 import React, { Component, ReactNode } from 'react'
 import styled, { css, SimpleInterpolation } from 'styled-components'
 
-import { Colors, flexFlow, getColor, Sizes } from '@monorail/helpers/exports'
+import {
+  Colors,
+  flexFlow,
+  getColor,
+  Sizes,
+  zIndex,
+  ZIndexNodeName,
+} from '@monorail/helpers/exports'
 import {
   HorizontalNavigationController,
   TabBarIndicatorProps,
@@ -19,8 +26,17 @@ export const TabBarContainer = styled.div<CCTabBarProps>(
     padding: 0 8px;
     position: relative;
     box-sizing: border-box;
-    border-bottom: 1px solid ${getColor(Colors.Grey94)};
     flex-shrink: 0;
+
+    &::after {
+      background: ${getColor(Colors.Grey94)};
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      content: '';
+      height: 1px;
+    }
 
     ${cssOverrides};
   `,
@@ -40,6 +56,8 @@ const TabBarIndicatorContainer = styled(
 )<TabBarIndicatorProps>(
   ({ left, duration }) => css`
     ${flexFlow('row')};
+    ${zIndex(ZIndexNodeName.TabBarIndicator)};
+
     bottom: 0;
     height: 3px;
     left: 0;

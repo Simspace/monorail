@@ -1,20 +1,25 @@
 import React, { FC, useRef } from 'react'
-import styled from 'styled-components'
 
 import { Colors, getColor } from '@monorail/helpers/color'
 import { ElevationRange, getElevationShadow } from '@monorail/helpers/elevation'
 import { flexFlow } from '@monorail/helpers/flex'
 import { useEventListener, useRefCallback } from '@monorail/helpers/hooks'
+import styled, { css } from '@monorail/helpers/styled-components'
 import { isNil } from '@monorail/sharedHelpers/typeGuards'
+import { CssOverridesType } from '@monorail/types'
 
-const ScrollAnimationContainer = styled.div`
-  ${flexFlow()};
+const ScrollAnimationContainer = styled.div<ScrollAnimationProps>(
+  ({ containerCssOverrides }) => css`
+    ${flexFlow()};
 
-  overflow: hidden;
-  height: 100%;
+    overflow: hidden;
+    height: 100%;
 
-  position: relative;
-`
+    position: relative;
+
+    ${containerCssOverrides};
+  `,
+)
 
 const ScrollContainer = styled.div`
   ${flexFlow()};
@@ -40,7 +45,15 @@ const Shadow = styled.div`
 
 const SCROLL_AMOUNT = 128
 
-export const ScrollAnimation: FC = ({ children, ...domProps }) => {
+type ScrollAnimationProps = {
+  containerCssOverrides?: CssOverridesType
+}
+
+export const ScrollAnimation: FC<ScrollAnimationProps> = ({
+  children,
+  containerCssOverrides,
+  ...domProps
+}) => {
   const shadow = useRef<HTMLDivElement>(null)
   const [scrollContainer, scrollContainerRef] = useRefCallback<HTMLDivElement>()
 
@@ -77,7 +90,7 @@ export const ScrollAnimation: FC = ({ children, ...domProps }) => {
   })
 
   return (
-    <ScrollAnimationContainer>
+    <ScrollAnimationContainer containerCssOverrides={containerCssOverrides}>
       <Shadow ref={shadow} />
 
       <ScrollContainer ref={scrollContainerRef} {...domProps}>

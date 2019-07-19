@@ -7,18 +7,23 @@ import { Column, ControlledStateOverrideProps, TableProps } from 'react-table'
 
 import { Colors, getColor } from '@monorail/helpers/color'
 import { flexFlow } from '@monorail/helpers/flex'
+import { Sizes } from '@monorail/helpers/size'
 import styled, { css } from '@monorail/helpers/styled-components'
 import { ellipsis, FontSizes, typography } from '@monorail/helpers/typography'
 import { PopOver } from '@monorail/metaComponents/popOver/PopOver'
-import { isNil } from '@monorail/sharedHelpers/typeGuards'
+import { assertNever, isNil } from '@monorail/sharedHelpers/typeGuards'
 import { Button } from '@monorail/visualComponents/buttons/Button'
 import {
   ButtonDisplay,
   ButtonSize,
 } from '@monorail/visualComponents/buttons/buttonTypes'
 import { IconButton } from '@monorail/visualComponents/buttons/IconButton'
+import { EmptyTable } from '@monorail/visualComponents/dataStates/DataStates'
 import { TextField } from '@monorail/visualComponents/inputs/TextField'
+import { ScrollAnimation } from '@monorail/visualComponents/layout/ScrollAnimation'
 import { Menu } from '@monorail/visualComponents/menu/Menu'
+
+const THEAD_HEIGHT = Sizes.DP48
 
 export const TableComponent = styled.div`
   ${flexFlow('column')}
@@ -31,12 +36,12 @@ const TheadComponentContainer = styled.div<{ isFilterBar: boolean }>(
   ({ isFilterBar }) => css`
     ${flexFlow('row')};
 
-    height: 48px;
+    height: ${THEAD_HEIGHT}px;
     flex-shrink: 0;
 
     ${isFilterBar
       ? css`
-          margin-top: -48px;
+          margin-top: -${THEAD_HEIGHT}px;
           pointer-events: none;
         `
       : css`
@@ -116,6 +121,9 @@ const getSortIcon = (sortStatus: Sort) => {
       return 'sort_descending'
     case Sort.Unsorted:
       return 'sort'
+    default:
+      assertNever(sortStatus)
+      return ''
   }
 }
 
@@ -245,6 +253,9 @@ export const TrGroupComponent = styled.div`
   &:hover::before {
     background: ${getColor(Colors.Grey98)};
   }
+  &:hover .actions {
+    opacity: 0.9999;
+  }
 
   &::before {
     bottom: 1px;
@@ -260,7 +271,9 @@ export const TdComponent = styled.div(
   ({ className }) => css`
     ${!isNil(className) &&
       className.includes('actions') &&
-      'justify-content: flex-end;'}
+      `justify-content: flex-end;
+      opacity: 0.3;
+      `}
 
     ${flexFlow('row')};
     ${typography(400, FontSizes.Title5)};
@@ -282,12 +295,22 @@ export const TdComponent = styled.div(
   `,
 )
 
-export const TBodyComponent = styled.div`
-  ${flexFlow('column')};
-
-  flex: 1 1 100%;
-  overflow-y: auto;
+export const TBodyComponent = styled(ScrollAnimation)`
   overflow-x: hidden;
+`
+
+export const NoDataContainer = styled.div`
+  ${flexFlow('column')};
+  ${typography(400, FontSizes.Title5)};
+
+  align-items: center;
+  bottom: 0;
+  color: ${getColor(Colors.Black62)};
+  justify-content: center;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: ${THEAD_HEIGHT}px;
 `
 
 export const MonorailReactTableOverrides: Partial<TableProps> = {
@@ -313,6 +336,11 @@ export const MonorailReactTableOverrides: Partial<TableProps> = {
   TrComponent: ({ children }: { children: ReactElement }) => children,
   TrGroupComponent: (props: PropsWithChildren<{}>) => (
     <TrGroupComponent {...props} />
+  ),
+  NoDataComponent: (props: PropsWithChildren<{}>) => (
+    <NoDataContainer>
+      <EmptyTable />
+    </NoDataContainer>
   ),
   getTheadFilterThProps: (
     {
@@ -346,6 +374,9 @@ export const MonorailReactTableOverrides: Partial<TableProps> = {
           .includes(filter.value.toLocaleString().toLocaleLowerCase())
       : true
   },
+  filterable: true,
+  resizable: true,
+  loadingText: '',
 }
 
 export interface Filter {

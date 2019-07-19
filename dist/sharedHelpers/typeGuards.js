@@ -4,11 +4,21 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.hasKey = hasKey;
-exports.isFunction = exports.isObject = exports.isNumber = exports.isString = exports.isFalsy = exports.isZero = exports.isEmptyString = exports.isTrue = exports.isFalse = exports.isNotNil = exports.isNil = exports.isUndefined = exports.isNull = void 0;
+exports.isFunction = exports.isObject = exports.isNumber = exports.isString = exports.isFalsy = exports.isZero = exports.isEmptyString = exports.isTrue = exports.isFalse = exports.isNotNil = exports.isNil = exports.isUndefined = exports.isNull = exports.assertNever = void 0;
 
+/**
+ * Will throw a type error if switch cases aren't exhaustive.
+ */
+const assertNever = x => {
+  throw new Error(x);
+};
 /**
  * Tests whether or not an argument is null (type guard)
  */
+
+
+exports.assertNever = assertNever;
+
 const isNull = x => x === null;
 /**
  * Tests whether or not an argument is undefined (type guard)

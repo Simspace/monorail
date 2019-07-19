@@ -3,27 +3,20 @@ import React, {
   createRef,
   MouseEventHandler,
   ReactNode,
-  RefObject,
 } from 'react'
 
 import { baseHyperLinkStyles } from '@monorail/helpers/baseStyles'
-import {
-  Colors,
-  convertHSLAMapToCss,
-  ElevationRange,
-  flexFlow,
-  FontSizes,
-  getColor,
-  getElevationShadow,
-  typography,
-} from '@monorail/helpers/exports'
-import styled, { css } from '@monorail/helpers/styled-components'
+import { convertHSLAMapToCss } from '@monorail/helpers/color'
+import { flexFlow } from '@monorail/helpers/flex'
+import { pageSizeMargin } from '@monorail/helpers/size'
+import styled, { css, ThemeProvider } from '@monorail/helpers/styled-components'
 import {
   getThemeColor,
   getThemeColorBase,
   Mode,
   ThemeColors,
 } from '@monorail/helpers/theme'
+import { FontSizes, typography } from '@monorail/helpers/typography'
 import { isNil } from '@monorail/sharedHelpers/typeGuards'
 import { CommonComponentType } from '@monorail/types'
 import { Button } from '@monorail/visualComponents/buttons/Button'
@@ -47,7 +40,7 @@ const PageHeaderContainer = styled.div<PageHeaderContainerProps>(
     background: ${props =>
       convertHSLAMapToCss({
         ...getThemeColorBase(ThemeColors.ApplicationPrimary)(props),
-        l: 98,
+        l: 99,
       })};
     flex-shrink: 0;
 
@@ -58,7 +51,7 @@ const PageHeaderContainer = styled.div<PageHeaderContainerProps>(
     z-index: 1; /* Has this so that the shadow goes over the content below it. */
 
     &::before {
-      border-bottom: 2px solid ${getThemeColor(ThemeColors.ApplicationPrimary)};
+      border-bottom: 1px solid ${getThemeColor(ThemeColors.ApplicationPrimary)};
       background: inherit;
       bottom: 0;
       content: '';
@@ -82,13 +75,9 @@ const PageHeaderContainer = styled.div<PageHeaderContainerProps>(
   `,
 )
 
-const pageHeaderPadding = css`
-  padding: 0 32px;
-`
-
 const PageHeaderNavigation = styled.div<PageHeaderNavigationProps>`
   ${flexFlow('row')};
-  ${pageHeaderPadding};
+  ${pageSizeMargin()};
 
   align-items: center;
   height: 32px;
@@ -110,7 +99,7 @@ const BreadCrumbsContainer = styled.div`
 export const TitleContainer = styled.div<{ hasAboveContent: boolean }>(
   ({ hasAboveContent }) => css`
     ${flexFlow('row')};
-    ${pageHeaderPadding};
+    ${pageSizeMargin()};
 
     align-items: center;
     flex-shrink: 0;
@@ -130,11 +119,10 @@ const Title = styled.h1`
 `
 
 const PageName = styled.h5`
-  ${pageHeaderPadding};
+  ${pageSizeMargin({ marginTop: 8, marginBottom: -8 })};
   ${typography(500, FontSizes.Title5)};
 
   color: ${getThemeColor(ThemeColors.Text1000)};
-  margin: 8px 0 -8px 0;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -211,57 +199,69 @@ export class PageHeader extends Component<PageHeaderProps> {
 
     const hasAboveContent = !isNil(breadCrumbs) || !isNil(goBack)
     return (
-      <PageHeaderContainer
-        cssOverrides={cssOverrides}
-        hasAboveContent={hasAboveContent}
-        ref={this.pageHeaderContainerRef}
-        {...domProps}
+      <ThemeProvider
+        theme={theme => ({
+          ...theme,
+          [Mode.Light]: {
+            ...theme[Mode.Light],
+            [ThemeColors.ActionPrimary]: theme[ThemeColors.ApplicationPrimary],
+            [ThemeColors.ActionSecondary]:
+              theme[ThemeColors.ApplicationSecondary],
+          },
+        })}
       >
-        {(!isNil(breadCrumbs) || !isNil(goBack)) && (
-          <PageHeaderNavigation>
-            {!isNil(goBack) && typeof goBack === 'string' ? (
-              <Button
-                size={ButtonSize.Compact}
-                display={ButtonDisplay.Chromeless}
-                as={BaseLink}
-                to={goBack}
-                cssOverrides={css`
-                  margin-left: -4px;
-                  margin-right: 8px;
-                `}
-                iconLeft="circle_arrow_left"
-              >
-                Go Back
-              </Button>
-            ) : (
-              <Button
-                size={ButtonSize.Compact}
-                display={ButtonDisplay.Chromeless}
-                onClick={goBack}
-                cssOverrides={css`
-                  margin-left: -4px;
-                  margin-right: 8px;
-                `}
-                iconLeft="circle_arrow_left"
-              >
-                Go Back
-              </Button>
-            )}
-            {breadCrumbs && (
-              <BreadCrumbsContainer>
-                {this.renderBreadCrumbs()}
-              </BreadCrumbsContainer>
-            )}
-          </PageHeaderNavigation>
-        )}
-        {pageName && <PageName>{pageName}</PageName>}
-        <TitleContainer hasAboveContent={hasAboveContent}>
-          <Title>{title}</Title>
-          {actions}
-        </TitleContainer>
+        <PageHeaderContainer
+          cssOverrides={cssOverrides}
+          hasAboveContent={hasAboveContent}
+          ref={this.pageHeaderContainerRef}
+          {...domProps}
+        >
+          {(!isNil(breadCrumbs) || !isNil(goBack)) && (
+            <PageHeaderNavigation>
+              {!isNil(goBack) && typeof goBack === 'string' ? (
+                <Button
+                  size={ButtonSize.Compact}
+                  display={ButtonDisplay.Chromeless}
+                  as={BaseLink}
+                  to={goBack}
+                  cssOverrides={css`
+                    margin-left: -4px;
+                    margin-right: 8px;
+                  `}
+                  iconLeft="circle_arrow_left"
+                >
+                  Go Back
+                </Button>
+              ) : (
+                <Button
+                  size={ButtonSize.Compact}
+                  display={ButtonDisplay.Chromeless}
+                  onClick={goBack}
+                  cssOverrides={css`
+                    margin-left: -4px;
+                    margin-right: 8px;
+                  `}
+                  iconLeft="circle_arrow_left"
+                >
+                  Go Back
+                </Button>
+              )}
+              {breadCrumbs && (
+                <BreadCrumbsContainer>
+                  {this.renderBreadCrumbs()}
+                </BreadCrumbsContainer>
+              )}
+            </PageHeaderNavigation>
+          )}
+          {pageName && <PageName>{pageName}</PageName>}
+          <TitleContainer hasAboveContent={hasAboveContent}>
+            <Title>{title}</Title>
+            {actions}
+          </TitleContainer>
 
-        {children}
-      </PageHeaderContainer>
+          {children}
+        </PageHeaderContainer>
+      </ThemeProvider>
     )
   }
 }

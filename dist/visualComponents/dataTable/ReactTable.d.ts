@@ -25,7 +25,10 @@ export declare const FilterComponent: FunctionComponent<FilterComponentProps>;
 export declare const ResizerComponent: import("styled-components").StyledComponent<"div", import("../../helpers/theme").GlobalAppThemeInterface, {}, never>;
 export declare const TrGroupComponent: import("styled-components").StyledComponent<"div", import("../../helpers/theme").GlobalAppThemeInterface, {}, never>;
 export declare const TdComponent: import("styled-components").StyledComponent<"div", import("../../helpers/theme").GlobalAppThemeInterface, {}, never>;
-export declare const TBodyComponent: import("styled-components").StyledComponent<"div", import("../../helpers/theme").GlobalAppThemeInterface, {}, never>;
+export declare const TBodyComponent: import("styled-components").StyledComponent<React.FunctionComponent<{
+    containerCssOverrides?: import("../../types").CssOverridesType;
+}>, import("../../helpers/theme").GlobalAppThemeInterface, {}, never>;
+export declare const NoDataContainer: import("styled-components").StyledComponent<"div", import("../../helpers/theme").GlobalAppThemeInterface, {}, never>;
 export declare const MonorailReactTableOverrides: Partial<TableProps>;
 export interface Filter {
     id: string;

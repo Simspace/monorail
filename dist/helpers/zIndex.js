@@ -14,6 +14,7 @@ exports.ZIndexNodeName = ZIndexNodeName;
   ZIndexNodeName["PageLevelNavItem"] = "PageLevelNavItem";
   ZIndexNodeName["FramedIconBackground"] = "FramedIconBackground";
   ZIndexNodeName["FramedIcon"] = "FramedIcon";
+  ZIndexNodeName["TabBarIndicator"] = "TabBarIndicator";
 })(ZIndexNodeName || (exports.ZIndexNodeName = ZIndexNodeName = {}));
 
 const zIndex = nodeName => {
@@ -23,6 +24,7 @@ const zIndex = nodeName => {
 
     case ZIndexNodeName.NewFlowSection:
     case ZIndexNodeName.PageLevelNavItem:
+    case ZIndexNodeName.TabBarIndicator:
       return 'z-index: 5;';
 
     case ZIndexNodeName.FramedIconBackground:

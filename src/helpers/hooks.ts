@@ -1,6 +1,12 @@
-import { useCallback, useLayoutEffect, useState } from 'react'
+import {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from 'react'
 
-import { isNil } from '@monorail/sharedHelpers/typeGuards'
+import { isNil, isNotNil } from '@monorail/sharedHelpers/typeGuards'
 
 type UseEventListenerParams<E extends HTMLElement> = {
   element: E | null
@@ -50,4 +56,33 @@ export function useRefCallback<T extends HTMLDivElement>(): [
   }, [])
 
   return [element, ref]
+}
+
+export function useInterval(callback: () => void, delay: number | null) {
+  const savedCallback = useRef<() => void>()
+
+  const tick = () => {
+    if (isNotNil(savedCallback.current)) {
+      savedCallback.current()
+    }
+  }
+
+  const resetInterval = useCallback(() => {
+    const id = setInterval(tick, delay)
+    return () => clearInterval(id)
+  }, [delay])
+
+  // Remember the latest callback.
+  useEffect(() => {
+    savedCallback.current = callback
+  }, [callback])
+
+  // Set up the interval.
+  useEffect(() => {
+    if (delay !== null) {
+      return resetInterval()
+    }
+
+    return
+  }, [delay, resetInterval])
 }

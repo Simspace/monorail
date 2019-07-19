@@ -21,6 +21,8 @@ var _IconButton = require("../buttons/IconButton");
 
 var _BaseLink = require("../hyperLink/BaseLink");
 
+var _ScrollAnimation = require("../layout/ScrollAnimation");
+
 var _List = require("../list/List");
 
 var _Text = require("../typography/Text");
@@ -80,17 +82,11 @@ const SidebarContainer =
 /* eslint-enable no-unexpected-multiline */
 
 exports.SidebarContainer = SidebarContainer;
-
 const SidebarMenuContainer =
 /*#__PURE__*/
-_styledComponents.default.div.withConfig({
-  displayName: "SideBarComponents__SidebarMenuContainer",
-  componentId: "sc-1afcl1g-1"
-})(({
-  cssOverrides,
+(0, _styledComponents.default)(_ScrollAnimation.ScrollAnimation)(({
   isSideBarCollapsed
-}) => (0, _styledComponents.css)(["", ";flex:1;overflow-y:auto;padding:0 12px;", "{margin-left:0;margin-right:0;}", ";", ";"], (0, _exports.flexFlow)(), SideBarMenuDivider, isSideBarCollapsed && (0, _styledComponents.css)(["", "{margin-left:-12px;margin-right:-12px;}"], SideBarMenuDivider), cssOverrides));
-
+}) => (0, _styledComponents.css)(["padding:0 12px;", "{margin-left:0;margin-right:0;}", ";"], SideBarMenuDivider, isSideBarCollapsed && (0, _styledComponents.css)(["", "{margin-left:-12px;margin-right:-12px;}"], SideBarMenuDivider)));
 exports.SidebarMenuContainer = SidebarMenuContainer;
 const SidebarMenuItemDropDownToggle =
 /*#__PURE__*/
@@ -127,10 +123,10 @@ const SideBarMenuDivider =
 /*#__PURE__*/
 _styledComponents.default.div.withConfig({
   displayName: "SideBarComponents__SideBarMenuDivider",
-  componentId: "sc-1afcl1g-2"
+  componentId: "sc-1afcl1g-1"
 })(({
   isSideBarCollapsed = false
-}) => (0, _styledComponents.css)(["background:#e2e4ea;height:1px;margin:15px 12px 16px;flex-shrink:0;transition:margin ", " ", "ms;", ";"], (0, _exports.ease)(isSideBarCollapsed), sideBarCollapsedTransitionDuration, isSideBarCollapsed && (0, _styledComponents.css)(["margin-left:0px;margin-right:0px;"])));
+}) => (0, _styledComponents.css)(["background:", ";height:1px;margin:15px 12px 16px;flex-shrink:0;transition:margin ", " ", "ms;", ";"], (0, _exports.getColor)(_exports.Colors.Grey90), (0, _exports.ease)(isSideBarCollapsed), sideBarCollapsedTransitionDuration, isSideBarCollapsed && (0, _styledComponents.css)(["margin-left:0px;margin-right:0px;"])));
 
 exports.SideBarMenuDivider = SideBarMenuDivider;
 
@@ -190,7 +186,7 @@ var _StyledSpan = (0, _styledComponents.default)("span")`display:inline-flex;mar
 
 var _StyledSpan2 = (0, _styledComponents.default)("span")`overflow:hidden;transition:all ${p => p._css12} ${sideBarCollapsedTransitionDuration}ms;${p => p._css13} ${p => p._css14}`;
 
-var _StyledListItem = (0, _styledComponents.default)(_List.ListItem)`padding:0 22px;`;
+var _StyledListItem = (0, _styledComponents.default)(_List.ListItem)`padding:0 20px;`;
 
 var _StyledIconButton = (0, _styledComponents.default)(_IconButton.IconButton)`margin-right:4px;`;
 

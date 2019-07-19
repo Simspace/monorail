@@ -5,6 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.useEventListener = useEventListener;
 exports.useRefCallback = useRefCallback;
+exports.useInterval = useInterval;
 
 var _react = require("react");
 
@@ -45,4 +46,31 @@ function useRefCallback() {
     }
   }, []);
   return [element, ref];
+}
+
+function useInterval(callback, delay) {
+  const savedCallback = (0, _react.useRef)();
+
+  const tick = () => {
+    if ((0, _typeGuards.isNotNil)(savedCallback.current)) {
+      savedCallback.current();
+    }
+  };
+
+  const resetInterval = (0, _react.useCallback)(() => {
+    const id = setInterval(tick, delay);
+    return () => clearInterval(id);
+  }, [delay]); // Remember the latest callback.
+
+  (0, _react.useEffect)(() => {
+    savedCallback.current = callback;
+  }, [callback]); // Set up the interval.
+
+  (0, _react.useEffect)(() => {
+    if (delay !== null) {
+      return resetInterval();
+    }
+
+    return;
+  }, [delay, resetInterval]);
 }

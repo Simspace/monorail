@@ -4,7 +4,6 @@ import { TableColumns } from '@monorail/visualComponents/dataTable/ReactTable';
 import { CompareSearchType } from '@monorail/visualComponents/inputs/SearchController';
 export declare enum CollectionView {
     Table = "table",
-    Tile = "tile",
     Card = "card"
 }
 export declare type SearchFilterType<T> = (params: {
@@ -16,7 +15,6 @@ export declare type CollectionProps<I> = {
     columns: TableColumns<I>;
     data: TableProps<I>['data'];
     searchFilter: SearchFilterType<I>;
-    tileRender: (item: I) => ReactElement;
     collectionView: CollectionView;
     setCollectionView: (collectionView: CollectionView) => void;
 };

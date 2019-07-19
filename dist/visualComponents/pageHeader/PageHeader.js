@@ -9,11 +9,17 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _baseStyles = require("../../helpers/baseStyles");
 
-var _exports = require("../../helpers/exports");
+var _color = require("../../helpers/color");
+
+var _flex = require("../../helpers/flex");
+
+var _size = require("../../helpers/size");
 
 var _styledComponents = _interopRequireWildcard(require("../../helpers/styled-components"));
 
 var _theme = require("../../helpers/theme");
+
+var _typography = require("../../helpers/typography");
 
 var _typeGuards = require("../../sharedHelpers/typeGuards");
 
@@ -44,27 +50,23 @@ _styledComponents.default.div.withConfig({
 })(({
   cssOverrides,
   hasAboveContent
-}) => (0, _styledComponents.css)(["", ";background:", ";flex-shrink:0;overflow:visible;position:relative;z-index:1;&::before{border-bottom:2px solid ", ";background:inherit;bottom:0;content:'';left:0;position:absolute;right:0;top:0;z-index:-5;}", "{padding:0 24px;", ";}", ";"], (0, _exports.flexFlow)('column'), props => (0, _exports.convertHSLAMapToCss)({ ...(0, _theme.getThemeColorBase)(_theme.ThemeColors.ApplicationPrimary)(props),
-  l: 98
+}) => (0, _styledComponents.css)(["", ";background:", ";flex-shrink:0;overflow:visible;position:relative;z-index:1;&::before{border-bottom:1px solid ", ";background:inherit;bottom:0;content:'';left:0;position:absolute;right:0;top:0;z-index:-5;}", "{padding:0 24px;", ";}", ";"], (0, _flex.flexFlow)('column'), props => (0, _color.convertHSLAMapToCss)({ ...(0, _theme.getThemeColorBase)(_theme.ThemeColors.ApplicationPrimary)(props),
+  l: 99
 }), (0, _theme.getThemeColor)(_theme.ThemeColors.ApplicationPrimary), _TabBar.TabBarContainer, !hasAboveContent && (0, _styledComponents.css)(["margin-top:-8px;"]), cssOverrides));
-
-const pageHeaderPadding =
-/*#__PURE__*/
-(0, _styledComponents.css)(["padding:0 32px;"]);
 
 const PageHeaderNavigation =
 /*#__PURE__*/
 _styledComponents.default.div.withConfig({
   displayName: "PageHeader__PageHeaderNavigation",
   componentId: "sc-8xxwly-1"
-})(["", ";", ";align-items:center;height:32px;"], (0, _exports.flexFlow)('row'), pageHeaderPadding);
+})(["", ";", ";align-items:center;height:32px;"], (0, _flex.flexFlow)('row'), (0, _size.pageSizeMargin)());
 
 const BreadCrumbsContainer =
 /*#__PURE__*/
 _styledComponents.default.div.withConfig({
   displayName: "PageHeader__BreadCrumbsContainer",
   componentId: "sc-8xxwly-2"
-})(["", ";align-items:center;&::before{background:", ";width:1px;height:20px;content:'';margin-right:12px;}"], (0, _exports.flexFlow)('row'), (0, _theme.getThemeColor)(_theme.ThemeColors.Text200));
+})(["", ";align-items:center;&::before{background:", ";width:1px;height:20px;content:'';margin-right:12px;}"], (0, _flex.flexFlow)('row'), (0, _theme.getThemeColor)(_theme.ThemeColors.Text200));
 
 const TitleContainer =
 /*#__PURE__*/
@@ -73,7 +75,7 @@ _styledComponents.default.div.withConfig({
   componentId: "sc-8xxwly-3"
 })(({
   hasAboveContent
-}) => (0, _styledComponents.css)(["", ";", ";align-items:center;flex-shrink:0;grid-column:-1 / 1;height:", "px;"], (0, _exports.flexFlow)('row'), pageHeaderPadding, hasAboveContent ? 48 : 64));
+}) => (0, _styledComponents.css)(["", ";", ";align-items:center;flex-shrink:0;grid-column:-1 / 1;height:", "px;"], (0, _flex.flexFlow)('row'), (0, _size.pageSizeMargin)(), hasAboveContent ? 48 : 64));
 
 exports.TitleContainer = TitleContainer;
 
@@ -82,14 +84,17 @@ const Title =
 _styledComponents.default.h1.withConfig({
   displayName: "PageHeader__Title",
   componentId: "sc-8xxwly-4"
-})(["", ";color:", ";margin-left:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"], (0, _exports.typography)(700, _exports.FontSizes.Title1), (0, _theme.getThemeColor)(_theme.ThemeColors.Text900));
+})(["", ";color:", ";margin-left:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"], (0, _typography.typography)(700, _typography.FontSizes.Title1), (0, _theme.getThemeColor)(_theme.ThemeColors.Text900));
 
 const PageName =
 /*#__PURE__*/
 _styledComponents.default.h5.withConfig({
   displayName: "PageHeader__PageName",
   componentId: "sc-8xxwly-5"
-})(["", ";", ";color:", ";margin:8px 0 -8px 0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"], pageHeaderPadding, (0, _exports.typography)(500, _exports.FontSizes.Title5), (0, _theme.getThemeColor)(_theme.ThemeColors.Text1000));
+})(["", ";", ";color:", ";overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"], (0, _size.pageSizeMargin)({
+  marginTop: 8,
+  marginBottom: -8
+}), (0, _typography.typography)(500, _typography.FontSizes.Title5), (0, _theme.getThemeColor)(_theme.ThemeColors.Text1000));
 
 const BreadCrumbLink =
 /*#__PURE__*/
@@ -144,7 +149,14 @@ class PageHeader extends _react.Component {
       ...domProps
     } = this.props;
     const hasAboveContent = !(0, _typeGuards.isNil)(breadCrumbs) || !(0, _typeGuards.isNil)(goBack);
-    return _react.default.createElement(PageHeaderContainer, _extends({
+    return _react.default.createElement(_styledComponents.ThemeProvider, {
+      theme: theme => ({ ...theme,
+        [_theme.Mode.Light]: { ...theme[_theme.Mode.Light],
+          [_theme.ThemeColors.ActionPrimary]: theme[_theme.ThemeColors.ApplicationPrimary],
+          [_theme.ThemeColors.ActionSecondary]: theme[_theme.ThemeColors.ApplicationSecondary]
+        }
+      })
+    }, _react.default.createElement(PageHeaderContainer, _extends({
       cssOverrides: cssOverrides,
       hasAboveContent: hasAboveContent,
       ref: this.pageHeaderContainerRef
@@ -163,7 +175,7 @@ class PageHeader extends _react.Component {
       iconLeft: "circle_arrow_left"
     }, "Go Back"), breadCrumbs && _react.default.createElement(BreadCrumbsContainer, null, this.renderBreadCrumbs())), pageName && _react.default.createElement(PageName, null, pageName), _react.default.createElement(TitleContainer, {
       hasAboveContent: hasAboveContent
-    }, _react.default.createElement(Title, null, title), actions), children);
+    }, _react.default.createElement(Title, null, title), actions), children));
   }
 
 }

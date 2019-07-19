@@ -8,12 +8,8 @@ import React, {
 } from 'react'
 import styled, { css } from 'styled-components'
 
-import {
-  baseSecondaryStyles,
-  Colors,
-  flexFlow,
-  getColor,
-} from '@monorail/helpers/exports'
+import { Colors, flexFlow, getColor } from '@monorail/helpers/exports'
+import { useInterval } from '@monorail/helpers/hooks'
 import { isNil } from '@monorail/sharedHelpers/typeGuards'
 
 /*
@@ -85,6 +81,7 @@ type DotProps = {
 }
 
 export type CarouselChildrenProps = {
+  loop: boolean
   nextSlide: () => void
   prevSlide: () => void
   currentSlide: number
@@ -96,6 +93,9 @@ type Props = {
   indicatorDots?: boolean
   dotColor?: Colors
   slides: Array<ReactElement>
+  loop?: boolean
+  autoPlay?: boolean
+  timerInterval?: number
   children: (props: CarouselChildrenProps) => ReactElement
 }
 
@@ -111,6 +111,9 @@ export const Carousel: FC<Props> = ({
   slides,
   indicatorDots = false,
   dotColor = Colors.BrandLightBlue,
+  loop = false,
+  timerInterval = 3000,
+  autoPlay = false,
   children,
 }) => {
   const slideItemRef = useRef<HTMLDivElement>(null)
@@ -120,6 +123,13 @@ export const Carousel: FC<Props> = ({
   )
   const [translateValue, setTranslateValue] = useState(defaultTranslateValue)
   const [slideWidth, setSlideWidth] = useState(defaultSlideWidth)
+
+  const [count, setCount] = useState(0)
+
+  useInterval(() => {
+    play()
+    setCount(count + 1)
+  }, timerInterval)
 
   /* eslint-disable react-hooks/exhaustive-deps */
   useLayoutEffect(() => {
@@ -134,33 +144,38 @@ export const Carousel: FC<Props> = ({
   /* eslint-enable react-hooks/exhaustive-deps */
 
   const prevSlide = () => {
-    const lastIndex = slides.length
     const shouldResetIndex = currentSlideIndex === 0
 
-    // If on first slide - don't go to previous
-    if (currentSlideIndex === 0) {
+    // If on first slide & loop is false - don't go to previous
+    if (!loop && currentSlideIndex === 0) {
       return
     }
 
-    const index = shouldResetIndex ? lastIndex : currentSlideIndex - 1
+    const index = shouldResetIndex ? slides.length - 1 : currentSlideIndex - 1
 
     setCurrentSlideIndex(index)
     setTranslateValue(translateValue + slideWidth)
   }
 
   const nextSlide = () => {
-    const lastIndex = slides.length
-    const shouldResetIndex = currentSlideIndex === lastIndex - 1
+    const shouldResetIndex = currentSlideIndex === slides.length - 1
 
-    // If on last slide - don't go to next
-    if (currentSlideIndex === slides.length - 1) {
+    // If on last slide & loop is false - don't go to next
+    if (!loop && currentSlideIndex === slides.length - 1) {
       return
     }
 
-    const index = shouldResetIndex ? lastIndex : currentSlideIndex + 1
+    const index = shouldResetIndex ? 0 : currentSlideIndex + 1
 
     setCurrentSlideIndex(index)
     setTranslateValue(translateValue - slideWidth)
+  }
+
+  const play = () => {
+    if (!autoPlay || slides.length < 1) {
+      return
+    }
+    nextSlide()
   }
 
   const gotToSlideIndex = (index: number) => {
@@ -168,6 +183,7 @@ export const Carousel: FC<Props> = ({
   }
 
   return children({
+    loop,
     nextSlide,
     prevSlide,
     currentSlide: currentSlideIndex,

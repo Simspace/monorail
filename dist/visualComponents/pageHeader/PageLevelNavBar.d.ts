@@ -1,18 +1,9 @@
-import { Component, ReactNode } from 'react';
-import { SimpleInterpolation } from 'styled-components';
-import { Sizes } from '@monorail/helpers/exports';
-declare type PageLevelNavContainerProps = {
-    cssOverrides?: SimpleInterpolation;
+import { FC, ReactNode } from 'react';
+export declare const PageLevelNavBarContainer: import("styled-components").StyledComponent<"div", import("../../helpers/theme").GlobalAppThemeInterface, {}, never>;
+declare type PageLevelNavBarProps = {
     activeTabIndex?: number;
-};
-declare type Props = PageLevelNavContainerProps & {
     getActiveTabIndex?: (activeTabIndex: number) => void;
     actions?: ReactNode;
 };
-export declare class PageLevelNavBar extends Component<Props> {
-    static defaultProps: {
-        size: Sizes;
-    };
-    render(): JSX.Element;
-}
+export declare const PageLevelNavBar: FC<PageLevelNavBarProps>;
 export {};

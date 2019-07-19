@@ -71,7 +71,7 @@ const monorailTheme = {
     [ThemeColors.ActionSecondary]: _color.Colors.White,
     [ThemeColors.BackgroundPrimary]: _color.Colors.DarkGrey,
     [ThemeColors.BackgroundSecondary]: _color.Colors.White,
-    [ThemeColors.ActivePrimary]: _color.Colors.AccentPurple700,
+    [ThemeColors.ActivePrimary]: _color.Colors.AccentPurple500,
     [ThemeColors.ActiveSecondary]: _color.Colors.White,
     [ThemeColors.PrimaryColor]: _color.Colors.White,
     [ThemeColors.SecondaryColor]: _color.Colors.Black,
@@ -81,6 +81,11 @@ const monorailTheme = {
     [ThemeColors.Text700]: _color.Colors.White,
     [ThemeColors.Text900]: _color.Colors.White,
     [ThemeColors.Text1000]: _color.Colors.White
+  },
+  size: {
+    page: {
+      width: 'auto'
+    }
   }
 };
 exports.monorailTheme = monorailTheme;

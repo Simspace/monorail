@@ -95,7 +95,7 @@ export const SimSpaceLogo: ComponentType<{
 export const SimSpaceLogoMark: ComponentType<{
   background?: Colors.BrandDarkBlue | Colors.BrandLightBlue
   cssOverrides?: SimpleInterpolation
-}> = ({ background, ...otherProps }) => {
+}> = ({ background, children, ...otherProps }) => {
   let primaryColor
   let secondaryColor
 
@@ -119,6 +119,7 @@ export const SimSpaceLogoMark: ComponentType<{
       xmlns="http://www.w3.org/2000/svg"
       {...otherProps}
     >
+      {children}
       <path
         d="M459.2 458.6C459.2 569.8 369 660 257.8 660C257.8 771.2 347.9 861.4 459.2 861.4C570.4 861.4 660.6 771.2 660.6 660C660.6 548.8 570.4 458.6 459.2 458.6Z"
         fill={getColor(secondaryColor)}
@@ -172,13 +173,14 @@ export const SimSpaceLogoFlat: ComponentType<{
 
 export const PCTELogoMark: ComponentType<{
   cssOverrides?: SimpleInterpolation
-}> = props => (
+}> = ({ children, ...props }) => (
   <LogoSvg
     xmlns="http://www.w3.org/2000/svg"
     xmlnsXlink="http://www.w3.org/1999/xlink"
     viewBox="0 0 256 256"
     {...props}
   >
+    {children}
     <style
       type="text/css"
       dangerouslySetInnerHTML={{

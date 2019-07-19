@@ -14,7 +14,7 @@ const TabBarActions = styled.div`
 
   align-items: center;
   margin-left: auto;
-  margin-right: 8px;
+  margin-right: 0;
 `
 
 export type TabBarIndicatorProps = {
