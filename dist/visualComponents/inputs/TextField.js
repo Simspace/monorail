@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.TextArea = exports.TextField = exports.defaultTextAreaProps = exports.defaultTextFieldProps = exports.BBTextFieldInput = exports.BBTextFieldLabel = void 0;
+exports.TextField = exports.defaultTextFieldProps = exports.BBTextFieldInput = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
@@ -14,6 +14,8 @@ var _exports = require("../../helpers/exports");
 var _typeGuards = require("../../sharedHelpers/typeGuards");
 
 var _Icon = require("../icon/Icon");
+
+var _Label = require("./Label");
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
@@ -31,14 +33,6 @@ _styledComponents.default.label.withConfig({
   cssOverrides
 }) => (0, _styledComponents.css)(["", ";float:none;width:256px;position:relative;", ";"], (0, _exports.flexFlow)(), cssOverrides));
 
-const BBTextFieldLabel =
-/*#__PURE__*/
-_styledComponents.default.p.withConfig({
-  displayName: "TextField__BBTextFieldLabel",
-  componentId: "mvo1xj-1"
-})(["", ";"], (0, _exports.typography)(500, _exports.FontSizes.Title5));
-
-exports.BBTextFieldLabel = BBTextFieldLabel;
 const baseIconStyles =
 /*#__PURE__*/
 (0, _styledComponents.css)(["position:absolute;bottom:4px;"]);
@@ -46,44 +40,32 @@ const StyledLeftIcon =
 /*#__PURE__*/
 (0, _styledComponents.default)(_Icon.Icon).withConfig({
   displayName: "TextField__StyledLeftIcon",
-  componentId: "mvo1xj-2"
+  componentId: "mvo1xj-1"
 })(["", ";left:8px;"], baseIconStyles);
 const StyledRightIcon =
 /*#__PURE__*/
 (0, _styledComponents.default)(_Icon.Icon).withConfig({
   displayName: "TextField__StyledRightIcon",
-  componentId: "mvo1xj-3"
+  componentId: "mvo1xj-2"
 })(["", ";right:8px;"], baseIconStyles);
 
 const BBTextFieldInput =
 /*#__PURE__*/
 _styledComponents.default.input.withConfig({
   displayName: "TextField__BBTextFieldInput",
-  componentId: "mvo1xj-4"
+  componentId: "mvo1xj-3"
 })(({
   chromeless,
   iconLeft,
   iconRight,
   disabled
-}) => (0, _styledComponents.css)(["", ";", ";", ";border:", ";box-sizing:border-box;color:", ";height:24px;flex:1;outline:none;padding:4px ", "px 4px ", "px;width:100%;", ";&[type='number']{&::-webkit-inner-spin-button,&::-webkit-outer-spin-button{opacity:1;}}::placeholder{color:", ";font-style:italic;}&:hover{border-color:", ";}&:focus,&:active{border-color:", ";}"], disabled && _exports.baseDisabledStyles, (0, _exports.typography)(400, _exports.FontSizes.Title5), (0, _exports.borderRadius)(), chromeless ? `1px solid transparent` : `1px solid ${(0, _exports.getColor)(_exports.Colors.Black, 0.12)}`, (0, _exports.getColor)(_exports.Colors.Black89), iconRight ? 30 : 6, iconLeft ? 30 : 6, _exports.buttonTransition, (0, _exports.getColor)(_exports.Colors.Black54), (0, _exports.getColor)(_exports.Colors.Black, 0.3), (0, _exports.getColor)(_exports.Colors.BrandLightBlue))); // TODO: Much duplication from TextInput
-
-
-exports.BBTextFieldInput = BBTextFieldInput;
-
-const BBTextAreaInput =
-/*#__PURE__*/
-_styledComponents.default.textarea.withConfig({
-  displayName: "TextField__BBTextAreaInput",
-  componentId: "mvo1xj-5"
-})(({
-  iconLeft,
-  iconRight
-}) => (0, _styledComponents.css)(["", ";", ";border:1px solid ", ";box-sizing:border-box;color:", ";outline:none;resize:none;padding:4px ", "px 4px ", "px;flex:1;height:56px;margin-top:4px;", ";::placeholder{color:", ";font-style:italic;}&:hover{border-color:", ";}&:focus,&:active{border-color:", ";}"], (0, _exports.typography)(400, _exports.FontSizes.Title5), (0, _exports.borderRadius)(), (0, _exports.getColor)(_exports.Colors.Black, 0.12), (0, _exports.getColor)(_exports.Colors.Black89), iconRight ? 30 : 6, iconLeft ? 30 : 6, _exports.buttonTransition, (0, _exports.getColor)(_exports.Colors.Black54), (0, _exports.getColor)(_exports.Colors.Black, 0.3), (0, _exports.getColor)(_exports.Colors.BrandLightBlue)));
+}) => (0, _styledComponents.css)(["", ";", ";", ";border:", ";box-sizing:border-box;color:", ";height:24px;flex:1;outline:none;padding:4px ", "px 4px ", "px;width:100%;", ";&[type='number']{&::-webkit-inner-spin-button,&::-webkit-outer-spin-button{opacity:1;}}::placeholder{color:", ";font-style:italic;}&:hover{border-color:", ";}&:focus,&:active{border-color:", ";}"], disabled && _exports.baseDisabledStyles, (0, _exports.typography)(400, _exports.FontSizes.Title5), (0, _exports.borderRadius)(), chromeless ? `1px solid transparent` : `1px solid ${(0, _exports.getColor)(_exports.Colors.Black, 0.12)}`, (0, _exports.getColor)(_exports.Colors.Black89), iconRight ? 30 : 6, iconLeft ? 30 : 6, _exports.buttonTransition, (0, _exports.getColor)(_exports.Colors.Black54), (0, _exports.getColor)(_exports.Colors.Black, 0.3), (0, _exports.getColor)(_exports.Colors.BrandLightBlue)));
 /*
  * Types
  */
 
 
+exports.BBTextFieldInput = BBTextFieldInput;
 const defaultTextFieldProps = {
   cssOverrides: '',
   chromeless: false,
@@ -101,29 +83,12 @@ const defaultTextFieldProps = {
   max: 9999,
   className: '',
   autoFocus: false
-};
-exports.defaultTextFieldProps = defaultTextFieldProps;
-const defaultTextAreaProps = {
-  cssOverrides: '',
-  iconLeft: '',
-  iconRight: '',
-  label: '',
-  onChange: () => {},
-  placeholder: '',
-  value: '',
-  disabled: false,
-  readOnly: false,
-  required: false,
-  type: 'text',
-  className: '',
-  name: '',
-  autoFocus: false
   /*
    * Component
    */
 
 };
-exports.defaultTextAreaProps = defaultTextAreaProps;
+exports.defaultTextFieldProps = defaultTextFieldProps;
 
 class TextField extends _react.Component {
   render() {
@@ -134,6 +99,7 @@ class TextField extends _react.Component {
       iconRight,
       label,
       onChange,
+      onBlur,
       placeholder,
       value,
       disabled,
@@ -148,7 +114,10 @@ class TextField extends _react.Component {
     return _react.default.createElement(BBTextFieldContainer, {
       className: className,
       cssOverrides: cssOverrides
-    }, !(0, _typeGuards.isEmptyString)(label) && _react.default.createElement(BBTextFieldLabel, null, label), !(0, _typeGuards.isEmptyString)(iconLeft) && _react.default.createElement(StyledLeftIcon, {
+    }, !(0, _typeGuards.isEmptyString)(label) && _react.default.createElement(_Label.Label, {
+      label: label,
+      required: required
+    }), !(0, _typeGuards.isEmptyString)(iconLeft) && _react.default.createElement(StyledLeftIcon, {
       icon: iconLeft
     }), !(0, _typeGuards.isEmptyString)(iconRight) && _react.default.createElement(StyledRightIcon, {
       icon: iconRight
@@ -160,6 +129,7 @@ class TextField extends _react.Component {
       iconLeft: iconLeft,
       iconRight: iconRight,
       onChange: onChange,
+      onBlur: onBlur,
       placeholder: placeholder,
       type: type,
       value: value,
@@ -171,51 +141,7 @@ class TextField extends _react.Component {
     }, otherProps)));
   }
 
-} // TODO: Much duplication from TextInput
-
+}
 
 exports.TextField = TextField;
 TextField.defaultProps = defaultTextFieldProps;
-
-class TextArea extends _react.Component {
-  render() {
-    const {
-      cssOverrides,
-      iconLeft,
-      iconRight,
-      label,
-      onChange,
-      placeholder,
-      value,
-      disabled,
-      readOnly,
-      required,
-      type,
-      className,
-      ...otherProps
-    } = this.props;
-    return _react.default.createElement(BBTextFieldContainer, {
-      className: className,
-      cssOverrides: cssOverrides
-    }, !(0, _typeGuards.isEmptyString)(label) && _react.default.createElement(BBTextFieldLabel, null, label), !(0, _typeGuards.isEmptyString)(iconLeft) && _react.default.createElement(StyledLeftIcon, {
-      icon: iconLeft
-    }), !(0, _typeGuards.isEmptyString)(iconRight) && _react.default.createElement(StyledRightIcon, {
-      icon: iconRight
-    }), _react.default.createElement(BBTextAreaInput, _extends({
-      className: "new-textarea",
-      iconLeft: iconLeft,
-      iconRight: iconRight,
-      onChange: onChange,
-      placeholder: placeholder,
-      type: type || 'string',
-      value: value,
-      disabled: disabled,
-      readOnly: readOnly,
-      required: required
-    }, otherProps)));
-  }
-
-}
-
-exports.TextArea = TextArea;
-TextArea.defaultProps = defaultTextAreaProps;

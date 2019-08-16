@@ -1,9 +1,10 @@
 import React, { Component, ReactNode } from 'react'
 import styled, { css, SimpleInterpolation } from 'styled-components'
 
-import { flexFlow, FontSizes, typography } from '@monorail/helpers/exports'
+import { flexFlow } from '@monorail/helpers/exports'
 import { isNil } from '@monorail/sharedHelpers/typeGuards'
 import { CommonComponentType } from '@monorail/types'
+import { Label } from '@monorail/visualComponents/inputs/Label'
 
 import { TextField, TextFieldProps } from './TextField'
 
@@ -19,11 +20,6 @@ const MultipleTextFieldContainer = styled.label<CommonComponentType>(
     ${cssOverrides};
   `,
 )
-// TODO - consolidate label into a common component
-export const BBTextFieldLabel = styled.p`
-  ${typography(500, FontSizes.Title5)};
-  margin: 4px 0;
-`
 
 const TextFieldsWrapper = styled.div`
   display: flex;
@@ -45,7 +41,7 @@ export class MultipleTextField extends Component<Props> {
     const { label, textFields, cssOverrides, onChange, children } = this.props
     return (
       <MultipleTextFieldContainer cssOverrides={cssOverrides}>
-        {!isNil(label) && <BBTextFieldLabel>{label}</BBTextFieldLabel>}
+        {!isNil(label) && <Label label={label} />}
         <TextFieldsWrapper>
           {textFields.map((t: MultipleTextFieldProps, k: number) => (
             <TextField

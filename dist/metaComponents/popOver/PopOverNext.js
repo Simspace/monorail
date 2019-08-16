@@ -22,7 +22,9 @@ const PopOverNext = props => {
     toSide = false,
     alwaysRender = false,
     isOpen = false,
-    onToggle
+    onToggle,
+    xDirection,
+    yDirection
   } = props;
   const [isOpenState, setIsOpenState] = (0, _react.useState)(false);
   const [isRendered, setIsRendered] = (0, _react.useState)(false);
@@ -34,7 +36,13 @@ const PopOverNext = props => {
   }, [isOpenState]);
 
   const onClick = event => {
-    setPosition((0, _PopOver.getOverlayPosition)(event.currentTarget, gap, toSide));
+    setPosition((0, _PopOver.getOverlayPosition)({
+      target: event.currentTarget,
+      gap,
+      toSide,
+      xDirection,
+      yDirection
+    }));
     togglePopOver();
   };
 

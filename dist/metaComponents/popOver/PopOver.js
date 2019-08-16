@@ -36,14 +36,20 @@ const defaultPopOverPosition = {
 };
 exports.defaultPopOverPosition = defaultPopOverPosition;
 
-const getOverlayPosition = (target, gap = 8, toSide = false) => {
+const getOverlayPosition = ({
+  target,
+  gap = 8,
+  toSide = false,
+  xDirection,
+  yDirection
+}) => {
   // Get basic dimensions about the the Toggle and the window.
   const boundingRect = target.getBoundingClientRect();
   const innerWidth = window.innerWidth;
   const innerHeight = window.innerHeight; // Determine the direction the PopOver should go.
 
-  const dropYDirection = innerHeight / 2 > boundingRect.top + boundingRect.height / 2 ? dropDirections.Top : dropDirections.Bottom;
-  const dropXDirection = innerWidth / 2 > boundingRect.left + boundingRect.width / 2 ? dropDirections.Left : dropDirections.Right;
+  const dropYDirection = yDirection || (innerHeight / 2 > boundingRect.top + boundingRect.height / 2 ? dropDirections.Top : dropDirections.Bottom);
+  const dropXDirection = xDirection || (innerWidth / 2 > boundingRect.left + boundingRect.width / 2 ? dropDirections.Left : dropDirections.Right);
   return { ...getDropAmounts({
       boundingRect,
       dropXDirection,
@@ -248,9 +254,17 @@ class PopOver extends _react.Component {
       const {
         gap,
         toSide,
-        onToggle
+        onToggle,
+        xDirection,
+        yDirection
       } = this.props;
-      const position = getOverlayPosition(event.currentTarget, gap, toSide);
+      const position = getOverlayPosition({
+        gap,
+        target: event.currentTarget,
+        toSide,
+        xDirection,
+        yDirection
+      });
       this.setState(({
         isOpen,
         isRendered

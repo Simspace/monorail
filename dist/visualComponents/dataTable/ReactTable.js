@@ -3,11 +3,18 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.useSort = useSort;
 exports.MonorailReactTableOverrides = exports.NoDataContainer = exports.TBodyComponent = exports.TdComponent = exports.TrGroupComponent = exports.ResizerComponent = exports.FilterComponent = exports.ThComponent = exports.TheadComponent = exports.TableComponent = void 0;
 
 var _styledComponents = _interopRequireDefault(require("styled-components"));
 
-var _react = _interopRequireDefault(require("react"));
+var _Do = require("fp-ts-contrib/lib/Do");
+
+var _Array = require("fp-ts/lib/Array");
+
+var _Option = require("fp-ts/lib/Option");
+
+var _react = _interopRequireWildcard(require("react"));
 
 var _color = require("../../helpers/color");
 
@@ -50,7 +57,7 @@ const TableComponent =
 _styledComponents2.default.div.withConfig({
   displayName: "ReactTable__TableComponent",
   componentId: "sc-1afopvo-0"
-})(["", " overflow-x:scroll;height:100%;min-width:100%;"], (0, _flex.flexFlow)('column'));
+})(["", ";overflow-x:scroll;height:100%;min-width:100%;"], (0, _flex.flexFlow)('column'));
 
 exports.TableComponent = TableComponent;
 
@@ -117,6 +124,19 @@ const getSortIcon = sortStatus => {
       return '';
   }
 };
+
+function useSort() {
+  const [sorted, setSorted] = (0, _react.useState)([]);
+
+  const onSortChange = newSorted => {
+    setSorted((0, _Do.Do)(_Option.option).bind('current', (0, _Array.lookup)(0, sorted)).bind('upcoming', (0, _Array.lookup)(0, newSorted)).done().filter(({
+      current,
+      upcoming
+    }) => current.id === upcoming.id && current.desc).fold(newSorted, () => []));
+  };
+
+  return [sorted, onSortChange];
+}
 
 const ThComponent = ({
   children,
@@ -212,7 +232,12 @@ _styledComponents2.default.div.withConfig({
 exports.TdComponent = TdComponent;
 const TBodyComponent =
 /*#__PURE__*/
-(0, _styledComponents2.default)(_ScrollAnimation.ScrollAnimation).withConfig({
+(0, _styledComponents2.default)(({
+  style,
+  ...domProps
+}) => _react.default.createElement(_ScrollAnimation.ScrollAnimation, _extends({
+  containerCssOverrides: style
+}, domProps))).withConfig({
   displayName: "ReactTable__TBodyComponent",
   componentId: "sc-1afopvo-6"
 })(["overflow-x:hidden;"]);
@@ -223,7 +248,7 @@ const NoDataContainer =
 _styledComponents2.default.div.withConfig({
   displayName: "ReactTable__NoDataContainer",
   componentId: "sc-1afopvo-7"
-})(["", ";", ";align-items:center;bottom:0;color:", ";justify-content:center;left:0;position:absolute;right:0;top:", "px;"], (0, _flex.flexFlow)('column'), (0, _typography.typography)(400, _typography.FontSizes.Title5), (0, _color.getColor)(_color.Colors.Black62), THEAD_HEIGHT);
+})(["", ";", ";align-items:center;background:", ";bottom:0;color:", ";justify-content:center;left:0;position:absolute;right:0;top:", "px;"], (0, _flex.flexFlow)('column'), (0, _typography.typography)(400, _typography.FontSizes.Title5), (0, _color.getColor)(_color.Colors.White), (0, _color.getColor)(_color.Colors.Black62), THEAD_HEIGHT);
 
 exports.NoDataContainer = NoDataContainer;
 const MonorailReactTableOverrides = {
@@ -248,6 +273,7 @@ const MonorailReactTableOverrides = {
     };
   },
   style: {
+    height: '100%',
     width: '100%'
   },
   minRows: 0,
@@ -261,7 +287,8 @@ const MonorailReactTableOverrides = {
   },
   filterable: true,
   resizable: true,
-  loadingText: ''
+  loading: false,
+  multiSort: false
 };
 exports.MonorailReactTableOverrides = MonorailReactTableOverrides;
 

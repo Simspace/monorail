@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components'
 
 import { FontSizes, typography } from '@monorail/helpers/exports'
 import { isEmptyString } from '@monorail/sharedHelpers/typeGuards'
+import { Label } from '@monorail/visualComponents/inputs/Label'
 
 import { Choice } from './Choice'
 
@@ -10,12 +11,6 @@ const RadioGroupWrapper = styled.fieldset`
   margin: 0;
   padding: 0;
   border: 0;
-`
-
-const Label = styled.p`
-  ${typography(500, FontSizes.Title5)};
-  margin-bottom: 8px;
-  height: 16px;
 `
 
 const InfoText = styled.p`
@@ -54,10 +49,14 @@ export const RadioGroup: SFC<Props> = ({
   return (
     <RadioGroupWrapper {...otherProps}>
       {!isEmptyString(label) && (
-        <Label>
-          {label}
-          {required && '*'}
-        </Label>
+        <Label
+          label={label}
+          required={required}
+          css={css`
+            margin-bottom: 8px;
+            height: 16px;
+          `}
+        />
       )}
       {options.map((o: ChoiceOption = defaultOptions, k) => (
         <div key={k + o.label}>

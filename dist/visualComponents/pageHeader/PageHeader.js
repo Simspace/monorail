@@ -149,14 +149,7 @@ class PageHeader extends _react.Component {
       ...domProps
     } = this.props;
     const hasAboveContent = !(0, _typeGuards.isNil)(breadCrumbs) || !(0, _typeGuards.isNil)(goBack);
-    return _react.default.createElement(_styledComponents.ThemeProvider, {
-      theme: theme => ({ ...theme,
-        [_theme.Mode.Light]: { ...theme[_theme.Mode.Light],
-          [_theme.ThemeColors.ActionPrimary]: theme[_theme.ThemeColors.ApplicationPrimary],
-          [_theme.ThemeColors.ActionSecondary]: theme[_theme.ThemeColors.ApplicationSecondary]
-        }
-      })
-    }, _react.default.createElement(PageHeaderContainer, _extends({
+    return _react.default.createElement(PageHeaderContainer, _extends({
       cssOverrides: cssOverrides,
       hasAboveContent: hasAboveContent,
       ref: this.pageHeaderContainerRef
@@ -173,9 +166,16 @@ class PageHeader extends _react.Component {
       onClick: goBack,
       cssOverrides: (0, _styledComponents.css)(["margin-left:-4px;margin-right:8px;"]),
       iconLeft: "circle_arrow_left"
-    }, "Go Back"), breadCrumbs && _react.default.createElement(BreadCrumbsContainer, null, this.renderBreadCrumbs())), pageName && _react.default.createElement(PageName, null, pageName), _react.default.createElement(TitleContainer, {
+    }, "Go Back"), breadCrumbs && _react.default.createElement(BreadCrumbsContainer, null, this.renderBreadCrumbs())), _react.default.createElement(_styledComponents.ThemeProvider, {
+      theme: theme => ({ ...theme,
+        [_theme.Mode.Light]: { ...theme[_theme.Mode.Light],
+          [_theme.ThemeColors.ActionPrimary]: theme[_theme.ThemeColors.ApplicationPrimary],
+          [_theme.ThemeColors.ActionSecondary]: theme[_theme.ThemeColors.ApplicationSecondary]
+        }
+      })
+    }, _react.default.createElement(_react.default.Fragment, null, pageName && _react.default.createElement(PageName, null, pageName), _react.default.createElement(TitleContainer, {
       hasAboveContent: hasAboveContent
-    }, _react.default.createElement(Title, null, title), actions), children));
+    }, _react.default.createElement(Title, null, title), actions), children)));
   }
 
 }

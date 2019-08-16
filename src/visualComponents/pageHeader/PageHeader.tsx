@@ -199,69 +199,72 @@ export class PageHeader extends Component<PageHeaderProps> {
 
     const hasAboveContent = !isNil(breadCrumbs) || !isNil(goBack)
     return (
-      <ThemeProvider
-        theme={theme => ({
-          ...theme,
-          [Mode.Light]: {
-            ...theme[Mode.Light],
-            [ThemeColors.ActionPrimary]: theme[ThemeColors.ApplicationPrimary],
-            [ThemeColors.ActionSecondary]:
-              theme[ThemeColors.ApplicationSecondary],
-          },
-        })}
+      <PageHeaderContainer
+        cssOverrides={cssOverrides}
+        hasAboveContent={hasAboveContent}
+        ref={this.pageHeaderContainerRef}
+        {...domProps}
       >
-        <PageHeaderContainer
-          cssOverrides={cssOverrides}
-          hasAboveContent={hasAboveContent}
-          ref={this.pageHeaderContainerRef}
-          {...domProps}
+        {(!isNil(breadCrumbs) || !isNil(goBack)) && (
+          <PageHeaderNavigation>
+            {!isNil(goBack) && typeof goBack === 'string' ? (
+              <Button
+                size={ButtonSize.Compact}
+                display={ButtonDisplay.Chromeless}
+                as={BaseLink}
+                to={goBack}
+                cssOverrides={css`
+                  margin-left: -4px;
+                  margin-right: 8px;
+                `}
+                iconLeft="circle_arrow_left"
+              >
+                Go Back
+              </Button>
+            ) : (
+              <Button
+                size={ButtonSize.Compact}
+                display={ButtonDisplay.Chromeless}
+                onClick={goBack}
+                cssOverrides={css`
+                  margin-left: -4px;
+                  margin-right: 8px;
+                `}
+                iconLeft="circle_arrow_left"
+              >
+                Go Back
+              </Button>
+            )}
+            {breadCrumbs && (
+              <BreadCrumbsContainer>
+                {this.renderBreadCrumbs()}
+              </BreadCrumbsContainer>
+            )}
+          </PageHeaderNavigation>
+        )}
+        <ThemeProvider
+          theme={theme => ({
+            ...theme,
+            [Mode.Light]: {
+              ...theme[Mode.Light],
+              [ThemeColors.ActionPrimary]:
+                theme[ThemeColors.ApplicationPrimary],
+              [ThemeColors.ActionSecondary]:
+                theme[ThemeColors.ApplicationSecondary],
+            },
+          })}
         >
-          {(!isNil(breadCrumbs) || !isNil(goBack)) && (
-            <PageHeaderNavigation>
-              {!isNil(goBack) && typeof goBack === 'string' ? (
-                <Button
-                  size={ButtonSize.Compact}
-                  display={ButtonDisplay.Chromeless}
-                  as={BaseLink}
-                  to={goBack}
-                  cssOverrides={css`
-                    margin-left: -4px;
-                    margin-right: 8px;
-                  `}
-                  iconLeft="circle_arrow_left"
-                >
-                  Go Back
-                </Button>
-              ) : (
-                <Button
-                  size={ButtonSize.Compact}
-                  display={ButtonDisplay.Chromeless}
-                  onClick={goBack}
-                  cssOverrides={css`
-                    margin-left: -4px;
-                    margin-right: 8px;
-                  `}
-                  iconLeft="circle_arrow_left"
-                >
-                  Go Back
-                </Button>
-              )}
-              {breadCrumbs && (
-                <BreadCrumbsContainer>
-                  {this.renderBreadCrumbs()}
-                </BreadCrumbsContainer>
-              )}
-            </PageHeaderNavigation>
-          )}
-          {pageName && <PageName>{pageName}</PageName>}
-          <TitleContainer hasAboveContent={hasAboveContent}>
-            <Title>{title}</Title>
-            {actions}
-          </TitleContainer>
+          <>
+            {pageName && <PageName>{pageName}</PageName>}
+            <TitleContainer hasAboveContent={hasAboveContent}>
+              <Title>{title}</Title>
+              {actions}
+            </TitleContainer>
 
-          {children}
-        </PageHeaderContainer>
-      </ThemeProvider>
+            {children}
+          </>
+        </ThemeProvider>
+      </PageHeaderContainer>
     )
   }
 }

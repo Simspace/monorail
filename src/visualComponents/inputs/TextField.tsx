@@ -14,6 +14,7 @@ import {
 } from '@monorail/helpers/exports'
 import { isEmptyString } from '@monorail/sharedHelpers/typeGuards'
 import { Icon } from '@monorail/visualComponents/icon/Icon'
+import { Label } from '@monorail/visualComponents/inputs/Label'
 
 /*
  * Styles
@@ -30,10 +31,6 @@ const BBTextFieldContainer = styled.label<ContainerProps>(
     ${cssOverrides};
   `,
 )
-
-export const BBTextFieldLabel = styled.p`
-  ${typography(500, FontSizes.Title5)};
-`
 
 const baseIconStyles = css`
   position: absolute;
@@ -95,42 +92,6 @@ export const BBTextFieldInput = styled.input<
   `,
 )
 
-// TODO: Much duplication from TextInput
-const BBTextAreaInput = styled.textarea<
-  Omit<TextAreaProps, 'value' | 'label' | 'cssOverrides'>
->(
-  ({ iconLeft, iconRight }) => css`
-    ${typography(400, FontSizes.Title5)};
-    ${borderRadius()};
-
-    border: 1px solid ${getColor(Colors.Black, 0.12)};
-    box-sizing: border-box;
-    color: ${getColor(Colors.Black89)};
-    outline: none;
-    resize: none;
-    padding: 4px ${iconRight ? 30 : 6}px 4px ${iconLeft ? 30 : 6}px;
-    flex: 1;
-    height: 56px;
-    margin-top: 4px;
-
-    ${buttonTransition};
-
-    ::placeholder {
-      color: ${getColor(Colors.Black54)};
-      font-style: italic;
-    }
-
-    &:hover {
-      border-color: ${getColor(Colors.Black, 0.3)};
-    }
-
-    &:focus,
-    &:active {
-      border-color: ${getColor(Colors.BrandLightBlue)};
-    }
-  `,
-)
-
 /*
  * Types
  */
@@ -152,6 +113,10 @@ type BasicProps = {
   label: string
   onChange: (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void
   onClick?: (event: MouseEvent<HTMLInputElement | HTMLTextAreaElement>) => void
+  onBlur?: (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => void
+  onFocus?: (
+    e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => void
   placeholder: string
   value: string | number // TODO - split into number component
   disabled: boolean
@@ -162,8 +127,6 @@ type BasicProps = {
 }
 
 export type TextFieldProps = ContainerProps & BasicProps & ExtraProps
-
-export type TextAreaProps = ContainerProps & BasicProps
 
 export const defaultTextFieldProps = {
   cssOverrides: '',
@@ -184,23 +147,6 @@ export const defaultTextFieldProps = {
   autoFocus: false,
 }
 
-export const defaultTextAreaProps = {
-  cssOverrides: '',
-  iconLeft: '',
-  iconRight: '',
-  label: '',
-  onChange: () => {},
-  placeholder: '',
-  value: '',
-  disabled: false,
-  readOnly: false,
-  required: false,
-  type: 'text',
-  className: '',
-  name: '',
-  autoFocus: false,
-}
-
 /*
  * Component
  */
@@ -216,6 +162,7 @@ export class TextField extends Component<TextFieldProps> {
       iconRight,
       label,
       onChange,
+      onBlur,
       placeholder,
       value,
       disabled,
@@ -230,7 +177,7 @@ export class TextField extends Component<TextFieldProps> {
 
     return (
       <BBTextFieldContainer className={className} cssOverrides={cssOverrides}>
-        {!isEmptyString(label) && <BBTextFieldLabel>{label}</BBTextFieldLabel>}
+        {!isEmptyString(label) && <Label label={label} required={required} />}
         {!isEmptyString(iconLeft) && <StyledLeftIcon icon={iconLeft} />}
         {!isEmptyString(iconRight) && <StyledRightIcon icon={iconRight} />}
         <BBTextFieldInput
@@ -240,6 +187,7 @@ export class TextField extends Component<TextFieldProps> {
           iconLeft={iconLeft}
           iconRight={iconRight}
           onChange={onChange}
+          onBlur={onBlur}
           placeholder={placeholder}
           type={type}
           value={value}
@@ -248,50 +196,6 @@ export class TextField extends Component<TextFieldProps> {
           required={required}
           min={min}
           max={max}
-          {...otherProps}
-        />
-      </BBTextFieldContainer>
-    )
-  }
-}
-
-// TODO: Much duplication from TextInput
-export class TextArea extends Component<TextAreaProps> {
-  static defaultProps = defaultTextAreaProps
-
-  render() {
-    const {
-      cssOverrides,
-      iconLeft,
-      iconRight,
-      label,
-      onChange,
-      placeholder,
-      value,
-      disabled,
-      readOnly,
-      required,
-      type,
-      className,
-      ...otherProps
-    } = this.props
-
-    return (
-      <BBTextFieldContainer className={className} cssOverrides={cssOverrides}>
-        {!isEmptyString(label) && <BBTextFieldLabel>{label}</BBTextFieldLabel>}
-        {!isEmptyString(iconLeft) && <StyledLeftIcon icon={iconLeft} />}
-        {!isEmptyString(iconRight) && <StyledRightIcon icon={iconRight} />}
-        <BBTextAreaInput
-          className="new-textarea"
-          iconLeft={iconLeft}
-          iconRight={iconRight}
-          onChange={onChange}
-          placeholder={placeholder}
-          type={type || 'string'}
-          value={value}
-          disabled={disabled}
-          readOnly={readOnly}
-          required={required}
           {...otherProps}
         />
       </BBTextFieldContainer>

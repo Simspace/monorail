@@ -11,12 +11,13 @@ import {
   typography,
 } from '@monorail/helpers/exports'
 import { isNil } from '@monorail/sharedHelpers/typeGuards'
+import { Label } from '@monorail/visualComponents/inputs/Label'
 
 /*
  * Styles
  */
 
-export const BBTextAreaContainer = styled.label<TextAreaProps>(
+export const TextAreaContainer = styled.label<TextAreaContainerProps>(
   ({ cssOverrides }) => css`
     ${flexFlow()};
 
@@ -28,12 +29,7 @@ export const BBTextAreaContainer = styled.label<TextAreaProps>(
   `,
 )
 
-const BBTextAreaLabel = styled.p`
-  ${typography(500, FontSizes.Title5)};
-  margin: 4px 0;
-`
-
-const BBTextAreaInput = styled.textarea<BBTextAreaInputProps>(
+const TextAreaInput = styled.textarea<TextAreaInputProps>(
   ({ chromeless, compact }) => css`
     ${typography(400, FontSizes.Title5)};
     ${borderRadius()};
@@ -78,11 +74,12 @@ const BBTextAreaInput = styled.textarea<BBTextAreaInputProps>(
  * Types
  */
 
-type BBTextAreaContainerProps = {
+type TextAreaContainerProps = {
   cssOverrides?: SimpleInterpolation
+  className?: string
 }
 
-type BBTextAreaInputProps = {
+type TextAreaInputProps = {
   chromeless?: boolean
   compact?: boolean
   disabled?: boolean
@@ -93,9 +90,10 @@ type BBTextAreaInputProps = {
   required?: boolean
   value?: string
   onBlur?: (e: React.FocusEvent<HTMLTextAreaElement>) => void
+  name?: string
 }
 
-export type TextAreaProps = BBTextAreaContainerProps & BBTextAreaInputProps & {}
+export type TextAreaProps = TextAreaContainerProps & TextAreaInputProps
 
 /*
  * Component
@@ -148,13 +146,23 @@ export class TextArea extends Component<TextAreaProps> {
       required,
       value,
       onBlur,
+      name,
+      className,
       ...otherProps
     } = this.props
 
     return (
-      <BBTextAreaContainer cssOverrides={cssOverrides}>
-        {!isNil(label) && <BBTextAreaLabel>{label}</BBTextAreaLabel>}
-        <BBTextAreaInput
+      <TextAreaContainer cssOverrides={cssOverrides} className={className}>
+        {!isNil(label) && (
+          <Label
+            label={label}
+            required={required}
+            css={css`
+              margin: 4px 0;
+            `}
+          />
+        )}
+        <TextAreaInput
           chromeless={chromeless}
           className="new-textarea"
           compact={compact}
@@ -167,9 +175,10 @@ export class TextArea extends Component<TextAreaProps> {
           rows={compact ? 1 : 3}
           value={value}
           onBlur={onBlur}
+          name={name}
           {...otherProps}
         />
-      </BBTextAreaContainer>
+      </TextAreaContainer>
     )
   }
 }

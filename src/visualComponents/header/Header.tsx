@@ -1,44 +1,32 @@
 import React, { ReactNode } from 'react'
-import { SimpleInterpolation } from 'styled-components'
 
 import {
   AppOrAuthSubAppName,
   convertAppNameToColor,
-  flexFlow,
-  FontSizes,
-  getColor,
-  typography,
-} from '@monorail/helpers/exports'
-import styled, { css } from '@monorail/helpers/styled-components'
+} from '@monorail/helpers/appName'
+import { getColor } from '@monorail/helpers/color'
+import { flexFlow } from '@monorail/helpers/flex'
+import styled, { css, CSSProp } from '@monorail/helpers/styled-components'
 import { getThemeColor, ThemeColors } from '@monorail/helpers/theme'
-import { CommonComponentType } from '@monorail/types'
+import { FontSizes, typography } from '@monorail/helpers/typography'
 import { AppIcon } from '@monorail/visualComponents/appIcon/AppIcon'
 import { Icon } from '@monorail/visualComponents/icon/Icon'
 
-// TODO(unsafe-any): Fix unsafe anys
-// tslint:disable no-unsafe-any
-const HeaderRow = styled.div<CommonComponentType>(
-  ({ cssOverrides }) => css`
-    ${flexFlow('row')};
+const HeaderRow = styled.div`
+  ${flexFlow('row')};
 
-    align-items: center;
-    color: ${getThemeColor(ThemeColors.Text1000)};
-    flex-shrink: 0;
-    height: 48px;
-    padding: 0 16px;
-
-    ${cssOverrides};
-  `,
-)
+  align-items: center;
+  color: ${getThemeColor(ThemeColors.Text1000)};
+  flex-shrink: 0;
+  height: 48px;
+  padding: 0 16px;
+`
 
 const HeaderContainer = styled.div``
 
-export const HeaderTitle = styled.h1<CommonComponentType>(
-  ({ cssOverrides }) => css`
-    ${typography(500, FontSizes.Title3)};
-    ${cssOverrides};
-  `,
-)
+export const HeaderTitle = styled.h1`
+  ${typography(500, FontSizes.Title3)};
+`
 
 const iconLeftCss = css`
   color: ${getThemeColor(ThemeColors.Text1000)};
@@ -46,11 +34,12 @@ const iconLeftCss = css`
   margin-right: 12px;
 `
 
-type Props = CommonComponentType & {
+export type HeaderProps = {
   actions?: ReactNode
   appIcon?: AppOrAuthSubAppName
-  cssHeaderRow?: SimpleInterpolation
-  cssTitle?: SimpleInterpolation
+  children?: ReactNode
+  cssHeaderRow?: CSSProp
+  cssTitle?: CSSProp
   iconLeft?: string
   noBorder?: boolean
   title: ReactNode
@@ -61,27 +50,26 @@ export const Header = styled(
     actions,
     appIcon,
     children,
-    cssOverrides,
     cssHeaderRow,
     cssTitle,
     iconLeft,
     noBorder = false,
     title,
     ...domProps
-  }) => (
+  }: HeaderProps) => (
     <HeaderContainer {...domProps}>
-      <HeaderRow cssOverrides={cssHeaderRow}>
-        {appIcon && <AppIcon cssOverrides={iconLeftCss} appName={appIcon} />}
-        {iconLeft && <Icon cssOverrides={iconLeftCss} icon={iconLeft} />}
-        <HeaderTitle cssOverrides={cssTitle}>{title}</HeaderTitle>
+      <HeaderRow css={cssHeaderRow}>
+        {appIcon && <AppIcon css={iconLeftCss} appName={appIcon} />}
+        {iconLeft && <Icon css={iconLeftCss} icon={iconLeft} />}
+        <HeaderTitle css={cssTitle}>{title}</HeaderTitle>
         {actions}
       </HeaderRow>
 
       {children}
     </HeaderContainer>
   ),
-)<Props>(
-  ({ noBorder, appIcon, cssOverrides }) => css`
+)<HeaderProps>(
+  ({ noBorder, appIcon }) => css`
     ${!noBorder &&
       css`
         &::after {
@@ -100,8 +88,5 @@ export const Header = styled(
     ${flexFlow()};
     position: relative;
     flex-shrink: 0;
-
-    ${cssOverrides};
   `,
 )
-// tslint:enable

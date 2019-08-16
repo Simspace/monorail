@@ -94,7 +94,11 @@ export const Menu: FCwDP<RequiredProps, DefaultProps> = ({
     })
   }, [isOpen, menuHeight, menuWidth, position, width])
 
-  useEffect(() => setIsRendered(true), [])
+  useEffect(() => {
+    if (isOpen) {
+      setIsRendered(true)
+    }
+  }, [isOpen, setIsRendered])
 
   /* eslint-disable react-hooks/exhaustive-deps */
   useLayoutEffect(() => {
@@ -110,6 +114,7 @@ export const Menu: FCwDP<RequiredProps, DefaultProps> = ({
   const eventListener = useCallback<EventListener>(
     event => {
       if (menuRef.current === event.target && !isOpen) {
+        setIsRendered(false)
         closingAnimationCompleted()
       }
     },
@@ -132,7 +137,9 @@ export const Menu: FCwDP<RequiredProps, DefaultProps> = ({
     >
       <MenuContainer
         css={css`
-          ${isRendered ? scaleAnimation.outSideContentStyles : ''}
+          ${scaleAnimation.outSideContentStyles}
+
+          visibility: ${isRendered ? 'visible' : 'hidden'};
 
           ${cssOverrides}
         `}
@@ -142,7 +149,7 @@ export const Menu: FCwDP<RequiredProps, DefaultProps> = ({
       >
         <MenuContent
           css={css`
-            ${isRendered ? scaleAnimation.inSideContentStyles : ''}
+            ${scaleAnimation.inSideContentStyles}
           `}
         >
           {children}

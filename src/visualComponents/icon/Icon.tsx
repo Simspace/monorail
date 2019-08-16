@@ -1,4 +1,4 @@
-import React, { ComponentType, MouseEvent } from 'react'
+import React, { ComponentType, forwardRef, MouseEvent } from 'react'
 import styled, { createGlobalStyle, css } from 'styled-components'
 import { Omit } from 'typelevel-ts'
 
@@ -54,6 +54,7 @@ import { Wand } from '@monorail/visualComponents/icon/custom/Wand'
 // https://fonts.googleapis.com/icon?family=Material+Icons&style=baseline
 export const MaterialIconFontFace = createGlobalStyle`
   @font-face {
+    font-display: block;
     font-family: 'Material Icons';
     font-style: normal;
     font-weight: 400;
@@ -121,15 +122,22 @@ const customIcons: { [key: string]: ComponentType<CustomIconProps> } = {
 }
 
 export const Icon = styled(
-  ({ cssOverrides: _cssOverrides, icon, ...otherProps }: IconProps) => {
-    const CustomIcon = customIcons[icon]
+  forwardRef<HTMLElement, IconProps>(
+    ({ cssOverrides: _cssOverrides, icon, ...otherProps }, ref) => {
+      const CustomIcon = customIcons[icon]
 
-    if (CustomIcon) {
-      return <CustomIcon {...otherProps} />
-    }
+      if (CustomIcon) {
+        // TODO: Forward ref to custom icon.. but all those SVG components need to be wrapped in forwardRef! -_-
+        return <CustomIcon {...otherProps} />
+      }
 
-    return <i {...otherProps}>{icon}</i>
-  },
+      return (
+        <i ref={ref} {...otherProps}>
+          {icon}
+        </i>
+      )
+    },
+  ),
 )<IconProps>(
   ({ size, cssOverrides }) => css`
     ${size

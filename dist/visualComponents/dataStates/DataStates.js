@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.CustomNoResults = exports.NotFound = exports.SomethingWentWrong = exports.NotAuthorized = exports.NoData = exports.EmptyTable = exports.NoResults = exports.NoResultsCollection = void 0;
+exports.CustomNoResults = exports.CustomNoData = exports.NotFound = exports.SomethingWentWrong = exports.NotAuthorized = exports.NoData = exports.EmptyTable = exports.NoResults = exports.NoResultsCollection = void 0;
 
 var _Apply = require("fp-ts/lib/Apply");
 
@@ -44,6 +44,13 @@ exports.SomethingWentWrong = SomethingWentWrong;
 const NotFound = () => _react.default.createElement(Container, null, _react.default.createElement(IconBox, null, _react.default.createElement(NotFoundIcon, null)), _react.default.createElement(Banner, null, "We couldn't find your page..."), _react.default.createElement(Detail, null, _react.default.createElement("span", null, "We searched high and low, far and wide"), _react.default.createElement("span", null, "but can't seem to find the page you're looking for.")));
 
 exports.NotFound = NotFound;
+
+const CustomNoData = ({
+  headingText,
+  details
+}) => _react.default.createElement(Container, null, _react.default.createElement(IconBox, null, _react.default.createElement(NoResultsIcon, null)), _react.default.createElement(Banner, null, headingText), _react.default.createElement(Detail, null, details));
+
+exports.CustomNoData = CustomNoData;
 
 const CustomNoResults = props => {
   const {

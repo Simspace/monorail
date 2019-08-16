@@ -62,6 +62,10 @@ exports.Colors = Colors;
   Colors["Green"] = "green";
   Colors["Red"] = "red";
   Colors["Amber"] = "amber";
+  Colors["Error"] = "error";
+  Colors["Warning"] = "warning";
+  Colors["Success"] = "success";
+  Colors["Info"] = "info";
 })(Colors || (exports.Colors = Colors = {}));
 
 const colorHSLAMap = ({
@@ -411,6 +415,31 @@ const colorHSLAMap = ({
       h: 45,
       s: 100,
       l: 51,
+      a: alpha
+    },
+    // Alerts
+    [Colors.Error]: {
+      h: 11,
+      s: 69,
+      l: 47,
+      a: alpha
+    },
+    [Colors.Warning]: {
+      h: 31,
+      s: 87,
+      l: 60,
+      a: alpha
+    },
+    [Colors.Success]: {
+      h: 147,
+      s: 34,
+      l: 53,
+      a: alpha
+    },
+    [Colors.Info]: {
+      h: 219,
+      s: 100,
+      l: 54,
       a: alpha
     }
   };

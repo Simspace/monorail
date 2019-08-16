@@ -7,7 +7,7 @@ exports.Collection = exports.CollectionView = void 0;
 
 var _styledComponents = _interopRequireDefault(require("styled-components"));
 
-var _react = _interopRequireDefault(require("react"));
+var _react = _interopRequireWildcard(require("react"));
 
 var _reactTable = _interopRequireDefault(require("react-table"));
 
@@ -29,9 +29,11 @@ var _Cards = require("../cards/Cards");
 
 var _ReactTable = require("../dataTable/ReactTable");
 
-var _Search = require("../inputs/Search");
+var _DebouncedSearch = require("../inputs/DebouncedSearch");
 
 var _SearchController = require("../inputs/SearchController");
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -60,14 +62,14 @@ exports.CollectionView = CollectionView;
 const Collection = props => {
   const {
     cardRender,
+    collectionView,
     columns,
     data,
-    searchFilter,
-    collectionView,
+    isLoading = false,
     setCollectionView
   } = props;
-
-  const getReactTableComponentProps = (finalState, rowInfo) => {
+  const [sorted, onSortedChange] = (0, _ReactTable.useSort)();
+  const getReactTableComponentProps = (0, _react.useCallback)((finalState, rowInfo) => {
     if (!(0, _typeGuards.isNil)(rowInfo)) {
       return {
         item: rowInfo.original
@@ -75,9 +77,8 @@ const Collection = props => {
     }
 
     return;
-  };
-
-  const getTrComponent = ({
+  }, []);
+  const getTrComponent = (0, _react.useCallback)(({
     item,
     children
   }) => {
@@ -91,14 +92,13 @@ const Collection = props => {
 
         default:
           (0, _typeGuards.assertNever)(collectionView);
-          return _react.default.createElement(_react.default.Fragment, null);
+          return children;
       }
     }
 
     return children;
-  };
-
-  const getTbodyComponent = ({
+  }, [cardRender, collectionView]);
+  const getTbodyComponent = (0, _react.useCallback)(({
     children,
     ...domProps
   }) => {
@@ -113,9 +113,8 @@ const Collection = props => {
         (0, _typeGuards.assertNever)(collectionView);
         return _react.default.createElement(_react.default.Fragment, null);
     }
-  };
-
-  const getTrGroupComponent = ({
+  }, [collectionView]);
+  const getTrGroupComponent = (0, _react.useCallback)(({
     item,
     children,
     ...domProps
@@ -125,47 +124,69 @@ const Collection = props => {
     }
 
     return _react.default.createElement(_ReactTable.TrGroupComponent, domProps, children);
-  };
+  }, [collectionView, cardRender]);
+  const renderCollection = (0, _react.useCallback)(({
+    passedSearchInput,
+    passedData
+  }) => _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(ControlsContainer, null, _react.default.createElement(_ButtonsBar.ButtonsBar, {
+    size: _buttonTypes.ButtonSize.Default,
+    mode: _buttonTypes.ButtonsBarMode.Toolbar
+  }, _react.default.createElement(_IconButton.IconButton, {
+    isActive: collectionView === CollectionView.Table,
+    onClick: () => setCollectionView(CollectionView.Table),
+    icon: "view_headline"
+  }), _react.default.createElement(_IconButton.IconButton, {
+    isActive: collectionView === CollectionView.Card,
+    onClick: () => setCollectionView(CollectionView.Card),
+    icon: "view_module"
+  })), passedSearchInput), _react.default.createElement(CollectionContainer, null, _react.default.createElement(_reactTable.default, {
+    sorted: sorted,
+    onSortedChange: onSortedChange,
+    columns: columns,
+    data: passedData,
+    getTrGroupProps: getReactTableComponentProps,
+    getTrProps: getReactTableComponentProps,
+    loading: isLoading,
+    pageSize: passedData.length,
+    TbodyComponent: getTbodyComponent,
+    TrComponent: getTrComponent,
+    TrGroupComponent: getTrGroupComponent
+  }))), [collectionView, columns, getReactTableComponentProps, getTbodyComponent, getTrComponent, getTrGroupComponent, isLoading, onSortedChange, setCollectionView, sorted]);
 
-  return _react.default.createElement(_SearchController.SearchController, null, ({
-    compareSearch,
-    value,
-    onChange
-  }) => {
-    const filteredData = data.filter(item => searchFilter({
-      item,
-      compareSearch
-    }));
-    return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(ControlsContainer, null, _react.default.createElement(_ButtonsBar.ButtonsBar, {
-      size: _buttonTypes.ButtonSize.Default,
-      mode: _buttonTypes.ButtonsBarMode.Toolbar
-    }, _react.default.createElement(_IconButton.IconButton, {
-      isActive: collectionView === CollectionView.Table,
-      onClick: () => setCollectionView(CollectionView.Table),
-      icon: "view_headline"
-    }), _react.default.createElement(_IconButton.IconButton, {
-      isActive: collectionView === CollectionView.Card,
-      onClick: () => setCollectionView(CollectionView.Card),
-      icon: "view_module"
-    })), _react.default.createElement(_StyledSearch, {
-      onChange: onChange,
-      value: value
-    })), _react.default.createElement(CollectionContainer, null, _react.default.createElement(_reactTable.default, {
-      columns: columns,
-      data: filteredData,
-      getTrGroupProps: getReactTableComponentProps,
-      getTrProps: getReactTableComponentProps,
-      TbodyComponent: getTbodyComponent,
-      TrComponent: getTrComponent,
-      TrGroupComponent: getTrGroupComponent,
-      pageSize: filteredData.length
-    })));
-  });
+  if ('searchInput' in props) {
+    return renderCollection({
+      passedSearchInput: props.searchInput,
+      passedData: data
+    });
+  } else if ('searchFilter' in props) {
+    return _react.default.createElement(_SearchController.SearchController, null, ({
+      compareSearch,
+      value,
+      onChange
+    }) => {
+      const filteredData = data.filter(item => props.searchFilter({
+        item,
+        compareSearch,
+        value
+      }));
+      return renderCollection({
+        passedSearchInput: _react.default.createElement(_StyledDebouncedSearch, {
+          onChange: onChange,
+          value: value,
+          name: 'collection-filter',
+          placeholder: `Search`
+        }),
+        passedData: filteredData
+      });
+    });
+  } else {
+    throw new Error('Need to pass searchInput or searchFilter prop to Collection.');
+  }
 };
 
 exports.Collection = Collection;
 
-var _StyledSearch = (0, _styledComponents.default)(_Search.Search)`
+var _StyledDebouncedSearch = (0, _styledComponents.default)(_DebouncedSearch.DebouncedSearch)`
                   width: 256px;
                   margin: auto 0 auto auto;
                 `;

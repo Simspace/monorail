@@ -5,15 +5,15 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.Select = void 0;
 
-var _react = _interopRequireDefault(require("react"));
-
 var _styledComponents = _interopRequireWildcard(require("styled-components"));
 
-var _exports = require("../../helpers/exports");
+var _react = _interopRequireDefault(require("react"));
 
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
+var _Label = require("./Label");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
 const SelectGroupWrapper =
 /*#__PURE__*/
@@ -38,13 +38,6 @@ _styledComponents.default.select.withConfig({
   componentId: "sc-13rwoh4-2"
 })(["width:calc(100% - 8px);height:22px;background:transparent;border:none;outline:none;cursor:pointer;&:disabled{opacity:0.6;}"]);
 
-const Label =
-/*#__PURE__*/
-_styledComponents.default.p.withConfig({
-  displayName: "Select__Label",
-  componentId: "sc-13rwoh4-3"
-})(["", ";margin-bottom:4px;height:16px;"], (0, _exports.typography)(500, _exports.FontSizes.Title5));
-
 const Select = ({
   cssOverrides,
   disabled,
@@ -60,7 +53,10 @@ const Select = ({
 }) => {
   return _react.default.createElement(SelectGroupWrapper, {
     cssOverrides: cssOverrides
-  }, label && _react.default.createElement(Label, null, label, required && '*'), _react.default.createElement(SelectElementWrapper, null, _react.default.createElement(SelectElement, {
+  }, label && _react.default.createElement(_StyledLabel, {
+    label: label,
+    required: required
+  }), _react.default.createElement(SelectElementWrapper, null, _react.default.createElement(SelectElement, {
     disabled: disabled,
     name: name,
     value: value,
@@ -85,3 +81,5 @@ const Select = ({
 };
 
 exports.Select = Select;
+
+var _StyledLabel = (0, _styledComponents.default)(_Label.Label)`margin-bottom:4px;height:16px;`;

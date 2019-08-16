@@ -25,26 +25,38 @@ function _extends() { _extends = Object.assign || function (target) { for (var i
 // tslint:disable no-unsafe-any
 const toggleWidth = 18;
 const toggleHeight = 10;
+const slideSize = 10;
 const iconSize = 8;
+const factorBySize = {
+  [_toggleTypes.ToggleSize.Default]: 1,
+  [_toggleTypes.ToggleSize.Large]: 1.5,
+  [_toggleTypes.ToggleSize.Xlarge]: 2
+};
+
+const scaleBySize = (n, size) => {
+  const factor = Math.floor(n * factorBySize[size]);
+  return factor % 2 === 0 ? factor : factor + 1;
+};
+
 const toggleSizeCss = {
-  [_toggleTypes.ToggleSize.Default]: (0, _styledComponents.css)(["height:", "px;width:", "px;border:1px solid;border-radius:", "px;"], toggleHeight, toggleWidth, toggleHeight + 2 / 2),
-  [_toggleTypes.ToggleSize.Large]: (0, _styledComponents.css)(["height:", "px;width:", "px;border:1px solid;border-radius:", "px;"], toggleHeight * 1.5, toggleWidth * 1.5, toggleHeight * 1.5 + 3 / 2),
-  [_toggleTypes.ToggleSize.Xlarge]: (0, _styledComponents.css)(["height:", "px;width:", "px;border:2px solid;border-radius:", "px;"], toggleHeight * 2, toggleWidth * 2, toggleHeight * 2 + 4 / 2)
+  [_toggleTypes.ToggleSize.Default]: (0, _styledComponents.css)(["height:", "px;width:", "px;border:1px solid;border-radius:", "px;"], scaleBySize(toggleHeight, _toggleTypes.ToggleSize.Default), scaleBySize(toggleWidth, _toggleTypes.ToggleSize.Default), scaleBySize(toggleHeight, _toggleTypes.ToggleSize.Default) + 2 / 2),
+  [_toggleTypes.ToggleSize.Large]: (0, _styledComponents.css)(["height:", "px;width:", "px;border:1px solid;border-radius:", "px;"], scaleBySize(toggleHeight, _toggleTypes.ToggleSize.Large), scaleBySize(toggleWidth, _toggleTypes.ToggleSize.Large), scaleBySize(toggleHeight, _toggleTypes.ToggleSize.Large) + 2 / 2),
+  [_toggleTypes.ToggleSize.Xlarge]: (0, _styledComponents.css)(["height:", "px;width:", "px;border:2px solid;border-radius:", "px;"], scaleBySize(toggleHeight, _toggleTypes.ToggleSize.Xlarge), scaleBySize(toggleWidth, _toggleTypes.ToggleSize.Xlarge), scaleBySize(toggleHeight, _toggleTypes.ToggleSize.Xlarge) + 4 / 2)
 };
 const sliderSizeCss = {
-  [_toggleTypes.ToggleSize.Default]: (0, _styledComponents.css)(["width:10px;height:10px;"]),
-  [_toggleTypes.ToggleSize.Large]: (0, _styledComponents.css)(["width:15px;height:15px;"]),
-  [_toggleTypes.ToggleSize.Xlarge]: (0, _styledComponents.css)(["width:20px;height:20px;"])
+  [_toggleTypes.ToggleSize.Default]: (0, _styledComponents.css)(["width:", "px;height:", "px;"], scaleBySize(slideSize, _toggleTypes.ToggleSize.Default), scaleBySize(slideSize, _toggleTypes.ToggleSize.Default)),
+  [_toggleTypes.ToggleSize.Large]: (0, _styledComponents.css)(["width:", "px;height:", "px;"], scaleBySize(slideSize, _toggleTypes.ToggleSize.Large), scaleBySize(slideSize, _toggleTypes.ToggleSize.Large)),
+  [_toggleTypes.ToggleSize.Xlarge]: (0, _styledComponents.css)(["width:", "px;height:", "px;"], scaleBySize(slideSize, _toggleTypes.ToggleSize.Xlarge), scaleBySize(slideSize, _toggleTypes.ToggleSize.Xlarge))
 };
 const inputSizeCss = {
-  [_toggleTypes.ToggleSize.Default]: (0, _styledComponents.css)(["transform:translateX(8px);"]),
-  [_toggleTypes.ToggleSize.Large]: (0, _styledComponents.css)(["transform:translateX(12px);"]),
-  [_toggleTypes.ToggleSize.Xlarge]: (0, _styledComponents.css)(["transform:translateX(16px);"])
+  [_toggleTypes.ToggleSize.Default]: (0, _styledComponents.css)(["transform:translateX(", "px);"], scaleBySize(iconSize, _toggleTypes.ToggleSize.Default)),
+  [_toggleTypes.ToggleSize.Large]: (0, _styledComponents.css)(["transform:translateX(", "px);"], scaleBySize(iconSize, _toggleTypes.ToggleSize.Large)),
+  [_toggleTypes.ToggleSize.Xlarge]: (0, _styledComponents.css)(["transform:translateX(", "px);"], scaleBySize(iconSize, _toggleTypes.ToggleSize.Xlarge))
 };
 const iconSizeCss = {
-  [_toggleTypes.ToggleSize.Default]: (0, _styledComponents.css)(["font-size:", "px;"], iconSize),
-  [_toggleTypes.ToggleSize.Large]: (0, _styledComponents.css)(["font-size:", "px;"], iconSize * 1.5),
-  [_toggleTypes.ToggleSize.Xlarge]: (0, _styledComponents.css)(["font-size:", "px;"], iconSize * 2)
+  [_toggleTypes.ToggleSize.Default]: (0, _styledComponents.css)(["font-size:", "px;"], scaleBySize(iconSize, _toggleTypes.ToggleSize.Default)),
+  [_toggleTypes.ToggleSize.Large]: (0, _styledComponents.css)(["font-size:", "px;"], scaleBySize(iconSize, _toggleTypes.ToggleSize.Large)),
+  [_toggleTypes.ToggleSize.Xlarge]: (0, _styledComponents.css)(["font-size:", "px;"], scaleBySize(iconSize, _toggleTypes.ToggleSize.Xlarge))
 };
 
 const CCToggle =
@@ -58,8 +70,9 @@ _styledComponents.default.label.withConfig({
   cssOverrides,
   theme: {
     mode
-  }
-}) => (0, _styledComponents.css)(["", ";box-sizing:content-box;cursor:pointer;display:inline-block;position:relative;transition:all ease-in 150ms;", ";", ";"], toggleSizeCss[toggleSize], checked ? (0, _styledComponents.css)(["background-color:", ";border-color:", ";"], (0, _theme.getThemeColor)(_theme.ThemeColors.ActionPrimary), (0, _theme.getThemeColor)(_theme.ThemeColors.ActionPrimary)) : (0, _styledComponents.css)(["background-color:", ";border-color:", ";"], mode === _theme.Mode.Dark ? (0, _exports.getColor)(_exports.Colors.White, 0.2) : (0, _exports.getColor)(_exports.Colors.White), (0, _exports.getColor)(_exports.Colors.Black, 0.06)), cssOverrides));
+  },
+  disabled
+}) => (0, _styledComponents.css)(["", ";box-sizing:content-box;cursor:pointer;display:inline-block;position:relative;transition:all ease-in 150ms;", ";", " ", ";"], toggleSizeCss[toggleSize], checked ? (0, _styledComponents.css)(["background-color:", ";border-color:", ";"], (0, _theme.getThemeColor)(_theme.ThemeColors.ActionPrimary), (0, _theme.getThemeColor)(_theme.ThemeColors.ActionPrimary)) : (0, _styledComponents.css)(["background-color:", ";border-color:", ";"], mode === _theme.Mode.Dark ? (0, _exports.getColor)(_exports.Colors.White, 0.2) : (0, _exports.getColor)(_exports.Colors.Grey90), (0, _exports.getColor)(_exports.Colors.Black, 0.06)), disabled && (0, _styledComponents.css)(["cursor:default;opacity:0.4;"]), cssOverrides));
 
 const StyledIconChecked =
 /*#__PURE__*/
@@ -80,7 +93,7 @@ const StyledIconNotChecked =
 }) => _react.default.createElement(_Icon.Icon, otherProps))(({
   checked,
   toggleSize
-}) => (0, _styledComponents.css)(["", ";", ";color:", ";position:absolute;transition:all ease-in 75ms;"], iconSizeCss[toggleSize], (0, _exports.visible)(!checked), (0, _exports.getColor)(_exports.Colors.Black24)));
+}) => (0, _styledComponents.css)(["", ";", ";color:", ";position:absolute;transition:all ease-in 75ms;"], iconSizeCss[toggleSize], (0, _exports.visible)(!checked), (0, _exports.getColor)(_exports.Colors.Black38)));
 
 const Slider =
 /*#__PURE__*/
@@ -115,12 +128,14 @@ class Toggle extends _react.Component {
       checked,
       onChange,
       toggleSize,
+      disabled,
       ...domProps
     } = this.props;
     return _react.default.createElement(CCToggle, _extends({
       cssOverrides: cssOverrides,
       checked: checked,
-      toggleSize: toggleSize
+      toggleSize: toggleSize,
+      disabled: disabled
     }, domProps), _react.default.createElement(Input, {
       type: "checkbox",
       checked: checked,

@@ -6,8 +6,11 @@ Object.defineProperty(exports, "__esModule", {
 exports.useEventListener = useEventListener;
 exports.useRefCallback = useRefCallback;
 exports.useInterval = useInterval;
+exports.useInputDebounce = useInputDebounce;
 
 var _react = require("react");
+
+var _useDebounce = require("use-debounce");
 
 var _typeGuards = require("../sharedHelpers/typeGuards");
 
@@ -73,4 +76,17 @@ function useInterval(callback, delay) {
 
     return;
   }, [delay, resetInterval]);
+}
+
+function useInputDebounce({
+  initialValue,
+  onChange,
+  delay = 500
+}) {
+  const [localValue, updateLocalValue] = (0, _react.useState)(initialValue);
+  const [debouncedCallback] = (0, _useDebounce.useDebouncedCallback)(onChange, delay);
+  return [localValue, newValue => {
+    debouncedCallback(newValue);
+    updateLocalValue(newValue);
+  }];
 }

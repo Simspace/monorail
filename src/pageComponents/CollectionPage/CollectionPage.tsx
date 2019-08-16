@@ -30,10 +30,42 @@ export const CollectionPage = <T extends unknown>(
     collectionView,
     columns,
     data,
-    searchFilter,
+    isLoading,
     setCollectionView,
     title,
   } = props
+
+  const renderCollection = () => {
+    if ('searchInput' in props) {
+      return (
+        <Collection<T>
+          cardRender={cardRender}
+          collectionView={collectionView}
+          columns={columns}
+          data={data}
+          isLoading={isLoading}
+          setCollectionView={setCollectionView}
+          searchInput={props.searchInput}
+        />
+      )
+    } else if ('searchFilter' in props) {
+      return (
+        <Collection<T>
+          cardRender={cardRender}
+          collectionView={collectionView}
+          columns={columns}
+          data={data}
+          isLoading={isLoading}
+          setCollectionView={setCollectionView}
+          searchFilter={props.searchFilter}
+        />
+      )
+    } else {
+      throw new Error(
+        'Need to pass searchInput or searchFilter prop to CollectionPage.',
+      )
+    }
+  }
 
   return (
     <>
@@ -42,14 +74,7 @@ export const CollectionPage = <T extends unknown>(
         actions={<ActionsContainer>{actions}</ActionsContainer>}
       />
 
-      <Collection<T>
-        cardRender={cardRender}
-        collectionView={collectionView}
-        columns={columns}
-        data={data}
-        searchFilter={searchFilter}
-        setCollectionView={setCollectionView}
-      />
+      {renderCollection()}
     </>
   )
 }

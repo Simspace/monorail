@@ -99,6 +99,22 @@ export const NotFound = () => (
   </Container>
 )
 
+export const CustomNoData = ({
+  headingText,
+  details,
+}: {
+  headingText: string
+  details: JSX.Element | Array<JSX.Element>
+}) => (
+  <Container>
+    <IconBox>
+      <NoResultsIcon />
+    </IconBox>
+    <Banner>{headingText}</Banner>
+    <Detail>{details}</Detail>
+  </Container>
+)
+
 export const CustomNoResults: FC<{
   bannerText: Option<string>
   detailText: Option<string>

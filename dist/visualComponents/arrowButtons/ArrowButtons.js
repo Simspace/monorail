@@ -7,9 +7,9 @@ exports.ArrowButtons = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
-var _styledComponents = _interopRequireWildcard(require("styled-components"));
-
 var _exports = require("../../helpers/exports");
+
+var _styledComponents = _interopRequireWildcard(require("../../helpers/styled-components"));
 
 var _typeGuards = require("../../sharedHelpers/typeGuards");
 
@@ -30,7 +30,7 @@ const ArrowButtonsContainer =
 _styledComponents.default.div.withConfig({
   displayName: "ArrowButtons__ArrowButtonsContainer",
   componentId: "gidllw-0"
-})(["", ";height:100%;z-index:5;pointer-events:none;"], (0, _exports.flexFlow)('row'));
+})(["", ";", ";height:100%;pointer-events:none;"], (0, _exports.flexFlow)('row'), (0, _exports.zIndex)(_exports.ZIndexNodeName.ArrowButtons));
 
 const RatioContainer =
 /*#__PURE__*/

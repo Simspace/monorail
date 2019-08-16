@@ -1,15 +1,22 @@
 import React from 'react'
-import styled, { css } from 'styled-components'
 
 import { Colors, getColor } from '@monorail/helpers/exports'
-import { CommonComponentType } from '@monorail/types'
+import styled, { css } from '@monorail/helpers/styled-components'
+
+/*
+ * Types
+ */
+
+export type DividerProps = {
+  isVertical?: boolean
+}
 
 /*
  * Styles
  */
 
-export const Divider = styled.div<CCDividerProps>(
-  ({ isVertical }) => css`
+export const Divider = styled.div<DividerProps>(
+  ({ isVertical = false }) => css`
     ${isVertical
       ? css`
           width: 1px;
@@ -23,15 +30,3 @@ export const Divider = styled.div<CCDividerProps>(
     background: ${getColor(Colors.Grey94)};
   `,
 )
-
-Divider.defaultProps = {
-  isVertical: false,
-}
-
-/*
- * Types
- */
-
-type CCDividerProps = CommonComponentType & {
-  isVertical?: boolean
-}

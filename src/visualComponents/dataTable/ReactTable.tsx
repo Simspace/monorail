@@ -1,9 +1,14 @@
-import React, {
-  FunctionComponent,
-  PropsWithChildren,
-  ReactElement,
-} from 'react'
-import { Column, ControlledStateOverrideProps, TableProps } from 'react-table'
+import { Do } from 'fp-ts-contrib/lib/Do'
+import { lookup } from 'fp-ts/lib/Array'
+import { option } from 'fp-ts/lib/Option'
+import React, { FC, PropsWithChildren, ReactElement, useState } from 'react'
+import {
+  Column,
+  ControlledStateOverrideProps,
+  SortedChangeFunction,
+  SortingRule,
+  TableProps,
+} from 'react-table'
 
 import { Colors, getColor } from '@monorail/helpers/color'
 import { flexFlow } from '@monorail/helpers/flex'
@@ -26,7 +31,8 @@ import { Menu } from '@monorail/visualComponents/menu/Menu'
 const THEAD_HEIGHT = Sizes.DP48
 
 export const TableComponent = styled.div`
-  ${flexFlow('column')}
+  ${flexFlow('column')};
+
   overflow-x: scroll;
   height: 100%;
   min-width: 100%;
@@ -57,7 +63,7 @@ type TheadComponentProps = {
   hasFilter?: boolean
 }
 
-export const TheadComponent: FunctionComponent<TheadComponentProps> = ({
+export const TheadComponent: FC<TheadComponentProps> = ({
   children,
   className,
   hasFilter,
@@ -127,6 +133,25 @@ const getSortIcon = (sortStatus: Sort) => {
   }
 }
 
+export function useSort(): [Array<SortingRule>, SortedChangeFunction] {
+  const [sorted, setSorted] = useState<Array<SortingRule>>([])
+
+  const onSortChange = (newSorted: Array<SortingRule>) => {
+    setSorted(
+      Do(option)
+        .bind('current', lookup(0, sorted))
+        .bind('upcoming', lookup(0, newSorted))
+        .done()
+        .filter(
+          ({ current, upcoming }) => current.id === upcoming.id && current.desc,
+        )
+        .fold(newSorted, () => []),
+    )
+  }
+
+  return [sorted, onSortChange]
+}
+
 type ThComponentProps = {
   toggleSort: () => void
   className: string
@@ -134,7 +159,7 @@ type ThComponentProps = {
   isFiltered?: boolean
 }
 
-export const ThComponent: FunctionComponent<ThComponentProps> = ({
+export const ThComponent: FC<ThComponentProps> = ({
   children,
   toggleSort,
   className,
@@ -206,7 +231,7 @@ type FilterComponentProps = {
   onChange: (event: unknown) => void
 }
 
-export const FilterComponent: FunctionComponent<FilterComponentProps> = ({
+export const FilterComponent: FC<FilterComponentProps> = ({
   filter,
   onChange,
 }) => {
@@ -295,7 +320,11 @@ export const TdComponent = styled.div(
   `,
 )
 
-export const TBodyComponent = styled(ScrollAnimation)`
+export const TBodyComponent = styled(
+  ({ style, ...domProps }: { style?: { [key: string]: number | string } }) => (
+    <ScrollAnimation containerCssOverrides={style} {...domProps} />
+  ),
+)`
   overflow-x: hidden;
 `
 
@@ -304,6 +333,7 @@ export const NoDataContainer = styled.div`
   ${typography(400, FontSizes.Title5)};
 
   align-items: center;
+  background: ${getColor(Colors.White)};
   bottom: 0;
   color: ${getColor(Colors.Black62)};
   justify-content: center;
@@ -323,9 +353,9 @@ export const MonorailReactTableOverrides: Partial<TableProps> = {
   TableComponent: (props: PropsWithChildren<{}>) => (
     <TableComponent {...props} />
   ),
-  TbodyComponent: (props: PropsWithChildren<{}>) => (
-    <TBodyComponent {...props} />
-  ),
+  TbodyComponent: (
+    props: PropsWithChildren<{ style: { [key: string]: number | string } }>,
+  ) => <TBodyComponent {...props} />,
   TdComponent: (props: PropsWithChildren<{}>) => <TdComponent {...props} />,
   ThComponent: (props: PropsWithChildren<ThComponentProps>) => (
     <ThComponent {...props} />
@@ -362,7 +392,7 @@ export const MonorailReactTableOverrides: Partial<TableProps> = {
           : !!filtered.find(filter => filter.id === column.id),
     }
   },
-  style: { width: '100%' },
+  style: { height: '100%', width: '100%' },
   minRows: 0,
   getTheadProps: () => ({ hasFilter: true }),
   showPagination: false,
@@ -376,7 +406,8 @@ export const MonorailReactTableOverrides: Partial<TableProps> = {
   },
   filterable: true,
   resizable: true,
-  loadingText: '',
+  loading: false,
+  multiSort: false,
 }
 
 export interface Filter {

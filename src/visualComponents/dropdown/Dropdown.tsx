@@ -28,8 +28,6 @@ import {
   hasKey,
   isEmptyString,
   isNil,
-  isNumber,
-  isTrue,
 } from '@monorail/sharedHelpers/typeGuards'
 import { CommonComponentType } from '@monorail/types'
 import { Icon } from '@monorail/visualComponents/icon/Icon'
@@ -81,7 +79,7 @@ const DropdownContainer = styled.div<CommonComponentType>`
   ${typography(400, FontSizes.Title5)};
 
   position: relative;
-  width: 100%;
+  width: 256px;
 `
 
 type RootContainerProps = CommonComponentType & {
@@ -108,6 +106,7 @@ const TextFieldStyles = (searching: boolean = false) => css`
   position: absolute;
   right: 0;
   top: 0;
+  width: auto;
 
   input {
     ${!searching && 'text-indent: -100vw;'}
@@ -154,7 +153,6 @@ export const Item = styled.div<StyledItemProps>(
     position: relative;
     cursor: pointer;
     display: block;
-    text-align: left;
     line-height: 1em;
     font-size: 11px;
     padding: 8px;
@@ -240,7 +238,7 @@ export class Dropdown<D = DropdownItemType> extends Component<
   static defaultProps = {
     placeholder: '...',
     disabled: false,
-    searchable: true,
+    searchable: false,
   }
 
   state: DropdownState = {
@@ -359,7 +357,11 @@ export class Dropdown<D = DropdownItemType> extends Component<
     inputValue: string,
     downshiftProps: ControllerStateAndHelpers<D>,
   ) => {
-    if (this.props.searchable && downshiftProps.isOpen) {
+    if (
+      this.props.searchable &&
+      downshiftProps.isOpen &&
+      !isEmptyString(inputValue)
+    ) {
       this.setDefaultHighlightedIndex(inputValue, downshiftProps)
     }
   }
@@ -453,6 +455,9 @@ export class Dropdown<D = DropdownItemType> extends Component<
     } = downshiftProps
 
     switch (event.key) {
+      case 'Escape':
+        event.preventDownshiftDefault = true
+        break
       case 'Enter':
         if (isOpen) {
           if (!isNil(highlightedIndex)) {
@@ -462,7 +467,6 @@ export class Dropdown<D = DropdownItemType> extends Component<
           toggleMenu({
             type: Downshift.stateChangeTypes.keyDownEnter,
             highlightedIndex: selectedItem && items.indexOf(selectedItem),
-            inputValue: '',
           })
         }
         event.preventDownshiftDefault = true
@@ -516,7 +520,7 @@ export class Dropdown<D = DropdownItemType> extends Component<
       onClick: () => {
         toggleMenu({
           type: Downshift.stateChangeTypes.clickButton,
-          inputValue: '',
+          highlightedIndex: selectedItem && items.indexOf(selectedItem),
         })
       },
     }
@@ -598,7 +602,7 @@ export class Dropdown<D = DropdownItemType> extends Component<
 
     const menuProps = getMenuProps() as DownshiftMenuPropsGetter<D>
     const position = this.menuRef.current
-      ? getOverlayPosition(this.menuRef.current)
+      ? getOverlayPosition({ target: this.menuRef.current })
       : defaultPopOverPosition
     const width = this.menuRef.current ? getMenuWidth(this.menuRef.current) : 0
 

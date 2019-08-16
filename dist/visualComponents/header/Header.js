@@ -5,13 +5,21 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.Header = exports.HeaderTitle = void 0;
 
+var _styledComponents = _interopRequireDefault(require("styled-components"));
+
 var _react = _interopRequireDefault(require("react"));
 
-var _exports = require("../../helpers/exports");
+var _appName = require("../../helpers/appName");
 
-var _styledComponents = _interopRequireWildcard(require("../../helpers/styled-components"));
+var _color = require("../../helpers/color");
+
+var _flex = require("../../helpers/flex");
+
+var _styledComponents2 = _interopRequireWildcard(require("../../helpers/styled-components"));
 
 var _theme = require("../../helpers/theme");
+
+var _typography = require("../../helpers/typography");
 
 var _AppIcon = require("../appIcon/AppIcon");
 
@@ -21,64 +29,61 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// TODO(unsafe-any): Fix unsafe anys
-// tslint:disable no-unsafe-any
 const HeaderRow =
 /*#__PURE__*/
-_styledComponents.default.div.withConfig({
+_styledComponents2.default.div.withConfig({
   displayName: "Header__HeaderRow",
   componentId: "f4cius-0"
-})(({
-  cssOverrides
-}) => (0, _styledComponents.css)(["", ";align-items:center;color:", ";flex-shrink:0;height:48px;padding:0 16px;", ";"], (0, _exports.flexFlow)('row'), (0, _theme.getThemeColor)(_theme.ThemeColors.Text1000), cssOverrides));
+})(["", ";align-items:center;color:", ";flex-shrink:0;height:48px;padding:0 16px;"], (0, _flex.flexFlow)('row'), (0, _theme.getThemeColor)(_theme.ThemeColors.Text1000));
 
 const HeaderContainer =
 /*#__PURE__*/
-_styledComponents.default.div.withConfig({
+_styledComponents2.default.div.withConfig({
   displayName: "Header__HeaderContainer",
   componentId: "f4cius-1"
 })([""]);
 
 const HeaderTitle =
 /*#__PURE__*/
-_styledComponents.default.h1.withConfig({
+_styledComponents2.default.h1.withConfig({
   displayName: "Header__HeaderTitle",
   componentId: "f4cius-2"
-})(({
-  cssOverrides
-}) => (0, _styledComponents.css)(["", ";", ";"], (0, _exports.typography)(500, _exports.FontSizes.Title3), cssOverrides));
+})(["", ";"], (0, _typography.typography)(500, _typography.FontSizes.Title3));
 
 exports.HeaderTitle = HeaderTitle;
 const iconLeftCss =
 /*#__PURE__*/
-(0, _styledComponents.css)(["color:", ";flex-shrink:0;margin-right:12px;"], (0, _theme.getThemeColor)(_theme.ThemeColors.Text1000));
+(0, _styledComponents2.css)(["color:", ";flex-shrink:0;margin-right:12px;"], (0, _theme.getThemeColor)(_theme.ThemeColors.Text1000));
 const Header =
 /*#__PURE__*/
-(0, _styledComponents.default)(({
+(0, _styledComponents2.default)(({
   actions,
   appIcon,
   children,
-  cssOverrides,
   cssHeaderRow,
   cssTitle,
   iconLeft,
   noBorder = false,
   title,
   ...domProps
-}) => _react.default.createElement(HeaderContainer, domProps, _react.default.createElement(HeaderRow, {
-  cssOverrides: cssHeaderRow
-}, appIcon && _react.default.createElement(_AppIcon.AppIcon, {
-  cssOverrides: iconLeftCss,
+}) => _react.default.createElement(HeaderContainer, domProps, _react.default.createElement(_StyledHeaderRow, {
+  _css: cssHeaderRow
+}, appIcon && _react.default.createElement(_StyledAppIcon, {
   appName: appIcon
-}), iconLeft && _react.default.createElement(_Icon.Icon, {
-  cssOverrides: iconLeftCss,
+}), iconLeft && _react.default.createElement(_StyledIcon, {
   icon: iconLeft
-}), _react.default.createElement(HeaderTitle, {
-  cssOverrides: cssTitle
+}), _react.default.createElement(_StyledHeaderTitle, {
+  _css2: cssTitle
 }, title), actions), children))(({
   noBorder,
-  appIcon,
-  cssOverrides
-}) => (0, _styledComponents.css)(["", ";", ";position:relative;flex-shrink:0;", ";"], !noBorder && (0, _styledComponents.css)(["&::after{content:'';background:", ";bottom:0;height:1px;left:0;position:absolute;right:0;}"], appIcon ? (0, _exports.getColor)((0, _exports.convertAppNameToColor)(appIcon)) : '#ebebeb'), (0, _exports.flexFlow)(), cssOverrides)); // tslint:enable
-
+  appIcon
+}) => (0, _styledComponents2.css)(["", ";", ";position:relative;flex-shrink:0;"], !noBorder && (0, _styledComponents2.css)(["&::after{content:'';background:", ";bottom:0;height:1px;left:0;position:absolute;right:0;}"], appIcon ? (0, _color.getColor)((0, _appName.convertAppNameToColor)(appIcon)) : '#ebebeb'), (0, _flex.flexFlow)()));
 exports.Header = Header;
+
+var _StyledHeaderRow = (0, _styledComponents.default)(HeaderRow)`${p => p._css}`;
+
+var _StyledAppIcon = (0, _styledComponents.default)(_AppIcon.AppIcon)`${iconLeftCss}`;
+
+var _StyledIcon = (0, _styledComponents.default)(_Icon.Icon)`${iconLeftCss}`;
+
+var _StyledHeaderTitle = (0, _styledComponents.default)(HeaderTitle)`${p => p._css2}`;

@@ -43,18 +43,16 @@ const SectionHeader = ({
   iconRight,
   title,
   ...otherProps
-}) => _react.default.createElement(SectionHeaderContainer, otherProps, !(0, _typeGuards.isEmptyString)(iconLeft) && ((0, _exports.isAppName)(iconLeft) ? _react.default.createElement(_AppIcon.AppIcon, {
-  appName: iconLeft,
-  cssOverrides: iconLeftStyle
+}) => _react.default.createElement(SectionHeaderContainer, otherProps, !(0, _typeGuards.isEmptyString)(iconLeft) && ((0, _exports.isAppName)(iconLeft) ? _react.default.createElement(_StyledAppIcon, {
+  appName: iconLeft
 }) : _react.default.createElement(_StyledIcon, {
   icon: iconLeft
 })), _react.default.createElement(_Text.Text, {
   fontWeight: 700,
   fontSize: _exports.FontSizes.Title5,
   as: "h1"
-}, title), !(0, _typeGuards.isEmptyString)(iconRight) && ((0, _exports.isAppName)(iconRight) ? _react.default.createElement(_AppIcon.AppIcon, {
-  appName: iconRight,
-  cssOverrides: iconRightStyle
+}, title), !(0, _typeGuards.isEmptyString)(iconRight) && ((0, _exports.isAppName)(iconRight) ? _react.default.createElement(_StyledAppIcon2, {
+  appName: iconRight
 }) : _react.default.createElement(_StyledIcon2, {
   icon: iconRight
 })), children);
@@ -65,6 +63,10 @@ SectionHeader.defaultProps = {
   iconRight: ''
 };
 
+var _StyledAppIcon = (0, _styledComponents.default)(_AppIcon.AppIcon)`${iconLeftStyle}`;
+
 var _StyledIcon = (0, _styledComponents.default)(_Icon.Icon)`${iconLeftStyle}`;
+
+var _StyledAppIcon2 = (0, _styledComponents.default)(_AppIcon.AppIcon)`${iconRightStyle}`;
 
 var _StyledIcon2 = (0, _styledComponents.default)(_Icon.Icon)`${iconRightStyle}`;

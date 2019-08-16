@@ -77,7 +77,11 @@ const Menu = ({
       position
     });
   }, [isOpen, menuHeight, menuWidth, position, width]);
-  (0, _react.useEffect)(() => setIsRendered(true), []);
+  (0, _react.useEffect)(() => {
+    if (isOpen) {
+      setIsRendered(true);
+    }
+  }, [isOpen, setIsRendered]);
   /* eslint-disable react-hooks/exhaustive-deps */
 
   (0, _react.useLayoutEffect)(() => {
@@ -92,6 +96,7 @@ const Menu = ({
 
   const eventListener = (0, _react.useCallback)(event => {
     if (menuRef.current === event.target && !isOpen) {
+      setIsRendered(false);
       closingAnimationCompleted();
     }
   }, [closingAnimationCompleted, isOpen]);
@@ -112,10 +117,11 @@ const Menu = ({
     ref: menuRef,
     width: (0, _typeGuards.isNil)(width) ? 'auto' : `${width}px`
   }, domProps, {
-    _css: isRendered ? scaleAnimation.outSideContentStyles : '',
-    _css2: cssOverrides
+    _css: scaleAnimation.outSideContentStyles,
+    _css2: isRendered ? 'visible' : 'hidden',
+    _css3: cssOverrides
   }), _react.default.createElement(_StyledMenuContent, {
-    _css3: isRendered ? scaleAnimation.inSideContentStyles : ''
+    _css4: scaleAnimation.inSideContentStyles
   }, children)));
 };
 
@@ -124,6 +130,6 @@ Menu.defaultProps = {
   zIndex: 9998
 };
 
-var _StyledMenuContainer = (0, _styledComponents.default)(MenuContainer)`${p => p._css} ${p => p._css2}`;
+var _StyledMenuContainer = (0, _styledComponents.default)(MenuContainer)`${p => p._css} visibility:${p => p._css2};${p => p._css3}`;
 
-var _StyledMenuContent = (0, _styledComponents.default)(MenuContent)`${p => p._css3}`;
+var _StyledMenuContent = (0, _styledComponents.default)(MenuContent)`${p => p._css4}`;

@@ -81,3 +81,9 @@ export const toBoolean = <A>(x: Option<A>): boolean => fold(x, false, constTrue)
  * the value from within the Some. Useful in conjunction with the spread operator.
  */
 export const toSpreadable = toArray(option)
+
+/**
+ * Returns true if the option is false or if the predicate returns true when applied to the wrapped value
+ */
+export const all = <A>(x: Option<A>, predicate: (a: A) => boolean): boolean =>
+  fold(x, true, predicate)

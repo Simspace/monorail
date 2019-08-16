@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.Icon = exports.MaterialIconFontFace = void 0;
 
-var _react = _interopRequireDefault(require("react"));
+var _react = _interopRequireWildcard(require("react"));
 
 var _styledComponents = _interopRequireWildcard(require("styled-components"));
 
@@ -105,13 +105,14 @@ var _Wand = require("./custom/Wand");
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
 // https://fonts.googleapis.com/icon?family=Material+Icons&style=baseline
 const MaterialIconFontFace =
 /*#__PURE__*/
 _styledComponents.createGlobalStyle`
   @font-face {
+    font-display: block;
     font-family: 'Material Icons';
     font-style: normal;
     font-weight: 400;
@@ -179,19 +180,22 @@ const customIcons = {
 };
 const Icon =
 /*#__PURE__*/
-(0, _styledComponents.default)(({
+(0, _styledComponents.default)((0, _react.forwardRef)(({
   cssOverrides: _cssOverrides,
   icon,
   ...otherProps
-}) => {
+}, ref) => {
   const CustomIcon = customIcons[icon];
 
   if (CustomIcon) {
+    // TODO: Forward ref to custom icon.. but all those SVG components need to be wrapped in forwardRef! -_-
     return _react.default.createElement(CustomIcon, otherProps);
   }
 
-  return _react.default.createElement("i", otherProps, icon);
-})(({
+  return _react.default.createElement("i", _extends({
+    ref: ref
+  }, otherProps), icon);
+}))(({
   size,
   cssOverrides
 }) => (0, _styledComponents.css)(["", ";color:", ";direction:ltr;display:inline-block;fill:currentColor;flex-shrink:0;font-family:'Material Icons';font-style:normal;font-weight:normal;height:1em;letter-spacing:normal;line-height:1;text-transform:none;user-select:none;white-space:nowrap;width:1em;word-wrap:normal;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;-moz-osx-font-smoothing:grayscale;font-feature-settings:'liga';", ";"], size ? (0, _styledComponents.css)(["font-size:", "px;"], size) : (0, _styledComponents.css)(["font-size:16px;"]), (0, _exports.getColor)(_exports.Colors.Black54), cssOverrides));

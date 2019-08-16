@@ -43,7 +43,7 @@ const DropdownContainer =
 _styledComponents2.default.div.withConfig({
   displayName: "Dropdown__DropdownContainer",
   componentId: "f8qt0h-0"
-})(["", ";position:relative;width:100%;"], (0, _exports.typography)(400, _exports.FontSizes.Title5));
+})(["", ";position:relative;width:256px;"], (0, _exports.typography)(400, _exports.FontSizes.Title5));
 
 const RootContainer =
 /*#__PURE__*/
@@ -54,7 +54,7 @@ _styledComponents2.default.div.withConfig({
   disabled
 }) => (0, _styledComponents2.css)(["", ";", ";", ";margin:auto;position:relative;", ""], (0, _exports.borderRadius)(_exports.BorderRadius.Large), (0, _exports.flexFlow)('row'), (0, _exports.typography)(400, _exports.FontSizes.Title5), disabled && _exports.baseDisabledStyles));
 
-const TextFieldStyles = (searching = false) => (0, _styledComponents2.css)(["border-radius:inherit;bottom:0;left:0;position:absolute;right:0;top:0;input{", " border-radius:inherit;cursor:pointer;}", "{bottom:50%;margin-bottom:-0.5em;}"], !searching && 'text-indent: -100vw;', _Icon.Icon);
+const TextFieldStyles = (searching = false) => (0, _styledComponents2.css)(["border-radius:inherit;bottom:0;left:0;position:absolute;right:0;top:0;width:auto;input{", " border-radius:inherit;cursor:pointer;}", "{bottom:50%;margin-bottom:-0.5em;}"], !searching && 'text-indent: -100vw;', _Icon.Icon);
 
 const HandlerContainer =
 /*#__PURE__*/
@@ -93,7 +93,7 @@ _styledComponents2.default.div.withConfig({
   selected,
   highlighted,
   disabled
-}) => (0, _styledComponents2.css)(["position:relative;cursor:pointer;display:block;text-align:left;line-height:1em;font-size:11px;padding:8px;", ";"], disabled ? (0, _styledComponents2.css)(["cursor:default;opacity:0.24;"]) : (0, _styledComponents2.css)(["", ";", ";", ";"], highlighted && (0, _styledComponents2.css)(["background:", ";"], (0, _exports.getColor)(_exports.Colors.Black24, 0.16)), selected && (0, _styledComponents2.css)(["background:", ";"], (0, _exports.getColor)(_exports.Colors.BrandLightBlue, 0.2)), highlighted && selected && (0, _styledComponents2.css)(["background:", ";"], (0, _exports.getColor)(_exports.Colors.BrandLightBlue, 0.24)))));
+}) => (0, _styledComponents2.css)(["position:relative;cursor:pointer;display:block;line-height:1em;font-size:11px;padding:8px;", ";"], disabled ? (0, _styledComponents2.css)(["cursor:default;opacity:0.24;"]) : (0, _styledComponents2.css)(["", ";", ";", ";"], highlighted && (0, _styledComponents2.css)(["background:", ";"], (0, _exports.getColor)(_exports.Colors.Black24, 0.16)), selected && (0, _styledComponents2.css)(["background:", ";"], (0, _exports.getColor)(_exports.Colors.BrandLightBlue, 0.2)), highlighted && selected && (0, _styledComponents2.css)(["background:", ";"], (0, _exports.getColor)(_exports.Colors.BrandLightBlue, 0.24)))));
 
 exports.Item = Item;
 
@@ -246,7 +246,7 @@ class Dropdown extends _react.Component {
     };
 
     this.onSearchInputChange = (inputValue, downshiftProps) => {
-      if (this.props.searchable && downshiftProps.isOpen) {
+      if (this.props.searchable && downshiftProps.isOpen && !(0, _typeGuards.isEmptyString)(inputValue)) {
         this.setDefaultHighlightedIndex(inputValue, downshiftProps);
       }
     };
@@ -326,6 +326,10 @@ class Dropdown extends _react.Component {
       } = downshiftProps;
 
       switch (event.key) {
+        case 'Escape':
+          event.preventDownshiftDefault = true;
+          break;
+
         case 'Enter':
           if (isOpen) {
             if (!(0, _typeGuards.isNil)(highlightedIndex)) {
@@ -336,8 +340,7 @@ class Dropdown extends _react.Component {
           } else {
             toggleMenu({
               type: _downshift.default.stateChangeTypes.keyDownEnter,
-              highlightedIndex: selectedItem && items.indexOf(selectedItem),
-              inputValue: ''
+              highlightedIndex: selectedItem && items.indexOf(selectedItem)
             });
           }
 
@@ -398,7 +401,7 @@ class Dropdown extends _react.Component {
         onClick: () => {
           toggleMenu({
             type: _downshift.default.stateChangeTypes.clickButton,
-            inputValue: ''
+            highlightedIndex: selectedItem && items.indexOf(selectedItem)
           });
         }
       };
@@ -463,7 +466,9 @@ class Dropdown extends _react.Component {
         toggleMenu
       } = downshiftProps;
       const menuProps = getMenuProps();
-      const position = this.menuRef.current ? (0, _PopOver.getOverlayPosition)(this.menuRef.current) : _PopOver.defaultPopOverPosition;
+      const position = this.menuRef.current ? (0, _PopOver.getOverlayPosition)({
+        target: this.menuRef.current
+      }) : _PopOver.defaultPopOverPosition;
       const width = this.menuRef.current ? getMenuWidth(this.menuRef.current) : 0;
       return _react.default.createElement(_Portal.Portal, {
         document: document
@@ -517,7 +522,7 @@ exports.Dropdown = Dropdown;
 Dropdown.defaultProps = {
   placeholder: '...',
   disabled: false,
-  searchable: true
+  searchable: false
 };
 
 var _StyledTextField = (0, _styledComponents.default)(_TextField.TextField)`${p => p._css}`;

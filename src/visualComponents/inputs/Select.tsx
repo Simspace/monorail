@@ -1,8 +1,8 @@
 import React, { SFC } from 'react'
 import styled, { css, SimpleInterpolation } from 'styled-components'
 
-import { FontSizes, typography } from '@monorail/helpers/exports'
 import { CommonComponentType } from '@monorail/types'
+import { Label } from '@monorail/visualComponents/inputs/Label'
 
 const SelectGroupWrapper = styled.div<CommonComponentType>(
   ({ cssOverrides }) => css`
@@ -40,12 +40,6 @@ const SelectElement = styled.select`
   }
 `
 
-const Label = styled.p`
-  ${typography(500, FontSizes.Title5)};
-  margin-bottom: 4px;
-  height: 16px;
-`
-
 export type SelectOption = {
   label: string
   value: string
@@ -81,10 +75,14 @@ export const Select: SFC<Props> = ({
   return (
     <SelectGroupWrapper cssOverrides={cssOverrides}>
       {label && (
-        <Label>
-          {label}
-          {required && '*'}
-        </Label>
+        <Label
+          label={label}
+          required={required}
+          css={css`
+            margin-bottom: 4px;
+            height: 16px;
+          `}
+        />
       )}
       <SelectElementWrapper>
         <SelectElement
