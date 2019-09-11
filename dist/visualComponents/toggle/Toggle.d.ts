@@ -10,6 +10,7 @@ declare type ToggleProps = {
     checked: boolean;
     cssOverrides?: SimpleInterpolation;
     onChange?: (checked: boolean) => void;
+    disabled?: boolean;
 };
 export declare class Toggle extends Component<ToggleProps> {
     static defaultProps: {

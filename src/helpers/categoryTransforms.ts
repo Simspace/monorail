@@ -3,7 +3,7 @@ import { Colors } from '@monorail/helpers/color'
 export const categoryReadableName = (entryCategory: string) => {
   switch (entryCategory) {
     case 'academy-package':
-      return 'Training Package'
+      return 'Event Plan'
     case 'academy-content-module':
       return 'Content Module'
     case 'hardhat-specification':
@@ -42,7 +42,9 @@ export const categoryIcon = (entryCategory: string) => {
     case 'clone-source':
       return 'aspect_ratio'
     case 'event':
-      return 'event'
+      return 'calendar_today'
+    case 'exercise':
+      return 'bar_chart'
     default:
       return entryCategory
   }
@@ -63,6 +65,7 @@ export const categoryColor = (entryCategory: string) => {
     case 'physical-asset':
     case 'clone-source':
       return Colors.Range
+    case 'exercise':
     case 'event':
       return Colors.Tracker
     default:

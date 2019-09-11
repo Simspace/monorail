@@ -27,29 +27,51 @@ var _typeGuards = require("../../sharedHelpers/typeGuards");
 
 var _Overlay = require("../toggle/Overlay");
 
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; if (obj != null) { var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
-const MenuContainer =
-/*#__PURE__*/
-_styledComponents2.default.div.withConfig({
-  displayName: "Menu__MenuContainer",
-  componentId: "sc-2wfm6w-0"
-})(({
+const MenuContainer = _styledComponents2.default.div(({
   width
-}) => (0, _styledComponents2.css)(["", ";", ";", ";", ";overflow:hidden;position:fixed;width:", ";min-width:", "px;"], (0, _borderRadius.borderRadius)(_borderRadius.BorderRadius.Medium), (0, _flex.flexFlow)(), (0, _elevation.getElevationShadow)(_elevation.ElevationRange.Elevation6), (0, _elevation.getElevationBackground)(_elevation.ElevationRange.Elevation6), width, _size.sizes.menu.width));
+}) => _styledComponents2.css`
+    ${(0, _borderRadius.borderRadius)(_borderRadius.BorderRadius.Medium)};
+    ${(0, _flex.flexFlow)()};
+    ${(0, _elevation.getElevationShadow)(_elevation.ElevationRange.Elevation6)};
+    ${(0, _elevation.getElevationBackground)(_elevation.ElevationRange.Elevation6)};
 
-const MenuContent =
+    overflow: hidden;
+    position: fixed;
+    width: ${width};
+    min-width: ${_size.sizes.menu.width}px;
+  `);
+
+var _StyledMenuContainer =
 /*#__PURE__*/
-_styledComponents2.default.div.withConfig({
-  displayName: "Menu__MenuContent",
-  componentId: "sc-2wfm6w-1"
-})(["", ";height:100%;overflow:auto;padding:4px 0;width:100%;"], (0, _flex.flexFlow)());
+(0, _styledComponents.default)(MenuContainer).withConfig({
+  displayName: "Menu___StyledMenuContainer",
+  componentId: "sc-2wfm6w-0"
+})(["", " visibility:", ";", ""], p => p._css, p => p._css2, p => p._css3);
 
+const MenuContent = _styledComponents2.default.div`
+  ${(0, _flex.flexFlow)()};
+
+  height: 100%;
+  overflow: auto;
+  padding: 4px 0;
+  width: 100%;
+`;
 exports.MenuContent = MenuContent;
+
+var _StyledMenuContent =
+/*#__PURE__*/
+(0, _styledComponents.default)(MenuContent).withConfig({
+  displayName: "Menu___StyledMenuContent",
+  componentId: "sc-2wfm6w-1"
+})(["", ""], p => p._css4);
 
 const Menu = ({
   children,
@@ -77,7 +99,11 @@ const Menu = ({
       position
     });
   }, [isOpen, menuHeight, menuWidth, position, width]);
-  (0, _react.useEffect)(() => setIsRendered(true), []);
+  (0, _react.useEffect)(() => {
+    if (isOpen) {
+      setIsRendered(true);
+    }
+  }, [isOpen, setIsRendered]);
   /* eslint-disable react-hooks/exhaustive-deps */
 
   (0, _react.useLayoutEffect)(() => {
@@ -92,7 +118,8 @@ const Menu = ({
 
   const eventListener = (0, _react.useCallback)(event => {
     if (menuRef.current === event.target && !isOpen) {
-      closingAnimationCompleted();
+      setIsRendered(false);
+      closingAnimationCompleted && closingAnimationCompleted();
     }
   }, [closingAnimationCompleted, isOpen]);
   (0, _hooks.useEventListener)({
@@ -112,10 +139,11 @@ const Menu = ({
     ref: menuRef,
     width: (0, _typeGuards.isNil)(width) ? 'auto' : `${width}px`
   }, domProps, {
-    _css: isRendered ? scaleAnimation.outSideContentStyles : '',
-    _css2: cssOverrides
+    _css: scaleAnimation.outSideContentStyles,
+    _css2: isRendered ? 'visible' : 'hidden',
+    _css3: cssOverrides
   }), _react.default.createElement(_StyledMenuContent, {
-    _css3: isRendered ? scaleAnimation.inSideContentStyles : ''
+    _css4: scaleAnimation.inSideContentStyles
   }, children)));
 };
 
@@ -123,7 +151,3 @@ exports.Menu = Menu;
 Menu.defaultProps = {
   zIndex: 9998
 };
-
-var _StyledMenuContainer = (0, _styledComponents.default)(MenuContainer)`${p => p._css} ${p => p._css2}`;
-
-var _StyledMenuContent = (0, _styledComponents.default)(MenuContent)`${p => p._css3}`;

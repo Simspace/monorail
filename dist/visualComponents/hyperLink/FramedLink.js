@@ -21,6 +21,20 @@ var _FramedIcon = require("../icon/FramedIcon");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var _StyledHyperLink =
+/*#__PURE__*/
+(0, _styledComponents.default)(_HyperLink.HyperLink).withConfig({
+  displayName: "FramedLink___StyledHyperLink",
+  componentId: "sc-34huc4-0"
+})(["", ";padding:3px 0;width:100%;"], _typography.ellipsis);
+
+var _StyledFramedIcon =
+/*#__PURE__*/
+(0, _styledComponents.default)(_FramedIcon.FramedIcon).withConfig({
+  displayName: "FramedLink___StyledFramedIcon",
+  componentId: "sc-34huc4-1"
+})(["margin:0 8px -1px 2px;transform:translateY(-1px);vertical-align:middle;"]);
+
 const FramedLink = ({
   categoryId,
   children,
@@ -37,16 +51,3 @@ const FramedLink = ({
 }), children);
 
 exports.FramedLink = FramedLink;
-
-var _StyledHyperLink = (0, _styledComponents.default)(_HyperLink.HyperLink)`
-      ${_typography.ellipsis};
-
-      padding: 3px 0;
-      width: 100%;
-    `;
-
-var _StyledFramedIcon = (0, _styledComponents.default)(_FramedIcon.FramedIcon)`
-        margin: 0 8px -1px 2px;
-        transform: translateY(-1px);
-        vertical-align: middle;
-      `;

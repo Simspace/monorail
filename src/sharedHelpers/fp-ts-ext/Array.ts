@@ -1,8 +1,17 @@
 import { remoteData } from '@devexperts/remote-data-ts'
 import { liftA2 } from 'fp-ts/lib/Apply'
-import { array, elem, init, last, snoc, sort } from 'fp-ts/lib/Array'
+import {
+  array,
+  difference,
+  elem,
+  init,
+  last,
+  snoc,
+  sort,
+} from 'fp-ts/lib/Array'
 import { flatten } from 'fp-ts/lib/Chain'
 import { Either, either, isRight } from 'fp-ts/lib/Either'
+import { Eq } from 'fp-ts/lib/Eq'
 import { constFalse, constTrue, Predicate, tuple } from 'fp-ts/lib/function'
 import { IO } from 'fp-ts/lib/IO'
 import { none, option, Option, some } from 'fp-ts/lib/Option'
@@ -245,3 +254,12 @@ export const notAny = <A>(as: Array<A>, p: Predicate<A>) => {
   const resultOpt = traverseOptions(as, a => (p(a) ? none : some(a)))
   return fold(resultOpt, false, constTrue)
 }
+
+/**
+ * Returns an array of elements which are in both input arrays but not in their
+ * intersection. Also known as symmetric difference or disjunctive union.
+ */
+export const xor = <A>(E: Eq<A>) => (xs: Array<A>, ys: Array<A>) => [
+  ...difference(E)(xs, ys),
+  ...difference(E)(ys, xs),
+]

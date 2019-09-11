@@ -1,17 +1,35 @@
+import { Do } from 'fp-ts-contrib/lib/Do'
+import { lookup } from 'fp-ts/lib/Array'
+import { option } from 'fp-ts/lib/Option'
 import React, {
-  FunctionComponent,
+  Children,
+  CSSProperties,
+  FC,
   PropsWithChildren,
   ReactElement,
+  useState,
 } from 'react'
-import { Column, ControlledStateOverrideProps, TableProps } from 'react-table'
+import {
+  Column,
+  ControlledStateOverrideProps,
+  SortedChangeFunction,
+  SortingRule,
+  TableProps,
+} from 'react-table'
 
 import { Colors, getColor } from '@monorail/helpers/color'
 import { flexFlow } from '@monorail/helpers/flex'
 import { Sizes } from '@monorail/helpers/size'
 import styled, { css } from '@monorail/helpers/styled-components'
 import { ellipsis, FontSizes, typography } from '@monorail/helpers/typography'
-import { PopOver } from '@monorail/metaComponents/popOver/PopOver'
-import { assertNever, isNil } from '@monorail/sharedHelpers/typeGuards'
+import { dropDirections } from '@monorail/metaComponents/popOver/PopOver'
+import { PopOverNext } from '@monorail/metaComponents/popOver/PopOverNext'
+import {
+  assertNever,
+  isFalse,
+  isNil,
+  isUndefined,
+} from '@monorail/sharedHelpers/typeGuards'
 import { Button } from '@monorail/visualComponents/buttons/Button'
 import {
   ButtonDisplay,
@@ -19,45 +37,62 @@ import {
 } from '@monorail/visualComponents/buttons/buttonTypes'
 import { IconButton } from '@monorail/visualComponents/buttons/IconButton'
 import { EmptyTable } from '@monorail/visualComponents/dataStates/DataStates'
+import { Icon } from '@monorail/visualComponents/icon/Icon'
 import { TextField } from '@monorail/visualComponents/inputs/TextField'
 import { ScrollAnimation } from '@monorail/visualComponents/layout/ScrollAnimation'
 import { Menu } from '@monorail/visualComponents/menu/Menu'
 
-const THEAD_HEIGHT = Sizes.DP48
+const THEAD_HEIGHT = Sizes.DP40
 
 export const TableComponent = styled.div`
-  ${flexFlow('column')}
+  ${flexFlow('column')};
+
   overflow-x: scroll;
   height: 100%;
   min-width: 100%;
+  position: relative; /* pos:rel need for filter bar. */
 `
 
-const TheadComponentContainer = styled.div<{ isFilterBar: boolean }>(
+export const TheadComponentContainer = styled.div<{ isFilterBar: boolean }>(
   ({ isFilterBar }) => css`
     ${flexFlow('row')};
 
-    height: ${THEAD_HEIGHT}px;
     flex-shrink: 0;
+    height: ${THEAD_HEIGHT}px;
+    position: relative;
 
     ${isFilterBar
       ? css`
-          margin-top: -${THEAD_HEIGHT}px;
+          left: 0;
           pointer-events: none;
+          position: absolute;
+          right: 0;
+          top: 0;
         `
       : css`
-          border-bottom: 1px solid ${getColor(Colors.Grey90)};
           background: ${getColor(Colors.Grey99)};
           overflow: hidden;
+
+          &::after {
+            background: ${getColor(Colors.Grey90)};
+            bottom: 0;
+            content: '';
+            height: 1px;
+            left: 0;
+            position: absolute;
+            right: 0;
+          }
         `};
   `,
 )
 
-type TheadComponentProps = {
+export type TheadComponentProps = {
   className: string
   hasFilter?: boolean
+  style?: CSSProperties
 }
 
-export const TheadComponent: FunctionComponent<TheadComponentProps> = ({
+export const TheadComponent: FC<TheadComponentProps> = ({
   children,
   className,
   hasFilter,
@@ -66,6 +101,7 @@ export const TheadComponent: FunctionComponent<TheadComponentProps> = ({
   return (
     <TheadComponentContainer
       isFilterBar={className === '-filters'}
+      className={className}
       {...domProps}
     >
       {children}
@@ -73,29 +109,44 @@ export const TheadComponent: FunctionComponent<TheadComponentProps> = ({
   )
 }
 
-const ThComponentContainer = styled.div`
-  ${flexFlow('row')};
-  ${typography(500, FontSizes.Title5)};
+enum ThComponentType {
+  Action = 'actions',
+  Filter = 'filter',
+  Sort = 'sort',
+}
 
-  align-items: center;
-  color: ${getColor(Colors.Black89)};
-  padding: 0 12px;
-  position: relative;
+const ThComponentContainer = styled.div<{
+  type: ThComponentType
+  filterable?: boolean
+}>(
+  ({ type, filterable }) => css`
+    padding: 0 ${filterable ? 34 : 6}px 0 6px;
 
-  &:first-of-type {
-    padding-left: 32px;
-  }
+    ${flexFlow('row')};
+    ${typography(500, FontSizes.Title5)};
 
-  &:last-of-type {
-    padding-right: 32px;
-  }
+    pointer-events: none;
+    align-items: center;
+    color: ${getColor(Colors.Black89)};
+    position: relative;
 
-  .rt-resizable-header-content {
-    ${ellipsis};
+    .rt-resizable-header-content {
+      ${ellipsis};
+    }
 
-    margin-right: 32px;
-  }
-`
+    &:first-of-type {
+      padding-left: 26px;
+    }
+
+    &:last-of-type {
+      padding-right: 54px;
+    }
+
+    .rt-resizable-header-content {
+      ${ellipsis};
+    }
+  `,
+)
 
 enum Sort {
   Ascending = 'ascending',
@@ -127,14 +178,63 @@ const getSortIcon = (sortStatus: Sort) => {
   }
 }
 
-type ThComponentProps = {
+export function useSort(): [Array<SortingRule>, SortedChangeFunction] {
+  const [sorted, setSorted] = useState<Array<SortingRule>>([])
+
+  const onSortChange = (newSorted: Array<SortingRule>) => {
+    setSorted(
+      Do(option)
+        .bind('current', lookup(0, sorted))
+        .bind('upcoming', lookup(0, newSorted))
+        .done()
+        .filter(
+          ({ current, upcoming }) => current.id === upcoming.id && current.desc,
+        )
+        .fold(newSorted, () => []),
+    )
+  }
+
+  return [sorted, onSortChange]
+}
+
+export type ThComponentProps = {
   toggleSort: () => void
   className: string
   column?: Column
   isFiltered?: boolean
+  style?: CSSProperties
 }
 
-export const ThComponent: FunctionComponent<ThComponentProps> = ({
+const ThLabel = styled.div`
+  ${typography(700, FontSizes.Title5)};
+
+  color: ${getColor(Colors.Black89)};
+  font-weight: 500;
+  justify-content: space-between;
+  padding-left: 6px;
+  pointer-events: all;
+  text-transform: none;
+  width: 100%;
+`
+const ThSortButton = styled(Button).attrs({
+  display: ButtonDisplay.Chromeless,
+  size: ButtonSize.Compact,
+})`
+  color: ${getColor(Colors.Black89)};
+  font-weight: 500;
+  justify-content: space-between;
+  padding-left: 6px;
+  pointer-events: all;
+  text-transform: none;
+  width: 100%;
+
+  ${Icon} {
+    margin-right: -4px;
+    margin-left: 2px;
+  }
+`
+
+export const ThComponent: FC<ThComponentProps> = ({
   children,
   toggleSort,
   className,
@@ -143,56 +243,95 @@ export const ThComponent: FunctionComponent<ThComponentProps> = ({
   ...domProps
 }) => {
   const sortStatus = getSortStatus(className)
+  const isFilterable = !isNil(column) && !isFalse(column.filterable)
+  const isSortable = !isNil(column) && !isFalse(column.sortable)
 
+  // Render empty header if there are actions.
   if (className.includes('actions')) {
-    return <ThComponentContainer className={className} {...domProps} />
+    return (
+      <ThComponentContainer
+        type={ThComponentType.Action}
+        className={className}
+        {...domProps}
+      />
+    )
   }
 
-  if (!isNil(column)) {
+  // Render Filter Header
+  if (!isUndefined(isFiltered)) {
     return (
-      <ThComponentContainer className={className} {...domProps}>
-        <PopOver
-          popOver={props => (
-            <Menu {...props} width={props.position.originWidth}>
-              {children}
-            </Menu>
-          )}
-          toggle={props => (
-            <Button
-              {...props}
-              size={ButtonSize.Large}
-              display={ButtonDisplay.Chromeless}
+      <ThComponentContainer
+        type={ThComponentType.Filter}
+        className={className}
+        filterable={isFilterable}
+        {...domProps}
+      >
+        {!isNil(column) && isFilterable && (
+          <>
+            {/* Render Hidden Sort Button to give the correct spacing. */}
+            <ThSortButton
+              iconRight="sort"
               css={`
-                margin: auto 28px auto -8px;
-                pointer-events: all;
-                flex: 1;
+                width: auto;
+                visibility: hidden;
               `}
             >
-              <IconButton
-                css="margin: auto -11px auto auto; pointer-events: none;"
-                display={ButtonDisplay.Chromeless}
-                icon="filter"
-                isActive={isFiltered}
-                passedAs="div"
-              />
-            </Button>
-          )}
-        />
+              <div className="rt-resizable-header-content">{column.Header}</div>
+            </ThSortButton>
+            <PopOverNext
+              xDirection={dropDirections.Right}
+              popOver={props => (
+                <Menu {...props} width={props.position.originWidth}>
+                  {children}
+                </Menu>
+              )}
+              toggle={props => (
+                <IconButton
+                  {...props}
+                  css={`
+                    margin: auto -24px auto auto;
+                    pointer-events: all;
+                    transform: translateX(4px);
+                  `}
+                  display={ButtonDisplay.Chromeless}
+                  icon="filter"
+                  isActive={isFiltered}
+                  className={isFiltered ? 'is-active' : ''}
+                />
+              )}
+            />
+          </>
+        )}
       </ThComponentContainer>
     )
   }
 
-  return (
-    <ThComponentContainer className={className} {...domProps}>
-      {children}
+  const childrenArray = Children.toArray(children)
 
-      <IconButton
-        isActive={sortStatus !== Sort.Unsorted}
-        display={ButtonDisplay.Chromeless}
-        icon={getSortIcon(sortStatus)}
-        onClick={toggleSort}
-        css="margin: auto 0 auto auto;"
-      />
+  const Header = childrenArray[0]
+  const Resizer = childrenArray[1]
+
+  // Render Sorted Header
+  return (
+    <ThComponentContainer
+      type={ThComponentType.Sort}
+      className={className}
+      filterable={isFilterable}
+      {...domProps}
+    >
+      {isSortable ? (
+        <ThSortButton
+          isActive={sortStatus !== Sort.Unsorted}
+          onClick={toggleSort}
+          iconRight={getSortIcon(sortStatus)}
+          className={sortStatus !== Sort.Unsorted ? 'is-active' : ''}
+        >
+          {Header}
+        </ThSortButton>
+      ) : (
+        <ThLabel>{Header}</ThLabel>
+      )}
+      {Resizer}
     </ThComponentContainer>
   )
 }
@@ -206,13 +345,12 @@ type FilterComponentProps = {
   onChange: (event: unknown) => void
 }
 
-export const FilterComponent: FunctionComponent<FilterComponentProps> = ({
+export const FilterComponent: FC<FilterComponentProps> = ({
   filter,
   onChange,
 }) => {
   return (
     <TextField
-      type="text"
       placeholder="Filter"
       value={!isNil(filter) ? filter.value : ''}
       onChange={event => onChange(event.target.value)}
@@ -227,6 +365,7 @@ export const FilterComponent: FunctionComponent<FilterComponentProps> = ({
 export const ResizerComponent = styled.div`
   bottom: 4px;
   cursor: col-resize;
+  pointer-events: all;
   position: absolute;
   right: -4px;
   top: 4px;
@@ -295,7 +434,11 @@ export const TdComponent = styled.div(
   `,
 )
 
-export const TBodyComponent = styled(ScrollAnimation)`
+export const TBodyComponent = styled(
+  ({ style, ...domProps }: { style?: { [key: string]: number | string } }) => (
+    <ScrollAnimation containerCssOverrides={style} {...domProps} />
+  ),
+)`
   overflow-x: hidden;
 `
 
@@ -304,6 +447,7 @@ export const NoDataContainer = styled.div`
   ${typography(400, FontSizes.Title5)};
 
   align-items: center;
+  background: ${getColor(Colors.White)};
   bottom: 0;
   color: ${getColor(Colors.Black62)};
   justify-content: center;
@@ -323,9 +467,9 @@ export const MonorailReactTableOverrides: Partial<TableProps> = {
   TableComponent: (props: PropsWithChildren<{}>) => (
     <TableComponent {...props} />
   ),
-  TbodyComponent: (props: PropsWithChildren<{}>) => (
-    <TBodyComponent {...props} />
-  ),
+  TbodyComponent: (
+    props: PropsWithChildren<{ style: { [key: string]: number | string } }>,
+  ) => <TBodyComponent {...props} />,
   TdComponent: (props: PropsWithChildren<{}>) => <TdComponent {...props} />,
   ThComponent: (props: PropsWithChildren<ThComponentProps>) => (
     <ThComponent {...props} />
@@ -342,6 +486,9 @@ export const MonorailReactTableOverrides: Partial<TableProps> = {
       <EmptyTable />
     </NoDataContainer>
   ),
+  getTheadThProps: (state, rowInfo, column) => ({
+    column,
+  }),
   getTheadFilterThProps: (
     {
       filtered,
@@ -362,21 +509,23 @@ export const MonorailReactTableOverrides: Partial<TableProps> = {
           : !!filtered.find(filter => filter.id === column.id),
     }
   },
-  style: { width: '100%' },
+  style: { height: '100%', width: '100%' },
   minRows: 0,
   getTheadProps: () => ({ hasFilter: true }),
   showPagination: false,
   defaultFilterMethod: (filter: Filter, row: { [key: string]: unknown }) => {
     const id = filter.pivotId || filter.id
-    return row[id] !== undefined
-      ? String(row[id])
-          .toLocaleLowerCase()
-          .includes(filter.value.toLocaleString().toLocaleLowerCase())
-      : true
+    return (
+      !isUndefined(row[id]) &&
+      String(row[id])
+        .toLocaleLowerCase()
+        .includes(filter.value.toLocaleString().toLocaleLowerCase())
+    )
   },
   filterable: true,
   resizable: true,
-  loadingText: '',
+  loading: false,
+  multiSort: false,
 }
 
 export interface Filter {

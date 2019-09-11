@@ -5,29 +5,29 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.Divider = void 0;
 
-var _styledComponents = _interopRequireWildcard(require("styled-components"));
-
 var _exports = require("../../helpers/exports");
 
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
+var _styledComponents = _interopRequireWildcard(require("../../helpers/styled-components"));
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; if (obj != null) { var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 /*
  * Styles
  */
-const Divider =
-/*#__PURE__*/
-_styledComponents.default.div.withConfig({
-  displayName: "Divider",
-  componentId: "sy7j6p-0"
-})(({
-  isVertical
-}) => (0, _styledComponents.css)(["", ";background:", ";"], isVertical ? (0, _styledComponents.css)(["width:1px;height:100%;"]) : (0, _styledComponents.css)(["width:100%;height:1px;"]), (0, _exports.getColor)(_exports.Colors.Grey94)));
+const Divider = _styledComponents.default.div(({
+  isVertical = false
+}) => _styledComponents.css`
+    ${isVertical ? _styledComponents.css`
+          width: 1px;
+          height: 100%;
+        ` : _styledComponents.css`
+          width: 100%;
+          height: 1px;
+        `};
+
+    background: ${(0, _exports.getColor)(_exports.Colors.Grey94)};
+  `);
 
 exports.Divider = Divider;
-Divider.defaultProps = {
-  isVertical: false
-  /*
-   * Types
-   */
-
-};

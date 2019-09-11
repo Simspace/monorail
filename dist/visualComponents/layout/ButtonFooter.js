@@ -19,19 +19,24 @@ var _styledComponents = _interopRequireDefault(require("../../helpers/styled-com
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-const ButtonFooterContainer =
-/*#__PURE__*/
-_styledComponents.default.div.withConfig({
-  displayName: "ButtonFooter__ButtonFooterContainer",
-  componentId: "sc-1a7a45-0"
-})(["", ";", ";align-items:center;background-color:", ";height:40px;flex-shrink:0;position:relative;"], (0, _flex.flexFlow)('row'), (0, _elevation.getElevationShadow)(_elevation.ElevationRange.Elevation5), (0, _color.getColor)(_color.Colors.White));
+const ButtonFooterContainer = _styledComponents.default.div`
+  ${(0, _flex.flexFlow)('row')};
+  ${(0, _elevation.getElevationShadow)(_elevation.ElevationRange.Elevation5)};
 
-const ButtonFooterContent =
-/*#__PURE__*/
-_styledComponents.default.div.withConfig({
-  displayName: "ButtonFooter__ButtonFooterContent",
-  componentId: "sc-1a7a45-1"
-})(["", ";", ";align-items:center;justify-content:space-between;width:100%;"], (0, _flex.flexFlow)('row-reverse'), (0, _size.pageSizePadding)());
+  align-items: center;
+  background-color: ${(0, _color.getColor)(_color.Colors.White)};
+  height: 40px;
+  flex-shrink: 0;
+  position: relative; /* Needs pos: rel so that the shadow appears above the content. */
+`;
+const ButtonFooterContent = _styledComponents.default.div`
+  ${(0, _flex.flexFlow)('row-reverse')};
+  ${(0, _size.pageSizePadding)()};
+
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+`;
 
 const ButtonFooter = ({
   children

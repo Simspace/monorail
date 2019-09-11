@@ -17,11 +17,14 @@ import {
 } from '@monorail/visualComponents/buttons/buttonTypes'
 import { IconButton } from '@monorail/visualComponents/buttons/IconButton'
 
-type Action = Omit<ActionsMenuProps['actions'][0], 'featuredAction'>
+export type ActionButton = Omit<
+  ActionsMenuProps['actions'][0],
+  'featuredAction'
+>
 
 export type ActionsButtonsProps = {
   display?: ButtonDisplay
-  actions?: Array<Action>
+  actions?: Array<ActionButton>
   size?: ButtonSize
   iconOnly?: boolean
   document?: Document
@@ -36,9 +39,9 @@ export const ActionsButtons: FC<ActionsButtonsProps> = ({
   actions = [],
 }) => {
   const { left: standardActions, right: featuredActions } = pipe(
-    map((action: Action) =>
+    map((action: ActionButton) =>
       action.isFeaturedAction
-        ? right<Action, ReactNode>(
+        ? right<ActionButton, ReactNode>(
             iconOnly ? (
               <IconButton
                 key={`${action.label}-${action.iconName}`}
@@ -67,7 +70,7 @@ export const ActionsButtons: FC<ActionsButtonsProps> = ({
               </Button>
             ),
           )
-        : left<Action, ReactNode>(action),
+        : left<ActionButton, ReactNode>(action),
     ),
     array.separate,
   )(actions)

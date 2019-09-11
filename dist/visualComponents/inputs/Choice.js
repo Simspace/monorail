@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.Choice = void 0;
+exports.Choice = exports.BBChoiceFakeLabel = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
@@ -13,7 +13,9 @@ var _exports = require("../../helpers/exports");
 
 var _Icon = require("../icon/Icon");
 
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; if (obj != null) { var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -42,6 +44,8 @@ _styledComponents.default.div.withConfig({
   answered,
   disabled
 }) => (0, _styledComponents.css)(["", ";", ";", ";flex-grow:1;word-break:break-word;transition:all ease 150ms;"], answered && (0, _styledComponents.css)(["transform:translateX(24px);"]), disabled && _exports.baseDisabledStyles, (0, _exports.typography)(500, _exports.FontSizes.Title5)));
+
+exports.BBChoiceFakeLabel = BBChoiceFakeLabel;
 
 const CCChoice =
 /*#__PURE__*/
@@ -79,7 +83,10 @@ const UncheckedRadioIcon =
   ...otherProps
 }) => _react.default.createElement(_Icon.Icon, _extends({
   icon: "radio_button_unchecked"
-}, otherProps)))(({
+}, otherProps))).withConfig({
+  displayName: "Choice__UncheckedRadioIcon",
+  componentId: "sor39o-3"
+})(({
   checked,
   answered,
   dense,
@@ -97,7 +104,10 @@ const CheckedRadioIcon =
   ...otherProps
 }) => _react.default.createElement(_Icon.Icon, _extends({
   icon: "radio_button_checked"
-}, otherProps)))(({
+}, otherProps))).withConfig({
+  displayName: "Choice__CheckedRadioIcon",
+  componentId: "sor39o-4"
+})(({
   checked,
   answered,
   dense,
@@ -116,7 +126,10 @@ const UncheckedCheckboxIcon =
   ...otherProps
 }) => _react.default.createElement(_Icon.Icon, _extends({
   icon: "check_box_outline_blank"
-}, otherProps)))(({
+}, otherProps))).withConfig({
+  displayName: "Choice__UncheckedCheckboxIcon",
+  componentId: "sor39o-5"
+})(({
   checked,
   answered,
   dense,
@@ -135,7 +148,10 @@ const CheckedCheckboxIcon =
   ...otherProps
 }) => _react.default.createElement(_Icon.Icon, _extends({
   icon: "check_box"
-}, otherProps)))(({
+}, otherProps))).withConfig({
+  displayName: "Choice__CheckedCheckboxIcon",
+  componentId: "sor39o-6"
+})(({
   checked,
   answered,
   dense,
@@ -153,7 +169,10 @@ const IndeterminateIcon =
   ...otherProps
 }) => _react.default.createElement(_Icon.Icon, _extends({
   icon: "indeterminate_check_box"
-}, otherProps)))(({
+}, otherProps))).withConfig({
+  displayName: "Choice__IndeterminateIcon",
+  componentId: "sor39o-7"
+})(({
   indeterminate,
   answered,
   dense,
@@ -170,7 +189,10 @@ const IncorrectIcon =
   ...otherProps
 }) => _react.default.createElement(_Icon.Icon, _extends({
   icon: "cancel"
-}, otherProps)))(({
+}, otherProps))).withConfig({
+  displayName: "Choice__IncorrectIcon",
+  componentId: "sor39o-8"
+})(({
   incorrect,
   dense,
   answered,
@@ -186,7 +208,10 @@ const CorrectIcon =
   ...otherProps
 }) => _react.default.createElement(_Icon.Icon, _extends({
   icon: "check_circle"
-}, otherProps)))(({
+}, otherProps))).withConfig({
+  displayName: "Choice__CorrectIcon",
+  componentId: "sor39o-9"
+})(({
   correct,
   dense,
   answered,
@@ -251,6 +276,7 @@ const Choice = ({
   required,
   name,
   style,
+  'data-test-id': dataTestId,
   ...domProps
 }) => _react.default.createElement(CCChoice, _extends({
   style: style,
@@ -263,6 +289,7 @@ const Choice = ({
   answered: answered,
   indeterminate: indeterminate
 }, domProps), _react.default.createElement(BBChoiceInput, {
+  "data-test-id": dataTestId,
   disabled: disabled,
   onChange: onChange,
   checked: checked,

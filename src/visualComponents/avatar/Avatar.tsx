@@ -1,23 +1,27 @@
 import React, { StatelessComponent } from 'react'
-import styled, { css, SimpleInterpolation } from 'styled-components'
 
-import { borderRadius, Colors, getColor } from '@monorail/helpers/exports'
+import {
+  BorderRadius,
+  borderRadius,
+  Colors,
+  getColor,
+} from '@monorail/helpers/exports'
 import { Sizes } from '@monorail/helpers/size'
+import styled, { css } from '@monorail/helpers/styled-components'
 import { isNil } from '@monorail/sharedHelpers/typeGuards'
 import { Icon } from '@monorail/visualComponents/icon/Icon'
 
-type CCAvatarProps = {
-  cssOverrides?: SimpleInterpolation
+type AvatarContainerProps = {
   team?: boolean
   size?: Sizes
 }
 
-const defaultSize = 24
+const defaultSize = Sizes.DP24
 const fontScale = 9.89 / defaultSize
 const iconScale = 10 / 16
 
-const CCAvatar = styled.div<CCAvatarProps>(
-  ({ team, cssOverrides, size = defaultSize }) => css`
+const AvatarContainer = styled.div<AvatarContainerProps>(
+  ({ team, size = defaultSize }) => css`
     ${team
       ? css`
           ${borderRadius()};
@@ -25,8 +29,9 @@ const CCAvatar = styled.div<CCAvatarProps>(
           background: ${getColor(Colors.BrandDarkBlue)};
         `
       : css`
+          ${borderRadius(BorderRadius.Round)};
+
           background: ${getColor(Colors.BrandLightBlue)};
-          border-radius: ${size / 2}px;
         `};
 
     align-items: center;
@@ -42,31 +47,28 @@ const CCAvatar = styled.div<CCAvatarProps>(
     text-transform: uppercase;
     user-select: none;
     width: ${size}px;
-
-    ${cssOverrides};
   `,
 )
 
-type AvatarProps = CCAvatarProps & {
+export type AvatarProps = AvatarContainerProps & {
   first: string
   last: string
   icon?: string
 }
 
 export const Avatar: StatelessComponent<AvatarProps> = ({
-  cssOverrides,
   first,
   last,
   team,
-  size,
+  size = defaultSize,
   icon,
   ...domProps
 }) => (
-  <CCAvatar cssOverrides={cssOverrides} team={team} size={size} {...domProps}>
+  <AvatarContainer team={team} size={size} {...domProps}>
     {!isNil(icon) ? (
       <Icon
         icon={icon}
-        size={size ? iconScale * size : iconScale * defaultSize}
+        size={iconScale * size}
         css={css`
           color: ${getColor(Colors.White)};
         `}
@@ -77,7 +79,7 @@ export const Avatar: StatelessComponent<AvatarProps> = ({
         {last.charAt(0)}
       </>
     )}
-  </CCAvatar>
+  </AvatarContainer>
 )
 
 export const getAvatarInitials = (fullName: string) => {

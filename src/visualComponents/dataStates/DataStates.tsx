@@ -30,9 +30,7 @@ export const NoResults = () => (
       <NoResultsIcon />
     </IconBox>
     <Banner>No Entries Found</Banner>
-    <Detail>
-      <span>We couldn't find any records that match your search.</span>
-    </Detail>
+    <Detail>We couldn't find any records that match your search.</Detail>
   </Container>
 )
 
@@ -42,9 +40,27 @@ export const EmptyTable = () => (
       <NoResultsIcon />
     </IconBox>
     <Banner>No Entries Found</Banner>
-    <Detail>
-      <span>We couldn't find any records.</span>
-    </Detail>
+    <Detail>We couldn't find any records.</Detail>
+  </Container>
+)
+
+export const NoEvents = () => (
+  <Container>
+    <IconBox>
+      <NoResultsIcon />
+    </IconBox>
+    <Banner>No Events</Banner>
+    <Detail>Events that you are participating in will be listed here.</Detail>
+  </Container>
+)
+
+export const NoCompletedEvents = () => (
+  <Container>
+    <IconBox>
+      <NoResultsIcon />
+    </IconBox>
+    <Banner>No Events</Banner>
+    <Detail>This area lists the events that you have completed.</Detail>
   </Container>
 )
 
@@ -96,6 +112,22 @@ export const NotFound = () => (
       <span>We searched high and low, far and wide</span>
       <span>but can't seem to find the page you're looking for.</span>
     </Detail>
+  </Container>
+)
+
+export const CustomNoData = ({
+  headingText,
+  details,
+}: {
+  headingText: string
+  details: JSX.Element | Array<JSX.Element>
+}) => (
+  <Container>
+    <IconBox>
+      <NoResultsIcon />
+    </IconBox>
+    <Banner>{headingText}</Banner>
+    <Detail>{details}</Detail>
   </Container>
 )
 

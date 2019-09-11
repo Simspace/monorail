@@ -143,7 +143,7 @@ export const SidebarMenuItemDropDownToggle = styled(
         css={css`
           color: currentColor;
 
-          transform: translateX(${isSideBarCollapsed ? -6 : 0}px);
+          transform: translateX(${isSideBarCollapsed ? -10 : 0}px);
 
           transition: all ease 75ms,
             transform ${ease(isSideBarCollapsed)}
@@ -166,7 +166,7 @@ export const SidebarMenuItemDropDownToggle = styled(
       <ListItemGraphic
         icon={isActive ? 'arrow_drop_up' : 'arrow_drop_down'}
         css={css`
-          transform: translateX(${isSideBarCollapsed ? -18 : 0}px);
+          transform: translateX(${isSideBarCollapsed ? -24 : 0}px);
 
           transition: all ease 75ms,
             transform ${ease(isSideBarCollapsed)}

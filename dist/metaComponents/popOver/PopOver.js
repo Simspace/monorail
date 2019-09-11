@@ -9,7 +9,9 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _Portal = require("../portal/Portal");
 
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; if (obj != null) { var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 let dropDirections;
 exports.dropDirections = dropDirections;
@@ -36,14 +38,20 @@ const defaultPopOverPosition = {
 };
 exports.defaultPopOverPosition = defaultPopOverPosition;
 
-const getOverlayPosition = (target, gap = 8, toSide = false) => {
+const getOverlayPosition = ({
+  target,
+  gap = 8,
+  toSide = false,
+  xDirection,
+  yDirection
+}) => {
   // Get basic dimensions about the the Toggle and the window.
   const boundingRect = target.getBoundingClientRect();
   const innerWidth = window.innerWidth;
   const innerHeight = window.innerHeight; // Determine the direction the PopOver should go.
 
-  const dropYDirection = innerHeight / 2 > boundingRect.top + boundingRect.height / 2 ? dropDirections.Top : dropDirections.Bottom;
-  const dropXDirection = innerWidth / 2 > boundingRect.left + boundingRect.width / 2 ? dropDirections.Left : dropDirections.Right;
+  const dropYDirection = yDirection || (innerHeight / 2 > boundingRect.top + boundingRect.height / 2 ? dropDirections.Top : dropDirections.Bottom);
+  const dropXDirection = xDirection || (innerWidth / 2 > boundingRect.left + boundingRect.width / 2 ? dropDirections.Left : dropDirections.Right);
   return { ...getDropAmounts({
       boundingRect,
       dropXDirection,
@@ -248,9 +256,17 @@ class PopOver extends _react.Component {
       const {
         gap,
         toSide,
-        onToggle
+        onToggle,
+        xDirection,
+        yDirection
       } = this.props;
-      const position = getOverlayPosition(event.currentTarget, gap, toSide);
+      const position = getOverlayPosition({
+        gap,
+        target: event.currentTarget,
+        toSide,
+        xDirection,
+        yDirection
+      });
       this.setState(({
         isOpen,
         isRendered

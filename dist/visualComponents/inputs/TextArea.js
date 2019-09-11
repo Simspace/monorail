@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.TextArea = exports.BBTextAreaContainer = void 0;
+exports.TextArea = exports.TextAreaInput = exports.TextAreaContainer = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
@@ -13,36 +13,33 @@ var _exports = require("../../helpers/exports");
 
 var _typeGuards = require("../../sharedHelpers/typeGuards");
 
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
+var _Label = require("./Label");
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; if (obj != null) { var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
 /*
  * Styles
  */
-const BBTextAreaContainer =
+const TextAreaContainer =
 /*#__PURE__*/
 _styledComponents.default.label.withConfig({
-  displayName: "TextArea__BBTextAreaContainer",
+  displayName: "TextArea__TextAreaContainer",
   componentId: "sc-1vltn06-0"
 })(({
   cssOverrides
-}) => (0, _styledComponents.css)(["", ";max-width:256px;width:100%;position:relative;", ";"], (0, _exports.flexFlow)(), cssOverrides));
+}) => (0, _styledComponents.css)(["", ";max-width:256px;width:100%;position:relative;", ""], (0, _exports.flexFlow)(), cssOverrides));
 
-exports.BBTextAreaContainer = BBTextAreaContainer;
+exports.TextAreaContainer = TextAreaContainer;
 
-const BBTextAreaLabel =
-/*#__PURE__*/
-_styledComponents.default.p.withConfig({
-  displayName: "TextArea__BBTextAreaLabel",
-  componentId: "sc-1vltn06-1"
-})(["", ";margin:4px 0;"], (0, _exports.typography)(500, _exports.FontSizes.Title5));
-
-const BBTextAreaInput =
+const TextAreaInput =
 /*#__PURE__*/
 _styledComponents.default.textarea.withConfig({
-  displayName: "TextArea__BBTextAreaInput",
-  componentId: "sc-1vltn06-2"
+  displayName: "TextArea__TextAreaInput",
+  componentId: "sc-1vltn06-1"
 })(({
   chromeless,
   compact
@@ -51,6 +48,8 @@ _styledComponents.default.textarea.withConfig({
  * Types
  */
 
+
+exports.TextAreaInput = TextAreaInput;
 
 /*
  * Component
@@ -107,11 +106,17 @@ class TextArea extends _react.Component {
       required,
       value,
       onBlur,
+      name,
+      className,
       ...otherProps
     } = this.props;
-    return _react.default.createElement(BBTextAreaContainer, {
-      cssOverrides: cssOverrides
-    }, !(0, _typeGuards.isNil)(label) && _react.default.createElement(BBTextAreaLabel, null, label), _react.default.createElement(BBTextAreaInput, _extends({
+    return _react.default.createElement(TextAreaContainer, {
+      cssOverrides: cssOverrides,
+      className: className
+    }, _react.default.createElement(_Label.Label, {
+      label: label,
+      required: required
+    }), _react.default.createElement(TextAreaInput, _extends({
       chromeless: chromeless,
       className: "new-textarea",
       compact: compact,
@@ -123,7 +128,8 @@ class TextArea extends _react.Component {
       required: required,
       rows: compact ? 1 : 3,
       value: value,
-      onBlur: onBlur
+      onBlur: onBlur,
+      name: name
     }, otherProps)));
   }
 

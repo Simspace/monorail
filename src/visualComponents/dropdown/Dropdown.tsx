@@ -5,16 +5,27 @@ import Downshift, {
   PropGetters,
   StateChangeOptions,
 } from 'downshift'
-import React, { Component, createRef, KeyboardEvent, ReactNode } from 'react'
+import { Do } from 'fp-ts-contrib/lib/Do'
+import { fromNullable, none, option, Option, some } from 'fp-ts/lib/Option'
+import React, {
+  KeyboardEvent,
+  ReactElement,
+  ReactNode,
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react'
+import { useDebouncedCallback } from 'use-debounce'
 
 import {
   baseDisabledStyles,
   BorderRadius,
   borderRadius,
-  Colors,
   flexFlow,
   FontSizes,
-  getColor,
   typography,
   visible,
 } from '@monorail/helpers/exports'
@@ -24,32 +35,22 @@ import {
   getOverlayPosition,
 } from '@monorail/metaComponents/popOver/PopOver'
 import { Portal } from '@monorail/metaComponents/portal/Portal'
-import {
-  hasKey,
-  isEmptyString,
-  isNil,
-  isNumber,
-  isTrue,
-} from '@monorail/sharedHelpers/typeGuards'
+import { isEmptyString } from '@monorail/sharedHelpers/typeGuards'
 import { CommonComponentType } from '@monorail/types'
+import { DropdownItem } from '@monorail/visualComponents/dropdown/DropdownItem'
+import {
+  DropdownItemType,
+  DropdownItemValue,
+  getHighlightedItem,
+  nextHighlightedIndex,
+  parseAsDropdownItem,
+} from '@monorail/visualComponents/dropdown/helpers'
 import { Icon } from '@monorail/visualComponents/icon/Icon'
 import {
   TextField,
   TextFieldProps,
 } from '@monorail/visualComponents/inputs/TextField'
 import { Menu, MenuContent } from '@monorail/visualComponents/menu/Menu'
-
-export type DropdownItemValue = string | number | object | undefined
-
-export type DropdownItemType = {
-  value: DropdownItemValue
-  label: string
-  disabled?: boolean
-}
-
-// DropdownItemType Typeguard
-export const isDropdownItem = (item: unknown) =>
-  hasKey(item, 'value') && hasKey(item, 'label')
 
 export type RenderItemProps<D> = {
   item: D
@@ -62,26 +63,31 @@ export type RenderHandlerProps<D> = {
   isOpen: boolean
   disabled: boolean
 }
+export type DropdownChangeHandler<D> = (
+  item?: D,
+  downshiftProps?: ControllerStateAndHelpers<D>,
+) => void
 
 export type DropdownProps<D = DropdownItemType> = CommonComponentType & {
   itemToDropdownType?: (item: D) => DropdownItemType
-  renderItem?: (props: RenderItemProps<D>) => ReactNode
-  renderHandler?: (props: RenderHandlerProps<D>) => ReactNode
+  renderItem?: (props: RenderItemProps<D>) => ReactElement
+  renderHandler?: (props: RenderHandlerProps<D>) => ReactElement
   items: Array<D>
   matchItem?: (item: D, text: string) => boolean
   value?: DropdownItemValue
-  onChange?: (item?: D) => void
+  onChange?: DropdownChangeHandler<D>
   document?: Document
-  placeholder: string
-  disabled: boolean
-  searchable: boolean
+  placeholder?: string
+  disabled?: boolean
+  searchable?: boolean
 }
 
 const DropdownContainer = styled.div<CommonComponentType>`
   ${typography(400, FontSizes.Title5)};
 
   position: relative;
-  width: 100%;
+  width: 256px;
+  max-width: 100%;
 `
 
 type RootContainerProps = CommonComponentType & {
@@ -108,9 +114,11 @@ const TextFieldStyles = (searching: boolean = false) => css`
   position: absolute;
   right: 0;
   top: 0;
+  width: auto;
 
   input {
-    ${!searching && 'text-indent: -100vw;'}
+    ${!searching && 'text-indent: -100vw;'};
+
     border-radius: inherit;
     cursor: pointer;
   }
@@ -143,83 +151,6 @@ const Handler = styled.div<CommonComponentType>`
   position: relative;
 `
 
-type StyledItemProps = {
-  selected: boolean
-  highlighted: boolean
-  disabled?: boolean
-}
-
-export const Item = styled.div<StyledItemProps>(
-  ({ selected, highlighted, disabled }) => css`
-    position: relative;
-    cursor: pointer;
-    display: block;
-    text-align: left;
-    line-height: 1em;
-    font-size: 11px;
-    padding: 8px;
-
-    ${disabled
-      ? css`
-          cursor: default;
-          opacity: 0.24;
-        `
-      : css`
-          ${highlighted &&
-            css`
-              background: ${getColor(Colors.Black24, 0.16)};
-            `};
-          ${selected &&
-            css`
-              background: ${getColor(Colors.BrandLightBlue, 0.2)};
-            `};
-
-          ${highlighted &&
-            selected &&
-            css`
-              background: ${getColor(Colors.BrandLightBlue, 0.24)};
-            `};
-        `};
-  `,
-)
-
-const getKeyboardMoveDelta = (key: string) => {
-  switch (key) {
-    case 'ArrowLeft':
-    case 'PageUp':
-      return -10
-    case 'ArrowRight':
-    case 'PageDown':
-      return 10
-    case 'ArrowUp':
-      return -1
-    case 'ArrowDown':
-      return 1
-    default:
-      return 0
-  }
-}
-const getKeyboardMoveIndex = (key: string, initial: number, max: number) => {
-  switch (key) {
-    case 'Home':
-      return 0
-    case 'End':
-      return max
-    default:
-      return initial + getKeyboardMoveDelta(key)
-  }
-}
-
-const getNewHighlightedIndex = (key: string, initial: number, max: number) => {
-  const index = getKeyboardMoveIndex(key, initial, max)
-
-  return index < 0 ? 0 : index >= max ? max : index
-}
-
-const getMenuWidth = (element: HTMLDivElement) => {
-  return element.getBoundingClientRect().width
-}
-
 /** Partial definitions to Solve Downshift typing */
 type DownshiftGetInputProps = GetInputPropsOptions & Partial<TextFieldProps>
 type DownshiftRootPropsGetter<D> = PropGetters<D>['getRootProps']
@@ -229,204 +160,220 @@ type DownshiftKeyboardEvent = KeyboardEvent & {
   preventDownshiftDefault?: boolean
 }
 
-type DropdownState = {
-  keyboardEventTime: number
-}
+export const Dropdown = <D extends unknown = DropdownItemType>({
+  searchable = false,
+  placeholder = '...',
+  disabled = false,
+  items: collection,
+  value,
+  onChange,
+  itemToDropdownType,
+  matchItem,
+  renderHandler,
+  renderItem,
+  ...domProps
+}: DropdownProps<D>): ReactElement<DropdownProps<D>> => {
+  const [inputText, setInputText] = useState('')
+  const [menuTarget, setMenuTarget] = useState<HTMLDivElement>()
 
-export class Dropdown<D = DropdownItemType> extends Component<
-  DropdownProps<D>,
-  DropdownState
-> {
-  static defaultProps = {
-    placeholder: '...',
-    disabled: false,
-    searchable: true,
-  }
+  const [clearInputTextDebounced] = useDebouncedCallback(
+    () => setInputText(''),
+    750,
+  )
 
-  state: DropdownState = {
-    keyboardEventTime: 0,
-  }
+  const inputRef = useRef<TextField>(null)
+  const menuRef = useRef<HTMLDivElement>(null)
 
-  inputRef = createRef<TextField>()
-  menuRef = createRef<HTMLDivElement>()
+  const getDropdownItem = useCallback(
+    (item: D) =>
+      itemToDropdownType ? itemToDropdownType(item) : parseAsDropdownItem(item),
+    [itemToDropdownType],
+  )
 
-  // Item handling
-  getItemByValue = () => {
-    const { items, value } = this.props
-    return items.find(item => this.getDropdownItem(item).value === value)
-  }
+  const dropdownItemToString = (item: D) => getDropdownItem(item).label
 
-  getDropdownItem = (item: unknown): DropdownItemType => {
-    const { itemToDropdownType } = this.props
-    if (item) {
-      if (itemToDropdownType) {
-        return itemToDropdownType(item as D)
-      } else if (isDropdownItem(item)) {
-        return item as DropdownItemType
+  const matchItemByLabel = useCallback(
+    (item: D, text: string): boolean => {
+      const itemProps = getDropdownItem(item)
+      const label = itemProps.label.trim().toLowerCase()
+
+      return label.includes(text.trim().toLowerCase())
+    },
+    [getDropdownItem],
+  )
+
+  const matchItemCallback = useCallback(
+    (text: string) => (item: D) => (matchItem || matchItemByLabel)(item, text),
+    [matchItem, matchItemByLabel],
+  )
+
+  const filteredItems = useMemo(
+    () =>
+      searchable ? collection.filter(matchItemCallback(inputText)) : collection,
+    [searchable, collection, inputText, matchItemCallback],
+  )
+
+  const [selectedDropdownItem, setSelectedDropdownItem] = useState<Option<D>>(
+    none,
+  )
+
+  const shouldUpdateSelectedItem = (item: Option<D>) =>
+    Do(option)
+      .bind('newItem', item)
+      .bind('currentItem', selectedDropdownItem)
+      .return(
+        ({ newItem, currentItem }) =>
+          getDropdownItem(newItem).value !== getDropdownItem(currentItem).value,
+      )
+      .getOrElse(true)
+
+  const updateSelectedItem: DropdownChangeHandler<D> = (
+    item,
+    downshiftProps,
+  ) => {
+    const itemOption = fromNullable(item)
+
+    if (shouldUpdateSelectedItem(itemOption)) {
+      setSelectedDropdownItem(itemOption)
+
+      if (onChange) {
+        onChange(item, downshiftProps)
       }
     }
+  }
 
-    return {
-      value: String(item),
-      label: String(item),
-      disabled: false,
+  const updateInputText = (text: string) => {
+    if (text !== inputText) {
+      setInputText(text)
     }
   }
 
-  isActiveItem = (item: D) => !this.getDropdownItem(item).disabled
+  /* eslint-disable react-hooks/exhaustive-deps */
+  useEffect(() => {
+    /*
+     * We need to check if the value is in the collection,
+     * or if the selectedItem is in the collection.
+     */
 
-  matchItemByLabel = (item: D, text: string): boolean => {
-    const itemProps = this.getDropdownItem(item)
-    const label = itemProps.label.trim().toLowerCase()
+    const updatedItem = some(value)
+      .alt(selectedDropdownItem.map(item => getDropdownItem(item).value))
+      .mapNullable(val =>
+        collection.find(item => getDropdownItem(item).value === val),
+      )
 
-    return label.indexOf(text.trim().toLowerCase()) === 0
-  }
+    if (shouldUpdateSelectedItem(updatedItem)) {
+      setSelectedDropdownItem(updatedItem)
+    }
+  }, [value, collection])
 
-  matchItem = (text: string) => (item: D) =>
-    (this.props.matchItem || this.matchItemByLabel)(item, text)
+  useLayoutEffect(() => {
+    if (menuRef && menuRef.current) {
+      setMenuTarget(menuRef.current)
+    }
+  }, [menuRef.current])
+  /* eslint-enable react-hooks/exhaustive-deps */
 
-  getItems = (text: string = '') => {
-    const { items, searchable } = this.props
-    return searchable && !isEmptyString(text)
-      ? items.filter(this.matchItem(text))
-      : items
-  }
+  // Item handling
+  const isActiveItem = (item: D) => !getDropdownItem(item).disabled
 
   /** Handle keyboard input for non search dropdown */
-  getIndexToHighlight = (textValue: string, items: Array<D>) => {
-    const activeItems = items.filter(this.isActiveItem)
+  const setFilterHighlighted = ({
+    setHighlightedIndex,
+  }: ControllerStateAndHelpers<D>) => {
+    const items = filteredItems
+    const selectedIndex = selectedDropdownItem
+      .map(item => items.indexOf(item))
+      .getOrElse(-1)
 
-    const activeIndex = activeItems.findIndex(item =>
-      this.matchItemByLabel(item, textValue),
+    setHighlightedIndex(
+      selectedIndex >= 0 ? selectedIndex : items.findIndex(isActiveItem),
     )
-
-    return activeIndex >= 0 && activeItems.length !== items.length
-      ? items.indexOf(activeItems[activeIndex])
-      : activeIndex
   }
 
-  handleNonSearchInputChange = (
-    state: DownshiftState<D>,
-    changes: StateChangeOptions<D>,
+  const getIndexToHighlight = (textValue: string, items: Array<D>) => {
+    const activeItems = items.filter(isActiveItem)
+
+    const index = activeItems.findIndex(matchItemCallback(textValue))
+
+    return index >= 0 && activeItems.length !== items.length
+      ? items.indexOf(activeItems[index])
+      : index
+  }
+
+  const setSelectHighlighted = (
+    inputValue: string,
+    downshiftProps: ControllerStateAndHelpers<D>,
   ) => {
-    const { keyboardEventTime } = this.state
-    const eventTime = Date.now()
-    const timeout = eventTime - keyboardEventTime > 750
+    const { isOpen, setHighlightedIndex } = downshiftProps
+    if (!isEmptyString(inputValue)) {
+      const index = getIndexToHighlight(inputValue, collection)
 
-    // Debounce key interaction
-    const textValue = changes.inputValue
-      ? changes.inputValue.slice(timeout ? -1 : 0)
-      : ''
-
-    const newChanges = {
-      ...changes,
-      isOpen: state.isOpen,
-      inputValue: textValue,
-    }
-
-    if (!isEmptyString(textValue)) {
-      const items = this.getItems()
-      const indexValue = this.getIndexToHighlight(textValue, items)
-
-      if (indexValue >= 0) {
-        if (state.isOpen) {
-          newChanges.highlightedIndex = indexValue
+      if (index >= 0) {
+        if (isOpen) {
+          setHighlightedIndex(index)
         } else {
-          newChanges.selectedItem = items[indexValue]
+          updateSelectedItem(collection[index], downshiftProps)
         }
       }
     }
-
-    this.setState(() => ({ keyboardEventTime: eventTime }))
-
-    return newChanges
   }
 
-  setDefaultHighlightedIndex = (
-    inputValue: string,
+  const onSearchInputChange = (
+    inputValue: string = '',
     downshiftProps: ControllerStateAndHelpers<D>,
   ) => {
-    const { selectedItem, setHighlightedIndex } = downshiftProps
-    const items = this.getItems(inputValue)
-    const selectedIndex = selectedItem ? items.indexOf(selectedItem) : -1
-
-    setHighlightedIndex(
-      selectedIndex >= 0 ? selectedIndex : items.findIndex(this.isActiveItem),
-    )
-  }
-
-  onSearchInputChange = (
-    inputValue: string,
-    downshiftProps: ControllerStateAndHelpers<D>,
-  ) => {
-    if (this.props.searchable && downshiftProps.isOpen) {
-      this.setDefaultHighlightedIndex(inputValue, downshiftProps)
+    if (searchable) {
+      setFilterHighlighted(downshiftProps)
+    } else {
+      clearInputTextDebounced()
+      setSelectHighlighted(inputValue, downshiftProps)
     }
   }
 
   // Downshift state reducer
-  stateReducer = (state: DownshiftState<D>, changes: StateChangeOptions<D>) => {
-    const { searchable } = this.props
-
+  const stateReducer = (
+    state: DownshiftState<D>,
+    changes: StateChangeOptions<D>,
+  ) => {
     switch (changes.type) {
-      case Downshift.stateChangeTypes.blurInput:
-      case Downshift.stateChangeTypes.keyDownEscape:
-      case Downshift.stateChangeTypes.keyDownEnter:
       case Downshift.stateChangeTypes.clickButton:
-      case Downshift.stateChangeTypes.clickItem:
+      case Downshift.stateChangeTypes.keyDownEnter:
         return {
           ...changes,
           inputValue: '',
         }
+      case Downshift.stateChangeTypes.keyDownEscape:
+      case Downshift.stateChangeTypes.blurInput:
+      case Downshift.stateChangeTypes.mouseUp:
+        return { inputValue: '', isOpen: false }
 
       case Downshift.stateChangeTypes.changeInput:
-        if (searchable) {
-          return {
-            ...changes,
-            highlightedIndex: state.highlightedIndex,
-          }
-        } else {
-          return this.handleNonSearchInputChange(state, changes)
+        return {
+          ...changes,
+          highlightedIndex: state.highlightedIndex,
+          isOpen: searchable || state.isOpen,
         }
 
       default:
-        break
+        return changes
     }
-
-    return changes
   }
 
   // Keyboard event handling and interaction
-  getActiveIndex = (
-    activeItems: Array<D>,
-    items: Array<D>,
-    downshiftProps: ControllerStateAndHelpers<D>,
-  ) => {
-    const { highlightedIndex, selectedItem } = downshiftProps
-
-    if (!isNil(highlightedIndex) && highlightedIndex >= 0) {
-      return activeItems.indexOf(items[highlightedIndex])
-    } else if (selectedItem) {
-      return activeItems.indexOf(selectedItem)
-    } else {
-      return -1
-    }
-  }
-
-  cursorInteraction = (
+  const cursorInteraction = (
     key: string,
     items: Array<D>,
     downshiftProps: ControllerStateAndHelpers<D>,
   ) => {
     const { isOpen, setHighlightedIndex, selectItem } = downshiftProps
 
-    const activeItems = (isOpen ? items : this.props.items).filter(
-      this.isActiveItem,
-    )
+    const activeItems = items.filter(isActiveItem)
 
-    const indexValue = getNewHighlightedIndex(
+    const indexValue = nextHighlightedIndex(
       key,
-      this.getActiveIndex(activeItems, items, downshiftProps),
+      getHighlightedItem(items, downshiftProps)
+        .alt(selectedDropdownItem)
+        .fold(-1, item => activeItems.indexOf(item)),
       activeItems.length - 1,
     )
 
@@ -440,32 +387,25 @@ export class Dropdown<D = DropdownItemType> extends Component<
     }
   }
 
-  onKeyDownHandler = (
+  const onKeyDownHandler = (
     items: Array<D>,
     downshiftProps: ControllerStateAndHelpers<D>,
   ) => (event: DownshiftKeyboardEvent) => {
-    const {
-      highlightedIndex,
-      isOpen,
-      selectHighlightedItem,
-      selectedItem,
-      toggleMenu,
-    } = downshiftProps
+    const { isOpen, selectHighlightedItem, toggleMenu } = downshiftProps
 
     switch (event.key) {
       case 'Enter':
         if (isOpen) {
-          if (!isNil(highlightedIndex)) {
-            selectHighlightedItem({ inputValue: '' })
-          }
+          selectHighlightedItem({ inputValue: '' })
         } else {
           toggleMenu({
             type: Downshift.stateChangeTypes.keyDownEnter,
-            highlightedIndex: selectedItem && items.indexOf(selectedItem),
-            inputValue: '',
+            highlightedIndex: selectedDropdownItem.fold(-1, item =>
+              items.indexOf(item),
+            ),
           })
+          event.preventDownshiftDefault = true
         }
-        event.preventDownshiftDefault = true
         break
       case 'Home':
       case 'End':
@@ -474,133 +414,132 @@ export class Dropdown<D = DropdownItemType> extends Component<
       case 'ArrowUp':
       case 'ArrowDown':
         // Update Highlighted item
+        cursorInteraction(event.key, items, downshiftProps)
         event.preventDownshiftDefault = true
         event.preventDefault()
-
-        this.cursorInteraction(event.key, items, downshiftProps)
         break
       default:
         return
     }
-
-    this.setState(() => ({ keyboardEventTime: 0 }))
   }
 
-  renderDefaultHandler = (downshiftProps: ControllerStateAndHelpers<D>) => {
-    const { itemToString, selectedItem } = downshiftProps
-    const { placeholder } = this.props
+  const renderDefaultHandler = (downshiftProps: ControllerStateAndHelpers<D>) =>
+    selectedDropdownItem.fold(placeholder, downshiftProps.itemToString)
 
-    return selectedItem ? itemToString(selectedItem) : placeholder
-  }
-
-  renderHandlerNode = (
+  const renderHandlerNode = (
     items: Array<D>,
     downshiftProps: ControllerStateAndHelpers<D>,
   ): ReactNode => {
-    const {
-      getInputProps,
-      isOpen,
-      toggleMenu,
-      selectedItem,
-      inputValue,
-    } = downshiftProps
-
-    const { disabled, placeholder, searchable, renderHandler } = this.props
+    const { getInputProps, isOpen, toggleMenu, inputValue } = downshiftProps
 
     const searching = isOpen && searchable && !isEmptyString(inputValue)
 
     const inputProps: DownshiftGetInputProps = {
       disabled,
       placeholder,
-      onKeyDown: this.onKeyDownHandler(items, downshiftProps),
-      onClick: () => {
+      onKeyDown: onKeyDownHandler(items, downshiftProps),
+      onClick: () =>
         toggleMenu({
           type: Downshift.stateChangeTypes.clickButton,
-          inputValue: '',
-        })
-      },
+          highlightedIndex: selectedDropdownItem.fold(-1, item =>
+            items.indexOf(item),
+          ),
+        }),
     }
 
     return (
-      <HandlerContainer ref={this.menuRef}>
+      <HandlerContainer ref={menuRef}>
         <TextField
           css={TextFieldStyles(searching)}
           {...getInputProps(inputProps)}
           disabled={disabled}
           iconLeft={searching ? 'search' : ''}
           iconRight={!searching ? 'arrow_drop_down' : ''}
-          ref={this.inputRef}
+          ref={inputRef}
         />
         <Handler css={visible(!searching)}>
           {renderHandler
             ? renderHandler({
-                item: selectedItem,
+                item: selectedDropdownItem.toNullable(),
                 placeholder,
                 isOpen,
                 disabled,
               })
-            : this.renderDefaultHandler(downshiftProps)}
+            : renderDefaultHandler(downshiftProps)}
         </Handler>
       </HandlerContainer>
     )
   }
 
-  renderDefaultItem = (props: RenderItemProps<DropdownItemType>) => (
-    <Item
+  const renderDefaultItem = (
+    props: RenderItemProps<DropdownItemType>,
+  ): ReactElement => (
+    <DropdownItem
       selected={props.selected}
       highlighted={props.highlighted}
       disabled={props.item.disabled}
     >
       {props.item.label}
-    </Item>
+    </DropdownItem>
   )
 
-  renderItemsList = (
-    items: Array<D>,
-    downshiftProps: ControllerStateAndHelpers<D>,
-  ): ReactNode => {
-    const { getItemProps, selectedItem, highlightedIndex } = downshiftProps
+  const RenderItemsList = ({
+    items,
+    downshiftProps,
+  }: {
+    items: Array<D>
+    downshiftProps: ControllerStateAndHelpers<D>
+  }): ReactElement => {
+    const { getItemProps, highlightedIndex } = downshiftProps
 
-    const { renderItem } = this.props
+    const renderList = useCallback(
+      () =>
+        items.map((item: D, index: number) => {
+          const dropdownItem = getDropdownItem(item)
+          const itemProps = getItemProps({
+            item,
+            index,
+            key: `item-${index}`,
+            disabled: dropdownItem.disabled,
+          }) as DownshiftItemPropsGetter<D>
 
-    return items.map((item: D, index: number) => {
-      const dropdownItem = this.getDropdownItem(item)
-      const itemProps = getItemProps({
-        item,
-        index,
-        key: `item-${index}`,
-        disabled: dropdownItem.disabled,
-      }) as DownshiftItemPropsGetter<D>
+          const isSelected = selectedDropdownItem.exists(
+            selected => selected === item,
+          )
 
-      return (
-        <ItemContainer {...itemProps}>
-          {renderItem
-            ? renderItem({
-                item,
-                selected: selectedItem === item,
-                highlighted: highlightedIndex === index,
-              })
-            : this.renderDefaultItem({
-                item: dropdownItem,
-                selected: selectedItem === item,
-                highlighted: highlightedIndex === index,
-              })}
-        </ItemContainer>
-      )
-    })
+          return (
+            <ItemContainer {...itemProps}>
+              {renderItem
+                ? renderItem({
+                    item,
+                    selected: isSelected,
+                    highlighted: highlightedIndex === index,
+                  })
+                : renderDefaultItem({
+                    item: dropdownItem,
+                    selected: isSelected,
+                    highlighted: highlightedIndex === index,
+                  })}
+            </ItemContainer>
+          )
+        }),
+      [items, highlightedIndex, getItemProps],
+    )
+
+    return <>{renderList()}</>
   }
 
-  renderMenu = (
+  const renderMenu = (
     items: Array<D>,
     downshiftProps: ControllerStateAndHelpers<D>,
-  ): ReactNode => {
-    const { isOpen, getMenuProps, closeMenu, toggleMenu } = downshiftProps
+  ) => {
+    const { isOpen, getMenuProps, toggleMenu } = downshiftProps
 
     const menuProps = getMenuProps() as DownshiftMenuPropsGetter<D>
-    const position = this.menuRef.current
-      ? getOverlayPosition(this.menuRef.current)
+    const position = menuTarget
+      ? getOverlayPosition({ target: menuTarget })
       : defaultPopOverPosition
-    const width = this.menuRef.current ? getMenuWidth(this.menuRef.current) : 0
+    const width = menuTarget ? menuTarget.getBoundingClientRect().width : 0
 
     return (
       <Portal document={document}>
@@ -612,22 +551,25 @@ export class Dropdown<D = DropdownItemType> extends Component<
           `}
           isOpen={isOpen}
           position={position}
-          closingAnimationCompleted={closeMenu}
-          togglePopOver={() => {
-            toggleMenu({
-              type: Downshift.stateChangeTypes.keyDownEscape,
-              inputValue: '',
-            })
-          }}
+          togglePopOver={() =>
+            toggleMenu({ type: Downshift.stateChangeTypes.keyDownEscape })
+          }
           width={width}
         >
           <MenuContainer {...menuProps}>
-            {items.length > 0 ? (
-              this.renderItemsList(items, downshiftProps)
+            {isOpen ? (
+              items.length > 0 ? (
+                <RenderItemsList
+                  items={items}
+                  downshiftProps={downshiftProps}
+                />
+              ) : (
+                <DropdownItem selected={false} highlighted={false} disabled>
+                  No results
+                </DropdownItem>
+              )
             ) : (
-              <Item selected={false} highlighted={false} disabled>
-                No results
-              </Item>
+              <></>
             )}
           </MenuContainer>
         </Menu>
@@ -635,34 +577,48 @@ export class Dropdown<D = DropdownItemType> extends Component<
     )
   }
 
-  render() {
-    const { disabled, onChange, ...domProps } = this.props
+  const onStateChange = (
+    options: StateChangeOptions<D>,
+    downshiftProps: ControllerStateAndHelpers<D>,
+  ) => {
+    switch (options.type) {
+      case Downshift.stateChangeTypes.changeInput:
+        if (options.inputValue) {
+          onSearchInputChange(options.inputValue, downshiftProps)
+        }
+        break
 
-    return (
-      <DropdownContainer {...domProps}>
-        <Downshift
-          initialSelectedItem={this.getItemByValue()}
-          itemToString={(item: D) => this.getDropdownItem(item).label}
-          onChange={onChange}
-          stateReducer={this.stateReducer}
-          onInputValueChange={this.onSearchInputChange}
-        >
-          {(downshiftProps: ControllerStateAndHelpers<D>) => {
-            const { isOpen, getRootProps, inputValue } = downshiftProps
-            const items = this.getItems(isOpen ? inputValue || '' : '')
-
-            return (
-              <RootContainer
-                {...getRootProps() as DownshiftRootPropsGetter<D>}
-                disabled={disabled}
-              >
-                {this.renderHandlerNode(items, downshiftProps)}
-                {!disabled && this.renderMenu(items, downshiftProps)}
-              </RootContainer>
-            )
-          }}
-        </Downshift>
-      </DropdownContainer>
-    )
+      default:
+        break
+    }
   }
+
+  return (
+    <DropdownContainer {...domProps}>
+      <Downshift
+        initialSelectedItem={selectedDropdownItem.toNullable()}
+        inputValue={inputText}
+        itemToString={dropdownItemToString}
+        onChange={updateSelectedItem}
+        stateReducer={stateReducer}
+        onInputValueChange={updateInputText}
+        onStateChange={onStateChange}
+      >
+        {(downshiftProps: ControllerStateAndHelpers<D>) => {
+          const { getRootProps } = downshiftProps
+          const items = filteredItems
+
+          return (
+            <RootContainer
+              {...(getRootProps() as DownshiftRootPropsGetter<D>)}
+              disabled={disabled}
+            >
+              {renderHandlerNode(items, downshiftProps)}
+              {!disabled && renderMenu(items, downshiftProps)}
+            </RootContainer>
+          )
+        }}
+      </Downshift>
+    </DropdownContainer>
+  )
 }

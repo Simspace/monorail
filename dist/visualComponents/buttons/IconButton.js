@@ -28,10 +28,26 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
 const iconButtonSizeCss = {
-  [_buttonTypes.ButtonSize.Dense]: (0, _styledComponents2.css)(["width:16px;", "{font-size:12px;}"], _Icon.Icon),
-  [_buttonTypes.ButtonSize.Compact]: (0, _styledComponents2.css)(["width:24px;"]),
-  [_buttonTypes.ButtonSize.Default]: (0, _styledComponents2.css)(["width:24px;"]),
-  [_buttonTypes.ButtonSize.Large]: (0, _styledComponents2.css)(["width:32px;", "{font-size:24px;}"], _Icon.Icon)
+  [_buttonTypes.ButtonSize.Dense]: _styledComponents2.css`
+    width: 16px;
+
+    ${_Icon.Icon} {
+      font-size: 12px;
+    }
+  `,
+  [_buttonTypes.ButtonSize.Compact]: _styledComponents2.css`
+    width: 24px;
+  `,
+  [_buttonTypes.ButtonSize.Default]: _styledComponents2.css`
+    width: 24px;
+  `,
+  [_buttonTypes.ButtonSize.Large]: _styledComponents2.css`
+    width: 32px;
+
+    ${_Icon.Icon} {
+      font-size: 24px;
+    }
+  `
 };
 
 const iconButtonDisplayCss = (display, isActive) => {
@@ -39,7 +55,7 @@ const iconButtonDisplayCss = (display, isActive) => {
     return (0, _baseStyles.baseIconButtonChromelessStyles)(isActive);
   }
 
-  return (0, _styledComponents2.css)([""]);
+  return _styledComponents2.css``;
 };
 
 const iconButtonShapeCss = {
@@ -53,11 +69,36 @@ const iconButtonCSS = ({
   shape,
   cssOverrides,
   isActive
-}) => (0, _styledComponents2.css)(["", ";", ";", ";padding:0;", "{", ";margin:auto;}", ";"], iconButtonDisplayCss(display, isActive), iconButtonSizeCss[size], iconButtonShapeCss[shape], _Icon.Icon, ({
+}) => _styledComponents2.css`
+  ${iconButtonDisplayCss(display, isActive)};
+  ${iconButtonSizeCss[size]};
+  ${iconButtonShapeCss[shape]};
+
+  padding: 0;
+
+  ${_Icon.Icon} {
+    ${({
   theme: {
     mode
   }
-}) => mode === _theme.Mode.Dark ? (0, _styledComponents2.css)(["color:", ";"], (0, _theme.getThemeColor)(_theme.ThemeColors.Text900)) : (0, _styledComponents2.css)(["color:currentColor;"]), cssOverrides);
+}) => mode === _theme.Mode.Dark ? _styledComponents2.css`
+            color: ${(0, _theme.getThemeColor)(_theme.ThemeColors.Text900)};
+          ` : _styledComponents2.css`
+            color: currentColor;
+          `};
+
+    margin: auto;
+  }
+
+  ${cssOverrides};
+`;
+
+var _StyledIcon =
+/*#__PURE__*/
+(0, _styledComponents.default)(_Icon.Icon).withConfig({
+  displayName: "IconButton___StyledIcon",
+  componentId: "sc-16kofcu-0"
+})(["", ""], p => p._css);
 
 const IconButton = ({
   cssOverrides,
@@ -89,7 +130,5 @@ const IconButton = ({
 exports.IconButton = IconButton;
 IconButton.defaultProps = { ..._Button.buttonDefaultProps,
   shape: _buttonTypes.IconButtonShape.Default,
-  iconCss: (0, _styledComponents2.css)([""])
+  iconCss: _styledComponents2.css``
 };
-
-var _StyledIcon = (0, _styledComponents.default)(_Icon.Icon)`${p => p._css}`;

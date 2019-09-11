@@ -1,5 +1,7 @@
 "use strict";
 
+var _newtypes = require("../newtypes");
+
 var _typeGuards = require("../typeGuards");
 
 describe('isFalsy', () => {
@@ -34,6 +36,23 @@ describe('isFalsy', () => {
   });
   it('should return true when given undefined', () => {
     const actual = (0, _typeGuards.isFalsy)(undefined);
+    const expected = true;
+    expect(actual).toBe(expected);
+  });
+});
+describe('isFinite', () => {
+  it('should return false when given NaN', () => {
+    const actual = (0, _typeGuards.isFinite)(_newtypes.NaN);
+    const expected = false;
+    expect(actual).toBe(expected);
+  });
+  it('should return false when given Infinity', () => {
+    const actual = (0, _typeGuards.isFinite)(Infinity);
+    const expected = false;
+    expect(actual).toBe(expected);
+  });
+  it('should return true when given a finite number', () => {
+    const actual = (0, _typeGuards.isFinite)(Math.PI);
     const expected = true;
     expect(actual).toBe(expected);
   });

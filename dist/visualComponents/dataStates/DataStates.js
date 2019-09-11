@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.CustomNoResults = exports.NotFound = exports.SomethingWentWrong = exports.NotAuthorized = exports.NoData = exports.EmptyTable = exports.NoResults = exports.NoResultsCollection = void 0;
+exports.CustomNoResults = exports.CustomNoData = exports.NotFound = exports.SomethingWentWrong = exports.NotAuthorized = exports.NoData = exports.NoCompletedEvents = exports.NoEvents = exports.EmptyTable = exports.NoResults = exports.NoResultsCollection = void 0;
 
 var _Apply = require("fp-ts/lib/Apply");
 
@@ -21,13 +21,21 @@ const NoResultsCollection = () => _react.default.createElement(Container, null, 
 
 exports.NoResultsCollection = NoResultsCollection;
 
-const NoResults = () => _react.default.createElement(Container, null, _react.default.createElement(IconBox, null, _react.default.createElement(NoResultsIcon, null)), _react.default.createElement(Banner, null, "No Entries Found"), _react.default.createElement(Detail, null, _react.default.createElement("span", null, "We couldn't find any records that match your search.")));
+const NoResults = () => _react.default.createElement(Container, null, _react.default.createElement(IconBox, null, _react.default.createElement(NoResultsIcon, null)), _react.default.createElement(Banner, null, "No Entries Found"), _react.default.createElement(Detail, null, "We couldn't find any records that match your search."));
 
 exports.NoResults = NoResults;
 
-const EmptyTable = () => _react.default.createElement(Container, null, _react.default.createElement(IconBox, null, _react.default.createElement(NoResultsIcon, null)), _react.default.createElement(Banner, null, "No Entries Found"), _react.default.createElement(Detail, null, _react.default.createElement("span", null, "We couldn't find any records.")));
+const EmptyTable = () => _react.default.createElement(Container, null, _react.default.createElement(IconBox, null, _react.default.createElement(NoResultsIcon, null)), _react.default.createElement(Banner, null, "No Entries Found"), _react.default.createElement(Detail, null, "We couldn't find any records."));
 
 exports.EmptyTable = EmptyTable;
+
+const NoEvents = () => _react.default.createElement(Container, null, _react.default.createElement(IconBox, null, _react.default.createElement(NoResultsIcon, null)), _react.default.createElement(Banner, null, "No Events"), _react.default.createElement(Detail, null, "Events that you are participating in will be listed here."));
+
+exports.NoEvents = NoEvents;
+
+const NoCompletedEvents = () => _react.default.createElement(Container, null, _react.default.createElement(IconBox, null, _react.default.createElement(NoResultsIcon, null)), _react.default.createElement(Banner, null, "No Events"), _react.default.createElement(Detail, null, "This area lists the events that you have completed."));
+
+exports.NoCompletedEvents = NoCompletedEvents;
 
 const NoData = () => _react.default.createElement(Container, null, _react.default.createElement(IconBox, null, _react.default.createElement(NoResultsIcon, null)), _react.default.createElement(Banner, null, "There's Nothing Here"), _react.default.createElement(Detail, null, _react.default.createElement("span", null)));
 
@@ -44,6 +52,13 @@ exports.SomethingWentWrong = SomethingWentWrong;
 const NotFound = () => _react.default.createElement(Container, null, _react.default.createElement(IconBox, null, _react.default.createElement(NotFoundIcon, null)), _react.default.createElement(Banner, null, "We couldn't find your page..."), _react.default.createElement(Detail, null, _react.default.createElement("span", null, "We searched high and low, far and wide"), _react.default.createElement("span", null, "but can't seem to find the page you're looking for.")));
 
 exports.NotFound = NotFound;
+
+const CustomNoData = ({
+  headingText,
+  details
+}) => _react.default.createElement(Container, null, _react.default.createElement(IconBox, null, _react.default.createElement(NoResultsIcon, null)), _react.default.createElement(Banner, null, headingText), _react.default.createElement(Detail, null, details));
+
+exports.CustomNoData = CustomNoData;
 
 const CustomNoResults = props => {
   const {

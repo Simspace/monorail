@@ -1,18 +1,24 @@
-import React, { FunctionComponent } from 'react';
-import { Column, ControlledStateOverrideProps, TableProps } from 'react-table';
+import React, { CSSProperties, FC } from 'react';
+import { Column, ControlledStateOverrideProps, SortedChangeFunction, SortingRule, TableProps } from 'react-table';
 export declare const TableComponent: import("styled-components").StyledComponent<"div", import("../../helpers/theme").GlobalAppThemeInterface, {}, never>;
-declare type TheadComponentProps = {
+export declare const TheadComponentContainer: import("styled-components").StyledComponent<"div", import("../../helpers/theme").GlobalAppThemeInterface, {
+    isFilterBar: boolean;
+}, never>;
+export declare type TheadComponentProps = {
     className: string;
     hasFilter?: boolean;
+    style?: CSSProperties;
 };
-export declare const TheadComponent: FunctionComponent<TheadComponentProps>;
-declare type ThComponentProps = {
+export declare const TheadComponent: FC<TheadComponentProps>;
+export declare function useSort(): [Array<SortingRule>, SortedChangeFunction];
+export declare type ThComponentProps = {
     toggleSort: () => void;
     className: string;
     column?: Column;
     isFiltered?: boolean;
+    style?: CSSProperties;
 };
-export declare const ThComponent: FunctionComponent<ThComponentProps>;
+export declare const ThComponent: FC<ThComponentProps>;
 declare type FilterComponentProps = {
     column: Column;
     filter?: {
@@ -21,13 +27,15 @@ declare type FilterComponentProps = {
     };
     onChange: (event: unknown) => void;
 };
-export declare const FilterComponent: FunctionComponent<FilterComponentProps>;
+export declare const FilterComponent: FC<FilterComponentProps>;
 export declare const ResizerComponent: import("styled-components").StyledComponent<"div", import("../../helpers/theme").GlobalAppThemeInterface, {}, never>;
 export declare const TrGroupComponent: import("styled-components").StyledComponent<"div", import("../../helpers/theme").GlobalAppThemeInterface, {}, never>;
 export declare const TdComponent: import("styled-components").StyledComponent<"div", import("../../helpers/theme").GlobalAppThemeInterface, {}, never>;
-export declare const TBodyComponent: import("styled-components").StyledComponent<React.FunctionComponent<{
-    containerCssOverrides?: import("../../types").CssOverridesType;
-}>, import("../../helpers/theme").GlobalAppThemeInterface, {}, never>;
+export declare const TBodyComponent: import("styled-components").StyledComponent<({ style, ...domProps }: {
+    style?: {
+        [key: string]: React.ReactText;
+    } | undefined;
+}) => JSX.Element, import("../../helpers/theme").GlobalAppThemeInterface, {}, never>;
 export declare const NoDataContainer: import("styled-components").StyledComponent<"div", import("../../helpers/theme").GlobalAppThemeInterface, {}, never>;
 export declare const MonorailReactTableOverrides: Partial<TableProps>;
 export interface Filter {

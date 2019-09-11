@@ -19,35 +19,78 @@ var _buttonTypes = require("../buttons/buttonTypes");
 
 var _Icon = require("../icon/Icon");
 
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; if (obj != null) { var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
-const StyledButtonWrapper =
-/*#__PURE__*/
-_styledComponents.default.div.withConfig({
-  displayName: "ButtonsBar__StyledButtonWrapper",
-  componentId: "sc-1o7nnyy-0"
-})(({
+const StyledButtonWrapper = _styledComponents.default.div(({
   mode,
   theme
-}) => (0, _styledComponents.css)(["position:relative;", ";", "{", ";}"], mode === _buttonTypes.ButtonsBarMode.Toolbar ? (0, _styledComponents.css)(["", "{margin:2px;}"], _Button.StyledButton) : (0, _styledComponents.css)(["border-radius:inherit;&:not(:first-child){", ";border-left:1px solid ", ";border-top-left-radius:0;border-bottom-left-radius:0;&:before{border-width:0 0 0 1px;left:-1px;}}&:not(:last-child){border-top-right-radius:0;border-bottom-right-radius:0;}", "{border-radius:inherit;&:before{border-width:0;}}"], (0, _exports.floatingOutlineStyles)((0, _exports.getColor)(_exports.Colors.Black, 0.16)), (0, _exports.getColor)(_exports.Colors.White), _Button.StyledButton), _Icon.Icon, theme.mode !== _theme.Mode.Dark && 'color: inherit;'));
+}) => _styledComponents.css`
+    position: relative;
+
+    ${mode === _buttonTypes.ButtonsBarMode.Toolbar ? _styledComponents.css`
+          ${_Button.StyledButton} {
+            margin: 2px;
+          }
+        ` : _styledComponents.css`
+          border-radius: inherit;
+
+          &:not(:first-child) {
+            ${(0, _exports.floatingOutlineStyles)((0, _exports.getColor)(_exports.Colors.Black, 0.16))};
+
+            border-left: 1px solid ${(0, _exports.getColor)(_exports.Colors.White)};
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+
+            &:before {
+              border-width: 0 0 0 1px;
+              left: -1px;
+            }
+          }
+
+          &:not(:last-child) {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+          }
+
+          ${_Button.StyledButton} {
+            border-radius: inherit;
+
+            &:before {
+              border-width: 0;
+            }
+          }
+        `};
+
+    ${_Icon.Icon} {
+      ${theme.mode !== _theme.Mode.Dark && 'color: inherit;'};
+    }
+  `);
 /**
  * Buttons Bar Props
  */
 
 
-const ButtonsBarContainer =
-/*#__PURE__*/
-_styledComponents.default.div.withConfig({
-  displayName: "ButtonsBar__ButtonsBarContainer",
-  componentId: "sc-1o7nnyy-1"
-})(({
+const ButtonsBarContainer = _styledComponents.default.div(({
   cssOverrides,
   mode
-}) => (0, _styledComponents.css)(["", ";", ";", ";overflow:hidden;position:relative;vertical-align:middle;", ";"], mode === _buttonTypes.ButtonsBarMode.Default && (0, _exports.floatingOutlineStyles)((0, _exports.getColor)(_exports.Colors.Black, 0.16)), (0, _exports.flexFlow)('row'), (0, _exports.borderRadius)(), cssOverrides));
+}) => _styledComponents.css`
+    ${mode === _buttonTypes.ButtonsBarMode.Default && (0, _exports.floatingOutlineStyles)((0, _exports.getColor)(_exports.Colors.Black, 0.16))};
+
+    ${(0, _exports.flexFlow)('row')};
+    ${(0, _exports.borderRadius)()};
+
+    overflow: hidden;
+    position: relative;
+    vertical-align: middle;
+
+    ${cssOverrides};
+  `);
 /**
  * ToolbarsContainer
  * Use this container for displaying multiple Toolbars in a single row
@@ -55,17 +98,24 @@ _styledComponents.default.div.withConfig({
 
 
 exports.ButtonsBarContainer = ButtonsBarContainer;
+const ToolbarsContainer = _styledComponents.default.div`
+  display: flex;
+  vertical-align: middle;
 
-const ToolbarsContainer =
-/*#__PURE__*/
-_styledComponents.default.div.withConfig({
-  displayName: "ButtonsBar__ToolbarsContainer",
-  componentId: "sc-1o7nnyy-2"
-})(["display:flex;vertical-align:middle;", "{border-radius:0;display:inline-flex;&:not(:first-child){border-left:1px solid ", ";margin-left:4px;padding-left:4px;}}"], ButtonsBarContainer, (0, _exports.getColor)(_exports.Colors.Black, 0.16));
+  ${ButtonsBarContainer} {
+    border-radius: 0;
+    display: inline-flex;
+
+    &:not(:first-child) {
+      border-left: 1px solid ${(0, _exports.getColor)(_exports.Colors.Black, 0.16)};
+      margin-left: 4px;
+      padding-left: 4px;
+    }
+  }
+`;
 /**
  * Buttons Bar
  */
-
 
 exports.ToolbarsContainer = ToolbarsContainer;
 

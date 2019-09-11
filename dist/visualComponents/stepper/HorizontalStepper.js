@@ -19,7 +19,9 @@ var _typeGuards = require("../../sharedHelpers/typeGuards");
 
 var _Icon = require("../icon/Icon");
 
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; if (obj != null) { var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 /*
  * Styles
@@ -35,100 +37,128 @@ const getStateStyles = (step, styles) => {
 };
 
 const stepStateStyles = {
-  isActive: (0, _styledComponents.css)([""]),
-  isDisabled: (0, _styledComponents.css)(["pointer-events:none;"]),
-  isCompleted: (0, _styledComponents.css)([""])
+  isActive: _styledComponents.css``,
+  isDisabled: _styledComponents.css`
+    pointer-events: none;
+  `,
+  isCompleted: _styledComponents.css``
 };
 const bodyStateStyles = {
-  isActive: (0, _styledComponents.css)([""]),
-  isDisabled: (0, _styledComponents.css)(["opacity:0.4;"]),
-  isCompleted: (0, _styledComponents.css)([""])
+  isActive: _styledComponents.css``,
+  isDisabled: _styledComponents.css`
+    opacity: 0.4;
+  `,
+  isCompleted: _styledComponents.css``
 };
 const numberStateStyles = {
-  isActive: (0, _styledComponents.css)(["background-color:", ";border-color:", ";color:", ";"], (0, _theme.getThemeColor)(_theme.ThemeColors.ActionPrimary), (0, _theme.getThemeColor)(_theme.ThemeColors.ActionPrimary), (0, _exports.getColor)(_exports.Colors.White)),
-  isDisabled: (0, _styledComponents.css)(["background-color:transparent;border-color:", ";color:", ";"], (0, _theme.getThemeColor)(_theme.ThemeColors.Text200), (0, _theme.getThemeColor)(_theme.ThemeColors.Text200)),
-  isCompleted: (0, _styledComponents.css)(["background-color:", ";border-color:", ";"], (0, _exports.getColor)(_exports.Colors.White), (0, _theme.getThemeColor)(_theme.ThemeColors.ActionPrimary))
+  isActive: _styledComponents.css`
+    background-color: ${(0, _theme.getThemeColor)(_theme.ThemeColors.ActionPrimary)};
+    border-color: ${(0, _theme.getThemeColor)(_theme.ThemeColors.ActionPrimary)};
+    color: ${(0, _exports.getColor)(_exports.Colors.White)};
+  `,
+  isDisabled: _styledComponents.css`
+    background-color: transparent;
+    border-color: ${(0, _theme.getThemeColor)(_theme.ThemeColors.Text200)};
+    color: ${(0, _theme.getThemeColor)(_theme.ThemeColors.Text200)};
+  `,
+  isCompleted: _styledComponents.css`
+    background-color: ${(0, _exports.getColor)(_exports.Colors.White)};
+    border-color: ${(0, _theme.getThemeColor)(_theme.ThemeColors.ActionPrimary)};
+  `
 };
+const HorizontalStepperContainer = _styledComponents.default.div`
+  ${(0, _exports.flexFlow)('row')};
 
-const HorizontalStepperContainer =
-/*#__PURE__*/
-_styledComponents.default.div.withConfig({
-  displayName: "HorizontalStepper__HorizontalStepperContainer",
-  componentId: "uj2665-0"
-})(["", ";flex-shrink:0;height:100%;justify-content:flex-start;overflow-y:auto;width:100%;"], (0, _exports.flexFlow)('row'));
+  flex-shrink: 0;
+  height: 100%;
+  justify-content: flex-start;
+  overflow-y: auto;
+  width: 100%;
+`;
+const HorizontalStepperWrapper = _styledComponents.default.div`
+  ${(0, _exports.flexFlow)('row')};
 
-const HorizontalStepperWrapper =
-/*#__PURE__*/
-_styledComponents.default.div.withConfig({
-  displayName: "HorizontalStepper__HorizontalStepperWrapper",
-  componentId: "uj2665-1"
-})(["", ";flex-shrink:0;height:100%;justify-content:flex-start;max-width:100%;overflow-y:auto;"], (0, _exports.flexFlow)('row'));
+  flex-shrink: 0;
+  height: 100%;
+  justify-content: flex-start;
+  max-width: 100%;
+  overflow-y: auto;
+`;
 
-const Step =
-/*#__PURE__*/
-_styledComponents.default.div.withConfig({
-  displayName: "HorizontalStepper__Step",
-  componentId: "uj2665-2"
-})(({
+const Step = _styledComponents.default.div(({
   step
-}) => (0, _styledComponents.css)(["", ";", ";align-items:center;cursor:pointer;justify-content:center;position:relative;transition:all ease 0.25s;user-select:none;"], (0, _exports.flexFlow)('row'), getStateStyles(step, stepStateStyles)));
+}) => _styledComponents.css`
+    ${(0, _exports.flexFlow)('row')};
+    ${getStateStyles(step, stepStateStyles)};
 
-const Body =
-/*#__PURE__*/
-_styledComponents.default.div.withConfig({
-  displayName: "HorizontalStepper__Body",
-  componentId: "uj2665-3"
-})(({
+    align-items: center;
+    cursor: pointer;
+    justify-content: center;
+    position: relative;
+    transition: all ease 0.25s;
+    user-select: none;
+  `);
+
+const Body = _styledComponents.default.div(({
   step
-}) => (0, _styledComponents.css)(["", ";", ";", ";align-items:center;height:100%;padding:8px;"], (0, _baseStyles.baseChromelessStyles)(), (0, _exports.flexFlow)('row'), getStateStyles(step, bodyStateStyles)));
+}) => _styledComponents.css`
+    ${(0, _baseStyles.baseChromelessStyles)()};
+    ${(0, _exports.flexFlow)('row')};
+    ${getStateStyles(step, bodyStateStyles)};
 
-const StyledIcon =
-/*#__PURE__*/
-(0, _styledComponents.default)(_Icon.Icon).withConfig({
-  displayName: "HorizontalStepper__StyledIcon",
-  componentId: "uj2665-4"
-})(["color:", ";flex-shrink:0;margin:auto 8px;"], (0, _theme.getThemeColor)(_theme.ThemeColors.ActionSecondary));
+    align-items: center;
+    height: 100%;
+    padding: 8px;
+  `);
 
-const Number =
-/*#__PURE__*/
-_styledComponents.default.div.withConfig({
-  displayName: "HorizontalStepper__Number",
-  componentId: "uj2665-5"
-})(({
+const StyledIcon = (0, _styledComponents.default)(_Icon.Icon)`
+  color: ${(0, _theme.getThemeColor)(_theme.ThemeColors.ActionSecondary)};
+  flex-shrink: 0;
+  margin: auto 8px;
+`;
+
+const Number = _styledComponents.default.div(({
   step
-}) => (0, _styledComponents.css)(["", ";", ";", ";", ";align-items:center;border-style:solid;border-width:2px;flex-shrink:0;height:20px;justify-content:center;margin:auto 8px;width:20px;"], (0, _exports.borderRadius)(_exports.BorderRadius.Round), (0, _exports.flexFlow)('row'), getStateStyles(step, numberStateStyles), (0, _exports.typography)(700, _exports.FontSizes.Title4)));
+}) => _styledComponents.css`
+    ${(0, _exports.borderRadius)(_exports.BorderRadius.Round)};
+    ${(0, _exports.flexFlow)('row')};
+    ${getStateStyles(step, numberStateStyles)};
+    ${(0, _exports.typography)(700, _exports.FontSizes.Title4)};
 
-const TextContainer =
-/*#__PURE__*/
-_styledComponents.default.div.withConfig({
-  displayName: "HorizontalStepper__TextContainer",
-  componentId: "uj2665-6"
-})(["", ";margin-right:8px;"], (0, _exports.flexFlow)('column'));
+    align-items: center;
+    border-style: solid;
+    border-width: 2px;
+    flex-shrink: 0;
+    height: 20px;
+    justify-content: center;
+    margin: auto 8px;
+    width: 20px;
+  `);
 
-const Title =
-/*#__PURE__*/
-_styledComponents.default.div.withConfig({
-  displayName: "HorizontalStepper__Title",
-  componentId: "uj2665-7"
-})(["", ";color:", ";"], (0, _exports.typography)(700, _exports.FontSizes.Title4), (0, _theme.getThemeColor)(_theme.ThemeColors.Text700));
+const TextContainer = _styledComponents.default.div`
+  ${(0, _exports.flexFlow)('column')};
 
-const Subtitle =
-/*#__PURE__*/
-_styledComponents.default.div.withConfig({
-  displayName: "HorizontalStepper__Subtitle",
-  componentId: "uj2665-8"
-})(["", ";color:", ";"], (0, _exports.typography)(300, _exports.FontSizes.Title5), (0, _theme.getThemeColor)(_theme.ThemeColors.Text700));
+  margin-right: 8px;
+`;
+const Title = _styledComponents.default.div`
+  ${(0, _exports.typography)(700, _exports.FontSizes.Title4)};
 
-const Line =
-/*#__PURE__*/
-_styledComponents.default.div.withConfig({
-  displayName: "HorizontalStepper__Line",
-  componentId: "uj2665-9"
-})(["background-color:", ";height:1px;margin:auto 8px;width:32px;"], (0, _theme.getThemeColor)(_theme.ThemeColors.Text200));
+  color: ${(0, _theme.getThemeColor)(_theme.ThemeColors.Text700)};
+`;
+const Subtitle = _styledComponents.default.div`
+  ${(0, _exports.typography)(300, _exports.FontSizes.Title5)};
+
+  color: ${(0, _theme.getThemeColor)(_theme.ThemeColors.Text700)};
+`;
+const Line = _styledComponents.default.div`
+  background-color: ${(0, _theme.getThemeColor)(_theme.ThemeColors.Text200)};
+  height: 1px;
+  margin: auto 8px;
+  width: 32px;
+`;
 /*
  * Types
  */
-
 
 /*
  * Components

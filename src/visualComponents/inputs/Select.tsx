@@ -1,14 +1,18 @@
 import React, { SFC } from 'react'
 import styled, { css, SimpleInterpolation } from 'styled-components'
 
-import { FontSizes, typography } from '@monorail/helpers/exports'
+import { flexFlow } from '@monorail/helpers/exports'
 import { CommonComponentType } from '@monorail/types'
+import { Label } from '@monorail/visualComponents/inputs/Label'
 
 const SelectGroupWrapper = styled.div<CommonComponentType>(
   ({ cssOverrides }) => css`
+    ${flexFlow('column')};
+
+    border: 0;
     margin: 0;
     padding: 0;
-    border: 0;
+    width: 256px;
 
     ${cssOverrides};
   `,
@@ -40,18 +44,12 @@ const SelectElement = styled.select`
   }
 `
 
-const Label = styled.p`
-  ${typography(500, FontSizes.Title5)};
-  margin-bottom: 4px;
-  height: 16px;
-`
-
 export type SelectOption = {
   label: string
   value: string
 }
 
-type Props = {
+export type SelectProps = {
   cssOverrides?: SimpleInterpolation
   disabled?: boolean
   label?: string
@@ -65,7 +63,7 @@ type Props = {
   value?: string | Array<string> | number
 }
 
-export const Select: SFC<Props> = ({
+export const Select: SFC<SelectProps> = ({
   cssOverrides,
   disabled,
   label,
@@ -77,15 +75,11 @@ export const Select: SFC<Props> = ({
   placeholder,
   required,
   value,
+  ...domProps
 }) => {
   return (
-    <SelectGroupWrapper cssOverrides={cssOverrides}>
-      {label && (
-        <Label>
-          {label}
-          {required && '*'}
-        </Label>
-      )}
+    <SelectGroupWrapper cssOverrides={cssOverrides} {...domProps}>
+      <Label label={label} required={required} />
       <SelectElementWrapper>
         <SelectElement
           disabled={disabled}

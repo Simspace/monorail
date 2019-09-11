@@ -1,5 +1,4 @@
-import React, { MouseEvent } from 'react'
-import styled, { css, SimpleInterpolation } from 'styled-components'
+import React, { FC, MouseEvent } from 'react'
 
 import {
   Colors,
@@ -7,9 +6,12 @@ import {
   FontSizes,
   getColor,
   typography,
+  zIndex,
+  ZIndexNodeName,
 } from '@monorail/helpers/exports'
+import styled, { css } from '@monorail/helpers/styled-components'
 import { isUndefined } from '@monorail/sharedHelpers/typeGuards'
-import { CommonComponentType } from '@monorail/types'
+import { CommonComponentType, CssOverridesType } from '@monorail/types'
 import {
   ButtonDisplay,
   ButtonSize,
@@ -23,8 +25,9 @@ import { IconButton } from '@monorail/visualComponents/buttons/IconButton'
 //  TODO: remove this container and position on the arrow buttons themselves
 const ArrowButtonsContainer = styled.div`
   ${flexFlow('row')};
+  ${zIndex(ZIndexNodeName.ArrowButtons)};
+
   height: 100%;
-  z-index: 5;
   pointer-events: none;
 `
 
@@ -39,7 +42,7 @@ const RatioContainer = styled.p`
  * Types
  */
 
-type Props = CommonComponentType & {
+export type ArrowButtonsProps = CommonComponentType & {
   current: number
   next?: (event: MouseEvent<Element>) => void
   previous?: (event: MouseEvent<Element>) => void
@@ -48,14 +51,14 @@ type Props = CommonComponentType & {
   size?: ButtonSize
   arrowColor?: Colors
   loop?: boolean
-  cssArrowOverrides?: SimpleInterpolation
+  cssArrowOverrides?: CssOverridesType
 }
 
 /*
  * Components
  */
 
-export const ArrowButtons = (props: Props) => {
+export const ArrowButtons: FC<ArrowButtonsProps> = props => {
   const {
     current,
     next,

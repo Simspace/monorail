@@ -10,7 +10,7 @@ var _color = require("./color");
 const categoryReadableName = entryCategory => {
   switch (entryCategory) {
     case 'academy-package':
-      return 'Training Package';
+      return 'Event Plan';
 
     case 'academy-content-module':
       return 'Content Module';
@@ -67,7 +67,10 @@ const categoryIcon = entryCategory => {
       return 'aspect_ratio';
 
     case 'event':
-      return 'event';
+      return 'calendar_today';
+
+    case 'exercise':
+      return 'bar_chart';
 
     default:
       return entryCategory;
@@ -91,6 +94,7 @@ const categoryColor = entryCategory => {
     case 'clone-source':
       return _color.Colors.Range;
 
+    case 'exercise':
     case 'event':
       return _color.Colors.Tracker;
 

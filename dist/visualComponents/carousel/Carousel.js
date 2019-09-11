@@ -17,7 +17,9 @@ var _hooks = require("../../helpers/hooks");
 
 var _typeGuards = require("../../sharedHelpers/typeGuards");
 
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; if (obj != null) { var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 /*
  * Styles
@@ -29,32 +31,39 @@ _styledComponents.default.div.withConfig({
   componentId: "z8g9k-0"
 })(["", ";"], (0, _exports.flexFlow)('row'));
 
+var _StyledSlideContainer =
+/*#__PURE__*/
+(0, _styledComponents.default)(SlideContainer).withConfig({
+  displayName: "Carousel___StyledSlideContainer",
+  componentId: "z8g9k-1"
+})(["width:100%;display:block;overflow:visible;position:relative;"]);
+
 const SlideItem =
 /*#__PURE__*/
 _styledComponents.default.div.withConfig({
   displayName: "Carousel__SlideItem",
-  componentId: "z8g9k-1"
+  componentId: "z8g9k-2"
 })(["", ";flex:1;justify-content:center;align-items:center;"], (0, _exports.flexFlow)('row'));
 
 const DotContainer =
 /*#__PURE__*/
 _styledComponents.default.div.withConfig({
   displayName: "Carousel__DotContainer",
-  componentId: "z8g9k-2"
+  componentId: "z8g9k-3"
 })(["", ";position:absolute;bottom:8px;left:50%;transform:translateX(-50%);z-index:5;"], (0, _exports.flexFlow)('row'));
 
 const DotClickArea =
 /*#__PURE__*/
 _styledComponents.default.div.withConfig({
   displayName: "Carousel__DotClickArea",
-  componentId: "z8g9k-3"
+  componentId: "z8g9k-4"
 })(["height:16px;width:16px;border-radius:50%;display:inline-block;"]);
 
 const Dot =
 /*#__PURE__*/
 _styledComponents.default.div.withConfig({
   displayName: "Carousel__Dot",
-  componentId: "z8g9k-4"
+  componentId: "z8g9k-5"
 })(({
   isActive,
   dotColor
@@ -80,6 +89,13 @@ const defaultSlideWidth = 0;
 /*
  * Components
  */
+
+var _StyledDiv =
+/*#__PURE__*/
+_styledComponents.default.div.withConfig({
+  displayName: "Carousel___StyledDiv",
+  componentId: "z8g9k-6"
+})(["", ";width:", "%;transform:translateX( calc((-100% / ", ") * ", ") );transition:transform ease-out ", "ms;height:100%;"], p => p._css, p => p._css2, p => p._css3, p => p._css4, p => p._css5);
 
 const Carousel = ({
   slides,
@@ -176,7 +192,3 @@ const Carousel = ({
 };
 
 exports.Carousel = Carousel;
-
-var _StyledSlideContainer = (0, _styledComponents.default)(SlideContainer)`width:100%;display:block;overflow:visible;position:relative;`;
-
-var _StyledDiv = (0, _styledComponents.default)("div")`${p => p._css};width:${p => p._css2}%;transform:translateX( calc((-100% / ${p => p._css3}) * ${p => p._css4}) );transition:transform ease-out ${p => p._css5}ms;height:100%;`;

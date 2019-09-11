@@ -14,11 +14,7 @@ type BaseLinkProps = LinkProps & { className?: string }
 // Redefining PropTypes to include the new object based refs since React Router 3 is old.
 Link.propTypes = {
   ...Link.propTypes,
-  innerRef: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.func,
-    PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
-  ]),
+  innerRef: PropTypes.func,
 }
 
 export const BaseLink: ForwardRefExoticComponent<

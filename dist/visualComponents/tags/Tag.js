@@ -19,7 +19,9 @@ var _Text = require("../typography/Text");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; if (obj != null) { var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
@@ -45,6 +47,20 @@ const labelStyles =
 /*#__PURE__*/
 (0, _styledComponents.css)(["color:", ";margin:0 10px 0 2px;"], (0, _exports.getColor)(_exports.Colors.Black89));
 
+var _StyledIcon =
+/*#__PURE__*/
+(0, _styledComponents.default)(_Icon.Icon).withConfig({
+  displayName: "Tag___StyledIcon",
+  componentId: "sc-12x6kd4-1"
+})(["", ""], iconStyles);
+
+var _StyledText =
+/*#__PURE__*/
+(0, _styledComponents.default)(_Text.Text).withConfig({
+  displayName: "Tag___StyledText",
+  componentId: "sc-12x6kd4-2"
+})(["", ""], labelStyles);
+
 const Tag = ({
   label,
   icon,
@@ -63,7 +79,3 @@ exports.Tag = Tag;
 Tag.defaultProps = {
   label: ''
 };
-
-var _StyledIcon = (0, _styledComponents.default)(_Icon.Icon)`${iconStyles}`;
-
-var _StyledText = (0, _styledComponents.default)(_Text.Text)`${labelStyles}`;

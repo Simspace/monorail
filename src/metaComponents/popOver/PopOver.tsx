@@ -41,11 +41,19 @@ export const defaultPopOverPosition: PopOverPosition = {
   maxWidthCalc: '100vw',
 }
 
-export const getOverlayPosition = (
-  target: Element,
-  gap: number = 8,
-  toSide: boolean = false,
-) => {
+export const getOverlayPosition = ({
+  target,
+  gap = 8,
+  toSide = false,
+  xDirection,
+  yDirection,
+}: {
+  target: Element
+  gap?: number
+  toSide?: boolean
+  xDirection?: dropXDirectionType
+  yDirection?: dropYDirectionType
+}) => {
   // Get basic dimensions about the the Toggle and the window.
   const boundingRect = target.getBoundingClientRect()
   const innerWidth = window.innerWidth
@@ -53,13 +61,15 @@ export const getOverlayPosition = (
 
   // Determine the direction the PopOver should go.
   const dropYDirection: dropYDirectionType =
-    innerHeight / 2 > boundingRect.top + boundingRect.height / 2
+    yDirection ||
+    (innerHeight / 2 > boundingRect.top + boundingRect.height / 2
       ? dropDirections.Top
-      : dropDirections.Bottom
+      : dropDirections.Bottom)
   const dropXDirection: dropXDirectionType =
-    innerWidth / 2 > boundingRect.left + boundingRect.width / 2
+    xDirection ||
+    (innerWidth / 2 > boundingRect.left + boundingRect.width / 2
       ? dropDirections.Left
-      : dropDirections.Right
+      : dropDirections.Right)
 
   return {
     ...getDropAmounts({
@@ -100,7 +110,9 @@ export type PopOverProps = {
   onToggle?: (isOpen: boolean) => void
   popOver: (props: PopOverChildProps) => ReactNode
   toggle: (props: PopOverToggleProps) => ReactNode
-  toSide: boolean
+  toSide?: boolean
+  xDirection?: dropXDirectionType
+  yDirection?: dropYDirectionType
 }
 
 type PopOverState = {
@@ -316,9 +328,15 @@ export class PopOver extends Component<PopOverProps, PopOverState> {
   }
 
   onClick = (event: SyntheticEvent) => {
-    const { gap, toSide, onToggle } = this.props
+    const { gap, toSide, onToggle, xDirection, yDirection } = this.props
 
-    const position = getOverlayPosition(event.currentTarget, gap, toSide)
+    const position = getOverlayPosition({
+      gap,
+      target: event.currentTarget,
+      toSide,
+      xDirection,
+      yDirection,
+    })
 
     this.setState(({ isOpen, isRendered }) => {
       const newIsOpen = !isOpen

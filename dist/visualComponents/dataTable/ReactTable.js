@@ -3,11 +3,18 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.MonorailReactTableOverrides = exports.NoDataContainer = exports.TBodyComponent = exports.TdComponent = exports.TrGroupComponent = exports.ResizerComponent = exports.FilterComponent = exports.ThComponent = exports.TheadComponent = exports.TableComponent = void 0;
+exports.useSort = useSort;
+exports.MonorailReactTableOverrides = exports.NoDataContainer = exports.TBodyComponent = exports.TdComponent = exports.TrGroupComponent = exports.ResizerComponent = exports.FilterComponent = exports.ThComponent = exports.TheadComponent = exports.TheadComponentContainer = exports.TableComponent = void 0;
 
 var _styledComponents = _interopRequireDefault(require("styled-components"));
 
-var _react = _interopRequireDefault(require("react"));
+var _Do = require("fp-ts-contrib/lib/Do");
+
+var _Array = require("fp-ts/lib/Array");
+
+var _Option = require("fp-ts/lib/Option");
+
+var _react = _interopRequireWildcard(require("react"));
 
 var _color = require("../../helpers/color");
 
@@ -21,6 +28,8 @@ var _typography = require("../../helpers/typography");
 
 var _PopOver = require("../../metaComponents/popOver/PopOver");
 
+var _PopOverNext = require("../../metaComponents/popOver/PopOverNext");
+
 var _typeGuards = require("../../sharedHelpers/typeGuards");
 
 var _Button = require("../buttons/Button");
@@ -31,37 +40,65 @@ var _IconButton = require("../buttons/IconButton");
 
 var _DataStates = require("../dataStates/DataStates");
 
+var _Icon = require("../icon/Icon");
+
 var _TextField = require("../inputs/TextField");
 
 var _ScrollAnimation = require("../layout/ScrollAnimation");
 
 var _Menu = require("../menu/Menu");
 
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; if (obj != null) { var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
-const THEAD_HEIGHT = _size.Sizes.DP48;
+const THEAD_HEIGHT = _size.Sizes.DP40;
+const TableComponent = _styledComponents2.default.div`
+  ${(0, _flex.flexFlow)('column')};
 
-const TableComponent =
-/*#__PURE__*/
-_styledComponents2.default.div.withConfig({
-  displayName: "ReactTable__TableComponent",
-  componentId: "sc-1afopvo-0"
-})(["", " overflow-x:scroll;height:100%;min-width:100%;"], (0, _flex.flexFlow)('column'));
-
+  overflow-x: scroll;
+  height: 100%;
+  min-width: 100%;
+  position: relative; /* pos:rel need for filter bar. */
+`;
 exports.TableComponent = TableComponent;
 
-const TheadComponentContainer =
-/*#__PURE__*/
-_styledComponents2.default.div.withConfig({
-  displayName: "ReactTable__TheadComponentContainer",
-  componentId: "sc-1afopvo-1"
-})(({
+const TheadComponentContainer = _styledComponents2.default.div(({
   isFilterBar
-}) => (0, _styledComponents2.css)(["", ";height:", "px;flex-shrink:0;", ";"], (0, _flex.flexFlow)('row'), THEAD_HEIGHT, isFilterBar ? (0, _styledComponents2.css)(["margin-top:-", "px;pointer-events:none;"], THEAD_HEIGHT) : (0, _styledComponents2.css)(["border-bottom:1px solid ", ";background:", ";overflow:hidden;"], (0, _color.getColor)(_color.Colors.Grey90), (0, _color.getColor)(_color.Colors.Grey99))));
+}) => _styledComponents2.css`
+    ${(0, _flex.flexFlow)('row')};
+
+    flex-shrink: 0;
+    height: ${THEAD_HEIGHT}px;
+    position: relative;
+
+    ${isFilterBar ? _styledComponents2.css`
+          left: 0;
+          pointer-events: none;
+          position: absolute;
+          right: 0;
+          top: 0;
+        ` : _styledComponents2.css`
+          background: ${(0, _color.getColor)(_color.Colors.Grey99)};
+          overflow: hidden;
+
+          &::after {
+            background: ${(0, _color.getColor)(_color.Colors.Grey90)};
+            bottom: 0;
+            content: '';
+            height: 1px;
+            left: 0;
+            position: absolute;
+            right: 0;
+          }
+        `};
+  `);
+
+exports.TheadComponentContainer = TheadComponentContainer;
 
 const TheadComponent = ({
   children,
@@ -70,18 +107,50 @@ const TheadComponent = ({
   ...domProps
 }) => {
   return _react.default.createElement(TheadComponentContainer, _extends({
-    isFilterBar: className === '-filters'
+    isFilterBar: className === '-filters',
+    className: className
   }, domProps), children);
 };
 
 exports.TheadComponent = TheadComponent;
+var ThComponentType;
 
-const ThComponentContainer =
-/*#__PURE__*/
-_styledComponents2.default.div.withConfig({
-  displayName: "ReactTable__ThComponentContainer",
-  componentId: "sc-1afopvo-2"
-})(["", ";", ";align-items:center;color:", ";padding:0 12px;position:relative;&:first-of-type{padding-left:32px;}&:last-of-type{padding-right:32px;}.rt-resizable-header-content{", ";margin-right:32px;}"], (0, _flex.flexFlow)('row'), (0, _typography.typography)(500, _typography.FontSizes.Title5), (0, _color.getColor)(_color.Colors.Black89), _typography.ellipsis);
+(function (ThComponentType) {
+  ThComponentType["Action"] = "actions";
+  ThComponentType["Filter"] = "filter";
+  ThComponentType["Sort"] = "sort";
+})(ThComponentType || (ThComponentType = {}));
+
+const ThComponentContainer = _styledComponents2.default.div(({
+  type,
+  filterable
+}) => _styledComponents2.css`
+    padding: 0 ${filterable ? 34 : 6}px 0 6px;
+
+    ${(0, _flex.flexFlow)('row')};
+    ${(0, _typography.typography)(500, _typography.FontSizes.Title5)};
+
+    pointer-events: none;
+    align-items: center;
+    color: ${(0, _color.getColor)(_color.Colors.Black89)};
+    position: relative;
+
+    .rt-resizable-header-content {
+      ${_typography.ellipsis};
+    }
+
+    &:first-of-type {
+      padding-left: 26px;
+    }
+
+    &:last-of-type {
+      padding-right: 54px;
+    }
+
+    .rt-resizable-header-content {
+      ${_typography.ellipsis};
+    }
+  `);
 
 var Sort;
 
@@ -118,6 +187,62 @@ const getSortIcon = sortStatus => {
   }
 };
 
+function useSort() {
+  const [sorted, setSorted] = (0, _react.useState)([]);
+
+  const onSortChange = newSorted => {
+    setSorted((0, _Do.Do)(_Option.option).bind('current', (0, _Array.lookup)(0, sorted)).bind('upcoming', (0, _Array.lookup)(0, newSorted)).done().filter(({
+      current,
+      upcoming
+    }) => current.id === upcoming.id && current.desc).fold(newSorted, () => []));
+  };
+
+  return [sorted, onSortChange];
+}
+
+const ThLabel = _styledComponents2.default.div`
+  ${(0, _typography.typography)(700, _typography.FontSizes.Title5)};
+
+  color: ${(0, _color.getColor)(_color.Colors.Black89)};
+  font-weight: 500;
+  justify-content: space-between;
+  padding-left: 6px;
+  pointer-events: all;
+  text-transform: none;
+  width: 100%;
+`;
+const ThSortButton = (0, _styledComponents2.default)(_Button.Button).attrs({
+  display: _buttonTypes.ButtonDisplay.Chromeless,
+  size: _buttonTypes.ButtonSize.Compact
+})`
+  color: ${(0, _color.getColor)(_color.Colors.Black89)};
+  font-weight: 500;
+  justify-content: space-between;
+  padding-left: 6px;
+  pointer-events: all;
+  text-transform: none;
+  width: 100%;
+
+  ${_Icon.Icon} {
+    margin-right: -4px;
+    margin-left: 2px;
+  }
+`;
+
+var _StyledThSortButton =
+/*#__PURE__*/
+(0, _styledComponents.default)(ThSortButton).withConfig({
+  displayName: "ReactTable___StyledThSortButton",
+  componentId: "sc-1afopvo-0"
+})(["width:auto;visibility:hidden;"]);
+
+var _StyledIconButton =
+/*#__PURE__*/
+(0, _styledComponents.default)(_IconButton.IconButton).withConfig({
+  displayName: "ReactTable___StyledIconButton",
+  componentId: "sc-1afopvo-1"
+})(["margin:auto -24px auto auto;pointer-events:all;transform:translateX(4px);"]);
+
 const ThComponent = ({
   children,
   toggleSort,
@@ -127,40 +252,55 @@ const ThComponent = ({
   ...domProps
 }) => {
   const sortStatus = getSortStatus(className);
+  const isFilterable = !(0, _typeGuards.isNil)(column) && !(0, _typeGuards.isFalse)(column.filterable);
+  const isSortable = !(0, _typeGuards.isNil)(column) && !(0, _typeGuards.isFalse)(column.sortable); // Render empty header if there are actions.
 
   if (className.includes('actions')) {
     return _react.default.createElement(ThComponentContainer, _extends({
+      type: ThComponentType.Action,
       className: className
     }, domProps));
-  }
+  } // Render Filter Header
 
-  if (!(0, _typeGuards.isNil)(column)) {
+
+  if (!(0, _typeGuards.isUndefined)(isFiltered)) {
     return _react.default.createElement(ThComponentContainer, _extends({
-      className: className
-    }, domProps), _react.default.createElement(_PopOver.PopOver, {
+      type: ThComponentType.Filter,
+      className: className,
+      filterable: isFilterable
+    }, domProps), !(0, _typeGuards.isNil)(column) && isFilterable && _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_StyledThSortButton, {
+      iconRight: "sort"
+    }, _react.default.createElement("div", {
+      className: "rt-resizable-header-content"
+    }, column.Header)), _react.default.createElement(_PopOverNext.PopOverNext, {
+      xDirection: _PopOver.dropDirections.Right,
       popOver: props => _react.default.createElement(_Menu.Menu, _extends({}, props, {
         width: props.position.originWidth
       }), children),
-      toggle: props => _react.default.createElement(_StyledButton, _extends({}, props, {
-        size: _buttonTypes.ButtonSize.Large,
-        display: _buttonTypes.ButtonDisplay.Chromeless
-      }), _react.default.createElement(_StyledIconButton, {
+      toggle: props => _react.default.createElement(_StyledIconButton, _extends({}, props, {
         display: _buttonTypes.ButtonDisplay.Chromeless,
         icon: "filter",
         isActive: isFiltered,
-        passedAs: "div"
+        className: isFiltered ? 'is-active' : ''
       }))
-    }));
+    })));
   }
 
+  const childrenArray = _react.Children.toArray(children);
+
+  const Header = childrenArray[0];
+  const Resizer = childrenArray[1]; // Render Sorted Header
+
   return _react.default.createElement(ThComponentContainer, _extends({
-    className: className
-  }, domProps), children, _react.default.createElement(_StyledIconButton2, {
+    type: ThComponentType.Sort,
+    className: className,
+    filterable: isFilterable
+  }, domProps), isSortable ? _react.default.createElement(ThSortButton, {
     isActive: sortStatus !== Sort.Unsorted,
-    display: _buttonTypes.ButtonDisplay.Chromeless,
-    icon: getSortIcon(sortStatus),
-    onClick: toggleSort
-  }));
+    onClick: toggleSort,
+    iconRight: getSortIcon(sortStatus),
+    className: sortStatus !== Sort.Unsorted ? 'is-active' : ''
+  }, Header) : _react.default.createElement(ThLabel, null, Header), Resizer);
 };
 
 exports.ThComponent = ThComponent;
@@ -170,61 +310,112 @@ const FilterComponent = ({
   onChange
 }) => {
   return _react.default.createElement(_TextField.TextField, {
-    type: "text",
     placeholder: "Filter",
     value: !(0, _typeGuards.isNil)(filter) ? filter.value : '',
     onChange: event => onChange(event.target.value),
-    cssOverrides: (0, _styledComponents2.css)(["width:100%;padding:8px 12px;"])
+    cssOverrides: _styledComponents2.css`
+        width: 100%;
+        padding: 8px 12px;
+      `
   });
 };
 
 exports.FilterComponent = FilterComponent;
+const ResizerComponent = _styledComponents2.default.div`
+  bottom: 4px;
+  cursor: col-resize;
+  pointer-events: all;
+  position: absolute;
+  right: -4px;
+  top: 4px;
+  width: 9px;
 
-const ResizerComponent =
-/*#__PURE__*/
-_styledComponents2.default.div.withConfig({
-  displayName: "ReactTable__ResizerComponent",
-  componentId: "sc-1afopvo-3"
-})(["bottom:4px;cursor:col-resize;position:absolute;right:-4px;top:4px;width:9px;&::after{background:", ";bottom:0;content:'';left:4px;position:absolute;top:0;width:1px;}"], (0, _color.getColor)(_color.Colors.Grey94));
-
+  &::after {
+    background: ${(0, _color.getColor)(_color.Colors.Grey94)};
+    bottom: 0;
+    content: '';
+    left: 4px;
+    position: absolute;
+    top: 0;
+    width: 1px;
+  }
+`;
 exports.ResizerComponent = ResizerComponent;
+const TrGroupComponent = _styledComponents2.default.div`
+  ${(0, _flex.flexFlow)('row')};
 
-const TrGroupComponent =
-/*#__PURE__*/
-_styledComponents2.default.div.withConfig({
-  displayName: "ReactTable__TrGroupComponent",
-  componentId: "sc-1afopvo-4"
-})(["", ";height:40px;position:relative;flex-shrink:0;&:hover::before{background:", ";}&:hover .actions{opacity:0.9999;}&::before{bottom:1px;content:'';left:0;position:absolute;right:0;top:0;}"], (0, _flex.flexFlow)('row'), (0, _color.getColor)(_color.Colors.Grey98));
+  height: 40px;
+  position: relative;
+  flex-shrink: 0;
 
+  &:hover::before {
+    background: ${(0, _color.getColor)(_color.Colors.Grey98)};
+  }
+  &:hover .actions {
+    opacity: 0.9999;
+  }
+
+  &::before {
+    bottom: 1px;
+    content: '';
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+`;
 exports.TrGroupComponent = TrGroupComponent;
 
-const TdComponent =
-/*#__PURE__*/
-_styledComponents2.default.div.withConfig({
-  displayName: "ReactTable__TdComponent",
-  componentId: "sc-1afopvo-5"
-})(({
+const TdComponent = _styledComponents2.default.div(({
   className
-}) => (0, _styledComponents2.css)(["", " ", ";", ";", ";color:", ";align-items:center;padding:0 12px;position:relative;&:first-of-type{padding-left:32px;}&:last-of-type{padding-right:32px;}"], !(0, _typeGuards.isNil)(className) && className.includes('actions') && `justify-content: flex-end;
+}) => _styledComponents2.css`
+    ${!(0, _typeGuards.isNil)(className) && className.includes('actions') && `justify-content: flex-end;
       opacity: 0.3;
-      `, (0, _flex.flexFlow)('row'), (0, _typography.typography)(400, _typography.FontSizes.Title5), _typography.ellipsis, (0, _color.getColor)(_color.Colors.Black89)));
+      `}
+
+    ${(0, _flex.flexFlow)('row')};
+    ${(0, _typography.typography)(400, _typography.FontSizes.Title5)};
+
+    ${_typography.ellipsis};
+
+    color: ${(0, _color.getColor)(_color.Colors.Black89)};
+    align-items: center;
+    padding: 0 12px;
+    position: relative;
+
+    &:first-of-type {
+      padding-left: 32px;
+    }
+
+    &:last-of-type {
+      padding-right: 32px;
+    }
+  `);
 
 exports.TdComponent = TdComponent;
-const TBodyComponent =
-/*#__PURE__*/
-(0, _styledComponents2.default)(_ScrollAnimation.ScrollAnimation).withConfig({
-  displayName: "ReactTable__TBodyComponent",
-  componentId: "sc-1afopvo-6"
-})(["overflow-x:hidden;"]);
+const TBodyComponent = (0, _styledComponents2.default)(({
+  style,
+  ...domProps
+}) => _react.default.createElement(_ScrollAnimation.ScrollAnimation, _extends({
+  containerCssOverrides: style
+}, domProps)))`
+  overflow-x: hidden;
+`;
 exports.TBodyComponent = TBodyComponent;
+const NoDataContainer = _styledComponents2.default.div`
+  ${(0, _flex.flexFlow)('column')};
+  ${(0, _typography.typography)(400, _typography.FontSizes.Title5)};
 
-const NoDataContainer =
-/*#__PURE__*/
-_styledComponents2.default.div.withConfig({
-  displayName: "ReactTable__NoDataContainer",
-  componentId: "sc-1afopvo-7"
-})(["", ";", ";align-items:center;bottom:0;color:", ";justify-content:center;left:0;position:absolute;right:0;top:", "px;"], (0, _flex.flexFlow)('column'), (0, _typography.typography)(400, _typography.FontSizes.Title5), (0, _color.getColor)(_color.Colors.Black62), THEAD_HEIGHT);
-
+  align-items: center;
+  background: ${(0, _color.getColor)(_color.Colors.White)};
+  bottom: 0;
+  color: ${(0, _color.getColor)(_color.Colors.Black62)};
+  justify-content: center;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: ${THEAD_HEIGHT}px;
+`;
 exports.NoDataContainer = NoDataContainer;
 const MonorailReactTableOverrides = {
   FilterComponent: props => _react.default.createElement(FilterComponent, props),
@@ -239,6 +430,9 @@ const MonorailReactTableOverrides = {
   }) => children,
   TrGroupComponent: props => _react.default.createElement(TrGroupComponent, props),
   NoDataComponent: props => _react.default.createElement(NoDataContainer, null, _react.default.createElement(_DataStates.EmptyTable, null)),
+  getTheadThProps: (state, rowInfo, column) => ({
+    column
+  }),
   getTheadFilterThProps: ({
     filtered
   }, rowInfo, column) => {
@@ -248,6 +442,7 @@ const MonorailReactTableOverrides = {
     };
   },
   style: {
+    height: '100%',
     width: '100%'
   },
   minRows: 0,
@@ -257,20 +452,11 @@ const MonorailReactTableOverrides = {
   showPagination: false,
   defaultFilterMethod: (filter, row) => {
     const id = filter.pivotId || filter.id;
-    return row[id] !== undefined ? String(row[id]).toLocaleLowerCase().includes(filter.value.toLocaleString().toLocaleLowerCase()) : true;
+    return !(0, _typeGuards.isUndefined)(row[id]) && String(row[id]).toLocaleLowerCase().includes(filter.value.toLocaleString().toLocaleLowerCase());
   },
   filterable: true,
   resizable: true,
-  loadingText: ''
+  loading: false,
+  multiSort: false
 };
 exports.MonorailReactTableOverrides = MonorailReactTableOverrides;
-
-var _StyledButton = (0, _styledComponents.default)(_Button.Button)`
-                margin: auto 28px auto -8px;
-                pointer-events: all;
-                flex: 1;
-              `;
-
-var _StyledIconButton = (0, _styledComponents.default)(_IconButton.IconButton)`margin: auto -11px auto auto; pointer-events: none;`;
-
-var _StyledIconButton2 = (0, _styledComponents.default)(_IconButton.IconButton)`margin: auto 0 auto auto;`;

@@ -19,50 +19,78 @@ var _Tag = require("../tags/Tag");
 
 var _detailsTypes = require("./detailsTypes");
 
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; if (obj != null) { var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // Property Styles
 const propertySizeStyles = {
-  [_detailsTypes.DetailsSize.Compact]: (0, _styledComponents.css)(["", ";color:", ";text-transform:uppercase;"], (0, _exports.typography)(500, _exports.FontSizes.Content), (0, _theme.getThemeColor)(_theme.ThemeColors.Text500)),
-  [_detailsTypes.DetailsSize.Default]: (0, _styledComponents.css)(["", ";color:", ";"], (0, _exports.typography)(500, _exports.FontSizes.Content), (0, _theme.getThemeColor)(_theme.ThemeColors.Text700)),
-  [_detailsTypes.DetailsSize.Large]: (0, _styledComponents.css)(["", ";color:", ";"], (0, _exports.typography)(700, _exports.FontSizes.Content), (0, _theme.getThemeColor)(_theme.ThemeColors.Text700))
+  [_detailsTypes.DetailsSize.Compact]: _styledComponents.css`
+    ${(0, _exports.typography)(500, _exports.FontSizes.Content)};
+
+    color: ${(0, _theme.getThemeColor)(_theme.ThemeColors.Text500)};
+    text-transform: uppercase;
+  `,
+  [_detailsTypes.DetailsSize.Default]: _styledComponents.css`
+    ${(0, _exports.typography)(500, _exports.FontSizes.Content)};
+
+    color: ${(0, _theme.getThemeColor)(_theme.ThemeColors.Text700)};
+  `,
+  [_detailsTypes.DetailsSize.Large]: _styledComponents.css`
+    ${(0, _exports.typography)(700, _exports.FontSizes.Content)};
+
+    color: ${(0, _theme.getThemeColor)(_theme.ThemeColors.Text700)};
+  `
 };
 
-const DetailsProperty =
-/*#__PURE__*/
-_styledComponents.default.h2.withConfig({
-  displayName: "Details__DetailsProperty",
-  componentId: "sc-95xmhv-0"
-})(({
+const DetailsProperty = _styledComponents.default.h2(({
   size
-}) => (0, _styledComponents.css)(["", ";margin:0;"], propertySizeStyles[size])); // Value Styles
+}) => _styledComponents.css`
+    ${propertySizeStyles[size]};
+
+    margin: 0;
+  `); // Value Styles
 
 
 const valueSizeStyles = {
-  [_detailsTypes.DetailsSize.Compact]: (0, _styledComponents.css)(["", ";color:", ";"], (0, _exports.typography)(600, _exports.FontSizes.Title5), (0, _theme.getThemeColor)(_theme.ThemeColors.Text700)),
-  [_detailsTypes.DetailsSize.Default]: (0, _styledComponents.css)(["", ";color:", ";"], (0, _exports.typography)(200, _exports.FontSizes.Title3), (0, _theme.getThemeColor)(_theme.ThemeColors.Text900)),
-  [_detailsTypes.DetailsSize.Large]: (0, _styledComponents.css)(["", ";color:", ";"], (0, _exports.typography)(200, _exports.FontSizes.Title1), (0, _theme.getThemeColor)(_theme.ThemeColors.Text900))
+  [_detailsTypes.DetailsSize.Compact]: _styledComponents.css`
+    ${(0, _exports.typography)(600, _exports.FontSizes.Title5)};
+
+    color: ${(0, _theme.getThemeColor)(_theme.ThemeColors.Text700)};
+  `,
+  [_detailsTypes.DetailsSize.Default]: _styledComponents.css`
+    ${(0, _exports.typography)(200, _exports.FontSizes.Title3)};
+
+    color: ${(0, _theme.getThemeColor)(_theme.ThemeColors.Text900)};
+  `,
+  [_detailsTypes.DetailsSize.Large]: _styledComponents.css`
+    ${(0, _exports.typography)(200, _exports.FontSizes.Title1)};
+
+    color: ${(0, _theme.getThemeColor)(_theme.ThemeColors.Text900)};
+  `
 };
 
-const DetailsValue =
-/*#__PURE__*/
-_styledComponents.default.h1.withConfig({
-  displayName: "Details__DetailsValue",
-  componentId: "sc-95xmhv-1"
-})(({
+const DetailsValue = _styledComponents.default.h1(({
   size
-}) => (0, _styledComponents.css)(["", ";margin:0;"], valueSizeStyles[size]));
+}) => _styledComponents.css`
+    ${valueSizeStyles[size]};
 
-const DetailsContainer =
-/*#__PURE__*/
-_styledComponents.default.div.withConfig({
-  displayName: "Details__DetailsContainer",
-  componentId: "sc-95xmhv-2"
-})(({
+    margin: 0;
+  `);
+
+const DetailsContainer = _styledComponents.default.div(({
   cssOverrides
-}) => (0, _styledComponents.css)(["", ";", "{margin-top:6px;}", ";"], (0, _exports.flexFlow)(), _Tag.TagContainer, cssOverrides));
+}) => _styledComponents.css`
+    ${(0, _exports.flexFlow)()};
+
+    ${_Tag.TagContainer} {
+      margin-top: 6px;
+    }
+
+    ${cssOverrides};
+  `);
 
 const Details = ({
   children,

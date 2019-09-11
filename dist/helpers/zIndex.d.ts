@@ -1,10 +1,16 @@
 export declare enum ZIndexNodeName {
-    SidebarContainer = "SidebarContainer",
+    ArrowButtons = "ArrowButtons",
+    FramedIcon = "FramedIcon",
+    FramedIconBackground = "FramedIconBackground",
     NewFlowSection = "NewFlowSection",
     NewFlowSectionAfter = "NewFlowSectionAfter",
     PageLevelNavItem = "PageLevelNavItem",
-    FramedIconBackground = "FramedIconBackground",
-    FramedIcon = "FramedIcon",
-    TabBarIndicator = "TabBarIndicator"
+    SidebarContainer = "SidebarContainer",
+    TabBarIndicator = "TabBarIndicator",
+    CardBody = "CardBody",
+    CardBackground = "CardBackground",
+    CardShadow = "CardShadow",
+    Overlay = "Overlay"
 }
-export declare const zIndex: (nodeName: ZIndexNodeName) => "z-index: 10;" | "z-index: 5;" | "z-index: -5;" | "z-index: 0;";
+export declare const zIndexValue: (nodeName: ZIndexNodeName) => number;
+export declare const zIndex: (nodeName: ZIndexNodeName) => string;

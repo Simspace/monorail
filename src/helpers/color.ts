@@ -69,9 +69,16 @@ export enum Colors {
   Repo = 'repo',
   LMS = 'externalLms',
 
+  // State
   Green = 'green',
   Red = 'red',
   Amber = 'amber',
+
+  // Alerts
+  Error = 'error',
+  Warning = 'warning',
+  Success = 'success',
+  Info = 'info',
 }
 
 type HSLAMapType = {
@@ -170,6 +177,12 @@ export const colorHSLAMap = ({
     [Colors.Green]: { h: 145, s: 68, l: 45, a: alpha },
     [Colors.Red]: { h: 4, s: 90, l: 58, a: alpha },
     [Colors.Amber]: { h: 45, s: 100, l: 51, a: alpha },
+
+    // Alerts
+    [Colors.Error]: { h: 11, s: 69, l: 47, a: alpha },
+    [Colors.Warning]: { h: 31, s: 87, l: 60, a: alpha },
+    [Colors.Success]: { h: 147, s: 34, l: 53, a: alpha },
+    [Colors.Info]: { h: 219, s: 100, l: 54, a: alpha },
   }
 
   return baseColors[color]

@@ -46,25 +46,38 @@ exports.sizes = sizes;
 const pageSizeMargin = (params = {
   marginTop: 0,
   marginBottom: 0
-}) => (0, _styledComponents.css)(["", ";"], ({
+}) => _styledComponents.css`
+  ${({
   theme: {
     size: {
       page
     }
   }
-}) => (0, _styledComponents.css)(["max-width:", "px;margin:", "px ", "px ", "px ", "px;"], page.width, params.marginTop, sizes.page.sideSpace, params.marginBottom, sizes.page.sideSpace));
+}) => _styledComponents.css`
+    max-width: ${page.width}px;
+    margin: ${params.marginTop}px ${sizes.page.sideSpace}px
+      ${params.marginBottom}px ${sizes.page.sideSpace}px;
+  `};
+`;
 
 exports.pageSizeMargin = pageSizeMargin;
 
 const pageSizePadding = (params = {
   paddingTop: 0,
   paddingBottom: 0
-}) => (0, _styledComponents.css)(["", ";"], ({
+}) => _styledComponents.css`
+  ${({
   theme: {
     size: {
       page
     }
   }
-}) => (0, _styledComponents.css)(["box-sizing:content-box;max-width:", "px;padding:", "px ", "px ", "px ", "px;"], page.width, params.paddingTop, sizes.page.sideSpace, params.paddingBottom, sizes.page.sideSpace));
+}) => _styledComponents.css`
+    box-sizing: content-box;
+    max-width: ${page.width}px;
+    padding: ${params.paddingTop}px ${sizes.page.sideSpace}px
+      ${params.paddingBottom}px ${sizes.page.sideSpace}px;
+  `};
+`;
 
 exports.pageSizePadding = pageSizePadding;

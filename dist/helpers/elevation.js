@@ -175,10 +175,14 @@ const getElevationColor = elevation => {
   };
 };
 
-const getElevationBackground = elevation => (0, _styledComponents.css)(["background-image:", ";"], getElevationColor(elevation));
+const getElevationBackground = elevation => _styledComponents.css`
+  background-image: ${getElevationColor(elevation)};
+`;
 
 exports.getElevationBackground = getElevationBackground;
 
-const getElevationShadow = elevation => (0, _styledComponents.css)(["box-shadow:", ";"], elevationShadow[elevation]);
+const getElevationShadow = elevation => _styledComponents.css`
+  box-shadow: ${elevationShadow[elevation]};
+`;
 
 exports.getElevationShadow = getElevationShadow;

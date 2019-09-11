@@ -31,7 +31,7 @@ const BBChoiceInput = styled.input<BBChoiceInputProps>`
   z-index: -1;
 `
 
-const BBChoiceFakeLabel = styled.div<AnsweredProps>(
+export const BBChoiceFakeLabel = styled.div<AnsweredProps>(
   ({ answered, disabled }) => css`
     ${answered &&
       css`
@@ -117,6 +117,7 @@ type BBChoiceInputProps = AnsweredProps & {
   checked?: boolean
   defaultChecked?: boolean
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void
+  'data-test-id'?: string
 }
 
 type CCChoiceProps = AnsweredProps &
@@ -396,6 +397,7 @@ export const Choice: FCwDP<ChoiceProps, DefaultProps> = ({
   required,
   name,
   style,
+  'data-test-id': dataTestId,
   ...domProps
 }) => (
   <CCChoice
@@ -411,6 +413,7 @@ export const Choice: FCwDP<ChoiceProps, DefaultProps> = ({
     {...domProps}
   >
     <BBChoiceInput
+      data-test-id={dataTestId}
       disabled={disabled}
       onChange={onChange}
       checked={checked}

@@ -187,37 +187,37 @@ export const shortHandDeconstruction = (value: string): Margin => {
     return {}
   }
 
-  const spiltValue = value.split(' ').map(stripPx)
+  const splitValue = value.split(' ').map(stripPx)
 
-  switch (spiltValue.length) {
+  switch (splitValue.length) {
     case 4:
       return {
-        top: spiltValue[0],
-        right: spiltValue[1],
-        bottom: spiltValue[2],
-        left: spiltValue[3],
+        top: splitValue[0],
+        right: splitValue[1],
+        bottom: splitValue[2],
+        left: splitValue[3],
       }
     case 3:
       return {
-        top: spiltValue[0],
-        right: spiltValue[1],
-        bottom: spiltValue[2],
-        left: spiltValue[1],
+        top: splitValue[0],
+        right: splitValue[1],
+        bottom: splitValue[2],
+        left: splitValue[1],
       }
     case 2:
       return {
-        top: spiltValue[0],
-        right: spiltValue[1],
-        bottom: spiltValue[0],
-        left: spiltValue[1],
+        top: splitValue[0],
+        right: splitValue[1],
+        bottom: splitValue[0],
+        left: splitValue[1],
       }
     default:
     case 1:
       return {
-        top: spiltValue[0],
-        right: spiltValue[0],
-        bottom: spiltValue[0],
-        left: spiltValue[0],
+        top: splitValue[0],
+        right: splitValue[0],
+        bottom: splitValue[0],
+        left: splitValue[0],
       }
   }
 }

@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.notAny = exports.all = exports.any = exports.intersperseMapWithIndex = exports.intersperseMap = exports.intersperse = exports.liftOption2 = exports.sortByNumeric = exports.sortByAlpha = exports.leftsAndRights = exports.traverseTaskEithers = exports.traverseTasks = exports.traverseEithers = exports.traverseOptions = exports.sequenceRemoteData = exports.sequenceTaskEithers = exports.sequenceTasks = exports.sequenceEithers = exports.sequenceOptions = exports.len = exports.contains = exports.runIOs = exports.forEachWithIndex = exports.forEach = exports.concatFlipped = exports.concat = exports.map = void 0;
+exports.xor = exports.notAny = exports.all = exports.any = exports.intersperseMapWithIndex = exports.intersperseMap = exports.intersperse = exports.liftOption2 = exports.sortByNumeric = exports.sortByAlpha = exports.leftsAndRights = exports.traverseTaskEithers = exports.traverseTasks = exports.traverseEithers = exports.traverseOptions = exports.sequenceRemoteData = exports.sequenceTaskEithers = exports.sequenceTasks = exports.sequenceEithers = exports.sequenceOptions = exports.len = exports.contains = exports.runIOs = exports.forEachWithIndex = exports.forEach = exports.concatFlipped = exports.concat = exports.map = void 0;
 
 var _remoteDataTs = require("@devexperts/remote-data-ts");
 
@@ -321,5 +321,14 @@ const notAny = (as, p) => {
   const resultOpt = traverseOptions(as, a => p(a) ? _Option.none : (0, _Option.some)(a));
   return (0, _Option2.fold)(resultOpt, false, _function.constTrue);
 };
+/**
+ * Returns an array of elements which are in both input arrays but not in their
+ * intersection. Also known as symmetric difference or disjunctive union.
+ */
+
 
 exports.notAny = notAny;
+
+const xor = E => (xs, ys) => [...(0, _Array.difference)(E)(xs, ys), ...(0, _Array.difference)(E)(ys, xs)];
+
+exports.xor = xor;

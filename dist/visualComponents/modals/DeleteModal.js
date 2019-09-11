@@ -27,9 +27,32 @@ var _Text = require("../typography/Text");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-const deleteModalStyles =
+const deleteModalStyles = _styledComponents2.css`
+  ${_Modals.BBModalHeaderContainer} {
+    background: ${(0, _color.getColor)(_color.Colors.Red)};
+  }
+`;
+
+var _StyledMediumModal =
 /*#__PURE__*/
-(0, _styledComponents2.css)(["", "{background:", ";}"], _Modals.BBModalHeaderContainer, (0, _color.getColor)(_color.Colors.Red));
+(0, _styledComponents.default)(_MediumModal.MediumModal).withConfig({
+  displayName: "DeleteModal___StyledMediumModal",
+  componentId: "sc-191x4f4-0"
+})(["", ""], deleteModalStyles);
+
+var _StyledBBModalContent =
+/*#__PURE__*/
+(0, _styledComponents.default)(_Modals.BBModalContent).withConfig({
+  displayName: "DeleteModal___StyledBBModalContent",
+  componentId: "sc-191x4f4-1"
+})(["padding:24px;"]);
+
+var _StyledButton =
+/*#__PURE__*/
+(0, _styledComponents.default)(_Button.Button).withConfig({
+  displayName: "DeleteModal___StyledButton",
+  componentId: "sc-191x4f4-2"
+})(["margin-right:8px;"]);
 
 const DeleteModal = props => {
   const {
@@ -71,9 +94,3 @@ const DeleteModal = props => {
 };
 
 exports.DeleteModal = DeleteModal;
-
-var _StyledMediumModal = (0, _styledComponents.default)(_MediumModal.MediumModal)`${deleteModalStyles}`;
-
-var _StyledBBModalContent = (0, _styledComponents.default)(_Modals.BBModalContent)`padding: 24px;`;
-
-var _StyledButton = (0, _styledComponents.default)(_Button.Button)`margin-right: 8px;`;
