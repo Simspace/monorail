@@ -1,6 +1,7 @@
 import { ChangeEvent, CSSProperties, ReactNode } from 'react';
 import { SimpleInterpolation } from 'styled-components';
 import { FCwDP } from '@monorail/sharedHelpers/react';
+export declare const BBChoiceFakeLabel: import("styled-components").StyledComponent<"div", any, AnsweredProps, never>;
 declare type AnsweredProps = {
     answered?: boolean;
     centeredInput?: boolean;
@@ -16,6 +17,7 @@ declare type BBChoiceInputProps = AnsweredProps & {
     checked?: boolean;
     defaultChecked?: boolean;
     onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
+    'data-test-id'?: string;
 };
 declare type CCChoiceProps = AnsweredProps & BBGradeIconProps & {
     cssOverrides?: SimpleInterpolation;

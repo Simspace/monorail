@@ -1,5 +1,5 @@
+/// <reference path="../../../src/typings/styled-components.d.ts" />
 /// <reference types="react" />
-/// <reference types="styled-components/cssprop" />
 import { LinkProps } from 'react-router';
 import { FontSizes, FontWeights } from '@monorail/helpers/typography';
 export declare type HyperLinkProps = LinkProps & {

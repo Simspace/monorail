@@ -1,5 +1,5 @@
+/// <reference path="../../../src/typings/styled-components.d.ts" />
 /// <reference types="react" />
-/// <reference types="styled-components/cssprop" />
 import { Option } from 'fp-ts/lib/Option';
 /**
  * type guard for Option
@@ -52,3 +52,7 @@ export declare const toBoolean: <A>(x: Option<A>) => boolean;
  * the value from within the Some. Useful in conjunction with the spread operator.
  */
 export declare const toSpreadable: <A>(fa: Option<A>) => A[];
+/**
+ * Returns true if the option is false or if the predicate returns true when applied to the wrapped value
+ */
+export declare const all: <A>(x: Option<A>, predicate: (a: A) => boolean) => boolean;

@@ -22,21 +22,44 @@ const CollectionPage = props => {
     collectionView,
     columns,
     data,
-    searchFilter,
+    isLoading,
     setCollectionView,
-    title
+    title,
+    NoDataComponent
   } = props;
+
+  const renderCollection = () => {
+    if ('searchInput' in props) {
+      return _react.default.createElement(_Collection.Collection, {
+        cardRender: cardRender,
+        collectionView: collectionView,
+        columns: columns,
+        data: data,
+        isLoading: isLoading,
+        setCollectionView: setCollectionView,
+        searchInput: props.searchInput,
+        NoDataComponent: NoDataComponent
+      });
+    } else if ('searchFilter' in props) {
+      return _react.default.createElement(_Collection.Collection, {
+        cardRender: cardRender,
+        collectionView: collectionView,
+        columns: columns,
+        data: data,
+        isLoading: isLoading,
+        setCollectionView: setCollectionView,
+        searchFilter: props.searchFilter,
+        NoDataComponent: NoDataComponent
+      });
+    } else {
+      throw new Error('Need to pass searchInput or searchFilter prop to CollectionPage.');
+    }
+  };
+
   return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_PageHeader.PageHeader, {
     title: title,
     actions: _react.default.createElement(_Actions.ActionsContainer, null, actions)
-  }), _react.default.createElement(_Collection.Collection, {
-    cardRender: cardRender,
-    collectionView: collectionView,
-    columns: columns,
-    data: data,
-    searchFilter: searchFilter,
-    setCollectionView: setCollectionView
-  }));
+  }), renderCollection());
 };
 
 exports.CollectionPage = CollectionPage;

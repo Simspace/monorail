@@ -3,14 +3,10 @@ import React, { SFC } from 'react'
 import styled from 'styled-components'
 
 import { FontSizes, typography } from '@monorail/helpers/exports'
+import { css } from '@monorail/helpers/styled-components'
+import { Label } from '@monorail/visualComponents/inputs/Label'
 
 const NumberInputGroupWrapper = styled.div``
-
-const Label = styled.p`
-  ${typography(500, FontSizes.Title5)};
-  margin-bottom: 8px;
-  height: 16px;
-`
 
 const Input = styled.input`
   flex: 0 0 50px;
@@ -59,12 +55,13 @@ export const NumberInputGroup: SFC<Props> = ({
 }) => {
   return (
     <NumberInputGroupWrapper>
-      {label && (
-        <Label>
-          {label}
-          {required && '*'}
-        </Label>
-      )}
+      <Label
+        label={label}
+        required={required}
+        css={css`
+          margin-bottom: 8px;
+        `}
+      />
       {items.map((item: InputItem, k) => {
         const val = lookup(item.key, value).getOrElse(0)
         return (

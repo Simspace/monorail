@@ -1,5 +1,5 @@
 import { NaN } from '../newtypes'
-import { isFalsy } from '../typeGuards'
+import { isFalsy, isFinite } from '../typeGuards'
 
 describe('isFalsy', () => {
   it('should return false when given a truthy value', () => {
@@ -36,6 +36,26 @@ describe('isFalsy', () => {
 
   it('should return true when given undefined', () => {
     const actual = isFalsy(undefined)
+    const expected = true
+    expect(actual).toBe(expected)
+  })
+})
+
+describe('isFinite', () => {
+  it('should return false when given NaN', () => {
+    const actual = isFinite(NaN)
+    const expected = false
+    expect(actual).toBe(expected)
+  })
+
+  it('should return false when given Infinity', () => {
+    const actual = isFinite(Infinity)
+    const expected = false
+    expect(actual).toBe(expected)
+  })
+
+  it('should return true when given a finite number', () => {
+    const actual = isFinite(Math.PI)
     const expected = true
     expect(actual).toBe(expected)
   })

@@ -11,11 +11,9 @@ var _styledComponents = _interopRequireDefault(require("../../helpers/styled-com
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-const ActionsContainer =
-/*#__PURE__*/
-_styledComponents.default.div.withConfig({
-  displayName: "Actions__ActionsContainer",
-  componentId: "sc-1gt5bpv-0"
-})(["", ";margin:auto 0 auto auto;"], (0, _flex.flexFlow)('row'));
+const ActionsContainer = _styledComponents.default.div`
+  ${(0, _flex.flexFlow)('row')};
 
+  margin: auto 0 auto auto;
+`;
 exports.ActionsContainer = ActionsContainer;

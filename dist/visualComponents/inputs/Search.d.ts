@@ -16,7 +16,7 @@ export declare type SearchInputProps = {
 declare type DefaultProps = {
     placeholder: string;
 };
-declare type SearchProps = SearchContainerProps & Overwrite<SearchInputProps, {
+export declare type SearchProps = SearchContainerProps & Overwrite<SearchInputProps, {
     onChange: (value: string, event?: ChangeEvent<HTMLInputElement>) => void;
 }>;
 export declare const Search: FCwDP<SearchProps, DefaultProps>;

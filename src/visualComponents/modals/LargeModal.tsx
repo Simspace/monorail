@@ -1,6 +1,7 @@
 import React, { ReactNode } from 'react'
 import { css, SimpleInterpolation } from 'styled-components'
 
+import { ZIndexNodeName, zIndexValue } from '@monorail/helpers/zIndex'
 import { PopOverChildProps } from '@monorail/metaComponents/popOver/PopOver'
 import { FCwDP } from '@monorail/sharedHelpers/react'
 import {
@@ -81,5 +82,5 @@ export const LargeModal: FCwDP<Props, DefaultProps> = ({
 }
 
 LargeModal.defaultProps = {
-  zIndex: 9998,
+  zIndex: zIndexValue(ZIndexNodeName.Overlay),
 }

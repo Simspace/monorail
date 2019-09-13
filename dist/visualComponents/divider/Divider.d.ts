@@ -1,6 +1,4 @@
-import { CommonComponentType } from '@monorail/types';
-export declare const Divider: import("styled-components").StyledComponent<"div", any, CCDividerProps, never>;
-declare type CCDividerProps = CommonComponentType & {
+export declare type DividerProps = {
     isVertical?: boolean;
 };
-export {};
+export declare const Divider: import("styled-components").StyledComponent<"div", import("../../helpers/theme").GlobalAppThemeInterface, DividerProps, never>;

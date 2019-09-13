@@ -4,7 +4,7 @@ export declare type SelectOption = {
     label: string;
     value: string;
 };
-declare type Props = {
+export declare type SelectProps = {
     cssOverrides?: SimpleInterpolation;
     disabled?: boolean;
     label?: string;
@@ -17,5 +17,4 @@ declare type Props = {
     required?: boolean;
     value?: string | Array<string> | number;
 };
-export declare const Select: SFC<Props>;
-export {};
+export declare const Select: SFC<SelectProps>;

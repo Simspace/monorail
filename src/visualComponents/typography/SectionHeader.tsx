@@ -53,7 +53,7 @@ export const SectionHeader: FCwDP<RequiredProps, DefaultProps> = ({
   <SectionHeaderContainer {...otherProps}>
     {!isEmptyString(iconLeft) &&
       (isAppName(iconLeft) ? (
-        <AppIcon appName={iconLeft} cssOverrides={iconLeftStyle} />
+        <AppIcon appName={iconLeft} css={iconLeftStyle} />
       ) : (
         <Icon css={iconLeftStyle} icon={iconLeft} />
       ))}
@@ -62,7 +62,7 @@ export const SectionHeader: FCwDP<RequiredProps, DefaultProps> = ({
     </Text>
     {!isEmptyString(iconRight) &&
       (isAppName(iconRight) ? (
-        <AppIcon appName={iconRight} cssOverrides={iconRightStyle} />
+        <AppIcon appName={iconRight} css={iconRightStyle} />
       ) : (
         <Icon css={iconRightStyle} icon={iconRight} />
       ))}

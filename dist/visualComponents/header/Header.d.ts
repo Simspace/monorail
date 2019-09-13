@@ -1,16 +1,15 @@
 import { ReactNode } from 'react';
-import { SimpleInterpolation } from 'styled-components';
-import { AppOrAuthSubAppName } from '@monorail/helpers/exports';
-import { CommonComponentType } from '@monorail/types';
-export declare const HeaderTitle: import("styled-components").StyledComponent<"h1", import("../../helpers/theme").GlobalAppThemeInterface, CommonComponentType, never>;
-declare type Props = CommonComponentType & {
+import { AppOrAuthSubAppName } from '@monorail/helpers/appName';
+import { CSSProp } from '@monorail/helpers/styled-components';
+export declare const HeaderTitle: import("styled-components").StyledComponent<"h1", import("../../helpers/theme").GlobalAppThemeInterface, {}, never>;
+export declare type HeaderProps = {
     actions?: ReactNode;
     appIcon?: AppOrAuthSubAppName;
-    cssHeaderRow?: SimpleInterpolation;
-    cssTitle?: SimpleInterpolation;
+    children?: ReactNode;
+    cssHeaderRow?: CSSProp;
+    cssTitle?: CSSProp;
     iconLeft?: string;
     noBorder?: boolean;
     title: ReactNode;
 };
-export declare const Header: import("styled-components").StyledComponent<({ actions, appIcon, children, cssOverrides, cssHeaderRow, cssTitle, iconLeft, noBorder, title, ...domProps }: any) => JSX.Element, import("../../helpers/theme").GlobalAppThemeInterface, Props, never>;
-export {};
+export declare const Header: import("styled-components").StyledComponent<({ actions, appIcon, children, cssHeaderRow, cssTitle, iconLeft, noBorder, title, ...domProps }: HeaderProps) => JSX.Element, import("../../helpers/theme").GlobalAppThemeInterface, HeaderProps, never>;

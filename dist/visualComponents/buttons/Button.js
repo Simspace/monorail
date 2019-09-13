@@ -21,7 +21,9 @@ var _buttonTypes = require("./buttonTypes");
 
 var _Icon = require("../icon/Icon");
 
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; if (obj != null) { var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -31,9 +33,19 @@ const buttonDisplayCss = {
   [_buttonTypes.ButtonDisplay.Primary]: (0, _exports.basePrimaryStyles)(),
   [_buttonTypes.ButtonDisplay.Secondary]: (0, _exports.baseSecondaryStyles)(),
   [_buttonTypes.ButtonDisplay.Outline]: (0, _exports.baseOutlineStyles)(),
-  [_buttonTypes.ButtonDisplay.Chromeless]: (0, _styledComponents2.css)(["", ";color:", ";line-height:25px;"], (0, _exports.baseChromelessStyles)(), (0, _theme.getThemeColor)(_theme.ThemeColors.ActionSecondary)),
-  [_buttonTypes.ButtonDisplay.ButtonBar]: (0, _styledComponents2.css)(["", ";", ";"], (0, _exports.floatingOutlineStyles)(), (0, _exports.baseButtonBarStyles)()),
-  [_buttonTypes.ButtonDisplay.Toolbar]: (0, _styledComponents2.css)(["", ";"], (0, _exports.baseButtonBarStyles)())
+  [_buttonTypes.ButtonDisplay.Chromeless]: _styledComponents2.css`
+    ${(0, _exports.baseChromelessStyles)()};
+
+    color: ${(0, _theme.getThemeColor)(_theme.ThemeColors.ActionSecondary)};
+    line-height: 25px;
+  `,
+  [_buttonTypes.ButtonDisplay.ButtonBar]: _styledComponents2.css`
+    ${(0, _exports.floatingOutlineStyles)()};
+    ${(0, _exports.baseButtonBarStyles)()};
+  `,
+  [_buttonTypes.ButtonDisplay.Toolbar]: _styledComponents2.css`
+    ${(0, _exports.baseButtonBarStyles)()};
+  `
 };
 exports.buttonDisplayCss = buttonDisplayCss;
 const buttonPressedDisplayCss = {
@@ -41,43 +53,114 @@ const buttonPressedDisplayCss = {
   [_buttonTypes.ButtonDisplay.Secondary]: (0, _exports.basePrimaryStyles)(),
   [_buttonTypes.ButtonDisplay.Outline]: (0, _exports.basePrimaryStyles)(),
   [_buttonTypes.ButtonDisplay.Chromeless]: (0, _exports.basePrimaryStyles)(),
-  [_buttonTypes.ButtonDisplay.ButtonBar]: (0, _styledComponents2.css)(["", ";color:", ";&:active{color:", ";}&:hover{color:", ";}"], (0, _exports.basePrimaryStyles)(), (0, _exports.getColor)(_exports.Colors.White), (0, _exports.getColor)(_exports.Colors.White), (0, _exports.getColor)(_exports.Colors.White)),
+  [_buttonTypes.ButtonDisplay.ButtonBar]: _styledComponents2.css`
+    ${(0, _exports.basePrimaryStyles)()};
+
+    color: ${(0, _exports.getColor)(_exports.Colors.White)};
+
+    &:active {
+      color: ${(0, _exports.getColor)(_exports.Colors.White)};
+    }
+
+    &:hover {
+      color: ${(0, _exports.getColor)(_exports.Colors.White)};
+    }
+  `,
   [_buttonTypes.ButtonDisplay.Toolbar]: (0, _exports.baseToolBarStyles)()
 };
 exports.buttonPressedDisplayCss = buttonPressedDisplayCss;
 const buttonSizeCss = {
-  [_buttonTypes.ButtonSize.Dense]: (0, _styledComponents2.css)(["height:16px;padding:0 7px;"]),
-  [_buttonTypes.ButtonSize.Compact]: (0, _styledComponents2.css)(["height:24px;padding:0 7px;"]),
-  [_buttonTypes.ButtonSize.Default]: (0, _styledComponents2.css)(["height:24px;padding:0 11px;"]),
-  [_buttonTypes.ButtonSize.Large]: (0, _styledComponents2.css)(["height:32px;padding:0 15px;"])
+  [_buttonTypes.ButtonSize.Dense]: _styledComponents2.css`
+    height: 16px;
+    padding: 0 7px;
+  `,
+  [_buttonTypes.ButtonSize.Compact]: _styledComponents2.css`
+    height: 24px;
+    padding: 0 7px;
+  `,
+  [_buttonTypes.ButtonSize.Default]: _styledComponents2.css`
+    height: 24px;
+    padding: 0 11px;
+  `,
+  [_buttonTypes.ButtonSize.Large]: _styledComponents2.css`
+    height: 32px;
+    padding: 0 15px;
+  `
 };
 exports.buttonSizeCss = buttonSizeCss;
 const iconLeftStyles = {
-  [_buttonTypes.ButtonSize.Dense]: (0, _styledComponents2.css)(["color:inherit;"]),
-  [_buttonTypes.ButtonSize.Compact]: (0, _styledComponents2.css)(["color:inherit;margin-left:-2px;margin-right:4px;"]),
-  [_buttonTypes.ButtonSize.Default]: (0, _styledComponents2.css)(["color:inherit;margin-left:-6px;margin-right:4px;"]),
-  [_buttonTypes.ButtonSize.Large]: (0, _styledComponents2.css)(["color:inherit;margin-left:-6px;margin-right:8px;"])
+  [_buttonTypes.ButtonSize.Dense]: _styledComponents2.css`
+    color: inherit;
+  `,
+  [_buttonTypes.ButtonSize.Compact]: _styledComponents2.css`
+    color: inherit;
+    margin-left: -2px;
+    margin-right: 4px;
+  `,
+  [_buttonTypes.ButtonSize.Default]: _styledComponents2.css`
+    color: inherit;
+    margin-left: -6px;
+    margin-right: 4px;
+  `,
+  [_buttonTypes.ButtonSize.Large]: _styledComponents2.css`
+    color: inherit;
+    margin-left: -6px;
+    margin-right: 8px;
+  `
 };
 const iconRightStyles = {
-  [_buttonTypes.ButtonSize.Dense]: (0, _styledComponents2.css)(["color:inherit;"]),
-  [_buttonTypes.ButtonSize.Compact]: (0, _styledComponents2.css)(["color:inherit;margin-right:-7px;"]),
-  [_buttonTypes.ButtonSize.Default]: (0, _styledComponents2.css)(["color:inherit;margin-right:-8px;margin-left:4px;"]),
-  [_buttonTypes.ButtonSize.Large]: (0, _styledComponents2.css)(["color:inherit;margin-right:-8px;margin-left:8px;"])
+  [_buttonTypes.ButtonSize.Dense]: _styledComponents2.css`
+    color: inherit;
+  `,
+  [_buttonTypes.ButtonSize.Compact]: _styledComponents2.css`
+    color: inherit;
+    margin-right: -7px;
+  `,
+  [_buttonTypes.ButtonSize.Default]: _styledComponents2.css`
+    color: inherit;
+    margin-right: -8px;
+    margin-left: 4px;
+  `,
+  [_buttonTypes.ButtonSize.Large]: _styledComponents2.css`
+    color: inherit;
+    margin-right: -8px;
+    margin-left: 8px;
+  `
 };
 
-const StyledButton =
-/*#__PURE__*/
-_styledComponents2.default.button.withConfig({
-  displayName: "Button__StyledButton",
-  componentId: "sc-10jcad3-0"
-})(({
+const StyledButton = _styledComponents2.default.button(({
   disabled,
   size,
   display,
   mode,
   pressed,
   cssOverrides
-}) => (0, _styledComponents2.css)(["", ";", ";", ";", ";", ";", ";cursor:pointer;flex-shrink:0;outline:none;text-transform:uppercase;user-select:none;box-sizing:border-box;align-items:center;justify-content:center;margin:0;overflow:hidden;", ";", ";", ";"], mode === _buttonTypes.ButtonMode.Push && pressed ? buttonPressedDisplayCss[display] : buttonDisplayCss[display], buttonSizeCss[size], disabled && _exports.baseDisabledStyles, (0, _exports.typography)(700, _exports.FontSizes.Title5), (0, _exports.borderRadius)(), (0, _exports.flexFlow)('row'), _exports.buttonTransition, (0, _exports.baseFocusStyles)(), cssOverrides));
+}) => _styledComponents2.css`
+    ${mode === _buttonTypes.ButtonMode.Push && pressed ? buttonPressedDisplayCss[display] : buttonDisplayCss[display]};
+    ${buttonSizeCss[size]};
+    ${disabled && _exports.baseDisabledStyles};
+
+    ${(0, _exports.typography)(700, _exports.FontSizes.Title5)};
+    ${(0, _exports.borderRadius)()};
+    ${(0, _exports.flexFlow)('row')};
+
+    cursor: pointer;
+    flex-shrink: 0;
+    outline: none;
+    text-transform: uppercase;
+    user-select: none;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    overflow: hidden;
+
+    ${_exports.buttonTransition};
+
+    ${(0, _exports.baseFocusStyles)()};
+
+    ${cssOverrides};
+  `);
 
 exports.StyledButton = StyledButton;
 const buttonDefaultProps = {
@@ -94,6 +177,20 @@ const buttonDefaultProps = {
   type: 'button'
 };
 exports.buttonDefaultProps = buttonDefaultProps;
+
+var _StyledIcon =
+/*#__PURE__*/
+(0, _styledComponents.default)(_Icon.Icon).withConfig({
+  displayName: "Button___StyledIcon",
+  componentId: "sc-10jcad3-0"
+})(["", ""], p => p._css);
+
+var _StyledIcon2 =
+/*#__PURE__*/
+(0, _styledComponents.default)(_Icon.Icon).withConfig({
+  displayName: "Button___StyledIcon2",
+  componentId: "sc-10jcad3-1"
+})(["", ""], p => p._css2);
 
 const Button = ({
   children,
@@ -119,7 +216,3 @@ const Button = ({
 
 exports.Button = Button;
 Button.defaultProps = buttonDefaultProps;
-
-var _StyledIcon = (0, _styledComponents.default)(_Icon.Icon)`${p => p._css}`;
-
-var _StyledIcon2 = (0, _styledComponents.default)(_Icon.Icon)`${p => p._css2}`;

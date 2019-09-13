@@ -17,15 +17,14 @@ var _ScrollAnimation = require("../../visualComponents/layout/ScrollAnimation");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-const ContentBodyContainer =
-/*#__PURE__*/
-_styledComponents.default.div.withConfig({
-  displayName: "ContentBody__ContentBodyContainer",
-  componentId: "sc-5sb3pw-0"
-})(["", ";", ";"], (0, _size.pageSizePadding)({
+const ContentBodyContainer = _styledComponents.default.div`
+  ${(0, _size.pageSizePadding)({
   paddingTop: 24,
   paddingBottom: 24
-}), (0, _flex.flexFlow)('column'));
+})};
+
+  ${(0, _flex.flexFlow)('column')};
+`;
 
 const ContentBody = ({
   children,

@@ -21,7 +21,13 @@ export declare type PopOverPosition = {
     maxWidthCalc: string;
 };
 export declare const defaultPopOverPosition: PopOverPosition;
-export declare const getOverlayPosition: (target: Element, gap?: number, toSide?: boolean) => {
+export declare const getOverlayPosition: ({ target, gap, toSide, xDirection, yDirection, }: {
+    target: Element;
+    gap?: number | undefined;
+    toSide?: boolean | undefined;
+    xDirection?: dropDirections.Left | dropDirections.Right | undefined;
+    yDirection?: dropDirections.Bottom | dropDirections.Top | undefined;
+}) => {
     dropXDirection: dropXDirectionType;
     dropYDirection: dropYDirectionType;
     gap: number;
@@ -53,7 +59,9 @@ export declare type PopOverProps = {
     onToggle?: (isOpen: boolean) => void;
     popOver: (props: PopOverChildProps) => ReactNode;
     toggle: (props: PopOverToggleProps) => ReactNode;
-    toSide: boolean;
+    toSide?: boolean;
+    xDirection?: dropXDirectionType;
+    yDirection?: dropYDirectionType;
 };
 declare type PopOverState = {
     isOpen: boolean;

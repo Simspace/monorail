@@ -1,26 +1,43 @@
+import { index } from 'fp-ts/lib/Array'
+
 export enum ZIndexNodeName {
-  SidebarContainer = 'SidebarContainer',
+  ArrowButtons = 'ArrowButtons',
+  FramedIcon = 'FramedIcon',
+  FramedIconBackground = 'FramedIconBackground',
   NewFlowSection = 'NewFlowSection',
   NewFlowSectionAfter = 'NewFlowSectionAfter',
   PageLevelNavItem = 'PageLevelNavItem',
-  FramedIconBackground = 'FramedIconBackground',
-  FramedIcon = 'FramedIcon',
+  SidebarContainer = 'SidebarContainer',
   TabBarIndicator = 'TabBarIndicator',
+  CardBody = 'CardBody',
+  CardBackground = 'CardBackground',
+  CardShadow = 'CardShadow',
+  Overlay = 'Overlay',
 }
 
-export const zIndex = (nodeName: ZIndexNodeName) => {
+export const zIndexValue = (nodeName: ZIndexNodeName): number => {
   switch (nodeName) {
     case ZIndexNodeName.SidebarContainer:
-      return 'z-index: 10;'
+      return 10
+    case ZIndexNodeName.ArrowButtons:
     case ZIndexNodeName.NewFlowSection:
     case ZIndexNodeName.PageLevelNavItem:
     case ZIndexNodeName.TabBarIndicator:
-      return 'z-index: 5;'
+      return 5
+    case ZIndexNodeName.CardBackground:
     case ZIndexNodeName.FramedIconBackground:
     case ZIndexNodeName.NewFlowSectionAfter:
-      return 'z-index: -5;'
+      return -5
+    case ZIndexNodeName.CardShadow:
+      return -10
+    case ZIndexNodeName.Overlay:
+      return 9990
     case ZIndexNodeName.FramedIcon:
+    case ZIndexNodeName.CardBody:
     default:
-      return 'z-index: 0;'
+      return 0
   }
 }
+
+export const zIndex = (nodeName: ZIndexNodeName): string =>
+  `z-index: ${zIndexValue(nodeName)};`

@@ -10,6 +10,7 @@ declare type DefaultProps = {
     escToClose: boolean;
     iconLeft: string;
     noHeader: boolean;
+    zIndex: number;
 };
 export declare const FullScreenModal: FCwDP<Props, DefaultProps>;
 export {};

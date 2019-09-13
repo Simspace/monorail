@@ -19,70 +19,82 @@ import { ToggleSize } from '@monorail/visualComponents/toggle/toggleTypes'
 
 const toggleWidth = 18
 const toggleHeight = 10
+const slideSize = 10
 const iconSize = 8
+
+const factorBySize = {
+  [ToggleSize.Default]: 1,
+  [ToggleSize.Large]: 1.5,
+  [ToggleSize.Xlarge]: 2,
+}
+
+const scaleBySize = (n: number, size: ToggleSize) => {
+  const factor = Math.floor(n * factorBySize[size])
+  return factor % 2 === 0 ? factor : factor + 1
+}
 
 const toggleSizeCss = {
   [ToggleSize.Default]: css`
-    height: ${toggleHeight}px;
-    width: ${toggleWidth}px;
+    height: ${scaleBySize(toggleHeight, ToggleSize.Default)}px;
+    width: ${scaleBySize(toggleWidth, ToggleSize.Default)}px;
     border: 1px solid;
-    border-radius: ${toggleHeight + 2 / 2}px;
+    border-radius: ${scaleBySize(toggleHeight, ToggleSize.Default) + 2 / 2}px;
   `,
   [ToggleSize.Large]: css`
-    height: ${toggleHeight * 1.5}px;
-    width: ${toggleWidth * 1.5}px;
+    height: ${scaleBySize(toggleHeight, ToggleSize.Large)}px;
+    width: ${scaleBySize(toggleWidth, ToggleSize.Large)}px;
     border: 1px solid;
-    border-radius: ${toggleHeight * 1.5 + 3 / 2}px;
+    border-radius: ${scaleBySize(toggleHeight, ToggleSize.Large) + 2 / 2}px;
   `,
   [ToggleSize.Xlarge]: css`
-    height: ${toggleHeight * 2}px;
-    width: ${toggleWidth * 2}px;
+    height: ${scaleBySize(toggleHeight, ToggleSize.Xlarge)}px;
+    width: ${scaleBySize(toggleWidth, ToggleSize.Xlarge)}px;
     border: 2px solid;
-    border-radius: ${toggleHeight * 2 + 4 / 2}px;
+    border-radius: ${scaleBySize(toggleHeight, ToggleSize.Xlarge) + 4 / 2}px;
   `,
 }
 
 const sliderSizeCss = {
   [ToggleSize.Default]: css`
-    width: 10px;
-    height: 10px;
+    width: ${scaleBySize(slideSize, ToggleSize.Default)}px;
+    height: ${scaleBySize(slideSize, ToggleSize.Default)}px;
   `,
   [ToggleSize.Large]: css`
-    width: 15px;
-    height: 15px;
+    width: ${scaleBySize(slideSize, ToggleSize.Large)}px;
+    height: ${scaleBySize(slideSize, ToggleSize.Large)}px;
   `,
   [ToggleSize.Xlarge]: css`
-    width: 20px;
-    height: 20px;
+    width: ${scaleBySize(slideSize, ToggleSize.Xlarge)}px;
+    height: ${scaleBySize(slideSize, ToggleSize.Xlarge)}px;
   `,
 }
 
 const inputSizeCss = {
   [ToggleSize.Default]: css`
-    transform: translateX(8px);
+    transform: translateX(${scaleBySize(iconSize, ToggleSize.Default)}px);
   `,
   [ToggleSize.Large]: css`
-    transform: translateX(12px);
+    transform: translateX(${scaleBySize(iconSize, ToggleSize.Large)}px);
   `,
   [ToggleSize.Xlarge]: css`
-    transform: translateX(16px);
+    transform: translateX(${scaleBySize(iconSize, ToggleSize.Xlarge)}px);
   `,
 }
 
 const iconSizeCss = {
   [ToggleSize.Default]: css`
-    font-size: ${iconSize}px;
+    font-size: ${scaleBySize(iconSize, ToggleSize.Default)}px;
   `,
   [ToggleSize.Large]: css`
-    font-size: ${iconSize * 1.5}px;
+    font-size: ${scaleBySize(iconSize, ToggleSize.Large)}px;
   `,
   [ToggleSize.Xlarge]: css`
-    font-size: ${iconSize * 2}px;
+    font-size: ${scaleBySize(iconSize, ToggleSize.Xlarge)}px;
   `,
 }
 
 const CCToggle = styled.label<ToggleProps>(
-  ({ toggleSize, checked, cssOverrides, theme: { mode } }) => css`
+  ({ toggleSize, checked, cssOverrides, theme: { mode }, disabled }) => css`
     ${toggleSizeCss[toggleSize]};
 
     box-sizing: content-box;
@@ -101,9 +113,15 @@ const CCToggle = styled.label<ToggleProps>(
       : css`
           background-color: ${mode === Mode.Dark
             ? getColor(Colors.White, 0.2)
-            : getColor(Colors.White)};
+            : getColor(Colors.Grey90)};
           border-color: ${getColor(Colors.Black, 0.06)};
         `};
+
+    ${disabled &&
+      css`
+        cursor: default;
+        opacity: 0.4;
+      `}
 
     ${cssOverrides};
   `,
@@ -128,10 +146,9 @@ const StyledIconNotChecked = styled(
 )<{ checked: boolean } & SliderIconProps>(
   ({ checked, toggleSize }: { checked: boolean } & SliderIconProps) => css`
     ${iconSizeCss[toggleSize]};
-
     ${visible(!checked)};
 
-    color: ${getColor(Colors.Black24)};
+    color: ${getColor(Colors.Black38)};
     position: absolute; /* give z-index so ::before bg is behind icon */
 
     transition: all ease-in 75ms;
@@ -184,6 +201,7 @@ type ToggleProps = {
   checked: boolean
   cssOverrides?: SimpleInterpolation
   onChange?: (checked: boolean) => void
+  disabled?: boolean
 }
 
 type InputProps = {
@@ -205,6 +223,7 @@ export class Toggle extends Component<ToggleProps> {
       checked,
       onChange,
       toggleSize,
+      disabled,
       ...domProps
     } = this.props
 
@@ -213,11 +232,13 @@ export class Toggle extends Component<ToggleProps> {
         cssOverrides={cssOverrides}
         checked={checked}
         toggleSize={toggleSize}
+        disabled={disabled}
         {...domProps}
       >
         <Input
           type="checkbox"
           checked={checked}
+          disabled={disabled}
           onChange={event => {
             onChange && onChange(event.currentTarget.checked)
           }}

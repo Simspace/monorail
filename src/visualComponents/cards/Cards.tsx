@@ -10,8 +10,8 @@ import styled, { css, SimpleInterpolation } from 'styled-components'
 
 import {
   AppName,
-  BorderRadius,
   borderRadius,
+  BorderRadius,
   Colors,
   ElevationRange,
   flexFlow,
@@ -19,6 +19,8 @@ import {
   getColor,
   getElevationShadow,
   typography,
+  zIndex,
+  ZIndexNodeName,
 } from '@monorail/helpers/exports'
 import { CommonComponentType } from '@monorail/types'
 import { AppIcon } from '@monorail/visualComponents/appIcon/AppIcon'
@@ -83,14 +85,17 @@ export const BBCardBackground = styled(
 
     ${flexFlow()};
     ${borderRadius(BorderRadius.Large)};
+    ${zIndex(ZIndexNodeName.CardBody)};
+    /* mythical z-index: 0. The shadow pseudo element needs a negative z-index, but then it disappears. Have to reset the z-index to the zero value so that it appears above the background of the page but under the background of the card. */
 
     background: ${getColor(Colors.White)};
     position: relative; /* pos:re; because the shadow pseudo element is pos:abs; */
-    z-index: 0; /* mythical z-index: 0. The shadow pseudo element needs a negative z-index, but then it disappears. Have to reset the z-index to the zero value so that it appears above the background of the page but under the background of the card. */
 
     ${cssOverrides};
 
     &::before {
+      ${zIndex(ZIndexNodeName.CardBackground)};
+
       border-radius: inherit;
       background: ${getColor(Colors.White)};
       bottom: 0;
@@ -99,13 +104,12 @@ export const BBCardBackground = styled(
       position: absolute;
       right: 0;
       top: 0;
-      z-index: 0;
     }
 
     &::after {
       ${borderRadius(BorderRadius.Medium)};
-
       ${getElevationShadow(elevation)};
+      ${zIndex(ZIndexNodeName.CardShadow)};
 
       background: ${getColor(Colors.White)};
       bottom: 2px;
@@ -114,7 +118,6 @@ export const BBCardBackground = styled(
       position: absolute;
       right: 2px;
       top: 2px;
-      z-index: -5;
     }
   `,
 )

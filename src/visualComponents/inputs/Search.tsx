@@ -137,7 +137,7 @@ type DefaultProps = {
   placeholder: string
 }
 
-type SearchProps = SearchContainerProps &
+export type SearchProps = SearchContainerProps &
   Overwrite<
     SearchInputProps,
     {

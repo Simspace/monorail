@@ -5,6 +5,7 @@ import {
   useRef,
   useState,
 } from 'react'
+import { useDebouncedCallback } from 'use-debounce'
 
 import { isNil, isNotNil } from '@monorail/sharedHelpers/typeGuards'
 
@@ -45,7 +46,7 @@ type RefCallbackNullType<T extends HTMLDivElement> = T | null
 
 export function useRefCallback<T extends HTMLDivElement>(): [
   RefCallbackNullType<T>,
-  (node: RefCallbackNullType<T>) => void
+  (node: RefCallbackNullType<T>) => void,
 ] {
   const [element, setElement] = useState<RefCallbackNullType<T>>(null)
 
@@ -85,4 +86,26 @@ export function useInterval(callback: () => void, delay: number | null) {
 
     return
   }, [delay, resetInterval])
+}
+
+export function useInputDebounce<T extends unknown>({
+  initialValue,
+  onChange,
+  delay = 500,
+}: {
+  initialValue: T
+  onChange: (value: T) => void
+  delay?: number
+}): [T, (value: T) => void] {
+  const [localValue, updateLocalValue] = useState<T>(initialValue)
+
+  const [debouncedCallback] = useDebouncedCallback(onChange, delay)
+
+  return [
+    localValue,
+    (newValue: T) => {
+      debouncedCallback(newValue)
+      updateLocalValue(newValue)
+    },
+  ]
 }

@@ -2,6 +2,9 @@ import React, { Component, RefObject } from 'react'
 import { css } from 'styled-components'
 import { Omit } from 'typelevel-ts'
 
+import { Colors } from '@monorail/helpers/color'
+import { ThemeProvider } from '@monorail/helpers/styled-components'
+import { Mode, ThemeColors } from '@monorail/helpers/theme'
 import { PopOverChildProps } from '@monorail/metaComponents/popOver/PopOver'
 import {
   BBModalContainer,
@@ -81,31 +84,42 @@ export class Overlay extends Component<Props, State> {
     const { isRendered } = this.state
 
     return (
-      <BBModalContainer
-        onClick={e => e.stopPropagation()}
-        usesScaleAnimation={usesScaleAnimation}
-        isOpen={isRendered && isOpen}
-        zIndex={zIndex}
-        ref={modalContainerRef}
+      <ThemeProvider
+        theme={theme => ({
+          ...theme,
+          [Mode.Light]: {
+            ...theme[Mode.Light],
+            [ThemeColors.ActionPrimary]: Colors.BrandLightBlue,
+            [ThemeColors.ActionSecondary]: Colors.BrandLightBlue,
+          },
+        })}
       >
-        <BBModalOverlay
+        <BBModalContainer
+          onClick={e => e.stopPropagation()}
+          usesScaleAnimation={usesScaleAnimation}
           isOpen={isRendered && isOpen}
-          onClick={onClick}
-          css={css`
-            ${isRendered
-              ? css`
-                  animation: ${isOpen
-                      ? overlayOpenAnimation
-                      : overlayCloseAnimation}
-                    linear ${modalAnimationDuration}ms forwards;
-                `
-              : ''}
-          `}
-          {...overlayProps}
-        />
+          zIndex={zIndex}
+          ref={modalContainerRef}
+        >
+          <BBModalOverlay
+            isOpen={isRendered && isOpen}
+            onClick={onClick}
+            css={css`
+              ${isRendered
+                ? css`
+                    animation: ${isOpen
+                        ? overlayOpenAnimation
+                        : overlayCloseAnimation}
+                      linear ${modalAnimationDuration}ms forwards;
+                  `
+                : ''}
+            `}
+            {...overlayProps}
+          />
 
-        {children}
-      </BBModalContainer>
+          {children}
+        </BBModalContainer>
+      </ThemeProvider>
     )
   }
 }

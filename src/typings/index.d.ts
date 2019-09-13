@@ -1,2 +1,2 @@
 /// <reference path="react-router.d.ts" />
-/// <reference types="styled-components/cssprop" />
+/// <reference path="styled-components.d.ts" />

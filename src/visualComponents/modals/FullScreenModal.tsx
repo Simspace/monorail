@@ -1,6 +1,7 @@
 import React, { ReactNode } from 'react'
 import { css } from 'styled-components'
 
+import { ZIndexNodeName, zIndexValue } from '@monorail/helpers/zIndex'
 import { PopOverChildProps } from '@monorail/metaComponents/popOver/PopOver'
 import { FCwDP } from '@monorail/sharedHelpers/react'
 import {
@@ -25,6 +26,7 @@ type DefaultProps = {
   escToClose: boolean
   iconLeft: string
   noHeader: boolean
+  zIndex: number
 }
 
 export const FullScreenModal: FCwDP<Props, DefaultProps> = ({
@@ -39,6 +41,7 @@ export const FullScreenModal: FCwDP<Props, DefaultProps> = ({
   title,
   togglePopOver,
   closingAnimationCompleted,
+  zIndex,
   ...otherProps
 }) => {
   const { modalBackgroundRef, isRendered } = useModalAnimation<HTMLDivElement>({
@@ -52,6 +55,7 @@ export const FullScreenModal: FCwDP<Props, DefaultProps> = ({
       isOpen={isOpen}
       onClick={onClick}
       togglePopOver={togglePopOver}
+      zIndex={zIndex}
     >
       <BBModalBackground
         ref={modalBackgroundRef}
@@ -93,4 +97,5 @@ FullScreenModal.defaultProps = {
   escToClose: true,
   iconLeft: '',
   noHeader: false,
+  zIndex: zIndexValue(ZIndexNodeName.Overlay),
 }

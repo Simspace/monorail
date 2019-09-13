@@ -25,7 +25,23 @@ var _IconButton = require("../buttons/IconButton");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; if (obj != null) { var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+var _StyledIconButton =
+/*#__PURE__*/
+(0, _styledComponents.default)(_IconButton.IconButton).withConfig({
+  displayName: "ActionsButtons___StyledIconButton",
+  componentId: "sc-1sqcecj-0"
+})(["", ""], p => p._css);
+
+var _StyledButton =
+/*#__PURE__*/
+(0, _styledComponents.default)(_Button.Button).withConfig({
+  displayName: "ActionsButtons___StyledButton",
+  componentId: "sc-1sqcecj-1"
+})(["", ""], p => p._css2);
 
 const ActionsButtons = ({
   display,
@@ -61,7 +77,3 @@ const ActionsButtons = ({
 };
 
 exports.ActionsButtons = ActionsButtons;
-
-var _StyledIconButton = (0, _styledComponents.default)(_IconButton.IconButton)`${p => p._css}`;
-
-var _StyledButton = (0, _styledComponents.default)(_Button.Button)`${p => p._css2}`;

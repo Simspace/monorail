@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.toSpreadable = exports.toBoolean = exports.fromTruthyFalsy = exports.getOrZero = exports.getOrEmptyString = exports.getOrEmptyArray = exports.getOrElse = exports.renderOnSome = exports.fold = exports.isOption = void 0;
+exports.all = exports.toSpreadable = exports.toBoolean = exports.fromTruthyFalsy = exports.getOrZero = exports.getOrEmptyString = exports.getOrEmptyArray = exports.getOrElse = exports.renderOnSome = exports.fold = exports.isOption = void 0;
 
 var _Foldable2v = require("fp-ts/lib/Foldable2v");
 
@@ -102,4 +102,12 @@ const toBoolean = x => fold(x, false, _function.constTrue);
 
 exports.toBoolean = toBoolean;
 const toSpreadable = (0, _Foldable2v.toArray)(_Option.option);
+/**
+ * Returns true if the option is false or if the predicate returns true when applied to the wrapped value
+ */
+
 exports.toSpreadable = toSpreadable;
+
+const all = (x, predicate) => fold(x, true, predicate);
+
+exports.all = all;

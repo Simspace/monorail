@@ -1,9 +1,8 @@
-import { MouseEvent } from 'react';
-import { SimpleInterpolation } from 'styled-components';
+import { FC, MouseEvent } from 'react';
 import { Colors } from '@monorail/helpers/exports';
-import { CommonComponentType } from '@monorail/types';
+import { CommonComponentType, CssOverridesType } from '@monorail/types';
 import { ButtonSize } from '@monorail/visualComponents/buttons/buttonTypes';
-declare type Props = CommonComponentType & {
+export declare type ArrowButtonsProps = CommonComponentType & {
     current: number;
     next?: (event: MouseEvent<Element>) => void;
     previous?: (event: MouseEvent<Element>) => void;
@@ -12,7 +11,6 @@ declare type Props = CommonComponentType & {
     size?: ButtonSize;
     arrowColor?: Colors;
     loop?: boolean;
-    cssArrowOverrides?: SimpleInterpolation;
+    cssArrowOverrides?: CssOverridesType;
 };
-export declare const ArrowButtons: (props: Props) => JSX.Element;
-export {};
+export declare const ArrowButtons: FC<ArrowButtonsProps>;

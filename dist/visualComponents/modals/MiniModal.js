@@ -17,7 +17,23 @@ var _modalTypes = require("./modalTypes");
 
 var _Overlay = require("../toggle/Overlay");
 
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; if (obj != null) { var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+var _StyledBBModalBackground =
+/*#__PURE__*/
+(0, _styledComponents.default)(_Modals.BBModalBackground).withConfig({
+  displayName: "MiniModal___StyledBBModalBackground",
+  componentId: "sc-1ji93dw-0"
+})(["", ""], p => p._css);
+
+var _StyledBBModalContent =
+/*#__PURE__*/
+(0, _styledComponents.default)(_Modals.BBModalContent).withConfig({
+  displayName: "MiniModal___StyledBBModalContent",
+  componentId: "sc-1ji93dw-1"
+})(["", ""], p => p._css2);
 
 const MiniModal = ({
   children,
@@ -73,7 +89,3 @@ const MiniModal = ({
 };
 
 exports.MiniModal = MiniModal;
-
-var _StyledBBModalBackground = (0, _styledComponents.default)(_Modals.BBModalBackground)`${p => p._css}`;
-
-var _StyledBBModalContent = (0, _styledComponents.default)(_Modals.BBModalContent)`${p => p._css2}`;

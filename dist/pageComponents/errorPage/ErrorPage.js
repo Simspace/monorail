@@ -5,19 +5,27 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.ErrorPage = void 0;
 
-var _react = _interopRequireWildcard(require("react"));
-
 var _styledComponents = _interopRequireDefault(require("styled-components"));
+
+var _react = _interopRequireWildcard(require("react"));
 
 var _exports = require("../../helpers/exports");
 
+var _styledComponents2 = require("../../helpers/styled-components");
+
 var _errorTypes = require("./errorTypes");
+
+var _Button = require("../../visualComponents/buttons/Button");
+
+var _BaseLink = require("../../visualComponents/hyperLink/BaseLink");
 
 var _Icon = require("../../visualComponents/icon/Icon");
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; if (obj != null) { var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /*
  * Styles
@@ -93,6 +101,13 @@ const errorMsg = {
   [_errorTypes.ErrorType.FourZeroFour]: 'We searched high and low, far and wide, but can’t seem to find the page you’re looking for.'
 };
 
+var _StyledButton =
+/*#__PURE__*/
+(0, _styledComponents.default)(_Button.Button).withConfig({
+  displayName: "ErrorPage___StyledButton",
+  componentId: "jn137y-6"
+})(["&&{margin-top:24px;}"]);
+
 class ErrorPage extends _react.Component {
   render() {
     const {
@@ -100,7 +115,10 @@ class ErrorPage extends _react.Component {
       title,
       errorMessage
     } = this.props;
-    return _react.default.createElement(CCErrorPage, null, errorIcon[errorType], _react.default.createElement(Title, null, title ? title : errorTitle[errorType]), _react.default.createElement(ErrorMessage, null, errorMessage ? errorMessage : errorMsg[errorType]));
+    return _react.default.createElement(CCErrorPage, null, errorIcon[errorType], _react.default.createElement(Title, null, title ? title : errorTitle[errorType]), _react.default.createElement(ErrorMessage, null, errorMessage ? errorMessage : errorMsg[errorType]), _react.default.createElement(_StyledButton, {
+      passedAs: _BaseLink.BaseLink,
+      to: '/'
+    }, "Take Me Home"));
   }
 
 }

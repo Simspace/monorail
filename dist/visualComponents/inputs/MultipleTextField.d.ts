@@ -1,7 +1,6 @@
 import { Component, ReactNode } from 'react';
 import { SimpleInterpolation } from 'styled-components';
 import { TextFieldProps } from './TextField';
-export declare const BBTextFieldLabel: import("styled-components").StyledComponent<"p", any, {}, never>;
 declare type MultipleTextFieldProps = TextFieldProps & {
     key: string;
 };

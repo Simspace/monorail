@@ -11,9 +11,15 @@ var _styledComponents = _interopRequireWildcard(require("styled-components"));
 
 var _exports = require("../../helpers/exports");
 
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
+var _Label = require("./Label");
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; if (obj != null) { var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
 const SelectGroupWrapper =
 /*#__PURE__*/
@@ -22,7 +28,7 @@ _styledComponents.default.div.withConfig({
   componentId: "sc-13rwoh4-0"
 })(({
   cssOverrides
-}) => (0, _styledComponents.css)(["margin:0;padding:0;border:0;", ";"], cssOverrides));
+}) => (0, _styledComponents.css)(["", ";border:0;margin:0;padding:0;width:256px;", ";"], (0, _exports.flexFlow)('column'), cssOverrides));
 
 const SelectElementWrapper =
 /*#__PURE__*/
@@ -38,13 +44,6 @@ _styledComponents.default.select.withConfig({
   componentId: "sc-13rwoh4-2"
 })(["width:calc(100% - 8px);height:22px;background:transparent;border:none;outline:none;cursor:pointer;&:disabled{opacity:0.6;}"]);
 
-const Label =
-/*#__PURE__*/
-_styledComponents.default.p.withConfig({
-  displayName: "Select__Label",
-  componentId: "sc-13rwoh4-3"
-})(["", ";margin-bottom:4px;height:16px;"], (0, _exports.typography)(500, _exports.FontSizes.Title5));
-
 const Select = ({
   cssOverrides,
   disabled,
@@ -56,11 +55,15 @@ const Select = ({
   options,
   placeholder,
   required,
-  value
+  value,
+  ...domProps
 }) => {
-  return _react.default.createElement(SelectGroupWrapper, {
+  return _react.default.createElement(SelectGroupWrapper, _extends({
     cssOverrides: cssOverrides
-  }, label && _react.default.createElement(Label, null, label, required && '*'), _react.default.createElement(SelectElementWrapper, null, _react.default.createElement(SelectElement, {
+  }, domProps), _react.default.createElement(_Label.Label, {
+    label: label,
+    required: required
+  }), _react.default.createElement(SelectElementWrapper, null, _react.default.createElement(SelectElement, {
     disabled: disabled,
     name: name,
     value: value,

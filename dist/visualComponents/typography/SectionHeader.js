@@ -21,7 +21,9 @@ var _Text = require("./Text");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; if (obj != null) { var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 const SectionHeaderContainer =
 /*#__PURE__*/
@@ -37,24 +39,50 @@ const iconRightStyle =
 /*#__PURE__*/
 (0, _styledComponents.css)(["margin-left:8px;"]);
 
+var _StyledAppIcon =
+/*#__PURE__*/
+(0, _styledComponents.default)(_AppIcon.AppIcon).withConfig({
+  displayName: "SectionHeader___StyledAppIcon",
+  componentId: "sc-16s6esu-1"
+})(["", ""], iconLeftStyle);
+
+var _StyledIcon =
+/*#__PURE__*/
+(0, _styledComponents.default)(_Icon.Icon).withConfig({
+  displayName: "SectionHeader___StyledIcon",
+  componentId: "sc-16s6esu-2"
+})(["", ""], iconLeftStyle);
+
+var _StyledAppIcon2 =
+/*#__PURE__*/
+(0, _styledComponents.default)(_AppIcon.AppIcon).withConfig({
+  displayName: "SectionHeader___StyledAppIcon2",
+  componentId: "sc-16s6esu-3"
+})(["", ""], iconRightStyle);
+
+var _StyledIcon2 =
+/*#__PURE__*/
+(0, _styledComponents.default)(_Icon.Icon).withConfig({
+  displayName: "SectionHeader___StyledIcon2",
+  componentId: "sc-16s6esu-4"
+})(["", ""], iconRightStyle);
+
 const SectionHeader = ({
   children,
   iconLeft,
   iconRight,
   title,
   ...otherProps
-}) => _react.default.createElement(SectionHeaderContainer, otherProps, !(0, _typeGuards.isEmptyString)(iconLeft) && ((0, _exports.isAppName)(iconLeft) ? _react.default.createElement(_AppIcon.AppIcon, {
-  appName: iconLeft,
-  cssOverrides: iconLeftStyle
+}) => _react.default.createElement(SectionHeaderContainer, otherProps, !(0, _typeGuards.isEmptyString)(iconLeft) && ((0, _exports.isAppName)(iconLeft) ? _react.default.createElement(_StyledAppIcon, {
+  appName: iconLeft
 }) : _react.default.createElement(_StyledIcon, {
   icon: iconLeft
 })), _react.default.createElement(_Text.Text, {
   fontWeight: 700,
   fontSize: _exports.FontSizes.Title5,
   as: "h1"
-}, title), !(0, _typeGuards.isEmptyString)(iconRight) && ((0, _exports.isAppName)(iconRight) ? _react.default.createElement(_AppIcon.AppIcon, {
-  appName: iconRight,
-  cssOverrides: iconRightStyle
+}, title), !(0, _typeGuards.isEmptyString)(iconRight) && ((0, _exports.isAppName)(iconRight) ? _react.default.createElement(_StyledAppIcon2, {
+  appName: iconRight
 }) : _react.default.createElement(_StyledIcon2, {
   icon: iconRight
 })), children);
@@ -64,7 +92,3 @@ SectionHeader.defaultProps = {
   iconLeft: '',
   iconRight: ''
 };
-
-var _StyledIcon = (0, _styledComponents.default)(_Icon.Icon)`${iconLeftStyle}`;
-
-var _StyledIcon2 = (0, _styledComponents.default)(_Icon.Icon)`${iconRightStyle}`;

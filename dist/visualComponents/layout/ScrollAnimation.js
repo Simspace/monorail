@@ -19,33 +19,45 @@ var _styledComponents = _interopRequireWildcard(require("../../helpers/styled-co
 
 var _typeGuards = require("../../sharedHelpers/typeGuards");
 
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; if (obj != null) { var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
-const ScrollAnimationContainer =
-/*#__PURE__*/
-_styledComponents.default.div.withConfig({
-  displayName: "ScrollAnimation__ScrollAnimationContainer",
-  componentId: "an7xln-0"
-})(({
+const ScrollAnimationContainer = _styledComponents.default.div(({
   containerCssOverrides
-}) => (0, _styledComponents.css)(["", ";overflow:hidden;height:100%;position:relative;", ";"], (0, _flex.flexFlow)(), containerCssOverrides));
+}) => _styledComponents.css`
+    ${(0, _flex.flexFlow)()};
 
-const ScrollContainer =
-/*#__PURE__*/
-_styledComponents.default.div.withConfig({
-  displayName: "ScrollAnimation__ScrollContainer",
-  componentId: "an7xln-1"
-})(["", ";overflow-x:hidden;overflow-y:auto;height:100%;"], (0, _flex.flexFlow)());
+    overflow: hidden;
+    height: 100%;
 
-const Shadow =
-/*#__PURE__*/
-_styledComponents.default.div.withConfig({
-  displayName: "ScrollAnimation__Shadow",
-  componentId: "an7xln-2"
-})(["", ";background:", ";height:16px;left:-8px;opacity:0;pointer-events:none;position:absolute;right:-8px;top:-18px;z-index:5;"], (0, _elevation.getElevationShadow)(_elevation.ElevationRange.Elevation6), (0, _color.getColor)(_color.Colors.White));
+    position: relative;
 
+    ${containerCssOverrides};
+  `);
+
+const ScrollContainer = _styledComponents.default.div`
+  ${(0, _flex.flexFlow)()};
+
+  overflow-x: hidden;
+  overflow-y: auto;
+  height: 100%;
+`;
+const Shadow = _styledComponents.default.div`
+  ${(0, _elevation.getElevationShadow)(_elevation.ElevationRange.Elevation6)};
+
+  background: ${(0, _color.getColor)(_color.Colors.White)};
+  height: 16px;
+  left: -8px;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  right: -8px;
+  top: -18px;
+  z-index: 5;
+`;
 const SCROLL_AMOUNT = 128;
 
 const ScrollAnimation = ({

@@ -29,7 +29,9 @@ var _Text = require("../typography/Text");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; if (obj != null) { var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
@@ -84,10 +86,35 @@ const SidebarContainer =
 exports.SidebarContainer = SidebarContainer;
 const SidebarMenuContainer =
 /*#__PURE__*/
-(0, _styledComponents.default)(_ScrollAnimation.ScrollAnimation)(({
+(0, _styledComponents.default)(_ScrollAnimation.ScrollAnimation).withConfig({
+  displayName: "SideBarComponents__SidebarMenuContainer",
+  componentId: "sc-1afcl1g-1"
+})(({
   isSideBarCollapsed
 }) => (0, _styledComponents.css)(["padding:0 12px;", "{margin-left:0;margin-right:0;}", ";"], SideBarMenuDivider, isSideBarCollapsed && (0, _styledComponents.css)(["", "{margin-left:-12px;margin-right:-12px;}"], SideBarMenuDivider)));
 exports.SidebarMenuContainer = SidebarMenuContainer;
+
+var _StyledListItemGraphic =
+/*#__PURE__*/
+(0, _styledComponents.default)(_List.ListItemGraphic).withConfig({
+  displayName: "SideBarComponents___StyledListItemGraphic",
+  componentId: "sc-1afcl1g-2"
+})(["color:currentColor;transform:translateX(", "px);transition:all ease 75ms,transform ", " ", "ms;"], p => p._css, p => p._css2, sideBarCollapsedTransitionDuration);
+
+var _StyledListItemSecondaryText =
+/*#__PURE__*/
+(0, _styledComponents.default)(_List.ListItemSecondaryText).withConfig({
+  displayName: "SideBarComponents___StyledListItemSecondaryText",
+  componentId: "sc-1afcl1g-3"
+})(["", ""], p => p._css3);
+
+var _StyledListItemGraphic2 =
+/*#__PURE__*/
+(0, _styledComponents.default)(_List.ListItemGraphic).withConfig({
+  displayName: "SideBarComponents___StyledListItemGraphic2",
+  componentId: "sc-1afcl1g-4"
+})(["transform:translateX(", "px);transition:all ease 75ms,transform ", " ", "ms;"], p => p._css4, p => p._css5, sideBarCollapsedTransitionDuration);
+
 const SidebarMenuItemDropDownToggle =
 /*#__PURE__*/
 (0, _styledComponents.default)(({
@@ -101,15 +128,18 @@ const SidebarMenuItemDropDownToggle =
   size: _exports.Sizes.DP40
 }, domProps), _react.default.createElement(_StyledListItemGraphic, {
   icon: iconName,
-  _css: isSideBarCollapsed ? -6 : 0,
+  _css: isSideBarCollapsed ? -10 : 0,
   _css2: (0, _exports.ease)(isSideBarCollapsed)
 }), _react.default.createElement(_List.ListItemText, null, _react.default.createElement(_List.ListItemPrimaryText, null, title), _react.default.createElement(_StyledListItemSecondaryText, {
   _css3: isActive && (0, _styledComponents.css)(["color:", ";"], (0, _exports.getColor)(_exports.Colors.AccentPurple700))
 }, subtitle)), _react.default.createElement(_StyledListItemGraphic2, {
   icon: isActive ? 'arrow_drop_up' : 'arrow_drop_down',
-  _css4: isSideBarCollapsed ? -18 : 0,
+  _css4: isSideBarCollapsed ? -24 : 0,
   _css5: (0, _exports.ease)(isSideBarCollapsed)
-})))(({
+}))).withConfig({
+  displayName: "SideBarComponents__SidebarMenuItemDropDownToggle",
+  componentId: "sc-1afcl1g-5"
+})(({
   isActive,
   isSideBarCollapsed,
   cssOverrides,
@@ -123,12 +153,33 @@ const SideBarMenuDivider =
 /*#__PURE__*/
 _styledComponents.default.div.withConfig({
   displayName: "SideBarComponents__SideBarMenuDivider",
-  componentId: "sc-1afcl1g-1"
+  componentId: "sc-1afcl1g-6"
 })(({
   isSideBarCollapsed = false
 }) => (0, _styledComponents.css)(["background:", ";height:1px;margin:15px 12px 16px;flex-shrink:0;transition:margin ", " ", "ms;", ";"], (0, _exports.getColor)(_exports.Colors.Grey90), (0, _exports.ease)(isSideBarCollapsed), sideBarCollapsedTransitionDuration, isSideBarCollapsed && (0, _styledComponents.css)(["margin-left:0px;margin-right:0px;"])));
 
 exports.SideBarMenuDivider = SideBarMenuDivider;
+
+var _StyledText =
+/*#__PURE__*/
+(0, _styledComponents.default)(_Text.Text).withConfig({
+  displayName: "SideBarComponents___StyledText",
+  componentId: "sc-1afcl1g-7"
+})(["", " justify-content:center;transition:margin ", " ", "ms;margin-left:", "px;margin-right:", "px;"], p => p._css6, p => p._css7, sideBarCollapsedTransitionDuration, p => p._css8, p => p._css9);
+
+var _StyledSpan =
+/*#__PURE__*/
+_styledComponents.default.span.withConfig({
+  displayName: "SideBarComponents___StyledSpan",
+  componentId: "sc-1afcl1g-8"
+})(["display:inline-flex;margin:0 auto;pointer-events:none;overflow:hidden;transition:flex ", " ", "ms;flex-grow:", ";"], p => p._css10, sideBarCollapsedTransitionDuration, p => p._css11);
+
+var _StyledSpan2 =
+/*#__PURE__*/
+_styledComponents.default.span.withConfig({
+  displayName: "SideBarComponents___StyledSpan2",
+  componentId: "sc-1afcl1g-9"
+})(["overflow:hidden;transition:all ", " ", "ms;", " ", ""], p => p._css12, sideBarCollapsedTransitionDuration, p => p._css13, p => p._css14);
 
 const SideBarMenuHeader = ({
   header,
@@ -158,6 +209,27 @@ const SideBarMenuHeader = ({
 
 exports.SideBarMenuHeader = SideBarMenuHeader;
 
+var _StyledListItem =
+/*#__PURE__*/
+(0, _styledComponents.default)(_List.ListItem).withConfig({
+  displayName: "SideBarComponents___StyledListItem",
+  componentId: "sc-1afcl1g-10"
+})(["padding:0 20px;"]);
+
+var _StyledIconButton =
+/*#__PURE__*/
+(0, _styledComponents.default)(_IconButton.IconButton).withConfig({
+  displayName: "SideBarComponents___StyledIconButton",
+  componentId: "sc-1afcl1g-11"
+})(["margin-right:4px;"]);
+
+var _StyledListItemText =
+/*#__PURE__*/
+(0, _styledComponents.default)(_List.ListItemText).withConfig({
+  displayName: "SideBarComponents___StyledListItemText",
+  componentId: "sc-1afcl1g-12"
+})(["margin-left:0;"]);
+
 const SidebarBack = ({
   to,
   title,
@@ -173,21 +245,3 @@ const SidebarBack = ({
 
 
 exports.SidebarBack = SidebarBack;
-
-var _StyledListItemGraphic = (0, _styledComponents.default)(_List.ListItemGraphic)`color:currentColor;transform:translateX(${p => p._css}px);transition:all ease 75ms,transform ${p => p._css2} ${sideBarCollapsedTransitionDuration}ms;`;
-
-var _StyledListItemSecondaryText = (0, _styledComponents.default)(_List.ListItemSecondaryText)`${p => p._css3}`;
-
-var _StyledListItemGraphic2 = (0, _styledComponents.default)(_List.ListItemGraphic)`transform:translateX(${p => p._css4}px);transition:all ease 75ms,transform ${p => p._css5} ${sideBarCollapsedTransitionDuration}ms;`;
-
-var _StyledText = (0, _styledComponents.default)(_Text.Text)`${p => p._css6} justify-content:center;transition:margin ${p => p._css7} ${sideBarCollapsedTransitionDuration}ms;margin-left:${p => p._css8}px;margin-right:${p => p._css9}px;`;
-
-var _StyledSpan = (0, _styledComponents.default)("span")`display:inline-flex;margin:0 auto;pointer-events:none;overflow:hidden;transition:flex ${p => p._css10} ${sideBarCollapsedTransitionDuration}ms;flex-grow:${p => p._css11};`;
-
-var _StyledSpan2 = (0, _styledComponents.default)("span")`overflow:hidden;transition:all ${p => p._css12} ${sideBarCollapsedTransitionDuration}ms;${p => p._css13} ${p => p._css14}`;
-
-var _StyledListItem = (0, _styledComponents.default)(_List.ListItem)`padding:0 20px;`;
-
-var _StyledIconButton = (0, _styledComponents.default)(_IconButton.IconButton)`margin-right:4px;`;
-
-var _StyledListItemText = (0, _styledComponents.default)(_List.ListItemText)`margin-left:0;`;

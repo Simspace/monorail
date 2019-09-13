@@ -17,30 +17,35 @@ var _theme = require("../../helpers/theme");
 
 var _HorizontalNavigationController = require("../../metaComponents/horizontalNavigation/HorizontalNavigationController");
 
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; if (obj != null) { var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // TabBarIndicator is pos:abs to this element. Also we use offsetLeft on the Tab which references this position.
-const PageLevelNavBarContainer =
-/*#__PURE__*/
-_styledComponents.default.div.withConfig({
-  displayName: "PageLevelNavBar__PageLevelNavBarContainer",
-  componentId: "sc-1dgpscw-0"
-})(({
+const PageLevelNavBarContainer = _styledComponents.default.div(({
   theme: {
     size: {
       page
     }
   }
-}) => (0, _styledComponents.css)(["", ";", ";flex-shrink:0;height:", "px;margin-top:-4px;padding:0 ", "px 0 ", "px;position:relative;"], (0, _flex.flexFlow)('row'), page.width !== 'auto' && `max-width: ${page.width + _size.sizes.page.sideSpace}px;`, _size.Sizes.DP40, _size.sizes.page.sideSpace, _size.sizes.page.sideSpace - 12));
+}) => _styledComponents.css`
+    ${(0, _flex.flexFlow)('row')};
+
+    ${page.width !== 'auto' && `max-width: ${page.width + _size.sizes.page.sideSpace}px;`};
+
+    flex-shrink: 0;
+    height: ${_size.Sizes.DP40}px;
+    margin-top: -4px;
+    padding: 0 ${_size.sizes.page.sideSpace}px 0 ${_size.sizes.page.sideSpace - 12}px;
+    position: relative;
+  `);
 
 exports.PageLevelNavBarContainer = PageLevelNavBarContainer;
 const tabBarIndicatorSideWidth = 3;
 const tabBarIndicatorBodyWidth = 10;
-const PageLevelNavBarIndicatorContainer =
-/*#__PURE__*/
-(0, _styledComponents.default)(({
+const PageLevelNavBarIndicatorContainer = (0, _styledComponents.default)(({
   left,
   width,
   duration,
@@ -54,35 +59,69 @@ const PageLevelNavBarIndicatorContainer =
 })))(({
   left,
   duration
-}) => (0, _styledComponents.css)(["", ";bottom:1px;height:3px;left:0;position:absolute;transition-duration:", "ms;transition-property:all;transition-timing-function:ease-in-out;transform-origin:bottom left;transform:translateX(", "px);"], (0, _flex.flexFlow)('row'), duration, left));
+}) => _styledComponents.css`
+    ${(0, _flex.flexFlow)('row')};
+    bottom: 1px;
+    height: 3px;
+    left: 0;
+    position: absolute;
+    transition-duration: ${duration}ms;
+    transition-property: all;
+    transition-timing-function: ease-in-out;
+    transform-origin: bottom left;
 
-const PageLevelNavBarIndicatorLeft =
-/*#__PURE__*/
-_styledComponents.default.div.withConfig({
-  displayName: "PageLevelNavBar__PageLevelNavBarIndicatorLeft",
-  componentId: "sc-1dgpscw-1"
-})(["background:", ";border-radius:3px 0 0 0;height:100%;width:", "px;position:absolute;left:0;"], (0, _theme.getThemeColor)(_theme.ThemeColors.ApplicationPrimary), tabBarIndicatorSideWidth + 1);
-
-const PageLevelNavBarIndicatorRight =
-/*#__PURE__*/
-(0, _styledComponents.default)(({
+    transform: translateX(${left}px);
+  `);
+const PageLevelNavBarIndicatorLeft = _styledComponents.default.div`
+  background: ${(0, _theme.getThemeColor)(_theme.ThemeColors.ApplicationPrimary)};
+  border-radius: 3px 0 0 0;
+  height: 100%;
+  width: ${tabBarIndicatorSideWidth + 1}px;
+  position: absolute;
+  left: 0;
+`;
+const PageLevelNavBarIndicatorRight = (0, _styledComponents.default)(({
   duration,
   width,
   ...otherProps
 }) => _react.default.createElement("div", otherProps))(({
   duration,
   width
-}) => (0, _styledComponents.css)(["background:", ";border-radius:0 3px 0 0;height:100%;width:", "px;transition-duration:", "ms;transition-property:all;transition-timing-function:ease-in-out;transform-origin:bottom left;transform:translateX( ", "px );"], (0, _theme.getThemeColor)(_theme.ThemeColors.ApplicationPrimary), tabBarIndicatorSideWidth + 1, duration, width - tabBarIndicatorBodyWidth - tabBarIndicatorSideWidth - 1));
-const PageLevelNavBarIndicatorBody =
-/*#__PURE__*/
-(0, _styledComponents.default)(({
+}) => _styledComponents.css`
+    background: ${(0, _theme.getThemeColor)(_theme.ThemeColors.ApplicationPrimary)};
+    border-radius: 0 3px 0 0;
+    height: 100%;
+    width: ${tabBarIndicatorSideWidth + 1}px;
+    transition-duration: ${duration}ms;
+    transition-property: all;
+    transition-timing-function: ease-in-out;
+    transform-origin: bottom left;
+
+    transform: translateX(
+      ${width - tabBarIndicatorBodyWidth - tabBarIndicatorSideWidth - 1}px
+    );
+  `);
+const PageLevelNavBarIndicatorBody = (0, _styledComponents.default)(({
   duration,
   width,
   ...otherProps
 }) => _react.default.createElement("div", otherProps))(({
   duration,
   width
-}) => (0, _styledComponents.css)(["background:", ";height:100%;width:", "px;transition-duration:", "ms;transition-property:all;transition-timing-function:ease-in-out;transform-origin:bottom left;transform:translateX(", "px) scaleX( ", " );"], (0, _theme.getThemeColor)(_theme.ThemeColors.ApplicationPrimary), tabBarIndicatorBodyWidth, duration, tabBarIndicatorSideWidth, (width - tabBarIndicatorSideWidth * 2) / tabBarIndicatorBodyWidth));
+}) => _styledComponents.css`
+    background: ${(0, _theme.getThemeColor)(_theme.ThemeColors.ApplicationPrimary)};
+    height: 100%;
+    width: ${tabBarIndicatorBodyWidth}px;
+    transition-duration: ${duration}ms;
+    transition-property: all;
+    transition-timing-function: ease-in-out;
+    transform-origin: bottom left;
+
+    transform: translateX(${tabBarIndicatorSideWidth}px)
+      scaleX(
+        ${(width - tabBarIndicatorSideWidth * 2) / tabBarIndicatorBodyWidth}
+      );
+  `);
 
 const PageLevelNavBar = props => {
   const {

@@ -4,7 +4,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.hasKey = hasKey;
-exports.isFunction = exports.isObject = exports.isNumber = exports.isString = exports.isFalsy = exports.isZero = exports.isEmptyString = exports.isTrue = exports.isFalse = exports.isNotNil = exports.isNil = exports.isUndefined = exports.isNull = exports.assertNever = void 0;
+exports.isFunction = exports.isObject = exports.isFinite = exports.isNumber = exports.isString = exports.isFalsy = exports.isZero = exports.isEmptyString = exports.isTrue = exports.isFalse = exports.isNotNil = exports.isNil = exports.isUndefined = exports.isNull = exports.assertNever = void 0;
 
 /**
  * Will throw a type error if switch cases aren't exhaustive.
@@ -102,11 +102,20 @@ exports.isString = isString;
 
 const isNumber = x => typeof x === 'number';
 /**
- * Type guard for the `object` primitive
+ * Type guard for finite `number` primitive
+ * false for NaN, -Infinity, Infinity
  */
 
 
 exports.isNumber = isNumber;
+
+const isFinite = x => typeof x === 'number' && Number.isFinite(x);
+/**
+ * Type guard for the `object` primitive
+ */
+
+
+exports.isFinite = isFinite;
 
 const isObject = x => !isNull(x) && typeof x === 'object' && x instanceof Object;
 /**

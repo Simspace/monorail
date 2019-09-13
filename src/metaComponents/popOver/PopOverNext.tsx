@@ -23,6 +23,8 @@ export const PopOverNext: FC<PopOverProps> = props => {
     alwaysRender = false,
     isOpen = false,
     onToggle,
+    xDirection,
+    yDirection,
   } = props
 
   const [isOpenState, setIsOpenState] = useState(false)
@@ -38,7 +40,15 @@ export const PopOverNext: FC<PopOverProps> = props => {
   }, [isOpenState])
 
   const onClick = (event: SyntheticEvent) => {
-    setPosition(getOverlayPosition(event.currentTarget, gap, toSide))
+    setPosition(
+      getOverlayPosition({
+        target: event.currentTarget,
+        gap,
+        toSide,
+        xDirection,
+        yDirection,
+      }),
+    )
     togglePopOver()
   }
 

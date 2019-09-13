@@ -1,4 +1,5 @@
 import { Either } from 'fp-ts/lib/Either';
+import { Eq } from 'fp-ts/lib/Eq';
 import { Predicate } from 'fp-ts/lib/function';
 import { IO } from 'fp-ts/lib/IO';
 import { Option } from 'fp-ts/lib/Option';
@@ -133,3 +134,8 @@ export declare const all: <A>(as: A[], p: Predicate<A>) => boolean;
  * holds true for no elements of an array.
  */
 export declare const notAny: <A>(as: A[], p: Predicate<A>) => boolean;
+/**
+ * Returns an array of elements which are in both input arrays but not in their
+ * intersection. Also known as symmetric difference or disjunctive union.
+ */
+export declare const xor: <A>(E: Eq<A>) => (xs: A[], ys: A[]) => A[];

@@ -8,7 +8,10 @@ import {
   getColor,
   typography,
 } from '@monorail/helpers/exports'
+import { css } from '@monorail/helpers/styled-components'
 import { ErrorType } from '@monorail/pageComponents/errorPage/errorTypes'
+import { Button } from '@monorail/visualComponents/buttons/Button'
+import { BaseLink } from '@monorail/visualComponents/hyperLink/BaseLink'
 import { Icon } from '@monorail/visualComponents/icon/Icon'
 
 /*
@@ -119,6 +122,19 @@ export class ErrorPage extends Component<ErrorPageProps> {
           <ErrorMessage>
             {errorMessage ? errorMessage : errorMsg[errorType]}
           </ErrorMessage>
+        }
+        {
+          <Button
+            css={css`
+              && {
+                margin-top: 24px;
+              }
+            `}
+            passedAs={BaseLink}
+            to={'/'}
+          >
+            Take Me Home
+          </Button>
         }
       </CCErrorPage>
     )

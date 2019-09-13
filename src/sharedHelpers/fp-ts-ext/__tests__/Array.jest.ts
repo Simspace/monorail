@@ -1,9 +1,9 @@
-import { array, head, mapOption } from 'fp-ts/lib/Array'
+import fc from 'fast-check'
+import { array, getEq } from 'fp-ts/lib/Array'
 import { Either, left, right } from 'fp-ts/lib/Either'
-import { Predicate } from 'fp-ts/lib/function'
+import { eqNumber, eqString } from 'fp-ts/lib/Eq'
 import { IO } from 'fp-ts/lib/IO'
-import { fromPredicate, getSetoid, some } from 'fp-ts/lib/Option'
-import { setoidString } from 'fp-ts/lib/Setoid'
+import { some } from 'fp-ts/lib/Option'
 
 import {
   all,
@@ -23,12 +23,9 @@ import {
   map,
   notAny,
   runIOs,
-  sequenceEithers,
-  sequenceOptions,
-  sequenceTaskEithers,
-  sequenceTasks,
   sortByAlpha,
   sortByNumeric,
+  xor,
 } from '../Array'
 
 const isGreaterThanZero = (x: number): boolean => x > 0
@@ -237,5 +234,100 @@ describe('runIOs', () => {
     const actual = getActual(0)
     const expected = 9
     expect(actual).toBe(expected)
+  })
+})
+
+describe('xor', () => {
+  test.each([
+    [[1, 2, 3], [4, 5, 6], [1, 2, 3, 4, 5, 6]],
+    [[1, 2, 3], [3, 4, 5, 6], [1, 2, 4, 5, 6]],
+    [[1, 2, 3, 4], [3, 5, 6], [1, 2, 4, 5, 6]],
+    [[], [], []],
+    [[1], [], [1]],
+    [[], [1], [1]],
+    [[], [-1], [-1]],
+    [[], [0], [0]],
+    [[1], [1], []],
+    [[1], [2], [1, 2]],
+  ])('when given %p and %p, should return %p', (xs, ys, expected) => {
+    const actual = xor(eqNumber)(xs, ys)
+    expect(actual).toEqual(expected)
+  })
+  test.each([
+    [['a', 'b', 'c'], ['4', '5', '6'], ['a', 'b', 'c', '4', '5', '6']],
+    [['a', 'b', 'c'], ['4', '5', '6', 'c'], ['a', 'b', '4', '5', '6']],
+    [['a', 'b', 'c', 'd', 'e'], ['c'], ['a', 'b', 'd', 'e']],
+    [[], [], []],
+    [['a'], [], ['a']],
+    [['a'], ['a'], []],
+    [['a'], ['b'], ['a', 'b']],
+  ])('when given %p and %p, should return %p', (xs, ys, expected) => {
+    const actual = xor(eqString)(xs, ys)
+    expect(actual).toEqual(expected)
+  })
+
+  describe('properties', () => {
+    const arrNumEq = getEq(eqNumber)
+    const numXor = xor(eqNumber)
+
+    test('identity', () => {
+      fc.assert(
+        fc.property(fc.array(fc.integer()), xs => {
+          return (
+            arrNumEq.equals(numXor(xs, []), xs) &&
+            arrNumEq.equals(numXor([], xs), xs)
+          )
+        }),
+      )
+    })
+
+    test('self inverse', () => {
+      fc.assert(
+        fc.property(fc.array(fc.integer()), xs => {
+          return arrNumEq.equals(numXor(xs, xs), [])
+        }),
+      )
+    })
+
+    test('combined inputs contain the result', () => {
+      fc.assert(
+        fc.property(
+          fc.array(fc.integer()),
+          fc.array(fc.integer()),
+          (xs, ys) => {
+            const combined = [...xs, ...ys]
+            return numXor(xs, ys).every(n => combined.includes(n))
+          },
+        ),
+      )
+    })
+
+    test('commutative', () => {
+      fc.assert(
+        fc.property(
+          fc.array(fc.integer()),
+          fc.array(fc.integer()),
+          (xs, ys) => {
+            return arrNumEq.equals(numXor(xs, ys).sort(), numXor(ys, xs).sort())
+          },
+        ),
+      )
+    })
+
+    test('associative', () => {
+      fc.assert(
+        fc.property(
+          fc.array(fc.integer()),
+          fc.array(fc.integer()),
+          fc.array(fc.integer()),
+          (xs, ys, zs) => {
+            return arrNumEq.equals(
+              numXor(numXor(xs, ys), zs),
+              numXor(xs, numXor(ys, zs)),
+            )
+          },
+        ),
+      )
+    })
   })
 })

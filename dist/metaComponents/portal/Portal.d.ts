@@ -1,4 +1,4 @@
-/// <reference types="styled-components/cssprop" />
+/// <reference path="../../../src/typings/styled-components.d.ts" />
 import { Component } from 'react';
 export declare class Portal extends Component<{
     document?: Document;

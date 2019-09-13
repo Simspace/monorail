@@ -71,6 +71,13 @@ export const isString = (x: unknown): x is string => typeof x === 'string'
 export const isNumber = (x: unknown): x is number => typeof x === 'number'
 
 /**
+ * Type guard for finite `number` primitive
+ * false for NaN, -Infinity, Infinity
+ */
+export const isFinite = (x: unknown): x is number =>
+  typeof x === 'number' && Number.isFinite(x)
+
+/**
  * Type guard for the `object` primitive
  */
 export const isObject = (x: unknown): x is object =>

@@ -52,7 +52,11 @@ export declare enum Colors {
     LMS = "externalLms",
     Green = "green",
     Red = "red",
-    Amber = "amber"
+    Amber = "amber",
+    Error = "error",
+    Warning = "warning",
+    Success = "success",
+    Info = "info"
 }
 declare type HSLAMapType = {
     h: number;

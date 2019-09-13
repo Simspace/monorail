@@ -48,6 +48,11 @@ export declare const isString: (x: unknown) => x is string;
  */
 export declare const isNumber: (x: unknown) => x is number;
 /**
+ * Type guard for finite `number` primitive
+ * false for NaN, -Infinity, Infinity
+ */
+export declare const isFinite: (x: unknown) => x is number;
+/**
  * Type guard for the `object` primitive
  */
 export declare const isObject: (x: unknown) => x is object;
