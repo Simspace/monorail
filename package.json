@@ -1,6 +1,6 @@
 {
   "name": "@simspace/monorail",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "description": "SimSpace Design System",
   "resolutions": {
     "@devexperts/remote-data-ts": "0.6.0",

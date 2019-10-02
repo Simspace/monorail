@@ -27,7 +27,7 @@ export declare class LoadingButton extends Component<Props, State> {
         pressed: boolean;
         size: import("./buttonTypes").ButtonSize;
         title?: string | undefined;
-        type: "button" | "reset" | "submit";
+        type: "button" | "submit" | "reset";
     };
     state: State;
     _isMounted: boolean;
