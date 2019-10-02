@@ -36,7 +36,6 @@ exports.FontSizes = FontSizes;
   FontSizes["Title3"] = "title3";
   FontSizes["Title4"] = "title4";
   FontSizes["Title5"] = "title5";
-  FontSizes["Content"] = "content";
   FontSizes["Micro"] = "micro";
 })(FontSizes || (exports.FontSizes = FontSizes = {}));
 
@@ -77,13 +76,9 @@ const fontSizeLookUp = {
     fontSize: '11px',
     lineHeight: '16px'
   },
-  [FontSizes.Content]: {
+  [FontSizes.Micro]: {
     fontSize: '8px',
     lineHeight: '10px'
-  },
-  [FontSizes.Micro]: {
-    fontSize: '5px',
-    lineHeight: '6px'
   }
 };
 
@@ -131,13 +126,9 @@ const fontMarginLookUp = {
     top: -4,
     bottom: -4
   },
-  [FontSizes.Content]: {
+  [FontSizes.Micro]: {
     top: -2,
     bottom: -2
-  },
-  [FontSizes.Micro]: {
-    top: -1,
-    bottom: -1
   }
 };
 

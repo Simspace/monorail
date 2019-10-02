@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.baseHyperLinkStyles = exports.baseDisabledStyles = exports.baseToolBarStyles = exports.baseButtonBarStyles = exports.basePrimaryStyles = exports.baseSecondaryStyles = exports.baseIconButtonChromelessStyles = exports.baseChromelessStyles = exports.baseOutlineStyles = exports.floatingBackgroundStyles = exports.floatingOutlineStyles = exports.baseFocusStyles = void 0;
+exports.baseHyperLinkStyles = exports.baseErrorBackgroundStyles = exports.baseErrorBorderStyles = exports.baseDisabledStyles = exports.baseToolBarStyles = exports.baseButtonBarStyles = exports.basePrimaryStyles = exports.baseSecondaryStyles = exports.baseIconButtonChromelessStyles = exports.baseChromelessStyles = exports.baseOutlineStyles = exports.floatingBackgroundStyles = exports.floatingOutlineStyles = exports.baseFocusStyles = void 0;
 
 var _animation = require("./animation");
 
@@ -225,8 +225,37 @@ const baseDisabledStyles = _styledComponents.css`
   cursor: default;
   opacity: 0.4;
   pointer-events: none;
+
+  &:hover,
+  &:focus,
+  &:active {
+    border-color: ${(0, _color.getColor)(_color.Colors.Black, 0.12)};
+  }
 `;
 exports.baseDisabledStyles = baseDisabledStyles;
+const baseErrorBorderStyles = _styledComponents.css`
+  border-color: ${(0, _color.getColor)(_color.Colors.Red)};
+
+  &:hover {
+    border-color: ${(0, _color.getColor)(_color.Colors.Red)};
+  }
+
+  &:focus,
+  &:active {
+    border-color: ${(0, _color.getColor)(_color.Colors.Red)};
+  }
+`;
+exports.baseErrorBorderStyles = baseErrorBorderStyles;
+const baseErrorBackgroundStyles = _styledComponents.css`
+  background: ${(0, _color.getColor)(_color.Colors.Red, 0.1)};
+
+  &:hover,
+  &:focus,
+  &:active {
+    background: ${(0, _color.getColor)(_color.Colors.Red, 0.1)};
+  }
+`;
+exports.baseErrorBackgroundStyles = baseErrorBackgroundStyles;
 
 const baseHyperLinkStyles = (color = _theme.ThemeColors.ActionPrimary) => _styledComponents.css`
   color: ${(0, _theme.getThemeColor)(color)};

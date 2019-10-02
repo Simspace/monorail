@@ -22,6 +22,8 @@ import { useDebouncedCallback } from 'use-debounce'
 
 import {
   baseDisabledStyles,
+  baseErrorBackgroundStyles,
+  baseErrorBorderStyles,
   BorderRadius,
   borderRadius,
   flexFlow,
@@ -46,6 +48,7 @@ import {
   parseAsDropdownItem,
 } from '@monorail/visualComponents/dropdown/helpers'
 import { Icon } from '@monorail/visualComponents/icon/Icon'
+import { ErrorProps } from '@monorail/visualComponents/inputs/StdErr'
 import {
   TextField,
   TextFieldProps,
@@ -68,19 +71,20 @@ export type DropdownChangeHandler<D> = (
   downshiftProps?: ControllerStateAndHelpers<D>,
 ) => void
 
-export type DropdownProps<D = DropdownItemType> = CommonComponentType & {
-  itemToDropdownType?: (item: D) => DropdownItemType
-  renderItem?: (props: RenderItemProps<D>) => ReactElement
-  renderHandler?: (props: RenderHandlerProps<D>) => ReactElement
-  items: Array<D>
-  matchItem?: (item: D, text: string) => boolean
-  value?: DropdownItemValue
-  onChange?: DropdownChangeHandler<D>
-  document?: Document
-  placeholder?: string
-  disabled?: boolean
-  searchable?: boolean
-}
+export type DropdownProps<D = DropdownItemType> = CommonComponentType &
+  ErrorProps & {
+    itemToDropdownType?: (item: D) => DropdownItemType
+    renderItem?: (props: RenderItemProps<D>) => ReactElement
+    renderHandler?: (props: RenderHandlerProps<D>) => ReactElement
+    items: Array<D>
+    matchItem?: (item: D, text: string) => boolean
+    value?: DropdownItemValue
+    onChange?: DropdownChangeHandler<D>
+    document?: Document
+    placeholder?: string
+    disabled?: boolean
+    searchable?: boolean
+  }
 
 const DropdownContainer = styled.div<CommonComponentType>`
   ${typography(400, FontSizes.Title5)};
@@ -107,7 +111,10 @@ const RootContainer = styled.div<RootContainerProps>(
   `,
 )
 
-const TextFieldStyles = (searching: boolean = false) => css`
+const TextFieldStyles = (
+  searching: boolean = false,
+  err: boolean = false,
+) => css`
   border-radius: inherit;
   bottom: 0;
   left: 0;
@@ -117,6 +124,8 @@ const TextFieldStyles = (searching: boolean = false) => css`
   width: auto;
 
   input {
+    ${err && baseErrorBackgroundStyles}
+    ${err && baseErrorBorderStyles}
     ${!searching && 'text-indent: -100vw;'};
 
     border-radius: inherit;
@@ -171,6 +180,7 @@ export const Dropdown = <D extends unknown = DropdownItemType>({
   matchItem,
   renderHandler,
   renderItem,
+  err,
   ...domProps
 }: DropdownProps<D>): ReactElement<DropdownProps<D>> => {
   const [inputText, setInputText] = useState('')
@@ -181,7 +191,7 @@ export const Dropdown = <D extends unknown = DropdownItemType>({
     750,
   )
 
-  const inputRef = useRef<TextField>(null)
+  const inputRef = useRef<HTMLInputElement>(null)
   const menuRef = useRef<HTMLDivElement>(null)
 
   const getDropdownItem = useCallback(
@@ -450,7 +460,7 @@ export const Dropdown = <D extends unknown = DropdownItemType>({
     return (
       <HandlerContainer ref={menuRef}>
         <TextField
-          css={TextFieldStyles(searching)}
+          css={TextFieldStyles(searching, err)}
           {...getInputProps(inputProps)}
           disabled={disabled}
           iconLeft={searching ? 'search' : ''}

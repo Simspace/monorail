@@ -9,9 +9,6 @@ var _strings = require("../strings");
 
 var _Setoid = require("./Setoid");
 
-/**
- * Determines ordering of two numbers (numeric comparison)
- */
 const numericCompare = (x, y) => x < y ? -1 : x > y ? 1 : 0;
 /**
  * Ord instance for number
@@ -21,11 +18,11 @@ const numericCompare = (x, y) => x < y ? -1 : x > y ? 1 : 0;
 exports.numericCompare = numericCompare;
 const ordNumeric = { ..._Setoid.setoidStrict,
   compare: numericCompare
-  /**
-   * Determines ordering of two strings (alphabetic comparison)
-   */
-
 };
+/**
+ * Determines ordering of two strings (alphabetic comparison)
+ */
+
 exports.ordNumeric = ordNumeric;
 
 const alphaCompare = (x, y) => x < y ? -1 : x > y ? 1 : 0;
@@ -37,11 +34,11 @@ const alphaCompare = (x, y) => x < y ? -1 : x > y ? 1 : 0;
 exports.alphaCompare = alphaCompare;
 const ordAlpha = { ..._Setoid.setoidStrict,
   compare: alphaCompare
-  /**
-   * Comparator for RecordWithName, comparing lowercase names alphabetically
-   */
-
 };
+/**
+ * Comparator for RecordWithName, comparing lowercase names alphabetically
+ */
+
 exports.ordAlpha = ordAlpha;
 
 const recordWithNameLowerComparator = (a, b) => {

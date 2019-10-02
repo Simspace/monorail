@@ -1,13 +1,13 @@
 import { SFC } from 'react';
 import { SimpleInterpolation } from 'styled-components';
 import { SelectOption } from '@monorail/visualComponents/inputs/Select';
-export declare type CheckmarkSelectValue = {
+export declare type CheckboxSelectValue = {
     enabled: boolean;
     value: string;
 };
 export declare type CheckboxSelectProps = {
-    onChange: (value: CheckmarkSelectValue) => void;
-    value: CheckmarkSelectValue;
+    onChange: (value: CheckboxSelectValue) => void;
+    value: CheckboxSelectValue;
     cssOverrides?: SimpleInterpolation;
     disabled?: boolean;
     readOnly?: boolean;

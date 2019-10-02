@@ -170,7 +170,15 @@ const Collection = props => {
     isActive: collectionView === CollectionView.Card,
     onClick: () => setCollectionView(CollectionView.Card),
     icon: "view_module"
-  })), passedSearchInput), _react.default.createElement(CollectionContainer, null, _react.default.createElement(_StyledReactTable, {
+  })), passedSearchInput), _react.default.createElement(CollectionContainer, null, _react.default.createElement(_styledComponents2.ThemeProvider, {
+    theme: theme => ({ ...theme,
+      size: { ...theme.size,
+        table: {
+          margin: 32
+        }
+      }
+    })
+  }, _react.default.createElement(_StyledReactTable, {
     sorted: sorted,
     onSortedChange: onSortedChange,
     columns: columns,
@@ -190,7 +198,7 @@ const Collection = props => {
       collectionView: collectionView
     }, thProps)),
     _css: collectionView === CollectionView.Card ? theadOverrides : ''
-  }))), [collectionView, columns, getReactTableComponentProps, getTbodyComponent, getTrComponent, getTrGroupComponent, isLoading, onSortedChange, setCollectionView, sorted]);
+  })))), [collectionView, columns, getReactTableComponentProps, getTbodyComponent, getTrComponent, getTrGroupComponent, isLoading, onSortedChange, setCollectionView, sorted]);
 
   if ('searchInput' in props) {
     return renderCollection({

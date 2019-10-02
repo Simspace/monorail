@@ -4,6 +4,7 @@ import { Colors } from '@monorail/helpers/exports';
 export declare const SimSpaceLogo: ComponentType<{
     background?: Colors.BrandDarkBlue | Colors.BrandLightBlue;
     cssOverrides?: SimpleInterpolation;
+    className?: string;
 }>;
 export declare const SimSpaceLogoMark: ComponentType<{
     background?: Colors.BrandDarkBlue | Colors.BrandLightBlue;

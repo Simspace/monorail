@@ -20,7 +20,7 @@
     "typelevel-ts": "0.3.5"
   },
   "engines": {
-    "node": "8.16.0 || 10.15.1"
+    "node": "8.16.0 || 10.15.1 || 12.10.0"
   },
   "scripts": {
     "prebuild": "yarn clean && yarn",

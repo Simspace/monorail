@@ -39,6 +39,9 @@ export interface GlobalAppThemeInterface {
         page: {
             width: 'auto' | number;
         };
+        table: {
+            margin: 16 | 32;
+        };
     };
 }
 export declare const monorailTheme: GlobalAppThemeInterface;

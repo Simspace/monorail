@@ -17,9 +17,6 @@ var _Task = require("fp-ts/lib/Task");
 
 var _TaskEither = require("fp-ts/lib/TaskEither");
 
-/**
- * sequence utility for a tuple containing Options of mixed value types
- */
 const sequenceOptionsTuple = (0, _Apply.sequenceT)(_Option.option);
 /**
  * sequence utility for a tuple containing Eithers of mixed value types

@@ -23,7 +23,6 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// TabBarIndicator is pos:abs to this element. Also we use offsetLeft on the Tab which references this position.
 const PageLevelNavBarContainer = _styledComponents.default.div(({
   theme: {
     size: {

@@ -35,7 +35,9 @@ const SelectElementWrapper =
 _styledComponents.default.div.withConfig({
   displayName: "Select__SelectElementWrapper",
   componentId: "sc-13rwoh4-1"
-})(["background-color:white;width:100%;height:24px;border:1px solid #e5e5e5;padding:0 0 0 0;border-radius:3px;&:hover{cursor:pointer;}"]);
+})(({
+  err
+}) => (0, _styledComponents.css)(["background-color:white;width:100%;height:24px;border:1px solid #e5e5e5;padding:0 0 0 0;border-radius:3px;&:hover{cursor:pointer;}", ";"], err && _exports.baseErrorBorderStyles));
 
 const SelectElement =
 /*#__PURE__*/
@@ -56,6 +58,7 @@ const Select = ({
   placeholder,
   required,
   value,
+  err,
   ...domProps
 }) => {
   return _react.default.createElement(SelectGroupWrapper, _extends({
@@ -63,7 +66,9 @@ const Select = ({
   }, domProps), _react.default.createElement(_Label.Label, {
     label: label,
     required: required
-  }), _react.default.createElement(SelectElementWrapper, null, _react.default.createElement(SelectElement, {
+  }), _react.default.createElement(SelectElementWrapper, {
+    err: err
+  }, _react.default.createElement(SelectElement, {
     disabled: disabled,
     name: name,
     value: value,

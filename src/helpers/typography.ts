@@ -25,7 +25,6 @@ export enum FontSizes {
   Title3 = 'title3',
   Title4 = 'title4',
   Title5 = 'title5',
-  Content = 'content',
   Micro = 'micro',
 }
 
@@ -66,13 +65,9 @@ const fontSizeLookUp = {
     fontSize: '11px',
     lineHeight: '16px',
   },
-  [FontSizes.Content]: {
+  [FontSizes.Micro]: {
     fontSize: '8px',
     lineHeight: '10px',
-  },
-  [FontSizes.Micro]: {
-    fontSize: '5px',
-    lineHeight: '6px',
   },
 }
 export const typography = (
@@ -127,13 +122,9 @@ const fontMarginLookUp: { [key in FontSizes]: Margin } = {
     top: -4,
     bottom: -4,
   },
-  [FontSizes.Content]: {
+  [FontSizes.Micro]: {
     top: -2,
     bottom: -2,
-  },
-  [FontSizes.Micro]: {
-    top: -1,
-    bottom: -1,
   },
 }
 export const typographyMargin = (

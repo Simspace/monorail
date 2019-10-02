@@ -16,6 +16,7 @@ const LogoSvg = styled.svg<CommonComponentType>(
 export const SimSpaceLogo: ComponentType<{
   background?: Colors.BrandDarkBlue | Colors.BrandLightBlue
   cssOverrides?: SimpleInterpolation
+  className?: string
 }> = ({ background, ...otherProps }) => {
   let primaryColor
   let secondaryColor

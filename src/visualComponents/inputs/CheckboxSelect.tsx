@@ -23,11 +23,11 @@ const checkboxSelectStyles = css`
   }
 `
 
-export type CheckmarkSelectValue = { enabled: boolean; value: string }
+export type CheckboxSelectValue = { enabled: boolean; value: string }
 
 export type CheckboxSelectProps = {
-  onChange: (value: CheckmarkSelectValue) => void
-  value: CheckmarkSelectValue
+  onChange: (value: CheckboxSelectValue) => void
+  value: CheckboxSelectValue
   cssOverrides?: SimpleInterpolation
   disabled?: boolean
   readOnly?: boolean

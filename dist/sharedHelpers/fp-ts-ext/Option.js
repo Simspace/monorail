@@ -13,9 +13,6 @@ var _Option = require("fp-ts/lib/Option");
 
 var _typeGuards = require("../typeGuards");
 
-/**
- * type guard for Option
- */
 const isOption = x => {
   if (!(0, _typeGuards.isNil)(x)) {
     const x_ = x;

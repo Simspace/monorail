@@ -140,7 +140,7 @@ export const ListItemPrimaryText = styled.span<CommonComponentType>(
 
 export const ListItemSecondaryText = styled.span<CommonComponentType>(
   ({ cssOverrides }) => css`
-    ${typography(500, FontSizes.Content, 'auto 6px')};
+    ${typography(500, FontSizes.Micro, 'auto 6px')};
     ${ellipsis};
 
     color: ${getThemeColor(ThemeColors.Text600)};

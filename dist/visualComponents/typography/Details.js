@@ -25,21 +25,20 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// Property Styles
 const propertySizeStyles = {
   [_detailsTypes.DetailsSize.Compact]: _styledComponents.css`
-    ${(0, _exports.typography)(500, _exports.FontSizes.Content)};
+    ${(0, _exports.typography)(500, _exports.FontSizes.Micro)};
 
     color: ${(0, _theme.getThemeColor)(_theme.ThemeColors.Text500)};
     text-transform: uppercase;
   `,
   [_detailsTypes.DetailsSize.Default]: _styledComponents.css`
-    ${(0, _exports.typography)(500, _exports.FontSizes.Content)};
+    ${(0, _exports.typography)(500, _exports.FontSizes.Micro)};
 
     color: ${(0, _theme.getThemeColor)(_theme.ThemeColors.Text700)};
   `,
   [_detailsTypes.DetailsSize.Large]: _styledComponents.css`
-    ${(0, _exports.typography)(700, _exports.FontSizes.Content)};
+    ${(0, _exports.typography)(700, _exports.FontSizes.Micro)};
 
     color: ${(0, _theme.getThemeColor)(_theme.ThemeColors.Text700)};
   `

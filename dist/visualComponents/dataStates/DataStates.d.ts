@@ -19,3 +19,7 @@ export declare const CustomNoResults: FC<{
     detailText: Option<string>;
     cssOverrides?: Array<InterpolationValue>;
 }>;
+export declare const Banner: import("styled-components").StyledComponent<"div", any, {}, never>;
+export declare const Detail: import("styled-components").StyledComponent<"div", any, {}, never>;
+export declare const IconBox: import("styled-components").StyledComponent<"div", any, {}, never>;
+export declare const NoResultsIcon: () => JSX.Element;

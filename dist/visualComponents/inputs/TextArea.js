@@ -15,15 +15,14 @@ var _typeGuards = require("../../sharedHelpers/typeGuards");
 
 var _Label = require("./Label");
 
+var _StdErr = require("./StdErr");
+
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; if (obj != null) { var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
-/*
- * Styles
- */
 const TextAreaContainer =
 /*#__PURE__*/
 _styledComponents.default.label.withConfig({
@@ -42,8 +41,10 @@ _styledComponents.default.textarea.withConfig({
   componentId: "sc-1vltn06-1"
 })(({
   chromeless,
-  compact
-}) => (0, _styledComponents.css)(["", ";", ";border:1px solid ", ";box-sizing:border-box;color:", ";outline:none;padding:4px 6px 4px 6px;resize:none;width:100%;", ";::placeholder{color:", ";font-style:italic;}&:hover{border:1px solid ", ";}&:focus,&:active{border:1px solid ", ";}", ";", ";"], (0, _exports.typography)(400, _exports.FontSizes.Title5), (0, _exports.borderRadius)(), (0, _exports.getColor)(_exports.Colors.Black, 0.12), (0, _exports.getColor)(_exports.Colors.Black89), _exports.buttonTransition, (0, _exports.getColor)(_exports.Colors.Black54), (0, _exports.getColor)(_exports.Colors.Black, 0.3), (0, _exports.getColor)(_exports.Colors.BrandLightBlue), chromeless && (0, _styledComponents.css)(["border:1px solid transparent;"]), compact && (0, _styledComponents.css)(["overflow:hidden;"])));
+  compact,
+  height,
+  err
+}) => (0, _styledComponents.css)(["", ";", ";border:1px solid ", ";box-sizing:border-box;color:", ";height:", "px;outline:none;padding:4px 6px 4px 6px;resize:none;width:100%;", ";::placeholder{color:", ";font-style:italic;}&:hover{border:1px solid ", ";}&:focus,&:active{border:1px solid ", ";}", ";", ";", ";"], (0, _exports.typography)(400, _exports.FontSizes.Title5), (0, _exports.borderRadius)(), (0, _exports.getColor)(_exports.Colors.Black, 0.12), (0, _exports.getColor)(_exports.Colors.Black89), height ? height : '64', _exports.buttonTransition, (0, _exports.getColor)(_exports.Colors.Black54), (0, _exports.getColor)(_exports.Colors.Black, 0.3), (0, _exports.getColor)(_exports.Colors.BrandLightBlue), chromeless && (0, _styledComponents.css)(["border:1px solid transparent;"]), compact && (0, _styledComponents.css)(["overflow:hidden;"]), err && _exports.baseErrorBorderStyles));
 /*
  * Types
  */
@@ -99,15 +100,20 @@ class TextArea extends _react.Component {
       compact,
       cssOverrides,
       disabled,
+      height,
       label,
       onChange,
       placeholder,
       readOnly,
       required,
+      hasRequiredAsterisk,
       value,
       onBlur,
       name,
       className,
+      err,
+      msg,
+      hideStdErr = false,
       ...otherProps
     } = this.props;
     return _react.default.createElement(TextAreaContainer, {
@@ -115,12 +121,14 @@ class TextArea extends _react.Component {
       className: className
     }, _react.default.createElement(_Label.Label, {
       label: label,
-      required: required
+      required: hasRequiredAsterisk || required,
+      err: err
     }), _react.default.createElement(TextAreaInput, _extends({
       chromeless: chromeless,
       className: "new-textarea",
       compact: compact,
       disabled: disabled,
+      height: height,
       ref: this.textArea,
       onChange: this.onChange,
       placeholder: placeholder,
@@ -129,8 +137,12 @@ class TextArea extends _react.Component {
       rows: compact ? 1 : 3,
       value: value,
       onBlur: onBlur,
-      name: name
-    }, otherProps)));
+      name: name,
+      err: err
+    }, otherProps)), !hideStdErr && _react.default.createElement(_StdErr.StdErr, {
+      err: err,
+      msg: msg
+    }));
   }
 
 }

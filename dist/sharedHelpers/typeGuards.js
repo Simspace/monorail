@@ -6,9 +6,6 @@ Object.defineProperty(exports, "__esModule", {
 exports.hasKey = hasKey;
 exports.isFunction = exports.isObject = exports.isFinite = exports.isNumber = exports.isString = exports.isFalsy = exports.isZero = exports.isEmptyString = exports.isTrue = exports.isFalse = exports.isNotNil = exports.isNil = exports.isUndefined = exports.isNull = exports.assertNever = void 0;
 
-/**
- * Will throw a type error if switch cases aren't exhaustive.
- */
 const assertNever = x => {
   throw new Error(x);
 };

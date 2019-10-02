@@ -12,4 +12,6 @@ export declare const basePrimaryStyles: (backgroundColor?: ThemeColors, color?: 
 export declare const baseButtonBarStyles: (color?: Colors) => import("styled-components").FlattenSimpleInterpolation;
 export declare const baseToolBarStyles: (color?: Colors) => import("styled-components").FlattenSimpleInterpolation;
 export declare const baseDisabledStyles: import("styled-components").FlattenSimpleInterpolation;
+export declare const baseErrorBorderStyles: import("styled-components").FlattenSimpleInterpolation;
+export declare const baseErrorBackgroundStyles: import("styled-components").FlattenSimpleInterpolation;
 export declare const baseHyperLinkStyles: (color?: ThemeColors) => import("styled-components").FlattenInterpolation<import("styled-components").ThemeProps<import("./theme").GlobalAppThemeInterface>>;

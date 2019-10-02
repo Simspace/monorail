@@ -1,4 +1,5 @@
 import { ChangeEvent, SFC } from 'react';
+import { ErrorProps } from '@monorail/visualComponents/inputs/StdErr';
 export declare type ChoiceOption = {
     label: string;
     key: string;
@@ -6,11 +7,12 @@ export declare type ChoiceOption = {
     disabled?: boolean;
     'data-test-id'?: string;
 };
-export declare type RadioGroupProps = {
+export declare type RadioGroupProps = ErrorProps & {
     label: string;
     options: Array<ChoiceOption>;
     onSelect: (key: string, val: ChangeEvent<HTMLInputElement>) => void;
     value: string;
-    required: boolean;
+    required?: boolean;
+    hasRequiredAsterisk?: boolean;
 };
 export declare const RadioGroup: SFC<RadioGroupProps>;

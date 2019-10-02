@@ -16,5 +16,6 @@ export declare type SelectProps = {
     placeholder?: string;
     required?: boolean;
     value?: string | Array<string> | number;
+    err?: boolean;
 };
 export declare const Select: SFC<SelectProps>;

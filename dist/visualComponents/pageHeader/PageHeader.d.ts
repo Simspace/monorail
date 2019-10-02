@@ -12,7 +12,7 @@ declare type PageHeaderNavigationProps = {
 };
 export declare type PageHeaderProps = CommonComponentType & PageHeaderNavigationProps & {
     goBack?: MouseEventHandler | string;
-    title: string;
+    title: ReactNode;
     pageName?: string;
     actions?: ReactNode;
 };

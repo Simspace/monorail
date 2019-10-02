@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.xor = exports.notAny = exports.all = exports.any = exports.intersperseMapWithIndex = exports.intersperseMap = exports.intersperse = exports.liftOption2 = exports.sortByNumeric = exports.sortByAlpha = exports.leftsAndRights = exports.traverseTaskEithers = exports.traverseTasks = exports.traverseEithers = exports.traverseOptions = exports.sequenceRemoteData = exports.sequenceTaskEithers = exports.sequenceTasks = exports.sequenceEithers = exports.sequenceOptions = exports.len = exports.contains = exports.runIOs = exports.forEachWithIndex = exports.forEach = exports.concatFlipped = exports.concat = exports.map = void 0;
+exports.arrayToRecord = exports.xor = exports.notAny = exports.all = exports.any = exports.intersperseMapWithIndex = exports.intersperseMap = exports.intersperse = exports.liftOption2 = exports.sortByNumeric = exports.sortByAlpha = exports.leftsAndRights = exports.traverseTaskEithers = exports.traverseTasks = exports.traverseEithers = exports.traverseOptions = exports.sequenceRemoteData = exports.sequenceTaskEithers = exports.sequenceTasks = exports.sequenceEithers = exports.sequenceOptions = exports.len = exports.contains = exports.runIOs = exports.forEachWithIndex = exports.forEach = exports.concatFlipped = exports.concat = exports.map = void 0;
 
 var _remoteDataTs = require("@devexperts/remote-data-ts");
 
@@ -19,9 +19,13 @@ var _function = require("fp-ts/lib/function");
 
 var _Option = require("fp-ts/lib/Option");
 
+var _Record = require("fp-ts/lib/Record");
+
 var _Task = require("fp-ts/lib/Task");
 
 var _TaskEither = require("fp-ts/lib/TaskEither");
+
+var _typeGuards = require("../typeGuards");
 
 var _IO = require("./IO");
 
@@ -31,9 +35,6 @@ var _Ord = require("./Ord");
 
 var _Setoid = require("./Setoid");
 
-/**
- * Curried version of fp-ts' `map` for Arrays
- */
 const map = f => xs => _Array.array.map(xs, f);
 /**
  * Curried version of fp-ts' `concat`/'alt' for Arrays.
@@ -330,5 +331,21 @@ const notAny = (as, p) => {
 exports.notAny = notAny;
 
 const xor = E => (xs, ys) => [...(0, _Array.difference)(E)(xs, ys), ...(0, _Array.difference)(E)(ys, xs)];
+/**
+ * Returns an object made up of a keys from the result the accessor function
+ */
+
 
 exports.xor = xor;
+
+const arrayToRecord = (keyAccessor, mapValue) => arr => {
+  return arr.reduce((acc, curr) => {
+    const key = keyAccessor(curr);
+    const value = (0, _typeGuards.isNotNil)(mapValue) ? mapValue(curr) : curr;
+    return (0, _Record.lookup)(key, acc).fold({ ...acc,
+      [key]: value
+    }, () => acc);
+  }, {});
+};
+
+exports.arrayToRecord = arrayToRecord;

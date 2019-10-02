@@ -13,9 +13,6 @@ var _typeGuards = require("../../sharedHelpers/typeGuards");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-/**
- * Creates a modal-root at body level if it doesn't exist already
- */
 if ((0, _typeGuards.isNil)(document.getElementById('modal-root'))) {
   const newModalRoot = document.createElement('div');
   newModalRoot.setAttribute('id', 'modal-root');

@@ -1,22 +1,25 @@
-import React, { CSSProperties, FC } from 'react';
-import { Column, ControlledStateOverrideProps, SortedChangeFunction, SortingRule, TableProps } from 'react-table';
+import React, { CSSProperties, FC, MouseEvent } from 'react';
+import { Column, ControlledStateOverrideProps, ExpandedChangeFunction, SortedChangeFunction, SortingRule, TableProps } from 'react-table';
 export declare const TableComponent: import("styled-components").StyledComponent<"div", import("../../helpers/theme").GlobalAppThemeInterface, {}, never>;
 export declare const TheadComponentContainer: import("styled-components").StyledComponent<"div", import("../../helpers/theme").GlobalAppThemeInterface, {
     isFilterBar: boolean;
+    isGroupBar: boolean;
 }, never>;
 export declare type TheadComponentProps = {
     className: string;
-    hasFilter?: boolean;
     style?: CSSProperties;
 };
 export declare const TheadComponent: FC<TheadComponentProps>;
 export declare function useSort(): [Array<SortingRule>, SortedChangeFunction];
 export declare type ThComponentProps = {
-    toggleSort: () => void;
     className: string;
     column?: Column;
+    isExpanderColumn: boolean;
     isFiltered?: boolean;
+    show: boolean;
     style?: CSSProperties;
+    isGroup?: boolean;
+    toggleSort: () => void;
 };
 export declare const ThComponent: FC<ThComponentProps>;
 declare type FilterComponentProps = {
@@ -29,15 +32,47 @@ declare type FilterComponentProps = {
 };
 export declare const FilterComponent: FC<FilterComponentProps>;
 export declare const ResizerComponent: import("styled-components").StyledComponent<"div", import("../../helpers/theme").GlobalAppThemeInterface, {}, never>;
-export declare const TrGroupComponent: import("styled-components").StyledComponent<"div", import("../../helpers/theme").GlobalAppThemeInterface, {}, never>;
-export declare const TdComponent: import("styled-components").StyledComponent<"div", import("../../helpers/theme").GlobalAppThemeInterface, {}, never>;
+export declare type TrGroupComponentProps = {
+    isGroup?: boolean;
+};
+export declare const TrGroupComponent: import("styled-components").StyledComponent<"div", import("../../helpers/theme").GlobalAppThemeInterface, {
+    isGroup?: boolean | undefined;
+}, never>;
+declare enum TdComponentType {
+    Default = "default",
+    Actions = "actions",
+    Expandable = "expandable",
+    Hidden = "hidden"
+}
+declare type TdComponentContainerProps = {
+    className: string;
+    style?: CSSProperties;
+    onClick: (event: MouseEvent<HTMLDivElement>) => void;
+    tdComponentType: TdComponentType;
+};
+export declare const TdComponentContainer: import("styled-components").StyledComponent<"div", import("../../helpers/theme").GlobalAppThemeInterface, TdComponentContainerProps, never>;
+export declare type TdComponentProps = Omit<TdComponentContainerProps, 'tdComponentType'> & {
+    isExpanderColumn: boolean;
+};
+export declare const TdComponent: FC<TdComponentProps>;
 export declare const TBodyComponent: import("styled-components").StyledComponent<({ style, ...domProps }: {
     style?: {
         [key: string]: React.ReactText;
     } | undefined;
 }) => JSX.Element, import("../../helpers/theme").GlobalAppThemeInterface, {}, never>;
 export declare const NoDataContainer: import("styled-components").StyledComponent<"div", import("../../helpers/theme").GlobalAppThemeInterface, {}, never>;
+export declare const NoDataComponentVertical: FC;
+export declare const NoDataComponentHorizontal: FC;
+export declare const ExpanderComponent: TableCellRenderFunction<unknown>;
+export declare const PivotValueComponent: TableCellRenderFunction<unknown>;
 export declare const MonorailReactTableOverrides: Partial<TableProps>;
+export declare function useTableExpandState<T extends object>({ data, pivotKey, }: {
+    data: Array<T>;
+    pivotKey: keyof T;
+}): {
+    expanded: Array<boolean>;
+    onExpandedChange: ExpandedChangeFunction;
+};
 export interface Filter {
     id: string;
     value: string;
@@ -69,10 +104,10 @@ declare type RowInfo<I> = {
     /** Original object passed to row */
     original: I;
 };
-export interface CellInfo<I> extends RowInfo<I>, Pick<ControlledStateOverrideProps, 'resized'> {
+export interface CellInfo<T, V = string | number> extends RowInfo<T>, Pick<ControlledStateOverrideProps, 'resized'> {
     isExpanded: boolean;
     column: Column;
-    value: string | number;
+    value: V;
     pivoted: boolean;
     expander: boolean;
     show: boolean;
@@ -83,7 +118,8 @@ export interface CellInfo<I> extends RowInfo<I>, Pick<ControlledStateOverridePro
     classes: Array<string>;
     styles: object;
 }
-export declare type TableCellRenderer<I> = ((cellInfo: CellInfo<I>, column: unknown) => React.ReactNode) | React.ReactNode;
+export declare type TableCellRenderFunction<I, V = string | number> = (cellInfo: CellInfo<I, V>, column: unknown) => React.ReactNode;
+export declare type TableCellRenderer<I, V = string | number> = TableCellRenderFunction<I, V> | React.ReactNode;
 export declare type ComponentPropsGetterR<I> = (finalState: {
     filtered?: Array<{
         id: string;

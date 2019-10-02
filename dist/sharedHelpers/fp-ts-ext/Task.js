@@ -7,10 +7,6 @@ exports.constRunTask = exports.runTask = exports.newTask = void 0;
 
 var _Task = require("fp-ts/lib/Task");
 
-/**
- * Task constructor function
- *
- */
 const newTask = f => new _Task.Task(f);
 /**
  * Run a Task (a lazy Promise)

@@ -215,6 +215,35 @@ export const baseDisabledStyles = css`
   cursor: default;
   opacity: 0.4;
   pointer-events: none;
+
+  &:hover,
+  &:focus,
+  &:active {
+    border-color: ${getColor(Colors.Black, 0.12)};
+  }
+`
+
+export const baseErrorBorderStyles = css`
+  border-color: ${getColor(Colors.Red)};
+
+  &:hover {
+    border-color: ${getColor(Colors.Red)};
+  }
+
+  &:focus,
+  &:active {
+    border-color: ${getColor(Colors.Red)};
+  }
+`
+
+export const baseErrorBackgroundStyles = css`
+  background: ${getColor(Colors.Red, 0.1)};
+
+  &:hover,
+  &:focus,
+  &:active {
+    background: ${getColor(Colors.Red, 0.1)};
+  }
 `
 
 export const baseHyperLinkStyles = (

@@ -2,14 +2,14 @@ import { Colors } from '@monorail/helpers/color'
 
 export const categoryReadableName = (entryCategory: string) => {
   switch (entryCategory) {
+    case 'academy-course-plan':
+      return 'Course Plan'
     case 'academy-package':
-      return 'Event Plan'
+      return 'Training Package'
     case 'academy-content-module':
       return 'Content Module'
     case 'hardhat-specification':
       return 'Network Spec'
-    case 'operating-system':
-      return 'Operating System'
     case 'physical-asset':
       return 'Physical Asset'
     case 'vm-template':
@@ -25,14 +25,14 @@ export const categoryReadableName = (entryCategory: string) => {
 
 export const categoryIcon = (entryCategory: string) => {
   switch (entryCategory) {
+    case 'academy-course-plan':
+      return 'local_library'
     case 'academy-package':
       return 'school'
     case 'academy-content-module':
       return 'category'
     case 'hardhat-specification':
       return 'device_hub'
-    case 'operating-system':
-      return 'code'
     case 'physical-asset':
       return 'router'
     case 'range':
@@ -58,7 +58,6 @@ export const categoryIcon = (entryCategory: string) => {
 export const categoryColor = (entryCategory: string) => {
   switch (entryCategory) {
     case 'hardhat-specification':
-    case 'operating-system':
     case 'vm-template':
     case 'network':
     case 'range':
@@ -68,6 +67,7 @@ export const categoryColor = (entryCategory: string) => {
     case 'exercise':
     case 'event':
       return Colors.Tracker
+    case 'academy-course-plan':
     default:
       return Colors.Academy
   }
@@ -80,6 +80,8 @@ export const categoryColor = (entryCategory: string) => {
 
 export const categoryPathname = (entryCategory: string) => {
   switch (entryCategory) {
+    case 'academy-course-plan':
+      return '/catalog/course-plan'
     case 'academy-package':
       return '/catalog/training-packages'
     case 'academy-content-module':
@@ -90,8 +92,6 @@ export const categoryPathname = (entryCategory: string) => {
       return '/catalog/physical-assets'
     case 'vm-template':
       return '/catalog/vm-templates'
-    case 'operating-system':
-      return '/catalog/operating-systems'
     case 'event':
       return '/events'
     default:

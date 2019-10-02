@@ -8,6 +8,7 @@ declare type AnsweredProps = {
     dense?: boolean;
     disabled?: boolean;
     indeterminate?: boolean;
+    err?: boolean;
 };
 declare type BBGradeIconProps = {
     correct?: boolean;
@@ -27,7 +28,6 @@ declare type CCChoiceProps = AnsweredProps & BBGradeIconProps & {
     name?: string;
 };
 export declare type ChoiceProps = BBGradeIconProps & CCChoiceProps & BBChoiceInputProps & {
-    key?: string | number;
     type?: 'radio' | 'checkbox';
     children?: ReactNode;
     style?: CSSProperties;
@@ -45,7 +45,6 @@ declare type DefaultProps = {
     value: string | number | Array<string>;
     required: boolean;
     name: string;
-    key: string | number;
     type: 'radio' | 'checkbox';
     children: ReactNode;
 };

@@ -9,17 +9,17 @@ var _color = require("./color");
 
 const categoryReadableName = entryCategory => {
   switch (entryCategory) {
+    case 'academy-course-plan':
+      return 'Course Plan';
+
     case 'academy-package':
-      return 'Event Plan';
+      return 'Training Package';
 
     case 'academy-content-module':
       return 'Content Module';
 
     case 'hardhat-specification':
       return 'Network Spec';
-
-    case 'operating-system':
-      return 'Operating System';
 
     case 'physical-asset':
       return 'Physical Asset';
@@ -42,6 +42,9 @@ exports.categoryReadableName = categoryReadableName;
 
 const categoryIcon = entryCategory => {
   switch (entryCategory) {
+    case 'academy-course-plan':
+      return 'local_library';
+
     case 'academy-package':
       return 'school';
 
@@ -50,9 +53,6 @@ const categoryIcon = entryCategory => {
 
     case 'hardhat-specification':
       return 'device_hub';
-
-    case 'operating-system':
-      return 'code';
 
     case 'physical-asset':
       return 'router';
@@ -86,7 +86,6 @@ exports.categoryIcon = categoryIcon;
 const categoryColor = entryCategory => {
   switch (entryCategory) {
     case 'hardhat-specification':
-    case 'operating-system':
     case 'vm-template':
     case 'network':
     case 'range':
@@ -98,6 +97,7 @@ const categoryColor = entryCategory => {
     case 'event':
       return _color.Colors.Tracker;
 
+    case 'academy-course-plan':
     default:
       return _color.Colors.Academy;
   }
@@ -111,6 +111,9 @@ exports.categoryColor = categoryColor;
 
 const categoryPathname = entryCategory => {
   switch (entryCategory) {
+    case 'academy-course-plan':
+      return '/catalog/course-plan';
+
     case 'academy-package':
       return '/catalog/training-packages';
 
@@ -125,9 +128,6 @@ const categoryPathname = entryCategory => {
 
     case 'vm-template':
       return '/catalog/vm-templates';
-
-    case 'operating-system':
-      return '/catalog/operating-systems';
 
     case 'event':
       return '/events';

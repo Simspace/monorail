@@ -66,7 +66,7 @@ const RootContainer = _styledComponents2.default.div(({
     ${disabled && _exports.baseDisabledStyles}
   `);
 
-const TextFieldStyles = (searching = false) => _styledComponents2.css`
+const TextFieldStyles = (searching = false, err = false) => _styledComponents2.css`
   border-radius: inherit;
   bottom: 0;
   left: 0;
@@ -76,6 +76,8 @@ const TextFieldStyles = (searching = false) => _styledComponents2.css`
   width: auto;
 
   input {
+    ${err && _exports.baseErrorBackgroundStyles}
+    ${err && _exports.baseErrorBorderStyles}
     ${!searching && 'text-indent: -100vw;'};
 
     border-radius: inherit;
@@ -140,6 +142,7 @@ const Dropdown = ({
   matchItem,
   renderHandler,
   renderItem,
+  err,
   ...domProps
 }) => {
   const [inputText, setInputText] = (0, _react.useState)('');
@@ -364,7 +367,7 @@ const Dropdown = ({
       iconLeft: searching ? 'search' : '',
       iconRight: !searching ? 'arrow_drop_down' : '',
       ref: inputRef,
-      _css: TextFieldStyles(searching)
+      _css: TextFieldStyles(searching, err)
     })), _react.default.createElement(_StyledHandler, {
       _css2: (0, _exports.visible)(!searching)
     }, renderHandler ? renderHandler({

@@ -11,18 +11,15 @@ var _shallowEqual = require("../shallowEqual");
 
 var _strings = require("../strings");
 
-/**
- * Generic setoid that uses strict equality checking
- */
 const setoidStrict = {
   equals: _Setoid.strictEqual
-  /**
-   * Function that returns a generic setoid that uses strict equality checking
-   *
-   * NOTE: This only exists in case you need to explicitly provide a generic
-   */
-
 };
+/**
+ * Function that returns a generic setoid that uses strict equality checking
+ *
+ * NOTE: This only exists in case you need to explicitly provide a generic
+ */
+
 exports.setoidStrict = setoidStrict;
 
 const getSetoidStrict = () => setoidStrict;
@@ -34,13 +31,13 @@ const getSetoidStrict = () => setoidStrict;
 exports.getSetoidStrict = getSetoidStrict;
 const setoidShallowEq = {
   equals: _shallowEqual.shallowEqual
-  /**
-   * Function that returns a generic setoid that uses shallow equality checking
-   *
-   * NOTE: This only exists in case you need to explicitly provide a generic
-   */
-
 };
+/**
+ * Function that returns a generic setoid that uses shallow equality checking
+ *
+ * NOTE: This only exists in case you need to explicitly provide a generic
+ */
+
 exports.setoidShallowEq = setoidShallowEq;
 
 const getSetoidShallowEq = () => setoidShallowEq;
