@@ -139,3 +139,7 @@ export declare const notAny: <A>(as: A[], p: Predicate<A>) => boolean;
  * intersection. Also known as symmetric difference or disjunctive union.
  */
 export declare const xor: <A>(E: Eq<A>) => (xs: A[], ys: A[]) => A[];
+/**
+ * Returns an object made up of a keys from the result the accessor function
+ */
+export declare const arrayToRecord: <T, V>(keyAccessor: (curr: T) => string, mapValue?: ((curr: T) => V) | undefined) => (arr: T[]) => Record<string, V>;

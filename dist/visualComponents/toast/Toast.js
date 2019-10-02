@@ -104,15 +104,14 @@ ToastTile.defaultProps = {
   level: _types.AlertLevel.Info,
   size: ToastSize.Large,
   icon: ''
-  /*
-   * Toast Component
-   */
-
-  /*
-   * Props
-   */
-
 };
+/*
+ * Toast Component
+ */
+
+/*
+ * Props
+ */
 
 var _StyledBBCardBackground =
 /*#__PURE__*/

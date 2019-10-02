@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.CustomNoResults = exports.CustomNoData = exports.NotFound = exports.SomethingWentWrong = exports.NotAuthorized = exports.NoData = exports.NoCompletedEvents = exports.NoEvents = exports.EmptyTable = exports.NoResults = exports.NoResultsCollection = void 0;
+exports.NoResultsIcon = exports.IconBox = exports.Detail = exports.Banner = exports.CustomNoResults = exports.CustomNoData = exports.NotFound = exports.SomethingWentWrong = exports.NotAuthorized = exports.NoData = exports.NoCompletedEvents = exports.NoEvents = exports.EmptyTable = exports.NoResults = exports.NoResultsCollection = void 0;
 
 var _Apply = require("fp-ts/lib/Apply");
 
@@ -87,6 +87,8 @@ _styledComponents.default.div.withConfig({
   componentId: "sc-19xnotc-0"
 })(["color:", ";margin:24px auto;", ";"], (0, _exports.getColor)(_exports.Colors.Black89), (0, _exports.typography)(700, _exports.FontSizes.Title1));
 
+exports.Banner = Banner;
+
 const Container =
 /*#__PURE__*/
 _styledComponents.default.div.withConfig({
@@ -101,12 +103,16 @@ _styledComponents.default.div.withConfig({
   componentId: "sc-19xnotc-2"
 })(["color:", ";text-align:center;", ";", ";"], (0, _exports.getColor)(_exports.Colors.Black89), (0, _exports.flexFlow)('column'), (0, _exports.typography)(400, _exports.FontSizes.Title3));
 
+exports.Detail = Detail;
+
 const IconBox =
 /*#__PURE__*/
 _styledComponents.default.div.withConfig({
   displayName: "DataStates__IconBox",
   componentId: "sc-19xnotc-3"
 })(["align-items:center;height:120px;justify-content:center;width:120px;", ";"], (0, _exports.flexFlow)('column'));
+
+exports.IconBox = IconBox;
 
 const NoResultsIcon = () => _react.default.createElement("svg", {
   width: "135",
@@ -236,6 +242,8 @@ const NoResultsIcon = () => _react.default.createElement("svg", {
   d: "M91.2558 66.2454C89.9647 66.0022 88.6326 65.875 87.2708 65.875C86.0648 65.875 84.8821 65.9748 83.7305 66.1665L83.9271 67.3044L84.2675 69.2752C85.3127 69.0947 86.3924 69 87.5 69C88.6076 69 89.6873 69.0947 90.7325 69.2752L91.0729 67.3044L91.2558 66.2454ZM73.5376 70.8631C75.4585 69.2537 77.6661 67.9753 80.0728 67.1158L80.47 68.2177L81.1482 70.0992C79.0963 70.8388 77.2171 71.9294 75.5812 73.3008L74.2963 71.7681L73.5376 70.8631ZM67.1158 80.0728C67.9753 77.6661 69.2537 75.4585 70.8631 73.5376L71.7681 74.2963L73.3008 75.5812C71.9294 77.2171 70.8388 79.0963 70.0992 81.1482L68.2177 80.47L67.1158 80.0728ZM66.2454 91.2558C66.0022 89.9647 65.875 88.6326 65.875 87.2708C65.875 86.0648 65.9748 84.8821 66.1665 83.7306L67.3044 83.9271L69.2752 84.2675C69.0947 85.3127 69 86.3924 69 87.5C69 88.6076 69.0947 89.6873 69.2752 90.7325L67.3044 91.0729L66.2454 91.2558ZM71.0909 101.271C69.4664 99.3957 68.1627 97.2346 67.265 94.8734L68.2177 94.53L70.0992 93.8518C70.8388 95.9037 71.9294 97.783 73.3008 99.4188L71.7681 100.704L71.0909 101.271ZM80.2194 107.478C77.8503 106.651 75.6711 105.42 73.7646 103.866L74.2963 103.232L75.5812 101.699C77.2171 103.071 79.0963 104.161 81.1482 104.901L80.47 106.782L80.2194 107.478ZM91.1787 108.308C89.9105 108.544 88.6042 108.667 87.2708 108.667C86.0917 108.667 84.9348 108.571 83.8075 108.388L83.9271 107.696L84.2675 105.725C85.3127 105.905 86.3924 106 87.5 106C88.6076 106 89.6873 105.905 90.7325 105.725L91.0729 107.696L91.1787 108.308ZM101.039 103.632C99.1759 105.202 97.044 106.46 94.7257 107.325L94.53 106.782L93.8518 104.901C95.9037 104.161 97.783 103.071 99.4188 101.699L100.704 103.232L101.039 103.632ZM107.325 94.7257C106.46 97.044 105.202 99.1759 103.631 101.039L103.232 100.704L101.699 99.4188C103.071 97.783 104.161 95.9037 104.901 93.8518L106.782 94.53L107.325 94.7257ZM108.388 83.8075C108.571 84.9348 108.667 86.0917 108.667 87.2708C108.667 88.6042 108.544 89.9105 108.308 91.1787L107.696 91.0729L105.725 90.7325C105.905 89.6873 106 88.6076 106 87.5C106 86.3924 105.905 85.3127 105.725 84.2675L107.696 83.9271L108.388 83.8075ZM103.866 73.7646C105.42 75.6711 106.651 77.8503 107.478 80.2194L106.782 80.47L104.901 81.1482C104.161 79.0963 103.071 77.2171 101.699 75.5812L103.232 74.2963L103.866 73.7646ZM94.8734 67.265C97.2346 68.1627 99.3957 69.4664 101.271 71.0909L100.704 71.7681L99.4188 73.3008C97.783 71.9294 95.9037 70.8388 93.8518 70.0992L94.53 68.2177L94.8734 67.265Z",
   fill: "#929393"
 }));
+
+exports.NoResultsIcon = NoResultsIcon;
 
 const NotAuthorizedIcon = () => _react.default.createElement("svg", {
   width: "120",

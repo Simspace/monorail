@@ -85,6 +85,9 @@ const monorailTheme = {
   size: {
     page: {
       width: 'auto'
+    },
+    table: {
+      margin: 16
     }
   }
 };

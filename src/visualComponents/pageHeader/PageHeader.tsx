@@ -156,7 +156,7 @@ type PageHeaderContainerProps = CommonComponentType & {
 export type PageHeaderProps = CommonComponentType &
   PageHeaderNavigationProps & {
     goBack?: MouseEventHandler | string
-    title: string
+    title: ReactNode
     pageName?: string
     actions?: ReactNode
   }

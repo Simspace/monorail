@@ -23,10 +23,6 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-/*
- * Styles
- */
-//  TODO: remove this container and position on the arrow buttons themselves
 const ArrowButtonsContainer = _styledComponents.default.div`
   ${(0, _exports.flexFlow)('row')};
   ${(0, _exports.zIndex)(_exports.ZIndexNodeName.ArrowButtons)};

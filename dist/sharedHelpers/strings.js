@@ -15,10 +15,6 @@ var _function = require("./fp-ts-ext/function");
 
 var _Option2 = require("./fp-ts-ext/Option");
 
-/**
- * Given a string or RegExp separator and a string, splits a string into an
- * array of strings
- */
 const split = sep => xs => xs.split(sep);
 /**
  * Replaces text in a string, using an object that supports replacement within a string.

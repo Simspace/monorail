@@ -61,12 +61,13 @@ const headerTitle = {
  */
 
 type Props = PopOverChildProps & {
-  onSubmit: () => void
   alertType: AlertType
-  titleText?: React.ReactNode
-  subtitleText?: React.ReactNode
+  headerText?: string
+  onSubmit: () => void
   primaryButtonText?: string
   secondaryButtonText?: string
+  subtitleText?: React.ReactNode
+  titleText?: React.ReactNode
 }
 
 /*
@@ -75,17 +76,18 @@ type Props = PopOverChildProps & {
 
 export const AlertModal: FC<Props> = props => {
   const {
+    alertType,
     closingAnimationCompleted,
+    headerText,
     isOpen,
     onClick,
     onSubmit,
     position,
-    togglePopOver,
-    alertType,
-    titleText,
-    subtitleText,
     primaryButtonText,
     secondaryButtonText,
+    subtitleText,
+    titleText,
+    togglePopOver,
   } = props
 
   return (
@@ -94,7 +96,7 @@ export const AlertModal: FC<Props> = props => {
       closingAnimationCompleted={closingAnimationCompleted}
       position={position}
       togglePopOver={togglePopOver}
-      title={headerTitle[alertType]}
+      title={headerText || headerTitle[alertType]}
       isOpen={isOpen}
       iconLeft={alertIcon[alertType]}
       css={alertModalStyles[alertType]}

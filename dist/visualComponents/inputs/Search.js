@@ -29,11 +29,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
-// TODO(unsafe-any): Fix unsafe anys
-// tslint:disable no-unsafe-any
-//
-// Styles
-//
 const searchIconPosition = 4;
 
 const SearchContainer = _styledComponents2.default.label(({
@@ -205,6 +200,5 @@ const Search = ({
 
 exports.Search = Search;
 Search.defaultProps = {
-  placeholder: 'Search' // tslint:enable
-
-};
+  placeholder: 'Search'
+}; // tslint:enable

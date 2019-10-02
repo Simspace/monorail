@@ -27,18 +27,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
-// TODO(unsafe-any): Fix unsafe anys
-// tslint:disable no-unsafe-any
-
-/*
- *
- * List Container
- *
- */
-
-/*
- * Styles
- */
 const BBListContainer = _styledComponents2.default.div(({
   cssOverrides
 }) => _styledComponents2.css`
@@ -114,7 +102,7 @@ exports.ListItemPrimaryText = ListItemPrimaryText;
 const ListItemSecondaryText = _styledComponents2.default.span(({
   cssOverrides
 }) => _styledComponents2.css`
-    ${(0, _exports.typography)(500, _exports.FontSizes.Content, 'auto 6px')};
+    ${(0, _exports.typography)(500, _exports.FontSizes.Micro, 'auto 6px')};
     ${_exports.ellipsis};
 
     color: ${(0, _theme.getThemeColor)(_theme.ThemeColors.Text600)};

@@ -5,6 +5,7 @@ import React, {
   Children,
   CSSProperties,
   FC,
+  MouseEvent,
   PropsWithChildren,
   ReactElement,
   useState,
@@ -12,6 +13,7 @@ import React, {
 import {
   Column,
   ControlledStateOverrideProps,
+  ExpandedChangeFunction,
   SortedChangeFunction,
   SortingRule,
   TableProps,
@@ -28,6 +30,7 @@ import {
   assertNever,
   isFalse,
   isNil,
+  isNotNil,
   isUndefined,
 } from '@monorail/sharedHelpers/typeGuards'
 import { Button } from '@monorail/visualComponents/buttons/Button'
@@ -36,13 +39,21 @@ import {
   ButtonSize,
 } from '@monorail/visualComponents/buttons/buttonTypes'
 import { IconButton } from '@monorail/visualComponents/buttons/IconButton'
-import { EmptyTable } from '@monorail/visualComponents/dataStates/DataStates'
+import {
+  Banner,
+  Detail,
+  EmptyTable,
+  IconBox,
+  NoResultsIcon,
+} from '@monorail/visualComponents/dataStates/DataStates'
 import { Icon } from '@monorail/visualComponents/icon/Icon'
 import { TextField } from '@monorail/visualComponents/inputs/TextField'
 import { ScrollAnimation } from '@monorail/visualComponents/layout/ScrollAnimation'
 import { Menu } from '@monorail/visualComponents/menu/Menu'
+import { Status } from '@monorail/visualComponents/status/Status'
 
 const THEAD_HEIGHT = Sizes.DP40
+const TD_HEIGHT = Sizes.DP40
 
 export const TableComponent = styled.div`
   ${flexFlow('column')};
@@ -53,8 +64,11 @@ export const TableComponent = styled.div`
   position: relative; /* pos:rel need for filter bar. */
 `
 
-export const TheadComponentContainer = styled.div<{ isFilterBar: boolean }>(
-  ({ isFilterBar }) => css`
+export const TheadComponentContainer = styled.div<{
+  isFilterBar: boolean
+  isGroupBar: boolean
+}>(
+  ({ isFilterBar, isGroupBar }) => css`
     ${flexFlow('row')};
 
     flex-shrink: 0;
@@ -73,34 +87,36 @@ export const TheadComponentContainer = styled.div<{ isFilterBar: boolean }>(
           background: ${getColor(Colors.Grey99)};
           overflow: hidden;
 
-          &::after {
-            background: ${getColor(Colors.Grey90)};
-            bottom: 0;
-            content: '';
-            height: 1px;
-            left: 0;
-            position: absolute;
-            right: 0;
-          }
+          ${!isGroupBar &&
+            css`
+              &::after {
+                background: ${getColor(Colors.Grey90)};
+                bottom: 0;
+                content: '';
+                height: 1px;
+                left: 0;
+                position: absolute;
+                right: 0;
+              }
+            `};
         `};
   `,
 )
 
 export type TheadComponentProps = {
   className: string
-  hasFilter?: boolean
   style?: CSSProperties
 }
 
 export const TheadComponent: FC<TheadComponentProps> = ({
   children,
   className,
-  hasFilter,
   ...domProps
 }) => {
   return (
     <TheadComponentContainer
       isFilterBar={className === '-filters'}
+      isGroupBar={className === '-headerGroups'}
       className={className}
       {...domProps}
     >
@@ -109,17 +125,17 @@ export const TheadComponent: FC<TheadComponentProps> = ({
   )
 }
 
-enum ThComponentType {
-  Action = 'actions',
-  Filter = 'filter',
-  Sort = 'sort',
-}
-
 const ThComponentContainer = styled.div<{
-  type: ThComponentType
   filterable?: boolean
 }>(
-  ({ type, filterable }) => css`
+  ({
+    filterable,
+    theme: {
+      size: {
+        table: { margin },
+      },
+    },
+  }) => css`
     padding: 0 ${filterable ? 34 : 6}px 0 6px;
 
     ${flexFlow('row')};
@@ -135,11 +151,11 @@ const ThComponentContainer = styled.div<{
     }
 
     &:first-of-type {
-      padding-left: 26px;
+      padding-left: ${margin - 6}px;
     }
 
     &:last-of-type {
-      padding-right: 54px;
+      padding-right: ${margin + 22}px;
     }
 
     .rt-resizable-header-content {
@@ -198,11 +214,14 @@ export function useSort(): [Array<SortingRule>, SortedChangeFunction] {
 }
 
 export type ThComponentProps = {
-  toggleSort: () => void
   className: string
   column?: Column
+  isExpanderColumn: boolean
   isFiltered?: boolean
+  show: boolean
   style?: CSSProperties
+  isGroup?: boolean
+  toggleSort: () => void
 }
 
 const ThLabel = styled.div`
@@ -234,39 +253,59 @@ const ThSortButton = styled(Button).attrs({
   }
 `
 
-export const ThComponent: FC<ThComponentProps> = ({
-  children,
-  toggleSort,
-  className,
-  column,
-  isFiltered,
-  ...domProps
-}) => {
-  const sortStatus = getSortStatus(className)
-  const isFilterable = !isNil(column) && !isFalse(column.filterable)
-  const isSortable = !isNil(column) && !isFalse(column.sortable)
+export const ThComponent: FC<ThComponentProps> = props => {
+  const {
+    children,
+    className,
+    column,
+    isExpanderColumn,
+    isFiltered,
+    show,
+    isGroup,
+    toggleSort,
+    ...domProps
+  } = props
 
-  // Render empty header if there are actions.
-  if (className.includes('actions')) {
+  const sortStatus = getSortStatus(className)
+  const isFilterable = isNotNil(column) && !isFalse(column.filterable)
+  const isSortable = isNotNil(column) && !isFalse(column.sortable)
+
+  if (!show) {
+    return <></>
+  }
+
+  if (isExpanderColumn) {
     return (
       <ThComponentContainer
-        type={ThComponentType.Action}
         className={className}
         {...domProps}
+        style={{ width: 52, flexShrink: 0 }}
       />
     )
   }
 
+  if (isGroup) {
+    return (
+      <ThComponentContainer className={className} {...domProps}>
+        {children}
+      </ThComponentContainer>
+    )
+  }
+
+  // Render empty header if there are actions.
+  if (className.includes('actions')) {
+    return <ThComponentContainer className={className} {...domProps} />
+  }
+
   // Render Filter Header
-  if (!isUndefined(isFiltered)) {
+  if (!isUndefined(isFiltered) && isNotNil(column)) {
     return (
       <ThComponentContainer
-        type={ThComponentType.Filter}
         className={className}
         filterable={isFilterable}
         {...domProps}
       >
-        {!isNil(column) && isFilterable && (
+        {isFilterable && (
           <>
             {/* Render Hidden Sort Button to give the correct spacing. */}
             <ThSortButton
@@ -276,18 +315,24 @@ export const ThComponent: FC<ThComponentProps> = ({
                 visibility: hidden;
               `}
             >
-              <div className="rt-resizable-header-content">{column.Header}</div>
+              <div className="rt-resizable-header-content">
+                {column && column.Header}
+              </div>
             </ThSortButton>
             <PopOverNext
+              toSide={false}
               xDirection={dropDirections.Right}
-              popOver={props => (
-                <Menu {...props} width={props.position.originWidth}>
+              popOver={popOverProps => (
+                <Menu
+                  {...popOverProps}
+                  width={popOverProps.position.originWidth}
+                >
                   {children}
                 </Menu>
               )}
-              toggle={props => (
+              toggle={toggleProps => (
                 <IconButton
-                  {...props}
+                  {...toggleProps}
                   css={`
                     margin: auto -24px auto auto;
                     pointer-events: all;
@@ -314,7 +359,6 @@ export const ThComponent: FC<ThComponentProps> = ({
   // Render Sorted Header
   return (
     <ThComponentContainer
-      type={ThComponentType.Sort}
       className={className}
       filterable={isFilterable}
       {...domProps}
@@ -382,41 +426,75 @@ export const ResizerComponent = styled.div`
   }
 `
 
-export const TrGroupComponent = styled.div`
-  ${flexFlow('row')};
+export type TrGroupComponentProps = { isGroup?: boolean }
 
-  height: 40px;
-  position: relative;
-  flex-shrink: 0;
+export const TrGroupComponent = styled.div<{ isGroup?: boolean }>(
+  ({ isGroup = false }) => css`
+    ${isGroup
+      ? css`
+          ${flexFlow('column')};
+        `
+      : css`
+          ${flexFlow('row')};
+          height: ${TD_HEIGHT}px;
 
-  &:hover::before {
-    background: ${getColor(Colors.Grey98)};
-  }
-  &:hover .actions {
-    opacity: 0.9999;
-  }
+          &:hover::before {
+            background: ${getColor(Colors.Grey98)};
+          }
 
-  &::before {
-    bottom: 1px;
-    content: '';
-    left: 0;
-    position: absolute;
-    right: 0;
-    top: 0;
-  }
-`
+          &:hover .actions {
+            opacity: 0.9999;
+          }
 
-export const TdComponent = styled.div(
-  ({ className }) => css`
-    ${!isNil(className) &&
-      className.includes('actions') &&
-      `justify-content: flex-end;
-      opacity: 0.3;
-      `}
+          &::before {
+            bottom: 1px;
+            content: '';
+            left: 0;
+            position: absolute;
+            right: 0;
+            top: 0;
+          }
+        `};
 
+    position: relative;
+    flex-shrink: 0;
+  `,
+)
+
+enum TdComponentType {
+  Default = 'default',
+  Actions = 'actions',
+  Expandable = 'expandable',
+  Hidden = 'hidden',
+}
+
+const tdComponentTypeStyles = {
+  [TdComponentType.Default]: css``,
+  [TdComponentType.Expandable]: css`
+    height: ${TD_HEIGHT}px;
+    background: #f6f6f9;
+    cursor: pointer;
+    user-select: none;
+  `,
+  [TdComponentType.Actions]: css`
+    justify-content: flex-end;
+    opacity: 0.3;
+  `,
+  [TdComponentType.Hidden]: css``,
+}
+
+type TdComponentContainerProps = {
+  className: string
+  style?: CSSProperties
+  onClick: (event: MouseEvent<HTMLDivElement>) => void
+  tdComponentType: TdComponentType
+}
+
+export const TdComponentContainer = styled.div<TdComponentContainerProps>(
+  ({ tdComponentType }: TdComponentContainerProps) => css`
+    ${tdComponentTypeStyles[tdComponentType]}
     ${flexFlow('row')};
     ${typography(400, FontSizes.Title5)};
-
     ${ellipsis};
 
     color: ${getColor(Colors.Black89)};
@@ -433,6 +511,61 @@ export const TdComponent = styled.div(
     }
   `,
 )
+
+export type TdComponentProps = Omit<
+  TdComponentContainerProps,
+  'tdComponentType'
+> & {
+  isExpanderColumn: boolean
+}
+
+const getTdComponentType = ({ className }: { className: string }) => {
+  if (className.includes('actions')) {
+    return TdComponentType.Actions
+  } else if (className.includes('rt-expandable')) {
+    return TdComponentType.Expandable
+  } else if (className.includes('hidden')) {
+    return TdComponentType.Hidden
+  } else {
+    return TdComponentType.Default
+  }
+}
+
+export const TdComponent: FC<TdComponentProps> = props => {
+  const { className, style, isExpanderColumn, ...domProps } = props
+
+  const tdComponentType = getTdComponentType({ className })
+
+  if (tdComponentType === TdComponentType.Hidden) {
+    return <></>
+  } else if (tdComponentType === TdComponentType.Expandable) {
+    return (
+      <TdComponentContainer
+        className={className}
+        tdComponentType={tdComponentType}
+        {...domProps}
+      />
+    )
+  } else if (isExpanderColumn) {
+    return (
+      <TdComponentContainer
+        className={className}
+        style={{ width: 54, flexShrink: 0 }}
+        tdComponentType={tdComponentType}
+        {...domProps}
+      />
+    )
+  }
+
+  return (
+    <TdComponentContainer
+      className={className}
+      style={style}
+      tdComponentType={tdComponentType}
+      {...domProps}
+    />
+  )
+}
 
 export const TBodyComponent = styled(
   ({ style, ...domProps }: { style?: { [key: string]: number | string } }) => (
@@ -457,7 +590,53 @@ export const NoDataContainer = styled.div`
   top: ${THEAD_HEIGHT}px;
 `
 
+const BannerDetailContainer = styled.div`
+  ${flexFlow('column')};
+
+  justify-content: center;
+  margin-left: 16px;
+`
+
+export const NoDataComponentVertical: FC = () => (
+  <NoDataContainer>
+    <EmptyTable />
+  </NoDataContainer>
+)
+
+export const NoDataComponentHorizontal: FC = () => (
+  <NoDataContainer css="flex-direction: row;">
+    <IconBox>
+      <NoResultsIcon />
+    </IconBox>
+    <BannerDetailContainer>
+      <Banner css="margin: 0 0 16px;">No Entries Found</Banner>
+      <Detail>We couldn't find any records.</Detail>
+    </BannerDetailContainer>
+  </NoDataContainer>
+)
+export const ExpanderComponent: TableCellRenderFunction<unknown> = ({
+  isExpanded,
+}) => (
+  <IconButton
+    icon="arrow_drop_down"
+    display={ButtonDisplay.Chromeless}
+    css={`
+      margin-right: 8px;
+      transform: rotate(${isExpanded ? 0 : '-90deg'});
+    `}
+  />
+)
+
+export const PivotValueComponent: TableCellRenderFunction<unknown> = ({
+  value,
+}) => {
+  return <>{value}</>
+}
+
 export const MonorailReactTableOverrides: Partial<TableProps> = {
+  AggregatedComponent: (props: PropsWithChildren<{}>) => {
+    return null
+  },
   FilterComponent: (props: PropsWithChildren<FilterComponentProps>) => (
     <FilterComponent {...props} />
   ),
@@ -470,7 +649,9 @@ export const MonorailReactTableOverrides: Partial<TableProps> = {
   TbodyComponent: (
     props: PropsWithChildren<{ style: { [key: string]: number | string } }>,
   ) => <TBodyComponent {...props} />,
-  TdComponent: (props: PropsWithChildren<{}>) => <TdComponent {...props} />,
+  TdComponent: (props: PropsWithChildren<TdComponentProps>) => (
+    <TdComponent {...props} />
+  ),
   ThComponent: (props: PropsWithChildren<ThComponentProps>) => (
     <ThComponent {...props} />
   ),
@@ -478,30 +659,62 @@ export const MonorailReactTableOverrides: Partial<TableProps> = {
     <TheadComponent {...props} />
   ),
   TrComponent: ({ children }: { children: ReactElement }) => children,
-  TrGroupComponent: (props: PropsWithChildren<{}>) => (
+  TrGroupComponent: (props: PropsWithChildren<TrGroupComponentProps>) => (
     <TrGroupComponent {...props} />
   ),
   NoDataComponent: (props: PropsWithChildren<{}>) => (
-    <NoDataContainer>
-      <EmptyTable />
-    </NoDataContainer>
+    <NoDataComponentVertical />
   ),
-  getTheadThProps: (state, rowInfo, column) => ({
-    column,
-  }),
+  PivotComponent: (cellInfo: CellInfo<unknown>, column) => {
+    const Expander: TableCellRenderFunction<unknown> =
+      (cellInfo.column.Expander as TableCellRenderFunction<unknown>) ||
+      ExpanderComponent
+    const PivotValue: TableCellRenderFunction<unknown> =
+      (cellInfo.column.PivotValue as TableCellRenderFunction<unknown>) ||
+      PivotValueComponent
+
+    return (
+      <>
+        {Expander(cellInfo, column)}
+        {PivotValue(cellInfo, column)}
+        {isNotNil(cellInfo.subRows) && (
+          <Status inactive css="margin-left: 8px;">
+            {cellInfo.subRows.length}
+          </Status>
+        )}
+      </>
+    )
+  },
+  getTrGroupProps: (finalState: unknown, rowInfo?: RowInfo<unknown>) => {
+    if (isNil(rowInfo)) {
+      return {}
+    }
+
+    return {
+      isGroup: rowInfo.groupedByPivot,
+      item: rowInfo.original,
+    }
+  },
+  getTdProps: (
+    { pivotBy = [] }: TableProps,
+    rowInfo: RowInfo<unknown> | undefined,
+    column: Column | undefined,
+  ) => {
+    const { id = '' } = column || {}
+
+    return {
+      isExpanderColumn: pivotBy.includes(id),
+    }
+  },
   getTheadFilterThProps: (
-    {
-      filtered,
-    }: {
-      filtered?: Array<{
-        id: string
-        value: string
-      }>
-    },
+    { filtered, pivotBy = [] }: TableProps,
     rowInfo,
     column,
   ) => {
+    const { id = '' } = column || {}
     return {
+      isExpanderColumn: pivotBy.includes(id),
+      show: isNil(column) ? true : column.show,
       column,
       isFiltered:
         isNil(filtered) || isNil(column)
@@ -509,9 +722,28 @@ export const MonorailReactTableOverrides: Partial<TableProps> = {
           : !!filtered.find(filter => filter.id === column.id),
     }
   },
+  getTheadGroupThProps: (
+    { hasHeaderGroups }: { hasHeaderGroups: boolean },
+    rowInfo,
+    column,
+  ) => ({
+    column,
+    isGroup: hasHeaderGroups,
+    show: hasHeaderGroups,
+  }),
+  getTheadThProps: (finalState: TableProps, rowInfo, column) => {
+    const { pivotBy = [] } = finalState
+
+    const { id = '' } = column || {}
+
+    return {
+      isExpanderColumn: pivotBy.includes(id),
+      show: isNil(column) ? true : column.show,
+      column,
+    }
+  },
   style: { height: '100%', width: '100%' },
   minRows: 0,
-  getTheadProps: () => ({ hasFilter: true }),
   showPagination: false,
   defaultFilterMethod: (filter: Filter, row: { [key: string]: unknown }) => {
     const id = filter.pivotId || filter.id
@@ -522,10 +754,43 @@ export const MonorailReactTableOverrides: Partial<TableProps> = {
         .includes(filter.value.toLocaleString().toLocaleLowerCase())
     )
   },
+  sortable: true,
   filterable: true,
   resizable: true,
   loading: false,
   multiSort: false,
+}
+
+export function useTableExpandState<T extends object>({
+  data,
+  pivotKey,
+}: {
+  data: Array<T>
+  pivotKey: keyof T
+}): {
+  expanded: Array<boolean>
+  onExpandedChange: ExpandedChangeFunction
+} {
+  const initialValues = data
+    .reduce<Array<T[keyof T]>>((accumulator, item) => {
+      const pivotValue = item[pivotKey]
+
+      if (isNotNil(pivotValue) && !accumulator.includes(pivotValue)) {
+        return accumulator.concat(pivotValue)
+      }
+
+      return accumulator
+    }, [])
+    .map(() => true)
+
+  const [expanderState, setExpanderState] = useState<Array<boolean>>(
+    initialValues,
+  )
+
+  return {
+    expanded: expanderState,
+    onExpandedChange: expanded => setExpanderState(expanded), // tslint:disable-line:no-unsafe-any
+  }
 }
 
 export interface Filter {
@@ -572,8 +837,8 @@ type RowInfo<I> = {
   original: I
 }
 
-export interface CellInfo<I>
-  extends RowInfo<I>,
+export interface CellInfo<T, V = string | number>
+  extends RowInfo<T>,
     Pick<ControlledStateOverrideProps, 'resized'> {
   /* true if this row is expanded */
   isExpanded: boolean
@@ -582,7 +847,7 @@ export interface CellInfo<I>
   column: Column
 
   /* materialized value of the cell */
-  value: string | number
+  value: V
 
   /* true if the column is pivoted */
   pivoted: boolean
@@ -612,8 +877,13 @@ export interface CellInfo<I>
   styles: object
 }
 
-export type TableCellRenderer<I> =
-  | ((cellInfo: CellInfo<I>, column: unknown) => React.ReactNode)
+export type TableCellRenderFunction<I, V = string | number> = (
+  cellInfo: CellInfo<I, V>,
+  column: unknown,
+) => React.ReactNode
+
+export type TableCellRenderer<I, V = string | number> =
+  | TableCellRenderFunction<I, V>
   | React.ReactNode
 
 export type ComponentPropsGetterR<I> = (

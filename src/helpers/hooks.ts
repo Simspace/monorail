@@ -88,6 +88,35 @@ export function useInterval(callback: () => void, delay: number | null) {
   }, [delay, resetInterval])
 }
 
+export const useTimeout = (
+  callback: () => void,
+  timeout: number,
+  cleanup = () => {},
+) => {
+  const timeoutIdRef = useRef<number | null>(null)
+
+  // Track current callback/cleanup, so we do not re-trigger the effect when it changes, since this use case is uncommon and
+  // counter-intuitive. Allows us to pass anonymous functions as props without re-rerenders thrashing the timeout
+  const callbackRef = useRef(callback)
+  useEffect(() => {
+    callbackRef.current = callback
+  }, [callback])
+  const cleanupRef = useRef(cleanup)
+  useEffect(() => {
+    cleanupRef.current = cleanup
+  }, [cleanup])
+
+  useEffect(() => {
+    clearTimeout(timeoutIdRef.current!) // non-null assert since clearTimeout does accept nulls
+    timeoutIdRef.current = setTimeout(callbackRef.current, timeout)
+
+    return () => {
+      clearTimeout(timeoutIdRef.current!) // non-null assert since clearTimeout does accept nulls
+      cleanupRef.current()
+    }
+  }, [timeout])
+}
+
 export function useInputDebounce<T extends unknown>({
   initialValue,
   onChange,

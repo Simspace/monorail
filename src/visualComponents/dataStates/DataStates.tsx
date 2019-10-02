@@ -165,7 +165,7 @@ export const CustomNoResults: FC<{
   })(bannerText)(detailText).getOrElse(<NoResults />)
 }
 
-const Banner = styled.div`
+export const Banner = styled.div`
   color: ${getColor(Colors.Black89)};
   margin: 24px auto;
 
@@ -180,7 +180,7 @@ const Container = styled.div`
   ${flexFlow('column')};
 `
 
-const Detail = styled.div`
+export const Detail = styled.div`
   color: ${getColor(Colors.Black89)};
   text-align: center;
 
@@ -188,7 +188,7 @@ const Detail = styled.div`
   ${typography(400, FontSizes.Title3)};
 `
 
-const IconBox = styled.div`
+export const IconBox = styled.div`
   align-items: center;
   height: 120px;
   justify-content: center;
@@ -197,7 +197,7 @@ const IconBox = styled.div`
   ${flexFlow('column')};
 `
 
-const NoResultsIcon = () => (
+export const NoResultsIcon = () => (
   <svg
     width="135"
     height="135"

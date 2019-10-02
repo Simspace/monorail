@@ -28,6 +28,6 @@ declare type BBCardGridProps = {
     cssOverrides?: SimpleInterpolation;
 };
 export declare const BBCardGrid: import("styled-components").StyledComponent<React.FunctionComponent<{
-    containerCssOverrides?: import("../../types").CssOverridesType;
+    containerCssOverrides?: import("../../StyleHelpers").CssOverrides;
 }>, any, BBCardGridProps, never>;
 export {};

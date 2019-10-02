@@ -19,6 +19,7 @@ import { Events } from '@monorail/visualComponents/icon/custom/Events'
 import { FileTree } from '@monorail/visualComponents/icon/custom/FileTree'
 import { Filter } from '@monorail/visualComponents/icon/custom/Filter'
 import { Gauge } from '@monorail/visualComponents/icon/custom/Gauge'
+import { Grade } from '@monorail/visualComponents/icon/custom/Grade'
 import { H1 } from '@monorail/visualComponents/icon/custom/H1'
 import { H2 } from '@monorail/visualComponents/icon/custom/H2'
 import { Home } from '@monorail/visualComponents/icon/custom/Home'
@@ -119,6 +120,7 @@ const customIcons: { [key: string]: ComponentType<CustomIconProps> } = {
   vmtemplates: VMTemplates,
   wand: Wand,
   treasure_chest: TreasureChest,
+  grade: Grade,
 }
 
 export const Icon = styled(

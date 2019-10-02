@@ -13,18 +13,18 @@ import { DetailsSize } from '@monorail/visualComponents/typography/detailsTypes'
 
 const propertySizeStyles = {
   [DetailsSize.Compact]: css`
-    ${typography(500, FontSizes.Content)};
+    ${typography(500, FontSizes.Micro)};
 
     color: ${getThemeColor(ThemeColors.Text500)};
     text-transform: uppercase;
   `,
   [DetailsSize.Default]: css`
-    ${typography(500, FontSizes.Content)};
+    ${typography(500, FontSizes.Micro)};
 
     color: ${getThemeColor(ThemeColors.Text700)};
   `,
   [DetailsSize.Large]: css`
-    ${typography(700, FontSizes.Content)};
+    ${typography(700, FontSizes.Micro)};
 
     color: ${getThemeColor(ThemeColors.Text700)};
   `,

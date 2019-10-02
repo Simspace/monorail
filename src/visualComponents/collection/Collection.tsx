@@ -14,7 +14,7 @@ import {
 import { BorderRadius } from '@monorail/helpers/borderRadius'
 import { Colors, getColor } from '@monorail/helpers/color'
 import { flexFlow } from '@monorail/helpers/flex'
-import styled, { css } from '@monorail/helpers/styled-components'
+import styled, { css, ThemeProvider } from '@monorail/helpers/styled-components'
 import { ThemeColors } from '@monorail/helpers/theme'
 import { assertNever, isNil } from '@monorail/sharedHelpers/typeGuards'
 import { StyledButton } from '@monorail/visualComponents/buttons/Button'
@@ -207,35 +207,42 @@ export const Collection = <T extends unknown>(
         </ControlsContainer>
 
         <CollectionContainer>
-          <ReactTable<T>
-            css={collectionView === CollectionView.Card ? theadOverrides : ''}
-            sorted={sorted}
-            onSortedChange={onSortedChange}
-            columns={columns}
-            data={passedData}
-            getTrGroupProps={getReactTableComponentProps}
-            getTrProps={getReactTableComponentProps}
-            loading={isLoading}
-            pageSize={passedData.length}
-            TbodyComponent={getTbodyComponent}
-            TrComponent={getTrComponent}
-            TrGroupComponent={getTrGroupComponent}
-            NoDataComponent={NoDataComponent}
-            TheadComponent={(
-              theadProps: PropsWithChildren<TheadComponentProps>,
-            ) => (
-              <CollectionTheadComponent
-                collectionView={collectionView}
-                {...theadProps}
-              />
-            )}
-            ThComponent={(thProps: PropsWithChildren<ThComponentProps>) => (
-              <CollectionThComponent
-                collectionView={collectionView}
-                {...thProps}
-              />
-            )}
-          />
+          <ThemeProvider
+            theme={theme => ({
+              ...theme,
+              size: { ...theme.size, table: { margin: 32 } },
+            })}
+          >
+            <ReactTable<T>
+              css={collectionView === CollectionView.Card ? theadOverrides : ''}
+              sorted={sorted}
+              onSortedChange={onSortedChange}
+              columns={columns}
+              data={passedData}
+              getTrGroupProps={getReactTableComponentProps}
+              getTrProps={getReactTableComponentProps}
+              loading={isLoading}
+              pageSize={passedData.length}
+              TbodyComponent={getTbodyComponent}
+              TrComponent={getTrComponent}
+              TrGroupComponent={getTrGroupComponent}
+              NoDataComponent={NoDataComponent}
+              TheadComponent={(
+                theadProps: PropsWithChildren<TheadComponentProps>,
+              ) => (
+                <CollectionTheadComponent
+                  collectionView={collectionView}
+                  {...theadProps}
+                />
+              )}
+              ThComponent={(thProps: PropsWithChildren<ThComponentProps>) => (
+                <CollectionThComponent
+                  collectionView={collectionView}
+                  {...thProps}
+                />
+              )}
+            />
+          </ThemeProvider>
         </CollectionContainer>
       </>
     ),

@@ -4,6 +4,7 @@ import styled, { css, SimpleInterpolation } from 'styled-components'
 import {
   baseChromelessStyles,
   baseDisabledStyles,
+  baseErrorBackgroundStyles,
   borderRadius,
   buttonTransition,
   Colors,
@@ -32,7 +33,7 @@ const BBChoiceInput = styled.input<BBChoiceInputProps>`
 `
 
 export const BBChoiceFakeLabel = styled.div<AnsweredProps>(
-  ({ answered, disabled }) => css`
+  ({ answered, disabled, err }) => css`
     ${answered &&
       css`
         transform: translateX(24px);
@@ -41,6 +42,7 @@ export const BBChoiceFakeLabel = styled.div<AnsweredProps>(
     ${disabled && baseDisabledStyles};
 
     ${typography(500, FontSizes.Title5)};
+    ${err && `color: ${getColor(Colors.Red)};`}
     flex-grow: 1;
     word-break: break-word;
 
@@ -49,7 +51,7 @@ export const BBChoiceFakeLabel = styled.div<AnsweredProps>(
 )
 
 const CCChoice = styled.label<CCChoiceProps>(
-  ({ dense, readOnly, incorrect, correct, disabled, cssOverrides }) => css`
+  ({ dense, readOnly, incorrect, correct, disabled, err, cssOverrides }) => css`
     ${(readOnly || incorrect || correct) &&
       css`
         cursor: default;
@@ -73,6 +75,8 @@ const CCChoice = styled.label<CCChoiceProps>(
     width: 100%;
 
     ${buttonTransition};
+
+    ${err && baseErrorBackgroundStyles};
 
     ${cssOverrides};
   `,
@@ -106,6 +110,7 @@ type AnsweredProps = {
   dense?: boolean
   disabled?: boolean
   indeterminate?: boolean
+  err?: boolean
 }
 
 type BBGradeIconProps = {
@@ -132,7 +137,6 @@ type CCChoiceProps = AnsweredProps &
 export type ChoiceProps = BBGradeIconProps &
   CCChoiceProps &
   BBChoiceInputProps & {
-    key?: string | number
     type?: 'radio' | 'checkbox'
     children?: ReactNode
     style?: CSSProperties
@@ -151,7 +155,6 @@ type DefaultProps = {
   value: string | number | Array<string>
   required: boolean
   name: string
-  key: string | number
   type: 'radio' | 'checkbox'
   children: ReactNode
 }
@@ -167,18 +170,19 @@ const UncheckedRadioIcon = styled(
     dense,
     centeredInput,
     disabled,
+    err,
     ...otherProps
   }: BBChoiceInputProps) => (
     <Icon icon="radio_button_unchecked" {...otherProps} />
   ),
 )(
-  ({ checked, answered, dense, centeredInput, disabled }) => css`
+  ({ checked, answered, dense, centeredInput, disabled, err }) => css`
     ${visible(!checked)};
     ${centeredInput
       ? centeredIconStyles(answered, dense)
       : baseIconStyles(answered, dense)};
 
-    color: ${getColor(Colors.Black54)};
+    color: ${err ? getColor(Colors.Red) : getColor(Colors.Black54)};
 
     ${disabled && baseDisabledStyles};
   `,
@@ -216,18 +220,27 @@ const UncheckedCheckboxIcon = styled(
     indeterminate,
     centeredInput,
     disabled,
+    err,
     ...otherProps
   }: BBChoiceInputProps) => (
     <Icon icon="check_box_outline_blank" {...otherProps} />
   ),
 )(
-  ({ checked, answered, dense, indeterminate, centeredInput, disabled }) => css`
+  ({
+    checked,
+    answered,
+    dense,
+    indeterminate,
+    centeredInput,
+    disabled,
+    err,
+  }) => css`
     ${visible(!checked && !indeterminate)};
     ${centeredInput
       ? centeredIconStyles(answered, dense)
       : baseIconStyles(answered, dense)};
 
-    color: ${getColor(Colors.Black54)};
+    color: ${err ? getColor(Colors.Red) : getColor(Colors.Black54)};
 
     ${disabled && baseDisabledStyles};
   `,
@@ -329,6 +342,7 @@ const renderFakeInputIcons = (
   dense: boolean | undefined,
   indeterminate: boolean,
   disabled: boolean,
+  err?: boolean,
 ) => {
   switch (type) {
     default:
@@ -341,6 +355,7 @@ const renderFakeInputIcons = (
             answered={answered}
             dense={dense}
             disabled={disabled}
+            err={err}
           />
           <CheckedRadioIcon
             centeredInput={centeredInput}
@@ -360,6 +375,7 @@ const renderFakeInputIcons = (
             answered={answered}
             dense={dense}
             disabled={disabled}
+            err={err}
           />
           <CheckedCheckboxIcon
             centeredInput={centeredInput}
@@ -397,6 +413,7 @@ export const Choice: FCwDP<ChoiceProps, DefaultProps> = ({
   required,
   name,
   style,
+  err,
   'data-test-id': dataTestId,
   ...domProps
 }) => (
@@ -410,6 +427,7 @@ export const Choice: FCwDP<ChoiceProps, DefaultProps> = ({
     readOnly={readOnly}
     answered={answered}
     indeterminate={indeterminate}
+    err={err}
     {...domProps}
   >
     <BBChoiceInput
@@ -433,8 +451,9 @@ export const Choice: FCwDP<ChoiceProps, DefaultProps> = ({
       dense,
       indeterminate,
       disabled,
+      err,
     )}
-    <BBChoiceFakeLabel answered={answered} disabled={disabled}>
+    <BBChoiceFakeLabel answered={answered} disabled={disabled} err={err}>
       {children}
     </BBChoiceFakeLabel>
   </CCChoice>
@@ -455,7 +474,6 @@ Choice.defaultProps = {
   value: '',
   required: false,
   name: '',
-  key: '',
   type: 'radio',
   children: '',
 }

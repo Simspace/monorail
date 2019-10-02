@@ -29,9 +29,6 @@ var _Text = require("../typography/Text");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-/*
- * Styles
- */
 const alertModalStyles = {
   [_alertType.AlertType.Error]: _styledComponents2.css`
     ${_Modals.BBModalHeaderContainer} {
@@ -65,11 +62,10 @@ const headerTitle = {
   [_alertType.AlertType.Warning]: 'Warning',
   [_alertType.AlertType.Success]: 'Success',
   [_alertType.AlertType.Info]: 'Info'
-  /*
-   * Props
-   */
-
 };
+/*
+ * Props
+ */
 
 var _StyledMediumModal =
 /*#__PURE__*/
@@ -97,24 +93,25 @@ var _StyledButton =
  */
 const AlertModal = props => {
   const {
+    alertType,
     closingAnimationCompleted,
+    headerText,
     isOpen,
     onClick,
     onSubmit,
     position,
-    togglePopOver,
-    alertType,
-    titleText,
-    subtitleText,
     primaryButtonText,
-    secondaryButtonText
+    secondaryButtonText,
+    subtitleText,
+    titleText,
+    togglePopOver
   } = props;
   return _react.default.createElement(_StyledMediumModal, {
     onClick: onClick,
     closingAnimationCompleted: closingAnimationCompleted,
     position: position,
     togglePopOver: togglePopOver,
-    title: headerTitle[alertType],
+    title: headerText || headerTitle[alertType],
     isOpen: isOpen,
     iconLeft: alertIcon[alertType],
     _css: alertModalStyles[alertType]

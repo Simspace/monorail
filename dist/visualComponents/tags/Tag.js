@@ -71,7 +71,7 @@ const Tag = ({
   icon: icon,
   size: iconSize
 }), !(0, _typeGuards.isEmptyString)(label) && _react.default.createElement(_StyledText, {
-  fontSize: _exports.FontSizes.Content,
+  fontSize: _exports.FontSizes.Micro,
   fontWeight: 700
 }, label));
 

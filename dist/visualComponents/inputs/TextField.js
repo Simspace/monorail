@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.TextField = exports.defaultTextFieldProps = exports.BBTextFieldInput = void 0;
+exports.TextField = exports.StyledInput = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
@@ -17,19 +17,18 @@ var _Icon = require("../icon/Icon");
 
 var _Label = require("./Label");
 
+var _StdErr = require("./StdErr");
+
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; if (obj != null) { var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
-/*
- * Styles
- */
-const BBTextFieldContainer =
+const Container =
 /*#__PURE__*/
 _styledComponents.default.label.withConfig({
-  displayName: "TextField__BBTextFieldContainer",
+  displayName: "TextField__Container",
   componentId: "mvo1xj-0"
 })(({
   cssOverrides
@@ -37,116 +36,122 @@ _styledComponents.default.label.withConfig({
 
 const baseIconStyles =
 /*#__PURE__*/
-(0, _styledComponents.css)(["position:absolute;bottom:4px;"]);
+(0, _styledComponents.css)(["bottom:28px;position:absolute;"]);
 const StyledLeftIcon =
 /*#__PURE__*/
 (0, _styledComponents.default)(_Icon.Icon).withConfig({
   displayName: "TextField__StyledLeftIcon",
   componentId: "mvo1xj-1"
-})(["", ";left:8px;"], baseIconStyles);
+})(({
+  err
+}) => (0, _styledComponents.css)(["", ";color:", ";left:8px;"], baseIconStyles, err && (0, _exports.getColor)(_exports.Colors.Red)));
 const StyledRightIcon =
 /*#__PURE__*/
 (0, _styledComponents.default)(_Icon.Icon).withConfig({
   displayName: "TextField__StyledRightIcon",
   componentId: "mvo1xj-2"
-})(["", ";right:8px;"], baseIconStyles);
+})(({
+  canToggleVisibility,
+  err
+}) => (0, _styledComponents.css)(["", ";color:", ";right:", ";"], baseIconStyles, err && (0, _exports.getColor)(_exports.Colors.Red), canToggleVisibility ? '32px' : '8px'));
+const StyledVisibilityIcon =
+/*#__PURE__*/
+(0, _styledComponents.default)(_Icon.Icon).withConfig({
+  displayName: "TextField__StyledVisibilityIcon",
+  componentId: "mvo1xj-3"
+})(["", ";right:8px;cursor:pointer;"], baseIconStyles);
 
-const BBTextFieldInput =
+const StyledInput =
 /*#__PURE__*/
 _styledComponents.default.input.withConfig({
-  displayName: "TextField__BBTextFieldInput",
-  componentId: "mvo1xj-3"
+  displayName: "TextField__StyledInput",
+  componentId: "mvo1xj-4"
 })(({
   chromeless,
   iconLeft,
   iconRight,
-  disabled
-}) => (0, _styledComponents.css)(["", ";", ";", ";border:", ";box-sizing:border-box;color:", ";height:24px;min-height:24px;flex:1;outline:none;padding:4px ", "px 4px ", "px;width:100%;", ";&[htmlType='number']{&::-webkit-inner-spin-button,&::-webkit-outer-spin-button{opacity:1;}}::placeholder{color:", ";font-style:italic;}&:hover{border-color:", ";}&:focus,&:active{border-color:", ";}"], disabled && _exports.baseDisabledStyles, (0, _exports.typography)(400, _exports.FontSizes.Title5), (0, _exports.borderRadius)(), chromeless ? `1px solid transparent` : `1px solid ${(0, _exports.getColor)(_exports.Colors.Black, 0.12)}`, (0, _exports.getColor)(_exports.Colors.Black89), iconRight ? 30 : 6, iconLeft ? 30 : 6, _exports.buttonTransition, (0, _exports.getColor)(_exports.Colors.Black54), disabled ? '' : (0, _exports.getColor)(_exports.Colors.Black, 0.3), (0, _exports.getColor)(_exports.Colors.BrandLightBlue)));
+  disabled,
+  canToggleVisibility,
+  err
+}) => (0, _styledComponents.css)(["", ";", ";", ";", ";border-color:", ";border-style:solid;border-width:1px;box-sizing:border-box;color:", ";height:24px;min-height:24px;flex:1;outline:none;padding:4px ", "px 4px ", "px;width:100%;", ";&[htmlType='number']{&::-webkit-inner-spin-button,&::-webkit-outer-spin-button{opacity:1;}}&:hover{border-color:", ";}&:focus,&:active{border-color:", ";}::placeholder{color:", ";font-style:italic;}", ";", ";", ";"], disabled && _exports.baseDisabledStyles, (0, _exports.typography)(400, _exports.FontSizes.Title5), (0, _exports.borderRadius)(), (0, _exports.typography)(400, _exports.FontSizes.Title5), (0, _exports.getColor)(_exports.Colors.Black, 0.12), (0, _exports.getColor)(_exports.Colors.Black89), iconRight ? canToggleVisibility ? 56 : 30 : canToggleVisibility ? 30 : 6, iconLeft ? 30 : 6, _exports.buttonTransition, (0, _exports.getColor)(_exports.Colors.Black, 0.3), (0, _exports.getColor)(_exports.Colors.BrandLightBlue), (0, _exports.getColor)(_exports.Colors.Black54), chromeless && (0, _styledComponents.css)(["border-color:transparent;"]), err && _exports.baseErrorBorderStyles, disabled && _exports.baseDisabledStyles));
 /*
  * Types
  */
 
 
-exports.BBTextFieldInput = BBTextFieldInput;
-const defaultTextFieldProps = {
-  cssOverrides: '',
-  chromeless: false,
-  iconLeft: '',
-  iconRight: '',
-  label: '',
-  onChange: () => {},
-  placeholder: '',
-  value: '',
-  disabled: false,
-  readOnly: false,
-  required: false,
-  htmlType: 'text',
-  min: 0,
-  max: 9999,
-  maxLength: 1000,
-  className: '',
-  autoFocus: false
-  /*
-   * Component
-   */
+exports.StyledInput = StyledInput;
 
-};
-exports.defaultTextFieldProps = defaultTextFieldProps;
-
-class TextField extends _react.Component {
-  render() {
-    const {
-      chromeless,
-      cssOverrides,
-      iconLeft,
-      iconRight,
-      label,
-      onChange,
-      onBlur,
-      placeholder,
-      value,
-      disabled,
-      readOnly,
-      required,
-      htmlType,
-      min,
-      max,
-      maxLength,
-      className,
-      ...otherProps
-    } = this.props;
-    return _react.default.createElement(BBTextFieldContainer, {
-      className: className,
-      cssOverrides: cssOverrides
-    }, _react.default.createElement(_Label.Label, {
-      label: label,
-      required: required
-    }), !(0, _typeGuards.isEmptyString)(iconLeft) && _react.default.createElement(StyledLeftIcon, {
-      icon: iconLeft
-    }), !(0, _typeGuards.isEmptyString)(iconRight) && _react.default.createElement(StyledRightIcon, {
-      icon: iconRight
-    }), _react.default.createElement(BBTextFieldInput, _extends({
-      "data-lpignore": "true" // 🖕 u LastPass: https://goo.gl/Ez3eS1
-      ,
-      chromeless: chromeless,
-      className: "new-input",
-      iconLeft: iconLeft,
-      iconRight: iconRight,
-      onChange: onChange,
-      onBlur: onBlur,
-      placeholder: placeholder,
-      type: htmlType,
-      value: value,
-      disabled: disabled,
-      readOnly: readOnly,
-      required: required,
-      min: min,
-      max: max,
-      maxLength: maxLength
-    }, otherProps)));
-  }
-
-}
-
+/*
+ * Component
+ */
+const TextField = (0, _react.forwardRef)(props => {
+  const [hide, setHide] = (0, _react.useState)(true);
+  const {
+    autoFocus = false,
+    canToggleVisibility = false,
+    chromeless = false,
+    cssOverrides = '',
+    hasRequiredAsterisk = false,
+    iconLeft = '',
+    iconRight = '',
+    label = '',
+    onChange = () => {},
+    onBlur,
+    placeholder = '',
+    value,
+    disabled = false,
+    readOnly = false,
+    required = false,
+    htmlType = canToggleVisibility && hide ? 'password' : 'text',
+    min = 0,
+    max = 9999,
+    maxLength = 1000,
+    className = '',
+    err = false,
+    msg = '',
+    hideStdErr = false,
+    ...otherProps
+  } = props;
+  return _react.default.createElement(Container, {
+    className: className,
+    cssOverrides: cssOverrides
+  }, _react.default.createElement(_Label.Label, {
+    label: label,
+    required: hasRequiredAsterisk || required,
+    err: err
+  }), !(0, _typeGuards.isEmptyString)(iconLeft) && _react.default.createElement(StyledLeftIcon, {
+    icon: iconLeft,
+    err: err
+  }), !(0, _typeGuards.isEmptyString)(iconRight) && _react.default.createElement(StyledRightIcon, {
+    icon: iconRight,
+    canToggleVisibility: canToggleVisibility,
+    err: err
+  }), _react.default.createElement(StyledInput, _extends({
+    "data-lpignore": "true" // 🖕 u LastPass: https://goo.gl/Ez3eS1
+    ,
+    canToggleVisibility: canToggleVisibility,
+    chromeless: chromeless,
+    className: "new-input",
+    iconLeft: iconLeft,
+    iconRight: iconRight,
+    onChange: onChange,
+    onBlur: onBlur,
+    placeholder: placeholder,
+    type: htmlType,
+    value: value,
+    disabled: disabled,
+    readOnly: readOnly,
+    required: required,
+    min: min,
+    max: max,
+    maxLength: maxLength,
+    err: err
+  }, otherProps)), canToggleVisibility && _react.default.createElement(StyledVisibilityIcon, {
+    icon: hide ? 'visibility' : 'visibility_off',
+    onClick: () => setHide(!hide)
+  }), !hideStdErr && _react.default.createElement(_StdErr.StdErr, {
+    err: err,
+    msg: msg
+  }));
+});
 exports.TextField = TextField;
-TextField.defaultProps = defaultTextFieldProps;

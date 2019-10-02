@@ -17,19 +17,9 @@ export declare enum FontSizes {
     Title3 = "title3",
     Title4 = "title4",
     Title5 = "title5",
-    Content = "content",
     Micro = "micro"
 }
 export declare const typography: (weight: number, size: FontSizes, margin?: string | undefined) => {
-    margin: string;
-    fontSize: string;
-    lineHeight: string;
-    fontWeight: number;
-} | {
-    fontSize: string;
-    lineHeight: string;
-    fontWeight: number;
-} | {
     margin: string;
     fontSize: string;
     lineHeight: string;

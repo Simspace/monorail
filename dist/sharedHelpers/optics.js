@@ -11,12 +11,6 @@ var _Record = require("fp-ts/lib/Record");
 
 var _monocleTs = require("monocle-ts");
 
-/**
- * Binary composition for lenses (`monocle-ts`)
- *
- * NOTE: This may feel like backwards (left-to-right) composition,
- * but it's not. Think of it as composing "focusers" instead of "accessors"
- */
 const oLens = (f, g) => f.compose(g);
 /**
  * Helper that extracts the S type from a Lens<S, A>

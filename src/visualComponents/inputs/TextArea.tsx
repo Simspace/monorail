@@ -2,6 +2,7 @@ import React, { ChangeEvent, Component } from 'react'
 import styled, { css, SimpleInterpolation } from 'styled-components'
 
 import {
+  baseErrorBorderStyles,
   borderRadius,
   buttonTransition,
   Colors,
@@ -12,6 +13,7 @@ import {
 } from '@monorail/helpers/exports'
 import { isNil } from '@monorail/sharedHelpers/typeGuards'
 import { Label } from '@monorail/visualComponents/inputs/Label'
+import { ErrorProps, StdErr } from '@monorail/visualComponents/inputs/StdErr'
 
 /*
  * Styles
@@ -30,13 +32,14 @@ export const TextAreaContainer = styled.label<TextAreaContainerProps>(
 )
 
 export const TextAreaInput = styled.textarea<TextAreaInputProps>(
-  ({ chromeless, compact }) => css`
+  ({ chromeless, compact, height, err }) => css`
     ${typography(400, FontSizes.Title5)};
     ${borderRadius()};
 
     border: 1px solid ${getColor(Colors.Black, 0.12)};
     box-sizing: border-box;
     color: ${getColor(Colors.Black89)};
+    height: ${height ? height : '64'}px;
     outline: none;
     padding: 4px 6px 4px 6px;
     resize: none;
@@ -67,6 +70,8 @@ export const TextAreaInput = styled.textarea<TextAreaInputProps>(
       css`
         overflow: hidden;
       `};
+
+    ${err && baseErrorBorderStyles};
   `,
 )
 
@@ -83,6 +88,7 @@ type TextAreaInputProps = {
   chromeless?: boolean
   compact?: boolean
   disabled?: boolean
+  height?: number
   label?: string | number
   onChange?: (event: ChangeEvent<HTMLTextAreaElement>) => void
   placeholder?: string
@@ -91,7 +97,9 @@ type TextAreaInputProps = {
   value?: string
   onBlur?: (e: React.FocusEvent<HTMLTextAreaElement>) => void
   name?: string
-}
+  hasRequiredAsterisk?: boolean
+  hideStdErr?: boolean
+} & ErrorProps
 
 export type TextAreaProps = TextAreaContainerProps & TextAreaInputProps
 
@@ -139,26 +147,36 @@ export class TextArea extends Component<TextAreaProps> {
       compact,
       cssOverrides,
       disabled,
+      height,
       label,
       onChange,
       placeholder,
       readOnly,
       required,
+      hasRequiredAsterisk,
       value,
       onBlur,
       name,
       className,
+      err,
+      msg,
+      hideStdErr = false,
       ...otherProps
     } = this.props
 
     return (
       <TextAreaContainer cssOverrides={cssOverrides} className={className}>
-        <Label label={label} required={required} />
+        <Label
+          label={label}
+          required={hasRequiredAsterisk || required}
+          err={err}
+        />
         <TextAreaInput
           chromeless={chromeless}
           className="new-textarea"
           compact={compact}
           disabled={disabled}
+          height={height}
           ref={this.textArea}
           onChange={this.onChange}
           placeholder={placeholder}
@@ -168,8 +186,10 @@ export class TextArea extends Component<TextAreaProps> {
           value={value}
           onBlur={onBlur}
           name={name}
+          err={err}
           {...otherProps}
         />
+        {!hideStdErr && <StdErr err={err} msg={msg} />}
       </TextAreaContainer>
     )
   }

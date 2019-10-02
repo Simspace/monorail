@@ -15,8 +15,11 @@ import { Eq } from 'fp-ts/lib/Eq'
 import { constFalse, constTrue, Predicate, tuple } from 'fp-ts/lib/function'
 import { IO } from 'fp-ts/lib/IO'
 import { none, option, Option, some } from 'fp-ts/lib/Option'
+import { lookup } from 'fp-ts/lib/Record'
 import { task } from 'fp-ts/lib/Task'
 import { taskEither } from 'fp-ts/lib/TaskEither'
+
+import { isNotNil } from '../typeGuards'
 
 import { runIO } from './IO'
 import { fold, getOrElse } from './Option'
@@ -263,3 +266,18 @@ export const xor = <A>(E: Eq<A>) => (xs: Array<A>, ys: Array<A>) => [
   ...difference(E)(xs, ys),
   ...difference(E)(ys, xs),
 ]
+
+/**
+ * Returns an object made up of a keys from the result the accessor function
+ */
+
+export const arrayToRecord = <T, V>(
+  keyAccessor: (curr: T) => string,
+  mapValue?: (curr: T) => V,
+) => (arr: Array<T>): Record<string, V> => {
+  return arr.reduce((acc, curr) => {
+    const key = keyAccessor(curr)
+    const value = isNotNil(mapValue) ? mapValue(curr) : curr
+    return lookup(key, acc).fold({ ...acc, [key]: value }, () => acc)
+  }, {})
+}

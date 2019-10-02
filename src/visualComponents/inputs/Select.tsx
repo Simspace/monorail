@@ -1,7 +1,7 @@
 import React, { SFC } from 'react'
 import styled, { css, SimpleInterpolation } from 'styled-components'
 
-import { flexFlow } from '@monorail/helpers/exports'
+import { baseErrorBorderStyles, flexFlow } from '@monorail/helpers/exports'
 import { CommonComponentType } from '@monorail/types'
 import { Label } from '@monorail/visualComponents/inputs/Label'
 
@@ -18,18 +18,22 @@ const SelectGroupWrapper = styled.div<CommonComponentType>(
   `,
 )
 
-const SelectElementWrapper = styled.div`
-  background-color: white;
-  width: 100%;
-  height: 24px;
-  border: 1px solid #e5e5e5;
-  padding: 0 0 0 0;
-  border-radius: 3px;
+const SelectElementWrapper = styled.div<{ err?: boolean }>(
+  ({ err }) => css`
+    background-color: white;
+    width: 100%;
+    height: 24px;
+    border: 1px solid #e5e5e5;
+    padding: 0 0 0 0;
+    border-radius: 3px;
 
-  &:hover {
-    cursor: pointer;
-  }
-`
+    &:hover {
+      cursor: pointer;
+    }
+
+    ${err && baseErrorBorderStyles};
+  `,
+)
 
 const SelectElement = styled.select`
   width: calc(100% - 8px);
@@ -61,6 +65,7 @@ export type SelectProps = {
   placeholder?: string
   required?: boolean
   value?: string | Array<string> | number
+  err?: boolean
 }
 
 export const Select: SFC<SelectProps> = ({
@@ -75,12 +80,13 @@ export const Select: SFC<SelectProps> = ({
   placeholder,
   required,
   value,
+  err,
   ...domProps
 }) => {
   return (
     <SelectGroupWrapper cssOverrides={cssOverrides} {...domProps}>
       <Label label={label} required={required} />
-      <SelectElementWrapper>
+      <SelectElementWrapper err={err}>
         <SelectElement
           disabled={disabled}
           name={name}

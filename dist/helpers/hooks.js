@@ -7,6 +7,7 @@ exports.useEventListener = useEventListener;
 exports.useRefCallback = useRefCallback;
 exports.useInterval = useInterval;
 exports.useInputDebounce = useInputDebounce;
+exports.useTimeout = void 0;
 
 var _react = require("react");
 
@@ -77,6 +78,32 @@ function useInterval(callback, delay) {
     return;
   }, [delay, resetInterval]);
 }
+
+const useTimeout = (callback, timeout, cleanup = () => {}) => {
+  const timeoutIdRef = (0, _react.useRef)(null); // Track current callback/cleanup, so we do not re-trigger the effect when it changes, since this use case is uncommon and
+  // counter-intuitive. Allows us to pass anonymous functions as props without re-rerenders thrashing the timeout
+
+  const callbackRef = (0, _react.useRef)(callback);
+  (0, _react.useEffect)(() => {
+    callbackRef.current = callback;
+  }, [callback]);
+  const cleanupRef = (0, _react.useRef)(cleanup);
+  (0, _react.useEffect)(() => {
+    cleanupRef.current = cleanup;
+  }, [cleanup]);
+  (0, _react.useEffect)(() => {
+    clearTimeout(timeoutIdRef.current); // non-null assert since clearTimeout does accept nulls
+
+    timeoutIdRef.current = setTimeout(callbackRef.current, timeout);
+    return () => {
+      clearTimeout(timeoutIdRef.current); // non-null assert since clearTimeout does accept nulls
+
+      cleanupRef.current();
+    };
+  }, [timeout]);
+};
+
+exports.useTimeout = useTimeout;
 
 function useInputDebounce({
   initialValue,

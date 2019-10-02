@@ -4,7 +4,7 @@ import { Colors, getColor } from '@monorail/helpers/color'
 import { ElevationRange, getElevationShadow } from '@monorail/helpers/elevation'
 import { flexFlow } from '@monorail/helpers/flex'
 import { pageSizePadding } from '@monorail/helpers/size'
-import styled from '@monorail/helpers/styled-components'
+import styled, { css } from '@monorail/helpers/styled-components'
 
 const ButtonFooterContainer = styled.div`
   ${flexFlow('row')};
@@ -17,19 +17,40 @@ const ButtonFooterContainer = styled.div`
   position: relative; /* Needs pos: rel so that the shadow appears above the content. */
 `
 
-const ButtonFooterContent = styled.div`
-  ${flexFlow('row-reverse')};
-  ${pageSizePadding()};
+const ButtonFooterContent = styled.div<Props>(
+  ({ justifyContent }) => css`
+    ${flexFlow('row')};
+    ${pageSizePadding()};
 
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-`
+    align-items: center;
+    justify-content: ${justifyContent ? justifyContent : `flex-end`};
+    width: 100%;
 
-export const ButtonFooter: FC = ({ children }) => {
+    & > * {
+      margin-left: 4px;
+      margin-right: 4px;
+
+      &:first-child {
+        margin-left: 0;
+      }
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  `,
+)
+
+type Props = {
+  justifyContent?: string
+}
+
+export const ButtonFooter: FC<Props> = ({ children, justifyContent }) => {
   return (
     <ButtonFooterContainer>
-      <ButtonFooterContent>{children}</ButtonFooterContent>
+      <ButtonFooterContent justifyContent={justifyContent}>
+        {children}
+      </ButtonFooterContent>
     </ButtonFooterContainer>
   )
 }

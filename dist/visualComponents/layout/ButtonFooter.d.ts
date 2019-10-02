@@ -1,2 +1,6 @@
 import { FC } from 'react';
-export declare const ButtonFooter: FC;
+declare type Props = {
+    justifyContent?: string;
+};
+export declare const ButtonFooter: FC<Props>;
+export {};

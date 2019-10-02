@@ -76,7 +76,7 @@ export const Tag: FCwDP<Props, DefaultProps> = ({
     <Icon css={iconStyles} icon={icon} size={iconSize} />
 
     {!isEmptyString(label) && (
-      <Text css={labelStyles} fontSize={FontSizes.Content} fontWeight={700}>
+      <Text css={labelStyles} fontSize={FontSizes.Micro} fontWeight={700}>
         {label}
       </Text>
     )}

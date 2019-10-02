@@ -7,10 +7,6 @@ exports.constRunTaskEither = exports.runTaskEither = exports.newTaskEither = voi
 
 var _TaskEither = require("fp-ts/lib/TaskEither");
 
-/**
- * TaskEither constructor function
- *
- */
 const newTaskEither = task => new _TaskEither.TaskEither(task);
 /**
  * Run a TaskEither

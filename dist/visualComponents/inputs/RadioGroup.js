@@ -13,9 +13,11 @@ var _exports = require("../../helpers/exports");
 
 var _typeGuards = require("../../sharedHelpers/typeGuards");
 
+var _Choice = require("./Choice");
+
 var _Label = require("./Label");
 
-var _Choice = require("./Choice");
+var _StdErr = require("./StdErr");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -23,18 +25,40 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; if (obj != null) { var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+const Container =
+/*#__PURE__*/
+_styledComponents.default.div.withConfig({
+  displayName: "RadioGroup__Container",
+  componentId: "hjdmb5-0"
+})(["", ";"], (0, _exports.flexFlow)('column'));
+
 const RadioGroupWrapper =
 /*#__PURE__*/
 _styledComponents.default.fieldset.withConfig({
   displayName: "RadioGroup__RadioGroupWrapper",
-  componentId: "hjdmb5-0"
-})(["", ";margin:0;padding:0;border:0;"], (0, _exports.flexFlow)('column'));
+  componentId: "hjdmb5-1"
+})(({
+  err
+}) => (0, _styledComponents.css)(["", ";margin:0;padding:0;border-style:solid;border-width:1px;border-color:transparent;", ";"], (0, _exports.borderRadius)(), err && (0, _styledComponents.css)(["", " border-top:none;border-top-left-radius:0 0;border-top-right-radius:0 0;"], _exports.baseErrorBorderStyles)));
+
+const BorderJoiner =
+/*#__PURE__*/
+_styledComponents.default.div.withConfig({
+  displayName: "RadioGroup__BorderJoiner",
+  componentId: "hjdmb5-2"
+})(["border-style:solid;border-width:1px;border-top:none;border-bottom:none;border-left:none;border-color:", ";height:8px;margin-top:-7px;"], (0, _exports.getColor)(_exports.Colors.Red));
+
+const errorStyles =
+/*#__PURE__*/
+(0, _styledComponents.css)(["", " overflow:hidden;white-space:nowrap;&:after{content:'';display:block;width:100%;height:6px;position:relative;border-right:1px solid ", ";border-top:1px solid ", ";border-top-right-radius:3px;margin:auto 0 auto 8px;top:3px;}"], (0, _exports.flexFlow)('row'), (0, _exports.getColor)(_exports.Colors.Red), (0, _exports.getColor)(_exports.Colors.Red));
 
 const InfoText =
 /*#__PURE__*/
 _styledComponents.default.p.withConfig({
   displayName: "RadioGroup__InfoText",
-  componentId: "hjdmb5-1"
+  componentId: "hjdmb5-3"
 })(["", ";margin-left:32px;"], (0, _exports.typography)(300, _exports.FontSizes.Title5));
 
 const defaultOptions = {
@@ -42,15 +66,16 @@ const defaultOptions = {
   key: '',
   info: '',
   disabled: false,
-  'data-test-id': ''
+  'data-test-id': '',
+  hasRequiredAsterisk: false
 };
 
 var _StyledLabel =
 /*#__PURE__*/
 (0, _styledComponents.default)(_Label.Label).withConfig({
   displayName: "RadioGroup___StyledLabel",
-  componentId: "hjdmb5-2"
-})(["margin-bottom:8px;"]);
+  componentId: "hjdmb5-4"
+})(["", ""], p => p._css);
 
 const RadioGroup = ({
   label,
@@ -58,11 +83,18 @@ const RadioGroup = ({
   onSelect,
   value,
   required,
+  hasRequiredAsterisk,
+  err,
+  msg,
   ...otherProps
 }) => {
-  return _react.default.createElement(RadioGroupWrapper, otherProps, _react.default.createElement(_StyledLabel, {
+  return _react.default.createElement(Container, null, _react.default.createElement(_StyledLabel, {
     label: label,
-    required: required
+    required: hasRequiredAsterisk || required,
+    err: err,
+    _css: err ? errorStyles : `${(0, _exports.flexFlow)('row')}`
+  }), err && _react.default.createElement(BorderJoiner, null), _react.default.createElement(RadioGroupWrapper, _extends({}, otherProps, {
+    err: err
   }), options.map((o = defaultOptions, k) => _react.default.createElement("div", {
     key: k + o.label
   }, _react.default.createElement(_Choice.Choice, {
@@ -77,7 +109,10 @@ const RadioGroup = ({
     required: required,
     readOnly: false,
     disabled: o.disabled
-  }, o.label), _react.default.createElement(InfoText, null, o.key === value && !(0, _typeGuards.isEmptyString)(o.info)))));
+  }, o.label), _react.default.createElement(InfoText, null, o.key === value && !(0, _typeGuards.isEmptyString)(o.info))))), _react.default.createElement(_StdErr.StdErr, {
+    err: err,
+    msg: msg
+  }));
 };
 
 exports.RadioGroup = RadioGroup;

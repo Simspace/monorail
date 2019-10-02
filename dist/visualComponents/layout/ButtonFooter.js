@@ -15,7 +15,11 @@ var _flex = require("../../helpers/flex");
 
 var _size = require("../../helpers/size");
 
-var _styledComponents = _interopRequireDefault(require("../../helpers/styled-components"));
+var _styledComponents = _interopRequireWildcard(require("../../helpers/styled-components"));
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; if (obj != null) { var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -29,19 +33,38 @@ const ButtonFooterContainer = _styledComponents.default.div`
   flex-shrink: 0;
   position: relative; /* Needs pos: rel so that the shadow appears above the content. */
 `;
-const ButtonFooterContent = _styledComponents.default.div`
-  ${(0, _flex.flexFlow)('row-reverse')};
-  ${(0, _size.pageSizePadding)()};
 
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-`;
+const ButtonFooterContent = _styledComponents.default.div(({
+  justifyContent
+}) => _styledComponents.css`
+    ${(0, _flex.flexFlow)('row')};
+    ${(0, _size.pageSizePadding)()};
+
+    align-items: center;
+    justify-content: ${justifyContent ? justifyContent : `flex-end`};
+    width: 100%;
+
+    & > * {
+      margin-left: 4px;
+      margin-right: 4px;
+
+      &:first-child {
+        margin-left: 0;
+      }
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  `);
 
 const ButtonFooter = ({
-  children
+  children,
+  justifyContent
 }) => {
-  return _react.default.createElement(ButtonFooterContainer, null, _react.default.createElement(ButtonFooterContent, null, children));
+  return _react.default.createElement(ButtonFooterContainer, null, _react.default.createElement(ButtonFooterContent, {
+    justifyContent: justifyContent
+  }, children));
 };
 
 exports.ButtonFooter = ButtonFooter;

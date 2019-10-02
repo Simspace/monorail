@@ -11,9 +11,6 @@ var _typeGuards = require("../typeGuards");
 
 var _Array2 = require("./Array");
 
-/**
- * Retrieves the keys of an object while retaining keyof type information
- */
 const keys = x => Object.keys(x);
 /**
  * Retrieves the value of a given property key from an object (curried)
