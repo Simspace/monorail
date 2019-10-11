@@ -134,7 +134,8 @@ const StyledButton = _styledComponents2.default.button(({
   display,
   mode,
   pressed,
-  cssOverrides
+  cssOverrides,
+  status
 }) => _styledComponents2.css`
     ${mode === _buttonTypes.ButtonMode.Push && pressed ? buttonPressedDisplayCss[display] : buttonDisplayCss[display]};
     ${buttonSizeCss[size]};
@@ -143,6 +144,8 @@ const StyledButton = _styledComponents2.default.button(({
     ${(0, _exports.typography)(700, _exports.FontSizes.Title5)};
     ${(0, _exports.borderRadius)()};
     ${(0, _exports.flexFlow)('row')};
+
+    ${status ? `overflow: visible;` : `overflow: hidden;`}
 
     cursor: pointer;
     flex-shrink: 0;
@@ -153,7 +156,7 @@ const StyledButton = _styledComponents2.default.button(({
     align-items: center;
     justify-content: center;
     margin: 0;
-    overflow: hidden;
+    position: relative;
 
     ${_exports.buttonTransition};
 
@@ -197,14 +200,20 @@ const Button = ({
   className,
   iconLeft,
   iconRight,
-  size,
   passedAs,
+  size,
+  status,
   ...domProps
 }) => _react.default.createElement(StyledButton, _extends({
   as: passedAs,
   className: `new-button ${className}`,
-  size: size
-}, domProps), !(0, _typeGuards.isEmptyString)(iconLeft) && _react.default.createElement(_StyledIcon, {
+  size: size,
+  status: status
+}, domProps), typeof status === 'function' && status({
+  style: {
+    position: 'absolute'
+  }
+}), !(0, _typeGuards.isEmptyString)(iconLeft) && _react.default.createElement(_StyledIcon, {
   icon: iconLeft,
   size: 16,
   _css: iconLeftStyles[size]

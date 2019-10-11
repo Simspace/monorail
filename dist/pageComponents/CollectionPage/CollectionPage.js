@@ -23,6 +23,7 @@ const CollectionPage = props => {
     columns,
     data,
     isLoading,
+    pivotBy,
     setCollectionView,
     title,
     NoDataComponent
@@ -36,8 +37,9 @@ const CollectionPage = props => {
         columns: columns,
         data: data,
         isLoading: isLoading,
-        setCollectionView: setCollectionView,
+        pivotBy: pivotBy,
         searchInput: props.searchInput,
+        setCollectionView: setCollectionView,
         NoDataComponent: NoDataComponent
       });
     } else if ('searchFilter' in props) {
@@ -47,8 +49,9 @@ const CollectionPage = props => {
         columns: columns,
         data: data,
         isLoading: isLoading,
-        setCollectionView: setCollectionView,
+        pivotBy: pivotBy,
         searchFilter: props.searchFilter,
+        setCollectionView: setCollectionView,
         NoDataComponent: NoDataComponent
       });
     } else {

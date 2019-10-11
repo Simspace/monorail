@@ -1,4 +1,4 @@
-import React, { MouseEvent, ReactType } from 'react'
+import React, { MouseEvent, ReactNode, ReactType } from 'react'
 
 import {
   baseButtonBarStyles,
@@ -134,7 +134,7 @@ const iconRightStyles = {
 }
 
 export const StyledButton = styled.button<StyleProps>(
-  ({ disabled, size, display, mode, pressed, cssOverrides }) => css`
+  ({ disabled, size, display, mode, pressed, cssOverrides, status }) => css`
     ${mode === ButtonMode.Push && pressed
       ? buttonPressedDisplayCss[display]
       : buttonDisplayCss[display]};
@@ -145,6 +145,8 @@ export const StyledButton = styled.button<StyleProps>(
     ${borderRadius()};
     ${flexFlow('row')};
 
+    ${status ? `overflow: visible;` : `overflow: hidden;`}
+
     cursor: pointer;
     flex-shrink: 0;
     outline: none;
@@ -154,7 +156,7 @@ export const StyledButton = styled.button<StyleProps>(
     align-items: center;
     justify-content: center;
     margin: 0;
-    overflow: hidden;
+    position: relative;
 
     ${buttonTransition};
 
@@ -182,6 +184,7 @@ type FunctionalProps = {
   onMouseUp?: OnClick
   pressed: boolean
   size: ButtonSize
+  status?: (props: { style: React.CSSProperties }) => ReactNode
   title?: string
   type: 'button' | 'reset' | 'submit'
 }
@@ -215,16 +218,24 @@ export const Button: FCwDP<CommonProps, DefaultProps> = ({
   className,
   iconLeft,
   iconRight,
-  size,
   passedAs,
+  size,
+  status,
   ...domProps
 }) => (
   <StyledButton
     as={passedAs}
     className={`new-button ${className}`}
     size={size}
+    status={status}
     {...domProps}
   >
+    {typeof status === 'function' &&
+      status({
+        style: {
+          position: 'absolute',
+        },
+      })}
     {!isEmptyString(iconLeft) && (
       <Icon icon={iconLeft} css={iconLeftStyles[size]} size={16} />
     )}

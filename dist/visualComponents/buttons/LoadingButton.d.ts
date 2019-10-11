@@ -1,4 +1,4 @@
-import { Component, MouseEvent } from 'react';
+import React, { Component, MouseEvent } from 'react';
 import { Omit } from 'typelevel-ts';
 import { ButtonProps } from './Button';
 declare type Props = Omit<ButtonProps, 'onClick'> & {
@@ -26,6 +26,9 @@ export declare class LoadingButton extends Component<Props, State> {
         onMouseUp?: import("./Button").OnClick | undefined;
         pressed: boolean;
         size: import("./buttonTypes").ButtonSize;
+        status?: ((props: {
+            style: React.CSSProperties;
+        }) => React.ReactNode) | undefined;
         title?: string | undefined;
         type: "button" | "submit" | "reset";
     };

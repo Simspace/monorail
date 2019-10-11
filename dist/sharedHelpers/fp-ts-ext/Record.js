@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.isRecord = exports.sortRecords = exports.pick = exports.omit = exports.prop = exports.keys = void 0;
+exports.isRecord = exports.sortRecords = exports.pick = exports.omit = exports.prop = exports.values = exports.keys = void 0;
 
 var _Array = require("fp-ts/lib/Array");
 
@@ -12,12 +12,16 @@ var _typeGuards = require("../typeGuards");
 var _Array2 = require("./Array");
 
 const keys = x => Object.keys(x);
+
+exports.keys = keys;
+
+const values = x => Object.values(x);
 /**
  * Retrieves the value of a given property key from an object (curried)
  */
 
 
-exports.keys = keys;
+exports.values = values;
 
 const prop = k => obj => obj[k];
 /**

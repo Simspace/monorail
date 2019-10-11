@@ -367,6 +367,7 @@ const Dropdown = ({
       iconLeft: searching ? 'search' : '',
       iconRight: !searching ? 'arrow_drop_down' : '',
       ref: inputRef,
+      hideStdErr: true,
       _css: TextFieldStyles(searching, err)
     })), _react.default.createElement(_StyledHandler, {
       _css2: (0, _exports.visible)(!searching)

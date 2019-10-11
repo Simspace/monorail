@@ -466,6 +466,7 @@ export const Dropdown = <D extends unknown = DropdownItemType>({
           iconLeft={searching ? 'search' : ''}
           iconRight={!searching ? 'arrow_drop_down' : ''}
           ref={inputRef}
+          hideStdErr
         />
         <Handler css={visible(!searching)}>
           {renderHandler

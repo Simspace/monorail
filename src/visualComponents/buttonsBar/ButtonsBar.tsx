@@ -44,6 +44,7 @@ const StyledButtonWrapper = styled.div<ButtonWrapperProps>(
         `
       : css`
           border-radius: inherit;
+          flex: 1 1 auto;
 
           &:not(:first-child) {
             ${floatingOutlineStyles(getColor(Colors.Black, 0.16))};
@@ -65,6 +66,8 @@ const StyledButtonWrapper = styled.div<ButtonWrapperProps>(
 
           ${StyledButton} {
             border-radius: inherit;
+            min-width: 100%;
+            min-height: 100%;
 
             &:before {
               border-width: 0;
@@ -100,10 +103,12 @@ type ButtonsBarContainerProps = CommonComponentType & {
 export const ButtonsBarContainer = styled.div<ButtonsBarContainerProps>(
   ({ cssOverrides, mode }) => css`
     ${mode === ButtonsBarMode.Default &&
-      floatingOutlineStyles(getColor(Colors.Black, 0.16))};
+      css`
+        ${floatingOutlineStyles(getColor(Colors.Black, 0.16))};
+        ${borderRadius()};
+      `}
 
     ${flexFlow('row')};
-    ${borderRadius()};
 
     overflow: hidden;
     position: relative;

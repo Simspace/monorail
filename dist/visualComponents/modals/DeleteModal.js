@@ -82,7 +82,7 @@ const DeleteModal = props => {
     fontSize: _typography.FontSizes.Title5,
     fontWeight: 400,
     margin: "8px 0 0 "
-  }, titleText !== undefined ? subtitleText : _react.default.createElement(_react.default.Fragment, null, "Deleting is permanent action that can not be recovered."))), _react.default.createElement(_Modals.BBModalFooter, null, _react.default.createElement(_StyledButton, {
+  }, titleText !== undefined ? subtitleText : _react.default.createElement(_react.default.Fragment, null, "Deleting is a permanent action that can not be recovered."))), _react.default.createElement(_Modals.BBModalFooter, null, _react.default.createElement(_StyledButton, {
     onClick: onClick,
     display: _buttonTypes.ButtonDisplay.Chromeless
   }, "No"), _react.default.createElement(_Button.Button, {

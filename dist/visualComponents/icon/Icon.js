@@ -15,6 +15,8 @@ var _Academy = require("./custom/Academy");
 
 var _Admin = require("./custom/Admin");
 
+var _Bam = require("./custom/Bam");
+
 var _Catalog = require("./custom/Catalog");
 
 var _Certificate = require("./custom/Certificate");
@@ -28,6 +30,8 @@ var _Clipboard = require("./custom/Clipboard");
 var _CodeBlock = require("./custom/CodeBlock");
 
 var _Copy = require("./custom/Copy");
+
+var _Database = require("./custom/Database");
 
 var _ErrorRobot = require("./custom/ErrorRobot");
 
@@ -99,6 +103,8 @@ var _TreasureChest = require("./custom/TreasureChest");
 
 var _Unscored = require("./custom/Unscored");
 
+var _Upload = require("./custom/Upload");
+
 var _VCenter = require("./custom/VCenter");
 
 var _VMTemplates = require("./custom/VMTemplates");
@@ -148,6 +154,7 @@ const customIcons = {
   'techops-app': _TechOps.TechOps,
   'tracker-app': _Tracker.Tracker,
   'training-app': _Academy.Academy,
+  bam: _Bam.Bam,
   certificate: _Certificate.Certificate,
   chevron_double_left: _ChevronDoubleLeft.ChevronDoubleLeft,
   circle_arrow_left: _CircleArrowLeft.CircleArrowLeft,
@@ -155,6 +162,7 @@ const customIcons = {
   copy: _Copy.Copy,
   errorRobot: _ErrorRobot.ErrorRobot,
   codeBlock: _CodeBlock.CodeBlock,
+  database: _Database.Database,
   file_tree: _FileTree.FileTree,
   filter: _Filter.Filter,
   gauge: _Gauge.Gauge,
@@ -180,7 +188,8 @@ const customIcons = {
   vmtemplates: _VMTemplates.VMTemplates,
   wand: _Wand.Wand,
   treasure_chest: _TreasureChest.TreasureChest,
-  grade: _Grade.Grade
+  grade: _Grade.Grade,
+  upload: _Upload.Upload
 };
 const Icon =
 /*#__PURE__*/

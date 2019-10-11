@@ -6,6 +6,7 @@ import { Colors, getColor } from '@monorail/helpers/exports'
 import { CommonComponentType } from '@monorail/types'
 import { Academy } from '@monorail/visualComponents/icon/custom/Academy'
 import { Admin } from '@monorail/visualComponents/icon/custom/Admin'
+import { Bam } from '@monorail/visualComponents/icon/custom/Bam'
 import { Catalog } from '@monorail/visualComponents/icon/custom/Catalog'
 import { Certificate } from '@monorail/visualComponents/icon/custom/Certificate'
 import { ChevronDoubleLeft } from '@monorail/visualComponents/icon/custom/ChevronDoubleLeft'
@@ -13,6 +14,7 @@ import { CircleArrowLeft } from '@monorail/visualComponents/icon/custom/CircleAr
 import { Clipboard } from '@monorail/visualComponents/icon/custom/Clipboard'
 import { CodeBlock } from '@monorail/visualComponents/icon/custom/CodeBlock'
 import { Copy } from '@monorail/visualComponents/icon/custom/Copy'
+import { Database } from '@monorail/visualComponents/icon/custom/Database'
 import { ErrorRobot } from '@monorail/visualComponents/icon/custom/ErrorRobot'
 import { EventDesign } from '@monorail/visualComponents/icon/custom/EventDesign'
 import { Events } from '@monorail/visualComponents/icon/custom/Events'
@@ -48,6 +50,7 @@ import { ThreeGears } from '@monorail/visualComponents/icon/custom/ThreeGears'
 import { Tracker } from '@monorail/visualComponents/icon/custom/Tracker'
 import { TreasureChest } from '@monorail/visualComponents/icon/custom/TreasureChest'
 import { Unscored } from '@monorail/visualComponents/icon/custom/Unscored'
+import { Upload } from '@monorail/visualComponents/icon/custom/Upload'
 import { VCenter } from '@monorail/visualComponents/icon/custom/VCenter'
 import { VMTemplates } from '@monorail/visualComponents/icon/custom/VMTemplates'
 import { Wand } from '@monorail/visualComponents/icon/custom/Wand'
@@ -88,6 +91,7 @@ const customIcons: { [key: string]: ComponentType<CustomIconProps> } = {
   'techops-app': TechOps,
   'tracker-app': Tracker,
   'training-app': Academy,
+  bam: Bam,
   certificate: Certificate,
   chevron_double_left: ChevronDoubleLeft,
   circle_arrow_left: CircleArrowLeft,
@@ -95,6 +99,7 @@ const customIcons: { [key: string]: ComponentType<CustomIconProps> } = {
   copy: Copy,
   errorRobot: ErrorRobot,
   codeBlock: CodeBlock,
+  database: Database,
   file_tree: FileTree,
   filter: Filter,
   gauge: Gauge,
@@ -121,6 +126,7 @@ const customIcons: { [key: string]: ComponentType<CustomIconProps> } = {
   wand: Wand,
   treasure_chest: TreasureChest,
   grade: Grade,
+  upload: Upload,
 }
 
 export const Icon = styled(

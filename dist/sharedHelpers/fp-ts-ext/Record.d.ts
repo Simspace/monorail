@@ -3,6 +3,7 @@ import { Ord } from 'fp-ts/lib/Ord';
  * Retrieves the keys of an object while retaining keyof type information
  */
 export declare const keys: <A extends Record<string, unknown>, K extends keyof A>(x: A) => K[];
+export declare const values: <A extends Record<string, unknown>, V extends A[keyof A]>(x: A) => V[];
 /**
  * Retrieves the value of a given property key from an object (curried)
  */

@@ -27,6 +27,7 @@ const ScrollContainer = styled.div`
   overflow-x: hidden;
   overflow-y: auto;
   height: 100%;
+  transform: translateZ(0);
 `
 
 const Shadow = styled.div`

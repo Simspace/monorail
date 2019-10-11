@@ -44,6 +44,7 @@ const ScrollContainer = _styledComponents.default.div`
   overflow-x: hidden;
   overflow-y: auto;
   height: 100%;
+  transform: translateZ(0);
 `;
 const Shadow = _styledComponents.default.div`
   ${(0, _elevation.getElevationShadow)(_elevation.ElevationRange.Elevation6)};

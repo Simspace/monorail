@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.IconButton = void 0;
+exports.IconButton = exports.StyledIconButton = void 0;
 
 var _styledComponents = _interopRequireDefault(require("styled-components"));
 
@@ -13,7 +13,7 @@ var _baseStyles = require("../../helpers/baseStyles");
 
 var _borderRadius = require("../../helpers/borderRadius");
 
-var _styledComponents2 = require("../../helpers/styled-components");
+var _styledComponents2 = _interopRequireWildcard(require("../../helpers/styled-components"));
 
 var _theme = require("../../helpers/theme");
 
@@ -22,6 +22,10 @@ var _Button = require("./Button");
 var _buttonTypes = require("./buttonTypes");
 
 var _Icon = require("../icon/Icon");
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; if (obj != null) { var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -93,6 +97,9 @@ const iconButtonCSS = ({
   ${cssOverrides};
 `;
 
+const StyledIconButton = (0, _styledComponents2.default)(_Button.Button)``;
+exports.StyledIconButton = StyledIconButton;
+
 var _StyledIcon =
 /*#__PURE__*/
 (0, _styledComponents.default)(_Icon.Icon).withConfig({
@@ -106,15 +113,18 @@ const IconButton = ({
   icon,
   iconCss,
   isActive,
+  passedAs,
+  pressed,
   shape,
   size,
-  passedAs,
+  status,
   ...domProps
-}) => _react.default.createElement(_Button.Button, _extends({}, domProps, {
+}) => _react.default.createElement(StyledIconButton, _extends({}, domProps, {
   as: passedAs,
   display: display,
+  pressed: isActive || pressed,
   size: size,
-  pressed: isActive,
+  status: status,
   cssOverrides: iconButtonCSS({
     display,
     size,

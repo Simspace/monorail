@@ -27,7 +27,6 @@ export const AppIcon = styled(({ appName, ...otherProps }: AppIconProps) => (
   width: 16px;
 
   ${Icon} {
-    fill: ${getColor(Colors.White)};
     height: 100%;
     margin: auto;
     width: 100%;

@@ -45,7 +45,7 @@ const PageHeaderContainer = styled.div<PageHeaderContainerProps>(
     flex-shrink: 0;
 
     /* Instead of hiding overflow errors, let's see them and fix them. This was causing buttons to be hidden in error. */
-    overflow: visible;
+    overflow-x: auto;
 
     position: relative; /* Has this so that the shadow goes over the content below it. */
     z-index: 1; /* Has this so that the shadow goes over the content below it. */
@@ -197,7 +197,8 @@ export class PageHeader extends Component<PageHeaderProps> {
       ...domProps
     } = this.props
 
-    const hasAboveContent = !isNil(breadCrumbs) || !isNil(goBack)
+    const hasAboveContent =
+      !isNil(breadCrumbs) || !isNil(goBack) || !isNil(pageName)
     return (
       <PageHeaderContainer
         cssOverrides={cssOverrides}

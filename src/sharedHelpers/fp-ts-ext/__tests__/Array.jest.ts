@@ -322,8 +322,8 @@ describe('xor', () => {
           fc.array(fc.integer()),
           (xs, ys, zs) => {
             return arrNumEq.equals(
-              numXor(numXor(xs, ys), zs),
-              numXor(xs, numXor(ys, zs)),
+              numXor(numXor(xs, ys), zs).sort(),
+              numXor(xs, numXor(ys, zs)).sort(),
             )
           },
         ),

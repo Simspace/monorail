@@ -44,7 +44,7 @@ const TablePage = props => {
     isLoading = false,
     ...otherProps
   } = props;
-  const [sorted, onSortedChange] = (0, _ReactTable.useSort)();
+  const [sorted, onSortedChange] = (0, _ReactTable.useSort)(otherProps.defaultSorted);
   return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_PageHeader.PageHeader, {
     title: title,
     actions: _react.default.createElement(_Actions.ActionsContainer, null, actions)

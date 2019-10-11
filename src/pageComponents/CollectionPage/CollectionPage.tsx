@@ -31,6 +31,7 @@ export const CollectionPage = <T extends unknown>(
     columns,
     data,
     isLoading,
+    pivotBy,
     setCollectionView,
     title,
     NoDataComponent,
@@ -45,8 +46,9 @@ export const CollectionPage = <T extends unknown>(
           columns={columns}
           data={data}
           isLoading={isLoading}
-          setCollectionView={setCollectionView}
+          pivotBy={pivotBy}
           searchInput={props.searchInput}
+          setCollectionView={setCollectionView}
           NoDataComponent={NoDataComponent}
         />
       )
@@ -58,8 +60,9 @@ export const CollectionPage = <T extends unknown>(
           columns={columns}
           data={data}
           isLoading={isLoading}
-          setCollectionView={setCollectionView}
+          pivotBy={pivotBy}
           searchFilter={props.searchFilter}
+          setCollectionView={setCollectionView}
           NoDataComponent={NoDataComponent}
         />
       )

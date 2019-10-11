@@ -15,7 +15,7 @@ import {
   visible,
 } from '@monorail/helpers/exports'
 import { FCwDP } from '@monorail/sharedHelpers/react'
-import { Icon } from '@monorail/visualComponents/icon/Icon'
+import { Icon, OnClick } from '@monorail/visualComponents/icon/Icon'
 
 /*
  * Styles
@@ -122,6 +122,7 @@ type BBChoiceInputProps = AnsweredProps & {
   checked?: boolean
   defaultChecked?: boolean
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void
+  onClick?: OnClick
   'data-test-id'?: string
 }
 

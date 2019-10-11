@@ -18,6 +18,9 @@ export const sizes = {
       height: 360,
       width: 304,
     },
+    small: {
+      width: 444,
+    },
     medium: {
       width: 584,
     },

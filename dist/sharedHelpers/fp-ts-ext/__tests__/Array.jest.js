@@ -237,7 +237,7 @@ describe('xor', () => {
     });
     test('associative', () => {
       _fastCheck.default.assert(_fastCheck.default.property(_fastCheck.default.array(_fastCheck.default.integer()), _fastCheck.default.array(_fastCheck.default.integer()), _fastCheck.default.array(_fastCheck.default.integer()), (xs, ys, zs) => {
-        return arrNumEq.equals(numXor(numXor(xs, ys), zs), numXor(xs, numXor(ys, zs)));
+        return arrNumEq.equals(numXor(numXor(xs, ys), zs).sort(), numXor(xs, numXor(ys, zs)).sort());
       }));
     });
   });

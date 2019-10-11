@@ -9,6 +9,7 @@ exports.ModalSize = ModalSize;
 
 (function (ModalSize) {
   ModalSize["Mini"] = "mini";
+  ModalSize["Small"] = "small";
   ModalSize["Medium"] = "medium";
   ModalSize["Large"] = "large";
   ModalSize["FullScreen"] = "fullScreen";

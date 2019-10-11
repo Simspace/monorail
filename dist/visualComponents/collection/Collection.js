@@ -96,6 +96,7 @@ const Collection = props => {
     columns,
     data,
     isLoading = false,
+    pivotBy,
     setCollectionView,
     NoDataComponent = () => _react.default.createElement(_ReactTable.NoDataContainer, null, _react.default.createElement(_DataStates.EmptyTable, null))
   } = props;
@@ -187,6 +188,7 @@ const Collection = props => {
     getTrProps: getReactTableComponentProps,
     loading: isLoading,
     pageSize: passedData.length,
+    pivotBy: pivotBy,
     TbodyComponent: getTbodyComponent,
     TrComponent: getTrComponent,
     TrGroupComponent: getTrGroupComponent,
@@ -198,7 +200,7 @@ const Collection = props => {
       collectionView: collectionView
     }, thProps)),
     _css: collectionView === CollectionView.Card ? theadOverrides : ''
-  })))), [collectionView, columns, getReactTableComponentProps, getTbodyComponent, getTrComponent, getTrGroupComponent, isLoading, onSortedChange, setCollectionView, sorted]);
+  })))), [collectionView, columns, getReactTableComponentProps, getTbodyComponent, getTrComponent, getTrGroupComponent, isLoading, onSortedChange, setCollectionView, sorted, NoDataComponent, pivotBy]);
 
   if ('searchInput' in props) {
     return renderCollection({
