@@ -14,13 +14,10 @@ import {
   PageHeaderProps,
 } from '@monorail/visualComponents/pageHeader/PageHeader'
 
-type Props<I> = {
+type Props<I> = Partial<TableProps<I>> & {
   actions?: PageHeaderProps['actions']
   title: PageHeaderProps['title']
-  columns: TableColumns<I>
-  data: TableProps<I>['data']
   isLoading?: boolean
-  NoDataComponent?: () => ReactElement
 }
 
 const TableContainer = styled.div`
@@ -36,7 +33,7 @@ export const TablePage = <T extends unknown>(
 ): ReactElement<Props<T>> => {
   const { actions, title, isLoading = false, ...otherProps } = props
 
-  const [sorted, onSortedChange] = useSort()
+  const [sorted, onSortedChange] = useSort(otherProps.defaultSorted)
 
   return (
     <>

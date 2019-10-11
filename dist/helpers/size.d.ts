@@ -15,6 +15,9 @@ export declare const sizes: {
             height: number;
             width: number;
         };
+        small: {
+            width: number;
+        };
         medium: {
             width: number;
         };

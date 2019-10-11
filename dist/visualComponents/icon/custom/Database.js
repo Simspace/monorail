@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.Grade = void 0;
+exports.Database = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
@@ -11,16 +11,14 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
-const Grade = props => _react.default.createElement("svg", _extends({
-  xmlns: "http://www.w3.org/2000/svg",
+const Database = props => _react.default.createElement("svg", _extends({
   width: "24",
   height: "24",
+  viewBox: "0 0 24 24",
   fill: "none",
-  viewBox: "0 0 24 24"
+  xmlns: "http://www.w3.org/2000/svg"
 }, props), _react.default.createElement("path", {
-  fillRule: "evenodd",
-  d: "M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm5.08 6.107a.58.58 0 000-.823L15.717 6.92a.58.58 0 00-.823 0l-1.067 1.068 2.187 2.187 1.068-1.067zM6.75 15.063v2.187h2.188l6.451-6.452-2.187-2.187-6.452 6.451z",
-  clipRule: "evenodd"
+  d: "M12 4C8.133 4 5 5.591 5 7.556c0 1.964 3.133 3.555 7 3.555s7-1.591 7-3.555C19 5.59 15.867 4 12 4zM5 9.333V12c0 1.964 3.133 3.556 7 3.556s7-1.592 7-3.556V9.333c0 1.965-3.133 3.556-7 3.556s-7-1.591-7-3.556zm0 4.445v2.666C5 18.41 8.133 20 12 20s7-1.591 7-3.556v-2.666c0 1.964-3.133 3.555-7 3.555s-7-1.59-7-3.555z"
 }));
 
-exports.Grade = Grade;
+exports.Database = Database;

@@ -24,6 +24,7 @@ export declare type CollectionProps<T> = {
     data: TableProps<T>['data'];
     isLoading?: boolean;
     setCollectionView: (collectionView: CollectionView) => void;
+    pivotBy?: Array<string>;
     NoDataComponent?: () => ReactElement;
 } & (SearchFilter<T> | SearchInput);
 export declare const Collection: <T extends unknown>(props: CollectionProps<T>) => React.ReactElement<CollectionProps<T>, string | ((props: any) => React.ReactElement<any, string | any | (new (props: any) => React.Component<any, any, any>)> | null) | (new (props: any) => React.Component<any, any, any>)>;

@@ -10,7 +10,7 @@ export declare type TheadComponentProps = {
     style?: CSSProperties;
 };
 export declare const TheadComponent: FC<TheadComponentProps>;
-export declare function useSort(): [Array<SortingRule>, SortedChangeFunction];
+export declare function useSort(defaultSorted?: Array<SortingRule>): [Array<SortingRule>, SortedChangeFunction];
 export declare type ThComponentProps = {
     className: string;
     column?: Column;
@@ -69,6 +69,12 @@ export declare const MonorailReactTableOverrides: Partial<TableProps>;
 export declare function useTableExpandState<T extends object>({ data, pivotKey, }: {
     data: Array<T>;
     pivotKey: keyof T;
+}): {
+    expanded: Array<boolean>;
+    onExpandedChange: ExpandedChangeFunction;
+};
+export declare function useTableExpandStateFixedGroups<T extends object>({ totalGroups, }: {
+    totalGroups: number;
 }): {
     expanded: Array<boolean>;
     onExpandedChange: ExpandedChangeFunction;

@@ -12,6 +12,9 @@ export const keys = <A extends Record<string, unknown>, K extends keyof A>(
   x: A,
 ): Array<K> => Object.keys(x) as Array<K>
 
+export const values = <A extends Record<string, unknown>, V extends A[keyof A]>(
+  x: A,
+): Array<V> => Object.values(x) as Array<V>
 /**
  * Retrieves the value of a given property key from an object (curried)
  */

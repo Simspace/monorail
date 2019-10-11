@@ -206,6 +206,7 @@ export type BBModalBackgroundProps = BBModalSize & CommonComponentType
 
 const modalWidth = {
   [ModalSize.Mini]: `${sizes.modals.mini.width}px`,
+  [ModalSize.Small]: `${sizes.modals.small.width}px`,
   [ModalSize.Medium]: `${sizes.modals.medium.width}px`,
   [ModalSize.Large]: 'calc(100vw - 32px)',
   [ModalSize.FullScreen]: '100vw',
@@ -283,7 +284,7 @@ const BBModalHeaderRow = styled.div<BBModalSize>(
     ${flexFlow('row')};
 
     align-items: center;
-    height: ${size === ModalSize.Mini ? 48 : 56}px;
+    height: ${size === ModalSize.Mini || size === ModalSize.Small ? 48 : 56}px;
     padding: 0 16px;
     width: 100%;
     overflow: hidden;
@@ -292,7 +293,7 @@ const BBModalHeaderRow = styled.div<BBModalSize>(
 
 const BBModalHeaderTitle = styled.h1<BBModalSize>(
   ({ size }) => css`
-    ${size === ModalSize.Mini
+    ${size === ModalSize.Mini || size === ModalSize.Small
       ? typography(700, FontSizes.Title4)
       : typography(700, FontSizes.Title3)};
 

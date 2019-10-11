@@ -139,7 +139,7 @@ class TextArea extends _react.Component {
       onBlur: onBlur,
       name: name,
       err: err
-    }, otherProps)), !hideStdErr && _react.default.createElement(_StdErr.StdErr, {
+    }, otherProps)), !hideStdErr && err && _react.default.createElement(_StdErr.StdErr, {
       err: err,
       msg: msg
     }));

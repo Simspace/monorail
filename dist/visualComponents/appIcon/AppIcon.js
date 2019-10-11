@@ -29,7 +29,6 @@ const AppIcon = (0, _styledComponents.default)(({
   width: 16px;
 
   ${_Icon.Icon} {
-    fill: ${(0, _exports.getColor)(_exports.Colors.White)};
     height: 100%;
     margin: auto;
     width: 100%;

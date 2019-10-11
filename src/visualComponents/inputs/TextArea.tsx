@@ -189,7 +189,7 @@ export class TextArea extends Component<TextAreaProps> {
           err={err}
           {...otherProps}
         />
-        {!hideStdErr && <StdErr err={err} msg={msg} />}
+        {!hideStdErr && err && <StdErr err={err} msg={msg} />}
       </TextAreaContainer>
     )
   }

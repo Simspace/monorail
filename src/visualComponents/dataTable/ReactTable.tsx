@@ -38,7 +38,10 @@ import {
   ButtonDisplay,
   ButtonSize,
 } from '@monorail/visualComponents/buttons/buttonTypes'
-import { IconButton } from '@monorail/visualComponents/buttons/IconButton'
+import {
+  IconButton,
+  StyledIconButton,
+} from '@monorail/visualComponents/buttons/IconButton'
 import {
   Banner,
   Detail,
@@ -194,8 +197,10 @@ const getSortIcon = (sortStatus: Sort) => {
   }
 }
 
-export function useSort(): [Array<SortingRule>, SortedChangeFunction] {
-  const [sorted, setSorted] = useState<Array<SortingRule>>([])
+export function useSort(
+  defaultSorted: Array<SortingRule> = [],
+): [Array<SortingRule>, SortedChangeFunction] {
+  const [sorted, setSorted] = useState<Array<SortingRule>>(defaultSorted)
 
   const onSortChange = (newSorted: Array<SortingRule>) => {
     setSorted(
@@ -311,7 +316,6 @@ export const ThComponent: FC<ThComponentProps> = props => {
             <ThSortButton
               iconRight="sort"
               css={`
-                width: auto;
                 visibility: hidden;
               `}
             >
@@ -436,13 +440,14 @@ export const TrGroupComponent = styled.div<{ isGroup?: boolean }>(
         `
       : css`
           ${flexFlow('row')};
-          height: ${TD_HEIGHT}px;
+          height: auto;
+          min-height: ${TD_HEIGHT}px;
 
           &:hover::before {
             background: ${getColor(Colors.Grey98)};
           }
 
-          &:hover .actions {
+          &:hover .actions ${StyledIconButton} {
             opacity: 0.9999;
           }
 
@@ -478,7 +483,10 @@ const tdComponentTypeStyles = {
   `,
   [TdComponentType.Actions]: css`
     justify-content: flex-end;
-    opacity: 0.3;
+
+    ${StyledIconButton} {
+      opacity: 0.3;
+    }
   `,
   [TdComponentType.Hidden]: css``,
 }
@@ -782,6 +790,26 @@ export function useTableExpandState<T extends object>({
       return accumulator
     }, [])
     .map(() => true)
+
+  const [expanderState, setExpanderState] = useState<Array<boolean>>(
+    initialValues,
+  )
+
+  return {
+    expanded: expanderState,
+    onExpandedChange: expanded => setExpanderState(expanded), // tslint:disable-line:no-unsafe-any
+  }
+}
+
+export function useTableExpandStateFixedGroups<T extends object>({
+  totalGroups,
+}: {
+  totalGroups: number
+}): {
+  expanded: Array<boolean>
+  onExpandedChange: ExpandedChangeFunction
+} {
+  const initialValues = new Array(totalGroups).fill(true)
 
   const [expanderState, setExpanderState] = useState<Array<boolean>>(
     initialValues,

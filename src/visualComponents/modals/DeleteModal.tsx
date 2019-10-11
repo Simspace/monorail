@@ -69,7 +69,7 @@ export const DeleteModal: FC<DeleteModalProps> = props => {
           {titleText !== undefined ? (
             subtitleText
           ) : (
-            <>Deleting is permanent action that can not be recovered.</>
+            <>Deleting is a permanent action that can not be recovered.</>
           )}
         </Text>
       </BBModalContent>

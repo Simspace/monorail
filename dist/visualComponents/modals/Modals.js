@@ -175,6 +175,7 @@ exports.overlayCloseAnimation = overlayCloseAnimation;
  */
 const modalWidth = {
   [_modalTypes.ModalSize.Mini]: `${_exports.sizes.modals.mini.width}px`,
+  [_modalTypes.ModalSize.Small]: `${_exports.sizes.modals.small.width}px`,
   [_modalTypes.ModalSize.Medium]: `${_exports.sizes.modals.medium.width}px`,
   [_modalTypes.ModalSize.Large]: 'calc(100vw - 32px)',
   [_modalTypes.ModalSize.FullScreen]: '100vw'
@@ -252,7 +253,7 @@ const BBModalHeaderRow = _styledComponents.default.div(({
     ${(0, _exports.flexFlow)('row')};
 
     align-items: center;
-    height: ${size === _modalTypes.ModalSize.Mini ? 48 : 56}px;
+    height: ${size === _modalTypes.ModalSize.Mini || size === _modalTypes.ModalSize.Small ? 48 : 56}px;
     padding: 0 16px;
     width: 100%;
     overflow: hidden;
@@ -261,7 +262,7 @@ const BBModalHeaderRow = _styledComponents.default.div(({
 const BBModalHeaderTitle = _styledComponents.default.h1(({
   size
 }) => _styledComponents.css`
-    ${size === _modalTypes.ModalSize.Mini ? (0, _exports.typography)(700, _exports.FontSizes.Title4) : (0, _exports.typography)(700, _exports.FontSizes.Title3)};
+    ${size === _modalTypes.ModalSize.Mini || size === _modalTypes.ModalSize.Small ? (0, _exports.typography)(700, _exports.FontSizes.Title4) : (0, _exports.typography)(700, _exports.FontSizes.Title3)};
 
     color: ${(0, _exports.getColor)(_exports.Colors.White)};
     white-space: nowrap;

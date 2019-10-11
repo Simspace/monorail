@@ -1,4 +1,4 @@
-import { MouseEvent, ReactType } from 'react';
+import React, { MouseEvent, ReactNode, ReactType } from 'react';
 import { FCwDP } from '@monorail/sharedHelpers/react';
 import { CommonComponentType, LinkProps } from '@monorail/types';
 import { ButtonDisplay, ButtonMode, ButtonSize } from '@monorail/visualComponents/buttons/buttonTypes';
@@ -41,6 +41,9 @@ declare type FunctionalProps = {
     onMouseUp?: OnClick;
     pressed: boolean;
     size: ButtonSize;
+    status?: (props: {
+        style: React.CSSProperties;
+    }) => ReactNode;
     title?: string;
     type: 'button' | 'reset' | 'submit';
 };

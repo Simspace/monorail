@@ -5,6 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.useSort = useSort;
 exports.useTableExpandState = useTableExpandState;
+exports.useTableExpandStateFixedGroups = useTableExpandStateFixedGroups;
 exports.MonorailReactTableOverrides = exports.PivotValueComponent = exports.ExpanderComponent = exports.NoDataComponentHorizontal = exports.NoDataComponentVertical = exports.NoDataContainer = exports.TBodyComponent = exports.TdComponent = exports.TdComponentContainer = exports.TrGroupComponent = exports.ResizerComponent = exports.FilterComponent = exports.ThComponent = exports.TheadComponent = exports.TheadComponentContainer = exports.TableComponent = void 0;
 
 var _styledComponents = _interopRequireDefault(require("styled-components"));
@@ -193,8 +194,8 @@ const getSortIcon = sortStatus => {
   }
 };
 
-function useSort() {
-  const [sorted, setSorted] = (0, _react.useState)([]);
+function useSort(defaultSorted = []) {
+  const [sorted, setSorted] = (0, _react.useState)(defaultSorted);
 
   const onSortChange = newSorted => {
     setSorted((0, _Do.Do)(_Option.option).bind('current', (0, _Array.lookup)(0, sorted)).bind('upcoming', (0, _Array.lookup)(0, newSorted)).done().filter(({
@@ -240,7 +241,7 @@ var _StyledThSortButton =
 (0, _styledComponents.default)(ThSortButton).withConfig({
   displayName: "ReactTable___StyledThSortButton",
   componentId: "sc-1afopvo-0"
-})(["width:auto;visibility:hidden;"]);
+})(["visibility:hidden;"]);
 
 var _StyledIconButton =
 /*#__PURE__*/
@@ -379,13 +380,14 @@ const TrGroupComponent = _styledComponents2.default.div(({
           ${(0, _flex.flexFlow)('column')};
         ` : _styledComponents2.css`
           ${(0, _flex.flexFlow)('row')};
-          height: ${TD_HEIGHT}px;
+          height: auto;
+          min-height: ${TD_HEIGHT}px;
 
           &:hover::before {
             background: ${(0, _color.getColor)(_color.Colors.Grey98)};
           }
 
-          &:hover .actions {
+          &:hover .actions ${_IconButton.StyledIconButton} {
             opacity: 0.9999;
           }
 
@@ -423,7 +425,10 @@ const tdComponentTypeStyles = {
   `,
   [TdComponentType.Actions]: _styledComponents2.css`
     justify-content: flex-end;
-    opacity: 0.3;
+
+    ${_IconButton.StyledIconButton} {
+      opacity: 0.3;
+    }
   `,
   [TdComponentType.Hidden]: _styledComponents2.css``
 };
@@ -697,6 +702,18 @@ function useTableExpandState({
 
     return accumulator;
   }, []).map(() => true);
+  const [expanderState, setExpanderState] = (0, _react.useState)(initialValues);
+  return {
+    expanded: expanderState,
+    onExpandedChange: expanded => setExpanderState(expanded) // tslint:disable-line:no-unsafe-any
+
+  };
+}
+
+function useTableExpandStateFixedGroups({
+  totalGroups
+}) {
+  const initialValues = new Array(totalGroups).fill(true);
   const [expanderState, setExpanderState] = (0, _react.useState)(initialValues);
   return {
     expanded: expanderState,

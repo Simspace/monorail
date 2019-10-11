@@ -4,7 +4,7 @@ import { Omit } from 'typelevel-ts'
 
 import { baseIconButtonChromelessStyles } from '@monorail/helpers/baseStyles'
 import { BorderRadius, borderRadius } from '@monorail/helpers/borderRadius'
-import { css } from '@monorail/helpers/styled-components'
+import styled, { css } from '@monorail/helpers/styled-components'
 import { getThemeColor, Mode, ThemeColors } from '@monorail/helpers/theme'
 import { FCwDP } from '@monorail/sharedHelpers/react'
 import { CssOverridesType } from '@monorail/types'
@@ -91,6 +91,8 @@ const iconButtonCSS = ({
   ${cssOverrides};
 `
 
+export const StyledIconButton = styled(Button)``
+
 type Props = {
   icon: string
   passedAs?: ReactType
@@ -101,7 +103,7 @@ type DefaultProps = Omit<ButtonProps, 'leftIcon' | 'rightIcon'> & {
   iconCss: SimpleInterpolation
 }
 
-export type IconButtonProps = Props & DefaultProps
+export type IconButtonProps = Props & DefaultProps & Pick<ButtonProps, 'status'>
 
 export const IconButton: FCwDP<Props, DefaultProps> = ({
   cssOverrides,
@@ -109,17 +111,20 @@ export const IconButton: FCwDP<Props, DefaultProps> = ({
   icon,
   iconCss,
   isActive,
+  passedAs,
+  pressed,
   shape,
   size,
-  passedAs,
+  status,
   ...domProps
 }) => (
-  <Button
+  <StyledIconButton
     {...domProps}
     as={passedAs}
     display={display}
+    pressed={isActive || pressed}
     size={size}
-    pressed={isActive}
+    status={status}
     cssOverrides={iconButtonCSS({
       display,
       size,
@@ -134,7 +139,7 @@ export const IconButton: FCwDP<Props, DefaultProps> = ({
         ${iconCss}
       `}
     />
-  </Button>
+  </StyledIconButton>
 )
 
 IconButton.defaultProps = {

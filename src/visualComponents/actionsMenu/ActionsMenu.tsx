@@ -19,20 +19,23 @@ import { Menu } from '@monorail/visualComponents/menu/Menu'
  * Types
  */
 
+export type MenuAction = {
+  label: string
+  iconName?: string
+  /**
+   * TODO: get rid of the need to have to pass a callback to close the popover.
+   * This onClick should match the signature of all other react onClick.
+   * If we weren't depending on asynchronous behavior in components that are consuming
+   * ActionsMenu we would just be able to stop propagation on the SyntheticEvent
+   */
+  onClick: (onClickParent: () => void) => void
+  isFeaturedAction?: boolean
+  children?: ReactNode
+  disabled?: boolean
+}
+
 export type ActionsMenuProps = {
-  actions: Array<{
-    label: string
-    iconName?: string
-    /**
-     * TODO: get rid of the need to have to pass a callback to close the popover.
-     * This onClick should match the signature of all other react onClick.
-     * If we weren't depending on asynchronous behavior in components that are consuming
-     * ActionsMenu we would just be able to stop propagation on the SyntheticEvent
-     */
-    onClick: (onClickParent: () => void) => void
-    isFeaturedAction?: boolean
-    children?: ReactNode
-  }>
+  actions: Array<MenuAction>
   document?: Document
 }
 
@@ -67,6 +70,7 @@ export const ActionsMenu: FCwDP<ActionsMenuProps, DefaultProps> = ({
                         leftIcon={action.iconName}
                         primaryText={action.label}
                         onClick={e => action.onClick(() => onClick(e))}
+                        disabled={action.disabled}
                       >
                         {action.children}
                       </SimpleListItem>,

@@ -53,7 +53,7 @@ const PageHeaderContainer = _styledComponents.default.div(({
     flex-shrink: 0;
 
     /* Instead of hiding overflow errors, let's see them and fix them. This was causing buttons to be hidden in error. */
-    overflow: visible;
+    overflow-x: auto;
 
     position: relative; /* Has this so that the shadow goes over the content below it. */
     z-index: 1; /* Has this so that the shadow goes over the content below it. */
@@ -188,7 +188,7 @@ class PageHeader extends _react.Component {
       title,
       ...domProps
     } = this.props;
-    const hasAboveContent = !(0, _typeGuards.isNil)(breadCrumbs) || !(0, _typeGuards.isNil)(goBack);
+    const hasAboveContent = !(0, _typeGuards.isNil)(breadCrumbs) || !(0, _typeGuards.isNil)(goBack) || !(0, _typeGuards.isNil)(pageName);
     return _react.default.createElement(PageHeaderContainer, _extends({
       cssOverrides: cssOverrides,
       hasAboveContent: hasAboveContent,

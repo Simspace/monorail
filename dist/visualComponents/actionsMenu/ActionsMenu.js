@@ -46,7 +46,8 @@ const ActionsMenu = ({
           size: _size.Sizes.DP32,
           leftIcon: action.iconName,
           primaryText: action.label,
-          onClick: e => action.onClick(() => onClick(e))
+          onClick: e => action.onClick(() => onClick(e)),
+          disabled: action.disabled
         }, action.children));
       }
 

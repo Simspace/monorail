@@ -100,6 +100,7 @@ export type CollectionProps<T> = {
   data: TableProps<T>['data']
   isLoading?: boolean
   setCollectionView: (collectionView: CollectionView) => void
+  pivotBy?: Array<string>
   NoDataComponent?: () => ReactElement
 } & (SearchFilter<T> | SearchInput)
 
@@ -112,6 +113,7 @@ export const Collection = <T extends unknown>(
     columns,
     data,
     isLoading = false,
+    pivotBy,
     setCollectionView,
     NoDataComponent = () => (
       <NoDataContainer>
@@ -223,6 +225,7 @@ export const Collection = <T extends unknown>(
               getTrProps={getReactTableComponentProps}
               loading={isLoading}
               pageSize={passedData.length}
+              pivotBy={pivotBy}
               TbodyComponent={getTbodyComponent}
               TrComponent={getTrComponent}
               TrGroupComponent={getTrGroupComponent}
@@ -257,6 +260,8 @@ export const Collection = <T extends unknown>(
       onSortedChange,
       setCollectionView,
       sorted,
+      NoDataComponent,
+      pivotBy,
     ],
   )
 
