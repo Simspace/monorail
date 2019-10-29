@@ -20,7 +20,7 @@ declare type TextAreaInputProps = {
     value?: string;
     onBlur?: (e: React.FocusEvent<HTMLTextAreaElement>) => void;
     name?: string;
-    hasRequiredAsterisk?: boolean;
+    htmlValidation?: boolean;
     hideStdErr?: boolean;
 } & ErrorProps;
 export declare type TextAreaProps = TextAreaContainerProps & TextAreaInputProps;

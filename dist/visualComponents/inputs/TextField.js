@@ -3,11 +3,11 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.TextField = exports.StyledInput = void 0;
-
-var _react = _interopRequireWildcard(require("react"));
+exports.TextField = exports.StyledInput = exports.IconsAndInputContainer = void 0;
 
 var _styledComponents = _interopRequireWildcard(require("styled-components"));
+
+var _react = _interopRequireWildcard(require("react"));
 
 var _exports = require("../../helpers/exports");
 
@@ -34,38 +34,73 @@ _styledComponents.default.label.withConfig({
   cssOverrides
 }) => (0, _styledComponents.css)(["", ";float:none;width:256px;position:relative;", ""], (0, _exports.flexFlow)(), cssOverrides));
 
+const IconsAndInputContainer =
+/*#__PURE__*/
+_styledComponents.default.div.withConfig({
+  displayName: "TextField__IconsAndInputContainer",
+  componentId: "mvo1xj-1"
+})(["", ";flex:1;position:relative;"], (0, _exports.flexFlow)('column'));
+
+exports.IconsAndInputContainer = IconsAndInputContainer;
 const baseIconStyles =
 /*#__PURE__*/
-(0, _styledComponents.css)(["bottom:28px;position:absolute;"]);
+(0, _styledComponents.css)(["position:absolute;top:50%;transform:translateY(-50%);"]);
+
+var _StyledIcon =
+/*#__PURE__*/
+(0, _styledComponents.default)(_Icon.Icon).withConfig({
+  displayName: "TextField___StyledIcon",
+  componentId: "mvo1xj-2"
+})(["", ""], p => p._css);
+
 const StyledLeftIcon =
 /*#__PURE__*/
-(0, _styledComponents.default)(_Icon.Icon).withConfig({
+(0, _styledComponents.default)(({
+  canToggleVisibility,
+  err,
+  msg,
+  ...iconProps
+}) => _react.default.createElement(_StyledIcon, _extends({}, iconProps, {
+  _css: err ? `color: ${(0, _exports.getColor)(_exports.Colors.Red)};` : ''
+}))).withConfig({
   displayName: "TextField__StyledLeftIcon",
-  componentId: "mvo1xj-1"
-})(({
-  err
-}) => (0, _styledComponents.css)(["", ";color:", ";left:8px;"], baseIconStyles, err && (0, _exports.getColor)(_exports.Colors.Red)));
-const StyledRightIcon =
+  componentId: "mvo1xj-3"
+})(["", ";left:8px;"], baseIconStyles);
+
+var _StyledIcon2 =
 /*#__PURE__*/
 (0, _styledComponents.default)(_Icon.Icon).withConfig({
-  displayName: "TextField__StyledRightIcon",
-  componentId: "mvo1xj-2"
-})(({
+  displayName: "TextField___StyledIcon2",
+  componentId: "mvo1xj-4"
+})(["", ""], p => p._css2);
+
+const StyledRightIcon =
+/*#__PURE__*/
+(0, _styledComponents.default)(({
   canToggleVisibility,
-  err
-}) => (0, _styledComponents.css)(["", ";color:", ";right:", ";"], baseIconStyles, err && (0, _exports.getColor)(_exports.Colors.Red), canToggleVisibility ? '32px' : '8px'));
+  err,
+  msg,
+  ...iconProps
+}) => _react.default.createElement(_StyledIcon2, _extends({}, iconProps, {
+  _css2: err ? `color: ${(0, _exports.getColor)(_exports.Colors.Red)};` : ''
+}))).withConfig({
+  displayName: "TextField__StyledRightIcon",
+  componentId: "mvo1xj-5"
+})(({
+  canToggleVisibility
+}) => (0, _styledComponents.css)(["", ";right:", ";"], baseIconStyles, canToggleVisibility ? '32px' : '8px'));
 const StyledVisibilityIcon =
 /*#__PURE__*/
 (0, _styledComponents.default)(_Icon.Icon).withConfig({
   displayName: "TextField__StyledVisibilityIcon",
-  componentId: "mvo1xj-3"
-})(["", ";right:8px;cursor:pointer;"], baseIconStyles);
+  componentId: "mvo1xj-6"
+})(["", ";cursor:pointer;right:8px;"], baseIconStyles);
 
 const StyledInput =
 /*#__PURE__*/
 _styledComponents.default.input.withConfig({
   displayName: "TextField__StyledInput",
-  componentId: "mvo1xj-4"
+  componentId: "mvo1xj-7"
 })(({
   chromeless,
   iconLeft,
@@ -73,7 +108,7 @@ _styledComponents.default.input.withConfig({
   disabled,
   canToggleVisibility,
   err
-}) => (0, _styledComponents.css)(["", ";", ";", ";", ";border-color:", ";border-style:solid;border-width:1px;box-sizing:border-box;color:", ";height:24px;min-height:24px;flex:1;outline:none;padding:4px ", "px 4px ", "px;width:100%;", ";&[htmlType='number']{&::-webkit-inner-spin-button,&::-webkit-outer-spin-button{opacity:1;}}&:hover{border-color:", ";}&:focus,&:active{border-color:", ";}::placeholder{color:", ";font-style:italic;}", ";", ";", ";"], disabled && _exports.baseDisabledStyles, (0, _exports.typography)(400, _exports.FontSizes.Title5), (0, _exports.borderRadius)(), (0, _exports.typography)(400, _exports.FontSizes.Title5), (0, _exports.getColor)(_exports.Colors.Black, 0.12), (0, _exports.getColor)(_exports.Colors.Black89), iconRight ? canToggleVisibility ? 56 : 30 : canToggleVisibility ? 30 : 6, iconLeft ? 30 : 6, _exports.buttonTransition, (0, _exports.getColor)(_exports.Colors.Black, 0.3), (0, _exports.getColor)(_exports.Colors.BrandLightBlue), (0, _exports.getColor)(_exports.Colors.Black54), chromeless && (0, _styledComponents.css)(["border-color:transparent;"]), err && _exports.baseErrorBorderStyles, disabled && _exports.baseDisabledStyles));
+}) => (0, _styledComponents.css)(["", ";", ";", ";", ";border-color:", ";border-style:solid;border-width:1px;box-sizing:border-box;color:", ";height:24px;min-height:24px;flex:1;outline:none;padding:4px ", "px 4px ", "px;width:100%;", ";&[htmlType='number']{&::-webkit-inner-spin-button,&::-webkit-outer-spin-button{opacity:1;}}&:hover{border-color:", ";}&:focus,&:active{border-color:", ";}::placeholder{color:", ";font-style:italic;}", ";:-moz-ui-invalid{box-shadow:none;}", ";", ";"], disabled && _exports.baseDisabledStyles, (0, _exports.typography)(400, _exports.FontSizes.Title5), (0, _exports.borderRadius)(), (0, _exports.typography)(400, _exports.FontSizes.Title5), (0, _exports.getColor)(_exports.Colors.Black, 0.12), (0, _exports.getColor)(_exports.Colors.Black89), iconRight ? canToggleVisibility ? 56 : 30 : canToggleVisibility ? 30 : 6, iconLeft ? 30 : 6, _exports.buttonTransition, (0, _exports.getColor)(_exports.Colors.Black, 0.3), (0, _exports.getColor)(_exports.Colors.BrandLightBlue), (0, _exports.getColor)(_exports.Colors.Black54), chromeless && (0, _styledComponents.css)(["border-color:transparent;"]), err && _exports.baseErrorBorderStyles, disabled && _exports.baseDisabledStyles));
 /*
  * Types
  */
@@ -91,7 +126,7 @@ const TextField = (0, _react.forwardRef)(props => {
     canToggleVisibility = false,
     chromeless = false,
     cssOverrides = '',
-    hasRequiredAsterisk = false,
+    htmlValidation = true,
     iconLeft = '',
     iconRight = '',
     label = '',
@@ -117,14 +152,10 @@ const TextField = (0, _react.forwardRef)(props => {
     cssOverrides: cssOverrides
   }, _react.default.createElement(_Label.Label, {
     label: label,
-    required: hasRequiredAsterisk || required,
+    required: required,
     err: err
-  }), !(0, _typeGuards.isEmptyString)(iconLeft) && _react.default.createElement(StyledLeftIcon, {
+  }), _react.default.createElement(IconsAndInputContainer, null, !(0, _typeGuards.isEmptyString)(iconLeft) && _react.default.createElement(StyledLeftIcon, {
     icon: iconLeft,
-    err: err
-  }), !(0, _typeGuards.isEmptyString)(iconRight) && _react.default.createElement(StyledRightIcon, {
-    icon: iconRight,
-    canToggleVisibility: canToggleVisibility,
     err: err
   }), _react.default.createElement(StyledInput, _extends({
     "data-lpignore": "true" // 🖕 u LastPass: https://goo.gl/Ez3eS1
@@ -141,15 +172,19 @@ const TextField = (0, _react.forwardRef)(props => {
     value: value,
     disabled: disabled,
     readOnly: readOnly,
-    required: required,
+    required: htmlValidation && required,
     min: min,
     max: max,
     maxLength: maxLength,
     err: err
-  }, otherProps)), canToggleVisibility && _react.default.createElement(StyledVisibilityIcon, {
+  }, otherProps)), !(0, _typeGuards.isEmptyString)(iconRight) && _react.default.createElement(StyledRightIcon, {
+    icon: iconRight,
+    canToggleVisibility: canToggleVisibility,
+    err: err
+  }), canToggleVisibility && _react.default.createElement(StyledVisibilityIcon, {
     icon: hide ? 'visibility' : 'visibility_off',
     onClick: () => setHide(!hide)
-  }), !hideStdErr && _react.default.createElement(_StdErr.StdErr, {
+  })), !hideStdErr && _react.default.createElement(_StdErr.StdErr, {
     err: err,
     msg: msg
   }));

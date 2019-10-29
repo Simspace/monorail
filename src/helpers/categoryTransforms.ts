@@ -10,6 +10,8 @@ export const categoryReadableName = (entryCategory: string) => {
       return 'Content Module'
     case 'hardhat-specification':
       return 'Network Spec'
+    case 'external-subnet':
+      return 'External Subnet'
     case 'physical-asset':
       return 'Physical Asset'
     case 'vm-template':
@@ -33,6 +35,8 @@ export const categoryIcon = (entryCategory: string) => {
       return 'category'
     case 'hardhat-specification':
       return 'device_hub'
+    case 'external-subnet':
+      return 'router'
     case 'physical-asset':
       return 'router'
     case 'range':
@@ -57,6 +61,7 @@ export const categoryIcon = (entryCategory: string) => {
 
 export const categoryColor = (entryCategory: string) => {
   switch (entryCategory) {
+    case 'external-subnets':
     case 'hardhat-specification':
     case 'vm-template':
     case 'network':
@@ -86,6 +91,8 @@ export const categoryPathname = (entryCategory: string) => {
       return '/catalog/training-packages'
     case 'academy-content-module':
       return '/catalog/content-modules'
+    case 'external-subnet':
+      return '/catalog/external-subnets'
     case 'hardhat-specification':
       return '/catalog/network-spec'
     case 'physical-asset':

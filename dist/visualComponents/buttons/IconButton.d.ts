@@ -24,7 +24,7 @@ export declare const StyledIconButton: import("styled-components").StyledCompone
         style: React.CSSProperties;
     }) => React.ReactNode) | undefined;
     title?: string | undefined;
-    type: "button" | "submit" | "reset";
+    type: "button" | "reset" | "submit";
 }>, import("../../helpers/theme").GlobalAppThemeInterface, {}, never>;
 declare type Props = {
     icon: string;

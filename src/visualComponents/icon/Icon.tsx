@@ -26,12 +26,18 @@ import { H1 } from '@monorail/visualComponents/icon/custom/H1'
 import { H2 } from '@monorail/visualComponents/icon/custom/H2'
 import { Home } from '@monorail/visualComponents/icon/custom/Home'
 import { Impact } from '@monorail/visualComponents/icon/custom/Impact'
+import { Information } from '@monorail/visualComponents/icon/custom/Information'
+import { InformationTaskAddBlue } from '@monorail/visualComponents/icon/custom/InformationTaskAddBlue'
+import { InformationTaskAddGrey } from '@monorail/visualComponents/icon/custom/InformationTaskAddGrey'
 import { LMS } from '@monorail/visualComponents/icon/custom/LMS'
 import { NetworkSetup } from '@monorail/visualComponents/icon/custom/NetworkSetup'
 import { NoResults } from '@monorail/visualComponents/icon/custom/NoResults'
 import { NoUsers } from '@monorail/visualComponents/icon/custom/NoUsers'
 import { OrgGroup } from '@monorail/visualComponents/icon/custom/OrgGroup'
 import { Puzzle } from '@monorail/visualComponents/icon/custom/Puzzle'
+import { QuestionMark } from '@monorail/visualComponents/icon/custom/QuestionMark'
+import { QuestionTaskAddBlue } from '@monorail/visualComponents/icon/custom/QuestionTaskAddBlue'
+import { QuestionTaskAddGrey } from '@monorail/visualComponents/icon/custom/QuestionTaskAddGrey'
 import { Range } from '@monorail/visualComponents/icon/custom/Range'
 import { ReportsAnalytics } from '@monorail/visualComponents/icon/custom/ReportsAnalytics'
 import { Robot } from '@monorail/visualComponents/icon/custom/Robot'
@@ -105,9 +111,14 @@ const customIcons: { [key: string]: ComponentType<CustomIconProps> } = {
   gauge: Gauge,
   h1: H1,
   h2: H2,
+  information: Information,
+  information_task_add_blue: InformationTaskAddBlue,
+  information_task_add_grey: InformationTaskAddGrey,
   no_users: NoUsers,
   org_group: OrgGroup,
   puzzle: Puzzle,
+  question_task_add_blue: QuestionTaskAddBlue,
+  question_task_add_grey: QuestionTaskAddGrey,
   robot: Robot,
   server_network: ServerNetwork,
   sort_ascending: SortAscending,
@@ -127,6 +138,7 @@ const customIcons: { [key: string]: ComponentType<CustomIconProps> } = {
   treasure_chest: TreasureChest,
   grade: Grade,
   upload: Upload,
+  question_mark: QuestionMark,
 }
 
 export const Icon = styled(
