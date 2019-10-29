@@ -55,6 +55,12 @@ var _Home = require("./custom/Home");
 
 var _Impact = require("./custom/Impact");
 
+var _Information = require("./custom/Information");
+
+var _InformationTaskAddBlue = require("./custom/InformationTaskAddBlue");
+
+var _InformationTaskAddGrey = require("./custom/InformationTaskAddGrey");
+
 var _LMS = require("./custom/LMS");
 
 var _NetworkSetup = require("./custom/NetworkSetup");
@@ -66,6 +72,12 @@ var _NoUsers = require("./custom/NoUsers");
 var _OrgGroup = require("./custom/OrgGroup");
 
 var _Puzzle = require("./custom/Puzzle");
+
+var _QuestionMark = require("./custom/QuestionMark");
+
+var _QuestionTaskAddBlue = require("./custom/QuestionTaskAddBlue");
+
+var _QuestionTaskAddGrey = require("./custom/QuestionTaskAddGrey");
 
 var _Range = require("./custom/Range");
 
@@ -168,9 +180,14 @@ const customIcons = {
   gauge: _Gauge.Gauge,
   h1: _H.H1,
   h2: _H2.H2,
+  information: _Information.Information,
+  information_task_add_blue: _InformationTaskAddBlue.InformationTaskAddBlue,
+  information_task_add_grey: _InformationTaskAddGrey.InformationTaskAddGrey,
   no_users: _NoUsers.NoUsers,
   org_group: _OrgGroup.OrgGroup,
   puzzle: _Puzzle.Puzzle,
+  question_task_add_blue: _QuestionTaskAddBlue.QuestionTaskAddBlue,
+  question_task_add_grey: _QuestionTaskAddGrey.QuestionTaskAddGrey,
   robot: _Robot.Robot,
   server_network: _ServerNetwork.ServerNetwork,
   sort_ascending: _SortAscending.SortAscending,
@@ -189,7 +206,8 @@ const customIcons = {
   wand: _Wand.Wand,
   treasure_chest: _TreasureChest.TreasureChest,
   grade: _Grade.Grade,
-  upload: _Upload.Upload
+  upload: _Upload.Upload,
+  question_mark: _QuestionMark.QuestionMark
 };
 const Icon =
 /*#__PURE__*/

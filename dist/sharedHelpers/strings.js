@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.trim = trim;
 exports.join = join;
-exports.includes = exports.truncate = exports.toLocaleLower = exports.toLower = exports.findIndex = exports.splitName = exports.replace = exports.split = void 0;
+exports.includesNoncase = exports.includes = exports.truncate = exports.toLocaleLower = exports.toLower = exports.findIndex = exports.splitName = exports.replace = exports.split = void 0;
 
 var _Array = require("fp-ts/lib/Array");
 
@@ -95,3 +95,9 @@ const includes = target => source => {
 };
 
 exports.includes = includes;
+
+const includesNoncase = target => source => {
+  return source.trim().toLowerCase().includes(target.trim().toLowerCase());
+};
+
+exports.includesNoncase = includesNoncase;

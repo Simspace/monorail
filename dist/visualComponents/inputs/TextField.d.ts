@@ -1,6 +1,7 @@
 import React, { ChangeEvent, ForwardRefExoticComponent, MouseEvent, PropsWithoutRef, RefAttributes } from 'react';
 import { SimpleInterpolation } from 'styled-components';
 import { ErrorProps } from '@monorail/visualComponents/inputs/StdErr';
+export declare const IconsAndInputContainer: import("styled-components").StyledComponent<"div", any, {}, never>;
 export declare const StyledInput: import("styled-components").StyledComponent<"input", any, TextFieldProps, never>;
 export declare type InputHTMLType = 'button' | 'checkbox' | 'color' | 'date' | 'datetime' | 'email' | 'file' | 'hidden' | 'image' | 'month' | 'number' | 'password' | 'radio' | 'range' | 'reset' | 'search' | 'submit' | 'tel' | 'text' | 'time' | 'url' | 'week';
 declare type ContainerProps = {
@@ -29,7 +30,7 @@ declare type BasicProps = {
     disabled?: boolean;
     readOnly?: boolean;
     required?: boolean;
-    hasRequiredAsterisk?: boolean;
+    htmlValidation?: boolean;
     htmlType?: InputHTMLType;
     autoFocus?: boolean;
     pattern?: string;

@@ -1,31 +1,24 @@
 import { ControllerStateAndHelpers } from 'downshift';
-import React, { ReactElement } from 'react';
+import { Option } from 'fp-ts/lib/Option';
+import React from 'react';
 import { CommonComponentType } from '@monorail/types';
-import { DropdownItemType, DropdownItemValue } from '@monorail/visualComponents/dropdown/helpers';
-import { ErrorProps } from '@monorail/visualComponents/inputs/StdErr';
-export declare type RenderItemProps<D> = {
-    item: D;
-    selected: boolean;
-    highlighted: boolean;
-};
-export declare type RenderHandlerProps<D> = {
-    item: D | null;
-    placeholder: string;
-    isOpen: boolean;
-    disabled: boolean;
-};
+import { DropdownItemValue, DropdownType } from '@monorail/visualComponents/dropdown/helpers';
+import { BehaviorControllerHook } from './behavior';
+import { KeyboardInteractionHook } from './interaction';
+import { DropdownParserHook } from './parsers';
+import { DropdownSkinCommonType, DropdownSkinHook } from './skin';
 export declare type DropdownChangeHandler<D> = (item?: D, downshiftProps?: ControllerStateAndHelpers<D>) => void;
-export declare type DropdownProps<D = DropdownItemType> = CommonComponentType & ErrorProps & {
-    itemToDropdownType?: (item: D) => DropdownItemType;
-    renderItem?: (props: RenderItemProps<D>) => ReactElement;
-    renderHandler?: (props: RenderHandlerProps<D>) => ReactElement;
-    items: Array<D>;
-    matchItem?: (item: D, text: string) => boolean;
-    value?: DropdownItemValue;
-    onChange?: DropdownChangeHandler<D>;
-    document?: Document;
-    placeholder?: string;
-    disabled?: boolean;
-    searchable?: boolean;
+export declare type DropdownHooks<D extends DropdownType> = {
+    behavior?: BehaviorControllerHook<D>;
+    interaction?: KeyboardInteractionHook<D>;
+    parser?: DropdownParserHook<D>;
+    skin?: DropdownSkinHook<D>;
 };
-export declare const Dropdown: <D extends unknown = DropdownItemType>({ searchable, placeholder, disabled, items: collection, value, onChange, itemToDropdownType, matchItem, renderHandler, renderItem, err, ...domProps }: DropdownProps<D>) => React.ReactElement<DropdownProps<D>, string | ((props: any) => React.ReactElement<any, string | any | (new (props: any) => React.Component<any, any, any>)> | null) | (new (props: any) => React.Component<any, any, any>)>;
+export declare type DropdownProps<D extends DropdownType> = CommonComponentType & DropdownHooks<D> & DropdownSkinCommonType & {
+    items: Array<D>;
+    value?: D | DropdownItemValue;
+    onChange?: DropdownChangeHandler<D>;
+    error?: Option<string>;
+    required?: boolean;
+};
+export declare const Dropdown: <D extends DropdownType>({ label, placeholder, disabled, items: collection, value, onChange, behavior, skin, parser, interaction, error, required, ...domProps }: DropdownProps<D>) => React.ReactElement<DropdownProps<D>, string | ((props: any) => React.ReactElement<any, string | any | (new (props: any) => React.Component<any, any, any>)> | null) | (new (props: any) => React.Component<any, any, any>)>;

@@ -90,7 +90,7 @@ export type RadioGroupProps = ErrorProps & {
   onSelect: (key: string, val: ChangeEvent<HTMLInputElement>) => void
   value: string
   required?: boolean
-  hasRequiredAsterisk?: boolean
+  htmlValidation?: boolean
 }
 
 const defaultOptions = {
@@ -99,7 +99,7 @@ const defaultOptions = {
   info: '',
   disabled: false,
   'data-test-id': '',
-  hasRequiredAsterisk: false,
+  htmlValidation: true,
 }
 
 export const RadioGroup: SFC<RadioGroupProps> = ({
@@ -108,7 +108,7 @@ export const RadioGroup: SFC<RadioGroupProps> = ({
   onSelect,
   value,
   required,
-  hasRequiredAsterisk,
+  htmlValidation,
   err,
   msg,
   ...otherProps
@@ -117,7 +117,7 @@ export const RadioGroup: SFC<RadioGroupProps> = ({
     <Container>
       <Label
         label={label}
-        required={hasRequiredAsterisk || required}
+        required={required}
         err={err}
         css={err ? errorStyles : `${flexFlow('row')}`}
       />
@@ -134,7 +134,7 @@ export const RadioGroup: SFC<RadioGroupProps> = ({
               onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                 onSelect(o.key, e)
               }}
-              required={required}
+              required={htmlValidation && required}
               readOnly={false}
               disabled={o.disabled}
             >

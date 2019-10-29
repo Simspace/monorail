@@ -10,7 +10,7 @@ Add Monorail to your React application.
 yarn add @simspace/monorail
 ```
 
-You will also need our `peerDependencies`.
+You will also need our `peerDependencies`:
 
 ```
 yarn add react react-dom styled-components
@@ -42,7 +42,7 @@ Some Monorail components need default icons from the Material Icon's set. Link t
 
 ## Typescript
 
-When using Monorail with a typescript project, make sure to add the following line to the `compilerOptions` of your `tsconfig.json`.
+When using Monorail with a typescript project, make sure to add the following line to the `compilerOptions` of your `tsconfig.json`:
 
 ```json
 "skipLibCheck": true

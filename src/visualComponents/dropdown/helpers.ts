@@ -1,20 +1,40 @@
-import { ControllerStateAndHelpers } from 'downshift'
-import { lookup } from 'fp-ts/lib/Array'
-import { fromNullable, Option } from 'fp-ts/lib/Option'
+import {
+  ControllerStateAndHelpers,
+  GetInputPropsOptions,
+  PropGetters,
+} from 'downshift'
+import { KeyboardEvent } from 'react'
 
-import { hasKey } from '@monorail/sharedHelpers/typeGuards'
+import { hasKey, isObject } from '@monorail/sharedHelpers/typeGuards'
+import { TextFieldProps } from '@monorail/visualComponents/inputs/TextField'
 
-export type DropdownItemValue = string | number | object | undefined
+export type DropdownItemValue = string | number
 
 export type DropdownItemType = {
-  value: DropdownItemValue
-  label: string
   disabled?: boolean
+  label: string
+  value?: DropdownItemValue
+}
+export type DropdownType = object | DropdownItemValue
+
+export type DropdownStateType<T> = {
+  downshiftProps: ControllerStateAndHelpers<T>
+  items: Array<T>
+}
+
+/** Partial definitions to Solve Downshift typing */
+export type DownshiftGetInputProps = GetInputPropsOptions &
+  Partial<TextFieldProps>
+export type DownshiftRootPropsGetter<D> = PropGetters<D>['getRootProps']
+export type DownshiftItemPropsGetter<D> = PropGetters<D>['getItemProps']
+export type DownshiftMenuPropsGetter<D> = PropGetters<D>['getMenuProps']
+export type DownshiftKeyboardEvent = KeyboardEvent & {
+  preventDownshiftDefault?: boolean
 }
 
 // DropdownItemType Typeguard
-export const isDropdownItem = (item: unknown) =>
-  hasKey(item, 'value') && hasKey(item, 'label')
+export const isDropdownItem = (item: unknown): item is DropdownItemType =>
+  isObject(item) && hasKey(item, 'value') && hasKey(item, 'label')
 
 const getKeyboardMoveDelta = (key: string) => {
   switch (key) {
@@ -43,14 +63,6 @@ const getKeyboardMoveIndex = (key: string, initial: number, max: number) => {
   }
 }
 
-export const getHighlightedItem = <D extends unknown = DropdownItemType>(
-  items: Array<D>,
-  { highlightedIndex }: ControllerStateAndHelpers<D>,
-): Option<D> =>
-  fromNullable(highlightedIndex)
-    .filter(index => index >= 0)
-    .chain(index => lookup(index, items))
-
 export const nextHighlightedIndex = (
   key: string,
   initial: number,
@@ -60,12 +72,3 @@ export const nextHighlightedIndex = (
 
   return index < 0 ? 0 : index >= max ? max : index
 }
-
-export const parseAsDropdownItem = (item: unknown): DropdownItemType =>
-  item && isDropdownItem(item)
-    ? (item as DropdownItemType)
-    : {
-        value: String(item),
-        label: String(item),
-        disabled: false,
-      }

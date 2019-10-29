@@ -37,3 +37,4 @@ export declare function trim(str: string): string;
 export declare function join<T>(separator: string, arr: Array<T>): string;
 export declare const truncate: (maxLength: number) => (value: string) => string;
 export declare const includes: (target: string) => (source: string) => boolean;
+export declare const includesNoncase: (target: string) => (source: string) => boolean;

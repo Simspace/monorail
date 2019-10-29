@@ -84,3 +84,10 @@ export const truncate = (maxLength: number) => (value: string) => {
 export const includes = (target: string) => (source: string) => {
   return source.includes(target)
 }
+
+export const includesNoncase = (target: string) => (source: string) => {
+  return source
+    .trim()
+    .toLowerCase()
+    .includes(target.trim().toLowerCase())
+}

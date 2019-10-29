@@ -44,7 +44,7 @@ _styledComponents.default.textarea.withConfig({
   compact,
   height,
   err
-}) => (0, _styledComponents.css)(["", ";", ";border:1px solid ", ";box-sizing:border-box;color:", ";height:", "px;outline:none;padding:4px 6px 4px 6px;resize:none;width:100%;", ";::placeholder{color:", ";font-style:italic;}&:hover{border:1px solid ", ";}&:focus,&:active{border:1px solid ", ";}", ";", ";", ";"], (0, _exports.typography)(400, _exports.FontSizes.Title5), (0, _exports.borderRadius)(), (0, _exports.getColor)(_exports.Colors.Black, 0.12), (0, _exports.getColor)(_exports.Colors.Black89), height ? height : '64', _exports.buttonTransition, (0, _exports.getColor)(_exports.Colors.Black54), (0, _exports.getColor)(_exports.Colors.Black, 0.3), (0, _exports.getColor)(_exports.Colors.BrandLightBlue), chromeless && (0, _styledComponents.css)(["border:1px solid transparent;"]), compact && (0, _styledComponents.css)(["overflow:hidden;"]), err && _exports.baseErrorBorderStyles));
+}) => (0, _styledComponents.css)(["", ";", ";border:1px solid ", ";box-sizing:border-box;color:", ";height:", "px;outline:none;padding:4px 6px 4px 6px;resize:none;width:100%;", ";::placeholder{color:", ";font-style:italic;}&:hover{border:1px solid ", ";}&:focus,&:active{border:1px solid ", ";}", ";", ";:-moz-ui-invalid{box-shadow:none;}", ";"], (0, _exports.typography)(400, _exports.FontSizes.Title5), (0, _exports.borderRadius)(), (0, _exports.getColor)(_exports.Colors.Black, 0.12), (0, _exports.getColor)(_exports.Colors.Black89), height ? height : '64', _exports.buttonTransition, (0, _exports.getColor)(_exports.Colors.Black54), (0, _exports.getColor)(_exports.Colors.Black, 0.3), (0, _exports.getColor)(_exports.Colors.BrandLightBlue), chromeless && (0, _styledComponents.css)(["border:1px solid transparent;"]), compact && (0, _styledComponents.css)(["overflow:hidden;"]), err && _exports.baseErrorBorderStyles));
 /*
  * Types
  */
@@ -106,7 +106,7 @@ class TextArea extends _react.Component {
       placeholder,
       readOnly,
       required,
-      hasRequiredAsterisk,
+      htmlValidation = true,
       value,
       onBlur,
       name,
@@ -121,7 +121,7 @@ class TextArea extends _react.Component {
       className: className
     }, _react.default.createElement(_Label.Label, {
       label: label,
-      required: hasRequiredAsterisk || required,
+      required: required,
       err: err
     }), _react.default.createElement(TextAreaInput, _extends({
       chromeless: chromeless,
@@ -133,13 +133,13 @@ class TextArea extends _react.Component {
       onChange: this.onChange,
       placeholder: placeholder,
       readOnly: readOnly,
-      required: required,
+      required: htmlValidation && required,
       rows: compact ? 1 : 3,
       value: value,
       onBlur: onBlur,
       name: name,
       err: err
-    }, otherProps)), !hideStdErr && err && _react.default.createElement(_StdErr.StdErr, {
+    }, otherProps)), !hideStdErr && _react.default.createElement(_StdErr.StdErr, {
       err: err,
       msg: msg
     }));

@@ -71,6 +71,14 @@ export const TextAreaInput = styled.textarea<TextAreaInputProps>(
         overflow: hidden;
       `};
 
+    /* 
+      Remove :-moz-ui-invalid styles so that invalid form states look similar across browsers 
+      https://developer.mozilla.org/en-US/docs/Web/CSS/:-moz-ui-invalid 
+    */
+    :-moz-ui-invalid {
+      box-shadow: none;
+    }
+
     ${err && baseErrorBorderStyles};
   `,
 )
@@ -97,7 +105,7 @@ type TextAreaInputProps = {
   value?: string
   onBlur?: (e: React.FocusEvent<HTMLTextAreaElement>) => void
   name?: string
-  hasRequiredAsterisk?: boolean
+  htmlValidation?: boolean
   hideStdErr?: boolean
 } & ErrorProps
 
@@ -112,10 +120,8 @@ export class TextArea extends Component<TextAreaProps> {
 
   setCompactHeight = () => {
     const { compact } = this.props
-
     if (compact) {
       const current = this.textArea.current
-
       if (!isNil(current)) {
         window.requestAnimationFrame(() => {
           current.style.height = 'auto'
@@ -153,7 +159,7 @@ export class TextArea extends Component<TextAreaProps> {
       placeholder,
       readOnly,
       required,
-      hasRequiredAsterisk,
+      htmlValidation = true,
       value,
       onBlur,
       name,
@@ -166,11 +172,7 @@ export class TextArea extends Component<TextAreaProps> {
 
     return (
       <TextAreaContainer cssOverrides={cssOverrides} className={className}>
-        <Label
-          label={label}
-          required={hasRequiredAsterisk || required}
-          err={err}
-        />
+        <Label label={label} required={required} err={err} />
         <TextAreaInput
           chromeless={chromeless}
           className="new-textarea"
@@ -181,7 +183,7 @@ export class TextArea extends Component<TextAreaProps> {
           onChange={this.onChange}
           placeholder={placeholder}
           readOnly={readOnly}
-          required={required}
+          required={htmlValidation && required}
           rows={compact ? 1 : 3}
           value={value}
           onBlur={onBlur}
@@ -189,7 +191,7 @@ export class TextArea extends Component<TextAreaProps> {
           err={err}
           {...otherProps}
         />
-        {!hideStdErr && err && <StdErr err={err} msg={msg} />}
+        {!hideStdErr && <StdErr err={err} msg={msg} />}
       </TextAreaContainer>
     )
   }

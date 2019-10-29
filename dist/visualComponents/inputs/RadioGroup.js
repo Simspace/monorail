@@ -67,7 +67,7 @@ const defaultOptions = {
   info: '',
   disabled: false,
   'data-test-id': '',
-  hasRequiredAsterisk: false
+  htmlValidation: true
 };
 
 var _StyledLabel =
@@ -83,14 +83,14 @@ const RadioGroup = ({
   onSelect,
   value,
   required,
-  hasRequiredAsterisk,
+  htmlValidation,
   err,
   msg,
   ...otherProps
 }) => {
   return _react.default.createElement(Container, null, _react.default.createElement(_StyledLabel, {
     label: label,
-    required: hasRequiredAsterisk || required,
+    required: required,
     err: err,
     _css: err ? errorStyles : `${(0, _exports.flexFlow)('row')}`
   }), err && _react.default.createElement(BorderJoiner, null), _react.default.createElement(RadioGroupWrapper, _extends({}, otherProps, {
@@ -106,7 +106,7 @@ const RadioGroup = ({
     onChange: e => {
       onSelect(o.key, e);
     },
-    required: required,
+    required: htmlValidation && required,
     readOnly: false,
     disabled: o.disabled
   }, o.label), _react.default.createElement(InfoText, null, o.key === value && !(0, _typeGuards.isEmptyString)(o.info))))), _react.default.createElement(_StdErr.StdErr, {

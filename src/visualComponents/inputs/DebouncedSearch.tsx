@@ -4,9 +4,9 @@ import { useInputDebounce } from '@monorail/helpers/hooks'
 import { Search, SearchProps } from '@monorail/visualComponents/inputs/Search'
 
 type Props = {
-  name: string
+  name?: string
   onChange: SearchProps['onChange']
-  placeholder: string
+  placeholder?: string
   value: string
 }
 

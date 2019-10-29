@@ -24,6 +24,7 @@ const DropdownItem = _styledComponents.default.div(({
     line-height: 1em;
     font-size: 11px;
     padding: 8px;
+    word-break: break-word;
 
     ${disabled ? _styledComponents.css`
           cursor: default;

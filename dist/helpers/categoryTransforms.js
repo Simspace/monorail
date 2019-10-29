@@ -21,6 +21,9 @@ const categoryReadableName = entryCategory => {
     case 'hardhat-specification':
       return 'Network Spec';
 
+    case 'external-subnet':
+      return 'External Subnet';
+
     case 'physical-asset':
       return 'Physical Asset';
 
@@ -54,6 +57,9 @@ const categoryIcon = entryCategory => {
     case 'hardhat-specification':
       return 'device_hub';
 
+    case 'external-subnet':
+      return 'router';
+
     case 'physical-asset':
       return 'router';
 
@@ -85,6 +91,7 @@ exports.categoryIcon = categoryIcon;
 
 const categoryColor = entryCategory => {
   switch (entryCategory) {
+    case 'external-subnets':
     case 'hardhat-specification':
     case 'vm-template':
     case 'network':
@@ -119,6 +126,9 @@ const categoryPathname = entryCategory => {
 
     case 'academy-content-module':
       return '/catalog/content-modules';
+
+    case 'external-subnet':
+      return '/catalog/external-subnets';
 
     case 'hardhat-specification':
       return '/catalog/network-spec';

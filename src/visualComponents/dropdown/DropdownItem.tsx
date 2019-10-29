@@ -15,6 +15,7 @@ export const DropdownItem = styled.div<StyledItemProps>(
     line-height: 1em;
     font-size: 11px;
     padding: 8px;
+    word-break: break-word;
 
     ${disabled
       ? css`

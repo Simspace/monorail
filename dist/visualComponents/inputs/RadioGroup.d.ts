@@ -13,6 +13,6 @@ export declare type RadioGroupProps = ErrorProps & {
     onSelect: (key: string, val: ChangeEvent<HTMLInputElement>) => void;
     value: string;
     required?: boolean;
-    hasRequiredAsterisk?: boolean;
+    htmlValidation?: boolean;
 };
 export declare const RadioGroup: SFC<RadioGroupProps>;

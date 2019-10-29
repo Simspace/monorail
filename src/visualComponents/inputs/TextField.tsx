@@ -41,25 +41,37 @@ const Container = styled.label<ContainerProps>(
   `,
 )
 
-const baseIconStyles = css`
-  bottom: 28px;
-  position: absolute;
+export const IconsAndInputContainer = styled.div`
+  ${flexFlow('column')};
+
+  flex: 1;
+  position: relative;
 `
 
-const StyledLeftIcon = styled(Icon)<{ err?: boolean }>(
-  ({ err }) => css`
+const baseIconStyles = css`
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+`
+
+const StyledLeftIcon = styled(
+  ({ canToggleVisibility, err, msg, ...iconProps }: StyledIconProps) => (
+    <Icon {...iconProps} css={err ? `color: ${getColor(Colors.Red)};` : ''} />
+  ),
+)<StyledIconProps>`
+  ${baseIconStyles};
+
+  left: 8px;
+`
+
+const StyledRightIcon = styled(
+  ({ canToggleVisibility, err, msg, ...iconProps }: StyledIconProps) => (
+    <Icon {...iconProps} css={err ? `color: ${getColor(Colors.Red)};` : ''} />
+  ),
+)<StyledIconProps>(
+  ({ canToggleVisibility }: StyledIconProps) => css`
     ${baseIconStyles};
 
-    color: ${err && getColor(Colors.Red)};
-    left: 8px;
-  `,
-)
-
-const StyledRightIcon = styled(Icon)<StyledIconProps>(
-  ({ canToggleVisibility, err }) => css`
-    ${baseIconStyles};
-
-    color: ${err && getColor(Colors.Red)};
     right: ${canToggleVisibility ? '32px' : '8px'};
   `,
 )
@@ -67,8 +79,8 @@ const StyledRightIcon = styled(Icon)<StyledIconProps>(
 const StyledVisibilityIcon = styled(Icon)`
   ${baseIconStyles};
 
-  right: 8px;
   cursor: pointer;
+  right: 8px;
 `
 
 export const StyledInput = styled.input<TextFieldProps>(
@@ -132,6 +144,14 @@ export const StyledInput = styled.input<TextFieldProps>(
       css`
         border-color: transparent;
       `};
+
+    /* 
+      Remove :-moz-ui-invalid styles so that invalid form states look similar across browsers 
+      https://developer.mozilla.org/en-US/docs/Web/CSS/:-moz-ui-invalid 
+    */
+    :-moz-ui-invalid {
+      box-shadow: none;
+    }
 
     ${err && baseErrorBorderStyles};
 
@@ -200,7 +220,7 @@ type BasicProps = {
   disabled?: boolean
   readOnly?: boolean
   required?: boolean
-  hasRequiredAsterisk?: boolean
+  htmlValidation?: boolean
   htmlType?: InputHTMLType
   autoFocus?: boolean
   pattern?: string
@@ -230,7 +250,7 @@ export const TextField: ForwardRefExoticComponent<
     canToggleVisibility = false,
     chromeless = false,
     cssOverrides = '',
-    hasRequiredAsterisk = false,
+    htmlValidation = true,
     iconLeft = '',
     iconRight = '',
     label = '',
@@ -254,46 +274,46 @@ export const TextField: ForwardRefExoticComponent<
 
   return (
     <Container className={className} cssOverrides={cssOverrides}>
-      <Label
-        label={label}
-        required={hasRequiredAsterisk || required}
-        err={err}
-      />
-      {!isEmptyString(iconLeft) && <StyledLeftIcon icon={iconLeft} err={err} />}
-      {!isEmptyString(iconRight) && (
-        <StyledRightIcon
-          icon={iconRight}
+      <Label label={label} required={required} err={err} />
+      <IconsAndInputContainer>
+        {!isEmptyString(iconLeft) && (
+          <StyledLeftIcon icon={iconLeft} err={err} />
+        )}
+        <StyledInput
+          data-lpignore="true" // 🖕 u LastPass: https://goo.gl/Ez3eS1
           canToggleVisibility={canToggleVisibility}
+          chromeless={chromeless}
+          className="new-input"
+          iconLeft={iconLeft}
+          iconRight={iconRight}
+          onChange={onChange}
+          onBlur={onBlur}
+          placeholder={placeholder}
+          type={htmlType}
+          value={value}
+          disabled={disabled}
+          readOnly={readOnly}
+          required={htmlValidation && required}
+          min={min}
+          max={max}
+          maxLength={maxLength}
           err={err}
+          {...otherProps}
         />
-      )}
-      <StyledInput
-        data-lpignore="true" // 🖕 u LastPass: https://goo.gl/Ez3eS1
-        canToggleVisibility={canToggleVisibility}
-        chromeless={chromeless}
-        className="new-input"
-        iconLeft={iconLeft}
-        iconRight={iconRight}
-        onChange={onChange}
-        onBlur={onBlur}
-        placeholder={placeholder}
-        type={htmlType}
-        value={value}
-        disabled={disabled}
-        readOnly={readOnly}
-        required={required}
-        min={min}
-        max={max}
-        maxLength={maxLength}
-        err={err}
-        {...otherProps}
-      />
-      {canToggleVisibility && (
-        <StyledVisibilityIcon
-          icon={hide ? 'visibility' : 'visibility_off'}
-          onClick={() => setHide(!hide)}
-        />
-      )}
+        {!isEmptyString(iconRight) && (
+          <StyledRightIcon
+            icon={iconRight}
+            canToggleVisibility={canToggleVisibility}
+            err={err}
+          />
+        )}
+        {canToggleVisibility && (
+          <StyledVisibilityIcon
+            icon={hide ? 'visibility' : 'visibility_off'}
+            onClick={() => setHide(!hide)}
+          />
+        )}
+      </IconsAndInputContainer>
       {!hideStdErr && <StdErr err={err} msg={msg} />}
     </Container>
   )
