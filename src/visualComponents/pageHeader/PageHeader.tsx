@@ -105,6 +105,7 @@ export const TitleContainer = styled.div<{ hasAboveContent: boolean }>(
     flex-shrink: 0;
     grid-column: -1 / 1;
     height: ${hasAboveContent ? 48 : 64}px;
+    justify-content: space-between;
   `,
 )
 
