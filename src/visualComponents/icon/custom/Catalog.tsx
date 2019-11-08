@@ -17,7 +17,8 @@ export const Catalog: ComponentType<CustomIconProps> = props => (
       width="32"
       height="32"
       rx="4"
-      fill="url(#catalogBackground)"
+      // SVG fill #ids relative to path if base url path is set https://stackoverflow.com/a/53579924
+      fill={`url(${window.location.pathname}#catalogBackground)`}
     />
     <rect
       width="8.199"

@@ -17,7 +17,8 @@ export const ReportsAnalytics: ComponentType<CustomIconProps> = props => (
       width="32"
       height="32"
       rx="4"
-      fill="url(#reportsBackground)"
+      // SVG fill #ids relative to path if base url path is set https://stackoverflow.com/a/53579924
+      fill={`url(${window.location.pathname}#reportsBackground)`}
     />
     <rect x="19" y="2" width="6" height="26" fill="#C32C07" />
     <rect x="11" y="10" width="6" height="18" fill="#C32C07" />

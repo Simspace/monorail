@@ -28,7 +28,7 @@ type MenuProps = CommonComponentType & {
   width: string
 }
 
-const MenuContainer = styled.div<MenuProps>(
+export const MenuContainer = styled.div<MenuProps>(
   ({ width }) => css`
     ${borderRadius(BorderRadius.Medium)};
     ${flexFlow()};
