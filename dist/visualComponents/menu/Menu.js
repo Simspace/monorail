@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.Menu = exports.MenuContent = void 0;
+exports.Menu = exports.MenuContent = exports.MenuContainer = void 0;
 
 var _styledComponents = _interopRequireDefault(require("styled-components"));
 
@@ -48,6 +48,8 @@ const MenuContainer = _styledComponents2.default.div(({
     width: ${width};
     min-width: ${_size.sizes.menu.width}px;
   `);
+
+exports.MenuContainer = MenuContainer;
 
 var _StyledMenuContainer =
 /*#__PURE__*/

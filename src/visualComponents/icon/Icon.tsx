@@ -15,6 +15,7 @@ import { Clipboard } from '@monorail/visualComponents/icon/custom/Clipboard'
 import { CodeBlock } from '@monorail/visualComponents/icon/custom/CodeBlock'
 import { Copy } from '@monorail/visualComponents/icon/custom/Copy'
 import { Database } from '@monorail/visualComponents/icon/custom/Database'
+import { EmptySyllabusList } from '@monorail/visualComponents/icon/custom/EmptySyllabusList'
 import { ErrorRobot } from '@monorail/visualComponents/icon/custom/ErrorRobot'
 import { EventDesign } from '@monorail/visualComponents/icon/custom/EventDesign'
 import { Events } from '@monorail/visualComponents/icon/custom/Events'
@@ -106,6 +107,7 @@ const customIcons: { [key: string]: ComponentType<CustomIconProps> } = {
   errorRobot: ErrorRobot,
   codeBlock: CodeBlock,
   database: Database,
+  empty_syllabus_list: EmptySyllabusList,
   file_tree: FileTree,
   filter: Filter,
   gauge: Gauge,

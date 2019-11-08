@@ -22,8 +22,9 @@ const Events = props => _react.default.createElement("svg", _extends({
   y: "5",
   width: "32",
   height: "30",
-  rx: "4",
-  fill: "url(#eventsBackground)"
+  rx: "4" // SVG fill #ids relative to path if base url path is set https://stackoverflow.com/a/53579924
+  ,
+  fill: `url(${window.location.pathname}#eventsBackground)`
 }), _react.default.createElement("path", {
   d: "M38 29H11V11H38V29Z",
   fill: "#65DC7E"

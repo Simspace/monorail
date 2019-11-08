@@ -111,6 +111,7 @@ const TitleContainer = _styledComponents.default.div(({
     flex-shrink: 0;
     grid-column: -1 / 1;
     height: ${hasAboveContent ? 48 : 64}px;
+    justify-content: space-between;
   `);
 
 exports.TitleContainer = TitleContainer;

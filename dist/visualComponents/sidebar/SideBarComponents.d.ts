@@ -15,7 +15,7 @@ export declare const SidebarContainer: import("styled-components").StyledCompone
     pose: string;
 }, never>;
 export declare const SidebarMenuContainer: import("styled-components").StyledComponent<React.FunctionComponent<{
-    containerCssOverrides?: import("../../types").CssOverridesType;
+    containerCssOverrides?: import("../../StyleHelpers").CssOverrides;
 }>, any, CommonComponentType & {
     isSideBarCollapsed: boolean;
 }, never>;
