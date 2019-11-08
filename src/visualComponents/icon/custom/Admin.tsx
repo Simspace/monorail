@@ -17,7 +17,8 @@ export const Admin: ComponentType<CustomIconProps> = props => (
       width="32"
       height="32"
       rx="4"
-      fill="url(#adminBackground)"
+      // SVG fill #ids relative to path if base url path is set https://stackoverflow.com/a/53579924
+      fill={`url(${window.location.pathname}#adminBackground)`}
     />
     <path
       fillRule="evenodd"

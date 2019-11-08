@@ -30,7 +30,7 @@ export declare class LoadingButton extends Component<Props, State> {
             style: React.CSSProperties;
         }) => React.ReactNode) | undefined;
         title?: string | undefined;
-        type: "button" | "reset" | "submit";
+        type: "button" | "submit" | "reset";
     };
     state: State;
     _isMounted: boolean;

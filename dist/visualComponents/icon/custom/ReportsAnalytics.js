@@ -22,8 +22,9 @@ const ReportsAnalytics = props => _react.default.createElement("svg", _extends({
   y: "4",
   width: "32",
   height: "32",
-  rx: "4",
-  fill: "url(#reportsBackground)"
+  rx: "4" // SVG fill #ids relative to path if base url path is set https://stackoverflow.com/a/53579924
+  ,
+  fill: `url(${window.location.pathname}#reportsBackground)`
 }), _react.default.createElement("rect", {
   x: "19",
   y: "2",
