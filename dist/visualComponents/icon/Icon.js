@@ -33,6 +33,8 @@ var _Copy = require("./custom/Copy");
 
 var _Database = require("./custom/Database");
 
+var _EmptySyllabusList = require("./custom/EmptySyllabusList");
+
 var _ErrorRobot = require("./custom/ErrorRobot");
 
 var _EventDesign = require("./custom/EventDesign");
@@ -175,6 +177,7 @@ const customIcons = {
   errorRobot: _ErrorRobot.ErrorRobot,
   codeBlock: _CodeBlock.CodeBlock,
   database: _Database.Database,
+  empty_syllabus_list: _EmptySyllabusList.EmptySyllabusList,
   file_tree: _FileTree.FileTree,
   filter: _Filter.Filter,
   gauge: _Gauge.Gauge,
