@@ -76,6 +76,15 @@ export const NoData = () => (
   </Container>
 )
 
+export const NoModules = () => (
+  <Container>
+    <IconBox>
+      <NoResultsIcon />
+    </IconBox>
+    <Banner>No Modules Found</Banner>
+  </Container>
+)
+
 export const NotAuthorized = () => (
   <Container>
     <IconBox>

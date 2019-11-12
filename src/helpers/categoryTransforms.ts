@@ -14,6 +14,8 @@ export const categoryReadableName = (entryCategory: string) => {
       return 'External Subnet'
     case 'physical-asset':
       return 'Physical Asset'
+    case 'config-module':
+      return 'Config Module'
     case 'vm-template':
       return 'VM Template'
     case 'range':
@@ -35,8 +37,10 @@ export const categoryIcon = (entryCategory: string) => {
       return 'category'
     case 'hardhat-specification':
       return 'device_hub'
+    case 'config-module':
+      return 'code'
     case 'external-subnet':
-      return 'router'
+      return 'dns'
     case 'physical-asset':
       return 'router'
     case 'range':
@@ -61,13 +65,14 @@ export const categoryIcon = (entryCategory: string) => {
 
 export const categoryColor = (entryCategory: string) => {
   switch (entryCategory) {
-    case 'external-subnets':
+    case 'external-subnet':
     case 'hardhat-specification':
     case 'vm-template':
     case 'network':
     case 'range':
     case 'physical-asset':
     case 'clone-source':
+    case 'config-module':
       return Colors.Range
     case 'exercise':
     case 'event':
@@ -99,6 +104,8 @@ export const categoryPathname = (entryCategory: string) => {
       return '/catalog/physical-assets'
     case 'vm-template':
       return '/catalog/vm-templates'
+    case 'config-module':
+      return '/catalog/config-modules'
     case 'event':
       return '/events'
     default:

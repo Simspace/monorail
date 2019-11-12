@@ -7,6 +7,7 @@ export declare const EmptyTable: () => JSX.Element;
 export declare const NoEvents: () => JSX.Element;
 export declare const NoCompletedEvents: () => JSX.Element;
 export declare const NoData: () => JSX.Element;
+export declare const NoModules: () => JSX.Element;
 export declare const NotAuthorized: () => JSX.Element;
 export declare const SomethingWentWrong: () => JSX.Element;
 export declare const NotFound: () => JSX.Element;
