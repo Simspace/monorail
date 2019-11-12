@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.NoResultsIcon = exports.IconBox = exports.Detail = exports.Banner = exports.CustomNoResults = exports.CustomNoData = exports.NotFound = exports.SomethingWentWrong = exports.NotAuthorized = exports.NoData = exports.NoCompletedEvents = exports.NoEvents = exports.EmptyTable = exports.NoResults = exports.NoResultsCollection = void 0;
+exports.NoResultsIcon = exports.IconBox = exports.Detail = exports.Banner = exports.CustomNoResults = exports.CustomNoData = exports.NotFound = exports.SomethingWentWrong = exports.NotAuthorized = exports.NoModules = exports.NoData = exports.NoCompletedEvents = exports.NoEvents = exports.EmptyTable = exports.NoResults = exports.NoResultsCollection = void 0;
 
 var _Apply = require("fp-ts/lib/Apply");
 
@@ -40,6 +40,10 @@ exports.NoCompletedEvents = NoCompletedEvents;
 const NoData = () => _react.default.createElement(Container, null, _react.default.createElement(IconBox, null, _react.default.createElement(NoResultsIcon, null)), _react.default.createElement(Banner, null, "There's Nothing Here"), _react.default.createElement(Detail, null, _react.default.createElement("span", null)));
 
 exports.NoData = NoData;
+
+const NoModules = () => _react.default.createElement(Container, null, _react.default.createElement(IconBox, null, _react.default.createElement(NoResultsIcon, null)), _react.default.createElement(Banner, null, "No Modules Found"));
+
+exports.NoModules = NoModules;
 
 const NotAuthorized = () => _react.default.createElement(Container, null, _react.default.createElement(IconBox, null, _react.default.createElement(NotAuthorizedIcon, null)), _react.default.createElement(Banner, null, "Not Authorized"), _react.default.createElement(Detail, null, _react.default.createElement("span", null, "We could not verify that you are authorized to access"), _react.default.createElement("span", null, "the requested page. Sorry!")));
 

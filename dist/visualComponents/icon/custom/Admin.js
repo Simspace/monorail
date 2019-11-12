@@ -22,8 +22,9 @@ const Admin = props => _react.default.createElement("svg", _extends({
   y: "4",
   width: "32",
   height: "32",
-  rx: "4",
-  fill: "url(#adminBackground)"
+  rx: "4" // SVG fill #ids relative to path if base url path is set https://stackoverflow.com/a/53579924
+  ,
+  fill: `url(${window.location.pathname}#adminBackground)`
 }), _react.default.createElement("path", {
   fillRule: "evenodd",
   clipRule: "evenodd",

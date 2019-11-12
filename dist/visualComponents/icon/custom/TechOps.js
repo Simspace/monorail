@@ -22,8 +22,9 @@ const TechOps = props => _react.default.createElement("svg", _extends({
   y: "4",
   width: "32",
   height: "32",
-  rx: "4",
-  fill: "url(#techopsBackground)"
+  rx: "4" // SVG fill #ids relative to path if base url path is set https://stackoverflow.com/a/53579924
+  ,
+  fill: `url(${window.location.pathname}#techopsBackground)`
 }), _react.default.createElement("path", {
   d: "M28.5 30.4604L27.1104 29.1954C22.175 24.72 18.9167 21.7683 18.9167 18.1458C18.9167 15.1942 21.2358 12.875 24.1875 12.875C25.855 12.875 27.4554 13.6512 28.5 14.8779C29.5446 13.6512 31.145 12.875 32.8125 12.875C35.7642 12.875 38.0833 15.1942 38.0833 18.1458C38.0833 21.7683 34.825 24.72 29.8896 29.205L28.5 30.4604Z",
   fill: "#EE77BC"
