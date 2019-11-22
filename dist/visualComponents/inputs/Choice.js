@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.Choice = exports.BBChoiceFakeLabel = void 0;
+exports.Choice = exports.ChoiceFakeLabel = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
@@ -12,6 +12,8 @@ var _styledComponents = _interopRequireWildcard(require("styled-components"));
 var _exports = require("../../helpers/exports");
 
 var _Icon = require("../icon/Icon");
+
+var _inputTypes = require("./inputTypes");
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
@@ -25,17 +27,17 @@ const disabledChromeless =
 /*#__PURE__*/
 (0, _styledComponents.css)(["background:transparent;border:0;"]);
 
-const BBChoiceInput =
+const ChoiceInput =
 /*#__PURE__*/
 _styledComponents.default.input.withConfig({
-  displayName: "Choice__BBChoiceInput",
+  displayName: "Choice__ChoiceInput",
   componentId: "sor39o-0"
 })(["opacity:0;position:absolute;z-index:-1;"]);
 
-const BBChoiceFakeLabel =
+const ChoiceFakeLabel =
 /*#__PURE__*/
 _styledComponents.default.div.withConfig({
-  displayName: "Choice__BBChoiceFakeLabel",
+  displayName: "Choice__ChoiceFakeLabel",
   componentId: "sor39o-1"
 })(({
   answered,
@@ -43,12 +45,12 @@ _styledComponents.default.div.withConfig({
   err
 }) => (0, _styledComponents.css)(["", ";", ";", ";", " flex-grow:1;word-break:break-word;transition:all ease 150ms;"], answered && (0, _styledComponents.css)(["transform:translateX(24px);"]), disabled && _exports.baseDisabledStyles, (0, _exports.typography)(500, _exports.FontSizes.Title5), err && `color: ${(0, _exports.getColor)(_exports.Colors.Red)};`));
 
-exports.BBChoiceFakeLabel = BBChoiceFakeLabel;
+exports.ChoiceFakeLabel = ChoiceFakeLabel;
 
-const CCChoice =
+const Container =
 /*#__PURE__*/
 _styledComponents.default.label.withConfig({
-  displayName: "Choice__CCChoice",
+  displayName: "Choice__Container",
   componentId: "sor39o-2"
 })(({
   dense,
@@ -263,76 +265,64 @@ const renderFakeInputIcons = (type, centeredInput, checked, answered, dense, ind
   }
 };
 
-const Choice = ({
-  answered,
-  centeredInput,
-  checked,
-  correct,
-  cssOverrides,
-  dense,
-  disabled,
-  incorrect,
-  indeterminate,
-  onChange,
-  children,
-  readOnly,
-  type,
-  value,
-  required,
-  name,
-  style,
-  err,
-  'data-test-id': dataTestId,
-  ...domProps
-}) => _react.default.createElement(CCChoice, _extends({
-  style: style,
-  correct: correct,
-  cssOverrides: cssOverrides,
-  incorrect: incorrect,
-  dense: dense,
-  disabled: disabled,
-  readOnly: readOnly,
-  answered: answered,
-  indeterminate: indeterminate,
-  err: err
-}, domProps), _react.default.createElement(BBChoiceInput, {
-  "data-test-id": dataTestId,
-  disabled: disabled,
-  onChange: onChange,
-  checked: checked,
-  type: type,
-  readOnly: readOnly,
-  value: value,
-  required: required,
-  name: name
-}), _react.default.createElement(IncorrectIcon, {
-  incorrect: incorrect,
-  disabled: disabled
-}), _react.default.createElement(CorrectIcon, {
-  correct: correct,
-  disabled: disabled
-}), renderFakeInputIcons(type, centeredInput, checked, answered, dense, indeterminate, disabled, err), _react.default.createElement(BBChoiceFakeLabel, {
-  answered: answered,
-  disabled: disabled,
-  err: err
-}, children));
+const Choice = props => {
+  const {
+    answered = false,
+    centeredInput = false,
+    checked = false,
+    correct = false,
+    cssOverrides,
+    dense = false,
+    display = _inputTypes.DisplayType.Edit,
+    disabled = false,
+    incorrect = false,
+    indeterminate = false,
+    onChange,
+    children = '',
+    readOnly = false,
+    type = 'radio',
+    value = '',
+    required = false,
+    name = '',
+    style,
+    err = false,
+    'data-test-id': dataTestId,
+    onClick,
+    ...domProps
+  } = props;
+  return _react.default.createElement(Container, _extends({
+    style: style,
+    correct: correct,
+    cssOverrides: cssOverrides,
+    incorrect: incorrect,
+    dense: dense,
+    disabled: disabled,
+    readOnly: readOnly,
+    answered: answered,
+    indeterminate: indeterminate,
+    err: err
+  }, domProps), _react.default.createElement(ChoiceInput, {
+    "data-test-id": dataTestId,
+    disabled: disabled,
+    onChange: onChange,
+    defaultChecked: checked,
+    type: type,
+    readOnly: readOnly,
+    value: value,
+    required: required,
+    name: name,
+    onClick: onClick
+  }), _react.default.createElement(IncorrectIcon, {
+    incorrect: incorrect,
+    disabled: disabled
+  }), _react.default.createElement(CorrectIcon, {
+    correct: correct,
+    disabled: disabled
+  }), renderFakeInputIcons(type, centeredInput, checked, answered, dense, indeterminate, disabled, err), _react.default.createElement(ChoiceFakeLabel, {
+    answered: answered,
+    disabled: disabled,
+    err: err
+  }, children));
+};
 
 exports.Choice = Choice;
-Choice.defaultProps = {
-  answered: false,
-  centeredInput: false,
-  dense: false,
-  disabled: false,
-  indeterminate: false,
-  correct: false,
-  incorrect: false,
-  checked: false,
-  defaultChecked: false,
-  cssOverrides: '',
-  readOnly: false,
-  value: '',
-  required: false,
-  name: '',
-  type: 'radio',
-  children: ''
-};

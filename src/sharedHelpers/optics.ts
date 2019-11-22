@@ -77,4 +77,7 @@ export const mkRecordKeyOptional = <
 >(
   k: K,
 ) =>
-  new Optional<S, S[K]>(s => lookup(k, s), a => obj => insert(k, a, obj) as S)
+  new Optional<S, S[K]>(
+    s => lookup(k, s),
+    a => obj => insert(k, a, obj) as S,
+  )

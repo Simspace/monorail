@@ -27,7 +27,7 @@ function _extends() { _extends = Object.assign || function (target) { for (var i
 
 const checkboxSelectStyles =
 /*#__PURE__*/
-(0, _styledComponents.css)(["width:400px;", "{", ";align-items:center;justify-content:space-between;}i{top:12px;}"], _Choice.BBChoiceFakeLabel, (0, _exports.flexFlow)('row'));
+(0, _styledComponents.css)(["width:400px;", "{", ";align-items:center;justify-content:space-between;}i{top:12px;}"], _Choice.ChoiceFakeLabel, (0, _exports.flexFlow)('row'));
 
 var _StyledChoice =
 /*#__PURE__*/

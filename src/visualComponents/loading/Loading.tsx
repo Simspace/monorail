@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 import Lottie from 'react-lottie'
 
-import animationData from './loading.json'
+import animationData from './loadingData.json'
 
 type Props = { size?: number }
 

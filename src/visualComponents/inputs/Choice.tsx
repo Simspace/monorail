@@ -1,4 +1,4 @@
-import React, { ChangeEvent, CSSProperties, ReactNode } from 'react'
+import React, { ChangeEvent, CSSProperties, FC, ReactNode } from 'react'
 import styled, { css, SimpleInterpolation } from 'styled-components'
 
 import {
@@ -14,8 +14,8 @@ import {
   typography,
   visible,
 } from '@monorail/helpers/exports'
-import { FCwDP } from '@monorail/sharedHelpers/react'
 import { Icon, OnClick } from '@monorail/visualComponents/icon/Icon'
+import { DisplayType } from '@monorail/visualComponents/inputs/inputTypes'
 
 /*
  * Styles
@@ -26,13 +26,13 @@ const disabledChromeless = css`
   border: 0;
 `
 
-const BBChoiceInput = styled.input<BBChoiceInputProps>`
+const ChoiceInput = styled.input`
   opacity: 0; /* Hiding the input. */
   position: absolute; /* position: absolute; so that the Icons can be position: absolute; and so that the input doesn't effect the layout. */
   z-index: -1;
 `
 
-export const BBChoiceFakeLabel = styled.div<AnsweredProps>(
+export const ChoiceFakeLabel = styled.div<AnsweredProps>(
   ({ answered, disabled, err }) => css`
     ${answered &&
       css`
@@ -50,7 +50,7 @@ export const BBChoiceFakeLabel = styled.div<AnsweredProps>(
   `,
 )
 
-const CCChoice = styled.label<CCChoiceProps>(
+const Container = styled.label<ContainerProps>(
   ({ dense, readOnly, incorrect, correct, disabled, err, cssOverrides }) => css`
     ${(readOnly || incorrect || correct) &&
       css`
@@ -113,12 +113,12 @@ type AnsweredProps = {
   err?: boolean
 }
 
-type BBGradeIconProps = {
+type GradeIconProps = {
   correct?: boolean
   incorrect?: boolean
 }
 
-type BBChoiceInputProps = AnsweredProps & {
+type ChoiceInputProps = AnsweredProps & {
   checked?: boolean
   defaultChecked?: boolean
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void
@@ -126,8 +126,8 @@ type BBChoiceInputProps = AnsweredProps & {
   'data-test-id'?: string
 }
 
-type CCChoiceProps = AnsweredProps &
-  BBGradeIconProps & {
+type ContainerProps = AnsweredProps &
+  GradeIconProps & {
     cssOverrides?: SimpleInterpolation
     readOnly?: boolean
     value?: string | number | Array<string>
@@ -135,30 +135,14 @@ type CCChoiceProps = AnsweredProps &
     name?: string
   }
 
-export type ChoiceProps = BBGradeIconProps &
-  CCChoiceProps &
-  BBChoiceInputProps & {
+export type ChoiceProps = GradeIconProps &
+  ContainerProps &
+  ChoiceInputProps & {
     type?: 'radio' | 'checkbox'
     children?: ReactNode
     style?: CSSProperties
+    display?: DisplayType
   }
-
-type DefaultProps = {
-  answered: boolean
-  disabled: boolean
-  indeterminate: boolean
-  correct: boolean
-  incorrect: boolean
-  checked: boolean
-  defaultChecked: boolean
-  cssOverrides: SimpleInterpolation
-  readOnly: boolean
-  value: string | number | Array<string>
-  required: boolean
-  name: string
-  type: 'radio' | 'checkbox'
-  children: ReactNode
-}
 
 /*
  * Component
@@ -173,7 +157,7 @@ const UncheckedRadioIcon = styled(
     disabled,
     err,
     ...otherProps
-  }: BBChoiceInputProps) => (
+  }: ChoiceInputProps) => (
     <Icon icon="radio_button_unchecked" {...otherProps} />
   ),
 )(
@@ -197,9 +181,7 @@ const CheckedRadioIcon = styled(
     centeredInput,
     disabled,
     ...otherProps
-  }: BBChoiceInputProps) => (
-    <Icon icon="radio_button_checked" {...otherProps} />
-  ),
+  }: ChoiceInputProps) => <Icon icon="radio_button_checked" {...otherProps} />,
 )(
   ({ checked, answered, dense, centeredInput, disabled }) => css`
     ${visible(checked)};
@@ -223,7 +205,7 @@ const UncheckedCheckboxIcon = styled(
     disabled,
     err,
     ...otherProps
-  }: BBChoiceInputProps) => (
+  }: ChoiceInputProps) => (
     <Icon icon="check_box_outline_blank" {...otherProps} />
   ),
 )(
@@ -255,7 +237,7 @@ const CheckedCheckboxIcon = styled(
     centeredInput,
     disabled,
     ...otherProps
-  }: BBChoiceInputProps) => <Icon icon="check_box" {...otherProps} />,
+  }: ChoiceInputProps) => <Icon icon="check_box" {...otherProps} />,
 )(
   ({ checked, answered, dense, centeredInput, disabled }) => css`
     ${visible(checked)};
@@ -277,7 +259,7 @@ const IndeterminateIcon = styled(
     centeredInput,
     disabled,
     ...otherProps
-  }: BBChoiceInputProps) => (
+  }: ChoiceInputProps) => (
     <Icon icon="indeterminate_check_box" {...otherProps} />
   ),
 )(
@@ -300,7 +282,7 @@ const IncorrectIcon = styled(
     dense,
     disabled,
     ...otherProps
-  }: BBChoiceInputProps & BBGradeIconProps) => (
+  }: ChoiceInputProps & GradeIconProps) => (
     <Icon icon="cancel" {...otherProps} />
   ),
 )(
@@ -321,7 +303,7 @@ const CorrectIcon = styled(
     dense,
     disabled,
     ...otherProps
-  }: BBChoiceInputProps & BBGradeIconProps) => (
+  }: ChoiceInputProps & GradeIconProps) => (
     <Icon icon="check_circle" {...otherProps} />
   ),
 )(
@@ -396,85 +378,73 @@ const renderFakeInputIcons = (
   }
 }
 
-export const Choice: FCwDP<ChoiceProps, DefaultProps> = ({
-  answered,
-  centeredInput,
-  checked,
-  correct,
-  cssOverrides,
-  dense,
-  disabled,
-  incorrect,
-  indeterminate,
-  onChange,
-  children,
-  readOnly,
-  type,
-  value,
-  required,
-  name,
-  style,
-  err,
-  'data-test-id': dataTestId,
-  ...domProps
-}) => (
-  <CCChoice
-    style={style}
-    correct={correct}
-    cssOverrides={cssOverrides}
-    incorrect={incorrect}
-    dense={dense}
-    disabled={disabled}
-    readOnly={readOnly}
-    answered={answered}
-    indeterminate={indeterminate}
-    err={err}
-    {...domProps}
-  >
-    <BBChoiceInput
-      data-test-id={dataTestId}
-      disabled={disabled}
-      onChange={onChange}
-      checked={checked}
-      type={type}
-      readOnly={readOnly}
-      value={value}
-      required={required}
-      name={name}
-    />
-    <IncorrectIcon incorrect={incorrect} disabled={disabled} />
-    <CorrectIcon correct={correct} disabled={disabled} />
-    {renderFakeInputIcons(
-      type,
-      centeredInput,
-      checked,
-      answered,
-      dense,
-      indeterminate,
-      disabled,
-      err,
-    )}
-    <BBChoiceFakeLabel answered={answered} disabled={disabled} err={err}>
-      {children}
-    </BBChoiceFakeLabel>
-  </CCChoice>
-)
+export const Choice: FC<ChoiceProps> = props => {
+  const {
+    answered = false,
+    centeredInput = false,
+    checked = false,
+    correct = false,
+    cssOverrides,
+    dense = false,
+    display = DisplayType.Edit,
+    disabled = false,
+    incorrect = false,
+    indeterminate = false,
+    onChange,
+    children = '',
+    readOnly = false,
+    type = 'radio',
+    value = '',
+    required = false,
+    name = '',
+    style,
+    err = false,
+    'data-test-id': dataTestId,
+    onClick,
+    ...domProps
+  } = props
 
-Choice.defaultProps = {
-  answered: false,
-  centeredInput: false,
-  dense: false,
-  disabled: false,
-  indeterminate: false,
-  correct: false,
-  incorrect: false,
-  checked: false,
-  defaultChecked: false,
-  cssOverrides: '',
-  readOnly: false,
-  value: '',
-  required: false,
-  name: '',
-  type: 'radio',
-  children: '',
+  return (
+    <Container
+      style={style}
+      correct={correct}
+      cssOverrides={cssOverrides}
+      incorrect={incorrect}
+      dense={dense}
+      disabled={disabled}
+      readOnly={readOnly}
+      answered={answered}
+      indeterminate={indeterminate}
+      err={err}
+      {...domProps}
+    >
+      <ChoiceInput
+        data-test-id={dataTestId}
+        disabled={disabled}
+        onChange={onChange}
+        defaultChecked={checked}
+        type={type}
+        readOnly={readOnly}
+        value={value}
+        required={required}
+        name={name}
+        onClick={onClick}
+      />
+      <IncorrectIcon incorrect={incorrect} disabled={disabled} />
+      <CorrectIcon correct={correct} disabled={disabled} />
+      {renderFakeInputIcons(
+        type,
+        centeredInput,
+        checked,
+        answered,
+        dense,
+        indeterminate,
+        disabled,
+        err,
+      )}
+      <ChoiceFakeLabel answered={answered} disabled={disabled} err={err}>
+        {children}
+      </ChoiceFakeLabel>
+    </Container>
+  )
 }

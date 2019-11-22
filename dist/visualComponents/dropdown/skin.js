@@ -123,7 +123,9 @@ const DropdownSkin = ({
     disabled,
     error,
     label,
-    required
+    required,
+    display,
+    clearable
   } = skin;
 
   const renderHandler = () => {
@@ -147,7 +149,8 @@ const DropdownSkin = ({
         highlightedIndex: (0, _Option.fromNullable)(selectedItem).fold(-1, item => items.indexOf(item))
       })
     };
-    const handlerProps = { ...getInputProps(inputOptions)
+    const handlerProps = { ...getInputProps(inputOptions),
+      display
     };
     return _react.default.createElement(HandlerContainer, {
       ref: menuRef
@@ -166,7 +169,8 @@ const DropdownSkin = ({
       key: 1
     })), _react.default.createElement(render.handler, {
       downshiftProps,
-      handlerProps
+      handlerProps,
+      clearable
     }));
   };
 
@@ -234,7 +238,8 @@ const DropdownSkin = ({
   return _react.default.createElement(DropdownWrapper, null, label && _react.default.createElement(_Label.Label, {
     label: label,
     required: required,
-    err: !(0, _typeGuards.isUndefined)(error) && error.isSome()
+    err: !(0, _typeGuards.isUndefined)(error) && error.isSome(),
+    display: display
   }), _react.default.createElement(DropdownContainer, {
     disabled: !!disabled,
     error: !(0, _typeGuards.isUndefined)(error) && error.isSome()

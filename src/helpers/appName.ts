@@ -236,5 +236,5 @@ export const convertAppNameToString = (
 type AppNameType = string | AppOrAuthSubAppName
 
 export const isAppName = (name: AppNameType): name is AppOrAuthSubAppName =>
-  Object.values(AppName).includes(name) ||
-  Object.values(AuthSubAppName).includes(name)
+  Object.values(AppName).includes(name as AppName) ||
+  Object.values(AuthSubAppName).includes(name as AuthSubAppName)

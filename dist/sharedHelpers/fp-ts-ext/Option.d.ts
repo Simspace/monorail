@@ -1,5 +1,5 @@
-/// <reference path="../../../src/typings/styled-components.d.ts" />
 /// <reference types="react" />
+/// <reference types="@monorail/typings/styled-components" />
 import { Option } from 'fp-ts/lib/Option';
 /**
  * type guard for Option
@@ -15,7 +15,7 @@ export declare const fold: <A, B>(a: Option<A>, onNone: B, onSome: (a: A) => B) 
  * `fold` method that returns null when given a `None` or a `ReactNode` when
  * given a `Some`
  */
-export declare const renderOnSome: <A>(a: Option<A>, onSome: (a: A) => import("react").ReactElement<any, string | ((props: any) => import("react").ReactElement<any, string | any | (new (props: any) => import("react").Component<any, any, any>)> | null) | (new (props: any) => import("react").Component<any, any, any>)> | null) => import("react").ReactElement<any, string | ((props: any) => import("react").ReactElement<any, string | any | (new (props: any) => import("react").Component<any, any, any>)> | null) | (new (props: any) => import("react").Component<any, any, any>)> | null;
+export declare const renderOnSome: <A>(a: Option<A>, onSome: (a: A) => import("../typeLevel").Nullable<import("react").ReactElement<any, string | ((props: any) => import("react").ReactElement<any, string | any | (new (props: any) => import("react").Component<any, any, any>)> | null) | (new (props: any) => import("react").Component<any, any, any>)>>) => import("../typeLevel").Nullable<import("react").ReactElement<any, string | ((props: any) => import("react").ReactElement<any, string | any | (new (props: any) => import("react").Component<any, any, any>)> | null) | (new (props: any) => import("react").Component<any, any, any>)>>;
 /**
  * Curried version of fp-ts' `getOrElse`. Used to extract the value
  * from a Some or return a default value in place of a None. Also

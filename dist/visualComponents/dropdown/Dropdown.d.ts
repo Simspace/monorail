@@ -21,4 +21,4 @@ export declare type DropdownProps<D extends DropdownType> = CommonComponentType 
     error?: Option<string>;
     required?: boolean;
 };
-export declare const Dropdown: <D extends DropdownType>({ label, placeholder, disabled, items: collection, value, onChange, behavior, skin, parser, interaction, error, required, ...domProps }: DropdownProps<D>) => React.ReactElement<DropdownProps<D>, string | ((props: any) => React.ReactElement<any, string | any | (new (props: any) => React.Component<any, any, any>)> | null) | (new (props: any) => React.Component<any, any, any>)>;
+export declare const Dropdown: <D extends DropdownType>({ label, placeholder, disabled, clearable, items: collection, value, onChange, behavior, skin, parser, interaction, error, required, display, ...domProps }: DropdownProps<D>) => React.ReactElement<DropdownProps<D>, string | ((props: any) => React.ReactElement<any, string | any | (new (props: any) => React.Component<any, any, any>)> | null) | (new (props: any) => React.Component<any, any, any>)>;

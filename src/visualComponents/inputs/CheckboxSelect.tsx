@@ -3,15 +3,15 @@ import { css, SimpleInterpolation } from 'styled-components'
 
 import { flexFlow } from '@monorail/helpers/exports'
 import {
-  BBChoiceFakeLabel,
   Choice,
+  ChoiceFakeLabel,
 } from '@monorail/visualComponents/inputs/Choice'
 import { Label } from '@monorail/visualComponents/inputs/Label'
 import { Select, SelectOption } from '@monorail/visualComponents/inputs/Select'
 
 const checkboxSelectStyles = css`
   width: 400px;
-  ${BBChoiceFakeLabel} {
+  ${ChoiceFakeLabel} {
     ${flexFlow('row')};
 
     align-items: center;

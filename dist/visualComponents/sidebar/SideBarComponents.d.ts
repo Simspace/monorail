@@ -14,7 +14,7 @@ export declare enum SidebarContainerAnimationPose {
 export declare const SidebarContainer: import("styled-components").StyledComponent<React.ComponentType<any>, any, CommonComponentType & {
     pose: string;
 }, never>;
-export declare const SidebarMenuContainer: import("styled-components").StyledComponent<React.FunctionComponent<{
+export declare const SidebarMenuContainer: import("styled-components").StyledComponent<React.FC<{
     containerCssOverrides?: import("../../types").CssOverridesType;
 }>, any, CommonComponentType & {
     isSideBarCollapsed: boolean;

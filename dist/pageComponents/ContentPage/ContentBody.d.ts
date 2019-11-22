@@ -1,2 +1,5 @@
 import { FC } from 'react';
-export declare const ContentBody: FC;
+import { CSSProp } from '@monorail/helpers/styled-components';
+export declare const ContentBody: FC<{
+    scrollCSS?: CSSProp;
+}>;

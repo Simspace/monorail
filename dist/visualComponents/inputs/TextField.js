@@ -15,9 +15,13 @@ var _typeGuards = require("../../sharedHelpers/typeGuards");
 
 var _Icon = require("../icon/Icon");
 
+var _inputTypes = require("./inputTypes");
+
 var _Label = require("./Label");
 
 var _StdErr = require("./StdErr");
+
+var _ViewInput = require("./ViewInput");
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
@@ -31,8 +35,10 @@ _styledComponents.default.label.withConfig({
   displayName: "TextField__Container",
   componentId: "mvo1xj-0"
 })(({
-  cssOverrides
-}) => (0, _styledComponents.css)(["", ";float:none;width:256px;position:relative;", ""], (0, _exports.flexFlow)(), cssOverrides));
+  cssOverrides,
+  display,
+  hideStdErr
+}) => (0, _styledComponents.css)(["", ";float:none;width:256px;position:relative;", " ", ""], (0, _exports.flexFlow)(), display !== _inputTypes.DisplayType.Edit && !hideStdErr && `margin-bottom: 24px;`, cssOverrides));
 
 const IconsAndInputContainer =
 /*#__PURE__*/
@@ -108,7 +114,7 @@ _styledComponents.default.input.withConfig({
   disabled,
   canToggleVisibility,
   err
-}) => (0, _styledComponents.css)(["", ";", ";", ";", ";border-color:", ";border-style:solid;border-width:1px;box-sizing:border-box;color:", ";height:24px;min-height:24px;flex:1;outline:none;padding:4px ", "px 4px ", "px;width:100%;", ";&[htmlType='number']{&::-webkit-inner-spin-button,&::-webkit-outer-spin-button{opacity:1;}}&:hover{border-color:", ";}&:focus,&:active{border-color:", ";}::placeholder{color:", ";font-style:italic;}", ";:-moz-ui-invalid{box-shadow:none;}", ";", ";"], disabled && _exports.baseDisabledStyles, (0, _exports.typography)(400, _exports.FontSizes.Title5), (0, _exports.borderRadius)(), (0, _exports.typography)(400, _exports.FontSizes.Title5), (0, _exports.getColor)(_exports.Colors.Black, 0.12), (0, _exports.getColor)(_exports.Colors.Black89), iconRight ? canToggleVisibility ? 56 : 30 : canToggleVisibility ? 30 : 6, iconLeft ? 30 : 6, _exports.buttonTransition, (0, _exports.getColor)(_exports.Colors.Black, 0.3), (0, _exports.getColor)(_exports.Colors.BrandLightBlue), (0, _exports.getColor)(_exports.Colors.Black54), chromeless && (0, _styledComponents.css)(["border-color:transparent;"]), err && _exports.baseErrorBorderStyles, disabled && _exports.baseDisabledStyles));
+}) => (0, _styledComponents.css)(["", ";", ";", ";border-color:", ";border-style:solid;border-width:1px;box-sizing:border-box;color:", ";height:24px;min-height:24px;flex:1;outline:none;padding:4px ", "px 4px ", "px;width:100%;", ";&[htmlType='number']{&::-webkit-inner-spin-button,&::-webkit-outer-spin-button{opacity:1;}}&:hover{border-color:", ";}&:focus,&:active{border-color:", ";}::placeholder{color:", ";font-style:italic;}", ";:-moz-ui-invalid{box-shadow:none;}", ";", ";"], disabled && _exports.baseDisabledStyles, (0, _exports.typography)(400, _exports.FontSizes.Title5), (0, _exports.borderRadius)(), (0, _exports.getColor)(_exports.Colors.Black, 0.12), (0, _exports.getColor)(_exports.Colors.Black89), iconRight ? canToggleVisibility ? 56 : 30 : canToggleVisibility ? 30 : 6, iconLeft ? 30 : 6, _exports.buttonTransition, (0, _exports.getColor)(_exports.Colors.Black, 0.3), (0, _exports.getColor)(_exports.Colors.BrandLightBlue), (0, _exports.getColor)(_exports.Colors.Black54), chromeless && (0, _styledComponents.css)(["border-color:transparent;"]), err && _exports.baseErrorBorderStyles, disabled && _exports.baseDisabledStyles));
 /*
  * Types
  */
@@ -135,6 +141,7 @@ const TextField = (0, _react.forwardRef)(props => {
     placeholder = '',
     value,
     disabled = false,
+    display = _inputTypes.DisplayType.Edit,
     readOnly = false,
     required = false,
     htmlType = canToggleVisibility && hide ? 'password' : 'text',
@@ -149,11 +156,14 @@ const TextField = (0, _react.forwardRef)(props => {
   } = props;
   return _react.default.createElement(Container, {
     className: className,
-    cssOverrides: cssOverrides
-  }, _react.default.createElement(_Label.Label, {
+    cssOverrides: cssOverrides,
+    display: display,
+    hideStdErr: hideStdErr
+  }, display === _inputTypes.DisplayType.Edit ? _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_Label.Label, {
     label: label,
     required: required,
-    err: err
+    err: err,
+    display: display
   }), _react.default.createElement(IconsAndInputContainer, null, !(0, _typeGuards.isEmptyString)(iconLeft) && _react.default.createElement(StyledLeftIcon, {
     icon: iconLeft,
     err: err
@@ -187,6 +197,9 @@ const TextField = (0, _react.forwardRef)(props => {
   })), !hideStdErr && _react.default.createElement(_StdErr.StdErr, {
     err: err,
     msg: msg
-  }));
+  })) : htmlType !== 'password' ? _react.default.createElement(_ViewInput.ViewInput, {
+    label: label,
+    value: value
+  }) : _react.default.createElement(_react.default.Fragment, null));
 });
 exports.TextField = TextField;

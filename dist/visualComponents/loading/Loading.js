@@ -9,7 +9,7 @@ var _react = _interopRequireDefault(require("react"));
 
 var _reactLottie = _interopRequireDefault(require("react-lottie"));
 
-var _loading = _interopRequireDefault(require("./loading.json"));
+var _loadingData = _interopRequireDefault(require("./loadingData.json"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -19,7 +19,7 @@ const Loading = ({
   const defaultOptions = {
     loop: true,
     autoplay: true,
-    animationData: _loading.default
+    animationData: _loadingData.default
   };
   return _react.default.createElement(_reactLottie.default, {
     options: defaultOptions,

@@ -1,8 +1,8 @@
-import { ChangeEvent, CSSProperties, ReactNode } from 'react';
+import { ChangeEvent, CSSProperties, FC, ReactNode } from 'react';
 import { SimpleInterpolation } from 'styled-components';
-import { FCwDP } from '@monorail/sharedHelpers/react';
 import { OnClick } from '@monorail/visualComponents/icon/Icon';
-export declare const BBChoiceFakeLabel: import("styled-components").StyledComponent<"div", any, AnsweredProps, never>;
+import { DisplayType } from '@monorail/visualComponents/inputs/inputTypes';
+export declare const ChoiceFakeLabel: import("styled-components").StyledComponent<"div", any, AnsweredProps, never>;
 declare type AnsweredProps = {
     answered?: boolean;
     centeredInput?: boolean;
@@ -11,44 +11,29 @@ declare type AnsweredProps = {
     indeterminate?: boolean;
     err?: boolean;
 };
-declare type BBGradeIconProps = {
+declare type GradeIconProps = {
     correct?: boolean;
     incorrect?: boolean;
 };
-declare type BBChoiceInputProps = AnsweredProps & {
+declare type ChoiceInputProps = AnsweredProps & {
     checked?: boolean;
     defaultChecked?: boolean;
     onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
     onClick?: OnClick;
     'data-test-id'?: string;
 };
-declare type CCChoiceProps = AnsweredProps & BBGradeIconProps & {
+declare type ContainerProps = AnsweredProps & GradeIconProps & {
     cssOverrides?: SimpleInterpolation;
     readOnly?: boolean;
     value?: string | number | Array<string>;
     required?: boolean;
     name?: string;
 };
-export declare type ChoiceProps = BBGradeIconProps & CCChoiceProps & BBChoiceInputProps & {
+export declare type ChoiceProps = GradeIconProps & ContainerProps & ChoiceInputProps & {
     type?: 'radio' | 'checkbox';
     children?: ReactNode;
     style?: CSSProperties;
+    display?: DisplayType;
 };
-declare type DefaultProps = {
-    answered: boolean;
-    disabled: boolean;
-    indeterminate: boolean;
-    correct: boolean;
-    incorrect: boolean;
-    checked: boolean;
-    defaultChecked: boolean;
-    cssOverrides: SimpleInterpolation;
-    readOnly: boolean;
-    value: string | number | Array<string>;
-    required: boolean;
-    name: string;
-    type: 'radio' | 'checkbox';
-    children: ReactNode;
-};
-export declare const Choice: FCwDP<ChoiceProps, DefaultProps>;
+export declare const Choice: FC<ChoiceProps>;
 export {};

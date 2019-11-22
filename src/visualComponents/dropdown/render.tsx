@@ -6,12 +6,15 @@ import { Colors, getColor } from '@monorail/helpers/color'
 import { ellipsis, visible } from '@monorail/helpers/exports'
 import { flexFlow } from '@monorail/helpers/flex'
 import styled, { css } from '@monorail/helpers/styled-components'
-import { isEmptyString } from '@monorail/sharedHelpers/typeGuards'
-import { CommonComponentType } from '@monorail/types'
+import { isEmptyString, isNotNil } from '@monorail/sharedHelpers/typeGuards'
+import { DisplayType } from '@monorail/visualComponents/inputs/inputTypes'
 import {
   IconsAndInputContainer,
   TextField,
 } from '@monorail/visualComponents/inputs/TextField'
+
+import { ButtonDisplay, ButtonSize } from '../buttons/buttonTypes'
+import { IconButton } from '../buttons/IconButton'
 
 import { DropdownItem } from './DropdownItem'
 import { DownshiftGetInputProps, DropdownType } from './helpers'
@@ -32,6 +35,8 @@ export declare interface RenderHandlerProps<T> {
   customRender?: CustomRenderHandlerHook<T>
   downshiftProps: ControllerStateAndHelpers<T>
   handlerProps: DownshiftGetInputProps
+  display?: DisplayType
+  clearable?: boolean
 }
 
 export declare interface RenderListProps<T> {
@@ -131,17 +136,19 @@ const Handler = <T extends DropdownType>({
   customRender = renderHandlerLabelDefault,
   downshiftProps,
   handlerProps,
+  clearable = true,
 }: RenderHandlerProps<T>): ReactElement => {
   const inputRef = useRef<HTMLInputElement>(null)
 
+  const { display = DisplayType.Edit, ...textFieldProps } = handlerProps
   const { isOpen, inputValue } = downshiftProps
 
   const searching = isOpen && !isEmptyString(inputValue)
 
-  return (
+  return display === DisplayType.Edit ? (
     <HandlerWrapper>
       <TextField
-        {...handlerProps}
+        {...textFieldProps}
         css={TextFieldStyles(searching)}
         htmlValidation={false}
         iconLeft={searching ? 'search' : ''}
@@ -152,7 +159,20 @@ const Handler = <T extends DropdownType>({
       <StyledHandler searching={searching}>
         {customRender({ handlerProps, downshiftProps })}
       </StyledHandler>
+      {isNotNil(downshiftProps.selectedItem) && clearable && (
+        <IconButton
+          icon="close"
+          display={ButtonDisplay.Chromeless}
+          size={ButtonSize.Dense}
+          onClick={() => downshiftProps.clearSelection()}
+          css={css`
+            margin: auto 0;
+          `}
+        ></IconButton>
+      )}
     </HandlerWrapper>
+  ) : (
+    customRender({ handlerProps, downshiftProps })
   )
 }
 

@@ -7,6 +7,8 @@ exports.RadioGroup = void 0;
 
 var _styledComponents = _interopRequireWildcard(require("styled-components"));
 
+var _Array = require("fp-ts/lib/Array");
+
 var _react = _interopRequireDefault(require("react"));
 
 var _exports = require("../../helpers/exports");
@@ -15,9 +17,13 @@ var _typeGuards = require("../../sharedHelpers/typeGuards");
 
 var _Choice = require("./Choice");
 
+var _inputTypes = require("./inputTypes");
+
 var _Label = require("./Label");
 
 var _StdErr = require("./StdErr");
+
+var _ViewInput = require("./ViewInput");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -32,7 +38,11 @@ const Container =
 _styledComponents.default.div.withConfig({
   displayName: "RadioGroup__Container",
   componentId: "hjdmb5-0"
-})(["", ";"], (0, _exports.flexFlow)('column'));
+})(({
+  display,
+  hideStdErr,
+  cssOverrides
+}) => (0, _styledComponents.css)(["", ";", " ", ";"], (0, _exports.flexFlow)('column'), display !== _inputTypes.DisplayType.Edit && !hideStdErr && `margin-bottom: 24px;`, cssOverrides));
 
 const RadioGroupWrapper =
 /*#__PURE__*/
@@ -77,21 +87,30 @@ var _StyledLabel =
   componentId: "hjdmb5-4"
 })(["", ""], p => p._css);
 
-const RadioGroup = ({
-  label,
-  options,
-  onSelect,
-  value,
-  required,
-  htmlValidation,
-  err,
-  msg,
-  ...otherProps
-}) => {
-  return _react.default.createElement(Container, null, _react.default.createElement(_StyledLabel, {
+const RadioGroup = props => {
+  const {
+    label = '',
+    options,
+    onSelect,
+    value = '',
+    required = false,
+    htmlValidation = true,
+    err = false,
+    msg = '',
+    className = '',
+    hideStdErr = false,
+    display = _inputTypes.DisplayType.Edit,
+    ...otherProps
+  } = props;
+  return _react.default.createElement(Container, {
+    className: className,
+    display: display,
+    hideStdErr: hideStdErr
+  }, display === _inputTypes.DisplayType.Edit ? _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_StyledLabel, {
     label: label,
     required: required,
     err: err,
+    display: display,
     _css: err ? errorStyles : `${(0, _exports.flexFlow)('row')}`
   }), err && _react.default.createElement(BorderJoiner, null), _react.default.createElement(RadioGroupWrapper, _extends({}, otherProps, {
     err: err
@@ -104,19 +123,18 @@ const RadioGroup = ({
     checked: o.key === value,
     value: o.key,
     onChange: e => {
-      onSelect(o.key, e);
+      onSelect && onSelect(o.key, e);
     },
     required: htmlValidation && required,
     readOnly: false,
     disabled: o.disabled
-  }, o.label), _react.default.createElement(InfoText, null, o.key === value && !(0, _typeGuards.isEmptyString)(o.info))))), _react.default.createElement(_StdErr.StdErr, {
+  }, o.label), _react.default.createElement(InfoText, null, o.key === value && !(0, _typeGuards.isEmptyString)(o.info))))), !hideStdErr && _react.default.createElement(_StdErr.StdErr, {
     err: err,
     msg: msg
+  })) : _react.default.createElement(_ViewInput.ViewInput, {
+    label: label,
+    value: (0, _Array.findFirst)(o => o.key === value)(options).map(o => o.label).toUndefined()
   }));
 };
 
 exports.RadioGroup = RadioGroup;
-RadioGroup.defaultProps = {
-  label: '',
-  required: false
-};

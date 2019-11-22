@@ -33,12 +33,12 @@ function useEventListener({
     };
   },
   /**
-  * Re-run effect if any change:
-  *  `element`
-  *  `eventListener`
-  *  `eventName`
-  *  `options`
-  */
+   * Re-run effect if any change:
+   *  `element`
+   *  `eventListener`
+   *  `eventName`
+   *  `options`
+   */
   [element, eventListener, eventName, options]);
 }
 

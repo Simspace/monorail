@@ -44,6 +44,7 @@ const Dropdown = ({
   label,
   placeholder = 'Select',
   disabled = false,
+  clearable = true,
   items: collection,
   value,
   onChange,
@@ -53,6 +54,7 @@ const Dropdown = ({
   interaction = useKeyboardInteractionDefault,
   error,
   required,
+  display,
   ...domProps
 }) => {
   /** Controllers **/
@@ -70,11 +72,13 @@ const Dropdown = ({
     parser: parserController,
     interaction: interactionController,
     disabled,
+    clearable,
     placeholder,
     document,
     error,
     required,
-    label
+    label,
+    display
   });
 
   const onChangeHandler = (item, downshiftProps) => {

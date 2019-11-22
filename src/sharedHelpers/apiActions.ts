@@ -138,10 +138,12 @@ export const mkApiActionTypes = <A extends string>(
 }
 
 export type GeneratedApiAction<Type, Payload, Meta> = Payload extends undefined
-  ? (Meta extends undefined ? { type: Type } : { type: Type; meta: Meta })
-  : (Meta extends undefined
-      ? { type: Type; payload: Payload }
-      : { type: Type; payload: Payload; meta: Meta })
+  ? Meta extends undefined
+    ? { type: Type }
+    : { type: Type; meta: Meta }
+  : Meta extends undefined
+  ? { type: Type; payload: Payload }
+  : { type: Type; payload: Payload; meta: Meta }
 
 export const mkApiAction = <
   A extends string,

@@ -1,4 +1,4 @@
-import React, { MouseEvent, ReactNode, StatelessComponent } from 'react';
+import React, { MouseEvent, PropsWithChildren, ReactNode, StatelessComponent } from 'react';
 import { SimpleInterpolation } from 'styled-components';
 import { AppName } from '@monorail/helpers/exports';
 import { CommonComponentType } from '@monorail/types';
@@ -26,8 +26,10 @@ export declare const overlayCloseAnimation: import("styled-components").Keyframe
 declare type BBModalSize = {
     size: ModalSize;
 };
-export declare type BBModalBackgroundProps = BBModalSize & CommonComponentType;
-export declare const BBModalBackground: import("styled-components").StyledComponent<"div", import("../../helpers/theme").GlobalAppThemeInterface, BBModalBackgroundProps, never>;
+export declare type BBModalBackgroundProps = BBModalSize & PropsWithChildren<CommonComponentType>;
+export declare const BBModalBackground: import("styled-components").StyledComponent<React.ForwardRefExoticComponent<BBModalSize & CommonComponentType & {
+    children?: React.ReactNode;
+} & React.RefAttributes<HTMLDivElement>>, import("../../helpers/theme").GlobalAppThemeInterface, BBModalBackgroundProps, never>;
 export declare const BBModalHeaderContainer: import("styled-components").StyledComponent<"div", import("../../helpers/theme").GlobalAppThemeInterface, BBModalSize & {
     cssOverrides: SimpleInterpolation;
 }, never>;
@@ -44,6 +46,7 @@ declare type BBModalHeaderProps = BBModalSize & {
 export declare const DefaultCloseButton: ({ headerRowChildren, onClose, }: Pick<BBModalHeaderProps, "headerRowChildren" | "onClose">) => JSX.Element;
 export declare const BBModalHeader: StatelessComponent<BBModalHeaderProps>;
 export declare const BBModalFooter: import("styled-components").StyledComponent<"div", import("../../helpers/theme").GlobalAppThemeInterface, {}, never>;
+export declare const BBModalOverlayContainer: import("styled-components").StyledComponent<"div", import("../../helpers/theme").GlobalAppThemeInterface, BBModalOverlayProps, never>;
 export declare type BBModalOverlayProps = CommonComponentType & {
     isOpen: boolean;
     onClick?: (event: MouseEvent<HTMLDivElement>) => void;
