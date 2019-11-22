@@ -2,7 +2,7 @@ import React, { FC } from 'react'
 
 import { flexFlow } from '@monorail/helpers/flex'
 import { pageSizePadding } from '@monorail/helpers/size'
-import styled from '@monorail/helpers/styled-components'
+import styled, { CSSProp } from '@monorail/helpers/styled-components'
 import { ScrollAnimation } from '@monorail/visualComponents/layout/ScrollAnimation'
 
 const ContentBodyContainer = styled.div`
@@ -11,9 +11,13 @@ const ContentBodyContainer = styled.div`
   ${flexFlow('column')};
 `
 
-export const ContentBody: FC = ({ children, ...domProps }) => {
+export const ContentBody: FC<{ scrollCSS?: CSSProp }> = ({
+  children,
+  scrollCSS,
+  ...domProps
+}) => {
   return (
-    <ScrollAnimation>
+    <ScrollAnimation css={scrollCSS}>
       <ContentBodyContainer {...domProps}>{children}</ContentBodyContainer>
     </ScrollAnimation>
   )

@@ -13,9 +13,13 @@ var _exports = require("../../helpers/exports");
 
 var _typeGuards = require("../../sharedHelpers/typeGuards");
 
+var _inputTypes = require("./inputTypes");
+
 var _Label = require("./Label");
 
 var _StdErr = require("./StdErr");
+
+var _ViewInput = require("./ViewInput");
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
@@ -29,8 +33,9 @@ _styledComponents.default.label.withConfig({
   displayName: "TextArea__TextAreaContainer",
   componentId: "sc-1vltn06-0"
 })(({
-  cssOverrides
-}) => (0, _styledComponents.css)(["", ";max-width:256px;width:100%;position:relative;", ""], (0, _exports.flexFlow)(), cssOverrides));
+  cssOverrides,
+  display
+}) => (0, _styledComponents.css)(["", ";max-width:256px;width:100%;position:relative;", " ", ""], (0, _exports.flexFlow)(), display !== _inputTypes.DisplayType.Edit && `margin-bottom: 24px;`, cssOverrides));
 
 exports.TextAreaContainer = TextAreaContainer;
 
@@ -55,96 +60,85 @@ exports.TextAreaInput = TextAreaInput;
 /*
  * Component
  */
-class TextArea extends _react.Component {
-  constructor(...args) {
-    super(...args);
-    this.textArea = _react.default.createRef();
+const TextArea = props => {
+  const {
+    chromeless,
+    compact,
+    cssOverrides,
+    disabled,
+    display = _inputTypes.DisplayType.Edit,
+    height,
+    label,
+    onChange,
+    placeholder,
+    readOnly,
+    required,
+    htmlValidation = true,
+    value,
+    onBlur,
+    name,
+    className,
+    err,
+    msg,
+    hideStdErr = false,
+    ...otherProps
+  } = props;
+  const textArea = (0, _react.useRef)(null);
 
-    this.setCompactHeight = () => {
-      const {
-        compact
-      } = this.props;
+  const setCompactHeight = () => {
+    if (compact && textArea) {
+      const current = textArea.current;
 
-      if (compact) {
-        const current = this.textArea.current;
-
-        if (!(0, _typeGuards.isNil)(current)) {
-          window.requestAnimationFrame(() => {
-            current.style.height = 'auto';
-            current.style.height = current.scrollHeight + 'px';
-          });
-        }
+      if (!(0, _typeGuards.isNil)(current)) {
+        window.requestAnimationFrame(() => {
+          current.style.height = 'auto';
+          current.style.height = current.scrollHeight + 'px';
+        });
       }
-    };
+    }
+  };
 
-    this.onChange = e => {
-      const {
-        onChange
-      } = this.props;
-      this.setCompactHeight();
-      onChange && onChange(e);
-    };
-  }
+  (0, _react.useLayoutEffect)(() => {
+    setCompactHeight();
+  });
 
-  componentDidUpdate() {
-    this.setCompactHeight();
-  }
+  const onCompactChange = e => {
+    setCompactHeight();
+    onChange && onChange(e);
+  };
 
-  componentDidMount() {
-    this.setCompactHeight();
-  }
-
-  render() {
-    const {
-      chromeless,
-      compact,
-      cssOverrides,
-      disabled,
-      height,
-      label,
-      onChange,
-      placeholder,
-      readOnly,
-      required,
-      htmlValidation = true,
-      value,
-      onBlur,
-      name,
-      className,
-      err,
-      msg,
-      hideStdErr = false,
-      ...otherProps
-    } = this.props;
-    return _react.default.createElement(TextAreaContainer, {
-      cssOverrides: cssOverrides,
-      className: className
-    }, _react.default.createElement(_Label.Label, {
-      label: label,
-      required: required,
-      err: err
-    }), _react.default.createElement(TextAreaInput, _extends({
-      chromeless: chromeless,
-      className: "new-textarea",
-      compact: compact,
-      disabled: disabled,
-      height: height,
-      ref: this.textArea,
-      onChange: this.onChange,
-      placeholder: placeholder,
-      readOnly: readOnly,
-      required: htmlValidation && required,
-      rows: compact ? 1 : 3,
-      value: value,
-      onBlur: onBlur,
-      name: name,
-      err: err
-    }, otherProps)), !hideStdErr && _react.default.createElement(_StdErr.StdErr, {
-      err: err,
-      msg: msg
-    }));
-  }
-
-}
+  return _react.default.createElement(TextAreaContainer, {
+    cssOverrides: cssOverrides,
+    className: className,
+    display: display
+  }, display === _inputTypes.DisplayType.Edit ? _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_Label.Label, {
+    label: label,
+    required: required,
+    err: err,
+    display: display
+  }), _react.default.createElement(TextAreaInput, _extends({
+    chromeless: chromeless,
+    className: "new-textarea",
+    compact: compact,
+    disabled: disabled,
+    height: height,
+    ref: textArea,
+    onChange: onCompactChange,
+    placeholder: placeholder,
+    readOnly: readOnly,
+    required: htmlValidation && required,
+    rows: compact ? 1 : 3,
+    value: value,
+    onBlur: onBlur,
+    name: name,
+    err: err
+  }, otherProps)), !hideStdErr && _react.default.createElement(_StdErr.StdErr, {
+    err: err,
+    msg: msg
+  })) : _react.default.createElement(_ViewInput.ViewInput, {
+    label: label,
+    value: value
+  }));
+};
 
 exports.TextArea = TextArea;

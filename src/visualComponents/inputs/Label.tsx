@@ -3,18 +3,21 @@ import React, { DOMAttributes } from 'react'
 import { Colors } from '@monorail/helpers/exports'
 import { FontSizes } from '@monorail/helpers/typography'
 import { isEmptyString, isNil } from '@monorail/sharedHelpers/typeGuards'
+import { DisplayType } from '@monorail/visualComponents/inputs/inputTypes'
 import { Text } from '@monorail/visualComponents/typography/Text'
 
 type InputLabelProps = DOMAttributes<HTMLParagraphElement> & {
   label?: string | number
   required?: boolean
   err?: boolean
+  display?: DisplayType
 }
 
 export const Label = ({
   label,
   required,
   err,
+  display = DisplayType.View,
   ...domProps
 }: InputLabelProps) => {
   return !isNil(label) && !isEmptyString(label) ? (
@@ -26,7 +29,7 @@ export const Label = ({
       margin="0 0 8px"
     >
       {label}
-      {required && '*'}
+      {required && display === DisplayType.Edit && '*'}
     </Text>
   ) : (
     <></>

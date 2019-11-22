@@ -20,6 +20,7 @@ import {
 import { Portal } from '@monorail/metaComponents/portal/Portal'
 import { isUndefined } from '@monorail/sharedHelpers/typeGuards'
 import { CommonComponentType } from '@monorail/types'
+import { DisplayType } from '@monorail/visualComponents/inputs/inputTypes'
 import { Label } from '@monorail/visualComponents/inputs/Label'
 import { StdErr } from '@monorail/visualComponents/inputs/StdErr'
 import { Menu, MenuContent } from '@monorail/visualComponents/menu/Menu'
@@ -91,11 +92,14 @@ const ItemContainer = styled.div<CommonComponentType>``
 export type DropdownSkinCommonType = {
   placeholder?: string
   disabled?: boolean
+  clearable?: boolean
   document?: Document
   error?: Option<string>
   required?: boolean
   label?: string
+  display?: DisplayType
 }
+
 export type DropdownSkinHookProps<T> = {
   parser: DropdownParser<T>
   interaction: InteractionController<T>
@@ -131,7 +135,7 @@ export const DropdownSkin = <T extends DropdownType>({
   /* eslint-enable react-hooks/exhaustive-deps */
 
   const { items, downshiftProps } = state
-  const { disabled, error, label, required } = skin
+  const { disabled, error, label, required, display, clearable } = skin
 
   const renderHandler = () => {
     const {
@@ -159,7 +163,7 @@ export const DropdownSkin = <T extends DropdownType>({
         }),
     }
 
-    const handlerProps = { ...getInputProps(inputOptions) }
+    const handlerProps = { ...getInputProps(inputOptions), display }
 
     return (
       <HandlerContainer ref={menuRef}>
@@ -175,7 +179,7 @@ export const DropdownSkin = <T extends DropdownType>({
           {dropdownValue && <option value={dropdownValue} key={1}></option>}
         </select>
 
-        <render.handler {...{ downshiftProps, handlerProps }} />
+        <render.handler {...{ downshiftProps, handlerProps, clearable }} />
       </HandlerContainer>
     )
   }
@@ -288,6 +292,7 @@ export const DropdownSkin = <T extends DropdownType>({
           label={label}
           required={required}
           err={!isUndefined(error) && error.isSome()}
+          display={display}
         />
       )}
       <DropdownContainer

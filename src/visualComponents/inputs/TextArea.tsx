@@ -1,4 +1,4 @@
-import React, { ChangeEvent, Component } from 'react'
+import React, { ChangeEvent, FC, useLayoutEffect, useRef } from 'react'
 import styled, { css, SimpleInterpolation } from 'styled-components'
 
 import {
@@ -12,20 +12,25 @@ import {
   typography,
 } from '@monorail/helpers/exports'
 import { isNil } from '@monorail/sharedHelpers/typeGuards'
+import { DisplayType } from '@monorail/visualComponents/inputs/inputTypes'
 import { Label } from '@monorail/visualComponents/inputs/Label'
 import { ErrorProps, StdErr } from '@monorail/visualComponents/inputs/StdErr'
-
+import { ViewInput } from '@monorail/visualComponents/inputs/ViewInput'
 /*
  * Styles
  */
 
-export const TextAreaContainer = styled.label<TextAreaContainerProps>(
-  ({ cssOverrides }) => css`
+export const TextAreaContainer = styled.label<
+  TextAreaContainerProps & { display?: DisplayType }
+>(
+  ({ cssOverrides, display }) => css`
     ${flexFlow()};
 
     max-width: 256px;
     width: 100%;
     position: relative; /* position: relative; so that the icons can be absolutely positioned. */
+
+    ${display !== DisplayType.Edit && `margin-bottom: 24px;`}
 
     ${cssOverrides}
   `,
@@ -107,6 +112,7 @@ type TextAreaInputProps = {
   name?: string
   htmlValidation?: boolean
   hideStdErr?: boolean
+  display?: DisplayType
 } & ErrorProps
 
 export type TextAreaProps = TextAreaContainerProps & TextAreaInputProps
@@ -115,13 +121,36 @@ export type TextAreaProps = TextAreaContainerProps & TextAreaInputProps
  * Component
  */
 
-export class TextArea extends Component<TextAreaProps> {
-  textArea = React.createRef<HTMLTextAreaElement>()
+export const TextArea: FC<TextAreaProps> = props => {
+  const {
+    chromeless,
+    compact,
+    cssOverrides,
+    disabled,
+    display = DisplayType.Edit,
+    height,
+    label,
+    onChange,
+    placeholder,
+    readOnly,
+    required,
+    htmlValidation = true,
+    value,
+    onBlur,
+    name,
+    className,
+    err,
+    msg,
+    hideStdErr = false,
+    ...otherProps
+  } = props
 
-  setCompactHeight = () => {
-    const { compact } = this.props
-    if (compact) {
-      const current = this.textArea.current
+  const textArea = useRef<HTMLTextAreaElement>(null)
+
+  const setCompactHeight = () => {
+    if (compact && textArea) {
+      const current = textArea.current
+
       if (!isNil(current)) {
         window.requestAnimationFrame(() => {
           current.style.height = 'auto'
@@ -131,68 +160,52 @@ export class TextArea extends Component<TextAreaProps> {
     }
   }
 
-  componentDidUpdate() {
-    this.setCompactHeight()
-  }
+  useLayoutEffect(() => {
+    setCompactHeight()
+  })
 
-  componentDidMount() {
-    this.setCompactHeight()
-  }
-
-  onChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    const { onChange } = this.props
-
-    this.setCompactHeight()
-
+  const onCompactChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    setCompactHeight()
     onChange && onChange(e)
   }
 
-  render() {
-    const {
-      chromeless,
-      compact,
-      cssOverrides,
-      disabled,
-      height,
-      label,
-      onChange,
-      placeholder,
-      readOnly,
-      required,
-      htmlValidation = true,
-      value,
-      onBlur,
-      name,
-      className,
-      err,
-      msg,
-      hideStdErr = false,
-      ...otherProps
-    } = this.props
-
-    return (
-      <TextAreaContainer cssOverrides={cssOverrides} className={className}>
-        <Label label={label} required={required} err={err} />
-        <TextAreaInput
-          chromeless={chromeless}
-          className="new-textarea"
-          compact={compact}
-          disabled={disabled}
-          height={height}
-          ref={this.textArea}
-          onChange={this.onChange}
-          placeholder={placeholder}
-          readOnly={readOnly}
-          required={htmlValidation && required}
-          rows={compact ? 1 : 3}
-          value={value}
-          onBlur={onBlur}
-          name={name}
-          err={err}
-          {...otherProps}
-        />
-        {!hideStdErr && <StdErr err={err} msg={msg} />}
-      </TextAreaContainer>
-    )
-  }
+  return (
+    <TextAreaContainer
+      cssOverrides={cssOverrides}
+      className={className}
+      display={display}
+    >
+      {display === DisplayType.Edit ? (
+        <>
+          <Label
+            label={label}
+            required={required}
+            err={err}
+            display={display}
+          />
+          <TextAreaInput
+            chromeless={chromeless}
+            className="new-textarea"
+            compact={compact}
+            disabled={disabled}
+            height={height}
+            ref={textArea}
+            onChange={onCompactChange}
+            placeholder={placeholder}
+            readOnly={readOnly}
+            required={htmlValidation && required}
+            rows={compact ? 1 : 3}
+            value={value}
+            onBlur={onBlur}
+            name={name}
+            err={err}
+            {...otherProps}
+          />
+          {!hideStdErr && <StdErr err={err} msg={msg} />}
+        </>
+      ) : (
+        <ViewInput label={label} value={value} />
+      )}
+    </TextAreaContainer>
+  )
 }

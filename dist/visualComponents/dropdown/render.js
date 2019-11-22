@@ -21,7 +21,13 @@ var _styledComponents2 = _interopRequireWildcard(require("../../helpers/styled-c
 
 var _typeGuards = require("../../sharedHelpers/typeGuards");
 
+var _inputTypes = require("../inputs/inputTypes");
+
 var _TextField = require("../inputs/TextField");
+
+var _buttonTypes = require("../buttons/buttonTypes");
+
+var _IconButton = require("../buttons/IconButton");
 
 var _DropdownItem = require("./DropdownItem");
 
@@ -121,18 +127,30 @@ var _StyledTextField =
   componentId: "tq4m77-1"
 })(["", ""], p => p._css);
 
+var _StyledIconButton =
+/*#__PURE__*/
+(0, _styledComponents.default)(_IconButton.IconButton).withConfig({
+  displayName: "render___StyledIconButton",
+  componentId: "tq4m77-2"
+})(["margin:auto 0;"]);
+
 const Handler = ({
   customRender = renderHandlerLabelDefault,
   downshiftProps,
-  handlerProps
+  handlerProps,
+  clearable = true
 }) => {
   const inputRef = (0, _react.useRef)(null);
+  const {
+    display = _inputTypes.DisplayType.Edit,
+    ...textFieldProps
+  } = handlerProps;
   const {
     isOpen,
     inputValue
   } = downshiftProps;
   const searching = isOpen && !(0, _typeGuards.isEmptyString)(inputValue);
-  return _react.default.createElement(HandlerWrapper, null, _react.default.createElement(_StyledTextField, _extends({}, handlerProps, {
+  return display === _inputTypes.DisplayType.Edit ? _react.default.createElement(HandlerWrapper, null, _react.default.createElement(_StyledTextField, _extends({}, textFieldProps, {
     htmlValidation: false,
     iconLeft: searching ? 'search' : '',
     iconRight: !searching ? 'arrow_drop_down' : '',
@@ -144,7 +162,15 @@ const Handler = ({
   }, customRender({
     handlerProps,
     downshiftProps
-  })));
+  })), (0, _typeGuards.isNotNil)(downshiftProps.selectedItem) && clearable && _react.default.createElement(_StyledIconButton, {
+    icon: "close",
+    display: _buttonTypes.ButtonDisplay.Chromeless,
+    size: _buttonTypes.ButtonSize.Dense,
+    onClick: () => downshiftProps.clearSelection()
+  })) : customRender({
+    handlerProps,
+    downshiftProps
+  });
 };
 
 const useCustomHandler = (customRender = renderHandlerLabelDefault) => props => _react.default.createElement(Handler, _extends({}, props, {

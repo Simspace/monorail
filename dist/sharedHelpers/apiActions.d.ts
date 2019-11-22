@@ -43,17 +43,17 @@ export declare type ApiActionTypes<A extends string> = {
     };
 };
 export declare const mkApiActionTypes: <A extends string>(pathPrefix: A) => ApiActionTypes<A>;
-export declare type GeneratedApiAction<Type, Payload, Meta> = Payload extends undefined ? (Meta extends undefined ? {
+export declare type GeneratedApiAction<Type, Payload, Meta> = Payload extends undefined ? Meta extends undefined ? {
     type: Type;
 } : {
     type: Type;
     meta: Meta;
-}) : (Meta extends undefined ? {
+} : Meta extends undefined ? {
     type: Type;
     payload: Payload;
 } : {
     type: Type;
     payload: Payload;
     meta: Meta;
-});
+};
 export declare const mkApiAction: <A extends string, Type extends ApiActionType<A>, Payload = undefined, Meta = undefined>(type: Type, payload?: Payload | undefined, meta?: Meta | undefined) => GeneratedApiAction<Type, Payload, Meta>;

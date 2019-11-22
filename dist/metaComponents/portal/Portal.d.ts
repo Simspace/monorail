@@ -1,4 +1,4 @@
-/// <reference path="../../../src/typings/styled-components.d.ts" />
+/// <reference types="@monorail/typings/styled-components" />
 import { Component } from 'react';
 export declare class Portal extends Component<{
     document?: Document;

@@ -17,9 +17,13 @@ Link.propTypes = {
   innerRef: PropTypes.func,
 }
 
-export const BaseLink: ForwardRefExoticComponent<
-  PropsWithoutRef<BaseLinkProps> & RefAttributes<HTMLAnchorElement>
-> = forwardRef<HTMLAnchorElement, BaseLinkProps>(
+export const BaseLink: ForwardRefExoticComponent<PropsWithoutRef<
+  BaseLinkProps
+> &
+  RefAttributes<HTMLAnchorElement>> = forwardRef<
+  HTMLAnchorElement,
+  BaseLinkProps
+>(
   (
     {
       onlyActiveOnIndex,

@@ -22,20 +22,26 @@ import {
 } from '@monorail/helpers/exports'
 import { isEmptyString } from '@monorail/sharedHelpers/typeGuards'
 import { Icon, IconProps } from '@monorail/visualComponents/icon/Icon'
+import { DisplayType } from '@monorail/visualComponents/inputs/inputTypes'
 import { Label } from '@monorail/visualComponents/inputs/Label'
 import { ErrorProps, StdErr } from '@monorail/visualComponents/inputs/StdErr'
+import { ViewInput } from '@monorail/visualComponents/inputs/ViewInput'
 
 /*
  * Styles
  */
 
-const Container = styled.label<ContainerProps>(
-  ({ cssOverrides }) => css`
+const Container = styled.label<
+  ContainerProps & { display?: DisplayType } & { hideStdErr?: boolean }
+>(
+  ({ cssOverrides, display, hideStdErr }) => css`
     ${flexFlow()};
 
     float: none;
     width: 256px;
     position: relative; /* position: relative; so that the icons can be absolutely positioned. */
+
+    ${display !== DisplayType.Edit && !hideStdErr && `margin-bottom: 24px;`}
 
     ${cssOverrides}
   `,
@@ -95,7 +101,6 @@ export const StyledInput = styled.input<TextFieldProps>(
     ${disabled && baseDisabledStyles};
     ${typography(400, FontSizes.Title5)};
     ${borderRadius()};
-    ${typography(400, FontSizes.Title5)};
 
     border-color: ${getColor(Colors.Black, 0.12)};
     border-style: solid;
@@ -226,6 +231,7 @@ type BasicProps = {
   pattern?: string
   name?: string
   hideStdErr?: boolean
+  display?: DisplayType
 }
 
 type StyledIconProps = VisibilityProps & IconProps & ErrorProps
@@ -240,9 +246,13 @@ export type TextFieldProps = ContainerProps &
  * Component
  */
 
-export const TextField: ForwardRefExoticComponent<
-  PropsWithoutRef<TextFieldProps> & RefAttributes<HTMLInputElement>
-> = forwardRef<HTMLInputElement, TextFieldProps>(props => {
+export const TextField: ForwardRefExoticComponent<PropsWithoutRef<
+  TextFieldProps
+> &
+  RefAttributes<HTMLInputElement>> = forwardRef<
+  HTMLInputElement,
+  TextFieldProps
+>(props => {
   const [hide, setHide] = useState(true)
 
   const {
@@ -259,6 +269,7 @@ export const TextField: ForwardRefExoticComponent<
     placeholder = '',
     value,
     disabled = false,
+    display = DisplayType.Edit,
     readOnly = false,
     required = false,
     htmlType = canToggleVisibility && hide ? 'password' : 'text',
@@ -273,48 +284,66 @@ export const TextField: ForwardRefExoticComponent<
   } = props
 
   return (
-    <Container className={className} cssOverrides={cssOverrides}>
-      <Label label={label} required={required} err={err} />
-      <IconsAndInputContainer>
-        {!isEmptyString(iconLeft) && (
-          <StyledLeftIcon icon={iconLeft} err={err} />
-        )}
-        <StyledInput
-          data-lpignore="true" // 🖕 u LastPass: https://goo.gl/Ez3eS1
-          canToggleVisibility={canToggleVisibility}
-          chromeless={chromeless}
-          className="new-input"
-          iconLeft={iconLeft}
-          iconRight={iconRight}
-          onChange={onChange}
-          onBlur={onBlur}
-          placeholder={placeholder}
-          type={htmlType}
-          value={value}
-          disabled={disabled}
-          readOnly={readOnly}
-          required={htmlValidation && required}
-          min={min}
-          max={max}
-          maxLength={maxLength}
-          err={err}
-          {...otherProps}
-        />
-        {!isEmptyString(iconRight) && (
-          <StyledRightIcon
-            icon={iconRight}
-            canToggleVisibility={canToggleVisibility}
+    <Container
+      className={className}
+      cssOverrides={cssOverrides}
+      display={display}
+      hideStdErr={hideStdErr}
+    >
+      {display === DisplayType.Edit ? (
+        <>
+          <Label
+            label={label}
+            required={required}
             err={err}
+            display={display}
           />
-        )}
-        {canToggleVisibility && (
-          <StyledVisibilityIcon
-            icon={hide ? 'visibility' : 'visibility_off'}
-            onClick={() => setHide(!hide)}
-          />
-        )}
-      </IconsAndInputContainer>
-      {!hideStdErr && <StdErr err={err} msg={msg} />}
+          <IconsAndInputContainer>
+            {!isEmptyString(iconLeft) && (
+              <StyledLeftIcon icon={iconLeft} err={err} />
+            )}
+            <StyledInput
+              data-lpignore="true" // 🖕 u LastPass: https://goo.gl/Ez3eS1
+              canToggleVisibility={canToggleVisibility}
+              chromeless={chromeless}
+              className="new-input"
+              iconLeft={iconLeft}
+              iconRight={iconRight}
+              onChange={onChange}
+              onBlur={onBlur}
+              placeholder={placeholder}
+              type={htmlType}
+              value={value}
+              disabled={disabled}
+              readOnly={readOnly}
+              required={htmlValidation && required}
+              min={min}
+              max={max}
+              maxLength={maxLength}
+              err={err}
+              {...otherProps}
+            />
+            {!isEmptyString(iconRight) && (
+              <StyledRightIcon
+                icon={iconRight}
+                canToggleVisibility={canToggleVisibility}
+                err={err}
+              />
+            )}
+            {canToggleVisibility && (
+              <StyledVisibilityIcon
+                icon={hide ? 'visibility' : 'visibility_off'}
+                onClick={() => setHide(!hide)}
+              />
+            )}
+          </IconsAndInputContainer>
+          {!hideStdErr && <StdErr err={err} msg={msg} />}
+        </>
+      ) : htmlType !== 'password' ? (
+        <ViewInput label={label} value={value} />
+      ) : (
+        <></>
+      )}
     </Container>
   )
 })

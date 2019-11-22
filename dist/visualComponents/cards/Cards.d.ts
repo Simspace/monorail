@@ -27,7 +27,7 @@ declare type BBCardGridProps = {
     cardWidth?: number;
     cssOverrides?: SimpleInterpolation;
 };
-export declare const BBCardGrid: import("styled-components").StyledComponent<React.FunctionComponent<{
+export declare const BBCardGrid: import("styled-components").StyledComponent<React.FC<{
     containerCssOverrides?: import("../../types").CssOverridesType;
 }>, any, BBCardGridProps, never>;
 export {};

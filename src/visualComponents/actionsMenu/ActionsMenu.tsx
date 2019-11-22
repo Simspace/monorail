@@ -60,27 +60,24 @@ export const ActionsMenu: FCwDP<ActionsMenuProps, DefaultProps> = ({
           document={document}
           popOver={({ onClick, ...otherProps }) => (
             <Menu onClick={onClick} {...otherProps}>
-              {actions.reduce(
-                (filtered, action, idx) => {
-                  if (!action.isFeaturedAction) {
-                    return filtered.concat(
-                      <SimpleListItem
-                        key={idx + action.label}
-                        size={Sizes.DP32}
-                        leftIcon={action.iconName}
-                        primaryText={action.label}
-                        onClick={e => action.onClick(() => onClick(e))}
-                        disabled={action.disabled}
-                      >
-                        {action.children}
-                      </SimpleListItem>,
-                    )
-                  }
+              {actions.reduce((filtered, action, idx) => {
+                if (!action.isFeaturedAction) {
+                  return filtered.concat(
+                    <SimpleListItem
+                      key={idx + action.label}
+                      size={Sizes.DP32}
+                      leftIcon={action.iconName}
+                      primaryText={action.label}
+                      onClick={e => action.onClick(() => onClick(e))}
+                      disabled={action.disabled}
+                    >
+                      {action.children}
+                    </SimpleListItem>,
+                  )
+                }
 
-                  return filtered
-                },
-                [] as Array<ReactNode>,
-              )}
+                return filtered
+              }, [] as Array<ReactNode>)}
             </Menu>
           )}
           toggle={props => toggle({ ...props, ...domProps })}

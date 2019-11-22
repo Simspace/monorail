@@ -1,5 +1,6 @@
-import React, { ChangeEvent, SFC } from 'react'
-import styled, { css } from 'styled-components'
+import { findFirst } from 'fp-ts/lib/Array'
+import React, { ChangeEvent, FC } from 'react'
+import styled, { css, SimpleInterpolation } from 'styled-components'
 
 import {
   baseErrorBorderStyles,
@@ -12,12 +13,22 @@ import {
 } from '@monorail/helpers/exports'
 import { isEmptyString } from '@monorail/sharedHelpers/typeGuards'
 import { Choice } from '@monorail/visualComponents/inputs/Choice'
+import { DisplayType } from '@monorail/visualComponents/inputs/inputTypes'
 import { Label } from '@monorail/visualComponents/inputs/Label'
 import { ErrorProps, StdErr } from '@monorail/visualComponents/inputs/StdErr'
+import { ViewInput } from '@monorail/visualComponents/inputs/ViewInput'
 
-const Container = styled.div`
-  ${flexFlow('column')};
-`
+const Container = styled.div<
+  ContainerProps & { display?: string } & { hideStdErr?: boolean }
+>(
+  ({ display, hideStdErr, cssOverrides }) => css`
+    ${flexFlow('column')};
+
+    ${display !== DisplayType.Edit && !hideStdErr && `margin-bottom: 24px;`}
+
+    ${cssOverrides};
+  `,
+)
 
 const RadioGroupWrapper = styled.fieldset<{ err?: boolean }>(
   ({ err }) => css`
@@ -76,6 +87,11 @@ const InfoText = styled.p`
   margin-left: 32px;
 `
 
+type ContainerProps = {
+  cssOverrides?: SimpleInterpolation
+  className?: string
+}
+
 export type ChoiceOption = {
   label: string
   key: string
@@ -84,14 +100,17 @@ export type ChoiceOption = {
   'data-test-id'?: string
 }
 
-export type RadioGroupProps = ErrorProps & {
-  label: string
-  options: Array<ChoiceOption>
-  onSelect: (key: string, val: ChangeEvent<HTMLInputElement>) => void
-  value: string
-  required?: boolean
-  htmlValidation?: boolean
-}
+export type RadioGroupProps = ErrorProps &
+  ContainerProps & {
+    label?: string
+    options: Array<ChoiceOption>
+    onSelect?: (key: string, val: ChangeEvent<HTMLInputElement>) => void
+    value: string
+    required?: boolean
+    htmlValidation?: boolean
+    display?: DisplayType
+    hideStdErr?: boolean
+  }
 
 const defaultOptions = {
   label: '',
@@ -102,54 +121,66 @@ const defaultOptions = {
   htmlValidation: true,
 }
 
-export const RadioGroup: SFC<RadioGroupProps> = ({
-  label,
-  options,
-  onSelect,
-  value,
-  required,
-  htmlValidation,
-  err,
-  msg,
-  ...otherProps
-}) => {
+export const RadioGroup: FC<RadioGroupProps> = props => {
+  const {
+    label = '',
+    options,
+    onSelect,
+    value = '',
+    required = false,
+    htmlValidation = true,
+    err = false,
+    msg = '',
+    className = '',
+    hideStdErr = false,
+    display = DisplayType.Edit,
+    ...otherProps
+  } = props
+
   return (
-    <Container>
-      <Label
-        label={label}
-        required={required}
-        err={err}
-        css={err ? errorStyles : `${flexFlow('row')}`}
-      />
-      {err && <BorderJoiner />}
-      <RadioGroupWrapper {...otherProps} err={err}>
-        {options.map((o: ChoiceOption = defaultOptions, k) => (
-          <div key={k + o.label}>
-            <Choice
-              type="radio"
-              name={label}
-              data-test-id={o['data-test-id']}
-              checked={o.key === value}
-              value={o.key}
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                onSelect(o.key, e)
-              }}
-              required={htmlValidation && required}
-              readOnly={false}
-              disabled={o.disabled}
-            >
-              {o.label}
-            </Choice>
-            <InfoText>{o.key === value && !isEmptyString(o.info)}</InfoText>
-          </div>
-        ))}
-      </RadioGroupWrapper>
-      <StdErr err={err} msg={msg} />
+    <Container className={className} display={display} hideStdErr={hideStdErr}>
+      {display === DisplayType.Edit ? (
+        <>
+          <Label
+            label={label}
+            required={required}
+            err={err}
+            display={display}
+            css={err ? errorStyles : `${flexFlow('row')}`}
+          />
+          {err && <BorderJoiner />}
+          <RadioGroupWrapper {...otherProps} err={err}>
+            {options.map((o: ChoiceOption = defaultOptions, k) => (
+              <div key={k + o.label}>
+                <Choice
+                  type="radio"
+                  name={label}
+                  data-test-id={o['data-test-id']}
+                  checked={o.key === value}
+                  value={o.key}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                    onSelect && onSelect(o.key, e)
+                  }}
+                  required={htmlValidation && required}
+                  readOnly={false}
+                  disabled={o.disabled}
+                >
+                  {o.label}
+                </Choice>
+                <InfoText>{o.key === value && !isEmptyString(o.info)}</InfoText>
+              </div>
+            ))}
+          </RadioGroupWrapper>
+          {!hideStdErr && <StdErr err={err} msg={msg} />}
+        </>
+      ) : (
+        <ViewInput
+          label={label}
+          value={findFirst((o: ChoiceOption) => o.key === value)(options)
+            .map(o => o.label)
+            .toUndefined()}
+        />
+      )}
     </Container>
   )
-}
-
-RadioGroup.defaultProps = {
-  label: '',
-  required: false,
 }

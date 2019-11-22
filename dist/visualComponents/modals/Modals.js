@@ -4,7 +4,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.useModalAnimation = useModalAnimation;
-exports.BBModalContent = exports.BBModalContainer = exports.BBModalOverlay = exports.BBModalFooter = exports.BBModalHeader = exports.DefaultCloseButton = exports.BBModalHeaderContainer = exports.BBModalBackground = exports.overlayCloseAnimation = exports.overlayOpenAnimation = exports.fullScreenModalCloseAnimation = exports.fullScreenModalOpenAnimation = exports.largeModalCloseAnimation = exports.largeModalOpenAnimation = exports.mediumModalCloseAnimation = exports.mediumModalOpenAnimation = exports.modalAnimationDuration = void 0;
+exports.BBModalContent = exports.BBModalContainer = exports.BBModalOverlay = exports.BBModalOverlayContainer = exports.BBModalFooter = exports.BBModalHeader = exports.DefaultCloseButton = exports.BBModalHeaderContainer = exports.BBModalBackground = exports.overlayCloseAnimation = exports.overlayOpenAnimation = exports.fullScreenModalCloseAnimation = exports.fullScreenModalOpenAnimation = exports.largeModalCloseAnimation = exports.largeModalOpenAnimation = exports.mediumModalCloseAnimation = exports.mediumModalOpenAnimation = exports.modalAnimationDuration = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
@@ -15,6 +15,8 @@ var _hooks = require("../../helpers/hooks");
 var _styledComponents = _interopRequireWildcard(require("../../helpers/styled-components"));
 
 var _theme = require("../../helpers/theme");
+
+var _StyleHelpers = require("../../StyleHelpers");
 
 var _AppIcon = require("../appIcon/AppIcon");
 
@@ -180,8 +182,17 @@ const modalWidth = {
   [_modalTypes.ModalSize.Large]: 'calc(100vw - 32px)',
   [_modalTypes.ModalSize.FullScreen]: '100vw'
 };
+/* className set for customizing the modal through global styling */
 
-const BBModalBackground = _styledComponents.default.div(({
+const BBModalBackground = (0, _styledComponents.default)((0, _react.forwardRef)(({
+  size,
+  cssOverrides,
+  className,
+  ...otherProps
+}, ref) => _react.default.createElement(_StyleHelpers.Div, _extends({
+  className: `modal-${size} ${className}`,
+  ref: ref
+}, otherProps))))(({
   size,
   cssOverrides
 }) => _styledComponents.css`
@@ -217,7 +228,6 @@ const BBModalBackground = _styledComponents.default.div(({
 /*
  * Styles
  */
-
 
 exports.BBModalBackground = BBModalBackground;
 
@@ -397,6 +407,8 @@ const BBModalOverlayContainer = _styledComponents.default.div(({
  * Types
  */
 
+
+exports.BBModalOverlayContainer = BBModalOverlayContainer;
 
 /*
  * Component

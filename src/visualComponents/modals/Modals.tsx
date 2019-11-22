@@ -1,6 +1,9 @@
 import React, {
+  forwardRef,
   MouseEvent,
+  PropsWithChildren,
   ReactNode,
+  Ref,
   StatelessComponent,
   useCallback,
   useEffect,
@@ -30,6 +33,7 @@ import styled, {
   ThemeProvider,
 } from '@monorail/helpers/styled-components'
 import { Mode } from '@monorail/helpers/theme'
+import { Div } from '@monorail/StyleHelpers'
 import { CommonComponentType } from '@monorail/types'
 import { AppIcon } from '@monorail/visualComponents/appIcon/AppIcon'
 import {
@@ -198,7 +202,8 @@ type BBModalSize = {
   size: ModalSize
 }
 
-export type BBModalBackgroundProps = BBModalSize & CommonComponentType
+export type BBModalBackgroundProps = BBModalSize &
+  PropsWithChildren<CommonComponentType>
 
 /*
  * Component
@@ -212,7 +217,14 @@ const modalWidth = {
   [ModalSize.FullScreen]: '100vw',
 }
 
-export const BBModalBackground = styled.div<BBModalBackgroundProps>(
+/* className set for customizing the modal through global styling */
+export const BBModalBackground = styled(
+  forwardRef<HTMLDivElement, BBModalBackgroundProps>(
+    ({ size, cssOverrides, className, ...otherProps }, ref) => (
+      <Div className={`modal-${size} ${className}`} ref={ref} {...otherProps} />
+    ),
+  ),
+)<BBModalBackgroundProps>(
   ({ size, cssOverrides }) => css`
     ${size === ModalSize.Mini
       ? css`
@@ -433,7 +445,7 @@ export const BBModalFooter = styled.div`
  * Styles
  */
 
-const BBModalOverlayContainer = styled.div<BBModalOverlayProps>(
+export const BBModalOverlayContainer = styled.div<BBModalOverlayProps>(
   ({ isOpen, chromeless, cssOverrides }) => css`
     ${!chromeless &&
       css`

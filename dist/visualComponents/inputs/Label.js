@@ -13,6 +13,8 @@ var _typography = require("../../helpers/typography");
 
 var _typeGuards = require("../../sharedHelpers/typeGuards");
 
+var _inputTypes = require("./inputTypes");
+
 var _Text = require("../typography/Text");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -23,6 +25,7 @@ const Label = ({
   label,
   required,
   err,
+  display = _inputTypes.DisplayType.View,
   ...domProps
 }) => {
   return !(0, _typeGuards.isNil)(label) && !(0, _typeGuards.isEmptyString)(label) ? _react.default.createElement(_Text.Text, _extends({}, domProps, {
@@ -30,7 +33,7 @@ const Label = ({
     fontSize: _typography.FontSizes.Title5,
     color: err ? _exports.Colors.Red : _exports.Colors.Black89,
     margin: "0 0 8px"
-  }), label, required && '*') : _react.default.createElement(_react.default.Fragment, null);
+  }), label, required && display === _inputTypes.DisplayType.Edit && '*') : _react.default.createElement(_react.default.Fragment, null);
 };
 
 exports.Label = Label;

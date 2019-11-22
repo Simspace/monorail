@@ -77,6 +77,7 @@ export const Dropdown = <D extends DropdownType>({
   label,
   placeholder = 'Select',
   disabled = false,
+  clearable = true,
   items: collection,
   value,
   onChange,
@@ -86,6 +87,7 @@ export const Dropdown = <D extends DropdownType>({
   interaction = useKeyboardInteractionDefault,
   error,
   required,
+  display,
   ...domProps
 }: DropdownProps<D>): ReactElement<DropdownProps<D>> => {
   /** Controllers **/
@@ -104,11 +106,13 @@ export const Dropdown = <D extends DropdownType>({
     parser: parserController,
     interaction: interactionController,
     disabled,
+    clearable,
     placeholder,
     document,
     error,
     required,
     label,
+    display,
   })
 
   const onChangeHandler: DropdownChangeHandler<D> = (item, downshiftProps) => {

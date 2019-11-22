@@ -1,5 +1,6 @@
 import { ControllerStateAndHelpers } from 'downshift';
 import React, { ReactElement, ReactNode } from 'react';
+import { DisplayType } from '@monorail/visualComponents/inputs/inputTypes';
 import { DownshiftGetInputProps, DropdownType } from './helpers';
 export declare interface RenderItemProps<T> {
     children?: ReactNode;
@@ -13,6 +14,8 @@ export declare interface RenderHandlerProps<T> {
     customRender?: CustomRenderHandlerHook<T>;
     downshiftProps: ControllerStateAndHelpers<T>;
     handlerProps: DownshiftGetInputProps;
+    display?: DisplayType;
+    clearable?: boolean;
 }
 export declare interface RenderListProps<T> {
     children: ReactNode;

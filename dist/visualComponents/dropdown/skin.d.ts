@@ -1,6 +1,7 @@
 import { Option } from 'fp-ts/lib/Option';
 import React, { ReactElement } from 'react';
 import { CommonComponentType } from '@monorail/types';
+import { DisplayType } from '@monorail/visualComponents/inputs/inputTypes';
 import { DropdownStateType, DropdownType } from './helpers';
 import { InteractionController } from './interaction';
 import { DropdownParser } from './parsers';
@@ -8,10 +9,12 @@ import { DropdownRender } from './render';
 export declare type DropdownSkinCommonType = {
     placeholder?: string;
     disabled?: boolean;
+    clearable?: boolean;
     document?: Document;
     error?: Option<string>;
     required?: boolean;
     label?: string;
+    display?: DisplayType;
 };
 export declare type DropdownSkinHookProps<T> = {
     parser: DropdownParser<T>;

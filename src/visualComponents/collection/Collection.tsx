@@ -313,9 +313,9 @@ const theadOverrides = css`
   }
 `
 
-const CollectionTheadComponent: FC<
-  TheadComponentProps & { collectionView: CollectionView }
-> = ({ style, collectionView, ...otherProps }) => {
+const CollectionTheadComponent: FC<TheadComponentProps & {
+  collectionView: CollectionView
+}> = ({ style, collectionView, ...otherProps }) => {
   switch (collectionView) {
     case CollectionView.Card:
       return <TheadComponent {...otherProps} />
@@ -366,9 +366,9 @@ const thComponentOverrides = css`
   }
 `
 
-const CollectionThComponent: FC<
-  ThComponentProps & { collectionView: CollectionView }
-> = ({ style, collectionView, ...otherProps }) => {
+const CollectionThComponent: FC<ThComponentProps & {
+  collectionView: CollectionView
+}> = ({ style, collectionView, ...otherProps }) => {
   switch (collectionView) {
     case CollectionView.Card:
       return <ThComponent css={thComponentOverrides} {...otherProps} />

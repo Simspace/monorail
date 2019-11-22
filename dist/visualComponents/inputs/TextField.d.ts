@@ -1,5 +1,6 @@
 import React, { ChangeEvent, ForwardRefExoticComponent, MouseEvent, PropsWithoutRef, RefAttributes } from 'react';
 import { SimpleInterpolation } from 'styled-components';
+import { DisplayType } from '@monorail/visualComponents/inputs/inputTypes';
 import { ErrorProps } from '@monorail/visualComponents/inputs/StdErr';
 export declare const IconsAndInputContainer: import("styled-components").StyledComponent<"div", any, {}, never>;
 export declare const StyledInput: import("styled-components").StyledComponent<"input", any, TextFieldProps, never>;
@@ -36,6 +37,7 @@ declare type BasicProps = {
     pattern?: string;
     name?: string;
     hideStdErr?: boolean;
+    display?: DisplayType;
 };
 export declare type TextFieldProps = ContainerProps & VisibilityProps & BasicProps & ExtraProps & ErrorProps;
 export declare const TextField: ForwardRefExoticComponent<PropsWithoutRef<TextFieldProps> & RefAttributes<HTMLInputElement>>;
