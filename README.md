@@ -21,15 +21,20 @@ Check the accepted version range in `package.json` for compatibility.
 Import the components you want and use them
 
 ```jsx
+import { monorailTheme } from "@simspace/monorail/dist/helpers/theme";
+import { ThemeProvider } from "@simspace/monorail/dist/helpers/styled-components";
 import { Button } from '@simspace/monorail/dist/visualComponents/buttons/Button'
 
 ...
 
+<ThemeProvider theme={monorailTheme}>
+...
 render() {
   return (
     <Button>Monorail</Button>
   )
 }
+</ThemeProvider>
 ```
 
 Check out our documentation site, [design.simspace.com](https://design.simspace.com) to see all the components that are available, and how to use them.
