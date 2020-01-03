@@ -26,11 +26,12 @@ const StdErrContainer = _styledComponents.default.div`
 const StdErr = ({
   err,
   msg,
+  fontSize,
   ...domProps
 }) => {
   return _react.default.createElement(StdErrContainer, null, _react.default.createElement(_Text.Text, _extends({}, domProps, {
     fontWeight: 500,
-    fontSize: _exports.FontSizes.Micro,
+    fontSize: fontSize ? fontSize : _exports.FontSizes.Micro,
     color: _exports.Colors.Red,
     margin: "8px 0"
   }), err && msg));

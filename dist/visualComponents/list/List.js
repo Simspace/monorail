@@ -75,7 +75,7 @@ const ListItemText = _styledComponents2.default.div(({
   cssOverrides
 }) => _styledComponents2.css`
     /* This is row wrap instead of column nowrap because IE11 doesn't give the item height when it is a column. */
-    ${(0, _exports.flexFlow)('row', 'wrap')};
+    ${(0, _exports.flexFlow)('row', 'wrap')}
 
     overflow: hidden;
     width: 100%;
@@ -197,43 +197,36 @@ ListItem.defaultProps = {
   activeClassName: 'is-active'
 };
 
-const SimpleListItem = ({
-  leftIcon,
-  rightIcon,
-  primaryText,
-  secondaryText,
-  children,
-  dense,
-  meta,
-  size,
-  onClick,
-  isLink,
-  passedAs,
-  ...domProps
-}) => _react.default.createElement(ListItem, _extends({
-  dense: dense,
-  size: size,
-  onClick: onClick,
-  isLink: isLink,
-  as: passedAs
-}, domProps), !(0, _typeGuards.isEmptyString)(leftIcon) && _react.default.createElement(ListItemGraphic, {
-  icon: leftIcon,
-  dense: dense
-}), (0, _typeGuards.isEmptyString)(secondaryText) || (0, _typeGuards.isNil)(meta) ? _react.default.createElement(ListItemPrimaryText, null, primaryText) : _react.default.createElement(ListItemText, null, _react.default.createElement(ListItemPrimaryText, null, primaryText), (0, _typeGuards.isEmptyString)(secondaryText) ? null : _react.default.createElement(ListItemSecondaryText, null, secondaryText), meta), !(0, _typeGuards.isEmptyString)(rightIcon) && _react.default.createElement(ListItemGraphic, {
-  icon: rightIcon,
-  dense: dense
-}), children); // tslint:enable
-
+const SimpleListItem = props => {
+  const {
+    leftIcon = '',
+    rightIcon = '',
+    primaryText = '',
+    secondaryText = '',
+    children,
+    disabled = false,
+    dense = false,
+    meta = '',
+    size = _exports.Sizes.DP24,
+    onClick,
+    isLink = false,
+    passedAs,
+    ...domProps
+  } = props;
+  return _react.default.createElement(ListItem, _extends({
+    dense: dense,
+    size: size,
+    onClick: onClick,
+    isLink: isLink,
+    as: passedAs,
+    disabled: disabled
+  }, domProps), !(0, _typeGuards.isEmptyString)(leftIcon) && _react.default.createElement(ListItemGraphic, {
+    icon: leftIcon,
+    dense: dense
+  }), (0, _typeGuards.isEmptyString)(secondaryText) || (0, _typeGuards.isNil)(meta) ? _react.default.createElement(ListItemPrimaryText, null, primaryText) : _react.default.createElement(ListItemText, null, _react.default.createElement(ListItemPrimaryText, null, primaryText), (0, _typeGuards.isEmptyString)(secondaryText) ? null : _react.default.createElement(ListItemSecondaryText, null, secondaryText), meta), !(0, _typeGuards.isEmptyString)(rightIcon) && _react.default.createElement(ListItemGraphic, {
+    icon: rightIcon,
+    dense: dense
+  }), children);
+};
 
 exports.SimpleListItem = SimpleListItem;
-SimpleListItem.defaultProps = {
-  dense: false,
-  disabled: false,
-  leftIcon: '',
-  primaryText: '',
-  rightIcon: '',
-  secondaryText: '',
-  size: _exports.Sizes.DP24,
-  meta: '',
-  isLink: false
-};

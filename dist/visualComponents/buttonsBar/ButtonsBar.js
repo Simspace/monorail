@@ -124,13 +124,15 @@ const ToolbarsContainer = _styledComponents.default.div`
 
 exports.ToolbarsContainer = ToolbarsContainer;
 
-const ButtonsBar = ({
-  children,
-  size,
-  mode,
-  display,
-  ...domProps
-}) => {
+const ButtonsBar = props => {
+  const {
+    children,
+    size = _buttonTypes.ButtonSize.Large,
+    mode = _buttonTypes.ButtonsBarMode.Default,
+    display = _buttonTypes.ButtonDisplay.ButtonBar,
+    ...domProps
+  } = props;
+
   const renderBar = () => _react.default.Children.map(children, (child, index) => {
     if (_react.default.isValidElement(child)) {
       const buttonDisplay = mode === _buttonTypes.ButtonsBarMode.Toolbar ? _buttonTypes.ButtonDisplay.Toolbar : display;
@@ -155,8 +157,3 @@ const ButtonsBar = ({
 };
 
 exports.ButtonsBar = ButtonsBar;
-ButtonsBar.defaultProps = {
-  display: _buttonTypes.ButtonDisplay.ButtonBar,
-  size: _buttonTypes.ButtonSize.Large,
-  mode: _buttonTypes.ButtonsBarMode.Default
-};

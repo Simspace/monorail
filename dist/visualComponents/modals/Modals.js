@@ -142,9 +142,9 @@ exports.fullScreenModalCloseAnimation = fullScreenModalCloseAnimation;
 const overlayOpenAnimation = _styledComponents.keyframes`
   from {
     opacity: 0;
-  
+
   }
-  
+
   to {
     opacity: 0.9999;
   }
@@ -153,9 +153,9 @@ exports.overlayOpenAnimation = overlayOpenAnimation;
 const overlayCloseAnimation = _styledComponents.keyframes`
   from {
     opacity: 0.9999;
-  
+
   }
-  
+
   to {
     opacity: 0;
   }
@@ -345,7 +345,7 @@ const BBModalHeader = ({
   "data-test-id": "modal-header-title"
 }, title), headerRowChildren, iconRight && _react.default.createElement(StyledIconRight, {
   icon: iconRight
-}), size !== _modalTypes.ModalSize.Mini && onClose && customCloseButton ? customCloseButton : _react.default.createElement(DefaultCloseButton, {
+}), size !== _modalTypes.ModalSize.Mini && onClose && customCloseButton !== undefined ? customCloseButton : _react.default.createElement(DefaultCloseButton, {
   headerRowChildren: headerRowChildren,
   onClose: onClose
 })), children));

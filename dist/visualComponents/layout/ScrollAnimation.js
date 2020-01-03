@@ -60,12 +60,11 @@ const Shadow = _styledComponents.default.div`
   z-index: 5;
 `;
 const SCROLL_AMOUNT = 128;
-
-const ScrollAnimation = ({
+const ScrollAnimation = (0, _react.forwardRef)(({
   children,
   containerCssOverrides,
   ...domProps
-}) => {
+}, ref) => {
   const shadow = (0, _react.useRef)(null);
   const [scrollContainer, scrollContainerRef] = (0, _hooks.useRefCallback)();
 
@@ -99,14 +98,14 @@ const ScrollAnimation = ({
     element: scrollContainer
   });
   return _react.default.createElement(ScrollAnimationContainer, {
-    containerCssOverrides: containerCssOverrides
+    containerCssOverrides: containerCssOverrides,
+    ref: ref
   }, _react.default.createElement(Shadow, {
     ref: shadow
   }), _react.default.createElement(ScrollContainer, _extends({
     ref: scrollContainerRef
   }, domProps), children));
-};
-
+});
 exports.ScrollAnimation = ScrollAnimation;
 
 const calculateOpacity = ({

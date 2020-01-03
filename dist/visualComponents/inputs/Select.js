@@ -46,21 +46,22 @@ _styledComponents.default.select.withConfig({
   componentId: "sc-13rwoh4-2"
 })(["width:calc(100% - 8px);height:22px;background:transparent;border:none;outline:none;cursor:pointer;&:disabled{opacity:0.6;}"]);
 
-const Select = ({
-  cssOverrides,
-  disabled,
-  label,
-  name,
-  onBlur,
-  onChange,
-  onSelect,
-  options,
-  placeholder,
-  required,
-  value,
-  err,
-  ...domProps
-}) => {
+const Select = props => {
+  const {
+    cssOverrides,
+    disabled,
+    label,
+    name,
+    onBlur,
+    onChange,
+    onSelect,
+    options,
+    placeholder,
+    required,
+    value,
+    err,
+    ...domProps
+  } = props;
   return _react.default.createElement(SelectGroupWrapper, _extends({
     cssOverrides: cssOverrides
   }, domProps), _react.default.createElement(_Label.Label, {

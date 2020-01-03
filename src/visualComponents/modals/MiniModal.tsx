@@ -1,4 +1,4 @@
-import React, { FunctionComponent, ReactNode, useMemo } from 'react'
+import React, { FC, ReactNode, useMemo } from 'react'
 import { css, SimpleInterpolation } from 'styled-components'
 
 import { generateScaleAnimation, sizes } from '@monorail/helpers/exports'
@@ -19,18 +19,20 @@ type Props = PopOverChildProps & {
   modalBackgroundCss?: SimpleInterpolation
 }
 
-export const MiniModal: FunctionComponent<Props> = ({
-  children,
-  closingAnimationCompleted,
-  headerChildren,
-  iconLeft,
-  isOpen,
-  modalBackgroundCss,
-  onClick,
-  position,
-  title,
-  togglePopOver,
-}) => {
+export const MiniModal: FC<Props> = props => {
+  const {
+    children,
+    closingAnimationCompleted,
+    headerChildren,
+    iconLeft,
+    isOpen,
+    modalBackgroundCss,
+    onClick,
+    position,
+    title,
+    togglePopOver,
+  } = props
+
   const scaleAnimation = useMemo(() => {
     const { height: elementHeight, width: elementWidth } = sizes.modals.mini
 

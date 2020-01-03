@@ -1,4 +1,4 @@
-import React, { SFC } from 'react'
+import React, { FC } from 'react'
 import styled, { css, SimpleInterpolation } from 'styled-components'
 
 import { baseErrorBorderStyles, flexFlow } from '@monorail/helpers/exports'
@@ -68,21 +68,23 @@ export type SelectProps = {
   err?: boolean
 }
 
-export const Select: SFC<SelectProps> = ({
-  cssOverrides,
-  disabled,
-  label,
-  name,
-  onBlur,
-  onChange,
-  onSelect,
-  options,
-  placeholder,
-  required,
-  value,
-  err,
-  ...domProps
-}) => {
+export const Select: FC<SelectProps> = props => {
+  const {
+    cssOverrides,
+    disabled,
+    label,
+    name,
+    onBlur,
+    onChange,
+    onSelect,
+    options,
+    placeholder,
+    required,
+    value,
+    err,
+    ...domProps
+  } = props
+
   return (
     <SelectGroupWrapper cssOverrides={cssOverrides} {...domProps}>
       <Label label={label} required={required} />

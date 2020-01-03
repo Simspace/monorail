@@ -1,7 +1,7 @@
 import React, { Component, ReactNode, SyntheticEvent } from 'react'
 import { Omit } from 'typelevel-ts'
 
-import { Portal } from '@monorail/metaComponents/portal/Portal'
+import { PortalController } from '@monorail/metaComponents/portal/PortalController'
 
 export enum dropDirections {
   Bottom = 'bottom',
@@ -104,7 +104,6 @@ export type PopOverChildProps = {
 
 export type PopOverProps = {
   alwaysRender?: boolean
-  document?: Document
   gap?: number
   isOpen?: boolean
   onToggle?: (isOpen: boolean) => void
@@ -354,24 +353,22 @@ export class PopOver extends Component<PopOverProps, PopOverState> {
   }
 
   render() {
-    const { popOver, toggle, document, alwaysRender } = this.props
+    const { popOver, toggle, alwaysRender = false } = this.props
     const { isRendered, isOpen, position } = this.state
 
     return (
       <>
         {toggle({ onClick: this.onClick, isActive: isOpen })}
-        {(isRendered || alwaysRender) && (
-          <Portal document={document}>
-            {popOver({
-              isOpen,
-              position,
+        <PortalController isRendered={isRendered || alwaysRender}>
+          {popOver({
+            isOpen,
+            position,
 
-              onClick: this.togglePopOver,
-              togglePopOver: this.togglePopOver,
-              closingAnimationCompleted: this.closingAnimationCompleted,
-            })}
-          </Portal>
-        )}
+            onClick: this.togglePopOver,
+            togglePopOver: this.togglePopOver,
+            closingAnimationCompleted: this.closingAnimationCompleted,
+          })}
+        </PortalController>
       </>
     )
   }

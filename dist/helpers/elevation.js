@@ -40,6 +40,7 @@ exports.ElevationRange = ElevationRange;
   ElevationRange["Elevation22"] = "elevation22";
   ElevationRange["Elevation23"] = "elevation23";
   ElevationRange["Elevation24"] = "elevation24";
+  ElevationRange["Section"] = "section";
 })(ElevationRange || (exports.ElevationRange = ElevationRange = {}));
 
 const elevationShadow = {
@@ -67,7 +68,8 @@ const elevationShadow = {
   [ElevationRange.Elevation21]: '0 10px 13px -6px rgba(0,0,0,.2),0 21px 33px 3px rgba(0,0,0,.14),0 8px 40px 7px rgba(0,0,0,.12)',
   [ElevationRange.Elevation22]: '0 10px 14px -6px rgba(0,0,0,.2),0 22px 35px 3px rgba(0,0,0,.14),0 8px 42px 7px rgba(0,0,0,.12)',
   [ElevationRange.Elevation23]: '0 11px 14px -7px rgba(0,0,0,.2),0 23px 36px 3px rgba(0,0,0,.14),0 9px 44px 8px rgba(0,0,0,.12)',
-  [ElevationRange.Elevation24]: '0 11px 15px -7px rgba(0,0,0,.2),0 24px 38px 3px rgba(0,0,0,.14),0 9px 46px 8px rgba(0,0,0,.12)'
+  [ElevationRange.Elevation24]: '0 11px 15px -7px rgba(0,0,0,.2),0 24px 38px 3px rgba(0,0,0,.14),0 9px 46px 8px rgba(0,0,0,.12)',
+  [ElevationRange.Section]: '0px 6px 12px rgba(0, 0, 0, 0.08), 0px 4px 8px rgba(0, 0, 0, 0.08)'
 };
 const elevationColor = {
   [_theme.Mode.Light]: {
@@ -94,6 +96,7 @@ const elevationColor = {
           return 0.07;
 
         case ElevationRange.Elevation3:
+        case ElevationRange.Section:
           return 0.08;
 
         case ElevationRange.Elevation4:

@@ -75,18 +75,19 @@ var _StyledMenuContent =
   componentId: "sc-2wfm6w-1"
 })(["", ""], p => p._css4);
 
-const Menu = ({
-  children,
-  closingAnimationCompleted,
-  isOpen,
-  onClick,
-  position,
-  togglePopOver,
-  width,
-  zIndex,
-  cssOverrides,
-  ...domProps
-}) => {
+const Menu = props => {
+  const {
+    children,
+    closingAnimationCompleted,
+    isOpen,
+    onClick,
+    position,
+    togglePopOver,
+    width,
+    zIndex = 9990,
+    cssOverrides,
+    ...domProps
+  } = props;
   const menuRef = (0, _react.useRef)(null);
   const [menuHeight, setMenuHeight] = (0, _react.useState)(0);
   const [menuWidth, setMenuWidth] = (0, _react.useState)(0);
@@ -150,6 +151,3 @@ const Menu = ({
 };
 
 exports.Menu = Menu;
-Menu.defaultProps = {
-  zIndex: 9998
-};

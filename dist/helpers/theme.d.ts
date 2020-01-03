@@ -40,8 +40,11 @@ export interface GlobalAppThemeInterface {
             width: 'auto' | number;
         };
         table: {
-            margin: 16 | 32;
+            margin: 16 | 24 | 32;
         };
+    };
+    pageHeader: {
+        showBreadCrumbs: boolean;
     };
 }
 export declare const monorailTheme: GlobalAppThemeInterface;

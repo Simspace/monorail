@@ -1,4 +1,4 @@
-import React, { FC, useRef } from 'react'
+import React, { FC, forwardRef, ReactNode, Ref, UIEvent, useRef } from 'react'
 
 import { Colors, getColor } from '@monorail/helpers/color'
 import { ElevationRange, getElevationShadow } from '@monorail/helpers/elevation'
@@ -48,58 +48,63 @@ const SCROLL_AMOUNT = 128
 
 type ScrollAnimationProps = {
   containerCssOverrides?: CssOverridesType
+  onScroll?: (event: UIEvent<HTMLDivElement>) => void
+  children?: ReactNode
 }
 
-export const ScrollAnimation: FC<ScrollAnimationProps> = ({
-  children,
-  containerCssOverrides,
-  ...domProps
-}) => {
-  const shadow = useRef<HTMLDivElement>(null)
-  const [scrollContainer, scrollContainerRef] = useRefCallback<HTMLDivElement>()
+export const ScrollAnimation = forwardRef<HTMLDivElement, ScrollAnimationProps>(
+  ({ children, containerCssOverrides, ...domProps }, ref) => {
+    const shadow = useRef<HTMLDivElement>(null)
+    const [scrollContainer, scrollContainerRef] = useRefCallback<
+      HTMLDivElement
+    >()
 
-  const handleScroll: EventListener = event => {
-    if (!isNil(event.currentTarget) && !isNil(shadow)) {
-      const { current: shadowElement } = shadow
+    const handleScroll: EventListener = event => {
+      if (!isNil(event.currentTarget) && !isNil(shadow)) {
+        const { current: shadowElement } = shadow
 
-      if (!isNil(shadowElement)) {
-        const scrollElement = event.currentTarget as HTMLDivElement /* Josh don't hate me! */
+        if (!isNil(shadowElement)) {
+          const scrollElement = event.currentTarget as HTMLDivElement /* Josh don't hate me! */
 
-        const scrollAmount = scrollElement.scrollTop
+          const scrollAmount = scrollElement.scrollTop
 
-        // Only change the scroll position if the opacity isn't correct, or we are under the scroll amount.
-        if (
-          (scrollAmount >= SCROLL_AMOUNT &&
-            shadowElement.style.opacity !== '0.9999') ||
-          scrollAmount < SCROLL_AMOUNT
-        ) {
-          requestAnimationFrame(() => {
-            shadowElement.style.cssText = calculateOpacity({
-              scrollAmount,
-              animationTermination: SCROLL_AMOUNT,
+          // Only change the scroll position if the opacity isn't correct, or we are under the scroll amount.
+          if (
+            (scrollAmount >= SCROLL_AMOUNT &&
+              shadowElement.style.opacity !== '0.9999') ||
+            scrollAmount < SCROLL_AMOUNT
+          ) {
+            requestAnimationFrame(() => {
+              shadowElement.style.cssText = calculateOpacity({
+                scrollAmount,
+                animationTermination: SCROLL_AMOUNT,
+              })
             })
-          })
+          }
         }
       }
     }
-  }
 
-  useEventListener({
-    eventName: 'scroll',
-    eventListener: handleScroll,
-    element: scrollContainer,
-  })
+    useEventListener({
+      eventName: 'scroll',
+      eventListener: handleScroll,
+      element: scrollContainer,
+    })
 
-  return (
-    <ScrollAnimationContainer containerCssOverrides={containerCssOverrides}>
-      <Shadow ref={shadow} />
+    return (
+      <ScrollAnimationContainer
+        containerCssOverrides={containerCssOverrides}
+        ref={ref}
+      >
+        <Shadow ref={shadow} />
 
-      <ScrollContainer ref={scrollContainerRef} {...domProps}>
-        {children}
-      </ScrollContainer>
-    </ScrollAnimationContainer>
-  )
-}
+        <ScrollContainer ref={scrollContainerRef} {...domProps}>
+          {children}
+        </ScrollContainer>
+      </ScrollAnimationContainer>
+    )
+  },
+)
 
 const calculateOpacity: (props: {
   scrollAmount: number

@@ -44,12 +44,12 @@ exports.MappingID = MappingID;
 /*
  * Component
  */
-const Mapping = ({
-  mapping,
-  ...domProps
-}) => _react.default.createElement(MappingContainer, domProps, _react.default.createElement(MappingID, null, mapping.key), !(0, _typeGuards.isEmptyString)(mapping.name.trim()) ? mapping.name.trim() : mapping.description.trim());
+const Mapping = props => {
+  const {
+    mapping,
+    ...domProps
+  } = props;
+  return _react.default.createElement(MappingContainer, domProps, _react.default.createElement(MappingID, null, mapping.key), !(0, _typeGuards.isEmptyString)(mapping.name.trim()) ? mapping.name.trim() : mapping.description.trim());
+};
 
 exports.Mapping = Mapping;
-Mapping.defaultProps = {
-  margin: ''
-};

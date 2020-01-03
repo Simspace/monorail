@@ -13,15 +13,16 @@ const StdErrContainer = styled.div`
 export type ErrorProps = {
   err?: boolean
   msg?: string
+  fontSize?: FontSizes
 }
 
-export const StdErr = ({ err, msg, ...domProps }: ErrorProps) => {
+export const StdErr = ({ err, msg, fontSize, ...domProps }: ErrorProps) => {
   return (
     <StdErrContainer>
       <Text
         {...domProps}
         fontWeight={500}
-        fontSize={FontSizes.Micro}
+        fontSize={fontSize ? fontSize : FontSizes.Micro}
         color={Colors.Red}
         margin="8px 0"
       >

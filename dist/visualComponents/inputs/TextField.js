@@ -125,7 +125,7 @@ exports.StyledInput = StyledInput;
 /*
  * Component
  */
-const TextField = (0, _react.forwardRef)(props => {
+const TextField = (0, _react.forwardRef)((props, ref) => {
   const [hide, setHide] = (0, _react.useState)(true);
   const {
     autoFocus = false,
@@ -186,7 +186,8 @@ const TextField = (0, _react.forwardRef)(props => {
     min: min,
     max: max,
     maxLength: maxLength,
-    err: err
+    err: err,
+    ref: ref
   }, otherProps)), !(0, _typeGuards.isEmptyString)(iconRight) && _react.default.createElement(StyledRightIcon, {
     icon: iconRight,
     canToggleVisibility: canToggleVisibility,

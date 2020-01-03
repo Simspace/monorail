@@ -1,6 +1,5 @@
-import React, { ChangeEvent, MouseEvent, RefObject } from 'react'
+import React, { ChangeEvent, FC, MouseEvent, RefObject } from 'react'
 import { SimpleInterpolation } from 'styled-components'
-import { Overwrite } from 'typelevel-ts'
 
 import {
   BorderRadius,
@@ -15,7 +14,6 @@ import {
 } from '@monorail/helpers/exports'
 import styled, { css } from '@monorail/helpers/styled-components'
 import { getThemeColor, Mode, ThemeColors } from '@monorail/helpers/theme'
-import { FCwDP } from '@monorail/sharedHelpers/react'
 import { ButtonSize } from '@monorail/visualComponents/buttons/buttonTypes'
 import { IconButton } from '@monorail/visualComponents/buttons/IconButton'
 import { Icon } from '@monorail/visualComponents/icon/Icon'
@@ -133,86 +131,80 @@ export type SearchInputProps = {
   name?: string
 }
 
-type DefaultProps = {
-  placeholder: string
-}
-
 export type SearchProps = SearchContainerProps &
-  Overwrite<
-    SearchInputProps,
-    {
-      onChange: (value: string, event?: ChangeEvent<HTMLInputElement>) => void
-    }
-  >
+  SearchInputProps & {
+    onChange: (value: string, event?: ChangeEvent<HTMLInputElement>) => void
+    placeholder?: string
+  }
 
 //
 // Component
 //
 
-export const Search: FCwDP<SearchProps, DefaultProps> = ({
-  cssOverrides,
-  onChange,
-  name,
-  placeholder,
-  value,
-  onClick,
-  searchRef,
-  ...domProps
-}) => (
-  <SearchContainer cssOverrides={cssOverrides} {...domProps}>
-    <Icon icon="search_icon" css={searchIconStyles} />
+export const Search: FC<SearchProps> = props => {
+  const {
+    cssOverrides,
+    onChange,
+    name,
+    placeholder = 'Search',
+    value,
+    onClick,
+    searchRef,
+    ...domProps
+  } = props
 
-    <SearchInput
-      className="new-input"
-      onChange={(event: ChangeEvent<HTMLInputElement>) => {
-        onChange(event.currentTarget.value, event)
-      }}
-      placeholder={placeholder}
-      type="text"
-      value={value}
-      onClick={onClick}
-      ref={searchRef}
-      name={name}
-    />
+  return (
+    <SearchContainer cssOverrides={cssOverrides} {...domProps}>
+      <Icon icon="search_icon" css={searchIconStyles} />
 
-    <IconButton
-      cssOverrides={css`
-        ${visible(!!value)};
+      <SearchInput
+        className="new-input"
+        onChange={(event: ChangeEvent<HTMLInputElement>) => {
+          onChange(event.currentTarget.value, event)
+        }}
+        placeholder={placeholder}
+        type="text"
+        value={value}
+        onClick={onClick}
+        ref={searchRef}
+        name={name}
+      />
 
-        background: ${getColor(Colors.Black24)};
-        border: 0;
-        position: absolute;
-        right: ${searchIconPosition}px;
-        top: ${searchIconPosition}px;
+      <IconButton
+        cssOverrides={css`
+          ${visible(!!value)};
 
-        ${Icon} {
-          color: ${getColor(Colors.White)};
-        }
-
-        &:hover {
-          background: ${getColor(Colors.Black54)};
-
-          &:before {
-            background: transparent;
-          }
-        }
-
-        &:active {
           background: ${getColor(Colors.Black24)};
-        }
-      `}
-      size={ButtonSize.Dense}
-      icon="close"
-      onClick={event => {
-        event.preventDefault()
-        onChange('')
-      }}
-    />
-  </SearchContainer>
-)
+          border: 0;
+          position: absolute;
+          right: ${searchIconPosition}px;
+          top: ${searchIconPosition}px;
 
-Search.defaultProps = {
-  placeholder: 'Search',
+          ${Icon} {
+            color: ${getColor(Colors.White)};
+          }
+
+          &:hover {
+            background: ${getColor(Colors.Black54)};
+
+            &:before {
+              background: transparent;
+            }
+          }
+
+          &:active {
+            background: ${getColor(Colors.Black24)};
+          }
+        `}
+        size={ButtonSize.Dense}
+        icon="close"
+        onClick={event => {
+          event.preventDefault()
+          onChange('')
+        }}
+      />
+    </SearchContainer>
+  )
 }
 
 // tslint:enable

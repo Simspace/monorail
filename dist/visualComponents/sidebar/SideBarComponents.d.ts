@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import React, { FC } from 'react';
 import { SimpleInterpolation } from 'styled-components';
 import { PopOverToggleProps } from '@monorail/metaComponents/popOver/PopOver';
 import { CommonComponentType } from '@monorail/types';
@@ -14,9 +14,11 @@ export declare enum SidebarContainerAnimationPose {
 export declare const SidebarContainer: import("styled-components").StyledComponent<React.ComponentType<any>, any, CommonComponentType & {
     pose: string;
 }, never>;
-export declare const SidebarMenuContainer: import("styled-components").StyledComponent<React.FC<{
+export declare const SidebarMenuContainer: import("styled-components").StyledComponent<React.ForwardRefExoticComponent<{
     containerCssOverrides?: import("../../types").CssOverridesType;
-}>, any, CommonComponentType & {
+    onScroll?: ((event: React.UIEvent<HTMLDivElement>) => void) | undefined;
+    children?: React.ReactNode;
+} & React.RefAttributes<HTMLDivElement>>, any, CommonComponentType & {
     isSideBarCollapsed: boolean;
 }, never>;
 export declare const SidebarMenuItemDropDownToggle: import("styled-components").StyledComponent<({ title, subtitle, iconName, isActive, isSideBarCollapsed, ...domProps }: any) => JSX.Element, any, CommonComponentType & PopOverToggleProps & {
@@ -30,11 +32,11 @@ declare type SideBarMenuCollapsedProps = {
     isSideBarCollapsed: boolean;
 };
 export declare const SideBarMenuDivider: import("styled-components").StyledComponent<"div", any, SideBarMenuCollapsedProps, never>;
-export declare const SideBarMenuHeader: FunctionComponent<{
+export declare const SideBarMenuHeader: FC<{
     isSideBarCollapsed: boolean;
     header: string;
 }>;
-export declare const SidebarBack: FunctionComponent<{
+export declare const SidebarBack: FC<{
     to: string;
     title: string;
     byline: string;

@@ -163,21 +163,21 @@ var _StyledText =
 (0, _styledComponents.default)(_Text.Text).withConfig({
   displayName: "SideBarComponents___StyledText",
   componentId: "sc-1afcl1g-7"
-})(["", " justify-content:center;transition:margin ", " ", "ms;margin-left:", "px;margin-right:", "px;"], p => p._css6, p => p._css7, sideBarCollapsedTransitionDuration, p => p._css8, p => p._css9);
+})(["", " ", ";transition:margin ", " ", "ms;margin-left:", "px;margin-right:", "px;"], p => p._css6, p => p._css7, p => p._css8, sideBarCollapsedTransitionDuration, p => p._css9, p => p._css10);
 
 var _StyledSpan =
 /*#__PURE__*/
 _styledComponents.default.span.withConfig({
   displayName: "SideBarComponents___StyledSpan",
   componentId: "sc-1afcl1g-8"
-})(["display:inline-flex;margin:0 auto;pointer-events:none;overflow:hidden;transition:flex ", " ", "ms;flex-grow:", ";"], p => p._css10, sideBarCollapsedTransitionDuration, p => p._css11);
+})(["display:inline-flex;margin:0 auto;pointer-events:none;overflow:hidden;transition:flex ", " ", "ms;flex-grow:", ";"], p => p._css11, sideBarCollapsedTransitionDuration, p => p._css12);
 
 var _StyledSpan2 =
 /*#__PURE__*/
 _styledComponents.default.span.withConfig({
   displayName: "SideBarComponents___StyledSpan2",
   componentId: "sc-1afcl1g-9"
-})(["overflow:hidden;transition:all ", " ", "ms;", " ", ""], p => p._css12, sideBarCollapsedTransitionDuration, p => p._css13, p => p._css14);
+})(["overflow:hidden;transition:all ", " ", "ms;", " ", ""], p => p._css13, sideBarCollapsedTransitionDuration, p => p._css14, p => p._css15);
 
 const SideBarMenuHeader = ({
   header,
@@ -187,21 +187,21 @@ const SideBarMenuHeader = ({
   fontWeight: 500,
   margin: "0 0 16px",
   color: _exports.Colors.Black62,
-  title: isSideBarCollapsed ? header : '',
   _css6: (0, _exports.flexFlow)('row'),
-  _css7: (0, _exports.ease)(isSideBarCollapsed),
-  _css8: isSideBarCollapsed ? '0' : '14',
-  _css9: isSideBarCollapsed ? '0' : '14'
+  _css7: isSideBarCollapsed && `justify-content: center;`,
+  _css8: (0, _exports.ease)(isSideBarCollapsed),
+  _css9: isSideBarCollapsed ? '0' : '14',
+  _css10: isSideBarCollapsed ? '0' : '14'
 }, _react.default.createElement(_StyledSpan, {
-  _css10: (0, _exports.ease)(isSideBarCollapsed),
-  _css11: isSideBarCollapsed ? '0' : '1'
+  _css11: (0, _exports.ease)(isSideBarCollapsed),
+  _css12: isSideBarCollapsed ? '0' : '1'
 }, header.split(' ').map((word, index, list) => {
   return _react.default.createElement(_react.Fragment, {
     key: index
   }, _react.default.createElement("span", null, word.charAt(0)), _react.default.createElement(_StyledSpan2, {
-    _css12: (0, _exports.ease)(isSideBarCollapsed),
-    _css13: index < list.length - 1 && (0, _styledComponents.css)(["padding-right:0.5em;"]),
-    _css14: isSideBarCollapsed && (0, _styledComponents.css)(["opacity:0;padding-right:0;text-indent:-150px;"])
+    _css13: (0, _exports.ease)(isSideBarCollapsed),
+    _css14: index < list.length - 1 && (0, _styledComponents.css)(["padding-right:0.5em;"]),
+    _css15: isSideBarCollapsed && (0, _styledComponents.css)(["opacity:0;padding-right:0;text-indent:-150px;"])
   }, word.slice(1)));
 })));
 

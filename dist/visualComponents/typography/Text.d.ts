@@ -1,3 +1,4 @@
+import { FC, ReactNode } from 'react';
 import { Colors } from '@monorail/helpers/color';
 import { FontSizes, FontWeights } from '@monorail/helpers/typography';
 declare type Props = {
@@ -6,6 +7,7 @@ declare type Props = {
     fontWeight: FontWeights;
     margin?: string;
     color?: Colors;
+    children: string | number | ReactNode;
 };
-export declare const Text: import("styled-components").StyledComponent<"span", any, Props, never>;
+export declare const Text: FC<Props>;
 export {};

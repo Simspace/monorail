@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react'
+import React, { FC, ReactNode } from 'react'
 
 import {
   borderRadius,
@@ -9,7 +9,6 @@ import {
 } from '@monorail/helpers/exports'
 import styled, { css } from '@monorail/helpers/styled-components'
 import { Mode } from '@monorail/helpers/theme'
-import { FCwDP } from '@monorail/sharedHelpers/react'
 import { CommonComponentType } from '@monorail/types'
 import {
   ButtonProps,
@@ -29,7 +28,7 @@ import { Icon } from '@monorail/visualComponents/icon/Icon'
  */
 type ButtonWrapperProps = {
   mode: ButtonsBarMode
-  pressed: boolean
+  pressed?: boolean
 }
 
 const StyledButtonWrapper = styled.div<ButtonWrapperProps>(
@@ -84,15 +83,15 @@ const StyledButtonWrapper = styled.div<ButtonWrapperProps>(
 /**
  * Buttons Bar Props
  */
-type ButtonsBarProps = {
+type ButtonsBarProps = CommonComponentType & {
   // Overrides default ButtonBar display styling
-  display: ButtonDisplay
+  display?: ButtonDisplay
 
   // Regular Button sizing
-  size: ButtonSize
+  size?: ButtonSize
 
   // Group or Toolbar mode
-  mode: ButtonsBarMode
+  mode?: ButtonsBarMode
 }
 
 type ButtonsBarContainerProps = CommonComponentType & {
@@ -141,13 +140,15 @@ export const ToolbarsContainer = styled.div`
 /**
  * Buttons Bar
  */
-export const ButtonsBar: FCwDP<CommonComponentType, ButtonsBarProps> = ({
-  children,
-  size,
-  mode,
-  display,
-  ...domProps
-}) => {
+export const ButtonsBar: FC<ButtonsBarProps> = props => {
+  const {
+    children,
+    size = ButtonSize.Large,
+    mode = ButtonsBarMode.Default,
+    display = ButtonDisplay.ButtonBar,
+    ...domProps
+  } = props
+
   const renderBar = () =>
     React.Children.map(children, (child: ReactNode, index: number) => {
       if (React.isValidElement<ButtonProps>(child)) {
@@ -177,10 +178,4 @@ export const ButtonsBar: FCwDP<CommonComponentType, ButtonsBarProps> = ({
       {renderBar()}
     </ButtonsBarContainer>
   )
-}
-
-ButtonsBar.defaultProps = {
-  display: ButtonDisplay.ButtonBar,
-  size: ButtonSize.Large,
-  mode: ButtonsBarMode.Default,
 }

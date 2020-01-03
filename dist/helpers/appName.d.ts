@@ -21,6 +21,7 @@ export declare enum AppName {
     Hardhat = "hardhat",
     Impact = "impact",
     LMS = "externalLms",
+    MyOrg = "my-org",
     NetworkSetup = "network-setup",
     Range = "range",
     Repo = "repo",
@@ -30,7 +31,7 @@ export declare enum AppName {
     Training = "training"
 }
 export declare type AppOrAuthSubAppName = AppName | AuthSubAppName;
-export declare type AppOrAuthSubAppNameString = 'academy' | 'admin' | 'catalog' | 'event-design' | 'events' | 'execution' | 'externalLms' | 'hardhat' | 'impact' | 'network-setup' | 'range' | 'repo' | 'reports-analytics' | 'techops' | 'tracker' | 'training';
+export declare type AppOrAuthSubAppNameString = 'academy' | 'admin' | 'catalog' | 'event-design' | 'events' | 'execution' | 'externalLms' | 'hardhat' | 'impact' | 'my-org' | 'network-setup' | 'range' | 'repo' | 'reports-analytics' | 'techops' | 'tracker' | 'training';
 export declare const convertAppNameToColor: (appNames: AppOrAuthSubAppName) => Colors;
 export declare const convertAppNameToSecondaryColor: (appNames: AppOrAuthSubAppName) => Colors;
 export declare const convertStringToAppName: (appNameString: string) => AppOrAuthSubAppName;

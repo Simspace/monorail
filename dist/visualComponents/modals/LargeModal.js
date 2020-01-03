@@ -32,19 +32,20 @@ var _StyledBBModalBackground =
   componentId: "sc-1wml5k5-0"
 })(["", ""], p => p._css);
 
-const LargeModal = ({
-  isOpen,
-  onClick,
-  children,
-  title,
-  iconLeft,
-  togglePopOver,
-  headerStyles,
-  closingAnimationCompleted,
-  zIndex,
-  headerRowChildren,
-  ...otherProps
-}) => {
+const LargeModal = props => {
+  const {
+    isOpen,
+    onClick,
+    children,
+    title = '',
+    iconLeft = '',
+    togglePopOver,
+    headerStyles = (0, _styledComponents.css)([""]),
+    closingAnimationCompleted,
+    zIndex = (0, _zIndex.zIndexValue)(_zIndex.ZIndexNodeName.Overlay),
+    headerRowChildren,
+    ...otherProps
+  } = props;
   const {
     modalBackgroundRef,
     isRendered
@@ -73,6 +74,3 @@ const LargeModal = ({
 };
 
 exports.LargeModal = LargeModal;
-LargeModal.defaultProps = {
-  zIndex: (0, _zIndex.zIndexValue)(_zIndex.ZIndexNodeName.Overlay)
-};

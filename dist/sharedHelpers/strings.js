@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.trim = trim;
 exports.join = join;
-exports.includesNoncase = exports.includes = exports.truncate = exports.toLocaleLower = exports.toLower = exports.findIndex = exports.splitName = exports.replace = exports.split = void 0;
+exports.capitalizeFirstLetter = exports.includesNoncase = exports.includes = exports.truncate = exports.toLocaleLower = exports.toLower = exports.findIndex = exports.splitName = exports.replace = exports.split = void 0;
 
 var _Array = require("fp-ts/lib/Array");
 
@@ -101,3 +101,9 @@ const includesNoncase = target => source => {
 };
 
 exports.includesNoncase = includesNoncase;
+
+const capitalizeFirstLetter = str => {
+  return (0, _Option.fromNullable)(str[0]).fold('', firstLetter => firstLetter.toUpperCase() + str.slice(1).toLowerCase());
+};
+
+exports.capitalizeFirstLetter = capitalizeFirstLetter;

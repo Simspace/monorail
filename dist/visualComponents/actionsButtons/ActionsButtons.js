@@ -3,45 +3,121 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.ActionsButtons = void 0;
-
-var _styledComponents = _interopRequireWildcard(require("styled-components"));
+exports.ActionsButtons = exports.ActionButton = exports.CatalogEntryPermission = void 0;
 
 var _Array = require("fp-ts/lib/Array");
 
-var _Either = require("fp-ts/lib/Either");
-
-var _function = require("fp-ts/lib/function");
-
 var _react = _interopRequireDefault(require("react"));
 
-var _Array2 = require("../../sharedHelpers/fp-ts-ext/Array");
+var _styledComponents = _interopRequireDefault(require("styled-components"));
+
+var _typeGuards = require("../../sharedHelpers/typeGuards");
 
 var _ActionsMenu = require("../actionsMenu/ActionsMenu");
 
 var _Button = require("../buttons/Button");
 
+var _DropdownButton = require("../buttons/DropdownButton");
+
 var _IconButton = require("../buttons/IconButton");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+let CatalogEntryPermission;
+exports.CatalogEntryPermission = CatalogEntryPermission;
 
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+(function (CatalogEntryPermission) {
+  CatalogEntryPermission["Delete"] = "delete";
+  CatalogEntryPermission["List"] = "list";
+  CatalogEntryPermission["Read"] = "read";
+  CatalogEntryPermission["Write"] = "write";
+})(CatalogEntryPermission || (exports.CatalogEntryPermission = CatalogEntryPermission = {}));
 
-var _StyledIconButton =
+let ActionButton;
+exports.ActionButton = ActionButton;
+
+(function (ActionButton) {
+  ActionButton["TextButton"] = "TEXT_BUTTON";
+  ActionButton["IconButton"] = "ICON_BUTTON";
+  ActionButton["ActionsMenu"] = "ACTIONS_MENU";
+  ActionButton["DropdownButton"] = "DROPDOWN_BUTTON";
+})(ActionButton || (exports.ActionButton = ActionButton = {}));
+
+const ActionsButtonsBox =
 /*#__PURE__*/
-(0, _styledComponents.default)(_IconButton.IconButton).withConfig({
-  displayName: "ActionsButtons___StyledIconButton",
+_styledComponents.default.div.withConfig({
+  displayName: "ActionsButtons__ActionsButtonsBox",
   componentId: "sc-1sqcecj-0"
-})(["", ""], p => p._css);
+})(["display:flex;> *{margin-left:8px;}"]);
 
-var _StyledButton =
-/*#__PURE__*/
-(0, _styledComponents.default)(_Button.Button).withConfig({
-  displayName: "ActionsButtons___StyledButton",
-  componentId: "sc-1sqcecj-1"
-})(["", ""], p => p._css2);
+const makeTextButton = ({
+  action,
+  size,
+  display
+}) => action.check ? _react.default.createElement(_Button.Button, {
+  key: `${action.actionProps.label}-${action.actionProps.iconLeft}`,
+  size: size,
+  display: display,
+  iconLeft: action.actionProps.iconLeft,
+  onClick: action.actionProps.onClick,
+  disabled: action.actionProps.disabled
+}, action.actionProps.label) : null;
+
+const makeIconButton = ({
+  action,
+  size,
+  display
+}) => {
+  var _action$actionProps$i;
+
+  if (action.check) {
+    switch (action.type) {
+      case ActionButton.IconButton:
+        return _react.default.createElement(_IconButton.IconButton, {
+          key: `${action.actionProps.icon}`,
+          icon: (_action$actionProps$i = action.actionProps.icon) !== null && _action$actionProps$i !== void 0 ? _action$actionProps$i : '',
+          size: size,
+          display: display,
+          onClick: action.actionProps.onClick,
+          disabled: action.actionProps.disabled
+        });
+
+      case ActionButton.TextButton:
+        const icon = (0, _typeGuards.isNil)(action.actionProps.iconLeft) ? action.actionProps.iconRight : action.actionProps.iconLeft;
+        return _react.default.createElement(_IconButton.IconButton, {
+          key: `${icon}`,
+          icon: icon !== null && icon !== void 0 ? icon : '',
+          size: size,
+          display: display,
+          onClick: action.actionProps.onClick,
+          disabled: action.actionProps.disabled
+        });
+
+      default:
+        return null;
+    }
+  } else {
+    return null;
+  }
+};
+
+const makeDropdownButton = action => {
+  const accessibleListItems = action.actionProps.listItems.filter(action_ => action_.check);
+  return (0, _Array.isEmpty)(accessibleListItems) ? null : _react.default.createElement(_DropdownButton.DropdownButton, {
+    listItems: accessibleListItems.map(listItem => listItem.actionProps),
+    disabled: action.actionProps.disabled
+  });
+};
+
+const ActionsMenu_ = ({
+  action,
+  document
+}) => {
+  const accessibleActions = action.actionProps.actions.filter(action_ => action_.check);
+  return (0, _Array.isEmpty)(accessibleActions) ? null : _react.default.createElement(_ActionsMenu.ActionsMenu, {
+    actions: accessibleActions.map(action_ => action_.actionProps)
+  });
+};
 
 const ActionsButtons = ({
   display,
@@ -51,29 +127,67 @@ const ActionsButtons = ({
   actions = []
 }) => {
   const {
-    left: standardActions,
-    right: featuredActions
-  } = (0, _function.pipe)((0, _Array2.map)(action => action.isFeaturedAction ? (0, _Either.right)(iconOnly ? _react.default.createElement(_StyledIconButton, {
-    key: `${action.label}-${action.iconName}`,
-    icon: action.iconName,
-    title: action.label,
-    size: size,
-    display: display,
-    onClick: () => action.onClick(() => {}),
-    _css: actions.length > 1 && `margin-right: 8px;`
-  }) : _react.default.createElement(_StyledButton, {
-    key: `${action.label}-${action.iconName}`,
-    size: size,
-    display: display,
-    iconLeft: action.iconName // hacky because of the onClick type of ActionMenu's menu items
-    ,
-    onClick: () => action.onClick(() => {}),
-    _css2: actions.length > 1 && `margin-right: 8px;`
-  }, action.label)) : (0, _Either.left)(action)), _Array.array.separate)(actions);
-  return _react.default.createElement(_react.default.Fragment, null, featuredActions, standardActions && _react.default.createElement(_ActionsMenu.ActionsMenu, {
-    document: document,
-    actions: standardActions
-  }));
+    textButtons,
+    iconButtons,
+    dropdownButtons,
+    actionsMenus
+  } = actions.reduce((acc, action, idx) => {
+    switch (action.type) {
+      case ActionButton.TextButton:
+        if ((0, _typeGuards.isFalsy)(iconOnly)) {
+          const textButton = makeTextButton({
+            action,
+            size,
+            display
+          });
+          return (0, _typeGuards.isNil)(textButton) ? acc : { ...acc,
+            textButtons: [...acc.textButtons, textButton]
+          };
+        } else {
+          const textButtonIconOnly = makeIconButton({
+            action,
+            size,
+            display
+          });
+          return (0, _typeGuards.isNil)(textButtonIconOnly) ? acc : { ...acc,
+            iconButtons: [...acc.iconButtons, textButtonIconOnly]
+          };
+        }
+
+      case ActionButton.IconButton:
+        const iconButton = makeIconButton({
+          action,
+          size,
+          display
+        });
+        return (0, _typeGuards.isNil)(iconButton) ? acc : { ...acc,
+          iconButtons: [...acc.iconButtons, iconButton]
+        };
+
+      case ActionButton.DropdownButton:
+        const dropdownButton = makeDropdownButton(action);
+        return (0, _typeGuards.isNil)(dropdownButton) ? acc : { ...acc,
+          dropdownButtons: [...acc.dropdownButtons, dropdownButton]
+        };
+
+      case ActionButton.ActionsMenu:
+        const actionsMenu = _react.default.createElement(ActionsMenu_, {
+          key: idx,
+          action: action,
+          document: document
+        });
+
+        return (0, _typeGuards.isNil)(actionsMenu) ? acc : { ...acc,
+          actionsMenus: [...acc.actionsMenus, actionsMenu]
+        };
+    }
+  }, {
+    textButtons: [],
+    iconButtons: [],
+    dropdownButtons: [],
+    actionsMenus: []
+  });
+  return _react.default.createElement(ActionsButtonsBox, null, textButtons, iconButtons, dropdownButtons, actionsMenus);
 };
 
 exports.ActionsButtons = ActionsButtons;

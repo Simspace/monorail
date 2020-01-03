@@ -2,7 +2,6 @@ import { Either } from 'fp-ts/lib/Either';
 import { Eq } from 'fp-ts/lib/Eq';
 import { Predicate } from 'fp-ts/lib/function';
 import { IO } from 'fp-ts/lib/IO';
-import { Option } from 'fp-ts/lib/Option';
 /**
  * Curried version of fp-ts' `map` for Arrays
  */
@@ -40,7 +39,7 @@ export declare const len: (xs: string | ArrayLike<unknown>) => number;
  * sequence utility for the Option instance of Applicative and the Array
  * instance of Traversable2v1
  */
-export declare const sequenceOptions: <A>(ta: Option<A>[]) => Option<A[]>;
+export declare const sequenceOptions: <A>(ta: import("fp-ts/lib/Option").Option<A>[]) => import("fp-ts/lib/Option").Option<A[]>;
 /**
  * sequence utility for the Either instance of Applicative and the Array
  * instance of Traversable2v1
@@ -65,7 +64,7 @@ export declare const sequenceRemoteData: <FL, A>(ta: import("@devexperts/remote-
  * traverse utility for the Option instance of Applicative and the Array
  * instance of Traversable2v1
  */
-export declare const traverseOptions: <A, B>(ta: A[], f: (a: A) => Option<B>) => Option<B[]>;
+export declare const traverseOptions: <A, B>(ta: A[], f: (a: A) => import("fp-ts/lib/Option").Option<B>) => import("fp-ts/lib/Option").Option<B[]>;
 /**
  * traverse utility for the Either instance of Applicative and the Array
  * instance of Traversable2v1
@@ -104,7 +103,7 @@ export declare const sortByNumeric: (as: number[]) => number[];
  * Lift a function of two arguments to a function which accepts and returns
  * those same values in the context of Options
  */
-export declare const liftOption2: <A, B, C>(f: import("fp-ts/lib/function").Curried2<A, B, C>) => import("fp-ts/lib/function").Curried2<Option<A>, Option<B>, Option<C>>;
+export declare const liftOption2: <A, B, C>(f: import("fp-ts/lib/function").Curried2<A, B, C>) => import("fp-ts/lib/function").Curried2<import("fp-ts/lib/Option").Option<A>, import("fp-ts/lib/Option").Option<B>, import("fp-ts/lib/Option").Option<C>>;
 /**
  * Takes an element and a list and "intersperses", or "mixes in", that element
  * between the elements of the list
@@ -143,3 +142,7 @@ export declare const xor: <A>(E: Eq<A>) => (xs: A[], ys: A[]) => A[];
  * Returns an object made up of a keys from the result the accessor function
  */
 export declare const arrayToRecord: <T, V>(keyAccessor: (curr: T) => string, mapValue?: ((curr: T) => V) | undefined) => (arr: T[]) => Record<string, V>;
+/**
+ * Checks if an array is *not* empty
+ */
+export declare const isNotEmpty: <T>(arr: T[]) => boolean;

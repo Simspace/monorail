@@ -1,4 +1,4 @@
-import React, { Fragment, FunctionComponent } from 'react'
+import React, { FC, Fragment } from 'react'
 import posed from 'react-pose'
 import styled, { css, SimpleInterpolation } from 'styled-components'
 
@@ -249,7 +249,7 @@ export const SideBarMenuDivider = styled.div<SideBarMenuCollapsedProps>(
   `,
 )
 
-export const SideBarMenuHeader: FunctionComponent<{
+export const SideBarMenuHeader: FC<{
   isSideBarCollapsed: boolean
   header: string
 }> = ({ header, isSideBarCollapsed }) => (
@@ -260,7 +260,7 @@ export const SideBarMenuHeader: FunctionComponent<{
     color={Colors.Black62}
     css={css`
       ${flexFlow('row')}
-      justify-content: center;
+      ${isSideBarCollapsed && `justify-content: center;`};
 
       transition: margin ${ease(isSideBarCollapsed)}
         ${sideBarCollapsedTransitionDuration}ms;
@@ -268,7 +268,6 @@ export const SideBarMenuHeader: FunctionComponent<{
       margin-left: ${isSideBarCollapsed ? '0' : '14'}px;
       margin-right: ${isSideBarCollapsed ? '0' : '14'}px;
     `}
-    title={isSideBarCollapsed ? header : ''}
   >
     <span
       css={css`
@@ -318,7 +317,7 @@ export const SideBarMenuHeader: FunctionComponent<{
   </Text>
 )
 
-export const SidebarBack: FunctionComponent<{
+export const SidebarBack: FC<{
   to: string
   title: string
   byline: string

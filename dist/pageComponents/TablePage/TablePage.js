@@ -19,6 +19,8 @@ var _Actions = require("../../visualComponents/actions/Actions");
 
 var _ReactTable = require("../../visualComponents/dataTable/ReactTable");
 
+var _Search = require("../../visualComponents/inputs/Search");
+
 var _PageHeader = require("../../visualComponents/pageHeader/PageHeader");
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
@@ -36,19 +38,30 @@ const TableContainer = _styledComponents.default.div`
   flex: 1;
   overflow: hidden;
 `;
+const SearchWrapper = _styledComponents.default.div`
+  flex: 0 0 48px;
+  width: 100%;
+  padding: 0 32px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  background: hsla(0, 0%, 99%, 1);
+  border-bottom: 1px solid ${(0, _color.getColor)(_color.Colors.Grey90)};
+`;
 
 const TablePage = props => {
   const {
     actions,
     title,
     isLoading = false,
+    searchProps,
     ...otherProps
   } = props;
   const [sorted, onSortedChange] = (0, _ReactTable.useSort)(otherProps.defaultSorted);
   return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_PageHeader.PageHeader, {
     title: title,
     actions: _react.default.createElement(_Actions.ActionsContainer, null, actions)
-  }), _react.default.createElement(TableContainer, null, _react.default.createElement(_styledComponents.ThemeProvider, {
+  }), searchProps !== undefined ? _react.default.createElement(SearchWrapper, null, _react.default.createElement(_Search.Search, searchProps)) : null, _react.default.createElement(TableContainer, null, _react.default.createElement(_styledComponents.ThemeProvider, {
     theme: theme => ({ ...theme,
       size: { ...theme.size,
         table: {

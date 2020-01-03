@@ -4,7 +4,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.hasKey = hasKey;
-exports.isStringArray = exports.isNumberArray = exports.isBooleanArray = exports.isNonEmptyArray = exports.isArray = exports.isFunction = exports.isObject = exports.isFinite = exports.isNumber = exports.isNonEmptyString = exports.isEmptyString = exports.isString = exports.isFalsy = exports.isZero = exports.isTrue = exports.isFalse = exports.isBoolean = exports.isNotNil = exports.isNil = exports.isNotUndefined = exports.isUndefined = exports.isNull = exports.assertNever = void 0;
+exports.isStringArray = exports.isNumberArray = exports.isBooleanArray = exports.isNonEmptyArray = exports.isArray = exports.isFunction = exports.isObject = exports.isFinite = exports.isNumber = exports.isNonEmptyString = exports.isEmptyString = exports.isNotString = exports.isString = exports.isFalsy = exports.isZero = exports.isTrue = exports.isFalse = exports.isBoolean = exports.isNotNil = exports.isNil = exports.isNotUndefined = exports.isUndefined = exports.isNull = exports.endReducer = exports.assertNever = void 0;
 
 /**
  * Will throw a type error if switch cases aren't exhaustive.
@@ -12,12 +12,20 @@ exports.isStringArray = exports.isNumberArray = exports.isBooleanArray = exports
 const assertNever = x => {
   throw new Error(x);
 };
+/** Ensures all actions in reducer are handled in switch statement */
+
+
+exports.assertNever = assertNever;
+
+const endReducer = (state, _action) => {
+  return state;
+};
 /**
  * Tests whether or not an argument is null (type guard)
  */
 
 
-exports.assertNever = assertNever;
+exports.endReducer = endReducer;
 
 const isNull = x => x === null;
 /**
@@ -83,7 +91,6 @@ const isZero = x => isNumber(x) && x === 0;
 /**
  * Type guard for the Falsy type
  */
-// tslint:disable-next-line:no-any
 
 
 exports.isZero = isZero;
@@ -98,11 +105,20 @@ exports.isFalsy = isFalsy;
 
 const isString = x => typeof x === 'string';
 /**
- * Type guard for the `''` literal of the `string` primitive
+ *
+ * @param x Type guard for not the `string` primitive
  */
 
 
 exports.isString = isString;
+
+const isNotString = x => typeof x !== 'string';
+/**
+ * Type guard for the `''` literal of the `string` primitive
+ */
+
+
+exports.isNotString = isNotString;
 
 const isEmptyString = x => isString(x) && x === '';
 /**
@@ -156,12 +172,13 @@ exports.isFunction = isFunction;
 const isArray = as => Array.isArray(as);
 /**
  * Type guard for the `Array` type with `.length > 0`
+ * NOTE: this is *not* an fp-ts NonEmptyArray
  */
 
 
 exports.isArray = isArray;
 
-const isNonEmptyArray = as => Array.isArray(as) && as.length > 0;
+const isNonEmptyArray = as => isArray(as) && as.length > 0;
 /**
  * Type guard for the `Array<boolean>` type
  */

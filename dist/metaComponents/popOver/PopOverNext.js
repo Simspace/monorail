@@ -17,7 +17,6 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 const PopOverNext = props => {
   const {
-    document,
     toggle,
     popOver,
     gap = 8,
@@ -57,8 +56,7 @@ const PopOverNext = props => {
     onClick,
     isActive: isOpenState
   }), _react.default.createElement(_PortalController.PortalController, {
-    isRendered: isRendered,
-    document: document
+    isRendered: isRendered
   }, popOver({
     isOpen: isOpenState,
     position,

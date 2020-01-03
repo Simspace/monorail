@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { FC } from 'react'
 import styled, { css } from 'styled-components'
 
 import {
@@ -9,14 +9,13 @@ import {
   getColor,
   typography,
 } from '@monorail/helpers/exports'
-import { FCwDP } from '@monorail/sharedHelpers/react'
 import { isEmptyString } from '@monorail/sharedHelpers/typeGuards'
 
 /*
  * Styles
  */
 
-const MappingContainer = styled.div<DefaultProps>(
+const MappingContainer = styled.div<ContainerProps>(
   ({ margin }) => css`
     ${typography(400, FontSizes.Title5, margin)};
 
@@ -40,10 +39,6 @@ export const MappingID = styled.span`
  * Types
  */
 
-type DefaultProps = {
-  margin: string
-}
-
 type MappingType = {
   key: string
   type: string
@@ -51,7 +46,11 @@ type MappingType = {
   description: string
 }
 
-type Props = {
+type ContainerProps = {
+  margin?: string
+}
+
+type Props = ContainerProps & {
   mapping: MappingType
 }
 
@@ -59,18 +58,15 @@ type Props = {
  * Component
  */
 
-export const Mapping: FCwDP<Props, DefaultProps> = ({
-  mapping,
-  ...domProps
-}) => (
-  <MappingContainer {...domProps}>
-    <MappingID>{mapping.key}</MappingID>
-    {!isEmptyString(mapping.name.trim())
-      ? mapping.name.trim()
-      : mapping.description.trim()}
-  </MappingContainer>
-)
+export const Mapping: FC<Props> = props => {
+  const { mapping, ...domProps } = props
 
-Mapping.defaultProps = {
-  margin: '',
+  return (
+    <MappingContainer {...domProps}>
+      <MappingID>{mapping.key}</MappingID>
+      {!isEmptyString(mapping.name.trim())
+        ? mapping.name.trim()
+        : mapping.description.trim()}
+    </MappingContainer>
+  )
 }

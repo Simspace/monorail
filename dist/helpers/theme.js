@@ -89,6 +89,9 @@ const monorailTheme = {
     table: {
       margin: 16
     }
+  },
+  pageHeader: {
+    showBreadCrumbs: true
   }
 };
 exports.monorailTheme = monorailTheme;

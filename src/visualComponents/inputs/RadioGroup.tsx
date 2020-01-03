@@ -102,9 +102,10 @@ export type ChoiceOption = {
 
 export type RadioGroupProps = ErrorProps &
   ContainerProps & {
+    name?: string
     label?: string
     options: Array<ChoiceOption>
-    onSelect?: (key: string, val: ChangeEvent<HTMLInputElement>) => void
+    onSelect?: (key: string, val: React.MouseEvent<Element, MouseEvent>) => void
     value: string
     required?: boolean
     htmlValidation?: boolean
@@ -131,6 +132,7 @@ export const RadioGroup: FC<RadioGroupProps> = props => {
     htmlValidation = true,
     err = false,
     msg = '',
+    name,
     className = '',
     hideStdErr = false,
     display = DisplayType.Edit,
@@ -154,11 +156,11 @@ export const RadioGroup: FC<RadioGroupProps> = props => {
               <div key={k + o.label}>
                 <Choice
                   type="radio"
-                  name={label}
+                  name={name || label}
                   data-test-id={o['data-test-id']}
                   checked={o.key === value}
                   value={o.key}
-                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                  onClick={e => {
                     onSelect && onSelect(o.key, e)
                   }}
                   required={htmlValidation && required}

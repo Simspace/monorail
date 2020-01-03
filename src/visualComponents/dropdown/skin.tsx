@@ -1,3 +1,4 @@
+import Portal from '@reach/portal'
 import Downshift from 'downshift'
 import { fromNullable, Option } from 'fp-ts/lib/Option'
 import React, { ReactElement, useLayoutEffect, useRef, useState } from 'react'
@@ -17,7 +18,6 @@ import {
   defaultPopOverPosition,
   getOverlayPosition,
 } from '@monorail/metaComponents/popOver/PopOver'
-import { Portal } from '@monorail/metaComponents/portal/Portal'
 import { isUndefined } from '@monorail/sharedHelpers/typeGuards'
 import { CommonComponentType } from '@monorail/types'
 import { DisplayType } from '@monorail/visualComponents/inputs/inputTypes'
@@ -93,7 +93,6 @@ export type DropdownSkinCommonType = {
   placeholder?: string
   disabled?: boolean
   clearable?: boolean
-  document?: Document
   error?: Option<string>
   required?: boolean
   label?: string
@@ -223,7 +222,6 @@ export const DropdownSkin = <T extends DropdownType>({
   }
 
   const renderMenu = () => {
-    const { document } = skin
     const { isOpen, getMenuProps, toggleMenu } = downshiftProps
 
     const menuProps = getMenuProps() as DownshiftMenuPropsGetter<T>
@@ -233,38 +231,40 @@ export const DropdownSkin = <T extends DropdownType>({
     const width = menuTarget ? menuTarget.getBoundingClientRect().width : 0
 
     return (
-      <Portal document={document}>
-        <Menu
-          css={css`
-            ${MenuContent} {
-              padding: 0;
-            }
-          `}
-          isOpen={isOpen}
-          position={position}
-          togglePopOver={() =>
-            toggleMenu({
-              type: Downshift.stateChangeTypes.keyDownEscape,
-              inputValue: '',
-            })
-          }
-          width={width}
-        >
-          <MenuContainer {...menuProps}>
-            {isOpen ? (
-              items.length > 0 ? (
-                renderList()
-              ) : (
-                <DropdownItem selected={false} highlighted={false} disabled>
-                  No results
-                </DropdownItem>
-              )
-            ) : (
-              <></>
-            )}
-          </MenuContainer>
-        </Menu>
-      </Portal>
+      <div {...menuProps}>
+        {isOpen && (
+          <Portal>
+            <Menu
+              css={css`
+                ${MenuContent} {
+                  padding: 0;
+                }
+              `}
+              isOpen={isOpen}
+              position={position}
+              togglePopOver={() =>
+                toggleMenu({
+                  type: Downshift.stateChangeTypes.keyDownEscape,
+                  inputValue: '',
+                })
+              }
+              closingAnimationCompleted={() => {}}
+              onClick={() => {}}
+              width={width}
+            >
+              <MenuContainer>
+                {items.length > 0 ? (
+                  renderList()
+                ) : (
+                  <DropdownItem selected={false} highlighted={false} disabled>
+                    No results
+                  </DropdownItem>
+                )}
+              </MenuContainer>
+            </Menu>
+          </Portal>
+        )}
+      </div>
     )
   }
 

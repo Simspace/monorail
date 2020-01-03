@@ -140,65 +140,66 @@ var _StyledIcon =
 //
 // Component
 //
-const Search = ({
-  cssOverrides,
-  onChange,
-  name,
-  placeholder,
-  value,
-  onClick,
-  searchRef,
-  ...domProps
-}) => _react.default.createElement(SearchContainer, _extends({
-  cssOverrides: cssOverrides
-}, domProps), _react.default.createElement(_StyledIcon, {
-  icon: "search_icon"
-}), _react.default.createElement(SearchInput, {
-  className: "new-input",
-  onChange: event => {
-    onChange(event.currentTarget.value, event);
-  },
-  placeholder: placeholder,
-  type: "text",
-  value: value,
-  onClick: onClick,
-  ref: searchRef,
-  name: name
-}), _react.default.createElement(_IconButton.IconButton, {
-  cssOverrides: _styledComponents2.css`
-        ${(0, _exports.visible)(!!value)};
+const Search = props => {
+  const {
+    cssOverrides,
+    onChange,
+    name,
+    placeholder = 'Search',
+    value,
+    onClick,
+    searchRef,
+    ...domProps
+  } = props;
+  return _react.default.createElement(SearchContainer, _extends({
+    cssOverrides: cssOverrides
+  }, domProps), _react.default.createElement(_StyledIcon, {
+    icon: "search_icon"
+  }), _react.default.createElement(SearchInput, {
+    className: "new-input",
+    onChange: event => {
+      onChange(event.currentTarget.value, event);
+    },
+    placeholder: placeholder,
+    type: "text",
+    value: value,
+    onClick: onClick,
+    ref: searchRef,
+    name: name
+  }), _react.default.createElement(_IconButton.IconButton, {
+    cssOverrides: _styledComponents2.css`
+          ${(0, _exports.visible)(!!value)};
 
-        background: ${(0, _exports.getColor)(_exports.Colors.Black24)};
-        border: 0;
-        position: absolute;
-        right: ${searchIconPosition}px;
-        top: ${searchIconPosition}px;
-
-        ${_Icon.Icon} {
-          color: ${(0, _exports.getColor)(_exports.Colors.White)};
-        }
-
-        &:hover {
-          background: ${(0, _exports.getColor)(_exports.Colors.Black54)};
-
-          &:before {
-            background: transparent;
-          }
-        }
-
-        &:active {
           background: ${(0, _exports.getColor)(_exports.Colors.Black24)};
-        }
-      `,
-  size: _buttonTypes.ButtonSize.Dense,
-  icon: "close",
-  onClick: event => {
-    event.preventDefault();
-    onChange('');
-  }
-}));
+          border: 0;
+          position: absolute;
+          right: ${searchIconPosition}px;
+          top: ${searchIconPosition}px;
+
+          ${_Icon.Icon} {
+            color: ${(0, _exports.getColor)(_exports.Colors.White)};
+          }
+
+          &:hover {
+            background: ${(0, _exports.getColor)(_exports.Colors.Black54)};
+
+            &:before {
+              background: transparent;
+            }
+          }
+
+          &:active {
+            background: ${(0, _exports.getColor)(_exports.Colors.Black24)};
+          }
+        `,
+    size: _buttonTypes.ButtonSize.Dense,
+    icon: "close",
+    onClick: event => {
+      event.preventDefault();
+      onChange('');
+    }
+  }));
+}; // tslint:enable
+
 
 exports.Search = Search;
-Search.defaultProps = {
-  placeholder: 'Search'
-}; // tslint:enable

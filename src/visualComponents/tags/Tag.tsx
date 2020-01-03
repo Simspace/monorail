@@ -1,13 +1,13 @@
-import React from 'react'
+import React, { FC } from 'react'
 import styled, { css } from 'styled-components'
 
 import {
   Colors,
+  ellipsis,
   flexFlow,
   FontSizes,
   getColor,
 } from '@monorail/helpers/exports'
-import { FCwDP } from '@monorail/sharedHelpers/react'
 import { isEmptyString } from '@monorail/sharedHelpers/typeGuards'
 import { Icon } from '@monorail/visualComponents/icon/Icon'
 import { Text } from '@monorail/visualComponents/typography/Text'
@@ -57,31 +57,34 @@ const iconStyles = css`
 const labelStyles = css`
   color: ${getColor(Colors.Black89)};
   margin: 0 10px 0 2px;
+  ${ellipsis};
 `
 
 type Props = {
   icon: string
+  label?: string
+  title?: string
 }
 
-type DefaultProps = {
-  label: string
+export const Tag: FC<Props> = props => {
+  const { label = '', icon, title, ...otherProps } = props
+
+  return (
+    <TagContainer
+      doesntHaveLabel={isEmptyString(label)}
+      title={title}
+      {...otherProps}
+    >
+      <Icon css={iconStyles} icon={icon} size={iconSize} />
+
+      {!isEmptyString(label) && (
+        <Text css={labelStyles} fontSize={FontSizes.Micro} fontWeight={700}>
+          {label}
+        </Text>
+      )}
+    </TagContainer>
+  )
 }
-
-export const Tag: FCwDP<Props, DefaultProps> = ({
-  label,
-  icon,
-  ...otherProps
-}) => (
-  <TagContainer doesntHaveLabel={isEmptyString(label)} {...otherProps}>
-    <Icon css={iconStyles} icon={icon} size={iconSize} />
-
-    {!isEmptyString(label) && (
-      <Text css={labelStyles} fontSize={FontSizes.Micro} fontWeight={700}>
-        {label}
-      </Text>
-    )}
-  </TagContainer>
-)
 
 Tag.defaultProps = {
   label: '',

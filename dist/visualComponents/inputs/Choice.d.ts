@@ -1,7 +1,6 @@
 import { ChangeEvent, CSSProperties, FC, ReactNode } from 'react';
 import { SimpleInterpolation } from 'styled-components';
 import { OnClick } from '@monorail/visualComponents/icon/Icon';
-import { DisplayType } from '@monorail/visualComponents/inputs/inputTypes';
 export declare const ChoiceFakeLabel: import("styled-components").StyledComponent<"div", any, AnsweredProps, never>;
 declare type AnsweredProps = {
     answered?: boolean;
@@ -33,7 +32,6 @@ export declare type ChoiceProps = GradeIconProps & ContainerProps & ChoiceInputP
     type?: 'radio' | 'checkbox';
     children?: ReactNode;
     style?: CSSProperties;
-    display?: DisplayType;
 };
 export declare const Choice: FC<ChoiceProps>;
 export {};

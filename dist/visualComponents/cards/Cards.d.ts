@@ -27,7 +27,9 @@ declare type BBCardGridProps = {
     cardWidth?: number;
     cssOverrides?: SimpleInterpolation;
 };
-export declare const BBCardGrid: import("styled-components").StyledComponent<React.FC<{
+export declare const BBCardGrid: import("styled-components").StyledComponent<React.ForwardRefExoticComponent<{
     containerCssOverrides?: import("../../types").CssOverridesType;
-}>, any, BBCardGridProps, never>;
+    onScroll?: ((event: React.UIEvent<HTMLDivElement>) => void) | undefined;
+    children?: React.ReactNode;
+} & React.RefAttributes<HTMLDivElement>>, any, BBCardGridProps, never>;
 export {};

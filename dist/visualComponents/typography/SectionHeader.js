@@ -67,28 +67,27 @@ var _StyledIcon2 =
   componentId: "sc-16s6esu-4"
 })(["", ""], iconRightStyle);
 
-const SectionHeader = ({
-  children,
-  iconLeft,
-  iconRight,
-  title,
-  ...otherProps
-}) => _react.default.createElement(SectionHeaderContainer, otherProps, !(0, _typeGuards.isEmptyString)(iconLeft) && ((0, _exports.isAppName)(iconLeft) ? _react.default.createElement(_StyledAppIcon, {
-  appName: iconLeft
-}) : _react.default.createElement(_StyledIcon, {
-  icon: iconLeft
-})), _react.default.createElement(_Text.Text, {
-  fontWeight: 700,
-  fontSize: _exports.FontSizes.Title5,
-  as: "h1"
-}, title), !(0, _typeGuards.isEmptyString)(iconRight) && ((0, _exports.isAppName)(iconRight) ? _react.default.createElement(_StyledAppIcon2, {
-  appName: iconRight
-}) : _react.default.createElement(_StyledIcon2, {
-  icon: iconRight
-})), children);
+const SectionHeader = props => {
+  const {
+    children,
+    iconLeft = '',
+    iconRight = '',
+    title,
+    ...otherProps
+  } = props;
+  return _react.default.createElement(SectionHeaderContainer, otherProps, !(0, _typeGuards.isEmptyString)(iconLeft) && ((0, _exports.isAppName)(iconLeft) ? _react.default.createElement(_StyledAppIcon, {
+    appName: iconLeft
+  }) : _react.default.createElement(_StyledIcon, {
+    icon: iconLeft
+  })), _react.default.createElement(_Text.Text, {
+    fontWeight: 700,
+    fontSize: _exports.FontSizes.Title5,
+    as: "h1"
+  }, title), !(0, _typeGuards.isEmptyString)(iconRight) && ((0, _exports.isAppName)(iconRight) ? _react.default.createElement(_StyledAppIcon2, {
+    appName: iconRight
+  }) : _react.default.createElement(_StyledIcon2, {
+    icon: iconRight
+  })), children);
+};
 
 exports.SectionHeader = SectionHeader;
-SectionHeader.defaultProps = {
-  iconLeft: '',
-  iconRight: ''
-};

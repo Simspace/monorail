@@ -1,4 +1,4 @@
-import { Falsy, Nil } from './typeLevel'
+import { Falsy, Nil, Undefinedable } from './typeLevel'
 
 /**
  * `TypeGuard` type
@@ -10,6 +10,11 @@ export type TypeGuard = (x: unknown) => boolean
  */
 export const assertNever = (x: never): never => {
   throw new Error(x)
+}
+
+/** Ensures all actions in reducer are handled in switch statement */
+export const endReducer = <T>(state: T, _action: never): T => {
+  return state
 }
 
 /**
@@ -25,7 +30,8 @@ export const isUndefined = (x: unknown): x is undefined => x === undefined
 /**
  * Tests whether or not an argument is not undefined (type guard)
  */
-export const isNotUndefined = (x: unknown) => !isUndefined(x)
+export const isNotUndefined = <T>(x: Undefinedable<T>): x is T =>
+  !isUndefined(x)
 
 /**
  * Tests whether or not an argument is null or undefined (type guard)
@@ -59,8 +65,7 @@ export const isZero = (x: unknown): x is 0 => isNumber(x) && x === 0
 /**
  * Type guard for the Falsy type
  */
-// tslint:disable-next-line:no-any
-export const isFalsy = (x: any): x is Falsy =>
+export const isFalsy = (x: unknown): x is Falsy =>
   isNil(x) ||
   isFalse(x) ||
   isEmptyString(x) ||
@@ -71,6 +76,13 @@ export const isFalsy = (x: any): x is Falsy =>
  * Type guard for the `string` primitive
  */
 export const isString = (x: unknown): x is string => typeof x === 'string'
+
+/**
+ *
+ * @param x Type guard for not the `string` primitive
+ */
+export const isNotString = <T>(x: T): x is Exclude<T, string> =>
+  typeof x !== 'string'
 
 /**
  * Type guard for the `''` literal of the `string` primitive
@@ -110,13 +122,15 @@ export const isFunction = (x: unknown): x is (params: unknown) => void =>
 /**
  * Type guard for the `Array` type
  */
-export const isArray = (as: unknown): as is Array<unknown> => Array.isArray(as)
+export const isArray = <T>(as: Array<T> | unknown): as is Array<T> =>
+  Array.isArray(as)
 
 /**
  * Type guard for the `Array` type with `.length > 0`
+ * NOTE: this is *not* an fp-ts NonEmptyArray
  */
-export const isNonEmptyArray = (as: unknown): as is Array<unknown> =>
-  Array.isArray(as) && as.length > 0
+export const isNonEmptyArray = <T>(as: Array<T> | unknown): as is Array<T> =>
+  isArray(as) && as.length > 0
 
 /**
  * Type guard for the `Array<boolean>` type

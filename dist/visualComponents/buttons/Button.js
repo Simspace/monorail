@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.Button = exports.buttonDefaultProps = exports.StyledButton = exports.buttonSizeCss = exports.buttonPressedDisplayCss = exports.buttonDisplayCss = void 0;
+exports.Button = exports.StyledButton = exports.buttonSizeCss = exports.buttonPressedDisplayCss = exports.buttonDisplayCss = void 0;
 
 var _styledComponents = _interopRequireDefault(require("styled-components"));
 
@@ -166,20 +166,6 @@ const StyledButton = _styledComponents2.default.button(({
   `);
 
 exports.StyledButton = StyledButton;
-const buttonDefaultProps = {
-  className: '',
-  disabled: false,
-  display: _buttonTypes.ButtonDisplay.Primary,
-  iconLeft: '',
-  iconRight: '',
-  isActive: false,
-  mode: _buttonTypes.ButtonMode.Default,
-  onClick: () => {},
-  pressed: false,
-  size: _buttonTypes.ButtonSize.Default,
-  type: 'button'
-};
-exports.buttonDefaultProps = buttonDefaultProps;
 
 var _StyledIcon =
 /*#__PURE__*/
@@ -195,33 +181,50 @@ var _StyledIcon2 =
   componentId: "sc-10jcad3-1"
 })(["", ""], p => p._css2);
 
-const Button = ({
-  children,
-  className,
-  iconLeft,
-  iconRight,
-  passedAs,
-  size,
-  status,
-  ...domProps
-}) => _react.default.createElement(StyledButton, _extends({
-  as: passedAs,
-  className: `new-button ${className}`,
-  size: size,
-  status: status
-}, domProps), typeof status === 'function' && status({
-  style: {
-    position: 'absolute'
-  }
-}), !(0, _typeGuards.isEmptyString)(iconLeft) && _react.default.createElement(_StyledIcon, {
-  icon: iconLeft,
-  size: 16,
-  _css: iconLeftStyles[size]
-}), children, !(0, _typeGuards.isEmptyString)(iconRight) && _react.default.createElement(_StyledIcon2, {
-  icon: iconRight,
-  size: 16,
-  _css2: iconRightStyles[size]
-}));
+const Button = props => {
+  const {
+    children,
+    className = '',
+    cssOverrides = '',
+    disabled = false,
+    display = _buttonTypes.ButtonDisplay.Primary,
+    iconLeft = '',
+    iconRight = '',
+    isActive = false,
+    mode = _buttonTypes.ButtonMode.Default,
+    onClick = () => {},
+    passedAs,
+    pressed = false,
+    size = _buttonTypes.ButtonSize.Default,
+    status,
+    type = 'button',
+    ...domProps
+  } = props;
+  return _react.default.createElement(StyledButton, _extends({}, domProps, {
+    as: passedAs,
+    className: `new-button ${className}`,
+    cssOverrides: cssOverrides,
+    mode: mode,
+    type: type,
+    display: display,
+    size: size,
+    onClick: onClick,
+    pressed: pressed,
+    disabled: disabled,
+    isActive: isActive
+  }), typeof status === 'function' && status({
+    style: {
+      position: 'absolute'
+    }
+  }), !(0, _typeGuards.isEmptyString)(iconLeft) && _react.default.createElement(_StyledIcon, {
+    icon: iconLeft,
+    size: 16,
+    _css: iconLeftStyles[size]
+  }), children, !(0, _typeGuards.isEmptyString)(iconRight) && _react.default.createElement(_StyledIcon2, {
+    icon: iconRight,
+    size: 16,
+    _css2: iconRightStyles[size]
+  }));
+};
 
 exports.Button = Button;
-Button.defaultProps = buttonDefaultProps;

@@ -91,21 +91,21 @@ const DetailsContainer = _styledComponents.default.div(({
     ${cssOverrides};
   `);
 
-const Details = ({
-  children,
-  cssOverrides,
-  size,
-  property,
-  value
-}) => _react.default.createElement(DetailsContainer, {
-  cssOverrides: cssOverrides
-}, _react.default.createElement(DetailsProperty, {
-  size: size
-}, property), !(0, _typeGuards.isNil)(value) && _react.default.createElement(DetailsValue, {
-  size: size
-}, value), children);
+const Details = props => {
+  const {
+    children,
+    cssOverrides,
+    size = _detailsTypes.DetailsSize.Default,
+    property,
+    value
+  } = props;
+  return _react.default.createElement(DetailsContainer, {
+    cssOverrides: cssOverrides
+  }, _react.default.createElement(DetailsProperty, {
+    size: size
+  }, property), !(0, _typeGuards.isNil)(value) && _react.default.createElement(DetailsValue, {
+    size: size
+  }, value), children);
+};
 
 exports.Details = Details;
-Details.defaultProps = {
-  size: _detailsTypes.DetailsSize.Default
-};

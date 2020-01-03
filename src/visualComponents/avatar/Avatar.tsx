@@ -1,3 +1,4 @@
+import { fromNullable } from 'fp-ts/lib/Option'
 import React, { StatelessComponent } from 'react'
 
 import {
@@ -75,8 +76,8 @@ export const Avatar: StatelessComponent<AvatarProps> = ({
       />
     ) : (
       <>
-        {first.charAt(0)}
-        {last.charAt(0)}
+        {fromNullable(first).fold('', f => f.charAt(0))}
+        {fromNullable(last).fold('', f => f.charAt(0))}
       </>
     )}
   </AvatarContainer>

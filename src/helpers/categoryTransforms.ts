@@ -73,7 +73,7 @@ export const categoryColor = (entryCategory: string) => {
     case 'physical-asset':
     case 'clone-source':
     case 'config-module':
-      return Colors.Range
+      return Colors.RangeAlt
     case 'exercise':
     case 'event':
       return Colors.Tracker

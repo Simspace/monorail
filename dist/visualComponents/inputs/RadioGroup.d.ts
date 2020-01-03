@@ -1,4 +1,4 @@
-import { ChangeEvent, FC } from 'react';
+import React, { FC } from 'react';
 import { SimpleInterpolation } from 'styled-components';
 import { DisplayType } from '@monorail/visualComponents/inputs/inputTypes';
 import { ErrorProps } from '@monorail/visualComponents/inputs/StdErr';
@@ -14,9 +14,10 @@ export declare type ChoiceOption = {
     'data-test-id'?: string;
 };
 export declare type RadioGroupProps = ErrorProps & ContainerProps & {
+    name?: string;
     label?: string;
     options: Array<ChoiceOption>;
-    onSelect?: (key: string, val: ChangeEvent<HTMLInputElement>) => void;
+    onSelect?: (key: string, val: React.MouseEvent<Element, MouseEvent>) => void;
     value: string;
     required?: boolean;
     htmlValidation?: boolean;

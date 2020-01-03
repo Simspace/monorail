@@ -7,6 +7,8 @@ exports.useDropdownCustomSkin = exports.useDropdownSkin = exports.DropdownSkin =
 
 var _styledComponents = _interopRequireDefault(require("styled-components"));
 
+var _portal = _interopRequireDefault(require("@reach/portal"));
+
 var _downshift = _interopRequireDefault(require("downshift"));
 
 var _Option = require("fp-ts/lib/Option");
@@ -18,8 +20,6 @@ var _exports = require("../../helpers/exports");
 var _styledComponents2 = _interopRequireWildcard(require("../../helpers/styled-components"));
 
 var _PopOver = require("../../metaComponents/popOver/PopOver");
-
-var _Portal = require("../../metaComponents/portal/Portal");
 
 var _typeGuards = require("../../sharedHelpers/typeGuards");
 
@@ -201,9 +201,6 @@ const DropdownSkin = ({
 
   const renderMenu = () => {
     const {
-      document
-    } = skin;
-    const {
       isOpen,
       getMenuProps,
       toggleMenu
@@ -213,21 +210,21 @@ const DropdownSkin = ({
       target: menuTarget
     }) : _PopOver.defaultPopOverPosition;
     const width = menuTarget ? menuTarget.getBoundingClientRect().width : 0;
-    return _react.default.createElement(_Portal.Portal, {
-      document: document
-    }, _react.default.createElement(_StyledMenu, {
+    return _react.default.createElement("div", menuProps, isOpen && _react.default.createElement(_portal.default, null, _react.default.createElement(_StyledMenu, {
       isOpen: isOpen,
       position: position,
       togglePopOver: () => toggleMenu({
         type: _downshift.default.stateChangeTypes.keyDownEscape,
         inputValue: ''
       }),
+      closingAnimationCompleted: () => {},
+      onClick: () => {},
       width: width
-    }, _react.default.createElement(MenuContainer, menuProps, isOpen ? items.length > 0 ? renderList() : _react.default.createElement(_DropdownItem.DropdownItem, {
+    }, _react.default.createElement(MenuContainer, null, items.length > 0 ? renderList() : _react.default.createElement(_DropdownItem.DropdownItem, {
       selected: false,
       highlighted: false,
       disabled: true
-    }, "No results") : _react.default.createElement(_react.default.Fragment, null))));
+    }, "No results")))));
   };
 
   const renderError = () => _react.default.createElement(_react.default.Fragment, null, error && error.fold(_react.default.createElement(_react.default.Fragment, null), msg => _react.default.createElement(_StyledDiv, null, _react.default.createElement(_StdErr.StdErr, {

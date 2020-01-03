@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.arrayToRecord = exports.xor = exports.notAny = exports.all = exports.any = exports.intersperseMapWithIndex = exports.intersperseMap = exports.intersperse = exports.liftOption2 = exports.sortByNumeric = exports.sortByAlpha = exports.leftsAndRights = exports.traverseTaskEithers = exports.traverseTasks = exports.traverseEithers = exports.traverseOptions = exports.sequenceRemoteData = exports.sequenceTaskEithers = exports.sequenceTasks = exports.sequenceEithers = exports.sequenceOptions = exports.len = exports.contains = exports.runIOs = exports.forEachWithIndex = exports.forEach = exports.concatFlipped = exports.concat = exports.map = void 0;
+exports.isNotEmpty = exports.arrayToRecord = exports.xor = exports.notAny = exports.all = exports.any = exports.intersperseMapWithIndex = exports.intersperseMap = exports.intersperse = exports.liftOption2 = exports.sortByNumeric = exports.sortByAlpha = exports.leftsAndRights = exports.traverseTaskEithers = exports.traverseTasks = exports.traverseEithers = exports.traverseOptions = exports.sequenceRemoteData = exports.sequenceTaskEithers = exports.sequenceTasks = exports.sequenceEithers = exports.sequenceOptions = exports.len = exports.contains = exports.runIOs = exports.forEachWithIndex = exports.forEach = exports.concatFlipped = exports.concat = exports.map = void 0;
 
 var _remoteDataTs = require("@devexperts/remote-data-ts");
 
@@ -347,5 +347,13 @@ const arrayToRecord = (keyAccessor, mapValue) => arr => {
     }, () => acc);
   }, {});
 };
+/**
+ * Checks if an array is *not* empty
+ */
+
 
 exports.arrayToRecord = arrayToRecord;
+
+const isNotEmpty = arr => !(0, _Array.isEmpty)(arr);
+
+exports.isNotEmpty = isNotEmpty;
