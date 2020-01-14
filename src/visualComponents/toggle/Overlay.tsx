@@ -5,6 +5,7 @@ import { Omit } from 'typelevel-ts'
 import { Colors } from '@monorail/helpers/color'
 import { ThemeProvider } from '@monorail/helpers/styled-components'
 import { Mode, ThemeColors } from '@monorail/helpers/theme'
+import { zIndexValue, ZIndexNodeName } from '@monorail/helpers/zIndex'
 import { PopOverChildProps } from '@monorail/metaComponents/popOver/PopOver'
 import {
   BBModalContainer,
@@ -34,7 +35,7 @@ export class Overlay extends Component<Props, State> {
   static defaultProps = {
     usesScaleAnimation: false,
     escToClose: true,
-    zIndex: 9998,
+    zIndex: zIndexValue(ZIndexNodeName.Overlay),
   }
 
   state: State = {

@@ -1,7 +1,7 @@
 import { liftA2 } from 'fp-ts/lib/Apply'
 import { Option, option } from 'fp-ts/lib/Option'
 import React, { FC } from 'react'
-import styled, { InterpolationValue } from 'styled-components'
+import styled, { css, InterpolationValue } from 'styled-components'
 
 import {
   Colors,
@@ -124,19 +124,34 @@ export const NotFound = () => (
   </Container>
 )
 
+const DetailContainer = styled.div<{ vertical?: boolean }>(
+  ({ vertical = false }) => css`
+    ${vertical &&
+      css`
+        justify-content: center;
+        margin-left: 16px;
+        padding-right: 16px;
+      `}
+  `,
+)
+
 export const CustomNoData = ({
   headingText,
   details,
+  vertical = false,
+  icon = <NoResultsIcon />,
 }: {
   headingText: string
   details: JSX.Element | Array<JSX.Element>
+  vertical?: boolean
+  icon?: JSX.Element
 }) => (
-  <Container>
-    <IconBox>
-      <NoResultsIcon />
-    </IconBox>
-    <Banner>{headingText}</Banner>
-    <Detail>{details}</Detail>
+  <Container vertical={vertical}>
+    <IconBox>{icon}</IconBox>
+    <DetailContainer vertical={vertical}>
+      <Banner>{headingText}</Banner>
+      <Detail vertical={vertical}>{details}</Detail>
+    </DetailContainer>
   </Container>
 )
 
@@ -181,21 +196,25 @@ export const Banner = styled.div`
   ${typography(700, FontSizes.Title1)};
 `
 
-const Container = styled.div`
-  align-items: center;
-  justify-content: center;
-  margin: auto;
+const Container = styled.div<{ vertical?: boolean }>(
+  ({ vertical = false }) => css`
+    align-items: center;
+    justify-content: center;
+    margin: auto;
 
-  ${flexFlow('column')};
-`
+    ${flexFlow(vertical ? 'row' : 'column')};
+  `,
+)
 
-export const Detail = styled.div`
-  color: ${getColor(Colors.Black89)};
-  text-align: center;
+export const Detail = styled.div<{ vertical?: boolean }>(
+  ({ vertical = false }) => css`
+    color: ${getColor(Colors.Black89)};
+    text-align: ${vertical ? 'left' : 'center'};
 
-  ${flexFlow('column')};
-  ${typography(400, FontSizes.Title3)};
-`
+    ${vertical && flexFlow('column')};
+    ${typography(400, FontSizes.Title3)};
+  `,
+)
 
 export const IconBox = styled.div`
   align-items: center;

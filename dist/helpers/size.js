@@ -49,14 +49,14 @@ exports.sizes = sizes;
 const pageSizeMargin = (params = {
   marginTop: 0,
   marginBottom: 0
-}) => _styledComponents.css`
+}) => (0, _styledComponents.css)`
   ${({
   theme: {
     size: {
       page
     }
   }
-}) => _styledComponents.css`
+}) => (0, _styledComponents.css)`
     max-width: ${page.width}px;
     margin: ${params.marginTop}px ${sizes.page.sideSpace}px
       ${params.marginBottom}px ${sizes.page.sideSpace}px;
@@ -68,14 +68,14 @@ exports.pageSizeMargin = pageSizeMargin;
 const pageSizePadding = (params = {
   paddingTop: 0,
   paddingBottom: 0
-}) => _styledComponents.css`
+}) => (0, _styledComponents.css)`
   ${({
   theme: {
     size: {
       page
     }
   }
-}) => _styledComponents.css`
+}) => (0, _styledComponents.css)`
     box-sizing: content-box;
     max-width: ${page.width}px;
     padding: ${params.paddingTop}px ${sizes.page.sideSpace}px

@@ -108,7 +108,6 @@ export const Dropdown = <D extends DropdownType>({
     disabled,
     clearable,
     placeholder,
-    document,
     error,
     required,
     label,

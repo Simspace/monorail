@@ -1,4 +1,5 @@
 import React, {
+  FC,
   useCallback,
   useEffect,
   useLayoutEffect,
@@ -19,7 +20,6 @@ import { useEventListener } from '@monorail/helpers/hooks'
 import { sizes } from '@monorail/helpers/size'
 import styled, { css } from '@monorail/helpers/styled-components'
 import { PopOverChildProps } from '@monorail/metaComponents/popOver/PopOver'
-import { FCwDP } from '@monorail/sharedHelpers/react'
 import { isNil } from '@monorail/sharedHelpers/typeGuards'
 import { CommonComponentType } from '@monorail/types'
 import { Overlay } from '@monorail/visualComponents/toggle/Overlay'
@@ -54,24 +54,23 @@ export const MenuContent = styled.div`
 type RequiredProps = CommonComponentType &
   PopOverChildProps & {
     width?: number
+    zIndex?: number
   }
 
-type DefaultProps = {
-  zIndex: number
-}
+export const Menu: FC<RequiredProps> = props => {
+  const {
+    children,
+    closingAnimationCompleted,
+    isOpen,
+    onClick,
+    position,
+    togglePopOver,
+    width,
+    zIndex,
+    cssOverrides,
+    ...domProps
+  } = props
 
-export const Menu: FCwDP<RequiredProps, DefaultProps> = ({
-  children,
-  closingAnimationCompleted,
-  isOpen,
-  onClick,
-  position,
-  togglePopOver,
-  width,
-  zIndex,
-  cssOverrides,
-  ...domProps
-}) => {
   const menuRef = useRef<HTMLDivElement>(null)
 
   const [menuHeight, setMenuHeight] = useState(0)
@@ -157,8 +156,4 @@ export const Menu: FCwDP<RequiredProps, DefaultProps> = ({
       </MenuContainer>
     </Overlay>
   )
-}
-
-Menu.defaultProps = {
-  zIndex: 9998,
 }

@@ -3,14 +3,19 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.isRecord = exports.sortRecords = exports.pick = exports.omit = exports.prop = exports.values = exports.keys = void 0;
+exports.isNotEmpty = exports.isRecord = exports.sortRecords = exports.pick = exports.omit = exports.prop = exports.values = exports.keys = void 0;
 
 var _Array = require("fp-ts/lib/Array");
+
+var _Record = require("fp-ts/lib/Record");
 
 var _typeGuards = require("../typeGuards");
 
 var _Array2 = require("./Array");
 
+/**
+ * Retrieves the keys of an object while retaining keyof type information
+ */
 const keys = x => Object.keys(x);
 
 exports.keys = keys;
@@ -63,5 +68,13 @@ const sortRecords = ord => data => (0, _Array.sort)(ord)(data);
 exports.sortRecords = sortRecords;
 
 const isRecord = x => (0, _typeGuards.isObject)(x);
+/**
+ * Check if a record is *not* empty
+ */
+
 
 exports.isRecord = isRecord;
+
+const isNotEmpty = r => !(0, _Record.isEmpty)(r);
+
+exports.isNotEmpty = isNotEmpty;

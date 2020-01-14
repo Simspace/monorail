@@ -45,7 +45,7 @@ const iconStyles =
 (0, _styledComponents.css)(["color:", ";margin:0 ", "px;position:relative;"], (0, _exports.getColor)(_exports.Colors.BrandLightBlue), iconSize / 2);
 const labelStyles =
 /*#__PURE__*/
-(0, _styledComponents.css)(["color:", ";margin:0 10px 0 2px;"], (0, _exports.getColor)(_exports.Colors.Black89));
+(0, _styledComponents.css)(["color:", ";margin:0 10px 0 2px;", ";"], (0, _exports.getColor)(_exports.Colors.Black89), _exports.ellipsis);
 
 var _StyledIcon =
 /*#__PURE__*/
@@ -61,19 +61,24 @@ var _StyledText =
   componentId: "sc-12x6kd4-2"
 })(["", ""], labelStyles);
 
-const Tag = ({
-  label,
-  icon,
-  ...otherProps
-}) => _react.default.createElement(TagContainer, _extends({
-  doesntHaveLabel: (0, _typeGuards.isEmptyString)(label)
-}, otherProps), _react.default.createElement(_StyledIcon, {
-  icon: icon,
-  size: iconSize
-}), !(0, _typeGuards.isEmptyString)(label) && _react.default.createElement(_StyledText, {
-  fontSize: _exports.FontSizes.Micro,
-  fontWeight: 700
-}, label));
+const Tag = props => {
+  const {
+    label = '',
+    icon,
+    title,
+    ...otherProps
+  } = props;
+  return _react.default.createElement(TagContainer, _extends({
+    doesntHaveLabel: (0, _typeGuards.isEmptyString)(label),
+    title: title
+  }, otherProps), _react.default.createElement(_StyledIcon, {
+    icon: icon,
+    size: iconSize
+  }), !(0, _typeGuards.isEmptyString)(label) && _react.default.createElement(_StyledText, {
+    fontSize: _exports.FontSizes.Micro,
+    fontWeight: 700
+  }, label));
+};
 
 exports.Tag = Tag;
 Tag.defaultProps = {

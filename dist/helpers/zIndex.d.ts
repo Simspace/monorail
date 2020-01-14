@@ -10,7 +10,8 @@ export declare enum ZIndexNodeName {
     CardBody = "CardBody",
     CardBackground = "CardBackground",
     CardShadow = "CardShadow",
-    Overlay = "Overlay"
+    Overlay = "Overlay",
+    Modal = "Modal"
 }
 export declare const zIndexValue: (nodeName: ZIndexNodeName) => number;
 export declare const zIndex: (nodeName: ZIndexNodeName) => string;

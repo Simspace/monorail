@@ -1,4 +1,4 @@
-import { Falsy } from './typeLevel';
+import { Falsy, Undefinedable } from './typeLevel';
 /**
  * `TypeGuard` type
  */
@@ -7,6 +7,8 @@ export declare type TypeGuard = (x: unknown) => boolean;
  * Will throw a type error if switch cases aren't exhaustive.
  */
 export declare const assertNever: (x: never) => never;
+/** Ensures all actions in reducer are handled in switch statement */
+export declare const endReducer: <T>(state: T, _action: never) => T;
 /**
  * Tests whether or not an argument is null (type guard)
  */
@@ -18,7 +20,7 @@ export declare const isUndefined: (x: unknown) => x is undefined;
 /**
  * Tests whether or not an argument is not undefined (type guard)
  */
-export declare const isNotUndefined: (x: unknown) => boolean;
+export declare const isNotUndefined: <T>(x: Undefinedable<T>) => x is T;
 /**
  * Tests whether or not an argument is null or undefined (type guard)
  */
@@ -43,11 +45,16 @@ export declare const isZero: (x: unknown) => x is 0;
 /**
  * Type guard for the Falsy type
  */
-export declare const isFalsy: (x: any) => x is Falsy;
+export declare const isFalsy: (x: unknown) => x is Falsy;
 /**
  * Type guard for the `string` primitive
  */
 export declare const isString: (x: unknown) => x is string;
+/**
+ *
+ * @param x Type guard for not the `string` primitive
+ */
+export declare const isNotString: <T>(x: T) => x is Exclude<T, string>;
 /**
  * Type guard for the `''` literal of the `string` primitive
  */
@@ -76,11 +83,12 @@ export declare const isFunction: (x: unknown) => x is (params: unknown) => void;
 /**
  * Type guard for the `Array` type
  */
-export declare const isArray: (as: unknown) => as is unknown[];
+export declare const isArray: <T>(as: unknown) => as is T[];
 /**
  * Type guard for the `Array` type with `.length > 0`
+ * NOTE: this is *not* an fp-ts NonEmptyArray
  */
-export declare const isNonEmptyArray: (as: unknown) => as is unknown[];
+export declare const isNonEmptyArray: <T>(as: unknown) => as is T[];
 /**
  * Type guard for the `Array<boolean>` type
  */

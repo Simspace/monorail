@@ -74,7 +74,6 @@ const Dropdown = ({
     disabled,
     clearable,
     placeholder,
-    document,
     error,
     required,
     label,

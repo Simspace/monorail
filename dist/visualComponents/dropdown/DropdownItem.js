@@ -17,7 +17,7 @@ const DropdownItem = _styledComponents.default.div(({
   selected,
   highlighted,
   disabled
-}) => _styledComponents.css`
+}) => (0, _styledComponents.css)`
     position: relative;
     cursor: pointer;
     display: block;
@@ -26,19 +26,19 @@ const DropdownItem = _styledComponents.default.div(({
     padding: 8px;
     word-break: break-word;
 
-    ${disabled ? _styledComponents.css`
+    ${disabled ? (0, _styledComponents.css)`
           cursor: default;
           opacity: 0.24;
-        ` : _styledComponents.css`
-          ${highlighted && _styledComponents.css`
+        ` : (0, _styledComponents.css)`
+          ${highlighted && (0, _styledComponents.css)`
               background: ${(0, _color.getColor)(_color.Colors.Black24, 0.16)};
             `};
 
-          ${selected && _styledComponents.css`
+          ${selected && (0, _styledComponents.css)`
               background: ${(0, _color.getColor)(_color.Colors.BrandLightBlue, 0.2)};
             `};
 
-          ${highlighted && selected && _styledComponents.css`
+          ${highlighted && selected && (0, _styledComponents.css)`
               background: ${(0, _color.getColor)(_color.Colors.BrandLightBlue, 0.24)};
             `};
         `};

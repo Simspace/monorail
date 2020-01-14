@@ -7,7 +7,7 @@ exports.PopOver = exports.getDropAmounts = exports.getOverlayPosition = exports.
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _Portal = require("../portal/Portal");
+var _PortalController = require("../portal/PortalController");
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
@@ -294,8 +294,7 @@ class PopOver extends _react.Component {
     const {
       popOver,
       toggle,
-      document,
-      alwaysRender
+      alwaysRender = false
     } = this.props;
     const {
       isRendered,
@@ -305,8 +304,8 @@ class PopOver extends _react.Component {
     return _react.default.createElement(_react.default.Fragment, null, toggle({
       onClick: this.onClick,
       isActive: isOpen
-    }), (isRendered || alwaysRender) && _react.default.createElement(_Portal.Portal, {
-      document: document
+    }), _react.default.createElement(_PortalController.PortalController, {
+      isRendered: isRendered || alwaysRender
     }, popOver({
       isOpen,
       position,

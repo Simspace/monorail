@@ -23,13 +23,14 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+// TabBarIndicator is pos:abs to this element. Also we use offsetLeft on the Tab which references this position.
 const PageLevelNavBarContainer = _styledComponents.default.div(({
   theme: {
     size: {
       page
     }
   }
-}) => _styledComponents.css`
+}) => (0, _styledComponents.css)`
     ${(0, _flex.flexFlow)('row')};
 
     ${page.width !== 'auto' && `max-width: ${page.width + _size.sizes.page.sideSpace}px;`};
@@ -58,7 +59,7 @@ const PageLevelNavBarIndicatorContainer = (0, _styledComponents.default)(({
 })))(({
   left,
   duration
-}) => _styledComponents.css`
+}) => (0, _styledComponents.css)`
     ${(0, _flex.flexFlow)('row')};
     bottom: 1px;
     height: 3px;
@@ -86,7 +87,7 @@ const PageLevelNavBarIndicatorRight = (0, _styledComponents.default)(({
 }) => _react.default.createElement("div", otherProps))(({
   duration,
   width
-}) => _styledComponents.css`
+}) => (0, _styledComponents.css)`
     background: ${(0, _theme.getThemeColor)(_theme.ThemeColors.ApplicationPrimary)};
     border-radius: 0 3px 0 0;
     height: 100%;
@@ -107,7 +108,7 @@ const PageLevelNavBarIndicatorBody = (0, _styledComponents.default)(({
 }) => _react.default.createElement("div", otherProps))(({
   duration,
   width
-}) => _styledComponents.css`
+}) => (0, _styledComponents.css)`
     background: ${(0, _theme.getThemeColor)(_theme.ThemeColors.ApplicationPrimary)};
     height: 100%;
     width: ${tabBarIndicatorBodyWidth}px;

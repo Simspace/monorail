@@ -11,9 +11,13 @@ var _Option = require("fp-ts/lib/Option");
 
 var _react = _interopRequireDefault(require("react"));
 
-var _styledComponents = _interopRequireDefault(require("styled-components"));
+var _styledComponents = _interopRequireWildcard(require("styled-components"));
 
 var _exports = require("../../helpers/exports");
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -57,10 +61,27 @@ const NotFound = () => _react.default.createElement(Container, null, _react.defa
 
 exports.NotFound = NotFound;
 
+const DetailContainer =
+/*#__PURE__*/
+_styledComponents.default.div.withConfig({
+  displayName: "DataStates__DetailContainer",
+  componentId: "sc-19xnotc-0"
+})(({
+  vertical = false
+}) => (0, _styledComponents.css)(["", ""], vertical && (0, _styledComponents.css)(["justify-content:center;margin-left:16px;padding-right:16px;"])));
+
 const CustomNoData = ({
   headingText,
-  details
-}) => _react.default.createElement(Container, null, _react.default.createElement(IconBox, null, _react.default.createElement(NoResultsIcon, null)), _react.default.createElement(Banner, null, headingText), _react.default.createElement(Detail, null, details));
+  details,
+  vertical = false,
+  icon = _react.default.createElement(NoResultsIcon, null)
+}) => _react.default.createElement(Container, {
+  vertical: vertical
+}, _react.default.createElement(IconBox, null, icon), _react.default.createElement(DetailContainer, {
+  vertical: vertical
+}, _react.default.createElement(Banner, null, headingText), _react.default.createElement(Detail, {
+  vertical: vertical
+}, details)));
 
 exports.CustomNoData = CustomNoData;
 
@@ -88,7 +109,7 @@ const Banner =
 /*#__PURE__*/
 _styledComponents.default.div.withConfig({
   displayName: "DataStates__Banner",
-  componentId: "sc-19xnotc-0"
+  componentId: "sc-19xnotc-1"
 })(["color:", ";margin:24px auto;", ";"], (0, _exports.getColor)(_exports.Colors.Black89), (0, _exports.typography)(700, _exports.FontSizes.Title1));
 
 exports.Banner = Banner;
@@ -97,15 +118,19 @@ const Container =
 /*#__PURE__*/
 _styledComponents.default.div.withConfig({
   displayName: "DataStates__Container",
-  componentId: "sc-19xnotc-1"
-})(["align-items:center;justify-content:center;margin:auto;", ";"], (0, _exports.flexFlow)('column'));
+  componentId: "sc-19xnotc-2"
+})(({
+  vertical = false
+}) => (0, _styledComponents.css)(["align-items:center;justify-content:center;margin:auto;", ";"], (0, _exports.flexFlow)(vertical ? 'row' : 'column')));
 
 const Detail =
 /*#__PURE__*/
 _styledComponents.default.div.withConfig({
   displayName: "DataStates__Detail",
-  componentId: "sc-19xnotc-2"
-})(["color:", ";text-align:center;", ";", ";"], (0, _exports.getColor)(_exports.Colors.Black89), (0, _exports.flexFlow)('column'), (0, _exports.typography)(400, _exports.FontSizes.Title3));
+  componentId: "sc-19xnotc-3"
+})(({
+  vertical = false
+}) => (0, _styledComponents.css)(["color:", ";text-align:", ";", ";", ";"], (0, _exports.getColor)(_exports.Colors.Black89), vertical ? 'left' : 'center', vertical && (0, _exports.flexFlow)('column'), (0, _exports.typography)(400, _exports.FontSizes.Title3)));
 
 exports.Detail = Detail;
 
@@ -113,7 +138,7 @@ const IconBox =
 /*#__PURE__*/
 _styledComponents.default.div.withConfig({
   displayName: "DataStates__IconBox",
-  componentId: "sc-19xnotc-3"
+  componentId: "sc-19xnotc-4"
 })(["align-items:center;height:120px;justify-content:center;width:120px;", ";"], (0, _exports.flexFlow)('column'));
 
 exports.IconBox = IconBox;

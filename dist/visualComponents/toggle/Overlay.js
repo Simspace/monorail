@@ -15,6 +15,8 @@ var _styledComponents2 = require("../../helpers/styled-components");
 
 var _theme = require("../../helpers/theme");
 
+var _zIndex = require("../../helpers/zIndex");
+
 var _Modals = require("../modals/Modals");
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
@@ -118,5 +120,5 @@ exports.Overlay = Overlay;
 Overlay.defaultProps = {
   usesScaleAnimation: false,
   escToClose: true,
-  zIndex: 9998
+  zIndex: (0, _zIndex.zIndexValue)(_zIndex.ZIndexNodeName.Overlay)
 };

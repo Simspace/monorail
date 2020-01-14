@@ -21,3 +21,7 @@ export declare const sortRecords: <S extends Record<K, A>, K extends keyof S & s
  * Type guard for `Record<PropertyKey, T>` from `object`
  */
 export declare const isRecord: <T = unknown>(x: unknown) => x is Record<string | number | symbol, T>;
+/**
+ * Check if a record is *not* empty
+ */
+export declare const isNotEmpty: <K extends string | number | symbol, T>(r: Record<K, T>) => boolean;

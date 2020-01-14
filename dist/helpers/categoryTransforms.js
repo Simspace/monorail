@@ -105,7 +105,7 @@ const categoryColor = entryCategory => {
     case 'physical-asset':
     case 'clone-source':
     case 'config-module':
-      return _color.Colors.Range;
+      return _color.Colors.RangeAlt;
 
     case 'exercise':
     case 'event':

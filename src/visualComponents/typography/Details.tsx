@@ -1,10 +1,9 @@
-import React from 'react'
+import React, { FC } from 'react'
 import { SimpleInterpolation } from 'styled-components'
 
 import { flexFlow, FontSizes, typography } from '@monorail/helpers/exports'
 import styled, { css } from '@monorail/helpers/styled-components'
 import { getThemeColor, ThemeColors } from '@monorail/helpers/theme'
-import { FCwDP } from '@monorail/sharedHelpers/react'
 import { isNil } from '@monorail/sharedHelpers/typeGuards'
 import { TagContainer } from '@monorail/visualComponents/tags/Tag'
 import { DetailsSize } from '@monorail/visualComponents/typography/detailsTypes'
@@ -85,27 +84,24 @@ type BBDetailsContainerProps = {
 type DetailsProps = BBDetailsContainerProps & {
   property: string
   value?: string | number
+  size?: DetailsSize
 }
 
-type DefaultProps = {
-  size: DetailsSize
-}
+export const Details: FC<DetailsProps> = props => {
+  const {
+    children,
+    cssOverrides,
+    size = DetailsSize.Default,
+    property,
+    value,
+  } = props
 
-export const Details: FCwDP<DetailsProps, DefaultProps> = ({
-  children,
-  cssOverrides,
-  size,
-  property,
-  value,
-}) => (
-  <DetailsContainer cssOverrides={cssOverrides}>
-    <DetailsProperty size={size}>{property}</DetailsProperty>
-    {!isNil(value) && <DetailsValue size={size}>{value}</DetailsValue>}
+  return (
+    <DetailsContainer cssOverrides={cssOverrides}>
+      <DetailsProperty size={size}>{property}</DetailsProperty>
+      {!isNil(value) && <DetailsValue size={size}>{value}</DetailsValue>}
 
-    {children}
-  </DetailsContainer>
-)
-
-Details.defaultProps = {
-  size: DetailsSize.Default,
+      {children}
+    </DetailsContainer>
+  )
 }

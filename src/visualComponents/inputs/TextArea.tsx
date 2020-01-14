@@ -76,9 +76,9 @@ export const TextAreaInput = styled.textarea<TextAreaInputProps>(
         overflow: hidden;
       `};
 
-    /* 
-      Remove :-moz-ui-invalid styles so that invalid form states look similar across browsers 
-      https://developer.mozilla.org/en-US/docs/Web/CSS/:-moz-ui-invalid 
+    /*
+      Remove :-moz-ui-invalid styles so that invalid form states look similar across browsers
+      https://developer.mozilla.org/en-US/docs/Web/CSS/:-moz-ui-invalid
     */
     :-moz-ui-invalid {
       box-shadow: none;

@@ -25,19 +25,20 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+// Property Styles
 const propertySizeStyles = {
-  [_detailsTypes.DetailsSize.Compact]: _styledComponents.css`
+  [_detailsTypes.DetailsSize.Compact]: (0, _styledComponents.css)`
     ${(0, _exports.typography)(500, _exports.FontSizes.Micro)};
 
     color: ${(0, _theme.getThemeColor)(_theme.ThemeColors.Text500)};
     text-transform: uppercase;
   `,
-  [_detailsTypes.DetailsSize.Default]: _styledComponents.css`
+  [_detailsTypes.DetailsSize.Default]: (0, _styledComponents.css)`
     ${(0, _exports.typography)(500, _exports.FontSizes.Micro)};
 
     color: ${(0, _theme.getThemeColor)(_theme.ThemeColors.Text700)};
   `,
-  [_detailsTypes.DetailsSize.Large]: _styledComponents.css`
+  [_detailsTypes.DetailsSize.Large]: (0, _styledComponents.css)`
     ${(0, _exports.typography)(700, _exports.FontSizes.Micro)};
 
     color: ${(0, _theme.getThemeColor)(_theme.ThemeColors.Text700)};
@@ -46,7 +47,7 @@ const propertySizeStyles = {
 
 const DetailsProperty = _styledComponents.default.h2(({
   size
-}) => _styledComponents.css`
+}) => (0, _styledComponents.css)`
     ${propertySizeStyles[size]};
 
     margin: 0;
@@ -54,17 +55,17 @@ const DetailsProperty = _styledComponents.default.h2(({
 
 
 const valueSizeStyles = {
-  [_detailsTypes.DetailsSize.Compact]: _styledComponents.css`
+  [_detailsTypes.DetailsSize.Compact]: (0, _styledComponents.css)`
     ${(0, _exports.typography)(600, _exports.FontSizes.Title5)};
 
     color: ${(0, _theme.getThemeColor)(_theme.ThemeColors.Text700)};
   `,
-  [_detailsTypes.DetailsSize.Default]: _styledComponents.css`
+  [_detailsTypes.DetailsSize.Default]: (0, _styledComponents.css)`
     ${(0, _exports.typography)(200, _exports.FontSizes.Title3)};
 
     color: ${(0, _theme.getThemeColor)(_theme.ThemeColors.Text900)};
   `,
-  [_detailsTypes.DetailsSize.Large]: _styledComponents.css`
+  [_detailsTypes.DetailsSize.Large]: (0, _styledComponents.css)`
     ${(0, _exports.typography)(200, _exports.FontSizes.Title1)};
 
     color: ${(0, _theme.getThemeColor)(_theme.ThemeColors.Text900)};
@@ -73,7 +74,7 @@ const valueSizeStyles = {
 
 const DetailsValue = _styledComponents.default.h1(({
   size
-}) => _styledComponents.css`
+}) => (0, _styledComponents.css)`
     ${valueSizeStyles[size]};
 
     margin: 0;
@@ -81,7 +82,7 @@ const DetailsValue = _styledComponents.default.h1(({
 
 const DetailsContainer = _styledComponents.default.div(({
   cssOverrides
-}) => _styledComponents.css`
+}) => (0, _styledComponents.css)`
     ${(0, _exports.flexFlow)()};
 
     ${_Tag.TagContainer} {
@@ -91,21 +92,21 @@ const DetailsContainer = _styledComponents.default.div(({
     ${cssOverrides};
   `);
 
-const Details = ({
-  children,
-  cssOverrides,
-  size,
-  property,
-  value
-}) => _react.default.createElement(DetailsContainer, {
-  cssOverrides: cssOverrides
-}, _react.default.createElement(DetailsProperty, {
-  size: size
-}, property), !(0, _typeGuards.isNil)(value) && _react.default.createElement(DetailsValue, {
-  size: size
-}, value), children);
+const Details = props => {
+  const {
+    children,
+    cssOverrides,
+    size = _detailsTypes.DetailsSize.Default,
+    property,
+    value
+  } = props;
+  return _react.default.createElement(DetailsContainer, {
+    cssOverrides: cssOverrides
+  }, _react.default.createElement(DetailsProperty, {
+    size: size
+  }, property), !(0, _typeGuards.isNil)(value) && _react.default.createElement(DetailsValue, {
+    size: size
+  }, value), children);
+};
 
 exports.Details = Details;
-Details.defaultProps = {
-  size: _detailsTypes.DetailsSize.Default
-};

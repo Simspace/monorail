@@ -1,11 +1,9 @@
+import { FC } from 'react';
 import { AppName } from '@monorail/helpers/exports';
-import { FCwDP } from '@monorail/sharedHelpers/react';
-declare type DefaultProps = {
-    iconLeft: string | AppName;
-    iconRight: string | AppName;
-};
-declare type RequiredProps = {
+declare type Props = {
     title: string;
+    iconLeft?: string | AppName;
+    iconRight?: string | AppName;
 };
-export declare const SectionHeader: FCwDP<RequiredProps, DefaultProps>;
+export declare const SectionHeader: FC<Props>;
 export {};

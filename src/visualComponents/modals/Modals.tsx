@@ -169,9 +169,9 @@ export const fullScreenModalCloseAnimation = keyframes`
 export const overlayOpenAnimation = keyframes`
   from {
     opacity: 0;
-  
+
   }
-  
+
   to {
     opacity: 0.9999;
   }
@@ -180,9 +180,9 @@ export const overlayOpenAnimation = keyframes`
 export const overlayCloseAnimation = keyframes`
   from {
     opacity: 0.9999;
-  
+
   }
-  
+
   to {
     opacity: 0;
   }
@@ -399,7 +399,9 @@ export const BBModalHeader: StatelessComponent<BBModalHeaderProps> = ({
         </BBModalHeaderTitle>
         {headerRowChildren}
         {iconRight && <StyledIconRight icon={iconRight} />}
-        {size !== ModalSize.Mini && onClose && customCloseButton ? (
+        {size !== ModalSize.Mini &&
+        onClose &&
+        customCloseButton !== undefined ? (
           customCloseButton
         ) : (
           <DefaultCloseButton

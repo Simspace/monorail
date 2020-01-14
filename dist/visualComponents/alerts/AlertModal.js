@@ -29,23 +29,26 @@ var _Text = require("../typography/Text");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+/*
+ * Styles
+ */
 const alertModalStyles = {
-  [_alertType.AlertType.Error]: _styledComponents2.css`
+  [_alertType.AlertType.Error]: (0, _styledComponents2.css)`
     ${_Modals.BBModalHeaderContainer} {
       background: ${(0, _color.getColor)(_color.Colors.Error)};
     }
   `,
-  [_alertType.AlertType.Warning]: _styledComponents2.css`
+  [_alertType.AlertType.Warning]: (0, _styledComponents2.css)`
     ${_Modals.BBModalHeaderContainer} {
       background: ${(0, _color.getColor)(_color.Colors.Warning)};
     }
   `,
-  [_alertType.AlertType.Success]: _styledComponents2.css`
+  [_alertType.AlertType.Success]: (0, _styledComponents2.css)`
     ${_Modals.BBModalHeaderContainer} {
       background: ${(0, _color.getColor)(_color.Colors.Success)};
     }
   `,
-  [_alertType.AlertType.Info]: _styledComponents2.css`
+  [_alertType.AlertType.Info]: (0, _styledComponents2.css)`
     ${_Modals.BBModalHeaderContainer} {
       background: ${(0, _color.getColor)(_color.Colors.Info)};
     }
@@ -70,22 +73,22 @@ const headerTitle = {
 var _StyledMediumModal =
 /*#__PURE__*/
 (0, _styledComponents.default)(_MediumModal.MediumModal).withConfig({
-  displayName: "Alerts___StyledMediumModal",
-  componentId: "sc-1hwdeuz-0"
+  displayName: "AlertModal___StyledMediumModal",
+  componentId: "sc-14c9sxu-0"
 })(["", ""], p => p._css);
 
 var _StyledBBModalContent =
 /*#__PURE__*/
 (0, _styledComponents.default)(_Modals.BBModalContent).withConfig({
-  displayName: "Alerts___StyledBBModalContent",
-  componentId: "sc-1hwdeuz-1"
+  displayName: "AlertModal___StyledBBModalContent",
+  componentId: "sc-14c9sxu-1"
 })(["padding:24px;"]);
 
 var _StyledButton =
 /*#__PURE__*/
 (0, _styledComponents.default)(_Button.Button).withConfig({
-  displayName: "Alerts___StyledButton",
-  componentId: "sc-1hwdeuz-2"
+  displayName: "AlertModal___StyledButton",
+  componentId: "sc-14c9sxu-2"
 })(["margin-right:8px;"]);
 
 /*
@@ -94,26 +97,28 @@ var _StyledButton =
 const AlertModal = props => {
   const {
     alertType,
+    children,
     closingAnimationCompleted,
+    disabled,
     headerText,
     isOpen,
     onClick,
     onSubmit,
-    position,
     primaryButtonText,
     secondaryButtonText,
     subtitleText,
     titleText,
-    togglePopOver
+    togglePopOver,
+    zIndex
   } = props;
   return _react.default.createElement(_StyledMediumModal, {
     onClick: onClick,
     closingAnimationCompleted: closingAnimationCompleted,
-    position: position,
     togglePopOver: togglePopOver,
     title: headerText || headerTitle[alertType],
     isOpen: isOpen,
     iconLeft: alertIcon[alertType],
+    zIndex: zIndex,
     _css: alertModalStyles[alertType]
   }, _react.default.createElement(_StyledBBModalContent, null, _react.default.createElement(_Text.Text, {
     fontSize: _typography.FontSizes.Title4,
@@ -122,11 +127,12 @@ const AlertModal = props => {
   }, titleText), _react.default.createElement(_Text.Text, {
     fontSize: _typography.FontSizes.Title5,
     fontWeight: 400,
-    margin: "8px 0 0 "
-  }, subtitleText)), _react.default.createElement(_Modals.BBModalFooter, null, secondaryButtonText && _react.default.createElement(_StyledButton, {
+    margin: "8px 0 0"
+  }, subtitleText), children), _react.default.createElement(_Modals.BBModalFooter, null, secondaryButtonText && _react.default.createElement(_StyledButton, {
     onClick: onClick,
     display: _buttonTypes.ButtonDisplay.Chromeless
   }, secondaryButtonText), primaryButtonText && _react.default.createElement(_Button.Button, {
+    disabled: disabled,
     onClick: () => {
       onSubmit();
       togglePopOver();

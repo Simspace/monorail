@@ -37,7 +37,7 @@ function _extends() { _extends = Object.assign || function (target) { for (var i
 
 const MenuContainer = _styledComponents2.default.div(({
   width
-}) => _styledComponents2.css`
+}) => (0, _styledComponents2.css)`
     ${(0, _borderRadius.borderRadius)(_borderRadius.BorderRadius.Medium)};
     ${(0, _flex.flexFlow)()};
     ${(0, _elevation.getElevationShadow)(_elevation.ElevationRange.Elevation6)};
@@ -75,18 +75,19 @@ var _StyledMenuContent =
   componentId: "sc-2wfm6w-1"
 })(["", ""], p => p._css4);
 
-const Menu = ({
-  children,
-  closingAnimationCompleted,
-  isOpen,
-  onClick,
-  position,
-  togglePopOver,
-  width,
-  zIndex,
-  cssOverrides,
-  ...domProps
-}) => {
+const Menu = props => {
+  const {
+    children,
+    closingAnimationCompleted,
+    isOpen,
+    onClick,
+    position,
+    togglePopOver,
+    width,
+    zIndex,
+    cssOverrides,
+    ...domProps
+  } = props;
   const menuRef = (0, _react.useRef)(null);
   const [menuHeight, setMenuHeight] = (0, _react.useState)(0);
   const [menuWidth, setMenuWidth] = (0, _react.useState)(0);
@@ -150,6 +151,3 @@ const Menu = ({
 };
 
 exports.Menu = Menu;
-Menu.defaultProps = {
-  zIndex: 9998
-};

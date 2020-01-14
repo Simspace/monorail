@@ -13,6 +13,7 @@ export enum ZIndexNodeName {
   CardBackground = 'CardBackground',
   CardShadow = 'CardShadow',
   Overlay = 'Overlay',
+  Modal = 'Modal',
 }
 
 export const zIndexValue = (nodeName: ZIndexNodeName): number => {
@@ -30,8 +31,10 @@ export const zIndexValue = (nodeName: ZIndexNodeName): number => {
       return -5
     case ZIndexNodeName.CardShadow:
       return -10
-    case ZIndexNodeName.Overlay:
+    case ZIndexNodeName.Modal:
       return 9990
+    case ZIndexNodeName.Overlay:
+      return 9998
     case ZIndexNodeName.FramedIcon:
     case ZIndexNodeName.CardBody:
     default:

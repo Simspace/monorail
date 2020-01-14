@@ -1,13 +1,13 @@
-import { FCwDP } from '@monorail/sharedHelpers/react';
+import { FC } from 'react';
 import { CommonComponentType } from '@monorail/types';
 import { ButtonDisplay, ButtonsBarMode, ButtonSize } from '@monorail/visualComponents/buttons/buttonTypes';
 /**
  * Buttons Bar Props
  */
-declare type ButtonsBarProps = {
-    display: ButtonDisplay;
-    size: ButtonSize;
-    mode: ButtonsBarMode;
+declare type ButtonsBarProps = CommonComponentType & {
+    display?: ButtonDisplay;
+    size?: ButtonSize;
+    mode?: ButtonsBarMode;
 };
 declare type ButtonsBarContainerProps = CommonComponentType & {
     mode: ButtonsBarMode;
@@ -21,5 +21,5 @@ export declare const ToolbarsContainer: import("styled-components").StyledCompon
 /**
  * Buttons Bar
  */
-export declare const ButtonsBar: FCwDP<CommonComponentType, ButtonsBarProps>;
+export declare const ButtonsBar: FC<ButtonsBarProps>;
 export {};

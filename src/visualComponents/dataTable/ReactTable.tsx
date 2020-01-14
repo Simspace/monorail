@@ -655,7 +655,7 @@ export const MonorailReactTableOverrides: Partial<TableProps> = {
     <TableComponent {...props} />
   ),
   TbodyComponent: (
-    props: PropsWithChildren<{ style: { [key: string]: number | string } }>,
+    props: PropsWithChildren<{ style?: { [key: string]: number | string } }>,
   ) => <TBodyComponent {...props} />,
   TdComponent: (props: PropsWithChildren<TdComponentProps>) => (
     <TdComponent {...props} />
@@ -827,7 +827,7 @@ export interface Filter {
   pivotId?: string
 }
 
-type RowInfo<I> = {
+export type RowInfo<I> = {
   /** Materialized row of data */
   row: unknown
 

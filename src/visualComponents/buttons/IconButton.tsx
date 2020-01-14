@@ -1,4 +1,4 @@
-import React, { ReactType } from 'react'
+import React, { FC } from 'react'
 import { SimpleInterpolation } from 'styled-components'
 import { Omit } from 'typelevel-ts'
 
@@ -6,15 +6,15 @@ import { baseIconButtonChromelessStyles } from '@monorail/helpers/baseStyles'
 import { BorderRadius, borderRadius } from '@monorail/helpers/borderRadius'
 import styled, { css } from '@monorail/helpers/styled-components'
 import { getThemeColor, Mode, ThemeColors } from '@monorail/helpers/theme'
-import { FCwDP } from '@monorail/sharedHelpers/react'
 import { CssOverridesType } from '@monorail/types'
 import {
   Button,
-  buttonDefaultProps,
   ButtonProps,
+  StyledButtonProps,
 } from '@monorail/visualComponents/buttons/Button'
 import {
   ButtonDisplay,
+  ButtonMode,
   ButtonSize,
   IconButtonShape,
 } from '@monorail/visualComponents/buttons/buttonTypes'
@@ -91,59 +91,62 @@ const iconButtonCSS = ({
   ${cssOverrides};
 `
 
-export const StyledIconButton = styled(Button)``
+export const StyledIconButton = styled(Button)<StyledButtonProps>``
 
-type Props = {
+export type IconButtonProps = Omit<ButtonProps, 'leftIcon' | 'rightIcon'> & {
+  shape?: IconButtonShape
+  iconCss?: SimpleInterpolation
   icon: string
-  passedAs?: ReactType
 }
 
-type DefaultProps = Omit<ButtonProps, 'leftIcon' | 'rightIcon'> & {
-  shape: IconButtonShape
-  iconCss: SimpleInterpolation
-}
+export const IconButton: FC<IconButtonProps> = props => {
+  const {
+    className = '',
+    disabled = false,
+    display = ButtonDisplay.Primary,
+    isActive = false,
+    mode = ButtonMode.Default,
+    onClick = () => {},
+    pressed = false,
+    size = ButtonSize.Default,
+    type = 'button',
+    cssOverrides = '',
+    icon = '',
+    iconCss = css``,
+    passedAs,
+    shape = IconButtonShape.Default,
+    status,
+    ...domProps
+  } = props
 
-export type IconButtonProps = Props & DefaultProps & Pick<ButtonProps, 'status'>
-
-export const IconButton: FCwDP<Props, DefaultProps> = ({
-  cssOverrides,
-  display,
-  icon,
-  iconCss,
-  isActive,
-  passedAs,
-  pressed,
-  shape,
-  size,
-  status,
-  ...domProps
-}) => (
-  <StyledIconButton
-    {...domProps}
-    as={passedAs}
-    display={display}
-    pressed={isActive || pressed}
-    size={size}
-    status={status}
-    cssOverrides={iconButtonCSS({
-      display,
-      size,
-      shape,
-      cssOverrides,
-      isActive,
-    })}
-  >
-    <Icon
-      icon={icon}
-      css={css`
-        ${iconCss}
-      `}
-    />
-  </StyledIconButton>
-)
-
-IconButton.defaultProps = {
-  ...buttonDefaultProps,
-  shape: IconButtonShape.Default,
-  iconCss: css``,
+  return (
+    <StyledIconButton
+      {...domProps}
+      className={className}
+      disabled={disabled}
+      passedAs={passedAs}
+      display={display}
+      isActive={isActive}
+      mode={mode}
+      onClick={onClick}
+      pressed={isActive || pressed}
+      size={size}
+      status={status}
+      type={type}
+      css={iconButtonCSS({
+        display,
+        size,
+        shape,
+        cssOverrides,
+        isActive,
+      })}
+    >
+      <Icon
+        icon={icon}
+        css={css`
+          ${iconCss}
+        `}
+      />
+    </StyledIconButton>
+  )
 }

@@ -36,7 +36,7 @@ const ButtonFooterContainer = _styledComponents.default.div`
 
 const ButtonFooterContent = _styledComponents.default.div(({
   justifyContent
-}) => _styledComponents.css`
+}) => (0, _styledComponents.css)`
     ${(0, _flex.flexFlow)('row')};
     ${(0, _size.pageSizePadding)()};
 

@@ -27,9 +27,21 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
+// TODO(unsafe-any): Fix unsafe anys
+// tslint:disable no-unsafe-any
+
+/*
+ *
+ * List Container
+ *
+ */
+
+/*
+ * Styles
+ */
 const BBListContainer = _styledComponents2.default.div(({
   cssOverrides
-}) => _styledComponents2.css`
+}) => (0, _styledComponents2.css)`
     ${(0, _exports.flexFlow)()};
 
     overflow-y: auto;
@@ -73,9 +85,9 @@ exports.ListContainer = ListContainer;
  */
 const ListItemText = _styledComponents2.default.div(({
   cssOverrides
-}) => _styledComponents2.css`
+}) => (0, _styledComponents2.css)`
     /* This is row wrap instead of column nowrap because IE11 doesn't give the item height when it is a column. */
-    ${(0, _exports.flexFlow)('row', 'wrap')};
+    ${(0, _exports.flexFlow)('row', 'wrap')}
 
     overflow: hidden;
     width: 100%;
@@ -87,7 +99,7 @@ exports.ListItemText = ListItemText;
 
 const ListItemPrimaryText = _styledComponents2.default.span(({
   cssOverrides
-}) => _styledComponents2.css`
+}) => (0, _styledComponents2.css)`
     ${(0, _exports.typography)(500, _exports.FontSizes.Title5, 'auto 6px')};
     ${_exports.ellipsis};
 
@@ -101,7 +113,7 @@ exports.ListItemPrimaryText = ListItemPrimaryText;
 
 const ListItemSecondaryText = _styledComponents2.default.span(({
   cssOverrides
-}) => _styledComponents2.css`
+}) => (0, _styledComponents2.css)`
     ${(0, _exports.typography)(500, _exports.FontSizes.Micro, 'auto 6px')};
     ${_exports.ellipsis};
 
@@ -118,7 +130,7 @@ const ListItemGraphic = (0, _styledComponents2.default)(({
 }) => _react.default.createElement(_Icon.Icon, domProps))(({
   dense,
   cssOverrides
-}) => _styledComponents2.css`
+}) => (0, _styledComponents2.css)`
     && {
       margin: auto ${dense ? 4 : 6}px;
       color: inherit;
@@ -137,8 +149,8 @@ const ListItem = _styledComponents2.default.div(({
   onClick,
   size = _exports.Sizes.DP24,
   isLink = false
-}) => _styledComponents2.css`
-    ${!(0, _typeGuards.isNil)(onClick) || isLink ? _styledComponents2.css`
+}) => (0, _styledComponents2.css)`
+    ${!(0, _typeGuards.isNil)(onClick) || isLink ? (0, _styledComponents2.css)`
           ${(0, _exports.baseFocusStyles)()};
           ${(0, _exports.baseChromelessStyles)()}
           ${_exports.buttonTransition};
@@ -155,12 +167,12 @@ const ListItem = _styledComponents2.default.div(({
             color: ${(0, _theme.getThemeColor)(isLink ? _theme.ThemeColors.ActionPrimary : _theme.ThemeColors.Text900)};
           }
           /* stylelint-enable selector-type-no-unknown */
-        ` : _styledComponents2.css`
+        ` : (0, _styledComponents2.css)`
           color: ${(0, _theme.getThemeColor)(_theme.ThemeColors.Text900)};
           background: transparent;
         `};
 
-    ${disabled && _styledComponents2.css`
+    ${disabled && (0, _styledComponents2.css)`
         opacity: 0.54;
         pointer-events: none;
       `};
@@ -197,43 +209,36 @@ ListItem.defaultProps = {
   activeClassName: 'is-active'
 };
 
-const SimpleListItem = ({
-  leftIcon,
-  rightIcon,
-  primaryText,
-  secondaryText,
-  children,
-  dense,
-  meta,
-  size,
-  onClick,
-  isLink,
-  passedAs,
-  ...domProps
-}) => _react.default.createElement(ListItem, _extends({
-  dense: dense,
-  size: size,
-  onClick: onClick,
-  isLink: isLink,
-  as: passedAs
-}, domProps), !(0, _typeGuards.isEmptyString)(leftIcon) && _react.default.createElement(ListItemGraphic, {
-  icon: leftIcon,
-  dense: dense
-}), (0, _typeGuards.isEmptyString)(secondaryText) || (0, _typeGuards.isNil)(meta) ? _react.default.createElement(ListItemPrimaryText, null, primaryText) : _react.default.createElement(ListItemText, null, _react.default.createElement(ListItemPrimaryText, null, primaryText), (0, _typeGuards.isEmptyString)(secondaryText) ? null : _react.default.createElement(ListItemSecondaryText, null, secondaryText), meta), !(0, _typeGuards.isEmptyString)(rightIcon) && _react.default.createElement(ListItemGraphic, {
-  icon: rightIcon,
-  dense: dense
-}), children); // tslint:enable
-
+const SimpleListItem = props => {
+  const {
+    leftIcon = '',
+    rightIcon = '',
+    primaryText = '',
+    secondaryText = '',
+    children,
+    disabled = false,
+    dense = false,
+    meta = '',
+    size = _exports.Sizes.DP24,
+    onClick,
+    isLink = false,
+    passedAs,
+    ...domProps
+  } = props;
+  return _react.default.createElement(ListItem, _extends({
+    dense: dense,
+    size: size,
+    onClick: onClick,
+    isLink: isLink,
+    as: passedAs,
+    disabled: disabled
+  }, domProps), !(0, _typeGuards.isEmptyString)(leftIcon) && _react.default.createElement(ListItemGraphic, {
+    icon: leftIcon,
+    dense: dense
+  }), (0, _typeGuards.isEmptyString)(secondaryText) || (0, _typeGuards.isNil)(meta) ? _react.default.createElement(ListItemPrimaryText, null, primaryText) : _react.default.createElement(ListItemText, null, _react.default.createElement(ListItemPrimaryText, null, primaryText), (0, _typeGuards.isEmptyString)(secondaryText) ? null : _react.default.createElement(ListItemSecondaryText, null, secondaryText), meta), !(0, _typeGuards.isEmptyString)(rightIcon) && _react.default.createElement(ListItemGraphic, {
+    icon: rightIcon,
+    dense: dense
+  }), children);
+};
 
 exports.SimpleListItem = SimpleListItem;
-SimpleListItem.defaultProps = {
-  dense: false,
-  disabled: false,
-  leftIcon: '',
-  primaryText: '',
-  rightIcon: '',
-  secondaryText: '',
-  size: _exports.Sizes.DP24,
-  meta: '',
-  isLink: false
-};

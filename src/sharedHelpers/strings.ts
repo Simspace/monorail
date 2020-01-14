@@ -1,5 +1,5 @@
 import { head, last } from 'fp-ts/lib/Array'
-import { none, Option, some } from 'fp-ts/lib/Option'
+import { fromNullable, none, Option, some } from 'fp-ts/lib/Option'
 
 import { o } from './fp-ts-ext/function'
 import { getOrEmptyString } from './fp-ts-ext/Option'
@@ -90,4 +90,11 @@ export const includesNoncase = (target: string) => (source: string) => {
     .trim()
     .toLowerCase()
     .includes(target.trim().toLowerCase())
+}
+
+export const capitalizeFirstLetter = (str: string): string => {
+  return fromNullable(str[0]).fold(
+    '',
+    firstLetter => firstLetter.toUpperCase() + str.slice(1).toLowerCase(),
+  )
 }

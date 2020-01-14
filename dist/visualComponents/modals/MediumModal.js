@@ -32,20 +32,21 @@ var _StyledBBModalBackground =
   componentId: "sc-16b98i7-0"
 })(["", ""], p => p._css);
 
-const MediumModal = ({
-  isOpen,
-  onClick,
-  children,
-  title,
-  iconLeft,
-  togglePopOver,
-  headerChildren,
-  customCloseButton,
-  headerStyles,
-  closingAnimationCompleted,
-  zIndex,
-  ...otherProps
-}) => {
+const MediumModal = props => {
+  const {
+    isOpen,
+    onClick,
+    children,
+    title,
+    iconLeft,
+    togglePopOver,
+    headerChildren,
+    customCloseButton,
+    headerStyles,
+    closingAnimationCompleted,
+    zIndex = (0, _zIndex.zIndexValue)(_zIndex.ZIndexNodeName.Modal),
+    ...otherProps
+  } = props;
   const {
     modalBackgroundRef,
     isRendered
@@ -75,6 +76,3 @@ const MediumModal = ({
 };
 
 exports.MediumModal = MediumModal;
-MediumModal.defaultProps = {
-  zIndex: (0, _zIndex.zIndexValue)(_zIndex.ZIndexNodeName.Overlay)
-};

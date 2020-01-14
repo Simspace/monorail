@@ -1,5 +1,6 @@
 import React, {
   Children,
+  FC,
   MouseEvent,
   ReactNode,
   ReactType,
@@ -20,7 +21,6 @@ import {
 } from '@monorail/helpers/exports'
 import styled, { css } from '@monorail/helpers/styled-components'
 import { getThemeColor, ThemeColors } from '@monorail/helpers/theme'
-import { FCwDP } from '@monorail/sharedHelpers/react'
 import { isEmptyString, isNil } from '@monorail/sharedHelpers/typeGuards'
 import { CommonComponentType, LinkProps } from '@monorail/types'
 import { Icon, IconProps } from '@monorail/visualComponents/icon/Icon'
@@ -117,7 +117,7 @@ type ListItemProps = LinkProps &
 export const ListItemText = styled.div<CommonComponentType>(
   ({ cssOverrides }) => css`
     /* This is row wrap instead of column nowrap because IE11 doesn't give the item height when it is a column. */
-    ${flexFlow('row', 'wrap')};
+    ${flexFlow('row', 'wrap')}
 
     overflow: hidden;
     width: 100%;
@@ -234,79 +234,70 @@ ListItem.defaultProps = {
   activeClassName: 'is-active',
 }
 
-type PassedProps = Omit<CommonComponentType, 'as'> &
+export type PassedProps = Omit<CommonComponentType, 'as'> &
   LinkProps & { passedAs?: ReactType }
 
-type DefaultProps = {
-  dense: boolean
-  disabled: boolean
-  leftIcon: string
+export type SimpleListItemProps = PassedProps & {
+  dense?: boolean
+  disabled?: boolean
+  leftIcon?: string
   onClick?: (event: MouseEvent<HTMLDivElement>) => void
-  primaryText: ReactNode
-  rightIcon: string
-  secondaryText: ReactNode
-  size: Sizes
-  meta: ReactNode
-  isLink: boolean
+  primaryText?: ReactNode
+  rightIcon?: string
+  secondaryText?: ReactNode
+  size?: Sizes
+  meta?: ReactNode
+  isLink?: boolean
 }
 
-export type SimpleListItemProps = PassedProps & DefaultProps
+export const SimpleListItem: FC<SimpleListItemProps> = props => {
+  const {
+    leftIcon = '',
+    rightIcon = '',
+    primaryText = '',
+    secondaryText = '',
+    children,
+    disabled = false,
+    dense = false,
+    meta = '',
+    size = Sizes.DP24,
+    onClick,
+    isLink = false,
+    passedAs,
+    ...domProps
+  } = props
 
-export const SimpleListItem: FCwDP<PassedProps, DefaultProps> = ({
-  leftIcon,
-  rightIcon,
-  primaryText,
-  secondaryText,
-  children,
-  dense,
-  meta,
-  size,
-  onClick,
-  isLink,
-  passedAs,
-  ...domProps
-}) => (
-  <ListItem
-    dense={dense}
-    size={size}
-    onClick={onClick}
-    isLink={isLink}
-    as={passedAs}
-    {...domProps}
-  >
-    {!isEmptyString(leftIcon) && (
-      <ListItemGraphic icon={leftIcon} dense={dense} />
-    )}
+  return (
+    <ListItem
+      dense={dense}
+      size={size}
+      onClick={onClick}
+      isLink={isLink}
+      as={passedAs}
+      disabled={disabled}
+      {...domProps}
+    >
+      {!isEmptyString(leftIcon) && (
+        <ListItemGraphic icon={leftIcon} dense={dense} />
+      )}
 
-    {isEmptyString(secondaryText) || isNil(meta) ? (
-      <ListItemPrimaryText>{primaryText}</ListItemPrimaryText>
-    ) : (
-      <ListItemText>
+      {isEmptyString(secondaryText) || isNil(meta) ? (
         <ListItemPrimaryText>{primaryText}</ListItemPrimaryText>
-        {isEmptyString(secondaryText) ? null : (
-          <ListItemSecondaryText>{secondaryText}</ListItemSecondaryText>
-        )}
+      ) : (
+        <ListItemText>
+          <ListItemPrimaryText>{primaryText}</ListItemPrimaryText>
+          {isEmptyString(secondaryText) ? null : (
+            <ListItemSecondaryText>{secondaryText}</ListItemSecondaryText>
+          )}
 
-        {meta}
-      </ListItemText>
-    )}
+          {meta}
+        </ListItemText>
+      )}
 
-    {!isEmptyString(rightIcon) && (
-      <ListItemGraphic icon={rightIcon} dense={dense} />
-    )}
-    {children}
-  </ListItem>
-)
-// tslint:enable
-
-SimpleListItem.defaultProps = {
-  dense: false,
-  disabled: false,
-  leftIcon: '',
-  primaryText: '',
-  rightIcon: '',
-  secondaryText: '',
-  size: Sizes.DP24,
-  meta: '',
-  isLink: false,
+      {!isEmptyString(rightIcon) && (
+        <ListItemGraphic icon={rightIcon} dense={dense} />
+      )}
+      {children}
+    </ListItem>
+  )
 }

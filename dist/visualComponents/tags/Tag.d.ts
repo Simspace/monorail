@@ -1,12 +1,11 @@
-import { FCwDP } from '@monorail/sharedHelpers/react';
+import { FC } from 'react';
 export declare const TagContainer: import("styled-components").StyledComponent<"div", any, {
     doesntHaveLabel: boolean;
 }, never>;
 declare type Props = {
     icon: string;
+    label?: string;
+    title?: string;
 };
-declare type DefaultProps = {
-    label: string;
-};
-export declare const Tag: FCwDP<Props, DefaultProps>;
+export declare const Tag: FC<Props>;
 export {};

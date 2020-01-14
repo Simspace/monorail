@@ -40,6 +40,7 @@ export declare enum Colors {
     CatalogAlt = "catalogAlt",
     Dashboard = "dashboard",
     Range = "range",
+    RangeAlt = "rangeAlt",
     Tracker = "tracker",
     TrackerAlt = "trackerAlt",
     Hardhat = "hardhat",
@@ -50,13 +51,20 @@ export declare enum Colors {
     TechOpsAlt = "techopsAlt",
     Repo = "repo",
     LMS = "externalLms",
+    MyOrg = "myOrg",
+    MyOrgAlt = "myOrgAlt",
     Green = "green",
     Red = "red",
     Amber = "amber",
     Error = "error",
     Warning = "warning",
     Success = "success",
-    Info = "info"
+    Info = "info",
+    High = "high",
+    HighModerate = "highModerate",
+    Moderate = "moderate",
+    LowModerate = "lowModerate",
+    Low = "low"
 }
 declare type HSLAMapType = {
     h: number;

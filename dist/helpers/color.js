@@ -49,6 +49,7 @@ exports.Colors = Colors;
   Colors["CatalogAlt"] = "catalogAlt";
   Colors["Dashboard"] = "dashboard";
   Colors["Range"] = "range";
+  Colors["RangeAlt"] = "rangeAlt";
   Colors["Tracker"] = "tracker";
   Colors["TrackerAlt"] = "trackerAlt";
   Colors["Hardhat"] = "hardhat";
@@ -59,6 +60,8 @@ exports.Colors = Colors;
   Colors["TechOpsAlt"] = "techopsAlt";
   Colors["Repo"] = "repo";
   Colors["LMS"] = "externalLms";
+  Colors["MyOrg"] = "myOrg";
+  Colors["MyOrgAlt"] = "myOrgAlt";
   Colors["Green"] = "green";
   Colors["Red"] = "red";
   Colors["Amber"] = "amber";
@@ -66,6 +69,11 @@ exports.Colors = Colors;
   Colors["Warning"] = "warning";
   Colors["Success"] = "success";
   Colors["Info"] = "info";
+  Colors["High"] = "high";
+  Colors["HighModerate"] = "highModerate";
+  Colors["Moderate"] = "moderate";
+  Colors["LowModerate"] = "lowModerate";
+  Colors["Low"] = "low";
 })(Colors || (exports.Colors = Colors = {}));
 
 const colorHSLAMap = ({
@@ -281,6 +289,12 @@ const colorHSLAMap = ({
       a: alpha
     },
     [Colors.Range]: {
+      h: 257,
+      s: 54,
+      l: 45,
+      a: alpha
+    },
+    [Colors.RangeAlt]: {
       h: 37,
       s: 84,
       l: 50,
@@ -353,6 +367,18 @@ const colorHSLAMap = ({
       h: 196,
       s: 75,
       l: 50,
+      a: alpha
+    },
+    [Colors.MyOrg]: {
+      h: 181,
+      s: 88,
+      l: 29,
+      a: alpha
+    },
+    [Colors.MyOrgAlt]: {
+      h: 180,
+      s: 40,
+      l: 98,
       a: alpha
     },
     // Event Status
@@ -440,6 +466,37 @@ const colorHSLAMap = ({
       h: 219,
       s: 100,
       l: 54,
+      a: alpha
+    },
+    // Scores
+    [Colors.High]: {
+      h: 147,
+      s: 34,
+      l: 53,
+      a: alpha
+    },
+    [Colors.HighModerate]: {
+      h: 72,
+      s: 82,
+      l: 44,
+      a: alpha
+    },
+    [Colors.Moderate]: {
+      h: 45,
+      s: 100,
+      l: 51,
+      a: alpha
+    },
+    [Colors.LowModerate]: {
+      h: 31,
+      s: 87,
+      l: 60,
+      a: alpha
+    },
+    [Colors.Low]: {
+      h: 11,
+      s: 69,
+      l: 47,
       a: alpha
     }
   };

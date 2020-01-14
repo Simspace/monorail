@@ -48,16 +48,17 @@ var _StyledSelect =
 (0, _styledComponents.default)(_Select.Select).withConfig({
   displayName: "CheckboxSelect___StyledSelect",
   componentId: "sc-1v86zp0-2"
-})(["width:256px;"]);
+})(["pointer-events:", ";width:256px;"], p => p._css);
 
-const CheckboxSelect = ({
-  value,
-  label,
-  options,
-  onChange,
-  cssOverrides,
-  ...domProps
-}) => {
+const CheckboxSelect = props => {
+  const {
+    value,
+    label,
+    options,
+    onChange,
+    cssOverrides,
+    ...domProps
+  } = props;
   return _react.default.createElement(_StyledChoice, _extends({}, domProps, {
     type: "checkbox",
     checked: value ? value.enabled : false,
@@ -81,7 +82,8 @@ const CheckboxSelect = ({
         });
       }
     },
-    value: value ? value.value : ''
+    value: value ? value.value : '',
+    _css: !value.enabled ? 'none' : 'auto'
   }));
 };
 

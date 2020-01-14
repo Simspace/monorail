@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { FC } from 'react'
 import styled, { css } from 'styled-components'
 
 import {
@@ -8,7 +8,6 @@ import {
   FontSizes,
   getColor,
 } from '@monorail/helpers/exports'
-import { FCwDP } from '@monorail/sharedHelpers/react'
 import { isEmptyString } from '@monorail/sharedHelpers/typeGuards'
 import { CommonComponentType } from '@monorail/types'
 import { ButtonDisplay } from '@monorail/visualComponents/buttons/buttonTypes'
@@ -81,30 +80,26 @@ const ToastTileContainer = styled.div<{
  * Toast Tile
  */
 
-type ToastTileDefaultProps = {
-  level: AlertLevel
-  size: ToastSize
-  icon: string
+type ToastTileProps = {
+  level?: AlertLevel
+  size?: ToastSize
+  icon?: string
 }
 
-const ToastTile: FCwDP<{}, ToastTileDefaultProps> = ({ level, size, icon }) => (
-  <ToastTileContainer color={AlertColors[level]} size={size}>
-    <Icon
-      css={css`
-        color: ${getColor(Colors.White)};
-      `}
-      size={size === ToastSize.Small ? 16 : 24}
-      icon={isEmptyString(icon) ? AlertIcons[level] : icon}
-    />
-  </ToastTileContainer>
-)
-
-ToastTile.defaultProps = {
-  level: AlertLevel.Info,
-  size: ToastSize.Large,
-  icon: '',
+const ToastTile: FC<ToastTileProps> = props => {
+  const { level = AlertLevel.Info, size = ToastSize.Large, icon = '' } = props
+  return (
+    <ToastTileContainer color={AlertColors[level]} size={size}>
+      <Icon
+        css={css`
+          color: ${getColor(Colors.White)};
+        `}
+        size={size === ToastSize.Small ? 16 : 24}
+        icon={isEmptyString(icon) ? AlertIcons[level] : icon}
+      />
+    </ToastTileContainer>
+  )
 }
-
 /*
  * Toast Component
  */
@@ -112,58 +107,62 @@ ToastTile.defaultProps = {
 /*
  * Props
  */
-type Props = CommonComponentType & {
-  message: string
-}
-
-type DefaultProps = ToastTileDefaultProps & {
-  dismissible: boolean
-  title: string
-}
+type ToastProps = CommonComponentType &
+  ToastTileProps & {
+    message: string
+    dismissible?: boolean
+    title?: string
+  }
 
 /*
  * Component
  */
-export const Toast: FCwDP<Props, DefaultProps> = ({
-  dismissible,
-  level,
-  message,
-  title,
-  icon,
-  size,
-  ...otherProps
-}) => (
-  <BBCardBackground
-    hover={dismissible}
-    elevation={ElevationRange.Elevation8}
-    css={css`
-      border-radius: 0;
-    `}
-  >
-    <ToastContainer color={AlertColors[level]}>
-      <ToastTile icon={icon} size={size} level={level} />
+export const Toast: FC<ToastProps> = props => {
+  const {
+    dismissible,
+    level = AlertLevel.Info,
+    message,
+    title,
+    icon = '',
+    size = ToastSize.Large,
+    ...otherProps
+  } = props
 
-      <ToastDetails>
-        {!isEmptyString(title) && (
-          <Text fontSize={FontSizes.Title4} fontWeight={700} margin={'6px 0'}>
-            {title}
+  return (
+    <BBCardBackground
+      hover={dismissible}
+      elevation={ElevationRange.Elevation8}
+      css={css`
+        border-radius: 0;
+      `}
+    >
+      <ToastContainer color={AlertColors[level]}>
+        <ToastTile icon={icon} size={size} level={level} />
+
+        <ToastDetails>
+          {!isEmptyString(title) && (
+            <Text fontSize={FontSizes.Title4} fontWeight={700} margin={'6px 0'}>
+              {title}
+            </Text>
+          )}
+          <Text
+            fontSize={
+              isEmptyString(title) ? FontSizes.Title4 : FontSizes.Title5
+            }
+            fontWeight={400}
+          >
+            {message}
           </Text>
+        </ToastDetails>
+        {dismissible && (
+          <ToastClose>
+            <IconButton icon={'close'} display={ButtonDisplay.Secondary} />
+          </ToastClose>
         )}
-        <Text
-          fontSize={isEmptyString(title) ? FontSizes.Title4 : FontSizes.Title5}
-          fontWeight={400}
-        >
-          {message}
-        </Text>
-      </ToastDetails>
-      {dismissible && (
-        <ToastClose>
-          <IconButton icon={'close'} display={ButtonDisplay.Secondary} />
-        </ToastClose>
-      )}
-    </ToastContainer>
-  </BBCardBackground>
-)
+      </ToastContainer>
+    </BBCardBackground>
+  )
+}
 
 /*
  * Default Props

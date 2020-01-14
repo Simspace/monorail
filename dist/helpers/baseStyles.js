@@ -13,8 +13,8 @@ var _styledComponents = require("./styled-components");
 
 var _theme = require("./theme");
 
-const baseFocusStyles = (addPositionToParent = true) => _styledComponents.css`
-  ${addPositionToParent && _styledComponents.css`
+const baseFocusStyles = (addPositionToParent = true) => (0, _styledComponents.css)`
+  ${addPositionToParent && (0, _styledComponents.css)`
       position: relative;
     `};
 
@@ -49,7 +49,7 @@ const baseFocusStyles = (addPositionToParent = true) => _styledComponents.css`
 
 exports.baseFocusStyles = baseFocusStyles;
 
-const floatingOutlineStyles = (color = 'currentColor') => _styledComponents.css`
+const floatingOutlineStyles = (color = 'currentColor') => (0, _styledComponents.css)`
   /**
   * Using inner element for border to avoid width issue when compared with other base buttons styles
   */
@@ -67,7 +67,7 @@ const floatingOutlineStyles = (color = 'currentColor') => _styledComponents.css`
 
 exports.floatingOutlineStyles = floatingOutlineStyles;
 
-const floatingBackgroundStyles = (color = 'currentColor') => _styledComponents.css`
+const floatingBackgroundStyles = (color = 'currentColor') => (0, _styledComponents.css)`
   /**
   * Using inner element for border to avoid width issue when compared with other base buttons styles
   */
@@ -85,7 +85,7 @@ const floatingBackgroundStyles = (color = 'currentColor') => _styledComponents.c
 
 exports.floatingBackgroundStyles = floatingBackgroundStyles;
 
-const baseOutlineStyles = (color = _color.Colors.BrandLightBlue, focusColor = _color.Colors.BrandDarkBlue) => _styledComponents.css`
+const baseOutlineStyles = (color = _color.Colors.BrandLightBlue, focusColor = _color.Colors.BrandDarkBlue) => (0, _styledComponents.css)`
   background: transparent;
   border: 0;
   color: ${(0, _color.getColor)(color)};
@@ -109,7 +109,7 @@ const baseOutlineStyles = (color = _color.Colors.BrandLightBlue, focusColor = _c
 
 exports.baseOutlineStyles = baseOutlineStyles;
 
-const baseChromelessStyles = (color = _theme.ThemeColors.ActionSecondary) => _styledComponents.css`
+const baseChromelessStyles = (color = _theme.ThemeColors.ActionSecondary) => (0, _styledComponents.css)`
   background: transparent;
   border: 0;
 
@@ -125,7 +125,7 @@ const baseChromelessStyles = (color = _theme.ThemeColors.ActionSecondary) => _st
 
 exports.baseChromelessStyles = baseChromelessStyles;
 
-const baseIconButtonChromelessStyles = (isActive = false) => _styledComponents.css`
+const baseIconButtonChromelessStyles = (isActive = false) => (0, _styledComponents.css)`
   background: ${isActive ? (0, _theme.getThemeColor)(_theme.ThemeColors.PrimaryColor, 0.12) : 'transparent'};
   color: ${(0, _theme.getThemeColor)(isActive ? _theme.ThemeColors.Text900 : _theme.ThemeColors.Text600)};
   border: 0;
@@ -147,7 +147,7 @@ const baseIconButtonChromelessStyles = (isActive = false) => _styledComponents.c
 
 exports.baseIconButtonChromelessStyles = baseIconButtonChromelessStyles;
 
-const baseSecondaryStyles = (color = _theme.ThemeColors.ActionSecondary) => _styledComponents.css`
+const baseSecondaryStyles = (color = _theme.ThemeColors.ActionSecondary) => (0, _styledComponents.css)`
   background: ${(0, _theme.getThemeColor)(color, 0.12)};
   border: 0;
   color: ${(0, _theme.getThemeColor)(color)};
@@ -163,7 +163,7 @@ const baseSecondaryStyles = (color = _theme.ThemeColors.ActionSecondary) => _sty
 
 exports.baseSecondaryStyles = baseSecondaryStyles;
 
-const basePrimaryStyles = (backgroundColor = _theme.ThemeColors.ActionPrimary, color = _theme.ThemeColors.BackgroundSecondary) => _styledComponents.css`
+const basePrimaryStyles = (backgroundColor = _theme.ThemeColors.ActionPrimary, color = _theme.ThemeColors.BackgroundSecondary) => (0, _styledComponents.css)`
   background: ${(0, _theme.getThemeColor)(backgroundColor)};
   border: 0;
   color: ${(0, _theme.getThemeColor)(color)};
@@ -186,7 +186,7 @@ const basePrimaryStyles = (backgroundColor = _theme.ThemeColors.ActionPrimary, c
 
 exports.basePrimaryStyles = basePrimaryStyles;
 
-const baseButtonBarStyles = (color = _color.Colors.Black) => _styledComponents.css`
+const baseButtonBarStyles = (color = _color.Colors.Black) => (0, _styledComponents.css)`
   background: transparent;
   border: 0;
   color: ${(0, _color.getColor)(color, 0.32)};
@@ -204,7 +204,7 @@ const baseButtonBarStyles = (color = _color.Colors.Black) => _styledComponents.c
 
 exports.baseButtonBarStyles = baseButtonBarStyles;
 
-const baseToolBarStyles = (color = _color.Colors.Black) => _styledComponents.css`
+const baseToolBarStyles = (color = _color.Colors.Black) => (0, _styledComponents.css)`
   background-color: ${(0, _color.getColor)(color, 0.14)};
   border: 0;
   color: ${(0, _color.getColor)(color, 0.74)};
@@ -221,7 +221,7 @@ const baseToolBarStyles = (color = _color.Colors.Black) => _styledComponents.css
 `;
 
 exports.baseToolBarStyles = baseToolBarStyles;
-const baseDisabledStyles = _styledComponents.css`
+const baseDisabledStyles = (0, _styledComponents.css)`
   cursor: default;
   opacity: 0.4;
   pointer-events: none;
@@ -233,7 +233,7 @@ const baseDisabledStyles = _styledComponents.css`
   }
 `;
 exports.baseDisabledStyles = baseDisabledStyles;
-const baseErrorBorderStyles = _styledComponents.css`
+const baseErrorBorderStyles = (0, _styledComponents.css)`
   border-color: ${(0, _color.getColor)(_color.Colors.Red)};
 
   &:hover {
@@ -246,7 +246,7 @@ const baseErrorBorderStyles = _styledComponents.css`
   }
 `;
 exports.baseErrorBorderStyles = baseErrorBorderStyles;
-const baseErrorBackgroundStyles = _styledComponents.css`
+const baseErrorBackgroundStyles = (0, _styledComponents.css)`
   background: ${(0, _color.getColor)(_color.Colors.Red, 0.1)};
 
   &:hover,
@@ -257,7 +257,7 @@ const baseErrorBackgroundStyles = _styledComponents.css`
 `;
 exports.baseErrorBackgroundStyles = baseErrorBackgroundStyles;
 
-const baseHyperLinkStyles = (color = _theme.ThemeColors.ActionPrimary) => _styledComponents.css`
+const baseHyperLinkStyles = (color = _theme.ThemeColors.ActionPrimary) => (0, _styledComponents.css)`
   color: ${(0, _theme.getThemeColor)(color)};
 
   &:hover {

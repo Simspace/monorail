@@ -24,7 +24,8 @@ export declare enum ElevationRange {
     Elevation21 = "elevation21",
     Elevation22 = "elevation22",
     Elevation23 = "elevation23",
-    Elevation24 = "elevation24"
+    Elevation24 = "elevation24",
+    Section = "section"
 }
 export declare const getElevationBackground: (elevation: ElevationRange) => import("styled-components").FlattenInterpolation<import("styled-components").ThemeProps<GlobalAppThemeInterface>>;
 export declare const getElevationShadow: (elevation: ElevationRange) => import("styled-components").FlattenSimpleInterpolation;

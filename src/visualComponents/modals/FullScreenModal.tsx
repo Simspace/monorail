@@ -1,9 +1,8 @@
-import React, { ReactNode } from 'react'
+import React, { FC, ReactNode } from 'react'
 import { css } from 'styled-components'
 
 import { ZIndexNodeName, zIndexValue } from '@monorail/helpers/zIndex'
 import { PopOverChildProps } from '@monorail/metaComponents/popOver/PopOver'
-import { FCwDP } from '@monorail/sharedHelpers/react'
 import {
   BBModalBackground,
   BBModalHeader,
@@ -15,35 +14,33 @@ import {
 import { ModalSize } from '@monorail/visualComponents/modals/modalTypes'
 import { Overlay } from '@monorail/visualComponents/toggle/Overlay'
 
-type Props = PopOverChildProps &
-  DefaultProps & {
-    customCloseButton?: ReactNode
-    headerChildren?: ReactNode
-    title: string
-  }
-
-type DefaultProps = {
-  escToClose: boolean
-  iconLeft: string
-  noHeader: boolean
-  zIndex: number
+type Props = Omit<PopOverChildProps, 'position'> & {
+  customCloseButton?: ReactNode
+  headerChildren?: ReactNode
+  title?: string
+  escToClose?: boolean
+  iconLeft?: string
+  noHeader?: boolean
+  zIndex?: number
 }
 
-export const FullScreenModal: FCwDP<Props, DefaultProps> = ({
-  children,
-  customCloseButton,
-  escToClose,
-  headerChildren,
-  iconLeft,
-  isOpen,
-  noHeader,
-  onClick,
-  title,
-  togglePopOver,
-  closingAnimationCompleted,
-  zIndex,
-  ...otherProps
-}) => {
+export const FullScreenModal: FC<Props> = props => {
+  const {
+    children,
+    customCloseButton,
+    escToClose = true,
+    headerChildren,
+    iconLeft = '',
+    isOpen,
+    noHeader = false,
+    onClick,
+    title = '',
+    togglePopOver,
+    closingAnimationCompleted,
+    zIndex = zIndexValue(ZIndexNodeName.Modal),
+    ...otherProps
+  } = props
+
   const { modalBackgroundRef, isRendered } = useModalAnimation<HTMLDivElement>({
     closingAnimationCompleted,
     isOpen,
@@ -91,11 +88,4 @@ export const FullScreenModal: FCwDP<Props, DefaultProps> = ({
       </BBModalBackground>
     </Overlay>
   )
-}
-
-FullScreenModal.defaultProps = {
-  escToClose: true,
-  iconLeft: '',
-  noHeader: false,
-  zIndex: zIndexValue(ZIndexNodeName.Overlay),
 }

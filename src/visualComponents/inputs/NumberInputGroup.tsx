@@ -1,5 +1,5 @@
 import { lookup } from 'fp-ts/lib/Record'
-import React, { SFC } from 'react'
+import React, { FC } from 'react'
 import styled from 'styled-components'
 
 import { FontSizes, typography } from '@monorail/helpers/exports'
@@ -46,13 +46,9 @@ type Props = {
   required?: boolean
 }
 
-export const NumberInputGroup: SFC<Props> = ({
-  label,
-  items,
-  onSelect,
-  value,
-  required,
-}) => {
+export const NumberInputGroup: FC<Props> = props => {
+  const { label, items, onSelect, value, required } = props
+
   return (
     <NumberInputGroupWrapper>
       <Label

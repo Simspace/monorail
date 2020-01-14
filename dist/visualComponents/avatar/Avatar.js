@@ -7,6 +7,8 @@ exports.getAvatarInitials = exports.Avatar = void 0;
 
 var _styledComponents = _interopRequireDefault(require("styled-components"));
 
+var _Option = require("fp-ts/lib/Option");
+
 var _react = _interopRequireDefault(require("react"));
 
 var _exports = require("../../helpers/exports");
@@ -34,12 +36,12 @@ const iconScale = 10 / 16;
 const AvatarContainer = _styledComponents2.default.div(({
   team,
   size = defaultSize
-}) => _styledComponents2.css`
-    ${team ? _styledComponents2.css`
+}) => (0, _styledComponents2.css)`
+    ${team ? (0, _styledComponents2.css)`
           ${(0, _exports.borderRadius)()};
 
           background: ${(0, _exports.getColor)(_exports.Colors.BrandDarkBlue)};
-        ` : _styledComponents2.css`
+        ` : (0, _styledComponents2.css)`
           ${(0, _exports.borderRadius)(_exports.BorderRadius.Round)};
 
           background: ${(0, _exports.getColor)(_exports.Colors.BrandLightBlue)};
@@ -81,7 +83,7 @@ const Avatar = ({
   icon: icon,
   size: iconScale * size,
   _css: (0, _exports.getColor)(_exports.Colors.White)
-}) : _react.default.createElement(_react.default.Fragment, null, first.charAt(0), last.charAt(0)));
+}) : _react.default.createElement(_react.default.Fragment, null, (0, _Option.fromNullable)(first).fold('', f => f.charAt(0)), (0, _Option.fromNullable)(last).fold('', f => f.charAt(0))));
 
 exports.Avatar = Avatar;
 

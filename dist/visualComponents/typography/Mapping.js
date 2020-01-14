@@ -19,6 +19,9 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+/*
+ * Styles
+ */
 const MappingContainer =
 /*#__PURE__*/
 _styledComponents.default.div.withConfig({
@@ -44,12 +47,12 @@ exports.MappingID = MappingID;
 /*
  * Component
  */
-const Mapping = ({
-  mapping,
-  ...domProps
-}) => _react.default.createElement(MappingContainer, domProps, _react.default.createElement(MappingID, null, mapping.key), !(0, _typeGuards.isEmptyString)(mapping.name.trim()) ? mapping.name.trim() : mapping.description.trim());
+const Mapping = props => {
+  const {
+    mapping,
+    ...domProps
+  } = props;
+  return _react.default.createElement(MappingContainer, domProps, _react.default.createElement(MappingID, null, mapping.key), !(0, _typeGuards.isEmptyString)(mapping.name.trim()) ? mapping.name.trim() : mapping.description.trim());
+};
 
 exports.Mapping = Mapping;
-Mapping.defaultProps = {
-  margin: ''
-};

@@ -23,6 +23,10 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+/*
+ * Styles
+ */
+//  TODO: remove this container and position on the arrow buttons themselves
 const ArrowButtonsContainer = _styledComponents.default.div`
   ${(0, _exports.flexFlow)('row')};
   ${(0, _exports.zIndex)(_exports.ZIndexNodeName.ArrowButtons)};
@@ -62,11 +66,11 @@ const ArrowButtons = props => {
     onClick: previous,
     display: _buttonTypes.ButtonDisplay.Chromeless,
     size: size,
-    cssOverrides: slideIndicatorType === 'dot' ? _styledComponents.css`
+    cssOverrides: slideIndicatorType === 'dot' ? (0, _styledComponents.css)`
                 margin: auto auto auto 16px;
                 pointer-events: all;
                 ${cssArrowOverrides};
-              ` : _styledComponents.css`
+              ` : (0, _styledComponents.css)`
                 margin: auto auto auto 0;
                 pointer-events: all;
                 ${cssArrowOverrides};
@@ -77,11 +81,11 @@ const ArrowButtons = props => {
     onClick: next,
     display: _buttonTypes.ButtonDisplay.Chromeless,
     size: size,
-    cssOverrides: slideIndicatorType === 'dot' ? _styledComponents.css`
+    cssOverrides: slideIndicatorType === 'dot' ? (0, _styledComponents.css)`
                 margin: auto 16px auto auto;
                 pointer-events: all;
                 ${cssArrowOverrides};
-              ` : _styledComponents.css`
+              ` : (0, _styledComponents.css)`
                 margin: auto 0 auto auto;
                 pointer-events: all;
                 ${cssArrowOverrides};

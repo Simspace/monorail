@@ -1,8 +1,7 @@
-import { MouseEvent, ReactNode, ReactType, StatelessComponent } from 'react';
+import { FC, MouseEvent, ReactNode, ReactType, StatelessComponent } from 'react';
 import { SimpleInterpolation } from 'styled-components';
 import { Omit } from 'typelevel-ts';
 import { Sizes } from '@monorail/helpers/exports';
-import { FCwDP } from '@monorail/sharedHelpers/react';
 import { CommonComponentType, LinkProps } from '@monorail/types';
 declare type BBListContainerProps = {
     cssOverrides?: SimpleInterpolation;
@@ -34,21 +33,20 @@ export declare const ListItemGraphic: import("styled-components").StyledComponen
     title?: string | undefined;
 }, never>;
 export declare const ListItem: import("styled-components").StyledComponent<"div", import("../../helpers/theme").GlobalAppThemeInterface, ListItemProps, never>;
-declare type PassedProps = Omit<CommonComponentType, 'as'> & LinkProps & {
+export declare type PassedProps = Omit<CommonComponentType, 'as'> & LinkProps & {
     passedAs?: ReactType;
 };
-declare type DefaultProps = {
-    dense: boolean;
-    disabled: boolean;
-    leftIcon: string;
+export declare type SimpleListItemProps = PassedProps & {
+    dense?: boolean;
+    disabled?: boolean;
+    leftIcon?: string;
     onClick?: (event: MouseEvent<HTMLDivElement>) => void;
-    primaryText: ReactNode;
-    rightIcon: string;
-    secondaryText: ReactNode;
-    size: Sizes;
-    meta: ReactNode;
-    isLink: boolean;
+    primaryText?: ReactNode;
+    rightIcon?: string;
+    secondaryText?: ReactNode;
+    size?: Sizes;
+    meta?: ReactNode;
+    isLink?: boolean;
 };
-export declare type SimpleListItemProps = PassedProps & DefaultProps;
-export declare const SimpleListItem: FCwDP<PassedProps, DefaultProps>;
+export declare const SimpleListItem: FC<SimpleListItemProps>;
 export {};

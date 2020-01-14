@@ -1,4 +1,4 @@
-import React, { SFC } from 'react'
+import React, { FC } from 'react'
 import { css, SimpleInterpolation } from 'styled-components'
 
 import { flexFlow } from '@monorail/helpers/exports'
@@ -38,14 +38,9 @@ export type CheckboxSelectProps = {
   placeholder?: string
 }
 
-export const CheckboxSelect: SFC<CheckboxSelectProps> = ({
-  value,
-  label,
-  options,
-  onChange,
-  cssOverrides,
-  ...domProps
-}) => {
+export const CheckboxSelect: FC<CheckboxSelectProps> = props => {
+  const { value, label, options, onChange, cssOverrides, ...domProps } = props
+
   return (
     <Choice
       {...domProps}
@@ -73,7 +68,10 @@ export const CheckboxSelect: SFC<CheckboxSelectProps> = ({
           }
         }}
         value={value ? value.value : ''}
-        css="width: 256px;"
+        css={css`
+          pointer-events: ${!value.enabled ? 'none' : 'auto'};
+          width: 256px;
+        `}
       />
     </Choice>
   )

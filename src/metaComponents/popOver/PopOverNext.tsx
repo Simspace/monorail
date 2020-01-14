@@ -15,7 +15,6 @@ export type PopOverToggleProps = {
 
 export const PopOverNext: FC<PopOverProps> = props => {
   const {
-    document,
     toggle,
     popOver,
     gap = 8,
@@ -63,7 +62,7 @@ export const PopOverNext: FC<PopOverProps> = props => {
         onClick,
         isActive: isOpenState,
       })}
-      <PortalController isRendered={isRendered} document={document}>
+      <PortalController isRendered={isRendered}>
         {popOver({
           isOpen: isOpenState,
           position,

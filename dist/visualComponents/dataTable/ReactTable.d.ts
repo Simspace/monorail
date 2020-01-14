@@ -84,7 +84,7 @@ export interface Filter {
     value: string;
     pivotId?: string;
 }
-declare type RowInfo<I> = {
+export declare type RowInfo<I> = {
     /** Materialized row of data */
     row: unknown;
     /** The post-accessed values from the original row */

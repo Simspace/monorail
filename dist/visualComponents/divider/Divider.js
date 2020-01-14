@@ -18,11 +18,11 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
  */
 const Divider = _styledComponents.default.div(({
   isVertical = false
-}) => _styledComponents.css`
-    ${isVertical ? _styledComponents.css`
+}) => (0, _styledComponents.css)`
+    ${isVertical ? (0, _styledComponents.css)`
           width: 1px;
           height: 100%;
-        ` : _styledComponents.css`
+        ` : (0, _styledComponents.css)`
           width: 100%;
           height: 1px;
         `};

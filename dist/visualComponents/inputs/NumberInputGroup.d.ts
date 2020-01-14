@@ -1,4 +1,4 @@
-import { SFC } from 'react';
+import { FC } from 'react';
 declare type InputItem = {
     label: string;
     key: string;
@@ -12,5 +12,5 @@ declare type Props = {
     value: Record<string, number>;
     required?: boolean;
 };
-export declare const NumberInputGroup: SFC<Props>;
+export declare const NumberInputGroup: FC<Props>;
 export {};
