@@ -33,6 +33,7 @@ export enum ElevationRange {
   Elevation22 = 'elevation22',
   Elevation23 = 'elevation23',
   Elevation24 = 'elevation24',
+  Section = 'section',
 }
 
 const elevationShadow = {
@@ -86,6 +87,8 @@ const elevationShadow = {
     '0 11px 14px -7px rgba(0,0,0,.2),0 23px 36px 3px rgba(0,0,0,.14),0 9px 44px 8px rgba(0,0,0,.12)',
   [ElevationRange.Elevation24]:
     '0 11px 15px -7px rgba(0,0,0,.2),0 24px 38px 3px rgba(0,0,0,.14),0 9px 46px 8px rgba(0,0,0,.12)',
+  [ElevationRange.Section]:
+    '0px 6px 12px rgba(0, 0, 0, 0.08), 0px 4px 8px rgba(0, 0, 0, 0.08)',
 }
 
 const elevationColor = {
@@ -110,6 +113,7 @@ const elevationColor = {
         case ElevationRange.Elevation2:
           return 0.07
         case ElevationRange.Elevation3:
+        case ElevationRange.Section:
           return 0.08
         case ElevationRange.Elevation4:
           return 0.09

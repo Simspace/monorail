@@ -1,9 +1,8 @@
-import React, { ReactNode } from 'react'
+import React, { FC, ReactNode } from 'react'
 import { css, SimpleInterpolation } from 'styled-components'
 
 import { ZIndexNodeName, zIndexValue } from '@monorail/helpers/zIndex'
 import { PopOverChildProps } from '@monorail/metaComponents/popOver/PopOver'
-import { FCwDP } from '@monorail/sharedHelpers/react'
 import {
   BBModalBackground,
   BBModalHeader,
@@ -15,31 +14,29 @@ import {
 import { ModalSize } from '@monorail/visualComponents/modals/modalTypes'
 import { Overlay } from '@monorail/visualComponents/toggle/Overlay'
 
-type Props = PopOverChildProps &
-  DefaultProps & {
-    title: string
-    iconLeft?: string
-    headerStyles?: SimpleInterpolation
-    headerRowChildren?: ReactNode
-  }
-
-type DefaultProps = {
-  zIndex: number
+type Props = Omit<PopOverChildProps, 'position'> & {
+  title: string
+  iconLeft?: string
+  headerStyles?: SimpleInterpolation
+  headerRowChildren?: ReactNode
+  zIndex?: number
 }
 
-export const LargeModal: FCwDP<Props, DefaultProps> = ({
-  isOpen,
-  onClick,
-  children,
-  title,
-  iconLeft,
-  togglePopOver,
-  headerStyles,
-  closingAnimationCompleted,
-  zIndex,
-  headerRowChildren,
-  ...otherProps
-}) => {
+export const LargeModal: FC<Props> = props => {
+  const {
+    isOpen,
+    onClick,
+    children,
+    title = '',
+    iconLeft = '',
+    togglePopOver,
+    headerStyles = css``,
+    closingAnimationCompleted,
+    zIndex = zIndexValue(ZIndexNodeName.Modal),
+    headerRowChildren,
+    ...otherProps
+  } = props
+
   const { modalBackgroundRef, isRendered } = useModalAnimation<HTMLDivElement>({
     closingAnimationCompleted,
     isOpen,
@@ -79,8 +76,4 @@ export const LargeModal: FCwDP<Props, DefaultProps> = ({
       </BBModalBackground>
     </Overlay>
   )
-}
-
-LargeModal.defaultProps = {
-  zIndex: zIndexValue(ZIndexNodeName.Overlay),
 }

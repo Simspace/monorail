@@ -35,18 +35,19 @@ var _StyledBBModalContent =
   componentId: "sc-1ji93dw-1"
 })(["", ""], p => p._css2);
 
-const MiniModal = ({
-  children,
-  closingAnimationCompleted,
-  headerChildren,
-  iconLeft,
-  isOpen,
-  modalBackgroundCss,
-  onClick,
-  position,
-  title,
-  togglePopOver
-}) => {
+const MiniModal = props => {
+  const {
+    children,
+    closingAnimationCompleted,
+    headerChildren,
+    iconLeft,
+    isOpen,
+    modalBackgroundCss,
+    onClick,
+    position,
+    title,
+    togglePopOver
+  } = props;
   const scaleAnimation = (0, _react.useMemo)(() => {
     const {
       height: elementHeight,

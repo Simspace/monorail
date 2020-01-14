@@ -35,7 +35,7 @@ const FramedIcon = (0, _styledComponents.default)(({
 }, otherProps)))(({
   frameColor,
   isArchived
-}) => _styledComponents.css`
+}) => (0, _styledComponents.css)`
     ${(0, _zIndex.zIndex)(_zIndex.ZIndexNodeName.FramedIcon)};
 
     position: relative;

@@ -11,9 +11,11 @@ export declare const NoModules: () => JSX.Element;
 export declare const NotAuthorized: () => JSX.Element;
 export declare const SomethingWentWrong: () => JSX.Element;
 export declare const NotFound: () => JSX.Element;
-export declare const CustomNoData: ({ headingText, details, }: {
+export declare const CustomNoData: ({ headingText, details, vertical, icon, }: {
     headingText: string;
     details: JSX.Element | JSX.Element[];
+    vertical?: boolean | undefined;
+    icon?: JSX.Element | undefined;
 }) => JSX.Element;
 export declare const CustomNoResults: FC<{
     bannerText: Option<string>;
@@ -21,6 +23,8 @@ export declare const CustomNoResults: FC<{
     cssOverrides?: Array<InterpolationValue>;
 }>;
 export declare const Banner: import("styled-components").StyledComponent<"div", any, {}, never>;
-export declare const Detail: import("styled-components").StyledComponent<"div", any, {}, never>;
+export declare const Detail: import("styled-components").StyledComponent<"div", any, {
+    vertical?: boolean | undefined;
+}, never>;
 export declare const IconBox: import("styled-components").StyledComponent<"div", any, {}, never>;
 export declare const NoResultsIcon: () => JSX.Element;

@@ -68,7 +68,7 @@ function useModalAnimation(params) {
 
 const modalAnimationDuration = 100;
 exports.modalAnimationDuration = modalAnimationDuration;
-const mediumModalOpenAnimation = _styledComponents.keyframes`
+const mediumModalOpenAnimation = (0, _styledComponents.keyframes)`
   from {
     opacity: 0;
     transform: rotateX(15deg) translateY(16px) scale(.95)
@@ -81,7 +81,7 @@ const mediumModalOpenAnimation = _styledComponents.keyframes`
   }
 `;
 exports.mediumModalOpenAnimation = mediumModalOpenAnimation;
-const mediumModalCloseAnimation = _styledComponents.keyframes`
+const mediumModalCloseAnimation = (0, _styledComponents.keyframes)`
   from {
     opacity: 0.9999;
     transform: rotateX(0) translateY(0) scale(1);
@@ -93,7 +93,7 @@ const mediumModalCloseAnimation = _styledComponents.keyframes`
   }
 `;
 exports.mediumModalCloseAnimation = mediumModalCloseAnimation;
-const largeModalOpenAnimation = _styledComponents.keyframes`
+const largeModalOpenAnimation = (0, _styledComponents.keyframes)`
   from {
     opacity: 0;
     transform: rotateX(3deg) translateY(16px) scale(.98);
@@ -106,7 +106,7 @@ const largeModalOpenAnimation = _styledComponents.keyframes`
   }
 `;
 exports.largeModalOpenAnimation = largeModalOpenAnimation;
-const largeModalCloseAnimation = _styledComponents.keyframes`
+const largeModalCloseAnimation = (0, _styledComponents.keyframes)`
   from {
     opacity: 0.9999;
     transform: rotateX(0) translateY(0) scale(1);
@@ -118,7 +118,7 @@ const largeModalCloseAnimation = _styledComponents.keyframes`
   }
 `;
 exports.largeModalCloseAnimation = largeModalCloseAnimation;
-const fullScreenModalOpenAnimation = _styledComponents.keyframes`
+const fullScreenModalOpenAnimation = (0, _styledComponents.keyframes)`
   from {
     opacity: 0;
   }
@@ -129,7 +129,7 @@ const fullScreenModalOpenAnimation = _styledComponents.keyframes`
   }
 `;
 exports.fullScreenModalOpenAnimation = fullScreenModalOpenAnimation;
-const fullScreenModalCloseAnimation = _styledComponents.keyframes`
+const fullScreenModalCloseAnimation = (0, _styledComponents.keyframes)`
   from {
     opacity: 0.9999;
   }
@@ -139,23 +139,23 @@ const fullScreenModalCloseAnimation = _styledComponents.keyframes`
   }
 `;
 exports.fullScreenModalCloseAnimation = fullScreenModalCloseAnimation;
-const overlayOpenAnimation = _styledComponents.keyframes`
+const overlayOpenAnimation = (0, _styledComponents.keyframes)`
   from {
     opacity: 0;
-  
+
   }
-  
+
   to {
     opacity: 0.9999;
   }
 `;
 exports.overlayOpenAnimation = overlayOpenAnimation;
-const overlayCloseAnimation = _styledComponents.keyframes`
+const overlayCloseAnimation = (0, _styledComponents.keyframes)`
   from {
     opacity: 0.9999;
-  
+
   }
-  
+
   to {
     opacity: 0;
   }
@@ -195,14 +195,14 @@ const BBModalBackground = (0, _styledComponents.default)((0, _react.forwardRef)(
 }, otherProps))))(({
   size,
   cssOverrides
-}) => _styledComponents.css`
-    ${size === _modalTypes.ModalSize.Mini ? _styledComponents.css`
+}) => (0, _styledComponents.css)`
+    ${size === _modalTypes.ModalSize.Mini ? (0, _styledComponents.css)`
           height: ${_exports.sizes.modals.mini.height}px;
-        ` : _styledComponents.css`
+        ` : (0, _styledComponents.css)`
           margin: 16px;
         `};
 
-    ${size === _modalTypes.ModalSize.Large && _styledComponents.css`
+    ${size === _modalTypes.ModalSize.Large && (0, _styledComponents.css)`
         height: calc(100vh - 32px);
       `};
 
@@ -234,7 +234,7 @@ exports.BBModalBackground = BBModalBackground;
 const BBModalHeaderContainer = _styledComponents.default.div(({
   size,
   cssOverrides
-}) => _styledComponents.css`
+}) => (0, _styledComponents.css)`
     ${(0, _exports.flexFlow)(size === _modalTypes.ModalSize.Mini ? 'column' : 'row')};
 
     ${(0, _exports.getElevationShadow)(_exports.ElevationRange.Elevation2)};
@@ -245,9 +245,9 @@ const BBModalHeaderContainer = _styledComponents.default.div(({
     z-index: 1;
 
     ${_Search.SearchContainer} {
-      ${size === _modalTypes.ModalSize.Mini ? _styledComponents.css`
+      ${size === _modalTypes.ModalSize.Mini ? (0, _styledComponents.css)`
             margin: 8px 16px 16px;
-          ` : _styledComponents.css`
+          ` : (0, _styledComponents.css)`
             margin: auto 16px auto auto;
           `};
     }
@@ -259,7 +259,7 @@ exports.BBModalHeaderContainer = BBModalHeaderContainer;
 
 const BBModalHeaderRow = _styledComponents.default.div(({
   size
-}) => _styledComponents.css`
+}) => (0, _styledComponents.css)`
     ${(0, _exports.flexFlow)('row')};
 
     align-items: center;
@@ -271,7 +271,7 @@ const BBModalHeaderRow = _styledComponents.default.div(({
 
 const BBModalHeaderTitle = _styledComponents.default.h1(({
   size
-}) => _styledComponents.css`
+}) => (0, _styledComponents.css)`
     ${size === _modalTypes.ModalSize.Mini || size === _modalTypes.ModalSize.Small ? (0, _exports.typography)(700, _exports.FontSizes.Title4) : (0, _exports.typography)(700, _exports.FontSizes.Title3)};
 
     color: ${(0, _exports.getColor)(_exports.Colors.White)};
@@ -279,7 +279,7 @@ const BBModalHeaderTitle = _styledComponents.default.h1(({
     margin: 0;
   `);
 
-const baseIconStyles = _styledComponents.css`
+const baseIconStyles = (0, _styledComponents.css)`
   color: ${(0, _exports.getColor)(_exports.Colors.White)};
 `;
 const StyledAppIconLeft = (0, _styledComponents.default)(_AppIcon.AppIcon)`
@@ -305,7 +305,7 @@ const DefaultCloseButton = ({
   headerRowChildren,
   onClose
 }) => _react.default.createElement(_IconButton.IconButton, {
-  cssOverrides: headerRowChildren ? _styledComponents.css`` : _styledComponents.css`
+  cssOverrides: headerRowChildren ? (0, _styledComponents.css)`` : (0, _styledComponents.css)`
             margin-left: auto;
           `,
   icon: "close",
@@ -345,7 +345,7 @@ const BBModalHeader = ({
   "data-test-id": "modal-header-title"
 }, title), headerRowChildren, iconRight && _react.default.createElement(StyledIconRight, {
   icon: iconRight
-}), size !== _modalTypes.ModalSize.Mini && onClose && customCloseButton ? customCloseButton : _react.default.createElement(DefaultCloseButton, {
+}), size !== _modalTypes.ModalSize.Mini && onClose && customCloseButton !== undefined ? customCloseButton : _react.default.createElement(DefaultCloseButton, {
   headerRowChildren: headerRowChildren,
   onClose: onClose
 })), children));
@@ -389,8 +389,8 @@ const BBModalOverlayContainer = _styledComponents.default.div(({
   isOpen,
   chromeless,
   cssOverrides
-}) => _styledComponents.css`
-    ${!chromeless && _styledComponents.css`
+}) => (0, _styledComponents.css)`
+    ${!chromeless && (0, _styledComponents.css)`
         background: ${(0, _exports.getColor)(_exports.Colors.Black, 0.36)};
       `};
 
@@ -447,10 +447,10 @@ const BBModalContainer = _styledComponents.default.div(({
   isOpen,
   cssOverrides,
   zIndex
-}) => _styledComponents.css`
-    ${isOpen ? _styledComponents.css`
+}) => (0, _styledComponents.css)`
+    ${isOpen ? (0, _styledComponents.css)`
           pointer-events: all;
-        ` : _styledComponents.css`
+        ` : (0, _styledComponents.css)`
           pointer-events: none;
         `};
 
@@ -484,7 +484,7 @@ exports.BBModalContainer = BBModalContainer;
 
 const BBModalContent = _styledComponents.default.div(({
   cssOverrides
-}) => _styledComponents.css`
+}) => (0, _styledComponents.css)`
     ${(0, _exports.flexFlow)()};
     height: 100%;
     max-height: 100%;

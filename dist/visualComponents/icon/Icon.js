@@ -13,6 +13,10 @@ var _exports = require("../../helpers/exports");
 
 var _Academy = require("./custom/Academy");
 
+var _AddGroup = require("./custom/AddGroup");
+
+var _AddList = require("./custom/AddList");
+
 var _Admin = require("./custom/Admin");
 
 var _Bam = require("./custom/Bam");
@@ -47,6 +51,8 @@ var _Filter = require("./custom/Filter");
 
 var _Gauge = require("./custom/Gauge");
 
+var _GhostVm = require("./custom/GhostVm");
+
 var _Grade = require("./custom/Grade");
 
 var _H = require("./custom/H1");
@@ -65,6 +71,10 @@ var _InformationTaskAddGrey = require("./custom/InformationTaskAddGrey");
 
 var _LMS = require("./custom/LMS");
 
+var _MyOrg = require("./custom/MyOrg");
+
+var _MyTeam = require("./custom/MyTeam");
+
 var _NetworkSetup = require("./custom/NetworkSetup");
 
 var _NoResults = require("./custom/NoResults");
@@ -72,6 +82,12 @@ var _NoResults = require("./custom/NoResults");
 var _NoUsers = require("./custom/NoUsers");
 
 var _OrgGroup = require("./custom/OrgGroup");
+
+var _PeopleGear = require("./custom/PeopleGear");
+
+var _PersonGear = require("./custom/PersonGear");
+
+var _Profile = require("./custom/Profile");
 
 var _Puzzle = require("./custom/Puzzle");
 
@@ -88,6 +104,8 @@ var _ReportsAnalytics = require("./custom/ReportsAnalytics");
 var _Robot = require("./custom/Robot");
 
 var _ServerNetwork = require("./custom/ServerNetwork");
+
+var _SiteMap = require("./custom/SiteMap");
 
 var _SortAscending = require("./custom/SortAscending");
 
@@ -111,6 +129,8 @@ var _Temporary = require("./custom/Temporary");
 
 var _ThreeGears = require("./custom/ThreeGears");
 
+var _Tie = require("./custom/Tie");
+
 var _Tracker = require("./custom/Tracker");
 
 var _TreasureChest = require("./custom/TreasureChest");
@@ -131,9 +151,10 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
+// https://fonts.googleapis.com/icon?family=Material+Icons&style=baseline
 const MaterialIconFontFace =
 /*#__PURE__*/
-_styledComponents.createGlobalStyle`
+(0, _styledComponents.createGlobalStyle)`
   @font-face {
     font-display: block;
     font-family: 'Material Icons';
@@ -160,6 +181,7 @@ const customIcons = {
   'hardhat-app': _Catalog.Catalog,
   'home-app': _Home.Home,
   'impact-app': _Impact.Impact,
+  'my-org-app': _MyOrg.MyOrg,
   'network-setup-app': _NetworkSetup.NetworkSetup,
   'no-results': _NoResults.NoResults,
   'range-app': _Range.Range,
@@ -168,6 +190,8 @@ const customIcons = {
   'techops-app': _TechOps.TechOps,
   'tracker-app': _Tracker.Tracker,
   'training-app': _Academy.Academy,
+  add_group: _AddGroup.AddGroup,
+  add_list: _AddList.AddList,
   bam: _Bam.Bam,
   certificate: _Certificate.Certificate,
   chevron_double_left: _ChevronDoubleLeft.ChevronDoubleLeft,
@@ -210,7 +234,14 @@ const customIcons = {
   treasure_chest: _TreasureChest.TreasureChest,
   grade: _Grade.Grade,
   upload: _Upload.Upload,
-  question_mark: _QuestionMark.QuestionMark
+  question_mark: _QuestionMark.QuestionMark,
+  person_gear: _PersonGear.PersonGear,
+  people_gear: _PeopleGear.PeopleGear,
+  tie: _Tie.Tie,
+  site_map: _SiteMap.SiteMap,
+  profile: _Profile.Profile,
+  my_team: _MyTeam.MyTeam,
+  ghost_vm: _GhostVm.GhostVm
 };
 const Icon =
 /*#__PURE__*/

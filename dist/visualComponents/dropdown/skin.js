@@ -19,8 +19,6 @@ var _styledComponents2 = _interopRequireWildcard(require("../../helpers/styled-c
 
 var _PopOver = require("../../metaComponents/popOver/PopOver");
 
-var _Portal = require("../../metaComponents/portal/Portal");
-
 var _typeGuards = require("../../sharedHelpers/typeGuards");
 
 var _Label = require("../inputs/Label");
@@ -32,6 +30,8 @@ var _Menu = require("../menu/Menu");
 var _DropdownItem = require("./DropdownItem");
 
 var _render = require("./render");
+
+var _PortalController = require("../../metaComponents/portal/PortalController");
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
@@ -48,7 +48,7 @@ const DropdownWrapper = _styledComponents2.default.div`
 const DropdownContainer = _styledComponents2.default.div(({
   disabled,
   error
-}) => _styledComponents2.css`
+}) => (0, _styledComponents2.css)`
     ${(0, _exports.borderRadius)(_exports.BorderRadius.Large)};
     ${(0, _exports.flexFlow)('column')};
     ${(0, _exports.typography)(400, _exports.FontSizes.Title5)};
@@ -57,7 +57,7 @@ const DropdownContainer = _styledComponents2.default.div(({
     position: relative;
     width: 100%;
 
-    ${error && _styledComponents2.css`
+    ${error && (0, _styledComponents2.css)`
         ${_exports.baseErrorBackgroundStyles};
 
         input {
@@ -201,9 +201,6 @@ const DropdownSkin = ({
 
   const renderMenu = () => {
     const {
-      document
-    } = skin;
-    const {
       isOpen,
       getMenuProps,
       toggleMenu
@@ -213,8 +210,8 @@ const DropdownSkin = ({
       target: menuTarget
     }) : _PopOver.defaultPopOverPosition;
     const width = menuTarget ? menuTarget.getBoundingClientRect().width : 0;
-    return _react.default.createElement(_Portal.Portal, {
-      document: document
+    return _react.default.createElement("div", menuProps, _react.default.createElement(_PortalController.PortalController, {
+      isRendered: isOpen
     }, _react.default.createElement(_StyledMenu, {
       isOpen: isOpen,
       position: position,
@@ -222,12 +219,14 @@ const DropdownSkin = ({
         type: _downshift.default.stateChangeTypes.keyDownEscape,
         inputValue: ''
       }),
+      closingAnimationCompleted: () => {},
+      onClick: () => {},
       width: width
-    }, _react.default.createElement(MenuContainer, menuProps, isOpen ? items.length > 0 ? renderList() : _react.default.createElement(_DropdownItem.DropdownItem, {
+    }, _react.default.createElement(MenuContainer, null, items.length > 0 ? renderList() : _react.default.createElement(_DropdownItem.DropdownItem, {
       selected: false,
       highlighted: false,
       disabled: true
-    }, "No results") : _react.default.createElement(_react.default.Fragment, null))));
+    }, "No results")))));
   };
 
   const renderError = () => _react.default.createElement(_react.default.Fragment, null, error && error.fold(_react.default.createElement(_react.default.Fragment, null), msg => _react.default.createElement(_StyledDiv, null, _react.default.createElement(_StdErr.StdErr, {

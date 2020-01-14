@@ -1,4 +1,4 @@
-import React, { Component, MouseEvent } from 'react';
+import { Component, MouseEvent } from 'react';
 import { Omit } from 'typelevel-ts';
 import { ButtonProps } from './Button';
 declare type Props = Omit<ButtonProps, 'onClick'> & {
@@ -13,24 +13,9 @@ declare type State = {
  */
 export declare class LoadingButton extends Component<Props, State> {
     static defaultProps: {
-        loadingText: string;
+        /** override buttonDefaultProps.onClick */
         onClick: () => Promise<void>;
-        iconLeft: string;
-        iconRight: string;
-        className: string;
-        disabled: boolean;
-        display: import("./buttonTypes").ButtonDisplay;
-        isActive: boolean;
-        mode: import("./buttonTypes").ButtonMode;
-        onMouseDown?: import("./Button").OnClick | undefined;
-        onMouseUp?: import("./Button").OnClick | undefined;
-        pressed: boolean;
-        size: import("./buttonTypes").ButtonSize;
-        status?: ((props: {
-            style: React.CSSProperties;
-        }) => React.ReactNode) | undefined;
-        title?: string | undefined;
-        type: "button" | "submit" | "reset";
+        loadingText: string;
     };
     state: State;
     _isMounted: boolean;

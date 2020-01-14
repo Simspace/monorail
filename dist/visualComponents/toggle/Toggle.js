@@ -23,6 +23,8 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
+// TODO(unsafe-any): Fix unsafe anys
+// tslint:disable no-unsafe-any
 const toggleWidth = 18;
 const toggleHeight = 10;
 const slideSize = 10;
@@ -39,19 +41,19 @@ const scaleBySize = (n, size) => {
 };
 
 const toggleSizeCss = {
-  [_toggleTypes.ToggleSize.Default]: _styledComponents.css`
+  [_toggleTypes.ToggleSize.Default]: (0, _styledComponents.css)`
     height: ${scaleBySize(toggleHeight, _toggleTypes.ToggleSize.Default)}px;
     width: ${scaleBySize(toggleWidth, _toggleTypes.ToggleSize.Default)}px;
     border: 1px solid;
     border-radius: ${scaleBySize(toggleHeight, _toggleTypes.ToggleSize.Default) + 2 / 2}px;
   `,
-  [_toggleTypes.ToggleSize.Large]: _styledComponents.css`
+  [_toggleTypes.ToggleSize.Large]: (0, _styledComponents.css)`
     height: ${scaleBySize(toggleHeight, _toggleTypes.ToggleSize.Large)}px;
     width: ${scaleBySize(toggleWidth, _toggleTypes.ToggleSize.Large)}px;
     border: 1px solid;
     border-radius: ${scaleBySize(toggleHeight, _toggleTypes.ToggleSize.Large) + 2 / 2}px;
   `,
-  [_toggleTypes.ToggleSize.Xlarge]: _styledComponents.css`
+  [_toggleTypes.ToggleSize.Xlarge]: (0, _styledComponents.css)`
     height: ${scaleBySize(toggleHeight, _toggleTypes.ToggleSize.Xlarge)}px;
     width: ${scaleBySize(toggleWidth, _toggleTypes.ToggleSize.Xlarge)}px;
     border: 2px solid;
@@ -59,38 +61,38 @@ const toggleSizeCss = {
   `
 };
 const sliderSizeCss = {
-  [_toggleTypes.ToggleSize.Default]: _styledComponents.css`
+  [_toggleTypes.ToggleSize.Default]: (0, _styledComponents.css)`
     width: ${scaleBySize(slideSize, _toggleTypes.ToggleSize.Default)}px;
     height: ${scaleBySize(slideSize, _toggleTypes.ToggleSize.Default)}px;
   `,
-  [_toggleTypes.ToggleSize.Large]: _styledComponents.css`
+  [_toggleTypes.ToggleSize.Large]: (0, _styledComponents.css)`
     width: ${scaleBySize(slideSize, _toggleTypes.ToggleSize.Large)}px;
     height: ${scaleBySize(slideSize, _toggleTypes.ToggleSize.Large)}px;
   `,
-  [_toggleTypes.ToggleSize.Xlarge]: _styledComponents.css`
+  [_toggleTypes.ToggleSize.Xlarge]: (0, _styledComponents.css)`
     width: ${scaleBySize(slideSize, _toggleTypes.ToggleSize.Xlarge)}px;
     height: ${scaleBySize(slideSize, _toggleTypes.ToggleSize.Xlarge)}px;
   `
 };
 const inputSizeCss = {
-  [_toggleTypes.ToggleSize.Default]: _styledComponents.css`
+  [_toggleTypes.ToggleSize.Default]: (0, _styledComponents.css)`
     transform: translateX(${scaleBySize(iconSize, _toggleTypes.ToggleSize.Default)}px);
   `,
-  [_toggleTypes.ToggleSize.Large]: _styledComponents.css`
+  [_toggleTypes.ToggleSize.Large]: (0, _styledComponents.css)`
     transform: translateX(${scaleBySize(iconSize, _toggleTypes.ToggleSize.Large)}px);
   `,
-  [_toggleTypes.ToggleSize.Xlarge]: _styledComponents.css`
+  [_toggleTypes.ToggleSize.Xlarge]: (0, _styledComponents.css)`
     transform: translateX(${scaleBySize(iconSize, _toggleTypes.ToggleSize.Xlarge)}px);
   `
 };
 const iconSizeCss = {
-  [_toggleTypes.ToggleSize.Default]: _styledComponents.css`
+  [_toggleTypes.ToggleSize.Default]: (0, _styledComponents.css)`
     font-size: ${scaleBySize(iconSize, _toggleTypes.ToggleSize.Default)}px;
   `,
-  [_toggleTypes.ToggleSize.Large]: _styledComponents.css`
+  [_toggleTypes.ToggleSize.Large]: (0, _styledComponents.css)`
     font-size: ${scaleBySize(iconSize, _toggleTypes.ToggleSize.Large)}px;
   `,
-  [_toggleTypes.ToggleSize.Xlarge]: _styledComponents.css`
+  [_toggleTypes.ToggleSize.Xlarge]: (0, _styledComponents.css)`
     font-size: ${scaleBySize(iconSize, _toggleTypes.ToggleSize.Xlarge)}px;
   `
 };
@@ -103,7 +105,7 @@ const CCToggle = _styledComponents.default.label(({
     mode
   },
   disabled
-}) => _styledComponents.css`
+}) => (0, _styledComponents.css)`
     ${toggleSizeCss[toggleSize]};
 
     box-sizing: content-box;
@@ -114,15 +116,15 @@ const CCToggle = _styledComponents.default.label(({
     transition: all ease-in 150ms;
 
     /* Change Slider BG/Border Color */
-    ${checked ? _styledComponents.css`
+    ${checked ? (0, _styledComponents.css)`
           background-color: ${(0, _theme.getThemeColor)(_theme.ThemeColors.ActionPrimary)};
           border-color: ${(0, _theme.getThemeColor)(_theme.ThemeColors.ActionPrimary)};
-        ` : _styledComponents.css`
+        ` : (0, _styledComponents.css)`
           background-color: ${mode === _theme.Mode.Dark ? (0, _exports.getColor)(_exports.Colors.White, 0.2) : (0, _exports.getColor)(_exports.Colors.Grey90)};
           border-color: ${(0, _exports.getColor)(_exports.Colors.Black, 0.06)};
         `};
 
-    ${disabled && _styledComponents.css`
+    ${disabled && (0, _styledComponents.css)`
         cursor: default;
         opacity: 0.4;
       `}
@@ -137,7 +139,7 @@ const StyledIconChecked = (0, _styledComponents.default)(({
 }) => _react.default.createElement(_Icon.Icon, otherProps))(({
   toggleSize,
   checked
-}) => _styledComponents.css`
+}) => (0, _styledComponents.css)`
     ${iconSizeCss[toggleSize]};
     ${(0, _exports.visible)(checked)};
 
@@ -153,7 +155,7 @@ const StyledIconNotChecked = (0, _styledComponents.default)(({
 }) => _react.default.createElement(_Icon.Icon, otherProps))(({
   checked,
   toggleSize
-}) => _styledComponents.css`
+}) => (0, _styledComponents.css)`
     ${iconSizeCss[toggleSize]};
     ${(0, _exports.visible)(!checked)};
 
@@ -165,7 +167,7 @@ const StyledIconNotChecked = (0, _styledComponents.default)(({
 
 const Slider = _styledComponents.default.div(({
   toggleSize
-}) => _styledComponents.css`
+}) => (0, _styledComponents.css)`
     ${sliderSizeCss[toggleSize]};
     ${(0, _exports.getElevationShadow)(_exports.ElevationRange.Elevation1)};
     ${(0, _exports.flexFlow)('row')};
@@ -185,7 +187,7 @@ exports.Slider = Slider;
 
 const Input = _styledComponents.default.input(({
   toggleSize
-}) => _styledComponents.css`
+}) => (0, _styledComponents.css)`
     display: none; /* Hide default HTML checkbox */
 
     /* Move Slider Circle */

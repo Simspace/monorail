@@ -60,7 +60,7 @@ const headerTitle = {
  * Props
  */
 
-type Props = PopOverChildProps & {
+export type AlertModalProps = Omit<PopOverChildProps, 'position'> & {
   alertType: AlertType
   headerText?: string
   onSubmit: () => void
@@ -68,47 +68,52 @@ type Props = PopOverChildProps & {
   secondaryButtonText?: string
   subtitleText?: React.ReactNode
   titleText?: React.ReactNode
+  disabled?: boolean
+  className?: string
+  zIndex?: number
 }
 
 /*
  * Component
  */
 
-export const AlertModal: FC<Props> = props => {
+export const AlertModal: FC<AlertModalProps> = props => {
   const {
     alertType,
+    children,
     closingAnimationCompleted,
+    disabled,
     headerText,
     isOpen,
     onClick,
     onSubmit,
-    position,
     primaryButtonText,
     secondaryButtonText,
     subtitleText,
     titleText,
     togglePopOver,
+    zIndex,
   } = props
 
   return (
     <MediumModal
       onClick={onClick}
       closingAnimationCompleted={closingAnimationCompleted}
-      position={position}
       togglePopOver={togglePopOver}
       title={headerText || headerTitle[alertType]}
       isOpen={isOpen}
       iconLeft={alertIcon[alertType]}
+      zIndex={zIndex}
       css={alertModalStyles[alertType]}
     >
       <BBModalContent css="padding: 24px;">
         <Text fontSize={FontSizes.Title4} fontWeight={700} margin="0 0 8px">
           {titleText}
         </Text>
-
-        <Text fontSize={FontSizes.Title5} fontWeight={400} margin="8px 0 0 ">
+        <Text fontSize={FontSizes.Title5} fontWeight={400} margin="8px 0 0">
           {subtitleText}
         </Text>
+        {children}
       </BBModalContent>
 
       <BBModalFooter>
@@ -123,6 +128,7 @@ export const AlertModal: FC<Props> = props => {
         )}
         {primaryButtonText && (
           <Button
+            disabled={disabled}
             onClick={() => {
               onSubmit()
               togglePopOver()

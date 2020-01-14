@@ -58,6 +58,7 @@ export enum Colors {
   CatalogAlt = 'catalogAlt',
   Dashboard = 'dashboard',
   Range = 'range',
+  RangeAlt = 'rangeAlt',
   Tracker = 'tracker',
   TrackerAlt = 'trackerAlt',
   Hardhat = 'hardhat',
@@ -68,6 +69,8 @@ export enum Colors {
   TechOpsAlt = 'techopsAlt',
   Repo = 'repo',
   LMS = 'externalLms',
+  MyOrg = 'myOrg',
+  MyOrgAlt = 'myOrgAlt',
 
   // State
   Green = 'green',
@@ -79,6 +82,13 @@ export enum Colors {
   Warning = 'warning',
   Success = 'success',
   Info = 'info',
+
+  // Scores
+  High = 'high',
+  HighModerate = 'highModerate',
+  Moderate = 'moderate',
+  LowModerate = 'lowModerate',
+  Low = 'low',
 }
 
 type HSLAMapType = {
@@ -143,7 +153,9 @@ export const colorHSLAMap = ({
     [Colors.Catalog]: { h: 257, s: 54, l: 45, a: alpha },
     [Colors.CatalogAlt]: { h: 257, s: 77, l: 29, a: alpha },
     [Colors.Dashboard]: { h: 257, s: 70, l: 60, a: alpha },
-    [Colors.Range]: { h: 37, s: 84, l: 50, a: alpha },
+    [Colors.Range]: { h: 257, s: 54, l: 45, a: alpha },
+    [Colors.RangeAlt]: { h: 37, s: 84, l: 50, a: alpha },
+
     // [Colors.Tracker]: { h: 145, s: 63, l: 42, a: alpha },
     [Colors.Tracker]: { h: 133, s: 34, l: 51, a: alpha },
     [Colors.TrackerAlt]: { h: 132, s: 45, l: 45, a: alpha },
@@ -158,6 +170,8 @@ export const colorHSLAMap = ({
     [Colors.Repo]: { h: 79, s: 59, l: 49, a: alpha },
     [Colors.LMS]: { h: 2, s: 61, l: 50, a: alpha },
     [Colors.Execution]: { h: 196, s: 75, l: 50, a: alpha },
+    [Colors.MyOrg]: { h: 181, s: 88, l: 29, a: alpha },
+    [Colors.MyOrgAlt]: { h: 180, s: 40, l: 98, a: alpha },
 
     // Event Status
     // In Progress
@@ -183,6 +197,13 @@ export const colorHSLAMap = ({
     [Colors.Warning]: { h: 31, s: 87, l: 60, a: alpha },
     [Colors.Success]: { h: 147, s: 34, l: 53, a: alpha },
     [Colors.Info]: { h: 219, s: 100, l: 54, a: alpha },
+
+    // Scores
+    [Colors.High]: { h: 147, s: 34, l: 53, a: alpha },
+    [Colors.HighModerate]: { h: 72, s: 82, l: 44, a: alpha },
+    [Colors.Moderate]: { h: 45, s: 100, l: 51, a: alpha },
+    [Colors.LowModerate]: { h: 31, s: 87, l: 60, a: alpha },
+    [Colors.Low]: { h: 11, s: 69, l: 47, a: alpha },
   }
 
   return baseColors[color]

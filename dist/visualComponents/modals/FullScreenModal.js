@@ -32,21 +32,22 @@ var _StyledBBModalBackground =
   componentId: "jmmt8t-0"
 })(["", ""], p => p._css);
 
-const FullScreenModal = ({
-  children,
-  customCloseButton,
-  escToClose,
-  headerChildren,
-  iconLeft,
-  isOpen,
-  noHeader,
-  onClick,
-  title,
-  togglePopOver,
-  closingAnimationCompleted,
-  zIndex,
-  ...otherProps
-}) => {
+const FullScreenModal = props => {
+  const {
+    children,
+    customCloseButton,
+    escToClose = true,
+    headerChildren,
+    iconLeft = '',
+    isOpen,
+    noHeader = false,
+    onClick,
+    title = '',
+    togglePopOver,
+    closingAnimationCompleted,
+    zIndex = (0, _zIndex.zIndexValue)(_zIndex.ZIndexNodeName.Modal),
+    ...otherProps
+  } = props;
   const {
     modalBackgroundRef,
     isRendered
@@ -76,9 +77,3 @@ const FullScreenModal = ({
 };
 
 exports.FullScreenModal = FullScreenModal;
-FullScreenModal.defaultProps = {
-  escToClose: true,
-  iconLeft: '',
-  noHeader: false,
-  zIndex: (0, _zIndex.zIndexValue)(_zIndex.ZIndexNodeName.Overlay)
-};

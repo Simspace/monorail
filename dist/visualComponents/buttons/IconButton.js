@@ -32,20 +32,20 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
 const iconButtonSizeCss = {
-  [_buttonTypes.ButtonSize.Dense]: _styledComponents2.css`
+  [_buttonTypes.ButtonSize.Dense]: (0, _styledComponents2.css)`
     width: 16px;
 
     ${_Icon.Icon} {
       font-size: 12px;
     }
   `,
-  [_buttonTypes.ButtonSize.Compact]: _styledComponents2.css`
+  [_buttonTypes.ButtonSize.Compact]: (0, _styledComponents2.css)`
     width: 24px;
   `,
-  [_buttonTypes.ButtonSize.Default]: _styledComponents2.css`
+  [_buttonTypes.ButtonSize.Default]: (0, _styledComponents2.css)`
     width: 24px;
   `,
-  [_buttonTypes.ButtonSize.Large]: _styledComponents2.css`
+  [_buttonTypes.ButtonSize.Large]: (0, _styledComponents2.css)`
     width: 32px;
 
     ${_Icon.Icon} {
@@ -59,7 +59,7 @@ const iconButtonDisplayCss = (display, isActive) => {
     return (0, _baseStyles.baseIconButtonChromelessStyles)(isActive);
   }
 
-  return _styledComponents2.css``;
+  return (0, _styledComponents2.css)``;
 };
 
 const iconButtonShapeCss = {
@@ -73,7 +73,7 @@ const iconButtonCSS = ({
   shape,
   cssOverrides,
   isActive
-}) => _styledComponents2.css`
+}) => (0, _styledComponents2.css)`
   ${iconButtonDisplayCss(display, isActive)};
   ${iconButtonSizeCss[size]};
   ${iconButtonShapeCss[shape]};
@@ -85,9 +85,9 @@ const iconButtonCSS = ({
   theme: {
     mode
   }
-}) => mode === _theme.Mode.Dark ? _styledComponents2.css`
+}) => mode === _theme.Mode.Dark ? (0, _styledComponents2.css)`
             color: ${(0, _theme.getThemeColor)(_theme.ThemeColors.Text900)};
-          ` : _styledComponents2.css`
+          ` : (0, _styledComponents2.css)`
             color: currentColor;
           `};
 
@@ -100,45 +100,62 @@ const iconButtonCSS = ({
 const StyledIconButton = (0, _styledComponents2.default)(_Button.Button)``;
 exports.StyledIconButton = StyledIconButton;
 
+var _StyledStyledIconButton =
+/*#__PURE__*/
+(0, _styledComponents.default)(StyledIconButton).withConfig({
+  displayName: "IconButton___StyledStyledIconButton",
+  componentId: "sc-16kofcu-0"
+})(["", ""], p => p._css);
+
 var _StyledIcon =
 /*#__PURE__*/
 (0, _styledComponents.default)(_Icon.Icon).withConfig({
   displayName: "IconButton___StyledIcon",
-  componentId: "sc-16kofcu-0"
-})(["", ""], p => p._css);
+  componentId: "sc-16kofcu-1"
+})(["", ""], p => p._css2);
 
-const IconButton = ({
-  cssOverrides,
-  display,
-  icon,
-  iconCss,
-  isActive,
-  passedAs,
-  pressed,
-  shape,
-  size,
-  status,
-  ...domProps
-}) => _react.default.createElement(StyledIconButton, _extends({}, domProps, {
-  as: passedAs,
-  display: display,
-  pressed: isActive || pressed,
-  size: size,
-  status: status,
-  cssOverrides: iconButtonCSS({
-    display,
-    size,
-    shape,
-    cssOverrides,
-    isActive
-  })
-}), _react.default.createElement(_StyledIcon, {
-  icon: icon,
-  _css: iconCss
-}));
+const IconButton = props => {
+  const {
+    className = '',
+    disabled = false,
+    display = _buttonTypes.ButtonDisplay.Primary,
+    isActive = false,
+    mode = _buttonTypes.ButtonMode.Default,
+    onClick = () => {},
+    pressed = false,
+    size = _buttonTypes.ButtonSize.Default,
+    type = 'button',
+    cssOverrides = '',
+    icon = '',
+    iconCss = (0, _styledComponents2.css)``,
+    passedAs,
+    shape = _buttonTypes.IconButtonShape.Default,
+    status,
+    ...domProps
+  } = props;
+  return _react.default.createElement(_StyledStyledIconButton, _extends({}, domProps, {
+    className: className,
+    disabled: disabled,
+    passedAs: passedAs,
+    display: display,
+    isActive: isActive,
+    mode: mode,
+    onClick: onClick,
+    pressed: isActive || pressed,
+    size: size,
+    status: status,
+    type: type,
+    _css: iconButtonCSS({
+      display,
+      size,
+      shape,
+      cssOverrides,
+      isActive
+    })
+  }), _react.default.createElement(_StyledIcon, {
+    icon: icon,
+    _css2: iconCss
+  }));
+};
 
 exports.IconButton = IconButton;
-IconButton.defaultProps = { ..._Button.buttonDefaultProps,
-  shape: _buttonTypes.IconButtonShape.Default,
-  iconCss: _styledComponents2.css``
-};

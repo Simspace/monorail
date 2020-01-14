@@ -1,5 +1,4 @@
-import React, { MouseEvent, ReactNode, ReactType } from 'react';
-import { FCwDP } from '@monorail/sharedHelpers/react';
+import React, { FC, MouseEvent, ReactNode, ReactType } from 'react';
 import { CommonComponentType, LinkProps } from '@monorail/types';
 import { ButtonDisplay, ButtonMode, ButtonSize } from '@monorail/visualComponents/buttons/buttonTypes';
 export declare const buttonDisplayCss: {
@@ -24,35 +23,48 @@ export declare const buttonSizeCss: {
     [ButtonSize.Default]: import("styled-components").FlattenSimpleInterpolation;
     [ButtonSize.Large]: import("styled-components").FlattenSimpleInterpolation;
 };
-export declare const StyledButton: import("styled-components").StyledComponent<"button", import("../../helpers/theme").GlobalAppThemeInterface, StyleProps, never>;
-declare type IconProps = {
-    iconLeft: string;
-    iconRight: string;
-};
-export declare type OnClick = (event: MouseEvent<HTMLButtonElement>) => void;
-declare type FunctionalProps = {
-    className: string;
+export declare const StyledButton: import("styled-components").StyledComponent<"button", import("../../helpers/theme").GlobalAppThemeInterface, StyledButtonProps, never>;
+export declare type StyledButtonProps = {
     disabled: boolean;
     display: ButtonDisplay;
-    isActive: boolean;
     mode: ButtonMode;
-    onClick: OnClick;
-    onMouseDown?: OnClick;
-    onMouseUp?: OnClick;
     pressed: boolean;
     size: ButtonSize;
     status?: (props: {
         style: React.CSSProperties;
     }) => ReactNode;
-    title?: string;
+    cssOverrides: CommonComponentType['cssOverrides'];
+    as?: CommonComponentType['as'];
+    className: string;
     type: 'button' | 'reset' | 'submit';
+    onClick: OnClick;
+    isActive: boolean;
 };
-declare type DefaultProps = IconProps & FunctionalProps;
+declare type IconProps = {
+    iconLeft?: string;
+    iconRight?: string;
+};
+export declare type OnClick = (event: MouseEvent<HTMLButtonElement>) => void;
+declare type FunctionalProps = {
+    className?: string;
+    disabled?: boolean;
+    display?: ButtonDisplay;
+    isActive?: boolean;
+    mode?: ButtonMode;
+    onClick?: OnClick;
+    onMouseDown?: OnClick;
+    onMouseUp?: OnClick;
+    pressed?: boolean;
+    size?: ButtonSize;
+    status?: (props: {
+        style: React.CSSProperties;
+    }) => ReactNode;
+    title?: string;
+    type?: 'button' | 'reset' | 'submit';
+};
 declare type CommonProps = CommonComponentType & LinkProps & {
     passedAs?: ReactType;
 };
-declare type StyleProps = CommonProps & FunctionalProps;
-export declare type ButtonProps = CommonProps & DefaultProps;
-export declare const buttonDefaultProps: DefaultProps;
-export declare const Button: FCwDP<CommonProps, DefaultProps>;
+export declare type ButtonProps = CommonProps & IconProps & FunctionalProps;
+export declare const Button: FC<ButtonProps>;
 export {};

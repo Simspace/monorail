@@ -75,24 +75,24 @@ exports.TableComponent = TableComponent;
 const TheadComponentContainer = _styledComponents2.default.div(({
   isFilterBar,
   isGroupBar
-}) => _styledComponents2.css`
+}) => (0, _styledComponents2.css)`
     ${(0, _flex.flexFlow)('row')};
 
     flex-shrink: 0;
     height: ${THEAD_HEIGHT}px;
     position: relative;
 
-    ${isFilterBar ? _styledComponents2.css`
+    ${isFilterBar ? (0, _styledComponents2.css)`
           left: 0;
           pointer-events: none;
           position: absolute;
           right: 0;
           top: 0;
-        ` : _styledComponents2.css`
+        ` : (0, _styledComponents2.css)`
           background: ${(0, _color.getColor)(_color.Colors.Grey99)};
           overflow: hidden;
 
-          ${!isGroupBar && _styledComponents2.css`
+          ${!isGroupBar && (0, _styledComponents2.css)`
               &::after {
                 background: ${(0, _color.getColor)(_color.Colors.Grey90)};
                 bottom: 0;
@@ -131,7 +131,7 @@ const ThComponentContainer = _styledComponents2.default.div(({
       }
     }
   }
-}) => _styledComponents2.css`
+}) => (0, _styledComponents2.css)`
     padding: 0 ${filterable ? 34 : 6}px 0 6px;
 
     ${(0, _flex.flexFlow)('row')};
@@ -344,7 +344,7 @@ const FilterComponent = ({
     placeholder: "Filter",
     value: !(0, _typeGuards.isNil)(filter) ? filter.value : '',
     onChange: event => onChange(event.target.value),
-    cssOverrides: _styledComponents2.css`
+    cssOverrides: (0, _styledComponents2.css)`
         width: 100%;
         padding: 8px 12px;
       `
@@ -375,10 +375,10 @@ exports.ResizerComponent = ResizerComponent;
 
 const TrGroupComponent = _styledComponents2.default.div(({
   isGroup = false
-}) => _styledComponents2.css`
-    ${isGroup ? _styledComponents2.css`
+}) => (0, _styledComponents2.css)`
+    ${isGroup ? (0, _styledComponents2.css)`
           ${(0, _flex.flexFlow)('column')};
-        ` : _styledComponents2.css`
+        ` : (0, _styledComponents2.css)`
           ${(0, _flex.flexFlow)('row')};
           height: auto;
           min-height: ${TD_HEIGHT}px;
@@ -416,26 +416,26 @@ var TdComponentType;
 })(TdComponentType || (TdComponentType = {}));
 
 const tdComponentTypeStyles = {
-  [TdComponentType.Default]: _styledComponents2.css``,
-  [TdComponentType.Expandable]: _styledComponents2.css`
+  [TdComponentType.Default]: (0, _styledComponents2.css)``,
+  [TdComponentType.Expandable]: (0, _styledComponents2.css)`
     height: ${TD_HEIGHT}px;
     background: #f6f6f9;
     cursor: pointer;
     user-select: none;
   `,
-  [TdComponentType.Actions]: _styledComponents2.css`
+  [TdComponentType.Actions]: (0, _styledComponents2.css)`
     justify-content: flex-end;
 
     ${_IconButton.StyledIconButton} {
       opacity: 0.3;
     }
   `,
-  [TdComponentType.Hidden]: _styledComponents2.css``
+  [TdComponentType.Hidden]: (0, _styledComponents2.css)``
 };
 
 const TdComponentContainer = _styledComponents2.default.div(({
   tdComponentType
-}) => _styledComponents2.css`
+}) => (0, _styledComponents2.css)`
     ${tdComponentTypeStyles[tdComponentType]}
     ${(0, _flex.flexFlow)('row')};
     ${(0, _typography.typography)(400, _typography.FontSizes.Title5)};

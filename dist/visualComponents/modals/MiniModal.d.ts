@@ -1,4 +1,4 @@
-import { FunctionComponent, ReactNode } from 'react';
+import { FC, ReactNode } from 'react';
 import { SimpleInterpolation } from 'styled-components';
 import { PopOverChildProps } from '@monorail/metaComponents/popOver/PopOver';
 declare type Props = PopOverChildProps & {
@@ -7,5 +7,5 @@ declare type Props = PopOverChildProps & {
     headerChildren?: ReactNode;
     modalBackgroundCss?: SimpleInterpolation;
 };
-export declare const MiniModal: FunctionComponent<Props>;
+export declare const MiniModal: FC<Props>;
 export {};

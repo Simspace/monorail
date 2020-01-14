@@ -15,7 +15,6 @@ import {
   visible,
 } from '@monorail/helpers/exports'
 import { Icon, OnClick } from '@monorail/visualComponents/icon/Icon'
-import { DisplayType } from '@monorail/visualComponents/inputs/inputTypes'
 
 /*
  * Styles
@@ -141,7 +140,6 @@ export type ChoiceProps = GradeIconProps &
     type?: 'radio' | 'checkbox'
     children?: ReactNode
     style?: CSSProperties
-    display?: DisplayType
   }
 
 /*
@@ -386,7 +384,6 @@ export const Choice: FC<ChoiceProps> = props => {
     correct = false,
     cssOverrides,
     dense = false,
-    display = DisplayType.Edit,
     disabled = false,
     incorrect = false,
     indeterminate = false,

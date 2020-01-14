@@ -5,6 +5,7 @@ import {
   difference,
   elem,
   init,
+  isEmpty,
   last,
   snoc,
   sort,
@@ -14,7 +15,7 @@ import { Either, either, isRight } from 'fp-ts/lib/Either'
 import { Eq } from 'fp-ts/lib/Eq'
 import { constFalse, constTrue, Predicate, tuple } from 'fp-ts/lib/function'
 import { IO } from 'fp-ts/lib/IO'
-import { none, option, Option, some } from 'fp-ts/lib/Option'
+import { none, option, some } from 'fp-ts/lib/Option'
 import { lookup } from 'fp-ts/lib/Record'
 import { task } from 'fp-ts/lib/Task'
 import { taskEither } from 'fp-ts/lib/TaskEither'
@@ -270,7 +271,6 @@ export const xor = <A>(E: Eq<A>) => (xs: Array<A>, ys: Array<A>) => [
 /**
  * Returns an object made up of a keys from the result the accessor function
  */
-
 export const arrayToRecord = <T, V>(
   keyAccessor: (curr: T) => string,
   mapValue?: (curr: T) => V,
@@ -281,3 +281,8 @@ export const arrayToRecord = <T, V>(
     return lookup(key, acc).fold({ ...acc, [key]: value }, () => acc)
   }, {})
 }
+
+/**
+ * Checks if an array is *not* empty
+ */
+export const isNotEmpty = <T>(arr: Array<T>) => !isEmpty(arr)

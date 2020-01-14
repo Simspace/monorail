@@ -58,7 +58,7 @@ const HandlerWrapper = _styledComponents2.default.div`
 
 const StyledHandler = _styledComponents2.default.div(({
   searching = false
-}) => _styledComponents2.css`
+}) => (0, _styledComponents2.css)`
     ${(0, _exports.visible)(!searching)}
     ${(0, _flex.flexFlow)('row')}
     ${_exports.ellipsis};
@@ -68,7 +68,7 @@ const StyledHandler = _styledComponents2.default.div(({
     pointer-events: none;
   `);
 
-const TextFieldStyles = (searching = false) => _styledComponents2.css`
+const TextFieldStyles = (searching = false) => (0, _styledComponents2.css)`
   border-radius: inherit;
   bottom: 0;
   left: 0;

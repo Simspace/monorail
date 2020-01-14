@@ -10,7 +10,6 @@ export declare type DropdownSkinCommonType = {
     placeholder?: string;
     disabled?: boolean;
     clearable?: boolean;
-    document?: Document;
     error?: Option<string>;
     required?: boolean;
     label?: string;

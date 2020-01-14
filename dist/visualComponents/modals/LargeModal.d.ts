@@ -1,15 +1,12 @@
-import { ReactNode } from 'react';
+import { FC, ReactNode } from 'react';
 import { SimpleInterpolation } from 'styled-components';
 import { PopOverChildProps } from '@monorail/metaComponents/popOver/PopOver';
-import { FCwDP } from '@monorail/sharedHelpers/react';
-declare type Props = PopOverChildProps & DefaultProps & {
+declare type Props = Omit<PopOverChildProps, 'position'> & {
     title: string;
     iconLeft?: string;
     headerStyles?: SimpleInterpolation;
     headerRowChildren?: ReactNode;
+    zIndex?: number;
 };
-declare type DefaultProps = {
-    zIndex: number;
-};
-export declare const LargeModal: FCwDP<Props, DefaultProps>;
+export declare const LargeModal: FC<Props>;
 export {};

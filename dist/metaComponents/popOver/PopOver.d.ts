@@ -53,7 +53,6 @@ export declare type PopOverChildProps = {
 };
 export declare type PopOverProps = {
     alwaysRender?: boolean;
-    document?: Document;
     gap?: number;
     isOpen?: boolean;
     onToggle?: (isOpen: boolean) => void;

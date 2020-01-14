@@ -150,9 +150,9 @@ export const StyledInput = styled.input<TextFieldProps>(
         border-color: transparent;
       `};
 
-    /* 
-      Remove :-moz-ui-invalid styles so that invalid form states look similar across browsers 
-      https://developer.mozilla.org/en-US/docs/Web/CSS/:-moz-ui-invalid 
+    /*
+      Remove :-moz-ui-invalid styles so that invalid form states look similar across browsers
+      https://developer.mozilla.org/en-US/docs/Web/CSS/:-moz-ui-invalid
     */
     :-moz-ui-invalid {
       box-shadow: none;
@@ -172,8 +172,9 @@ export type InputHTMLType =
   | 'button'
   | 'checkbox'
   | 'color'
-  | 'date'
-  | 'datetime'
+  // | 'date'           // @deprecated @use FormField.Date
+  // | 'datetime'       // @deprecated
+  // | 'datetime-local' // @deprecated @use FormField.Date
   | 'email'
   | 'file'
   | 'hidden'
@@ -252,7 +253,7 @@ export const TextField: ForwardRefExoticComponent<PropsWithoutRef<
   RefAttributes<HTMLInputElement>> = forwardRef<
   HTMLInputElement,
   TextFieldProps
->(props => {
+>((props, ref) => {
   const [hide, setHide] = useState(true)
 
   const {
@@ -321,6 +322,7 @@ export const TextField: ForwardRefExoticComponent<PropsWithoutRef<
               max={max}
               maxLength={maxLength}
               err={err}
+              ref={ref}
               {...otherProps}
             />
             {!isEmptyString(iconRight) && (

@@ -87,23 +87,20 @@ var _StyledIcon =
   componentId: "u4b6mj-4"
 })(["color:", ";"], p => p._css);
 
-const ToastTile = ({
-  level,
-  size,
-  icon
-}) => _react.default.createElement(ToastTileContainer, {
-  color: _types.AlertColors[level],
-  size: size
-}, _react.default.createElement(_StyledIcon, {
-  size: size === ToastSize.Small ? 16 : 24,
-  icon: (0, _typeGuards.isEmptyString)(icon) ? _types.AlertIcons[level] : icon,
-  _css: (0, _exports.getColor)(_exports.Colors.White)
-}));
-
-ToastTile.defaultProps = {
-  level: _types.AlertLevel.Info,
-  size: ToastSize.Large,
-  icon: ''
+const ToastTile = props => {
+  const {
+    level = _types.AlertLevel.Info,
+    size = ToastSize.Large,
+    icon = ''
+  } = props;
+  return _react.default.createElement(ToastTileContainer, {
+    color: _types.AlertColors[level],
+    size: size
+  }, _react.default.createElement(_StyledIcon, {
+    size: size === ToastSize.Small ? 16 : 24,
+    icon: (0, _typeGuards.isEmptyString)(icon) ? _types.AlertIcons[level] : icon,
+    _css: (0, _exports.getColor)(_exports.Colors.White)
+  }));
 };
 /*
  * Toast Component
@@ -112,6 +109,7 @@ ToastTile.defaultProps = {
 /*
  * Props
  */
+
 
 var _StyledBBCardBackground =
 /*#__PURE__*/
@@ -123,34 +121,37 @@ var _StyledBBCardBackground =
 /*
  * Component
  */
-const Toast = ({
-  dismissible,
-  level,
-  message,
-  title,
-  icon,
-  size,
-  ...otherProps
-}) => _react.default.createElement(_StyledBBCardBackground, {
-  hover: dismissible,
-  elevation: _exports.ElevationRange.Elevation8
-}, _react.default.createElement(ToastContainer, {
-  color: _types.AlertColors[level]
-}, _react.default.createElement(ToastTile, {
-  icon: icon,
-  size: size,
-  level: level
-}), _react.default.createElement(ToastDetails, null, !(0, _typeGuards.isEmptyString)(title) && _react.default.createElement(_Text.Text, {
-  fontSize: _exports.FontSizes.Title4,
-  fontWeight: 700,
-  margin: '6px 0'
-}, title), _react.default.createElement(_Text.Text, {
-  fontSize: (0, _typeGuards.isEmptyString)(title) ? _exports.FontSizes.Title4 : _exports.FontSizes.Title5,
-  fontWeight: 400
-}, message)), dismissible && _react.default.createElement(ToastClose, null, _react.default.createElement(_IconButton.IconButton, {
-  icon: 'close',
-  display: _buttonTypes.ButtonDisplay.Secondary
-}))));
+const Toast = props => {
+  const {
+    dismissible,
+    level = _types.AlertLevel.Info,
+    message,
+    title,
+    icon = '',
+    size = ToastSize.Large,
+    ...otherProps
+  } = props;
+  return _react.default.createElement(_StyledBBCardBackground, {
+    hover: dismissible,
+    elevation: _exports.ElevationRange.Elevation8
+  }, _react.default.createElement(ToastContainer, {
+    color: _types.AlertColors[level]
+  }, _react.default.createElement(ToastTile, {
+    icon: icon,
+    size: size,
+    level: level
+  }), _react.default.createElement(ToastDetails, null, !(0, _typeGuards.isEmptyString)(title) && _react.default.createElement(_Text.Text, {
+    fontSize: _exports.FontSizes.Title4,
+    fontWeight: 700,
+    margin: '6px 0'
+  }, title), _react.default.createElement(_Text.Text, {
+    fontSize: (0, _typeGuards.isEmptyString)(title) ? _exports.FontSizes.Title4 : _exports.FontSizes.Title5,
+    fontWeight: 400
+  }, message)), dismissible && _react.default.createElement(ToastClose, null, _react.default.createElement(_IconButton.IconButton, {
+    icon: 'close',
+    display: _buttonTypes.ButtonDisplay.Secondary
+  }))));
+};
 /*
  * Default Props
  */

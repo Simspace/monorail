@@ -61,7 +61,7 @@ var _StyledHeaderTitle =
   componentId: "f4cius-1"
 })(["", ""], p => p._css2);
 
-const iconLeftCss = _styledComponents2.css`
+const iconLeftCss = (0, _styledComponents2.css)`
   color: ${(0, _theme.getThemeColor)(_theme.ThemeColors.Text1000)};
   flex-shrink: 0;
   margin-right: 12px;
@@ -102,8 +102,8 @@ const Header = (0, _styledComponents2.default)(({
 }, title), actions), children))(({
   noBorder,
   appIcon
-}) => _styledComponents2.css`
-    ${!noBorder && _styledComponents2.css`
+}) => (0, _styledComponents2.css)`
+    ${!noBorder && (0, _styledComponents2.css)`
         &::after {
           content: '';
           background: ${appIcon ? (0, _color.getColor)((0, _appName.convertAppNameToColor)(appIcon)) : '#ebebeb'};

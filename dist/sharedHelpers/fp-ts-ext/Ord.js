@@ -9,6 +9,9 @@ var _strings = require("../strings");
 
 var _Setoid = require("./Setoid");
 
+/**
+ * Determines ordering of two numbers (numeric comparison)
+ */
 const numericCompare = (x, y) => x < y ? -1 : x > y ? 1 : 0;
 /**
  * Ord instance for number

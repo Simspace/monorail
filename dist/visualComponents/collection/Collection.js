@@ -234,7 +234,7 @@ const Collection = props => {
 };
 
 exports.Collection = Collection;
-const theadOverrides = _styledComponents2.css`
+const theadOverrides = (0, _styledComponents2.css)`
   ${_ReactTable.TheadComponentContainer} {
     ${(0, _flex.flexFlow)('row', 'wrap')};
 
@@ -260,7 +260,7 @@ const CollectionTheadComponent = ({
   }
 };
 
-const thComponentOverrides = _styledComponents2.css`
+const thComponentOverrides = (0, _styledComponents2.css)`
   width: auto;
   padding-right: 27px;
 

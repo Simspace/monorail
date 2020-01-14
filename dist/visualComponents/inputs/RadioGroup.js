@@ -97,6 +97,7 @@ const RadioGroup = props => {
     htmlValidation = true,
     err = false,
     msg = '',
+    name,
     className = '',
     hideStdErr = false,
     display = _inputTypes.DisplayType.Edit,
@@ -118,11 +119,11 @@ const RadioGroup = props => {
     key: k + o.label
   }, _react.default.createElement(_Choice.Choice, {
     type: "radio",
-    name: label,
+    name: name || label,
     "data-test-id": o['data-test-id'],
     checked: o.key === value,
     value: o.key,
-    onChange: e => {
+    onClick: e => {
       onSelect && onSelect(o.key, e);
     },
     required: htmlValidation && required,

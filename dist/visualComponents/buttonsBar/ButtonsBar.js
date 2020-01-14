@@ -30,14 +30,14 @@ function _extends() { _extends = Object.assign || function (target) { for (var i
 const StyledButtonWrapper = _styledComponents.default.div(({
   mode,
   theme
-}) => _styledComponents.css`
+}) => (0, _styledComponents.css)`
     position: relative;
 
-    ${mode === _buttonTypes.ButtonsBarMode.Toolbar ? _styledComponents.css`
+    ${mode === _buttonTypes.ButtonsBarMode.Toolbar ? (0, _styledComponents.css)`
           ${_Button.StyledButton} {
             margin: 2px;
           }
-        ` : _styledComponents.css`
+        ` : (0, _styledComponents.css)`
           border-radius: inherit;
           flex: 1 1 auto;
 
@@ -82,8 +82,8 @@ const StyledButtonWrapper = _styledComponents.default.div(({
 const ButtonsBarContainer = _styledComponents.default.div(({
   cssOverrides,
   mode
-}) => _styledComponents.css`
-    ${mode === _buttonTypes.ButtonsBarMode.Default && _styledComponents.css`
+}) => (0, _styledComponents.css)`
+    ${mode === _buttonTypes.ButtonsBarMode.Default && (0, _styledComponents.css)`
         ${(0, _exports.floatingOutlineStyles)((0, _exports.getColor)(_exports.Colors.Black, 0.16))};
         ${(0, _exports.borderRadius)()};
       `}
@@ -124,13 +124,15 @@ const ToolbarsContainer = _styledComponents.default.div`
 
 exports.ToolbarsContainer = ToolbarsContainer;
 
-const ButtonsBar = ({
-  children,
-  size,
-  mode,
-  display,
-  ...domProps
-}) => {
+const ButtonsBar = props => {
+  const {
+    children,
+    size = _buttonTypes.ButtonSize.Large,
+    mode = _buttonTypes.ButtonsBarMode.Default,
+    display = _buttonTypes.ButtonDisplay.ButtonBar,
+    ...domProps
+  } = props;
+
   const renderBar = () => _react.default.Children.map(children, (child, index) => {
     if (_react.default.isValidElement(child)) {
       const buttonDisplay = mode === _buttonTypes.ButtonsBarMode.Toolbar ? _buttonTypes.ButtonDisplay.Toolbar : display;
@@ -155,8 +157,3 @@ const ButtonsBar = ({
 };
 
 exports.ButtonsBar = ButtonsBar;
-ButtonsBar.defaultProps = {
-  display: _buttonTypes.ButtonDisplay.ButtonBar,
-  size: _buttonTypes.ButtonSize.Large,
-  mode: _buttonTypes.ButtonsBarMode.Default
-};

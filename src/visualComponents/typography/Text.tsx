@@ -1,5 +1,5 @@
-import React from 'react'
-import styled, { css } from 'styled-components'
+import React, { FC, ReactNode } from 'react'
+import { css } from 'styled-components'
 
 import { Colors, getColor } from '@monorail/helpers/color'
 import {
@@ -26,12 +26,28 @@ type Props = {
   fontWeight: FontWeights
   margin?: string
   color?: Colors
+  children: string | number | ReactNode
 }
 
-export const Text = styled.span<Props>(
-  ({ fontSize, fontWeight, margin = '', color = Colors.Black89 }) => css`
-    ${typography(fontWeight, fontSize, margin)};
+export const Text: FC<Props> = props => {
+  const {
+    fontSize,
+    fontWeight,
+    margin = '',
+    color = Colors.Black89,
+    children,
+    ...domProps
+  } = props
 
-    color: ${getColor(color)};
-  `,
-)
+  return (
+    <span
+      {...domProps}
+      css={css`
+        ${typography(fontWeight, fontSize, margin)};
+        color: ${getColor(color)};
+      `}
+    >
+      {children}
+    </span>
+  )
+}

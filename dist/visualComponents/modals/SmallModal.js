@@ -32,20 +32,21 @@ var _StyledBBModalBackground =
   componentId: "oca2ep-0"
 })(["", ""], p => p._css);
 
-const SmallModal = ({
-  isOpen,
-  onClick,
-  children,
-  title,
-  iconLeft,
-  togglePopOver,
-  headerChildren,
-  customCloseButton,
-  headerStyles,
-  closingAnimationCompleted,
-  zIndex,
-  ...otherProps
-}) => {
+const SmallModal = props => {
+  const {
+    isOpen,
+    onClick,
+    children,
+    title,
+    iconLeft,
+    togglePopOver,
+    headerChildren,
+    customCloseButton,
+    headerStyles,
+    closingAnimationCompleted,
+    zIndex = (0, _zIndex.zIndexValue)(_zIndex.ZIndexNodeName.Modal),
+    ...otherProps
+  } = props;
   const {
     modalBackgroundRef,
     isRendered
@@ -75,6 +76,3 @@ const SmallModal = ({
 };
 
 exports.SmallModal = SmallModal;
-SmallModal.defaultProps = {
-  zIndex: (0, _zIndex.zIndexValue)(_zIndex.ZIndexNodeName.Overlay)
-};

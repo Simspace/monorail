@@ -5,6 +5,8 @@ import { Omit } from 'typelevel-ts'
 import { Colors, getColor } from '@monorail/helpers/exports'
 import { CommonComponentType } from '@monorail/types'
 import { Academy } from '@monorail/visualComponents/icon/custom/Academy'
+import { AddGroup } from '@monorail/visualComponents/icon/custom/AddGroup'
+import { AddList } from '@monorail/visualComponents/icon/custom/AddList'
 import { Admin } from '@monorail/visualComponents/icon/custom/Admin'
 import { Bam } from '@monorail/visualComponents/icon/custom/Bam'
 import { Catalog } from '@monorail/visualComponents/icon/custom/Catalog'
@@ -22,6 +24,7 @@ import { Events } from '@monorail/visualComponents/icon/custom/Events'
 import { FileTree } from '@monorail/visualComponents/icon/custom/FileTree'
 import { Filter } from '@monorail/visualComponents/icon/custom/Filter'
 import { Gauge } from '@monorail/visualComponents/icon/custom/Gauge'
+import { GhostVm } from '@monorail/visualComponents/icon/custom/GhostVm'
 import { Grade } from '@monorail/visualComponents/icon/custom/Grade'
 import { H1 } from '@monorail/visualComponents/icon/custom/H1'
 import { H2 } from '@monorail/visualComponents/icon/custom/H2'
@@ -31,10 +34,15 @@ import { Information } from '@monorail/visualComponents/icon/custom/Information'
 import { InformationTaskAddBlue } from '@monorail/visualComponents/icon/custom/InformationTaskAddBlue'
 import { InformationTaskAddGrey } from '@monorail/visualComponents/icon/custom/InformationTaskAddGrey'
 import { LMS } from '@monorail/visualComponents/icon/custom/LMS'
+import { MyOrg } from '@monorail/visualComponents/icon/custom/MyOrg'
+import { MyTeam } from '@monorail/visualComponents/icon/custom/MyTeam'
 import { NetworkSetup } from '@monorail/visualComponents/icon/custom/NetworkSetup'
 import { NoResults } from '@monorail/visualComponents/icon/custom/NoResults'
 import { NoUsers } from '@monorail/visualComponents/icon/custom/NoUsers'
 import { OrgGroup } from '@monorail/visualComponents/icon/custom/OrgGroup'
+import { PeopleGear } from '@monorail/visualComponents/icon/custom/PeopleGear'
+import { PersonGear } from '@monorail/visualComponents/icon/custom/PersonGear'
+import { Profile } from '@monorail/visualComponents/icon/custom/Profile'
 import { Puzzle } from '@monorail/visualComponents/icon/custom/Puzzle'
 import { QuestionMark } from '@monorail/visualComponents/icon/custom/QuestionMark'
 import { QuestionTaskAddBlue } from '@monorail/visualComponents/icon/custom/QuestionTaskAddBlue'
@@ -43,6 +51,7 @@ import { Range } from '@monorail/visualComponents/icon/custom/Range'
 import { ReportsAnalytics } from '@monorail/visualComponents/icon/custom/ReportsAnalytics'
 import { Robot } from '@monorail/visualComponents/icon/custom/Robot'
 import { ServerNetwork } from '@monorail/visualComponents/icon/custom/ServerNetwork'
+import { SiteMap } from '@monorail/visualComponents/icon/custom/SiteMap'
 import { SortAscending } from '@monorail/visualComponents/icon/custom/SortAscending'
 import { SortDescending } from '@monorail/visualComponents/icon/custom/SortDescending'
 import { StarFilled } from '@monorail/visualComponents/icon/custom/StarFilled'
@@ -54,6 +63,7 @@ import { Target } from '@monorail/visualComponents/icon/custom/Target'
 import { TechOps } from '@monorail/visualComponents/icon/custom/TechOps'
 import { Temporary } from '@monorail/visualComponents/icon/custom/Temporary'
 import { ThreeGears } from '@monorail/visualComponents/icon/custom/ThreeGears'
+import { Tie } from '@monorail/visualComponents/icon/custom/Tie'
 import { Tracker } from '@monorail/visualComponents/icon/custom/Tracker'
 import { TreasureChest } from '@monorail/visualComponents/icon/custom/TreasureChest'
 import { Unscored } from '@monorail/visualComponents/icon/custom/Unscored'
@@ -90,6 +100,7 @@ const customIcons: { [key: string]: ComponentType<CustomIconProps> } = {
   'hardhat-app': Catalog,
   'home-app': Home,
   'impact-app': Impact,
+  'my-org-app': MyOrg,
   'network-setup-app': NetworkSetup,
   'no-results': NoResults,
   'range-app': Range,
@@ -98,6 +109,8 @@ const customIcons: { [key: string]: ComponentType<CustomIconProps> } = {
   'techops-app': TechOps,
   'tracker-app': Tracker,
   'training-app': Academy,
+  add_group: AddGroup,
+  add_list: AddList,
   bam: Bam,
   certificate: Certificate,
   chevron_double_left: ChevronDoubleLeft,
@@ -141,6 +154,13 @@ const customIcons: { [key: string]: ComponentType<CustomIconProps> } = {
   grade: Grade,
   upload: Upload,
   question_mark: QuestionMark,
+  person_gear: PersonGear,
+  people_gear: PeopleGear,
+  tie: Tie,
+  site_map: SiteMap,
+  profile: Profile,
+  my_team: MyTeam,
+  ghost_vm: GhostVm,
 }
 
 export const Icon = styled(

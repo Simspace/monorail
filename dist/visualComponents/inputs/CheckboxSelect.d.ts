@@ -1,4 +1,4 @@
-import { SFC } from 'react';
+import { FC } from 'react';
 import { SimpleInterpolation } from 'styled-components';
 import { SelectOption } from '@monorail/visualComponents/inputs/Select';
 export declare type CheckboxSelectValue = {
@@ -17,4 +17,4 @@ export declare type CheckboxSelectProps = {
     options: Array<SelectOption>;
     placeholder?: string;
 };
-export declare const CheckboxSelect: SFC<CheckboxSelectProps>;
+export declare const CheckboxSelect: FC<CheckboxSelectProps>;

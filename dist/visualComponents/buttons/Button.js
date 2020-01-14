@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.Button = exports.buttonDefaultProps = exports.StyledButton = exports.buttonSizeCss = exports.buttonPressedDisplayCss = exports.buttonDisplayCss = void 0;
+exports.Button = exports.StyledButton = exports.buttonSizeCss = exports.buttonPressedDisplayCss = exports.buttonDisplayCss = void 0;
 
 var _styledComponents = _interopRequireDefault(require("styled-components"));
 
@@ -33,17 +33,17 @@ const buttonDisplayCss = {
   [_buttonTypes.ButtonDisplay.Primary]: (0, _exports.basePrimaryStyles)(),
   [_buttonTypes.ButtonDisplay.Secondary]: (0, _exports.baseSecondaryStyles)(),
   [_buttonTypes.ButtonDisplay.Outline]: (0, _exports.baseOutlineStyles)(),
-  [_buttonTypes.ButtonDisplay.Chromeless]: _styledComponents2.css`
+  [_buttonTypes.ButtonDisplay.Chromeless]: (0, _styledComponents2.css)`
     ${(0, _exports.baseChromelessStyles)()};
 
     color: ${(0, _theme.getThemeColor)(_theme.ThemeColors.ActionSecondary)};
     line-height: 25px;
   `,
-  [_buttonTypes.ButtonDisplay.ButtonBar]: _styledComponents2.css`
+  [_buttonTypes.ButtonDisplay.ButtonBar]: (0, _styledComponents2.css)`
     ${(0, _exports.floatingOutlineStyles)()};
     ${(0, _exports.baseButtonBarStyles)()};
   `,
-  [_buttonTypes.ButtonDisplay.Toolbar]: _styledComponents2.css`
+  [_buttonTypes.ButtonDisplay.Toolbar]: (0, _styledComponents2.css)`
     ${(0, _exports.baseButtonBarStyles)()};
   `
 };
@@ -53,7 +53,7 @@ const buttonPressedDisplayCss = {
   [_buttonTypes.ButtonDisplay.Secondary]: (0, _exports.basePrimaryStyles)(),
   [_buttonTypes.ButtonDisplay.Outline]: (0, _exports.basePrimaryStyles)(),
   [_buttonTypes.ButtonDisplay.Chromeless]: (0, _exports.basePrimaryStyles)(),
-  [_buttonTypes.ButtonDisplay.ButtonBar]: _styledComponents2.css`
+  [_buttonTypes.ButtonDisplay.ButtonBar]: (0, _styledComponents2.css)`
     ${(0, _exports.basePrimaryStyles)()};
 
     color: ${(0, _exports.getColor)(_exports.Colors.White)};
@@ -70,58 +70,58 @@ const buttonPressedDisplayCss = {
 };
 exports.buttonPressedDisplayCss = buttonPressedDisplayCss;
 const buttonSizeCss = {
-  [_buttonTypes.ButtonSize.Dense]: _styledComponents2.css`
+  [_buttonTypes.ButtonSize.Dense]: (0, _styledComponents2.css)`
     height: 16px;
     padding: 0 7px;
   `,
-  [_buttonTypes.ButtonSize.Compact]: _styledComponents2.css`
+  [_buttonTypes.ButtonSize.Compact]: (0, _styledComponents2.css)`
     height: 24px;
     padding: 0 7px;
   `,
-  [_buttonTypes.ButtonSize.Default]: _styledComponents2.css`
+  [_buttonTypes.ButtonSize.Default]: (0, _styledComponents2.css)`
     height: 24px;
     padding: 0 11px;
   `,
-  [_buttonTypes.ButtonSize.Large]: _styledComponents2.css`
+  [_buttonTypes.ButtonSize.Large]: (0, _styledComponents2.css)`
     height: 32px;
     padding: 0 15px;
   `
 };
 exports.buttonSizeCss = buttonSizeCss;
 const iconLeftStyles = {
-  [_buttonTypes.ButtonSize.Dense]: _styledComponents2.css`
+  [_buttonTypes.ButtonSize.Dense]: (0, _styledComponents2.css)`
     color: inherit;
   `,
-  [_buttonTypes.ButtonSize.Compact]: _styledComponents2.css`
+  [_buttonTypes.ButtonSize.Compact]: (0, _styledComponents2.css)`
     color: inherit;
     margin-left: -2px;
     margin-right: 4px;
   `,
-  [_buttonTypes.ButtonSize.Default]: _styledComponents2.css`
+  [_buttonTypes.ButtonSize.Default]: (0, _styledComponents2.css)`
     color: inherit;
     margin-left: -6px;
     margin-right: 4px;
   `,
-  [_buttonTypes.ButtonSize.Large]: _styledComponents2.css`
+  [_buttonTypes.ButtonSize.Large]: (0, _styledComponents2.css)`
     color: inherit;
     margin-left: -6px;
     margin-right: 8px;
   `
 };
 const iconRightStyles = {
-  [_buttonTypes.ButtonSize.Dense]: _styledComponents2.css`
+  [_buttonTypes.ButtonSize.Dense]: (0, _styledComponents2.css)`
     color: inherit;
   `,
-  [_buttonTypes.ButtonSize.Compact]: _styledComponents2.css`
+  [_buttonTypes.ButtonSize.Compact]: (0, _styledComponents2.css)`
     color: inherit;
     margin-right: -7px;
   `,
-  [_buttonTypes.ButtonSize.Default]: _styledComponents2.css`
+  [_buttonTypes.ButtonSize.Default]: (0, _styledComponents2.css)`
     color: inherit;
     margin-right: -8px;
     margin-left: 4px;
   `,
-  [_buttonTypes.ButtonSize.Large]: _styledComponents2.css`
+  [_buttonTypes.ButtonSize.Large]: (0, _styledComponents2.css)`
     color: inherit;
     margin-right: -8px;
     margin-left: 8px;
@@ -136,7 +136,7 @@ const StyledButton = _styledComponents2.default.button(({
   pressed,
   cssOverrides,
   status
-}) => _styledComponents2.css`
+}) => (0, _styledComponents2.css)`
     ${mode === _buttonTypes.ButtonMode.Push && pressed ? buttonPressedDisplayCss[display] : buttonDisplayCss[display]};
     ${buttonSizeCss[size]};
     ${disabled && _exports.baseDisabledStyles};
@@ -166,20 +166,6 @@ const StyledButton = _styledComponents2.default.button(({
   `);
 
 exports.StyledButton = StyledButton;
-const buttonDefaultProps = {
-  className: '',
-  disabled: false,
-  display: _buttonTypes.ButtonDisplay.Primary,
-  iconLeft: '',
-  iconRight: '',
-  isActive: false,
-  mode: _buttonTypes.ButtonMode.Default,
-  onClick: () => {},
-  pressed: false,
-  size: _buttonTypes.ButtonSize.Default,
-  type: 'button'
-};
-exports.buttonDefaultProps = buttonDefaultProps;
 
 var _StyledIcon =
 /*#__PURE__*/
@@ -195,33 +181,50 @@ var _StyledIcon2 =
   componentId: "sc-10jcad3-1"
 })(["", ""], p => p._css2);
 
-const Button = ({
-  children,
-  className,
-  iconLeft,
-  iconRight,
-  passedAs,
-  size,
-  status,
-  ...domProps
-}) => _react.default.createElement(StyledButton, _extends({
-  as: passedAs,
-  className: `new-button ${className}`,
-  size: size,
-  status: status
-}, domProps), typeof status === 'function' && status({
-  style: {
-    position: 'absolute'
-  }
-}), !(0, _typeGuards.isEmptyString)(iconLeft) && _react.default.createElement(_StyledIcon, {
-  icon: iconLeft,
-  size: 16,
-  _css: iconLeftStyles[size]
-}), children, !(0, _typeGuards.isEmptyString)(iconRight) && _react.default.createElement(_StyledIcon2, {
-  icon: iconRight,
-  size: 16,
-  _css2: iconRightStyles[size]
-}));
+const Button = props => {
+  const {
+    children,
+    className = '',
+    cssOverrides = '',
+    disabled = false,
+    display = _buttonTypes.ButtonDisplay.Primary,
+    iconLeft = '',
+    iconRight = '',
+    isActive = false,
+    mode = _buttonTypes.ButtonMode.Default,
+    onClick = () => {},
+    passedAs,
+    pressed = false,
+    size = _buttonTypes.ButtonSize.Default,
+    status,
+    type = 'button',
+    ...domProps
+  } = props;
+  return _react.default.createElement(StyledButton, _extends({}, domProps, {
+    as: passedAs,
+    className: `new-button ${className}`,
+    cssOverrides: cssOverrides,
+    mode: mode,
+    type: type,
+    display: display,
+    size: size,
+    onClick: onClick,
+    pressed: pressed,
+    disabled: disabled,
+    isActive: isActive
+  }), typeof status === 'function' && status({
+    style: {
+      position: 'absolute'
+    }
+  }), !(0, _typeGuards.isEmptyString)(iconLeft) && _react.default.createElement(_StyledIcon, {
+    icon: iconLeft,
+    size: 16,
+    _css: iconLeftStyles[size]
+  }), children, !(0, _typeGuards.isEmptyString)(iconRight) && _react.default.createElement(_StyledIcon2, {
+    icon: iconRight,
+    size: 16,
+    _css2: iconRightStyles[size]
+  }));
+};
 
 exports.Button = Button;
-Button.defaultProps = buttonDefaultProps;

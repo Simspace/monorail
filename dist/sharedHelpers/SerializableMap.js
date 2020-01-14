@@ -11,6 +11,11 @@ var _Option = require("fp-ts/lib/Option");
 
 var _Record = require("fp-ts/lib/Record");
 
+// TODO: Rewrite Wizard code that uses this and then delete this
+
+/**
+ * A subtype of an ES6 Map which is serializable (for viewing in Redux state)
+ */
 class SerializableMap extends Map {
   constructor(pairs) {
     super(pairs);

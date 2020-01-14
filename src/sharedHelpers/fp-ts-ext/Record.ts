@@ -1,5 +1,6 @@
 import { sort } from 'fp-ts/lib/Array'
 import { Ord } from 'fp-ts/lib/Ord'
+import { isEmpty } from 'fp-ts/lib/Record'
 
 import { isObject } from '../typeGuards'
 
@@ -66,3 +67,10 @@ export const sortRecords = <
 export const isRecord = <T = unknown>(
   x: unknown,
 ): x is Record<PropertyKey, T> => isObject(x)
+
+/**
+ * Check if a record is *not* empty
+ */
+export const isNotEmpty = <K extends string | number | symbol, T>(
+  r: Record<K, T>,
+) => !isEmpty(r)

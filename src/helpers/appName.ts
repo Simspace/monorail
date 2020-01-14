@@ -23,6 +23,7 @@ export enum AppName {
   Hardhat = 'hardhat',
   Impact = 'impact',
   LMS = 'externalLms',
+  MyOrg = 'my-org',
   NetworkSetup = 'network-setup',
   Range = 'range',
   Repo = 'repo',
@@ -44,6 +45,7 @@ export type AppOrAuthSubAppNameString =
   | 'externalLms'
   | 'hardhat'
   | 'impact'
+  | 'my-org'
   | 'network-setup'
   | 'range'
   | 'repo'
@@ -57,9 +59,6 @@ export const convertAppNameToColor = (
 ): Colors => {
   /* eslint-disable default-case */
   switch (appNames) {
-    case AppName.Range:
-    case AuthSubAppName.Range:
-      return Colors.Range
     case AppName.Events:
     case AppName.Execution:
     case AppName.Tracker:
@@ -67,6 +66,8 @@ export const convertAppNameToColor = (
     case AuthSubAppName.Execution:
     case AuthSubAppName.Tracker:
       return Colors.Tracker
+    case AppName.Range:
+    case AuthSubAppName.Range:
     case AppName.EventDesign:
     case AppName.Hardhat:
     case AppName.NetworkSetup:
@@ -92,6 +93,8 @@ export const convertAppNameToColor = (
     case AppName.Admin:
     case AuthSubAppName.Admin:
       return Colors.Admin
+    case AppName.MyOrg:
+      return Colors.MyOrg
     default:
       return Colors.White
   }
@@ -103,9 +106,6 @@ export const convertAppNameToSecondaryColor = (
 ): Colors => {
   /* eslint-disable default-case */
   switch (appNames) {
-    case AppName.Range:
-    case AuthSubAppName.Range:
-      return Colors.Range
     case AppName.Events:
     case AppName.Execution:
     case AppName.Tracker:
@@ -113,6 +113,8 @@ export const convertAppNameToSecondaryColor = (
     case AuthSubAppName.Execution:
     case AuthSubAppName.Tracker:
       return Colors.TrackerAlt
+    case AppName.Range:
+    case AuthSubAppName.Range:
     case AppName.EventDesign:
     case AppName.Hardhat:
     case AppName.NetworkSetup:
@@ -138,6 +140,8 @@ export const convertAppNameToSecondaryColor = (
     case AppName.Admin:
     case AuthSubAppName.Admin:
       return Colors.AdminAlt
+    case AppName.MyOrg:
+      return Colors.MyOrgAlt
     default:
       return Colors.White
   }
@@ -180,6 +184,8 @@ export const convertStringToAppName = (
       return AppName.Events
     case 'reports-analytics':
       return AppName.ReportsAnalytics
+    case 'my-org':
+      return AppName.MyOrg
     default:
       return AppName.Events
   }
@@ -229,6 +235,8 @@ export const convertAppNameToString = (
     case AppName.ReportsAnalytics:
     case AuthSubAppName.ReportsAnalytics:
       return 'reports-analytics'
+    case AppName.MyOrg:
+      return 'my-org'
   }
   /* eslint-disable default-case */
 }

@@ -20,6 +20,7 @@ exports.ZIndexNodeName = ZIndexNodeName;
   ZIndexNodeName["CardBackground"] = "CardBackground";
   ZIndexNodeName["CardShadow"] = "CardShadow";
   ZIndexNodeName["Overlay"] = "Overlay";
+  ZIndexNodeName["Modal"] = "Modal";
 })(ZIndexNodeName || (exports.ZIndexNodeName = ZIndexNodeName = {}));
 
 const zIndexValue = nodeName => {
@@ -41,8 +42,11 @@ const zIndexValue = nodeName => {
     case ZIndexNodeName.CardShadow:
       return -10;
 
-    case ZIndexNodeName.Overlay:
+    case ZIndexNodeName.Modal:
       return 9990;
+
+    case ZIndexNodeName.Overlay:
+      return 9998;
 
     case ZIndexNodeName.FramedIcon:
     case ZIndexNodeName.CardBody:

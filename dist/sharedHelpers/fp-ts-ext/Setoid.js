@@ -11,6 +11,9 @@ var _shallowEqual = require("../shallowEqual");
 
 var _strings = require("../strings");
 
+/**
+ * Generic setoid that uses strict equality checking
+ */
 const setoidStrict = {
   equals: _Setoid.strictEqual
 };

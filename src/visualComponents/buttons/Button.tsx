@@ -1,4 +1,4 @@
-import React, { MouseEvent, ReactNode, ReactType } from 'react'
+import React, { FC, MouseEvent, ReactNode, ReactType } from 'react'
 
 import {
   baseButtonBarStyles,
@@ -20,7 +20,6 @@ import {
 } from '@monorail/helpers/exports'
 import styled, { css } from '@monorail/helpers/styled-components'
 import { getThemeColor, ThemeColors } from '@monorail/helpers/theme'
-import { FCwDP } from '@monorail/sharedHelpers/react'
 import { isEmptyString } from '@monorail/sharedHelpers/typeGuards'
 import { CommonComponentType, LinkProps } from '@monorail/types'
 import {
@@ -133,7 +132,7 @@ const iconRightStyles = {
   `,
 }
 
-export const StyledButton = styled.button<StyleProps>(
+export const StyledButton = styled.button<StyledButtonProps>(
   ({ disabled, size, display, mode, pressed, cssOverrides, status }) => css`
     ${mode === ButtonMode.Push && pressed
       ? buttonPressedDisplayCss[display]
@@ -166,84 +165,99 @@ export const StyledButton = styled.button<StyleProps>(
   `,
 )
 
+export type StyledButtonProps = {
+  disabled: boolean
+  display: ButtonDisplay
+  mode: ButtonMode
+  pressed: boolean
+  size: ButtonSize
+  status?: (props: { style: React.CSSProperties }) => ReactNode
+  cssOverrides: CommonComponentType['cssOverrides']
+  as?: CommonComponentType['as']
+  className: string
+  type: 'button' | 'reset' | 'submit'
+  onClick: OnClick
+  isActive: boolean
+}
+
 type IconProps = {
-  iconLeft: string
-  iconRight: string
+  iconLeft?: string
+  iconRight?: string
 }
 
 export type OnClick = (event: MouseEvent<HTMLButtonElement>) => void
 
 type FunctionalProps = {
-  className: string
-  disabled: boolean
-  display: ButtonDisplay
-  isActive: boolean
-  mode: ButtonMode
-  onClick: OnClick
+  className?: string
+  disabled?: boolean
+  display?: ButtonDisplay
+  isActive?: boolean
+  mode?: ButtonMode
+  onClick?: OnClick
   onMouseDown?: OnClick
   onMouseUp?: OnClick
-  pressed: boolean
-  size: ButtonSize
+  pressed?: boolean
+  size?: ButtonSize
   status?: (props: { style: React.CSSProperties }) => ReactNode
   title?: string
-  type: 'button' | 'reset' | 'submit'
+  type?: 'button' | 'reset' | 'submit'
 }
 
-type DefaultProps = IconProps & FunctionalProps
 type CommonProps = CommonComponentType &
   LinkProps & {
     passedAs?: ReactType
   }
 
-type StyleProps = CommonProps & FunctionalProps
+export type ButtonProps = CommonProps & IconProps & FunctionalProps
 
-export type ButtonProps = CommonProps & DefaultProps
+export const Button: FC<ButtonProps> = props => {
+  const {
+    children,
+    className = '',
+    cssOverrides = '',
+    disabled = false,
+    display = ButtonDisplay.Primary,
+    iconLeft = '',
+    iconRight = '',
+    isActive = false,
+    mode = ButtonMode.Default,
+    onClick = () => {},
+    passedAs,
+    pressed = false,
+    size = ButtonSize.Default,
+    status,
+    type = 'button',
+    ...domProps
+  } = props
 
-export const buttonDefaultProps: DefaultProps = {
-  className: '',
-  disabled: false,
-  display: ButtonDisplay.Primary,
-  iconLeft: '',
-  iconRight: '',
-  isActive: false,
-  mode: ButtonMode.Default,
-  onClick: () => {},
-  pressed: false,
-  size: ButtonSize.Default,
-  type: 'button',
+  return (
+    <StyledButton
+      {...domProps}
+      as={passedAs}
+      className={`new-button ${className}`}
+      cssOverrides={cssOverrides}
+      mode={mode}
+      type={type}
+      display={display}
+      size={size}
+      onClick={onClick}
+      pressed={pressed}
+      disabled={disabled}
+      isActive={isActive}
+    >
+      {typeof status === 'function' &&
+        status({
+          style: {
+            position: 'absolute',
+          },
+        })}
+      {!isEmptyString(iconLeft) && (
+        <Icon icon={iconLeft} css={iconLeftStyles[size]} size={16} />
+      )}
+      {children}
+      {!isEmptyString(iconRight) && (
+        <Icon icon={iconRight} css={iconRightStyles[size]} size={16} />
+      )}
+    </StyledButton>
+  )
 }
-
-export const Button: FCwDP<CommonProps, DefaultProps> = ({
-  children,
-  className,
-  iconLeft,
-  iconRight,
-  passedAs,
-  size,
-  status,
-  ...domProps
-}) => (
-  <StyledButton
-    as={passedAs}
-    className={`new-button ${className}`}
-    size={size}
-    status={status}
-    {...domProps}
-  >
-    {typeof status === 'function' &&
-      status({
-        style: {
-          position: 'absolute',
-        },
-      })}
-    {!isEmptyString(iconLeft) && (
-      <Icon icon={iconLeft} css={iconLeftStyles[size]} size={16} />
-    )}
-    {children}
-    {!isEmptyString(iconRight) && (
-      <Icon icon={iconRight} css={iconRightStyles[size]} size={16} />
-    )}
-  </StyledButton>
-)
-
-Button.defaultProps = buttonDefaultProps

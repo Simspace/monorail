@@ -54,13 +54,14 @@ var _StyledLabel =
   componentId: "sc-1n1jej1-4"
 })(["margin-bottom:8px;"]);
 
-const NumberInputGroup = ({
-  label,
-  items,
-  onSelect,
-  value,
-  required
-}) => {
+const NumberInputGroup = props => {
+  const {
+    label,
+    items,
+    onSelect,
+    value,
+    required
+  } = props;
   return _react.default.createElement(NumberInputGroupWrapper, null, _react.default.createElement(_StyledLabel, {
     label: label,
     required: required

@@ -1,4 +1,4 @@
-import React, { SFC } from 'react';
+import React, { FC } from 'react';
 import { SimpleInterpolation } from 'styled-components';
 export declare type SelectOption = {
     label: string;
@@ -18,4 +18,4 @@ export declare type SelectProps = {
     value?: string | Array<string> | number;
     err?: boolean;
 };
-export declare const Select: SFC<SelectProps>;
+export declare const Select: FC<SelectProps>;

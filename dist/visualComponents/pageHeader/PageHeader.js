@@ -7,6 +7,8 @@ exports.PageHeader = exports.TitleContainer = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
+var _styledComponents = require("styled-components");
+
 var _baseStyles = require("../../helpers/baseStyles");
 
 var _color = require("../../helpers/color");
@@ -15,7 +17,7 @@ var _flex = require("../../helpers/flex");
 
 var _size = require("../../helpers/size");
 
-var _styledComponents = _interopRequireWildcard(require("../../helpers/styled-components"));
+var _styledComponents2 = _interopRequireWildcard(require("../../helpers/styled-components"));
 
 var _theme = require("../../helpers/theme");
 
@@ -41,10 +43,13 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
-const PageHeaderContainer = _styledComponents.default.div(({
+/*
+ * Styles
+ */
+const PageHeaderContainer = _styledComponents2.default.div(({
   cssOverrides,
   hasAboveContent
-}) => _styledComponents.css`
+}) => (0, _styledComponents2.css)`
     ${(0, _flex.flexFlow)('column')};
 
     background: ${props => (0, _color.convertHSLAMapToCss)({ ...(0, _theme.getThemeColorBase)(_theme.ThemeColors.ApplicationPrimary)(props),
@@ -73,7 +78,7 @@ const PageHeaderContainer = _styledComponents.default.div(({
     ${_TabBar.TabBarContainer} {
       padding: 0 24px;
 
-      ${!hasAboveContent && _styledComponents.css`
+      ${!hasAboveContent && (0, _styledComponents2.css)`
           margin-top: -8px;
         `};
     }
@@ -81,14 +86,14 @@ const PageHeaderContainer = _styledComponents.default.div(({
     ${cssOverrides};
   `);
 
-const PageHeaderNavigation = _styledComponents.default.div`
+const PageHeaderNavigation = _styledComponents2.default.div`
   ${(0, _flex.flexFlow)('row')};
   ${(0, _size.pageSizeMargin)()};
 
   align-items: center;
   height: 32px;
 `;
-const BreadCrumbsContainer = _styledComponents.default.div`
+const BreadCrumbsContainer = _styledComponents2.default.div`
   ${(0, _flex.flexFlow)('row')};
   align-items: center;
 
@@ -101,9 +106,9 @@ const BreadCrumbsContainer = _styledComponents.default.div`
   }
 `;
 
-const TitleContainer = _styledComponents.default.div(({
+const TitleContainer = _styledComponents2.default.div(({
   hasAboveContent
-}) => _styledComponents.css`
+}) => (0, _styledComponents2.css)`
     ${(0, _flex.flexFlow)('row')};
     ${(0, _size.pageSizeMargin)()};
 
@@ -115,7 +120,7 @@ const TitleContainer = _styledComponents.default.div(({
   `);
 
 exports.TitleContainer = TitleContainer;
-const Title = _styledComponents.default.h1`
+const Title = _styledComponents2.default.h1`
   ${(0, _typography.typography)(700, _typography.FontSizes.Title1)};
 
   color: ${(0, _theme.getThemeColor)(_theme.ThemeColors.Text900)};
@@ -124,7 +129,7 @@ const Title = _styledComponents.default.h1`
   text-overflow: ellipsis;
   white-space: nowrap;
 `;
-const PageName = _styledComponents.default.h5`
+const PageName = _styledComponents2.default.h5`
   ${(0, _size.pageSizeMargin)({
   marginTop: 8,
   marginBottom: -8
@@ -136,7 +141,7 @@ const PageName = _styledComponents.default.h5`
   text-overflow: ellipsis;
   white-space: nowrap;
 `;
-const BreadCrumbLink = (0, _styledComponents.default)(_HyperLink.HyperLink)`
+const BreadCrumbLink = (0, _styledComponents2.default)(_HyperLink.HyperLink)`
   ${(0, _baseStyles.baseHyperLinkStyles)(_theme.ThemeColors.Text500)};
 
   padding: 6px 2px;
@@ -150,81 +155,74 @@ const BreadCrumbLink = (0, _styledComponents.default)(_HyperLink.HyperLink)`
 /*
  * Components
  */
-class PageHeader extends _react.Component {
-  constructor(...args) {
-    super(...args);
-    this.pageHeaderContainerRef = (0, _react.createRef)();
+const PageHeader = props => {
+  const {
+    actions,
+    breadCrumbs,
+    children,
+    cssOverrides,
+    goBack,
+    pageName,
+    title,
+    ...domProps
+  } = props;
+  const themeContext = (0, _react.useContext)(_styledComponents.ThemeContext);
+  const {
+    pageHeader: {
+      showBreadCrumbs
+    }
+  } = themeContext;
+  const pageHeaderContainerRef = (0, _react.useRef)();
 
-    this.renderBreadCrumbs = () => {
-      const {
-        breadCrumbs
-      } = this.props;
+  const renderBreadCrumbs = () => {
+    if (!breadCrumbs) {
+      return null;
+    }
 
-      if (!breadCrumbs) {
-        return null;
+    return breadCrumbs.map((breadCrumb, key) => [_react.default.createElement(BreadCrumbLink, {
+      to: breadCrumb.path,
+      key: key
+    }, breadCrumb.title), key !== breadCrumbs.length - 1 && _react.default.createElement(_Icon.Icon, {
+      icon: "chevron_right",
+      size: 12,
+      key: key + 'icon'
+    })]);
+  };
+
+  const hasAboveContent = (!(0, _typeGuards.isNil)(breadCrumbs) || !(0, _typeGuards.isNil)(goBack) || !(0, _typeGuards.isNil)(pageName)) && showBreadCrumbs;
+  return _react.default.createElement(PageHeaderContainer, _extends({
+    cssOverrides: cssOverrides,
+    hasAboveContent: hasAboveContent,
+    ref: pageHeaderContainerRef
+  }, domProps), (!(0, _typeGuards.isNil)(breadCrumbs) || !(0, _typeGuards.isNil)(goBack)) && showBreadCrumbs && _react.default.createElement(PageHeaderNavigation, null, !(0, _typeGuards.isNil)(goBack) && typeof goBack === 'string' ? _react.default.createElement(_Button.Button, {
+    size: _buttonTypes.ButtonSize.Compact,
+    display: _buttonTypes.ButtonDisplay.Chromeless,
+    passedAs: _BaseLink.BaseLink,
+    to: goBack,
+    cssOverrides: (0, _styledComponents2.css)`
+                margin-left: -4px;
+                margin-right: 8px;
+              `,
+    iconLeft: "circle_arrow_left"
+  }, "Go Back") : _react.default.createElement(_Button.Button, {
+    size: _buttonTypes.ButtonSize.Compact,
+    display: _buttonTypes.ButtonDisplay.Chromeless,
+    onClick: goBack,
+    cssOverrides: (0, _styledComponents2.css)`
+                margin-left: -4px;
+                margin-right: 8px;
+              `,
+    iconLeft: "circle_arrow_left"
+  }, "Go Back"), breadCrumbs && _react.default.createElement(BreadCrumbsContainer, null, renderBreadCrumbs())), _react.default.createElement(_styledComponents2.ThemeProvider, {
+    theme: theme => ({ ...theme,
+      [_theme.Mode.Light]: { ...theme[_theme.Mode.Light],
+        [_theme.ThemeColors.ActionPrimary]: theme[_theme.ThemeColors.ApplicationPrimary],
+        [_theme.ThemeColors.ActionSecondary]: theme[_theme.ThemeColors.ApplicationSecondary]
       }
-
-      return breadCrumbs.map(({
-        title,
-        path
-      }, key) => [_react.default.createElement(BreadCrumbLink, {
-        to: path,
-        key: key
-      }, title), key !== breadCrumbs.length - 1 && _react.default.createElement(_Icon.Icon, {
-        icon: "chevron_right",
-        size: 12,
-        key: key + 'icon'
-      })]);
-    };
-  }
-
-  render() {
-    const {
-      actions,
-      breadCrumbs,
-      children,
-      cssOverrides,
-      goBack,
-      pageName,
-      title,
-      ...domProps
-    } = this.props;
-    const hasAboveContent = !(0, _typeGuards.isNil)(breadCrumbs) || !(0, _typeGuards.isNil)(goBack) || !(0, _typeGuards.isNil)(pageName);
-    return _react.default.createElement(PageHeaderContainer, _extends({
-      cssOverrides: cssOverrides,
-      hasAboveContent: hasAboveContent,
-      ref: this.pageHeaderContainerRef
-    }, domProps), (!(0, _typeGuards.isNil)(breadCrumbs) || !(0, _typeGuards.isNil)(goBack)) && _react.default.createElement(PageHeaderNavigation, null, !(0, _typeGuards.isNil)(goBack) && typeof goBack === 'string' ? _react.default.createElement(_Button.Button, {
-      size: _buttonTypes.ButtonSize.Compact,
-      display: _buttonTypes.ButtonDisplay.Chromeless,
-      as: _BaseLink.BaseLink,
-      to: goBack,
-      cssOverrides: _styledComponents.css`
-                  margin-left: -4px;
-                  margin-right: 8px;
-                `,
-      iconLeft: "circle_arrow_left"
-    }, "Go Back") : _react.default.createElement(_Button.Button, {
-      size: _buttonTypes.ButtonSize.Compact,
-      display: _buttonTypes.ButtonDisplay.Chromeless,
-      onClick: goBack,
-      cssOverrides: _styledComponents.css`
-                  margin-left: -4px;
-                  margin-right: 8px;
-                `,
-      iconLeft: "circle_arrow_left"
-    }, "Go Back"), breadCrumbs && _react.default.createElement(BreadCrumbsContainer, null, this.renderBreadCrumbs())), _react.default.createElement(_styledComponents.ThemeProvider, {
-      theme: theme => ({ ...theme,
-        [_theme.Mode.Light]: { ...theme[_theme.Mode.Light],
-          [_theme.ThemeColors.ActionPrimary]: theme[_theme.ThemeColors.ApplicationPrimary],
-          [_theme.ThemeColors.ActionSecondary]: theme[_theme.ThemeColors.ApplicationSecondary]
-        }
-      })
-    }, _react.default.createElement(_react.default.Fragment, null, pageName && _react.default.createElement(PageName, null, pageName), _react.default.createElement(TitleContainer, {
-      hasAboveContent: hasAboveContent
-    }, _react.default.createElement(Title, null, title), actions), children)));
-  }
-
-}
+    })
+  }, _react.default.createElement(_react.default.Fragment, null, pageName && _react.default.createElement(PageName, null, pageName), _react.default.createElement(TitleContainer, {
+    hasAboveContent: hasAboveContent
+  }, _react.default.createElement(Title, null, title), actions), children)));
+};
 
 exports.PageHeader = PageHeader;
