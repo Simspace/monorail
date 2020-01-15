@@ -18,6 +18,15 @@ yarn add react react-dom styled-components
 
 Check the accepted version range in `package.json` for compatibility.
 
+To use Monorail components you must wrap your app with `ThemeProvider` and pass it `monorailTheme`	
+```	
+import { monorailTheme } from "@simspace/monorail/dist/helpers/theme";	
+import { ThemeProvider } from "@simspace/monorail/dist/helpers/styled-components";	
+<ThemeProvider theme={monorailTheme}>	
+...	
+</ThemeProvider>	
+```
+
 Import the components you want and use them
 
 ```jsx
