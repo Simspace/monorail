@@ -23,6 +23,7 @@ To use Monorail components you must wrap your app with `ThemeProvider` and pass 
 ```jsx
 import { monorailTheme } from "@simspace/monorail/dist/helpers/theme";	
 import { ThemeProvider } from "@simspace/monorail/dist/helpers/styled-components";	
+
 <ThemeProvider theme={monorailTheme}>	
 ...	
 </ThemeProvider>	
