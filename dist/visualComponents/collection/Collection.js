@@ -35,13 +35,13 @@ var _ButtonsBar = require("../buttonsBar/ButtonsBar");
 
 var _Cards = require("../cards/Cards");
 
-var _DataStates = require("../dataStates/DataStates");
-
 var _ReactTable = require("../dataTable/ReactTable");
 
 var _DebouncedSearch = require("../inputs/DebouncedSearch");
 
 var _SearchController = require("../inputs/SearchController");
+
+var _CollectionPaginationComponent = require("./CollectionPaginationComponent");
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
@@ -98,9 +98,10 @@ const Collection = props => {
     isLoading = false,
     pivotBy,
     setCollectionView,
-    NoDataComponent = () => _react.default.createElement(_ReactTable.NoDataContainer, null, _react.default.createElement(_DataStates.EmptyTable, null))
+    NoDataComponent = () => _react.default.createElement(_ReactTable.NoDataComponentVertical, null)
   } = props;
   const [sorted, onSortedChange] = (0, _ReactTable.useSort)();
+  const PAGE_SIZE = 50;
   const getReactTableComponentProps = (0, _react.useCallback)((finalState, rowInfo) => {
     if (!(0, _typeGuards.isNil)(rowInfo)) {
       return {
@@ -187,11 +188,13 @@ const Collection = props => {
     getTrGroupProps: getReactTableComponentProps,
     getTrProps: getReactTableComponentProps,
     loading: isLoading,
-    pageSize: passedData.length,
+    pageSize: PAGE_SIZE,
     pivotBy: pivotBy,
     TbodyComponent: getTbodyComponent,
     TrComponent: getTrComponent,
     TrGroupComponent: getTrGroupComponent,
+    showPagination: passedData.length > PAGE_SIZE,
+    PaginationComponent: _CollectionPaginationComponent.CollectionPaginationComponent,
     NoDataComponent: NoDataComponent,
     TheadComponent: theadProps => _react.default.createElement(CollectionTheadComponent, _extends({
       collectionView: collectionView

@@ -13,4 +13,5 @@ exports.TileStatus = TileStatus;
   TileStatus["Unassigned"] = "unassigned";
   TileStatus["Warning"] = "warning";
   TileStatus["Empty"] = "empty";
+  TileStatus["Neutral"] = "neutral";
 })(TileStatus || (exports.TileStatus = TileStatus = {}));

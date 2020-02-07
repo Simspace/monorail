@@ -25,6 +25,8 @@ type Props = {
   fontSize: FontSizes
   fontWeight: FontWeights
   margin?: string
+  /*title is used for a native browser tooltip */
+  title?: string
   color?: Colors
   children: string | number | ReactNode
 }

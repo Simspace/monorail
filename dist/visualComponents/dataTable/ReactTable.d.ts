@@ -1,5 +1,5 @@
 import React, { CSSProperties, FC, MouseEvent } from 'react';
-import { Column, ControlledStateOverrideProps, ExpandedChangeFunction, SortedChangeFunction, SortingRule, TableProps } from 'react-table';
+import { Column, ControlledStateOverrideProps, ExpandedChangeFunction, FinalState, SortedChangeFunction, SortingRule, TableProps } from 'react-table';
 export declare const TableComponent: import("styled-components").StyledComponent<"div", import("../../helpers/theme").GlobalAppThemeInterface, {}, never>;
 export declare const TheadComponentContainer: import("styled-components").StyledComponent<"div", import("../../helpers/theme").GlobalAppThemeInterface, {
     isFilterBar: boolean;
@@ -64,11 +64,12 @@ export declare const NoDataContainer: import("styled-components").StyledComponen
 export declare const NoDataComponentVertical: FC;
 export declare const NoDataComponentHorizontal: FC;
 export declare const ExpanderComponent: TableCellRenderFunction<unknown>;
-export declare const PivotValueComponent: TableCellRenderFunction<unknown>;
+export declare const EllipsisValueComponent: TableCellRenderFunction<unknown>;
 export declare const MonorailReactTableOverrides: Partial<TableProps>;
-export declare function useTableExpandState<T extends object>({ data, pivotKey, }: {
+export declare function useTableExpandState<T extends object>({ data, pivotKey, defaultExpanded, }: {
     data: Array<T>;
     pivotKey: keyof T;
+    defaultExpanded?: boolean;
 }): {
     expanded: Array<boolean>;
     onExpandedChange: ExpandedChangeFunction;
@@ -126,7 +127,7 @@ export interface CellInfo<T, V = string | number> extends RowInfo<T>, Pick<Contr
 }
 export declare type TableCellRenderFunction<I, V = string | number> = (cellInfo: CellInfo<I, V>, column: unknown) => React.ReactNode;
 export declare type TableCellRenderer<I, V = string | number> = TableCellRenderFunction<I, V> | React.ReactNode;
-export declare type ComponentPropsGetterR<I> = (finalState: {
+export declare type ComponentPropsGetterR<I> = (finalState: FinalState<I> & {
     filtered?: Array<{
         id: string;
         value: string;

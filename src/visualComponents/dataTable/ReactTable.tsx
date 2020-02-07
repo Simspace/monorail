@@ -1,24 +1,3 @@
-import { Do } from 'fp-ts-contrib/lib/Do'
-import { lookup } from 'fp-ts/lib/Array'
-import { option } from 'fp-ts/lib/Option'
-import React, {
-  Children,
-  CSSProperties,
-  FC,
-  MouseEvent,
-  PropsWithChildren,
-  ReactElement,
-  useState,
-} from 'react'
-import {
-  Column,
-  ControlledStateOverrideProps,
-  ExpandedChangeFunction,
-  SortedChangeFunction,
-  SortingRule,
-  TableProps,
-} from 'react-table'
-
 import { Colors, getColor } from '@monorail/helpers/color'
 import { flexFlow } from '@monorail/helpers/flex'
 import { Sizes } from '@monorail/helpers/size'
@@ -31,6 +10,7 @@ import {
   isFalse,
   isNil,
   isNotNil,
+  isTrue,
   isUndefined,
 } from '@monorail/sharedHelpers/typeGuards'
 import { Button } from '@monorail/visualComponents/buttons/Button'
@@ -54,6 +34,27 @@ import { TextField } from '@monorail/visualComponents/inputs/TextField'
 import { ScrollAnimation } from '@monorail/visualComponents/layout/ScrollAnimation'
 import { Menu } from '@monorail/visualComponents/menu/Menu'
 import { Status } from '@monorail/visualComponents/status/Status'
+import { Do } from 'fp-ts-contrib/lib/Do'
+import { lookup } from 'fp-ts/lib/Array'
+import { option } from 'fp-ts/lib/Option'
+import React, {
+  Children,
+  CSSProperties,
+  FC,
+  MouseEvent,
+  PropsWithChildren,
+  ReactElement,
+  useState,
+} from 'react'
+import {
+  Column,
+  ControlledStateOverrideProps,
+  ExpandedChangeFunction,
+  FinalState,
+  SortedChangeFunction,
+  SortingRule,
+  TableProps,
+} from 'react-table'
 
 const THEAD_HEIGHT = Sizes.DP40
 const TD_HEIGHT = Sizes.DP40
@@ -406,6 +407,8 @@ export const FilterComponent: FC<FilterComponentProps> = ({
         width: 100%;
         padding: 8px 12px;
       `}
+      hideStdErr
+      autoFocus
     />
   )
 }
@@ -483,10 +486,6 @@ const tdComponentTypeStyles = {
   `,
   [TdComponentType.Actions]: css`
     justify-content: flex-end;
-
-    ${StyledIconButton} {
-      opacity: 0.3;
-    }
   `,
   [TdComponentType.Hidden]: css``,
 }
@@ -499,7 +498,14 @@ type TdComponentContainerProps = {
 }
 
 export const TdComponentContainer = styled.div<TdComponentContainerProps>(
-  ({ tdComponentType }: TdComponentContainerProps) => css`
+  ({
+    tdComponentType,
+    theme: {
+      size: {
+        table: { margin },
+      },
+    },
+  }) => css`
     ${tdComponentTypeStyles[tdComponentType]}
     ${flexFlow('row')};
     ${typography(400, FontSizes.Title5)};
@@ -511,11 +517,11 @@ export const TdComponentContainer = styled.div<TdComponentContainerProps>(
     position: relative;
 
     &:first-of-type {
-      padding-left: 32px;
+      padding-left: ${margin}px;
     }
 
     &:last-of-type {
-      padding-right: 32px;
+      padding-right: ${margin}px;
     }
   `,
 )
@@ -584,7 +590,7 @@ export const TBodyComponent = styled(
 `
 
 export const NoDataContainer = styled.div`
-  ${flexFlow('column')};
+  ${flexFlow('row')};
   ${typography(400, FontSizes.Title5)};
 
   align-items: center;
@@ -592,6 +598,7 @@ export const NoDataContainer = styled.div`
   bottom: 0;
   color: ${getColor(Colors.Black62)};
   justify-content: center;
+  overflow: auto;
   left: 0;
   position: absolute;
   right: 0;
@@ -612,7 +619,7 @@ export const NoDataComponentVertical: FC = () => (
 )
 
 export const NoDataComponentHorizontal: FC = () => (
-  <NoDataContainer css="flex-direction: row;">
+  <NoDataContainer>
     <IconBox>
       <NoResultsIcon />
     </IconBox>
@@ -635,10 +642,10 @@ export const ExpanderComponent: TableCellRenderFunction<unknown> = ({
   />
 )
 
-export const PivotValueComponent: TableCellRenderFunction<unknown> = ({
+export const EllipsisValueComponent: TableCellRenderFunction<unknown> = ({
   value,
 }) => {
-  return <>{value}</>
+  return <div css={ellipsis}>{value}</div>
 }
 
 export const MonorailReactTableOverrides: Partial<TableProps> = {
@@ -679,14 +686,14 @@ export const MonorailReactTableOverrides: Partial<TableProps> = {
       ExpanderComponent
     const PivotValue: TableCellRenderFunction<unknown> =
       (cellInfo.column.PivotValue as TableCellRenderFunction<unknown>) ||
-      PivotValueComponent
+      EllipsisValueComponent
 
     return (
       <>
         {Expander(cellInfo, column)}
         {PivotValue(cellInfo, column)}
         {isNotNil(cellInfo.subRows) && (
-          <Status inactive css="margin-left: 8px;">
+          <Status inactive css="margin-left: 16px;">
             {cellInfo.subRows.length}
           </Status>
         )}
@@ -756,10 +763,11 @@ export const MonorailReactTableOverrides: Partial<TableProps> = {
   defaultFilterMethod: (filter: Filter, row: { [key: string]: unknown }) => {
     const id = filter.pivotId || filter.id
     return (
-      !isUndefined(row[id]) &&
-      String(row[id])
-        .toLocaleLowerCase()
-        .includes(filter.value.toLocaleString().toLocaleLowerCase())
+      isTrue(row._groupedByPivot) ||
+      (!isUndefined(row[id]) &&
+        String(row[id])
+          .toLocaleLowerCase()
+          .includes(filter.value.toLocaleString().toLocaleLowerCase()))
     )
   },
   sortable: true,
@@ -772,9 +780,11 @@ export const MonorailReactTableOverrides: Partial<TableProps> = {
 export function useTableExpandState<T extends object>({
   data,
   pivotKey,
+  defaultExpanded = true,
 }: {
   data: Array<T>
   pivotKey: keyof T
+  defaultExpanded?: boolean
 }): {
   expanded: Array<boolean>
   onExpandedChange: ExpandedChangeFunction
@@ -789,7 +799,7 @@ export function useTableExpandState<T extends object>({
 
       return accumulator
     }, [])
-    .map(() => true)
+    .map(() => defaultExpanded)
 
   const [expanderState, setExpanderState] = useState<Array<boolean>>(
     initialValues,
@@ -915,7 +925,7 @@ export type TableCellRenderer<I, V = string | number> =
   | React.ReactNode
 
 export type ComponentPropsGetterR<I> = (
-  finalState: {
+  finalState: FinalState<I> & {
     filtered?: Array<{
       id: string
       value: string

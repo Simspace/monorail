@@ -22,11 +22,10 @@ const ScrollAnimationContainer = styled.div<ScrollAnimationProps>(
 )
 
 const ScrollContainer = styled.div`
-  ${flexFlow()};
-
+  flex: 1;
+  height: 100%;
   overflow-x: hidden;
   overflow-y: auto;
-  height: 100%;
   transform: translateZ(0);
 `
 

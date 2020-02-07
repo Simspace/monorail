@@ -39,11 +39,10 @@ const ScrollAnimationContainer = _styledComponents.default.div(({
   `);
 
 const ScrollContainer = _styledComponents.default.div`
-  ${(0, _flex.flexFlow)()};
-
+  flex: 1;
+  height: 100%;
   overflow-x: hidden;
   overflow-y: auto;
-  height: 100%;
   transform: translateZ(0);
 `;
 const Shadow = _styledComponents.default.div`

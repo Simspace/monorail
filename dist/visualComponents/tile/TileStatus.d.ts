@@ -3,5 +3,6 @@ export declare enum TileStatus {
     NotReady = "notReady",
     Unassigned = "unassigned",
     Warning = "warning",
-    Empty = "empty"
+    Empty = "empty",
+    Neutral = "neutral"
 }

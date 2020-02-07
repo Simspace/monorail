@@ -74,6 +74,9 @@ exports.Colors = Colors;
   Colors["Moderate"] = "moderate";
   Colors["LowModerate"] = "lowModerate";
   Colors["Low"] = "low";
+  Colors["SidebarBg"] = "sidebarBg";
+  Colors["SidebarActive"] = "sidebarActive";
+  Colors["SidebarDivider"] = "sidebarDivider";
 })(Colors || (exports.Colors = Colors = {}));
 
 const colorHSLAMap = ({
@@ -497,6 +500,25 @@ const colorHSLAMap = ({
       h: 11,
       s: 69,
       l: 47,
+      a: alpha
+    },
+    // Sidebar
+    [Colors.SidebarBg]: {
+      h: 220,
+      s: 16,
+      l: 96,
+      a: alpha
+    },
+    [Colors.SidebarActive]: {
+      h: 228,
+      s: 14,
+      l: 93,
+      a: alpha
+    },
+    [Colors.SidebarDivider]: {
+      h: 225,
+      s: 16,
+      l: 90,
       a: alpha
     }
   };

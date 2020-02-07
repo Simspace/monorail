@@ -204,7 +204,7 @@ export const LayoutDetailHeader = ({
 // Outline items and actions
 export type OutlineItemBaseType = {
   key: string
-  name: string | ReactNode
+  content: string | ReactNode
 }
 
 export type OutlineActions<T extends OutlineItemBaseType> = {
@@ -237,7 +237,7 @@ export const OutlineListItem = <T extends OutlineItemBaseType>(
     <SimpleListItem
       key={item.key}
       leftIcon={icon}
-      primaryText={item.name}
+      primaryText={item.content}
       size={Sizes.DP40}
       className={selected ? 'is-active' : ''}
       onClick={() => onClick && onClick(item)}
@@ -261,7 +261,7 @@ export const OutlineListItem = <T extends OutlineItemBaseType>(
 const baseNewItem = <T extends OutlineItemBaseType>(ndx: number) =>
   ({
     key: `${ndx + 1}`,
-    name: `New Item ${ndx + 1}`,
+    content: `New Item ${ndx + 1}`,
   } as T)
 
 // Controller helper for outline list of items
@@ -288,7 +288,7 @@ export const useControlledList = <T extends OutlineItemBaseType>({
     return {
       ...item,
       key: `${item.key}-${ndx}`,
-      name: `${item.name}*`,
+      content: `${item.content}*`,
     }
   }
   const createNewItem = (key?: string): T => {

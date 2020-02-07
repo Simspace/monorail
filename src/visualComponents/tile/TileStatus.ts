@@ -4,4 +4,5 @@ export enum TileStatus {
   Unassigned = 'unassigned',
   Warning = 'warning',
   Empty = 'empty',
+  Neutral = 'neutral',
 }

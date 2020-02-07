@@ -82,7 +82,7 @@ var _StyledBBModalContent =
 (0, _styledComponents.default)(_Modals.BBModalContent).withConfig({
   displayName: "AlertModal___StyledBBModalContent",
   componentId: "sc-14c9sxu-1"
-})(["padding:24px;"]);
+})(["padding:", "px;"], p => p._css2);
 
 var _StyledButton =
 /*#__PURE__*/
@@ -104,6 +104,7 @@ const AlertModal = props => {
     isOpen,
     onClick,
     onSubmit,
+    padding,
     primaryButtonText,
     secondaryButtonText,
     subtitleText,
@@ -120,11 +121,13 @@ const AlertModal = props => {
     iconLeft: alertIcon[alertType],
     zIndex: zIndex,
     _css: alertModalStyles[alertType]
-  }, _react.default.createElement(_StyledBBModalContent, null, _react.default.createElement(_Text.Text, {
+  }, _react.default.createElement(_StyledBBModalContent, {
+    _css2: padding || 24
+  }, titleText && _react.default.createElement(_Text.Text, {
     fontSize: _typography.FontSizes.Title4,
     fontWeight: 700,
     margin: "0 0 8px"
-  }, titleText), _react.default.createElement(_Text.Text, {
+  }, titleText), subtitleText && _react.default.createElement(_Text.Text, {
     fontSize: _typography.FontSizes.Title5,
     fontWeight: 400,
     margin: "8px 0 0"

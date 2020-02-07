@@ -210,7 +210,7 @@ const OutlineListItem = props => {
   return _react.default.createElement(_List.SimpleListItem, {
     key: item.key,
     leftIcon: icon,
-    primaryText: item.name,
+    primaryText: item.content,
     size: _exports.Sizes.DP40,
     className: selected ? 'is-active' : '',
     onClick: () => onClick && onClick(item)
@@ -230,7 +230,7 @@ exports.OutlineListItem = OutlineListItem;
 
 const baseNewItem = ndx => ({
   key: `${ndx + 1}`,
-  name: `New Item ${ndx + 1}`
+  content: `New Item ${ndx + 1}`
 }); // Controller helper for outline list of items
 
 
@@ -252,7 +252,7 @@ const useControlledList = ({
     const ndx = Math.round(Math.random() * 1000);
     return { ...item,
       key: `${item.key}-${ndx}`,
-      name: `${item.name}*`
+      content: `${item.content}*`
     };
   };
 

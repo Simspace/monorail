@@ -25,10 +25,8 @@ import {
 import { IconButton } from '@monorail/visualComponents/buttons/IconButton'
 import { ButtonsBar } from '@monorail/visualComponents/buttonsBar/ButtonsBar'
 import { BBCardGrid } from '@monorail/visualComponents/cards/Cards'
-import { EmptyTable } from '@monorail/visualComponents/dataStates/DataStates'
 import {
   ComponentPropsGetterR,
-  NoDataContainer,
   ResizerComponent,
   TableColumns,
   TBodyComponent,
@@ -39,12 +37,14 @@ import {
   TheadComponentProps,
   TrGroupComponent,
   useSort,
+  NoDataComponentVertical,
 } from '@monorail/visualComponents/dataTable/ReactTable'
 import { DebouncedSearch } from '@monorail/visualComponents/inputs/DebouncedSearch'
 import {
   CompareSearchType,
   SearchController,
 } from '@monorail/visualComponents/inputs/SearchController'
+import { CollectionPaginationComponent } from './CollectionPaginationComponent'
 
 const CollectionContainer = styled.div`
   ${flexFlow('row')};
@@ -115,15 +115,11 @@ export const Collection = <T extends unknown>(
     isLoading = false,
     pivotBy,
     setCollectionView,
-    NoDataComponent = () => (
-      <NoDataContainer>
-        <EmptyTable />
-      </NoDataContainer>
-    ),
+    NoDataComponent = () => <NoDataComponentVertical />,
   } = props
 
   const [sorted, onSortedChange] = useSort()
-
+  const PAGE_SIZE = 50
   const getReactTableComponentProps: ComponentPropsGetterR<T> = useCallback(
     (finalState, rowInfo) => {
       if (!isNil(rowInfo)) {
@@ -224,11 +220,13 @@ export const Collection = <T extends unknown>(
               getTrGroupProps={getReactTableComponentProps}
               getTrProps={getReactTableComponentProps}
               loading={isLoading}
-              pageSize={passedData.length}
+              pageSize={PAGE_SIZE}
               pivotBy={pivotBy}
               TbodyComponent={getTbodyComponent}
               TrComponent={getTrComponent}
               TrGroupComponent={getTrGroupComponent}
+              showPagination={passedData.length > PAGE_SIZE}
+              PaginationComponent={CollectionPaginationComponent}
               NoDataComponent={NoDataComponent}
               TheadComponent={(
                 theadProps: PropsWithChildren<TheadComponentProps>,
