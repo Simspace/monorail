@@ -43,6 +43,7 @@ export declare type StyledButtonProps = {
 declare type IconProps = {
     iconLeft?: string;
     iconRight?: string;
+    iconSize?: number;
 };
 export declare type OnClick = (event: MouseEvent<HTMLButtonElement>) => void;
 declare type FunctionalProps = {
@@ -50,6 +51,7 @@ declare type FunctionalProps = {
     disabled?: boolean;
     display?: ButtonDisplay;
     isActive?: boolean;
+    isLoading?: boolean;
     mode?: ButtonMode;
     onClick?: OnClick;
     onMouseDown?: OnClick;

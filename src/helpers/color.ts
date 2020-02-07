@@ -89,6 +89,11 @@ export enum Colors {
   Moderate = 'moderate',
   LowModerate = 'lowModerate',
   Low = 'low',
+
+  // Sidebar
+  SidebarBg = 'sidebarBg',
+  SidebarActive = 'sidebarActive',
+  SidebarDivider = 'sidebarDivider',
 }
 
 type HSLAMapType = {
@@ -204,6 +209,11 @@ export const colorHSLAMap = ({
     [Colors.Moderate]: { h: 45, s: 100, l: 51, a: alpha },
     [Colors.LowModerate]: { h: 31, s: 87, l: 60, a: alpha },
     [Colors.Low]: { h: 11, s: 69, l: 47, a: alpha },
+
+    // Sidebar
+    [Colors.SidebarBg]: { h: 220, s: 16, l: 96, a: alpha },
+    [Colors.SidebarActive]: { h: 228, s: 14, l: 93, a: alpha },
+    [Colors.SidebarDivider]: { h: 225, s: 16, l: 90, a: alpha },
   }
 
   return baseColors[color]

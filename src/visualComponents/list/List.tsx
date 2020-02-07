@@ -1,10 +1,14 @@
 import React, {
   Children,
-  FC,
   MouseEvent,
   ReactNode,
   ReactType,
   StatelessComponent,
+  Ref,
+  ForwardRefExoticComponent,
+  RefAttributes,
+  forwardRef,
+  PropsWithoutRef,
 } from 'react'
 import { SimpleInterpolation } from 'styled-components'
 import { Omit } from 'typelevel-ts'
@@ -248,9 +252,17 @@ export type SimpleListItemProps = PassedProps & {
   size?: Sizes
   meta?: ReactNode
   isLink?: boolean
+  children?: string | number | ReactNode
+  ref?: Ref<any> // tslint:disable-line:no-any
 }
 
-export const SimpleListItem: FC<SimpleListItemProps> = props => {
+export const SimpleListItem: ForwardRefExoticComponent<PropsWithoutRef<
+  SimpleListItemProps
+> &
+  RefAttributes<HTMLDivElement>> = forwardRef<
+  HTMLDivElement,
+  SimpleListItemProps
+>((props, ref) => {
   const {
     leftIcon = '',
     rightIcon = '',
@@ -275,6 +287,7 @@ export const SimpleListItem: FC<SimpleListItemProps> = props => {
       isLink={isLink}
       as={passedAs}
       disabled={disabled}
+      ref={ref}
       {...domProps}
     >
       {!isEmptyString(leftIcon) && (
@@ -300,4 +313,4 @@ export const SimpleListItem: FC<SimpleListItemProps> = props => {
       {children}
     </ListItem>
   )
-}
+})

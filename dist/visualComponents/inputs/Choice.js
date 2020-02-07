@@ -61,7 +61,7 @@ _styledComponents.default.label.withConfig({
   disabled,
   err,
   cssOverrides
-}) => (0, _styledComponents.css)(["", ";", ";", ";", ";align-items:center;box-sizing:border-box;cursor:pointer;display:flex;flex-direction:row;min-height:24px;padding:", ";pointer-events:", ";position:relative;user-select:none;width:100%;", ";", ";", ";"], (readOnly || incorrect || correct) && (0, _styledComponents.css)(["cursor:default;pointer-events:none;"]), disabled ? disabledChromeless : (0, _exports.baseChromelessStyles)(), (0, _exports.flexFlow)('row'), (0, _exports.borderRadius)(), dense ? '4px 4px 4px 24px' : '8px 8px 8px 32px', disabled ? 'none' : '', _exports.buttonTransition, err && _exports.baseErrorBackgroundStyles, cssOverrides));
+}) => (0, _styledComponents.css)(["", ";", ";", ";", ";align-items:center;box-sizing:border-box;cursor:pointer;min-height:24px;padding:", ";pointer-events:", ";position:relative;user-select:none;width:100%;", ";", ";", ";"], (readOnly || incorrect || correct) && (0, _styledComponents.css)(["cursor:default;pointer-events:none;"]), disabled ? disabledChromeless : (0, _exports.baseChromelessStyles)(), (0, _exports.flexFlow)('row'), (0, _exports.borderRadius)(), dense ? '4px 4px 4px 24px' : '8px 8px 8px 32px', disabled ? 'none' : '', _exports.buttonTransition, err && _exports.baseErrorBackgroundStyles, cssOverrides));
 
 const baseIconStyles = (answered, dense) => (0, _styledComponents.css)(["font-size:16px;left:", ";position:absolute;top:", ";transition:all ease 150ms;transform:translateX(", "px);"], dense ? '4px' : '8px', dense ? '4px' : '8px', answered ? 24 : 0);
 

@@ -64,7 +64,10 @@ export declare enum Colors {
     HighModerate = "highModerate",
     Moderate = "moderate",
     LowModerate = "lowModerate",
-    Low = "low"
+    Low = "low",
+    SidebarBg = "sidebarBg",
+    SidebarActive = "sidebarActive",
+    SidebarDivider = "sidebarDivider"
 }
 declare type HSLAMapType = {
     h: number;

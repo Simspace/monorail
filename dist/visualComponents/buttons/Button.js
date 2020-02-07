@@ -21,6 +21,8 @@ var _buttonTypes = require("./buttonTypes");
 
 var _Icon = require("../icon/Icon");
 
+var _Loading = require("../loading/Loading");
+
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
@@ -181,6 +183,20 @@ var _StyledIcon2 =
   componentId: "sc-10jcad3-1"
 })(["", ""], p => p._css2);
 
+var _StyledDiv =
+/*#__PURE__*/
+_styledComponents.default.div.withConfig({
+  displayName: "Button___StyledDiv",
+  componentId: "sc-10jcad3-2"
+})(["position:absolute"]);
+
+var _StyledDiv2 =
+/*#__PURE__*/
+_styledComponents.default.div.withConfig({
+  displayName: "Button___StyledDiv2",
+  componentId: "sc-10jcad3-3"
+})(["", ""], p => p._css3);
+
 const Button = props => {
   const {
     children,
@@ -190,7 +206,9 @@ const Button = props => {
     display = _buttonTypes.ButtonDisplay.Primary,
     iconLeft = '',
     iconRight = '',
+    iconSize = 16,
     isActive = false,
+    isLoading = false,
     mode = _buttonTypes.ButtonMode.Default,
     onClick = () => {},
     passedAs,
@@ -200,6 +218,21 @@ const Button = props => {
     type = 'button',
     ...domProps
   } = props;
+
+  const buttonContent = _react.default.createElement(_react.default.Fragment, null, typeof status === 'function' && status({
+    style: {
+      position: 'absolute'
+    }
+  }), !(0, _typeGuards.isEmptyString)(iconLeft) && _react.default.createElement(_StyledIcon, {
+    icon: iconLeft,
+    size: iconSize,
+    _css: iconLeftStyles[size]
+  }), children, !(0, _typeGuards.isEmptyString)(iconRight) && _react.default.createElement(_StyledIcon2, {
+    icon: iconRight,
+    size: iconSize,
+    _css2: iconRightStyles[size]
+  }));
+
   return _react.default.createElement(StyledButton, _extends({}, domProps, {
     as: passedAs,
     className: `new-button ${className}`,
@@ -207,24 +240,19 @@ const Button = props => {
     mode: mode,
     type: type,
     display: display,
+    iconSize: iconSize,
     size: size,
     onClick: onClick,
     pressed: pressed,
     disabled: disabled,
-    isActive: isActive
-  }), typeof status === 'function' && status({
-    style: {
-      position: 'absolute'
-    }
-  }), !(0, _typeGuards.isEmptyString)(iconLeft) && _react.default.createElement(_StyledIcon, {
-    icon: iconLeft,
-    size: 16,
-    _css: iconLeftStyles[size]
-  }), children, !(0, _typeGuards.isEmptyString)(iconRight) && _react.default.createElement(_StyledIcon2, {
-    icon: iconRight,
-    size: 16,
-    _css2: iconRightStyles[size]
-  }));
+    isActive: isActive,
+    status: status
+  }), isLoading ? _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_StyledDiv, null, _react.default.createElement(_Loading.Loading, {
+    loaderType: _Loading.LoaderType.Generic,
+    size: iconSize
+  })), _react.default.createElement(_StyledDiv2, {
+    _css3: (0, _exports.visible)(false)
+  }, buttonContent)) : buttonContent);
 };
 
 exports.Button = Button;

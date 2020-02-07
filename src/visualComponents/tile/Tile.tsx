@@ -20,6 +20,7 @@ const TileStatusForeground = {
   [TileStatus.NotReady]: Colors.Error,
   [TileStatus.Warning]: Colors.Warning,
   [TileStatus.Unassigned]: Colors.Black54,
+  [TileStatus.Neutral]: Colors.Black54,
   [TileStatus.Empty]: Colors.Error,
 }
 
@@ -28,6 +29,7 @@ const TileStatusBorder = {
   [TileStatus.NotReady]: Colors.Error,
   [TileStatus.Warning]: Colors.Warning,
   [TileStatus.Unassigned]: Colors.Black54,
+  [TileStatus.Neutral]: Colors.Black54,
   [TileStatus.Empty]: Colors.Black54,
 }
 
@@ -36,6 +38,7 @@ const TileStatusBackground = {
   [TileStatus.NotReady]: Colors.Error,
   [TileStatus.Warning]: Colors.Warning,
   [TileStatus.Unassigned]: Colors.Black24,
+  [TileStatus.Neutral]: Colors.Black24,
   [TileStatus.Empty]: Colors.Error,
 }
 
@@ -44,6 +47,7 @@ const TileStatusIcon = {
   [TileStatus.NotReady]: 'close',
   [TileStatus.Warning]: 'priority_high',
   [TileStatus.Unassigned]: 'question_mark',
+  [TileStatus.Neutral]: '',
   [TileStatus.Empty]: 'question_mark',
 }
 
@@ -52,6 +56,7 @@ const TileStatusLabel = {
   [TileStatus.NotReady]: 'Not Ready',
   [TileStatus.Warning]: 'Expiring',
   [TileStatus.Unassigned]: 'Unassigned',
+  [TileStatus.Neutral]: '',
   [TileStatus.Empty]: 'Unassigned',
 }
 
@@ -215,9 +220,11 @@ export const Tile: FC<TileProps> = props => {
       <TileContent status={status} selected={selected}>
         <div>
           {children}
-          <IconStatus status={status} size={Sizes.DP16}>
-            {TileStatusLabel[status]}
-          </IconStatus>
+          {status !== TileStatus.Neutral && (
+            <IconStatus status={status} size={Sizes.DP16}>
+              {TileStatusLabel[status]}
+            </IconStatus>
+          )}
         </div>
       </TileContent>
       {status !== TileStatus.Unassigned && actions && (

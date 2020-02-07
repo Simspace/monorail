@@ -29,7 +29,7 @@ declare type LayoutDetailHeaderProps = TextAreaProps & {
 export declare const LayoutDetailHeader: ({ actions, ...textAreaProps }: LayoutDetailHeaderProps) => JSX.Element;
 export declare type OutlineItemBaseType = {
     key: string;
-    name: string | ReactNode;
+    content: string | ReactNode;
 };
 export declare type OutlineActions<T extends OutlineItemBaseType> = {
     update: (key: string, changes: Partial<T>) => void;

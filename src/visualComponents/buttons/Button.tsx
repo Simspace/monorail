@@ -17,6 +17,7 @@ import {
   FontSizes,
   getColor,
   typography,
+  visible,
 } from '@monorail/helpers/exports'
 import styled, { css } from '@monorail/helpers/styled-components'
 import { getThemeColor, ThemeColors } from '@monorail/helpers/theme'
@@ -28,6 +29,7 @@ import {
   ButtonSize,
 } from '@monorail/visualComponents/buttons/buttonTypes'
 import { Icon } from '@monorail/visualComponents/icon/Icon'
+import { Loading, LoaderType } from '@monorail/visualComponents/loading/Loading'
 
 export const buttonDisplayCss = {
   [ButtonDisplay.Primary]: basePrimaryStyles(),
@@ -183,6 +185,7 @@ export type StyledButtonProps = {
 type IconProps = {
   iconLeft?: string
   iconRight?: string
+  iconSize?: number
 }
 
 export type OnClick = (event: MouseEvent<HTMLButtonElement>) => void
@@ -192,6 +195,7 @@ type FunctionalProps = {
   disabled?: boolean
   display?: ButtonDisplay
   isActive?: boolean
+  isLoading?: boolean
   mode?: ButtonMode
   onClick?: OnClick
   onMouseDown?: OnClick
@@ -219,7 +223,9 @@ export const Button: FC<ButtonProps> = props => {
     display = ButtonDisplay.Primary,
     iconLeft = '',
     iconRight = '',
+    iconSize = 16,
     isActive = false,
+    isLoading = false,
     mode = ButtonMode.Default,
     onClick = () => {},
     passedAs,
@@ -230,6 +236,24 @@ export const Button: FC<ButtonProps> = props => {
     ...domProps
   } = props
 
+  const buttonContent = (
+    <>
+      {typeof status === 'function' &&
+        status({
+          style: {
+            position: 'absolute',
+          },
+        })}
+      {!isEmptyString(iconLeft) && (
+        <Icon icon={iconLeft} css={iconLeftStyles[size]} size={iconSize} />
+      )}
+      {children}
+      {!isEmptyString(iconRight) && (
+        <Icon icon={iconRight} css={iconRightStyles[size]} size={iconSize} />
+      )}
+    </>
+  )
+
   return (
     <StyledButton
       {...domProps}
@@ -239,24 +263,23 @@ export const Button: FC<ButtonProps> = props => {
       mode={mode}
       type={type}
       display={display}
+      iconSize={iconSize}
       size={size}
       onClick={onClick}
       pressed={pressed}
       disabled={disabled}
       isActive={isActive}
+      status={status}
     >
-      {typeof status === 'function' &&
-        status({
-          style: {
-            position: 'absolute',
-          },
-        })}
-      {!isEmptyString(iconLeft) && (
-        <Icon icon={iconLeft} css={iconLeftStyles[size]} size={16} />
-      )}
-      {children}
-      {!isEmptyString(iconRight) && (
-        <Icon icon={iconRight} css={iconRightStyles[size]} size={16} />
+      {isLoading ? (
+        <>
+          <div css="position: absolute">
+            <Loading loaderType={LoaderType.Generic} size={iconSize} />
+          </div>
+          <div css={visible(false)}>{buttonContent}</div>
+        </>
+      ) : (
+        buttonContent
       )}
     </StyledButton>
   )

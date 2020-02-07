@@ -64,8 +64,6 @@ const Container = styled.label<ContainerProps>(
     align-items: center;
     box-sizing: border-box;
     cursor: pointer;
-    display: flex;
-    flex-direction: row;
     min-height: 24px;
     padding: ${dense ? '4px 4px 4px 24px' : '8px 8px 8px 32px'};
     pointer-events: ${disabled ? 'none' : ''};

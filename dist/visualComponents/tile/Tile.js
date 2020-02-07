@@ -42,6 +42,7 @@ const TileStatusForeground = {
   [_TileStatus.TileStatus.NotReady]: _color.Colors.Error,
   [_TileStatus.TileStatus.Warning]: _color.Colors.Warning,
   [_TileStatus.TileStatus.Unassigned]: _color.Colors.Black54,
+  [_TileStatus.TileStatus.Neutral]: _color.Colors.Black54,
   [_TileStatus.TileStatus.Empty]: _color.Colors.Error
 };
 const TileStatusBorder = {
@@ -49,6 +50,7 @@ const TileStatusBorder = {
   [_TileStatus.TileStatus.NotReady]: _color.Colors.Error,
   [_TileStatus.TileStatus.Warning]: _color.Colors.Warning,
   [_TileStatus.TileStatus.Unassigned]: _color.Colors.Black54,
+  [_TileStatus.TileStatus.Neutral]: _color.Colors.Black54,
   [_TileStatus.TileStatus.Empty]: _color.Colors.Black54
 };
 const TileStatusBackground = {
@@ -56,6 +58,7 @@ const TileStatusBackground = {
   [_TileStatus.TileStatus.NotReady]: _color.Colors.Error,
   [_TileStatus.TileStatus.Warning]: _color.Colors.Warning,
   [_TileStatus.TileStatus.Unassigned]: _color.Colors.Black24,
+  [_TileStatus.TileStatus.Neutral]: _color.Colors.Black24,
   [_TileStatus.TileStatus.Empty]: _color.Colors.Error
 };
 const TileStatusIcon = {
@@ -63,6 +66,7 @@ const TileStatusIcon = {
   [_TileStatus.TileStatus.NotReady]: 'close',
   [_TileStatus.TileStatus.Warning]: 'priority_high',
   [_TileStatus.TileStatus.Unassigned]: 'question_mark',
+  [_TileStatus.TileStatus.Neutral]: '',
   [_TileStatus.TileStatus.Empty]: 'question_mark'
 };
 const TileStatusLabel = {
@@ -70,6 +74,7 @@ const TileStatusLabel = {
   [_TileStatus.TileStatus.NotReady]: 'Not Ready',
   [_TileStatus.TileStatus.Warning]: 'Expiring',
   [_TileStatus.TileStatus.Unassigned]: 'Unassigned',
+  [_TileStatus.TileStatus.Neutral]: '',
   [_TileStatus.TileStatus.Empty]: 'Unassigned'
 };
 const TileActionsWrapper = _styledComponents2.default.div`
@@ -211,7 +216,7 @@ const Tile = props => {
   })), _react.default.createElement(TileContent, {
     status: status,
     selected: selected
-  }, _react.default.createElement("div", null, children, _react.default.createElement(IconStatus, {
+  }, _react.default.createElement("div", null, children, status !== _TileStatus.TileStatus.Neutral && _react.default.createElement(IconStatus, {
     status: status,
     size: _size.Sizes.DP16
   }, TileStatusLabel[status]))), status !== _TileStatus.TileStatus.Unassigned && actions && _react.default.createElement(TileActionsWrapper, null, _react.default.createElement(_ActionsMenu.ActionsMenu, {

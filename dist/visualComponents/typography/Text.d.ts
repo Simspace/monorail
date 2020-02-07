@@ -6,6 +6,7 @@ declare type Props = {
     fontSize: FontSizes;
     fontWeight: FontWeights;
     margin?: string;
+    title?: string;
     color?: Colors;
     children: string | number | ReactNode;
 };

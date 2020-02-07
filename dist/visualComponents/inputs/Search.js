@@ -121,6 +121,11 @@ const SearchInput = _styledComponents2.default.input(({
     outline: none;
     padding: 0 22px 0 28px;
 
+    /* Override search styling coming from bootstrap.scss */
+    &[type='search'] {
+      box-sizing: border-box;
+    }
+
     ::placeholder {
       color: ${(0, _theme.getThemeColor)(_theme.ThemeColors.Text500)};
       font-style: italic;
@@ -166,11 +171,11 @@ const Search = props => {
       onChange(event.currentTarget.value, event);
     },
     placeholder: placeholder,
-    type: "text",
     value: value,
     onClick: onClick,
     ref: searchRef,
-    name: name
+    name: name,
+    type: "search"
   }), _react.default.createElement(_IconButton.IconButton, {
     cssOverrides: (0, _styledComponents2.css)`
           ${(0, _exports.visible)(!!value)};

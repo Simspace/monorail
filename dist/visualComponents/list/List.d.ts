@@ -1,4 +1,4 @@
-import { FC, MouseEvent, ReactNode, ReactType, StatelessComponent } from 'react';
+import { MouseEvent, ReactNode, ReactType, StatelessComponent, Ref, ForwardRefExoticComponent, RefAttributes, PropsWithoutRef } from 'react';
 import { SimpleInterpolation } from 'styled-components';
 import { Omit } from 'typelevel-ts';
 import { Sizes } from '@monorail/helpers/exports';
@@ -47,6 +47,8 @@ export declare type SimpleListItemProps = PassedProps & {
     size?: Sizes;
     meta?: ReactNode;
     isLink?: boolean;
+    children?: string | number | ReactNode;
+    ref?: Ref<any>;
 };
-export declare const SimpleListItem: FC<SimpleListItemProps>;
+export declare const SimpleListItem: ForwardRefExoticComponent<PropsWithoutRef<SimpleListItemProps> & RefAttributes<HTMLDivElement>>;
 export {};

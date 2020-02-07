@@ -62,14 +62,15 @@ const headerTitle = {
 
 export type AlertModalProps = Omit<PopOverChildProps, 'position'> & {
   alertType: AlertType
+  className?: string
+  disabled?: boolean
   headerText?: string
   onSubmit: () => void
+  padding?: number
   primaryButtonText?: string
   secondaryButtonText?: string
   subtitleText?: React.ReactNode
   titleText?: React.ReactNode
-  disabled?: boolean
-  className?: string
   zIndex?: number
 }
 
@@ -87,6 +88,7 @@ export const AlertModal: FC<AlertModalProps> = props => {
     isOpen,
     onClick,
     onSubmit,
+    padding,
     primaryButtonText,
     secondaryButtonText,
     subtitleText,
@@ -106,13 +108,21 @@ export const AlertModal: FC<AlertModalProps> = props => {
       zIndex={zIndex}
       css={alertModalStyles[alertType]}
     >
-      <BBModalContent css="padding: 24px;">
-        <Text fontSize={FontSizes.Title4} fontWeight={700} margin="0 0 8px">
-          {titleText}
-        </Text>
-        <Text fontSize={FontSizes.Title5} fontWeight={400} margin="8px 0 0">
-          {subtitleText}
-        </Text>
+      <BBModalContent
+        css={`
+          padding: ${padding || 24}px;
+        `}
+      >
+        {titleText && (
+          <Text fontSize={FontSizes.Title4} fontWeight={700} margin="0 0 8px">
+            {titleText}
+          </Text>
+        )}
+        {subtitleText && (
+          <Text fontSize={FontSizes.Title5} fontWeight={400} margin="8px 0 0">
+            {subtitleText}
+          </Text>
+        )}
         {children}
       </BBModalContent>
 

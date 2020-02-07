@@ -6,17 +6,9 @@ Object.defineProperty(exports, "__esModule", {
 exports.useSort = useSort;
 exports.useTableExpandState = useTableExpandState;
 exports.useTableExpandStateFixedGroups = useTableExpandStateFixedGroups;
-exports.MonorailReactTableOverrides = exports.PivotValueComponent = exports.ExpanderComponent = exports.NoDataComponentHorizontal = exports.NoDataComponentVertical = exports.NoDataContainer = exports.TBodyComponent = exports.TdComponent = exports.TdComponentContainer = exports.TrGroupComponent = exports.ResizerComponent = exports.FilterComponent = exports.ThComponent = exports.TheadComponent = exports.TheadComponentContainer = exports.TableComponent = void 0;
+exports.MonorailReactTableOverrides = exports.EllipsisValueComponent = exports.ExpanderComponent = exports.NoDataComponentHorizontal = exports.NoDataComponentVertical = exports.NoDataContainer = exports.TBodyComponent = exports.TdComponent = exports.TdComponentContainer = exports.TrGroupComponent = exports.ResizerComponent = exports.FilterComponent = exports.ThComponent = exports.TheadComponent = exports.TheadComponentContainer = exports.TableComponent = void 0;
 
 var _styledComponents = _interopRequireDefault(require("styled-components"));
-
-var _Do = require("fp-ts-contrib/lib/Do");
-
-var _Array = require("fp-ts/lib/Array");
-
-var _Option = require("fp-ts/lib/Option");
-
-var _react = _interopRequireWildcard(require("react"));
 
 var _color = require("../../helpers/color");
 
@@ -51,6 +43,14 @@ var _ScrollAnimation = require("../layout/ScrollAnimation");
 var _Menu = require("../menu/Menu");
 
 var _Status = require("../status/Status");
+
+var _Do = require("fp-ts-contrib/lib/Do");
+
+var _Array = require("fp-ts/lib/Array");
+
+var _Option = require("fp-ts/lib/Option");
+
+var _react = _interopRequireWildcard(require("react"));
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
@@ -347,7 +347,9 @@ const FilterComponent = ({
     cssOverrides: (0, _styledComponents2.css)`
         width: 100%;
         padding: 8px 12px;
-      `
+      `,
+    hideStdErr: true,
+    autoFocus: true
   });
 };
 
@@ -425,16 +427,19 @@ const tdComponentTypeStyles = {
   `,
   [TdComponentType.Actions]: (0, _styledComponents2.css)`
     justify-content: flex-end;
-
-    ${_IconButton.StyledIconButton} {
-      opacity: 0.3;
-    }
   `,
   [TdComponentType.Hidden]: (0, _styledComponents2.css)``
 };
 
 const TdComponentContainer = _styledComponents2.default.div(({
-  tdComponentType
+  tdComponentType,
+  theme: {
+    size: {
+      table: {
+        margin
+      }
+    }
+  }
 }) => (0, _styledComponents2.css)`
     ${tdComponentTypeStyles[tdComponentType]}
     ${(0, _flex.flexFlow)('row')};
@@ -447,11 +452,11 @@ const TdComponentContainer = _styledComponents2.default.div(({
     position: relative;
 
     &:first-of-type {
-      padding-left: 32px;
+      padding-left: ${margin}px;
     }
 
     &:last-of-type {
-      padding-right: 32px;
+      padding-right: ${margin}px;
     }
   `);
 
@@ -518,7 +523,7 @@ const TBodyComponent = (0, _styledComponents2.default)(({
 `;
 exports.TBodyComponent = TBodyComponent;
 const NoDataContainer = _styledComponents2.default.div`
-  ${(0, _flex.flexFlow)('column')};
+  ${(0, _flex.flexFlow)('row')};
   ${(0, _typography.typography)(400, _typography.FontSizes.Title5)};
 
   align-items: center;
@@ -526,20 +531,13 @@ const NoDataContainer = _styledComponents2.default.div`
   bottom: 0;
   color: ${(0, _color.getColor)(_color.Colors.Black62)};
   justify-content: center;
+  overflow: auto;
   left: 0;
   position: absolute;
   right: 0;
   top: ${THEAD_HEIGHT}px;
 `;
 exports.NoDataContainer = NoDataContainer;
-
-var _StyledNoDataContainer =
-/*#__PURE__*/
-(0, _styledComponents.default)(NoDataContainer).withConfig({
-  displayName: "ReactTable___StyledNoDataContainer",
-  componentId: "sc-1afopvo-2"
-})(["flex-direction:row;"]);
-
 const BannerDetailContainer = _styledComponents2.default.div`
   ${(0, _flex.flexFlow)('column')};
 
@@ -555,10 +553,10 @@ var _StyledBanner =
 /*#__PURE__*/
 (0, _styledComponents.default)(_DataStates.Banner).withConfig({
   displayName: "ReactTable___StyledBanner",
-  componentId: "sc-1afopvo-3"
+  componentId: "sc-1afopvo-2"
 })(["margin:0 0 16px;"]);
 
-const NoDataComponentHorizontal = () => _react.default.createElement(_StyledNoDataContainer, null, _react.default.createElement(_DataStates.IconBox, null, _react.default.createElement(_DataStates.NoResultsIcon, null)), _react.default.createElement(BannerDetailContainer, null, _react.default.createElement(_StyledBanner, null, "No Entries Found"), _react.default.createElement(_DataStates.Detail, null, "We couldn't find any records.")));
+const NoDataComponentHorizontal = () => _react.default.createElement(NoDataContainer, null, _react.default.createElement(_DataStates.IconBox, null, _react.default.createElement(_DataStates.NoResultsIcon, null)), _react.default.createElement(BannerDetailContainer, null, _react.default.createElement(_StyledBanner, null, "No Entries Found"), _react.default.createElement(_DataStates.Detail, null, "We couldn't find any records.")));
 
 exports.NoDataComponentHorizontal = NoDataComponentHorizontal;
 
@@ -566,7 +564,7 @@ var _StyledIconButton2 =
 /*#__PURE__*/
 (0, _styledComponents.default)(_IconButton.IconButton).withConfig({
   displayName: "ReactTable___StyledIconButton2",
-  componentId: "sc-1afopvo-4"
+  componentId: "sc-1afopvo-3"
 })(["margin-right:8px;transform:rotate(", ");"], p => p._css);
 
 const ExpanderComponent = ({
@@ -579,20 +577,27 @@ const ExpanderComponent = ({
 
 exports.ExpanderComponent = ExpanderComponent;
 
-const PivotValueComponent = ({
+var _StyledDiv =
+/*#__PURE__*/
+_styledComponents.default.div.withConfig({
+  displayName: "ReactTable___StyledDiv",
+  componentId: "sc-1afopvo-4"
+})(["", ""], _typography.ellipsis);
+
+const EllipsisValueComponent = ({
   value
 }) => {
-  return _react.default.createElement(_react.default.Fragment, null, value);
+  return _react.default.createElement(_StyledDiv, null, value);
 };
 
-exports.PivotValueComponent = PivotValueComponent;
+exports.EllipsisValueComponent = EllipsisValueComponent;
 
 var _StyledStatus =
 /*#__PURE__*/
 (0, _styledComponents.default)(_Status.Status).withConfig({
   displayName: "ReactTable___StyledStatus",
   componentId: "sc-1afopvo-5"
-})(["margin-left:8px;"]);
+})(["margin-left:16px;"]);
 
 const MonorailReactTableOverrides = {
   AggregatedComponent: props => {
@@ -612,7 +617,7 @@ const MonorailReactTableOverrides = {
   NoDataComponent: props => _react.default.createElement(NoDataComponentVertical, null),
   PivotComponent: (cellInfo, column) => {
     const Expander = cellInfo.column.Expander || ExpanderComponent;
-    const PivotValue = cellInfo.column.PivotValue || PivotValueComponent;
+    const PivotValue = cellInfo.column.PivotValue || EllipsisValueComponent;
     return _react.default.createElement(_react.default.Fragment, null, Expander(cellInfo, column), PivotValue(cellInfo, column), (0, _typeGuards.isNotNil)(cellInfo.subRows) && _react.default.createElement(_StyledStatus, {
       inactive: true
     }, cellInfo.subRows.length));
@@ -679,7 +684,7 @@ const MonorailReactTableOverrides = {
   showPagination: false,
   defaultFilterMethod: (filter, row) => {
     const id = filter.pivotId || filter.id;
-    return !(0, _typeGuards.isUndefined)(row[id]) && String(row[id]).toLocaleLowerCase().includes(filter.value.toLocaleString().toLocaleLowerCase());
+    return (0, _typeGuards.isTrue)(row._groupedByPivot) || !(0, _typeGuards.isUndefined)(row[id]) && String(row[id]).toLocaleLowerCase().includes(filter.value.toLocaleString().toLocaleLowerCase());
   },
   sortable: true,
   filterable: true,
@@ -691,7 +696,8 @@ exports.MonorailReactTableOverrides = MonorailReactTableOverrides;
 
 function useTableExpandState({
   data,
-  pivotKey
+  pivotKey,
+  defaultExpanded = true
 }) {
   const initialValues = data.reduce((accumulator, item) => {
     const pivotValue = item[pivotKey];
@@ -701,7 +707,7 @@ function useTableExpandState({
     }
 
     return accumulator;
-  }, []).map(() => true);
+  }, []).map(() => defaultExpanded);
   const [expanderState, setExpanderState] = (0, _react.useState)(initialValues);
   return {
     expanded: expanderState,

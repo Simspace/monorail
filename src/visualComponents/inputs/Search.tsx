@@ -106,6 +106,11 @@ export const SearchInput = styled.input<SearchInputProps>(
     outline: none;
     padding: 0 22px 0 28px;
 
+    /* Override search styling coming from bootstrap.scss */
+    &[type='search'] {
+      box-sizing: border-box;
+    }
+
     ::placeholder {
       color: ${getThemeColor(ThemeColors.Text500)};
       font-style: italic;
@@ -163,11 +168,11 @@ export const Search: FC<SearchProps> = props => {
           onChange(event.currentTarget.value, event)
         }}
         placeholder={placeholder}
-        type="text"
         value={value}
         onClick={onClick}
         ref={searchRef}
         name={name}
+        type="search"
       />
 
       <IconButton

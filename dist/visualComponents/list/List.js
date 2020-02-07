@@ -208,8 +208,7 @@ var _StyledListItem =
 ListItem.defaultProps = {
   activeClassName: 'is-active'
 };
-
-const SimpleListItem = props => {
+const SimpleListItem = (0, _react.forwardRef)((props, ref) => {
   const {
     leftIcon = '',
     rightIcon = '',
@@ -231,7 +230,8 @@ const SimpleListItem = props => {
     onClick: onClick,
     isLink: isLink,
     as: passedAs,
-    disabled: disabled
+    disabled: disabled,
+    ref: ref
   }, domProps), !(0, _typeGuards.isEmptyString)(leftIcon) && _react.default.createElement(ListItemGraphic, {
     icon: leftIcon,
     dense: dense
@@ -239,6 +239,5 @@ const SimpleListItem = props => {
     icon: rightIcon,
     dense: dense
   }), children);
-};
-
+});
 exports.SimpleListItem = SimpleListItem;
