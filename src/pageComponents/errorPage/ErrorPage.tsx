@@ -128,6 +128,7 @@ export class ErrorPage extends Component<ErrorPageProps> {
             css={css`
               && {
                 margin-top: 24px;
+                color: ${getColor(Colors.White)}; /* override .admin a color */
               }
             `}
             passedAs={BaseLink}

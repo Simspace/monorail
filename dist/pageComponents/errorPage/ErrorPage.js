@@ -106,7 +106,7 @@ var _StyledButton =
 (0, _styledComponents.default)(_Button.Button).withConfig({
   displayName: "ErrorPage___StyledButton",
   componentId: "jn137y-6"
-})(["&&{margin-top:24px;}"]);
+})(["&&{margin-top:24px;color:", ";}"], p => p._css);
 
 class ErrorPage extends _react.Component {
   render() {
@@ -117,7 +117,8 @@ class ErrorPage extends _react.Component {
     } = this.props;
     return _react.default.createElement(CCErrorPage, null, errorIcon[errorType], _react.default.createElement(Title, null, title ? title : errorTitle[errorType]), _react.default.createElement(ErrorMessage, null, errorMessage ? errorMessage : errorMsg[errorType]), _react.default.createElement(_StyledButton, {
       passedAs: _BaseLink.BaseLink,
-      to: '/'
+      to: '/',
+      _css: (0, _exports.getColor)(_exports.Colors.White)
     }, "Take Me Home"));
   }
 
