@@ -1,7 +1,7 @@
-import React, { ChangeEvent, FC } from 'react';
-import { SimpleInterpolation } from 'styled-components';
 import { DisplayType } from '@monorail/visualComponents/inputs/inputTypes';
 import { ErrorProps } from '@monorail/visualComponents/inputs/StdErr';
+import React, { ChangeEvent, FC, KeyboardEvent } from 'react';
+import { SimpleInterpolation } from 'styled-components';
 export declare const TextAreaContainer: import("styled-components").StyledComponent<"label", any, TextAreaContainerProps & {
     display?: DisplayType | undefined;
 }, never>;
@@ -17,6 +17,7 @@ declare type TextAreaInputProps = {
     height?: number;
     label?: string | number;
     onChange?: (event: ChangeEvent<HTMLTextAreaElement>) => void;
+    onKeyDown?: (event: KeyboardEvent<HTMLTextAreaElement>) => void;
     placeholder?: string;
     readOnly?: boolean;
     required?: boolean;
@@ -26,6 +27,7 @@ declare type TextAreaInputProps = {
     htmlValidation?: boolean;
     hideStdErr?: boolean;
     display?: DisplayType;
+    textareaRef?: React.RefObject<HTMLTextAreaElement>;
 } & ErrorProps;
 export declare type TextAreaProps = TextAreaContainerProps & TextAreaInputProps;
 export declare const TextArea: FC<TextAreaProps>;

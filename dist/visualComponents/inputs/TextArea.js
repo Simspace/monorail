@@ -5,10 +5,6 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.TextArea = exports.TextAreaInput = exports.TextAreaContainer = void 0;
 
-var _react = _interopRequireWildcard(require("react"));
-
-var _styledComponents = _interopRequireWildcard(require("styled-components"));
-
 var _exports = require("../../helpers/exports");
 
 var _typeGuards = require("../../sharedHelpers/typeGuards");
@@ -20,6 +16,10 @@ var _Label = require("./Label");
 var _StdErr = require("./StdErr");
 
 var _ViewInput = require("./ViewInput");
+
+var _react = _interopRequireWildcard(require("react"));
+
+var _styledComponents = _interopRequireWildcard(require("styled-components"));
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
@@ -73,6 +73,7 @@ const TextArea = props => {
     height,
     label,
     onChange,
+    onKeyDown,
     placeholder,
     readOnly,
     required,
@@ -84,9 +85,11 @@ const TextArea = props => {
     err,
     msg,
     hideStdErr = false,
+    textareaRef,
     ...otherProps
   } = props;
-  const textArea = (0, _react.useRef)(null);
+  const internalRef = (0, _react.useRef)(null);
+  const textArea = textareaRef !== null && textareaRef !== void 0 ? textareaRef : internalRef;
 
   const setCompactHeight = () => {
     if (compact && textArea) {
@@ -127,6 +130,7 @@ const TextArea = props => {
     height: height,
     ref: textArea,
     onChange: onCompactChange,
+    onKeyDown: onKeyDown,
     placeholder: placeholder,
     readOnly: readOnly,
     required: htmlValidation && required,

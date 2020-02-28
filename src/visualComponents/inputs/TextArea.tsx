@@ -1,6 +1,3 @@
-import React, { ChangeEvent, FC, useLayoutEffect, useRef } from 'react'
-import styled, { css, SimpleInterpolation } from 'styled-components'
-
 import {
   baseErrorBorderStyles,
   borderRadius,
@@ -16,6 +13,15 @@ import { DisplayType } from '@monorail/visualComponents/inputs/inputTypes'
 import { Label } from '@monorail/visualComponents/inputs/Label'
 import { ErrorProps, StdErr } from '@monorail/visualComponents/inputs/StdErr'
 import { ViewInput } from '@monorail/visualComponents/inputs/ViewInput'
+import React, {
+  ChangeEvent,
+  FC,
+  KeyboardEvent,
+  useLayoutEffect,
+  useRef,
+} from 'react'
+import styled, { css, SimpleInterpolation } from 'styled-components'
+
 /*
  * Styles
  */
@@ -104,6 +110,7 @@ type TextAreaInputProps = {
   height?: number
   label?: string | number
   onChange?: (event: ChangeEvent<HTMLTextAreaElement>) => void
+  onKeyDown?: (event: KeyboardEvent<HTMLTextAreaElement>) => void
   placeholder?: string
   readOnly?: boolean
   required?: boolean
@@ -113,6 +120,7 @@ type TextAreaInputProps = {
   htmlValidation?: boolean
   hideStdErr?: boolean
   display?: DisplayType
+  textareaRef?: React.RefObject<HTMLTextAreaElement>
 } & ErrorProps
 
 export type TextAreaProps = TextAreaContainerProps & TextAreaInputProps
@@ -131,6 +139,7 @@ export const TextArea: FC<TextAreaProps> = props => {
     height,
     label,
     onChange,
+    onKeyDown,
     placeholder,
     readOnly,
     required,
@@ -142,10 +151,12 @@ export const TextArea: FC<TextAreaProps> = props => {
     err,
     msg,
     hideStdErr = false,
+    textareaRef,
     ...otherProps
   } = props
 
-  const textArea = useRef<HTMLTextAreaElement>(null)
+  const internalRef = useRef<HTMLTextAreaElement>(null)
+  const textArea = textareaRef ?? internalRef
 
   const setCompactHeight = () => {
     if (compact && textArea) {
@@ -191,6 +202,7 @@ export const TextArea: FC<TextAreaProps> = props => {
             height={height}
             ref={textArea}
             onChange={onCompactChange}
+            onKeyDown={onKeyDown}
             placeholder={placeholder}
             readOnly={readOnly}
             required={htmlValidation && required}
