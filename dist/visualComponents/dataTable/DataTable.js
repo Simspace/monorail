@@ -82,7 +82,7 @@ _styledComponents.default.div.withConfig({
   hasSorter = false,
   textAlign,
   width
-}) => (0, _styledComponents.css)(["", ";", ";align-items:center;color:", ";height:100%;padding:8px 8px 7px;", ";", ";", ";"], (0, _exports.flexFlow)('row'), (0, _exports.typography)(500, _exports.FontSizes.Title5), (0, _exports.getColor)(_exports.Colors.Black89), tableDataStyles({
+}) => (0, _styledComponents.css)(["", ";", ";align-items:center;color:", ";height:100%;padding:8px 8px 7px;", ";", ";", ";"], (0, _exports.flexFlow)('row'), (0, _exports.typographyFont)(500, _exports.FontSizes.Title5), (0, _exports.getColor)(_exports.Colors.Black89a), tableDataStyles({
   textAlign,
   width,
   flex
@@ -130,7 +130,7 @@ _styledComponents.default.div.withConfig({
   width,
   flex,
   cssOverrides
-}) => (0, _styledComponents.css)(["", ";", ";align-items:center;color:", ";padding:12px 8px;height:100%;", ";", ";"], (0, _exports.flexFlow)('row'), (0, _exports.typography)(400, _exports.FontSizes.Title5), (0, _exports.getColor)(_exports.Colors.Black89), tableDataStyles({
+}) => (0, _styledComponents.css)(["", ";", ";align-items:center;color:", ";padding:12px 8px;height:100%;", ";", ";"], (0, _exports.flexFlow)('row'), (0, _exports.typographyFont)(400, _exports.FontSizes.Title5), (0, _exports.getColor)(_exports.Colors.Black89a), tableDataStyles({
   textAlign,
   width,
   flex
@@ -161,7 +161,7 @@ const TableEmptyMessage =
 _styledComponents.default.div.withConfig({
   displayName: "DataTable__TableEmptyMessage",
   componentId: "sc-16utrcn-7"
-})(["padding:16px;", ";"], (0, _exports.typography)(400, _exports.FontSizes.Title5)); // Table Footer
+})(["padding:16px;", ";"], (0, _exports.typographyFont)(400, _exports.FontSizes.Title5)); // Table Footer
 
 
 exports.TableEmptyMessage = TableEmptyMessage;
@@ -191,6 +191,6 @@ _styledComponents.default.div.withConfig({
   componentId: "sc-16utrcn-9"
 })(({
   cssOverrides
-}) => (0, _styledComponents.css)(["", ";color:", ";margin-left:auto;", ";"], (0, _exports.typography)(400, _exports.FontSizes.Title5), (0, _exports.getColor)(_exports.Colors.Black74), cssOverrides));
+}) => (0, _styledComponents.css)(["", ";color:", ";margin-left:auto;", ";"], (0, _exports.typographyFont)(400, _exports.FontSizes.Title5), (0, _exports.getColor)(_exports.Colors.Black74a), cssOverrides));
 
 exports.TableFooterMeta = TableFooterMeta;

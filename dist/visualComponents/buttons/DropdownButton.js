@@ -11,7 +11,7 @@ var _Array = require("fp-ts/lib/Array");
 
 var _Option = require("fp-ts/lib/Option");
 
-var _react = _interopRequireWildcard(require("react"));
+var _react = _interopRequireDefault(require("react"));
 
 var _PopOver = require("../../metaComponents/popOver/PopOver");
 
@@ -26,6 +26,8 @@ var _ButtonsBar = require("../buttonsBar/ButtonsBar");
 var _List = require("../list/List");
 
 var _Menu = require("../menu/Menu");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
@@ -53,14 +55,14 @@ const DropdownButton = ({
   listItems,
   disabled
 }) => {
-  const [selectedListItem, setSelectedListItem] = (0, _react.useState)((0, _Array.head)(listItems));
+  const selectedListItem = (0, _Array.head)(listItems);
   /**
    * you can't have a DropdownButton if there are no items, therefore
    * there must be at least one item in the list and
    * selectedListItem will always be of type some
    */
 
-  if ((0, _Array.isEmpty)(listItems) || selectedListItem.isNone()) {
+  if ((0, _Array.isEmpty)(listItems) || (0, _Option.isNone)(selectedListItem)) {
     return null;
   }
 
@@ -75,7 +77,7 @@ const DropdownButton = ({
       key: `${idx}-${listItem.primaryText}`
     }, listItem, {
       onClick: e => {
-        setSelectedListItem((0, _Option.some)(listItem));
+        listItem.onClick(e);
         popOverProps.onClick(e);
       }
     })))),

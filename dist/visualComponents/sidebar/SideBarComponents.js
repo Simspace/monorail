@@ -7,25 +7,25 @@ exports.SidebarBack = exports.SideBarMenuHeader = exports.SideBarMenuDivider = e
 
 var _styledComponents = _interopRequireWildcard(require("styled-components"));
 
-var _react = _interopRequireWildcard(require("react"));
-
 var _reactPose = _interopRequireDefault(require("react-pose"));
 
-var _exports = require("../../helpers/exports");
-
-var _zIndex = require("../../helpers/zIndex");
-
-var _buttonTypes = require("../buttons/buttonTypes");
-
-var _IconButton = require("../buttons/IconButton");
+var _react = _interopRequireWildcard(require("react"));
 
 var _BaseLink = require("../hyperLink/BaseLink");
 
+var _IconButton = require("../buttons/IconButton");
+
 var _ScrollAnimation = require("../layout/ScrollAnimation");
 
-var _List = require("../list/List");
-
 var _Text = require("../typography/Text");
+
+var _zIndex = require("../../helpers/zIndex");
+
+var _exports = require("../../helpers/exports");
+
+var _buttonTypes = require("../buttons/buttonTypes");
+
+var _List = require("../list/List");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -80,7 +80,7 @@ const SidebarContainer =
 })).withConfig({
   displayName: "SideBarComponents__SidebarContainer",
   componentId: "sc-1afcl1g-0"
-})(["", ";", ";", ";background:#f4f4f7;box-sizing:border-box;flex-shrink:0;position:relative;will-change:width;&::after{background:linear-gradient( to right,rgba(0,0,0,0.1) 0px,rgba(0,0,0,0.1) 1px,rgba(0,0,0,0.05) 1px,rgba(0,0,0,0) 100% );bottom:0;content:'';position:absolute;right:-3px;top:0;width:3px;}"], (0, _exports.flexFlow)(), _exports.gothamFontFamily, (0, _zIndex.zIndex)(_zIndex.ZIndexNodeName.SidebarContainer));
+})(["", ";", ";", ";background:#f4f4f7;", ";box-sizing:border-box;flex-shrink:0;position:relative;will-change:width;&::after{background:linear-gradient( to right,rgba(0,0,0,0.1) 0px,rgba(0,0,0,0.1) 1px,rgba(0,0,0,0.05) 1px,rgba(0,0,0,0) 100% );bottom:0;content:'';position:absolute;right:-3px;top:0;width:3px;}"], (0, _exports.flexFlow)(), _exports.gothamFontFamily, (0, _zIndex.zIndex)(_zIndex.ZIndexNodeName.SidebarContainer), props => props.backgroundColor);
 /* eslint-enable no-unexpected-multiline */
 
 exports.SidebarContainer = SidebarContainer;
@@ -165,45 +165,48 @@ var _StyledText =
 (0, _styledComponents.default)(_Text.Text).withConfig({
   displayName: "SideBarComponents___StyledText",
   componentId: "sc-1afcl1g-7"
-})(["", " ", ";transition:margin ", " ", "ms;margin-left:", "px;margin-right:", "px;"], p => p._css6, p => p._css7, p => p._css8, sideBarCollapsedTransitionDuration, p => p._css9, p => p._css10);
+})(["", " ", ";transition:margin ", " ", "ms;margin-left:", "px;margin-right:", "px;", ""], p => p._css6, p => p._css7, p => p._css8, sideBarCollapsedTransitionDuration, p => p._css9, p => p._css10, p => p._css11);
 
 var _StyledSpan =
 /*#__PURE__*/
 _styledComponents.default.span.withConfig({
   displayName: "SideBarComponents___StyledSpan",
   componentId: "sc-1afcl1g-8"
-})(["display:inline-flex;margin:0 auto;pointer-events:none;overflow:hidden;transition:flex ", " ", "ms;flex-grow:", ";"], p => p._css11, sideBarCollapsedTransitionDuration, p => p._css12);
+})(["display:inline-flex;margin:0 auto;pointer-events:none;overflow:hidden;transition:flex ", " ", "ms;flex-grow:", ";"], p => p._css12, sideBarCollapsedTransitionDuration, p => p._css13);
 
 var _StyledSpan2 =
 /*#__PURE__*/
 _styledComponents.default.span.withConfig({
   displayName: "SideBarComponents___StyledSpan2",
   componentId: "sc-1afcl1g-9"
-})(["overflow:hidden;transition:all ", " ", "ms;", " ", ""], p => p._css13, sideBarCollapsedTransitionDuration, p => p._css14, p => p._css15);
+})(["overflow:hidden;transition:all ", " ", "ms;", " ", ""], p => p._css14, sideBarCollapsedTransitionDuration, p => p._css15, p => p._css16);
 
 const SideBarMenuHeader = ({
   header,
-  isSideBarCollapsed
+  isSideBarCollapsed,
+  fontSize = _exports.FontSizes.Title5,
+  cssOverrides
 }) => _react.default.createElement(_StyledText, {
-  fontSize: _exports.FontSizes.Title5,
+  fontSize: fontSize,
   fontWeight: 500,
   margin: "0 0 16px",
-  color: _exports.Colors.Black62,
+  color: _exports.Colors.Black62a,
   _css6: (0, _exports.flexFlow)('row'),
   _css7: isSideBarCollapsed && `justify-content: center;`,
   _css8: (0, _exports.ease)(isSideBarCollapsed),
   _css9: isSideBarCollapsed ? '0' : '14',
-  _css10: isSideBarCollapsed ? '0' : '14'
+  _css10: isSideBarCollapsed ? '0' : '14',
+  _css11: cssOverrides
 }, _react.default.createElement(_StyledSpan, {
-  _css11: (0, _exports.ease)(isSideBarCollapsed),
-  _css12: isSideBarCollapsed ? '0' : '1'
+  _css12: (0, _exports.ease)(isSideBarCollapsed),
+  _css13: isSideBarCollapsed ? '0' : '1'
 }, header.split(' ').map((word, index, list) => {
   return _react.default.createElement(_react.Fragment, {
     key: index
   }, _react.default.createElement("span", null, word.charAt(0)), _react.default.createElement(_StyledSpan2, {
-    _css13: (0, _exports.ease)(isSideBarCollapsed),
-    _css14: index < list.length - 1 && (0, _styledComponents.css)(["padding-right:0.5em;"]),
-    _css15: isSideBarCollapsed && (0, _styledComponents.css)(["opacity:0;padding-right:0;text-indent:-150px;"])
+    _css14: (0, _exports.ease)(isSideBarCollapsed),
+    _css15: index < list.length - 1 && (0, _styledComponents.css)(["padding-right:0.5em;"]),
+    _css16: isSideBarCollapsed && (0, _styledComponents.css)(["opacity:0;padding-right:0;text-indent:-150px;"])
   }, word.slice(1)));
 })));
 
@@ -234,12 +237,13 @@ const SidebarBack = ({
   to,
   title,
   byline,
+  display = _buttonTypes.ButtonDisplay.Secondary,
   ...domProps
 }) => _react.default.createElement(_StyledListItem, domProps, _react.default.createElement(_StyledIconButton, {
   icon: "circle_arrow_left",
   passedAs: _BaseLink.BaseLink,
   to: to,
-  display: _buttonTypes.ButtonDisplay.Secondary,
+  display: display,
   shape: _buttonTypes.IconButtonShape.Square
 }), _react.default.createElement(_StyledListItemText, null, _react.default.createElement(_List.ListItemPrimaryText, null, title), _react.default.createElement(_List.ListItemSecondaryText, null, byline))); // tslint:enable
 

@@ -57,7 +57,6 @@ export type AppOrAuthSubAppNameString =
 export const convertAppNameToColor = (
   appNames: AppOrAuthSubAppName,
 ): Colors => {
-  /* eslint-disable default-case */
   switch (appNames) {
     case AppName.Events:
     case AppName.Execution:
@@ -98,7 +97,6 @@ export const convertAppNameToColor = (
     default:
       return Colors.White
   }
-  /* eslint-enable default-case */
 }
 
 export const convertAppNameToSecondaryColor = (

@@ -3,35 +3,29 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.swap = exports.tuple = exports.o = exports.flip_ = void 0;
+exports.flip = flip;
+exports.swap = exports.o = void 0;
 
 /**
- * Flips the order of the arguments to an uncurried function taking two
- * arguments. Like `flip`, but for uncurried, not curried, functions.
+ * Flips the order of the arguments of a binary function.
+ *
+ * Curried version of `flip` from 'fp-ts/lib/function'
  */
-const flip_ = f => (b, a) => f(a, b);
+function flip(f) {
+  return b => a => f(a)(b);
+}
 /**
  * Simple binary composition. Also known as `compose2`
  */
 
 
-exports.flip_ = flip_;
-
 const o = (f, g) => x => f(g(x));
-/**
- * Utility for constructing tuples with proper inference
- */
-
-
-exports.o = o;
-
-const tuple = (...args) => args;
 /**
  * Flips the position of each item in a 2-tuple
  */
 
 
-exports.tuple = tuple;
+exports.o = o;
 
 const swap = ([x, y]) => [y, x];
 

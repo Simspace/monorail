@@ -19,7 +19,7 @@ export const PageLevelNavBarContainer = styled.div(
     ${flexFlow('row')};
 
     ${page.width !== 'auto' &&
-      `max-width: ${page.width + sizes.page.sideSpace}px;`};
+      `max-width: ${page.width + sizes.page.sideSpace * 2}px;`};
 
     flex-shrink: 0;
     height: ${Sizes.DP40}px;
@@ -128,9 +128,12 @@ export const PageLevelNavBar: FC<PageLevelNavBarProps> = props => {
     <PageLevelNavBarContainer {...domProps}>
       <HorizontalNavigationController
         actions={actions}
-        tabBarIndicator={tabIndicatorProps => (
-          <PageLevelNavBarIndicatorContainer {...tabIndicatorProps} />
-        )}
+        tabBarIndicator={tabIndicatorProps =>
+          React.Children.toArray(children).filter(child => !!child).length >
+          0 ? (
+            <PageLevelNavBarIndicatorContainer {...tabIndicatorProps} />
+          ) : null
+        }
         activeTabIndex={activeTabIndex}
         getActiveTabIndex={getActiveTabIndex}
       >

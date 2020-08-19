@@ -23,88 +23,108 @@ var _styledComponents2 = require("../../helpers/styled-components");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var _StyledButton =
-/*#__PURE__*/
-(0, _styledComponents.default)(_Button.Button).withConfig({
-  displayName: "CollectionPaginationComponent___StyledButton",
-  componentId: "sc-1npn9yo-0"
-})({
-  margin: '0 4px'
-});
-
 var _StyledText =
 /*#__PURE__*/
 (0, _styledComponents.default)(_Text.Text).withConfig({
   displayName: "CollectionPaginationComponent___StyledText",
-  componentId: "sc-1npn9yo-1"
+  componentId: "sc-1npn9yo-0"
 })(p => ({
-  color: p._css
-}));
-
-const NumberButton = ({
-  number,
-  current = false,
-  handleClick
-}) => _react.default.createElement(_StyledButton, {
-  onClick: handleClick,
-  display: _buttonTypes.ButtonDisplay.Chromeless
-}, _react.default.createElement(_StyledText, {
-  fontSize: _exports.FontSizes.Title5,
-  fontWeight: 500,
-  _css: (0, _exports.getColor)(current ? _exports.Colors.Black54 : _exports.Colors.BrandLightBlue)
-}, number));
-
-const Ellipsis = () => _react.default.createElement("span", {
-  style: {
-    margin: '0 4px'
-  }
-}, "...");
-
-var _StyledIcon =
-/*#__PURE__*/
-(0, _styledComponents.default)(_Icon.Icon).withConfig({
-  displayName: "CollectionPaginationComponent___StyledIcon",
-  componentId: "sc-1npn9yo-2"
-})(p => ({
-  color: p._css2
+  color: p._css,
+  padding: '0 11px'
 }));
 
 var _StyledText2 =
 /*#__PURE__*/
 (0, _styledComponents.default)(_Text.Text).withConfig({
   displayName: "CollectionPaginationComponent___StyledText2",
-  componentId: "sc-1npn9yo-3"
-})(["margin:0;color:", ";"], p => p._css3);
+  componentId: "sc-1npn9yo-1"
+})(p => ({
+  color: p._css2,
+  margin: 0
+}));
+
+const NumberButton = ({
+  number,
+  current = false,
+  handleClick
+}) => {
+  return current ? _react.default.createElement(_StyledText, {
+    fontSize: _exports.FontSizes.Title5,
+    fontWeight: 500,
+    _css: (0, _exports.getColor)(_exports.Colors.Black89a)
+  }, number) : _react.default.createElement(_Button.Button, {
+    onClick: handleClick,
+    display: _buttonTypes.ButtonDisplay.Chromeless
+  }, _react.default.createElement(_StyledText2, {
+    fontSize: _exports.FontSizes.Title5,
+    fontWeight: 500,
+    _css2: (0, _exports.getColor)(_exports.Colors.BrandLightBlue)
+  }, number));
+};
+
+var _StyledSpan =
+/*#__PURE__*/
+_styledComponents.default.span.withConfig({
+  displayName: "CollectionPaginationComponent___StyledSpan",
+  componentId: "sc-1npn9yo-2"
+})({
+  padding: '0 11px'
+});
+
+const Ellipsis = () => _react.default.createElement(_StyledSpan, null, "...");
 
 var _StyledDiv =
 /*#__PURE__*/
 _styledComponents.default.div.withConfig({
   displayName: "CollectionPaginationComponent___StyledDiv",
+  componentId: "sc-1npn9yo-3"
+})(["background:", ";padding:4px 24px;display:flex;justify-content:center;", ";"], p => p._css3, p => p._css4);
+
+var _StyledIcon =
+/*#__PURE__*/
+(0, _styledComponents.default)(_Icon.Icon).withConfig({
+  displayName: "CollectionPaginationComponent___StyledIcon",
   componentId: "sc-1npn9yo-4"
-})(["display:flex;width:250px;align-items:center;justify-content:center;"]);
+})(p => ({
+  color: p._css5
+}));
 
 var _StyledText3 =
 /*#__PURE__*/
 (0, _styledComponents.default)(_Text.Text).withConfig({
   displayName: "CollectionPaginationComponent___StyledText3",
   componentId: "sc-1npn9yo-5"
-})(["margin:0;color:", ";"], p => p._css4);
+})(["margin:0;text-transform:capitalize;color:", ";"], p => p._css6);
 
-var _StyledIcon2 =
+var _StyledDiv2 =
 /*#__PURE__*/
-(0, _styledComponents.default)(_Icon.Icon).withConfig({
-  displayName: "CollectionPaginationComponent___StyledIcon2",
+_styledComponents.default.div.withConfig({
+  displayName: "CollectionPaginationComponent___StyledDiv2",
   componentId: "sc-1npn9yo-6"
-})(p => ({
-  color: p._css5
-}));
+})(["display:flex;width:", ";align-items:center;justify-content:space-between;flex:1 1 0;"], p => p._css7);
 
 var _StyledText4 =
 /*#__PURE__*/
 (0, _styledComponents.default)(_Text.Text).withConfig({
   displayName: "CollectionPaginationComponent___StyledText4",
   componentId: "sc-1npn9yo-7"
-})(["position:absolute;right:8px;margin-top:4px;color:", ";"], p => p._css6);
+})(["margin:0;text-transform:capitalize;color:", ";"], p => p._css8);
+
+var _StyledIcon2 =
+/*#__PURE__*/
+(0, _styledComponents.default)(_Icon.Icon).withConfig({
+  displayName: "CollectionPaginationComponent___StyledIcon2",
+  componentId: "sc-1npn9yo-8"
+})(p => ({
+  color: p._css9
+}));
+
+var _StyledText5 =
+/*#__PURE__*/
+(0, _styledComponents.default)(_Text.Text).withConfig({
+  displayName: "CollectionPaginationComponent___StyledText5",
+  componentId: "sc-1npn9yo-9"
+})(["position:absolute;right:8px;margin-top:4px;color:", ";"], p => p._css10);
 
 const CollectionPaginationComponent = ({
   data,
@@ -121,58 +141,68 @@ const CollectionPaginationComponent = ({
     return Math.min(Math.max(pg, 0), pages - 1);
   };
 
-  const changePage = pg => {
+  const changePage = (e, pg) => {
     const safePage = getSafePage(pg);
 
     if (page !== safePage) {
       onPageChange(safePage);
     }
+
+    e.currentTarget.blur();
   };
 
-  const linksForEveryPage = () => _react.default.createElement(_react.default.Fragment, null, Array.from(Array(pages).keys()).map(n => _react.default.createElement(NumberButton, {
+  const linksForEveryPage = () => _react.default.createElement(_react.default.Fragment, null, Array.from(Array(pages).keys()).map((n, i) => _react.default.createElement(NumberButton, {
+    key: i,
     number: n + 1,
     current: page === n,
-    handleClick: () => changePage(n)
+    handleClick: e => changePage(e, n)
   })));
 
   const ellipsisAfterBeginning = () => _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(NumberButton, {
     number: 1,
-    handleClick: () => changePage(0),
+    handleClick: e => changePage(e, 0),
     current: page === 0
   }), _react.default.createElement(NumberButton, {
     number: 2,
-    handleClick: () => changePage(1),
+    handleClick: e => changePage(e, 1),
     current: page === 1
   }), _react.default.createElement(NumberButton, {
     number: 3,
-    handleClick: () => changePage(2),
+    handleClick: e => changePage(e, 2),
     current: page === 2
-  }), page === 2 ? _react.default.createElement(NumberButton, {
+  }), _react.default.createElement(NumberButton, {
     number: 4,
-    handleClick: () => changePage(3)
-  }) : null, _react.default.createElement(Ellipsis, null), _react.default.createElement(NumberButton, {
+    handleClick: e => changePage(e, 3),
+    current: page === 3
+  }), _react.default.createElement(NumberButton, {
+    number: 5,
+    handleClick: e => changePage(e, 4)
+  }), _react.default.createElement(Ellipsis, null), _react.default.createElement(NumberButton, {
     number: pages,
-    handleClick: () => changePage(pages - 1)
+    handleClick: e => changePage(e, pages - 1)
   }));
 
   const ellipsisBeforeEnd = () => _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(NumberButton, {
     number: 1,
-    handleClick: () => changePage(0)
-  }), _react.default.createElement(Ellipsis, null), page === pages - 3 ? _react.default.createElement(NumberButton, {
+    handleClick: e => changePage(e, 0)
+  }), _react.default.createElement(Ellipsis, null), _react.default.createElement(NumberButton, {
+    number: pages - 4,
+    handleClick: e => changePage(e, pages - 5)
+  }), _react.default.createElement(NumberButton, {
     number: pages - 3,
-    handleClick: () => changePage(pages - 4),
+    handleClick: e => changePage(e, pages - 4),
     current: page === pages - 4
-  }) : null, _react.default.createElement(NumberButton, {
+  }), _react.default.createElement(NumberButton, {
     number: pages - 2,
-    handleClick: () => changePage(pages - 3),
+    handleClick: e => changePage(e, pages - 3),
     current: page === pages - 3
   }), _react.default.createElement(NumberButton, {
     number: pages - 1,
-    handleClick: () => changePage(pages - 2),
+    handleClick: e => changePage(e, pages - 2),
     current: page === pages - 2
   }), _react.default.createElement(NumberButton, {
     number: pages,
-    handleClick: () => changePage(pages - 1),
+    handleClick: e => changePage(e, pages - 1),
     current: page === pages - 1
   }));
 
@@ -181,66 +211,71 @@ const CollectionPaginationComponent = ({
       return linksForEveryPage();
     }
 
-    if (page < 3) {
+    if (page < 4) {
       return ellipsisAfterBeginning();
-    } else if (page > pages - 4) {
+    } else if (page > pages - 5) {
       return ellipsisBeforeEnd();
     } else {
       return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(NumberButton, {
         number: 1,
-        handleClick: () => changePage(0)
+        handleClick: e => changePage(e, 0)
       }), _react.default.createElement(Ellipsis, null), _react.default.createElement(NumberButton, {
         number: page,
-        handleClick: () => changePage(page - 1)
+        key: page,
+        handleClick: e => changePage(e, page - 1)
       }), _react.default.createElement(NumberButton, {
         number: page + 1,
         current: true,
         handleClick: () => {}
       }), _react.default.createElement(NumberButton, {
+        key: page + 2,
         number: page + 2,
-        handleClick: () => changePage(page + 1)
+        handleClick: e => changePage(e, page + 1)
       }), _react.default.createElement(Ellipsis, null), _react.default.createElement(NumberButton, {
         number: pages,
-        handleClick: () => changePage(pages - 1)
+        handleClick: e => changePage(e, pages - 1)
       }));
     }
   };
 
-  return _react.default.createElement("div", {
-    style: {
-      background: (0, _exports.getColor)(_exports.Colors.Grey98),
-      padding: '4px 24px',
-      display: 'flex',
-      justifyContent: 'center'
-    }
+  return _react.default.createElement(_StyledDiv, {
+    _css3: (0, _exports.getColor)(_exports.Colors.Grey98),
+    _css4: (0, _exports.getElevationShadow)(_exports.ElevationRange.Elevation4)
   }, _react.default.createElement("div", {
     style: {
-      display: 'flex'
+      display: 'flex',
+      justifyContent: 'space-between'
     }
   }, _react.default.createElement(_Button.Button, {
-    onClick: () => changePage(page - 1),
-    display: _buttonTypes.ButtonDisplay.Chromeless
+    onClick: e => changePage(e, page - 1),
+    display: _buttonTypes.ButtonDisplay.Chromeless,
+    disabled: page === 0,
+    cssOverrides: page === 0 ? 'opacity: 1;' : null
   }, _react.default.createElement(_StyledIcon, {
     icon: "chevron_left",
-    _css2: (0, _exports.getColor)(page > 0 ? _exports.Colors.BrandLightBlue : _exports.Colors.Black54)
-  }), _react.default.createElement(_StyledText2, {
+    _css5: (0, _exports.getColor)(page > 0 ? _exports.Colors.BrandLightBlue : _exports.Colors.Black54a)
+  }), _react.default.createElement(_StyledText3, {
     fontSize: _exports.FontSizes.Title5,
     fontWeight: 500,
-    _css3: (0, _exports.getColor)(page > 0 ? _exports.Colors.BrandLightBlue : _exports.Colors.Black54)
-  }, "Previous")), _react.default.createElement(_StyledDiv, null, numbers()), _react.default.createElement(_Button.Button, {
-    onClick: () => changePage(page + 1),
-    display: _buttonTypes.ButtonDisplay.Chromeless
-  }, _react.default.createElement(_StyledText3, {
+    _css6: (0, _exports.getColor)(page > 0 ? _exports.Colors.BrandLightBlue : _exports.Colors.Black54a)
+  }, "Previous")), _react.default.createElement(_StyledDiv2, {
+    _css7: pages > 6 ? '250px' : 'auto'
+  }, numbers()), _react.default.createElement(_Button.Button, {
+    onClick: e => changePage(e, page + 1),
+    display: _buttonTypes.ButtonDisplay.Chromeless,
+    disabled: page === pages - 1,
+    cssOverrides: page === pages - 1 ? 'opacity: 1;' : null
+  }, _react.default.createElement(_StyledText4, {
     fontSize: _exports.FontSizes.Title5,
     fontWeight: 500,
-    _css4: (0, _exports.getColor)(page < pages - 1 ? _exports.Colors.BrandLightBlue : _exports.Colors.Black54)
+    _css8: (0, _exports.getColor)(page < pages - 1 ? _exports.Colors.BrandLightBlue : _exports.Colors.Black54a)
   }, "Next"), _react.default.createElement(_StyledIcon2, {
     icon: "chevron_right",
-    _css5: (0, _exports.getColor)(page < pages - 1 ? _exports.Colors.BrandLightBlue : _exports.Colors.Black54)
-  }))), _react.default.createElement(_StyledText4, {
+    _css9: (0, _exports.getColor)(page < pages - 1 ? _exports.Colors.BrandLightBlue : _exports.Colors.Black54a)
+  }))), _react.default.createElement(_StyledText5, {
     fontSize: _exports.FontSizes.Title5,
     fontWeight: 500,
-    _css6: (0, _exports.getColor)(_exports.Colors.Black54)
+    _css10: (0, _exports.getColor)(_exports.Colors.Black54a)
   }, "Showing ", min, "-", max, " of ", total, " Results"));
 };
 

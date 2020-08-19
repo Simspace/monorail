@@ -33,7 +33,7 @@ const PageLevelNavBarContainer = _styledComponents.default.div(({
 }) => (0, _styledComponents.css)`
     ${(0, _flex.flexFlow)('row')};
 
-    ${page.width !== 'auto' && `max-width: ${page.width + _size.sizes.page.sideSpace}px;`};
+    ${page.width !== 'auto' && `max-width: ${page.width + _size.sizes.page.sideSpace * 2}px;`};
 
     flex-shrink: 0;
     height: ${_size.Sizes.DP40}px;
@@ -133,7 +133,7 @@ const PageLevelNavBar = props => {
   } = props;
   return _react.default.createElement(PageLevelNavBarContainer, domProps, _react.default.createElement(_HorizontalNavigationController.HorizontalNavigationController, {
     actions: actions,
-    tabBarIndicator: tabIndicatorProps => _react.default.createElement(PageLevelNavBarIndicatorContainer, tabIndicatorProps),
+    tabBarIndicator: tabIndicatorProps => _react.default.Children.toArray(children).filter(child => !!child).length > 0 ? _react.default.createElement(PageLevelNavBarIndicatorContainer, tabIndicatorProps) : null,
     activeTabIndex: activeTabIndex,
     getActiveTabIndex: getActiveTabIndex
   }, children));

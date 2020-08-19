@@ -117,7 +117,7 @@ _styledComponents.default.input.withConfig({
   disabled,
   canToggleVisibility,
   err
-}) => (0, _styledComponents.css)(["", ";", ";", ";border-color:", ";border-style:solid;border-width:1px;box-sizing:border-box;color:", ";height:24px;min-height:24px;flex:1;outline:none;padding:4px ", "px 4px ", "px;width:100%;", ";&[htmlType='number']{&::-webkit-inner-spin-button,&::-webkit-outer-spin-button{opacity:1;}}&:hover{border-color:", ";}&:focus,&:active{border-color:", ";}::placeholder{color:", ";font-style:italic;}", ";:-moz-ui-invalid{box-shadow:none;}", ";", ";"], disabled && _exports.baseDisabledStyles, (0, _exports.typography)(400, _exports.FontSizes.Title5), (0, _exports.borderRadius)(), (0, _exports.getColor)(_exports.Colors.Black, 0.12), (0, _exports.getColor)(_exports.Colors.Black89), iconRight ? canToggleVisibility ? 56 : 30 : canToggleVisibility ? 30 : 6, iconLeft ? 30 : 6, _exports.buttonTransition, (0, _exports.getColor)(_exports.Colors.Black, 0.3), (0, _exports.getColor)(_exports.Colors.BrandLightBlue), (0, _exports.getColor)(_exports.Colors.Black54), chromeless && (0, _styledComponents.css)(["border-color:transparent;"]), err && _exports.baseErrorBorderStyles, disabled && _exports.baseDisabledStyles));
+}) => (0, _styledComponents.css)(["", ";", ";", ";border-color:", ";border-style:solid;border-width:1px;box-sizing:border-box;color:", ";height:24px;min-height:24px;flex:1;outline:none;padding:4px ", "px 4px ", "px;width:100%;", ";&[htmlType='number']{&::-webkit-inner-spin-button,&::-webkit-outer-spin-button{opacity:1;}}&:hover{border-color:", ";}&:focus,&:active{border-color:", ";}::placeholder{color:", ";font-style:italic;}", ";:-moz-ui-invalid{box-shadow:none;}", ";", ";"], disabled && _exports.baseDisabledStyles, (0, _exports.typographyFont)(400, _exports.FontSizes.Title5), (0, _exports.borderRadius)(), (0, _exports.getColor)(_exports.Colors.Black, 0.12), (0, _exports.getColor)(_exports.Colors.Black89a), iconRight ? canToggleVisibility ? 56 : 30 : canToggleVisibility ? 30 : 6, iconLeft ? 30 : 6, _exports.buttonTransition, (0, _exports.getColor)(_exports.Colors.Black, 0.3), (0, _exports.getColor)(_exports.Colors.BrandLightBlue), (0, _exports.getColor)(_exports.Colors.Black54a), chromeless && (0, _styledComponents.css)(["border-color:transparent;"]), err && _exports.baseErrorBorderStyles, disabled && _exports.baseDisabledStyles));
 /*
  * Types
  */
@@ -135,6 +135,7 @@ const TextField = (0, _react.forwardRef)((props, ref) => {
     canToggleVisibility = false,
     chromeless = false,
     cssOverrides = '',
+    enableLastPass = false,
     htmlValidation = true,
     iconLeft = '',
     iconRight = '',
@@ -157,6 +158,7 @@ const TextField = (0, _react.forwardRef)((props, ref) => {
     hideStdErr = false,
     ...otherProps
   } = props;
+  const lpIgnore = !enableLastPass;
   return _react.default.createElement(Container, {
     className: className,
     cssOverrides: cssOverrides,
@@ -171,7 +173,7 @@ const TextField = (0, _react.forwardRef)((props, ref) => {
     icon: iconLeft,
     err: err
   }), _react.default.createElement(StyledInput, _extends({
-    "data-lpignore": "true" // 🖕 u LastPass: https://goo.gl/Ez3eS1
+    "data-lpignore": lpIgnore.toString() // 🖕 u LastPass: https://goo.gl/Ez3eS1
     ,
     canToggleVisibility: canToggleVisibility,
     chromeless: chromeless,
@@ -190,7 +192,8 @@ const TextField = (0, _react.forwardRef)((props, ref) => {
     max: max,
     maxLength: maxLength,
     err: err,
-    ref: ref
+    ref: ref,
+    autoFocus: autoFocus
   }, otherProps)), !(0, _typeGuards.isEmptyString)(iconRight) && _react.default.createElement(StyledRightIcon, {
     icon: iconRight,
     canToggleVisibility: canToggleVisibility,

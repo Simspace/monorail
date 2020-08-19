@@ -3,11 +3,15 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.useControlledList = exports.OutlineListItem = exports.LayoutDetailHeader = exports.RowLayout = exports.ColumnLayout = exports.LayoutContentWrapper = exports.EmptyLayoutList = exports.EmptyListButtonsBox = exports.EmptyListBoxInner = exports.EmptyListBox = exports.LayoutOutline = exports.OutlineList = void 0;
+exports.useControlledList = exports.OutlineListItem = exports.LayoutDetailHeader = exports.RowLayout = exports.ColumnLayout = exports.LayoutContentWrapper = exports.EmptyLayoutList = exports.EmptyLayoutContainer = exports.EmptyListButtonsBox = exports.EmptyListBoxInner = exports.EmptyListBox = exports.LayoutOutline = exports.OutlineList = void 0;
 
 var _styledComponents = _interopRequireDefault(require("styled-components"));
 
 var _Array = require("fp-ts/lib/Array");
+
+var O = _interopRequireWildcard(require("fp-ts/lib/Option"));
+
+var _pipeable = require("fp-ts/lib/pipeable");
 
 var _react = _interopRequireWildcard(require("react"));
 
@@ -46,7 +50,7 @@ function _extends() { _extends = Object.assign || function (target) { for (var i
 const OutlineList = _styledComponents2.default.div`
   ${(0, _flex.flexFlow)('column')};
   background: ${(0, _exports.getColor)(_exports.Colors.White)};
-  border-right: 1px solid ${(0, _exports.getColor)(_exports.Colors.Black12)};
+  border-right: 1px solid ${(0, _exports.getColor)(_exports.Colors.Black12a)};
   flex: 1;
   max-width: 256px;
   min-width: 186px;
@@ -64,6 +68,9 @@ const OutlineContent = _styledComponents2.default.div`
   flex: 1;
   overflow: hidden;
 `;
+const IconButtonContainer = _styledComponents2.default.div`
+  ${(0, _exports.visible)(false)}
+`;
 
 var _StyledScrollAnimation =
 /*#__PURE__*/
@@ -74,17 +81,20 @@ var _StyledScrollAnimation =
 
 const LayoutOutline = ({
   children,
+  header,
   headerProps,
   list,
   listFooter,
   title,
   ...domProps
 }) => {
-  return _react.default.createElement(OutlineContainer, domProps, _react.default.createElement(OutlineList, null, _react.default.createElement(_Header.Header, _extends({
+  const renderTitleHeader = () => _react.default.createElement(_Header.Header, _extends({
     cssTitle: "flex: 1;"
   }, headerProps, {
     title: title
-  })), _react.default.createElement(_StyledScrollAnimation, null, list()), listFooter && listFooter()), _react.default.createElement(OutlineContent, null, children()));
+  }));
+
+  return _react.default.createElement(OutlineContainer, domProps, _react.default.createElement(OutlineList, null, (0, _pipeable.pipe)(O.fromNullable(header), O.alt(() => (0, _pipeable.pipe)(O.fromNullable(title), O.map(t => renderTitleHeader))), O.fold(() => _react.default.createElement(_react.default.Fragment, null), render => render())), _react.default.createElement(_StyledScrollAnimation, null, list()), listFooter && listFooter()), _react.default.createElement(OutlineContent, null, children()));
 };
 
 exports.LayoutOutline = LayoutOutline;
@@ -111,10 +121,19 @@ const EmptyListButtonsBox = _styledComponents2.default.div`
   display: flex;
 `;
 exports.EmptyListButtonsBox = EmptyListButtonsBox;
+const EmptyLayoutContainer = _styledComponents2.default.div`
+  ${(0, _flex.flexFlow)('column')};
+
+  background: ${(0, _exports.getColor)(_exports.Colors.Grey96)};
+  flex: 1;
+  height: 100%;
+  overflow: hidden;
+`;
+exports.EmptyLayoutContainer = EmptyLayoutContainer;
 
 const EmptyLayoutList = ({
-  title = 'Empty List',
-  message = 'Add items to your list',
+  title = 'No Selection',
+  message = 'Select an item on the left or create a new item',
   actions
 }) => _react.default.createElement(EmptyListBox, null, _react.default.createElement(EmptyListBoxInner, null, _react.default.createElement(_Icon.Icon, {
   icon: "empty_syllabus_list",
@@ -132,18 +151,26 @@ const EmptyLayoutList = ({
 }, message), actions && _react.default.createElement(EmptyListButtonsBox, null, actions)));
 
 exports.EmptyLayoutList = EmptyLayoutList;
-const titleStyle = (0, _styledComponents2.css)`
+
+const titleStyle = disabled => (0, _styledComponents2.css)`
   max-width: unset;
   flex: 3;
-  textarea {
-    ${(0, _exports.typography)(700, _exports.FontSizes.Title1)};
-  }
-  textarea::placeholder {
-    font-style: italic;
-    color: '#8c8c8c';
+  ${_TextArea.TextAreaInput} {
+    ${(0, _exports.typographyFont)(700, _exports.FontSizes.Title1)};
+
+    ${disabled && (0, _styledComponents2.css)`
+        border: none;
+
+        &:hover,
+        &:focus,
+        &:active {
+          border: none;
+        }
+      `}
   }
   margin-right: 8px;
 `;
+
 const LayoutContentWrapper = _styledComponents2.default.div`
   ${(0, _flex.flexFlow)('column', 'nowrap')}
   ${(0, _exports.pageSizePadding)({
@@ -189,7 +216,7 @@ const LayoutDetailHeader = ({
 }) => _react.default.createElement(LayoutDetailHeaderContainer, null, _react.default.createElement(_TextArea.TextArea, _extends({
   chromeless: true,
   compact: true,
-  cssOverrides: titleStyle,
+  cssOverrides: titleStyle(textAreaProps.disabled),
   placeholder: "New Item",
   required: true
 }, textAreaProps)), actions && _react.default.createElement(_StyledActionsMenu, {
@@ -199,31 +226,42 @@ const LayoutDetailHeader = ({
 
 exports.LayoutDetailHeader = LayoutDetailHeader;
 
+var _StyledSimpleListItem =
+/*#__PURE__*/
+(0, _styledComponents.default)(_List.SimpleListItem).withConfig({
+  displayName: "LayoutOutline___StyledSimpleListItem",
+  componentId: "sc-1fcq5a-2"
+})(["&:hover{", "{", "}}"], IconButtonContainer, p => p._css);
+
 const OutlineListItem = props => {
   const {
     item,
     selected = false,
     onClick,
     onDelete,
-    icon = 'settings'
+    size = _exports.Sizes.DP40,
+    icon = 'settings',
+    cssOverrides
   } = props;
-  return _react.default.createElement(_List.SimpleListItem, {
+  return _react.default.createElement(_StyledSimpleListItem, {
     key: item.key,
     leftIcon: icon,
     primaryText: item.content,
-    size: _exports.Sizes.DP40,
+    size: size,
     className: selected ? 'is-active' : '',
-    onClick: () => onClick && onClick(item)
-  }, onDelete && _react.default.createElement(_IconButton.IconButton, {
+    onClick: () => onClick && onClick(item),
+    cssOverrides: cssOverrides,
+    _css: (0, _exports.visible)(true)
+  }, onDelete && _react.default.createElement(IconButtonContainer, null, _react.default.createElement(_IconButton.IconButton, {
     size: _buttonTypes.ButtonSize.Compact,
     display: _buttonTypes.ButtonDisplay.Toolbar,
-    icon: "cancel",
+    icon: 'delete',
     onClick: e => {
       e.preventDefault();
       e.stopPropagation();
       onDelete(item);
     }
-  }));
+  })));
 };
 
 exports.OutlineListItem = OutlineListItem;
@@ -242,7 +280,7 @@ const useControlledList = ({
   const [list, setList] = (0, _react.useState)(items);
   (0, _react.useEffect)(() => {
     if (!selected) {
-      setSelected((0, _Array.lookup)(0, list).toUndefined());
+      setSelected((0, _pipeable.pipe)((0, _Array.lookup)(0, list), O.toUndefined));
     }
   }, [list, selected]);
 

@@ -3,14 +3,15 @@ import { Task } from 'fp-ts/lib/Task'
 import { TaskEither } from 'fp-ts/lib/TaskEither'
 
 import { constRunTaskEither, newTaskEither, runTaskEither } from '../TaskEither'
+import { newTask } from '@monorail/sharedHelpers/fp-ts-ext/Task'
 
 describe('constRunTaskEither', () => {
   it('should return the run function for a TaskEither<L, A>', () => {
-    const te = new TaskEither(
-      new Task(() => Promise.resolve(right<string, number>(3))),
+    const te = newTaskEither(
+      newTask(() => Promise.resolve(right<string, number>(3))),
     )
     const actual = constRunTaskEither(te)()
-    const expected = te.run()
+    const expected = te()
     expect(actual).toEqual(expected)
     expect(actual).toEqual(Promise.resolve(right<string, number>(3)))
   })
@@ -18,14 +19,14 @@ describe('constRunTaskEither', () => {
 
 describe('newTaskEither', () => {
   it('should create a TaskEither<L, A>', () => {
-    const te = new TaskEither(
-      new Task(() => Promise.resolve(left<string, number>('error'))),
+    const te = newTaskEither(
+      newTask(() => Promise.resolve(left<string, number>('error'))),
     )
     const te_ = newTaskEither(
-      new Task(() => Promise.resolve(left<string, number>('error'))),
+      newTask(() => Promise.resolve(left<string, number>('error'))),
     )
-    const actual = te.run()
-    const expected = te_.run()
+    const actual = te()
+    const expected = te_()
     expect(actual).toEqual(expected)
     expect(actual).toEqual(Promise.resolve(left<string, number>('error')))
   })
@@ -33,11 +34,11 @@ describe('newTaskEither', () => {
 
 describe('runTaskEither', () => {
   it('should run a TaskEither<L, A>', () => {
-    const te = new TaskEither(
-      new Task(() => Promise.resolve(right<string, number>(2))),
+    const te = newTaskEither(
+      newTask(() => Promise.resolve(right<string, number>(2))),
     )
     const actual = runTaskEither(te)
-    const expected = te.run()
+    const expected = te()
     expect(actual).toEqual(expected)
     expect(actual).toEqual(Promise.resolve(right<string, number>(2)))
   })

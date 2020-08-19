@@ -50,7 +50,7 @@ _styledComponents.default.div.withConfig({
   componentId: "u4b6mj-0"
 })(({
   color
-}) => (0, _styledComponents.css)(["", ";background:", ";border:1px solid ", ";max-width:50vw;min-width:280px;position:relative;right:0;width:360px;"], (0, _exports.flexFlow)('row'), (0, _exports.getColor)(_exports.Colors.White), color));
+}) => (0, _styledComponents.css)(["", ";background:", ";border:1px solid ", ";max-width:50vw;min-width:280px;position:relative;right:0;width:360px;"], (0, _exports.flexFlow)('row'), (0, _exports.getColor)(_exports.Colors.White), (0, _exports.getColor)(color)));
 
 const ToastDetails =
 /*#__PURE__*/
@@ -74,7 +74,7 @@ _styledComponents.default.div.withConfig({
 })(({
   color,
   size
-}) => (0, _styledComponents.css)(["min-height:", "px;width:", "px;align-items:center;background:", ";justify-content:center;", ";"], size === ToastSize.Small ? 36 : 64, size === ToastSize.Small ? 40 : 64, color, (0, _exports.flexFlow)('row')));
+}) => (0, _styledComponents.css)(["min-height:", "px;width:", "px;align-items:center;background:", ";justify-content:center;", ";"], size === ToastSize.Small ? 36 : 64, size === ToastSize.Small ? 40 : 64, (0, _exports.getColor)(color), (0, _exports.flexFlow)('row')));
 /*
  * Toast Tile
  */
@@ -146,7 +146,8 @@ const Toast = props => {
     margin: '6px 0'
   }, title), _react.default.createElement(_Text.Text, {
     fontSize: (0, _typeGuards.isEmptyString)(title) ? _exports.FontSizes.Title4 : _exports.FontSizes.Title5,
-    fontWeight: 400
+    fontWeight: 400,
+    margin: "4px 0"
   }, message)), dismissible && _react.default.createElement(ToastClose, null, _react.default.createElement(_IconButton.IconButton, {
     icon: 'close',
     display: _buttonTypes.ButtonDisplay.Secondary

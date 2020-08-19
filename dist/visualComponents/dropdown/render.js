@@ -7,9 +7,11 @@ exports.useDefaultDropdownRender = exports.useCustomHandler = exports.DropdownPl
 
 var _styledComponents = _interopRequireDefault(require("styled-components"));
 
-var _Option = require("fp-ts/lib/Option");
+var O = _interopRequireWildcard(require("fp-ts/lib/Option"));
 
 var _react = _interopRequireWildcard(require("react"));
+
+var _pipeable = require("fp-ts/lib/pipeable");
 
 var _color = require("../../helpers/color");
 
@@ -42,7 +44,7 @@ function _extends() { _extends = Object.assign || function (target) { for (var i
 const DropdownPlaceholder = _styledComponents2.default.span`
   ${_exports.ellipsis};
 
-  color: ${(0, _color.getColor)(_color.Colors.Black54)};
+  color: ${(0, _color.getColor)(_color.Colors.Black54a)};
   font-style: italic;
 `;
 exports.DropdownPlaceholder = DropdownPlaceholder;
@@ -118,7 +120,7 @@ _styledComponents.default.span.withConfig({
 const renderHandlerLabelDefault = ({
   downshiftProps,
   handlerProps
-}) => (0, _Option.fromNullable)(downshiftProps.selectedItem).fold(_react.default.createElement(DropdownPlaceholder, null, handlerProps.placeholder), item => _react.default.createElement(_StyledSpan, null, downshiftProps.itemToString(item)));
+}) => (0, _pipeable.pipe)(O.fromNullable(downshiftProps.selectedItem), O.fold(() => _react.default.createElement(DropdownPlaceholder, null, handlerProps.placeholder), item => _react.default.createElement(_StyledSpan, null, downshiftProps.itemToString(item))));
 
 var _StyledTextField =
 /*#__PURE__*/

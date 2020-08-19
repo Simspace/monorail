@@ -1,5 +1,4 @@
 import React, { Component, MouseEvent } from 'react'
-import { Omit } from 'typelevel-ts'
 
 import { Button, ButtonProps } from './Button'
 

@@ -9,14 +9,15 @@ import {
   flexFlow,
   FontSizes,
   getColor,
-  typography,
   visible,
+  typographyFont,
 } from '@monorail/helpers/exports'
 import styled, { css } from '@monorail/helpers/styled-components'
 import { getThemeColor, Mode, ThemeColors } from '@monorail/helpers/theme'
 import { ButtonSize } from '@monorail/visualComponents/buttons/buttonTypes'
 import { IconButton } from '@monorail/visualComponents/buttons/IconButton'
 import { Icon } from '@monorail/visualComponents/icon/Icon'
+import { isNotNil } from '@monorail/sharedHelpers/typeGuards'
 
 // TODO(unsafe-any): Fix unsafe anys
 // tslint:disable no-unsafe-any
@@ -28,7 +29,7 @@ import { Icon } from '@monorail/visualComponents/icon/Icon'
 const searchIconPosition = 4
 
 export const SearchContainer = styled.label<SearchContainerProps>(
-  ({ cssOverrides, theme: { mode } }) => css`
+  ({ cssOverrides, width, theme: { mode } }) => css`
     ${mode === Mode.Dark
       ? css`
           background: ${getThemeColor(ThemeColors.PrimaryColor, 0.2)};
@@ -44,6 +45,11 @@ export const SearchContainer = styled.label<SearchContainerProps>(
       : css`
           background: ${getThemeColor(ThemeColors.SecondaryColor)};
         `};
+
+    ${isNotNil(width) &&
+      css`
+        width: ${width}px;
+      `}
 
     ${borderRadius(BorderRadius.Round)};
     ${flexFlow('row')};
@@ -68,7 +74,7 @@ const searchIconStyles = css`
 `
 
 export const SearchInput = styled.input<SearchInputProps>(
-  ({ theme: { mode } }) => css`
+  ({ width, theme: { mode } }) => css`
     ${mode === Mode.Dark
       ? css`
           border-color: transparent;
@@ -93,7 +99,12 @@ export const SearchInput = styled.input<SearchInputProps>(
           }
         `};
 
-    ${typography(400, FontSizes.Title5)};
+    ${isNotNil(width) &&
+      css`
+        width: ${width}px;
+      `}
+
+    ${typographyFont(400, FontSizes.Title5)};
 
     background: transparent;
     border-radius: inherit;
@@ -127,12 +138,15 @@ export const SearchInput = styled.input<SearchInputProps>(
 
 export type SearchContainerProps = {
   cssOverrides?: SimpleInterpolation
+  width?: number
   searchRef?: RefObject<HTMLInputElement>
 }
 
 export type SearchInputProps = {
   onClick?: (event: MouseEvent<HTMLInputElement>) => void
+  onBlur?: (event?: ChangeEvent<HTMLInputElement>) => void
   value?: string
+  width?: number
   name?: string
 }
 
@@ -153,14 +167,16 @@ export const Search: FC<SearchProps> = props => {
     name,
     placeholder = 'Search',
     value,
+    width,
     onClick,
+    onBlur,
     searchRef,
     ...domProps
   } = props
 
   return (
-    <SearchContainer cssOverrides={cssOverrides} {...domProps}>
-      <Icon icon="search_icon" css={searchIconStyles} />
+    <SearchContainer cssOverrides={cssOverrides} width={width} {...domProps}>
+      <Icon icon="search" css={searchIconStyles} />
 
       <SearchInput
         className="new-input"
@@ -169,7 +185,9 @@ export const Search: FC<SearchProps> = props => {
         }}
         placeholder={placeholder}
         value={value}
+        width={width}
         onClick={onClick}
+        onBlur={onBlur}
         ref={searchRef}
         name={name}
         type="search"
@@ -179,7 +197,7 @@ export const Search: FC<SearchProps> = props => {
         cssOverrides={css`
           ${visible(!!value)};
 
-          background: ${getColor(Colors.Black24)};
+          background: ${getColor(Colors.Black24a)};
           border: 0;
           position: absolute;
           right: ${searchIconPosition}px;
@@ -190,7 +208,7 @@ export const Search: FC<SearchProps> = props => {
           }
 
           &:hover {
-            background: ${getColor(Colors.Black54)};
+            background: ${getColor(Colors.Black54a)};
 
             &:before {
               background: transparent;
@@ -198,7 +216,7 @@ export const Search: FC<SearchProps> = props => {
           }
 
           &:active {
-            background: ${getColor(Colors.Black24)};
+            background: ${getColor(Colors.Black24a)};
           }
         `}
         size={ButtonSize.Dense}

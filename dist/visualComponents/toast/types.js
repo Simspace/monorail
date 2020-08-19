@@ -18,10 +18,10 @@ exports.AlertLevel = AlertLevel;
 })(AlertLevel || (exports.AlertLevel = AlertLevel = {}));
 
 const AlertColors = {
-  [AlertLevel.Info]: (0, _color.getColor)(_color.Colors.BrandLightBlue),
-  [AlertLevel.Success]: (0, _color.getColor)(_color.Colors.Green),
-  [AlertLevel.Error]: (0, _color.getColor)(_color.Colors.Red),
-  [AlertLevel.Warning]: (0, _color.getColor)(_color.Colors.Amber)
+  [AlertLevel.Info]: _color.Colors.Info,
+  [AlertLevel.Success]: _color.Colors.Success,
+  [AlertLevel.Error]: _color.Colors.Error,
+  [AlertLevel.Warning]: _color.Colors.Warning
 };
 exports.AlertColors = AlertColors;
 const AlertIcons = {

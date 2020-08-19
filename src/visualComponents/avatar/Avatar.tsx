@@ -1,4 +1,5 @@
-import { fromNullable } from 'fp-ts/lib/Option'
+import * as O from 'fp-ts/lib/Option'
+import { pipe } from 'fp-ts/lib/pipeable'
 import React, { StatelessComponent } from 'react'
 
 import {
@@ -11,6 +12,7 @@ import { Sizes } from '@monorail/helpers/size'
 import styled, { css } from '@monorail/helpers/styled-components'
 import { isNil } from '@monorail/sharedHelpers/typeGuards'
 import { Icon } from '@monorail/visualComponents/icon/Icon'
+import { IconType } from '@monorail/visualComponents/icon/IconType'
 
 type AvatarContainerProps = {
   team?: boolean
@@ -54,7 +56,7 @@ const AvatarContainer = styled.div<AvatarContainerProps>(
 export type AvatarProps = AvatarContainerProps & {
   first: string
   last: string
-  icon?: string
+  icon?: IconType
 }
 
 export const Avatar: StatelessComponent<AvatarProps> = ({
@@ -76,8 +78,22 @@ export const Avatar: StatelessComponent<AvatarProps> = ({
       />
     ) : (
       <>
-        {fromNullable(first).fold('', f => f.charAt(0))}
-        {fromNullable(last).fold('', f => f.charAt(0))}
+        {pipe(
+          first,
+          O.fromNullable,
+          O.fold(
+            () => '',
+            f => f.charAt(0),
+          ),
+        )}
+        {pipe(
+          last,
+          O.fromNullable,
+          O.fold(
+            () => '',
+            f => f.charAt(0),
+          ),
+        )}
       </>
     )}
   </AvatarContainer>

@@ -1,0 +1,1 @@
+{"version":3,"file":"StdErr.d.ts","sourceRoot":"","sources":["../../../../src/visualComponents/inputs/StdErr.tsx"],"names":[],"mappings":";AAEA,OAAO,EAAoB,SAAS,EAAE,MAAM,2BAA2B,CAAA;AAUvE,oBAAY,UAAU,GAAG;IACvB,GAAG,CAAC,EAAE,OAAO,CAAA;IACb,GAAG,CAAC,EAAE,MAAM,CAAA;IACZ,QAAQ,CAAC,EAAE,SAAS,CAAA;CACrB,CAAA;AAED,eAAO,MAAM,MAAM,wCAAyC,UAAU,gBAcrE,CAAA"}

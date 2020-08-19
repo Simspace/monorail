@@ -8,7 +8,7 @@ import {
   flexFlow,
   FontSizes,
   getColor,
-  typography,
+  typographyFont,
 } from '@monorail/helpers/exports'
 import styled, { css } from '@monorail/helpers/styled-components'
 import { getThemeColor, ThemeColors } from '@monorail/helpers/theme'
@@ -128,7 +128,7 @@ const Number = styled.div<StepPropType>(
     ${borderRadius(BorderRadius.Round)};
     ${flexFlow('row')};
     ${getStateStyles(step, numberStateStyles)};
-    ${typography(700, FontSizes.Title4)};
+    ${typographyFont(700, FontSizes.Title4)};
 
     align-items: center;
     border-style: solid;
@@ -148,13 +148,13 @@ const TextContainer = styled.div`
 `
 
 const Title = styled.div`
-  ${typography(700, FontSizes.Title4)};
+  ${typographyFont(700, FontSizes.Title4)};
 
   color: ${getThemeColor(ThemeColors.Text700)};
 `
 
 const Subtitle = styled.div`
-  ${typography(300, FontSizes.Title5)};
+  ${typographyFont(300, FontSizes.Title5)};
 
   color: ${getThemeColor(ThemeColors.Text700)};
 `

@@ -28,12 +28,12 @@ const Label = ({
   display = _inputTypes.DisplayType.View,
   ...domProps
 }) => {
-  return !(0, _typeGuards.isNil)(label) && !(0, _typeGuards.isEmptyString)(label) ? _react.default.createElement(_Text.Text, _extends({}, domProps, {
+  return !(0, _typeGuards.isNil)(label) && !(0, _typeGuards.isEmptyString)(label) ? _react.default.createElement(_Text.Text, _extends({
     fontWeight: 500,
     fontSize: _typography.FontSizes.Title5,
-    color: err ? _exports.Colors.Red : _exports.Colors.Black89,
+    color: err ? _exports.Colors.Red : _exports.Colors.Black89a,
     margin: "0 0 8px"
-  }), label, required && display === _inputTypes.DisplayType.Edit && '*') : _react.default.createElement(_react.default.Fragment, null);
+  }, domProps), label, required && display === _inputTypes.DisplayType.Edit && '*') : _react.default.createElement(_react.default.Fragment, null);
 };
 
 exports.Label = Label;

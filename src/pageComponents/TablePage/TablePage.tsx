@@ -5,12 +5,10 @@ import { Colors, getColor } from '@monorail/helpers/color'
 import { flexFlow } from '@monorail/helpers/flex'
 import styled, { ThemeProvider } from '@monorail/helpers/styled-components'
 import { ActionsContainer } from '@monorail/visualComponents/actions/Actions'
-import {
-  TableColumns,
-  useSort,
-} from '@monorail/visualComponents/dataTable/ReactTable'
-import { Search, SearchProps } from '@monorail/visualComponents/inputs/Search'
-import { SearchController } from '@monorail/visualComponents/inputs/SearchController'
+import { CollectionPaginationComponent } from '@monorail/visualComponents/collection/CollectionPaginationComponent'
+import { useSort } from '@monorail/visualComponents/dataTable/ReactTable'
+import { Search } from '@monorail/visualComponents/inputs/Search'
+import { isNonEmptyString } from '@monorail/sharedHelpers/typeGuards'
 import {
   PageHeader,
   PageHeaderProps,
@@ -18,14 +16,17 @@ import {
 
 type Props<I> = Partial<TableProps<I>> & {
   actions?: PageHeaderProps['actions']
-  title: PageHeaderProps['title']
+  title?: PageHeaderProps['title']
   isLoading?: boolean
+  pageSize?: number
   searchProps?: {
     // TODO - show just use SearchProps
     onChange: (value: string, event?: ChangeEvent<HTMLInputElement>) => void
     value?: string
   }
 }
+
+const PAGE_SIZE = 20
 
 const TableContainer = styled.div`
   ${flexFlow('row')};
@@ -49,11 +50,22 @@ const SearchWrapper = styled.div`
 export const TablePage = <T extends unknown>(
   props: Props<T>,
 ): ReactElement<Props<T>> => {
+  /**
+   * TablePage component does not work without paging.
+   * This is because it does not scroll when overflow is reached.
+   * Setting pagination to `true` is the default setting for this
+   * ReactTable component, but also, it's the only setting that works.
+   * Be wary of setting pagination to false.
+   * AR - 2020-06-04
+   */
   const {
     actions,
-    title,
+    title = '',
     isLoading = false,
     searchProps,
+    pageSize = PAGE_SIZE,
+    showPagination = true,
+    data = [],
     ...otherProps
   } = props
 
@@ -61,10 +73,12 @@ export const TablePage = <T extends unknown>(
 
   return (
     <>
-      <PageHeader
-        title={title}
-        actions={<ActionsContainer>{actions}</ActionsContainer>}
-      />
+      {isNonEmptyString(title) && (
+        <PageHeader
+          title={title}
+          actions={<ActionsContainer>{actions}</ActionsContainer>}
+        />
+      )}
       {searchProps !== undefined ? (
         <SearchWrapper>
           <Search {...searchProps} />
@@ -79,9 +93,13 @@ export const TablePage = <T extends unknown>(
         >
           <ReactTable<T>
             {...otherProps}
+            data={data}
+            pageSize={pageSize}
+            showPagination={showPagination && data.length > pageSize}
             loading={isLoading}
             sorted={sorted}
             onSortedChange={onSortedChange}
+            PaginationComponent={CollectionPaginationComponent}
           />
         </ThemeProvider>
       </TableContainer>

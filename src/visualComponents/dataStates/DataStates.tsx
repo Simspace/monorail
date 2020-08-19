@@ -1,7 +1,8 @@
-import { liftA2 } from 'fp-ts/lib/Apply'
-import { Option, option } from 'fp-ts/lib/Option'
+import { sequenceT } from 'fp-ts/lib/Apply'
+import * as O from 'fp-ts/lib/Option'
+import { pipe } from 'fp-ts/lib/pipeable'
 import React, { FC } from 'react'
-import styled, { css, InterpolationValue } from 'styled-components'
+import styled, { css, FlattenSimpleInterpolation } from 'styled-components'
 
 import {
   Colors,
@@ -9,6 +10,7 @@ import {
   FontSizes,
   getColor,
   typography,
+  typographyFont,
 } from '@monorail/helpers/exports'
 
 export const NoResultsCollection = () => (
@@ -24,8 +26,10 @@ export const NoResultsCollection = () => (
   </Container>
 )
 
-export const NoResults = () => (
-  <Container>
+export const NoResults = (props: {
+  cssOverrides?: FlattenSimpleInterpolation
+}) => (
+  <Container css={props.cssOverrides}>
     <IconBox>
       <NoResultsIcon />
     </IconBox>
@@ -156,44 +160,46 @@ export const CustomNoData = ({
 )
 
 export const CustomNoResults: FC<{
-  bannerText: Option<string>
-  detailText: Option<string>
-  cssOverrides?: Array<InterpolationValue>
+  bannerText: O.Option<string>
+  detailText: O.Option<string>
+  cssOverrides?: FlattenSimpleInterpolation
 }> = props => {
-  const { bannerText, detailText } = props
+  const { bannerText, detailText, cssOverrides } = props
 
-  return liftA2(option)(bannerText_ => detailText_ => {
-    if (bannerText_ || detailText_) {
-      return (
-        <Container>
-          <IconBox>
-            <NoResultsIcon />
-          </IconBox>
-          <Banner>{bannerText.getOrElse('')}</Banner>
-          {detailText
-            .getOrElse('')
-            .split('.')
-            .map((str, idx) => {
-              return (
-                <Detail key={idx + str}>
-                  {str}
-                  {str.length > 0 && '.'}
-                </Detail>
-              )
-            })}
-        </Container>
-      )
-    } else {
-      return <NoResults />
-    }
-  })(bannerText)(detailText).getOrElse(<NoResults />)
+  return pipe(
+    sequenceT(O.option)(bannerText, detailText),
+    O.map(([bannerText_, detailText_]) => {
+      if (bannerText_ || detailText_) {
+        return (
+          <Container css={cssOverrides}>
+            <IconBox>
+              <NoResultsIcon />
+            </IconBox>
+            <Banner>{O.getOrElse(() => '')(bannerText)}</Banner>
+            {O.getOrElse(() => '')(detailText)
+              .split('.')
+              .map((str, idx) => {
+                return (
+                  <Detail key={idx + str}>
+                    {str}
+                    {str.length > 0 && '.'}
+                  </Detail>
+                )
+              })}
+          </Container>
+        )
+      } else {
+        return <NoResults css={cssOverrides} />
+      }
+    }),
+    O.getOrElse(() => <NoResults css={cssOverrides} />),
+  )
 }
 
 export const Banner = styled.div`
-  color: ${getColor(Colors.Black89)};
-  margin: 24px auto;
+  color: ${getColor(Colors.Black89a)};
 
-  ${typography(700, FontSizes.Title1)};
+  ${typography(700, FontSizes.Title1, '24px auto')};
 `
 
 const Container = styled.div<{ vertical?: boolean }>(
@@ -208,11 +214,11 @@ const Container = styled.div<{ vertical?: boolean }>(
 
 export const Detail = styled.div<{ vertical?: boolean }>(
   ({ vertical = false }) => css`
-    color: ${getColor(Colors.Black89)};
+    color: ${getColor(Colors.Black89a)};
     text-align: ${vertical ? 'left' : 'center'};
 
     ${vertical && flexFlow('column')};
-    ${typography(400, FontSizes.Title3)};
+    ${typographyFont(400, FontSizes.Title3)};
   `,
 )
 

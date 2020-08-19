@@ -6,4 +6,7 @@ export type Step = {
   isCompleted?: boolean
   isDisabled?: boolean
   className?: string
+  iconLeft?: string
+  iconRight?: string
+  status?: string
 }

@@ -1,10 +1,39 @@
+import { O, pipe } from '@monorail/sharedHelpers/fp-ts-imports'
+import { Do } from 'fp-ts-contrib/lib/Do'
+import { lookup } from 'fp-ts/lib/Array'
+import { fold, option } from 'fp-ts/lib/Option'
+import React, {
+  Children,
+  CSSProperties,
+  FC,
+  MouseEvent,
+  PropsWithChildren,
+  ReactElement,
+  useState,
+} from 'react'
+import {
+  Column,
+  ControlledStateOverrideProps,
+  ExpandedChangeFunction,
+  FinalState,
+  SortedChangeFunction,
+  SortingRule,
+  TableProps,
+} from 'react-table'
+import { isString } from 'util'
+
 import { Colors, getColor } from '@monorail/helpers/color'
 import { flexFlow } from '@monorail/helpers/flex'
 import { Sizes } from '@monorail/helpers/size'
 import styled, { css } from '@monorail/helpers/styled-components'
-import { ellipsis, FontSizes, typography } from '@monorail/helpers/typography'
+import {
+  ellipsis,
+  FontSizes,
+  typographyFont,
+} from '@monorail/helpers/typography'
 import { dropDirections } from '@monorail/metaComponents/popOver/PopOver'
 import { PopOverNext } from '@monorail/metaComponents/popOver/PopOverNext'
+import { ordCaseInsensitiveString } from '@monorail/sharedHelpers/fp-ts-ext/Ord'
 import {
   assertNever,
   isFalse,
@@ -34,27 +63,6 @@ import { TextField } from '@monorail/visualComponents/inputs/TextField'
 import { ScrollAnimation } from '@monorail/visualComponents/layout/ScrollAnimation'
 import { Menu } from '@monorail/visualComponents/menu/Menu'
 import { Status } from '@monorail/visualComponents/status/Status'
-import { Do } from 'fp-ts-contrib/lib/Do'
-import { lookup } from 'fp-ts/lib/Array'
-import { option } from 'fp-ts/lib/Option'
-import React, {
-  Children,
-  CSSProperties,
-  FC,
-  MouseEvent,
-  PropsWithChildren,
-  ReactElement,
-  useState,
-} from 'react'
-import {
-  Column,
-  ControlledStateOverrideProps,
-  ExpandedChangeFunction,
-  FinalState,
-  SortedChangeFunction,
-  SortingRule,
-  TableProps,
-} from 'react-table'
 
 const THEAD_HEIGHT = Sizes.DP40
 const TD_HEIGHT = Sizes.DP40
@@ -143,11 +151,11 @@ const ThComponentContainer = styled.div<{
     padding: 0 ${filterable ? 34 : 6}px 0 6px;
 
     ${flexFlow('row')};
-    ${typography(500, FontSizes.Title5)};
+    ${typographyFont(500, FontSizes.Title5)};
 
     pointer-events: none;
     align-items: center;
-    color: ${getColor(Colors.Black89)};
+    color: ${getColor(Colors.Black89a)};
     position: relative;
 
     .rt-resizable-header-content {
@@ -168,7 +176,7 @@ const ThComponentContainer = styled.div<{
   `,
 )
 
-enum Sort {
+export enum Sort {
   Ascending = 'ascending',
   Descending = 'descending',
   Unsorted = 'unsorted',
@@ -184,7 +192,7 @@ const getSortStatus = (className: string) => {
   }
 }
 
-const getSortIcon = (sortStatus: Sort) => {
+export const getSortIcon = (sortStatus: Sort) => {
   switch (sortStatus) {
     case Sort.Ascending:
       return 'sort_ascending'
@@ -205,14 +213,22 @@ export function useSort(
 
   const onSortChange = (newSorted: Array<SortingRule>) => {
     setSorted(
-      Do(option)
-        .bind('current', lookup(0, sorted))
-        .bind('upcoming', lookup(0, newSorted))
-        .done()
-        .filter(
-          ({ current, upcoming }) => current.id === upcoming.id && current.desc,
-        )
-        .fold(newSorted, () => []),
+      pipe(
+        pipe(
+          Do(option)
+            .bind('current', lookup(0, sorted))
+            .bind('upcoming', lookup(0, newSorted))
+            .done(),
+          O.filter(
+            ({ current, upcoming }) =>
+              current.id === upcoming.id && current.desc,
+          ),
+        ),
+        fold(
+          () => newSorted,
+          () => [],
+        ),
+      ),
     )
   }
 
@@ -231,9 +247,9 @@ export type ThComponentProps = {
 }
 
 const ThLabel = styled.div`
-  ${typography(700, FontSizes.Title5)};
+  ${typographyFont(700, FontSizes.Title5)};
 
-  color: ${getColor(Colors.Black89)};
+  color: ${getColor(Colors.Black89a)};
   font-weight: 500;
   justify-content: space-between;
   padding-left: 6px;
@@ -241,11 +257,11 @@ const ThLabel = styled.div`
   text-transform: none;
   width: 100%;
 `
-const ThSortButton = styled(Button).attrs({
+export const ThSortButton = styled(Button).attrs({
   display: ButtonDisplay.Chromeless,
   size: ButtonSize.Compact,
 })`
-  color: ${getColor(Colors.Black89)};
+  color: ${getColor(Colors.Black89a)};
   font-weight: 500;
   justify-content: space-between;
   padding-left: 6px;
@@ -400,15 +416,16 @@ export const FilterComponent: FC<FilterComponentProps> = ({
 }) => {
   return (
     <TextField
+      ref={input => input?.focus()}
       placeholder="Filter"
       value={!isNil(filter) ? filter.value : ''}
       onChange={event => onChange(event.target.value)}
       cssOverrides={css`
         width: 100%;
         padding: 8px 12px;
+        visibility: visible;
       `}
       hideStdErr
-      autoFocus
     />
   )
 }
@@ -508,10 +525,10 @@ export const TdComponentContainer = styled.div<TdComponentContainerProps>(
   }) => css`
     ${tdComponentTypeStyles[tdComponentType]}
     ${flexFlow('row')};
-    ${typography(400, FontSizes.Title5)};
+    ${typographyFont(400, FontSizes.Title5)};
     ${ellipsis};
 
-    color: ${getColor(Colors.Black89)};
+    color: ${getColor(Colors.Black89a)};
     align-items: center;
     padding: 0 12px;
     position: relative;
@@ -591,12 +608,12 @@ export const TBodyComponent = styled(
 
 export const NoDataContainer = styled.div`
   ${flexFlow('row')};
-  ${typography(400, FontSizes.Title5)};
+  ${typographyFont(400, FontSizes.Title5)};
 
   align-items: center;
   background: ${getColor(Colors.White)};
   bottom: 0;
-  color: ${getColor(Colors.Black62)};
+  color: ${getColor(Colors.Black62a)};
   justify-content: center;
   overflow: auto;
   left: 0;
@@ -619,7 +636,7 @@ export const NoDataComponentVertical: FC = () => (
 )
 
 export const NoDataComponentHorizontal: FC = () => (
-  <NoDataContainer>
+  <NoDataContainer css="flex-direction: row; justify-content: center;">
     <IconBox>
       <NoResultsIcon />
     </IconBox>
@@ -629,6 +646,7 @@ export const NoDataComponentHorizontal: FC = () => (
     </BannerDetailContainer>
   </NoDataContainer>
 )
+
 export const ExpanderComponent: TableCellRenderFunction<unknown> = ({
   isExpanded,
 }) => (
@@ -770,6 +788,16 @@ export const MonorailReactTableOverrides: Partial<TableProps> = {
           .includes(filter.value.toLocaleString().toLocaleLowerCase()))
     )
   },
+  // tslint:disable
+  defaultSortMethod: (a: any, b: any) =>
+    isString(a) && isString(b)
+      ? ordCaseInsensitiveString.compare(a, b)
+      : a > b
+      ? 1
+      : b > a
+      ? -1
+      : 0,
+  // tslint:enable
   sortable: true,
   filterable: true,
   resizable: true,

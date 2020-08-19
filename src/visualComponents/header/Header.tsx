@@ -8,9 +8,14 @@ import { getColor } from '@monorail/helpers/color'
 import { flexFlow } from '@monorail/helpers/flex'
 import styled, { css, CSSProp } from '@monorail/helpers/styled-components'
 import { getThemeColor, ThemeColors } from '@monorail/helpers/theme'
-import { FontSizes, typography } from '@monorail/helpers/typography'
+import { FontSizes, typographyFont } from '@monorail/helpers/typography'
 import { AppIcon } from '@monorail/visualComponents/appIcon/AppIcon'
 import { Icon } from '@monorail/visualComponents/icon/Icon'
+import { IconType } from '@monorail/visualComponents/icon/IconType'
+import {
+  IconButton,
+  IconButtonProps,
+} from '@monorail/visualComponents/buttons/IconButton'
 
 const HeaderRow = styled.div`
   ${flexFlow('row')};
@@ -25,7 +30,7 @@ const HeaderRow = styled.div`
 const HeaderContainer = styled.div``
 
 export const HeaderTitle = styled.h1`
-  ${typography(500, FontSizes.Title3)};
+  ${typographyFont(500, FontSizes.Title3)};
 `
 
 const iconLeftCss = css`
@@ -40,7 +45,7 @@ export type HeaderProps = {
   children?: ReactNode
   cssHeaderRow?: CSSProp
   cssTitle?: CSSProp
-  iconLeft?: string
+  iconLeft?: IconType | React.ReactElement
   noBorder?: boolean
   title: ReactNode
 }
@@ -60,7 +65,12 @@ export const Header = styled(
     <HeaderContainer {...domProps}>
       <HeaderRow css={cssHeaderRow}>
         {appIcon && <AppIcon css={iconLeftCss} appName={appIcon} />}
-        {iconLeft && <Icon css={iconLeftCss} icon={iconLeft} />}
+        {iconLeft &&
+          (typeof iconLeft === 'string' ? (
+            <Icon css={iconLeftCss} icon={iconLeft} />
+          ) : (
+            iconLeft
+          ))}
         <HeaderTitle css={cssTitle}>{title}</HeaderTitle>
         {actions}
       </HeaderRow>

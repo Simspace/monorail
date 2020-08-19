@@ -30,7 +30,7 @@ export class SearchController extends Component<Props, State> {
     const { searchString } = this.state
 
     return children({
-      value: searchString,
+      value: searchString.toLocaleLowerCase().trim(),
       onChange: this.onChange,
       compareSearch: stringToCompare => {
         if (searchString === '') {
@@ -39,7 +39,7 @@ export class SearchController extends Component<Props, State> {
 
         return stringToCompare
           .toLocaleLowerCase()
-          .includes(searchString.toLocaleLowerCase())
+          .includes(searchString.toLocaleLowerCase().trim())
       },
     })
   }

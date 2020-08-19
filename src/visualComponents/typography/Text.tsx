@@ -6,9 +6,11 @@ import {
   FontSizes,
   FontWeights,
   typography,
+  typographyDeprecated,
+  FontStyles,
 } from '@monorail/helpers/typography'
 
-type Props = {
+export type TextProps = {
   as?:
     | 'h1'
     | 'h2'
@@ -22,21 +24,24 @@ type Props = {
     | 'span'
     | 'li'
     | 'div'
-  fontSize: FontSizes
-  fontWeight: FontWeights
+    | 'label'
   margin?: string
   /*title is used for a native browser tooltip */
   title?: string
-  color?: Colors
   children: string | number | ReactNode
+  color?: Colors
+  fontSize?: FontSizes
+  fontStyle?: FontStyles
+  fontWeight?: FontWeights
 }
 
-export const Text: FC<Props> = props => {
+export const Text: FC<TextProps> = props => {
   const {
-    fontSize,
-    fontWeight,
+    fontSize = FontSizes.Title5,
+    fontStyle = FontStyles.Initial,
+    fontWeight = FontWeights.Medium,
     margin = '',
-    color = Colors.Black89,
+    color = Colors.Black89a,
     children,
     ...domProps
   } = props
@@ -46,6 +51,33 @@ export const Text: FC<Props> = props => {
       {...domProps}
       css={css`
         ${typography(fontWeight, fontSize, margin)};
+        color: ${getColor(color)};
+        font-style: ${fontStyle};
+      `}
+    >
+      {children}
+    </span>
+  )
+}
+
+/**
+ * @deprecated Use Text instead. This exist for supporting legacy code only
+ * */
+export const TextDeprecated: FC<TextProps> = props => {
+  const {
+    fontSize = FontSizes.Title5,
+    fontWeight = FontWeights.Medium,
+    margin = '',
+    color = Colors.Black89a,
+    children,
+    ...domProps
+  } = props
+
+  return (
+    <span
+      {...domProps}
+      css={css`
+        ${typographyDeprecated(fontWeight, fontSize, margin)};
         color: ${getColor(color)};
       `}
     >

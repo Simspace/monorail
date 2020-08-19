@@ -9,6 +9,8 @@ exports.ZIndexNodeName = ZIndexNodeName;
 
 (function (ZIndexNodeName) {
   ZIndexNodeName["ArrowButtons"] = "ArrowButtons";
+  ZIndexNodeName["ContentCardButton"] = "ContentCardButton";
+  ZIndexNodeName["DataWellDivider"] = "DataWellDivider";
   ZIndexNodeName["FramedIcon"] = "FramedIcon";
   ZIndexNodeName["FramedIconBackground"] = "FramedIconBackground";
   ZIndexNodeName["NewFlowSection"] = "NewFlowSection";
@@ -21,10 +23,14 @@ exports.ZIndexNodeName = ZIndexNodeName;
   ZIndexNodeName["CardShadow"] = "CardShadow";
   ZIndexNodeName["Overlay"] = "Overlay";
   ZIndexNodeName["Modal"] = "Modal";
+  ZIndexNodeName["Tooltip"] = "Tooltip";
 })(ZIndexNodeName || (exports.ZIndexNodeName = ZIndexNodeName = {}));
 
 const zIndexValue = nodeName => {
   switch (nodeName) {
+    case ZIndexNodeName.ContentCardButton:
+      return 1;
+
     case ZIndexNodeName.SidebarContainer:
       return 10;
 
@@ -32,6 +38,7 @@ const zIndexValue = nodeName => {
     case ZIndexNodeName.NewFlowSection:
     case ZIndexNodeName.PageLevelNavItem:
     case ZIndexNodeName.TabBarIndicator:
+    case ZIndexNodeName.DataWellDivider:
       return 5;
 
     case ZIndexNodeName.CardBackground:
@@ -47,6 +54,9 @@ const zIndexValue = nodeName => {
 
     case ZIndexNodeName.Overlay:
       return 9998;
+
+    case ZIndexNodeName.Tooltip:
+      return 9999;
 
     case ZIndexNodeName.FramedIcon:
     case ZIndexNodeName.CardBody:

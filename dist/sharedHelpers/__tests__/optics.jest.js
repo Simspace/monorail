@@ -47,18 +47,14 @@ describe('mkRecordKeyOptional', () => {
     const testStr = '43be4d69-4169-4f30-a6c2-8dd497a0472a';
     const testOptional = (0, _optics.mkRecordKeyOptional)(testStr);
     const opt = testOptional.getOption(testRecord);
-    const actual = opt.isSome() && opt.value === 2;
-    const expected = true;
-    expect(actual).toEqual(expected);
+    expect(opt).toEqualSome(2);
   });
 });
 describe('mkArrayIndexOptional', () => {
   it('should create a properly functioning Optional for a given key', () => {
     const testOptional = (0, _optics.mkArrayIndexOptional)(2);
     const opt = testOptional.getOption(testArray);
-    const actual = opt.isSome() && opt.value === 'c';
-    const expected = true;
-    expect(actual).toBe(expected);
+    expect(opt).toEqualSome('c');
   });
 });
 describe('oLens', () => {

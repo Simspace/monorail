@@ -43,11 +43,19 @@ const ActionsMenu = props => {
     }) => _react.default.createElement(_Menu.Menu, _extends({
       onClick: onClick
     }, otherProps), actions.reduce((filtered, action, idx) => {
+      /**
+       * Setting a field on a menu item to `isFeaturedAction: true`
+       * does not have the intended effect it used to. Better to not
+       * use this field when creating buttons to be used with the
+       * ActionsMenu component.
+       * - AR - 20200716
+       */
       if (!action.isFeaturedAction) {
         return filtered.concat(_react.default.createElement(_List.SimpleListItem, {
           key: idx,
           size: _size.Sizes.DP32,
           leftIcon: action.iconName,
+          leftIconColor: action.iconColor,
           primaryText: action.label,
           onClick: e => action.onClick(() => onClick(e), e),
           disabled: action.disabled

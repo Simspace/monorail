@@ -1,4 +1,4 @@
-import { all, and, any, or } from '../Foldable'
+import { all, and, any, or, count } from '../Foldable'
 import {
   initial,
   remoteData,
@@ -12,6 +12,7 @@ import { array } from 'fp-ts/lib/Array'
 import { either, Either, left, right } from 'fp-ts/lib/Either'
 import { identity } from 'fp-ts/lib/function'
 import fc from 'fast-check'
+import { pipe } from 'fp-ts/lib/pipeable'
 
 describe('and', () => {
   describe('should work on Option<boolean>', () => {
@@ -265,5 +266,38 @@ describe('any', () => {
         }),
       )
     })
+  })
+})
+
+describe('count', () => {
+  it('should count values in an array which match the predicate', () => {
+    const actual = pipe(
+      [1, 2, 3, 4, 5, 6],
+      count(array)(x => x > 3),
+    )
+
+    const expected = 3
+    expect(actual).toEqual(expected)
+  })
+
+  it('should count values in an Option which match the predicate', () => {
+    const actual = pipe(
+      some(6),
+      count(option)(x => x > 3),
+    )
+
+    const expected = 1
+    expect(actual).toEqual(expected)
+  })
+
+  it('should default to zero if no elements are in the foldable', () => {
+    const empty: Array<number> = []
+    const actual = pipe(
+      empty,
+      count(array)(x => x > 3),
+    )
+
+    const expected = 0
+    expect(actual).toEqual(expected)
   })
 })

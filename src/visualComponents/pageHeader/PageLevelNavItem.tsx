@@ -4,7 +4,7 @@ import { baseFocusStyles } from '@monorail/helpers/baseStyles'
 import { flexFlow } from '@monorail/helpers/flex'
 import styled from '@monorail/helpers/styled-components'
 import { getThemeColor, ThemeColors } from '@monorail/helpers/theme'
-import { FontSizes, typography } from '@monorail/helpers/typography'
+import { FontSizes, typographyFont } from '@monorail/helpers/typography'
 import { LinkProps } from '@monorail/types'
 import { BaseLink } from '@monorail/visualComponents/hyperLink/BaseLink'
 
@@ -15,7 +15,7 @@ export type PageLevelNavItemProps = LinkProps & {
 export const PageLevelNavItem = styled(BaseLink)<PageLevelNavItemProps>`
   ${baseFocusStyles()};
   ${flexFlow('row')};
-  ${typography(700, FontSizes.Title4)};
+  ${typographyFont(700, FontSizes.Title4)};
 
   color: ${getThemeColor(ThemeColors.ApplicationPrimary)};
   align-items: center;

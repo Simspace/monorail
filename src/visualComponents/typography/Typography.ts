@@ -1,6 +1,11 @@
 import styled, { css } from 'styled-components'
 
-import { FontSizes, typography } from '@monorail/helpers/exports'
+import {
+  FontSizes,
+  FontWeights,
+  typography,
+  typographyFont,
+} from '@monorail/helpers/exports'
 import { CommonComponentType, TypographyComponent } from '@monorail/types'
 
 export const SectionTitle = styled.h1<
@@ -12,3 +17,7 @@ export const SectionTitle = styled.h1<
     ${cssOverrides};
   `,
 )
+
+export const Bold = styled.strong`
+  ${typographyFont(FontWeights.Bold, FontSizes.Title5)}
+`

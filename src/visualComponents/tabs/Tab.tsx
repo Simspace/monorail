@@ -7,7 +7,7 @@ import {
   flexFlow,
   FontSizes,
   getColor,
-  typography,
+  typographyFont,
 } from '@monorail/helpers/exports'
 import { CommonComponentType, LinkProps } from '@monorail/types'
 
@@ -15,7 +15,7 @@ export const Tab = styled.div<TabProps>(
   ({ cssOverrides }) => css`
     ${baseFocusStyles()};
     ${flexFlow('row')};
-    ${typography(700, FontSizes.Title5)};
+    ${typographyFont(700, FontSizes.Title5)};
 
     align-items: center;
     color: ${getColor(Colors.BrandLightBlue)};
@@ -42,7 +42,11 @@ export const Tab = styled.div<TabProps>(
   `,
 )
 
-export type TabProps = CommonComponentType &
+export type TabProps = React.DetailedHTMLProps<
+  React.HTMLAttributes<HTMLDivElement>,
+  HTMLDivElement
+> &
+  CommonComponentType &
   LinkProps & {
     onClick?: (event: MouseEvent<HTMLDivElement>) => void
   }

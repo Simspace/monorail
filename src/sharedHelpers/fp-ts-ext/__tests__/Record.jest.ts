@@ -1,5 +1,15 @@
+import * as A from 'fp-ts/lib/Array'
+import * as O from 'fp-ts/lib/Option'
+
 import { ordRecordWithNameLower } from '../Ord'
-import { keys, omit, pick, prop, sortRecords } from '../Record'
+import {
+  keys,
+  omit,
+  pick,
+  prop,
+  sortRecords,
+  fromFoldableFilterMap,
+} from '../Record'
 
 describe('keys', () => {
   it('should return the keys of an object', () => {
@@ -40,7 +50,7 @@ describe('pick', () => {
 })
 
 describe('sortRecords', () => {
-  it('should sort records by an zord', () => {
+  it('should sort records by an Ord', () => {
     type Rec = { name: string; extra: number }
     const recs: Array<Rec> = [
       { name: 'Josh', extra: 0 },
@@ -54,5 +64,23 @@ describe('sortRecords', () => {
       { name: 'mike', extra: 1 },
     ]
     expect(actual).toEqual(expected)
+  })
+})
+
+describe('fromFoldableFilterMap', () => {
+  it('should create a record from a mapped filtered foldable', () => {
+    const arr = [
+      { x: 'a', y: 1 },
+      { x: 'b', y: 2 },
+      { x: 'c', y: 3 },
+    ]
+    expect(
+      fromFoldableFilterMap(A.getMonoid<number>(), A.array)(arr, ({ x, y }) =>
+        /[ab]/.test(x) ? O.some([x, [y]]) : O.none,
+      ),
+    ).toEqual({
+      a: [1],
+      b: [2],
+    })
   })
 })

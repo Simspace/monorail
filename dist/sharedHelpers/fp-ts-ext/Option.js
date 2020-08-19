@@ -3,9 +3,10 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.all = exports.toSpreadable = exports.toBoolean = exports.fromTruthyFalsy = exports.getOrZero = exports.getOrEmptyString = exports.getOrEmptyArray = exports.getOrElse = exports.renderOnSome = exports.fold = exports.isOption = void 0;
+exports.opTraverse = opTraverse;
+exports.all = exports.toSpreadable = exports.toBoolean = exports.fromTruthyFalsy = exports.getOrZero = exports.getOrEmptyString = exports.getOrEmptyArray = exports.getOrElse = exports.renderOnSome = exports.isOption = void 0;
 
-var _Foldable2v = require("fp-ts/lib/Foldable2v");
+var _fpTsImports = require("../fp-ts-imports");
 
 var _function = require("fp-ts/lib/function");
 
@@ -19,20 +20,11 @@ var _typeGuards = require("../typeGuards");
 const isOption = x => {
   if (!(0, _typeGuards.isNil)(x)) {
     const x_ = x;
-    return !(0, _typeGuards.isNil)(x_.isSome) && !(0, _typeGuards.isNil)(x_.isNone) && (!(0, _typeGuards.isNil)(x_._tag) && x_._tag === 'Some' || x_._tag === 'None');
+    return !(0, _typeGuards.isNil)(x_.value) && x_._tag === 'Some' || x_._tag === 'None';
   }
 
   return false;
 };
-/**
- * Standalone version of fp-ts' `fold` for Options. Like `getOrElse`,
- * but with a mapping transformation for the value in a `Some`
- */
-
-
-exports.isOption = isOption;
-
-const fold = (a, onNone, onSome) => a.fold(onNone, onSome);
 /**
  * A specialized (partially applied with a null default) version of Option's
  * `fold` method that returns null when given a `None` or a `ReactNode` when
@@ -40,11 +32,11 @@ const fold = (a, onNone, onSome) => a.fold(onNone, onSome);
  */
 
 
-exports.fold = fold;
+exports.isOption = isOption;
 
-const renderOnSome = (a, onSome) => fold(a, null, onSome);
+const renderOnSome = (a, onSome) => _fpTsImports.O.fold(() => null, onSome)(a);
 /**
- * Curried version of fp-ts' `getOrElse`. Used to extract the value
+ * Curried, non-lazy version of fp-ts' `getOrElse`. Used to extract the value
  * from a Some or return a default value in place of a None. Also
  * known as `fromMaybe` in Haskell, PureScript, etc.
  */
@@ -52,7 +44,7 @@ const renderOnSome = (a, onSome) => fold(a, null, onSome);
 
 exports.renderOnSome = renderOnSome;
 
-const getOrElse = a => b => b.getOrElse(a);
+const getOrElse = a => b => (0, _fpTsImports.pipe)(b, _fpTsImports.O.getOrElse(() => a));
 /**
  * Partially applied version of `getOrElse` providing an empty array
  * as the default argument
@@ -93,7 +85,7 @@ const fromTruthyFalsy = x => (0, _typeGuards.isFalsy)(x) ? _Option.none : (0, _O
 
 exports.fromTruthyFalsy = fromTruthyFalsy;
 
-const toBoolean = x => fold(x, false, _function.constTrue);
+const toBoolean = x => _fpTsImports.O.fold(() => false, _function.constTrue)(x);
 /**
  * Folds an option down into either an empty array or a single-element array containing
  * the value from within the Some. Useful in conjunction with the spread operator.
@@ -101,13 +93,40 @@ const toBoolean = x => fold(x, false, _function.constTrue);
 
 
 exports.toBoolean = toBoolean;
-const toSpreadable = (0, _Foldable2v.toArray)(_Option.option);
+
+const toSpreadable = fa => (0, _fpTsImports.pipe)(fa, _fpTsImports.O.fold(() => [], a => [a]));
 /**
  * Returns true if the option is false or if the predicate returns true when applied to the wrapped value
  */
 
+
 exports.toSpreadable = toSpreadable;
 
-const all = (x, predicate) => fold(x, true, predicate);
+const all = (x, predicate) => _fpTsImports.O.fold(() => true, predicate)(x);
+/**
+ * Traverse over an Option into an applicative.
+ *
+ * usage example:
+ *
+ * ```ts
+ * import { pipe } from 'fp-ts/lib/pipeable'
+ * import * as IO from 'fp-ts/lib/IO'
+ * import { newIO } from '@monorail/sharedHelpers/fp-ts-ext/IO'
+ *
+ * const foo: Option<string> = some("foo")
+ *
+ * pipe(
+ *   foo,
+ *   opTraverse(IO.io)(s => newIO(() => document.write(s)))
+ * )()
+ * ```
+ * @param Ap Applicative instance
+ * @param f function that returns an instance of an Ap applicative
+ */
+
 
 exports.all = all;
+
+function opTraverse(Ap) {
+  return f => oA => _Option.option.traverse(Ap)(oA, f);
+}

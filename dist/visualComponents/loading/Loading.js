@@ -3,15 +3,11 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.LoadingContainer = exports.Loading = exports.LoaderType = void 0;
+exports.Loading = exports.LoaderType = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
 var _reactLottie = _interopRequireDefault(require("react-lottie"));
-
-var _flex = require("../../helpers/flex");
-
-var _styledComponents = _interopRequireDefault(require("../../helpers/styled-components"));
 
 var _loadingData = _interopRequireDefault(require("./loadingData.json"));
 
@@ -36,8 +32,15 @@ const loadingJson = {
   [LoaderType.Pcte]: _loadingPcteData.default
 };
 
+const getHeight = d => 'height' in d ? d.height : undefined;
+
+const getWidth = d => 'width' in d ? d.width : undefined;
+
 const Loading = ({
-  size = 64,
+  size = {
+    _type: 'size',
+    hw: 64
+  },
   loaderType = LoaderType.SimSpace
 }) => {
   const defaultOptions = {
@@ -45,21 +48,19 @@ const Loading = ({
     autoplay: true,
     animationData: loadingJson[loaderType]
   };
-  return _react.default.createElement(_reactLottie.default, {
+  /* Lottie adds ariaRole='button' by default, since that makes total sense PG 2/13/20 */
+
+  return size._type === 'size' ? _react.default.createElement(_reactLottie.default, {
+    ariaRole: "",
     options: defaultOptions,
-    height: size,
-    width: size
+    height: size.hw,
+    width: size.hw
+  }) : _react.default.createElement(_reactLottie.default, {
+    ariaRole: "",
+    options: defaultOptions,
+    height: getHeight(size),
+    width: getWidth(size)
   });
 };
 
 exports.Loading = Loading;
-const LoadingContainer = _styledComponents.default.div`
-  ${(0, _flex.flexFlow)()};
-
-  align-items: center;
-  flex: 1 1 100%;
-  height: 100%;
-  justify-content: center;
-  width: 100%;
-`;
-exports.LoadingContainer = LoadingContainer;

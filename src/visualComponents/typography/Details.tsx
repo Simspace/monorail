@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 import { SimpleInterpolation } from 'styled-components'
 
-import { flexFlow, FontSizes, typography } from '@monorail/helpers/exports'
+import { flexFlow, FontSizes, typographyFont } from '@monorail/helpers/exports'
 import styled, { css } from '@monorail/helpers/styled-components'
 import { getThemeColor, ThemeColors } from '@monorail/helpers/theme'
 import { isNil } from '@monorail/sharedHelpers/typeGuards'
@@ -12,18 +12,18 @@ import { DetailsSize } from '@monorail/visualComponents/typography/detailsTypes'
 
 const propertySizeStyles = {
   [DetailsSize.Compact]: css`
-    ${typography(500, FontSizes.Micro)};
+    ${typographyFont(500, FontSizes.Micro)};
 
     color: ${getThemeColor(ThemeColors.Text500)};
     text-transform: uppercase;
   `,
   [DetailsSize.Default]: css`
-    ${typography(500, FontSizes.Micro)};
+    ${typographyFont(500, FontSizes.Micro)};
 
     color: ${getThemeColor(ThemeColors.Text700)};
   `,
   [DetailsSize.Large]: css`
-    ${typography(700, FontSizes.Micro)};
+    ${typographyFont(700, FontSizes.Micro)};
 
     color: ${getThemeColor(ThemeColors.Text700)};
   `,
@@ -41,17 +41,17 @@ const DetailsProperty = styled.h2<{ size: DetailsSize }>(
 
 const valueSizeStyles = {
   [DetailsSize.Compact]: css`
-    ${typography(600, FontSizes.Title5)};
+    ${typographyFont(600, FontSizes.Title5)};
 
     color: ${getThemeColor(ThemeColors.Text700)};
   `,
   [DetailsSize.Default]: css`
-    ${typography(200, FontSizes.Title3)};
+    ${typographyFont(200, FontSizes.Title3)};
 
     color: ${getThemeColor(ThemeColors.Text900)};
   `,
   [DetailsSize.Large]: css`
-    ${typography(200, FontSizes.Title1)};
+    ${typographyFont(200, FontSizes.Title1)};
 
     color: ${getThemeColor(ThemeColors.Text900)};
   `,

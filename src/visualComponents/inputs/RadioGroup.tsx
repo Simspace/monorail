@@ -1,5 +1,7 @@
 import { findFirst } from 'fp-ts/lib/Array'
-import React, { ChangeEvent, FC } from 'react'
+import * as O from 'fp-ts/lib/Option'
+import { pipe } from 'fp-ts/lib/pipeable'
+import React, { FC } from 'react'
 import styled, { css, SimpleInterpolation } from 'styled-components'
 
 import {
@@ -9,7 +11,7 @@ import {
   flexFlow,
   FontSizes,
   getColor,
-  typography,
+  typographyFont,
 } from '@monorail/helpers/exports'
 import { isEmptyString } from '@monorail/sharedHelpers/typeGuards'
 import { Choice } from '@monorail/visualComponents/inputs/Choice'
@@ -83,7 +85,7 @@ const errorStyles = css`
 `
 
 const InfoText = styled.p`
-  ${typography(300, FontSizes.Title5)};
+  ${typographyFont(300, FontSizes.Title5)};
   margin-left: 32px;
 `
 
@@ -178,9 +180,11 @@ export const RadioGroup: FC<RadioGroupProps> = props => {
       ) : (
         <ViewInput
           label={label}
-          value={findFirst((o: ChoiceOption) => o.key === value)(options)
-            .map(o => o.label)
-            .toUndefined()}
+          value={pipe(
+            findFirst((o: ChoiceOption) => o.key === value)(options),
+            O.map(o => o.label),
+            O.toUndefined,
+          )}
         />
       )}
     </Container>

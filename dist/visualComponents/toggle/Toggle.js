@@ -159,7 +159,7 @@ const StyledIconNotChecked = (0, _styledComponents.default)(({
     ${iconSizeCss[toggleSize]};
     ${(0, _exports.visible)(!checked)};
 
-    color: ${(0, _exports.getColor)(_exports.Colors.Black38)};
+    color: ${(0, _exports.getColor)(_exports.Colors.Black38a)};
     position: absolute; /* give z-index so ::before bg is behind icon */
 
     transition: all ease-in 75ms;

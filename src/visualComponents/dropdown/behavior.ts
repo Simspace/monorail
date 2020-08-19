@@ -1,3 +1,4 @@
+import { O, pipe } from '@monorail/sharedHelpers/fp-ts-imports'
 import Downshift, {
   ControllerStateAndHelpers,
   DownshiftProps,
@@ -5,7 +6,6 @@ import Downshift, {
   StateChangeOptions,
 } from 'downshift'
 import { Do } from 'fp-ts-contrib/lib/Do'
-import { fromNullable, none, Option, option } from 'fp-ts/lib/Option'
 import {
   Dispatch,
   SetStateAction,
@@ -76,11 +76,12 @@ export const useAsFilter = <T extends DropdownType>(
   ) => {
     const items = getItems(inputValue)
 
-    const selectedIndex = fromNullable(selectedItem)
-      .map(item => items.indexOf(item))
-      .filter(index => index >= 0)
-      .getOrElse(items.findIndex(parser.isActive))
-
+    const selectedIndex = pipe(
+      O.fromNullable(selectedItem),
+      O.map(item => items.indexOf(item)),
+      O.filter(index => index >= 0),
+      O.getOrElse(() => items.findIndex(parser.isActive)),
+    )
     setHighlightedIndex(selectedIndex, { isOpen: true })
   }
 
@@ -211,43 +212,53 @@ export const useControlledDropdown = <T extends DropdownType>(props: {
   collection: Array<T>
   parser: DropdownParser<T>
 }): [
-  Option<T>,
-  Dispatch<SetStateAction<Option<T>>>,
+  O.Option<T>,
+  Dispatch<SetStateAction<O.Option<T>>>,
   (prevItem: Nullable<T>, item: Nullable<T>) => boolean,
 ] => {
   const { value, collection, parser } = props
   /** Selected Dropdown Item **/
-  const [selectedItem, setSelectedItem] = useState<Option<T>>(none)
+  const [selectedItem, setSelectedItem] = useState<O.Option<T>>(O.none)
 
-  const hasItemChanged = (prevItem: Option<T>, newItem: Option<T>) =>
-    prevItem.alt(newItem).fold(false, () =>
-      Do(option)
-        .bind('a', prevItem)
-        .bind('b', newItem)
-        .return(({ a, b }) => !parser.compare(a)(b))
-        .getOrElse(true),
+  const hasItemChanged = (prevItem: O.Option<T>, newItem: O.Option<T>) =>
+    pipe(
+      prevItem,
+      O.alt(() => newItem),
+      O.fold(
+        () => false,
+        () =>
+          pipe(
+            Do(O.option)
+              .bind('a', prevItem)
+              .bind('b', newItem)
+              .return(({ a, b }) => !parser.compare(a)(b)),
+            O.getOrElse(() => true),
+          ),
+      ),
     )
 
-  const updateSelectedItem = (item: Option<T>) => {
+  const updateSelectedItem = (item: O.Option<T>) => {
     if (hasItemChanged(selectedItem, item)) {
       setSelectedItem(item)
     }
   }
 
   const compare = (prevItem: Nullable<T>, item: Nullable<T>) =>
-    hasItemChanged(fromNullable(prevItem), fromNullable(item))
+    hasItemChanged(O.fromNullable(prevItem), O.fromNullable(item))
 
   /* eslint-disable react-hooks/exhaustive-deps */
   useEffect(() => {
-    const newValue = fromNullable(value)
+    const newValue = O.fromNullable(value)
     /*
      * We need to check if the value or
      * the selectedItem are in the collection.
      */
-    const updatedItem = selectedItem
-      .chain(item => newValue.filter(parser.compare(item)))
-      .alt(newValue)
-      .mapNullable(item => collection.find(parser.compare(item)))
+    const updatedItem = pipe(
+      selectedItem,
+      O.chain(item => pipe(newValue, O.filter(parser.compare(item)))),
+      O.alt<string | number | T>(() => newValue),
+      O.mapNullable(item => collection.find(parser.compare(item))),
+    )
 
     updateSelectedItem(updatedItem)
   }, [value, collection])

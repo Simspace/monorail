@@ -35,9 +35,9 @@ const ArrowButtonsContainer = _styledComponents.default.div`
   pointer-events: none;
 `;
 const RatioContainer = _styledComponents.default.p`
-  ${(0, _exports.typography)(400, _exports.FontSizes.Title5)};
+  ${(0, _exports.typographyFont)(400, _exports.FontSizes.Title5)};
 
-  color: ${(0, _exports.getColor)(_exports.Colors.Black62)};
+  color: ${(0, _exports.getColor)(_exports.Colors.Black62a)};
   margin: auto 4px;
 `;
 /*

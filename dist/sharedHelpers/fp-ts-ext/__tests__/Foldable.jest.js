@@ -14,6 +14,8 @@ var _function = require("fp-ts/lib/function");
 
 var _fastCheck = _interopRequireDefault(require("fast-check"));
 
+var _pipeable = require("fp-ts/lib/pipeable");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 describe('and', () => {
@@ -170,5 +172,23 @@ describe('any', () => {
         return bs.some(_function.identity) === any_(_function.identity, bs);
       }));
     });
+  });
+});
+describe('count', () => {
+  it('should count values in an array which match the predicate', () => {
+    const actual = (0, _pipeable.pipe)([1, 2, 3, 4, 5, 6], (0, _Foldable.count)(_Array.array)(x => x > 3));
+    const expected = 3;
+    expect(actual).toEqual(expected);
+  });
+  it('should count values in an Option which match the predicate', () => {
+    const actual = (0, _pipeable.pipe)((0, _Option.some)(6), (0, _Foldable.count)(_Option.option)(x => x > 3));
+    const expected = 1;
+    expect(actual).toEqual(expected);
+  });
+  it('should default to zero if no elements are in the foldable', () => {
+    const empty = [];
+    const actual = (0, _pipeable.pipe)(empty, (0, _Foldable.count)(_Array.array)(x => x > 3));
+    const expected = 0;
+    expect(actual).toEqual(expected);
   });
 });

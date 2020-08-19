@@ -1,6 +1,7 @@
 import Downshift from 'downshift'
 import { lookup } from 'fp-ts/lib/Array'
-import { fromNullable } from 'fp-ts/lib/Option'
+import * as O from 'fp-ts/lib/Option'
+import { pipe } from 'fp-ts/lib/pipeable'
 
 import { StateReducer } from './behavior'
 import {
@@ -64,10 +65,15 @@ export const useKeyboardInteraction = <T extends DropdownType>(options?: {
 
     const activeItems = items.filter(parser.isActive)
 
-    const initialIndex = fromNullable(highlightedIndex)
-      .chain(index => lookup(index, items))
-      .alt(fromNullable(selectedItem))
-      .fold(-1, item => activeItems.indexOf(item))
+    const initialIndex = pipe(
+      O.fromNullable(highlightedIndex),
+      O.chain(index => lookup(index, items)),
+      O.alt<T>(() => O.fromNullable(selectedItem)),
+      O.fold(
+        () => -1,
+        item => activeItems.indexOf(item),
+      ),
+    )
 
     const indexValue = nextHighlightedIndex(
       key,
@@ -105,8 +111,12 @@ export const useKeyboardInteraction = <T extends DropdownType>(options?: {
         } else {
           toggleMenu({
             type: Downshift.stateChangeTypes.keyDownEnter,
-            highlightedIndex: fromNullable(selectedItem).fold(-1, item =>
-              items.indexOf(item),
+            highlightedIndex: pipe(
+              O.fromNullable(selectedItem),
+              O.fold(
+                () => -1,
+                item => items.indexOf(item),
+              ),
             ),
           })
         }

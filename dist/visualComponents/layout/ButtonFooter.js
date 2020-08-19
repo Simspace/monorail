@@ -32,6 +32,7 @@ const ButtonFooterContainer = _styledComponents.default.div`
   height: 40px;
   flex-shrink: 0;
   position: relative; /* Needs pos: rel so that the shadow appears above the content. */
+  ${props => props.cssOverrides}
 `;
 
 const ButtonFooterContent = _styledComponents.default.div(({
@@ -60,9 +61,12 @@ const ButtonFooterContent = _styledComponents.default.div(({
 
 const ButtonFooter = ({
   children,
-  justifyContent
+  justifyContent,
+  cssOverrides
 }) => {
-  return _react.default.createElement(ButtonFooterContainer, null, _react.default.createElement(ButtonFooterContent, {
+  return _react.default.createElement(ButtonFooterContainer, {
+    cssOverrides: cssOverrides
+  }, _react.default.createElement(ButtonFooterContent, {
     justifyContent: justifyContent
   }, children));
 };

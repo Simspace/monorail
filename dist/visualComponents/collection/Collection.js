@@ -43,6 +43,8 @@ var _SearchController = require("../inputs/SearchController");
 
 var _CollectionPaginationComponent = require("./CollectionPaginationComponent");
 
+var _Array = require("../../sharedHelpers/fp-ts-ext/Array");
+
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
@@ -58,15 +60,20 @@ const CollectionContainer = _styledComponents2.default.div`
   flex: 1;
   overflow: hidden;
 `;
-const ControlsContainer = _styledComponents2.default.div`
-  ${(0, _flex.flexFlow)('row')};
 
-  align-items: center;
-  background: ${(0, _color.getColor)(_color.Colors.Grey99)};
-  height: 40px;
-  margin-top: 4px;
-  padding: 0 32px 0 30px; /* Button Bar has a 2px gap that we are making up here. */
-`;
+const ControlsContainer = _styledComponents2.default.div(({
+  cardViewWithoutFilters
+}) => (0, _styledComponents2.css)`
+    ${(0, _flex.flexFlow)('row')};
+
+    align-items: center;
+    background: ${(0, _color.getColor)(_color.Colors.Grey99)};
+    height: 40px;
+    margin-top: 4px;
+    padding: 0 32px 0 30px; /* Button Bar has a 2px gap that we are making up here. */
+    ${cardViewWithoutFilters ? `border-bottom: 1px solid ${(0, _color.getColor)(_color.Colors.Grey90)};` : null}
+  `);
+
 let CollectionView;
 exports.CollectionView = CollectionView;
 
@@ -74,6 +81,8 @@ exports.CollectionView = CollectionView;
   CollectionView["Table"] = "table";
   CollectionView["Card"] = "card";
 })(CollectionView || (exports.CollectionView = CollectionView = {}));
+
+const PAGE_SIZE = 20;
 
 var _StyledReactTable =
 /*#__PURE__*/
@@ -98,11 +107,13 @@ const Collection = props => {
     isLoading = false,
     pivotBy,
     setCollectionView,
-    NoDataComponent = () => _react.default.createElement(_ReactTable.NoDataComponentVertical, null)
+    NoDataComponent = () => _react.default.createElement(_ReactTable.NoDataComponentVertical, null),
+    PaginationComponent = _CollectionPaginationComponent.CollectionPaginationComponent,
+    pageSize = PAGE_SIZE,
+    showPagination
   } = props;
   const [sorted, onSortedChange] = (0, _ReactTable.useSort)();
-  const PAGE_SIZE = 50;
-  const getReactTableComponentProps = (0, _react.useCallback)((finalState, rowInfo) => {
+  const getReactTableComponentProps = (0, _react.useCallback)((_finalState, rowInfo) => {
     if (!(0, _typeGuards.isNil)(rowInfo)) {
       return {
         item: rowInfo.original
@@ -118,7 +129,7 @@ const Collection = props => {
     if (!(0, _typeGuards.isNil)(item)) {
       switch (collectionView) {
         case CollectionView.Card:
-          return cardRender(item);
+          return (0, _typeGuards.isNotNil)(cardRender) ? cardRender(item) : children;
 
         case CollectionView.Table:
           return children;
@@ -152,16 +163,19 @@ const Collection = props => {
     children,
     ...domProps
   }) => {
-    if (!(0, _typeGuards.isNil)(item) && collectionView === CollectionView.Card) {
+    if ((0, _typeGuards.isNotNil)(item) && collectionView === CollectionView.Card && (0, _typeGuards.isNotNil)(cardRender)) {
       return cardRender(item);
     }
 
     return _react.default.createElement(_ReactTable.TrGroupComponent, domProps, children);
   }, [collectionView, cardRender]);
+  const theadOnTableViewOnly = (0, _Array.all)(columns, column => column.filterable === false && column.sortable === false);
   const renderCollection = (0, _react.useCallback)(({
     passedSearchInput,
     passedData
-  }) => _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(ControlsContainer, null, _react.default.createElement(_ButtonsBar.ButtonsBar, {
+  }) => _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(ControlsContainer, {
+    cardViewWithoutFilters: theadOnTableViewOnly && collectionView === CollectionView.Card
+  }, (0, _typeGuards.isNotNil)(cardRender) && _react.default.createElement(_ButtonsBar.ButtonsBar, {
     size: _buttonTypes.ButtonSize.Default,
     mode: _buttonTypes.ButtonsBarMode.Toolbar
   }, _react.default.createElement(_IconButton.IconButton, {
@@ -172,7 +186,7 @@ const Collection = props => {
     isActive: collectionView === CollectionView.Card,
     onClick: () => setCollectionView(CollectionView.Card),
     icon: "view_module"
-  })), passedSearchInput), _react.default.createElement(CollectionContainer, null, _react.default.createElement(_styledComponents2.ThemeProvider, {
+  })), _react.default.createElement(FilterContainer, null, props.filters), passedSearchInput), _react.default.createElement(CollectionContainer, null, _react.default.createElement(_styledComponents2.ThemeProvider, {
     theme: theme => ({ ...theme,
       size: { ...theme.size,
         table: {
@@ -188,22 +202,23 @@ const Collection = props => {
     getTrGroupProps: getReactTableComponentProps,
     getTrProps: getReactTableComponentProps,
     loading: isLoading,
-    pageSize: PAGE_SIZE,
+    pageSize: pageSize,
     pivotBy: pivotBy,
     TbodyComponent: getTbodyComponent,
     TrComponent: getTrComponent,
     TrGroupComponent: getTrGroupComponent,
-    showPagination: passedData.length > PAGE_SIZE,
-    PaginationComponent: _CollectionPaginationComponent.CollectionPaginationComponent,
+    showPagination: showPagination || passedData.length > pageSize,
+    PaginationComponent: PaginationComponent,
     NoDataComponent: NoDataComponent,
     TheadComponent: theadProps => _react.default.createElement(CollectionTheadComponent, _extends({
-      collectionView: collectionView
+      collectionView: collectionView,
+      tableViewOnly: theadOnTableViewOnly
     }, theadProps)),
     ThComponent: thProps => _react.default.createElement(CollectionThComponent, _extends({
       collectionView: collectionView
     }, thProps)),
     _css: collectionView === CollectionView.Card ? theadOverrides : ''
-  })))), [collectionView, columns, getReactTableComponentProps, getTbodyComponent, getTrComponent, getTrGroupComponent, isLoading, onSortedChange, setCollectionView, sorted, NoDataComponent, pivotBy]);
+  })))), [collectionView, props.filters, sorted, onSortedChange, columns, getReactTableComponentProps, isLoading, pivotBy, getTbodyComponent, getTrComponent, getTrGroupComponent, NoDataComponent, setCollectionView, PaginationComponent, cardRender, pageSize, showPagination, theadOnTableViewOnly]);
 
   if ('searchInput' in props) {
     return renderCollection({
@@ -250,11 +265,12 @@ const theadOverrides = (0, _styledComponents2.css)`
 const CollectionTheadComponent = ({
   style,
   collectionView,
+  tableViewOnly,
   ...otherProps
 }) => {
   switch (collectionView) {
     case CollectionView.Card:
-      return _react.default.createElement(_ReactTable.TheadComponent, otherProps);
+      return tableViewOnly ? null : _react.default.createElement(_ReactTable.TheadComponent, otherProps);
 
     case CollectionView.Table:
       return _react.default.createElement(_ReactTable.TheadComponent, _extends({
@@ -278,7 +294,7 @@ const thComponentOverrides = (0, _styledComponents2.css)`
   ${_Button.StyledButton} {
     ${(0, _baseStyles.baseSecondaryStyles)(_theme.ThemeColors.BrandSecondary)};
 
-    color: ${(0, _color.getColor)(_color.Colors.Black74)};
+    color: ${(0, _color.getColor)(_color.Colors.Black74a)};
     border-radius: ${_borderRadius.BorderRadius.Small}px 0 0 ${_borderRadius.BorderRadius.Small}px;
     margin-top: 4px;
     margin-bottom: 4px;
@@ -327,3 +343,9 @@ const CollectionThComponent = ({
       }, otherProps));
   }
 };
+
+const FilterContainer = _styledComponents2.default.section`
+  ${(0, _flex.flexFlow)('row')}
+  flex-grow: 1;
+  justify-content: flex-end;
+`;

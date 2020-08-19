@@ -1,8 +1,9 @@
+import { getOrElse } from 'fp-ts/lib/Option'
 import { lookup } from 'fp-ts/lib/Record'
 import React, { FC } from 'react'
 import styled from 'styled-components'
 
-import { FontSizes, typography } from '@monorail/helpers/exports'
+import { FontSizes, typographyFont } from '@monorail/helpers/exports'
 import { css } from '@monorail/helpers/styled-components'
 import { Label } from '@monorail/visualComponents/inputs/Label'
 
@@ -28,7 +29,7 @@ const InputItemWrapper = styled.div`
 `
 
 const InputItemLabel = styled.p`
-  ${typography(500, FontSizes.Title5)};
+  ${typographyFont(500, FontSizes.Title5)};
 `
 
 type InputItem = {
@@ -59,7 +60,7 @@ export const NumberInputGroup: FC<Props> = props => {
         `}
       />
       {items.map((item: InputItem, k) => {
-        const val = lookup(item.key, value).getOrElse(0)
+        const val = getOrElse(() => 0)(lookup(item.key, value))
         return (
           <InputItemWrapper key={k}>
             <InputItemLabel>{item.label}</InputItemLabel>

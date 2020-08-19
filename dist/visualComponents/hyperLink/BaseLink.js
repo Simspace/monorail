@@ -19,7 +19,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 // Redefining PropTypes to include the new object based refs since React Router 3 is old.
 _reactRouter.Link.propTypes = { ..._reactRouter.Link.propTypes,
-  innerRef: _propTypes.default.func
+  innerRef: _propTypes.default.object
 };
 const BaseLink = (0, _react.forwardRef)(({
   onlyActiveOnIndex,

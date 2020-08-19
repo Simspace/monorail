@@ -5,11 +5,11 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.useControlledDropdown = exports.useAsSelect = exports.useAsFilter = void 0;
 
+var _fpTsImports = require("../../sharedHelpers/fp-ts-imports");
+
 var _downshift = _interopRequireDefault(require("downshift"));
 
 var _Do = require("fp-ts-contrib/lib/Do");
-
-var _Option = require("fp-ts/lib/Option");
 
 var _react = require("react");
 
@@ -49,7 +49,7 @@ const useAsFilter = (collection, parser) => {
     setHighlightedIndex
   }) => {
     const items = getItems(inputValue);
-    const selectedIndex = (0, _Option.fromNullable)(selectedItem).map(item => items.indexOf(item)).filter(index => index >= 0).getOrElse(items.findIndex(parser.isActive));
+    const selectedIndex = (0, _fpTsImports.pipe)(_fpTsImports.O.fromNullable(selectedItem), _fpTsImports.O.map(item => items.indexOf(item)), _fpTsImports.O.filter(index => index >= 0), _fpTsImports.O.getOrElse(() => items.findIndex(parser.isActive)));
     setHighlightedIndex(selectedIndex, {
       isOpen: true
     });
@@ -184,12 +184,12 @@ const useControlledDropdown = props => {
   } = props;
   /** Selected Dropdown Item **/
 
-  const [selectedItem, setSelectedItem] = (0, _react.useState)(_Option.none);
+  const [selectedItem, setSelectedItem] = (0, _react.useState)(_fpTsImports.O.none);
 
-  const hasItemChanged = (prevItem, newItem) => prevItem.alt(newItem).fold(false, () => (0, _Do.Do)(_Option.option).bind('a', prevItem).bind('b', newItem).return(({
+  const hasItemChanged = (prevItem, newItem) => (0, _fpTsImports.pipe)(prevItem, _fpTsImports.O.alt(() => newItem), _fpTsImports.O.fold(() => false, () => (0, _fpTsImports.pipe)((0, _Do.Do)(_fpTsImports.O.option).bind('a', prevItem).bind('b', newItem).return(({
     a,
     b
-  }) => !parser.compare(a)(b)).getOrElse(true));
+  }) => !parser.compare(a)(b)), _fpTsImports.O.getOrElse(() => true))));
 
   const updateSelectedItem = item => {
     if (hasItemChanged(selectedItem, item)) {
@@ -197,18 +197,19 @@ const useControlledDropdown = props => {
     }
   };
 
-  const compare = (prevItem, item) => hasItemChanged((0, _Option.fromNullable)(prevItem), (0, _Option.fromNullable)(item));
+  const compare = (prevItem, item) => hasItemChanged(_fpTsImports.O.fromNullable(prevItem), _fpTsImports.O.fromNullable(item));
   /* eslint-disable react-hooks/exhaustive-deps */
 
 
   (0, _react.useEffect)(() => {
-    const newValue = (0, _Option.fromNullable)(value);
+    const newValue = _fpTsImports.O.fromNullable(value);
     /*
      * We need to check if the value or
      * the selectedItem are in the collection.
      */
 
-    const updatedItem = selectedItem.chain(item => newValue.filter(parser.compare(item))).alt(newValue).mapNullable(item => collection.find(parser.compare(item)));
+
+    const updatedItem = (0, _fpTsImports.pipe)(selectedItem, _fpTsImports.O.chain(item => (0, _fpTsImports.pipe)(newValue, _fpTsImports.O.filter(parser.compare(item)))), _fpTsImports.O.alt(() => newValue), _fpTsImports.O.mapNullable(item => collection.find(parser.compare(item))));
     updateSelectedItem(updatedItem);
   }, [value, collection]);
   /* eslint-enable react-hooks/exhaustive-deps */

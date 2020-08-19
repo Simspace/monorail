@@ -4,17 +4,26 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.hasKey = hasKey;
-exports.isStringArray = exports.isNumberArray = exports.isBooleanArray = exports.isNonEmptyArray = exports.isArray = exports.isFunction = exports.isObject = exports.isFinite = exports.isNumber = exports.isNonEmptyString = exports.isEmptyString = exports.isNotString = exports.isString = exports.isFalsy = exports.isZero = exports.isTrue = exports.isFalse = exports.isBoolean = exports.isNotNil = exports.isNil = exports.isNotUndefined = exports.isUndefined = exports.isNull = exports.endReducer = exports.assertNever = void 0;
+exports.isStringArray = exports.isNumberArray = exports.isBooleanArray = exports.isNonEmptyArray = exports.isArray = exports.isFunction = exports.isObject = exports.isFinite = exports.isNotNaN = exports.isNumber = exports.isNonEmptyString = exports.isEmptyString = exports.isNotString = exports.isString = exports.isFalsy = exports.isZero = exports.isTrue = exports.isFalse = exports.isBoolean = exports.isNotNil = exports.isNil = exports.isNotUndefined = exports.isUndefined = exports.isNull = exports.endReducer = exports.assertNever = exports.isTaggedObject = void 0;
 
 /**
- * `TypeGuard` type
+ *  FP-TS tag
  */
+
+/**
+ * FP-TS data structures are tagged objects
+ * but the tag isn't part of the type signature
+ * this helps identify those objects.
+ */
+const isTaggedObject = x => isObject(x) && '_tag' in x;
+
+exports.isTaggedObject = isTaggedObject;
 
 /**
  * Will throw a type error if switch cases aren't exhaustive.
  */
 const assertNever = x => {
-  throw new Error(x);
+  throw new Error('assertNever check failed. Please check call site.');
 };
 /** Ensures all actions in reducer are handled in switch statement */
 
@@ -142,12 +151,20 @@ exports.isNonEmptyString = isNonEmptyString;
 
 const isNumber = x => typeof x === 'number';
 /**
+ * The opposite of isNaN (built-in)
+ */
+
+
+exports.isNumber = isNumber;
+
+const isNotNaN = x => typeof x === 'number' && !isNaN(x);
+/**
  * Type guard for finite `number` primitive
  * false for NaN, -Infinity, Infinity
  */
 
 
-exports.isNumber = isNumber;
+exports.isNotNaN = isNotNaN;
 
 const isFinite = x => typeof x === 'number' && Number.isFinite(x);
 /**
@@ -161,6 +178,7 @@ const isObject = x => !isNull(x) && typeof x === 'object' && x instanceof Object
 /**
  * Type guard for the `Function` type
  */
+// tslint:disable-next-line: ban-types
 
 
 exports.isObject = isObject;

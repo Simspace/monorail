@@ -9,9 +9,15 @@ var _downshift = _interopRequireDefault(require("downshift"));
 
 var _Array = require("fp-ts/lib/Array");
 
-var _Option = require("fp-ts/lib/Option");
+var O = _interopRequireWildcard(require("fp-ts/lib/Option"));
+
+var _pipeable = require("fp-ts/lib/pipeable");
 
 var _helpers = require("./helpers");
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -60,7 +66,7 @@ const useKeyboardInteraction = options => parser => {
       selectedItem
     } = downshiftProps;
     const activeItems = items.filter(parser.isActive);
-    const initialIndex = (0, _Option.fromNullable)(highlightedIndex).chain(index => (0, _Array.lookup)(index, items)).alt((0, _Option.fromNullable)(selectedItem)).fold(-1, item => activeItems.indexOf(item));
+    const initialIndex = (0, _pipeable.pipe)(O.fromNullable(highlightedIndex), O.chain(index => (0, _Array.lookup)(index, items)), O.alt(() => O.fromNullable(selectedItem)), O.fold(() => -1, item => activeItems.indexOf(item)));
     const indexValue = (0, _helpers.nextHighlightedIndex)(key, initialIndex, activeItems.length - 1);
 
     if (isOpen || openOnInteraction) {
@@ -96,7 +102,7 @@ const useKeyboardInteraction = options => parser => {
         } else {
           toggleMenu({
             type: _downshift.default.stateChangeTypes.keyDownEnter,
-            highlightedIndex: (0, _Option.fromNullable)(selectedItem).fold(-1, item => items.indexOf(item))
+            highlightedIndex: (0, _pipeable.pipe)(O.fromNullable(selectedItem), O.fold(() => -1, item => items.indexOf(item)))
           });
         }
 

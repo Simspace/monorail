@@ -27,7 +27,7 @@ export const MappingID = styled.span`
   ${borderRadius(BorderRadius.Small)};
 
   background: ${getColor(Colors.Grey94)};
-  color: ${getColor(Colors.Black74)};
+  color: ${getColor(Colors.Black74a)};
   font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, Courier,
     monospace;
   font-weight: 600;

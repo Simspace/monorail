@@ -44,7 +44,6 @@ export class MultipleTextField extends Component<Props> {
         <TextFieldsWrapper>
           {textFields.map((t: MultipleTextFieldProps, k: number) => (
             <TextField
-              key={k}
               {...t}
               onChange={e =>
                 onChange(

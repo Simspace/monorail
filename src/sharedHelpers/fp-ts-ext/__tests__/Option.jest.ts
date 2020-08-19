@@ -2,7 +2,6 @@ import { none, Option, some } from 'fp-ts/lib/Option'
 import { createElement } from 'react'
 
 import {
-  fold,
   fromTruthyFalsy,
   getOrElse,
   getOrEmptyArray,
@@ -13,20 +12,6 @@ import {
   toBoolean,
   toSpreadable,
 } from '../Option'
-
-describe('fold (Option)', () => {
-  it('should properly fold Options -- some', () => {
-    const actual = fold(some(3), 0, x => x + 1)
-    const expected = 4
-    expect(actual).toBe(expected)
-  })
-
-  it('should properly fold Options -- none', () => {
-    const actual = fold(none, 0, x => x - 1)
-    const expected = 0
-    expect(actual).toBe(expected)
-  })
-})
 
 describe('fromTruthyFalsy', () => {
   it('should return a none when given a Falsy value', () => {

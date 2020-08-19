@@ -11,7 +11,6 @@ import React, {
   PropsWithoutRef,
 } from 'react'
 import { SimpleInterpolation } from 'styled-components'
-import { Omit } from 'typelevel-ts'
 
 import {
   baseChromelessStyles,
@@ -22,12 +21,18 @@ import {
   FontSizes,
   Sizes,
   typography,
+  Colors,
 } from '@monorail/helpers/exports'
 import styled, { css } from '@monorail/helpers/styled-components'
 import { getThemeColor, ThemeColors } from '@monorail/helpers/theme'
-import { isEmptyString, isNil } from '@monorail/sharedHelpers/typeGuards'
+import {
+  isEmptyString,
+  isNil,
+  isNonEmptyString,
+} from '@monorail/sharedHelpers/typeGuards'
 import { CommonComponentType, LinkProps } from '@monorail/types'
 import { Icon, IconProps } from '@monorail/visualComponents/icon/Icon'
+import { IconType } from '@monorail/visualComponents/icon/IconType'
 
 // TODO(unsafe-any): Fix unsafe anys
 // tslint:disable no-unsafe-any
@@ -159,10 +164,16 @@ type BBListSizeIconProps = ListSizeProps & { icon: string }
 export const ListItemGraphic = styled(({ dense, ...domProps }) => (
   <Icon {...domProps} />
 ))<BBListSizeIconProps & IconProps>(
-  ({ dense, cssOverrides }) => css`
+  // We pick out the `color` prop so that we're specifically _not_ overriding it
+  // in the case where it is set (it will get passed into `<Icon .../>` above,
+  // which will set the right CSS).
+  //
+  // Previously this wasn't working because `color: inherit` was overriding it,
+  // but I was to scared to delete that line entirely. [MM 2020-07-14]
+  ({ dense, cssOverrides, color }) => css`
     && {
       margin: auto ${dense ? 4 : 6}px;
-      color: inherit;
+      ${isNil(color) ? 'color: inherit;' : ''}
 
       ${buttonTransition};
 
@@ -234,24 +245,24 @@ export const ListItem = styled.div<ListItemProps>(
   `,
 )
 
-ListItem.defaultProps = {
-  activeClassName: 'is-active',
-}
-
 export type PassedProps = Omit<CommonComponentType, 'as'> &
   LinkProps & { passedAs?: ReactType }
 
 export type SimpleListItemProps = PassedProps & {
   dense?: boolean
   disabled?: boolean
-  leftIcon?: string
+  leftIcon?: IconType
   onClick?: (event: MouseEvent<HTMLDivElement>) => void
+  onMouseEnter?: (event: MouseEvent<HTMLDivElement>) => void
+  onMouseLeave?: (event: MouseEvent<HTMLDivElement>) => void
   primaryText?: ReactNode
-  rightIcon?: string
+  rightIcon?: IconType
   secondaryText?: ReactNode
   size?: Sizes
   meta?: ReactNode
   isLink?: boolean
+  leftIconColor?: Colors
+  rightIconColor?: Colors
   children?: string | number | ReactNode
   ref?: Ref<any> // tslint:disable-line:no-any
 }
@@ -264,8 +275,8 @@ export const SimpleListItem: ForwardRefExoticComponent<PropsWithoutRef<
   SimpleListItemProps
 >((props, ref) => {
   const {
-    leftIcon = '',
-    rightIcon = '',
+    leftIcon = '', // TODO: fix this - we should not use `''` as an icon
+    rightIcon = '', // TODO: fix this - we should not use `''` as an icon
     primaryText = '',
     secondaryText = '',
     children,
@@ -276,6 +287,9 @@ export const SimpleListItem: ForwardRefExoticComponent<PropsWithoutRef<
     onClick,
     isLink = false,
     passedAs,
+    cssOverrides,
+    leftIconColor,
+    rightIconColor,
     ...domProps
   } = props
 
@@ -290,12 +304,14 @@ export const SimpleListItem: ForwardRefExoticComponent<PropsWithoutRef<
       ref={ref}
       {...domProps}
     >
-      {!isEmptyString(leftIcon) && (
-        <ListItemGraphic icon={leftIcon} dense={dense} />
+      {isNonEmptyString(leftIcon) && (
+        <ListItemGraphic icon={leftIcon} dense={dense} color={leftIconColor} />
       )}
 
       {isEmptyString(secondaryText) || isNil(meta) ? (
-        <ListItemPrimaryText>{primaryText}</ListItemPrimaryText>
+        <ListItemPrimaryText cssOverrides={cssOverrides}>
+          {primaryText}
+        </ListItemPrimaryText>
       ) : (
         <ListItemText>
           <ListItemPrimaryText>{primaryText}</ListItemPrimaryText>
@@ -307,8 +323,12 @@ export const SimpleListItem: ForwardRefExoticComponent<PropsWithoutRef<
         </ListItemText>
       )}
 
-      {!isEmptyString(rightIcon) && (
-        <ListItemGraphic icon={rightIcon} dense={dense} />
+      {isNonEmptyString(rightIcon) && (
+        <ListItemGraphic
+          icon={rightIcon}
+          dense={dense}
+          color={rightIconColor}
+        />
       )}
       {children}
     </ListItem>

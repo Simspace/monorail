@@ -123,7 +123,7 @@ const Number = _styledComponents.default.div(({
     ${(0, _exports.borderRadius)(_exports.BorderRadius.Round)};
     ${(0, _exports.flexFlow)('row')};
     ${getStateStyles(step, numberStateStyles)};
-    ${(0, _exports.typography)(700, _exports.FontSizes.Title4)};
+    ${(0, _exports.typographyFont)(700, _exports.FontSizes.Title4)};
 
     align-items: center;
     border-style: solid;
@@ -141,12 +141,12 @@ const TextContainer = _styledComponents.default.div`
   margin-right: 8px;
 `;
 const Title = _styledComponents.default.div`
-  ${(0, _exports.typography)(700, _exports.FontSizes.Title4)};
+  ${(0, _exports.typographyFont)(700, _exports.FontSizes.Title4)};
 
   color: ${(0, _theme.getThemeColor)(_theme.ThemeColors.Text700)};
 `;
 const Subtitle = _styledComponents.default.div`
-  ${(0, _exports.typography)(300, _exports.FontSizes.Title5)};
+  ${(0, _exports.typographyFont)(300, _exports.FontSizes.Title5)};
 
   color: ${(0, _theme.getThemeColor)(_theme.ThemeColors.Text700)};
 `;

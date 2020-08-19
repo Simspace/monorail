@@ -43,6 +43,7 @@ const MiniModal = props => {
     iconLeft,
     isOpen,
     modalBackgroundCss,
+    modalHeaderCss,
     onClick,
     position,
     title,
@@ -85,7 +86,8 @@ const MiniModal = props => {
     size: _modalTypes.ModalSize.Mini,
     onClose: onClick,
     title: title,
-    iconLeft: iconLeft
+    iconLeft: iconLeft,
+    cssOverrides: modalHeaderCss
   }, headerChildren), children)));
 };
 

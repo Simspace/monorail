@@ -5,29 +5,47 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.NoResultsIcon = exports.IconBox = exports.Detail = exports.Banner = exports.CustomNoResults = exports.CustomNoData = exports.NotFound = exports.SomethingWentWrong = exports.NotAuthorized = exports.NoModules = exports.NoData = exports.NoCompletedEvents = exports.NoEvents = exports.EmptyTable = exports.NoResults = exports.NoResultsCollection = void 0;
 
+var _styledComponents = _interopRequireWildcard(require("styled-components"));
+
 var _Apply = require("fp-ts/lib/Apply");
 
-var _Option = require("fp-ts/lib/Option");
+var O = _interopRequireWildcard(require("fp-ts/lib/Option"));
+
+var _pipeable = require("fp-ts/lib/pipeable");
 
 var _react = _interopRequireDefault(require("react"));
 
-var _styledComponents = _interopRequireWildcard(require("styled-components"));
-
 var _exports = require("../../helpers/exports");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
 const NoResultsCollection = () => _react.default.createElement(Container, null, _react.default.createElement(IconBox, null, _react.default.createElement(NoResultsIcon, null)), _react.default.createElement(Banner, null, "No Entries Found"), _react.default.createElement(Detail, null, _react.default.createElement("span", null, "We couldn't find any records that match your search."), _react.default.createElement("span", null, "Please try again or browse the libraries.")));
 
 exports.NoResultsCollection = NoResultsCollection;
 
-const NoResults = () => _react.default.createElement(Container, null, _react.default.createElement(IconBox, null, _react.default.createElement(NoResultsIcon, null)), _react.default.createElement(Banner, null, "No Entries Found"), _react.default.createElement(Detail, null, "We couldn't find any records that match your search."));
+const NoResults = props => _react.default.createElement(_StyledContainer, {
+  _css: props.cssOverrides
+}, _react.default.createElement(IconBox, null, _react.default.createElement(NoResultsIcon, null)), _react.default.createElement(Banner, null, "No Entries Found"), _react.default.createElement(Detail, null, "We couldn't find any records that match your search."));
 
 exports.NoResults = NoResults;
+
+var _StyledNoResults2 =
+/*#__PURE__*/
+(0, _styledComponents.default)(NoResults).withConfig({
+  displayName: "DataStates___StyledNoResults2",
+  componentId: "sc-19xnotc-0"
+})(["", ""], p => p._css4);
+
+var _StyledNoResults =
+/*#__PURE__*/
+(0, _styledComponents.default)(NoResults).withConfig({
+  displayName: "DataStates___StyledNoResults",
+  componentId: "sc-19xnotc-1"
+})(["", ""], p => p._css3);
 
 const EmptyTable = () => _react.default.createElement(Container, null, _react.default.createElement(IconBox, null, _react.default.createElement(NoResultsIcon, null)), _react.default.createElement(Banner, null, "No Entries Found"), _react.default.createElement(Detail, null, "We couldn't find any records."));
 
@@ -65,7 +83,7 @@ const DetailContainer =
 /*#__PURE__*/
 _styledComponents.default.div.withConfig({
   displayName: "DataStates__DetailContainer",
-  componentId: "sc-19xnotc-0"
+  componentId: "sc-19xnotc-2"
 })(({
   vertical = false
 }) => (0, _styledComponents.css)(["", ""], vertical && (0, _styledComponents.css)(["justify-content:center;margin-left:16px;padding-right:16px;"])));
@@ -88,19 +106,26 @@ exports.CustomNoData = CustomNoData;
 const CustomNoResults = props => {
   const {
     bannerText,
-    detailText
+    detailText,
+    cssOverrides
   } = props;
-  return (0, _Apply.liftA2)(_Option.option)(bannerText_ => detailText_ => {
+  return (0, _pipeable.pipe)((0, _Apply.sequenceT)(O.option)(bannerText, detailText), O.map(([bannerText_, detailText_]) => {
     if (bannerText_ || detailText_) {
-      return _react.default.createElement(Container, null, _react.default.createElement(IconBox, null, _react.default.createElement(NoResultsIcon, null)), _react.default.createElement(Banner, null, bannerText.getOrElse('')), detailText.getOrElse('').split('.').map((str, idx) => {
+      return _react.default.createElement(_StyledContainer2, {
+        _css2: cssOverrides
+      }, _react.default.createElement(IconBox, null, _react.default.createElement(NoResultsIcon, null)), _react.default.createElement(Banner, null, O.getOrElse(() => '')(bannerText)), O.getOrElse(() => '')(detailText).split('.').map((str, idx) => {
         return _react.default.createElement(Detail, {
           key: idx + str
         }, str, str.length > 0 && '.');
       }));
     } else {
-      return _react.default.createElement(NoResults, null);
+      return _react.default.createElement(_StyledNoResults, {
+        _css3: cssOverrides
+      });
     }
-  })(bannerText)(detailText).getOrElse(_react.default.createElement(NoResults, null));
+  }), O.getOrElse(() => _react.default.createElement(_StyledNoResults2, {
+    _css4: cssOverrides
+  })));
 };
 
 exports.CustomNoResults = CustomNoResults;
@@ -109,8 +134,8 @@ const Banner =
 /*#__PURE__*/
 _styledComponents.default.div.withConfig({
   displayName: "DataStates__Banner",
-  componentId: "sc-19xnotc-1"
-})(["color:", ";margin:24px auto;", ";"], (0, _exports.getColor)(_exports.Colors.Black89), (0, _exports.typography)(700, _exports.FontSizes.Title1));
+  componentId: "sc-19xnotc-3"
+})(["color:", ";", ";"], (0, _exports.getColor)(_exports.Colors.Black89a), (0, _exports.typography)(700, _exports.FontSizes.Title1, '24px auto'));
 
 exports.Banner = Banner;
 
@@ -118,19 +143,33 @@ const Container =
 /*#__PURE__*/
 _styledComponents.default.div.withConfig({
   displayName: "DataStates__Container",
-  componentId: "sc-19xnotc-2"
+  componentId: "sc-19xnotc-4"
 })(({
   vertical = false
 }) => (0, _styledComponents.css)(["align-items:center;justify-content:center;margin:auto;", ";"], (0, _exports.flexFlow)(vertical ? 'row' : 'column')));
+
+var _StyledContainer2 =
+/*#__PURE__*/
+(0, _styledComponents.default)(Container).withConfig({
+  displayName: "DataStates___StyledContainer2",
+  componentId: "sc-19xnotc-5"
+})(["", ""], p => p._css2);
+
+var _StyledContainer =
+/*#__PURE__*/
+(0, _styledComponents.default)(Container).withConfig({
+  displayName: "DataStates___StyledContainer",
+  componentId: "sc-19xnotc-6"
+})(["", ""], p => p._css);
 
 const Detail =
 /*#__PURE__*/
 _styledComponents.default.div.withConfig({
   displayName: "DataStates__Detail",
-  componentId: "sc-19xnotc-3"
+  componentId: "sc-19xnotc-7"
 })(({
   vertical = false
-}) => (0, _styledComponents.css)(["color:", ";text-align:", ";", ";", ";"], (0, _exports.getColor)(_exports.Colors.Black89), vertical ? 'left' : 'center', vertical && (0, _exports.flexFlow)('column'), (0, _exports.typography)(400, _exports.FontSizes.Title3)));
+}) => (0, _styledComponents.css)(["color:", ";text-align:", ";", ";", ";"], (0, _exports.getColor)(_exports.Colors.Black89a), vertical ? 'left' : 'center', vertical && (0, _exports.flexFlow)('column'), (0, _exports.typographyFont)(400, _exports.FontSizes.Title3)));
 
 exports.Detail = Detail;
 
@@ -138,7 +177,7 @@ const IconBox =
 /*#__PURE__*/
 _styledComponents.default.div.withConfig({
   displayName: "DataStates__IconBox",
-  componentId: "sc-19xnotc-4"
+  componentId: "sc-19xnotc-8"
 })(["align-items:center;height:120px;justify-content:center;width:120px;", ";"], (0, _exports.flexFlow)('column'));
 
 exports.IconBox = IconBox;

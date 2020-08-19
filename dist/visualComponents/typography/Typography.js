@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.SectionTitle = void 0;
+exports.Bold = exports.SectionTitle = void 0;
 
 var _styledComponents = _interopRequireWildcard(require("styled-components"));
 
@@ -24,3 +24,12 @@ _styledComponents.default.h1.withConfig({
 }) => (0, _styledComponents.css)(["", ";", ";"], (0, _exports.typography)(500, _exports.FontSizes.Title3, margin), cssOverrides));
 
 exports.SectionTitle = SectionTitle;
+
+const Bold =
+/*#__PURE__*/
+_styledComponents.default.strong.withConfig({
+  displayName: "Typography__Bold",
+  componentId: "sc-1yltw8i-1"
+})(["", ""], (0, _exports.typographyFont)(_exports.FontWeights.Bold, _exports.FontSizes.Title5));
+
+exports.Bold = Bold;

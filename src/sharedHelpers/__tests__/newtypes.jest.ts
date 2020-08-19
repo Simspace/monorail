@@ -1,17 +1,15 @@
-import { prismFinite, prismInfinity, prismNaN } from '../newtypes'
+import * as moment from 'moment'
+
+import { prismFinite, prismInfinity, prismIsoDate, prismNaN } from '../newtypes'
 
 describe('prismNaN', () => {
   describe('getOption', () => {
     it('should return a none if given a non-NaN value', () => {
-      const actual = prismNaN.getOption(3).isNone()
-      const expected = true
-      expect(actual).toEqual(expected)
+      expect(prismNaN.getOption(3)).toBeNone()
     })
 
     it('should return a some if given a NaN value', () => {
-      const actual = prismNaN.getOption(NaN).isSome()
-      const expected = true
-      expect(actual).toEqual(expected)
+      expect(prismNaN.getOption(NaN)).toBeSome()
     })
   })
 })
@@ -19,21 +17,15 @@ describe('prismNaN', () => {
 describe('prismFinite', () => {
   describe('getOption', () => {
     it('should return a none if given NaN', () => {
-      const actual = prismFinite.getOption(NaN).isNone()
-      const expected = true
-      expect(actual).toEqual(expected)
+      expect(prismFinite.getOption(NaN)).toBeNone()
     })
 
     it('should return a none if given Infinity', () => {
-      const actual = prismFinite.getOption(Infinity).isNone()
-      const expected = true
-      expect(actual).toEqual(expected)
+      expect(prismFinite.getOption(Infinity)).toBeNone()
     })
 
     it('should return a some if given a finite number', () => {
-      const actual = prismFinite.getOption(Math.PI).isSome()
-      const expected = true
-      expect(actual).toEqual(expected)
+      expect(prismFinite.getOption(Math.PI)).toBeSome()
     })
   })
 })
@@ -41,21 +33,27 @@ describe('prismFinite', () => {
 describe('prismInfinity', () => {
   describe('getOption', () => {
     it('should return a none if given NaN', () => {
-      const actual = prismInfinity.getOption(NaN).isNone()
-      const expected = true
-      expect(actual).toEqual(expected)
+      expect(prismInfinity.getOption(NaN)).toBeNone()
     })
 
     it('should return a none if given a finite number', () => {
-      const actual = prismInfinity.getOption(Math.PI).isNone()
-      const expected = true
-      expect(actual).toEqual(expected)
+      expect(prismInfinity.getOption(Math.PI)).toBeNone()
     })
 
     it('should return a some if given Infinity', () => {
-      const actual = prismInfinity.getOption(Infinity).isSome()
-      const expected = true
-      expect(actual).toEqual(expected)
+      expect(prismInfinity.getOption(Infinity)).toBeSome()
+    })
+  })
+})
+
+describe('prismIsoDate', () => {
+  describe('getOption', () => {
+    it('should return a none if given garbage', () => {
+      expect(prismIsoDate.getOption('garbage')).toBeNone()
+    })
+
+    it('should return a some if given a valid ISO date', () => {
+      expect(prismIsoDate.getOption(moment.default().format())).toBeSome()
     })
   })
 })

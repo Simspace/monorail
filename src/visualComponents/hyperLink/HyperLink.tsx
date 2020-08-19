@@ -22,5 +22,6 @@ export const HyperLink = styled(Link)<HyperLinkProps>(
 
     transition: color ease 25ms;
     text-decoration: underline;
+    cursor: pointer;
   `,
 )

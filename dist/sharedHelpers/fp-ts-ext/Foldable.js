@@ -7,8 +7,12 @@ exports.and = and;
 exports.or = or;
 exports.all = all;
 exports.any = any;
+exports.count = count;
+exports.sequence_ = sequence_;
 
 var _function = require("fp-ts/lib/function");
+
+var _Foldable = require("fp-ts/lib/Foldable");
 
 var _Monoid = require("fp-ts/lib/Monoid");
 
@@ -70,4 +74,27 @@ function all(F) {
 
 function any(F) {
   return (pred, as) => F.foldMap(_Monoid.monoidAny)(as, pred);
+}
+/**
+ * Counts the number of items that match a predicate in the provided foldable
+ * @param F the Foldable instance
+ * @param pred Predicate on type `A`
+ * @param as A foldable container of one or more values of type `A`
+ */
+
+
+function count(F) {
+  return pred => as => F.foldMap(_Monoid.monoidSum)(as, x => pred(x) ? 1 : 0);
+}
+/**
+/**
+ * Sequence a data structure, performing some effects encoded by an `Applicative` functor at each value, ignoring the
+ * final result.
+ *
+ * @since 2.0.0
+ */
+
+
+function sequence_(M, F) {
+  return fa => (0, _Foldable.traverse_)(M, F)(fa, _function.identity);
 }

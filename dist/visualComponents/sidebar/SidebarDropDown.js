@@ -5,7 +5,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.SidebarDropDown = void 0;
 
-var _Option = require("fp-ts/lib/Option");
+var O = _interopRequireWildcard(require("fp-ts/lib/Option"));
+
+var _pipeable = require("fp-ts/lib/pipeable");
 
 var _react = _interopRequireWildcard(require("react"));
 
@@ -43,10 +45,9 @@ class SidebarDropDown extends _react.Component {
       const {
         dropDownHeight
       } = this.state;
-      const currentOpt = (0, _Option.fromNullable)(this.dropDownRef.current);
-      const newDropDownHeight = currentOpt.fold(0, ({
+      const newDropDownHeight = (0, _pipeable.pipe)(this.dropDownRef.current, O.fromNullable, O.fold(() => 0, ({
         offsetHeight
-      }) => offsetHeight);
+      }) => offsetHeight));
 
       if (dropDownHeight !== newDropDownHeight) {
         this.setState(() => ({

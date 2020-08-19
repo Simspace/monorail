@@ -18,13 +18,14 @@ import {
   FontSizes,
   getColor,
   getElevationShadow,
-  typography,
+  typographyFont,
   zIndex,
   ZIndexNodeName,
 } from '@monorail/helpers/exports'
 import { CommonComponentType } from '@monorail/types'
 import { AppIcon } from '@monorail/visualComponents/appIcon/AppIcon'
 import { Icon } from '@monorail/visualComponents/icon/Icon'
+import { IconType } from '@monorail/visualComponents/icon/IconType'
 import { ScrollAnimation } from '@monorail/visualComponents/layout/ScrollAnimation'
 
 const BBCardContent = styled.div<CommonComponentType>(
@@ -137,8 +138,7 @@ const BBCardHeaderContainer = styled.div<CommonComponentType>(
 )
 
 const BBCardHeaderTitle = styled.h1`
-  ${typography(700, FontSizes.Title5)};
-  margin: 0;
+  ${typographyFont(700, FontSizes.Title5)};
 `
 
 const StyledAppIconLeft = styled(AppIcon)`
@@ -178,8 +178,8 @@ const BBCardBottomBorder = styled.div<BBCardBottomBorderProps>(
 type BBCardHeaderProps = BBCardBottomBorderProps & {
   appIcon?: AppName
   cssOverrides?: SimpleInterpolation
-  iconLeft?: string
-  iconRight?: string
+  iconLeft?: IconType
+  iconRight?: IconType
   noBorder?: boolean
   title: string
 }

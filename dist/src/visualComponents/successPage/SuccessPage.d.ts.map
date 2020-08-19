@@ -1,0 +1,1 @@
+{"version":3,"file":"SuccessPage.d.ts","sourceRoot":"","sources":["../../../../src/visualComponents/successPage/SuccessPage.tsx"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,EAAE,EAAE,EAAE,MAAM,OAAO,CAAA;AAmDjC,aAAK,gBAAgB,GAAG;IACtB,SAAS,CAAC,EAAE,KAAK,CAAC,SAAS,CAAA;IAC3B,YAAY,CAAC,EAAE,KAAK,CAAC,SAAS,CAAA;CAC/B,CAAA;AAMD,eAAO,MAAM,WAAW,EAAE,EAAE,CAAC,gBAAgB,CAc5C,CAAA"}

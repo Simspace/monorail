@@ -1,5 +1,7 @@
 "use strict";
 
+var _Option = require("fp-ts/lib/Option");
+
 var _strings = require("../strings");
 
 describe('split', () => {
@@ -48,26 +50,18 @@ describe('splitName', () => {
 });
 describe('findIndex', () => {
   it('should return a none if a substring is not in a string', () => {
-    const actual = (0, _strings.findIndex)('x')('John Smith').isNone();
-    const expected = true;
-    expect(actual).toBe(expected);
+    expect((0, _strings.findIndex)('x')('John Smith')).toBeNone();
   });
   it('should return a none if a substring is not in a string', () => {
-    const actual = (0, _strings.findIndex)('xxx')('John Smith').isNone();
-    const expected = true;
-    expect(actual).toBe(expected);
+    expect((0, _strings.findIndex)('xxx')('John Smith')).toBeNone();
   });
   it('should return a some of an index if a char is in a string', () => {
     const opt = (0, _strings.findIndex)('h')('John Smith');
-    const actual = opt.isSome() && opt.value === 2;
-    const expected = true;
-    expect(actual).toBe(expected);
+    expect(opt).toEqualSome(2);
   });
   it('should return a some of an index if a substring is in a string', () => {
     const opt = (0, _strings.findIndex)('ohn')('John Smith');
-    const actual = opt.isSome() && opt.value === 1;
-    const expected = true;
-    expect(actual).toBe(expected);
+    expect(opt).toEqualSome(1);
   });
 });
 describe('toLower', () => {
@@ -95,4 +89,166 @@ describe('join', () => {
     const expected = 't,e,s,t';
     expect(actual).toBe(expected);
   });
+});
+describe('capitalizeWords', () => {
+  it('should capitalize words when given more than one word', () => {
+    const str = 'this is a list of words';
+    const expected = 'This Is A List Of Words';
+    const actual = (0, _strings.capitalizeWords)(str);
+    expect(actual).toEqual(expected);
+  });
+  it('should return a string if given no words', () => {
+    const str = '';
+    const expected = str;
+    const actual = (0, _strings.capitalizeWords)(str);
+    expect(actual).toEqual(expected);
+  });
+  it('should return a capitalized word if given a word', () => {
+    const str = 'supercalifragilisticexpialidocious';
+    const expected = 'Supercalifragilisticexpialidocious';
+    const actual = (0, _strings.capitalizeWords)(str);
+    expect(actual).toEqual(expected);
+  });
+  it('should return single letter capitalized if given single letter', () => {
+    const str = 'a';
+    const expected = 'A';
+    const actual = (0, _strings.capitalizeWords)(str);
+    expect(actual).toEqual(expected);
+  });
+});
+describe('capitalizeFirstLetter', () => {
+  it('should return a single letter capitalized if given a single letter', () => {
+    const str = 'a';
+    const expected = 'A';
+    const actual = (0, _strings.capitalizeFirstLetter)(str);
+    expect(actual).toEqual(expected);
+  });
+  it('should return a capitalized word given a single word', () => {
+    const str = 'supercalifragilisticexpialidocious';
+    const expected = 'Supercalifragilisticexpialidocious';
+    const actual = (0, _strings.capitalizeFirstLetter)(str);
+    expect(actual).toEqual(expected);
+  });
+  it('should only capitalize the first letter given more than one word', () => {
+    const str = 'super califragilistic expialidocious';
+    const expected = 'Super califragilistic expialidocious';
+    const actual = (0, _strings.capitalizeFirstLetter)(str);
+    expect(actual).toEqual(expected);
+  });
+  it('should return empty string given an empty string', () => {
+    const str = '';
+    const expected = str;
+    const actual = (0, _strings.capitalizeFirstLetter)(str);
+    expect(actual).toEqual(expected);
+  });
+});
+describe('take', () => {
+  it('should return empty string when empty string passed', () => expect((0, _strings.take)(2)('')).toBe(''));
+  it('should return whole string if n > s.length', () => expect((0, _strings.take)(30)('a short string')).toBe('a short string'));
+  it('should return only first n characters if n < string.length', () => expect((0, _strings.take)(5)('a short string')).toBe('a sho'));
+});
+describe.each([{
+  times: -1,
+  input: 'hi',
+  expected: 'hi'
+}, {
+  times: 0,
+  input: 'hi',
+  expected: 'hi'
+}, {
+  times: 1,
+  input: 'hi',
+  expected: 'hi'
+}, {
+  times: 2,
+  input: 'hi',
+  expected: 'hihi'
+}])('repeat', ({
+  times,
+  input,
+  expected
+}) => {
+  it(`should repeat ${input} ${times} times to end with ${expected}`, () => {
+    expect((0, _strings.repeat)(times)(input)).toEqual(expected);
+  });
+});
+describe.each([{
+  targetLength: -1,
+  padWith: '0',
+  input: '1',
+  expected: '1'
+}, {
+  targetLength: 0,
+  padWith: '0',
+  input: '1',
+  expected: '1'
+}, {
+  targetLength: 1,
+  padWith: '0',
+  input: '1',
+  expected: '1'
+}, {
+  targetLength: 2,
+  padWith: '0',
+  input: '1',
+  expected: '01'
+}, {
+  targetLength: 3,
+  padWith: '0',
+  input: '1',
+  expected: '001'
+}, {
+  targetLength: 5,
+  padWith: '0',
+  input: '1',
+  expected: '00001'
+}, {
+  targetLength: 5,
+  padWith: '0',
+  input: '123456',
+  expected: '123456'
+}, {
+  targetLength: 2,
+  padWith: 'abc',
+  input: '12',
+  expected: '12'
+}, {
+  targetLength: 3,
+  padWith: 'abc',
+  input: '12',
+  expected: 'a12'
+}, {
+  targetLength: 4,
+  padWith: 'abc',
+  input: '12',
+  expected: 'ab12'
+}, {
+  targetLength: 5,
+  padWith: 'abc',
+  input: '12',
+  expected: 'abc12'
+}, {
+  targetLength: 6,
+  padWith: 'abc',
+  input: '12',
+  expected: 'abca12'
+}, {
+  targetLength: 3,
+  padWith: '',
+  input: 'hi',
+  expected: 'hi'
+}])('padStart', ({
+  targetLength,
+  padWith,
+  input,
+  expected
+}) => {
+  it(`should pad ${input} to length ${targetLength} with padding ${padWith} to end with ${expected}`, () => {
+    expect((0, _strings.padStart)(targetLength, padWith)(input)).toEqual(expected);
+  });
+});
+describe('safeParseInt', () => {
+  it('should return none string when passed an unparseable string', () => expect((0, _strings.safeParseInt)('a')).toBe(_Option.none));
+  it('should return `Some<number>` if parse succeeds', () => expect((0, _strings.safeParseInt)('42')).toEqual((0, _Option.some)(42)));
+  it('should behave the same as parseInt when passed a base argument', () => expect((0, _strings.safeParseInt)('42', 7)).toEqual((0, _Option.some)(30)));
 });

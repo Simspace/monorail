@@ -7,7 +7,9 @@ exports.getAvatarInitials = exports.Avatar = void 0;
 
 var _styledComponents = _interopRequireDefault(require("styled-components"));
 
-var _Option = require("fp-ts/lib/Option");
+var O = _interopRequireWildcard(require("fp-ts/lib/Option"));
+
+var _pipeable = require("fp-ts/lib/pipeable");
 
 var _react = _interopRequireDefault(require("react"));
 
@@ -83,7 +85,7 @@ const Avatar = ({
   icon: icon,
   size: iconScale * size,
   _css: (0, _exports.getColor)(_exports.Colors.White)
-}) : _react.default.createElement(_react.default.Fragment, null, (0, _Option.fromNullable)(first).fold('', f => f.charAt(0)), (0, _Option.fromNullable)(last).fold('', f => f.charAt(0))));
+}) : _react.default.createElement(_react.default.Fragment, null, (0, _pipeable.pipe)(first, O.fromNullable, O.fold(() => '', f => f.charAt(0))), (0, _pipeable.pipe)(last, O.fromNullable, O.fold(() => '', f => f.charAt(0)))));
 
 exports.Avatar = Avatar;
 

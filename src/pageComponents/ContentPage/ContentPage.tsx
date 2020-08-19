@@ -3,8 +3,12 @@ import React, { FC } from 'react'
 import { sizes } from '@monorail/helpers/size'
 import { ThemeProvider } from '@monorail/helpers/styled-components'
 
-export const ContentPage: FC = props => {
-  const { children } = props
+export type ContentPageProps = {
+  fullWidth?: boolean
+}
+
+export const ContentPage: FC<ContentPageProps> = props => {
+  const { children, fullWidth = false } = props
 
   return (
     <ThemeProvider
@@ -13,7 +17,7 @@ export const ContentPage: FC = props => {
         size: {
           ...theme.size,
           page: {
-            width: 1064 + sizes.page.sideSpace * 2,
+            width: fullWidth ? 'auto' : 1064 + sizes.page.sideSpace * 2,
           },
         },
       })}

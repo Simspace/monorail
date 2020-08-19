@@ -14,6 +14,7 @@ import {
 export type SearchFilterType<T> = (params: {
   item: T
   compareSearch: CompareSearchType
+  value: string
 }) => boolean
 
 type Props<I> = CollectionProps<I> & {
@@ -30,11 +31,15 @@ export const CollectionPage = <T extends unknown>(
     collectionView,
     columns,
     data,
+    filters,
     isLoading,
     pivotBy,
     setCollectionView,
     title,
     NoDataComponent,
+    PaginationComponent,
+    pageSize,
+    showPagination,
   } = props
 
   const renderCollection = () => {
@@ -45,11 +50,15 @@ export const CollectionPage = <T extends unknown>(
           collectionView={collectionView}
           columns={columns}
           data={data}
+          filters={filters}
           isLoading={isLoading}
           pivotBy={pivotBy}
           searchInput={props.searchInput}
           setCollectionView={setCollectionView}
           NoDataComponent={NoDataComponent}
+          PaginationComponent={PaginationComponent}
+          pageSize={pageSize}
+          showPagination={showPagination}
         />
       )
     } else if ('searchFilter' in props) {
@@ -59,11 +68,15 @@ export const CollectionPage = <T extends unknown>(
           collectionView={collectionView}
           columns={columns}
           data={data}
+          filters={filters}
           isLoading={isLoading}
           pivotBy={pivotBy}
           searchFilter={props.searchFilter}
           setCollectionView={setCollectionView}
           NoDataComponent={NoDataComponent}
+          PaginationComponent={PaginationComponent}
+          pageSize={pageSize}
+          showPagination={showPagination}
         />
       )
     } else {

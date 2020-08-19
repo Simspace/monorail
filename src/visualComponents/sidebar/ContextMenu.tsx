@@ -47,7 +47,7 @@ const MenuHeader = styled.span<CommonComponentType>(
     ${typography(500, FontSizes.Title5, '12px')};
     ${ellipsis};
 
-    color: ${getColor(Colors.Black62)};
+    color: ${getColor(Colors.Black62a)};
     flex-shrink: 0;
 
     ${cssOverrides};
@@ -99,7 +99,7 @@ const ContextMenuItem: StatelessComponent<SimpleListItemProps> = ({
         icon={leftIcon}
         dense={dense}
         css={css`
-          color: ${getColor(Colors.Black62)};
+          color: ${getColor(Colors.Black62a)};
           margin-top: 12px;
         `}
       />

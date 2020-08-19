@@ -15,6 +15,7 @@ var _Icon = require("../icon/Icon");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+// TODO: unsafe icon usage
 const AppIcon = (0, _styledComponents.default)(({
   appName,
   ...otherProps

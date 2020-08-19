@@ -7,6 +7,8 @@ exports.NumberInputGroup = void 0;
 
 var _styledComponents = _interopRequireDefault(require("styled-components"));
 
+var _Option = require("fp-ts/lib/Option");
+
 var _Record = require("fp-ts/lib/Record");
 
 var _react = _interopRequireDefault(require("react"));
@@ -45,7 +47,7 @@ const InputItemLabel =
 _styledComponents.default.p.withConfig({
   displayName: "NumberInputGroup__InputItemLabel",
   componentId: "sc-1n1jej1-3"
-})(["", ";"], (0, _exports.typography)(500, _exports.FontSizes.Title5));
+})(["", ";"], (0, _exports.typographyFont)(500, _exports.FontSizes.Title5));
 
 var _StyledLabel =
 /*#__PURE__*/
@@ -66,7 +68,7 @@ const NumberInputGroup = props => {
     label: label,
     required: required
   }), items.map((item, k) => {
-    const val = (0, _Record.lookup)(item.key, value).getOrElse(0);
+    const val = (0, _Option.getOrElse)(() => 0)((0, _Record.lookup)(item.key, value));
     return _react.default.createElement(InputItemWrapper, {
       key: k
     }, _react.default.createElement(InputItemLabel, null, item.label), _react.default.createElement(Input, {

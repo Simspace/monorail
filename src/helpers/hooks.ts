@@ -1,3 +1,4 @@
+import { flow } from 'fp-ts/lib/function'
 import {
   useCallback,
   useEffect,
@@ -7,6 +8,11 @@ import {
 } from 'react'
 import { useDebouncedCallback } from 'use-debounce'
 
+import {
+  defaultPopOverPosition,
+  dropDirections,
+  getOverlayPosition,
+} from '@monorail/metaComponents/popOver/PopOver'
 import { isNil, isNotNil } from '@monorail/sharedHelpers/typeGuards'
 
 type UseEventListenerParams<E extends HTMLElement> = {
@@ -140,4 +146,48 @@ export function useInputDebounce<T extends unknown>({
       updateLocalValue(newValue)
     },
   ]
+}
+
+/**
+ * Helper toggle hook for usage with SimplePopOver
+ */
+export const useToggle = (initial: boolean) => {
+  const [toggle, setToggle] = useState(initial)
+  const setOn = useCallback(() => setToggle(true), [])
+  const setOff = useCallback(() => setToggle(false), [])
+  return [toggle, setOn, setOff] as const
+}
+
+/**
+ * Helper function for getting the position of the modal for SimplePopOver
+ */
+export function getPosition(event: React.SyntheticEvent<Element>) {
+  return getOverlayPosition({
+    target: event.currentTarget,
+    xDirection: dropDirections.Right,
+    yDirection: dropDirections.Top,
+  })
+}
+
+/**
+ * Helper hook to calculate the PopOver position
+ */
+export const usePopOverPosition = () => useState(defaultPopOverPosition)
+
+/**
+ * Helper hook to use SimplePopOver
+ */
+export const useSimplePopOver = () => {
+  const [isOpen, show, hide] = useToggle(false)
+  const [position, setPosition] = usePopOverPosition()
+  const open = flow(getPosition, setPosition, show)
+
+  return {
+    isOpen,
+    show,
+    hide,
+    open,
+    position,
+    setPosition,
+  }
 }

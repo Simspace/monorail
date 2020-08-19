@@ -1,5 +1,4 @@
 import React, { Component, ReactNode, SyntheticEvent } from 'react'
-import { Omit } from 'typelevel-ts'
 
 import { PortalController } from '@monorail/metaComponents/portal/PortalController'
 

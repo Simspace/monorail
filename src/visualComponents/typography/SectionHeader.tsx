@@ -8,18 +8,19 @@ import {
   FontSizes,
   getColor,
   isAppName,
-  typography,
+  typographyFont,
 } from '@monorail/helpers/exports'
 import { isEmptyString } from '@monorail/sharedHelpers/typeGuards'
 import { AppIcon } from '@monorail/visualComponents/appIcon/AppIcon'
 import { Icon } from '@monorail/visualComponents/icon/Icon'
+import { IconType } from '@monorail/visualComponents/icon/IconType'
 import { Text } from '@monorail/visualComponents/typography/Text'
 
 const SectionHeaderContainer = styled.div`
   ${flexFlow('row')};
-  ${typography(700, FontSizes.Title5)};
+  ${typographyFont(700, FontSizes.Title5)};
   align-items: center;
-  color: ${getColor(Colors.Black74)};
+  color: ${getColor(Colors.Black74a)};
   flex-shrink: 0;
   height: 40px;
   padding: 0 16px;
@@ -35,8 +36,8 @@ const iconRightStyle = css`
 
 type Props = {
   title: string
-  iconLeft?: string | AppName
-  iconRight?: string | AppName
+  iconLeft?: IconType | AppName
+  iconRight?: IconType | AppName
 }
 
 export const SectionHeader: FC<Props> = props => {

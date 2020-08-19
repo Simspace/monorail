@@ -38,7 +38,7 @@ const StyledButtonWrapper = styled.div<ButtonWrapperProps>(
     ${mode === ButtonsBarMode.Toolbar
       ? css`
           ${StyledButton} {
-            margin: 2px;
+            margin: 0 2px;
           }
         `
       : css`

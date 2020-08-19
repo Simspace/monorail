@@ -1,0 +1,4 @@
+import { ComponentType } from 'react';
+import { CustomIconProps } from '@monorail/visualComponents/icon/Icon';
+export declare const VCenter: ComponentType<CustomIconProps>;
+//# sourceMappingURL=VCenter.d.ts.map

@@ -1,8 +1,10 @@
-import { Predicate } from 'fp-ts/lib/function'
+import { Predicate, unsafeCoerce } from 'fp-ts/lib/function'
 import { Prism } from 'monocle-ts'
-import { iso, Newtype, prism, unsafeCoerce } from 'newtype-ts'
+import { iso, Newtype, prism } from 'newtype-ts'
 
 import { isUndefined } from './typeGuards'
+
+// TODO: Use `SimSpaceNewtype` instead of `Newtype` if we ever make use of this
 
 export interface Optimistic<A extends string>
   extends Newtype<

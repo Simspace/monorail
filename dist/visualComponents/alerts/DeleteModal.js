@@ -32,6 +32,7 @@ const DeleteModal = props => {
     subtitleText,
     primaryButtonText,
     secondaryButtonText,
+    itemType = '',
     ...domProps
   } = props;
   return _react.default.createElement(_AlertModal.AlertModal, _extends({}, domProps, {
@@ -43,7 +44,7 @@ const DeleteModal = props => {
       fontSize: _exports.FontSizes.Title5,
       fontWeight: 400,
       margin: "8px 0"
-    }, "You have chosen to delete the following:"), _react.default.createElement(_Text.Text, {
+    }, "You have chosen to delete the following", itemType ? ` ${itemType}` : '', ":"), _react.default.createElement(_Text.Text, {
       fontSize: _exports.FontSizes.Title4,
       fontWeight: 500,
       margin: "8px 0"

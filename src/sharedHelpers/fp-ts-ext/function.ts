@@ -1,26 +1,17 @@
-import { Function2 } from 'fp-ts/lib/function'
-
-import { Primitive } from '@monorail/sharedHelpers/typeLevel'
-
 /**
- * Flips the order of the arguments to an uncurried function taking two
- * arguments. Like `flip`, but for uncurried, not curried, functions.
+ * Flips the order of the arguments of a binary function.
+ *
+ * Curried version of `flip` from 'fp-ts/lib/function'
  */
-export const flip_ = <A, B, C>(f: Function2<A, B, C>): Function2<B, A, C> => (
-  b,
-  a,
-) => f(a, b)
+export function flip<A, B, C>(f: (a: A) => (b: B) => C): (b: B) => (a: A) => C {
+  return b => a => f(a)(b)
+}
 
 /**
  * Simple binary composition. Also known as `compose2`
  */
 export const o = <A, B, C>(f: (y: B) => C, g: (x: A) => B) => (x: A): C =>
   f(g(x))
-
-/**
- * Utility for constructing tuples with proper inference
- */
-export const tuple = <A extends Array<Primitive>>(...args: A) => args
 
 /**
  * Flips the position of each item in a 2-tuple

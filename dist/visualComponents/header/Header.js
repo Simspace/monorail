@@ -50,7 +50,7 @@ var _StyledHeaderRow =
 
 const HeaderContainer = _styledComponents2.default.div``;
 const HeaderTitle = _styledComponents2.default.h1`
-  ${(0, _typography.typography)(500, _typography.FontSizes.Title3)};
+  ${(0, _typography.typographyFont)(500, _typography.FontSizes.Title3)};
 `;
 exports.HeaderTitle = HeaderTitle;
 
@@ -95,9 +95,9 @@ const Header = (0, _styledComponents2.default)(({
   _css: cssHeaderRow
 }, appIcon && _react.default.createElement(_StyledAppIcon, {
   appName: appIcon
-}), iconLeft && _react.default.createElement(_StyledIcon, {
+}), iconLeft && (typeof iconLeft === 'string' ? _react.default.createElement(_StyledIcon, {
   icon: iconLeft
-}), _react.default.createElement(_StyledHeaderTitle, {
+}) : iconLeft), _react.default.createElement(_StyledHeaderTitle, {
   _css2: cssTitle
 }, title), actions), children))(({
   noBorder,

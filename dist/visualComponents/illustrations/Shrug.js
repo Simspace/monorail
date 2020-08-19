@@ -1,0 +1,30 @@
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Shrug = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+const Shrug = props => _react.default.createElement("svg", _extends({
+  width: "56",
+  height: "56",
+  viewBox: "0 0 56 56",
+  fill: "none",
+  xmlns: "http://www.w3.org/2000/svg"
+}, props), _react.default.createElement("g", {
+  clipPath: "url(#clip0)"
+}, _react.default.createElement("path", {
+  d: "M0 33.568v-.797h7.35v.797H0zM9.777 44.673L7.159 34.598h.893l2.614 10.075h-.89zM10.473 46.476v-.803h7.349v.803h-7.35zM20.63 46.476c-.612-.774-1.13-1.681-1.552-2.72a8.562 8.562 0 01-.16-6.041c.369-1.043.94-2.081 1.712-3.115h.794c-.496.857-.825 1.469-.985 1.835a10.06 10.06 0 00-.592 1.777 10.378 10.378 0 00-.265 2.324c0 1.982.614 3.962 1.842 5.94h-.794zM23.87 35.015c.479.938 1.035 2.455 1.21 3.366l-.844.279c-.176-.886-.707-2.392-1.189-3.38l.822-.265zm3.998-.721c.29 1.05.606 2.62.669 3.594l-.895.14c-.076-1.002-.354-2.52-.655-3.583l.881-.151zM35.676 46.476h-.794c1.227-1.978 1.84-3.958 1.84-5.94 0-.776-.088-1.55-.264-2.305a9.723 9.723 0 00-.586-1.78c-.16-.37-.49-.987-.99-1.853h.794c.773 1.034 1.344 2.073 1.713 3.115a8.54 8.54 0 01-.163 6.042c-.425 1.04-.942 1.947-1.55 2.721zM38.13 46.476v-.803h7.348v.803h-7.347zM45.334 44.673l2.62-10.075h.887l-2.612 10.075h-.895zM48.651 33.568v-.797h7.35v.797h-7.35zM25.49 44.382l-.303-.91.152.455-.153-.454c.012-.005 1.269-.444 2.735-1.723 1.351-1.177 3.164-3.331 4.13-6.909l.923.252c-1.037 3.834-3.003 6.15-4.467 7.416-1.603 1.386-2.96 1.854-3.018 1.873z"
+})), _react.default.createElement("defs", null, _react.default.createElement("clipPath", {
+  id: "clip0"
+}, _react.default.createElement("path", {
+  d: "M0 0H56V56H0z"
+}))));
+
+exports.Shrug = Shrug;

@@ -29,14 +29,14 @@ class SearchController extends _react.Component {
       searchString
     } = this.state;
     return children({
-      value: searchString,
+      value: searchString.toLocaleLowerCase().trim(),
       onChange: this.onChange,
       compareSearch: stringToCompare => {
         if (searchString === '') {
           return true;
         }
 
-        return stringToCompare.toLocaleLowerCase().includes(searchString.toLocaleLowerCase());
+        return stringToCompare.toLocaleLowerCase().includes(searchString.toLocaleLowerCase().trim());
       }
     });
   }

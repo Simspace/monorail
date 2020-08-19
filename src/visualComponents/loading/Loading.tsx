@@ -20,10 +20,31 @@ const loadingJson = {
   [LoaderType.Pcte]: loadingPcteData,
 }
 
-type Props = { size?: number; loaderType?: LoaderType }
+type Dimensions = {
+  _type: 'dimensions'
+} & (
+  | {
+      height: number
+    }
+  | {
+      width: number
+    }
+)
+
+export type Size =
+  | {
+      _type: 'size'
+      hw: number
+    }
+  | Dimensions
+
+const getHeight = (d: Dimensions) => ('height' in d ? d.height : undefined)
+const getWidth = (d: Dimensions) => ('width' in d ? d.width : undefined)
+
+type Props = { size?: Size; loaderType?: LoaderType }
 
 export const Loading: FC<Props> = ({
-  size = 64,
+  size = { _type: 'size', hw: 64 },
   loaderType = LoaderType.SimSpace,
 }) => {
   const defaultOptions = {
@@ -32,15 +53,20 @@ export const Loading: FC<Props> = ({
     animationData: loadingJson[loaderType],
   }
 
-  return <Lottie options={defaultOptions} height={size} width={size} />
+  /* Lottie adds ariaRole='button' by default, since that makes total sense PG 2/13/20 */
+  return size._type === 'size' ? (
+    <Lottie
+      ariaRole=""
+      options={defaultOptions}
+      height={size.hw}
+      width={size.hw}
+    />
+  ) : (
+    <Lottie
+      ariaRole=""
+      options={defaultOptions}
+      height={getHeight(size)}
+      width={getWidth(size)}
+    />
+  )
 }
-
-export const LoadingContainer = styled.div`
-  ${flexFlow()};
-
-  align-items: center;
-  flex: 1 1 100%;
-  height: 100%;
-  justify-content: center;
-  width: 100%;
-`

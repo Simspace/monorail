@@ -10,7 +10,7 @@ import {
   flexFlow,
   FontSizes,
   getColor,
-  typography,
+  typographyFont,
 } from '@monorail/helpers/exports'
 import { ThemeColors } from '@monorail/helpers/theme'
 import { PopOver } from '@monorail/metaComponents/popOver/PopOver'
@@ -24,7 +24,7 @@ export const CCFilter = styled.div<CCFilterProps>(
       ? basePrimaryStyles(ThemeColors.BrandSecondary)
       : css`
           ${baseSecondaryStyles(ThemeColors.BrandSecondary)};
-          color: ${getColor(Colors.Black74)};
+          color: ${getColor(Colors.Black74a)};
         `};
 
     ${borderRadius()};
@@ -43,7 +43,7 @@ export const CCFilter = styled.div<CCFilterProps>(
 )
 
 export const FilterText = styled.span`
-  ${typography(700, FontSizes.Title5)};
+  ${typographyFont(700, FontSizes.Title5)};
 
   color: currentColor;
   text-transform: uppercase;

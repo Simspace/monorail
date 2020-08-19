@@ -5,6 +5,8 @@ import { eqNumber, eqString } from 'fp-ts/lib/Eq'
 import { IO } from 'fp-ts/lib/IO'
 import { some } from 'fp-ts/lib/Option'
 
+import { isNumber } from '@monorail/sharedHelpers/typeGuards'
+
 import {
   all,
   any,
@@ -19,14 +21,17 @@ import {
   LeftsAndRights,
   leftsAndRights,
   len,
-  liftOption2,
   map,
   notAny,
   runIOs,
+  rle,
   sortByAlpha,
   sortByNumeric,
   xor,
+  containsAny,
+  containsEq,
 } from '../Array'
+import { newIO } from '@monorail/sharedHelpers/fp-ts-ext/IO'
 
 const isGreaterThanZero = (x: number): boolean => x > 0
 
@@ -61,7 +66,7 @@ describe('any', () => {
 describe('concat', () => {
   it('should concatenate arrays correctly', () => {
     const actual = concat([0])([1])
-    const expected = array.alt([0], [1])
+    const expected = array.alt([0], () => [1])
     expect(actual).toEqual(expected)
   })
 })
@@ -69,7 +74,7 @@ describe('concat', () => {
 describe('concatFlipped should concatenate arrays correctly', () => {
   it('should concatenate arrays correctly', () => {
     const actual = concatFlipped([1])([0])
-    const expected = array.alt([1], [0])
+    const expected = array.alt([1], () => [0])
     expect(actual).toEqual(expected)
   })
 })
@@ -83,6 +88,38 @@ describe('contains', () => {
 
   it('should return false when an array does not contain an element', () => {
     const actual = contains(5)([0, 1, 2])
+    const expected = false
+    expect(actual).toBe(expected)
+  })
+})
+
+describe('containsEq', () => {
+  it('should return true when x is in xs', () => {
+    const actual = containsEq(eqNumber)(3)([3, 4, 5])
+
+    const expected = true
+    expect(actual).toBe(expected)
+  })
+
+  it('should return false when xs is not in xs', () => {
+    const actual = containsEq(eqNumber)(1)([4, 5, 6])
+
+    const expected = false
+    expect(actual).toBe(expected)
+  })
+})
+
+describe('containsAny', () => {
+  it('should return true when xs contains an element in ys', () => {
+    const actual = containsAny(eqNumber)([1, 2, 3])([3, 4, 5])
+
+    const expected = true
+    expect(actual).toBe(expected)
+  })
+
+  it('should return false when xs does not contain an element in ys', () => {
+    const actual = containsAny(eqNumber)([1, 2, 3])([4, 5, 6])
+
     const expected = false
     expect(actual).toBe(expected)
   })
@@ -179,16 +216,6 @@ describe('len', () => {
   })
 })
 
-describe('liftOption2', () => {
-  it('should lift a function of 2 args into the context of Option', () => {
-    const add = (x: number) => (y: number) => x + y
-    const addOpt = liftOption2(add)
-    const actual = addOpt(some(3))(some(5)).getOrElse(0)
-    const expected = 8
-    expect(actual).toBe(expected)
-  })
-})
-
 describe('map', () => {
   it('should transform the values in an array', () => {
     const a = [0, 1, 2, 3]
@@ -217,13 +244,13 @@ describe('runIOs', () => {
     const getActual = (seed: number) => {
       let mut = seed
       const ios: Array<IO<void>> = [
-        new IO(() => {
+        newIO(() => {
           mut += 1
         }),
-        new IO(() => {
+        newIO(() => {
           mut += 3
         }),
-        new IO(() => {
+        newIO(() => {
           mut += 5
         }),
       ]
@@ -292,7 +319,7 @@ describe('xor', () => {
 
     test('identity', () => {
       fc.assert(
-        fc.property(fc.array(fc.integer()), xs => {
+        fc.property(fc.set(fc.integer()), xs => {
           return (
             arrNumEq.equals(numXor(xs, []), xs) &&
             arrNumEq.equals(numXor([], xs), xs)
@@ -303,7 +330,7 @@ describe('xor', () => {
 
     test('self inverse', () => {
       fc.assert(
-        fc.property(fc.array(fc.integer()), xs => {
+        fc.property(fc.set(fc.integer()), xs => {
           return arrNumEq.equals(numXor(xs, xs), [])
         }),
       )
@@ -311,35 +338,27 @@ describe('xor', () => {
 
     test('combined inputs contain the result', () => {
       fc.assert(
-        fc.property(
-          fc.array(fc.integer()),
-          fc.array(fc.integer()),
-          (xs, ys) => {
-            const combined = [...xs, ...ys]
-            return numXor(xs, ys).every(n => combined.includes(n))
-          },
-        ),
+        fc.property(fc.set(fc.integer()), fc.set(fc.integer()), (xs, ys) => {
+          const combined = [...xs, ...ys]
+          return numXor(xs, ys).every(n => combined.includes(n))
+        }),
       )
     })
 
     test('commutative', () => {
       fc.assert(
-        fc.property(
-          fc.array(fc.integer()),
-          fc.array(fc.integer()),
-          (xs, ys) => {
-            return arrNumEq.equals(numXor(xs, ys).sort(), numXor(ys, xs).sort())
-          },
-        ),
+        fc.property(fc.set(fc.integer()), fc.set(fc.integer()), (xs, ys) => {
+          return arrNumEq.equals(numXor(xs, ys).sort(), numXor(ys, xs).sort())
+        }),
       )
     })
 
     test('associative', () => {
       fc.assert(
         fc.property(
-          fc.array(fc.integer()),
-          fc.array(fc.integer()),
-          fc.array(fc.integer()),
+          fc.set(fc.integer()),
+          fc.set(fc.integer()),
+          fc.set(fc.integer()),
           (xs, ys, zs) => {
             return arrNumEq.equals(
               numXor(numXor(xs, ys), zs).sort(),
@@ -349,5 +368,21 @@ describe('xor', () => {
         ),
       )
     })
+  })
+})
+
+describe('rle', () => {
+  it('should calculate the run-length encoding', () => {
+    expect(rle(eqString)('aaabba'.split(''))).toEqual([
+      ['a', 3],
+      ['b', 2],
+      ['a', 1],
+    ])
+    expect(rle(eqString)('abc'.split(''))).toEqual([
+      ['a', 1],
+      ['b', 1],
+      ['c', 1],
+    ])
+    expect(rle(eqString)([])).toEqual([])
   })
 })

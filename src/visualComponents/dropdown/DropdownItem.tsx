@@ -25,7 +25,7 @@ export const DropdownItem = styled.div<StyledItemProps>(
       : css`
           ${highlighted &&
             css`
-              background: ${getColor(Colors.Black24, 0.16)};
+              background: ${getColor(Colors.Black24a, 0.16)};
             `};
 
           ${selected &&

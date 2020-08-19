@@ -5,7 +5,7 @@ import {
   flexFlow,
   FontSizes,
   getColor,
-  typography,
+  typographyFont,
   zIndex,
   ZIndexNodeName,
 } from '@monorail/helpers/exports'
@@ -32,9 +32,9 @@ const ArrowButtonsContainer = styled.div`
 `
 
 const RatioContainer = styled.p`
-  ${typography(400, FontSizes.Title5)};
+  ${typographyFont(400, FontSizes.Title5)};
 
-  color: ${getColor(Colors.Black62)};
+  color: ${getColor(Colors.Black62a)};
   margin: auto 4px;
 `
 

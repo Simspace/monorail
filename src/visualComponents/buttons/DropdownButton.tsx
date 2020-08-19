@@ -1,14 +1,10 @@
 import { head, isEmpty } from 'fp-ts/lib/Array'
-import { Option, some } from 'fp-ts/lib/Option'
-import React, { useState } from 'react'
+import { isNone, Option } from 'fp-ts/lib/Option'
+import React from 'react'
 import { css } from 'styled-components'
 
 import { PopOver } from '@monorail/metaComponents/popOver/PopOver'
-import {
-  Button,
-  ButtonProps,
-  OnClick,
-} from '@monorail/visualComponents/buttons/Button'
+import { Button, ButtonProps } from '@monorail/visualComponents/buttons/Button'
 import {
   ButtonDisplay,
   ButtonSize,
@@ -16,7 +12,6 @@ import {
 import { IconButton } from '@monorail/visualComponents/buttons/IconButton'
 import { ButtonsBar } from '@monorail/visualComponents/buttonsBar/ButtonsBar'
 import {
-  PassedProps,
   SimpleListItem,
   SimpleListItemProps,
 } from '@monorail/visualComponents/list/List'
@@ -37,7 +32,7 @@ export type DropdownButtonListItem = Omit<
   Partial<SimpleListItemProps>,
   'onClick' | 'primaryText'
 > & {
-  onClick: OnClick
+  onClick: (event: React.MouseEvent) => void
   primaryText: SimpleListItemProps['primaryText']
 }
 
@@ -50,16 +45,13 @@ type State = {
 }
 
 export const DropdownButton = ({ listItems, disabled }: Props) => {
-  const [selectedListItem, setSelectedListItem] = useState<
-    State['selectedListItem']
-  >(head(listItems))
-
+  const selectedListItem = head(listItems)
   /**
    * you can't have a DropdownButton if there are no items, therefore
    * there must be at least one item in the list and
    * selectedListItem will always be of type some
    */
-  if (isEmpty(listItems) || selectedListItem.isNone()) {
+  if (isEmpty(listItems) || isNone(selectedListItem)) {
     return null
   }
 
@@ -78,7 +70,7 @@ export const DropdownButton = ({ listItems, disabled }: Props) => {
               key={`${idx}-${listItem.primaryText}`}
               {...listItem}
               onClick={e => {
-                setSelectedListItem(some(listItem))
+                listItem.onClick(e)
                 popOverProps.onClick(e)
               }}
             />

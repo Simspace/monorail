@@ -1,6 +1,5 @@
 import React, { Component, RefObject } from 'react'
 import { css } from 'styled-components'
-import { Omit } from 'typelevel-ts'
 
 import { Colors } from '@monorail/helpers/color'
 import { ThemeProvider } from '@monorail/helpers/styled-components'

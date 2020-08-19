@@ -3,15 +3,13 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.constRunTask = exports.runTask = exports.newTask = void 0;
-
-var _Task = require("fp-ts/lib/Task");
+exports.noOpTask = exports.constRunTask = exports.runTask = exports.newTask = void 0;
 
 /**
  * Task constructor function
  *
  */
-const newTask = f => new _Task.Task(f);
+const newTask = f => f;
 /**
  * Run a Task (a lazy Promise)
  */
@@ -19,7 +17,7 @@ const newTask = f => new _Task.Task(f);
 
 exports.newTask = newTask;
 
-const runTask = x => x.run();
+const runTask = x => x();
 /**
  * Returns the run function for a Task<A>
  */
@@ -27,6 +25,12 @@ const runTask = x => x.run();
 
 exports.runTask = runTask;
 
-const constRunTask = x => x.run;
+const constRunTask = x => x;
+/**
+ * A function that returns a noop Task
+ */
+
 
 exports.constRunTask = constRunTask;
+const noOpTask = newTask(async () => {});
+exports.noOpTask = noOpTask;

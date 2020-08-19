@@ -16,7 +16,11 @@ import { Colors, getColor } from '@monorail/helpers/color'
 import { flexFlow } from '@monorail/helpers/flex'
 import styled, { css, ThemeProvider } from '@monorail/helpers/styled-components'
 import { ThemeColors } from '@monorail/helpers/theme'
-import { assertNever, isNil } from '@monorail/sharedHelpers/typeGuards'
+import {
+  assertNever,
+  isNil,
+  isNotNil,
+} from '@monorail/sharedHelpers/typeGuards'
 import { StyledButton } from '@monorail/visualComponents/buttons/Button'
 import {
   ButtonsBarMode,
@@ -45,6 +49,7 @@ import {
   SearchController,
 } from '@monorail/visualComponents/inputs/SearchController'
 import { CollectionPaginationComponent } from './CollectionPaginationComponent'
+import { all } from '@monorail/sharedHelpers/fp-ts-ext/Array'
 
 const CollectionContainer = styled.div`
   ${flexFlow('row')};
@@ -54,15 +59,20 @@ const CollectionContainer = styled.div`
   overflow: hidden;
 `
 
-const ControlsContainer = styled.div`
-  ${flexFlow('row')};
+const ControlsContainer = styled.div(
+  ({ cardViewWithoutFilters }: { cardViewWithoutFilters: boolean }) => css`
+    ${flexFlow('row')};
 
-  align-items: center;
-  background: ${getColor(Colors.Grey99)};
-  height: 40px;
-  margin-top: 4px;
-  padding: 0 32px 0 30px; /* Button Bar has a 2px gap that we are making up here. */
-`
+    align-items: center;
+    background: ${getColor(Colors.Grey99)};
+    height: 40px;
+    margin-top: 4px;
+    padding: 0 32px 0 30px; /* Button Bar has a 2px gap that we are making up here. */
+    ${cardViewWithoutFilters
+      ? `border-bottom: 1px solid ${getColor(Colors.Grey90)};`
+      : null}
+  `,
+)
 
 export enum CollectionView {
   Table = 'table',
@@ -94,15 +104,23 @@ type SearchInput = {
 }
 
 export type CollectionProps<T> = {
-  cardRender: (item: T) => ReactElement
+  // required
   collectionView: CollectionView
   columns: TableColumns<T>
   data: TableProps<T>['data']
-  isLoading?: boolean
   setCollectionView: (collectionView: CollectionView) => void
-  pivotBy?: Array<string>
+  // optional
+  cardRender?: (item: T) => ReactElement
+  filters?: Array<ReactElement>
+  isLoading?: boolean
   NoDataComponent?: () => ReactElement
+  PaginationComponent?: () => ReactElement
+  pageSize?: number
+  showPagination?: boolean
+  pivotBy?: Array<string>
 } & (SearchFilter<T> | SearchInput)
+
+const PAGE_SIZE = 20
 
 export const Collection = <T extends unknown>(
   props: CollectionProps<T>,
@@ -116,12 +134,14 @@ export const Collection = <T extends unknown>(
     pivotBy,
     setCollectionView,
     NoDataComponent = () => <NoDataComponentVertical />,
+    PaginationComponent = CollectionPaginationComponent,
+    pageSize = PAGE_SIZE,
+    showPagination,
   } = props
 
   const [sorted, onSortedChange] = useSort()
-  const PAGE_SIZE = 50
   const getReactTableComponentProps: ComponentPropsGetterR<T> = useCallback(
-    (finalState, rowInfo) => {
+    (_finalState, rowInfo) => {
       if (!isNil(rowInfo)) {
         return {
           item: rowInfo.original,
@@ -138,7 +158,7 @@ export const Collection = <T extends unknown>(
       if (!isNil(item)) {
         switch (collectionView) {
           case CollectionView.Card:
-            return cardRender(item)
+            return isNotNil(cardRender) ? cardRender(item) : children
           case CollectionView.Table:
             return children
           default:
@@ -169,7 +189,11 @@ export const Collection = <T extends unknown>(
 
   const getTrGroupComponent: ReactTableComponent<T> = useCallback(
     ({ item, children, ...domProps }) => {
-      if (!isNil(item) && collectionView === CollectionView.Card) {
+      if (
+        isNotNil(item) &&
+        collectionView === CollectionView.Card &&
+        isNotNil(cardRender)
+      ) {
         return cardRender(item)
       }
 
@@ -178,6 +202,10 @@ export const Collection = <T extends unknown>(
     [collectionView, cardRender],
   )
 
+  const theadOnTableViewOnly = all(
+    columns,
+    column => column.filterable === false && column.sortable === false,
+  )
   const renderCollection = useCallback(
     ({
       passedSearchInput,
@@ -187,20 +215,27 @@ export const Collection = <T extends unknown>(
       passedData: TableProps<T>['data']
     }) => (
       <>
-        <ControlsContainer>
-          <ButtonsBar size={ButtonSize.Default} mode={ButtonsBarMode.Toolbar}>
-            <IconButton
-              isActive={collectionView === CollectionView.Table}
-              onClick={() => setCollectionView(CollectionView.Table)}
-              icon="view_headline"
-            />
-            <IconButton
-              isActive={collectionView === CollectionView.Card}
-              onClick={() => setCollectionView(CollectionView.Card)}
-              icon="view_module"
-            />
-          </ButtonsBar>
+        <ControlsContainer
+          cardViewWithoutFilters={
+            theadOnTableViewOnly && collectionView === CollectionView.Card
+          }
+        >
+          {isNotNil(cardRender) && (
+            <ButtonsBar size={ButtonSize.Default} mode={ButtonsBarMode.Toolbar}>
+              <IconButton
+                isActive={collectionView === CollectionView.Table}
+                onClick={() => setCollectionView(CollectionView.Table)}
+                icon="view_headline"
+              />
+              <IconButton
+                isActive={collectionView === CollectionView.Card}
+                onClick={() => setCollectionView(CollectionView.Card)}
+                icon="view_module"
+              />
+            </ButtonsBar>
+          )}
 
+          <FilterContainer>{props.filters}</FilterContainer>
           {passedSearchInput}
         </ControlsContainer>
 
@@ -220,19 +255,20 @@ export const Collection = <T extends unknown>(
               getTrGroupProps={getReactTableComponentProps}
               getTrProps={getReactTableComponentProps}
               loading={isLoading}
-              pageSize={PAGE_SIZE}
+              pageSize={pageSize}
               pivotBy={pivotBy}
               TbodyComponent={getTbodyComponent}
               TrComponent={getTrComponent}
               TrGroupComponent={getTrGroupComponent}
-              showPagination={passedData.length > PAGE_SIZE}
-              PaginationComponent={CollectionPaginationComponent}
+              showPagination={showPagination || passedData.length > pageSize}
+              PaginationComponent={PaginationComponent}
               NoDataComponent={NoDataComponent}
               TheadComponent={(
                 theadProps: PropsWithChildren<TheadComponentProps>,
               ) => (
                 <CollectionTheadComponent
                   collectionView={collectionView}
+                  tableViewOnly={theadOnTableViewOnly}
                   {...theadProps}
                 />
               )}
@@ -249,17 +285,23 @@ export const Collection = <T extends unknown>(
     ),
     [
       collectionView,
+      props.filters,
+      sorted,
+      onSortedChange,
       columns,
       getReactTableComponentProps,
+      isLoading,
+      pivotBy,
       getTbodyComponent,
       getTrComponent,
       getTrGroupComponent,
-      isLoading,
-      onSortedChange,
-      setCollectionView,
-      sorted,
       NoDataComponent,
-      pivotBy,
+      setCollectionView,
+      PaginationComponent,
+      cardRender,
+      pageSize,
+      showPagination,
+      theadOnTableViewOnly,
     ],
   )
 
@@ -313,10 +355,11 @@ const theadOverrides = css`
 
 const CollectionTheadComponent: FC<TheadComponentProps & {
   collectionView: CollectionView
-}> = ({ style, collectionView, ...otherProps }) => {
+  tableViewOnly: boolean
+}> = ({ style, collectionView, tableViewOnly, ...otherProps }) => {
   switch (collectionView) {
     case CollectionView.Card:
-      return <TheadComponent {...otherProps} />
+      return tableViewOnly ? null : <TheadComponent {...otherProps} />
     case CollectionView.Table:
       return <TheadComponent style={style} {...otherProps} />
   }
@@ -337,7 +380,7 @@ const thComponentOverrides = css`
   ${StyledButton} {
     ${baseSecondaryStyles(ThemeColors.BrandSecondary)};
 
-    color: ${getColor(Colors.Black74)};
+    color: ${getColor(Colors.Black74a)};
     border-radius: ${BorderRadius.Small}px 0 0 ${BorderRadius.Small}px;
     margin-top: 4px;
     margin-bottom: 4px;
@@ -374,3 +417,9 @@ const CollectionThComponent: FC<ThComponentProps & {
       return <ThComponent style={style} {...otherProps} />
   }
 }
+
+const FilterContainer = styled.section`
+  ${flexFlow('row')}
+  flex-grow: 1;
+  justify-content: flex-end;
+`
