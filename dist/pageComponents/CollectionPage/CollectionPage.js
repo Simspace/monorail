@@ -22,11 +22,15 @@ const CollectionPage = props => {
     collectionView,
     columns,
     data,
+    filters,
     isLoading,
     pivotBy,
     setCollectionView,
     title,
-    NoDataComponent
+    NoDataComponent,
+    PaginationComponent,
+    pageSize,
+    showPagination
   } = props;
 
   const renderCollection = () => {
@@ -36,11 +40,15 @@ const CollectionPage = props => {
         collectionView: collectionView,
         columns: columns,
         data: data,
+        filters: filters,
         isLoading: isLoading,
         pivotBy: pivotBy,
         searchInput: props.searchInput,
         setCollectionView: setCollectionView,
-        NoDataComponent: NoDataComponent
+        NoDataComponent: NoDataComponent,
+        PaginationComponent: PaginationComponent,
+        pageSize: pageSize,
+        showPagination: showPagination
       });
     } else if ('searchFilter' in props) {
       return _react.default.createElement(_Collection.Collection, {
@@ -48,11 +56,15 @@ const CollectionPage = props => {
         collectionView: collectionView,
         columns: columns,
         data: data,
+        filters: filters,
         isLoading: isLoading,
         pivotBy: pivotBy,
         searchFilter: props.searchFilter,
         setCollectionView: setCollectionView,
-        NoDataComponent: NoDataComponent
+        NoDataComponent: NoDataComponent,
+        PaginationComponent: PaginationComponent,
+        pageSize: pageSize,
+        showPagination: showPagination
       });
     } else {
       throw new Error('Need to pass searchInput or searchFilter prop to CollectionPage.');

@@ -3,6 +3,7 @@ import { CssOverridesType } from '@monorail/types'
 
 export enum Sizes {
   DP8 = 8,
+  DP12 = 12,
   DP16 = 16,
   DP24 = 24,
   DP32 = 32,
@@ -45,7 +46,7 @@ export const pageSizeMargin: (params?: {
       size: { page },
     },
   }) => css`
-    max-width: ${page.width}px;
+    ${page.width === 'auto' ? '' : `max-width: ${page.width}px;`}
     margin: ${params.marginTop}px ${sizes.page.sideSpace}px
       ${params.marginBottom}px ${sizes.page.sideSpace}px;
   `};

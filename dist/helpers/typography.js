@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.gothamFontFamily = exports.shortHandDeconstruction = exports.typographyMargin = exports.typography = exports.FontSizes = exports.FontWeights = exports.ellipsis = void 0;
+exports.oswaldFontFamily = exports.gothamFontFamily = exports.shortHandDeconstruction = exports.typographyMargin = exports.typographyDeprecated = exports.typography = exports.typographyFont = exports.FontStyles = exports.FontSizes = exports.FontWeights = exports.ellipsis = void 0;
 
 var _styledComponents = require("styled-components");
 
@@ -38,6 +38,17 @@ exports.FontSizes = FontSizes;
   FontSizes["Title5"] = "title5";
   FontSizes["Micro"] = "micro";
 })(FontSizes || (exports.FontSizes = FontSizes = {}));
+
+let FontStyles;
+exports.FontStyles = FontStyles;
+
+(function (FontStyles) {
+  FontStyles["Inherit"] = "inherit";
+  FontStyles["Initial"] = "initial";
+  FontStyles["Italic"] = "italic";
+  FontStyles["Normal"] = "normal";
+  FontStyles["Oblique"] = "oblique";
+})(FontStyles || (exports.FontStyles = FontStyles = {}));
 
 const fontSizeLookUp = {
   [FontSizes.Hyper1]: {
@@ -81,14 +92,38 @@ const fontSizeLookUp = {
     lineHeight: '10px'
   }
 };
+/**
+ * @description Helper to add font size and weight, and line height following designed typography. To use only in specific cases. Use `typography` instead for most common cases.
+ * */
 
-const typography = (weight, size, margin) => ({
+const typographyFont = (weight, size) => ({
+  fontWeight: weight,
+  ...fontSizeLookUp[size]
+});
+/**
+ * @description Typography helper to add styling for text following design components including margin alignment
+ * */
+
+
+exports.typographyFont = typographyFont;
+
+const typography = (weight, size, margin = '0') => ({ ...typographyFont(weight, size),
+  ...typographyMargin(size, margin)
+});
+/**
+ * @deprecated Use typography or typographyFont instead
+ * */
+
+
+exports.typography = typography;
+
+const typographyDeprecated = (weight, size, margin) => ({
   fontWeight: weight,
   ...fontSizeLookUp[size],
   ...(margin ? typographyMargin(size, margin) : {})
 });
 
-exports.typography = typography;
+exports.typographyDeprecated = typographyDeprecated;
 const fontMarginLookUp = {
   [FontSizes.Hyper1]: {
     top: -11,
@@ -229,3 +264,7 @@ const gothamFontFamily =
 /*#__PURE__*/
 (0, _styledComponents.css)(["font-family:'Gotham SSm A','Gotham SSm B',-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol';-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;letter-spacing:initial;text-rendering:optimizeLegibility;"]);
 exports.gothamFontFamily = gothamFontFamily;
+const oswaldFontFamily =
+/*#__PURE__*/
+(0, _styledComponents.css)(["font-family:'Oswald',sans-serif;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;letter-spacing:initial;text-rendering:optimizeLegibility;"]);
+exports.oswaldFontFamily = oswaldFontFamily;

@@ -3,11 +3,11 @@ import Downshift, {
   DownshiftState,
   StateChangeOptions,
 } from 'downshift'
-import { pipe } from 'fp-ts/lib/function'
-import { fromNullable, Option } from 'fp-ts/lib/Option'
+import { flow } from 'fp-ts/lib/function'
+import { fromNullable, Option, toNullable } from 'fp-ts/lib/Option'
 import React, { ReactElement } from 'react'
 
-import { flexFlow, FontSizes, typography } from '@monorail/helpers/exports'
+import { flexFlow, FontSizes, typographyFont } from '@monorail/helpers/exports'
 import styled from '@monorail/helpers/styled-components'
 import { CommonComponentType } from '@monorail/types'
 import {
@@ -60,9 +60,9 @@ export type DropdownProps<D extends DropdownType> = CommonComponentType &
     required?: boolean
   }
 
-const DropdownContainer = styled.div<CommonComponentType>`
+export const DropdownContainer = styled.div<CommonComponentType>`
   ${flexFlow('column')};
-  ${typography(400, FontSizes.Title5)};
+  ${typographyFont(400, FontSizes.Title5)};
 
   position: relative;
   width: 256px;
@@ -141,7 +141,7 @@ export const Dropdown = <D extends DropdownType>({
     state: DownshiftState<D>,
     changes: StateChangeOptions<D>,
   ) =>
-    pipe(
+    flow(
       reduceStateBase(state),
       behaviorController.stateReducer(state),
       interactionController.stateReducer(state),
@@ -150,7 +150,7 @@ export const Dropdown = <D extends DropdownType>({
   return (
     <Downshift
       {...behaviorController.downshiftProps}
-      selectedItem={selectedDropdownItem.toNullable()}
+      selectedItem={toNullable(selectedDropdownItem)}
       itemToString={parserController.label}
       onChange={onChangeHandler}
       selectedItemChanged={selectedItemChanged}

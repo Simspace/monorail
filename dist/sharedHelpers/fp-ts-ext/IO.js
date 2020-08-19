@@ -18,7 +18,7 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 /**
  * Run IO
  */
-const runIO = x => x.run();
+const runIO = x => x();
 /**
  * Returns the run function for an IO<A>
  */
@@ -26,7 +26,7 @@ const runIO = x => x.run();
 
 exports.runIO = runIO;
 
-const constRunIO = x => x.run;
+const constRunIO = x => x;
 /**
  * IO constructor function
  *
@@ -35,20 +35,20 @@ const constRunIO = x => x.run;
 
 exports.constRunIO = constRunIO;
 
-const newIO = f => new _IO.IO(f);
+const newIO = f => f;
 /**
  * noOp IO function
  */
 
 
 exports.newIO = newIO;
-const noOpIO = new _IO.IO(_function.constVoid);
+const noOpIO = newIO(_function.constVoid);
 exports.noOpIO = noOpIO;
 
-const logIO = (cb, logLevel = 'log') => value => _IO.io.map(logger[logLevel](cb(value)), () => value).run();
+const logIO = (cb, logLevel = 'log') => value => _IO.io.map(logger[logLevel](cb(value)), () => value)();
 
 exports.logIO = logIO;
 
-const tapIO = logIO_ => value => _IO.io.map(logIO_(value), () => value).run();
+const tapIO = logIO_ => value => _IO.io.map(logIO_(value), () => value)();
 
 exports.tapIO = tapIO;

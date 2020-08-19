@@ -60,11 +60,11 @@ const monorailTheme = {
     [ThemeColors.ActiveSecondary]: _color.Colors.White,
     [ThemeColors.PrimaryColor]: _color.Colors.Black,
     [ThemeColors.SecondaryColor]: _color.Colors.White,
-    [ThemeColors.Text200]: _color.Colors.Black24,
-    [ThemeColors.Text500]: _color.Colors.Black54,
-    [ThemeColors.Text600]: _color.Colors.Black62,
-    [ThemeColors.Text700]: _color.Colors.Black74,
-    [ThemeColors.Text900]: _color.Colors.Black89,
+    [ThemeColors.Text200]: _color.Colors.Black24a,
+    [ThemeColors.Text500]: _color.Colors.Black54a,
+    [ThemeColors.Text600]: _color.Colors.Black62a,
+    [ThemeColors.Text700]: _color.Colors.Black74a,
+    [ThemeColors.Text900]: _color.Colors.Black89a,
     [ThemeColors.Text1000]: _color.Colors.BrandDarkBlue
   },
   [Mode.Dark]: { ...themeBase,
@@ -92,7 +92,10 @@ const monorailTheme = {
   },
   pageHeader: {
     showBreadCrumbs: true
-  }
+  },
+  introductionTagline: ["Don't just plan for the future.", 'Simulate it.'],
+  introductionOctagonColor: '#1465FF',
+  brandIcon: 'logo_mono'
 };
 exports.monorailTheme = monorailTheme;
 

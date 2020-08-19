@@ -3,6 +3,8 @@
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
     "baseUrl": ".",
+    "composite": true,
+    "declarationMap": true,
     "esModuleInterop": true,
     "experimentalDecorators": true,
     "forceConsistentCasingInFileNames": true,
@@ -13,7 +15,6 @@
     "noErrorTruncation": true,
     "noImplicitReturns": true,
     "noUnusedLocals": false,
-    /** specify an output directory to mute some TS errors */
     "outDir": "ts-dist",
     "paths": {
       "@monorail/*": ["src/*"]
@@ -25,5 +26,5 @@
     "strict": true,
     "target": "esnext"
   },
-  "include": ["src"]
+  "include": ["src/**/*", "src/**/*.json", "./jest/**/*"]
 }

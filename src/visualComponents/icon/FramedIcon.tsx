@@ -22,7 +22,7 @@ export const FramedIcon = styled(
       ${zIndex(ZIndexNodeName.FramedIconBackground)};
       ${borderRadius(BorderRadius.Small)};
 
-      background: ${getColor(isArchived ? Colors.Black38 : frameColor)};
+      background: ${getColor(isArchived ? Colors.Gray38 : frameColor)};
       content: '';
       position: absolute;
       top: -2px;

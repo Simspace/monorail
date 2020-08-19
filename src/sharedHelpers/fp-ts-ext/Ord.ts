@@ -1,9 +1,11 @@
-import { Ord } from 'fp-ts/lib/Ord'
-import { Ordering } from 'fp-ts/lib/Ordering'
+import { Ord, contramap, ordString, fromCompare } from 'fp-ts/lib/Ord'
+import { Ordering, invert as invertOrdering } from 'fp-ts/lib/Ordering'
 
 import { toLower } from '../strings'
 
-import { setoidRecordWithNameLower, setoidStrict } from './Setoid'
+import { eqRecordWithNameLower, eqStrict } from './Eq'
+import { pipe } from 'fp-ts/lib/pipeable'
+import { flow } from 'fp-ts/lib/function'
 
 /**
  * Determines ordering of two numbers (numeric comparison)
@@ -15,7 +17,7 @@ export const numericCompare = (x: number, y: number): Ordering =>
  * Ord instance for number
  */
 export const ordNumeric: Ord<number> = {
-  ...setoidStrict,
+  ...eqStrict,
   compare: numericCompare,
 }
 
@@ -29,9 +31,13 @@ export const alphaCompare = (x: string, y: string): Ordering =>
  * Ord instance for string
  */
 export const ordAlpha: Ord<string> = {
-  ...setoidStrict,
+  ...eqStrict,
   compare: alphaCompare,
 }
+
+export const ordCaseInsensitiveString = contramap((s: string) =>
+  s.toLocaleLowerCase(),
+)(ordString)
 
 /**
  * Comparator for RecordWithName, comparing lowercase names alphabetically
@@ -57,6 +63,13 @@ export const recordWithNameLowerComparator = <
 export const ordRecordWithNameLower: Ord<{
   name: string
 }> = {
-  ...setoidRecordWithNameLower,
+  ...eqRecordWithNameLower,
   compare: recordWithNameLowerComparator,
 }
+
+/**
+ * Inverts an Ord instance
+ * @param o
+ */
+export const invert = <T>(o: Ord<T>): Ord<T> =>
+  fromCompare(flow(o.compare, invertOrdering))

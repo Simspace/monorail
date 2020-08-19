@@ -18,8 +18,6 @@ const EmptySyllabusList = props => _react.default.createElement("svg", _extends(
   fill: "none",
   xmlns: "http://www.w3.org/2000/svg"
 }, props), _react.default.createElement("g", {
-  fill: "#000",
-  fillOpacity: "0.54",
   fillRule: "evenodd",
   clipPath: "url(#clip0)",
   clipRule: "evenodd"

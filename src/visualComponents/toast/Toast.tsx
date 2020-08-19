@@ -20,6 +20,7 @@ import {
   AlertLevel,
 } from '@monorail/visualComponents/toast/types'
 import { Text } from '@monorail/visualComponents/typography/Text'
+import { IconType } from '@monorail/visualComponents/icon/IconType'
 
 export enum ToastSize {
   Small = 'small',
@@ -30,13 +31,13 @@ export enum ToastSize {
  * Styles
  */
 const ToastContainer = styled.div<{
-  color: string
+  color: Colors
 }>(
   ({ color }) => css`
     ${flexFlow('row')};
 
     background: ${getColor(Colors.White)};
-    border: 1px solid ${color};
+    border: 1px solid ${getColor(color)};
     max-width: 50vw;
     min-width: 280px;
     position: relative;
@@ -62,14 +63,14 @@ const ToastClose = styled.div`
 `
 
 const ToastTileContainer = styled.div<{
-  color: string
+  color: Colors
   size: ToastSize
 }>(
   ({ color, size }) => css`
     min-height: ${size === ToastSize.Small ? 36 : 64}px;
     width: ${size === ToastSize.Small ? 40 : 64}px;
     align-items: center;
-    background: ${color};
+    background: ${getColor(color)};
     justify-content: center;
 
     ${flexFlow('row')};
@@ -83,11 +84,12 @@ const ToastTileContainer = styled.div<{
 type ToastTileProps = {
   level?: AlertLevel
   size?: ToastSize
-  icon?: string
+  icon?: IconType
 }
 
 const ToastTile: FC<ToastTileProps> = props => {
   const { level = AlertLevel.Info, size = ToastSize.Large, icon = '' } = props
+
   return (
     <ToastTileContainer color={AlertColors[level]} size={size}>
       <Icon
@@ -150,6 +152,7 @@ export const Toast: FC<ToastProps> = props => {
               isEmptyString(title) ? FontSizes.Title4 : FontSizes.Title5
             }
             fontWeight={400}
+            margin="4px 0"
           >
             {message}
           </Text>

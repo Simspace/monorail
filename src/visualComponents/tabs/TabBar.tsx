@@ -27,7 +27,6 @@ export const TabBarContainer = styled.div<CCTabBarProps>(
     position: relative;
     box-sizing: border-box;
     flex-shrink: 0;
-
     &::after {
       background: ${getColor(Colors.Grey94)};
       position: absolute;

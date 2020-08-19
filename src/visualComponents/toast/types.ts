@@ -1,4 +1,5 @@
 import { Colors, getColor } from '@monorail/helpers/color'
+import { IconType } from '@monorail/visualComponents/icon/IconType'
 
 export enum AlertLevel {
   Info = 'info',
@@ -8,13 +9,13 @@ export enum AlertLevel {
 }
 
 export const AlertColors = {
-  [AlertLevel.Info]: getColor(Colors.BrandLightBlue),
-  [AlertLevel.Success]: getColor(Colors.Green),
-  [AlertLevel.Error]: getColor(Colors.Red),
-  [AlertLevel.Warning]: getColor(Colors.Amber),
+  [AlertLevel.Info]: Colors.Info,
+  [AlertLevel.Success]: Colors.Success,
+  [AlertLevel.Error]: Colors.Error,
+  [AlertLevel.Warning]: Colors.Warning,
 }
 
-export const AlertIcons = {
+export const AlertIcons: Record<AlertLevel, IconType> = {
   [AlertLevel.Info]: 'info',
   [AlertLevel.Success]: 'check_circle',
   [AlertLevel.Error]: 'error',

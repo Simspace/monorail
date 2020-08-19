@@ -13,6 +13,8 @@ var _exports = require("../../helpers/exports");
 
 var _Label = require("./Label");
 
+var _inputTypes = require("./inputTypes");
+
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
@@ -50,6 +52,8 @@ const Select = props => {
   const {
     cssOverrides,
     disabled,
+    display = _inputTypes.DisplayType.View,
+    err,
     label,
     name,
     onBlur,
@@ -59,14 +63,14 @@ const Select = props => {
     placeholder,
     required,
     value,
-    err,
     ...domProps
   } = props;
   return _react.default.createElement(SelectGroupWrapper, _extends({
     cssOverrides: cssOverrides
   }, domProps), _react.default.createElement(_Label.Label, {
     label: label,
-    required: required
+    required: required,
+    display: display
   }), _react.default.createElement(SelectElementWrapper, {
     err: err
   }, _react.default.createElement(SelectElement, {

@@ -63,14 +63,14 @@ const Title =
 _styledComponents.default.h1.withConfig({
   displayName: "ErrorPage__Title",
   componentId: "jn137y-4"
-})(["", ";color:", ";margin:32px 0 32px 0;"], (0, _exports.typography)(700, _exports.FontSizes.Title1), (0, _exports.getColor)(_exports.Colors.Black89));
+})(["", ";color:", ";"], (0, _exports.typography)(700, _exports.FontSizes.Title1, '32px 0'), (0, _exports.getColor)(_exports.Colors.Black89a));
 
 const ErrorMessage =
 /*#__PURE__*/
 _styledComponents.default.div.withConfig({
   displayName: "ErrorPage__ErrorMessage",
   componentId: "jn137y-5"
-})(["", ";color:", ";max-width:448px;text-align:center;width:100%;"], (0, _exports.typography)(400, _exports.FontSizes.Title3), (0, _exports.getColor)(_exports.Colors.Black89));
+})(["", ";color:", ";max-width:448px;text-align:center;width:100%;"], (0, _exports.typography)(400, _exports.FontSizes.Title3), (0, _exports.getColor)(_exports.Colors.Black89a));
 /*
  * Types
  */

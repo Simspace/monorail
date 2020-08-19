@@ -5,8 +5,9 @@ import { ElevationRange, getElevationShadow } from '@monorail/helpers/elevation'
 import { flexFlow } from '@monorail/helpers/flex'
 import { pageSizePadding } from '@monorail/helpers/size'
 import styled, { css } from '@monorail/helpers/styled-components'
+import { FlattenSimpleInterpolation } from 'styled-components'
 
-const ButtonFooterContainer = styled.div`
+const ButtonFooterContainer = styled.div<Props>`
   ${flexFlow('row')};
   ${getElevationShadow(ElevationRange.Elevation5)};
 
@@ -15,6 +16,7 @@ const ButtonFooterContainer = styled.div`
   height: 40px;
   flex-shrink: 0;
   position: relative; /* Needs pos: rel so that the shadow appears above the content. */
+  ${props => props.cssOverrides}
 `
 
 const ButtonFooterContent = styled.div<Props>(
@@ -43,11 +45,16 @@ const ButtonFooterContent = styled.div<Props>(
 
 type Props = {
   justifyContent?: string
+  cssOverrides?: FlattenSimpleInterpolation
 }
 
-export const ButtonFooter: FC<Props> = ({ children, justifyContent }) => {
+export const ButtonFooter: FC<Props> = ({
+  children,
+  justifyContent,
+  cssOverrides,
+}) => {
   return (
-    <ButtonFooterContainer>
+    <ButtonFooterContainer cssOverrides={cssOverrides}>
       <ButtonFooterContent justifyContent={justifyContent}>
         {children}
       </ButtonFooterContent>

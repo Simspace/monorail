@@ -2,15 +2,15 @@
 
 var _function = require("../function");
 
-describe('flip_', () => {
-  it('should flip the order of the arguments of an uncurried function', () => {
-    const f = (x, y) => `${x}${y}`;
+describe('flip', () => {
+  it('should flip the order of the arguments of a curried function', () => {
+    const f = x => y => `${x}${y}`;
 
-    const g = (0, _function.flip_)(f);
+    const g = (0, _function.flip)(f);
     const num = 4;
     const str = '2';
-    const actual = g(str, num);
-    const expected = f(num, str);
+    const actual = g(str)(num);
+    const expected = f(num)(str);
     expect(actual).toBe(expected);
   });
 });
@@ -31,23 +31,6 @@ describe('swap', () => {
   it('should swap the order of arguments in a 2-tuple', () => {
     const actual = (0, _function.swap)([0, 1]);
     const expected = [1, 0];
-    expect(actual).toEqual(expected);
-  });
-});
-describe('tuple', () => {
-  it('should create a 2-tuple', () => {
-    const actual = (0, _function.tuple)(0, 1);
-    const expected = [0, 1];
-    expect(actual).toEqual(expected);
-  });
-  it('should create a 3-tuple', () => {
-    const actual = (0, _function.tuple)(0, 1, 2);
-    const expected = [0, 1, 2];
-    expect(actual).toEqual(expected);
-  });
-  it('should create a 4-tuple', () => {
-    const actual = (0, _function.tuple)(0, 1, 2, 3);
-    const expected = [0, 1, 2, 3];
     expect(actual).toEqual(expected);
   });
 });

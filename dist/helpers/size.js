@@ -12,6 +12,7 @@ exports.Sizes = Sizes;
 
 (function (Sizes) {
   Sizes[Sizes["DP8"] = 8] = "DP8";
+  Sizes[Sizes["DP12"] = 12] = "DP12";
   Sizes[Sizes["DP16"] = 16] = "DP16";
   Sizes[Sizes["DP24"] = 24] = "DP24";
   Sizes[Sizes["DP32"] = 32] = "DP32";
@@ -57,7 +58,7 @@ const pageSizeMargin = (params = {
     }
   }
 }) => (0, _styledComponents.css)`
-    max-width: ${page.width}px;
+    ${page.width === 'auto' ? '' : `max-width: ${page.width}px;`}
     margin: ${params.marginTop}px ${sizes.page.sideSpace}px
       ${params.marginBottom}px ${sizes.page.sideSpace}px;
   `};

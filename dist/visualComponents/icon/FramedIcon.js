@@ -45,7 +45,7 @@ const FramedIcon = (0, _styledComponents.default)(({
       ${(0, _zIndex.zIndex)(_zIndex.ZIndexNodeName.FramedIconBackground)};
       ${(0, _borderRadius.borderRadius)(_borderRadius.BorderRadius.Small)};
 
-      background: ${(0, _color.getColor)(isArchived ? _color.Colors.Black38 : frameColor)};
+      background: ${(0, _color.getColor)(isArchived ? _color.Colors.Gray38 : frameColor)};
       content: '';
       position: absolute;
       top: -2px;

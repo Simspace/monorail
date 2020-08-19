@@ -5,13 +5,15 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.mkApiAction = exports.mkApiActionTypes = exports.coerceApiActionTypeToString = void 0;
 
+var _function = require("fp-ts/lib/function");
+
 var _newtypeTs = require("newtype-ts");
 
 var _typeGuards = require("./typeGuards");
 
 // this is safe, because we know ApiActionType is a union of newtypes,
 // and we know each of those newtypes is actually a string at runtime
-const coerceApiActionTypeToString = x => (0, _newtypeTs.unsafeCoerce)(x);
+const coerceApiActionTypeToString = x => (0, _function.unsafeCoerce)(x);
 
 exports.coerceApiActionTypeToString = coerceApiActionTypeToString;
 

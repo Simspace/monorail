@@ -1,0 +1,22 @@
+import React, { Component } from 'react';
+import { PopOverChildProps } from '@monorail/metaComponents/popOver/PopOver';
+declare type Props = PopOverChildProps & {
+    width: number;
+};
+declare type State = {
+    dropDownHeight: number;
+    isRendered: boolean;
+};
+export declare class SidebarDropDown extends Component<Props, State> {
+    static defaultProps: {
+        width: number;
+    };
+    state: State;
+    dropDownRef: React.RefObject<HTMLDivElement>;
+    componentDidMount(): void;
+    componentDidUpdate(): void;
+    updateMenuHeight: () => void;
+    render(): JSX.Element;
+}
+export {};
+//# sourceMappingURL=SidebarDropDown.d.ts.map

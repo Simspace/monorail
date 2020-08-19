@@ -35,7 +35,7 @@ const StyledButtonWrapper = _styledComponents.default.div(({
 
     ${mode === _buttonTypes.ButtonsBarMode.Toolbar ? (0, _styledComponents.css)`
           ${_Button.StyledButton} {
-            margin: 2px;
+            margin: 0 2px;
           }
         ` : (0, _styledComponents.css)`
           border-radius: inherit;

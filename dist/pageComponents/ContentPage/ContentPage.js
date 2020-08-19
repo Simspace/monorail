@@ -15,13 +15,14 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 const ContentPage = props => {
   const {
-    children
+    children,
+    fullWidth = false
   } = props;
   return _react.default.createElement(_styledComponents.ThemeProvider, {
     theme: theme => ({ ...theme,
       size: { ...theme.size,
         page: {
-          width: 1064 + _size.sizes.page.sideSpace * 2
+          width: fullWidth ? 'auto' : 1064 + _size.sizes.page.sideSpace * 2
         }
       }
     })

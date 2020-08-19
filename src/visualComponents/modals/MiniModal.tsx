@@ -9,14 +9,16 @@ import {
   BBModalHeader,
   useModalAnimation,
 } from '@monorail/visualComponents/modals/Modals'
+import { IconType } from '@monorail/visualComponents/icon/IconType'
 import { ModalSize } from '@monorail/visualComponents/modals/modalTypes'
 import { Overlay } from '@monorail/visualComponents/toggle/Overlay'
 
 type Props = PopOverChildProps & {
   title: string
-  iconLeft?: string
+  iconLeft?: IconType
   headerChildren?: ReactNode
   modalBackgroundCss?: SimpleInterpolation
+  modalHeaderCss?: SimpleInterpolation
 }
 
 export const MiniModal: FC<Props> = props => {
@@ -27,6 +29,7 @@ export const MiniModal: FC<Props> = props => {
     iconLeft,
     isOpen,
     modalBackgroundCss,
+    modalHeaderCss,
     onClick,
     position,
     title,
@@ -79,6 +82,7 @@ export const MiniModal: FC<Props> = props => {
             onClose={onClick}
             title={title}
             iconLeft={iconLeft}
+            cssOverrides={modalHeaderCss}
           >
             {headerChildren}
           </BBModalHeader>

@@ -19,6 +19,7 @@ const DebouncedSearch = props => {
   const {
     name,
     onChange,
+    onBlur,
     placeholder,
     value,
     ...domProps
@@ -30,6 +31,7 @@ const DebouncedSearch = props => {
   return _react.default.createElement(_Search.Search, _extends({
     name: name,
     onChange: updateLocalValue,
+    onBlur: onBlur,
     placeholder: placeholder,
     value: localValue
   }, domProps));

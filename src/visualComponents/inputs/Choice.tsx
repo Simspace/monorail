@@ -11,7 +11,7 @@ import {
   flexFlow,
   FontSizes,
   getColor,
-  typography,
+  typographyFont,
   visible,
 } from '@monorail/helpers/exports'
 import { Icon, OnClick } from '@monorail/visualComponents/icon/Icon'
@@ -40,7 +40,7 @@ export const ChoiceFakeLabel = styled.div<AnsweredProps>(
 
     ${disabled && baseDisabledStyles};
 
-    ${typography(500, FontSizes.Title5)};
+    ${typographyFont(500, FontSizes.Title5)};
     ${err && `color: ${getColor(Colors.Red)};`}
     flex-grow: 1;
     word-break: break-word;
@@ -117,6 +117,7 @@ type GradeIconProps = {
 
 type ChoiceInputProps = AnsweredProps & {
   checked?: boolean
+  checkColor?: Colors
   defaultChecked?: boolean
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void
   onClick?: OnClick
@@ -163,7 +164,7 @@ const UncheckedRadioIcon = styled(
       ? centeredIconStyles(answered, dense)
       : baseIconStyles(answered, dense)};
 
-    color: ${err ? getColor(Colors.Red) : getColor(Colors.Black54)};
+    color: ${err ? getColor(Colors.Red) : getColor(Colors.Black54a)};
 
     ${disabled && baseDisabledStyles};
   `,
@@ -219,7 +220,7 @@ const UncheckedCheckboxIcon = styled(
       ? centeredIconStyles(answered, dense)
       : baseIconStyles(answered, dense)};
 
-    color: ${err ? getColor(Colors.Red) : getColor(Colors.Black54)};
+    color: ${err ? getColor(Colors.Red) : getColor(Colors.Black54a)};
 
     ${disabled && baseDisabledStyles};
   `,
@@ -231,17 +232,20 @@ const CheckedCheckboxIcon = styled(
     answered,
     dense,
     centeredInput,
+    checkColor,
     disabled,
     ...otherProps
   }: ChoiceInputProps) => <Icon icon="check_box" {...otherProps} />,
 )(
-  ({ checked, answered, dense, centeredInput, disabled }) => css`
+  ({ checked, answered, dense, centeredInput, disabled, checkColor }) => css`
     ${visible(checked)};
     ${centeredInput
       ? centeredIconStyles(answered, dense)
       : baseIconStyles(answered, dense)};
 
-    color: ${getColor(Colors.BrandLightBlue)};
+    color: ${checkColor
+      ? getColor(checkColor)
+      : getColor(Colors.BrandLightBlue)};
 
     ${disabled && baseDisabledStyles};
   `,
@@ -321,6 +325,7 @@ const renderFakeInputIcons = (
   dense: boolean | undefined,
   indeterminate: boolean,
   disabled: boolean,
+  checkColor?: Colors,
   err?: boolean,
 ) => {
   switch (type) {
@@ -360,6 +365,7 @@ const renderFakeInputIcons = (
             centeredInput={centeredInput}
             checked={checked}
             answered={answered}
+            checkColor={checkColor}
             dense={dense}
             disabled={disabled}
           />
@@ -378,6 +384,7 @@ export const Choice: FC<ChoiceProps> = props => {
   const {
     answered = false,
     centeredInput = false,
+    checkColor,
     checked = false,
     correct = false,
     cssOverrides,
@@ -416,7 +423,27 @@ export const Choice: FC<ChoiceProps> = props => {
       <ChoiceInput
         data-test-id={dataTestId}
         disabled={disabled}
-        onChange={onChange}
+        onChange={e => {
+          /**
+           * This component is both a controlled _and_ an
+           * uncontrolled component because it uses both
+           * defaultChecked _and_ checked to control its
+           * internal state. This leads to unexpected behavior.
+           * For example, PS-7964 where after it's given its
+           * defaultChecked value it will fire off an onChange
+           * event only once.
+           *
+           * https://reactjs.org/docs/uncontrolled-components.html#default-values
+           *
+           * This should be updated to either be completely controlled or
+           * modified to be able to be both controlled and uncontrolled.
+           *
+           * https://ticket.simspace.com/browse/PS-7978
+           *
+           * AR - 2020/03/19
+           */
+          onChange && onChange(e)
+        }}
         defaultChecked={checked}
         type={type}
         readOnly={readOnly}
@@ -435,6 +462,7 @@ export const Choice: FC<ChoiceProps> = props => {
         dense,
         indeterminate,
         disabled,
+        checkColor,
         err,
       )}
       <ChoiceFakeLabel answered={answered} disabled={disabled} err={err}>

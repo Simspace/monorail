@@ -30,7 +30,7 @@ const SectionHeaderContainer =
 _styledComponents.default.div.withConfig({
   displayName: "SectionHeader__SectionHeaderContainer",
   componentId: "sc-16s6esu-0"
-})(["", ";", ";align-items:center;color:", ";flex-shrink:0;height:40px;padding:0 16px;"], (0, _exports.flexFlow)('row'), (0, _exports.typography)(700, _exports.FontSizes.Title5), (0, _exports.getColor)(_exports.Colors.Black74));
+})(["", ";", ";align-items:center;color:", ";flex-shrink:0;height:40px;padding:0 16px;"], (0, _exports.flexFlow)('row'), (0, _exports.typographyFont)(700, _exports.FontSizes.Title5), (0, _exports.getColor)(_exports.Colors.Black74a));
 
 const iconLeftStyle =
 /*#__PURE__*/

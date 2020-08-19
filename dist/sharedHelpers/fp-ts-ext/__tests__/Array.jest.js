@@ -8,11 +8,9 @@ var _Either = require("fp-ts/lib/Either");
 
 var _Eq = require("fp-ts/lib/Eq");
 
-var _IO = require("fp-ts/lib/IO");
-
-var _Option = require("fp-ts/lib/Option");
-
 var _Array2 = require("../Array");
+
+var _IO = require("../IO");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -46,7 +44,7 @@ describe('concat', () => {
   it('should concatenate arrays correctly', () => {
     const actual = (0, _Array2.concat)([0])([1]);
 
-    const expected = _Array.array.alt([0], [1]);
+    const expected = _Array.array.alt([0], () => [1]);
 
     expect(actual).toEqual(expected);
   });
@@ -55,7 +53,7 @@ describe('concatFlipped should concatenate arrays correctly', () => {
   it('should concatenate arrays correctly', () => {
     const actual = (0, _Array2.concatFlipped)([1])([0]);
 
-    const expected = _Array.array.alt([1], [0]);
+    const expected = _Array.array.alt([1], () => [0]);
 
     expect(actual).toEqual(expected);
   });
@@ -68,6 +66,30 @@ describe('contains', () => {
   });
   it('should return false when an array does not contain an element', () => {
     const actual = (0, _Array2.contains)(5)([0, 1, 2]);
+    const expected = false;
+    expect(actual).toBe(expected);
+  });
+});
+describe('containsEq', () => {
+  it('should return true when x is in xs', () => {
+    const actual = (0, _Array2.containsEq)(_Eq.eqNumber)(3)([3, 4, 5]);
+    const expected = true;
+    expect(actual).toBe(expected);
+  });
+  it('should return false when xs is not in xs', () => {
+    const actual = (0, _Array2.containsEq)(_Eq.eqNumber)(1)([4, 5, 6]);
+    const expected = false;
+    expect(actual).toBe(expected);
+  });
+});
+describe('containsAny', () => {
+  it('should return true when xs contains an element in ys', () => {
+    const actual = (0, _Array2.containsAny)(_Eq.eqNumber)([1, 2, 3])([3, 4, 5]);
+    const expected = true;
+    expect(actual).toBe(expected);
+  });
+  it('should return false when xs does not contain an element in ys', () => {
+    const actual = (0, _Array2.containsAny)(_Eq.eqNumber)([1, 2, 3])([4, 5, 6]);
     const expected = false;
     expect(actual).toBe(expected);
   });
@@ -152,16 +174,6 @@ describe('len', () => {
     expect(actual).toBe(expected);
   });
 });
-describe('liftOption2', () => {
-  it('should lift a function of 2 args into the context of Option', () => {
-    const add = x => y => x + y;
-
-    const addOpt = (0, _Array2.liftOption2)(add);
-    const actual = addOpt((0, _Option.some)(3))((0, _Option.some)(5)).getOrElse(0);
-    const expected = 8;
-    expect(actual).toBe(expected);
-  });
-});
 describe('map', () => {
   it('should transform the values in an array', () => {
     const a = [0, 1, 2, 3];
@@ -186,11 +198,11 @@ describe('runIOs', () => {
   it('run a series of side-effects contained within IOs', () => {
     const getActual = seed => {
       let mut = seed;
-      const ios = [new _IO.IO(() => {
+      const ios = [(0, _IO.newIO)(() => {
         mut += 1;
-      }), new _IO.IO(() => {
+      }), (0, _IO.newIO)(() => {
         mut += 3;
-      }), new _IO.IO(() => {
+      }), (0, _IO.newIO)(() => {
         mut += 5;
       })];
       (0, _Array2.runIOs)(ios);
@@ -215,30 +227,37 @@ describe('xor', () => {
     const arrNumEq = (0, _Array.getEq)(_Eq.eqNumber);
     const numXor = (0, _Array2.xor)(_Eq.eqNumber);
     test('identity', () => {
-      _fastCheck.default.assert(_fastCheck.default.property(_fastCheck.default.array(_fastCheck.default.integer()), xs => {
+      _fastCheck.default.assert(_fastCheck.default.property(_fastCheck.default.set(_fastCheck.default.integer()), xs => {
         return arrNumEq.equals(numXor(xs, []), xs) && arrNumEq.equals(numXor([], xs), xs);
       }));
     });
     test('self inverse', () => {
-      _fastCheck.default.assert(_fastCheck.default.property(_fastCheck.default.array(_fastCheck.default.integer()), xs => {
+      _fastCheck.default.assert(_fastCheck.default.property(_fastCheck.default.set(_fastCheck.default.integer()), xs => {
         return arrNumEq.equals(numXor(xs, xs), []);
       }));
     });
     test('combined inputs contain the result', () => {
-      _fastCheck.default.assert(_fastCheck.default.property(_fastCheck.default.array(_fastCheck.default.integer()), _fastCheck.default.array(_fastCheck.default.integer()), (xs, ys) => {
+      _fastCheck.default.assert(_fastCheck.default.property(_fastCheck.default.set(_fastCheck.default.integer()), _fastCheck.default.set(_fastCheck.default.integer()), (xs, ys) => {
         const combined = [...xs, ...ys];
         return numXor(xs, ys).every(n => combined.includes(n));
       }));
     });
     test('commutative', () => {
-      _fastCheck.default.assert(_fastCheck.default.property(_fastCheck.default.array(_fastCheck.default.integer()), _fastCheck.default.array(_fastCheck.default.integer()), (xs, ys) => {
+      _fastCheck.default.assert(_fastCheck.default.property(_fastCheck.default.set(_fastCheck.default.integer()), _fastCheck.default.set(_fastCheck.default.integer()), (xs, ys) => {
         return arrNumEq.equals(numXor(xs, ys).sort(), numXor(ys, xs).sort());
       }));
     });
     test('associative', () => {
-      _fastCheck.default.assert(_fastCheck.default.property(_fastCheck.default.array(_fastCheck.default.integer()), _fastCheck.default.array(_fastCheck.default.integer()), _fastCheck.default.array(_fastCheck.default.integer()), (xs, ys, zs) => {
+      _fastCheck.default.assert(_fastCheck.default.property(_fastCheck.default.set(_fastCheck.default.integer()), _fastCheck.default.set(_fastCheck.default.integer()), _fastCheck.default.set(_fastCheck.default.integer()), (xs, ys, zs) => {
         return arrNumEq.equals(numXor(numXor(xs, ys), zs).sort(), numXor(xs, numXor(ys, zs)).sort());
       }));
     });
+  });
+});
+describe('rle', () => {
+  it('should calculate the run-length encoding', () => {
+    expect((0, _Array2.rle)(_Eq.eqString)('aaabba'.split(''))).toEqual([['a', 3], ['b', 2], ['a', 1]]);
+    expect((0, _Array2.rle)(_Eq.eqString)('abc'.split(''))).toEqual([['a', 1], ['b', 1], ['c', 1]]);
+    expect((0, _Array2.rle)(_Eq.eqString)([])).toEqual([]);
   });
 });

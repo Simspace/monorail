@@ -46,7 +46,6 @@ exports.AppName = AppName;
 })(AppName || (exports.AppName = AppName = {}));
 
 const convertAppNameToColor = appNames => {
-  /* eslint-disable default-case */
   switch (appNames) {
     case AppName.Events:
     case AppName.Execution:
@@ -96,8 +95,6 @@ const convertAppNameToColor = appNames => {
     default:
       return _color.Colors.White;
   }
-  /* eslint-enable default-case */
-
 };
 
 exports.convertAppNameToColor = convertAppNameToColor;

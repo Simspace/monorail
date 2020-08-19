@@ -1,4 +1,5 @@
 import { colorHSLAMap, Colors, getColor } from '@monorail/helpers/color'
+import { IconType } from '@monorail/visualComponents/icon/IconType'
 
 export enum Mode {
   Light = 'light',
@@ -40,6 +41,7 @@ export interface GlobalAppThemeInterface {
   [ThemeColors.ApplicationPrimary]: Colors
   [ThemeColors.ApplicationSecondary]: Colors
   brandAccentColor: Colors
+  brandIcon: IconType
   linkColor: Colors
   mode: Mode
   size: {
@@ -53,6 +55,8 @@ export interface GlobalAppThemeInterface {
   pageHeader: {
     showBreadCrumbs: boolean
   }
+  introductionTagline: Array<string>
+  introductionOctagonColor: string
 }
 
 const themeBase = {
@@ -77,11 +81,11 @@ export const monorailTheme: GlobalAppThemeInterface = {
     [ThemeColors.ActiveSecondary]: Colors.White,
     [ThemeColors.PrimaryColor]: Colors.Black,
     [ThemeColors.SecondaryColor]: Colors.White,
-    [ThemeColors.Text200]: Colors.Black24,
-    [ThemeColors.Text500]: Colors.Black54,
-    [ThemeColors.Text600]: Colors.Black62,
-    [ThemeColors.Text700]: Colors.Black74,
-    [ThemeColors.Text900]: Colors.Black89,
+    [ThemeColors.Text200]: Colors.Black24a,
+    [ThemeColors.Text500]: Colors.Black54a,
+    [ThemeColors.Text600]: Colors.Black62a,
+    [ThemeColors.Text700]: Colors.Black74a,
+    [ThemeColors.Text900]: Colors.Black89a,
     [ThemeColors.Text1000]: Colors.BrandDarkBlue,
   },
   [Mode.Dark]: {
@@ -111,6 +115,9 @@ export const monorailTheme: GlobalAppThemeInterface = {
   pageHeader: {
     showBreadCrumbs: true,
   },
+  introductionTagline: ["Don't just plan for the future.", 'Simulate it.'],
+  introductionOctagonColor: '#1465FF',
+  brandIcon: 'logo_mono',
 }
 
 export const getThemeColor = (colorKey: ThemeColors, a: number = 1) => {

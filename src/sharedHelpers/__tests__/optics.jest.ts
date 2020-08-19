@@ -1,3 +1,4 @@
+import { eqNumber, eqString } from 'fp-ts/lib/Eq'
 import { Lens } from 'monocle-ts'
 
 import {
@@ -6,6 +7,7 @@ import {
   mkRecordKeyOptional,
   oLens,
 } from '../optics'
+import { isNumber, isString } from '../typeGuards'
 
 interface TestAddress {
   street: string
@@ -70,9 +72,7 @@ describe('mkRecordKeyOptional', () => {
     const testStr: string = '43be4d69-4169-4f30-a6c2-8dd497a0472a'
     const testOptional = mkRecordKeyOptional<typeof testRecord, string>(testStr)
     const opt = testOptional.getOption(testRecord)
-    const actual = opt.isSome() && opt.value === 2
-    const expected = true
-    expect(actual).toEqual(expected)
+    expect(opt).toEqualSome(2)
   })
 })
 
@@ -80,9 +80,7 @@ describe('mkArrayIndexOptional', () => {
   it('should create a properly functioning Optional for a given key', () => {
     const testOptional = mkArrayIndexOptional(2)
     const opt = testOptional.getOption(testArray)
-    const actual = opt.isSome() && opt.value === 'c'
-    const expected = true
-    expect(actual).toBe(expected)
+    expect(opt).toEqualSome('c')
   })
 })
 

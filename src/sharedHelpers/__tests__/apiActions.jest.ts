@@ -37,16 +37,14 @@ describe('mkApiActionTypes', () => {
   })
   describe('types', () => {
     it('should contain prisms that function correctly', () => {
-      expect(prisms.optimistic.getOption('GET_USERS_OPTIMISTIC').isSome()).toBe(
-        true,
-      )
-      expect(prisms.request.getOption('GET_USERS_REQUEST').isSome()).toBe(true)
-      expect(prisms.success.getOption('GET_USERS_SUCCESS').isSome()).toBe(true)
-      expect(prisms.failure.getOption('GET_USERS_FAILURE').isSome()).toBe(true)
-      expect(prisms.optimistic.getOption('invalid').isSome()).toBe(false)
-      expect(prisms.request.getOption('invalid').isSome()).toBe(false)
-      expect(prisms.success.getOption('invalid').isSome()).toBe(false)
-      expect(prisms.failure.getOption('invalid').isSome()).toBe(false)
+      expect(prisms.optimistic.getOption('GET_USERS_OPTIMISTIC')).toBeSome()
+      expect(prisms.request.getOption('GET_USERS_REQUEST')).toBeSome()
+      expect(prisms.success.getOption('GET_USERS_SUCCESS')).toBeSome()
+      expect(prisms.failure.getOption('GET_USERS_FAILURE')).toBeSome()
+      expect(prisms.optimistic.getOption('invalid')).toBeNone()
+      expect(prisms.request.getOption('invalid')).toBeNone()
+      expect(prisms.success.getOption('invalid')).toBeNone()
+      expect(prisms.failure.getOption('invalid')).toBeNone()
     })
   })
 })

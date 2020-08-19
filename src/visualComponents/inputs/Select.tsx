@@ -4,6 +4,7 @@ import styled, { css, SimpleInterpolation } from 'styled-components'
 import { baseErrorBorderStyles, flexFlow } from '@monorail/helpers/exports'
 import { CommonComponentType } from '@monorail/types'
 import { Label } from '@monorail/visualComponents/inputs/Label'
+import { DisplayType } from '@monorail/visualComponents/inputs/inputTypes'
 
 const SelectGroupWrapper = styled.div<CommonComponentType>(
   ({ cssOverrides }) => css`
@@ -56,6 +57,8 @@ export type SelectOption = {
 export type SelectProps = {
   cssOverrides?: SimpleInterpolation
   disabled?: boolean
+  display?: DisplayType
+  err?: boolean
   label?: string
   name?: string
   onBlur?: (e: React.SyntheticEvent) => void
@@ -65,13 +68,14 @@ export type SelectProps = {
   placeholder?: string
   required?: boolean
   value?: string | Array<string> | number
-  err?: boolean
 }
 
 export const Select: FC<SelectProps> = props => {
   const {
     cssOverrides,
     disabled,
+    display = DisplayType.View,
+    err,
     label,
     name,
     onBlur,
@@ -81,13 +85,12 @@ export const Select: FC<SelectProps> = props => {
     placeholder,
     required,
     value,
-    err,
     ...domProps
   } = props
 
   return (
     <SelectGroupWrapper cssOverrides={cssOverrides} {...domProps}>
-      <Label label={label} required={required} />
+      <Label label={label} required={required} display={display} />
       <SelectElementWrapper err={err}>
         <SelectElement
           disabled={disabled}

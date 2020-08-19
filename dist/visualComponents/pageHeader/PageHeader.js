@@ -121,10 +121,9 @@ const TitleContainer = _styledComponents2.default.div(({
 
 exports.TitleContainer = TitleContainer;
 const Title = _styledComponents2.default.h1`
-  ${(0, _typography.typography)(700, _typography.FontSizes.Title1)};
+  ${(0, _typography.typographyFont)(700, _typography.FontSizes.Title1)};
 
   color: ${(0, _theme.getThemeColor)(_theme.ThemeColors.Text900)};
-  margin-left: 0;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -134,7 +133,7 @@ const PageName = _styledComponents2.default.h5`
   marginTop: 8,
   marginBottom: -8
 })};
-  ${(0, _typography.typography)(500, _typography.FontSizes.Title5)};
+  ${(0, _typography.typographyFont)(500, _typography.FontSizes.Title5)};
 
   color: ${(0, _theme.getThemeColor)(_theme.ThemeColors.Text1000)};
   overflow: hidden;

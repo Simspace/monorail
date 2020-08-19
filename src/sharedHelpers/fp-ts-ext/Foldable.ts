@@ -1,7 +1,14 @@
-import { HKT, Kind, Kind2, URIS, URIS2 } from 'fp-ts/lib/HKT'
+import { HKT, Kind, Kind2, URIS, URIS2, URIS3, Kind3 } from 'fp-ts/lib/HKT'
 import { Predicate, identity } from 'fp-ts/lib/function'
-import { Foldable2v, Foldable2v1, Foldable2v2 } from 'fp-ts/lib/Foldable2v'
-import { monoidAll, monoidAny } from 'fp-ts/lib/Monoid'
+import { Foldable, Foldable1, Foldable2, traverse_ } from 'fp-ts/lib/Foldable'
+import { monoidAll, monoidAny, monoidSum } from 'fp-ts/lib/Monoid'
+import {
+  Applicative3,
+  Applicative2,
+  Applicative2C,
+  Applicative1,
+  Applicative,
+} from 'fp-ts/lib/Applicative'
 
 /**
  * `and` returns the _conjunction_ of all the `boolean` values in a data
@@ -29,14 +36,14 @@ import { monoidAll, monoidAny } from 'fp-ts/lib/Monoid'
  * and(array)([true])              //-> true
  */
 export function and<F extends URIS2>(
-  F: Foldable2v2<F>,
+  F: Foldable2<F>,
 ): <E>(bs: Kind2<F, E, boolean>) => boolean
 
 export function and<F extends URIS>(
-  F: Foldable2v1<F>,
+  F: Foldable1<F>,
 ): (bs: Kind<F, boolean>) => boolean
 
-export function and<F>(F: Foldable2v<F>): (bs: HKT<F, boolean>) => boolean {
+export function and<F>(F: Foldable<F>): (bs: HKT<F, boolean>) => boolean {
   return bs => F.foldMap(monoidAll)(bs, identity)
 }
 
@@ -66,14 +73,14 @@ export function and<F>(F: Foldable2v<F>): (bs: HKT<F, boolean>) => boolean {
  * or(array)([true])              //-> true
  */
 export function or<F extends URIS2>(
-  F: Foldable2v2<F>,
+  F: Foldable2<F>,
 ): <E>(bs: Kind2<F, E, boolean>) => boolean
 
 export function or<F extends URIS>(
-  F: Foldable2v1<F>,
+  F: Foldable1<F>,
 ): (bs: Kind<F, boolean>) => boolean
 
-export function or<F>(F: Foldable2v<F>): (bs: HKT<F, boolean>) => boolean {
+export function or<F>(F: Foldable<F>): (bs: HKT<F, boolean>) => boolean {
   return bs => F.foldMap(monoidAny)(bs, identity)
 }
 
@@ -86,15 +93,15 @@ export function or<F>(F: Foldable2v<F>): (bs: HKT<F, boolean>) => boolean {
  *
  */
 export function all<F extends URIS2>(
-  F: Foldable2v2<F>,
+  F: Foldable2<F>,
 ): <E, A>(pred: Predicate<A>, as: Kind2<F, E, A>) => boolean
 
 export function all<F extends URIS>(
-  F: Foldable2v1<F>,
+  F: Foldable1<F>,
 ): <A>(pred: Predicate<A>, as: Kind<F, A>) => boolean
 
 export function all<F>(
-  F: Foldable2v<F>,
+  F: Foldable<F>,
 ): <A>(pred: Predicate<A>, as: HKT<F, A>) => boolean {
   return (pred, as) => F.foldMap(monoidAll)(as, pred)
 }
@@ -108,15 +115,69 @@ export function all<F>(
  *
  */
 export function any<F extends URIS2>(
-  F: Foldable2v2<F>,
+  F: Foldable2<F>,
 ): <E, A>(pred: Predicate<A>, as: Kind2<F, E, A>) => boolean
 
 export function any<F extends URIS>(
-  F: Foldable2v1<F>,
+  F: Foldable1<F>,
 ): <A>(pred: Predicate<A>, as: Kind<F, A>) => boolean
 
 export function any<F>(
-  F: Foldable2v<F>,
+  F: Foldable<F>,
 ): <A>(pred: Predicate<A>, as: HKT<F, A>) => boolean {
   return (pred, as) => F.foldMap(monoidAny)(as, pred)
+}
+
+/**
+ * Counts the number of items that match a predicate in the provided foldable
+ * @param F the Foldable instance
+ * @param pred Predicate on type `A`
+ * @param as A foldable container of one or more values of type `A`
+ */
+export function count<F extends URIS2>(
+  F: Foldable2<F>,
+): <E, A>(pred: Predicate<A>) => (as: Kind2<F, E, A>) => number
+
+export function count<F extends URIS>(
+  F: Foldable1<F>,
+): <A>(pred: Predicate<A>) => (as: Kind<F, A>) => number
+
+export function count<F>(
+  F: Foldable<F>,
+): <A>(pred: Predicate<A>) => (as: HKT<F, A>) => number {
+  return pred => as => F.foldMap(monoidSum)(as, x => (pred(x) ? 1 : 0))
+}
+
+/**
+/**
+ * Sequence a data structure, performing some effects encoded by an `Applicative` functor at each value, ignoring the
+ * final result.
+ *
+ * @since 2.0.0
+ */
+export function sequence_<M extends URIS3, F extends URIS>(
+  M: Applicative3<M>,
+  F: Foldable1<F>,
+): <R, E, A>(fa: Kind<F, Kind3<M, R, E, A>>) => Kind3<M, R, E, void>
+export function sequence_<M extends URIS2, F extends URIS>(
+  M: Applicative2<M>,
+  F: Foldable1<F>,
+): <E, A>(fa: Kind<F, Kind2<M, E, A>>) => Kind2<M, E, void>
+export function sequence_<M extends URIS2, F extends URIS, E>(
+  M: Applicative2C<M, E>,
+  F: Foldable1<F>,
+): <A>(fa: Kind<F, Kind2<M, E, A>>) => Kind2<M, E, void>
+export function sequence_<M extends URIS, F extends URIS>(
+  M: Applicative1<M>,
+  F: Foldable1<F>,
+): <A>(fa: Kind<F, Kind<M, A>>) => Kind<M, void>
+export function sequence_<M, F>(
+  M: Applicative<M>,
+  F: Foldable<F>,
+): <A>(fa: HKT<F, HKT<M, A>>) => HKT<M, void>
+export function sequence_<M, F>(
+  M: Applicative<M>,
+  F: Foldable<F>,
+): <A>(fa: HKT<F, HKT<M, A>>) => HKT<M, void> {
+  return fa => traverse_(M, F)(fa, identity)
 }

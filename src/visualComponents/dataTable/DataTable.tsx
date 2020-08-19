@@ -5,7 +5,7 @@ import {
   flexFlow,
   FontSizes,
   getColor,
-  typography,
+  typographyFont,
 } from '@monorail/helpers/exports'
 import { CommonComponentType } from '@monorail/types'
 
@@ -115,10 +115,10 @@ export const TableHeaderData = styled.div<
 >(
   ({ cssOverrides, flex, hasSorter = false, textAlign, width }) => css`
     ${flexFlow('row')};
-    ${typography(500, FontSizes.Title5)};
+    ${typographyFont(500, FontSizes.Title5)};
 
     align-items: center;
-    color: ${getColor(Colors.Black89)};
+    color: ${getColor(Colors.Black89a)};
     height: 100%;
     padding: 8px 8px 7px; /* 7px bottom because of the bottomBorder on the row. */
 
@@ -186,10 +186,10 @@ export const TableRowContainer = styled.div<
 export const TableRowData = styled.div<CommonComponentType & TableDataType>(
   ({ textAlign, width, flex, cssOverrides }) => css`
     ${flexFlow('row')};
-    ${typography(400, FontSizes.Title5)};
+    ${typographyFont(400, FontSizes.Title5)};
 
     align-items: center;
-    color: ${getColor(Colors.Black89)};
+    color: ${getColor(Colors.Black89a)};
     padding: 12px 8px;
     height: 100%;
 
@@ -223,7 +223,7 @@ export const TableRowGroupHeader = styled.div<
 export const TableEmptyMessage = styled.div`
   padding: 16px;
 
-  ${typography(400, FontSizes.Title5)};
+  ${typographyFont(400, FontSizes.Title5)};
 `
 
 // Table Footer
@@ -251,9 +251,9 @@ export const TableFooterContainer = styled.div<
 
 export const TableFooterMeta = styled.div<CommonComponentType>(
   ({ cssOverrides }) => css`
-    ${typography(400, FontSizes.Title5)};
+    ${typographyFont(400, FontSizes.Title5)};
 
-    color: ${getColor(Colors.Black74)};
+    color: ${getColor(Colors.Black74a)};
     margin-left: auto;
 
     ${cssOverrides};

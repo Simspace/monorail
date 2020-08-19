@@ -14,6 +14,7 @@ import {
   BBModalHeaderContainer,
 } from '@monorail/visualComponents/modals/Modals'
 import { Text } from '@monorail/visualComponents/typography/Text'
+import { IconType } from '@monorail/visualComponents/icon/IconType'
 
 /*
  * Styles
@@ -42,7 +43,7 @@ const alertModalStyles = {
   `,
 }
 
-const alertIcon = {
+const alertIcon: Record<AlertType, IconType> = {
   [AlertType.Error]: 'error',
   [AlertType.Warning]: 'warning',
   [AlertType.Success]: 'check_circle',
@@ -95,10 +96,12 @@ export const AlertModal: FC<AlertModalProps> = props => {
     titleText,
     togglePopOver,
     zIndex,
+    ...domProps
   } = props
 
   return (
     <MediumModal
+      {...domProps}
       onClick={onClick}
       closingAnimationCompleted={closingAnimationCompleted}
       togglePopOver={togglePopOver}

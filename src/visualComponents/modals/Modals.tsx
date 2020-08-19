@@ -24,7 +24,7 @@ import {
   getElevationShadow,
   gothamFontFamily,
   sizes,
-  typography,
+  typographyFont,
 } from '@monorail/helpers/exports'
 import { useEventListener } from '@monorail/helpers/hooks'
 import styled, {
@@ -36,6 +36,7 @@ import { Mode } from '@monorail/helpers/theme'
 import { Div } from '@monorail/StyleHelpers'
 import { CommonComponentType } from '@monorail/types'
 import { AppIcon } from '@monorail/visualComponents/appIcon/AppIcon'
+import { IconType } from '@monorail/visualComponents/icon/IconType'
 import {
   ButtonDisplay,
   IconButtonShape,
@@ -198,7 +199,7 @@ export const overlayCloseAnimation = keyframes`
  * Types
  */
 
-type BBModalSize = {
+export type BBModalSize = {
   size: ModalSize
 }
 
@@ -291,7 +292,7 @@ export const BBModalHeaderContainer = styled.div<
   `,
 )
 
-const BBModalHeaderRow = styled.div<BBModalSize>(
+export const BBModalHeaderRow = styled.div<BBModalSize>(
   ({ size }) => css`
     ${flexFlow('row')};
 
@@ -306,8 +307,8 @@ const BBModalHeaderRow = styled.div<BBModalSize>(
 const BBModalHeaderTitle = styled.h1<BBModalSize>(
   ({ size }) => css`
     ${size === ModalSize.Mini || size === ModalSize.Small
-      ? typography(700, FontSizes.Title4)
-      : typography(700, FontSizes.Title3)};
+      ? typographyFont(700, FontSizes.Title4)
+      : typographyFont(700, FontSizes.Title3)};
 
     color: ${getColor(Colors.White)};
     white-space: nowrap;
@@ -342,8 +343,8 @@ type BBModalHeaderProps = BBModalSize & {
   appIcon?: AppName
   customCloseButton?: ReactNode
   headerRowChildren?: ReactNode
-  iconLeft?: string
-  iconRight?: string
+  iconLeft?: IconType
+  iconRight?: IconType
   onClose?: (event: MouseEvent) => void
   title: string
   cssOverrides?: SimpleInterpolation

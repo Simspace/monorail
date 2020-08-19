@@ -51,9 +51,7 @@ class MultipleTextField extends _react.Component {
       cssOverrides: cssOverrides
     }, _react.default.createElement(_Label.Label, {
       label: label
-    }), _react.default.createElement(TextFieldsWrapper, null, textFields.map((t, k) => _react.default.createElement(_TextField.TextField, _extends({
-      key: k
-    }, t, {
+    }), _react.default.createElement(TextFieldsWrapper, null, textFields.map((t, k) => _react.default.createElement(_TextField.TextField, _extends({}, t, {
       onChange: e => onChange(t.key, t.htmlType === 'number' ? Number(e.target.value) : e.target.value),
       cssOverrides: {
         paddingLeft: k === 0 ? '0px' : '4px',

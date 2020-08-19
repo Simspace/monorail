@@ -6,7 +6,7 @@ import {
   flexFlow,
   FontSizes,
   getColor,
-  typography,
+  typographyFont,
 } from '@monorail/helpers/exports'
 import { isNil } from '@monorail/sharedHelpers/typeGuards'
 import { DisplayType } from '@monorail/visualComponents/inputs/inputTypes'
@@ -44,12 +44,12 @@ export const TextAreaContainer = styled.label<
 
 export const TextAreaInput = styled.textarea<TextAreaInputProps>(
   ({ chromeless, compact, height, err }) => css`
-    ${typography(400, FontSizes.Title5)};
+    ${typographyFont(400, FontSizes.Title5)};
     ${borderRadius()};
 
     border: 1px solid ${getColor(Colors.Black, 0.12)};
     box-sizing: border-box;
-    color: ${getColor(Colors.Black89)};
+    color: ${getColor(Colors.Black89a)};
     height: ${height ? height : '64'}px;
     outline: none;
     padding: 4px 6px 4px 6px;
@@ -59,7 +59,7 @@ export const TextAreaInput = styled.textarea<TextAreaInputProps>(
     ${buttonTransition};
 
     ::placeholder {
-      color: ${getColor(Colors.Black54)};
+      color: ${getColor(Colors.Black54a)};
       font-style: italic;
     }
 

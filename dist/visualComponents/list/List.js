@@ -127,13 +127,20 @@ exports.ListItemSecondaryText = ListItemSecondaryText;
 const ListItemGraphic = (0, _styledComponents2.default)(({
   dense,
   ...domProps
-}) => _react.default.createElement(_Icon.Icon, domProps))(({
+}) => _react.default.createElement(_Icon.Icon, domProps))( // We pick out the `color` prop so that we're specifically _not_ overriding it
+// in the case where it is set (it will get passed into `<Icon .../>` above,
+// which will set the right CSS).
+//
+// Previously this wasn't working because `color: inherit` was overriding it,
+// but I was to scared to delete that line entirely. [MM 2020-07-14]
+({
   dense,
-  cssOverrides
+  cssOverrides,
+  color
 }) => (0, _styledComponents2.css)`
     && {
       margin: auto ${dense ? 4 : 6}px;
-      color: inherit;
+      ${(0, _typeGuards.isNil)(color) ? 'color: inherit;' : ''}
 
       ${_exports.buttonTransition};
 
@@ -205,13 +212,12 @@ var _StyledListItem =
   componentId: "sc-112eapi-0"
 })(["color:", ";"], p => p._css);
 
-ListItem.defaultProps = {
-  activeClassName: 'is-active'
-};
 const SimpleListItem = (0, _react.forwardRef)((props, ref) => {
   const {
     leftIcon = '',
+    // TODO: fix this - we should not use `''` as an icon
     rightIcon = '',
+    // TODO: fix this - we should not use `''` as an icon
     primaryText = '',
     secondaryText = '',
     children,
@@ -222,6 +228,9 @@ const SimpleListItem = (0, _react.forwardRef)((props, ref) => {
     onClick,
     isLink = false,
     passedAs,
+    cssOverrides,
+    leftIconColor,
+    rightIconColor,
     ...domProps
   } = props;
   return _react.default.createElement(ListItem, _extends({
@@ -232,12 +241,16 @@ const SimpleListItem = (0, _react.forwardRef)((props, ref) => {
     as: passedAs,
     disabled: disabled,
     ref: ref
-  }, domProps), !(0, _typeGuards.isEmptyString)(leftIcon) && _react.default.createElement(ListItemGraphic, {
+  }, domProps), (0, _typeGuards.isNonEmptyString)(leftIcon) && _react.default.createElement(ListItemGraphic, {
     icon: leftIcon,
-    dense: dense
-  }), (0, _typeGuards.isEmptyString)(secondaryText) || (0, _typeGuards.isNil)(meta) ? _react.default.createElement(ListItemPrimaryText, null, primaryText) : _react.default.createElement(ListItemText, null, _react.default.createElement(ListItemPrimaryText, null, primaryText), (0, _typeGuards.isEmptyString)(secondaryText) ? null : _react.default.createElement(ListItemSecondaryText, null, secondaryText), meta), !(0, _typeGuards.isEmptyString)(rightIcon) && _react.default.createElement(ListItemGraphic, {
+    dense: dense,
+    color: leftIconColor
+  }), (0, _typeGuards.isEmptyString)(secondaryText) || (0, _typeGuards.isNil)(meta) ? _react.default.createElement(ListItemPrimaryText, {
+    cssOverrides: cssOverrides
+  }, primaryText) : _react.default.createElement(ListItemText, null, _react.default.createElement(ListItemPrimaryText, null, primaryText), (0, _typeGuards.isEmptyString)(secondaryText) ? null : _react.default.createElement(ListItemSecondaryText, null, secondaryText), meta), (0, _typeGuards.isNonEmptyString)(rightIcon) && _react.default.createElement(ListItemGraphic, {
     icon: rightIcon,
-    dense: dense
+    dense: dense,
+    color: rightIconColor
   }), children);
 });
 exports.SimpleListItem = SimpleListItem;

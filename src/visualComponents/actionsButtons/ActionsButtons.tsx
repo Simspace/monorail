@@ -1,7 +1,8 @@
 import { isEmpty } from 'fp-ts/lib/Array'
 import React, { FC, ReactNode } from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
+import { Colors } from '@monorail/helpers/color'
 import { PopOverToggleProps } from '@monorail/metaComponents/popOver/PopOver'
 import { isFalsy, isNil } from '@monorail/sharedHelpers/typeGuards'
 import {
@@ -23,6 +24,8 @@ import {
   IconButton,
   IconButtonProps as IconButtonProps_,
 } from '@monorail/visualComponents/buttons/IconButton'
+import { Icon } from '@monorail/visualComponents/icon/Icon'
+import { TooltipMonorail } from '@monorail/visualComponents/tooltips/Tooltip'
 
 /**
  * CatalogEntryPermission is coppied from
@@ -40,6 +43,7 @@ export enum ActionButton {
   IconButton = 'ICON_BUTTON',
   ActionsMenu = 'ACTIONS_MENU',
   DropdownButton = 'DROPDOWN_BUTTON',
+  InfoButton = 'INFO_BUTTON',
 }
 
 export type Check = {
@@ -52,13 +56,20 @@ export type Check = {
  */
 export type TextButtonProps = Partial<Omit<ButtonProps, 'onClick'>> & {
   label: string
-  onClick: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
+  onClick: (event: React.MouseEvent) => void
 }
 export type TextButtonAction = {
   type: ActionButton.TextButton
   actionProps: TextButtonProps
 }
 export type TextButtonActionWithCheck = TextButtonAction & Check
+
+/** InfoButton */
+export type InfoButtonProps = { info: string }
+export type InfoButtonAction = {
+  type: ActionButton.InfoButton
+  actionProps: InfoButtonProps
+}
 
 /** Icon button */
 export type IconButtonProps = Partial<IconButtonProps_>
@@ -93,10 +104,11 @@ export type ActionsMenuAction = {
 }
 
 export type ActionsButtonsAction =
-  | TextButtonActionWithCheck
-  | IconButtonActionWithCheck
-  | DropdownButtonAction
   | ActionsMenuAction
+  | DropdownButtonAction
+  | IconButtonActionWithCheck
+  | InfoButtonAction
+  | TextButtonActionWithCheck
 
 export type ActionsButtonsProps = {
   display?: ButtonDisplay
@@ -197,10 +209,30 @@ const makeDropdownButton = (
   )
 }
 
-const ActionsMenu_: FC<{
+const makeInfoButton = (action: InfoButtonAction) => {
+  return (
+    <TooltipMonorail
+      key={action.actionProps.info}
+      label={action.actionProps.info}
+    >
+      <span
+        css={css`
+          margin-top: 4px;
+        `}
+      >
+        <Icon icon="info" color={Colors.Black54a} />
+      </span>
+    </TooltipMonorail>
+  )
+}
+
+const ActionsMenu_ = ({
+  action,
+  document,
+}: {
   action: ActionsMenuAction
   document: ActionsButtonsProps['document']
-}> = ({ action, document }) => {
+}) => {
   const accessibleActions = action.actionProps.actions.filter(
     action_ => action_.check,
   )
@@ -220,15 +252,17 @@ export const ActionsButtons: FC<ActionsButtonsProps> = ({
   actions = [],
 }) => {
   const {
-    textButtons,
-    iconButtons,
-    dropdownButtons,
     actionsMenus,
+    dropdownButtons,
+    iconButtons,
+    infoButtons,
+    textButtons,
   } = actions.reduce<{
     textButtons: Array<JSX.Element>
     iconButtons: Array<JSX.Element>
     dropdownButtons: Array<JSX.Element>
     actionsMenus: Array<JSX.Element>
+    infoButtons: Array<JSX.Element>
   }>(
     (acc, action, idx) => {
       switch (action.type) {
@@ -278,12 +312,20 @@ export const ActionsButtons: FC<ActionsButtonsProps> = ({
                 ...acc,
                 actionsMenus: [...acc.actionsMenus, actionsMenu],
               }
+
+        case ActionButton.InfoButton:
+          const infoButton = makeInfoButton(action)
+
+          return isNil(infoButton)
+            ? acc
+            : { ...acc, infoButtons: [...acc.infoButtons, infoButton] }
       }
     },
     {
       textButtons: [],
       iconButtons: [],
       dropdownButtons: [],
+      infoButtons: [],
       actionsMenus: [],
     },
   )
@@ -293,6 +335,7 @@ export const ActionsButtons: FC<ActionsButtonsProps> = ({
       {textButtons}
       {iconButtons}
       {dropdownButtons}
+      {infoButtons}
       {actionsMenus}
     </ActionsButtonsBox>
   )

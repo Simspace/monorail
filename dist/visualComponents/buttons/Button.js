@@ -143,9 +143,9 @@ const StyledButton = _styledComponents2.default.button(({
     ${buttonSizeCss[size]};
     ${disabled && _exports.baseDisabledStyles};
 
-    ${(0, _exports.typography)(700, _exports.FontSizes.Title5)};
     ${(0, _exports.borderRadius)()};
     ${(0, _exports.flexFlow)('row')};
+    ${(0, _exports.typographyFont)(700, _exports.FontSizes.Title5)};
 
     ${status ? `overflow: visible;` : `overflow: hidden;`}
 
@@ -249,7 +249,10 @@ const Button = props => {
     status: status
   }), isLoading ? _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_StyledDiv, null, _react.default.createElement(_Loading.Loading, {
     loaderType: _Loading.LoaderType.Generic,
-    size: iconSize
+    size: {
+      _type: 'size',
+      hw: iconSize
+    }
   })), _react.default.createElement(_StyledDiv2, {
     _css3: (0, _exports.visible)(false)
   }, buttonContent)) : buttonContent);

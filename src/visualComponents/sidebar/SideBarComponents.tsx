@@ -1,7 +1,17 @@
-import React, { FC, Fragment } from 'react'
 import posed from 'react-pose'
-import styled, { css, SimpleInterpolation } from 'styled-components'
-
+import React, { FC, Fragment } from 'react'
+import styled, {
+  css,
+  SimpleInterpolation,
+  FlattenSimpleInterpolation,
+} from 'styled-components'
+import { BaseLink } from '@monorail/visualComponents/hyperLink/BaseLink'
+import { CommonComponentType, CssOverridesType } from '@monorail/types'
+import { IconButton } from '@monorail/visualComponents/buttons/IconButton'
+import { PopOverToggleProps } from '@monorail/metaComponents/popOver/PopOver'
+import { ScrollAnimation } from '@monorail/visualComponents/layout/ScrollAnimation'
+import { Text } from '@monorail/visualComponents/typography/Text'
+import { zIndex, ZIndexNodeName } from '@monorail/helpers/zIndex'
 import {
   baseDisabledStyles,
   BorderRadius,
@@ -16,16 +26,10 @@ import {
   transition,
   visible,
 } from '@monorail/helpers/exports'
-import { zIndex, ZIndexNodeName } from '@monorail/helpers/zIndex'
-import { PopOverToggleProps } from '@monorail/metaComponents/popOver/PopOver'
-import { CommonComponentType } from '@monorail/types'
 import {
   ButtonDisplay,
   IconButtonShape,
 } from '@monorail/visualComponents/buttons/buttonTypes'
-import { IconButton } from '@monorail/visualComponents/buttons/IconButton'
-import { BaseLink } from '@monorail/visualComponents/hyperLink/BaseLink'
-import { ScrollAnimation } from '@monorail/visualComponents/layout/ScrollAnimation'
 import {
   ListItem,
   ListItemGraphic,
@@ -33,7 +37,6 @@ import {
   ListItemSecondaryText,
   ListItemText,
 } from '@monorail/visualComponents/list/List'
-import { Text } from '@monorail/visualComponents/typography/Text'
 
 // TODO(unsafe-any): Fix unsafe anys
 // tslint:disable no-unsafe-any
@@ -76,6 +79,7 @@ export const SidebarContainer = styled(
 )<
   CommonComponentType & {
     pose: string
+    backgroundColor: FlattenSimpleInterpolation
   }
 >`
   ${flexFlow()};
@@ -83,6 +87,7 @@ export const SidebarContainer = styled(
   ${zIndex(ZIndexNodeName.SidebarContainer)};
 
   background: #f4f4f7;
+  ${props => props.backgroundColor};
   box-sizing: border-box;
   flex-shrink: 0;
   position: relative;
@@ -252,12 +257,19 @@ export const SideBarMenuDivider = styled.div<SideBarMenuCollapsedProps>(
 export const SideBarMenuHeader: FC<{
   isSideBarCollapsed: boolean
   header: string
-}> = ({ header, isSideBarCollapsed }) => (
+  fontSize?: FontSizes
+  cssOverrides?: CssOverridesType
+}> = ({
+  header,
+  isSideBarCollapsed,
+  fontSize = FontSizes.Title5,
+  cssOverrides,
+}) => (
   <Text
-    fontSize={FontSizes.Title5}
+    fontSize={fontSize}
     fontWeight={500}
     margin="0 0 16px"
-    color={Colors.Black62}
+    color={Colors.Black62a}
     css={css`
       ${flexFlow('row')}
       ${isSideBarCollapsed && `justify-content: center;`};
@@ -267,6 +279,8 @@ export const SideBarMenuHeader: FC<{
 
       margin-left: ${isSideBarCollapsed ? '0' : '14'}px;
       margin-right: ${isSideBarCollapsed ? '0' : '14'}px;
+
+      ${cssOverrides}
     `}
   >
     <span
@@ -321,7 +335,14 @@ export const SidebarBack: FC<{
   to: string
   title: string
   byline: string
-}> = ({ to, title, byline, ...domProps }) => (
+  display?: ButtonDisplay
+}> = ({
+  to,
+  title,
+  byline,
+  display = ButtonDisplay.Secondary,
+  ...domProps
+}) => (
   <ListItem
     {...domProps}
     css={css`
@@ -335,7 +356,7 @@ export const SidebarBack: FC<{
       `}
       passedAs={BaseLink}
       to={to}
-      display={ButtonDisplay.Secondary}
+      display={display}
       shape={IconButtonShape.Square}
     />
     <ListItemText

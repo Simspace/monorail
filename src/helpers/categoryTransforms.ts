@@ -1,4 +1,5 @@
 import { Colors } from '@monorail/helpers/color'
+import { IconType } from '@monorail/visualComponents/icon/IconType'
 
 export const categoryReadableName = (entryCategory: string) => {
   switch (entryCategory) {
@@ -8,6 +9,8 @@ export const categoryReadableName = (entryCategory: string) => {
       return 'Training Package'
     case 'academy-content-module':
       return 'Content Module'
+    case 'event-template':
+      return 'Event Template'
     case 'hardhat-specification':
       return 'Network Spec'
     case 'external-subnet':
@@ -16,29 +19,39 @@ export const categoryReadableName = (entryCategory: string) => {
       return 'Physical Asset'
     case 'config-module':
       return 'Config Module'
+    case 'puppet-module':
+      return 'Puppet Module'
     case 'vm-template':
       return 'VM Template'
     case 'range':
       return 'Range'
     case 'event':
       return 'Event'
+    case 'attack-scenario':
+      return 'Attack Scenario'
+    case 'attack-tool':
+      return 'Attack Tool'
     default:
       return entryCategory
   }
 }
 
-export const categoryIcon = (entryCategory: string) => {
+export const categoryIcon = (entryCategory: string): IconType => {
   switch (entryCategory) {
     case 'academy-course-plan':
       return 'local_library'
     case 'academy-package':
       return 'school'
+    case 'event-template':
+      return 'event'
     case 'academy-content-module':
       return 'category'
     case 'hardhat-specification':
       return 'device_hub'
     case 'config-module':
       return 'code'
+    case 'puppet-module':
+      return 'puppet'
     case 'external-subnet':
       return 'dns'
     case 'physical-asset':
@@ -53,8 +66,12 @@ export const categoryIcon = (entryCategory: string) => {
       return 'calendar_today'
     case 'exercise':
       return 'bar_chart'
+    case 'attack-scenario':
+      return 'target'
+    case 'attack-tool':
+      return 'tools'
     default:
-      return entryCategory
+      return entryCategory as IconType // TODO: this is undesirable, but this is what the code was doing before and is apparently required. It's not clear what entryCategory is, but it should not be a string - it should be some other union that can be mapped to an IconType if needed. (AW 2020-6-25)
   }
 }
 
@@ -73,11 +90,17 @@ export const categoryColor = (entryCategory: string) => {
     case 'physical-asset':
     case 'clone-source':
     case 'config-module':
+    case 'puppet-module':
       return Colors.RangeAlt
     case 'exercise':
     case 'event':
       return Colors.Tracker
+    case 'attack-scenario':
+    case 'attack-tool':
+      return Colors.AttackElements
     case 'academy-course-plan':
+    case 'event-template':
+      return Colors.Academy
     default:
       return Colors.Academy
   }
@@ -86,7 +109,7 @@ export const categoryColor = (entryCategory: string) => {
 // export const entryColor = (entry: CatalogEntry) =>
 //   fromNullable(entry.fields.archived as Array<boolean>)
 //     .chain(x => findFirst(x, y => y === true))
-//     .fold(categoryColor(entry.categoryId), x => Colors.Black38)
+//     .fold(categoryColor(entry.categoryId), x => Colors.Black38a)
 
 export const categoryPathname = (entryCategory: string) => {
   switch (entryCategory) {
@@ -106,9 +129,17 @@ export const categoryPathname = (entryCategory: string) => {
       return '/catalog/vm-templates'
     case 'config-module':
       return '/catalog/config-modules'
+    case 'puppet-module':
+      return '/catalog/puppet-modules'
     case 'event':
       return '/events'
+    case 'attack-scenario':
+      return '/catalog/attack-scenarios'
+    case 'attack-tool':
+      return '/catalog/attack-tools'
+    case 'event-template':
+      return '/catalog/event-templates'
     default:
-      return '/catalog/discover'
+      return '/catalog'
   }
 }

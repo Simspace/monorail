@@ -1,6 +1,11 @@
 import { sort } from 'fp-ts/lib/Array'
+import { Foldable, Foldable1, Foldable2, Foldable3 } from 'fp-ts/lib/Foldable'
+import { HKT, Kind, Kind2, Kind3, URIS, URIS2, URIS3 } from 'fp-ts/lib/HKT'
+import { Magma } from 'fp-ts/lib/Magma'
+import * as O from 'fp-ts/lib/Option'
 import { Ord } from 'fp-ts/lib/Ord'
-import { isEmpty } from 'fp-ts/lib/Record'
+import { pipe } from 'fp-ts/lib/pipeable'
+import { isEmpty, hasOwnProperty } from 'fp-ts/lib/Record'
 
 import { isObject } from '../typeGuards'
 
@@ -16,6 +21,15 @@ export const keys = <A extends Record<string, unknown>, K extends keyof A>(
 export const values = <A extends Record<string, unknown>, V extends A[keyof A]>(
   x: A,
 ): Array<V> => Object.values(x) as Array<V>
+
+export const entries = <
+  A extends Record<string, unknown>,
+  K extends keyof A,
+  V extends A[K]
+>(
+  x: A,
+): Array<[K, V]> => Object.entries(x) as Array<[K, V]>
+
 /**
  * Retrieves the value of a given property key from an object (curried)
  */
@@ -74,3 +88,48 @@ export const isRecord = <T = unknown>(
 export const isNotEmpty = <K extends string | number | symbol, T>(
   r: Record<K, T>,
 ) => !isEmpty(r)
+
+export function fromFoldableFilterMap<F extends URIS3, B>(
+  M: Magma<B>,
+  F: Foldable3<F>,
+): <U, L, A, K extends string>(
+  ta: Kind3<F, U, L, A>,
+  f: (a: A) => O.Option<[K, B]>,
+) => Record<K, B>
+export function fromFoldableFilterMap<F extends URIS2, B>(
+  M: Magma<B>,
+  F: Foldable2<F>,
+): <L, A, K extends string>(
+  ta: Kind2<F, L, A>,
+  f: (a: A) => O.Option<[K, B]>,
+) => Record<K, B>
+export function fromFoldableFilterMap<F extends URIS, B>(
+  M: Magma<B>,
+  F: Foldable1<F>,
+): <A, K extends string>(
+  ta: Kind<F, A>,
+  f: (a: A) => O.Option<[K, B]>,
+) => Record<K, B>
+export function fromFoldableFilterMap<F, B>(
+  M: Magma<B>,
+  F: Foldable<F>,
+): <A, K extends string>(
+  ta: HKT<F, A>,
+  f: (a: A) => O.Option<[K, B]>,
+) => Record<K, B>
+export function fromFoldableFilterMap<F, B>(
+  M: Magma<B>,
+  F: Foldable<F>,
+): <A>(ta: HKT<F, A>, f: (a: A) => O.Option<[string, B]>) => Record<string, B> {
+  return <A>(ta: HKT<F, A>, f: (a: A) => O.Option<[string, B]>) =>
+    F.reduce<A, Record<string, B>>(ta, {}, (r, a) =>
+      pipe(
+        f(a),
+        O.map(([k, b]) => {
+          r[k] = hasOwnProperty(k, r) ? M.concat(r[k], b) : b
+          return r
+        }),
+        O.getOrElse(() => r),
+      ),
+    )
+}

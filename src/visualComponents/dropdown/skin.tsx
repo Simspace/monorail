@@ -1,6 +1,7 @@
 import Downshift from 'downshift'
-import { fromNullable, Option } from 'fp-ts/lib/Option'
+import * as O from 'fp-ts/lib/Option'
 import React, { ReactElement, useLayoutEffect, useRef, useState } from 'react'
+import { pipe } from 'fp-ts/lib/pipeable'
 
 import {
   baseDisabledStyles,
@@ -10,7 +11,7 @@ import {
   borderRadius,
   flexFlow,
   FontSizes,
-  typography,
+  typographyFont,
 } from '@monorail/helpers/exports'
 import styled, { css } from '@monorail/helpers/styled-components'
 import {
@@ -52,7 +53,7 @@ const DropdownContainer = styled.div<DropdownContainerProps>(
   ({ disabled, error }) => css`
     ${borderRadius(BorderRadius.Large)};
     ${flexFlow('column')};
-    ${typography(400, FontSizes.Title5)};
+    ${typographyFont(400, FontSizes.Title5)};
 
     flex: 1;
     position: relative;
@@ -87,13 +88,13 @@ const MenuContainer = styled.div<CommonComponentType>`
   overflow: auto;
 `
 
-const ItemContainer = styled.div<CommonComponentType>``
+export const ItemContainer = styled.div<CommonComponentType>``
 
 export type DropdownSkinCommonType = {
   placeholder?: string
   disabled?: boolean
   clearable?: boolean
-  error?: Option<string>
+  error?: O.Option<string>
   required?: boolean
   label?: string
   display?: DisplayType
@@ -145,9 +146,11 @@ export const DropdownSkin = <T extends DropdownType>({
     } = downshiftProps
     const { interaction, placeholder } = skin
 
-    const dropdownValue = fromNullable(selectedItem)
-      .map(itemToString)
-      .toUndefined()
+    const dropdownValue = pipe(
+      O.fromNullable(selectedItem),
+      O.map(itemToString),
+      O.toUndefined,
+    )
 
     const inputOptions: DownshiftGetInputProps = {
       disabled,
@@ -156,8 +159,12 @@ export const DropdownSkin = <T extends DropdownType>({
       onClick: () =>
         toggleMenu({
           type: Downshift.stateChangeTypes.clickButton,
-          highlightedIndex: fromNullable(selectedItem).fold(-1, item =>
-            items.indexOf(item),
+          highlightedIndex: pipe(
+            O.fromNullable(selectedItem),
+            O.fold(
+              () => -1,
+              item => items.indexOf(item),
+            ),
           ),
         }),
     }
@@ -168,10 +175,13 @@ export const DropdownSkin = <T extends DropdownType>({
       <HandlerContainer ref={menuRef}>
         {/* Hack for HTML5 required error state */}
         <select
+          disabled={disabled || display === DisplayType.View}
           required={required}
-          value={fromNullable(selectedItem)
-            .map(itemToString)
-            .toUndefined()}
+          value={pipe(
+            O.fromNullable(selectedItem),
+            O.map(itemToString),
+            O.toUndefined,
+          )}
           style={{ position: 'absolute', bottom: 0, left: 4, opacity: 0 }}
           tabIndex={-1}
         >
@@ -192,16 +202,24 @@ export const DropdownSkin = <T extends DropdownType>({
       itemToString,
     } = downshiftProps
 
+    const ListComponent = isUndefined(render.list)
+      ? React.Fragment
+      : render.list
+
     return (
-      <>
+      <ListComponent
+        items={items}
+        parser={parser}
+        downshiftProps={downshiftProps}
+      >
         {items.map((item: T, index: number) => {
           const itemProps = {
             item,
             disabled: !parser.isActive(item),
             highlighted: highlightedIndex === index,
-            selected: fromNullable(selectedItem).fold(
-              false,
-              parser.compare(item),
+            selected: pipe(
+              O.fromNullable(selectedItem),
+              O.fold(() => false, parser.compare(item)),
             ),
           }
 
@@ -217,7 +235,7 @@ export const DropdownSkin = <T extends DropdownType>({
             </ItemContainer>
           )
         })}
-      </>
+      </ListComponent>
     )
   }
 
@@ -269,17 +287,23 @@ export const DropdownSkin = <T extends DropdownType>({
   const renderError = () => (
     <>
       {error &&
-        error.fold(<></>, msg => (
-          <div
-            css={`
-              position: absolute;
-              left: 0;
-              top: 100%;
-            `}
-          >
-            <StdErr err={true} msg={msg} />
-          </div>
-        ))}
+        pipe(
+          error,
+          O.fold(
+            () => <></>,
+            msg => (
+              <div
+                css={`
+                  position: absolute;
+                  left: 0;
+                  top: 100%;
+                `}
+              >
+                <StdErr err={true} msg={msg} />
+              </div>
+            ),
+          ),
+        )}
     </>
   )
 
@@ -289,13 +313,13 @@ export const DropdownSkin = <T extends DropdownType>({
         <Label
           label={label}
           required={required}
-          err={!isUndefined(error) && error.isSome()}
+          err={!isUndefined(error) && O.isSome(error)}
           display={display}
         />
       )}
       <DropdownContainer
         disabled={!!disabled}
-        error={!isUndefined(error) && error.isSome()}
+        error={!isUndefined(error) && O.isSome(error)}
       >
         {renderHandler()}
         {!disabled && renderMenu()}

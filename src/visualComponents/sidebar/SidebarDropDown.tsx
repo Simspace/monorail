@@ -1,4 +1,5 @@
-import { fromNullable } from 'fp-ts/lib/Option'
+import * as O from 'fp-ts/lib/Option'
+import { pipe } from 'fp-ts/lib/pipeable'
 import React, { Component, createRef } from 'react'
 import styled, { css, SimpleInterpolation } from 'styled-components'
 
@@ -55,10 +56,13 @@ export class SidebarDropDown extends Component<Props, State> {
   updateMenuHeight = () => {
     const { dropDownHeight } = this.state
 
-    const currentOpt = fromNullable(this.dropDownRef.current)
-    const newDropDownHeight = currentOpt.fold(
-      0,
-      ({ offsetHeight }) => offsetHeight,
+    const newDropDownHeight = pipe(
+      this.dropDownRef.current,
+      O.fromNullable,
+      O.fold(
+        () => 0,
+        ({ offsetHeight }) => offsetHeight,
+      ),
     )
 
     if (dropDownHeight !== newDropDownHeight) {

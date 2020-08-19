@@ -1,6 +1,5 @@
 import React, { FC } from 'react'
 import { SimpleInterpolation } from 'styled-components'
-import { Omit } from 'typelevel-ts'
 
 import { baseIconButtonChromelessStyles } from '@monorail/helpers/baseStyles'
 import { BorderRadius, borderRadius } from '@monorail/helpers/borderRadius'
@@ -19,6 +18,7 @@ import {
   IconButtonShape,
 } from '@monorail/visualComponents/buttons/buttonTypes'
 import { Icon } from '@monorail/visualComponents/icon/Icon'
+import { IconType } from '@monorail/visualComponents/icon/IconType'
 
 const iconButtonSizeCss = {
   [ButtonSize.Dense]: css`
@@ -96,7 +96,7 @@ export const StyledIconButton = styled(Button)<StyledButtonProps>``
 export type IconButtonProps = Omit<ButtonProps, 'leftIcon' | 'rightIcon'> & {
   shape?: IconButtonShape
   iconCss?: SimpleInterpolation
-  icon: string
+  icon: IconType
 }
 
 export const IconButton: FC<IconButtonProps> = props => {
@@ -143,7 +143,7 @@ export const IconButton: FC<IconButtonProps> = props => {
     >
       <Icon
         icon={icon}
-        css={css`
+        cssOverrides={css`
           ${iconCss}
         `}
       />

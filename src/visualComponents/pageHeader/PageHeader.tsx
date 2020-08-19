@@ -19,7 +19,7 @@ import {
   Mode,
   ThemeColors,
 } from '@monorail/helpers/theme'
-import { FontSizes, typography } from '@monorail/helpers/typography'
+import { FontSizes, typographyFont } from '@monorail/helpers/typography'
 import { isNil } from '@monorail/sharedHelpers/typeGuards'
 import { CommonComponentType } from '@monorail/types'
 import { Button } from '@monorail/visualComponents/buttons/Button'
@@ -113,10 +113,9 @@ export const TitleContainer = styled.div<{ hasAboveContent: boolean }>(
 )
 
 const Title = styled.h1`
-  ${typography(700, FontSizes.Title1)};
+  ${typographyFont(700, FontSizes.Title1)};
 
   color: ${getThemeColor(ThemeColors.Text900)};
-  margin-left: 0;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -124,7 +123,7 @@ const Title = styled.h1`
 
 const PageName = styled.h5`
   ${pageSizeMargin({ marginTop: 8, marginBottom: -8 })};
-  ${typography(500, FontSizes.Title5)};
+  ${typographyFont(500, FontSizes.Title5)};
 
   color: ${getThemeColor(ThemeColors.Text1000)};
   overflow: hidden;

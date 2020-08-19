@@ -35,7 +35,7 @@ _styledComponents.default.div.withConfig({
 })(({
   isActive,
   cssOverrides
-}) => (0, _styledComponents.css)(["", ";", ";", ";", ";align-items:center;cursor:pointer;height:24px;padding:0 4px 0 8px;user-select:none;flex-shrink:0;", ";"], isActive ? (0, _exports.basePrimaryStyles)(_theme.ThemeColors.BrandSecondary) : (0, _styledComponents.css)(["", ";color:", ";"], (0, _exports.baseSecondaryStyles)(_theme.ThemeColors.BrandSecondary), (0, _exports.getColor)(_exports.Colors.Black74)), (0, _exports.borderRadius)(), _exports.buttonTransition, (0, _exports.flexFlow)('row'), cssOverrides));
+}) => (0, _styledComponents.css)(["", ";", ";", ";", ";align-items:center;cursor:pointer;height:24px;padding:0 4px 0 8px;user-select:none;flex-shrink:0;", ";"], isActive ? (0, _exports.basePrimaryStyles)(_theme.ThemeColors.BrandSecondary) : (0, _styledComponents.css)(["", ";color:", ";"], (0, _exports.baseSecondaryStyles)(_theme.ThemeColors.BrandSecondary), (0, _exports.getColor)(_exports.Colors.Black74a)), (0, _exports.borderRadius)(), _exports.buttonTransition, (0, _exports.flexFlow)('row'), cssOverrides));
 
 exports.CCFilter = CCFilter;
 
@@ -44,7 +44,7 @@ const FilterText =
 _styledComponents.default.span.withConfig({
   displayName: "Filter__FilterText",
   componentId: "sc-1z03fcy-1"
-})(["", ";color:currentColor;text-transform:uppercase;white-space:nowrap;"], (0, _exports.typography)(700, _exports.FontSizes.Title5));
+})(["", ";color:currentColor;text-transform:uppercase;white-space:nowrap;"], (0, _exports.typographyFont)(700, _exports.FontSizes.Title5));
 
 exports.FilterText = FilterText;
 const FilterIcon =

@@ -5,13 +5,11 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.constRunTaskEither = exports.runTaskEither = exports.newTaskEither = void 0;
 
-var _TaskEither = require("fp-ts/lib/TaskEither");
-
 /**
  * TaskEither constructor function
  *
  */
-const newTaskEither = task => new _TaskEither.TaskEither(task);
+const newTaskEither = task => task;
 /**
  * Run a TaskEither
  */
@@ -19,7 +17,7 @@ const newTaskEither = task => new _TaskEither.TaskEither(task);
 
 exports.newTaskEither = newTaskEither;
 
-const runTaskEither = x => x.run();
+const runTaskEither = x => x();
 /**
  * Returns the run function for a TaskEither<L, A>
  */
@@ -27,6 +25,6 @@ const runTaskEither = x => x.run();
 
 exports.runTaskEither = runTaskEither;
 
-const constRunTaskEither = x => x.value.run;
+const constRunTaskEither = x => x;
 
 exports.constRunTaskEither = constRunTaskEither;

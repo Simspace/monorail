@@ -31,7 +31,7 @@ const DropdownItem = _styledComponents.default.div(({
           opacity: 0.24;
         ` : (0, _styledComponents.css)`
           ${highlighted && (0, _styledComponents.css)`
-              background: ${(0, _color.getColor)(_color.Colors.Black24, 0.16)};
+              background: ${(0, _color.getColor)(_color.Colors.Black24a, 0.16)};
             `};
 
           ${selected && (0, _styledComponents.css)`

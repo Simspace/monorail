@@ -51,7 +51,7 @@ _styledComponents.default.span.withConfig({
   componentId: "sc-2vpxcc-1"
 })(({
   cssOverrides
-}) => (0, _styledComponents.css)(["", ";", ";color:", ";flex-shrink:0;", ";"], (0, _exports.typography)(500, _exports.FontSizes.Title5, '12px'), _exports.ellipsis, (0, _exports.getColor)(_exports.Colors.Black62), cssOverrides));
+}) => (0, _styledComponents.css)(["", ";", ";color:", ";flex-shrink:0;", ";"], (0, _exports.typography)(500, _exports.FontSizes.Title5, '12px'), _exports.ellipsis, (0, _exports.getColor)(_exports.Colors.Black62a), cssOverrides));
 
 const MenuItemIconRow =
 /*#__PURE__*/
@@ -112,7 +112,7 @@ const ContextMenuItem = ({
 }, otherProps), !(0, _typeGuards.isNil)(leftIcon) && _react.default.createElement(_StyledListItemGraphic, {
   icon: leftIcon,
   dense: dense,
-  _css: (0, _exports.getColor)(_exports.Colors.Black62)
+  _css: (0, _exports.getColor)(_exports.Colors.Black62a)
 }), (0, _typeGuards.isNil)(secondaryText) && (0, _typeGuards.isNil)(meta) ? _react.default.createElement(_StyledListItemPrimaryText, null, primaryText) : _react.default.createElement(_List.ListItemText, null, _react.default.createElement(_StyledListItemPrimaryText2, null, primaryText), (0, _typeGuards.isNil)(secondaryText) ? null : _react.default.createElement(_StyledListItemSecondaryText, null, secondaryText), meta), !(0, _typeGuards.isNil)(rightIcon) && _react.default.createElement(_List.ListItemGraphic, {
   icon: rightIcon,
   dense: dense

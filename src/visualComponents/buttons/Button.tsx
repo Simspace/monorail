@@ -16,7 +16,7 @@ import {
   floatingOutlineStyles,
   FontSizes,
   getColor,
-  typography,
+  typographyFont,
   visible,
 } from '@monorail/helpers/exports'
 import styled, { css } from '@monorail/helpers/styled-components'
@@ -29,6 +29,7 @@ import {
   ButtonSize,
 } from '@monorail/visualComponents/buttons/buttonTypes'
 import { Icon } from '@monorail/visualComponents/icon/Icon'
+import { IconType } from '@monorail/visualComponents/icon/IconType'
 import { Loading, LoaderType } from '@monorail/visualComponents/loading/Loading'
 
 export const buttonDisplayCss = {
@@ -142,9 +143,9 @@ export const StyledButton = styled.button<StyledButtonProps>(
     ${buttonSizeCss[size]};
     ${disabled && baseDisabledStyles};
 
-    ${typography(700, FontSizes.Title5)};
     ${borderRadius()};
     ${flexFlow('row')};
+    ${typographyFont(700, FontSizes.Title5)};
 
     ${status ? `overflow: visible;` : `overflow: hidden;`}
 
@@ -183,8 +184,8 @@ export type StyledButtonProps = {
 }
 
 type IconProps = {
-  iconLeft?: string
-  iconRight?: string
+  iconLeft?: IconType
+  iconRight?: IconType
   iconSize?: number
 }
 
@@ -200,6 +201,8 @@ type FunctionalProps = {
   onClick?: OnClick
   onMouseDown?: OnClick
   onMouseUp?: OnClick
+  onMouseEnter?: OnClick
+  onMouseLeave?: OnClick
   pressed?: boolean
   size?: ButtonSize
   status?: (props: { style: React.CSSProperties }) => ReactNode
@@ -274,7 +277,10 @@ export const Button: FC<ButtonProps> = props => {
       {isLoading ? (
         <>
           <div css="position: absolute">
-            <Loading loaderType={LoaderType.Generic} size={iconSize} />
+            <Loading
+              loaderType={LoaderType.Generic}
+              size={{ _type: 'size', hw: iconSize }}
+            />
           </div>
           <div css={visible(false)}>{buttonContent}</div>
         </>

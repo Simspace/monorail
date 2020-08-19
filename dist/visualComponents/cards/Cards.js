@@ -70,7 +70,7 @@ const BBCardHeaderTitle =
 _styledComponents.default.h1.withConfig({
   displayName: "Cards__BBCardHeaderTitle",
   componentId: "sc-1i66uhi-3"
-})(["", ";margin:0;"], (0, _exports.typography)(700, _exports.FontSizes.Title5));
+})(["", ";"], (0, _exports.typographyFont)(700, _exports.FontSizes.Title5));
 
 const StyledAppIconLeft =
 /*#__PURE__*/

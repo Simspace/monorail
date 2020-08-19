@@ -29,6 +29,8 @@ var _Text = require("../typography/Text");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
 /*
  * Styles
  */
@@ -110,9 +112,10 @@ const AlertModal = props => {
     subtitleText,
     titleText,
     togglePopOver,
-    zIndex
+    zIndex,
+    ...domProps
   } = props;
-  return _react.default.createElement(_StyledMediumModal, {
+  return _react.default.createElement(_StyledMediumModal, _extends({}, domProps, {
     onClick: onClick,
     closingAnimationCompleted: closingAnimationCompleted,
     togglePopOver: togglePopOver,
@@ -121,7 +124,7 @@ const AlertModal = props => {
     iconLeft: alertIcon[alertType],
     zIndex: zIndex,
     _css: alertModalStyles[alertType]
-  }, _react.default.createElement(_StyledBBModalContent, {
+  }), _react.default.createElement(_StyledBBModalContent, {
     _css2: padding || 24
   }, titleText && _react.default.createElement(_Text.Text, {
     fontSize: _typography.FontSizes.Title4,

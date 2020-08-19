@@ -11,6 +11,7 @@ import {
   modalAnimationDuration,
   useModalAnimation,
 } from '@monorail/visualComponents/modals/Modals'
+import { IconType } from '@monorail/visualComponents/icon/IconType'
 import { ModalSize } from '@monorail/visualComponents/modals/modalTypes'
 import { Overlay } from '@monorail/visualComponents/toggle/Overlay'
 
@@ -19,7 +20,7 @@ type Props = Omit<PopOverChildProps, 'position'> & {
   headerChildren?: ReactNode
   title?: string
   escToClose?: boolean
-  iconLeft?: string
+  iconLeft?: IconType
   noHeader?: boolean
   zIndex?: number
 }

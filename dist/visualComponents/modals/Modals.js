@@ -4,7 +4,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.useModalAnimation = useModalAnimation;
-exports.BBModalContent = exports.BBModalContainer = exports.BBModalOverlay = exports.BBModalOverlayContainer = exports.BBModalFooter = exports.BBModalHeader = exports.DefaultCloseButton = exports.BBModalHeaderContainer = exports.BBModalBackground = exports.overlayCloseAnimation = exports.overlayOpenAnimation = exports.fullScreenModalCloseAnimation = exports.fullScreenModalOpenAnimation = exports.largeModalCloseAnimation = exports.largeModalOpenAnimation = exports.mediumModalCloseAnimation = exports.mediumModalOpenAnimation = exports.modalAnimationDuration = void 0;
+exports.BBModalContent = exports.BBModalContainer = exports.BBModalOverlay = exports.BBModalOverlayContainer = exports.BBModalFooter = exports.BBModalHeader = exports.DefaultCloseButton = exports.BBModalHeaderRow = exports.BBModalHeaderContainer = exports.BBModalBackground = exports.overlayCloseAnimation = exports.overlayOpenAnimation = exports.fullScreenModalCloseAnimation = exports.fullScreenModalOpenAnimation = exports.largeModalCloseAnimation = exports.largeModalOpenAnimation = exports.mediumModalCloseAnimation = exports.mediumModalOpenAnimation = exports.modalAnimationDuration = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
@@ -269,10 +269,12 @@ const BBModalHeaderRow = _styledComponents.default.div(({
     overflow: hidden;
   `);
 
+exports.BBModalHeaderRow = BBModalHeaderRow;
+
 const BBModalHeaderTitle = _styledComponents.default.h1(({
   size
 }) => (0, _styledComponents.css)`
-    ${size === _modalTypes.ModalSize.Mini || size === _modalTypes.ModalSize.Small ? (0, _exports.typography)(700, _exports.FontSizes.Title4) : (0, _exports.typography)(700, _exports.FontSizes.Title3)};
+    ${size === _modalTypes.ModalSize.Mini || size === _modalTypes.ModalSize.Small ? (0, _exports.typographyFont)(700, _exports.FontSizes.Title4) : (0, _exports.typographyFont)(700, _exports.FontSizes.Title3)};
 
     color: ${(0, _exports.getColor)(_exports.Colors.White)};
     white-space: nowrap;

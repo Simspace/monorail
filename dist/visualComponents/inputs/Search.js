@@ -21,6 +21,8 @@ var _IconButton = require("../buttons/IconButton");
 
 var _Icon = require("../icon/Icon");
 
+var _typeGuards = require("../../sharedHelpers/typeGuards");
+
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
@@ -38,6 +40,7 @@ const searchIconPosition = 4;
 
 const SearchContainer = _styledComponents2.default.label(({
   cssOverrides,
+  width,
   theme: {
     mode
   }
@@ -55,6 +58,10 @@ const SearchContainer = _styledComponents2.default.label(({
         ` : (0, _styledComponents2.css)`
           background: ${(0, _theme.getThemeColor)(_theme.ThemeColors.SecondaryColor)};
         `};
+
+    ${(0, _typeGuards.isNotNil)(width) && (0, _styledComponents2.css)`
+        width: ${width}px;
+      `}
 
     ${(0, _exports.borderRadius)(_exports.BorderRadius.Round)};
     ${(0, _exports.flexFlow)('row')};
@@ -82,6 +89,7 @@ const searchIconStyles = (0, _styledComponents2.css)`
 `;
 
 const SearchInput = _styledComponents2.default.input(({
+  width,
   theme: {
     mode
   }
@@ -108,7 +116,11 @@ const SearchInput = _styledComponents2.default.input(({
           }
         `};
 
-    ${(0, _exports.typography)(400, _exports.FontSizes.Title5)};
+    ${(0, _typeGuards.isNotNil)(width) && (0, _styledComponents2.css)`
+        width: ${width}px;
+      `}
+
+    ${(0, _exports.typographyFont)(400, _exports.FontSizes.Title5)};
 
     background: transparent;
     border-radius: inherit;
@@ -157,14 +169,17 @@ const Search = props => {
     name,
     placeholder = 'Search',
     value,
+    width,
     onClick,
+    onBlur,
     searchRef,
     ...domProps
   } = props;
   return _react.default.createElement(SearchContainer, _extends({
-    cssOverrides: cssOverrides
+    cssOverrides: cssOverrides,
+    width: width
   }, domProps), _react.default.createElement(_StyledIcon, {
-    icon: "search_icon"
+    icon: "search"
   }), _react.default.createElement(SearchInput, {
     className: "new-input",
     onChange: event => {
@@ -172,7 +187,9 @@ const Search = props => {
     },
     placeholder: placeholder,
     value: value,
+    width: width,
     onClick: onClick,
+    onBlur: onBlur,
     ref: searchRef,
     name: name,
     type: "search"
@@ -180,7 +197,7 @@ const Search = props => {
     cssOverrides: (0, _styledComponents2.css)`
           ${(0, _exports.visible)(!!value)};
 
-          background: ${(0, _exports.getColor)(_exports.Colors.Black24)};
+          background: ${(0, _exports.getColor)(_exports.Colors.Black24a)};
           border: 0;
           position: absolute;
           right: ${searchIconPosition}px;
@@ -191,7 +208,7 @@ const Search = props => {
           }
 
           &:hover {
-            background: ${(0, _exports.getColor)(_exports.Colors.Black54)};
+            background: ${(0, _exports.getColor)(_exports.Colors.Black54a)};
 
             &:before {
               background: transparent;
@@ -199,7 +216,7 @@ const Search = props => {
           }
 
           &:active {
-            background: ${(0, _exports.getColor)(_exports.Colors.Black24)};
+            background: ${(0, _exports.getColor)(_exports.Colors.Black24a)};
           }
         `,
     size: _buttonTypes.ButtonSize.Dense,

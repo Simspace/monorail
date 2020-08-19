@@ -92,24 +92,24 @@ export type ExtractAFromHKT4<F extends HKT4S> = ExtractFromHKT4<F>['3']
 /**
  * Type-level util to extract the type A in Option<A>
  */
-export type ExtractAFromOption<O extends Option<unknown>> = ExtractAFromHKT<O>
+export type ExtractAFromOption<O> = O extends Option<infer U> ? U : never
 
 /**
  * Type-level util to extract the type T in Array<T>
  */
 
-export type ExtractTFromArray<A extends Array<unknown>> = ExtractAFromHKT<A>
+export type ExtractTFromArray<A> = A extends Array<infer U> ? U : never
 
 /**
  * Type-level utils to extract the types L and A in Either<L, A>
  */
 
-export type ExtractLFromEither<
-  E extends Either<unknown, unknown>
-> = ExtractLFromHKT2<E>
-export type ExtractAFromEither<
-  E extends Either<unknown, unknown>
-> = ExtractAFromHKT2<E>
+export type ExtractLFromEither<E> = E extends Either<infer U, unknown>
+  ? U
+  : never
+export type ExtractAFromEither<E> = E extends Either<unknown, infer U>
+  ? U
+  : never
 
 /**
  * Generic nullable type for unions with `null`
@@ -170,3 +170,213 @@ export type UnboxRecordPropertyOptionValues<
  * Alias of ReactElement | null, similar to ReactNode, but compatible with FunctionComponent
  */
 export type ReactRenderable = Nullable<ReactElement>
+
+/**
+ * Gets a union of all the value types associated with an obj type (interface, Record, etc.)
+ */
+export type ObjectValues<A extends object> = A[keyof A]
+
+/**
+ * Extracts the union of the types of values contained in any native JS collection,
+ * including:
+ * - Record
+ * - Array
+ * - Map
+ * - WeakMap
+ * - Set
+ * - WeakSet
+ */
+export type Values<T extends object> = T extends Record<
+  string | number | symbol,
+  infer A
+>
+  ? A
+  : T extends Array<infer B>
+  ? B
+  : T extends Map<unknown, infer C>
+  ? C
+  : T extends WeakMap<object, infer D>
+  ? D
+  : T extends Set<infer E>
+  ? E
+  : T extends WeakSet<infer F>
+  ? F
+  : unknown
+
+/**
+ * A version of `keyof` that distributes over union types
+ *
+ * Example:
+ *
+ * type Person =
+ * | { name: string }
+ * | { age: number}
+ *
+ * type Keys = DistributiveKeyOf<Person> // 'name' | 'age'
+ */
+export type DistributiveKeyOf<T extends object> = T extends unknown
+  ? keyof T
+  : never
+
+/**
+ * Applies an optional type of never for keys that exist on the distributive type but not in
+ * the union type
+ *
+ * This is so that you don't have to explicitly add the type, but even if you do
+ * it will error because it is of type never (unless you cast as never)
+ *
+ * Behaves in a similar way to Exact from typelevel-ts but on unions and not records
+ *
+ * Example:
+ *
+ * type Person =
+ * | { name: string }
+ * | { age: number }
+ *
+ * type Keys = DistributiveExact<Person, Person> //
+ * ({
+ *   name: string;
+ * } & Partial<Record<"age", never>>) | ({
+ *  age: number;
+ * } & Partial<Record<"name", never>>)
+ */
+export type DistributiveExact<A extends object, B extends A> = A extends unknown
+  ? A &
+      Partial<
+        Record<Exclude<DistributiveKeyOf<B>, DistributiveKeyOf<A>>, never>
+      >
+  : never
+
+/**
+ * Given a union of objects it will enforce that only one is used. Does the
+ * same thing as DistributiveExact so it's just additional helper. Should *likely*
+ * only be used on React components in order to specify the props it should accept.
+ * For other data types a ADT should be used instead, i.e. { tag: 'label', etc...}.
+ *
+ * Example:
+ * type Person =
+ *   | { name: string }
+ *   | { age: number}
+ *
+ * const person: ExactRecordsUnion<Person> = {
+ *   name: 'Adam"
+ * } // works!
+ *
+ * const person: ExactRecordsUnion<Person> = {
+ *   name: 'Adam'
+ *   age: 33,
+ * } // errors!
+ *
+ * Taken and modified from: https://stackoverflow.com/questions/52677576/typescript-discriminated-union-allows-invalid-state/52678379#52678379
+ */
+export type ExactRecordsUnion<A extends object> = DistributiveExact<A, A>
+
+/**
+ * Select the member of a union type by matching on the the provided key, `K`,
+ * and value, `V`. Returns `never` if no match occurs.
+ */
+export type SelectUnionMember<
+  K extends PropertyKey,
+  T,
+  U extends object
+> = U extends {
+  [P in K]: T
+} &
+  infer A
+  ? unknown extends A
+    ? U
+    : A
+  : never
+
+/**
+ * A specialization of `SelectUnionMember`, matching on the `tag` field with
+ * a given type-level string literal, `T`. Returns `never` if no match occurs.
+ */
+export type SelectUnionMemberByTag<
+  T extends string,
+  U extends object
+> = SelectUnionMember<'tag', T, U>
+
+/**
+ * A specialization of `SelectUnionMember`, matching on the `contents` field
+ * with a given value, `C`. Returns `never` if no match occurs.
+ */
+export type SelectUnionMemberByContents<
+  C,
+  U extends object
+> = SelectUnionMember<'contents', C, U>
+
+/**
+ * A version of `Pick` that distributes over union types.
+ */
+export type DistributivePick<
+  U extends object,
+  K extends DistributiveKeyOf<U>
+> = {
+  [P in K]: unknown extends U[P]
+    ? {
+        // This can just be `[P2 in P]: SelectUnionMember<P2, unknown, U>[P2]`,
+        // without the conditional type check, in newer versions of TS.
+        [P2 in P]: P2 extends keyof SelectUnionMember<P2, unknown, U>
+          ? SelectUnionMember<P2, unknown, U>[P2]
+          : never
+      }[P]
+    : { [P2 in P]: U[P2] }[P]
+}
+
+export type ExtractMemberFromUnion<
+  A extends object,
+  B extends ExactRecordsUnion<A>
+> = B
+
+/**
+ * Check if a type is never.
+ */
+export type IsNever<A> = [A] extends [never] ? true : false
+
+/**
+ * Extracts a union of key-name/value-type pairs from an object type
+ *
+ * @example
+ * type Foo = { bar: number, baz: string, zot: boolean }
+ * type Quux = ExtractKeyValuePairs<Foo>
+ * // Quux : { key: 'bar', value: number }
+ *         | { key: 'baz', value: string }
+ *         | { key: 'zot', value: boolean }
+ *
+ * // you can also narrow the fields you care about
+ * type Xyzzy = ExtractKeyValuePairs<Foo, 'bar' | 'baz'>
+ * // Xyzzy : { key: 'bar', value: number }
+ *          | { key: 'baz', value: string }
+ */
+export type ExtractKeyValuePairs<
+  T,
+  K extends keyof T = keyof T
+> = K extends keyof T ? { key: K; value: T[K] } : never
+
+/**
+ * Elevates a sub-property to the level of the property of an object, leaving
+ * everything else the same.
+ *
+ * @example
+ * type Foo = { key: string, value: { tag: string, value: number } }
+ * type Bar = RaiseSubProperty<Foo, 'value', 'tag'>
+ * // Bar : { key: string, value: string }
+ */
+export type RaiseSubProperty<
+  T,
+  K extends keyof T,
+  SK extends keyof T[K]
+> = Pick<T, Exclude<keyof T, K>> & { [k in K]: T[K][SK] }
+
+/**
+ * RaiseSubProperty but for union types; useful in conjunction with
+ * ExtractKeyValuePairs
+ *
+ * @link RaiseSubProperty
+ */
+export type DistributiveRaiseSubProperty<
+  T,
+  K extends keyof T,
+  SK extends keyof T[K]
+> = T extends {} ? RaiseSubProperty<T, K, SK> : never

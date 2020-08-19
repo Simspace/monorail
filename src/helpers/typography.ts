@@ -16,16 +16,34 @@ export enum FontWeights {
 }
 
 export enum FontSizes {
+  /** 44px */
   Hyper1 = 'hyper1',
+  /** 38px */
   Hyper2 = 'hyper2',
+  /** 33px */
   Hyper3 = 'hyper3',
+  /** 25px */
   Hyper4 = 'hyper4',
+  /** 22px */
   Title1 = 'title1',
+  /** 19px */
   Title2 = 'title2',
+  /** 16px */
   Title3 = 'title3',
+  /** 14px */
   Title4 = 'title4',
+  /** 11px */
   Title5 = 'title5',
+  /** 8px */
   Micro = 'micro',
+}
+
+export enum FontStyles {
+  Inherit = 'inherit',
+  Initial = 'initial',
+  Italic = 'italic',
+  Normal = 'normal',
+  Oblique = 'oblique',
 }
 
 const fontSizeLookUp = {
@@ -70,7 +88,31 @@ const fontSizeLookUp = {
     lineHeight: '10px',
   },
 }
+
+/**
+ * @description Helper to add font size and weight, and line height following designed typography. To use only in specific cases. Use `typography` instead for most common cases.
+ * */
+export const typographyFont = (weight: number, size: FontSizes) => ({
+  fontWeight: weight,
+  ...fontSizeLookUp[size],
+})
+
+/**
+ * @description Typography helper to add styling for text following design components including margin alignment
+ * */
 export const typography = (
+  weight: number,
+  size: FontSizes,
+  margin: string = '0',
+) => ({
+  ...typographyFont(weight, size),
+  ...typographyMargin(size, margin),
+})
+
+/**
+ * @deprecated Use typography or typographyFont instead
+ * */
+export const typographyDeprecated = (
   weight: number,
   size: FontSizes,
   margin?: string,
@@ -79,6 +121,7 @@ export const typography = (
   ...fontSizeLookUp[size],
   ...(margin ? typographyMargin(size, margin) : {}),
 })
+
 export type Margin = {
   bottom?: number | 'auto'
   left?: number | 'auto'
@@ -221,6 +264,14 @@ export const gothamFontFamily = css`
   font-family: 'Gotham SSm A', 'Gotham SSm B', -apple-system, BlinkMacSystemFont,
     'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji',
     'Segoe UI Emoji', 'Segoe UI Symbol';
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  letter-spacing: initial;
+  text-rendering: optimizeLegibility;
+`
+
+export const oswaldFontFamily = css`
+  font-family: 'Oswald', sans-serif;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   letter-spacing: initial;

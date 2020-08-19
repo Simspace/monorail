@@ -18,6 +18,9 @@ const categoryReadableName = entryCategory => {
     case 'academy-content-module':
       return 'Content Module';
 
+    case 'event-template':
+      return 'Event Template';
+
     case 'hardhat-specification':
       return 'Network Spec';
 
@@ -30,6 +33,9 @@ const categoryReadableName = entryCategory => {
     case 'config-module':
       return 'Config Module';
 
+    case 'puppet-module':
+      return 'Puppet Module';
+
     case 'vm-template':
       return 'VM Template';
 
@@ -38,6 +44,12 @@ const categoryReadableName = entryCategory => {
 
     case 'event':
       return 'Event';
+
+    case 'attack-scenario':
+      return 'Attack Scenario';
+
+    case 'attack-tool':
+      return 'Attack Tool';
 
     default:
       return entryCategory;
@@ -54,6 +66,9 @@ const categoryIcon = entryCategory => {
     case 'academy-package':
       return 'school';
 
+    case 'event-template':
+      return 'event';
+
     case 'academy-content-module':
       return 'category';
 
@@ -62,6 +77,9 @@ const categoryIcon = entryCategory => {
 
     case 'config-module':
       return 'code';
+
+    case 'puppet-module':
+      return 'puppet';
 
     case 'external-subnet':
       return 'dns';
@@ -84,8 +102,15 @@ const categoryIcon = entryCategory => {
     case 'exercise':
       return 'bar_chart';
 
+    case 'attack-scenario':
+      return 'target';
+
+    case 'attack-tool':
+      return 'tools';
+
     default:
       return entryCategory;
+    // TODO: this is undesirable, but this is what the code was doing before and is apparently required. It's not clear what entryCategory is, but it should not be a string - it should be some other union that can be mapped to an IconType if needed. (AW 2020-6-25)
   }
 }; // export const entryIcon = (entry: CatalogEntry) =>
 //   fromNullable(entry.fields.archived as Array<boolean>)
@@ -105,20 +130,28 @@ const categoryColor = entryCategory => {
     case 'physical-asset':
     case 'clone-source':
     case 'config-module':
+    case 'puppet-module':
       return _color.Colors.RangeAlt;
 
     case 'exercise':
     case 'event':
       return _color.Colors.Tracker;
 
+    case 'attack-scenario':
+    case 'attack-tool':
+      return _color.Colors.AttackElements;
+
     case 'academy-course-plan':
+    case 'event-template':
+      return _color.Colors.Academy;
+
     default:
       return _color.Colors.Academy;
   }
 }; // export const entryColor = (entry: CatalogEntry) =>
 //   fromNullable(entry.fields.archived as Array<boolean>)
 //     .chain(x => findFirst(x, y => y === true))
-//     .fold(categoryColor(entry.categoryId), x => Colors.Black38)
+//     .fold(categoryColor(entry.categoryId), x => Colors.Black38a)
 
 
 exports.categoryColor = categoryColor;
@@ -149,11 +182,23 @@ const categoryPathname = entryCategory => {
     case 'config-module':
       return '/catalog/config-modules';
 
+    case 'puppet-module':
+      return '/catalog/puppet-modules';
+
     case 'event':
       return '/events';
 
+    case 'attack-scenario':
+      return '/catalog/attack-scenarios';
+
+    case 'attack-tool':
+      return '/catalog/attack-tools';
+
+    case 'event-template':
+      return '/catalog/event-templates';
+
     default:
-      return '/catalog/discover';
+      return '/catalog';
   }
 };
 

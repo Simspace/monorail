@@ -6,9 +6,21 @@ Object.defineProperty(exports, "__esModule", {
 exports.useSort = useSort;
 exports.useTableExpandState = useTableExpandState;
 exports.useTableExpandStateFixedGroups = useTableExpandStateFixedGroups;
-exports.MonorailReactTableOverrides = exports.EllipsisValueComponent = exports.ExpanderComponent = exports.NoDataComponentHorizontal = exports.NoDataComponentVertical = exports.NoDataContainer = exports.TBodyComponent = exports.TdComponent = exports.TdComponentContainer = exports.TrGroupComponent = exports.ResizerComponent = exports.FilterComponent = exports.ThComponent = exports.TheadComponent = exports.TheadComponentContainer = exports.TableComponent = void 0;
+exports.MonorailReactTableOverrides = exports.EllipsisValueComponent = exports.ExpanderComponent = exports.NoDataComponentHorizontal = exports.NoDataComponentVertical = exports.NoDataContainer = exports.TBodyComponent = exports.TdComponent = exports.TdComponentContainer = exports.TrGroupComponent = exports.ResizerComponent = exports.FilterComponent = exports.ThComponent = exports.ThSortButton = exports.getSortIcon = exports.Sort = exports.TheadComponent = exports.TheadComponentContainer = exports.TableComponent = void 0;
 
 var _styledComponents = _interopRequireDefault(require("styled-components"));
+
+var _fpTsImports = require("../../sharedHelpers/fp-ts-imports");
+
+var _Do = require("fp-ts-contrib/lib/Do");
+
+var _Array = require("fp-ts/lib/Array");
+
+var _Option = require("fp-ts/lib/Option");
+
+var _react = _interopRequireWildcard(require("react"));
+
+var _util = require("util");
 
 var _color = require("../../helpers/color");
 
@@ -23,6 +35,8 @@ var _typography = require("../../helpers/typography");
 var _PopOver = require("../../metaComponents/popOver/PopOver");
 
 var _PopOverNext = require("../../metaComponents/popOver/PopOverNext");
+
+var _Ord = require("../../sharedHelpers/fp-ts-ext/Ord");
 
 var _typeGuards = require("../../sharedHelpers/typeGuards");
 
@@ -43,14 +57,6 @@ var _ScrollAnimation = require("../layout/ScrollAnimation");
 var _Menu = require("../menu/Menu");
 
 var _Status = require("../status/Status");
-
-var _Do = require("fp-ts-contrib/lib/Do");
-
-var _Array = require("fp-ts/lib/Array");
-
-var _Option = require("fp-ts/lib/Option");
-
-var _react = _interopRequireWildcard(require("react"));
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
@@ -135,11 +141,11 @@ const ThComponentContainer = _styledComponents2.default.div(({
     padding: 0 ${filterable ? 34 : 6}px 0 6px;
 
     ${(0, _flex.flexFlow)('row')};
-    ${(0, _typography.typography)(500, _typography.FontSizes.Title5)};
+    ${(0, _typography.typographyFont)(500, _typography.FontSizes.Title5)};
 
     pointer-events: none;
     align-items: center;
-    color: ${(0, _color.getColor)(_color.Colors.Black89)};
+    color: ${(0, _color.getColor)(_color.Colors.Black89a)};
     position: relative;
 
     .rt-resizable-header-content {
@@ -159,13 +165,14 @@ const ThComponentContainer = _styledComponents2.default.div(({
     }
   `);
 
-var Sort;
+let Sort;
+exports.Sort = Sort;
 
 (function (Sort) {
   Sort["Ascending"] = "ascending";
   Sort["Descending"] = "descending";
   Sort["Unsorted"] = "unsorted";
-})(Sort || (Sort = {}));
+})(Sort || (exports.Sort = Sort = {}));
 
 const getSortStatus = className => {
   if (className.includes('-sort-desc')) {
@@ -194,23 +201,25 @@ const getSortIcon = sortStatus => {
   }
 };
 
+exports.getSortIcon = getSortIcon;
+
 function useSort(defaultSorted = []) {
   const [sorted, setSorted] = (0, _react.useState)(defaultSorted);
 
   const onSortChange = newSorted => {
-    setSorted((0, _Do.Do)(_Option.option).bind('current', (0, _Array.lookup)(0, sorted)).bind('upcoming', (0, _Array.lookup)(0, newSorted)).done().filter(({
+    setSorted((0, _fpTsImports.pipe)((0, _fpTsImports.pipe)((0, _Do.Do)(_Option.option).bind('current', (0, _Array.lookup)(0, sorted)).bind('upcoming', (0, _Array.lookup)(0, newSorted)).done(), _fpTsImports.O.filter(({
       current,
       upcoming
-    }) => current.id === upcoming.id && current.desc).fold(newSorted, () => []));
+    }) => current.id === upcoming.id && current.desc)), (0, _Option.fold)(() => newSorted, () => [])));
   };
 
   return [sorted, onSortChange];
 }
 
 const ThLabel = _styledComponents2.default.div`
-  ${(0, _typography.typography)(700, _typography.FontSizes.Title5)};
+  ${(0, _typography.typographyFont)(700, _typography.FontSizes.Title5)};
 
-  color: ${(0, _color.getColor)(_color.Colors.Black89)};
+  color: ${(0, _color.getColor)(_color.Colors.Black89a)};
   font-weight: 500;
   justify-content: space-between;
   padding-left: 6px;
@@ -222,7 +231,7 @@ const ThSortButton = (0, _styledComponents2.default)(_Button.Button).attrs({
   display: _buttonTypes.ButtonDisplay.Chromeless,
   size: _buttonTypes.ButtonSize.Compact
 })`
-  color: ${(0, _color.getColor)(_color.Colors.Black89)};
+  color: ${(0, _color.getColor)(_color.Colors.Black89a)};
   font-weight: 500;
   justify-content: space-between;
   padding-left: 6px;
@@ -235,6 +244,7 @@ const ThSortButton = (0, _styledComponents2.default)(_Button.Button).attrs({
     margin-left: 2px;
   }
 `;
+exports.ThSortButton = ThSortButton;
 
 var _StyledThSortButton =
 /*#__PURE__*/
@@ -341,15 +351,16 @@ const FilterComponent = ({
   onChange
 }) => {
   return _react.default.createElement(_TextField.TextField, {
+    ref: input => input === null || input === void 0 ? void 0 : input.focus(),
     placeholder: "Filter",
     value: !(0, _typeGuards.isNil)(filter) ? filter.value : '',
     onChange: event => onChange(event.target.value),
     cssOverrides: (0, _styledComponents2.css)`
         width: 100%;
         padding: 8px 12px;
+        visibility: visible;
       `,
-    hideStdErr: true,
-    autoFocus: true
+    hideStdErr: true
   });
 };
 
@@ -443,10 +454,10 @@ const TdComponentContainer = _styledComponents2.default.div(({
 }) => (0, _styledComponents2.css)`
     ${tdComponentTypeStyles[tdComponentType]}
     ${(0, _flex.flexFlow)('row')};
-    ${(0, _typography.typography)(400, _typography.FontSizes.Title5)};
+    ${(0, _typography.typographyFont)(400, _typography.FontSizes.Title5)};
     ${_typography.ellipsis};
 
-    color: ${(0, _color.getColor)(_color.Colors.Black89)};
+    color: ${(0, _color.getColor)(_color.Colors.Black89a)};
     align-items: center;
     padding: 0 12px;
     position: relative;
@@ -524,12 +535,12 @@ const TBodyComponent = (0, _styledComponents2.default)(({
 exports.TBodyComponent = TBodyComponent;
 const NoDataContainer = _styledComponents2.default.div`
   ${(0, _flex.flexFlow)('row')};
-  ${(0, _typography.typography)(400, _typography.FontSizes.Title5)};
+  ${(0, _typography.typographyFont)(400, _typography.FontSizes.Title5)};
 
   align-items: center;
   background: ${(0, _color.getColor)(_color.Colors.White)};
   bottom: 0;
-  color: ${(0, _color.getColor)(_color.Colors.Black62)};
+  color: ${(0, _color.getColor)(_color.Colors.Black62a)};
   justify-content: center;
   overflow: auto;
   left: 0;
@@ -538,6 +549,14 @@ const NoDataContainer = _styledComponents2.default.div`
   top: ${THEAD_HEIGHT}px;
 `;
 exports.NoDataContainer = NoDataContainer;
+
+var _StyledNoDataContainer =
+/*#__PURE__*/
+(0, _styledComponents.default)(NoDataContainer).withConfig({
+  displayName: "ReactTable___StyledNoDataContainer",
+  componentId: "sc-1afopvo-2"
+})(["flex-direction:row;justify-content:center;"]);
+
 const BannerDetailContainer = _styledComponents2.default.div`
   ${(0, _flex.flexFlow)('column')};
 
@@ -553,10 +572,10 @@ var _StyledBanner =
 /*#__PURE__*/
 (0, _styledComponents.default)(_DataStates.Banner).withConfig({
   displayName: "ReactTable___StyledBanner",
-  componentId: "sc-1afopvo-2"
+  componentId: "sc-1afopvo-3"
 })(["margin:0 0 16px;"]);
 
-const NoDataComponentHorizontal = () => _react.default.createElement(NoDataContainer, null, _react.default.createElement(_DataStates.IconBox, null, _react.default.createElement(_DataStates.NoResultsIcon, null)), _react.default.createElement(BannerDetailContainer, null, _react.default.createElement(_StyledBanner, null, "No Entries Found"), _react.default.createElement(_DataStates.Detail, null, "We couldn't find any records.")));
+const NoDataComponentHorizontal = () => _react.default.createElement(_StyledNoDataContainer, null, _react.default.createElement(_DataStates.IconBox, null, _react.default.createElement(_DataStates.NoResultsIcon, null)), _react.default.createElement(BannerDetailContainer, null, _react.default.createElement(_StyledBanner, null, "No Entries Found"), _react.default.createElement(_DataStates.Detail, null, "We couldn't find any records.")));
 
 exports.NoDataComponentHorizontal = NoDataComponentHorizontal;
 
@@ -564,7 +583,7 @@ var _StyledIconButton2 =
 /*#__PURE__*/
 (0, _styledComponents.default)(_IconButton.IconButton).withConfig({
   displayName: "ReactTable___StyledIconButton2",
-  componentId: "sc-1afopvo-3"
+  componentId: "sc-1afopvo-4"
 })(["margin-right:8px;transform:rotate(", ");"], p => p._css);
 
 const ExpanderComponent = ({
@@ -581,7 +600,7 @@ var _StyledDiv =
 /*#__PURE__*/
 _styledComponents.default.div.withConfig({
   displayName: "ReactTable___StyledDiv",
-  componentId: "sc-1afopvo-4"
+  componentId: "sc-1afopvo-5"
 })(["", ""], _typography.ellipsis);
 
 const EllipsisValueComponent = ({
@@ -596,7 +615,7 @@ var _StyledStatus =
 /*#__PURE__*/
 (0, _styledComponents.default)(_Status.Status).withConfig({
   displayName: "ReactTable___StyledStatus",
-  componentId: "sc-1afopvo-5"
+  componentId: "sc-1afopvo-6"
 })(["margin-left:16px;"]);
 
 const MonorailReactTableOverrides = {
@@ -686,6 +705,9 @@ const MonorailReactTableOverrides = {
     const id = filter.pivotId || filter.id;
     return (0, _typeGuards.isTrue)(row._groupedByPivot) || !(0, _typeGuards.isUndefined)(row[id]) && String(row[id]).toLocaleLowerCase().includes(filter.value.toLocaleString().toLocaleLowerCase());
   },
+  // tslint:disable
+  defaultSortMethod: (a, b) => (0, _util.isString)(a) && (0, _util.isString)(b) ? _Ord.ordCaseInsensitiveString.compare(a, b) : a > b ? 1 : b > a ? -1 : 0,
+  // tslint:enable
   sortable: true,
   filterable: true,
   resizable: true,

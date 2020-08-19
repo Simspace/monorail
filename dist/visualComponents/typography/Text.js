@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.Text = void 0;
+exports.TextDeprecated = exports.Text = void 0;
 
 var _styledComponents = _interopRequireWildcard(require("styled-components"));
 
@@ -26,21 +26,51 @@ var _StyledSpan =
 _styledComponents.default.span.withConfig({
   displayName: "Text___StyledSpan",
   componentId: "ejbz23-0"
-})(["", ";color:", ";"], p => p._css, p => p._css2);
+})(["", ";color:", ";font-style:", ";"], p => p._css, p => p._css2, p => p._css3);
 
 const Text = props => {
   const {
-    fontSize,
-    fontWeight,
+    fontSize = _typography.FontSizes.Title5,
+    fontStyle = _typography.FontStyles.Initial,
+    fontWeight = _typography.FontWeights.Medium,
     margin = '',
-    color = _color.Colors.Black89,
+    color = _color.Colors.Black89a,
     children,
     ...domProps
   } = props;
   return _react.default.createElement(_StyledSpan, _extends({}, domProps, {
     _css: (0, _typography.typography)(fontWeight, fontSize, margin),
-    _css2: (0, _color.getColor)(color)
+    _css2: (0, _color.getColor)(color),
+    _css3: fontStyle
+  }), children);
+};
+/**
+ * @deprecated Use Text instead. This exist for supporting legacy code only
+ * */
+
+
+exports.Text = Text;
+
+var _StyledSpan2 =
+/*#__PURE__*/
+_styledComponents.default.span.withConfig({
+  displayName: "Text___StyledSpan2",
+  componentId: "ejbz23-1"
+})(["", ";color:", ";"], p => p._css4, p => p._css5);
+
+const TextDeprecated = props => {
+  const {
+    fontSize = _typography.FontSizes.Title5,
+    fontWeight = _typography.FontWeights.Medium,
+    margin = '',
+    color = _color.Colors.Black89a,
+    children,
+    ...domProps
+  } = props;
+  return _react.default.createElement(_StyledSpan2, _extends({}, domProps, {
+    _css4: (0, _typography.typographyDeprecated)(fontWeight, fontSize, margin),
+    _css5: (0, _color.getColor)(color)
   }), children);
 };
 
-exports.Text = Text;
+exports.TextDeprecated = TextDeprecated;

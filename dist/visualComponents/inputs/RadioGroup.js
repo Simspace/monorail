@@ -9,6 +9,10 @@ var _styledComponents = _interopRequireWildcard(require("styled-components"));
 
 var _Array = require("fp-ts/lib/Array");
 
+var O = _interopRequireWildcard(require("fp-ts/lib/Option"));
+
+var _pipeable = require("fp-ts/lib/pipeable");
+
 var _react = _interopRequireDefault(require("react"));
 
 var _exports = require("../../helpers/exports");
@@ -69,7 +73,7 @@ const InfoText =
 _styledComponents.default.p.withConfig({
   displayName: "RadioGroup__InfoText",
   componentId: "hjdmb5-3"
-})(["", ";margin-left:32px;"], (0, _exports.typography)(300, _exports.FontSizes.Title5));
+})(["", ";margin-left:32px;"], (0, _exports.typographyFont)(300, _exports.FontSizes.Title5));
 
 const defaultOptions = {
   label: '',
@@ -134,7 +138,7 @@ const RadioGroup = props => {
     msg: msg
   })) : _react.default.createElement(_ViewInput.ViewInput, {
     label: label,
-    value: (0, _Array.findFirst)(o => o.key === value)(options).map(o => o.label).toUndefined()
+    value: (0, _pipeable.pipe)((0, _Array.findFirst)(o => o.key === value)(options), O.map(o => o.label), O.toUndefined)
   }));
 };
 

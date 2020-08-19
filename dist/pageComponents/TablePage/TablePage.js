@@ -17,9 +17,13 @@ var _styledComponents = _interopRequireWildcard(require("../../helpers/styled-co
 
 var _Actions = require("../../visualComponents/actions/Actions");
 
+var _CollectionPaginationComponent = require("../../visualComponents/collection/CollectionPaginationComponent");
+
 var _ReactTable = require("../../visualComponents/dataTable/ReactTable");
 
 var _Search = require("../../visualComponents/inputs/Search");
+
+var _typeGuards = require("../../sharedHelpers/typeGuards");
 
 var _PageHeader = require("../../visualComponents/pageHeader/PageHeader");
 
@@ -31,6 +35,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
+const PAGE_SIZE = 20;
 const TableContainer = _styledComponents.default.div`
   ${(0, _flex.flexFlow)('row')};
 
@@ -50,15 +55,26 @@ const SearchWrapper = _styledComponents.default.div`
 `;
 
 const TablePage = props => {
+  /**
+   * TablePage component does not work without paging.
+   * This is because it does not scroll when overflow is reached.
+   * Setting pagination to `true` is the default setting for this
+   * ReactTable component, but also, it's the only setting that works.
+   * Be wary of setting pagination to false.
+   * AR - 2020-06-04
+   */
   const {
     actions,
-    title,
+    title = '',
     isLoading = false,
     searchProps,
+    pageSize = PAGE_SIZE,
+    showPagination = true,
+    data = [],
     ...otherProps
   } = props;
   const [sorted, onSortedChange] = (0, _ReactTable.useSort)(otherProps.defaultSorted);
-  return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_PageHeader.PageHeader, {
+  return _react.default.createElement(_react.default.Fragment, null, (0, _typeGuards.isNonEmptyString)(title) && _react.default.createElement(_PageHeader.PageHeader, {
     title: title,
     actions: _react.default.createElement(_Actions.ActionsContainer, null, actions)
   }), searchProps !== undefined ? _react.default.createElement(SearchWrapper, null, _react.default.createElement(_Search.Search, searchProps)) : null, _react.default.createElement(TableContainer, null, _react.default.createElement(_styledComponents.ThemeProvider, {
@@ -70,9 +86,13 @@ const TablePage = props => {
       }
     })
   }, _react.default.createElement(_reactTable.default, _extends({}, otherProps, {
+    data: data,
+    pageSize: pageSize,
+    showPagination: showPagination && data.length > pageSize,
     loading: isLoading,
     sorted: sorted,
-    onSortedChange: onSortedChange
+    onSortedChange: onSortedChange,
+    PaginationComponent: _CollectionPaginationComponent.CollectionPaginationComponent
   })))));
 };
 

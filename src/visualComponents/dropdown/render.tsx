@@ -1,6 +1,7 @@
 import { ControllerStateAndHelpers } from 'downshift'
-import { fromNullable } from 'fp-ts/lib/Option'
+import * as O from 'fp-ts/lib/Option'
 import React, { ReactElement, ReactNode, useRef } from 'react'
+import { pipe } from 'fp-ts/lib/pipeable'
 
 import { Colors, getColor } from '@monorail/helpers/color'
 import { ellipsis, visible } from '@monorail/helpers/exports'
@@ -18,6 +19,7 @@ import { IconButton } from '../buttons/IconButton'
 
 import { DropdownItem } from './DropdownItem'
 import { DownshiftGetInputProps, DropdownType } from './helpers'
+import { DropdownParser } from './parsers'
 
 export declare interface RenderItemProps<T> {
   children?: ReactNode
@@ -42,6 +44,8 @@ export declare interface RenderHandlerProps<T> {
 export declare interface RenderListProps<T> {
   children: ReactNode
   downshiftProps: ControllerStateAndHelpers<T>
+  items: Array<T>
+  parser: DropdownParser<T>
 }
 
 export declare interface DropdownRender<T> {
@@ -53,7 +57,7 @@ export declare interface DropdownRender<T> {
 export const DropdownPlaceholder = styled.span`
   ${ellipsis};
 
-  color: ${getColor(Colors.Black54)};
+  color: ${getColor(Colors.Black54a)};
   font-style: italic;
 `
 
@@ -127,9 +131,14 @@ const renderHandlerLabelDefault = <T extends DropdownType>({
   downshiftProps,
   handlerProps,
 }: RenderHandlerProps<T>): ReactElement =>
-  fromNullable(downshiftProps.selectedItem).fold(
-    <DropdownPlaceholder>{handlerProps.placeholder}</DropdownPlaceholder>,
-    item => <span css={ellipsis}>{downshiftProps.itemToString(item)}</span>,
+  pipe(
+    O.fromNullable(downshiftProps.selectedItem),
+    O.fold(
+      () => (
+        <DropdownPlaceholder>{handlerProps.placeholder}</DropdownPlaceholder>
+      ),
+      item => <span css={ellipsis}>{downshiftProps.itemToString(item)}</span>,
+    ),
   )
 
 const Handler = <T extends DropdownType>({

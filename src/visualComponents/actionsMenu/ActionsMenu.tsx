@@ -7,8 +7,10 @@ import {
 } from '@monorail/metaComponents/popOver/PopOver'
 import { ButtonDisplay } from '@monorail/visualComponents/buttons/buttonTypes'
 import { IconButton } from '@monorail/visualComponents/buttons/IconButton'
+import { IconType } from '@monorail/visualComponents/icon/IconType'
 import { SimpleListItem } from '@monorail/visualComponents/list/List'
 import { Menu } from '@monorail/visualComponents/menu/Menu'
+import { Colors } from '@monorail/helpers/color'
 
 /*
  * Styles
@@ -19,8 +21,9 @@ import { Menu } from '@monorail/visualComponents/menu/Menu'
  */
 
 export type MenuAction = {
-  label: string
-  iconName?: string
+  label: ReactNode
+  iconName?: IconType
+  iconColor?: Colors
   chromeless?: boolean
   /**
    * TODO: get rid of the need to have to pass a callback to close the popover.
@@ -67,12 +70,20 @@ export const ActionsMenu: FC<ActionsMenuProps> = props => {
           popOver={({ onClick, ...otherProps }) => (
             <Menu onClick={onClick} {...otherProps}>
               {actions.reduce<Array<ReactNode>>((filtered, action, idx) => {
+                /**
+                 * Setting a field on a menu item to `isFeaturedAction: true`
+                 * does not have the intended effect it used to. Better to not
+                 * use this field when creating buttons to be used with the
+                 * ActionsMenu component.
+                 * - AR - 20200716
+                 */
                 if (!action.isFeaturedAction) {
                   return filtered.concat(
                     <SimpleListItem
                       key={idx}
                       size={Sizes.DP32}
                       leftIcon={action.iconName}
+                      leftIconColor={action.iconColor}
                       primaryText={action.label}
                       onClick={e => action.onClick(() => onClick(e), e)}
                       disabled={action.disabled}

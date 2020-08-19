@@ -3,15 +3,17 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.useDropdownCustomSkin = exports.useDropdownSkin = exports.DropdownSkin = void 0;
+exports.useDropdownCustomSkin = exports.useDropdownSkin = exports.DropdownSkin = exports.ItemContainer = void 0;
 
 var _styledComponents = _interopRequireDefault(require("styled-components"));
 
 var _downshift = _interopRequireDefault(require("downshift"));
 
-var _Option = require("fp-ts/lib/Option");
+var O = _interopRequireWildcard(require("fp-ts/lib/Option"));
 
 var _react = _interopRequireWildcard(require("react"));
+
+var _pipeable = require("fp-ts/lib/pipeable");
 
 var _exports = require("../../helpers/exports");
 
@@ -20,6 +22,8 @@ var _styledComponents2 = _interopRequireWildcard(require("../../helpers/styled-c
 var _PopOver = require("../../metaComponents/popOver/PopOver");
 
 var _typeGuards = require("../../sharedHelpers/typeGuards");
+
+var _inputTypes = require("../inputs/inputTypes");
 
 var _Label = require("../inputs/Label");
 
@@ -51,7 +55,7 @@ const DropdownContainer = _styledComponents2.default.div(({
 }) => (0, _styledComponents2.css)`
     ${(0, _exports.borderRadius)(_exports.BorderRadius.Large)};
     ${(0, _exports.flexFlow)('column')};
-    ${(0, _exports.typography)(400, _exports.FontSizes.Title5)};
+    ${(0, _exports.typographyFont)(400, _exports.FontSizes.Title5)};
 
     flex: 1;
     position: relative;
@@ -83,6 +87,7 @@ const MenuContainer = _styledComponents2.default.div`
   overflow: auto;
 `;
 const ItemContainer = _styledComponents2.default.div``;
+exports.ItemContainer = ItemContainer;
 
 var _StyledMenu =
 /*#__PURE__*/
@@ -139,14 +144,14 @@ const DropdownSkin = ({
       interaction,
       placeholder
     } = skin;
-    const dropdownValue = (0, _Option.fromNullable)(selectedItem).map(itemToString).toUndefined();
+    const dropdownValue = (0, _pipeable.pipe)(O.fromNullable(selectedItem), O.map(itemToString), O.toUndefined);
     const inputOptions = {
       disabled,
       placeholder,
       onKeyDown: interaction.eventHandler(state),
       onClick: () => toggleMenu({
         type: _downshift.default.stateChangeTypes.clickButton,
-        highlightedIndex: (0, _Option.fromNullable)(selectedItem).fold(-1, item => items.indexOf(item))
+        highlightedIndex: (0, _pipeable.pipe)(O.fromNullable(selectedItem), O.fold(() => -1, item => items.indexOf(item)))
       })
     };
     const handlerProps = { ...getInputProps(inputOptions),
@@ -155,8 +160,9 @@ const DropdownSkin = ({
     return _react.default.createElement(HandlerContainer, {
       ref: menuRef
     }, _react.default.createElement("select", {
+      disabled: disabled || display === _inputTypes.DisplayType.View,
       required: required,
-      value: (0, _Option.fromNullable)(selectedItem).map(itemToString).toUndefined(),
+      value: (0, _pipeable.pipe)(O.fromNullable(selectedItem), O.map(itemToString), O.toUndefined),
       style: {
         position: 'absolute',
         bottom: 0,
@@ -184,12 +190,17 @@ const DropdownSkin = ({
       selectedItem,
       itemToString
     } = downshiftProps;
-    return _react.default.createElement(_react.default.Fragment, null, items.map((item, index) => {
+    const ListComponent = (0, _typeGuards.isUndefined)(render.list) ? _react.default.Fragment : render.list;
+    return _react.default.createElement(ListComponent, {
+      items: items,
+      parser: parser,
+      downshiftProps: downshiftProps
+    }, items.map((item, index) => {
       const itemProps = {
         item,
         disabled: !parser.isActive(item),
         highlighted: highlightedIndex === index,
-        selected: (0, _Option.fromNullable)(selectedItem).fold(false, parser.compare(item))
+        selected: (0, _pipeable.pipe)(O.fromNullable(selectedItem), O.fold(() => false, parser.compare(item)))
       };
       const itemDownshiftProps = getItemProps({ ...itemProps,
         index,
@@ -229,19 +240,19 @@ const DropdownSkin = ({
     }, "No results")))));
   };
 
-  const renderError = () => _react.default.createElement(_react.default.Fragment, null, error && error.fold(_react.default.createElement(_react.default.Fragment, null), msg => _react.default.createElement(_StyledDiv, null, _react.default.createElement(_StdErr.StdErr, {
+  const renderError = () => _react.default.createElement(_react.default.Fragment, null, error && (0, _pipeable.pipe)(error, O.fold(() => _react.default.createElement(_react.default.Fragment, null), msg => _react.default.createElement(_StyledDiv, null, _react.default.createElement(_StdErr.StdErr, {
     err: true,
     msg: msg
-  }))));
+  })))));
 
   return _react.default.createElement(DropdownWrapper, null, label && _react.default.createElement(_Label.Label, {
     label: label,
     required: required,
-    err: !(0, _typeGuards.isUndefined)(error) && error.isSome(),
+    err: !(0, _typeGuards.isUndefined)(error) && O.isSome(error),
     display: display
   }), _react.default.createElement(DropdownContainer, {
     disabled: !!disabled,
-    error: !(0, _typeGuards.isUndefined)(error) && error.isSome()
+    error: !(0, _typeGuards.isUndefined)(error) && O.isSome(error)
   }, renderHandler(), !disabled && renderMenu(), renderError()));
 };
 

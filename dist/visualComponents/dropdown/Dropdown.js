@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.Dropdown = void 0;
+exports.Dropdown = exports.DropdownContainer = void 0;
 
 var _downshift = _interopRequireDefault(require("downshift"));
 
@@ -31,12 +31,13 @@ function _extends() { _extends = Object.assign || function (target) { for (var i
 
 const DropdownContainer = _styledComponents.default.div`
   ${(0, _exports.flexFlow)('column')};
-  ${(0, _exports.typography)(400, _exports.FontSizes.Title5)};
+  ${(0, _exports.typographyFont)(400, _exports.FontSizes.Title5)};
 
   position: relative;
   width: 256px;
   max-width: 100%;
 `;
+exports.DropdownContainer = DropdownContainer;
 
 const useKeyboardInteractionDefault = parser => (0, _interaction.useKeyboardInteraction)()(parser);
 
@@ -106,10 +107,10 @@ const Dropdown = ({
     }
   };
 
-  const stateReducer = (state, changes) => (0, _function.pipe)(reduceStateBase(state), behaviorController.stateReducer(state), interactionController.stateReducer(state))(changes);
+  const stateReducer = (state, changes) => (0, _function.flow)(reduceStateBase(state), behaviorController.stateReducer(state), interactionController.stateReducer(state))(changes);
 
   return _react.default.createElement(_downshift.default, _extends({}, behaviorController.downshiftProps, {
-    selectedItem: selectedDropdownItem.toNullable(),
+    selectedItem: (0, _Option.toNullable)(selectedDropdownItem),
     itemToString: parserController.label,
     onChange: onChangeHandler,
     selectedItemChanged: selectedItemChanged,

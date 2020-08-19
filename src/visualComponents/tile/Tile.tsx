@@ -1,7 +1,6 @@
 import React, { FC, useState } from 'react'
 
 import { Colors, getColor } from '@monorail/helpers/color'
-import { FontSizes, FontWeights } from '@monorail/helpers/exports'
 import { flexFlow } from '@monorail/helpers/flex'
 import { Sizes } from '@monorail/helpers/size'
 import styled, { css } from '@monorail/helpers/styled-components'
@@ -11,7 +10,8 @@ import {
 } from '@monorail/visualComponents/actionsMenu/ActionsMenu'
 import { HyperLink } from '@monorail/visualComponents/hyperLink/HyperLink'
 import { Icon } from '@monorail/visualComponents/icon/Icon'
-import { Text } from '@monorail/visualComponents/typography/Text'
+import { IconType } from '@monorail/visualComponents/icon/IconType'
+import { Status } from '@monorail/visualComponents/status/Status'
 
 import { TileStatus } from './TileStatus'
 
@@ -19,8 +19,8 @@ const TileStatusForeground = {
   [TileStatus.Ready]: Colors.Success,
   [TileStatus.NotReady]: Colors.Error,
   [TileStatus.Warning]: Colors.Warning,
-  [TileStatus.Unassigned]: Colors.Black54,
-  [TileStatus.Neutral]: Colors.Black54,
+  [TileStatus.Unassigned]: Colors.Black54a,
+  [TileStatus.Neutral]: Colors.Black54a,
   [TileStatus.Empty]: Colors.Error,
 }
 
@@ -28,21 +28,21 @@ const TileStatusBorder = {
   [TileStatus.Ready]: Colors.Success,
   [TileStatus.NotReady]: Colors.Error,
   [TileStatus.Warning]: Colors.Warning,
-  [TileStatus.Unassigned]: Colors.Black54,
-  [TileStatus.Neutral]: Colors.Black54,
-  [TileStatus.Empty]: Colors.Black54,
+  [TileStatus.Unassigned]: Colors.Black54a,
+  [TileStatus.Neutral]: Colors.Black54a,
+  [TileStatus.Empty]: Colors.Black54a,
 }
 
 const TileStatusBackground = {
   [TileStatus.Ready]: Colors.Success,
   [TileStatus.NotReady]: Colors.Error,
   [TileStatus.Warning]: Colors.Warning,
-  [TileStatus.Unassigned]: Colors.Black24,
-  [TileStatus.Neutral]: Colors.Black24,
+  [TileStatus.Unassigned]: Colors.Black24a,
+  [TileStatus.Neutral]: Colors.Black24a,
   [TileStatus.Empty]: Colors.Error,
 }
 
-const TileStatusIcon = {
+const TileStatusIcon: Record<TileStatus, IconType> = {
   [TileStatus.Ready]: 'check',
   [TileStatus.NotReady]: 'close',
   [TileStatus.Warning]: 'priority_high',
@@ -54,7 +54,7 @@ const TileStatusIcon = {
 const TileStatusLabel = {
   [TileStatus.Ready]: 'Ready',
   [TileStatus.NotReady]: 'Not Ready',
-  [TileStatus.Warning]: 'Expiring',
+  [TileStatus.Warning]: 'Expired',
   [TileStatus.Unassigned]: 'Unassigned',
   [TileStatus.Neutral]: '',
   [TileStatus.Empty]: 'Unassigned',
@@ -67,7 +67,7 @@ type TileStyleProps = {
 }
 
 type TileProps = TileStyleProps & {
-  icon: string
+  icon: IconType
   status?: TileStatus
   selected?: boolean
   actions?: Array<MenuAction>
@@ -92,7 +92,7 @@ const TileIconWrapper = styled.div`
 
 const TileContent = styled.div<TileStyleProps>(
   ({ status, selected = false }) => css`
-    ${flexFlow('row')};
+    ${flexFlow('column')};
     flex: 1;
     border: ${selected ? 2 : 1}px
       ${status === TileStatus.Unassigned || status === TileStatus.Empty
@@ -101,7 +101,8 @@ const TileContent = styled.div<TileStyleProps>(
     border-left: none;
     box-sizing: border-box;
     padding: 2px 8px;
-    align-items: center;
+    justify-content: center;
+    align-items: flex-start;
   `,
 )
 
@@ -151,50 +152,6 @@ const TileContainer = styled.div<TileStyleProps>(
   },
 )
 
-type TileStatusType = {
-  status: TileStatus
-  size: Sizes
-}
-
-const TileStatusWrapper = styled.div<TileStatusType>(
-  ({ status }) => css`
-    display: inline-flex;
-    align-items: center;
-    justify-items: center;
-    flex: 0;
-
-    padding: 2px 16px 2px 8px;
-    color: ${getColor(Colors.White)};
-    background: ${getColor(TileStatusBorder[status])};
-    border-radius: 100px;
-
-    ${Icon} {
-      color: currentColor;
-    }
-  `,
-)
-
-const IconStatus: FC<TileStatusType> = props => {
-  const { children, size = Sizes.DP16, status, ...domProps } = props
-
-  return (
-    <TileStatusWrapper status={status} size={size} {...domProps}>
-      <Icon
-        icon={TileStatusIcon[status]}
-        size={size}
-        css="margin-right: 4px;"
-      />
-      <Text
-        fontSize={FontSizes.Title5}
-        fontWeight={FontWeights.Medium}
-        color={Colors.White}
-      >
-        {children}
-      </Text>
-    </TileStatusWrapper>
-  )
-}
-
 export const Tile: FC<TileProps> = props => {
   const {
     actions,
@@ -218,14 +175,15 @@ export const Tile: FC<TileProps> = props => {
         <Icon size={Sizes.DP16} icon={isHovering ? 'drag_indicator' : icon} />
       </TileIconWrapper>
       <TileContent status={status} selected={selected}>
-        <div>
-          {children}
-          {status !== TileStatus.Neutral && (
-            <IconStatus status={status} size={Sizes.DP16}>
-              {TileStatusLabel[status]}
-            </IconStatus>
-          )}
-        </div>
+        {children}
+        {status !== TileStatus.Neutral && (
+          <Status
+            statusColor={TileStatusBorder[status]}
+            icon={TileStatusIcon[status]}
+          >
+            {TileStatusLabel[status]}
+          </Status>
+        )}
       </TileContent>
       {status !== TileStatus.Unassigned && actions && (
         <TileActionsWrapper>

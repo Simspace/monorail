@@ -28,18 +28,18 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 // Property Styles
 const propertySizeStyles = {
   [_detailsTypes.DetailsSize.Compact]: (0, _styledComponents.css)`
-    ${(0, _exports.typography)(500, _exports.FontSizes.Micro)};
+    ${(0, _exports.typographyFont)(500, _exports.FontSizes.Micro)};
 
     color: ${(0, _theme.getThemeColor)(_theme.ThemeColors.Text500)};
     text-transform: uppercase;
   `,
   [_detailsTypes.DetailsSize.Default]: (0, _styledComponents.css)`
-    ${(0, _exports.typography)(500, _exports.FontSizes.Micro)};
+    ${(0, _exports.typographyFont)(500, _exports.FontSizes.Micro)};
 
     color: ${(0, _theme.getThemeColor)(_theme.ThemeColors.Text700)};
   `,
   [_detailsTypes.DetailsSize.Large]: (0, _styledComponents.css)`
-    ${(0, _exports.typography)(700, _exports.FontSizes.Micro)};
+    ${(0, _exports.typographyFont)(700, _exports.FontSizes.Micro)};
 
     color: ${(0, _theme.getThemeColor)(_theme.ThemeColors.Text700)};
   `
@@ -56,17 +56,17 @@ const DetailsProperty = _styledComponents.default.h2(({
 
 const valueSizeStyles = {
   [_detailsTypes.DetailsSize.Compact]: (0, _styledComponents.css)`
-    ${(0, _exports.typography)(600, _exports.FontSizes.Title5)};
+    ${(0, _exports.typographyFont)(600, _exports.FontSizes.Title5)};
 
     color: ${(0, _theme.getThemeColor)(_theme.ThemeColors.Text700)};
   `,
   [_detailsTypes.DetailsSize.Default]: (0, _styledComponents.css)`
-    ${(0, _exports.typography)(200, _exports.FontSizes.Title3)};
+    ${(0, _exports.typographyFont)(200, _exports.FontSizes.Title3)};
 
     color: ${(0, _theme.getThemeColor)(_theme.ThemeColors.Text900)};
   `,
   [_detailsTypes.DetailsSize.Large]: (0, _styledComponents.css)`
-    ${(0, _exports.typography)(200, _exports.FontSizes.Title1)};
+    ${(0, _exports.typographyFont)(200, _exports.FontSizes.Title1)};
 
     color: ${(0, _theme.getThemeColor)(_theme.ThemeColors.Text900)};
   `

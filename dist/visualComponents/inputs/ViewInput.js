@@ -17,6 +17,8 @@ var _Label = require("./Label");
 
 var _Text = require("../typography/Text");
 
+var _typeGuards = require("../../sharedHelpers/typeGuards");
+
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
@@ -65,16 +67,16 @@ const ViewInput = ({
     orientation: orientation
   }, domProps), _react.default.createElement(_StyledLabel, {
     label: label,
-    _css: disabled && `color: ${(0, _exports.getColor)(_exports.Colors.Black54)};`
-  }), value ? _react.default.createElement(_Text.Text, {
+    _css: disabled && `color: ${(0, _exports.getColor)(_exports.Colors.Black54a)};`
+  }), !(0, _typeGuards.isNil)(value) ? _react.default.createElement(_Text.Text, {
     fontWeight: 400,
     fontSize: _exports.FontSizes.Title5,
-    color: disabled ? _exports.Colors.Black54 : _exports.Colors.Black89,
+    color: disabled ? _exports.Colors.Black54a : _exports.Colors.Black89a,
     margin: orientation === Orientation.Column ? '4px 0' : '0 0 0 4px'
   }, value) : _react.default.createElement(_StyledText, {
     fontWeight: 200,
     fontSize: _exports.FontSizes.Title5,
-    color: _exports.Colors.Black54,
+    color: _exports.Colors.Black54a,
     margin: orientation === Orientation.Column ? '4px 0' : '0 0 0 4px'
   }, placeholder || 'None'));
 };

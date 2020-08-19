@@ -1,0 +1,4 @@
+import { ComponentType } from 'react';
+import { CustomIconProps } from '@monorail/visualComponents/icon/Icon';
+export declare const FightsOn: ComponentType<CustomIconProps>;
+//# sourceMappingURL=FightsOn.d.ts.map

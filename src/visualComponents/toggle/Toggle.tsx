@@ -148,7 +148,7 @@ const StyledIconNotChecked = styled(
     ${iconSizeCss[toggleSize]};
     ${visible(!checked)};
 
-    color: ${getColor(Colors.Black38)};
+    color: ${getColor(Colors.Black38a)};
     position: absolute; /* give z-index so ::before bg is behind icon */
 
     transition: all ease-in 75ms;

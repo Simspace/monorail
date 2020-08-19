@@ -22,7 +22,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 const PageLevelNavItem = (0, _styledComponents.default)(_BaseLink.BaseLink)`
   ${(0, _baseStyles.baseFocusStyles)()};
   ${(0, _flex.flexFlow)('row')};
-  ${(0, _typography.typography)(700, _typography.FontSizes.Title4)};
+  ${(0, _typography.typographyFont)(700, _typography.FontSizes.Title4)};
 
   color: ${(0, _theme.getThemeColor)(_theme.ThemeColors.ApplicationPrimary)};
   align-items: center;

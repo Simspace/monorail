@@ -15,6 +15,7 @@ const DeletionText = styled.div`
 
 export type DeleteModalProps = Omit<AlertModalProps, 'alertType'> & {
   itemName: string
+  itemType?: string
 }
 
 export const DeleteModal: FC<DeleteModalProps> = props => {
@@ -24,6 +25,7 @@ export const DeleteModal: FC<DeleteModalProps> = props => {
     subtitleText,
     primaryButtonText,
     secondaryButtonText,
+    itemType = '',
     ...domProps
   } = props
 
@@ -37,7 +39,8 @@ export const DeleteModal: FC<DeleteModalProps> = props => {
       subtitleText={
         <DeletionText>
           <Text fontSize={FontSizes.Title5} fontWeight={400} margin="8px 0">
-            You have chosen to delete the following:
+            You have chosen to delete the following
+            {itemType ? ` ${itemType}` : ''}:
           </Text>
           <Text fontSize={FontSizes.Title4} fontWeight={500} margin="8px 0">
             {itemName}

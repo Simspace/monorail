@@ -6,18 +6,6 @@ var _react = require("react");
 
 var _Option2 = require("../Option");
 
-describe('fold (Option)', () => {
-  it('should properly fold Options -- some', () => {
-    const actual = (0, _Option2.fold)((0, _Option.some)(3), 0, x => x + 1);
-    const expected = 4;
-    expect(actual).toBe(expected);
-  });
-  it('should properly fold Options -- none', () => {
-    const actual = (0, _Option2.fold)(_Option.none, 0, x => x - 1);
-    const expected = 0;
-    expect(actual).toBe(expected);
-  });
-});
 describe('fromTruthyFalsy', () => {
   it('should return a none when given a Falsy value', () => {
     const actual = (0, _Option2.fromTruthyFalsy)(0);

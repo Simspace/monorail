@@ -49,16 +49,15 @@ const FourZeroFourIcon = styled.div`
 `
 
 const Title = styled.h1`
-  ${typography(700, FontSizes.Title1)};
+  ${typography(700, FontSizes.Title1, '32px 0')};
 
-  color: ${getColor(Colors.Black89)};
-  margin: 32px 0 32px 0;
+  color: ${getColor(Colors.Black89a)};
 `
 
 const ErrorMessage = styled.div`
   ${typography(400, FontSizes.Title3)};
 
-  color: ${getColor(Colors.Black89)};
+  color: ${getColor(Colors.Black89a)};
   max-width: 448px;
   text-align: center;
   width: 100%;

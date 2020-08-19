@@ -1,7 +1,7 @@
-import { index } from 'fp-ts/lib/Array'
-
 export enum ZIndexNodeName {
   ArrowButtons = 'ArrowButtons',
+  ContentCardButton = 'ContentCardButton',
+  DataWellDivider = 'DataWellDivider',
   FramedIcon = 'FramedIcon',
   FramedIconBackground = 'FramedIconBackground',
   NewFlowSection = 'NewFlowSection',
@@ -14,16 +14,20 @@ export enum ZIndexNodeName {
   CardShadow = 'CardShadow',
   Overlay = 'Overlay',
   Modal = 'Modal',
+  Tooltip = 'Tooltip',
 }
 
 export const zIndexValue = (nodeName: ZIndexNodeName): number => {
   switch (nodeName) {
+    case ZIndexNodeName.ContentCardButton:
+      return 1
     case ZIndexNodeName.SidebarContainer:
       return 10
     case ZIndexNodeName.ArrowButtons:
     case ZIndexNodeName.NewFlowSection:
     case ZIndexNodeName.PageLevelNavItem:
     case ZIndexNodeName.TabBarIndicator:
+    case ZIndexNodeName.DataWellDivider:
       return 5
     case ZIndexNodeName.CardBackground:
     case ZIndexNodeName.FramedIconBackground:
@@ -35,6 +39,8 @@ export const zIndexValue = (nodeName: ZIndexNodeName): number => {
       return 9990
     case ZIndexNodeName.Overlay:
       return 9998
+    case ZIndexNodeName.Tooltip:
+      return 9999
     case ZIndexNodeName.FramedIcon:
     case ZIndexNodeName.CardBody:
     default:

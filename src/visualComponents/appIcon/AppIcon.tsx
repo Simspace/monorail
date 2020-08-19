@@ -9,14 +9,16 @@ import {
 } from '@monorail/helpers/exports'
 import styled from '@monorail/helpers/styled-components'
 import { Icon } from '@monorail/visualComponents/icon/Icon'
+import { IconType } from '@monorail/visualComponents/icon/IconType'
 
 export type AppIconProps = {
   appName: AppOrAuthSubAppName
 }
 
+// TODO: unsafe icon usage
 export const AppIcon = styled(({ appName, ...otherProps }: AppIconProps) => (
   <div {...otherProps}>
-    <Icon icon={`${appName}-app`} />
+    <Icon icon={`${appName}-app` as IconType} />
   </div>
 ))<AppIconProps>`
   ${flexFlow('row')};

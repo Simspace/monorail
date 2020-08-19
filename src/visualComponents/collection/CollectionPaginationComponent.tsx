@@ -1,7 +1,13 @@
-import React, { FC } from 'react'
+import React, { FC, SyntheticEvent } from 'react'
 import { ButtonDisplay } from '@monorail/visualComponents/buttons/buttonTypes'
 import { Text } from '@monorail/visualComponents/typography/Text'
-import { FontSizes, getColor, Colors } from '@monorail/helpers/exports'
+import {
+  FontSizes,
+  getColor,
+  Colors,
+  getElevationShadow,
+  ElevationRange,
+} from '@monorail/helpers/exports'
 import { Button } from '@monorail/visualComponents/buttons/Button'
 import { Icon } from '@monorail/visualComponents/icon/Icon'
 import { css } from '@monorail/helpers/styled-components'
@@ -9,26 +15,33 @@ import { css } from '@monorail/helpers/styled-components'
 const NumberButton: FC<{
   number: number
   current?: boolean
-  handleClick: () => void
-}> = ({ number, current = false, handleClick }) => (
-  <Button
-    onClick={handleClick}
-    display={ButtonDisplay.Chromeless}
-    css={{ margin: '0 4px' }}
-  >
+  handleClick: (e: SyntheticEvent<HTMLButtonElement, MouseEvent>) => void
+}> = ({ number, current = false, handleClick }) => {
+  return current ? (
     <Text
       fontSize={FontSizes.Title5}
       fontWeight={500}
-      css={{
-        color: getColor(current ? Colors.Black54 : Colors.BrandLightBlue),
-      }}
+      css={{ color: getColor(Colors.Black89a), padding: '0 11px' }}
     >
       {number}
     </Text>
-  </Button>
-)
+  ) : (
+    <Button onClick={handleClick} display={ButtonDisplay.Chromeless}>
+      <Text
+        fontSize={FontSizes.Title5}
+        fontWeight={500}
+        css={{
+          color: getColor(Colors.BrandLightBlue),
+          margin: 0,
+        }}
+      >
+        {number}
+      </Text>
+    </Button>
+  )
+}
 
-const Ellipsis: FC = () => <span style={{ margin: '0 4px' }}>...</span>
+const Ellipsis: FC = () => <span css={{ padding: '0 11px' }}>...</span>
 
 export const CollectionPaginationComponent: FC<{
   data: Array<object> // data gets passed as prop by ReactTable; don't care what's in it, just care abt length to get total
@@ -45,20 +58,25 @@ export const CollectionPaginationComponent: FC<{
     return Math.min(Math.max(pg, 0), pages - 1)
   }
 
-  const changePage = (pg: number) => {
+  const changePage = (
+    e: SyntheticEvent<HTMLButtonElement, MouseEvent>,
+    pg: number,
+  ) => {
     const safePage = getSafePage(pg)
     if (page !== safePage) {
       onPageChange(safePage)
     }
+    e.currentTarget.blur()
   }
 
   const linksForEveryPage = () => (
     <>
-      {Array.from(Array(pages).keys()).map(n => (
+      {Array.from(Array(pages).keys()).map((n, i) => (
         <NumberButton
+          key={i}
           number={n + 1}
           current={page === n}
-          handleClick={() => changePage(n)}
+          handleClick={e => changePage(e, n)}
         />
       ))}
     </>
@@ -68,51 +86,59 @@ export const CollectionPaginationComponent: FC<{
     <>
       <NumberButton
         number={1}
-        handleClick={() => changePage(0)}
+        handleClick={e => changePage(e, 0)}
         current={page === 0}
       />
       <NumberButton
         number={2}
-        handleClick={() => changePage(1)}
+        handleClick={e => changePage(e, 1)}
         current={page === 1}
       />
       <NumberButton
         number={3}
-        handleClick={() => changePage(2)}
+        handleClick={e => changePage(e, 2)}
         current={page === 2}
       />
-      {page === 2 ? (
-        <NumberButton number={4} handleClick={() => changePage(3)} />
-      ) : null}
+      <NumberButton
+        number={4}
+        handleClick={e => changePage(e, 3)}
+        current={page === 3}
+      />
+      <NumberButton number={5} handleClick={e => changePage(e, 4)} />
       <Ellipsis />
-      <NumberButton number={pages} handleClick={() => changePage(pages - 1)} />
+      <NumberButton
+        number={pages}
+        handleClick={e => changePage(e, pages - 1)}
+      />
     </>
   )
 
   const ellipsisBeforeEnd = () => (
     <>
-      <NumberButton number={1} handleClick={() => changePage(0)} />
+      <NumberButton number={1} handleClick={e => changePage(e, 0)} />
       <Ellipsis />
-      {page === pages - 3 ? (
-        <NumberButton
-          number={pages - 3}
-          handleClick={() => changePage(pages - 4)}
-          current={page === pages - 4}
-        />
-      ) : null}
+      <NumberButton
+        number={pages - 4}
+        handleClick={e => changePage(e, pages - 5)}
+      />
+      <NumberButton
+        number={pages - 3}
+        handleClick={e => changePage(e, pages - 4)}
+        current={page === pages - 4}
+      />
       <NumberButton
         number={pages - 2}
-        handleClick={() => changePage(pages - 3)}
+        handleClick={e => changePage(e, pages - 3)}
         current={page === pages - 3}
       />
       <NumberButton
         number={pages - 1}
-        handleClick={() => changePage(pages - 2)}
+        handleClick={e => changePage(e, pages - 2)}
         current={page === pages - 2}
       />
       <NumberButton
         number={pages}
-        handleClick={() => changePage(pages - 1)}
+        handleClick={e => changePage(e, pages - 1)}
         current={page === pages - 1}
       />
     </>
@@ -122,28 +148,30 @@ export const CollectionPaginationComponent: FC<{
     if (pages < 8) {
       return linksForEveryPage()
     }
-    if (page < 3) {
+    if (page < 4) {
       return ellipsisAfterBeginning()
-    } else if (page > pages - 4) {
+    } else if (page > pages - 5) {
       return ellipsisBeforeEnd()
     } else {
       return (
         <>
-          <NumberButton number={1} handleClick={() => changePage(0)} />
+          <NumberButton number={1} handleClick={e => changePage(e, 0)} />
           <Ellipsis />
           <NumberButton
             number={page}
-            handleClick={() => changePage(page - 1)}
+            key={page}
+            handleClick={e => changePage(e, page - 1)}
           />
           <NumberButton number={page + 1} current handleClick={() => {}} />
           <NumberButton
+            key={page + 2}
             number={page + 2}
-            handleClick={() => changePage(page + 1)}
+            handleClick={e => changePage(e, page + 1)}
           />
           <Ellipsis />
           <NumberButton
             number={pages}
-            handleClick={() => changePage(pages - 1)}
+            handleClick={e => changePage(e, pages - 1)}
           />
         </>
       )
@@ -151,23 +179,26 @@ export const CollectionPaginationComponent: FC<{
   }
   return (
     <div
-      style={{
-        background: getColor(Colors.Grey98),
-        padding: '4px 24px',
-        display: 'flex',
-        justifyContent: 'center',
-      }}
+      css={`
+        background: ${getColor(Colors.Grey98)};
+        padding: 4px 24px;
+        display: flex;
+        justify-content: center;
+        ${getElevationShadow(ElevationRange.Elevation4)};
+      `}
     >
-      <div style={{ display: 'flex' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
         <Button
-          onClick={() => changePage(page - 1)}
+          onClick={e => changePage(e, page - 1)}
           display={ButtonDisplay.Chromeless}
+          disabled={page === 0}
+          cssOverrides={page === 0 ? 'opacity: 1;' : null}
         >
           <Icon
             icon="chevron_left"
             css={{
               color: getColor(
-                page > 0 ? Colors.BrandLightBlue : Colors.Black54,
+                page > 0 ? Colors.BrandLightBlue : Colors.Black54a,
               ),
             }}
           ></Icon>
@@ -176,8 +207,9 @@ export const CollectionPaginationComponent: FC<{
             fontWeight={500}
             css={`
               margin: 0;
+              text-transform: capitalize;
               color: ${getColor(
-                page > 0 ? Colors.BrandLightBlue : Colors.Black54,
+                page > 0 ? Colors.BrandLightBlue : Colors.Black54a,
               )};
             `}
           >
@@ -187,24 +219,28 @@ export const CollectionPaginationComponent: FC<{
         <div
           css={css`
             display: flex;
-            width: 250px;
+            width: ${pages > 6 ? '250px' : 'auto'};
             align-items: center;
-            justify-content: center;
+            justify-content: space-between;
+            flex: 1 1 0;
           `}
         >
           {numbers()}
         </div>
         <Button
-          onClick={() => changePage(page + 1)}
+          onClick={e => changePage(e, page + 1)}
           display={ButtonDisplay.Chromeless}
+          disabled={page === pages - 1}
+          cssOverrides={page === pages - 1 ? 'opacity: 1;' : null}
         >
           <Text
             fontSize={FontSizes.Title5}
             fontWeight={500}
             css={`
               margin: 0;
+              text-transform: capitalize;
               color: ${getColor(
-                page < pages - 1 ? Colors.BrandLightBlue : Colors.Black54,
+                page < pages - 1 ? Colors.BrandLightBlue : Colors.Black54a,
               )};
             `}
           >
@@ -215,7 +251,7 @@ export const CollectionPaginationComponent: FC<{
             icon="chevron_right"
             css={{
               color: getColor(
-                page < pages - 1 ? Colors.BrandLightBlue : Colors.Black54,
+                page < pages - 1 ? Colors.BrandLightBlue : Colors.Black54a,
               ),
             }}
           ></Icon>
@@ -228,7 +264,7 @@ export const CollectionPaginationComponent: FC<{
           position: absolute;
           right: 8px;
           margin-top: 4px;
-          color: ${getColor(Colors.Black54)};
+          color: ${getColor(Colors.Black54a)};
         `}
       >
         Showing {min}-{max} of {total} Results

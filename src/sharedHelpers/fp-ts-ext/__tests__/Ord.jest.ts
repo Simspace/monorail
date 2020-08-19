@@ -1,4 +1,5 @@
-import { strictEqual } from 'fp-ts/lib/Setoid'
+import { strictEqual } from 'fp-ts/lib/Eq'
+import * as fc from 'fast-check'
 
 import {
   alphaCompare,
@@ -7,7 +8,9 @@ import {
   ordNumeric,
   ordRecordWithNameLower,
   recordWithNameLowerComparator,
+  invert,
 } from '../Ord'
+import { ordString } from 'fp-ts/lib/Ord'
 
 describe('ordAlpha', () => {
   it('should contain a `compare` function that orders alphabetically', () => {
@@ -105,5 +108,27 @@ describe('ordRecordWithNameLower', () => {
     )
     expect(actualC).toBe(expectedC)
     expect(actualC).toBe(0)
+  })
+})
+
+describe('invert', () => {
+  // https://en.wikipedia.org/wiki/Involution_(mathematics)
+  // Applying invert twice should result in the original ord instance
+  test('involution', () => {
+    return fc.assert(
+      fc.property(fc.string(), fc.string(), (a, b) => {
+        return (
+          invert(invert(ordString)).compare(a, b) === ordString.compare(a, b)
+        )
+      }),
+    )
+  })
+
+  test('inverts', () => {
+    fc.assert(
+      fc.property(fc.string(), fc.string(), (a, b) => {
+        return invert(ordString).compare(a, b) === ordString.compare(b, a)
+      }),
+    )
   })
 })

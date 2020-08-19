@@ -1,4 +1,6 @@
 import { lookup } from 'fp-ts/lib/Array'
+import * as O from 'fp-ts/lib/Option'
+import { pipe } from 'fp-ts/lib/pipeable'
 import React, { FC, MouseEvent, ReactNode, useEffect, useState } from 'react'
 
 import {
@@ -7,10 +9,12 @@ import {
   getColor,
   pageSizePadding,
   Sizes,
-  typography,
+  typographyFont,
+  visible,
 } from '@monorail/helpers/exports'
 import { flexFlow } from '@monorail/helpers/flex'
 import styled, { css } from '@monorail/helpers/styled-components'
+import { CssOverridesType } from '@monorail/types'
 import {
   ActionsMenu,
   MenuAction,
@@ -22,8 +26,10 @@ import {
 import { IconButton } from '@monorail/visualComponents/buttons/IconButton'
 import { Header, HeaderProps } from '@monorail/visualComponents/header/Header'
 import { Icon } from '@monorail/visualComponents/icon/Icon'
+import { IconType } from '@monorail/visualComponents/icon/IconType'
 import {
   TextArea,
+  TextAreaInput,
   TextAreaProps,
 } from '@monorail/visualComponents/inputs/TextArea'
 import { ScrollAnimation } from '@monorail/visualComponents/layout/ScrollAnimation'
@@ -31,8 +37,9 @@ import { SimpleListItem } from '@monorail/visualComponents/list/List'
 import { Text } from '@monorail/visualComponents/typography/Text'
 
 type Props = {
-  title: string
+  title?: string
   headerProps?: Omit<HeaderProps, 'title'>
+  header?: () => ReactNode
   children: () => ReactNode
   list: () => ReactNode
   listFooter?: () => ReactNode
@@ -41,7 +48,7 @@ type Props = {
 export const OutlineList = styled.div`
   ${flexFlow('column')};
   background: ${getColor(Colors.White)};
-  border-right: 1px solid ${getColor(Colors.Black12)};
+  border-right: 1px solid ${getColor(Colors.Black12a)};
   flex: 1;
   max-width: 256px;
   min-width: 186px;
@@ -61,18 +68,39 @@ const OutlineContent = styled.div`
   overflow: hidden;
 `
 
+const IconButtonContainer = styled.div`
+  ${visible(false)}
+`
+
 export const LayoutOutline: FC<Props> = ({
   children,
+  header,
   headerProps,
   list,
   listFooter,
   title,
   ...domProps
 }: Props) => {
+  const renderTitleHeader = (): ReactNode => (
+    <Header cssTitle="flex: 1;" {...headerProps} title={title} />
+  )
+
   return (
     <OutlineContainer {...domProps}>
       <OutlineList>
-        <Header cssTitle="flex: 1;" {...headerProps} title={title} />
+        {pipe(
+          O.fromNullable(header),
+          O.alt(() =>
+            pipe(
+              O.fromNullable(title),
+              O.map(t => renderTitleHeader),
+            ),
+          ),
+          O.fold(
+            () => <></>,
+            render => render(),
+          ),
+        )}
         <ScrollAnimation css="transform: none;">{list()}</ScrollAnimation>
         {listFooter && listFooter()}
       </OutlineList>
@@ -109,9 +137,18 @@ type EmptyLayoutListProps = {
   actions?: ReactNode
 }
 
+export const EmptyLayoutContainer = styled.div`
+  ${flexFlow('column')};
+
+  background: ${getColor(Colors.Grey96)};
+  flex: 1;
+  height: 100%;
+  overflow: hidden;
+`
+
 export const EmptyLayoutList = ({
-  title = 'Empty List',
-  message = 'Add items to your list',
+  title = 'No Selection',
+  message = 'Select an item on the left or create a new item',
   actions,
 }: EmptyLayoutListProps) => (
   <EmptyListBox>
@@ -138,15 +175,22 @@ export const EmptyLayoutList = ({
   </EmptyListBox>
 )
 
-const titleStyle = css`
+const titleStyle = (disabled?: boolean) => css`
   max-width: unset;
   flex: 3;
-  textarea {
-    ${typography(700, FontSizes.Title1)};
-  }
-  textarea::placeholder {
-    font-style: italic;
-    color: '#8c8c8c';
+  ${TextAreaInput} {
+    ${typographyFont(700, FontSizes.Title1)};
+
+    ${disabled &&
+      css`
+        border: none;
+
+        &:hover,
+        &:focus,
+        &:active {
+          border: none;
+        }
+      `}
   }
   margin-right: 8px;
 `
@@ -192,7 +236,7 @@ export const LayoutDetailHeader = ({
     <TextArea
       chromeless
       compact
-      cssOverrides={titleStyle}
+      cssOverrides={titleStyle(textAreaProps.disabled)}
       placeholder="New Item"
       required
       {...textAreaProps}
@@ -222,37 +266,57 @@ export type OutlineControlledProps<T extends OutlineItemBaseType> = {
 
 export type OutlineListItemType<T extends OutlineItemBaseType> = {
   item: T
-  icon?: string
+  icon?: IconType
   selected?: boolean
+  size?: Sizes
   onClick?: (item: T) => void
   onDelete?: (item: T) => void
+  cssOverrides?: CssOverridesType
 }
 
 export const OutlineListItem = <T extends OutlineItemBaseType>(
   props: OutlineListItemType<T>,
 ) => {
-  const { item, selected = false, onClick, onDelete, icon = 'settings' } = props
+  const {
+    item,
+    selected = false,
+    onClick,
+    onDelete,
+    size = Sizes.DP40,
+    icon = 'settings',
+    cssOverrides,
+  } = props
 
   return (
     <SimpleListItem
       key={item.key}
       leftIcon={icon}
       primaryText={item.content}
-      size={Sizes.DP40}
+      size={size}
       className={selected ? 'is-active' : ''}
       onClick={() => onClick && onClick(item)}
+      cssOverrides={cssOverrides}
+      css={css`
+        &:hover {
+          ${IconButtonContainer} {
+            ${visible(true)}
+          }
+        }
+      `}
     >
       {onDelete && (
-        <IconButton
-          size={ButtonSize.Compact}
-          display={ButtonDisplay.Toolbar}
-          icon="cancel"
-          onClick={(e: MouseEvent) => {
-            e.preventDefault()
-            e.stopPropagation()
-            onDelete(item)
-          }}
-        />
+        <IconButtonContainer>
+          <IconButton
+            size={ButtonSize.Compact}
+            display={ButtonDisplay.Toolbar}
+            icon={'delete'}
+            onClick={(e: MouseEvent) => {
+              e.preventDefault()
+              e.stopPropagation()
+              onDelete(item)
+            }}
+          />
+        </IconButtonContainer>
       )}
     </SimpleListItem>
   )
@@ -277,7 +341,7 @@ export const useControlledList = <T extends OutlineItemBaseType>({
 
   useEffect(() => {
     if (!selected) {
-      setSelected(lookup(0, list).toUndefined())
+      setSelected(pipe(lookup(0, list), O.toUndefined))
     }
   }, [list, selected])
 
