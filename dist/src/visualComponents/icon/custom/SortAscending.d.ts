@@ -1,4 +1,0 @@
-import { ComponentType } from 'react';
-import { CustomIconProps } from '@monorail/visualComponents/icon/Icon';
-export declare const SortAscending: ComponentType<CustomIconProps>;
-//# sourceMappingURL=SortAscending.d.ts.map
