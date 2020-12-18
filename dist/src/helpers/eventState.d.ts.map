@@ -1,1 +1,0 @@
-{"version":3,"file":"eventState.d.ts","sourceRoot":"","sources":["../../../src/helpers/eventState.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,MAAM,EAAE,MAAM,yBAAyB,CAAA;AAEhD,oBAAY,UAAU;IAEpB,SAAS,cAAc;IAGvB,QAAQ,aAAa;IAErB,MAAM,WAAW;IAEjB,QAAQ,aAAa;IAErB,QAAQ,aAAa;IAErB,SAAS,cAAc;IAEvB,MAAM,WAAW;IAEjB,MAAM,WAAW;CAClB;AAED,eAAO,MAAM,wBAAwB,eAAgB,UAAU,KAAG,MAqBjE,CAAA"}
