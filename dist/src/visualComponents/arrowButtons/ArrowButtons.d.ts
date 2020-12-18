@@ -14,4 +14,3 @@ export declare type ArrowButtonsProps = CommonComponentType & {
     cssArrowOverrides?: CssOverridesType;
 };
 export declare const ArrowButtons: FC<ArrowButtonsProps>;
-//# sourceMappingURL=ArrowButtons.d.ts.map

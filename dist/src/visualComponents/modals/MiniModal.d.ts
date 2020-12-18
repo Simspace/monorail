@@ -11,4 +11,3 @@ declare type Props = PopOverChildProps & {
 };
 export declare const MiniModal: FC<Props>;
 export {};
-//# sourceMappingURL=MiniModal.d.ts.map

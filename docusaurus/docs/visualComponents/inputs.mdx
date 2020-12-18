@@ -1,0 +1,343 @@
+---
+id: inputs
+title: Inputs
+sidebar_label: Inputs
+---
+
+import { ChangeEvent, FC, ReactNode, useState } from 'react'
+import { css } from '@monorail/helpers/styled-components'
+
+import { TYPE_OPTIONS } from '../docComponents/InputsDoc'
+import { ShowCase } from '../docComponents/ShowCase'
+import { flexFlow } from '@monorail/helpers/exports'
+import { isUndefined } from '@monorail/sharedHelpers/typeGuards'
+import { Div } from '@monorail/StyleHelpers'
+import { Button } from '@monorail/visualComponents/buttons/Button'
+import {
+  ButtonDisplay,
+  ButtonSize,
+} from '@monorail/visualComponents/buttons/buttonTypes'
+import { ButtonsBar } from '@monorail/visualComponents/buttonsBar/ButtonsBar'
+import { CheckboxSelect } from '@monorail/visualComponents/inputs/CheckboxSelect'
+import { Choice } from '@monorail/visualComponents/inputs/Choice'
+import {
+  DateInputProps,
+  TypedDatetime,
+} from '@monorail/visualComponents/inputs/DateTime'
+import { DisplayType } from '@monorail/visualComponents/inputs/inputTypes'
+import { RadioGroup } from '@monorail/visualComponents/inputs/RadioGroup'
+import { Search } from '@monorail/visualComponents/inputs/Search'
+import { SelectOption } from '@monorail/visualComponents/inputs/Select'
+import { ErrorProps } from '@monorail/visualComponents/inputs/StdErr'
+import { TextArea } from '@monorail/visualComponents/inputs/TextArea'
+import { TextField } from '@monorail/visualComponents/inputs/TextField'
+
+:::caution
+Issues with some components:
+
+- Add functionality to other inputs (checkbox, radio).
+- DateTime picker seems to have the correct classNames but does not look like the example on design.simspace.com
+
+:::
+
+Inputs allow the user to communicate to the application. Because this interaction is so fundamental, the wrong type of input for the question can be very confusing. Selecting the right input for both the data and the question is a mark of good design. Remember we are stewards of the user.
+
+<ShowCase>
+  <TextField label="Text Field" placeholder="Placeholder" />
+</ShowCase>
+
+## Usage
+
+Inputs are used to allow users to submit information.
+
+- Forms
+- Tables
+- Modals
+
+## Principles
+
+**Identifiable**  
+These components clearly communicate that the user can input information.
+
+**Reactive**  
+Inputs are reactive to user interaction. Their styling adjust when the user hovers and interacts with them.
+
+**Clear**  
+Inputs should make it easy to understand the requested information and address any errors.
+
+## Types
+
+### Text Field
+
+Text Field should be used for inputing small amounts of text. For larger amounts use Text Area.
+
+```tsx live
+<TextField label="Text Field" placeholder="Placeholder" />
+```
+
+#### Text Field | Left Icon
+
+Text Field can include an Icon to indicate the type of information that should be entered.
+
+```tsx live
+<TextField
+  placeholder="Placeholder"
+  label="Text Field | Left Icon"
+  iconLeft="person"
+/>
+```
+
+#### Text Field | Right Icon
+
+Text Field can include an Icon to indicate the type of information that should be entered.
+
+```tsx live
+<TextField
+  placeholder="Placeholder"
+  label="Text Field | Right Icon"
+  iconRight="person"
+/>
+```
+
+#### Text Field | Left & Right Icon
+
+Text Field can include an Icon to indicate the type of information that should be entered.
+
+```tsx live
+<TextField
+  placeholder="Placeholder"
+  label="Text Field | Left & Right Icon"
+  iconLeft="person"
+  iconRight="person"
+/>
+```
+
+#### Visibility Toggle
+
+Text Field can toggle password visibilty.
+
+```tsx live
+<TextField
+  canToggleVisibility
+  placeholder="Password"
+  label="Visibility Toggle"
+/>
+```
+
+#### Text Field | Error State
+
+Text Field can display different styling and informative text for validation errors.
+
+```tsx live
+<TextField
+  placeholder="Placeholder"
+  label="Text Field | Error State"
+  iconLeft="person"
+  iconRight="person"
+  err
+  msg="Some error text."
+/>
+```
+
+#### Text Field | View
+
+Text Field can conditionally display its contents as read-only. If no value is present, None is displayed.
+
+```tsx live
+<TextField
+  label="Text Field | View"
+  display={DisplayType.View}
+  value="Some text."
+/>
+```
+
+## Text Area
+
+### Text Area
+
+The Text Area component is used for entering larger amounts of text.
+
+```tsx live
+<TextArea placeholder="Placeholder" label="Text Area" height={56} />
+```
+
+#### Text Area | Error State
+
+Text Area can display different styling and informative text for validation errors.
+
+```tsx live
+<TextArea
+  placeholder="Placeholder"
+  label="Text Area"
+  height={56}
+  err
+  msg="Some error text."
+/>
+```
+
+#### Text Area | View
+
+Text Area can conditionally display its contents as read-only.
+
+```tsx live
+<TextArea
+  label="Text Area | View"
+  display={DisplayType.View}
+  value="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+/>
+```
+
+## Search
+
+### Search
+
+The Search component signals to the user that the associated collection can be searched. Upon input, a "clear search" Icon Button appears in the right side of the box.
+
+```tsx live
+<Search />
+```
+
+## Choice
+
+Checkbox and Radio Button should have an Interaction Area that surrounds both the Icon and the Label. The height should be 24px and width is determined by context. Within a Form, it is as wide as other Inputs. Label will wrap when it hits Form width. In Isolation, it will be as wide as its label with padding-right: 8px.
+
+### Radio
+
+Use Radio Button to select a single option from a list. Radio buttons should be used instead of checkboxes if only one item can be selected from a list.
+
+```tsx live
+<Choice type="radio">Radio</Choice>
+```
+
+### Checkbox
+
+Use Checkbox to select one or multiple items from a list, or turn an option on or off.
+
+```tsx live
+<Choice type="checkbox">Checkbox</Choice>
+```
+
+### Radio | Disabled
+
+A disabled Radio Button should clearly indicate it cannot accept input.
+
+```tsx live
+<Choice type="radio" disabled>
+  Radio | Disabled
+</Choice>
+```
+
+### Checkbox | Disabled
+
+A disabled Checkbox should clearly indicate it cannot accept input.
+
+```tsx live
+<Choice type="checkbox" disabled>
+  Checkbox | Disabled>
+</Choice>
+```
+
+### Checkbox Select
+
+Use CheckboxSelect to optionally provide a list of options.
+
+```tsx live
+function CheckboxSelectController() {
+  const [isEnabled, setIsEnabled] = useState(false)
+  const [currentValue, setCurrentValue] = useState('')
+  const checkboxSelectOptions = [
+    { label: 'Default', value: 'Default' },
+    { label: 'Option 1', value: 'Option 1' },
+    { label: 'Option 2', value: 'Option 2' },
+    { label: 'Option 3', value: 'Option 3' },
+  ]
+
+  return (
+    <CheckboxSelect
+      label="Label"
+      options={checkboxSelectOptions}
+      onChange={({ enabled, value }) => {
+        setIsEnabled(enabled)
+        setCurrentValue(value)
+      }}
+      value={{ enabled: isEnabled, value: currentValue }}
+    />
+  )
+}
+```
+
+### Radio Group
+
+:::caution
+This demo is outdated. Going to leave it as is for MVP. Check `Inputs.doc.tsx` for the updated version.
+
+GS 07/31/20
+:::
+
+A group of radio buttons is called a Radio Group. Click the buttons to change the DisplayType.
+
+```tsx live
+function RadioGroupDemo() {
+  const [isClicked, setIsClicked] = useState('beginner')
+
+  return (
+    <RadioGroup
+      err={false}
+      msg=""
+      label="Difficulty"
+      value={isClicked}
+      options={TYPE_OPTIONS}
+      onSelect={setIsClicked}
+      hideStdErr={true}
+      display={DisplayType.Edit}
+    />
+  )
+}
+```
+
+### Radio Group | Error
+
+Error state for a group of Choices.
+
+```tsx live
+function RadioGroupDemo() {
+  const [isClicked, setIsClicked] = useState('beginner')
+
+  return (
+    <RadioGroup
+      err={true}
+      msg="Some error text."
+      label="Difficulty"
+      value={isClicked}
+      options={TYPE_OPTIONS}
+      onSelect={setIsClicked}
+      hideStdErr={false}
+      display={DisplayType.Edit}
+    />
+  )
+}
+```
+
+### Single Choice | Error
+
+Error state for a single Choice.
+
+```tsx live
+<Choice type="checkbox" err>
+  Single Choice | Error
+</Choice>
+```
+
+### Date Picker
+
+```tsx live
+<TypedDatetime
+  className="time-picker"
+  timeConstraints={{
+    hours: { min: 0, max: 24, step: 1 },
+    minutes: { min: 0, max: 60, step: 15 },
+    seconds: { min: 0, max: 0, step: 0 },
+  }}
+  renderInput={props => <TextField {...props} />}
+/>
+```

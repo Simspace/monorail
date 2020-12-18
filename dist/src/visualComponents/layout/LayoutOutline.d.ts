@@ -1,5 +1,6 @@
 import { FC, ReactNode } from 'react';
 import { Sizes } from '@monorail/helpers/exports';
+import { css } from '@monorail/helpers/styled-components';
 import { CssOverridesType } from '@monorail/types';
 import { MenuAction } from '@monorail/visualComponents/actionsMenu/ActionsMenu';
 import { HeaderProps } from '@monorail/visualComponents/header/Header';
@@ -13,25 +14,26 @@ declare type Props = {
     list: () => ReactNode;
     listFooter?: () => ReactNode;
 };
-export declare const OutlineList: any;
+export declare const OutlineList: import("styled-components").StyledComponent<"div", import("../../helpers/theme").GlobalAppThemeInterface, {}, never>;
 export declare const LayoutOutline: FC<Props>;
-export declare const EmptyListBox: any;
-export declare const EmptyListBoxInner: any;
-export declare const EmptyListButtonsBox: any;
+export declare const EmptyListBox: import("styled-components").StyledComponent<"div", import("../../helpers/theme").GlobalAppThemeInterface, {}, never>;
+export declare const EmptyListBoxInner: import("styled-components").StyledComponent<"div", import("../../helpers/theme").GlobalAppThemeInterface, {}, never>;
+export declare const EmptyListButtonsBox: import("styled-components").StyledComponent<"div", import("../../helpers/theme").GlobalAppThemeInterface, {}, never>;
 declare type EmptyLayoutListProps = {
     title?: string;
     message?: string;
     actions?: ReactNode;
 };
-export declare const EmptyLayoutContainer: any;
+export declare const EmptyLayoutContainer: import("styled-components").StyledComponent<"div", import("../../helpers/theme").GlobalAppThemeInterface, {}, never>;
 export declare const EmptyLayoutList: ({ title, message, actions, }: EmptyLayoutListProps) => JSX.Element;
-export declare const LayoutContentWrapper: any;
-export declare const ColumnLayout: any;
-export declare const RowLayout: any;
+export declare const LayoutContentWrapper: import("styled-components").StyledComponent<"div", import("../../helpers/theme").GlobalAppThemeInterface, {}, never>;
+export declare const ColumnLayout: import("styled-components").StyledComponent<"div", import("../../helpers/theme").GlobalAppThemeInterface, {}, never>;
+export declare const RowLayout: import("styled-components").StyledComponent<"div", import("../../helpers/theme").GlobalAppThemeInterface, {}, never>;
 declare type LayoutDetailHeaderProps = TextAreaProps & {
     actions?: Array<MenuAction>;
+    containerCssOverrides?: ReturnType<typeof css>;
 };
-export declare const LayoutDetailHeader: ({ actions, ...textAreaProps }: LayoutDetailHeaderProps) => JSX.Element;
+export declare const LayoutDetailHeader: ({ actions, containerCssOverrides, ...textAreaProps }: LayoutDetailHeaderProps) => JSX.Element;
 export declare type OutlineItemBaseType = {
     key: string;
     content: string | ReactNode;
@@ -62,4 +64,3 @@ export declare const useControlledList: <T extends OutlineItemBaseType>({ items,
     newItem?: ((ndx: number) => T) | undefined;
 }) => OutlineControlledProps<T>;
 export {};
-//# sourceMappingURL=LayoutOutline.d.ts.map

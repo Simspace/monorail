@@ -1,6 +1,6 @@
 import { Colors } from '@monorail/helpers/color'
 
-enum AuthSubAppName {
+export enum AuthSubAppName {
   Academy = 'academy',
   Admin = 'admin',
   Catalog = 'catalog',
@@ -21,6 +21,7 @@ export enum AppName {
   Events = 'events',
   Execution = 'execution',
   Hardhat = 'hardhat',
+  Home = 'home',
   Impact = 'impact',
   LMS = 'externalLms',
   MyOrg = 'my-org',
@@ -44,6 +45,7 @@ export type AppOrAuthSubAppNameString =
   | 'execution'
   | 'externalLms'
   | 'hardhat'
+  | 'home'
   | 'impact'
   | 'my-org'
   | 'network-setup'
@@ -94,6 +96,8 @@ export const convertAppNameToColor = (
       return Colors.Admin
     case AppName.MyOrg:
       return Colors.MyOrg
+    case AppName.Home:
+      return Colors.BrandLightBlue
     default:
       return Colors.White
   }
@@ -140,6 +144,8 @@ export const convertAppNameToSecondaryColor = (
       return Colors.AdminAlt
     case AppName.MyOrg:
       return Colors.MyOrgAlt
+    case AppName.Home:
+      return Colors.BrandDarkBlue
     default:
       return Colors.White
   }
@@ -184,6 +190,8 @@ export const convertStringToAppName = (
       return AppName.ReportsAnalytics
     case 'my-org':
       return AppName.MyOrg
+    case 'home':
+      return AppName.Home
     default:
       return AppName.Events
   }
@@ -235,6 +243,8 @@ export const convertAppNameToString = (
       return 'reports-analytics'
     case AppName.MyOrg:
       return 'my-org'
+    case AppName.Home:
+      return 'home'
   }
   /* eslint-disable default-case */
 }

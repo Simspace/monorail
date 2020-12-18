@@ -134,7 +134,7 @@ const ButtonsBar = props => {
   } = props;
 
   const renderBar = () => _react.default.Children.map(children, (child, index) => {
-    if (_react.default.isValidElement(child)) {
+    if ( /*#__PURE__*/_react.default.isValidElement(child)) {
       const buttonDisplay = mode === _buttonTypes.ButtonsBarMode.Toolbar ? _buttonTypes.ButtonDisplay.Toolbar : display;
       const childProps = { ...child.props,
         display: buttonDisplay,
@@ -142,16 +142,16 @@ const ButtonsBar = props => {
         mode: _buttonTypes.ButtonMode.Push,
         shape: _buttonTypes.IconButtonShape.Square
       };
-      return _react.default.createElement(StyledButtonWrapper, {
+      return /*#__PURE__*/_react.default.createElement(StyledButtonWrapper, {
         mode: mode,
         pressed: childProps.pressed
-      }, _react.default.cloneElement(child, childProps));
+      }, /*#__PURE__*/_react.default.cloneElement(child, childProps));
     } else {
       return false;
     }
   });
 
-  return _react.default.createElement(ButtonsBarContainer, _extends({
+  return /*#__PURE__*/_react.default.createElement(ButtonsBarContainer, _extends({
     mode: mode
   }, domProps), renderBar());
 };

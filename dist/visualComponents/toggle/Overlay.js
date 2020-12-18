@@ -25,9 +25,7 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
-var _StyledBBModalOverlay =
-/*#__PURE__*/
-(0, _styledComponents.default)(_Modals.BBModalOverlay).withConfig({
+var _StyledBBModalOverlay = /*#__PURE__*/(0, _styledComponents.default)(_Modals.BBModalOverlay).withConfig({
   displayName: "Overlay___StyledBBModalOverlay",
   componentId: "h9f2a9-0"
 })(["", ""], p => p._css);
@@ -93,20 +91,20 @@ class Overlay extends _react.Component {
     const {
       isRendered
     } = this.state;
-    return _react.default.createElement(_styledComponents2.ThemeProvider, {
+    return /*#__PURE__*/_react.default.createElement(_styledComponents2.ThemeProvider, {
       theme: theme => ({ ...theme,
         [_theme.Mode.Light]: { ...theme[_theme.Mode.Light],
           [_theme.ThemeColors.ActionPrimary]: _color.Colors.BrandLightBlue,
           [_theme.ThemeColors.ActionSecondary]: _color.Colors.BrandLightBlue
         }
       })
-    }, _react.default.createElement(_Modals.BBModalContainer, {
+    }, /*#__PURE__*/_react.default.createElement(_Modals.BBModalContainer, {
       onClick: e => e.stopPropagation(),
       usesScaleAnimation: usesScaleAnimation,
       isOpen: isRendered && isOpen,
       zIndex: zIndex,
       ref: modalContainerRef
-    }, _react.default.createElement(_StyledBBModalOverlay, _extends({
+    }, /*#__PURE__*/_react.default.createElement(_StyledBBModalOverlay, _extends({
       isOpen: isRendered && isOpen,
       onClick: onClick
     }, overlayProps, {

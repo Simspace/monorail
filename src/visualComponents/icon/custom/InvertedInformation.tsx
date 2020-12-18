@@ -1,4 +1,5 @@
 import React from 'react'
+
 import { CustomIconProps } from '@monorail/visualComponents/icon/Icon'
 
 export function InvertedInformation(props: CustomIconProps) {

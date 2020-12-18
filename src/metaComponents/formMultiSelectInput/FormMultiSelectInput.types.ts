@@ -1,9 +1,10 @@
-import { Eq } from 'fp-ts/lib/Eq'
+import { GetInputPropsOptions, GetItemPropsOptions } from 'downshift'
 import { CSSObject, FlattenInterpolation, ThemeProps } from 'styled-components'
+import { Eq } from 'fp-ts/lib/Eq'
+import { Option } from 'fp-ts/lib/Option'
+
 import { GlobalAppThemeInterface } from '@monorail/helpers/theme'
 import { DisplayType } from '@monorail/visualComponents/inputs/inputTypes'
-import { GetInputPropsOptions, GetItemPropsOptions } from 'downshift'
-import { Option } from 'fp-ts/lib/Option'
 
 export type FormMultiSelectInputProps<A> = {
   /** Label */

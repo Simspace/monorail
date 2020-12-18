@@ -155,21 +155,21 @@ const Tile = props => {
     ...domProps
   } = props;
   const [isHovering, setIsHovering] = (0, _react.useState)(false);
-  return _react.default.createElement(TileContainer, _extends({
+  return /*#__PURE__*/_react.default.createElement(TileContainer, _extends({
     status: status,
     selected: selected,
     onMouseEnter: () => setIsHovering(true),
     onMouseLeave: () => setIsHovering(false)
-  }, domProps), _react.default.createElement(TileIconWrapper, null, _react.default.createElement(_Icon.Icon, {
+  }, domProps), /*#__PURE__*/_react.default.createElement(TileIconWrapper, null, /*#__PURE__*/_react.default.createElement(_Icon.Icon, {
     size: _size.Sizes.DP16,
     icon: isHovering ? 'drag_indicator' : icon
-  })), _react.default.createElement(TileContent, {
+  })), /*#__PURE__*/_react.default.createElement(TileContent, {
     status: status,
     selected: selected
-  }, children, status !== _TileStatus.TileStatus.Neutral && _react.default.createElement(_Status.Status, {
+  }, children, status !== _TileStatus.TileStatus.Neutral && /*#__PURE__*/_react.default.createElement(_Status.Status, {
     statusColor: TileStatusBorder[status],
     icon: TileStatusIcon[status]
-  }, TileStatusLabel[status])), status !== _TileStatus.TileStatus.Unassigned && actions && _react.default.createElement(TileActionsWrapper, null, _react.default.createElement(_ActionsMenu.ActionsMenu, {
+  }, TileStatusLabel[status])), status !== _TileStatus.TileStatus.Unassigned && actions && /*#__PURE__*/_react.default.createElement(TileActionsWrapper, null, /*#__PURE__*/_react.default.createElement(_ActionsMenu.ActionsMenu, {
     actions: actions
   })));
 };

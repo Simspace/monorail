@@ -28,9 +28,7 @@ const ContentBodyContainer = _styledComponents2.default.div`
   ${(0, _flex.flexFlow)('column')};
 `;
 
-var _StyledScrollAnimation =
-/*#__PURE__*/
-(0, _styledComponents.default)(_ScrollAnimation.ScrollAnimation).withConfig({
+var _StyledScrollAnimation = /*#__PURE__*/(0, _styledComponents.default)(_ScrollAnimation.ScrollAnimation).withConfig({
   displayName: "ContentBody___StyledScrollAnimation",
   componentId: "sc-5sb3pw-0"
 })(["", ""], p => p._css);
@@ -40,9 +38,9 @@ const ContentBody = ({
   scrollCSS,
   ...domProps
 }) => {
-  return _react.default.createElement(_StyledScrollAnimation, {
+  return /*#__PURE__*/_react.default.createElement(_StyledScrollAnimation, {
     _css: scrollCSS
-  }, _react.default.createElement(ContentBodyContainer, domProps, children));
+  }, /*#__PURE__*/_react.default.createElement(ContentBodyContainer, domProps, children));
 };
 
 exports.ContentBody = ContentBody;

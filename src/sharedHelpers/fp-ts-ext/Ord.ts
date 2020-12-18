@@ -1,11 +1,12 @@
-import { Ord, contramap, ordString, fromCompare } from 'fp-ts/lib/Ord'
-import { Ordering, invert as invertOrdering } from 'fp-ts/lib/Ordering'
+import { flow } from 'fp-ts/lib/function'
+import { contramap, fromCompare, Ord, ordDate, ordString } from 'fp-ts/lib/Ord'
+import { invert as invertOrdering, Ordering } from 'fp-ts/lib/Ordering'
+import { pipe } from 'fp-ts/lib/pipeable'
+import * as RTup from 'fp-ts/lib/ReadonlyTuple'
+import * as Tup from 'fp-ts/lib/Tuple'
 
 import { toLower } from '../strings'
-
 import { eqRecordWithNameLower, eqStrict } from './Eq'
-import { pipe } from 'fp-ts/lib/pipeable'
-import { flow } from 'fp-ts/lib/function'
 
 /**
  * Determines ordering of two numbers (numeric comparison)
@@ -73,3 +74,48 @@ export const ordRecordWithNameLower: Ord<{
  */
 export const invert = <T>(o: Ord<T>): Ord<T> =>
   fromCompare(flow(o.compare, invertOrdering))
+
+/**
+ * Returns an Ord for a tuple that only compares the first element
+ * @param ord
+ */
+export const getTupleOrdFst = <A, B>(ord: Ord<A>) =>
+  pipe(
+    ord,
+    contramap((tuple: [A, B]) => Tup.fst(tuple)),
+  )
+
+/**
+ * Returns an Ord for a readonly tuple that only compares the first element
+ * @param ord
+ */
+export const getReadonlyTupleOrdFst = <A, B>(ord: Ord<A>) =>
+  pipe(
+    ord,
+    contramap((tuple: readonly [A, B]) => RTup.fst(tuple)),
+  )
+
+/**
+ * Returns an Ord for a tuple that only compares the second element
+ * @param ord
+ */
+export const getTupleOrdSnd = <A, B>(ord: Ord<B>) =>
+  pipe(
+    ord,
+    contramap((tuple: [A, B]) => Tup.snd(tuple)),
+  )
+
+/**
+ * Returns an Ord for a readonly tuple that only compares the second element
+ * @param ord
+ */
+export const getReadonlyTupleOrdSnd = <A, B>(ord: Ord<B>) =>
+  pipe(
+    ord,
+    contramap((tuple: readonly [A, B]) => RTup.snd(tuple)),
+  )
+
+export const ordDateFromString: Ord<string> = pipe(
+  ordDate,
+  contramap(a => new Date(a)),
+)

@@ -21,4 +21,3 @@ export declare class HorizontalNavigationItemController extends Component<TabPro
     private onClick;
     render(): React.ReactNode;
 }
-//# sourceMappingURL=HorizontalNavigationItemController.d.ts.map

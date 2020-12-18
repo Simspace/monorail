@@ -1,6 +1,6 @@
-import { Predicate, unsafeCoerce } from 'fp-ts/lib/function'
 import { Prism } from 'monocle-ts'
 import { iso, Newtype, prism } from 'newtype-ts'
+import { Predicate, unsafeCoerce } from 'fp-ts/lib/function'
 
 import { isUndefined } from './typeGuards'
 

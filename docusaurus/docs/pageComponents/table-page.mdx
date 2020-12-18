@@ -1,0 +1,104 @@
+---
+id: table-page
+title: Table Page
+sidebar_label: Table Page
+---
+
+import { ShowCase } from '../docComponents/ShowCase'
+
+import { Colors, getColor } from '@monorail/helpers/color'
+import { flexFlow } from '@monorail/helpers/flex'
+import { TablePage } from '@monorail/pageComponents/TablePage/TablePage'
+import { Div } from '@monorail/StyleHelpers'
+import { Button } from '@monorail/visualComponents/buttons/Button'
+
+:::caution
+css prop is not applying; page isn't wide enough
+:::
+
+Page level component for viewing a collection in table view only.
+
+export const TablePageDoc = () => {
+  const columns = [
+    {
+      id: 'name',
+      Header: 'Name',
+      accessor: 'entity.name',
+    },
+    {
+      Header: 'Network Spec',
+      accessor: 'project.name',
+    },
+    {
+      Header: 'Organization',
+      accessor: 'project.owner',
+    },
+  ]
+  const data = [
+    {
+      entity: {
+        name: 'Item Name A ',
+        type: 'deployment',
+      },
+      project: {
+        key: 'key',
+        name: 'name',
+        owner: 'owner',
+        latestVersionKey: 'key',
+      },
+    },
+    {
+      entity: {
+        name: 'Item Name C',
+        type: 'deployment',
+      },
+      project: {
+        key: 'key',
+        name: 'name',
+        owner: 'owner',
+        latestVersionKey: 'key',
+      },
+    },
+    {
+      entity: {
+        name: 'Item Name B',
+        type: 'deployment',
+      },
+      project: {
+        key: 'key',
+        name: 'name',
+        owner: 'owner',
+        latestVersionKey: 'key',
+      },
+    },
+  ]
+  return (
+    <Div
+      css={`
+        ${flexFlow('column')};
+        background: ${getColor(Colors.White)};
+        height: 512px;
+        width: calc(100% - 64px);
+      `}
+    >
+      <article>
+        <TablePage
+          title="Table Page Demo"
+          data={data}
+          columns={columns}
+          actions={<Button css="margin: auto 0 auto auto;">Action</Button>}
+          defaultSorted={[
+            {
+              id: 'name',
+              desc: false,
+            },
+          ]}
+        />
+      </article>
+    </Div>
+  )
+}
+
+<ShowCase>
+  <TablePageDoc />
+</ShowCase>

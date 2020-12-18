@@ -127,9 +127,7 @@ const generateScaleAnimation = ({
 };
 
 exports.generateScaleAnimation = generateScaleAnimation;
-const buttonTransition =
-/*#__PURE__*/
-(0, _styledComponents.css)(["transition:all ease 75ms;"]);
+const buttonTransition = /*#__PURE__*/(0, _styledComponents.css)(["transition:all ease 75ms;"]);
 exports.buttonTransition = buttonTransition;
 
 const transition = ({

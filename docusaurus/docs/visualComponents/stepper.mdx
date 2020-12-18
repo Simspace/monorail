@@ -1,0 +1,163 @@
+---
+id: stepper
+title: Stepper
+sidebar_label: Stepper
+---
+
+import { useState } from 'react'
+import styled, { ThemeProvider, css } from '@monorail/helpers/styled-components'
+import { Mode } from '@monorail/helpers/theme'
+
+import { ShowCase } from '../docComponents/ShowCase'
+import {
+  exampleSteps,
+  exampleStepsWithSubtitles,
+  exampleStepsWithDisabled,
+  exampleStepsWithIcons,
+  ControlledStepper,
+} from '../docComponents/StepperDoc'
+
+import { Step as StepType } from '@monorail/visualComponents/stepper/types'
+import {
+  Stepper,
+  Step,
+  StepProps,
+} from '@monorail/visualComponents/stepper/Stepper'
+
+:::caution Issues
+
+- Check icon is slightly weird
+
+:::
+
+A Tab Bar for Wizards.
+
+<ShowCase>
+  <ControlledStepper steps={exampleSteps} isNumbered={true} />
+</ShowCase>
+
+## Types
+
+### Vertical
+
+Default
+
+```tsx live
+function StepperDefault() {
+  const exampleSteps = [
+    {
+      label: 'Step 1',
+      statusIconName: 'check',
+      statusIconColor: Colors.Success,
+    },
+    { label: 'Step 2' },
+    { label: 'Step 3' },
+    { label: 'Step 4' },
+  ]
+  const [value, setValue] = useState(0)
+
+  const onStepChange = idx => {
+    setValue(idx)
+  }
+
+  return (
+    <Stepper value={value} onChange={onStepChange}>
+      {exampleSteps.map(s => (
+        <Step {...s} />
+      ))}
+    </Stepper>
+  )
+}
+```
+
+### Vertical | Subtitles
+
+Steps can contain subtitles.
+
+```tsx live
+function VerticalStepsDemo() {
+  const exampleStepsWithSubtitles = [
+    {
+      label: 'Step 1',
+      subtitle: 'Complete',
+      statusIconName: 'check',
+      statusIconColor: Colors.Success,
+    },
+    { label: 'Step 2', subtitle: 'Subtitle' },
+    { label: 'Step 3', subtitle: 'Subtitle' },
+    { label: 'Step 4', subtitle: 'Subtitle' },
+  ]
+
+  const [value, setValue] = useState(0)
+
+  const onStepChange = idx => {
+    setValue(idx)
+  }
+
+  return (
+    <Stepper value={value} onChange={onStepChange}>
+      {exampleStepsWithSubtitles.map(s => (
+        <Step {...s} />
+      ))}
+    </Stepper>
+  )
+}
+```
+
+### Vertical | Disabled Step
+
+Steps can be disabled.
+
+```tsx live
+function VerticalDisabledDemo() {
+  const exampleStepsWithDisabled = [
+    { label: 'Step 1', status: 'ready' },
+    { label: 'Step 2' },
+    { label: 'Step 3', isDisabled: true },
+    { label: 'Step 4' },
+  ]
+
+  const [value, setValue] = useState(0)
+
+  const onStepChange = idx => {
+    setValue(idx)
+  }
+
+  return (
+    <Stepper value={value} onChange={onStepChange}>
+      {exampleStepsWithDisabled.map(s => (
+        <Step {...s} />
+      ))}
+    </Stepper>
+  )
+}
+```
+
+### Vertical | Non-Numbered
+
+Steps can be displayed without numbering.
+
+```tsx live
+function VerticalNonNumberedDemo() {
+  const exampleSteps = [
+    { label: 'Step 1', status: 'ready' },
+    { label: 'Step 2' },
+    { label: 'Step 3' },
+    { label: 'Step 4' },
+  ]
+
+  const [value, setValue] = useState(0)
+
+  const onStepChange = idx => {
+    setValue(idx)
+  }
+
+  return (
+    <Stepper value={value} onChange={onStepChange} isNumbered={false}>
+      {exampleSteps.map(s => (
+        <Step {...s} />
+      ))}
+    </Stepper>
+  )
+}
+```

@@ -1,16 +1,17 @@
-import { strictEqual } from 'fp-ts/lib/Eq'
 import * as fc from 'fast-check'
+import { strictEqual } from 'fp-ts/lib/Eq'
+import { ordString } from 'fp-ts/lib/Ord'
 
 import {
   alphaCompare,
+  invert,
   numericCompare,
   ordAlpha,
+  ordDateFromString,
   ordNumeric,
   ordRecordWithNameLower,
   recordWithNameLowerComparator,
-  invert,
 } from '../Ord'
-import { ordString } from 'fp-ts/lib/Ord'
 
 describe('ordAlpha', () => {
   it('should contain a `compare` function that orders alphabetically', () => {
@@ -130,5 +131,76 @@ describe('invert', () => {
         return invert(ordString).compare(a, b) === ordString.compare(b, a)
       }),
     )
+  })
+})
+
+describe('ordDateFromString', () => {
+  it('should compare two valid ISO date strings', () => {
+    const actualA = ordDateFromString.compare(
+      '2020-11-04T16:46:23.560875Z',
+      '2020-11-04T20:47:01.593Z',
+    )
+
+    expect(actualA).toBe(-1)
+
+    const actualB = ordDateFromString.compare(
+      '2020-11-04T16:47:23.560875Z',
+      '2020-11-04T16:47:23.560875Z',
+    )
+
+    expect(actualB).toBe(0)
+
+    const actualC = ordDateFromString.compare(
+      '2020-11-04T20:46:01.593Z',
+      '2020-11-04T16:47:23.560875Z',
+    )
+
+    expect(actualC).toBe(1)
+  })
+
+  it('should compare two date strings', () => {
+    const actualA = ordDateFromString.compare(
+      'Wed Nov 04 2020',
+      'Wed Nov 05 2020',
+    )
+
+    expect(actualA).toBe(-1)
+
+    const actualB = ordDateFromString.compare(
+      'Wed Nov 05 2020',
+      'Wed Nov 05 2020',
+    )
+
+    expect(actualB).toBe(0)
+
+    const actualC = ordDateFromString.compare(
+      'Wed Nov 05 2020',
+      'Wed Nov 04 2020',
+    )
+
+    expect(actualC).toBe(1)
+  })
+
+  it('should compare two UTC date strings', () => {
+    const actualA = ordDateFromString.compare(
+      'Wed, 04 Nov 2020 16:46:23 GMT',
+      'Wed, 04 Nov 2020 16:46:23 GMT',
+    )
+
+    expect(actualA).toBe(0)
+
+    const actualB = ordDateFromString.compare(
+      'Wed, 04 Nov 2020 16:46:23 GMT',
+      'Wed, 04 Nov 2020 16:40:23 GMT',
+    )
+
+    expect(actualB).toBe(1)
+
+    const actualC = ordDateFromString.compare(
+      'Wed, 04 Nov 2020 16:40:23 GMT',
+      'Wed, 04 Nov 2020 16:46:23 GMT',
+    )
+
+    expect(actualC).toBe(-1)
   })
 })

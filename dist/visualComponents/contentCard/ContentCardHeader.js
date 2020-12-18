@@ -11,19 +11,19 @@ var O = _interopRequireWildcard(require("fp-ts/lib/Option"));
 
 var _pipeable = require("fp-ts/lib/pipeable");
 
-var _styledComponents = _interopRequireWildcard(require("../../helpers/styled-components"));
-
 var _exports = require("../../helpers/exports");
 
-var _EmptyUpload = require("../illustrations/EmptyUpload");
-
-var _matchers = require("../../sharedHelpers/matchers");
+var _styledComponents = _interopRequireWildcard(require("../../helpers/styled-components"));
 
 var _theme = require("../../helpers/theme");
+
+var _matchers = require("../../sharedHelpers/matchers");
 
 var _Button = require("../buttons/Button");
 
 var _buttonTypes = require("../buttons/buttonTypes");
+
+var _EmptyUpload = require("../illustrations/EmptyUpload");
 
 var _FileUpload = require("../inputs/FileUpload");
 
@@ -39,7 +39,7 @@ const EmptyIcon = (0, _styledComponents.default)(_EmptyUpload.EmptyUpload)`
   fill: ${(0, _exports.getColor)(_exports.Colors.Gray24)};
 `;
 
-const HeaderImgContainer = _styledComponents.default.div(({
+const HeaderImgContainer = _styledComponents.default.header(({
   editMode
 }) => (0, _styledComponents.css)`
     ${(0, _exports.flexFlow)('column')}
@@ -52,7 +52,6 @@ const HeaderImgContainer = _styledComponents.default.div(({
     height: 144px;
     overflow: hidden;
     position: relative;
-
     &:before {
       content: '';
       display: block;
@@ -64,17 +63,14 @@ const HeaderImgContainer = _styledComponents.default.div(({
       background: ${(0, _exports.getColor)(_exports.Colors.Black)};
       opacity: 0;
     }
-
     &:hover {
       ${ButtonContainer} {
         ${(0, _exports.visible)(true)}
       }
-
       ${EmptyIcon} {
         opacity: 0.4;
       }
     }
-
     ${editMode && `&:hover:before {
         opacity: 0.6;
       }
@@ -119,18 +115,18 @@ const EditImage = ({
     fallback: () => ['upload', 'Upload card image', openFilePicker],
     custom: () => ['delete', 'Remove card image', onRemoveImage]
   });
-  return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(ButtonContainer, null, _react.default.createElement(_styledComponents.ThemeProvider, {
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(ButtonContainer, null, /*#__PURE__*/_react.default.createElement(_styledComponents.ThemeProvider, {
     theme: t => ({ ...t,
       mode: _theme.Mode.Dark
     })
-  }, _react.default.createElement(CardActionButton, {
+  }, /*#__PURE__*/_react.default.createElement(CardActionButton, {
     iconLeft: icon,
     onClick: action
   }, label))), (0, _matchers.matchI)(image)({
-    empty: () => _react.default.createElement(EmptyIcon, null),
-    fallback: () => _react.default.createElement(_react.default.Fragment, null),
-    custom: () => _react.default.createElement(_react.default.Fragment, null)
-  }), _react.default.createElement(_FileUpload.HiddenSingleFileInput, {
+    empty: () => /*#__PURE__*/_react.default.createElement(EmptyIcon, null),
+    fallback: () => /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null),
+    custom: () => /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null)
+  }), /*#__PURE__*/_react.default.createElement(_FileUpload.HiddenSingleFileInput, {
     accept: [_FileUpload.FileType.JPG, _FileUpload.FileType.PNG],
     inputRef: imageInputRef,
     onChange: onImageChange
@@ -147,13 +143,13 @@ const getImageUrl = props => (0, _matchers.matchOnI)('mode')(props)({
 });
 
 const ContentCardHeader = props => {
-  return _react.default.createElement(HeaderImgContainer, {
+  return /*#__PURE__*/_react.default.createElement(HeaderImgContainer, {
     editMode: props.mode === 'edit'
-  }, (0, _pipeable.pipe)(getImageUrl(props), O.fold(() => _react.default.createElement(_react.default.Fragment, null), i => _react.default.createElement(HeaderImg, {
+  }, (0, _pipeable.pipe)(getImageUrl(props), O.fold(() => /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null), i => /*#__PURE__*/_react.default.createElement(HeaderImg, {
     image: i
   }))), (0, _matchers.matchOnI)('mode')(props)({
-    view: () => _react.default.createElement(_react.default.Fragment, null),
-    edit: p => _react.default.createElement(EditImage, p)
+    view: () => /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null),
+    edit: p => /*#__PURE__*/_react.default.createElement(EditImage, p)
   }));
 };
 

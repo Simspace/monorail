@@ -1,7 +1,11 @@
 import React, { CSSProperties, FC, MouseEvent } from 'react';
 import { Column, ControlledStateOverrideProps, ExpandedChangeFunction, FinalState, SortedChangeFunction, SortingRule, TableProps } from 'react-table';
-export declare const TableComponent: any;
-export declare const TheadComponentContainer: any;
+import { ButtonDisplay, ButtonSize } from '@monorail/visualComponents/buttons/buttonTypes';
+export declare const TableComponent: import("styled-components").StyledComponent<"div", import("../../helpers/theme").GlobalAppThemeInterface, {}, never>;
+export declare const TheadComponentContainer: import("styled-components").StyledComponent<"div", import("../../helpers/theme").GlobalAppThemeInterface, {
+    isFilterBar: boolean;
+    isGroupBar: boolean;
+}, never>;
 export declare type TheadComponentProps = {
     className: string;
     style?: CSSProperties;
@@ -12,7 +16,7 @@ export declare enum Sort {
     Descending = "descending",
     Unsorted = "unsorted"
 }
-export declare const getSortIcon: (sortStatus: Sort) => "sort" | "" | "sort_ascending" | "sort_descending";
+export declare const getSortIcon: (sortStatus: Sort) => "" | "sort_ascending" | "sort_descending" | "sort";
 export declare function useSort(defaultSorted?: Array<SortingRule>): [Array<SortingRule>, SortedChangeFunction];
 export declare type ThComponentProps = {
     className: string;
@@ -24,7 +28,10 @@ export declare type ThComponentProps = {
     isGroup?: boolean;
     toggleSort: () => void;
 };
-export declare const ThSortButton: any;
+export declare const ThSortButton: import("styled-components").StyledComponent<React.FC<import("../buttons/Button").ButtonProps>, import("../../helpers/theme").GlobalAppThemeInterface, {
+    display: ButtonDisplay.Chromeless;
+    size: ButtonSize.Compact;
+}, "display" | "size">;
 export declare const ThComponent: FC<ThComponentProps>;
 declare type FilterComponentProps = {
     column: Column;
@@ -35,11 +42,13 @@ declare type FilterComponentProps = {
     onChange: (event: unknown) => void;
 };
 export declare const FilterComponent: FC<FilterComponentProps>;
-export declare const ResizerComponent: any;
+export declare const ResizerComponent: import("styled-components").StyledComponent<"div", import("../../helpers/theme").GlobalAppThemeInterface, {}, never>;
 export declare type TrGroupComponentProps = {
     isGroup?: boolean;
 };
-export declare const TrGroupComponent: any;
+export declare const TrGroupComponent: import("styled-components").StyledComponent<"div", import("../../helpers/theme").GlobalAppThemeInterface, {
+    isGroup?: boolean | undefined;
+}, never>;
 declare enum TdComponentType {
     Default = "default",
     Actions = "actions",
@@ -52,13 +61,17 @@ declare type TdComponentContainerProps = {
     onClick: (event: MouseEvent<HTMLDivElement>) => void;
     tdComponentType: TdComponentType;
 };
-export declare const TdComponentContainer: any;
+export declare const TdComponentContainer: import("styled-components").StyledComponent<"div", import("../../helpers/theme").GlobalAppThemeInterface, TdComponentContainerProps, never>;
 export declare type TdComponentProps = Omit<TdComponentContainerProps, 'tdComponentType'> & {
     isExpanderColumn: boolean;
 };
 export declare const TdComponent: FC<TdComponentProps>;
-export declare const TBodyComponent: any;
-export declare const NoDataContainer: any;
+export declare const TBodyComponent: import("styled-components").StyledComponent<({ style, ...domProps }: {
+    style?: {
+        [key: string]: string | number;
+    } | undefined;
+}) => JSX.Element, import("../../helpers/theme").GlobalAppThemeInterface, {}, never>;
+export declare const NoDataContainer: import("styled-components").StyledComponent<"div", import("../../helpers/theme").GlobalAppThemeInterface, {}, never>;
 export declare const NoDataComponentVertical: FC;
 export declare const NoDataComponentHorizontal: FC;
 export declare const ExpanderComponent: TableCellRenderFunction<unknown>;
@@ -133,4 +146,3 @@ export declare type ComponentPropsGetterR<I> = (finalState: FinalState<I> & {
 }, rowInfo?: RowInfo<I>, column?: Column<I>, instance?: unknown) => object | undefined;
 export declare type TableColumns<T> = Array<Column<T>>;
 export {};
-//# sourceMappingURL=ReactTable.d.ts.map

@@ -3,11 +3,12 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.isAppName = exports.convertAppNameToString = exports.convertStringToAppName = exports.convertAppNameToSecondaryColor = exports.convertAppNameToColor = exports.AppName = void 0;
+exports.isAppName = exports.convertAppNameToString = exports.convertStringToAppName = exports.convertAppNameToSecondaryColor = exports.convertAppNameToColor = exports.AppName = exports.AuthSubAppName = void 0;
 
 var _color = require("./color");
 
-var AuthSubAppName;
+let AuthSubAppName;
+exports.AuthSubAppName = AuthSubAppName;
 
 (function (AuthSubAppName) {
   AuthSubAppName["Academy"] = "academy";
@@ -22,7 +23,7 @@ var AuthSubAppName;
   AuthSubAppName["ReportsAnalytics"] = "reports-analytics";
   AuthSubAppName["TechOps"] = "techops";
   AuthSubAppName["Tracker"] = "tracker";
-})(AuthSubAppName || (AuthSubAppName = {}));
+})(AuthSubAppName || (exports.AuthSubAppName = AuthSubAppName = {}));
 
 let AppName;
 exports.AppName = AppName;
@@ -33,6 +34,7 @@ exports.AppName = AppName;
   AppName["Events"] = "events";
   AppName["Execution"] = "execution";
   AppName["Hardhat"] = "hardhat";
+  AppName["Home"] = "home";
   AppName["Impact"] = "impact";
   AppName["LMS"] = "externalLms";
   AppName["MyOrg"] = "my-org";
@@ -92,6 +94,9 @@ const convertAppNameToColor = appNames => {
     case AppName.MyOrg:
       return _color.Colors.MyOrg;
 
+    case AppName.Home:
+      return _color.Colors.BrandLightBlue;
+
     default:
       return _color.Colors.White;
   }
@@ -146,6 +151,9 @@ const convertAppNameToSecondaryColor = appNames => {
 
     case AppName.MyOrg:
       return _color.Colors.MyOrgAlt;
+
+    case AppName.Home:
+      return _color.Colors.BrandDarkBlue;
 
     default:
       return _color.Colors.White;
@@ -203,6 +211,9 @@ const convertStringToAppName = appNameString => {
 
     case 'my-org':
       return AppName.MyOrg;
+
+    case 'home':
+      return AppName.Home;
 
     default:
       return AppName.Events;
@@ -268,6 +279,9 @@ const convertAppNameToString = appName => {
 
     case AppName.MyOrg:
       return 'my-org';
+
+    case AppName.Home:
+      return 'home';
   }
   /* eslint-disable default-case */
 

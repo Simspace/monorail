@@ -12,4 +12,3 @@ export declare class ErrorPage extends Component<ErrorPageProps> {
     render(): JSX.Element;
 }
 export {};
-//# sourceMappingURL=ErrorPage.d.ts.map

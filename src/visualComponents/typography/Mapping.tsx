@@ -2,8 +2,8 @@ import React, { FC } from 'react'
 import styled, { css } from 'styled-components'
 
 import {
-  borderRadius,
   BorderRadius,
+  borderRadius,
   Colors,
   FontSizes,
   getColor,

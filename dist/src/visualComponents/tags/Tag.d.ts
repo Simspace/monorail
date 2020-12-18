@@ -9,7 +9,11 @@ declare type Props = {
         onClick: () => void;
     };
 };
-export declare const TagContainer: any;
+export declare const TagContainer: import("styled-components").StyledComponent<"div", any, {
+    hasButton: boolean;
+    hasIcon: boolean;
+    hasLabel: boolean;
+}, never>;
 /**
  * Consider using one of the more specific Tag components, like
  * `TagIcon` and `TagLabel`. The props for a bare `Tag` are not the most
@@ -50,4 +54,3 @@ export declare const TagIconClose: (props: {
     onClose: () => void;
 }) => JSX.Element;
 export {};
-//# sourceMappingURL=Tag.d.ts.map

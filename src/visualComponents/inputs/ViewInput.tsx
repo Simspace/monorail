@@ -7,9 +7,9 @@ import {
   getColor,
 } from '@monorail/helpers/exports'
 import styled, { css } from '@monorail/helpers/styled-components'
-import { Label } from '@monorail/visualComponents/inputs/Label'
-import { Text } from '@monorail/visualComponents/typography/Text'
 import { isNil } from '@monorail/sharedHelpers/typeGuards'
+import { Label } from '@monorail/visualComponents/inputs/Label'
+import { Text, TextProps } from '@monorail/visualComponents/typography/Text'
 
 export enum Orientation {
   Row = 'row',
@@ -22,6 +22,7 @@ type ViewInputProps = {
   orientation?: Orientation
   placeholder?: string
   value?: string | number | ReactNode
+  textProps?: Omit<TextProps, 'children'>
 }
 
 const Container = styled.div<{ orientation?: Orientation }>(
@@ -36,6 +37,7 @@ export const ViewInput = ({
   placeholder,
   orientation = Orientation.Column,
   disabled,
+  textProps,
   ...domProps
 }: ViewInputProps) => {
   return (
@@ -52,6 +54,7 @@ export const ViewInput = ({
           fontSize={FontSizes.Title5}
           color={disabled ? Colors.Black54a : Colors.Black89a}
           margin={orientation === Orientation.Column ? '4px 0' : '0 0 0 4px'}
+          {...textProps}
         >
           {value}
         </Text>
@@ -64,6 +67,7 @@ export const ViewInput = ({
           css={css`
             font-style: italic;
           `}
+          {...textProps}
         >
           {placeholder || 'None'}
         </Text>

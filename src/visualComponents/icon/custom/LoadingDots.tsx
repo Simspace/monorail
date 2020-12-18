@@ -1,7 +1,7 @@
 import React, { ComponentType } from 'react'
 
-import { CustomIconProps } from '@monorail/visualComponents/icon/Icon'
 import styled, { css } from '@monorail/helpers/styled-components'
+import { CustomIconProps } from '@monorail/visualComponents/icon/Icon'
 
 const StyledLoadingDots = styled.svg<CustomIconProps>(
   ({ cssOverrides }) => css`
@@ -43,26 +43,8 @@ export const LoadingDots: ComponentType<CustomIconProps> = props => (
     fill="none"
     {...props}
   >
-    <circle
-      className="typing-dots loadingFadeInline"
-      cx="6"
-      cy="12"
-      r="2"
-      fill="#000"
-    />
-    <circle
-      className="typing-dots loadingFadeInline"
-      cx="12"
-      cy="12"
-      r="2"
-      fill="#000"
-    />
-    <circle
-      className="typing-dots loadingFadeInline"
-      cx="18"
-      cy="12"
-      r="2"
-      fill="#000"
-    />
+    <circle className="typing-dots loadingFadeInline" cx="6" cy="12" r="2" />
+    <circle className="typing-dots loadingFadeInline" cx="12" cy="12" r="2" />
+    <circle className="typing-dots loadingFadeInline" cx="18" cy="12" r="2" />
   </StyledLoadingDots>
 )

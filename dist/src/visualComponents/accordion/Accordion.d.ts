@@ -17,4 +17,3 @@ declare type Props = {
  */
 export declare const Accordion: FC<Props>;
 export {};
-//# sourceMappingURL=Accordion.d.ts.map

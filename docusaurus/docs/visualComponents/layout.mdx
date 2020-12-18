@@ -1,0 +1,95 @@
+---
+id: layout
+title: Layout
+sidebar_label: Layout
+---
+
+import { css } from 'styled-components'
+
+import { ShowCase } from '../docComponents/ShowCase'
+
+import {
+  ElevationRange,
+  FontSizes,
+  typography,
+} from '@monorail/helpers/exports'
+import { Div } from '@monorail/StyleHelpers'
+import { Header } from '@monorail/visualComponents/header/Header'
+import { Section } from '@monorail/visualComponents/layout/Layout'
+
+
+<ShowCase>
+  <Section
+    cssOverrides={css`
+      width: 512px;
+    `}
+  >
+    <Div
+      cssOverrides={css`
+        ${typography(400, FontSizes.Micro, '16px 0')};
+        margin-left: 16px;
+        margin-right: 16px;
+      `}
+    >
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+      eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+      enim ad minim veniam, quis nostrud exercitation ullamco laboris
+      nisi ut aliquip ex ea commodo consequat.
+    </Div>
+  </Section>
+</ShowCase>
+
+## Types
+
+### Section
+
+Default Section component (has elevation)
+
+
+```tsx live
+<Section
+  cssOverrides={css`
+    width: 264px;
+  `}
+>
+  <Div
+    cssOverrides={css`
+      ${typography(400, FontSizes.Micro, '16px 0')};
+
+      margin-left: 16px;
+      margin-right: 16px;
+    `}
+  >
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+    enim ad minim veniam, quis nostrud exercitation ullamco laboris
+    nisi ut aliquip ex ea commodo consequat.
+  </Div>
+</Section>
+```
+
+### Section - Flat
+
+
+```tsx live
+<Section
+  flat
+  cssOverrides={css`
+    width: 264px;
+  `}
+>
+  <Div
+    cssOverrides={css`
+      ${typography(400, FontSizes.Micro, '16px 0')};
+
+      margin-left: 16px;
+      margin-right: 16px;
+    `}
+  >
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+    enim ad minim veniam, quis nostrud exercitation ullamco laboris
+    nisi ut aliquip ex ea commodo consequat.
+  </Div>
+</Section>
+```

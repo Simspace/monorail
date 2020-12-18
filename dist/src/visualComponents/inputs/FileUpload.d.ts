@@ -1,5 +1,5 @@
-import * as O from 'fp-ts/lib/Option';
 import React, { FC } from 'react';
+import * as O from 'fp-ts/lib/Option';
 import { ButtonDisplay } from '@monorail/visualComponents/buttons/buttonTypes';
 import { IconType } from '@monorail/visualComponents/icon/IconType';
 export declare enum FileType {
@@ -11,7 +11,8 @@ export declare enum FileType {
     PlainText = 5,
     VirtualAppliance = 6,
     Yaml = 7,
-    Excel = 8
+    Excel = 8,
+    Json = 9
 }
 export declare type InputProps = {
     onChange: (file: O.Option<File>) => void;
@@ -30,4 +31,3 @@ export declare type FileUploadProps = {
     showFilename?: boolean;
 } & InputProps;
 export declare const FileUpload: FC<FileUploadProps>;
-//# sourceMappingURL=FileUpload.d.ts.map

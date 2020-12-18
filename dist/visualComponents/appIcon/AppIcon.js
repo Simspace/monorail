@@ -19,7 +19,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 const AppIcon = (0, _styledComponents.default)(({
   appName,
   ...otherProps
-}) => _react.default.createElement("div", otherProps, _react.default.createElement(_Icon.Icon, {
+}) => /*#__PURE__*/_react.default.createElement("div", otherProps, /*#__PURE__*/_react.default.createElement(_Icon.Icon, {
   icon: `${appName}-app`
 })))`
   ${(0, _exports.flexFlow)('row')};

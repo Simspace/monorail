@@ -1,0 +1,62 @@
+---
+id: status
+title: Status
+sidebar_label: Status
+---
+
+import { ShowCase } from '../docComponents/ShowCase'
+import { Status } from '@monorail/visualComponents/status/Status'
+
+Status gives visual importance to status related information. The consistency of using this component for status information helps the user form a mental model that when the see a pill with a colored background, the information within is related to the status.
+
+<ShowCase>
+  <Status>0</Status>
+</ShowCase>
+
+## Types
+
+### Default
+
+Status highlights a small amount of information.
+
+```tsx live
+<Status>0</Status>
+```
+
+### Status | Inactive
+
+Indicate inactivity with the inactive prop.
+
+```tsx live
+<Status inactive>0</Status>
+```
+
+### Status | Icon
+
+Status accepts an icon and color.
+
+```tsx live
+<Status statusColor={Colors.Red} icon="close">
+  Error
+</Status>
+```
+
+### Status | Optional Background
+
+Status has an optional backgroundless state.
+
+```tsx live
+<Status hasBackground={false} statusColor={Colors.Red} icon="close">
+  Error
+</Status>
+```
+
+### Status | Icon | Sizing
+
+Adjust the size of Status with the fontSize prop.
+
+```tsx live
+<Status fontSize={FontSizes.Title1} statusColor={Colors.Red} icon="close">
+  Error
+</Status>
+```

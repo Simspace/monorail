@@ -1,0 +1,280 @@
+---
+id: accordion
+title: Accordion
+sidebar_label:  Accordion
+---
+
+import { useState } from 'react'
+
+import { ShowCase } from '../docComponents/ShowCase'
+import {
+  AccordionContent,
+  accordionDummyData,
+} from '../docComponents/AccordionDoc'
+
+import {
+  FontSizes,
+  FontWeights,
+  gothamFontFamily,
+  typographyFont,
+} from '@monorail/helpers/exports'
+import { Accordion } from '@monorail/visualComponents/accordion/Accordion'
+import { Collapsible } from '@monorail/visualComponents/collapsible/Collapsible'
+import { Text } from '@monorail/visualComponents/typography/Text'
+
+export const ControlledMultiExpandComponent = () => {
+  const [expanded, setExpanded] = useState([])
+  const handleClick = panel => (_, isExpanded) =>
+    isExpanded
+      ? setExpanded(expanded.concat(panel))
+      : setExpanded(expanded.filter(item => item !== panel))
+  return (
+    <div style={{ maxWidth: '90%' }}>
+      <Collapsible
+        key={'1'}
+        header={
+          <Text fontSize={FontSizes.Title5} fontWeight={FontWeights.Medium}>
+            {accordionDummyData[0].title}
+          </Text>
+        }
+        iconPosition={'right'}
+        expanded={expanded.includes('1')}
+        onClick={handleClick('1')}
+        content={
+          <AccordionContent>{accordionDummyData[0].content}</AccordionContent>
+        }
+      ></Collapsible>
+      <Collapsible
+        key={'2'}
+        header={
+          <Text fontSize={FontSizes.Title5} fontWeight={FontWeights.Medium}>
+            {accordionDummyData[1].title}
+          </Text>
+        }
+        iconPosition={'right'}
+        expanded={expanded.includes('2')}
+        onClick={handleClick('2')}
+        content={
+          <AccordionContent>{accordionDummyData[1].content}</AccordionContent>
+        }
+      ></Collapsible>
+      <Collapsible
+        key={'3'}
+        header={
+          <Text fontSize={FontSizes.Title5} fontWeight={FontWeights.Medium}>
+            {accordionDummyData[2].title}
+          </Text>
+        }
+        iconPosition={'right'}
+        expanded={expanded.includes('3')}
+        onClick={handleClick('3')}
+        content={
+          <AccordionContent>{accordionDummyData[2].content}</AccordionContent>
+        }
+      ></Collapsible>
+    </div>
+  )
+}
+
+An accordion is a group of collapsible sections stacked vertically. It consists of a header, a subsection, an expanded and collapsed state, and an icon. By default, the icons are left aligned and only expands one section at a time.
+
+<ShowCase>
+  <ControlledMultiExpandComponent />
+</ShowCase>
+
+## Usage
+
+Accordions are commonly used to reduce the need to scroll when presenting multiple sections of content on a single page.
+
+## Pros
+
+- Minimizes scrolling.
+- Can serve as a mini Information Architecture of the page.
+- Hiding some content makes the page easier on the eyes.
+- Gives the user control on what to read and what to ignore.
+- Better alternative to within-page-links (links that scroll the user to a section of a page rather than loading a new one which they typically expect).
+
+## Cons
+
+- Increases interaction cost.
+- Forcing the user to click on a heading to see content can be cumbersome.
+- Users won't be able use `Ctrl/Cmd + F` to find content in a collapsed accordion.
+- Hiding content diminishes people's awareness of it.
+
+## Interaction
+
+- The entire header is a hit target.
+- A header's background color changes on hover and while expanded.
+- The icon should change direction when clicked.
+
+## Types
+
+### Multi-expand
+
+```tsx live
+<Accordion
+  content={accordionDummyData.map(data => ({
+    header: (
+      <Text fontSize={FontSizes.Title5} fontWeight={FontWeights.Medium}>
+        {data.title}
+      </Text>
+    ),
+    iconPosition: 'left',
+    content: <AccordionContent>{data.content}</AccordionContent>,
+  }))}
+  multiExpand={true}
+></Accordion>
+```
+
+### Right-aligned
+
+```tsx live
+<Accordion
+  content={accordionDummyData.map(data => ({
+    header: (
+      <Text fontSize={FontSizes.Title5} fontWeight={FontWeights.Medium}>
+        {data.title}
+      </Text>
+    ),
+    iconPosition: 'right',
+    content: <AccordionContent>{data.content}</AccordionContent>,
+  }))}
+></Accordion>
+```
+
+### Right-aligned and multi-expand
+
+```tsx live
+<Accordion
+  content={accordionDummyData.map((data, idx) => ({
+    key: idx,
+    header: (
+      <Text fontSize={FontSizes.Title5} fontWeight={FontWeights.Medium}>
+        {data.title}
+      </Text>
+    ),
+    iconPosition: 'right',
+    content: <AccordionContent>{data.content}</AccordionContent>,
+  }))}
+  multiExpand={true}
+></Accordion>
+```
+
+### Fully Controlled w/ Single Expand
+
+```tsx live
+function ControlledSingleExpandComponent() {
+  const [expanded, setExpanded] = React.useState(false)
+
+  const handleClick = panel => (_, isExpanded) => {
+    setExpanded(isExpanded ? panel : false)
+  }
+
+  return (
+    <div>
+      <Collapsible
+        key={'1'}
+        header={
+          <Text fontSize={FontSizes.Title5} fontWeight={FontWeights.Medium}>
+            {accordionDummyData[0].title}
+          </Text>
+        }
+        iconPosition={'right'}
+        expanded={expanded === '1'}
+        onClick={handleClick('1')}
+        content={
+          <AccordionContent>{accordionDummyData[0].content}</AccordionContent>
+        }
+      ></Collapsible>
+      <Collapsible
+        key={'2'}
+        header={
+          <Text fontSize={FontSizes.Title5} fontWeight={FontWeights.Medium}>
+            {accordionDummyData[1].title}
+          </Text>
+        }
+        iconPosition={'right'}
+        expanded={expanded === '2'}
+        onClick={handleClick('2')}
+        content={
+          <AccordionContent>{accordionDummyData[1].content}</AccordionContent>
+        }
+      ></Collapsible>
+      <Collapsible
+        key={'3'}
+        header={
+          <Text fontSize={FontSizes.Title5} fontWeight={FontWeights.Medium}>
+            {accordionDummyData[2].title}
+          </Text>
+        }
+        iconPosition={'right'}
+        expanded={expanded === '3'}
+        onClick={handleClick('3')}
+        content={
+          <AccordionContent>{accordionDummyData[2].content}</AccordionContent>
+        }
+      ></Collapsible>
+    </div>
+  )
+}
+```
+
+### Fully Controlled w/ Multi Expand
+
+```tsx live
+function ControlledMultiExpandComponent() {
+  const [expanded, setExpanded] = React.useState([])
+
+  const handleClick = panel => (_, isExpanded) =>
+    isExpanded
+      ? setExpanded(expanded.concat(panel))
+      : setExpanded(expanded.filter(item => item !== panel))
+
+  return (
+    <div>
+      <Collapsible
+        key={'1'}
+        header={
+          <Text fontSize={FontSizes.Title5} fontWeight={FontWeights.Medium}>
+            {accordionDummyData[0].title}
+          </Text>
+        }
+        iconPosition={'right'}
+        expanded={expanded.includes('1')}
+        onClick={handleClick('1')}
+        content={
+          <AccordionContent>{accordionDummyData[0].content}</AccordionContent>
+        }
+      ></Collapsible>
+      <Collapsible
+        key={'2'}
+        header={
+          <Text fontSize={FontSizes.Title5} fontWeight={FontWeights.Medium}>
+            {accordionDummyData[1].title}
+          </Text>
+        }
+        iconPosition={'right'}
+        expanded={expanded.includes('2')}
+        onClick={handleClick('2')}
+        content={
+          <AccordionContent>{accordionDummyData[1].content}</AccordionContent>
+        }
+      ></Collapsible>
+      <Collapsible
+        key={'3'}
+        header={
+          <Text fontSize={FontSizes.Title5} fontWeight={FontWeights.Medium}>
+            {accordionDummyData[2].title}
+          </Text>
+        }
+        iconPosition={'right'}
+        expanded={expanded.includes('3')}
+        onClick={handleClick('3')}
+        content={
+          <AccordionContent>{accordionDummyData[2].content}</AccordionContent>
+        }
+      ></Collapsible>
+    </div>
+  )
+}
+```

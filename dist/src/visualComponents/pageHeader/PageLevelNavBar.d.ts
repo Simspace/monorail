@@ -1,5 +1,5 @@
 import { FC, ReactNode } from 'react';
-export declare const PageLevelNavBarContainer: any;
+export declare const PageLevelNavBarContainer: import("styled-components").StyledComponent<"div", import("../../helpers/theme").GlobalAppThemeInterface, {}, never>;
 declare type PageLevelNavBarProps = {
     activeTabIndex?: number;
     getActiveTabIndex?: (activeTabIndex: number) => void;
@@ -7,4 +7,3 @@ declare type PageLevelNavBarProps = {
 };
 export declare const PageLevelNavBar: FC<PageLevelNavBarProps>;
 export {};
-//# sourceMappingURL=PageLevelNavBar.d.ts.map

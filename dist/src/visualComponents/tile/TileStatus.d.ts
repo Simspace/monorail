@@ -6,4 +6,3 @@ export declare enum TileStatus {
     Empty = "empty",
     Neutral = "neutral"
 }
-//# sourceMappingURL=TileStatus.d.ts.map

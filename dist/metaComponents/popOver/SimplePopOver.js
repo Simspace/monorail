@@ -32,9 +32,9 @@ const SimplePopOver = props => {
     } else if (state === 'opened') {
       setState('closing');
     }
-  }, [isOpen]);
+  }, [isOpen, state]);
 
-  return _react.default.createElement(_PortalController.PortalController, {
+  return /*#__PURE__*/_react.default.createElement(_PortalController.PortalController, {
     isRendered: state !== 'closed'
   }, popOver({
     isOpen,

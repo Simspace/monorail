@@ -14,4 +14,3 @@ declare type Props = {
 };
 export declare const NumberInputGroup: FC<Props>;
 export {};
-//# sourceMappingURL=NumberInputGroup.d.ts.map

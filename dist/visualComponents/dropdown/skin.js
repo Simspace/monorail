@@ -3,15 +3,15 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.useDropdownCustomSkin = exports.useDropdownSkin = exports.DropdownSkin = exports.ItemContainer = void 0;
+exports.createDropdownCustomSkin = exports.useDropdownSkin = exports.DropdownSkin = exports.ItemContainer = void 0;
 
 var _styledComponents = _interopRequireDefault(require("styled-components"));
+
+var _react = _interopRequireWildcard(require("react"));
 
 var _downshift = _interopRequireDefault(require("downshift"));
 
 var O = _interopRequireWildcard(require("fp-ts/lib/Option"));
-
-var _react = _interopRequireWildcard(require("react"));
 
 var _pipeable = require("fp-ts/lib/pipeable");
 
@@ -20,6 +20,8 @@ var _exports = require("../../helpers/exports");
 var _styledComponents2 = _interopRequireWildcard(require("../../helpers/styled-components"));
 
 var _PopOver = require("../../metaComponents/popOver/PopOver");
+
+var _PortalController = require("../../metaComponents/portal/PortalController");
 
 var _typeGuards = require("../../sharedHelpers/typeGuards");
 
@@ -35,13 +37,13 @@ var _DropdownItem = require("./DropdownItem");
 
 var _render = require("./render");
 
-var _PortalController = require("../../metaComponents/portal/PortalController");
-
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
 const DropdownWrapper = _styledComponents2.default.div`
   ${(0, _exports.flexFlow)('column')}
@@ -53,7 +55,7 @@ const DropdownContainer = _styledComponents2.default.div(({
   disabled,
   error
 }) => (0, _styledComponents2.css)`
-    ${(0, _exports.borderRadius)(_exports.BorderRadius.Large)};
+    ${(0, _exports.borderRadius)(_exports.BorderRadius.Small)};
     ${(0, _exports.flexFlow)('column')};
     ${(0, _exports.typographyFont)(400, _exports.FontSizes.Title5)};
 
@@ -89,16 +91,12 @@ const MenuContainer = _styledComponents2.default.div`
 const ItemContainer = _styledComponents2.default.div``;
 exports.ItemContainer = ItemContainer;
 
-var _StyledMenu =
-/*#__PURE__*/
-(0, _styledComponents.default)(_Menu.Menu).withConfig({
+var _StyledMenu = /*#__PURE__*/(0, _styledComponents.default)(_Menu.Menu).withConfig({
   displayName: "skin___StyledMenu",
   componentId: "uzu9ln-0"
 })(["", "{padding:0;}"], _Menu.MenuContent);
 
-var _StyledDiv =
-/*#__PURE__*/
-_styledComponents.default.div.withConfig({
+var _StyledDiv = /*#__PURE__*/(0, _styledComponents.default)("div").withConfig({
   displayName: "skin___StyledDiv",
   componentId: "uzu9ln-1"
 })(["position:absolute;left:0;top:100%;"]);
@@ -157,9 +155,9 @@ const DropdownSkin = ({
     const handlerProps = { ...getInputProps(inputOptions),
       display
     };
-    return _react.default.createElement(HandlerContainer, {
+    return /*#__PURE__*/_react.default.createElement(HandlerContainer, {
       ref: menuRef
-    }, _react.default.createElement("select", {
+    }, /*#__PURE__*/_react.default.createElement("select", {
       disabled: disabled || display === _inputTypes.DisplayType.View,
       required: required,
       value: (0, _pipeable.pipe)(O.fromNullable(selectedItem), O.map(itemToString), O.toUndefined),
@@ -170,10 +168,10 @@ const DropdownSkin = ({
         opacity: 0
       },
       tabIndex: -1
-    }, dropdownValue && _react.default.createElement("option", {
+    }, dropdownValue && /*#__PURE__*/_react.default.createElement("option", {
       value: dropdownValue,
       key: 1
-    })), _react.default.createElement(render.handler, {
+    })), /*#__PURE__*/_react.default.createElement(render.handler, {
       downshiftProps,
       handlerProps,
       clearable
@@ -191,7 +189,7 @@ const DropdownSkin = ({
       itemToString
     } = downshiftProps;
     const ListComponent = (0, _typeGuards.isUndefined)(render.list) ? _react.default.Fragment : render.list;
-    return _react.default.createElement(ListComponent, {
+    return /*#__PURE__*/_react.default.createElement(ListComponent, {
       items: items,
       parser: parser,
       downshiftProps: downshiftProps
@@ -203,10 +201,11 @@ const DropdownSkin = ({
         selected: (0, _pipeable.pipe)(O.fromNullable(selectedItem), O.fold(() => false, parser.compare(item)))
       };
       const itemDownshiftProps = getItemProps({ ...itemProps,
-        index,
-        key: `item-${index}`
+        index
       });
-      return _react.default.createElement(ItemContainer, itemDownshiftProps, _react.default.createElement(render.item, itemProps, itemToString(item)));
+      return /*#__PURE__*/_react.default.createElement(ItemContainer, _extends({
+        key: `item-${index}`
+      }, itemDownshiftProps), /*#__PURE__*/_react.default.createElement(render.item, itemProps, itemToString(item)));
     }));
   };
 
@@ -216,14 +215,17 @@ const DropdownSkin = ({
       getMenuProps,
       toggleMenu
     } = downshiftProps;
+    const {
+      extraWidth = 0
+    } = skin;
     const menuProps = getMenuProps();
     const position = menuTarget ? (0, _PopOver.getOverlayPosition)({
       target: menuTarget
     }) : _PopOver.defaultPopOverPosition;
-    const width = menuTarget ? menuTarget.getBoundingClientRect().width : 0;
-    return _react.default.createElement("div", menuProps, _react.default.createElement(_PortalController.PortalController, {
+    const width = menuTarget ? menuTarget.getBoundingClientRect().width + extraWidth : 0;
+    return /*#__PURE__*/_react.default.createElement("div", menuProps, /*#__PURE__*/_react.default.createElement(_PortalController.PortalController, {
       isRendered: isOpen
-    }, _react.default.createElement(_StyledMenu, {
+    }, /*#__PURE__*/_react.default.createElement(_StyledMenu, {
       isOpen: isOpen,
       position: position,
       togglePopOver: () => toggleMenu({
@@ -233,24 +235,24 @@ const DropdownSkin = ({
       closingAnimationCompleted: () => {},
       onClick: () => {},
       width: width
-    }, _react.default.createElement(MenuContainer, null, items.length > 0 ? renderList() : _react.default.createElement(_DropdownItem.DropdownItem, {
+    }, /*#__PURE__*/_react.default.createElement(MenuContainer, null, items.length > 0 ? renderList() : /*#__PURE__*/_react.default.createElement(_DropdownItem.DropdownItem, {
       selected: false,
       highlighted: false,
       disabled: true
     }, "No results")))));
   };
 
-  const renderError = () => _react.default.createElement(_react.default.Fragment, null, error && (0, _pipeable.pipe)(error, O.fold(() => _react.default.createElement(_react.default.Fragment, null), msg => _react.default.createElement(_StyledDiv, null, _react.default.createElement(_StdErr.StdErr, {
+  const renderError = () => /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, error && (0, _pipeable.pipe)(error, O.fold(() => /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null), msg => /*#__PURE__*/_react.default.createElement(_StyledDiv, null, /*#__PURE__*/_react.default.createElement(_StdErr.StdErr, {
     err: true,
     msg: msg
   })))));
 
-  return _react.default.createElement(DropdownWrapper, null, label && _react.default.createElement(_Label.Label, {
+  return /*#__PURE__*/_react.default.createElement(DropdownWrapper, null, label && /*#__PURE__*/_react.default.createElement(_Label.Label, {
     label: label,
     required: required,
     err: !(0, _typeGuards.isUndefined)(error) && O.isSome(error),
     display: display
-  }), _react.default.createElement(DropdownContainer, {
+  }), /*#__PURE__*/_react.default.createElement(DropdownContainer, {
     disabled: !!disabled,
     error: !(0, _typeGuards.isUndefined)(error) && O.isSome(error)
   }, renderHandler(), !disabled && renderMenu(), renderError()));
@@ -258,18 +260,18 @@ const DropdownSkin = ({
 
 exports.DropdownSkin = DropdownSkin;
 
-const useDropdownHook = render => skin => state => _react.default.createElement(DropdownSkin, {
+const createDropdownSkin = render => skin => state => /*#__PURE__*/_react.default.createElement(DropdownSkin, {
   render: render,
   state: state,
   skin: skin
 });
 
-const useDropdownSkin = skin => useDropdownHook((0, _render.useDefaultDropdownRender)())(skin);
+const useDropdownSkin = skin => createDropdownSkin((0, _render.createDefaultDropdownRender)())(skin);
 
 exports.useDropdownSkin = useDropdownSkin;
 
-const useDropdownCustomSkin = render => useDropdownHook({ ...(0, _render.useDefaultDropdownRender)(),
+const createDropdownCustomSkin = render => createDropdownSkin({ ...(0, _render.createDefaultDropdownRender)(),
   ...render
 });
 
-exports.useDropdownCustomSkin = useDropdownCustomSkin;
+exports.createDropdownCustomSkin = createDropdownCustomSkin;

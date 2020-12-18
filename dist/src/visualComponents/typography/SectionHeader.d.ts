@@ -8,4 +8,3 @@ declare type Props = {
 };
 export declare const SectionHeader: FC<Props>;
 export {};
-//# sourceMappingURL=SectionHeader.d.ts.map

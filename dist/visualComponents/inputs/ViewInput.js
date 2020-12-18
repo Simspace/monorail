@@ -13,11 +13,11 @@ var _exports = require("../../helpers/exports");
 
 var _styledComponents2 = _interopRequireWildcard(require("../../helpers/styled-components"));
 
+var _typeGuards = require("../../sharedHelpers/typeGuards");
+
 var _Label = require("./Label");
 
 var _Text = require("../typography/Text");
-
-var _typeGuards = require("../../sharedHelpers/typeGuards");
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
@@ -41,16 +41,12 @@ const Container = _styledComponents2.default.div(({
     ${(0, _exports.flexFlow)(orientation)};
   `);
 
-var _StyledLabel =
-/*#__PURE__*/
-(0, _styledComponents.default)(_Label.Label).withConfig({
+var _StyledLabel = /*#__PURE__*/(0, _styledComponents.default)(_Label.Label).withConfig({
   displayName: "ViewInput___StyledLabel",
   componentId: "sc-4gv7n3-0"
 })(["", ""], p => p._css);
 
-var _StyledText =
-/*#__PURE__*/
-(0, _styledComponents.default)(_Text.Text).withConfig({
+var _StyledText = /*#__PURE__*/(0, _styledComponents.default)(_Text.Text).withConfig({
   displayName: "ViewInput___StyledText",
   componentId: "sc-4gv7n3-1"
 })(["font-style:italic;"]);
@@ -61,24 +57,25 @@ const ViewInput = ({
   placeholder,
   orientation = Orientation.Column,
   disabled,
+  textProps,
   ...domProps
 }) => {
-  return _react.default.createElement(Container, _extends({
+  return /*#__PURE__*/_react.default.createElement(Container, _extends({
     orientation: orientation
-  }, domProps), _react.default.createElement(_StyledLabel, {
+  }, domProps), /*#__PURE__*/_react.default.createElement(_StyledLabel, {
     label: label,
     _css: disabled && `color: ${(0, _exports.getColor)(_exports.Colors.Black54a)};`
-  }), !(0, _typeGuards.isNil)(value) ? _react.default.createElement(_Text.Text, {
+  }), !(0, _typeGuards.isNil)(value) ? /*#__PURE__*/_react.default.createElement(_Text.Text, _extends({
     fontWeight: 400,
     fontSize: _exports.FontSizes.Title5,
     color: disabled ? _exports.Colors.Black54a : _exports.Colors.Black89a,
     margin: orientation === Orientation.Column ? '4px 0' : '0 0 0 4px'
-  }, value) : _react.default.createElement(_StyledText, {
+  }, textProps), value) : /*#__PURE__*/_react.default.createElement(_StyledText, _extends({
     fontWeight: 200,
     fontSize: _exports.FontSizes.Title5,
     color: _exports.Colors.Black54a,
     margin: orientation === Orientation.Column ? '4px 0' : '0 0 0 4px'
-  }, placeholder || 'None'));
+  }, textProps), placeholder || 'None'));
 };
 
 exports.ViewInput = ViewInput;

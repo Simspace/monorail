@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "noEmit": true,
+    "noEmitOnError": true,
+    "baseUrl": ".",
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "forceConsistentCasingInFileNames": true,
+    "incremental": true,
+    "jsx": "react",
+    "lib": ["dom", "es2015", "es2016", "es2017", "es2018", "esnext"],
+    "moduleResolution": "node",
+    "noImplicitReturns": true,
+    "noUnusedLocals": false,
+    "outDir": "ts-dist",
+    "paths": {
+      "@monorail/*": ["../src/*"]
+    },
+    "preserveWatchOutput": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "sourceMap": false,
+    "strict": true,
+    "target": "esnext"
+  },
+  "extends": "@tsconfig/docusaurus/tsconfig.json",
+  "typeRoots": ["./src", "../../../src/typings"],
+  "include": ["src/**/*", "../src/**/*", "docs/**/*"]
+}

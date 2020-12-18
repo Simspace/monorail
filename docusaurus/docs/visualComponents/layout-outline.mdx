@@ -1,0 +1,135 @@
+---
+id: layout-outline
+title: Layout Outline
+sidebar_label: Layout Outline
+---
+
+import { Button } from '@monorail/visualComponents/buttons/Button'
+import { ButtonDisplay } from '@monorail/visualComponents/buttons/buttonTypes'
+import { IconButton } from '@monorail/visualComponents/buttons/IconButton'
+import { TextField } from '@monorail/visualComponents/inputs/TextField'
+import { Section } from '@monorail/visualComponents/layout/Layout'
+import {
+  ColumnLayout,
+  EmptyLayoutList,
+  LayoutContentWrapper,
+  LayoutDetailHeader,
+  LayoutOutline,
+  OutlineActions,
+  OutlineItemBaseType,
+  OutlineListItem,
+  RowLayout,
+  useControlledList,
+} from '@monorail/visualComponents/layout/LayoutOutline'
+
+```tsx live
+function LayoutOutlineExample() {
+  const newItem = ndx => ({
+    key: `${ndx}`,
+    content: `Item ${ndx + 1}`,
+    weight: Math.ceil(Math.random() * 1000),
+  })
+
+  const testItems = Array.from(Array(10).keys()).map(newItem)
+
+  const CustomItemDetail = ({ item, actions }) => {
+    return (
+      <LayoutContentWrapper>
+        <LayoutDetailHeader
+          value={item.content}
+          actions={[
+            {
+              label: 'Duplicate',
+              onClick: onClickParent => {
+                onClickParent()
+                actions.create(item.key)
+              },
+            },
+            {
+              label: 'Delete',
+              onClick: onClickParent => {
+                onClickParent()
+                actions.delete(item.key)
+              },
+            },
+          ]}
+          onBlur={e => actions.update(item.key, { content: e.target.value })}
+          onChange={e => actions.update(item.key, { content: e.target.value })}
+        />
+        <ColumnLayout>
+          <TextField
+            htmlType="number"
+            label="Weight"
+            value={item.weight}
+            onChange={e =>
+              actions.update(item.key, {
+                weight: parseInt(e.target.value),
+              })
+            }
+          />
+        </ColumnLayout>
+      </LayoutContentWrapper>
+    )
+  }
+
+  const CustomItem = () => {
+    const { items, actions, selectedItem } = useControlledList({
+      items: testItems,
+      newItem,
+    })
+
+    const renderItems = useCallback(
+      () =>
+        items.map((item, ndx) => (
+          <OutlineListItem
+            icon="category"
+            key={item.key}
+            item={item}
+            selected={selectedItem ? item.key === selectedItem.key : false}
+            onClick={() => actions.select(item.key)}
+            onDelete={() => actions.delete(item.key)}
+          />
+        )),
+      [items, selectedItem],
+    )
+
+    return (
+      <LayoutOutline
+        title={'Items'}
+        headerProps={{
+          actions: (
+            <IconButton
+              icon="add"
+              display={ButtonDisplay.Secondary}
+              onClick={() => actions.create()}
+            />
+          ),
+        }}
+        list={renderItems}
+      >
+        {() =>
+          selectedItem ? (
+            <CustomItemDetail item={selectedItem} actions={actions} />
+          ) : (
+            <EmptyLayoutList
+              actions={
+                <Button onClick={() => actions.create()}>Add Item</Button>
+              }
+            />
+          )
+        }
+      </LayoutOutline>
+    )
+  }
+
+  return (
+    <Section
+      css={`
+        height: 400px;
+      `}
+    >
+      <CustomItem />
+    </Section>
+  )
+}
+```

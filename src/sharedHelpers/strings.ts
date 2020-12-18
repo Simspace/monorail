@@ -1,10 +1,10 @@
 import * as A from 'fp-ts/lib/Array'
+import { flow } from 'fp-ts/lib/function'
 import * as O from 'fp-ts/lib/Option'
 import { pipe } from 'fp-ts/lib/pipeable'
 
 import { isNotNaN } from '@monorail/sharedHelpers/typeGuards'
 
-import { o } from './fp-ts-ext/function'
 import { getOrEmptyString } from './fp-ts-ext/Option'
 
 /**
@@ -34,7 +34,7 @@ export const splitName = (
 } => {
   const xs = split(' ')(name)
   const safeGetVia = (f: (as: Array<string>) => O.Option<string>) =>
-    o(getOrEmptyString, f)(xs)
+    flow(f, getOrEmptyString)(xs)
 
   return {
     first: safeGetVia(A.head),
@@ -46,6 +46,7 @@ export const splitName = (
  * Returns the position of the first occurrence of a substring wrapped in a Some
  * or returns a None if the substring is not found
  */
+
 export const findIndex = (substring: string) => (
   xs: string,
 ): O.Option<number> => {
@@ -71,8 +72,20 @@ export function trim(str: string): string {
   return str.trim()
 }
 
-export function join<T>(separator: string, arr: Array<T>): string {
-  return arr.join(separator)
+/**
+ * Find and remove all space characters within a string. This may be useful for
+ * filtering numeric text (given some user input) where spaces don't matter.
+ *
+ * includesNoncase(removeSpaces('2/10'))(removeSpaces('2 / 10')) // true
+ */
+export function removeSpaces(str: string): string {
+  return str.split(' ').join('')
+}
+
+export function join<T>(separator: string, arr: Array<T>): string
+export function join<T>(separator: string): (arr: Array<T>) => string
+export function join<T>(separator: string, arr?: Array<T>) {
+  return arr ? arr.join(separator) : (as: Array<T>) => as.join(separator)
 }
 
 export const truncate = (maxLength: number) => (value: string) => {
@@ -115,6 +128,13 @@ export const capitalizeWords = (str: string): string => {
         .join(' ')
 }
 
+export const startsWithNonCase = (target: string) => (source: string) => {
+  return source
+    .trim()
+    .toLowerCase()
+    .startsWith(target.trim().toLowerCase())
+}
+
 export const words = (str: string): Array<string> => str.split(/\s/)
 
 export const unwords = (str: Array<string>): string => str.join(' ')
@@ -129,6 +149,12 @@ export const addTrailingSlash = (path: string) =>
   path.endsWith('/') ? path : `${path}/`
 
 export const take = (n: number) => (s: string) => s.substring(0, n)
+
+/**
+ * Removes the leading {@param n} characters from the supplied string
+ * @param n the amount of characters to drop
+ */
+export const drop = (n: number) => (s: string) => s.substring(n, s.length)
 
 /**
  * Returns a string that contains `input` concatenated back-to-back `n` times
@@ -192,4 +218,42 @@ export const safeParseInt = (
   radix: number = 10,
 ): O.Option<number> => {
   return pipe(parseInt(str, radix), O.fromPredicate(isNotNaN))
+}
+
+export const elemLocaleLowerCase = (needle: string) => (haystack: string) =>
+  toLocaleLower(haystack).includes(toLocaleLower(needle))
+
+/**
+ * Patially matches any string value, returning None if a match is not found
+ *
+ * @example
+ *
+ * ```ts
+ * pipe(
+ *   'foo',
+ *   matchStringP({
+ *     foo: () => 'Hello',
+ *     bar: () => 'World'
+ *   })
+ * ) // Some('Hello')
+ * ```
+ *
+ * ```ts
+ * pipe(
+ *   'asdf',
+ *   matchStringP({
+ *     foo: () => 'Hello',
+ *     bar: () => 'World'
+ *   })
+ * ) // None
+ * ```
+ */
+export const matchStringP = <Out>(matchObj: Record<string, () => Out>) => (
+  s: string,
+): O.Option<Out> => {
+  if (s in matchObj) {
+    return O.some(matchObj[s]())
+  } else {
+    return O.none
+  }
 }

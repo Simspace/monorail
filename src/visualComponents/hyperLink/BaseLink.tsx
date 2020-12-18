@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types'
 import React, {
   forwardRef,
   ForwardRefExoticComponent,
@@ -6,6 +5,7 @@ import React, {
   RefAttributes,
 } from 'react'
 import { Link, LinkProps } from 'react-router'
+import PropTypes from 'prop-types'
 
 // BaseLink does prop stripping for styled-components so that we don't have to strip props for every styled-component that uses a link.
 

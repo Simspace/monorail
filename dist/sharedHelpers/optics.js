@@ -7,17 +7,17 @@ exports.atMap = atMap;
 exports.indexMap = indexMap;
 exports.upsert = exports.mkRecordKeyOptional = exports.mkArrayIndexOptional = exports.lensesFromRecord = exports.oLens = void 0;
 
-var _fpTsImports = require("./fp-ts-imports");
-
-var _Option = require("fp-ts/lib/Option");
-
-var M = _interopRequireWildcard(require("fp-ts/lib/Map"));
+var _monocleTs = require("monocle-ts");
 
 var _Array = require("fp-ts/lib/Array");
 
+var M = _interopRequireWildcard(require("fp-ts/lib/Map"));
+
+var _Option = require("fp-ts/lib/Option");
+
 var _Record = require("fp-ts/lib/Record");
 
-var _monocleTs = require("monocle-ts");
+var _fpTsImports = require("./fp-ts-imports");
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
@@ -33,13 +33,10 @@ const oLens = (f, g) => f.compose(g);
 /**
  * Helper that extracts the S type from a Lens<S, A>
  */
-
-/* tslint:disable:no-any */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 
 
 exports.oLens = oLens;
-
-/* tslint:enable:no-any */
 
 /**
  * A function that generates monocle-ts Lenses for all top-level key-val pairs

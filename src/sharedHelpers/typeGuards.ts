@@ -1,3 +1,4 @@
+import { isDate as isDatePredicate } from 'date-fns'
 import { Refinement } from 'fp-ts/lib/function'
 
 import { Falsy, Nil, Undefinedable } from './typeLevel'
@@ -135,9 +136,14 @@ export const isObject = (x: unknown): x is object =>
   !isNull(x) && typeof x === 'object' && x instanceof Object
 
 /**
+ * Type guard for the `Date` type
+ */
+export const isDate = (x: unknown): x is Date => isDatePredicate(x)
+
+/**
  * Type guard for the `Function` type
  */
-// tslint:disable-next-line: ban-types
+// eslint-disable-next-line @typescript-eslint/ban-types
 export const isFunction = (x: unknown): x is Function => x instanceof Function
 
 /**
@@ -180,3 +186,8 @@ export function hasKey<O, K extends string | number | symbol>(
 ): obj is O & { [k in K]: unknown } {
   return key in obj
 }
+
+/**
+ * Type guard to check for an instance of a DOM Element
+ */
+export const isDOMElement = (a: unknown): a is Element => a instanceof Element

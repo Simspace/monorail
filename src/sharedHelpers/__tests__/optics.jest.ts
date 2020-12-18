@@ -1,5 +1,5 @@
-import { eqNumber, eqString } from 'fp-ts/lib/Eq'
 import { Lens } from 'monocle-ts'
+import { eqNumber, eqString } from 'fp-ts/lib/Eq'
 
 import {
   lensesFromRecord,

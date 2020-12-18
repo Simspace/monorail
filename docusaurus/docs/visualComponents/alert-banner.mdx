@@ -1,0 +1,31 @@
+---
+id: alert-banner
+title: Alert Banner
+sidebar_label: Alert Banner
+---
+
+import { useState } from 'react'
+import { css } from 'styled-components'
+import { ShowCase } from '../docComponents/ShowCase'
+import { AlertBanner } from '@monorail/visualComponents/alertBanner/AlertBanner'
+import { AlertLevel } from '@monorail/visualComponents/toast/types'
+
+```tsx live
+function AlertBannerDemo() {
+  const [isBannerOpen, setIsBannerOpen] = useState(true)
+  return (
+    isBannerOpen && (
+      <AlertBanner
+        title="Automated Scenarios Warning"
+        message="If the Attack Campaign for this Event contains automated scenarios, they will ignore the Cyber Key Terrain (CKT) added through this page and instead use their predefined CKT."
+        level={AlertLevel.Warning}
+        onClick={() => setIsBannerOpen(false)}
+        dismissible
+        cssOverrides={css`
+          max-width: 700px;
+        `}
+      />
+    )
+  )
+}
+```

@@ -1,5 +1,6 @@
-import * as S from '@monorail/sharedHelpers/fp-ts-ext/Struct'
 import * as Eq from 'fp-ts/lib/Eq'
+
+import * as S from '@monorail/sharedHelpers/fp-ts-ext/Struct'
 
 describe('Struct', () => {
   describe('difference', () => {

@@ -2,8 +2,8 @@ import React, { Component, createRef } from 'react'
 
 import { baseChromelessStyles } from '@monorail/helpers/baseStyles'
 import {
-  borderRadius,
   BorderRadius,
+  borderRadius,
   Colors,
   flexFlow,
   FontSizes,

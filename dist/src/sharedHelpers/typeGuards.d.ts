@@ -91,6 +91,10 @@ export declare const isFinite: (x: unknown) => x is number;
  */
 export declare const isObject: (x: unknown) => x is object;
 /**
+ * Type guard for the `Date` type
+ */
+export declare const isDate: (x: unknown) => x is Date;
+/**
  * Type guard for the `Function` type
  */
 export declare const isFunction: (x: unknown) => x is Function;
@@ -121,4 +125,7 @@ export declare const isStringArray: (as: unknown) => as is string[];
 export declare function hasKey<O, K extends string | number | symbol>(obj: O, key: K): obj is O & {
     [k in K]: unknown;
 };
-//# sourceMappingURL=typeGuards.d.ts.map
+/**
+ * Type guard to check for an instance of a DOM Element
+ */
+export declare const isDOMElement: (a: unknown) => a is Element;

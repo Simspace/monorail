@@ -15,4 +15,3 @@ declare type TileProps = TileStyleProps & {
 };
 export declare const Tile: FC<TileProps>;
 export {};
-//# sourceMappingURL=Tile.d.ts.map

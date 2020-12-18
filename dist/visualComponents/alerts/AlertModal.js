@@ -72,23 +72,17 @@ const headerTitle = {
  * Props
  */
 
-var _StyledMediumModal =
-/*#__PURE__*/
-(0, _styledComponents.default)(_MediumModal.MediumModal).withConfig({
+var _StyledMediumModal = /*#__PURE__*/(0, _styledComponents.default)(_MediumModal.MediumModal).withConfig({
   displayName: "AlertModal___StyledMediumModal",
   componentId: "sc-14c9sxu-0"
 })(["", ""], p => p._css);
 
-var _StyledBBModalContent =
-/*#__PURE__*/
-(0, _styledComponents.default)(_Modals.BBModalContent).withConfig({
+var _StyledBBModalContent = /*#__PURE__*/(0, _styledComponents.default)(_Modals.BBModalContent).withConfig({
   displayName: "AlertModal___StyledBBModalContent",
   componentId: "sc-14c9sxu-1"
 })(["padding:", "px;"], p => p._css2);
 
-var _StyledButton =
-/*#__PURE__*/
-(0, _styledComponents.default)(_Button.Button).withConfig({
+var _StyledButton = /*#__PURE__*/(0, _styledComponents.default)(_Button.Button).withConfig({
   displayName: "AlertModal___StyledButton",
   componentId: "sc-14c9sxu-2"
 })(["margin-right:8px;"]);
@@ -100,8 +94,10 @@ const AlertModal = props => {
   const {
     alertType,
     children,
+    closeOnSubmit = true,
     closingAnimationCompleted,
     disabled,
+    pending = false,
     headerText,
     isOpen,
     onClick,
@@ -115,7 +111,7 @@ const AlertModal = props => {
     zIndex,
     ...domProps
   } = props;
-  return _react.default.createElement(_StyledMediumModal, _extends({}, domProps, {
+  return /*#__PURE__*/_react.default.createElement(_StyledMediumModal, _extends({}, domProps, {
     onClick: onClick,
     closingAnimationCompleted: closingAnimationCompleted,
     togglePopOver: togglePopOver,
@@ -124,24 +120,29 @@ const AlertModal = props => {
     iconLeft: alertIcon[alertType],
     zIndex: zIndex,
     _css: alertModalStyles[alertType]
-  }), _react.default.createElement(_StyledBBModalContent, {
+  }), /*#__PURE__*/_react.default.createElement(_StyledBBModalContent, {
     _css2: padding || 24
-  }, titleText && _react.default.createElement(_Text.Text, {
+  }, titleText && /*#__PURE__*/_react.default.createElement(_Text.Text, {
     fontSize: _typography.FontSizes.Title4,
     fontWeight: 700,
     margin: "0 0 8px"
-  }, titleText), subtitleText && _react.default.createElement(_Text.Text, {
+  }, titleText), subtitleText && /*#__PURE__*/_react.default.createElement(_Text.Text, {
     fontSize: _typography.FontSizes.Title5,
     fontWeight: 400,
     margin: "8px 0 0"
-  }, subtitleText), children), _react.default.createElement(_Modals.BBModalFooter, null, secondaryButtonText && _react.default.createElement(_StyledButton, {
+  }, subtitleText), children), /*#__PURE__*/_react.default.createElement(_Modals.BBModalFooter, null, secondaryButtonText && /*#__PURE__*/_react.default.createElement(_StyledButton, {
+    disabled: pending,
     onClick: onClick,
     display: _buttonTypes.ButtonDisplay.Chromeless
-  }, secondaryButtonText), primaryButtonText && _react.default.createElement(_Button.Button, {
-    disabled: disabled,
+  }, secondaryButtonText), primaryButtonText && /*#__PURE__*/_react.default.createElement(_Button.Button, {
+    disabled: disabled || pending,
+    isLoading: pending,
     onClick: () => {
       onSubmit();
-      togglePopOver();
+
+      if (closeOnSubmit) {
+        togglePopOver();
+      }
     }
   }, primaryButtonText)));
 };

@@ -1,23 +1,23 @@
 import React, { useState } from 'react'
+import * as A from 'fp-ts/Array'
+import { flow, pipe } from 'fp-ts/function'
 import { eqString } from 'fp-ts/lib/Eq'
-import { Forest, Tree } from 'fp-ts/lib/Tree'
-import { chain, intersection } from 'fp-ts/lib/Array'
-import { pipe } from 'fp-ts/lib/pipeable'
+import { foldMap, Forest, Tree } from 'fp-ts/lib/Tree'
 
-import { xor } from '@monorail/sharedHelpers/fp-ts-ext/Array'
-import styled, { css, CSSProp } from '@monorail/helpers/styled-components'
 import { Colors, getColor } from '@monorail/helpers/color'
 import { flexFlow, visible } from '@monorail/helpers/exports'
-import { IconButton } from '@monorail/visualComponents/buttons/IconButton'
+import styled, { css, CSSProp } from '@monorail/helpers/styled-components'
+import { xor } from '@monorail/sharedHelpers/fp-ts-ext/Array'
 import { ButtonDisplay } from '@monorail/visualComponents/buttons/buttonTypes'
+import { IconButton } from '@monorail/visualComponents/buttons/IconButton'
 
 const TreeRowAlignmentBox = styled.div<{ cssToggle?: CSSProp }>(
   ({ cssToggle }) => css`
     ${flexFlow()};
 
     align-items: center;
+    align-self: stretch;
     flex-shrink: 0;
-    height: 100%;
     justify-content: center;
     width: 24px;
     overflow: hidden;
@@ -39,18 +39,21 @@ const TreeRowDepthLine = styled.div<{ isVisible?: boolean }>(
 
 const TreeRowToggleContainer = styled.div`
   ${TreeRowDepthLine} {
-    left: 50%;
+    left: calc(50% - 0.5px);
     position: absolute;
   }
 `
 
-type TreeListProps<A> = {
-  forest: Forest<A>
-  getTreeNodeKey: (a: A) => string
+type Key = string
+
+type TreeListProps<T> = {
+  forest: Forest<T>
+  getTreeNodeKey: (a: T) => Key
+  startExpanded?: boolean
 }
 
 type Ancestor = {
-  key: string
+  key: Key
   index: number
 }
 
@@ -64,7 +67,7 @@ export type FlattenedNode<T> = {
 
 type TreeRowToggleAndDepthLineProps = {
   depth: number
-  onClick: () => void
+  onClick: React.MouseEventHandler<HTMLButtonElement>
   isOpen: boolean
   isLeaf: boolean
   showDepthLine?: boolean
@@ -73,7 +76,7 @@ type TreeRowToggleAndDepthLineProps = {
 
 export function flattenWithDepth<T>(
   rootTree: Tree<T>,
-  toKey: (a: T) => string,
+  toKey: (a: T) => Key,
   startingIndex: number,
 ): Array<FlattenedNode<T>> {
   function flattenWithDepthInner(
@@ -93,7 +96,7 @@ export function flattenWithDepth<T>(
         ...pipe(
           currentTree.forest,
           forest => forest.map((childTree, idx) => [childTree, idx] as const),
-          chain(([childTree, childIdx]) => {
+          A.chain(([childTree, childIdx]) => {
             return pipe(
               childTree,
               flattenWithDepthInner(
@@ -137,7 +140,10 @@ export const TreeRowToggleAndDepthLine = (
             <IconButton
               icon={isOpen ? 'arrow_drop_down' : 'arrow_right'}
               display={ButtonDisplay.Chromeless}
-              onClick={onClick}
+              onClick={e => {
+                e.stopPropagation()
+                onClick(e)
+              }}
             />
             {showDepthLine && <TreeRowDepthLine isVisible={isOpen} />}
           </TreeRowToggleContainer>
@@ -147,23 +153,29 @@ export const TreeRowToggleAndDepthLine = (
   )
 }
 
-export const useTreeList = <A extends unknown>(props: TreeListProps<A>) => {
+export const useTreeList = <T extends unknown>(props: TreeListProps<T>) => {
   const { forest, getTreeNodeKey } = props
-  const [openRows, setOpenRows] = useState<Array<string>>([])
+  const [openRows, setOpenRows] = useState<Array<Key>>(
+    props.startExpanded
+      ? forest.flatMap(x =>
+          foldMap(A.getMonoid<Key>())(flow(getTreeNodeKey, A.of))(x),
+        )
+      : [],
+  )
 
-  const toggleNode = (nodeKey: string) => {
+  const toggleNode = (nodeKey: Key) => {
     setOpenRows(xor(eqString)([nodeKey], openRows))
   }
 
   const rows = pipe(
     forest,
     f => f.map((tr, idx) => [tr, idx] as const),
-    chain(([data, index]) =>
+    A.chain(([data, index]) =>
       flattenWithDepth(data, a => getTreeNodeKey(a), index),
     ),
   ).filter(row => {
     return (
-      intersection(eqString)(
+      A.intersection(eqString)(
         openRows,
         row.ancestors.map(a => a.key),
       ).length === row.ancestors.length

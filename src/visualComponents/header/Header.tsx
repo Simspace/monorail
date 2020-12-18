@@ -4,18 +4,19 @@ import {
   AppOrAuthSubAppName,
   convertAppNameToColor,
 } from '@monorail/helpers/appName'
-import { getColor } from '@monorail/helpers/color'
+import { Colors, getColor } from '@monorail/helpers/color'
 import { flexFlow } from '@monorail/helpers/flex'
 import styled, { css, CSSProp } from '@monorail/helpers/styled-components'
 import { getThemeColor, ThemeColors } from '@monorail/helpers/theme'
 import { FontSizes, typographyFont } from '@monorail/helpers/typography'
+import { isNotNil } from '@monorail/sharedHelpers/typeGuards'
 import { AppIcon } from '@monorail/visualComponents/appIcon/AppIcon'
-import { Icon } from '@monorail/visualComponents/icon/Icon'
-import { IconType } from '@monorail/visualComponents/icon/IconType'
 import {
   IconButton,
   IconButtonProps,
 } from '@monorail/visualComponents/buttons/IconButton'
+import { Icon } from '@monorail/visualComponents/icon/Icon'
+import { IconType } from '@monorail/visualComponents/icon/IconType'
 
 const HeaderRow = styled.div`
   ${flexFlow('row')};
@@ -84,9 +85,9 @@ export const Header = styled(
       css`
         &::after {
           content: '';
-          background: ${appIcon
-            ? getColor(convertAppNameToColor(appIcon))
-            : '#ebebeb'};
+          background: ${getColor(
+            isNotNil(appIcon) ? convertAppNameToColor(appIcon) : Colors.Gray08,
+          )};
           bottom: 0;
           height: 1px;
           left: 0;

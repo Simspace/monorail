@@ -11,9 +11,9 @@ var _borderRadius = require("../../helpers/borderRadius");
 
 var _color = require("../../helpers/color");
 
-var _styledComponents = _interopRequireWildcard(require("../../helpers/styled-components"));
+var _exports = require("../../helpers/exports");
 
-var _zIndex = require("../../helpers/zIndex");
+var _styledComponents = _interopRequireWildcard(require("../../helpers/styled-components"));
 
 var _Icon = require("./Icon");
 
@@ -25,33 +25,41 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
-const FramedIcon = (0, _styledComponents.default)(({
+const Frame = _styledComponents.default.div(({
   frameColor,
   isArchived,
-  icon,
-  ...otherProps
-}) => _react.default.createElement(_Icon.Icon, _extends({
-  icon: isArchived ? 'archive' : icon
-}, otherProps)))(({
-  frameColor,
-  isArchived
+  frameSize
 }) => (0, _styledComponents.css)`
-    ${(0, _zIndex.zIndex)(_zIndex.ZIndexNodeName.FramedIcon)};
+    ${(0, _borderRadius.borderRadius)(_borderRadius.BorderRadius.Small)};
+    ${(0, _exports.flexFlow)('row')}
 
-    position: relative;
-    color: ${(0, _color.getColor)(_color.Colors.White)};
-
-    &::after {
-      ${(0, _zIndex.zIndex)(_zIndex.ZIndexNodeName.FramedIconBackground)};
-      ${(0, _borderRadius.borderRadius)(_borderRadius.BorderRadius.Small)};
-
-      background: ${(0, _color.getColor)(isArchived ? _color.Colors.Gray38 : frameColor)};
-      content: '';
-      position: absolute;
-      top: -2px;
-      right: -2px;
-      bottom: -2px;
-      left: -2px;
-    }
+    align-items: center;
+    background: ${(0, _color.getColor)(isArchived ? _color.Colors.Gray38 : frameColor)};
+    flex-shrink: 0;
+    height: ${frameSize}px;
+    justify-content: center;
+    width: ${frameSize}px;
   `);
+/** @deprecated see `v2/IconFrame` */
+
+
+const FramedIcon = props => {
+  const {
+    frameColor,
+    isArchived,
+    icon,
+    frameSize = 20,
+    ...otherProps
+  } = props;
+  return /*#__PURE__*/_react.default.createElement(Frame, _extends({
+    frameColor: frameColor,
+    isArchived: isArchived,
+    frameSize: frameSize
+  }, otherProps), /*#__PURE__*/_react.default.createElement(_Icon.Icon, {
+    size: frameSize - 4,
+    icon: isArchived ? 'archive' : icon,
+    color: _color.Colors.White
+  }));
+};
+
 exports.FramedIcon = FramedIcon;

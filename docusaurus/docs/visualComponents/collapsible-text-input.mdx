@@ -1,0 +1,87 @@
+---
+id: collapsible-text-input
+title: Collapsible Text Input
+sidebar_label: Collapsible Text Input
+---
+
+import { ShowCase } from '../docComponents/ShowCase'
+import { CollapsibleTextInput } from '@monorail/visualComponents/collapsibleInput/CollapsibleTextInput'
+
+A small, closable text input field.
+
+<ShowCase>
+  <CollapsibleTextInput
+    cssOverrides={{ width: '60%' }}
+    buttonText="Add"
+    titleText="Add a New Value"
+    closeOnSubmit={true}
+  />
+</ShowCase>
+
+## Usage
+
+Use CollapsibleTextInput for simple text operations, like searching or adding items to a list.
+
+## Examples
+
+### CollapsibleTextInput for Adding to a List
+
+You can use the CollapsibleTextInput for adding items to a list. Use the `closeOnSubmit` property or leave it off to ease adding multiple items at once.
+
+```tsx live
+<CollapsibleTextInput
+  buttonText="Add"
+  titleText="Add a New List Item"
+  cssOverrides={{ width: '60%' }}
+/>
+```
+
+### Collapsible Text Input for Search or Filter
+
+You can use the CollapsibleTextInput for searching or filtering content. The `allowEmpty` property allows us to clear our filters in this example. If that property is not set, empty submissions will result in a visual error.
+
+```tsx live
+function DisabledState() {
+  const [filterText, setFilterText] = React.useState('')
+  return (
+    <CollapsibleTextInput
+      buttonText="Go"
+      titleText="Filter"
+      onSubmit={setFilterText}
+      closeOnSubmit={true}
+      allowEmpty={true}
+      maxLength={20}
+      cssOverrides={{ width: '60%' }}
+    />
+  )
+}
+```
+
+### Disabled
+
+This shows the disabled state
+
+```tsx live
+<CollapsibleTextInput
+  buttonText="Nope"
+  titleText="Don't Do Anything"
+  onSubmit={value => alert(value)}
+  disabled
+  cssOverrides={{ width: '60%' }}
+/>
+```
+
+### With a Placeholder
+
+Use placeholders and `maxLength`
+
+```tsx live
+<CollapsibleTextInput
+  buttonText="Submit"
+  titleText="Initials"
+  onSubmit={value => alert(value)}
+  placeholder="Insert Your Initials Here"
+  maxLength={4}
+  cssOverrides={{ width: '60%' }}
+/>
+```

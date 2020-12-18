@@ -7,13 +7,13 @@ exports.RadioGroup = void 0;
 
 var _styledComponents = _interopRequireWildcard(require("styled-components"));
 
+var _react = _interopRequireDefault(require("react"));
+
 var _Array = require("fp-ts/lib/Array");
 
 var O = _interopRequireWildcard(require("fp-ts/lib/Option"));
 
 var _pipeable = require("fp-ts/lib/pipeable");
-
-var _react = _interopRequireDefault(require("react"));
 
 var _exports = require("../../helpers/exports");
 
@@ -37,9 +37,7 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
-const Container =
-/*#__PURE__*/
-_styledComponents.default.div.withConfig({
+const Container = /*#__PURE__*/_styledComponents.default.div.withConfig({
   displayName: "RadioGroup__Container",
   componentId: "hjdmb5-0"
 })(({
@@ -48,29 +46,21 @@ _styledComponents.default.div.withConfig({
   cssOverrides
 }) => (0, _styledComponents.css)(["", ";", " ", ";"], (0, _exports.flexFlow)('column'), display !== _inputTypes.DisplayType.Edit && !hideStdErr && `margin-bottom: 24px;`, cssOverrides));
 
-const RadioGroupWrapper =
-/*#__PURE__*/
-_styledComponents.default.fieldset.withConfig({
+const RadioGroupWrapper = /*#__PURE__*/_styledComponents.default.fieldset.withConfig({
   displayName: "RadioGroup__RadioGroupWrapper",
   componentId: "hjdmb5-1"
 })(({
   err
 }) => (0, _styledComponents.css)(["", ";margin:0;padding:0;border-style:solid;border-width:1px;border-color:transparent;", ";"], (0, _exports.borderRadius)(), err && (0, _styledComponents.css)(["", " border-top:none;border-top-left-radius:0 0;border-top-right-radius:0 0;"], _exports.baseErrorBorderStyles)));
 
-const BorderJoiner =
-/*#__PURE__*/
-_styledComponents.default.div.withConfig({
+const BorderJoiner = /*#__PURE__*/_styledComponents.default.div.withConfig({
   displayName: "RadioGroup__BorderJoiner",
   componentId: "hjdmb5-2"
 })(["border-style:solid;border-width:1px;border-top:none;border-bottom:none;border-left:none;border-color:", ";height:8px;margin-top:-7px;"], (0, _exports.getColor)(_exports.Colors.Red));
 
-const errorStyles =
-/*#__PURE__*/
-(0, _styledComponents.css)(["", " overflow:hidden;white-space:nowrap;&:after{content:'';display:block;width:100%;height:6px;position:relative;border-right:1px solid ", ";border-top:1px solid ", ";border-top-right-radius:3px;margin:auto 0 auto 8px;top:3px;}"], (0, _exports.flexFlow)('row'), (0, _exports.getColor)(_exports.Colors.Red), (0, _exports.getColor)(_exports.Colors.Red));
+const errorStyles = /*#__PURE__*/(0, _styledComponents.css)(["", " overflow:hidden;white-space:nowrap;&:after{content:'';display:block;width:100%;height:6px;position:relative;border-right:1px solid ", ";border-top:1px solid ", ";border-top-right-radius:3px;margin:auto 0 auto 8px;top:3px;}"], (0, _exports.flexFlow)('row'), (0, _exports.getColor)(_exports.Colors.Red), (0, _exports.getColor)(_exports.Colors.Red));
 
-const InfoText =
-/*#__PURE__*/
-_styledComponents.default.p.withConfig({
+const InfoText = /*#__PURE__*/_styledComponents.default.p.withConfig({
   displayName: "RadioGroup__InfoText",
   componentId: "hjdmb5-3"
 })(["", ";margin-left:32px;"], (0, _exports.typographyFont)(300, _exports.FontSizes.Title5));
@@ -84,9 +74,7 @@ const defaultOptions = {
   htmlValidation: true
 };
 
-var _StyledLabel =
-/*#__PURE__*/
-(0, _styledComponents.default)(_Label.Label).withConfig({
+var _StyledLabel = /*#__PURE__*/(0, _styledComponents.default)(_Label.Label).withConfig({
   displayName: "RadioGroup___StyledLabel",
   componentId: "hjdmb5-4"
 })(["", ""], p => p._css);
@@ -107,21 +95,21 @@ const RadioGroup = props => {
     display = _inputTypes.DisplayType.Edit,
     ...otherProps
   } = props;
-  return _react.default.createElement(Container, {
+  return /*#__PURE__*/_react.default.createElement(Container, {
     className: className,
     display: display,
     hideStdErr: hideStdErr
-  }, display === _inputTypes.DisplayType.Edit ? _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_StyledLabel, {
+  }, display === _inputTypes.DisplayType.Edit ? /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_StyledLabel, {
     label: label,
     required: required,
     err: err,
     display: display,
     _css: err ? errorStyles : `${(0, _exports.flexFlow)('row')}`
-  }), err && _react.default.createElement(BorderJoiner, null), _react.default.createElement(RadioGroupWrapper, _extends({}, otherProps, {
+  }), err && /*#__PURE__*/_react.default.createElement(BorderJoiner, null), /*#__PURE__*/_react.default.createElement(RadioGroupWrapper, _extends({}, otherProps, {
     err: err
-  }), options.map((o = defaultOptions, k) => _react.default.createElement("div", {
+  }), options.map((o = defaultOptions, k) => /*#__PURE__*/_react.default.createElement("div", {
     key: k + o.label
-  }, _react.default.createElement(_Choice.Choice, {
+  }, /*#__PURE__*/_react.default.createElement(_Choice.Choice, {
     type: "radio",
     name: name || label,
     "data-test-id": o['data-test-id'],
@@ -133,10 +121,10 @@ const RadioGroup = props => {
     required: htmlValidation && required,
     readOnly: false,
     disabled: o.disabled
-  }, o.label), _react.default.createElement(InfoText, null, o.key === value && !(0, _typeGuards.isEmptyString)(o.info))))), !hideStdErr && _react.default.createElement(_StdErr.StdErr, {
+  }, o.label), /*#__PURE__*/_react.default.createElement(InfoText, null, o.key === value && !(0, _typeGuards.isEmptyString)(o.info))))), !hideStdErr && /*#__PURE__*/_react.default.createElement(_StdErr.StdErr, {
     err: err,
     msg: msg
-  })) : _react.default.createElement(_ViewInput.ViewInput, {
+  })) : /*#__PURE__*/_react.default.createElement(_ViewInput.ViewInput, {
     label: label,
     value: (0, _pipeable.pipe)((0, _Array.findFirst)(o => o.key === value)(options), O.map(o => o.label), O.toUndefined)
   }));

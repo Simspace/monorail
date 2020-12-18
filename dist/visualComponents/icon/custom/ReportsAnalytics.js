@@ -11,13 +11,13 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
-const ReportsAnalytics = props => _react.default.createElement("svg", _extends({
+const ReportsAnalytics = props => /*#__PURE__*/_react.default.createElement("svg", _extends({
   width: "40",
   height: "40",
   viewBox: "0 0 40 40",
   fill: "none",
   xmlns: "http://www.w3.org/2000/svg"
-}, props), _react.default.createElement("rect", {
+}, props), /*#__PURE__*/_react.default.createElement("rect", {
   x: "4",
   y: "4",
   width: "32",
@@ -25,52 +25,52 @@ const ReportsAnalytics = props => _react.default.createElement("svg", _extends({
   rx: "4" // SVG fill #ids relative to path if base url path is set https://stackoverflow.com/a/53579924
   ,
   fill: `url(${window.location.pathname}#reportsBackground)`
-}), _react.default.createElement("rect", {
+}), /*#__PURE__*/_react.default.createElement("rect", {
   x: "19",
   y: "2",
   width: "6",
   height: "26",
   fill: "#C32C07"
-}), _react.default.createElement("rect", {
+}), /*#__PURE__*/_react.default.createElement("rect", {
   x: "11",
   y: "10",
   width: "6",
   height: "18",
   fill: "#C32C07"
-}), _react.default.createElement("rect", {
+}), /*#__PURE__*/_react.default.createElement("rect", {
   x: "20",
   y: "3",
   width: "6",
   height: "26",
   fill: "#fff"
-}), _react.default.createElement("rect", {
+}), /*#__PURE__*/_react.default.createElement("rect", {
   x: "27",
   y: "18",
   width: "6",
   height: "10",
   fill: "#D13711"
-}), _react.default.createElement("rect", {
+}), /*#__PURE__*/_react.default.createElement("rect", {
   x: "12",
   y: "11",
   width: "6",
   height: "18",
   fill: "#fff"
-}), _react.default.createElement("rect", {
+}), /*#__PURE__*/_react.default.createElement("rect", {
   x: "28",
   y: "19",
   width: "6",
   height: "10",
   fill: "#fff"
-}), _react.default.createElement("defs", null, _react.default.createElement("linearGradient", {
+}), /*#__PURE__*/_react.default.createElement("defs", null, /*#__PURE__*/_react.default.createElement("linearGradient", {
   id: "reportsBackground",
   x1: "36",
   y1: "4",
   x2: "4",
   y2: "36",
   gradientUnits: "userSpaceOnUse"
-}, _react.default.createElement("stop", {
+}, /*#__PURE__*/_react.default.createElement("stop", {
   stopColor: "#FD5931"
-}), _react.default.createElement("stop", {
+}), /*#__PURE__*/_react.default.createElement("stop", {
   offset: "1",
   stopColor: "#DE2D02"
 }))));

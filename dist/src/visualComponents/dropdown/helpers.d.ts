@@ -1,5 +1,5 @@
-import { ControllerStateAndHelpers, GetInputPropsOptions, PropGetters } from 'downshift';
 import { KeyboardEvent } from 'react';
+import { ControllerStateAndHelpers, GetInputPropsOptions, PropGetters } from 'downshift';
 import { TextFieldProps } from '@monorail/visualComponents/inputs/TextField';
 export declare type DropdownItemValue = string | number;
 export declare type DropdownItemType = {
@@ -22,4 +22,3 @@ export declare type DownshiftKeyboardEvent = KeyboardEvent & {
 };
 export declare const isDropdownItem: (item: unknown) => item is DropdownItemType;
 export declare const nextHighlightedIndex: (key: string, initial: number, max: number) => number;
-//# sourceMappingURL=helpers.d.ts.map

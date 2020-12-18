@@ -1,7 +1,7 @@
 import React, { FC, ReactNode } from 'react'
 
 import { flexFlow } from '@monorail/helpers/flex'
-import { sizes, Sizes } from '@monorail/helpers/size'
+import { Sizes, sizes } from '@monorail/helpers/size'
 import styled, { css } from '@monorail/helpers/styled-components'
 import { getThemeColor, ThemeColors } from '@monorail/helpers/theme'
 import {

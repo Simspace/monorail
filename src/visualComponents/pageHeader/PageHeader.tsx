@@ -158,6 +158,7 @@ type PageHeaderContainerProps = CommonComponentType & {
 
 export type PageHeaderProps = CommonComponentType &
   PageHeaderNavigationProps & {
+    disableBreadcrumbs?: boolean
     goBack?: MouseEventHandler | string
     title: ReactNode
     pageName?: string
@@ -177,14 +178,9 @@ export const PageHeader: FC<PageHeaderProps> = props => {
     goBack,
     pageName,
     title,
+    disableBreadcrumbs,
     ...domProps
   } = props
-
-  const themeContext = useContext<GlobalAppThemeInterface>(ThemeContext)
-
-  const {
-    pageHeader: { showBreadCrumbs },
-  } = themeContext
 
   const pageHeaderContainerRef = useRef<HTMLDivElement>()
 
@@ -213,7 +209,7 @@ export const PageHeader: FC<PageHeaderProps> = props => {
 
   const hasAboveContent =
     (!isNil(breadCrumbs) || !isNil(goBack) || !isNil(pageName)) &&
-    showBreadCrumbs
+    isNil(disableBreadcrumbs)
 
   return (
     <PageHeaderContainer
@@ -222,7 +218,7 @@ export const PageHeader: FC<PageHeaderProps> = props => {
       ref={pageHeaderContainerRef}
       {...domProps}
     >
-      {(!isNil(breadCrumbs) || !isNil(goBack)) && showBreadCrumbs && (
+      {(!isNil(breadCrumbs) || !isNil(goBack)) && isNil(disableBreadcrumbs) && (
         <PageHeaderNavigation>
           {!isNil(goBack) && typeof goBack === 'string' ? (
             <Button

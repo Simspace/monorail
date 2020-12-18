@@ -21,4 +21,3 @@ declare type Props = {
 };
 export declare const Loading: FC<Props>;
 export {};
-//# sourceMappingURL=Loading.d.ts.map

@@ -271,6 +271,11 @@ const baseHyperLinkStyles = (color = _theme.ThemeColors.ActionPrimary) => (0, _s
   &:visited {
     color: ${(0, _theme.getThemeColor)(color)};
   }
+
+  &:focus {
+    outline: auto 1px ${(0, _theme.getThemeColor)(color)};
+    outline: auto 1px -webkit-focus-ring-color;
+  }
 `;
 
 exports.baseHyperLinkStyles = baseHyperLinkStyles;

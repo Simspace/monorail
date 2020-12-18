@@ -1,8 +1,9 @@
-import * as O from 'fp-ts/lib/Option'
-import * as E from 'fp-ts/lib/Either'
-import { isOption, opTraverse } from '@monorail/sharedHelpers/fp-ts-ext/Option'
-import { pipe } from 'fp-ts/lib/pipeable'
 import * as t from 'io-ts'
+import * as E from 'fp-ts/lib/Either'
+import * as O from 'fp-ts/lib/Option'
+import { pipe } from 'fp-ts/lib/pipeable'
+
+import { isOption, opTraverse } from '@monorail/sharedHelpers/fp-ts-ext/Option'
 
 /**
  * Codec for converting null or undefined members to/from Option

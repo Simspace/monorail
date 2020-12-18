@@ -11,13 +11,13 @@ var _react = _interopRequireDefault(require("react"));
 
 var _exports = require("../../helpers/exports");
 
+var _styledComponents2 = _interopRequireWildcard(require("../../helpers/styled-components"));
+
 var _typeGuards = require("../../sharedHelpers/typeGuards");
 
 var _Icon = require("../icon/Icon");
 
 var _Text = require("../typography/Text");
-
-var _styledComponents2 = _interopRequireWildcard(require("../../helpers/styled-components"));
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
@@ -120,9 +120,7 @@ const NumberStatusWrapper = _styledComponents2.default.div(({
     display: inline-block;
   `);
 
-var _StyledIcon =
-/*#__PURE__*/
-(0, _styledComponents.default)(_Icon.Icon).withConfig({
+var _StyledIcon = /*#__PURE__*/(0, _styledComponents.default)(_Icon.Icon).withConfig({
   displayName: "Status___StyledIcon",
   componentId: "sc-5mom8r-0"
 })(["margin-right:8px;"]);
@@ -139,20 +137,20 @@ const Status = props => {
   } = props;
   const size = statusFontSizeLookUp[fontSize].size;
   const padding = statusFontSizeLookUp[fontSize].padding;
-  return (0, _typeGuards.isNumber)(children) ? _react.default.createElement(NumberStatusWrapper, _extends({
+  return (0, _typeGuards.isNumber)(children) ? /*#__PURE__*/_react.default.createElement(NumberStatusWrapper, _extends({
     statusColor: statusColor,
     size: size,
     inactive: inactive
-  }, domProps), children) : _react.default.createElement(StatusWrapper, _extends({
+  }, domProps), children) : /*#__PURE__*/_react.default.createElement(StatusWrapper, _extends({
     hasBackground: hasBackground,
     inactive: inactive,
     padding: padding,
     statusColor: statusColor,
     size: size
-  }, domProps), !(0, _typeGuards.isEmptyString)(icon) && _react.default.createElement(_StyledIcon, {
+  }, domProps), !(0, _typeGuards.isEmptyString)(icon) && /*#__PURE__*/_react.default.createElement(_StyledIcon, {
     icon: icon,
     size: size - 4
-  }), _react.default.createElement(_Text.Text, {
+  }), /*#__PURE__*/_react.default.createElement(_Text.Text, {
     fontSize: fontSize,
     fontWeight: hasBackground ? _exports.FontWeights.Medium : _exports.FontWeights.Book,
     color: hasBackground ? _exports.Colors.White : undefined,

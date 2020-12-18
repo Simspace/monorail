@@ -1,14 +1,14 @@
-import { HKT, Kind, Kind2, URIS, URIS2, URIS3, Kind3 } from 'fp-ts/lib/HKT'
-import { Predicate, identity } from 'fp-ts/lib/function'
-import { Foldable, Foldable1, Foldable2, traverse_ } from 'fp-ts/lib/Foldable'
-import { monoidAll, monoidAny, monoidSum } from 'fp-ts/lib/Monoid'
 import {
-  Applicative3,
+  Applicative,
+  Applicative1,
   Applicative2,
   Applicative2C,
-  Applicative1,
-  Applicative,
+  Applicative3,
 } from 'fp-ts/lib/Applicative'
+import { Foldable, Foldable1, Foldable2, traverse_ } from 'fp-ts/lib/Foldable'
+import { identity, Predicate } from 'fp-ts/lib/function'
+import { HKT, Kind, Kind2, Kind3, URIS, URIS2, URIS3 } from 'fp-ts/lib/HKT'
+import { monoidAll, monoidAny, monoidSum } from 'fp-ts/lib/Monoid'
 
 /**
  * `and` returns the _conjunction_ of all the `boolean` values in a data

@@ -1,0 +1,145 @@
+---
+id: actions-menu
+title: Actions Menu
+sidebar_label: Actions Menu
+---
+
+import { css, ThemeProvider } from '@monorail/helpers/styled-components'
+
+import { ShowCase } from '../docComponents/ShowCase'
+
+import { Mode } from '@monorail/helpers/theme'
+import { ActionsMenu } from '@monorail/visualComponents/actionsMenu/ActionsMenu'
+import { Button } from '@monorail/visualComponents/buttons/Button'
+import { Icon } from '@monorail/visualComponents/icon/Icon'
+
+Compound component that lets you easily make a dropdown menu containing actions the user can make on an item.
+
+<ShowCase>
+  <ActionsMenu
+    actions={[
+      {
+        label: 'one',
+        iconName: 'landscape',
+        onClick: (onClickParent, event) => {
+          console.log('The item was clicked.')
+          onClickParent()
+        },
+      },
+      { type: 'divider' },
+      {
+        label: 'two',
+        iconName: 'nature_people',
+        onClick: (onClickParent, event) => {
+          console.log('The item was clicked.')
+          onClickParent()
+        },
+      },
+      {
+        label: 'three',
+        iconName: 'palette',
+        onClick: (onClickParent, event) => {
+          console.log('The item was clicked.')
+          onClickParent()
+        },
+      },
+    ]}
+  />
+</ShowCase>
+
+## Usage
+
+Actions Menu lets the user know that there are more actions available for the record they are viewing, and give an opportunity to explore. They are typically placed throughout the UI, in places like:
+
+- Tables
+- Record Details
+
+## Principles
+
+**Visibility**  
+Actions Menu have a clear toggle icon, `actions menu icon here` , that help guide the user to actions.
+
+**Interaction**  
+ActionsMenu uses the Menu and List components together to produce a standard pattern for all actions.
+
+## Types
+
+### Default
+
+Default Actions menu with 3 menu items.
+
+```tsx live
+function Demo() {
+  return (
+    <ActionsMenu
+      actions={[
+        {
+          label: 'one',
+          iconName: 'landscape',
+          onClick: (onClickParent, event) => {
+            console.log('The item was clicked.')
+            onClickParent()
+          },
+        },
+        {
+          label: 'two',
+          iconName: 'nature_people',
+          onClick: (onClickParent, event) => {
+            console.log('The item was clicked.')
+            onClickParent()
+          },
+        },
+        {
+          label: 'three',
+          iconName: 'palette',
+          onClick: (onClickParent, event) => {
+            console.log('The item was clicked.')
+            onClickParent()
+          },
+        },
+      ]}
+    />
+  )
+}
+```
+
+### Dark mode
+
+Default Actions menu with 3 menu items.
+
+```tsx live
+function Demo() {
+  return (
+    <ActionsMenu
+      actions={[
+        {
+          label: 'one',
+          iconName: 'landscape',
+          onClick: (onClickParent, event) => {
+            console.log('The item was clicked.')
+            onClickParent()
+          },
+        },
+        {
+          label: 'two',
+          iconName: 'nature_people',
+          onClick: (onClickParent, event) => {
+            console.log('The item was clicked.')
+            onClickParent()
+          },
+        },
+        {
+          label: 'three',
+          iconName: 'palette',
+          onClick: (onClickParent, event) => {
+            console.log('The item was clicked.')
+            onClickParent()
+          },
+        },
+      ]}
+    />
+  )
+}
+```
+
+<!-- TODO: Add component demo https://design.simspace.com/visual-components/actions-menu -->

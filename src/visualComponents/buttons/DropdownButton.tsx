@@ -1,7 +1,7 @@
-import { head, isEmpty } from 'fp-ts/lib/Array'
-import { isNone, Option } from 'fp-ts/lib/Option'
 import React from 'react'
 import { css } from 'styled-components'
+import { head, isEmpty } from 'fp-ts/lib/Array'
+import { isNone, Option } from 'fp-ts/lib/Option'
 
 import { PopOver } from '@monorail/metaComponents/popOver/PopOver'
 import { Button, ButtonProps } from '@monorail/visualComponents/buttons/Button'

@@ -1,0 +1,12 @@
+// Monorail-specific overrides
+{
+  "rules": {
+    // Allow importing from MUI
+    "no-restricted-imports": [
+      "off",
+      {
+        "patterns": ["@material-ui/core"]
+      }
+    ]
+  }
+}

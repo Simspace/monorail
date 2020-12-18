@@ -1,0 +1,156 @@
+---
+id: toast
+title: Toast
+sidebar_label: Toast
+---
+
+import { ShowCase } from '../docComponents/ShowCase'
+
+import { Toast } from '@monorail/visualComponents/toast/Toast'
+import { AlertLevel } from '@monorail/visualComponents/toast/types'
+
+Toasts are effective components to display dismissible alerts to the user without interrupting the flow or interactions in the application.
+
+<ShowCase>
+  <Toast
+    level={AlertLevel.Info}
+    title="Toast Title"
+    message="Message inside the toast"
+    dismissible
+  />
+</ShowCase>
+
+## Usage
+
+Tipically placed areas of the UI that minimize the interruption of the user experience. Toasts communicate concise information as a result of the users actions like:
+
+- Confirmations
+- Errors
+- Messages
+- Warnings
+
+## Principles
+
+**Identifiable**  
+Toast alerts are easily recognizable and provide visual cues to identify the type of message.
+
+**Findable**  
+Toast display messages in an unique way that makes it easier to the user to track without interruption.
+
+**Clear**  
+Toasts require minimum interaction and provide a simple component to display messages.
+
+## Types
+
+### Alert Level
+
+Toast can be defined with four different levels of alert that match with an icon and color to help user identify the priority and type of message.
+
+### Information
+
+Communicate information about process status or other messages.
+
+Uses blue color and information icon.
+
+```tsx live
+<Toast
+  level={AlertLevel.Info}
+  title="Information toast"
+  message="Communicate information about process status or other messages"
+/>
+```
+
+### Success
+
+Communicate successful completion of task or process.
+
+Uses green color and checkmark icon.
+
+```tsx live
+<Toast
+  level={AlertLevel.Success}
+  title="Success toast"
+  message="Communicate successful completion of task or process"
+/>
+```
+
+### Warning
+
+Alert about issues with current processes that may require the user attention.
+
+Uses yellow color and warning icon.
+
+```tsx live
+<Toast
+  level={AlertLevel.Warning}
+  title="Warning - Middle priority"
+  message="Alert about issues with current processes that may require the user attention"
+/>
+```
+
+### Error
+
+Alert about error with current processes that require the user attention.
+
+Uses red color and error icon.
+
+```tsx live
+<Toast
+  level={AlertLevel.Error}
+  title="Error - High Priority"
+  message="Alert about error with current processes that require the user attention"
+/>
+```
+
+## Text Content
+
+### Message
+
+Message prop is required
+
+```tsx live
+<Toast level={AlertLevel.Info} message="Message text only" dismissible />
+```
+
+### Title
+
+Title prop is optional.
+
+Use title to provide a more structured message.
+
+```tsx live
+<Toast
+  level={AlertLevel.Info}
+  title="This is the title"
+  message="This is the message body"
+  dismissible
+/>
+```
+
+## Icons
+
+### Custom Icon
+
+Toasts icons can be customizable. If not provided, toast will use the matching icon for the alert level.
+
+```tsx live
+<Toast
+  level={AlertLevel.Info}
+  message="This toast uses a custom icon"
+  icon="settings"
+/>
+```
+
+## Dismissible
+
+### Dismissible Toast
+
+Use dismissible props to display close button that prompts the user to manually close the toast alert.
+
+```tsx live
+<Toast
+  level={AlertLevel.Info}
+  message="Message for a dismissable toast"
+  dismissible
+/>
+```

@@ -17,4 +17,3 @@ export declare const SimSpaceLogoFlat: ComponentType<{
 export declare const PCTELogoMark: ComponentType<{
     cssOverrides?: SimpleInterpolation;
 }>;
-//# sourceMappingURL=Logo.d.ts.map

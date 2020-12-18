@@ -4,11 +4,11 @@ import ReactTable, { TableProps } from 'react-table'
 import { Colors, getColor } from '@monorail/helpers/color'
 import { flexFlow } from '@monorail/helpers/flex'
 import styled, { ThemeProvider } from '@monorail/helpers/styled-components'
+import { isNonEmptyString } from '@monorail/sharedHelpers/typeGuards'
 import { ActionsContainer } from '@monorail/visualComponents/actions/Actions'
 import { CollectionPaginationComponent } from '@monorail/visualComponents/collection/CollectionPaginationComponent'
 import { useSort } from '@monorail/visualComponents/dataTable/ReactTable'
 import { Search } from '@monorail/visualComponents/inputs/Search'
-import { isNonEmptyString } from '@monorail/sharedHelpers/typeGuards'
 import {
   PageHeader,
   PageHeaderProps,

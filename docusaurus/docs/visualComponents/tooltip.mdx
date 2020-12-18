@@ -1,0 +1,60 @@
+---
+id: tooltip
+title: Tooltip
+sidebar_label: Tooltip
+---
+
+import { TooltipMonorail } from '@monorail/visualComponents/tooltips/Tooltip'
+
+Tooltips provide a bit more information about an element or feature. This helps new users familiarize themselves with the app.
+
+```tsx live
+<div>
+  <TooltipMonorail
+    label="The quick brown fox jumps over the lazy dog."
+    aria-label="Info Tooltip"
+  >
+    <Icon icon="info" />
+  </TooltipMonorail>
+</div>
+```
+
+## Usage
+
+Tooltips are used to inform users of any additional or helpful content. A tooltip is always displayed from an on-hover or on-focus interaction targeted at an element. Tooltips provide contextual help so it is not always necessary to view the information. It is only useful when the user requires further assistance.
+
+- Unlabeled icons
+- Product-specific terminology
+
+### Dos
+
+- Tooltips **should** be used to identify elements, provide additional information about a certain element such as a description.
+- The content **should** be short and concise.
+- The pointer **should** always be pointing to the center of the trigger element.
+- The tooltip **should** only be displayed on an on-hover or on-focus interaction (mouse and keyboard).
+
+### Don'ts
+
+- It **should not** display content that is critical for the user to know or content that needs to be referred back to numerous times.
+- It **should not** block related content. If it’s too long, it should probably be somewhere else.
+
+## Behavior
+
+**Position**  
+By default, the tooltip is centered below trigger element. Its pointer will always be center aligned with the trigger element.
+
+**Collisions**  
+When the tooltip is within 8px of the viewport's edges, it will adjust itself accordingly to avoid cropping.
+
+**Timing**  
+There is a 100ms delay when triggered and a 500ms delay on leave.
+
+## Specs
+
+The tooltip always has a 16px padding on left/right edges and a 12px padding on top/bottom edges. The pointer is 4px away from the trigger.
+
+[ screenshot ]
+
+The maximum width for a tooltip is 256px. The text will then wrap and the tooltip will expand vertically in order to keep consistent with margins.
+
+[ screenshot ]

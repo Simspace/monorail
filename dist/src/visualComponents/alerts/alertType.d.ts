@@ -4,4 +4,3 @@ export declare enum AlertType {
     Success = "success",
     Info = "info"
 }
-//# sourceMappingURL=alertType.d.ts.map

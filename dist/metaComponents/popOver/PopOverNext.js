@@ -52,10 +52,10 @@ const PopOverNext = props => {
     setIsOpenState(!isOpenState);
   };
 
-  return _react.default.createElement(_react.default.Fragment, null, toggle({
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, toggle({
     onClick,
     isActive: isOpenState
-  }), _react.default.createElement(_PortalController.PortalController, {
+  }), /*#__PURE__*/_react.default.createElement(_PortalController.PortalController, {
     isRendered: isRendered
   }, popOver({
     isOpen: isOpenState,

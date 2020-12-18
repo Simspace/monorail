@@ -29,7 +29,7 @@ const StdErr = ({
   fontSize,
   ...domProps
 }) => {
-  return _react.default.createElement(StdErrContainer, null, _react.default.createElement(_Text.Text, _extends({}, domProps, {
+  return /*#__PURE__*/_react.default.createElement(StdErrContainer, null, /*#__PURE__*/_react.default.createElement(_Text.Text, _extends({}, domProps, {
     fontWeight: 500,
     fontSize: fontSize ? fontSize : _exports.FontSizes.Micro,
     color: _exports.Colors.Red,

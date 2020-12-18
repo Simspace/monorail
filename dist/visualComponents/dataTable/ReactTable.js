@@ -10,17 +10,19 @@ exports.MonorailReactTableOverrides = exports.EllipsisValueComponent = exports.E
 
 var _styledComponents = _interopRequireDefault(require("styled-components"));
 
-var _fpTsImports = require("../../sharedHelpers/fp-ts-imports");
+var _react = _interopRequireWildcard(require("react"));
 
-var _Do = require("fp-ts-contrib/lib/Do");
+var _util = require("util");
 
 var _Array = require("fp-ts/lib/Array");
 
 var _Option = require("fp-ts/lib/Option");
 
-var _react = _interopRequireWildcard(require("react"));
+var _Show = require("fp-ts/lib/Show");
 
-var _util = require("util");
+var _Do = require("fp-ts-contrib/lib/Do");
+
+var _fpTsImports = require("../../sharedHelpers/fp-ts-imports");
 
 var _color = require("../../helpers/color");
 
@@ -71,7 +73,7 @@ const TD_HEIGHT = _size.Sizes.DP40;
 const TableComponent = _styledComponents2.default.div`
   ${(0, _flex.flexFlow)('column')};
 
-  overflow-x: scroll;
+  overflow-x: hidden;
   height: 100%;
   min-width: 100%;
   position: relative; /* pos:rel need for filter bar. */
@@ -119,7 +121,7 @@ const TheadComponent = ({
   className,
   ...domProps
 }) => {
-  return _react.default.createElement(TheadComponentContainer, _extends({
+  return /*#__PURE__*/_react.default.createElement(TheadComponentContainer, _extends({
     isFilterBar: className === '-filters',
     isGroupBar: className === '-headerGroups',
     className: className
@@ -246,16 +248,12 @@ const ThSortButton = (0, _styledComponents2.default)(_Button.Button).attrs({
 `;
 exports.ThSortButton = ThSortButton;
 
-var _StyledThSortButton =
-/*#__PURE__*/
-(0, _styledComponents.default)(ThSortButton).withConfig({
+var _StyledThSortButton = /*#__PURE__*/(0, _styledComponents.default)(ThSortButton).withConfig({
   displayName: "ReactTable___StyledThSortButton",
   componentId: "sc-1afopvo-0"
 })(["visibility:hidden;"]);
 
-var _StyledIconButton =
-/*#__PURE__*/
-(0, _styledComponents.default)(_IconButton.IconButton).withConfig({
+var _StyledIconButton = /*#__PURE__*/(0, _styledComponents.default)(_IconButton.IconButton).withConfig({
   displayName: "ReactTable___StyledIconButton",
   componentId: "sc-1afopvo-1"
 })(["margin:auto -24px auto auto;pointer-events:all;transform:translateX(4px);"]);
@@ -277,11 +275,11 @@ const ThComponent = props => {
   const isSortable = (0, _typeGuards.isNotNil)(column) && !(0, _typeGuards.isFalse)(column.sortable);
 
   if (!show) {
-    return _react.default.createElement(_react.default.Fragment, null);
+    return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null);
   }
 
   if (isExpanderColumn) {
-    return _react.default.createElement(ThComponentContainer, _extends({
+    return /*#__PURE__*/_react.default.createElement(ThComponentContainer, _extends({
       className: className
     }, domProps, {
       style: {
@@ -292,34 +290,34 @@ const ThComponent = props => {
   }
 
   if (isGroup) {
-    return _react.default.createElement(ThComponentContainer, _extends({
+    return /*#__PURE__*/_react.default.createElement(ThComponentContainer, _extends({
       className: className
     }, domProps), children);
   } // Render empty header if there are actions.
 
 
   if (className.includes('actions')) {
-    return _react.default.createElement(ThComponentContainer, _extends({
+    return /*#__PURE__*/_react.default.createElement(ThComponentContainer, _extends({
       className: className
     }, domProps));
   } // Render Filter Header
 
 
   if (!(0, _typeGuards.isUndefined)(isFiltered) && (0, _typeGuards.isNotNil)(column)) {
-    return _react.default.createElement(ThComponentContainer, _extends({
+    return /*#__PURE__*/_react.default.createElement(ThComponentContainer, _extends({
       className: className,
       filterable: isFilterable
-    }, domProps), isFilterable && _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_StyledThSortButton, {
+    }, domProps), isFilterable && /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_StyledThSortButton, {
       iconRight: "sort"
-    }, _react.default.createElement("div", {
+    }, /*#__PURE__*/_react.default.createElement("div", {
       className: "rt-resizable-header-content"
-    }, column && column.Header)), _react.default.createElement(_PopOverNext.PopOverNext, {
+    }, column && column.Header)), /*#__PURE__*/_react.default.createElement(_PopOverNext.PopOverNext, {
       toSide: false,
       xDirection: _PopOver.dropDirections.Right,
-      popOver: popOverProps => _react.default.createElement(_Menu.Menu, _extends({}, popOverProps, {
+      popOver: popOverProps => popOverProps.isOpen ? /*#__PURE__*/_react.default.createElement(_Menu.Menu, _extends({}, popOverProps, {
         width: popOverProps.position.originWidth
-      }), children),
-      toggle: toggleProps => _react.default.createElement(_StyledIconButton, _extends({}, toggleProps, {
+      }), children) : null,
+      toggle: toggleProps => /*#__PURE__*/_react.default.createElement(_StyledIconButton, _extends({}, toggleProps, {
         display: _buttonTypes.ButtonDisplay.Chromeless,
         icon: "filter",
         isActive: isFiltered,
@@ -333,15 +331,15 @@ const ThComponent = props => {
   const Header = childrenArray[0];
   const Resizer = childrenArray[1]; // Render Sorted Header
 
-  return _react.default.createElement(ThComponentContainer, _extends({
+  return /*#__PURE__*/_react.default.createElement(ThComponentContainer, _extends({
     className: className,
     filterable: isFilterable
-  }, domProps), isSortable ? _react.default.createElement(ThSortButton, {
+  }, domProps), isSortable ? /*#__PURE__*/_react.default.createElement(ThSortButton, {
     isActive: sortStatus !== Sort.Unsorted,
     onClick: toggleSort,
     iconRight: getSortIcon(sortStatus),
     className: sortStatus !== Sort.Unsorted ? 'is-active' : ''
-  }, Header) : _react.default.createElement(ThLabel, null, Header), Resizer);
+  }, Header) : /*#__PURE__*/_react.default.createElement(ThLabel, null, Header), Resizer);
 };
 
 exports.ThComponent = ThComponent;
@@ -350,8 +348,18 @@ const FilterComponent = ({
   filter,
   onChange
 }) => {
-  return _react.default.createElement(_TextField.TextField, {
-    ref: input => input === null || input === void 0 ? void 0 : input.focus(),
+  const inputRef = _react.default.useRef(null);
+
+  _react.default.useEffect(() => {
+    setTimeout(() => {
+      var _inputRef$current;
+
+      (_inputRef$current = inputRef.current) === null || _inputRef$current === void 0 ? void 0 : _inputRef$current.focus();
+    }, 0);
+  }, []);
+
+  return /*#__PURE__*/_react.default.createElement(_TextField.TextField, {
+    ref: inputRef,
     placeholder: "Filter",
     value: !(0, _typeGuards.isNil)(filter) ? filter.value : '',
     onChange: event => onChange(event.target.value),
@@ -494,32 +502,49 @@ const TdComponent = props => {
     isExpanderColumn,
     ...domProps
   } = props;
+
+  const [titleText, setTitleText] = _react.default.useState('');
+
+  const containerRef = _react.default.useRef(null);
+
   const tdComponentType = getTdComponentType({
     className
   });
 
+  _react.default.useLayoutEffect(() => {
+    if (containerRef.current) {
+      setTitleText(containerRef.current.innerText);
+    }
+  }, []);
+
   if (tdComponentType === TdComponentType.Hidden) {
-    return _react.default.createElement(_react.default.Fragment, null);
+    return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null);
   } else if (tdComponentType === TdComponentType.Expandable) {
-    return _react.default.createElement(TdComponentContainer, _extends({
+    return /*#__PURE__*/_react.default.createElement(TdComponentContainer, _extends({
+      ref: containerRef,
       className: className,
-      tdComponentType: tdComponentType
+      tdComponentType: tdComponentType,
+      title: titleText
     }, domProps));
   } else if (isExpanderColumn) {
-    return _react.default.createElement(TdComponentContainer, _extends({
+    return /*#__PURE__*/_react.default.createElement(TdComponentContainer, _extends({
+      ref: containerRef,
       className: className,
       style: {
         width: 54,
         flexShrink: 0
       },
-      tdComponentType: tdComponentType
+      tdComponentType: tdComponentType,
+      title: titleText
     }, domProps));
   }
 
-  return _react.default.createElement(TdComponentContainer, _extends({
+  return /*#__PURE__*/_react.default.createElement(TdComponentContainer, _extends({
+    ref: containerRef,
     className: className,
     style: style,
-    tdComponentType: tdComponentType
+    tdComponentType: tdComponentType,
+    title: titleText
   }, domProps));
 };
 
@@ -527,7 +552,7 @@ exports.TdComponent = TdComponent;
 const TBodyComponent = (0, _styledComponents2.default)(({
   style,
   ...domProps
-}) => _react.default.createElement(_ScrollAnimation.ScrollAnimation, _extends({
+}) => /*#__PURE__*/_react.default.createElement(_ScrollAnimation.ScrollAnimation, _extends({
   containerCssOverrides: style
 }, domProps)))`
   overflow-x: hidden;
@@ -550,9 +575,7 @@ const NoDataContainer = _styledComponents2.default.div`
 `;
 exports.NoDataContainer = NoDataContainer;
 
-var _StyledNoDataContainer =
-/*#__PURE__*/
-(0, _styledComponents.default)(NoDataContainer).withConfig({
+var _StyledNoDataContainer = /*#__PURE__*/(0, _styledComponents.default)(NoDataContainer).withConfig({
   displayName: "ReactTable___StyledNoDataContainer",
   componentId: "sc-1afopvo-2"
 })(["flex-direction:row;justify-content:center;"]);
@@ -564,31 +587,27 @@ const BannerDetailContainer = _styledComponents2.default.div`
   margin-left: 16px;
 `;
 
-const NoDataComponentVertical = () => _react.default.createElement(NoDataContainer, null, _react.default.createElement(_DataStates.EmptyTable, null));
+const NoDataComponentVertical = () => /*#__PURE__*/_react.default.createElement(NoDataContainer, null, /*#__PURE__*/_react.default.createElement(_DataStates.EmptyTable, null));
 
 exports.NoDataComponentVertical = NoDataComponentVertical;
 
-var _StyledBanner =
-/*#__PURE__*/
-(0, _styledComponents.default)(_DataStates.Banner).withConfig({
+var _StyledBanner = /*#__PURE__*/(0, _styledComponents.default)(_DataStates.Banner).withConfig({
   displayName: "ReactTable___StyledBanner",
   componentId: "sc-1afopvo-3"
 })(["margin:0 0 16px;"]);
 
-const NoDataComponentHorizontal = () => _react.default.createElement(_StyledNoDataContainer, null, _react.default.createElement(_DataStates.IconBox, null, _react.default.createElement(_DataStates.NoResultsIcon, null)), _react.default.createElement(BannerDetailContainer, null, _react.default.createElement(_StyledBanner, null, "No Entries Found"), _react.default.createElement(_DataStates.Detail, null, "We couldn't find any records.")));
+const NoDataComponentHorizontal = () => /*#__PURE__*/_react.default.createElement(_StyledNoDataContainer, null, /*#__PURE__*/_react.default.createElement(_DataStates.IconBox, null, /*#__PURE__*/_react.default.createElement(_DataStates.NoResultsIcon, null)), /*#__PURE__*/_react.default.createElement(BannerDetailContainer, null, /*#__PURE__*/_react.default.createElement(_StyledBanner, null, "No Entries Found"), /*#__PURE__*/_react.default.createElement(_DataStates.Detail, null, "We couldn't find any records.")));
 
 exports.NoDataComponentHorizontal = NoDataComponentHorizontal;
 
-var _StyledIconButton2 =
-/*#__PURE__*/
-(0, _styledComponents.default)(_IconButton.IconButton).withConfig({
+var _StyledIconButton2 = /*#__PURE__*/(0, _styledComponents.default)(_IconButton.IconButton).withConfig({
   displayName: "ReactTable___StyledIconButton2",
   componentId: "sc-1afopvo-4"
 })(["margin-right:8px;transform:rotate(", ");"], p => p._css);
 
 const ExpanderComponent = ({
   isExpanded
-}) => _react.default.createElement(_StyledIconButton2, {
+}) => /*#__PURE__*/_react.default.createElement(_StyledIconButton2, {
   icon: "arrow_drop_down",
   display: _buttonTypes.ButtonDisplay.Chromeless,
   _css: isExpanded ? 0 : '-90deg'
@@ -596,9 +615,7 @@ const ExpanderComponent = ({
 
 exports.ExpanderComponent = ExpanderComponent;
 
-var _StyledDiv =
-/*#__PURE__*/
-_styledComponents.default.div.withConfig({
+var _StyledDiv = /*#__PURE__*/(0, _styledComponents.default)("div").withConfig({
   displayName: "ReactTable___StyledDiv",
   componentId: "sc-1afopvo-5"
 })(["", ""], _typography.ellipsis);
@@ -606,14 +623,14 @@ _styledComponents.default.div.withConfig({
 const EllipsisValueComponent = ({
   value
 }) => {
-  return _react.default.createElement(_StyledDiv, null, value);
+  return /*#__PURE__*/_react.default.createElement(_StyledDiv, {
+    title: (0, _typeGuards.isNumber)(value) ? _Show.showNumber.show(value) : value
+  }, value);
 };
 
 exports.EllipsisValueComponent = EllipsisValueComponent;
 
-var _StyledStatus =
-/*#__PURE__*/
-(0, _styledComponents.default)(_Status.Status).withConfig({
+var _StyledStatus = /*#__PURE__*/(0, _styledComponents.default)(_Status.Status).withConfig({
   displayName: "ReactTable___StyledStatus",
   componentId: "sc-1afopvo-6"
 })(["margin-left:16px;"]);
@@ -622,22 +639,22 @@ const MonorailReactTableOverrides = {
   AggregatedComponent: props => {
     return null;
   },
-  FilterComponent: props => _react.default.createElement(FilterComponent, props),
-  ResizerComponent: props => _react.default.createElement(ResizerComponent, props),
-  TableComponent: props => _react.default.createElement(TableComponent, props),
-  TbodyComponent: props => _react.default.createElement(TBodyComponent, props),
-  TdComponent: props => _react.default.createElement(TdComponent, props),
-  ThComponent: props => _react.default.createElement(ThComponent, props),
-  TheadComponent: props => _react.default.createElement(TheadComponent, props),
+  FilterComponent: props => /*#__PURE__*/_react.default.createElement(FilterComponent, props),
+  ResizerComponent: props => /*#__PURE__*/_react.default.createElement(ResizerComponent, props),
+  TableComponent: props => /*#__PURE__*/_react.default.createElement(TableComponent, props),
+  TbodyComponent: props => /*#__PURE__*/_react.default.createElement(TBodyComponent, props),
+  TdComponent: props => /*#__PURE__*/_react.default.createElement(TdComponent, props),
+  ThComponent: props => /*#__PURE__*/_react.default.createElement(ThComponent, props),
+  TheadComponent: props => /*#__PURE__*/_react.default.createElement(TheadComponent, props),
   TrComponent: ({
     children
   }) => children,
-  TrGroupComponent: props => _react.default.createElement(TrGroupComponent, props),
-  NoDataComponent: props => _react.default.createElement(NoDataComponentVertical, null),
+  TrGroupComponent: props => /*#__PURE__*/_react.default.createElement(TrGroupComponent, props),
+  NoDataComponent: props => /*#__PURE__*/_react.default.createElement(NoDataComponentVertical, null),
   PivotComponent: (cellInfo, column) => {
     const Expander = cellInfo.column.Expander || ExpanderComponent;
     const PivotValue = cellInfo.column.PivotValue || EllipsisValueComponent;
-    return _react.default.createElement(_react.default.Fragment, null, Expander(cellInfo, column), PivotValue(cellInfo, column), (0, _typeGuards.isNotNil)(cellInfo.subRows) && _react.default.createElement(_StyledStatus, {
+    return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, Expander(cellInfo, column), PivotValue(cellInfo, column), (0, _typeGuards.isNotNil)(cellInfo.subRows) && /*#__PURE__*/_react.default.createElement(_StyledStatus, {
       inactive: true
     }, cellInfo.subRows.length));
   },
@@ -705,9 +722,8 @@ const MonorailReactTableOverrides = {
     const id = filter.pivotId || filter.id;
     return (0, _typeGuards.isTrue)(row._groupedByPivot) || !(0, _typeGuards.isUndefined)(row[id]) && String(row[id]).toLocaleLowerCase().includes(filter.value.toLocaleString().toLocaleLowerCase());
   },
-  // tslint:disable
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   defaultSortMethod: (a, b) => (0, _util.isString)(a) && (0, _util.isString)(b) ? _Ord.ordCaseInsensitiveString.compare(a, b) : a > b ? 1 : b > a ? -1 : 0,
-  // tslint:enable
   sortable: true,
   filterable: true,
   resizable: true,

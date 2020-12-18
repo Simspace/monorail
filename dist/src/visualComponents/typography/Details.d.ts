@@ -11,4 +11,3 @@ declare type DetailsProps = BBDetailsContainerProps & {
 };
 export declare const Details: FC<DetailsProps>;
 export {};
-//# sourceMappingURL=Details.d.ts.map

@@ -1,5 +1,6 @@
 import * as E from 'fp-ts/lib/Either';
 import * as RTE from 'fp-ts/lib/ReaderTaskEither';
+import * as TE from 'fp-ts/lib/TaskEither';
 /**
  * Pipeable port of rte.orElse, which widens types
  * @param f
@@ -107,5 +108,6 @@ declare type Flatten<A, S> = A extends [infer H] ? S & H : A extends [infer I, i
 declare type UnNest<T, Fallback = unknown> = T extends ReadonlyArray<unknown> ? {
     [K in keyof T]: T[K] extends [infer TT] ? TT extends ReadonlyArray<unknown> ? UnNest<TT> : TT : T[K];
 }[number] : Fallback;
+export declare const noOpRTE: RTE.ReaderTaskEither<unknown, never, void>;
+export declare const provide: <D>(env: D) => <E, A>(rt: RTE.ReaderTaskEither<D, E, A>) => TE.TaskEither<E, A>;
 export {};
-//# sourceMappingURL=ReaderTaskEither.d.ts.map

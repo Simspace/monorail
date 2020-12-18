@@ -1,10 +1,12 @@
-import { O } from '@monorail/sharedHelpers/fp-ts-imports'
 import { remoteData } from '@devexperts/remote-data-ts'
+import { identity } from 'lodash'
 import { sequenceT } from 'fp-ts/lib/Apply'
 import {
   array,
+  chain,
   difference,
   elem,
+  filter,
   flatten,
   init,
   isEmpty,
@@ -14,24 +16,26 @@ import {
   sort,
   union,
 } from 'fp-ts/lib/Array'
-import { Either, either, isRight, fold } from 'fp-ts/lib/Either'
+import { Either, either, fold, isRight } from 'fp-ts/lib/Either'
 import { Eq } from 'fp-ts/lib/Eq'
 import { constFalse, constTrue, Predicate, tuple } from 'fp-ts/lib/function'
-import { pipe } from 'fp-ts/lib/pipeable'
 import { IO } from 'fp-ts/lib/IO'
-import { none, option, some, Option } from 'fp-ts/lib/Option'
+import { monoidAny } from 'fp-ts/lib/Monoid'
+import { none, Option, option, some } from 'fp-ts/lib/Option'
+import { pipe } from 'fp-ts/lib/pipeable'
 import { lookup } from 'fp-ts/lib/Record'
 import { task } from 'fp-ts/lib/Task'
 import { taskEither } from 'fp-ts/lib/TaskEither'
+import { O } from '@monorail/sharedHelpers/fp-ts-imports'
 
 import { isNotNil } from '../typeGuards'
-
+import { eqStrict } from './Eq'
 import { runIO } from './IO'
 import { getOrElse } from './Option'
 import { ordAlpha, ordNumeric } from './Ord'
-import { eqStrict } from './Eq'
-import { monoidAny } from 'fp-ts/lib/Monoid'
-import { identity } from 'lodash'
+
+// TODO: we should copy all these functions to ReadonlyArray (and change the types to ReadonlyArray), then alias those functions here.
+// There is also likely some redundancy with some of these and what's available now that we are on fp-ts 2.
 
 /**
  * Curried version of fp-ts' `map` for Arrays
@@ -50,12 +54,18 @@ export const concat = <A>(xs: Array<A>) => (ys: Array<A>): Array<A> =>
  * with its arguments reversed
  */
 export const concatFlipped = <A>(xs: Array<A>) => (ys: Array<A>): Array<A> =>
-  array.alt(xs, () => ys)
+  array.alt(ys, () => xs)
 
 /**
  * Function wrapper around the native `array.forEach`
  */
 export const forEach = <A>(xs: Array<A>, f: (x: A) => void) => xs.forEach(f)
+
+/**
+ * Pipable version of `forEach` helper.
+ */
+export const forEachPipe = <A>(f: (x: A) => void) => (xs: Array<A>) =>
+  xs.forEach(f)
 
 /**
  * Function wrapper around the native `array.forEach` including an index
@@ -398,3 +408,65 @@ export const rle = <A>(eq: Eq<A>) => (as: Array<A>): Array<[A, number]> =>
       ),
     ),
   )
+
+type ExtractValues<T extends Array<Array<unknown>>> = {
+  [K in keyof T]: T[K] extends Array<infer S> ? S : never
+}
+
+/**
+ * Variadic zip with type inference.
+ *
+ * @example
+ * declare const ns: Array<number>
+ * declare const ss: Array<string>
+ * declare const bs: Array<boolean>
+ * zip(ns, ns, ns) // :: Array<[number, number, number]>
+ * zip(ss, ns) // :: Array<[string, number]>
+ * zip(bs, ns, ss, ss) // :: Array<[boolean, number, string, string]>
+ */
+export const zip = <As extends Array<Array<unknown>>>(
+  ...as: As
+): Array<ExtractValues<As>> => {
+  const res: Array<ExtractValues<As>> = []
+  const l = as.length === 0 ? 0 : Math.min(...as.map(a => a.length))
+  for (let i = 0; i < l; i++) {
+    res[i] = as.map(a => a[i]) as ExtractValues<As>
+  }
+  return res
+}
+
+/**
+ * Immutable, predicate-based splice
+ */
+export const spliceWhere = <A>(predicate: Predicate<A>) => (
+  mapMatch: (a: A) => Array<A>,
+  mapNotMatch: (a: A) => A = identity,
+) => (arr: Array<A>): Array<A> =>
+  pipe(
+    arr,
+    chain(a => (predicate(a) ? mapMatch(a) : [mapNotMatch(a)])),
+  )
+
+/**
+ * Finds first element in an array for which `f` returns a `some`
+ */
+export const findFirstMapWithIndex = <A, B>(
+  f: (i: number, a: A) => O.Option<B>,
+) => (as: Array<A>): O.Option<B> => {
+  const l = as.length
+  for (let i = 0; i < l; i++) {
+    const v = f(i, as[i])
+    if (O.isSome(v)) {
+      return v
+    }
+  }
+  return O.none
+}
+
+/**
+ * Array.compact that works on Array<Nullable> as opposed to Array<Option>
+ * Does not affect falsey values
+ * @param as
+ */
+export const compactNullable = <T>(as: Array<T>): Array<T> =>
+  pipe(as, filter(isNotNil))

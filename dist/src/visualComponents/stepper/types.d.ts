@@ -10,4 +10,3 @@ export declare type Step = {
     iconRight?: string;
     status?: string;
 };
-//# sourceMappingURL=types.d.ts.map

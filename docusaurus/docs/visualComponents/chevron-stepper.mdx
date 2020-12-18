@@ -1,0 +1,36 @@
+---
+id: chevron-stepper
+title: Chevron Stepper
+sidebar_label: Chevron Stepper
+---
+
+import {
+  ChevronStepper,
+  ChevronStep,
+} from '@monorail/visualComponents/chevronStepper/ChevronStepper'
+
+The Chevron Stepper is a purely presentational component that can be used to indicate a currently active step within a list of pre-defined steps.
+
+## Types
+
+### With step title
+
+```tsx live
+<ChevronStepper>
+  <ChevronStep title="First step" />
+  <ChevronStep title="Second step" />
+  <ChevronStep isActive title="Third step" />
+  <ChevronStep title="Fourth step" />
+</ChevronStepper>
+```
+
+### With icon and step title
+
+```tsx live
+<ChevronStepper>
+  <ChevronStep icon="edit" title="First step" isActive />
+  <ChevronStep icon="web" title="Second step" />
+  <ChevronStep icon="mail" title="Third step" />
+  <ChevronStep icon="group" title="Fourth step" />
+</ChevronStepper>
+```

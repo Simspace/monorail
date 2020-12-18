@@ -1,7 +1,7 @@
 import React, { ReactNode, useState } from 'react'
 
-import { PortalController } from '@monorail/metaComponents/portal/PortalController'
 import { PopOverPosition } from '@monorail/metaComponents/popOver/PopOver'
+import { PortalController } from '@monorail/metaComponents/portal/PortalController'
 
 export type SimplePopOverChildProps = {
   isOpen: boolean
@@ -34,7 +34,7 @@ export const SimplePopOver = (props: SimplePopOverProps) => {
     } else if (state === 'opened') {
       setState('closing')
     }
-  }, [isOpen])
+  }, [isOpen, state])
 
   return (
     <PortalController isRendered={state !== 'closed'}>

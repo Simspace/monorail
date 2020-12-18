@@ -471,3 +471,86 @@ export const Choice: FC<ChoiceProps> = props => {
     </Container>
   )
 }
+
+export const ChoiceIcon: FC<ChoiceProps> = props => {
+  const {
+    answered = false,
+    centeredInput = true,
+    checkColor,
+    checked = false,
+    correct = false,
+    cssOverrides,
+    dense = true,
+    disabled = false,
+    incorrect = false,
+    indeterminate = false,
+    onChange,
+    children = '',
+    readOnly = false,
+    type = 'radio',
+    value = '',
+    required = false,
+    name = '',
+    style,
+    err = false,
+    'data-test-id': dataTestId,
+    onClick,
+    ...domProps
+  } = props
+
+  return (
+    <div
+      css={css`
+        position: relative;
+        margin-right: 24px;
+      `}
+      {...domProps}
+    >
+      <ChoiceInput
+        data-test-id={dataTestId}
+        disabled={disabled}
+        onChange={e => {
+          /**
+           * This component is both a controlled _and_ an
+           * uncontrolled component because it uses both
+           * defaultChecked _and_ checked to control its
+           * internal state. This leads to unexpected behavior.
+           * For example, PS-7964 where after it's given its
+           * defaultChecked value it will fire off an onChange
+           * event only once.
+           *
+           * https://reactjs.org/docs/uncontrolled-components.html#default-values
+           *
+           * This should be updated to either be completely controlled or
+           * modified to be able to be both controlled and uncontrolled.
+           *
+           * https://ticket.simspace.com/browse/PS-7978
+           *
+           * AR - 2020/03/19
+           */
+          onChange && onChange(e)
+        }}
+        defaultChecked={checked}
+        type={type}
+        readOnly={readOnly}
+        value={value}
+        required={required}
+        name={name}
+        onClick={onClick}
+      />
+      <IncorrectIcon incorrect={incorrect} disabled={disabled} />
+      <CorrectIcon correct={correct} disabled={disabled} />
+      {renderFakeInputIcons(
+        type,
+        centeredInput,
+        checked,
+        answered,
+        dense,
+        indeterminate,
+        disabled,
+        checkColor,
+        err,
+      )}
+    </div>
+  )
+}

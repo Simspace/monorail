@@ -7,12 +7,10 @@ import {
 } from '@monorail/metaComponents/popOver/SimplePopOver'
 
 export type SimplePopOverModalProps = {
-  isOpen: boolean
-  show: () => void
   hide: () => void
+  isOpen: boolean
   open: (event: React.SyntheticEvent<Element, Event>) => void
   position: PopOverPosition
-  setPosition: React.Dispatch<React.SetStateAction<PopOverPosition>>
   render: (
     modalProps: SimplePopOverChildProps & { onClick: () => void },
   ) => JSX.Element
@@ -21,7 +19,7 @@ export type SimplePopOverModalProps = {
 export const SimplePopOverModal = (props: SimplePopOverModalProps) => {
   /**
    * Use in conjunction with useSimplePopOver hook
-   * Example: <SaveAsEventTemplateModal /> in TeamEventOutlook.tsx
+   * Example: <SaveAsLiveActionPlanModal /> in TeamEventOutlook.tsx
    * AR - 2020-07-21
    */
   return (

@@ -14,7 +14,7 @@ var _typeGuards = require("../../sharedHelpers/typeGuards");
 class HorizontalNavigationItemController extends _react.Component {
   constructor(...args) {
     super(...args);
-    this.tabRef = (0, _react.createRef)();
+    this.tabRef = /*#__PURE__*/(0, _react.createRef)();
 
     this.callSetIndicator = () => {
       const {

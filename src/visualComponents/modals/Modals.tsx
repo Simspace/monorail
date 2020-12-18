@@ -26,9 +26,10 @@ import {
   sizes,
   typographyFont,
 } from '@monorail/helpers/exports'
-import { useEventListener } from '@monorail/helpers/hooks'
+import { useEventListener, useTimeout } from '@monorail/helpers/hooks'
 import styled, {
   css,
+  CSSProp,
   keyframes,
   ThemeProvider,
 } from '@monorail/helpers/styled-components'
@@ -36,13 +37,13 @@ import { Mode } from '@monorail/helpers/theme'
 import { Div } from '@monorail/StyleHelpers'
 import { CommonComponentType } from '@monorail/types'
 import { AppIcon } from '@monorail/visualComponents/appIcon/AppIcon'
-import { IconType } from '@monorail/visualComponents/icon/IconType'
 import {
   ButtonDisplay,
   IconButtonShape,
 } from '@monorail/visualComponents/buttons/buttonTypes'
 import { IconButton } from '@monorail/visualComponents/buttons/IconButton'
 import { Icon } from '@monorail/visualComponents/icon/Icon'
+import { IconType } from '@monorail/visualComponents/icon/IconType'
 import { ModalSize } from '@monorail/visualComponents/modals/modalTypes'
 
 import { SearchContainer } from '../inputs/Search'
@@ -75,6 +76,14 @@ export function useModalAnimation<E extends HTMLElement>(
     },
     [closingAnimationCompleted, isOpen],
   )
+
+  // HACK: Something is wrong with our close animations and it causes modals not to be destroyed. This is a workaround
+  // until 1) it is figured out or 2) we migrate to material-ui modals.
+  useEffect(() => {
+    if (!isOpen) {
+      closingAnimationCompleted()
+    }
+  }, [closingAnimationCompleted, isOpen])
 
   useEventListener<E>({
     eventName: 'animationend',
@@ -214,6 +223,7 @@ const modalWidth = {
   [ModalSize.Mini]: `${sizes.modals.mini.width}px`,
   [ModalSize.Small]: `${sizes.modals.small.width}px`,
   [ModalSize.Medium]: `${sizes.modals.medium.width}px`,
+  [ModalSize.MediumLarge]: `${sizes.modals.mediumLarge.width}px`,
   [ModalSize.Large]: 'calc(100vw - 32px)',
   [ModalSize.FullScreen]: '100vw',
 }
@@ -266,7 +276,7 @@ export const BBModalBackground = styled(
  */
 
 export const BBModalHeaderContainer = styled.div<
-  BBModalSize & { cssOverrides: SimpleInterpolation }
+  BBModalSize & { cssOverrides: SimpleInterpolation | CSSProp }
 >(
   ({ size, cssOverrides }) => css`
     ${flexFlow(size === ModalSize.Mini ? 'column' : 'row')};
@@ -347,7 +357,8 @@ type BBModalHeaderProps = BBModalSize & {
   iconRight?: IconType
   onClose?: (event: MouseEvent) => void
   title: string
-  cssOverrides?: SimpleInterpolation
+  titleId?: string
+  cssOverrides?: SimpleInterpolation | CSSProp
 }
 
 type DefaultCloseButtonProps = Pick<
@@ -388,14 +399,19 @@ export const BBModalHeader: StatelessComponent<BBModalHeaderProps> = ({
   size,
   onClose,
   title,
+  titleId,
   cssOverrides,
 }) => (
   <ThemeProvider theme={theme => ({ ...theme, mode: Mode.Dark })}>
     <BBModalHeaderContainer size={size} cssOverrides={cssOverrides}>
       <BBModalHeaderRow size={size}>
-        {appIcon && <StyledAppIconLeft appName={appIcon} />}
-        {iconLeft && <StyledIconLeft icon={iconLeft} />}
-        <BBModalHeaderTitle size={size} data-test-id="modal-header-title">
+        {appIcon && <StyledAppIconLeft appName={appIcon} aria-hidden />}
+        {iconLeft && <StyledIconLeft icon={iconLeft} aria-hidden />}
+        <BBModalHeaderTitle
+          size={size}
+          id={titleId}
+          data-test-id="modal-header-title"
+        >
           {title}
         </BBModalHeaderTitle>
         {headerRowChildren}
@@ -528,12 +544,13 @@ export const BBModalContainer = styled.div<
     ${isOpen
       ? css`
           pointer-events: all;
+          ${flexFlow()}
         `
       : css`
           pointer-events: none;
+          display: none;
         `};
 
-    ${flexFlow()};
     ${gothamFontFamily};
 
     align-items: center;

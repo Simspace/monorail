@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { CommonComponentType } from '@monorail/types';
-import { AlertLevel } from '@monorail/visualComponents/toast/types';
 import { IconType } from '@monorail/visualComponents/icon/IconType';
+import { AlertLevel } from '@monorail/visualComponents/toast/types';
 export declare enum ToastSize {
     Small = "small",
     Large = "large"
@@ -18,4 +18,3 @@ declare type ToastProps = CommonComponentType & ToastTileProps & {
 };
 export declare const Toast: FC<ToastProps>;
 export {};
-//# sourceMappingURL=Toast.d.ts.map

@@ -4,11 +4,9 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.hasKey = hasKey;
-exports.isStringArray = exports.isNumberArray = exports.isBooleanArray = exports.isNonEmptyArray = exports.isArray = exports.isFunction = exports.isObject = exports.isFinite = exports.isNotNaN = exports.isNumber = exports.isNonEmptyString = exports.isEmptyString = exports.isNotString = exports.isString = exports.isFalsy = exports.isZero = exports.isTrue = exports.isFalse = exports.isBoolean = exports.isNotNil = exports.isNil = exports.isNotUndefined = exports.isUndefined = exports.isNull = exports.endReducer = exports.assertNever = exports.isTaggedObject = void 0;
+exports.isDOMElement = exports.isStringArray = exports.isNumberArray = exports.isBooleanArray = exports.isNonEmptyArray = exports.isArray = exports.isFunction = exports.isDate = exports.isObject = exports.isFinite = exports.isNotNaN = exports.isNumber = exports.isNonEmptyString = exports.isEmptyString = exports.isNotString = exports.isString = exports.isFalsy = exports.isZero = exports.isTrue = exports.isFalse = exports.isBoolean = exports.isNotNil = exports.isNil = exports.isNotUndefined = exports.isUndefined = exports.isNull = exports.endReducer = exports.assertNever = exports.isTaggedObject = void 0;
 
-/**
- *  FP-TS tag
- */
+var _dateFns = require("date-fns");
 
 /**
  * FP-TS data structures are tagged objects
@@ -176,12 +174,20 @@ exports.isFinite = isFinite;
 
 const isObject = x => !isNull(x) && typeof x === 'object' && x instanceof Object;
 /**
- * Type guard for the `Function` type
+ * Type guard for the `Date` type
  */
-// tslint:disable-next-line: ban-types
 
 
 exports.isObject = isObject;
+
+const isDate = x => (0, _dateFns.isDate)(x);
+/**
+ * Type guard for the `Function` type
+ */
+// eslint-disable-next-line @typescript-eslint/ban-types
+
+
+exports.isDate = isDate;
 
 const isFunction = x => x instanceof Function;
 /**
@@ -235,3 +241,11 @@ exports.isStringArray = isStringArray;
 function hasKey(obj, key) {
   return key in obj;
 }
+/**
+ * Type guard to check for an instance of a DOM Element
+ */
+
+
+const isDOMElement = a => a instanceof Element;
+
+exports.isDOMElement = isDOMElement;

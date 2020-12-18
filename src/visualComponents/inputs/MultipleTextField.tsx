@@ -45,6 +45,7 @@ export class MultipleTextField extends Component<Props> {
           {textFields.map((t: MultipleTextFieldProps, k: number) => (
             <TextField
               {...t}
+              key={t.key}
               onChange={e =>
                 onChange(
                   t.key,

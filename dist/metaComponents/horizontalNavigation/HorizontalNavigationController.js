@@ -23,9 +23,7 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 // TODO(unsafe-any): Fix unsafe anys
 // tslint:disable no-unsafe-any
-const TabBarActions =
-/*#__PURE__*/
-_styledComponents.default.div.withConfig({
+const TabBarActions = /*#__PURE__*/_styledComponents.default.div.withConfig({
   displayName: "HorizontalNavigationController__TabBarActions",
   componentId: "rjggc0-0"
 })(["", ";align-items:center;margin-left:auto;margin-right:0;"], (0, _exports.flexFlow)('row'));
@@ -85,14 +83,14 @@ class HorizontalNavigationController extends _react.Component {
      * automatic updates on Tab click.
      */
 
-    return _react.default.Children.map(children, (child, index) => !(0, _typeGuards.isNil)(child) && _react.default.isValidElement(child) && _react.default.createElement(_HorizontalNavigationItemController.HorizontalNavigationItemController, {
+    return _react.default.Children.map(children, (child, index) => !(0, _typeGuards.isNil)(child) && /*#__PURE__*/_react.default.isValidElement(child) && /*#__PURE__*/_react.default.createElement(_HorizontalNavigationItemController.HorizontalNavigationItemController, {
       key: index,
       index: index,
       isActive: index === activeTabIndex,
       setIndicator: this.setIndicator,
       updateIsActive: (0, _typeGuards.isNil)(this.props.activeTabIndex) ? this.updateActiveTab : undefined,
       onClick: child.props.onClick,
-      tab: props => _react.default.cloneElement(child, props)
+      tab: props => /*#__PURE__*/_react.default.cloneElement(child, props)
     }));
   }
 
@@ -106,7 +104,7 @@ class HorizontalNavigationController extends _react.Component {
       indicatorWidth,
       indicatorTransitionDuration
     } = this.state;
-    return _react.default.createElement(_react.default.Fragment, null, this.renderTabs(), !(0, _typeGuards.isNil)(actions) && _react.default.createElement(TabBarActions, {
+    return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, this.renderTabs(), !(0, _typeGuards.isNil)(actions) && /*#__PURE__*/_react.default.createElement(TabBarActions, {
       id: "tabBarActions"
     }, actions), tabBarIndicator({
       width: indicatorWidth,

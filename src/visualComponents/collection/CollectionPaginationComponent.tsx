@@ -1,16 +1,17 @@
 import React, { FC, SyntheticEvent } from 'react'
-import { ButtonDisplay } from '@monorail/visualComponents/buttons/buttonTypes'
-import { Text } from '@monorail/visualComponents/typography/Text'
+
 import {
+  Colors,
+  ElevationRange,
   FontSizes,
   getColor,
-  Colors,
   getElevationShadow,
-  ElevationRange,
 } from '@monorail/helpers/exports'
-import { Button } from '@monorail/visualComponents/buttons/Button'
-import { Icon } from '@monorail/visualComponents/icon/Icon'
 import { css } from '@monorail/helpers/styled-components'
+import { Button } from '@monorail/visualComponents/buttons/Button'
+import { ButtonDisplay } from '@monorail/visualComponents/buttons/buttonTypes'
+import { Icon } from '@monorail/visualComponents/icon/Icon'
+import { Text } from '@monorail/visualComponents/typography/Text'
 
 const NumberButton: FC<{
   number: number
@@ -42,6 +43,69 @@ const NumberButton: FC<{
 }
 
 const Ellipsis: FC = () => <span css={{ padding: '0 11px' }}>...</span>
+
+type PaginationButtonProps = {
+  onClick?: (e: React.SyntheticEvent<HTMLButtonElement, MouseEvent>) => void
+  disabled?: boolean
+}
+export const PaginationBackButton = ({
+  onClick,
+  disabled = false,
+}: PaginationButtonProps) => (
+  <Button
+    onClick={onClick}
+    display={ButtonDisplay.Chromeless}
+    disabled={disabled}
+    cssOverrides={disabled ? 'opacity: 1;' : ''}
+  >
+    <Icon
+      icon="chevron_left"
+      css={{
+        color: getColor(disabled ? Colors.Black54a : Colors.BrandLightBlue),
+      }}
+    ></Icon>
+    <Text
+      fontSize={FontSizes.Title5}
+      fontWeight={500}
+      css={`
+        margin: 0;
+        text-transform: capitalize;
+        color: ${getColor(disabled ? Colors.Black54a : Colors.BrandLightBlue)};
+      `}
+    >
+      Previous
+    </Text>
+  </Button>
+)
+export const PaginationNextButton = ({
+  onClick,
+  disabled = false,
+}: PaginationButtonProps) => (
+  <Button
+    onClick={onClick}
+    display={ButtonDisplay.Chromeless}
+    disabled={disabled}
+    cssOverrides={disabled ? 'opacity: 1;' : ''}
+  >
+    <Text
+      fontSize={FontSizes.Title5}
+      fontWeight={500}
+      css={`
+        margin: 0;
+        text-transform: capitalize;
+        color: ${getColor(disabled ? Colors.Black54a : Colors.BrandLightBlue)};
+      `}
+    >
+      Next
+    </Text>
+    <Icon
+      icon="chevron_right"
+      css={{
+        color: getColor(disabled ? Colors.Black54a : Colors.BrandLightBlue),
+      }}
+    ></Icon>
+  </Button>
+)
 
 export const CollectionPaginationComponent: FC<{
   data: Array<object> // data gets passed as prop by ReactTable; don't care what's in it, just care abt length to get total
@@ -188,34 +252,10 @@ export const CollectionPaginationComponent: FC<{
       `}
     >
       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-        <Button
+        <PaginationBackButton
           onClick={e => changePage(e, page - 1)}
-          display={ButtonDisplay.Chromeless}
           disabled={page === 0}
-          cssOverrides={page === 0 ? 'opacity: 1;' : null}
-        >
-          <Icon
-            icon="chevron_left"
-            css={{
-              color: getColor(
-                page > 0 ? Colors.BrandLightBlue : Colors.Black54a,
-              ),
-            }}
-          ></Icon>
-          <Text
-            fontSize={FontSizes.Title5}
-            fontWeight={500}
-            css={`
-              margin: 0;
-              text-transform: capitalize;
-              color: ${getColor(
-                page > 0 ? Colors.BrandLightBlue : Colors.Black54a,
-              )};
-            `}
-          >
-            Previous
-          </Text>
-        </Button>
+        />
         <div
           css={css`
             display: flex;
@@ -227,35 +267,10 @@ export const CollectionPaginationComponent: FC<{
         >
           {numbers()}
         </div>
-        <Button
+        <PaginationNextButton
           onClick={e => changePage(e, page + 1)}
-          display={ButtonDisplay.Chromeless}
           disabled={page === pages - 1}
-          cssOverrides={page === pages - 1 ? 'opacity: 1;' : null}
-        >
-          <Text
-            fontSize={FontSizes.Title5}
-            fontWeight={500}
-            css={`
-              margin: 0;
-              text-transform: capitalize;
-              color: ${getColor(
-                page < pages - 1 ? Colors.BrandLightBlue : Colors.Black54a,
-              )};
-            `}
-          >
-            Next
-          </Text>
-
-          <Icon
-            icon="chevron_right"
-            css={{
-              color: getColor(
-                page < pages - 1 ? Colors.BrandLightBlue : Colors.Black54a,
-              ),
-            }}
-          ></Icon>
-        </Button>
+        />
       </div>
       <Text
         fontSize={FontSizes.Title5}

@@ -22,18 +22,14 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 /*
  * Styles
  */
-const MappingContainer =
-/*#__PURE__*/
-_styledComponents.default.div.withConfig({
+const MappingContainer = /*#__PURE__*/_styledComponents.default.div.withConfig({
   displayName: "Mapping__MappingContainer",
   componentId: "yqfr95-0"
 })(({
   margin
 }) => (0, _styledComponents.css)(["", ";font-family:'Gotham SSm',sans-serif;"], (0, _exports.typography)(400, _exports.FontSizes.Title5, margin)));
 
-const MappingID =
-/*#__PURE__*/
-_styledComponents.default.span.withConfig({
+const MappingID = /*#__PURE__*/_styledComponents.default.span.withConfig({
   displayName: "Mapping__MappingID",
   componentId: "yqfr95-1"
 })(["", ";background:", ";color:", ";font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;font-weight:600;margin-right:5px;padding:1px 2px 0 2px;"], (0, _exports.borderRadius)(_exports.BorderRadius.Small), (0, _exports.getColor)(_exports.Colors.Grey94), (0, _exports.getColor)(_exports.Colors.Black74a));
@@ -52,7 +48,7 @@ const Mapping = props => {
     mapping,
     ...domProps
   } = props;
-  return _react.default.createElement(MappingContainer, domProps, _react.default.createElement(MappingID, null, mapping.key), !(0, _typeGuards.isEmptyString)(mapping.name.trim()) ? mapping.name.trim() : mapping.description.trim());
+  return /*#__PURE__*/_react.default.createElement(MappingContainer, domProps, /*#__PURE__*/_react.default.createElement(MappingID, null, mapping.key), !(0, _typeGuards.isEmptyString)(mapping.name.trim()) ? mapping.name.trim() : mapping.description.trim());
 };
 
 exports.Mapping = Mapping;

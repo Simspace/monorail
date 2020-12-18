@@ -16,6 +16,7 @@ import { Colors, getColor } from '@monorail/helpers/color'
 import { flexFlow } from '@monorail/helpers/flex'
 import styled, { css, ThemeProvider } from '@monorail/helpers/styled-components'
 import { ThemeColors } from '@monorail/helpers/theme'
+import { all } from '@monorail/sharedHelpers/fp-ts-ext/Array'
 import {
   assertNever,
   isNil,
@@ -31,6 +32,7 @@ import { ButtonsBar } from '@monorail/visualComponents/buttonsBar/ButtonsBar'
 import { BBCardGrid } from '@monorail/visualComponents/cards/Cards'
 import {
   ComponentPropsGetterR,
+  NoDataComponentVertical,
   ResizerComponent,
   TableColumns,
   TBodyComponent,
@@ -41,15 +43,14 @@ import {
   TheadComponentProps,
   TrGroupComponent,
   useSort,
-  NoDataComponentVertical,
 } from '@monorail/visualComponents/dataTable/ReactTable'
 import { DebouncedSearch } from '@monorail/visualComponents/inputs/DebouncedSearch'
 import {
   CompareSearchType,
   SearchController,
 } from '@monorail/visualComponents/inputs/SearchController'
+
 import { CollectionPaginationComponent } from './CollectionPaginationComponent'
-import { all } from '@monorail/sharedHelpers/fp-ts-ext/Array'
 
 const CollectionContainer = styled.div`
   ${flexFlow('row')};

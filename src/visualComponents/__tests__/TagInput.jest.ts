@@ -17,10 +17,10 @@ describe('shouldShowNewSuggestion', () => {
     ).toBe(false)
   })
 
-  it('should not show new suggestion if a suggestion is in array of selected options', () => {
+  it('should not show new suggestion if already selected', () => {
     expect(
       shouldShowNewSuggestion(
-        'does not matter',
+        'already selected suggestion',
         ['already selected suggestion', 'etc'],
         ['option', 'already selected suggestion'],
       ),

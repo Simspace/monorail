@@ -18,4 +18,3 @@ export declare type CheckboxSelectProps = {
     placeholder?: string;
 };
 export declare const CheckboxSelect: FC<CheckboxSelectProps>;
-//# sourceMappingURL=CheckboxSelect.d.ts.map

@@ -1,18 +1,19 @@
-import { all, and, any, or, count } from '../Foldable'
 import {
-  initial,
-  remoteData,
-  pending,
   failure,
-  success,
+  initial,
+  pending,
   RemoteData,
+  remoteData,
+  success,
 } from '@devexperts/remote-data-ts'
-import { Option, none, some, option } from 'fp-ts/lib/Option'
-import { array } from 'fp-ts/lib/Array'
-import { either, Either, left, right } from 'fp-ts/lib/Either'
-import { identity } from 'fp-ts/lib/function'
 import fc from 'fast-check'
+import { array } from 'fp-ts/lib/Array'
+import { Either, either, left, right } from 'fp-ts/lib/Either'
+import { identity } from 'fp-ts/lib/function'
+import { none, Option, option, some } from 'fp-ts/lib/Option'
 import { pipe } from 'fp-ts/lib/pipeable'
+
+import { all, and, any, count, or } from '../Foldable'
 
 describe('and', () => {
   describe('should work on Option<boolean>', () => {

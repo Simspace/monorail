@@ -1,4 +1,4 @@
-import { FC, ReactElement } from 'react';
+import { FC, ReactElement, ReactNode } from 'react';
 import { Colors } from '@monorail/helpers/exports';
 export declare type CarouselChildrenProps = {
     loop: boolean;
@@ -11,7 +11,7 @@ export declare type CarouselChildrenProps = {
 declare type Props = {
     indicatorDots?: boolean;
     dotColor?: Colors;
-    slides: Array<ReactElement>;
+    slides: Array<ReactNode>;
     loop?: boolean;
     autoPlay?: boolean;
     timerInterval?: number;
@@ -19,4 +19,3 @@ declare type Props = {
 };
 export declare const Carousel: FC<Props>;
 export {};
-//# sourceMappingURL=Carousel.d.ts.map

@@ -1,15 +1,15 @@
 import React from 'react'
 
-import styled, { css } from '@monorail/helpers/styled-components'
 import {
   Colors,
-  getColor,
   FontSizes,
   FontWeights,
+  getColor,
 } from '@monorail/helpers/exports'
-import { Text } from '@monorail/visualComponents/typography/Text'
+import styled, { css } from '@monorail/helpers/styled-components'
 import { Icon } from '@monorail/visualComponents/icon/Icon'
 import { IconType } from '@monorail/visualComponents/icon/IconType'
+import { Text } from '@monorail/visualComponents/typography/Text'
 
 export const ChevronStepper = styled.ul`
   display: flex;

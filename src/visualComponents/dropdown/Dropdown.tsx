@@ -1,20 +1,22 @@
+import React, { ReactElement } from 'react'
 import Downshift, {
   ControllerStateAndHelpers,
   DownshiftState,
   StateChangeOptions,
 } from 'downshift'
-import { flow } from 'fp-ts/lib/function'
+import { pipe } from 'fp-ts/lib/function'
 import { fromNullable, Option, toNullable } from 'fp-ts/lib/Option'
-import React, { ReactElement } from 'react'
 
 import { flexFlow, FontSizes, typographyFont } from '@monorail/helpers/exports'
-import styled from '@monorail/helpers/styled-components'
+import styled, { css } from '@monorail/helpers/styled-components'
+import { CssOverrides } from '@monorail/StyleHelpers'
 import { CommonComponentType } from '@monorail/types'
 import {
   DownshiftRootPropsGetter,
   DropdownItemValue,
   DropdownType,
 } from '@monorail/visualComponents/dropdown/helpers'
+import { DisplayType } from '@monorail/visualComponents/inputs/inputTypes'
 
 import {
   BehaviorControllerHook,
@@ -23,18 +25,18 @@ import {
   useControlledDropdown,
 } from './behavior'
 import {
+  createKeyboardInteraction,
   InteractionController,
   KeyboardInteractionHook,
-  useKeyboardInteraction,
 } from './interaction'
 import {
+  createDropdownTypeParser,
   DropdownParser,
   DropdownParserHook,
-  useDropdownTypeParser,
 } from './parsers'
 import {
   DropdownSkinCommonType,
-  DropdownSkinHook,
+  DropdownSkinComponent,
   useDropdownSkin,
 } from './skin'
 
@@ -47,7 +49,7 @@ export type DropdownHooks<D extends DropdownType> = {
   behavior?: BehaviorControllerHook<D>
   interaction?: KeyboardInteractionHook<D>
   parser?: DropdownParserHook<D>
-  skin?: DropdownSkinHook<D>
+  skin?: DropdownSkinComponent<D>
 }
 
 export type DropdownProps<D extends DropdownType> = CommonComponentType &
@@ -56,38 +58,47 @@ export type DropdownProps<D extends DropdownType> = CommonComponentType &
     items: Array<D>
     value?: D | DropdownItemValue
     onChange?: DropdownChangeHandler<D>
+    triggerOnAllSelections?: boolean // false triggers on value CHANGES, true triggers no matter which value is chosen
+    onBlur?: VoidFunction
     error?: Option<string>
     required?: boolean
+    cssOverrides?: CssOverrides
   }
 
-export const DropdownContainer = styled.div<CommonComponentType>`
-  ${flexFlow('column')};
-  ${typographyFont(400, FontSizes.Title5)};
+export const DropdownContainer = styled.div<CommonComponentType>(
+  ({ cssOverrides }: { cssOverrides?: CssOverrides }) => css`
+    ${flexFlow('column')};
+    ${typographyFont(400, FontSizes.Title5)};
 
-  position: relative;
-  width: 256px;
-  max-width: 100%;
-`
+    position: relative;
+    width: 256px;
+    max-width: 100%;
+    ${cssOverrides}
+  `,
+)
 
-const useKeyboardInteractionDefault = <T extends DropdownType>(
+const createKeyboardInteractionDefault = <T extends DropdownType>(
   parser: DropdownParser<T>,
-): InteractionController<T> => useKeyboardInteraction<T>()(parser)
+): InteractionController<T> => createKeyboardInteraction<T>()(parser)
 
 export const Dropdown = <D extends DropdownType>({
   label,
   placeholder = 'Select',
   disabled = false,
   clearable = true,
+  extraWidth = 0,
   items: collection,
   value,
   onChange,
+  triggerOnAllSelections = false,
   behavior = useAsFilter,
   skin = useDropdownSkin,
-  parser = useDropdownTypeParser,
-  interaction = useKeyboardInteractionDefault,
+  parser = createDropdownTypeParser,
+  interaction = createKeyboardInteractionDefault,
   error,
   required,
-  display,
+  display = DisplayType.Edit,
+  cssOverrides,
   ...domProps
 }: DropdownProps<D>): ReactElement<DropdownProps<D>> => {
   /** Controllers **/
@@ -112,6 +123,7 @@ export const Dropdown = <D extends DropdownType>({
     required,
     label,
     display,
+    extraWidth,
   })
 
   const onChangeHandler: DropdownChangeHandler<D> = (item, downshiftProps) => {
@@ -141,18 +153,21 @@ export const Dropdown = <D extends DropdownType>({
     state: DownshiftState<D>,
     changes: StateChangeOptions<D>,
   ) =>
-    flow(
+    pipe(
+      changes,
       reduceStateBase(state),
       behaviorController.stateReducer(state),
       interactionController.stateReducer(state),
-    )(changes)
+    )
 
   return (
     <Downshift
       {...behaviorController.downshiftProps}
       selectedItem={toNullable(selectedDropdownItem)}
       itemToString={parserController.label}
-      onChange={onChangeHandler}
+      // onChange only triggers on value CHANGES, onSelect triggers no matter which value is chosen
+      onChange={!triggerOnAllSelections ? onChangeHandler : undefined}
+      onSelect={triggerOnAllSelections ? onChangeHandler : undefined}
       selectedItemChanged={selectedItemChanged}
       stateReducer={stateReducer}
     >
@@ -161,7 +176,11 @@ export const Dropdown = <D extends DropdownType>({
         const rootProps = getRootProps() as DownshiftRootPropsGetter<D>
 
         return (
-          <DropdownContainer {...domProps} {...rootProps}>
+          <DropdownContainer
+            cssOverrides={cssOverrides}
+            {...domProps}
+            {...rootProps}
+          >
             {skinController({
               items: behaviorController.getItems(inputValue || ''),
               downshiftProps,

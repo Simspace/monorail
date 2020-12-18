@@ -7,13 +7,13 @@ exports.useControlledList = exports.OutlineListItem = exports.LayoutDetailHeader
 
 var _styledComponents = _interopRequireDefault(require("styled-components"));
 
+var _react = _interopRequireWildcard(require("react"));
+
 var _Array = require("fp-ts/lib/Array");
 
 var O = _interopRequireWildcard(require("fp-ts/lib/Option"));
 
 var _pipeable = require("fp-ts/lib/pipeable");
-
-var _react = _interopRequireWildcard(require("react"));
 
 var _exports = require("../../helpers/exports");
 
@@ -72,9 +72,7 @@ const IconButtonContainer = _styledComponents2.default.div`
   ${(0, _exports.visible)(false)}
 `;
 
-var _StyledScrollAnimation =
-/*#__PURE__*/
-(0, _styledComponents.default)(_ScrollAnimation.ScrollAnimation).withConfig({
+var _StyledScrollAnimation = /*#__PURE__*/(0, _styledComponents.default)(_ScrollAnimation.ScrollAnimation).withConfig({
   displayName: "LayoutOutline___StyledScrollAnimation",
   componentId: "sc-1fcq5a-0"
 })(["transform:none;"]);
@@ -88,13 +86,13 @@ const LayoutOutline = ({
   title,
   ...domProps
 }) => {
-  const renderTitleHeader = () => _react.default.createElement(_Header.Header, _extends({
+  const renderTitleHeader = () => /*#__PURE__*/_react.default.createElement(_Header.Header, _extends({
     cssTitle: "flex: 1;"
   }, headerProps, {
     title: title
   }));
 
-  return _react.default.createElement(OutlineContainer, domProps, _react.default.createElement(OutlineList, null, (0, _pipeable.pipe)(O.fromNullable(header), O.alt(() => (0, _pipeable.pipe)(O.fromNullable(title), O.map(t => renderTitleHeader))), O.fold(() => _react.default.createElement(_react.default.Fragment, null), render => render())), _react.default.createElement(_StyledScrollAnimation, null, list()), listFooter && listFooter()), _react.default.createElement(OutlineContent, null, children()));
+  return /*#__PURE__*/_react.default.createElement(OutlineContainer, domProps, /*#__PURE__*/_react.default.createElement(OutlineList, null, (0, _pipeable.pipe)(O.fromNullable(header), O.alt(() => (0, _pipeable.pipe)(O.fromNullable(title), O.map(t => renderTitleHeader))), O.fold(() => /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null), render => render())), /*#__PURE__*/_react.default.createElement(_StyledScrollAnimation, null, list()), listFooter && listFooter()), /*#__PURE__*/_react.default.createElement(OutlineContent, null, children()));
 };
 
 exports.LayoutOutline = LayoutOutline;
@@ -135,20 +133,20 @@ const EmptyLayoutList = ({
   title = 'No Selection',
   message = 'Select an item on the left or create a new item',
   actions
-}) => _react.default.createElement(EmptyListBox, null, _react.default.createElement(EmptyListBoxInner, null, _react.default.createElement(_Icon.Icon, {
+}) => /*#__PURE__*/_react.default.createElement(EmptyListBox, null, /*#__PURE__*/_react.default.createElement(EmptyListBoxInner, null, /*#__PURE__*/_react.default.createElement(_Icon.Icon, {
   icon: "empty_syllabus_list",
   size: 120
-}), _react.default.createElement(_Text.Text, {
+}), /*#__PURE__*/_react.default.createElement(_Text.Text, {
   fontWeight: 700,
   fontSize: _exports.FontSizes.Title1,
   as: "p",
   margin: "0 0 16px 0"
-}, title), _react.default.createElement(_Text.Text, {
+}, title), /*#__PURE__*/_react.default.createElement(_Text.Text, {
   fontWeight: 400,
   fontSize: _exports.FontSizes.Title3,
   as: "p",
   margin: "0 0 24px 0"
-}, message), actions && _react.default.createElement(EmptyListButtonsBox, null, actions)));
+}, message), actions && /*#__PURE__*/_react.default.createElement(EmptyListButtonsBox, null, actions)));
 
 exports.EmptyLayoutList = EmptyLayoutList;
 
@@ -203,35 +201,39 @@ const LayoutDetailHeaderContainer = _styledComponents2.default.div`
   margin-left: -8px;
 `;
 
-var _StyledActionsMenu =
-/*#__PURE__*/
-(0, _styledComponents.default)(_ActionsMenu.ActionsMenu).withConfig({
-  displayName: "LayoutOutline___StyledActionsMenu",
+var _StyledLayoutDetailHeaderContainer = /*#__PURE__*/(0, _styledComponents.default)(LayoutDetailHeaderContainer).withConfig({
+  displayName: "LayoutOutline___StyledLayoutDetailHeaderContainer",
   componentId: "sc-1fcq5a-1"
+})(["", ""], p => p._css);
+
+var _StyledActionsMenu = /*#__PURE__*/(0, _styledComponents.default)(_ActionsMenu.ActionsMenu).withConfig({
+  displayName: "LayoutOutline___StyledActionsMenu",
+  componentId: "sc-1fcq5a-2"
 })(["margin-top:4px;"]);
 
 const LayoutDetailHeader = ({
   actions,
+  containerCssOverrides,
   ...textAreaProps
-}) => _react.default.createElement(LayoutDetailHeaderContainer, null, _react.default.createElement(_TextArea.TextArea, _extends({
+}) => /*#__PURE__*/_react.default.createElement(_StyledLayoutDetailHeaderContainer, {
+  _css: containerCssOverrides
+}, /*#__PURE__*/_react.default.createElement(_TextArea.TextArea, _extends({
   chromeless: true,
   compact: true,
   cssOverrides: titleStyle(textAreaProps.disabled),
   placeholder: "New Item",
   required: true
-}, textAreaProps)), actions && _react.default.createElement(_StyledActionsMenu, {
+}, textAreaProps)), actions && /*#__PURE__*/_react.default.createElement(_StyledActionsMenu, {
   actions: actions
 })); // Outline items and actions
 
 
 exports.LayoutDetailHeader = LayoutDetailHeader;
 
-var _StyledSimpleListItem =
-/*#__PURE__*/
-(0, _styledComponents.default)(_List.SimpleListItem).withConfig({
+var _StyledSimpleListItem = /*#__PURE__*/(0, _styledComponents.default)(_List.SimpleListItem).withConfig({
   displayName: "LayoutOutline___StyledSimpleListItem",
-  componentId: "sc-1fcq5a-2"
-})(["&:hover{", "{", "}}"], IconButtonContainer, p => p._css);
+  componentId: "sc-1fcq5a-3"
+})(["&:hover{", "{", "}}"], IconButtonContainer, p => p._css2);
 
 const OutlineListItem = props => {
   const {
@@ -243,7 +245,7 @@ const OutlineListItem = props => {
     icon = 'settings',
     cssOverrides
   } = props;
-  return _react.default.createElement(_StyledSimpleListItem, {
+  return /*#__PURE__*/_react.default.createElement(_StyledSimpleListItem, {
     key: item.key,
     leftIcon: icon,
     primaryText: item.content,
@@ -251,8 +253,8 @@ const OutlineListItem = props => {
     className: selected ? 'is-active' : '',
     onClick: () => onClick && onClick(item),
     cssOverrides: cssOverrides,
-    _css: (0, _exports.visible)(true)
-  }, onDelete && _react.default.createElement(IconButtonContainer, null, _react.default.createElement(_IconButton.IconButton, {
+    _css2: (0, _exports.visible)(true)
+  }, onDelete && /*#__PURE__*/_react.default.createElement(IconButtonContainer, null, /*#__PURE__*/_react.default.createElement(_IconButton.IconButton, {
     size: _buttonTypes.ButtonSize.Compact,
     display: _buttonTypes.ButtonDisplay.Toolbar,
     icon: 'delete',

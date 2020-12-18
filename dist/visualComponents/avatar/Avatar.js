@@ -7,10 +7,6 @@ exports.getAvatarInitials = exports.Avatar = void 0;
 
 var _styledComponents = _interopRequireDefault(require("styled-components"));
 
-var O = _interopRequireWildcard(require("fp-ts/lib/Option"));
-
-var _pipeable = require("fp-ts/lib/pipeable");
-
 var _react = _interopRequireDefault(require("react"));
 
 var _exports = require("../../helpers/exports");
@@ -64,9 +60,7 @@ const AvatarContainer = _styledComponents2.default.div(({
     width: ${size}px;
   `);
 
-var _StyledIcon =
-/*#__PURE__*/
-(0, _styledComponents.default)(_Icon.Icon).withConfig({
+var _StyledIcon = /*#__PURE__*/(0, _styledComponents.default)(_Icon.Icon).withConfig({
   displayName: "Avatar___StyledIcon",
   componentId: "sc-1nz3kf0-0"
 })(["color:", ";"], p => p._css);
@@ -78,14 +72,14 @@ const Avatar = ({
   size = defaultSize,
   icon,
   ...domProps
-}) => _react.default.createElement(AvatarContainer, _extends({
+}) => /*#__PURE__*/_react.default.createElement(AvatarContainer, _extends({
   team: team,
   size: size
-}, domProps), !(0, _typeGuards.isNil)(icon) ? _react.default.createElement(_StyledIcon, {
+}, domProps), (0, _typeGuards.isNonEmptyString)(icon) ? /*#__PURE__*/_react.default.createElement(_StyledIcon, {
   icon: icon,
   size: iconScale * size,
   _css: (0, _exports.getColor)(_exports.Colors.White)
-}) : _react.default.createElement(_react.default.Fragment, null, (0, _pipeable.pipe)(first, O.fromNullable, O.fold(() => '', f => f.charAt(0))), (0, _pipeable.pipe)(last, O.fromNullable, O.fold(() => '', f => f.charAt(0)))));
+}) : /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, first.charAt(0), last.charAt(0)));
 
 exports.Avatar = Avatar;
 

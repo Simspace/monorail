@@ -1,0 +1,120 @@
+---
+id: tile
+title: Tile
+sidebar_label: Tile
+---
+
+import { ShowCase } from '../docComponents/ShowCase'
+import { TileAsIndividual } from '../docComponents/TileDoc'
+
+import { css } from 'styled-components'
+
+import { Colors } from '@monorail/helpers/color'
+import { FontSizes, FontWeights } from '@monorail/helpers/exports'
+import { HyperLink } from '@monorail/visualComponents/hyperLink/HyperLink'
+import { IconType } from '@monorail/visualComponents/icon/IconType'
+import { Tile } from '@monorail/visualComponents/tile/Tile'
+import { TileStatus } from '@monorail/visualComponents/tile/TileStatus'
+import { Text } from '@monorail/visualComponents/typography/Text'
+
+<ShowCase>
+  <TileAsIndividual
+    member={{ name: 'Individual A', to: '' }}
+    workRole={{
+      key: '1',
+      name: 'System Analyst',
+      proficiency: 'Journeyman',
+    }}
+    readiness={TileStatus.Ready}
+    teamSlot={true}
+  />
+</ShowCase>
+
+## Types
+
+### Type: Individual
+
+Content
+
+```tsx live
+function Demo() {
+  return (
+    <div>
+      <TileAsIndividual
+        member={{ name: 'Individual A', to: '' }}
+        workRole={{
+          name: 'System Analyst',
+          proficiency: 'Journeyman',
+        }}
+        status={TileStatus.Ready}
+        teamSlot={true}
+      />
+      <TileAsIndividual
+        member={{ name: 'Individual A', to: '' }}
+        workRole={{
+          name: 'System Analyst',
+          proficiency: 'Journeyman',
+        }}
+        status={TileStatus.NotReady}
+        teamSlot={true}
+      />
+      <TileAsIndividual
+        member={{ name: 'Individual A', to: '' }}
+        workRole={{
+          name: 'System Analyst',
+          proficiency: 'Journeyman',
+        }}
+        status={TileStatus.Warning}
+        teamSlot={true}
+      />
+    </div>
+  )
+}
+```
+
+### Type: SubTeam
+
+Content
+
+```jsx
+<TileAsSubTeam
+  member={{ name: 'Subteam A', to: '' }}
+  subTeam={{ name: 'Defense Strategy' }}
+  readiness={TileStatus.Ready}
+  teamSlot={true}
+/>
+<TileAsSubTeam
+  member={{ name: 'Subteam A', to: '' }}
+  subTeam={{
+    name: 'Defense Strategy',
+  }}
+  readiness={TileStatus.NotReady}
+  teamSlot={true}
+/>
+<TileAsSubTeam
+  member={{ name: 'Subteam A', to: '' }}
+  subTeam={{
+    name: 'Defense Strategy',
+  }}
+  readiness={TileStatus.Warning}
+  teamSlot={true}
+/>
+```
+
+### Type: EmptySlot
+
+Content
+
+```jsx
+<TileAsEmptySlot name={'Work Role'} type={SlotType.WorkRole} />
+<TileAsEmptySlot name={'Subteam'} type={SlotType.SubTeam} />
+```
+
+### Type: Unassigned
+
+Content
+
+```jsx
+<TileAsIndividual member={{ name: 'Individual B', to: '' }} />
+<TileAsSubTeam member={{ name: 'Subteam A', to: '' }} />
+```

@@ -4,18 +4,19 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.trim = trim;
+exports.removeSpaces = removeSpaces;
 exports.join = join;
-exports.safeParseInt = exports.splitAt = exports.padStart = exports.repeat = exports.take = exports.addTrailingSlash = exports.camelCaseToTitleCase = exports.titleCase = exports.unwords = exports.words = exports.capitalizeWords = exports.capitalizeFirstLetter = exports.includesNoncase = exports.includes = exports.truncate = exports.toLocaleLower = exports.toLower = exports.findIndex = exports.splitName = exports.replace = exports.split = void 0;
+exports.matchStringP = exports.elemLocaleLowerCase = exports.safeParseInt = exports.splitAt = exports.padStart = exports.repeat = exports.drop = exports.take = exports.addTrailingSlash = exports.camelCaseToTitleCase = exports.titleCase = exports.unwords = exports.words = exports.startsWithNonCase = exports.capitalizeWords = exports.capitalizeFirstLetter = exports.includesNoncase = exports.includes = exports.truncate = exports.toLocaleLower = exports.toLower = exports.findIndex = exports.splitName = exports.replace = exports.split = void 0;
 
 var A = _interopRequireWildcard(require("fp-ts/lib/Array"));
+
+var _function = require("fp-ts/lib/function");
 
 var O = _interopRequireWildcard(require("fp-ts/lib/Option"));
 
 var _pipeable = require("fp-ts/lib/pipeable");
 
 var _typeGuards = require("./typeGuards");
-
-var _function = require("./fp-ts-ext/function");
 
 var _Option2 = require("./fp-ts-ext/Option");
 
@@ -46,7 +47,7 @@ exports.replace = replace;
 const splitName = name => {
   const xs = split(' ')(name);
 
-  const safeGetVia = f => (0, _function.o)(_Option2.getOrEmptyString, f)(xs);
+  const safeGetVia = f => (0, _function.flow)(f, _Option2.getOrEmptyString)(xs);
 
   return {
     first: safeGetVia(A.head),
@@ -91,9 +92,20 @@ exports.toLocaleLower = toLocaleLower;
 function trim(str) {
   return str.trim();
 }
+/**
+ * Find and remove all space characters within a string. This may be useful for
+ * filtering numeric text (given some user input) where spaces don't matter.
+ *
+ * includesNoncase(removeSpaces('2/10'))(removeSpaces('2 / 10')) // true
+ */
+
+
+function removeSpaces(str) {
+  return str.split(' ').join('');
+}
 
 function join(separator, arr) {
-  return arr.join(separator);
+  return arr ? arr.join(separator) : as => as.join(separator);
 }
 
 const truncate = maxLength => value => {
@@ -126,6 +138,12 @@ const capitalizeWords = str => {
 
 exports.capitalizeWords = capitalizeWords;
 
+const startsWithNonCase = target => source => {
+  return source.trim().toLowerCase().startsWith(target.trim().toLowerCase());
+};
+
+exports.startsWithNonCase = startsWithNonCase;
+
 const words = str => str.split(/\s/);
 
 exports.words = words;
@@ -148,11 +166,20 @@ exports.addTrailingSlash = addTrailingSlash;
 
 const take = n => s => s.substring(0, n);
 /**
- * Returns a string that contains `input` concatenated back-to-back `n` times
+ * Removes the leading {@param n} characters from the supplied string
+ * @param n the amount of characters to drop
  */
 
 
 exports.take = take;
+
+const drop = n => s => s.substring(n, s.length);
+/**
+ * Returns a string that contains `input` concatenated back-to-back `n` times
+ */
+
+
+exports.drop = drop;
 
 const repeat = n => input => {
   if (n <= 1) {
@@ -219,3 +246,43 @@ const safeParseInt = (str, radix = 10) => {
 };
 
 exports.safeParseInt = safeParseInt;
+
+const elemLocaleLowerCase = needle => haystack => toLocaleLower(haystack).includes(toLocaleLower(needle));
+/**
+ * Patially matches any string value, returning None if a match is not found
+ *
+ * @example
+ *
+ * ```ts
+ * pipe(
+ *   'foo',
+ *   matchStringP({
+ *     foo: () => 'Hello',
+ *     bar: () => 'World'
+ *   })
+ * ) // Some('Hello')
+ * ```
+ *
+ * ```ts
+ * pipe(
+ *   'asdf',
+ *   matchStringP({
+ *     foo: () => 'Hello',
+ *     bar: () => 'World'
+ *   })
+ * ) // None
+ * ```
+ */
+
+
+exports.elemLocaleLowerCase = elemLocaleLowerCase;
+
+const matchStringP = matchObj => s => {
+  if (s in matchObj) {
+    return O.some(matchObj[s]());
+  } else {
+    return O.none;
+  }
+};
+
+exports.matchStringP = matchStringP;

@@ -16,7 +16,7 @@ export const MyOrg: ComponentType<CustomIconProps> = props => (
       height="32"
       x="4"
       y="4"
-      fill="url(#paint0_linear)"
+      fill="url(#paint0_ss_icon_myorg_linear)"
       rx="4"
     ></rect>
     <path
@@ -64,7 +64,7 @@ export const MyOrg: ComponentType<CustomIconProps> = props => (
     ></path>
     <defs>
       <linearGradient
-        id="paint0_linear"
+        id="paint0_ss_icon_myorg_linear"
         x1="36"
         x2="4"
         y1="4"

@@ -42,4 +42,3 @@ export declare const sequenceTaskEithersStruct: <E, NER extends Record<string, i
  * sequence utility for structs (interfaces/objects) containing RemoteData of mixed value types
  */
 export declare const sequenceRemoteDataStruct: <S, R, E, NER extends Record<string, never>>(r: (keyof NER extends never ? never : NER) & Record<string, never>) => never;
-//# sourceMappingURL=Apply.d.ts.map

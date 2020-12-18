@@ -50,12 +50,12 @@ const Loading = ({
   };
   /* Lottie adds ariaRole='button' by default, since that makes total sense PG 2/13/20 */
 
-  return size._type === 'size' ? _react.default.createElement(_reactLottie.default, {
+  return size._type === 'size' ? /*#__PURE__*/_react.default.createElement(_reactLottie.default, {
     ariaRole: "",
     options: defaultOptions,
     height: size.hw,
     width: size.hw
-  }) : _react.default.createElement(_reactLottie.default, {
+  }) : /*#__PURE__*/_react.default.createElement(_reactLottie.default, {
     ariaRole: "",
     options: defaultOptions,
     height: getHeight(size),

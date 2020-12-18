@@ -1,5 +1,7 @@
+import { NonEmptyString, UUID } from 'io-ts-types';
 import { AnyNewtype, Newtype } from 'newtype-ts';
-import { Overwrite, AnyTuple } from 'typelevel-ts';
+import { AnyTuple, Overwrite } from 'typelevel-ts';
+import { Ord } from '@monorail/sharedHelpers/fp-ts-imports';
 /**
  * Utility interface used to attach a tag & unique symbol to a Newtype's _URI
  * field.
@@ -87,6 +89,18 @@ export interface Tagged<S extends string, B> extends SetTag<'Tagged', Const<B, S
 export interface Key<A> extends SetTag<'Key', Const<string, A>> {
 }
 /**
+ * A phantom type just like `Key` but the underlying type is an io-ts-types UUID
+ * instead of a string.
+ */
+export interface UUIDKey<A> extends SetTag<'UUIDKey', Const<UUID, A>> {
+}
+/**
+ * Gets a prism that validates UUIDs.
+ *
+ * NOTE: You may not need this if using io-ts Codecs.
+ */
+export declare function getPrismUUID<A>(): import("monocle-ts").Prism<import("io-ts").Branded<string, import("io-ts-types").UUIDBrand>, UUIDKey<A>>;
+/**
  * A phantom type wrapper for expresing versions which are a part of
  * versioned entities.
  *
@@ -103,6 +117,12 @@ export interface Version<A> extends SetTag<'Version', Const<number, A>> {
  * providing extra safety by disambiguating between names for different types.
  */
 export interface Name<A> extends SetTag<'Name', Const<string, A>> {
+}
+/**
+ * A phantom type just like `Name` but the underlying type is an io-ts-types
+ * NonEmptyString instead of a string.
+ */
+export interface NonEmptyName<A> extends SetTag<'NonEmptyName', Const<NonEmptyString, A>> {
 }
 /**
  * A specialized verson of the `Const` phantom type where the underlying
@@ -135,8 +155,8 @@ export interface Finite extends SimSpaceNewtype<NewtypeURI<'Finite'>, number> {
 export declare const prismFinite: import("monocle-ts").Prism<number, Finite>;
 export interface IsoDate extends SimSpaceNewtype<NewtypeURI<'IsoDate'>, string> {
 }
+export declare const ordIsoDate: Ord.Ord<IsoDate>;
 export declare const prismIsoDate: import("monocle-ts").Prism<string, IsoDate>;
 export declare type CoerceNewtype<N extends AnyNewtype> = N extends Newtype<unknown, infer A> ? A : never;
 export declare const coerce: <N extends AnyNewtype>(n: N) => CoerceNewtype<N>;
 export declare const coerceToString: <S extends string | Newtype<unknown, string>>(s: S) => string;
-//# sourceMappingURL=newtypes.d.ts.map

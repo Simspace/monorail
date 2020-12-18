@@ -1,5 +1,5 @@
-import Portal from '@reach/portal'
 import React, { FC } from 'react'
+import Portal from '@reach/portal'
 
 export type PortalControllerProps = {
   /**

@@ -1,0 +1,79 @@
+---
+id: app-icon
+title: App Icon
+sidebar_label: App Icon
+---
+
+import { ShowCase } from '../docComponents/ShowCase'
+import { css } from 'styled-components'
+import { AppName, BorderRadius, borderRadius } from '@monorail/helpers/exports'
+import { AppIcon } from '@monorail/visualComponents/appIcon/AppIcon'
+const appIconCss = css`
+  ${borderRadius(BorderRadius.XLarge)};
+  height: 64px;
+  width: 64px;
+`
+
+<!--
+TODO (Docusaurus): Need to apply styles without appearing in live editor
+What did not work: appIconCss above, css prop
+-->
+
+App Icons are unique identifiers that communicate to a user the context of the actions within.
+
+<ShowCase>
+  <AppIcon appName={AppName.Events} style={{ height: 64, width: 64 }} />
+</ShowCase>
+
+## Usage
+
+App Icons communicate the context of actions. They are also used as navigation items signifying the app you are about to go to. They are typically placed throughout the UI, in places like:
+
+- Cards
+- Sections
+- Navigation
+
+## Principles
+
+**Color**  
+App Icons should have the background color associated with that app.
+
+**Shape**  
+App Icons are always square and have rounded corners.
+
+**Size**  
+App Icons are always square and have rounded corners
+
+## Types
+
+### Events
+
+```tsx live
+<AppIcon appName={AppName.Events} style={{ height: 64, width: 64 }} />
+```
+
+### Content
+
+```tsx live
+<AppIcon appName={AppName.Repo} style={{ height: 64, width: 64 }} />
+```
+
+### Reports & Analytics
+
+```tsx live
+<AppIcon appName={AppName.ReportsAnalytics} style={{ height: 64, width: 64 }} />
+```
+
+### Tech Ops
+
+```tsx live
+<AppIcon appName={AppName.TechOps} style={{ height: 64, width: 64 }} />
+```
+
+### Admin
+
+```tsx live
+<AppIcon appName={AppName.Admin} style={{ height: 64, width: 64 }} />
+```
+
+<!-- TODO: Add component demo https://design.simspace.com/visual-components/app-icon -->

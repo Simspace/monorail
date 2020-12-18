@@ -1,4 +1,4 @@
-import { left, right, fold } from 'fp-ts/lib/Either'
+import { fold, left, right } from 'fp-ts/lib/Either'
 
 describe('fold (Either)', () => {
   const f = (l: string) => `Error: ${l}`

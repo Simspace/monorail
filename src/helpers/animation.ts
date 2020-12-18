@@ -1,7 +1,7 @@
 import {
   css,
-  keyframes,
   Keyframes,
+  keyframes,
   SimpleInterpolation,
 } from 'styled-components'
 

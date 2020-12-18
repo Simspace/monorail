@@ -1,7 +1,7 @@
-/// <reference types="@monorail/typings/styled-components" />
 import React, { MouseEvent, PropsWithChildren, ReactNode, StatelessComponent } from 'react';
 import { SimpleInterpolation } from 'styled-components';
 import { AppName } from '@monorail/helpers/exports';
+import { CSSProp } from '@monorail/helpers/styled-components';
 import { CommonComponentType } from '@monorail/types';
 import { IconType } from '@monorail/visualComponents/icon/IconType';
 import { ModalSize } from '@monorail/visualComponents/modals/modalTypes';
@@ -29,9 +29,13 @@ export declare type BBModalSize = {
     size: ModalSize;
 };
 export declare type BBModalBackgroundProps = BBModalSize & PropsWithChildren<CommonComponentType>;
-export declare const BBModalBackground: any;
-export declare const BBModalHeaderContainer: any;
-export declare const BBModalHeaderRow: any;
+export declare const BBModalBackground: import("styled-components").StyledComponent<React.ForwardRefExoticComponent<BBModalSize & CommonComponentType & {
+    children?: React.ReactNode;
+} & React.RefAttributes<HTMLDivElement>>, import("../../helpers/theme").GlobalAppThemeInterface, BBModalBackgroundProps, never>;
+export declare const BBModalHeaderContainer: import("styled-components").StyledComponent<"div", import("../../helpers/theme").GlobalAppThemeInterface, BBModalSize & {
+    cssOverrides: SimpleInterpolation | CSSProp;
+}, never>;
+export declare const BBModalHeaderRow: import("styled-components").StyledComponent<"div", import("../../helpers/theme").GlobalAppThemeInterface, BBModalSize, never>;
 declare type BBModalHeaderProps = BBModalSize & {
     appIcon?: AppName;
     customCloseButton?: ReactNode;
@@ -40,20 +44,24 @@ declare type BBModalHeaderProps = BBModalSize & {
     iconRight?: IconType;
     onClose?: (event: MouseEvent) => void;
     title: string;
-    cssOverrides?: SimpleInterpolation;
+    titleId?: string;
+    cssOverrides?: SimpleInterpolation | CSSProp;
 };
 declare type DefaultCloseButtonProps = Pick<BBModalHeaderProps, 'headerRowChildren' | 'onClose'>;
 export declare const DefaultCloseButton: ({ headerRowChildren, onClose, }: DefaultCloseButtonProps) => JSX.Element;
 export declare const BBModalHeader: StatelessComponent<BBModalHeaderProps>;
-export declare const BBModalFooter: any;
-export declare const BBModalOverlayContainer: any;
+export declare const BBModalFooter: import("styled-components").StyledComponent<"div", import("../../helpers/theme").GlobalAppThemeInterface, {}, never>;
+export declare const BBModalOverlayContainer: import("styled-components").StyledComponent<"div", import("../../helpers/theme").GlobalAppThemeInterface, BBModalOverlayProps, never>;
 export declare type BBModalOverlayProps = CommonComponentType & {
     isOpen: boolean;
     onClick?: (event: MouseEvent<HTMLDivElement>) => void;
     chromeless?: boolean;
 };
 export declare const BBModalOverlay: StatelessComponent<BBModalOverlayProps>;
-export declare const BBModalContainer: any;
-export declare const BBModalContent: any;
+export declare const BBModalContainer: import("styled-components").StyledComponent<"div", import("../../helpers/theme").GlobalAppThemeInterface, CommonComponentType & {
+    isOpen: boolean;
+    usesScaleAnimation: boolean;
+    zIndex?: number | undefined;
+}, never>;
+export declare const BBModalContent: import("styled-components").StyledComponent<"div", import("../../helpers/theme").GlobalAppThemeInterface, CommonComponentType, never>;
 export {};
-//# sourceMappingURL=Modals.d.ts.map

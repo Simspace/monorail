@@ -1,0 +1,98 @@
+---
+id: tags
+title: Tags
+sidebar_label: Tags
+---
+
+import { ShowCase } from '../docComponents/ShowCase'
+import {
+  Tag,
+  TagIcon,
+  TagCircle,
+  TagLabel,
+  TagClose,
+  TagIconClose,
+} from '@monorail/visualComponents/tags/Tag'
+import { getColor, Colors } from '@monorail/helpers/exports'
+
+:::caution Issues
+
+- css prop gets applied to element instead of SC generating a class.
+
+:::
+
+Tags are a compact element that represents an attribute.
+
+<ShowCase>
+  <TagIcon icon="rocket">Tag</TagIcon>
+</ShowCase>
+
+## Usage
+
+Use Tags to visually label UI objects for quick recognition and navigation
+
+- Categories
+- Metadata
+
+## Principles
+
+**Multiple**  
+Use Tags when content is mapped to multiple categories, and the user needs a way to differentiate between them.
+
+**Filterable**  
+Tags can also be used as a method of filtering data, to show only items within that particular category.
+
+**Distinct**  
+The distinctive visual style of labels deliberately deviates from Buttons. This prevents users from confusing labels with Buttons and allows labels to co-exist with other components without competing for a user's attention with primary and secondary Buttons on the screen.
+
+## Types
+
+### Tag
+
+You can include an Icon in a Tag. The Icon should be aligned to the left of the text.
+
+```tsx live
+<Tag icon="person" label="tag" />
+```
+
+### Tag | Circle Icon
+
+Circular Tag with no text label
+
+```tsx live
+<Tag icon="person" />
+```
+
+### Tag | Label
+
+A tag with text label and no icon
+
+```tsx live
+<TagLabel>Your Tag Here</TagLabel>
+```
+
+### Tag | Icon
+
+A tag with text label and left icon
+
+```tsx live
+<TagIcon icon="person">Your Tag Here</TagIcon>
+```
+
+### Tag | Close
+
+A tag with text label and right icon close button
+
+```tsx live
+<TagClose onClose={() => alert('closed')}>Close Me</TagClose>
+```
+
+### Tag | Icon | Close
+
+A tag with left icon, text label, and right icon close button.
+
+```tsx live
+<TagIconClose icon="person" onClose={() => alert('closed')}>
+  Close Me
+</TagIconClose>
+```

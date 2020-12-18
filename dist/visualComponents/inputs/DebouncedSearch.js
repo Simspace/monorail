@@ -28,7 +28,7 @@ const DebouncedSearch = props => {
     initialValue: value,
     onChange
   });
-  return _react.default.createElement(_Search.Search, _extends({
+  return /*#__PURE__*/_react.default.createElement(_Search.Search, _extends({
     name: name,
     onChange: updateLocalValue,
     onBlur: onBlur,

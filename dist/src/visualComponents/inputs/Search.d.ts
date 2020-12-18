@@ -1,11 +1,11 @@
-import { ChangeEvent, FC, MouseEvent, RefObject } from 'react';
+import React, { ChangeEvent, FC, MouseEvent } from 'react';
 import { SimpleInterpolation } from 'styled-components';
-export declare const SearchContainer: any;
-export declare const SearchInput: any;
+export declare const SearchContainer: import("styled-components").StyledComponent<"label", import("../../helpers/theme").GlobalAppThemeInterface, SearchContainerProps, never>;
+export declare const SearchInput: import("styled-components").StyledComponent<"input", import("../../helpers/theme").GlobalAppThemeInterface, SearchInputProps, never>;
 export declare type SearchContainerProps = {
     cssOverrides?: SimpleInterpolation;
     width?: number;
-    searchRef?: RefObject<HTMLInputElement>;
+    searchRef?: React.Ref<HTMLInputElement>;
 };
 export declare type SearchInputProps = {
     onClick?: (event: MouseEvent<HTMLInputElement>) => void;
@@ -19,4 +19,3 @@ export declare type SearchProps = SearchContainerProps & SearchInputProps & {
     placeholder?: string;
 };
 export declare const Search: FC<SearchProps>;
-//# sourceMappingURL=Search.d.ts.map

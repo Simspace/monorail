@@ -3,13 +3,13 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.ActionsButtons = exports.ActionButton = exports.CatalogEntryPermission = void 0;
+exports.makeActionsMenuAction = exports.makeActionsMenuListItem = exports.makeTextButtonAction = exports.ActionsButtons = exports.ActionButton = exports.CatalogEntryPermission = void 0;
 
 var _styledComponents = _interopRequireWildcard(require("styled-components"));
 
-var _Array = require("fp-ts/lib/Array");
-
 var _react = _interopRequireDefault(require("react"));
+
+var _Array = require("fp-ts/lib/Array");
 
 var _color = require("../../helpers/color");
 
@@ -58,9 +58,7 @@ exports.ActionButton = ActionButton;
   ActionButton["InfoButton"] = "INFO_BUTTON";
 })(ActionButton || (exports.ActionButton = ActionButton = {}));
 
-const ActionsButtonsBox =
-/*#__PURE__*/
-_styledComponents.default.div.withConfig({
+const ActionsButtonsBox = /*#__PURE__*/_styledComponents.default.div.withConfig({
   displayName: "ActionsButtons__ActionsButtonsBox",
   componentId: "sc-1sqcecj-0"
 })(["display:flex;> *{margin-left:8px;}"]);
@@ -69,7 +67,7 @@ const makeTextButton = ({
   action,
   size,
   display
-}) => action.check ? _react.default.createElement(_Button.Button, {
+}) => action.check ? /*#__PURE__*/_react.default.createElement(_Button.Button, {
   key: `${action.actionProps.label}-${action.actionProps.iconLeft}`,
   size: size,
   display: display,
@@ -88,7 +86,7 @@ const makeIconButton = ({
   if (action.check) {
     switch (action.type) {
       case ActionButton.IconButton:
-        return _react.default.createElement(_IconButton.IconButton, {
+        return /*#__PURE__*/_react.default.createElement(_IconButton.IconButton, {
           key: `${action.actionProps.icon}`,
           icon: (_action$actionProps$i = action.actionProps.icon) !== null && _action$actionProps$i !== void 0 ? _action$actionProps$i : '',
           size: size,
@@ -99,7 +97,7 @@ const makeIconButton = ({
 
       case ActionButton.TextButton:
         const icon = (0, _typeGuards.isNil)(action.actionProps.iconLeft) ? action.actionProps.iconRight : action.actionProps.iconLeft;
-        return _react.default.createElement(_IconButton.IconButton, {
+        return /*#__PURE__*/_react.default.createElement(_IconButton.IconButton, {
           key: `${icon}`,
           icon: icon !== null && icon !== void 0 ? icon : '',
           size: size,
@@ -118,24 +116,22 @@ const makeIconButton = ({
 
 const makeDropdownButton = action => {
   const accessibleListItems = action.actionProps.listItems.filter(action_ => action_.check);
-  return (0, _Array.isEmpty)(accessibleListItems) ? null : _react.default.createElement(_DropdownButton.DropdownButton, {
+  return (0, _Array.isEmpty)(accessibleListItems) ? null : /*#__PURE__*/_react.default.createElement(_DropdownButton.DropdownButton, {
     listItems: accessibleListItems.map(listItem => listItem.actionProps),
     disabled: action.actionProps.disabled
   });
 };
 
-var _StyledSpan =
-/*#__PURE__*/
-_styledComponents.default.span.withConfig({
+var _StyledSpan = /*#__PURE__*/(0, _styledComponents.default)("span").withConfig({
   displayName: "ActionsButtons___StyledSpan",
   componentId: "sc-1sqcecj-1"
 })(["margin-top:4px;"]);
 
 const makeInfoButton = action => {
-  return _react.default.createElement(_Tooltip.TooltipMonorail, {
+  return /*#__PURE__*/_react.default.createElement(_Tooltip.TooltipMonorail, {
     key: action.actionProps.info,
     label: action.actionProps.info
-  }, _react.default.createElement(_StyledSpan, null, _react.default.createElement(_Icon.Icon, {
+  }, /*#__PURE__*/_react.default.createElement(_StyledSpan, null, /*#__PURE__*/_react.default.createElement(_Icon.Icon, {
     icon: "info",
     color: _color.Colors.Black54a
   })));
@@ -146,7 +142,7 @@ const ActionsMenu_ = ({
   document
 }) => {
   const accessibleActions = action.actionProps.actions.filter(action_ => action_.check);
-  return (0, _Array.isEmpty)(accessibleActions) ? null : _react.default.createElement(_ActionsMenu.ActionsMenu, {
+  return (0, _Array.isEmpty)(accessibleActions) ? null : /*#__PURE__*/_react.default.createElement(_ActionsMenu.ActionsMenu, {
     actions: accessibleActions.map(action_ => action_.actionProps)
   });
 };
@@ -156,7 +152,8 @@ const ActionsButtons = ({
   document,
   iconOnly,
   size,
-  actions = []
+  actions = [],
+  onClick = () => {}
 }) => {
   const {
     actionsMenus,
@@ -204,7 +201,7 @@ const ActionsButtons = ({
         };
 
       case ActionButton.ActionsMenu:
-        const actionsMenu = _react.default.createElement(ActionsMenu_, {
+        const actionsMenu = /*#__PURE__*/_react.default.createElement(ActionsMenu_, {
           key: idx,
           action: action,
           document: document
@@ -227,7 +224,33 @@ const ActionsButtons = ({
     infoButtons: [],
     actionsMenus: []
   });
-  return _react.default.createElement(ActionsButtonsBox, null, textButtons, iconButtons, dropdownButtons, infoButtons, actionsMenus);
+  return /*#__PURE__*/_react.default.createElement(ActionsButtonsBox, {
+    onClick: onClick
+  }, textButtons, iconButtons, dropdownButtons, infoButtons, actionsMenus);
 };
 
 exports.ActionsButtons = ActionsButtons;
+
+const makeTextButtonAction = props => ({
+  type: ActionButton.TextButton,
+  actionProps: props.actionProps,
+  check: props.check
+});
+
+exports.makeTextButtonAction = makeTextButtonAction;
+
+const makeActionsMenuListItem = props => ({
+  actionProps: props.actionsProps,
+  check: props.check
+});
+
+exports.makeActionsMenuListItem = makeActionsMenuListItem;
+
+const makeActionsMenuAction = actions => ({
+  type: ActionButton.ActionsMenu,
+  actionProps: {
+    actions
+  }
+});
+
+exports.makeActionsMenuAction = makeActionsMenuAction;

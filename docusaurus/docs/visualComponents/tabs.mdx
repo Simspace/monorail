@@ -1,0 +1,57 @@
+---
+id: tabs
+title: Tabs
+sidebar_label: Tabs
+---
+
+import { ShowCase } from '../docComponents/ShowCase'
+
+import { Tab } from '@monorail/visualComponents/tabs/Tab'
+import { TabBar } from '@monorail/visualComponents/tabs/TabBar'
+
+Tabs organize content across different screens, data sets, and other interactions.
+
+<ShowCase>
+  <TabBar>
+    <Tab>First Tab</Tab>
+    <Tab>Second Tab</Tab>
+    <Tab>Third Tab</Tab>
+  </TabBar>
+</ShowCase>
+
+## Usage
+
+Tabs organize and allow navigation between groups of content that are at the same level of hierarchy.
+
+## Principles
+
+**Informative**  
+Tabs should be named appropriately to indicate the content they contain.
+
+**Order**  
+Tab order should be consistent across an experience. Tabs with related content should be grouped adjacent to each other.
+
+**Reactive**  
+Tab behavior during standard, focus, hover, and active states are important because it lets users know where they are in the experience.
+
+## Types
+
+### Tab
+
+A Tab Bar is constructed with multiple Tab components. Tab has a background color upon hover.
+
+```tsx live
+<Tab>Tab</Tab>
+```
+
+### Tab Bar
+
+The Tab Bar indicates the active tab with a blue line underneath its text.
+
+```tsx live
+<TabBar>
+  <Tab>First Tab</Tab>
+  <Tab>Second Tab</Tab>
+  <Tab>Third Tab</Tab>
+</TabBar>
+```

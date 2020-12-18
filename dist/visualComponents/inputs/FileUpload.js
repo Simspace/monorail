@@ -5,29 +5,29 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.FileUpload = exports.HiddenSingleFileInput = exports.FileType = void 0;
 
+var _react = _interopRequireWildcard(require("react"));
+
+var _styledComponents = _interopRequireDefault(require("styled-components"));
+
 var A = _interopRequireWildcard(require("fp-ts/lib/Array"));
-
-var O = _interopRequireWildcard(require("fp-ts/lib/Option"));
-
-var _pipeable = require("fp-ts/lib/pipeable");
 
 var _Foldable = require("fp-ts/lib/Foldable");
 
 var _Monoid = require("fp-ts/lib/Monoid");
 
-var _react = _interopRequireWildcard(require("react"));
+var O = _interopRequireWildcard(require("fp-ts/lib/Option"));
 
-var _styledComponents = _interopRequireDefault(require("styled-components"));
+var _pipeable = require("fp-ts/lib/pipeable");
 
 var _exports = require("../../helpers/exports");
+
+var _typeGuards = require("../../sharedHelpers/typeGuards");
 
 var _Button = require("../buttons/Button");
 
 var _buttonTypes = require("../buttons/buttonTypes");
 
 var _IconButton = require("../buttons/IconButton");
-
-var _typeGuards = require("../../sharedHelpers/typeGuards");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -37,19 +37,17 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
-const FileUploadWrapper =
-/*#__PURE__*/
-_styledComponents.default.div.withConfig({
+const FileUploadWrapper = /*#__PURE__*/_styledComponents.default.div.withConfig({
   displayName: "FileUpload__FileUploadWrapper",
   componentId: "sc-1gjxkvs-0"
 })(["", ";align-items:center;flex-grow:1;"], (0, _exports.flexFlow)('row'));
 
-const FileName =
-/*#__PURE__*/
-_styledComponents.default.div.withConfig({
+const FileName = /*#__PURE__*/_styledComponents.default.div.withConfig({
   displayName: "FileUpload__FileName",
   componentId: "sc-1gjxkvs-1"
-})(["margin:0 16px;"]);
+})(["margin:0 16px;"]); // This is not necessarily exhaustive for all file types;
+// if you see a type not included here, please add it
+
 
 let FileType; // [MM 2020-07-30] Convert a known file type from our finite definition to a
 // valid "unique specifier" for use with the file input's `accept` field. This
@@ -68,6 +66,7 @@ exports.FileType = FileType;
   FileType[FileType["VirtualAppliance"] = 6] = "VirtualAppliance";
   FileType[FileType["Yaml"] = 7] = "Yaml";
   FileType[FileType["Excel"] = 8] = "Excel";
+  FileType[FileType["Json"] = 9] = "Json";
 })(FileType || (exports.FileType = FileType = {}));
 
 const fileTypeToAccept = f => {
@@ -98,12 +97,16 @@ const fileTypeToAccept = f => {
 
     case FileType.Excel:
       return '.xlsx';
+
+    case FileType.Json:
+      return '.json';
   }
 };
 
 const HiddenSingleFileInput = props => {
   const accept = (0, _typeGuards.isNonEmptyArray)(props.accept) ? (0, _pipeable.pipe)(props.accept, A.map(fileTypeToAccept), xs => (0, _Foldable.intercalate)(_Monoid.monoidString, A.array)(',', xs)) : undefined;
-  return _react.default.createElement("input", {
+  return /*#__PURE__*/_react.default.createElement("input", {
+    className: "deprecated-input",
     ref: props.inputRef,
     name: props.name,
     hidden: true,
@@ -128,8 +131,8 @@ const FileUpload = props => {
     showFilename = true,
     ...inputProps
   } = props;
-  const ref = (0, _react.createRef)();
-  return _react.default.createElement(FileUploadWrapper, null, _react.default.createElement(_Button.Button, {
+  const ref = /*#__PURE__*/(0, _react.createRef)();
+  return /*#__PURE__*/_react.default.createElement(FileUploadWrapper, null, /*#__PURE__*/_react.default.createElement(_Button.Button, {
     iconLeft: iconLeft,
     display: buttonType,
     onClick: () => {
@@ -137,12 +140,12 @@ const FileUpload = props => {
         ref.current.click();
       }
     }
-  }, label), showFilename && _react.default.createElement(FileName, null, (0, _typeGuards.isUndefined)(value) ? 'No file chosen' : value.name), value !== undefined && _react.default.createElement(_IconButton.IconButton, {
+  }, label), showFilename && /*#__PURE__*/_react.default.createElement(FileName, null, (0, _typeGuards.isUndefined)(value) ? 'No file chosen' : value.name), value !== undefined && /*#__PURE__*/_react.default.createElement(_IconButton.IconButton, {
     icon: "close",
     size: _buttonTypes.ButtonSize.Default,
     display: _buttonTypes.ButtonDisplay.Chromeless,
     onClick: () => props.onChange(O.none)
-  }), _react.default.createElement(HiddenSingleFileInput, _extends({}, inputProps, {
+  }), /*#__PURE__*/_react.default.createElement(HiddenSingleFileInput, _extends({}, inputProps, {
     inputRef: ref
   })));
 };

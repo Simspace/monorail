@@ -13,15 +13,15 @@ var _exports = require("../../helpers/exports");
 
 var _styledComponents2 = _interopRequireDefault(require("../../helpers/styled-components"));
 
-var _Text = require("../typography/Text");
-
-var _Icon = require("../icon/Icon");
-
 var _typeGuards = require("../../sharedHelpers/typeGuards");
 
 var _Button = require("../buttons/Button");
 
 var _buttonTypes = require("../buttons/buttonTypes");
+
+var _Icon = require("../icon/Icon");
+
+var _Text = require("../typography/Text");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -73,14 +73,14 @@ const titleMargins = {
 };
 exports.titleMargins = titleMargins;
 const messageMargins = {
-  [EmptyStateSizes.Small]: '0 0 8px 0',
-  [EmptyStateSizes.Large]: '0 0 8px 0'
+  [EmptyStateSizes.Small]: '0 0 16px 0',
+  [EmptyStateSizes.Large]: '0 0 16px 0'
 };
 exports.messageMargins = messageMargins;
 
 const getMessageMaxWidth = size => {
   const messageMaxWidths = {
-    [EmptyStateSizes.Small]: 184,
+    [EmptyStateSizes.Small]: 272,
     [EmptyStateSizes.Large]: 400
   };
   return messageMaxWidths[size];
@@ -88,23 +88,19 @@ const getMessageMaxWidth = size => {
 
 exports.getMessageMaxWidth = getMessageMaxWidth;
 
-var _StyledIcon =
-/*#__PURE__*/
-(0, _styledComponents.default)(_Icon.Icon).withConfig({
+var _StyledIcon = /*#__PURE__*/(0, _styledComponents.default)(_Icon.Icon).withConfig({
   displayName: "EmptyState___StyledIcon",
   componentId: "sc-92oi23-0"
 })(["margin:", ";"], p => p._css);
 
-var _StyledText =
-/*#__PURE__*/
-(0, _styledComponents.default)(_Text.Text).withConfig({
+var _StyledText = /*#__PURE__*/(0, _styledComponents.default)(_Text.Text).withConfig({
   displayName: "EmptyState___StyledText",
   componentId: "sc-92oi23-1"
 })(["max-width:", "px;"], p => p._css2);
 
 const EmptyState = props => {
   const {
-    icon,
+    icon = 'shrug',
     size = EmptyStateSizes.Small,
     title = '',
     message,
@@ -117,23 +113,23 @@ const EmptyState = props => {
     text: buttonText,
     ...buttonProps
   } = button;
-  return _react.default.createElement(Container, otherProps, _react.default.createElement(_StyledIcon, {
+  return /*#__PURE__*/_react.default.createElement(Container, otherProps, /*#__PURE__*/_react.default.createElement(_StyledIcon, {
     size: iconSizes[size],
     icon: icon,
     color: _exports.Colors.Gray54,
     _css: iconMargins[size]
-  }), _react.default.createElement(TextContainer, null, (0, _typeGuards.isNonEmptyString)(title) && _react.default.createElement(_Text.Text, {
+  }), /*#__PURE__*/_react.default.createElement(TextContainer, null, (0, _typeGuards.isNonEmptyString)(title) && /*#__PURE__*/_react.default.createElement(_Text.Text, {
     fontSize: titleSizes[size],
     fontWeight: _exports.FontWeights.Medium,
     color: _exports.Colors.Gray74,
     margin: titleMargins[size]
-  }, title), _react.default.createElement(_StyledText, {
+  }, title), /*#__PURE__*/_react.default.createElement(_StyledText, {
     fontSize: messageSizes[size],
     fontWeight: _exports.FontWeights.Book,
     color: _exports.Colors.Gray54,
     margin: messageMargins[size],
     _css2: getMessageMaxWidth(size)
-  }, message)), (0, _typeGuards.isNonEmptyString)(buttonText) && _react.default.createElement(_Button.Button, _extends({
+  }, message)), (0, _typeGuards.isNonEmptyString)(buttonText) && /*#__PURE__*/_react.default.createElement(_Button.Button, _extends({
     display: _buttonTypes.ButtonDisplay.Secondary
   }, buttonProps), buttonText));
 };

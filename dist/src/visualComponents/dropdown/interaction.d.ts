@@ -6,7 +6,6 @@ export declare interface InteractionController<T> {
     stateReducer: StateReducer<T>;
 }
 export declare type KeyboardInteractionHook<T> = (parser: DropdownParser<T>) => InteractionController<T>;
-export declare const useKeyboardInteraction: <T extends DropdownType>(options?: {
+export declare const createKeyboardInteraction: <T extends DropdownType>(options?: {
     openOnInteraction: boolean;
 } | undefined) => (parser: DropdownParser<T>) => InteractionController<T>;
-//# sourceMappingURL=interaction.d.ts.map

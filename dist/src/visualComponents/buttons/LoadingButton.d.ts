@@ -24,4 +24,3 @@ export declare class LoadingButton extends Component<Props, State> {
     render(): JSX.Element;
 }
 export {};
-//# sourceMappingURL=LoadingButton.d.ts.map

@@ -3,12 +3,12 @@ import * as O from 'fp-ts/lib/Option'
 
 import { ordRecordWithNameLower } from '../Ord'
 import {
+  fromFoldableFilterMap,
   keys,
   omit,
   pick,
   prop,
   sortRecords,
-  fromFoldableFilterMap,
 } from '../Record'
 
 describe('keys', () => {

@@ -21,29 +21,30 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
-var _StyledSpan =
-/*#__PURE__*/
-_styledComponents.default.span.withConfig({
+var _StyledSpan = /*#__PURE__*/(0, _styledComponents.default)("span").withConfig({
   displayName: "Text___StyledSpan",
   componentId: "ejbz23-0"
-})(["", ";color:", ";font-style:", ";"], p => p._css, p => p._css2, p => p._css3);
+})(["", ";color:", ";font-style:", ";", ""], p => p._css, p => p._css2, p => p._css3, p => p._css4);
 
-const Text = props => {
+const Text = /*#__PURE__*/_react.default.forwardRef((props, ref) => {
   const {
     fontSize = _typography.FontSizes.Title5,
     fontStyle = _typography.FontStyles.Initial,
     fontWeight = _typography.FontWeights.Medium,
     margin = '',
     color = _color.Colors.Black89a,
+    noWrap = false,
     children,
     ...domProps
   } = props;
-  return _react.default.createElement(_StyledSpan, _extends({}, domProps, {
+  return /*#__PURE__*/_react.default.createElement(_StyledSpan, _extends({}, domProps, {
+    ref: ref,
     _css: (0, _typography.typography)(fontWeight, fontSize, margin),
     _css2: (0, _color.getColor)(color),
-    _css3: fontStyle
+    _css3: fontStyle,
+    _css4: noWrap ? (0, _styledComponents.css)(["overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"]) : (0, _styledComponents.css)(["overflow-wrap:break-word;"])
   }), children);
-};
+});
 /**
  * @deprecated Use Text instead. This exist for supporting legacy code only
  * */
@@ -51,12 +52,10 @@ const Text = props => {
 
 exports.Text = Text;
 
-var _StyledSpan2 =
-/*#__PURE__*/
-_styledComponents.default.span.withConfig({
+var _StyledSpan2 = /*#__PURE__*/(0, _styledComponents.default)("span").withConfig({
   displayName: "Text___StyledSpan2",
   componentId: "ejbz23-1"
-})(["", ";color:", ";"], p => p._css4, p => p._css5);
+})(["", ";color:", ";"], p => p._css5, p => p._css6);
 
 const TextDeprecated = props => {
   const {
@@ -67,9 +66,9 @@ const TextDeprecated = props => {
     children,
     ...domProps
   } = props;
-  return _react.default.createElement(_StyledSpan2, _extends({}, domProps, {
-    _css4: (0, _typography.typographyDeprecated)(fontWeight, fontSize, margin),
-    _css5: (0, _color.getColor)(color)
+  return /*#__PURE__*/_react.default.createElement(_StyledSpan2, _extends({}, domProps, {
+    _css5: (0, _typography.typographyDeprecated)(fontWeight, fontSize, margin),
+    _css6: (0, _color.getColor)(color)
   }), children);
 };
 

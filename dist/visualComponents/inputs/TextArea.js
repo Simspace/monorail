@@ -5,6 +5,10 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.TextArea = exports.TextAreaInput = exports.TextAreaContainer = void 0;
 
+var _react = _interopRequireWildcard(require("react"));
+
+var _styledComponents = _interopRequireWildcard(require("styled-components"));
+
 var _exports = require("../../helpers/exports");
 
 var _typeGuards = require("../../sharedHelpers/typeGuards");
@@ -17,10 +21,6 @@ var _StdErr = require("./StdErr");
 
 var _ViewInput = require("./ViewInput");
 
-var _react = _interopRequireWildcard(require("react"));
-
-var _styledComponents = _interopRequireWildcard(require("styled-components"));
-
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
@@ -30,9 +30,7 @@ function _extends() { _extends = Object.assign || function (target) { for (var i
 /*
  * Styles
  */
-const TextAreaContainer =
-/*#__PURE__*/
-_styledComponents.default.label.withConfig({
+const TextAreaContainer = /*#__PURE__*/_styledComponents.default.label.withConfig({
   displayName: "TextArea__TextAreaContainer",
   componentId: "sc-1vltn06-0"
 })(({
@@ -42,9 +40,7 @@ _styledComponents.default.label.withConfig({
 
 exports.TextAreaContainer = TextAreaContainer;
 
-const TextAreaInput =
-/*#__PURE__*/
-_styledComponents.default.textarea.withConfig({
+const TextAreaInput = /*#__PURE__*/_styledComponents.default.textarea.withConfig({
   displayName: "TextArea__TextAreaInput",
   componentId: "sc-1vltn06-1"
 })(({
@@ -86,6 +82,8 @@ const TextArea = props => {
     msg,
     hideStdErr = false,
     textareaRef,
+    focus = false,
+    textProps,
     ...otherProps
   } = props;
   const internalRef = (0, _react.useRef)(null);
@@ -113,16 +111,35 @@ const TextArea = props => {
     onChange && onChange(e);
   };
 
-  return _react.default.createElement(TextAreaContainer, {
+  (0, _react.useLayoutEffect)(() => {
+    // If a parent element has `display: none` or something else that prevents
+    // focus (as might be the case with a modal, e.g.), this hook could fire
+    // before React updates that, and so the focus call will do nothing. Using
+    // this setTimeout delays it for a tick, giving React time to do its update,
+    // _then_ focusing the text area.
+    if (focus) {
+      setTimeout(() => {
+        if (textArea.current) {
+          textArea.current.focus();
+
+          if (value) {
+            textArea.current.setSelectionRange(value.length, value.length);
+          }
+        }
+      }, 0);
+    } // eslint-disable-next-line react-hooks/exhaustive-deps
+
+  }, [textArea, focus]);
+  return /*#__PURE__*/_react.default.createElement(TextAreaContainer, {
     cssOverrides: cssOverrides,
     className: className,
     display: display
-  }, display === _inputTypes.DisplayType.Edit ? _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_Label.Label, {
+  }, display === _inputTypes.DisplayType.Edit ? /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_Label.Label, {
     label: label,
     required: required,
     err: err,
     display: display
-  }), _react.default.createElement(TextAreaInput, _extends({
+  }), /*#__PURE__*/_react.default.createElement(TextAreaInput, _extends({
     chromeless: chromeless,
     className: "new-textarea",
     compact: compact,
@@ -139,12 +156,13 @@ const TextArea = props => {
     onBlur: onBlur,
     name: name,
     err: err
-  }, otherProps)), !hideStdErr && _react.default.createElement(_StdErr.StdErr, {
+  }, otherProps)), !hideStdErr && /*#__PURE__*/_react.default.createElement(_StdErr.StdErr, {
     err: err,
     msg: msg
-  })) : _react.default.createElement(_ViewInput.ViewInput, {
+  })) : /*#__PURE__*/_react.default.createElement(_ViewInput.ViewInput, {
     label: label,
-    value: value
+    value: value,
+    textProps: textProps
   }));
 };
 

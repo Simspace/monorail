@@ -3,13 +3,13 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.useDefaultDropdownRender = exports.useCustomHandler = exports.DropdownPlaceholder = void 0;
+exports.createDefaultDropdownRender = exports.createCustomHandler = exports.DropdownPlaceholder = void 0;
 
 var _styledComponents = _interopRequireDefault(require("styled-components"));
 
-var O = _interopRequireWildcard(require("fp-ts/lib/Option"));
-
 var _react = _interopRequireWildcard(require("react"));
+
+var O = _interopRequireWildcard(require("fp-ts/lib/Option"));
 
 var _pipeable = require("fp-ts/lib/pipeable");
 
@@ -54,7 +54,7 @@ const HandlerWrapper = _styledComponents2.default.div`
   flex: 1;
   min-height: 1rem;
   overflow: hidden;
-  padding: 4px 30px 4px 8px;
+  padding: 6px 30px 6px 8px;
   position: relative;
 `;
 
@@ -94,7 +94,7 @@ const TextFieldStyles = (searching = false) => (0, _styledComponents2.css)`
 const List = ({
   children
 }) => {
-  return _react.default.createElement(_react.default.Fragment, null, children);
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, children);
 };
 
 const Item = ({
@@ -103,16 +103,14 @@ const Item = ({
   highlighted = false,
   selected = false
 }) => {
-  return _react.default.createElement(_DropdownItem.DropdownItem, {
+  return /*#__PURE__*/_react.default.createElement(_DropdownItem.DropdownItem, {
     selected: selected,
     highlighted: highlighted,
     disabled: disabled
   }, children);
 };
 
-var _StyledSpan =
-/*#__PURE__*/
-_styledComponents.default.span.withConfig({
+var _StyledSpan = /*#__PURE__*/(0, _styledComponents.default)("span").withConfig({
   displayName: "render___StyledSpan",
   componentId: "tq4m77-0"
 })(["", ""], _exports.ellipsis);
@@ -120,18 +118,14 @@ _styledComponents.default.span.withConfig({
 const renderHandlerLabelDefault = ({
   downshiftProps,
   handlerProps
-}) => (0, _pipeable.pipe)(O.fromNullable(downshiftProps.selectedItem), O.fold(() => _react.default.createElement(DropdownPlaceholder, null, handlerProps.placeholder), item => _react.default.createElement(_StyledSpan, null, downshiftProps.itemToString(item))));
+}) => (0, _pipeable.pipe)(O.fromNullable(downshiftProps.selectedItem), O.fold(() => /*#__PURE__*/_react.default.createElement(DropdownPlaceholder, null, handlerProps.placeholder), item => /*#__PURE__*/_react.default.createElement(_StyledSpan, null, downshiftProps.itemToString(item))));
 
-var _StyledTextField =
-/*#__PURE__*/
-(0, _styledComponents.default)(_TextField.TextField).withConfig({
+var _StyledTextField = /*#__PURE__*/(0, _styledComponents.default)(_TextField.TextField).withConfig({
   displayName: "render___StyledTextField",
   componentId: "tq4m77-1"
 })(["", ""], p => p._css);
 
-var _StyledIconButton =
-/*#__PURE__*/
-(0, _styledComponents.default)(_IconButton.IconButton).withConfig({
+var _StyledIconButton = /*#__PURE__*/(0, _styledComponents.default)(_IconButton.IconButton).withConfig({
   displayName: "render___StyledIconButton",
   componentId: "tq4m77-2"
 })(["margin:auto 0;"]);
@@ -152,19 +146,19 @@ const Handler = ({
     inputValue
   } = downshiftProps;
   const searching = isOpen && !(0, _typeGuards.isEmptyString)(inputValue);
-  return display === _inputTypes.DisplayType.Edit ? _react.default.createElement(HandlerWrapper, null, _react.default.createElement(_StyledTextField, _extends({}, textFieldProps, {
+  return display === _inputTypes.DisplayType.Edit ? /*#__PURE__*/_react.default.createElement(HandlerWrapper, null, /*#__PURE__*/_react.default.createElement(_StyledTextField, _extends({}, textFieldProps, {
     htmlValidation: false,
     iconLeft: searching ? 'search' : '',
     iconRight: !searching ? 'arrow_drop_down' : '',
     ref: inputRef,
     hideStdErr: true,
     _css: TextFieldStyles(searching)
-  })), _react.default.createElement(StyledHandler, {
+  })), /*#__PURE__*/_react.default.createElement(StyledHandler, {
     searching: searching
   }, customRender({
     handlerProps,
     downshiftProps
-  })), (0, _typeGuards.isNotNil)(downshiftProps.selectedItem) && clearable && _react.default.createElement(_StyledIconButton, {
+  })), (0, _typeGuards.isNotNil)(downshiftProps.selectedItem) && clearable && /*#__PURE__*/_react.default.createElement(_StyledIconButton, {
     icon: "close",
     display: _buttonTypes.ButtonDisplay.Chromeless,
     size: _buttonTypes.ButtonSize.Dense,
@@ -175,16 +169,16 @@ const Handler = ({
   });
 };
 
-const useCustomHandler = (customRender = renderHandlerLabelDefault) => props => _react.default.createElement(Handler, _extends({}, props, {
+const createCustomHandler = (customRender = renderHandlerLabelDefault) => props => /*#__PURE__*/_react.default.createElement(Handler, _extends({}, props, {
   customRender: customRender
 }));
 
-exports.useCustomHandler = useCustomHandler;
+exports.createCustomHandler = createCustomHandler;
 
-const useDefaultDropdownRender = () => ({
+const createDefaultDropdownRender = () => ({
   handler: Handler,
   item: Item,
   list: List
 });
 
-exports.useDefaultDropdownRender = useDefaultDropdownRender;
+exports.createDefaultDropdownRender = createDefaultDropdownRender;

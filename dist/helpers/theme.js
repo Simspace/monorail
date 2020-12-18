@@ -7,6 +7,8 @@ exports.getThemeColorBase = exports.getThemeColor = exports.monorailTheme = expo
 
 var _color = require("./color");
 
+var _colors = require("../v2/core/theme/colors");
+
 let Mode;
 exports.Mode = Mode;
 
@@ -47,6 +49,7 @@ const themeBase = {
   [ThemeColors.BrandSecondary]: _color.Colors.BrandDarkBlue
 };
 const monorailTheme = {
+  v2: _colors.monorailLightTheme,
   linkColor: _color.Colors.BrandLightBlue,
   brandAccentColor: _color.Colors.BrandDarkBlue,
   [ThemeColors.ApplicationPrimary]: _color.Colors.BrandLightBlue,
@@ -89,9 +92,6 @@ const monorailTheme = {
     table: {
       margin: 16
     }
-  },
-  pageHeader: {
-    showBreadCrumbs: true
   },
   introductionTagline: ["Don't just plan for the future.", 'Simulate it.'],
   introductionOctagonColor: '#1465FF',

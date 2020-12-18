@@ -1,5 +1,3 @@
-import { pipe } from 'fp-ts/lib/pipeable'
-
 export type ADTMember<ADT, Key extends string, Type extends string> = Extract<
   ADT,
   { [k in Key]: Type }
@@ -77,3 +75,7 @@ export const match = matchOn('tag')
  * ```
  */
 export const matchI = matchOnI('tag')
+
+export const matchS = <S extends string>(s: S) => <Out>(
+  matchObj: { [M in S]: () => Out },
+): Out => matchObj[s]()

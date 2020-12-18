@@ -1,2 +1,4 @@
 /// <reference path="react-router.d.ts" />
-/// <reference path="styled-components.d.ts" />
+
+declare const __CUSTOMER_VARIANT__: string
+declare const __DEBUG__: string

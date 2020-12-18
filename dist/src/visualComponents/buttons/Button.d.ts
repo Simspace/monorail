@@ -1,22 +1,21 @@
-/// <reference types="@monorail/typings/styled-components" />
 import React, { FC, MouseEvent, ReactNode, ReactType } from 'react';
 import { CommonComponentType, LinkProps } from '@monorail/types';
 import { ButtonDisplay, ButtonMode, ButtonSize } from '@monorail/visualComponents/buttons/buttonTypes';
 import { IconType } from '@monorail/visualComponents/icon/IconType';
 export declare const buttonDisplayCss: {
-    primary: import("styled-components").FlattenInterpolation<import("styled-components").ThemeProps<import("../../helpers/theme").GlobalAppThemeInterface>>;
-    secondary: import("styled-components").FlattenInterpolation<import("styled-components").ThemeProps<import("../../helpers/theme").GlobalAppThemeInterface>>;
+    primary: import("styled-components").FlattenSimpleInterpolation;
+    secondary: import("styled-components").FlattenSimpleInterpolation;
     outline: import("styled-components").FlattenSimpleInterpolation;
-    chromeless: import("styled-components").FlattenInterpolation<import("styled-components").ThemeProps<import("../../helpers/theme").GlobalAppThemeInterface>>;
+    chromeless: import("styled-components").FlattenSimpleInterpolation;
     buttonbar: import("styled-components").FlattenSimpleInterpolation;
     toolbar: import("styled-components").FlattenSimpleInterpolation;
 };
 export declare const buttonPressedDisplayCss: {
-    primary: import("styled-components").FlattenInterpolation<import("styled-components").ThemeProps<import("../../helpers/theme").GlobalAppThemeInterface>>;
-    secondary: import("styled-components").FlattenInterpolation<import("styled-components").ThemeProps<import("../../helpers/theme").GlobalAppThemeInterface>>;
-    outline: import("styled-components").FlattenInterpolation<import("styled-components").ThemeProps<import("../../helpers/theme").GlobalAppThemeInterface>>;
-    chromeless: import("styled-components").FlattenInterpolation<import("styled-components").ThemeProps<import("../../helpers/theme").GlobalAppThemeInterface>>;
-    buttonbar: import("styled-components").FlattenInterpolation<import("styled-components").ThemeProps<import("../../helpers/theme").GlobalAppThemeInterface>>;
+    primary: import("styled-components").FlattenSimpleInterpolation;
+    secondary: import("styled-components").FlattenSimpleInterpolation;
+    outline: import("styled-components").FlattenSimpleInterpolation;
+    chromeless: import("styled-components").FlattenSimpleInterpolation;
+    buttonbar: import("styled-components").FlattenSimpleInterpolation;
     toolbar: import("styled-components").FlattenSimpleInterpolation;
 };
 export declare const buttonSizeCss: {
@@ -25,7 +24,7 @@ export declare const buttonSizeCss: {
     default: import("styled-components").FlattenSimpleInterpolation;
     large: import("styled-components").FlattenSimpleInterpolation;
 };
-export declare const StyledButton: any;
+export declare const StyledButton: import("styled-components").StyledComponent<"button", import("../../helpers/theme").GlobalAppThemeInterface, StyledButtonProps, never>;
 export declare type StyledButtonProps = {
     disabled: boolean;
     display: ButtonDisplay;
@@ -39,7 +38,7 @@ export declare type StyledButtonProps = {
     as?: CommonComponentType['as'];
     className: string;
     type: 'button' | 'reset' | 'submit';
-    onClick: OnClick;
+    onClick: ButtonOnClick;
     isActive: boolean;
 };
 declare type IconProps = {
@@ -47,7 +46,7 @@ declare type IconProps = {
     iconRight?: IconType;
     iconSize?: number;
 };
-export declare type OnClick = (event: MouseEvent<HTMLButtonElement>) => void;
+export declare type ButtonOnClick = (event: MouseEvent<HTMLButtonElement>) => void;
 declare type FunctionalProps = {
     className?: string;
     disabled?: boolean;
@@ -55,12 +54,13 @@ declare type FunctionalProps = {
     isActive?: boolean;
     isLoading?: boolean;
     mode?: ButtonMode;
-    onClick?: OnClick;
-    onMouseDown?: OnClick;
-    onMouseUp?: OnClick;
-    onMouseEnter?: OnClick;
-    onMouseLeave?: OnClick;
+    onClick?: ButtonOnClick;
+    onMouseDown?: ButtonOnClick;
+    onMouseUp?: ButtonOnClick;
+    onMouseEnter?: ButtonOnClick;
+    onMouseLeave?: ButtonOnClick;
     pressed?: boolean;
+    ref?: React.Ref<HTMLElement>;
     size?: ButtonSize;
     status?: (props: {
         style: React.CSSProperties;
@@ -74,4 +74,3 @@ declare type CommonProps = CommonComponentType & LinkProps & {
 export declare type ButtonProps = CommonProps & IconProps & FunctionalProps;
 export declare const Button: FC<ButtonProps>;
 export {};
-//# sourceMappingURL=Button.d.ts.map

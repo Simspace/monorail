@@ -1,0 +1,20 @@
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Telescope = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+var _core = require("@material-ui/core");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// eslint-disable-next-line no-restricted-imports
+const Telescope = props => /*#__PURE__*/_react.default.createElement(_core.SvgIcon, props, /*#__PURE__*/_react.default.createElement("path", {
+  d: "M17.995 1.637l4.266 7.358-2.157 1.268-4.265-7.358 2.156-1.268zm-1.434 1.458l3.734 6.442 1.244-.732-3.735-6.442-1.243.732zm-.564.944l3.265 5.659-6.56 3.763-3.264-5.659 6.56-3.763zm-5.835 3.959l2.735 4.741 5.641-3.237-2.736-4.741-5.64 3.237zm-.665.84l2.263 3.959-4.758 2.766-2.262-3.96 4.757-2.766zM5.46 11.796l1.737 3.04 3.843-2.234-1.738-3.04-3.842 2.234zm-.665.942l1.268 2.157-3.058 1.764-1.269-2.156 3.059-1.764zm-2.332 1.957l.732 1.244 2.141-1.236-.731-1.244-2.142 1.236zm9.407-1.443l.448.597.006.01c.524.837.559 1.8.069 2.579l1.976 5.826h-2.557l-1.355-3.885-1.265 3.885H6.63L8.286 17.4a3.334 3.334 0 01-.702-.747l-.474-.632 4.76-2.768zm-3.98 2.926l.126.168.004.006c.18.271.456.546.727.727l.169.113-1.546 4.542h1.438l1.4-4.3h.48l1.5 4.3h1.442l-1.824-5.378.078-.11c.429-.6.442-1.38-.003-2.097l-.152-.203L7.89 16.18z",
+  clipRule: "evenodd"
+}));
+
+exports.Telescope = Telescope;

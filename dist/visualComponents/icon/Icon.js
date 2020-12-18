@@ -15,6 +15,10 @@ var _Nothing2 = require("./custom/_Nothing");
 
 var _Academy = require("./custom/Academy");
 
+var _AccountGroup = require("./custom/AccountGroup");
+
+var _AccountTie = require("./custom/AccountTie");
+
 var _AddGroup = require("./custom/AddGroup");
 
 var _AddList = require("./custom/AddList");
@@ -44,6 +48,8 @@ var _Calculator = require("./custom/Calculator");
 var _Catalog = require("./custom/Catalog");
 
 var _Certificate = require("./custom/Certificate");
+
+var _CheckStar = require("./custom/CheckStar");
 
 var _ChevronDoubleDown = require("./custom/ChevronDoubleDown");
 
@@ -103,6 +109,8 @@ var _Gauge = require("./custom/Gauge");
 
 var _GearCheckmark = require("./custom/GearCheckmark");
 
+var _GhostEmpty = require("./custom/GhostEmpty");
+
 var _GhostVm = require("./custom/GhostVm");
 
 var _Grade = require("./custom/Grade");
@@ -128,6 +136,8 @@ var _InformationTaskAddBlue = require("./custom/InformationTaskAddBlue");
 var _InformationTaskAddGrey = require("./custom/InformationTaskAddGrey");
 
 var _InProgress = require("./custom/InProgress");
+
+var _Live = require("./custom/Live");
 
 var _LMS = require("./custom/LMS");
 
@@ -157,6 +167,8 @@ var _PeopleGear = require("./custom/PeopleGear");
 
 var _PersonGear = require("./custom/PersonGear");
 
+var _PersonSearch = require("./custom/PersonSearch");
+
 var _Profile = require("./custom/Profile");
 
 var _Puppet = require("./custom/Puppet");
@@ -185,6 +197,8 @@ var _SelfEnroll = require("./custom/SelfEnroll");
 
 var _ServerNetwork = require("./custom/ServerNetwork");
 
+var _Shoes = require("./custom/Shoes");
+
 var _SiteMap = require("./custom/SiteMap");
 
 var _SortAscending = require("./custom/SortAscending");
@@ -211,6 +225,8 @@ var _TargetArchery = require("./custom/TargetArchery");
 
 var _TechOps = require("./custom/TechOps");
 
+var _Telescope = require("./custom/Telescope");
+
 var _Temporary = require("./custom/Temporary");
 
 var _ThreeGears = require("./custom/ThreeGears");
@@ -223,7 +239,11 @@ var _Tracker = require("./custom/Tracker");
 
 var _TrackingItem = require("./custom/TrackingItem");
 
+var _TrashCanWithCheck = require("./custom/TrashCanWithCheck");
+
 var _TreasureChest = require("./custom/TreasureChest");
+
+var _UELogo = require("./custom/UELogo");
 
 var _Unscored = require("./custom/Unscored");
 
@@ -235,9 +255,9 @@ var _VMTemplates = require("./custom/VMTemplates");
 
 var _Wand = require("./custom/Wand");
 
-var _DnsOutline = require("../illustrations/DnsOutline");
+var _Chickenlets = require("../illustrations/Chickenlets");
 
-var _GhostEmpty = require("../illustrations/GhostEmpty");
+var _DnsOutline = require("../illustrations/DnsOutline");
 
 var _GhostShrug = require("../illustrations/GhostShrug");
 
@@ -276,9 +296,7 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
 // https://fonts.googleapis.com/icon?family=Material+Icons&style=baseline
-const MaterialIconFontFace =
-/*#__PURE__*/
-(0, _styledComponents.createGlobalStyle)`
+const MaterialIconFontFace = /*#__PURE__*/(0, _styledComponents.createGlobalStyle)`
   @font-face {
     font-display: block;
     font-family: 'Material Icons';
@@ -320,6 +338,8 @@ const customIcons = {
   'tracker-app': _Tracker.Tracker,
   'training-app': _Academy.Academy,
   // 'dashboard-app': Dashboard,
+  account_group: _AccountGroup.AccountGroup,
+  account_tie: _AccountTie.AccountTie,
   add_group: _AddGroup.AddGroup,
   add_list: _AddList.AddList,
   bam: _Bam.Bam,
@@ -332,10 +352,12 @@ const customIcons = {
   calculator: _Calculator.Calculator,
   certificate: _Certificate.Certificate,
   check_gear: _GearCheckmark.GearCheckmark,
+  check_star: _CheckStar.CheckStar,
   chevron_double_down: _ChevronDoubleDown.ChevronDoubleDown,
   chevron_double_left: _ChevronDoubleLeft.ChevronDoubleLeft,
   chevron_double_right: _ChevronDoubleRight.ChevronDoubleRight,
   chevron_double_up: _ChevronDoubleUp.ChevronDoubleUp,
+  chickenlets: _Chickenlets.Chickenlets,
   circle_arrow_left: _CircleArrowLeft.CircleArrowLeft,
   circle_arrow_right: _CircleArrowRight.CircleArrowRight,
   clipboard: _Clipboard.Clipboard,
@@ -374,6 +396,7 @@ const customIcons = {
   information_task_add_blue: _InformationTaskAddBlue.InformationTaskAddBlue,
   information_task_add_grey: _InformationTaskAddGrey.InformationTaskAddGrey,
   inverted_information: _InvertedInformation.InvertedInformation,
+  live: _Live.Live,
   logo_mono: _LogoMono.LogoMono,
   mitre: _Mitre.Mitre,
   my_team: _MyTeam.MyTeam,
@@ -390,6 +413,7 @@ const customIcons = {
   package_variant: _PackageVariant.PackageVariant,
   people_gear: _PeopleGear.PeopleGear,
   person_gear: _PersonGear.PersonGear,
+  person_search: _PersonSearch.PersonSearch,
   profile: _Profile.Profile,
   puppet: _Puppet.Puppet,
   puppet_outline: _PuppetOutline.PuppetOutline,
@@ -404,6 +428,7 @@ const customIcons = {
   server_network: _ServerNetwork.ServerNetwork,
   shield_checkered: _ShieldCheckered.ShieldCheckered,
   shield_key: _ShieldKey.ShieldKey,
+  shoes: _Shoes.Shoes,
   short_sword: _ShortSword.ShortSword,
   shrug: _Shrug.Shrug,
   site_map: _SiteMap.SiteMap,
@@ -420,20 +445,21 @@ const customIcons = {
   target_archery: _TargetArchery.TargetArchery,
   target_empty: _TargetEmpty.TargetEmpty,
   temporary: _Temporary.Temporary,
+  telescope: _Telescope.Telescope,
+  trash_can_with_check: _TrashCanWithCheck.TrashCanWithCheck,
   threeGears: _ThreeGears.ThreeGears,
   tie: _Tie.Tie,
   tools: _Tools.Tools,
   tracking_item: _TrackingItem.TrackingItem,
   treasure_chest: _TreasureChest.TreasureChest,
+  ue_logo: _UELogo.UELogo,
   unscored: _Unscored.Unscored,
   upload: _Upload.Upload,
   vcenter: _VCenter.VCenter,
   vmtemplates: _VMTemplates.VMTemplates,
   wand: _Wand.Wand
 };
-const Icon =
-/*#__PURE__*/
-(0, _styledComponents.default)((0, _react.forwardRef)(({
+const Icon = /*#__PURE__*/(0, _styledComponents.default)( /*#__PURE__*/(0, _react.forwardRef)(({
   cssOverrides: _cssOverrides,
   icon,
   ...otherProps
@@ -442,11 +468,12 @@ const Icon =
 
   if (CustomIcon) {
     // TODO: Forward ref to custom icon.. but all those SVG components need to be wrapped in forwardRef! -_-
-    return _react.default.createElement(CustomIcon, otherProps);
+    return /*#__PURE__*/_react.default.createElement(CustomIcon, otherProps);
   }
 
-  return _react.default.createElement("i", _extends({
-    ref: ref
+  return /*#__PURE__*/_react.default.createElement("i", _extends({
+    ref: ref,
+    className: "material-icons"
   }, otherProps), icon);
 })).withConfig({
   displayName: "Icon",

@@ -4,6 +4,7 @@ import styled, { css, SimpleInterpolation } from 'styled-components'
 import {
   basePrimaryStyles,
   baseSecondaryStyles,
+  BorderRadius,
   borderRadius,
   buttonTransition,
   Colors,
@@ -14,7 +15,7 @@ import {
 } from '@monorail/helpers/exports'
 import { ThemeColors } from '@monorail/helpers/theme'
 import { PopOver } from '@monorail/metaComponents/popOver/PopOver'
-import { isNil } from '@monorail/sharedHelpers/typeGuards'
+import { isNotNil } from '@monorail/sharedHelpers/typeGuards'
 import { Icon } from '@monorail/visualComponents/icon/Icon'
 import { Menu } from '@monorail/visualComponents/menu/Menu'
 
@@ -27,7 +28,7 @@ export const CCFilter = styled.div<CCFilterProps>(
           color: ${getColor(Colors.Black74a)};
         `};
 
-    ${borderRadius()};
+    ${borderRadius(BorderRadius.Medium)};
     ${buttonTransition};
     ${flexFlow('row')};
 
@@ -37,6 +38,10 @@ export const CCFilter = styled.div<CCFilterProps>(
     padding: 0 4px 0 8px;
     user-select: none;
     flex-shrink: 0; /* Needs this for IE11 but not Chrome. */
+
+    border: 1px solid ${getColor(Colors.Black12a)};
+    background: inherit;
+    color: inherit;
 
     ${cssOverrides};
   `,
@@ -56,14 +61,14 @@ export const FilterIcon = styled(Icon)`
 
 type CCFilterProps = {
   cssOverrides?: SimpleInterpolation
-  isActive: boolean
+  isActive?: boolean
   onToggle?: (isOpen: boolean) => void
 }
 
 type Props = CCFilterProps & {
   document?: Document
   title: ReactNode
-  content: ReactNode
+  children: ReactNode
   zIndex?: number
 }
 
@@ -72,8 +77,8 @@ export class Filter extends Component<Props> {
     const {
       cssOverrides,
       title,
-      content,
-      isActive,
+      children,
+      isActive = false,
       zIndex,
       ...otherProps
     } = this.props
@@ -92,9 +97,9 @@ export class Filter extends Component<Props> {
           </CCFilter>
         )}
         popOver={props =>
-          !isNil(content) && (
+          isNotNil(children) && (
             <Menu zIndex={zIndex} {...props}>
-              {content}
+              {children}
             </Menu>
           )
         }

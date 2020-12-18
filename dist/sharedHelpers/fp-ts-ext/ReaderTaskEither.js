@@ -4,23 +4,23 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.sequenceW = sequenceW;
-exports.run = exports.onLeft = exports.toLeft = exports.withDeps = exports.chainWFirst = exports.orElseW = void 0;
-
-var E = _interopRequireWildcard(require("fp-ts/lib/Either"));
-
-var RTE = _interopRequireWildcard(require("fp-ts/lib/ReaderTaskEither"));
+exports.provide = exports.noOpRTE = exports.run = exports.onLeft = exports.toLeft = exports.withDeps = exports.chainWFirst = exports.orElseW = void 0;
 
 var _Array = require("fp-ts/lib/Array");
 
+var E = _interopRequireWildcard(require("fp-ts/lib/Either"));
+
 var _pipeable = require("fp-ts/lib/pipeable");
 
-var _ReadonlyArray = require("../ReadonlyArray");
+var RTE = _interopRequireWildcard(require("fp-ts/lib/ReaderTaskEither"));
+
+var _IO = require("./IO");
+
+var _ReadonlyArray = require("./ReadonlyArray");
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-
-/* tslint:disable no-shadowed-variable */
 
 /**
  * Pipeable port of rte.orElse, which widens types
@@ -136,3 +136,11 @@ function sequenceW(rtes) {
 /**
  * Performs the type-level computation that combineRTE uses
  */
+
+
+const noOpRTE = RTE.fromIO(_IO.noOpIO);
+exports.noOpRTE = noOpRTE;
+
+const provide = env => rt => () => RTE.run(rt, env);
+
+exports.provide = provide;

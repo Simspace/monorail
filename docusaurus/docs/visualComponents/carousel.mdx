@@ -1,0 +1,276 @@
+---
+id: carousel
+title: Carousel
+sidebar_label: Carousel
+---
+
+import styled, { css } from '@monorail/helpers/styled-components'
+import { flexFlow } from '@monorail/helpers/exports'
+import { Div } from '@monorail/StyleHelpers'
+import {
+  CardSlide,
+  FullSlide,
+  FullWidth,
+  SlideOne,
+  SlideTwo,
+  SlideThree,
+  CardOne,
+  CardTwo,
+  CardThree,
+} from '../docComponents/CarouselStyles'
+
+import { ArrowButtons } from '@monorail/visualComponents/arrowButtons/ArrowButtons'
+import { BBCardBackground } from '@monorail/visualComponents/cards/Cards'
+import { Carousel } from '@monorail/visualComponents/carousel/Carousel'
+// import { Header } from '@monorail/visualComponents/header/Header'
+
+:::caution Issues
+
+- Styles are broken
+
+:::
+
+```tsx live
+function CaoruselDemo() {
+  return (
+    <Carousel
+      indicatorDots={true}
+      slides={[
+        <Div
+          css={`
+            ${SlideOne}
+            ${FullSlide}
+          `}
+        >
+          Slide One
+        </Div>,
+        <Div
+          css={`
+            ${SlideTwo}
+            ${FullSlide}
+          `}
+        >
+          Slide Two
+        </Div>,
+        <Div
+          css={`
+            ${SlideThree}
+            ${FullSlide}
+          `}
+        >
+          Slide Three
+        </Div>,
+      ]}
+    >
+      {({ nextSlide, prevSlide, currentSlide, totalSlides, content }) => {
+        return (
+          <FullWidth>
+            <ArrowButtons
+              css={css`
+                position: absolute;
+                width: 100%;
+                margin: auto 0 auto auto;
+              `}
+              current={currentSlide}
+              previous={prevSlide}
+              next={nextSlide}
+              total={totalSlides}
+              slideIndicatorType={'dot'}
+            />
+            {content}
+          </FullWidth>
+        )
+      }}
+    </Carousel>
+  )
+}
+```
+
+```tsx live
+<Carousel
+  indicatorDots={true}
+  loop={true}
+  autoPlay={true}
+  timerInterval={8000}
+  slides={[
+    <Div
+      css={`
+        ${SlideOne}
+        ${FullSlide}
+      `}
+    >
+      Slide One
+    </Div>,
+    <Div
+      css={`
+        ${SlideTwo}
+        ${FullSlide}
+      `}
+    >
+      Slide Two
+    </Div>,
+    <Div
+      css={`
+        ${SlideThree}
+        ${FullSlide}
+      `}
+    >
+      Slide Three
+    </Div>,
+  ]}
+>
+  {({ nextSlide, prevSlide, currentSlide, totalSlides, content, loop }) => {
+    return (
+      <FullWidth>
+        <ArrowButtons
+          css={css`
+            position: absolute;
+            width: 100%;
+            margin: auto 0 auto auto;
+          `}
+          current={currentSlide}
+          previous={prevSlide}
+          next={nextSlide}
+          total={totalSlides}
+          slideIndicatorType={'dot'}
+          loop={loop}
+        />
+        {content}
+      </FullWidth>
+    )
+  }}
+</Carousel>
+```
+
+```tsx live
+<Carousel
+  indicatorDots={false}
+  slides={[
+    <Div
+      css={`
+        ${SlideOne}
+        ${CardSlide}
+      `}
+    >
+      Slide One
+    </Div>,
+    <Div
+      css={`
+        ${SlideTwo}
+        ${CardSlide}
+      `}
+    >
+      Slide Two
+    </Div>,
+    <Div
+      css={`
+        ${SlideThree}
+        ${CardSlide}
+      `}
+    >
+      Slide Three
+    </Div>,
+  ]}
+>
+  {({ nextSlide, prevSlide, currentSlide, totalSlides, content }) => (
+    <BBCardBackground>
+      <Header
+        title="Carousel"
+        iconLeft="view_carousel"
+        actions={
+          <ArrowButtons
+            css={css`
+              margin: auto 0 auto auto;
+            `}
+            current={currentSlide}
+            previous={prevSlide}
+            next={nextSlide}
+            total={totalSlides}
+            slideIndicatorType={'number'}
+          />
+        }
+        noBorder
+      />
+      {content}
+    </BBCardBackground>
+  )}
+</Carousel>
+```
+
+```tsx live
+<Carousel
+  indicatorDots={true}
+  slides={[
+    <>
+      <BBCardBackground
+        cssOverrides={css`
+          margin: 16px;
+        `}
+      >
+        <Header title="Header A" iconLeft="view_carousel" noBorder />
+        {<CardOne>A</CardOne>}
+      </BBCardBackground>
+      <BBCardBackground
+        cssOverrides={css`
+          margin: 16px;
+        `}
+      >
+        <Header title="Header B" iconLeft="view_carousel" noBorder />
+        {<CardTwo>B</CardTwo>}
+      </BBCardBackground>
+      <BBCardBackground
+        cssOverrides={css`
+          margin: 16px;
+        `}
+      >
+        <Header title="Header C" iconLeft="view_carousel" noBorder />
+        {<CardThree>C</CardThree>}
+      </BBCardBackground>
+    </>,
+    <>
+      <BBCardBackground
+        cssOverrides={css`
+          margin: 16px;
+        `}
+      >
+        <Header title="Header D" iconLeft="view_carousel" noBorder />
+        {<CardOne>D</CardOne>}
+      </BBCardBackground>
+      <BBCardBackground
+        cssOverrides={css`
+          margin: 16px;
+        `}
+      >
+        <Header title="Header E" iconLeft="view_carousel" noBorder />
+        {<CardTwo>E</CardTwo>}
+      </BBCardBackground>
+      <BBCardBackground
+        cssOverrides={css`
+          margin: 16px;
+        `}
+      >
+        <Header title="Header F" iconLeft="view_carousel" noBorder />
+        {<CardThree>F</CardThree>}
+      </BBCardBackground>
+    </>,
+  ]}
+>
+  {({ nextSlide, prevSlide, currentSlide, totalSlides, content }) => (
+    <>
+      <ArrowButtons
+        css={css`
+          position: absolute;
+          width: 100%;
+          margin: auto 0 auto auto;
+        `}
+        current={currentSlide}
+        previous={prevSlide}
+        next={nextSlide}
+        total={totalSlides}
+        slideIndicatorType={'dot'}
+      />
+      <FullWidth>{content}</FullWidth>
+    </>
+  )}
+</Carousel>
+```

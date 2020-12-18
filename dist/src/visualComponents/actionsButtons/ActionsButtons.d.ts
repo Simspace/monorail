@@ -83,6 +83,15 @@ export declare type ActionsButtonsProps = {
     iconOnly?: boolean;
     document?: Document;
     toggle?: (props: PopOverToggleProps) => ReactNode;
+    onClick?: (evt: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
 };
 export declare const ActionsButtons: FC<ActionsButtonsProps>;
-//# sourceMappingURL=ActionsButtons.d.ts.map
+export declare const makeTextButtonAction: (props: {
+    actionProps: TextButtonProps;
+    check: boolean;
+}) => TextButtonActionWithCheck;
+export declare const makeActionsMenuListItem: (props: {
+    actionsProps: MenuAction;
+    check: boolean;
+}) => ActionsMenuListItem;
+export declare const makeActionsMenuAction: (actions: Array<ActionsMenuListItem>) => ActionsMenuAction;

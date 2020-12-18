@@ -1,21 +1,23 @@
-import React, { HTMLProps, FocusEvent } from 'react'
+import React, { FocusEvent, HTMLProps } from 'react'
 import Downshift from 'downshift'
 import styled from 'styled-components'
+import * as O from 'fp-ts/lib/Option'
 import { pipe } from 'fp-ts/lib/pipeable'
 
-import { DisplayType } from '@monorail/visualComponents/inputs/inputTypes'
 import { flexFlow } from '@monorail/helpers/flex'
+import { isNonEmptyString } from '@monorail/sharedHelpers/typeGuards'
+import { DisplayType } from '@monorail/visualComponents/inputs/inputTypes'
 import { Label } from '@monorail/visualComponents/inputs/Label'
 
-import * as O from 'fp-ts/lib/Option'
-import { FormMultiSelectInputProps } from './FormMultiSelectInput.types'
 import { useFormMultiSelectInput } from './FormMultiSelectInput.hooks'
+import { FormMultiSelectInputProps } from './FormMultiSelectInput.types'
 
 const ENTER_KEY_VALUE = 'Enter'
 const ESCAPE_KEY_VALUE = 'Escape'
 
 const FlexColumn = styled.div`
   ${flexFlow('column')};
+
   margin-bottom: 24px;
   width: 100%;
 `
@@ -41,6 +43,7 @@ const FlexColumn = styled.div`
  * --------------------------
  * </section>
  */
+
 export function FormMultiSelectInput<A>(props: FormMultiSelectInputProps<A>) {
   const {
     containerCss,
@@ -55,6 +58,7 @@ export function FormMultiSelectInput<A>(props: FormMultiSelectInputProps<A>) {
     searchValueToItem,
     selectedOptions,
   } = props
+
   const {
     addItem,
     checkIsHighlighted,
@@ -99,7 +103,9 @@ export function FormMultiSelectInput<A>(props: FormMultiSelectInputProps<A>) {
 
               pipe(
                 ev.currentTarget.value,
-                searchValueToItem,
+                val => val.replace(/\s+/g, ' ').trim(), // remove excess whitespace
+                O.fromPredicate(isNonEmptyString), // confirm searchValue is non-empty
+                O.chain(searchValueToItem),
                 O.fold(
                   () => {},
                   v => {

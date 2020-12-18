@@ -48,7 +48,9 @@ const TabBarIndicatorContainer = styled(
   ({ left, width, duration, ...otherProps }) => (
     <div {...otherProps}>
       <TabBarIndicatorLeft />
+      {/* eslint-disable-next-line @typescript-eslint/no-unsafe-assignment */}
       <TabBarIndicatorBody duration={duration} width={width} />
+      {/* eslint-disable-next-line @typescript-eslint/no-unsafe-assignment */}
       <TabBarIndicatorRight duration={duration} width={width} />
     </div>
   ),

@@ -32,9 +32,7 @@ function _extends() { _extends = Object.assign || function (target) { for (var i
 /*
  * Styles
  */
-const Container =
-/*#__PURE__*/
-_styledComponents.default.label.withConfig({
+const Container = /*#__PURE__*/_styledComponents.default.label.withConfig({
   displayName: "TextField__Container",
   componentId: "mvo1xj-0"
 })(({
@@ -43,54 +41,42 @@ _styledComponents.default.label.withConfig({
   hideStdErr
 }) => (0, _styledComponents.css)(["", ";float:none;width:256px;position:relative;", " ", ""], (0, _exports.flexFlow)(), display !== _inputTypes.DisplayType.Edit && !hideStdErr && `margin-bottom: 24px;`, cssOverrides));
 
-const IconsAndInputContainer =
-/*#__PURE__*/
-_styledComponents.default.div.withConfig({
+const IconsAndInputContainer = /*#__PURE__*/_styledComponents.default.div.withConfig({
   displayName: "TextField__IconsAndInputContainer",
   componentId: "mvo1xj-1"
 })(["", ";flex:1;position:relative;"], (0, _exports.flexFlow)('column'));
 
 exports.IconsAndInputContainer = IconsAndInputContainer;
-const baseIconStyles =
-/*#__PURE__*/
-(0, _styledComponents.css)(["position:absolute;top:50%;transform:translateY(-50%);"]);
+const baseIconStyles = /*#__PURE__*/(0, _styledComponents.css)(["position:absolute;top:50%;transform:translateY(-50%);"]);
 
-var _StyledIcon =
-/*#__PURE__*/
-(0, _styledComponents.default)(_Icon.Icon).withConfig({
+var _StyledIcon = /*#__PURE__*/(0, _styledComponents.default)(_Icon.Icon).withConfig({
   displayName: "TextField___StyledIcon",
   componentId: "mvo1xj-2"
 })(["", ""], p => p._css);
 
-const StyledLeftIcon =
-/*#__PURE__*/
-(0, _styledComponents.default)(({
+const StyledLeftIcon = /*#__PURE__*/(0, _styledComponents.default)(({
   canToggleVisibility,
   err,
   msg,
   ...iconProps
-}) => _react.default.createElement(_StyledIcon, _extends({}, iconProps, {
+}) => /*#__PURE__*/_react.default.createElement(_StyledIcon, _extends({}, iconProps, {
   _css: err ? `color: ${(0, _exports.getColor)(_exports.Colors.Red)};` : ''
 }))).withConfig({
   displayName: "TextField__StyledLeftIcon",
   componentId: "mvo1xj-3"
 })(["", ";left:8px;"], baseIconStyles);
 
-var _StyledIcon2 =
-/*#__PURE__*/
-(0, _styledComponents.default)(_Icon.Icon).withConfig({
+var _StyledIcon2 = /*#__PURE__*/(0, _styledComponents.default)(_Icon.Icon).withConfig({
   displayName: "TextField___StyledIcon2",
   componentId: "mvo1xj-4"
 })(["", ""], p => p._css2);
 
-const StyledRightIcon =
-/*#__PURE__*/
-(0, _styledComponents.default)(({
+const StyledRightIcon = /*#__PURE__*/(0, _styledComponents.default)(({
   canToggleVisibility,
   err,
   msg,
   ...iconProps
-}) => _react.default.createElement(_StyledIcon2, _extends({}, iconProps, {
+}) => /*#__PURE__*/_react.default.createElement(_StyledIcon2, _extends({}, iconProps, {
   _css2: err ? `color: ${(0, _exports.getColor)(_exports.Colors.Red)};` : ''
 }))).withConfig({
   displayName: "TextField__StyledRightIcon",
@@ -98,16 +84,12 @@ const StyledRightIcon =
 })(({
   canToggleVisibility
 }) => (0, _styledComponents.css)(["", ";right:", ";"], baseIconStyles, canToggleVisibility ? '32px' : '8px'));
-const StyledVisibilityIcon =
-/*#__PURE__*/
-(0, _styledComponents.default)(_Icon.Icon).withConfig({
+const StyledVisibilityIcon = /*#__PURE__*/(0, _styledComponents.default)(_Icon.Icon).withConfig({
   displayName: "TextField__StyledVisibilityIcon",
   componentId: "mvo1xj-6"
 })(["", ";cursor:pointer;right:8px;"], baseIconStyles);
 
-const StyledInput =
-/*#__PURE__*/
-_styledComponents.default.input.withConfig({
+const StyledInput = /*#__PURE__*/_styledComponents.default.input.withConfig({
   displayName: "TextField__StyledInput",
   componentId: "mvo1xj-7"
 })(({
@@ -128,7 +110,7 @@ exports.StyledInput = StyledInput;
 /*
  * Component
  */
-const TextField = (0, _react.forwardRef)((props, ref) => {
+const TextField = /*#__PURE__*/(0, _react.forwardRef)((props, ref) => {
   const [hide, setHide] = (0, _react.useState)(true);
   const {
     autoFocus = false,
@@ -156,23 +138,25 @@ const TextField = (0, _react.forwardRef)((props, ref) => {
     err = false,
     msg = '',
     hideStdErr = false,
+    labelDetails,
     ...otherProps
   } = props;
   const lpIgnore = !enableLastPass;
-  return _react.default.createElement(Container, {
+  return /*#__PURE__*/_react.default.createElement(Container, {
     className: className,
     cssOverrides: cssOverrides,
     display: display,
     hideStdErr: hideStdErr
-  }, display === _inputTypes.DisplayType.Edit ? _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_Label.Label, {
+  }, display === _inputTypes.DisplayType.Edit ? /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_Label.Label, {
     label: label,
     required: required,
     err: err,
-    display: display
-  }), _react.default.createElement(IconsAndInputContainer, null, !(0, _typeGuards.isEmptyString)(iconLeft) && _react.default.createElement(StyledLeftIcon, {
+    display: display,
+    details: labelDetails
+  }), /*#__PURE__*/_react.default.createElement(IconsAndInputContainer, null, !(0, _typeGuards.isEmptyString)(iconLeft) && /*#__PURE__*/_react.default.createElement(StyledLeftIcon, {
     icon: iconLeft,
     err: err
-  }), _react.default.createElement(StyledInput, _extends({
+  }), /*#__PURE__*/_react.default.createElement(StyledInput, _extends({
     "data-lpignore": lpIgnore.toString() // 🖕 u LastPass: https://goo.gl/Ez3eS1
     ,
     canToggleVisibility: canToggleVisibility,
@@ -194,19 +178,19 @@ const TextField = (0, _react.forwardRef)((props, ref) => {
     err: err,
     ref: ref,
     autoFocus: autoFocus
-  }, otherProps)), !(0, _typeGuards.isEmptyString)(iconRight) && _react.default.createElement(StyledRightIcon, {
+  }, otherProps)), !(0, _typeGuards.isEmptyString)(iconRight) && /*#__PURE__*/_react.default.createElement(StyledRightIcon, {
     icon: iconRight,
     canToggleVisibility: canToggleVisibility,
     err: err
-  }), canToggleVisibility && _react.default.createElement(StyledVisibilityIcon, {
+  }), canToggleVisibility && /*#__PURE__*/_react.default.createElement(StyledVisibilityIcon, {
     icon: hide ? 'visibility' : 'visibility_off',
     onClick: () => setHide(!hide)
-  })), !hideStdErr && _react.default.createElement(_StdErr.StdErr, {
+  })), !hideStdErr && /*#__PURE__*/_react.default.createElement(_StdErr.StdErr, {
     err: err,
     msg: msg
-  })) : htmlType !== 'password' ? _react.default.createElement(_ViewInput.ViewInput, {
+  })) : htmlType !== 'password' ? /*#__PURE__*/_react.default.createElement(_ViewInput.ViewInput, {
     label: label,
     value: value
-  }) : _react.default.createElement(_react.default.Fragment, null));
+  }) : /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null));
 });
 exports.TextField = TextField;

@@ -19,35 +19,27 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
-const AppContainer =
-/*#__PURE__*/
-_styledComponents.default.div.withConfig({
+const AppContainer = /*#__PURE__*/_styledComponents.default.div.withConfig({
   displayName: "Layout__AppContainer",
   componentId: "sc-1mbujag-0"
 })(["", ";flex:1;overflow:hidden;&.catalog,&.events:not(.execution),&.reports-analytics{", ";}"], (0, _exports.flexFlow)(), _exports.gothamFontFamily);
 
 exports.AppContainer = AppContainer;
 
-const PageContent =
-/*#__PURE__*/
-_styledComponents.default.div.withConfig({
+const PageContent = /*#__PURE__*/_styledComponents.default.div.withConfig({
   displayName: "Layout__PageContent",
   componentId: "sc-1mbujag-1"
 })(["", ";flex:1;overflow:hidden;"], (0, _exports.flexFlow)());
 
 exports.PageContent = PageContent;
-const SectionContent =
-/*#__PURE__*/
-(0, _styledComponents.default)(_ScrollAnimation.ScrollAnimation).withConfig({
+const SectionContent = /*#__PURE__*/(0, _styledComponents.default)(_ScrollAnimation.ScrollAnimation).withConfig({
   displayName: "Layout__SectionContent",
   componentId: "sc-1mbujag-2"
 })(({
   cssOverrides
 }) => (0, _styledComponents.css)(["", ";border-radius:inherit;height:100%;overflow:auto;width:100%;position:relative;", ";"], (0, _exports.flexFlow)(), cssOverrides));
 exports.SectionContent = SectionContent;
-const Section =
-/*#__PURE__*/
-(0, _styledComponents.default)((0, _react.forwardRef)(({
+const Section = /*#__PURE__*/(0, _styledComponents.default)( /*#__PURE__*/(0, _react.forwardRef)(({
   children,
   cssOverrides,
   hover,
@@ -55,9 +47,9 @@ const Section =
   flat,
   cssCardContent,
   ...otherProps
-}, ref) => _react.default.createElement("div", _extends({
+}, ref) => /*#__PURE__*/_react.default.createElement("div", _extends({
   ref: ref
-}, otherProps), _react.default.createElement(SectionContent, {
+}, otherProps), /*#__PURE__*/_react.default.createElement(SectionContent, {
   cssOverrides: cssCardContent
 }, children)))).withConfig({
   displayName: "Layout__Section",

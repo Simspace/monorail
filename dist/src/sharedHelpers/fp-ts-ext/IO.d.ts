@@ -19,4 +19,3 @@ export declare const newIO: <A>(f: Lazy<A>) => IO<A>;
 export declare const noOpIO: IO<void>;
 export declare const logIO: <T>(cb: (value: T) => unknown, logLevel?: 'error' | 'info' | 'log' | 'warn') => (value: T) => T;
 export declare const tapIO: <T>(logIO_: (value: T) => IO<void>) => (value: T) => T;
-//# sourceMappingURL=IO.d.ts.map

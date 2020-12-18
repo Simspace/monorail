@@ -11,15 +11,15 @@ var _react = _interopRequireDefault(require("react"));
 
 var _exports = require("../../helpers/exports");
 
+var _buttonTypes = require("../buttons/buttonTypes");
+
+var _IconButton = require("../buttons/IconButton");
+
 var _Icon = require("../icon/Icon");
 
 var _types = require("../toast/types");
 
 var _Text = require("../typography/Text");
-
-var _IconButton = require("../buttons/IconButton");
-
-var _buttonTypes = require("../buttons/buttonTypes");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -32,32 +32,24 @@ function _extends() { _extends = Object.assign || function (target) { for (var i
 /*
  * Styles
  */
-const BannerContainer =
-/*#__PURE__*/
-_styledComponents.default.div.withConfig({
+const BannerContainer = /*#__PURE__*/_styledComponents.default.div.withConfig({
   displayName: "AlertBanner__BannerContainer",
   componentId: "sc-1vbq61w-0"
 })(({
   level
 }) => (0, _styledComponents.css)(["display:flex;border:1px solid ", ";background-color:", ";height:80px;flex-shrink:0;max-width:1920px;"], (0, _exports.getColor)(_types.AlertColors[level]), (0, _exports.getColor)(_types.AlertColors[level], 0.08)));
 
-const IconContainer =
-/*#__PURE__*/
-_styledComponents.default.div.withConfig({
+const IconContainer = /*#__PURE__*/_styledComponents.default.div.withConfig({
   displayName: "AlertBanner__IconContainer",
   componentId: "sc-1vbq61w-1"
 })(["display:flex;justify-content:center;align-items:center;width:56px;flex-shrink:0;"]);
 
-const TextContainer =
-/*#__PURE__*/
-_styledComponents.default.div.withConfig({
+const TextContainer = /*#__PURE__*/_styledComponents.default.div.withConfig({
   displayName: "AlertBanner__TextContainer",
   componentId: "sc-1vbq61w-2"
 })(["display:flex;flex-direction:column;justify-content:center;margin:0;"]);
 
-const CloseAlert =
-/*#__PURE__*/
-_styledComponents.default.div.withConfig({
+const CloseAlert = /*#__PURE__*/_styledComponents.default.div.withConfig({
   displayName: "AlertBanner__CloseAlert",
   componentId: "sc-1vbq61w-3"
 })(["align-items:center;margin:0 0 0 auto;padding:0 16px;", ";"], (0, _exports.flexFlow)('row'));
@@ -66,23 +58,17 @@ _styledComponents.default.div.withConfig({
  */
 
 
-var _StyledText =
-/*#__PURE__*/
-(0, _styledComponents.default)(_Text.Text).withConfig({
+var _StyledText = /*#__PURE__*/(0, _styledComponents.default)(_Text.Text).withConfig({
   displayName: "AlertBanner___StyledText",
   componentId: "sc-1vbq61w-4"
 })(["margin-bottom:5px;"]);
 
-var _StyledText2 =
-/*#__PURE__*/
-(0, _styledComponents.default)(_Text.Text).withConfig({
+var _StyledText2 = /*#__PURE__*/(0, _styledComponents.default)(_Text.Text).withConfig({
   displayName: "AlertBanner___StyledText2",
   componentId: "sc-1vbq61w-5"
 })(["max-width:664px;"]);
 
-var _StyledIconButton =
-/*#__PURE__*/
-(0, _styledComponents.default)(_IconButton.IconButton).withConfig({
+var _StyledIconButton = /*#__PURE__*/(0, _styledComponents.default)(_IconButton.IconButton).withConfig({
   displayName: "AlertBanner___StyledIconButton",
   componentId: "sc-1vbq61w-6"
 })(["color:", ";"], p => p._css);
@@ -100,21 +86,21 @@ const AlertBanner = props => {
     onClick,
     ...domProps
   } = props;
-  return _react.default.createElement(BannerContainer, _extends({
+  return /*#__PURE__*/_react.default.createElement(BannerContainer, _extends({
     level: level
-  }, domProps), _react.default.createElement(IconContainer, null, _react.default.createElement(_Icon.Icon, {
+  }, domProps), /*#__PURE__*/_react.default.createElement(IconContainer, null, /*#__PURE__*/_react.default.createElement(_Icon.Icon, {
     icon: _types.AlertIcons[level],
     color: _types.AlertColors[level],
     size: 24
-  })), _react.default.createElement(TextContainer, null, _react.default.createElement(_StyledText, {
+  })), /*#__PURE__*/_react.default.createElement(TextContainer, null, /*#__PURE__*/_react.default.createElement(_StyledText, {
     fontWeight: 500,
     fontSize: _exports.FontSizes.Title4,
     color: _types.AlertColors[level]
-  }, title), _react.default.createElement(_StyledText2, {
+  }, title), /*#__PURE__*/_react.default.createElement(_StyledText2, {
     fontWeight: 400,
     fontSize: _exports.FontSizes.Title5,
     color: _exports.Colors.Gray62
-  }, message)), dismissible && _react.default.createElement(CloseAlert, null, _react.default.createElement(_StyledIconButton, {
+  }, message)), dismissible && /*#__PURE__*/_react.default.createElement(CloseAlert, null, /*#__PURE__*/_react.default.createElement(_StyledIconButton, {
     icon: 'close',
     display: _buttonTypes.ButtonDisplay.Chromeless,
     onClick: onClick,

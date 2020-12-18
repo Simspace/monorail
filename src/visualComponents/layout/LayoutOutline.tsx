@@ -1,7 +1,7 @@
+import React, { FC, MouseEvent, ReactNode, useEffect, useState } from 'react'
 import { lookup } from 'fp-ts/lib/Array'
 import * as O from 'fp-ts/lib/Option'
 import { pipe } from 'fp-ts/lib/pipeable'
-import React, { FC, MouseEvent, ReactNode, useEffect, useState } from 'react'
 
 import {
   Colors,
@@ -226,13 +226,15 @@ const LayoutDetailHeaderContainer = styled.div`
 
 type LayoutDetailHeaderProps = TextAreaProps & {
   actions?: Array<MenuAction>
+  containerCssOverrides?: ReturnType<typeof css>
 }
 
 export const LayoutDetailHeader = ({
   actions,
+  containerCssOverrides,
   ...textAreaProps
 }: LayoutDetailHeaderProps) => (
-  <LayoutDetailHeaderContainer>
+  <LayoutDetailHeaderContainer css={containerCssOverrides}>
     <TextArea
       chromeless
       compact

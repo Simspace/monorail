@@ -13,4 +13,3 @@ declare type Props<I> = Partial<TableProps<I>> & {
 };
 export declare const TablePage: <T extends unknown>(props: Props<T>) => React.ReactElement<Props<T>, string | ((props: any) => React.ReactElement<any, string | any | (new (props: any) => React.Component<any, any, any>)> | null) | (new (props: any) => React.Component<any, any, any>)>;
 export {};
-//# sourceMappingURL=TablePage.d.ts.map

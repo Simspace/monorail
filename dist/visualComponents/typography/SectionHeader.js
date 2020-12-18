@@ -25,44 +25,30 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
-const SectionHeaderContainer =
-/*#__PURE__*/
-_styledComponents.default.div.withConfig({
+const SectionHeaderContainer = /*#__PURE__*/_styledComponents.default.div.withConfig({
   displayName: "SectionHeader__SectionHeaderContainer",
   componentId: "sc-16s6esu-0"
 })(["", ";", ";align-items:center;color:", ";flex-shrink:0;height:40px;padding:0 16px;"], (0, _exports.flexFlow)('row'), (0, _exports.typographyFont)(700, _exports.FontSizes.Title5), (0, _exports.getColor)(_exports.Colors.Black74a));
 
-const iconLeftStyle =
-/*#__PURE__*/
-(0, _styledComponents.css)(["margin-right:8px;"]);
-const iconRightStyle =
-/*#__PURE__*/
-(0, _styledComponents.css)(["margin-left:8px;"]);
+const iconLeftStyle = /*#__PURE__*/(0, _styledComponents.css)(["margin-right:8px;"]);
+const iconRightStyle = /*#__PURE__*/(0, _styledComponents.css)(["margin-left:8px;"]);
 
-var _StyledAppIcon =
-/*#__PURE__*/
-(0, _styledComponents.default)(_AppIcon.AppIcon).withConfig({
+var _StyledAppIcon = /*#__PURE__*/(0, _styledComponents.default)(_AppIcon.AppIcon).withConfig({
   displayName: "SectionHeader___StyledAppIcon",
   componentId: "sc-16s6esu-1"
 })(["", ""], iconLeftStyle);
 
-var _StyledIcon =
-/*#__PURE__*/
-(0, _styledComponents.default)(_Icon.Icon).withConfig({
+var _StyledIcon = /*#__PURE__*/(0, _styledComponents.default)(_Icon.Icon).withConfig({
   displayName: "SectionHeader___StyledIcon",
   componentId: "sc-16s6esu-2"
 })(["", ""], iconLeftStyle);
 
-var _StyledAppIcon2 =
-/*#__PURE__*/
-(0, _styledComponents.default)(_AppIcon.AppIcon).withConfig({
+var _StyledAppIcon2 = /*#__PURE__*/(0, _styledComponents.default)(_AppIcon.AppIcon).withConfig({
   displayName: "SectionHeader___StyledAppIcon2",
   componentId: "sc-16s6esu-3"
 })(["", ""], iconRightStyle);
 
-var _StyledIcon2 =
-/*#__PURE__*/
-(0, _styledComponents.default)(_Icon.Icon).withConfig({
+var _StyledIcon2 = /*#__PURE__*/(0, _styledComponents.default)(_Icon.Icon).withConfig({
   displayName: "SectionHeader___StyledIcon2",
   componentId: "sc-16s6esu-4"
 })(["", ""], iconRightStyle);
@@ -75,17 +61,17 @@ const SectionHeader = props => {
     title,
     ...otherProps
   } = props;
-  return _react.default.createElement(SectionHeaderContainer, otherProps, !(0, _typeGuards.isEmptyString)(iconLeft) && ((0, _exports.isAppName)(iconLeft) ? _react.default.createElement(_StyledAppIcon, {
+  return /*#__PURE__*/_react.default.createElement(SectionHeaderContainer, otherProps, !(0, _typeGuards.isEmptyString)(iconLeft) && ((0, _exports.isAppName)(iconLeft) ? /*#__PURE__*/_react.default.createElement(_StyledAppIcon, {
     appName: iconLeft
-  }) : _react.default.createElement(_StyledIcon, {
+  }) : /*#__PURE__*/_react.default.createElement(_StyledIcon, {
     icon: iconLeft
-  })), _react.default.createElement(_Text.Text, {
+  })), /*#__PURE__*/_react.default.createElement(_Text.Text, {
     fontWeight: 700,
     fontSize: _exports.FontSizes.Title5,
     as: "h1"
-  }, title), !(0, _typeGuards.isEmptyString)(iconRight) && ((0, _exports.isAppName)(iconRight) ? _react.default.createElement(_StyledAppIcon2, {
+  }, title), !(0, _typeGuards.isEmptyString)(iconRight) && ((0, _exports.isAppName)(iconRight) ? /*#__PURE__*/_react.default.createElement(_StyledAppIcon2, {
     appName: iconRight
-  }) : _react.default.createElement(_StyledIcon2, {
+  }) : /*#__PURE__*/_react.default.createElement(_StyledIcon2, {
     icon: iconRight
   })), children);
 };

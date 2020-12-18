@@ -16,4 +16,3 @@ export declare class SearchController extends Component<Props, State> {
     render(): React.ReactNode;
 }
 export {};
-//# sourceMappingURL=SearchController.d.ts.map

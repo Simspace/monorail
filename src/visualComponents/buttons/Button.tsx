@@ -30,7 +30,7 @@ import {
 } from '@monorail/visualComponents/buttons/buttonTypes'
 import { Icon } from '@monorail/visualComponents/icon/Icon'
 import { IconType } from '@monorail/visualComponents/icon/IconType'
-import { Loading, LoaderType } from '@monorail/visualComponents/loading/Loading'
+import { LoaderType, Loading } from '@monorail/visualComponents/loading/Loading'
 
 export const buttonDisplayCss = {
   [ButtonDisplay.Primary]: basePrimaryStyles(),
@@ -152,7 +152,7 @@ export const StyledButton = styled.button<StyledButtonProps>(
     cursor: pointer;
     flex-shrink: 0;
     outline: none;
-    text-transform: uppercase;
+    text-transform: capitalize;
     user-select: none;
     box-sizing: border-box;
     align-items: center;
@@ -179,7 +179,7 @@ export type StyledButtonProps = {
   as?: CommonComponentType['as']
   className: string
   type: 'button' | 'reset' | 'submit'
-  onClick: OnClick
+  onClick: ButtonOnClick
   isActive: boolean
 }
 
@@ -189,7 +189,7 @@ type IconProps = {
   iconSize?: number
 }
 
-export type OnClick = (event: MouseEvent<HTMLButtonElement>) => void
+export type ButtonOnClick = (event: MouseEvent<HTMLButtonElement>) => void
 
 type FunctionalProps = {
   className?: string
@@ -198,12 +198,13 @@ type FunctionalProps = {
   isActive?: boolean
   isLoading?: boolean
   mode?: ButtonMode
-  onClick?: OnClick
-  onMouseDown?: OnClick
-  onMouseUp?: OnClick
-  onMouseEnter?: OnClick
-  onMouseLeave?: OnClick
+  onClick?: ButtonOnClick
+  onMouseDown?: ButtonOnClick
+  onMouseUp?: ButtonOnClick
+  onMouseEnter?: ButtonOnClick
+  onMouseLeave?: ButtonOnClick
   pressed?: boolean
+  ref?: React.Ref<HTMLElement>
   size?: ButtonSize
   status?: (props: { style: React.CSSProperties }) => ReactNode
   title?: string
@@ -217,7 +218,7 @@ type CommonProps = CommonComponentType &
 
 export type ButtonProps = CommonProps & IconProps & FunctionalProps
 
-export const Button: FC<ButtonProps> = props => {
+export const Button: FC<ButtonProps> = React.forwardRef((props, ref) => {
   const {
     children,
     className = '',
@@ -273,6 +274,7 @@ export const Button: FC<ButtonProps> = props => {
       disabled={disabled}
       isActive={isActive}
       status={status}
+      ref={ref}
     >
       {isLoading ? (
         <>
@@ -289,4 +291,4 @@ export const Button: FC<ButtonProps> = props => {
       )}
     </StyledButton>
   )
-}
+})

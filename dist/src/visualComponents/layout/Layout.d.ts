@@ -1,10 +1,14 @@
-import { MouseEvent, ReactNode, Ref } from 'react';
+import React, { MouseEvent, ReactNode, Ref } from 'react';
 import { SimpleInterpolation } from 'styled-components';
 import { ElevationRange } from '@monorail/helpers/exports';
 import { CommonComponentType } from '@monorail/types';
-export declare const AppContainer: any;
-export declare const PageContent: any;
-export declare const SectionContent: any;
+export declare const AppContainer: import("styled-components").StyledComponent<"div", any, CommonComponentType, never>;
+export declare const PageContent: import("styled-components").StyledComponent<"div", any, CommonComponentType, never>;
+export declare const SectionContent: import("styled-components").StyledComponent<React.ForwardRefExoticComponent<{
+    containerCssOverrides?: any;
+    onScroll?: ((event: React.UIEvent<HTMLDivElement>) => void) | undefined;
+    children?: React.ReactNode;
+} & React.RefAttributes<HTMLDivElement>>, any, CommonComponentType, never>;
 export declare type SectionProps = CommonComponentType & {
     hover?: boolean;
     elevation?: ElevationRange;
@@ -14,5 +18,4 @@ export declare type SectionProps = CommonComponentType & {
     children?: ReactNode;
     flat?: boolean;
 };
-export declare const Section: any;
-//# sourceMappingURL=Layout.d.ts.map
+export declare const Section: import("styled-components").StyledComponent<React.ForwardRefExoticComponent<Pick<SectionProps, "className" | "id" | "tabIndex" | "elevation" | "children" | "onClick" | "flat" | "as" | "cssOverrides" | "hover" | "cssCardContent"> & React.RefAttributes<HTMLDivElement>>, any, SectionProps, never>;

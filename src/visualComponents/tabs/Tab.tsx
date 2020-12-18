@@ -22,7 +22,7 @@ export const Tab = styled.div<TabProps>(
     cursor: pointer;
     min-height: 24px;
     padding: 0 8px;
-    text-transform: uppercase;
+    text-transform: capitalize;
     user-select: none;
 
     &:hover,

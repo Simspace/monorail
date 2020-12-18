@@ -1,0 +1,61 @@
+---
+id: error-page
+title: Error Page
+sidebar_label: Error Page
+---
+
+import { ShowCase } from '../docComponents/ShowCase'
+
+import { ErrorPage } from '@monorail/pageComponents/errorPage/ErrorPage'
+import { ErrorType } from '@monorail/pageComponents/errorPage/errorTypes'
+
+Consistent syled error messages with default messages for common error, but can be used with custom error messages.
+
+<ShowCase>
+  <ErrorPage />
+</ShowCase>
+
+## Usage
+
+Use Error Page to:
+
+- Replace default browser error messages
+- Inform the user of what happened
+- Inform the user of how to fix it
+
+## Principles
+
+**Descriptive**  
+A decriptive message of how or why the error occurred should be presented to the user.
+
+**Actionable**  
+If there is information about how to avoid or bypass an error, that should be presented clearly to the user here.
+
+**Levity**  
+Landing on an error page sucks, try to make it suck less for the user.
+
+## Types
+
+### Default Error
+
+Unknown Error Page
+
+```tsx live
+<ErrorPage />
+```
+
+### Not Authorized Error
+
+Not Authorized Error Page
+
+```tsx live
+<ErrorPage errorType={ErrorType.NotAuthorized} />
+```
+
+### 404 Error
+
+404 Errror Page
+
+```tsx live
+<ErrorPage errorType={ErrorType.FourZeroFour} />
+```

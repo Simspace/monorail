@@ -36,4 +36,24 @@ export declare const ordRecordWithNameLower: Ord<{
  * @param o
  */
 export declare const invert: <T>(o: Ord<T>) => Ord<T>;
-//# sourceMappingURL=Ord.d.ts.map
+/**
+ * Returns an Ord for a tuple that only compares the first element
+ * @param ord
+ */
+export declare const getTupleOrdFst: <A, B>(ord: Ord<A>) => Ord<[A, B]>;
+/**
+ * Returns an Ord for a readonly tuple that only compares the first element
+ * @param ord
+ */
+export declare const getReadonlyTupleOrdFst: <A, B>(ord: Ord<A>) => Ord<readonly [A, B]>;
+/**
+ * Returns an Ord for a tuple that only compares the second element
+ * @param ord
+ */
+export declare const getTupleOrdSnd: <A, B>(ord: Ord<B>) => Ord<[A, B]>;
+/**
+ * Returns an Ord for a readonly tuple that only compares the second element
+ * @param ord
+ */
+export declare const getReadonlyTupleOrdSnd: <A, B>(ord: Ord<B>) => Ord<readonly [A, B]>;
+export declare const ordDateFromString: Ord<string>;

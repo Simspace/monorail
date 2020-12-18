@@ -57,4 +57,3 @@ export declare type GeneratedApiAction<Type, Payload, Meta> = Payload extends un
     meta: Meta;
 };
 export declare const mkApiAction: <A extends string, Type extends ApiActionType<A>, Payload = undefined, Meta = undefined>(type: Type, payload?: Payload | undefined, meta?: Meta | undefined) => GeneratedApiAction<Type, Payload, Meta>;
-//# sourceMappingURL=apiActions.d.ts.map

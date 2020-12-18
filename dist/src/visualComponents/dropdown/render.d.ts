@@ -1,5 +1,5 @@
-import { ControllerStateAndHelpers } from 'downshift';
 import { ReactElement, ReactNode } from 'react';
+import { ControllerStateAndHelpers } from 'downshift';
 import { DisplayType } from '@monorail/visualComponents/inputs/inputTypes';
 import { DownshiftGetInputProps, DropdownType } from './helpers';
 import { DropdownParser } from './parsers';
@@ -29,7 +29,6 @@ export declare interface DropdownRender<T> {
     item: (props: RenderItemProps<T>) => ReactElement;
     list?: (props: RenderListProps<T>) => ReactElement;
 }
-export declare const DropdownPlaceholder: any;
-export declare const useCustomHandler: <T extends DropdownType>(customRender?: CustomRenderHandlerHook<T>) => (props: RenderHandlerProps<T>) => ReactElement;
-export declare const useDefaultDropdownRender: <T extends DropdownType>() => DropdownRender<T>;
-//# sourceMappingURL=render.d.ts.map
+export declare const DropdownPlaceholder: import("styled-components").StyledComponent<"span", import("../../helpers/theme").GlobalAppThemeInterface, {}, never>;
+export declare const createCustomHandler: <T extends DropdownType>(customRender?: CustomRenderHandlerHook<T>) => (props: RenderHandlerProps<T>) => ReactElement;
+export declare const createDefaultDropdownRender: <T extends DropdownType>() => DropdownRender<T>;

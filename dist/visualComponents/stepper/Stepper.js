@@ -5,13 +5,13 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.Stepper = exports.Step = void 0;
 
-var _styledComponents = _interopRequireDefault(require("styled-components"));
-
 var _react = _interopRequireDefault(require("react"));
 
 var _exports = require("../../helpers/exports");
 
-var _styledComponents2 = _interopRequireWildcard(require("../../helpers/styled-components"));
+var _styledComponents = _interopRequireWildcard(require("../../helpers/styled-components"));
+
+var _typeGuards = require("../../sharedHelpers/typeGuards");
 
 var _Icon = require("../icon/Icon");
 
@@ -25,22 +25,19 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-const Container = _styledComponents2.default.div`
+const Container = _styledComponents.default.div`
   ${(0, _exports.flexFlow)('column')};
 `;
-
-var _StyledIcon =
-/*#__PURE__*/
-(0, _styledComponents.default)(_Icon.Icon).withConfig({
-  displayName: "Stepper___StyledIcon",
-  componentId: "xgzw2t-0"
-})(["", ";background:", ";color:", ";padding:2px;"], p => p._css, p => p._css2, p => p._css3);
 
 const Step = ({
   cssOverrides,
   iconColor = _exports.Colors.Gray54,
   iconLeft,
+  iconLeftColor,
+  iconLeftActiveColor,
   iconRight,
+  iconRightColor,
+  iconRightActiveColor,
   index = 0,
   isActive = false,
   isDisabled,
@@ -51,36 +48,40 @@ const Step = ({
   statusIconColor,
   subtitle
 }) => {
-  const textStyles = (0, _styledComponents2.css)`
+  const textStyles = (0, _styledComponents.css)`
     color: ${isActive ? (0, _exports.getColor)(_exports.Colors.BrandLightBlue) : 'inherit'};
     margin-left: ${isNumbered || iconLeft ? `12px;` : `0`};
   `;
-  return _react.default.createElement(_List.ListItem, {
+  return /*#__PURE__*/_react.default.createElement(_List.ListItem, {
     cssOverrides: cssOverrides,
     size: _exports.Sizes.DP32,
     onClick: onClick,
     disabled: isDisabled,
     className: isActive ? 'is-active' : ''
-  }, isNumbered ? _react.default.createElement(_Status.Status, {
+  }, isNumbered ? /*#__PURE__*/_react.default.createElement(_Status.Status, {
     inactive: !isActive || isDisabled
-  }, index + 1) : iconLeft ? _react.default.createElement(_Icon.Icon, {
+  }, index + 1) : iconLeft ? /*#__PURE__*/_react.default.createElement(_Icon.Icon, {
     icon: iconLeft,
-    color: isActive ? _exports.Colors.BrandLightBlue : iconColor
-  }) : null, subtitle ? _react.default.createElement(_List.ListItemText, null, _react.default.createElement(_List.ListItemPrimaryText, {
+    color: isActive ? iconLeftActiveColor !== null && iconLeftActiveColor !== void 0 ? iconLeftActiveColor : _exports.Colors.BrandLightBlue : iconLeftColor !== null && iconLeftColor !== void 0 ? iconLeftColor : iconColor
+  }) : null, subtitle ? /*#__PURE__*/_react.default.createElement(_List.ListItemText, null, /*#__PURE__*/_react.default.createElement(_List.ListItemPrimaryText, {
     cssOverrides: textStyles
-  }, label), _react.default.createElement(_List.ListItemSecondaryText, {
+  }, label), /*#__PURE__*/_react.default.createElement(_List.ListItemSecondaryText, {
     cssOverrides: textStyles
-  }, subtitle)) : _react.default.createElement(_List.ListItemPrimaryText, {
+  }, subtitle)) : /*#__PURE__*/_react.default.createElement(_List.ListItemPrimaryText, {
     cssOverrides: textStyles
-  }, label), statusIconName && statusIconColor ? _react.default.createElement(_StyledIcon, {
+  }, label), statusIconName && statusIconColor ? /*#__PURE__*/_react.default.createElement(_Icon.Icon, {
     icon: statusIconName,
     size: 12,
-    _css: (0, _exports.borderRadius)(_exports.BorderRadius.Round),
-    _css2: (0, _exports.getColor)(statusIconColor),
-    _css3: (0, _exports.getColor)(_exports.Colors.White)
-  }) : iconRight ? _react.default.createElement(_Icon.Icon, {
+    cssOverrides: (0, _styledComponents.css)`
+            ${(0, _exports.borderRadius)(_exports.BorderRadius.Round)};
+
+            background: ${(0, _exports.getColor)(statusIconColor)};
+            color: ${(0, _exports.getColor)(_exports.Colors.White)};
+            padding: 2px;
+          `
+  }) : iconRight ? /*#__PURE__*/_react.default.createElement(_Icon.Icon, {
     icon: iconRight,
-    color: isActive ? _exports.Colors.BrandLightBlue : iconColor
+    color: isActive ? iconRightActiveColor !== null && iconRightActiveColor !== void 0 ? iconRightActiveColor : _exports.Colors.BrandLightBlue : iconRightColor !== null && iconRightColor !== void 0 ? iconRightColor : iconColor
   }) : null);
 };
 
@@ -92,14 +93,21 @@ const Stepper = props => {
     children,
     ...domProps
   } = props;
-  return _react.default.createElement(Container, domProps, _react.default.Children.map(children, (child, idx) => {
-    return _react.default.isValidElement(child) ? _react.default.cloneElement(child, {
+  return /*#__PURE__*/_react.default.createElement(Container, domProps, _react.default.Children.map(children, (child, idx) => {
+    var _child$props, _child$props2;
+
+    return /*#__PURE__*/_react.default.isValidElement(child) ? /*#__PURE__*/_react.default.cloneElement(child, {
       key: `${idx}-vertical-stepper`,
       isNumbered,
       index: idx,
-      isActive: props.value === idx,
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+      isActive: (0, _typeGuards.isBoolean)((_child$props = child.props) === null || _child$props === void 0 ? void 0 : _child$props.isActive) ? (_child$props2 = child.props) === null || _child$props2 === void 0 ? void 0 : _child$props2.isActive : props.value === idx,
       onClick: () => {
-        props.onChange && props.onChange(idx);
+        var _props$onChange, _child$props3, _child$props3$onClick;
+
+        (_props$onChange = props.onChange) === null || _props$onChange === void 0 ? void 0 : _props$onChange.call(props, idx); // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+
+        (_child$props3 = child.props) === null || _child$props3 === void 0 ? void 0 : (_child$props3$onClick = _child$props3.onClick) === null || _child$props3$onClick === void 0 ? void 0 : _child$props3$onClick.call(_child$props3);
       }
     }) : null;
   }));

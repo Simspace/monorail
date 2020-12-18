@@ -1,0 +1,88 @@
+---
+id: brand
+title: Brand
+sidebar_label: Brand
+---
+
+import { ShowCase } from '../docComponents/ShowCase'
+import { SimSpaceLogo } from '@monorail/visualComponents/brand/Logo'
+import { LogoBox } from '@monorail/visualComponents/brand/LogoBox'
+import { getColor, Colors } from '@monorail/helpers/exports'
+import { css } from '@monorail/helpers/styled-components'
+
+Highlight the involvement of third parties within the SimSpace platform. Provides a visual validation of the author of the content for the user viewing it.
+
+<ShowCase>
+  <LogoBox>
+    <SimSpaceLogo />
+  </LogoBox>
+</ShowCase>
+
+## Usage
+
+Communicates authoring of content. Used in sections where it would be beneficial for the user to know the source of the material, like:
+
+- Event headers
+- Content catalog cards
+- Content overview
+
+## Principles
+
+**Identifiable**  
+Logos and branding elements should be easily identifiable from each other.
+
+**Shape**  
+All brand elements will be shown with a white background with rounded borders.
+
+**Size**  
+Brand elements size should remain standard.
+
+## Types
+
+### SimSpace Logo
+
+Default logo for SimSpace. Other logos should be created and used in the branding elements in a similar way.
+
+### Default
+
+The SimSpace Logo is a vector svg image that adjust to the available space.
+
+```tsx live
+<SimSpaceLogo style={{ height: 32 }} />
+```
+
+## Logo Box
+
+Logo Box allows to display logos in a standardized way across the platform.  
+It should be used anytime the author logo is displayed as a part of a content preview or detail.
+
+### Default
+
+It creates a container with white background and rounded corners.  
+The Logo Box is by default positioned relative.
+
+```tsx live
+<LogoBox>
+  <SimSpaceLogo />
+</LogoBox>
+```
+
+### Top left aligned
+
+It can be aligned to the top left including the prop **alignLeft**
+
+```tsx live
+<LogoBox alignLeft>
+  <SimSpaceLogo />
+</LogoBox>
+```
+
+### Top right aligned
+
+Similarly, it can be aligned to the top right including the prop **alignRight**
+
+```tsx live
+<LogoBox alignRight>
+  <SimSpaceLogo />
+</LogoBox>
+```

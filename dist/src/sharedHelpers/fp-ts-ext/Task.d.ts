@@ -17,4 +17,3 @@ export declare const constRunTask: <A>(x: Task<A>) => Lazy<Promise<A>>;
  * A function that returns a noop Task
  */
 export declare const noOpTask: Task<void>;
-//# sourceMappingURL=Task.d.ts.map

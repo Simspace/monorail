@@ -2,6 +2,8 @@
 
 var _Option = require("fp-ts/lib/Option");
 
+var _fpTsImports = require("../fp-ts-imports");
+
 var _strings = require("../strings");
 
 describe('split', () => {
@@ -75,6 +77,13 @@ describe('trim', () => {
   it('should remove whitespace from around a string', () => {
     const actual = (0, _strings.trim)('  John Smith    ');
     const expected = 'John Smith';
+    expect(actual).toBe(expected);
+  });
+});
+describe('removeSpaces', () => {
+  it('should remove space characters within a string', () => {
+    const actual = (0, _strings.removeSpaces)(' 2 / 10');
+    const expected = '2/10';
     expect(actual).toBe(expected);
   });
 });
@@ -251,4 +260,31 @@ describe('safeParseInt', () => {
   it('should return none string when passed an unparseable string', () => expect((0, _strings.safeParseInt)('a')).toBe(_Option.none));
   it('should return `Some<number>` if parse succeeds', () => expect((0, _strings.safeParseInt)('42')).toEqual((0, _Option.some)(42)));
   it('should behave the same as parseInt when passed a base argument', () => expect((0, _strings.safeParseInt)('42', 7)).toEqual((0, _Option.some)(30)));
+});
+describe('drop', () => {
+  it('should drop leading characters from a string', () => {
+    expect((0, _strings.drop)(1)('foo')).toEqual('oo');
+    expect((0, _strings.drop)(6)('Typescript')).toEqual('ript');
+  });
+  it('should return an empty string if n is greater than the length of the string', () => {
+    expect((0, _strings.drop)(15)('foo')).toEqual('');
+    expect((0, _strings.drop)(1)('')).toEqual('');
+  });
+  it('should not drop any characters if n is less than or equal to zero', () => {
+    expect((0, _strings.drop)(0)('foo')).toEqual('foo');
+    expect((0, _strings.drop)(-1)('foo')).toEqual('foo');
+  });
+});
+describe('matchStringP', () => {
+  const matcher = (0, _strings.matchStringP)({
+    foo: () => 1,
+    bar: () => 2
+  });
+  it('should match the supplied string', () => {
+    expect(matcher('foo')).toEqual(_fpTsImports.O.some(1));
+    expect(matcher('bar')).toEqual(_fpTsImports.O.some(2));
+  });
+  it('should return a None if no amtch is supplied', () => {
+    expect(matcher('baz')).toEqual(_fpTsImports.O.none);
+  });
 });

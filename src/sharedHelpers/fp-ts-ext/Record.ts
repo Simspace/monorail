@@ -5,10 +5,9 @@ import { Magma } from 'fp-ts/lib/Magma'
 import * as O from 'fp-ts/lib/Option'
 import { Ord } from 'fp-ts/lib/Ord'
 import { pipe } from 'fp-ts/lib/pipeable'
-import { isEmpty, hasOwnProperty } from 'fp-ts/lib/Record'
+import { hasOwnProperty, isEmpty } from 'fp-ts/lib/Record'
 
 import { isObject } from '../typeGuards'
-
 import { forEach } from './Array'
 
 /**
@@ -47,6 +46,20 @@ export const omit = <A extends Record<string, unknown>, K extends keyof A>(
   const { ...result } = rec
 
   forEach(ks, k => delete result[k])
+
+  return result
+}
+
+/**
+ * A pipeable version of `omit`.
+ * Omits the key-value pairs from an object associated with the provided keys
+ */
+export const omitI: <A extends Record<string, unknown>, K extends keyof A>(
+  ...ks: ReadonlyArray<K>
+) => (rec: A) => { [P in Exclude<keyof A, K>]: A[P] } = (...ks) => rec => {
+  const { ...result } = rec
+
+  ks.forEach(k => delete result[k])
 
   return result
 }

@@ -1,0 +1,92 @@
+---
+id: tree-list
+title: Tree List
+sidebar_label: Tree List
+---
+
+import { ShowCase } from '../docComponents/ShowCase'
+import styled, { css } from '@monorail/helpers/styled-components'
+
+import {
+  useTreeList,
+  TreeRowToggleAndDepthLine,
+} from '@monorail/visualComponents/treeList/TreeList'
+import { Text } from '@monorail/visualComponents/typography/Text'
+import {
+  mockData,
+  TreeListContainer,
+  TreeRowContainer,
+  TreeListController,
+} from '../docComponents/TreeListDoc'
+
+:::caution Issues
+
+- Inherits a 200px margin-top.
+
+:::
+
+A collapsible list.
+
+<ShowCase>
+  <TreeListController />
+</ShowCase>
+
+## Usage
+
+Use Tree List to display hierarchical information.
+
+- Sidebars
+
+## Types
+
+### Default
+
+```tsx live
+function TreeListExample() {
+  const mockData = [
+    make(
+      {
+        nodeKey: '1',
+        label: 'Top',
+      },
+      [
+        make({ nodeKey: '2', label: 'Middle' }, [
+          make({ nodeKey: '3', label: 'Bottom' }),
+        ]),
+      ],
+    ),
+    make(
+      {
+        nodeKey: '4',
+        label: 'Top',
+      },
+      [make({ nodeKey: '5', label: 'Middle' }, [])],
+    ),
+  ]
+
+  const getTreeNodeKey = treeNode => treeNode.nodeKey
+  const treeListState = useTreeList({
+    forest: mockData,
+    getTreeNodeKey,
+  })
+  return (
+    // parent should be styled ul
+    <TreeListContainer>
+      {treeListState.rows.map(row => (
+        // children should be styled li
+        <TreeRowContainer>
+          <TreeRowToggleAndDepthLine
+            depth={row.depth}
+            onClick={() => treeListState.toggleNode(getTreeNodeKey(row.value))}
+            isOpen={treeListState.openRows.includes(getTreeNodeKey(row.value))}
+            isLeaf={row.isLeaf}
+          />
+          <Text fontSize={FontSizes.Title5} fontWeight={500}>
+            {row.value.label}
+          </Text>
+        </TreeRowContainer>
+      ))}
+    </TreeListContainer>
+  )
+}
+```

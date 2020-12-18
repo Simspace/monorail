@@ -1,3 +1,13 @@
+import React, {
+  ChangeEvent,
+  FC,
+  KeyboardEvent,
+  useLayoutEffect,
+  useRef,
+} from 'react'
+import styled, { css, SimpleInterpolation } from 'styled-components'
+
+import { TextProps } from '@monorail/exports'
 import {
   baseErrorBorderStyles,
   borderRadius,
@@ -13,14 +23,6 @@ import { DisplayType } from '@monorail/visualComponents/inputs/inputTypes'
 import { Label } from '@monorail/visualComponents/inputs/Label'
 import { ErrorProps, StdErr } from '@monorail/visualComponents/inputs/StdErr'
 import { ViewInput } from '@monorail/visualComponents/inputs/ViewInput'
-import React, {
-  ChangeEvent,
-  FC,
-  KeyboardEvent,
-  useLayoutEffect,
-  useRef,
-} from 'react'
-import styled, { css, SimpleInterpolation } from 'styled-components'
 
 /*
  * Styles
@@ -121,6 +123,8 @@ type TextAreaInputProps = {
   hideStdErr?: boolean
   display?: DisplayType
   textareaRef?: React.RefObject<HTMLTextAreaElement>
+  focus?: boolean
+  textProps?: Omit<TextProps, 'children'>
 } & ErrorProps
 
 export type TextAreaProps = TextAreaContainerProps & TextAreaInputProps
@@ -152,6 +156,8 @@ export const TextArea: FC<TextAreaProps> = props => {
     msg,
     hideStdErr = false,
     textareaRef,
+    focus = false,
+    textProps,
     ...otherProps
   } = props
 
@@ -179,6 +185,25 @@ export const TextArea: FC<TextAreaProps> = props => {
     setCompactHeight()
     onChange && onChange(e)
   }
+
+  useLayoutEffect(() => {
+    // If a parent element has `display: none` or something else that prevents
+    // focus (as might be the case with a modal, e.g.), this hook could fire
+    // before React updates that, and so the focus call will do nothing. Using
+    // this setTimeout delays it for a tick, giving React time to do its update,
+    // _then_ focusing the text area.
+    if (focus) {
+      setTimeout(() => {
+        if (textArea.current) {
+          textArea.current.focus()
+          if (value) {
+            textArea.current.setSelectionRange(value.length, value.length)
+          }
+        }
+      }, 0)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [textArea, focus])
 
   return (
     <TextAreaContainer
@@ -216,7 +241,7 @@ export const TextArea: FC<TextAreaProps> = props => {
           {!hideStdErr && <StdErr err={err} msg={msg} />}
         </>
       ) : (
-        <ViewInput label={label} value={value} />
+        <ViewInput label={label} value={value} textProps={textProps} />
       )}
     </TextAreaContainer>
   )

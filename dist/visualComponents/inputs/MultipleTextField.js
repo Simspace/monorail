@@ -22,18 +22,14 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
 // TODO - duplicate from text field container
-const MultipleTextFieldContainer =
-/*#__PURE__*/
-_styledComponents.default.label.withConfig({
+const MultipleTextFieldContainer = /*#__PURE__*/_styledComponents.default.label.withConfig({
   displayName: "MultipleTextField__MultipleTextFieldContainer",
   componentId: "sc-1l9mgs0-0"
 })(({
   cssOverrides
 }) => (0, _styledComponents.css)(["", ";float:none;width:100%;position:relative;", ""], (0, _exports.flexFlow)(), cssOverrides));
 
-const TextFieldsWrapper =
-/*#__PURE__*/
-_styledComponents.default.div.withConfig({
+const TextFieldsWrapper = /*#__PURE__*/_styledComponents.default.div.withConfig({
   displayName: "MultipleTextField__TextFieldsWrapper",
   componentId: "sc-1l9mgs0-1"
 })(["display:flex;align-items:center;"]);
@@ -47,11 +43,12 @@ class MultipleTextField extends _react.Component {
       onChange,
       children
     } = this.props;
-    return _react.default.createElement(MultipleTextFieldContainer, {
+    return /*#__PURE__*/_react.default.createElement(MultipleTextFieldContainer, {
       cssOverrides: cssOverrides
-    }, _react.default.createElement(_Label.Label, {
+    }, /*#__PURE__*/_react.default.createElement(_Label.Label, {
       label: label
-    }), _react.default.createElement(TextFieldsWrapper, null, textFields.map((t, k) => _react.default.createElement(_TextField.TextField, _extends({}, t, {
+    }), /*#__PURE__*/_react.default.createElement(TextFieldsWrapper, null, textFields.map((t, k) => /*#__PURE__*/_react.default.createElement(_TextField.TextField, _extends({}, t, {
+      key: t.key,
       onChange: e => onChange(t.key, t.htmlType === 'number' ? Number(e.target.value) : e.target.value),
       cssOverrides: {
         paddingLeft: k === 0 ? '0px' : '4px',

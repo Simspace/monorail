@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.SimpleListItem = exports.ListItem = exports.ListItemGraphic = exports.ListItemSecondaryText = exports.ListItemPrimaryText = exports.ListItemText = exports.ListContainer = void 0;
+exports.SimpleListItem = exports.ListItem = exports.ListItemGraphic = exports.StyledListItemIcon = exports.ListItemSecondaryText = exports.ListItemPrimaryText = exports.ListItemText = exports.ListContainer = void 0;
 
 var _styledComponents = _interopRequireDefault(require("styled-components"));
 
@@ -26,9 +26,6 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
-
-// TODO(unsafe-any): Fix unsafe anys
-// tslint:disable no-unsafe-any
 
 /*
  *
@@ -62,9 +59,9 @@ const ListContainer = ({
   cssOverrides,
   emptyText = "I'm empty :(",
   ...domProps
-}) => _react.default.createElement(BBListContainer, _extends({
+}) => /*#__PURE__*/_react.default.createElement(BBListContainer, _extends({
   cssOverrides: cssOverrides
-}, domProps), _react.Children.count(children) > 0 ? children : _react.default.createElement(_StyledListItem, {
+}, domProps), _react.Children.count(children) > 0 ? children : /*#__PURE__*/_react.default.createElement(_StyledListItem, {
   _css: (0, _theme.getThemeColor)(_theme.ThemeColors.Text500)
 }, emptyText));
 /*
@@ -124,34 +121,43 @@ const ListItemSecondaryText = _styledComponents2.default.span(({
   `);
 
 exports.ListItemSecondaryText = ListItemSecondaryText;
-const ListItemGraphic = (0, _styledComponents2.default)(({
-  dense,
-  ...domProps
-}) => _react.default.createElement(_Icon.Icon, domProps))( // We pick out the `color` prop so that we're specifically _not_ overriding it
+const StyledListItemIcon = (0, _styledComponents2.default)(_Icon.Icon).withConfig({
+  shouldForwardProp: prop => prop !== 'dense'
+})( // We pick out the `color` prop so that we're specifically _not_ overriding it
 // in the case where it is set (it will get passed into `<Icon .../>` above,
 // which will set the right CSS).
 //
 // Previously this wasn't working because `color: inherit` was overriding it,
 // but I was to scared to delete that line entirely. [MM 2020-07-14]
 ({
-  dense,
+  $dense,
   cssOverrides,
   color
 }) => (0, _styledComponents2.css)`
     && {
-      margin: auto ${dense ? 4 : 6}px;
+      ${(0, _exports.flexFlow)('row')}
       ${(0, _typeGuards.isNil)(color) ? 'color: inherit;' : ''}
+
+      align-items: center;
+      justify-content: center;
+      margin: auto ${$dense ? 4 : 6}px;
 
       ${_exports.buttonTransition};
 
       ${cssOverrides};
     }
   `);
+exports.StyledListItemIcon = StyledListItemIcon;
+
+const ListItemGraphic = props => {
+  return /*#__PURE__*/_react.default.createElement(StyledListItemIcon, props);
+};
+
 exports.ListItemGraphic = ListItemGraphic;
 
 const ListItem = _styledComponents2.default.div(({
   cssOverrides,
-  dense,
+  $dense,
   disabled,
   onClick,
   size = _exports.Sizes.DP24,
@@ -170,7 +176,7 @@ const ListItem = _styledComponents2.default.div(({
           /* stylelint-disable selector-type-no-unknown */
           &.is-active,
           &:active,
-          &:active ${ListItemGraphic}, &.is-active ${ListItemGraphic} {
+          &:active ${StyledListItemIcon}, &.is-active ${StyledListItemIcon} {
             color: ${(0, _theme.getThemeColor)(isLink ? _theme.ThemeColors.ActionPrimary : _theme.ThemeColors.Text900)};
           }
           /* stylelint-enable selector-type-no-unknown */
@@ -190,7 +196,7 @@ const ListItem = _styledComponents2.default.div(({
     box-sizing: border-box;
     flex-shrink: 0;
     min-height: ${size}px;
-    padding: 0 ${dense ? 4 : 10}px;
+    padding: 0 ${$dense ? 4 : 10}px;
     position: relative;
     text-transform: initial;
 
@@ -205,14 +211,12 @@ const ListItem = _styledComponents2.default.div(({
 
 exports.ListItem = ListItem;
 
-var _StyledListItem =
-/*#__PURE__*/
-(0, _styledComponents.default)(ListItem).withConfig({
+var _StyledListItem = /*#__PURE__*/(0, _styledComponents.default)(ListItem).withConfig({
   displayName: "List___StyledListItem",
   componentId: "sc-112eapi-0"
 })(["color:", ";"], p => p._css);
 
-const SimpleListItem = (0, _react.forwardRef)((props, ref) => {
+const SimpleListItem = /*#__PURE__*/(0, _react.forwardRef)((props, ref) => {
   const {
     leftIcon = '',
     // TODO: fix this - we should not use `''` as an icon
@@ -233,7 +237,8 @@ const SimpleListItem = (0, _react.forwardRef)((props, ref) => {
     rightIconColor,
     ...domProps
   } = props;
-  return _react.default.createElement(ListItem, _extends({
+  return /*#__PURE__*/_react.default.createElement(ListItem, _extends({
+    cssOverrides: cssOverrides,
     dense: dense,
     size: size,
     onClick: onClick,
@@ -241,15 +246,15 @@ const SimpleListItem = (0, _react.forwardRef)((props, ref) => {
     as: passedAs,
     disabled: disabled,
     ref: ref
-  }, domProps), (0, _typeGuards.isNonEmptyString)(leftIcon) && _react.default.createElement(ListItemGraphic, {
+  }, domProps), (0, _typeGuards.isNonEmptyString)(leftIcon) && /*#__PURE__*/_react.default.createElement(ListItemGraphic, {
     icon: leftIcon,
-    dense: dense,
+    $dense: dense,
     color: leftIconColor
-  }), (0, _typeGuards.isEmptyString)(secondaryText) || (0, _typeGuards.isNil)(meta) ? _react.default.createElement(ListItemPrimaryText, {
+  }), (0, _typeGuards.isNil)(meta) ? /*#__PURE__*/_react.default.createElement(ListItemPrimaryText, {
     cssOverrides: cssOverrides
-  }, primaryText) : _react.default.createElement(ListItemText, null, _react.default.createElement(ListItemPrimaryText, null, primaryText), (0, _typeGuards.isEmptyString)(secondaryText) ? null : _react.default.createElement(ListItemSecondaryText, null, secondaryText), meta), (0, _typeGuards.isNonEmptyString)(rightIcon) && _react.default.createElement(ListItemGraphic, {
+  }, primaryText) : /*#__PURE__*/_react.default.createElement(ListItemText, null, /*#__PURE__*/_react.default.createElement(ListItemPrimaryText, null, primaryText), (0, _typeGuards.isEmptyString)(secondaryText) ? null : /*#__PURE__*/_react.default.createElement(ListItemSecondaryText, null, secondaryText), meta), (0, _typeGuards.isNonEmptyString)(rightIcon) && /*#__PURE__*/_react.default.createElement(ListItemGraphic, {
     icon: rightIcon,
-    dense: dense,
+    $dense: dense,
     color: rightIconColor
   }), children);
 });

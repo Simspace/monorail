@@ -1,25 +1,26 @@
 import React, { FC } from 'react'
 
 import {
-  borderRadius,
   BorderRadius,
+  borderRadius,
   Colors,
   flexFlow,
   getColor,
   Sizes,
 } from '@monorail/helpers/exports'
 import styled, { css } from '@monorail/helpers/styled-components'
+import { isBoolean } from '@monorail/sharedHelpers/typeGuards'
+import { CommonComponentType, CssOverridesType } from '@monorail/types'
 import { Icon } from '@monorail/visualComponents/icon/Icon'
 import { IconType } from '@monorail/visualComponents/icon/IconType'
 import {
   ListItem,
   ListItemPrimaryText,
-  ListItemText,
   ListItemSecondaryText,
+  ListItemText,
 } from '@monorail/visualComponents/list/List'
-import { Step as StepType } from '@monorail/visualComponents/stepper/types'
 import { Status } from '@monorail/visualComponents/status/Status'
-import { CommonComponentType, CssOverridesType } from '@monorail/types'
+import { Step as StepType } from '@monorail/visualComponents/stepper/types'
 
 const Container = styled.div`
   ${flexFlow('column')};
@@ -42,7 +43,7 @@ export type InjectedStepProps = {
   /* Even though these are marked as optional,
      they will always be applied to <Step />
      by <Stepper />
-     
+
      AR - 2020/03/25
   */
   index?: number
@@ -55,7 +56,11 @@ export type InjectedStepProps = {
 export type StepProps = {
   cssOverrides?: CssOverridesType
   iconLeft?: IconType
+  iconLeftColor?: Colors
+  iconLeftActiveColor?: Colors
   iconRight?: IconType
+  iconRightColor?: Colors
+  iconRightActiveColor?: Colors
   iconColor?: Colors
   isDisabled?: boolean
   label: string
@@ -68,7 +73,11 @@ export const Step: FC<StepProps & InjectedStepProps> = ({
   cssOverrides,
   iconColor = Colors.Gray54,
   iconLeft,
+  iconLeftColor,
+  iconLeftActiveColor,
   iconRight,
+  iconRightColor,
+  iconRightActiveColor,
   index = 0,
   isActive = false,
   isDisabled,
@@ -97,7 +106,11 @@ export const Step: FC<StepProps & InjectedStepProps> = ({
       ) : iconLeft ? (
         <Icon
           icon={iconLeft}
-          color={isActive ? Colors.BrandLightBlue : iconColor}
+          color={
+            isActive
+              ? iconLeftActiveColor ?? Colors.BrandLightBlue
+              : iconLeftColor ?? iconColor
+          }
         />
       ) : null}
 
@@ -120,7 +133,7 @@ export const Step: FC<StepProps & InjectedStepProps> = ({
         <Icon
           icon={statusIconName}
           size={12}
-          css={css`
+          cssOverrides={css`
             ${borderRadius(BorderRadius.Round)};
 
             background: ${getColor(statusIconColor)};
@@ -131,7 +144,11 @@ export const Step: FC<StepProps & InjectedStepProps> = ({
       ) : iconRight ? (
         <Icon
           icon={iconRight}
-          color={isActive ? Colors.BrandLightBlue : iconColor}
+          color={
+            isActive
+              ? iconRightActiveColor ?? Colors.BrandLightBlue
+              : iconRightColor ?? iconColor
+          }
         />
       ) : null}
     </ListItem>
@@ -149,9 +166,14 @@ export const Stepper = (props: VerticalStepperProps) => {
               key: `${idx}-vertical-stepper`,
               isNumbered,
               index: idx,
-              isActive: props.value === idx,
+              // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+              isActive: isBoolean(child.props?.isActive)
+                ? child.props?.isActive
+                : props.value === idx,
               onClick: () => {
-                props.onChange && props.onChange(idx)
+                props.onChange?.(idx)
+                // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+                child.props?.onClick?.()
               },
             })
           : null

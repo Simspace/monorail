@@ -7,13 +7,15 @@ exports.Collapsible = void 0;
 
 var _styledComponents = _interopRequireWildcard(require("styled-components"));
 
+var _react = _interopRequireWildcard(require("react"));
+
 var _Option = require("fp-ts/lib/Option");
 
 var _pipeable = require("fp-ts/lib/pipeable");
 
-var _react = _interopRequireWildcard(require("react"));
-
 var _exports = require("../../helpers/exports");
+
+var _StyleHelpers = require("../../StyleHelpers");
 
 var _buttonTypes = require("../buttons/buttonTypes");
 
@@ -32,52 +34,32 @@ function _extends() { _extends = Object.assign || function (target) { for (var i
 /*
  * Styled Components
  */
-const CollapsibleWrapper =
-/*#__PURE__*/
-_styledComponents.default.div.withConfig({
+const CollapsibleWrapper = /*#__PURE__*/_styledComponents.default.div.withConfig({
   displayName: "Collapsible__CollapsibleWrapper",
   componentId: "sc-1fszrfe-0"
-})(({
-  isContentScrollable
-}) => (0, _styledComponents.css)(["display:flex;flex-wrap:nowrap;flex-direction:column;overflow:hidden;flex-grow:0;flex-shrink:", ";flex-basis:auto;min-height:40px;"], isContentScrollable ? 1 : 0));
+})(["display:flex;flex-wrap:nowrap;flex-direction:column;overflow:hidden;flex-grow:0;flex-shrink:", ";flex-basis:auto;min-height:40px;"], props => props.isContentScrollable ? 1 : 0);
 
-const CollapsibleHeader =
-/*#__PURE__*/
-_styledComponents.default.div.withConfig({
+const CollapsibleHeader = /*#__PURE__*/_styledComponents.default.div.withConfig({
   displayName: "Collapsible__CollapsibleHeader",
   componentId: "sc-1fszrfe-1"
-})(({
-  iconPosition,
-  clickTarget,
-  expanded
-}) => (0, _styledComponents.css)(["", " width:100%;box-sizing:border-box;height:40px;", " align-items:center;margin:0;padding:0;position:relative;", ""], (0, _exports.flexFlow)('row'), iconPosition === 'right' && `justify-content: space-between;`, clickTarget === 'icon' && `padding: 16px;
-      background: ${expanded ? (0, _exports.getColor)(_exports.Colors.SidebarActive) : (0, _exports.getColor)(_exports.Colors.White)};`));
+})(["", " width:100%;box-sizing:border-box;height:40px;", " align-items:center;margin:0;padding:0;position:relative;", ""], (0, _exports.flexFlow)('row'), props => props.iconPosition === 'right' && `justify-content: space-between;`, props => props.clickTarget === 'icon' && `padding: 16px;
+      background: ${props.expanded ? (0, _exports.getColor)(_exports.Colors.SidebarActive) : (0, _exports.getColor)(_exports.Colors.White)};`);
 
-const CollapsibleHeaderButton =
-/*#__PURE__*/
-_styledComponents.default.button.withConfig({
+const CollapsibleHeaderButton = /*#__PURE__*/_styledComponents.default.button.withConfig({
   displayName: "Collapsible__CollapsibleHeaderButton",
   componentId: "sc-1fszrfe-2"
-})(({
-  expanded,
-  iconPosition
-}) => (0, _styledComponents.css)(["", " align-items:center;background:", ";border:none;cursor:pointer;justify-content:", ";padding:12px 16px;user-select:auto;width:100%;&:hover{background:", ";}", ""], (0, _exports.flexFlow)('row'), expanded ? (0, _exports.getColor)(_exports.Colors.SidebarActive) : (0, _exports.getColor)(_exports.Colors.White), iconPosition === 'left' ? `flex-start` : `space-between`, expanded ? (0, _exports.getColor)(_exports.Colors.SidebarActive) : (0, _exports.getColor)(_exports.Colors.SidebarBg), (0, _exports.baseFocusStyles)()));
+})(["", " align-items:center;background:", ";border:none;cursor:pointer;justify-content:", ";padding:12px 16px;user-select:auto;width:100%;&:hover{background:", ";}", ""], (0, _exports.flexFlow)('row'), props => props.expanded ? (0, _exports.getColor)(_exports.Colors.SidebarActive) : (0, _exports.getColor)(_exports.Colors.White), props => props.iconPosition === 'left' ? `flex-start` : `space-between`, props => props.expanded ? (0, _exports.getColor)(_exports.Colors.SidebarActive) : (0, _exports.getColor)(_exports.Colors.SidebarBg), (0, _exports.baseFocusStyles)());
 
-const CollapsibleContent =
-/*#__PURE__*/
-_styledComponents.default.div.withConfig({
+const CollapsibleContent = /*#__PURE__*/_styledComponents.default.div.withConfig({
   displayName: "Collapsible__CollapsibleContent",
   componentId: "sc-1fszrfe-3"
-})(({
-  cssOverrides,
-  iconPosition
-}) => (0, _styledComponents.css)(["display:flex;flex-direction:column;flex:1;flex-basis:auto;overflow:hidden;background:", ";padding-left:", "px;", ""], (0, _exports.getColor)(_exports.Colors.White), iconPosition === 'left' ? 28 : 0, cssOverrides));
+})(["display:flex;flex-direction:column;flex:1;flex-basis:auto;overflow:hidden;background:", ";padding-left:", "px;", ""], (0, _exports.getColor)(_exports.Colors.White), props => props.iconPosition === 'left' ? 28 : 0, props => props.cssOverrides);
 
 const getChildrenHeights = node => {
   let h = 0;
 
   if (node.hasChildNodes()) {
-    /* tslint:disable-next-line:prefer-for-of */
+    // eslint-disable-next-line @typescript-eslint/prefer-for-of
     for (let i = 0; i < node.children.length; i++) {
       h = h + node.children[i].scrollHeight;
     }
@@ -107,19 +89,10 @@ const getChildrenHeights = node => {
  */
 
 
-var _StyledScrollAnimation =
-/*#__PURE__*/
-(0, _styledComponents.default)(_ScrollAnimation.ScrollAnimation).withConfig({
+var _StyledScrollAnimation = /*#__PURE__*/(0, _styledComponents.default)(_ScrollAnimation.ScrollAnimation).withConfig({
   displayName: "Collapsible___StyledScrollAnimation",
   componentId: "sc-1fszrfe-4"
 })(["overflow-y:", ";"], p => p._css);
-
-var _StyledDiv =
-/*#__PURE__*/
-_styledComponents.default.div.withConfig({
-  displayName: "Collapsible___StyledDiv",
-  componentId: "sc-1fszrfe-5"
-})(["height:", "px;transition:height 300ms ease-in-out;overflow:", ";"], p => p._css2, p => p._css3);
 
 /*
  * Components
@@ -139,9 +112,10 @@ const Collapsible = props => {
     msPerPx = 4,
     clickTarget = 'header',
     isContentScrollable = false,
+    defaultOpen = false,
     ...domProps
   } = props;
-  const [localExpanded, setLocalExpanded] = (0, _react.useState)(false);
+  const [localExpanded, setLocalExpanded] = (0, _react.useState)(defaultOpen);
   const [contentHeight, setContentHeight] = (0, _react.useState)(0);
   const contentRef = (0, _react.useRef)(null);
   const isExpanded = (0, _pipeable.pipe)((0, _Option.fromNullable)(expanded), (0, _Option.getOrElse)(() => localExpanded));
@@ -153,10 +127,10 @@ const Collapsible = props => {
 
   const renderIcon = () => {
     const icon = iconPosition === 'left' ? isExpanded ? 'arrow_drop_down' : 'arrow_right' : isExpanded ? 'expand_less' : 'expand_more';
-    return clickTarget === 'header' ? _react.default.createElement(_Icon.Icon, {
+    return clickTarget === 'header' ? /*#__PURE__*/_react.default.createElement(_Icon.Icon, {
       icon: icon,
       cssOverrides: `margin-right: ${iconPosition === 'left' ? 12 : 0}px; ${iconCss}`
-    }) : _react.default.createElement(_IconButton.IconButton, {
+    }) : /*#__PURE__*/_react.default.createElement(_IconButton.IconButton, {
       id: labelId,
       "aria-expanded": isExpanded,
       "aria-controls": sectionId,
@@ -170,13 +144,13 @@ const Collapsible = props => {
 
   const handleToggleExpand = event => (0, _pipeable.pipe)((0, _Option.fromNullable)(onClick), (0, _Option.fold)(() => setLocalExpanded(!isExpanded), parentOnClick => (0, _pipeable.pipe)((0, _Option.fromNullable)(expanded), (0, _Option.fold)(() => setLocalExpanded(!isExpanded), _ => parentOnClick(event, !isExpanded)))));
 
-  return _react.default.createElement(CollapsibleWrapper, _extends({
+  return /*#__PURE__*/_react.default.createElement(CollapsibleWrapper, _extends({
     isContentScrollable: isContentScrollable
-  }, domProps), _react.default.createElement(CollapsibleHeader, _extends({
+  }, domProps), /*#__PURE__*/_react.default.createElement(CollapsibleHeader, _extends({
     iconPosition: iconPosition,
     clickTarget: clickTarget,
     expanded: isExpanded
-  }, domProps), clickTarget === 'header' ? _react.default.createElement(CollapsibleHeaderButton, {
+  }, domProps), clickTarget === 'header' ? /*#__PURE__*/_react.default.createElement(CollapsibleHeaderButton, {
     id: labelId,
     "aria-expanded": isExpanded,
     "aria-controls": sectionId,
@@ -187,19 +161,18 @@ const Collapsible = props => {
     ,
     className: 'new-button',
     onClick: handleToggleExpand
-  }, iconPosition === 'left' && renderIcon(), header, iconPosition !== 'left' && renderIcon()) : _react.default.createElement(_react.default.Fragment, null, iconPosition === 'left' && renderIcon(), header, iconPosition !== 'left' && renderIcon())), _react.default.createElement(CollapsibleContent, _extends({
+  }, iconPosition === 'left' && renderIcon(), header, iconPosition !== 'left' && renderIcon()) : /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, iconPosition === 'left' && renderIcon(), header, iconPosition !== 'left' && renderIcon())), /*#__PURE__*/_react.default.createElement(CollapsibleContent, _extends({
     id: sectionId,
     role: "region",
     "aria-hidden": !isExpanded,
     "aria-labelledby": labelId,
     iconPosition: iconPosition,
     cssOverrides: contentCss
-  }, domProps), _react.default.createElement(_StyledScrollAnimation, {
+  }, domProps), /*#__PURE__*/_react.default.createElement(_StyledScrollAnimation, {
     _css: isContentScrollable ? 'auto' : 'hidden'
-  }, _react.default.createElement(_StyledDiv, {
+  }, /*#__PURE__*/_react.default.createElement(_StyleHelpers.Div, {
     ref: contentRef,
-    _css2: isExpanded ? contentHeight + 12 : 0,
-    _css3: isExpanded ? 'visible' : 'hidden'
+    cssOverrides: (0, _styledComponents.css)(["height:", "px;transition:height 300ms ease-in-out;overflow:", ";"], isExpanded ? contentHeight + 12 : 0, isExpanded ? 'visible' : 'hidden')
   }, content))));
 };
 

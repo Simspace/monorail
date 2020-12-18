@@ -3,13 +3,13 @@ import { css, SimpleInterpolation } from 'styled-components'
 
 import { generateScaleAnimation, sizes } from '@monorail/helpers/exports'
 import { PopOverChildProps } from '@monorail/metaComponents/popOver/PopOver'
+import { IconType } from '@monorail/visualComponents/icon/IconType'
 import {
   BBModalBackground,
   BBModalContent,
   BBModalHeader,
   useModalAnimation,
 } from '@monorail/visualComponents/modals/Modals'
-import { IconType } from '@monorail/visualComponents/icon/IconType'
 import { ModalSize } from '@monorail/visualComponents/modals/modalTypes'
 import { Overlay } from '@monorail/visualComponents/toggle/Overlay'
 

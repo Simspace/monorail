@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.useKeyboardInteraction = void 0;
+exports.createKeyboardInteraction = void 0;
 
 var _downshift = _interopRequireDefault(require("downshift"));
 
@@ -21,7 +21,7 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-const useKeyboardInteraction = options => parser => {
+const createKeyboardInteraction = options => parser => {
   const {
     openOnInteraction = false
   } = options || {};
@@ -133,4 +133,4 @@ const useKeyboardInteraction = options => parser => {
   };
 };
 
-exports.useKeyboardInteraction = useKeyboardInteraction;
+exports.createKeyboardInteraction = createKeyboardInteraction;

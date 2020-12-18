@@ -1,9 +1,9 @@
-import { O } from '@monorail/sharedHelpers/fp-ts-imports';
 import { Either } from 'fp-ts/lib/Either';
 import { Eq } from 'fp-ts/lib/Eq';
 import { Predicate } from 'fp-ts/lib/function';
 import { IO } from 'fp-ts/lib/IO';
 import { Option } from 'fp-ts/lib/Option';
+import { O } from '@monorail/sharedHelpers/fp-ts-imports';
 /**
  * Curried version of fp-ts' `map` for Arrays
  */
@@ -21,6 +21,10 @@ export declare const concatFlipped: <A>(xs: A[]) => (ys: A[]) => A[];
  * Function wrapper around the native `array.forEach`
  */
 export declare const forEach: <A>(xs: A[], f: (x: A) => void) => void;
+/**
+ * Pipable version of `forEach` helper.
+ */
+export declare const forEachPipe: <A>(f: (x: A) => void) => (xs: A[]) => void;
 /**
  * Function wrapper around the native `array.forEach` including an index
  */
@@ -50,7 +54,7 @@ export declare const len: (xs: ArrayLike<unknown> | string) => number;
  * sequence utility for the Option instance of Applicative and the Array
  * instance of Traversable2v1
  */
-export declare const sequenceOptions: <A>(ta: O.Option<A>[]) => O.Option<A[]>;
+export declare const sequenceOptions: <A>(ta: Option<A>[]) => Option<A[]>;
 /**
  * sequence utility for the Either instance of Applicative and the Array
  * instance of Traversable2v1
@@ -75,7 +79,7 @@ export declare const sequenceRemoteData: <S, R, E, A>(ta: never[]) => never;
  * traverse utility for the Option instance of Applicative and the Array
  * instance of Traversable2v1
  */
-export declare const traverseOptions: <A, B>(ta: A[], f: (a: A) => O.Option<B>) => O.Option<B[]>;
+export declare const traverseOptions: <A, B>(ta: A[], f: (a: A) => Option<B>) => Option<B[]>;
 /**
  * traverse utility for the Either instance of Applicative and the Array
  * instance of Traversable2v1
@@ -120,7 +124,7 @@ export declare const sortByNumeric: <A extends number>(as: A[]) => A[];
  * Lift a function of two arguments to a function which accepts and returns
  * those same values in the context of Options
  */
-export declare const liftOption2: <A, B, C>(f: (a: A) => (b: B) => C) => (oa: O.Option<A>) => (ob: O.Option<B>) => O.Option<C>;
+export declare const liftOption2: <A, B, C>(f: (a: A) => (b: B) => C) => (oa: Option<A>) => (ob: Option<B>) => Option<C>;
 /**
  * Takes an element and a list and "intersperses", or "mixes in", that element
  * between the elements of the list
@@ -175,7 +179,7 @@ export declare const without: <T>(eq: Eq<T>, t: T) => (xs: T[]) => T[];
  * if the option is some, and array with the value will be returned
  * @param o the Option to convert
  */
-export declare const fromOption: <T>(o: O.Option<T>) => T[];
+export declare const fromOption: <T>(o: Option<T>) => T[];
 /**
  * Converts an Either into an Array, returning an empty array if the either
  * is Left, and an array of length one with the right value if the either
@@ -195,4 +199,33 @@ export declare const toggle: <A>(eq: Eq<A>) => (a: A) => (as: A[]) => A[];
  * ])
  */
 export declare const rle: <A>(eq: Eq<A>) => (as: A[]) => [A, number][];
-//# sourceMappingURL=Array.d.ts.map
+declare type ExtractValues<T extends Array<Array<unknown>>> = {
+    [K in keyof T]: T[K] extends Array<infer S> ? S : never;
+};
+/**
+ * Variadic zip with type inference.
+ *
+ * @example
+ * declare const ns: Array<number>
+ * declare const ss: Array<string>
+ * declare const bs: Array<boolean>
+ * zip(ns, ns, ns) // :: Array<[number, number, number]>
+ * zip(ss, ns) // :: Array<[string, number]>
+ * zip(bs, ns, ss, ss) // :: Array<[boolean, number, string, string]>
+ */
+export declare const zip: <As extends unknown[][]>(...as: As) => ExtractValues<As>[];
+/**
+ * Immutable, predicate-based splice
+ */
+export declare const spliceWhere: <A>(predicate: Predicate<A>) => (mapMatch: (a: A) => A[], mapNotMatch?: (a: A) => A) => (arr: A[]) => A[];
+/**
+ * Finds first element in an array for which `f` returns a `some`
+ */
+export declare const findFirstMapWithIndex: <A, B>(f: (i: number, a: A) => Option<B>) => (as: A[]) => Option<B>;
+/**
+ * Array.compact that works on Array<Nullable> as opposed to Array<Option>
+ * Does not affect falsey values
+ * @param as
+ */
+export declare const compactNullable: <T>(as: T[]) => T[];
+export {};

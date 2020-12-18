@@ -301,10 +301,10 @@ class PopOver extends _react.Component {
       isOpen,
       position
     } = this.state;
-    return _react.default.createElement(_react.default.Fragment, null, toggle({
+    return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, toggle({
       onClick: this.onClick,
       isActive: isOpen
-    }), _react.default.createElement(_PortalController.PortalController, {
+    }), /*#__PURE__*/_react.default.createElement(_PortalController.PortalController, {
       isRendered: isRendered || alwaysRender
     }, popOver({
       isOpen,

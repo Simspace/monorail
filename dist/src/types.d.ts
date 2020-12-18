@@ -19,4 +19,3 @@ export declare type LinkProps = {
     onlyActiveOnIndex?: boolean;
     to?: IndexLinkProps['to'];
 };
-//# sourceMappingURL=types.d.ts.map

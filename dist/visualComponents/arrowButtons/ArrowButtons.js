@@ -60,7 +60,7 @@ const ArrowButtons = props => {
     loop = false,
     ...otherProps
   } = props;
-  return _react.default.createElement(ArrowButtonsContainer, otherProps, _react.default.createElement(_IconButton.IconButton, {
+  return /*#__PURE__*/_react.default.createElement(ArrowButtonsContainer, otherProps, /*#__PURE__*/_react.default.createElement(_IconButton.IconButton, {
     icon: "chevron_left",
     disabled: (0, _typeGuards.isUndefined)(previous) || current === 0 && !loop,
     onClick: previous,
@@ -75,7 +75,7 @@ const ArrowButtons = props => {
                 pointer-events: all;
                 ${cssArrowOverrides};
               `
-  }), slideIndicatorType !== 'dot' && _react.default.createElement(RatioContainer, null, `${current + 1} / ${total + 1}`), _react.default.createElement(_IconButton.IconButton, {
+  }), slideIndicatorType !== 'dot' && /*#__PURE__*/_react.default.createElement(RatioContainer, null, `${current + 1} / ${total + 1}`), /*#__PURE__*/_react.default.createElement(_IconButton.IconButton, {
     icon: "chevron_right",
     disabled: !loop && ((0, _typeGuards.isUndefined)(next) || current === total),
     onClick: next,

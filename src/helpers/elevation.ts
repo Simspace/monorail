@@ -1,7 +1,6 @@
-import { Colors, getColor } from '@monorail/helpers/color'
+import { getColor } from '@monorail/helpers/color'
 import { css } from '@monorail/helpers/styled-components'
 import {
-  getThemeColor,
   GlobalAppThemeInterface,
   Mode,
   ThemeColors,

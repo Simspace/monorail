@@ -1,11 +1,12 @@
+import React, { FC, useState } from 'react'
+import { css } from 'styled-components'
 import * as A from 'fp-ts/lib/Array'
 import { eqString } from 'fp-ts/lib/Eq'
 import * as M from 'fp-ts/lib/Map'
 import * as O from 'fp-ts/lib/Option'
 import { ordString } from 'fp-ts/lib/Ord'
 import { pipe } from 'fp-ts/lib/pipeable'
-import React, { FC, useState } from 'react'
-import { css } from 'styled-components'
+import { getFirstSemigroup } from 'fp-ts/lib/Semigroup'
 
 import { isNotNil } from '@monorail/sharedHelpers/typeGuards'
 import {
@@ -13,7 +14,6 @@ import {
   CollapsibleProps,
 } from '@monorail/visualComponents/collapsible/Collapsible'
 import { ScrollAnimation } from '@monorail/visualComponents/layout/ScrollAnimation'
-import { getFirstSemigroup } from 'fp-ts/lib/Semigroup'
 
 type AccordionContent = Array<CollapsibleProps & { key: string }>
 

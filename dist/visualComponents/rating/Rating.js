@@ -5,11 +5,11 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.Rating = exports.getRatingIcons = exports.Fill = exports.Size = void 0;
 
-var _Array = require("fp-ts/lib/Array");
-
 var _react = _interopRequireDefault(require("react"));
 
 var _styledComponents = _interopRequireWildcard(require("styled-components"));
+
+var _Array = require("fp-ts/lib/Array");
 
 var _Icon = require("../icon/Icon");
 
@@ -38,9 +38,7 @@ exports.Fill = Fill;
   Fill["Grey"] = "#DADADA";
 })(Fill || (exports.Fill = Fill = {}));
 
-const StyledStar =
-/*#__PURE__*/
-_styledComponents.default.span.withConfig({
+const StyledStar = /*#__PURE__*/_styledComponents.default.span.withConfig({
   displayName: "Rating__StyledStar",
   componentId: "sc-1wsgxr1-0"
 })(({
@@ -48,9 +46,7 @@ _styledComponents.default.span.withConfig({
   interactFill
 }) => isEditing && interactFill && (0, _styledComponents.css)(["svg{path{fill:", " !important;}}"], interactFill));
 
-const RatingWrapper =
-/*#__PURE__*/
-_styledComponents.default.div.withConfig({
+const RatingWrapper = /*#__PURE__*/_styledComponents.default.div.withConfig({
   displayName: "Rating__RatingWrapper",
   componentId: "sc-1wsgxr1-1"
 })(({
@@ -79,7 +75,7 @@ const getRatingIcons = rating => {
 
 exports.getRatingIcons = getRatingIcons;
 
-const Rating = _react.default.memo(props => {
+const Rating = /*#__PURE__*/_react.default.memo(props => {
   const {
     rating,
     size,
@@ -98,12 +94,12 @@ const Rating = _react.default.memo(props => {
   const getStar = (icon, value) => {
     switch (icon) {
       case 'star_outline':
-        return _react.default.createElement(StyledStar, {
+        return /*#__PURE__*/_react.default.createElement(StyledStar, {
           key: `rating-start-${value}`,
           onClick: () => {
             onClickRating && onClickRating(value);
           }
-        }, _react.default.createElement(_Icon.Icon, {
+        }, /*#__PURE__*/_react.default.createElement(_Icon.Icon, {
           icon: "star_outline",
           cssOverrides: `
                     width: ${size}px;
@@ -112,10 +108,10 @@ const Rating = _react.default.memo(props => {
         }));
 
       case 'star_half':
-        return _react.default.createElement(StyledStar, {
+        return /*#__PURE__*/_react.default.createElement(StyledStar, {
           key: `rating-start-${value}`,
           onClick: () => onClickRating && onClickRating(value)
-        }, _react.default.createElement(_Icon.Icon, {
+        }, /*#__PURE__*/_react.default.createElement(_Icon.Icon, {
           icon: "star_half",
           cssOverrides: `
                   width: ${size}px;
@@ -124,12 +120,12 @@ const Rating = _react.default.memo(props => {
         }));
 
       case 'star_filled':
-        return _react.default.createElement(StyledStar, {
+        return /*#__PURE__*/_react.default.createElement(StyledStar, {
           key: `rating-start-${value}`,
           isEditing: Boolean(onClickRating),
           interactFill: interactFill,
           onClick: () => onClickRating && onClickRating(value)
-        }, _react.default.createElement(_Icon.Icon, {
+        }, /*#__PURE__*/_react.default.createElement(_Icon.Icon, {
           icon: "star_filled",
           cssOverrides: `
                     width: ${size}px;
@@ -142,7 +138,7 @@ const Rating = _react.default.memo(props => {
     }
   };
 
-  return _react.default.createElement(RatingWrapper, {
+  return /*#__PURE__*/_react.default.createElement(RatingWrapper, {
     isEditing: Boolean(onClickRating),
     fill: fill,
     spreadOut: spreadOut

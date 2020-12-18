@@ -1,7 +1,3 @@
-import { O, pipe } from '@monorail/sharedHelpers/fp-ts-imports'
-import { Do } from 'fp-ts-contrib/lib/Do'
-import { lookup } from 'fp-ts/lib/Array'
-import { fold, option } from 'fp-ts/lib/Option'
 import React, {
   Children,
   CSSProperties,
@@ -21,6 +17,11 @@ import {
   TableProps,
 } from 'react-table'
 import { isString } from 'util'
+import { lookup } from 'fp-ts/lib/Array'
+import { fold, option } from 'fp-ts/lib/Option'
+import { showNumber } from 'fp-ts/lib/Show'
+import { Do } from 'fp-ts-contrib/lib/Do'
+import { O, pipe } from '@monorail/sharedHelpers/fp-ts-imports'
 
 import { Colors, getColor } from '@monorail/helpers/color'
 import { flexFlow } from '@monorail/helpers/flex'
@@ -39,6 +40,7 @@ import {
   isFalse,
   isNil,
   isNotNil,
+  isNumber,
   isTrue,
   isUndefined,
 } from '@monorail/sharedHelpers/typeGuards'
@@ -70,7 +72,7 @@ const TD_HEIGHT = Sizes.DP40
 export const TableComponent = styled.div`
   ${flexFlow('column')};
 
-  overflow-x: scroll;
+  overflow-x: hidden;
   height: 100%;
   min-width: 100%;
   position: relative; /* pos:rel need for filter bar. */
@@ -343,14 +345,16 @@ export const ThComponent: FC<ThComponentProps> = props => {
             <PopOverNext
               toSide={false}
               xDirection={dropDirections.Right}
-              popOver={popOverProps => (
-                <Menu
-                  {...popOverProps}
-                  width={popOverProps.position.originWidth}
-                >
-                  {children}
-                </Menu>
-              )}
+              popOver={popOverProps =>
+                popOverProps.isOpen ? (
+                  <Menu
+                    {...popOverProps}
+                    width={popOverProps.position.originWidth}
+                  >
+                    {children}
+                  </Menu>
+                ) : null
+              }
               toggle={toggleProps => (
                 <IconButton
                   {...toggleProps}
@@ -414,9 +418,16 @@ export const FilterComponent: FC<FilterComponentProps> = ({
   filter,
   onChange,
 }) => {
+  const inputRef = React.useRef<HTMLInputElement>(null)
+  React.useEffect(() => {
+    setTimeout(() => {
+      inputRef.current?.focus()
+    }, 0)
+  }, [])
+
   return (
     <TextField
-      ref={input => input?.focus()}
+      ref={inputRef}
       placeholder="Filter"
       value={!isNil(filter) ? filter.value : ''}
       onChange={event => onChange(event.target.value)}
@@ -564,25 +575,36 @@ const getTdComponentType = ({ className }: { className: string }) => {
 
 export const TdComponent: FC<TdComponentProps> = props => {
   const { className, style, isExpanderColumn, ...domProps } = props
-
+  const [titleText, setTitleText] = React.useState('')
+  const containerRef = React.useRef<HTMLDivElement>(null)
   const tdComponentType = getTdComponentType({ className })
+
+  React.useLayoutEffect(() => {
+    if (containerRef.current) {
+      setTitleText(containerRef.current.innerText)
+    }
+  }, [])
 
   if (tdComponentType === TdComponentType.Hidden) {
     return <></>
   } else if (tdComponentType === TdComponentType.Expandable) {
     return (
       <TdComponentContainer
+        ref={containerRef}
         className={className}
         tdComponentType={tdComponentType}
+        title={titleText}
         {...domProps}
       />
     )
   } else if (isExpanderColumn) {
     return (
       <TdComponentContainer
+        ref={containerRef}
         className={className}
         style={{ width: 54, flexShrink: 0 }}
         tdComponentType={tdComponentType}
+        title={titleText}
         {...domProps}
       />
     )
@@ -590,9 +612,11 @@ export const TdComponent: FC<TdComponentProps> = props => {
 
   return (
     <TdComponentContainer
+      ref={containerRef}
       className={className}
       style={style}
       tdComponentType={tdComponentType}
+      title={titleText}
       {...domProps}
     />
   )
@@ -663,7 +687,14 @@ export const ExpanderComponent: TableCellRenderFunction<unknown> = ({
 export const EllipsisValueComponent: TableCellRenderFunction<unknown> = ({
   value,
 }) => {
-  return <div css={ellipsis}>{value}</div>
+  return (
+    <div
+      title={isNumber(value) ? showNumber.show(value) : value}
+      css={ellipsis}
+    >
+      {value}
+    </div>
+  )
 }
 
 export const MonorailReactTableOverrides: Partial<TableProps> = {
@@ -788,7 +819,7 @@ export const MonorailReactTableOverrides: Partial<TableProps> = {
           .includes(filter.value.toLocaleString().toLocaleLowerCase()))
     )
   },
-  // tslint:disable
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   defaultSortMethod: (a: any, b: any) =>
     isString(a) && isString(b)
       ? ordCaseInsensitiveString.compare(a, b)
@@ -797,7 +828,6 @@ export const MonorailReactTableOverrides: Partial<TableProps> = {
       : b > a
       ? -1
       : 0,
-  // tslint:enable
   sortable: true,
   filterable: true,
   resizable: true,

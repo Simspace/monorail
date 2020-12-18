@@ -1,0 +1,39 @@
+---
+id: avatar
+title: Avatar
+sidebar_label: Avatar
+---
+
+import { ShowCase } from '../docComponents/ShowCase'
+import { Avatar } from '@monorail/visualComponents/avatar/Avatar'
+
+Avatars provide a visual token that is associated with a user. This helps give identity and visual importance to users.
+
+<ShowCase>
+  <Avatar first="W" last="W" />
+</ShowCase>
+
+## Usage
+
+Used in when you only have a Name or Title that needs emphasis.
+
+- Table rows
+- Cards
+
+## Types
+
+### Individual Avatar
+
+The circular light blue avatar is used to represent a single person
+
+```tsx live
+<Avatar first="W" last="W" />
+```
+
+### Team Avatar
+
+The rounded square dark blue avatar is used to represent a team or group of people
+
+```tsx live
+<Avatar first="W" last="W" team={true} />
+```

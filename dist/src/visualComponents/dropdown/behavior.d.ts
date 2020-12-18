@@ -1,6 +1,6 @@
-import { O } from '@monorail/sharedHelpers/fp-ts-imports';
-import { DownshiftProps, DownshiftState, StateChangeOptions } from 'downshift';
 import { Dispatch, SetStateAction } from 'react';
+import { DownshiftProps, DownshiftState, StateChangeOptions } from 'downshift';
+import { O } from '@monorail/sharedHelpers/fp-ts-imports';
 import { Nullable } from '@monorail/sharedHelpers/typeLevel';
 import { DropdownItemValue, DropdownType } from './helpers';
 import { DropdownParser } from './parsers';
@@ -18,4 +18,3 @@ export declare const useControlledDropdown: <T extends DropdownType>(props: {
     collection: T[];
     parser: DropdownParser<T>;
 }) => [O.Option<T>, Dispatch<SetStateAction<O.Option<T>>>, (prevItem: Nullable<T>, item: Nullable<T>) => boolean];
-//# sourceMappingURL=behavior.d.ts.map

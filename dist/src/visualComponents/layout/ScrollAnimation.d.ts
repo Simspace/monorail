@@ -7,4 +7,3 @@ declare type ScrollAnimationProps = {
 };
 export declare const ScrollAnimation: React.ForwardRefExoticComponent<ScrollAnimationProps & React.RefAttributes<HTMLDivElement>>;
 export {};
-//# sourceMappingURL=ScrollAnimation.d.ts.map

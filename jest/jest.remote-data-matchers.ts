@@ -1,4 +1,5 @@
 import {
+  fold,
   isFailure,
   isInitial,
   isPending,
@@ -8,29 +9,27 @@ import {
 import { Eq } from 'fp-ts/lib/Eq'
 import { pipe } from 'fp-ts/lib/pipeable'
 
-import * as RDC from '@monorail/sharedHelpers/remote-data-ts-compat'
-
 declare global {
   // eslint-disable-next-line @typescript-eslint/no-namespace
   namespace jest {
-    interface Matchers<R> {
-      toBeRemoteInitial: R extends RemoteData<infer E, infer A>
-        ? () => R
+    interface Matchers<R, T = {}> {
+      toBeRemoteInitial: T extends RemoteData<infer E, infer A>
+        ? () => T
         : never
-      toBeRemotePending: R extends RemoteData<infer E, infer A>
-        ? () => R
+      toBeRemotePending: T extends RemoteData<infer E, infer A>
+        ? () => T
         : never
-      toBeRemoteFailure: R extends RemoteData<infer E, infer A>
-        ? () => R
+      toBeRemoteFailure: T extends RemoteData<infer E, infer A>
+        ? () => T
         : never
-      toBeRemoteSuccess: R extends RemoteData<infer E, infer A>
-        ? () => R
+      toBeRemoteSuccess: T extends RemoteData<infer E, infer A>
+        ? () => T
         : never
-      toEqualRemoteFailure: R extends RemoteData<infer E, infer A>
-        ? (equalTo: E, eq?: Eq<E>) => R
+      toEqualRemoteFailure: T extends RemoteData<infer E, infer A>
+        ? (equalTo: E, eq?: Eq<E>) => T
         : never
-      toEqualRemoteSuccess: R extends RemoteData<infer E, infer A>
-        ? (equalTo: A, eq?: Eq<A>) => R
+      toEqualRemoteSuccess: T extends RemoteData<infer E, infer A>
+        ? (equalTo: A, eq?: Eq<A>) => T
         : never
     }
   }
@@ -62,7 +61,7 @@ expect.extend({
     const fail = result(false, received, 'a RemoteFailure')
     return pipe(
       received,
-      RDC.fold(
+      fold(
         () => fail,
         () => fail,
         e => ({
@@ -84,7 +83,7 @@ expect.extend({
     const fail = result(false, received, 'a RemoteSuccess')
     return pipe(
       received,
-      RDC.fold(
+      fold(
         () => fail,
         () => fail,
         () => fail,

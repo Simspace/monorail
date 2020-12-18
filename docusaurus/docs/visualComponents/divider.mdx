@@ -1,0 +1,40 @@
+---
+id: divider
+title: Divider
+sidebar_label: Divider
+---
+
+import { ShowCase } from '../docComponents/ShowCase'
+import { Divider } from '@monorail/visualComponents/divider/Divider'
+
+Dividers separate content.
+
+<ShowCase>
+  <Divider />
+</ShowCase>
+
+## Usage
+
+Use Divider to reinforce content hierarchy.
+
+- Separate TabBar from FilterBar.
+
+## Types
+
+### Default
+
+The default Divider is horizontal.
+
+```tsx live
+<Divider />
+```
+
+### Vertical
+
+Vertical divider.
+
+```tsx live
+<div style={{ height: 256 }}>
+  <Divider isVertical={true} />
+</div>
+```

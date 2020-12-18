@@ -1,8 +1,16 @@
 import * as Eq from 'fp-ts/lib/Eq'
+import * as O from 'fp-ts/lib/Option'
 import { pipe } from 'fp-ts/lib/pipeable'
 
 import { shallowEqual } from '../shallowEqual'
 import { toLower } from '../strings'
+
+export const getUndefinableEq = <T>(
+  eq: Eq.Eq<T>,
+): Eq.Eq<T | undefined | null> => ({
+  equals: (a?: T | null, b?: T | null) =>
+    O.getEq(eq).equals(O.fromNullable(a), O.fromNullable(b)),
+})
 
 /**
  * Case insensitive Eq instance for strings

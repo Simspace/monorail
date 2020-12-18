@@ -64,9 +64,9 @@ const ButtonFooter = ({
   justifyContent,
   cssOverrides
 }) => {
-  return _react.default.createElement(ButtonFooterContainer, {
+  return /*#__PURE__*/_react.default.createElement(ButtonFooterContainer, {
     cssOverrides: cssOverrides
-  }, _react.default.createElement(ButtonFooterContent, {
+  }, /*#__PURE__*/_react.default.createElement(ButtonFooterContent, {
     justifyContent: justifyContent
   }, children));
 };

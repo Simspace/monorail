@@ -12,4 +12,3 @@ declare type Props = Omit<PopOverChildProps, 'position'> & {
 };
 export declare const FullScreenModal: FC<Props>;
 export {};
-//# sourceMappingURL=FullScreenModal.d.ts.map

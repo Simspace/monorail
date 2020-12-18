@@ -7,8 +7,6 @@ exports.TagIconClose = exports.TagClose = exports.TagIcon = exports.TagLabel = e
 
 var _styledComponents = _interopRequireWildcard(require("styled-components"));
 
-var _lodash = require("lodash");
-
 var _react = _interopRequireDefault(require("react"));
 
 var _exports = require("../../helpers/exports");
@@ -34,13 +32,9 @@ const iconSize = tagHeight / 2;
 
 const getIconStyles = props => (0, _styledComponents.css)(["color:", ";margin:0 ", "px;position:relative;z-index:1;"], props.type === 'icon' ? (0, _exports.getColor)(_exports.Colors.BrandLightBlue) : (0, _exports.getColor)(_exports.Colors.White), iconSize / 2);
 
-const labelStyles =
-/*#__PURE__*/
-(0, _styledComponents.css)(["color:", ";", ";"], (0, _exports.getColor)(_exports.Colors.Black89a), _exports.ellipsis);
+const labelStyles = /*#__PURE__*/(0, _styledComponents.css)(["color:", ";", ";"], (0, _exports.getColor)(_exports.Colors.Black89a), _exports.ellipsis);
 
-const TagContainer =
-/*#__PURE__*/
-_styledComponents.default.div.withConfig({
+const TagContainer = /*#__PURE__*/_styledComponents.default.div.withConfig({
   displayName: "Tag__TagContainer",
   componentId: "sc-12x6kd4-0"
 })(({
@@ -66,30 +60,22 @@ _styledComponents.default.div.withConfig({
 
 exports.TagContainer = TagContainer;
 
-var _StyledIcon =
-/*#__PURE__*/
-(0, _styledComponents.default)(_Icon.Icon).withConfig({
+var _StyledIcon = /*#__PURE__*/(0, _styledComponents.default)(_Icon.Icon).withConfig({
   displayName: "Tag___StyledIcon",
   componentId: "sc-12x6kd4-1"
 })(["", ""], p => p._css);
 
-var _StyledText =
-/*#__PURE__*/
-(0, _styledComponents.default)(_Text.Text).withConfig({
+var _StyledText = /*#__PURE__*/(0, _styledComponents.default)(_Text.Text).withConfig({
   displayName: "Tag___StyledText",
   componentId: "sc-12x6kd4-2"
 })(["", ""], labelStyles);
 
-var _StyledSpan =
-/*#__PURE__*/
-_styledComponents.default.span.withConfig({
+var _StyledSpan = /*#__PURE__*/(0, _styledComponents.default)("span").withConfig({
   displayName: "Tag___StyledSpan",
   componentId: "sc-12x6kd4-3"
 })(["cursor:pointer;"]);
 
-var _StyledIcon2 =
-/*#__PURE__*/
-(0, _styledComponents.default)(_Icon.Icon).withConfig({
+var _StyledIcon2 = /*#__PURE__*/(0, _styledComponents.default)(_Icon.Icon).withConfig({
   displayName: "Tag___StyledIcon2",
   componentId: "sc-12x6kd4-4"
 })(["", ""], p => p._css2);
@@ -104,28 +90,28 @@ const Tag = props => {
     ...otherProps
   } = props;
   const hasButton = typeof ((_props$button = props.button) === null || _props$button === void 0 ? void 0 : _props$button.onClick) === 'function';
-  const hasIcon = !(0, _lodash.isUndefined)(icon);
+  const hasIcon = !(0, _typeGuards.isUndefined)(icon);
   const hasLabel = !(0, _typeGuards.isEmptyString)(label);
-  return _react.default.createElement(TagContainer, _extends({
+  return /*#__PURE__*/_react.default.createElement(TagContainer, _extends({
     hasButton: hasButton,
     hasIcon: hasIcon,
     hasLabel: hasLabel,
     title: title
-  }, otherProps), !(0, _lodash.isUndefined)(icon) && _react.default.createElement(_StyledIcon, {
+  }, otherProps), !(0, _typeGuards.isUndefined)(icon) && /*#__PURE__*/_react.default.createElement(_StyledIcon, {
     icon: icon,
     size: iconSize,
     _css: getIconStyles({
       type: 'icon'
     })
-  }), !(0, _typeGuards.isEmptyString)(label) && _react.default.createElement(_StyledText, {
+  }), !(0, _typeGuards.isEmptyString)(label) && /*#__PURE__*/_react.default.createElement(_StyledText, {
     fontSize: _exports.FontSizes.Micro,
     fontWeight: _exports.FontWeights.Bold,
     margin: `0 ${hasButton ? 4 : 8}px 0 ${hasIcon ? 2 : 8}px`
-  }, label), hasButton && _react.default.createElement(_StyledSpan, {
+  }, label), hasButton && /*#__PURE__*/_react.default.createElement(_StyledSpan, {
     "aria-label": props.title || props.label,
     role: "button",
     onClick: (_props$button2 = props.button) === null || _props$button2 === void 0 ? void 0 : _props$button2.onClick
-  }, _react.default.createElement(_StyledIcon2, {
+  }, /*#__PURE__*/_react.default.createElement(_StyledIcon2, {
     icon: ((_props$button3 = props.button) === null || _props$button3 === void 0 ? void 0 : _props$button3.icon) || '',
     size: iconSize,
     _css2: getIconStyles({
@@ -136,23 +122,23 @@ const Tag = props => {
 
 exports.Tag = Tag;
 
-const TagCircle = props => _react.default.createElement(Tag, props);
+const TagCircle = props => /*#__PURE__*/_react.default.createElement(Tag, props);
 
 exports.TagCircle = TagCircle;
 
-const TagLabel = props => _react.default.createElement(Tag, _extends({
+const TagLabel = props => /*#__PURE__*/_react.default.createElement(Tag, _extends({
   label: props.children
 }, props));
 
 exports.TagLabel = TagLabel;
 
-const TagIcon = props => _react.default.createElement(Tag, _extends({
+const TagIcon = props => /*#__PURE__*/_react.default.createElement(Tag, _extends({
   label: props.children
 }, props));
 
 exports.TagIcon = TagIcon;
 
-const TagClose = props => _react.default.createElement(Tag, _extends({
+const TagClose = props => /*#__PURE__*/_react.default.createElement(Tag, _extends({
   button: {
     icon: 'close',
     onClick: props.onClose
@@ -162,7 +148,7 @@ const TagClose = props => _react.default.createElement(Tag, _extends({
 
 exports.TagClose = TagClose;
 
-const TagIconClose = props => _react.default.createElement(Tag, _extends({
+const TagIconClose = props => /*#__PURE__*/_react.default.createElement(Tag, _extends({
   button: {
     icon: 'close',
     onClick: props.onClose

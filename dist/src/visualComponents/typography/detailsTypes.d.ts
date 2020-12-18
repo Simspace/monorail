@@ -3,4 +3,3 @@ export declare enum DetailsSize {
     Default = "default",
     Large = "large"
 }
-//# sourceMappingURL=detailsTypes.d.ts.map

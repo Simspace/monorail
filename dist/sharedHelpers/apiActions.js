@@ -5,9 +5,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.mkApiAction = exports.mkApiActionTypes = exports.coerceApiActionTypeToString = void 0;
 
-var _function = require("fp-ts/lib/function");
-
 var _newtypeTs = require("newtype-ts");
+
+var _function = require("fp-ts/lib/function");
 
 var _typeGuards = require("./typeGuards");
 

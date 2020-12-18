@@ -2,7 +2,7 @@ import { ChangeEvent, CSSProperties, FC, ReactNode } from 'react';
 import { SimpleInterpolation } from 'styled-components';
 import { Colors } from '@monorail/helpers/exports';
 import { OnClick } from '@monorail/visualComponents/icon/Icon';
-export declare const ChoiceFakeLabel: any;
+export declare const ChoiceFakeLabel: import("styled-components").StyledComponent<"div", any, AnsweredProps, never>;
 declare type AnsweredProps = {
     answered?: boolean;
     centeredInput?: boolean;
@@ -36,5 +36,5 @@ export declare type ChoiceProps = GradeIconProps & ContainerProps & ChoiceInputP
     style?: CSSProperties;
 };
 export declare const Choice: FC<ChoiceProps>;
+export declare const ChoiceIcon: FC<ChoiceProps>;
 export {};
-//# sourceMappingURL=Choice.d.ts.map

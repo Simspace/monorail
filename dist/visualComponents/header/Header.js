@@ -21,6 +21,8 @@ var _theme = require("../../helpers/theme");
 
 var _typography = require("../../helpers/typography");
 
+var _typeGuards = require("../../sharedHelpers/typeGuards");
+
 var _AppIcon = require("../appIcon/AppIcon");
 
 var _Icon = require("../icon/Icon");
@@ -41,9 +43,7 @@ const HeaderRow = _styledComponents2.default.div`
   padding: 0 16px;
 `;
 
-var _StyledHeaderRow =
-/*#__PURE__*/
-(0, _styledComponents.default)(HeaderRow).withConfig({
+var _StyledHeaderRow = /*#__PURE__*/(0, _styledComponents.default)(HeaderRow).withConfig({
   displayName: "Header___StyledHeaderRow",
   componentId: "f4cius-0"
 })(["", ""], p => p._css);
@@ -54,9 +54,7 @@ const HeaderTitle = _styledComponents2.default.h1`
 `;
 exports.HeaderTitle = HeaderTitle;
 
-var _StyledHeaderTitle =
-/*#__PURE__*/
-(0, _styledComponents.default)(HeaderTitle).withConfig({
+var _StyledHeaderTitle = /*#__PURE__*/(0, _styledComponents.default)(HeaderTitle).withConfig({
   displayName: "Header___StyledHeaderTitle",
   componentId: "f4cius-1"
 })(["", ""], p => p._css2);
@@ -67,16 +65,12 @@ const iconLeftCss = (0, _styledComponents2.css)`
   margin-right: 12px;
 `;
 
-var _StyledAppIcon =
-/*#__PURE__*/
-(0, _styledComponents.default)(_AppIcon.AppIcon).withConfig({
+var _StyledAppIcon = /*#__PURE__*/(0, _styledComponents.default)(_AppIcon.AppIcon).withConfig({
   displayName: "Header___StyledAppIcon",
   componentId: "f4cius-2"
 })(["", ""], iconLeftCss);
 
-var _StyledIcon =
-/*#__PURE__*/
-(0, _styledComponents.default)(_Icon.Icon).withConfig({
+var _StyledIcon = /*#__PURE__*/(0, _styledComponents.default)(_Icon.Icon).withConfig({
   displayName: "Header___StyledIcon",
   componentId: "f4cius-3"
 })(["", ""], iconLeftCss);
@@ -91,13 +85,13 @@ const Header = (0, _styledComponents2.default)(({
   noBorder = false,
   title,
   ...domProps
-}) => _react.default.createElement(HeaderContainer, domProps, _react.default.createElement(_StyledHeaderRow, {
+}) => /*#__PURE__*/_react.default.createElement(HeaderContainer, domProps, /*#__PURE__*/_react.default.createElement(_StyledHeaderRow, {
   _css: cssHeaderRow
-}, appIcon && _react.default.createElement(_StyledAppIcon, {
+}, appIcon && /*#__PURE__*/_react.default.createElement(_StyledAppIcon, {
   appName: appIcon
-}), iconLeft && (typeof iconLeft === 'string' ? _react.default.createElement(_StyledIcon, {
+}), iconLeft && (typeof iconLeft === 'string' ? /*#__PURE__*/_react.default.createElement(_StyledIcon, {
   icon: iconLeft
-}) : iconLeft), _react.default.createElement(_StyledHeaderTitle, {
+}) : iconLeft), /*#__PURE__*/_react.default.createElement(_StyledHeaderTitle, {
   _css2: cssTitle
 }, title), actions), children))(({
   noBorder,
@@ -106,7 +100,7 @@ const Header = (0, _styledComponents2.default)(({
     ${!noBorder && (0, _styledComponents2.css)`
         &::after {
           content: '';
-          background: ${appIcon ? (0, _color.getColor)((0, _appName.convertAppNameToColor)(appIcon)) : '#ebebeb'};
+          background: ${(0, _color.getColor)((0, _typeGuards.isNotNil)(appIcon) ? (0, _appName.convertAppNameToColor)(appIcon) : _color.Colors.Gray08)};
           bottom: 0;
           height: 1px;
           left: 0;

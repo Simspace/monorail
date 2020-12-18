@@ -22,4 +22,3 @@ import { FormMultiSelectInputProps } from './FormMultiSelectInput.types';
  * </section>
  */
 export declare function FormMultiSelectInput<A>(props: FormMultiSelectInputProps<A>): JSX.Element;
-//# sourceMappingURL=FormMultiSelectInput.d.ts.map

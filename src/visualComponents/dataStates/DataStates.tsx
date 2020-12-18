@@ -1,8 +1,8 @@
+import React, { FC } from 'react'
+import styled, { css, FlattenSimpleInterpolation } from 'styled-components'
 import { sequenceT } from 'fp-ts/lib/Apply'
 import * as O from 'fp-ts/lib/Option'
 import { pipe } from 'fp-ts/lib/pipeable'
-import React, { FC } from 'react'
-import styled, { css, FlattenSimpleInterpolation } from 'styled-components'
 
 import {
   Colors,
@@ -109,8 +109,10 @@ export const SomethingWentWrong = () => (
     </IconBox>
     <Banner>Something Went Wrong</Banner>
     <Detail>
-      <span>We wish we could be more specific, but that's all we</span>
-      <span>know. Did you try turning it off and back on?</span>
+      <span>
+        We wish we could be more specific, but that's all we know. Did you try
+        turning it off and on again?
+      </span>
     </Detail>
   </Container>
 )
@@ -128,7 +130,7 @@ export const NotFound = () => (
   </Container>
 )
 
-const DetailContainer = styled.div<{ vertical?: boolean }>(
+export const DetailContainer = styled.div<{ vertical?: boolean }>(
   ({ vertical = false }) => css`
     ${vertical &&
       css`
@@ -144,13 +146,14 @@ export const CustomNoData = ({
   details,
   vertical = false,
   icon = <NoResultsIcon />,
+  ...domProps
 }: {
   headingText: string
   details: JSX.Element | Array<JSX.Element>
   vertical?: boolean
   icon?: JSX.Element
 }) => (
-  <Container vertical={vertical}>
+  <Container vertical={vertical} {...domProps}>
     <IconBox>{icon}</IconBox>
     <DetailContainer vertical={vertical}>
       <Banner>{headingText}</Banner>

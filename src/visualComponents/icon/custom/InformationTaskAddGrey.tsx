@@ -11,7 +11,7 @@ export const InformationTaskAddGrey: ComponentType<CustomIconProps> = props => (
     xmlns="http://www.w3.org/2000/svg"
     {...props}
   >
-    <circle cx="10" cy="10" r="8" fill="black" fill-opacity="0.54" />
+    <circle cx="10" cy="10" r="8" fill="black" fillOpacity="0.54" />
     <path
       fillRule="evenodd"
       clipRule="evenodd"
@@ -27,7 +27,7 @@ export const InformationTaskAddGrey: ComponentType<CustomIconProps> = props => (
     <path
       d="M22 19H19V22H17V19H14V17H17V14H19V17H22V19Z"
       fill="black"
-      fill-opacity="0.54"
+      fillOpacity="0.54"
     />
     <path d="M9 14H11V9H9V14Z" fill="white" />
     <path d="M9 7H11V5H9V7Z" fill="white" />

@@ -24,4 +24,3 @@ export declare class Overlay extends Component<Props, State> {
     render(): JSX.Element;
 }
 export {};
-//# sourceMappingURL=Overlay.d.ts.map

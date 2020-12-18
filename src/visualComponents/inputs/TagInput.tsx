@@ -1,38 +1,47 @@
+import React from 'react'
 import { GetInputPropsOptions } from 'downshift'
+import styled, { css, SimpleInterpolation } from 'styled-components'
 import { elem } from 'fp-ts/lib/Array'
 import { contramap, Eq, eqString } from 'fp-ts/lib/Eq'
-import { fromPredicate, Option, some } from 'fp-ts/lib/Option'
-import React from 'react'
-import styled, { css, SimpleInterpolation } from 'styled-components'
+import { flow } from 'fp-ts/lib/function'
+import * as O from 'fp-ts/lib/Option'
+import { pipe } from 'fp-ts/lib/pipeable'
+
 import { Colors, getColor } from '@monorail/helpers/color'
-import { unsafeCoerceToArray } from '@monorail/sharedHelpers/ReadonlyArray'
-import { flexFlow } from '@monorail/helpers/flex'
 import {
-  borderRadius,
   BorderRadius,
+  borderRadius,
   FontSizes,
   FontWeights,
 } from '@monorail/helpers/exports'
-import { isNonEmptyString, isNull } from '@monorail/sharedHelpers/typeGuards'
-import { Icon } from '@monorail/visualComponents/icon/Icon'
-import { Text } from '@monorail/visualComponents/typography/Text'
-import { Divider } from '@monorail/visualComponents/divider/Divider'
+import { flexFlow } from '@monorail/helpers/flex'
 import { FormMultiSelectInput } from '@monorail/metaComponents/formMultiSelectInput/FormMultiSelectInput'
 import {
   FormMultiSelectInputProps,
   SuggestionInfo,
 } from '@monorail/metaComponents/formMultiSelectInput/FormMultiSelectInput.types'
+import { unsafeCoerceToArray } from '@monorail/sharedHelpers/fp-ts-ext/ReadonlyArray'
+import { trim } from '@monorail/sharedHelpers/strings'
+import { isNonEmptyString } from '@monorail/sharedHelpers/typeGuards'
 import {
   ButtonDisplay,
   ButtonSize,
 } from '@monorail/visualComponents/buttons/buttonTypes'
 import { IconButton } from '@monorail/visualComponents/buttons/IconButton'
+import { Divider } from '@monorail/visualComponents/divider/Divider'
+import { Icon } from '@monorail/visualComponents/icon/Icon'
+import { DisplayType } from '@monorail/visualComponents/inputs/inputTypes'
+import { Text } from '@monorail/visualComponents/typography/Text'
+
+const regExpChar = /[\\^$.*+?()[\]{}|]/g // from lodash escapeRegExp function
 
 const focusedBorder = css`
   border: 1px solid ${getColor(Colors.BrandLightBlue)};
 `
+
 export const containerCss = css`
   ${flexFlow('column')};
+
   border-radius: 4px;
   border: 1px solid ${getColor(Colors.Gray12)};
   width: 256px;
@@ -64,17 +73,21 @@ const SuggestibleInput = styled.input`
     font-style: italic;
   }
 `
-const SelectedOptions = styled.ol`
-  order: 2;
+
+const SelectedOptions = styled.ol<{ hasChildren?: boolean }>`
   ${flexFlow('row', 'wrap')};
+
+  order: 2;
   list-style: none;
   margin: 0;
-  padding: 0;
+  padding: ${props => (props.hasChildren ? '4px 0 0 0' : '0')};
   overflow-x: hidden;
   overflow-y: auto;
 `
+
 const SelectedOption = styled.li<{ fullWidth?: boolean }>`
   ${flexFlow('row')};
+
   justify-content: space-between;
   align-items: center;
   border-radius: 4px;
@@ -85,9 +98,11 @@ const SelectedOption = styled.li<{ fullWidth?: boolean }>`
   max-width: calc(100% - 8px);
   width: ${props => (props.fullWidth ? '100%' : 'auto')};
   transition: 150ms;
+
   :focus {
     ${focusedBorder};
   }
+
   ${Icon} {
     cursor: pointer;
     margin: 0;
@@ -96,19 +111,23 @@ const SelectedOption = styled.li<{ fullWidth?: boolean }>`
     width: 24px;
     padding: 4px 0 0 4px;
   }
+
   :hover {
     ${Icon} {
       color: ${getColor(Colors.BrandLightBlue)};
     }
   }
 `
+
 const SelectedOptionText = styled(Text)`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   padding: 4px 8px;
 `
+
 type Position = 'top' | 'bottom'
+
 const Suggestions = styled.aside<{ isOpen: boolean; position: Position }>`
   transform: ${props =>
     props.position === 'top' ? 'translateY(-100%)' : 'none'};
@@ -131,6 +150,7 @@ const Suggestions = styled.aside<{ isOpen: boolean; position: Position }>`
   visibility: ${props => (props.isOpen ? 'visible' : 'hidden')};
   z-index: 1;
 `
+
 export const TagInputItem = (props: {
   item: string
   handleClick: () => void
@@ -169,9 +189,11 @@ const SuggestionList = styled.ol`
 const Suggestion = styled.li<{ isHighlighted: boolean }>`
   cursor: pointer;
   padding: 4px 16px;
+
   :hover {
     background-color: ${getColor(Colors.SelectionSecondaryOnHover, 0.54)};
   }
+
   ${props =>
     props.isHighlighted
       ? css`
@@ -181,9 +203,11 @@ const Suggestion = styled.li<{ isHighlighted: boolean }>`
 `
 
 type Tag = 'fullWidth' | 'text'
+
 const selectedOptionComponent = (
   removeOption: (value: string) => void,
   tag?: Tag,
+  removable = true,
 ) => {
   switch (tag) {
     case 'text': {
@@ -209,7 +233,9 @@ const selectedOptionComponent = (
           >
             {value}
           </SelectedOptionText>
-          <Icon onClick={() => removeOption(value)} icon="clear" />
+          {removable && (
+            <Icon onClick={() => removeOption(value)} icon="clear" />
+          )}
         </SelectedOption>
       )
     }
@@ -222,24 +248,29 @@ const selectedOptionComponent = (
           >
             {value}
           </SelectedOptionText>
-          <Icon
-            onClick={() => removeOption(value)}
-            cssOverrides={`margin: 4px;`}
-            icon="clear"
-          />
+          {removable && (
+            <Icon
+              onClick={() => removeOption(value)}
+              cssOverrides={`margin: 4px;`}
+              icon="clear"
+            />
+          )}
         </SelectedOption>
       )
     }
   }
 }
-export const renderSelectedOptions = (tag?: Tag) => (
+
+export const renderSelectedOptions = (tag?: Tag, viewPlaceholder?: string) => (
   selectedOptions: ReadonlyArray<string>,
   removeOption: (value: string) => void,
 ): React.ReactElement => (
-  <SelectedOptions>
-    {unsafeCoerceToArray(selectedOptions).map(
-      selectedOptionComponent(removeOption, tag),
-    )}
+  <SelectedOptions hasChildren={selectedOptions.length > 0}>
+    {selectedOptions.length > 0
+      ? unsafeCoerceToArray(selectedOptions).map(
+          selectedOptionComponent(removeOption, tag, !Boolean(viewPlaceholder)),
+        )
+      : viewPlaceholder}
   </SelectedOptions>
 )
 
@@ -252,25 +283,37 @@ export const renderSuggestibleInput = (placeholder: string) => (
   />
 )
 
+const getSearchValueRegex = (searchValue: string): RegExp =>
+  new RegExp(`^${searchValue.replace(regExpChar, '\\$&')}$`, 'ig')
+
 export const shouldShowNewSuggestion = (
   searchValue: string,
   suggestions: ReadonlyArray<string>,
   selectedOptions: ReadonlyArray<string>,
 ) => {
-  const regExpChar = /[\\^$.*+?()[\]{}|]/g // from lodash escapeRegExp function
-  const searchValueRegex = new RegExp(
-    `^${searchValue.replace(regExpChar, '\\$&')}$`,
-    'ig',
-  )
+  const searchValueRegex = getSearchValueRegex(searchValue)
   const hasPerfectMatch =
     suggestions.findIndex(s => searchValueRegex.test(s)) > -1
-  const hasBeenSelected = suggestions.some(s =>
-    elem(eqString)(s, unsafeCoerceToArray(selectedOptions)),
-  )
+  const hasBeenSelected =
+    selectedOptions.findIndex(s => searchValueRegex.test(s)) > -1
+
   return searchValue.length > 0 && !hasPerfectMatch && !hasBeenSelected
 }
 
-export const renderSuggestions = (position: Position) => (
+export const isAlreadySelected = (
+  searchValue: string,
+  selectedOptions: ReadonlyArray<string>,
+) => {
+  const searchValueRegex = getSearchValueRegex(searchValue)
+  const hasBeenSelected =
+    selectedOptions.findIndex(s => searchValueRegex.test(s)) > -1
+  return searchValue.length > 0 && hasBeenSelected
+}
+
+export const renderSuggestions = (params: {
+  position: Position
+  validateItem?: (item: string) => O.Option<string>
+}) => (
   suggestions: ReadonlyArray<string>,
   info: SuggestionInfo<string>,
 ): React.ReactElement => {
@@ -281,18 +324,24 @@ export const renderSuggestions = (position: Position) => (
     getSuggestionProps,
     selectedOptions,
   } = info
+
+  const trimmedSearchValue = searchValue.replace(/\s+/g, ' ').trim()
+  const { validateItem = O.some } = params
+
   const hasHighlightedSuggestion = suggestions.some(s => isHighlighted(s))
 
   const showNewSuggestion = shouldShowNewSuggestion(
-    searchValue,
+    trimmedSearchValue,
     suggestions,
     selectedOptions,
   )
 
+  const alreadySelected = isAlreadySelected(trimmedSearchValue, selectedOptions)
+
   return (
     <Suggestions
-      isOpen={isFocused && searchValue.length > 0}
-      position={position}
+      isOpen={isFocused && trimmedSearchValue.length > 0}
+      position={params.position}
     >
       <Text
         fontWeight={FontWeights.Medium}
@@ -303,7 +352,11 @@ export const renderSuggestions = (position: Position) => (
           color: ${getColor(Colors.Gray38)};
         `}
       >
-        {suggestions.length > 0 ? 'Suggestions' : 'No Matches'}
+        {suggestions.length > 0
+          ? 'Suggestions'
+          : alreadySelected
+          ? 'Value Already Selected'
+          : 'No Matches'}
       </Text>
 
       <SuggestionList>
@@ -313,30 +366,41 @@ export const renderSuggestions = (position: Position) => (
             key={`${s}-${i}`}
             isHighlighted={hasHighlightedSuggestion && isHighlighted(s)}
           >
-            {searchValue.length > 0 ? highlightSearchValue(s, searchValue) : s}
+            {trimmedSearchValue.length > 0
+              ? highlightSearchValue(s, trimmedSearchValue)
+              : s}
           </Suggestion>
         ))}
-        {showNewSuggestion && (
-          <>
-            <li key="divider">
-              <Divider />
-            </li>
+        {showNewSuggestion &&
+          pipe(
+            trimmedSearchValue,
+            validateItem,
+            O.fold(
+              () => <></>,
+              searchValue_ => (
+                <>
+                  <li key="divider">
+                    <Divider />
+                  </li>
 
-            <Suggestion
-              {...getSuggestionProps({
-                item: searchValue,
-              })}
-              key={'generic-search-value'}
-              isHighlighted={!hasHighlightedSuggestion}
-            >
-              <strong>{searchValue}</strong> (New Value)
-            </Suggestion>
-          </>
-        )}
+                  <Suggestion
+                    {...getSuggestionProps({
+                      item: searchValue_,
+                    })}
+                    key={'generic-search-value'}
+                    isHighlighted={!hasHighlightedSuggestion}
+                  >
+                    <strong>{searchValue_}</strong> (New Value)
+                  </Suggestion>
+                </>
+              ),
+            ),
+          )}
       </SuggestionList>
     </Suggestions>
   )
 }
+
 export function highlightSearchValue(labelName: string, searchValue: string) {
   return findHighlightedSearchValues(
     labelName,
@@ -345,9 +409,11 @@ export function highlightSearchValue(labelName: string, searchValue: string) {
     highlighted ? <strong key={`${value}-${i}`}>{value}</strong> : value,
   )
 }
+
 /**
  * Finds what parts of a given string matches the given search value.
  */
+
 function findHighlightedSearchValues(
   value: string,
   searchValue: string,
@@ -355,8 +421,7 @@ function findHighlightedSearchValues(
   if (eqNormalizedString.equals(value, searchValue)) {
     return [{ highlighted: true, value }]
   }
-  const regExpChar = /[\\^$.*+?()[\]{}|]/g // from lodash escapeRegExp function
-  const regex = new RegExp(`${searchValue.replace(regExpChar, '\\$&')}`, 'ig')
+  const regex = getSearchValueRegex(searchValue)
   const startParts: Array<{ highlighted: boolean; value: string }> = []
 
   const indexedParts = Array.from(value.matchAll(regex)).reduce(
@@ -393,7 +458,7 @@ export const eqNormalizedString: Eq<string> = contramap(normalize)(eqString)
 export const getSuggestions = (selectedLabels: ReadonlyArray<string>) => (
   searchValue: string,
   labels: ReadonlyArray<string>,
-) =>
+): Array<string> =>
   labels.filter(
     l =>
       includesSearchValue(l, searchValue) &&
@@ -411,6 +476,7 @@ type GenericTagInputProps<T> = Omit<
   cssOverrides?: SimpleInterpolation
   position?: Position
 }
+
 export function GenericTagInput<T>({
   placeholder,
   cssOverrides = '',
@@ -446,8 +512,12 @@ type TagInputProps = Omit<
   eq?: Eq<string>
   showSuggestions?: boolean
   position?: Position
-  searchValueToItem?: (searchValue: string) => Option<string>
+  searchValueToItem?: (searchValue: string) => O.Option<string>
+  /** Text to display when in View mode with no tags  */
+  viewPlaceholder?: string
 }
+
+const defaultValidateItem = flow(trim, O.fromPredicate(isNonEmptyString))
 
 export const TagInput = ({
   tag,
@@ -455,19 +525,29 @@ export const TagInput = ({
   eq = eqNormalizedString,
   showSuggestions = true,
   position = 'bottom',
-  searchValueToItem = some,
+  // @TODO - Pete Murphy 2020-09-30 - Condense `searchValueToItem` &
+  // `validateItem` to a single prop, not clear why there ended up being two
+  // props to do apparently same thing(?)
+  searchValueToItem = defaultValidateItem,
+  validateItem = flow(O.fromNullable, O.chain(defaultValidateItem)),
+  viewPlaceholder,
   ...otherProps
 }: TagInputProps) => (
   <GenericTagInput<string>
     eq={eq}
-    renderSelectedOptions={renderSelectedOptions(tag)}
+    renderSelectedOptions={renderSelectedOptions(
+      tag,
+      otherProps.display === DisplayType.View ? viewPlaceholder : undefined,
+    )}
     getSuggestedValues={getSuggestions(selectedOptions)}
     renderSuggestions={
-      showSuggestions ? renderSuggestions(position) : () => null
+      showSuggestions
+        ? renderSuggestions({ position, validateItem })
+        : () => null
     }
     selectedOptions={selectedOptions}
-    validateItem={fromPredicate(isNonEmptyString)}
     searchValueToItem={searchValueToItem}
+    validateItem={validateItem}
     {...otherProps}
   />
 )

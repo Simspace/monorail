@@ -100,11 +100,11 @@ const Details = props => {
     property,
     value
   } = props;
-  return _react.default.createElement(DetailsContainer, {
+  return /*#__PURE__*/_react.default.createElement(DetailsContainer, {
     cssOverrides: cssOverrides
-  }, _react.default.createElement(DetailsProperty, {
+  }, /*#__PURE__*/_react.default.createElement(DetailsProperty, {
     size: size
-  }, property), !(0, _typeGuards.isNil)(value) && _react.default.createElement(DetailsValue, {
+  }, property), !(0, _typeGuards.isNil)(value) && /*#__PURE__*/_react.default.createElement(DetailsValue, {
     size: size
   }, value), children);
 };

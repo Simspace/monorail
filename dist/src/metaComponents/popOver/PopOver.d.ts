@@ -105,4 +105,3 @@ export declare class PopOver extends Component<PopOverProps, PopOverState> {
     render(): JSX.Element;
 }
 export {};
-//# sourceMappingURL=PopOver.d.ts.map

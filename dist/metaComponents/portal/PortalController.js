@@ -5,9 +5,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.PortalController = void 0;
 
-var _portal = _interopRequireDefault(require("@reach/portal"));
-
 var _react = _interopRequireDefault(require("react"));
+
+var _portal = _interopRequireDefault(require("@reach/portal"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -18,7 +18,7 @@ const PortalController = ({
   children,
   isRendered
 }) => {
-  return isRendered ? _react.default.createElement(_portal.default, null, children) : null;
+  return isRendered ? /*#__PURE__*/_react.default.createElement(_portal.default, null, children) : null;
 };
 
 exports.PortalController = PortalController;

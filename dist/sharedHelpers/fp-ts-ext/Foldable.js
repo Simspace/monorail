@@ -10,9 +10,9 @@ exports.any = any;
 exports.count = count;
 exports.sequence_ = sequence_;
 
-var _function = require("fp-ts/lib/function");
-
 var _Foldable = require("fp-ts/lib/Foldable");
+
+var _function = require("fp-ts/lib/function");
 
 var _Monoid = require("fp-ts/lib/Monoid");
 

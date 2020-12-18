@@ -1,0 +1,80 @@
+---
+id: icons
+title: Icons
+sidebar_label: Icons
+---
+
+import { ShowCase } from '../docComponents/ShowCase'
+import { IconPreview } from '../docComponents/IconPreview'
+import styled, { createGlobalStyle, css } from 'styled-components'
+import { Icon } from '@monorail/visualComponents/icon/Icon'
+import { Sizes, Colors } from '@monorail/helpers/exports'
+
+Icons help distill words and concepts into a simple pictogram. Icons therefor have meaning and act almost as a dictionary. Try to keep the usage constant so that the definition of an Icon doesn't expand to the point where its meaning can become confusing.
+
+<ShowCase>
+  <Icon icon={'rocket'} color={Colors.Gray54} size={Sizes.DP40} />
+</ShowCase>
+
+## Material
+
+```tsx live
+<Icon icon={'info'} />
+```
+
+## Custom
+
+```tsx live
+<Icon icon={'rocket'} color={Colors.AccentBlue500} size={Sizes.DP40} />
+```
+
+## Preview
+
+<IconPreview />
+
+## Custom Icons
+
+How to add custom icons to Monorail:
+
+1. Custom icons live in Figma under ["Monorail" >> "Icons"](https://www.figma.com/file/LArsagaozPEXfBYWVjzooT6T/Figma-%E2%80%94-Icons?node-id=104%3A3)
+2. Select the top layer of the icon (it should be 24px by 24px)
+
+   - [Screenshot](https://imgur.com/a/gNwKqyc)
+
+3. In the right sidebar, select the '+' icon next to "Export"
+4. Select 'SVG' in the dropdown, then click "Export [Icon-Name]"
+
+   - [Screenshot](https://imgur.com/OhK1cKl)
+
+5. **Important: Convert the icon to JSX!**
+
+   - [Convert SVG to JSX](https://svg2jsx.com/)
+   - In `<svg>`, `fill="none"` should be included
+   - Don't include `fill` and `fill-opacity` in `<path>`
+
+6. Create a `.tsx` file for the icon
+
+   - `portal/src/packages/monorail/src/visualComponents/icon/custom/[IconName].tsx`
+
+7. Paste your svg code in where shown below:
+
+```jsx
+import React, { ComponentType } from 'react'
+import { CustomIconProps } from '@monorail/visualComponents/icon/Icon'
+export const CustomIconName: ComponentType<CustomIconProps> = props => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    fill="none"
+    viewBox="0 0 24 24"
+    {...props}
+  >
+    [SVG CODE HERE]
+  </svg>
+)
+```
+
+8. Add your new custom icon to:
+
+   - `portal/src/packages/monorail/src/visualComponents/icon/Icon.tsx`

@@ -1,11 +1,11 @@
 import React, {
   ChangeEvent,
   forwardRef,
+  ForwardRefExoticComponent,
   MouseEvent,
   PropsWithoutRef,
   RefAttributes,
   useState,
-  ForwardRefExoticComponent,
 } from 'react'
 import styled, { css, SimpleInterpolation } from 'styled-components'
 
@@ -236,6 +236,7 @@ type BasicProps = {
   name?: string
   hideStdErr?: boolean
   display?: DisplayType
+  labelDetails?: string | React.ReactElement
 }
 
 type StyledIconProps = VisibilityProps & IconProps & ErrorProps
@@ -285,6 +286,7 @@ export const TextField: ForwardRefExoticComponent<PropsWithoutRef<
     err = false,
     msg = '',
     hideStdErr = false,
+    labelDetails,
     ...otherProps
   } = props
 
@@ -304,6 +306,7 @@ export const TextField: ForwardRefExoticComponent<PropsWithoutRef<
             required={required}
             err={err}
             display={display}
+            details={labelDetails}
           />
           <IconsAndInputContainer>
             {!isEmptyString(iconLeft) && (

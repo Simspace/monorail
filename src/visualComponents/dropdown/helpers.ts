@@ -1,9 +1,9 @@
+import { KeyboardEvent } from 'react'
 import {
   ControllerStateAndHelpers,
   GetInputPropsOptions,
   PropGetters,
 } from 'downshift'
-import { KeyboardEvent } from 'react'
 
 import { hasKey, isObject } from '@monorail/sharedHelpers/typeGuards'
 import { TextFieldProps } from '@monorail/visualComponents/inputs/TextField'

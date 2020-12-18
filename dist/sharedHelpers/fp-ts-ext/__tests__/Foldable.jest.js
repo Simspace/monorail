@@ -1,10 +1,8 @@
 "use strict";
 
-var _Foldable = require("../Foldable");
-
 var _remoteDataTs = require("@devexperts/remote-data-ts");
 
-var _Option = require("fp-ts/lib/Option");
+var _fastCheck = _interopRequireDefault(require("fast-check"));
 
 var _Array = require("fp-ts/lib/Array");
 
@@ -12,9 +10,11 @@ var _Either = require("fp-ts/lib/Either");
 
 var _function = require("fp-ts/lib/function");
 
-var _fastCheck = _interopRequireDefault(require("fast-check"));
+var _Option = require("fp-ts/lib/Option");
 
 var _pipeable = require("fp-ts/lib/pipeable");
+
+var _Foldable = require("../Foldable");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 

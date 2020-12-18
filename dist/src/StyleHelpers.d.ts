@@ -1,10 +1,12 @@
 import { FlattenInterpolation, SimpleInterpolation, ThemeProps } from 'styled-components';
 import { GlobalAppThemeInterface } from '@monorail/helpers/theme';
 export declare type CssOverrides = SimpleInterpolation | FlattenInterpolation<ThemeProps<GlobalAppThemeInterface>>;
-export declare type StyledComponentCssOverrides = {
+declare type Props = {
     cssOverrides?: CssOverrides;
 };
 /**
+ * @deprecated please don't use this..
+ *
  * The Div helper is a component that accepts `css` prop so we can easily inline CSS Objects with TypeScript support.
  * The `cssLoose` property offers a relaxed typing for arbitrary string keys (escape hatch, e.g. `& > #blah`)
  *
@@ -16,6 +18,7 @@ export declare type StyledComponentCssOverrides = {
   />
  ```
  */
-export declare const Div: any;
-export declare const Form: any;
-//# sourceMappingURL=StyleHelpers.d.ts.map
+export declare const Div: import("styled-components").StyledComponent<"div", any, Props, never>;
+export declare const Span: import("styled-components").StyledComponent<"span", any, Props, never>;
+export declare const Form: import("styled-components").StyledComponent<"form", any, Props, never>;
+export {};

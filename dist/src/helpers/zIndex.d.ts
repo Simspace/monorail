@@ -18,4 +18,3 @@ export declare enum ZIndexNodeName {
 }
 export declare const zIndexValue: (nodeName: ZIndexNodeName) => number;
 export declare const zIndex: (nodeName: ZIndexNodeName) => string;
-//# sourceMappingURL=zIndex.d.ts.map

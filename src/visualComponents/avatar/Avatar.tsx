@@ -1,6 +1,4 @@
-import * as O from 'fp-ts/lib/Option'
-import { pipe } from 'fp-ts/lib/pipeable'
-import React, { StatelessComponent } from 'react'
+import React from 'react'
 
 import {
   BorderRadius,
@@ -10,7 +8,7 @@ import {
 } from '@monorail/helpers/exports'
 import { Sizes } from '@monorail/helpers/size'
 import styled, { css } from '@monorail/helpers/styled-components'
-import { isNil } from '@monorail/sharedHelpers/typeGuards'
+import { isNonEmptyString } from '@monorail/sharedHelpers/typeGuards'
 import { Icon } from '@monorail/visualComponents/icon/Icon'
 import { IconType } from '@monorail/visualComponents/icon/IconType'
 
@@ -59,16 +57,17 @@ export type AvatarProps = AvatarContainerProps & {
   icon?: IconType
 }
 
-export const Avatar: StatelessComponent<AvatarProps> = ({
+export const Avatar = ({
   first,
   last,
   team,
   size = defaultSize,
   icon,
   ...domProps
-}) => (
+}: AvatarProps) => (
   <AvatarContainer team={team} size={size} {...domProps}>
-    {!isNil(icon) ? (
+    {/* If the icon string is empty, show initials */}
+    {isNonEmptyString(icon) ? (
       <Icon
         icon={icon}
         size={iconScale * size}
@@ -78,22 +77,8 @@ export const Avatar: StatelessComponent<AvatarProps> = ({
       />
     ) : (
       <>
-        {pipe(
-          first,
-          O.fromNullable,
-          O.fold(
-            () => '',
-            f => f.charAt(0),
-          ),
-        )}
-        {pipe(
-          last,
-          O.fromNullable,
-          O.fold(
-            () => '',
-            f => f.charAt(0),
-          ),
-        )}
+        {first.charAt(0)}
+        {last.charAt(0)}
       </>
     )}
   </AvatarContainer>

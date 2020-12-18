@@ -17,4 +17,3 @@ export declare class HorizontalStepper extends Component<Props, State> {
     render(): JSX.Element;
 }
 export {};
-//# sourceMappingURL=HorizontalStepper.d.ts.map

@@ -1,0 +1,161 @@
+---
+id: collection-page
+title: Collection Page
+sidebar_label: Collection Page
+---
+
+import { ShowCase } from '../docComponents/ShowCase'
+
+import { css } from '@monorail/helpers/styled-components'
+
+import { Colors, getColor } from '@monorail/helpers/color'
+import { flexFlow } from '@monorail/helpers/flex'
+import {
+  CollectionPage,
+  SearchFilterType,
+} from '@monorail/pageComponents/CollectionPage/CollectionPage'
+import { Div } from '@monorail/StyleHelpers'
+import { Button } from '@monorail/visualComponents/buttons/Button'
+import { CollectionView } from '@monorail/visualComponents/collection/Collection'
+
+:::danger Error
+Importing `ContentCardDeprecated` breaks the page. Followed the suggested solution below but nothing happened.
+
+GS 8/720
+:::
+
+Error:
+
+```bash
+/Users/gabe/dev/portal/client/src/training/shared/RealtimeEventStatus.tsx
+SyntaxError: /Users/gabe/dev/portal/client/src/training/shared/RealtimeEventStatus.tsx: Support for the experimental syntax 'numericSeparator' isn't currently enabled (151:54):
+
+  149 |     intervalFn()
+  150 |     // Now begin interval
+> 151 |     const interval = window.setInterval(intervalFn, 1_000)
+      |                                                      ^
+  152 |     return () => clearInterval(interval)
+  153 |   }, [event])
+  154 |
+
+Add @babel/plugin-proposal-numeric-separator (https://git.io/vb4yS) to the 'plugins' section of your Babel config to enable transformation.
+If you want to leave it as-is, add @babel/plugin-syntax-numeric-separator (https://git.io/vb4Sq) to the 'plugins' section to enable parsing.
+ @ /Users/gabe/dev/portal/client/src/training/shared/components/EventStatus.tsx 7:0-115 49:42-69 51:38-65
+ @ /Users/gabe/dev/portal/client/src/training/shared/components/ContentCard.tsx
+ @ ./docs/docComponents/CollectionPageDoc.jsx
+ @ ./src/theme/MDXComponents/index.js
+ @ ./node_modules/@docusaurus/theme-classic/lib/theme/DocPage/index.js
+ @ ./.docusaurus/registry.js
+ @ ./node_modules/@docusaurus/core/lib/client/exports/ComponentCreator.js
+ @ ./.docusaurus/routes.js
+ @ ./node_modules/@docusaurus/core/lib/client/clientEntry.js
+ @ multi ./node_modules/react-dev-utils/webpackHotDevClient.js ./node_modules/@docusaurus/core/lib/client/clientEntry.js
+```
+
+<!-- // export const searchFilter = ({
+//   item,
+//   compareSearch,
+// }) =>
+//   compareSearch(item.entity.name) ||
+//   compareSearch(item.project.name) ||
+//   compareSearch(item.project.owner)
+
+// export const renderCard = (item) => {
+//   return (
+//     <ContentCardDeprecated
+//       noLogo
+//       packageData={{
+//         name: item.entity.name,
+//         Icon: (
+//           <FramedIcon
+//             css="vertical-align: middle; margin: 0 8px 4px 0;"
+//             frameColor={categoryColor('clone-source')}
+//             icon={categoryIcon('clone-source')}
+//           />
+//         ),
+//         categoryId: 'academy-package',
+//         difficulty: 'intermediate',
+//         enrollmentType: 'individual',
+//         description: '',
+//       }}
+//     />
+//   )
+// }
+
+// export const columns = [
+//   {
+//     Header: 'Name',
+//     accessor: 'entity.name',
+//   },
+//   {
+//     Header: 'Network Spec',
+//     accessor: 'project.name',
+//   },
+//   {
+//     Header: 'Organization',
+//     accessor: 'project.owner',
+//   },
+// ]
+
+// export const data = [
+//   {
+//     entity: {
+//       name: 'Item Name',
+//       type: 'deployment',
+//     },
+//     project: {
+//       key: 'key',
+//       name: 'name',
+//       owner: 'owner',
+//       latestVersionKey: 'key',
+//     },
+//   },
+//   {
+//     entity: {
+//       name: 'Item Name',
+//       type: 'deployment',
+//     },
+//     project: {
+//       key: 'key',
+//       name: 'name',
+//       owner: 'owner',
+//       latestVersionKey: 'key',
+//     },
+//   },
+//   {
+//     entity: {
+//       name: 'Item Name',
+//       type: 'deployment',
+//     },
+//     project: {
+//       key: 'key',
+//       name: 'name',
+//       owner: 'owner',
+//       latestVersionKey: 'key',
+//     },
+//   },
+// ]
+
+// Page level component for viewing a collection.
+
+// <ShowCase>
+//   <Div
+//     css={`
+//       ${flexFlow('column')};
+//       background: ${getColor(Colors.White)};
+//       height: 512px;
+//       width: calc(100% - 64px);
+//     `}
+//   >
+//     <CollectionPage
+//       setCollectionView={() => {}}
+//       collectionView={CollectionView.Table}
+//       title="Collection Page Demo"
+//       data={data}
+//       columns={columns}
+//       searchFilter={searchFilter}
+//       cardRender={renderCard}
+//       actions={<Button css="margin: auto 0 auto auto;">Action</Button>}
+//     />
+//   </Div>
+// </ShowCase> -->

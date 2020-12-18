@@ -1,9 +1,12 @@
-import { DisplayType } from '@monorail/visualComponents/inputs/inputTypes';
-import { ErrorProps } from '@monorail/visualComponents/inputs/StdErr';
 import React, { ChangeEvent, FC, KeyboardEvent } from 'react';
 import { SimpleInterpolation } from 'styled-components';
-export declare const TextAreaContainer: any;
-export declare const TextAreaInput: any;
+import { TextProps } from '@monorail/exports';
+import { DisplayType } from '@monorail/visualComponents/inputs/inputTypes';
+import { ErrorProps } from '@monorail/visualComponents/inputs/StdErr';
+export declare const TextAreaContainer: import("styled-components").StyledComponent<"label", any, TextAreaContainerProps & {
+    display?: DisplayType | undefined;
+}, never>;
+export declare const TextAreaInput: import("styled-components").StyledComponent<"textarea", any, TextAreaInputProps, never>;
 declare type TextAreaContainerProps = {
     cssOverrides?: SimpleInterpolation;
     className?: string;
@@ -26,8 +29,9 @@ declare type TextAreaInputProps = {
     hideStdErr?: boolean;
     display?: DisplayType;
     textareaRef?: React.RefObject<HTMLTextAreaElement>;
+    focus?: boolean;
+    textProps?: Omit<TextProps, 'children'>;
 } & ErrorProps;
 export declare type TextAreaProps = TextAreaContainerProps & TextAreaInputProps;
 export declare const TextArea: FC<TextAreaProps>;
 export {};
-//# sourceMappingURL=TextArea.d.ts.map

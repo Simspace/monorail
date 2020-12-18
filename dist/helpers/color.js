@@ -4,12 +4,18 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.getCollectionColor = exports.getColor = exports.convertHSLAMapToCss = exports.colorHSLAMap = exports.Colors = void 0;
+
+var _pipeable = require("fp-ts/lib/pipeable");
+
+var _fpTsImports = require("../sharedHelpers/fp-ts-imports");
+
 let Colors;
 exports.Colors = Colors;
 
 (function (Colors) {
   Colors["Black"] = "black";
   Colors["Gray02"] = "Gray02";
+  Colors["Gray04"] = "Gray04";
   Colors["Gray06"] = "Gray06";
   Colors["Gray08"] = "Gray08";
   Colors["Gray12"] = "Gray12";
@@ -55,27 +61,30 @@ exports.Colors = Colors;
   Colors["Requested"] = "requested";
   Colors["Inactive"] = "inactive";
   Colors["Academy"] = "academy";
+  Colors["TeamAssessmentPlan"] = "teamAssessmentPlan";
   Colors["AttackElements"] = "attackElements";
   Colors["Execution"] = "execution";
   Colors["Admin"] = "admin";
   Colors["AdminAlt"] = "adminAlt";
+  Colors["Assessments"] = "assessments";
   Colors["Catalog"] = "catalog";
   Colors["CatalogAlt"] = "catalogAlt";
   Colors["Dashboard"] = "dashboard";
-  Colors["Range"] = "range";
-  Colors["RangeAlt"] = "rangeAlt";
-  Colors["Tracker"] = "tracker";
-  Colors["TrackerAlt"] = "trackerAlt";
   Colors["Hardhat"] = "hardhat";
   Colors["Impact"] = "impact";
   Colors["ImpactAlt"] = "impactAlt";
-  Colors["Training"] = "training";
-  Colors["TechOps"] = "techops";
-  Colors["TechOpsAlt"] = "techopsAlt";
-  Colors["Repo"] = "repo";
   Colors["LMS"] = "externalLms";
   Colors["MyOrg"] = "myOrg";
   Colors["MyOrgAlt"] = "myOrgAlt";
+  Colors["Range"] = "range";
+  Colors["RangeAlt"] = "rangeAlt";
+  Colors["Repo"] = "repo";
+  Colors["TechOps"] = "techops";
+  Colors["TechOpsAlt"] = "techopsAlt";
+  Colors["Tracker"] = "tracker";
+  Colors["TrackerAlt"] = "trackerAlt";
+  Colors["TrackerSecondary"] = "trackerSecondary";
+  Colors["Training"] = "training";
   Colors["Green"] = "green";
   Colors["Red"] = "red";
   Colors["Amber"] = "amber";
@@ -189,6 +198,13 @@ const colorHSLAMap = ({
       a: alpha
     },
     // #FAFAFA
+    [Colors.Gray04]: {
+      h: 0,
+      s: 0,
+      l: 96,
+      a: alpha
+    },
+    // #F5F5F5
     [Colors.Gray06]: {
       h: 0,
       s: 0,
@@ -453,13 +469,12 @@ const colorHSLAMap = ({
     // #6E2F74
     // App Colors
     [Colors.Academy]: {
-      h: 196,
-      s: 75,
-      l: 50,
+      h: 195,
+      s: 72,
+      l: 43,
       a: alpha
     },
-    // #20ACDF
-    // [Colors.Admin]: { h: 210, s: 82, l: 54, a: alpha }, // #2A8AEA
+    // #1F95BC
     [Colors.Admin]: {
       h: 37,
       s: 92,
@@ -474,7 +489,13 @@ const colorHSLAMap = ({
       a: alpha
     },
     // #B67F25
-    // [Colors.Catalog]: { h: 79, s: 59, l: 49, a: alpha }, // #98C733
+    [Colors.AttackElements]: {
+      h: 5,
+      s: 90,
+      l: 44,
+      a: alpha
+    },
+    // #D41C0B
     [Colors.Catalog]: {
       h: 257,
       s: 54,
@@ -496,6 +517,13 @@ const colorHSLAMap = ({
       a: alpha
     },
     // #7A52E0
+    [Colors.Execution]: {
+      h: 196,
+      s: 75,
+      l: 50,
+      a: alpha
+    },
+    // #20ACDF
     [Colors.Range]: {
       h: 257,
       s: 54,
@@ -510,21 +538,6 @@ const colorHSLAMap = ({
       a: alpha
     },
     // #EB9814
-    // [Colors.Tracker]: { h: 145, s: 63, l: 42, a: alpha }, // #28AF60
-    [Colors.Tracker]: {
-      h: 133,
-      s: 34,
-      l: 51,
-      a: alpha
-    },
-    // #58AD6A
-    [Colors.TrackerAlt]: {
-      h: 132,
-      s: 45,
-      l: 45,
-      a: alpha
-    },
-    // #3FA654
     [Colors.Hardhat]: {
       h: 12,
       s: 98,
@@ -532,13 +545,6 @@ const colorHSLAMap = ({
       a: alpha
     },
     // #FD5930
-    [Colors.AttackElements]: {
-      h: 353,
-      s: 100,
-      l: 35,
-      a: alpha
-    },
-    // [Colors.Impact]: { h: 353, s: 52, l: 42, a: alpha }, // #A33340
     [Colors.Impact]: {
       h: 12,
       s: 85,
@@ -553,14 +559,49 @@ const colorHSLAMap = ({
       a: alpha
     },
     // #C52D07
-    [Colors.Training]: {
-      h: 196,
-      s: 75,
+    [Colors.LMS]: {
+      h: 2,
+      s: 61,
       l: 50,
       a: alpha
     },
-    // #20ACDF
-    // [Colors.TechOps]: { h: 324, s: 60, l: 60, a: alpha }, // #D65CA5
+    // #CD3732
+    [Colors.MyOrg]: {
+      h: 181,
+      s: 88,
+      l: 29,
+      a: alpha
+    },
+    // #09898B
+    // This is the same as Colors.AccentPurple700
+    [Colors.Assessments]: {
+      h: 295,
+      s: 42,
+      l: 32,
+      a: alpha
+    },
+    // #6E2F74
+    [Colors.TeamAssessmentPlan]: {
+      h: 295,
+      s: 42,
+      l: 32,
+      a: alpha
+    },
+    // #6E2F74
+    [Colors.MyOrgAlt]: {
+      h: 180,
+      s: 40,
+      l: 98,
+      a: alpha
+    },
+    // #F8FCFC
+    [Colors.Repo]: {
+      h: 79,
+      s: 59,
+      l: 49,
+      a: alpha
+    },
+    // #98C733
     [Colors.TechOps]: {
       h: 325,
       s: 58,
@@ -575,41 +616,34 @@ const colorHSLAMap = ({
       a: alpha
     },
     // #892F63
-    [Colors.Repo]: {
-      h: 79,
-      s: 59,
-      l: 49,
+    [Colors.Tracker]: {
+      h: 153,
+      s: 91,
+      l: 34,
       a: alpha
     },
-    // #98C733
-    [Colors.LMS]: {
-      h: 2,
-      s: 61,
-      l: 50,
+    // #08A45E
+    [Colors.TrackerAlt]: {
+      h: 132,
+      s: 45,
+      l: 45,
       a: alpha
     },
-    // #CD3732
-    [Colors.Execution]: {
+    // #3FA654
+    [Colors.TrackerSecondary]: {
+      h: 150,
+      s: 33,
+      l: 99,
+      a: alpha
+    },
+    // #FBFDFC
+    [Colors.Training]: {
       h: 196,
       s: 75,
       l: 50,
       a: alpha
     },
     // #20ACDF
-    [Colors.MyOrg]: {
-      h: 181,
-      s: 88,
-      l: 29,
-      a: alpha
-    },
-    // #09898B
-    [Colors.MyOrgAlt]: {
-      h: 180,
-      s: 40,
-      l: 98,
-      a: alpha
-    },
-    // #F8FCFC
     // Event Status
     // In Progress
     [Colors.Active]: {
@@ -1321,6 +1355,11 @@ const getColor = (color, alpha = 1) => convertHSLAMapToCss(colorHSLAMap({
 
 exports.getColor = getColor;
 
-const getCollectionColor = (index, hover = false) => `Collection${hover ? 'Secondary' : 'Primary'}${1 + index % 9}`;
+const getCollectionColor = (index, hover = false) => {
+  const primaryColors = [Colors.CollectionPrimary1, Colors.CollectionPrimary2, Colors.CollectionPrimary3, Colors.CollectionPrimary4, Colors.CollectionPrimary5, Colors.CollectionPrimary6, Colors.CollectionPrimary7, Colors.CollectionPrimary8];
+  const secondaryColors = [Colors.CollectionSecondary1, Colors.CollectionSecondary2, Colors.CollectionSecondary3, Colors.CollectionSecondary4, Colors.CollectionSecondary5, Colors.CollectionSecondary6, Colors.CollectionSecondary7, Colors.CollectionSecondary8];
+  const target = hover ? primaryColors : secondaryColors;
+  return (0, _pipeable.pipe)(_fpTsImports.O.fromNullable(target[index % target.length]), _fpTsImports.O.getOrElse(() => Colors.CollectionPrimary1));
+};
 
 exports.getCollectionColor = getCollectionColor;

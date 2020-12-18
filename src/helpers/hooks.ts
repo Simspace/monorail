@@ -1,5 +1,5 @@
-import { flow } from 'fp-ts/lib/function'
 import {
+  RefObject,
   useCallback,
   useEffect,
   useLayoutEffect,
@@ -7,11 +7,13 @@ import {
   useState,
 } from 'react'
 import { useDebouncedCallback } from 'use-debounce'
+import { flow } from 'fp-ts/lib/function'
 
 import {
   defaultPopOverPosition,
   dropDirections,
   getOverlayPosition,
+  PopOverPosition,
 } from '@monorail/metaComponents/popOver/PopOver'
 import { isNil, isNotNil } from '@monorail/sharedHelpers/typeGuards'
 
@@ -51,9 +53,9 @@ export function useEventListener<E extends HTMLElement>({
   )
 }
 
-type RefCallbackNullType<T extends HTMLDivElement> = T | null
+type RefCallbackNullType<T> = T | null
 
-export function useRefCallback<T extends HTMLDivElement>(): [
+export function useRefCallback<T>(): [
   RefCallbackNullType<T>,
   (node: RefCallbackNullType<T>) => void,
 ] {
@@ -172,22 +174,45 @@ export function getPosition(event: React.SyntheticEvent<Element>) {
 /**
  * Helper hook to calculate the PopOver position
  */
-export const usePopOverPosition = () => useState(defaultPopOverPosition)
+export const usePopOverPosition = (popOverPosition?: PopOverPosition) =>
+  useState(popOverPosition ?? defaultPopOverPosition)
 
 /**
  * Helper hook to use SimplePopOver
  */
-export const useSimplePopOver = () => {
+export const useSimplePopOver = (popOverPosition?: PopOverPosition) => {
   const [isOpen, show, hide] = useToggle(false)
-  const [position, setPosition] = usePopOverPosition()
+  const [position, setPosition] = usePopOverPosition(popOverPosition)
   const open = flow(getPosition, setPosition, show)
 
   return {
-    isOpen,
-    show,
     hide,
+    isOpen,
     open,
     position,
     setPosition,
+    show,
   }
+}
+
+/**
+ * For focusing an element on initial render. Returns a ref to assign to the
+ * element that you want to focus.
+ */
+export const useRefFocusOnRender = <A extends HTMLElement>() => {
+  const ref = useRef<A>(null)
+  useFocusOnRender(ref)
+  return ref
+}
+
+/**
+ * For focusing an element on initial render. Takes a ref that is assigned to
+ * the element that you want to focus.
+ */
+export const useFocusOnRender = <A extends HTMLElement>(ref: RefObject<A>) => {
+  useEffect(() => {
+    setTimeout(() => {
+      ref.current?.focus()
+    }, 0)
+  }, [ref])
 }

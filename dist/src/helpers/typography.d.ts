@@ -1,4 +1,3 @@
-/// <reference types="@monorail/typings/styled-components" />
 export declare const ellipsis: import("styled-components").FlattenSimpleInterpolation;
 export declare enum FontWeights {
     ExtraLight = 200,
@@ -84,57 +83,7 @@ export declare const typographyFont: (weight: number, size: FontSizes) => {
 /**
  * @description Typography helper to add styling for text following design components including margin alignment
  * */
-export declare const typography: (weight: number, size: FontSizes, margin?: string) => {
-    margin: string;
-    fontSize: string;
-    lineHeight: string;
-    fontWeight: number;
-} | {
-    margin: string;
-    fontSize: string;
-    lineHeight: string;
-    fontWeight: number;
-} | {
-    margin: string;
-    fontSize: string;
-    lineHeight: string;
-    fontWeight: number;
-} | {
-    margin: string;
-    fontSize: string;
-    lineHeight: string;
-    fontWeight: number;
-} | {
-    margin: string;
-    fontSize: string;
-    lineHeight: string;
-    fontWeight: number;
-} | {
-    margin: string;
-    fontSize: string;
-    lineHeight: string;
-    fontWeight: number;
-} | {
-    margin: string;
-    fontSize: string;
-    lineHeight: string;
-    fontWeight: number;
-} | {
-    margin: string;
-    fontSize: string;
-    lineHeight: string;
-    fontWeight: number;
-} | {
-    margin: string;
-    fontSize: string;
-    lineHeight: string;
-    fontWeight: number;
-} | {
-    margin: string;
-    fontSize: string;
-    lineHeight: string;
-    fontWeight: number;
-};
+export declare const typography: (weight: number, size: FontSizes, margin?: string) => import("styled-components").FlattenSimpleInterpolation;
 /**
  * @deprecated Use typography or typographyFont instead
  * */
@@ -201,4 +150,3 @@ export declare const typographyMargin: (size: FontSizes, margin?: string) => {
 export declare const shortHandDeconstruction: (value: string) => Margin;
 export declare const gothamFontFamily: import("styled-components").FlattenSimpleInterpolation;
 export declare const oswaldFontFamily: import("styled-components").FlattenSimpleInterpolation;
-//# sourceMappingURL=typography.d.ts.map

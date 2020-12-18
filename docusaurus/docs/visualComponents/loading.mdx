@@ -1,0 +1,41 @@
+---
+id: loading
+title: Loading
+sidebar_label: Loading
+---
+
+import { ShowCase } from '../docComponents/ShowCase'
+import { Loading, LoaderType } from '@monorail/visualComponents/loading/Loading'
+
+Loading...
+
+<ShowCase>
+  <Loading />
+</ShowCase>
+
+### Loading
+
+The loading component takes a size prop to set the width and the height.
+
+```tsx live
+<Loading size={128}></Loading>
+```
+
+### Loading | Generic
+
+A generic loading animation for use in white-label portal instances, as well as smaller use cases like having a loading animation within a component. This version is completely white, and the pause is reduced.
+
+```tsx live
+<Loading loaderType={LoaderType.Generic} size={128}></Loading>
+```
+
+### Loading | Purple
+
+A generic loading animation for use in white-label portal instances, as well as smaller use cases like having a loading animation within a component. This version is completely white, and the pause is reduced.
+
+```tsx live
+<Loading
+  size={{ _type: 'size', hw: 128 }}
+  loaderType={LoaderType.Pcte}
+></Loading>
+```

@@ -1,2 +1,1 @@
-export declare const ActionsContainer: any;
-//# sourceMappingURL=Actions.d.ts.map
+export declare const ActionsContainer: import("styled-components").StyledComponent<"div", import("../../helpers/theme").GlobalAppThemeInterface, {}, never>;

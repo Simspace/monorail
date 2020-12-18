@@ -1,11 +1,3 @@
-import { O, pipe } from '@monorail/sharedHelpers/fp-ts-imports'
-import Downshift, {
-  ControllerStateAndHelpers,
-  DownshiftProps,
-  DownshiftState,
-  StateChangeOptions,
-} from 'downshift'
-import { Do } from 'fp-ts-contrib/lib/Do'
 import {
   Dispatch,
   SetStateAction,
@@ -13,8 +5,16 @@ import {
   useEffect,
   useState,
 } from 'react'
+import Downshift, {
+  ControllerStateAndHelpers,
+  DownshiftProps,
+  DownshiftState,
+  StateChangeOptions,
+} from 'downshift'
 import { useDebouncedCallback } from 'use-debounce'
 import { isUndefined } from 'util'
+import { Do } from 'fp-ts-contrib/lib/Do'
+import { O, pipe } from '@monorail/sharedHelpers/fp-ts-imports'
 
 import { isEmptyString } from '@monorail/sharedHelpers/typeGuards'
 import { Nullable } from '@monorail/sharedHelpers/typeLevel'

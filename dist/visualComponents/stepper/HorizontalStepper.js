@@ -169,7 +169,7 @@ class HorizontalStepper extends _react.Component {
     this.state = {
       activeStepIndex: 0
     };
-    this.activeStepRef = (0, _react.createRef)();
+    this.activeStepRef = /*#__PURE__*/(0, _react.createRef)();
 
     this.scrollStepIntoView = () => {
       const activeStep = this.activeStepRef.current;
@@ -198,20 +198,20 @@ class HorizontalStepper extends _react.Component {
         });
       }
 
-      return _react.default.createElement(Step, {
+      return /*#__PURE__*/_react.default.createElement(Step, {
         key: index,
         step: step,
         onClick: () => onStepClick(step, index),
         "data-test-id": `horizontal-stepper-step-${index}`,
         ref: step.isActive ? this.activeStepRef : null
-      }, _react.default.createElement(Body, {
+      }, /*#__PURE__*/_react.default.createElement(Body, {
         step: step
-      }, step.isCompleted && !step.isActive ? _react.default.createElement(StyledIcon, {
+      }, step.isCompleted && !step.isActive ? /*#__PURE__*/_react.default.createElement(StyledIcon, {
         icon: "check_circle_outline",
         size: 28
-      }) : _react.default.createElement(Number, {
+      }) : /*#__PURE__*/_react.default.createElement(Number, {
         step: step
-      }, index + 1), _react.default.createElement(TextContainer, null, _react.default.createElement(Title, null, step.label), !(0, _typeGuards.isNil)(step.subtitle) && _react.default.createElement(Subtitle, null, step.subtitle))), index !== steps.length - 1 && _react.default.createElement(Line, null));
+      }, index + 1), /*#__PURE__*/_react.default.createElement(TextContainer, null, /*#__PURE__*/_react.default.createElement(Title, null, step.label), !(0, _typeGuards.isNil)(step.subtitle) && /*#__PURE__*/_react.default.createElement(Subtitle, null, step.subtitle))), index !== steps.length - 1 && /*#__PURE__*/_react.default.createElement(Line, null));
     };
   }
 
@@ -227,7 +227,7 @@ class HorizontalStepper extends _react.Component {
       onStepClick,
       ...domProps
     } = this.props;
-    return _react.default.createElement(HorizontalStepperContainer, domProps, _react.default.createElement(HorizontalStepperWrapper, null, steps.map(this.renderSection)));
+    return /*#__PURE__*/_react.default.createElement(HorizontalStepperContainer, domProps, /*#__PURE__*/_react.default.createElement(HorizontalStepperWrapper, null, steps.map(this.renderSection)));
   }
 
 }

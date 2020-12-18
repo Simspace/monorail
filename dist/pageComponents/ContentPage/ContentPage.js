@@ -18,7 +18,7 @@ const ContentPage = props => {
     children,
     fullWidth = false
   } = props;
-  return _react.default.createElement(_styledComponents.ThemeProvider, {
+  return /*#__PURE__*/_react.default.createElement(_styledComponents.ThemeProvider, {
     theme: theme => ({ ...theme,
       size: { ...theme.size,
         page: {
@@ -26,7 +26,7 @@ const ContentPage = props => {
         }
       }
     })
-  }, _react.default.createElement(_react.default.Fragment, null, children));
+  }, /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, children));
 };
 
 exports.ContentPage = ContentPage;

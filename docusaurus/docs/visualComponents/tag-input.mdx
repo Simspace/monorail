@@ -1,0 +1,181 @@
+---
+id: tag-input
+title: Tag Input
+sidebar_label: Tag Input
+---
+
+import { useState } from 'react'
+
+import { ShowCase } from '../docComponents/ShowCase'
+import { TagInputContent } from '../docComponents/TagInputDoc'
+
+import { TagInput } from '@monorail/visualComponents/inputs/TagInput'
+import { Button } from '@monorail/visualComponents/buttons/Button'
+import { DisplayType } from '@monorail/visualComponents/inputs/inputTypes'
+import { ButtonDisplay } from '@monorail/visualComponents/buttons/buttonTypes'
+
+:::caution Problems
+
+Related to css prop getting applied to element instead of being a generated class:
+
+:::
+
+A TagInput is a TextInput that allows the user to enter multiple values. Previously entered values are displayed in a list of tags. Each tag can be deleted.
+
+export const TagInputExample = () => {
+  const [formState, setFormState] = useState({ list: [] })
+  const onChangeList = list =>
+    setFormState({ ...formState, list: Array.from(new Set(list)) })
+  const addLabel = label =>
+    setFormState({
+      ...formState,
+      list: Array.from(new Set([...formState.list, label])),
+    })
+  const onSubmit = () => {
+    alert(`Submitted with list: ${JSON.stringify(formState.list)}`)
+  }
+  return (
+    <TagInputContent>
+      <TagInput
+        label="Pizza toppings"
+        display={DisplayType.Edit}
+        selectedOptions={formState.list}
+        position="bottom"
+        onEnter={(searchValue, clearSearchValue) => {
+          addLabel(searchValue)
+          clearSearchValue()
+        }}
+        placeholder="pepperoni, sausage, etc"
+        options={[
+          'anchovies',
+          'bacon',
+          'broccoli',
+          'capers',
+          'Doritos',
+          'eggs',
+          'green peppers',
+          'ground beef',
+          'meatballs',
+          'pepperoni',
+          'sausage',
+        ]}
+        onChange={onChangeList}
+      />
+      <Button onClick={onSubmit}>Submit</Button>
+    </TagInputContent>
+  )
+}
+
+<ShowCase>
+  <TagInputExample />
+</ShowCase>
+
+## Examples
+
+```tsx live
+function Demo() {
+  const [formState, setFormState] = useState({ list: [] })
+
+  const onChangeList = list =>
+    setFormState({ ...formState, list: Array.from(new Set(list)) })
+
+  const addLabel = label =>
+    setFormState({
+      ...formState,
+      list: Array.from(new Set([...formState.list, label])),
+    })
+
+  const onSubmit = () => {
+    alert(`Submitted with list: ${JSON.stringify(formState.list)}`)
+  }
+
+  return (
+    <TagInputContent>
+      <TagInput
+        label="Pizza toppings"
+        tag="fullWidth"
+        display={DisplayType.Edit}
+        selectedOptions={formState.list}
+        onEnter={(searchValue, clearSearchValue) => {
+          addLabel(searchValue)
+          clearSearchValue()
+        }}
+        placeholder="pepperoni, sausage, etc"
+        options={[
+          'anchovies',
+          'bacon',
+          'broccoli',
+          'capers',
+          'Doritos',
+          'eggs',
+          'green peppers',
+          'ground beef',
+          'meatballs',
+          'pepperoni',
+          'sausage',
+        ]}
+        onChange={onChangeList}
+      />
+
+      <Button onClick={onSubmit}>Submit</Button>
+    </TagInputContent>
+  )
+}
+```
+
+### Accepting Only Unique Values
+
+```tsx live
+function FullWidthTagInputExample() {
+  const [formState, setFormState] = useState({ list: [] })
+
+  const onChangeList = list =>
+    setFormState({ ...formState, list: Array.from(new Set(list)) })
+
+  const addLabel = label =>
+    setFormState({
+      ...formState,
+      list: Array.from(new Set([...formState.list, label])),
+    })
+
+  const onSubmit = () => {
+    alert(`Submitted with list: ${JSON.stringify(formState.list)}`)
+  }
+
+  return (
+    <TagInputContent>
+      <TagInput
+        label="Pizza toppings"
+        tag="fullWidth"
+        display={DisplayType.Edit}
+        selectedOptions={formState.list}
+        onEnter={(searchValue, clearSearchValue) => {
+          addLabel(searchValue)
+          clearSearchValue()
+        }}
+        placeholder="pepperoni, sausage, etc"
+        options={[
+          'anchovies',
+          'bacon',
+          'broccoli',
+          'capers',
+          'Doritos',
+          'eggs',
+          'green peppers',
+          'ground beef',
+          'meatballs',
+          'pepperoni',
+          'sausage',
+        ]}
+        onChange={onChangeList}
+      />
+
+      <Button onClick={onSubmit}>Submit</Button>
+    </TagInputContent>
+  )
+}
+```
+
+## Usage
+
+A tag input is a controlled component which relies on its parent to determine what values should be displayed as tags (the `inputs` prop), how to update the parent form state when the list changes (the `onChangeInputs` prop), and whether to account for a value in the text field that does not yet appear as a tag when the form is submitted (the `onChangeCurrentInput` prop).
