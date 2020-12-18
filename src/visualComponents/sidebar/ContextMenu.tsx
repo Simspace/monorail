@@ -1,5 +1,3 @@
-import { array, isEmpty } from 'fp-ts/lib/Array'
-import { none, some } from 'fp-ts/lib/Option'
 import React, {
   Component,
   createRef,
@@ -9,6 +7,8 @@ import React, {
 } from 'react'
 import Link from 'react-router/lib/Link'
 import styled, { css } from 'styled-components'
+import { array, isEmpty } from 'fp-ts/lib/Array'
+import { none, some } from 'fp-ts/lib/Option'
 
 import {
   Colors,
@@ -22,6 +22,7 @@ import {
 import { PopOverChildProps } from '@monorail/metaComponents/popOver/PopOver'
 import { isNil } from '@monorail/sharedHelpers/typeGuards'
 import { CommonComponentType, LinkProps } from '@monorail/types'
+import { IconType } from '@monorail/visualComponents/icon/IconType'
 import { Search } from '@monorail/visualComponents/inputs/Search'
 import { SearchController } from '@monorail/visualComponents/inputs/SearchController'
 import { ScrollAnimation } from '@monorail/visualComponents/layout/ScrollAnimation'
@@ -65,10 +66,10 @@ type SimpleListItemProps = CommonComponentType &
   LinkProps & {
     dense?: boolean
     disabled?: boolean
-    leftIcon?: string
+    leftIcon?: IconType
     onClick?: (event: MouseEvent<HTMLDivElement>) => void
     primaryText?: ReactNode
-    rightIcon?: string
+    rightIcon?: IconType
     secondaryText?: ReactNode
     size?: Sizes
     meta?: ReactNode
@@ -97,7 +98,7 @@ const ContextMenuItem: StatelessComponent<SimpleListItemProps> = ({
     {!isNil(leftIcon) && (
       <ListItemGraphic
         icon={leftIcon}
-        dense={dense}
+        $dense={dense}
         css={css`
           color: ${getColor(Colors.Black62a)};
           margin-top: 12px;
@@ -136,7 +137,7 @@ const ContextMenuItem: StatelessComponent<SimpleListItemProps> = ({
       </ListItemText>
     )}
 
-    {!isNil(rightIcon) && <ListItemGraphic icon={rightIcon} dense={dense} />}
+    {!isNil(rightIcon) && <ListItemGraphic icon={rightIcon} $dense={dense} />}
     {children}
   </ListItem>
 )
@@ -158,7 +159,7 @@ export type ContextMenuItems = Array<{
 type Props = PopOverChildProps & {
   onItemClick?: (item: ContextMenuItemProps) => void
   contextItems: ContextMenuItems
-  icon: string
+  icon: IconType
   renderFilter: () => ReactNode
   width?: number
 }

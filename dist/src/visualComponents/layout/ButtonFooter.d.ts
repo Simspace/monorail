@@ -6,4 +6,3 @@ declare type Props = {
 };
 export declare const ButtonFooter: FC<Props>;
 export {};
-//# sourceMappingURL=ButtonFooter.d.ts.map

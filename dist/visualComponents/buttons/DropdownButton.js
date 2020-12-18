@@ -7,11 +7,11 @@ exports.DropdownButton = void 0;
 
 var _styledComponents = _interopRequireWildcard(require("styled-components"));
 
+var _react = _interopRequireDefault(require("react"));
+
 var _Array = require("fp-ts/lib/Array");
 
 var _Option = require("fp-ts/lib/Option");
-
-var _react = _interopRequireDefault(require("react"));
 
 var _PopOver = require("../../metaComponents/popOver/PopOver");
 
@@ -44,9 +44,7 @@ const overrides = {
  * in this component.
  */
 
-var _StyledButton =
-/*#__PURE__*/
-(0, _styledComponents.default)(_Button.Button).withConfig({
+var _StyledButton = /*#__PURE__*/(0, _styledComponents.default)(_Button.Button).withConfig({
   displayName: "DropdownButton___StyledButton",
   componentId: "sc-1jutvw0-0"
 })(["", ""], p => p._css);
@@ -66,14 +64,14 @@ const DropdownButton = ({
     return null;
   }
 
-  return _react.default.createElement(_PopOver.PopOver, {
-    popOver: popOverProps => _react.default.createElement(_Menu.Menu, {
+  return /*#__PURE__*/_react.default.createElement(_PopOver.PopOver, {
+    popOver: popOverProps => /*#__PURE__*/_react.default.createElement(_Menu.Menu, {
       onClick: popOverProps.onClick,
       position: popOverProps.position,
       isOpen: popOverProps.isOpen,
       togglePopOver: popOverProps.togglePopOver,
       closingAnimationCompleted: popOverProps.closingAnimationCompleted
-    }, listItems.map((listItem, idx) => _react.default.createElement(_List.SimpleListItem, _extends({
+    }, listItems.map((listItem, idx) => /*#__PURE__*/_react.default.createElement(_List.SimpleListItem, _extends({
       key: `${idx}-${listItem.primaryText}`
     }, listItem, {
       onClick: e => {
@@ -83,16 +81,16 @@ const DropdownButton = ({
     })))),
     toggle: toggleProps => {
       const selectedListItemValue = selectedListItem.value;
-      return _react.default.createElement(_ButtonsBar.ButtonsBar, {
+      return /*#__PURE__*/_react.default.createElement(_ButtonsBar.ButtonsBar, {
         size: _buttonTypes.ButtonSize.Compact,
         display: _buttonTypes.ButtonDisplay.Primary
-      }, _react.default.createElement(_StyledButton, {
+      }, /*#__PURE__*/_react.default.createElement(_StyledButton, {
         onClick: selectedListItemValue.onClick,
         iconLeft: selectedListItemValue.leftIcon,
         iconRight: selectedListItemValue.rightIcon,
         disabled: disabled,
         _css: overrides.button
-      }, selectedListItemValue.primaryText), _react.default.createElement(_IconButton.IconButton, {
+      }, selectedListItemValue.primaryText), /*#__PURE__*/_react.default.createElement(_IconButton.IconButton, {
         icon: toggleProps.isActive ? 'arrow_drop_up' : 'arrow_drop_down',
         onClick: toggleProps.onClick
       }));

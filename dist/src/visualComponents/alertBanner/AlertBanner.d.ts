@@ -1,6 +1,6 @@
 import { FC } from 'react';
-import { AlertLevel } from '@monorail/visualComponents/toast/types';
 import { IconType } from '@monorail/visualComponents/icon/IconType';
+import { AlertLevel } from '@monorail/visualComponents/toast/types';
 declare type AlertBannerProps = {
     level: AlertLevel;
     icon?: IconType;
@@ -11,4 +11,3 @@ declare type AlertBannerProps = {
 };
 export declare const AlertBanner: FC<AlertBannerProps>;
 export {};
-//# sourceMappingURL=AlertBanner.d.ts.map

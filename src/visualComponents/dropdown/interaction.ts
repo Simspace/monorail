@@ -23,7 +23,7 @@ export type KeyboardInteractionHook<T> = (
   parser: DropdownParser<T>,
 ) => InteractionController<T>
 
-export const useKeyboardInteraction = <T extends DropdownType>(options?: {
+export const createKeyboardInteraction = <T extends DropdownType>(options?: {
   openOnInteraction: boolean
 }) => (parser: DropdownParser<T>): InteractionController<T> => {
   const { openOnInteraction = false } = options || {}

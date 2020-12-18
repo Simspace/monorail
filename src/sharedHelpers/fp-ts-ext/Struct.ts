@@ -1,5 +1,6 @@
 import * as Eq from 'fp-ts/lib/Eq'
 import * as O from 'fp-ts/lib/Option'
+
 import { keys } from '@monorail/sharedHelpers/fp-ts-ext/Record'
 
 export const difference = <A extends object>(

@@ -15,6 +15,8 @@ var _flex = require("../../helpers/flex");
 
 var _styledComponents = _interopRequireWildcard(require("../../helpers/styled-components"));
 
+var _typeGuards = require("../../sharedHelpers/typeGuards");
+
 var _Actions = require("../../visualComponents/actions/Actions");
 
 var _CollectionPaginationComponent = require("../../visualComponents/collection/CollectionPaginationComponent");
@@ -22,8 +24,6 @@ var _CollectionPaginationComponent = require("../../visualComponents/collection/
 var _ReactTable = require("../../visualComponents/dataTable/ReactTable");
 
 var _Search = require("../../visualComponents/inputs/Search");
-
-var _typeGuards = require("../../sharedHelpers/typeGuards");
 
 var _PageHeader = require("../../visualComponents/pageHeader/PageHeader");
 
@@ -74,10 +74,10 @@ const TablePage = props => {
     ...otherProps
   } = props;
   const [sorted, onSortedChange] = (0, _ReactTable.useSort)(otherProps.defaultSorted);
-  return _react.default.createElement(_react.default.Fragment, null, (0, _typeGuards.isNonEmptyString)(title) && _react.default.createElement(_PageHeader.PageHeader, {
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, (0, _typeGuards.isNonEmptyString)(title) && /*#__PURE__*/_react.default.createElement(_PageHeader.PageHeader, {
     title: title,
-    actions: _react.default.createElement(_Actions.ActionsContainer, null, actions)
-  }), searchProps !== undefined ? _react.default.createElement(SearchWrapper, null, _react.default.createElement(_Search.Search, searchProps)) : null, _react.default.createElement(TableContainer, null, _react.default.createElement(_styledComponents.ThemeProvider, {
+    actions: /*#__PURE__*/_react.default.createElement(_Actions.ActionsContainer, null, actions)
+  }), searchProps !== undefined ? /*#__PURE__*/_react.default.createElement(SearchWrapper, null, /*#__PURE__*/_react.default.createElement(_Search.Search, searchProps)) : null, /*#__PURE__*/_react.default.createElement(TableContainer, null, /*#__PURE__*/_react.default.createElement(_styledComponents.ThemeProvider, {
     theme: theme => ({ ...theme,
       size: { ...theme.size,
         table: {
@@ -85,7 +85,7 @@ const TablePage = props => {
         }
       }
     })
-  }, _react.default.createElement(_reactTable.default, _extends({}, otherProps, {
+  }, /*#__PURE__*/_react.default.createElement(_reactTable.default, _extends({}, otherProps, {
     data: data,
     pageSize: pageSize,
     showPagination: showPagination && data.length > pageSize,

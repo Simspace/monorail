@@ -1,7 +1,7 @@
 import { Component, ReactNode } from 'react';
 import { SimpleInterpolation } from 'styled-components';
 import { Sizes } from '@monorail/helpers/exports';
-export declare const TabBarContainer: any;
+export declare const TabBarContainer: import("styled-components").StyledComponent<"div", any, CCTabBarProps, never>;
 declare type CCTabBarProps = {
     cssOverrides?: SimpleInterpolation;
     size: Sizes;
@@ -18,4 +18,3 @@ export declare class TabBar extends Component<TabBarProps> {
     render(): JSX.Element;
 }
 export {};
-//# sourceMappingURL=TabBar.d.ts.map

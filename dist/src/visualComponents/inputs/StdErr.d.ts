@@ -6,4 +6,3 @@ export declare type ErrorProps = {
     fontSize?: FontSizes;
 };
 export declare const StdErr: ({ err, msg, fontSize, ...domProps }: ErrorProps) => JSX.Element;
-//# sourceMappingURL=StdErr.d.ts.map

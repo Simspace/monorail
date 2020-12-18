@@ -11,15 +11,17 @@ var _react = _interopRequireDefault(require("react"));
 
 var _downshift = _interopRequireDefault(require("downshift"));
 
-var _pipeable = require("fp-ts/lib/pipeable");
+var O = _interopRequireWildcard(require("fp-ts/lib/Option"));
 
-var _inputTypes = require("../../visualComponents/inputs/inputTypes");
+var _pipeable = require("fp-ts/lib/pipeable");
 
 var _flex = require("../../helpers/flex");
 
-var _Label = require("../../visualComponents/inputs/Label");
+var _typeGuards = require("../../sharedHelpers/typeGuards");
 
-var O = _interopRequireWildcard(require("fp-ts/lib/Option"));
+var _inputTypes = require("../../visualComponents/inputs/inputTypes");
+
+var _Label = require("../../visualComponents/inputs/Label");
 
 var _FormMultiSelectInput = require("./FormMultiSelectInput.hooks");
 
@@ -34,9 +36,7 @@ function _extends() { _extends = Object.assign || function (target) { for (var i
 const ENTER_KEY_VALUE = 'Enter';
 const ESCAPE_KEY_VALUE = 'Escape';
 
-const FlexColumn =
-/*#__PURE__*/
-_styledComponents.default.div.withConfig({
+const FlexColumn = /*#__PURE__*/_styledComponents.default.div.withConfig({
   displayName: "FormMultiSelectInput__FlexColumn",
   componentId: "sc-1y71s6t-0"
 })(["", ";margin-bottom:24px;width:100%;"], (0, _flex.flexFlow)('column'));
@@ -63,9 +63,7 @@ _styledComponents.default.div.withConfig({
  */
 
 
-var _StyledSection =
-/*#__PURE__*/
-_styledComponents.default.section.withConfig({
+var _StyledSection = /*#__PURE__*/(0, _styledComponents.default)("section").withConfig({
   displayName: "FormMultiSelectInput___StyledSection",
   componentId: "sc-1y71s6t-1"
 })(["", ""], p => p._css);
@@ -92,7 +90,7 @@ function FormMultiSelectInput(props) {
     setSearchValue,
     suggestions
   } = (0, _FormMultiSelectInput.useFormMultiSelectInput)(props);
-  return _react.default.createElement(_downshift.default, {
+  return /*#__PURE__*/_react.default.createElement(_downshift.default, {
     inputValue: searchValue,
     onSelect: addItem,
     defaultHighlightedIndex: defaultHighlightedIndex
@@ -124,7 +122,9 @@ function FormMultiSelectInput(props) {
         if (notSelectingHighlightedOption && enterKeyWasPressed) {
           // Don't trigger a form submit
           ev.preventDefault();
-          (0, _pipeable.pipe)(ev.currentTarget.value, searchValueToItem, O.fold(() => {}, v => {
+          (0, _pipeable.pipe)(ev.currentTarget.value, val => val.replace(/\s+/g, ' ').trim(), // remove excess whitespace
+          O.fromPredicate(_typeGuards.isNonEmptyString), // confirm searchValue is non-empty
+          O.chain(searchValueToItem), O.fold(() => {}, v => {
             addItem(v);
             ev.currentTarget.value = '';
           }));
@@ -141,12 +141,12 @@ function FormMultiSelectInput(props) {
       selectedOptions
     };
     const sectionProps = getRootProps();
-    return _react.default.createElement(FlexColumn, null, _react.default.createElement(_Label.Label, {
+    return /*#__PURE__*/_react.default.createElement(FlexColumn, null, /*#__PURE__*/_react.default.createElement(_Label.Label, {
       label: label,
       required: required,
       display: display
-    }), _react.default.createElement(_StyledSection, _extends({}, sectionProps, {
+    }), /*#__PURE__*/_react.default.createElement(_StyledSection, _extends({}, sectionProps, {
       _css: containerCss
-    }), renderSelectedOptions(selectedOptions, removeOption), display === _inputTypes.DisplayType.Edit && _react.default.createElement(_react.default.Fragment, null, renderInput(getInputProps(defaultInputProps)), renderSuggestions(suggestions, suggestionInfo))));
+    }), renderSelectedOptions(selectedOptions, removeOption), display === _inputTypes.DisplayType.Edit && /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, renderInput(getInputProps(defaultInputProps)), renderSuggestions(suggestions, suggestionInfo))));
   });
 }

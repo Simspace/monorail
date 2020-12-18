@@ -100,9 +100,7 @@ const iconButtonCSS = ({
 const StyledIconButton = (0, _styledComponents2.default)(_Button.Button)``;
 exports.StyledIconButton = StyledIconButton;
 
-var _StyledStyledIconButton =
-/*#__PURE__*/
-(0, _styledComponents.default)(StyledIconButton).withConfig({
+var _StyledStyledIconButton = /*#__PURE__*/(0, _styledComponents.default)(StyledIconButton).withConfig({
   displayName: "IconButton___StyledStyledIconButton",
   componentId: "sc-16kofcu-0"
 })(["", ""], p => p._css);
@@ -126,7 +124,7 @@ const IconButton = props => {
     status,
     ...domProps
   } = props;
-  return _react.default.createElement(_StyledStyledIconButton, _extends({}, domProps, {
+  return /*#__PURE__*/_react.default.createElement(_StyledStyledIconButton, _extends({}, domProps, {
     className: className,
     disabled: disabled,
     passedAs: passedAs,
@@ -145,7 +143,7 @@ const IconButton = props => {
       cssOverrides,
       isActive
     })
-  }), _react.default.createElement(_Icon.Icon, {
+  }), /*#__PURE__*/_react.default.createElement(_Icon.Icon, {
     icon: icon,
     cssOverrides: (0, _styledComponents2.css)`
           ${iconCss}

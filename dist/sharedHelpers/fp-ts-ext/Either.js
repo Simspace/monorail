@@ -4,7 +4,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.swap = swap;
-exports.orElseW = exports.getOrd = exports.isEither = void 0;
+exports.toUnion = exports.orElseW = exports.getOrd = exports.isEither = void 0;
 
 var _Either = require("fp-ts/lib/Either");
 
@@ -49,3 +49,7 @@ function swap(ma) {
 const orElseW = f => ma => (0, _pipeable.pipe)(ma, (0, _Either.fold)(f, _Either.right));
 
 exports.orElseW = orElseW;
+
+const toUnion = either => (0, _pipeable.pipe)(either, (0, _Either.fold)(e => e, a => a));
+
+exports.toUnion = toUnion;

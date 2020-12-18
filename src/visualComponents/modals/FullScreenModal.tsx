@@ -3,6 +3,7 @@ import { css } from 'styled-components'
 
 import { ZIndexNodeName, zIndexValue } from '@monorail/helpers/zIndex'
 import { PopOverChildProps } from '@monorail/metaComponents/popOver/PopOver'
+import { IconType } from '@monorail/visualComponents/icon/IconType'
 import {
   BBModalBackground,
   BBModalHeader,
@@ -11,7 +12,6 @@ import {
   modalAnimationDuration,
   useModalAnimation,
 } from '@monorail/visualComponents/modals/Modals'
-import { IconType } from '@monorail/visualComponents/icon/IconType'
 import { ModalSize } from '@monorail/visualComponents/modals/modalTypes'
 import { Overlay } from '@monorail/visualComponents/toggle/Overlay'
 

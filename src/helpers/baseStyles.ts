@@ -262,4 +262,9 @@ export const baseHyperLinkStyles = (
   &:visited {
     color: ${getThemeColor(color)};
   }
+
+  &:focus {
+    outline: auto 1px ${getThemeColor(color)};
+    outline: auto 1px -webkit-focus-ring-color;
+  }
 `

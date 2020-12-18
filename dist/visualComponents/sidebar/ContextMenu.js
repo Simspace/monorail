@@ -7,13 +7,13 @@ exports.ContextMenu = void 0;
 
 var _styledComponents = _interopRequireWildcard(require("styled-components"));
 
-var _Array = require("fp-ts/lib/Array");
-
-var _Option = require("fp-ts/lib/Option");
-
 var _react = _interopRequireWildcard(require("react"));
 
 var _Link = _interopRequireDefault(require("react-router/lib/Link"));
+
+var _Array = require("fp-ts/lib/Array");
+
+var _Option = require("fp-ts/lib/Option");
 
 var _exports = require("../../helpers/exports");
 
@@ -37,60 +37,44 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
-const SearchContainer =
-/*#__PURE__*/
-_styledComponents.default.div.withConfig({
+const SearchContainer = /*#__PURE__*/_styledComponents.default.div.withConfig({
   displayName: "ContextMenu__SearchContainer",
   componentId: "sc-2vpxcc-0"
 })(["", ";align-items:center;flex-shrink:0;"], (0, _exports.flexFlow)('row'));
 
-const MenuHeader =
-/*#__PURE__*/
-_styledComponents.default.span.withConfig({
+const MenuHeader = /*#__PURE__*/_styledComponents.default.span.withConfig({
   displayName: "ContextMenu__MenuHeader",
   componentId: "sc-2vpxcc-1"
 })(({
   cssOverrides
 }) => (0, _styledComponents.css)(["", ";", ";color:", ";flex-shrink:0;", ";"], (0, _exports.typography)(500, _exports.FontSizes.Title5, '12px'), _exports.ellipsis, (0, _exports.getColor)(_exports.Colors.Black62a), cssOverrides));
 
-const MenuItemIconRow =
-/*#__PURE__*/
-_styledComponents.default.div.withConfig({
+const MenuItemIconRow = /*#__PURE__*/_styledComponents.default.div.withConfig({
   displayName: "ContextMenu__MenuItemIconRow",
   componentId: "sc-2vpxcc-2"
 })(["", ";flex:1 1 100%;margin:8px 6px 12px;"], (0, _exports.flexFlow)('row'));
 
-var _StyledListItem =
-/*#__PURE__*/
-(0, _styledComponents.default)(_List.ListItem).withConfig({
+var _StyledListItem = /*#__PURE__*/(0, _styledComponents.default)(_List.ListItem).withConfig({
   displayName: "ContextMenu___StyledListItem",
   componentId: "sc-2vpxcc-3"
 })(["padding:0 6px;"]);
 
-var _StyledListItemGraphic =
-/*#__PURE__*/
-(0, _styledComponents.default)(_List.ListItemGraphic).withConfig({
+var _StyledListItemGraphic = /*#__PURE__*/(0, _styledComponents.default)(_List.ListItemGraphic).withConfig({
   displayName: "ContextMenu___StyledListItemGraphic",
   componentId: "sc-2vpxcc-4"
 })(["color:", ";margin-top:12px;"], p => p._css);
 
-var _StyledListItemPrimaryText =
-/*#__PURE__*/
-(0, _styledComponents.default)(_List.ListItemPrimaryText).withConfig({
+var _StyledListItemPrimaryText = /*#__PURE__*/(0, _styledComponents.default)(_List.ListItemPrimaryText).withConfig({
   displayName: "ContextMenu___StyledListItemPrimaryText",
   componentId: "sc-2vpxcc-5"
 })(["margin-top:12px;"]);
 
-var _StyledListItemPrimaryText2 =
-/*#__PURE__*/
-(0, _styledComponents.default)(_List.ListItemPrimaryText).withConfig({
+var _StyledListItemPrimaryText2 = /*#__PURE__*/(0, _styledComponents.default)(_List.ListItemPrimaryText).withConfig({
   displayName: "ContextMenu___StyledListItemPrimaryText2",
   componentId: "sc-2vpxcc-6"
 })(["margin-top:6px;"]);
 
-var _StyledListItemSecondaryText =
-/*#__PURE__*/
-(0, _styledComponents.default)(_List.ListItemSecondaryText).withConfig({
+var _StyledListItemSecondaryText = /*#__PURE__*/(0, _styledComponents.default)(_List.ListItemSecondaryText).withConfig({
   displayName: "ContextMenu___StyledListItemSecondaryText",
   componentId: "sc-2vpxcc-7"
 })(["margin-bottom:6px;"]);
@@ -106,28 +90,24 @@ const ContextMenuItem = ({
   size,
   cssOverrides,
   ...otherProps
-}) => _react.default.createElement(_StyledListItem, _extends({
+}) => /*#__PURE__*/_react.default.createElement(_StyledListItem, _extends({
   dense: dense,
   size: size
-}, otherProps), !(0, _typeGuards.isNil)(leftIcon) && _react.default.createElement(_StyledListItemGraphic, {
+}, otherProps), !(0, _typeGuards.isNil)(leftIcon) && /*#__PURE__*/_react.default.createElement(_StyledListItemGraphic, {
   icon: leftIcon,
-  dense: dense,
+  $dense: dense,
   _css: (0, _exports.getColor)(_exports.Colors.Black62a)
-}), (0, _typeGuards.isNil)(secondaryText) && (0, _typeGuards.isNil)(meta) ? _react.default.createElement(_StyledListItemPrimaryText, null, primaryText) : _react.default.createElement(_List.ListItemText, null, _react.default.createElement(_StyledListItemPrimaryText2, null, primaryText), (0, _typeGuards.isNil)(secondaryText) ? null : _react.default.createElement(_StyledListItemSecondaryText, null, secondaryText), meta), !(0, _typeGuards.isNil)(rightIcon) && _react.default.createElement(_List.ListItemGraphic, {
+}), (0, _typeGuards.isNil)(secondaryText) && (0, _typeGuards.isNil)(meta) ? /*#__PURE__*/_react.default.createElement(_StyledListItemPrimaryText, null, primaryText) : /*#__PURE__*/_react.default.createElement(_List.ListItemText, null, /*#__PURE__*/_react.default.createElement(_StyledListItemPrimaryText2, null, primaryText), (0, _typeGuards.isNil)(secondaryText) ? null : /*#__PURE__*/_react.default.createElement(_StyledListItemSecondaryText, null, secondaryText), meta), !(0, _typeGuards.isNil)(rightIcon) && /*#__PURE__*/_react.default.createElement(_List.ListItemGraphic, {
   icon: rightIcon,
-  dense: dense
+  $dense: dense
 }), children);
 
-var _StyledSearch =
-/*#__PURE__*/
-(0, _styledComponents.default)(_Search.Search).withConfig({
+var _StyledSearch = /*#__PURE__*/(0, _styledComponents.default)(_Search.Search).withConfig({
   displayName: "ContextMenu___StyledSearch",
   componentId: "sc-2vpxcc-8"
 })(["flex-grow:1;margin:12px;flex-shrink:unset;"]);
 
-var _StyledListContainer =
-/*#__PURE__*/
-(0, _styledComponents.default)(_List.ListContainer).withConfig({
+var _StyledListContainer = /*#__PURE__*/(0, _styledComponents.default)(_List.ListContainer).withConfig({
   displayName: "ContextMenu___StyledListContainer",
   componentId: "sc-2vpxcc-9"
 })(["padding:0 0 4px;"]);
@@ -135,7 +115,7 @@ var _StyledListContainer =
 class ContextMenu extends _react.Component {
   constructor(...args) {
     super(...args);
-    this.searchRef = (0, _react.createRef)();
+    this.searchRef = /*#__PURE__*/(0, _react.createRef)();
 
     this.renderContextMenuItems = compareSearch => {
       const {
@@ -145,18 +125,18 @@ class ContextMenu extends _react.Component {
         onItemClick
       } = this.props;
       return contextItems.map(event => {
-        const groupHeader = _react.default.createElement(MenuHeader, {
+        const groupHeader = /*#__PURE__*/_react.default.createElement(MenuHeader, {
           key: event.title
         }, event.title);
 
-        const items = event.items.filter(item => compareSearch(item.title) || compareSearch(item.description) || compareSearch(event.title)).map(item => _react.default.createElement(ContextMenuItem // TODO(unsafe-any): Fix unsafe anys
+        const items = event.items.filter(item => compareSearch(item.title) || compareSearch(item.description) || compareSearch(event.title)).map(item => /*#__PURE__*/_react.default.createElement(ContextMenuItem // TODO(unsafe-any): Fix unsafe anys
         // tslint:disable no-unsafe-any
         , {
           as: ({
             as: _as,
             cssOverrides: _cssOverrides,
             ...linkProps
-          }) => _react.default.createElement(_Link.default, linkProps) // tslint:enable
+          }) => /*#__PURE__*/_react.default.createElement(_Link.default, linkProps) // tslint:enable
           ,
           key: item.key,
           leftIcon: icon,
@@ -172,7 +152,7 @@ class ContextMenu extends _react.Component {
             }
           },
           tabIndex: 1,
-          meta: (0, _typeGuards.isNil)(item.icons) ? null : _react.default.createElement(MenuItemIconRow, null, item.icons)
+          meta: (0, _typeGuards.isNil)(item.icons) ? null : /*#__PURE__*/_react.default.createElement(MenuItemIconRow, null, item.icons)
         }));
         return items.length > 0 ? (0, _Option.some)([groupHeader, items]) : _Option.none;
       });
@@ -197,28 +177,28 @@ class ContextMenu extends _react.Component {
       togglePopOver,
       width
     } = this.props;
-    return _react.default.createElement(_SidebarDropDown.SidebarDropDown, {
+    return /*#__PURE__*/_react.default.createElement(_SidebarDropDown.SidebarDropDown, {
       closingAnimationCompleted: closingAnimationCompleted,
       isOpen: isOpen,
       onClick: onClick,
       position: position,
       togglePopOver: togglePopOver,
       width: width
-    }, _react.default.createElement(_SearchController.SearchController, null, ({
+    }, /*#__PURE__*/_react.default.createElement(_SearchController.SearchController, null, ({
       compareSearch,
       value,
       onChange
     }) => {
       const contextMenuItems = _Array.array.compact(this.renderContextMenuItems(compareSearch));
 
-      return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(SearchContainer, null, _react.default.createElement(_StyledSearch, {
+      return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(SearchContainer, null, /*#__PURE__*/_react.default.createElement(_StyledSearch, {
         value: value,
         onChange: onChange,
         searchRef: this.searchRef
-      }), renderFilter()), _react.default.createElement(_StyledListContainer, {
+      }), renderFilter()), /*#__PURE__*/_react.default.createElement(_StyledListContainer, {
         emptyText: "Loading...",
         as: _ScrollAnimation.ScrollAnimation
-      }, (0, _Array.isEmpty)(contextMenuItems) ? _react.default.createElement(ContextMenuItem, {
+      }, (0, _Array.isEmpty)(contextMenuItems) ? /*#__PURE__*/_react.default.createElement(ContextMenuItem, {
         size: _exports.Sizes.DP40,
         primaryText: "No results."
       }) : contextMenuItems));

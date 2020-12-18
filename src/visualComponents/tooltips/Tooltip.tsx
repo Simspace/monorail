@@ -1,31 +1,24 @@
-import React, {
-  FC,
-  cloneElement,
-  ReactNode,
-  useRef,
-  useState,
-  RefObject,
-  ReactElement,
-} from 'react'
-import styled, { css, CSSProp } from '@monorail/helpers/styled-components'
-import { useTooltip, TooltipPopup, TriggerParams } from '@reach/tooltip'
-import '@reach/tooltip/styles.css'
+import React, { RefObject, useRef, useState } from 'react'
+import { TooltipPopup, TriggerParams, useTooltip } from '@reach/tooltip'
 
 import {
-  Colors,
   BorderRadius,
+  borderRadius,
+  Colors,
   ElevationRange,
   FontSizes,
-  ZIndexNodeName,
-  borderRadius,
   getColor,
   getElevationShadow,
-  zIndexValue,
   gothamFontFamily,
+  ZIndexNodeName,
+  zIndexValue,
 } from '@monorail/helpers/exports'
-import { Text } from '@monorail/visualComponents/typography/Text'
 import { flexFlow } from '@monorail/helpers/flex'
+import styled, { css, CSSProp } from '@monorail/helpers/styled-components'
 import { isNil } from '@monorail/sharedHelpers/typeGuards'
+import { Text } from '@monorail/visualComponents/typography/Text'
+
+import '@reach/tooltip/styles.css'
 
 const StyledTooltip = styled(TooltipPopup)<StyledTooltipProps>(
   ({ tooltipstyles, pointerstyles }) => css`

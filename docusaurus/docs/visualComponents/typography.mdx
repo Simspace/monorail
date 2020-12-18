@@ -1,0 +1,151 @@
+---
+id: typography
+title: Typography
+sidebar_label: Typography
+---
+
+import { Colors, FontSizes, FontWeights } from '@monorail/helpers/exports'
+import styled, { ThemeProvider } from '@monorail/helpers/styled-components'
+import { Mode } from '@monorail/helpers/theme'
+import { ShowCase } from '../docComponents/ShowCase'
+
+import { Details } from '@monorail/visualComponents/typography/Details'
+import { DetailsSize } from '@monorail/visualComponents/typography/detailsTypes'
+import { SectionHeader } from '@monorail/visualComponents/typography/SectionHeader'
+import { Text } from '@monorail/visualComponents/typography/Text'
+
+Typography elements
+
+<ShowCase>
+  <Details property="Property" value="Value" />
+</ShowCase>
+
+## Text
+
+### Text Example
+
+Monorail Text uses a font-specific, margin-based alignment scheme to achieve pixel-perfect text alignment and spacing. Because the text alignment is margin-based, all monorail Text components must be in a context which allows margin to take effect on the inline Text elements. The common practice is to put Text components inside a parent container with a `display: flex` style. If margin is not specified on Text, it will have a margin on 0 on all sides, and siblings will align with exactly 0 pixels of spacing in between. If a Text element is not inside a flex container, it will default to default inline text rendering.
+
+```tsx live
+<div style={{ display: 'flex', flexFlow: 'column nowrap' }}>
+  <Text
+    fontSize={FontSizes.Title5}
+    fontWeight={FontWeights.Bold}
+    margin="0 0 16px 0"
+  >
+    Header
+  </Text>
+  <Text
+    fontSize={FontSizes.Title5}
+    fontWeight={FontWeights.Book}
+    margin="0 0 12px 16px"
+  >
+    Sub header
+  </Text>
+  <Text
+    fontSize={FontSizes.Title5}
+    fontWeight={FontWeights.Light}
+    color={Colors.Gray54}
+    margin="0 0 8px 32px"
+  >
+    Item
+  </Text>
+  <Text
+    fontSize={FontSizes.Title5}
+    fontWeight={FontWeights.Light}
+    color={Colors.Gray54}
+    margin="0 0 8px 32px"
+  >
+    Item
+  </Text>
+  <Text
+    fontSize={FontSizes.Title5}
+    fontWeight={FontWeights.Light}
+    color={Colors.Gray54}
+    margin="0 0 8px 32px"
+  >
+    Item
+  </Text>
+  <Text
+    fontSize={FontSizes.Title5}
+    fontWeight={FontWeights.Light}
+    color={Colors.Gray54}
+  >
+    No margin
+  </Text>
+  <Text
+    fontSize={FontSizes.Title5}
+    fontWeight={FontWeights.Light}
+    color={Colors.Gray54}
+  >
+    No margin
+  </Text>
+  <Text
+    fontSize={FontSizes.Title5}
+    fontWeight={FontWeights.Light}
+    color={Colors.Gray54}
+  >
+    No margin
+  </Text>
+</div>
+```
+
+## Details
+
+### Default
+
+Default Details
+
+```tsx live
+<Details property="Property" value="Value" />
+```
+
+### Default - Dark Mode
+
+Default Details Dark Mode
+
+```tsx live
+<Details property="Property" value="Value" />
+```
+
+### Compact
+
+Compact Details
+
+```tsx live
+<Details size={DetailsSize.Compact} property="Property" value="Value" />
+```
+
+### Compact - Dark Mode
+
+Compact Details Dark Mode
+
+```tsx live
+<Details size={DetailsSize.Compact} property="Property" value="Value" />
+```
+
+### Compact
+
+Large Details
+
+```tsx live
+<Details size={DetailsSize.Large} property="Property" value="Value" />
+```
+
+### Large - Dark Mode
+
+Large Details Dark Mode
+
+```tsx live
+<Details size={DetailsSize.Large} property="Property" value="Value" />
+```
+
+## Section Header
+
+### Default
+
+Default Section Header
+
+```tsx live
+<SectionHeader title="Section Header" />
+```

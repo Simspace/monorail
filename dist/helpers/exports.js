@@ -8,6 +8,7 @@ var _animation = require("./animation");
 
 Object.keys(_animation).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
+  if (key in exports && exports[key] === _animation[key]) return;
   Object.defineProperty(exports, key, {
     enumerable: true,
     get: function () {
@@ -20,6 +21,7 @@ var _appName = require("./appName");
 
 Object.keys(_appName).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
+  if (key in exports && exports[key] === _appName[key]) return;
   Object.defineProperty(exports, key, {
     enumerable: true,
     get: function () {
@@ -32,6 +34,7 @@ var _baseStyles = require("./baseStyles");
 
 Object.keys(_baseStyles).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
+  if (key in exports && exports[key] === _baseStyles[key]) return;
   Object.defineProperty(exports, key, {
     enumerable: true,
     get: function () {
@@ -44,6 +47,7 @@ var _borderRadius = require("./borderRadius");
 
 Object.keys(_borderRadius).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
+  if (key in exports && exports[key] === _borderRadius[key]) return;
   Object.defineProperty(exports, key, {
     enumerable: true,
     get: function () {
@@ -56,6 +60,7 @@ var _color = require("./color");
 
 Object.keys(_color).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
+  if (key in exports && exports[key] === _color[key]) return;
   Object.defineProperty(exports, key, {
     enumerable: true,
     get: function () {
@@ -68,6 +73,7 @@ var _elevation = require("./elevation");
 
 Object.keys(_elevation).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
+  if (key in exports && exports[key] === _elevation[key]) return;
   Object.defineProperty(exports, key, {
     enumerable: true,
     get: function () {
@@ -80,6 +86,7 @@ var _eventState = require("./eventState");
 
 Object.keys(_eventState).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
+  if (key in exports && exports[key] === _eventState[key]) return;
   Object.defineProperty(exports, key, {
     enumerable: true,
     get: function () {
@@ -92,6 +99,7 @@ var _flex = require("./flex");
 
 Object.keys(_flex).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
+  if (key in exports && exports[key] === _flex[key]) return;
   Object.defineProperty(exports, key, {
     enumerable: true,
     get: function () {
@@ -104,6 +112,7 @@ var _size = require("./size");
 
 Object.keys(_size).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
+  if (key in exports && exports[key] === _size[key]) return;
   Object.defineProperty(exports, key, {
     enumerable: true,
     get: function () {
@@ -112,10 +121,24 @@ Object.keys(_size).forEach(function (key) {
   });
 });
 
+var _styledComponents = require("./styled-components");
+
+Object.keys(_styledComponents).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (key in exports && exports[key] === _styledComponents[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function () {
+      return _styledComponents[key];
+    }
+  });
+});
+
 var _typography = require("./typography");
 
 Object.keys(_typography).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
+  if (key in exports && exports[key] === _typography[key]) return;
   Object.defineProperty(exports, key, {
     enumerable: true,
     get: function () {
@@ -128,6 +151,7 @@ var _zIndex = require("./zIndex");
 
 Object.keys(_zIndex).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
+  if (key in exports && exports[key] === _zIndex[key]) return;
   Object.defineProperty(exports, key, {
     enumerable: true,
     get: function () {

@@ -3,8 +3,8 @@ import styled, { css, SimpleInterpolation } from 'styled-components'
 
 import { baseErrorBorderStyles, flexFlow } from '@monorail/helpers/exports'
 import { CommonComponentType } from '@monorail/types'
-import { Label } from '@monorail/visualComponents/inputs/Label'
 import { DisplayType } from '@monorail/visualComponents/inputs/inputTypes'
+import { Label } from '@monorail/visualComponents/inputs/Label'
 
 const SelectGroupWrapper = styled.div<CommonComponentType>(
   ({ cssOverrides }) => css`

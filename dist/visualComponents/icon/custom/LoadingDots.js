@@ -49,29 +49,26 @@ const StyledLoadingDots = _styledComponents.default.svg(({
     ${cssOverrides}
   `);
 
-const LoadingDots = props => _react.default.createElement(StyledLoadingDots, _extends({
+const LoadingDots = props => /*#__PURE__*/_react.default.createElement(StyledLoadingDots, _extends({
   width: "24",
   height: "24",
   viewBox: "0 0 24 24",
   fill: "none"
-}, props), _react.default.createElement("circle", {
+}, props), /*#__PURE__*/_react.default.createElement("circle", {
   className: "typing-dots loadingFadeInline",
   cx: "6",
   cy: "12",
-  r: "2",
-  fill: "#000"
-}), _react.default.createElement("circle", {
+  r: "2"
+}), /*#__PURE__*/_react.default.createElement("circle", {
   className: "typing-dots loadingFadeInline",
   cx: "12",
   cy: "12",
-  r: "2",
-  fill: "#000"
-}), _react.default.createElement("circle", {
+  r: "2"
+}), /*#__PURE__*/_react.default.createElement("circle", {
   className: "typing-dots loadingFadeInline",
   cx: "18",
   cy: "12",
-  r: "2",
-  fill: "#000"
+  r: "2"
 }));
 
 exports.LoadingDots = LoadingDots;

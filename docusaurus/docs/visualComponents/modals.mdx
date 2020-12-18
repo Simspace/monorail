@@ -1,0 +1,274 @@
+---
+id: modals
+title: Modals
+sidebar_label:  Modals
+---
+
+import { css } from '@monorail/helpers/styled-components'
+
+import { ShowCase } from '../docComponents/ShowCase'
+
+import { PopOver } from '@monorail/metaComponents/popOver/PopOver'
+import { Button } from '@monorail/visualComponents/buttons/Button'
+import { ButtonDisplay } from '@monorail/visualComponents/buttons/buttonTypes'
+import { MediumModal } from '@monorail/visualComponents/modals/MediumModal'
+import { MediumLargeModal } from '@monorail/visualComponents/modals/MediumLargeModal'
+import {
+  BBModalContent,
+  BBModalFooter,
+} from '@monorail/visualComponents/modals/Modals'
+import { SmallModal } from '@monorail/visualComponents/modals/SmallModal'
+
+Modals allow complex CRUD actions to be focused and distraction free.
+
+<ShowCase>
+  <PopOver
+    popOver={props => (
+      <MediumModal
+        {...props}
+        title="Medium Modal"
+        iconLeft={'dashboard'}
+      >
+        <BBModalContent
+          css={css`
+            margin: 16px;
+          `}
+        >
+          This is an example of a medium modal with
+          <ul>
+            <li>Header icon</li>
+            <li>Content</li>
+            <li>Bottom footer</li>
+          </ul>
+        </BBModalContent>
+        <BBModalFooter>
+          <Button
+            cssOverrides={css`
+              margin-right: 8px;
+            `}
+            onClick={() => props.togglePopOver()}
+            display={ButtonDisplay.Chromeless}
+          >
+            Secondary Action
+          </Button>
+          <Button
+            display={ButtonDisplay.Primary}
+            onClick={() => props.togglePopOver()}
+          >
+            Primary Action
+          </Button>
+        </BBModalFooter>
+      </MediumModal>
+    )}
+    toggle={props => <Button {...props}>Modal example</Button>}
+  />
+</ShowCase>
+
+## Types
+
+### Mini
+
+Mini modal with content and footer opening using a PopOver component
+
+Dimensions: Width: 304px | Height: 360px
+
+```tsx live
+<PopOver
+  popOver={props => (
+    <MiniModal {...props} title="Modal header">
+      <BBModalContent css="margin: 16px;">
+        This is an example of a Mini modal
+      </BBModalContent>
+      <BBModalFooter>
+        <Button
+          cssOverrides="margin-right: 8px;"
+          onClick={() => props.togglePopOver()}
+          display={ButtonDisplay.Chromeless}
+        >
+          Cancel
+        </Button>
+        <Button
+          display={ButtonDisplay.Primary}
+          onClick={() => props.togglePopOver()}
+        >
+          Done
+        </Button>
+      </BBModalFooter>
+    </MiniModal>
+  )}
+  toggle={props => <Button {...props}>Open mini modal</Button>}
+/>
+```
+### Small
+
+Small modal with content and footer opening using a PopOver component
+
+Dimensions: Width: 444px
+
+```tsx live
+<PopOver
+  popOver={props => (
+    <SmallModal {...props} title="Modal header">
+      <BBModalContent css="margin: 16px;">
+        This is an example of a small modal
+      </BBModalContent>
+      <BBModalFooter>
+        <Button
+          cssOverrides="margin-right: 8px;"
+          onClick={() => props.togglePopOver()}
+          display={ButtonDisplay.Chromeless}
+        >
+          Secondary Action
+        </Button>
+        <Button
+          display={ButtonDisplay.Primary}
+          onClick={() => props.togglePopOver()}
+        >
+          Primary Action
+        </Button>
+      </BBModalFooter>
+    </SmallModal>
+  )}
+  toggle={props => <Button {...props}>Open small modal</Button>}
+/>
+```
+
+
+### Medium
+
+Medium modal with content and footer opening using a PopOver component
+
+Dimensions: Width: 584px
+
+```tsx live
+<PopOver
+  popOver={props => (
+    <MediumModal {...props} title="Modal header">
+      <BBModalContent css="margin: 16px;">
+        This is an example of a medium modal
+      </BBModalContent>
+      <BBModalFooter>
+        <Button
+          cssOverrides="margin-right: 8px;"
+          onClick={() => props.togglePopOver()}
+          display={ButtonDisplay.Chromeless}
+        >
+          Secondary Action
+        </Button>
+        <Button
+          display={ButtonDisplay.Primary}
+          onClick={() => props.togglePopOver()}
+        >
+          Primary Action
+        </Button>
+      </BBModalFooter>
+    </MediumModal>
+  )}
+  toggle={props => <Button {...props}>Open medium modal</Button>}
+/>
+```
+
+
+### Medium Large
+
+Medium Large modal with content and footer opening using a PopOver component.
+
+Dimensions: Width: 724px
+
+```tsx live
+<PopOver
+  popOver={props => (
+    <MediumLargeModal {...props} title="Modal header">
+      <BBModalContent css="margin: 16px;">
+        This is an example of a Medium Large modal. 
+      </BBModalContent>
+      <BBModalFooter>
+        <Button
+          cssOverrides="margin-right: 8px;"
+          onClick={() => props.togglePopOver()}
+          display={ButtonDisplay.Chromeless}
+        >
+          Secondary Action
+        </Button>
+        <Button
+          display={ButtonDisplay.Primary}
+          onClick={() => props.togglePopOver()}
+        >
+          Primary Action
+        </Button>
+      </BBModalFooter>
+    </MediumLargeModal>
+  )}
+  toggle={props => <Button {...props}>Open medium large modal</Button>}
+/>
+```
+
+
+### Large
+
+Large modal with content and footer opening using a PopOver component.
+
+Dimensions: Width: 100vw - 32px | Height: 100vh - 32px
+
+
+```tsx live
+<PopOver
+  popOver={props => (
+    <LargeModal {...props} title="Modal header">
+      <BBModalContent css="margin: 16px;">
+        This is an example of a Large modal. 
+      </BBModalContent>
+      <BBModalFooter>
+        <Button
+          cssOverrides="margin-right: 8px;"
+          onClick={() => props.togglePopOver()}
+          display={ButtonDisplay.Chromeless}
+        >
+          Secondary Action
+        </Button>
+        <Button
+          display={ButtonDisplay.Primary}
+          onClick={() => props.togglePopOver()}
+        >
+          Primary Action
+        </Button>
+      </BBModalFooter>
+    </LargeModal>
+  )}
+  toggle={props => <Button {...props}>Open large modal</Button>}
+/>
+```
+
+### Fullscreen
+
+Fullscreen modal (100vw width and 100vh height) with content and footer opening using a PopOver component. To use only on specific cases.
+
+Dimensions: Width: 100vw | Height: 100vh
+
+```tsx live
+<PopOver
+  popOver={props => (
+    <FullScreenModal {...props} title="Modal header">
+      <BBModalContent css="margin: 16px;">
+        This is an example of a Full Screen modal. 
+      </BBModalContent>
+      <BBModalFooter>
+        <Button
+          cssOverrides="margin-right: 8px;"
+          onClick={() => props.togglePopOver()}
+          display={ButtonDisplay.Chromeless}
+        >
+          Secondary Action
+        </Button>
+        <Button
+          display={ButtonDisplay.Primary}
+          onClick={() => props.togglePopOver()}
+        >
+          Primary Action
+        </Button>
+      </BBModalFooter>
+    </FullScreenModal>
+  )}
+  toggle={props => <Button {...props}>Open full screen modal</Button>}
+/>
+```

@@ -14,10 +14,10 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 const SimplePopOverModal = props => {
   /**
    * Use in conjunction with useSimplePopOver hook
-   * Example: <SaveAsEventTemplateModal /> in TeamEventOutlook.tsx
+   * Example: <SaveAsLiveActionPlanModal /> in TeamEventOutlook.tsx
    * AR - 2020-07-21
    */
-  return _react.default.createElement(_SimplePopOver.SimplePopOver, {
+  return /*#__PURE__*/_react.default.createElement(_SimplePopOver.SimplePopOver, {
     position: props.position,
     isOpen: props.isOpen,
     onClose: props.hide,

@@ -1,6 +1,6 @@
+import React, { ReactElement, ReactNode, useRef } from 'react'
 import { ControllerStateAndHelpers } from 'downshift'
 import * as O from 'fp-ts/lib/Option'
-import React, { ReactElement, ReactNode, useRef } from 'react'
 import { pipe } from 'fp-ts/lib/pipeable'
 
 import { Colors, getColor } from '@monorail/helpers/color'
@@ -16,7 +16,6 @@ import {
 
 import { ButtonDisplay, ButtonSize } from '../buttons/buttonTypes'
 import { IconButton } from '../buttons/IconButton'
-
 import { DropdownItem } from './DropdownItem'
 import { DownshiftGetInputProps, DropdownType } from './helpers'
 import { DropdownParser } from './parsers'
@@ -67,7 +66,7 @@ const HandlerWrapper = styled.div`
   flex: 1;
   min-height: 1rem;
   overflow: hidden;
-  padding: 4px 30px 4px 8px;
+  padding: 6px 30px 6px 8px;
   position: relative;
 `
 
@@ -185,13 +184,13 @@ const Handler = <T extends DropdownType>({
   )
 }
 
-export const useCustomHandler = <T extends DropdownType>(
+export const createCustomHandler = <T extends DropdownType>(
   customRender: CustomRenderHandlerHook<T> = renderHandlerLabelDefault,
 ) => (props: RenderHandlerProps<T>): ReactElement => (
   <Handler {...props} customRender={customRender} />
 )
 
-export const useDefaultDropdownRender = <
+export const createDefaultDropdownRender = <
   T extends DropdownType
 >(): DropdownRender<T> => ({
   handler: Handler,

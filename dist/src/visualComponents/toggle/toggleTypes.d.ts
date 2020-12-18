@@ -3,4 +3,3 @@ export declare enum ToggleSize {
     Large = "large",
     Xlarge = "xlarge"
 }
-//# sourceMappingURL=toggleTypes.d.ts.map

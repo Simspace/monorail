@@ -9,15 +9,15 @@ import {
   flexFlow,
   FontSizes,
   getColor,
-  visible,
   typographyFont,
+  visible,
 } from '@monorail/helpers/exports'
 import styled, { css } from '@monorail/helpers/styled-components'
 import { getThemeColor, Mode, ThemeColors } from '@monorail/helpers/theme'
+import { isNotNil } from '@monorail/sharedHelpers/typeGuards'
 import { ButtonSize } from '@monorail/visualComponents/buttons/buttonTypes'
 import { IconButton } from '@monorail/visualComponents/buttons/IconButton'
 import { Icon } from '@monorail/visualComponents/icon/Icon'
-import { isNotNil } from '@monorail/sharedHelpers/typeGuards'
 
 // TODO(unsafe-any): Fix unsafe anys
 // tslint:disable no-unsafe-any
@@ -139,7 +139,7 @@ export const SearchInput = styled.input<SearchInputProps>(
 export type SearchContainerProps = {
   cssOverrides?: SimpleInterpolation
   width?: number
-  searchRef?: RefObject<HTMLInputElement>
+  searchRef?: React.Ref<HTMLInputElement>
 }
 
 export type SearchInputProps = {
@@ -176,7 +176,7 @@ export const Search: FC<SearchProps> = props => {
 
   return (
     <SearchContainer cssOverrides={cssOverrides} width={width} {...domProps}>
-      <Icon icon="search" css={searchIconStyles} />
+      <Icon icon="search" cssOverrides={searchIconStyles} />
 
       <SearchInput
         className="new-input"

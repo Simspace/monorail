@@ -7,13 +7,13 @@ exports.ChevronStep = exports.Step = exports.ChevronStepper = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
-var _styledComponents = _interopRequireWildcard(require("../../helpers/styled-components"));
-
 var _exports = require("../../helpers/exports");
 
-var _Text = require("../typography/Text");
+var _styledComponents = _interopRequireWildcard(require("../../helpers/styled-components"));
 
 var _Icon = require("../icon/Icon");
+
+var _Text = require("../typography/Text");
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
@@ -101,11 +101,11 @@ const ChevronStep = ({
   isActive = false,
   icon
 }) => {
-  return _react.default.createElement(Step, {
+  return /*#__PURE__*/_react.default.createElement(Step, {
     isActive: isActive
-  }, icon && _react.default.createElement(_Icon.Icon, {
+  }, icon && /*#__PURE__*/_react.default.createElement(_Icon.Icon, {
     icon: icon
-  }), _react.default.createElement(_Text.Text, {
+  }), /*#__PURE__*/_react.default.createElement(_Text.Text, {
     fontSize: _exports.FontSizes.Title5,
     fontWeight: isActive ? _exports.FontWeights.Bold : _exports.FontWeights.Book,
     color: isActive ? _exports.Colors.White : _exports.Colors.Gray89,

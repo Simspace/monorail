@@ -1,0 +1,99 @@
+---
+id: page-header
+title: Page Header
+sidebar_label: Page Header
+---
+
+import { css } from '@monorail/helpers/styled-components'
+import { ShowCase } from '../docComponents/ShowCase'
+import { PageHeader } from '@monorail/visualComponents/pageHeader/PageHeader'
+
+Page Headers gives the page an anchor. They provide a place for page wide actions and communicate to the user details about where they are within the app.
+
+<ShowCase>
+  <PageHeader
+    cssOverrides={css`
+      width: 100%;
+    `}
+    title="Page Header"
+  />
+</ShowCase>
+
+## Usage
+
+Use Page Header to:
+
+- Give context to page content.
+- Indicate location in navigational hierarchy.
+- Assist the user in navigation.
+
+## Principles
+
+**Situational Awareness**  
+The Page Header should help the user understand where they are in the navigational hierarchy, and what content they are looking at.
+
+**Prominent**  
+The Page Header should appear at the top of the page and float over page contents so it is always available.
+
+**Consistent**  
+Page Header should maintain a consistent appearance and location so the user can be familiar with it.
+
+## Types
+
+### Page Header
+
+The default Page Header displays the name of the current page.
+
+```tsx live
+<PageHeader
+  title="Page Header"
+  cssOverrides={css`
+    width: 100%;
+  `}
+/>
+```
+
+### Page Header | Back Arrow
+
+The Page Header with back arrow shows the current page title and the back arrow returns the user to the previous page.
+
+```tsx live
+<PageHeader
+  title="Page Header | Back Arrow"
+  goBack={() => {}}
+  cssOverrides={css`
+    width: 100%;
+  `}
+/>
+```
+
+### Page Header | Bread Crumbs
+
+The Page Header with Bread Crumbs shows the title of the current page and displays linked names of the show the site hierarchy (not the user’s history).
+
+```tsx live
+<PageHeader
+  title="Page Header"
+  breadCrumbs={[
+    { title: 'foo', path: '' },
+    { title: 'bar', path: '' },
+  ]}
+  cssOverrides={css`
+    width: 100%;
+  `}
+/>
+```
+
+### Page Header | with Page Name
+
+The Page Header with subtitle shows the title of the current page and displays the subtitle above the main title.
+
+```tsx live
+<PageHeader
+  title="Page Header"
+  pageName="[Page Name]"
+  cssOverrides={css`
+    width: 100%;
+  `}
+/>
+```

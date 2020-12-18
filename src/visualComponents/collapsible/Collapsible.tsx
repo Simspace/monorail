@@ -1,7 +1,7 @@
-import { fold, fromNullable, getOrElse, map } from 'fp-ts/lib/Option'
-import { pipe } from 'fp-ts/lib/pipeable'
 import React, { FC, ReactNode, useEffect, useRef, useState } from 'react'
 import styled, { css, SimpleInterpolation } from 'styled-components'
+import { fold, fromNullable, getOrElse } from 'fp-ts/lib/Option'
+import { pipe } from 'fp-ts/lib/pipeable'
 
 import {
   baseFocusStyles,
@@ -9,6 +9,7 @@ import {
   flexFlow,
   getColor,
 } from '@monorail/helpers/exports'
+import { Div } from '@monorail/StyleHelpers'
 import { ButtonDisplay } from '@monorail/visualComponents/buttons/buttonTypes'
 import { IconButton } from '@monorail/visualComponents/buttons/IconButton'
 import { Icon } from '@monorail/visualComponents/icon/Icon'
@@ -17,90 +18,83 @@ import { ScrollAnimation } from '@monorail/visualComponents/layout/ScrollAnimati
 /*
  * Styled Components
  */
-const CollapsibleWrapper = styled.div<{ isContentScrollable: boolean }>(
-  ({ isContentScrollable }) => css`
-    display: flex;
-    flex-wrap: nowrap;
-    flex-direction: column;
-    overflow: hidden;
-    flex-grow: 0;
-    flex-shrink: ${isContentScrollable ? 1 : 0};
-    flex-basis: auto;
-    min-height: 40px;
-  `,
-)
+const CollapsibleWrapper = styled.div<{ isContentScrollable: boolean }>`
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  overflow: hidden;
+  flex-grow: 0;
+  flex-shrink: ${props => (props.isContentScrollable ? 1 : 0)};
+  flex-basis: auto;
+  min-height: 40px;
+`
 
 const CollapsibleHeader = styled.div<{
   iconPosition: IconPosition
   expanded: boolean
   clickTarget: ClickTarget
-}>(
-  ({ iconPosition, clickTarget, expanded }) => css`
-    ${flexFlow('row')}
-    width: 100%;
+}>`
+  ${flexFlow('row')}
+  width: 100%;
 
-    box-sizing: border-box;
-    height: 40px;
-    ${iconPosition === 'right' && `justify-content: space-between;`}
-    align-items: center;
-    margin: 0;
-    padding: 0;
-    position: relative;
-    ${clickTarget === 'icon' &&
-      `padding: 16px;
+  box-sizing: border-box;
+  height: 40px;
+  ${props =>
+    props.iconPosition === 'right' && `justify-content: space-between;`}
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  ${props =>
+    props.clickTarget === 'icon' &&
+    `padding: 16px;
       background: ${
-        expanded ? getColor(Colors.SidebarActive) : getColor(Colors.White)
+        props.expanded ? getColor(Colors.SidebarActive) : getColor(Colors.White)
       };`}
-  `,
-)
+`
 
 const CollapsibleHeaderButton = styled.button<{
   expanded: boolean
   iconPosition: IconPosition
-}>(
-  ({ expanded, iconPosition }) => css`
-    ${flexFlow('row')}
+}>`
+  ${flexFlow('row')}
 
-    align-items: center;
-    background: ${expanded
-      ? getColor(Colors.SidebarActive)
-      : getColor(Colors.White)};
-    border: none;
-    cursor: pointer;
-    justify-content: ${iconPosition === 'left'
-      ? `flex-start`
-      : `space-between`};
-    padding: 12px 16px;
-    user-select: auto;
-    width: 100%;
+  align-items: center;
+  background: ${props =>
+    props.expanded ? getColor(Colors.SidebarActive) : getColor(Colors.White)};
+  border: none;
+  cursor: pointer;
+  justify-content: ${props =>
+    props.iconPosition === 'left' ? `flex-start` : `space-between`};
+  padding: 12px 16px;
+  user-select: auto;
+  width: 100%;
 
-    &:hover {
-      background: ${expanded
+  &:hover {
+    background: ${props =>
+      props.expanded
         ? getColor(Colors.SidebarActive)
         : getColor(Colors.SidebarBg)};
-    }
+  }
 
-    ${baseFocusStyles()}
-  `,
-)
+  ${baseFocusStyles()}
+`
 
-const CollapsibleContent = styled.div<CollapsibleContentProps>(
-  ({ cssOverrides, iconPosition }) => css`
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    flex-basis: auto;
-    overflow: hidden;
-    background: ${getColor(Colors.White)};
-    padding-left: ${iconPosition === 'left' ? 28 : 0}px;
-    ${cssOverrides}
-  `,
-)
+const CollapsibleContent = styled.div<CollapsibleContentProps>`
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  flex-basis: auto;
+  overflow: hidden;
+  background: ${getColor(Colors.White)};
+  padding-left: ${props => (props.iconPosition === 'left' ? 28 : 0)}px;
+  ${props => props.cssOverrides}
+`
 
 const getChildrenHeights = (node: HTMLDivElement) => {
   let h = 0
   if (node.hasChildNodes()) {
-    /* tslint:disable-next-line:prefer-for-of */
+    // eslint-disable-next-line @typescript-eslint/prefer-for-of
     for (let i = 0; i < node.children.length; i++) {
       h = h + node.children[i].scrollHeight
     }
@@ -150,6 +144,7 @@ export type CollapsibleProps = {
   msPerPx?: number
   clickTarget?: ClickTarget
   isContentScrollable?: boolean
+  defaultOpen?: boolean
 }
 
 type CollapsibleContentProps = {
@@ -175,10 +170,12 @@ export const Collapsible: FC<CollapsibleProps> = (props: CollapsibleProps) => {
     msPerPx = 4,
     clickTarget = 'header',
     isContentScrollable = false,
+    defaultOpen = false,
+
     ...domProps
   } = props
 
-  const [localExpanded, setLocalExpanded] = useState(false)
+  const [localExpanded, setLocalExpanded] = useState(defaultOpen)
   const [contentHeight, setContentHeight] = useState(0)
   const contentRef = useRef<HTMLDivElement | null>(null)
 
@@ -289,16 +286,16 @@ export const Collapsible: FC<CollapsibleProps> = (props: CollapsibleProps) => {
             overflow-y: ${isContentScrollable ? 'auto' : 'hidden'};
           `}
         >
-          <div
+          <Div
             ref={contentRef}
-            css={css`
+            cssOverrides={css`
               height: ${isExpanded ? contentHeight + 12 : 0}px;
               transition: height 300ms ease-in-out;
               overflow: ${isExpanded ? 'visible' : 'hidden'};
             `}
           >
             {content}
-          </div>
+          </Div>
         </ScrollAnimation>
       </CollapsibleContent>
     </CollapsibleWrapper>

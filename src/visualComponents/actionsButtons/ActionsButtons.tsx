@@ -1,6 +1,6 @@
-import { isEmpty } from 'fp-ts/lib/Array'
 import React, { FC, ReactNode } from 'react'
 import styled, { css } from 'styled-components'
+import { isEmpty } from 'fp-ts/lib/Array'
 
 import { Colors } from '@monorail/helpers/color'
 import { PopOverToggleProps } from '@monorail/metaComponents/popOver/PopOver'
@@ -117,6 +117,7 @@ export type ActionsButtonsProps = {
   iconOnly?: boolean
   document?: Document
   toggle?: (props: PopOverToggleProps) => ReactNode
+  onClick?: (evt: React.MouseEvent<HTMLDivElement, MouseEvent>) => void
 }
 
 const ActionsButtonsBox = styled.div`
@@ -250,6 +251,7 @@ export const ActionsButtons: FC<ActionsButtonsProps> = ({
   iconOnly,
   size,
   actions = [],
+  onClick = () => {},
 }) => {
   const {
     actionsMenus,
@@ -331,7 +333,7 @@ export const ActionsButtons: FC<ActionsButtonsProps> = ({
   )
 
   return (
-    <ActionsButtonsBox>
+    <ActionsButtonsBox onClick={onClick}>
       {textButtons}
       {iconButtons}
       {dropdownButtons}
@@ -340,3 +342,27 @@ export const ActionsButtons: FC<ActionsButtonsProps> = ({
     </ActionsButtonsBox>
   )
 }
+
+export const makeTextButtonAction = (props: {
+  actionProps: TextButtonProps
+  check: boolean
+}): TextButtonActionWithCheck => ({
+  type: ActionButton.TextButton,
+  actionProps: props.actionProps,
+  check: props.check,
+})
+
+export const makeActionsMenuListItem = (props: {
+  actionsProps: MenuAction
+  check: boolean
+}): ActionsMenuListItem => ({
+  actionProps: props.actionsProps,
+  check: props.check,
+})
+
+export const makeActionsMenuAction = (
+  actions: Array<ActionsMenuListItem>,
+): ActionsMenuAction => ({
+  type: ActionButton.ActionsMenu,
+  actionProps: { actions },
+})

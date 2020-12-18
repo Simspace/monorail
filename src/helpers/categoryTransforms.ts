@@ -1,77 +1,172 @@
+import { ReactElement } from 'react'
+
 import { Colors } from '@monorail/helpers/color'
+import { GlobalAppThemeInterface } from '@monorail/helpers/theme'
+import { ColorAlias } from '@monorail/v2/core/theme/colors'
+import * as Icons from '@monorail/v2/icons/Icons'
 import { IconType } from '@monorail/visualComponents/icon/IconType'
 
-export const categoryReadableName = (entryCategory: string) => {
+export enum CategoryId {
+  AcademyCoursePlan = 'academy-course-plan',
+  AcademyPackage = 'academy-package',
+  AcademyContentModule = 'academy-content-module',
+  Assessments = 'assessments',
+  AttackScenario = 'attack-scenario',
+  AttackTool = 'attack-tool', // where is this used?
+  HardhatSpec = 'hardhat-specification',
+  IndividualAssessments = 'individual-assessments',
+  ConfigModule = 'config-module',
+  PuppetModule = 'puppet-module',
+  ExternalSubnet = 'external-subnet',
+  Network = 'network', // where is this used?
+  PhysicalAsset = 'physical-asset',
+  Range = 'range',
+  VMTemplate = 'vm-template',
+  CloneSource = 'clone-source',
+  Event = 'event',
+  LiveActionPlan = 'event-template',
+  Exercise = 'exercise',
+  TeamAssessmentPlan = 'team-assessment-plan',
+}
+
+export const categoryReadableName = (entryCategory: CategoryId) => {
   switch (entryCategory) {
-    case 'academy-course-plan':
+    case CategoryId.AcademyCoursePlan:
       return 'Course Plan'
-    case 'academy-package':
-      return 'Training Package'
-    case 'academy-content-module':
+    case CategoryId.AcademyPackage:
+      return 'Structured Content Plan'
+    case CategoryId.AcademyContentModule:
       return 'Content Module'
-    case 'event-template':
-      return 'Event Template'
-    case 'hardhat-specification':
+    case CategoryId.LiveActionPlan:
+      return 'Live Action Plan'
+    case CategoryId.HardhatSpec:
       return 'Network Spec'
-    case 'external-subnet':
+    case CategoryId.IndividualAssessments:
+      return 'Individual Assessments'
+    case CategoryId.ExternalSubnet:
       return 'External Subnet'
-    case 'physical-asset':
+    case CategoryId.PhysicalAsset:
       return 'Physical Asset'
-    case 'config-module':
+    case CategoryId.ConfigModule:
       return 'Config Module'
-    case 'puppet-module':
+    case CategoryId.PuppetModule:
       return 'Puppet Module'
-    case 'vm-template':
+    case CategoryId.VMTemplate:
       return 'VM Template'
-    case 'range':
+    case CategoryId.Range:
       return 'Range'
-    case 'event':
+    case CategoryId.Event:
       return 'Event'
-    case 'attack-scenario':
+    case CategoryId.AttackScenario:
       return 'Attack Scenario'
-    case 'attack-tool':
+    case CategoryId.AttackTool:
       return 'Attack Tool'
+    case CategoryId.Network:
+      return 'Network'
+    case CategoryId.Exercise:
+      return 'Exercise'
+    case CategoryId.CloneSource:
+      return 'Clone Source'
+    case CategoryId.TeamAssessmentPlan:
+      return 'Team Assessment Plan'
     default:
+      // TODO: default needs to remain until FAKE_CATEGORY is removed. Address in PS-12579 {SF 2020/09/16}
       return entryCategory
   }
 }
-
-export const categoryIcon = (entryCategory: string): IconType => {
+/** @deprecated use v2 Icon + categoryIconV2 */
+export const categoryIcon = (entryCategory: CategoryId): IconType => {
+  // If you need to update this, *please update v2 version below!*
   switch (entryCategory) {
-    case 'academy-course-plan':
+    case CategoryId.AcademyCoursePlan:
       return 'local_library'
-    case 'academy-package':
+    case CategoryId.AcademyPackage:
       return 'school'
-    case 'event-template':
-      return 'event'
-    case 'academy-content-module':
+    case CategoryId.Assessments:
+      return 'assignment'
+    case CategoryId.LiveActionPlan:
+      return 'live'
+    case CategoryId.AcademyContentModule:
       return 'category'
-    case 'hardhat-specification':
+    case CategoryId.HardhatSpec:
       return 'device_hub'
-    case 'config-module':
+    case CategoryId.ConfigModule:
       return 'code'
-    case 'puppet-module':
+    case CategoryId.PuppetModule:
       return 'puppet'
-    case 'external-subnet':
+    case CategoryId.ExternalSubnet:
       return 'dns'
-    case 'physical-asset':
+    case CategoryId.PhysicalAsset:
       return 'router'
-    case 'range':
+    case CategoryId.Range:
       return 'dns'
-    case 'vm-template':
+    case CategoryId.VMTemplate:
       return 'desktop_windows'
-    case 'clone-source':
+    case CategoryId.CloneSource:
       return 'aspect_ratio'
-    case 'event':
+    case CategoryId.Event:
       return 'calendar_today'
-    case 'exercise':
+    case CategoryId.Exercise:
       return 'bar_chart'
-    case 'attack-scenario':
+    case CategoryId.AttackScenario:
       return 'target'
-    case 'attack-tool':
+    case CategoryId.AttackTool:
       return 'tools'
+    case CategoryId.Network:
+      return 'device_hub'
+    case CategoryId.TeamAssessmentPlan:
+    case CategoryId.IndividualAssessments:
+      return 'assignment_turned_in'
     default:
+      // TODO: default needs to remain until FAKE_CATEGORY is removed. Address in PS-12579 {SF 2020/09/16}
       return entryCategory as IconType // TODO: this is undesirable, but this is what the code was doing before and is apparently required. It's not clear what entryCategory is, but it should not be a string - it should be some other union that can be mapped to an IconType if needed. (AW 2020-6-25)
+  }
+}
+
+export const categoryIconV2 = (
+  entryCategory: CategoryId,
+): React.ComponentType => {
+  switch (entryCategory) {
+    case CategoryId.AcademyCoursePlan:
+      return Icons.LocalLibrary
+    case CategoryId.AcademyPackage:
+      return Icons.School
+    case CategoryId.LiveActionPlan:
+      return Icons.Live
+    case CategoryId.AcademyContentModule:
+      return Icons.Category
+    case CategoryId.HardhatSpec:
+      return Icons.DeviceHub
+    case CategoryId.ConfigModule:
+      return Icons.Code
+    case CategoryId.PuppetModule:
+      return Icons.Puppet
+    case CategoryId.ExternalSubnet:
+      return Icons.Dns
+    case CategoryId.PhysicalAsset:
+      return Icons.Router
+    case CategoryId.Range:
+      return Icons.Dns
+    case CategoryId.VMTemplate:
+      return Icons.DesktopWindows
+    case CategoryId.CloneSource:
+      return Icons.AspectRatio
+    case CategoryId.Event:
+      return Icons.CalendarToday
+    case CategoryId.Exercise:
+      return Icons.BarChart
+    case CategoryId.AttackScenario:
+      return Icons.Target
+    case CategoryId.AttackTool:
+      return Icons.Tools
+    case CategoryId.Network:
+      return Icons.DeviceHub
+    case CategoryId.TeamAssessmentPlan:
+    case CategoryId.IndividualAssessments:
+      return Icons.AssignmentTurnedIn
+    default:
+      // TODO: default needs to remain until FAKE_CATEGORY is removed. Address in PS-12579 {SF 2020/09/16}
+      return Icons.Help
   }
 }
 
@@ -80,29 +175,72 @@ export const categoryIcon = (entryCategory: string): IconType => {
 //     .chain(x => findFirst(x, y => y === true))
 //     .fold(categoryIcon(entry.categoryId), x => 'archived')
 
-export const categoryColor = (entryCategory: string) => {
+/** @deprecated Use v2 theme colors */
+export const categoryColor = (entryCategory: CategoryId) => {
+  // If you need to update this, *please update v2 version below!*
   switch (entryCategory) {
-    case 'external-subnet':
-    case 'hardhat-specification':
-    case 'vm-template':
-    case 'network':
-    case 'range':
-    case 'physical-asset':
-    case 'clone-source':
-    case 'config-module':
-    case 'puppet-module':
+    case CategoryId.ExternalSubnet:
+    case CategoryId.HardhatSpec:
+    case CategoryId.VMTemplate:
+    case CategoryId.Network:
+    case CategoryId.Range:
+    case CategoryId.PhysicalAsset:
+    case CategoryId.CloneSource:
+    case CategoryId.ConfigModule:
+    case CategoryId.PuppetModule:
       return Colors.RangeAlt
-    case 'exercise':
-    case 'event':
+    case CategoryId.Exercise:
+    case CategoryId.Event:
       return Colors.Tracker
-    case 'attack-scenario':
-    case 'attack-tool':
+    case CategoryId.AttackScenario:
+    case CategoryId.AttackTool:
       return Colors.AttackElements
-    case 'academy-course-plan':
-    case 'event-template':
+    case CategoryId.AcademyCoursePlan:
+    case CategoryId.AcademyPackage:
+    case CategoryId.AcademyContentModule:
+    case CategoryId.LiveActionPlan:
       return Colors.Academy
+    case CategoryId.Assessments:
+    case CategoryId.IndividualAssessments:
+      return Colors.Assessments
+    case CategoryId.TeamAssessmentPlan:
+      return Colors.TeamAssessmentPlan
     default:
+      // TODO: default needs to remain until FAKE_CATEGORY is removed. Address in PS-12579 {SF 2020/09/16}
       return Colors.Academy
+  }
+}
+
+export const categoryColorV2 = (entryCategory: CategoryId): ColorAlias => {
+  switch (entryCategory) {
+    case CategoryId.ExternalSubnet:
+    case CategoryId.HardhatSpec:
+    case CategoryId.VMTemplate:
+    case CategoryId.Network:
+    case CategoryId.Range:
+    case CategoryId.PhysicalAsset:
+    case CategoryId.CloneSource:
+    case CategoryId.ConfigModule:
+    case CategoryId.PuppetModule:
+      return ColorAlias.SpecialFallbackRangeColor_NOT_WCAG
+    case CategoryId.Exercise:
+    case CategoryId.Event:
+      return ColorAlias.EventsGraphic
+    case CategoryId.AttackScenario:
+    case CategoryId.AttackTool:
+      return ColorAlias.ReportsAnalyticsAA
+    case CategoryId.AcademyCoursePlan:
+    case CategoryId.AcademyPackage:
+    case CategoryId.AcademyContentModule:
+    case CategoryId.LiveActionPlan:
+      return ColorAlias.PersonnelGraphic
+    case CategoryId.IndividualAssessments:
+      return ColorAlias.ContentAuthoringAA // Needs updating from UX
+    case CategoryId.TeamAssessmentPlan:
+      return ColorAlias.ContentAuthoringAA // Needs updating from UX
+    // TODO: default needs to remain until FAKE_CATEGORY is removed. Address in PS-12579 {SF 2020/09/16}
+    default:
+      return ColorAlias.PersonnelGraphic
   }
 }
 
@@ -111,35 +249,40 @@ export const categoryColor = (entryCategory: string) => {
 //     .chain(x => findFirst(x, y => y === true))
 //     .fold(categoryColor(entry.categoryId), x => Colors.Black38a)
 
-export const categoryPathname = (entryCategory: string) => {
+export const categoryPathname = (entryCategory: CategoryId) => {
   switch (entryCategory) {
-    case 'academy-course-plan':
+    case CategoryId.AcademyCoursePlan:
       return '/catalog/course-plan'
-    case 'academy-package':
-      return '/catalog/training-packages'
-    case 'academy-content-module':
+    case CategoryId.AcademyPackage:
+      return '/catalog/structured-content-plans'
+    case CategoryId.AcademyContentModule:
       return '/catalog/content-modules'
-    case 'external-subnet':
+    case CategoryId.ExternalSubnet:
       return '/catalog/external-subnets'
-    case 'hardhat-specification':
+    case CategoryId.HardhatSpec:
       return '/catalog/network-spec'
-    case 'physical-asset':
+    case CategoryId.PhysicalAsset:
       return '/catalog/physical-assets'
-    case 'vm-template':
+    case CategoryId.VMTemplate:
       return '/catalog/vm-templates'
-    case 'config-module':
+    case CategoryId.ConfigModule:
       return '/catalog/config-modules'
-    case 'puppet-module':
+    case CategoryId.PuppetModule:
       return '/catalog/puppet-modules'
-    case 'event':
+    case CategoryId.Event:
       return '/events'
-    case 'attack-scenario':
+    case CategoryId.AttackScenario:
       return '/catalog/attack-scenarios'
-    case 'attack-tool':
+    case CategoryId.AttackTool:
       return '/catalog/attack-tools'
-    case 'event-template':
-      return '/catalog/event-templates'
+    case CategoryId.LiveActionPlan:
+      return '/catalog/live-action-plans'
+    case CategoryId.IndividualAssessments:
+      return '/catalog/individual-assessments'
+    case CategoryId.TeamAssessmentPlan:
+      return '/catalog/team-assessment-plans'
     default:
+      // TODO: default needs to remain until FAKE_CATEGORY is removed. Address in PS-12579 {SF 2020/09/16}
       return '/catalog'
   }
 }

@@ -12,4 +12,3 @@ declare type Props = Omit<PopOverChildProps, 'position'> & {
 };
 export declare const MediumModal: FC<Props>;
 export {};
-//# sourceMappingURL=MediumModal.d.ts.map

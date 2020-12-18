@@ -9,4 +9,3 @@ export declare type PortalControllerProps = {
  * Renders its children inside a Portal, based on the isRendered prop
  */
 export declare const PortalController: FC<PortalControllerProps>;
-//# sourceMappingURL=PortalController.d.ts.map

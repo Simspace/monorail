@@ -1,5 +1,5 @@
 import { FC } from 'react';
-export declare const MappingID: any;
+export declare const MappingID: import("styled-components").StyledComponent<"span", any, {}, never>;
 declare type MappingType = {
     key: string;
     type: string;
@@ -14,4 +14,3 @@ declare type Props = ContainerProps & {
 };
 export declare const Mapping: FC<Props>;
 export {};
-//# sourceMappingURL=Mapping.d.ts.map

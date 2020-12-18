@@ -5,4 +5,3 @@ export declare type PopOverToggleProps = {
     onClick: (event: SyntheticEvent) => void;
 };
 export declare const PopOverNext: FC<PopOverProps>;
-//# sourceMappingURL=PopOverNext.d.ts.map

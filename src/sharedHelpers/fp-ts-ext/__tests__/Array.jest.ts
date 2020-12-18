@@ -1,19 +1,27 @@
+// tslint:disable-next-line:no-implicit-dependencies
+import { expectTypeOf } from 'expect-type'
 import fc from 'fast-check'
 import { array, getEq } from 'fp-ts/lib/Array'
 import { Either, left, right } from 'fp-ts/lib/Either'
 import { eqNumber, eqString } from 'fp-ts/lib/Eq'
+import { pipe } from 'fp-ts/lib/function'
 import { IO } from 'fp-ts/lib/IO'
-import { some } from 'fp-ts/lib/Option'
+import * as O from 'fp-ts/lib/Option'
 
-import { isNumber } from '@monorail/sharedHelpers/typeGuards'
+import { newIO } from '@monorail/sharedHelpers/fp-ts-ext/IO'
 
 import {
   all,
   any,
+  compactNullable,
   concat,
   concatFlipped,
   contains,
+  containsAny,
+  containsEq,
+  findFirstMapWithIndex,
   forEach,
+  forEachPipe,
   forEachWithIndex,
   intersperse,
   intersperseMap,
@@ -23,15 +31,14 @@ import {
   len,
   map,
   notAny,
-  runIOs,
   rle,
+  runIOs,
   sortByAlpha,
   sortByNumeric,
+  spliceWhere,
   xor,
-  containsAny,
-  containsEq,
+  zip,
 } from '../Array'
-import { newIO } from '@monorail/sharedHelpers/fp-ts-ext/IO'
 
 const isGreaterThanZero = (x: number): boolean => x > 0
 
@@ -63,6 +70,19 @@ describe('any', () => {
   })
 })
 
+describe('compactNullable', () => {
+  it('should remove all null and undefined members of an array', () => {
+    const actual = compactNullable([1, null, 3, 4, undefined, 6, 7])
+    const expected = [1, 3, 4, 6, 7]
+    expect(actual).toEqual(expected)
+  })
+  it('should not remove falsey items', () => {
+    const actual = compactNullable([0, false, -1])
+    const expected = [0, false, -1]
+    expect(actual).toEqual(expected)
+  })
+})
+
 describe('concat', () => {
   it('should concatenate arrays correctly', () => {
     const actual = concat([0])([1])
@@ -71,9 +91,9 @@ describe('concat', () => {
   })
 })
 
-describe('concatFlipped should concatenate arrays correctly', () => {
-  it('should concatenate arrays correctly', () => {
-    const actual = concatFlipped([1])([0])
+describe('concatFlipped', () => {
+  it('should concatenate arrays correctly with the arguments flipped', () => {
+    const actual = concatFlipped([0])([1])
     const expected = array.alt([1], () => [0])
     expect(actual).toEqual(expected)
   })
@@ -134,6 +154,19 @@ describe('forEach', () => {
     }
     const actual = getActual(0)
     const expected = 10
+    expect(actual).toBe(expected)
+  })
+})
+
+describe('forEachPipe', () => {
+  it('should perform a side-effect using each elem of the array', () => {
+    const getActual = (seed: number) => {
+      let mut = seed
+      forEachPipe<number>(x => (mut += x))([0, 1, 2, 3, 4])
+      return mut
+    }
+    const actual = getActual(2)
+    const expected = 12
     expect(actual).toBe(expected)
   })
 })
@@ -384,5 +417,97 @@ describe('rle', () => {
       ['c', 1],
     ])
     expect(rle(eqString)([])).toEqual([])
+  })
+})
+
+describe('zip', () => {
+  it('should work with arbitrarily many arguments', () => {
+    const expected = [
+      [1, 'a', 'z', 0xff],
+      [2, 'b', 'y', 0xfe],
+      [3, 'c', 'x', 0xfd],
+      [4, 'd', 'w', 0xfc],
+    ]
+    const original = [
+      [1, 2, 3, 4],
+      ['a', 'b', 'c', 'd'],
+      ['z', 'y', 'x', 'w'],
+      [0xff, 0xfe, 0xfd, 0xfc],
+    ]
+    const actual4 = zip(...original)
+    expect(actual4).toEqual(expected)
+    const actual3 = zip(...original.map(x => x.slice(0, 3)))
+    expect(actual3).toEqual(expected.slice(0, 3))
+    const actual2 = zip(...original.map(x => x.slice(0, 2)))
+    expect(actual2).toEqual(expected.slice(0, 2))
+    const actual1 = zip(...original.map(x => x.slice(0, 1)))
+    expect(actual1).toEqual(expected.slice(0, 1))
+  })
+
+  it('should infer tuple types from arguments', () => {
+    expectTypeOf(zip([1, 2, 3], ['a', 'b', 'c'])).toEqualTypeOf<
+      Array<[number, string]>
+    >()
+    expectTypeOf(zip([1], ['a'], [true])).toEqualTypeOf<
+      Array<[number, string, boolean]>
+    >()
+    expectTypeOf(zip([1], [2], [3], [4], [5])).toEqualTypeOf<
+      Array<[number, number, number, number, number]>
+    >()
+  })
+
+  it('should work with no arguments', () => {
+    expect(zip()).toEqual([])
+  })
+
+  it('should accept empty arrays', () => {
+    expect(zip([], [])).toEqual([])
+  })
+
+  it('should only zip up to the shortest argument length', () => {
+    expect(zip([1, 2], ['a', 'b', 'c'])).toEqual([
+      [1, 'a'],
+      [2, 'b'],
+    ])
+  })
+})
+
+describe('spliceWhere', () => {
+  const arr = [1, 2, 3, 4, 5]
+
+  it('should remove elements', () => {
+    const expected = [1, 2, 4, 5]
+    const actual = pipe(
+      arr,
+      spliceWhere<number>(a => a === 3)(() => []),
+    )
+
+    expect(actual).toEqual(expected)
+  })
+
+  it('should add/modify elements', () => {
+    const expected = [1, 2, 6, 9, 4, 5]
+    const actual = pipe(
+      arr,
+      spliceWhere<number>(a => a === 3)(x => [x * 2, x * 3]),
+    )
+
+    expect(actual).toEqual(expected)
+  })
+})
+
+describe('findFirstMapWithIndex', () => {
+  it('should return none on no match', () => {
+    const actual = findFirstMapWithIndex((i, _a) =>
+      O.fromPredicate(x => x === 3)(i),
+    )([0, 1, 2])
+    expect(actual).toBeNone()
+  })
+
+  it('should return some on first match', () => {
+    const actual = findFirstMapWithIndex((i, _a) =>
+      O.fromPredicate(x => x === 0)(i),
+    )([0, 1, 2])
+    expect(actual).toEqualSome(0)
   })
 })

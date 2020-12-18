@@ -5,15 +5,15 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.optionC = void 0;
 
-var O = _interopRequireWildcard(require("fp-ts/lib/Option"));
+var t = _interopRequireWildcard(require("io-ts"));
 
 var E = _interopRequireWildcard(require("fp-ts/lib/Either"));
 
-var _Option2 = require("../fp-ts-ext/Option");
+var O = _interopRequireWildcard(require("fp-ts/lib/Option"));
 
 var _pipeable = require("fp-ts/lib/pipeable");
 
-var t = _interopRequireWildcard(require("io-ts"));
+var _Option2 = require("../fp-ts-ext/Option");
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 

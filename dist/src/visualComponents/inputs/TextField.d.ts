@@ -1,10 +1,10 @@
-import React, { ChangeEvent, MouseEvent, PropsWithoutRef, RefAttributes, ForwardRefExoticComponent } from 'react';
+import React, { ChangeEvent, ForwardRefExoticComponent, MouseEvent, PropsWithoutRef, RefAttributes } from 'react';
 import { SimpleInterpolation } from 'styled-components';
 import { IconType } from '@monorail/visualComponents/icon/IconType';
 import { DisplayType } from '@monorail/visualComponents/inputs/inputTypes';
 import { ErrorProps } from '@monorail/visualComponents/inputs/StdErr';
-export declare const IconsAndInputContainer: any;
-export declare const StyledInput: any;
+export declare const IconsAndInputContainer: import("styled-components").StyledComponent<"div", any, {}, never>;
+export declare const StyledInput: import("styled-components").StyledComponent<"input", any, TextFieldProps, never>;
 export declare type InputHTMLType = 'button' | 'checkbox' | 'color' | 'email' | 'file' | 'hidden' | 'image' | 'month' | 'number' | 'password' | 'radio' | 'range' | 'reset' | 'search' | 'submit' | 'tel' | 'text' | 'time' | 'url' | 'week';
 declare type ContainerProps = {
     cssOverrides?: SimpleInterpolation;
@@ -41,8 +41,8 @@ declare type BasicProps = {
     name?: string;
     hideStdErr?: boolean;
     display?: DisplayType;
+    labelDetails?: string | React.ReactElement;
 };
 export declare type TextFieldProps = ContainerProps & VisibilityProps & BasicProps & ExtraProps & ErrorProps;
 export declare const TextField: ForwardRefExoticComponent<PropsWithoutRef<TextFieldProps> & RefAttributes<HTMLInputElement>>;
 export {};
-//# sourceMappingURL=TextField.d.ts.map

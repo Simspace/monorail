@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.matchI = exports.match = exports.matchOnI = exports.matchOn = void 0;
+exports.matchS = exports.matchI = exports.match = exports.matchOnI = exports.matchOn = void 0;
 
 const matchOn = key => matchObj => v => matchObj[v[key]](v);
 
@@ -69,3 +69,7 @@ const match = matchOn('tag');
 exports.match = match;
 const matchI = matchOnI('tag');
 exports.matchI = matchI;
+
+const matchS = s => matchObj => matchObj[s]();
+
+exports.matchS = matchS;

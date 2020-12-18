@@ -1,11 +1,11 @@
 import React, { FC } from 'react'
+import { FlattenSimpleInterpolation } from 'styled-components'
 
 import { Colors, getColor } from '@monorail/helpers/color'
 import { ElevationRange, getElevationShadow } from '@monorail/helpers/elevation'
 import { flexFlow } from '@monorail/helpers/flex'
 import { pageSizePadding } from '@monorail/helpers/size'
 import styled, { css } from '@monorail/helpers/styled-components'
-import { FlattenSimpleInterpolation } from 'styled-components'
 
 const ButtonFooterContainer = styled.div<Props>`
   ${flexFlow('row')};

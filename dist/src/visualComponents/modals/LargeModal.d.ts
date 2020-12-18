@@ -11,4 +11,3 @@ declare type Props = Omit<PopOverChildProps, 'position'> & {
 };
 export declare const LargeModal: FC<Props>;
 export {};
-//# sourceMappingURL=LargeModal.d.ts.map

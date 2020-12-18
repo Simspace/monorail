@@ -1,0 +1,123 @@
+---
+id: empty-state
+title: Empty State
+sidebar_label: Empty State
+---
+
+import { ShowCase } from '../docComponents/ShowCase'
+
+import { ErrorPage } from '@monorail/pageComponents/errorPage/ErrorPage'
+import { ErrorType } from '@monorail/pageComponents/errorPage/errorTypes'
+
+import {
+  EmptyStateSizes,
+  EmptyState,
+} from '@monorail/visualComponents/emptyState/EmptyState'
+
+Consistent syled empty state with customizable illustration, title and error messages.
+
+<ShowCase>
+  <EmptyState
+    icon={'ghost_empty'}
+    title={'Custom Empty State'}
+    message={'This section is empty.'}
+    size={EmptyStateSizes.Large}
+    button={{
+      text: 'Click to add something',
+      onClick: () => {
+        alert('Add something!')
+      },
+    }}
+  />
+</ShowCase>
+
+## Usage
+
+Use Empty State to:
+
+- Display message for an empty section or collection
+- Inform the user a list is empty
+- Inform the user a selection in a sidebar or OutlineLayout is required to display something in this section
+
+## Principles
+
+**Descriptive**  
+A decriptive title and message of how or why the empty state occurred should be presented to the user.
+
+**Actionable**  
+If there is an action the user can take to add elements to the empty collection, that should be displayed as a CTA button.
+
+**Levity**  
+The illustration adds personality and mood to the empty state message.
+
+## Types
+
+### No Title and No Button
+
+Title and Button are optional
+
+```tsx live
+<EmptyState
+  icon={'target_empty'}
+  message={'No objectives added.'}
+  size={EmptyStateSizes.Small}
+/>
+```
+
+### With Title and No Button
+
+No action for the user to solve this.
+
+```tsx live
+<EmptyState
+  icon={'target_empty'}
+  title={'Nothing to aim for'}
+  message={'No objectives added.'}
+  size={EmptyStateSizes.Small}
+/>
+```
+
+### With Title and Button
+
+The button works as CTA for the user to try to solve the empty situation.
+
+```tsx live
+<EmptyState
+  icon={'target_empty'}
+  title={'Nothing to aim for'}
+  message={'No objectives added.'}
+  size={EmptyStateSizes.Small}
+  button={{
+    text: 'Add some objectives',
+    onClick: () => {
+      alert('Add something!')
+    },
+  }}
+/>
+```
+
+## Sizes
+
+### Large
+
+Use for a full page empty state.
+
+```tsx live
+<EmptyState
+  icon={'target_empty'}
+  message={'No objectives added.'}
+  size={EmptyStateSizes.Large}
+/>
+```
+
+### Small
+
+Use for empty states within a card, a modal, or a list.
+
+```tsx live
+<EmptyState
+  icon={'target_empty'}
+  message={'No objectives added.'}
+  size={EmptyStateSizes.Small}
+/>
+```

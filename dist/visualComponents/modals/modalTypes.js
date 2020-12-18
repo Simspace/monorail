@@ -11,6 +11,7 @@ exports.ModalSize = ModalSize;
   ModalSize["Mini"] = "mini";
   ModalSize["Small"] = "small";
   ModalSize["Medium"] = "medium";
+  ModalSize["MediumLarge"] = "mediumLarge";
   ModalSize["Large"] = "large";
   ModalSize["FullScreen"] = "fullScreen";
 })(ModalSize || (exports.ModalSize = ModalSize = {}));

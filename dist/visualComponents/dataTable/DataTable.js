@@ -41,9 +41,7 @@ const tableDataStyles = ({
 // Main Wrapper
 
 
-const TableContainer =
-/*#__PURE__*/
-_styledComponents.default.div.withConfig({
+const TableContainer = /*#__PURE__*/_styledComponents.default.div.withConfig({
   displayName: "DataTable__TableContainer",
   componentId: "sc-16utrcn-0"
 })(({
@@ -53,9 +51,7 @@ _styledComponents.default.div.withConfig({
 
 exports.TableContainer = TableContainer;
 
-const TableHeaderContainer =
-/*#__PURE__*/
-_styledComponents.default.div.withConfig({
+const TableHeaderContainer = /*#__PURE__*/_styledComponents.default.div.withConfig({
   displayName: "DataTable__TableHeaderContainer",
   componentId: "sc-16utrcn-1"
 })(({
@@ -71,9 +67,7 @@ _styledComponents.default.div.withConfig({
 
 exports.TableHeaderContainer = TableHeaderContainer;
 
-const TableHeaderData =
-/*#__PURE__*/
-_styledComponents.default.div.withConfig({
+const TableHeaderData = /*#__PURE__*/_styledComponents.default.div.withConfig({
   displayName: "DataTable__TableHeaderData",
   componentId: "sc-16utrcn-2"
 })(({
@@ -91,9 +85,7 @@ _styledComponents.default.div.withConfig({
 
 exports.TableHeaderData = TableHeaderData;
 
-const TableBody =
-/*#__PURE__*/
-_styledComponents.default.div.withConfig({
+const TableBody = /*#__PURE__*/_styledComponents.default.div.withConfig({
   displayName: "DataTable__TableBody",
   componentId: "sc-16utrcn-3"
 })(({
@@ -102,9 +94,7 @@ _styledComponents.default.div.withConfig({
 
 exports.TableBody = TableBody;
 
-const TableRowContainer =
-/*#__PURE__*/
-_styledComponents.default.div.withConfig({
+const TableRowContainer = /*#__PURE__*/_styledComponents.default.div.withConfig({
   displayName: "DataTable__TableRowContainer",
   componentId: "sc-16utrcn-4"
 })(({
@@ -120,9 +110,7 @@ _styledComponents.default.div.withConfig({
 
 exports.TableRowContainer = TableRowContainer;
 
-const TableRowData =
-/*#__PURE__*/
-_styledComponents.default.div.withConfig({
+const TableRowData = /*#__PURE__*/_styledComponents.default.div.withConfig({
   displayName: "DataTable__TableRowData",
   componentId: "sc-16utrcn-5"
 })(({
@@ -138,9 +126,7 @@ _styledComponents.default.div.withConfig({
 
 exports.TableRowData = TableRowData;
 
-const TableRowGroupHeader =
-/*#__PURE__*/
-_styledComponents.default.div.withConfig({
+const TableRowGroupHeader = /*#__PURE__*/_styledComponents.default.div.withConfig({
   displayName: "DataTable__TableRowGroupHeader",
   componentId: "sc-16utrcn-6"
 })(({
@@ -156,9 +142,7 @@ _styledComponents.default.div.withConfig({
 
 exports.TableRowGroupHeader = TableRowGroupHeader;
 
-const TableEmptyMessage =
-/*#__PURE__*/
-_styledComponents.default.div.withConfig({
+const TableEmptyMessage = /*#__PURE__*/_styledComponents.default.div.withConfig({
   displayName: "DataTable__TableEmptyMessage",
   componentId: "sc-16utrcn-7"
 })(["padding:16px;", ";"], (0, _exports.typographyFont)(400, _exports.FontSizes.Title5)); // Table Footer
@@ -166,9 +150,7 @@ _styledComponents.default.div.withConfig({
 
 exports.TableEmptyMessage = TableEmptyMessage;
 
-const TableFooterContainer =
-/*#__PURE__*/
-_styledComponents.default.div.withConfig({
+const TableFooterContainer = /*#__PURE__*/_styledComponents.default.div.withConfig({
   displayName: "DataTable__TableFooterContainer",
   componentId: "sc-16utrcn-8"
 })(({
@@ -184,9 +166,7 @@ _styledComponents.default.div.withConfig({
 
 exports.TableFooterContainer = TableFooterContainer;
 
-const TableFooterMeta =
-/*#__PURE__*/
-_styledComponents.default.div.withConfig({
+const TableFooterMeta = /*#__PURE__*/_styledComponents.default.div.withConfig({
   displayName: "DataTable__TableFooterMeta",
   componentId: "sc-16utrcn-9"
 })(({

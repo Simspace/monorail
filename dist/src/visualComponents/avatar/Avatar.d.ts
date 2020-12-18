@@ -1,4 +1,4 @@
-import { StatelessComponent } from 'react';
+/// <reference types="react" />
 import { Sizes } from '@monorail/helpers/size';
 import { IconType } from '@monorail/visualComponents/icon/IconType';
 declare type AvatarContainerProps = {
@@ -10,10 +10,9 @@ export declare type AvatarProps = AvatarContainerProps & {
     last: string;
     icon?: IconType;
 };
-export declare const Avatar: StatelessComponent<AvatarProps>;
+export declare const Avatar: ({ first, last, team, size, icon, ...domProps }: AvatarProps) => JSX.Element;
 export declare const getAvatarInitials: (fullName: string) => {
     first: string;
     last: string;
 };
 export {};
-//# sourceMappingURL=Avatar.d.ts.map

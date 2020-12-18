@@ -1,8 +1,12 @@
-import React, { FC, ReactNode } from 'react';
+import React, { ReactNode } from 'react';
+import { Colors } from '@monorail/helpers/color';
 import { PopOverToggleProps } from '@monorail/metaComponents/popOver/PopOver';
 import { IconType } from '@monorail/visualComponents/icon/IconType';
-import { Colors } from '@monorail/helpers/color';
-export declare type MenuAction = {
+export declare type MenuActionOnClick<R = void> = (onClickParent: () => void, event: React.MouseEvent<HTMLDivElement>) => R;
+export declare type MenuAction<R = void> = {
+    type: 'divider';
+} | {
+    type?: 'action';
     label: ReactNode;
     iconName?: IconType;
     iconColor?: Colors;
@@ -13,15 +17,15 @@ export declare type MenuAction = {
      * If we weren't depending on asynchronous behavior in components that are consuming
      * ActionsMenu we would just be able to stop propagation on the SyntheticEvent
      */
-    onClick: (onClickParent: () => void, event: React.MouseEvent<HTMLDivElement>) => void;
+    onClick: MenuActionOnClick<R>;
     isFeaturedAction?: boolean;
     children?: ReactNode;
     disabled?: boolean;
 };
-export declare type ActionsMenuProps = {
-    actions: Array<MenuAction>;
+export declare type ActionsMenuProps<R = void> = {
+    actions: Array<MenuAction<R>>;
     document?: Document;
     toggle?: (props: PopOverToggleProps) => ReactNode;
+    onActionComplete?: (r: R) => void;
 };
-export declare const ActionsMenu: FC<ActionsMenuProps>;
-//# sourceMappingURL=ActionsMenu.d.ts.map
+export declare const ActionsMenu: <R extends unknown>(props: ActionsMenuProps<R>) => JSX.Element;

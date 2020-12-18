@@ -26,4 +26,3 @@ export declare type RadioGroupProps = ErrorProps & ContainerProps & {
 };
 export declare const RadioGroup: FC<RadioGroupProps>;
 export {};
-//# sourceMappingURL=RadioGroup.d.ts.map

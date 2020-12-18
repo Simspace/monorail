@@ -1,6 +1,7 @@
 import { css } from 'styled-components'
 
 export enum BorderRadius {
+  XSmall = 2,
   Small = 3,
   Medium = 4,
   Large = 6,

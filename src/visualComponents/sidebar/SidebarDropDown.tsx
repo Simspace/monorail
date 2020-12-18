@@ -1,7 +1,7 @@
-import * as O from 'fp-ts/lib/Option'
-import { pipe } from 'fp-ts/lib/pipeable'
 import React, { Component, createRef } from 'react'
 import styled, { css, SimpleInterpolation } from 'styled-components'
+import * as O from 'fp-ts/lib/Option'
+import { pipe } from 'fp-ts/lib/pipeable'
 
 import { flexFlow, generateScaleAnimation } from '@monorail/helpers/exports'
 import { PopOverChildProps } from '@monorail/metaComponents/popOver/PopOver'

@@ -1,0 +1,407 @@
+---
+id: dropdown
+title: Dropdown
+sidebar_label: Dropdown
+---
+
+import { fromNullable, none, Option, some } from 'fp-ts/lib/Option'
+import { FC, ReactElement, useEffect, useState } from 'react'
+
+import { ShowCase } from '../docComponents/ShowCase'
+import { dropdownItems } from '../docComponents/DropdownDoc'
+
+import { ellipsis, flexFlow } from '@monorail/helpers/exports'
+import { css } from '@monorail/helpers/styled-components'
+import { isUndefined } from '@monorail/sharedHelpers/typeGuards'
+import { Button } from '@monorail/visualComponents/buttons/Button'
+import {
+  ButtonDisplay,
+  ButtonsBarMode,
+} from '@monorail/visualComponents/buttons/buttonTypes'
+import { IconButton } from '@monorail/visualComponents/buttons/IconButton'
+import { ButtonsBar } from '@monorail/visualComponents/buttonsBar/ButtonsBar'
+import { useAsSelect } from '@monorail/visualComponents/dropdown/behavior'
+import {
+  DropdownItemType,
+  DropdownItemValue,
+  DropdownType,
+} from '@monorail/visualComponents/dropdown/helpers'
+import {
+  Dropdown,
+  DropdownChangeHandler,
+  DropdownProps,
+} from '@monorail/visualComponents/dropdown/Dropdown'
+import { DropdownItem } from '@monorail/visualComponents/dropdown/DropdownItem'
+import { createKeyboardInteraction } from '@monorail/visualComponents/dropdown/interaction'
+import { createCustomParser } from '@monorail/visualComponents/dropdown/parsers'
+import {
+  DropdownPlaceholder,
+  DropdownRender,
+  RenderHandlerProps,
+  RenderItemProps,
+  createCustomHandler,
+} from '@monorail/visualComponents/dropdown/render'
+import { createDropdownCustomSkin } from '@monorail/visualComponents/dropdown/skin'
+import { Icon } from '@monorail/visualComponents/icon/Icon'
+import { DisplayType } from '@monorail/visualComponents/inputs/inputTypes'
+import { Label } from '@monorail/visualComponents/inputs/Label'
+const months = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December',
+]
+
+Using Downshift
+
+<ShowCase>
+  <Dropdown label="Month" items={months} display={DisplayType.Edit} />
+</ShowCase>
+
+### Simple Dropdown - Months
+
+```tsx live
+function SimpleDropdown() {
+  const months = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ]
+
+  return <Dropdown items={months} />
+}
+```
+
+### Dropdown as Select
+
+```tsx live
+function DropdownAsSelect() {
+  const months = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ]
+
+  return <Dropdown items={months} behavior={useAsSelect} />
+}
+```
+
+## Types
+
+### Filterable dropdown with default value and a CTA button aside
+
+```tsx live
+function SimpleSelect() {
+  const [knight, setKnight] = useState(
+    dropdownItems.find(item => item.value === dropdownItems[44].value),
+  )
+
+  return (
+    <div style={{ display: 'flex', alignItems: 'center' }}>
+      <Dropdown value={knight} items={dropdownItems} />
+      <Button
+        onClick={() => {
+          if (isUndefined(knight)) {
+            alert('Please choose a Knight')
+          } else {
+            alert(`Your Knight is: ${knight.label}`)
+          }
+        }}
+        css="margin-left: 8px;"
+      >
+        Call It
+      </Button>
+    </div>
+  )
+}
+```
+
+### Non Filterable
+
+```tsx live
+function NonFilterable({ display }) {
+  const [selectedItem, setSelectedItem] = useState()
+  const [localDisplay, setLocalDisplay] = useState(display || DisplayType.Edit)
+
+  const matchItem = (text = '') => item =>
+    item.name.toLowerCase().includes(text.toLowerCase()) ||
+    item.team.toLowerCase().includes(text.toLowerCase())
+
+  const handleChange = item => {
+    setSelectedItem(item)
+  }
+  return (
+    <Dropdown
+      items={dropdownItems}
+      placeholder="Choose your knight"
+      value={selectedItem}
+      onChange={handleChange}
+      parser={createCustomParser({
+        includes: matchItem,
+      })}
+      display={localDisplay}
+    />
+  )
+}
+```
+
+### Error State
+
+```tsx live
+<Dropdown
+  items={dropdownItems}
+  placeholder="Select..."
+  error={fromNullable('This is an error message')}
+/>
+```
+
+### Using display prop
+
+```tsx live
+function DisplayProp({ display }) {
+  const [selectedItem, setSelectedItem] = useState('  ')
+  const [localDisplay, setLocalDisplay] = useState(display || DisplayType.Edit)
+
+  const matchItem = (text = '') => item =>
+    item.name.toLowerCase().includes(text.toLowerCase()) ||
+    item.team.toLowerCase().includes(text.toLowerCase())
+
+  const handleChange = item => {
+    setSelectedItem(item)
+  }
+
+  return (
+    <>
+      <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+        <ButtonsBar mode={ButtonsBarMode.Toolbar}>
+          <IconButton
+            css="margin-left: 8px;"
+            display={ButtonDisplay.Secondary}
+            icon="check"
+            pressed={localDisplay === DisplayType.View}
+            onClick={() => {
+              setLocalDisplay(DisplayType.View)
+            }}
+          />
+          <IconButton
+            css="margin-left: 8px;"
+            display={ButtonDisplay.Secondary}
+            icon="edit"
+            pressed={localDisplay === DisplayType.Edit}
+            onClick={() => {
+              setLocalDisplay(DisplayType.Edit)
+            }}
+          />
+        </ButtonsBar>
+      </div>
+      <Dropdown
+        items={dropdownItems.map((item, index) => ({
+          ...item,
+          disabled: Math.random() > 0.7,
+        }))}
+        placeholder="Choose your knight"
+        value={selectedItem}
+        onChange={handleChange}
+        parser={createCustomParser({
+          includes: matchItem,
+        })}
+        display={localDisplay}
+        skin={customItemTypeSkin}
+      />
+    </>
+  )
+}
+```
+
+:::caution Issues
+
+- TypeError: team.map is not a function
+
+:::
+
+### Connected Dropdowns
+
+```tsx live
+function ConnectedDropdowns() {
+  const [team, setTeam] = useState('')
+  const [knights, setKnights] = useState([])
+  const [fighter, setFighter] = useState('')
+
+  const fighterByTeam = ['Jedi Knight', 'Sith Lord']
+
+  const teams = ['Bright Side', 'Dark Side'].map((item, index) => ({
+    value: index,
+    label: item,
+    fighter: fighterByTeam[index],
+  }))
+
+  useEffect(() => {
+    setKnights(
+      team.map(({ label }) =>
+        dropdownItems.filter(item => item.team === label),
+      ),
+    )
+  }, [team, dropdownItems])
+
+  const updateTeam = newTeam => {
+    if (newTeam !== team) {
+      setTeam(newTeam)
+    }
+  }
+
+  const changeTeam = item => {
+    updateTeam(fromNullable(item))
+    setFighter('')
+  }
+
+  const changeFighter = item => {
+    const newFighter = item
+    setFighter(newFighter)
+
+    newFighter.map(f => teams.find(t => t.label === f.team)).extend(updateTeam)
+  }
+
+  return (
+    <div css="display: flex; margin-bottom: 32px;">
+      <div css="flex: 1; display: flex;">
+        <Dropdown
+          label="Teams"
+          items={teams}
+          value={team}
+          placeholder="All Fighters"
+          onChange={changeTeam}
+          behavior={useAsSelect}
+        />
+      </div>
+      <div css="flex: 1; display: flex;">
+        <Dropdown
+          label="Fighter"
+          items={knights}
+          placeholder={'Choose your Fighter'}
+          value={fighter}
+          onChange={changeFighter}
+          error={fighter && 'Required'}
+          interaction={createKeyboardInteraction({ openOnInteraction: true })}
+        />
+      </div>
+    </div>
+  )
+}
+```
+
+### Create a Collection from a Dropdown
+
+:::caution Issues
+
+- Select items - need styles fixed
+
+:::
+
+No knights selected
+
+```tsx live
+function CollectionFromDropdown() {
+  const [selectedItems, setSelectedItems] = useState([])
+  const [itemsCollection, setCollection] = useState(dropdownItems)
+
+  const handleChange = (item, downshiftProps) => {
+    downshiftProps && downshiftProps.clearSelection()
+    if (item) {
+      setSelectedItems(() => [...selectedItems, item])
+      setCollection(() => itemsCollection.filter(i => i !== item))
+    }
+  }
+  const restoreItem = item => {
+    setCollection(() => [...itemsCollection, item].sort(sortItemType))
+    setSelectedItems(() => selectedItems.filter(i => i !== item))
+  }
+
+  return (
+    <CollectionDropdownContainer>
+      <CollectionDropdownLeft>
+        <Dropdown
+          skin={customItemTypeSkin}
+          items={itemsCollection.filter(item => !item.disabled)}
+          placeholder={
+            selectedItems.length > 0
+              ? `Knights selected: ${selectedItems.length}`
+              : 'Select a Knight for your clan'
+          }
+          onChange={handleChange}
+          skin={customItemTypeSkin}
+          interaction={createKeyboardInteraction({ openOnInteraction: true })}
+        />
+      </CollectionDropdownLeft>
+      <CollectionDropdownRight>
+        {selectedItems.length === 0
+          ? 'No knights selected'
+          : selectedItems.map((item, index) => (
+              <Button
+                css={`
+                  color: inherit;
+                  display: inline-flex;
+                  height: auto;
+                  text-align: left;
+                  text-transform: none;
+                  font-weight: inherit;
+                  width: 50%;
+                  min-width: 150px;
+                  justify-content: left;
+
+                  &:not(:hover) {
+                    & > ${Icon} {
+                      opacity: 0;
+                    }
+                  }
+                `}
+                key={`x-${index}`}
+                display={ButtonDisplay.Chromeless}
+                iconRight="close"
+                onClick={() => restoreItem(item)}
+              >
+                <div style={{ flex: 1 }}>
+                  {customItemTypeRender && customItemTypeRender.item ? (
+                    customItemTypeRender.item({
+                      item,
+                      selected: false,
+                      highlighted: false,
+                    })
+                  ) : (
+                    <>
+                      {item.name} - {item.team}
+                    </>
+                  )}
+                </div>
+              </Button>
+            ))}
+      </CollectionDropdownRight>
+    </CollectionDropdownContainer>
+  )
+}
+```

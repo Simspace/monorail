@@ -32,12 +32,6 @@ describe('newIO', () => {
 })
 
 describe('noOpIO', () => {
-  it('should be a noOp function', () => {
-    const actual = noOpIO.toString()
-    const expected = ['function () {', '    return;', '}'].join('\n')
-    expect(actual).toBe(expected)
-  })
-
   it('should return void', () => {
     const actual = noOpIO()
     const expected = undefined

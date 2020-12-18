@@ -58,7 +58,7 @@ export const CheckboxSelect: FC<CheckboxSelectProps> = props => {
       <Label label={label} css="margin: 0" />
       <Select
         options={options}
-        disabled={!value.enabled}
+        disabled={!value.enabled || domProps.disabled}
         onChange={e => {
           if (e.target.value !== undefined) {
             onChange({

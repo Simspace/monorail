@@ -59,7 +59,7 @@ const Shadow = _styledComponents.default.div`
   z-index: 5;
 `;
 const SCROLL_AMOUNT = 128;
-const ScrollAnimation = (0, _react.forwardRef)(({
+const ScrollAnimation = /*#__PURE__*/(0, _react.forwardRef)(({
   children,
   containerCssOverrides,
   ...domProps
@@ -96,12 +96,12 @@ const ScrollAnimation = (0, _react.forwardRef)(({
     eventListener: handleScroll,
     element: scrollContainer
   });
-  return _react.default.createElement(ScrollAnimationContainer, {
+  return /*#__PURE__*/_react.default.createElement(ScrollAnimationContainer, {
     containerCssOverrides: containerCssOverrides,
     ref: ref
-  }, _react.default.createElement(Shadow, {
+  }, /*#__PURE__*/_react.default.createElement(Shadow, {
     ref: shadow
-  }), _react.default.createElement(ScrollContainer, _extends({
+  }), /*#__PURE__*/_react.default.createElement(ScrollContainer, _extends({
     ref: scrollContainerRef
   }, domProps), children));
 });

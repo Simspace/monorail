@@ -27,29 +27,23 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
-const CCFilter =
-/*#__PURE__*/
-_styledComponents.default.div.withConfig({
+const CCFilter = /*#__PURE__*/_styledComponents.default.div.withConfig({
   displayName: "Filter__CCFilter",
   componentId: "sc-1z03fcy-0"
 })(({
   isActive,
   cssOverrides
-}) => (0, _styledComponents.css)(["", ";", ";", ";", ";align-items:center;cursor:pointer;height:24px;padding:0 4px 0 8px;user-select:none;flex-shrink:0;", ";"], isActive ? (0, _exports.basePrimaryStyles)(_theme.ThemeColors.BrandSecondary) : (0, _styledComponents.css)(["", ";color:", ";"], (0, _exports.baseSecondaryStyles)(_theme.ThemeColors.BrandSecondary), (0, _exports.getColor)(_exports.Colors.Black74a)), (0, _exports.borderRadius)(), _exports.buttonTransition, (0, _exports.flexFlow)('row'), cssOverrides));
+}) => (0, _styledComponents.css)(["", ";", ";", ";", ";align-items:center;cursor:pointer;height:24px;padding:0 4px 0 8px;user-select:none;flex-shrink:0;border:1px solid ", ";background:inherit;color:inherit;", ";"], isActive ? (0, _exports.basePrimaryStyles)(_theme.ThemeColors.BrandSecondary) : (0, _styledComponents.css)(["", ";color:", ";"], (0, _exports.baseSecondaryStyles)(_theme.ThemeColors.BrandSecondary), (0, _exports.getColor)(_exports.Colors.Black74a)), (0, _exports.borderRadius)(_exports.BorderRadius.Medium), _exports.buttonTransition, (0, _exports.flexFlow)('row'), (0, _exports.getColor)(_exports.Colors.Black12a), cssOverrides));
 
 exports.CCFilter = CCFilter;
 
-const FilterText =
-/*#__PURE__*/
-_styledComponents.default.span.withConfig({
+const FilterText = /*#__PURE__*/_styledComponents.default.span.withConfig({
   displayName: "Filter__FilterText",
   componentId: "sc-1z03fcy-1"
 })(["", ";color:currentColor;text-transform:uppercase;white-space:nowrap;"], (0, _exports.typographyFont)(700, _exports.FontSizes.Title5));
 
 exports.FilterText = FilterText;
-const FilterIcon =
-/*#__PURE__*/
-(0, _styledComponents.default)(_Icon.Icon).withConfig({
+const FilterIcon = /*#__PURE__*/(0, _styledComponents.default)(_Icon.Icon).withConfig({
   displayName: "Filter__FilterIcon",
   componentId: "sc-1z03fcy-2"
 })(["color:currentColor;"]);
@@ -60,21 +54,21 @@ class Filter extends _react.Component {
     const {
       cssOverrides,
       title,
-      content,
-      isActive,
+      children,
+      isActive = false,
       zIndex,
       ...otherProps
     } = this.props;
-    return _react.default.createElement(_PopOver.PopOver, {
-      toggle: props => _react.default.createElement(CCFilter, _extends({}, props, otherProps, {
+    return /*#__PURE__*/_react.default.createElement(_PopOver.PopOver, {
+      toggle: props => /*#__PURE__*/_react.default.createElement(CCFilter, _extends({}, props, otherProps, {
         cssOverrides: cssOverrides,
         isActive: isActive || props.isActive
-      }), _react.default.createElement(FilterText, null, title), _react.default.createElement(FilterIcon, {
+      }), /*#__PURE__*/_react.default.createElement(FilterText, null, title), /*#__PURE__*/_react.default.createElement(FilterIcon, {
         icon: "arrow_drop_down"
       })),
-      popOver: props => !(0, _typeGuards.isNil)(content) && _react.default.createElement(_Menu.Menu, _extends({
+      popOver: props => (0, _typeGuards.isNotNil)(children) && /*#__PURE__*/_react.default.createElement(_Menu.Menu, _extends({
         zIndex: zIndex
-      }, props), content)
+      }, props), children)
     });
   }
 

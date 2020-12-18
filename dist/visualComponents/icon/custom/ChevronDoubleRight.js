@@ -11,14 +11,14 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
-const ChevronDoubleRight = props => _react.default.createElement("svg", _extends({
+const ChevronDoubleRight = props => /*#__PURE__*/_react.default.createElement("svg", _extends({
   width: "24",
   height: "24",
   viewBox: "0 0 24 24",
   fill: "none",
   xmlns: "http://www.w3.org/2000/svg"
-}, props), _react.default.createElement("path", {
-  d: "M7.41 5.59L6 7L12 13L18 7L16.59 5.59L12 10.17L7.41 5.59ZM7.41 11.59L6 13L12 19L18 13L16.59 11.59L12 16.17L7.41 11.59Z"
+}, props), /*#__PURE__*/_react.default.createElement("path", {
+  d: "M5.58997 7.41L6.99997 6L13 12L6.99997 18L5.58997 16.59L10.17 12L5.58997 7.41ZM11.59 7.41L13 6L19 12L13 18L11.59 16.59L16.17 12L11.59 7.41Z"
 }));
 
 exports.ChevronDoubleRight = ChevronDoubleRight;

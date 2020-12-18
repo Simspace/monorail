@@ -7,15 +7,15 @@ exports.useFormMultiSelectInput = useFormMultiSelectInput;
 
 var _react = require("react");
 
-var _function = require("fp-ts/lib/function");
-
 var _Array = require("fp-ts/lib/Array");
 
-var _pipeable = require("fp-ts/lib/pipeable");
+var _function = require("fp-ts/lib/function");
 
 var _Option = require("fp-ts/lib/Option");
 
-var _ReadonlyArray = require("../../sharedHelpers/ReadonlyArray");
+var _pipeable = require("fp-ts/lib/pipeable");
+
+var _ReadonlyArray = require("../../sharedHelpers/fp-ts-ext/ReadonlyArray");
 
 var _typeGuards = require("../../sharedHelpers/typeGuards");
 
@@ -32,7 +32,9 @@ function useFormMultiSelectInput(props) {
     validateItem = (0, _Option.fromPredicate)(_typeGuards.isNotNil),
     modifySetSearchValue = _function.identity
   } = props;
-  const [searchValue, setSearchValue_] = (0, _react.useState)('');
+  const [searchValue, setSearchValue_] = (0, _react.useState)(''); // TODO(eslint): fix exhaustive deps
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+
   const setSearchValue = (0, _react.useCallback)((0, _function.flow)(modifySetSearchValue, setSearchValue_), [modifySetSearchValue]);
   const checkIsASuggestion = (0, _react.useMemo)(() => as => a => (0, _Array.elem)(eq)(a)(as), [eq]);
   const suggestions = (0, _react.useMemo)(() => // Don't bother running the search in view mode

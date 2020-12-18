@@ -1,4 +1,5 @@
 import * as Eq from 'fp-ts/lib/Eq';
+export declare const getUndefinableEq: <T>(eq: Eq.Eq<T>) => Eq.Eq<T | null | undefined>;
 /**
  * Case insensitive Eq instance for strings
  */
@@ -39,4 +40,3 @@ export declare const recordWithNameLowerEquality: <A extends {
 export declare const eqRecordWithNameLower: Eq.Eq<{
     name: string;
 }>;
-//# sourceMappingURL=Eq.d.ts.map

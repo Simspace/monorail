@@ -25,27 +25,19 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
-const checkboxSelectStyles =
-/*#__PURE__*/
-(0, _styledComponents.css)(["width:400px;", "{", ";align-items:center;justify-content:space-between;}i{top:12px;}"], _Choice.ChoiceFakeLabel, (0, _exports.flexFlow)('row'));
+const checkboxSelectStyles = /*#__PURE__*/(0, _styledComponents.css)(["width:400px;", "{", ";align-items:center;justify-content:space-between;}i{top:12px;}"], _Choice.ChoiceFakeLabel, (0, _exports.flexFlow)('row'));
 
-var _StyledChoice =
-/*#__PURE__*/
-(0, _styledComponents.default)(_Choice.Choice).withConfig({
+var _StyledChoice = /*#__PURE__*/(0, _styledComponents.default)(_Choice.Choice).withConfig({
   displayName: "CheckboxSelect___StyledChoice",
   componentId: "sc-1v86zp0-0"
 })(["", ""], checkboxSelectStyles);
 
-var _StyledLabel =
-/*#__PURE__*/
-(0, _styledComponents.default)(_Label.Label).withConfig({
+var _StyledLabel = /*#__PURE__*/(0, _styledComponents.default)(_Label.Label).withConfig({
   displayName: "CheckboxSelect___StyledLabel",
   componentId: "sc-1v86zp0-1"
 })(["margin:0"]);
 
-var _StyledSelect =
-/*#__PURE__*/
-(0, _styledComponents.default)(_Select.Select).withConfig({
+var _StyledSelect = /*#__PURE__*/(0, _styledComponents.default)(_Select.Select).withConfig({
   displayName: "CheckboxSelect___StyledSelect",
   componentId: "sc-1v86zp0-2"
 })(["pointer-events:", ";width:256px;"], p => p._css);
@@ -59,7 +51,7 @@ const CheckboxSelect = props => {
     cssOverrides,
     ...domProps
   } = props;
-  return _react.default.createElement(_StyledChoice, _extends({}, domProps, {
+  return /*#__PURE__*/_react.default.createElement(_StyledChoice, _extends({}, domProps, {
     type: "checkbox",
     checked: value ? value.enabled : false,
     onChange: () => {
@@ -69,11 +61,11 @@ const CheckboxSelect = props => {
       });
     },
     cssOverrides: cssOverrides
-  }), _react.default.createElement(_StyledLabel, {
+  }), /*#__PURE__*/_react.default.createElement(_StyledLabel, {
     label: label
-  }), _react.default.createElement(_StyledSelect, {
+  }), /*#__PURE__*/_react.default.createElement(_StyledSelect, {
     options: options,
-    disabled: !value.enabled,
+    disabled: !value.enabled || domProps.disabled,
     onChange: e => {
       if (e.target.value !== undefined) {
         onChange({

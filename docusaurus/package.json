@@ -1,0 +1,55 @@
+{
+  "name": "monorail-docs",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "docusaurus start",
+    "build": "docusaurus build",
+    "swizzle": "docusaurus swizzle",
+    "deploy": "docusaurus deploy"
+  },
+  "dependencies": {
+    "@docusaurus/core": "2.0.0-alpha.61",
+    "@docusaurus/mdx-loader": "2.0.0-alpha.61",
+    "@docusaurus/module-type-aliases": "2.0.0-alpha.61",
+    "@docusaurus/preset-classic": "2.0.0-alpha.61",
+    "@docusaurus/theme-live-codeblock": "2.0.0-alpha.61",
+    "@tsconfig/docusaurus": "1.0.2",
+    "classnames": "^2.2.6",
+    "docusaurus-plugin-sass": "0.1.10",
+    "styled-components": "5.1.1",
+    "typescript": "4.0.2",
+    "fp-ts": "2.8.1",
+    "moment": "2.24.0",
+    "moment-duration-format": "2.3.2",
+    "react-table": "6.10.0",
+    "uuid": "3.4.0"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@babel/core": "7.11.6",
+    "@babel/plugin-proposal-class-properties": "7.10.4",
+    "@babel/plugin-proposal-numeric-separator": "7.10.4",
+    "@babel/preset-env": "7.11.0",
+    "@babel/preset-typescript": "7.10.4",
+    "@types/react-helmet": "6.1.0",
+    "@types/react-dom": "16.9.2",
+    "@types/react": "16.9.10",
+    "@types/react-router-dom": "5.1.5",
+    "@types/styled-components": "5.1.2",
+    "@types/react-table": "6.8.3",
+    "babel-plugin-styled-components": "1.12.0",
+    "babel-preset-latest": "6.24.1"
+  }
+}

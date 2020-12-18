@@ -1,14 +1,16 @@
+import { strictEqual } from 'fp-ts/lib/Eq'
+
 import {
-  eqStringCaseI,
-  getEqStrict,
-  recordWithNameLowerEquality,
   eqRecordWithNameLower,
   eqShallow,
   eqStrict,
+  eqStringCaseI,
   getEqShallow,
+  getEqStrict,
+  recordWithNameLowerEquality,
 } from '@monorail/sharedHelpers/fp-ts-ext/Eq'
+
 import { shallowEqual } from '../../shallowEqual'
-import { strictEqual } from 'fp-ts/lib/Eq'
 
 describe('eqStringCaseI', () => {
   it('should return true if given two strings that match letters but not casing', () => {

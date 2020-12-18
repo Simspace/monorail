@@ -10,6 +10,8 @@ export declare enum Sizes {
     DP56 = 56,
     DP64 = 64
 }
+export declare type Size = 8 | 12 | 16 | 24 | 32 | 40 | 48 | 56 | 64;
+export declare type NegativeSize = -8 | -12 | -16 | -24 | -32 | -40 | -48 | -56 | -64;
 export declare const sizes: {
     modals: {
         mini: {
@@ -20,6 +22,9 @@ export declare const sizes: {
             width: number;
         };
         medium: {
+            width: number;
+        };
+        mediumLarge: {
             width: number;
         };
     };
@@ -41,4 +46,3 @@ export declare const pageSizePadding: (params?: {
     paddingTop?: number;
     paddingBottom?: number;
 }) => CssOverridesType;
-//# sourceMappingURL=size.d.ts.map

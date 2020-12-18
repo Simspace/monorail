@@ -104,10 +104,11 @@ export const typography = (
   weight: number,
   size: FontSizes,
   margin: string = '0',
-) => ({
-  ...typographyFont(weight, size),
-  ...typographyMargin(size, margin),
-})
+) => css`
+  ${typographyFont(weight, size)}
+  ${typographyMargin(size, margin)}
+  ${gothamFontFamily}
+`
 
 /**
  * @deprecated Use typography or typographyFont instead

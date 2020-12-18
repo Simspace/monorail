@@ -1,0 +1,316 @@
+---
+id: buttons-bar
+title: Buttons Bar
+sidebar_label:  Buttons Bar
+---
+
+import { css } from '@monorail/helpers/styled-components'
+import { Colors, getColor } from '@monorail/helpers/exports'
+import {
+  ButtonsBarMode,
+  ButtonSize,
+} from '@monorail/visualComponents/buttons/buttonTypes'
+
+import { ShowCase } from '../docComponents/ShowCase'
+
+import { Button } from '@monorail/visualComponents/buttons/Button'
+import { IconButton } from '@monorail/visualComponents/buttons/IconButton'
+import {
+  ButtonsBar,
+  ToolbarsContainer,
+} from '@monorail/visualComponents/buttonsBar/ButtonsBar'
+
+Stateless component used to create interfaces to allow users to select, one or multiple options, from a collection.
+
+<ShowCase>
+  <ButtonsBar cssOverrides={css`
+  background: ${getColor(Colors.White)};
+`}>
+    <Button>Left</Button>
+    <Button>Middle</Button>
+    <IconButton icon={'format_align_center'} />
+    <Button>Last</Button>
+  </ButtonsBar>
+</ShowCase>
+
+
+## Selected Options
+
+### Preset selected option
+
+Use the pressed props to define the ButtonsBar children selected by default
+
+```tsx live
+function Example() {
+  const [pressed, setPressed] = useState(2)
+
+  return (
+    <ButtonsBar>
+      <Button onClick={() => setPressed(0)} pressed={pressed === 0}>
+        Left
+      </Button>
+      <Button onClick={() => setPressed(1)} pressed={pressed === 1}>
+        Middle
+      </Button>
+      <IconButton
+        onClick={() => setPressed(2)}
+        pressed={pressed === 2}
+        icon={'format_align_center'}
+      />
+      <Button onClick={() => setPressed(3)} pressed={pressed === 3}>
+        Last
+      </Button>
+    </ButtonsBar>
+  )
+}
+```
+
+### Multiple Options
+
+It can be used for multiple selection also
+
+```tsx live
+function Example(){
+  const initialState = [true, false, false, true]
+  const [pressed, setPressed] = useState(initialState)
+
+  const toggleValue = (index) => {
+    const newPressed = [...pressed]
+    newPressed[index] = !newPressed[index]
+    setPressed(newPressed)
+  }
+
+  return (
+    <ButtonsBar cssOverrides={css`
+      background: ${getColor(Colors.White)};
+    `}>
+      <Button onClick={() => toggleValue(0)} pressed={pressed[0]}>
+        Left
+      </Button>
+      <Button onClick={() => toggleValue(1)} pressed={pressed[1]}>
+        Middle
+      </Button>
+      <IconButton
+        onClick={() => toggleValue(2)}
+        pressed={pressed[2]}
+        icon={'format_align_center'}
+      />
+      <Button onClick={() => toggleValue(3)} pressed={pressed[3]}>
+        Last
+      </Button>
+    </ButtonsBar>
+  )
+}
+```
+
+## Size
+
+### Compact
+
+Use ButtonSize to define ButtonsBar size
+
+```tsx live
+function Example(){
+  const [pressed, setPressed] = useState(null)
+
+  return (
+    <ButtonsBar size={ButtonSize.Compact} cssOverrides={css`width: 180px`}>
+      <Button onClick={() => setPressed(0)} pressed={pressed === 0}>
+        Left
+      </Button>
+      <Button onClick={() => setPressed(1)} pressed={pressed === 1}>
+        Middle
+      </Button>
+      <IconButton
+        onClick={() => setPressed(2)}
+        pressed={pressed === 2}
+        icon={'format_align_center'}
+      />
+      <Button onClick={() => setPressed(3)} pressed={pressed === 3}>
+        Last
+      </Button>
+    </ButtonsBar>
+  )
+}
+```
+
+### Dense
+
+ButtonSize.Dense
+
+```tsx live
+function Example(){
+  const [pressed, setPressed] = useState(null)
+
+  return (
+    <ButtonsBar size={ButtonSize.Dense}>
+      <Button onClick={() => setPressed(0)} pressed={pressed === 0}>
+        Left
+      </Button>
+      <Button onClick={() => setPressed(1)} pressed={pressed === 1}>
+        Middle
+      </Button>
+      <IconButton
+        onClick={() => setPressed(2)}
+        pressed={pressed === 2}
+        icon={'format_align_center'}
+      />
+      <Button onClick={() => setPressed(3)} pressed={pressed === 3}>
+        Last
+      </Button>
+    </ButtonsBar>
+  )
+}
+```
+
+### Large
+
+ButtonSize.Large is the default value
+
+```tsx live
+function Example(){
+  const [pressed, setPressed] = useState(null)
+
+  return (
+    <ButtonsBar size={ButtonSize.Large}>
+      <Button onClick={() => setPressed(0)} pressed={pressed === 0}>
+        Left
+      </Button>
+      <Button onClick={() => setPressed(1)} pressed={pressed === 1}>
+        Middle
+      </Button>
+      <IconButton
+        onClick={() => setPressed(2)}
+        pressed={pressed === 2}
+        icon={'format_align_center'}
+      />
+      <Button onClick={() => setPressed(3)} pressed={pressed === 3}>
+        Last
+      </Button>
+    </ButtonsBar>
+  )
+}
+```
+
+## Toolbar
+
+Buttons bar can also work as Toolbars with a differentiting visual styling. It takes all the types from the default ButtonsBar mode.
+
+### Toolbar Mode
+
+Uses the mode prop to set ButtonsBar as a Toolbar
+
+```tsx live
+function Example(){
+  const [pressed, setPressed] = useState(null)
+
+  return (
+    <ButtonsBar mode={ButtonsBarMode.Toolbar} size={ButtonSize.Large}>
+      <Button onClick={() => setPressed(0)} pressed={pressed === 0}>
+        Left
+      </Button>
+      <Button onClick={() => setPressed(1)} pressed={pressed === 1}>
+        Middle
+      </Button>
+      <IconButton
+        onClick={() => setPressed(2)}
+        pressed={pressed === 2}
+        icon={'format_align_center'}
+      />
+      <Button onClick={() => setPressed(3)} pressed={pressed === 3}>
+        Last
+      </Button>
+    </ButtonsBar>
+  )
+}
+```
+
+### Multple Toolbars
+
+Use ToolbarsContainer for displaying multiple Toolbars in a single row
+
+```tsx live
+function Example() {
+  const initialState = [
+    true,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+  ]
+  const [styles, setStyles] = useState(initialState)
+  const [middleBar, setMiddleBar] = useState(false)
+  const [justify, setJustify] = useState(0)
+
+  const toggleValue = (index) => {
+    const newStyles = [...styles]
+    newStyles[index] = !newStyles[index]
+    setStyles(newStyles)
+  }
+
+  return (
+    <ToolbarsContainer>
+      <ButtonsBar multiple={true}
+        mode={ButtonsBarMode.Toolbar}>
+        <IconButton
+          icon={'format_bold'}
+          onClick={() => toggleValue(0)}
+          pressed={styles[0]}
+        />
+        <IconButton
+          icon={'format_italic'}
+          onClick={() => toggleValue(1)}
+          pressed={styles[1]}
+        />
+        <IconButton
+          icon={'format_underline'}
+          onClick={() => toggleValue(2)}
+          pressed={styles[2]}
+        />
+        <IconButton
+          icon={'strikethrough'}
+          onClick={() => toggleValue(3)}
+          pressed={styles[3]}
+        />
+      </ButtonsBar>
+      <ButtonsBar mode={ButtonsBarMode.Toolbar}>
+        <Button
+          iconRight={'keyboard_arrow_down'}
+          onClick={() => setMiddleBar(!middleBar)}
+          pressed={middleBar}
+        >
+          Text font
+        </Button>
+      </ButtonsBar>
+      <ButtonsBar mode={ButtonsBarMode.Toolbar}>
+        <IconButton
+          icon={'format_align_left'}
+          onClick={() => setJustify(0)}
+          pressed={justify === 0}
+        />
+        <IconButton
+          icon={'format_align_center'}
+          onClick={() => setJustify(1)}
+          pressed={justify === 1}
+        />
+        <IconButton
+          icon={'format_align_right'}
+          onClick={() => setJustify(2)}
+          pressed={justify === 2}
+        />
+        <IconButton
+          icon={'format_align_justify'}
+          onClick={() => setJustify(3)}
+          pressed={justify === 3}
+        />
+      </ButtonsBar>
+    </ToolbarsContainer>
+  )
+}
+```
+
+<!-- TODO: embed component demo https://design.simspace.com/visual-components/buttons-bar -->

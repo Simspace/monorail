@@ -35,7 +35,7 @@ const CollectionPage = props => {
 
   const renderCollection = () => {
     if ('searchInput' in props) {
-      return _react.default.createElement(_Collection.Collection, {
+      return /*#__PURE__*/_react.default.createElement(_Collection.Collection, {
         cardRender: cardRender,
         collectionView: collectionView,
         columns: columns,
@@ -51,7 +51,7 @@ const CollectionPage = props => {
         showPagination: showPagination
       });
     } else if ('searchFilter' in props) {
-      return _react.default.createElement(_Collection.Collection, {
+      return /*#__PURE__*/_react.default.createElement(_Collection.Collection, {
         cardRender: cardRender,
         collectionView: collectionView,
         columns: columns,
@@ -71,9 +71,9 @@ const CollectionPage = props => {
     }
   };
 
-  return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_PageHeader.PageHeader, {
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_PageHeader.PageHeader, {
     title: title,
-    actions: _react.default.createElement(_Actions.ActionsContainer, null, actions)
+    actions: /*#__PURE__*/_react.default.createElement(_Actions.ActionsContainer, null, actions)
   }), renderCollection());
 };
 

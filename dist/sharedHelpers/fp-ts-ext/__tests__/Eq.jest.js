@@ -1,20 +1,20 @@
 "use strict";
 
-var _Eq = require("../Eq");
+var _Eq = require("fp-ts/lib/Eq");
+
+var _Eq2 = require("../Eq");
 
 var _shallowEqual = require("../../shallowEqual");
 
-var _Eq2 = require("fp-ts/lib/Eq");
-
 describe('eqStringCaseI', () => {
   it('should return true if given two strings that match letters but not casing', () => {
-    const actual = _Eq.eqStringCaseI.equals('Foo Bar', 'foo bar');
+    const actual = _Eq2.eqStringCaseI.equals('Foo Bar', 'foo bar');
 
     const expected = true;
     expect(actual).toBe(expected);
   });
   it("should return false if given two strings that don't match", () => {
-    const actual = _Eq.eqStringCaseI.equals('Bar Foo', 'Foo Bar');
+    const actual = _Eq2.eqStringCaseI.equals('Bar Foo', 'Foo Bar');
 
     const expected = false;
     expect(actual).toBe(expected);
@@ -22,7 +22,7 @@ describe('eqStringCaseI', () => {
 });
 describe('eqShallow', () => {
   it('should contain an `equals` function using strict equality (===)', () => {
-    const actualA = _Eq.eqShallow.equals({
+    const actualA = _Eq2.eqShallow.equals({
       value: 'c'
     }, {
       value: 'a'
@@ -36,7 +36,7 @@ describe('eqShallow', () => {
     expect(actualA).toBe(expectedA);
     expect(actualA).toBe(false);
 
-    const actualB = _Eq.eqShallow.equals({
+    const actualB = _Eq2.eqShallow.equals({
       value: 'b'
     }, {
       value: 'b'
@@ -53,22 +53,22 @@ describe('eqShallow', () => {
 });
 describe('eqStrict', () => {
   it('should contain an `equals` function using strict equality (===)', () => {
-    const actualA = _Eq.eqStrict.equals('c', 'a');
+    const actualA = _Eq2.eqStrict.equals('c', 'a');
 
-    const expectedA = (0, _Eq2.strictEqual)('c', 'a');
+    const expectedA = (0, _Eq.strictEqual)('c', 'a');
     expect(actualA).toBe(expectedA);
     expect(actualA).toBe(false);
 
-    const actualB = _Eq.eqStrict.equals('b', 'b');
+    const actualB = _Eq2.eqStrict.equals('b', 'b');
 
-    const expectedB = (0, _Eq2.strictEqual)('b', 'b');
+    const expectedB = (0, _Eq.strictEqual)('b', 'b');
     expect(actualB).toBe(expectedB);
     expect(actualB).toBe(true);
   });
 });
 describe('geteqShallow', () => {
   it('should contain a eq equivalent to eqShallow', () => {
-    const s = (0, _Eq.getEqShallow)();
+    const s = (0, _Eq2.getEqShallow)();
     const actual = s.equals({
       value: 'c'
     }, {
@@ -97,26 +97,26 @@ describe('geteqShallow', () => {
 });
 describe('getEqStrict', () => {
   it('should contain a eq equivalent to eqStrict', () => {
-    const s = (0, _Eq.getEqStrict)();
+    const s = (0, _Eq2.getEqStrict)();
     const actualA = s.equals('c', 'a');
-    const expectedA = (0, _Eq2.strictEqual)('c', 'a');
+    const expectedA = (0, _Eq.strictEqual)('c', 'a');
     expect(actualA).toBe(expectedA);
     expect(actualA).toBe(false);
     const actualB = s.equals('b', 'b');
-    const expectedB = (0, _Eq2.strictEqual)('b', 'b');
+    const expectedB = (0, _Eq.strictEqual)('b', 'b');
     expect(actualB).toBe(expectedB);
     expect(actualB).toBe(true);
   });
 });
 describe('eqRecordWithNameLower', () => {
   it('should compare { name: string } records by lowercase alpha', () => {
-    const actualA = _Eq.eqRecordWithNameLower.equals({
+    const actualA = _Eq2.eqRecordWithNameLower.equals({
       name: 'Josh B'
     }, {
       name: 'josh B'
     });
 
-    const expectedA = (0, _Eq.recordWithNameLowerEquality)({
+    const expectedA = (0, _Eq2.recordWithNameLowerEquality)({
       name: 'Josh B'
     }, {
       name: 'josh B'
@@ -124,13 +124,13 @@ describe('eqRecordWithNameLower', () => {
     expect(actualA).toBe(expectedA);
     expect(actualA).toBe(true);
 
-    const actualB = _Eq.eqRecordWithNameLower.equals({
+    const actualB = _Eq2.eqRecordWithNameLower.equals({
       name: 'Josh B'
     }, {
       name: 'joshua B'
     });
 
-    const expectedB = (0, _Eq.recordWithNameLowerEquality)({
+    const expectedB = (0, _Eq2.recordWithNameLowerEquality)({
       name: 'Josh B'
     }, {
       name: 'joshua B'

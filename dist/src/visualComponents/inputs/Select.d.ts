@@ -21,4 +21,3 @@ export declare type SelectProps = {
     value?: string | Array<string> | number;
 };
 export declare const Select: FC<SelectProps>;
-//# sourceMappingURL=Select.d.ts.map

@@ -27,50 +27,38 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
-const CollapsibleTitle =
-/*#__PURE__*/
-_styledComponents.default.div.withConfig({
+const CollapsibleTitle = /*#__PURE__*/_styledComponents.default.div.withConfig({
   displayName: "CollapsibleTextInput__CollapsibleTitle",
   componentId: "sc-1jdywlh-0"
 })(["color:", ";", ";justify-content:center;height:24px;", ";"], (0, _exports.getColor)(_exports.Colors.Gray89), (0, _exports.flexFlow)(), (0, _exports.typography)(_exports.FontWeights.Book, _exports.FontSizes.Title5, '0'));
 
-const CollapsibleTitleWrapper =
-/*#__PURE__*/
-_styledComponents.default.div.withConfig({
+const CollapsibleTitleWrapper = /*#__PURE__*/_styledComponents.default.div.withConfig({
   displayName: "CollapsibleTextInput__CollapsibleTitleWrapper",
   componentId: "sc-1jdywlh-1"
 })(({
   isOpen
 }) => (0, _styledComponents.css)(["padding:8px 8px 8px 16px;", " justify-content:space-between;background-color:", ";"], (0, _exports.flexFlow)('row'), isOpen ? (0, _exports.getColor)(_exports.Colors.Gray06) : 'inherit'));
 
-const CollapsibleContentWrapper =
-/*#__PURE__*/
-_styledComponents.default.div.withConfig({
+const CollapsibleContentWrapper = /*#__PURE__*/_styledComponents.default.div.withConfig({
   displayName: "CollapsibleTextInput__CollapsibleContentWrapper",
   componentId: "sc-1jdywlh-2"
 })(["", " padding:8px 16px;justify-content:space-between;background-color:", ";", ";width:100%;z-index:9;position:absolute;box-sizing:border-box;cursor:pointer;"], (0, _exports.flexFlow)('row', 'wrap'), (0, _exports.getColor)(_exports.Colors.Grey98), (0, _exports.getElevationShadow)(_exports.ElevationRange.Elevation1));
 
-var _StyledCollapsibleContentWrapper =
-/*#__PURE__*/
-(0, _styledComponents.default)(CollapsibleContentWrapper).withConfig({
+var _StyledCollapsibleContentWrapper = /*#__PURE__*/(0, _styledComponents.default)(CollapsibleContentWrapper).withConfig({
   displayName: "CollapsibleTextInput___StyledCollapsibleContentWrapper",
   componentId: "sc-1jdywlh-3"
 })(p => ({
   display: p._css
 }));
 
-const CollapsibleDiv =
-/*#__PURE__*/
-_styledComponents.default.div.withConfig({
+const CollapsibleDiv = /*#__PURE__*/_styledComponents.default.div.withConfig({
   displayName: "CollapsibleTextInput__CollapsibleDiv",
   componentId: "sc-1jdywlh-4"
 })(({
   cssOverrides
 }) => (0, _styledComponents.css)(["box-sizing:border-box;width:100%;background-color:", ";", ";position:relative;", ";"], (0, _exports.getColor)(_exports.Colors.Grey98), (0, _exports.getElevationShadow)(_exports.ElevationRange.Elevation1), cssOverrides));
 
-var _StyledStyledInput =
-/*#__PURE__*/
-(0, _styledComponents.default)(_TextField.StyledInput).withConfig({
+var _StyledStyledInput = /*#__PURE__*/(0, _styledComponents.default)(_TextField.StyledInput).withConfig({
   displayName: "CollapsibleTextInput___StyledStyledInput",
   componentId: "sc-1jdywlh-5"
 })({
@@ -110,18 +98,18 @@ const CollapsibleTextInput = props => {
     }
   };
 
-  return _react.default.createElement(CollapsibleDiv, {
+  return /*#__PURE__*/_react.default.createElement(CollapsibleDiv, {
     cssOverrides: cssOverrides
-  }, _react.default.createElement(CollapsibleTitleWrapper, {
+  }, /*#__PURE__*/_react.default.createElement(CollapsibleTitleWrapper, {
     isOpen: contentOpen,
     onClick: () => toggleContentOpen(!contentOpen)
-  }, _react.default.createElement(CollapsibleTitle, null, titleText), _react.default.createElement(_IconButton.IconButton, {
+  }, /*#__PURE__*/_react.default.createElement(CollapsibleTitle, null, titleText), /*#__PURE__*/_react.default.createElement(_IconButton.IconButton, {
     size: _buttonTypes.ButtonSize.Dense,
     display: _buttonTypes.ButtonDisplay.Chromeless,
     icon: contentOpen ? 'chevron_double_up' : 'chevron_double_down'
-  })), _react.default.createElement(_StyledCollapsibleContentWrapper, {
+  })), /*#__PURE__*/_react.default.createElement(_StyledCollapsibleContentWrapper, {
     _css: contentOpen ? 'flex' : 'none'
-  }, _react.default.createElement(_StyledStyledInput, _extends({
+  }, /*#__PURE__*/_react.default.createElement(_StyledStyledInput, _extends({
     err: showErr,
     maxLength: 100,
     value: text,
@@ -131,7 +119,7 @@ const CollapsibleTextInput = props => {
         handleSubmit();
       }
     }
-  }, inputProps || {})), _react.default.createElement(_Button.Button, {
+  }, inputProps || {})), /*#__PURE__*/_react.default.createElement(_Button.Button, {
     display: _buttonTypes.ButtonDisplay.Secondary,
     onClick: handleSubmit,
     disabled: props.disabled

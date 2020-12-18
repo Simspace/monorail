@@ -1,7 +1,11 @@
+import { pipe } from 'fp-ts/lib/pipeable'
+import { O } from '@monorail/sharedHelpers/fp-ts-imports'
+
 export enum Colors {
   // Black, Gray, and White.
   Black = 'black',
   Gray02 = 'Gray02',
+  Gray04 = 'Gray04',
   Gray06 = 'Gray06',
   Gray08 = 'Gray08',
   Gray12 = 'Gray12',
@@ -65,28 +69,32 @@ export enum Colors {
   // Paused
   Inactive = 'inactive',
 
+  // Apps and Sub-Apps
   Academy = 'academy',
+  TeamAssessmentPlan = 'teamAssessmentPlan',
   AttackElements = 'attackElements',
   Execution = 'execution',
   Admin = 'admin',
   AdminAlt = 'adminAlt',
+  Assessments = 'assessments',
   Catalog = 'catalog',
   CatalogAlt = 'catalogAlt',
   Dashboard = 'dashboard',
-  Range = 'range',
-  RangeAlt = 'rangeAlt',
-  Tracker = 'tracker',
-  TrackerAlt = 'trackerAlt',
   Hardhat = 'hardhat',
   Impact = 'impact',
   ImpactAlt = 'impactAlt',
-  Training = 'training',
-  TechOps = 'techops',
-  TechOpsAlt = 'techopsAlt',
-  Repo = 'repo',
   LMS = 'externalLms',
   MyOrg = 'myOrg',
   MyOrgAlt = 'myOrgAlt',
+  Range = 'range',
+  RangeAlt = 'rangeAlt',
+  Repo = 'repo',
+  TechOps = 'techops',
+  TechOpsAlt = 'techopsAlt',
+  Tracker = 'tracker',
+  TrackerAlt = 'trackerAlt',
+  TrackerSecondary = 'trackerSecondary',
+  Training = 'training',
 
   // State
   Green = 'green',
@@ -229,6 +237,7 @@ export const colorHSLAMap = ({
     // Black (opaque)
     [Colors.Black]: { h: 0, s: 0, l: 0, a: alpha }, // #000000
     [Colors.Gray02]: { h: 0, s: 0, l: 98, a: alpha }, // #FAFAFA
+    [Colors.Gray04]: { h: 0, s: 0, l: 96, a: alpha }, // #F5F5F5
     [Colors.Gray06]: { h: 0, s: 0, l: 94, a: alpha }, // #F0F0F0
     [Colors.Gray08]: { h: 0, s: 0, l: 92, a: alpha }, // #EBEBEB
     [Colors.Gray12]: { h: 0, s: 0, l: 88, a: alpha }, // #E0E0E0
@@ -280,34 +289,32 @@ export const colorHSLAMap = ({
     [Colors.AccentPurple700]: { h: 295, s: 42, l: 32, a: alpha }, // #6E2F74
 
     // App Colors
-    [Colors.Academy]: { h: 196, s: 75, l: 50, a: alpha }, // #20ACDF
-    // [Colors.Admin]: { h: 210, s: 82, l: 54, a: alpha }, // #2A8AEA
+    [Colors.Academy]: { h: 195, s: 72, l: 43, a: alpha }, // #1F95BC
     [Colors.Admin]: { h: 37, s: 92, l: 53, a: alpha }, // #F5A119
     [Colors.AdminAlt]: { h: 37, s: 66, l: 43, a: alpha }, // #B67F25
-    // [Colors.Catalog]: { h: 79, s: 59, l: 49, a: alpha }, // #98C733
+    [Colors.AttackElements]: { h: 5, s: 90, l: 44, a: alpha }, // #D41C0B
     [Colors.Catalog]: { h: 257, s: 54, l: 45, a: alpha }, // #5835B1
     [Colors.CatalogAlt]: { h: 257, s: 77, l: 29, a: alpha }, // #311183
     [Colors.Dashboard]: { h: 257, s: 70, l: 60, a: alpha }, // #7A52E0
+    [Colors.Execution]: { h: 196, s: 75, l: 50, a: alpha }, // #20ACDF
     [Colors.Range]: { h: 257, s: 54, l: 45, a: alpha }, // #5835B1
     [Colors.RangeAlt]: { h: 37, s: 84, l: 50, a: alpha }, // #EB9814
-
-    // [Colors.Tracker]: { h: 145, s: 63, l: 42, a: alpha }, // #28AF60
-    [Colors.Tracker]: { h: 133, s: 34, l: 51, a: alpha }, // #58AD6A
-    [Colors.TrackerAlt]: { h: 132, s: 45, l: 45, a: alpha }, // #3FA654
     [Colors.Hardhat]: { h: 12, s: 98, l: 59, a: alpha }, // #FD5930
-    [Colors.AttackElements]: { h: 353, s: 100, l: 35, a: alpha },
-    // [Colors.Impact]: { h: 353, s: 52, l: 42, a: alpha }, // #A33340
     [Colors.Impact]: { h: 12, s: 85, l: 51, a: alpha }, // #EC4218
     [Colors.ImpactAlt]: { h: 12, s: 93, l: 40, a: alpha }, // #C52D07
-    [Colors.Training]: { h: 196, s: 75, l: 50, a: alpha }, // #20ACDF
-    // [Colors.TechOps]: { h: 324, s: 60, l: 60, a: alpha }, // #D65CA5
+    [Colors.LMS]: { h: 2, s: 61, l: 50, a: alpha }, // #CD3732
+    [Colors.MyOrg]: { h: 181, s: 88, l: 29, a: alpha }, // #09898B
+    // This is the same as Colors.AccentPurple700
+    [Colors.Assessments]: { h: 295, s: 42, l: 32, a: alpha }, // #6E2F74
+    [Colors.TeamAssessmentPlan]: { h: 295, s: 42, l: 32, a: alpha }, // #6E2F74
+    [Colors.MyOrgAlt]: { h: 180, s: 40, l: 98, a: alpha }, // #F8FCFC
+    [Colors.Repo]: { h: 79, s: 59, l: 49, a: alpha }, // #98C733
     [Colors.TechOps]: { h: 325, s: 58, l: 52, a: alpha }, // #CC3E90
     [Colors.TechOpsAlt]: { h: 325, s: 49, l: 36, a: alpha }, // #892F63
-    [Colors.Repo]: { h: 79, s: 59, l: 49, a: alpha }, // #98C733
-    [Colors.LMS]: { h: 2, s: 61, l: 50, a: alpha }, // #CD3732
-    [Colors.Execution]: { h: 196, s: 75, l: 50, a: alpha }, // #20ACDF
-    [Colors.MyOrg]: { h: 181, s: 88, l: 29, a: alpha }, // #09898B
-    [Colors.MyOrgAlt]: { h: 180, s: 40, l: 98, a: alpha }, // #F8FCFC
+    [Colors.Tracker]: { h: 153, s: 91, l: 34, a: alpha }, // #08A45E
+    [Colors.TrackerAlt]: { h: 132, s: 45, l: 45, a: alpha }, // #3FA654
+    [Colors.TrackerSecondary]: { h: 150, s: 33, l: 99, a: alpha }, // #FBFDFC
+    [Colors.Training]: { h: 196, s: 75, l: 50, a: alpha }, // #20ACDF
 
     // Event Status
     // In Progress
@@ -453,5 +460,33 @@ export const convertHSLAMapToCss = (HSLAMap: HSLAMapType): string =>
 export const getColor = (color: Colors, alpha = 1) =>
   convertHSLAMapToCss(colorHSLAMap({ color, alpha }))
 
-export const getCollectionColor = (index: number, hover: boolean = false) =>
-  `Collection${hover ? 'Secondary' : 'Primary'}${1 + (index % 9)}` as Colors
+export const getCollectionColor = (index: number, hover: boolean = false) => {
+  const primaryColors = [
+    Colors.CollectionPrimary1,
+    Colors.CollectionPrimary2,
+    Colors.CollectionPrimary3,
+    Colors.CollectionPrimary4,
+    Colors.CollectionPrimary5,
+    Colors.CollectionPrimary6,
+    Colors.CollectionPrimary7,
+    Colors.CollectionPrimary8,
+  ] as const
+
+  const secondaryColors = [
+    Colors.CollectionSecondary1,
+    Colors.CollectionSecondary2,
+    Colors.CollectionSecondary3,
+    Colors.CollectionSecondary4,
+    Colors.CollectionSecondary5,
+    Colors.CollectionSecondary6,
+    Colors.CollectionSecondary7,
+    Colors.CollectionSecondary8,
+  ] as const
+
+  const target = hover ? primaryColors : secondaryColors
+
+  return pipe(
+    O.fromNullable(target[index % target.length]),
+    O.getOrElse(() => Colors.CollectionPrimary1),
+  )
+}

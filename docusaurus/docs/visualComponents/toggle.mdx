@@ -1,0 +1,106 @@
+---
+id: toggle
+title: Toggle
+sidebar_label: Toggle
+---
+
+import { ShowCase } from '../docComponents/ShowCase'
+import { ToggleController } from '../docComponents/ToggleDoc'
+
+import { Icon } from '@monorail/visualComponents/icon/Icon'
+import { Toggle } from '@monorail/visualComponents/toggle/Toggle'
+import { ToggleSize } from '@monorail/visualComponents/toggle/toggleTypes'
+
+A Toggle allows the user to change the state of a binary setting.
+
+<ShowCase>
+  <ToggleController>
+    {({ checked, onChange }) => (
+      <Toggle checked={checked} onChange={onChange} />
+    )}
+  </ToggleController>
+</ShowCase>
+
+## Usage
+
+Use switches to:
+
+- Toggle a single option on or off
+- Immediately activate or deactivate something
+
+## Principles
+
+**Color**  
+Toggle communicates its status through the presence of Primary Link Color.
+
+**Shape**  
+Toggle has a fully rounded radius to simulate a real world Toggle.
+
+**Interaction**  
+Toggle clearly communicates to the user through animation as it translates between states.
+
+## Types
+
+### Toggle On
+
+When the Toggle is On we show a check icon, and color it and the track in the Primary Link Color.
+
+This helps the Toggle clearly communicate to the user its status.
+
+```tsx live
+function ToggleOn() {
+  const [checked, setChecked] = useState(true)
+
+  return <Toggle checked={checked} onChange={() => setChecked(!checked)} />
+}
+```
+
+### Toggle Off
+
+When the Toggle is Off we show an X icon, and color it Black24a and the track White.
+
+This helps the Toggle clearly communicate to the user its status.
+
+```tsx live
+function ToggleOff() {
+  const [checked, setChecked] = useState(false)
+
+  return <Toggle checked={checked} onChange={() => setChecked(!checked)} />
+}
+```
+
+### Toggle | Large
+
+A large Toggle with the height of 18px and width of 30px.
+
+```tsx live
+function ToggleOff() {
+  const [checked, setChecked] = useState(false)
+
+  return (
+    <Toggle
+      checked={checked}
+      onChange={() => setChecked(!checked)}
+      toggleSize={ToggleSize.Large}
+    />
+  )
+}
+```
+
+### Toggle | XL
+
+An extra large Toggle with the height of 24px and width of 40px.
+
+```tsx live
+function ToggleOff() {
+  const [checked, setChecked] = useState(false)
+
+  return (
+    <Toggle
+      checked={checked}
+      onChange={() => setChecked(!checked)}
+      toggleSize={ToggleSize.Xlarge}
+    />
+  )
+}
+```

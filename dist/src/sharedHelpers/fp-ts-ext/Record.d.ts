@@ -18,6 +18,13 @@ export declare const prop: <A extends Record<string, unknown>, K extends keyof A
  */
 export declare const omit: <A extends Record<string, unknown>, K extends keyof A>(rec: A, ks: K[]) => { [P in Exclude<keyof A, K>]: A[P]; };
 /**
+ * A pipeable version of `omit`.
+ * Omits the key-value pairs from an object associated with the provided keys
+ */
+export declare const omitI: <A extends Record<string, unknown>, K extends keyof A>(...ks: ReadonlyArray<K>) => (rec: A) => {
+    [P in Exclude<keyof A, K>]: A[P];
+};
+/**
  * Picks the key-value pairs from an object associated with the provided keys
  */
 export declare const pick: <A extends Record<string, unknown>, K extends keyof A>(rec: A, ks: K[]) => { [P in K]: A[P]; };
@@ -34,4 +41,3 @@ export declare function fromFoldableFilterMap<F extends URIS3, B>(M: Magma<B>, F
 export declare function fromFoldableFilterMap<F extends URIS2, B>(M: Magma<B>, F: Foldable2<F>): <L, A, K extends string>(ta: Kind2<F, L, A>, f: (a: A) => O.Option<[K, B]>) => Record<K, B>;
 export declare function fromFoldableFilterMap<F extends URIS, B>(M: Magma<B>, F: Foldable1<F>): <A, K extends string>(ta: Kind<F, A>, f: (a: A) => O.Option<[K, B]>) => Record<K, B>;
 export declare function fromFoldableFilterMap<F, B>(M: Magma<B>, F: Foldable<F>): <A, K extends string>(ta: HKT<F, A>, f: (a: A) => O.Option<[K, B]>) => Record<K, B>;
-//# sourceMappingURL=Record.d.ts.map

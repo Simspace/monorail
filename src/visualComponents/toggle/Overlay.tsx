@@ -4,7 +4,7 @@ import { css } from 'styled-components'
 import { Colors } from '@monorail/helpers/color'
 import { ThemeProvider } from '@monorail/helpers/styled-components'
 import { Mode, ThemeColors } from '@monorail/helpers/theme'
-import { zIndexValue, ZIndexNodeName } from '@monorail/helpers/zIndex'
+import { ZIndexNodeName, zIndexValue } from '@monorail/helpers/zIndex'
 import { PopOverChildProps } from '@monorail/metaComponents/popOver/PopOver'
 import {
   BBModalContainer,

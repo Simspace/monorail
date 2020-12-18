@@ -23,4 +23,3 @@ declare type EditProps = {
 export declare type ContentCardHeaderProps = ViewProps | EditProps;
 export declare const ContentCardHeader: (props: ContentCardHeaderProps) => JSX.Element;
 export {};
-//# sourceMappingURL=ContentCardHeader.d.ts.map

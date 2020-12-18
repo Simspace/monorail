@@ -5,6 +5,8 @@ import { Colors, getColor } from '@monorail/helpers/exports'
 import { CommonComponentType } from '@monorail/types'
 import { _Nothing } from '@monorail/visualComponents/icon/custom/_Nothing'
 import { Academy } from '@monorail/visualComponents/icon/custom/Academy'
+import { AccountGroup } from '@monorail/visualComponents/icon/custom/AccountGroup'
+import { AccountTie } from '@monorail/visualComponents/icon/custom/AccountTie'
 import { AddGroup } from '@monorail/visualComponents/icon/custom/AddGroup'
 import { AddList } from '@monorail/visualComponents/icon/custom/AddList'
 import { Admin } from '@monorail/visualComponents/icon/custom/Admin'
@@ -20,6 +22,7 @@ import { BypassWaiting } from '@monorail/visualComponents/icon/custom/BypassWait
 import { Calculator } from '@monorail/visualComponents/icon/custom/Calculator'
 import { Catalog } from '@monorail/visualComponents/icon/custom/Catalog'
 import { Certificate } from '@monorail/visualComponents/icon/custom/Certificate'
+import { CheckStar } from '@monorail/visualComponents/icon/custom/CheckStar'
 import { ChevronDoubleDown } from '@monorail/visualComponents/icon/custom/ChevronDoubleDown'
 import { ChevronDoubleLeft } from '@monorail/visualComponents/icon/custom/ChevronDoubleLeft'
 import { ChevronDoubleRight } from '@monorail/visualComponents/icon/custom/ChevronDoubleRight'
@@ -49,6 +52,7 @@ import { FileTree } from '@monorail/visualComponents/icon/custom/FileTree'
 import { Filter } from '@monorail/visualComponents/icon/custom/Filter'
 import { Gauge } from '@monorail/visualComponents/icon/custom/Gauge'
 import { GearCheckmark } from '@monorail/visualComponents/icon/custom/GearCheckmark'
+import { GhostEmpty } from '@monorail/visualComponents/icon/custom/GhostEmpty'
 import { GhostVm } from '@monorail/visualComponents/icon/custom/GhostVm'
 import { Grade } from '@monorail/visualComponents/icon/custom/Grade'
 import { GroupSquare } from '@monorail/visualComponents/icon/custom/GroupSquare'
@@ -62,6 +66,7 @@ import { Information } from '@monorail/visualComponents/icon/custom/Information'
 import { InformationTaskAddBlue } from '@monorail/visualComponents/icon/custom/InformationTaskAddBlue'
 import { InformationTaskAddGrey } from '@monorail/visualComponents/icon/custom/InformationTaskAddGrey'
 import { InProgress } from '@monorail/visualComponents/icon/custom/InProgress'
+import { Live } from '@monorail/visualComponents/icon/custom/Live'
 import { LMS } from '@monorail/visualComponents/icon/custom/LMS'
 import { LoadingDots } from '@monorail/visualComponents/icon/custom/LoadingDots'
 import { LogoMono } from '@monorail/visualComponents/icon/custom/LogoMono'
@@ -76,6 +81,7 @@ import { OrgGroup } from '@monorail/visualComponents/icon/custom/OrgGroup'
 import { PackageVariant } from '@monorail/visualComponents/icon/custom/PackageVariant'
 import { PeopleGear } from '@monorail/visualComponents/icon/custom/PeopleGear'
 import { PersonGear } from '@monorail/visualComponents/icon/custom/PersonGear'
+import { PersonSearch } from '@monorail/visualComponents/icon/custom/PersonSearch'
 import { Profile } from '@monorail/visualComponents/icon/custom/Profile'
 import { Puppet } from '@monorail/visualComponents/icon/custom/Puppet'
 import { PuppetOutline } from '@monorail/visualComponents/icon/custom/PuppetOutline'
@@ -90,6 +96,7 @@ import { Robot } from '@monorail/visualComponents/icon/custom/Robot'
 import { Rocket } from '@monorail/visualComponents/icon/custom/Rocket'
 import { SelfEnroll } from '@monorail/visualComponents/icon/custom/SelfEnroll'
 import { ServerNetwork } from '@monorail/visualComponents/icon/custom/ServerNetwork'
+import { Shoes } from '@monorail/visualComponents/icon/custom/Shoes'
 import { SiteMap } from '@monorail/visualComponents/icon/custom/SiteMap'
 import { SortAscending } from '@monorail/visualComponents/icon/custom/SortAscending'
 import { SortDescending } from '@monorail/visualComponents/icon/custom/SortDescending'
@@ -103,13 +110,16 @@ import { Sword } from '@monorail/visualComponents/icon/custom/Sword'
 import { Target } from '@monorail/visualComponents/icon/custom/Target'
 import { TargetArchery } from '@monorail/visualComponents/icon/custom/TargetArchery'
 import { TechOps } from '@monorail/visualComponents/icon/custom/TechOps'
+import { Telescope } from '@monorail/visualComponents/icon/custom/Telescope'
 import { Temporary } from '@monorail/visualComponents/icon/custom/Temporary'
 import { ThreeGears } from '@monorail/visualComponents/icon/custom/ThreeGears'
 import { Tie } from '@monorail/visualComponents/icon/custom/Tie'
 import { Tools } from '@monorail/visualComponents/icon/custom/Tools'
 import { Tracker } from '@monorail/visualComponents/icon/custom/Tracker'
 import { TrackingItem } from '@monorail/visualComponents/icon/custom/TrackingItem'
+import { TrashCanWithCheck } from '@monorail/visualComponents/icon/custom/TrashCanWithCheck'
 import { TreasureChest } from '@monorail/visualComponents/icon/custom/TreasureChest'
+import { UELogo } from '@monorail/visualComponents/icon/custom/UELogo'
 import { Unscored } from '@monorail/visualComponents/icon/custom/Unscored'
 import { Upload } from '@monorail/visualComponents/icon/custom/Upload'
 import { VCenter } from '@monorail/visualComponents/icon/custom/VCenter'
@@ -117,8 +127,8 @@ import { VMTemplates } from '@monorail/visualComponents/icon/custom/VMTemplates'
 import { Wand } from '@monorail/visualComponents/icon/custom/Wand'
 import { CustomIconType } from '@monorail/visualComponents/icon/CustomIconType'
 import { IconType } from '@monorail/visualComponents/icon/IconType'
+import { Chickenlets } from '@monorail/visualComponents/illustrations/Chickenlets'
 import { DnsOutline } from '@monorail/visualComponents/illustrations/DnsOutline'
-import { GhostEmpty } from '@monorail/visualComponents/illustrations/GhostEmpty'
 import { GhostShrug } from '@monorail/visualComponents/illustrations/GhostShrug'
 import { HappySun } from '@monorail/visualComponents/illustrations/HappySun'
 import { MysteryMan } from '@monorail/visualComponents/illustrations/MysteryMan'
@@ -178,6 +188,8 @@ const customIcons: Record<CustomIconType, ComponentType<CustomIconProps>> = {
   'tracker-app': Tracker,
   'training-app': Academy,
   // 'dashboard-app': Dashboard,
+  account_group: AccountGroup,
+  account_tie: AccountTie,
   add_group: AddGroup,
   add_list: AddList,
   bam: Bam,
@@ -190,10 +202,12 @@ const customIcons: Record<CustomIconType, ComponentType<CustomIconProps>> = {
   calculator: Calculator,
   certificate: Certificate,
   check_gear: GearCheckmark,
+  check_star: CheckStar,
   chevron_double_down: ChevronDoubleDown,
   chevron_double_left: ChevronDoubleLeft,
   chevron_double_right: ChevronDoubleRight,
   chevron_double_up: ChevronDoubleUp,
+  chickenlets: Chickenlets,
   circle_arrow_left: CircleArrowLeft,
   circle_arrow_right: CircleArrowRight,
   clipboard: Clipboard,
@@ -232,6 +246,7 @@ const customIcons: Record<CustomIconType, ComponentType<CustomIconProps>> = {
   information_task_add_blue: InformationTaskAddBlue,
   information_task_add_grey: InformationTaskAddGrey,
   inverted_information: InvertedInformation,
+  live: Live,
   logo_mono: LogoMono,
   mitre: Mitre,
   my_team: MyTeam,
@@ -248,6 +263,7 @@ const customIcons: Record<CustomIconType, ComponentType<CustomIconProps>> = {
   package_variant: PackageVariant,
   people_gear: PeopleGear,
   person_gear: PersonGear,
+  person_search: PersonSearch,
   profile: Profile,
   puppet: Puppet,
   puppet_outline: PuppetOutline,
@@ -262,6 +278,7 @@ const customIcons: Record<CustomIconType, ComponentType<CustomIconProps>> = {
   server_network: ServerNetwork,
   shield_checkered: ShieldCheckered,
   shield_key: ShieldKey,
+  shoes: Shoes,
   short_sword: ShortSword,
   shrug: Shrug,
   site_map: SiteMap,
@@ -278,11 +295,14 @@ const customIcons: Record<CustomIconType, ComponentType<CustomIconProps>> = {
   target_archery: TargetArchery,
   target_empty: TargetEmpty,
   temporary: Temporary,
+  telescope: Telescope,
+  trash_can_with_check: TrashCanWithCheck,
   threeGears: ThreeGears,
   tie: Tie,
   tools: Tools,
   tracking_item: TrackingItem,
   treasure_chest: TreasureChest,
+  ue_logo: UELogo,
   unscored: Unscored,
   upload: Upload,
   vcenter: VCenter,
@@ -301,7 +321,7 @@ export const Icon = styled(
       }
 
       return (
-        <i ref={ref} {...otherProps}>
+        <i ref={ref} className="material-icons" {...otherProps}>
           {icon}
         </i>
       )

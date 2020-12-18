@@ -1,0 +1,131 @@
+---
+id: react-table
+title: ReactTable
+sidebar_label: ReactTable
+---
+
+:::note
+The default styles are automatically injected into the app so that each table doesn't have to apply them individually.
+
+```tsx
+Object.assign(ReactTableDefaults, {
+  ...MonorailReactTableOverrides,
+})
+```
+
+:::
+
+## Usage with a virtual list
+
+The default table uses pagination to avoid rendering too many DOM nodes. But it's possible to use a virtual list as well to improve performance with larger lists of data using the following steps.
+
+1. Override the `TbodyComponent` to customize the default behavior. There are pre-made components for this such as `TBodyVirtualFixedSizeList`.
+2. `pageSize={data.length}` - set the page size to the total number of rows since the default page size is set to 20.
+3. Pass props to `TbodyComponent` using `getTbodyProps`. This is necessary because using a lambda in `TbodyComponent` will cause it to loose state on re-renders.
+
+```jsx live
+function Example() {
+  const makeHeader = args => ({
+    Header: args.name.toUpperCase(),
+    id: args.name,
+    accessor: args.name,
+  })
+  let count = 1
+  const data = []
+  while (count <= 100) {
+    data.push({
+      name: 'NAME ' + count,
+      phone: '(123' + count + ') 855-4545',
+      address: count + ' STREET WAY',
+    })
+    count++
+  }
+  return (
+    <div style={{ height: 300, width: '100%' }}>
+      <ReactTable
+        data={data}
+        pageSize={data.length}
+        columns={[
+          makeHeader({ name: 'name' }),
+          makeHeader({ name: 'phone' }),
+          makeHeader({ name: 'address' }),
+        ]}
+        TbodyComponent={TBodyVirtualFixedSizeList}
+        LoadingComponent={({ loading }) =>
+          /* There is a default loading component */
+          loading ? <div>Loading...</div> : null
+        }
+        NoDataComponent={
+          () => (
+            <div>Table No Data</div>
+          ) /* Override the Table NoDataComponent if desired */
+        }
+        getTbodyProps={() => {
+          return { rowHeight: 40, NoData: null }
+        }}
+      />
+    </div>
+  )
+}
+```
+
+## Usage with an infinitely scrollable virtual list
+
+The default table uses pagination to avoid rendering too many DOM nodes. But it's possible to use a virtual list as well to improve performance with larger lists of data using the following steps.
+
+1. Override the `TbodyComponent` to customize the default behavior. There are pre-made components for this such as `TBodyInfiniteVirtualFixedSizeList`.
+2. `pageSize={data.length}` - set the page size to the total number of rows since the default page size is set to 20.
+3. Pass props to `TbodyComponent` using `getTbodyProps`. This is necessary because using a lambda in `TbodyComponent` will cause it to loose state on re-renders.
+
+```jsx live
+function Example() {
+  const makeHeader = args => ({
+    Header: args.name.toUpperCase(),
+    id: args.name,
+    accessor: args.name,
+  })
+  let count = 1
+  const data = []
+  while (count <= 5) {
+    data.push({
+      name: 'NAME ' + count,
+      phone: '(123' + count + ') 855-4545',
+      address: count + ' STREET WAY',
+    })
+    count++
+  }
+  return (
+    <div style={{ height: 300, width: '100%' }}>
+      <ReactTable
+        data={data}
+        pageSize={data.length}
+        columns={[
+          makeHeader({ name: 'name' }),
+          makeHeader({ name: 'phone' }),
+          makeHeader({ name: 'address' }),
+        ]}
+        TbodyComponent={TBodyInfiniteVirtualFixedSizeList}
+        LoadingComponent={({ loading }) =>
+          /* There is a default loading component */
+          loading ? <div>Loading...</div> : null
+        }
+        NoDataComponent={
+          () => (
+            <div>Table No Data</div>
+          ) /* Override the Table NoDataComponent if desired */
+        }
+        getTbodyProps={() => {
+          return {
+            rowHeight: 40,
+            NoData: null,
+            loadMoreItems: () =>
+              null /* Load more items if possible otherwise return null */,
+            continuationToken: undefined /* Provide a string to see the loading component */,
+            Loading: <div>Loading...</div>,
+          }
+        }}
+      />
+    </div>
+  )
+}
+```

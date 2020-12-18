@@ -1,4 +1,3 @@
-/// <reference types="@monorail/typings/styled-components" />
 import { SimpleInterpolation } from 'styled-components';
 import { PopOverPosition } from '@monorail/metaComponents/popOver/PopOver';
 export declare const visible: (isVisible?: boolean) => import("styled-components").FlattenSimpleInterpolation;
@@ -18,4 +17,3 @@ export declare const transition: (props: {
     easing: string;
     duration: number;
 }) => SimpleInterpolation;
-//# sourceMappingURL=animation.d.ts.map

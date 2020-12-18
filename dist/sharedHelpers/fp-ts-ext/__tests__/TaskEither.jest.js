@@ -2,9 +2,9 @@
 
 var _Either = require("fp-ts/lib/Either");
 
-var _TaskEither = require("../TaskEither");
-
 var _Task = require("../Task");
+
+var _TaskEither = require("../TaskEither");
 
 describe('constRunTaskEither', () => {
   it('should return the run function for a TaskEither<L, A>', () => {

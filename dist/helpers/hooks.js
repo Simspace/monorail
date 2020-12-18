@@ -8,13 +8,13 @@ exports.useRefCallback = useRefCallback;
 exports.useInterval = useInterval;
 exports.useInputDebounce = useInputDebounce;
 exports.getPosition = getPosition;
-exports.useSimplePopOver = exports.usePopOverPosition = exports.useToggle = exports.useTimeout = void 0;
-
-var _function = require("fp-ts/lib/function");
+exports.useFocusOnRender = exports.useRefFocusOnRender = exports.useSimplePopOver = exports.usePopOverPosition = exports.useToggle = exports.useTimeout = void 0;
 
 var _react = require("react");
 
 var _useDebounce = require("use-debounce");
+
+var _function = require("fp-ts/lib/function");
 
 var _PopOver = require("../metaComponents/popOver/PopOver");
 
@@ -152,7 +152,7 @@ function getPosition(event) {
  */
 
 
-const usePopOverPosition = () => (0, _react.useState)(_PopOver.defaultPopOverPosition);
+const usePopOverPosition = popOverPosition => (0, _react.useState)(popOverPosition !== null && popOverPosition !== void 0 ? popOverPosition : _PopOver.defaultPopOverPosition);
 /**
  * Helper hook to use SimplePopOver
  */
@@ -160,18 +160,48 @@ const usePopOverPosition = () => (0, _react.useState)(_PopOver.defaultPopOverPos
 
 exports.usePopOverPosition = usePopOverPosition;
 
-const useSimplePopOver = () => {
+const useSimplePopOver = popOverPosition => {
   const [isOpen, show, hide] = useToggle(false);
-  const [position, setPosition] = usePopOverPosition();
+  const [position, setPosition] = usePopOverPosition(popOverPosition);
   const open = (0, _function.flow)(getPosition, setPosition, show);
   return {
-    isOpen,
-    show,
     hide,
+    isOpen,
     open,
     position,
-    setPosition
+    setPosition,
+    show
   };
 };
+/**
+ * For focusing an element on initial render. Returns a ref to assign to the
+ * element that you want to focus.
+ */
+
 
 exports.useSimplePopOver = useSimplePopOver;
+
+const useRefFocusOnRender = () => {
+  const ref = (0, _react.useRef)(null);
+  useFocusOnRender(ref);
+  return ref;
+};
+/**
+ * For focusing an element on initial render. Takes a ref that is assigned to
+ * the element that you want to focus.
+ */
+
+
+exports.useRefFocusOnRender = useRefFocusOnRender;
+
+const useFocusOnRender = ref => {
+  (0, _react.useEffect)(() => {
+    setTimeout(() => {
+      var _ref$current;
+
+      (_ref$current = ref.current) === null || _ref$current === void 0 ? void 0 : _ref$current.focus();
+    }, 0);
+  }, [ref]);
+};
+
+exports.useFocusOnRender = useFocusOnRender;

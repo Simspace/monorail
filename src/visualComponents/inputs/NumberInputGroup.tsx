@@ -1,7 +1,7 @@
-import { getOrElse } from 'fp-ts/lib/Option'
-import { lookup } from 'fp-ts/lib/Record'
 import React, { FC } from 'react'
 import styled from 'styled-components'
+import { getOrElse } from 'fp-ts/lib/Option'
+import { lookup } from 'fp-ts/lib/Record'
 
 import { FontSizes, typographyFont } from '@monorail/helpers/exports'
 import { css } from '@monorail/helpers/styled-components'

@@ -3,15 +3,39 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.coerceToString = exports.coerce = exports.prismIsoDate = exports.prismFinite = exports.prismInfinity = exports.prismNaN = void 0;
+exports.getPrismUUID = getPrismUUID;
+exports.coerceToString = exports.coerce = exports.prismIsoDate = exports.ordIsoDate = exports.prismFinite = exports.prismInfinity = exports.prismNaN = void 0;
 
-var moment = _interopRequireWildcard(require("moment"));
+var dateFns = _interopRequireWildcard(require("date-fns"));
 
 var _newtypeTs = require("newtype-ts");
+
+var _fpTsImports = require("./fp-ts-imports");
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+/**
+ * Gets a prism that validates UUIDs.
+ *
+ * NOTE: You may not need this if using io-ts Codecs.
+ */
+
+function getPrismUUID() {
+  return (0, _newtypeTs.prism)(uuidRegex.test);
+}
+/**
+ * A phantom type wrapper for expresing versions which are a part of
+ * versioned entities.
+ *
+ * Modeled after the `Version` phantom type in our Haskell codebase.
+ *
+ * Note: Some of the generated TypeScript type files already have a
+ * `type Version = number` type alias. Be Careful to avoid collisions.
+ */
+
 
 /**
  * Use this prism to return an option with prismNaN.getOption(someNumber)
@@ -34,13 +58,18 @@ const prismFinite = (0, _newtypeTs.prism)(Number.isFinite);
  */
 
 exports.prismFinite = prismFinite;
-
+const ordIsoDate = (0, _fpTsImports.pipe)(_fpTsImports.Ord.ordDate, _fpTsImports.Ord.contramap(d => new Date(coerce(d))));
 /*
  * A prism giving you a `getOption` function that returns a `Some<IsoDate>`
  * if the run-time string can is a valid ISO date string or a `None` if it
  * isn't.
  */
-const prismIsoDate = (0, _newtypeTs.prism)(x => moment.default(x, moment.ISO_8601, true).isValid());
+
+exports.ordIsoDate = ordIsoDate;
+const prismIsoDate = (0, _newtypeTs.prism)(str => {
+  const parsedDate = dateFns.parseISO(str);
+  return dateFns.isValid(parsedDate);
+});
 /*
  * Coerce any Newtype to its underlying runtime type.
  *
@@ -56,7 +85,8 @@ exports.prismIsoDate = prismIsoDate;
  * NOTE: This coercion is 100% safe and does not require explicitly providing
  * the generic type param for the Newtype.
  */
-const coerce = n => n;
+const coerce = n => // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+n;
 /*
  * Coerce any type-level string literal or Newtype over string to its underlying
  * string run-time type.

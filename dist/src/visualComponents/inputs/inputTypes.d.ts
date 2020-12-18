@@ -26,4 +26,3 @@ export declare function match<Z>(matchers: {
     Edit: () => Z;
     View: () => Z;
 }): (displayType: DisplayType) => Z;
-//# sourceMappingURL=inputTypes.d.ts.map

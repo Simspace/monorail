@@ -9,4 +9,3 @@ declare type TooltipMonorailProps = {
 };
 export declare const TooltipMonorail: (props: TooltipMonorailProps) => JSX.Element;
 export {};
-//# sourceMappingURL=Tooltip.d.ts.map

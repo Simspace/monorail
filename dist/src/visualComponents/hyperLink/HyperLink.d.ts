@@ -1,4 +1,4 @@
-import { LinkProps } from 'react-router';
+import { Link, LinkProps } from 'react-router';
 import { FontSizes, FontWeights } from '@monorail/helpers/typography';
 export declare type HyperLinkProps = LinkProps & {
     fontSize?: FontSizes;
@@ -6,5 +6,4 @@ export declare type HyperLinkProps = LinkProps & {
     margin?: string;
     isBreadcrumb?: boolean;
 };
-export declare const HyperLink: any;
-//# sourceMappingURL=HyperLink.d.ts.map
+export declare const HyperLink: import("styled-components").StyledComponent<Link, any, HyperLinkProps, never>;

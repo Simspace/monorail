@@ -15,4 +15,3 @@ export declare const runTaskEither: <L, A>(x: TE.TaskEither<L, A>) => Promise<Ei
  * Returns the run function for a TaskEither<L, A>
  */
 export declare const constRunTaskEither: <L, A>(x: TE.TaskEither<L, A>) => Lazy<Promise<Either<L, A>>>;
-//# sourceMappingURL=TaskEither.d.ts.map

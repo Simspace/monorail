@@ -14,4 +14,3 @@ export declare type Props = {
     listItems: Array<DropdownButtonListItem>;
 } & Partial<Pick<ButtonProps, 'disabled'>>;
 export declare const DropdownButton: ({ listItems, disabled }: Props) => JSX.Element | null;
-//# sourceMappingURL=DropdownButton.d.ts.map

@@ -1,4 +1,4 @@
-import { MouseEvent, ReactNode, Ref, StatelessComponent } from 'react';
+import React, { MouseEvent, ReactNode, Ref, StatelessComponent } from 'react';
 import { SimpleInterpolation } from 'styled-components';
 import { AppName, ElevationRange } from '@monorail/helpers/exports';
 import { CommonComponentType } from '@monorail/types';
@@ -11,7 +11,7 @@ export declare type BBCardBackgroundProps = CommonComponentType & {
     cssCardContent?: SimpleInterpolation;
     children?: ReactNode;
 };
-export declare const BBCardBackground: any;
+export declare const BBCardBackground: import("styled-components").StyledComponent<React.ForwardRefExoticComponent<Pick<BBCardBackgroundProps, "className" | "id" | "tabIndex" | "elevation" | "children" | "onClick" | "as" | "cssOverrides" | "hover" | "cssCardContent"> & React.RefAttributes<HTMLDivElement>>, any, BBCardBackgroundProps, never>;
 declare type BBCardBottomBorderProps = {
     accentColor?: string;
 };
@@ -24,6 +24,13 @@ declare type BBCardHeaderProps = BBCardBottomBorderProps & {
     title: string;
 };
 export declare const BBCardHeader: StatelessComponent<BBCardHeaderProps>;
-export declare const BBCardGrid: any;
+declare type BBCardGridProps = {
+    cardWidth?: number;
+    cssOverrides?: SimpleInterpolation;
+};
+export declare const BBCardGrid: import("styled-components").StyledComponent<React.ForwardRefExoticComponent<{
+    containerCssOverrides?: any;
+    onScroll?: ((event: React.UIEvent<HTMLDivElement>) => void) | undefined;
+    children?: React.ReactNode;
+} & React.RefAttributes<HTMLDivElement>>, any, BBCardGridProps, never>;
 export {};
-//# sourceMappingURL=Cards.d.ts.map

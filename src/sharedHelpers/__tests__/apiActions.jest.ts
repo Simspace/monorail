@@ -54,15 +54,15 @@ describe('mkApiAction', () => {
   it('should properly construct API actions', () => {
     const successAction = mkApiAction(types.success)
     expect(successAction.type).toBe('GET_USERS_SUCCESS')
-    // tslint:disable-next-line no-any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     expect((successAction as any).payload).toBe(undefined)
-    // tslint:disable-next-line no-any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     expect((successAction as any).meta).toBe(undefined)
 
     const failureAction = mkApiAction(types.failure, 0)
     expect(failureAction.type).toBe('GET_USERS_FAILURE')
     expect(failureAction.payload).toBe(0)
-    // tslint:disable-next-line no-any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     expect((failureAction as any).meta).toBe(undefined)
 
     const requestAction = mkApiAction(types.request, 0, 'info')

@@ -1,8 +1,8 @@
 "use strict";
 
-var S = _interopRequireWildcard(require("../Struct"));
-
 var Eq = _interopRequireWildcard(require("fp-ts/lib/Eq"));
+
+var S = _interopRequireWildcard(require("../Struct"));
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 

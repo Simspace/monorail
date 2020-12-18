@@ -14,13 +14,13 @@ import { ButtonDisplay } from '@monorail/visualComponents/buttons/buttonTypes'
 import { IconButton } from '@monorail/visualComponents/buttons/IconButton'
 import { BBCardBackground } from '@monorail/visualComponents/cards/Cards'
 import { Icon } from '@monorail/visualComponents/icon/Icon'
+import { IconType } from '@monorail/visualComponents/icon/IconType'
 import {
   AlertColors,
   AlertIcons,
   AlertLevel,
 } from '@monorail/visualComponents/toast/types'
 import { Text } from '@monorail/visualComponents/typography/Text'
-import { IconType } from '@monorail/visualComponents/icon/IconType'
 
 export enum ToastSize {
   Small = 'small',
@@ -153,6 +153,9 @@ export const Toast: FC<ToastProps> = props => {
             }
             fontWeight={400}
             margin="4px 0"
+            css={css`
+              word-break: break-word;
+            `}
           >
             {message}
           </Text>

@@ -14,4 +14,4 @@ export declare const getOrd: <A, B>(ordA: Ord<A>, ordB: Ord<B>) => Ord<Either<A,
  */
 export declare function swap<E, A>(ma: Either<E, A>): Either<A, E>;
 export declare const orElseW: <E, A, B>(f: (a: E) => Either<E, B>) => (ma: Either<E, A>) => Either<E, A | B>;
-//# sourceMappingURL=Either.d.ts.map
+export declare const toUnion: <E, A>(either: Either<E, A>) => E | A;

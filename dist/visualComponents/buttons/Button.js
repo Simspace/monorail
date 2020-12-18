@@ -152,7 +152,7 @@ const StyledButton = _styledComponents2.default.button(({
     cursor: pointer;
     flex-shrink: 0;
     outline: none;
-    text-transform: uppercase;
+    text-transform: capitalize;
     user-select: none;
     box-sizing: border-box;
     align-items: center;
@@ -169,35 +169,27 @@ const StyledButton = _styledComponents2.default.button(({
 
 exports.StyledButton = StyledButton;
 
-var _StyledIcon =
-/*#__PURE__*/
-(0, _styledComponents.default)(_Icon.Icon).withConfig({
+var _StyledIcon = /*#__PURE__*/(0, _styledComponents.default)(_Icon.Icon).withConfig({
   displayName: "Button___StyledIcon",
   componentId: "sc-10jcad3-0"
 })(["", ""], p => p._css);
 
-var _StyledIcon2 =
-/*#__PURE__*/
-(0, _styledComponents.default)(_Icon.Icon).withConfig({
+var _StyledIcon2 = /*#__PURE__*/(0, _styledComponents.default)(_Icon.Icon).withConfig({
   displayName: "Button___StyledIcon2",
   componentId: "sc-10jcad3-1"
 })(["", ""], p => p._css2);
 
-var _StyledDiv =
-/*#__PURE__*/
-_styledComponents.default.div.withConfig({
+var _StyledDiv = /*#__PURE__*/(0, _styledComponents.default)("div").withConfig({
   displayName: "Button___StyledDiv",
   componentId: "sc-10jcad3-2"
 })(["position:absolute"]);
 
-var _StyledDiv2 =
-/*#__PURE__*/
-_styledComponents.default.div.withConfig({
+var _StyledDiv2 = /*#__PURE__*/(0, _styledComponents.default)("div").withConfig({
   displayName: "Button___StyledDiv2",
   componentId: "sc-10jcad3-3"
 })(["", ""], p => p._css3);
 
-const Button = props => {
+const Button = /*#__PURE__*/_react.default.forwardRef((props, ref) => {
   const {
     children,
     className = '',
@@ -219,21 +211,21 @@ const Button = props => {
     ...domProps
   } = props;
 
-  const buttonContent = _react.default.createElement(_react.default.Fragment, null, typeof status === 'function' && status({
+  const buttonContent = /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, typeof status === 'function' && status({
     style: {
       position: 'absolute'
     }
-  }), !(0, _typeGuards.isEmptyString)(iconLeft) && _react.default.createElement(_StyledIcon, {
+  }), !(0, _typeGuards.isEmptyString)(iconLeft) && /*#__PURE__*/_react.default.createElement(_StyledIcon, {
     icon: iconLeft,
     size: iconSize,
     _css: iconLeftStyles[size]
-  }), children, !(0, _typeGuards.isEmptyString)(iconRight) && _react.default.createElement(_StyledIcon2, {
+  }), children, !(0, _typeGuards.isEmptyString)(iconRight) && /*#__PURE__*/_react.default.createElement(_StyledIcon2, {
     icon: iconRight,
     size: iconSize,
     _css2: iconRightStyles[size]
   }));
 
-  return _react.default.createElement(StyledButton, _extends({}, domProps, {
+  return /*#__PURE__*/_react.default.createElement(StyledButton, _extends({}, domProps, {
     as: passedAs,
     className: `new-button ${className}`,
     cssOverrides: cssOverrides,
@@ -246,16 +238,17 @@ const Button = props => {
     pressed: pressed,
     disabled: disabled,
     isActive: isActive,
-    status: status
-  }), isLoading ? _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_StyledDiv, null, _react.default.createElement(_Loading.Loading, {
+    status: status,
+    ref: ref
+  }), isLoading ? /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_StyledDiv, null, /*#__PURE__*/_react.default.createElement(_Loading.Loading, {
     loaderType: _Loading.LoaderType.Generic,
     size: {
       _type: 'size',
       hw: iconSize
     }
-  })), _react.default.createElement(_StyledDiv2, {
+  })), /*#__PURE__*/_react.default.createElement(_StyledDiv2, {
     _css3: (0, _exports.visible)(false)
   }, buttonContent)) : buttonContent);
-};
+});
 
 exports.Button = Button;

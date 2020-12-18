@@ -1,0 +1,80 @@
+---
+id: list
+title: List
+sidebar_label: List
+---
+
+import { css } from '@monorail/helpers/styled-components'
+import { getColor, Colors } from '@monorail/helpers/exports'
+
+import { ShowCase } from '../docComponents/ShowCase'
+
+import {
+  ListContainer,
+  SimpleListItem,
+} from '@monorail/visualComponents/list/List'
+
+Ultimately data boils down to lists and tables. Lists are optimized for vertical skimming, which leads to long term data retention and trained muscle memory as this pattern is reinforced throughout the application.
+
+<ShowCase>
+  <SimpleListItem
+    cssOverrides={css`
+      background: ${getColor(Colors.White)};
+      width: 240px;
+    `}
+    primaryText="List Item"
+  />
+</ShowCase>
+
+## Usage
+
+Lists are a continuous group of text. They are composed of items containing primary and supplemental actions, which are represented by Icons and text.
+
+## Principles
+
+**Logical**  
+List should contatin appropriate content that is sorted in a logical manner.
+
+**Consistent**  
+Lists should present Icons, text, and actions in a consistent format.
+
+**Scannable**  
+Lists should be scannable, and consistent Icons and text can support this.
+
+## Types
+
+### List
+
+The default list.
+
+```tsx live
+<ListContainer>
+  <SimpleListItem primaryText={'List Item'} />
+  <SimpleListItem primaryText={'List Item'} />
+  <SimpleListItem primaryText={'List Item'} />
+</ListContainer>
+```
+
+### List | Icon
+
+List with a left anchored Icon.
+
+```tsx live
+<ListContainer>
+  <SimpleListItem leftIcon="add" primaryText={'List Item'} />
+  <SimpleListItem leftIcon="add" primaryText={'List Item'} />
+  <SimpleListItem leftIcon="add" primaryText={'List Item'} />
+</ListContainer>
+```
+
+### List | Dense
+
+List with "dense" rows (8px padding versus the default 16px padding)
+
+```tsx live
+<ListContainer>
+  <SimpleListItem dense primaryText={'List Item'} />
+  <SimpleListItem dense primaryText={'List Item'} />
+  <SimpleListItem dense primaryText={'List Item'} />
+</ListContainer>
+```

@@ -1,6 +1,6 @@
-import { updateStruct } from '../struct'
+import { deepMerge } from '../struct'
 
-describe(updateStruct.name, () => {
+describe(deepMerge.name, () => {
   const data = {
     one: {
       two: ['hello'],
@@ -11,7 +11,7 @@ describe(updateStruct.name, () => {
   }
 
   it('deeply merges updater struct into original struct', () => {
-    const actual = updateStruct(data, {
+    const actual = deepMerge(data, {
       one: { three: { four: 'adios' } },
     })
 
@@ -22,7 +22,7 @@ describe(updateStruct.name, () => {
   })
 
   it('only merges plain objects (has Object as prototype), not e.g. Arrays or Dates', () => {
-    const actual1 = updateStruct(data, {
+    const actual1 = deepMerge(data, {
       one: { two: ['there'] },
     })
 

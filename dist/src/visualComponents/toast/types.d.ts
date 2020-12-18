@@ -13,4 +13,3 @@ export declare const AlertColors: {
     warning: Colors;
 };
 export declare const AlertIcons: Record<AlertLevel, IconType>;
-//# sourceMappingURL=types.d.ts.map

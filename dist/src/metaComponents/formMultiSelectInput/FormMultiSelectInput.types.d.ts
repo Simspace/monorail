@@ -1,10 +1,10 @@
 /// <reference types="react" />
-import { Eq } from 'fp-ts/lib/Eq';
+import { GetInputPropsOptions, GetItemPropsOptions } from 'downshift';
 import { CSSObject, FlattenInterpolation, ThemeProps } from 'styled-components';
+import { Eq } from 'fp-ts/lib/Eq';
+import { Option } from 'fp-ts/lib/Option';
 import { GlobalAppThemeInterface } from '@monorail/helpers/theme';
 import { DisplayType } from '@monorail/visualComponents/inputs/inputTypes';
-import { GetInputPropsOptions, GetItemPropsOptions } from 'downshift';
-import { Option } from 'fp-ts/lib/Option';
 export declare type FormMultiSelectInputProps<A> = {
     /** Label */
     readonly label: string;
@@ -63,4 +63,3 @@ export declare type SuggestionInfo<A> = {
         ref?: Exclude<React.LegacyRef<B>, string>;
     };
 };
-//# sourceMappingURL=FormMultiSelectInput.types.d.ts.map

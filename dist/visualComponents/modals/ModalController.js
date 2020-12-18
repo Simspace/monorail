@@ -26,7 +26,7 @@ const ModalController = ({
       setIsRendered(true);
     }
   }, [isOpen]);
-  return _react.default.createElement(_PortalController.PortalController, {
+  return /*#__PURE__*/_react.default.createElement(_PortalController.PortalController, {
     isRendered: isRendered
   }, children({
     isOpen,

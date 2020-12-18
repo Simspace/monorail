@@ -48,6 +48,13 @@ function useModalAnimation(params) {
     if (modalBackgroundRef.current === event.target && !isOpen) {
       closingAnimationCompleted();
     }
+  }, [closingAnimationCompleted, isOpen]); // HACK: Something is wrong with our close animations and it causes modals not to be destroyed. This is a workaround
+  // until 1) it is figured out or 2) we migrate to material-ui modals.
+
+  (0, _react.useEffect)(() => {
+    if (!isOpen) {
+      closingAnimationCompleted();
+    }
   }, [closingAnimationCompleted, isOpen]);
   (0, _hooks.useEventListener)({
     eventName: 'animationend',
@@ -179,17 +186,18 @@ const modalWidth = {
   [_modalTypes.ModalSize.Mini]: `${_exports.sizes.modals.mini.width}px`,
   [_modalTypes.ModalSize.Small]: `${_exports.sizes.modals.small.width}px`,
   [_modalTypes.ModalSize.Medium]: `${_exports.sizes.modals.medium.width}px`,
+  [_modalTypes.ModalSize.MediumLarge]: `${_exports.sizes.modals.mediumLarge.width}px`,
   [_modalTypes.ModalSize.Large]: 'calc(100vw - 32px)',
   [_modalTypes.ModalSize.FullScreen]: '100vw'
 };
 /* className set for customizing the modal through global styling */
 
-const BBModalBackground = (0, _styledComponents.default)((0, _react.forwardRef)(({
+const BBModalBackground = (0, _styledComponents.default)( /*#__PURE__*/(0, _react.forwardRef)(({
   size,
   cssOverrides,
   className,
   ...otherProps
-}, ref) => _react.default.createElement(_StyleHelpers.Div, _extends({
+}, ref) => /*#__PURE__*/_react.default.createElement(_StyleHelpers.Div, _extends({
   className: `modal-${size} ${className}`,
   ref: ref
 }, otherProps))))(({
@@ -306,7 +314,7 @@ const StyledIconRight = (0, _styledComponents.default)(_Icon.Icon)`
 const DefaultCloseButton = ({
   headerRowChildren,
   onClose
-}) => _react.default.createElement(_IconButton.IconButton, {
+}) => /*#__PURE__*/_react.default.createElement(_IconButton.IconButton, {
   cssOverrides: headerRowChildren ? (0, _styledComponents.css)`` : (0, _styledComponents.css)`
             margin-left: auto;
           `,
@@ -328,26 +336,30 @@ const BBModalHeader = ({
   size,
   onClose,
   title,
+  titleId,
   cssOverrides
-}) => _react.default.createElement(_styledComponents.ThemeProvider, {
+}) => /*#__PURE__*/_react.default.createElement(_styledComponents.ThemeProvider, {
   theme: theme => ({ ...theme,
     mode: _theme.Mode.Dark
   })
-}, _react.default.createElement(BBModalHeaderContainer, {
+}, /*#__PURE__*/_react.default.createElement(BBModalHeaderContainer, {
   size: size,
   cssOverrides: cssOverrides
-}, _react.default.createElement(BBModalHeaderRow, {
+}, /*#__PURE__*/_react.default.createElement(BBModalHeaderRow, {
   size: size
-}, appIcon && _react.default.createElement(StyledAppIconLeft, {
-  appName: appIcon
-}), iconLeft && _react.default.createElement(StyledIconLeft, {
-  icon: iconLeft
-}), _react.default.createElement(BBModalHeaderTitle, {
+}, appIcon && /*#__PURE__*/_react.default.createElement(StyledAppIconLeft, {
+  appName: appIcon,
+  "aria-hidden": true
+}), iconLeft && /*#__PURE__*/_react.default.createElement(StyledIconLeft, {
+  icon: iconLeft,
+  "aria-hidden": true
+}), /*#__PURE__*/_react.default.createElement(BBModalHeaderTitle, {
   size: size,
+  id: titleId,
   "data-test-id": "modal-header-title"
-}, title), headerRowChildren, iconRight && _react.default.createElement(StyledIconRight, {
+}, title), headerRowChildren, iconRight && /*#__PURE__*/_react.default.createElement(StyledIconRight, {
   icon: iconRight
-}), size !== _modalTypes.ModalSize.Mini && onClose && customCloseButton !== undefined ? customCloseButton : _react.default.createElement(DefaultCloseButton, {
+}), size !== _modalTypes.ModalSize.Mini && onClose && customCloseButton !== undefined ? customCloseButton : /*#__PURE__*/_react.default.createElement(DefaultCloseButton, {
   headerRowChildren: headerRowChildren,
   onClose: onClose
 })), children));
@@ -422,7 +434,7 @@ const BBModalOverlay = ({
   onClick,
   cssOverrides,
   ...otherProps
-}) => _react.default.createElement(BBModalOverlayContainer, _extends({
+}) => /*#__PURE__*/_react.default.createElement(BBModalOverlayContainer, _extends({
   isOpen: isOpen,
   chromeless: chromeless,
   cssOverrides: cssOverrides,
@@ -452,11 +464,12 @@ const BBModalContainer = _styledComponents.default.div(({
 }) => (0, _styledComponents.css)`
     ${isOpen ? (0, _styledComponents.css)`
           pointer-events: all;
+          ${(0, _exports.flexFlow)()}
         ` : (0, _styledComponents.css)`
           pointer-events: none;
+          display: none;
         `};
 
-    ${(0, _exports.flexFlow)()};
     ${_exports.gothamFontFamily};
 
     align-items: center;

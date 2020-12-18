@@ -1,5 +1,7 @@
-import React, { FC, ReactNode } from 'react'
+import React, { ReactNode } from 'react'
+import { identity } from 'fp-ts/lib/function'
 
+import { Colors } from '@monorail/helpers/color'
 import { Sizes } from '@monorail/helpers/size'
 import {
   PopOver,
@@ -7,10 +9,10 @@ import {
 } from '@monorail/metaComponents/popOver/PopOver'
 import { ButtonDisplay } from '@monorail/visualComponents/buttons/buttonTypes'
 import { IconButton } from '@monorail/visualComponents/buttons/IconButton'
+import { Divider } from '@monorail/visualComponents/divider/Divider'
 import { IconType } from '@monorail/visualComponents/icon/IconType'
 import { SimpleListItem } from '@monorail/visualComponents/list/List'
 import { Menu } from '@monorail/visualComponents/menu/Menu'
-import { Colors } from '@monorail/helpers/color'
 
 /*
  * Styles
@@ -20,37 +22,43 @@ import { Colors } from '@monorail/helpers/color'
  * Types
  */
 
-export type MenuAction = {
-  label: ReactNode
-  iconName?: IconType
-  iconColor?: Colors
-  chromeless?: boolean
-  /**
-   * TODO: get rid of the need to have to pass a callback to close the popover.
-   * This onClick should match the signature of all other react onClick.
-   * If we weren't depending on asynchronous behavior in components that are consuming
-   * ActionsMenu we would just be able to stop propagation on the SyntheticEvent
-   */
-  onClick: (
-    onClickParent: () => void,
-    event: React.MouseEvent<HTMLDivElement>,
-  ) => void
-  isFeaturedAction?: boolean
-  children?: ReactNode
-  disabled?: boolean
-}
+export type MenuActionOnClick<R = void> = (
+  onClickParent: () => void,
+  event: React.MouseEvent<HTMLDivElement>,
+) => R
 
-export type ActionsMenuProps = {
-  actions: Array<MenuAction>
+export type MenuAction<R = void> =
+  | { type: 'divider' }
+  | {
+      type?: 'action'
+      label: ReactNode
+      iconName?: IconType
+      iconColor?: Colors
+      chromeless?: boolean
+      /**
+       * TODO: get rid of the need to have to pass a callback to close the popover.
+       * This onClick should match the signature of all other react onClick.
+       * If we weren't depending on asynchronous behavior in components that are consuming
+       * ActionsMenu we would just be able to stop propagation on the SyntheticEvent
+       */
+      onClick: MenuActionOnClick<R>
+      isFeaturedAction?: boolean
+      children?: ReactNode
+      disabled?: boolean
+    }
+
+export type ActionsMenuProps<R = void> = {
+  actions: Array<MenuAction<R>>
   document?: Document
   toggle?: (props: PopOverToggleProps) => ReactNode
+  onActionComplete?: (r: R) => void
 }
 
 /*
  * Component
  */
 
-export const ActionsMenu: FC<ActionsMenuProps> = props => {
+export const ActionsMenu = <R extends unknown>(props: ActionsMenuProps<R>) => {
   const {
     document,
     actions,
@@ -61,6 +69,7 @@ export const ActionsMenu: FC<ActionsMenuProps> = props => {
         {...toggleProps}
       />
     ),
+    onActionComplete = identity,
     ...domProps
   } = props
   return (
@@ -70,6 +79,9 @@ export const ActionsMenu: FC<ActionsMenuProps> = props => {
           popOver={({ onClick, ...otherProps }) => (
             <Menu onClick={onClick} {...otherProps}>
               {actions.reduce<Array<ReactNode>>((filtered, action, idx) => {
+                if (action.type === 'divider') {
+                  return filtered.concat(<Divider />)
+                }
                 /**
                  * Setting a field on a menu item to `isFeaturedAction: true`
                  * does not have the intended effect it used to. Better to not
@@ -85,7 +97,9 @@ export const ActionsMenu: FC<ActionsMenuProps> = props => {
                       leftIcon={action.iconName}
                       leftIconColor={action.iconColor}
                       primaryText={action.label}
-                      onClick={e => action.onClick(() => onClick(e), e)}
+                      onClick={e =>
+                        onActionComplete(action.onClick(() => onClick(e), e))
+                      }
                       disabled={action.disabled}
                     >
                       {action.children}

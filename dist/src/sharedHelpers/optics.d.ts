@@ -1,6 +1,6 @@
-import { Option } from 'fp-ts/lib/Option';
 import { At, Index, Lens, Optional, Traversal } from 'monocle-ts';
 import { Eq } from 'fp-ts/lib/Eq';
+import { Option } from 'fp-ts/lib/Option';
 /**
  * Binary composition for lenses (`monocle-ts`)
  *
@@ -53,4 +53,3 @@ export declare function indexMap<K, A = never>(E: Eq<K>): Index<Map<K, A>, K, A>
  * failing that appends it to the array.
  */
 export declare const upsert: <A, B>(existing: Traversal<A, B>, list: Lens<A, B[]>) => (b: B) => (a: A) => A;
-//# sourceMappingURL=optics.d.ts.map

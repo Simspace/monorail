@@ -79,4 +79,49 @@ describe('matchers', () => {
       })).toEqual('2');
     });
   });
+  describe('matchS', () => {
+    it('should match on string unions', () => {
+      const su = 'foo';
+      const expected = 'abc';
+      const actual = (0, _matchers.matchS)(su)({
+        foo: () => 'abc',
+        bar: () => 'def',
+        baz: () => 'ghi'
+      });
+      expect(actual).toEqual(expected);
+    });
+    it('should match on string enums', () => {
+      let SU;
+
+      (function (SU) {
+        SU["foo"] = "foo";
+        SU["bar"] = "bar";
+        SU["baz"] = "baz";
+      })(SU || (SU = {}));
+
+      const su = SU.foo;
+      const expected = 'abc';
+      const actual = (0, _matchers.matchS)(su)({
+        foo: () => 'abc',
+        bar: () => 'def',
+        baz: () => 'ghi'
+      });
+      expect(actual).toEqual(expected);
+    });
+    it('should error if missing or extra matches', () => {
+      const su = 'foo';
+      (0, _matchers.matchS)(su)( // @ts-expect-error
+      {
+        foo: () => 'abc',
+        baz: () => 'ghi'
+      });
+      (0, _matchers.matchS)(su)({
+        foo: () => 'abc',
+        bar: () => 'def',
+        baz: () => 'ghi',
+        // @ts-expect-error
+        quux: () => 'jkl'
+      });
+    });
+  });
 });

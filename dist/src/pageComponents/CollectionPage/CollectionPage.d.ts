@@ -13,4 +13,3 @@ declare type Props<I> = CollectionProps<I> & {
 };
 export declare const CollectionPage: <T extends unknown>(props: Props<T>) => React.ReactElement<Props<T>, string | ((props: any) => React.ReactElement<any, string | any | (new (props: any) => React.Component<any, any, any>)> | null) | (new (props: any) => React.Component<any, any, any>)>;
 export {};
-//# sourceMappingURL=CollectionPage.d.ts.map

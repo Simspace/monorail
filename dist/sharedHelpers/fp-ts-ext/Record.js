@@ -4,7 +4,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.fromFoldableFilterMap = fromFoldableFilterMap;
-exports.isNotEmpty = exports.isRecord = exports.sortRecords = exports.pick = exports.omit = exports.prop = exports.entries = exports.values = exports.keys = void 0;
+exports.isNotEmpty = exports.isRecord = exports.sortRecords = exports.pick = exports.omitI = exports.omit = exports.prop = exports.entries = exports.values = exports.keys = void 0;
 
 var _Array = require("fp-ts/lib/Array");
 
@@ -56,11 +56,25 @@ const omit = (rec, ks) => {
   return result;
 };
 /**
- * Picks the key-value pairs from an object associated with the provided keys
+ * A pipeable version of `omit`.
+ * Omits the key-value pairs from an object associated with the provided keys
  */
 
 
 exports.omit = omit;
+
+const omitI = (...ks) => rec => {
+  const { ...result
+  } = rec;
+  ks.forEach(k => delete result[k]);
+  return result;
+};
+/**
+ * Picks the key-value pairs from an object associated with the provided keys
+ */
+
+
+exports.omitI = omitI;
 
 const pick = (rec, ks) => {
   const result = {};

@@ -1,4 +1,5 @@
 import React from 'react'
+
 import { CustomIconProps } from '@monorail/visualComponents/icon/Icon'
 
 export function InfoOutline(props: CustomIconProps) {
@@ -10,6 +11,7 @@ export function InfoOutline(props: CustomIconProps) {
       xmlns="http://www.w3.org/2000/svg"
       {...props}
     >
+      {props.title && <title>{props.title}</title>}
       <path
         fillRule="evenodd"
         clipRule="evenodd"

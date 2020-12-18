@@ -1,19 +1,21 @@
-import { FC, ReactNode } from 'react';
+import React, { FC, ReactNode } from 'react';
 import { Colors } from '@monorail/helpers/color';
-import { FontSizes, FontWeights, FontStyles } from '@monorail/helpers/typography';
+import { FontSizes, FontStyles, FontWeights } from '@monorail/helpers/typography';
+export declare type HeadingTag = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
 export declare type TextProps = {
-    as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'i' | 'b' | 'span' | 'li' | 'div' | 'label';
+    as?: HeadingTag | 'p' | 'i' | 'b' | 'span' | 'li' | 'div' | 'label' | 'pre';
     margin?: string;
     title?: string;
+    id?: string;
     children: string | number | ReactNode;
     color?: Colors;
     fontSize?: FontSizes;
     fontStyle?: FontStyles;
     fontWeight?: FontWeights;
+    noWrap?: boolean;
 };
-export declare const Text: FC<TextProps>;
+export declare const Text: React.ForwardRefExoticComponent<TextProps & React.RefAttributes<HTMLSpanElement>>;
 /**
  * @deprecated Use Text instead. This exist for supporting legacy code only
  * */
 export declare const TextDeprecated: FC<TextProps>;
-//# sourceMappingURL=Text.d.ts.map

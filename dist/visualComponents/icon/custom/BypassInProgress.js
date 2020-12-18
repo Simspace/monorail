@@ -11,11 +11,11 @@ var _react = _interopRequireDefault(require("react"));
 
 var _styledComponents2 = _interopRequireWildcard(require("../../../helpers/styled-components"));
 
-var _InProgress = require("./InProgress");
+var _zIndex = require("../../../helpers/zIndex");
 
 var _BypassEmpty = require("./BypassEmpty");
 
-var _zIndex = require("../../../helpers/zIndex");
+var _InProgress = require("./InProgress");
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
@@ -39,9 +39,7 @@ const IconContainer = _styledComponents2.default.div(({
     ${cssOverrides}
   `);
 
-var _StyledBypassEmpty =
-/*#__PURE__*/
-(0, _styledComponents.default)(_BypassEmpty.BypassEmpty).withConfig({
+var _StyledBypassEmpty = /*#__PURE__*/(0, _styledComponents.default)(_BypassEmpty.BypassEmpty).withConfig({
   displayName: "BypassInProgress___StyledBypassEmpty",
   componentId: "wkmqp2-0"
 })(["display:inline-block;height:1em;width:1em;"]);
@@ -51,9 +49,9 @@ const BypassInProgress = (0, _styledComponents2.default)(({
   icon,
   ...otherProps
 }) => {
-  return _react.default.createElement(IconContainer, {
+  return /*#__PURE__*/_react.default.createElement(IconContainer, {
     size: size
-  }, _react.default.createElement(_StyledBypassEmpty, _extends({
+  }, /*#__PURE__*/_react.default.createElement(_StyledBypassEmpty, _extends({
     size: size
   }, otherProps)));
 })``;

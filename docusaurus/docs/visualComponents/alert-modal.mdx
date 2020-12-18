@@ -1,0 +1,111 @@
+---
+id: alert-modal
+title: Alert Modal
+sidebar_label: Alert Modal
+---
+
+import { ShowCase } from '../docComponents/ShowCase'
+
+import {
+  PopOver,
+  PopOverToggleProps,
+} from '@monorail/metaComponents/popOver/PopOver'
+import { AlertModal } from '@monorail/visualComponents/alerts/AlertModal'
+import { AlertType } from '@monorail/visualComponents/alerts/alertType'
+import { Button } from '@monorail/visualComponents/buttons/Button'
+import { ButtonDisplay } from '@monorail/visualComponents/buttons/buttonTypes'
+
+<ShowCase>
+  <PopOver
+    popOver={popOverProps => (
+      <AlertModal
+        alertType={AlertType.Warning}
+        {...popOverProps}
+        titleText="Are you sure you want to delete itemNameHere?"
+        subtitleText="Deleting itemNameHere may be not that chill..."
+        onSubmit={() => {}}
+        primaryButtonText="Yes"
+        secondaryButtonText="No"
+      />
+    )}
+    toggle={toggleProps => <Button {...toggleProps}>Toggle Modal</Button>}
+  />
+</ShowCase>
+
+## Types
+
+### Error
+
+```tsx live
+<PopOver
+  popOver={popOverProps => (
+    <AlertModal
+      alertType={AlertType.Error}
+      {...popOverProps}
+      titleText="This action can not be done"
+      subtitleText="Doing this action would be not that chill, so we're not gonna let you do it."
+      onSubmit={() => {}}
+      primaryButtonText="Yes"
+      secondaryButtonText="No"
+    />
+  )}
+  toggle={toggleProps => <Button {...toggleProps}>Toggle Error Modal</Button>}
+/>
+```
+
+### Warning
+
+```tsx live
+<PopOver
+  popOver={popOverProps => (
+    <AlertModal
+      alertType={AlertType.Warning}
+      {...popOverProps}
+      titleText="This action can not be done"
+      subtitleText="Doing this action would be not that chill, so we're not gonna let you do it."
+      onSubmit={() => {}}
+      primaryButtonText="Yes"
+      secondaryButtonText="No"
+    />
+  )}
+  toggle={toggleProps => <Button {...toggleProps}>Toggle Warning Modal</Button>}
+/>
+```
+
+### Success
+
+```tsx live
+<PopOver
+  popOver={popOverProps => (
+    <AlertModal
+      alertType={AlertType.Success}
+      {...popOverProps}
+      titleText="You successfully did it!"
+      subtitleText="Would you like a cookie or a medal?"
+      onSubmit={() => {}}
+      primaryButtonText="Yes"
+      secondaryButtonText="No"
+    />
+  )}
+  toggle={toggleProps => <Button {...toggleProps}>Toggle Success Modal</Button>}
+/>
+```
+
+### Info
+
+```tsx live
+<PopOver
+  popOver={popOverProps => (
+    <AlertModal
+      alertType={AlertType.Info}
+      {...popOverProps}
+      titleText="Hey here's some important information"
+      subtitleText="We put it here in this annoying modal so you'd be more likely to read it!"
+      onSubmit={() => {}}
+      primaryButtonText="Yes"
+      secondaryButtonText="No"
+    />
+  )}
+  toggle={toggleProps => <Button {...toggleProps}>Toggle Info Modal</Button>}
+/>
+```

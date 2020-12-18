@@ -4,7 +4,9 @@ import { AlertType } from '@monorail/visualComponents/alerts/alertType';
 export declare type AlertModalProps = Omit<PopOverChildProps, 'position'> & {
     alertType: AlertType;
     className?: string;
+    closeOnSubmit?: boolean;
     disabled?: boolean;
+    pending?: boolean;
     headerText?: string;
     onSubmit: () => void;
     padding?: number;
@@ -15,4 +17,3 @@ export declare type AlertModalProps = Omit<PopOverChildProps, 'position'> & {
     zIndex?: number;
 };
 export declare const AlertModal: FC<AlertModalProps>;
-//# sourceMappingURL=AlertModal.d.ts.map

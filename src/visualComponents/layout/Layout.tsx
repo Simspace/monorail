@@ -2,8 +2,8 @@ import React, { forwardRef, MouseEvent, ReactNode, Ref } from 'react'
 import styled, { css, SimpleInterpolation } from 'styled-components'
 
 import {
-  borderRadius,
   BorderRadius,
+  borderRadius,
   Colors,
   ElevationRange,
   flexFlow,
@@ -54,7 +54,8 @@ export type SectionProps = CommonComponentType & {
   hover?: boolean
   elevation?: ElevationRange
   onClick?: (event: MouseEvent) => void
-  ref?: Ref<any> // tslint:disable-line:no-any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  ref?: Ref<any>
   cssCardContent?: SimpleInterpolation
   children?: ReactNode
   flat?: boolean

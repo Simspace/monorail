@@ -68,4 +68,3 @@ export declare type SorterGroup<CollectionItem> = {
     sorters: Array<Sorter<CollectionItem>>;
 };
 export {};
-//# sourceMappingURL=types.d.ts.map

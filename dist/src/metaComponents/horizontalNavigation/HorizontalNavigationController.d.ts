@@ -25,4 +25,3 @@ export declare class HorizontalNavigationController extends Component<TabBarProp
     render(): JSX.Element;
 }
 export {};
-//# sourceMappingURL=HorizontalNavigationController.d.ts.map

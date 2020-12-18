@@ -14,4 +14,3 @@ export declare type StatusProps = CommonComponentType & StatusWrapperProps & {
 };
 export declare const Status: FC<StatusProps>;
 export {};
-//# sourceMappingURL=Status.d.ts.map

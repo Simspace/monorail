@@ -1,14 +1,14 @@
 import React, {
   Children,
+  forwardRef,
+  ForwardRefExoticComponent,
   MouseEvent,
+  PropsWithoutRef,
   ReactNode,
   ReactType,
-  StatelessComponent,
   Ref,
-  ForwardRefExoticComponent,
   RefAttributes,
-  forwardRef,
-  PropsWithoutRef,
+  StatelessComponent,
 } from 'react'
 import { SimpleInterpolation } from 'styled-components'
 
@@ -16,12 +16,12 @@ import {
   baseChromelessStyles,
   baseFocusStyles,
   buttonTransition,
+  Colors,
   ellipsis,
   flexFlow,
   FontSizes,
   Sizes,
   typography,
-  Colors,
 } from '@monorail/helpers/exports'
 import styled, { css } from '@monorail/helpers/styled-components'
 import { getThemeColor, ThemeColors } from '@monorail/helpers/theme'
@@ -33,9 +33,6 @@ import {
 import { CommonComponentType, LinkProps } from '@monorail/types'
 import { Icon, IconProps } from '@monorail/visualComponents/icon/Icon'
 import { IconType } from '@monorail/visualComponents/icon/IconType'
-
-// TODO(unsafe-any): Fix unsafe anys
-// tslint:disable no-unsafe-any
 
 /*
  *
@@ -107,7 +104,9 @@ export const ListContainer: StatelessComponent<ListContainerProps> = ({
  */
 
 type ListSizeProps = {
-  dense?: boolean
+  // $dense to make this prop transient for styled components. Otherwise it results in an error: Warning: Received `false` for a non-boolean attribute `dense`.
+  // See https://styled-components.com/docs/api#transient-props
+  $dense?: boolean
 }
 
 type ListItemProps = LinkProps &
@@ -159,21 +158,25 @@ export const ListItemSecondaryText = styled.span<CommonComponentType>(
   `,
 )
 
-type BBListSizeIconProps = ListSizeProps & { icon: string }
+type ListItemGraphicProps = IconProps & ListSizeProps
 
-export const ListItemGraphic = styled(({ dense, ...domProps }) => (
-  <Icon {...domProps} />
-))<BBListSizeIconProps & IconProps>(
+export const StyledListItemIcon = styled(Icon).withConfig({
+  shouldForwardProp: (prop: string) => prop !== 'dense',
+})<ListItemGraphicProps>(
   // We pick out the `color` prop so that we're specifically _not_ overriding it
   // in the case where it is set (it will get passed into `<Icon .../>` above,
   // which will set the right CSS).
   //
   // Previously this wasn't working because `color: inherit` was overriding it,
   // but I was to scared to delete that line entirely. [MM 2020-07-14]
-  ({ dense, cssOverrides, color }) => css`
+  ({ $dense, cssOverrides, color }) => css`
     && {
-      margin: auto ${dense ? 4 : 6}px;
+      ${flexFlow('row')}
       ${isNil(color) ? 'color: inherit;' : ''}
+
+      align-items: center;
+      justify-content: center;
+      margin: auto ${$dense ? 4 : 6}px;
 
       ${buttonTransition};
 
@@ -182,10 +185,14 @@ export const ListItemGraphic = styled(({ dense, ...domProps }) => (
   `,
 )
 
+export const ListItemGraphic = (props: ListItemGraphicProps) => {
+  return <StyledListItemIcon {...props} />
+}
+
 export const ListItem = styled.div<ListItemProps>(
   ({
     cssOverrides,
-    dense,
+    $dense,
     disabled,
     onClick,
     size = Sizes.DP24,
@@ -207,7 +214,7 @@ export const ListItem = styled.div<ListItemProps>(
           /* stylelint-disable selector-type-no-unknown */
           &.is-active,
           &:active,
-          &:active ${ListItemGraphic}, &.is-active ${ListItemGraphic} {
+          &:active ${StyledListItemIcon}, &.is-active ${StyledListItemIcon} {
             color: ${getThemeColor(
               isLink ? ThemeColors.ActionPrimary : ThemeColors.Text900,
             )};
@@ -231,7 +238,7 @@ export const ListItem = styled.div<ListItemProps>(
     box-sizing: border-box;
     flex-shrink: 0;
     min-height: ${size}px;
-    padding: 0 ${dense ? 4 : 10}px;
+    padding: 0 ${$dense ? 4 : 10}px;
     position: relative;
     text-transform: initial;
 
@@ -263,8 +270,10 @@ export type SimpleListItemProps = PassedProps & {
   isLink?: boolean
   leftIconColor?: Colors
   rightIconColor?: Colors
+  autoFocus?: boolean
   children?: string | number | ReactNode
-  ref?: Ref<any> // tslint:disable-line:no-any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  ref?: Ref<any>
 }
 
 export const SimpleListItem: ForwardRefExoticComponent<PropsWithoutRef<
@@ -295,6 +304,7 @@ export const SimpleListItem: ForwardRefExoticComponent<PropsWithoutRef<
 
   return (
     <ListItem
+      cssOverrides={cssOverrides}
       dense={dense}
       size={size}
       onClick={onClick}
@@ -305,10 +315,10 @@ export const SimpleListItem: ForwardRefExoticComponent<PropsWithoutRef<
       {...domProps}
     >
       {isNonEmptyString(leftIcon) && (
-        <ListItemGraphic icon={leftIcon} dense={dense} color={leftIconColor} />
+        <ListItemGraphic icon={leftIcon} $dense={dense} color={leftIconColor} />
       )}
 
-      {isEmptyString(secondaryText) || isNil(meta) ? (
+      {isNil(meta) ? (
         <ListItemPrimaryText cssOverrides={cssOverrides}>
           {primaryText}
         </ListItemPrimaryText>
@@ -326,7 +336,7 @@ export const SimpleListItem: ForwardRefExoticComponent<PropsWithoutRef<
       {isNonEmptyString(rightIcon) && (
         <ListItemGraphic
           icon={rightIcon}
-          dense={dense}
+          $dense={dense}
           color={rightIconColor}
         />
       )}

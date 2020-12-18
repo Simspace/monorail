@@ -1,6 +1,8 @@
-import * as moment from 'moment'
+import * as dateFns from 'date-fns'
+import { NonEmptyString, UUID } from 'io-ts-types'
 import { AnyNewtype, Newtype, prism } from 'newtype-ts'
-import { Overwrite, AnyTuple } from 'typelevel-ts'
+import { AnyTuple, Overwrite } from 'typelevel-ts'
+import { Ord, pipe } from '@monorail/sharedHelpers/fp-ts-imports'
 
 /**
  * Utility interface used to attach a tag & unique symbol to a Newtype's _URI
@@ -102,6 +104,22 @@ export interface Tagged<S extends string, B>
 export interface Key<A> extends SetTag<'Key', Const<string, A>> {}
 
 /**
+ * A phantom type just like `Key` but the underlying type is an io-ts-types UUID
+ * instead of a string.
+ */
+export interface UUIDKey<A> extends SetTag<'UUIDKey', Const<UUID, A>> {}
+
+const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i
+/**
+ * Gets a prism that validates UUIDs.
+ *
+ * NOTE: You may not need this if using io-ts Codecs.
+ */
+export function getPrismUUID<A>() {
+  return prism<UUIDKey<A>>(uuidRegex.test)
+}
+
+/**
  * A phantom type wrapper for expresing versions which are a part of
  * versioned entities.
  *
@@ -118,6 +136,13 @@ export interface Version<A> extends SetTag<'Version', Const<number, A>> {}
  * providing extra safety by disambiguating between names for different types.
  */
 export interface Name<A> extends SetTag<'Name', Const<string, A>> {}
+
+/**
+ * A phantom type just like `Name` but the underlying type is an io-ts-types
+ * NonEmptyString instead of a string.
+ */
+export interface NonEmptyName<A>
+  extends SetTag<'NonEmptyName', Const<NonEmptyString, A>> {}
 
 /**
  * A specialized verson of the `Const` phantom type where the underlying
@@ -161,14 +186,20 @@ export const prismFinite = prism<Finite>(Number.isFinite)
 export interface IsoDate
   extends SimSpaceNewtype<NewtypeURI<'IsoDate'>, string> {}
 
+export const ordIsoDate: Ord.Ord<IsoDate> = pipe(
+  Ord.ordDate,
+  Ord.contramap((d: IsoDate): Date => new Date(coerce(d))),
+)
+
 /*
  * A prism giving you a `getOption` function that returns a `Some<IsoDate>`
  * if the run-time string can is a valid ISO date string or a `None` if it
  * isn't.
  */
-export const prismIsoDate = prism<IsoDate>(x =>
-  moment.default(x, moment.ISO_8601, true).isValid(),
-)
+export const prismIsoDate = prism<IsoDate>(str => {
+  const parsedDate = dateFns.parseISO(str)
+  return dateFns.isValid(parsedDate)
+})
 
 /*
  * Coerce any Newtype to its underlying runtime type.
@@ -190,6 +221,7 @@ export type CoerceNewtype<N extends AnyNewtype> = N extends Newtype<
  * the generic type param for the Newtype.
  */
 export const coerce = <N extends AnyNewtype>(n: N): CoerceNewtype<N> =>
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-return
   n as CoerceNewtype<N>
 
 /*

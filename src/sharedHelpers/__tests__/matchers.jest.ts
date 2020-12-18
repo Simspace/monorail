@@ -1,6 +1,6 @@
 import { pipe } from 'fp-ts/lib/pipeable'
 
-import { match, matchI, matchOn, matchOnI } from '../matchers'
+import { match, matchI, matchOn, matchOnI, matchS } from '../matchers'
 
 describe('matchers', () => {
   describe('match, matchI', () => {
@@ -98,6 +98,55 @@ describe('matchers', () => {
           baz: s => s.payload,
         }),
       ).toEqual('2')
+    })
+  })
+
+  describe('matchS', () => {
+    it('should match on string unions', () => {
+      type SU = 'foo' | 'bar' | 'baz'
+      const su: SU = 'foo' as SU
+      const expected = 'abc'
+      const actual = matchS(su)({
+        foo: () => 'abc',
+        bar: () => 'def',
+        baz: () => 'ghi',
+      })
+      expect(actual).toEqual(expected)
+    })
+
+    it('should match on string enums', () => {
+      enum SU {
+        foo = 'foo',
+        bar = 'bar',
+        baz = 'baz',
+      }
+      const su: SU = SU.foo as SU
+      const expected = 'abc'
+      const actual = matchS(su)({
+        foo: () => 'abc',
+        bar: () => 'def',
+        baz: () => 'ghi',
+      })
+      expect(actual).toEqual(expected)
+    })
+
+    it('should error if missing or extra matches', () => {
+      type SU = 'foo' | 'bar' | 'baz'
+      const su: SU = 'foo' as SU
+      matchS(su)(
+        // @ts-expect-error
+        {
+          foo: () => 'abc',
+          baz: () => 'ghi',
+        },
+      )
+      matchS(su)({
+        foo: () => 'abc',
+        bar: () => 'def',
+        baz: () => 'ghi',
+        // @ts-expect-error
+        quux: () => 'jkl',
+      })
     })
   })
 })

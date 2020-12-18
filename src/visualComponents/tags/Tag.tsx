@@ -1,4 +1,3 @@
-import { isUndefined } from 'lodash'
 import React from 'react'
 import styled, { css } from 'styled-components'
 
@@ -10,7 +9,7 @@ import {
   FontWeights,
   getColor,
 } from '@monorail/helpers/exports'
-import { isEmptyString } from '@monorail/sharedHelpers/typeGuards'
+import { isEmptyString, isUndefined } from '@monorail/sharedHelpers/typeGuards'
 import { Icon } from '@monorail/visualComponents/icon/Icon'
 import { IconType } from '@monorail/visualComponents/icon/IconType'
 import { Text } from '@monorail/visualComponents/typography/Text'

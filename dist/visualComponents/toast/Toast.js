@@ -43,32 +43,24 @@ exports.ToastSize = ToastSize;
   ToastSize["Large"] = "large";
 })(ToastSize || (exports.ToastSize = ToastSize = {}));
 
-const ToastContainer =
-/*#__PURE__*/
-_styledComponents.default.div.withConfig({
+const ToastContainer = /*#__PURE__*/_styledComponents.default.div.withConfig({
   displayName: "Toast__ToastContainer",
   componentId: "u4b6mj-0"
 })(({
   color
 }) => (0, _styledComponents.css)(["", ";background:", ";border:1px solid ", ";max-width:50vw;min-width:280px;position:relative;right:0;width:360px;"], (0, _exports.flexFlow)('row'), (0, _exports.getColor)(_exports.Colors.White), (0, _exports.getColor)(color)));
 
-const ToastDetails =
-/*#__PURE__*/
-_styledComponents.default.div.withConfig({
+const ToastDetails = /*#__PURE__*/_styledComponents.default.div.withConfig({
   displayName: "Toast__ToastDetails",
   componentId: "u4b6mj-1"
 })(["flex:1;justify-content:center;padding:8px 16px;", ";"], (0, _exports.flexFlow)('column'));
 
-const ToastClose =
-/*#__PURE__*/
-_styledComponents.default.div.withConfig({
+const ToastClose = /*#__PURE__*/_styledComponents.default.div.withConfig({
   displayName: "Toast__ToastClose",
   componentId: "u4b6mj-2"
 })(["align-items:center;flex:0;padding:0 16px;", ";"], (0, _exports.flexFlow)('row'));
 
-const ToastTileContainer =
-/*#__PURE__*/
-_styledComponents.default.div.withConfig({
+const ToastTileContainer = /*#__PURE__*/_styledComponents.default.div.withConfig({
   displayName: "Toast__ToastTileContainer",
   componentId: "u4b6mj-3"
 })(({
@@ -80,9 +72,7 @@ _styledComponents.default.div.withConfig({
  */
 
 
-var _StyledIcon =
-/*#__PURE__*/
-(0, _styledComponents.default)(_Icon.Icon).withConfig({
+var _StyledIcon = /*#__PURE__*/(0, _styledComponents.default)(_Icon.Icon).withConfig({
   displayName: "Toast___StyledIcon",
   componentId: "u4b6mj-4"
 })(["color:", ";"], p => p._css);
@@ -93,10 +83,10 @@ const ToastTile = props => {
     size = ToastSize.Large,
     icon = ''
   } = props;
-  return _react.default.createElement(ToastTileContainer, {
+  return /*#__PURE__*/_react.default.createElement(ToastTileContainer, {
     color: _types.AlertColors[level],
     size: size
-  }, _react.default.createElement(_StyledIcon, {
+  }, /*#__PURE__*/_react.default.createElement(_StyledIcon, {
     size: size === ToastSize.Small ? 16 : 24,
     icon: (0, _typeGuards.isEmptyString)(icon) ? _types.AlertIcons[level] : icon,
     _css: (0, _exports.getColor)(_exports.Colors.White)
@@ -111,12 +101,15 @@ const ToastTile = props => {
  */
 
 
-var _StyledBBCardBackground =
-/*#__PURE__*/
-(0, _styledComponents.default)(_Cards.BBCardBackground).withConfig({
+var _StyledBBCardBackground = /*#__PURE__*/(0, _styledComponents.default)(_Cards.BBCardBackground).withConfig({
   displayName: "Toast___StyledBBCardBackground",
   componentId: "u4b6mj-5"
 })(["border-radius:0;"]);
+
+var _StyledText = /*#__PURE__*/(0, _styledComponents.default)(_Text.Text).withConfig({
+  displayName: "Toast___StyledText",
+  componentId: "u4b6mj-6"
+})(["word-break:break-word;"]);
 
 /*
  * Component
@@ -131,24 +124,24 @@ const Toast = props => {
     size = ToastSize.Large,
     ...otherProps
   } = props;
-  return _react.default.createElement(_StyledBBCardBackground, {
+  return /*#__PURE__*/_react.default.createElement(_StyledBBCardBackground, {
     hover: dismissible,
     elevation: _exports.ElevationRange.Elevation8
-  }, _react.default.createElement(ToastContainer, {
+  }, /*#__PURE__*/_react.default.createElement(ToastContainer, {
     color: _types.AlertColors[level]
-  }, _react.default.createElement(ToastTile, {
+  }, /*#__PURE__*/_react.default.createElement(ToastTile, {
     icon: icon,
     size: size,
     level: level
-  }), _react.default.createElement(ToastDetails, null, !(0, _typeGuards.isEmptyString)(title) && _react.default.createElement(_Text.Text, {
+  }), /*#__PURE__*/_react.default.createElement(ToastDetails, null, !(0, _typeGuards.isEmptyString)(title) && /*#__PURE__*/_react.default.createElement(_Text.Text, {
     fontSize: _exports.FontSizes.Title4,
     fontWeight: 700,
     margin: '6px 0'
-  }, title), _react.default.createElement(_Text.Text, {
+  }, title), /*#__PURE__*/_react.default.createElement(_StyledText, {
     fontSize: (0, _typeGuards.isEmptyString)(title) ? _exports.FontSizes.Title4 : _exports.FontSizes.Title5,
     fontWeight: 400,
     margin: "4px 0"
-  }, message)), dismissible && _react.default.createElement(ToastClose, null, _react.default.createElement(_IconButton.IconButton, {
+  }, message)), dismissible && /*#__PURE__*/_react.default.createElement(ToastClose, null, /*#__PURE__*/_react.default.createElement(_IconButton.IconButton, {
     icon: 'close',
     display: _buttonTypes.ButtonDisplay.Secondary
   }))));

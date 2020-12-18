@@ -5,4 +5,3 @@
  * `/__tests__/ReactCompositeComponent-test.js`
  */
 export declare const shallowEqual: <A extends object, B extends object, KA extends keyof A, KB extends keyof B>(objA: A, objB: B) => boolean;
-//# sourceMappingURL=shallowEqual.d.ts.map

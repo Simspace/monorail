@@ -1,17 +1,16 @@
-import { O, pipe } from '@monorail/sharedHelpers/fp-ts-imports'
-import { Option, isNone } from 'fp-ts/lib/Option'
-import * as M from 'fp-ts/lib/Map'
+import { At, Index, Lens, Optional, Traversal } from 'monocle-ts'
 import {
   array,
   cons,
   lookup as lookupArray,
-  updateAt,
   snoc,
+  updateAt,
 } from 'fp-ts/lib/Array'
-import { insertAt, lookup } from 'fp-ts/lib/Record'
-import { At, Index, Lens, Optional, Traversal } from 'monocle-ts'
 import { Eq } from 'fp-ts/lib/Eq'
-import { Newtype } from 'newtype-ts'
+import * as M from 'fp-ts/lib/Map'
+import { isNone, Option } from 'fp-ts/lib/Option'
+import { insertAt, lookup } from 'fp-ts/lib/Record'
+import { O, pipe } from '@monorail/sharedHelpers/fp-ts-imports'
 
 /**
  * Binary composition for lenses (`monocle-ts`)
@@ -26,9 +25,10 @@ export const oLens = <S, A, B>(f: Lens<S, A>, g: Lens<A, B>): Lens<S, B> =>
  * Helper that extracts the S type from a Lens<S, A>
  */
 
-/* tslint:disable:no-any */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type ExtractSFromLens<L extends Lens<any, any>> = L extends Lens<
   infer S,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   any
 >
   ? S
@@ -37,14 +37,14 @@ export type ExtractSFromLens<L extends Lens<any, any>> = L extends Lens<
 /**
  * Helper that extracts the A type from a Lens<S, A>
  */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type ExtractAFromLens<L extends Lens<any, any>> = L extends Lens<
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   any,
   infer A
 >
   ? A
   : never
-
-/* tslint:enable:no-any */
 
 /**
  * A function that generates monocle-ts Lenses for all top-level key-val pairs

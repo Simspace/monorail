@@ -1,4 +1,5 @@
-import { Either, isLeft, isRight, fold, right, left } from 'fp-ts/lib/Either'
+import { Either, fold, isLeft, isRight, left, right } from 'fp-ts/lib/Either'
+import { identity } from 'fp-ts/lib/function'
 import { Ord } from 'fp-ts/lib/Ord'
 import { pipe } from 'fp-ts/lib/pipeable'
 
@@ -57,3 +58,12 @@ export function swap<E, A>(ma: Either<E, A>): Either<A, E> {
 export const orElseW = <E, A, B>(f: (a: E) => Either<E, B>) => (
   ma: Either<E, A>,
 ): Either<E, A | B> => pipe(ma, fold<E, A, Either<E, A | B>>(f, right))
+
+export const toUnion = <E, A>(either: Either<E, A>): E | A =>
+  pipe(
+    either,
+    fold(
+      (e: E): E | A => e,
+      (a: A): E | A => a,
+    ),
+  )

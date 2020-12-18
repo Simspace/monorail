@@ -1,20 +1,20 @@
 import React from 'react'
+import { css, SimpleInterpolation } from 'styled-components'
 
 import {
   Colors,
+  flexFlow,
   FontSizes,
   FontWeights,
-  flexFlow,
 } from '@monorail/helpers/exports'
 import styled from '@monorail/helpers/styled-components'
-import { Text } from '@monorail/visualComponents/typography/Text'
-import { Icon } from '@monorail/visualComponents/icon/Icon'
 import { isNonEmptyString } from '@monorail/sharedHelpers/typeGuards'
-import { SimpleInterpolation, css } from 'styled-components'
 import { CommonComponentType } from '@monorail/types'
-import { IconType } from '@monorail/visualComponents/icon/IconType'
 import { Button, ButtonProps } from '@monorail/visualComponents/buttons/Button'
 import { ButtonDisplay } from '@monorail/visualComponents/buttons/buttonTypes'
+import { Icon } from '@monorail/visualComponents/icon/Icon'
+import { IconType } from '@monorail/visualComponents/icon/IconType'
+import { Text } from '@monorail/visualComponents/typography/Text'
 
 const Container = styled.div<CommonComponentType>(
   ({ cssOverrides }) => css`
@@ -33,8 +33,8 @@ export const TextContainer = styled.div`
   ${flexFlow('column')}
 `
 
-export type Props = {
-  icon: IconType
+export type EmptyStateProps = {
+  icon?: IconType
   size?: EmptyStateSizes // Optional for now to avoid breaking changes in Attack Controller/Threat Actions. GS 07/22/20
   message?: string
   title?: string
@@ -75,21 +75,21 @@ export const titleMargins = {
 }
 
 export const messageMargins = {
-  [EmptyStateSizes.Small]: '0 0 8px 0',
-  [EmptyStateSizes.Large]: '0 0 8px 0',
+  [EmptyStateSizes.Small]: '0 0 16px 0',
+  [EmptyStateSizes.Large]: '0 0 16px 0',
 }
 
 export const getMessageMaxWidth = (size: EmptyStateSizes): number => {
   const messageMaxWidths = {
-    [EmptyStateSizes.Small]: 184,
+    [EmptyStateSizes.Small]: 272,
     [EmptyStateSizes.Large]: 400,
   }
   return messageMaxWidths[size]
 }
 
-export const EmptyState = (props: Props) => {
+export const EmptyState = (props: EmptyStateProps) => {
   const {
-    icon,
+    icon = 'shrug',
     size = EmptyStateSizes.Small,
     title = '',
     message,
@@ -101,6 +101,7 @@ export const EmptyState = (props: Props) => {
 
   return (
     <Container {...otherProps}>
+      {/* // the shrug icon sits at the bottom of its square and so requires different sizing and margin */}
       <Icon
         size={iconSizes[size]}
         icon={icon}

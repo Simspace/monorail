@@ -136,7 +136,7 @@ const StyledIconChecked = (0, _styledComponents.default)(({
   checked,
   toggleSize,
   ...otherProps
-}) => _react.default.createElement(_Icon.Icon, otherProps))(({
+}) => /*#__PURE__*/_react.default.createElement(_Icon.Icon, otherProps))(({
   toggleSize,
   checked
 }) => (0, _styledComponents.css)`
@@ -152,7 +152,7 @@ const StyledIconNotChecked = (0, _styledComponents.default)(({
   checked,
   toggleSize,
   ...otherProps
-}) => _react.default.createElement(_Icon.Icon, otherProps))(({
+}) => /*#__PURE__*/_react.default.createElement(_Icon.Icon, otherProps))(({
   checked,
   toggleSize
 }) => (0, _styledComponents.css)`
@@ -220,12 +220,12 @@ class Toggle extends _react.Component {
       disabled,
       ...domProps
     } = this.props;
-    return _react.default.createElement(CCToggle, _extends({
+    return /*#__PURE__*/_react.default.createElement(CCToggle, _extends({
       cssOverrides: cssOverrides,
       checked: checked,
       toggleSize: toggleSize,
       disabled: disabled
-    }, domProps), _react.default.createElement(Input, {
+    }, domProps), /*#__PURE__*/_react.default.createElement(Input, {
       type: "checkbox",
       checked: checked,
       disabled: disabled,
@@ -233,13 +233,13 @@ class Toggle extends _react.Component {
         onChange && onChange(event.currentTarget.checked);
       },
       toggleSize: toggleSize
-    }), _react.default.createElement(Slider, {
+    }), /*#__PURE__*/_react.default.createElement(Slider, {
       toggleSize: toggleSize
-    }, _react.default.createElement(StyledIconChecked, {
+    }, /*#__PURE__*/_react.default.createElement(StyledIconChecked, {
       icon: "check",
       checked: checked,
       toggleSize: toggleSize
-    }), _react.default.createElement(StyledIconNotChecked, {
+    }), /*#__PURE__*/_react.default.createElement(StyledIconNotChecked, {
       icon: "close",
       checked: checked,
       toggleSize: toggleSize

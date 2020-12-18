@@ -1,0 +1,269 @@
+---
+id: buttons
+title: Buttons
+sidebar_label: Buttons
+---
+
+import { ThemeProvider } from '@monorail/helpers/styled-components'
+import { ThemeColors, ActionPrimary } from '@monorail/helpers/theme'
+
+import { ShowCase } from '../docComponents/ShowCase'
+
+import { Button } from '@monorail/visualComponents/buttons/Button'
+import { IconButton } from '@monorail/visualComponents/buttons/IconButton'
+import { ButtonDisplay } from '@monorail/visualComponents/buttons/buttonTypes'
+
+Buttons allow users to take actions, and make choices, with a single click.
+
+<ShowCase>
+  <Button display={ButtonDisplay.Primary}>Button</Button>
+</ShowCase>
+
+## Usage
+
+Buttons communicate actions that users can take. They are typically placed throughout your UI, in places like:
+
+- Dialogs
+- Modals
+- Forms
+- Cards
+- Toolbars
+
+## Principles
+
+**Identifiable**  
+Buttons should indicate that they can trigger an action.
+
+**Findable**  
+Buttons should be easy to find among other elements, including other buttons.
+
+**Clear**  
+A button’s action and state should be clear.
+
+## Types
+
+### Display
+
+#### Primary (high emphasis)
+
+Primary buttons have more emphasis, as they use the Primary Link Color as a fill. Aim to have only one Primary button on a page so that the user knows what the main action is.
+
+```tsx live
+<Button display={ButtonDisplay.Primary}>Button</Button>
+```
+
+#### Outline (medium-high emphasis)
+
+Outline buttons act almost as a second primary button. Use if there is a second action on the page that is almost as important as the primary action. Use sparingly. If you have more then 2 Outline Buttons on a page, convert them to Secondary.
+
+```tsx live
+<Button display={ButtonDisplay.Outline}>Button</Button>
+```
+
+#### Secondary (medium emphasis)
+
+Secondary buttons less emphasis, which allows them to be used multiple times on a page without distracting from the Primary button. These work for most of the actions on a page.
+
+```tsx live
+<Button display={ButtonDisplay.Secondary}>Button</Button>
+```
+
+#### Chromeless (low emphasis)
+
+Chromeless buttons are used for less important actions. Typically used in conjunction with another button. For instance used as the cancel next to submit.
+
+```tsx live
+<Button display={ButtonDisplay.Chromeless}>Button</Button>
+```
+
+### Icon Button
+
+#### Icon Button - Primary
+
+Icon Button - Primary
+
+```tsx live
+<IconButton icon="add" />
+```
+
+#### Icon Button - Outline
+
+Icon Button - Outline
+
+```tsx live
+<IconButton icon="add" display={ButtonDisplay.Outline} />
+```
+
+#### Icon Button - Secondary
+
+Icon Button - Secondary
+
+```tsx live
+<IconButton icon="add" display={ButtonDisplay.Secondary} />
+```
+
+#### Icon Button - Chromeless
+
+Icon Button - Chromeless
+
+```tsx live
+<IconButton icon="add" display={ButtonDisplay.Chromeless} />
+```
+
+### Size
+
+#### Large (high emphasis)
+
+Large Button
+
+```tsx live
+<Button size={ButtonSize.Large}>Button</Button>
+```
+
+#### Default (medium emphasis)
+
+Default Button
+
+```tsx live
+<Button>Button</Button>
+```
+
+#### Compact (medium emphasis)
+
+Compact Button
+
+```tsx live
+<Button size={ButtonSize.Compact}>Button</Button>
+```
+
+#### Dense (low emphasis)
+
+Dense button
+
+```tsx live
+<Button size={ButtonSize.Dense}>Button</Button>
+```
+
+#### Icon Button - Large
+
+Large Button
+
+```tsx live
+<IconButton icon="add" size={ButtonSize.Large} />
+```
+
+#### Icon Button - Default
+
+Default Button
+
+```tsx live
+<IconButton icon="add" />
+```
+
+#### Icon Button - Dense
+
+Dense Button
+
+```tsx live
+<IconButton icon="add" size={ButtonSize.Dense} />
+```
+
+### Mode
+
+Set Mode prop to ButtonMode.Push to convert regular buttons into Push buttons with idle or pressed state
+
+#### Loading Button
+
+Loading Button
+
+```tsx live
+function LoadingButton() {
+  const [isButtonLoading, setIsButtonLoading] = useState(false)
+  return (
+    <Button
+      isLoading={isButtonLoading}
+      disabled={isButtonLoading}
+      onClick={() => {
+        setIsButtonLoading(true)
+        setTimeout(() => {
+          setIsButtonLoading(false)
+        }, 5000)
+      }}
+    >
+      Button
+    </Button>
+  )
+}
+```
+
+#### Push Button - Primary
+
+Push Button - Primary
+
+```tsx live
+<Button mode={ButtonMode.Push}>Primary</Button>
+```
+
+#### Push Button - Outline
+
+Push Button - Outline
+
+```tsx live
+<Button mode={ButtonMode.Push} display={ButtonDisplay.Outline}>
+  Outline
+</Button>
+```
+
+#### Push Button - Secondary
+
+Push Button - Secondary
+
+```tsx live
+<Button mode={ButtonMode.Push} display={ButtonDisplay.Secondary}>
+  Secondary
+</Button>
+```
+
+#### Push Button - Chromeless
+
+Push Button - Chromeless
+
+```tsx live
+<Button mode={ButtonMode.Push} display={ButtonDisplay.Chromeless}>
+  Chromeless
+</Button>
+```
+
+### Preseed
+
+#### Push Button - Primary: Pressed
+
+Use the pressed prop to define the state of a push button
+
+```tsx live
+<div>
+  <Button mode={ButtonMode.Push} cssOverrides="margin-bottom: 8px;">
+    Primary
+  </Button>
+  <Button mode={ButtonMode.Push} pressed={true}>
+    Primary
+  </Button>
+</div>
+```
+
+#### Push Button - Primary: Pressed
+
+Custom the pressed state for Dark Mode
+
+```tsx live
+<ThemeProvider theme={theme => ({ ...theme, mode: Mode.Dark })}>
+  <div>
+    <Button mode={ButtonMode.Push} cssOverrides="margin-bottom: 8px;">
+      Primary
+    </Button>
+    <Button mode={ButtonMode.Push} pressed={true}>
+      Primary
+    </Button>
+  </div>
+</ThemeProvider>
+```

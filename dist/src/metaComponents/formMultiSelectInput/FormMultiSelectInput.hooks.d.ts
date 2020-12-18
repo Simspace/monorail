@@ -7,4 +7,3 @@ export declare function useFormMultiSelectInput<A>(props: FormMultiSelectInputPr
     readonly addItem: (item: A) => void;
     readonly checkIsHighlighted: (item: A, highlightedIndex: number | null) => boolean;
 };
-//# sourceMappingURL=FormMultiSelectInput.hooks.d.ts.map

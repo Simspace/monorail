@@ -12,7 +12,7 @@ export const Home: ComponentType<CustomIconProps> = props => (
     {...props}
   >
     <path
-      fill="url(#paint0_linear)"
+      fill="url(#paint0_ss_icon_home_linear)"
       d="M4 8a4 4 0 014-4h24a4 4 0 014 4v24a4 4 0 01-4 4H8a4 4 0 01-4-4V8z"
     ></path>
     <path
@@ -32,7 +32,7 @@ export const Home: ComponentType<CustomIconProps> = props => (
     <path fill="#fff" d="M26 20l6-1.5-.05 11.188L26 31.19V20z"></path>
     <defs>
       <linearGradient
-        id="paint0_linear"
+        id="paint0_ss_icon_home_linear"
         x1="36"
         x2="4"
         y1="5"

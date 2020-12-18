@@ -7,6 +7,7 @@ import { PopOverChildProps } from '@monorail/metaComponents/popOver/PopOver'
 import { AlertType } from '@monorail/visualComponents/alerts/alertType'
 import { Button } from '@monorail/visualComponents/buttons/Button'
 import { ButtonDisplay } from '@monorail/visualComponents/buttons/buttonTypes'
+import { IconType } from '@monorail/visualComponents/icon/IconType'
 import { MediumModal } from '@monorail/visualComponents/modals/MediumModal'
 import {
   BBModalContent,
@@ -14,7 +15,6 @@ import {
   BBModalHeaderContainer,
 } from '@monorail/visualComponents/modals/Modals'
 import { Text } from '@monorail/visualComponents/typography/Text'
-import { IconType } from '@monorail/visualComponents/icon/IconType'
 
 /*
  * Styles
@@ -64,7 +64,9 @@ const headerTitle = {
 export type AlertModalProps = Omit<PopOverChildProps, 'position'> & {
   alertType: AlertType
   className?: string
+  closeOnSubmit?: boolean
   disabled?: boolean
+  pending?: boolean
   headerText?: string
   onSubmit: () => void
   padding?: number
@@ -83,8 +85,10 @@ export const AlertModal: FC<AlertModalProps> = props => {
   const {
     alertType,
     children,
+    closeOnSubmit = true,
     closingAnimationCompleted,
     disabled,
+    pending = false,
     headerText,
     isOpen,
     onClick,
@@ -132,6 +136,7 @@ export const AlertModal: FC<AlertModalProps> = props => {
       <BBModalFooter>
         {secondaryButtonText && (
           <Button
+            disabled={pending}
             onClick={onClick}
             display={ButtonDisplay.Chromeless}
             css="margin-right: 8px;"
@@ -141,10 +146,13 @@ export const AlertModal: FC<AlertModalProps> = props => {
         )}
         {primaryButtonText && (
           <Button
-            disabled={disabled}
+            disabled={disabled || pending}
+            isLoading={pending}
             onClick={() => {
               onSubmit()
-              togglePopOver()
+              if (closeOnSubmit) {
+                togglePopOver()
+              }
             }}
           >
             {primaryButtonText}

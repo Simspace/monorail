@@ -32,6 +32,6 @@ export declare type CollapsibleProps = {
     msPerPx?: number;
     clickTarget?: ClickTarget;
     isContentScrollable?: boolean;
+    defaultOpen?: boolean;
 };
 export declare const Collapsible: FC<CollapsibleProps>;
-//# sourceMappingURL=Collapsible.d.ts.map

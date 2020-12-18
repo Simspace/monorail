@@ -1,8 +1,8 @@
+import React, { FC } from 'react'
+import styled, { css, SimpleInterpolation } from 'styled-components'
 import { findFirst } from 'fp-ts/lib/Array'
 import * as O from 'fp-ts/lib/Option'
 import { pipe } from 'fp-ts/lib/pipeable'
-import React, { FC } from 'react'
-import styled, { css, SimpleInterpolation } from 'styled-components'
 
 import {
   baseErrorBorderStyles,

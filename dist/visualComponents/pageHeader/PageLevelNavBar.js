@@ -50,10 +50,10 @@ const PageLevelNavBarIndicatorContainer = (0, _styledComponents.default)(({
   width,
   duration,
   ...otherProps
-}) => _react.default.createElement("div", otherProps, _react.default.createElement(PageLevelNavBarIndicatorLeft, null), _react.default.createElement(PageLevelNavBarIndicatorBody, {
+}) => /*#__PURE__*/_react.default.createElement("div", otherProps, /*#__PURE__*/_react.default.createElement(PageLevelNavBarIndicatorLeft, null), /*#__PURE__*/_react.default.createElement(PageLevelNavBarIndicatorBody, {
   duration: duration,
   width: width
-}), _react.default.createElement(PageLevelNavBarIndicatorRight, {
+}), /*#__PURE__*/_react.default.createElement(PageLevelNavBarIndicatorRight, {
   duration: duration,
   width: width
 })))(({
@@ -84,7 +84,7 @@ const PageLevelNavBarIndicatorRight = (0, _styledComponents.default)(({
   duration,
   width,
   ...otherProps
-}) => _react.default.createElement("div", otherProps))(({
+}) => /*#__PURE__*/_react.default.createElement("div", otherProps))(({
   duration,
   width
 }) => (0, _styledComponents.css)`
@@ -105,7 +105,7 @@ const PageLevelNavBarIndicatorBody = (0, _styledComponents.default)(({
   duration,
   width,
   ...otherProps
-}) => _react.default.createElement("div", otherProps))(({
+}) => /*#__PURE__*/_react.default.createElement("div", otherProps))(({
   duration,
   width
 }) => (0, _styledComponents.css)`
@@ -131,9 +131,9 @@ const PageLevelNavBar = props => {
     getActiveTabIndex,
     ...domProps
   } = props;
-  return _react.default.createElement(PageLevelNavBarContainer, domProps, _react.default.createElement(_HorizontalNavigationController.HorizontalNavigationController, {
+  return /*#__PURE__*/_react.default.createElement(PageLevelNavBarContainer, domProps, /*#__PURE__*/_react.default.createElement(_HorizontalNavigationController.HorizontalNavigationController, {
     actions: actions,
-    tabBarIndicator: tabIndicatorProps => _react.default.Children.toArray(children).filter(child => !!child).length > 0 ? _react.default.createElement(PageLevelNavBarIndicatorContainer, tabIndicatorProps) : null,
+    tabBarIndicator: tabIndicatorProps => _react.default.Children.toArray(children).filter(child => !!child).length > 0 ? /*#__PURE__*/_react.default.createElement(PageLevelNavBarIndicatorContainer, tabIndicatorProps) : null,
     activeTabIndex: activeTabIndex,
     getActiveTabIndex: getActiveTabIndex
   }, children));

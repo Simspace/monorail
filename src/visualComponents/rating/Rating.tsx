@@ -1,6 +1,6 @@
-import { range } from 'fp-ts/lib/Array'
 import React, { Component } from 'react'
 import styled, { css } from 'styled-components'
+import { range } from 'fp-ts/lib/Array'
 
 import { Icon } from '@monorail/visualComponents/icon/Icon'
 

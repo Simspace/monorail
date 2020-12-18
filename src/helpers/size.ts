@@ -13,6 +13,10 @@ export enum Sizes {
   DP64 = 64,
 }
 
+export type Size = 8 | 12 | 16 | 24 | 32 | 40 | 48 | 56 | 64
+
+export type NegativeSize = -8 | -12 | -16 | -24 | -32 | -40 | -48 | -56 | -64
+
 export const sizes = {
   modals: {
     mini: {
@@ -24,6 +28,9 @@ export const sizes = {
     },
     medium: {
       width: 584,
+    },
+    mediumLarge: {
+      width: 724,
     },
   },
   menu: {

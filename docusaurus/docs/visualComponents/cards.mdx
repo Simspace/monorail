@@ -1,0 +1,36 @@
+---
+id: cards
+title: Cards
+sidebar_label: Cards
+---
+
+import styled, { css } from '@monorail/helpers/styled-components'
+import { FontSizes, typography } from '@monorail/helpers/exports'
+import { Div } from '@monorail/StyleHelpers'
+
+import { BBCardBackground } from '@monorail/visualComponents/cards/Cards'
+import { Header } from '@monorail/visualComponents/header/Header'
+
+Cards act as a slice into another application, or as a micro app that allows the user the complete actions along a single subject that can be different than the page subject.
+
+```tsx live
+<BBCardBackground
+  cssOverrides={css`
+    width: 240px;
+  `}
+>
+  <Header title="card" />
+  <Div
+    cssOverrides={css`
+      ${typography(400, FontSizes.Micro, '16px 0')};
+      margin-left: 16px;
+      margin-right: 16px;
+    `}
+  >
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+    consequat.
+  </Div>
+</BBCardBackground>
+```

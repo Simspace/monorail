@@ -7,6 +7,8 @@ exports.Accordion = void 0;
 
 var _styledComponents = _interopRequireWildcard(require("styled-components"));
 
+var _react = _interopRequireWildcard(require("react"));
+
 var A = _interopRequireWildcard(require("fp-ts/lib/Array"));
 
 var _Eq = require("fp-ts/lib/Eq");
@@ -19,7 +21,7 @@ var _Ord = require("fp-ts/lib/Ord");
 
 var _pipeable = require("fp-ts/lib/pipeable");
 
-var _react = _interopRequireWildcard(require("react"));
+var _Semigroup = require("fp-ts/lib/Semigroup");
 
 var _typeGuards = require("../../sharedHelpers/typeGuards");
 
@@ -27,24 +29,18 @@ var _Collapsible = require("../collapsible/Collapsible");
 
 var _ScrollAnimation = require("../layout/ScrollAnimation");
 
-var _Semigroup = require("fp-ts/lib/Semigroup");
-
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
-var _StyledDiv =
-/*#__PURE__*/
-_styledComponents.default.div.withConfig({
+var _StyledDiv = /*#__PURE__*/(0, _styledComponents.default)("div").withConfig({
   displayName: "Accordion___StyledDiv",
   componentId: "sgg3zy-0"
 })(["flex-grow:1;flex-shrink:1;flex-basis:auto;display:flex;flex-direction:column;overflow:hidden;", ";"], p => p._css);
 
-var _StyledScrollAnimation =
-/*#__PURE__*/
-(0, _styledComponents.default)(_ScrollAnimation.ScrollAnimation).withConfig({
+var _StyledScrollAnimation = /*#__PURE__*/(0, _styledComponents.default)(_ScrollAnimation.ScrollAnimation).withConfig({
   displayName: "Accordion___StyledScrollAnimation",
   componentId: "sgg3zy-1"
 })(["display:flex;flex-direction:column;overflow-y:", ";"], p => p._css2);
@@ -95,9 +91,9 @@ const Accordion = props => {
   O.alt(() => M.lookup(_Eq.eqString)(collapsible.key, localExpandedStates)), // Default to false
   O.getOrElse(() => false));
 
-  return _react.default.createElement(_StyledDiv, _extends({}, domProps, {
+  return /*#__PURE__*/_react.default.createElement(_StyledDiv, _extends({}, domProps, {
     _css: isContentScrollable ? `max-height: ${312 + 40 * content.length}px` : ``
-  }), _react.default.createElement(_StyledScrollAnimation, {
+  }), /*#__PURE__*/_react.default.createElement(_StyledScrollAnimation, {
     _css2: isContentScrollable ? 'hidden' : 'auto'
   }, content.map(collapsible => {
     const {
@@ -105,7 +101,7 @@ const Accordion = props => {
       onClick: onClickOpt,
       ...rest
     } = collapsible;
-    return _react.default.createElement(_Collapsible.Collapsible, _extends({
+    return /*#__PURE__*/_react.default.createElement(_Collapsible.Collapsible, _extends({
       key: key,
       sectionId: `section-${collapsible.key}`,
       labelId: `accordion-id-${collapsible.key}`,

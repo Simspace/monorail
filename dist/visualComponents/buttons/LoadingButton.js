@@ -62,7 +62,7 @@ class LoadingButton extends _react.Component {
       loadingText,
       ...rest
     } = this.props;
-    return _react.default.createElement(_Button.Button, _extends({}, rest, {
+    return /*#__PURE__*/_react.default.createElement(_Button.Button, _extends({}, rest, {
       disabled: this.props.disabled || this.state.loading,
       onClick: this.onClick
     }), this.state.loading ? loadingText : this.props.children);

@@ -1,6 +1,6 @@
+import React, { ReactElement, useLayoutEffect, useRef, useState } from 'react'
 import Downshift from 'downshift'
 import * as O from 'fp-ts/lib/Option'
-import React, { ReactElement, useLayoutEffect, useRef, useState } from 'react'
 import { pipe } from 'fp-ts/lib/pipeable'
 
 import {
@@ -18,6 +18,7 @@ import {
   defaultPopOverPosition,
   getOverlayPosition,
 } from '@monorail/metaComponents/popOver/PopOver'
+import { PortalController } from '@monorail/metaComponents/portal/PortalController'
 import { isUndefined } from '@monorail/sharedHelpers/typeGuards'
 import { CommonComponentType } from '@monorail/types'
 import { DisplayType } from '@monorail/visualComponents/inputs/inputTypes'
@@ -35,8 +36,7 @@ import {
 } from './helpers'
 import { InteractionController } from './interaction'
 import { DropdownParser } from './parsers'
-import { DropdownRender, useDefaultDropdownRender } from './render'
-import { PortalController } from '@monorail/metaComponents/portal/PortalController'
+import { createDefaultDropdownRender, DropdownRender } from './render'
 
 type DropdownContainerProps = CommonComponentType & {
   disabled: boolean
@@ -51,7 +51,7 @@ const DropdownWrapper = styled.div`
 
 const DropdownContainer = styled.div<DropdownContainerProps>(
   ({ disabled, error }) => css`
-    ${borderRadius(BorderRadius.Large)};
+    ${borderRadius(BorderRadius.Small)};
     ${flexFlow('column')};
     ${typographyFont(400, FontSizes.Title5)};
 
@@ -98,6 +98,7 @@ export type DropdownSkinCommonType = {
   required?: boolean
   label?: string
   display?: DisplayType
+  extraWidth?: number
 }
 
 export type DropdownSkinHookProps<T> = {
@@ -106,11 +107,9 @@ export type DropdownSkinHookProps<T> = {
 } & DropdownSkinCommonType &
   CommonComponentType
 
-type DropdownSkinHookState<T> = (state: DropdownStateType<T>) => ReactElement
-
-export type DropdownSkinHook<T> = (
+export type DropdownSkinComponent<T> = (
   props: DropdownSkinHookProps<T>,
-) => DropdownSkinHookState<T>
+) => (state: DropdownStateType<T>) => ReactElement
 
 type DropdownSkinProps<T> = {
   skin: DropdownSkinHookProps<T>
@@ -173,7 +172,6 @@ export const DropdownSkin = <T extends DropdownType>({
 
     return (
       <HandlerContainer ref={menuRef}>
-        {/* Hack for HTML5 required error state */}
         <select
           disabled={disabled || display === DisplayType.View}
           required={required}
@@ -226,11 +224,10 @@ export const DropdownSkin = <T extends DropdownType>({
           const itemDownshiftProps = getItemProps({
             ...itemProps,
             index,
-            key: `item-${index}`,
           }) as DownshiftItemPropsGetter<T>
 
           return (
-            <ItemContainer {...itemDownshiftProps}>
+            <ItemContainer key={`item-${index}`} {...itemDownshiftProps}>
               <render.item {...itemProps}>{itemToString(item)}</render.item>
             </ItemContainer>
           )
@@ -241,12 +238,15 @@ export const DropdownSkin = <T extends DropdownType>({
 
   const renderMenu = () => {
     const { isOpen, getMenuProps, toggleMenu } = downshiftProps
+    const { extraWidth = 0 } = skin
 
     const menuProps = getMenuProps() as DownshiftMenuPropsGetter<T>
     const position = menuTarget
       ? getOverlayPosition({ target: menuTarget })
       : defaultPopOverPosition
-    const width = menuTarget ? menuTarget.getBoundingClientRect().width : 0
+    const width = menuTarget
+      ? menuTarget.getBoundingClientRect().width + extraWidth
+      : 0
 
     return (
       <div {...menuProps}>
@@ -329,20 +329,20 @@ export const DropdownSkin = <T extends DropdownType>({
   )
 }
 
-const useDropdownHook = <T extends DropdownType>(
+const createDropdownSkin = <T extends DropdownType>(
   render: DropdownRender<T>,
-): DropdownSkinHook<T> => skin => state => (
+): DropdownSkinComponent<T> => skin => state => (
   <DropdownSkin<T> render={render} state={state} skin={skin} />
 )
 
 export const useDropdownSkin = <T extends DropdownType>(
   skin: DropdownSkinHookProps<T>,
-) => useDropdownHook<T>(useDefaultDropdownRender<T>())(skin)
+) => createDropdownSkin<T>(createDefaultDropdownRender<T>())(skin)
 
-export const useDropdownCustomSkin = <T extends DropdownType>(
+export const createDropdownCustomSkin = <T extends DropdownType>(
   render: Partial<DropdownRender<T>>,
 ) =>
-  useDropdownHook<T>({
-    ...useDefaultDropdownRender(),
+  createDropdownSkin<T>({
+    ...createDefaultDropdownRender(),
     ...render,
   })

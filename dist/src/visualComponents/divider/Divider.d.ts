@@ -1,5 +1,4 @@
 export declare type DividerProps = {
     isVertical?: boolean;
 };
-export declare const Divider: any;
-//# sourceMappingURL=Divider.d.ts.map
+export declare const Divider: import("styled-components").StyledComponent<"div", import("../../helpers/theme").GlobalAppThemeInterface, DividerProps, never>;

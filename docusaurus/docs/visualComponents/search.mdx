@@ -1,0 +1,70 @@
+---
+id: search
+title: Search
+sidebar_label: Search
+---
+
+import { ShowCase } from '../docComponents/ShowCase'
+
+import { ThemeProvider } from '@monorail/helpers/styled-components'
+import { Mode } from '@monorail/helpers/theme'
+
+import { useState } from 'react'
+import { Search } from '@monorail/visualComponents/inputs/Search'
+
+export const SearchController = () => {
+  const [value, setValue] = useState('')
+  return <Search onChange={setValue} value={value} />
+}
+
+Helps you find things.
+
+<ShowCase>
+  <SearchController />
+</ShowCase>
+
+## Usage
+
+Use Tags to visually label UI objects for quick recognition and navigation
+
+- Categories
+- Metadata
+
+**Multiple**  
+Use Tags when content is mapped to multiple categories, and the user needs a way to differentiate between them.
+
+**Filterable**  
+Tags can also be used as a method of filtering data, to show only items within that particular category.
+
+**Distinct**  
+The distinctive visual style of labels deliberately deviates from Buttons. This prevents users from confusing labels with Buttons and allows labels to co-exist with other components without competing for a user's attention with primary and secondary Buttons on the screen.
+
+## Types
+
+### Default
+
+You can include an Icon in a Tag. The Icon should be aligned to the left of the text.
+
+```tsx live
+function Example() {
+  const [value, setValue] = useState('')
+
+  return <Search onChange={setValue} value={value} />
+}
+```
+
+### Dark Mode
+
+Circular Tag with no text label
+
+```tsx live
+function DarkMode() {
+  const [value, setValue] = useState('')
+
+  return (
+    <ThemeProvider theme={theme => ({ ...theme, mode: Mode.Dark })}>
+      <Search onChange={setValue} value={value} />
+    </ThemeProvider>
+  )
+}
+```

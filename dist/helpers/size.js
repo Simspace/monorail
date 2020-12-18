@@ -33,6 +33,9 @@ const sizes = {
     },
     medium: {
       width: 584
+    },
+    mediumLarge: {
+      width: 724
     }
   },
   menu: {

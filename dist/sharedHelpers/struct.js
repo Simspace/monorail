@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.updateStruct = updateStruct;
+exports.deepMerge = deepMerge;
 
 /**
  * Create a union of values from a struct
@@ -12,10 +12,13 @@ exports.updateStruct = updateStruct;
 /** Recursively sets all fields of struct to optional */
 
 /**
- * Updates `struct` with `update` via a deep merge.
+ * Recursively merges the second argument into the first.
  * Only plain objects are merged, i.e. objects like `Array`
- * or `Date` will merely be overwritten rather than merged
- * with the new value.
+ * or `Date` will be overwritten rather than merged.
+ *
+ * **WARNING: Be wary of using this. fp-ts v2+ ADTs are plain object,
+ * so they'll get merged, usually in ways you don't want.**
+ *
  *
  * ```ts
  * const data = {
@@ -39,13 +42,13 @@ exports.updateStruct = updateStruct;
  * expect(actual2.one.three.four).toEqual('adios')
  * ```
  */
-function updateStruct(struct, update) {
+function deepMerge(struct, update) {
   const next = { ...struct
   };
 
   for (const [key, val] of Object.entries(update)) {
     const originalVal = struct[key];
-    next[key] = isRecord(originalVal) && isRecord(val) ? updateStruct(originalVal, val) : val;
+    next[key] = isRecord(originalVal) && isRecord(val) ? deepMerge(originalVal, val) : val;
   }
 
   return next;

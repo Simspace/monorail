@@ -1,5 +1,5 @@
 import { NaN } from '../newtypes'
-import { isFalsy, isFinite } from '../typeGuards'
+import { isDOMElement, isFalsy, isFinite } from '../typeGuards'
 
 describe('isFalsy', () => {
   it('should return false when given a truthy value', () => {
@@ -56,6 +56,20 @@ describe('isFinite', () => {
 
   it('should return true when given a finite number', () => {
     const actual = isFinite(Math.PI)
+    const expected = true
+    expect(actual).toBe(expected)
+  })
+})
+
+describe('isDOMElement', () => {
+  it('should return false when a non DOM Element is passed in', () => {
+    const actual = isDOMElement(1)
+    const expected = false
+    expect(actual).toBe(expected)
+  })
+
+  it('should return true when a DOM Element is passed in', () => {
+    const actual = isDOMElement(document.createElement('div'))
     const expected = true
     expect(actual).toBe(expected)
   })

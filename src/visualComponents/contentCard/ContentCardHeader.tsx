@@ -2,25 +2,25 @@ import React, { useRef } from 'react'
 import * as O from 'fp-ts/lib/Option'
 import { pipe } from 'fp-ts/lib/pipeable'
 
-import styled, { css, ThemeProvider } from '@monorail/helpers/styled-components'
 import {
   Colors,
-  getColor,
   flexFlow,
+  getColor,
   visible,
   zIndex,
   ZIndexNodeName,
 } from '@monorail/helpers/exports'
-import { EmptyUpload } from '@monorail/visualComponents/illustrations/EmptyUpload'
-import { matchI, matchOnI } from '@monorail/sharedHelpers/matchers'
+import styled, { css, ThemeProvider } from '@monorail/helpers/styled-components'
 import { Mode } from '@monorail/helpers/theme'
+import { matchI, matchOnI } from '@monorail/sharedHelpers/matchers'
 import { Button } from '@monorail/visualComponents/buttons/Button'
 import { ButtonDisplay } from '@monorail/visualComponents/buttons/buttonTypes'
-import {
-  HiddenSingleFileInput,
-  FileType,
-} from '@monorail/visualComponents/inputs/FileUpload'
 import { IconType } from '@monorail/visualComponents/icon/IconType'
+import { EmptyUpload } from '@monorail/visualComponents/illustrations/EmptyUpload'
+import {
+  FileType,
+  HiddenSingleFileInput,
+} from '@monorail/visualComponents/inputs/FileUpload'
 
 const ButtonContainer = styled.div`
   ${visible(false)}
@@ -31,7 +31,7 @@ const EmptyIcon = styled(EmptyUpload)`
   fill: ${getColor(Colors.Gray24)};
 `
 
-const HeaderImgContainer = styled.div<{ editMode: boolean }>(
+const HeaderImgContainer = styled.header<{ editMode: boolean }>(
   ({ editMode }) => css`
     ${flexFlow('column')}
     align-items: center;
@@ -43,7 +43,6 @@ const HeaderImgContainer = styled.div<{ editMode: boolean }>(
     height: 144px;
     overflow: hidden;
     position: relative;
-
     &:before {
       content: '';
       display: block;
@@ -55,17 +54,14 @@ const HeaderImgContainer = styled.div<{ editMode: boolean }>(
       background: ${getColor(Colors.Black)};
       opacity: 0;
     }
-
     &:hover {
       ${ButtonContainer} {
         ${visible(true)}
       }
-
       ${EmptyIcon} {
         opacity: 0.4;
       }
     }
-
     ${editMode &&
       `&:hover:before {
         opacity: 0.6;

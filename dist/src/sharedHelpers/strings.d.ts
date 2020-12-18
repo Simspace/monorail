@@ -34,18 +34,32 @@ export declare const toLocaleLower: (target: string) => string;
  * Takes a string and removes the spaces at the end of strings
  */
 export declare function trim(str: string): string;
+/**
+ * Find and remove all space characters within a string. This may be useful for
+ * filtering numeric text (given some user input) where spaces don't matter.
+ *
+ * includesNoncase(removeSpaces('2/10'))(removeSpaces('2 / 10')) // true
+ */
+export declare function removeSpaces(str: string): string;
 export declare function join<T>(separator: string, arr: Array<T>): string;
+export declare function join<T>(separator: string): (arr: Array<T>) => string;
 export declare const truncate: (maxLength: number) => (value: string) => string;
 export declare const includes: (target: string) => (source: string) => boolean;
 export declare const includesNoncase: (target: string) => (source: string) => boolean;
 export declare const capitalizeFirstLetter: (str: string) => string;
 export declare const capitalizeWords: (str: string) => string;
+export declare const startsWithNonCase: (target: string) => (source: string) => boolean;
 export declare const words: (str: string) => Array<string>;
 export declare const unwords: (str: Array<string>) => string;
 export declare const titleCase: (str: string) => string;
 export declare const camelCaseToTitleCase: (str: string) => string;
 export declare const addTrailingSlash: (path: string) => string;
 export declare const take: (n: number) => (s: string) => string;
+/**
+ * Removes the leading {@param n} characters from the supplied string
+ * @param n the amount of characters to drop
+ */
+export declare const drop: (n: number) => (s: string) => string;
 /**
  * Returns a string that contains `input` concatenated back-to-back `n` times
  */
@@ -73,4 +87,30 @@ export declare const splitAt: (n: number) => (s: string) => [string, string];
  * and checks to see if the result is NaN. Returns `None` if the result is NaN.
  */
 export declare const safeParseInt: (str: string, radix?: number) => O.Option<number>;
-//# sourceMappingURL=strings.d.ts.map
+export declare const elemLocaleLowerCase: (needle: string) => (haystack: string) => boolean;
+/**
+ * Patially matches any string value, returning None if a match is not found
+ *
+ * @example
+ *
+ * ```ts
+ * pipe(
+ *   'foo',
+ *   matchStringP({
+ *     foo: () => 'Hello',
+ *     bar: () => 'World'
+ *   })
+ * ) // Some('Hello')
+ * ```
+ *
+ * ```ts
+ * pipe(
+ *   'asdf',
+ *   matchStringP({
+ *     foo: () => 'Hello',
+ *     bar: () => 'World'
+ *   })
+ * ) // None
+ * ```
+ */
+export declare const matchStringP: <Out>(matchObj: Record<string, () => Out>) => (s: string) => O.Option<Out>;

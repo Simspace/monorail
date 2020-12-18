@@ -1,12 +1,13 @@
-import { range } from 'fp-ts/lib/Array'
 import React, {
   FC,
   ReactElement,
+  ReactNode,
   useLayoutEffect,
   useRef,
   useState,
 } from 'react'
 import styled, { css } from 'styled-components'
+import { range } from 'fp-ts/lib/Array'
 
 import { Colors, flexFlow, getColor } from '@monorail/helpers/exports'
 import { useInterval } from '@monorail/helpers/hooks'
@@ -67,6 +68,20 @@ const Dot = styled.div<DotProps>(
   `,
 )
 
+const SlidesContainer = styled.div<{
+  slides: Array<unknown>
+  slideWidth: number
+  currentSlideIndex: number
+}>`
+  ${flexFlow('row')};
+  width: ${props => 100 * props.slides.length}%;
+  transform: ${props => `translateX(
+    calc((-100% / ${props.slides.length}) * ${props.currentSlideIndex})
+  )`};
+  transition: ${props => `transform ease-out ${props.slideWidth / 2}ms`};
+  height: 100%;
+`
+
 /*
  * Types
  */
@@ -92,7 +107,7 @@ export type CarouselChildrenProps = {
 type Props = {
   indicatorDots?: boolean
   dotColor?: Colors
-  slides: Array<ReactElement>
+  slides: Array<ReactNode>
   loop?: boolean
   autoPlay?: boolean
   timerInterval?: number
@@ -197,23 +212,17 @@ export const Carousel: FC<Props> = ({
           position: relative;
         `}
       >
-        <div
-          css={css`
-            ${flexFlow('row')};
-            width: ${100 * slides.length}%;
-            transform: translateX(
-              calc((-100% / ${slides.length}) * ${currentSlideIndex})
-            );
-            transition: transform ease-out ${slideWidth / 2}ms;
-            height: 100%;
-          `}
+        <SlidesContainer
+          slides={slides}
+          slideWidth={slideWidth}
+          currentSlideIndex={currentSlideIndex}
         >
           {slides.map((slide, index) => (
             <SlideItem ref={slideItemRef} key={`slide-${index}`}>
               {slide}
             </SlideItem>
           ))}
-        </div>
+        </SlidesContainer>
         {indicatorDots && (
           <DotContainer>
             {!isNil(slides.length - 1) &&

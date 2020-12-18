@@ -26,7 +26,7 @@ export type DropdownParserHook<T> = (
   props?: Partial<DropdownParserProps<T>>,
 ) => DropdownParser<T>
 
-export function useDropdownTypeParser<T extends DropdownType>(
+export function createDropdownTypeParser<T extends DropdownType>(
   props?: Partial<DropdownParserProps<T>>,
 ): DropdownParser<T> {
   const {
@@ -58,11 +58,11 @@ export function useDropdownTypeParser<T extends DropdownType>(
   }
 }
 
-export const useCustomParser = <T extends DropdownType>(
+export const createCustomParser = <T extends DropdownType>(
   options: Partial<DropdownParserProps<T>> & Partial<DropdownParser<T>>,
 ) => {
   const { value, label, ...override } = options
-  const parser = useDropdownTypeParser<T>({ value, label })
+  const parser = createDropdownTypeParser<T>({ value, label })
 
   return () => ({
     ...parser,

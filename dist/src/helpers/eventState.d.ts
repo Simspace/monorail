@@ -10,4 +10,3 @@ export declare enum EventState {
     Paused = "paused"
 }
 export declare const convertEventStateToColor: (eventState: EventState) => Colors;
-//# sourceMappingURL=eventState.d.ts.map

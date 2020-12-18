@@ -1,10 +1,10 @@
-import { useState, useMemo, useCallback } from 'react'
-import { not, identity, flow } from 'fp-ts/lib/function'
+import { useCallback, useMemo, useState } from 'react'
 import { elem as elemArray, filter, lookup, uniq } from 'fp-ts/lib/Array'
-import { pipe } from 'fp-ts/lib/pipeable'
+import { flow, identity, not } from 'fp-ts/lib/function'
 import { elem as elemOption, fold, fromPredicate } from 'fp-ts/lib/Option'
+import { pipe } from 'fp-ts/lib/pipeable'
 
-import { unsafeCoerceToArray } from '@monorail/sharedHelpers/ReadonlyArray'
+import { unsafeCoerceToArray } from '@monorail/sharedHelpers/fp-ts-ext/ReadonlyArray'
 import { isNotNil } from '@monorail/sharedHelpers/typeGuards'
 import { DisplayType } from '@monorail/visualComponents/inputs/inputTypes'
 
@@ -26,6 +26,8 @@ export function useFormMultiSelectInput<A>(
 
   const [searchValue, setSearchValue_] = useState('')
 
+  // TODO(eslint): fix exhaustive deps
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const setSearchValue = useCallback(
     flow(modifySetSearchValue, setSearchValue_),
     [modifySetSearchValue],
@@ -62,10 +64,12 @@ export function useFormMultiSelectInput<A>(
       selectedOptions,
     ],
   )
+
   const removeOption = useCallback(
     (value: A) => onChange(selectedOptions.filter(a => !eq.equals(value, a))),
     [eq, onChange, selectedOptions],
   )
+
   const addItem = useCallback(
     (item: A) => {
       pipe(
@@ -80,6 +84,7 @@ export function useFormMultiSelectInput<A>(
     },
     [validateItem, setSearchValue, onChange, eq, selectedOptions],
   )
+
   const checkIsHighlighted = useCallback(
     (item: A, highlightedIndex: number | null) => {
       if (highlightedIndex === null) {

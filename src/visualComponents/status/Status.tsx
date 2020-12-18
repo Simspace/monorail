@@ -6,12 +6,12 @@ import {
   FontWeights,
   getColor,
 } from '@monorail/helpers/exports'
+import styled, { css } from '@monorail/helpers/styled-components'
 import { isEmptyString, isNumber } from '@monorail/sharedHelpers/typeGuards'
 import { CommonComponentType } from '@monorail/types'
 import { Icon } from '@monorail/visualComponents/icon/Icon'
 import { IconType } from '@monorail/visualComponents/icon/IconType'
 import { Text } from '@monorail/visualComponents/typography/Text'
-import styled, { css } from '@monorail/helpers/styled-components'
 
 const statusFontSizeLookUp = {
   [FontSizes.Hyper1]: {

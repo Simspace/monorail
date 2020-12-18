@@ -1,3 +1,3 @@
-export declare const SectionTitle: any;
-export declare const Bold: any;
-//# sourceMappingURL=Typography.d.ts.map
+import { CommonComponentType, TypographyComponent } from '@monorail/types';
+export declare const SectionTitle: import("styled-components").StyledComponent<"h1", any, CommonComponentType & TypographyComponent, never>;
+export declare const Bold: import("styled-components").StyledComponent<"strong", any, {}, never>;

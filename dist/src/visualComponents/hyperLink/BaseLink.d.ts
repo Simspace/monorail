@@ -5,4 +5,3 @@ declare type BaseLinkProps = LinkProps & {
 };
 export declare const BaseLink: ForwardRefExoticComponent<PropsWithoutRef<BaseLinkProps> & RefAttributes<HTMLAnchorElement>>;
 export {};
-//# sourceMappingURL=BaseLink.d.ts.map

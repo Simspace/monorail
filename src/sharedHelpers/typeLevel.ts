@@ -1,7 +1,7 @@
+import { ReactElement } from 'react'
 import { Either } from 'fp-ts/lib/Either'
 import { HKT, HKT2, HKT3, HKT4, URIS, URIS2, URIS3, URIS4 } from 'fp-ts/lib/HKT'
 import { Option } from 'fp-ts/lib/Option'
-import { ReactElement } from 'react'
 
 import { NaN } from './newtypes'
 
@@ -324,6 +324,14 @@ export type DistributivePick<
     : { [P2 in P]: U[P2] }[P]
 }
 
+/**
+ * A version of `Omit` that distributes over union types.
+ */
+export type DistributiveOmit<
+  U extends object,
+  K extends DistributiveKeyOf<U>
+> = DistributivePick<U, Exclude<DistributiveKeyOf<U>, K>>
+
 export type ExtractMemberFromUnion<
   A extends object,
   B extends ExactRecordsUnion<A>
@@ -380,3 +388,19 @@ export type DistributiveRaiseSubProperty<
   K extends keyof T,
   SK extends keyof T[K]
 > = T extends {} ? RaiseSubProperty<T, K, SK> : never
+
+/**
+ * The opposite of Exclude, checks to see what values extends a given value.
+ * @example
+ *
+ * type OneTwoThree = 1 | 2 | 3
+ * type A = OneTwoThree | 4
+ * type B = Include<A, OneTwoThree> // B === OneTwoThree
+ */
+export type Include<A, B> = A extends B ? A : never
+
+export type OptionalToOption<T> = {
+  [K in keyof T]-?: undefined extends T[K]
+    ? Option<OptionalToOption<Exclude<T[K], undefined>>>
+    : OptionalToOption<T[K]>
+}

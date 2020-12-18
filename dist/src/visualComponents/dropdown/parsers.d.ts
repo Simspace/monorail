@@ -10,8 +10,8 @@ export declare type DropdownParser<T> = DropdownParserProps<T> & {
     compare: (target: T | DropdownItemValue) => (source: T | DropdownItemValue) => boolean;
 };
 export declare type DropdownParserHook<T> = (props?: Partial<DropdownParserProps<T>>) => DropdownParser<T>;
-export declare function useDropdownTypeParser<T extends DropdownType>(props?: Partial<DropdownParserProps<T>>): DropdownParser<T>;
-export declare const useCustomParser: <T extends DropdownType>(options: Partial<DropdownParserProps<T>> & Partial<DropdownParser<T>>) => () => {
+export declare function createDropdownTypeParser<T extends DropdownType>(props?: Partial<DropdownParserProps<T>>): DropdownParser<T>;
+export declare const createCustomParser: <T extends DropdownType>(options: Partial<DropdownParserProps<T>> & Partial<DropdownParser<T>>) => () => {
     isActive: (item: T) => boolean;
     includes: (target: string) => (source: T) => boolean;
     compare: (target: string | number | T) => (source: string | number | T) => boolean;
@@ -19,4 +19,3 @@ export declare const useCustomParser: <T extends DropdownType>(options: Partial<
     label: (item: T) => string;
 };
 export {};
-//# sourceMappingURL=parsers.d.ts.map

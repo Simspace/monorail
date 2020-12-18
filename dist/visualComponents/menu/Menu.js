@@ -51,9 +51,7 @@ const MenuContainer = _styledComponents2.default.div(({
 
 exports.MenuContainer = MenuContainer;
 
-var _StyledMenuContainer =
-/*#__PURE__*/
-(0, _styledComponents.default)(MenuContainer).withConfig({
+var _StyledMenuContainer = /*#__PURE__*/(0, _styledComponents.default)(MenuContainer).withConfig({
   displayName: "Menu___StyledMenuContainer",
   componentId: "sc-2wfm6w-0"
 })(["", " visibility:", ";", ""], p => p._css, p => p._css2, p => p._css3);
@@ -68,9 +66,7 @@ const MenuContent = _styledComponents2.default.div`
 `;
 exports.MenuContent = MenuContent;
 
-var _StyledMenuContent =
-/*#__PURE__*/
-(0, _styledComponents.default)(MenuContent).withConfig({
+var _StyledMenuContent = /*#__PURE__*/(0, _styledComponents.default)(MenuContent).withConfig({
   displayName: "Menu___StyledMenuContent",
   componentId: "sc-2wfm6w-1"
 })(["", ""], p => p._css4);
@@ -130,7 +126,7 @@ const Menu = props => {
     eventListener,
     element: menuRef.current
   });
-  return _react.default.createElement(_Overlay.Overlay, {
+  return /*#__PURE__*/_react.default.createElement(_Overlay.Overlay, {
     isOpen: isOpen,
     onClick: onClick,
     overlayProps: {
@@ -138,14 +134,14 @@ const Menu = props => {
     },
     togglePopOver: togglePopOver,
     zIndex: zIndex
-  }, _react.default.createElement(_StyledMenuContainer, _extends({
+  }, /*#__PURE__*/_react.default.createElement(_StyledMenuContainer, _extends({
     ref: menuRef,
     width: (0, _typeGuards.isNil)(width) ? 'auto' : `${width}px`
   }, domProps, {
     _css: scaleAnimation.outSideContentStyles,
     _css2: isRendered ? 'visible' : 'hidden',
     _css3: cssOverrides
-  }), _react.default.createElement(_StyledMenuContent, {
+  }), /*#__PURE__*/_react.default.createElement(_StyledMenuContent, {
     _css4: scaleAnimation.inSideContentStyles
   }, children)));
 };

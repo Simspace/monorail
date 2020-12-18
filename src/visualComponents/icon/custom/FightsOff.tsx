@@ -1,4 +1,5 @@
 import React, { ComponentType } from 'react'
+
 import { CustomIconProps } from '@monorail/visualComponents/icon/Icon'
 
 export const FightsOff: ComponentType<CustomIconProps> = props => (

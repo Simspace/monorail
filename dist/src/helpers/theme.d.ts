@@ -1,4 +1,5 @@
 import { Colors } from '@monorail/helpers/color';
+import { Theme } from '@monorail/v2/core/theme/colors';
 import { IconType } from '@monorail/visualComponents/icon/IconType';
 export declare enum Mode {
     Light = "light",
@@ -29,6 +30,7 @@ declare type ColorTheme = {
     [key in Exclude<ThemeColors, ThemeColors.ApplicationPrimary | ThemeColors.ApplicationSecondary>]: Colors;
 };
 export interface GlobalAppThemeInterface {
+    v2: Theme;
     [Mode.Dark]: ColorTheme;
     [Mode.Light]: ColorTheme;
     [ThemeColors.ApplicationPrimary]: Colors;
@@ -44,9 +46,6 @@ export interface GlobalAppThemeInterface {
         table: {
             margin: 16 | 24 | 32;
         };
-    };
-    pageHeader: {
-        showBreadCrumbs: boolean;
     };
     introductionTagline: Array<string>;
     introductionOctagonColor: string;
@@ -64,4 +63,3 @@ export declare const getThemeColorBase: (colorKey: ThemeColors, a?: number) => (
     a: number;
 };
 export {};
-//# sourceMappingURL=theme.d.ts.map

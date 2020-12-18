@@ -7,6 +7,8 @@ exports.ActionsMenu = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
+var _function = require("fp-ts/lib/function");
+
 var _size = require("../../helpers/size");
 
 var _PopOver = require("../../metaComponents/popOver/PopOver");
@@ -14,6 +16,8 @@ var _PopOver = require("../../metaComponents/popOver/PopOver");
 var _buttonTypes = require("../buttons/buttonTypes");
 
 var _IconButton = require("../buttons/IconButton");
+
+var _Divider = require("../divider/Divider");
 
 var _List = require("../list/List");
 
@@ -30,19 +34,23 @@ const ActionsMenu = props => {
   const {
     document,
     actions,
-    toggle = toggleProps => _react.default.createElement(_IconButton.IconButton, _extends({
+    toggle = toggleProps => /*#__PURE__*/_react.default.createElement(_IconButton.IconButton, _extends({
       icon: "more_vert",
       display: _buttonTypes.ButtonDisplay.Chromeless
     }, toggleProps)),
+    onActionComplete = _function.identity,
     ...domProps
   } = props;
-  return _react.default.createElement(_react.default.Fragment, null, actions.length > 0 && _react.default.createElement(_PopOver.PopOver, {
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, actions.length > 0 && /*#__PURE__*/_react.default.createElement(_PopOver.PopOver, {
     popOver: ({
       onClick,
       ...otherProps
-    }) => _react.default.createElement(_Menu.Menu, _extends({
+    }) => /*#__PURE__*/_react.default.createElement(_Menu.Menu, _extends({
       onClick: onClick
     }, otherProps), actions.reduce((filtered, action, idx) => {
+      if (action.type === 'divider') {
+        return filtered.concat( /*#__PURE__*/_react.default.createElement(_Divider.Divider, null));
+      }
       /**
        * Setting a field on a menu item to `isFeaturedAction: true`
        * does not have the intended effect it used to. Better to not
@@ -50,14 +58,16 @@ const ActionsMenu = props => {
        * ActionsMenu component.
        * - AR - 20200716
        */
+
+
       if (!action.isFeaturedAction) {
-        return filtered.concat(_react.default.createElement(_List.SimpleListItem, {
+        return filtered.concat( /*#__PURE__*/_react.default.createElement(_List.SimpleListItem, {
           key: idx,
           size: _size.Sizes.DP32,
           leftIcon: action.iconName,
           leftIconColor: action.iconColor,
           primaryText: action.label,
-          onClick: e => action.onClick(() => onClick(e), e),
+          onClick: e => onActionComplete(action.onClick(() => onClick(e), e)),
           disabled: action.disabled
         }, action.children));
       }

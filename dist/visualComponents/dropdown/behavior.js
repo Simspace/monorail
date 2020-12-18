@@ -5,17 +5,17 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.useControlledDropdown = exports.useAsSelect = exports.useAsFilter = void 0;
 
-var _fpTsImports = require("../../sharedHelpers/fp-ts-imports");
+var _react = require("react");
 
 var _downshift = _interopRequireDefault(require("downshift"));
-
-var _Do = require("fp-ts-contrib/lib/Do");
-
-var _react = require("react");
 
 var _useDebounce = require("use-debounce");
 
 var _util = require("util");
+
+var _Do = require("fp-ts-contrib/lib/Do");
+
+var _fpTsImports = require("../../sharedHelpers/fp-ts-imports");
 
 var _typeGuards = require("../../sharedHelpers/typeGuards");
 

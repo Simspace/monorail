@@ -3,11 +3,11 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.rle = exports.toggle = exports.fromEither = exports.fromOption = exports.without = exports.isNotEmpty = exports.arrayToRecord = exports.xor = exports.notAny = exports.all = exports.any = exports.intersperseMapWithIndex = exports.intersperseMap = exports.intersperse = exports.liftOption2 = exports.sortByNumeric = exports.sortByAlpha = exports.splitEithers = exports.leftsAndRights = exports.traverseTaskEithers = exports.traverseTasks = exports.traverseEithers = exports.traverseOptions = exports.sequenceRemoteData = exports.sequenceTaskEithers = exports.sequenceTasks = exports.sequenceEithers = exports.sequenceOptions = exports.len = exports.containsAny = exports.containsEq = exports.contains = exports.runIOs = exports.forEachWithIndex = exports.forEach = exports.concatFlipped = exports.concat = exports.map = void 0;
-
-var _fpTsImports = require("../fp-ts-imports");
+exports.compactNullable = exports.findFirstMapWithIndex = exports.spliceWhere = exports.zip = exports.rle = exports.toggle = exports.fromEither = exports.fromOption = exports.without = exports.isNotEmpty = exports.arrayToRecord = exports.xor = exports.notAny = exports.all = exports.any = exports.intersperseMapWithIndex = exports.intersperseMap = exports.intersperse = exports.liftOption2 = exports.sortByNumeric = exports.sortByAlpha = exports.splitEithers = exports.leftsAndRights = exports.traverseTaskEithers = exports.traverseTasks = exports.traverseEithers = exports.traverseOptions = exports.sequenceRemoteData = exports.sequenceTaskEithers = exports.sequenceTasks = exports.sequenceEithers = exports.sequenceOptions = exports.len = exports.containsAny = exports.containsEq = exports.contains = exports.runIOs = exports.forEachWithIndex = exports.forEachPipe = exports.forEach = exports.concatFlipped = exports.concat = exports.map = void 0;
 
 var _remoteDataTs = require("@devexperts/remote-data-ts");
+
+var _lodash = require("lodash");
 
 var _Apply = require("fp-ts/lib/Apply");
 
@@ -17,9 +17,11 @@ var _Either = require("fp-ts/lib/Either");
 
 var _function = require("fp-ts/lib/function");
 
-var _pipeable = require("fp-ts/lib/pipeable");
+var _Monoid = require("fp-ts/lib/Monoid");
 
 var _Option = require("fp-ts/lib/Option");
+
+var _pipeable = require("fp-ts/lib/pipeable");
 
 var _Record = require("fp-ts/lib/Record");
 
@@ -27,7 +29,11 @@ var _Task = require("fp-ts/lib/Task");
 
 var _TaskEither = require("fp-ts/lib/TaskEither");
 
+var _fpTsImports = require("../fp-ts-imports");
+
 var _typeGuards = require("../typeGuards");
+
+var _Eq = require("./Eq");
 
 var _IO = require("./IO");
 
@@ -35,11 +41,8 @@ var _Option2 = require("./Option");
 
 var _Ord = require("./Ord");
 
-var _Eq = require("./Eq");
-
-var _Monoid = require("fp-ts/lib/Monoid");
-
-var _lodash = require("lodash");
+// TODO: we should copy all these functions to ReadonlyArray (and change the types to ReadonlyArray), then alias those functions here.
+// There is also likely some redundancy with some of these and what's available now that we are on fp-ts 2.
 
 /**
  * Curried version of fp-ts' `map` for Arrays
@@ -61,7 +64,7 @@ const concat = xs => ys => _Array.array.alt(xs, () => ys);
 
 exports.concat = concat;
 
-const concatFlipped = xs => ys => _Array.array.alt(xs, () => ys);
+const concatFlipped = xs => ys => _Array.array.alt(ys, () => xs);
 /**
  * Function wrapper around the native `array.forEach`
  */
@@ -71,11 +74,19 @@ exports.concatFlipped = concatFlipped;
 
 const forEach = (xs, f) => xs.forEach(f);
 /**
- * Function wrapper around the native `array.forEach` including an index
+ * Pipable version of `forEach` helper.
  */
 
 
 exports.forEach = forEach;
+
+const forEachPipe = f => xs => xs.forEach(f);
+/**
+ * Function wrapper around the native `array.forEach` including an index
+ */
+
+
+exports.forEachPipe = forEachPipe;
 
 const forEachWithIndex = (xs, f) => xs.forEach(f);
 /**
@@ -452,3 +463,65 @@ exports.toggle = toggle;
 const rle = eq => as => (0, _pipeable.pipe)(as, (0, _Array.reduce)([], (runLengths, next) => (0, _pipeable.pipe)((0, _Array.last)(runLengths), _fpTsImports.O.fold(() => [[next, 1]], ([prev, n]) => eq.equals(prev, next) ? runLengths.slice(0, -1).concat([[prev, n + 1]]) : runLengths.concat([[next, 1]])))));
 
 exports.rle = rle;
+
+/**
+ * Variadic zip with type inference.
+ *
+ * @example
+ * declare const ns: Array<number>
+ * declare const ss: Array<string>
+ * declare const bs: Array<boolean>
+ * zip(ns, ns, ns) // :: Array<[number, number, number]>
+ * zip(ss, ns) // :: Array<[string, number]>
+ * zip(bs, ns, ss, ss) // :: Array<[boolean, number, string, string]>
+ */
+const zip = (...as) => {
+  const res = [];
+  const l = as.length === 0 ? 0 : Math.min(...as.map(a => a.length));
+
+  for (let i = 0; i < l; i++) {
+    res[i] = as.map(a => a[i]);
+  }
+
+  return res;
+};
+/**
+ * Immutable, predicate-based splice
+ */
+
+
+exports.zip = zip;
+
+const spliceWhere = predicate => (mapMatch, mapNotMatch = _lodash.identity) => arr => (0, _pipeable.pipe)(arr, (0, _Array.chain)(a => predicate(a) ? mapMatch(a) : [mapNotMatch(a)]));
+/**
+ * Finds first element in an array for which `f` returns a `some`
+ */
+
+
+exports.spliceWhere = spliceWhere;
+
+const findFirstMapWithIndex = f => as => {
+  const l = as.length;
+
+  for (let i = 0; i < l; i++) {
+    const v = f(i, as[i]);
+
+    if (_fpTsImports.O.isSome(v)) {
+      return v;
+    }
+  }
+
+  return _fpTsImports.O.none;
+};
+/**
+ * Array.compact that works on Array<Nullable> as opposed to Array<Option>
+ * Does not affect falsey values
+ * @param as
+ */
+
+
+exports.findFirstMapWithIndex = findFirstMapWithIndex;
+
+const compactNullable = as => (0, _pipeable.pipe)(as, (0, _Array.filter)(_typeGuards.isNotNil));
+
+exports.compactNullable = compactNullable;

@@ -1,11 +1,11 @@
 /// <reference types="react" />
-import { FontSizes } from '@monorail/helpers/exports';
 import { SimpleInterpolation } from 'styled-components';
-import { IconType } from '@monorail/visualComponents/icon/IconType';
+import { FontSizes } from '@monorail/helpers/exports';
 import { ButtonProps } from '@monorail/visualComponents/buttons/Button';
-export declare const TextContainer: any;
-export declare type Props = {
-    icon: IconType;
+import { IconType } from '@monorail/visualComponents/icon/IconType';
+export declare const TextContainer: import("styled-components").StyledComponent<"div", import("../../helpers/theme").GlobalAppThemeInterface, {}, never>;
+export declare type EmptyStateProps = {
+    icon?: IconType;
     size?: EmptyStateSizes;
     message?: string;
     title?: string;
@@ -43,5 +43,4 @@ export declare const messageMargins: {
     large: string;
 };
 export declare const getMessageMaxWidth: (size: EmptyStateSizes) => number;
-export declare const EmptyState: (props: Props) => JSX.Element;
-//# sourceMappingURL=EmptyState.d.ts.map
+export declare const EmptyState: (props: EmptyStateProps) => JSX.Element;

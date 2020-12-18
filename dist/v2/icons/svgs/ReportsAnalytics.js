@@ -1,0 +1,78 @@
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.ReportsAnalytics = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+var _core = require("@material-ui/core");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+const ReportsAnalytics = props => /*#__PURE__*/_react.default.createElement(_core.SvgIcon, _extends({}, props, {
+  viewBox: "0 0 40 40",
+  height: "40",
+  width: "40"
+}), /*#__PURE__*/_react.default.createElement("rect", {
+  x: "4",
+  y: "4",
+  width: "32",
+  height: "32",
+  rx: "4" // SVG fill #ids relative to path if base url path is set https://stackoverflow.com/a/53579924
+  ,
+  fill: `url(${window.location.pathname}#reportsBackground)`
+}), /*#__PURE__*/_react.default.createElement("rect", {
+  x: "19",
+  y: "2",
+  width: "6",
+  height: "26",
+  fill: "#C32C07"
+}), /*#__PURE__*/_react.default.createElement("rect", {
+  x: "11",
+  y: "10",
+  width: "6",
+  height: "18",
+  fill: "#C32C07"
+}), /*#__PURE__*/_react.default.createElement("rect", {
+  x: "20",
+  y: "3",
+  width: "6",
+  height: "26",
+  fill: "#fff"
+}), /*#__PURE__*/_react.default.createElement("rect", {
+  x: "27",
+  y: "18",
+  width: "6",
+  height: "10",
+  fill: "#D13711"
+}), /*#__PURE__*/_react.default.createElement("rect", {
+  x: "12",
+  y: "11",
+  width: "6",
+  height: "18",
+  fill: "#fff"
+}), /*#__PURE__*/_react.default.createElement("rect", {
+  x: "28",
+  y: "19",
+  width: "6",
+  height: "10",
+  fill: "#fff"
+}), /*#__PURE__*/_react.default.createElement("defs", null, /*#__PURE__*/_react.default.createElement("linearGradient", {
+  id: "reportsBackground",
+  x1: "36",
+  y1: "4",
+  x2: "4",
+  y2: "36",
+  gradientUnits: "userSpaceOnUse"
+}, /*#__PURE__*/_react.default.createElement("stop", {
+  stopColor: "#FD5931"
+}), /*#__PURE__*/_react.default.createElement("stop", {
+  offset: "1",
+  stopColor: "#DE2D02"
+}))));
+
+exports.ReportsAnalytics = ReportsAnalytics;

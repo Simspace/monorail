@@ -1,17 +1,15 @@
-import { O, pipe } from '@monorail/sharedHelpers/fp-ts-imports'
-import { constTrue } from 'fp-ts/lib/function'
-import { none, Option, option, some } from 'fp-ts/lib/Option'
-
-import { isFalsy, isNil } from '@monorail/sharedHelpers/typeGuards'
-import { ReactRenderable } from '@monorail/sharedHelpers/typeLevel'
-
 import {
   Applicative,
   Applicative1,
   Applicative2,
   Applicative2C,
 } from 'fp-ts/lib/Applicative'
-import { URIS, HKT, URIS2, HKT2, Kind, Kind2 } from 'fp-ts/lib/HKT'
+import { HKT, Kind, Kind2, URIS, URIS2 } from 'fp-ts/lib/HKT'
+import { Option, option } from 'fp-ts/lib/Option'
+import { O, pipe } from '@monorail/sharedHelpers/fp-ts-imports'
+
+import { isNil } from '@monorail/sharedHelpers/typeGuards'
+import { ReactRenderable } from '@monorail/sharedHelpers/typeLevel'
 
 /**
  * type guard for Option
@@ -47,43 +45,16 @@ export const getOrElse = <A>(a: A) => (b: Option<A>): A =>
   )
 
 /**
- * Partially applied version of `getOrElse` providing an empty array
- * as the default argument
- */
-export const getOrEmptyArray = <A>(opt: Option<Array<A>>) =>
-  getOrElse([] as Array<A>)(opt)
-
-/**
  * Partially applied version of `getOrElse` providing an empty string
  * as the default argument
  */
 export const getOrEmptyString = getOrElse('')
 
 /**
- * Partially applied version of `getOrElse` providing the number zero
- * as the default argument
- */
-export const getOrZero = getOrElse(0)
-
-/**
- * Converts truthy/falsy values into Options, like `fromNullable` from
- * fp-ts, but converts all falsy values, instead of just null or undefined,
- * into Nones
- */
-export const fromTruthyFalsy = <A>(x: A): Option<A> =>
-  isFalsy(x) ? none : some(x)
-
-/**
- * Converts a None into false, and a Some<T> into a boolean
- */
-export const toBoolean = <A>(x: Option<A>): boolean =>
-  O.fold(() => false, constTrue)(x)
-
-/**
  * Folds an option down into either an empty array or a single-element array containing
  * the value from within the Some. Useful in conjunction with the spread operator.
  */
-export const toSpreadable: <A>(fa: Option<A>) => Array<A> = fa =>
+export const toArray: <A>(fa: Option<A>) => Array<A> = fa =>
   pipe(
     fa,
     O.fold(
@@ -91,12 +62,6 @@ export const toSpreadable: <A>(fa: Option<A>) => Array<A> = fa =>
       a => [a],
     ),
   )
-
-/**
- * Returns true if the option is false or if the predicate returns true when applied to the wrapped value
- */
-export const all = <A>(x: Option<A>, predicate: (a: A) => boolean): boolean =>
-  O.fold(() => true, predicate)(x)
 
 /**
  * Traverse over an Option into an applicative.

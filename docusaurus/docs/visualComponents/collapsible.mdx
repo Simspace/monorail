@@ -1,0 +1,98 @@
+---
+id: collapsible
+title: Collapsible
+sidebar_label:  Collapsible
+---
+
+import { ShowCase } from '../docComponents/ShowCase'
+import { AccordionContent } from '../docComponents/AccordionDoc'
+
+import {
+  FontSizes,
+  FontWeights,
+  gothamFontFamily,
+  typographyFont,
+} from '@monorail/helpers/exports'
+import { Collapsible } from '@monorail/visualComponents/collapsible/Collapsible'
+import { Text } from '@monorail/visualComponents/typography/Text'
+
+Collapsibles are elements that make up an Accordion. They expand/collapse when clicked on.
+
+<ShowCase>
+  <div style={{maxWidth: '90%'}}>
+  <Collapsible
+    iconPosition="left"
+    header={
+      <Text fontSize={FontSizes.Title5} fontWeight={FontWeights.Medium}>
+        Title
+      </Text>
+    }
+    content={
+      <AccordionContent>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Neque
+        quisquam, laudantium animi obcaecati earum deserunt atque itaque
+        repellat iste ea!
+      </AccordionContent>
+    }
+  />
+  </div>
+</ShowCase>
+
+## Usage
+
+Collapsibles are used to show or hide content that is not immediately needed by the user in order to save vertical space.
+
+## Types
+
+### Left aligned (default)
+
+Uses a caret right and caret down icon when left aligned
+
+
+```tsx live
+function Collapsiblez() {
+  return (
+    <div style={{maxWidth: '90%'}}>
+      <Collapsible
+        iconPosition="left"
+        header={
+          <Text fontSize={FontSizes.Title5} fontWeight={FontWeights.Medium}>
+            Title
+          </Text>
+        }
+        content={
+          <AccordionContent>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Neque
+            quisquam, laudantium animi obcaecati earum deserunt atque itaque
+            repellat iste ea!
+          </AccordionContent>
+        }
+      />
+    </div>
+  )
+}
+```
+
+### Right aligned
+
+Uses a chevron up and chevron down icon when right aligned
+
+
+```tsx live
+<div style={{maxWidth: '90%'}}>
+  <Collapsible
+    iconPosition="right"
+    header={
+      <Text fontSize={FontSizes.Title5} fontWeight={FontWeights.Medium}>
+        Title
+      </Text>
+    }
+    content={
+      <AccordionContent>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Neque quisquam,
+        laudantium animi obcaecati earum deserunt atque itaque repellat iste ea!
+      </AccordionContent>
+    }
+  />
+</div>
+```

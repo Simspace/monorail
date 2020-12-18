@@ -1,0 +1,90 @@
+---
+id: scheduler
+title: Scheduler
+sidebar_label: Scheduler
+---
+
+import { some } from 'fp-ts/lib/Option'
+import moment from 'moment'
+import uuid from 'uuid'
+
+import { ShowCase } from '../docComponents/ShowCase'
+import { Div } from '@monorail/StyleHelpers'
+import {
+  Event,
+  SchedulerType,
+} from 'src/common/monoblocks/calendar/Calendar.types'
+import {
+  SchedulerContext,
+  useScheduler,
+} from 'src/common/monoblocks/scheduler/Scheduler.hooks'
+import { Scheduler } from 'src/common/monoblocks/scheduler/Scheduler'
+
+export const CONTENT_MODULE_DURATION = 129600000
+
+export const event = {
+  id: uuid.v4(),
+  schedulerType: SchedulerType.Scheduled,
+  title: 'Outside event 1',
+  start: moment(new Date())
+    .date(1)
+    .toDate(),
+  end: moment(new Date())
+    .date(1)
+    .add(3, 'days')
+    .toDate(),
+  outside: true,
+}
+
+export const defaults = {
+  defaultEventDuration: CONTENT_MODULE_DURATION,
+  eventDuration: CONTENT_MODULE_DURATION,
+  event: some(event),
+  isObservingWorkdays: false,
+  observeDailyWorkHours: some({
+    start: some(
+      moment(new Date())
+        .hour(9)
+        .minute(0)
+        .second(0)
+        .millisecond(0)
+        .toDate(),
+    ),
+    end: some(
+      moment(new Date())
+        .hour(17)
+        .minute(0)
+        .second(0)
+        .millisecond(0)
+        .toDate(),
+    ),
+  }),
+}
+
+export const SchedulerDoc = () => {
+  const schedulerRedux = useScheduler(defaults)
+  return (
+    <Div
+      cssOverrides={`
+          min-height: 550px;
+          width: 100%;
+          > div {
+            min-height: 550px;
+            width: 100%;
+          }
+        `}
+    >
+      <SchedulerContext.Provider value={schedulerRedux}>
+        <Scheduler
+          eventName={'New Event'}
+          hasNoPackage={false}
+          hasNoParticipants={false}
+        />
+      </SchedulerContext.Provider>
+    </Div>
+  )
+}
+
+<ShowCase>
+  <SchedulerDoc />
+</ShowCase>

@@ -13,4 +13,3 @@ export declare type SimplePopOverProps = {
     position: PopOverPosition;
 };
 export declare const SimplePopOver: (props: SimplePopOverProps) => JSX.Element;
-//# sourceMappingURL=SimplePopOver.d.ts.map

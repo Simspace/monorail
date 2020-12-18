@@ -11,15 +11,13 @@ export type CssOverrides =
   | SimpleInterpolation
   | FlattenInterpolation<ThemeProps<GlobalAppThemeInterface>>
 
-export type StyledComponentCssOverrides = {
-  cssOverrides?: CssOverrides
-}
-
 type Props = {
   cssOverrides?: CssOverrides
 }
 
 /**
+ * @deprecated please don't use this..
+ * 
  * The Div helper is a component that accepts `css` prop so we can easily inline CSS Objects with TypeScript support.
  * The `cssLoose` property offers a relaxed typing for arbitrary string keys (escape hatch, e.g. `& > #blah`)
  *
@@ -31,8 +29,14 @@ type Props = {
   />
  ```
  */
-
 export const Div = styled.div<Props>(
+  ({ cssOverrides }) =>
+    css`
+      ${cssOverrides};
+    `,
+)
+
+export const Span = styled.span<Props>(
   ({ cssOverrides }) =>
     css`
       ${cssOverrides};

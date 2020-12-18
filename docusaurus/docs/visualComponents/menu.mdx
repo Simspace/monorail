@@ -1,0 +1,26 @@
+---
+id: menu
+title: Menu
+sidebar_label: Menu
+---
+
+import { PopOver } from '@monorail/metaComponents/popOver/PopOver'
+import { Button } from '@monorail/visualComponents/buttons/Button'
+import { SimpleListItem } from '@monorail/visualComponents/list/List'
+import { Menu } from '@monorail/visualComponents/menu/Menu'
+
+Menus are useful for hiding secondary information.
+
+```tsx live
+<PopOver
+  popOver={props => (
+    <Menu {...props}>
+      <SimpleListItem primaryText="Menu Item" size={32} />
+      <SimpleListItem primaryText="Menu Item" size={32} />
+      <SimpleListItem primaryText="Menu Item" size={32} />
+      <SimpleListItem primaryText="Menu Item" size={32} />
+    </Menu>
+  )}
+  toggle={props => <Button {...props}>Toggle Menu</Button>}
+/>
+```

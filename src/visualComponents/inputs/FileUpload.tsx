@@ -1,23 +1,22 @@
-import * as A from 'fp-ts/lib/Array'
-import * as O from 'fp-ts/lib/Option'
-import { pipe } from 'fp-ts/lib/pipeable'
-import { intercalate } from 'fp-ts/lib/Foldable'
-import { monoidString } from 'fp-ts/lib/Monoid'
 import React, { createRef, FC } from 'react'
 import styled from 'styled-components'
+import * as A from 'fp-ts/lib/Array'
+import { intercalate } from 'fp-ts/lib/Foldable'
+import { monoidString } from 'fp-ts/lib/Monoid'
+import * as O from 'fp-ts/lib/Option'
+import { pipe } from 'fp-ts/lib/pipeable'
 
 import { flexFlow } from '@monorail/helpers/exports'
+import {
+  isNonEmptyArray,
+  isUndefined,
+} from '@monorail/sharedHelpers/typeGuards'
 import { Button } from '@monorail/visualComponents/buttons/Button'
 import {
   ButtonDisplay,
   ButtonSize,
 } from '@monorail/visualComponents/buttons/buttonTypes'
 import { IconButton } from '@monorail/visualComponents/buttons/IconButton'
-
-import {
-  isUndefined,
-  isNonEmptyArray,
-} from '@monorail/sharedHelpers/typeGuards'
 import { IconType } from '@monorail/visualComponents/icon/IconType'
 
 const FileUploadWrapper = styled.div`
@@ -31,6 +30,8 @@ const FileName = styled.div`
   margin: 0 16px;
 `
 
+// This is not necessarily exhaustive for all file types;
+// if you see a type not included here, please add it
 export enum FileType {
   AnyImage,
   PNG,
@@ -41,6 +42,7 @@ export enum FileType {
   VirtualAppliance,
   Yaml,
   Excel,
+  Json,
 }
 
 // [MM 2020-07-30] Convert a known file type from our finite definition to a
@@ -67,6 +69,8 @@ const fileTypeToAccept = (f: FileType) => {
       return '.yaml,.yml'
     case FileType.Excel:
       return '.xlsx'
+    case FileType.Json:
+      return '.json'
   }
 }
 
@@ -88,6 +92,7 @@ export const HiddenSingleFileInput = (
 
   return (
     <input
+      className="deprecated-input"
       ref={props.inputRef}
       name={props.name}
       hidden

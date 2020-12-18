@@ -3,8 +3,8 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.useDropdownTypeParser = useDropdownTypeParser;
-exports.useCustomParser = void 0;
+exports.createDropdownTypeParser = createDropdownTypeParser;
+exports.createCustomParser = void 0;
 
 var _strings = require("../../sharedHelpers/strings");
 
@@ -12,7 +12,7 @@ var _typeGuards = require("../../sharedHelpers/typeGuards");
 
 var _helpers = require("./helpers");
 
-function useDropdownTypeParser(props) {
+function createDropdownTypeParser(props) {
   const {
     value = item => (0, _helpers.isDropdownItem)(item) ? item.value : String(item),
     label = item => (0, _helpers.isDropdownItem)(item) ? item.label || '' : String(item)
@@ -37,13 +37,13 @@ function useDropdownTypeParser(props) {
   };
 }
 
-const useCustomParser = options => {
+const createCustomParser = options => {
   const {
     value,
     label,
     ...override
   } = options;
-  const parser = useDropdownTypeParser({
+  const parser = createDropdownTypeParser({
     value,
     label
   });
@@ -52,4 +52,4 @@ const useCustomParser = options => {
   });
 };
 
-exports.useCustomParser = useCustomParser;
+exports.createCustomParser = createCustomParser;

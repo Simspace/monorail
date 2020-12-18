@@ -1,11 +1,15 @@
 import { none, some } from 'fp-ts/lib/Option'
+import { O } from '@monorail/sharedHelpers/fp-ts-imports'
 
 import {
   capitalizeFirstLetter,
   capitalizeWords,
+  drop,
   findIndex,
   join,
+  matchStringP,
   padStart,
+  removeSpaces,
   repeat,
   replace,
   safeParseInt,
@@ -96,6 +100,14 @@ describe('trim', () => {
   it('should remove whitespace from around a string', () => {
     const actual = trim('  John Smith    ')
     const expected = 'John Smith'
+    expect(actual).toBe(expected)
+  })
+})
+
+describe('removeSpaces', () => {
+  it('should remove space characters within a string', () => {
+    const actual = removeSpaces(' 2 / 10')
+    const expected = '2/10'
     expect(actual).toBe(expected)
   })
 })
@@ -221,4 +233,36 @@ describe('safeParseInt', () => {
     expect(safeParseInt('42')).toEqual(some(42)))
   it('should behave the same as parseInt when passed a base argument', () =>
     expect(safeParseInt('42', 7)).toEqual(some(30)))
+})
+
+describe('drop', () => {
+  it('should drop leading characters from a string', () => {
+    expect(drop(1)('foo')).toEqual('oo')
+    expect(drop(6)('Typescript')).toEqual('ript')
+  })
+
+  it('should return an empty string if n is greater than the length of the string', () => {
+    expect(drop(15)('foo')).toEqual('')
+    expect(drop(1)('')).toEqual('')
+  })
+
+  it('should not drop any characters if n is less than or equal to zero', () => {
+    expect(drop(0)('foo')).toEqual('foo')
+    expect(drop(-1)('foo')).toEqual('foo')
+  })
+})
+
+describe('matchStringP', () => {
+  const matcher = matchStringP({
+    foo: () => 1,
+    bar: () => 2,
+  })
+  it('should match the supplied string', () => {
+    expect(matcher('foo')).toEqual(O.some(1))
+    expect(matcher('bar')).toEqual(O.some(2))
+  })
+
+  it('should return a None if no amtch is supplied', () => {
+    expect(matcher('baz')).toEqual(O.none)
+  })
 })

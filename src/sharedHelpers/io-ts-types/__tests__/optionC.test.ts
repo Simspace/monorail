@@ -1,6 +1,7 @@
 import * as t from 'io-ts'
 import * as E from 'fp-ts/lib/Either'
 import * as O from 'fp-ts/lib/Option'
+
 import { optionC } from '@monorail/sharedHelpers/io-ts-types/optionC'
 
 const codec = t.type({

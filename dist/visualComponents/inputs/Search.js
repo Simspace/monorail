@@ -5,23 +5,21 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.Search = exports.SearchInput = exports.SearchContainer = void 0;
 
-var _styledComponents = _interopRequireDefault(require("styled-components"));
-
 var _react = _interopRequireDefault(require("react"));
 
 var _exports = require("../../helpers/exports");
 
-var _styledComponents2 = _interopRequireWildcard(require("../../helpers/styled-components"));
+var _styledComponents = _interopRequireWildcard(require("../../helpers/styled-components"));
 
 var _theme = require("../../helpers/theme");
+
+var _typeGuards = require("../../sharedHelpers/typeGuards");
 
 var _buttonTypes = require("../buttons/buttonTypes");
 
 var _IconButton = require("../buttons/IconButton");
 
 var _Icon = require("../icon/Icon");
-
-var _typeGuards = require("../../sharedHelpers/typeGuards");
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
@@ -38,14 +36,14 @@ function _extends() { _extends = Object.assign || function (target) { for (var i
 //
 const searchIconPosition = 4;
 
-const SearchContainer = _styledComponents2.default.label(({
+const SearchContainer = _styledComponents.default.label(({
   cssOverrides,
   width,
   theme: {
     mode
   }
-}) => (0, _styledComponents2.css)`
-    ${mode === _theme.Mode.Dark ? (0, _styledComponents2.css)`
+}) => (0, _styledComponents.css)`
+    ${mode === _theme.Mode.Dark ? (0, _styledComponents.css)`
           background: ${(0, _theme.getThemeColor)(_theme.ThemeColors.PrimaryColor, 0.2)};
 
           &:hover {
@@ -55,11 +53,11 @@ const SearchContainer = _styledComponents2.default.label(({
           &:active {
             background: ${(0, _theme.getThemeColor)(_theme.ThemeColors.PrimaryColor, 0.24)};
           }
-        ` : (0, _styledComponents2.css)`
+        ` : (0, _styledComponents.css)`
           background: ${(0, _theme.getThemeColor)(_theme.ThemeColors.SecondaryColor)};
         `};
 
-    ${(0, _typeGuards.isNotNil)(width) && (0, _styledComponents2.css)`
+    ${(0, _typeGuards.isNotNil)(width) && (0, _styledComponents.css)`
         width: ${width}px;
       `}
 
@@ -76,7 +74,7 @@ const SearchContainer = _styledComponents2.default.label(({
   `);
 
 exports.SearchContainer = SearchContainer;
-const searchIconStyles = (0, _styledComponents2.css)`
+const searchIconStyles = (0, _styledComponents.css)`
   color: ${({
   theme: {
     mode
@@ -88,13 +86,13 @@ const searchIconStyles = (0, _styledComponents2.css)`
   top: ${searchIconPosition}px;
 `;
 
-const SearchInput = _styledComponents2.default.input(({
+const SearchInput = _styledComponents.default.input(({
   width,
   theme: {
     mode
   }
-}) => (0, _styledComponents2.css)`
-    ${mode === _theme.Mode.Dark ? (0, _styledComponents2.css)`
+}) => (0, _styledComponents.css)`
+    ${mode === _theme.Mode.Dark ? (0, _styledComponents.css)`
           border-color: transparent;
 
           &:hover {
@@ -104,7 +102,7 @@ const SearchInput = _styledComponents2.default.input(({
           &:focus {
             border-color: ${(0, _theme.getThemeColor)(_theme.ThemeColors.PrimaryColor)};
           }
-        ` : (0, _styledComponents2.css)`
+        ` : (0, _styledComponents.css)`
           border-color: ${(0, _theme.getThemeColor)(_theme.ThemeColors.PrimaryColor, 0.08)};
 
           &:hover {
@@ -116,7 +114,7 @@ const SearchInput = _styledComponents2.default.input(({
           }
         `};
 
-    ${(0, _typeGuards.isNotNil)(width) && (0, _styledComponents2.css)`
+    ${(0, _typeGuards.isNotNil)(width) && (0, _styledComponents.css)`
         width: ${width}px;
       `}
 
@@ -152,13 +150,6 @@ const SearchInput = _styledComponents2.default.input(({
 
 exports.SearchInput = SearchInput;
 
-var _StyledIcon =
-/*#__PURE__*/
-(0, _styledComponents.default)(_Icon.Icon).withConfig({
-  displayName: "Search___StyledIcon",
-  componentId: "sc-1510t74-0"
-})(["", ""], searchIconStyles);
-
 //
 // Component
 //
@@ -175,12 +166,13 @@ const Search = props => {
     searchRef,
     ...domProps
   } = props;
-  return _react.default.createElement(SearchContainer, _extends({
+  return /*#__PURE__*/_react.default.createElement(SearchContainer, _extends({
     cssOverrides: cssOverrides,
     width: width
-  }, domProps), _react.default.createElement(_StyledIcon, {
-    icon: "search"
-  }), _react.default.createElement(SearchInput, {
+  }, domProps), /*#__PURE__*/_react.default.createElement(_Icon.Icon, {
+    icon: "search",
+    cssOverrides: searchIconStyles
+  }), /*#__PURE__*/_react.default.createElement(SearchInput, {
     className: "new-input",
     onChange: event => {
       onChange(event.currentTarget.value, event);
@@ -193,8 +185,8 @@ const Search = props => {
     ref: searchRef,
     name: name,
     type: "search"
-  }), _react.default.createElement(_IconButton.IconButton, {
-    cssOverrides: (0, _styledComponents2.css)`
+  }), /*#__PURE__*/_react.default.createElement(_IconButton.IconButton, {
+    cssOverrides: (0, _styledComponents.css)`
           ${(0, _exports.visible)(!!value)};
 
           background: ${(0, _exports.getColor)(_exports.Colors.Black24a)};

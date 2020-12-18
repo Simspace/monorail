@@ -11,6 +11,7 @@ let BorderRadius;
 exports.BorderRadius = BorderRadius;
 
 (function (BorderRadius) {
+  BorderRadius[BorderRadius["XSmall"] = 2] = "XSmall";
   BorderRadius[BorderRadius["Small"] = 3] = "Small";
   BorderRadius[BorderRadius["Medium"] = 4] = "Medium";
   BorderRadius[BorderRadius["Large"] = 6] = "Large";

@@ -65,5 +65,5 @@ export declare const match: <ADT extends {
 export declare const matchI: <ADT extends {
     tag: string;
 }>(v: ADT) => <Z>(matchObj: Matchers<"tag", ADT, Z>) => Z;
+export declare const matchS: <S extends string>(s: S) => <Out>(matchObj: { [M in S]: () => Out; }) => Out;
 export {};
-//# sourceMappingURL=matchers.d.ts.map

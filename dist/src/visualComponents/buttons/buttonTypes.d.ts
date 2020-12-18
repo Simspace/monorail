@@ -24,4 +24,3 @@ export declare enum ButtonsBarMode {
     Default = "default",
     Toolbar = "toolbar"
 }
-//# sourceMappingURL=buttonTypes.d.ts.map

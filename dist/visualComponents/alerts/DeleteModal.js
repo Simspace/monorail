@@ -30,25 +30,26 @@ const DeleteModal = props => {
     itemName,
     titleText,
     subtitleText,
-    primaryButtonText,
+    primaryButtonText = 'Delete',
     secondaryButtonText,
     itemType = '',
+    action = 'delete',
     ...domProps
   } = props;
-  return _react.default.createElement(_AlertModal.AlertModal, _extends({}, domProps, {
-    titleText: "This is a potentially destructive action.",
+  return /*#__PURE__*/_react.default.createElement(_AlertModal.AlertModal, _extends({}, domProps, {
+    titleText: titleText !== null && titleText !== void 0 ? titleText : 'This is a potentially destructive action.',
     alertType: _alertType.AlertType.Warning,
-    primaryButtonText: "Delete",
+    primaryButtonText: primaryButtonText,
     secondaryButtonText: "Cancel",
-    subtitleText: _react.default.createElement(DeletionText, null, _react.default.createElement(_Text.Text, {
+    subtitleText: /*#__PURE__*/_react.default.createElement(DeletionText, null, /*#__PURE__*/_react.default.createElement(_Text.Text, {
       fontSize: _exports.FontSizes.Title5,
       fontWeight: 400,
       margin: "8px 0"
-    }, "You have chosen to delete the following", itemType ? ` ${itemType}` : '', ":"), _react.default.createElement(_Text.Text, {
+    }, "You have chosen to ", action, " the following", itemType ? ` ${itemType}` : '', ":"), /*#__PURE__*/_react.default.createElement(_Text.Text, {
       fontSize: _exports.FontSizes.Title4,
       fontWeight: 500,
       margin: "8px 0"
-    }, itemName), _react.default.createElement(_Text.Text, {
+    }, itemName), /*#__PURE__*/_react.default.createElement(_Text.Text, {
       fontSize: _exports.FontSizes.Title5,
       fontWeight: 400,
       margin: "8px 0"

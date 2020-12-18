@@ -20,4 +20,3 @@ export declare const partitionBy: <K extends string>(key: K) => <V, T extends { 
  * the value from the set.
  */
 export declare const toggle: <T>(eq: Eq<T>) => (value: T) => (ts: Set<T>) => Set<T>;
-//# sourceMappingURL=Set.d.ts.map

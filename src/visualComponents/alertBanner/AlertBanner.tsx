@@ -3,20 +3,20 @@ import styled, { css } from 'styled-components'
 
 import {
   Colors,
+  flexFlow,
   FontSizes,
   getColor,
-  flexFlow,
 } from '@monorail/helpers/exports'
+import { ButtonDisplay } from '@monorail/visualComponents/buttons/buttonTypes'
+import { IconButton } from '@monorail/visualComponents/buttons/IconButton'
 import { Icon } from '@monorail/visualComponents/icon/Icon'
+import { IconType } from '@monorail/visualComponents/icon/IconType'
 import {
-  AlertLevel,
   AlertColors,
   AlertIcons,
+  AlertLevel,
 } from '@monorail/visualComponents/toast/types'
 import { Text } from '@monorail/visualComponents/typography/Text'
-import { IconType } from '@monorail/visualComponents/icon/IconType'
-import { IconButton } from '@monorail/visualComponents/buttons/IconButton'
-import { ButtonDisplay } from '@monorail/visualComponents/buttons/buttonTypes'
 
 /*
  * Styles

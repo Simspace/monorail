@@ -23,6 +23,8 @@ var _styledComponents2 = _interopRequireWildcard(require("../../helpers/styled-c
 
 var _theme = require("../../helpers/theme");
 
+var _Array = require("../../sharedHelpers/fp-ts-ext/Array");
+
 var _typeGuards = require("../../sharedHelpers/typeGuards");
 
 var _Button = require("../buttons/Button");
@@ -42,8 +44,6 @@ var _DebouncedSearch = require("../inputs/DebouncedSearch");
 var _SearchController = require("../inputs/SearchController");
 
 var _CollectionPaginationComponent = require("./CollectionPaginationComponent");
-
-var _Array = require("../../sharedHelpers/fp-ts-ext/Array");
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
@@ -84,16 +84,12 @@ exports.CollectionView = CollectionView;
 
 const PAGE_SIZE = 20;
 
-var _StyledReactTable =
-/*#__PURE__*/
-(0, _styledComponents.default)(_reactTable.default).withConfig({
+var _StyledReactTable = /*#__PURE__*/(0, _styledComponents.default)(_reactTable.default).withConfig({
   displayName: "Collection___StyledReactTable",
   componentId: "b970z1-0"
 })(["", ""], p => p._css);
 
-var _StyledDebouncedSearch =
-/*#__PURE__*/
-(0, _styledComponents.default)(_DebouncedSearch.DebouncedSearch).withConfig({
+var _StyledDebouncedSearch = /*#__PURE__*/(0, _styledComponents.default)(_DebouncedSearch.DebouncedSearch).withConfig({
   displayName: "Collection___StyledDebouncedSearch",
   componentId: "b970z1-1"
 })(["width:256px;margin:auto 0 auto auto;"]);
@@ -107,7 +103,7 @@ const Collection = props => {
     isLoading = false,
     pivotBy,
     setCollectionView,
-    NoDataComponent = () => _react.default.createElement(_ReactTable.NoDataComponentVertical, null),
+    NoDataComponent = () => /*#__PURE__*/_react.default.createElement(_ReactTable.NoDataComponentVertical, null),
     PaginationComponent = _CollectionPaginationComponent.CollectionPaginationComponent,
     pageSize = PAGE_SIZE,
     showPagination
@@ -148,14 +144,14 @@ const Collection = props => {
   }) => {
     switch (collectionView) {
       case CollectionView.Card:
-        return _react.default.createElement(_Cards.BBCardGrid, null, children);
+        return /*#__PURE__*/_react.default.createElement(_Cards.BBCardGrid, null, children);
 
       case CollectionView.Table:
-        return _react.default.createElement(_ReactTable.TBodyComponent, domProps, children);
+        return /*#__PURE__*/_react.default.createElement(_ReactTable.TBodyComponent, domProps, children);
 
       default:
         (0, _typeGuards.assertNever)(collectionView);
-        return _react.default.createElement(_react.default.Fragment, null);
+        return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null);
     }
   }, [collectionView]);
   const getTrGroupComponent = (0, _react.useCallback)(({
@@ -167,26 +163,26 @@ const Collection = props => {
       return cardRender(item);
     }
 
-    return _react.default.createElement(_ReactTable.TrGroupComponent, domProps, children);
+    return /*#__PURE__*/_react.default.createElement(_ReactTable.TrGroupComponent, domProps, children);
   }, [collectionView, cardRender]);
   const theadOnTableViewOnly = (0, _Array.all)(columns, column => column.filterable === false && column.sortable === false);
   const renderCollection = (0, _react.useCallback)(({
     passedSearchInput,
     passedData
-  }) => _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(ControlsContainer, {
+  }) => /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(ControlsContainer, {
     cardViewWithoutFilters: theadOnTableViewOnly && collectionView === CollectionView.Card
-  }, (0, _typeGuards.isNotNil)(cardRender) && _react.default.createElement(_ButtonsBar.ButtonsBar, {
+  }, (0, _typeGuards.isNotNil)(cardRender) && /*#__PURE__*/_react.default.createElement(_ButtonsBar.ButtonsBar, {
     size: _buttonTypes.ButtonSize.Default,
     mode: _buttonTypes.ButtonsBarMode.Toolbar
-  }, _react.default.createElement(_IconButton.IconButton, {
+  }, /*#__PURE__*/_react.default.createElement(_IconButton.IconButton, {
     isActive: collectionView === CollectionView.Table,
     onClick: () => setCollectionView(CollectionView.Table),
     icon: "view_headline"
-  }), _react.default.createElement(_IconButton.IconButton, {
+  }), /*#__PURE__*/_react.default.createElement(_IconButton.IconButton, {
     isActive: collectionView === CollectionView.Card,
     onClick: () => setCollectionView(CollectionView.Card),
     icon: "view_module"
-  })), _react.default.createElement(FilterContainer, null, props.filters), passedSearchInput), _react.default.createElement(CollectionContainer, null, _react.default.createElement(_styledComponents2.ThemeProvider, {
+  })), /*#__PURE__*/_react.default.createElement(FilterContainer, null, props.filters), passedSearchInput), /*#__PURE__*/_react.default.createElement(CollectionContainer, null, /*#__PURE__*/_react.default.createElement(_styledComponents2.ThemeProvider, {
     theme: theme => ({ ...theme,
       size: { ...theme.size,
         table: {
@@ -194,7 +190,7 @@ const Collection = props => {
         }
       }
     })
-  }, _react.default.createElement(_StyledReactTable, {
+  }, /*#__PURE__*/_react.default.createElement(_StyledReactTable, {
     sorted: sorted,
     onSortedChange: onSortedChange,
     columns: columns,
@@ -210,11 +206,11 @@ const Collection = props => {
     showPagination: showPagination || passedData.length > pageSize,
     PaginationComponent: PaginationComponent,
     NoDataComponent: NoDataComponent,
-    TheadComponent: theadProps => _react.default.createElement(CollectionTheadComponent, _extends({
+    TheadComponent: theadProps => /*#__PURE__*/_react.default.createElement(CollectionTheadComponent, _extends({
       collectionView: collectionView,
       tableViewOnly: theadOnTableViewOnly
     }, theadProps)),
-    ThComponent: thProps => _react.default.createElement(CollectionThComponent, _extends({
+    ThComponent: thProps => /*#__PURE__*/_react.default.createElement(CollectionThComponent, _extends({
       collectionView: collectionView
     }, thProps)),
     _css: collectionView === CollectionView.Card ? theadOverrides : ''
@@ -226,7 +222,7 @@ const Collection = props => {
       passedData: data
     });
   } else if ('searchFilter' in props) {
-    return _react.default.createElement(_SearchController.SearchController, null, ({
+    return /*#__PURE__*/_react.default.createElement(_SearchController.SearchController, null, ({
       compareSearch,
       value,
       onChange
@@ -237,7 +233,7 @@ const Collection = props => {
         value
       }));
       return renderCollection({
-        passedSearchInput: _react.default.createElement(_StyledDebouncedSearch, {
+        passedSearchInput: /*#__PURE__*/_react.default.createElement(_StyledDebouncedSearch, {
           onChange: onChange,
           value: value,
           name: 'collection-filter',
@@ -270,10 +266,10 @@ const CollectionTheadComponent = ({
 }) => {
   switch (collectionView) {
     case CollectionView.Card:
-      return tableViewOnly ? null : _react.default.createElement(_ReactTable.TheadComponent, otherProps);
+      return tableViewOnly ? null : /*#__PURE__*/_react.default.createElement(_ReactTable.TheadComponent, otherProps);
 
     case CollectionView.Table:
-      return _react.default.createElement(_ReactTable.TheadComponent, _extends({
+      return /*#__PURE__*/_react.default.createElement(_ReactTable.TheadComponent, _extends({
         style: style
       }, otherProps));
   }
@@ -321,9 +317,7 @@ const thComponentOverrides = (0, _styledComponents2.css)`
   }
 `;
 
-var _StyledThComponent =
-/*#__PURE__*/
-(0, _styledComponents.default)(_ReactTable.ThComponent).withConfig({
+var _StyledThComponent = /*#__PURE__*/(0, _styledComponents.default)(_ReactTable.ThComponent).withConfig({
   displayName: "Collection___StyledThComponent",
   componentId: "b970z1-2"
 })(["", ""], thComponentOverrides);
@@ -335,10 +329,10 @@ const CollectionThComponent = ({
 }) => {
   switch (collectionView) {
     case CollectionView.Card:
-      return _react.default.createElement(_StyledThComponent, otherProps);
+      return /*#__PURE__*/_react.default.createElement(_StyledThComponent, otherProps);
 
     case CollectionView.Table:
-      return _react.default.createElement(_ReactTable.ThComponent, _extends({
+      return /*#__PURE__*/_react.default.createElement(_ReactTable.ThComponent, _extends({
         style: style
       }, otherProps));
   }

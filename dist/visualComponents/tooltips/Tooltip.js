@@ -7,19 +7,19 @@ exports.TooltipMonorail = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _styledComponents = _interopRequireWildcard(require("../../helpers/styled-components"));
-
 var _tooltip = require("@reach/tooltip");
-
-require("@reach/tooltip/styles.css");
 
 var _exports = require("../../helpers/exports");
 
-var _Text = require("../typography/Text");
-
 var _flex = require("../../helpers/flex");
 
+var _styledComponents = _interopRequireWildcard(require("../../helpers/styled-components"));
+
 var _typeGuards = require("../../sharedHelpers/typeGuards");
+
+var _Text = require("../typography/Text");
+
+require("@reach/tooltip/styles.css");
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
@@ -220,8 +220,8 @@ const TooltipMonorail = props => {
     }
   };
 
-  return _react.default.createElement(_react.default.Fragment, null, typeof children === 'function' ? children(trigger) : _react.default.createElement(StyledSpan, trigger, children), _react.default.createElement(StyledTooltip, _extends({}, tooltip, {
-    label: _react.default.createElement(_Text.Text, {
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, typeof children === 'function' ? children(trigger) : /*#__PURE__*/_react.default.createElement(StyledSpan, trigger, children), /*#__PURE__*/_react.default.createElement(StyledTooltip, _extends({}, tooltip, {
+    label: /*#__PURE__*/_react.default.createElement(_Text.Text, {
       fontSize: _exports.FontSizes.Title5,
       fontWeight: 400
     }, label),

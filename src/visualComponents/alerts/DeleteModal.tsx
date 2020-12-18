@@ -16,6 +16,7 @@ const DeletionText = styled.div`
 export type DeleteModalProps = Omit<AlertModalProps, 'alertType'> & {
   itemName: string
   itemType?: string
+  action?: string
 }
 
 export const DeleteModal: FC<DeleteModalProps> = props => {
@@ -23,23 +24,24 @@ export const DeleteModal: FC<DeleteModalProps> = props => {
     itemName,
     titleText,
     subtitleText,
-    primaryButtonText,
+    primaryButtonText = 'Delete',
     secondaryButtonText,
     itemType = '',
+    action = 'delete',
     ...domProps
   } = props
 
   return (
     <AlertModal
       {...domProps}
-      titleText="This is a potentially destructive action."
+      titleText={titleText ?? 'This is a potentially destructive action.'}
       alertType={AlertType.Warning}
-      primaryButtonText="Delete"
+      primaryButtonText={primaryButtonText}
       secondaryButtonText="Cancel"
       subtitleText={
         <DeletionText>
           <Text fontSize={FontSizes.Title5} fontWeight={400} margin="8px 0">
-            You have chosen to delete the following
+            You have chosen to {action} the following
             {itemType ? ` ${itemType}` : ''}:
           </Text>
           <Text fontSize={FontSizes.Title4} fontWeight={500} margin="8px 0">

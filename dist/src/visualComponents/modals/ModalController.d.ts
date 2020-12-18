@@ -6,4 +6,3 @@ export declare type ModalControllerProps = {
     children: (props: PopOverChildProps) => ReactNode;
 };
 export declare const ModalController: FC<ModalControllerProps>;
-//# sourceMappingURL=ModalController.d.ts.map

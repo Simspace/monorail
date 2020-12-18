@@ -7,9 +7,7 @@ exports.oswaldFontFamily = exports.gothamFontFamily = exports.shortHandDeconstru
 
 var _styledComponents = require("styled-components");
 
-const ellipsis =
-/*#__PURE__*/
-(0, _styledComponents.css)(["overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"]);
+const ellipsis = /*#__PURE__*/(0, _styledComponents.css)(["overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"]);
 exports.ellipsis = ellipsis;
 let FontWeights;
 exports.FontWeights = FontWeights;
@@ -107,9 +105,7 @@ const typographyFont = (weight, size) => ({
 
 exports.typographyFont = typographyFont;
 
-const typography = (weight, size, margin = '0') => ({ ...typographyFont(weight, size),
-  ...typographyMargin(size, margin)
-});
+const typography = (weight, size, margin = '0') => (0, _styledComponents.css)(["", " ", " ", ""], typographyFont(weight, size), typographyMargin(size, margin), gothamFontFamily);
 /**
  * @deprecated Use typography or typographyFont instead
  * */
@@ -260,11 +256,7 @@ const sizingObjectToString = size => {
   return `${addPx(size.top)} ${addPx(size.right)} ${addPx(size.bottom)} ${addPx(size.left)}`;
 };
 
-const gothamFontFamily =
-/*#__PURE__*/
-(0, _styledComponents.css)(["font-family:'Gotham SSm A','Gotham SSm B',-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol';-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;letter-spacing:initial;text-rendering:optimizeLegibility;"]);
+const gothamFontFamily = /*#__PURE__*/(0, _styledComponents.css)(["font-family:'Gotham SSm A','Gotham SSm B',-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol';-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;letter-spacing:initial;text-rendering:optimizeLegibility;"]);
 exports.gothamFontFamily = gothamFontFamily;
-const oswaldFontFamily =
-/*#__PURE__*/
-(0, _styledComponents.css)(["font-family:'Oswald',sans-serif;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;letter-spacing:initial;text-rendering:optimizeLegibility;"]);
+const oswaldFontFamily = /*#__PURE__*/(0, _styledComponents.css)(["font-family:'Oswald',sans-serif;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;letter-spacing:initial;text-rendering:optimizeLegibility;"]);
 exports.oswaldFontFamily = oswaldFontFamily;

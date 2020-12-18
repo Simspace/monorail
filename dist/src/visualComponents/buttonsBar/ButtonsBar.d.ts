@@ -9,15 +9,17 @@ declare type ButtonsBarProps = CommonComponentType & {
     size?: ButtonSize;
     mode?: ButtonsBarMode;
 };
-export declare const ButtonsBarContainer: any;
+declare type ButtonsBarContainerProps = CommonComponentType & {
+    mode: ButtonsBarMode;
+};
+export declare const ButtonsBarContainer: import("styled-components").StyledComponent<"div", import("../../helpers/theme").GlobalAppThemeInterface, ButtonsBarContainerProps, never>;
 /**
  * ToolbarsContainer
  * Use this container for displaying multiple Toolbars in a single row
  */
-export declare const ToolbarsContainer: any;
+export declare const ToolbarsContainer: import("styled-components").StyledComponent<"div", import("../../helpers/theme").GlobalAppThemeInterface, {}, never>;
 /**
  * Buttons Bar
  */
 export declare const ButtonsBar: FC<ButtonsBarProps>;
 export {};
-//# sourceMappingURL=ButtonsBar.d.ts.map

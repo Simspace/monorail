@@ -14,22 +14,22 @@ interface EqMeta<T> {
 declare global {
   // eslint-disable-next-line @typescript-eslint/no-namespace
   namespace jest {
-    interface Matchers<R> {
+    interface Matchers<R, T = {}> {
       // Option
-      toBeNone: R extends O.Option<unknown> ? () => R : never
-      toBeSome: R extends O.Option<unknown> ? () => R : never
-      toEqualSome: R extends O.Option<infer A>
-        ? (equalTo: A, eq?: Eq<A>) => R
+      toBeNone: T extends O.Option<unknown> ? () => T : never
+      toBeSome: T extends O.Option<unknown> ? () => T : never
+      toEqualSome: T extends O.Option<infer A>
+        ? (equalTo: A, eq?: Eq<A>) => T
         : never
 
       // Either
-      toBeLeft: R extends E.Either<unknown, unknown> ? () => R : never
-      toEqualLeft: R extends E.Either<infer L, unknown>
-        ? (equalTo: L, eq?: Eq<L>) => R
+      toBeLeft: T extends E.Either<unknown, unknown> ? () => T : never
+      toEqualLeft: T extends E.Either<infer L, unknown>
+        ? (equalTo: L, eq?: Eq<L>) => T
         : never
-      toBeRight: R extends E.Either<unknown, unknown> ? () => R : never
-      toEqualRight: R extends E.Either<unknown, infer A>
-        ? (equalTo: A, eq?: Eq<A>) => R
+      toBeRight: T extends E.Either<unknown, unknown> ? () => T : never
+      toEqualRight: T extends E.Either<unknown, infer A>
+        ? (equalTo: A, eq?: Eq<A>) => T
         : never
     }
   }

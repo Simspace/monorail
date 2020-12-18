@@ -22,4 +22,3 @@ declare type Props = {
 };
 export declare const Rating: React.MemoExoticComponent<(props: Props) => JSX.Element>;
 export {};
-//# sourceMappingURL=Rating.d.ts.map

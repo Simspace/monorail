@@ -1,4 +1,5 @@
 import { colorHSLAMap, Colors, getColor } from '@monorail/helpers/color'
+import { monorailLightTheme, Theme } from '@monorail/v2/core/theme/colors'
 import { IconType } from '@monorail/visualComponents/icon/IconType'
 
 export enum Mode {
@@ -36,6 +37,7 @@ type ColorTheme = {
 }
 
 export interface GlobalAppThemeInterface {
+  v2: Theme
   [Mode.Dark]: ColorTheme
   [Mode.Light]: ColorTheme
   [ThemeColors.ApplicationPrimary]: Colors
@@ -52,9 +54,6 @@ export interface GlobalAppThemeInterface {
       margin: 16 | 24 | 32
     }
   }
-  pageHeader: {
-    showBreadCrumbs: boolean
-  }
   introductionTagline: Array<string>
   introductionOctagonColor: string
 }
@@ -67,6 +66,7 @@ const themeBase = {
 }
 
 export const monorailTheme: GlobalAppThemeInterface = {
+  v2: monorailLightTheme,
   linkColor: Colors.BrandLightBlue,
   brandAccentColor: Colors.BrandDarkBlue,
   [ThemeColors.ApplicationPrimary]: Colors.BrandLightBlue,
@@ -111,9 +111,6 @@ export const monorailTheme: GlobalAppThemeInterface = {
     table: {
       margin: 16,
     },
-  },
-  pageHeader: {
-    showBreadCrumbs: true,
   },
   introductionTagline: ["Don't just plan for the future.", 'Simulate it.'],
   introductionOctagonColor: '#1465FF',

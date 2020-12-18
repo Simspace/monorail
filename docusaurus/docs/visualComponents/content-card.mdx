@@ -1,0 +1,33 @@
+---
+id: content-card
+title: Content Card
+sidebar_label: Content Card
+---
+
+import { ContentCard } from '@monorail/visualComponents/contentCard/ContentCard'
+
+:::danger Errors
+
+- Styles are broken. css prop being applied to element instead of generating a class.
+- Breaks due to:
+
+```
+TypeError: matchObj[v[key]] is not a function
+```
+
+GS 8/4/20
+:::
+
+<!-- ```tsx live
+<ContentCard
+  organization={'SimSpace'}
+  description={
+    'Lorem ipsum dolor sit amet. Vivamus nisi urna, dictum non vulputate vel, posuere id velit. Curabitur laoreet diam non consectetur sagittis. Cras nec placerat quam.'
+  }
+  image={''}
+  difficulty={'intermediate'}
+  rating={4.2}
+  title={'Phone Security Something'}
+  duration={2}
+/>
+``` -->

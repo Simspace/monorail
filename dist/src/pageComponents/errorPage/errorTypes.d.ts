@@ -3,4 +3,3 @@ export declare enum ErrorType {
     NotAuthorized = "notAuthorized",
     FourZeroFour = "fourZeroFour"
 }
-//# sourceMappingURL=errorTypes.d.ts.map

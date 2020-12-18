@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 import { Colors } from '@monorail/helpers/exports';
+import { CommonComponentType, CssOverridesType } from '@monorail/types';
 import { IconType } from '@monorail/visualComponents/icon/IconType';
 import { Step as StepType } from '@monorail/visualComponents/stepper/types';
-import { CommonComponentType, CssOverridesType } from '@monorail/types';
 export declare type StepperProps = CommonComponentType & {
     steps: Array<StepType>;
     onStepClick: (index: number) => void;
@@ -25,7 +25,11 @@ export declare type InjectedStepProps = {
 export declare type StepProps = {
     cssOverrides?: CssOverridesType;
     iconLeft?: IconType;
+    iconLeftColor?: Colors;
+    iconLeftActiveColor?: Colors;
     iconRight?: IconType;
+    iconRightColor?: Colors;
+    iconRightActiveColor?: Colors;
     iconColor?: Colors;
     isDisabled?: boolean;
     label: string;
@@ -35,4 +39,3 @@ export declare type StepProps = {
 };
 export declare const Step: FC<StepProps & InjectedStepProps>;
 export declare const Stepper: (props: VerticalStepperProps) => JSX.Element;
-//# sourceMappingURL=Stepper.d.ts.map

@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = exports.ThemeProvider = exports.keyframes = exports.createGlobalStyle = exports.css = void 0;
+exports.default = exports.styled = exports.keyframes = exports.createGlobalStyle = exports.css = exports.ThemeProvider = void 0;
 
 var styledComponents = _interopRequireWildcard(require("styled-components"));
 
@@ -16,12 +16,16 @@ const {
   css,
   createGlobalStyle,
   keyframes,
-  ThemeProvider
+  ThemeProvider: ThemeProvider_
 } = styledComponents;
-exports.ThemeProvider = ThemeProvider;
+/** @deprecated Use ThemeProvider from v2 instead */
+
 exports.keyframes = keyframes;
 exports.createGlobalStyle = createGlobalStyle;
 exports.css = css;
+exports.styled = styled;
+const ThemeProvider = ThemeProvider_;
+exports.ThemeProvider = ThemeProvider;
 // tslint:disable-next-line:no-default-export
 var _default = styled;
 exports.default = _default;

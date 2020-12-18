@@ -1,5 +1,5 @@
-/// <reference types="@monorail/typings/styled-components" />
 export declare enum BorderRadius {
+    XSmall = 2,
     Small = 3,
     Medium = 4,
     Large = 6,
@@ -7,4 +7,3 @@ export declare enum BorderRadius {
     Round = 1000
 }
 export declare const borderRadius: (borderRadius2?: BorderRadius) => import("styled-components").FlattenSimpleInterpolation;
-//# sourceMappingURL=borderRadius.d.ts.map

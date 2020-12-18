@@ -1,12 +1,11 @@
-import * as E from 'fp-ts/lib/Either'
-import * as RTE from 'fp-ts/lib/ReaderTaskEither'
-import * as T from 'fp-ts/lib/Task'
-import * as TE from 'fp-ts/lib/TaskEither'
 import { array } from 'fp-ts/lib/Array'
+import * as E from 'fp-ts/lib/Either'
 import { pipe } from 'fp-ts/lib/pipeable'
-import { unsafeCoerceToArray } from '@monorail/sharedHelpers/ReadonlyArray'
-import { never } from 'io-ts'
-/* tslint:disable no-shadowed-variable */
+import * as RTE from 'fp-ts/lib/ReaderTaskEither'
+import * as TE from 'fp-ts/lib/TaskEither'
+
+import { noOpIO } from '@monorail/sharedHelpers/fp-ts-ext/IO'
+import { unsafeCoerceToArray } from '@monorail/sharedHelpers/fp-ts-ext/ReadonlyArray'
 
 /**
  * Pipeable port of rte.orElse, which widens types
@@ -182,7 +181,7 @@ export type CombinedRteOutput<RTES extends DEFAULT_RTES> = {
   [K in keyof RTES]: ExtractRteOutput<RTES[K]>
 }
 
-// tslint:disable-next-line:no-any
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type SafeAny = any
 
 // Retrieve the environment from an RTE
@@ -244,3 +243,9 @@ type UnNest<T, Fallback = unknown> = T extends ReadonlyArray<unknown>
         : T[K]
     }[number]
   : Fallback
+
+export const noOpRTE = RTE.fromIO<unknown, never, void>(noOpIO)
+
+export const provide = <D>(env: D) => <E, A>(
+  rt: RTE.ReaderTaskEither<D, E, A>,
+): TE.TaskEither<E, A> => () => RTE.run(rt, env)
