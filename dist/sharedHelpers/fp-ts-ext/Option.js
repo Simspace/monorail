@@ -3,14 +3,37 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+var _exportNames = {
+  isOption: true,
+  renderOnSome: true,
+  getOrEmptyString: true,
+  toArray: true,
+  opTraverse: true
+};
 exports.opTraverse = opTraverse;
-exports.toArray = exports.getOrEmptyString = exports.getOrElse = exports.renderOnSome = exports.isOption = void 0;
+exports.toArray = exports.getOrEmptyString = exports.renderOnSome = exports.isOption = void 0;
 
-var _Option = require("fp-ts/lib/Option");
+var O = _interopRequireWildcard(require("fp-ts/lib/Option"));
 
-var _fpTsImports = require("../fp-ts-imports");
+Object.keys(O).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
+  if (key in exports && exports[key] === O[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function () {
+      return O[key];
+    }
+  });
+});
+
+var _pipeable = require("fp-ts/lib/pipeable");
 
 var _typeGuards = require("../typeGuards");
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 /**
  * type guard for Option
@@ -32,25 +55,15 @@ const isOption = x => {
 
 exports.isOption = isOption;
 
-const renderOnSome = (a, onSome) => _fpTsImports.O.fold(() => null, onSome)(a);
-/**
- * Curried, non-lazy version of fp-ts' `getOrElse`. Used to extract the value
- * from a Some or return a default value in place of a None. Also
- * known as `fromMaybe` in Haskell, PureScript, etc.
- */
-
-
-exports.renderOnSome = renderOnSome;
-
-const getOrElse = a => b => (0, _fpTsImports.pipe)(b, _fpTsImports.O.getOrElse(() => a));
+const renderOnSome = (a, onSome) => O.fold(() => null, onSome)(a);
 /**
  * Partially applied version of `getOrElse` providing an empty string
  * as the default argument
  */
 
 
-exports.getOrElse = getOrElse;
-const getOrEmptyString = getOrElse('');
+exports.renderOnSome = renderOnSome;
+const getOrEmptyString = O.getOrElse(() => '');
 /**
  * Folds an option down into either an empty array or a single-element array containing
  * the value from within the Some. Useful in conjunction with the spread operator.
@@ -58,7 +71,7 @@ const getOrEmptyString = getOrElse('');
 
 exports.getOrEmptyString = getOrEmptyString;
 
-const toArray = fa => (0, _fpTsImports.pipe)(fa, _fpTsImports.O.fold(() => [], a => [a]));
+const toArray = fa => (0, _pipeable.pipe)(fa, O.fold(() => [], a => [a]));
 /**
  * Traverse over an Option into an applicative.
  *
@@ -84,5 +97,5 @@ const toArray = fa => (0, _fpTsImports.pipe)(fa, _fpTsImports.O.fold(() => [], a
 exports.toArray = toArray;
 
 function opTraverse(Ap) {
-  return f => oA => _Option.option.traverse(Ap)(oA, f);
+  return f => oA => O.option.traverse(Ap)(oA, f);
 }

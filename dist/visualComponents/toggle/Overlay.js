@@ -86,7 +86,8 @@ class Overlay extends _react.Component {
       overlayProps,
       usesScaleAnimation,
       zIndex,
-      modalContainerRef
+      modalContainerRef,
+      overlayContainerProps
     } = this.props;
     const {
       isRendered
@@ -98,13 +99,13 @@ class Overlay extends _react.Component {
           [_theme.ThemeColors.ActionSecondary]: _color.Colors.BrandLightBlue
         }
       })
-    }, /*#__PURE__*/_react.default.createElement(_Modals.BBModalContainer, {
+    }, /*#__PURE__*/_react.default.createElement(_Modals.BBModalContainer, _extends({
       onClick: e => e.stopPropagation(),
       usesScaleAnimation: usesScaleAnimation,
       isOpen: isRendered && isOpen,
       zIndex: zIndex,
       ref: modalContainerRef
-    }, /*#__PURE__*/_react.default.createElement(_StyledBBModalOverlay, _extends({
+    }, overlayContainerProps), /*#__PURE__*/_react.default.createElement(_StyledBBModalOverlay, _extends({
       isOpen: isRendered && isOpen,
       onClick: onClick
     }, overlayProps, {

@@ -7,11 +7,15 @@ exports.readonlyArrayZipper = exports.Comonad = exports.Traversable = exports.Fo
 
 var _function = require("fp-ts/lib/function");
 
+var O = _interopRequireWildcard(require("fp-ts/lib/Option"));
+
+var _pipeable = require("fp-ts/lib/pipeable");
+
+var RA = _interopRequireWildcard(require("fp-ts/lib/ReadonlyArray"));
+
 var RNEA = _interopRequireWildcard(require("fp-ts/lib/ReadonlyNonEmptyArray"));
 
-var _fpTsImports = require("../fp-ts-imports");
-
-var RAE = _interopRequireWildcard(require("./ReadonlyArray"));
+var RAExt = _interopRequireWildcard(require("./ReadonlyArray"));
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
@@ -44,7 +48,7 @@ const make = (lefts, focus, rights) => ({
 
 exports.make = make;
 
-const fromReadonlyArray = ra => (0, _fpTsImports.pipe)(RAE.headAndTailS(ra), _fpTsImports.O.map(({
+const fromReadonlyArray = ra => (0, _pipeable.pipe)(RAExt.headAndTailS(ra), O.map(({
   head,
   tail
 }) => ({
@@ -100,7 +104,7 @@ const length = raz => raz.lefts.length + 1 + raz.rights.length;
 
 exports.length = length;
 
-const moveLeft = raz => (0, _fpTsImports.pipe)(RAE.initAndLastT(raz.lefts), _fpTsImports.O.map(([leftInit, leftLast]) => ({
+const moveLeft = raz => (0, _pipeable.pipe)(RAExt.initAndLastT(raz.lefts), O.map(([leftInit, leftLast]) => ({
   lefts: leftInit,
   focus: leftLast,
   rights: [raz.focus].concat(raz.rights)
@@ -112,7 +116,7 @@ const moveLeft = raz => (0, _fpTsImports.pipe)(RAE.initAndLastT(raz.lefts), _fpT
 
 exports.moveLeft = moveLeft;
 
-const moveLeftWithClamp = raz => (0, _fpTsImports.pipe)(moveLeft(raz), _fpTsImports.O.getOrElse(() => raz));
+const moveLeftWithClamp = raz => (0, _pipeable.pipe)(moveLeft(raz), O.getOrElse(() => raz));
 /**
  * Moves the focus one item to the right. If the focus is at the right-most item, none is returned.
  */
@@ -120,7 +124,7 @@ const moveLeftWithClamp = raz => (0, _fpTsImports.pipe)(moveLeft(raz), _fpTsImpo
 
 exports.moveLeftWithClamp = moveLeftWithClamp;
 
-const moveRight = raz => (0, _fpTsImports.pipe)(RAE.headAndTailT(raz.rights), _fpTsImports.O.map(([rightHead, rightTail]) => ({
+const moveRight = raz => (0, _pipeable.pipe)(RAExt.headAndTailT(raz.rights), O.map(([rightHead, rightTail]) => ({
   lefts: raz.lefts.concat(raz.focus),
   focus: rightHead,
   rights: rightTail
@@ -132,7 +136,7 @@ const moveRight = raz => (0, _fpTsImports.pipe)(RAE.headAndTailT(raz.rights), _f
 
 exports.moveRight = moveRight;
 
-const moveRightWithClamp = raz => (0, _fpTsImports.pipe)(moveRight(raz), _fpTsImports.O.getOrElse(() => raz));
+const moveRightWithClamp = raz => (0, _pipeable.pipe)(moveRight(raz), O.getOrElse(() => raz));
 /**
  * Overwrites the focus with the given value
  */
@@ -165,7 +169,7 @@ const modifyFocus = f => raz => ({
 
 exports.modifyFocus = modifyFocus;
 
-const findInFocus = eq => item => raz => eq.equals(raz.focus, item) ? _fpTsImports.O.some(raz) : _fpTsImports.O.none;
+const findInFocus = eq => item => raz => eq.equals(raz.focus, item) ? O.some(raz) : O.none;
 /**
  * Attempts to find the given value by checking just the values to the left of the focus.
  * If found, a new array is returned focused on the given item.
@@ -174,7 +178,7 @@ const findInFocus = eq => item => raz => eq.equals(raz.focus, item) ? _fpTsImpor
 
 exports.findInFocus = findInFocus;
 
-const findInLefts = eq => item => raz => (0, _fpTsImports.pipe)(moveLeft(raz), _fpTsImports.O.chain(razNext => (0, _fpTsImports.pipe)(findInFocus(eq)(item)(razNext), _fpTsImports.O.alt(() => findInLefts(eq)(item)(razNext)) // TODO: not tail recursive
+const findInLefts = eq => item => raz => (0, _pipeable.pipe)(moveLeft(raz), O.chain(razNext => (0, _pipeable.pipe)(findInFocus(eq)(item)(razNext), O.alt(() => findInLefts(eq)(item)(razNext)) // TODO: not tail recursive
 )));
 /**
  * Attempts to find the given value by checking just the values to the right of the focus.
@@ -184,7 +188,7 @@ const findInLefts = eq => item => raz => (0, _fpTsImports.pipe)(moveLeft(raz), _
 
 exports.findInLefts = findInLefts;
 
-const findInRights = eq => item => raz => (0, _fpTsImports.pipe)(moveRight(raz), _fpTsImports.O.chain(razNext => (0, _fpTsImports.pipe)(findInFocus(eq)(item)(razNext), _fpTsImports.O.alt(() => findInRights(eq)(item)(razNext)) // TODO: not tail recursive
+const findInRights = eq => item => raz => (0, _pipeable.pipe)(moveRight(raz), O.chain(razNext => (0, _pipeable.pipe)(findInFocus(eq)(item)(razNext), O.alt(() => findInRights(eq)(item)(razNext)) // TODO: not tail recursive
 )));
 /**
  * Attempts to find the given value by checking the focus, the values to the left of the focus and the values to the right of the focus.
@@ -194,7 +198,7 @@ const findInRights = eq => item => raz => (0, _fpTsImports.pipe)(moveRight(raz),
 
 exports.findInRights = findInRights;
 
-const find = eq => item => raz => (0, _fpTsImports.pipe)(findInFocus(eq)(item)(raz), _fpTsImports.O.alt(() => findInLefts(eq)(item)(raz)), _fpTsImports.O.alt(() => findInRights(eq)(item)(raz)));
+const find = eq => item => raz => (0, _pipeable.pipe)(findInFocus(eq)(item)(raz), O.alt(() => findInLefts(eq)(item)(raz)), O.alt(() => findInRights(eq)(item)(raz)));
 /**
  * Attempts to find the given value by checking the focus, the values to the left of the focus and the values to the right of the focus.
  * If found, a new array is returned focused on the given item.
@@ -204,7 +208,7 @@ const find = eq => item => raz => (0, _fpTsImports.pipe)(findInFocus(eq)(item)(r
 
 exports.find = find;
 
-const findOrKeep = eq => item => raz => (0, _fpTsImports.pipe)(find(eq)(item)(raz), _fpTsImports.O.getOrElse(() => raz));
+const findOrKeep = eq => item => raz => (0, _pipeable.pipe)(find(eq)(item)(raz), O.getOrElse(() => raz));
 /**
  * Maps a function over the collection
  */
@@ -233,16 +237,16 @@ const mapWithIndex_ = (raz, f) => make(raz.lefts.map((value, index) => f(index, 
 exports.mapWithIndex_ = mapWithIndex_;
 
 const ap_ = (fab, fa) => ({
-  lefts: _fpTsImports.RA.readonlyArray.ap(fab.lefts, fa.lefts),
+  lefts: RA.readonlyArray.ap(fab.lefts, fa.lefts),
   focus: fab.focus(fa.focus),
-  rights: _fpTsImports.RA.readonlyArray.ap(fab.rights, fa.rights)
+  rights: RA.readonlyArray.ap(fab.rights, fa.rights)
 });
 
 exports.ap_ = ap_;
 
 const extend_ = (fa, f) => {
-  const lefts = fa.lefts.map((a, i) => f(make((0, _fpTsImports.pipe)(fa.lefts, _fpTsImports.RA.takeLeft(i)), a, _fpTsImports.RA.snoc((0, _fpTsImports.pipe)(fa.lefts, _fpTsImports.RA.dropLeft(i + 1)), fa.focus).concat(fa.rights))));
-  const rights = fa.rights.map((a, i) => f(make(_fpTsImports.RA.snoc(fa.lefts, fa.focus).concat((0, _fpTsImports.pipe)(fa.rights, _fpTsImports.RA.takeLeft(i))), a, (0, _fpTsImports.pipe)(fa.rights, _fpTsImports.RA.dropLeft(i + 1)))));
+  const lefts = fa.lefts.map((a, i) => f(make((0, _pipeable.pipe)(fa.lefts, RA.takeLeft(i)), a, RA.snoc((0, _pipeable.pipe)(fa.lefts, RA.dropLeft(i + 1)), fa.focus).concat(fa.rights))));
+  const rights = fa.rights.map((a, i) => f(make(RA.snoc(fa.lefts, fa.focus).concat((0, _pipeable.pipe)(fa.rights, RA.takeLeft(i))), a, (0, _pipeable.pipe)(fa.rights, RA.dropLeft(i + 1)))));
   return make(lefts, f(fa), rights);
 };
 
@@ -263,8 +267,7 @@ const foldMap_ = M => (fa, f) => {
 };
 
 const traverse_ = F => {
-  const traverseF = _fpTsImports.RA.readonlyArray.traverse(F);
-
+  const traverseF = RA.readonlyArray.traverse(F);
   return (ta, f) => F.ap(F.ap(F.map(traverseF(ta.lefts, f), lefts => focus => rights => make(lefts, focus, rights)), f(ta.focus)), traverseF(ta.rights, f));
 };
 
@@ -280,11 +283,11 @@ const ap = fa => fab => ap_(fab, fa);
 
 exports.ap = ap;
 
-const apFirst = fb => fa => (0, _fpTsImports.pipe)(fa, map(a => _ => a), ap(fb));
+const apFirst = fb => fa => (0, _pipeable.pipe)(fa, map(a => _ => a), ap(fb));
 
 exports.apFirst = apFirst;
 
-const apSecond = fb => fa => (0, _fpTsImports.pipe)(fa, map(_a => b => b), ap(fb));
+const apSecond = fb => fa => (0, _pipeable.pipe)(fa, map(_a => b => b), ap(fb));
 
 exports.apSecond = apSecond;
 
@@ -307,8 +310,7 @@ const reduceRight = (b, f) => fa => reduceRight_(fa, b, f);
 exports.reduceRight = reduceRight;
 
 const sequence = F => {
-  const sequenceF = _fpTsImports.RA.readonlyArray.sequence(F);
-
+  const sequenceF = RA.readonlyArray.sequence(F);
   return ta => F.ap(F.ap(F.map(sequenceF(ta.lefts), lefts => focus => rights => make(lefts, focus, rights)), ta.focus), sequenceF(ta.rights));
 };
 
@@ -321,8 +323,7 @@ const URI = 'ReadonlyArrayZipper';
 exports.URI = URI;
 
 const getShow = showA => {
-  const showRA = _fpTsImports.RA.getShow(showA);
-
+  const showRA = RA.getShow(showA);
   return {
     show: raz => `ReadonlyArrayZipper(${showRA.show(raz.lefts)}, ${showA.show(raz.focus)}, ${showRA.show(raz.rights)})`
   };
@@ -331,8 +332,7 @@ const getShow = showA => {
 exports.getShow = getShow;
 
 const getEq = eqA => {
-  const eqRA = _fpTsImports.RA.getEq(eqA);
-
+  const eqRA = RA.getEq(eqA);
   return {
     equals: (a, b) => eqRA.equals(a.lefts, b.lefts) && eqA.equals(a.focus, b.focus) && eqRA.equals(a.rights, b.rights)
   };
@@ -350,7 +350,7 @@ exports.getSemigroup = getSemigroup;
 
 const getMonoid = monoidA => {
   return { ...getSemigroup(monoidA),
-    empty: make(_fpTsImports.RA.empty, monoidA.empty, _fpTsImports.RA.empty)
+    empty: make(RA.empty, monoidA.empty, RA.empty)
   };
 };
 

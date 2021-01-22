@@ -1,6 +1,8 @@
 import React, { CSSProperties, FC, MouseEvent } from 'react';
 import { Column, ControlledStateOverrideProps, ExpandedChangeFunction, FinalState, SortedChangeFunction, SortingRule, TableProps } from 'react-table';
 import { ButtonDisplay, ButtonSize } from '@monorail/visualComponents/buttons/buttonTypes';
+export * from 'react-table';
+export { default as ReactTable } from 'react-table';
 export declare const TableComponent: import("styled-components").StyledComponent<"div", import("../../helpers/theme").GlobalAppThemeInterface, {}, never>;
 export declare const TheadComponentContainer: import("styled-components").StyledComponent<"div", import("../../helpers/theme").GlobalAppThemeInterface, {
     isFilterBar: boolean;
@@ -76,7 +78,8 @@ export declare const NoDataComponentVertical: FC;
 export declare const NoDataComponentHorizontal: FC;
 export declare const ExpanderComponent: TableCellRenderFunction<unknown>;
 export declare const EllipsisValueComponent: TableCellRenderFunction<unknown>;
-export declare const MonorailReactTableOverrides: Partial<TableProps>;
+export declare const LoadingWrapper: () => JSX.Element;
+export declare const MonorailReactTableOverrides: TableProps;
 export declare function useTableExpandState<T extends object>({ data, pivotKey, defaultExpanded, }: {
     data: Array<T>;
     pivotKey: keyof T;
@@ -145,4 +148,3 @@ export declare type ComponentPropsGetterR<I> = (finalState: FinalState<I> & {
     }>;
 }, rowInfo?: RowInfo<I>, column?: Column<I>, instance?: unknown) => object | undefined;
 export declare type TableColumns<T> = Array<Column<T>>;
-export {};

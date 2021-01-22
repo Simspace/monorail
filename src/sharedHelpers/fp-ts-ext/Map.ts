@@ -3,6 +3,8 @@ import { pipe } from 'fp-ts/lib/function'
 import * as M from 'fp-ts/lib/Map'
 import * as O from 'fp-ts/lib/Option'
 
+export * from 'fp-ts/lib/Map'
+
 /**
  * Allows removal, modification, or insertion of values into a map.
  *

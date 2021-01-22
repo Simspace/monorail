@@ -9,6 +9,8 @@ var A = _interopRequireWildcard(require("fp-ts/lib/Array"));
 
 var _Foldable = require("fp-ts/lib/Foldable");
 
+var _function = require("fp-ts/lib/function");
+
 var _Monoid = require("fp-ts/lib/Monoid");
 
 var Nea = _interopRequireWildcard(require("fp-ts/lib/NonEmptyArray"));
@@ -18,8 +20,6 @@ var O = _interopRequireWildcard(require("fp-ts/lib/Option"));
 var _pipeable = require("fp-ts/lib/pipeable");
 
 var R = _interopRequireWildcard(require("fp-ts/lib/Record"));
-
-var _fpTsImports = require("./fp-ts-imports");
 
 var _typeGuards = require("./typeGuards");
 
@@ -111,7 +111,7 @@ exports.fromReactRouter = fromReactRouter;
 
 const toUrlString = query => {
   const eachKey = R.collect((k, v) => (0, _pipeable.pipe)(v, A.map(x => `${k}=${x}`), xs => (0, _Foldable.intercalate)(_Monoid.monoidString, A.array)('&', xs)))(query);
-  return (0, _pipeable.pipe)(eachKey, O.fromPredicate((0, _fpTsImports.not)(A.isEmpty)), O.fold(() => ``, eachKey_ => `?${(0, _Foldable.intercalate)(_Monoid.monoidString, A.array)('&', eachKey_)}`));
+  return (0, _pipeable.pipe)(eachKey, O.fromPredicate((0, _function.not)(A.isEmpty)), O.fold(() => ``, eachKey_ => `?${(0, _Foldable.intercalate)(_Monoid.monoidString, A.array)('&', eachKey_)}`));
 };
 
 exports.toUrlString = toUrlString;

@@ -1,5 +1,6 @@
 import React, { ReactElement, useLayoutEffect, useRef, useState } from 'react'
 import Downshift from 'downshift'
+import styled, { css } from 'styled-components'
 import * as O from 'fp-ts/lib/Option'
 import { pipe } from 'fp-ts/lib/pipeable'
 
@@ -13,7 +14,6 @@ import {
   FontSizes,
   typographyFont,
 } from '@monorail/helpers/exports'
-import styled, { css } from '@monorail/helpers/styled-components'
 import {
   defaultPopOverPosition,
   getOverlayPosition,
@@ -45,6 +45,7 @@ type DropdownContainerProps = CommonComponentType & {
 
 const DropdownWrapper = styled.div`
   ${flexFlow('column')}
+  min-height: 25px; /* fix for cut off bottom border */
 
   flex: 1;
 `
@@ -58,6 +59,7 @@ const DropdownContainer = styled.div<DropdownContainerProps>(
     flex: 1;
     position: relative;
     width: 100%;
+    min-height: 24px;
 
     ${error &&
       css`

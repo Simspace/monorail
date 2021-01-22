@@ -3,320 +3,221 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.compactNullable = exports.findFirstMapWithIndex = exports.spliceWhere = exports.zip = exports.rle = exports.toggle = exports.fromEither = exports.fromOption = exports.without = exports.isNotEmpty = exports.arrayToRecord = exports.xor = exports.notAny = exports.all = exports.any = exports.intersperseMapWithIndex = exports.intersperseMap = exports.intersperse = exports.liftOption2 = exports.sortByNumeric = exports.sortByAlpha = exports.splitEithers = exports.leftsAndRights = exports.traverseTaskEithers = exports.traverseTasks = exports.traverseEithers = exports.traverseOptions = exports.sequenceRemoteData = exports.sequenceTaskEithers = exports.sequenceTasks = exports.sequenceEithers = exports.sequenceOptions = exports.len = exports.containsAny = exports.containsEq = exports.contains = exports.runIOs = exports.forEachWithIndex = exports.forEachPipe = exports.forEach = exports.concatFlipped = exports.concat = exports.map = void 0;
+var _exportNames = {
+  concat: true,
+  precat: true,
+  append: true,
+  prepend: true,
+  forEach: true,
+  forEachWithIndex: true,
+  elemWithEqStrict: true,
+  elemP: true,
+  elemAny: true,
+  len: true,
+  liftOption2: true,
+  intersperseMap: true,
+  intersperseMapWithIndex: true,
+  separateT: true,
+  any: true,
+  all: true,
+  notAny: true,
+  xor: true,
+  arrayToRecord: true,
+  isNotEmpty: true,
+  without: true,
+  fromOption: true,
+  fromEither: true,
+  toggle: true,
+  rle: true,
+  zip: true,
+  spliceWhere: true,
+  findFirstMapWithIndex: true,
+  compactNullable: true
+};
+exports.compactNullable = exports.findFirstMapWithIndex = exports.spliceWhere = exports.zip = exports.rle = exports.toggle = exports.fromEither = exports.fromOption = exports.without = exports.isNotEmpty = exports.arrayToRecord = exports.xor = exports.notAny = exports.all = exports.any = exports.separateT = exports.intersperseMapWithIndex = exports.intersperseMap = exports.liftOption2 = exports.len = exports.elemAny = exports.elemP = exports.elemWithEqStrict = exports.forEachWithIndex = exports.forEach = exports.prepend = exports.append = exports.precat = exports.concat = void 0;
 
-var _remoteDataTs = require("@devexperts/remote-data-ts");
+var Ap = _interopRequireWildcard(require("fp-ts/lib/Apply"));
 
-var _lodash = require("lodash");
+var A = _interopRequireWildcard(require("fp-ts/lib/Array"));
 
-var _Apply = require("fp-ts/lib/Apply");
+Object.keys(A).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
+  if (key in exports && exports[key] === A[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function () {
+      return A[key];
+    }
+  });
+});
 
-var _Array = require("fp-ts/lib/Array");
+var E = _interopRequireWildcard(require("fp-ts/lib/Either"));
 
-var _Either = require("fp-ts/lib/Either");
+var Eq = _interopRequireWildcard(require("fp-ts/lib/Eq"));
 
 var _function = require("fp-ts/lib/function");
 
-var _Monoid = require("fp-ts/lib/Monoid");
+var Mn = _interopRequireWildcard(require("fp-ts/lib/Monoid"));
 
-var _Option = require("fp-ts/lib/Option");
+var O = _interopRequireWildcard(require("fp-ts/lib/Option"));
 
 var _pipeable = require("fp-ts/lib/pipeable");
 
-var _Record = require("fp-ts/lib/Record");
+var R = _interopRequireWildcard(require("fp-ts/lib/Record"));
 
-var _Task = require("fp-ts/lib/Task");
-
-var _TaskEither = require("fp-ts/lib/TaskEither");
-
-var _fpTsImports = require("../fp-ts-imports");
+var OExt = _interopRequireWildcard(require("./Option"));
 
 var _typeGuards = require("../typeGuards");
 
-var _Eq = require("./Eq");
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
-var _IO = require("./IO");
-
-var _Option2 = require("./Option");
-
-var _Ord = require("./Ord");
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 // TODO: we should copy all these functions to ReadonlyArray (and change the types to ReadonlyArray), then alias those functions here.
 // There is also likely some redundancy with some of these and what's available now that we are on fp-ts 2.
 
 /**
- * Curried version of fp-ts' `map` for Arrays
+ * Curried, pipeable version of concat. Note that the arguments are in order for use with `pipe`, so the argument order might seem backwards at first glance.
+ * The first argument is passed as an object with the key of `suffix` to avoid misuse.
+ *
+ * The result is `prefix.concat(suffix)`
+ *
+ * @example
+ * ```typescript
+ * A.concat({ suffix: [1, 2] })([3, 4]) // [3,4,2,1]
+ *
+ * pipe(
+ *   [1,2],
+ *   A.concat({ suffix: [3, 4] })
+ * ) // [1,2,3,4]
+ * ```
  */
-const map = f => xs => _Array.array.map(xs, f);
+const concat = ({
+  suffix
+}) => prefix => prefix.concat(suffix);
 /**
- * Curried version of fp-ts' `concat`/'alt' for Arrays.
- */
-
-
-exports.map = map;
-
-const concat = xs => ys => _Array.array.alt(xs, () => ys);
-/**
- * Curried version of fp-ts' `concat` or `alt` for Arrays
- * with its arguments reversed
+ * Curried, pipeable version of concat with arguments flipped for concatenating at the start of another Array. The result is prefix.concat(suffix).
+ * The first argument is passed as an object with the key of `prefix` to avoid misuse.
+ *
+ * @example
+ * ```typescript
+ * A.precat({ prefix: [1, 2] })([3, 4]) // [1,2,3,4]
+ *
+ * pipe(
+ *   [1,2],
+ *   A.precat({ prefix: [3, 4] })
+ * ) // [3,4,1,2]
+ * ```
  */
 
 
 exports.concat = concat;
 
-const concatFlipped = xs => ys => _Array.array.alt(ys, () => xs);
+const precat = ({
+  prefix
+}) => suffix => prefix.concat(suffix);
 /**
- * Function wrapper around the native `array.forEach`
+ * Curried, pipeable version of `snoc` (aka append), for adding an item to the end of an Array
  */
 
 
-exports.concatFlipped = concatFlipped;
+exports.precat = precat;
 
-const forEach = (xs, f) => xs.forEach(f);
+const append = x => xs => A.snoc(xs, x);
 /**
- * Pipable version of `forEach` helper.
+ * Curried, pipeable version of `cons`, for adding an item to the beginning of an Array
+ */
+
+
+exports.append = append;
+
+const prepend = x => xs => A.cons(x, xs);
+/**
+ * Pipeable forEach. Runs an effect on each element of the input Array, then returns the input Array unchanged.
+ */
+
+
+exports.prepend = prepend;
+
+const forEach = f => xs => {
+  xs.forEach(f);
+  return xs;
+};
+/**
+ * Pipeable forEach with index. Runs an effect on each element of the input Array, then returns the Array unchanged.
  */
 
 
 exports.forEach = forEach;
 
-const forEachPipe = f => xs => xs.forEach(f);
+const forEachWithIndex = f => xs => {
+  xs.forEach(f);
+  return xs;
+};
 /**
- * Function wrapper around the native `array.forEach` including an index
- */
-
-
-exports.forEachPipe = forEachPipe;
-
-const forEachWithIndex = (xs, f) => xs.forEach(f);
-/**
- * Runs each IO<A> in an Array<IO<A>>, ignoring their return values
+ * Tests whether or not something is a member of an array via strict (===) equality
  */
 
 
 exports.forEachWithIndex = forEachWithIndex;
 
-const runIOs = xs => forEach(xs, _IO.runIO);
-/**
- * Tests whether or not something is a member of an array via strict equality
- */
-
-
-exports.runIOs = runIOs;
-
-const contains = x => xs => (0, _Array.elem)(_Eq.eqStrict)(x, xs);
+const elemWithEqStrict = x => xs => A.elem(Eq.eqStrict)(x, xs);
 /**
  * Tests whether or not something is a member of an array based on the supplied Eq instance
+ *
+ * Same as base A.elem, but a more pipeable signature. Named `elemP` to disambiguate from base `elem`.
  */
 
 
-exports.contains = contains;
+exports.elemWithEqStrict = elemWithEqStrict;
 
-const containsEq = eq => x => xs => (0, _Array.elem)(eq)(x, xs);
+const elemP = eq => x => xs => A.elem(eq)(x, xs);
 /**
  * Returns true if any values from xs exist in ys
  * @param E the Eq insance that's used to compare
  */
 
 
-exports.containsEq = containsEq;
+exports.elemP = elemP;
 
-const containsAny = eq => xs => ys => _Array.array.foldMap(_Monoid.monoidAny)(xs, x => containsEq(eq)(x)(ys));
+const elemAny = eq => xs => ys => A.array.foldMap(Mn.monoidAny)(xs, x => elemP(eq)(x)(ys));
 /**
  * Gets the length of an ArrayLike or string
  */
 
 
-exports.containsAny = containsAny;
+exports.elemAny = elemAny;
 
 const len = xs => xs.length;
-/**
- * sequence utility for the Option instance of Applicative and the Array
- * instance of Traversable2v1
- */
-
-
-exports.len = len;
-
-const sequenceOptions = _Array.array.sequence(_Option.option);
-/**
- * sequence utility for the Either instance of Applicative and the Array
- * instance of Traversable2v1
- */
-
-
-exports.sequenceOptions = sequenceOptions;
-
-const sequenceEithers = _Array.array.sequence(_Either.either);
-/**
- * sequence utility for the Task instance of Applicative and the Array
- * instance of Traversable2v1
- */
-
-
-exports.sequenceEithers = sequenceEithers;
-
-const sequenceTasks = _Array.array.sequence(_Task.task);
-/**
- * sequence utility for the TaskEither instance of Applicative and the Array
- * instance of Traversable2v1
- */
-
-
-exports.sequenceTasks = sequenceTasks;
-
-const sequenceTaskEithers = _Array.array.sequence(_TaskEither.taskEither);
-/**
- * sequence utility for the RemoteData instance of Applicative and the Array
- * instance of Traversable2v1
- */
-
-
-exports.sequenceTaskEithers = sequenceTaskEithers;
-
-const sequenceRemoteData = _Array.array.sequence(_remoteDataTs.remoteData);
-/**
- * traverse utility for the Option instance of Applicative and the Array
- * instance of Traversable2v1
- */
-
-
-exports.sequenceRemoteData = sequenceRemoteData;
-
-const traverseOptions = _Array.array.traverse(_Option.option);
-/**
- * traverse utility for the Either instance of Applicative and the Array
- * instance of Traversable2v1
- */
-
-
-exports.traverseOptions = traverseOptions;
-
-const traverseEithers = _Array.array.traverse(_Either.either);
-/**
- * traverse utility for the Task instance of Applicative and the Array
- * instance of Traversable2v1
- */
-
-
-exports.traverseEithers = traverseEithers;
-
-const traverseTasks = _Array.array.traverse(_Task.task);
-/**
- * traverse utility for the TaskEither instance of Applicative and the Array
- * instance of Traversable2v1
- */
-
-
-exports.traverseTasks = traverseTasks;
-
-const traverseTaskEithers = _Array.array.traverse(_TaskEither.taskEither);
-/**
- * Type representing the Left and Right values of an Array of Eithers
- */
-
-
-exports.traverseTaskEithers = traverseTaskEithers;
-
-/**
- * Gets both the Lefts and Rights from an Array of Eithers simultaneously
- */
-const leftsAndRights = xs => {
-  const {
-    left,
-    right
-  } = _Array.array.partition(xs, _Either.isRight);
-
-  const getValue = x => (0, _pipeable.pipe)(x, (0, _Either.fold)(_lodash.identity, _lodash.identity));
-
-  const ls = _Array.array.map(left, getValue);
-
-  const rs = _Array.array.map(right, getValue);
-
-  return {
-    lefts: ls,
-    rights: rs
-  };
-};
-/**
- * Splits an Array of eithers using {@link leftsAndRights},
- * but wraps it in a tuple for easier renaming
- * @param xs the array of Eithers to split
- */
-
-
-exports.leftsAndRights = leftsAndRights;
-
-const splitEithers = xs => {
-  const {
-    lefts,
-    rights
-  } = leftsAndRights(xs);
-  return [lefts, rights];
-};
-/**
- * Sorts an array of strings alphabetically
- */
-
-
-exports.splitEithers = splitEithers;
-const sortByAlpha = (0, _Array.sort)(_Ord.ordAlpha);
-/**
- * Sorts an array of strings numerically
- */
-
-exports.sortByAlpha = sortByAlpha;
-const sortByNumeric = (0, _Array.sort)(_Ord.ordNumeric);
 /**
  * Lift a function of two arguments to a function which accepts and returns
  * those same values in the context of Options
  */
 
-exports.sortByNumeric = sortByNumeric;
 
-const liftOption2 = f => oa => ob => (0, _pipeable.pipe)((0, _Apply.sequenceT)(_fpTsImports.O.option)(oa, ob), _fpTsImports.O.map(([a, b]) => f(a)(b)));
-/**
- * Takes an element and a list and "intersperses", or "mixes in", that element
- * between the elements of the list
- */
+exports.len = len;
 
-
-exports.liftOption2 = liftOption2;
-
-const intersperse = (a, as) => {
-  if (len(as) < 2) {
-    return as;
-  } else {
-    const initAs = (0, _Array.init)(as);
-    const lastA = (0, _Array.last)(as);
-    const result = liftOption2(init_ => last_ => {
-      const interspersedInit = _Array.array.chain(init_, x => (0, _function.tuple)(x, a));
-
-      return (0, _Array.snoc)(interspersedInit, last_);
-    })(initAs)(lastA);
-    return (0, _Option2.getOrElse)(as)(result);
-  }
-};
+const liftOption2 = f => oa => ob => (0, _pipeable.pipe)(Ap.sequenceT(O.option)(oa, ob), O.map(([a, b]) => f(a)(b)));
 /**
  * Like `intersperse`, but takes a map function that returns the item to be
  * "interspersed" instead of directly taking the item itself
  */
 
 
-exports.intersperse = intersperse;
+exports.liftOption2 = liftOption2;
 
-const intersperseMap = (f, as) => {
+const intersperseMap = f => as => {
   if (len(as) < 2) {
     return as;
   } else {
-    const initAs = (0, _Array.init)(as);
-    const lastA = (0, _Array.last)(as);
+    const initAs = A.init(as);
+    const lastA = A.last(as);
     const result = liftOption2(init_ => last_ => {
-      const interspersedInit = _Array.array.chain(init_, x => (0, _function.tuple)(x, f(x)));
-
-      return (0, _Array.snoc)(interspersedInit, last_);
+      const interspersedInit = A.array.chain(init_, x => (0, _function.tuple)(x, f(x)));
+      return A.snoc(interspersedInit, last_);
     })(initAs)(lastA);
-    return (0, _Option2.getOrElse)(as)(result);
+    return O.getOrElse(() => as)(result);
   }
 };
 /**
@@ -326,35 +227,47 @@ const intersperseMap = (f, as) => {
 
 exports.intersperseMap = intersperseMap;
 
-const intersperseMapWithIndex = (f, as) => {
+const intersperseMapWithIndex = f => as => {
   if (len(as) < 2) {
     return as;
   } else {
-    const initAs = (0, _Array.init)(as);
-    const lastA = (0, _Array.last)(as);
+    const initAs = A.init(as);
+    const lastA = A.last(as);
     const result = liftOption2(init_ => last_ => {
-      const pairs = _Array.array.mapWithIndex(init_, (i, x) => (0, _function.tuple)(x, f(x, i)));
-
-      const interspersedInit = (0, _Array.flatten)(pairs);
-      return (0, _Array.snoc)(interspersedInit, last_);
+      const pairs = A.array.mapWithIndex(init_, (i, x) => (0, _function.tuple)(x, f(x, i)));
+      const interspersedInit = A.flatten(pairs);
+      return A.snoc(interspersedInit, last_);
     })(initAs)(lastA);
-    return (0, _Option2.getOrElse)(as)(result);
+    return OExt.getOrElse(() => as)(result);
   }
 };
 /**
- * Returns a boolean indicating whether or not the specified predicate function
- * holds true for any element of an array.
+ * Variant of separate that returns the resulting arrays in a tuple
  */
 
 
 exports.intersperseMapWithIndex = intersperseMapWithIndex;
 
-const any = (as, p) => {
-  const resultOpt = traverseOptions(as, a => p(a) ? _Option.none : (0, _Option.some)(a));
-  return _fpTsImports.O.fold(_function.constTrue, _function.constFalse)(resultOpt);
+const separateT = eithers => {
+  const {
+    left,
+    right
+  } = A.separate(eithers);
+  return [left, right];
 };
 /**
- * Returns a boolean indicating whether or not the specified predicate function
+ * Returns a boolean indicating whether the specified predicate function
+ * holds true for any element of an array.
+ */
+
+
+exports.separateT = separateT;
+
+const any = (as, p) => {
+  return as.some(p);
+};
+/**
+ * Returns a boolean indicating whether the specified predicate function
  * holds true for all elements of an array.
  */
 
@@ -362,11 +275,10 @@ const any = (as, p) => {
 exports.any = any;
 
 const all = (as, p) => {
-  const resultOpt = traverseOptions(as, a => p(a) ? (0, _Option.some)(a) : _Option.none);
-  return _fpTsImports.O.fold(_function.constFalse, _function.constTrue)(resultOpt);
+  return as.every(p);
 };
 /**
- * Returns a boolean indicating whether or not the specified predicate function
+ * Returns a boolean indicating whether the specified predicate function
  * holds true for no elements of an array.
  */
 
@@ -374,8 +286,7 @@ const all = (as, p) => {
 exports.all = all;
 
 const notAny = (as, p) => {
-  const resultOpt = traverseOptions(as, a => p(a) ? _Option.none : (0, _Option.some)(a));
-  return _fpTsImports.O.fold(_function.constFalse, _function.constTrue)(resultOpt);
+  return !as.some(p);
 };
 /**
  * Returns an array of elements which are in both input arrays but not in their
@@ -385,7 +296,7 @@ const notAny = (as, p) => {
 
 exports.notAny = notAny;
 
-const xor = eq => (xs, ys) => [...(0, _Array.difference)(eq)(xs, ys), ...(0, _Array.difference)(eq)(ys, xs)];
+const xor = eq => (xs, ys) => [...A.difference(eq)(xs, ys), ...A.difference(eq)(ys, xs)];
 /**
  * Returns an object made up of a keys from the result the accessor function
  */
@@ -397,7 +308,7 @@ const arrayToRecord = (keyAccessor, mapValue) => arr => {
   return arr.reduce((acc, curr) => {
     const key = keyAccessor(curr);
     const value = (0, _typeGuards.isNotNil)(mapValue) ? mapValue(curr) : curr;
-    return (0, _pipeable.pipe)((0, _Record.lookup)(key, acc), _fpTsImports.O.fold(() => ({ ...acc,
+    return (0, _pipeable.pipe)(R.lookup(key, acc), O.fold(() => ({ ...acc,
       [key]: value
     }), () => acc));
   }, {});
@@ -409,7 +320,7 @@ const arrayToRecord = (keyAccessor, mapValue) => arr => {
 
 exports.arrayToRecord = arrayToRecord;
 
-const isNotEmpty = arr => !(0, _Array.isEmpty)(arr);
+const isNotEmpty = arr => !A.isEmpty(arr);
 /**
  * removes all occurences of an element from an Array
  * @param E equals instance for comapring elements in the array
@@ -430,7 +341,7 @@ const without = (eq, t) => xs => xs.filter(x => !eq.equals(x, t));
 
 exports.without = without;
 
-const fromOption = o => (0, _pipeable.pipe)(o, _fpTsImports.O.fold(() => [], v => [v]));
+const fromOption = o => (0, _pipeable.pipe)(o, O.fold(() => [], v => [v]));
 /**
  * Converts an Either into an Array, returning an empty array if the either
  * is Left, and an array of length one with the right value if the either
@@ -441,11 +352,15 @@ const fromOption = o => (0, _pipeable.pipe)(o, _fpTsImports.O.fold(() => [], v =
 
 exports.fromOption = fromOption;
 
-const fromEither = e => (0, _pipeable.pipe)(e, (0, _Either.fold)(() => [], r => [r]));
+const fromEither = e => (0, _pipeable.pipe)(e, E.fold(() => [], r => [r]));
+/**
+ * Adds or removes an item from an Array, depending on whether it's already in the Array
+ */
+
 
 exports.fromEither = fromEither;
 
-const toggle = eq => a => as => ((0, _Array.elem)(eq)(a, as) ? _Array.difference : _Array.union)(eq)(as, [a]);
+const toggle = eq => a => as => (A.elem(eq)(a, as) ? A.difference : A.union)(eq)(as, [a]);
 /**
  * Calculates the run length encoding of an array. Given a sorted array, this is
  * equivalent to finding the counts of each entry.
@@ -460,12 +375,16 @@ const toggle = eq => a => as => ((0, _Array.elem)(eq)(a, as) ? _Array.difference
 
 exports.toggle = toggle;
 
-const rle = eq => as => (0, _pipeable.pipe)(as, (0, _Array.reduce)([], (runLengths, next) => (0, _pipeable.pipe)((0, _Array.last)(runLengths), _fpTsImports.O.fold(() => [[next, 1]], ([prev, n]) => eq.equals(prev, next) ? runLengths.slice(0, -1).concat([[prev, n + 1]]) : runLengths.concat([[next, 1]])))));
+const rle = eq => as => (0, _pipeable.pipe)(as, A.reduce([], (runLengths, next) => (0, _pipeable.pipe)(A.last(runLengths), O.fold(() => [[next, 1]], ([prev, n]) => eq.equals(prev, next) ? runLengths.slice(0, -1).concat([[prev, n + 1]]) : runLengths.concat([[next, 1]])))));
 
 exports.rle = rle;
 
 /**
  * Variadic zip with type inference.
+ *
+ * Note: fp-ts Array has a more naive zip function, but because this is better-typed,
+ * we'll override the base `zip` function with this. If you want the base `zip`, you can import
+ * it directly from `fp-ts/lib/Array`.
  *
  * @example
  * declare const ns: Array<number>
@@ -492,7 +411,7 @@ const zip = (...as) => {
 
 exports.zip = zip;
 
-const spliceWhere = predicate => (mapMatch, mapNotMatch = _lodash.identity) => arr => (0, _pipeable.pipe)(arr, (0, _Array.chain)(a => predicate(a) ? mapMatch(a) : [mapNotMatch(a)]));
+const spliceWhere = predicate => (mapMatch, mapNotMatch = _function.identity) => arr => (0, _pipeable.pipe)(arr, A.chain(a => predicate(a) ? mapMatch(a) : [mapNotMatch(a)]));
 /**
  * Finds first element in an array for which `f` returns a `some`
  */
@@ -506,12 +425,12 @@ const findFirstMapWithIndex = f => as => {
   for (let i = 0; i < l; i++) {
     const v = f(i, as[i]);
 
-    if (_fpTsImports.O.isSome(v)) {
+    if (O.isSome(v)) {
       return v;
     }
   }
 
-  return _fpTsImports.O.none;
+  return O.none;
 };
 /**
  * Array.compact that works on Array<Nullable> as opposed to Array<Option>
@@ -522,6 +441,6 @@ const findFirstMapWithIndex = f => as => {
 
 exports.findFirstMapWithIndex = findFirstMapWithIndex;
 
-const compactNullable = as => (0, _pipeable.pipe)(as, (0, _Array.filter)(_typeGuards.isNotNil));
+const compactNullable = as => (0, _pipeable.pipe)(as, A.filter(_typeGuards.isNotNil));
 
 exports.compactNullable = compactNullable;

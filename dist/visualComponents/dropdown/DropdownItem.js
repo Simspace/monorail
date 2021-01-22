@@ -5,9 +5,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.DropdownItem = void 0;
 
-var _color = require("../../helpers/color");
-
 var _styledComponents = _interopRequireWildcard(require("../../helpers/styled-components"));
+
+var _colors = require("../../v2/core/theme/colors");
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
@@ -25,21 +25,25 @@ const DropdownItem = _styledComponents.default.div(({
     font-size: 11px;
     padding: 8px;
     word-break: break-word;
+    border-left: 4px solid transparent;
 
     ${disabled ? (0, _styledComponents.css)`
           cursor: default;
           opacity: 0.24;
         ` : (0, _styledComponents.css)`
           ${highlighted && (0, _styledComponents.css)`
-              background: ${(0, _color.getColor)(_color.Colors.Black24a, 0.16)};
+              background: ${_colors.ColorToken.Blue050};
+              border-left: 4px solid ${_colors.ColorToken.Blue300};
             `};
 
           ${selected && (0, _styledComponents.css)`
-              background: ${(0, _color.getColor)(_color.Colors.BrandLightBlue, 0.2)};
+              background: ${_colors.ColorToken.Blue050};
+              border-left: 4px solid ${_colors.ColorToken.Blue600};
             `};
 
           ${highlighted && selected && (0, _styledComponents.css)`
-              background: ${(0, _color.getColor)(_color.Colors.BrandLightBlue, 0.24)};
+              background: ${_colors.ColorToken.Blue100};
+              border-left: 4px solid ${_colors.ColorToken.Blue600};
             `};
         `};
   `);

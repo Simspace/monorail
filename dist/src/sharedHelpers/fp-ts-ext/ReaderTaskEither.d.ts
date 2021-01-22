@@ -1,28 +1,30 @@
 import * as E from 'fp-ts/lib/Either';
 import * as RTE from 'fp-ts/lib/ReaderTaskEither';
 import * as TE from 'fp-ts/lib/TaskEither';
+import { EmptyEnv, Subtract } from '@monorail/sharedHelpers/fp-ts-ext/effectsUtils';
+export * from 'fp-ts/lib/ReaderTaskEither';
 /**
  * Pipeable port of rte.orElse, which widens types
  * @param f
  */
-export declare const orElseW: <R, RR, E, EE, A>(f: (e: E) => RTE.ReaderTaskEither<RR, EE, A>) => (rte: RTE.ReaderTaskEither<R, E, A>) => RTE.ReaderTaskEither<RR & R, E | EE, A>;
-export declare const chainWFirst: <R, E, A, B>(f: (a: A) => RTE.ReaderTaskEither<R, E, B>) => <Q, D>(ma: RTE.ReaderTaskEither<Q, D, A>) => RTE.ReaderTaskEither<Q & R, E | D, A>;
+export declare const orElseW: <R extends object, Q extends object, E, D, A>(f: (e: E) => RTE.ReaderTaskEither<Q, D, A>) => (rte: RTE.ReaderTaskEither<R, E, A>) => RTE.ReaderTaskEither<Q & R, E | D, A>;
+export declare const chainWFirst: <R extends object, E, A, B>(f: (a: A) => RTE.ReaderTaskEither<R, E, B>) => <Q extends object, D>(ma: RTE.ReaderTaskEither<Q, D, A>) => RTE.ReaderTaskEither<Q & R, E | D, A>;
 /**
  * Widens Dependency type to the manually supplied type parameter,
  *
  * i.e.
  * @example
  * ```ts
- * const rte = withDeps<number>(RTE.of("foo"))
- * rte.run(6) // requires a `number`
+ * const rte = withEnv<{ num: number }>(RTE.of("foo"))
+ * rte.run({ num: 6 }) // requires a `{ num: number }`
  * ```
  */
-export declare const withDeps: <D>() => <R, E, A>(r: RTE.ReaderTaskEither<R, E, A>) => RTE.ReaderTaskEither<D & R, E, A>;
+export declare const withEnv: <Q extends object>() => <R extends object, E, A>(r: RTE.ReaderTaskEither<R, E, A>) => RTE.ReaderTaskEither<Q & R, E, A>;
 /**
  * Takes a successful Right RTE, and turns it into a failing 'Left' RTE
  * @param rtea
  */
-export declare const toLeft: <R, E, A, Z = never>(rtea: RTE.ReaderTaskEither<R, E, A>) => RTE.ReaderTaskEither<R, E | A, Z>;
+export declare const toLeft: <R extends object, E, A, Z = never>(rtea: RTE.ReaderTaskEither<R, E, A>) => RTE.ReaderTaskEither<R, E | A, Z>;
 /**
  * Executes an RTE if a left is encountered, enabling access to the original error.
  * The value returnded from `f` will be discarded, and the resulting RTE will contain
@@ -36,7 +38,7 @@ export declare const toLeft: <R, E, A, Z = never>(rtea: RTE.ReaderTaskEither<R, 
  * )
  * ```
  */
-export declare const onLeft: <R, RR, E, A>(f: (e: E) => RTE.ReaderTaskEither<RR, unknown, unknown>) => (rte: RTE.ReaderTaskEither<R, E, A>) => RTE.ReaderTaskEither<R & RR, E, A>;
+export declare const onLeft: <R extends object, Q extends object, E, A>(f: (e: E) => RTE.ReaderTaskEither<Q, unknown, unknown>) => (rte: RTE.ReaderTaskEither<R, E, A>) => RTE.ReaderTaskEither<R & Q, E, A>;
 /**
  * Runs a ReaderTaskEither with the specified parameters
  *
@@ -74,8 +76,35 @@ export declare const onLeft: <R, RR, E, A>(f: (e: E) => RTE.ReaderTaskEither<RR,
  * const d: RTE.ReaderTaskEither<string, unknown, unknown> = stringRTE
  * ```
  * Here, the assignment to `a` and `b` fails, but in fp-ts v2, only the assignment to `a` fails
+ *
+ * Using the suffix `P` for `pipeable` to disambiguate the name from the base `run`
+ *
+ * NOTE: The above examples show primitive types being used in the RTE environment. However,
+ * all utility functions in this file require the environment to be expressed as an object type
+ * due to the reliance on using intersection types to aggregate dependencies.
  */
-export declare const run: <R>(r: R) => <E, A>(rte: RTE.ReaderTaskEither<R, E, A>) => Promise<E.Either<E, A>>;
+export declare const runP: <R extends object>(r: R) => <E, A>(rte: RTE.ReaderTaskEither<R, E, A>) => Promise<E.Either<E, A>>;
+/**
+ * A ReaderTaskEither that performs a noOp computation
+ *
+ * It uses an empty environment and cannot fail.
+ */
+export declare const noOpRTE: RTE.ReaderTaskEither<EmptyEnv, never, void>;
+/**
+ * Provides the required environment to a ReaderTaskEither,
+ * converting it into a TaskEither.
+ *
+ * Similar to `runP` but delays execution.
+ */
+export declare const provide: <R extends object>(r: R) => <E, A>(rte: RTE.ReaderTaskEither<R, E, A>) => TE.TaskEither<E, A>;
+/**
+ * Provides a subset of a ReaderTaskEither's required environment,
+ * returning a new ReaderTaskEither with a narrowed environment requirement.
+ *
+ * Similar to `provide` but does not completely fulfill the RTE's requirements.
+ * Think of this as partial application for RTE dependencies.
+ */
+export declare const providePartial: <R extends object, Q extends R>(q: Q) => <E, A>(rte: RTE.ReaderTaskEither<R, E, A>) => RTE.ReaderTaskEither<Pick<R, Exclude<keyof R, keyof Q>>, E, A>;
 /**
  * Given a tuple/list of RTEs, it will aggregate their combined environments into an intersection,
  * their combined errors into a union, and map the values into a corresponding tuple/list.
@@ -108,6 +137,3 @@ declare type Flatten<A, S> = A extends [infer H] ? S & H : A extends [infer I, i
 declare type UnNest<T, Fallback = unknown> = T extends ReadonlyArray<unknown> ? {
     [K in keyof T]: T[K] extends [infer TT] ? TT extends ReadonlyArray<unknown> ? UnNest<TT> : TT : T[K];
 }[number] : Fallback;
-export declare const noOpRTE: RTE.ReaderTaskEither<unknown, never, void>;
-export declare const provide: <D>(env: D) => <E, A>(rt: RTE.ReaderTaskEither<D, E, A>) => TE.TaskEither<E, A>;
-export {};

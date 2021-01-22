@@ -1,104 +1,117 @@
-import { remoteData } from '@devexperts/remote-data-ts'
-import { identity } from 'lodash'
-import { sequenceT } from 'fp-ts/lib/Apply'
+import * as Ap from 'fp-ts/lib/Apply'
+import * as A from 'fp-ts/lib/Array'
+import * as E from 'fp-ts/lib/Either'
+import * as Eq from 'fp-ts/lib/Eq'
 import {
-  array,
-  chain,
-  difference,
-  elem,
-  filter,
-  flatten,
-  init,
-  isEmpty,
-  last,
-  reduce,
-  snoc,
-  sort,
-  union,
-} from 'fp-ts/lib/Array'
-import { Either, either, fold, isRight } from 'fp-ts/lib/Either'
-import { Eq } from 'fp-ts/lib/Eq'
-import { constFalse, constTrue, Predicate, tuple } from 'fp-ts/lib/function'
-import { IO } from 'fp-ts/lib/IO'
-import { monoidAny } from 'fp-ts/lib/Monoid'
-import { none, Option, option, some } from 'fp-ts/lib/Option'
+  constFalse,
+  constTrue,
+  identity,
+  Predicate,
+  tuple,
+} from 'fp-ts/lib/function'
+import * as Mn from 'fp-ts/lib/Monoid'
+import * as NEA from 'fp-ts/lib/NonEmptyArray'
+import * as O from 'fp-ts/lib/Option'
 import { pipe } from 'fp-ts/lib/pipeable'
-import { lookup } from 'fp-ts/lib/Record'
-import { task } from 'fp-ts/lib/Task'
-import { taskEither } from 'fp-ts/lib/TaskEither'
-import { O } from '@monorail/sharedHelpers/fp-ts-imports'
+import * as R from 'fp-ts/lib/Record'
 
-import { isNotNil } from '../typeGuards'
-import { eqStrict } from './Eq'
-import { runIO } from './IO'
-import { getOrElse } from './Option'
-import { ordAlpha, ordNumeric } from './Ord'
+import * as OExt from '@monorail/sharedHelpers/fp-ts-ext/Option'
+import { isNotNil } from '@monorail/sharedHelpers/typeGuards'
+
+export * from 'fp-ts/lib/Array'
 
 // TODO: we should copy all these functions to ReadonlyArray (and change the types to ReadonlyArray), then alias those functions here.
 // There is also likely some redundancy with some of these and what's available now that we are on fp-ts 2.
 
 /**
- * Curried version of fp-ts' `map` for Arrays
+ * Curried, pipeable version of concat. Note that the arguments are in order for use with `pipe`, so the argument order might seem backwards at first glance.
+ * The first argument is passed as an object with the key of `suffix` to avoid misuse.
+ *
+ * The result is `prefix.concat(suffix)`
+ *
+ * @example
+ * ```typescript
+ * A.concat({ suffix: [1, 2] })([3, 4]) // [3,4,2,1]
+ *
+ * pipe(
+ *   [1,2],
+ *   A.concat({ suffix: [3, 4] })
+ * ) // [1,2,3,4]
+ * ```
  */
-export const map = <A, B>(f: (x: A) => B) => (xs: Array<A>): Array<B> =>
-  array.map(xs, f)
+export const concat = <A>({ suffix }: { suffix: Array<A> }) => (
+  prefix: Array<A>,
+): Array<A> => prefix.concat(suffix)
 
 /**
- * Curried version of fp-ts' `concat`/'alt' for Arrays.
+ * Curried, pipeable version of concat with arguments flipped for concatenating at the start of another Array. The result is prefix.concat(suffix).
+ * The first argument is passed as an object with the key of `prefix` to avoid misuse.
+ *
+ * @example
+ * ```typescript
+ * A.precat({ prefix: [1, 2] })([3, 4]) // [1,2,3,4]
+ *
+ * pipe(
+ *   [1,2],
+ *   A.precat({ prefix: [3, 4] })
+ * ) // [3,4,1,2]
+ * ```
  */
-export const concat = <A>(xs: Array<A>) => (ys: Array<A>): Array<A> =>
-  array.alt(xs, () => ys)
+export const precat = <A>({ prefix }: { prefix: Array<A> }) => (
+  suffix: Array<A>,
+): Array<A> => prefix.concat(suffix)
 
 /**
- * Curried version of fp-ts' `concat` or `alt` for Arrays
- * with its arguments reversed
+ * Curried, pipeable version of `snoc` (aka append), for adding an item to the end of an Array
  */
-export const concatFlipped = <A>(xs: Array<A>) => (ys: Array<A>): Array<A> =>
-  array.alt(ys, () => xs)
+export const append = <A>(x: A) => (xs: Array<A>): NEA.NonEmptyArray<A> =>
+  A.snoc(xs, x)
 
 /**
- * Function wrapper around the native `array.forEach`
+ * Curried, pipeable version of `cons`, for adding an item to the beginning of an Array
  */
-export const forEach = <A>(xs: Array<A>, f: (x: A) => void) => xs.forEach(f)
+export const prepend = <A>(x: A) => (xs: Array<A>): NEA.NonEmptyArray<A> =>
+  A.cons(x, xs)
 
 /**
- * Pipable version of `forEach` helper.
+ * Pipeable forEach. Runs an effect on each element of the input Array, then returns the input Array unchanged.
  */
-export const forEachPipe = <A>(f: (x: A) => void) => (xs: Array<A>) =>
+export const forEach = <A>(f: (x: A) => void) => (xs: Array<A>): Array<A> => {
   xs.forEach(f)
+  return xs
+}
 
 /**
- * Function wrapper around the native `array.forEach` including an index
+ * Pipeable forEach with index. Runs an effect on each element of the input Array, then returns the Array unchanged.
  */
-export const forEachWithIndex = <A>(
+export const forEachWithIndex = <A>(f: (x: A, i: number) => void) => (
   xs: Array<A>,
-  f: (x: A, i: number) => void,
-) => xs.forEach(f)
+): Array<A> => {
+  xs.forEach(f)
+  return xs
+}
 
 /**
- * Runs each IO<A> in an Array<IO<A>>, ignoring their return values
+ * Tests whether or not something is a member of an array via strict (===) equality
  */
-export const runIOs = <A>(xs: Array<IO<A>>) => forEach(xs, runIO)
-
-/**
- * Tests whether or not something is a member of an array via strict equality
- */
-export const contains = <A>(x: A) => (xs: Array<A>): boolean =>
-  elem<A>(eqStrict)(x, xs)
+export const elemWithEqStrict = <A>(x: A) => (xs: Array<A>): boolean =>
+  A.elem<A>(Eq.eqStrict)(x, xs)
 
 /**
  * Tests whether or not something is a member of an array based on the supplied Eq instance
+ *
+ * Same as base A.elem, but a more pipeable signature. Named `elemP` to disambiguate from base `elem`.
  */
-export const containsEq = <A>(eq: Eq<A>) => (x: A) => (xs: Array<A>): boolean =>
-  elem<A>(eq)(x, xs)
+export const elemP = <A>(eq: Eq.Eq<A>) => (x: A) => (xs: Array<A>): boolean =>
+  A.elem<A>(eq)(x, xs)
 
 /**
  * Returns true if any values from xs exist in ys
  * @param E the Eq insance that's used to compare
  */
-export const containsAny = <A>(eq: Eq<A>) => (xs: Array<A>) => (
+export const elemAny = <A>(eq: Eq.Eq<A>) => (xs: Array<A>) => (
   ys: Array<A>,
-): boolean => array.foldMap(monoidAny)(xs, x => containsEq(eq)(x)(ys))
+): boolean => A.array.foldMap(Mn.monoidAny)(xs, x => elemP(eq)(x)(ys))
 
 /**
  * Gets the length of an ArrayLike or string
@@ -106,215 +119,100 @@ export const containsAny = <A>(eq: Eq<A>) => (xs: Array<A>) => (
 export const len = (xs: ArrayLike<unknown> | string): number => xs.length
 
 /**
- * sequence utility for the Option instance of Applicative and the Array
- * instance of Traversable2v1
- */
-export const sequenceOptions = array.sequence(option)
-
-/**
- * sequence utility for the Either instance of Applicative and the Array
- * instance of Traversable2v1
- */
-export const sequenceEithers = array.sequence(either)
-
-/**
- * sequence utility for the Task instance of Applicative and the Array
- * instance of Traversable2v1
- */
-export const sequenceTasks = array.sequence(task)
-
-/**
- * sequence utility for the TaskEither instance of Applicative and the Array
- * instance of Traversable2v1
- */
-export const sequenceTaskEithers = array.sequence(taskEither)
-
-/**
- * sequence utility for the RemoteData instance of Applicative and the Array
- * instance of Traversable2v1
- */
-export const sequenceRemoteData = array.sequence(remoteData)
-
-/**
- * traverse utility for the Option instance of Applicative and the Array
- * instance of Traversable2v1
- */
-export const traverseOptions = array.traverse(option)
-
-/**
- * traverse utility for the Either instance of Applicative and the Array
- * instance of Traversable2v1
- */
-export const traverseEithers = array.traverse(either)
-
-/**
- * traverse utility for the Task instance of Applicative and the Array
- * instance of Traversable2v1
- */
-export const traverseTasks = array.traverse(task)
-
-/**
- * traverse utility for the TaskEither instance of Applicative and the Array
- * instance of Traversable2v1
- */
-export const traverseTaskEithers = array.traverse(taskEither)
-
-/**
- * Type representing the Left and Right values of an Array of Eithers
- */
-export interface LeftsAndRights<L, A> {
-  lefts: Array<L>
-  rights: Array<A>
-}
-
-/**
- * Gets both the Lefts and Rights from an Array of Eithers simultaneously
- */
-export const leftsAndRights = <L, A>(
-  xs: Array<Either<L, A>>,
-): LeftsAndRights<L, A> => {
-  const { left, right } = array.partition(xs, isRight)
-  const getValue = <L_, A_>(x: Either<L_, A_>) =>
-    pipe(x, fold<L_, A_, L_ | A_>(identity, identity))
-  const ls = array.map(left, getValue) as Array<L>
-  const rs = array.map(right, getValue) as Array<A>
-  return {
-    lefts: ls,
-    rights: rs,
-  }
-}
-
-/**
- * Splits an Array of eithers using {@link leftsAndRights},
- * but wraps it in a tuple for easier renaming
- * @param xs the array of Eithers to split
- */
-export const splitEithers = <L, R>(
-  xs: Array<Either<L, R>>,
-): [Array<L>, Array<R>] => {
-  const { lefts, rights } = leftsAndRights(xs)
-  return [lefts, rights]
-}
-
-/**
- * Sorts an array of strings alphabetically
- */
-export const sortByAlpha = sort(ordAlpha)
-
-/**
- * Sorts an array of strings numerically
- */
-export const sortByNumeric = sort(ordNumeric)
-
-/**
  * Lift a function of two arguments to a function which accepts and returns
  * those same values in the context of Options
  */
 export const liftOption2 = <A, B, C>(f: (a: A) => (b: B) => C) => (
-  oa: Option<A>,
-) => (ob: Option<B>): Option<C> =>
+  oa: O.Option<A>,
+) => (ob: O.Option<B>): O.Option<C> =>
   pipe(
-    sequenceT(O.option)(oa, ob),
+    Ap.sequenceT(O.option)(oa, ob),
     O.map(([a, b]) => f(a)(b)),
   )
-
-/**
- * Takes an element and a list and "intersperses", or "mixes in", that element
- * between the elements of the list
- */
-export const intersperse = <A>(a: A, as: Array<A>) => {
-  if (len(as) < 2) {
-    return as
-  } else {
-    const initAs = init(as)
-    const lastA = last(as)
-
-    const result = liftOption2((init_: Array<A>) => (last_: A) => {
-      const interspersedInit = array.chain(init_, x => tuple(x, a))
-      return snoc(interspersedInit, last_)
-    })(initAs)(lastA)
-
-    return getOrElse(as)(result)
-  }
-}
 
 /**
  * Like `intersperse`, but takes a map function that returns the item to be
  * "interspersed" instead of directly taking the item itself
  */
-export const intersperseMap = <A>(f: (a: A) => A, as: Array<A>) => {
+export const intersperseMap = <A>(f: (a: A) => A) => (as: Array<A>) => {
   if (len(as) < 2) {
     return as
   } else {
-    const initAs = init(as)
-    const lastA = last(as)
+    const initAs = A.init(as)
+    const lastA = A.last(as)
 
     const result = liftOption2((init_: Array<A>) => (last_: A) => {
-      const interspersedInit = array.chain(init_, x => tuple(x, f(x)))
-      return snoc(interspersedInit, last_)
+      const interspersedInit = A.array.chain(init_, x => tuple(x, f(x)))
+      return A.snoc(interspersedInit, last_)
     })(initAs)(lastA)
 
-    return getOrElse(as)(result)
+    return O.getOrElse(() => as)(result)
   }
 }
 
 /**
  * An indexed version of `intersperseMap`-- adds an index to the map function
  */
-export const intersperseMapWithIndex = <A>(
-  f: (a: A, i: number) => A,
+export const intersperseMapWithIndex = <A>(f: (a: A, i: number) => A) => (
   as: Array<A>,
 ) => {
   if (len(as) < 2) {
     return as
   } else {
-    const initAs = init(as)
-    const lastA = last(as)
+    const initAs = A.init(as)
+    const lastA = A.last(as)
 
     const result = liftOption2((init_: Array<A>) => (last_: A) => {
-      const pairs = array.mapWithIndex(init_, (i, x) => tuple(x, f(x, i)))
-      const interspersedInit = flatten(pairs)
-      return snoc(interspersedInit, last_)
+      const pairs = A.array.mapWithIndex(init_, (i, x) => tuple(x, f(x, i)))
+      const interspersedInit = A.flatten(pairs)
+      return A.snoc(interspersedInit, last_)
     })(initAs)(lastA)
 
-    return getOrElse(as)(result)
+    return OExt.getOrElse(() => as)(result)
   }
 }
 
 /**
- * Returns a boolean indicating whether or not the specified predicate function
+ * Variant of separate that returns the resulting arrays in a tuple
+ */
+export const separateT = <L, R>(
+  eithers: Array<E.Either<L, R>>,
+): [Array<L>, Array<R>] => {
+  const { left, right } = A.separate(eithers)
+  return [left, right]
+}
+
+/**
+ * Returns a boolean indicating whether the specified predicate function
  * holds true for any element of an array.
  */
 export const any = <A>(as: Array<A>, p: Predicate<A>) => {
-  const resultOpt = traverseOptions(as, a => (p(a) ? none : some(a)))
-  return O.fold(constTrue, constFalse)(resultOpt)
+  return as.some(p)
 }
 
 /**
- * Returns a boolean indicating whether or not the specified predicate function
+ * Returns a boolean indicating whether the specified predicate function
  * holds true for all elements of an array.
  */
 export const all = <A>(as: Array<A>, p: Predicate<A>) => {
-  const resultOpt = traverseOptions(as, a => (p(a) ? some(a) : none))
-  return O.fold(constFalse, constTrue)(resultOpt)
+  return as.every(p)
 }
 
 /**
- * Returns a boolean indicating whether or not the specified predicate function
+ * Returns a boolean indicating whether the specified predicate function
  * holds true for no elements of an array.
  */
 export const notAny = <A>(as: Array<A>, p: Predicate<A>) => {
-  const resultOpt = traverseOptions(as, a => (p(a) ? none : some(a)))
-  return O.fold(constFalse, constTrue)(resultOpt)
+  return !as.some(p)
 }
 
 /**
  * Returns an array of elements which are in both input arrays but not in their
  * intersection. Also known as symmetric difference or disjunctive union.
  */
-export const xor = <A>(eq: Eq<A>) => (xs: Array<A>, ys: Array<A>) => [
-  ...difference(eq)(xs, ys),
-  ...difference(eq)(ys, xs),
+export const xor = <A>(eq: Eq.Eq<A>) => (xs: Array<A>, ys: Array<A>) => [
+  ...A.difference(eq)(xs, ys),
+  ...A.difference(eq)(ys, xs),
 ]
 
 /**
@@ -328,7 +226,7 @@ export const arrayToRecord = <T, V>(
     const key = keyAccessor(curr)
     const value = isNotNil(mapValue) ? mapValue(curr) : curr
     return pipe(
-      lookup(key, acc),
+      R.lookup(key, acc),
       O.fold(
         () => ({ ...acc, [key]: value }),
         () => acc,
@@ -339,14 +237,14 @@ export const arrayToRecord = <T, V>(
 /**
  * Checks if an array is *not* empty
  */
-export const isNotEmpty = <T>(arr: Array<T>) => !isEmpty(arr)
+export const isNotEmpty = <T>(arr: Array<T>) => !A.isEmpty(arr)
 
 /**
  * removes all occurences of an element from an Array
  * @param E equals instance for comapring elements in the array
  * @param t the value to remove
  */
-export const without = <T>(eq: Eq<T>, t: T) => (xs: Array<T>): Array<T> =>
+export const without = <T>(eq: Eq.Eq<T>, t: T) => (xs: Array<T>): Array<T> =>
   xs.filter(x => !eq.equals(x, t))
 
 /**
@@ -355,7 +253,7 @@ export const without = <T>(eq: Eq<T>, t: T) => (xs: Array<T>): Array<T> =>
  * if the option is some, and array with the value will be returned
  * @param o the Option to convert
  */
-export const fromOption = <T>(o: Option<T>): Array<T> =>
+export const fromOption = <T>(o: O.Option<T>): Array<T> =>
   pipe(
     o,
     O.fold(
@@ -370,17 +268,20 @@ export const fromOption = <T>(o: Option<T>): Array<T> =>
  * is Right
  * @param e the Either to convert
  */
-export const fromEither = <L, R>(e: Either<L, R>): Array<R> =>
+export const fromEither = <L, R>(e: E.Either<L, R>): Array<R> =>
   pipe(
     e,
-    fold(
+    E.fold(
       () => [],
       r => [r],
     ),
   )
 
-export const toggle = <A>(eq: Eq<A>) => (a: A) => (as: Array<A>) =>
-  (elem(eq)(a, as) ? difference : union)(eq)(as, [a])
+/**
+ * Adds or removes an item from an Array, depending on whether it's already in the Array
+ */
+export const toggle = <A>(eq: Eq.Eq<A>) => (a: A) => (as: Array<A>) =>
+  (A.elem(eq)(a, as) ? A.difference : A.union)(eq)(as, [a])
 
 /**
  * Calculates the run length encoding of an array. Given a sorted array, this is
@@ -392,12 +293,12 @@ export const toggle = <A>(eq: Eq<A>) => (a: A) => (as: Array<A>) =>
  *   ['a', 3], ['b', 2], ['a', 1]
  * ])
  */
-export const rle = <A>(eq: Eq<A>) => (as: Array<A>): Array<[A, number]> =>
+export const rle = <A>(eq: Eq.Eq<A>) => (as: Array<A>): Array<[A, number]> =>
   pipe(
     as,
-    reduce([] as Array<[A, number]>, (runLengths, next) =>
+    A.reduce([] as Array<[A, number]>, (runLengths, next) =>
       pipe(
-        last(runLengths),
+        A.last(runLengths),
         O.fold(
           () => [[next, 1]],
           ([prev, n]) =>
@@ -415,6 +316,10 @@ type ExtractValues<T extends Array<Array<unknown>>> = {
 
 /**
  * Variadic zip with type inference.
+ *
+ * Note: fp-ts Array has a more naive zip function, but because this is better-typed,
+ * we'll override the base `zip` function with this. If you want the base `zip`, you can import
+ * it directly from `fp-ts/lib/Array`.
  *
  * @example
  * declare const ns: Array<number>
@@ -444,7 +349,7 @@ export const spliceWhere = <A>(predicate: Predicate<A>) => (
 ) => (arr: Array<A>): Array<A> =>
   pipe(
     arr,
-    chain(a => (predicate(a) ? mapMatch(a) : [mapNotMatch(a)])),
+    A.chain(a => (predicate(a) ? mapMatch(a) : [mapNotMatch(a)])),
   )
 
 /**
@@ -469,4 +374,4 @@ export const findFirstMapWithIndex = <A, B>(
  * @param as
  */
 export const compactNullable = <T>(as: Array<T>): Array<T> =>
-  pipe(as, filter(isNotNil))
+  pipe(as, A.filter(isNotNil))

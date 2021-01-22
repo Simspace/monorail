@@ -108,6 +108,9 @@ const displayCss = {
   }) => `inset 0 0 0 1px ${theme.v2.Accent4}`};
     }
     &[disabled] {
+      box-shadow: ${({
+    theme
+  }) => `inset 0 0 0 1px ${theme.v2.ActionDollop}`};
       color: ${({
     theme
   }) => theme.v2.ActionDollop};

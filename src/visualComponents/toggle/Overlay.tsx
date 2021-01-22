@@ -1,6 +1,7 @@
 import React, { Component, RefObject } from 'react'
 import { css } from 'styled-components'
 
+import { CssOverridesType } from '@monorail/exports'
 import { Colors } from '@monorail/helpers/color'
 import { ThemeProvider } from '@monorail/helpers/styled-components'
 import { Mode, ThemeColors } from '@monorail/helpers/theme'
@@ -24,6 +25,7 @@ type Props = Omit<
   usesScaleAnimation: boolean
   zIndex: number
   modalContainerRef?: RefObject<HTMLDivElement>
+  overlayContainerProps?: { cssOverrides: CssOverridesType }
 }
 
 type State = {
@@ -80,6 +82,7 @@ export class Overlay extends Component<Props, State> {
       usesScaleAnimation,
       zIndex,
       modalContainerRef,
+      overlayContainerProps,
     } = this.props
     const { isRendered } = this.state
 
@@ -100,6 +103,7 @@ export class Overlay extends Component<Props, State> {
           isOpen={isRendered && isOpen}
           zIndex={zIndex}
           ref={modalContainerRef}
+          {...overlayContainerProps}
         >
           <BBModalOverlay
             isOpen={isRendered && isOpen}

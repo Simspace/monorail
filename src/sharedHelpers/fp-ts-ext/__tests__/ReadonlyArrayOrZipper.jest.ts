@@ -1,7 +1,4 @@
-import { Eq, O, Show } from '@monorail/sharedHelpers/fp-ts-imports'
-
-import * as RAOZ from '@monorail/sharedHelpers/fp-ts-ext/ReadonlyArrayOrZipper'
-import * as RAZ from '@monorail/sharedHelpers/fp-ts-ext/ReadonlyArrayZipper'
+import { Eq, O, RAOZ, RAZ, Show } from '@monorail/sharedHelpers/fp-ts-imports'
 
 const js = JSON.stringify
 

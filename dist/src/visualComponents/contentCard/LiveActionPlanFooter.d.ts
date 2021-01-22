@@ -1,8 +1,8 @@
 /// <reference types="react" />
-import { Option } from 'fp-ts/lib/Option';
+import * as O from 'fp-ts/lib/Option';
 export declare function LiveActionPlanFooter(props: LiveActionPlanFooterProps): JSX.Element;
 export declare type LiveActionPlanFooterProps = {
-    readonly network: Option<string>;
+    readonly network: O.Option<string>;
 };
 export declare function LiveAction(): JSX.Element;
 export declare function NetworkName(props: {

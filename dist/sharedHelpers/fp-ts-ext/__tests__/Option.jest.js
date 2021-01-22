@@ -6,18 +6,6 @@ var _Option = require("fp-ts/lib/Option");
 
 var _Option2 = require("../Option");
 
-describe('getOrElse', () => {
-  it('should extract the value from a some when given a some', () => {
-    const actual = (0, _Option2.getOrElse)(0)((0, _Option.some)(5));
-    const expected = 5;
-    expect(actual).toBe(expected);
-  });
-  it('should return a default value when given a none', () => {
-    const actual = (0, _Option2.getOrElse)(0)(_Option.none);
-    const expected = 0;
-    expect(actual).toEqual(expected);
-  });
-});
 describe('getOrEmptyString', () => {
   it('should extract the value from a some when given a some', () => {
     const actual = (0, _Option2.getOrEmptyString)((0, _Option.some)('testing'));

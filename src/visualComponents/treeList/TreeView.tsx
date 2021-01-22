@@ -1,16 +1,13 @@
 import * as React from 'react'
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components'
-import { tuple } from 'fp-ts/lib/function'
-import { Task } from 'fp-ts/lib/Task'
-import * as T from 'fp-ts/Tree'
-import {
-  A as Arr,
-  NEA,
-  O,
-  pipe,
-  R,
-  Sg,
-} from '@monorail/sharedHelpers/fp-ts-imports'
+import * as Arr from 'fp-ts/lib/Array'
+import { pipe, tuple } from 'fp-ts/lib/function'
+import * as NEA from 'fp-ts/lib/NonEmptyArray'
+import * as O from 'fp-ts/lib/Option'
+import * as R from 'fp-ts/lib/Record'
+import * as Sg from 'fp-ts/lib/Semigroup'
+import * as Task from 'fp-ts/lib/Task'
+import * as T from 'fp-ts/lib/Tree'
 
 import { Icon, IconProps } from '@monorail/exports'
 import {
@@ -59,7 +56,7 @@ export type TreeViewRowDisplay =
       content: JSX.Element
     }
 
-export type ActionReturn<K> = void | Task<{
+export type ActionReturn<K> = void | Task.Task<{
   tag: 'nodeOpen'
   nodeOpen: boolean
   key: K

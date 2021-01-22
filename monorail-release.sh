@@ -112,7 +112,7 @@ copy_to_monorail () {
 		# Monorail Repo: delete contents of monorail repo folder (except for the .git folder)
 		find ../monorail -mindepth 1 -name .git -prune -o -exec rm -rf {} +
 		# Portal Repo: Copy CONTENTS of portal/client/packages/monorail # Monorail Repo: paste in contents of portal/client/packages/monorail
-		cp -a ../portal/client/packages/monorail/. ../monorail/
+		cp -a ../portal-suite/client/packages/monorail/. ../monorail/
 		echo "Copy complete"
 	else
 		echo "Copy cancelled by user"

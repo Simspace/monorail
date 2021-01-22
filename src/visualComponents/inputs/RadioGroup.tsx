@@ -23,19 +23,23 @@ import { ViewInput } from '@monorail/visualComponents/inputs/ViewInput'
 const Container = styled.div<
   ContainerProps & { display?: string } & { hideStdErr?: boolean }
 >(
-  ({ display, hideStdErr, cssOverrides }) => css`
-    ${flexFlow('column')};
+  ({ display, hideStdErr, containerCssOverrides, direction }) => css`
+    ${flexFlow(direction)};
 
     ${display !== DisplayType.Edit && !hideStdErr && `margin-bottom: 24px;`}
 
-    ${cssOverrides};
+    ${containerCssOverrides};
   `,
 )
 
-const RadioGroupWrapper = styled.fieldset<{ err?: boolean }>(
-  ({ err }) => css`
+const RadioGroupWrapper = styled.fieldset<{
+  err?: boolean
+  direction: 'row' | 'column'
+}>(
+  ({ err, direction }) => css`
     ${borderRadius()};
-
+    display: flex;
+    flex-direction: ${direction};
     margin: 0;
     padding: 0;
     border-style: solid;
@@ -90,8 +94,9 @@ const InfoText = styled.p`
 `
 
 type ContainerProps = {
-  cssOverrides?: SimpleInterpolation
+  containerCssOverrides?: SimpleInterpolation
   className?: string
+  direction?: 'row' | 'column'
 }
 
 export type ChoiceOption = {
@@ -104,6 +109,7 @@ export type ChoiceOption = {
 
 export type RadioGroupProps = ErrorProps &
   ContainerProps & {
+    cssOverrides?: SimpleInterpolation
     name?: string
     label?: string
     options: Array<ChoiceOption>
@@ -138,11 +144,19 @@ export const RadioGroup: FC<RadioGroupProps> = props => {
     className = '',
     hideStdErr = false,
     display = DisplayType.Edit,
+    direction = 'column',
+    containerCssOverrides,
     ...otherProps
   } = props
 
   return (
-    <Container className={className} display={display} hideStdErr={hideStdErr}>
+    <Container
+      className={className}
+      display={display}
+      hideStdErr={hideStdErr}
+      direction={direction}
+      containerCssOverrides={containerCssOverrides}
+    >
       {display === DisplayType.Edit ? (
         <>
           <Label
@@ -153,7 +167,7 @@ export const RadioGroup: FC<RadioGroupProps> = props => {
             css={err ? errorStyles : `${flexFlow('row')}`}
           />
           {err && <BorderJoiner />}
-          <RadioGroupWrapper {...otherProps} err={err}>
+          <RadioGroupWrapper {...otherProps} err={err} direction={direction}>
             {options.map((o: ChoiceOption = defaultOptions, k) => (
               <div key={k + o.label}>
                 <Choice

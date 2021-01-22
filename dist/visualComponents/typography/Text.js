@@ -13,6 +13,8 @@ var _color = require("../../helpers/color");
 
 var _typography = require("../../helpers/typography");
 
+var _typeGuards = require("../../sharedHelpers/typeGuards");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
@@ -34,11 +36,35 @@ const Text = /*#__PURE__*/_react.default.forwardRef((props, ref) => {
     margin = '',
     color = _color.Colors.Black89a,
     noWrap = false,
+    title,
     children,
     ...domProps
   } = props;
-  return /*#__PURE__*/_react.default.createElement(_StyledSpan, _extends({}, domProps, {
-    ref: ref,
+
+  const spanRef = ref || _react.default.useRef(null);
+
+  const [showDefaultTitle, setShowDefaultTitle] = _react.default.useState(false);
+
+  _react.default.useEffect(() => {
+    /**
+     * If type of children is string, noWrap prop is set, and the text overflows its container,
+     * automatically display a title; if user supplies a title, this logic will be ignored
+     */
+    if (typeof spanRef !== 'function' && noWrap) {
+      const current = spanRef.current;
+
+      if ((0, _typeGuards.isNotNil)(current)) {
+        setShowDefaultTitle(current.offsetWidth < current.scrollWidth);
+      }
+    }
+  }, [spanRef, children, noWrap]);
+
+  const displayTitle = _react.default.useMemo(() => (0, _typeGuards.isNotUndefined)(title) ? title : showDefaultTitle && typeof children === 'string' ? children : undefined, [title, showDefaultTitle, children]);
+
+  return /*#__PURE__*/_react.default.createElement(_StyledSpan, _extends({
+    title: displayTitle
+  }, domProps, {
+    ref: spanRef,
     _css: (0, _typography.typography)(fontWeight, fontSize, margin),
     _css2: (0, _color.getColor)(color),
     _css3: fontStyle,

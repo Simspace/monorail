@@ -1,10 +1,8 @@
-import { strictEqual } from 'fp-ts/lib/Eq'
-
 import {
   eqRecordWithNameLower,
   eqShallow,
   eqStrict,
-  eqStringCaseI,
+  eqStringByLowerCase,
   getEqShallow,
   getEqStrict,
   recordWithNameLowerEquality,
@@ -12,15 +10,15 @@ import {
 
 import { shallowEqual } from '../../shallowEqual'
 
-describe('eqStringCaseI', () => {
+describe('eqStringByLowerCase', () => {
   it('should return true if given two strings that match letters but not casing', () => {
-    const actual = eqStringCaseI.equals('Foo Bar', 'foo bar')
+    const actual = eqStringByLowerCase.equals('Foo Bar', 'foo bar')
     const expected = true
     expect(actual).toBe(expected)
   })
 
   it("should return false if given two strings that don't match", () => {
-    const actual = eqStringCaseI.equals('Bar Foo', 'Foo Bar')
+    const actual = eqStringByLowerCase.equals('Bar Foo', 'Foo Bar')
     const expected = false
     expect(actual).toBe(expected)
   })
@@ -43,18 +41,14 @@ describe('eqShallow', () => {
 describe('eqStrict', () => {
   it('should contain an `equals` function using strict equality (===)', () => {
     const actualA = eqStrict.equals('c', 'a')
-    const expectedA = strictEqual('c', 'a')
-    expect(actualA).toBe(expectedA)
     expect(actualA).toBe(false)
 
     const actualB = eqStrict.equals('b', 'b')
-    const expectedB = strictEqual('b', 'b')
-    expect(actualB).toBe(expectedB)
     expect(actualB).toBe(true)
   })
 })
 
-describe('geteqShallow', () => {
+describe('getEqShallow', () => {
   it('should contain a eq equivalent to eqShallow', () => {
     const s = getEqShallow<{ value: string }>()
     const actual = s.equals({ value: 'c' }, { value: 'a' })
@@ -73,12 +67,12 @@ describe('getEqStrict', () => {
   it('should contain a eq equivalent to eqStrict', () => {
     const s = getEqStrict<string>()
     const actualA = s.equals('c', 'a')
-    const expectedA = strictEqual('c', 'a')
+    const expectedA = eqStrict.equals('c', 'a')
     expect(actualA).toBe(expectedA)
     expect(actualA).toBe(false)
 
     const actualB = s.equals('b', 'b')
-    const expectedB = strictEqual('b', 'b')
+    const expectedB = eqStrict.equals('b', 'b')
     expect(actualB).toBe(expectedB)
     expect(actualB).toBe(true)
   })

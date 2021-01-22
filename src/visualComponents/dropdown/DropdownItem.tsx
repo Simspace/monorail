@@ -1,5 +1,5 @@
-import { Colors, getColor } from '@monorail/helpers/color'
 import styled, { css } from '@monorail/helpers/styled-components'
+import { ColorToken } from '@monorail/v2/core/theme/colors'
 
 type StyledItemProps = {
   selected: boolean
@@ -16,6 +16,7 @@ export const DropdownItem = styled.div<StyledItemProps>(
     font-size: 11px;
     padding: 8px;
     word-break: break-word;
+    border-left: 4px solid transparent;
 
     ${disabled
       ? css`
@@ -25,18 +26,21 @@ export const DropdownItem = styled.div<StyledItemProps>(
       : css`
           ${highlighted &&
             css`
-              background: ${getColor(Colors.Black24a, 0.16)};
+              background: ${ColorToken.Blue050};
+              border-left: 4px solid ${ColorToken.Blue300};
             `};
 
           ${selected &&
             css`
-              background: ${getColor(Colors.BrandLightBlue, 0.2)};
+              background: ${ColorToken.Blue050};
+              border-left: 4px solid ${ColorToken.Blue600};
             `};
 
           ${highlighted &&
             selected &&
             css`
-              background: ${getColor(Colors.BrandLightBlue, 0.24)};
+              background: ${ColorToken.Blue100};
+              border-left: 4px solid ${ColorToken.Blue600};
             `};
         `};
   `,

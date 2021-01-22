@@ -9,13 +9,13 @@ var _react = _interopRequireDefault(require("react"));
 
 var _downshift = _interopRequireDefault(require("downshift"));
 
+var _styledComponents = _interopRequireWildcard(require("styled-components"));
+
 var _function = require("fp-ts/lib/function");
 
 var _Option = require("fp-ts/lib/Option");
 
 var _exports = require("../../helpers/exports");
-
-var _styledComponents = _interopRequireWildcard(require("../../helpers/styled-components"));
 
 var _inputTypes = require("../inputs/inputTypes");
 
@@ -35,17 +35,12 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
-const DropdownContainer = _styledComponents.default.div(({
+const DropdownContainer = /*#__PURE__*/_styledComponents.default.div.withConfig({
+  displayName: "Dropdown__DropdownContainer",
+  componentId: "f8qt0h-0"
+})(({
   cssOverrides
-}) => (0, _styledComponents.css)`
-    ${(0, _exports.flexFlow)('column')};
-    ${(0, _exports.typographyFont)(400, _exports.FontSizes.Title5)};
-
-    position: relative;
-    width: 256px;
-    max-width: 100%;
-    ${cssOverrides}
-  `);
+}) => (0, _styledComponents.css)(["", ";", ";position:relative;width:256px;max-width:100%;", ""], (0, _exports.flexFlow)('column'), (0, _exports.typographyFont)(400, _exports.FontSizes.Title5), cssOverrides));
 
 exports.DropdownContainer = DropdownContainer;
 

@@ -1,15 +1,22 @@
+import * as fc from 'fast-check'
 import * as M from 'monocle-ts'
 import { indexArray } from 'monocle-ts/lib/Index/Array'
 import * as Foldable from 'fp-ts/Foldable'
 import { constant, flow, identity, pipe, Predicate } from 'fp-ts/function'
+import * as Arr from 'fp-ts/lib/Array'
+import * as Eq from 'fp-ts/lib/Eq'
+import * as NEA from 'fp-ts/lib/NonEmptyArray'
+import * as O from 'fp-ts/lib/Option'
 import { pipeable } from 'fp-ts/lib/pipeable'
 import * as TE from 'fp-ts/lib/TaskEither'
 import * as Traversable from 'fp-ts/Traversable'
 import * as T from 'fp-ts/Tree'
-import { A as Arr, Eq, NEA, O } from '@monorail/sharedHelpers/fp-ts-imports'
 
 import { findFirstMapWithIndex } from '@monorail/sharedHelpers/fp-ts-ext/Array'
 import { coerce, iso, name, Named, the } from '@monorail/sharedHelpers/names'
+
+export * from 'fp-ts/lib/Tree'
+export { forestInstances as forest }
 
 const ForestURI = 'Forest'
 type ForestURI = typeof ForestURI
@@ -25,8 +32,6 @@ const forestInstances: Foldable.Foldable1<ForestURI> &
   ...Foldable.getFoldableComposition(Arr.array, T.tree),
   ...Traversable.getTraversableComposition(Arr.array, T.tree),
 }
-
-export { forestInstances as forest }
 
 export const {
   map: mapForest,
@@ -63,6 +68,31 @@ export function getTreeOptionalFromPath<A>(
 
 export const fromForestPath = <A>(f: T.Forest<A>) => (p: NodePath) => {
   return getTreeOptionalFromPath<A>(p).getOption(f)
+}
+
+/**
+ * Constructs an instance of `Abritrary<Tree<T>>` given an `Arbitrary<T>` and a `maxDepth`
+ */
+export function getArbitrary<T>(
+  arb: fc.Arbitrary<T>,
+  opts: { maxDepth?: number; maxWidth?: number } = { maxDepth: 5, maxWidth: 5 },
+): fc.Arbitrary<T.Tree<T>> {
+  const tree: fc.Memo<T.Tree<T>> = fc.memo<T.Tree<T>>(n => {
+    return n <= 1
+      ? fc.record({
+          value: arb,
+          forest: fc.constant(Array<T.Tree<T>>()),
+        })
+      : fc.record({
+          value: arb,
+          forest:
+            opts.maxWidth === undefined
+              ? fc.array(tree())
+              : fc.array(tree(), opts.maxWidth),
+        })
+  })
+
+  return tree(opts.maxDepth)
 }
 
 /**

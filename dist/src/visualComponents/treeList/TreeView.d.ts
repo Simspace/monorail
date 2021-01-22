@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { FlattenSimpleInterpolation } from 'styled-components';
-import { Task } from 'fp-ts/lib/Task';
-import * as T from 'fp-ts/Tree';
-import { O } from '@monorail/sharedHelpers/fp-ts-imports';
+import * as O from 'fp-ts/lib/Option';
+import * as Task from 'fp-ts/lib/Task';
+import * as T from 'fp-ts/lib/Tree';
 import { IconProps } from '@monorail/exports';
 import { MenuAction } from '@monorail/visualComponents/actionsMenu/ActionsMenu';
 declare type Key = string;
@@ -18,7 +18,7 @@ export declare type TreeViewRowDisplay = {
     tag: typeof TreeViewRowDisplayType.ArbitraryContent;
     content: JSX.Element;
 };
-export declare type ActionReturn<K> = void | Task<{
+export declare type ActionReturn<K> = void | Task.Task<{
     tag: 'nodeOpen';
     nodeOpen: boolean;
     key: K;

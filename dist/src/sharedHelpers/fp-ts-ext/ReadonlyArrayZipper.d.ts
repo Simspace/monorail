@@ -1,21 +1,24 @@
 import { Applicative1 } from 'fp-ts/lib/Applicative';
 import { Apply1 } from 'fp-ts/lib/Apply';
 import { Comonad1 } from 'fp-ts/lib/Comonad';
+import * as Eq from 'fp-ts/lib/Eq';
 import { Extend1 } from 'fp-ts/lib/Extend';
 import { Foldable1 } from 'fp-ts/lib/Foldable';
 import { Functor1 } from 'fp-ts/lib/Functor';
 import { FunctorWithIndex1 } from 'fp-ts/lib/FunctorWithIndex';
-import { Monoid } from 'fp-ts/lib/Monoid';
+import * as Mn from 'fp-ts/lib/Monoid';
+import * as O from 'fp-ts/lib/Option';
 import * as RNEA from 'fp-ts/lib/ReadonlyNonEmptyArray';
+import * as Sg from 'fp-ts/lib/Semigroup';
+import * as Show from 'fp-ts/lib/Show';
 import { Traversable1 } from 'fp-ts/lib/Traversable';
-import { Eq, Mn, O, Sg, Show } from '@monorail/sharedHelpers/fp-ts-imports';
 /**
  * ReadonlyArrayZipper is a "zipper" type for arrays - an array with a selected or "focused" item.
  *
  * Note: there is a fp-ts-contrib/lib/Zipper, but that is backed by `Array` rather than `ReadonlyArray`, so I'll go ahead with this
  * for now. Some of the functions were copied from fp-ts-contrib/lib/Zipper.
  *
- * If you need a type where zero or one items can be selected, see `ReadonlyArrayWithPossibleFocus`
+ * If you need a type where zero or one items can be selected, see `ReadonlyArrayOrZipper`
  *
  * Some implementations of list zippers use the FP-style linked list, and with that, it makes sense to store the lefts
  * in reverse for O(1) moving the focus to the left. However, this is just using an Array, so I'm not going to reverse
@@ -129,7 +132,7 @@ export declare const apFirst: <B>(fb: ReadonlyArrayZipper<B>) => <A>(fa: Readonl
 export declare const apSecond: <B>(fb: ReadonlyArrayZipper<B>) => <A>(fa: ReadonlyArrayZipper<A>) => ReadonlyArrayZipper<B>;
 export declare const extend: <A, B>(f: (fa: ReadonlyArrayZipper<A>) => B) => (wa: ReadonlyArrayZipper<A>) => ReadonlyArrayZipper<B>;
 export declare const duplicate: <A>(wa: ReadonlyArrayZipper<A>) => ReadonlyArrayZipper<ReadonlyArrayZipper<A>>;
-export declare const foldMap: <M>(M: Monoid<M>) => <A>(f: (a: A) => M) => (fa: ReadonlyArrayZipper<A>) => M;
+export declare const foldMap: <M>(M: Mn.Monoid<M>) => <A>(f: (a: A) => M) => (fa: ReadonlyArrayZipper<A>) => M;
 export declare const reduce: <A, B>(b: B, f: (b: B, a: A) => B) => (fa: ReadonlyArrayZipper<A>) => B;
 export declare const reduceRight: <A, B>(b: B, f: (a: A, b: B) => B) => (fa: ReadonlyArrayZipper<A>) => B;
 export declare const sequence: Traversable1<URI>['sequence'];
@@ -144,7 +147,7 @@ declare module 'fp-ts/lib/HKT' {
 export declare const getShow: <A>(showA: Show.Show<A>) => Show.Show<ReadonlyArrayZipper<A>>;
 export declare const getEq: <A>(eqA: Eq.Eq<A>) => Eq.Eq<ReadonlyArrayZipper<A>>;
 export declare const getSemigroup: <A>(semigroupA: Sg.Semigroup<A>) => Sg.Semigroup<ReadonlyArrayZipper<A>>;
-export declare const getMonoid: <A>(monoidA: Monoid<A>) => Monoid<ReadonlyArrayZipper<A>>;
+export declare const getMonoid: <A>(monoidA: Mn.Monoid<A>) => Mn.Monoid<ReadonlyArrayZipper<A>>;
 export declare const Functor: Functor1<URI>;
 export declare const FunctorWithIndex: FunctorWithIndex1<URI, number>;
 export declare const Apply: Apply1<URI>;

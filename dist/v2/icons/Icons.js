@@ -711,16 +711,34 @@ Object.defineProperty(exports, "Apps", {
     return _Apps.default;
   }
 });
+Object.defineProperty(exports, "ArrowDropDown", {
+  enumerable: true,
+  get: function () {
+    return _ArrowDropDown.default;
+  }
+});
 Object.defineProperty(exports, "ArrowForwardIos", {
   enumerable: true,
   get: function () {
     return _ArrowForwardIos.default;
   }
 });
+Object.defineProperty(exports, "ArrowRight", {
+  enumerable: true,
+  get: function () {
+    return _ArrowRight.default;
+  }
+});
 Object.defineProperty(exports, "AssignmentTurnedIn", {
   enumerable: true,
   get: function () {
     return _AssignmentTurnedIn.default;
+  }
+});
+Object.defineProperty(exports, "AvTimer", {
+  enumerable: true,
+  get: function () {
+    return _AvTimer.default;
   }
 });
 Object.defineProperty(exports, "Cancel", {
@@ -861,10 +879,22 @@ Object.defineProperty(exports, "Pause", {
     return _Pause.default;
   }
 });
+Object.defineProperty(exports, "PauseCircleFilled", {
+  enumerable: true,
+  get: function () {
+    return _PauseCircleFilled.default;
+  }
+});
 Object.defineProperty(exports, "Notifications", {
   enumerable: true,
   get: function () {
     return _Notifications.default;
+  }
+});
+Object.defineProperty(exports, "Link", {
+  enumerable: true,
+  get: function () {
+    return _Link.default;
   }
 });
 
@@ -1104,9 +1134,15 @@ var _Wand = require("./svgs/Wand");
 
 var _Apps = _interopRequireDefault(require("@material-ui/icons/Apps"));
 
+var _ArrowDropDown = _interopRequireDefault(require("@material-ui/icons/ArrowDropDown"));
+
 var _ArrowForwardIos = _interopRequireDefault(require("@material-ui/icons/ArrowForwardIos"));
 
+var _ArrowRight = _interopRequireDefault(require("@material-ui/icons/ArrowRight"));
+
 var _AssignmentTurnedIn = _interopRequireDefault(require("@material-ui/icons/AssignmentTurnedIn"));
+
+var _AvTimer = _interopRequireDefault(require("@material-ui/icons/AvTimer"));
 
 var _Cancel = _interopRequireDefault(require("@material-ui/icons/Cancel"));
 
@@ -1154,6 +1190,10 @@ var _PlayArrow = _interopRequireDefault(require("@material-ui/icons/PlayArrow"))
 
 var _Pause = _interopRequireDefault(require("@material-ui/icons/Pause"));
 
+var _PauseCircleFilled = _interopRequireDefault(require("@material-ui/icons/PauseCircleFilled"));
+
 var _Notifications = _interopRequireDefault(require("@material-ui/icons/Notifications"));
+
+var _Link = _interopRequireDefault(require("@material-ui/icons/Link"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }

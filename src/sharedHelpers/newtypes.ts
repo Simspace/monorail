@@ -1,8 +1,14 @@
 import * as dateFns from 'date-fns'
 import { NonEmptyString, UUID } from 'io-ts-types'
-import { AnyNewtype, Newtype, prism } from 'newtype-ts'
+import { Iso } from 'monocle-ts'
+import { AnyNewtype, CarrierOf, Newtype, prism, URIOf } from 'newtype-ts'
 import { AnyTuple, Overwrite } from 'typelevel-ts'
-import { Ord, pipe } from '@monorail/sharedHelpers/fp-ts-imports'
+import * as E from 'fp-ts/lib/Either'
+import { pipe } from 'fp-ts/lib/function'
+import * as O from 'fp-ts/lib/Option'
+import * as Ord from 'fp-ts/lib/Ord'
+
+import { logger } from '@monorail/v2/shared/helpers'
 
 /**
  * Utility interface used to attach a tag & unique symbol to a Newtype's _URI
@@ -186,9 +192,12 @@ export const prismFinite = prism<Finite>(Number.isFinite)
 export interface IsoDate
   extends SimSpaceNewtype<NewtypeURI<'IsoDate'>, string> {}
 
+export const isoDateToDate = (isoDate: IsoDate): Date =>
+  new Date(coerce(isoDate))
+
 export const ordIsoDate: Ord.Ord<IsoDate> = pipe(
   Ord.ordDate,
-  Ord.contramap((d: IsoDate): Date => new Date(coerce(d))),
+  Ord.contramap(isoDateToDate),
 )
 
 /*
@@ -234,3 +243,31 @@ export const coerce = <N extends AnyNewtype>(n: N): CoerceNewtype<N> =>
 export const coerceToString = <S extends string | Newtype<unknown, string>>(
   s: S,
 ): string => s as string
+
+/**
+ * Try to take a param and decode it into a UUID by way of io-ts UUID
+ * branded type. If the param correctly decodes, then take the value
+ * and wrap it in the proper newtype created for the param
+ *
+ * @param {string} param - Any param that can possibly be turned into a UUID
+ * @param {string} paramName - The name of the param being passed in for logging purposes
+ * @param {Iso<N, CarrierOf<N>>} iso - The iso used to wrap the param into a new type for that param
+ */
+export const buildKeyNewtypeFromParam = <N extends AnyNewtype>(
+  paramName: string,
+  iso: Iso<N, CarrierOf<N>>,
+) => (param: string): O.Option<Newtype<URIOf<N>, string>> =>
+  pipe(
+    param,
+    UUID.decode,
+    E.mapLeft(e =>
+      logger(({ error }) =>
+        error({
+          message: `The param "${paramName}" could not be decoded into a UUID.`,
+          error: e,
+        }),
+      ),
+    ),
+    O.fromEither,
+    O.map(iso.wrap),
+  )

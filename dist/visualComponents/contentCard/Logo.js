@@ -11,7 +11,7 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _function = require("fp-ts/lib/function");
 
-var _fpTsImports = require("../../sharedHelpers/fp-ts-imports");
+var O = _interopRequireWildcard(require("fp-ts/lib/Option"));
 
 var _color = require("../../helpers/color");
 
@@ -43,7 +43,7 @@ var _StyledIcon = /*#__PURE__*/(0, _styledComponents.default)(_Icon.Icon).withCo
 
 const EditLogo = props => {
   const logoInputRef = (0, _react.useRef)(null);
-  const [logoEl, icon, action] = (0, _function.pipe)(_fpTsImports.O.fromNullable(props.logo), _fpTsImports.O.fold(() => [/*#__PURE__*/_react.default.createElement(_react.default.Fragment, null), 'upload', () => {
+  const [logoEl, icon, action] = (0, _function.pipe)(O.fromNullable(props.logo), O.fold(() => [/*#__PURE__*/_react.default.createElement(_react.default.Fragment, null), 'upload', () => {
     var _logoInputRef$current;
 
     return (_logoInputRef$current = logoInputRef.current) === null || _logoInputRef$current === void 0 ? void 0 : _logoInputRef$current.click();

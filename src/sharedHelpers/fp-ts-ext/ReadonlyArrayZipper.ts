@@ -4,26 +4,23 @@ import {
 } from 'fp-ts/lib/Applicative'
 import { Apply1 } from 'fp-ts/lib/Apply'
 import { Comonad1 } from 'fp-ts/lib/Comonad'
+import * as Eq from 'fp-ts/lib/Eq'
 import { Extend1 } from 'fp-ts/lib/Extend'
 import { Foldable1 } from 'fp-ts/lib/Foldable'
 import { identity } from 'fp-ts/lib/function'
 import { Functor1 } from 'fp-ts/lib/Functor'
 import { FunctorWithIndex1 } from 'fp-ts/lib/FunctorWithIndex'
 import { HKT } from 'fp-ts/lib/HKT'
-import { Monoid } from 'fp-ts/lib/Monoid'
+import * as Mn from 'fp-ts/lib/Monoid'
+import * as O from 'fp-ts/lib/Option'
+import { pipe } from 'fp-ts/lib/pipeable'
+import * as RA from 'fp-ts/lib/ReadonlyArray'
 import * as RNEA from 'fp-ts/lib/ReadonlyNonEmptyArray'
+import * as Sg from 'fp-ts/lib/Semigroup'
+import * as Show from 'fp-ts/lib/Show'
 import { Traversable1 } from 'fp-ts/lib/Traversable'
-import {
-  Eq,
-  Mn,
-  O,
-  pipe,
-  RA,
-  Sg,
-  Show,
-} from '@monorail/sharedHelpers/fp-ts-imports'
 
-import * as RAE from '@monorail/sharedHelpers/fp-ts-ext/ReadonlyArray'
+import * as RAExt from '@monorail/sharedHelpers/fp-ts-ext/ReadonlyArray'
 
 /**
  * ReadonlyArrayZipper is a "zipper" type for arrays - an array with a selected or "focused" item.
@@ -31,7 +28,7 @@ import * as RAE from '@monorail/sharedHelpers/fp-ts-ext/ReadonlyArray'
  * Note: there is a fp-ts-contrib/lib/Zipper, but that is backed by `Array` rather than `ReadonlyArray`, so I'll go ahead with this
  * for now. Some of the functions were copied from fp-ts-contrib/lib/Zipper.
  *
- * If you need a type where zero or one items can be selected, see `ReadonlyArrayWithPossibleFocus`
+ * If you need a type where zero or one items can be selected, see `ReadonlyArrayOrZipper`
  *
  * Some implementations of list zippers use the FP-style linked list, and with that, it makes sense to store the lefts
  * in reverse for O(1) moving the focus to the left. However, this is just using an Array, so I'm not going to reverse
@@ -70,7 +67,7 @@ export const fromReadonlyArray = <A>(
   ra: ReadonlyArray<A>,
 ): O.Option<ReadonlyArrayZipper<A>> =>
   pipe(
-    RAE.headAndTailS(ra),
+    RAExt.headAndTailS(ra),
     O.map(({ head, tail }) => ({ lefts: [], focus: head, rights: tail })),
   )
 
@@ -112,7 +109,7 @@ export const moveLeft = <A>(
   raz: ReadonlyArrayZipper<A>,
 ): O.Option<ReadonlyArrayZipper<A>> =>
   pipe(
-    RAE.initAndLastT(raz.lefts),
+    RAExt.initAndLastT(raz.lefts),
     O.map(([leftInit, leftLast]) => ({
       lefts: leftInit,
       focus: leftLast,
@@ -138,7 +135,7 @@ export const moveRight = <A>(
   raz: ReadonlyArrayZipper<A>,
 ): O.Option<ReadonlyArrayZipper<A>> =>
   pipe(
-    RAE.headAndTailT(raz.rights),
+    RAExt.headAndTailT(raz.rights),
     O.map(([rightHead, rightTail]) => ({
       lefts: raz.lefts.concat(raz.focus),
       focus: rightHead,
@@ -380,7 +377,7 @@ export const duplicate: <A>(
 ) => ReadonlyArrayZipper<ReadonlyArrayZipper<A>> = extend(identity)
 
 export const foldMap: <M>(
-  M: Monoid<M>,
+  M: Mn.Monoid<M>,
 ) => <A>(f: (a: A) => M) => (fa: ReadonlyArrayZipper<A>) => M = M => f => fa =>
   foldMap_(M)(fa, f)
 

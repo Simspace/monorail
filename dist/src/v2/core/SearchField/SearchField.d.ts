@@ -20,7 +20,7 @@ declare type SearchFieldMonorailProps = {
     value?: string;
     inputRef?: React.RefObject<HTMLInputElement>;
 };
-declare type SearchFieldProps = SearchFieldMonorailProps & OmitBannedProps<Omit<MUI.OutlinedInputProps, 'inputRef'>>;
+export declare type SearchFieldProps = SearchFieldMonorailProps & OmitBannedProps<Omit<MUI.OutlinedInputProps, 'inputRef'>>;
 /**
  * Basic input styled as a search field
  */

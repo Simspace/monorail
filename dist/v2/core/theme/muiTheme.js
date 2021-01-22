@@ -108,9 +108,7 @@ const makeMuiOverrides = theme => {
     },
     root: { ...sharedButtonStyles,
       height: 24,
-      '&.Mui-disabled': {
-        opacity: 0.6
-      },
+      textTransform: 'capitalize',
       '&:hover': {
         backgroundColor: undefined
       }

@@ -78,12 +78,9 @@ var _StyledIconButton = /*#__PURE__*/(0, _styledComponents.default)(_IconButton.
  */
 const AlertBanner = props => {
   const {
-    dismissible = true,
     level = _types.AlertLevel.Info,
     message,
     title,
-    icon,
-    onClick,
     ...domProps
   } = props;
   return /*#__PURE__*/_react.default.createElement(BannerContainer, _extends({
@@ -100,10 +97,10 @@ const AlertBanner = props => {
     fontWeight: 400,
     fontSize: _exports.FontSizes.Title5,
     color: _exports.Colors.Gray62
-  }, message)), dismissible && /*#__PURE__*/_react.default.createElement(CloseAlert, null, /*#__PURE__*/_react.default.createElement(_StyledIconButton, {
+  }, message)), (props.dismissible || props.dismissible === undefined) && /*#__PURE__*/_react.default.createElement(CloseAlert, null, /*#__PURE__*/_react.default.createElement(_StyledIconButton, {
     icon: 'close',
     display: _buttonTypes.ButtonDisplay.Chromeless,
-    onClick: onClick,
+    onClick: props.onClick,
     _css: (0, _exports.getColor)(_exports.Colors.Gray24)
   })));
 };

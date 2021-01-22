@@ -1,12 +1,12 @@
 import { Query } from 'history'
 import * as A from 'fp-ts/lib/Array'
 import { intercalate } from 'fp-ts/lib/Foldable'
+import { not } from 'fp-ts/lib/function'
 import { monoidString } from 'fp-ts/lib/Monoid'
 import * as Nea from 'fp-ts/lib/NonEmptyArray'
 import * as O from 'fp-ts/lib/Option'
 import { pipe } from 'fp-ts/lib/pipeable'
 import * as R from 'fp-ts/lib/Record'
-import { not } from '@monorail/sharedHelpers/fp-ts-imports'
 
 import { isString } from '@monorail/sharedHelpers/typeGuards'
 

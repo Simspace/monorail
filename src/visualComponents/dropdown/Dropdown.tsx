@@ -4,11 +4,11 @@ import Downshift, {
   DownshiftState,
   StateChangeOptions,
 } from 'downshift'
+import styled, { css } from 'styled-components'
 import { pipe } from 'fp-ts/lib/function'
 import { fromNullable, Option, toNullable } from 'fp-ts/lib/Option'
 
 import { flexFlow, FontSizes, typographyFont } from '@monorail/helpers/exports'
-import styled, { css } from '@monorail/helpers/styled-components'
 import { CssOverrides } from '@monorail/StyleHelpers'
 import { CommonComponentType } from '@monorail/types'
 import {
@@ -73,6 +73,7 @@ export const DropdownContainer = styled.div<CommonComponentType>(
     position: relative;
     width: 256px;
     max-width: 100%;
+
     ${cssOverrides}
   `,
 )

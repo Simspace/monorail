@@ -1,4 +1,5 @@
 import * as O from 'fp-ts/lib/Option';
+import { Show } from 'fp-ts/lib/Show';
 /**
  * Given a string or RegExp separator and a string, splits a string into an
  * array of strings
@@ -44,6 +45,11 @@ export declare function removeSpaces(str: string): string;
 export declare function join<T>(separator: string, arr: Array<T>): string;
 export declare function join<T>(separator: string): (arr: Array<T>) => string;
 export declare const truncate: (maxLength: number) => (value: string) => string;
+/**
+ * Converts an Array<A> to a string by showing the first {maxCount} items joined with {delimiter}
+ * and adding a suffix like (+{n} more) where {n} is the count of items that were not shown.
+ */
+export declare const truncateArray: <A>(show: Show<A>) => (maxCount: number, delimiter?: string) => (values: A[]) => string;
 export declare const includes: (target: string) => (source: string) => boolean;
 export declare const includesNoncase: (target: string) => (source: string) => boolean;
 export declare const capitalizeFirstLetter: (str: string) => string;

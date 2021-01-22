@@ -3,9 +3,55 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+var _exportNames = {
+  forest: true,
+  mapForest: true,
+  reduceForest: true,
+  reduceRightForest: true,
+  foldMapForest: true,
+  getForestTraversal: true,
+  getForestFold: true,
+  getForestOptionalFromPath: true,
+  getTreeOptionalFromPath: true,
+  fromForestPath: true,
+  getArbitrary: true,
+  spliceWhere: true,
+  spliceWhereAsync: true,
+  duplicateWhere: true,
+  duplicateWhereAsync: true,
+  removeWhere: true,
+  addChildWhere: true,
+  addChildWhereAsync: true,
+  addRoot: true,
+  getPath: true,
+  getNode: true,
+  getLeft: true,
+  getValidatedLeft: true,
+  getParent: true,
+  getValidatedParent: true,
+  getRight: true,
+  getFirstChild: true,
+  isEqualOrDescendentOf: true,
+  isNodePathDescendantOf: true,
+  isNodePathEqual: true,
+  moveNode: true,
+  moveLeft: true,
+  moveUpBefore: true,
+  moveUpAfter: true,
+  moveRight: true,
+  moveInto: true,
+  isLeftmost: true,
+  hasParent: true,
+  isRightmost: true,
+  getAncestorsOf: true,
+  findFirst: true
+};
 exports.getForestOptionalFromPath = getForestOptionalFromPath;
 exports.getTreeOptionalFromPath = getTreeOptionalFromPath;
+exports.getArbitrary = getArbitrary;
 exports.findFirst = exports.getAncestorsOf = exports.isRightmost = exports.hasParent = exports.isLeftmost = exports.moveInto = exports.moveRight = exports.moveUpAfter = exports.moveUpBefore = exports.moveLeft = exports.moveNode = exports.isNodePathEqual = exports.isNodePathDescendantOf = exports.isEqualOrDescendentOf = exports.getFirstChild = exports.getRight = exports.getValidatedParent = exports.getParent = exports.getValidatedLeft = exports.getLeft = exports.getNode = exports.getPath = exports.addRoot = exports.addChildWhereAsync = exports.addChildWhere = exports.removeWhere = exports.duplicateWhereAsync = exports.duplicateWhere = exports.spliceWhereAsync = exports.spliceWhere = exports.fromForestPath = exports.getForestFold = exports.getForestTraversal = exports.foldMapForest = exports.reduceRightForest = exports.reduceForest = exports.mapForest = exports.forest = void 0;
+
+var fc = _interopRequireWildcard(require("fast-check"));
 
 var M = _interopRequireWildcard(require("monocle-ts"));
 
@@ -15,6 +61,14 @@ var Foldable = _interopRequireWildcard(require("fp-ts/Foldable"));
 
 var _function = require("fp-ts/function");
 
+var Arr = _interopRequireWildcard(require("fp-ts/lib/Array"));
+
+var Eq = _interopRequireWildcard(require("fp-ts/lib/Eq"));
+
+var NEA = _interopRequireWildcard(require("fp-ts/lib/NonEmptyArray"));
+
+var O = _interopRequireWildcard(require("fp-ts/lib/Option"));
+
 var _pipeable = require("fp-ts/lib/pipeable");
 
 var TE = _interopRequireWildcard(require("fp-ts/lib/TaskEither"));
@@ -23,11 +77,23 @@ var Traversable = _interopRequireWildcard(require("fp-ts/Traversable"));
 
 var T = _interopRequireWildcard(require("fp-ts/Tree"));
 
-var _fpTsImports = require("../fp-ts-imports");
-
-var _Array2 = require("./Array");
+var _Array3 = require("./Array");
 
 var _names = require("../names");
+
+var _Tree2 = require("fp-ts/lib/Tree");
+
+Object.keys(_Tree2).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
+  if (key in exports && exports[key] === _Tree2[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function () {
+      return _Tree2[key];
+    }
+  });
+});
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
@@ -36,8 +102,8 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 const ForestURI = 'Forest';
 const forestInstances = {
   URI: ForestURI,
-  ...Foldable.getFoldableComposition(_fpTsImports.A.array, T.tree),
-  ...Traversable.getTraversableComposition(_fpTsImports.A.array, T.tree)
+  ...Foldable.getFoldableComposition(Arr.array, T.tree),
+  ...Traversable.getTraversableComposition(Arr.array, T.tree)
 };
 exports.forest = forestInstances;
 const {
@@ -56,16 +122,38 @@ const getForestFold = M.fromFoldable(forestInstances);
 exports.getForestFold = getForestFold;
 
 function getForestOptionalFromPath(path) {
-  return (0, _function.pipe)(getParent(path), _fpTsImports.O.getOrElse(() => []), _fpTsImports.A.reduce(new M.Optional(_fpTsImports.O.some, _function.constant), (fo, i) => fo.compose((0, _Array.indexArray)().index(i)).composeLens(M.Lens.fromProp()('forest'))));
+  return (0, _function.pipe)(getParent(path), O.getOrElse(() => []), Arr.reduce(new M.Optional(O.some, _function.constant), (fo, i) => fo.compose((0, _Array.indexArray)().index(i)).composeLens(M.Lens.fromProp()('forest'))));
 }
 
 function getTreeOptionalFromPath(path) {
-  return getForestOptionalFromPath(path).compose((0, _Array.indexArray)().index(_fpTsImports.NEA.last(path)));
+  return getForestOptionalFromPath(path).compose((0, _Array.indexArray)().index(NEA.last(path)));
 }
 
 const fromForestPath = f => p => {
   return getTreeOptionalFromPath(p).getOption(f);
 };
+/**
+ * Constructs an instance of `Abritrary<Tree<T>>` given an `Arbitrary<T>` and a `maxDepth`
+ */
+
+
+exports.fromForestPath = fromForestPath;
+
+function getArbitrary(arb, opts = {
+  maxDepth: 5,
+  maxWidth: 5
+}) {
+  const tree = fc.memo(n => {
+    return n <= 1 ? fc.record({
+      value: arb,
+      forest: fc.constant(Array())
+    }) : fc.record({
+      value: arb,
+      forest: opts.maxWidth === undefined ? fc.array(tree()) : fc.array(tree(), opts.maxWidth)
+    });
+  });
+  return tree(opts.maxDepth);
+}
 /**
  * Splices trees in a forest that match a predicate. `mapMatch` returns a
  * `Forest` that will be flattened into the match's parent forest, so you can
@@ -73,9 +161,7 @@ const fromForestPath = f => p => {
  */
 
 
-exports.fromForestPath = fromForestPath;
-
-const spliceWhere = predicate => (mapMatch, mapNotMatch = _function.identity) => forest => (0, _function.pipe)(forest, _fpTsImports.A.map(tree => T.make(tree.value, spliceWhere(predicate)(mapMatch, mapNotMatch)(tree.forest))), _fpTsImports.A.chain(t => predicate(t) ? mapMatch(t) : [mapNotMatch(t)]));
+const spliceWhere = predicate => (mapMatch, mapNotMatch = _function.identity) => forest => (0, _function.pipe)(forest, Arr.map(tree => T.make(tree.value, spliceWhere(predicate)(mapMatch, mapNotMatch)(tree.forest))), Arr.chain(t => predicate(t) ? mapMatch(t) : [mapNotMatch(t)]));
 /**
  * Splices trees in a forest that match a predicate, asynchronously. `mapMatch`
  * returns a `Task<Forest<A>>` that will be flattened into the match's parent
@@ -85,11 +171,11 @@ const spliceWhere = predicate => (mapMatch, mapNotMatch = _function.identity) =>
 
 exports.spliceWhere = spliceWhere;
 
-const spliceWhereAsync = predicate => (mapMatch, mapNotMatch = TE.of) => forest => (0, _function.pipe)(forest, _fpTsImports.A.map(tree => (0, _function.pipe)(tree.forest, spliceWhereAsync(predicate)(mapMatch, mapNotMatch), TE.chain(matched => {
+const spliceWhereAsync = predicate => (mapMatch, mapNotMatch = TE.of) => forest => (0, _function.pipe)(forest, Arr.map(tree => (0, _function.pipe)(tree.forest, spliceWhereAsync(predicate)(mapMatch, mapNotMatch), TE.chain(matched => {
   const t = T.make(tree.value, matched);
   const newF = predicate(t) ? mapMatch(t) : (0, _function.pipe)(mapNotMatch(t), TE.map(x => [x]));
   return newF;
-}))), _fpTsImports.A.sequence(TE.taskEither), TE.map(_fpTsImports.A.flatten));
+}))), Arr.sequence(TE.taskEither), TE.map(Arr.flatten));
 /**
  * Duplicates all trees in a forest that match `predicate`. Does _not_ copy
  * children.
@@ -123,7 +209,7 @@ const removeWhere = predicate => spliceWhere(predicate)(_a => []);
 
 exports.removeWhere = removeWhere;
 
-const addChildWhere = predicate => createChild => spliceWhere(predicate)(a => [T.make(a.value, _fpTsImports.A.snoc(a.forest, createChild(a)))]);
+const addChildWhere = predicate => createChild => spliceWhere(predicate)(a => [T.make(a.value, Arr.snoc(a.forest, createChild(a)))]);
 /**
  * Adds a child to all trees in a forest that match `predicate`, asynchronously
  */
@@ -131,7 +217,7 @@ const addChildWhere = predicate => createChild => spliceWhere(predicate)(a => [T
 
 exports.addChildWhere = addChildWhere;
 
-const addChildWhereAsync = predicate => createChild => spliceWhereAsync(predicate)(a => (0, _function.pipe)(a, createChild, TE.map(child => [T.make(a.value, _fpTsImports.A.snoc(a.forest, child))])));
+const addChildWhereAsync = predicate => createChild => spliceWhereAsync(predicate)(a => (0, _function.pipe)(a, createChild, TE.map(child => [T.make(a.value, Arr.snoc(a.forest, child))])));
 
 exports.addChildWhereAsync = addChildWhereAsync;
 
@@ -149,7 +235,7 @@ exports.addRoot = addRoot;
  *
  * A named `NodePath` should always lead to a tree for the associated forest.
  */
-const getPath = predicate => forest => (0, _function.pipe)((0, _names.the)(forest), (0, _Array2.findFirstMapWithIndex)((i, t) => predicate(t) ? _fpTsImports.O.some([i]) : (0, _function.pipe)(getPath(predicate)((0, _names.coerce)(t.forest)), _fpTsImports.O.map(p => [i, ...(0, _names.the)(p)]))), _fpTsImports.O.map(p => (0, _names.coerce)(p)));
+const getPath = predicate => forest => (0, _function.pipe)((0, _names.the)(forest), (0, _Array3.findFirstMapWithIndex)((i, t) => predicate(t) ? O.some([i]) : (0, _function.pipe)(getPath(predicate)((0, _names.coerce)(t.forest)), O.map(p => [i, ...(0, _names.the)(p)]))), O.map(p => (0, _names.coerce)(p)));
 /**
  * Returns the node pointed to by a named path
  */
@@ -157,7 +243,7 @@ const getPath = predicate => forest => (0, _function.pipe)((0, _names.the)(fores
 
 exports.getPath = getPath;
 
-const getNode = forest => path => (0, _function.pipe)((0, _names.the)(path), _fpTsImports.NEA.init, _fpTsImports.A.reduce((0, _names.the)(forest), (f, i) => f[i].forest), f => f[_fpTsImports.NEA.last((0, _names.the)(path))].value);
+const getNode = forest => path => (0, _function.pipe)((0, _names.the)(path), NEA.init, Arr.reduce((0, _names.the)(forest), (f, i) => f[i].forest), f => f[NEA.last((0, _names.the)(path))].value);
 /**
  * Changes a path to the position left of a node.
  */
@@ -165,7 +251,7 @@ const getNode = forest => path => (0, _function.pipe)((0, _names.the)(path), _fp
 
 exports.getNode = getNode;
 
-const getLeft = path => _fpTsImports.NEA.snoc(_fpTsImports.NEA.init(path), _fpTsImports.NEA.last(path) - 1);
+const getLeft = path => NEA.snoc(NEA.init(path), NEA.last(path) - 1);
 /**
  * Changes a named path to the position left of a node, if one exists.
  *
@@ -175,7 +261,7 @@ const getLeft = path => _fpTsImports.NEA.snoc(_fpTsImports.NEA.init(path), _fpTs
 
 exports.getLeft = getLeft;
 
-const getValidatedLeft = path => (0, _function.pipe)((0, _names.the)(path), _fpTsImports.O.fromPredicate(p => _fpTsImports.NEA.last(p) > 0), _fpTsImports.O.map(p => (0, _names.coerce)(getLeft(p))));
+const getValidatedLeft = path => (0, _function.pipe)((0, _names.the)(path), O.fromPredicate(p => NEA.last(p) > 0), O.map(p => (0, _names.coerce)(getLeft(p))));
 /**
  * Changes a path to the parent of a node, if one exists.
  */
@@ -183,7 +269,7 @@ const getValidatedLeft = path => (0, _function.pipe)((0, _names.the)(path), _fpT
 
 exports.getValidatedLeft = getValidatedLeft;
 
-const getParent = path => (0, _function.pipe)(path, _fpTsImports.NEA.init, _fpTsImports.NEA.fromArray);
+const getParent = path => (0, _function.pipe)(path, NEA.init, NEA.fromArray);
 /**
  * Changes a named path to the parent of a node, if one exists.
  */
@@ -191,7 +277,7 @@ const getParent = path => (0, _function.pipe)(path, _fpTsImports.NEA.init, _fpTs
 
 exports.getParent = getParent;
 
-const getValidatedParent = path => (0, _function.pipe)((0, _names.the)(path), getParent, _fpTsImports.O.map(p => (0, _names.coerce)(p)));
+const getValidatedParent = path => (0, _function.pipe)((0, _names.the)(path), getParent, O.map(p => (0, _names.coerce)(p)));
 /**
  * Changes a path to the position right of a node
  */
@@ -199,7 +285,7 @@ const getValidatedParent = path => (0, _function.pipe)((0, _names.the)(path), ge
 
 exports.getValidatedParent = getValidatedParent;
 
-const getRight = path => _fpTsImports.NEA.snoc(_fpTsImports.NEA.init(path), _fpTsImports.NEA.last(path) + 1);
+const getRight = path => NEA.snoc(NEA.init(path), NEA.last(path) + 1);
 /**
  * Changes a path to the first child of a node
  */
@@ -207,7 +293,7 @@ const getRight = path => _fpTsImports.NEA.snoc(_fpTsImports.NEA.init(path), _fpT
 
 exports.getRight = getRight;
 
-const getFirstChild = path => _fpTsImports.NEA.snoc(path, 0);
+const getFirstChild = path => NEA.snoc(path, 0);
 /**
  * Returns true if the node at path `b` is the same node as or a descendent of
  * the node at path `a`
@@ -224,15 +310,15 @@ const isNodePathDescendantOf = a => b => (0, _names.the)(b).length > (0, _names.
 
 exports.isNodePathDescendantOf = isNodePathDescendantOf;
 
-const isNodePathEqual = a => b => _fpTsImports.NEA.getEq(_fpTsImports.Eq.eqNumber).equals((0, _names.the)(a), (0, _names.the)(b));
+const isNodePathEqual = a => b => NEA.getEq(Eq.eqNumber).equals((0, _names.the)(a), (0, _names.the)(b));
 
 exports.isNodePathEqual = isNodePathEqual;
 
 const namedRootOptional = () => (0, _names.iso)().asOptional();
 
-const pathToForestOptional = path => (0, _function.pipe)(getParent(path), _fpTsImports.O.getOrElse(() => []), _fpTsImports.A.reduce(namedRootOptional(), (fo, i) => fo.compose((0, _Array.indexArray)().index(i)).composeLens(M.Lens.fromProp()('forest'))));
+const pathToForestOptional = path => (0, _function.pipe)(getParent(path), O.getOrElse(() => []), Arr.reduce(namedRootOptional(), (fo, i) => fo.compose((0, _Array.indexArray)().index(i)).composeLens(M.Lens.fromProp()('forest'))));
 
-const pathToOptional = path => pathToForestOptional(path).compose((0, _Array.indexArray)().index(_fpTsImports.NEA.last(path)));
+const pathToOptional = path => pathToForestOptional(path).compose((0, _Array.indexArray)().index(NEA.last(path)));
 /**
  * Moves a node at `from` to `to`. The paths must be created from a named forest.
  *
@@ -264,21 +350,19 @@ const pathToOptional = path => pathToForestOptional(path).compose((0, _Array.ind
 
 const moveNode = (from, to) => forest => {
   if (isEqualOrDescendentOf(from)(to)) {
-    return _fpTsImports.O.none;
+    return O.none;
   }
 
-  const toIndex = _fpTsImports.NEA.last((0, _names.the)(to));
-
-  const fromIndex = _fpTsImports.NEA.last((0, _names.the)(from));
-
-  const adjustedTo = (0, _function.pipe)((0, _names.the)(to), _fpTsImports.NEA.mapWithIndex((i, p) => i === (0, _names.the)(from).length - 1 && (0, _names.the)(from)[i] < p ? p - 1 : p));
+  const toIndex = NEA.last((0, _names.the)(to));
+  const fromIndex = NEA.last((0, _names.the)(from));
+  const adjustedTo = (0, _function.pipe)((0, _names.the)(to), NEA.mapWithIndex((i, p) => i === (0, _names.the)(from).length - 1 && (0, _names.the)(from)[i] < p ? p - 1 : p));
   const toForestOptional = pathToForestOptional(adjustedTo);
   const fromForestOptional = pathToForestOptional((0, _names.the)(from));
   const fromOptional = pathToOptional((0, _names.the)(from));
   const fromTree = (0, _function.pipe)(forest, fromOptional.getOption);
-  const removeFrom = fromForestOptional.modify(f => (0, _function.pipe)(f, _fpTsImports.A.deleteAt(fromIndex), _fpTsImports.O.getOrElse(() => f)));
-  const injectTo = (0, _function.pipe)(fromTree, _fpTsImports.O.fold(() => _function.identity, ft => toForestOptional.modify(f => [...f.slice(0, toIndex), ft, ...f.slice(toIndex)])));
-  return _fpTsImports.O.some((0, _names.the)((0, _function.pipe)(forest, removeFrom, injectTo)));
+  const removeFrom = fromForestOptional.modify(f => (0, _function.pipe)(f, Arr.deleteAt(fromIndex), O.getOrElse(() => f)));
+  const injectTo = (0, _function.pipe)(fromTree, O.fold(() => _function.identity, ft => toForestOptional.modify(f => [...f.slice(0, toIndex), ft, ...f.slice(toIndex)])));
+  return O.some((0, _names.the)((0, _function.pipe)(forest, removeFrom, injectTo)));
 };
 /**
  * Moves a node to the left if possible.
@@ -305,9 +389,9 @@ const moveNode = (from, to) => forest => {
 
 exports.moveNode = moveNode;
 
-const moveLeft = predicate => forest => (0, _names.name)(forest)(nf => (0, _function.pipe)(nf, getPath(predicate), _fpTsImports.O.bindTo('from'), _fpTsImports.O.bind('to', ({
+const moveLeft = predicate => forest => (0, _names.name)(forest)(nf => (0, _function.pipe)(nf, getPath(predicate), O.bindTo('from'), O.bind('to', ({
   from
-}) => (0, _function.pipe)(getValidatedLeft(from))), _fpTsImports.O.chain(({
+}) => (0, _function.pipe)(getValidatedLeft(from))), O.chain(({
   from,
   to
 }) => moveNode(from, to)(nf))));
@@ -335,9 +419,9 @@ const moveLeft = predicate => forest => (0, _names.name)(forest)(nf => (0, _func
 
 exports.moveLeft = moveLeft;
 
-const moveUpBefore = predicate => forest => (0, _names.name)(forest)(nf => (0, _function.pipe)(getPath(predicate)(nf), _fpTsImports.O.bindTo('from'), _fpTsImports.O.bind('to', ({
+const moveUpBefore = predicate => forest => (0, _names.name)(forest)(nf => (0, _function.pipe)(getPath(predicate)(nf), O.bindTo('from'), O.bind('to', ({
   from
-}) => getValidatedParent(from)), _fpTsImports.O.chain(({
+}) => getValidatedParent(from)), O.chain(({
   from,
   to
 }) => moveNode(from, to)(nf))));
@@ -365,9 +449,9 @@ const moveUpBefore = predicate => forest => (0, _names.name)(forest)(nf => (0, _
 
 exports.moveUpBefore = moveUpBefore;
 
-const moveUpAfter = predicate => forest => (0, _names.name)(forest)(nf => (0, _function.pipe)(getPath(predicate)(nf), _fpTsImports.O.bindTo('from'), _fpTsImports.O.bind('to', ({
+const moveUpAfter = predicate => forest => (0, _names.name)(forest)(nf => (0, _function.pipe)(getPath(predicate)(nf), O.bindTo('from'), O.bind('to', ({
   from
-}) => (0, _function.pipe)(from, getValidatedParent, _fpTsImports.O.map((0, _function.flow)(_names.the, getRight)))), _fpTsImports.O.chain(({
+}) => (0, _function.pipe)(from, getValidatedParent, O.map((0, _function.flow)(_names.the, getRight)))), O.chain(({
   from,
   to
 }) => moveNode(from, (0, _names.coerce)(to))(nf))));
@@ -396,9 +480,9 @@ const moveUpAfter = predicate => forest => (0, _names.name)(forest)(nf => (0, _f
 
 exports.moveUpAfter = moveUpAfter;
 
-const moveRight = predicate => forest => (0, _names.name)(forest)(nf => (0, _function.pipe)(getPath(predicate)(nf), _fpTsImports.O.bindTo('from'), _fpTsImports.O.bind('to', ({
+const moveRight = predicate => forest => (0, _names.name)(forest)(nf => (0, _function.pipe)(getPath(predicate)(nf), O.bindTo('from'), O.bind('to', ({
   from
-}) => (0, _function.pipe)(getRight((0, _names.the)(from)), _fpTsImports.O.some, _fpTsImports.O.chainFirst(right => pathToOptional(right).getOption(nf)))), _fpTsImports.O.chain(({
+}) => (0, _function.pipe)(getRight((0, _names.the)(from)), O.some, O.chainFirst(right => pathToOptional(right).getOption(nf)))), O.chain(({
   from,
   to
 }) => moveNode(from, (0, _names.coerce)(to))(nf))));
@@ -428,9 +512,9 @@ const moveRight = predicate => forest => (0, _names.name)(forest)(nf => (0, _fun
 
 exports.moveRight = moveRight;
 
-const moveInto = predicate => forest => (0, _names.name)(forest)(nf => (0, _function.pipe)(getPath(predicate)(nf), _fpTsImports.O.bindTo('from'), _fpTsImports.O.bind('to', ({
+const moveInto = predicate => forest => (0, _names.name)(forest)(nf => (0, _function.pipe)(getPath(predicate)(nf), O.bindTo('from'), O.bind('to', ({
   from
-}) => (0, _function.pipe)(getRight((0, _names.the)(from)), _fpTsImports.O.some, _fpTsImports.O.chainFirst(right => pathToOptional(right).getOption(nf)), _fpTsImports.O.map(getFirstChild))), _fpTsImports.O.chain(({
+}) => (0, _function.pipe)(getRight((0, _names.the)(from)), O.some, O.chainFirst(right => pathToOptional(right).getOption(nf)), O.map(getFirstChild))), O.chain(({
   from,
   to
 }) => moveNode(from, (0, _names.coerce)(to))(nf))));
@@ -442,7 +526,7 @@ const moveInto = predicate => forest => (0, _names.name)(forest)(nf => (0, _func
 
 exports.moveInto = moveInto;
 
-const isLeftmost = predicate => forest => (0, _names.name)(forest)((0, _function.flow)(getPath(predicate), _fpTsImports.O.fold(() => false, p => _fpTsImports.NEA.last((0, _names.the)(p)) === 0)));
+const isLeftmost = predicate => forest => (0, _names.name)(forest)((0, _function.flow)(getPath(predicate), O.fold(() => false, p => NEA.last((0, _names.the)(p)) === 0)));
 /**
  * Returns true if the first node matching the predicate has a parent node
  */
@@ -450,7 +534,7 @@ const isLeftmost = predicate => forest => (0, _names.name)(forest)((0, _function
 
 exports.isLeftmost = isLeftmost;
 
-const hasParent = predicate => forest => (0, _names.name)(forest)((0, _function.flow)(getPath(predicate), _fpTsImports.O.fold(() => false, p => (0, _names.the)(p).length > 1)));
+const hasParent = predicate => forest => (0, _names.name)(forest)((0, _function.flow)(getPath(predicate), O.fold(() => false, p => (0, _names.the)(p).length > 1)));
 /**
  * Returns true if the first node matching the predicate is the rightmost node of
  * its forest. Returns false otherwise, or if no node is found.
@@ -459,7 +543,7 @@ const hasParent = predicate => forest => (0, _names.name)(forest)((0, _function.
 
 exports.hasParent = hasParent;
 
-const isRightmost = predicate => forest => (0, _names.name)(forest)(nf => (0, _function.pipe)(getPath(predicate)(nf), _fpTsImports.O.fold(() => false, (0, _function.flow)(_names.the, getRight, pathToOptional, pto => pto.getOption(nf), _fpTsImports.O.fold(() => true, () => false)))));
+const isRightmost = predicate => forest => (0, _names.name)(forest)(nf => (0, _function.pipe)(getPath(predicate)(nf), O.fold(() => false, (0, _function.flow)(_names.the, getRight, pathToOptional, pto => pto.getOption(nf), O.fold(() => true, () => false)))));
 /**
  * Gets all parents of the first matching node
  */
@@ -467,12 +551,12 @@ const isRightmost = predicate => forest => (0, _names.name)(forest)(nf => (0, _f
 
 exports.isRightmost = isRightmost;
 
-const getAncestorsOf = predicate => forest => (0, _names.name)(forest)(nf => (0, _function.pipe)(nf, getPath(predicate), _fpTsImports.O.chain((0, _function.flow)(_names.the, // create an array of paths, e.g. [1, 2] => [[1], [1,2]]
-_fpTsImports.A.scanLeft([], _fpTsImports.A.snoc), // get rid of the last path, since that's the target node
-_fpTsImports.A.dropRight(1), _fpTsImports.A.filterMap(_fpTsImports.NEA.fromArray), _fpTsImports.NEA.fromArray)), _fpTsImports.O.map(_fpTsImports.A.map(p => getNode(nf)((0, _names.coerce)(p))))));
+const getAncestorsOf = predicate => forest => (0, _names.name)(forest)(nf => (0, _function.pipe)(nf, getPath(predicate), O.chain((0, _function.flow)(_names.the, // create an array of paths, e.g. [1, 2] => [[1], [1,2]]
+Arr.scanLeft([], Arr.snoc), // get rid of the last path, since that's the target node
+Arr.dropRight(1), Arr.filterMap(NEA.fromArray), NEA.fromArray)), O.map(Arr.map(p => getNode(nf)((0, _names.coerce)(p))))));
 
 exports.getAncestorsOf = getAncestorsOf;
 
-const findFirst = predicate => forest => (0, _function.pipe)(forest, _fpTsImports.A.foldMap(_fpTsImports.O.getFirstMonoid())(T.foldMap(_fpTsImports.O.getFirstMonoid())(_fpTsImports.O.fromPredicate(predicate))));
+const findFirst = predicate => forest => (0, _function.pipe)(forest, Arr.foldMap(O.getFirstMonoid())(T.foldMap(O.getFirstMonoid())(O.fromPredicate(predicate))));
 
 exports.findFirst = findFirst;

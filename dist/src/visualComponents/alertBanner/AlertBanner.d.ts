@@ -1,13 +1,14 @@
-import { FC } from 'react';
-import { IconType } from '@monorail/visualComponents/icon/IconType';
+import { ReactNode } from 'react';
 import { AlertLevel } from '@monorail/visualComponents/toast/types';
 declare type AlertBannerProps = {
     level: AlertLevel;
-    icon?: IconType;
-    message: string;
-    dismissible?: boolean;
+    message: ReactNode;
     title?: string;
+} & ({
+    dismissible?: true;
     onClick: () => void;
-};
-export declare const AlertBanner: FC<AlertBannerProps>;
+} | {
+    dismissible: false;
+});
+export declare const AlertBanner: (props: AlertBannerProps) => JSX.Element;
 export {};

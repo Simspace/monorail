@@ -1,5 +1,6 @@
-import { Lazy } from 'fp-ts/lib/function'
 import { Task } from 'fp-ts/lib/Task'
+
+export * from 'fp-ts/lib/Task'
 
 /**
  * Task constructor function
@@ -8,14 +9,9 @@ import { Task } from 'fp-ts/lib/Task'
 export const newTask = <A>(f: () => Promise<A>): Task<A> => f
 
 /**
- * Run a Task (a lazy Promise)
+ * Runs a Task. This will construct and effectively start the execution of the underlying Promise<A>.
  */
 export const runTask = <A>(x: Task<A>): Promise<A> => x()
-
-/**
- * Returns the run function for a Task<A>
- */
-export const constRunTask = <A>(x: Task<A>): Lazy<Promise<A>> => x
 
 /**
  * A function that returns a noop Task

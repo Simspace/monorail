@@ -1,7 +1,7 @@
 import { ReactElement } from 'react';
 import { LinkProps } from 'react-router/lib/Link';
 import { SimpleInterpolation } from 'styled-components';
-import { O } from '@monorail/sharedHelpers/fp-ts-imports';
+import * as O from 'fp-ts/lib/Option';
 import { ImageFallbackData } from './ContentCardHeader';
 import { ContentDifficulty } from './ContentDifficulty';
 export declare type ContentCardProps = BaseProps & (ViewCardProps | EditCardProps);

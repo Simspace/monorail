@@ -10,10 +10,14 @@ import { hasOwnProperty, isEmpty } from 'fp-ts/lib/Record'
 import { isObject } from '../typeGuards'
 import { forEach } from './Array'
 
+export * from 'fp-ts/lib/Record'
+
 /**
  * Retrieves the keys of an object while retaining keyof type information
+ *
+ * `T` suffix is "type" to differentiate this from the base Record keys function
  */
-export const keys = <A extends Record<string, unknown>, K extends keyof A>(
+export const keysT = <A extends Record<string, unknown>, K extends keyof A>(
   x: A,
 ): Array<K> => Object.keys(x) as Array<K>
 
@@ -45,7 +49,10 @@ export const omit = <A extends Record<string, unknown>, K extends keyof A>(
 ): { [P in Exclude<keyof A, K>]: A[P] } => {
   const { ...result } = rec
 
-  forEach(ks, k => delete result[k])
+  pipe(
+    ks,
+    forEach(k => delete result[k]),
+  )
 
   return result
 }
@@ -73,9 +80,12 @@ export const pick = <A extends Record<string, unknown>, K extends keyof A>(
 ): { [P in K]: A[P] } => {
   const result = {} as { [P in K]: A[P] }
 
-  forEach(ks, k => {
-    result[k] = rec[k]
-  })
+  pipe(
+    ks,
+    forEach(k => {
+      result[k] = rec[k]
+    }),
+  )
 
   return result
 }

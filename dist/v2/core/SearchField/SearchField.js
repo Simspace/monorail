@@ -151,7 +151,11 @@ function SearchField(props) {
     type: "text",
     startAdornment: /*#__PURE__*/_react.default.createElement(MUI.InputAdornment, {
       position: "start"
-    }, /*#__PURE__*/_react.default.createElement(Icons.Search, null))
+    }, /*#__PURE__*/_react.default.createElement(Icons.Search, null)),
+    inputProps: {
+      'aria-label': 'search',
+      ...props.inputProps
+    }
   }, props));
 }
 

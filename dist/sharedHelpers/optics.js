@@ -11,13 +11,13 @@ var _monocleTs = require("monocle-ts");
 
 var _Array = require("fp-ts/lib/Array");
 
+var _function = require("fp-ts/lib/function");
+
 var M = _interopRequireWildcard(require("fp-ts/lib/Map"));
 
-var _Option = require("fp-ts/lib/Option");
+var O = _interopRequireWildcard(require("fp-ts/lib/Option"));
 
 var _Record = require("fp-ts/lib/Record");
-
-var _fpTsImports = require("./fp-ts-imports");
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
@@ -58,7 +58,7 @@ const lensesFromRecord = x => {
 
 exports.lensesFromRecord = lensesFromRecord;
 
-const mkArrayIndexOptional = i => new _monocleTs.Optional((0, _Array.lookup)(i), a => xs => (0, _fpTsImports.pipe)(xs, (0, _Array.updateAt)(i, a), _fpTsImports.O.fold(() => _Array.array.of(a), ys => (0, _Array.cons)(a, ys))));
+const mkArrayIndexOptional = i => new _monocleTs.Optional((0, _Array.lookup)(i), a => xs => (0, _function.pipe)(xs, (0, _Array.updateAt)(i, a), O.fold(() => _Array.array.of(a), ys => (0, _Array.cons)(a, ys))));
 /**
  * Creates an Optional optic for a given key K in some Record<K, A>
  *
@@ -82,7 +82,7 @@ exports.mkRecordKeyOptional = mkRecordKeyOptional;
 
 function atMap(E) {
   return new _monocleTs.At(k => new _monocleTs.Lens(m => M.lookup(E)(k, m), oa => m => {
-    if ((0, _Option.isNone)(oa)) {
+    if (O.isNone(oa)) {
       return M.deleteAt(E)(k)(m);
     } else {
       return M.insertAt(E)(k, oa.value)(m);

@@ -5,6 +5,7 @@ import { pipe } from 'fp-ts/lib/pipeable'
 
 import { isNotNaN } from '@monorail/sharedHelpers/typeGuards'
 
+import { Show } from 'fp-ts/lib/Show'
 import { getOrEmptyString } from './fp-ts-ext/Option'
 
 /**
@@ -91,10 +92,31 @@ export function join<T>(separator: string, arr?: Array<T>) {
 export const truncate = (maxLength: number) => (value: string) => {
   return value.length > maxLength
     ? value
-        .slice(0, maxLength - 3)
+        .slice(0, maxLength)
         .trim()
         .concat('...')
     : value
+}
+
+/**
+ * Converts an Array<A> to a string by showing the first {maxCount} items joined with {delimiter}
+ * and adding a suffix like (+{n} more) where {n} is the count of items that were not shown.
+ */
+export const truncateArray = <A>(show: Show<A>) => (
+  maxCount: number,
+  delimiter = ', ',
+) => (values: Array<A>): string => {
+  if (maxCount < 0) {
+    return ''
+  } else if (values.length <= maxCount) {
+    return values.map(show.show).join(delimiter)
+  } else {
+    const suffix =
+      values.length > maxCount ? ` (+${values.length - maxCount} more)` : ``
+    return (
+      pipe(values, A.takeLeft(maxCount), A.map(show.show)).join(', ') + suffix
+    )
+  }
 }
 
 export const includes = (target: string) => (source: string) => {

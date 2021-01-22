@@ -3,11 +3,26 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+var _exportNames = {
+  alterAt: true
+};
 exports.alterAt = void 0;
 
 var _function = require("fp-ts/lib/function");
 
 var M = _interopRequireWildcard(require("fp-ts/lib/Map"));
+
+Object.keys(M).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
+  if (key in exports && exports[key] === M[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function () {
+      return M[key];
+    }
+  });
+});
 
 var O = _interopRequireWildcard(require("fp-ts/lib/Option"));
 

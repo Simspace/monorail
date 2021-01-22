@@ -57,7 +57,7 @@ export const StyledLink = styled(
 )``
 
 type LinkMonorailProps = ReactRouterLinkProps & {}
-type LinkProps = LinkMonorailProps & OmitBannedProps<MUI.LinkProps>
+export type LinkProps = LinkMonorailProps & OmitBannedProps<MUI.LinkProps>
 
 /**
  * Internal link that leverages react-router `Link`.

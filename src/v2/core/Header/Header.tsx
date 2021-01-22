@@ -27,6 +27,7 @@ export const HeaderAdornment = styled.div<HeaderAdornmentProps>`
   display: flex;
   align-items: center;
   justify-content: center;
+  color: ${({ theme }) => theme.v2.FoundationText4};
 
   ${({ position }) =>
     position === 'start'

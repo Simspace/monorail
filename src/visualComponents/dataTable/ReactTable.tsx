@@ -12,16 +12,17 @@ import {
   ControlledStateOverrideProps,
   ExpandedChangeFunction,
   FinalState,
+  ReactTableDefaults,
   SortedChangeFunction,
   SortingRule,
   TableProps,
 } from 'react-table'
 import { isString } from 'util'
 import { lookup } from 'fp-ts/lib/Array'
-import { fold, option } from 'fp-ts/lib/Option'
+import { pipe } from 'fp-ts/lib/function'
+import * as O from 'fp-ts/lib/Option'
 import { showNumber } from 'fp-ts/lib/Show'
 import { Do } from 'fp-ts-contrib/lib/Do'
-import { O, pipe } from '@monorail/sharedHelpers/fp-ts-imports'
 
 import { Colors, getColor } from '@monorail/helpers/color'
 import { flexFlow } from '@monorail/helpers/flex'
@@ -34,7 +35,7 @@ import {
 } from '@monorail/helpers/typography'
 import { dropDirections } from '@monorail/metaComponents/popOver/PopOver'
 import { PopOverNext } from '@monorail/metaComponents/popOver/PopOverNext'
-import { ordCaseInsensitiveString } from '@monorail/sharedHelpers/fp-ts-ext/Ord'
+import { ordStringByLocaleLowerCase } from '@monorail/sharedHelpers/fp-ts-ext/Ord'
 import {
   assertNever,
   isFalse,
@@ -65,6 +66,11 @@ import { TextField } from '@monorail/visualComponents/inputs/TextField'
 import { ScrollAnimation } from '@monorail/visualComponents/layout/ScrollAnimation'
 import { Menu } from '@monorail/visualComponents/menu/Menu'
 import { Status } from '@monorail/visualComponents/status/Status'
+import { Loading } from '../loading/Loading'
+
+export * from 'react-table'
+
+export { default as ReactTable } from 'react-table'
 
 const THEAD_HEIGHT = Sizes.DP40
 const TD_HEIGHT = Sizes.DP40
@@ -217,7 +223,7 @@ export function useSort(
     setSorted(
       pipe(
         pipe(
-          Do(option)
+          Do(O.option)
             .bind('current', lookup(0, sorted))
             .bind('upcoming', lookup(0, newSorted))
             .done(),
@@ -226,7 +232,7 @@ export function useSort(
               current.id === upcoming.id && current.desc,
           ),
         ),
-        fold(
+        O.fold(
           () => newSorted,
           () => [],
         ),
@@ -432,7 +438,7 @@ export const FilterComponent: FC<FilterComponentProps> = ({
       value={!isNil(filter) ? filter.value : ''}
       onChange={event => onChange(event.target.value)}
       cssOverrides={css`
-        width: 100%;
+        width: unset;
         padding: 8px 12px;
         visibility: visible;
       `}
@@ -697,13 +703,37 @@ export const EllipsisValueComponent: TableCellRenderFunction<unknown> = ({
   )
 }
 
-export const MonorailReactTableOverrides: Partial<TableProps> = {
+const LoadingWrapperContainer = styled.div`
+  ${flexFlow('column')};
+
+  align-items: center;
+  height: 100%;
+  justify-content: center;
+  width: 100%;
+`
+
+export const LoadingWrapper = () => {
+  return (
+    <LoadingWrapperContainer>
+      <Loading size={{ _type: 'size', hw: 64 }} />
+    </LoadingWrapperContainer>
+  )
+}
+
+export const MonorailReactTableOverrides: TableProps = {
+  ...ReactTableDefaults,
   AggregatedComponent: (props: PropsWithChildren<{}>) => {
     return null
   },
   FilterComponent: (props: PropsWithChildren<FilterComponentProps>) => (
     <FilterComponent {...props} />
   ),
+  LoadingComponent: ({ loading }: { loading: boolean }) =>
+    loading ? (
+      <NoDataContainer>
+        <LoadingWrapper />
+      </NoDataContainer>
+    ) : null,
   ResizerComponent: (props: PropsWithChildren<{}>) => (
     <ResizerComponent {...props} />
   ),
@@ -822,7 +852,7 @@ export const MonorailReactTableOverrides: Partial<TableProps> = {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   defaultSortMethod: (a: any, b: any) =>
     isString(a) && isString(b)
-      ? ordCaseInsensitiveString.compare(a, b)
+      ? ordStringByLocaleLowerCase.compare(a, b)
       : a > b
       ? 1
       : b > a
@@ -995,3 +1025,9 @@ export type ComponentPropsGetterR<I> = (
 ) => object | undefined
 
 export type TableColumns<T> = Array<Column<T>>
+
+/** Setting up default components for `ReactTable` to use so that we don't have
+ * to set them on every table. */
+Object.assign(ReactTableDefaults, {
+  ...MonorailReactTableOverrides,
+})

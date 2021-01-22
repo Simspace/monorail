@@ -1,5 +1,5 @@
 import { none, some } from 'fp-ts/lib/Option'
-import { O } from '@monorail/sharedHelpers/fp-ts-imports'
+import { O, Show } from '@monorail/sharedHelpers/fp-ts-imports'
 
 import {
   capitalizeFirstLetter,
@@ -15,10 +15,73 @@ import {
   safeParseInt,
   split,
   splitName,
+  truncate,
+  truncateArray,
   take,
   toLower,
   trim,
 } from '../strings'
+
+describe.each([
+  { input: '', len: 0, expected: '' },
+  { input: '', len: 1, expected: '' },
+  { input: '', len: 2, expected: '' },
+  { input: '', len: 3, expected: '' },
+  { input: '', len: 4, expected: '' },
+  { input: 'a', len: 0, expected: '...' },
+  { input: 'a', len: 1, expected: 'a' },
+  { input: 'a', len: 2, expected: 'a' },
+  { input: 'a', len: 3, expected: 'a' },
+  { input: 'a', len: 4, expected: 'a' },
+  { input: 'ab', len: 0, expected: '...' },
+  { input: 'ab', len: 1, expected: 'a...' },
+  { input: 'ab', len: 2, expected: 'ab' },
+  { input: 'ab', len: 3, expected: 'ab' },
+  { input: 'ab', len: 4, expected: 'ab' },
+  { input: 'abc', len: 0, expected: '...' },
+  { input: 'abc', len: 1, expected: 'a...' },
+  { input: 'abc', len: 2, expected: 'ab...' },
+  { input: 'abc', len: 3, expected: 'abc' },
+  { input: 'abc', len: 4, expected: 'abc' },
+  { input: 'abcd', len: 0, expected: '...' },
+  { input: 'abcd', len: 1, expected: 'a...' },
+  { input: 'abcd', len: 2, expected: 'ab...' },
+  { input: 'abcd', len: 3, expected: 'abc...' },
+  { input: 'abcd', len: 4, expected: 'abcd' },
+  { input: 'abcd', len: 5, expected: 'abcd' },
+])('truncate', ({ input, len, expected }) => {
+  it(`should truncate "${input}" by ${len} to "${expected}"`, () => {
+    const actual = truncate(len)(input)
+    expect(actual).toEqual(expected)
+  })
+})
+
+describe.each<{ input: Array<string>; len: number; expected: string }>([
+  { input: [], len: -1, expected: '' },
+  { input: [], len: 0, expected: '' },
+  { input: [], len: 1, expected: '' },
+  { input: ['a'], len: -1, expected: '' },
+  { input: ['a'], len: 0, expected: ' (+1 more)' },
+  { input: ['a'], len: 1, expected: 'a' },
+  { input: ['a'], len: 2, expected: 'a' },
+  { input: ['a', 'b'], len: -1, expected: '' },
+  { input: ['a', 'b'], len: 0, expected: ' (+2 more)' },
+  { input: ['a', 'b'], len: 1, expected: 'a (+1 more)' },
+  { input: ['a', 'b'], len: 2, expected: 'a, b' },
+  { input: ['a', 'b'], len: 3, expected: 'a, b' },
+  { input: ['a', 'b', 'c'], len: -1, expected: '' },
+  { input: ['a', 'b', 'c'], len: 0, expected: ' (+3 more)' },
+  { input: ['a', 'b', 'c'], len: 1, expected: 'a (+2 more)' },
+  { input: ['a', 'b', 'c'], len: 2, expected: 'a, b (+1 more)' },
+  { input: ['a', 'b', 'c'], len: 3, expected: 'a, b, c' },
+])('truncateArray', ({ input, len, expected }) => {
+  it(`should truncateArray ${JSON.stringify(
+    input,
+  )} by ${len} to "${expected}"`, () => {
+    const actual = truncateArray({ show: (a: string) => a })(len)(input)
+    expect(actual).toEqual(expected)
+  })
+})
 
 describe('split', () => {
   it('split strings by a character separator', () => {

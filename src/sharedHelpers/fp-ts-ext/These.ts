@@ -1,6 +1,10 @@
 import { ModifyF, Prism, Traversal } from 'monocle-ts'
+import * as Apl from 'fp-ts/lib/Applicative'
 import { HKT } from 'fp-ts/lib/HKT'
-import { Apl, O, Th } from '@monorail/sharedHelpers/fp-ts-imports'
+import * as O from 'fp-ts/lib/Option'
+import * as Th from 'fp-ts/lib/These'
+
+export * from 'fp-ts/lib/These'
 
 /**
  * A Prism to select the Left constructor of a These

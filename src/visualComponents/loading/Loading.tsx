@@ -1,9 +1,6 @@
 import React, { FC } from 'react'
 import Lottie from 'react-lottie'
 
-import { flexFlow } from '@monorail/helpers/flex'
-import styled from '@monorail/helpers/styled-components'
-
 import loadingData from './loadingData.json'
 import loadingGenericData from './loadingGenericData.json'
 import loadingPcteData from './loadingPcteData.json'

@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.createDropdownCustomSkin = exports.useDropdownSkin = exports.DropdownSkin = exports.ItemContainer = void 0;
 
-var _styledComponents = _interopRequireDefault(require("styled-components"));
+var _styledComponents = _interopRequireWildcard(require("styled-components"));
 
 var _react = _interopRequireWildcard(require("react"));
 
@@ -16,8 +16,6 @@ var O = _interopRequireWildcard(require("fp-ts/lib/Option"));
 var _pipeable = require("fp-ts/lib/pipeable");
 
 var _exports = require("../../helpers/exports");
-
-var _styledComponents2 = _interopRequireWildcard(require("../../helpers/styled-components"));
 
 var _PopOver = require("../../metaComponents/popOver/PopOver");
 
@@ -37,68 +35,52 @@ var _DropdownItem = require("./DropdownItem");
 
 var _render = require("./render");
 
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
-const DropdownWrapper = _styledComponents2.default.div`
-  ${(0, _exports.flexFlow)('column')}
+const DropdownWrapper = /*#__PURE__*/_styledComponents.default.div.withConfig({
+  displayName: "skin__DropdownWrapper",
+  componentId: "uzu9ln-0"
+})(["", " min-height:25px;flex:1;"], (0, _exports.flexFlow)('column'));
 
-  flex: 1;
-`;
-
-const DropdownContainer = _styledComponents2.default.div(({
+const DropdownContainer = /*#__PURE__*/_styledComponents.default.div.withConfig({
+  displayName: "skin__DropdownContainer",
+  componentId: "uzu9ln-1"
+})(({
   disabled,
   error
-}) => (0, _styledComponents2.css)`
-    ${(0, _exports.borderRadius)(_exports.BorderRadius.Small)};
-    ${(0, _exports.flexFlow)('column')};
-    ${(0, _exports.typographyFont)(400, _exports.FontSizes.Title5)};
+}) => (0, _styledComponents.css)(["", ";", ";", ";flex:1;position:relative;width:100%;min-height:24px;", " ", ";"], (0, _exports.borderRadius)(_exports.BorderRadius.Small), (0, _exports.flexFlow)('column'), (0, _exports.typographyFont)(400, _exports.FontSizes.Title5), error && (0, _styledComponents.css)(["", ";input{background:inherit;", ";}"], _exports.baseErrorBackgroundStyles, _exports.baseErrorBorderStyles), disabled && _exports.baseDisabledStyles));
 
-    flex: 1;
-    position: relative;
-    width: 100%;
+const HandlerContainer = /*#__PURE__*/_styledComponents.default.div.withConfig({
+  displayName: "skin__HandlerContainer",
+  componentId: "uzu9ln-2"
+})(["", ";border-radius:inherit;flex:1;pointer-events:auto;position:relative;width:100%;"], (0, _exports.flexFlow)('column'));
 
-    ${error && (0, _styledComponents2.css)`
-        ${_exports.baseErrorBackgroundStyles};
+const MenuContainer = /*#__PURE__*/_styledComponents.default.div.withConfig({
+  displayName: "skin__MenuContainer",
+  componentId: "uzu9ln-3"
+})(["height:100%;overflow:auto;"]);
 
-        input {
-          background: inherit;
-          ${_exports.baseErrorBorderStyles};
-        }
-      `}
+const ItemContainer = /*#__PURE__*/_styledComponents.default.div.withConfig({
+  displayName: "skin__ItemContainer",
+  componentId: "uzu9ln-4"
+})([""]);
 
-    ${disabled && _exports.baseDisabledStyles};
-  `);
-
-const HandlerContainer = _styledComponents2.default.div`
-  ${(0, _exports.flexFlow)('column')};
-
-  border-radius: inherit;
-  flex: 1;
-  pointer-events: auto;
-  position: relative;
-  width: 100%;
-`;
-const MenuContainer = _styledComponents2.default.div`
-  height: 100%;
-  overflow: auto;
-`;
-const ItemContainer = _styledComponents2.default.div``;
 exports.ItemContainer = ItemContainer;
 
 var _StyledMenu = /*#__PURE__*/(0, _styledComponents.default)(_Menu.Menu).withConfig({
   displayName: "skin___StyledMenu",
-  componentId: "uzu9ln-0"
+  componentId: "uzu9ln-5"
 })(["", "{padding:0;}"], _Menu.MenuContent);
 
 var _StyledDiv = /*#__PURE__*/(0, _styledComponents.default)("div").withConfig({
   displayName: "skin___StyledDiv",
-  componentId: "uzu9ln-1"
+  componentId: "uzu9ln-6"
 })(["position:absolute;left:0;top:100%;"]);
 
 const DropdownSkin = ({

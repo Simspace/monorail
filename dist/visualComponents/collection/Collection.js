@@ -69,8 +69,7 @@ const ControlsContainer = _styledComponents2.default.div(({
     align-items: center;
     background: ${(0, _color.getColor)(_color.Colors.Grey99)};
     height: 40px;
-    margin-top: 4px;
-    padding: 0 32px 0 30px; /* Button Bar has a 2px gap that we are making up here. */
+    padding: 4px 32px 0 30px; /* Button Bar has a 2px gap that we are making up here. */
     ${cardViewWithoutFilters ? `border-bottom: 1px solid ${(0, _color.getColor)(_color.Colors.Grey90)};` : null}
   `);
 

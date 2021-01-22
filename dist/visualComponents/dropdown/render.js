@@ -27,6 +27,8 @@ var _inputTypes = require("../inputs/inputTypes");
 
 var _TextField = require("../inputs/TextField");
 
+var _Text = require("../typography/Text");
+
 var _buttonTypes = require("../buttons/buttonTypes");
 
 var _IconButton = require("../buttons/IconButton");
@@ -85,7 +87,7 @@ const TextFieldStyles = (searching = false) => (0, _styledComponents2.css)`
 
   input {
     ${!searching && 'text-indent: -100vw;'};
-
+    padding-top: 3px; /* Fix dropdown bottom border being hidden. Padding comes from StyledInput in TextField */
     border-radius: inherit;
     cursor: pointer;
   }
@@ -110,20 +112,23 @@ const Item = ({
   }, children);
 };
 
-var _StyledSpan = /*#__PURE__*/(0, _styledComponents.default)("span").withConfig({
-  displayName: "render___StyledSpan",
+var _StyledText = /*#__PURE__*/(0, _styledComponents.default)(_Text.Text).withConfig({
+  displayName: "render___StyledText",
   componentId: "tq4m77-0"
-})(["", ""], _exports.ellipsis);
+})(["", ""], p => p._css);
 
 const renderHandlerLabelDefault = ({
   downshiftProps,
   handlerProps
-}) => (0, _pipeable.pipe)(O.fromNullable(downshiftProps.selectedItem), O.fold(() => /*#__PURE__*/_react.default.createElement(DropdownPlaceholder, null, handlerProps.placeholder), item => /*#__PURE__*/_react.default.createElement(_StyledSpan, null, downshiftProps.itemToString(item))));
+}) => (0, _pipeable.pipe)(O.fromNullable(downshiftProps.selectedItem), O.fold(() => /*#__PURE__*/_react.default.createElement(DropdownPlaceholder, null, handlerProps.placeholder), item => /*#__PURE__*/_react.default.createElement(_StyledText, {
+  noWrap: true,
+  _css: 'font-size: inherit; font-family: inherit; font-weight: inherit'
+}, downshiftProps.itemToString(item))));
 
 var _StyledTextField = /*#__PURE__*/(0, _styledComponents.default)(_TextField.TextField).withConfig({
   displayName: "render___StyledTextField",
   componentId: "tq4m77-1"
-})(["", ""], p => p._css);
+})(["", ""], p => p._css2);
 
 var _StyledIconButton = /*#__PURE__*/(0, _styledComponents.default)(_IconButton.IconButton).withConfig({
   displayName: "render___StyledIconButton",
@@ -152,7 +157,7 @@ const Handler = ({
     iconRight: !searching ? 'arrow_drop_down' : '',
     ref: inputRef,
     hideStdErr: true,
-    _css: TextFieldStyles(searching)
+    _css2: TextFieldStyles(searching)
   })), /*#__PURE__*/_react.default.createElement(StyledHandler, {
     searching: searching
   }, customRender({

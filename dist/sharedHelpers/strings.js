@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.trim = trim;
 exports.removeSpaces = removeSpaces;
 exports.join = join;
-exports.matchStringP = exports.elemLocaleLowerCase = exports.safeParseInt = exports.splitAt = exports.padStart = exports.repeat = exports.drop = exports.take = exports.addTrailingSlash = exports.camelCaseToTitleCase = exports.titleCase = exports.unwords = exports.words = exports.startsWithNonCase = exports.capitalizeWords = exports.capitalizeFirstLetter = exports.includesNoncase = exports.includes = exports.truncate = exports.toLocaleLower = exports.toLower = exports.findIndex = exports.splitName = exports.replace = exports.split = void 0;
+exports.matchStringP = exports.elemLocaleLowerCase = exports.safeParseInt = exports.splitAt = exports.padStart = exports.repeat = exports.drop = exports.take = exports.addTrailingSlash = exports.camelCaseToTitleCase = exports.titleCase = exports.unwords = exports.words = exports.startsWithNonCase = exports.capitalizeWords = exports.capitalizeFirstLetter = exports.includesNoncase = exports.includes = exports.truncateArray = exports.truncate = exports.toLocaleLower = exports.toLower = exports.findIndex = exports.splitName = exports.replace = exports.split = void 0;
 
 var A = _interopRequireWildcard(require("fp-ts/lib/Array"));
 
@@ -109,10 +109,28 @@ function join(separator, arr) {
 }
 
 const truncate = maxLength => value => {
-  return value.length > maxLength ? value.slice(0, maxLength - 3).trim().concat('...') : value;
+  return value.length > maxLength ? value.slice(0, maxLength).trim().concat('...') : value;
 };
+/**
+ * Converts an Array<A> to a string by showing the first {maxCount} items joined with {delimiter}
+ * and adding a suffix like (+{n} more) where {n} is the count of items that were not shown.
+ */
+
 
 exports.truncate = truncate;
+
+const truncateArray = show => (maxCount, delimiter = ', ') => values => {
+  if (maxCount < 0) {
+    return '';
+  } else if (values.length <= maxCount) {
+    return values.map(show.show).join(delimiter);
+  } else {
+    const suffix = values.length > maxCount ? ` (+${values.length - maxCount} more)` : ``;
+    return (0, _pipeable.pipe)(values, A.takeLeft(maxCount), A.map(show.show)).join(', ') + suffix;
+  }
+};
+
+exports.truncateArray = truncateArray;
 
 const includes = target => source => {
   return source.includes(target);

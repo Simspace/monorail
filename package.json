@@ -1,6 +1,6 @@
 {
   "name": "@simspace/monorail",
-  "version": "0.0.26",
+  "version": "0.0.27",
   "description": "SimSpace Design System",
   "resolutions": {
     "date-fns": "2.14.0",
@@ -46,6 +46,7 @@
     "@reach/tooltip": "0.8.5",
     "deepmerge": "4.2.2",
     "react-truncate": "2.4.0",
+    "react-virtualized": "9.20.0",
     "react-virtualized-auto-sizer": "1.0.2",
     "react-window": "1.8.5",
     "react-window-infinite-loader": "1.0.5"
@@ -100,6 +101,7 @@
     "@storybook/addon-actions": "6.1.10",
     "@testing-library/jest-dom": "5.11.6",
     "@testing-library/react": "11.2.2",
+    "@testing-library/user-event": "12.4.0",
     "@types/history": "3.2.1",
     "@types/jest": "26.0.15",
     "@types/jest-axe": "3.5.1",
@@ -112,6 +114,7 @@
     "@types/react-lottie": "^1.2.3",
     "@types/react-router": "3.0.20",
     "@types/react-table": "6.8.3",
+    "@types/react-virtualized": "9.21.2",
     "@types/react-virtualized-auto-sizer": "1.0.0",
     "@types/react-window": "1.8.1",
     "@types/react-window-infinite-loader": "1.0.2",

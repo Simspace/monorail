@@ -34,7 +34,9 @@ const getIconComponent = (name: AppOrAuthSubAppName) => {
   }
 }
 
-export const AppIcon = (props: { appName: AppOrAuthSubAppName }) => {
+export type AppIconProps = { appName: AppOrAuthSubAppName }
+
+export const AppIcon = (props: AppIconProps) => {
   const { appName, ...restProps } = props
 
   const IconComponent = getIconComponent(appName)

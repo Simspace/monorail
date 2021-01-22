@@ -1,27 +1,7 @@
 import { createElement } from 'react'
 import { none, Option, some } from 'fp-ts/lib/Option'
 
-import {
-  getOrElse,
-  getOrEmptyString,
-  isOption,
-  renderOnSome,
-  toArray,
-} from '../Option'
-
-describe('getOrElse', () => {
-  it('should extract the value from a some when given a some', () => {
-    const actual = getOrElse(0)(some(5))
-    const expected = 5
-    expect(actual).toBe(expected)
-  })
-
-  it('should return a default value when given a none', () => {
-    const actual = getOrElse(0)(none)
-    const expected = 0
-    expect(actual).toEqual(expected)
-  })
-})
+import { getOrEmptyString, isOption, renderOnSome, toArray } from '../Option'
 
 describe('getOrEmptyString', () => {
   it('should extract the value from a some when given a some', () => {

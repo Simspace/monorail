@@ -1,3 +1,4 @@
+export * from 'fp-ts/lib/function';
 /**
  * Flips the order of the arguments of a binary function.
  *

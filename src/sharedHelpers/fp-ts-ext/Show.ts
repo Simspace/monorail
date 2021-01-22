@@ -1,12 +1,9 @@
-import { Show } from 'fp-ts/Show'
-import {
-  E,
-  flow,
-  identity,
-  O,
-  pipe,
-  RD,
-} from '@monorail/sharedHelpers/fp-ts-imports'
+import * as RD from '@devexperts/remote-data-ts'
+import * as E from 'fp-ts/lib/Either'
+import { flow, identity } from 'fp-ts/lib/function'
+import * as O from 'fp-ts/lib/Option'
+import { pipe } from 'fp-ts/lib/pipeable'
+import * as Show from 'fp-ts/lib/Show'
 
 import { isEither } from '@monorail/sharedHelpers/fp-ts-ext/Either'
 import { isOption } from '@monorail/sharedHelpers/fp-ts-ext/Option'
@@ -15,6 +12,8 @@ import {
   isFunction,
   isObject,
 } from '@monorail/sharedHelpers/typeGuards'
+
+export * from 'fp-ts/lib/Show'
 
 /**
  * This attempts to provide some useful output on most common (possibly
@@ -31,7 +30,7 @@ import {
  *
  * This should probably only be used for debugging and nothing else.
  */
-export const showUnknown: Show<unknown> = {
+export const showUnknown: Show.Show<unknown> = {
   show: x =>
     pipe(
       E.left(x),

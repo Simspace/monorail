@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
-import { flow } from 'fp-ts/lib/function'
-import { O, pipe, RA } from '@monorail/sharedHelpers/fp-ts-imports'
+import { flow, pipe } from 'fp-ts/lib/function'
+import * as O from 'fp-ts/lib/Option'
+import * as RA from 'fp-ts/lib/ReadonlyArray'
 
 import { useToggle } from '@monorail/helpers/hooks'
 import { xor } from '@monorail/sharedHelpers/fp-ts-ext/ReadonlyArray'

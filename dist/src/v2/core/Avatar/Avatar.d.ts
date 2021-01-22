@@ -8,7 +8,7 @@ declare const DISPLAY: {
     readonly Team: "team";
 };
 declare type Display = typeof DISPLAY[keyof typeof DISPLAY];
-export declare type AvatarProps = OmitBannedProps<Omit<MUI.AvatarProps, 'variant' | 'onClick'>> & {
+export declare type AvatarProps = OmitBannedProps<Omit<MUI.AvatarProps, 'onClick'>> & {
     display?: Display;
     size?: 16 | 24 | 32 | 40 | 48 | 56 | 64;
     onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;

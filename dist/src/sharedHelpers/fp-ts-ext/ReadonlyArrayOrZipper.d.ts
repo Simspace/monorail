@@ -1,15 +1,17 @@
+import * as Eq from 'fp-ts/lib/Eq';
 import { Functor1 } from 'fp-ts/lib/Functor';
-import { Eq, O, Show } from '@monorail/sharedHelpers/fp-ts-imports';
+import * as O from 'fp-ts/lib/Option';
+import * as Show from 'fp-ts/lib/Show';
 import * as RAZ from '@monorail/sharedHelpers/fp-ts-ext/ReadonlyArrayZipper';
 /**
- * A variant of ReadonlyArrayWithPossibleFocus which represents the case where no item is selected
+ * A variant of ReadonlyArrayOrZipper which represents the case where no item is selected
  */
 export declare type IsReadonlyArray<A> = {
     readonly tag: 'isReadonlyArray';
     readonly value: ReadonlyArray<A>;
 };
 /**
- * A variant of ReadonlyArrayWithPossibleFocus which represents the case where an item is selected
+ * A variant of ReadonlyArrayOrZipper which represents the case where an item is selected
  */
 export declare type IsReadonlyArrayZipper<A> = {
     readonly tag: 'isReadonlyArrayZipper';

@@ -3,13 +3,29 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.toggle = exports.partitionBy = exports.one = void 0;
+var _exportNames = {
+  one: true,
+  partitionBy: true
+};
+exports.partitionBy = exports.one = void 0;
 
 var O = _interopRequireWildcard(require("fp-ts/lib/Option"));
 
 var _pipeable = require("fp-ts/lib/pipeable");
 
 var _Set = require("fp-ts/lib/Set");
+
+Object.keys(_Set).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
+  if (key in exports && exports[key] === _Set[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function () {
+      return _Set[key];
+    }
+  });
+});
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
@@ -37,14 +53,5 @@ const partitionBy = key => ts => (0, _pipeable.pipe)(ts, one, O.map(t => (0, _pi
   left,
   right
 }) => [right, ...partitionBy(key)(left)])), O.getOrElse(() => []));
-/**
- * Inserts a value into a set if the set does not contain it, otherwise removes
- * the value from the set.
- */
-
 
 exports.partitionBy = partitionBy;
-
-const toggle = eq => value => ts => (0, _Set.elem)(eq)(value, ts) ? (0, _Set.remove)(eq)(value)(ts) : (0, _Set.insert)(eq)(value)(ts);
-
-exports.toggle = toggle;

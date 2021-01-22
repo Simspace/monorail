@@ -92,6 +92,7 @@ import { QuestionTaskAddGrey } from '@monorail/visualComponents/icon/custom/Ques
 import { Range } from '@monorail/visualComponents/icon/custom/Range'
 import { ReportsAnalytics } from '@monorail/visualComponents/icon/custom/ReportsAnalytics'
 import { RestoreFromTrash } from '@monorail/visualComponents/icon/custom/RestoreFromTrash'
+import { Ribbon } from '@monorail/visualComponents/icon/custom/Ribbon'
 import { Robot } from '@monorail/visualComponents/icon/custom/Robot'
 import { Rocket } from '@monorail/visualComponents/icon/custom/Rocket'
 import { SelfEnroll } from '@monorail/visualComponents/icon/custom/SelfEnroll'
@@ -105,6 +106,7 @@ import { StarFilled } from '@monorail/visualComponents/icon/custom/StarFilled'
 import { StarHalf } from '@monorail/visualComponents/icon/custom/StarHalf'
 import { StarOutline } from '@monorail/visualComponents/icon/custom/StarOutline'
 import { Strikethrough } from '@monorail/visualComponents/icon/custom/Strikethrough'
+import { SupervisedUserCircle } from '@monorail/visualComponents/icon/custom/SupervisedUserCircle'
 import { Switch } from '@monorail/visualComponents/icon/custom/Switch'
 import { Sword } from '@monorail/visualComponents/icon/custom/Sword'
 import { Target } from '@monorail/visualComponents/icon/custom/Target'
@@ -113,6 +115,7 @@ import { TechOps } from '@monorail/visualComponents/icon/custom/TechOps'
 import { Telescope } from '@monorail/visualComponents/icon/custom/Telescope'
 import { Temporary } from '@monorail/visualComponents/icon/custom/Temporary'
 import { ThreeGears } from '@monorail/visualComponents/icon/custom/ThreeGears'
+import { TicketCorrelation } from '@monorail/visualComponents/icon/custom/TicketCorrelation'
 import { Tie } from '@monorail/visualComponents/icon/custom/Tie'
 import { Tools } from '@monorail/visualComponents/icon/custom/Tools'
 import { Tracker } from '@monorail/visualComponents/icon/custom/Tracker'
@@ -272,6 +275,7 @@ const customIcons: Record<CustomIconType, ComponentType<CustomIconProps>> = {
   question_task_add_blue: QuestionTaskAddBlue,
   question_task_add_grey: QuestionTaskAddGrey,
   restore_from_trash: RestoreFromTrash,
+  ribbon: Ribbon,
   robot: Robot,
   rocket: Rocket,
   self_enroll: SelfEnroll,
@@ -289,6 +293,7 @@ const customIcons: Record<CustomIconType, ComponentType<CustomIconProps>> = {
   star_half: StarHalf,
   star_outline: StarOutline,
   strikethrough: Strikethrough,
+  supervised_user_circle: SupervisedUserCircle,
   switch: Switch,
   sword: Sword,
   target: Target,
@@ -296,6 +301,7 @@ const customIcons: Record<CustomIconType, ComponentType<CustomIconProps>> = {
   target_empty: TargetEmpty,
   temporary: Temporary,
   telescope: Telescope,
+  ticket_correlation: TicketCorrelation,
   trash_can_with_check: TrashCanWithCheck,
   threeGears: ThreeGears,
   tie: Tie,

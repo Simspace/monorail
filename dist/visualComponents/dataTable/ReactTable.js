@@ -3,26 +3,72 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+var _exportNames = {
+  TableComponent: true,
+  TheadComponentContainer: true,
+  TheadComponent: true,
+  Sort: true,
+  getSortIcon: true,
+  useSort: true,
+  ThSortButton: true,
+  ThComponent: true,
+  FilterComponent: true,
+  ResizerComponent: true,
+  TrGroupComponent: true,
+  TdComponentContainer: true,
+  TdComponent: true,
+  TBodyComponent: true,
+  NoDataContainer: true,
+  NoDataComponentVertical: true,
+  NoDataComponentHorizontal: true,
+  ExpanderComponent: true,
+  EllipsisValueComponent: true,
+  LoadingWrapper: true,
+  MonorailReactTableOverrides: true,
+  useTableExpandState: true,
+  useTableExpandStateFixedGroups: true,
+  ReactTable: true
+};
 exports.useSort = useSort;
 exports.useTableExpandState = useTableExpandState;
 exports.useTableExpandStateFixedGroups = useTableExpandStateFixedGroups;
-exports.MonorailReactTableOverrides = exports.EllipsisValueComponent = exports.ExpanderComponent = exports.NoDataComponentHorizontal = exports.NoDataComponentVertical = exports.NoDataContainer = exports.TBodyComponent = exports.TdComponent = exports.TdComponentContainer = exports.TrGroupComponent = exports.ResizerComponent = exports.FilterComponent = exports.ThComponent = exports.ThSortButton = exports.getSortIcon = exports.Sort = exports.TheadComponent = exports.TheadComponentContainer = exports.TableComponent = void 0;
+Object.defineProperty(exports, "ReactTable", {
+  enumerable: true,
+  get: function () {
+    return _reactTable.default;
+  }
+});
+exports.MonorailReactTableOverrides = exports.LoadingWrapper = exports.EllipsisValueComponent = exports.ExpanderComponent = exports.NoDataComponentHorizontal = exports.NoDataComponentVertical = exports.NoDataContainer = exports.TBodyComponent = exports.TdComponent = exports.TdComponentContainer = exports.TrGroupComponent = exports.ResizerComponent = exports.FilterComponent = exports.ThComponent = exports.ThSortButton = exports.getSortIcon = exports.Sort = exports.TheadComponent = exports.TheadComponentContainer = exports.TableComponent = void 0;
 
 var _styledComponents = _interopRequireDefault(require("styled-components"));
 
 var _react = _interopRequireWildcard(require("react"));
 
+var _reactTable = _interopRequireWildcard(require("react-table"));
+
+Object.keys(_reactTable).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
+  if (key in exports && exports[key] === _reactTable[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function () {
+      return _reactTable[key];
+    }
+  });
+});
+
 var _util = require("util");
 
 var _Array = require("fp-ts/lib/Array");
 
-var _Option = require("fp-ts/lib/Option");
+var _function = require("fp-ts/lib/function");
+
+var O = _interopRequireWildcard(require("fp-ts/lib/Option"));
 
 var _Show = require("fp-ts/lib/Show");
 
 var _Do = require("fp-ts-contrib/lib/Do");
-
-var _fpTsImports = require("../../sharedHelpers/fp-ts-imports");
 
 var _color = require("../../helpers/color");
 
@@ -59,6 +105,8 @@ var _ScrollAnimation = require("../layout/ScrollAnimation");
 var _Menu = require("../menu/Menu");
 
 var _Status = require("../status/Status");
+
+var _Loading = require("../loading/Loading");
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
@@ -209,10 +257,10 @@ function useSort(defaultSorted = []) {
   const [sorted, setSorted] = (0, _react.useState)(defaultSorted);
 
   const onSortChange = newSorted => {
-    setSorted((0, _fpTsImports.pipe)((0, _fpTsImports.pipe)((0, _Do.Do)(_Option.option).bind('current', (0, _Array.lookup)(0, sorted)).bind('upcoming', (0, _Array.lookup)(0, newSorted)).done(), _fpTsImports.O.filter(({
+    setSorted((0, _function.pipe)((0, _function.pipe)((0, _Do.Do)(O.option).bind('current', (0, _Array.lookup)(0, sorted)).bind('upcoming', (0, _Array.lookup)(0, newSorted)).done(), O.filter(({
       current,
       upcoming
-    }) => current.id === upcoming.id && current.desc)), (0, _Option.fold)(() => newSorted, () => [])));
+    }) => current.id === upcoming.id && current.desc)), O.fold(() => newSorted, () => [])));
   };
 
   return [sorted, onSortChange];
@@ -364,7 +412,7 @@ const FilterComponent = ({
     value: !(0, _typeGuards.isNil)(filter) ? filter.value : '',
     onChange: event => onChange(event.target.value),
     cssOverrides: (0, _styledComponents2.css)`
-        width: 100%;
+        width: unset;
         padding: 8px 12px;
         visibility: visible;
       `,
@@ -629,17 +677,39 @@ const EllipsisValueComponent = ({
 };
 
 exports.EllipsisValueComponent = EllipsisValueComponent;
+const LoadingWrapperContainer = _styledComponents2.default.div`
+  ${(0, _flex.flexFlow)('column')};
+
+  align-items: center;
+  height: 100%;
+  justify-content: center;
+  width: 100%;
+`;
+
+const LoadingWrapper = () => {
+  return /*#__PURE__*/_react.default.createElement(LoadingWrapperContainer, null, /*#__PURE__*/_react.default.createElement(_Loading.Loading, {
+    size: {
+      _type: 'size',
+      hw: 64
+    }
+  }));
+};
+
+exports.LoadingWrapper = LoadingWrapper;
 
 var _StyledStatus = /*#__PURE__*/(0, _styledComponents.default)(_Status.Status).withConfig({
   displayName: "ReactTable___StyledStatus",
   componentId: "sc-1afopvo-6"
 })(["margin-left:16px;"]);
 
-const MonorailReactTableOverrides = {
+const MonorailReactTableOverrides = { ..._reactTable.ReactTableDefaults,
   AggregatedComponent: props => {
     return null;
   },
   FilterComponent: props => /*#__PURE__*/_react.default.createElement(FilterComponent, props),
+  LoadingComponent: ({
+    loading
+  }) => loading ? /*#__PURE__*/_react.default.createElement(NoDataContainer, null, /*#__PURE__*/_react.default.createElement(LoadingWrapper, null)) : null,
   ResizerComponent: props => /*#__PURE__*/_react.default.createElement(ResizerComponent, props),
   TableComponent: props => /*#__PURE__*/_react.default.createElement(TableComponent, props),
   TbodyComponent: props => /*#__PURE__*/_react.default.createElement(TBodyComponent, props),
@@ -723,7 +793,7 @@ const MonorailReactTableOverrides = {
     return (0, _typeGuards.isTrue)(row._groupedByPivot) || !(0, _typeGuards.isUndefined)(row[id]) && String(row[id]).toLocaleLowerCase().includes(filter.value.toLocaleString().toLocaleLowerCase());
   },
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  defaultSortMethod: (a, b) => (0, _util.isString)(a) && (0, _util.isString)(b) ? _Ord.ordCaseInsensitiveString.compare(a, b) : a > b ? 1 : b > a ? -1 : 0,
+  defaultSortMethod: (a, b) => (0, _util.isString)(a) && (0, _util.isString)(b) ? _Ord.ordStringByLocaleLowerCase.compare(a, b) : a > b ? 1 : b > a ? -1 : 0,
   sortable: true,
   filterable: true,
   resizable: true,
@@ -765,3 +835,8 @@ function useTableExpandStateFixedGroups({
 
   };
 }
+
+/** Setting up default components for `ReactTable` to use so that we don't have
+ * to set them on every table. */
+Object.assign(_reactTable.ReactTableDefaults, { ...MonorailReactTableOverrides
+});

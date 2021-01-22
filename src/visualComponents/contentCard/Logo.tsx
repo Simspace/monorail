@@ -1,7 +1,7 @@
 import React, { useRef } from 'react'
 import styled, { css } from 'styled-components'
 import { pipe } from 'fp-ts/lib/function'
-import { O } from '@monorail/sharedHelpers/fp-ts-imports'
+import * as O from 'fp-ts/lib/Option'
 
 import { Colors, getColor } from '@monorail/helpers/color'
 import { visible } from '@monorail/helpers/exports'

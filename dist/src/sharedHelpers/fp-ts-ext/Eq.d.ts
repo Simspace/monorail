@@ -1,15 +1,12 @@
 import * as Eq from 'fp-ts/lib/Eq';
+export * from 'fp-ts/lib/Eq';
 export declare const getUndefinableEq: <T>(eq: Eq.Eq<T>) => Eq.Eq<T | null | undefined>;
 /**
  * Case insensitive Eq instance for strings
+ *
+ * TODO: we have a similar ordStringByLocaleLowerCase function which uses toLocaleLowerCase instead
  */
-export declare const eqStringCaseI: Eq.Eq<string>;
-/**
- * Generic eq that uses strict equality checking
- */
-export declare const eqStrict: {
-    equals: typeof Eq.strictEqual;
-};
+export declare const eqStringByLowerCase: Eq.Eq<string>;
 /**
  * Function that returns a generic eq that uses strict equality checking
  *

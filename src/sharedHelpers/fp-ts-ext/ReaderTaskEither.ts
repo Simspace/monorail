@@ -1,29 +1,33 @@
 import { array } from 'fp-ts/lib/Array'
 import * as E from 'fp-ts/lib/Either'
+import { unsafeCoerce } from 'fp-ts/lib/function'
 import { pipe } from 'fp-ts/lib/pipeable'
 import * as RTE from 'fp-ts/lib/ReaderTaskEither'
 import * as TE from 'fp-ts/lib/TaskEither'
 
+import {
+  EmptyEnv,
+  Subtract,
+} from '@monorail/sharedHelpers/fp-ts-ext/effectsUtils'
 import { noOpIO } from '@monorail/sharedHelpers/fp-ts-ext/IO'
 import { unsafeCoerceToArray } from '@monorail/sharedHelpers/fp-ts-ext/ReadonlyArray'
+
+export * from 'fp-ts/lib/ReaderTaskEither'
 
 /**
  * Pipeable port of rte.orElse, which widens types
  * @param f
  */
-export const orElseW = <R, RR, E, EE, A>(
-  f: (e: E) => RTE.ReaderTaskEither<RR, EE, A>,
+export const orElseW = <R extends object, Q extends object, E, D, A>(
+  f: (e: E) => RTE.ReaderTaskEither<Q, D, A>,
 ) => (
   rte: RTE.ReaderTaskEither<R, E, A>,
-): RTE.ReaderTaskEither<RR & R, E | EE, A> =>
-  pipe(
-    rte,
-    RTE.orElse((f as unknown) as (e: E) => RTE.ReaderTaskEither<R, E, A>),
-  )
+): RTE.ReaderTaskEither<Q & R, E | D, A> =>
+  pipe(rte, RTE.orElse(unsafeCoerce(f)))
 
-export const chainWFirst = <R, E, A, B>(
+export const chainWFirst = <R extends object, E, A, B>(
   f: (a: A) => RTE.ReaderTaskEither<R, E, B>,
-) => <Q, D>(
+) => <Q extends object, D>(
   ma: RTE.ReaderTaskEither<Q, D, A>,
 ): RTE.ReaderTaskEither<Q & R, D | E, A> => env => () =>
   RTE.run(ma, env).then(ea =>
@@ -42,15 +46,15 @@ export const chainWFirst = <R, E, A, B>(
  * i.e.
  * @example
  * ```ts
- * const rte = withDeps<number>(RTE.of("foo"))
- * rte.run(6) // requires a `number`
+ * const rte = withEnv<{ num: number }>(RTE.of("foo"))
+ * rte.run({ num: 6 }) // requires a `{ num: number }`
  * ```
  */
-export const withDeps = <D>() => <R, E, A>(
+export const withEnv = <Q extends object>() => <R extends object, E, A>(
   r: RTE.ReaderTaskEither<R, E, A>,
-): RTE.ReaderTaskEither<D & R, E, A> =>
+): RTE.ReaderTaskEither<Q & R, E, A> =>
   pipe(
-    RTE.ask<D & R, E>(),
+    RTE.ask<Q & R, E>(),
     RTE.chainW(() => r),
   )
 
@@ -58,7 +62,7 @@ export const withDeps = <D>() => <R, E, A>(
  * Takes a successful Right RTE, and turns it into a failing 'Left' RTE
  * @param rtea
  */
-export const toLeft = <R, E, A, Z = never>(
+export const toLeft = <R extends object, E, A, Z = never>(
   rtea: RTE.ReaderTaskEither<R, E, A>,
 ): RTE.ReaderTaskEither<R, E | A, Z> => env => () => {
   return RTE.run(rtea, env).then(
@@ -82,14 +86,14 @@ export const toLeft = <R, E, A, Z = never>(
  * )
  * ```
  */
-export const onLeft = <R, RR, E, A>(
-  f: (e: E) => RTE.ReaderTaskEither<RR, unknown, unknown>,
-) => (rte: RTE.ReaderTaskEither<R, E, A>): RTE.ReaderTaskEither<R & RR, E, A> =>
+export const onLeft = <R extends object, Q extends object, E, A>(
+  f: (e: E) => RTE.ReaderTaskEither<Q, unknown, unknown>,
+) => (rte: RTE.ReaderTaskEither<R, E, A>): RTE.ReaderTaskEither<R & Q, E, A> =>
   pipe(
     rte,
-    orElseW<R, RR, E, E, A>(e => {
+    orElseW<R, Q, E, E, A>(e => {
       return pipe(
-        toLeft<RR, unknown, unknown, A>(f(e)),
+        toLeft<Q, unknown, unknown, A>(f(e)),
         RTE.mapLeft(() => e),
       )
     }),
@@ -132,10 +136,45 @@ export const onLeft = <R, RR, E, A>(
  * const d: RTE.ReaderTaskEither<string, unknown, unknown> = stringRTE
  * ```
  * Here, the assignment to `a` and `b` fails, but in fp-ts v2, only the assignment to `a` fails
+ *
+ * Using the suffix `P` for `pipeable` to disambiguate the name from the base `run`
+ *
+ * NOTE: The above examples show primitive types being used in the RTE environment. However,
+ * all utility functions in this file require the environment to be expressed as an object type
+ * due to the reliance on using intersection types to aggregate dependencies.
  */
-export const run = <R>(r: R) => <E, A>(
+export const runP = <R extends object>(r: R) => <E, A>(
   rte: RTE.ReaderTaskEither<R, E, A>,
 ): Promise<E.Either<E, A>> => RTE.run(rte, r)
+
+/**
+ * A ReaderTaskEither that performs a noOp computation
+ *
+ * It uses an empty environment and cannot fail.
+ */
+export const noOpRTE = RTE.fromIO<EmptyEnv, never, void>(noOpIO)
+
+/**
+ * Provides the required environment to a ReaderTaskEither,
+ * converting it into a TaskEither.
+ *
+ * Similar to `runP` but delays execution.
+ */
+export const provide = <R extends object>(r: R) => <E, A>(
+  rte: RTE.ReaderTaskEither<R, E, A>,
+): TE.TaskEither<E, A> => () => RTE.run(rte, r)
+
+/**
+ * Provides a subset of a ReaderTaskEither's required environment,
+ * returning a new ReaderTaskEither with a narrowed environment requirement.
+ *
+ * Similar to `provide` but does not completely fulfill the RTE's requirements.
+ * Think of this as partial application for RTE dependencies.
+ */
+export const providePartial = <R extends object, Q extends R>(q: Q) => <E, A>(
+  rte: RTE.ReaderTaskEither<R, E, A>,
+): RTE.ReaderTaskEither<Subtract<R, Q>, E, A> => (r: Subtract<R, Q>) => () =>
+  RTE.run(rte, { ...q, ...r } as Q & R)
 
 /**
  * Given a tuple/list of RTEs, it will aggregate their combined environments into an intersection,
@@ -243,9 +282,3 @@ type UnNest<T, Fallback = unknown> = T extends ReadonlyArray<unknown>
         : T[K]
     }[number]
   : Fallback
-
-export const noOpRTE = RTE.fromIO<unknown, never, void>(noOpIO)
-
-export const provide = <D>(env: D) => <E, A>(
-  rt: RTE.ReaderTaskEither<D, E, A>,
-): TE.TaskEither<E, A> => () => RTE.run(rt, env)

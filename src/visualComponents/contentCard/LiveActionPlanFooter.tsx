@@ -1,8 +1,7 @@
 import React from 'react'
 import { css } from 'styled-components'
 import { pipe } from 'fp-ts/lib/function'
-import { Option } from 'fp-ts/lib/Option'
-import { O } from '@monorail/sharedHelpers/fp-ts-imports'
+import * as O from 'fp-ts/lib/Option'
 
 import {
   Colors,
@@ -10,13 +9,13 @@ import {
   FontSizes,
   FontWeights,
 } from '@monorail/helpers/exports'
-
-import { Icon } from '../icon/Icon'
-import { Text } from '../typography/Text'
 import {
   FooterList,
   FooterListItem,
 } from '@monorail/visualComponents/contentCard/Footer'
+
+import { Icon } from '../icon/Icon'
+import { Text } from '../typography/Text'
 
 export function LiveActionPlanFooter(props: LiveActionPlanFooterProps) {
   const { network } = props
@@ -44,7 +43,7 @@ export function LiveActionPlanFooter(props: LiveActionPlanFooterProps) {
 }
 
 export type LiveActionPlanFooterProps = {
-  readonly network: Option<string> // network name
+  readonly network: O.Option<string> // network name
 }
 
 export function LiveAction() {

@@ -5,6 +5,8 @@ import { option } from 'fp-ts/lib/Option'
 import { task } from 'fp-ts/lib/Task'
 import { taskEither } from 'fp-ts/lib/TaskEither'
 
+export * from 'fp-ts/lib/Apply'
+
 /**
  * sequence utility for a tuple containing Options of mixed value types
  */

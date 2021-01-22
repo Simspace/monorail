@@ -3,8 +3,9 @@ import { SimpleInterpolation } from 'styled-components';
 import { DisplayType } from '@monorail/visualComponents/inputs/inputTypes';
 import { ErrorProps } from '@monorail/visualComponents/inputs/StdErr';
 declare type ContainerProps = {
-    cssOverrides?: SimpleInterpolation;
+    containerCssOverrides?: SimpleInterpolation;
     className?: string;
+    direction?: 'row' | 'column';
 };
 export declare type ChoiceOption = {
     label: string;
@@ -14,6 +15,7 @@ export declare type ChoiceOption = {
     'data-test-id'?: string;
 };
 export declare type RadioGroupProps = ErrorProps & ContainerProps & {
+    cssOverrides?: SimpleInterpolation;
     name?: string;
     label?: string;
     options: Array<ChoiceOption>;

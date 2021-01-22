@@ -46,6 +46,9 @@ const HeaderAdornment = _styledComponents2.default.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  color: ${({
+  theme
+}) => theme.v2.FoundationText4};
 
   ${({
   position

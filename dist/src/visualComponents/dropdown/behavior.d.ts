@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from 'react';
 import { DownshiftProps, DownshiftState, StateChangeOptions } from 'downshift';
-import { O } from '@monorail/sharedHelpers/fp-ts-imports';
+import * as O from 'fp-ts/lib/Option';
 import { Nullable } from '@monorail/sharedHelpers/typeLevel';
 import { DropdownItemValue, DropdownType } from './helpers';
 import { DropdownParser } from './parsers';

@@ -1,7 +1,8 @@
-import { Eq } from 'fp-ts/lib/Eq'
 import * as O from 'fp-ts/lib/Option'
 import { pipe } from 'fp-ts/lib/pipeable'
-import { elem, insert, partition, remove } from 'fp-ts/lib/Set'
+import { partition } from 'fp-ts/lib/Set'
+
+export * from 'fp-ts/lib/Set'
 
 /**
  * Returns one element of a set, or `none` if the set is empty.
@@ -37,10 +38,3 @@ export const partitionBy = <K extends string>(key: K) => <
     ),
     O.getOrElse<Array<Set<T>>>(() => []),
   )
-
-/**
- * Inserts a value into a set if the set does not contain it, otherwise removes
- * the value from the set.
- */
-export const toggle = <T>(eq: Eq<T>) => (value: T) => (ts: Set<T>) =>
-  elem(eq)(value, ts) ? remove(eq)(value)(ts) : insert(eq)(value)(ts)

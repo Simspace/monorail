@@ -2,6 +2,7 @@ import { Applicative, Applicative1, Applicative2, Applicative2C, Applicative3 } 
 import { Foldable, Foldable1, Foldable2 } from 'fp-ts/lib/Foldable';
 import { Predicate } from 'fp-ts/lib/function';
 import { HKT, Kind, Kind2, Kind3, URIS, URIS2, URIS3 } from 'fp-ts/lib/HKT';
+export * from 'fp-ts/lib/Foldable';
 /**
  * `and` returns the _conjunction_ of all the `boolean` values in a data
  * structure. This function will test whether all of the values in a data

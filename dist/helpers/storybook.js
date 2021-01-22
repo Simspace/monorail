@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.story = story;
 exports.meta = meta;
-exports.A11Y_ELEMENT__COMPONENT = exports.A11Y_ELEMENT__ROOT = exports.DISABLED_ARG_TYPE = exports.DISABLED_A11Y = exports.ENABLED_ACTIONS = exports.DISABLED_ACTIONS = exports.DISABLED_CONTROLS = exports.A11yElement = exports.NO_GENERATED_META = void 0;
+exports.A11Y_ELEMENT__COMPONENT = exports.A11Y_ELEMENT__ROOT = exports.PADDING_REMOVED = exports.DISABLED_ARG_TYPE = exports.DISABLED_A11Y = exports.ENABLED_ACTIONS = exports.DISABLED_ACTIONS = exports.DISABLED_CONTROLS = exports.A11yElement = exports.NO_GENERATED_META = void 0;
 
 var _deepmerge = _interopRequireDefault(require("deepmerge"));
 
@@ -31,6 +31,7 @@ exports.A11yElement = A11yElement;
   A11yElement["Component"] = "#root > *";
   A11yElement["Modal"] = ".MuiDialog-root";
   A11yElement["Popover"] = ".MuiPopover-root";
+  A11yElement["Drawer"] = ".MuiDrawer-root";
 })(A11yElement || (exports.A11yElement = A11yElement = {}));
 
 const DISABLED_CONTROLS = {
@@ -62,11 +63,15 @@ const DISABLED_ARG_TYPE = {
     disable: true
   }
 };
+exports.DISABLED_ARG_TYPE = DISABLED_ARG_TYPE;
+const PADDING_REMOVED = {
+  layout: 'fullscreen'
+};
 /**
  * This is the default a11y selector. Only use it when overriding a custom selector.
  */
 
-exports.DISABLED_ARG_TYPE = DISABLED_ARG_TYPE;
+exports.PADDING_REMOVED = PADDING_REMOVED;
 const A11Y_ELEMENT__ROOT = {
   a11y: {
     element: A11yElement.Root

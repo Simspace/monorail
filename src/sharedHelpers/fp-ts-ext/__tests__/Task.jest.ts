@@ -1,16 +1,4 @@
-import { Task } from 'fp-ts/lib/Task'
-
-import { constRunTask, newTask, runTask } from '../Task'
-
-describe('constRunTask', () => {
-  const numTask = newTask(() => Promise.resolve(3))
-  it('should return the run function for a Task<A>', () => {
-    const actual = constRunTask(numTask)()
-    const expected = numTask()
-    expect(actual).toEqual(expected)
-    expect(actual).toEqual(Promise.resolve(3))
-  })
-})
+import { newTask, runTask } from '../Task'
 
 describe('newTask', () => {
   const numTask = newTask(() => Promise.resolve(5))

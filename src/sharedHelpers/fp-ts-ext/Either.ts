@@ -1,9 +1,10 @@
-import { Either, fold, isLeft, isRight, left, right } from 'fp-ts/lib/Either'
-import { identity } from 'fp-ts/lib/function'
+import { Either, fold, isLeft, isRight, right } from 'fp-ts/lib/Either'
 import { Ord } from 'fp-ts/lib/Ord'
 import { pipe } from 'fp-ts/lib/pipeable'
 
 import { isNil } from '@monorail/sharedHelpers/typeGuards'
+
+export * from 'fp-ts/lib/Either'
 
 /**
  * type guard for Either
@@ -47,13 +48,6 @@ export const getOrd = <A, B>(
       ? -1
       : 1,
 })
-
-/**
- * Fp-ts v2 compatible API for either.swap
- */
-export function swap<E, A>(ma: Either<E, A>): Either<A, E> {
-  return pipe(ma, fold<E, A, Either<A, E>>(right, left))
-}
 
 export const orElseW = <E, A, B>(f: (a: E) => Either<E, B>) => (
   ma: Either<E, A>,

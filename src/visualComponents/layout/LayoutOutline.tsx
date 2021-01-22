@@ -1,4 +1,5 @@
 import React, { FC, MouseEvent, ReactNode, useEffect, useState } from 'react'
+import styled, { css } from 'styled-components'
 import { lookup } from 'fp-ts/lib/Array'
 import * as O from 'fp-ts/lib/Option'
 import { pipe } from 'fp-ts/lib/pipeable'
@@ -13,7 +14,6 @@ import {
   visible,
 } from '@monorail/helpers/exports'
 import { flexFlow } from '@monorail/helpers/flex'
-import styled, { css } from '@monorail/helpers/styled-components'
 import { CssOverridesType } from '@monorail/types'
 import {
   ActionsMenu,
