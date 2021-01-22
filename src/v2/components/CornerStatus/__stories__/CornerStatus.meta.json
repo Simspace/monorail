@@ -15,12 +15,12 @@
   "argTypes": {
     "aria-label": {
       "defaultValue": null,
-      "description": "Defines a string value that labels the current element.\n@see aria-labelledby.",
+      "description": "",
       "name": "aria-label",
-      "required": false,
-      "type": { "name": "string", "required": false },
-      "table": { "type": { "summary": "string" } },
-      "control": { "type": "text" }
+      "required": true,
+      "type": { "name": "string | null", "required": true },
+      "table": { "type": { "summary": "string | null" } },
+      "control": { "type": "radio", "options": ["string", "null"] }
     },
     "clickable": {
       "defaultValue": null,

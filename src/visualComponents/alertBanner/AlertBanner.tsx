@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { ReactNode } from 'react'
 import styled, { css } from 'styled-components'
 
 import {
@@ -10,7 +10,6 @@ import {
 import { ButtonDisplay } from '@monorail/visualComponents/buttons/buttonTypes'
 import { IconButton } from '@monorail/visualComponents/buttons/IconButton'
 import { Icon } from '@monorail/visualComponents/icon/Icon'
-import { IconType } from '@monorail/visualComponents/icon/IconType'
 import {
   AlertColors,
   AlertIcons,
@@ -62,27 +61,24 @@ const CloseAlert = styled.div`
 
 type AlertBannerProps = {
   level: AlertLevel
-  icon?: IconType
-  message: string
-  dismissible?: boolean
+  message: ReactNode
   title?: string
-  onClick: () => void
-}
+} & (
+  | {
+      dismissible?: true
+      onClick: () => void
+    }
+  | {
+      dismissible: false
+    }
+)
 
 /*
  * Component
  */
 
-export const AlertBanner: FC<AlertBannerProps> = props => {
-  const {
-    dismissible = true,
-    level = AlertLevel.Info,
-    message,
-    title,
-    icon,
-    onClick,
-    ...domProps
-  } = props
+export const AlertBanner = (props: AlertBannerProps) => {
+  const { level = AlertLevel.Info, message, title, ...domProps } = props
 
   return (
     <BannerContainer level={level} {...domProps}>
@@ -111,12 +107,12 @@ export const AlertBanner: FC<AlertBannerProps> = props => {
           {message}
         </Text>
       </TextContainer>
-      {dismissible && (
+      {(props.dismissible || props.dismissible === undefined) && (
         <CloseAlert>
           <IconButton
             icon={'close'}
             display={ButtonDisplay.Chromeless}
-            onClick={onClick}
+            onClick={props.onClick}
             css={css`
               color: ${getColor(Colors.Gray24)};
             `}

@@ -23,7 +23,8 @@ export declare enum A11yElement {
     Root = "#root",
     Component = "#root > *",
     Modal = ".MuiDialog-root",
-    Popover = ".MuiPopover-root"
+    Popover = ".MuiPopover-root",
+    Drawer = ".MuiDrawer-root"
 }
 export declare const DISABLED_CONTROLS: {
     readonly controls: {
@@ -49,6 +50,9 @@ export declare const DISABLED_ARG_TYPE: {
     readonly table: {
         readonly disable: true;
     };
+};
+export declare const PADDING_REMOVED: {
+    readonly layout: "fullscreen";
 };
 /**
  * This is the default a11y selector. Only use it when overriding a custom selector.

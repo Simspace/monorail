@@ -1,5 +1,5 @@
+import * as O from 'fp-ts/lib/Option'
 import { pipe } from 'fp-ts/lib/pipeable'
-import { O } from '@monorail/sharedHelpers/fp-ts-imports'
 
 export enum Colors {
   // Black, Gray, and White.

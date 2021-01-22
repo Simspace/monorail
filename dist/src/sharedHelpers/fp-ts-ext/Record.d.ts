@@ -3,10 +3,13 @@ import { HKT, Kind, Kind2, Kind3, URIS, URIS2, URIS3 } from 'fp-ts/lib/HKT';
 import { Magma } from 'fp-ts/lib/Magma';
 import * as O from 'fp-ts/lib/Option';
 import { Ord } from 'fp-ts/lib/Ord';
+export * from 'fp-ts/lib/Record';
 /**
  * Retrieves the keys of an object while retaining keyof type information
+ *
+ * `T` suffix is "type" to differentiate this from the base Record keys function
  */
-export declare const keys: <A extends Record<string, unknown>, K extends keyof A>(x: A) => K[];
+export declare const keysT: <A extends Record<string, unknown>, K extends keyof A>(x: A) => K[];
 export declare const values: <A extends Record<string, unknown>, V extends A[keyof A]>(x: A) => V[];
 export declare const entries: <A extends Record<string, unknown>, K extends keyof A, V extends A[K]>(x: A) => [K, V][];
 /**

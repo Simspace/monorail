@@ -1,12 +1,8 @@
 import React from 'react'
 import * as MUI from '@material-ui/core'
 
-import styled, { css } from '@monorail/helpers/styled-components'
-import { matchOn, matchOnI } from '@monorail/sharedHelpers/matchers'
-import {
-  OmitBannedProps,
-  undefinedStyleError,
-} from '@monorail/v2/shared/helpers'
+import styled from '@monorail/helpers/styled-components'
+import { OmitBannedProps } from '@monorail/v2/shared/helpers'
 
 // #region CSS
 
@@ -16,11 +12,9 @@ export const StyledTextField = styled(
   MUI.TextField as typeof TextField, // as-cast necessary in order to allow for additional Monorail pass-through props
 )``
 
-type TextFieldMonorailProps = {}
+export type TextFieldProps = OmitBannedProps<MUI.TextFieldProps>
 
-export function TextField(
-  props: TextFieldMonorailProps & OmitBannedProps<MUI.TextFieldProps>,
-) {
+export function TextField(props: TextFieldProps) {
   const bannedPropsDefaults = { variant: 'outlined' }
 
   return (

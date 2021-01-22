@@ -189,6 +189,8 @@ var _ReportsAnalytics = require("./custom/ReportsAnalytics");
 
 var _RestoreFromTrash = require("./custom/RestoreFromTrash");
 
+var _Ribbon = require("./custom/Ribbon");
+
 var _Robot = require("./custom/Robot");
 
 var _Rocket = require("./custom/Rocket");
@@ -215,6 +217,8 @@ var _StarOutline = require("./custom/StarOutline");
 
 var _Strikethrough = require("./custom/Strikethrough");
 
+var _SupervisedUserCircle = require("./custom/SupervisedUserCircle");
+
 var _Switch = require("./custom/Switch");
 
 var _Sword = require("./custom/Sword");
@@ -230,6 +234,8 @@ var _Telescope = require("./custom/Telescope");
 var _Temporary = require("./custom/Temporary");
 
 var _ThreeGears = require("./custom/ThreeGears");
+
+var _TicketCorrelation = require("./custom/TicketCorrelation");
 
 var _Tie = require("./custom/Tie");
 
@@ -422,6 +428,7 @@ const customIcons = {
   question_task_add_blue: _QuestionTaskAddBlue.QuestionTaskAddBlue,
   question_task_add_grey: _QuestionTaskAddGrey.QuestionTaskAddGrey,
   restore_from_trash: _RestoreFromTrash.RestoreFromTrash,
+  ribbon: _Ribbon.Ribbon,
   robot: _Robot.Robot,
   rocket: _Rocket.Rocket,
   self_enroll: _SelfEnroll.SelfEnroll,
@@ -439,6 +446,7 @@ const customIcons = {
   star_half: _StarHalf.StarHalf,
   star_outline: _StarOutline.StarOutline,
   strikethrough: _Strikethrough.Strikethrough,
+  supervised_user_circle: _SupervisedUserCircle.SupervisedUserCircle,
   switch: _Switch.Switch,
   sword: _Sword.Sword,
   target: _Target.Target,
@@ -446,6 +454,7 @@ const customIcons = {
   target_empty: _TargetEmpty.TargetEmpty,
   temporary: _Temporary.Temporary,
   telescope: _Telescope.Telescope,
+  ticket_correlation: _TicketCorrelation.TicketCorrelation,
   trash_can_with_check: _TrashCanWithCheck.TrashCanWithCheck,
   threeGears: _ThreeGears.ThreeGears,
   tie: _Tie.Tie,

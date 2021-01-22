@@ -16,7 +16,7 @@ export declare type ReactRouterLinkProps = Omit<RRLinkProps, keyof HTMLProps<unk
 export declare const BaseRRLinkWithPropDenylist: import("styled-components").StyledComponent<RRLink, import("../../../helpers/theme").GlobalAppThemeInterface, {}, never>;
 export declare const StyledLink: import("styled-components").StyledComponent<typeof Link, import("../../../helpers/theme").GlobalAppThemeInterface, {}, never>;
 declare type LinkMonorailProps = ReactRouterLinkProps & {};
-declare type LinkProps = LinkMonorailProps & OmitBannedProps<MUI.LinkProps>;
+export declare type LinkProps = LinkMonorailProps & OmitBannedProps<MUI.LinkProps>;
 /**
  * Internal link that leverages react-router `Link`.
  *

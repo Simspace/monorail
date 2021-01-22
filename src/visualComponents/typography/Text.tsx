@@ -9,6 +9,7 @@ import {
   typography,
   typographyDeprecated,
 } from '@monorail/helpers/typography'
+import { isNotNil, isNotUndefined } from '@monorail/sharedHelpers/typeGuards'
 
 export type HeadingTag = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
 
@@ -35,15 +36,42 @@ export const Text = React.forwardRef<HTMLSpanElement, TextProps>(
       margin = '',
       color = Colors.Black89a,
       noWrap = false,
-
+      title,
       children,
       ...domProps
     } = props
 
+    const spanRef = ref || React.useRef<HTMLSpanElement>(null)
+    const [showDefaultTitle, setShowDefaultTitle] = React.useState(false)
+
+    React.useEffect(() => {
+      /**
+       * If type of children is string, noWrap prop is set, and the text overflows its container,
+       * automatically display a title; if user supplies a title, this logic will be ignored
+       */
+      if (typeof spanRef !== 'function' && noWrap) {
+        const current = spanRef.current
+        if (isNotNil(current)) {
+          setShowDefaultTitle(current.offsetWidth < current.scrollWidth)
+        }
+      }
+    }, [spanRef, children, noWrap])
+
+    const displayTitle = React.useMemo(
+      () =>
+        isNotUndefined(title)
+          ? title
+          : showDefaultTitle && typeof children === 'string'
+          ? children
+          : undefined,
+      [title, showDefaultTitle, children],
+    )
+
     return (
       <span
+        title={displayTitle}
         {...domProps}
-        ref={ref}
+        ref={spanRef}
         css={css`
           ${typography(fontWeight, fontSize, margin)};
           color: ${getColor(color)};

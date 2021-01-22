@@ -6,7 +6,7 @@ import { DropdownStateType, DropdownType } from './helpers';
 import { InteractionController } from './interaction';
 import { DropdownParser } from './parsers';
 import { DropdownRender } from './render';
-export declare const ItemContainer: import("styled-components").StyledComponent<"div", import("../../helpers/theme").GlobalAppThemeInterface, CommonComponentType, never>;
+export declare const ItemContainer: import("styled-components").StyledComponent<"div", any, CommonComponentType, never>;
 export declare type DropdownSkinCommonType = {
     placeholder?: string;
     disabled?: boolean;

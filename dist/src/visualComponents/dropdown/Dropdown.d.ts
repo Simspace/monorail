@@ -25,5 +25,5 @@ export declare type DropdownProps<D extends DropdownType> = CommonComponentType 
     required?: boolean;
     cssOverrides?: CssOverrides;
 };
-export declare const DropdownContainer: import("styled-components").StyledComponent<"div", import("../../helpers/theme").GlobalAppThemeInterface, CommonComponentType, never>;
+export declare const DropdownContainer: import("styled-components").StyledComponent<"div", any, CommonComponentType, never>;
 export declare const Dropdown: <D extends DropdownType>({ label, placeholder, disabled, clearable, extraWidth, items: collection, value, onChange, triggerOnAllSelections, behavior, skin, parser, interaction, error, required, display, cssOverrides, ...domProps }: DropdownProps<D>) => React.ReactElement<DropdownProps<D>, string | ((props: any) => React.ReactElement<any, string | any | (new (props: any) => React.Component<any, any, any>)> | null) | (new (props: any) => React.Component<any, any, any>)>;

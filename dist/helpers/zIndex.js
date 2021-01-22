@@ -24,6 +24,7 @@ exports.ZIndexNodeName = ZIndexNodeName;
   ZIndexNodeName["Overlay"] = "Overlay";
   ZIndexNodeName["Modal"] = "Modal";
   ZIndexNodeName["Tooltip"] = "Tooltip";
+  ZIndexNodeName["RTEToolbar"] = "RTEToolbar";
 })(ZIndexNodeName || (exports.ZIndexNodeName = ZIndexNodeName = {}));
 
 const zIndexValue = nodeName => {
@@ -40,6 +41,9 @@ const zIndexValue = nodeName => {
     case ZIndexNodeName.TabBarIndicator:
     case ZIndexNodeName.DataWellDivider:
       return 5;
+
+    case ZIndexNodeName.RTEToolbar:
+      return 4;
 
     case ZIndexNodeName.CardBackground:
     case ZIndexNodeName.FramedIconBackground:
@@ -60,7 +64,6 @@ const zIndexValue = nodeName => {
 
     case ZIndexNodeName.FramedIcon:
     case ZIndexNodeName.CardBody:
-    default:
       return 0;
   }
 };

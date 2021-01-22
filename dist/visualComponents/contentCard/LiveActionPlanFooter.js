@@ -13,15 +13,15 @@ var _react = _interopRequireDefault(require("react"));
 
 var _function = require("fp-ts/lib/function");
 
-var _fpTsImports = require("../../sharedHelpers/fp-ts-imports");
+var O = _interopRequireWildcard(require("fp-ts/lib/Option"));
 
 var _exports = require("../../helpers/exports");
+
+var _Footer = require("./Footer");
 
 var _Icon = require("../icon/Icon");
 
 var _Text = require("../typography/Text");
-
-var _Footer = require("./Footer");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -33,7 +33,7 @@ function LiveActionPlanFooter(props) {
   const {
     network
   } = props;
-  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, (0, _function.pipe)(network, _fpTsImports.O.fold(() => /*#__PURE__*/_react.default.createElement(LiveAction, null), name => /*#__PURE__*/_react.default.createElement(_Footer.FooterList, null, /*#__PURE__*/_react.default.createElement(_Footer.FooterListItem, null, /*#__PURE__*/_react.default.createElement(NetworkName, {
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, (0, _function.pipe)(network, O.fold(() => /*#__PURE__*/_react.default.createElement(LiveAction, null), name => /*#__PURE__*/_react.default.createElement(_Footer.FooterList, null, /*#__PURE__*/_react.default.createElement(_Footer.FooterListItem, null, /*#__PURE__*/_react.default.createElement(NetworkName, {
     name: name
   })), /*#__PURE__*/_react.default.createElement(_Footer.FooterListItem, null, /*#__PURE__*/_react.default.createElement(LiveAction, null))))));
 }

@@ -3,10 +3,27 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.swap = swap;
+var _exportNames = {
+  isEither: true,
+  getOrd: true,
+  orElseW: true,
+  toUnion: true
+};
 exports.toUnion = exports.orElseW = exports.getOrd = exports.isEither = void 0;
 
 var _Either = require("fp-ts/lib/Either");
+
+Object.keys(_Either).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
+  if (key in exports && exports[key] === _Either[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function () {
+      return _Either[key];
+    }
+  });
+});
 
 var _pipeable = require("fp-ts/lib/pipeable");
 
@@ -35,16 +52,8 @@ const getOrd = (ordA, ordB) => ({
   equals: (x, y) => (0, _Either.isLeft)(x) && (0, _Either.isLeft)(y) ? ordA.equals(x.left, y.left) : (0, _Either.isRight)(x) && (0, _Either.isRight)(y) ? ordB.equals(x.right, y.right) : false,
   compare: (x, y) => (0, _Either.isLeft)(x) && (0, _Either.isLeft)(y) ? ordA.compare(x.left, y.left) : (0, _Either.isRight)(x) && (0, _Either.isRight)(y) ? ordB.compare(x.right, y.right) : (0, _Either.isLeft)(x) && (0, _Either.isRight)(y) ? -1 : 1
 });
-/**
- * Fp-ts v2 compatible API for either.swap
- */
-
 
 exports.getOrd = getOrd;
-
-function swap(ma) {
-  return (0, _pipeable.pipe)(ma, (0, _Either.fold)(_Either.right, _Either.left));
-}
 
 const orElseW = f => ma => (0, _pipeable.pipe)(ma, (0, _Either.fold)(f, _Either.right));
 

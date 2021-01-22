@@ -9,9 +9,17 @@ var _styledComponents = _interopRequireWildcard(require("styled-components"));
 
 var React = _interopRequireWildcard(require("react"));
 
+var Arr = _interopRequireWildcard(require("fp-ts/lib/Array"));
+
 var _function = require("fp-ts/lib/function");
 
-var _fpTsImports = require("../../sharedHelpers/fp-ts-imports");
+var NEA = _interopRequireWildcard(require("fp-ts/lib/NonEmptyArray"));
+
+var O = _interopRequireWildcard(require("fp-ts/lib/Option"));
+
+var R = _interopRequireWildcard(require("fp-ts/lib/Record"));
+
+var Sg = _interopRequireWildcard(require("fp-ts/lib/Semigroup"));
 
 var _exports = require("../../exports");
 
@@ -136,8 +144,8 @@ const TreeView = props => {
     getTreeNodeKey: getKey,
     startExpanded: true
   });
-  const selectedRow = (0, _fpTsImports.pipe)(props.selected, _fpTsImports.O.chain(selected => (0, _fpTsImports.pipe)(treeListState.rows, _fpTsImports.A.findFirst(a => props.getKey(a.value) === selected))));
-  const selectedRowAncestorKeys = (0, _fpTsImports.pipe)(selectedRow, _fpTsImports.O.map(x => x.ancestors.map(a => a.key)));
+  const selectedRow = (0, _function.pipe)(props.selected, O.chain(selected => (0, _function.pipe)(treeListState.rows, Arr.findFirst(a => props.getKey(a.value) === selected))));
+  const selectedRowAncestorKeys = (0, _function.pipe)(selectedRow, O.map(x => x.ancestors.map(a => a.key)));
   const handleActionComplete = React.useCallback(async r => {
     if (r) {
       (0, _matchers.matchI)(await r())({
@@ -153,9 +161,7 @@ const TreeView = props => {
     }
   }, [treeListState]);
   const selectedItemScrollAnchor = React.useRef(null);
-
-  const selectedKey = _fpTsImports.O.toUndefined(props.selected);
-
+  const selectedKey = O.toUndefined(props.selected);
   React.useEffect(() => {
     var _selectedItemScrollAn;
 
@@ -172,14 +178,13 @@ const TreeView = props => {
      * undergone edits from another user moving their selected item into a collapsed
      * row), we need to make sure all the ancestors of the selected node are opened.
      */
-    const openRowKeyDict = (0, _fpTsImports.pipe)(treeListState.openRows, _fpTsImports.A.map(key => (0, _function.tuple)(key, key)), _fpTsImports.R.fromFoldable(_fpTsImports.Sg.getLastSemigroup(), _fpTsImports.A.array));
-    const collapsedParentsOfSelected = (0, _fpTsImports.pipe)((0, _names.name)(forest)(TF.getPath(node => getKey(node.value) === selectedKey)), _fpTsImports.O.map(pathToSelected => {
-      return _fpTsImports.A.unfold((0, _names.the)(pathToSelected), path => {
-        const init = _fpTsImports.NEA.init(path);
-
-        return _fpTsImports.A.isNonEmpty(init) ? _fpTsImports.O.some([init, init]) : _fpTsImports.O.none;
+    const openRowKeyDict = (0, _function.pipe)(treeListState.openRows, Arr.map(key => (0, _function.tuple)(key, key)), R.fromFoldable(Sg.getLastSemigroup(), Arr.array));
+    const collapsedParentsOfSelected = (0, _function.pipe)((0, _names.name)(forest)(TF.getPath(node => getKey(node.value) === selectedKey)), O.map(pathToSelected => {
+      return Arr.unfold((0, _names.the)(pathToSelected), path => {
+        const init = NEA.init(path);
+        return Arr.isNonEmpty(init) ? O.some([init, init]) : O.none;
       });
-    }), _fpTsImports.O.getOrElse(() => _fpTsImports.A.empty), _fpTsImports.A.map(ancestor => TF.getTreeOptionalFromPath(ancestor)), _fpTsImports.A.filterMap(optional => optional.getOption(forest)), _fpTsImports.A.filter(parent => !_fpTsImports.R.hasOwnProperty(getKey(parent.value), openRowKeyDict)), _fpTsImports.A.map(unopenedParent => getKey(unopenedParent.value)));
+    }), O.getOrElse(() => Arr.empty), Arr.map(ancestor => TF.getTreeOptionalFromPath(ancestor)), Arr.filterMap(optional => optional.getOption(forest)), Arr.filter(parent => !R.hasOwnProperty(getKey(parent.value), openRowKeyDict)), Arr.map(unopenedParent => getKey(unopenedParent.value)));
     collapsedParentsOfSelected.forEach(parent => treeListState.toggleNode(parent));
   }, [forest, getKey, selectedKey, treeListState]);
   return /*#__PURE__*/React.createElement(TreeViewWrapper, null, header && /*#__PURE__*/React.createElement(Header, null, header && /*#__PURE__*/React.createElement("h1", null, header.main), (header === null || header === void 0 ? void 0 : header.sub) && /*#__PURE__*/React.createElement("h2", null, header.sub), editable && /*#__PURE__*/React.createElement(_Button.Button, {
@@ -189,9 +194,9 @@ const TreeView = props => {
   }, "Create Item")), /*#__PURE__*/React.createElement(TreeViewScrollContainer, null, /*#__PURE__*/React.createElement(TreeViewList, null, treeListState.rows.map(row => {
     var _props$getTreeViewTex;
 
-    const isChildSelected = (0, _fpTsImports.pipe)(selectedRowAncestorKeys, _fpTsImports.O.fold(() => false, xs => xs.includes(key)));
+    const isChildSelected = (0, _function.pipe)(selectedRowAncestorKeys, O.fold(() => false, xs => xs.includes(key)));
     const key = getKey(row.value);
-    const isSelected = (0, _fpTsImports.pipe)(props.selected, _fpTsImports.O.fold(() => false, selected => key === selected)); // `rowDisplayUnmodified` shown in the `title` on hover
+    const isSelected = (0, _function.pipe)(props.selected, O.fold(() => false, selected => key === selected)); // `rowDisplayUnmodified` shown in the `title` on hover
 
     const rowDisplayUnmodified = props.getDisplay({
       value: row.value,
@@ -226,7 +231,7 @@ const TreeView = props => {
       depth: row.depth,
       onClick: evt => {
         const childIsSelected = (0, _names.name)(props.forest)(nf => {
-          return (0, _fpTsImports.pipe)(nf, TF.getPath(node => getKey(node.value) === selectedKey), _fpTsImports.O.bindTo('selected'), _fpTsImports.O.bind('this', () => (0, _fpTsImports.pipe)(nf, TF.getPath(node => getKey(node.value) === getKey(row.value)))), _fpTsImports.O.exists(b => TF.isNodePathDescendantOf(b.this)(b.selected)));
+          return (0, _function.pipe)(nf, TF.getPath(node => getKey(node.value) === selectedKey), O.bindTo('selected'), O.bind('this', () => (0, _function.pipe)(nf, TF.getPath(node => getKey(node.value) === getKey(row.value)))), O.exists(b => TF.isNodePathDescendantOf(b.this)(b.selected)));
         });
 
         if (childIsSelected) {
@@ -278,7 +283,7 @@ const TreeView = props => {
                 toggleProps.onClick(e);
               }
             })),
-            actions: (_getActions = getActions === null || getActions === void 0 ? void 0 : getActions(key)) !== null && _getActions !== void 0 ? _getActions : _fpTsImports.A.empty,
+            actions: (_getActions = getActions === null || getActions === void 0 ? void 0 : getActions(key)) !== null && _getActions !== void 0 ? _getActions : Arr.empty,
             onActionComplete: handleActionComplete
           }));
 

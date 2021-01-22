@@ -1,4 +1,5 @@
 import { Component, RefObject } from 'react';
+import { CssOverridesType } from '@monorail/exports';
 import { PopOverChildProps } from '@monorail/metaComponents/popOver/PopOver';
 import { BBModalOverlayProps } from '@monorail/visualComponents/modals/Modals';
 declare type Props = Omit<PopOverChildProps, 'position' | 'closingAnimationCompleted'> & {
@@ -7,6 +8,9 @@ declare type Props = Omit<PopOverChildProps, 'position' | 'closingAnimationCompl
     usesScaleAnimation: boolean;
     zIndex: number;
     modalContainerRef?: RefObject<HTMLDivElement>;
+    overlayContainerProps?: {
+        cssOverrides: CssOverridesType;
+    };
 };
 declare type State = {
     isRendered: boolean;

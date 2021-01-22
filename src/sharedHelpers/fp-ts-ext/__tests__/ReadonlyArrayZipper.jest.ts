@@ -1,7 +1,4 @@
-import * as RNEA from 'fp-ts/lib/ReadonlyNonEmptyArray'
-import { Eq, O, Show } from '@monorail/sharedHelpers/fp-ts-imports'
-
-import * as RAZ from '@monorail/sharedHelpers/fp-ts-ext/ReadonlyArrayZipper'
+import { Eq, O, RAZ, RNEA, Show } from '@monorail/sharedHelpers/fp-ts-imports'
 
 const js = JSON.stringify
 

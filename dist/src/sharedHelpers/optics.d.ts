@@ -1,6 +1,6 @@
 import { At, Index, Lens, Optional, Traversal } from 'monocle-ts';
 import { Eq } from 'fp-ts/lib/Eq';
-import { Option } from 'fp-ts/lib/Option';
+import * as O from 'fp-ts/lib/Option';
 /**
  * Binary composition for lenses (`monocle-ts`)
  *
@@ -38,7 +38,7 @@ export declare const mkRecordKeyOptional: <S extends Record<string, S[K]>, K ext
  *
  * https://github.com/gcanti/monocle-ts/blob/master/src/At/Record.ts
  */
-export declare function atMap<K, A = never>(E: Eq<K>): At<Map<K, A>, K, Option<A>>;
+export declare function atMap<K, A = never>(E: Eq<K>): At<Map<K, A>, K, O.Option<A>>;
 /**
  * `Index` optic for `Map` keys
  *

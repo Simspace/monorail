@@ -1,4 +1,4 @@
-import React, { ChangeEvent, Component } from 'react'
+import React, { ChangeEvent } from 'react'
 import Datetime, { DatetimepickerProps } from 'react-datetime'
 
 export const TypedDatetime = Datetime as React.ComponentType<

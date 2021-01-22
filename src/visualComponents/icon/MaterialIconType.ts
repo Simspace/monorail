@@ -736,6 +736,7 @@ export const MaterialIconList = [
   'rv_hookup',
   'satellite',
   'save',
+  'save_alt',
   'scanner',
   'schedule',
   'school',

@@ -15,6 +15,9 @@ export enum ZIndexNodeName {
   Overlay = 'Overlay',
   Modal = 'Modal',
   Tooltip = 'Tooltip',
+
+  // rich text editor
+  RTEToolbar = 'RTEToolbar',
 }
 
 export const zIndexValue = (nodeName: ZIndexNodeName): number => {
@@ -29,6 +32,8 @@ export const zIndexValue = (nodeName: ZIndexNodeName): number => {
     case ZIndexNodeName.TabBarIndicator:
     case ZIndexNodeName.DataWellDivider:
       return 5
+    case ZIndexNodeName.RTEToolbar:
+      return 4
     case ZIndexNodeName.CardBackground:
     case ZIndexNodeName.FramedIconBackground:
     case ZIndexNodeName.NewFlowSectionAfter:
@@ -43,7 +48,6 @@ export const zIndexValue = (nodeName: ZIndexNodeName): number => {
       return 9999
     case ZIndexNodeName.FramedIcon:
     case ZIndexNodeName.CardBody:
-    default:
       return 0
   }
 }

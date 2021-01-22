@@ -1,5 +1,6 @@
 import React, { HTMLProps } from 'react'
 import { Link as RRLink, LinkProps as RRLinkProps } from 'react-router'
+// eslint-disable-next-line no-restricted-imports
 import * as MUI from '@material-ui/core'
 
 import styled, { css } from '@monorail/helpers/styled-components'
@@ -29,7 +30,7 @@ export type StatusProps = {
 } & Omit<
   OmitBannedProps<MUI.ChipProps>,
   // children not supported by MUI. Monorail does not support avatar.
-  'children' | 'avatar'
+  'children' | 'avatar' | 'aria-label'
 >
 
 /**

@@ -1,4 +1,6 @@
-import { Eq, O } from '@monorail/sharedHelpers/fp-ts-imports';
+import * as Eq from 'fp-ts/lib/Eq';
+import * as O from 'fp-ts/lib/Option';
+export * from 'fp-ts/lib/ReadonlyArray';
 /**
  * Unsafely coerce the ReadonlyArray<A> to an Array<A>
  */

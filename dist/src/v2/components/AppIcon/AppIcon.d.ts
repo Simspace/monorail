@@ -1,5 +1,6 @@
 /// <reference types="react" />
 import { AppOrAuthSubAppName } from '@monorail/helpers/exports';
-export declare const AppIcon: (props: {
+export declare type AppIconProps = {
     appName: AppOrAuthSubAppName;
-}) => JSX.Element;
+};
+export declare const AppIcon: (props: AppIconProps) => JSX.Element;

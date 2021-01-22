@@ -3,6 +3,12 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+Object.defineProperty(exports, "pipe", {
+  enumerable: true,
+  get: function () {
+    return _pipeable.pipe;
+  }
+});
 Object.defineProperty(exports, "constant", {
   enumerable: true,
   get: function () {
@@ -33,15 +39,9 @@ Object.defineProperty(exports, "tuple", {
     return _function.tuple;
   }
 });
-Object.defineProperty(exports, "pipe", {
-  enumerable: true,
-  get: function () {
-    return _pipeable.pipe;
-  }
-});
-exports.W = exports.Tup = exports.Th = exports.TE = exports.T = exports.Show = exports.S = exports.Sg = exports.R = exports.RT = exports.RS = exports.RR = exports.RNEA = exports.RM = exports.RA = exports.RTE = exports.Re = exports.Ord = exports.O = exports.NEA = exports.Mn = exports.M = exports.IOE = exports.IO = exports.Eq = exports.E = exports.A = exports.Ap = exports.Apl = exports.RD = void 0;
+exports.Tree = exports.Th = exports.TE = exports.T = exports.Show = exports.S = exports.R = exports.RM = exports.RAZ = exports.RAOZ = exports.RA = exports.RTE = exports.Ord = exports.O = exports.M = exports.IO = exports.Fld = exports.Eq = exports.E = exports.A = exports.Ap = exports.W = exports.Tup = exports.Sg = exports.RT = exports.RS = exports.RR = exports.RNEA = exports.Re = exports.NEA = exports.Mn = exports.IOE = exports.Apl = exports.RD = void 0;
 
-var RD = _interopRequireWildcard(require("@devexperts/remote-data-ts/dist/remote-data"));
+var RD = _interopRequireWildcard(require("@devexperts/remote-data-ts"));
 
 exports.RD = RD;
 
@@ -49,35 +49,9 @@ var Apl = _interopRequireWildcard(require("fp-ts/lib/Applicative"));
 
 exports.Apl = Apl;
 
-var Ap = _interopRequireWildcard(require("fp-ts/lib/Apply"));
-
-exports.Ap = Ap;
-
-var A = _interopRequireWildcard(require("fp-ts/lib/Array"));
-
-exports.A = A;
-
-var E = _interopRequireWildcard(require("fp-ts/lib/Either"));
-
-exports.E = E;
-
-var Eq = _interopRequireWildcard(require("fp-ts/lib/Eq"));
-
-exports.Eq = Eq;
-
-var _function = require("fp-ts/lib/function");
-
-var IO = _interopRequireWildcard(require("fp-ts/lib/IO"));
-
-exports.IO = IO;
-
 var IOE = _interopRequireWildcard(require("fp-ts/lib/IOEither"));
 
 exports.IOE = IOE;
-
-var M = _interopRequireWildcard(require("fp-ts/lib/Map"));
-
-exports.M = M;
 
 var Mn = _interopRequireWildcard(require("fp-ts/lib/Monoid"));
 
@@ -87,31 +61,11 @@ var NEA = _interopRequireWildcard(require("fp-ts/lib/NonEmptyArray"));
 
 exports.NEA = NEA;
 
-var O = _interopRequireWildcard(require("fp-ts/lib/Option"));
-
-exports.O = O;
-
-var Ord = _interopRequireWildcard(require("fp-ts/lib/Ord"));
-
-exports.Ord = Ord;
-
 var _pipeable = require("fp-ts/lib/pipeable");
 
 var Re = _interopRequireWildcard(require("fp-ts/lib/Reader"));
 
 exports.Re = Re;
-
-var RTE = _interopRequireWildcard(require("fp-ts/lib/ReaderTaskEither"));
-
-exports.RTE = RTE;
-
-var RA = _interopRequireWildcard(require("fp-ts/lib/ReadonlyArray"));
-
-exports.RA = RA;
-
-var RM = _interopRequireWildcard(require("fp-ts/lib/ReadonlyMap"));
-
-exports.RM = RM;
 
 var RNEA = _interopRequireWildcard(require("fp-ts/lib/ReadonlyNonEmptyArray"));
 
@@ -129,33 +83,9 @@ var RT = _interopRequireWildcard(require("fp-ts/lib/ReadonlyTuple"));
 
 exports.RT = RT;
 
-var R = _interopRequireWildcard(require("fp-ts/lib/Record"));
-
-exports.R = R;
-
 var Sg = _interopRequireWildcard(require("fp-ts/lib/Semigroup"));
 
 exports.Sg = Sg;
-
-var S = _interopRequireWildcard(require("fp-ts/lib/Set"));
-
-exports.S = S;
-
-var Show = _interopRequireWildcard(require("fp-ts/lib/Show"));
-
-exports.Show = Show;
-
-var T = _interopRequireWildcard(require("fp-ts/lib/Task"));
-
-exports.T = T;
-
-var TE = _interopRequireWildcard(require("fp-ts/lib/TaskEither"));
-
-exports.TE = TE;
-
-var Th = _interopRequireWildcard(require("fp-ts/lib/These"));
-
-exports.Th = Th;
 
 var Tup = _interopRequireWildcard(require("fp-ts/lib/Tuple"));
 
@@ -164,6 +94,92 @@ exports.Tup = Tup;
 var W = _interopRequireWildcard(require("fp-ts/lib/Writer"));
 
 exports.W = W;
+
+var Ap = _interopRequireWildcard(require("./fp-ts-ext/Apply"));
+
+exports.Ap = Ap;
+
+var A = _interopRequireWildcard(require("./fp-ts-ext/Array"));
+
+exports.A = A;
+
+var E = _interopRequireWildcard(require("./fp-ts-ext/Either"));
+
+exports.E = E;
+
+var Eq = _interopRequireWildcard(require("./fp-ts-ext/Eq"));
+
+exports.Eq = Eq;
+
+var Fld = _interopRequireWildcard(require("./fp-ts-ext/Foldable"));
+
+exports.Fld = Fld;
+
+var _function = require("./fp-ts-ext/function");
+
+var IO = _interopRequireWildcard(require("./fp-ts-ext/IO"));
+
+exports.IO = IO;
+
+var M = _interopRequireWildcard(require("./fp-ts-ext/Map"));
+
+exports.M = M;
+
+var O = _interopRequireWildcard(require("./fp-ts-ext/Option"));
+
+exports.O = O;
+
+var Ord = _interopRequireWildcard(require("./fp-ts-ext/Ord"));
+
+exports.Ord = Ord;
+
+var RTE = _interopRequireWildcard(require("./fp-ts-ext/ReaderTaskEither"));
+
+exports.RTE = RTE;
+
+var RA = _interopRequireWildcard(require("./fp-ts-ext/ReadonlyArray"));
+
+exports.RA = RA;
+
+var RAOZ = _interopRequireWildcard(require("./fp-ts-ext/ReadonlyArrayOrZipper"));
+
+exports.RAOZ = RAOZ;
+
+var RAZ = _interopRequireWildcard(require("./fp-ts-ext/ReadonlyArrayZipper"));
+
+exports.RAZ = RAZ;
+
+var RM = _interopRequireWildcard(require("./fp-ts-ext/ReadonlyMap"));
+
+exports.RM = RM;
+
+var R = _interopRequireWildcard(require("./fp-ts-ext/Record"));
+
+exports.R = R;
+
+var S = _interopRequireWildcard(require("./fp-ts-ext/Set"));
+
+exports.S = S;
+
+var Show = _interopRequireWildcard(require("./fp-ts-ext/Show"));
+
+exports.Show = Show;
+
+var T = _interopRequireWildcard(require("./fp-ts-ext/Task"));
+
+exports.T = T;
+
+var TE = _interopRequireWildcard(require("./fp-ts-ext/TaskEither"));
+
+exports.TE = TE;
+
+var Th = _interopRequireWildcard(require("./fp-ts-ext/These"));
+
+exports.Th = Th;
+
+var Tree = _interopRequireWildcard(require("./fp-ts-ext/Tree"));
+
+exports.Tree = Tree;
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 

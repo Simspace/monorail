@@ -3,6 +3,14 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+var _exportNames = {
+  runIO: true,
+  constRunIO: true,
+  newIO: true,
+  noOpIO: true,
+  logIO: true,
+  tapIO: true
+};
 exports.tapIO = exports.logIO = exports.noOpIO = exports.newIO = exports.constRunIO = exports.runIO = void 0;
 
 var logger = _interopRequireWildcard(require("fp-ts/lib/Console"));
@@ -10,6 +18,18 @@ var logger = _interopRequireWildcard(require("fp-ts/lib/Console"));
 var _function = require("fp-ts/lib/function");
 
 var _IO = require("fp-ts/lib/IO");
+
+Object.keys(_IO).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
+  if (key in exports && exports[key] === _IO[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function () {
+      return _IO[key];
+    }
+  });
+});
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 

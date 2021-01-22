@@ -3,11 +3,38 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.ordDateFromString = exports.getReadonlyTupleOrdSnd = exports.getTupleOrdSnd = exports.getReadonlyTupleOrdFst = exports.getTupleOrdFst = exports.invert = exports.ordRecordWithNameLower = exports.recordWithNameLowerComparator = exports.ordCaseInsensitiveString = exports.ordAlpha = exports.alphaCompare = exports.ordNumeric = exports.numericCompare = void 0;
+var _exportNames = {
+  numericCompare: true,
+  ordNumeric: true,
+  alphaCompare: true,
+  ordAlpha: true,
+  ordStringByLocaleLowerCase: true,
+  recordWithNameLowerComparator: true,
+  ordRecordWithNameLower: true,
+  invert: true,
+  getTupleOrdFst: true,
+  getReadonlyTupleOrdFst: true,
+  getTupleOrdSnd: true,
+  getReadonlyTupleOrdSnd: true,
+  ordDateFromString: true
+};
+exports.ordDateFromString = exports.getReadonlyTupleOrdSnd = exports.getTupleOrdSnd = exports.getReadonlyTupleOrdFst = exports.getTupleOrdFst = exports.invert = exports.ordRecordWithNameLower = exports.recordWithNameLowerComparator = exports.ordStringByLocaleLowerCase = exports.ordAlpha = exports.alphaCompare = exports.ordNumeric = exports.numericCompare = void 0;
 
 var _function = require("fp-ts/lib/function");
 
 var _Ord = require("fp-ts/lib/Ord");
+
+Object.keys(_Ord).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
+  if (key in exports && exports[key] === _Ord[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function () {
+      return _Ord[key];
+    }
+  });
+});
 
 var _Ordering = require("fp-ts/lib/Ordering");
 
@@ -55,12 +82,12 @@ const ordAlpha = { ..._Eq.eqStrict,
   compare: alphaCompare
 };
 exports.ordAlpha = ordAlpha;
-const ordCaseInsensitiveString = (0, _Ord.contramap)(s => s.toLocaleLowerCase())(_Ord.ordString);
+const ordStringByLocaleLowerCase = (0, _Ord.contramap)(s => s.toLocaleLowerCase())(_Ord.ordString);
 /**
  * Comparator for RecordWithName, comparing lowercase names alphabetically
  */
 
-exports.ordCaseInsensitiveString = ordCaseInsensitiveString;
+exports.ordStringByLocaleLowerCase = ordStringByLocaleLowerCase;
 
 const recordWithNameLowerComparator = (a, b) => {
   const nameA = (0, _strings.toLower)(a.name);

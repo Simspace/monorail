@@ -1,22 +1,8 @@
 import { left, right } from 'fp-ts/lib/Either'
-import { Task } from 'fp-ts/lib/Task'
-import { TaskEither } from 'fp-ts/lib/TaskEither'
 
 import { newTask } from '@monorail/sharedHelpers/fp-ts-ext/Task'
 
-import { constRunTaskEither, newTaskEither, runTaskEither } from '../TaskEither'
-
-describe('constRunTaskEither', () => {
-  it('should return the run function for a TaskEither<L, A>', () => {
-    const te = newTaskEither(
-      newTask(() => Promise.resolve(right<string, number>(3))),
-    )
-    const actual = constRunTaskEither(te)()
-    const expected = te()
-    expect(actual).toEqual(expected)
-    expect(actual).toEqual(Promise.resolve(right<string, number>(3)))
-  })
-})
+import { newTaskEither, runTaskEither } from '../TaskEither'
 
 describe('newTaskEither', () => {
   it('should create a TaskEither<L, A>', () => {

@@ -3,6 +3,14 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+var _exportNames = {
+  and: true,
+  or: true,
+  all: true,
+  any: true,
+  count: true,
+  sequence_: true
+};
 exports.and = and;
 exports.or = or;
 exports.all = all;
@@ -11,6 +19,18 @@ exports.count = count;
 exports.sequence_ = sequence_;
 
 var _Foldable = require("fp-ts/lib/Foldable");
+
+Object.keys(_Foldable).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
+  if (key in exports && exports[key] === _Foldable[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function () {
+      return _Foldable[key];
+    }
+  });
+});
 
 var _function = require("fp-ts/lib/function");
 

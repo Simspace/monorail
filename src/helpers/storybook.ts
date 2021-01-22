@@ -39,6 +39,7 @@ export enum A11yElement {
   Component = '#root > *',
   Modal = '.MuiDialog-root',
   Popover = '.MuiPopover-root',
+  Drawer = '.MuiDrawer-root',
 }
 
 //#region Parameters
@@ -62,6 +63,10 @@ export const DISABLED_A11Y = {
 
 export const DISABLED_ARG_TYPE = {
   table: { disable: true },
+} as const
+
+export const PADDING_REMOVED = {
+  layout: 'fullscreen',
 } as const
 
 /**

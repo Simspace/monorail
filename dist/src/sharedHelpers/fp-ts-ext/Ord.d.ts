@@ -1,5 +1,6 @@
 import { Ord } from 'fp-ts/lib/Ord';
 import { Ordering } from 'fp-ts/lib/Ordering';
+export * from 'fp-ts/lib/Ord';
 /**
  * Determines ordering of two numbers (numeric comparison)
  */
@@ -16,7 +17,7 @@ export declare const alphaCompare: (x: string, y: string) => Ordering;
  * Ord instance for string
  */
 export declare const ordAlpha: Ord<string>;
-export declare const ordCaseInsensitiveString: Ord<string>;
+export declare const ordStringByLocaleLowerCase: Ord<string>;
 /**
  * Comparator for RecordWithName, comparing lowercase names alphabetically
  */

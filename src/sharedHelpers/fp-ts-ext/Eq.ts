@@ -5,6 +5,8 @@ import { pipe } from 'fp-ts/lib/pipeable'
 import { shallowEqual } from '../shallowEqual'
 import { toLower } from '../strings'
 
+export * from 'fp-ts/lib/Eq'
+
 export const getUndefinableEq = <T>(
   eq: Eq.Eq<T>,
 ): Eq.Eq<T | undefined | null> => ({
@@ -14,23 +16,20 @@ export const getUndefinableEq = <T>(
 
 /**
  * Case insensitive Eq instance for strings
+ *
+ * TODO: we have a similar ordStringByLocaleLowerCase function which uses toLocaleLowerCase instead
  */
-export const eqStringCaseI: Eq.Eq<string> = pipe(
+export const eqStringByLowerCase: Eq.Eq<string> = pipe(
   Eq.eqString,
   Eq.contramap((s: string) => s.toLowerCase()),
 )
-
-/**
- * Generic eq that uses strict equality checking
- */
-export const eqStrict = { equals: Eq.strictEqual }
 
 /**
  * Function that returns a generic eq that uses strict equality checking
  *
  * NOTE: This only exists in case you need to explicitly provide a generic
  */
-export const getEqStrict = <A>(): Eq.Eq<A> => eqStrict
+export const getEqStrict = <A>(): Eq.Eq<A> => Eq.eqStrict
 
 /**
  * Generic eq that uses shallow equality checking

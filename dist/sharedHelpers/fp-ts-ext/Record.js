@@ -3,8 +3,21 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+var _exportNames = {
+  keysT: true,
+  values: true,
+  entries: true,
+  prop: true,
+  omit: true,
+  omitI: true,
+  pick: true,
+  sortRecords: true,
+  isRecord: true,
+  isNotEmpty: true,
+  fromFoldableFilterMap: true
+};
 exports.fromFoldableFilterMap = fromFoldableFilterMap;
-exports.isNotEmpty = exports.isRecord = exports.sortRecords = exports.pick = exports.omitI = exports.omit = exports.prop = exports.entries = exports.values = exports.keys = void 0;
+exports.isNotEmpty = exports.isRecord = exports.sortRecords = exports.pick = exports.omitI = exports.omit = exports.prop = exports.entries = exports.values = exports.keysT = void 0;
 
 var _Array = require("fp-ts/lib/Array");
 
@@ -13,6 +26,18 @@ var O = _interopRequireWildcard(require("fp-ts/lib/Option"));
 var _pipeable = require("fp-ts/lib/pipeable");
 
 var _Record = require("fp-ts/lib/Record");
+
+Object.keys(_Record).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
+  if (key in exports && exports[key] === _Record[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function () {
+      return _Record[key];
+    }
+  });
+});
 
 var _typeGuards = require("../typeGuards");
 
@@ -24,10 +49,12 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 /**
  * Retrieves the keys of an object while retaining keyof type information
+ *
+ * `T` suffix is "type" to differentiate this from the base Record keys function
  */
-const keys = x => Object.keys(x);
+const keysT = x => Object.keys(x);
 
-exports.keys = keys;
+exports.keysT = keysT;
 
 const values = x => Object.values(x);
 
@@ -52,7 +79,7 @@ exports.prop = prop;
 const omit = (rec, ks) => {
   const { ...result
   } = rec;
-  (0, _Array2.forEach)(ks, k => delete result[k]);
+  (0, _pipeable.pipe)(ks, (0, _Array2.forEach)(k => delete result[k]));
   return result;
 };
 /**
@@ -78,9 +105,9 @@ exports.omitI = omitI;
 
 const pick = (rec, ks) => {
   const result = {};
-  (0, _Array2.forEach)(ks, k => {
+  (0, _pipeable.pipe)(ks, (0, _Array2.forEach)(k => {
     result[k] = rec[k];
-  });
+  }));
   return result;
 };
 

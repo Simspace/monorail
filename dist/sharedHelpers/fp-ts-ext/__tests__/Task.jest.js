@@ -2,15 +2,6 @@
 
 var _Task = require("../Task");
 
-describe('constRunTask', () => {
-  const numTask = (0, _Task.newTask)(() => Promise.resolve(3));
-  it('should return the run function for a Task<A>', () => {
-    const actual = (0, _Task.constRunTask)(numTask)();
-    const expected = numTask();
-    expect(actual).toEqual(expected);
-    expect(actual).toEqual(Promise.resolve(3));
-  });
-});
 describe('newTask', () => {
   const numTask = (0, _Task.newTask)(() => Promise.resolve(5));
   const numTask_ = (0, _Task.newTask)(() => Promise.resolve(5));

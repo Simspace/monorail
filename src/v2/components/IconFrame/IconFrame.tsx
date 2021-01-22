@@ -21,13 +21,13 @@ const IconFrameStyled = styled(Div as typeof IconFrame).attrs(props => ({
 `
 // #endregion CSS
 
-type IconFrameMonorailProps = React.PropsWithChildren<{ frameSize?: number }>
+export type IconFrameProps = React.PropsWithChildren<{ frameSize?: number }>
 
 /**
  * Visual square wrapper for Icon. Defaults to 32px
  *
  * Deprecates v1/FramedIcon
  */
-export function IconFrame(props: IconFrameMonorailProps) {
+export function IconFrame(props: IconFrameProps) {
   return <IconFrameStyled {...props} />
 }

@@ -13,8 +13,9 @@ import Downshift, {
 } from 'downshift'
 import { useDebouncedCallback } from 'use-debounce'
 import { isUndefined } from 'util'
+import { pipe } from 'fp-ts/lib/function'
+import * as O from 'fp-ts/lib/Option'
 import { Do } from 'fp-ts-contrib/lib/Do'
-import { O, pipe } from '@monorail/sharedHelpers/fp-ts-imports'
 
 import { isEmptyString } from '@monorail/sharedHelpers/typeGuards'
 import { Nullable } from '@monorail/sharedHelpers/typeLevel'

@@ -1,5 +1,6 @@
 import { Eq } from 'fp-ts/lib/Eq';
 import * as O from 'fp-ts/lib/Option';
+export * from 'fp-ts/lib/Map';
 /**
  * Allows removal, modification, or insertion of values into a map.
  *

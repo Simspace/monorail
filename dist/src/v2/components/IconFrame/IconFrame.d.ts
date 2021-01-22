@@ -1,5 +1,5 @@
 import React from 'react';
-declare type IconFrameMonorailProps = React.PropsWithChildren<{
+export declare type IconFrameProps = React.PropsWithChildren<{
     frameSize?: number;
 }>;
 /**
@@ -7,5 +7,4 @@ declare type IconFrameMonorailProps = React.PropsWithChildren<{
  *
  * Deprecates v1/FramedIcon
  */
-export declare function IconFrame(props: IconFrameMonorailProps): JSX.Element;
-export {};
+export declare function IconFrame(props: IconFrameProps): JSX.Element;

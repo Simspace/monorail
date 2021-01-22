@@ -1,7 +1,9 @@
 import { NonEmptyString, UUID } from 'io-ts-types';
-import { AnyNewtype, Newtype } from 'newtype-ts';
+import { Iso } from 'monocle-ts';
+import { AnyNewtype, CarrierOf, Newtype, URIOf } from 'newtype-ts';
 import { AnyTuple, Overwrite } from 'typelevel-ts';
-import { Ord } from '@monorail/sharedHelpers/fp-ts-imports';
+import * as O from 'fp-ts/lib/Option';
+import * as Ord from 'fp-ts/lib/Ord';
 /**
  * Utility interface used to attach a tag & unique symbol to a Newtype's _URI
  * field.
@@ -155,8 +157,19 @@ export interface Finite extends SimSpaceNewtype<NewtypeURI<'Finite'>, number> {
 export declare const prismFinite: import("monocle-ts").Prism<number, Finite>;
 export interface IsoDate extends SimSpaceNewtype<NewtypeURI<'IsoDate'>, string> {
 }
+export declare const isoDateToDate: (isoDate: IsoDate) => Date;
 export declare const ordIsoDate: Ord.Ord<IsoDate>;
 export declare const prismIsoDate: import("monocle-ts").Prism<string, IsoDate>;
 export declare type CoerceNewtype<N extends AnyNewtype> = N extends Newtype<unknown, infer A> ? A : never;
 export declare const coerce: <N extends AnyNewtype>(n: N) => CoerceNewtype<N>;
 export declare const coerceToString: <S extends string | Newtype<unknown, string>>(s: S) => string;
+/**
+ * Try to take a param and decode it into a UUID by way of io-ts UUID
+ * branded type. If the param correctly decodes, then take the value
+ * and wrap it in the proper newtype created for the param
+ *
+ * @param {string} param - Any param that can possibly be turned into a UUID
+ * @param {string} paramName - The name of the param being passed in for logging purposes
+ * @param {Iso<N, CarrierOf<N>>} iso - The iso used to wrap the param into a new type for that param
+ */
+export declare const buildKeyNewtypeFromParam: <N extends AnyNewtype>(paramName: string, iso: Iso<N, CarrierOf<N>>) => (param: string) => O.Option<Newtype<URIOf<N>, string>>;

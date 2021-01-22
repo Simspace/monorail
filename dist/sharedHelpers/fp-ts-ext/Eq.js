@@ -3,9 +3,30 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.eqRecordWithNameLower = exports.recordWithNameLowerEquality = exports.getEqShallow = exports.eqShallow = exports.getEqStrict = exports.eqStrict = exports.eqStringCaseI = exports.getUndefinableEq = void 0;
+var _exportNames = {
+  getUndefinableEq: true,
+  eqStringByLowerCase: true,
+  getEqStrict: true,
+  eqShallow: true,
+  getEqShallow: true,
+  recordWithNameLowerEquality: true,
+  eqRecordWithNameLower: true
+};
+exports.eqRecordWithNameLower = exports.recordWithNameLowerEquality = exports.getEqShallow = exports.eqShallow = exports.getEqStrict = exports.eqStringByLowerCase = exports.getUndefinableEq = void 0;
 
 var Eq = _interopRequireWildcard(require("fp-ts/lib/Eq"));
+
+Object.keys(Eq).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
+  if (key in exports && exports[key] === Eq[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function () {
+      return Eq[key];
+    }
+  });
+});
 
 var O = _interopRequireWildcard(require("fp-ts/lib/Option"));
 
@@ -24,28 +45,22 @@ const getUndefinableEq = eq => ({
 });
 /**
  * Case insensitive Eq instance for strings
+ *
+ * TODO: we have a similar ordStringByLocaleLowerCase function which uses toLocaleLowerCase instead
  */
 
 
 exports.getUndefinableEq = getUndefinableEq;
-const eqStringCaseI = (0, _pipeable.pipe)(Eq.eqString, Eq.contramap(s => s.toLowerCase()));
-/**
- * Generic eq that uses strict equality checking
- */
-
-exports.eqStringCaseI = eqStringCaseI;
-const eqStrict = {
-  equals: Eq.strictEqual
-};
+const eqStringByLowerCase = (0, _pipeable.pipe)(Eq.eqString, Eq.contramap(s => s.toLowerCase()));
 /**
  * Function that returns a generic eq that uses strict equality checking
  *
  * NOTE: This only exists in case you need to explicitly provide a generic
  */
 
-exports.eqStrict = eqStrict;
+exports.eqStringByLowerCase = eqStringByLowerCase;
 
-const getEqStrict = () => eqStrict;
+const getEqStrict = () => Eq.eqStrict;
 /**
  * Generic eq that uses shallow equality checking
  */

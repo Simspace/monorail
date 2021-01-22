@@ -1,4 +1,5 @@
 import React from 'react'
+// eslint-disable-next-line no-restricted-imports
 import * as MUI from '@material-ui/core'
 
 import styled, { css, CSSProp } from '@monorail/helpers/styled-components'
@@ -69,6 +70,7 @@ export const displayCss: Record<Display, CSSProp> = {
       box-shadow: ${({ theme }) => `inset 0 0 0 1px ${theme.v2.Accent4}`};
     }
     &[disabled] {
+      box-shadow: ${({ theme }) => `inset 0 0 0 1px ${theme.v2.ActionDollop}`};
       color: ${({ theme }) => theme.v2.ActionDollop};
     }
   `,

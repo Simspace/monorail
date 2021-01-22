@@ -1,11 +1,15 @@
+import * as fc from 'fast-check';
 import * as M from 'monocle-ts';
 import * as Foldable from 'fp-ts/Foldable';
 import { Predicate } from 'fp-ts/function';
+import * as NEA from 'fp-ts/lib/NonEmptyArray';
+import * as O from 'fp-ts/lib/Option';
 import * as TE from 'fp-ts/lib/TaskEither';
 import * as Traversable from 'fp-ts/Traversable';
 import * as T from 'fp-ts/Tree';
-import { NEA, O } from '@monorail/sharedHelpers/fp-ts-imports';
 import { Named } from '@monorail/sharedHelpers/names';
+export * from 'fp-ts/lib/Tree';
+export { forestInstances as forest };
 declare const ForestURI = "Forest";
 declare type ForestURI = typeof ForestURI;
 declare module 'fp-ts/HKT' {
@@ -14,13 +18,19 @@ declare module 'fp-ts/HKT' {
     }
 }
 declare const forestInstances: Foldable.Foldable1<ForestURI> & Traversable.Traversable1<ForestURI>;
-export { forestInstances as forest };
 export declare const mapForest: <A, B>(f: (a: A) => B) => (fa: T.Forest<A>) => T.Forest<B>, reduceForest: <A, B>(b: B, f: (b: B, a: A) => B) => (fa: T.Forest<A>) => B, reduceRightForest: <A, B>(b: B, f: (a: A, b: B) => B) => (fa: T.Forest<A>) => B, foldMapForest: <M>(M: import("fp-ts/lib/Monoid").Monoid<M>) => <A>(f: (a: A) => M) => (fa: T.Forest<A>) => M;
 export declare const getForestTraversal: <A>() => M.Traversal<T.Forest<A>, A>;
 export declare const getForestFold: <A>() => M.Fold<T.Forest<A>, A>;
 export declare function getForestOptionalFromPath<A>(path: NEA.NonEmptyArray<number>): M.Optional<T.Forest<A>, T.Forest<A>>;
 export declare function getTreeOptionalFromPath<A>(path: NEA.NonEmptyArray<number>): M.Optional<T.Forest<A>, T.Tree<A>>;
 export declare const fromForestPath: <A>(f: T.Forest<A>) => (p: NodePath) => O.Option<T.Tree<A>>;
+/**
+ * Constructs an instance of `Abritrary<Tree<T>>` given an `Arbitrary<T>` and a `maxDepth`
+ */
+export declare function getArbitrary<T>(arb: fc.Arbitrary<T>, opts?: {
+    maxDepth?: number;
+    maxWidth?: number;
+}): fc.Arbitrary<T.Tree<T>>;
 /**
  * Splices trees in a forest that match a predicate. `mapMatch` returns a
  * `Forest` that will be flattened into the match's parent forest, so you can

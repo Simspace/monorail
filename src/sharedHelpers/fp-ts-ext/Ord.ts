@@ -8,6 +8,8 @@ import * as Tup from 'fp-ts/lib/Tuple'
 import { toLower } from '../strings'
 import { eqRecordWithNameLower, eqStrict } from './Eq'
 
+export * from 'fp-ts/lib/Ord'
+
 /**
  * Determines ordering of two numbers (numeric comparison)
  */
@@ -36,7 +38,7 @@ export const ordAlpha: Ord<string> = {
   compare: alphaCompare,
 }
 
-export const ordCaseInsensitiveString = contramap((s: string) =>
+export const ordStringByLocaleLowerCase = contramap((s: string) =>
   s.toLocaleLowerCase(),
 )(ordString)
 

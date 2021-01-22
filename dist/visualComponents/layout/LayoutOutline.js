@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.useControlledList = exports.OutlineListItem = exports.LayoutDetailHeader = exports.RowLayout = exports.ColumnLayout = exports.LayoutContentWrapper = exports.EmptyLayoutList = exports.EmptyLayoutContainer = exports.EmptyListButtonsBox = exports.EmptyListBoxInner = exports.EmptyListBox = exports.LayoutOutline = exports.OutlineList = void 0;
 
-var _styledComponents = _interopRequireDefault(require("styled-components"));
+var _styledComponents = _interopRequireWildcard(require("styled-components"));
 
 var _react = _interopRequireWildcard(require("react"));
 
@@ -18,8 +18,6 @@ var _pipeable = require("fp-ts/lib/pipeable");
 var _exports = require("../../helpers/exports");
 
 var _flex = require("../../helpers/flex");
-
-var _styledComponents2 = _interopRequireWildcard(require("../../helpers/styled-components"));
 
 var _ActionsMenu = require("../actionsMenu/ActionsMenu");
 
@@ -43,38 +41,33 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
-const OutlineList = _styledComponents2.default.div`
-  ${(0, _flex.flexFlow)('column')};
-  background: ${(0, _exports.getColor)(_exports.Colors.White)};
-  border-right: 1px solid ${(0, _exports.getColor)(_exports.Colors.Black12a)};
-  flex: 1;
-  max-width: 256px;
-  min-width: 186px;
-`;
+const OutlineList = /*#__PURE__*/_styledComponents.default.div.withConfig({
+  displayName: "LayoutOutline__OutlineList",
+  componentId: "sc-1fcq5a-0"
+})(["", ";background:", ";border-right:1px solid ", ";flex:1;max-width:256px;min-width:186px;"], (0, _flex.flexFlow)('column'), (0, _exports.getColor)(_exports.Colors.White), (0, _exports.getColor)(_exports.Colors.Black12a));
+
 exports.OutlineList = OutlineList;
-const OutlineContainer = _styledComponents2.default.div`
-  ${(0, _flex.flexFlow)('row')};
-  flex: 1;
-  overflow: hidden;
-  width: 100%;
-  height: 100%;
-`;
-const OutlineContent = _styledComponents2.default.div`
-  ${(0, _flex.flexFlow)('column')};
-  flex: 1;
-  overflow: hidden;
-`;
-const IconButtonContainer = _styledComponents2.default.div`
-  ${(0, _exports.visible)(false)}
-`;
+
+const OutlineContainer = /*#__PURE__*/_styledComponents.default.div.withConfig({
+  displayName: "LayoutOutline__OutlineContainer",
+  componentId: "sc-1fcq5a-1"
+})(["", ";flex:1;overflow:hidden;width:100%;height:100%;"], (0, _flex.flexFlow)('row'));
+
+const OutlineContent = /*#__PURE__*/_styledComponents.default.div.withConfig({
+  displayName: "LayoutOutline__OutlineContent",
+  componentId: "sc-1fcq5a-2"
+})(["", ";flex:1;overflow:hidden;"], (0, _flex.flexFlow)('column'));
+
+const IconButtonContainer = /*#__PURE__*/_styledComponents.default.div.withConfig({
+  displayName: "LayoutOutline__IconButtonContainer",
+  componentId: "sc-1fcq5a-3"
+})(["", ""], (0, _exports.visible)(false));
 
 var _StyledScrollAnimation = /*#__PURE__*/(0, _styledComponents.default)(_ScrollAnimation.ScrollAnimation).withConfig({
   displayName: "LayoutOutline___StyledScrollAnimation",
-  componentId: "sc-1fcq5a-0"
+  componentId: "sc-1fcq5a-4"
 })(["transform:none;"]);
 
 const LayoutOutline = ({
@@ -96,37 +89,33 @@ const LayoutOutline = ({
 };
 
 exports.LayoutOutline = LayoutOutline;
-const EmptyListBox = _styledComponents2.default.div`
-  align-items: center;
-  justify-content: center;
-  margin: auto;
-  ${(0, _flex.flexFlow)('row')}
-`;
+
+const EmptyListBox = /*#__PURE__*/_styledComponents.default.div.withConfig({
+  displayName: "LayoutOutline__EmptyListBox",
+  componentId: "sc-1fcq5a-5"
+})(["align-items:center;justify-content:center;margin:auto;", ""], (0, _flex.flexFlow)('row'));
+
 exports.EmptyListBox = EmptyListBox;
-const EmptyListBoxInner = _styledComponents2.default.div`
-  min-width: 200px;
-  align-items: center;
-  justify-content: center;
 
-  ${(0, _flex.flexFlow)('column')}
+const EmptyListBoxInner = /*#__PURE__*/_styledComponents.default.div.withConfig({
+  displayName: "LayoutOutline__EmptyListBoxInner",
+  componentId: "sc-1fcq5a-6"
+})(["min-width:200px;align-items:center;justify-content:center;", " p{text-align:center;}"], (0, _flex.flexFlow)('column'));
 
-  p {
-    text-align: center;
-  }
-`;
 exports.EmptyListBoxInner = EmptyListBoxInner;
-const EmptyListButtonsBox = _styledComponents2.default.div`
-  display: flex;
-`;
-exports.EmptyListButtonsBox = EmptyListButtonsBox;
-const EmptyLayoutContainer = _styledComponents2.default.div`
-  ${(0, _flex.flexFlow)('column')};
 
-  background: ${(0, _exports.getColor)(_exports.Colors.Grey96)};
-  flex: 1;
-  height: 100%;
-  overflow: hidden;
-`;
+const EmptyListButtonsBox = /*#__PURE__*/_styledComponents.default.div.withConfig({
+  displayName: "LayoutOutline__EmptyListButtonsBox",
+  componentId: "sc-1fcq5a-7"
+})(["display:flex;"]);
+
+exports.EmptyListButtonsBox = EmptyListButtonsBox;
+
+const EmptyLayoutContainer = /*#__PURE__*/_styledComponents.default.div.withConfig({
+  displayName: "LayoutOutline__EmptyLayoutContainer",
+  componentId: "sc-1fcq5a-8"
+})(["", ";background:", ";flex:1;height:100%;overflow:hidden;"], (0, _flex.flexFlow)('column'), (0, _exports.getColor)(_exports.Colors.Grey96));
+
 exports.EmptyLayoutContainer = EmptyLayoutContainer;
 
 const EmptyLayoutList = ({
@@ -150,65 +139,45 @@ const EmptyLayoutList = ({
 
 exports.EmptyLayoutList = EmptyLayoutList;
 
-const titleStyle = disabled => (0, _styledComponents2.css)`
-  max-width: unset;
-  flex: 3;
-  ${_TextArea.TextAreaInput} {
-    ${(0, _exports.typographyFont)(700, _exports.FontSizes.Title1)};
+const titleStyle = disabled => (0, _styledComponents.css)(["max-width:unset;flex:3;", "{", ";", "}margin-right:8px;"], _TextArea.TextAreaInput, (0, _exports.typographyFont)(700, _exports.FontSizes.Title1), disabled && (0, _styledComponents.css)(["border:none;&:hover,&:focus,&:active{border:none;}"]));
 
-    ${disabled && (0, _styledComponents2.css)`
-        border: none;
-
-        &:hover,
-        &:focus,
-        &:active {
-          border: none;
-        }
-      `}
-  }
-  margin-right: 8px;
-`;
-
-const LayoutContentWrapper = _styledComponents2.default.div`
-  ${(0, _flex.flexFlow)('column', 'nowrap')}
-  ${(0, _exports.pageSizePadding)({
+const LayoutContentWrapper = /*#__PURE__*/_styledComponents.default.div.withConfig({
+  displayName: "LayoutOutline__LayoutContentWrapper",
+  componentId: "sc-1fcq5a-9"
+})(["", " ", ";flex:1;overflow:hidden;"], (0, _flex.flexFlow)('column', 'nowrap'), (0, _exports.pageSizePadding)({
   paddingTop: 16,
   paddingBottom: 16
-})};
+}));
 
-  flex: 1;
-  overflow: hidden;
-`;
 exports.LayoutContentWrapper = LayoutContentWrapper;
-const ColumnLayout = _styledComponents2.default.div`
-  ${(0, _flex.flexFlow)('column')}
-  flex: 1;
-  width: 100%;
-`;
+
+const ColumnLayout = /*#__PURE__*/_styledComponents.default.div.withConfig({
+  displayName: "LayoutOutline__ColumnLayout",
+  componentId: "sc-1fcq5a-10"
+})(["", " flex:1;width:100%;"], (0, _flex.flexFlow)('column'));
+
 exports.ColumnLayout = ColumnLayout;
-const RowLayout = _styledComponents2.default.div`
-  ${(0, _flex.flexFlow)('row')}
-  flex: 1;
-  width: 100%;
-  justify-items: center;
-  align-items: center;
-`;
+
+const RowLayout = /*#__PURE__*/_styledComponents.default.div.withConfig({
+  displayName: "LayoutOutline__RowLayout",
+  componentId: "sc-1fcq5a-11"
+})(["", " flex:1;width:100%;justify-items:center;align-items:center;"], (0, _flex.flexFlow)('row'));
+
 exports.RowLayout = RowLayout;
-const LayoutDetailHeaderContainer = _styledComponents2.default.div`
-  ${(0, _flex.flexFlow)('row')}
-  flex: 0;
-  height: auto;
-  margin-left: -8px;
-`;
+
+const LayoutDetailHeaderContainer = /*#__PURE__*/_styledComponents.default.div.withConfig({
+  displayName: "LayoutOutline__LayoutDetailHeaderContainer",
+  componentId: "sc-1fcq5a-12"
+})(["", " flex:0;height:auto;margin-left:-8px;"], (0, _flex.flexFlow)('row'));
 
 var _StyledLayoutDetailHeaderContainer = /*#__PURE__*/(0, _styledComponents.default)(LayoutDetailHeaderContainer).withConfig({
   displayName: "LayoutOutline___StyledLayoutDetailHeaderContainer",
-  componentId: "sc-1fcq5a-1"
+  componentId: "sc-1fcq5a-13"
 })(["", ""], p => p._css);
 
 var _StyledActionsMenu = /*#__PURE__*/(0, _styledComponents.default)(_ActionsMenu.ActionsMenu).withConfig({
   displayName: "LayoutOutline___StyledActionsMenu",
-  componentId: "sc-1fcq5a-2"
+  componentId: "sc-1fcq5a-14"
 })(["margin-top:4px;"]);
 
 const LayoutDetailHeader = ({
@@ -232,7 +201,7 @@ exports.LayoutDetailHeader = LayoutDetailHeader;
 
 var _StyledSimpleListItem = /*#__PURE__*/(0, _styledComponents.default)(_List.SimpleListItem).withConfig({
   displayName: "LayoutOutline___StyledSimpleListItem",
-  componentId: "sc-1fcq5a-3"
+  componentId: "sc-1fcq5a-15"
 })(["&:hover{", "{", "}}"], IconButtonContainer, p => p._css2);
 
 const OutlineListItem = props => {

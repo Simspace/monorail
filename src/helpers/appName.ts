@@ -168,6 +168,7 @@ export const convertStringToAppName = (
     case 'catalog':
     case 'academy':
     case 'event-design':
+    case 'deployments':
     case 'training':
       return AuthSubAppName.Catalog
     case 'range':

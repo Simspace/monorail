@@ -5,16 +5,18 @@ import {
   Applicative2C,
 } from 'fp-ts/lib/Applicative'
 import { HKT, Kind, Kind2, URIS, URIS2 } from 'fp-ts/lib/HKT'
-import { Option, option } from 'fp-ts/lib/Option'
-import { O, pipe } from '@monorail/sharedHelpers/fp-ts-imports'
+import * as O from 'fp-ts/lib/Option'
+import { pipe } from 'fp-ts/lib/pipeable'
 
 import { isNil } from '@monorail/sharedHelpers/typeGuards'
 import { ReactRenderable } from '@monorail/sharedHelpers/typeLevel'
 
+export * from 'fp-ts/lib/Option'
+
 /**
  * type guard for Option
  */
-export const isOption = <A>(x: unknown): x is Option<A> => {
+export const isOption = <A>(x: unknown): x is O.Option<A> => {
   if (!isNil(x)) {
     const x_ = x as { value?: A; _tag: 'Some' | 'None' }
     return (!isNil(x_.value) && x_._tag === 'Some') || x_._tag === 'None'
@@ -29,32 +31,21 @@ export const isOption = <A>(x: unknown): x is Option<A> => {
  * given a `Some`
  */
 export const renderOnSome = <A>(
-  a: Option<A>,
+  a: O.Option<A>,
   onSome: (a: A) => ReactRenderable,
 ): ReactRenderable => O.fold<A, ReactRenderable>(() => null, onSome)(a)
-
-/**
- * Curried, non-lazy version of fp-ts' `getOrElse`. Used to extract the value
- * from a Some or return a default value in place of a None. Also
- * known as `fromMaybe` in Haskell, PureScript, etc.
- */
-export const getOrElse = <A>(a: A) => (b: Option<A>): A =>
-  pipe(
-    b,
-    O.getOrElse(() => a),
-  )
 
 /**
  * Partially applied version of `getOrElse` providing an empty string
  * as the default argument
  */
-export const getOrEmptyString = getOrElse('')
+export const getOrEmptyString = O.getOrElse(() => '')
 
 /**
  * Folds an option down into either an empty array or a single-element array containing
  * the value from within the Some. Useful in conjunction with the spread operator.
  */
-export const toArray: <A>(fa: Option<A>) => Array<A> = fa =>
+export const toArray: <A>(fa: O.Option<A>) => Array<A> = fa =>
   pipe(
     fa,
     O.fold(
@@ -87,17 +78,20 @@ export function opTraverse<F extends URIS2, E>(
   Ap: Applicative2C<F, E>,
 ): <A, B>(
   f: (a: A) => Kind2<F, E, B>,
-) => (o: Option<A>) => Kind2<F, E, Option<B>>
+) => (o: O.Option<A>) => Kind2<F, E, O.Option<B>>
+
 export function opTraverse<F extends URIS2>(
   Ap: Applicative2<F>,
 ): <A, B, E>(
   f: (a: A) => Kind2<F, E, B>,
-) => (o: Option<A>) => Kind2<F, E, Option<B>>
+) => (o: O.Option<A>) => Kind2<F, E, O.Option<B>>
+
 export function opTraverse<F extends URIS>(
   Ap: Applicative1<F>,
-): <A, B>(f: (a: A) => Kind<F, B>) => (o: Option<A>) => Kind<F, Option<B>>
+): <A, B>(f: (a: A) => Kind<F, B>) => (o: O.Option<A>) => Kind<F, O.Option<B>>
+
 export function opTraverse<F extends URIS>(
   Ap: Applicative<F>,
-): <A, B>(f: (a: A) => HKT<F, B>) => (o: Option<A>) => HKT<F, Option<B>> {
-  return f => oA => option.traverse(Ap)(oA, f)
+): <A, B>(f: (a: A) => HKT<F, B>) => (o: O.Option<A>) => HKT<F, O.Option<B>> {
+  return f => oA => O.option.traverse(Ap)(oA, f)
 }

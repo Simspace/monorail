@@ -35,9 +35,7 @@ const displayCss: Record<Display, CSSProp> = {
   `,
 }
 
-export type AvatarProps = OmitBannedProps<
-  Omit<MUI.AvatarProps, 'variant' | 'onClick'>
-> & {
+export type AvatarProps = OmitBannedProps<Omit<MUI.AvatarProps, 'onClick'>> & {
   display?: Display
   size?: 16 | 24 | 32 | 40 | 48 | 56 | 64
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void

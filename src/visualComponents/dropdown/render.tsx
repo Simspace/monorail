@@ -13,6 +13,7 @@ import {
   IconsAndInputContainer,
   TextField,
 } from '@monorail/visualComponents/inputs/TextField'
+import { Text } from '@monorail/visualComponents/typography/Text'
 
 import { ButtonDisplay, ButtonSize } from '../buttons/buttonTypes'
 import { IconButton } from '../buttons/IconButton'
@@ -97,7 +98,7 @@ const TextFieldStyles = (searching: boolean = false) => css`
 
   input {
     ${!searching && 'text-indent: -100vw;'};
-
+    padding-top: 3px; /* Fix dropdown bottom border being hidden. Padding comes from StyledInput in TextField */
     border-radius: inherit;
     cursor: pointer;
   }
@@ -136,7 +137,14 @@ const renderHandlerLabelDefault = <T extends DropdownType>({
       () => (
         <DropdownPlaceholder>{handlerProps.placeholder}</DropdownPlaceholder>
       ),
-      item => <span css={ellipsis}>{downshiftProps.itemToString(item)}</span>,
+      item => (
+        <Text
+          noWrap
+          css={'font-size: inherit; font-family: inherit; font-weight: inherit'}
+        >
+          {downshiftProps.itemToString(item)}
+        </Text>
+      ),
     ),
   )
 

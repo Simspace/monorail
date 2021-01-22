@@ -1,5 +1,5 @@
 import React from 'react';
-import { O } from '@monorail/sharedHelpers/fp-ts-imports';
+import * as O from 'fp-ts/lib/Option';
 export declare const StaticLogo: (props: {
     logo: string | React.ReactElement;
 }) => JSX.Element;

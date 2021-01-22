@@ -135,7 +135,7 @@ type SearchFieldMonorailProps = {
   inputRef?: React.RefObject<HTMLInputElement> // Clarify `any` MUI prop
 }
 
-type SearchFieldProps = SearchFieldMonorailProps &
+export type SearchFieldProps = SearchFieldMonorailProps &
   OmitBannedProps<Omit<MUI.OutlinedInputProps, 'inputRef'>>
 
 /**
@@ -151,6 +151,7 @@ export function SearchField(props: SearchFieldProps) {
           <Icons.Search />
         </MUI.InputAdornment>
       }
+      inputProps={{ 'aria-label': 'search', ...props.inputProps }}
       {...props}
     />
   )

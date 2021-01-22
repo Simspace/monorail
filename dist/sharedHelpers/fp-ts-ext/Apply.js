@@ -3,11 +3,34 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+var _exportNames = {
+  sequenceOptionsTuple: true,
+  sequenceEithersTuple: true,
+  sequenceTasksTuple: true,
+  sequenceTaskEithersTuple: true,
+  sequenceOptionsStruct: true,
+  sequenceEithersStruct: true,
+  sequenceTasksStruct: true,
+  sequenceTaskEithersStruct: true,
+  sequenceRemoteDataStruct: true
+};
 exports.sequenceRemoteDataStruct = exports.sequenceTaskEithersStruct = exports.sequenceTasksStruct = exports.sequenceEithersStruct = exports.sequenceOptionsStruct = exports.sequenceTaskEithersTuple = exports.sequenceTasksTuple = exports.sequenceEithersTuple = exports.sequenceOptionsTuple = void 0;
 
 var _remoteDataTs = require("@devexperts/remote-data-ts");
 
 var _Apply = require("fp-ts/lib/Apply");
+
+Object.keys(_Apply).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
+  if (key in exports && exports[key] === _Apply[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function () {
+      return _Apply[key];
+    }
+  });
+});
 
 var _Either = require("fp-ts/lib/Either");
 

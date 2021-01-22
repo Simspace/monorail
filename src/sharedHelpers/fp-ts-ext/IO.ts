@@ -2,6 +2,8 @@ import * as logger from 'fp-ts/lib/Console'
 import { constVoid, Lazy } from 'fp-ts/lib/function'
 import { IO, io } from 'fp-ts/lib/IO'
 
+export * from 'fp-ts/lib/IO'
+
 /**
  * Run IO
  */

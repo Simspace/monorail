@@ -4,13 +4,23 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.getPrismUUID = getPrismUUID;
-exports.coerceToString = exports.coerce = exports.prismIsoDate = exports.ordIsoDate = exports.prismFinite = exports.prismInfinity = exports.prismNaN = void 0;
+exports.buildKeyNewtypeFromParam = exports.coerceToString = exports.coerce = exports.prismIsoDate = exports.ordIsoDate = exports.isoDateToDate = exports.prismFinite = exports.prismInfinity = exports.prismNaN = void 0;
 
 var dateFns = _interopRequireWildcard(require("date-fns"));
 
+var _ioTsTypes = require("io-ts-types");
+
 var _newtypeTs = require("newtype-ts");
 
-var _fpTsImports = require("./fp-ts-imports");
+var E = _interopRequireWildcard(require("fp-ts/lib/Either"));
+
+var _function = require("fp-ts/lib/function");
+
+var O = _interopRequireWildcard(require("fp-ts/lib/Option"));
+
+var Ord = _interopRequireWildcard(require("fp-ts/lib/Ord"));
+
+var _helpers = require("../v2/shared/helpers");
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
@@ -58,7 +68,11 @@ const prismFinite = (0, _newtypeTs.prism)(Number.isFinite);
  */
 
 exports.prismFinite = prismFinite;
-const ordIsoDate = (0, _fpTsImports.pipe)(_fpTsImports.Ord.ordDate, _fpTsImports.Ord.contramap(d => new Date(coerce(d))));
+
+const isoDateToDate = isoDate => new Date(coerce(isoDate));
+
+exports.isoDateToDate = isoDateToDate;
+const ordIsoDate = (0, _function.pipe)(Ord.ordDate, Ord.contramap(isoDateToDate));
 /*
  * A prism giving you a `getOption` function that returns a `Some<IsoDate>`
  * if the run-time string can is a valid ISO date string or a `None` if it
@@ -99,5 +113,24 @@ n;
 exports.coerce = coerce;
 
 const coerceToString = s => s;
+/**
+ * Try to take a param and decode it into a UUID by way of io-ts UUID
+ * branded type. If the param correctly decodes, then take the value
+ * and wrap it in the proper newtype created for the param
+ *
+ * @param {string} param - Any param that can possibly be turned into a UUID
+ * @param {string} paramName - The name of the param being passed in for logging purposes
+ * @param {Iso<N, CarrierOf<N>>} iso - The iso used to wrap the param into a new type for that param
+ */
+
 
 exports.coerceToString = coerceToString;
+
+const buildKeyNewtypeFromParam = (paramName, iso) => param => (0, _function.pipe)(param, _ioTsTypes.UUID.decode, E.mapLeft(e => (0, _helpers.logger)(({
+  error
+}) => error({
+  message: `The param "${paramName}" could not be decoded into a UUID.`,
+  error: e
+}))), O.fromEither, O.map(iso.wrap));
+
+exports.buildKeyNewtypeFromParam = buildKeyNewtypeFromParam;

@@ -5,9 +5,13 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.getCollectionColor = exports.getColor = exports.convertHSLAMapToCss = exports.colorHSLAMap = exports.Colors = void 0;
 
+var O = _interopRequireWildcard(require("fp-ts/lib/Option"));
+
 var _pipeable = require("fp-ts/lib/pipeable");
 
-var _fpTsImports = require("../sharedHelpers/fp-ts-imports");
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 let Colors;
 exports.Colors = Colors;
@@ -1359,7 +1363,7 @@ const getCollectionColor = (index, hover = false) => {
   const primaryColors = [Colors.CollectionPrimary1, Colors.CollectionPrimary2, Colors.CollectionPrimary3, Colors.CollectionPrimary4, Colors.CollectionPrimary5, Colors.CollectionPrimary6, Colors.CollectionPrimary7, Colors.CollectionPrimary8];
   const secondaryColors = [Colors.CollectionSecondary1, Colors.CollectionSecondary2, Colors.CollectionSecondary3, Colors.CollectionSecondary4, Colors.CollectionSecondary5, Colors.CollectionSecondary6, Colors.CollectionSecondary7, Colors.CollectionSecondary8];
   const target = hover ? primaryColors : secondaryColors;
-  return (0, _pipeable.pipe)(_fpTsImports.O.fromNullable(target[index % target.length]), _fpTsImports.O.getOrElse(() => Colors.CollectionPrimary1));
+  return (0, _pipeable.pipe)(O.fromNullable(target[index % target.length]), O.getOrElse(() => Colors.CollectionPrimary1));
 };
 
 exports.getCollectionColor = getCollectionColor;

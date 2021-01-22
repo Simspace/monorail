@@ -7,7 +7,11 @@ exports.readonlyArrayOrZipper = exports.Functor = exports.getEq = exports.getSho
 
 var _function = require("fp-ts/lib/function");
 
-var _fpTsImports = require("../fp-ts-imports");
+var O = _interopRequireWildcard(require("fp-ts/lib/Option"));
+
+var _pipeable = require("fp-ts/lib/pipeable");
+
+var RA = _interopRequireWildcard(require("fp-ts/lib/ReadonlyArray"));
 
 var RAZ = _interopRequireWildcard(require("./ReadonlyArrayZipper"));
 
@@ -105,8 +109,8 @@ const hasFocus = fa => (0, _matchers.matchI)(fa)({
 exports.hasFocus = hasFocus;
 
 const getFocus = fa => (0, _matchers.matchI)(fa)({
-  isReadonlyArray: _ => _fpTsImports.O.none,
-  isReadonlyArrayZipper: a => _fpTsImports.O.some(a.value.focus)
+  isReadonlyArray: _ => O.none,
+  isReadonlyArrayZipper: a => O.some(a.value.focus)
 });
 /**
  * Clears the focus (if there is one)
@@ -131,10 +135,10 @@ exports.clearFocus = clearFocus;
 const find = eq => item => fa => (0, _matchers.matchI)(fa)({
   isReadonlyArray: ({
     value
-  }) => (0, _fpTsImports.pipe)(RAZ.fromReadonlyArray(value), _fpTsImports.O.chain(raz => RAZ.find(eq)(item)(raz)), _fpTsImports.O.map(raz => makeWithFocus(raz))),
+  }) => (0, _pipeable.pipe)(RAZ.fromReadonlyArray(value), O.chain(raz => RAZ.find(eq)(item)(raz)), O.map(raz => makeWithFocus(raz))),
   isReadonlyArrayZipper: ({
     value
-  }) => (0, _fpTsImports.pipe)(value, RAZ.find(eq)(item), _fpTsImports.O.map(raz => makeWithFocus(raz)))
+  }) => (0, _pipeable.pipe)(value, RAZ.find(eq)(item), O.map(raz => makeWithFocus(raz)))
 });
 /**
  * Attempts to move the focus to the given item, and if no item is found, returns the input collection unchanged
@@ -143,7 +147,7 @@ const find = eq => item => fa => (0, _matchers.matchI)(fa)({
 
 exports.find = find;
 
-const findOrKeep = eq => item => fa => (0, _fpTsImports.pipe)(find(eq)(item)(fa), _fpTsImports.O.getOrElse(() => fa));
+const findOrKeep = eq => item => fa => (0, _pipeable.pipe)(find(eq)(item)(fa), O.getOrElse(() => fa));
 /**
  * Attempts to move the focus to the given item, and if it's not found, clears the focus.
  */
@@ -151,7 +155,7 @@ const findOrKeep = eq => item => fa => (0, _fpTsImports.pipe)(find(eq)(item)(fa)
 
 exports.findOrKeep = findOrKeep;
 
-const findOrClear = eq => item => fa => (0, _fpTsImports.pipe)(find(eq)(item)(fa), _fpTsImports.O.getOrElse(() => clearFocus(fa)));
+const findOrClear = eq => item => fa => (0, _pipeable.pipe)(find(eq)(item)(fa), O.getOrElse(() => clearFocus(fa)));
 /**
  * If the given item is none, clears the focus. If the given item is some, it attempts to focus on it. If the item is not found,
  * the focus is kept as-is.
@@ -160,7 +164,7 @@ const findOrClear = eq => item => fa => (0, _fpTsImports.pipe)(find(eq)(item)(fa
 
 exports.findOrClear = findOrClear;
 
-const findOptionalOrKeep = eq => oa => fa => (0, _fpTsImports.pipe)(oa, _fpTsImports.O.fold(() => clearFocus(fa), a => findOrKeep(eq)(a)(fa)));
+const findOptionalOrKeep = eq => oa => fa => (0, _pipeable.pipe)(oa, O.fold(() => clearFocus(fa), a => findOrKeep(eq)(a)(fa)));
 /**
  * If the given item is none, clears the focus. If the given item is some, it attempts to focus on it. If the item is not found,
  * the focus is cleared.
@@ -169,7 +173,7 @@ const findOptionalOrKeep = eq => oa => fa => (0, _fpTsImports.pipe)(oa, _fpTsImp
 
 exports.findOptionalOrKeep = findOptionalOrKeep;
 
-const findOptionalOrClear = eq => oa => fa => (0, _fpTsImports.pipe)(oa, _fpTsImports.O.fold(() => clearFocus(fa), a => findOrClear(eq)(a)(fa)));
+const findOptionalOrClear = eq => oa => fa => (0, _pipeable.pipe)(oa, O.fold(() => clearFocus(fa), a => findOrClear(eq)(a)(fa)));
 /**
  * Maps a function over the collection
  */
@@ -201,7 +205,7 @@ exports.URI = URI;
 const getShow = showA => {
   return {
     show: raof => (0, _matchers.matchI)(raof)({
-      isReadonlyArray: x => `IsReadonlyArray(${_fpTsImports.RA.getShow(showA).show(x.value)})`,
+      isReadonlyArray: x => `IsReadonlyArray(${RA.getShow(showA).show(x.value)})`,
       isReadonlyArrayZipper: x => `IsReadonlyArrayZipper(${RAZ.getShow(showA).show(x.value)})`
     })
   };
@@ -213,7 +217,7 @@ const getEq = eqA => {
   return {
     equals: (a, b) => {
       if (a.tag === 'isReadonlyArray' && b.tag === 'isReadonlyArray') {
-        return _fpTsImports.RA.getEq(eqA).equals(a.value, b.value);
+        return RA.getEq(eqA).equals(a.value, b.value);
       } else if (a.tag === 'isReadonlyArrayZipper' && b.tag === 'isReadonlyArrayZipper') {
         return RAZ.getEq(eqA).equals(a.value, b.value);
       } else {

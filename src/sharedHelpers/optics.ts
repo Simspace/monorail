@@ -7,10 +7,10 @@ import {
   updateAt,
 } from 'fp-ts/lib/Array'
 import { Eq } from 'fp-ts/lib/Eq'
+import { pipe } from 'fp-ts/lib/function'
 import * as M from 'fp-ts/lib/Map'
-import { isNone, Option } from 'fp-ts/lib/Option'
+import * as O from 'fp-ts/lib/Option'
 import { insertAt, lookup } from 'fp-ts/lib/Record'
-import { O, pipe } from '@monorail/sharedHelpers/fp-ts-imports'
 
 /**
  * Binary composition for lenses (`monocle-ts`)
@@ -107,13 +107,13 @@ export const mkRecordKeyOptional = <
  *
  * https://github.com/gcanti/monocle-ts/blob/master/src/At/Record.ts
  */
-export function atMap<K, A = never>(E: Eq<K>): At<Map<K, A>, K, Option<A>> {
+export function atMap<K, A = never>(E: Eq<K>): At<Map<K, A>, K, O.Option<A>> {
   return new At(
     k =>
       new Lens(
         m => M.lookup(E)(k, m),
         oa => m => {
-          if (isNone(oa)) {
+          if (O.isNone(oa)) {
             return M.deleteAt(E)(k)(m)
           } else {
             return M.insertAt(E)(k, oa.value)(m)

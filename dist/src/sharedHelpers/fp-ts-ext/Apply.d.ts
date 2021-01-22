@@ -1,3 +1,4 @@
+export * from 'fp-ts/lib/Apply';
 /**
  * sequence utility for a tuple containing Options of mixed value types
  */

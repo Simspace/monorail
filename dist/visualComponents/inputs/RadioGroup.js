@@ -43,15 +43,17 @@ const Container = /*#__PURE__*/_styledComponents.default.div.withConfig({
 })(({
   display,
   hideStdErr,
-  cssOverrides
-}) => (0, _styledComponents.css)(["", ";", " ", ";"], (0, _exports.flexFlow)('column'), display !== _inputTypes.DisplayType.Edit && !hideStdErr && `margin-bottom: 24px;`, cssOverrides));
+  containerCssOverrides,
+  direction
+}) => (0, _styledComponents.css)(["", ";", " ", ";"], (0, _exports.flexFlow)(direction), display !== _inputTypes.DisplayType.Edit && !hideStdErr && `margin-bottom: 24px;`, containerCssOverrides));
 
 const RadioGroupWrapper = /*#__PURE__*/_styledComponents.default.fieldset.withConfig({
   displayName: "RadioGroup__RadioGroupWrapper",
   componentId: "hjdmb5-1"
 })(({
-  err
-}) => (0, _styledComponents.css)(["", ";margin:0;padding:0;border-style:solid;border-width:1px;border-color:transparent;", ";"], (0, _exports.borderRadius)(), err && (0, _styledComponents.css)(["", " border-top:none;border-top-left-radius:0 0;border-top-right-radius:0 0;"], _exports.baseErrorBorderStyles)));
+  err,
+  direction
+}) => (0, _styledComponents.css)(["", ";display:flex;flex-direction:", ";margin:0;padding:0;border-style:solid;border-width:1px;border-color:transparent;", ";"], (0, _exports.borderRadius)(), direction, err && (0, _styledComponents.css)(["", " border-top:none;border-top-left-radius:0 0;border-top-right-radius:0 0;"], _exports.baseErrorBorderStyles)));
 
 const BorderJoiner = /*#__PURE__*/_styledComponents.default.div.withConfig({
   displayName: "RadioGroup__BorderJoiner",
@@ -93,12 +95,16 @@ const RadioGroup = props => {
     className = '',
     hideStdErr = false,
     display = _inputTypes.DisplayType.Edit,
+    direction = 'column',
+    containerCssOverrides,
     ...otherProps
   } = props;
   return /*#__PURE__*/_react.default.createElement(Container, {
     className: className,
     display: display,
-    hideStdErr: hideStdErr
+    hideStdErr: hideStdErr,
+    direction: direction,
+    containerCssOverrides: containerCssOverrides
   }, display === _inputTypes.DisplayType.Edit ? /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_StyledLabel, {
     label: label,
     required: required,
@@ -106,7 +112,8 @@ const RadioGroup = props => {
     display: display,
     _css: err ? errorStyles : `${(0, _exports.flexFlow)('row')}`
   }), err && /*#__PURE__*/_react.default.createElement(BorderJoiner, null), /*#__PURE__*/_react.default.createElement(RadioGroupWrapper, _extends({}, otherProps, {
-    err: err
+    err: err,
+    direction: direction
   }), options.map((o = defaultOptions, k) => /*#__PURE__*/_react.default.createElement("div", {
     key: k + o.label
   }, /*#__PURE__*/_react.default.createElement(_Choice.Choice, {
