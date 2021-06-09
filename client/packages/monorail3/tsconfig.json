@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "composite": true,
+    "esModuleInterop": true,
+    "lib": ["es5", "dom", "dom.iterable", "esnext"],
+    "target": "es5",
+    "jsx": "react",
+    "resolveJsonModule": true,
+    "stripInternal": true
+  },
+  "include": ["src/**/*", "src/**/*.json", "./jest/**/*"]
+}
