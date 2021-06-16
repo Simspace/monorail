@@ -39,6 +39,7 @@
     "build-storybook": "build-storybook -s public"
   },
   "jest": {
+    "testRegex": "^.+(jest|test)\\.(ts|tsx|js|jsx)$",
     "setupFiles": [
       "<rootDir>/jest/jest.setup.ts"
     ],
