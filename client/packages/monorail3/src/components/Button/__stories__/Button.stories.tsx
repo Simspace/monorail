@@ -1,7 +1,7 @@
 import React from 'react'
 import { action } from '@storybook/addon-actions'
 
-import { story } from '../../../__tests__/storybook'
+import { story } from '../../../__tests__/helpers/storybook'
 import { Button, ButtonProps } from '../Button'
 
 export default {
@@ -9,14 +9,49 @@ export default {
   component: Button,
 }
 
-// Setup the Template like this, so it works with the storybook Docs/Controls. Other vanilla demos can be propless components in `Button.demo.tsx`
+const defaultArgs: ButtonProps = {
+  onClick: action('onClick'),
+  children: 'Button',
+}
+
 const Template = story<ButtonProps>(args => <Button {...args} />, {
-  args: {
-    onClick: action('onClick'),
-    children: 'Click me',
+  args: defaultArgs,
+  parameters: {
+    controls: { expanded: true },
   },
 })
 
 export const Default = story(Template)
 
-export * from '../__tests__/Button.demo'
+export const Variants = () => (
+  <>
+    <Button {...defaultArgs} variant="contained" />
+    <Button {...defaultArgs} variant="outlined" />
+    <Button {...defaultArgs} variant="text" />
+  </>
+)
+
+export const Colors = () => (
+  <>
+    <Button {...defaultArgs} variant="contained" color="primary" />
+    <Button {...defaultArgs} variant="outlined" color="primary" />
+    <Button {...defaultArgs} variant="text" color="primary" />
+    <br />
+    <Button {...defaultArgs} variant="contained" color="secondary" />
+    <Button {...defaultArgs} variant="outlined" color="secondary" />
+    <Button {...defaultArgs} variant="text" color="secondary" />
+    <br />
+    <Button {...defaultArgs} variant="contained" color="inherit" />
+    <Button {...defaultArgs} variant="outlined" color="inherit" />
+    <Button {...defaultArgs} variant="text" color="inherit" />
+  </>
+)
+
+export const Sizes = () => (
+  <>
+    <Button {...defaultArgs} variant="contained" size="extraSmall" />
+    <Button {...defaultArgs} variant="contained" size="small" />
+    <Button {...defaultArgs} variant="contained" size="medium" />
+    <Button {...defaultArgs} variant="contained" size="large" />
+  </>
+)

@@ -15,6 +15,30 @@ const palette: MUI.PaletteOptions = {
     darker: 'rgb(16, 80, 203)',
     darkest: 'rgb(12, 61, 153)',
   },
+  // Custom semantic color
+  accent: {
+    lightest: 'rgb(0, 249, 255)',
+    lighter: 'rgb(0, 228, 253)',
+    light: 'rgb(0, 193, 255)',
+    main: 'rgb(0, 168, 255)',
+    dark: 'rgb(0, 141, 246)',
+    darker: 'rgb(0, 80, 203)',
+    darkest: 'rgb(0, 61, 153)',
+    contrastText: '#fff',
+  },
+  // Custom non-semantic colors
+  special: {
+    cktTiers: {
+      tier1: '#f00',
+      tier2: '#ff0',
+      tier3: '#0ff',
+      tier4: '#00f',
+    },
+    charts: {
+      chart1: '#000',
+      chart2: '#000',
+    },
+  },
 }
 
 const themeWithoutComponents: Omit<MUI.ThemeOptions, 'components'> = {

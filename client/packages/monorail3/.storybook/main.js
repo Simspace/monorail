@@ -5,13 +5,19 @@
 module.exports = {
   stories: ['../src/**/*.stories.@(ts|tsx)'],
 
-  addons: ['@storybook/addon-links', '@storybook/addon-essentials'],
+  addons: [
+    '@storybook/addon-links',
+    '@storybook/addon-essentials',
+    '@storybook/addon-controls',
+    '@storybook/addon-a11y',
+  ],
 
-  // TODO: Storybook docgen apparently doesn't work with typescript latest (4.3.2 at this time)
-  // I'm not sure if/how this affects storybook's ability to generate metadata for components automatically.
   typescript: {
+    // Generate docs/control table on-the-fly using react-docgen-typescript
+    // Note: this is an alternative to using the scripted generation of .meta.json files. The desire was to not have to
+    // maintain all the generated .meta.json files, but there is a tradeoff with performance, and sometimes correctness when
+    // using the auto-gen like this.
     reactDocgen: 'react-docgen-typescript',
-    reactDocgenTypescriptOptions: {},
   },
 
   // Attempt to address and issue with storybook and MUI's emotion versions

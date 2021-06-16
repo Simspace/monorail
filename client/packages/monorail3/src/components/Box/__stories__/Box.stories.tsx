@@ -1,6 +1,7 @@
 import React from 'react'
 
-import { story } from '../../../__tests__/storybook'
+import { story } from '../../../__tests__/helpers/storybook'
+import { useTheme } from '../../../theme/useTheme'
 import { Box, BoxProps } from '../Box'
 
 export default {
@@ -8,20 +9,31 @@ export default {
   component: Box,
 }
 
+const defaultArgs = {
+  children: 'This is a Box',
+  sx: {
+    backgroundColor: '#ccc',
+  },
+}
+
 const Template = story<BoxProps>(
   args => {
     return <Box {...args} />
   },
   {
-    args: {
-      children: 'This is a Box',
-      sx: {
-        backgroundColor: '#ccc',
-      },
-    },
+    args: defaultArgs,
   },
 )
 
 export const Default = story(Template)
 
-export * from '../__tests__/Box.demo'
+export const ThemeBasedStyling = () => {
+  const theme = useTheme()
+  return (
+    <Box
+      {...defaultArgs}
+      padding={theme.spacing(2)}
+      sx={{ backgroundColor: theme.palette.primary.main }}
+    />
+  )
+}

@@ -16,6 +16,8 @@
     "@material-ui/core": "5.0.0-alpha.36",
     "@material-ui/styled-engine-sc": "5.0.0-alpha.35",
     "@storybook/addon-actions": "^6.2.9",
+    "@storybook/addon-a11y": "^6.2.9",
+    "@storybook/addon-controls": "^6.2.9",
     "@storybook/addon-essentials": "^6.2.9",
     "@storybook/addon-links": "^6.2.9",
     "@storybook/node-logger": "^6.2.9",
