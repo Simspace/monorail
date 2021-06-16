@@ -13,7 +13,7 @@ import {
 } from '@storybook/react'
 import merge from 'deepmerge'
 
-import { isNonEmptyString } from '../helpers/typeGuards'
+import { isNonEmptyString } from './typeGuards'
 
 type A11yParameter = {
   a11y?: {

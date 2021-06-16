@@ -1,6 +1,6 @@
-import { generateA11yStoryTests } from '../../../testHelpers/a11y'
-import * as stories from '../__stories__/Box.stories'
+import { generateA11yStoryTests } from '../../../__tests__/a11y'
+import * as demos from '../__tests__/Box.demo'
 
 describe('Box', () => {
-  generateA11yStoryTests(stories)
+  generateA11yStoryTests(demos)
 })

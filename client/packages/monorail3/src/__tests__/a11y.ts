@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { configureAxe } from 'jest-axe'
 
-import { isNotNil } from '../helpers/typeGuards'
+import { isNotNil } from '../__tests__/typeGuards'
 import { renderStory } from './render'
 import { A11yElement, Meta, Story } from './storybook'
 

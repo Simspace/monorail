@@ -7,7 +7,8 @@
     "target": "es5",
     "jsx": "react",
     "resolveJsonModule": true,
-    "stripInternal": true
+    "stripInternal": true,
+    "strict": true
   },
   "include": ["src/**/*", "src/**/*.json", "./jest/**/*"]
 }

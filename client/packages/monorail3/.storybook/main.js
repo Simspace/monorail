@@ -3,14 +3,15 @@
 //const toPath = p => path.join(process.cwd(), p)
 
 module.exports = {
-  stories: ['../src/**/*.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
+  stories: ['../src/**/*.stories.@(ts|tsx)'],
 
   addons: ['@storybook/addon-links', '@storybook/addon-essentials'],
 
   // TODO: Storybook docgen apparently doesn't work with typescript latest (4.3.2 at this time)
   // I'm not sure if/how this affects storybook's ability to generate metadata for components automatically.
   typescript: {
-    reactDocgen: 'none',
+    reactDocgen: 'react-docgen-typescript',
+    reactDocgenTypescriptOptions: {},
   },
 
   // Attempt to address and issue with storybook and MUI's emotion versions

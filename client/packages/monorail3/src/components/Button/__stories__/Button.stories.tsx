@@ -1,12 +1,15 @@
 import React from 'react'
 import { action } from '@storybook/addon-actions'
 
-import { meta, story } from '../../../testHelpers/storybook'
+import { story } from '../../../__tests__/storybook'
 import { Button, ButtonProps } from '../Button'
-import META from './Button.meta.json'
 
-export default meta(META, { title: 'Buttons/Button' })
+export default {
+  title: 'Buttons/Button',
+  component: Button,
+}
 
+// Setup the Template like this, so it works with the storybook Docs/Controls. Other vanilla demos can be propless components in `Button.demo.tsx`
 const Template = story<ButtonProps>(args => <Button {...args} />, {
   args: {
     onClick: action('onClick'),
@@ -14,16 +17,6 @@ const Template = story<ButtonProps>(args => <Button {...args} />, {
   },
 })
 
-export const Basic = story(Template)
+export const Default = story(Template)
 
-export const Contained = story(Template, {
-  args: { variant: 'contained' },
-})
-
-export const Outlined = story(Template, {
-  args: { variant: 'outlined' },
-})
-
-export const Text = story(Template, {
-  args: { variant: 'text' },
-})
+export * from '../__tests__/Button.demo'
