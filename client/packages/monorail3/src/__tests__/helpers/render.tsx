@@ -37,7 +37,7 @@ export function renderWithTheme(
 }
 
 /**
- * Renders a Storybook story for testing
+ * Renders a Storybook story for testing in jest
  */
 export function renderStory(
   Story: Story,

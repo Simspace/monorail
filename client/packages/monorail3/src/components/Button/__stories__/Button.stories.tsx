@@ -16,9 +16,6 @@ const defaultArgs: ButtonProps = {
 
 const Template = story<ButtonProps>(args => <Button {...args} />, {
   args: defaultArgs,
-  parameters: {
-    controls: { expanded: true },
-  },
 })
 
 export const Default = story(Template)

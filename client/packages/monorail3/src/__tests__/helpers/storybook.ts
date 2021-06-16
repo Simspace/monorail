@@ -4,14 +4,13 @@
 /* eslint-disable no-restricted-imports */
 /* eslint-disable import/no-extraneous-dependencies */
 
-import { Annotations, Args, Args as DefaultArgs } from '@storybook/addons'
+import { Args as DefaultArgs } from '@storybook/addons'
 import {
   ArgTypes as StorybookArgTypes,
   Meta as StorybookMeta,
   Parameters as StorybookParameters,
   Story as StorybookStory,
 } from '@storybook/react'
-import merge from 'deepmerge'
 
 import { isNonEmptyString } from './typeGuards'
 
@@ -24,13 +23,10 @@ type A11yParameter = {
 type A11yParameters = {
   parameters?: A11yParameter
 }
-type GeneratedMeta = Annotations<Args, void>
 
 export type Meta = StorybookMeta & A11yParameters
 export type Story<Args = DefaultArgs> = StorybookStory<Partial<Args>> &
   A11yParameters
-
-export const NO_GENERATED_META: GeneratedMeta = {}
 
 /**
  * Selectors used by a11y tools to target specific elements for a11y checks
@@ -47,20 +43,49 @@ export enum A11yElement {
 }
 
 //#region Parameters
+
+// These are intended to be used to add parameters metadata to story componenents, which using the `story` helper function
+//
+// Example:
+//
+// export const MyStory = story(Template, {
+//   args: {
+//     prop1: true,
+//     ...
+//   },
+//   parameters: {
+//     {...DISABLED_CONTROLS}
+//     {...DISABLED_ACTIONS}
+//     {...DISABLED_A11Y}
+//   }
+// })
+
+/**
+ * Add this to the story `parameters` to disable the controls integration for this story
+ */
 export const DISABLED_CONTROLS = {
   controls: {
     disable: true,
   },
 } as const
 
+/**
+ * Add this to the story `parameters` to disable the actions integration for this story
+ */
 export const DISABLED_ACTIONS = {
   actions: { disable: true },
 } as const
 
+/**
+ * Add this to the story `parameters` to enable the actions integration for this story
+ */
 export const ENABLED_ACTIONS = {
   actions: { disable: false },
 } as const
 
+/**
+ * Add this to the story `parameters` to disable the a11y integration for this story (and corresponding jest tests)
+ */
 export const DISABLED_A11Y = {
   a11y: { disable: true },
 } as const
@@ -74,6 +99,8 @@ export const PADDING_REMOVED = {
 } as const
 
 /**
+ * Sets the normal "root" selector as the root for the a11y tests.
+ *
  * This is the default a11y selector. Only use it when overriding a custom selector.
  */
 export const A11Y_ELEMENT__ROOT = {
@@ -96,7 +123,38 @@ type StoryConfiguration<T> = {
 /**
  * Helper function for creating a story from a Template.
  * Also handy for creating new stories from a normal component.
- * - Storybook's documented approach of manually adding configuration as properties to the Story is tedious and error-prone.
+ * - Storybook's documented approach of manually adding configuration as properties to the Story is tedious, error-prone, and poorly typed.
+ *
+ * This basically does the equivalent of the vanilla storybook story setup:
+ *
+ * ```typescript
+ * const Template = args => <MyComponent {...args}
+ *
+ * export const MyStory = Template.bind({})
+ * MyStory.args = ...
+ * MyStory.argTypes = ...
+ * MyStory.parameters = ...
+ * ```
+ *
+ * Like this:
+ *
+ * ```typescript
+ * const Template = args => <MyComponent {...args}
+ *
+ * export const MyStory = story(Template, {
+ *   args: ...
+ *   argTypes: ...
+ *   parameters: ...
+ * })
+ * ```
+ *
+ * Note that you can also create stories as just vanilla React components, without the args/argTypes/parameters metadata,
+ * but stories like this can't take advantage of custom a11y settings, and do not seem to work with the Docs/Controls control tables.
+ *
+ * ```typescript
+ * // Won't work with storybook controls/etc.
+ * export const MyVanillaStory = () => <Button variant='containe'>Button</Button>
+ * ```
  *
  * @param Template A renderable Template or Component
  * @param config Properties added to the returned Story
@@ -106,7 +164,6 @@ type StoryConfiguration<T> = {
  *
  * @example using a component:
  * export const Other = story(() => <div />, { storyName: "Example"})
- *
  */
 export function story<T extends DefaultArgs>(
   Template: Story<T>,
@@ -123,17 +180,3 @@ export function story<T extends DefaultArgs>(
 
   return NewStory
 }
-
-/**
- * Creates a Meta object used for the default export of a stories file
- *
- * @example
- * export default meta(require('./meta.json'), {title: 'Component'})
- *
- * @example
- * export default meta(NO_GENERATED_META, {title: 'Component'})
- */
-export function meta(generatedMeta: GeneratedMeta, meta: Meta): Meta {
-  return merge(generatedMeta, meta)
-}
-//#endregion

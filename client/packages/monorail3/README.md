@@ -6,7 +6,8 @@ Monorail 3 is a UI component library backed by Material UI v5.
 
 ## Setup
 
-Note: we are in a `yarn workspaces` setup, so this project is not fully isolated from other dependencies.
+Note: we are in a `yarn workspaces` setup, so the dependencies in this package are specified in this `./package.json`,
+but the `yarn.lock` file is in the root workspaces directory.
 
 ```sh
 # From portal-suite root dir
@@ -22,15 +23,17 @@ Note: we are in a `yarn workspaces` setup, so this project is not fully isolated
 
 ## Docgen
 
-We currently have the docgen/META tools copied here from legacy Monorail. I'd like to revisit using storybook's built-in docgen, but there seems to be an issue with the reactDocgen with latest TypeScript.
+In legacy monorail, we had a scripted docgen workflow setup to generate the `.meta.json` files that were fed into the storybook stories for things like the docs page/controls/etc.
 
-```sh
-# From portal-suite root dir
-> cd client
+In monorail3, we are going to try using the on-the-fly docgen, which is configured in the `./storybook/main.js` with `reactDocgen: 'react-docgen-typescript`.
 
-# This will generate a `*.meta.json` file in the `__stories__` folder for any components listed in the script
-> ./scripts/docgen-monorail3.sh
-```
+Note that there are some issues with MUI types which result in badly-generated types in the docs and controls. (e.g. values like `falsefalse` for `Button` `disabled`).
+
+## Accessibility
+
+We are currently setup to use the `storybook-a11y` addon, so you can view a11y information for components and stories in storybook.
+
+We also have a node-based `jest` test running setup to run the a11y tests outside of storybook.
 
 ## Notes
 
