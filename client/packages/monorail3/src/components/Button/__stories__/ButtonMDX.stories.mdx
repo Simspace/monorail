@@ -1,0 +1,69 @@
+import { ArgsTable, Meta, Story, Canvas } from '@storybook/addon-docs/blocks'
+import { Button } from '../Button'
+import { Default } from './Button.stories'
+
+<Meta title="Buttons/Button (MDX)" component={Button} />
+
+# Button
+
+This is an MDX page for Button. The code is not type-checked because typescript doesn't work with .mdx files.
+
+This is probably not something we'd use for development, but might be useful for UX for documentation. These files are fragile because there is no type-checking, and it's essentially just javascript code and hand-written text.
+
+export const Template = (args) => <Button {...args}>Button</Button>
+
+## Variants
+
+### Contained
+
+This is a contained button.
+
+<Canvas>
+  <Story name="Contained" args={{ variant: 'contained' }}>{Template.bind({})}</Story>
+</Canvas>
+
+### Outlined
+
+This is outlined
+
+<Canvas>
+  <Story name="Outlined" args={{ variant: 'outlined' }}>{Template.bind({})}</Story>
+</Canvas>
+
+### Text
+
+This is a chromeless text button
+
+<Canvas>
+  <Story name="Text" args={{ variant: 'text' }}>{Template.bind({})}</Story>
+</Canvas>
+
+### Vanilla
+
+This is just a Button with no Story/Template wrapper. This doesn't show up as a proper story in the sidebar.
+
+<Canvas>
+  <Button variant='contained' color='secondary'>My Vanilla Button</Button>
+</Canvas>
+
+### Imported story
+
+This doesn't seem to work, not sure why
+
+<Canvas>
+  <Story name="Imported Default">
+    <Default />
+  </Story>
+</Canvas>
+
+<Canvas>
+  <Default />
+</Canvas>
+
+### Linked story
+
+<Story id="buttons-button--default" />
+
+## Args table
+
+<ArgsTable of={Button} />
