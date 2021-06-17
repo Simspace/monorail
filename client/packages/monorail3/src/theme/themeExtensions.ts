@@ -51,14 +51,14 @@ declare module '@material-ui/core/styles/createPalette' {
     special: {
       cktTiers: {
         // TODO: not sure if we want all the shades for each of these, or just a single color
-        tier1: PaletteColor
-        tier2: PaletteColor
-        tier3: PaletteColor
-        tier4: PaletteColor
+        tier1: string
+        tier2: string
+        tier3: string
+        tier4: string
       }
       charts: {
-        chart1: PaletteColor
-        chart2: PaletteColor
+        chart1: string
+        chart2: string
       }
     }
   }

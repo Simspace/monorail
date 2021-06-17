@@ -41,15 +41,23 @@ const palette: MUI.PaletteOptions = {
   },
 }
 
-const themeWithoutComponents: Omit<MUI.ThemeOptions, 'components'> = {
+// Constuct a Theme with the base settings plus our customizations, but without the components overrides provided yet.
+// We're doing this so we have all the base theme settings populated for doing the component-level overrides. We want
+// a Theme here, rather than ThemeOptions because we want all the values to be non-optional and filled-in for the
+// component overrides.
+const themeWithoutComponents: MUI.Theme = MUI.createTheme({
   ...baseTheme,
   palette: palette,
-}
+})
 
+// Now create the `components` overrides using the theme we just created
 const components: MUI.ThemeOptions['components'] = getThemeComponents(
   themeWithoutComponents,
 )
 
+/**
+ * The default light theme which combines the `baseTheme`, the light theme overrides, and the component-level overrides.
+ */
 export const defaultLightTheme: MUI.Theme = MUI.createTheme(
   {
     ...themeWithoutComponents,
