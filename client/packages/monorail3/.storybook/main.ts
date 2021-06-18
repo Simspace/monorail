@@ -7,6 +7,7 @@ export default {
     '@storybook/addon-essentials',
     //'@storybook/addon-controls', // included by default
     '@storybook/addon-a11y',
+    '@react-theming/storybook-addon', // Provides theme switching in the canvas view for stories
   ],
 
   typescript: {

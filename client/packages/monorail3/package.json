@@ -15,6 +15,7 @@
   "devDependencies": {
     "@material-ui/core": "5.0.0-alpha.36",
     "@material-ui/styled-engine-sc": "5.0.0-alpha.35",
+    "@react-theming/storybook-addon": "1.1.1",
     "@storybook/addon-actions": "^6.2.9",
     "@storybook/addon-a11y": "^6.2.9",
     "@storybook/addon-controls": "^6.2.9",
