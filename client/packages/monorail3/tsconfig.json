@@ -7,8 +7,14 @@
     "target": "es5",
     "jsx": "react",
     "resolveJsonModule": true,
+    "sourceMap": true,
+    "declarationMap": true,
     "stripInternal": true,
+    "outDir": "./dist",
+    "skipLibCheck": true,
+    "rootDir": "src",
     "strict": true
   },
-  "include": ["src/**/*", "src/**/*.json", "./jest/**/*"]
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "**/__tests__/**", "**/__stories__/**"]
 }
