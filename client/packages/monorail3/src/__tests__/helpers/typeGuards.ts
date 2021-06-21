@@ -1,4 +1,4 @@
-// NB: these are not intended to live here in monorail, or be provided by monorail - these should come from another package once we have that setup
+// NB: these are not intended to live here in monorail, or be exported by monorail - these should come from another package once we have that setup
 
 /**
  * null | undefined

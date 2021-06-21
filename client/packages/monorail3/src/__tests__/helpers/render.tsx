@@ -7,7 +7,7 @@ import { Story } from '@storybook/react'
 import { render, RenderOptions, RenderResult } from '@testing-library/react'
 import { createGlobalStyle } from 'styled-components'
 
-import { defaultLightTheme } from '../theme/defaultLightTheme'
+import { defaultLightTheme } from '../../theme/defaultLightTheme'
 
 /**
  * Temporary fix for https://github.com/dequelabs/axe-core/issues/2587
@@ -37,7 +37,7 @@ export function renderWithTheme(
 }
 
 /**
- * Renders a Storybook story for testing
+ * Renders a Storybook story for testing in jest
  */
 export function renderStory(
   Story: Story,

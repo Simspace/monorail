@@ -1,10 +1,12 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { configureAxe } from 'jest-axe'
 
-import { isNotNil } from '../helpers/typeGuards'
 import { renderStory } from './render'
 import { A11yElement, Meta, Story } from './storybook'
+import { isNotNil } from './typeGuards'
 
+/**
+ * This configures the a11y test framework axe
+ */
 const axe = configureAxe({
   rules: {
     // Ignore page-level rules
@@ -14,6 +16,11 @@ const axe = configureAxe({
   },
 })
 
+/**
+ * Checks if a story should be run through the a11y/axe checks.
+ *
+ * This looks at custom paramters.a11y metadata which might be tacked onto the story component function.
+ */
 function shouldCheckA11y(item: Story) {
   return !item.parameters?.a11y?.disable
 }

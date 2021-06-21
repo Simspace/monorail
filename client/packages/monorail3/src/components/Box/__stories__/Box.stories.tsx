@@ -1,13 +1,15 @@
 import React from 'react'
 
-import { meta, story } from '../../../testHelpers/storybook'
+import { story } from '../../../__tests__/helpers/storybook'
 import { useTheme } from '../../../theme/useTheme'
 import { Box, BoxProps } from '../Box'
-import META from './Box.meta.json'
 
-export default meta(META, { title: 'Layout/Box' })
+export default {
+  title: 'Layout/Box',
+  component: Box,
+}
 
-const defaultArgs: BoxProps = {
+const defaultArgs = {
   children: 'This is a Box',
   sx: {
     backgroundColor: '#ccc',
@@ -23,17 +25,15 @@ const Template = story<BoxProps>(
   },
 )
 
-//#region Hero story in Docs
-export const Basic = story(Template)
-//#endregion
+export const Default = story(Template)
 
-export const WithStyles = () => {
+export const ThemeBasedStyling = () => {
   const theme = useTheme()
   return (
     <Box
       {...defaultArgs}
       padding={theme.spacing(2)}
-      sx={{ backgroundColor: theme.palette.grey[100] }}
+      sx={{ backgroundColor: theme.palette.primary.main }}
     />
   )
 }
