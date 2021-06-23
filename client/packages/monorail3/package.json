@@ -31,6 +31,7 @@
     "react-docgen-typescript": "2.0.0",
     "react-dom": "17.0.2",
     "styled-components": "5.3.0",
+    "ts-morph": "11.0.0",
     "typescript": "4.3.2"
   },
   "resolutions": {},
@@ -39,7 +40,8 @@
     "test": "jest",
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public",
-    "build": "tsc"
+    "build": "tsc",
+    "gen": "date && yarn tsc && node dist/gen/main.js && yarn tsc && ../../node_modules/.bin/prettier ./**/*.{ts,tsx} --write"
   },
   "jest": {
     "testRegex": "^.+(jest|test)\\.(ts|tsx|js|jsx)$",
