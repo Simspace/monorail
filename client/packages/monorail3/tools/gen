@@ -1,0 +1,15 @@
+#! /usr/bin/env bash
+set -euo pipefail
+
+# This script should be invoked using `yarn gen` from the root monorail3 directory
+
+echo "Generating Monorail files..."
+node ./dist/tools/generateMonorailFromMUI.js
+
+echo "Running Prettier on generated files..."
+../../node_modules/.bin/prettier './src/**/*{.ts,.tsx}' --write
+
+echo "Running tsc..."
+yarn tsc
+
+echo "Done!"

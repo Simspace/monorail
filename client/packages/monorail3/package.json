@@ -16,8 +16,8 @@
     "@material-ui/core": "5.0.0-alpha.36",
     "@material-ui/styled-engine-sc": "5.0.0-alpha.35",
     "@react-theming/storybook-addon": "1.1.1",
-    "@storybook/addon-actions": "^6.2.9",
     "@storybook/addon-a11y": "^6.2.9",
+    "@storybook/addon-actions": "^6.2.9",
     "@storybook/addon-controls": "^6.2.9",
     "@storybook/addon-docs": "^6.2.9",
     "@storybook/addon-essentials": "^6.2.9",
@@ -41,7 +41,7 @@
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public",
     "build": "tsc",
-    "gen": "date && yarn tsc && node dist/gen/main.js && yarn tsc && ../../node_modules/.bin/prettier ./**/*.{ts,tsx} --write"
+    "gen": "./tools/gen"
   },
   "jest": {
     "testRegex": "^.+(jest|test)\\.(ts|tsx|js|jsx)$",
