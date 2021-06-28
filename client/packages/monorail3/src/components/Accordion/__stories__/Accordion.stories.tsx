@@ -21,7 +21,7 @@ const Template = story<AccordionProps>(args => (
 ))
 
 /** Default story (edit as needed) */
-//export const Default = story(Template, {})
+export const Default = story(Template, {})
 
 // TODO: add more stories below
 
@@ -36,7 +36,7 @@ export const Default = () => (
 )
  */
 
-export const Default = () => (
+export const Default2 = () => (
   <MUI.Accordion>
     <MUI.AccordionSummary id="summary-1" aria-controls="details-1">
       Summary

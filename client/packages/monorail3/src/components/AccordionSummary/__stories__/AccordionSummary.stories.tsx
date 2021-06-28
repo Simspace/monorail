@@ -7,11 +7,9 @@ import { defaultStoryMeta } from './AccordionSummary.storyHelpers'
 export default { ...defaultStoryMeta }
 /** Story template - update as needed */
 const Template = story<AccordionSummaryProps>(
-  args => <AccordionSummary {...args} />,
+  args => <AccordionSummary {...args}>Accordion Summary</AccordionSummary>,
   { args: {} },
 )
 /** Default story (edit as needed) */
-export const Default = story(Template, {
-  args: { children: 'AccordionSummary' },
-})
+export const Default = story(Template, {})
 // TODO: add more stories below

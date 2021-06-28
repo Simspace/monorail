@@ -44,7 +44,7 @@
     "gen": "./tools/gen"
   },
   "jest": {
-    "testRegex": "^.+(jest|test)\\.(ts|tsx|js|jsx)$",
+    "testRegex": "^.+(jest|test)\\.(ts|tsx)$",
     "setupFiles": [
       "<rootDir>/jest/jest.setup.ts"
     ],
