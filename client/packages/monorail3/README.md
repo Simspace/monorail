@@ -4,6 +4,10 @@
 
 Monorail 3 is a UI component library backed by Material UI v5.
 
+## Goals/core ideas
+
+- This library aims to leverage Material UI (MUI) as much as possible using built-in customization facilities
+
 ## Setup
 
 Note: we are in a `yarn workspaces` setup, so the dependencies in this package are specified in this `./package.json`,

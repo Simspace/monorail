@@ -19,12 +19,33 @@ const consoleLogBanner = (msg: string): void => {
 /**
  * Folders in which to organize components in storybook
  */
-export type StorybookFolder = 'Buttons' | 'Data Display' | 'Forms' | 'Layout'
+export type StorybookFolder =
+  | 'Buttons'
+  | 'Data Display'
+  | 'Informational'
+  | 'Forms'
+  | 'Layout'
 
 export const storybookFolders = {
+  /**
+   * Components related to buttons/toggles/etc.
+   */
   buttons: 'Buttons' as const,
+  /**
+   * Componenents for displaying data, e.g. Accordions, Tables, etc.
+   */
   dataDisplay: 'Data Display' as const,
+  /**
+   * Components for displaying informational alerts (Alert, Modal, Pill, etc.)
+   */
+  informational: 'Informational' as const,
+  /**
+   * Components for Forms (inputs, checkboxes, radios, etc.)
+   */
   forms: 'Forms' as const,
+  /**
+   * Components related to laying out other components (Box, Grid, etc.)
+   */
   layout: 'Layout' as const,
 }
 
@@ -90,6 +111,7 @@ const getMonorailComponentExtraImports = (module: ModuleInfo): Array<string> =>
 // List of all the modules to generate, including extra metadata to help the code gen
 const modules: Array<ModuleInfo> = [
   { name: 'Accordion', storybookFolder: storybookFolders.dataDisplay },
+  { name: 'AccordionActions', storybookFolder: storybookFolders.dataDisplay },
   { name: 'AccordionDetails', storybookFolder: storybookFolders.dataDisplay },
   {
     name: 'AccordionSummary',
@@ -98,6 +120,8 @@ const modules: Array<ModuleInfo> = [
     ],
     storybookFolder: storybookFolders.dataDisplay,
   },
+  { name: 'Alert', storybookFolder: storybookFolders.informational },
+  { name: 'AlertText', storybookFolder: storybookFolders.informational },
   {
     name: 'Button',
     monorailComponentExtraImports: [
@@ -168,6 +192,7 @@ modules.forEach(module => {
     const monorailComponentExtraFilePath = `./src/components/${monorailComponentName}/${monorailComponentName}.extra.tsx`
     const monorailComponentStoryHelpersFilePath = `./src/components/${monorailComponentName}/__stories__/${monorailComponentName}.storyHelpers.tsx`
     const monorailComponentStoriesFilePath = `./src/components/${monorailComponentName}/__stories__/${monorailComponentName}.stories.tsx`
+    const monorailComponentA11yTestFilePath = `./src/components/${monorailComponentName}/__tests__/${monorailComponentName}.a11y.test.tsx`
 
     // Create the monorial component file with the props type and the component wrapper
     // This is an "always regenerate" file, so should always be over-written
@@ -290,6 +315,27 @@ modules.forEach(module => {
         writer.writeLine(`// TODO: add more stories below`)
       })
     }
+
+    // Create the .a11y.test.tsx file for generated a11y tests
+    console.log(
+      `Generating a11y tests file: ${monorailComponentA11yTestFilePath}`,
+    )
+    project.createSourceFile(
+      monorailComponentA11yTestFilePath,
+      writer => {
+        writer.writeLine(codeGenMessage)
+        writer.writeLine(
+          `import { generateA11yStoryTests } from '../../../__tests__/helpers/a11y'`,
+        )
+        writer.writeLine(
+          `import * as stories from '../__stories__/${monorailComponentName}.stories'`,
+        )
+        writer.writeLine(`describe('${monorailComponentName} (a11y))', () => {`)
+        writer.writeLine(`  generateA11yStoryTests(stories)`)
+        writer.writeLine(`})`)
+      },
+      { overwrite: true },
+    )
   })
 })
 
