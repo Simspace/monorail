@@ -241,6 +241,82 @@ const modules: Array<ModuleInfo> = [
     storybookFolder: storybookFolderLayout,
   },
   {
+    name: 'CssBaseline',
+    storybookFolder: storybookFolderUtils,
+  },
+  {
+    name: 'Dialog',
+    storybookFolder: storybookFolderFeedback,
+  },
+  {
+    name: 'DialogActions',
+    storybookFolder: storybookFolderFeedback,
+  },
+  {
+    name: 'DialogContent',
+    storybookFolder: storybookFolderFeedback,
+  },
+  {
+    name: 'DialogContentText',
+    storybookFolder: storybookFolderFeedback,
+  },
+  {
+    name: 'DialogTitle',
+    storybookFolder: storybookFolderFeedback,
+  },
+  {
+    name: 'Divider',
+    storybookFolder: storybookFolderDataDisplay,
+  },
+  {
+    name: 'Drawer',
+    storybookFolder: storybookFolderNavigation,
+  },
+  {
+    name: 'Fab',
+    storybookFolder: storybookFolderInputs,
+  },
+  {
+    name: 'Fade',
+    storybookFolder: storybookFolderUtils,
+  },
+  {
+    name: 'FilledInput',
+    storybookFolder: storybookFolderInputs,
+  },
+  {
+    name: 'FormControl',
+    storybookFolder: storybookFolderInputs,
+  },
+  {
+    name: 'FormControlLabel',
+    storybookFolder: storybookFolderInputs,
+  },
+  {
+    name: 'FormGroup',
+    storybookFolder: storybookFolderInputs,
+  },
+  {
+    name: 'FormHelperText',
+    storybookFolder: storybookFolderInputs,
+  },
+  {
+    name: 'FormLabel',
+    storybookFolder: storybookFolderInputs,
+  },
+  {
+    name: 'GlobalStyles',
+    storybookFolder: storybookFolderUtils,
+  },
+  {
+    name: 'Grid',
+    storybookFolder: storybookFolderLayout,
+  },
+  {
+    name: 'Grow',
+    storybookFolder: storybookFolderUtils,
+  },
+  {
     name: 'TextField',
     storybookFolder: storybookFolderInputs,
   },
