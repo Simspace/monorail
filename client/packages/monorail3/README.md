@@ -7,6 +7,8 @@ Monorail 3 is a UI component library backed by Material UI v5.
 ## Goals/core ideas
 
 - This library aims to leverage Material UI (MUI) as much as possible using built-in customization facilities
+- The overarching goal is to extend/customize MUI to our liking (within reason) without breaking the core assumptions and capabilities of MUI, and following the patterns and conventions established by MUI
+- The point of this goal is to avoid creating a lot of extra work and maintenance for ourselves in building and maintaining a custom UI library.
 
 ## Setup
 
@@ -25,6 +27,10 @@ but the `yarn.lock` file is in the root workspaces directory.
 > yarn storybook
 ```
 
+## Storybook
+
+The storybook site is currently organized similarly to the MUI docs, please try to put new components in reasonable places going forward.
+
 ## Docgen
 
 In legacy monorail, we had a scripted docgen workflow setup to generate the `.meta.json` files that were fed into the storybook stories for things like the docs page/controls/etc.
@@ -40,6 +46,10 @@ We are currently setup to use the `storybook-a11y` addon, so you can view a11y i
 We also have a node-based `jest` test running setup to run the a11y tests outside of storybook.
 
 ## Notes
+
+### Code Gen
+
+TODO
 
 ### Styled Engine
 
