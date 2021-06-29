@@ -3,12 +3,12 @@ import React from 'react'
 import { Checkbox, CheckboxProps } from '../Checkbox'
 import { story } from '../../../__tests__/helpers/storybook'
 import { defaultStoryMeta } from './Checkbox.stories.gen'
+
 /**
  * Metadata for Checkbox stories - update/extend as needed
- * This is intended to be exported as story-level metadata from the main .stories.tsx file, like:
- * "export default { ...defaultStoryMeta } // Add/extend as needed
  */
 export default { ...defaultStoryMeta }
+
 /**
  * Story template (edit/remove by hand if needed)
  *
@@ -16,8 +16,10 @@ export default { ...defaultStoryMeta }
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
 const Template = story<CheckboxProps>(args => <Checkbox {...args} />, {
-  args: {},
+  args: { inputProps: { 'aria-label': 'Checkbox' } },
 })
+
 /** Default story for Checkbox (edit/remove by hand if needed) */
 export const Default = story(Template, {})
+
 // TODO: add more stories below

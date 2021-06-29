@@ -447,12 +447,6 @@ modules.forEach(module => {
       writer.writeLine(
         ` * Metadata for ${monorailComponentName} stories - update/extend as needed`,
       )
-      writer.writeLine(
-        ` * This is intended to be exported as story-level metadata from the main .stories.tsx file, like:`,
-      )
-      writer.writeLine(
-        ` * "export default { ...defaultStoryMeta } // Add/extend as needed`,
-      )
       writer.writeLine(` */`)
       writer.writeLine(`export default { ...defaultStoryMeta }`)
 

@@ -41,6 +41,7 @@
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public",
     "build": "tsc",
+    "cleangen": "find ./src/components -name '*.gen.*' -print | xargs rm && yarn gen",
     "gen": "./tools/gen"
   },
   "jest": {

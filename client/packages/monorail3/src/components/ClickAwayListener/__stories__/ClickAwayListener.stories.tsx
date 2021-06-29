@@ -28,7 +28,7 @@ const Template = story<ClickAwayListenerProps>(
       setOpen(false)
     }
     const styles = {
-      position: 'absolute',
+      position: 'absolute' as const,
       top: 28,
       right: 0,
       left: 0,
@@ -44,7 +44,7 @@ const Template = story<ClickAwayListenerProps>(
             Open menu dropdown
           </button>
           {open ? (
-            <Box sx={{}}>
+            <Box sx={styles}>
               Click me, I will stay visible until you click outside.
             </Box>
           ) : null}
