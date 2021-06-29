@@ -144,7 +144,7 @@ export const Palette = () => {
           label="Secondary"
           paletteColor={theme.palette.secondary}
         />
-        <PaletteColorBox label="Accent" paletteColor={theme.palette.accent} />
+        {/*<PaletteColorBox label="Accent" paletteColor={theme.palette.accent} />*/}
         <PaletteColorBox label="Info" paletteColor={theme.palette.info} />
         <PaletteColorBox label="Success" paletteColor={theme.palette.success} />
         <PaletteColorBox label="Warning" paletteColor={theme.palette.warning} />

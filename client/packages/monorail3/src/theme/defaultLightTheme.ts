@@ -4,8 +4,7 @@ import * as MUI from '@material-ui/core'
 import { baseTheme } from './baseTheme'
 import { getThemeComponents } from './themeComponents'
 
-
-// Dollop - darkest 
+// Dollop - darkest
 
 const palette: MUI.PaletteOptions = {
   primary: {
@@ -20,23 +19,23 @@ const palette: MUI.PaletteOptions = {
   secondary: {
     lightest: '#2066EC',
     lighter: '#1050CB',
-    light: '#0C3D99',     // dash
-    main: '#1A2974',      // Dollop
-    dark: '#161C4F',       // Graphic
-    darker: '#0B1038',      // Primary
-    darkest: '#03072B',     // 0058FF
+    light: '#0C3D99', // dash
+    main: '#1A2974', // Dollop
+    dark: '#161C4F', // Graphic
+    darker: '#0B1038', // Primary
+    darkest: '#03072B', // 0058FF
   },
   grey: {
-    "50": '#FFFFFF',
-    "100": '#F5F5F5',
-    "200": '#F0F0F0',
-    "300": '#EBEBEB',
-    "400": '#E0E0E0',
-    "500": '#C2C2C2',
-    "600": '#8F8F8F',
-    "700": '#757575',
-    "800": '#616161',
-    "900": '#424242'
+    '50': '#FFFFFF',
+    '100': '#F5F5F5',
+    '200': '#F0F0F0',
+    '300': '#EBEBEB',
+    '400': '#E0E0E0',
+    '500': '#C2C2C2',
+    '600': '#8F8F8F',
+    '700': '#757575',
+    '800': '#616161',
+    '900': '#424242',
   },
   error: {
     lightest: '#FFF6F5',
@@ -45,7 +44,7 @@ const palette: MUI.PaletteOptions = {
     main: '#FF6B66',
     dark: '#F54545',
     darker: '#D41C0B',
-    darkest: '#AD0C00'
+    darkest: '#AD0C00',
   },
   info: {
     lightest: '#F5F9FF',
@@ -54,7 +53,7 @@ const palette: MUI.PaletteOptions = {
     main: '#7AA8FF',
     dark: '#558DF6',
     darker: '#1465FF',
-    darkest: '#0051EB'
+    darkest: '#0051EB',
   },
   success: {
     lightest: '#E8FCEE',
@@ -63,7 +62,7 @@ const palette: MUI.PaletteOptions = {
     main: '#0FBD6F',
     dark: '#08A45E',
     darker: '#007544',
-    darkest: '#006038'
+    darkest: '#006038',
   },
   warning: {
     lightest: '#FFF8F0',
@@ -72,21 +71,8 @@ const palette: MUI.PaletteOptions = {
     main: '#FF8000',
     dark: '#E56000',
     darker: '#B84514',
-    darkest: '#A83200'
+    darkest: '#A83200',
   },
-
-  // background: {
-  //   default: '',
-  //   paper: ''
-  // },
-  // text: {
-  //   disabled: '',
-  //   primary: '',
-  //   secondary: ''
-  // },
-
-  // // action deals with transforming things, hover/disabled states
-  // action: {},
 }
 
 // Constuct a Theme with the base settings plus our customizations, but without the components overrides provided yet.
