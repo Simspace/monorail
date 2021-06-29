@@ -26,4 +26,39 @@ const Template = story<ButtonProps>(args => <Button {...args} />, {
  * */
 export const Default = story(Template, {})
 
+export const Showcase = () => (
+  <>
+    <h1>Contained</h1>
+    <Button variant="contained" color="primary">
+      Primary
+    </Button>
+    <Button variant="contained" color="secondary">
+      Secondary
+    </Button>
+    <Button variant="contained" color="inherit">
+      Inherit
+    </Button>
+    <h1>Outlined</h1>
+    <Button variant="outlined" color="primary">
+      Primary
+    </Button>
+    <Button variant="outlined" color="secondary">
+      Secondary
+    </Button>
+    <Button variant="outlined" color="inherit">
+      Inherit
+    </Button>
+    <h1>Text</h1>
+    <Button variant="text" color="primary">
+      Primary
+    </Button>
+    <Button variant="text" color="secondary">
+      Secondary
+    </Button>
+    <Button variant="text" color="inherit">
+      Inherit
+    </Button>
+  </>
+)
+
 // TODO: add more stories below
