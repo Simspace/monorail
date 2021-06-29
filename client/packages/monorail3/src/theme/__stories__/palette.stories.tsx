@@ -15,8 +15,8 @@ export default {
 
 const SingleColorBox = ({ color, label }: { color: string; label: string }) => {
   return (
-    <>
-      <Box sx={{ minWidth: '120px' }}>{label}</Box>
+    <Box sx={{ marginBottom: '8px' }}>
+      <Box sx={{ minWidth: '160px' }}>{label}</Box>
       <Box
         sx={{
           width: '80px',
@@ -25,7 +25,8 @@ const SingleColorBox = ({ color, label }: { color: string; label: string }) => {
           border: '1px solid black',
         }}
       />
-    </>
+      <Box sx={{ fontSize: '60%', fontWeight: 100 }}>{color || '???'}</Box>
+    </Box>
   )
 }
 
