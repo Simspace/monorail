@@ -2,45 +2,32 @@
 import React from 'react'
 import { Accordion, AccordionProps } from '../Accordion'
 import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './Accordion.storyHelpers'
-import { AccordionSummary } from '../../AccordionSummary/AccordionSummary'
-import { AccordionDetails } from '../../AccordionDetails/AccordionDetails'
-import * as MUI from '@material-ui/core'
-
-/** Metadata for these stories - update/extend as needed */
-export default { ...defaultStoryMeta }
-
-/** Story template - update as needed */
-const Template = story<AccordionProps>(args => (
-  <Accordion {...args}>
-    <AccordionSummary id="accordion-summary" aria-controls="accordion-details">
-      Summary
-    </AccordionSummary>
-    <AccordionDetails id="accordion-details">Details</AccordionDetails>
-  </Accordion>
-))
-
-/** Default story (edit as needed) */
-export const Default = story(Template, {})
-
-// TODO: add more stories below
-
-/*
-export const Default = () => (
-  <Accordion>
-    <AccordionSummary id="summary-1" aria-controls="details-1">
-      Summary
-    </AccordionSummary>
-    <AccordionDetails id="details=1">Details</AccordionDetails>
-  </Accordion>
-)
+import { defaultStoryMeta } from './Accordion.stories.gen'
+import { Default as AccordionSummaryDefault } from '../../AccordionSummary/__stories__/AccordionSummary.stories'
+import { Default as AccordionDetailsDefault } from '../../AccordionDetails/__stories__/AccordionDetails.stories'
+/**
+ * Metadata for Accordion stories - update/extend as needed
+ * This is intended to be exported as story-level metadata from the main .stories.tsx file, like:
+ * "export default { ...defaultStoryMeta } // Add/extend as needed
  */
-
-export const Default2 = () => (
-  <MUI.Accordion>
-    <MUI.AccordionSummary id="summary-1" aria-controls="details-1">
-      Summary
-    </MUI.AccordionSummary>
-    <MUI.AccordionDetails id="details=1">Details</MUI.AccordionDetails>
-  </MUI.Accordion>
+export default { ...defaultStoryMeta }
+/**
+ * Story template (edit/remove by hand if needed)
+ *
+ * Note: there should be at least one "Default" story that uses this template with the "story" function.
+ * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
+ */
+const Template = story<AccordionProps>(
+  args => (
+    <Accordion {...args}>
+      <AccordionSummaryDefault />
+      <AccordionDetailsDefault />
+    </Accordion>
+  ),
+  {
+    args: {},
+  },
 )
+/** Default story for Accordion (edit/remove by hand if needed) */
+export const Default = story(Template, {})
+// TODO: add more stories below

@@ -1,39 +1,21 @@
+// Edit this file to add new stories
 import React from 'react'
-
-import { story } from '../../../__tests__/helpers/storybook'
-import { useTheme } from '../../../theme/useTheme'
 import { Box, BoxProps } from '../Box'
-
-export default {
-  title: 'Layout/Box',
-  component: Box,
-}
-
-const defaultArgs = {
-  children: 'This is a Box',
-  sx: {
-    backgroundColor: '#ccc',
-  },
-}
-
-const Template = story<BoxProps>(
-  args => {
-    return <Box {...args} />
-  },
-  {
-    args: defaultArgs,
-  },
-)
-
-export const Default = story(Template)
-
-export const ThemeBasedStyling = () => {
-  const theme = useTheme()
-  return (
-    <Box
-      {...defaultArgs}
-      padding={theme.spacing(2)}
-      sx={{ backgroundColor: theme.palette.primary.main }}
-    />
-  )
-}
+import { story } from '../../../__tests__/helpers/storybook'
+import { defaultStoryMeta } from './Box.stories.gen'
+/**
+ * Metadata for Box stories - update/extend as needed
+ * This is intended to be exported as story-level metadata from the main .stories.tsx file, like:
+ * "export default { ...defaultStoryMeta } // Add/extend as needed
+ */
+export default { ...defaultStoryMeta }
+/**
+ * Story template (edit/remove by hand if needed)
+ *
+ * Note: there should be at least one "Default" story that uses this template with the "story" function.
+ * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
+ */
+const Template = story<BoxProps>(args => <Box {...args} />, { args: {} })
+/** Default story for Box (edit/remove by hand if needed) */
+export const Default = story(Template, {})
+// TODO: add more stories below

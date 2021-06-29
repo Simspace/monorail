@@ -19,46 +19,70 @@ const consoleLogBanner = (msg: string): void => {
 /**
  * Folders in which to organize components in storybook
  */
-export type StorybookFolder =
-  | 'Buttons'
-  | 'Data Display'
-  | 'Informational'
-  | 'Forms'
-  | 'Layout'
-  | 'Utility'
 
-export const storybookFolders: {
-  buttons: StorybookFolder
-  dataDisplay: StorybookFolder
-  informational: StorybookFolder
-  forms: StorybookFolder
-  layout: StorybookFolder
-  utility: StorybookFolder
-} = {
-  /**
-   * Components related to buttons/toggles/etc.
-   */
-  buttons: 'Buttons' as const,
-  /**
-   * Componenents for displaying data, e.g. Accordions, Tables, etc.
-   */
-  dataDisplay: 'Data Display' as const,
-  /**
-   * Components for displaying informational alerts (Alert, Modal, Pill, etc.)
-   */
-  informational: 'Informational' as const,
-  /**
-   * Components for Forms (inputs, checkboxes, radios, etc.)
-   */
-  forms: 'Forms' as const,
-  /**
-   * Components related to laying out other components (Box, Grid, etc.)
-   */
-  layout: 'Layout' as const,
-  /**
-   * Components that are used as utilities in other components (e.g. backgroups, dividers, etc.)
-   */
-  utility: 'Utility' as const,
+export type StorybookFolderLayout = { tag: 'layout'; title: string }
+export type StorybookFolderInputs = { tag: 'inputs'; title: string }
+export type StorybookFolderNavigation = {
+  tag: 'navigation'
+  title: string
+}
+export type StorybookFolderSurfaces = { tag: 'surfaces'; title: string }
+export type StorybookFolderFeedback = { tag: 'feedback'; title: string }
+export type StorybookFolderDataDisplay = {
+  tag: 'dataDisplay'
+  title: string
+}
+export type StorybookFolderDataGrid = { tag: 'dataGrid'; title: string }
+export type StorybookFolderUtils = { tag: 'utils'; title: string }
+
+export type StorybookFolder =
+  | StorybookFolderLayout
+  | StorybookFolderInputs
+  | StorybookFolderNavigation
+  | StorybookFolderSurfaces
+  | StorybookFolderFeedback
+  | StorybookFolderDataDisplay
+  | StorybookFolderDataGrid
+  | StorybookFolderUtils
+
+export const storybookFolderLayout: StorybookFolderLayout = {
+  tag: 'layout',
+  title: 'Layout',
+}
+
+export const storybookFolderInputs: StorybookFolderInputs = {
+  tag: 'inputs',
+  title: 'Inputs',
+}
+
+export const storybookFolderNavigation: StorybookFolderNavigation = {
+  tag: 'navigation',
+  title: 'Navigation',
+}
+
+export const storybookFolderSurfaces: StorybookFolderSurfaces = {
+  tag: 'surfaces',
+  title: 'Surfaces',
+}
+
+export const storybookFolderFeedback: StorybookFolderFeedback = {
+  tag: 'feedback',
+  title: 'Feedback',
+}
+
+export const storybookFolderDataDisplay: StorybookFolderDataDisplay = {
+  tag: 'dataDisplay',
+  title: 'Data Display',
+}
+
+export const storybookFolderDataGrid: StorybookFolderDataGrid = {
+  tag: 'dataGrid',
+  title: 'Data Grid',
+}
+
+export const storybookFolderUtils: StorybookFolderUtils = {
+  tag: 'utils',
+  title: 'Utils',
 }
 
 /**
@@ -122,103 +146,103 @@ const getMonorailComponentExtraImports = (module: ModuleInfo): Array<string> =>
 
 // List of all the modules to generate, including extra metadata to help the code gen
 const modules: Array<ModuleInfo> = [
-  { name: 'Accordion', storybookFolder: storybookFolders.dataDisplay },
-  { name: 'AccordionActions', storybookFolder: storybookFolders.dataDisplay },
-  { name: 'AccordionDetails', storybookFolder: storybookFolders.dataDisplay },
+  { name: 'Accordion', storybookFolder: storybookFolderSurfaces },
+  { name: 'AccordionActions', storybookFolder: storybookFolderSurfaces },
+  { name: 'AccordionDetails', storybookFolder: storybookFolderSurfaces },
   {
     name: 'AccordionSummary',
-    storybookFolder: storybookFolders.dataDisplay,
+    storybookFolder: storybookFolderSurfaces,
   },
-  { name: 'Alert', storybookFolder: storybookFolders.informational },
-  { name: 'AlertTitle', storybookFolder: storybookFolders.informational },
-  { name: 'AppBar', storybookFolder: storybookFolders.informational },
+  { name: 'Alert', storybookFolder: storybookFolderFeedback },
+  { name: 'AlertTitle', storybookFolder: storybookFolderFeedback },
+  { name: 'AppBar', storybookFolder: storybookFolderSurfaces },
   {
     name: 'Autocomplete',
-    storybookFolder: storybookFolders.forms,
+    storybookFolder: storybookFolderInputs,
     monorailComponentExtraImports: [
       `import { ChipTypeMap } from '@material-ui/core/Chip'`,
     ],
   },
-  { name: 'Avatar', storybookFolder: storybookFolders.informational },
-  { name: 'AvatarGroup', storybookFolder: storybookFolders.informational },
-  { name: 'Backdrop', storybookFolder: storybookFolders.utility },
-  { name: 'Badge', storybookFolder: storybookFolders.informational },
-  { name: 'BottomNavigation', storybookFolder: storybookFolders.utility },
+  { name: 'Avatar', storybookFolder: storybookFolderDataDisplay },
+  { name: 'AvatarGroup', storybookFolder: storybookFolderDataDisplay },
+  { name: 'Backdrop', storybookFolder: storybookFolderFeedback },
+  { name: 'Badge', storybookFolder: storybookFolderDataDisplay },
+  { name: 'BottomNavigation', storybookFolder: storybookFolderNavigation },
   {
     name: 'BottomNavigationAction',
-    storybookFolder: storybookFolders.utility,
+    storybookFolder: storybookFolderNavigation,
     monorailComponentExtraImports: [
       `import { ButtonBaseTypeMap } from '@material-ui/core/ButtonBase'`,
     ],
   },
-  { name: 'Box', storybookFolder: storybookFolders.layout },
-  { name: 'Breadcrumbs', storybookFolder: storybookFolders.informational },
+  { name: 'Box', storybookFolder: storybookFolderLayout },
+  { name: 'Breadcrumbs', storybookFolder: storybookFolderNavigation },
   {
     name: 'Button',
-    storybookFolder: storybookFolders.buttons,
+    storybookFolder: storybookFolderInputs,
   },
   {
     name: 'ButtonBase',
-    storybookFolder: storybookFolders.buttons,
+    storybookFolder: storybookFolderInputs,
   },
   {
     name: 'ButtonGroup',
-    storybookFolder: storybookFolders.buttons,
+    storybookFolder: storybookFolderInputs,
   },
   {
     name: 'Card',
-    storybookFolder: storybookFolders.dataDisplay,
+    storybookFolder: storybookFolderSurfaces,
   },
   {
     name: 'CardActionArea',
-    storybookFolder: storybookFolders.dataDisplay,
+    storybookFolder: storybookFolderSurfaces,
     monorailComponentExtraImports: [
       `import { ButtonBaseTypeMap } from '@material-ui/core/ButtonBase'`,
     ],
   },
   {
     name: 'CardActions',
-    storybookFolder: storybookFolders.dataDisplay,
+    storybookFolder: storybookFolderSurfaces,
   },
   {
     name: 'CardContent',
-    storybookFolder: storybookFolders.dataDisplay,
+    storybookFolder: storybookFolderSurfaces,
   },
   {
     name: 'CardHeader',
-    storybookFolder: storybookFolders.dataDisplay,
+    storybookFolder: storybookFolderSurfaces,
   },
   {
     name: 'CardMedia',
-    storybookFolder: storybookFolders.dataDisplay,
+    storybookFolder: storybookFolderSurfaces,
   },
   {
     name: 'Checkbox',
-    storybookFolder: storybookFolders.forms,
+    storybookFolder: storybookFolderInputs,
   },
   {
     name: 'Chip',
-    storybookFolder: storybookFolders.informational,
+    storybookFolder: storybookFolderDataDisplay,
   },
   {
     name: 'CircularProgress',
-    storybookFolder: storybookFolders.informational,
+    storybookFolder: storybookFolderFeedback,
   },
   {
     name: 'ClickAwayListener',
-    storybookFolder: storybookFolders.utility,
+    storybookFolder: storybookFolderUtils,
   },
   {
     name: 'Collapse',
-    storybookFolder: storybookFolders.dataDisplay,
+    storybookFolder: storybookFolderUtils,
   },
   {
     name: 'Container',
-    storybookFolder: storybookFolders.layout,
+    storybookFolder: storybookFolderLayout,
   },
   {
     name: 'TextField',
-    storybookFolder: storybookFolders.forms,
+    storybookFolder: storybookFolderInputs,
   },
 ]
 
@@ -286,28 +310,29 @@ modules.forEach(module => {
 
   const monorailPropsTypeName = getMonorailPropsTypeName(module)
   const monorailComponentName = getMonorailComponentName(module)
+
+  const monorailComponentGenFilePath = `./src/components/${monorailComponentName}/${monorailComponentName}.gen.tsx`
   const monorailComponentFilePath = `./src/components/${monorailComponentName}/${monorailComponentName}.tsx`
-  const monorailComponentExtraFilePath = `./src/components/${monorailComponentName}/${monorailComponentName}.extra.tsx`
-  const monorailComponentStoryHelpersFilePath = `./src/components/${monorailComponentName}/__stories__/${monorailComponentName}.storyHelpers.tsx`
+  const monorailComponentStoriesGenFilePath = `./src/components/${monorailComponentName}/__stories__/${monorailComponentName}.stories.gen.tsx`
   const monorailComponentStoriesFilePath = `./src/components/${monorailComponentName}/__stories__/${monorailComponentName}.stories.tsx`
-  const monorailComponentA11yTestFilePath = `./src/components/${monorailComponentName}/__tests__/${monorailComponentName}.a11y.test.tsx`
+  const monorailComponentTestsGenFilePath = `./src/components/${monorailComponentName}/__tests__/${monorailComponentName}.gen.test.tsx`
 
   // Create the monorial component file with the props type and the component wrapper
   // This is an "always regenerate" file, so should always be over-written
-  console.log(`Generating main component file: ${monorailComponentFilePath}`)
-  // Naive check to see if hte type params reference a *TypeMap type
+  console.log(`Generating component gen file: ${monorailComponentGenFilePath}`)
+  // Naive check to see if the type params reference a *TypeMap type
   const hasTypeMap = muiPropsTypeParametersLhsString.includes(
     `${muiComponentName}TypeMap`,
   )
   project.createSourceFile(
-    monorailComponentFilePath,
+    monorailComponentGenFilePath,
     writer => {
       // Write out code gen warning message
       writer.writeLine(codeGenMessage)
       // Write out imports
       writer.writeLine("import React from 'react'")
       writer.writeLine("import * as MUI from '@material-ui/core'")
-      // Some components reference a type from MUI called `{Component}TypeMap` (e.g. ButtonTypeMap)
+      // Some components reference a type from MUI like `{Component}TypeMap` (e.g. ButtonTypeMap)
       // Write out an import for a *TypeMap, if there seems to be one in the MUI type params.
       // TODO: this is very naive right now - may need to make this more robust
       if (hasTypeMap) {
@@ -315,10 +340,13 @@ modules.forEach(module => {
           `import { ${muiComponentName}TypeMap } from '@material-ui/core/${muiComponentName}'`,
         )
       }
+      // Some components reference other types in their type params, so allow for adding other arbitrary imports.
+      // This could be smarter, but trying to keep this simple for now.
       getMonorailComponentExtraImports(module).forEach(extraImport =>
         writer.writeLine(extraImport),
       )
       // Write out Props type alias
+      // This is just a simple alias to the MUI props type (including the type params)
       writer.writeLine(
         `export type ${monorailPropsTypeName}${muiPropsTypeParametersLhsString} = MUI.${muiPropsTypeName}${muiPropsTypeParametersRhsString}`,
       )
@@ -330,33 +358,39 @@ modules.forEach(module => {
     { overwrite: true },
   )
 
-  // Create the '.extra.tsx' file if it doesn't exist
-  // This file is intended to house extra types/functions/etc. for the component
+  // Create the '{Component}.tsx' file if it doesn't exist
+  // This file is intended to house extra hand-written types/functions/etc. for the component
+  // This file is meant to be hand-edited, so should only be generated if it doesn't exist.
   console.log(
-    `Generating component extra file (if needed): ${monorailComponentExtraFilePath}`,
+    `Generating component file (if needed): ${monorailComponentFilePath}`,
   )
-  const componentExtraFile = project.getSourceFile(
-    monorailComponentExtraFilePath,
-  )
+  const componentExtraFile = project.getSourceFile(monorailComponentFilePath)
   if (componentExtraFile === undefined) {
-    project.createSourceFile(monorailComponentExtraFilePath, writer => {
+    project.createSourceFile(monorailComponentFilePath, writer => {
       // Just an empty export b/c we need to export something
       writer.writeLine(
-        '// Placeholder for extra functionality - add extra types/values/functions/etc.',
+        `// Placeholder for extra functionality - add extra types/values/functions/etc. for ${monorailComponentName}`,
       )
+      writer.writeLine(`import React from "react"`)
       writer.writeLine(
         `import { ${monorailComponentName} as _${monorailComponentName}, ${monorailPropsTypeName} as _${monorailPropsTypeName} } from './${monorailComponentName}'`,
       )
-      //writer.writeLine('export const __monorailExtra = {}')
+      // Re-export the generated types/components/etc.
+      writer.writeLine(`export * from "./${monorailComponentName}.gen"`)
+
+      writer.writeLine(`// Add more functions/etc. below`)
     })
   }
 
-  // Generate the __stories__ files
+  // Generate the __stories__/*.stories.gen.tsx file
+  // This file is intended to house boilerplate items that we can automatically generate for storybook.
+  // Note that it is more involved to generate useful Templates/stories, so this isn't going to attempt that for now -
+  // those will be hand-written.
   console.log(
-    `Generating storybook helper file: ${monorailComponentStoryHelpersFilePath}`,
+    `Generating stories gen file: ${monorailComponentStoriesGenFilePath}`,
   )
   project.createSourceFile(
-    monorailComponentStoryHelpersFilePath,
+    monorailComponentStoriesGenFilePath,
     writer => {
       writer.writeLine(codeGenMessage)
       writer.writeLine("import React from 'react'")
@@ -371,7 +405,7 @@ modules.forEach(module => {
         `/** This is intended to be exported (with possible extensions) as the default meta object for a story */`,
       )
       writer.writeLine(
-        `export const defaultStoryMeta = { title: '${module.storybookFolder}/${monorailComponentName}', component: ${monorailComponentName} }`,
+        `export const defaultStoryMeta = { title: '${module.storybookFolder.title}/${monorailComponentName}', component: ${monorailComponentName} }`,
       )
 
       /* Difficult to generate args/template b/c it varies per component, and MUI tends to have runtime issues if the Components aren't rendered in certain ways
@@ -406,32 +440,51 @@ modules.forEach(module => {
         `import { story } from '../../../__tests__/helpers/storybook'`,
       )
       writer.writeLine(
-        `import { defaultStoryMeta } from './${monorailComponentName}.storyHelpers'`,
+        `import { defaultStoryMeta } from './${monorailComponentName}.stories.gen'`,
       )
 
+      writer.writeLine(`/**`)
       writer.writeLine(
-        `/** Metadata for these stories - update/extend as needed */`,
+        ` * Metadata for ${monorailComponentName} stories - update/extend as needed`,
       )
+      writer.writeLine(
+        ` * This is intended to be exported as story-level metadata from the main .stories.tsx file, like:`,
+      )
+      writer.writeLine(
+        ` * "export default { ...defaultStoryMeta } // Add/extend as needed`,
+      )
+      writer.writeLine(` */`)
       writer.writeLine(`export default { ...defaultStoryMeta }`)
 
-      writer.writeLine(`/** Story template - update as needed */`)
+      // Note: this template may not compile as it is here for all components. This should just be edited as needed.
+      writer.writeLine(`/**`)
+      writer.writeLine(` * Story template (edit/remove by hand if needed)`)
+      writer.writeLine(` *`)
+      writer.writeLine(
+        ` * Note: there should be at least one "Default" story that uses this template with the "story" function.`,
+      )
+      writer.writeLine(
+        ` * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen`,
+      )
+      writer.writeLine(` */`)
       writer.writeLine(
         `const Template = story<${monorailPropsTypeName}>((args) => <${monorailComponentName} {...args} />, { args: {} })`,
       )
 
-      writer.writeLine(`/** Default story (edit as needed) */`)
+      writer.writeLine(
+        `/** Default story for ${monorailComponentName} (edit/remove by hand if needed) */`,
+      )
       writer.writeLine(`export const Default = story(Template, {})`)
 
       writer.writeLine(`// TODO: add more stories below`)
     })
   }
 
-  // Create the .a11y.test.tsx file for generated a11y tests
-  console.log(
-    `Generating a11y tests file: ${monorailComponentA11yTestFilePath}`,
-  )
+  // Create the .gen.test.tsx file for generated (a11y) tests
+  // Other tests should go in a separate .test.tsx file (which is not generated at this time)
+  console.log(`Generating tests gen file: ${monorailComponentTestsGenFilePath}`)
   project.createSourceFile(
-    monorailComponentA11yTestFilePath,
+    monorailComponentTestsGenFilePath,
     writer => {
       writer.writeLine(codeGenMessage)
       writer.writeLine(
@@ -443,6 +496,10 @@ modules.forEach(module => {
       writer.writeLine(`describe('${monorailComponentName} (a11y)', () => {`)
       writer.writeLine(`  generateA11yStoryTests(stories)`)
       writer.writeLine(`})`)
+
+      writer.writeLine(
+        `// Other hand-written tests should go in a separate file like "__tests__/${monorailComponentName}.test.tsx"`,
+      )
     },
     { overwrite: true },
   )

@@ -1,54 +1,21 @@
+// Edit this file to add new stories
 import React from 'react'
-import { action } from '@storybook/addon-actions'
-
-import { story } from '../../../__tests__/helpers/storybook'
 import { Button, ButtonProps } from '../Button'
-
-export default {
-  title: 'Buttons/Button',
-  component: Button,
-}
-
-const defaultArgs: ButtonProps = {
-  onClick: action('onClick'),
-  children: 'Button',
-}
-
-const Template = story<ButtonProps>(args => <Button {...args} />, {
-  args: defaultArgs,
-})
-
-export const Default = story(Template)
-
-export const Variants = () => (
-  <>
-    <Button {...defaultArgs} variant="contained" />
-    <Button {...defaultArgs} variant="outlined" />
-    <Button {...defaultArgs} variant="text" />
-  </>
-)
-
-export const Colors = () => (
-  <>
-    <Button {...defaultArgs} variant="contained" color="primary" />
-    <Button {...defaultArgs} variant="outlined" color="primary" />
-    <Button {...defaultArgs} variant="text" color="primary" />
-    <br />
-    <Button {...defaultArgs} variant="contained" color="secondary" />
-    <Button {...defaultArgs} variant="outlined" color="secondary" />
-    <Button {...defaultArgs} variant="text" color="secondary" />
-    <br />
-    <Button {...defaultArgs} variant="contained" color="inherit" />
-    <Button {...defaultArgs} variant="outlined" color="inherit" />
-    <Button {...defaultArgs} variant="text" color="inherit" />
-  </>
-)
-
-export const Sizes = () => (
-  <>
-    <Button {...defaultArgs} variant="contained" size="extraSmall" />
-    <Button {...defaultArgs} variant="contained" size="small" />
-    <Button {...defaultArgs} variant="contained" size="medium" />
-    <Button {...defaultArgs} variant="contained" size="large" />
-  </>
-)
+import { story } from '../../../__tests__/helpers/storybook'
+import { defaultStoryMeta } from './Button.stories.gen'
+/**
+ * Metadata for Button stories - update/extend as needed
+ * This is intended to be exported as story-level metadata from the main .stories.tsx file, like:
+ * "export default { ...defaultStoryMeta } // Add/extend as needed
+ */
+export default { ...defaultStoryMeta }
+/**
+ * Story template (edit/remove by hand if needed)
+ *
+ * Note: there should be at least one "Default" story that uses this template with the "story" function.
+ * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
+ */
+const Template = story<ButtonProps>(args => <Button {...args} />, { args: {} })
+/** Default story for Button (edit/remove by hand if needed) */
+export const Default = story(Template, {})
+// TODO: add more stories below

@@ -2,16 +2,22 @@
 import React from 'react'
 import { ButtonBase, ButtonBaseProps } from '../ButtonBase'
 import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './ButtonBase.storyHelpers'
-/** Metadata for these stories - update/extend as needed */
+import { defaultStoryMeta } from './ButtonBase.stories.gen'
+/**
+ * Metadata for ButtonBase stories - update/extend as needed
+ * This is intended to be exported as story-level metadata from the main .stories.tsx file, like:
+ * "export default { ...defaultStoryMeta } // Add/extend as needed
+ */
 export default { ...defaultStoryMeta }
-/** Story template - update as needed */
-const Template = story<ButtonBaseProps>(
-  args => <ButtonBase {...args}>Button Base</ButtonBase>,
-  {
-    args: {},
-  },
-)
-/** Default story (edit as needed) */
+/**
+ * Story template (edit/remove by hand if needed)
+ *
+ * Note: there should be at least one "Default" story that uses this template with the "story" function.
+ * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
+ */
+const Template = story<ButtonBaseProps>(args => <ButtonBase {...args} />, {
+  args: {},
+})
+/** Default story for ButtonBase (edit/remove by hand if needed) */
 export const Default = story(Template, {})
 // TODO: add more stories below

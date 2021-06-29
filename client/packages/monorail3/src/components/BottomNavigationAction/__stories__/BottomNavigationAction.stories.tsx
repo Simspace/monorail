@@ -5,16 +5,23 @@ import {
   BottomNavigationActionProps,
 } from '../BottomNavigationAction'
 import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './BottomNavigationAction.storyHelpers'
-/** Metadata for these stories - update/extend as needed */
+import { defaultStoryMeta } from './BottomNavigationAction.stories.gen'
+/**
+ * Metadata for BottomNavigationAction stories - update/extend as needed
+ * This is intended to be exported as story-level metadata from the main .stories.tsx file, like:
+ * "export default { ...defaultStoryMeta } // Add/extend as needed
+ */
 export default { ...defaultStoryMeta }
-/** Story template - update as needed */
+/**
+ * Story template (edit/remove by hand if needed)
+ *
+ * Note: there should be at least one "Default" story that uses this template with the "story" function.
+ * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
+ */
 const Template = story<BottomNavigationActionProps>(
-  args => (
-    <BottomNavigationAction label={'Bottom Navigation Action'} {...args} />
-  ),
+  args => <BottomNavigationAction {...args} />,
   { args: {} },
 )
-/** Default story (edit as needed) */
+/** Default story for BottomNavigationAction (edit/remove by hand if needed) */
 export const Default = story(Template, {})
 // TODO: add more stories below
