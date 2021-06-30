@@ -108,4 +108,11 @@ declare module '@material-ui/core/Button' {
   interface ButtonPropsSizeOverrides {
     extraSmall: true
   }
+
+  interface ButtonPropsColorOverrides {
+    info: true
+    success: true
+    warning: true
+    error: true
+  }
 }

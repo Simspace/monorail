@@ -317,6 +317,58 @@ const modules: Array<ModuleInfo> = [
     storybookFolder: storybookFolderUtils,
   },
   {
+    name: 'Hidden',
+    storybookFolder: storybookFolderUtils,
+  },
+  {
+    name: 'Icon',
+    storybookFolder: storybookFolderDataDisplay,
+  },
+  {
+    name: 'IconButton',
+    storybookFolder: storybookFolderInputs,
+  },
+  {
+    name: 'ImageList',
+    storybookFolder: storybookFolderLayout,
+  },
+  {
+    name: 'ImageListItem',
+    storybookFolder: storybookFolderLayout,
+  },
+  {
+    name: 'ImageListItemBar',
+    storybookFolder: storybookFolderLayout,
+  },
+  {
+    name: 'Input',
+    storybookFolder: storybookFolderInputs,
+  },
+  {
+    name: 'InputAdornment',
+    storybookFolder: storybookFolderInputs,
+  },
+  {
+    name: 'InputBase',
+    storybookFolder: storybookFolderInputs,
+  },
+  {
+    name: 'InputLabel',
+    storybookFolder: storybookFolderInputs,
+  },
+  {
+    name: 'LinearProgress',
+    storybookFolder: storybookFolderFeedback,
+  },
+  {
+    name: 'Link',
+    storybookFolder: storybookFolderNavigation,
+  },
+  {
+    name: 'List',
+    storybookFolder: storybookFolderDataDisplay,
+  },
+  {
     name: 'TextField',
     storybookFolder: storybookFolderInputs,
   },
