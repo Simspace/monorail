@@ -19,5 +19,5 @@ const Template = story<ButtonBaseProps>(args => <ButtonBase {...args} />, {
   args: { children: 'Button Base' },
 })
 /** Default story for ButtonBase (edit/remove by hand if needed) */
-export const Default = story(Template, {})
+export const Default = story(Template)
 // TODO: add more stories below

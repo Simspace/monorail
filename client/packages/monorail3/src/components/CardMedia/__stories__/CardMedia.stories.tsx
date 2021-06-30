@@ -19,5 +19,5 @@ const Template = story<CardMediaProps>(args => <CardMedia {...args} />, {
   args: {},
 })
 /** Default story for CardMedia (edit/remove by hand if needed) */
-export const Default = story(Template, {})
+export const Default = story(Template)
 // TODO: add more stories below

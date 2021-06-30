@@ -19,5 +19,5 @@ const Template = story<ButtonGroupProps>(args => <ButtonGroup {...args} />, {
   args: {},
 })
 /** Default story for ButtonGroup (edit/remove by hand if needed) */
-export const Default = story(Template, {})
+export const Default = story(Template)
 // TODO: add more stories below

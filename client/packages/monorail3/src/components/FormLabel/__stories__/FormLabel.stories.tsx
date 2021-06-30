@@ -17,5 +17,5 @@ const Template = story<FormLabelProps>(args => <FormLabel {...args} />, {
   args: {},
 })
 /** Default story for FormLabel (edit/remove by hand if needed) */
-export const Default = story(Template, {})
+export const Default = story(Template)
 // TODO: add more stories below

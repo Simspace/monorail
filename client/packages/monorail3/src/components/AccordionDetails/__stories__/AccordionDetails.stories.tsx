@@ -20,5 +20,5 @@ const Template = story<AccordionDetailsProps>(
   { args: {} },
 )
 /** Default story for AccordionDetails (edit/remove by hand if needed) */
-export const Default = story(Template, {})
+export const Default = story(Template)
 // TODO: add more stories below

@@ -15,5 +15,5 @@ export default { ...defaultStoryMeta }
  */
 const Template = story<FadeProps>(args => <Fade {...args} />, { args: {} })
 /** Default story for Fade (edit/remove by hand if needed) */
-export const Default = story(Template, {})
+export const Default = story(Template)
 // TODO: add more stories below

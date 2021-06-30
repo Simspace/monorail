@@ -17,5 +17,5 @@ export default { ...defaultStoryMeta }
  */
 const Template = story<BoxProps>(args => <Box {...args} />, { args: {} })
 /** Default story for Box (edit/remove by hand if needed) */
-export const Default = story(Template, {})
+export const Default = story(Template)
 // TODO: add more stories below

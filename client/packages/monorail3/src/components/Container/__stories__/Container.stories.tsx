@@ -19,5 +19,5 @@ const Template = story<ContainerProps>(args => <Container {...args} />, {
   args: {},
 })
 /** Default story for Container (edit/remove by hand if needed) */
-export const Default = story(Template, {})
+export const Default = story(Template)
 // TODO: add more stories below

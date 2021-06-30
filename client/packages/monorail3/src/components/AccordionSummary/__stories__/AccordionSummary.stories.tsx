@@ -26,6 +26,6 @@ const Template = story<AccordionSummaryProps>(
 /**
  * Default story for AccordionSummary (edit/remove by hand if needed)
  */
-export const Default = story(Template, {})
+export const Default = story(Template)
 
 // TODO: add more stories below

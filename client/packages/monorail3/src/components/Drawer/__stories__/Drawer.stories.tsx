@@ -15,5 +15,5 @@ export default { ...defaultStoryMeta }
  */
 const Template = story<DrawerProps>(args => <Drawer {...args} />, { args: {} })
 /** Default story for Drawer (edit/remove by hand if needed) */
-export const Default = story(Template, {})
+export const Default = story(Template)
 // TODO: add more stories below

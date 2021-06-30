@@ -17,5 +17,5 @@ const Template = story<FilledInputProps>(args => <FilledInput {...args} />, {
   args: {},
 })
 /** Default story for FilledInput (edit/remove by hand if needed) */
-export const Default = story(Template, {})
+export const Default = story(Template)
 // TODO: add more stories below

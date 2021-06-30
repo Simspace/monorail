@@ -19,5 +19,5 @@ const Template = story<AlertTitleProps>(args => <AlertTitle {...args} />, {
   args: {},
 })
 /** Default story for AlertTitle (edit/remove by hand if needed) */
-export const Default = story(Template, {})
+export const Default = story(Template)
 // TODO: add more stories below

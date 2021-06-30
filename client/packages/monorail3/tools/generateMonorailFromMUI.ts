@@ -544,7 +544,7 @@ modules.forEach(module => {
       writer.writeLine(
         `/** Default story for ${monorailComponentName} (edit/remove by hand if needed) */`,
       )
-      writer.writeLine(`export const Default = story(Template, {})`)
+      writer.writeLine(`export const Default = story(Template)`)
 
       writer.writeLine(`// TODO: add more stories below`)
     })

@@ -25,6 +25,6 @@ const Template = story<BackdropProps>(
 )
 
 /** Default story for Backdrop (edit/remove by hand if needed) */
-export const Default = story(Template, {})
+export const Default = story(Template)
 
 // TODO: add more stories below

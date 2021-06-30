@@ -17,5 +17,5 @@ export default { ...defaultStoryMeta }
  */
 const Template = story<BadgeProps>(args => <Badge {...args} />, { args: {} })
 /** Default story for Badge (edit/remove by hand if needed) */
-export const Default = story(Template, {})
+export const Default = story(Template)
 // TODO: add more stories below

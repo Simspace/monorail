@@ -19,5 +19,5 @@ const Template = story<CollapseProps>(args => <Collapse {...args} />, {
   args: {},
 })
 /** Default story for Collapse (edit/remove by hand if needed) */
-export const Default = story(Template, {})
+export const Default = story(Template)
 // TODO: add more stories below

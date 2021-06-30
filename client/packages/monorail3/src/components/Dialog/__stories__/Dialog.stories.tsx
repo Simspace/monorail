@@ -21,5 +21,5 @@ const Template = story<DialogProps>(
   { args: {} },
 )
 /** Default story for Dialog (edit/remove by hand if needed) */
-export const Default = story(Template, {})
+export const Default = story(Template)
 // TODO: add more stories below

@@ -19,5 +19,5 @@ const Template = story<AvatarGroupProps>(args => <AvatarGroup {...args} />, {
   args: {},
 })
 /** Default story for AvatarGroup (edit/remove by hand if needed) */
-export const Default = story(Template, {})
+export const Default = story(Template)
 // TODO: add more stories below

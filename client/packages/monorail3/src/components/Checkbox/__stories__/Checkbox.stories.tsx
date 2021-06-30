@@ -20,6 +20,6 @@ const Template = story<CheckboxProps>(args => <Checkbox {...args} />, {
 })
 
 /** Default story for Checkbox (edit/remove by hand if needed) */
-export const Default = story(Template, {})
+export const Default = story(Template)
 
 // TODO: add more stories below

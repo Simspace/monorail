@@ -24,7 +24,7 @@ const Template = story<ButtonProps>(args => <Button {...args} />, {
 /**
  * Default story for Button (edit/remove by hand if needed)
  * */
-export const Default = story(Template, {})
+export const Default = story(Template)
 
 export const Showcase = () => (
   <>
