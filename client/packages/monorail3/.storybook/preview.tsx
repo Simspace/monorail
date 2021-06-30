@@ -17,9 +17,6 @@ export const parameters: Parameters = {
       date: /Date$/,
     },
   },
-  docs: {
-    inlineStories: false,
-  },
 }
 
 /**
