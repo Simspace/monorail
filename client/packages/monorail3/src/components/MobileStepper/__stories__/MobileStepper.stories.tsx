@@ -14,7 +14,14 @@ export default { ...defaultStoryMeta }
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
 const Template = story<MobileStepperProps>(
-  args => <MobileStepper {...args} />,
+  args => (
+    <MobileStepper
+      steps={5}
+      backButton={<>Back</>}
+      nextButton={<>Next</>}
+      {...args}
+    />
+  ),
   { args: {} },
 )
 /** Default story for MobileStepper (edit/remove by hand if needed) */

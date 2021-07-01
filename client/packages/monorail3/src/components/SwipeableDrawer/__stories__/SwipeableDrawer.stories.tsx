@@ -14,7 +14,21 @@ export default { ...defaultStoryMeta }
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
 const Template = story<SwipeableDrawerProps>(
-  args => <SwipeableDrawer {...args} />,
+  args => {
+    const [open, setOpen] = React.useState(false)
+    return (
+      <SwipeableDrawer
+        open={open}
+        onOpen={() => {
+          setOpen(true)
+        }}
+        onClose={() => {
+          setOpen(false)
+        }}
+        {...args}
+      />
+    )
+  },
   { args: {} },
 )
 /** Default story for SwipeableDrawer (edit/remove by hand if needed) */

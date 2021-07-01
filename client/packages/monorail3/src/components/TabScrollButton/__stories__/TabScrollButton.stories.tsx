@@ -14,7 +14,9 @@ export default { ...defaultStoryMeta }
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
 const Template = story<TabScrollButtonProps>(
-  args => <TabScrollButton {...args} />,
+  args => (
+    <TabScrollButton direction={'left'} orientation={'vertical'} {...args} />
+  ),
   { args: {} },
 )
 /** Default story for TabScrollButton (edit/remove by hand if needed) */

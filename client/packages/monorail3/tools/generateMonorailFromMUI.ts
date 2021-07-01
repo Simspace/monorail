@@ -528,6 +528,9 @@ const modules: Array<ModuleInfo> = [
   {
     name: 'StepButton',
     storybookFolder: storybookFolderNavigation,
+    monorailComponentExtraImports: [
+      `import { ButtonBaseTypeMap } from '@material-ui/core'`,
+    ],
   },
   {
     name: 'StepConnector',
@@ -596,6 +599,9 @@ const modules: Array<ModuleInfo> = [
   {
     name: 'TablePagination',
     storybookFolder: storybookFolderDataDisplay,
+    monorailComponentExtraImports: [
+      `import { TablePaginationBaseProps } from '@material-ui/core/TablePagination'`,
+    ],
   },
   {
     name: 'TableRow',
