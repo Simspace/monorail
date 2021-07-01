@@ -6,9 +6,12 @@ export type BoxProps<
   D extends React.ElementType = BoxTypeMap['defaultComponent'],
   P = {}
 > = MUI.BoxProps<D, P>
-export const Box = <
+export const Box = React.forwardRef((props, ref) => (
+  <MUI.Box ref={ref} {...props} />
+)) as <
+  RefType,
   D extends React.ElementType = BoxTypeMap['defaultComponent'],
   P = {}
 >(
-  props: BoxProps<D, P>,
-) => <MUI.Box {...props} />
+  props: BoxProps<D, P> & { ref?: React.ForwardedRef<RefType> },
+) => ReturnType<typeof MUI.Box>

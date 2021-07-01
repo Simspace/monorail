@@ -95,6 +95,7 @@ type ModuleInfo = {
   muiComponentName?: string
   // A special function for manipulating the type parameters string for the LHS of a type declaration
   muiComponentModifyTypeParametersLhsString?: (lhs: string) => string
+  monorailComponentWithForwardRef?: boolean
   monorailComponentExtraImports?: Array<string>
   storybookFolder: StorybookFolder
 }
@@ -153,6 +154,16 @@ const getMonorailComponentExtraImports = (module: ModuleInfo): Array<string> =>
     : []
 
 /**
+ * Indicates if the monorail component should be generated using React.forwardRef
+ *
+ * TODO: I'm not sure if we should just generate all the components this way (AW 2021-07-01)
+ *
+ * See: https://fettblog.eu/typescript-react-generic-forward-refs/
+ */
+const getMonorailComponentWithForwardRef = (module: ModuleInfo): boolean =>
+  module.monorailComponentWithForwardRef === true
+
+/**
  * Base organizational "folder" names for components in storybook
  */
 
@@ -187,7 +198,11 @@ const modules: Array<ModuleInfo> = [
       `import { ButtonBaseTypeMap } from '@material-ui/core/ButtonBase'`,
     ],
   },
-  { name: 'Box', storybookFolder: storybookFolderLayout },
+  {
+    name: 'Box',
+    storybookFolder: storybookFolderLayout,
+    monorailComponentWithForwardRef: true,
+  },
   { name: 'Breadcrumbs', storybookFolder: storybookFolderNavigation },
   {
     name: 'Button',
@@ -760,10 +775,21 @@ modules.forEach(module => {
       writer.writeLine(
         `export type ${monorailPropsTypeName}${muiPropsTypeParametersLhsString} = MUI.${muiPropsTypeName}${muiPropsTypeParametersRhsString}`,
       )
-      // Write out the component wrapper function
-      writer.writeLine(
-        `export const ${monorailComponentName} = ${muiPropsTypeParametersLhsString}(props: ${monorailPropsTypeName}${muiPropsTypeParametersRhsString}) => (<MUI.${muiComponentName} {...props} />)`,
-      )
+      if (getMonorailComponentWithForwardRef(module)) {
+        // Generate the component with a React.forwardRef - see above for more info
+        writer.writeLine(
+          `export const ${monorailComponentName} = React.forwardRef((props, ref) => (<MUI.${muiComponentName} ref={ref} {...props} />)) as <RefType, ${muiPropsTypeParameters
+            .map(tp => tp.print())
+            .join(
+              ', ',
+            )}>(props: ${monorailPropsTypeName}${muiPropsTypeParametersRhsString} & { ref?: React.ForwardedRef<RefType> }) => ReturnType<typeof MUI.${muiComponentName}>`,
+        )
+      } else {
+        // Generate the component wrapper function without the forwardRef
+        writer.writeLine(
+          `export const ${monorailComponentName} = ${muiPropsTypeParametersLhsString}(props: ${monorailPropsTypeName}${muiPropsTypeParametersRhsString}) => (<MUI.${muiComponentName} {...props} />)`,
+        )
+      }
     },
     { overwrite: true },
   )
