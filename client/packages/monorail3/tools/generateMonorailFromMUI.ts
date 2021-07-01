@@ -776,7 +776,10 @@ modules.forEach(module => {
         `export type ${monorailPropsTypeName}${muiPropsTypeParametersLhsString} = MUI.${muiPropsTypeName}${muiPropsTypeParametersRhsString}`,
       )
       if (getMonorailComponentWithForwardRef(module)) {
-        // Generate the component with a React.forwardRef - see above for more info
+        // Generate the component with a React.forwardRef
+        // See: https://reactjs.org/docs/forwarding-refs.html
+        // I'm just using a type assertion approach for this because this is generated code,
+        // so it's less likely to be subject to mistakes and it's a little simpler than the module augmentation approach.
         writer.writeLine(
           `export const ${monorailComponentName} = React.forwardRef((props, ref) => (<MUI.${muiComponentName} ref={ref} {...props} />)) as <RefType, ${muiPropsTypeParameters
             .map(tp => tp.print())
