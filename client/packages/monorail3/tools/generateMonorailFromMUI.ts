@@ -93,6 +93,8 @@ type ModuleInfo = {
   muiModuleFileName?: string
   muiPropsTypeName?: string
   muiComponentName?: string
+  // A special function for manipulating the type parameters string for the LHS of a type declaration
+  muiComponentModifyTypeParametersLhsString?: (lhs: string) => string
   monorailComponentExtraImports?: Array<string>
   storybookFolder: StorybookFolder
 }
@@ -118,6 +120,16 @@ const getMuiPropsTypeName = (module: ModuleInfo): string =>
  */
 const getMuiComponentName = (module: ModuleInfo): string =>
   module.muiComponentName !== undefined ? module.muiComponentName : module.name
+
+/**
+ * Gets a function to manipulate the type params for the LHS of a type declaration for a component
+ */
+const getMuiComponentModifyTypeParametersLhsString = (
+  module: ModuleInfo,
+): ((lhs: string) => string) =>
+  module.muiComponentModifyTypeParametersLhsString !== undefined
+    ? module.muiComponentModifyTypeParametersLhsString
+    : (lhs: string) => lhs
 
 /**
  * Gets the name of the Props type for the Monorail component
@@ -369,8 +381,266 @@ const modules: Array<ModuleInfo> = [
     storybookFolder: storybookFolderDataDisplay,
   },
   {
+    name: 'ListItem',
+    storybookFolder: storybookFolderDataDisplay,
+  },
+  {
+    name: 'ListItemAvatar',
+    storybookFolder: storybookFolderDataDisplay,
+  },
+  {
+    name: 'ListItemButton',
+    storybookFolder: storybookFolderDataDisplay,
+  },
+  {
+    name: 'ListItemIcon',
+    storybookFolder: storybookFolderDataDisplay,
+  },
+  {
+    name: 'ListItemSecondaryAction',
+    storybookFolder: storybookFolderDataDisplay,
+  },
+  {
+    name: 'ListItemText',
+    storybookFolder: storybookFolderDataDisplay,
+  },
+  {
+    name: 'ListSubheader',
+    storybookFolder: storybookFolderDataDisplay,
+  },
+  {
+    name: 'Menu',
+    storybookFolder: storybookFolderNavigation,
+  },
+  {
+    name: 'MenuItem',
+    storybookFolder: storybookFolderNavigation,
+  },
+  {
+    name: 'MenuList',
+    storybookFolder: storybookFolderNavigation,
+  },
+  {
+    name: 'MobileStepper',
+    storybookFolder: storybookFolderNavigation,
+  },
+  {
+    name: 'Modal',
+    storybookFolder: storybookFolderUtils,
+  },
+  {
+    name: 'NativeSelect',
+    storybookFolder: storybookFolderInputs,
+  },
+  {
+    name: 'NoSsr',
+    storybookFolder: storybookFolderUtils,
+  },
+  {
+    name: 'OutlinedInput',
+    storybookFolder: storybookFolderInputs,
+  },
+  {
+    name: 'Pagination',
+    storybookFolder: storybookFolderNavigation,
+  },
+  {
+    name: 'Paper',
+    storybookFolder: storybookFolderSurfaces,
+  },
+  {
+    name: 'Popover',
+    storybookFolder: storybookFolderUtils,
+  },
+  {
+    name: 'Popper',
+    storybookFolder: storybookFolderUtils,
+  },
+  {
+    name: 'Portal',
+    storybookFolder: storybookFolderUtils,
+    muiModuleFileName: 'index.d.ts',
+  },
+  {
+    name: 'Radio',
+    storybookFolder: storybookFolderInputs,
+  },
+  {
+    name: 'RadioGroup',
+    storybookFolder: storybookFolderInputs,
+  },
+  {
+    name: 'Rating',
+    storybookFolder: storybookFolderInputs,
+  },
+  {
+    name: 'ScopedCssBaseline',
+    storybookFolder: storybookFolderUtils,
+  },
+  {
+    name: 'Select',
+    storybookFolder: storybookFolderInputs,
+    muiComponentModifyTypeParametersLhsString: (_lhs: string) =>
+      // Select has a type param <T = unknown>, but we need to add the `T extends unknown` constraint to workaround
+      // how JSX parses type parameters. This is just hardcoding that for now
+      `<T extends unknown = unknown>`,
+  },
+  {
+    name: 'Skeleton',
+    storybookFolder: storybookFolderFeedback,
+  },
+  {
+    name: 'Slide',
+    storybookFolder: storybookFolderUtils,
+  },
+  {
+    name: 'Slider',
+    storybookFolder: storybookFolderInputs,
+  },
+  {
+    name: 'Snackbar',
+    storybookFolder: storybookFolderFeedback,
+  },
+  {
+    name: 'SnackbarContent',
+    storybookFolder: storybookFolderFeedback,
+  },
+  {
+    name: 'SpeedDial',
+    storybookFolder: storybookFolderNavigation,
+  },
+  {
+    name: 'SpeedDialAction',
+    storybookFolder: storybookFolderNavigation,
+  },
+  {
+    name: 'SpeedDialIcon',
+    storybookFolder: storybookFolderNavigation,
+  },
+  {
+    name: 'Stack',
+    storybookFolder: storybookFolderLayout,
+  },
+  {
+    name: 'Step',
+    storybookFolder: storybookFolderNavigation,
+  },
+  {
+    name: 'StepButton',
+    storybookFolder: storybookFolderNavigation,
+  },
+  {
+    name: 'StepConnector',
+    storybookFolder: storybookFolderNavigation,
+  },
+  {
+    name: 'StepContent',
+    storybookFolder: storybookFolderNavigation,
+  },
+  {
+    name: 'StepIcon',
+    storybookFolder: storybookFolderNavigation,
+  },
+  {
+    name: 'StepLabel',
+    storybookFolder: storybookFolderNavigation,
+  },
+  {
+    name: 'Stepper',
+    storybookFolder: storybookFolderNavigation,
+  },
+  {
+    name: 'SvgIcon',
+    storybookFolder: storybookFolderDataDisplay,
+  },
+  {
+    name: 'SwipeableDrawer',
+    storybookFolder: storybookFolderNavigation,
+  },
+  {
+    name: 'Switch',
+    storybookFolder: storybookFolderInputs,
+  },
+  {
+    name: 'Tab',
+    storybookFolder: storybookFolderNavigation,
+  },
+  {
+    name: 'TabScrollButton',
+    storybookFolder: storybookFolderNavigation,
+  },
+  {
+    name: 'Table',
+    storybookFolder: storybookFolderDataDisplay,
+  },
+  {
+    name: 'TableBody',
+    storybookFolder: storybookFolderDataDisplay,
+  },
+  {
+    name: 'TableCell',
+    storybookFolder: storybookFolderDataDisplay,
+  },
+  {
+    name: 'TableContainer',
+    storybookFolder: storybookFolderDataDisplay,
+  },
+  {
+    name: 'TableFooter',
+    storybookFolder: storybookFolderDataDisplay,
+  },
+  {
+    name: 'TableHead',
+    storybookFolder: storybookFolderDataDisplay,
+  },
+  {
+    name: 'TablePagination',
+    storybookFolder: storybookFolderDataDisplay,
+  },
+  {
+    name: 'TableRow',
+    storybookFolder: storybookFolderDataDisplay,
+  },
+  {
+    name: 'TableSortLabel',
+    storybookFolder: storybookFolderDataDisplay,
+  },
+  {
+    name: 'Tabs',
+    storybookFolder: storybookFolderNavigation,
+  },
+  {
     name: 'TextField',
     storybookFolder: storybookFolderInputs,
+  },
+  {
+    name: 'TextareaAutosize',
+    storybookFolder: storybookFolderInputs,
+  },
+  {
+    name: 'ToggleButton',
+    storybookFolder: storybookFolderInputs,
+  },
+  {
+    name: 'ToggleButtonGroup',
+    storybookFolder: storybookFolderInputs,
+  },
+  {
+    name: 'Toolbar',
+    storybookFolder: storybookFolderInputs,
+  },
+  {
+    name: 'Tooltip',
+    storybookFolder: storybookFolderFeedback,
+  },
+  {
+    name: 'Typography',
+    storybookFolder: storybookFolderDataDisplay,
+  },
+  // Unstable_TrapFocus - not exposing for now
+  {
+    name: 'Zoom',
+    storybookFolder: storybookFolderUtils,
   },
 ]
 
@@ -397,9 +667,12 @@ modules.forEach(module => {
 
   const muiModuleFileName = getMuiModuleFileName(module)
 
+  const muiModuleFilePathSuffix = `${module.name}/${muiModuleFileName}`
+  console.log(`Searching for source file: ${muiModuleFilePathSuffix}`)
+
   // Find the corresponding MUI module
-  const sourceFile = sourceFiles.find(
-    sourceFile => sourceFile.getBaseName() === muiModuleFileName,
+  const sourceFile = sourceFiles.find(sourceFile =>
+    sourceFile.getFilePath().endsWith(muiModuleFilePathSuffix),
   )
 
   if (typeof sourceFile === 'undefined') {
@@ -425,10 +698,13 @@ modules.forEach(module => {
 
   // The Props type parameters for the LHS of a declaration - this includes the type constraints and default types,
   // like <D extends React.ElementType<any> = "button", P = {}>
-  const muiPropsTypeParametersLhsString =
+  const muiPropsTypeParametersLhsString = getMuiComponentModifyTypeParametersLhsString(
+    module,
+  )(
     muiPropsTypeParameters.length > 0
       ? '<' + muiPropsTypeParameters.map(tp => tp.print()) + '>'
-      : ''
+      : '',
+  )
 
   // The Props type parameters for the RHS of a declaration - this is just the type params like <D, P>
   const muiPropsTypeParametersRhsString =
