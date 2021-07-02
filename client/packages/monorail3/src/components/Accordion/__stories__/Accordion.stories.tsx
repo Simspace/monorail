@@ -18,7 +18,7 @@ import { styled } from '@material-ui/core/styles'
  */
 export default {
   ...defaultStoryMeta,
-  subcomponents: { AccordionDetails, AccordionSummary },
+  subcomponents: { AccordionDetails, AccordionSummary }, // This adds docgen tabs to the Docs page for the Default story - not super helpful
 }
 
 /**
@@ -178,7 +178,7 @@ export const CustomStyled = () => {
   const [expanded, setExpanded] = React.useState('panel1')
 
   const handleChange = (panel: string) => (
-    event: unknown,
+    _event: unknown,
     newExpanded: boolean,
   ) => {
     setExpanded(newExpanded ? panel : '')
