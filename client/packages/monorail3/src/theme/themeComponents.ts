@@ -8,7 +8,16 @@ export const getThemeComponents = (
   _theme: MUI.Theme,
 ): MUI.ThemeOptions['components'] => ({
   // TODO: we may want to split these into separate files - one theme override per component? Or maybe we just do it all here for consistency
+  MuiAccordion: {
+    defaultProps: {
+      variant: 'outlined',
+      square: true,
+    },
+  },
   MuiButton: {
+    defaultProps: {
+      //disableRipple: true,
+    },
     styleOverrides: {
       root: {
         //backgroundColor: theme.palette.primary.main,
@@ -27,10 +36,9 @@ export const getThemeComponents = (
       },
     ],
   },
-  MuiAccordion: {
+  MuiIconButton: {
     defaultProps: {
-      variant: 'outlined',
-      square: true,
+      //disableRipple: true,
     },
   },
 })

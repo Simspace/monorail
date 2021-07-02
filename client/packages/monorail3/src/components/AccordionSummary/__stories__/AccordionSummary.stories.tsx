@@ -3,6 +3,7 @@ import React from 'react'
 import { AccordionSummary, AccordionSummaryProps } from '../AccordionSummary'
 import { story } from '../../../__tests__/helpers/storybook'
 import { defaultStoryMeta } from './AccordionSummary.stories.gen'
+import ExpandMore from '@material-ui/icons/ExpandMore'
 
 /**
  * Metadata for AccordionSummary stories - update/extend as needed
@@ -19,7 +20,11 @@ export default { ...defaultStoryMeta }
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
 const Template = story<AccordionSummaryProps>(
-  args => <AccordionSummary {...args}>Accordion Summary</AccordionSummary>,
+  args => (
+    <AccordionSummary {...args} expandIcon={<ExpandMore />}>
+      Accordion Summary
+    </AccordionSummary>
+  ),
   { args: {} },
 )
 

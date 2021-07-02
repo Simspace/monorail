@@ -12,6 +12,9 @@ import { Typography } from '../../Typography/Typography'
 import ExpandMore from '@material-ui/icons/ExpandMore'
 import ArrowForwardIosSharp from '@material-ui/icons/ArrowForwardIosSharp'
 import { styled } from '@material-ui/core/styles'
+import { Divider } from '../../Divider/Divider'
+import { AccordionActions } from '../../AccordionActions/AccordionActions'
+import { Button } from '../../Button/Button'
 
 /**
  * Metadata for Accordion stories - update/extend as needed
@@ -135,6 +138,24 @@ export const StackedDisableGutters = () => {
         </AccordionSummary>
       </Accordion>
     </div>
+  )
+}
+
+export const Actions = () => {
+  return (
+    <Accordion defaultExpanded>
+      <AccordionSummary expandIcon={<ExpandMore />}>Summary</AccordionSummary>
+      <AccordionDetails>Lorem ipsum dolor sit amet</AccordionDetails>
+      <Divider />
+      <AccordionActions>
+        <Button variant="text" color="primary">
+          Other Action
+        </Button>
+        <Button variant="contained" color="primary">
+          Main Action
+        </Button>
+      </AccordionActions>
+    </Accordion>
   )
 }
 
