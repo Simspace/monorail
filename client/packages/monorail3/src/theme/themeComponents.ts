@@ -27,4 +27,10 @@ export const getThemeComponents = (
       },
     ],
   },
+  MuiAccordion: {
+    defaultProps: {
+      variant: 'outlined',
+      square: true,
+    },
+  },
 })
