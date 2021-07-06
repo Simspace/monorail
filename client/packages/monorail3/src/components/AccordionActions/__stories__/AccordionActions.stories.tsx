@@ -3,12 +3,13 @@ import React from 'react'
 import { AccordionActions, AccordionActionsProps } from '../AccordionActions'
 import { story } from '../../../__tests__/helpers/storybook'
 import { defaultStoryMeta } from './AccordionActions.stories.gen'
+import { Button } from '../../Button/Button'
+
 /**
  * Metadata for AccordionActions stories - update/extend as needed
- * This is intended to be exported as story-level metadata from the main .stories.tsx file, like:
- * "export default { ...defaultStoryMeta } // Add/extend as needed
  */
 export default { ...defaultStoryMeta }
+
 /**
  * Story template (edit/remove by hand if needed)
  *
@@ -16,9 +17,14 @@ export default { ...defaultStoryMeta }
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
 const Template = story<AccordionActionsProps>(
-  args => <AccordionActions {...args} />,
+  args => (
+    <AccordionActions {...args}>
+      <Button variant="text">Action 1</Button>
+      <Button variant="contained">Action 2</Button>
+    </AccordionActions>
+  ),
   { args: {} },
 )
+
 /** Default story for AccordionActions (edit/remove by hand if needed) */
 export const Default = story(Template)
-// TODO: add more stories below
