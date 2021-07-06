@@ -1,7 +1,7 @@
 // Placeholder for extra functionality - add extra types/values/functions/etc. for Box
 import { styled } from '@material-ui/core'
 import React from 'react'
-import { Box, BoxProps as _BoxProps } from './Box'
+import { Box as _Box, BoxProps as _BoxProps } from './Box'
 export * from './Box.gen'
 // Add more functions/etc. below
 

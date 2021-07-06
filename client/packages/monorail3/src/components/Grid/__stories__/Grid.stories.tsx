@@ -334,35 +334,3 @@ export const CSSGridLayout = story<GridProps>(
     },
   },
 )
-
-//   export const RowAndColumnSpacing = story<GridProps>(
-//     () => (
-
-//     ),
-
-//     {
-//       parameters: {
-//         docs: {
-//           description: {
-//             story: ``,
-//           },
-//         },
-//       },
-//     },
-//   )
-
-//   export const RowAndColumnSpacing = story<GridProps>(
-//     () => (
-
-//     ),
-
-//     {
-//       parameters: {
-//         docs: {
-//           description: {
-//             story: ``,
-//           },
-//         },
-//       },
-//     },
-//   )
