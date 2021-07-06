@@ -9,6 +9,7 @@ import * as MUI from '@material-ui/core'
 export const baseTheme = MUI.createTheme(
   {
     // TODO: add "global" settings that aren't likely to vary per theme (spacing, shadows, breakpoints, typography, etc.)
+    spacing: 8,
   },
   {},
 )
