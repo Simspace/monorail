@@ -5,12 +5,10 @@ import {
   ButtonProps as MUIButtonProps,
   ButtonTypeMap,
 } from '@material-ui/core/Button'
-
 export type ButtonProps<
   D extends React.ElementType = ButtonTypeMap['defaultComponent'],
   P = {}
 > = MUIButtonProps<D, P> & { ref?: React.ForwardedRef<HTMLButtonElement> }
-
 export const Button = React.forwardRef((props, ref) => (
   <MUIButton ref={ref} {...props} />
 )) as <D extends React.ElementType = ButtonTypeMap['defaultComponent'], P = {}>(

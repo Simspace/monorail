@@ -4,12 +4,10 @@ import {
   default as MUIListItem,
   ListItemProps as MUIListItemProps,
 } from '@material-ui/core/ListItem'
-
 export type ListItemProps<
   D extends React.ElementType = 'li',
   P = {}
 > = MUIListItemProps<D, P> & { ref?: React.ForwardedRef<HTMLLIElement> }
-
 export const ListItem = React.forwardRef((props, ref) => (
   <MUIListItem ref={ref} {...props} />
 )) as <D extends React.ElementType = 'li', P = {}>(
