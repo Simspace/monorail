@@ -96,6 +96,7 @@ type ModuleInfo = {
   // A special function for manipulating the type parameters string for the LHS of a type declaration
   muiComponentModifyTypeParametersLhsString?: (lhs: string) => string
   monorailComponentWithForwardRef?: boolean
+  monorailComponentRefType?: string
   monorailComponentExtraImports?: Array<string>
   storybookFolder: StorybookFolder
 }
@@ -163,6 +164,11 @@ const getMonorailComponentExtraImports = (module: ModuleInfo): Array<string> =>
 const getMonorailComponentWithForwardRef = (module: ModuleInfo): boolean =>
   module.monorailComponentWithForwardRef === true
 
+const getMonorailComponentRefType = (module: ModuleInfo): string =>
+  module.monorailComponentRefType !== undefined
+    ? module.monorailComponentRefType
+    : 'unknown'
+
 /**
  * Base organizational "folder" names for components in storybook
  */
@@ -207,14 +213,20 @@ const modules: Array<ModuleInfo> = [
   {
     name: 'Button',
     storybookFolder: storybookFolderInputs,
+    monorailComponentWithForwardRef: true,
+    monorailComponentRefType: 'HTMLButtonElement',
   },
   {
     name: 'ButtonBase',
     storybookFolder: storybookFolderInputs,
+    monorailComponentWithForwardRef: true,
+    monorailComponentRefType: 'HTMLButtonElement',
   },
   {
     name: 'ButtonGroup',
     storybookFolder: storybookFolderInputs,
+    monorailComponentWithForwardRef: true,
+    monorailComponentRefType: 'HTMLDivElement',
   },
   {
     name: 'Card',
@@ -394,46 +406,62 @@ const modules: Array<ModuleInfo> = [
   {
     name: 'List',
     storybookFolder: storybookFolderDataDisplay,
+    monorailComponentWithForwardRef: true,
+    monorailComponentRefType: 'HTMLUListElement',
   },
   {
     name: 'ListItem',
     storybookFolder: storybookFolderDataDisplay,
+    monorailComponentWithForwardRef: true,
+    monorailComponentRefType: 'HTMLLIElement',
   },
   {
     name: 'ListItemAvatar',
     storybookFolder: storybookFolderDataDisplay,
+    monorailComponentWithForwardRef: true,
   },
   {
     name: 'ListItemButton',
     storybookFolder: storybookFolderDataDisplay,
+    monorailComponentWithForwardRef: true,
+    monorailComponentRefType: 'HTMLDivElement',
   },
   {
     name: 'ListItemIcon',
     storybookFolder: storybookFolderDataDisplay,
+    monorailComponentWithForwardRef: true,
   },
   {
     name: 'ListItemSecondaryAction',
     storybookFolder: storybookFolderDataDisplay,
+    monorailComponentWithForwardRef: true,
   },
   {
     name: 'ListItemText',
     storybookFolder: storybookFolderDataDisplay,
+    monorailComponentWithForwardRef: true,
   },
   {
     name: 'ListSubheader',
     storybookFolder: storybookFolderDataDisplay,
+    monorailComponentWithForwardRef: true,
+    monorailComponentRefType: 'HTMLLIElement',
   },
   {
     name: 'Menu',
     storybookFolder: storybookFolderNavigation,
+    monorailComponentWithForwardRef: true,
   },
   {
     name: 'MenuItem',
     storybookFolder: storybookFolderNavigation,
+    monorailComponentWithForwardRef: true,
+    monorailComponentRefType: 'HTMLLIElement',
   },
   {
     name: 'MenuList',
     storybookFolder: storybookFolderNavigation,
+    monorailComponentWithForwardRef: true,
   },
   {
     name: 'MobileStepper',
@@ -578,6 +606,7 @@ const modules: Array<ModuleInfo> = [
   {
     name: 'Switch',
     storybookFolder: storybookFolderInputs,
+    monorailComponentWithForwardRef: true,
   },
   {
     name: 'Tab',
@@ -641,10 +670,13 @@ const modules: Array<ModuleInfo> = [
   {
     name: 'ToggleButton',
     storybookFolder: storybookFolderInputs,
+    monorailComponentWithForwardRef: true,
+    monorailComponentRefType: 'HTMLButtonElement',
   },
   {
     name: 'ToggleButtonGroup',
     storybookFolder: storybookFolderInputs,
+    monorailComponentWithForwardRef: true,
   },
   {
     name: 'Toolbar',
@@ -756,13 +788,16 @@ modules.forEach(module => {
       writer.writeLine(codeGenMessage)
       // Write out imports
       writer.writeLine("import React from 'react'")
-      writer.writeLine("import * as MUI from '@material-ui/core'")
       // Some components reference a type from MUI like `{Component}TypeMap` (e.g. ButtonTypeMap)
       // Write out an import for a *TypeMap, if there seems to be one in the MUI type params.
       // TODO: this is very naive right now - may need to make this more robust
       if (hasTypeMap) {
         writer.writeLine(
-          `import { ${muiComponentName}TypeMap } from '@material-ui/core/${muiComponentName}'`,
+          `import { default as MUI${muiComponentName}, ${muiPropsTypeName} as MUI${muiPropsTypeName}, ${muiComponentName}TypeMap } from '@material-ui/core/${muiComponentName}'`,
+        )
+      } else {
+        writer.writeLine(
+          `import { default as MUI${muiComponentName}, ${muiPropsTypeName} as MUI${muiPropsTypeName} } from '@material-ui/core/${muiComponentName}'`,
         )
       }
       // Some components reference other types in their type params, so allow for adding other arbitrary imports.
@@ -772,25 +807,28 @@ modules.forEach(module => {
       )
       // Write out Props type alias
       // This is just a simple alias to the MUI props type (including the type params)
-      writer.writeLine(
-        `export type ${monorailPropsTypeName}${muiPropsTypeParametersLhsString} = MUI.${muiPropsTypeName}${muiPropsTypeParametersRhsString}`,
-      )
       if (getMonorailComponentWithForwardRef(module)) {
         // Generate the component with a React.forwardRef
         // See: https://reactjs.org/docs/forwarding-refs.html
         // I'm just using a type assertion approach for this because this is generated code,
         // so it's less likely to be subject to mistakes and it's a little simpler than the module augmentation approach.
         writer.writeLine(
-          `export const ${monorailComponentName} = React.forwardRef((props, ref) => (<MUI.${muiComponentName} ref={ref} {...props} />)) as <RefType, ${muiPropsTypeParameters
-            .map(tp => tp.print())
-            .join(
-              ', ',
-            )}>(props: ${monorailPropsTypeName}${muiPropsTypeParametersRhsString} & { ref?: React.ForwardedRef<RefType> }) => ReturnType<typeof MUI.${muiComponentName}>`,
+          `export type ${monorailPropsTypeName}${muiPropsTypeParametersLhsString} = MUI${muiPropsTypeName}${muiPropsTypeParametersRhsString} & { ref?: React.ForwardedRef<${getMonorailComponentRefType(
+            module,
+          )}> }`,
+        )
+
+        writer.writeLine(
+          `export const ${monorailComponentName} = React.forwardRef((props, ref) => (<MUI${muiComponentName} ref={ref} {...props} />)) as ${muiPropsTypeParametersLhsString}(props: ${monorailPropsTypeName}${muiPropsTypeParametersRhsString}) => ReturnType<typeof MUI${muiComponentName}>`,
         )
       } else {
+        writer.writeLine(
+          `export type ${monorailPropsTypeName}${muiPropsTypeParametersLhsString} = MUI${muiPropsTypeName}${muiPropsTypeParametersRhsString}`,
+        )
+
         // Generate the component wrapper function without the forwardRef
         writer.writeLine(
-          `export const ${monorailComponentName} = ${muiPropsTypeParametersLhsString}(props: ${monorailPropsTypeName}${muiPropsTypeParametersRhsString}) => (<MUI.${muiComponentName} {...props} />)`,
+          `export const ${monorailComponentName} = ${muiPropsTypeParametersLhsString}(props: ${monorailPropsTypeName}${muiPropsTypeParametersRhsString}) => (<MUI${muiComponentName} {...props} />)`,
         )
       }
     },
