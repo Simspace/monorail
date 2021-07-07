@@ -1,12 +1,13 @@
+// Placeholder for extra functionality - add extra types/values/functions/etc. for Box
+import { styled } from '@material-ui/core'
 import React from 'react'
-// eslint-disable-next-line no-restricted-imports
-import * as MUI from '@material-ui/core'
+import { Box as _Box, BoxProps as _BoxProps } from './Box'
+export * from './Box.gen'
+// Add more functions/etc. below
 
-export type BoxProps<
-  D extends React.ElementType<any> = 'div',
-  P = {}
-> = MUI.BoxProps<D, P>
-
-export const Box = <D extends React.ElementType<any> = 'div', P = {}>(
-  props: BoxProps<D, P>,
-) => <MUI.Box {...props} />
+/**
+ * The Box component serves as a wrapper component for most of the CSS utility needs.
+ *
+ * Box supports all system properties like <Box mt={2} /> to add a margin top of 2 * theme.spacing px
+ * https://next.material-ui.com/system/properties/
+ */
