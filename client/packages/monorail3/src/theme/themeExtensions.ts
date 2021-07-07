@@ -41,13 +41,14 @@ declare module '@material-ui/core/styles/createPalette' {
     /**
      * Add an additional semantic color "accent", to be use alongside, "primary", "secondary", etc.
      */
-    accent: PaletteColor
+    //accent: PaletteColor
     /**
      * Special non-semantic color settings for specific things in the application.
      *
      * It's debatable whether these should be specified like this in the theme, but these colors are used across the app
      * and it's convenient for them to be specified consistently in the theme.
      */
+    /*
     special: {
       cktTiers: {
         // TODO: not sure if we want all the shades for each of these, or just a single color
@@ -61,6 +62,7 @@ declare module '@material-ui/core/styles/createPalette' {
         chart2: string
       }
     }
+    */
   }
 
   /**
@@ -72,13 +74,14 @@ declare module '@material-ui/core/styles/createPalette' {
     /**
      * Add an additional semantic color "accent", to be use alongside, "primary", "secondary", etc.
      */
-    accent: PaletteColor
+    //accent: PaletteColor
     /**
      * Special non-semantic color settings for specific things in the application.
      *
      * It's debatable whether these should be specified like this in the theme, but these colors are used across the app
      * and it's convenient for them to be specified consistently in the theme.
      */
+    /*
     special: {
       cktTiers: {
         // TODO: not sure if we want all the shades for each of these (i.e. PaletteColor), or just a single color
@@ -92,6 +95,7 @@ declare module '@material-ui/core/styles/createPalette' {
         chart2: string
       }
     }
+    */
   }
 }
 
@@ -103,5 +107,12 @@ declare module '@material-ui/core/Button' {
    */
   interface ButtonPropsSizeOverrides {
     extraSmall: true
+  }
+
+  interface ButtonPropsColorOverrides {
+    info: true
+    success: true
+    warning: true
+    error: true
   }
 }
