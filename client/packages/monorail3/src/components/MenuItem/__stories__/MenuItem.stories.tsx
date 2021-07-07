@@ -7,15 +7,12 @@ import { defaultStoryMeta } from './MenuItem.stories.gen'
  * Metadata for MenuItem stories - update/extend as needed
  */
 export default { ...defaultStoryMeta }
-/**
- * Story template (edit/remove by hand if needed)
- *
- * Note: there should be at least one "Default" story that uses this template with the "story" function.
- * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
- */
+
 const Template = story<MenuItemProps>(args => <MenuItem {...args} />, {
-  args: {},
+  args: {
+    children: 'Item 1',
+  },
 })
-/** Default story for MenuItem (edit/remove by hand if needed) */
+
+/** Used primarily with the `Menu` component  */
 export const Default = story(Template)
-// TODO: add more stories below
