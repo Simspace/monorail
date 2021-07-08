@@ -36,11 +36,11 @@ declare module '@material-ui/core/styles/createPalette' {
     }
 
     score: {
-      high: Palette['primary'];
-      highModerate: Palette['primary'];
-      moderate: Palette['primary'];
-      lowModerate: Palette['primary'];
-      low: Palette['primary'];
+      high: PaletteColor;
+      highModerate: PaletteColor;
+      moderate: PaletteColor;
+      lowModerate: PaletteColor;
+      low: PaletteColor;
     }
 
     tiers: {
@@ -59,11 +59,11 @@ declare module '@material-ui/core/styles/createPalette' {
   interface PaletteOptions {
 
     score?: Partial<{
-      high: PaletteOptions['primary'];
-      highModerate: PaletteOptions['primary'];
-      moderate: PaletteOptions['primary'];
-      lowModerate: PaletteOptions['primary'];
-      low: PaletteOptions['primary'];
+      high: PaletteColorOptions;
+      highModerate: PaletteColorOptions;
+      moderate: PaletteColorOptions;
+      lowModerate: PaletteColorOptions;
+      low: PaletteColorOptions;
     }>
 
     colors?: Partial<{
