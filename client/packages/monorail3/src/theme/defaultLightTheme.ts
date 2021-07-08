@@ -4,26 +4,133 @@ import * as MUI from '@material-ui/core'
 import { baseTheme } from './baseTheme'
 import { getThemeComponents } from './themeComponents'
 
-// Dollop - darkest
+export const DefaultLightColors = {
+  blue: {
+    50: '#CFEDFF',
+    100: '#A4DAFC',
+    200: '#84BEFA',
+    300: '#5E9DF2',
+    400: '#4489DD',
+    500: '#2F74C6',
+    600: '#2461AE',
+    700: '#1A4C97',
+    800: '#113980',
+    900: '#082769',
+    A700: '#0064DC',
+    A400: '#3A94FF',
+    A200: '#66ABFF',
+    A100: '#93C4FF',
+  },
+  orange: {
+    50: '#FFECD2',
+    100: '#FFDEB3',
+    200: '#FCC482',
+    300: '#F3A562',
+    400: '#F18849',
+    500: '#E27235',
+    600: '#CD6029',
+    700: '#B84E1F',
+    800: '#A33D19',
+    900: '#902B13',
+    A100: '#FFBE9A',
+    A200: '#FFA371',
+    A400: '#FF8F52',
+    A700: '#FF752B',
+  },
+  teal: {
+    50: '#D0EFE8',
+    100: '#9EE7D6',
+    200: '#87CFBF',
+    300: '#71B9A9',
+    400: '#5BA293',
+    500: '#468C7E',
+    600: '#32776A',
+    700: '#276155',
+    800: '#1D4D41',
+    900: '#13382E',
+    A700: '#00D8A7',
+    A400: '#46DAB9',
+    A200: '#71E1C8',
+    A100: '#98ECD9',
+  },
+  fuschia: {
+    50: '#FFE3F7',
+    100: '#FFC3ED',
+    200: '#F3A9D4',
+    300: '#EA89B3',
+    400: '#D36F99',
+    500: '#BA5882',
+    600: '#A1406B',
+    700: '#892856',
+    800: '#6D153D',
+    900: '#4D0A24',
+    A100: '#F0B1CC',
+    A200: '#F084B2',
+    A400: '#EE5697',
+    A700: '#EE247A',
+  },
+  purple: {
+    50: '#EDD6FF',
+    100: '#E1BEFB',
+    200: '#D1A3F9',
+    300: '#C289F8',
+    400: '#B36FF7',
+    500: '#9D57EC',
+    600: '#7F41D6',
+    700: '#602BBD',
+    800: '#5015A2',
+    900: '#280078',
+    A100: '#C3A1EA',
+    A200: '#AA72EA',
+    A400: '#9342EE',
+    A700: '#7D1CEC',
+  }
+}
 
+export const DefaultLightScoreColors = {
+  high: {
+    light: '#0FBD6F',
+    main: '#007544',
+    dark: '#004E2D'
+  },
+  highModerate: {
+    light: '#A8CD14',
+    main: '#70840F',
+    dark: '#566706'
+  },
+  moderate: {
+    light: '#F7CF08',
+    main: '#D18105',
+    dark: '#A36403'
+  },
+  lowModerate: {
+    light: '#FF8000',
+    main: '#B84514',
+    dark: '#93340B'
+  },
+  low: {
+    light: '#FF6B66',
+    main: '#D41C0B',
+    dark: '#B51405'
+  }
+}
+
+export const DefaultLightTierColors = {
+  one: '#8D74F1',
+  two: '#F54545',
+  three: '#E56000',
+  four: '#08A45E'
+}
+
+// https://www.figma.com/file/dKL9YeHgWyxmRHuIjs38f3O9/Monorail-Components?node-id=23496%3A27
 const palette: MUI.PaletteOptions = {
   primary: {
-    lightest: '#F5F9FF',
-    lighter: '#D9E4FD',
-    light: '#A1C1FF',
-    main: '#7AA8FF',
-    dark: '#558DF6',
-    darker: '#1465FF',
-    darkest: '#0058FF',
+    light: '#7AA8FF',
+    main: '#1465FF',
+    dark: '#1050CB'
   },
   secondary: {
-    lightest: '#2066EC',
-    lighter: '#1050CB',
-    light: '#0C3D99', // dash
-    main: '#1A2974', // Dollop
-    dark: '#161C4F', // Graphic
-    darker: '#0B1038', // Primary
-    darkest: '#03072B', // 0058FF
+    main: '#161C4F',
   },
   grey: {
     '50': '#FFFFFF',
@@ -38,41 +145,29 @@ const palette: MUI.PaletteOptions = {
     '900': '#424242',
   },
   error: {
-    lightest: '#FFF6F5',
-    lighter: '#FFE3E0',
     light: '#F8B6AF',
-    main: '#FF6B66',
-    dark: '#F54545',
-    darker: '#D41C0B',
-    darkest: '#AD0C00',
+    main: '#F54545',
+    dark: '#D41C0B',
   },
   info: {
-    lightest: '#F5F9FF',
-    lighter: '#D9E4FD',
     light: '#A1C1FF',
-    main: '#7AA8FF',
-    dark: '#558DF6',
-    darker: '#1465FF',
-    darkest: '#0051EB',
+    main: '#558DF6',
+    dark: '#1465FF',
   },
   success: {
-    lightest: '#E8FCEE',
-    lighter: '#BBF7CD',
     light: '#5BD780',
-    main: '#0FBD6F',
-    dark: '#08A45E',
-    darker: '#007544',
-    darkest: '#006038',
+    main: '#08A45E',
+    dark: '#007544',
   },
   warning: {
-    lightest: '#FFF8F0',
-    lighter: '#FFE6C7',
     light: '#FFAB57',
-    main: '#FF8000',
-    dark: '#E56000',
-    darker: '#B84514',
-    darkest: '#A83200',
+    main: '#E56000',
+    dark: '#B84514',
   },
+
+  colors: DefaultLightColors,
+  score: DefaultLightScoreColors,
+  tiers: DefaultLightTierColors
 }
 
 // Constuct a Theme with the base settings plus our customizations, but without the components overrides provided yet.

@@ -1,5 +1,6 @@
 // eslint-disable-next-line no-restricted-imports
 import * as _MUI from '@material-ui/core'
+import { Color } from '@material-ui/core';
 
 // This file is intended to house all our interface extensions/module augmentations for the MUI theme types.
 //
@@ -12,25 +13,6 @@ import * as _MUI from '@material-ui/core'
 // provided by the theme creator and then the actual output theme types used by the theme consumer.
 
 declare module '@material-ui/core/styles/createPalette' {
-  /**
-   * Add additional shades to PaletteColor
-   */
-  interface PaletteColor {
-    lightest: string
-    lighter: string
-    darker: string
-    darkest: string
-  }
-
-  /**
-   * Add additional shades to SimplePaletteColorOptions
-   */
-  interface SimplePaletteColorOptions {
-    lightest?: string
-    lighter?: string
-    darker?: string
-    darkest?: string
-  }
 
   /**
    * Extend the color `Palette` interface to add additional shades, colors, etc.
@@ -39,30 +21,34 @@ declare module '@material-ui/core/styles/createPalette' {
    */
   interface Palette {
     /**
-     * Add an additional semantic color "accent", to be use alongside, "primary", "secondary", etc.
-     */
-    //accent: PaletteColor
-    /**
      * Special non-semantic color settings for specific things in the application.
      *
      * It's debatable whether these should be specified like this in the theme, but these colors are used across the app
      * and it's convenient for them to be specified consistently in the theme.
      */
-    /*
-    special: {
-      cktTiers: {
-        // TODO: not sure if we want all the shades for each of these, or just a single color
-        tier1: string
-        tier2: string
-        tier3: string
-        tier4: string
-      }
-      charts: {
-        chart1: string
-        chart2: string
-      }
+
+    colors: {
+      blue: Color;
+      orange: Color;
+      teal: Color;
+      fuschia: Color;
+      purple: Color;
     }
-    */
+
+    score: {
+      high: Palette['primary'];
+      highModerate: Palette['primary'];
+      moderate: Palette['primary'];
+      lowModerate: Palette['primary'];
+      low: Palette['primary'];
+    }
+
+    tiers: {
+      one: string,
+      two: string,
+      three: string,
+      four: string
+    }
   }
 
   /**
@@ -71,31 +57,29 @@ declare module '@material-ui/core/styles/createPalette' {
    * Because these are custom and have no MUI-provided defaults, they are required to be set, so they can be safely used.
    */
   interface PaletteOptions {
-    /**
-     * Add an additional semantic color "accent", to be use alongside, "primary", "secondary", etc.
-     */
-    //accent: PaletteColor
-    /**
-     * Special non-semantic color settings for specific things in the application.
-     *
-     * It's debatable whether these should be specified like this in the theme, but these colors are used across the app
-     * and it's convenient for them to be specified consistently in the theme.
-     */
-    /*
-    special: {
-      cktTiers: {
-        // TODO: not sure if we want all the shades for each of these (i.e. PaletteColor), or just a single color
-        tier1: string
-        tier2: string
-        tier3: string
-        tier4: string
-      }
-      charts: {
-        chart1: string
-        chart2: string
-      }
-    }
-    */
+
+    score?: Partial<{
+      high: PaletteOptions['primary'];
+      highModerate: PaletteOptions['primary'];
+      moderate: PaletteOptions['primary'];
+      lowModerate: PaletteOptions['primary'];
+      low: PaletteOptions['primary'];
+    }>
+
+    colors?: Partial<{
+      blue: PaletteColorOptions;
+      orange: PaletteColorOptions;
+      teal: PaletteColorOptions;
+      fuschia: PaletteColorOptions;
+      purple: PaletteColorOptions;
+    }>
+
+    tiers?: Partial<{
+      one: string,
+      two: string,
+      three: string,
+      four: string
+    }>,
   }
 }
 
