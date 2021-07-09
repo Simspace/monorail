@@ -84,42 +84,42 @@ export const DefaultLightColors = {
     A200: '#AA72EA',
     A400: '#9342EE',
     A700: '#7D1CEC',
-  }
+  },
 }
 
 export const DefaultLightScoreColors = {
   high: {
     light: '#0FBD6F',
     main: '#007544',
-    dark: '#004E2D'
+    dark: '#004E2D',
   },
   highModerate: {
     light: '#A8CD14',
     main: '#70840F',
-    dark: '#566706'
+    dark: '#566706',
   },
   moderate: {
     light: '#F7CF08',
     main: '#D18105',
-    dark: '#A36403'
+    dark: '#A36403',
   },
   lowModerate: {
     light: '#FF8000',
     main: '#B84514',
-    dark: '#93340B'
+    dark: '#93340B',
   },
   low: {
     light: '#FF6B66',
     main: '#D41C0B',
-    dark: '#B51405'
-  }
+    dark: '#B51405',
+  },
 }
 
 export const DefaultLightTierColors = {
   one: '#8D74F1',
   two: '#F54545',
   three: '#E56000',
-  four: '#08A45E'
+  four: '#08A45E',
 }
 
 // https://www.figma.com/file/dKL9YeHgWyxmRHuIjs38f3O9/Monorail-Components?node-id=23496%3A27
@@ -127,7 +127,7 @@ const palette: MUI.PaletteOptions = {
   primary: {
     light: '#7AA8FF',
     main: '#1465FF',
-    dark: '#1050CB'
+    dark: '#1050CB',
   },
   secondary: {
     main: '#161C4F',
@@ -167,7 +167,7 @@ const palette: MUI.PaletteOptions = {
 
   colors: DefaultLightColors,
   score: DefaultLightScoreColors,
-  tiers: DefaultLightTierColors
+  tiers: DefaultLightTierColors,
 }
 
 // Constuct a Theme with the base settings plus our customizations, but without the components overrides provided yet.

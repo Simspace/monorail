@@ -1,6 +1,6 @@
 // eslint-disable-next-line no-restricted-imports
 import * as _MUI from '@material-ui/core'
-import { Color } from '@material-ui/core';
+import { Color } from '@material-ui/core'
 
 // This file is intended to house all our interface extensions/module augmentations for the MUI theme types.
 //
@@ -13,7 +13,6 @@ import { Color } from '@material-ui/core';
 // provided by the theme creator and then the actual output theme types used by the theme consumer.
 
 declare module '@material-ui/core/styles/createPalette' {
-
   /**
    * Extend the color `Palette` interface to add additional shades, colors, etc.
    *
@@ -28,25 +27,25 @@ declare module '@material-ui/core/styles/createPalette' {
      */
 
     colors: {
-      blue: Color;
-      orange: Color;
-      teal: Color;
-      fuschia: Color;
-      purple: Color;
+      blue: Color
+      orange: Color
+      teal: Color
+      fuschia: Color
+      purple: Color
     }
 
     score: {
-      high: PaletteColor;
-      highModerate: PaletteColor;
-      moderate: PaletteColor;
-      lowModerate: PaletteColor;
-      low: PaletteColor;
+      high: PaletteColor
+      highModerate: PaletteColor
+      moderate: PaletteColor
+      lowModerate: PaletteColor
+      low: PaletteColor
     }
 
     tiers: {
-      one: string,
-      two: string,
-      three: string,
+      one: string
+      two: string
+      three: string
       four: string
     }
   }
@@ -57,29 +56,28 @@ declare module '@material-ui/core/styles/createPalette' {
    * Because these are custom and have no MUI-provided defaults, they are required to be set, so they can be safely used.
    */
   interface PaletteOptions {
-
     score?: Partial<{
-      high: PaletteColorOptions;
-      highModerate: PaletteColorOptions;
-      moderate: PaletteColorOptions;
-      lowModerate: PaletteColorOptions;
-      low: PaletteColorOptions;
+      high: PaletteColorOptions
+      highModerate: PaletteColorOptions
+      moderate: PaletteColorOptions
+      lowModerate: PaletteColorOptions
+      low: PaletteColorOptions
     }>
 
     colors?: Partial<{
-      blue: PaletteColorOptions;
-      orange: PaletteColorOptions;
-      teal: PaletteColorOptions;
-      fuschia: PaletteColorOptions;
-      purple: PaletteColorOptions;
+      blue: PaletteColorOptions
+      orange: PaletteColorOptions
+      teal: PaletteColorOptions
+      fuschia: PaletteColorOptions
+      purple: PaletteColorOptions
     }>
 
     tiers?: Partial<{
-      one: string,
-      two: string,
-      three: string,
+      one: string
+      two: string
+      three: string
       four: string
-    }>,
+    }>
   }
 }
 
