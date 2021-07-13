@@ -52,7 +52,7 @@ export const BasicNativeSelect = story(Template, {
   parameters: {
     docs: {
       description: {
-        story: `As the user experience can be improved on mobile using the native select of the platform, we allow such pattern.`,
+        story: `As the user experience can be improved on mobile using the native select of the platform, we allow such pattern. [Docs](https://next.material-ui.com/components/selects/#native-select)`,
       },
     },
   },

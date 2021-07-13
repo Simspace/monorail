@@ -51,7 +51,7 @@ export const BasicSelect = story(Template, {
   parameters: {
     docs: {
       description: {
-        story: `Menus are positioned over their emitting elements such that the currently selected menu item appears on top of the emitting element.`,
+        story: `Menus are positioned over their emitting elements such that the currently selected menu item appears on top of the emitting element. [Docs](https://next.material-ui.com/components/selects/#main-content)`,
       },
     },
   },
