@@ -8,12 +8,10 @@ import { Stack } from '../../Stack/Stack'
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown'
 import { ClickAwayListener } from '../../ClickAwayListener/ClickAwayListener'
 import { Grow } from '../../Grow/Grow'
-// import { Paper } from '../../Paper/Paper'
+import { Paper } from '../../Paper/Paper'
 import { Popper } from '../../Popper/Popper'
 import { MenuItem } from '../../MenuItem/MenuItem'
 import { MenuList } from '../../MenuList/MenuList'
-
-import Paper from '@material-ui/core/Paper'
 import { Box } from '../../Box/Box'
 
 /**
