@@ -3,6 +3,9 @@ import React from 'react'
 import { Button, ButtonProps } from '../Button'
 import { story } from '../../../__tests__/helpers/storybook'
 import { defaultStoryMeta } from './Button.stories.gen'
+import DeleteIcon from '@material-ui/icons/Delete'
+import SendIcon from '@material-ui/icons/Send'
+import { Stack } from '../../Stack/Stack'
 
 /**
  * Metadata for Button stories - update/extend as needed
@@ -97,4 +100,49 @@ export const Showcase = () => (
   </>
 )
 
-// TODO: add more stories below
+export const Sizes = story<ButtonProps>(
+  () => (
+    <Stack direction="row" spacing={2}>
+      <Button variant="contained" size={'small'}>
+        Small
+      </Button>
+      <Button variant="contained" size={'medium'}>
+        Medium
+      </Button>
+      <Button variant="contained" size={'large'}>
+        Large
+      </Button>
+    </Stack>
+  ),
+  {
+    parameters: {
+      docs: {
+        description: {
+          story: `For larger or smaller buttons, use the size prop.`,
+        },
+      },
+    },
+  },
+)
+
+export const ButtonsWithIconsAndLabel = story<ButtonProps>(
+  () => (
+    <Stack direction="row" spacing={2}>
+      <Button variant="outlined" startIcon={<DeleteIcon />}>
+        Delete
+      </Button>
+      <Button variant="contained" endIcon={<SendIcon />}>
+        Send
+      </Button>
+    </Stack>
+  ),
+  {
+    parameters: {
+      docs: {
+        description: {
+          story: `Sometimes you might want to have icons for certain buttons to enhance the UX of the application as we recognize logos more easily than plain text. For example, if you have a delete button you can label it with a dustbin icon.`,
+        },
+      },
+    },
+  },
+)
