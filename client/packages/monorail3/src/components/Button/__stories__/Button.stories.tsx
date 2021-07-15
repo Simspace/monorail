@@ -27,7 +27,9 @@ const Template = story<ButtonProps>(args => <Button {...args} />, {
 /**
  * Default story for Button (edit/remove by hand if needed)
  * */
-export const Default = story(Template)
+export const Default = story(Template, {
+  args: { children: 'Button', variant: 'contained' },
+})
 
 export const Showcase = () => (
   <>
@@ -103,6 +105,9 @@ export const Showcase = () => (
 export const Sizes = story<ButtonProps>(
   () => (
     <Stack direction="row" spacing={2}>
+      <Button variant="contained" size="extraSmall">
+        Extra Small (custom size)
+      </Button>
       <Button variant="contained" size={'small'}>
         Small
       </Button>
