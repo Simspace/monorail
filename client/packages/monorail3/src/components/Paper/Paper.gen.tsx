@@ -8,10 +8,9 @@ import {
 export type PaperProps<
   D extends React.ElementType = PaperTypeMap['defaultComponent'],
   P = {}
-> = MUIPaperProps<D, P>
-export const Paper = <
-  D extends React.ElementType = PaperTypeMap['defaultComponent'],
-  P = {}
->(
+> = MUIPaperProps<D, P> & { ref?: React.ForwardedRef<HTMLDivElement> }
+export const Paper = React.forwardRef((props, ref) => (
+  <MUIPaper ref={ref} {...props} />
+)) as <D extends React.ElementType = PaperTypeMap['defaultComponent'], P = {}>(
   props: PaperProps<D, P>,
-) => <MUIPaper {...props} />
+) => ReturnType<typeof MUIPaper>

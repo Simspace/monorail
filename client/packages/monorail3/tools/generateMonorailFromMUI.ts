@@ -490,6 +490,8 @@ const modules: Array<ModuleInfo> = [
   {
     name: 'Paper',
     storybookFolder: storybookFolderSurfaces,
+    monorailComponentWithForwardRef: true,
+    monorailComponentRefType: 'HTMLDivElement',
   },
   {
     name: 'Popover',
