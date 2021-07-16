@@ -6,7 +6,7 @@ pwd
 
 # Compile b/c the gen script has a list of components to generate
 echo "Running tsc for code & tools..."
-#yarn tsc
+yarn tsc
 
 echo "Running code gen script..."
 node ./dist/tools/generateMonorailFromMUI.js
