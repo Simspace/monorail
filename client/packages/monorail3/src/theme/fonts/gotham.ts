@@ -1,6 +1,7 @@
 /**
  * A CSS `font-family` value for the Gotham font family
  */
+//export const gothamFontFamily: string = `'Gotham SSm A', 'Gotham SSm B'`
 export const gothamFontFamily: string = `'Gotham SSm A', 'Gotham SSm B', -apple-system, BlinkMacSystemFont,'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'`
 
 /**

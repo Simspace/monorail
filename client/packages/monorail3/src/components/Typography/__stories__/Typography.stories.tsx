@@ -28,7 +28,7 @@ export const Default = story(Template)
 
 export const Variants = story<TypographyProps>(
   () => (
-    <Box sx={{ width: '100%', maxWidth: 500 }}>
+    <Box sx={{ width: '100%', maxWidth: 800 }}>
       <Typography variant="h1" component="div" gutterBottom>
         h1. Heading
       </Typography>
