@@ -179,7 +179,7 @@ export const Variants = story<AvatarProps>(
     parameters: {
       docs: {
         description: {
-          story: `You can change the size of the avatar with the height and width CSS properties.`,
+          story: `If you need square or rounded avatars, use the variant prop.`,
         },
       },
     },
