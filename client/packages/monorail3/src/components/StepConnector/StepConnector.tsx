@@ -6,3 +6,7 @@ import {
 } from './StepConnector'
 export * from './StepConnector.gen'
 // Add more functions/etc. below
+
+// @TODO (@danm) - Wondering why we would re-export here, but for now
+// just following the `export all the things` pattern - (2021-07-20)
+export { stepConnectorClasses } from '@material-ui/core/StepConnector'
