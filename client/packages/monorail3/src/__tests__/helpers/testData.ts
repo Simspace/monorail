@@ -1,4 +1,5 @@
 export type Movie = { label: string; year: number }
+export type Image = { url: string; title: string; alt: string }
 
 // Copied from MUI docs for demonstration purposes
 export const movies: ReadonlyArray<Movie> = [
@@ -566,3 +567,24 @@ export const countries = [
   { code: 'ZM', label: 'Zambia', phone: '260' },
   { code: 'ZW', label: 'Zimbabwe', phone: '263' },
 ]
+
+export const images: Record<string, Image> = {
+  paella: {
+    url:
+      'https://images.pexels.com/photos/4305836/pexels-photo-4305836.jpeg?cs=srgb&dl=pexels-joshua-miranda-4305836.jpg&fm=jpg',
+    title: 'Paella dish',
+    alt: 'Paella dish',
+  },
+  lizard: {
+    url:
+      'https://images.pexels.com/photos/735174/pexels-photo-735174.jpeg?cs=srgb&dl=pexels-sameera-madusanka-735174.jpg&fm=jpg',
+    title: 'Contemplative Reptile',
+    alt: 'Contemplative Reptile',
+  },
+  album: {
+    url:
+      'https://upload.wikimedia.org/wikipedia/en/5/5f/Mac_Miller_Live_from_Space.jpg',
+    title: 'Live from space album cover',
+    alt: 'Live from space album cover',
+  },
+}

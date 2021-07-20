@@ -24,6 +24,7 @@ import MoreVertIcon from '@material-ui/icons/MoreVert'
 import SkipPreviousIcon from '@material-ui/icons/SkipPrevious'
 import PlayArrowIcon from '@material-ui/icons/PlayArrow'
 import SkipNextIcon from '@material-ui/icons/SkipNext'
+import { images } from '../../../__tests__/helpers/testData'
 /**
  * Metadata for Card stories - update/extend as needed
  * This is intended to be exported as story-level metadata from the main .stories.tsx file, like:
@@ -171,8 +172,8 @@ export const RecipeReviewCard = story<CardProps>(
             height: 0,
             paddingTop: '56.25%', // 16:9
           }}
-          image="https://images.pexels.com/photos/4305836/pexels-photo-4305836.jpeg?cs=srgb&dl=pexels-joshua-miranda-4305836.jpg&fm=jpg"
-          title="Paella dish"
+          image={images.paella.url}
+          title={images.lizard.title}
         />
         <CardContent>
           <Typography variant="body2" color="text.secondary">
@@ -250,8 +251,8 @@ export const MediaCard = story<CardProps>(
       <Card sx={{ maxWidth: 345 }}>
         <CardMedia
           sx={{ height: 140 }}
-          image={IMG_URL_LIZARD}
-          title="Contemplative Reptile"
+          image={images.lizard.url}
+          title={images.lizard.title}
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
@@ -286,10 +287,10 @@ export const ResponsiveMediaCard = story<CardProps>(
       <Card sx={{ maxWidth: 345 }}>
         <CardMedia
           component="img"
-          alt="Contemplative Reptile"
+          alt={images.lizard.alt}
           height="140"
-          image={IMG_URL_LIZARD}
-          title="Contemplative Reptile"
+          image={images.lizard.url}
+          title={images.lizard.title}
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
@@ -326,8 +327,8 @@ export const ActionAreaCard = story<CardProps>(
         <CardActionArea>
           <CardMedia
             sx={{ height: 140 }}
-            image={IMG_URL_LIZARD}
-            title="Contemplative Reptile"
+            image={images.lizard.url}
+            title={images.lizard.title}
           />
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
@@ -361,8 +362,8 @@ export const MultiActionAreaCard = story<CardProps>(
         <CardActionArea>
           <CardMedia
             sx={{ height: 140 }}
-            image={IMG_URL_LIZARD}
-            title="Contemplative Reptile"
+            image={images.lizard.url}
+            title={images.lizard.title}
           />
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
@@ -437,8 +438,8 @@ export const MediaControlCard = story<CardProps>(
         </Box>
         <CardMedia
           sx={{ width: 151 }}
-          image="https://upload.wikimedia.org/wikipedia/en/5/5f/Mac_Miller_Live_from_Space.jpg"
-          title="Live from space album cover"
+          image={images.album.url}
+          title={images.album.title}
         />
       </Card>
     )
