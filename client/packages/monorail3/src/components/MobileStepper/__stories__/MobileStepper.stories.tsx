@@ -101,7 +101,7 @@ export const TextMobileStepper = story<MobileStepperProps>(
     )
   },
   {
-    storyName: 'Mobile Stepper - text',
+    storyName: 'Text',
     parameters: {
       docs: {
         description: {
@@ -163,7 +163,7 @@ export const DotsMobileStepper = story<MobileStepperProps>(
   },
 
   {
-    storyName: 'Mobile Stepper - dots',
+    storyName: 'Dots',
     parameters: {
       docs: {
         description: {
