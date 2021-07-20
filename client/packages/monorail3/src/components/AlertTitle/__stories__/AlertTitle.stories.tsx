@@ -16,7 +16,7 @@ export default { ...defaultStoryMeta }
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
 const Template = story<AlertTitleProps>(args => <AlertTitle {...args} />, {
-  args: {},
+  args: { children: 'Alert Title' },
 })
 /** Default story for AlertTitle (edit/remove by hand if needed) */
 export const Default = story(Template)
