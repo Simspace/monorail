@@ -48,7 +48,7 @@ const bull = (
 
 const Template = story<CardProps>(
   args => (
-    <Card sx={{ maxWidth: 275 }}>
+    <Card sx={{ maxWidth: 275 }} {...args}>
       <CardContent>
         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
           Word of the Day
