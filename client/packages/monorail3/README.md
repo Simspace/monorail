@@ -10,6 +10,22 @@ Monorail 3 is a UI component library backed by Material UI v5.
 - The overarching goal is to extend/customize MUI to our liking (within reason) without breaking the core assumptions and capabilities of MUI, and following the patterns and conventions established by MUI
 - The point of this goal is to avoid creating a lot of extra work and maintenance for ourselves in building and maintaining a custom UI library.
 
+## FAQ/Known issues
+
+**General comment**: for issues with external libraries like storybook and docgen, the stance is that if there is a sensible/general fix for the problem that we can apply on our side, we can do it. If the fix requires non-trivial hacks, workarounds, or other unsavory code, we should not apply fixes on our side, and report the issue to the external repository. We are not looking to maintain all of these tools or super-custom setups ourselves.
+
+- There are various quirks with the docgen where it doesn't produce useful controls for manipulating property values
+  - `ReactNode` props (e.g. `children`) are rendered with a JSON editor, which is not useful
+  - The "system" props (e.g. `sx` props, or CSS-like props that you can set directly on components)
+  - Examples: `children` props, `Box` component, others
+- There is an issue with the docgen for certain components, where if the MUI props type is defined in a certain way, `react-docgen-typescript` will not generate a full controls table for the component.
+  - You may see only a `ref` in the Controls/Docs table
+  - Possibly related to prop types that are defined as an `interface` that `extends` another interface
+  - Examples: `Select`, `ToggleButtonGroup`, possibly others
+  - See:
+    - https://github.com/strothj/react-docgen-typescript-loader/issues/47
+    - https://stackoverflow.com/questions/63919936/missing-materialui-table-props-in-storybook
+
 ## Setup
 
 Note: we are in a `yarn workspaces` setup, so the dependencies in this package are specified in this `./package.json`,

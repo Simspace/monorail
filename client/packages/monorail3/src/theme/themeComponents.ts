@@ -22,38 +22,8 @@ export const getThemeComponents = (
     defaultProps: {
       //disableRipple: true,
     },
-    styleOverrides: {
-      // TODO: The default button sizes in MUI seem to not be working correctly in our environment. It seems to work
-      // in a codesandbox with MUI + emotion, so not sure what we're doing wrong. Possibly an MUI bug or an issue with
-      // using styled-components as the style engine via @material-ui/styled-engine alias. We're likely going to
-      // customize these styles anyway, so not a big deal. (AW 2021-07-16)
-      // TODO: these styles are not final, do not copy/emulate
-      sizeSmall: {
-        height: '24px',
-        padding: '4px 8px',
-      },
-      // TODO: these styles are not final, do not copy/emulate
-      sizeMedium: {
-        height: '32px',
-        padding: '8px 16px',
-      },
-      // TODO: these styles are not final, do not copy/emulate
-      sizeLarge: {
-        height: '40px',
-        padding: '12px 24px',
-      },
-    },
-    variants: [
-      {
-        props: { size: 'extraSmall' },
-        style: {
-          // TODO: these styles are not final, do not copy/emulate
-          fontSize: '0.6rem',
-          height: '16px',
-          padding: '2px 4px',
-        },
-      },
-    ],
+    styleOverrides: {},
+    variants: [],
   },
   MuiIconButton: {
     defaultProps: {
