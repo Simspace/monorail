@@ -6,10 +6,11 @@ import { defaultStoryMeta } from './Stepper.stories.gen'
 import { Box } from '../../Box/Box'
 import { Typography } from '../../Typography/Typography'
 import { Step } from '../../Step/Step'
-import { StepLabel } from '../../StepLabel/StepLabel'
 import { Button } from '../../Button/Button'
+import { StepLabel } from '../../StepLabel/StepLabel'
 import { StepButton } from '../../StepButton/StepButton'
 import { styled } from '@material-ui/core/styles'
+import { GroupAdd, Check, Settings, VideoLabel } from '@material-ui/icons'
 import {
   StepConnector,
   stepConnectorClasses,
@@ -17,7 +18,6 @@ import {
 import { StepIconProps } from '../../StepIcon/StepIcon'
 // import Icon from '@material-ui/core/Icon'
 import { Stack } from '../../Stack/Stack'
-import { Icon } from '../../Icon/Icon'
 import { StepContent } from '../../StepContent/StepContent'
 import { Paper } from '../../Paper/Paper'
 /**
@@ -442,7 +442,7 @@ function QontoStepIcon(props: StepIconProps) {
   return (
     <QontoStepIconRoot styleProps={{ active }} className={className}>
       {completed ? (
-        <Icon className="QontoStepIcon-completedIcon">check</Icon>
+        <Check className="QontoStepIcon-completedIcon" />
       ) : (
         <div className="QontoStepIcon-circle" />
       )}
@@ -503,9 +503,9 @@ function ColorlibStepIcon(props: StepIconProps) {
   const { active, completed, className } = props
 
   const icons: { [index: string]: React.ReactElement } = {
-    1: <Icon>settings</Icon>,
-    2: <Icon>group_add</Icon>,
-    3: <Icon>video_label</Icon>,
+    1: <Settings />,
+    2: <GroupAdd />,
+    3: <VideoLabel />,
   }
 
   return (
