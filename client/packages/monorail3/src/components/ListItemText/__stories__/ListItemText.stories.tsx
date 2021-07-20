@@ -14,7 +14,7 @@ export default { ...defaultStoryMeta }
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
 const Template = story<ListItemTextProps>(args => <ListItemText {...args} />, {
-  args: {},
+  args: { primary: 'Primary', secondary: 'Secondary' },
 })
 /** Default story for ListItemText (edit/remove by hand if needed) */
 export const Default = story(Template)
