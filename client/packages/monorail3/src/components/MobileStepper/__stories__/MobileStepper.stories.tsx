@@ -1,13 +1,16 @@
 import React from 'react'
-import { MobileStepper, MobileStepperProps } from '../MobileStepper'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './MobileStepper.stories.gen'
-import { useTheme } from '../../../theme/useTheme'
+
+import { KeyboardArrowLeft, KeyboardArrowRight } from '@material-ui/icons'
+
 import { Box } from '../../Box/Box'
-import { Paper } from '../../Paper/Paper'
-import { Typography } from '../../Typography/Typography'
 import { Button } from '../../Button/Button'
-import { Icon } from '../../Icon/Icon'
+import { Paper } from '../../Paper/Paper'
+import { useTheme } from '../../../theme/useTheme'
+import { story } from '../../../__tests__/helpers/storybook'
+import { Typography } from '../../Typography/Typography'
+import { MobileStepper, MobileStepperProps } from '../MobileStepper'
+
+import { defaultStoryMeta } from './MobileStepper.stories.gen'
 
 export default { ...defaultStoryMeta }
 
@@ -76,9 +79,9 @@ export const TextMobileStepper = story<MobileStepperProps>(
             >
               Next
               {theme.direction === 'rtl' ? (
-                <Icon>keyboard_arrow_left</Icon>
+                <KeyboardArrowLeft />
               ) : (
-                <Icon>keyboard_arrow_right</Icon>
+                <KeyboardArrowRight />
               )}
             </Button>
           }
@@ -89,9 +92,9 @@ export const TextMobileStepper = story<MobileStepperProps>(
               disabled={activeStep === 0}
             >
               {theme.direction === 'rtl' ? (
-                <Icon>keyboard_arrow_right</Icon>
+                <KeyboardArrowRight />
               ) : (
-                <Icon>keyboard_arrow_left</Icon>
+                <KeyboardArrowLeft />
               )}
               Back
             </Button>
@@ -142,18 +145,18 @@ export const DotsMobileStepper = story<MobileStepperProps>(
           <Button size="small" onClick={handleNext} disabled={activeStep === 5}>
             Next
             {theme.direction === 'rtl' ? (
-              <Icon>keyboard_arrow_left</Icon>
+              <KeyboardArrowLeft />
             ) : (
-              <Icon>keyboard_arrow_right</Icon>
+              <KeyboardArrowRight />
             )}
           </Button>
         }
         backButton={
           <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
             {theme.direction === 'rtl' ? (
-              <Icon>keyboard_arrow_right</Icon>
+              <KeyboardArrowRight />
             ) : (
-              <Icon>keyboard_arrow_left</Icon>
+              <KeyboardArrowLeft />
             )}
             Back
           </Button>

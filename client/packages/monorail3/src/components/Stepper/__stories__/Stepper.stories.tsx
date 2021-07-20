@@ -16,7 +16,6 @@ import {
   stepConnectorClasses,
 } from '../../StepConnector/StepConnector'
 import { StepIconProps } from '../../StepIcon/StepIcon'
-// import Icon from '@material-ui/core/Icon'
 import { Stack } from '../../Stack/Stack'
 import { StepContent } from '../../StepContent/StepContent'
 import { Paper } from '../../Paper/Paper'
