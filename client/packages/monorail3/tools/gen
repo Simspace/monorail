@@ -12,7 +12,7 @@ echo "Running code gen script..."
 node ./dist/tools/generateMonorailFromMUI.js
 
 echo "Running Prettier on generated files..."
-../../node_modules/.bin/prettier './src/**/*{.ts,.tsx}' --write
+yarn prettier
 
 echo "Running tsc again..."
 yarn tsc

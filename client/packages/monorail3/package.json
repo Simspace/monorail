@@ -43,9 +43,10 @@
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public",
     "build": "tsc",
+    "prettier": "../../node_modules/.bin/prettier './src/**/*{.ts,.tsx}' --write",
     "cleangen": "find ./src/components -name '*.gen.*' -print | xargs rm && yarn gen",
     "gen": "./tools/gen",
-    "barrels": "barrelsby --directory ./src --exclude '(__tests__)|(__stories__)|(.gen.tsx)' --delete"
+    "barrels": "barrelsby --directory ./src --exclude '(__tests__)|(__stories__)|(.gen.tsx)' --delete && yarn prettier"
   },
   "jest": {
     "testRegex": "^.+(jest|test)\\.(ts|tsx)$",
