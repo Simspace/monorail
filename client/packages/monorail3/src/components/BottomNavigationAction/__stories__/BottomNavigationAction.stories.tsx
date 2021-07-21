@@ -6,6 +6,7 @@ import {
 } from '../BottomNavigationAction'
 import { story } from '../../../__tests__/helpers/storybook'
 import { defaultStoryMeta } from './BottomNavigationAction.stories.gen'
+import RestoreIcon from '@material-ui/icons/Restore'
 
 /**
  * Metadata for BottomNavigationAction stories - update/extend as needed
@@ -22,7 +23,7 @@ export default { ...defaultStoryMeta }
  */
 const Template = story<BottomNavigationActionProps>(
   args => <BottomNavigationAction aria-label="Action" {...args} />,
-  { args: { children: 'Action' } },
+  { args: { label: 'Recents', showLabel: true, icon: <RestoreIcon /> } },
 )
 
 /** Default story for BottomNavigationAction (edit/remove by hand if needed) */

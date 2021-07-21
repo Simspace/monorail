@@ -182,7 +182,12 @@ const modules: Array<ModuleInfo> = [
     name: 'AccordionSummary',
     storybookFolder: storybookFolderSurfaces,
   },
-  { name: 'Alert', storybookFolder: storybookFolderFeedback },
+  {
+    name: 'Alert',
+    storybookFolder: storybookFolderFeedback,
+    monorailComponentWithForwardRef: true,
+    monorailComponentRefType: 'HTMLDivElement',
+  },
   { name: 'AlertTitle', storybookFolder: storybookFolderFeedback },
   { name: 'AppBar', storybookFolder: storybookFolderSurfaces },
   {
