@@ -20,12 +20,15 @@ Monorail 3 is a UI component library backed by Material UI v5.
   - Examples: `children` props, `Box` component, others
 - There is an issue with the docgen for certain components, where if the MUI props type is defined in a certain way, `react-docgen-typescript` will not generate a full controls table for the component.
   - You may see only a `ref` in the Controls/Docs table
-  - Possibly related to prop types that are defined as an `interface` that `extends` another interface, or pos
-  - Examples: `Select`, `ToggleButtonGroup`, possibly others
-  - Possibly related:
+  - Seems to affect all the components that are defined with a `forwardRef`
+  - Possibly related to prop types that are defined as an `interface` that `extends` another interface
+  - Possibly related to prop types that `Omit` certain attributes from other types
+  - Examples: `Select`, `ToggleButtonGroup`, others
+  - Some related issues:
     - https://github.com/strothj/react-docgen-typescript-loader/issues/47
     - https://stackoverflow.com/questions/63919936/missing-materialui-table-props-in-storybook
     - https://github.com/styleguidist/react-docgen-typescript/issues/335
+  - The current stance on this is to not try to address it ourselves at this time, and hope for an eventual fix to `react-docgen-typescript`. If no fix ever comes, we may need to do something ourselves.
 
 ## Setup
 

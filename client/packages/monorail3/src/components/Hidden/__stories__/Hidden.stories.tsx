@@ -61,7 +61,7 @@ export const Deprecated = story<HiddenProps>(
         description: {
           story: `The \`<Hidden>\` component is deprecated, but was previously used to responsively hide or affect content based on screen size.
 
-The approved way of doing this now is to use the system \`sx\` property, or \`useMediaQuery\`, as show in this example.`,
+The approved way of doing this now is to use the system \`sx\` property, or \`useMediaQuery\`, as shown in this example.`,
         },
       },
     },
