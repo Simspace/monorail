@@ -3,6 +3,9 @@ import React from 'react'
 import { CardHeader, CardHeaderProps } from '../CardHeader'
 import { story } from '../../../__tests__/helpers/storybook'
 import { defaultStoryMeta } from './CardHeader.stories.gen'
+import { Avatar } from '../../Avatar/Avatar'
+import { IconButton } from '../../IconButton/IconButton'
+import CloseIcon from '@material-ui/icons/Close'
 /**
  * Metadata for CardHeader stories - update/extend as needed
  * This is intended to be exported as story-level metadata from the main .stories.tsx file, like:
@@ -16,8 +19,27 @@ export default { ...defaultStoryMeta }
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
 const Template = story<CardHeaderProps>(args => <CardHeader {...args} />, {
-  args: {},
+  args: {
+    title: 'Title',
+    subheader: 'Subheader',
+  },
 })
 /** Default story for CardHeader (edit/remove by hand if needed) */
 export const Default = story(Template)
 // TODO: add more stories below
+
+export const WithAvatar = () => (
+  <CardHeader title="Title" subheader="Subheader" avatar={<Avatar />} />
+)
+
+export const WithAction = () => (
+  <CardHeader
+    title="Title"
+    subheader="Subheader"
+    action={
+      <IconButton>
+        <CloseIcon />
+      </IconButton>
+    }
+  />
+)

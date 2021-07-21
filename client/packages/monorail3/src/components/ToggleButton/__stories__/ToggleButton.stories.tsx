@@ -20,5 +20,12 @@ const Template = story<ToggleButtonProps>(
   },
 )
 /** Default story for ToggleButton (edit/remove by hand if needed) */
-export const Default = story(Template)
-// TODO: add more stories below
+export const Default = story(Template, {
+  parameters: {
+    docs: {
+      description: {
+        story: `See ToggleButtonGroup for related stories.`,
+      },
+    },
+  },
+})

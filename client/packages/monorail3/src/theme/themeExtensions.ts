@@ -84,13 +84,16 @@ declare module '@material-ui/core/styles/createPalette' {
 declare module '@material-ui/core/Button' {
   /**
    * Extend the Button size to allow a new size `extraSmall` (aka dense)
-   *
-   * TODO: This is mostly for demonstration purposes here
    */
   interface ButtonPropsSizeOverrides {
     extraSmall: true
   }
 
+  /**
+   * Extend the Button color prop to allow for the other semantic styles.
+   *
+   * These seem to work out-of-the-box with no custom variant theming
+   */
   interface ButtonPropsColorOverrides {
     info: true
     success: true
