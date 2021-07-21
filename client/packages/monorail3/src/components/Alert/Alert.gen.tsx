@@ -4,5 +4,9 @@ import {
   default as MUIAlert,
   AlertProps as MUIAlertProps,
 } from '@material-ui/core/Alert'
-export type AlertProps = MUIAlertProps
-export const Alert = (props: AlertProps) => <MUIAlert {...props} />
+export type AlertProps = MUIAlertProps & {
+  ref?: React.ForwardedRef<HTMLDivElement>
+}
+export const Alert = React.forwardRef((props, ref) => (
+  <MUIAlert ref={ref} {...props} />
+)) as (props: AlertProps) => ReturnType<typeof MUIAlert>
