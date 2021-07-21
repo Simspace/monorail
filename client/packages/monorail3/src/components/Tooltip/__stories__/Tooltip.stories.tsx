@@ -14,11 +14,12 @@ import { Typography } from '../../Typography/Typography'
 import { ClickAwayListener } from '../../ClickAwayListener/ClickAwayListener'
 import { Fade } from '../../Fade/Fade'
 import { Zoom } from '../../Zoom/Zoom'
-import { isNotNil } from '../../../__tests__/helpers/typeGuards'
+
 /**
  * Metadata for Tooltip stories - update/extend as needed
  */
 export default { ...defaultStoryMeta }
+
 /**
  * Story template (edit/remove by hand if needed)
  *
@@ -35,6 +36,7 @@ const Template = story<TooltipProps>(
     args: {},
   },
 )
+
 /** Default story for Tooltip (edit/remove by hand if needed) */
 export const Default = story(Template)
 
