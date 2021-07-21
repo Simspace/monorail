@@ -96,7 +96,7 @@ export const Controlled = story<RadioGroupProps>(
     const [value, setValue] = React.useState('a')
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-      setValue((event.target as HTMLInputElement).value)
+      setValue(event.target.value)
     }
 
     return (
@@ -339,7 +339,7 @@ export const ShowError = story<RadioGroupProps>(
             <FormControlLabel
               value="best"
               control={<Radio />}
-              label="The best!"
+              label="The okayest!"
             />
             <FormControlLabel
               value="worst"
