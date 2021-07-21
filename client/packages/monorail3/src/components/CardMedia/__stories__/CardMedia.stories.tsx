@@ -3,6 +3,7 @@ import React from 'react'
 import { CardMedia, CardMediaProps } from '../CardMedia'
 import { story } from '../../../__tests__/helpers/storybook'
 import { defaultStoryMeta } from './CardMedia.stories.gen'
+import { images } from '../../../__tests__/helpers/testData'
 /**
  * Metadata for CardMedia stories - update/extend as needed
  * This is intended to be exported as story-level metadata from the main .stories.tsx file, like:
@@ -16,7 +17,12 @@ export default { ...defaultStoryMeta }
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
 const Template = story<CardMediaProps>(args => <CardMedia {...args} />, {
-  args: {},
+  args: {
+    image: images.paella.url,
+    sx: {
+      height: 160,
+    },
+  },
 })
 /** Default story for CardMedia (edit/remove by hand if needed) */
 export const Default = story(Template)

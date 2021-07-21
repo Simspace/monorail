@@ -19,10 +19,8 @@ export default { ...defaultStoryMeta }
  */
 const Template = story<CardActionAreaProps>(
   args => <CardActionArea {...args} />,
-  { args: { children: 'Card Action' } },
+  { args: { children: 'Card Action Area' } },
 )
 
 /** Default story for CardActionArea (edit/remove by hand if needed) */
 export const Default = story(Template)
-
-// TODO: add more stories below
