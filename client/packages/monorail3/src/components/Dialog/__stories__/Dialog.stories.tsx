@@ -45,18 +45,18 @@ const emails = ['username@gmail.com', 'user02@gmail.com']
 export interface SimpleDialogProps {
   open: boolean
   selectedValue: string
-  onClose: (value: string) => void
+  onSimpleDialogClose: (value: string) => void
 }
 
 const SimpleDialog = (props: SimpleDialogProps) => {
-  const { onClose, selectedValue, open } = props
+  const { onSimpleDialogClose, selectedValue, open } = props
 
   const handleClose = () => {
-    onClose(selectedValue)
+    onSimpleDialogClose(selectedValue)
   }
 
   const handleListItemClick = (value: string) => {
-    onClose(value)
+    onSimpleDialogClose(value)
   }
 
   return (
@@ -112,7 +112,7 @@ const Template = story<DialogProps>(
       setOpen(true)
     }
 
-    const handleClose = (value: string) => {
+    const handleClose = (/* _event: unknown, */ value: string) => {
       setOpen(false)
       setSelectedValue(value)
     }
@@ -129,7 +129,7 @@ const Template = story<DialogProps>(
         <SimpleDialog
           selectedValue={selectedValue}
           open={open}
-          onClose={handleClose}
+          onSimpleDialogClose={handleClose}
           {...args}
         />
       </div>
@@ -676,7 +676,10 @@ export interface ConfirmationDialogRawProps {
   onClose: (value?: string) => void
 }
 
-const ConfirmationDialogRaw = (props: ConfirmationDialogRawProps) => {
+const ConfirmationDialogRaw = React.forwardRef<
+  HTMLDivElement,
+  ConfirmationDialogRawProps
+>((props, ref) => {
   const { onClose, value: valueProp, open, ...other } = props
   const [value, setValue] = React.useState(valueProp)
   const radioGroupRef = React.useRef<HTMLElement>(null)
@@ -740,7 +743,7 @@ const ConfirmationDialogRaw = (props: ConfirmationDialogRawProps) => {
       </DialogActions>
     </Dialog>
   )
-}
+})
 
 export const ConfirmationDialog = story<DialogProps>(
   () => {
