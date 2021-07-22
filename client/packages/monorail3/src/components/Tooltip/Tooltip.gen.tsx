@@ -4,5 +4,9 @@ import {
   default as MUITooltip,
   TooltipProps as MUITooltipProps,
 } from '@material-ui/core/Tooltip'
-export type TooltipProps = MUITooltipProps
-export const Tooltip = (props: TooltipProps) => <MUITooltip {...props} />
+export type TooltipProps = MUITooltipProps & {
+  ref?: React.ForwardedRef<HTMLDivElement>
+}
+export const Tooltip = React.forwardRef((props, ref) => (
+  <MUITooltip ref={ref} {...props} />
+)) as (props: TooltipProps) => ReturnType<typeof MUITooltip>
