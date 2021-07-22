@@ -15,7 +15,7 @@ export default { ...defaultStoryMeta }
  */
 const Template = story<ListSubheaderProps>(
   args => <ListSubheader {...args} />,
-  { args: {} },
+  { args: { children: 'List Subheader' } },
 )
 /** Default story for ListSubheader (edit/remove by hand if needed) */
 export const Default = story(Template)

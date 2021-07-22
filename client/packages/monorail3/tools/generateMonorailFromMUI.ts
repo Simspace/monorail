@@ -182,7 +182,12 @@ const modules: Array<ModuleInfo> = [
     name: 'AccordionSummary',
     storybookFolder: storybookFolderSurfaces,
   },
-  { name: 'Alert', storybookFolder: storybookFolderFeedback },
+  {
+    name: 'Alert',
+    storybookFolder: storybookFolderFeedback,
+    monorailComponentWithForwardRef: true,
+    monorailComponentRefType: 'HTMLDivElement',
+  },
   { name: 'AlertTitle', storybookFolder: storybookFolderFeedback },
   { name: 'AppBar', storybookFolder: storybookFolderSurfaces },
   {
@@ -366,6 +371,8 @@ const modules: Array<ModuleInfo> = [
   {
     name: 'IconButton',
     storybookFolder: storybookFolderInputs,
+    monorailComponentWithForwardRef: true,
+    monorailComponentRefType: 'HTMLButtonElement',
   },
   {
     name: 'ImageList',
@@ -687,6 +694,8 @@ const modules: Array<ModuleInfo> = [
   {
     name: 'Tooltip',
     storybookFolder: storybookFolderFeedback,
+    monorailComponentWithForwardRef: true,
+    monorailComponentRefType: 'HTMLDivElement',
   },
   {
     name: 'Typography',

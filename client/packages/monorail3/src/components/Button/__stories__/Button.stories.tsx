@@ -134,7 +134,9 @@ export const Sizes = story<ButtonProps>(
     parameters: {
       docs: {
         description: {
-          story: `For larger or smaller buttons, use the size prop.`,
+          story: `For larger or smaller buttons, use the size prop.
+
+**Note:** there is a known issue with size not working right now - this will be investigated/fixed during the custom theming effort.`,
         },
       },
     },
