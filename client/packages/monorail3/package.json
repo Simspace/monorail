@@ -39,14 +39,18 @@
   "resolutions": {},
   "main": "./dist/index.js",
   "scripts": {
-    "test": "jest",
-    "storybook": "start-storybook -p 6006 -s public",
-    "build-storybook": "build-storybook -s public",
+    "prebuild": "yarn generate-barrel",
     "build": "tsc",
+    "postbuild": "yarn clean-barrel",
+    "test": "jest",
+    "clean": "rm -rf dist/ node_modules/ && yarn clean-barrel",
     "prettier": "../../node_modules/.bin/prettier './src/**/*{.ts,.tsx}' --write",
-    "cleangen": "find ./src/components -name '*.gen.*' -print | xargs rm && yarn gen",
+    "generate-barrel": "barrelsby --directory ./src --exclude '(__tests__)|(__stories__)|(.gen.tsx)' --delete && yarn prettier",
+    "clean-barrel": "rm src/index.ts",
     "gen": "./tools/gen",
-    "barrels": "barrelsby --directory ./src --exclude '(__tests__)|(__stories__)|(.gen.tsx)' --delete && yarn prettier"
+    "clean-gen": "find ./src/components -name '*.gen.*' -print | xargs rm && yarn gen",
+    "storybook": "start-storybook -p 6006 -s public",
+    "build-storybook": "build-storybook -s public"
   },
   "jest": {
     "testRegex": "^.+(jest|test)\\.(ts|tsx)$",
