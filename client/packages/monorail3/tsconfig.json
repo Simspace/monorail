@@ -12,9 +12,9 @@
     "stripInternal": true,
     "outDir": "./dist",
     "skipLibCheck": true,
-    "rootDir": "src",
+    "rootDir": ".",
     "strict": true
   },
-  "include": ["src/**/*"],
-  "exclude": ["node_modules", "**/__tests__/**", "**/__stories__/**"]
+  "include": ["src/**/*", "tools/**/*"],
+  "exclude": ["node_modules"]
 }
