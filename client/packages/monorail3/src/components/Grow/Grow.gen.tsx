@@ -4,5 +4,7 @@ import {
   default as MUIGrow,
   GrowProps as MUIGrowProps,
 } from '@material-ui/core/Grow'
-export type GrowProps = MUIGrowProps
-export const Grow = (props: GrowProps) => <MUIGrow {...props} />
+export type GrowProps = MUIGrowProps & { ref?: React.ForwardedRef<unknown> }
+export const Grow = React.forwardRef((props, ref) => (
+  <MUIGrow ref={ref} {...props} />
+)) as (props: GrowProps) => ReturnType<typeof MUIGrow>

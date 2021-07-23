@@ -279,6 +279,8 @@ const modules: Array<ModuleInfo> = [
   {
     name: 'Collapse',
     storybookFolder: storybookFolderUtils,
+    monorailComponentWithForwardRef: true,
+    monorailComponentRefType: 'unknown',
   },
   {
     name: 'Container',
@@ -291,6 +293,8 @@ const modules: Array<ModuleInfo> = [
   {
     name: 'Dialog',
     storybookFolder: storybookFolderFeedback,
+    monorailComponentWithForwardRef: true,
+    monorailComponentRefType: 'HTMLDivElement',
   },
   {
     name: 'DialogActions',
@@ -303,6 +307,8 @@ const modules: Array<ModuleInfo> = [
   {
     name: 'DialogContentText',
     storybookFolder: storybookFolderFeedback,
+    monorailComponentWithForwardRef: true,
+    monorailComponentRefType: 'HTMLElement',
   },
   {
     name: 'DialogTitle',
@@ -323,6 +329,8 @@ const modules: Array<ModuleInfo> = [
   {
     name: 'Fade',
     storybookFolder: storybookFolderUtils,
+    monorailComponentWithForwardRef: true,
+    monorailComponentRefType: 'unknown',
   },
   {
     name: 'FilledInput',
@@ -359,6 +367,8 @@ const modules: Array<ModuleInfo> = [
   {
     name: 'Grow',
     storybookFolder: storybookFolderUtils,
+    monorailComponentWithForwardRef: true,
+    monorailComponentRefType: 'unknown',
   },
   {
     name: 'Hidden',
@@ -520,6 +530,8 @@ const modules: Array<ModuleInfo> = [
   {
     name: 'RadioGroup',
     storybookFolder: storybookFolderInputs,
+    monorailComponentWithForwardRef: true,
+    monorailComponentRefType: 'unknown',
   },
   {
     name: 'Rating',
@@ -544,6 +556,8 @@ const modules: Array<ModuleInfo> = [
   {
     name: 'Slide',
     storybookFolder: storybookFolderUtils,
+    monorailComponentWithForwardRef: true,
+    monorailComponentRefType: 'unknown',
   },
   {
     name: 'Slider',
@@ -705,6 +719,8 @@ const modules: Array<ModuleInfo> = [
   {
     name: 'Zoom',
     storybookFolder: storybookFolderUtils,
+    monorailComponentWithForwardRef: true,
+    monorailComponentRefType: 'unknown',
   },
 ]
 
