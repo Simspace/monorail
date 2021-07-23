@@ -319,6 +319,8 @@ const modules: Array<ModuleInfo> = [
   {
     name: 'Fab',
     storybookFolder: storybookFolderInputs,
+    monorailComponentWithForwardRef: true,
+    monorailComponentRefType: 'HTMLButtonElement',
   },
   {
     name: 'Fade',
