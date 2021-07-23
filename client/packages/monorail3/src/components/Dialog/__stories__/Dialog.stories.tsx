@@ -118,14 +118,16 @@ const Template = story<DialogProps>(
     }
 
     return (
-      <div>
-        <Typography variant="subtitle1" component="div">
-          Selected: {selectedValue}
-        </Typography>
-        <br />
-        <Button variant="outlined" onClick={handleClickOpen}>
-          Open simple dialog
-        </Button>
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
+        <div>
+          <Typography variant="subtitle1" component="div">
+            Selected: {selectedValue}
+          </Typography>
+          <br />
+          <Button variant="outlined" onClick={handleClickOpen}>
+            Open simple dialog
+          </Button>
+        </div>
         <SimpleDialog
           selectedValue={selectedValue}
           open={open}
@@ -154,7 +156,7 @@ export const AlertDialog = story<DialogProps>(
     }
 
     return (
-      <div>
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
         <Button variant="outlined" onClick={handleClickOpen}>
           Open alert dialog
         </Button>
@@ -227,7 +229,7 @@ export const Transitions = story<DialogProps>(
     }
 
     return (
-      <div>
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
         <Button variant="outlined" onClick={handleClickOpen}>
           Slide in alert dialog
         </Button>
@@ -278,7 +280,7 @@ export const FormDialog = story<DialogProps>(
     }
 
     return (
-      <div>
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
         <Button variant="outlined" onClick={handleClickOpen}>
           Open form dialog
         </Button>
@@ -369,7 +371,7 @@ export const CustomizedDialogs = story<DialogProps>(
     }
 
     return (
-      <div>
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
         <Button variant="outlined" onClick={handleClickOpen}>
           Open dialog
         </Button>
@@ -443,7 +445,7 @@ export const FullScreenDialog = story<DialogProps>(() => {
   }
 
   return (
-    <div>
+    <div style={{ display: 'flex', justifyContent: 'center' }}>
       <Button variant="outlined" onClick={handleClickOpen}>
         Open full-screen dialog
       </Button>
@@ -517,7 +519,7 @@ export const OptionalSizes = story<DialogProps>(
     }
 
     return (
-      <React.Fragment>
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
         <Button variant="outlined" onClick={handleClickOpen}>
           Open max-width dialog
         </Button>
@@ -578,7 +580,7 @@ export const OptionalSizes = story<DialogProps>(
             <Button onClick={handleClose}>Close</Button>
           </DialogActions>
         </Dialog>
-      </React.Fragment>
+      </div>
     )
   },
   {
@@ -608,7 +610,7 @@ export const ResponsiveDialog = story<DialogProps>(
     }
 
     return (
-      <div>
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
         <Button variant="outlined" onClick={handleClickOpen}>
           Open responsive dialog
         </Button>
@@ -763,7 +765,14 @@ export const ConfirmationDialog = story<DialogProps>(
     }
 
     return (
-      <Box sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+      <Box
+        sx={{
+          width: '100%',
+          maxWidth: 360,
+          bgcolor: 'background.paper',
+          margin: 'auto',
+        }}
+      >
         <List component="div" role="group">
           <ListItem button divider disabled>
             <ListItemText primary="Interruptions" />
@@ -831,7 +840,7 @@ export const DraggableDialog = story<DialogProps>(
     }
 
     return (
-      <div>
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
         <Button variant="outlined" onClick={handleClickOpen}>
           Open draggable dialog
         </Button>
@@ -897,7 +906,7 @@ export const ScrollDialog = story<DialogProps>(
     }, [open])
 
     return (
-      <div>
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
         <Button onClick={handleClickOpen('paper')}>scroll=paper</Button>
         <Button onClick={handleClickOpen('body')}>scroll=body</Button>
         <Dialog
