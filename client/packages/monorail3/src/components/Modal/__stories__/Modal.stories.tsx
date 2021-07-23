@@ -28,7 +28,7 @@ const Template = story<ModalProps>(
     const handleClose = () => setOpen(false)
 
     return (
-      <div>
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
         <Button onClick={handleOpen}>Open modal</Button>
         <Modal
           open={open}
@@ -95,7 +95,7 @@ export const ModalUnstyledDemo = story<ModalProps>(
     const handleClose = () => setOpen(false)
 
     return (
-      <div>
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
         <button type="button" onClick={handleOpen}>
           Open modal
         </button>
@@ -190,7 +190,7 @@ export const NestedModal = story<ModalProps>(
     }
 
     return (
-      <div>
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
         <Button onClick={handleOpen}>Open modal</Button>
         <Modal
           open={open}
@@ -228,7 +228,7 @@ export const TransitionsModal = story<ModalProps>(
     const handleClose = () => setOpen(false)
 
     return (
-      <div>
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
         <Button onClick={handleOpen}>Open modal</Button>
         <Modal
           aria-labelledby="transition-modal-title"
@@ -296,7 +296,7 @@ export const KeepMountedModal = story<ModalProps>(
     const handleClose = () => setOpen(false)
 
     return (
-      <div>
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
         <Button onClick={handleOpen}>Open modal</Button>
         <Modal
           keepMounted
