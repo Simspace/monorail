@@ -4,7 +4,9 @@ import {
   default as MUIRadioGroup,
   RadioGroupProps as MUIRadioGroupProps,
 } from '@material-ui/core/RadioGroup'
-export type RadioGroupProps = MUIRadioGroupProps
-export const RadioGroup = (props: RadioGroupProps) => (
-  <MUIRadioGroup {...props} />
-)
+export type RadioGroupProps = MUIRadioGroupProps & {
+  ref?: React.ForwardedRef<unknown>
+}
+export const RadioGroup = React.forwardRef((props, ref) => (
+  <MUIRadioGroup ref={ref} {...props} />
+)) as (props: RadioGroupProps) => ReturnType<typeof MUIRadioGroup>

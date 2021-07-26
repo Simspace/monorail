@@ -8,10 +8,9 @@ import {
 export type FabProps<
   D extends React.ElementType = FabTypeMap['defaultComponent'],
   P = {}
-> = MUIFabProps<D, P>
-export const Fab = <
-  D extends React.ElementType = FabTypeMap['defaultComponent'],
-  P = {}
->(
+> = MUIFabProps<D, P> & { ref?: React.ForwardedRef<HTMLButtonElement> }
+export const Fab = React.forwardRef((props, ref) => (
+  <MUIFab ref={ref} {...props} />
+)) as <D extends React.ElementType = FabTypeMap['defaultComponent'], P = {}>(
   props: FabProps<D, P>,
-) => <MUIFab {...props} />
+) => ReturnType<typeof MUIFab>
