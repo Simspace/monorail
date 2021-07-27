@@ -27,7 +27,16 @@ import { Alert } from '../../Alert/Alert'
 /**
  * Metadata for Drawer stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default {
+  ...defaultStoryMeta,
+  parameters: {
+    docs: {
+      inlineStories: false,
+      iframeHeight: 400,
+    },
+  },
+}
+
 /**
  * Story template (edit/remove by hand if needed)
  *
@@ -143,8 +152,6 @@ export const ResponsiveDrawer = story<DrawerProps>(
   () => {
     const drawerWidth = 240
 
-    const [visible, setVisible] = React.useState(false)
-
     const [mobileOpen, setMobileOpen] = React.useState(false)
 
     const handleDrawerToggle = () => {
@@ -182,115 +189,102 @@ export const ResponsiveDrawer = story<DrawerProps>(
     const container = window.document.body
 
     return (
-      <>
-        <Typography>
-          Click `Show Example` to show the UI components for this example. Use a
-          full-screen storybook window, and resize the window to see the drawer
-          collapse into the side menu on mobile.
-        </Typography>
-        <Button onClick={() => setVisible(!visible)}>
-          {visible ? 'Hide' : 'Show'} Example
-        </Button>
-        {visible && (
-          <Box sx={{ display: 'flex' }}>
-            <CssBaseline />
-            <AppBar
-              position="fixed"
-              sx={{
-                width: { sm: `calc(100% - ${drawerWidth}px)` },
-                ml: { sm: `${drawerWidth}px` },
-              }}
+      <Box sx={{ display: 'flex' }}>
+        <CssBaseline />
+        <AppBar
+          position="fixed"
+          sx={{
+            width: { sm: `calc(100% - ${drawerWidth}px)` },
+            ml: { sm: `${drawerWidth}px` },
+          }}
+        >
+          <Toolbar>
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              edge="start"
+              onClick={handleDrawerToggle}
+              sx={{ mr: 2, display: { sm: 'none' } }}
             >
-              <Toolbar>
-                <IconButton
-                  color="inherit"
-                  aria-label="open drawer"
-                  edge="start"
-                  onClick={handleDrawerToggle}
-                  sx={{ mr: 2, display: { sm: 'none' } }}
-                >
-                  <MenuIcon />
-                </IconButton>
-                <Typography variant="h6" noWrap component="div">
-                  Responsive drawer
-                </Typography>
-              </Toolbar>
-            </AppBar>
-            <Box
-              component="nav"
-              sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
-              aria-label="mailbox folders"
-            >
-              {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
-              <Drawer
-                container={container}
-                variant="temporary"
-                open={mobileOpen}
-                onClose={handleDrawerToggle}
-                ModalProps={{
-                  keepMounted: true, // Better open performance on mobile.
-                }}
-                sx={{
-                  display: { xs: 'block', sm: 'none' },
-                  '& .MuiDrawer-paper': {
-                    boxSizing: 'border-box',
-                    width: drawerWidth,
-                  },
-                }}
-              >
-                {drawer}
-              </Drawer>
-              <Drawer
-                variant="permanent"
-                sx={{
-                  display: { xs: 'none', sm: 'block' },
-                  '& .MuiDrawer-paper': {
-                    boxSizing: 'border-box',
-                    width: drawerWidth,
-                  },
-                }}
-                open
-              >
-                {drawer}
-              </Drawer>
-            </Box>
-            <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-              <Toolbar />
-              <Typography paragraph>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                Rhoncus dolor purus non enim praesent elementum facilisis leo
-                vel. Risus at ultrices mi tempus imperdiet. Semper risus in
-                hendrerit gravida rutrum quisque non tellus. Convallis convallis
-                tellus id interdum velit laoreet id donec ultrices. Odio morbi
-                quis commodo odio aenean sed adipiscing. Amet nisl suscipit
-                adipiscing bibendum est ultricies integer quis. Cursus euismod
-                quis viverra nibh cras. Metus vulputate eu scelerisque felis
-                imperdiet proin fermentum leo. Mauris commodo quis imperdiet
-                massa tincidunt. Cras tincidunt lobortis feugiat vivamus at
-                augue. At augue eget arcu dictum varius duis at consectetur
-                lorem. Velit sed ullamcorper morbi tincidunt. Lorem donec massa
-                sapien faucibus et molestie ac.
-              </Typography>
-              <Typography paragraph>
-                Consequat mauris nunc congue nisi vitae suscipit. Fringilla est
-                ullamcorper eget nulla facilisi etiam dignissim diam. Pulvinar
-                elementum integer enim neque volutpat ac tincidunt. Ornare
-                suspendisse sed nisi lacus sed viverra tellus. Purus sit amet
-                volutpat consequat mauris. Elementum eu facilisis sed odio
-                morbi. Euismod lacinia at quis risus sed vulputate odio. Morbi
-                tincidunt ornare massa eget egestas purus viverra accumsan in.
-                In hendrerit gravida rutrum quisque non tellus orci ac.
-                Pellentesque nec nam aliquam sem et tortor. Habitant morbi
-                tristique senectus et. Adipiscing elit duis tristique
-                sollicitudin nibh sit. Ornare aenean euismod elementum nisi quis
-                eleifend. Commodo viverra maecenas accumsan lacus vel facilisis.
-                Nulla posuere sollicitudin aliquam ultrices sagittis orci a.
-              </Typography>
-            </Box>
-          </Box>
-        )}
-      </>
+              <MenuIcon />
+            </IconButton>
+            <Typography variant="h6" noWrap component="div">
+              Responsive drawer
+            </Typography>
+          </Toolbar>
+        </AppBar>
+        <Box
+          component="nav"
+          sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
+          aria-label="mailbox folders"
+        >
+          {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
+          <Drawer
+            container={container}
+            variant="temporary"
+            open={mobileOpen}
+            onClose={handleDrawerToggle}
+            ModalProps={{
+              keepMounted: true, // Better open performance on mobile.
+            }}
+            sx={{
+              display: { xs: 'block', sm: 'none' },
+              '& .MuiDrawer-paper': {
+                boxSizing: 'border-box',
+                width: drawerWidth,
+              },
+            }}
+          >
+            {drawer}
+          </Drawer>
+          <Drawer
+            variant="permanent"
+            sx={{
+              display: { xs: 'none', sm: 'block' },
+              '& .MuiDrawer-paper': {
+                boxSizing: 'border-box',
+                width: drawerWidth,
+              },
+            }}
+            open
+          >
+            {drawer}
+          </Drawer>
+        </Box>
+        <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+          <Toolbar />
+          <Typography paragraph>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Rhoncus
+            dolor purus non enim praesent elementum facilisis leo vel. Risus at
+            ultrices mi tempus imperdiet. Semper risus in hendrerit gravida
+            rutrum quisque non tellus. Convallis convallis tellus id interdum
+            velit laoreet id donec ultrices. Odio morbi quis commodo odio aenean
+            sed adipiscing. Amet nisl suscipit adipiscing bibendum est ultricies
+            integer quis. Cursus euismod quis viverra nibh cras. Metus vulputate
+            eu scelerisque felis imperdiet proin fermentum leo. Mauris commodo
+            quis imperdiet massa tincidunt. Cras tincidunt lobortis feugiat
+            vivamus at augue. At augue eget arcu dictum varius duis at
+            consectetur lorem. Velit sed ullamcorper morbi tincidunt. Lorem
+            donec massa sapien faucibus et molestie ac.
+          </Typography>
+          <Typography paragraph>
+            Consequat mauris nunc congue nisi vitae suscipit. Fringilla est
+            ullamcorper eget nulla facilisi etiam dignissim diam. Pulvinar
+            elementum integer enim neque volutpat ac tincidunt. Ornare
+            suspendisse sed nisi lacus sed viverra tellus. Purus sit amet
+            volutpat consequat mauris. Elementum eu facilisis sed odio morbi.
+            Euismod lacinia at quis risus sed vulputate odio. Morbi tincidunt
+            ornare massa eget egestas purus viverra accumsan in. In hendrerit
+            gravida rutrum quisque non tellus orci ac. Pellentesque nec nam
+            aliquam sem et tortor. Habitant morbi tristique senectus et.
+            Adipiscing elit duis tristique sollicitudin nibh sit. Ornare aenean
+            euismod elementum nisi quis eleifend. Commodo viverra maecenas
+            accumsan lacus vel facilisis. Nulla posuere sollicitudin aliquam
+            ultrices sagittis orci a.
+          </Typography>
+        </Box>
+      </Box>
     )
   },
   {
@@ -359,7 +353,6 @@ const PersistentDrawerHeader = styled('div')(({ theme }) => ({
 
 export const PersistentDrawer = story<DrawerProps>(
   () => {
-    const [visible, setVisible] = React.useState(false)
     const theme = useTheme()
     const [open, setOpen] = React.useState(false)
 
@@ -372,116 +365,103 @@ export const PersistentDrawer = story<DrawerProps>(
     }
 
     return (
-      <>
-        <Typography>
-          Click `Show Example` to show the UI components for this example.
-        </Typography>
-        <Button onClick={() => setVisible(!visible)}>
-          {visible ? 'Hide' : 'Show'} Example
-        </Button>
-        {visible && (
-          <Box sx={{ display: 'flex' }}>
-            <CssBaseline />
-            <PersistentDrawerAppBar position="fixed" open={open}>
-              <Toolbar>
-                <IconButton
-                  color="inherit"
-                  aria-label="open drawer"
-                  onClick={handleDrawerOpen}
-                  edge="start"
-                  sx={{ mr: 2, ...(open && { display: 'none' }) }}
-                >
-                  <MenuIcon />
-                </IconButton>
-                <Typography variant="h6" noWrap component="div">
-                  Persistent drawer
-                </Typography>
-              </Toolbar>
-            </PersistentDrawerAppBar>
-            <Drawer
-              sx={{
-                width: drawerWidth,
-                flexShrink: 0,
-                '& .MuiDrawer-paper': {
-                  width: drawerWidth,
-                  boxSizing: 'border-box',
-                },
-              }}
-              variant="persistent"
-              anchor="left"
-              open={open}
+      <Box sx={{ display: 'flex' }}>
+        <CssBaseline />
+        <PersistentDrawerAppBar position="fixed" open={open}>
+          <Toolbar>
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              onClick={handleDrawerOpen}
+              edge="start"
+              sx={{ mr: 2, ...(open && { display: 'none' }) }}
             >
-              <PersistentDrawerHeader>
-                <IconButton onClick={handleDrawerClose}>
-                  {theme.direction === 'ltr' ? (
-                    <ChevronLeftIcon />
-                  ) : (
-                    <ChevronRightIcon />
-                  )}
-                </IconButton>
-              </PersistentDrawerHeader>
-              <Divider />
-              <List>
-                {['Inbox', 'Starred', 'Send email', 'Drafts'].map(
-                  (text, index) => (
-                    <ListItem button key={text}>
-                      <ListItemIcon>
-                        {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                      </ListItemIcon>
-                      <ListItemText primary={text} />
-                    </ListItem>
-                  ),
-                )}
-              </List>
-              <Divider />
-              <List>
-                {['All mail', 'Trash', 'Spam'].map((text, index) => (
-                  <ListItem button key={text}>
-                    <ListItemIcon>
-                      {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                    </ListItemIcon>
-                    <ListItemText primary={text} />
-                  </ListItem>
-                ))}
-              </List>
-            </Drawer>
-            <PersistentDrawerMain open={open}>
-              <PersistentDrawerHeader />
-              <Typography paragraph>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                Rhoncus dolor purus non enim praesent elementum facilisis leo
-                vel. Risus at ultrices mi tempus imperdiet. Semper risus in
-                hendrerit gravida rutrum quisque non tellus. Convallis convallis
-                tellus id interdum velit laoreet id donec ultrices. Odio morbi
-                quis commodo odio aenean sed adipiscing. Amet nisl suscipit
-                adipiscing bibendum est ultricies integer quis. Cursus euismod
-                quis viverra nibh cras. Metus vulputate eu scelerisque felis
-                imperdiet proin fermentum leo. Mauris commodo quis imperdiet
-                massa tincidunt. Cras tincidunt lobortis feugiat vivamus at
-                augue. At augue eget arcu dictum varius duis at consectetur
-                lorem. Velit sed ullamcorper morbi tincidunt. Lorem donec massa
-                sapien faucibus et molestie ac.
-              </Typography>
-              <Typography paragraph>
-                Consequat mauris nunc congue nisi vitae suscipit. Fringilla est
-                ullamcorper eget nulla facilisi etiam dignissim diam. Pulvinar
-                elementum integer enim neque volutpat ac tincidunt. Ornare
-                suspendisse sed nisi lacus sed viverra tellus. Purus sit amet
-                volutpat consequat mauris. Elementum eu facilisis sed odio
-                morbi. Euismod lacinia at quis risus sed vulputate odio. Morbi
-                tincidunt ornare massa eget egestas purus viverra accumsan in.
-                In hendrerit gravida rutrum quisque non tellus orci ac.
-                Pellentesque nec nam aliquam sem et tortor. Habitant morbi
-                tristique senectus et. Adipiscing elit duis tristique
-                sollicitudin nibh sit. Ornare aenean euismod elementum nisi quis
-                eleifend. Commodo viverra maecenas accumsan lacus vel facilisis.
-                Nulla posuere sollicitudin aliquam ultrices sagittis orci a.
-              </Typography>
-            </PersistentDrawerMain>
-          </Box>
-        )}
-      </>
+              <MenuIcon />
+            </IconButton>
+            <Typography variant="h6" noWrap component="div">
+              Persistent drawer
+            </Typography>
+          </Toolbar>
+        </PersistentDrawerAppBar>
+        <Drawer
+          sx={{
+            width: drawerWidth,
+            flexShrink: 0,
+            '& .MuiDrawer-paper': {
+              width: drawerWidth,
+              boxSizing: 'border-box',
+            },
+          }}
+          variant="persistent"
+          anchor="left"
+          open={open}
+        >
+          <PersistentDrawerHeader>
+            <IconButton onClick={handleDrawerClose}>
+              {theme.direction === 'ltr' ? (
+                <ChevronLeftIcon />
+              ) : (
+                <ChevronRightIcon />
+              )}
+            </IconButton>
+          </PersistentDrawerHeader>
+          <Divider />
+          <List>
+            {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+              <ListItem button key={text}>
+                <ListItemIcon>
+                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                </ListItemIcon>
+                <ListItemText primary={text} />
+              </ListItem>
+            ))}
+          </List>
+          <Divider />
+          <List>
+            {['All mail', 'Trash', 'Spam'].map((text, index) => (
+              <ListItem button key={text}>
+                <ListItemIcon>
+                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                </ListItemIcon>
+                <ListItemText primary={text} />
+              </ListItem>
+            ))}
+          </List>
+        </Drawer>
+        <PersistentDrawerMain open={open}>
+          <PersistentDrawerHeader />
+          <Typography paragraph>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Rhoncus
+            dolor purus non enim praesent elementum facilisis leo vel. Risus at
+            ultrices mi tempus imperdiet. Semper risus in hendrerit gravida
+            rutrum quisque non tellus. Convallis convallis tellus id interdum
+            velit laoreet id donec ultrices. Odio morbi quis commodo odio aenean
+            sed adipiscing. Amet nisl suscipit adipiscing bibendum est ultricies
+            integer quis. Cursus euismod quis viverra nibh cras. Metus vulputate
+            eu scelerisque felis imperdiet proin fermentum leo. Mauris commodo
+            quis imperdiet massa tincidunt. Cras tincidunt lobortis feugiat
+            vivamus at augue. At augue eget arcu dictum varius duis at
+            consectetur lorem. Velit sed ullamcorper morbi tincidunt. Lorem
+            donec massa sapien faucibus et molestie ac.
+          </Typography>
+          <Typography paragraph>
+            Consequat mauris nunc congue nisi vitae suscipit. Fringilla est
+            ullamcorper eget nulla facilisi etiam dignissim diam. Pulvinar
+            elementum integer enim neque volutpat ac tincidunt. Ornare
+            suspendisse sed nisi lacus sed viverra tellus. Purus sit amet
+            volutpat consequat mauris. Elementum eu facilisis sed odio morbi.
+            Euismod lacinia at quis risus sed vulputate odio. Morbi tincidunt
+            ornare massa eget egestas purus viverra accumsan in. In hendrerit
+            gravida rutrum quisque non tellus orci ac. Pellentesque nec nam
+            aliquam sem et tortor. Habitant morbi tristique senectus et.
+            Adipiscing elit duis tristique sollicitudin nibh sit. Ornare aenean
+            euismod elementum nisi quis eleifend. Commodo viverra maecenas
+            accumsan lacus vel facilisis. Nulla posuere sollicitudin aliquam
+            ultrices sagittis orci a.
+          </Typography>
+        </PersistentDrawerMain>
+      </Box>
     )
   },
   {
@@ -571,7 +551,6 @@ const MiniVariantDrawer = styled(Drawer, {
 
 export const MiniDrawer = story<DrawerProps>(
   () => {
-    const [visible, setVisible] = React.useState(false)
     const theme = useTheme()
     const [open, setOpen] = React.useState(false)
 
@@ -584,107 +563,94 @@ export const MiniDrawer = story<DrawerProps>(
     }
 
     return (
-      <>
-        <Typography>
-          Click `Show Example` to show the UI components for this example.
-        </Typography>
-        <Button onClick={() => setVisible(!visible)}>
-          {visible ? 'Hide' : 'Show'} Example
-        </Button>
-        {visible && (
-          <Box sx={{ display: 'flex' }}>
-            <CssBaseline />
-            <MiniVariantAppBar position="fixed" open={open}>
-              <Toolbar>
-                <IconButton
-                  color="inherit"
-                  aria-label="open drawer"
-                  onClick={handleDrawerOpen}
-                  edge="start"
-                  sx={{
-                    marginRight: '36px',
-                    ...(open && { display: 'none' }),
-                  }}
-                >
-                  <MenuIcon />
-                </IconButton>
-                <Typography variant="h6" noWrap component="div">
-                  Mini variant drawer
-                </Typography>
-              </Toolbar>
-            </MiniVariantAppBar>
-            <MiniVariantDrawer variant="permanent" open={open}>
-              <DrawerHeader>
-                <IconButton onClick={handleDrawerClose}>
-                  {theme.direction === 'rtl' ? (
-                    <ChevronRightIcon />
-                  ) : (
-                    <ChevronLeftIcon />
-                  )}
-                </IconButton>
-              </DrawerHeader>
-              <Divider />
-              <List>
-                {['Inbox', 'Starred', 'Send email', 'Drafts'].map(
-                  (text, index) => (
-                    <ListItem button key={text}>
-                      <ListItemIcon>
-                        {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                      </ListItemIcon>
-                      <ListItemText primary={text} />
-                    </ListItem>
-                  ),
-                )}
-              </List>
-              <Divider />
-              <List>
-                {['All mail', 'Trash', 'Spam'].map((text, index) => (
-                  <ListItem button key={text}>
-                    <ListItemIcon>
-                      {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                    </ListItemIcon>
-                    <ListItemText primary={text} />
-                  </ListItem>
-                ))}
-              </List>
-            </MiniVariantDrawer>
-            <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-              <DrawerHeader />
-              <Typography paragraph>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                Rhoncus dolor purus non enim praesent elementum facilisis leo
-                vel. Risus at ultrices mi tempus imperdiet. Semper risus in
-                hendrerit gravida rutrum quisque non tellus. Convallis convallis
-                tellus id interdum velit laoreet id donec ultrices. Odio morbi
-                quis commodo odio aenean sed adipiscing. Amet nisl suscipit
-                adipiscing bibendum est ultricies integer quis. Cursus euismod
-                quis viverra nibh cras. Metus vulputate eu scelerisque felis
-                imperdiet proin fermentum leo. Mauris commodo quis imperdiet
-                massa tincidunt. Cras tincidunt lobortis feugiat vivamus at
-                augue. At augue eget arcu dictum varius duis at consectetur
-                lorem. Velit sed ullamcorper morbi tincidunt. Lorem donec massa
-                sapien faucibus et molestie ac.
-              </Typography>
-              <Typography paragraph>
-                Consequat mauris nunc congue nisi vitae suscipit. Fringilla est
-                ullamcorper eget nulla facilisi etiam dignissim diam. Pulvinar
-                elementum integer enim neque volutpat ac tincidunt. Ornare
-                suspendisse sed nisi lacus sed viverra tellus. Purus sit amet
-                volutpat consequat mauris. Elementum eu facilisis sed odio
-                morbi. Euismod lacinia at quis risus sed vulputate odio. Morbi
-                tincidunt ornare massa eget egestas purus viverra accumsan in.
-                In hendrerit gravida rutrum quisque non tellus orci ac.
-                Pellentesque nec nam aliquam sem et tortor. Habitant morbi
-                tristique senectus et. Adipiscing elit duis tristique
-                sollicitudin nibh sit. Ornare aenean euismod elementum nisi quis
-                eleifend. Commodo viverra maecenas accumsan lacus vel facilisis.
-                Nulla posuere sollicitudin aliquam ultrices sagittis orci a.
-              </Typography>
-            </Box>
-          </Box>
-        )}
-      </>
+      <Box sx={{ display: 'flex' }}>
+        <CssBaseline />
+        <MiniVariantAppBar position="fixed" open={open}>
+          <Toolbar>
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              onClick={handleDrawerOpen}
+              edge="start"
+              sx={{
+                marginRight: '36px',
+                ...(open && { display: 'none' }),
+              }}
+            >
+              <MenuIcon />
+            </IconButton>
+            <Typography variant="h6" noWrap component="div">
+              Mini variant drawer
+            </Typography>
+          </Toolbar>
+        </MiniVariantAppBar>
+        <MiniVariantDrawer variant="permanent" open={open}>
+          <DrawerHeader>
+            <IconButton onClick={handleDrawerClose}>
+              {theme.direction === 'rtl' ? (
+                <ChevronRightIcon />
+              ) : (
+                <ChevronLeftIcon />
+              )}
+            </IconButton>
+          </DrawerHeader>
+          <Divider />
+          <List>
+            {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+              <ListItem button key={text}>
+                <ListItemIcon>
+                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                </ListItemIcon>
+                <ListItemText primary={text} />
+              </ListItem>
+            ))}
+          </List>
+          <Divider />
+          <List>
+            {['All mail', 'Trash', 'Spam'].map((text, index) => (
+              <ListItem button key={text}>
+                <ListItemIcon>
+                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                </ListItemIcon>
+                <ListItemText primary={text} />
+              </ListItem>
+            ))}
+          </List>
+        </MiniVariantDrawer>
+        <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+          <DrawerHeader />
+          <Typography paragraph>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Rhoncus
+            dolor purus non enim praesent elementum facilisis leo vel. Risus at
+            ultrices mi tempus imperdiet. Semper risus in hendrerit gravida
+            rutrum quisque non tellus. Convallis convallis tellus id interdum
+            velit laoreet id donec ultrices. Odio morbi quis commodo odio aenean
+            sed adipiscing. Amet nisl suscipit adipiscing bibendum est ultricies
+            integer quis. Cursus euismod quis viverra nibh cras. Metus vulputate
+            eu scelerisque felis imperdiet proin fermentum leo. Mauris commodo
+            quis imperdiet massa tincidunt. Cras tincidunt lobortis feugiat
+            vivamus at augue. At augue eget arcu dictum varius duis at
+            consectetur lorem. Velit sed ullamcorper morbi tincidunt. Lorem
+            donec massa sapien faucibus et molestie ac.
+          </Typography>
+          <Typography paragraph>
+            Consequat mauris nunc congue nisi vitae suscipit. Fringilla est
+            ullamcorper eget nulla facilisi etiam dignissim diam. Pulvinar
+            elementum integer enim neque volutpat ac tincidunt. Ornare
+            suspendisse sed nisi lacus sed viverra tellus. Purus sit amet
+            volutpat consequat mauris. Elementum eu facilisis sed odio morbi.
+            Euismod lacinia at quis risus sed vulputate odio. Morbi tincidunt
+            ornare massa eget egestas purus viverra accumsan in. In hendrerit
+            gravida rutrum quisque non tellus orci ac. Pellentesque nec nam
+            aliquam sem et tortor. Habitant morbi tristique senectus et.
+            Adipiscing elit duis tristique sollicitudin nibh sit. Ornare aenean
+            euismod elementum nisi quis eleifend. Commodo viverra maecenas
+            accumsan lacus vel facilisis. Nulla posuere sollicitudin aliquam
+            ultrices sagittis orci a.
+          </Typography>
+        </Box>
+      </Box>
     )
   },
   {
@@ -699,7 +665,3 @@ The mini variant is recommended for apps sections that need quick selection acce
     },
   },
 )
-
-export const More = () => {
-  return <Alert severity="info">See MUI Docs for more examples.</Alert>
-}

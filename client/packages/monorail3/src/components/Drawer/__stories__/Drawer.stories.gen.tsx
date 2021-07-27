@@ -6,10 +6,4 @@ import { Drawer, DrawerProps } from '../Drawer'
 export const defaultStoryMeta = {
   title: 'Navigation/Drawer',
   component: Drawer,
-  parameters: {
-    docs: {
-      inlineStories: false,
-      iframeHeight: 200,
-    },
-  },
 }
