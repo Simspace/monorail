@@ -14,7 +14,7 @@ export default { ...defaultStoryMeta }
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
 const Template = story<DialogContentTextProps>(
-  args => <DialogContentText {...args} />,
+  args => <DialogContentText {...args}>Dialog Content Text</DialogContentText>,
   { args: {} },
 )
 /** Default story for DialogContentText (edit/remove by hand if needed) */
