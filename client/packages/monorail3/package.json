@@ -26,11 +26,14 @@
     "@storybook/node-logger": "^6.2.9",
     "@storybook/preset-create-react-app": "^3.1.7",
     "@storybook/react": "^6.2.9",
+    "@types/react-transition-group": "4.4.2",
+    "barrelsby": "2.2.0",
     "jest": "27.0.4",
     "jest-axe": "5.0.1",
     "react": "17.0.2",
     "react-docgen-typescript": "2.0.0",
     "react-dom": "17.0.2",
+    "react-transition-group": "4.4.2",
     "styled-components": "5.3.0",
     "ts-morph": "11.0.0",
     "typescript": "4.3.2"
@@ -38,12 +41,18 @@
   "resolutions": {},
   "main": "./dist/index.js",
   "scripts": {
-    "test": "jest",
-    "storybook": "start-storybook -p 6006 -s public",
-    "build-storybook": "build-storybook -s public",
+    "prebuild": "yarn generate-barrel",
     "build": "tsc",
-    "cleangen": "find ./src/components -name '*.gen.*' -print | xargs rm && yarn gen",
-    "gen": "./tools/gen"
+    "postbuild": "yarn clean-barrel",
+    "test": "jest",
+    "clean": "rm -rf dist/ node_modules/ && yarn clean-barrel",
+    "prettier": "../../node_modules/.bin/prettier './src/**/*{.ts,.tsx}' --write",
+    "generate-barrel": "barrelsby --directory ./src --exclude '(__tests__)|(__stories__)|(.gen.tsx)' --delete && yarn prettier",
+    "clean-barrel": "rm src/index.ts",
+    "gen": "./tools/gen",
+    "clean-gen": "find ./src/components -name '*.gen.*' -print | xargs rm && yarn gen",
+    "storybook": "start-storybook -p 6006 -s public",
+    "build-storybook": "build-storybook -s public"
   },
   "jest": {
     "testRegex": "^.+(jest|test)\\.(ts|tsx)$",

@@ -3,6 +3,7 @@ import React from 'react'
 import { DialogActions, DialogActionsProps } from '../DialogActions'
 import { story } from '../../../__tests__/helpers/storybook'
 import { defaultStoryMeta } from './DialogActions.stories.gen'
+import { Button } from '../../Button/Button'
 /**
  * Metadata for DialogActions stories - update/extend as needed
  */
@@ -14,7 +15,12 @@ export default { ...defaultStoryMeta }
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
 const Template = story<DialogActionsProps>(
-  args => <DialogActions {...args} />,
+  args => (
+    <DialogActions {...args}>
+      <Button variant="text">Action 1</Button>
+      <Button variant="contained">Action 2</Button>
+    </DialogActions>
+  ),
   { args: {} },
 )
 /** Default story for DialogActions (edit/remove by hand if needed) */
