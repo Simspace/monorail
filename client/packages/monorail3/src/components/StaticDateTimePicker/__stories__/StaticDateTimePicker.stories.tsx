@@ -1,0 +1,34 @@
+// Edit this file to add new stories
+import React from 'react'
+import {
+  StaticDateTimePicker,
+  StaticDateTimePickerProps,
+} from '../StaticDateTimePicker'
+import { story } from '../../../__tests__/helpers/storybook'
+import { defaultStoryMeta } from './StaticDateTimePicker.stories.gen'
+import { action } from '@storybook/addon-actions'
+import { TextField } from '../../TextField/TextField'
+/**
+ * Metadata for StaticDateTimePicker stories - update/extend as needed
+ */
+export default { ...defaultStoryMeta }
+/**
+ * Story template (edit/remove by hand if needed)
+ *
+ * Note: there should be at least one "Default" story that uses this template with the "story" function.
+ * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
+ */
+const Template = story<StaticDateTimePickerProps<Date>>(
+  args => (
+    <StaticDateTimePicker
+      value={new Date()}
+      renderInput={params => <TextField {...params} />}
+      onChange={action('onChange')}
+      {...args}
+    />
+  ),
+  { args: {} },
+)
+/** Default story for StaticDateTimePicker (edit/remove by hand if needed) */
+export const Default = story(Template)
+// TODO: add more stories below
