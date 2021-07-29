@@ -131,12 +131,10 @@ export const UsePagination = story<PaginationProps>(
       <nav>
         <List>
           {items.map(({ page, type, selected, ...item }, index) => {
-            let children = null
-
-            if (type === 'start-ellipsis' || type === 'end-ellipsis') {
-              children = '…'
-            } else if (type === 'page') {
-              children = (
+            const children =
+              type === 'start-ellipsis' || type === 'end-ellipsis' ? (
+                '…'
+              ) : type === 'page' ? (
                 <button
                   type="button"
                   style={{
@@ -146,14 +144,11 @@ export const UsePagination = story<PaginationProps>(
                 >
                   {page}
                 </button>
-              )
-            } else {
-              children = (
+              ) : (
                 <button type="button" {...item}>
                   {type}
                 </button>
               )
-            }
 
             return <li key={index}>{children}</li>
           })}
