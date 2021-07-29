@@ -4,6 +4,6 @@ import { story } from '../../../__tests__/helpers/storybook'
 import { TableHead, TableHeadProps } from '../TableHead'
 /** This is intended to be exported (with possible extensions) as the default meta object for a story */
 export const defaultStoryMeta = {
-  title: 'Data Display/TableHead',
+  title: 'Data Display/Table/TableHead',
   component: TableHead,
 }

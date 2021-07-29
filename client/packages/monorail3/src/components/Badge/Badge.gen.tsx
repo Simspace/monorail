@@ -5,13 +5,20 @@ import {
   BadgeProps as MUIBadgeProps,
   BadgeTypeMap,
 } from '@material-ui/core/Badge'
+
+/**
+ * Props for Badge
+ */
 export type BadgeProps<
   D extends React.ElementType = BadgeTypeMap['defaultComponent'],
   P = {}
-> = MUIBadgeProps<D, P>
-export const Badge = <
-  D extends React.ElementType = BadgeTypeMap['defaultComponent'],
-  P = {}
->(
+> = MUIBadgeProps<D, P> & { ref?: React.ForwardedRef<HTMLSpanElement> }
+
+/**
+ * Badge
+ */
+export const Badge = React.forwardRef((props, ref) => (
+  <MUIBadge ref={ref} {...props} />
+)) as <D extends React.ElementType = BadgeTypeMap['defaultComponent'], P = {}>(
   props: BadgeProps<D, P>,
-) => <MUIBadge {...props} />
+) => JSX.Element

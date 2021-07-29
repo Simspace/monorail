@@ -5,12 +5,20 @@ import {
   FabProps as MUIFabProps,
   FabTypeMap,
 } from '@material-ui/core/Fab'
+
+/**
+ * Props for Fab
+ */
 export type FabProps<
   D extends React.ElementType = FabTypeMap['defaultComponent'],
   P = {}
 > = MUIFabProps<D, P> & { ref?: React.ForwardedRef<HTMLButtonElement> }
+
+/**
+ * Fab
+ */
 export const Fab = React.forwardRef((props, ref) => (
   <MUIFab ref={ref} {...props} />
 )) as <D extends React.ElementType = FabTypeMap['defaultComponent'], P = {}>(
   props: FabProps<D, P>,
-) => ReturnType<typeof MUIFab>
+) => JSX.Element

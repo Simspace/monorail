@@ -4,5 +4,17 @@ import {
   default as MUICheckbox,
   CheckboxProps as MUICheckboxProps,
 } from '@material-ui/core/Checkbox'
-export type CheckboxProps = MUICheckboxProps
-export const Checkbox = (props: CheckboxProps) => <MUICheckbox {...props} />
+
+/**
+ * Props for Checkbox
+ */
+export type CheckboxProps = MUICheckboxProps & {
+  ref?: React.ForwardedRef<unknown>
+}
+
+/**
+ * Checkbox
+ */
+export const Checkbox = React.forwardRef((props, ref) => (
+  <MUICheckbox ref={ref} {...props} />
+)) as (props: CheckboxProps) => JSX.Element

@@ -4,6 +4,6 @@ import { story } from '../../../__tests__/helpers/storybook'
 import { AccordionSummary, AccordionSummaryProps } from '../AccordionSummary'
 /** This is intended to be exported (with possible extensions) as the default meta object for a story */
 export const defaultStoryMeta = {
-  title: 'Surfaces/AccordionSummary',
+  title: 'Surfaces/Accordion/AccordionSummary',
   component: AccordionSummary,
 }

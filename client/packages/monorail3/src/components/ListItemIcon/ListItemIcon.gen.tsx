@@ -4,9 +4,17 @@ import {
   default as MUIListItemIcon,
   ListItemIconProps as MUIListItemIconProps,
 } from '@material-ui/core/ListItemIcon'
+
+/**
+ * Props for ListItemIcon
+ */
 export type ListItemIconProps = MUIListItemIconProps & {
   ref?: React.ForwardedRef<unknown>
 }
+
+/**
+ * ListItemIcon
+ */
 export const ListItemIcon = React.forwardRef((props, ref) => (
   <MUIListItemIcon ref={ref} {...props} />
-)) as (props: ListItemIconProps) => ReturnType<typeof MUIListItemIcon>
+)) as (props: ListItemIconProps) => JSX.Element

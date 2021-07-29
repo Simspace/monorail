@@ -5,13 +5,20 @@ import {
   AppBarProps as MUIAppBarProps,
   AppBarTypeMap,
 } from '@material-ui/core/AppBar'
+
+/**
+ * Props for AppBar
+ */
 export type AppBarProps<
   D extends React.ElementType = AppBarTypeMap['defaultComponent'],
   P = {}
-> = MUIAppBarProps<D, P>
-export const AppBar = <
-  D extends React.ElementType = AppBarTypeMap['defaultComponent'],
-  P = {}
->(
+> = MUIAppBarProps<D, P> & { ref?: React.ForwardedRef<unknown> }
+
+/**
+ * AppBar
+ */
+export const AppBar = React.forwardRef((props, ref) => (
+  <MUIAppBar ref={ref} {...props} />
+)) as <D extends React.ElementType = AppBarTypeMap['defaultComponent'], P = {}>(
   props: AppBarProps<D, P>,
-) => <MUIAppBar {...props} />
+) => JSX.Element

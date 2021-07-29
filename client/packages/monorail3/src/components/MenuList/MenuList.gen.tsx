@@ -4,9 +4,17 @@ import {
   default as MUIMenuList,
   MenuListProps as MUIMenuListProps,
 } from '@material-ui/core/MenuList'
+
+/**
+ * Props for MenuList
+ */
 export type MenuListProps = MUIMenuListProps & {
   ref?: React.ForwardedRef<unknown>
 }
+
+/**
+ * MenuList
+ */
 export const MenuList = React.forwardRef((props, ref) => (
   <MUIMenuList ref={ref} {...props} />
-)) as (props: MenuListProps) => ReturnType<typeof MUIMenuList>
+)) as (props: MenuListProps) => JSX.Element

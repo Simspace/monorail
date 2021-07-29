@@ -5,10 +5,18 @@ import {
   DialogContentTextProps as MUIDialogContentTextProps,
   DialogContentTextTypeMap,
 } from '@material-ui/core/DialogContentText'
+
+/**
+ * Props for DialogContentText
+ */
 export type DialogContentTextProps<
   D extends React.ElementType = DialogContentTextTypeMap['defaultComponent'],
   P = {}
 > = MUIDialogContentTextProps<D, P> & { ref?: React.ForwardedRef<HTMLElement> }
+
+/**
+ * DialogContentText
+ */
 export const DialogContentText = React.forwardRef((props, ref) => (
   <MUIDialogContentText ref={ref} {...props} />
 )) as <
@@ -16,4 +24,4 @@ export const DialogContentText = React.forwardRef((props, ref) => (
   P = {}
 >(
   props: DialogContentTextProps<D, P>,
-) => ReturnType<typeof MUIDialogContentText>
+) => JSX.Element

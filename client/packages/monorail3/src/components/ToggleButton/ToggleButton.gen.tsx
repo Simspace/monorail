@@ -5,10 +5,18 @@ import {
   ToggleButtonProps as MUIToggleButtonProps,
   ToggleButtonTypeMap,
 } from '@material-ui/core/ToggleButton'
+
+/**
+ * Props for ToggleButton
+ */
 export type ToggleButtonProps<
   D extends React.ElementType = ToggleButtonTypeMap['defaultComponent'],
   P = {}
 > = MUIToggleButtonProps<D, P> & { ref?: React.ForwardedRef<HTMLButtonElement> }
+
+/**
+ * ToggleButton
+ */
 export const ToggleButton = React.forwardRef((props, ref) => (
   <MUIToggleButton ref={ref} {...props} />
 )) as <
@@ -16,4 +24,4 @@ export const ToggleButton = React.forwardRef((props, ref) => (
   P = {}
 >(
   props: ToggleButtonProps<D, P>,
-) => ReturnType<typeof MUIToggleButton>
+) => JSX.Element

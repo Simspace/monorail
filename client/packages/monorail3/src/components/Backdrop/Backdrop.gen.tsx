@@ -5,13 +5,23 @@ import {
   BackdropProps as MUIBackdropProps,
   BackdropTypeMap,
 } from '@material-ui/core/Backdrop'
+
+/**
+ * Props for Backdrop
+ */
 export type BackdropProps<
   D extends React.ElementType = BackdropTypeMap['defaultComponent'],
   P = {}
-> = MUIBackdropProps<D, P>
-export const Backdrop = <
+> = MUIBackdropProps<D, P> & { ref?: React.ForwardedRef<unknown> }
+
+/**
+ * Backdrop
+ */
+export const Backdrop = React.forwardRef((props, ref) => (
+  <MUIBackdrop ref={ref} {...props} />
+)) as <
   D extends React.ElementType = BackdropTypeMap['defaultComponent'],
   P = {}
 >(
   props: BackdropProps<D, P>,
-) => <MUIBackdrop {...props} />
+) => JSX.Element

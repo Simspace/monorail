@@ -4,7 +4,15 @@ import {
   default as MUISlide,
   SlideProps as MUISlideProps,
 } from '@material-ui/core/Slide'
+
+/**
+ * Props for Slide
+ */
 export type SlideProps = MUISlideProps & { ref?: React.ForwardedRef<unknown> }
+
+/**
+ * Slide
+ */
 export const Slide = React.forwardRef((props, ref) => (
   <MUISlide ref={ref} {...props} />
-)) as (props: SlideProps) => ReturnType<typeof MUISlide>
+)) as (props: SlideProps) => JSX.Element

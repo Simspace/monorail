@@ -4,5 +4,17 @@ import {
   default as MUIInputBase,
   InputBaseProps as MUIInputBaseProps,
 } from '@material-ui/core/InputBase'
-export type InputBaseProps = MUIInputBaseProps
-export const InputBase = (props: InputBaseProps) => <MUIInputBase {...props} />
+
+/**
+ * Props for InputBase
+ */
+export type InputBaseProps = MUIInputBaseProps & {
+  ref?: React.ForwardedRef<unknown>
+}
+
+/**
+ * InputBase
+ */
+export const InputBase = React.forwardRef((props, ref) => (
+  <MUIInputBase ref={ref} {...props} />
+)) as (props: InputBaseProps) => JSX.Element

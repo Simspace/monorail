@@ -5,13 +5,20 @@ import {
   ChipProps as MUIChipProps,
   ChipTypeMap,
 } from '@material-ui/core/Chip'
+
+/**
+ * Props for Chip
+ */
 export type ChipProps<
   D extends React.ElementType = ChipTypeMap['defaultComponent'],
   P = {}
-> = MUIChipProps<D, P>
-export const Chip = <
-  D extends React.ElementType = ChipTypeMap['defaultComponent'],
-  P = {}
->(
+> = MUIChipProps<D, P> & { ref?: React.ForwardedRef<HTMLDivElement> }
+
+/**
+ * Chip
+ */
+export const Chip = React.forwardRef((props, ref) => (
+  <MUIChip ref={ref} {...props} />
+)) as <D extends React.ElementType = ChipTypeMap['defaultComponent'], P = {}>(
   props: ChipProps<D, P>,
-) => <MUIChip {...props} />
+) => JSX.Element

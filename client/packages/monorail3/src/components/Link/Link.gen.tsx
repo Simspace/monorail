@@ -5,13 +5,20 @@ import {
   LinkProps as MUILinkProps,
   LinkTypeMap,
 } from '@material-ui/core/Link'
+
+/**
+ * Props for Link
+ */
 export type LinkProps<
   D extends React.ElementType = LinkTypeMap['defaultComponent'],
   P = {}
-> = MUILinkProps<D, P>
-export const Link = <
-  D extends React.ElementType = LinkTypeMap['defaultComponent'],
-  P = {}
->(
+> = MUILinkProps<D, P> & { ref?: React.ForwardedRef<unknown> }
+
+/**
+ * Link
+ */
+export const Link = React.forwardRef((props, ref) => (
+  <MUILink ref={ref} {...props} />
+)) as <D extends React.ElementType = LinkTypeMap['defaultComponent'], P = {}>(
   props: LinkProps<D, P>,
-) => <MUILink {...props} />
+) => JSX.Element

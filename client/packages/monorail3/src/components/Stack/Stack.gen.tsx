@@ -5,13 +5,20 @@ import {
   StackProps as MUIStackProps,
   StackTypeMap,
 } from '@material-ui/core/Stack'
+
+/**
+ * Props for Stack
+ */
 export type StackProps<
   D extends React.ElementType = StackTypeMap['defaultComponent'],
   P = {}
-> = MUIStackProps<D, P>
-export const Stack = <
-  D extends React.ElementType = StackTypeMap['defaultComponent'],
-  P = {}
->(
+> = MUIStackProps<D, P> & { ref?: React.ForwardedRef<unknown> }
+
+/**
+ * Stack
+ */
+export const Stack = React.forwardRef((props, ref) => (
+  <MUIStack ref={ref} {...props} />
+)) as <D extends React.ElementType = StackTypeMap['defaultComponent'], P = {}>(
   props: StackProps<D, P>,
-) => <MUIStack {...props} />
+) => JSX.Element

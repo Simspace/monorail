@@ -4,7 +4,17 @@ import {
   default as MUIAvatarGroup,
   AvatarGroupProps as MUIAvatarGroupProps,
 } from '@material-ui/core/AvatarGroup'
-export type AvatarGroupProps = MUIAvatarGroupProps
-export const AvatarGroup = (props: AvatarGroupProps) => (
-  <MUIAvatarGroup {...props} />
-)
+
+/**
+ * Props for AvatarGroup
+ */
+export type AvatarGroupProps = MUIAvatarGroupProps & {
+  ref?: React.ForwardedRef<unknown>
+}
+
+/**
+ * AvatarGroup
+ */
+export const AvatarGroup = React.forwardRef((props, ref) => (
+  <MUIAvatarGroup ref={ref} {...props} />
+)) as (props: AvatarGroupProps) => JSX.Element

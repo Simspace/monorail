@@ -4,7 +4,17 @@ import {
   default as MUICardActions,
   CardActionsProps as MUICardActionsProps,
 } from '@material-ui/core/CardActions'
-export type CardActionsProps = MUICardActionsProps
-export const CardActions = (props: CardActionsProps) => (
-  <MUICardActions {...props} />
-)
+
+/**
+ * Props for CardActions
+ */
+export type CardActionsProps = MUICardActionsProps & {
+  ref?: React.ForwardedRef<unknown>
+}
+
+/**
+ * CardActions
+ */
+export const CardActions = React.forwardRef((props, ref) => (
+  <MUICardActions ref={ref} {...props} />
+)) as (props: CardActionsProps) => JSX.Element

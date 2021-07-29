@@ -4,6 +4,6 @@ import { story } from '../../../__tests__/helpers/storybook'
 import { SpeedDialIcon, SpeedDialIconProps } from '../SpeedDialIcon'
 /** This is intended to be exported (with possible extensions) as the default meta object for a story */
 export const defaultStoryMeta = {
-  title: 'Navigation/SpeedDialIcon',
+  title: 'Navigation/SpeedDial/SpeedDialIcon',
   component: SpeedDialIcon,
 }

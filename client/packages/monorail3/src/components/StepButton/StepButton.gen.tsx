@@ -5,13 +5,23 @@ import {
   StepButtonProps as MUIStepButtonProps,
 } from '@material-ui/core/StepButton'
 import { ButtonBaseTypeMap } from '@material-ui/core'
+
+/**
+ * Props for StepButton
+ */
 export type StepButtonProps<
   D extends React.ElementType = ButtonBaseTypeMap['defaultComponent'],
   P = {}
-> = MUIStepButtonProps<D, P>
-export const StepButton = <
+> = MUIStepButtonProps<D, P> & { ref?: React.ForwardedRef<HTMLButtonElement> }
+
+/**
+ * StepButton
+ */
+export const StepButton = React.forwardRef((props, ref) => (
+  <MUIStepButton ref={ref} {...props} />
+)) as <
   D extends React.ElementType = ButtonBaseTypeMap['defaultComponent'],
   P = {}
 >(
   props: StepButtonProps<D, P>,
-) => <MUIStepButton {...props} />
+) => JSX.Element

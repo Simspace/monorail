@@ -4,6 +4,6 @@ import { story } from '../../../__tests__/helpers/storybook'
 import { AlertTitle, AlertTitleProps } from '../AlertTitle'
 /** This is intended to be exported (with possible extensions) as the default meta object for a story */
 export const defaultStoryMeta = {
-  title: 'Feedback/AlertTitle',
+  title: 'Feedback/Alert/AlertTitle',
   component: AlertTitle,
 }

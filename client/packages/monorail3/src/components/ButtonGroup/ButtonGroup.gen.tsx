@@ -5,10 +5,18 @@ import {
   ButtonGroupProps as MUIButtonGroupProps,
   ButtonGroupTypeMap,
 } from '@material-ui/core/ButtonGroup'
+
+/**
+ * Props for ButtonGroup
+ */
 export type ButtonGroupProps<
   D extends React.ElementType = ButtonGroupTypeMap['defaultComponent'],
   P = {}
 > = MUIButtonGroupProps<D, P> & { ref?: React.ForwardedRef<HTMLDivElement> }
+
+/**
+ * ButtonGroup
+ */
 export const ButtonGroup = React.forwardRef((props, ref) => (
   <MUIButtonGroup ref={ref} {...props} />
 )) as <
@@ -16,4 +24,4 @@ export const ButtonGroup = React.forwardRef((props, ref) => (
   P = {}
 >(
   props: ButtonGroupProps<D, P>,
-) => ReturnType<typeof MUIButtonGroup>
+) => JSX.Element
