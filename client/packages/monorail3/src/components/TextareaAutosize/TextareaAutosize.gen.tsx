@@ -4,7 +4,17 @@ import {
   default as MUITextareaAutosize,
   TextareaAutosizeProps as MUITextareaAutosizeProps,
 } from '@material-ui/core/TextareaAutosize'
-export type TextareaAutosizeProps = MUITextareaAutosizeProps
-export const TextareaAutosize = (props: TextareaAutosizeProps) => (
-  <MUITextareaAutosize {...props} />
-)
+
+/**
+ * Props for TextareaAutosize
+ */
+export type TextareaAutosizeProps = MUITextareaAutosizeProps & {
+  ref?: React.ForwardedRef<unknown>
+}
+
+/**
+ * TextareaAutosize
+ */
+export const TextareaAutosize = React.forwardRef((props, ref) => (
+  <MUITextareaAutosize ref={ref} {...props} />
+)) as (props: TextareaAutosizeProps) => JSX.Element

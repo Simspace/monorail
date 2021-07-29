@@ -5,13 +5,20 @@ import {
   ModalProps as MUIModalProps,
   ModalTypeMap,
 } from '@material-ui/core/Modal'
+
+/**
+ * Props for Modal
+ */
 export type ModalProps<
   D extends React.ElementType = ModalTypeMap['defaultComponent'],
   P = {}
-> = MUIModalProps<D, P>
-export const Modal = <
-  D extends React.ElementType = ModalTypeMap['defaultComponent'],
-  P = {}
->(
+> = MUIModalProps<D, P> & { ref?: React.ForwardedRef<unknown> }
+
+/**
+ * Modal
+ */
+export const Modal = React.forwardRef((props, ref) => (
+  <MUIModal ref={ref} {...props} />
+)) as <D extends React.ElementType = ModalTypeMap['defaultComponent'], P = {}>(
   props: ModalProps<D, P>,
-) => <MUIModal {...props} />
+) => JSX.Element

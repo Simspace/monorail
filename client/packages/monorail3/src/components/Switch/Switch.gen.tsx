@@ -4,7 +4,15 @@ import {
   default as MUISwitch,
   SwitchProps as MUISwitchProps,
 } from '@material-ui/core/Switch'
+
+/**
+ * Props for Switch
+ */
 export type SwitchProps = MUISwitchProps & { ref?: React.ForwardedRef<unknown> }
+
+/**
+ * Switch
+ */
 export const Switch = React.forwardRef((props, ref) => (
   <MUISwitch ref={ref} {...props} />
-)) as (props: SwitchProps) => ReturnType<typeof MUISwitch>
+)) as (props: SwitchProps) => JSX.Element

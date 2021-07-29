@@ -4,9 +4,17 @@ import {
   default as MUIToggleButtonGroup,
   ToggleButtonGroupProps as MUIToggleButtonGroupProps,
 } from '@material-ui/core/ToggleButtonGroup'
+
+/**
+ * Props for ToggleButtonGroup
+ */
 export type ToggleButtonGroupProps = MUIToggleButtonGroupProps & {
   ref?: React.ForwardedRef<unknown>
 }
+
+/**
+ * ToggleButtonGroup
+ */
 export const ToggleButtonGroup = React.forwardRef((props, ref) => (
   <MUIToggleButtonGroup ref={ref} {...props} />
-)) as (props: ToggleButtonGroupProps) => ReturnType<typeof MUIToggleButtonGroup>
+)) as (props: ToggleButtonGroupProps) => JSX.Element

@@ -5,13 +5,20 @@ import {
   IconProps as MUIIconProps,
   IconTypeMap,
 } from '@material-ui/core/Icon'
+
+/**
+ * Props for Icon
+ */
 export type IconProps<
   D extends React.ElementType = IconTypeMap['defaultComponent'],
   P = {}
-> = MUIIconProps<D, P>
-export const Icon = <
-  D extends React.ElementType = IconTypeMap['defaultComponent'],
-  P = {}
->(
+> = MUIIconProps<D, P> & { ref?: React.ForwardedRef<HTMLSpanElement> }
+
+/**
+ * Icon
+ */
+export const Icon = React.forwardRef((props, ref) => (
+  <MUIIcon ref={ref} {...props} />
+)) as <D extends React.ElementType = IconTypeMap['defaultComponent'], P = {}>(
   props: IconProps<D, P>,
-) => <MUIIcon {...props} />
+) => JSX.Element

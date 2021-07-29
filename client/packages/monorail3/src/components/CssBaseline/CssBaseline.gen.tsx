@@ -4,7 +4,17 @@ import {
   default as MUICssBaseline,
   CssBaselineProps as MUICssBaselineProps,
 } from '@material-ui/core/CssBaseline'
-export type CssBaselineProps = MUICssBaselineProps
-export const CssBaseline = (props: CssBaselineProps) => (
-  <MUICssBaseline {...props} />
-)
+
+/**
+ * Props for CssBaseline
+ */
+export type CssBaselineProps = MUICssBaselineProps & {
+  ref?: React.ForwardedRef<unknown>
+}
+
+/**
+ * CssBaseline
+ */
+export const CssBaseline = React.forwardRef((props, ref) => (
+  <MUICssBaseline ref={ref} {...props} />
+)) as (props: CssBaselineProps) => JSX.Element

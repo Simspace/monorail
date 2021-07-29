@@ -4,6 +4,6 @@ import { story } from '../../../__tests__/helpers/storybook'
 import { TabScrollButton, TabScrollButtonProps } from '../TabScrollButton'
 /** This is intended to be exported (with possible extensions) as the default meta object for a story */
 export const defaultStoryMeta = {
-  title: 'Navigation/TabScrollButton',
+  title: 'Navigation/Tab/TabScrollButton',
   component: TabScrollButton,
 }

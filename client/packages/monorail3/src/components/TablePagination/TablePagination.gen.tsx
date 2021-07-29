@@ -5,13 +5,23 @@ import {
   TablePaginationProps as MUITablePaginationProps,
 } from '@material-ui/core/TablePagination'
 import { TablePaginationBaseProps } from '@material-ui/core/TablePagination'
+
+/**
+ * Props for TablePagination
+ */
 export type TablePaginationProps<
   D extends React.ElementType = React.JSXElementConstructor<TablePaginationBaseProps>,
   P = {}
-> = MUITablePaginationProps<D, P>
-export const TablePagination = <
+> = MUITablePaginationProps<D, P> & { ref?: React.ForwardedRef<unknown> }
+
+/**
+ * TablePagination
+ */
+export const TablePagination = React.forwardRef((props, ref) => (
+  <MUITablePagination ref={ref} {...props} />
+)) as <
   D extends React.ElementType = React.JSXElementConstructor<TablePaginationBaseProps>,
   P = {}
 >(
   props: TablePaginationProps<D, P>,
-) => <MUITablePagination {...props} />
+) => JSX.Element

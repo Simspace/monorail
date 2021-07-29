@@ -4,7 +4,17 @@ import {
   default as MUIImageListItemBar,
   ImageListItemBarProps as MUIImageListItemBarProps,
 } from '@material-ui/core/ImageListItemBar'
-export type ImageListItemBarProps = MUIImageListItemBarProps
-export const ImageListItemBar = (props: ImageListItemBarProps) => (
-  <MUIImageListItemBar {...props} />
-)
+
+/**
+ * Props for ImageListItemBar
+ */
+export type ImageListItemBarProps = MUIImageListItemBarProps & {
+  ref?: React.ForwardedRef<unknown>
+}
+
+/**
+ * ImageListItemBar
+ */
+export const ImageListItemBar = React.forwardRef((props, ref) => (
+  <MUIImageListItemBar ref={ref} {...props} />
+)) as (props: ImageListItemBarProps) => JSX.Element

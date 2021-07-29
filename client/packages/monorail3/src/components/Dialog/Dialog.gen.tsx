@@ -4,9 +4,17 @@ import {
   default as MUIDialog,
   DialogProps as MUIDialogProps,
 } from '@material-ui/core/Dialog'
+
+/**
+ * Props for Dialog
+ */
 export type DialogProps = MUIDialogProps & {
   ref?: React.ForwardedRef<HTMLDivElement>
 }
+
+/**
+ * Dialog
+ */
 export const Dialog = React.forwardRef((props, ref) => (
   <MUIDialog ref={ref} {...props} />
-)) as (props: DialogProps) => ReturnType<typeof MUIDialog>
+)) as (props: DialogProps) => JSX.Element

@@ -4,6 +4,6 @@ import { story } from '../../../__tests__/helpers/storybook'
 import { ImageListItem, ImageListItemProps } from '../ImageListItem'
 /** This is intended to be exported (with possible extensions) as the default meta object for a story */
 export const defaultStoryMeta = {
-  title: 'Layout/ImageListItem',
+  title: 'Layout/ImageList/ImageListItem',
   component: ImageListItem,
 }

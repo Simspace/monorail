@@ -4,6 +4,6 @@ import { story } from '../../../__tests__/helpers/storybook'
 import { ListSubheader, ListSubheaderProps } from '../ListSubheader'
 /** This is intended to be exported (with possible extensions) as the default meta object for a story */
 export const defaultStoryMeta = {
-  title: 'Data Display/ListSubheader',
+  title: 'Data Display/List/ListSubheader',
   component: ListSubheader,
 }

@@ -4,5 +4,15 @@ import {
   default as MUIRating,
   RatingProps as MUIRatingProps,
 } from '@material-ui/core/Rating'
-export type RatingProps = MUIRatingProps
-export const Rating = (props: RatingProps) => <MUIRating {...props} />
+
+/**
+ * Props for Rating
+ */
+export type RatingProps = MUIRatingProps & { ref?: React.ForwardedRef<unknown> }
+
+/**
+ * Rating
+ */
+export const Rating = React.forwardRef((props, ref) => (
+  <MUIRating ref={ref} {...props} />
+)) as (props: RatingProps) => JSX.Element

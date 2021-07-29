@@ -4,6 +4,6 @@ import { story } from '../../../__tests__/helpers/storybook'
 import { InputAdornment, InputAdornmentProps } from '../InputAdornment'
 /** This is intended to be exported (with possible extensions) as the default meta object for a story */
 export const defaultStoryMeta = {
-  title: 'Inputs/InputAdornment',
+  title: 'Inputs/Input/InputAdornment',
   component: InputAdornment,
 }

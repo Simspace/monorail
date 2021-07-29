@@ -4,7 +4,17 @@ import {
   default as MUILinearProgress,
   LinearProgressProps as MUILinearProgressProps,
 } from '@material-ui/core/LinearProgress'
-export type LinearProgressProps = MUILinearProgressProps
-export const LinearProgress = (props: LinearProgressProps) => (
-  <MUILinearProgress {...props} />
-)
+
+/**
+ * Props for LinearProgress
+ */
+export type LinearProgressProps = MUILinearProgressProps & {
+  ref?: React.ForwardedRef<unknown>
+}
+
+/**
+ * LinearProgress
+ */
+export const LinearProgress = React.forwardRef((props, ref) => (
+  <MUILinearProgress ref={ref} {...props} />
+)) as (props: LinearProgressProps) => JSX.Element

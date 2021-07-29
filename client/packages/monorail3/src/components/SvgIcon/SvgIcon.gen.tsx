@@ -5,13 +5,23 @@ import {
   SvgIconProps as MUISvgIconProps,
   SvgIconTypeMap,
 } from '@material-ui/core/SvgIcon'
+
+/**
+ * Props for SvgIcon
+ */
 export type SvgIconProps<
   D extends React.ElementType = SvgIconTypeMap['defaultComponent'],
   P = {}
-> = MUISvgIconProps<D, P>
-export const SvgIcon = <
+> = MUISvgIconProps<D, P> & { ref?: React.ForwardedRef<SVGSVGElement> }
+
+/**
+ * SvgIcon
+ */
+export const SvgIcon = React.forwardRef((props, ref) => (
+  <MUISvgIcon ref={ref} {...props} />
+)) as <
   D extends React.ElementType = SvgIconTypeMap['defaultComponent'],
   P = {}
 >(
   props: SvgIconProps<D, P>,
-) => <MUISvgIcon {...props} />
+) => JSX.Element

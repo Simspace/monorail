@@ -4,7 +4,17 @@ import {
   default as MUIFilledInput,
   FilledInputProps as MUIFilledInputProps,
 } from '@material-ui/core/FilledInput'
-export type FilledInputProps = MUIFilledInputProps
-export const FilledInput = (props: FilledInputProps) => (
-  <MUIFilledInput {...props} />
-)
+
+/**
+ * Props for FilledInput
+ */
+export type FilledInputProps = MUIFilledInputProps & {
+  ref?: React.ForwardedRef<unknown>
+}
+
+/**
+ * FilledInput
+ */
+export const FilledInput = React.forwardRef((props, ref) => (
+  <MUIFilledInput ref={ref} {...props} />
+)) as (props: FilledInputProps) => JSX.Element

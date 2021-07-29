@@ -5,13 +5,20 @@ import {
   AvatarProps as MUIAvatarProps,
   AvatarTypeMap,
 } from '@material-ui/core/Avatar'
+
+/**
+ * Props for Avatar
+ */
 export type AvatarProps<
   D extends React.ElementType = AvatarTypeMap['defaultComponent'],
   P = {}
-> = MUIAvatarProps<D, P>
-export const Avatar = <
-  D extends React.ElementType = AvatarTypeMap['defaultComponent'],
-  P = {}
->(
+> = MUIAvatarProps<D, P> & { ref?: React.ForwardedRef<HTMLDivElement> }
+
+/**
+ * Avatar
+ */
+export const Avatar = React.forwardRef((props, ref) => (
+  <MUIAvatar ref={ref} {...props} />
+)) as <D extends React.ElementType = AvatarTypeMap['defaultComponent'], P = {}>(
   props: AvatarProps<D, P>,
-) => <MUIAvatar {...props} />
+) => JSX.Element

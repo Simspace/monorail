@@ -4,7 +4,17 @@ import {
   default as MUIStepConnector,
   StepConnectorProps as MUIStepConnectorProps,
 } from '@material-ui/core/StepConnector'
-export type StepConnectorProps = MUIStepConnectorProps
-export const StepConnector = (props: StepConnectorProps) => (
-  <MUIStepConnector {...props} />
-)
+
+/**
+ * Props for StepConnector
+ */
+export type StepConnectorProps = MUIStepConnectorProps & {
+  ref?: React.ForwardedRef<unknown>
+}
+
+/**
+ * StepConnector
+ */
+export const StepConnector = React.forwardRef((props, ref) => (
+  <MUIStepConnector ref={ref} {...props} />
+)) as (props: StepConnectorProps) => JSX.Element

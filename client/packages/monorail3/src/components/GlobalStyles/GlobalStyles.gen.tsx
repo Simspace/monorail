@@ -4,7 +4,17 @@ import {
   default as MUIGlobalStyles,
   GlobalStylesProps as MUIGlobalStylesProps,
 } from '@material-ui/core/GlobalStyles'
-export type GlobalStylesProps = MUIGlobalStylesProps
-export const GlobalStyles = (props: GlobalStylesProps) => (
-  <MUIGlobalStyles {...props} />
-)
+
+/**
+ * Props for GlobalStyles
+ */
+export type GlobalStylesProps = MUIGlobalStylesProps & {
+  ref?: React.ForwardedRef<unknown>
+}
+
+/**
+ * GlobalStyles
+ */
+export const GlobalStyles = React.forwardRef((props, ref) => (
+  <MUIGlobalStyles ref={ref} {...props} />
+)) as (props: GlobalStylesProps) => JSX.Element

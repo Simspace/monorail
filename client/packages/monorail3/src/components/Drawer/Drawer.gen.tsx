@@ -4,5 +4,15 @@ import {
   default as MUIDrawer,
   DrawerProps as MUIDrawerProps,
 } from '@material-ui/core/Drawer'
-export type DrawerProps = MUIDrawerProps
-export const Drawer = (props: DrawerProps) => <MUIDrawer {...props} />
+
+/**
+ * Props for Drawer
+ */
+export type DrawerProps = MUIDrawerProps & { ref?: React.ForwardedRef<unknown> }
+
+/**
+ * Drawer
+ */
+export const Drawer = React.forwardRef((props, ref) => (
+  <MUIDrawer ref={ref} {...props} />
+)) as (props: DrawerProps) => JSX.Element
