@@ -5,13 +5,23 @@ import {
   CardContentProps as MUICardContentProps,
   CardContentTypeMap,
 } from '@material-ui/core/CardContent'
+
+/**
+ * Props for CardContent
+ */
 export type CardContentProps<
   D extends React.ElementType = CardContentTypeMap['defaultComponent'],
   P = {}
-> = MUICardContentProps<D, P>
-export const CardContent = <
+> = MUICardContentProps<D, P> & { ref?: React.ForwardedRef<HTMLDivElement> }
+
+/**
+ * CardContent
+ */
+export const CardContent = React.forwardRef((props, ref) => (
+  <MUICardContent ref={ref} {...props} />
+)) as <
   D extends React.ElementType = CardContentTypeMap['defaultComponent'],
   P = {}
 >(
   props: CardContentProps<D, P>,
-) => <MUICardContent {...props} />
+) => JSX.Element

@@ -5,13 +5,23 @@ import {
   FormControlProps as MUIFormControlProps,
   FormControlTypeMap,
 } from '@material-ui/core/FormControl'
+
+/**
+ * Props for FormControl
+ */
 export type FormControlProps<
   D extends React.ElementType = FormControlTypeMap['defaultComponent'],
   P = {}
-> = MUIFormControlProps<D, P>
-export const FormControl = <
+> = MUIFormControlProps<D, P> & { ref?: React.ForwardedRef<HTMLDivElement> }
+
+/**
+ * FormControl
+ */
+export const FormControl = React.forwardRef((props, ref) => (
+  <MUIFormControl ref={ref} {...props} />
+)) as <
   D extends React.ElementType = FormControlTypeMap['defaultComponent'],
   P = {}
 >(
   props: FormControlProps<D, P>,
-) => <MUIFormControl {...props} />
+) => JSX.Element

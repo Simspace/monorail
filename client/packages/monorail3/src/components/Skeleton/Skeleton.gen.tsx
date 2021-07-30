@@ -5,13 +5,23 @@ import {
   SkeletonProps as MUISkeletonProps,
   SkeletonTypeMap,
 } from '@material-ui/core/Skeleton'
+
+/**
+ * Props for Skeleton
+ */
 export type SkeletonProps<
   D extends React.ElementType = SkeletonTypeMap['defaultComponent'],
   P = {}
-> = MUISkeletonProps<D, P>
-export const Skeleton = <
+> = MUISkeletonProps<D, P> & { ref?: React.ForwardedRef<HTMLSpanElement> }
+
+/**
+ * Skeleton
+ */
+export const Skeleton = React.forwardRef((props, ref) => (
+  <MUISkeleton ref={ref} {...props} />
+)) as <
   D extends React.ElementType = SkeletonTypeMap['defaultComponent'],
   P = {}
 >(
   props: SkeletonProps<D, P>,
-) => <MUISkeleton {...props} />
+) => JSX.Element

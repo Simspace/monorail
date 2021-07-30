@@ -5,13 +5,23 @@ import {
   TableContainerProps as MUITableContainerProps,
   TableContainerTypeMap,
 } from '@material-ui/core/TableContainer'
+
+/**
+ * Props for TableContainer
+ */
 export type TableContainerProps<
   D extends React.ElementType = TableContainerTypeMap['defaultComponent'],
   P = {}
-> = MUITableContainerProps<D, P>
-export const TableContainer = <
+> = MUITableContainerProps<D, P> & { ref?: React.ForwardedRef<HTMLDivElement> }
+
+/**
+ * TableContainer
+ */
+export const TableContainer = React.forwardRef((props, ref) => (
+  <MUITableContainer ref={ref} {...props} />
+)) as <
   D extends React.ElementType = TableContainerTypeMap['defaultComponent'],
   P = {}
 >(
   props: TableContainerProps<D, P>,
-) => <MUITableContainer {...props} />
+) => JSX.Element

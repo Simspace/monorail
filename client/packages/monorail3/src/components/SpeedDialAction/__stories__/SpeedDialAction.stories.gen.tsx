@@ -4,6 +4,6 @@ import { story } from '../../../__tests__/helpers/storybook'
 import { SpeedDialAction, SpeedDialActionProps } from '../SpeedDialAction'
 /** This is intended to be exported (with possible extensions) as the default meta object for a story */
 export const defaultStoryMeta = {
-  title: 'Navigation/SpeedDialAction',
+  title: 'Navigation/SpeedDial/SpeedDialAction',
   component: SpeedDialAction,
 }

@@ -3,4 +3,7 @@ import React from 'react'
 import { story } from '../../../__tests__/helpers/storybook'
 import { Slide, SlideProps } from '../Slide'
 /** This is intended to be exported (with possible extensions) as the default meta object for a story */
-export const defaultStoryMeta = { title: 'Utils/Slide', component: Slide }
+export const defaultStoryMeta = {
+  title: 'Utils/Transitions/Slide',
+  component: Slide,
+}

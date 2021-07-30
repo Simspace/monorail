@@ -4,6 +4,6 @@ import { story } from '../../../__tests__/helpers/storybook'
 import { DialogContentText, DialogContentTextProps } from '../DialogContentText'
 /** This is intended to be exported (with possible extensions) as the default meta object for a story */
 export const defaultStoryMeta = {
-  title: 'Feedback/DialogContentText',
+  title: 'Feedback/Dialog/DialogContentText',
   component: DialogContentText,
 }

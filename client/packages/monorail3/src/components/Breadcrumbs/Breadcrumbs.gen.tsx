@@ -5,13 +5,23 @@ import {
   BreadcrumbsProps as MUIBreadcrumbsProps,
   BreadcrumbsTypeMap,
 } from '@material-ui/core/Breadcrumbs'
+
+/**
+ * Props for Breadcrumbs
+ */
 export type BreadcrumbsProps<
   D extends React.ElementType = BreadcrumbsTypeMap['defaultComponent'],
   P = {}
-> = MUIBreadcrumbsProps<D, P>
-export const Breadcrumbs = <
+> = MUIBreadcrumbsProps<D, P> & { ref?: React.ForwardedRef<HTMLElement> }
+
+/**
+ * Breadcrumbs
+ */
+export const Breadcrumbs = React.forwardRef((props, ref) => (
+  <MUIBreadcrumbs ref={ref} {...props} />
+)) as <
   D extends React.ElementType = BreadcrumbsTypeMap['defaultComponent'],
   P = {}
 >(
   props: BreadcrumbsProps<D, P>,
-) => <MUIBreadcrumbs {...props} />
+) => JSX.Element

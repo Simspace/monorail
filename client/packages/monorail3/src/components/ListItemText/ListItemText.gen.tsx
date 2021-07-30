@@ -4,6 +4,10 @@ import {
   default as MUIListItemText,
   ListItemTextProps as MUIListItemTextProps,
 } from '@material-ui/core/ListItemText'
+
+/**
+ * Props for ListItemText
+ */
 export type ListItemTextProps<
   PrimaryTypographyComponent extends React.ElementType = 'span',
   SecondaryTypographyComponent extends React.ElementType = 'p'
@@ -11,6 +15,10 @@ export type ListItemTextProps<
   PrimaryTypographyComponent,
   SecondaryTypographyComponent
 > & { ref?: React.ForwardedRef<unknown> }
+
+/**
+ * ListItemText
+ */
 export const ListItemText = React.forwardRef((props, ref) => (
   <MUIListItemText ref={ref} {...props} />
 )) as <
@@ -21,4 +29,4 @@ export const ListItemText = React.forwardRef((props, ref) => (
     PrimaryTypographyComponent,
     SecondaryTypographyComponent
   >,
-) => ReturnType<typeof MUIListItemText>
+) => JSX.Element

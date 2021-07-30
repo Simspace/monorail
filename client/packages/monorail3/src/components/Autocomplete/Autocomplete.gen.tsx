@@ -5,14 +5,30 @@ import {
   AutocompleteProps as MUIAutocompleteProps,
 } from '@material-ui/core/Autocomplete'
 import { ChipTypeMap } from '@material-ui/core/Chip'
+
+/**
+ * Props for Autocomplete
+ */
 export type AutocompleteProps<
   T,
   Multiple extends boolean | undefined,
   DisableClearable extends boolean | undefined,
   FreeSolo extends boolean | undefined,
   ChipComponent extends React.ElementType = ChipTypeMap['defaultComponent']
-> = MUIAutocompleteProps<T, Multiple, DisableClearable, FreeSolo, ChipComponent>
-export const Autocomplete = <
+> = MUIAutocompleteProps<
+  T,
+  Multiple,
+  DisableClearable,
+  FreeSolo,
+  ChipComponent
+> & { ref?: React.ForwardedRef<unknown> }
+
+/**
+ * Autocomplete
+ */
+export const Autocomplete = React.forwardRef((props, ref) => (
+  <MUIAutocomplete ref={ref} {...props} />
+)) as <
   T,
   Multiple extends boolean | undefined,
   DisableClearable extends boolean | undefined,
@@ -26,4 +42,4 @@ export const Autocomplete = <
     FreeSolo,
     ChipComponent
   >,
-) => <MUIAutocomplete {...props} />
+) => JSX.Element

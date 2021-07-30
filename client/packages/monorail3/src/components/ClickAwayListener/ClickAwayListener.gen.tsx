@@ -4,7 +4,17 @@ import {
   default as MUIClickAwayListener,
   ClickAwayListenerProps as MUIClickAwayListenerProps,
 } from '@material-ui/core/ClickAwayListener'
-export type ClickAwayListenerProps = MUIClickAwayListenerProps
-export const ClickAwayListener = (props: ClickAwayListenerProps) => (
-  <MUIClickAwayListener {...props} />
-)
+
+/**
+ * Props for ClickAwayListener
+ */
+export type ClickAwayListenerProps = MUIClickAwayListenerProps & {
+  ref?: React.ForwardedRef<unknown>
+}
+
+/**
+ * ClickAwayListener
+ */
+export const ClickAwayListener = React.forwardRef((props, ref) => (
+  <MUIClickAwayListener ref={ref} {...props} />
+)) as (props: ClickAwayListenerProps) => JSX.Element

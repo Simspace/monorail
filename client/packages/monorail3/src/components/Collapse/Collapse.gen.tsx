@@ -4,5 +4,17 @@ import {
   default as MUICollapse,
   CollapseProps as MUICollapseProps,
 } from '@material-ui/core/Collapse'
-export type CollapseProps = MUICollapseProps
-export const Collapse = (props: CollapseProps) => <MUICollapse {...props} />
+
+/**
+ * Props for Collapse
+ */
+export type CollapseProps = MUICollapseProps & {
+  ref?: React.ForwardedRef<unknown>
+}
+
+/**
+ * Collapse
+ */
+export const Collapse = React.forwardRef((props, ref) => (
+  <MUICollapse ref={ref} {...props} />
+)) as (props: CollapseProps) => JSX.Element

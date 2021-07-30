@@ -4,5 +4,15 @@ import {
   default as MUIPopper,
   PopperProps as MUIPopperProps,
 } from '@material-ui/core/Popper'
-export type PopperProps = MUIPopperProps
-export const Popper = (props: PopperProps) => <MUIPopper {...props} />
+
+/**
+ * Props for Popper
+ */
+export type PopperProps = MUIPopperProps & { ref?: React.ForwardedRef<unknown> }
+
+/**
+ * Popper
+ */
+export const Popper = React.forwardRef((props, ref) => (
+  <MUIPopper ref={ref} {...props} />
+)) as (props: PopperProps) => JSX.Element

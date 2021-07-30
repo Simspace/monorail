@@ -5,10 +5,18 @@ import {
   ListSubheaderProps as MUIListSubheaderProps,
   ListSubheaderTypeMap,
 } from '@material-ui/core/ListSubheader'
+
+/**
+ * Props for ListSubheader
+ */
 export type ListSubheaderProps<
   D extends React.ElementType = ListSubheaderTypeMap['defaultComponent'],
   P = {}
 > = MUIListSubheaderProps<D, P> & { ref?: React.ForwardedRef<HTMLLIElement> }
+
+/**
+ * ListSubheader
+ */
 export const ListSubheader = React.forwardRef((props, ref) => (
   <MUIListSubheader ref={ref} {...props} />
 )) as <
@@ -16,4 +24,4 @@ export const ListSubheader = React.forwardRef((props, ref) => (
   P = {}
 >(
   props: ListSubheaderProps<D, P>,
-) => ReturnType<typeof MUIListSubheader>
+) => JSX.Element

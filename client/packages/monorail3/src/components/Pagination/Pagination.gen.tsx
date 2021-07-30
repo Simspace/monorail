@@ -4,7 +4,17 @@ import {
   default as MUIPagination,
   PaginationProps as MUIPaginationProps,
 } from '@material-ui/core/Pagination'
-export type PaginationProps = MUIPaginationProps
-export const Pagination = (props: PaginationProps) => (
-  <MUIPagination {...props} />
-)
+
+/**
+ * Props for Pagination
+ */
+export type PaginationProps = MUIPaginationProps & {
+  ref?: React.ForwardedRef<unknown>
+}
+
+/**
+ * Pagination
+ */
+export const Pagination = React.forwardRef((props, ref) => (
+  <MUIPagination ref={ref} {...props} />
+)) as (props: PaginationProps) => JSX.Element

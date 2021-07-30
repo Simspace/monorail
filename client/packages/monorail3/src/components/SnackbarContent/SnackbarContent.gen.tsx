@@ -4,7 +4,17 @@ import {
   default as MUISnackbarContent,
   SnackbarContentProps as MUISnackbarContentProps,
 } from '@material-ui/core/SnackbarContent'
-export type SnackbarContentProps = MUISnackbarContentProps
-export const SnackbarContent = (props: SnackbarContentProps) => (
-  <MUISnackbarContent {...props} />
-)
+
+/**
+ * Props for SnackbarContent
+ */
+export type SnackbarContentProps = MUISnackbarContentProps & {
+  ref?: React.ForwardedRef<unknown>
+}
+
+/**
+ * SnackbarContent
+ */
+export const SnackbarContent = React.forwardRef((props, ref) => (
+  <MUISnackbarContent ref={ref} {...props} />
+)) as (props: SnackbarContentProps) => JSX.Element

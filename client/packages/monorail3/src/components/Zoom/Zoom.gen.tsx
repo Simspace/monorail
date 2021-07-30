@@ -4,5 +4,15 @@ import {
   default as MUIZoom,
   ZoomProps as MUIZoomProps,
 } from '@material-ui/core/Zoom'
-export type ZoomProps = MUIZoomProps
-export const Zoom = (props: ZoomProps) => <MUIZoom {...props} />
+
+/**
+ * Props for Zoom
+ */
+export type ZoomProps = MUIZoomProps & { ref?: React.ForwardedRef<unknown> }
+
+/**
+ * Zoom
+ */
+export const Zoom = React.forwardRef((props, ref) => (
+  <MUIZoom ref={ref} {...props} />
+)) as (props: ZoomProps) => JSX.Element
