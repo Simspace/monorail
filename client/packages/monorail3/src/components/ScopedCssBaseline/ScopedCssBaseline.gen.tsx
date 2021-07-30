@@ -5,13 +5,25 @@ import {
   ScopedCssBaselineProps as MUIScopedCssBaselineProps,
   ScopedCssBaselineTypeMap,
 } from '@material-ui/core/ScopedCssBaseline'
+
+/**
+ * Props for ScopedCssBaseline
+ */
 export type ScopedCssBaselineProps<
   D extends React.ElementType = ScopedCssBaselineTypeMap['defaultComponent'],
   P = {}
-> = MUIScopedCssBaselineProps<D, P>
-export const ScopedCssBaseline = <
+> = MUIScopedCssBaselineProps<D, P> & {
+  ref?: React.ForwardedRef<HTMLDivElement>
+}
+
+/**
+ * ScopedCssBaseline
+ */
+export const ScopedCssBaseline = React.forwardRef((props, ref) => (
+  <MUIScopedCssBaseline ref={ref} {...props} />
+)) as <
   D extends React.ElementType = ScopedCssBaselineTypeMap['defaultComponent'],
   P = {}
 >(
   props: ScopedCssBaselineProps<D, P>,
-) => <MUIScopedCssBaseline {...props} />
+) => JSX.Element

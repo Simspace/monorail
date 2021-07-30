@@ -5,12 +5,20 @@ import {
   PaperProps as MUIPaperProps,
   PaperTypeMap,
 } from '@material-ui/core/Paper'
+
+/**
+ * Props for Paper
+ */
 export type PaperProps<
   D extends React.ElementType = PaperTypeMap['defaultComponent'],
   P = {}
 > = MUIPaperProps<D, P> & { ref?: React.ForwardedRef<HTMLDivElement> }
+
+/**
+ * Paper
+ */
 export const Paper = React.forwardRef((props, ref) => (
   <MUIPaper ref={ref} {...props} />
 )) as <D extends React.ElementType = PaperTypeMap['defaultComponent'], P = {}>(
   props: PaperProps<D, P>,
-) => ReturnType<typeof MUIPaper>
+) => JSX.Element

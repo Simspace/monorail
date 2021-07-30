@@ -4,5 +4,15 @@ import {
   default as MUIStep,
   StepProps as MUIStepProps,
 } from '@material-ui/core/Step'
-export type StepProps = MUIStepProps
-export const Step = (props: StepProps) => <MUIStep {...props} />
+
+/**
+ * Props for Step
+ */
+export type StepProps = MUIStepProps & { ref?: React.ForwardedRef<unknown> }
+
+/**
+ * Step
+ */
+export const Step = React.forwardRef((props, ref) => (
+  <MUIStep ref={ref} {...props} />
+)) as (props: StepProps) => JSX.Element

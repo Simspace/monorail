@@ -4,11 +4,17 @@ import {
   default as MUIListItemSecondaryAction,
   ListItemSecondaryActionProps as MUIListItemSecondaryActionProps,
 } from '@material-ui/core/ListItemSecondaryAction'
+
+/**
+ * Props for ListItemSecondaryAction
+ */
 export type ListItemSecondaryActionProps = MUIListItemSecondaryActionProps & {
   ref?: React.ForwardedRef<unknown>
 }
+
+/**
+ * ListItemSecondaryAction
+ */
 export const ListItemSecondaryAction = React.forwardRef((props, ref) => (
   <MUIListItemSecondaryAction ref={ref} {...props} />
-)) as (
-  props: ListItemSecondaryActionProps,
-) => ReturnType<typeof MUIListItemSecondaryAction>
+)) as (props: ListItemSecondaryActionProps) => JSX.Element

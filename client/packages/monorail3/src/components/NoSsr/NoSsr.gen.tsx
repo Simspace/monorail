@@ -4,5 +4,15 @@ import {
   default as MUINoSsr,
   NoSsrProps as MUINoSsrProps,
 } from '@material-ui/core/NoSsr'
-export type NoSsrProps = MUINoSsrProps
-export const NoSsr = (props: NoSsrProps) => <MUINoSsr {...props} />
+
+/**
+ * Props for NoSsr
+ */
+export type NoSsrProps = MUINoSsrProps & { ref?: React.ForwardedRef<unknown> }
+
+/**
+ * NoSsr
+ */
+export const NoSsr = React.forwardRef((props, ref) => (
+  <MUINoSsr ref={ref} {...props} />
+)) as (props: NoSsrProps) => JSX.Element

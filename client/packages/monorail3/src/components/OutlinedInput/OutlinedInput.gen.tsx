@@ -4,7 +4,17 @@ import {
   default as MUIOutlinedInput,
   OutlinedInputProps as MUIOutlinedInputProps,
 } from '@material-ui/core/OutlinedInput'
-export type OutlinedInputProps = MUIOutlinedInputProps
-export const OutlinedInput = (props: OutlinedInputProps) => (
-  <MUIOutlinedInput {...props} />
-)
+
+/**
+ * Props for OutlinedInput
+ */
+export type OutlinedInputProps = MUIOutlinedInputProps & {
+  ref?: React.ForwardedRef<unknown>
+}
+
+/**
+ * OutlinedInput
+ */
+export const OutlinedInput = React.forwardRef((props, ref) => (
+  <MUIOutlinedInput ref={ref} {...props} />
+)) as (props: OutlinedInputProps) => JSX.Element

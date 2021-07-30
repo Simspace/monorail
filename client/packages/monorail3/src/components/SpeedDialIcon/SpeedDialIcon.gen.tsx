@@ -4,7 +4,17 @@ import {
   default as MUISpeedDialIcon,
   SpeedDialIconProps as MUISpeedDialIconProps,
 } from '@material-ui/core/SpeedDialIcon'
-export type SpeedDialIconProps = MUISpeedDialIconProps
-export const SpeedDialIcon = (props: SpeedDialIconProps) => (
-  <MUISpeedDialIcon {...props} />
-)
+
+/**
+ * Props for SpeedDialIcon
+ */
+export type SpeedDialIconProps = MUISpeedDialIconProps & {
+  ref?: React.ForwardedRef<unknown>
+}
+
+/**
+ * SpeedDialIcon
+ */
+export const SpeedDialIcon = React.forwardRef((props, ref) => (
+  <MUISpeedDialIcon ref={ref} {...props} />
+)) as (props: SpeedDialIconProps) => JSX.Element

@@ -3,4 +3,7 @@ import React from 'react'
 import { story } from '../../../__tests__/helpers/storybook'
 import { Collapse, CollapseProps } from '../Collapse'
 /** This is intended to be exported (with possible extensions) as the default meta object for a story */
-export const defaultStoryMeta = { title: 'Utils/Collapse', component: Collapse }
+export const defaultStoryMeta = {
+  title: 'Utils/Transitions/Collapse',
+  component: Collapse,
+}

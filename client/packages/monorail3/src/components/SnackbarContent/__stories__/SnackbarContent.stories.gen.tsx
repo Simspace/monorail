@@ -4,6 +4,6 @@ import { story } from '../../../__tests__/helpers/storybook'
 import { SnackbarContent, SnackbarContentProps } from '../SnackbarContent'
 /** This is intended to be exported (with possible extensions) as the default meta object for a story */
 export const defaultStoryMeta = {
-  title: 'Feedback/SnackbarContent',
+  title: 'Feedback/Snackbar/SnackbarContent',
   component: SnackbarContent,
 }

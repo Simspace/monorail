@@ -4,5 +4,17 @@ import {
   default as MUIPopover,
   PopoverProps as MUIPopoverProps,
 } from '@material-ui/core/Popover'
-export type PopoverProps = MUIPopoverProps
-export const Popover = (props: PopoverProps) => <MUIPopover {...props} />
+
+/**
+ * Props for Popover
+ */
+export type PopoverProps = MUIPopoverProps & {
+  ref?: React.ForwardedRef<unknown>
+}
+
+/**
+ * Popover
+ */
+export const Popover = React.forwardRef((props, ref) => (
+  <MUIPopover ref={ref} {...props} />
+)) as (props: PopoverProps) => JSX.Element

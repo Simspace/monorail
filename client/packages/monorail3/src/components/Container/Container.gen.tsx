@@ -5,13 +5,23 @@ import {
   ContainerProps as MUIContainerProps,
   ContainerTypeMap,
 } from '@material-ui/core/Container'
+
+/**
+ * Props for Container
+ */
 export type ContainerProps<
   D extends React.ElementType = ContainerTypeMap['defaultComponent'],
   P = {}
-> = MUIContainerProps<D, P>
-export const Container = <
+> = MUIContainerProps<D, P> & { ref?: React.ForwardedRef<HTMLDivElement> }
+
+/**
+ * Container
+ */
+export const Container = React.forwardRef((props, ref) => (
+  <MUIContainer ref={ref} {...props} />
+)) as <
   D extends React.ElementType = ContainerTypeMap['defaultComponent'],
   P = {}
 >(
   props: ContainerProps<D, P>,
-) => <MUIContainer {...props} />
+) => JSX.Element

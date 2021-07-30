@@ -4,6 +4,6 @@ import { story } from '../../../__tests__/helpers/storybook'
 import { ListItemAvatar, ListItemAvatarProps } from '../ListItemAvatar'
 /** This is intended to be exported (with possible extensions) as the default meta object for a story */
 export const defaultStoryMeta = {
-  title: 'Data Display/ListItemAvatar',
+  title: 'Data Display/List/ListItemAvatar',
   component: ListItemAvatar,
 }

@@ -4,7 +4,17 @@ import {
   default as MUINativeSelect,
   NativeSelectProps as MUINativeSelectProps,
 } from '@material-ui/core/NativeSelect'
-export type NativeSelectProps = MUINativeSelectProps
-export const NativeSelect = (props: NativeSelectProps) => (
-  <MUINativeSelect {...props} />
-)
+
+/**
+ * Props for NativeSelect
+ */
+export type NativeSelectProps = MUINativeSelectProps & {
+  ref?: React.ForwardedRef<unknown>
+}
+
+/**
+ * NativeSelect
+ */
+export const NativeSelect = React.forwardRef((props, ref) => (
+  <MUINativeSelect ref={ref} {...props} />
+)) as (props: NativeSelectProps) => JSX.Element

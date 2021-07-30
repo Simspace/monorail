@@ -4,7 +4,17 @@ import {
   default as MUIDialogTitle,
   DialogTitleProps as MUIDialogTitleProps,
 } from '@material-ui/core/DialogTitle'
-export type DialogTitleProps = MUIDialogTitleProps
-export const DialogTitle = (props: DialogTitleProps) => (
-  <MUIDialogTitle {...props} />
-)
+
+/**
+ * Props for DialogTitle
+ */
+export type DialogTitleProps = MUIDialogTitleProps & {
+  ref?: React.ForwardedRef<unknown>
+}
+
+/**
+ * DialogTitle
+ */
+export const DialogTitle = React.forwardRef((props, ref) => (
+  <MUIDialogTitle ref={ref} {...props} />
+)) as (props: DialogTitleProps) => JSX.Element

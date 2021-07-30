@@ -4,7 +4,15 @@ import {
   default as MUIFade,
   FadeProps as MUIFadeProps,
 } from '@material-ui/core/Fade'
+
+/**
+ * Props for Fade
+ */
 export type FadeProps = MUIFadeProps & { ref?: React.ForwardedRef<unknown> }
+
+/**
+ * Fade
+ */
 export const Fade = React.forwardRef((props, ref) => (
   <MUIFade ref={ref} {...props} />
-)) as (props: FadeProps) => ReturnType<typeof MUIFade>
+)) as (props: FadeProps) => JSX.Element

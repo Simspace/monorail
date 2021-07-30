@@ -4,7 +4,17 @@ import {
   default as MUIFormControlLabel,
   FormControlLabelProps as MUIFormControlLabelProps,
 } from '@material-ui/core/FormControlLabel'
-export type FormControlLabelProps = MUIFormControlLabelProps
-export const FormControlLabel = (props: FormControlLabelProps) => (
-  <MUIFormControlLabel {...props} />
-)
+
+/**
+ * Props for FormControlLabel
+ */
+export type FormControlLabelProps = MUIFormControlLabelProps & {
+  ref?: React.ForwardedRef<unknown>
+}
+
+/**
+ * FormControlLabel
+ */
+export const FormControlLabel = React.forwardRef((props, ref) => (
+  <MUIFormControlLabel ref={ref} {...props} />
+)) as (props: FormControlLabelProps) => JSX.Element

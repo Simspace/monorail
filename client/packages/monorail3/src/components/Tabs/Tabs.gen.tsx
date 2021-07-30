@@ -5,13 +5,20 @@ import {
   TabsProps as MUITabsProps,
   TabsTypeMap,
 } from '@material-ui/core/Tabs'
+
+/**
+ * Props for Tabs
+ */
 export type TabsProps<
   D extends React.ElementType = TabsTypeMap['defaultComponent'],
   P = {}
-> = MUITabsProps<D, P>
-export const Tabs = <
-  D extends React.ElementType = TabsTypeMap['defaultComponent'],
-  P = {}
->(
+> = MUITabsProps<D, P> & { ref?: React.ForwardedRef<HTMLButtonElement> }
+
+/**
+ * Tabs
+ */
+export const Tabs = React.forwardRef((props, ref) => (
+  <MUITabs ref={ref} {...props} />
+)) as <D extends React.ElementType = TabsTypeMap['defaultComponent'], P = {}>(
   props: TabsProps<D, P>,
-) => <MUITabs {...props} />
+) => JSX.Element

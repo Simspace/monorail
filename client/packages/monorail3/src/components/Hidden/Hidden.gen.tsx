@@ -4,5 +4,15 @@ import {
   default as MUIHidden,
   HiddenProps as MUIHiddenProps,
 } from '@material-ui/core/Hidden'
-export type HiddenProps = MUIHiddenProps
-export const Hidden = (props: HiddenProps) => <MUIHidden {...props} />
+
+/**
+ * Props for Hidden
+ */
+export type HiddenProps = MUIHiddenProps & { ref?: React.ForwardedRef<unknown> }
+
+/**
+ * Hidden
+ */
+export const Hidden = React.forwardRef((props, ref) => (
+  <MUIHidden ref={ref} {...props} />
+)) as (props: HiddenProps) => JSX.Element

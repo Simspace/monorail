@@ -7,6 +7,6 @@ import {
 } from '../BottomNavigationAction'
 /** This is intended to be exported (with possible extensions) as the default meta object for a story */
 export const defaultStoryMeta = {
-  title: 'Navigation/BottomNavigationAction',
+  title: 'Navigation/BottomNavigation/BottomNavigationAction',
   component: BottomNavigationAction,
 }

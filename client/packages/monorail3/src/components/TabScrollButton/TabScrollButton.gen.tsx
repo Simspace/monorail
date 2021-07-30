@@ -4,7 +4,17 @@ import {
   default as MUITabScrollButton,
   TabScrollButtonProps as MUITabScrollButtonProps,
 } from '@material-ui/core/TabScrollButton'
-export type TabScrollButtonProps = MUITabScrollButtonProps
-export const TabScrollButton = (props: TabScrollButtonProps) => (
-  <MUITabScrollButton {...props} />
-)
+
+/**
+ * Props for TabScrollButton
+ */
+export type TabScrollButtonProps = MUITabScrollButtonProps & {
+  ref?: React.ForwardedRef<unknown>
+}
+
+/**
+ * TabScrollButton
+ */
+export const TabScrollButton = React.forwardRef((props, ref) => (
+  <MUITabScrollButton ref={ref} {...props} />
+)) as (props: TabScrollButtonProps) => JSX.Element

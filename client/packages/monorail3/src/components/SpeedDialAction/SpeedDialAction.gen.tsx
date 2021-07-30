@@ -4,7 +4,17 @@ import {
   default as MUISpeedDialAction,
   SpeedDialActionProps as MUISpeedDialActionProps,
 } from '@material-ui/core/SpeedDialAction'
-export type SpeedDialActionProps = MUISpeedDialActionProps
-export const SpeedDialAction = (props: SpeedDialActionProps) => (
-  <MUISpeedDialAction {...props} />
-)
+
+/**
+ * Props for SpeedDialAction
+ */
+export type SpeedDialActionProps = MUISpeedDialActionProps & {
+  ref?: React.ForwardedRef<unknown>
+}
+
+/**
+ * SpeedDialAction
+ */
+export const SpeedDialAction = React.forwardRef((props, ref) => (
+  <MUISpeedDialAction ref={ref} {...props} />
+)) as (props: SpeedDialActionProps) => JSX.Element

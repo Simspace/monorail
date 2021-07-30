@@ -5,13 +5,25 @@ import {
   TableFooterProps as MUITableFooterProps,
   TableFooterTypeMap,
 } from '@material-ui/core/TableFooter'
+
+/**
+ * Props for TableFooter
+ */
 export type TableFooterProps<
   D extends React.ElementType = TableFooterTypeMap['defaultComponent'],
   P = {}
-> = MUITableFooterProps<D, P>
-export const TableFooter = <
+> = MUITableFooterProps<D, P> & {
+  ref?: React.ForwardedRef<HTMLTableSectionElement>
+}
+
+/**
+ * TableFooter
+ */
+export const TableFooter = React.forwardRef((props, ref) => (
+  <MUITableFooter ref={ref} {...props} />
+)) as <
   D extends React.ElementType = TableFooterTypeMap['defaultComponent'],
   P = {}
 >(
   props: TableFooterProps<D, P>,
-) => <MUITableFooter {...props} />
+) => JSX.Element

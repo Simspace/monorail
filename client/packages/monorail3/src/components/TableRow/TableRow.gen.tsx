@@ -5,13 +5,23 @@ import {
   TableRowProps as MUITableRowProps,
   TableRowTypeMap,
 } from '@material-ui/core/TableRow'
+
+/**
+ * Props for TableRow
+ */
 export type TableRowProps<
   D extends React.ElementType = TableRowTypeMap['defaultComponent'],
   P = {}
-> = MUITableRowProps<D, P>
-export const TableRow = <
+> = MUITableRowProps<D, P> & { ref?: React.ForwardedRef<HTMLTableRowElement> }
+
+/**
+ * TableRow
+ */
+export const TableRow = React.forwardRef((props, ref) => (
+  <MUITableRow ref={ref} {...props} />
+)) as <
   D extends React.ElementType = TableRowTypeMap['defaultComponent'],
   P = {}
 >(
   props: TableRowProps<D, P>,
-) => <MUITableRow {...props} />
+) => JSX.Element
