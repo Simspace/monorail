@@ -4,5 +4,17 @@ import {
   default as MUITableCell,
   TableCellProps as MUITableCellProps,
 } from '@material-ui/core/TableCell'
-export type TableCellProps = MUITableCellProps
-export const TableCell = (props: TableCellProps) => <MUITableCell {...props} />
+
+/**
+ * Props for TableCell
+ */
+export type TableCellProps = MUITableCellProps & {
+  ref?: React.ForwardedRef<unknown>
+}
+
+/**
+ * TableCell
+ */
+export const TableCell = React.forwardRef((props, ref) => (
+  <MUITableCell ref={ref} {...props} />
+)) as (props: TableCellProps) => JSX.Element

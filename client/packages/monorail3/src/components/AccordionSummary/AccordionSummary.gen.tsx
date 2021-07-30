@@ -5,13 +5,25 @@ import {
   AccordionSummaryProps as MUIAccordionSummaryProps,
   AccordionSummaryTypeMap,
 } from '@material-ui/core/AccordionSummary'
+
+/**
+ * Props for AccordionSummary
+ */
 export type AccordionSummaryProps<
   D extends React.ElementType = AccordionSummaryTypeMap['defaultComponent'],
   P = {}
-> = MUIAccordionSummaryProps<D, P>
-export const AccordionSummary = <
+> = MUIAccordionSummaryProps<D, P> & {
+  ref?: React.ForwardedRef<HTMLDivElement>
+}
+
+/**
+ * AccordionSummary
+ */
+export const AccordionSummary = React.forwardRef((props, ref) => (
+  <MUIAccordionSummary ref={ref} {...props} />
+)) as <
   D extends React.ElementType = AccordionSummaryTypeMap['defaultComponent'],
   P = {}
 >(
   props: AccordionSummaryProps<D, P>,
-) => <MUIAccordionSummary {...props} />
+) => JSX.Element

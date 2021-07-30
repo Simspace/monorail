@@ -5,13 +5,25 @@ import {
   CardActionAreaProps as MUICardActionAreaProps,
 } from '@material-ui/core/CardActionArea'
 import { ButtonBaseTypeMap } from '@material-ui/core/ButtonBase'
+
+/**
+ * Props for CardActionArea
+ */
 export type CardActionAreaProps<
   D extends React.ElementType = ButtonBaseTypeMap['defaultComponent'],
   P = {}
-> = MUICardActionAreaProps<D, P>
-export const CardActionArea = <
+> = MUICardActionAreaProps<D, P> & {
+  ref?: React.ForwardedRef<HTMLButtonElement>
+}
+
+/**
+ * CardActionArea
+ */
+export const CardActionArea = React.forwardRef((props, ref) => (
+  <MUICardActionArea ref={ref} {...props} />
+)) as <
   D extends React.ElementType = ButtonBaseTypeMap['defaultComponent'],
   P = {}
 >(
   props: CardActionAreaProps<D, P>,
-) => <MUICardActionArea {...props} />
+) => JSX.Element

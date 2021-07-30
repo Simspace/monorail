@@ -4,6 +4,6 @@ import { story } from '../../../__tests__/helpers/storybook'
 import { InputLabel, InputLabelProps } from '../InputLabel'
 /** This is intended to be exported (with possible extensions) as the default meta object for a story */
 export const defaultStoryMeta = {
-  title: 'Inputs/InputLabel',
+  title: 'Inputs/Input/InputLabel',
   component: InputLabel,
 }

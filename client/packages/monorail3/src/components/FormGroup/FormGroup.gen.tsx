@@ -4,5 +4,17 @@ import {
   default as MUIFormGroup,
   FormGroupProps as MUIFormGroupProps,
 } from '@material-ui/core/FormGroup'
-export type FormGroupProps = MUIFormGroupProps
-export const FormGroup = (props: FormGroupProps) => <MUIFormGroup {...props} />
+
+/**
+ * Props for FormGroup
+ */
+export type FormGroupProps = MUIFormGroupProps & {
+  ref?: React.ForwardedRef<unknown>
+}
+
+/**
+ * FormGroup
+ */
+export const FormGroup = React.forwardRef((props, ref) => (
+  <MUIFormGroup ref={ref} {...props} />
+)) as (props: FormGroupProps) => JSX.Element

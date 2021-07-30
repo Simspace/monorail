@@ -3,6 +3,14 @@ import React from 'react'
 import { CircularProgress, CircularProgressProps } from '../CircularProgress'
 import { story } from '../../../__tests__/helpers/storybook'
 import { defaultStoryMeta } from './CircularProgress.stories.gen'
+import { Stack } from '../../Stack/Stack'
+import { Box } from '../../Box/Box'
+import { Fab } from '../../Fab/Fab'
+import { Button } from '../../Button/Button'
+import green from '@material-ui/core/colors/green'
+import CheckIcon from '@material-ui/icons/Check'
+import SaveIcon from '@material-ui/icons/Save'
+import { Typography } from '../../Typography/Typography'
 
 /**
  * Metadata for CircularProgress stories - update/extend as needed
@@ -24,4 +32,202 @@ const Template = story<CircularProgressProps>(
 
 /** Default story for CircularProgress (edit/remove by hand if needed) */
 export const Default = story(Template)
-// TODO: add more stories below
+
+export const Variants = story<CircularProgressProps>(
+  () => (
+    <Stack direction="row" spacing={1}>
+      <CircularProgress color="secondary" />
+      <CircularProgress color="success" />
+      <CircularProgress color="inherit" />
+    </Stack>
+  ),
+  {
+    parameters: {
+      docs: {
+        description: {
+          story: `The CircularProgress component supports a variety of color variants.`,
+        },
+      },
+    },
+  },
+)
+
+export const CircularDeterminate = story<CircularProgressProps>(
+  () => {
+    const [progress, setProgress] = React.useState(0)
+
+    React.useEffect(() => {
+      const timer = setInterval(() => {
+        setProgress(prevProgress =>
+          prevProgress >= 100 ? 0 : prevProgress + 10,
+        )
+      }, 800)
+
+      return () => {
+        clearInterval(timer)
+      }
+    }, [])
+
+    return (
+      <Stack spacing={2} direction="row">
+        <CircularProgress variant="determinate" value={25} />
+        <CircularProgress variant="determinate" value={50} />
+        <CircularProgress variant="determinate" value={75} />
+        <CircularProgress variant="determinate" value={100} />
+        <CircularProgress variant="determinate" value={progress} />
+      </Stack>
+    )
+  },
+  {
+    parameters: {
+      docs: {
+        description: {
+          story: `The CircularProgress component supports determinate states.`,
+        },
+      },
+    },
+  },
+)
+
+export const CircularIntegration = story<CircularProgressProps>(
+  () => {
+    const [loading, setLoading] = React.useState(false)
+    const [success, setSuccess] = React.useState(false)
+    const timer = React.useRef<number>()
+
+    const buttonSx = {
+      ...(success && {
+        bgcolor: green[500],
+        '&:hover': {
+          bgcolor: green[700],
+        },
+      }),
+    }
+
+    React.useEffect(() => {
+      return () => {
+        clearTimeout(timer.current)
+      }
+    }, [])
+
+    const handleButtonClick = () => {
+      if (!loading) {
+        setSuccess(false)
+        setLoading(true)
+        timer.current = window.setTimeout(() => {
+          setSuccess(true)
+          setLoading(false)
+        }, 2000)
+      }
+    }
+
+    return (
+      <Box sx={{ display: 'flex', alignItems: 'center' }}>
+        <Box sx={{ m: 1, position: 'relative' }}>
+          <Fab
+            aria-label="save"
+            color="primary"
+            sx={buttonSx}
+            onClick={handleButtonClick}
+          >
+            {success ? <CheckIcon /> : <SaveIcon />}
+          </Fab>
+          {loading && (
+            <CircularProgress
+              size={68}
+              sx={{
+                color: green[500],
+                position: 'absolute',
+                top: -6,
+                left: -6,
+                zIndex: 1,
+              }}
+            />
+          )}
+        </Box>
+        <Box sx={{ m: 1, position: 'relative' }}>
+          <Button
+            variant="contained"
+            sx={buttonSx}
+            disabled={loading}
+            onClick={handleButtonClick}
+          >
+            Accept terms
+          </Button>
+          {loading && (
+            <CircularProgress
+              size={24}
+              sx={{
+                color: green[500],
+                position: 'absolute',
+                top: '50%',
+                left: '50%',
+                marginTop: -12,
+                marginLeft: -12,
+              }}
+            />
+          )}
+        </Box>
+      </Box>
+    )
+  },
+  {
+    parameters: {
+      docs: {
+        description: {
+          story: `The CircularProgress component may be integrated with other components.`,
+        },
+      },
+    },
+  },
+)
+
+export const CircularProgressWithLabel = story<CircularProgressProps>(
+  () => {
+    const [progress, setProgress] = React.useState(10)
+
+    React.useEffect(() => {
+      const timer = setInterval(() => {
+        setProgress(prevProgress =>
+          prevProgress >= 100 ? 0 : prevProgress + 10,
+        )
+      }, 800)
+      return () => {
+        clearInterval(timer)
+      }
+    }, [])
+
+    return (
+      <Box sx={{ position: 'relative', display: 'inline-flex' }}>
+        <CircularProgress variant="determinate" value={progress} />
+        <Box
+          sx={{
+            top: 0,
+            left: 0,
+            bottom: 0,
+            right: 0,
+            position: 'absolute',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          <Typography
+            variant="caption"
+            component="div"
+            color="text.secondary"
+          >{`${Math.round(progress)}%`}</Typography>
+        </Box>
+      </Box>
+    )
+  },
+  {
+    parameters: {
+      docs: {
+        description: {
+          story: `The CircularProgress component may be integrated with other components to create a label.`,
+        },
+      },
+    },
+  },
+)

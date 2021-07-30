@@ -16,74 +16,35 @@ const consoleLogBanner = (msg: string): void => {
   console.log('-------------------------------------------------')
 }
 
-/**
- * Folders in which to organize components in storybook
- */
+export type StorybookFolder1 =
+  | 'Layout'
+  | 'Inputs'
+  | 'Navigation'
+  | 'Surfaces'
+  | 'Feedback'
+  | 'Data Display'
+  | 'Data Grid'
+  | 'Utils'
 
-export type StorybookFolderLayout = { tag: 'layout'; title: string }
-export type StorybookFolderInputs = { tag: 'inputs'; title: string }
-export type StorybookFolderNavigation = {
-  tag: 'navigation'
-  title: string
-}
-export type StorybookFolderSurfaces = { tag: 'surfaces'; title: string }
-export type StorybookFolderFeedback = { tag: 'feedback'; title: string }
-export type StorybookFolderDataDisplay = {
-  tag: 'dataDisplay'
-  title: string
-}
-export type StorybookFolderDataGrid = { tag: 'dataGrid'; title: string }
-export type StorybookFolderUtils = { tag: 'utils'; title: string }
-
-export type StorybookFolder =
-  | StorybookFolderLayout
-  | StorybookFolderInputs
-  | StorybookFolderNavigation
-  | StorybookFolderSurfaces
-  | StorybookFolderFeedback
-  | StorybookFolderDataDisplay
-  | StorybookFolderDataGrid
-  | StorybookFolderUtils
-
-export const storybookFolderLayout: StorybookFolderLayout = {
-  tag: 'layout',
-  title: 'Layout',
-}
-
-export const storybookFolderInputs: StorybookFolderInputs = {
-  tag: 'inputs',
-  title: 'Inputs',
-}
-
-export const storybookFolderNavigation: StorybookFolderNavigation = {
-  tag: 'navigation',
-  title: 'Navigation',
-}
-
-export const storybookFolderSurfaces: StorybookFolderSurfaces = {
-  tag: 'surfaces',
-  title: 'Surfaces',
-}
-
-export const storybookFolderFeedback: StorybookFolderFeedback = {
-  tag: 'feedback',
-  title: 'Feedback',
-}
-
-export const storybookFolderDataDisplay: StorybookFolderDataDisplay = {
-  tag: 'dataDisplay',
-  title: 'Data Display',
-}
-
-export const storybookFolderDataGrid: StorybookFolderDataGrid = {
-  tag: 'dataGrid',
-  title: 'Data Grid',
-}
-
-export const storybookFolderUtils: StorybookFolderUtils = {
-  tag: 'utils',
-  title: 'Utils',
-}
+// Components that have children. This is not a raw `string` just to avoid accidental typos.
+export type StorybookFolder2 =
+  | 'Accordion'
+  | 'Alert'
+  | 'BottomNavigation'
+  | 'Card'
+  | 'Dialog'
+  | 'Drawer'
+  | 'ImageList'
+  | 'FormControl'
+  | 'Input'
+  | 'List'
+  | 'Menu'
+  | 'SpeedDial'
+  | 'Snackbar'
+  | 'Stepper'
+  | 'Tab'
+  | 'Table'
+  | 'Transitions'
 
 /**
  * Metadata about an MUI module for the purpose of generating code
@@ -95,10 +56,10 @@ type ModuleInfo = {
   muiComponentName?: string
   // A special function for manipulating the type parameters string for the LHS of a type declaration
   muiComponentModifyTypeParametersLhsString?: (lhs: string) => string
-  monorailComponentWithForwardRef?: boolean
   monorailComponentRefType?: string
   monorailComponentExtraImports?: Array<string>
-  storybookFolder: StorybookFolder
+  storybookFolder1: StorybookFolder1
+  storybookFolder2?: StorybookFolder2
 }
 
 /**
@@ -154,16 +115,6 @@ const getMonorailComponentExtraImports = (module: ModuleInfo): Array<string> =>
     ? module.monorailComponentExtraImports
     : []
 
-/**
- * Indicates if the monorail component should be generated using React.forwardRef
- *
- * TODO: I'm not sure if we should just generate all the components this way (AW 2021-07-01)
- *
- * See: https://fettblog.eu/typescript-react-generic-forward-refs/
- */
-const getMonorailComponentWithForwardRef = (module: ModuleInfo): boolean =>
-  module.monorailComponentWithForwardRef === true
-
 const getMonorailComponentRefType = (module: ModuleInfo): string =>
   module.monorailComponentRefType !== undefined
     ? module.monorailComponentRefType
@@ -175,377 +126,428 @@ const getMonorailComponentRefType = (module: ModuleInfo): string =>
 
 // List of all the modules to generate, including extra metadata to help the code gen
 const modules: Array<ModuleInfo> = [
-  { name: 'Accordion', storybookFolder: storybookFolderSurfaces },
-  { name: 'AccordionActions', storybookFolder: storybookFolderSurfaces },
-  { name: 'AccordionDetails', storybookFolder: storybookFolderSurfaces },
+  { name: 'Accordion', storybookFolder1: 'Surfaces' },
+  {
+    name: 'AccordionActions',
+    storybookFolder1: 'Surfaces',
+    storybookFolder2: 'Accordion',
+  },
+  {
+    name: 'AccordionDetails',
+    storybookFolder1: 'Surfaces',
+    storybookFolder2: 'Accordion',
+  },
   {
     name: 'AccordionSummary',
-    storybookFolder: storybookFolderSurfaces,
+    storybookFolder1: 'Surfaces',
+    storybookFolder2: 'Accordion',
+    monorailComponentRefType: 'HTMLDivElement',
   },
   {
     name: 'Alert',
-    storybookFolder: storybookFolderFeedback,
-    monorailComponentWithForwardRef: true,
+    storybookFolder1: 'Feedback',
     monorailComponentRefType: 'HTMLDivElement',
   },
-  { name: 'AlertTitle', storybookFolder: storybookFolderFeedback },
-  { name: 'AppBar', storybookFolder: storybookFolderSurfaces },
+  {
+    name: 'AlertTitle',
+    storybookFolder1: 'Feedback',
+    storybookFolder2: 'Alert',
+  },
+  { name: 'AppBar', storybookFolder1: 'Surfaces' },
   {
     name: 'Autocomplete',
-    storybookFolder: storybookFolderInputs,
+    storybookFolder1: 'Inputs',
     monorailComponentExtraImports: [
       `import { ChipTypeMap } from '@material-ui/core/Chip'`,
     ],
   },
-  { name: 'Avatar', storybookFolder: storybookFolderDataDisplay },
-  { name: 'AvatarGroup', storybookFolder: storybookFolderDataDisplay },
-  { name: 'Backdrop', storybookFolder: storybookFolderFeedback },
-  { name: 'Badge', storybookFolder: storybookFolderDataDisplay },
-  { name: 'BottomNavigation', storybookFolder: storybookFolderNavigation },
+  {
+    name: 'Avatar',
+    storybookFolder1: 'Data Display',
+    monorailComponentRefType: 'HTMLDivElement',
+  },
+  {
+    name: 'AvatarGroup',
+    storybookFolder1: 'Data Display',
+  },
+  { name: 'Backdrop', storybookFolder1: 'Feedback' },
+  {
+    name: 'Badge',
+    storybookFolder1: 'Data Display',
+    monorailComponentRefType: 'HTMLSpanElement',
+  },
+  {
+    name: 'BottomNavigation',
+    storybookFolder1: 'Navigation',
+    monorailComponentRefType: 'HTMLDivElement',
+  },
   {
     name: 'BottomNavigationAction',
-    storybookFolder: storybookFolderNavigation,
+    storybookFolder1: 'Navigation',
+    storybookFolder2: 'BottomNavigation',
     monorailComponentExtraImports: [
       `import { ButtonBaseTypeMap } from '@material-ui/core/ButtonBase'`,
     ],
+    monorailComponentRefType: 'HTMLButtonElement',
   },
   {
     name: 'Box',
-    storybookFolder: storybookFolderLayout,
-    monorailComponentWithForwardRef: true,
+    storybookFolder1: 'Layout',
   },
-  { name: 'Breadcrumbs', storybookFolder: storybookFolderNavigation },
+  {
+    name: 'Breadcrumbs',
+    storybookFolder1: 'Navigation',
+    monorailComponentRefType: 'HTMLElement',
+  },
   {
     name: 'Button',
-    storybookFolder: storybookFolderInputs,
-    monorailComponentWithForwardRef: true,
+    storybookFolder1: 'Inputs',
     monorailComponentRefType: 'HTMLButtonElement',
   },
   {
     name: 'ButtonBase',
-    storybookFolder: storybookFolderInputs,
-    monorailComponentWithForwardRef: true,
+    storybookFolder1: 'Inputs',
     monorailComponentRefType: 'HTMLButtonElement',
   },
   {
     name: 'ButtonGroup',
-    storybookFolder: storybookFolderInputs,
-    monorailComponentWithForwardRef: true,
+    storybookFolder1: 'Inputs',
     monorailComponentRefType: 'HTMLDivElement',
   },
   {
     name: 'Card',
-    storybookFolder: storybookFolderSurfaces,
+    storybookFolder1: 'Surfaces',
   },
   {
     name: 'CardActionArea',
-    storybookFolder: storybookFolderSurfaces,
+    storybookFolder1: 'Surfaces',
+    storybookFolder2: 'Card',
+    monorailComponentRefType: 'HTMLButtonElement',
     monorailComponentExtraImports: [
       `import { ButtonBaseTypeMap } from '@material-ui/core/ButtonBase'`,
     ],
   },
   {
     name: 'CardActions',
-    storybookFolder: storybookFolderSurfaces,
+    storybookFolder1: 'Surfaces',
+    storybookFolder2: 'Card',
   },
   {
     name: 'CardContent',
-    storybookFolder: storybookFolderSurfaces,
+    storybookFolder1: 'Surfaces',
+    storybookFolder2: 'Card',
+    monorailComponentRefType: 'HTMLDivElement',
   },
   {
     name: 'CardHeader',
-    storybookFolder: storybookFolderSurfaces,
+    storybookFolder1: 'Surfaces',
+    storybookFolder2: 'Card',
+    monorailComponentRefType: 'HTMLDivElement',
   },
   {
     name: 'CardMedia',
-    storybookFolder: storybookFolderSurfaces,
+    storybookFolder1: 'Surfaces',
+    storybookFolder2: 'Card',
+    monorailComponentRefType: 'HTMLDivElement',
   },
   {
     name: 'Checkbox',
-    storybookFolder: storybookFolderInputs,
+    storybookFolder1: 'Inputs',
   },
   {
     name: 'Chip',
-    storybookFolder: storybookFolderDataDisplay,
+    storybookFolder1: 'Data Display',
+    monorailComponentRefType: 'HTMLDivElement',
   },
   {
     name: 'CircularProgress',
-    storybookFolder: storybookFolderFeedback,
+    storybookFolder1: 'Feedback',
   },
   {
     name: 'ClickAwayListener',
-    storybookFolder: storybookFolderUtils,
+    storybookFolder1: 'Utils',
   },
   {
     name: 'Collapse',
-    storybookFolder: storybookFolderUtils,
-    monorailComponentWithForwardRef: true,
+    storybookFolder1: 'Utils',
+    storybookFolder2: 'Transitions',
     monorailComponentRefType: 'unknown',
   },
   {
     name: 'Container',
-    storybookFolder: storybookFolderLayout,
+    storybookFolder1: 'Layout',
+    monorailComponentRefType: 'HTMLDivElement',
   },
   {
     name: 'CssBaseline',
-    storybookFolder: storybookFolderUtils,
+    storybookFolder1: 'Utils',
   },
   {
     name: 'Dialog',
-    storybookFolder: storybookFolderFeedback,
-    monorailComponentWithForwardRef: true,
+    storybookFolder1: 'Feedback',
     monorailComponentRefType: 'HTMLDivElement',
   },
   {
     name: 'DialogActions',
-    storybookFolder: storybookFolderFeedback,
+    storybookFolder1: 'Feedback',
+    storybookFolder2: 'Dialog',
   },
   {
     name: 'DialogContent',
-    storybookFolder: storybookFolderFeedback,
+    storybookFolder1: 'Feedback',
+    storybookFolder2: 'Dialog',
   },
   {
     name: 'DialogContentText',
-    storybookFolder: storybookFolderFeedback,
-    monorailComponentWithForwardRef: true,
+    storybookFolder1: 'Feedback',
+    storybookFolder2: 'Dialog',
     monorailComponentRefType: 'HTMLElement',
   },
   {
     name: 'DialogTitle',
-    storybookFolder: storybookFolderFeedback,
+    storybookFolder1: 'Feedback',
+    storybookFolder2: 'Dialog',
   },
   {
     name: 'Divider',
-    storybookFolder: storybookFolderDataDisplay,
+    storybookFolder1: 'Data Display',
+    monorailComponentRefType: 'HTMLHRElement',
   },
   {
     name: 'Drawer',
-    storybookFolder: storybookFolderNavigation,
+    storybookFolder1: 'Navigation',
   },
   {
     name: 'Fab',
-    storybookFolder: storybookFolderInputs,
-    monorailComponentWithForwardRef: true,
+    storybookFolder1: 'Inputs',
     monorailComponentRefType: 'HTMLButtonElement',
   },
   {
     name: 'Fade',
-    storybookFolder: storybookFolderUtils,
-    monorailComponentWithForwardRef: true,
+    storybookFolder1: 'Utils',
+    storybookFolder2: 'Transitions',
     monorailComponentRefType: 'unknown',
   },
   {
     name: 'FilledInput',
-    storybookFolder: storybookFolderInputs,
+    storybookFolder1: 'Inputs',
   },
   {
     name: 'FormControl',
-    storybookFolder: storybookFolderInputs,
+    storybookFolder1: 'Inputs',
+    monorailComponentRefType: 'HTMLDivElement',
   },
   {
     name: 'FormControlLabel',
-    storybookFolder: storybookFolderInputs,
+    storybookFolder1: 'Inputs',
   },
   {
     name: 'FormGroup',
-    storybookFolder: storybookFolderInputs,
+    storybookFolder1: 'Inputs',
   },
   {
     name: 'FormHelperText',
-    storybookFolder: storybookFolderInputs,
+    storybookFolder1: 'Inputs',
+    monorailComponentRefType: 'HTMLParagraphElement',
   },
   {
     name: 'FormLabel',
-    storybookFolder: storybookFolderInputs,
+    storybookFolder1: 'Inputs',
+    monorailComponentRefType: 'HTMLLabelElement',
   },
   {
     name: 'GlobalStyles',
-    storybookFolder: storybookFolderUtils,
+    storybookFolder1: 'Utils',
   },
   {
     name: 'Grid',
-    storybookFolder: storybookFolderLayout,
+    storybookFolder1: 'Layout',
+    monorailComponentRefType: 'HTMLDivElement',
   },
   {
     name: 'Grow',
-    storybookFolder: storybookFolderUtils,
-    monorailComponentWithForwardRef: true,
+    storybookFolder1: 'Utils',
+    storybookFolder2: 'Transitions',
     monorailComponentRefType: 'unknown',
   },
   {
     name: 'Hidden',
-    storybookFolder: storybookFolderUtils,
+    storybookFolder1: 'Utils',
   },
   {
     name: 'Icon',
-    storybookFolder: storybookFolderDataDisplay,
+    storybookFolder1: 'Data Display',
+    monorailComponentRefType: 'HTMLSpanElement',
   },
   {
     name: 'IconButton',
-    storybookFolder: storybookFolderInputs,
-    monorailComponentWithForwardRef: true,
+    storybookFolder1: 'Inputs',
     monorailComponentRefType: 'HTMLButtonElement',
   },
   {
     name: 'ImageList',
-    storybookFolder: storybookFolderLayout,
+    storybookFolder1: 'Layout',
+    monorailComponentRefType: 'HTMLUListElement',
   },
   {
     name: 'ImageListItem',
-    storybookFolder: storybookFolderLayout,
+    storybookFolder1: 'Layout',
+    storybookFolder2: 'ImageList',
+    monorailComponentRefType: 'HTMLLIElement',
   },
   {
     name: 'ImageListItemBar',
-    storybookFolder: storybookFolderLayout,
+    storybookFolder1: 'Layout',
+    storybookFolder2: 'ImageList',
   },
   {
     name: 'Input',
-    storybookFolder: storybookFolderInputs,
+    storybookFolder1: 'Inputs',
   },
   {
     name: 'InputAdornment',
-    storybookFolder: storybookFolderInputs,
+    storybookFolder1: 'Inputs',
+    storybookFolder2: 'Input',
+    monorailComponentRefType: 'HTMLDivElement',
   },
   {
     name: 'InputBase',
-    storybookFolder: storybookFolderInputs,
+    storybookFolder1: 'Inputs',
   },
   {
     name: 'InputLabel',
-    storybookFolder: storybookFolderInputs,
+    storybookFolder1: 'Inputs',
+    storybookFolder2: 'Input',
   },
   {
     name: 'LinearProgress',
-    storybookFolder: storybookFolderFeedback,
+    storybookFolder1: 'Feedback',
   },
   {
     name: 'Link',
-    storybookFolder: storybookFolderNavigation,
+    storybookFolder1: 'Navigation',
   },
   {
     name: 'List',
-    storybookFolder: storybookFolderDataDisplay,
-    monorailComponentWithForwardRef: true,
+    storybookFolder1: 'Data Display',
     monorailComponentRefType: 'HTMLUListElement',
   },
   {
     name: 'ListItem',
-    storybookFolder: storybookFolderDataDisplay,
-    monorailComponentWithForwardRef: true,
+    storybookFolder1: 'Data Display',
+    storybookFolder2: 'List',
     monorailComponentRefType: 'HTMLLIElement',
   },
   {
     name: 'ListItemAvatar',
-    storybookFolder: storybookFolderDataDisplay,
-    monorailComponentWithForwardRef: true,
+    storybookFolder1: 'Data Display',
+    storybookFolder2: 'List',
   },
   {
     name: 'ListItemButton',
-    storybookFolder: storybookFolderDataDisplay,
-    monorailComponentWithForwardRef: true,
+    storybookFolder1: 'Data Display',
+    storybookFolder2: 'List',
     monorailComponentRefType: 'HTMLDivElement',
   },
   {
     name: 'ListItemIcon',
-    storybookFolder: storybookFolderDataDisplay,
-    monorailComponentWithForwardRef: true,
+    storybookFolder1: 'Data Display',
+    storybookFolder2: 'List',
   },
   {
     name: 'ListItemSecondaryAction',
-    storybookFolder: storybookFolderDataDisplay,
-    monorailComponentWithForwardRef: true,
+    storybookFolder1: 'Data Display',
+    storybookFolder2: 'List',
   },
   {
     name: 'ListItemText',
-    storybookFolder: storybookFolderDataDisplay,
-    monorailComponentWithForwardRef: true,
+    storybookFolder1: 'Data Display',
+    storybookFolder2: 'List',
   },
   {
     name: 'ListSubheader',
-    storybookFolder: storybookFolderDataDisplay,
-    monorailComponentWithForwardRef: true,
+    storybookFolder1: 'Data Display',
+    storybookFolder2: 'List',
     monorailComponentRefType: 'HTMLLIElement',
   },
   {
     name: 'Menu',
-    storybookFolder: storybookFolderNavigation,
-    monorailComponentWithForwardRef: true,
+    storybookFolder1: 'Navigation',
   },
   {
     name: 'MenuItem',
-    storybookFolder: storybookFolderNavigation,
-    monorailComponentWithForwardRef: true,
+    storybookFolder1: 'Navigation',
+    storybookFolder2: 'Menu',
     monorailComponentRefType: 'HTMLLIElement',
   },
   {
     name: 'MenuList',
-    storybookFolder: storybookFolderNavigation,
-    monorailComponentWithForwardRef: true,
+    storybookFolder1: 'Navigation',
+    storybookFolder2: 'Menu',
   },
   {
     name: 'MobileStepper',
-    storybookFolder: storybookFolderNavigation,
+    storybookFolder1: 'Navigation',
   },
   {
     name: 'Modal',
-    storybookFolder: storybookFolderUtils,
+    storybookFolder1: 'Utils',
   },
   {
     name: 'NativeSelect',
-    storybookFolder: storybookFolderInputs,
+    storybookFolder1: 'Inputs',
   },
   {
     name: 'NoSsr',
-    storybookFolder: storybookFolderUtils,
+    storybookFolder1: 'Utils',
   },
   {
     name: 'OutlinedInput',
-    storybookFolder: storybookFolderInputs,
+    storybookFolder1: 'Inputs',
   },
   {
     name: 'Pagination',
-    storybookFolder: storybookFolderNavigation,
+    storybookFolder1: 'Navigation',
   },
   {
     name: 'Paper',
-    storybookFolder: storybookFolderSurfaces,
-    monorailComponentWithForwardRef: true,
+    storybookFolder1: 'Surfaces',
     monorailComponentRefType: 'HTMLDivElement',
   },
   {
     name: 'Popover',
-    storybookFolder: storybookFolderUtils,
+    storybookFolder1: 'Utils',
   },
   {
     name: 'Popper',
-    storybookFolder: storybookFolderUtils,
+    storybookFolder1: 'Utils',
   },
   {
     name: 'Portal',
-    storybookFolder: storybookFolderUtils,
+    storybookFolder1: 'Utils',
     muiModuleFileName: 'index.d.ts',
   },
   {
     name: 'Radio',
-    storybookFolder: storybookFolderInputs,
+    storybookFolder1: 'Inputs',
   },
   {
     name: 'RadioGroup',
-    storybookFolder: storybookFolderInputs,
-    monorailComponentWithForwardRef: true,
+    storybookFolder1: 'Inputs',
     monorailComponentRefType: 'unknown',
   },
   {
     name: 'Rating',
-    storybookFolder: storybookFolderInputs,
+    storybookFolder1: 'Inputs',
   },
   {
     name: 'ScopedCssBaseline',
-    storybookFolder: storybookFolderUtils,
+    storybookFolder1: 'Utils',
+    monorailComponentRefType: 'HTMLDivElement',
   },
   {
     name: 'Select',
-    storybookFolder: storybookFolderInputs,
+    storybookFolder1: 'Inputs',
     muiComponentModifyTypeParametersLhsString: (_lhs: string) =>
       // Select has a type param <T = unknown>, but we need to add the `T extends unknown` constraint to workaround
       // how JSX parses type parameters. This is just hardcoding that for now
@@ -553,175 +555,204 @@ const modules: Array<ModuleInfo> = [
   },
   {
     name: 'Skeleton',
-    storybookFolder: storybookFolderFeedback,
+    storybookFolder1: 'Feedback',
+    monorailComponentRefType: 'HTMLSpanElement',
   },
   {
     name: 'Slide',
-    storybookFolder: storybookFolderUtils,
-    monorailComponentWithForwardRef: true,
+    storybookFolder1: 'Utils',
+    storybookFolder2: 'Transitions',
     monorailComponentRefType: 'unknown',
   },
   {
     name: 'Slider',
-    storybookFolder: storybookFolderInputs,
+    storybookFolder1: 'Inputs',
   },
   {
     name: 'Snackbar',
-    storybookFolder: storybookFolderFeedback,
+    storybookFolder1: 'Feedback',
   },
   {
     name: 'SnackbarContent',
-    storybookFolder: storybookFolderFeedback,
+    storybookFolder1: 'Feedback',
+    storybookFolder2: 'Snackbar',
   },
   {
     name: 'SpeedDial',
-    storybookFolder: storybookFolderNavigation,
+    storybookFolder1: 'Navigation',
   },
   {
     name: 'SpeedDialAction',
-    storybookFolder: storybookFolderNavigation,
+    storybookFolder1: 'Navigation',
+    storybookFolder2: 'SpeedDial',
   },
   {
     name: 'SpeedDialIcon',
-    storybookFolder: storybookFolderNavigation,
+    storybookFolder1: 'Navigation',
+    storybookFolder2: 'SpeedDial',
   },
   {
     name: 'Stack',
-    storybookFolder: storybookFolderLayout,
+    storybookFolder1: 'Layout',
   },
   {
     name: 'Step',
-    storybookFolder: storybookFolderNavigation,
+    storybookFolder1: 'Navigation',
+    storybookFolder2: 'Stepper',
   },
   {
     name: 'StepButton',
-    storybookFolder: storybookFolderNavigation,
+    storybookFolder1: 'Navigation',
+    storybookFolder2: 'Stepper',
     monorailComponentExtraImports: [
       `import { ButtonBaseTypeMap } from '@material-ui/core'`,
     ],
+    monorailComponentRefType: 'HTMLButtonElement',
   },
   {
     name: 'StepConnector',
-    storybookFolder: storybookFolderNavigation,
+    storybookFolder1: 'Navigation',
+    storybookFolder2: 'Stepper',
   },
   {
     name: 'StepContent',
-    storybookFolder: storybookFolderNavigation,
+    storybookFolder1: 'Navigation',
+    storybookFolder2: 'Stepper',
   },
   {
     name: 'StepIcon',
-    storybookFolder: storybookFolderNavigation,
+    storybookFolder1: 'Navigation',
+    storybookFolder2: 'Stepper',
   },
   {
     name: 'StepLabel',
-    storybookFolder: storybookFolderNavigation,
+    storybookFolder1: 'Navigation',
+    storybookFolder2: 'Stepper',
   },
   {
     name: 'Stepper',
-    storybookFolder: storybookFolderNavigation,
+    storybookFolder1: 'Navigation',
   },
   {
     name: 'SvgIcon',
-    storybookFolder: storybookFolderDataDisplay,
+    storybookFolder1: 'Data Display',
+    monorailComponentRefType: 'SVGSVGElement',
   },
   {
     name: 'SwipeableDrawer',
-    storybookFolder: storybookFolderNavigation,
+    storybookFolder1: 'Navigation',
+    storybookFolder2: 'Drawer',
   },
   {
     name: 'Switch',
-    storybookFolder: storybookFolderInputs,
-    monorailComponentWithForwardRef: true,
+    storybookFolder1: 'Inputs',
   },
   {
     name: 'Tab',
-    storybookFolder: storybookFolderNavigation,
+    storybookFolder1: 'Navigation',
+    monorailComponentRefType: 'HTMLDivElement',
   },
   {
     name: 'TabScrollButton',
-    storybookFolder: storybookFolderNavigation,
+    storybookFolder1: 'Navigation',
+    storybookFolder2: 'Tab',
   },
   {
     name: 'Table',
-    storybookFolder: storybookFolderDataDisplay,
+    storybookFolder1: 'Data Display',
+    monorailComponentRefType: 'HTMLTableElement',
   },
   {
     name: 'TableBody',
-    storybookFolder: storybookFolderDataDisplay,
+    storybookFolder1: 'Data Display',
+    storybookFolder2: 'Table',
+    monorailComponentRefType: 'HTMLTableSectionElement',
   },
   {
     name: 'TableCell',
-    storybookFolder: storybookFolderDataDisplay,
+    storybookFolder1: 'Data Display',
+    storybookFolder2: 'Table',
   },
   {
     name: 'TableContainer',
-    storybookFolder: storybookFolderDataDisplay,
+    storybookFolder1: 'Data Display',
+    storybookFolder2: 'Table',
+    monorailComponentRefType: 'HTMLDivElement',
   },
   {
     name: 'TableFooter',
-    storybookFolder: storybookFolderDataDisplay,
+    storybookFolder1: 'Data Display',
+    storybookFolder2: 'Table',
+    monorailComponentRefType: 'HTMLTableSectionElement',
   },
   {
     name: 'TableHead',
-    storybookFolder: storybookFolderDataDisplay,
+    storybookFolder1: 'Data Display',
+    storybookFolder2: 'Table',
+    monorailComponentRefType: 'HTMLTableSectionElement',
   },
   {
     name: 'TablePagination',
-    storybookFolder: storybookFolderDataDisplay,
+    storybookFolder1: 'Data Display',
+    storybookFolder2: 'Table',
     monorailComponentExtraImports: [
       `import { TablePaginationBaseProps } from '@material-ui/core/TablePagination'`,
     ],
   },
   {
     name: 'TableRow',
-    storybookFolder: storybookFolderDataDisplay,
+    storybookFolder1: 'Data Display',
+    storybookFolder2: 'Table',
+    monorailComponentRefType: 'HTMLTableRowElement',
   },
   {
     name: 'TableSortLabel',
-    storybookFolder: storybookFolderDataDisplay,
+    storybookFolder1: 'Data Display',
+    storybookFolder2: 'Table',
+    monorailComponentRefType: 'HTMLSpanElement',
   },
   {
     name: 'Tabs',
-    storybookFolder: storybookFolderNavigation,
+    storybookFolder1: 'Navigation',
+    monorailComponentRefType: 'HTMLButtonElement',
   },
   {
     name: 'TextField',
-    storybookFolder: storybookFolderInputs,
+    storybookFolder1: 'Inputs',
   },
   {
     name: 'TextareaAutosize',
-    storybookFolder: storybookFolderInputs,
+    storybookFolder1: 'Inputs',
   },
   {
     name: 'ToggleButton',
-    storybookFolder: storybookFolderInputs,
-    monorailComponentWithForwardRef: true,
+    storybookFolder1: 'Inputs',
     monorailComponentRefType: 'HTMLButtonElement',
   },
   {
     name: 'ToggleButtonGroup',
-    storybookFolder: storybookFolderInputs,
-    monorailComponentWithForwardRef: true,
+    storybookFolder1: 'Inputs',
   },
   {
     name: 'Toolbar',
-    storybookFolder: storybookFolderInputs,
+    storybookFolder1: 'Inputs',
+    monorailComponentRefType: 'HTMLDivElement',
   },
   {
     name: 'Tooltip',
-    storybookFolder: storybookFolderFeedback,
-    monorailComponentWithForwardRef: true,
+    storybookFolder1: 'Feedback',
     monorailComponentRefType: 'HTMLDivElement',
   },
   {
     name: 'Typography',
-    storybookFolder: storybookFolderDataDisplay,
+    storybookFolder1: 'Data Display',
+    monorailComponentRefType: 'HTMLSpanElement',
   },
   // Unstable_TrapFocus - not exposing for now
   {
     name: 'Zoom',
-    storybookFolder: storybookFolderUtils,
-    monorailComponentWithForwardRef: true,
+    storybookFolder1: 'Utils',
+    storybookFolder2: 'Transitions',
     monorailComponentRefType: 'unknown',
   },
 ]
@@ -834,32 +865,31 @@ modules.forEach(module => {
       getMonorailComponentExtraImports(module).forEach(extraImport =>
         writer.writeLine(extraImport),
       )
+
+      writer.writeLine(``)
+
+      writer.writeLine(`/**`)
+      writer.writeLine(` * Props for ${monorailComponentName}`)
+      writer.writeLine(` */`)
+
       // Write out Props type alias
       // This is just a simple alias to the MUI props type (including the type params)
-      if (getMonorailComponentWithForwardRef(module)) {
-        // Generate the component with a React.forwardRef
-        // See: https://reactjs.org/docs/forwarding-refs.html
-        // I'm just using a type assertion approach for this because this is generated code,
-        // so it's less likely to be subject to mistakes and it's a little simpler than the module augmentation approach.
-        writer.writeLine(
-          `export type ${monorailPropsTypeName}${muiPropsTypeParametersLhsString} = MUI${muiPropsTypeName}${muiPropsTypeParametersRhsString} & { ref?: React.ForwardedRef<${getMonorailComponentRefType(
-            module,
-          )}> }`,
-        )
+      writer.writeLine(
+        `export type ${monorailPropsTypeName}${muiPropsTypeParametersLhsString} = MUI${muiPropsTypeName}${muiPropsTypeParametersRhsString} & { ref?: React.ForwardedRef<${getMonorailComponentRefType(
+          module,
+        )}> }`,
+      )
 
-        writer.writeLine(
-          `export const ${monorailComponentName} = React.forwardRef((props, ref) => (<MUI${muiComponentName} ref={ref} {...props} />)) as ${muiPropsTypeParametersLhsString}(props: ${monorailPropsTypeName}${muiPropsTypeParametersRhsString}) => ReturnType<typeof MUI${muiComponentName}>`,
-        )
-      } else {
-        writer.writeLine(
-          `export type ${monorailPropsTypeName}${muiPropsTypeParametersLhsString} = MUI${muiPropsTypeName}${muiPropsTypeParametersRhsString}`,
-        )
+      writer.writeLine(``)
 
-        // Generate the component wrapper function without the forwardRef
-        writer.writeLine(
-          `export const ${monorailComponentName} = ${muiPropsTypeParametersLhsString}(props: ${monorailPropsTypeName}${muiPropsTypeParametersRhsString}) => (<MUI${muiComponentName} {...props} />)`,
-        )
-      }
+      writer.writeLine(`/**`)
+      writer.writeLine(` * ${monorailComponentName}`)
+      writer.writeLine(` */`)
+
+      // Write out the component function wrapped in a `React.forwardRef`. All MUI components can accept a ref.
+      writer.writeLine(
+        `export const ${monorailComponentName} = React.forwardRef((props, ref) => (<MUI${muiComponentName} ref={ref} {...props} />)) as ${muiPropsTypeParametersLhsString}(props: ${monorailPropsTypeName}${muiPropsTypeParametersRhsString}) => JSX.Element`,
+      )
     },
     { overwrite: true },
   )
@@ -911,7 +941,11 @@ modules.forEach(module => {
         `/** This is intended to be exported (with possible extensions) as the default meta object for a story */`,
       )
       writer.writeLine(
-        `export const defaultStoryMeta = { title: '${module.storybookFolder.title}/${monorailComponentName}', component: ${monorailComponentName} }`,
+        `export const defaultStoryMeta = { title: '${module.storybookFolder1}/${
+          module.storybookFolder2 !== undefined
+            ? `${module.storybookFolder2}/`
+            : ''
+        }${monorailComponentName}', component: ${monorailComponentName} }`,
       )
 
       /* Difficult to generate args/template b/c it varies per component, and MUI tends to have runtime issues if the Components aren't rendered in certain ways

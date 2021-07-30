@@ -4,10 +4,20 @@ import {
   default as MUICardMedia,
   CardMediaProps as MUICardMediaProps,
 } from '@material-ui/core/CardMedia'
+
+/**
+ * Props for CardMedia
+ */
 export type CardMediaProps<
   D extends React.ElementType = 'div',
   P = {}
-> = MUICardMediaProps<D, P>
-export const CardMedia = <D extends React.ElementType = 'div', P = {}>(
+> = MUICardMediaProps<D, P> & { ref?: React.ForwardedRef<HTMLDivElement> }
+
+/**
+ * CardMedia
+ */
+export const CardMedia = React.forwardRef((props, ref) => (
+  <MUICardMedia ref={ref} {...props} />
+)) as <D extends React.ElementType = 'div', P = {}>(
   props: CardMediaProps<D, P>,
-) => <MUICardMedia {...props} />
+) => JSX.Element

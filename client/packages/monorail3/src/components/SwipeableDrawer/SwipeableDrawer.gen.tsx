@@ -4,7 +4,17 @@ import {
   default as MUISwipeableDrawer,
   SwipeableDrawerProps as MUISwipeableDrawerProps,
 } from '@material-ui/core/SwipeableDrawer'
-export type SwipeableDrawerProps = MUISwipeableDrawerProps
-export const SwipeableDrawer = (props: SwipeableDrawerProps) => (
-  <MUISwipeableDrawer {...props} />
-)
+
+/**
+ * Props for SwipeableDrawer
+ */
+export type SwipeableDrawerProps = MUISwipeableDrawerProps & {
+  ref?: React.ForwardedRef<unknown>
+}
+
+/**
+ * SwipeableDrawer
+ */
+export const SwipeableDrawer = React.forwardRef((props, ref) => (
+  <MUISwipeableDrawer ref={ref} {...props} />
+)) as (props: SwipeableDrawerProps) => JSX.Element
