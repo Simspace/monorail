@@ -26,6 +26,8 @@ type A11yParameters = {
 
 declare type DocsParameter = {
   docs?: {
+    inlineStories?: boolean
+    storyDescription?: string
     description?: {
       story?: string // markdown-supporting documentation string for use in non-hero stories
       component?: string // Use for the subtitle description in a hero story. supports markdown
