@@ -24,6 +24,17 @@ type A11yParameters = {
   parameters?: A11yParameter
 }
 
+declare type DocsParameter = {
+  docs?: {
+    inlineStories?: boolean
+    storyDescription?: string
+    description?: {
+      story?: string // markdown-supporting documentation string for use in non-hero stories
+      component?: string // Use for the subtitle description in a hero story. supports markdown
+    }
+  }
+}
+
 export type Meta = StorybookMeta & A11yParameters
 export type Story<Args = DefaultArgs> = StorybookStory<Partial<Args>> &
   A11yParameters
@@ -116,7 +127,7 @@ export const A11Y_ELEMENT__COMPONENT = {
 type StoryConfiguration<T> = {
   args?: Partial<T>
   argTypes?: StorybookArgTypes
-  parameters?: StorybookParameters & A11yParameter
+  parameters?: StorybookParameters & A11yParameter & DocsParameter
   storyName?: string
 }
 

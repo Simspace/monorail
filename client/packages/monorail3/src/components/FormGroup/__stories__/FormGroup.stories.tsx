@@ -3,19 +3,31 @@ import React from 'react'
 import { FormGroup, FormGroupProps } from '../FormGroup'
 import { story } from '../../../__tests__/helpers/storybook'
 import { defaultStoryMeta } from './FormGroup.stories.gen'
+import { FormControlLabel } from '../../FormControlLabel/FormControlLabel'
+import { Checkbox } from '../../Checkbox/Checkbox'
 /**
  * Metadata for FormGroup stories - update/extend as needed
  */
 export default { ...defaultStoryMeta }
-/**
- * Story template (edit/remove by hand if needed)
- *
- * Note: there should be at least one "Default" story that uses this template with the "story" function.
- * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
- */
-const Template = story<FormGroupProps>(args => <FormGroup {...args} />, {
-  args: {},
-})
-/** Default story for FormGroup (edit/remove by hand if needed) */
+
+const Template = story<FormGroupProps>(
+  args => (
+    <FormGroup {...args}>
+      <FormControlLabel control={<Checkbox />} label="Option 1" />
+      <FormControlLabel control={<Checkbox />} label="Option 2" />
+      <FormControlLabel control={<Checkbox />} label="Option 3" />
+    </FormGroup>
+  ),
+  {
+    args: {},
+    parameters: {
+      docs: {
+        description: {
+          component:
+            'FormGroup is a helpful wrapper used to group selection control components.',
+        },
+      },
+    },
+  },
+)
 export const Default = story(Template)
-// TODO: add more stories below
