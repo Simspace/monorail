@@ -9,7 +9,7 @@ import {
  * Props for TextField
  */
 export type TextFieldProps = MUITextFieldProps & {
-  ref?: React.ForwardedRef<unknown>
+  ref?: React.ForwardedRef<HTMLDivElement>
 }
 
 /**
