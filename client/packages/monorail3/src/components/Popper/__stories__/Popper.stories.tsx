@@ -15,8 +15,24 @@ export default { ...defaultStoryMeta }
  */
 const Template = story<PopperProps>(
   args => {
-    const [open, setOpen] = React.useState(false)
-    return <Popper open={open} {...args} />
+    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
+
+    const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+      setAnchorEl(anchorEl ? null : event.currentTarget)
+    }
+
+    const open = Boolean(anchorEl)
+    const id = open ? 'simple-popper' : undefined
+    return (
+      <>
+        <button aria-describedby={id} type="button" onClick={handleClick}>
+          Toggle Popper
+        </button>
+        <Popper id={id} open={open} anchorEl={anchorEl} {...args}>
+          Popper Content
+        </Popper>
+      </>
+    )
   },
   { args: {} },
 )
