@@ -37,5 +37,13 @@ const Template = story<PopperProps>(
   { args: {} },
 )
 /** Default story for Popper (edit/remove by hand if needed) */
-export const Default = story(Template)
+export const Default = story(Template, {
+  parameters: {
+    docs: {
+      description: {
+        component: `A Popper can be used to display some content on top of another. It's an alternative to react-popper.`,
+      },
+    },
+  },
+})
 // TODO: add more stories below
