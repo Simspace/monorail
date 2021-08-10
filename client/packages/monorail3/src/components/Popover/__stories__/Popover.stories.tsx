@@ -51,55 +51,71 @@ const Template = story<PopoverProps>(
   },
   {
     args: {},
+    parameters: {
+      docs: {
+        description: {
+          component: `A Popover can be used to display some content on top of another.`,
+        },
+      },
+    },
   },
 )
 /** Default story for Popover (edit/remove by hand if needed) */
 export const Default = story(Template)
 // TODO: add more stories below
 
-export const Hover = story(() => {
-  const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null)
+export const Hover = story(
+  () => {
+    const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null)
 
-  const handlePopoverOpen = (
-    event: React.MouseEvent<HTMLElement, MouseEvent>,
-  ) => {
-    setAnchorEl(event.currentTarget)
-  }
+    const handlePopoverOpen = (
+      event: React.MouseEvent<HTMLElement, MouseEvent>,
+    ) => {
+      setAnchorEl(event.currentTarget)
+    }
 
-  const handlePopoverClose = () => {
-    setAnchorEl(null)
-  }
+    const handlePopoverClose = () => {
+      setAnchorEl(null)
+    }
 
-  const open = Boolean(anchorEl)
-  return (
-    <>
-      <span
-        aria-owns={open ? 'mouse-over-popover' : undefined}
-        onMouseEnter={handlePopoverOpen}
-        onMouseLeave={handlePopoverClose}
-      >
-        Hover with a Popover.
-      </span>
-      <Popover
-        id="mouse-over-popover"
-        sx={{
-          pointerEvents: 'none',
-        }}
-        open={open}
-        anchorEl={anchorEl}
-        anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'left',
-        }}
-        transformOrigin={{
-          vertical: 'top',
-          horizontal: 'left',
-        }}
-        onClose={handlePopoverClose}
-        disableRestoreFocus
-      >
-        Popover Content
-      </Popover>
-    </>
-  )
-})
+    const open = Boolean(anchorEl)
+    return (
+      <>
+        <span
+          aria-owns={open ? 'mouse-over-popover' : undefined}
+          onMouseEnter={handlePopoverOpen}
+          onMouseLeave={handlePopoverClose}
+        >
+          Hover with a Popover.
+        </span>
+        <Popover
+          id="mouse-over-popover"
+          sx={{
+            pointerEvents: 'none',
+          }}
+          open={open}
+          anchorEl={anchorEl}
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'left',
+          }}
+          transformOrigin={{
+            vertical: 'top',
+            horizontal: 'left',
+          }}
+          onClose={handlePopoverClose}
+          disableRestoreFocus
+        >
+          Popover Content
+        </Popover>
+      </>
+    )
+  },
+  {
+    parameters: {
+      docs: {
+        storyDescription: `This demo demonstrates how to use the Popover component and the mouseover event to achieve popover behavior.`,
+      },
+    },
+  },
+)
