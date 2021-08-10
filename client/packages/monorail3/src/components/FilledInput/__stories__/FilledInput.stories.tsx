@@ -5,11 +5,12 @@ import { story } from '../../../__tests__/helpers/storybook'
 import { defaultStoryMeta } from './FilledInput.stories.gen'
 import { FormControl } from '../../FormControl/FormControl'
 import { InputLabel } from '../../InputLabel/InputLabel'
+import { defaultProps } from '../helpers.FilledInput'
 
 /**
  * Metadata for FilledInput stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Inputs/Input/FilledInput' }
+export default { ...defaultStoryMeta }
 /**
  * Story template (edit/remove by hand if needed)
  *
@@ -24,44 +25,7 @@ const Template = story<FilledInputProps>(
     </FormControl>
   ),
   {
-    args: {
-      autoComplete: undefined,
-      autoFocus: false,
-      classes: undefined,
-      color: 'primary',
-      // components: {
-      //   Input: undefined,
-      //   Root: undefined,
-      // },
-      // Setting these as undefined set the existing components as undefined
-      // when in reality we want the defaults to render but that doesn't happen
-      componentsProps: undefined,
-      defaultValue: '',
-      disabled: false,
-      disableUnderline: false,
-      endAdornment: undefined,
-      error: false,
-      fullWidth: false,
-      hiddenLabel: false,
-      id: 'filled',
-      inputComponent: undefined,
-      inputProps: undefined,
-      inputRef: undefined,
-      margin: 'dense',
-      maxRows: undefined,
-      minRows: undefined,
-      multiline: false,
-      name: 'label',
-      onChange: undefined,
-      placeholder: 'Placeholder',
-      readOnly: false,
-      required: false,
-      rows: undefined,
-      startAdornment: undefined,
-      sx: undefined,
-      type: undefined,
-      value: undefined,
-    },
+    args: defaultProps,
   },
 )
 /** Default story for FilledInput (edit/remove by hand if needed) */

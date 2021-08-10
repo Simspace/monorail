@@ -3,6 +3,7 @@ import React from 'react'
 import { InputBase, InputBaseProps } from '../InputBase'
 import { story } from '../../../__tests__/helpers/storybook'
 import { defaultStoryMeta } from './InputBase.stories.gen'
+import { defaultProps } from '../helpers.InputBase'
 /**
  * Metadata for InputBase stories - update/extend as needed
  */
@@ -14,7 +15,7 @@ export default { ...defaultStoryMeta }
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
 const Template = story<InputBaseProps>(args => <InputBase {...args} />, {
-  args: {},
+  args: defaultProps,
 })
 /** Default story for InputBase (edit/remove by hand if needed) */
 export const Default = story(Template)
