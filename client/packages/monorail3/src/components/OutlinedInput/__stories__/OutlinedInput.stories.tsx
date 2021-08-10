@@ -5,7 +5,6 @@ import { story } from '../../../__tests__/helpers/storybook'
 import { defaultStoryMeta } from './OutlinedInput.stories.gen'
 import { FormControl } from '../../FormControl/FormControl'
 import { InputLabel } from '../../InputLabel/InputLabel'
-import { defaultProps } from '../helpers.OutlinedInput'
 
 /**
  * Metadata for OutlinedInput stories - update/extend as needed
@@ -25,7 +24,12 @@ const Template = story<OutlinedInputProps>(
     </FormControl>
   ),
   {
-    args: defaultProps,
+    args: {
+      id: 'outlined',
+      label: 'Label',
+      notched: undefined,
+      placeholder: 'Placeholder',
+    },
   },
 )
 /** Default story for OutlinedInput (edit/remove by hand if needed) */

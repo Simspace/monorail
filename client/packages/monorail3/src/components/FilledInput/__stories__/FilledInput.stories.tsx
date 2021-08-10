@@ -5,7 +5,6 @@ import { story } from '../../../__tests__/helpers/storybook'
 import { defaultStoryMeta } from './FilledInput.stories.gen'
 import { FormControl } from '../../FormControl/FormControl'
 import { InputLabel } from '../../InputLabel/InputLabel'
-import { defaultProps } from '../helpers.FilledInput'
 
 /**
  * Metadata for FilledInput stories - update/extend as needed
@@ -25,7 +24,10 @@ const Template = story<FilledInputProps>(
     </FormControl>
   ),
   {
-    args: defaultProps,
+    args: {
+      id: 'filled',
+      placeholder: 'Placeholder',
+    },
   },
 )
 /** Default story for FilledInput (edit/remove by hand if needed) */
