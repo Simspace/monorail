@@ -40,5 +40,13 @@ const Template = story<PortalProps>(
   { args: {} },
 )
 /** Default story for Portal (edit/remove by hand if needed) */
-export const Default = story(Template)
+export const Default = story(Template, {
+  parameters: {
+    docs: {
+      description: {
+        component: `The portal component renders its children into a new "subtree" outside of current DOM hierarchy.`,
+      },
+    },
+  },
+})
 // TODO: add more stories below
