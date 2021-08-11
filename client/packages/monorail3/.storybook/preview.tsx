@@ -5,6 +5,8 @@ import { pcteLightTheme } from '../src/theme/pcteLightTheme'
 import * as MUI from '@material-ui/core'
 import { StyledEngineProvider } from '@material-ui/core/styles'
 import { Parameters } from '@storybook/react'
+import AdapterDateFns from '@material-ui/lab/AdapterDateFns'
+import LocalizationProvider from '@material-ui/lab/LocalizationProvider'
 
 /**
  * Global storybook parameters
@@ -44,11 +46,13 @@ const selectedTheme = namedThemes[0].theme
  */
 export const decorators = [
   Story => (
-    <StyledEngineProvider injectFirst>
-      <MUI.ThemeProvider theme={selectedTheme}>
-        <MUI.CssBaseline />
-        <Story />
-      </MUI.ThemeProvider>
-    </StyledEngineProvider>
+    <LocalizationProvider dateAdapter={AdapterDateFns}>
+      <StyledEngineProvider injectFirst>
+        <MUI.ThemeProvider theme={selectedTheme}>
+          <MUI.CssBaseline />
+          <Story />
+        </MUI.ThemeProvider>
+      </StyledEngineProvider>
+    </LocalizationProvider>
   ),
 ]
