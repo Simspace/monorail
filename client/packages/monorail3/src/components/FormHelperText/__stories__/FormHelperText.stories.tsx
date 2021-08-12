@@ -3,20 +3,34 @@ import React from 'react'
 import { FormHelperText, FormHelperTextProps } from '../FormHelperText'
 import { story } from '../../../__tests__/helpers/storybook'
 import { defaultStoryMeta } from './FormHelperText.stories.gen'
+import { Checkbox } from '../../Checkbox/Checkbox'
+import { FormControlLabel } from '../../FormControlLabel/FormControlLabel'
 /**
  * Metadata for FormHelperText stories - update/extend as needed
  */
 export default { ...defaultStoryMeta }
-/**
- * Story template (edit/remove by hand if needed)
- *
- * Note: there should be at least one "Default" story that uses this template with the "story" function.
- * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
- */
+
 const Template = story<FormHelperTextProps>(
-  args => <FormHelperText {...args} />,
-  { args: {} },
+  args => (
+    <>
+      <FormControlLabel
+        control={<Checkbox onChange={() => void 0} />}
+        label="Do the Thing"
+      />
+      <FormHelperText {...args} />
+    </>
+  ),
+  {
+    args: { children: 'FormHelperText can display errors or hints' },
+    parameters: {
+      docs: {
+        description: {
+          component:
+            'FormHelperText can be used to display errors or hints. It is implicitly bundled with `TextField` as prop `helperText`',
+        },
+      },
+    },
+  },
 )
 /** Default story for FormHelperText (edit/remove by hand if needed) */
 export const Default = story(Template)
-// TODO: add more stories below

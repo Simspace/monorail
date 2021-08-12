@@ -4,28 +4,32 @@ import { FormControlLabel, FormControlLabelProps } from '../FormControlLabel'
 import { story } from '../../../__tests__/helpers/storybook'
 import { defaultStoryMeta } from './FormControlLabel.stories.gen'
 import { Checkbox } from '../../Checkbox/Checkbox'
+import { Switch } from '../../Switch/Switch'
+import { FormGroup } from '../../FormGroup/FormGroup'
+import { Radio } from '../../Radio/Radio'
 /**
  * Metadata for FormControlLabel stories - update/extend as needed
  */
 export default { ...defaultStoryMeta }
-/**
- * Story template (edit/remove by hand if needed)
- *
- * Note: there should be at least one "Default" story that uses this template with the "story" function.
- * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
- */
+
 const Template = story<FormControlLabelProps>(
   args => (
-    <FormControlLabel
-      label="Form Control Label"
-      control={<Checkbox />}
-      {...args}
-    />
+    <FormGroup>
+      <FormControlLabel label="Checkbox" control={<Checkbox />} {...args} />
+      <FormControlLabel control={<Switch />} label="Switch" {...args} />
+      <FormControlLabel control={<Radio />} label="Radio" {...args} />
+    </FormGroup>
   ),
   {
     args: {},
+    parameters: {
+      docs: {
+        description: {
+          component:
+            'FormControlLabel can be used to add an aligned label to an input ',
+        },
+      },
+    },
   },
 )
-/** Default story for FormControlLabel (edit/remove by hand if needed) */
 export const Default = story(Template)
-// TODO: add more stories below
