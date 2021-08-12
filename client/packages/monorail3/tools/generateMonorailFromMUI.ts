@@ -31,6 +31,7 @@ export type StorybookFolder2 =
   | 'Accordion'
   | 'Alert'
   | 'BottomNavigation'
+  | 'Date and Time'
   | 'Card'
   | 'Dialog'
   | 'Drawer'
@@ -44,7 +45,9 @@ export type StorybookFolder2 =
   | 'Stepper'
   | 'Tab'
   | 'Table'
+  | 'Timeline'
   | 'Transitions'
+  | 'TreeView'
 
 /**
  * Metadata about an MUI module for the purpose of generating code
@@ -58,8 +61,12 @@ type ModuleInfo = {
   muiComponentModifyTypeParametersLhsString?: (lhs: string) => string
   monorailComponentRefType?: string
   monorailComponentExtraImports?: Array<string>
+  // TODO: The MUI lab DateRange components have an issue that I haven't been able to figure out with the component wrapper functions
+  // Uncomment the @ts-ignore in the {Component}.gen.tsx file to see the error.
+  monorailComponentTSIgnoreComponent?: boolean
   storybookFolder1: StorybookFolder1
   storybookFolder2?: StorybookFolder2
+  isLab?: boolean
 }
 
 /**
@@ -215,6 +222,19 @@ const modules: Array<ModuleInfo> = [
     monorailComponentRefType: 'HTMLDivElement',
   },
   {
+    name: 'CalendarPicker',
+    storybookFolder1: 'Inputs',
+    storybookFolder2: 'Date and Time',
+    monorailComponentRefType: 'HTMLDivElement',
+    isLab: true,
+  },
+  {
+    name: 'CalendarPickerSkeleton',
+    storybookFolder1: 'Inputs',
+    storybookFolder2: 'Date and Time',
+    isLab: true,
+  },
+  {
     name: 'Card',
     storybookFolder1: 'Surfaces',
   },
@@ -268,6 +288,13 @@ const modules: Array<ModuleInfo> = [
     storybookFolder1: 'Utils',
   },
   {
+    name: 'ClockPicker',
+    storybookFolder1: 'Inputs',
+    storybookFolder2: 'Date and Time',
+    monorailComponentRefType: 'HTMLDivElement',
+    isLab: true,
+  },
+  {
     name: 'Collapse',
     storybookFolder1: 'Utils',
     storybookFolder2: 'Transitions',
@@ -281,6 +308,62 @@ const modules: Array<ModuleInfo> = [
   {
     name: 'CssBaseline',
     storybookFolder1: 'Utils',
+  },
+  {
+    name: 'DatePicker',
+    storybookFolder1: 'Inputs',
+    storybookFolder2: 'Date and Time',
+    monorailComponentRefType: 'HTMLDivElement',
+    isLab: true,
+  },
+  {
+    name: 'DateRangePicker',
+    storybookFolder1: 'Inputs',
+    storybookFolder2: 'Date and Time',
+    monorailComponentRefType: 'HTMLDivElement',
+    monorailComponentTSIgnoreComponent: true,
+    isLab: true,
+  },
+  {
+    name: 'DateRangePickerDay',
+    storybookFolder1: 'Inputs',
+    storybookFolder2: 'Date and Time',
+    isLab: true,
+  },
+  {
+    name: 'DateTimePicker',
+    storybookFolder1: 'Inputs',
+    storybookFolder2: 'Date and Time',
+    monorailComponentRefType: 'HTMLDivElement',
+    isLab: true,
+  },
+  {
+    name: 'DesktopDatePicker',
+    storybookFolder1: 'Inputs',
+    storybookFolder2: 'Date and Time',
+    monorailComponentRefType: 'HTMLDivElement',
+    isLab: true,
+  },
+  {
+    name: 'DesktopDateRangePicker',
+    storybookFolder1: 'Inputs',
+    storybookFolder2: 'Date and Time',
+    monorailComponentTSIgnoreComponent: true,
+    isLab: true,
+  },
+  {
+    name: 'DesktopDateTimePicker',
+    storybookFolder1: 'Inputs',
+    storybookFolder2: 'Date and Time',
+    monorailComponentRefType: 'HTMLDivElement',
+    isLab: true,
+  },
+  {
+    name: 'DesktopTimePicker',
+    storybookFolder1: 'Inputs',
+    storybookFolder2: 'Date and Time',
+    monorailComponentRefType: 'HTMLDivElement',
+    isLab: true,
   },
   {
     name: 'Dialog',
@@ -486,12 +569,41 @@ const modules: Array<ModuleInfo> = [
     storybookFolder2: 'Menu',
   },
   {
+    name: 'MobileDatePicker',
+    storybookFolder1: 'Inputs',
+    storybookFolder2: 'Date and Time',
+    monorailComponentRefType: 'HTMLDivElement',
+    isLab: true,
+  },
+  {
+    name: 'MobileDateRangePicker',
+    storybookFolder1: 'Inputs',
+    storybookFolder2: 'Date and Time',
+    monorailComponentTSIgnoreComponent: true,
+    isLab: true,
+  },
+  {
+    name: 'MobileDateTimePicker',
+    storybookFolder1: 'Inputs',
+    storybookFolder2: 'Date and Time',
+    monorailComponentRefType: 'HTMLDivElement',
+    isLab: true,
+  },
+  {
     name: 'MobileStepper',
     storybookFolder1: 'Navigation',
   },
   {
     name: 'Modal',
     storybookFolder1: 'Utils',
+    monorailComponentRefType: 'HTMLDivElement',
+  },
+  {
+    name: 'MonthPicker',
+    storybookFolder1: 'Inputs',
+    storybookFolder2: 'Date and Time',
+    monorailComponentRefType: 'HTMLDivElement',
+    isLab: true,
   },
   {
     name: 'NativeSelect',
@@ -513,6 +625,12 @@ const modules: Array<ModuleInfo> = [
     name: 'Paper',
     storybookFolder1: 'Surfaces',
     monorailComponentRefType: 'HTMLDivElement',
+  },
+  {
+    name: 'PickersDay',
+    storybookFolder1: 'Inputs',
+    storybookFolder2: 'Date and Time',
+    isLab: true,
   },
   {
     name: 'Popover',
@@ -567,6 +685,7 @@ const modules: Array<ModuleInfo> = [
   {
     name: 'Slider',
     storybookFolder1: 'Inputs',
+    monorailComponentRefType: 'HTMLSpanElement',
   },
   {
     name: 'Snackbar',
@@ -594,6 +713,35 @@ const modules: Array<ModuleInfo> = [
   {
     name: 'Stack',
     storybookFolder1: 'Layout',
+  },
+  {
+    name: 'StaticDatePicker',
+    storybookFolder1: 'Inputs',
+    storybookFolder2: 'Date and Time',
+    monorailComponentRefType: 'HTMLDivElement',
+    isLab: true,
+  },
+  {
+    name: 'StaticDateRangePicker',
+    storybookFolder1: 'Inputs',
+    storybookFolder2: 'Date and Time',
+    monorailComponentRefType: 'HTMLDivElement',
+    monorailComponentTSIgnoreComponent: true,
+    isLab: true,
+  },
+  {
+    name: 'StaticDateTimePicker',
+    storybookFolder1: 'Inputs',
+    storybookFolder2: 'Date and Time',
+    monorailComponentRefType: 'HTMLDivElement',
+    isLab: true,
+  },
+  {
+    name: 'StaticTimePicker',
+    storybookFolder1: 'Inputs',
+    storybookFolder2: 'Date and Time',
+    monorailComponentRefType: 'HTMLDivElement',
+    isLab: true,
   },
   {
     name: 'Step',
@@ -719,10 +867,60 @@ const modules: Array<ModuleInfo> = [
   {
     name: 'TextField',
     storybookFolder1: 'Inputs',
+    monorailComponentRefType: 'HTMLDivElement',
   },
   {
     name: 'TextareaAutosize',
     storybookFolder1: 'Inputs',
+  },
+  {
+    name: 'TimePicker',
+    storybookFolder1: 'Inputs',
+    storybookFolder2: 'Date and Time',
+    monorailComponentRefType: 'HTMLDivElement',
+    isLab: true,
+  },
+  {
+    name: 'Timeline',
+    storybookFolder1: 'Data Display',
+    monorailComponentRefType: 'HTMLUListElement',
+    isLab: true,
+  },
+  {
+    name: 'TimelineConnector',
+    storybookFolder1: 'Data Display',
+    storybookFolder2: 'Timeline',
+    isLab: true,
+  },
+  {
+    name: 'TimelineContent',
+    storybookFolder1: 'Data Display',
+    storybookFolder2: 'Timeline',
+    isLab: true,
+  },
+  {
+    name: 'TimelineDot',
+    storybookFolder1: 'Data Display',
+    storybookFolder2: 'Timeline',
+    isLab: true,
+  },
+  {
+    name: 'TimelineItem',
+    storybookFolder1: 'Data Display',
+    storybookFolder2: 'Timeline',
+    isLab: true,
+  },
+  {
+    name: 'TimelineOppositeContent',
+    storybookFolder1: 'Data Display',
+    storybookFolder2: 'Timeline',
+    isLab: true,
+  },
+  {
+    name: 'TimelineSeparator',
+    storybookFolder1: 'Data Display',
+    storybookFolder2: 'Timeline',
+    isLab: true,
   },
   {
     name: 'ToggleButton',
@@ -744,11 +942,33 @@ const modules: Array<ModuleInfo> = [
     monorailComponentRefType: 'HTMLDivElement',
   },
   {
+    name: 'TreeItem',
+    storybookFolder1: 'Data Display',
+    storybookFolder2: 'TreeView',
+    isLab: true,
+  },
+  {
+    name: 'TreeView',
+    storybookFolder1: 'Data Display',
+    isLab: true,
+  },
+  {
     name: 'Typography',
     storybookFolder1: 'Data Display',
     monorailComponentRefType: 'HTMLSpanElement',
   },
-  // Unstable_TrapFocus - not exposing for now
+  {
+    name: 'Unstable_TrapFocus',
+    muiModuleFileName: 'index.d.ts',
+    muiPropsTypeName: 'TrapFocusProps',
+    storybookFolder1: 'Utils',
+  },
+  {
+    name: 'YearPicker',
+    storybookFolder1: 'Inputs',
+    storybookFolder2: 'Date and Time',
+    isLab: true,
+  },
   {
     name: 'Zoom',
     storybookFolder1: 'Utils',
@@ -760,13 +980,12 @@ const modules: Array<ModuleInfo> = [
 // Create the ts-morph project
 const project = new Project({})
 
-// Add all the material-ui/core ts files
-project.addSourceFilesAtPaths(
+// Add all the material-ui/core, material-ui/lab, and Monorail typescript files
+project.addSourceFilesAtPaths([
   './node_modules/@material-ui/core/**/*{.d.ts,.ts,.tsx}',
-)
-
-// Add the monorial3 src files
-project.addSourceFilesAtPaths('./src/**/*{.d.ts,.ts,.tsx}')
+  './node_modules/@material-ui/lab/**/*{.d.ts,.ts,.tsx}',
+  './src/**/*{.d.ts,.ts,.tsx}',
+])
 
 //project.resolveSourceFileDependencies()
 
@@ -851,13 +1070,16 @@ modules.forEach(module => {
       // Some components reference a type from MUI like `{Component}TypeMap` (e.g. ButtonTypeMap)
       // Write out an import for a *TypeMap, if there seems to be one in the MUI type params.
       // TODO: this is very naive right now - may need to make this more robust
+
+      const importFolder = module.isLab === true ? 'lab' : 'core'
+
       if (hasTypeMap) {
         writer.writeLine(
-          `import { default as MUI${muiComponentName}, ${muiPropsTypeName} as MUI${muiPropsTypeName}, ${muiComponentName}TypeMap } from '@material-ui/core/${muiComponentName}'`,
+          `import { default as MUI${muiComponentName}, ${muiPropsTypeName} as MUI${muiPropsTypeName}, ${muiComponentName}TypeMap } from '@material-ui/${importFolder}/${muiComponentName}'`,
         )
       } else {
         writer.writeLine(
-          `import { default as MUI${muiComponentName}, ${muiPropsTypeName} as MUI${muiPropsTypeName} } from '@material-ui/core/${muiComponentName}'`,
+          `import { default as MUI${muiComponentName}, ${muiPropsTypeName} as MUI${muiPropsTypeName} } from '@material-ui/${importFolder}/${muiComponentName}'`,
         )
       }
       // Some components reference other types in their type params, so allow for adding other arbitrary imports.
@@ -888,7 +1110,19 @@ modules.forEach(module => {
 
       // Write out the component function wrapped in a `React.forwardRef`. All MUI components can accept a ref.
       writer.writeLine(
-        `export const ${monorailComponentName} = React.forwardRef((props, ref) => (<MUI${muiComponentName} ref={ref} {...props} />)) as ${muiPropsTypeParametersLhsString}(props: ${monorailPropsTypeName}${muiPropsTypeParametersRhsString}) => JSX.Element`,
+        `export const ${monorailComponentName} = React.forwardRef((props, ref) => (`,
+      )
+
+      if (module.monorailComponentTSIgnoreComponent === true) {
+        writer.writeLine(
+          '// TODO: there is an issue with the ref type that needs to be investigated',
+        )
+        writer.writeLine('// @ts-ignore')
+      }
+      writer.writeLine(`<MUI${muiComponentName} ref={ref} {...props} />)`)
+
+      writer.writeLine(
+        `) as ${muiPropsTypeParametersLhsString}(props: ${monorailPropsTypeName}${muiPropsTypeParametersRhsString}) => JSX.Element`,
       )
     },
     { overwrite: true },
