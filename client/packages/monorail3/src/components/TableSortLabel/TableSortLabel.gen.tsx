@@ -5,13 +5,23 @@ import {
   TableSortLabelProps as MUITableSortLabelProps,
   TableSortLabelTypeMap,
 } from '@material-ui/core/TableSortLabel'
+
+/**
+ * Props for TableSortLabel
+ */
 export type TableSortLabelProps<
   D extends React.ElementType = TableSortLabelTypeMap['defaultComponent'],
   P = {}
-> = MUITableSortLabelProps<D, P>
-export const TableSortLabel = <
+> = MUITableSortLabelProps<D, P> & { ref?: React.ForwardedRef<HTMLSpanElement> }
+
+/**
+ * TableSortLabel
+ */
+export const TableSortLabel = React.forwardRef((props, ref) => (
+  <MUITableSortLabel ref={ref} {...props} />
+)) as <
   D extends React.ElementType = TableSortLabelTypeMap['defaultComponent'],
   P = {}
 >(
   props: TableSortLabelProps<D, P>,
-) => <MUITableSortLabel {...props} />
+) => JSX.Element

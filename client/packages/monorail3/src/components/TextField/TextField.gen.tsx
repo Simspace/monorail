@@ -4,5 +4,17 @@ import {
   default as MUITextField,
   TextFieldProps as MUITextFieldProps,
 } from '@material-ui/core/TextField'
-export type TextFieldProps = MUITextFieldProps
-export const TextField = (props: TextFieldProps) => <MUITextField {...props} />
+
+/**
+ * Props for TextField
+ */
+export type TextFieldProps = MUITextFieldProps & {
+  ref?: React.ForwardedRef<HTMLDivElement>
+}
+
+/**
+ * TextField
+ */
+export const TextField = React.forwardRef((props, ref) => (
+  <MUITextField ref={ref} {...props} />
+)) as (props: TextFieldProps) => JSX.Element

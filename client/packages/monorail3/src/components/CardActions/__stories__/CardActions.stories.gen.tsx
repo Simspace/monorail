@@ -4,6 +4,6 @@ import { story } from '../../../__tests__/helpers/storybook'
 import { CardActions, CardActionsProps } from '../CardActions'
 /** This is intended to be exported (with possible extensions) as the default meta object for a story */
 export const defaultStoryMeta = {
-  title: 'Surfaces/CardActions',
+  title: 'Surfaces/Card/CardActions',
   component: CardActions,
 }

@@ -4,5 +4,17 @@ import {
   default as MUIStepIcon,
   StepIconProps as MUIStepIconProps,
 } from '@material-ui/core/StepIcon'
-export type StepIconProps = MUIStepIconProps
-export const StepIcon = (props: StepIconProps) => <MUIStepIcon {...props} />
+
+/**
+ * Props for StepIcon
+ */
+export type StepIconProps = MUIStepIconProps & {
+  ref?: React.ForwardedRef<unknown>
+}
+
+/**
+ * StepIcon
+ */
+export const StepIcon = React.forwardRef((props, ref) => (
+  <MUIStepIcon ref={ref} {...props} />
+)) as (props: StepIconProps) => JSX.Element

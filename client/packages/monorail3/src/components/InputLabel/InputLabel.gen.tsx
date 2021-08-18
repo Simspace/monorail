@@ -4,7 +4,17 @@ import {
   default as MUIInputLabel,
   InputLabelProps as MUIInputLabelProps,
 } from '@material-ui/core/InputLabel'
-export type InputLabelProps = MUIInputLabelProps
-export const InputLabel = (props: InputLabelProps) => (
-  <MUIInputLabel {...props} />
-)
+
+/**
+ * Props for InputLabel
+ */
+export type InputLabelProps = MUIInputLabelProps & {
+  ref?: React.ForwardedRef<unknown>
+}
+
+/**
+ * InputLabel
+ */
+export const InputLabel = React.forwardRef((props, ref) => (
+  <MUIInputLabel ref={ref} {...props} />
+)) as (props: InputLabelProps) => JSX.Element

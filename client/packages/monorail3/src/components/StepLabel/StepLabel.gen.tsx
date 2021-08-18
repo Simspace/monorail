@@ -4,5 +4,17 @@ import {
   default as MUIStepLabel,
   StepLabelProps as MUIStepLabelProps,
 } from '@material-ui/core/StepLabel'
-export type StepLabelProps = MUIStepLabelProps
-export const StepLabel = (props: StepLabelProps) => <MUIStepLabel {...props} />
+
+/**
+ * Props for StepLabel
+ */
+export type StepLabelProps = MUIStepLabelProps & {
+  ref?: React.ForwardedRef<unknown>
+}
+
+/**
+ * StepLabel
+ */
+export const StepLabel = React.forwardRef((props, ref) => (
+  <MUIStepLabel ref={ref} {...props} />
+)) as (props: StepLabelProps) => JSX.Element

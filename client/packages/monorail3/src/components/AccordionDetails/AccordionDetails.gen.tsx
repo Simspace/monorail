@@ -4,7 +4,17 @@ import {
   default as MUIAccordionDetails,
   AccordionDetailsProps as MUIAccordionDetailsProps,
 } from '@material-ui/core/AccordionDetails'
-export type AccordionDetailsProps = MUIAccordionDetailsProps
-export const AccordionDetails = (props: AccordionDetailsProps) => (
-  <MUIAccordionDetails {...props} />
-)
+
+/**
+ * Props for AccordionDetails
+ */
+export type AccordionDetailsProps = MUIAccordionDetailsProps & {
+  ref?: React.ForwardedRef<unknown>
+}
+
+/**
+ * AccordionDetails
+ */
+export const AccordionDetails = React.forwardRef((props, ref) => (
+  <MUIAccordionDetails ref={ref} {...props} />
+)) as (props: AccordionDetailsProps) => JSX.Element

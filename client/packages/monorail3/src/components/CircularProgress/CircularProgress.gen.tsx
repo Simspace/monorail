@@ -4,7 +4,17 @@ import {
   default as MUICircularProgress,
   CircularProgressProps as MUICircularProgressProps,
 } from '@material-ui/core/CircularProgress'
-export type CircularProgressProps = MUICircularProgressProps
-export const CircularProgress = (props: CircularProgressProps) => (
-  <MUICircularProgress {...props} />
-)
+
+/**
+ * Props for CircularProgress
+ */
+export type CircularProgressProps = MUICircularProgressProps & {
+  ref?: React.ForwardedRef<unknown>
+}
+
+/**
+ * CircularProgress
+ */
+export const CircularProgress = React.forwardRef((props, ref) => (
+  <MUICircularProgress ref={ref} {...props} />
+)) as (props: CircularProgressProps) => JSX.Element

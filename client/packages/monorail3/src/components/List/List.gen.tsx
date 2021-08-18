@@ -5,12 +5,20 @@ import {
   ListProps as MUIListProps,
   ListTypeMap,
 } from '@material-ui/core/List'
+
+/**
+ * Props for List
+ */
 export type ListProps<
   D extends React.ElementType = ListTypeMap['defaultComponent'],
   P = {}
 > = MUIListProps<D, P> & { ref?: React.ForwardedRef<HTMLUListElement> }
+
+/**
+ * List
+ */
 export const List = React.forwardRef((props, ref) => (
   <MUIList ref={ref} {...props} />
 )) as <D extends React.ElementType = ListTypeMap['defaultComponent'], P = {}>(
   props: ListProps<D, P>,
-) => ReturnType<typeof MUIList>
+) => JSX.Element

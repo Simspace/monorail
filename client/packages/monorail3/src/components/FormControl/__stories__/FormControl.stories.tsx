@@ -3,19 +3,54 @@ import React from 'react'
 import { FormControl, FormControlProps } from '../FormControl'
 import { story } from '../../../__tests__/helpers/storybook'
 import { defaultStoryMeta } from './FormControl.stories.gen'
+import { FormLabel } from '../../FormLabel/FormLabel'
+import { FormGroup } from '../../FormGroup/FormGroup'
+import { FormControlLabel } from '../../FormControlLabel/FormControlLabel'
+import { Checkbox } from '../../Checkbox/Checkbox'
 /**
  * Metadata for FormControl stories - update/extend as needed
  */
 export default { ...defaultStoryMeta }
-/**
- * Story template (edit/remove by hand if needed)
- *
- * Note: there should be at least one "Default" story that uses this template with the "story" function.
- * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
- */
-const Template = story<FormControlProps>(args => <FormControl {...args} />, {
-  args: {},
-})
-/** Default story for FormControl (edit/remove by hand if needed) */
+
+const Template = story<FormControlProps>(
+  args => (
+    <FormControl {...args}>
+      <FormLabel component="legend">Pick two</FormLabel>
+      <FormGroup>
+        <FormControlLabel
+          control={<Checkbox name="gilad" />}
+          label="Gilad Gray"
+        />
+        <FormControlLabel
+          control={<Checkbox name="jason" />}
+          label="Jason Killian"
+        />
+        <FormControlLabel
+          control={<Checkbox name="antoine" />}
+          label="Antoine Llorca"
+        />
+      </FormGroup>
+    </FormControl>
+  ),
+  {
+    args: {
+      required: true,
+      error: true,
+      // component: "fieldset", TODO: default prop type is removing this from prop options!
+      variant: 'standard',
+    },
+    parameters: {
+      docs: {
+        description: {
+          component: `Provides context such as filled/focused/error/required for form inputs. Relying on the context provides high flexibility and ensures that the state always stays consistent across the children of the FormControl. This context is used by the following components:
+
+- FormLabel
+- FormHelperText
+- Input
+- InputLabel `,
+        },
+      },
+    },
+  },
+)
 export const Default = story(Template)
-// TODO: add more stories below

@@ -4,7 +4,17 @@ import {
   default as MUIMobileStepper,
   MobileStepperProps as MUIMobileStepperProps,
 } from '@material-ui/core/MobileStepper'
-export type MobileStepperProps = MUIMobileStepperProps
-export const MobileStepper = (props: MobileStepperProps) => (
-  <MUIMobileStepper {...props} />
-)
+
+/**
+ * Props for MobileStepper
+ */
+export type MobileStepperProps = MUIMobileStepperProps & {
+  ref?: React.ForwardedRef<unknown>
+}
+
+/**
+ * MobileStepper
+ */
+export const MobileStepper = React.forwardRef((props, ref) => (
+  <MUIMobileStepper ref={ref} {...props} />
+)) as (props: MobileStepperProps) => JSX.Element

@@ -4,6 +4,6 @@ import { story } from '../../../__tests__/helpers/storybook'
 import { DialogTitle, DialogTitleProps } from '../DialogTitle'
 /** This is intended to be exported (with possible extensions) as the default meta object for a story */
 export const defaultStoryMeta = {
-  title: 'Feedback/DialogTitle',
+  title: 'Feedback/Dialog/DialogTitle',
   component: DialogTitle,
 }

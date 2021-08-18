@@ -5,13 +5,23 @@ import {
   TypographyProps as MUITypographyProps,
   TypographyTypeMap,
 } from '@material-ui/core/Typography'
+
+/**
+ * Props for Typography
+ */
 export type TypographyProps<
   D extends React.ElementType = TypographyTypeMap['defaultComponent'],
   P = {}
-> = MUITypographyProps<D, P>
-export const Typography = <
+> = MUITypographyProps<D, P> & { ref?: React.ForwardedRef<HTMLSpanElement> }
+
+/**
+ * Typography
+ */
+export const Typography = React.forwardRef((props, ref) => (
+  <MUITypography ref={ref} {...props} />
+)) as <
   D extends React.ElementType = TypographyTypeMap['defaultComponent'],
   P = {}
 >(
   props: TypographyProps<D, P>,
-) => <MUITypography {...props} />
+) => JSX.Element

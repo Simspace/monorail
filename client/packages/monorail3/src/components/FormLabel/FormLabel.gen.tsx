@@ -5,13 +5,23 @@ import {
   FormLabelProps as MUIFormLabelProps,
   FormLabelTypeMap,
 } from '@material-ui/core/FormLabel'
+
+/**
+ * Props for FormLabel
+ */
 export type FormLabelProps<
   D extends React.ElementType = FormLabelTypeMap['defaultComponent'],
   P = {}
-> = MUIFormLabelProps<D, P>
-export const FormLabel = <
+> = MUIFormLabelProps<D, P> & { ref?: React.ForwardedRef<HTMLLabelElement> }
+
+/**
+ * FormLabel
+ */
+export const FormLabel = React.forwardRef((props, ref) => (
+  <MUIFormLabel ref={ref} {...props} />
+)) as <
   D extends React.ElementType = FormLabelTypeMap['defaultComponent'],
   P = {}
 >(
   props: FormLabelProps<D, P>,
-) => <MUIFormLabel {...props} />
+) => JSX.Element

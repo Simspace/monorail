@@ -4,6 +4,6 @@ import { story } from '../../../__tests__/helpers/storybook'
 import { ListItemText, ListItemTextProps } from '../ListItemText'
 /** This is intended to be exported (with possible extensions) as the default meta object for a story */
 export const defaultStoryMeta = {
-  title: 'Data Display/ListItemText',
+  title: 'Data Display/List/ListItemText',
   component: ListItemText,
 }

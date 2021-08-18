@@ -5,13 +5,20 @@ import {
   SliderProps as MUISliderProps,
   SliderTypeMap,
 } from '@material-ui/core/Slider'
+
+/**
+ * Props for Slider
+ */
 export type SliderProps<
   D extends React.ElementType = SliderTypeMap['defaultComponent'],
   P = {}
-> = MUISliderProps<D, P>
-export const Slider = <
-  D extends React.ElementType = SliderTypeMap['defaultComponent'],
-  P = {}
->(
+> = MUISliderProps<D, P> & { ref?: React.ForwardedRef<HTMLSpanElement> }
+
+/**
+ * Slider
+ */
+export const Slider = React.forwardRef((props, ref) => (
+  <MUISlider ref={ref} {...props} />
+)) as <D extends React.ElementType = SliderTypeMap['defaultComponent'], P = {}>(
   props: SliderProps<D, P>,
-) => <MUISlider {...props} />
+) => JSX.Element

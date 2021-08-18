@@ -5,13 +5,20 @@ import {
   CardProps as MUICardProps,
   CardTypeMap,
 } from '@material-ui/core/Card'
+
+/**
+ * Props for Card
+ */
 export type CardProps<
   D extends React.ElementType = CardTypeMap['defaultComponent'],
   P = {}
-> = MUICardProps<D, P>
-export const Card = <
-  D extends React.ElementType = CardTypeMap['defaultComponent'],
-  P = {}
->(
+> = MUICardProps<D, P> & { ref?: React.ForwardedRef<unknown> }
+
+/**
+ * Card
+ */
+export const Card = React.forwardRef((props, ref) => (
+  <MUICard ref={ref} {...props} />
+)) as <D extends React.ElementType = CardTypeMap['defaultComponent'], P = {}>(
   props: CardProps<D, P>,
-) => <MUICard {...props} />
+) => JSX.Element
