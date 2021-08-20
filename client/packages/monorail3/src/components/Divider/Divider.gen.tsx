@@ -5,13 +5,23 @@ import {
   DividerProps as MUIDividerProps,
   DividerTypeMap,
 } from '@material-ui/core/Divider'
+
+/**
+ * Props for Divider
+ */
 export type DividerProps<
   D extends React.ElementType = DividerTypeMap['defaultComponent'],
   P = {}
-> = MUIDividerProps<D, P>
-export const Divider = <
+> = MUIDividerProps<D, P> & { ref?: React.ForwardedRef<HTMLHRElement> }
+
+/**
+ * Divider
+ */
+export const Divider = React.forwardRef((props, ref) => (
+  <MUIDivider ref={ref} {...props} />
+)) as <
   D extends React.ElementType = DividerTypeMap['defaultComponent'],
   P = {}
 >(
   props: DividerProps<D, P>,
-) => <MUIDivider {...props} />
+) => JSX.Element

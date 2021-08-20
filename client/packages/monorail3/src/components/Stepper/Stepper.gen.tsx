@@ -4,5 +4,17 @@ import {
   default as MUIStepper,
   StepperProps as MUIStepperProps,
 } from '@material-ui/core/Stepper'
-export type StepperProps = MUIStepperProps
-export const Stepper = (props: StepperProps) => <MUIStepper {...props} />
+
+/**
+ * Props for Stepper
+ */
+export type StepperProps = MUIStepperProps & {
+  ref?: React.ForwardedRef<unknown>
+}
+
+/**
+ * Stepper
+ */
+export const Stepper = React.forwardRef((props, ref) => (
+  <MUIStepper ref={ref} {...props} />
+)) as (props: StepperProps) => JSX.Element

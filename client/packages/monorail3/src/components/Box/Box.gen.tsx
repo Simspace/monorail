@@ -5,12 +5,20 @@ import {
   BoxProps as MUIBoxProps,
   BoxTypeMap,
 } from '@material-ui/core/Box'
+
+/**
+ * Props for Box
+ */
 export type BoxProps<
   D extends React.ElementType = BoxTypeMap['defaultComponent'],
   P = {}
 > = MUIBoxProps<D, P> & { ref?: React.ForwardedRef<unknown> }
+
+/**
+ * Box
+ */
 export const Box = React.forwardRef((props, ref) => (
   <MUIBox ref={ref} {...props} />
 )) as <D extends React.ElementType = BoxTypeMap['defaultComponent'], P = {}>(
   props: BoxProps<D, P>,
-) => ReturnType<typeof MUIBox>
+) => JSX.Element

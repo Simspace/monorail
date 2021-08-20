@@ -4,7 +4,17 @@ import {
   default as MUISelect,
   SelectProps as MUISelectProps,
 } from '@material-ui/core/Select'
-export type SelectProps<T extends unknown = unknown> = MUISelectProps<T>
-export const Select = <T extends unknown = unknown>(props: SelectProps<T>) => (
-  <MUISelect {...props} />
-)
+
+/**
+ * Props for Select
+ */
+export type SelectProps<T extends unknown = unknown> = MUISelectProps<T> & {
+  ref?: React.ForwardedRef<unknown>
+}
+
+/**
+ * Select
+ */
+export const Select = React.forwardRef((props, ref) => (
+  <MUISelect ref={ref} {...props} />
+)) as <T extends unknown = unknown>(props: SelectProps<T>) => JSX.Element

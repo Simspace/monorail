@@ -3,6 +3,8 @@ import React from 'react'
 import { Backdrop, BackdropProps } from '../Backdrop'
 import { story } from '../../../__tests__/helpers/storybook'
 import { defaultStoryMeta } from './Backdrop.stories.gen'
+import { Button } from '../../Button/Button'
+import { CircularProgress } from '../../CircularProgress/CircularProgress'
 
 /**
  * Metadata for Backdrop stories - update/extend as needed
@@ -18,13 +20,41 @@ export default { ...defaultStoryMeta }
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
 const Template = story<BackdropProps>(
-  args => <Backdrop open={true} {...args} />,
+  args => {
+    const [open, setOpen] = React.useState(false)
+    const handleClose = () => {
+      setOpen(false)
+    }
+    const handleToggle = () => {
+      setOpen(!open)
+    }
+
+    return (
+      <div>
+        <Button onClick={handleToggle}>Show backdrop</Button>
+        <Backdrop
+          sx={{ color: '#fff', zIndex: theme => theme.zIndex.drawer + 1 }}
+          open={open}
+          onClick={handleClose}
+          {...args}
+        >
+          <CircularProgress color="inherit" />
+        </Backdrop>
+      </div>
+    )
+  },
+
   {
     args: {},
   },
 )
 
-/** Default story for Backdrop (edit/remove by hand if needed) */
-export const Default = story(Template)
-
-// TODO: add more stories below
+export const Default = story(Template, {
+  parameters: {
+    docs: {
+      description: {
+        story: `The backdrop component is used to provide emphasis on a particular element or parts of it.`,
+      },
+    },
+  },
+})

@@ -4,7 +4,17 @@ import {
   default as MUIAlertTitle,
   AlertTitleProps as MUIAlertTitleProps,
 } from '@material-ui/core/AlertTitle'
-export type AlertTitleProps = MUIAlertTitleProps
-export const AlertTitle = (props: AlertTitleProps) => (
-  <MUIAlertTitle {...props} />
-)
+
+/**
+ * Props for AlertTitle
+ */
+export type AlertTitleProps = MUIAlertTitleProps & {
+  ref?: React.ForwardedRef<unknown>
+}
+
+/**
+ * AlertTitle
+ */
+export const AlertTitle = React.forwardRef((props, ref) => (
+  <MUIAlertTitle ref={ref} {...props} />
+)) as (props: AlertTitleProps) => JSX.Element

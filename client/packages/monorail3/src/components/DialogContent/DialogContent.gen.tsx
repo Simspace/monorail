@@ -4,7 +4,17 @@ import {
   default as MUIDialogContent,
   DialogContentProps as MUIDialogContentProps,
 } from '@material-ui/core/DialogContent'
-export type DialogContentProps = MUIDialogContentProps
-export const DialogContent = (props: DialogContentProps) => (
-  <MUIDialogContent {...props} />
-)
+
+/**
+ * Props for DialogContent
+ */
+export type DialogContentProps = MUIDialogContentProps & {
+  ref?: React.ForwardedRef<unknown>
+}
+
+/**
+ * DialogContent
+ */
+export const DialogContent = React.forwardRef((props, ref) => (
+  <MUIDialogContent ref={ref} {...props} />
+)) as (props: DialogContentProps) => JSX.Element

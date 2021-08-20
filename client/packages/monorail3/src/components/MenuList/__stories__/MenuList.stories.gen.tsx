@@ -4,6 +4,6 @@ import { story } from '../../../__tests__/helpers/storybook'
 import { MenuList, MenuListProps } from '../MenuList'
 /** This is intended to be exported (with possible extensions) as the default meta object for a story */
 export const defaultStoryMeta = {
-  title: 'Navigation/MenuList',
+  title: 'Navigation/Menu/MenuList',
   component: MenuList,
 }

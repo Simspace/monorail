@@ -4,5 +4,15 @@ import {
   default as MUIPortal,
   PortalProps as MUIPortalProps,
 } from '@material-ui/core/Portal'
-export type PortalProps = MUIPortalProps
-export const Portal = (props: PortalProps) => <MUIPortal {...props} />
+
+/**
+ * Props for Portal
+ */
+export type PortalProps = MUIPortalProps & { ref?: React.ForwardedRef<unknown> }
+
+/**
+ * Portal
+ */
+export const Portal = React.forwardRef((props, ref) => (
+  <MUIPortal ref={ref} {...props} />
+)) as (props: PortalProps) => JSX.Element

@@ -4,6 +4,6 @@ import { story } from '../../../__tests__/helpers/storybook'
 import { StepContent, StepContentProps } from '../StepContent'
 /** This is intended to be exported (with possible extensions) as the default meta object for a story */
 export const defaultStoryMeta = {
-  title: 'Navigation/StepContent',
+  title: 'Navigation/Stepper/StepContent',
   component: StepContent,
 }

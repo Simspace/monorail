@@ -4,5 +4,15 @@ import {
   default as MUIRadio,
   RadioProps as MUIRadioProps,
 } from '@material-ui/core/Radio'
-export type RadioProps = MUIRadioProps
-export const Radio = (props: RadioProps) => <MUIRadio {...props} />
+
+/**
+ * Props for Radio
+ */
+export type RadioProps = MUIRadioProps & { ref?: React.ForwardedRef<unknown> }
+
+/**
+ * Radio
+ */
+export const Radio = React.forwardRef((props, ref) => (
+  <MUIRadio ref={ref} {...props} />
+)) as (props: RadioProps) => JSX.Element

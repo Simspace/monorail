@@ -5,13 +5,25 @@ import {
   TableHeadProps as MUITableHeadProps,
   TableHeadTypeMap,
 } from '@material-ui/core/TableHead'
+
+/**
+ * Props for TableHead
+ */
 export type TableHeadProps<
   D extends React.ElementType = TableHeadTypeMap['defaultComponent'],
   P = {}
-> = MUITableHeadProps<D, P>
-export const TableHead = <
+> = MUITableHeadProps<D, P> & {
+  ref?: React.ForwardedRef<HTMLTableSectionElement>
+}
+
+/**
+ * TableHead
+ */
+export const TableHead = React.forwardRef((props, ref) => (
+  <MUITableHead ref={ref} {...props} />
+)) as <
   D extends React.ElementType = TableHeadTypeMap['defaultComponent'],
   P = {}
 >(
   props: TableHeadProps<D, P>,
-) => <MUITableHead {...props} />
+) => JSX.Element

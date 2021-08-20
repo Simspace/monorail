@@ -4,6 +4,6 @@ import { story } from '../../../__tests__/helpers/storybook'
 import { TableRow, TableRowProps } from '../TableRow'
 /** This is intended to be exported (with possible extensions) as the default meta object for a story */
 export const defaultStoryMeta = {
-  title: 'Data Display/TableRow',
+  title: 'Data Display/Table/TableRow',
   component: TableRow,
 }
