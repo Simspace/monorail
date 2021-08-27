@@ -6,3 +6,9 @@ import {
 } from './TreeItem'
 export * from './TreeItem.gen'
 // Add more functions/etc. below
+
+export {
+  useTreeItem,
+  TreeItemContentProps,
+  treeItemClasses,
+} from '@material-ui/lab/TreeItem'
