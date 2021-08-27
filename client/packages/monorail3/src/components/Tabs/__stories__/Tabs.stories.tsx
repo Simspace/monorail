@@ -4,9 +4,12 @@ import { Tabs, TabsProps } from '../Tabs'
 import { story } from '../../../__tests__/helpers/storybook'
 import { defaultStoryMeta } from './Tabs.stories.gen'
 import { AppBar, Box, styled, Tab, Typography } from '@material-ui/core'
+import { TabPanel as LabTabPanel } from '@material-ui/lab'
+import FavoriteIcon from '@material-ui/icons/Favorite'
+import PersonPinIcon from '@material-ui/icons/PersonPin'
+import PhoneIcon from '@material-ui/icons/Phone'
 import TabContext from '@material-ui/lab/TabContext'
 import TabList from '@material-ui/lab/TabList'
-import { TabPanel as LabTabPanel } from '@material-ui/lab'
 
 /**
  * Metadata for Tabs stories - update/extend as needed
@@ -646,6 +649,130 @@ export const VerticalTabs = story(
         description: {
           story:
             'To make vertical tabs instead of default horizontal ones, there is `orientation="vertical"`:',
+        },
+      },
+    },
+  },
+)
+
+interface LinkTabProps {
+  label?: string
+  href?: string
+}
+
+function LinkTab(props: LinkTabProps) {
+  return (
+    <Tab
+      component="a"
+      onClick={(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+        event.preventDefault()
+      }}
+      {...props}
+    />
+  )
+}
+
+export const NavTabs = story(
+  () => {
+    const [value, setValue] = React.useState(0)
+
+    const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+      setValue(newValue)
+    }
+
+    return (
+      <Box sx={{ width: '100%' }}>
+        <Tabs
+          value={value}
+          onChange={handleChange}
+          aria-label="nav tabs example"
+        >
+          <LinkTab label="Page One" href="/drafts" />
+          <LinkTab label="Page Two" href="/trash" />
+          <LinkTab label="Page Three" href="/spam" />
+        </Tabs>
+      </Box>
+    )
+  },
+  {
+    parameters: {
+      docs: {
+        description: {
+          story:
+            "By default, tabs use a `button` element, but you can provide your custom tag or component. Here's an example of implementing tabbed navigation:",
+        },
+      },
+    },
+  },
+)
+
+export const IconTabs = story(
+  () => {
+    const [value, setValue] = React.useState(0)
+
+    const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+      setValue(newValue)
+    }
+
+    return (
+      <Tabs
+        value={value}
+        onChange={handleChange}
+        aria-label="icon tabs example"
+      >
+        <Tab icon={<PhoneIcon />} aria-label="phone" />
+        <Tab icon={<FavoriteIcon />} aria-label="favorite" />
+        <Tab icon={<PersonPinIcon />} aria-label="person" />
+      </Tabs>
+    )
+  },
+  {
+    parameters: {
+      docs: {
+        description: {
+          story: 'Tab labels may be either all icons or all text.',
+        },
+      },
+    },
+  },
+)
+
+export const Accessibility = story(
+  () => {
+    const [value, setValue] = React.useState(0)
+    const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+      setValue(newValue)
+    }
+
+    return (
+      <Box sx={{ width: '100%' }}>
+        <Tabs
+          onChange={handleChange}
+          value={value}
+          aria-label="Tabs where selection follows focus"
+          selectionFollowsFocus
+        >
+          <Tab label="Item One" />
+          <Tab label="Item Two" />
+          <Tab label="Item Three" />
+        </Tabs>
+      </Box>
+    )
+  },
+  {
+    parameters: {
+      docs: {
+        description: {
+          story: `(WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#tabpanel)
+  
+The following steps are needed in order to provide necessary information for assistive technologies:
+            
+Label Tabs via \`aria-label\`l or \`aria-labelledby\`.
+\`Tabs\`s need to be connected to their corresponding \`[role="tabpanel"]\` by setting the correct \`id\`, \`aria-controls\` and \`aria-labelledby\`.
+An example for the current implementation can be found in the demos on this page. We've also published an experimental API in \`@material-ui/lab\` that does not require extra work.
+            
+Keyboard navigation
+The components implement keyboard navigation using the "manual activation" behavior. If you want to switch to the "selection automatically follows focus" behavior you have pass \`selectionFollowsFocus\` to the \`Tabs\` component. The WAI-ARIA authoring practices have a detailed guide on how to decide when to make selection automatically follow focus.`,
         },
       },
     },
