@@ -1,4 +1,3 @@
-// Edit this file to add new stories
 import React from 'react'
 
 import { StepLabel, StepLabelProps } from '../StepLabel'
@@ -12,12 +11,6 @@ import { Typography } from '../../Typography/Typography'
  * Metadata for StepLabel stories - update/extend as needed
  */
 export default { ...defaultStoryMeta }
-/**
- * Story template (edit/remove by hand if needed)
- *
- * Note: there should be at least one "Default" story that uses this template with the "story" function.
- * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
- */
 
 const steps = ['Select campaign settings', 'Create an ad group', 'Create an ad']
 
