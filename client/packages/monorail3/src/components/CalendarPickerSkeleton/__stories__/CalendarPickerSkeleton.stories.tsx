@@ -27,5 +27,12 @@ const Template = story<CalendarPickerSkeletonProps>(
 )
 
 /** Default story for CalendarPickerSkeleton (edit/remove by hand if needed) */
-export const Default = story(Template)
-// TODO: add more stories below
+export const Default = story(Template, {
+  parameters: {
+    docs: {
+      description: {
+        component: `CalendarPickerSkeleton is a loading placeholder component for the CalendarPicker`,
+      },
+    },
+  },
+})

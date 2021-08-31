@@ -630,6 +630,7 @@ const modules: Array<ModuleInfo> = [
     name: 'PickersDay',
     storybookFolder1: 'Inputs',
     storybookFolder2: 'Date and Time',
+    monorailComponentRefType: 'HTMLButtonElement',
     isLab: true,
   },
   {

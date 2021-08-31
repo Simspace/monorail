@@ -19,11 +19,30 @@ export default {
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
 const Template = story<CalendarPickerProps<Date>>(
-  args => (
-    <CalendarPicker date={new Date()} onChange={action('onChange')} {...args} />
-  ),
+  args => {
+    const [date, setDate] = React.useState<Date | null>(new Date())
+
+    return (
+      <CalendarPicker
+        date={date}
+        onChange={newDate => {
+          setDate(newDate)
+          action('onChange')
+        }}
+        {...args}
+      />
+    )
+  },
   { args: {} },
 )
 
 /** Default story for CalendarPicker (edit/remove by hand if needed) */
-export const Default = story(Template)
+export const Default = story(Template, {
+  parameters: {
+    docs: {
+      description: {
+        component: `CalendarPicker is a lower-level component for selecting a specific day on a calendar.`,
+      },
+    },
+  },
+})

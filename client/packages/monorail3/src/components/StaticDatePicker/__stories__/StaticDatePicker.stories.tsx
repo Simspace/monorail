@@ -5,6 +5,7 @@ import { story } from '../../../__tests__/helpers/storybook'
 import { defaultStoryMeta } from './StaticDatePicker.stories.gen'
 import { action } from '@storybook/addon-actions'
 import { TextField } from '../../TextField/TextField'
+import { DatePickerProps } from '../../DatePicker/DatePicker'
 
 /**
  * Metadata for StaticDatePicker stories - update/extend as needed
@@ -14,24 +15,28 @@ export default {
   title: 'Inputs/Date and Time/Date/StaticDatePicker',
 }
 
-/**
- * Story template (edit/remove by hand if needed)
- *
- * Note: there should be at least one "Default" story that uses this template with the "story" function.
- * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
- */
-const Template = story<StaticDatePickerProps<Date>>(
-  args => (
-    <StaticDatePicker
-      value={new Date()}
-      renderInput={params => <TextField {...params} />}
-      onChange={action('onChange')}
-      {...args}
-    />
-  ),
-  { args: {} },
-)
+const Template = story<DatePickerProps<Date>>(() => {
+  const [value, setValue] = React.useState<Date | null>(new Date())
 
-/** Default story for StaticDatePicker (edit/remove by hand if needed) */
-export const Default = story(Template)
-// TODO: add more stories below
+  return (
+    <StaticDatePicker
+      displayStaticWrapperAs="desktop"
+      openTo="year"
+      value={value}
+      onChange={newValue => {
+        setValue(newValue)
+      }}
+      renderInput={params => <TextField {...params} />}
+    />
+  )
+}, {})
+
+export const Default = story(Template, {
+  parameters: {
+    docs: {
+      description: {
+        component: `It's possible to render any date picker without the modal/popover and text field. This can be helpful when building custom popover/modal containers.`,
+      },
+    },
+  },
+})
