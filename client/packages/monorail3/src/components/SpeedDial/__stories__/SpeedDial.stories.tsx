@@ -25,9 +25,11 @@ export default { ...defaultStoryMeta }
 
 const Template = story<SpeedDialProps>(
   ({ children, ...rest }) => (
-    <SpeedDial ariaLabel="Speed Dial" {...rest}>
-      {children}
-    </SpeedDial>
+    <Box sx={{ position: 'relative', mt: 3, height: 320 }}>
+      <SpeedDial ariaLabel="Speed Dial" {...rest}>
+        {children}
+      </SpeedDial>
+    </Box>
   ),
   {
     args: {},
@@ -40,6 +42,43 @@ const actions = [
   { icon: <PrintIcon />, name: 'Print' },
   { icon: <ShareIcon />, name: 'Share' },
 ]
+
+export const Default = story(Template, {
+  args: {
+    children: actions.map(action => (
+      <SpeedDialAction
+        key={action.name}
+        icon={action.icon}
+        tooltipTitle={action.name}
+      />
+    )),
+    ariaLabel: 'SpeedDial basic example',
+    sx: { position: 'absolute', bottom: 16, right: 16 },
+    icon: <SpeedDialIcon />,
+  },
+  parameters: {
+    docs: {
+      description: {
+        component: `
+When pressed, a floating action button can display three to six related actions in the form of a speed dial.
+
+If more than six actions are needed, something other than a FAB (Floating Action Button) should be used to present them.
+
+https://next.material-ui.com/components/speed-dial
+
+https://next.material-ui.com/components/floating-action-button
+`,
+      },
+    },
+  },
+})
+
+/*
+
+When pressed, a floating action button can display three to six related actions in the form of a speed dial.
+
+
+*/
 
 export const BasicSpeedDial = story(
   () => {
