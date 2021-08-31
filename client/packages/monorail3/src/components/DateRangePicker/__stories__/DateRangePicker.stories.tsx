@@ -8,7 +8,10 @@ import { TextField } from '../../TextField/TextField'
 /**
  * Metadata for DateRangePicker stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default {
+  ...defaultStoryMeta,
+  title: 'Inputs/Date and Time/Date Range/DateRangePicker',
+}
 /**
  * Story template (edit/remove by hand if needed)
  *

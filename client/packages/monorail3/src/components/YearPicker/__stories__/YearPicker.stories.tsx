@@ -4,10 +4,15 @@ import { YearPicker, YearPickerProps } from '../YearPicker'
 import { story } from '../../../__tests__/helpers/storybook'
 import { defaultStoryMeta } from './YearPicker.stories.gen'
 import { action } from '@storybook/addon-actions'
+
 /**
  * Metadata for YearPicker stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default {
+  ...defaultStoryMeta,
+  title: 'Inputs/Date and Time/Date/YearPicker',
+}
+
 /**
  * Story template (edit/remove by hand if needed)
  *
@@ -29,6 +34,6 @@ const Template = story<YearPickerProps<Date>>(
     args: {},
   },
 )
+
 /** Default story for YearPicker (edit/remove by hand if needed) */
 export const Default = story(Template)
-// TODO: add more stories below

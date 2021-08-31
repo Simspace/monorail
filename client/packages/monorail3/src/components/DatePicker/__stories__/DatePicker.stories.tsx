@@ -8,7 +8,11 @@ import { TextField, TextFieldProps } from '../../TextField/TextField'
 /**
  * Metadata for DatePicker stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default {
+  ...defaultStoryMeta,
+  title: 'Inputs/Date and Time/Date/DatePicker',
+}
+
 /**
  * Story template (edit/remove by hand if needed)
  *
@@ -28,6 +32,6 @@ const Template = story<DatePickerProps<Date>>(
     args: {},
   },
 )
+
 /** Default story for DatePicker (edit/remove by hand if needed) */
 export const Default = story(Template)
-// TODO: add more stories below

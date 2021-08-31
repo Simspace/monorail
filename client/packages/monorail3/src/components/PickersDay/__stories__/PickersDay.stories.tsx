@@ -4,10 +4,15 @@ import { PickersDay, PickersDayProps } from '../PickersDay'
 import { story } from '../../../__tests__/helpers/storybook'
 import { defaultStoryMeta } from './PickersDay.stories.gen'
 import { action } from '@storybook/addon-actions'
+
 /**
  * Metadata for PickersDay stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default {
+  ...defaultStoryMeta,
+  title: 'Inputs/Date and Time/Date/PickersDay',
+}
+
 /**
  * Story template (edit/remove by hand if needed)
  *
@@ -29,6 +34,7 @@ const Template = story<PickersDayProps<Date>>(
     args: {},
   },
 )
+
 /** Default story for PickersDay (edit/remove by hand if needed) */
 export const Default = story(Template)
 // TODO: add more stories below

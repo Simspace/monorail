@@ -7,7 +7,11 @@ import { action } from '@storybook/addon-actions'
 /**
  * Metadata for CalendarPicker stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default {
+  ...defaultStoryMeta,
+  title: 'Inputs/Date and Time/Date/CalendarPicker',
+}
+
 /**
  * Story template (edit/remove by hand if needed)
  *
@@ -20,6 +24,6 @@ const Template = story<CalendarPickerProps<Date>>(
   ),
   { args: {} },
 )
+
 /** Default story for CalendarPicker (edit/remove by hand if needed) */
 export const Default = story(Template)
-// TODO: add more stories below

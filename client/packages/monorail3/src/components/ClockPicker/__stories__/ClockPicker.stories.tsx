@@ -7,7 +7,11 @@ import { action } from '@storybook/addon-actions'
 /**
  * Metadata for ClockPicker stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default {
+  ...defaultStoryMeta,
+  title: 'Inputs/Date and Time/Time/ClockPicker',
+}
+
 /**
  * Story template (edit/remove by hand if needed)
  *
@@ -22,6 +26,6 @@ const Template = story<ClockPickerProps<Date>>(
     args: {},
   },
 )
+
 /** Default story for ClockPicker (edit/remove by hand if needed) */
 export const Default = story(Template)
-// TODO: add more stories below

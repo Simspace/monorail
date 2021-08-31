@@ -11,7 +11,11 @@ import { TextField } from '../../TextField/TextField'
 /**
  * Metadata for StaticDateTimePicker stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default {
+  ...defaultStoryMeta,
+  title: 'Inputs/Date and Time/Date Time/StaticDateTimePicker',
+}
+
 /**
  * Story template (edit/remove by hand if needed)
  *
@@ -29,6 +33,7 @@ const Template = story<StaticDateTimePickerProps<Date>>(
   ),
   { args: {} },
 )
+
 /** Default story for StaticDateTimePicker (edit/remove by hand if needed) */
 export const Default = story(Template)
 // TODO: add more stories below

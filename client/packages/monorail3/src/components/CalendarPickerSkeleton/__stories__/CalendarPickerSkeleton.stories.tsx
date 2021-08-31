@@ -6,10 +6,15 @@ import {
 } from '../CalendarPickerSkeleton'
 import { story } from '../../../__tests__/helpers/storybook'
 import { defaultStoryMeta } from './CalendarPickerSkeleton.stories.gen'
+
 /**
  * Metadata for CalendarPickerSkeleton stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default {
+  ...defaultStoryMeta,
+  title: 'Inputs/Date and Time/Date/CalendarPicker/CalendarPickerSkeleton',
+}
+
 /**
  * Story template (edit/remove by hand if needed)
  *
@@ -20,6 +25,7 @@ const Template = story<CalendarPickerSkeletonProps>(
   args => <CalendarPickerSkeleton {...args} />,
   { args: {} },
 )
+
 /** Default story for CalendarPickerSkeleton (edit/remove by hand if needed) */
 export const Default = story(Template)
 // TODO: add more stories below

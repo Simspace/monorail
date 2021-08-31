@@ -8,10 +8,15 @@ import { story } from '../../../__tests__/helpers/storybook'
 import { defaultStoryMeta } from './DesktopDateTimePicker.stories.gen'
 import { action } from '@storybook/addon-actions'
 import { TextField } from '../../TextField/TextField'
+
 /**
  * Metadata for DesktopDateTimePicker stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default {
+  ...defaultStoryMeta,
+  title: 'Inputs/Date and Time/Date Time/DesktopDateTimePicker',
+}
+
 /**
  * Story template (edit/remove by hand if needed)
  *
@@ -29,6 +34,7 @@ const Template = story<DesktopDateTimePickerProps<Date>>(
   ),
   { args: {} },
 )
+
 /** Default story for DesktopDateTimePicker (edit/remove by hand if needed) */
 export const Default = story(Template)
 // TODO: add more stories below

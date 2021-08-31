@@ -8,7 +8,11 @@ import { TextField } from '../../TextField/TextField'
 /**
  * Metadata for TimePicker stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default {
+  ...defaultStoryMeta,
+  title: 'Inputs/Date and Time/Time/TimePicker',
+}
+
 /**
  * Story template (edit/remove by hand if needed)
  *
@@ -28,6 +32,6 @@ const Template = story<TimePickerProps<Date>>(
     args: {},
   },
 )
+
 /** Default story for TimePicker (edit/remove by hand if needed) */
 export const Default = story(Template)
-// TODO: add more stories below
