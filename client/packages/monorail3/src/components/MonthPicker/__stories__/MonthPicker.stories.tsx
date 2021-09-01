@@ -19,19 +19,34 @@ export default {
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
 const Template = story<MonthPickerProps<Date>>(
-  args => (
-    <MonthPicker
-      date={new Date()}
-      minDate={new Date(1992, 0, 1)}
-      maxDate={new Date(2020, 0, 1)}
-      onChange={action('onChange')}
-      {...args}
-    />
-  ),
+  args => {
+    const minDate = new Date('2020-01-01T00:00:00.000')
+    const maxDate = new Date('2034-01-01T00:00:00.000')
+
+    const [date, setDate] = React.useState<Date | null>(new Date())
+
+    return (
+      <MonthPicker
+        date={date}
+        minDate={minDate}
+        maxDate={maxDate}
+        onChange={newDate => setDate(newDate)}
+        {...args}
+      />
+    )
+  },
   {
     args: {},
   },
 )
 
 /** Default story for MonthPicker (edit/remove by hand if needed) */
-export const Default = story(Template)
+export const Default = story(Template, {
+  parameters: {
+    docs: {
+      description: {
+        component: `MonthPicker is a low-level component used for selecting a month.`,
+      },
+    },
+  },
+})

@@ -7,15 +7,12 @@ import { action } from '@storybook/addon-actions'
 import { TextField } from '../../TextField/TextField'
 import { DatePickerProps } from '../../DatePicker/DatePicker'
 
-/**
- * Metadata for StaticDatePicker stories - update/extend as needed
- */
 export default {
   ...defaultStoryMeta,
   title: 'Inputs/Date and Time/Date/StaticDatePicker',
 }
 
-const Template = story<DatePickerProps<Date>>(() => {
+const Template = story<DatePickerProps<Date>>(args => {
   const [value, setValue] = React.useState<Date | null>(new Date())
 
   return (
@@ -27,6 +24,7 @@ const Template = story<DatePickerProps<Date>>(() => {
         setValue(newValue)
       }}
       renderInput={params => <TextField {...params} />}
+      {...args}
     />
   )
 }, {})

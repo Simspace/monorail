@@ -10,7 +10,9 @@ import {
  */
 export type DateRangePickerDayProps<
   TDate
-> = MUIDateRangePickerDayProps<TDate> & { ref?: React.ForwardedRef<unknown> }
+> = MUIDateRangePickerDayProps<TDate> & {
+  ref?: React.ForwardedRef<HTMLButtonElement>
+}
 
 /**
  * DateRangePickerDay

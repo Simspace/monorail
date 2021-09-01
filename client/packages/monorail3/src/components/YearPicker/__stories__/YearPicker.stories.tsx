@@ -20,20 +20,34 @@ export default {
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
 const Template = story<YearPickerProps<Date>>(
-  args => (
-    <YearPicker
-      date={new Date()}
-      minDate={new Date(1992, 0, 1)}
-      maxDate={new Date(2020, 0, 1)}
-      isDateDisabled={_date => false}
-      onChange={action('onChange')}
-      {...args}
-    />
-  ),
+  args => {
+    const minDate = new Date('2020-01-01T00:00:00.000')
+    const maxDate = new Date('2034-01-01T00:00:00.000')
+    const [date, setDate] = React.useState<Date | null>(new Date())
+
+    return (
+      <YearPicker
+        date={date}
+        isDateDisabled={() => false}
+        minDate={minDate}
+        maxDate={maxDate}
+        onChange={newDate => setDate(newDate)}
+        {...args}
+      />
+    )
+  },
   {
     args: {},
   },
 )
 
 /** Default story for YearPicker (edit/remove by hand if needed) */
-export const Default = story(Template)
+export const Default = story(Template, {
+  parameters: {
+    docs: {
+      description: {
+        component: `YearPicker is a low-level component for picking a year`,
+      },
+    },
+  },
+})
