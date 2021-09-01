@@ -23,17 +23,33 @@ export default {
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
 const Template = story<StaticDateTimePickerProps<Date>>(
-  args => (
-    <StaticDateTimePicker
-      value={new Date()}
-      renderInput={params => <TextField {...params} />}
-      onChange={action('onChange')}
-      {...args}
-    />
-  ),
+  args => {
+    const [value, setValue] = React.useState<Date | null>(new Date())
+
+    return (
+      <StaticDateTimePicker
+        displayStaticWrapperAs="desktop"
+        openTo="year"
+        value={value}
+        onChange={newValue => {
+          setValue(newValue)
+        }}
+        renderInput={params => <TextField {...params} />}
+        {...args}
+      />
+    )
+  },
   { args: {} },
 )
 
 /** Default story for StaticDateTimePicker (edit/remove by hand if needed) */
-export const Default = story(Template)
+export const Default = story(Template, {
+  parameters: {
+    docs: {
+      description: {
+        component: `It's possible to render any date & time picker inline. This will enable building custom popover/modal containers.`,
+      },
+    },
+  },
+})
 // TODO: add more stories below

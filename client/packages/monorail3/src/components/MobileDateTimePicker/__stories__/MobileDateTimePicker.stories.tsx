@@ -24,17 +24,32 @@ export default {
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
 const Template = story<MobileDateTimePickerProps<Date>>(
-  args => (
-    <MobileDateTimePicker
-      value={new Date()}
-      renderInput={params => <TextField {...params} />}
-      onChange={action('onChange')}
-      {...args}
-    />
-  ),
+  args => {
+    const [value, setValue] = React.useState<Date | null>(
+      new Date('2018-01-01T00:00:00.000Z'),
+    )
+
+    return (
+      <MobileDateTimePicker
+        value={value}
+        onChange={newValue => {
+          setValue(newValue)
+        }}
+        renderInput={params => <TextField {...params} />}
+        {...args}
+      />
+    )
+  },
   { args: {} },
 )
 
 /** Default story for MobileDateTimePicker (edit/remove by hand if needed) */
-export const Default = story(Template)
-// TODO: add more stories below
+export const Default = story(Template, {
+  parameters: {
+    docs: {
+      description: {
+        component: `MobileDateTimePicker renders a date/time picker suitable for mobile browsers. This should not likely be used directly.`,
+      },
+    },
+  },
+})
