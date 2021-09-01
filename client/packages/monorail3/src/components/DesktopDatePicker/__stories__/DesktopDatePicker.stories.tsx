@@ -11,24 +11,21 @@ export default {
   title: 'Inputs/Date and Time/Date/DesktopDatePicker',
 }
 
-const Template = story<DesktopDatePickerProps<Date>>(
-  args => {
-    const [value, setValue] = React.useState<Date | null>(new Date())
+const Template = story<DesktopDatePickerProps<Date>>(args => {
+  const [value, setValue] = React.useState<Date | null>(new Date())
 
-    return (
-      <DesktopDatePicker
-        value={value}
-        renderInput={params => <TextField {...params} />}
-        onChange={newValue => {
-          setValue(newValue)
-          action('onChange')
-        }}
-        {...args}
-      />
-    )
-  },
-  { args: {} },
-)
+  return (
+    <DesktopDatePicker
+      value={value}
+      renderInput={params => <TextField {...params} />}
+      onChange={newValue => {
+        setValue(newValue)
+        action('onChange')
+      }}
+      {...args}
+    />
+  )
+})
 
 export const Default = story(Template, {
   parameters: {

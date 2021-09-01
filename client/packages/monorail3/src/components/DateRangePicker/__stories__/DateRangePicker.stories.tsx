@@ -37,33 +37,30 @@ export default {
  * Note: there should be at least one "Default" story that uses this template with the "story" function.
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
-const Template = story<DateRangePickerProps<Date>>(
-  args => {
-    const [value, setValue] = React.useState<DateRange<Date>>([null, null])
+const Template = story<DateRangePickerProps<Date>>(args => {
+  const [value, setValue] = React.useState<DateRange<Date>>([null, null])
 
-    return (
-      <LocalizationProvider dateAdapter={AdapterDateFns}>
-        <DateRangePicker
-          startText="Check-in"
-          endText="Check-out"
-          value={value}
-          onChange={newValue => {
-            setValue(newValue)
-          }}
-          renderInput={(startProps, endProps) => (
-            <React.Fragment>
-              <TextField {...startProps} />
-              <Box sx={{ mx: 2 }}> to </Box>
-              <TextField {...endProps} />
-            </React.Fragment>
-          )}
-          {...args}
-        />
-      </LocalizationProvider>
-    )
-  },
-  { args: {} },
-)
+  return (
+    <LocalizationProvider dateAdapter={AdapterDateFns}>
+      <DateRangePicker
+        startText="Check-in"
+        endText="Check-out"
+        value={value}
+        onChange={newValue => {
+          setValue(newValue)
+        }}
+        renderInput={(startProps, endProps) => (
+          <React.Fragment>
+            <TextField {...startProps} />
+            <Box sx={{ mx: 2 }}> to </Box>
+            <TextField {...endProps} />
+          </React.Fragment>
+        )}
+        {...args}
+      />
+    </LocalizationProvider>
+  )
+})
 
 export const Default = story(Template, {
   parameters: {

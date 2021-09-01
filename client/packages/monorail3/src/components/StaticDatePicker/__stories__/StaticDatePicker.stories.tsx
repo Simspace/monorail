@@ -27,7 +27,7 @@ const Template = story<DatePickerProps<Date>>(args => {
       {...args}
     />
   )
-}, {})
+})
 
 export const Default = story(Template, {
   parameters: {

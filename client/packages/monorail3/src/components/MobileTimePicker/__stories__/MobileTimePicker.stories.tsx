@@ -10,25 +10,22 @@ export default {
   title: 'Inputs/Date and Time/Time/MobileTimePicker',
 }
 
-const Template = story<MobileTimePickerProps>(
-  args => {
-    const [value, setValue] = React.useState<Date | null>(
-      new Date('2018-01-01T00:00:00.000Z'),
-    )
+const Template = story<MobileTimePickerProps>(args => {
+  const [value, setValue] = React.useState<Date | null>(
+    new Date('2018-01-01T00:00:00.000Z'),
+  )
 
-    return (
-      <MobileTimePicker
-        label="For mobile"
-        value={value}
-        onChange={newValue => {
-          setValue(newValue)
-        }}
-        renderInput={params => <TextField {...params} />}
-      />
-    )
-  },
-  { args: {} },
-)
+  return (
+    <MobileTimePicker
+      label="For mobile"
+      value={value}
+      onChange={newValue => {
+        setValue(newValue)
+      }}
+      renderInput={params => <TextField {...params} />}
+    />
+  )
+})
 
 export const Default = story(Template, {
   parameters: {

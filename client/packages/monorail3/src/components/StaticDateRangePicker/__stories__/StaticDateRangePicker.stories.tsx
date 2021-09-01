@@ -42,7 +42,7 @@ const Template = story<StaticDateRangePickerProps<Date>>(args => {
       />
     </LocalizationProvider>
   )
-}, {})
+})
 
 /** Default story for StaticDateRangePicker (edit/remove by hand if needed) */
 export const Default = story(Template, {

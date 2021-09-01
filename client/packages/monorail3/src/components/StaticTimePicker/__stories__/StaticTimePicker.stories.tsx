@@ -32,7 +32,7 @@ const Template = story<TimePickerProps<Date>>(args => {
       />
     </LocalizationProvider>
   )
-}, {})
+})
 
 /** Default story for StaticTimePicker (edit/remove by hand if needed) */
 export const Default = story(Template, {

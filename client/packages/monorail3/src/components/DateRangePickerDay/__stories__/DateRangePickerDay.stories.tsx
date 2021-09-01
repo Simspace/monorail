@@ -71,7 +71,7 @@ const Template = story(() => {
       />
     </LocalizationProvider>
   )
-}, {})
+})
 
 export const Default = story(Template, {
   parameters: {

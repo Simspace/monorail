@@ -41,7 +41,7 @@ const Template = story<MobileDateRangePickerProps<Date>>(args => {
       />
     </LocalizationProvider>
   )
-}, {})
+})
 
 /** Default story for MobileDateRangePicker (edit/remove by hand if needed) */
 export const Default = story(Template, {

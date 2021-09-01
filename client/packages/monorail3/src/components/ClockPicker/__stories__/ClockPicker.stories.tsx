@@ -20,25 +20,20 @@ export default {
  * Note: there should be at least one "Default" story that uses this template with the "story" function.
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
-const Template = story<ClockPickerProps<Date>>(
-  args => {
-    const [date, setDate] = React.useState<Date>(new Date())
+const Template = story<ClockPickerProps<Date>>(args => {
+  const [date, setDate] = React.useState<Date>(new Date())
 
-    return (
-      <Stack spacing={2} direction={'row'}>
-        <Typography>{`${date.getHours()}:${date.getMinutes()}`}</Typography>
-        <ClockPicker
-          date={date}
-          onChange={newDate => newDate !== null && setDate(newDate)}
-          {...args}
-        />
-      </Stack>
-    )
-  },
-  {
-    args: {},
-  },
-)
+  return (
+    <Stack spacing={2} direction={'row'}>
+      <Typography>{`${date.getHours()}:${date.getMinutes()}`}</Typography>
+      <ClockPicker
+        date={date}
+        onChange={newDate => newDate !== null && setDate(newDate)}
+        {...args}
+      />
+    </Stack>
+  )
+})
 
 /** Default story for ClockPicker (edit/remove by hand if needed) */
 export const Default = story(Template, {

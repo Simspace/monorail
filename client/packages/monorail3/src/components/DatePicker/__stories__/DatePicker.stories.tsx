@@ -44,26 +44,21 @@ export default {
  * Note: there should be at least one "Default" story that uses this template with the "story" function.
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
-const Template = story<DatePickerProps<Date>>(
-  args => {
-    const [value, setValue] = React.useState<Date | null>(null)
+const Template = story<DatePickerProps<Date>>(args => {
+  const [value, setValue] = React.useState<Date | null>(null)
 
-    return (
-      <DatePicker
-        value={value}
-        onChange={newValue => {
-          setValue(newValue)
-          action('onChange')
-        }}
-        renderInput={(params: TextFieldProps) => <TextField {...params} />}
-        {...args}
-      />
-    )
-  },
-  {
-    args: {},
-  },
-)
+  return (
+    <DatePicker
+      value={value}
+      onChange={newValue => {
+        setValue(newValue)
+        action('onChange')
+      }}
+      renderInput={(params: TextFieldProps) => <TextField {...params} />}
+      {...args}
+    />
+  )
+})
 
 export const Default = story(Template, {
   parameters: {

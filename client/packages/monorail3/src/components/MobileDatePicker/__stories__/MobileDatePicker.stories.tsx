@@ -11,24 +11,21 @@ export default {
   title: 'Inputs/Date and Time/Date/MobileDatePicker',
 }
 
-const Template = story<MobileDatePickerProps<Date>>(
-  args => {
-    const [value, setValue] = React.useState<Date | null>(new Date())
+const Template = story<MobileDatePickerProps<Date>>(args => {
+  const [value, setValue] = React.useState<Date | null>(new Date())
 
-    return (
-      <MobileDatePicker
-        value={value}
-        renderInput={params => <TextField {...params} />}
-        onChange={newValue => {
-          setValue(newValue)
-          action('onChange')
-        }}
-        {...args}
-      />
-    )
-  },
-  { args: {} },
-)
+  return (
+    <MobileDatePicker
+      value={value}
+      renderInput={params => <TextField {...params} />}
+      onChange={newValue => {
+        setValue(newValue)
+        action('onChange')
+      }}
+      {...args}
+    />
+  )
+})
 
 export const Default = story(Template, {
   parameters: {

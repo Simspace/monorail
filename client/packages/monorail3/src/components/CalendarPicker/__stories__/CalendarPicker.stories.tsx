@@ -18,23 +18,20 @@ export default {
  * Note: there should be at least one "Default" story that uses this template with the "story" function.
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
-const Template = story<CalendarPickerProps<Date>>(
-  args => {
-    const [date, setDate] = React.useState<Date | null>(new Date())
+const Template = story<CalendarPickerProps<Date>>(args => {
+  const [date, setDate] = React.useState<Date | null>(new Date())
 
-    return (
-      <CalendarPicker
-        date={date}
-        onChange={newDate => {
-          setDate(newDate)
-          action('onChange')
-        }}
-        {...args}
-      />
-    )
-  },
-  { args: {} },
-)
+  return (
+    <CalendarPicker
+      date={date}
+      onChange={newDate => {
+        setDate(newDate)
+        action('onChange')
+      }}
+      {...args}
+    />
+  )
+})
 
 /** Default story for CalendarPicker (edit/remove by hand if needed) */
 export const Default = story(Template, {

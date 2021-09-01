@@ -41,7 +41,7 @@ const Template = story<DesktopDateRangePickerProps<Date>>(args => {
       />
     </LocalizationProvider>
   )
-}, {})
+})
 
 /** Default story for DesktopDateRangePicker (edit/remove by hand if needed) */
 export const Default = story(Template, {
