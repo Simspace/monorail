@@ -9,7 +9,7 @@ import { InputLabel } from '../../InputLabel/InputLabel'
 /**
  * Metadata for OutlinedInput stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Inputs/Input/OutlinedInput' }
 /**
  * Story template (edit/remove by hand if needed)
  *
@@ -18,20 +18,55 @@ export default { ...defaultStoryMeta }
  */
 const Template = story<OutlinedInputProps>(
   args => (
-    <FormControl>
-      <InputLabel htmlFor="outlined">Label</InputLabel>
+    <FormControl variant="filled">
+      <InputLabel htmlFor="filled">Label</InputLabel>
       <OutlinedInput {...args} />
     </FormControl>
   ),
   {
     args: {
-      id: 'outlined',
-      label: 'Label',
-      notched: undefined,
+      id: 'filled',
       placeholder: 'Placeholder',
     },
   },
 )
 /** Default story for OutlinedInput (edit/remove by hand if needed) */
-export const Default = story(Template)
-// TODO: add more stories below
+export const Default = story(Template, {
+  parameters: {
+    docs: {
+      description: {
+        component: `OutlinedInput is a low-level component that can be used with other components to create things like a filled TextField`,
+      },
+    },
+  },
+})
+
+export const Showcase = story<OutlinedInputProps>(
+  () => {
+    const [name, setName] = React.useState('Composed TextField')
+
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+      setName(event.target.value)
+    }
+
+    return (
+      <FormControl variant="filled">
+        <InputLabel htmlFor="component-filled">Name</InputLabel>
+        <OutlinedInput
+          id="component-filled"
+          value={name}
+          onChange={handleChange}
+        />
+      </FormControl>
+    )
+  },
+  {
+    parameters: {
+      docs: {
+        description: {
+          story: `Example FormControl with a OutlinedInput`,
+        },
+      },
+    },
+  },
+)

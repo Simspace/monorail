@@ -3,11 +3,18 @@ import React from 'react'
 import { InputBase, InputBaseProps } from '../InputBase'
 import { story } from '../../../__tests__/helpers/storybook'
 import { defaultStoryMeta } from './InputBase.stories.gen'
+import { Paper } from '../../Paper/Paper'
+import { IconButton } from '../../IconButton/IconButton'
+import { Divider } from '../../Divider/Divider'
+import MenuIcon from '@material-ui/icons/Menu'
+import SearchIcon from '@material-ui/icons/Search'
+import DirectionsIcon from '@material-ui/icons/Directions'
 
 /**
  * Metadata for InputBase stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Inputs/Input/InputBase' }
+
 /**
  * Story template (edit/remove by hand if needed)
  *
@@ -19,6 +26,52 @@ const Template = story<InputBaseProps>(args => <InputBase {...args} />, {
     placeholder: 'Placeholder',
   },
 })
+
 /** Default story for InputBase (edit/remove by hand if needed) */
-export const Default = story(Template)
+export const Default = story(Template, {
+  parameters: {
+    docs: {
+      description: {
+        component: `InputBase is a low-level component that can be used as a building block for building more custom types of inputs.`,
+      },
+    },
+  },
+})
+
+export const CustomInputBase = story<InputBaseProps>(
+  () => {
+    return (
+      <Paper
+        component="form"
+        sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: 400 }}
+      >
+        <IconButton sx={{ p: '10px' }} aria-label="menu">
+          <MenuIcon />
+        </IconButton>
+        <InputBase
+          sx={{ ml: 1, flex: 1 }}
+          placeholder="Search Google Maps"
+          inputProps={{ 'aria-label': 'search google maps' }}
+        />
+        <IconButton type="submit" sx={{ p: '10px' }} aria-label="search">
+          <SearchIcon />
+        </IconButton>
+        <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
+        <IconButton color="primary" sx={{ p: '10px' }} aria-label="directions">
+          <DirectionsIcon />
+        </IconButton>
+      </Paper>
+    )
+  },
+  {
+    parameters: {
+      docs: {
+        description: {
+          story: `InputBase is used here to build a custom Google Maps input component.`,
+        },
+      },
+    },
+  },
+)
+
 // TODO: add more stories below
