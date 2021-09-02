@@ -8,17 +8,8 @@ import { defaultStoryMeta } from './TableContainer.stories.gen'
 import { TableCell } from '../../TableCell/TableCell'
 import { Table } from '../../Table/Table'
 
-/**
- * Metadata for TableBody stories - update/extend as needed
- */
 export default { ...defaultStoryMeta }
 
-/**
- * Story template (edit/remove by hand if needed)
- *
- * Note: there should be at least one "Default" story that uses this template with the "story" function.
- * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
- */
 const Template = story<TableContainerProps>(args => (
   <TableContainer {...args}>
     <Table>
@@ -38,7 +29,6 @@ const Template = story<TableContainerProps>(args => (
   </TableContainer>
 ))
 
-/** Default story for TableBody (edit/remove by hand if needed) */
 export const Default = story(Template, {
   parameters: {
     docs: {
