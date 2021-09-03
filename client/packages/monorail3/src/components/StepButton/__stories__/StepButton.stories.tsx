@@ -15,19 +15,11 @@ import { Stepper } from '../../Stepper/Stepper'
  */
 export default { ...defaultStoryMeta }
 
-const steps2 = [
-  'Select campaign settings',
-  'Create an ad group',
-  'Create an ad',
-]
-
-export const OptionalStepButton = story(
+export const DefaultStepButton = story(
   () => (
     <Box sx={{ width: '100%' }}>
-      <StepButton
-        optional={<Typography variant="caption">Optional</Typography>}
-      >
-        <StepLabel>Create an ad group</StepLabel>
+      <StepButton>
+        <StepLabel>Click me</StepLabel>
       </StepButton>
     </Box>
   ),
@@ -45,10 +37,48 @@ A clickable step label
   },
 )
 
-export const IconStepButton = story(() => (
-  <Box sx={{ width: '100%' }}>
-    <StepButton has icon={<WarningAmberTwoTone />}>
-      <StepLabel>Warning</StepLabel>
-    </StepButton>
-  </Box>
-))
+export const OptionalStepButton = story(
+  () => (
+    <Box sx={{ width: '100%' }}>
+      <StepButton
+        optional={<Typography variant="caption">Optional</Typography>}
+      >
+        <StepLabel>Create an ad group</StepLabel>
+      </StepButton>
+    </Box>
+  ),
+  {
+    args: {},
+    parameters: {
+      docs: {
+        description: {
+          story: `
+The \`optional\` prop can be used to provide text below the main button label.
+`,
+        },
+      },
+    },
+  },
+)
+
+export const IconStepButton = story(
+  () => (
+    <Box sx={{ width: '100%' }}>
+      <StepButton icon={<WarningAmberTwoTone />}>
+        <StepLabel>Warning</StepLabel>
+      </StepButton>
+    </Box>
+  ),
+  {
+    args: {},
+    parameters: {
+      docs: {
+        description: {
+          story: `
+Similarly, the \`icon\` prop can be used to provide an icon next to the main button label.
+`,
+        },
+      },
+    },
+  },
+)

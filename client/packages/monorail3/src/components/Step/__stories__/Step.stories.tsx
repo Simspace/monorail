@@ -10,34 +10,29 @@ import { StepLabel } from '../../StepLabel/StepLabel'
  * Metadata for Step stories - update/extend as needed
  */
 export default { ...defaultStoryMeta }
-/**
- * Story template (edit/remove by hand if needed)
- *
- * Note: there should be at least one "Default" story that uses this template with the "story" function.
- * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
- */
-const Template = story<StepProps>(({ children, ...rest }) => (
-  <Box sx={{ width: '100%' }}>
-    <Stepper>
-      <Step {...rest}>{children}</Step>
-    </Stepper>
-  </Box>
-))
 
-export const Default = story(Template, {
-  args: {
-    children: <StepLabel>I'm a step</StepLabel>,
-  },
-  parameters: {
-    docs: {
-      description: {
-        component: `
+export const DefaultStep = story(
+  () => (
+    <Box sx={{ width: '100%' }}>
+      <Stepper>
+        <Step>
+          <StepLabel>I'm a step</StepLabel>
+        </Step>
+      </Stepper>
+    </Box>
+  ),
+  {
+    parameters: {
+      docs: {
+        description: {
+          component: `
 Steppers convey progress through numbered steps. It provides a wizard-like workflow.
 `,
+        },
       },
     },
   },
-})
+)
 
 export const CompletedStep = story(
   () => (
