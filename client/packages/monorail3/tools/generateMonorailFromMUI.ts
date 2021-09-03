@@ -328,6 +328,7 @@ const modules: Array<ModuleInfo> = [
     name: 'DateRangePickerDay',
     storybookFolder1: 'Inputs',
     storybookFolder2: 'Date and Time',
+    monorailComponentRefType: 'HTMLButtonElement',
     isLab: true,
   },
   {
@@ -590,6 +591,13 @@ const modules: Array<ModuleInfo> = [
     isLab: true,
   },
   {
+    name: 'MobileTimePicker',
+    storybookFolder1: 'Inputs',
+    storybookFolder2: 'Date and Time',
+    monorailComponentRefType: 'HTMLDivElement',
+    isLab: true,
+  },
+  {
     name: 'MobileStepper',
     storybookFolder1: 'Navigation',
   },
@@ -630,6 +638,7 @@ const modules: Array<ModuleInfo> = [
     name: 'PickersDay',
     storybookFolder1: 'Inputs',
     storybookFolder2: 'Date and Time',
+    monorailComponentRefType: 'HTMLButtonElement',
     isLab: true,
   },
   {

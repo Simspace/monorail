@@ -9,7 +9,7 @@ import {
  * Props for PickersDay
  */
 export type PickersDayProps<TDate> = MUIPickersDayProps<TDate> & {
-  ref?: React.ForwardedRef<unknown>
+  ref?: React.ForwardedRef<HTMLButtonElement>
 }
 
 /**
