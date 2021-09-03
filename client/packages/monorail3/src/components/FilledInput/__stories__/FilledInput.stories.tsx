@@ -9,7 +9,7 @@ import { InputLabel } from '../../InputLabel/InputLabel'
 /**
  * Metadata for FilledInput stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Inputs/Input/FilledInput' }
 /**
  * Story template (edit/remove by hand if needed)
  *
@@ -31,5 +31,42 @@ const Template = story<FilledInputProps>(
   },
 )
 /** Default story for FilledInput (edit/remove by hand if needed) */
-export const Default = story(Template)
-// TODO: add more stories below
+export const Default = story(Template, {
+  parameters: {
+    docs: {
+      description: {
+        component: `FilledInput is a low-level component that can be used with other components to create things like a filled TextField`,
+      },
+    },
+  },
+})
+
+export const Showcase = story<FilledInputProps>(
+  () => {
+    const [name, setName] = React.useState('Composed TextField')
+
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+      setName(event.target.value)
+    }
+
+    return (
+      <FormControl variant="filled">
+        <InputLabel htmlFor="component-filled">Name</InputLabel>
+        <FilledInput
+          id="component-filled"
+          value={name}
+          onChange={handleChange}
+        />
+      </FormControl>
+    )
+  },
+  {
+    parameters: {
+      docs: {
+        description: {
+          story: `Example FormControl with a FilledInput`,
+        },
+      },
+    },
+  },
+)
