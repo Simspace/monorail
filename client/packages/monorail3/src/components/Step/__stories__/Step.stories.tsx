@@ -1,4 +1,3 @@
-// Edit this file to add new stories
 import React from 'react'
 import { Step, StepProps } from '../Step'
 import { story } from '../../../__tests__/helpers/storybook'
@@ -6,6 +5,7 @@ import { defaultStoryMeta } from './Step.stories.gen'
 import { Box } from '../../Box/Box'
 import { Stepper } from '../../Stepper/Stepper'
 import { StepLabel } from '../../StepLabel/StepLabel'
+import { StepButton } from '../../StepButton/StepButton.gen'
 /**
  * Metadata for Step stories - update/extend as needed
  */
@@ -81,36 +81,6 @@ export const ExpandedStep = story(
         description: {
           story: `
 The \`expanded\` prop is available to \`Step\` components, but I'm not sure what it does.
-`,
-        },
-      },
-    },
-  },
-)
-
-export const LastStep = story(
-  () => (
-    <Box sx={{ width: '100%' }}>
-      <Stepper nonLinear>
-        <Step active>
-          <StepLabel>First</StepLabel>
-        </Step>
-        <Step last={true}>
-          <StepLabel>Third (but second)</StepLabel>
-        </Step>
-        <Step last={false}>
-          <StepLabel>Second</StepLabel>
-        </Step>
-      </Stepper>
-    </Box>
-  ),
-  {
-    args: {},
-    parameters: {
-      docs: {
-        description: {
-          story: `
-If the \`last\` prop is \`true\`, the Step is displayed as rendered last. The prop defaults to the value inherited from the parent Stepper component.
 `,
         },
       },

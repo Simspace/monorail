@@ -18,9 +18,17 @@ export default { ...defaultStoryMeta }
 export const DefaultStepButton = story(
   () => (
     <Box sx={{ width: '100%' }}>
-      <StepButton>
-        <StepLabel>Click me</StepLabel>
-      </StepButton>
+      <Stepper>
+        <Step>
+          <StepButton>Click me</StepButton>
+        </Step>
+        <Step>
+          <StepButton>Not me</StepButton>
+        </Step>
+        <Step>
+          <StepButton>Not me</StepButton>
+        </Step>
+      </Stepper>
     </Box>
   ),
   {
@@ -29,7 +37,7 @@ export const DefaultStepButton = story(
       docs: {
         description: {
           component: `
-A clickable step label
+A clickable, labeled step.
 `,
         },
       },
