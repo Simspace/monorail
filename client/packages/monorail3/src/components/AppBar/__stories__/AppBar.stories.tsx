@@ -47,7 +47,6 @@ export default {
   ...defaultStoryMeta,
   parameters: {
     docs: {
-      // inlineStories: false,
       iframeHeight: 400,
     },
   },
