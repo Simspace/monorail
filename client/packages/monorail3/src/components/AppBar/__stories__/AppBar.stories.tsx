@@ -51,6 +51,84 @@ export default {
     },
   },
 }
+
+//#region styles
+const Search = styled('div')(({ theme }) => ({
+  position: 'relative',
+  borderRadius: theme.shape.borderRadius,
+  backgroundColor: alpha(theme.palette.common.white, 0.15),
+  '&:hover': {
+    backgroundColor: alpha(theme.palette.common.white, 0.25),
+  },
+  marginLeft: 0,
+  width: '100%',
+  [theme.breakpoints.up('sm')]: {
+    marginLeft: theme.spacing(1),
+    width: 'auto',
+  },
+}))
+
+const SearchIconWrapper = styled('div')(({ theme }) => ({
+  padding: theme.spacing(0, 2),
+  height: '100%',
+  position: 'absolute',
+  pointerEvents: 'none',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+}))
+
+const StyledInputBase = styled(InputBase)(({ theme }) => ({
+  color: 'inherit',
+  '& .MuiInputBase-input': {
+    padding: theme.spacing(1, 1, 1, 0),
+    // vertical padding + font size from searchIcon
+    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+    transition: theme.transitions.create('width'),
+    width: '100%',
+    [theme.breakpoints.up('sm')]: {
+      width: '12ch',
+      '&:focus': {
+        width: '20ch',
+      },
+    },
+  },
+}))
+
+const StyledInputBaseVariant = styled(InputBase)(({ theme }) => ({
+  color: 'inherit',
+  '& .MuiInputBase-input': {
+    padding: theme.spacing(1, 1, 1, 0),
+    // vertical padding + font size from searchIcon
+    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+    transition: theme.transitions.create('width'),
+    width: '100%',
+    [theme.breakpoints.up('md')]: {
+      width: '20ch',
+    },
+  },
+}))
+
+const StyledToolbar = styled(Toolbar)(({ theme }) => ({
+  alignItems: 'flex-start',
+  paddingTop: theme.spacing(1),
+  paddingBottom: theme.spacing(2),
+  // Override media queries injected by theme.mixins.toolbar
+  '@media all': {
+    minHeight: 128,
+  },
+}))
+
+const StyledFab = styled(Fab)({
+  position: 'absolute',
+  zIndex: 1,
+  top: -30,
+  left: 0,
+  right: 0,
+  margin: '0 auto',
+})
+//#endregion
+
 /**
  * Story template (edit/remove by hand if needed)
  *
@@ -90,45 +168,7 @@ export const Default = story(Template)
 export const WithPrimarySearchField = story<AppBarProps>(
   args => {
     //#region Styles that would live outside of component
-    const Search = styled('div')(({ theme }) => ({
-      position: 'relative',
-      borderRadius: theme.shape.borderRadius,
-      backgroundColor: alpha(theme.palette.common.white, 0.15),
-      '&:hover': {
-        backgroundColor: alpha(theme.palette.common.white, 0.25),
-      },
-      marginRight: theme.spacing(2),
-      marginLeft: 0,
-      width: '100%',
-      [theme.breakpoints.up('sm')]: {
-        marginLeft: theme.spacing(3),
-        width: 'auto',
-      },
-    }))
 
-    const SearchIconWrapper = styled('div')(({ theme }) => ({
-      padding: theme.spacing(0, 2),
-      height: '100%',
-      position: 'absolute',
-      pointerEvents: 'none',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-    }))
-
-    const StyledInputBase = styled(InputBase)(({ theme }) => ({
-      color: 'inherit',
-      '& .MuiInputBase-input': {
-        padding: theme.spacing(1, 1, 1, 0),
-        // vertical padding + font size from searchIcon
-        paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-        transition: theme.transitions.create('width'),
-        width: '100%',
-        [theme.breakpoints.up('md')]: {
-          width: '20ch',
-        },
-      },
-    }))
     //#endregion
 
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
@@ -416,87 +456,40 @@ export const WithMenu = story<AppBarProps>(
 )
 
 export const WithSearchField = story<AppBarProps>(
-  args => {
-    //#region Styles that would live outside of component
-
-    const Search = styled('div')(({ theme }) => ({
-      position: 'relative',
-      borderRadius: theme.shape.borderRadius,
-      backgroundColor: alpha(theme.palette.common.white, 0.15),
-      '&:hover': {
-        backgroundColor: alpha(theme.palette.common.white, 0.25),
-      },
-      marginLeft: 0,
-      width: '100%',
-      [theme.breakpoints.up('sm')]: {
-        marginLeft: theme.spacing(1),
-        width: 'auto',
-      },
-    }))
-
-    const SearchIconWrapper = styled('div')(({ theme }) => ({
-      padding: theme.spacing(0, 2),
-      height: '100%',
-      position: 'absolute',
-      pointerEvents: 'none',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-    }))
-
-    const StyledInputBase = styled(InputBase)(({ theme }) => ({
-      color: 'inherit',
-      '& .MuiInputBase-input': {
-        padding: theme.spacing(1, 1, 1, 0),
-        // vertical padding + font size from searchIcon
-        paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-        transition: theme.transitions.create('width'),
-        width: '100%',
-        [theme.breakpoints.up('sm')]: {
-          width: '12ch',
-          '&:focus': {
-            width: '20ch',
-          },
-        },
-      },
-    }))
-    //#endregion
-
-    return (
-      <Box sx={{ flexGrow: 1 }}>
-        <AppBar {...args}>
-          <Toolbar>
-            <IconButton
-              size="large"
-              edge="start"
-              color="inherit"
-              aria-label="open drawer"
-              sx={{ mr: 2 }}
-            >
-              <MenuIcon />
-            </IconButton>
-            <Typography
-              variant="h6"
-              noWrap
-              component="div"
-              sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
-            >
-              Material-UI
-            </Typography>
-            <Search>
-              <SearchIconWrapper>
-                <SearchIcon />
-              </SearchIconWrapper>
-              <StyledInputBase
-                placeholder="Search…"
-                inputProps={{ 'aria-label': 'search' }}
-              />
-            </Search>
-          </Toolbar>
-        </AppBar>
-      </Box>
-    )
-  },
+  args => (
+    <Box sx={{ flexGrow: 1 }}>
+      <AppBar {...args}>
+        <Toolbar>
+          <IconButton
+            size="large"
+            edge="start"
+            color="inherit"
+            aria-label="open drawer"
+            sx={{ mr: 2 }}
+          >
+            <MenuIcon />
+          </IconButton>
+          <Typography
+            variant="h6"
+            noWrap
+            component="div"
+            sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
+          >
+            Material-UI
+          </Typography>
+          <Search>
+            <SearchIconWrapper>
+              <SearchIcon />
+            </SearchIconWrapper>
+            <StyledInputBaseVariant
+              placeholder="Search…"
+              inputProps={{ 'aria-label': 'search' }}
+            />
+          </Search>
+        </Toolbar>
+      </AppBar>
+    </Box>
+  ),
   {
     args: { position: 'static' },
     parameters: {
@@ -542,56 +535,42 @@ export const Dense = story<AppBarProps>(
 )
 
 export const Prominent = story<AppBarProps>(
-  args => {
-    //#region Styles that would live outside of component
-    const StyledToolbar = styled(Toolbar)(({ theme }) => ({
-      alignItems: 'flex-start',
-      paddingTop: theme.spacing(1),
-      paddingBottom: theme.spacing(2),
-      // Override media queries injected by theme.mixins.toolbar
-      '@media all': {
-        minHeight: 128,
-      },
-    }))
-    //#endregion
-
-    return (
-      <Box sx={{ flexGrow: 1 }}>
-        <AppBar {...args}>
-          <StyledToolbar>
-            <IconButton
-              size="large"
-              edge="start"
-              color="inherit"
-              aria-label="open drawer"
-              sx={{ mr: 2 }}
-            >
-              <MenuIcon />
-            </IconButton>
-            <Typography
-              variant="h5"
-              noWrap
-              component="div"
-              sx={{ flexGrow: 1, alignSelf: 'flex-end' }}
-            >
-              Material-UI
-            </Typography>
-            <IconButton size="large" aria-label="search" color="inherit">
-              <SearchIcon />
-            </IconButton>
-            <IconButton
-              size="large"
-              aria-label="display more actions"
-              edge="end"
-              color="inherit"
-            >
-              <MoreIcon />
-            </IconButton>
-          </StyledToolbar>
-        </AppBar>
-      </Box>
-    )
-  },
+  args => (
+    <Box sx={{ flexGrow: 1 }}>
+      <AppBar {...args}>
+        <StyledToolbar>
+          <IconButton
+            size="large"
+            edge="start"
+            color="inherit"
+            aria-label="open drawer"
+            sx={{ mr: 2 }}
+          >
+            <MenuIcon />
+          </IconButton>
+          <Typography
+            variant="h5"
+            noWrap
+            component="div"
+            sx={{ flexGrow: 1, alignSelf: 'flex-end' }}
+          >
+            Material-UI
+          </Typography>
+          <IconButton size="large" aria-label="search" color="inherit">
+            <SearchIcon />
+          </IconButton>
+          <IconButton
+            size="large"
+            aria-label="display more actions"
+            edge="end"
+            color="inherit"
+          >
+            <MoreIcon />
+          </IconButton>
+        </StyledToolbar>
+      </AppBar>
+    </Box>
+  ),
   {
     args: { position: 'static' },
     parameters: {
@@ -658,15 +637,6 @@ export const BottomBar = story<AppBarProps>(
         person: '/static/images/avatar/1.jpg',
       },
     ]
-
-    const StyledFab = styled(Fab)({
-      position: 'absolute',
-      zIndex: 1,
-      top: -30,
-      left: 0,
-      right: 0,
-      margin: '0 auto',
-    })
     //#endregion
 
     return (
