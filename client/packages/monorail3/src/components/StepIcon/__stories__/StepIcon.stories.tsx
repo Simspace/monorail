@@ -27,12 +27,12 @@ export default { ...defaultStoryMeta }
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
 
-export const Default = story(
-  () => (
+export const Default = story<StepIconProps>(
+  args => (
     <Box sx={{ width: '100%' }}>
       <Stepper>
         <Step>
-          <StepIcon icon={<IceSkatingOutlined />} />
+          <StepIcon {...args} icon={<IceSkatingOutlined />} />
         </Step>
         <Step>
           <StepIcon icon={<IceSkatingTwoTone />} />
@@ -44,7 +44,6 @@ export const Default = story(
     </Box>
   ),
   {
-    args: {},
     parameters: {
       docs: {
         description: {
@@ -74,7 +73,6 @@ export const StepLabelIcon = story(
     </Box>
   ),
   {
-    args: {},
     parameters: {
       docs: {
         description: {
@@ -110,7 +108,6 @@ export const IconStepButton = story(
     </Box>
   ),
   {
-    args: {},
     parameters: {
       docs: {
         description: {

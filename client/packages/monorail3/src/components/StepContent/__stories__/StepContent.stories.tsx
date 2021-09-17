@@ -105,7 +105,6 @@ const Template = (args: StepContentProps) => {
 }
 
 export const Default = story(Template, {
-  args: {},
   parameters: {
     docs: {
       description: {

@@ -11,11 +11,11 @@ import { StepButton } from '../../StepButton/StepButton.gen'
  */
 export default { ...defaultStoryMeta }
 
-export const DefaultStep = story(
-  () => (
+export const Default = story<StepProps>(
+  args => (
     <Box sx={{ width: '100%' }}>
       <Stepper>
-        <Step>
+        <Step {...args}>
           <StepLabel>I'm a step</StepLabel>
         </Step>
       </Stepper>
@@ -45,7 +45,6 @@ export const CompletedStep = story(
     </Box>
   ),
   {
-    args: {},
     parameters: {
       docs: {
         description: {
@@ -75,7 +74,6 @@ export const ExpandedStep = story(
     </Box>
   ),
   {
-    args: {},
     parameters: {
       docs: {
         description: {

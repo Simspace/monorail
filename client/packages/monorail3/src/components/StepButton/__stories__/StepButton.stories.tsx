@@ -15,12 +15,12 @@ import { Stepper } from '../../Stepper/Stepper'
  */
 export default { ...defaultStoryMeta }
 
-export const DefaultStepButton = story(
-  () => (
+export const Default = story<StepButtonProps>(
+  args => (
     <Box sx={{ width: '100%' }}>
       <Stepper>
         <Step>
-          <StepButton>Click me</StepButton>
+          <StepButton {...args}>Click me</StepButton>
         </Step>
         <Step>
           <StepButton>Not me</StepButton>
@@ -32,7 +32,6 @@ export const DefaultStepButton = story(
     </Box>
   ),
   {
-    args: {},
     parameters: {
       docs: {
         description: {
@@ -56,7 +55,6 @@ export const OptionalStepButton = story(
     </Box>
   ),
   {
-    args: {},
     parameters: {
       docs: {
         description: {
@@ -78,7 +76,6 @@ export const IconStepButton = story(
     </Box>
   ),
   {
-    args: {},
     parameters: {
       docs: {
         description: {

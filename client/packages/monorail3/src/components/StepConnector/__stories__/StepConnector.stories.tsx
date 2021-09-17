@@ -11,10 +11,10 @@ import { Step } from '../../Step/Step'
  */
 export default { ...defaultStoryMeta }
 
-export const Default = story(
-  () => (
+export const Default = story<StepConnectorProps>(
+  args => (
     <Box sx={{ width: '100%' }}>
-      <Stepper connector={<StepConnector />}>
+      <Stepper connector={<StepConnector {...args} />}>
         <Step>
           <StepLabel>Click me</StepLabel>
         </Step>
@@ -28,7 +28,6 @@ export const Default = story(
     </Box>
   ),
   {
-    args: {},
     parameters: {
       docs: {
         description: {
@@ -62,7 +61,6 @@ export const Custom = story(
     </Box>
   ),
   {
-    args: {},
     parameters: {
       docs: {
         description: {
