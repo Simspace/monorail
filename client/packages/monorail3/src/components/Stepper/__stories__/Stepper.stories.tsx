@@ -1,4 +1,3 @@
-// Edit this file to add new stories
 import React from 'react'
 import { Stepper, StepperProps } from '../Stepper'
 import { story } from '../../../__tests__/helpers/storybook'
