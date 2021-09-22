@@ -14,7 +14,7 @@ import StarBorderIcon from '@material-ui/icons/StarBorder'
 /**
  * Metadata for ImageList stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Layout/ImageList' }
 /**
  * Story template (edit/remove by hand if needed)
  *

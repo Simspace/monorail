@@ -12,7 +12,7 @@ import { ListItemAvatar } from '../../ListItemAvatar/ListItemAvatar'
 /**
  * Metadata for ListItem stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Data Display/List/ListItem' }
 /**
  * Story template (edit/remove by hand if needed)
  *

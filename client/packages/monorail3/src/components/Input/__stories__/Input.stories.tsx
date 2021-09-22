@@ -8,7 +8,7 @@ import { Box } from '../../Box/Box'
 /**
  * Metadata for Input stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Inputs/Input' }
 
 /**
  * Story template (edit/remove by hand if needed)

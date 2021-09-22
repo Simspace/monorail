@@ -23,7 +23,7 @@ import { styled } from '@material-ui/core/styles'
 /**
  * Metadata for Divider stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Data Display/Divider' }
 /**
  * Story template (edit/remove by hand if needed)
  *

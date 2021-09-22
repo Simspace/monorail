@@ -9,7 +9,10 @@ import InfoIcon from '@material-ui/icons/Info'
 /**
  * Metadata for ImageListItemBar stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default {
+  ...defaultStoryMeta,
+  title: 'Layout/ImageList/ImageListItemBar',
+}
 /**
  * Story template (edit/remove by hand if needed)
  *

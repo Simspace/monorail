@@ -6,7 +6,7 @@ import { defaultStoryMeta } from './GlobalStyles.stories.gen'
 /**
  * Metadata for GlobalStyles stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Utils/GlobalStyles' }
 /**
  * Story template (edit/remove by hand if needed)
  *

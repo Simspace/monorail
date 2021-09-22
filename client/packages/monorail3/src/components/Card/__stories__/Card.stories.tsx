@@ -30,7 +30,7 @@ import { images } from '../../../__tests__/helpers/testData'
  * This is intended to be exported as story-level metadata from the main .stories.tsx file, like:
  * "export default { ...defaultStoryMeta } // Add/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Surfaces/Card' }
 /**
  * Story template (edit/remove by hand if needed)
  *
