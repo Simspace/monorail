@@ -18,7 +18,9 @@ export default {
 }
 
 const Template = story<TimePickerProps<Date>>(args => {
-  const [value, setValue] = React.useState<Date | null>(new Date())
+  const [value, setValue] = React.useState<Date | null>(
+    new Date('2021-01-01T12:34:00.000Z'),
+  )
 
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
