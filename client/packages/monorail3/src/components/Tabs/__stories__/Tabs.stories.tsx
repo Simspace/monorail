@@ -14,7 +14,7 @@ import TabList from '@material-ui/lab/TabList'
 /**
  * Metadata for Tabs stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Navigation/Tabs' }
 interface TabPanelProps {
   children?: React.ReactNode
   index: number

@@ -13,7 +13,10 @@ import { Box } from '../../Box/Box'
 /**
  * Metadata for ListItemSecondaryAction stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default {
+  ...defaultStoryMeta,
+  title: 'Data Display/List/ListItemSecondaryAction',
+}
 
 /**
  * Story template (edit/remove by hand if needed)

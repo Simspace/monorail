@@ -18,7 +18,7 @@ import { Fade } from '../../Fade/Fade'
 /**
  * Metadata for Snackbar stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Feedback/Snackbar' }
 
 /**
  * Story template (edit/remove by hand if needed)

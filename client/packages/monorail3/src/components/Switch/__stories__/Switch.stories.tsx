@@ -16,6 +16,7 @@ import { defaultStoryMeta } from './Switch.stories.gen'
  */
 export default {
   ...defaultStoryMeta,
+  title: 'Inputs/Switch',
 }
 /**
  * Story template (edit/remove by hand if needed)

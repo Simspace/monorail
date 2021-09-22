@@ -22,7 +22,7 @@ import { SpeedDialAction } from '../../SpeedDialAction/SpeedDialAction'
 import { SpeedDialIcon } from '../../SpeedDialIcon/SpeedDialIcon'
 import { Switch } from '../../Switch/Switch'
 
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Navigation/SpeedDial' }
 
 const Template = story<SpeedDialProps>(
   ({ children, ...rest }) => (

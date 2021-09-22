@@ -6,7 +6,7 @@ import { defaultStoryMeta } from './NoSsr.stories.gen'
 /**
  * Metadata for NoSsr stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Utils/NoSsr' }
 /**
  * Story template (edit/remove by hand if needed)
  *

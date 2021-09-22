@@ -6,7 +6,10 @@ import { defaultStoryMeta } from './TimelineSeparator.stories.gen'
 /**
  * Metadata for TimelineSeparator stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default {
+  ...defaultStoryMeta,
+  title: 'Data Display/Timeline/TimelineSeparator',
+}
 /**
  * Story template (edit/remove by hand if needed)
  *

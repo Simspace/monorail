@@ -21,7 +21,7 @@ import { Paper } from '../../Paper/Paper'
 /**
  * Metadata for Stepper stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Navigation/Stepper' }
 /**
  * Story template (edit/remove by hand if needed)
  *

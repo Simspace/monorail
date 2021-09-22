@@ -6,7 +6,10 @@ import { defaultStoryMeta } from './TimelineConnector.stories.gen'
 /**
  * Metadata for TimelineConnector stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default {
+  ...defaultStoryMeta,
+  title: 'Data Display/Timeline/TimelineConnector',
+}
 /**
  * Story template (edit/remove by hand if needed)
  *

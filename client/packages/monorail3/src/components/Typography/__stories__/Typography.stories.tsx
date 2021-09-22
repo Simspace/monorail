@@ -11,7 +11,7 @@ import { Stack } from '../../Stack/Stack'
 /**
  * Metadata for Typography stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Data Display/Typography' }
 
 /**
  * Story template (edit/remove by hand if needed)
