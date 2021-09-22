@@ -140,6 +140,9 @@ export const ComplexButton = story(
           story: `The Text Buttons, Contained Buttons, Floating Action Buttons and Icon Buttons are built on top of the same component: the ButtonBase. You can take advantage of this lower-level component to build custom interactions.`,
         },
       },
+      creevey: {
+        skip: 'Image load is unreliable',
+      },
     },
   },
 )

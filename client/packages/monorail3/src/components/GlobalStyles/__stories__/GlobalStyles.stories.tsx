@@ -17,8 +17,19 @@ const Template = story<GlobalStylesProps>(
   args => <GlobalStyles styles={{}} {...args} />,
   {
     args: {},
+    parameters: {
+      creevey: {
+        skip: 'No story yet',
+      },
+    },
   },
 )
 /** Default story for GlobalStyles (edit/remove by hand if needed) */
-export const Default = story(Template)
+export const Default = story(Template, {
+  parameters: {
+    creevey: {
+      skip: 'No story yet',
+    },
+  },
+})
 // TODO: add more stories below

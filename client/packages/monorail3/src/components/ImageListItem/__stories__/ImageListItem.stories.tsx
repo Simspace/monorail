@@ -6,7 +6,7 @@ import { defaultStoryMeta } from './ImageListItem.stories.gen'
 /**
  * Metadata for ImageListItem stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Layout/ImageList/ImageListItem' }
 /**
  * Story template (edit/remove by hand if needed)
  *
@@ -23,7 +23,20 @@ const Template = story<ImageListItemProps>(
       />
     </ImageListItem>
   ),
-  { args: {} },
+  {
+    args: {},
+    parameters: {
+      creevey: {
+        skip: "Images don't load reliably",
+      },
+    },
+  },
 )
 /** Default story for ImageListItem (edit/remove by hand if needed) */
-export const Default = story(Template)
+export const Default = story(Template, {
+  parameters: {
+    creevey: {
+      skip: "Images don't load reliably",
+    },
+  },
+})

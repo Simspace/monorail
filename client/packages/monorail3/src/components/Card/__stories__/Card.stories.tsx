@@ -311,6 +311,9 @@ export const ResponsiveMediaCard = story<CardProps>(
             'By default, MUI uses the combination of a `<div>` element and a background image to display the media. It can be problematic in some situations, for example, you might want to display a video or a responsive image. Use the `component` prop for these use cases:',
         },
       },
+      creevey: {
+        skip: "Images don't load reliably",
+      },
     },
   },
 )
@@ -345,6 +348,9 @@ export const ActionAreaCard = story<CardProps>(
           story:
             'Often a card allow users to interact with the entirety of its surface to trigger its main action, be it an expansion, a link to another screen or some other behavior. The action area of the card can be specified by wrapping its contents in a `CardActionArea` component.',
         },
+      },
+      creevey: {
+        skip: "Images don't load reliably",
       },
     },
   },
@@ -385,6 +391,9 @@ export const MultiActionAreaCard = story<CardProps>(
           story:
             'A card can also offer supplemental actions which should stand detached from the main action area in order to avoid event overlap.',
         },
+      },
+      creevey: {
+        skip: "Images don't load reliably",
       },
     },
   },
@@ -446,6 +455,9 @@ export const MediaControlCard = story<CardProps>(
           story:
             "Supplemental actions within the card are explicitly called out using icons, text, and UI controls, typically placed at the bottom of the card. Here's an example of a media control card.",
         },
+      },
+      creevey: {
+        skip: "Images don't load reliably",
       },
     },
   },

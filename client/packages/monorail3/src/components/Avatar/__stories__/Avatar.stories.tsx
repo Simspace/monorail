@@ -296,6 +296,9 @@ export const WithBadge = story<AvatarProps>(
           story: `Extra adornments like badges can be added to Avatars.`,
         },
       },
+      creevey: {
+        skip: "Images don't load reliably",
+      },
     },
   },
 )

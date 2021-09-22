@@ -31,7 +31,18 @@ const Template = story<ImageListItemBarProps>(
         </IconButton>
       ),
     },
+    parameters: {
+      creevey: {
+        skip: "Images don't load reliably",
+      },
+    },
   },
 )
 /** Default story for ImageListItemBar (edit/remove by hand if needed) */
-export const Default = story(Template)
+export const Default = story(Template, {
+  parameters: {
+    creevey: {
+      skip: "Images don't load reliably",
+    },
+  },
+})
