@@ -12,6 +12,11 @@ import InfoIcon from '@material-ui/icons/Info'
 export default {
   ...defaultStoryMeta,
   title: 'Layout/ImageList/ImageListItemBar',
+  parameters: {
+    creevey: {
+      skip: "Images don't load reliably",
+    },
+  },
 }
 /**
  * Story template (edit/remove by hand if needed)
@@ -31,18 +36,7 @@ const Template = story<ImageListItemBarProps>(
         </IconButton>
       ),
     },
-    parameters: {
-      creevey: {
-        skip: "Images don't load reliably",
-      },
-    },
   },
 )
 /** Default story for ImageListItemBar (edit/remove by hand if needed) */
-export const Default = story(Template, {
-  parameters: {
-    creevey: {
-      skip: "Images don't load reliably",
-    },
-  },
-})
+export const Default = story(Template)

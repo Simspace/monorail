@@ -15,6 +15,11 @@ import DeleteIcon from '@material-ui/icons/Delete'
 export default {
   ...defaultStoryMeta,
   title: 'Data Display/List/ListItemSecondaryAction',
+  parameters: {
+    creevey: {
+      skip: 'Story unreliable; component is never used directly anyway',
+    },
+  },
 }
 
 /**

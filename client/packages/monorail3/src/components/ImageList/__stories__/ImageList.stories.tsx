@@ -14,7 +14,15 @@ import StarBorderIcon from '@material-ui/icons/StarBorder'
 /**
  * Metadata for ImageList stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Layout/ImageList' }
+export default {
+  ...defaultStoryMeta,
+  title: 'Layout/ImageList',
+  parameters: {
+    creevey: {
+      skip: "Images don't load reliably",
+    },
+  },
+}
 /**
  * Story template (edit/remove by hand if needed)
  *
@@ -40,13 +48,9 @@ const Template = story<ImageListProps>(
     args: {
       sx: { width: 500, height: 450 },
     },
-    parameters: {
-      creevey: {
-        skip: "Images don't load reliably",
-      },
-    },
   },
 )
+
 /** Default story for ImageList (edit/remove by hand if needed) */
 export const Default = story(Template)
 
@@ -95,9 +99,6 @@ export const Quilted = story<ImageListProps>(
           story: `Quilted image lists emphasize certain items over others in a collection. They create hierarchy using varied container sizes and ratios.`,
         },
       },
-      creevey: {
-        skip: "Images don't load reliably",
-      },
     },
   },
 )
@@ -113,9 +114,6 @@ export const Woven = story(Template, {
       description: {
         story: `Woven image lists use alternating container ratios to create a rhythmic layout. A woven image list is best for browsing peer content.`,
       },
-    },
-    creevey: {
-      skip: "Images don't load reliably",
     },
   },
 })
@@ -143,9 +141,6 @@ export const Masonry = story<ImageListProps>(
         description: {
           story: `Masonry image lists use dynamically sized container heights that reflect the aspect ratio of each image. This image list is best used for browsing uncropped peer content.`,
         },
-      },
-      creevey: {
-        skip: "Images don't load reliably",
       },
     },
   },
@@ -188,9 +183,6 @@ export const WithTitleBars = story<ImageListProps>(
           story: `This example demonstrates the use of the \`ImageListItemBar\` to add an overlay to each item. The overlay can accommodate a \`title\`, \`subtitle\` and secondary action - in this example an \`IconButton\`.`,
         },
       },
-      creevey: {
-        skip: "Images don't load reliably",
-      },
     },
   },
 )
@@ -221,9 +213,6 @@ export const TitleBarBelowImage = story<ImageListProps>(
         description: {
           story: `The title bar can be placed below the image.`,
         },
-      },
-      creevey: {
-        skip: "Images don't load reliably",
       },
     },
   },
@@ -299,9 +288,6 @@ export const Custom = story<ImageListProps>(
         description: {
           story: `In this example the items have a customized titlebar, positioned at the top and with a custom gradient \`titleBackground\`. The secondary action \`IconButton\` is positioned on the left. The \`gap\` prop is used to adjust the gap between items.`,
         },
-      },
-      creevey: {
-        skip: "Images don't load reliably",
       },
     },
   },

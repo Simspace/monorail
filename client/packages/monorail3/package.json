@@ -63,7 +63,7 @@
     "clean-gen": "find ./src/components -name '*.gen.*' -print | xargs rm && yarn gen",
     "storybook": "start-storybook -p 6006 -s public",
     "storybook:ci": "start-storybook --ci -p 6006 -s public",
-    "test:visual": "start-server-and-test 'yarn storybook' 6006 'open \"https://localhost:3000\" && yarn creevey --ui'",
+    "test:visual": "start-server-and-test 'yarn storybook' 6006 'yarn creevey --ui'",
     "test:visual:ci": "start-server-and-test 'yarn storybook:ci' 6006 'yarn creevey'",
     "build-storybook": "build-storybook -s public"
   },

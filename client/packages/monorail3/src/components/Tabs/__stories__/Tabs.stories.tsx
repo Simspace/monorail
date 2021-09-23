@@ -14,7 +14,15 @@ import TabList from '@material-ui/lab/TabList'
 /**
  * Metadata for Tabs stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Navigation/Tabs' }
+export default {
+  ...defaultStoryMeta,
+  title: 'Navigation/Tabs',
+  parameters: {
+    creevey: {
+      skip: 'Underline length is flakey',
+    },
+  },
+}
 interface TabPanelProps {
   children?: React.ReactNode
   index: number
@@ -836,9 +844,6 @@ export const Accessibility = story(
   },
   {
     parameters: {
-      creevey: {
-        delay: 1000,
-      },
       docs: {
         description: {
           story: `(WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#tabpanel)
