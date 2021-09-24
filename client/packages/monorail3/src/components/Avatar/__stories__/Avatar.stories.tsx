@@ -83,40 +83,37 @@ export const LetterAvatars = story<AvatarProps>(
   },
 )
 
-export const Sizes = story<AvatarProps>(
-  () => {
-    return (
-      <Stack direction="row" spacing={2}>
-        <Avatar
-          alt="Good Boi"
-          src="https://images.dog.ceo/breeds/labrador/n02099712_4323.jpg"
-          sx={{ width: 24, height: 24 }}
-        />
-        <Avatar
-          alt="Good Boi"
-          src="https://images.dog.ceo/breeds/labrador/n02099712_4323.jpg"
-        />
-        <Avatar
-          alt="Good Boi"
-          src="https://images.dog.ceo/breeds/labrador/n02099712_4323.jpg"
-          sx={{ width: 56, height: 56 }}
-        />
-      </Stack>
-    )
-  },
-  {
-    parameters: {
-      docs: {
-        description: {
-          story: `You can change the size of the avatar with the height and width CSS properties.`,
-        },
-      },
-      creevey: {
-        skip: "Images don't load reliably",
-      },
+export const Sizes = story<AvatarProps>(() => {
+  return (
+    <Stack direction="row" spacing={2}>
+      <Avatar
+        alt="Good Boi"
+        src="https://images.dog.ceo/breeds/labrador/n02099712_4323.jpg"
+        sx={{ width: 24, height: 24 }}
+      />
+      <Avatar
+        alt="Good Boi"
+        src="https://images.dog.ceo/breeds/labrador/n02099712_4323.jpg"
+      />
+      <Avatar
+        alt="Good Boi"
+        src="https://images.dog.ceo/breeds/labrador/n02099712_4323.jpg"
+        sx={{ width: 56, height: 56 }}
+      />
+    </Stack>
+  )
+})
+
+Sizes.parameters = {
+  docs: {
+    description: {
+      story: `You can change the size of the avatar with the height and width CSS properties.`,
     },
   },
-)
+  creevey: {
+    skip: "Images don't load reliably",
+  },
+}
 
 export const IconAvatars = story<AvatarProps>(
   () => {

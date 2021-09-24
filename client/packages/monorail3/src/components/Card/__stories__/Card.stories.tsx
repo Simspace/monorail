@@ -233,49 +233,45 @@ RecipeReviewCard.parameters = {
         'On desktop, card content can expand. (Click the downward chevron to view the recipe.)',
     },
   },
-  parameters: {
-    creevey: {
-      delay: 1000,
-      skip: 'Image load unreliable',
-    },
+  creevey: {
+    delay: 1000,
+    skip: 'Image load unreliable',
   },
 }
 
-export const MediaCard = story<CardProps>(
-  () => {
-    return (
-      <Card sx={{ maxWidth: 345 }}>
-        <CardMedia
-          sx={{ height: 140 }}
-          image={images.lizard.url}
-          title={images.lizard.title}
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
-            Lizard
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            Lizards are a widespread group of squamate reptiles, with over 6,000
-            species, ranging across all continents except Antarctica
-          </Typography>
-        </CardContent>
-        <CardActions>
-          <Button size="small">Share</Button>
-          <Button size="small">Learn More</Button>
-        </CardActions>
-      </Card>
-    )
-  },
-  {
-    parameters: {
-      docs: {
-        description: {
-          story: 'Example of a card using an image to reinforce the content.',
-        },
-      },
+export const MediaCard = story<CardProps>(() => {
+  return (
+    <Card sx={{ maxWidth: 345 }}>
+      <CardMedia
+        sx={{ height: 140 }}
+        image={images.lizard.url}
+        title={images.lizard.title}
+      />
+      <CardContent>
+        <Typography gutterBottom variant="h5" component="div">
+          Lizard
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          Lizards are a widespread group of squamate reptiles, with over 6,000
+          species, ranging across all continents except Antarctica
+        </Typography>
+      </CardContent>
+      <CardActions>
+        <Button size="small">Share</Button>
+        <Button size="small">Learn More</Button>
+      </CardActions>
+    </Card>
+  )
+})
+
+MediaCard.parameters = {
+  docs: {
+    description: {
+      story: 'Example of a card using an image to reinforce the content.',
     },
   },
-)
+  creevey: { skip: 'Images load unreliably' },
+}
 
 export const ResponsiveMediaCard = story<CardProps>(() => {
   return (

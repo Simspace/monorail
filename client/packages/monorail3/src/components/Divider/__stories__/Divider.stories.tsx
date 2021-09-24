@@ -120,6 +120,12 @@ export const InsetDividers = () => {
   )
 }
 
+InsetDividers.parameters = {
+  creevey: {
+    skip: 'Images load unreliably',
+  },
+}
+
 export const SubheaderDividers = () => {
   return (
     <List
@@ -168,6 +174,12 @@ export const SubheaderDividers = () => {
       </ListItem>
     </List>
   )
+}
+
+SubheaderDividers.parameters = {
+  creevey: {
+    skip: 'Images load unreliably',
+  },
 }
 
 export const MiddleDividers = () => {
