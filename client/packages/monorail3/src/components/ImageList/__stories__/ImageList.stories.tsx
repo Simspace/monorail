@@ -14,7 +14,15 @@ import StarBorderIcon from '@material-ui/icons/StarBorder'
 /**
  * Metadata for ImageList stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default {
+  ...defaultStoryMeta,
+  title: 'Layout/ImageList',
+  parameters: {
+    creevey: {
+      skip: "Images don't load reliably",
+    },
+  },
+}
 /**
  * Story template (edit/remove by hand if needed)
  *
@@ -42,6 +50,7 @@ const Template = story<ImageListProps>(
     },
   },
 )
+
 /** Default story for ImageList (edit/remove by hand if needed) */
 export const Default = story(Template)
 

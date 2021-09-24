@@ -6,7 +6,7 @@ import { defaultStoryMeta } from './FormLabel.stories.gen'
 /**
  * Metadata for FormLabel stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Inputs/FormLabel' }
 
 const Template = story<FormLabelProps>(args => <FormLabel {...args} />, {
   args: { children: "I'm a label!" },

@@ -13,7 +13,7 @@ import { Backdrop } from '../../Backdrop/Backdrop'
 /**
  * Metadata for Modal stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Utils/Modal' }
 
 /**
  * Story template (edit/remove by hand if needed)

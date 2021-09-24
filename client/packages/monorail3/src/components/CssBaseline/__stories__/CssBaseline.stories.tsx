@@ -8,7 +8,7 @@ import { ScopedCssBaseline } from '../../ScopedCssBaseline/ScopedCssBaseline'
 /**
  * Metadata for CssBaseline stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Utils/CssBaseline' }
 
 /**
  * Story template (edit/remove by hand if needed)

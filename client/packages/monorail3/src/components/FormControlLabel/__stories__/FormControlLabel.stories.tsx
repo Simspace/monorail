@@ -10,7 +10,7 @@ import { Radio } from '../../Radio/Radio'
 /**
  * Metadata for FormControlLabel stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Inputs/FormControlLabel' }
 
 const Template = story<FormControlLabelProps>(
   args => (
