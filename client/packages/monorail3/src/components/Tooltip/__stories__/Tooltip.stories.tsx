@@ -18,7 +18,7 @@ import { Zoom } from '../../Zoom/Zoom'
 /**
  * Metadata for Tooltip stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Feedback/Tooltip' }
 
 /**
  * Story template (edit/remove by hand if needed)

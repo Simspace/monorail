@@ -8,7 +8,10 @@ import { defaultStoryMeta } from './TableContainer.stories.gen'
 import { TableCell } from '../../TableCell/TableCell'
 import { Table } from '../../Table/Table'
 
-export default { ...defaultStoryMeta }
+export default {
+  ...defaultStoryMeta,
+  title: 'Data Display/Table/TableContainer',
+}
 
 const Template = story<TableContainerProps>(args => (
   <TableContainer {...args}>

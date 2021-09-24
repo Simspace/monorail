@@ -33,7 +33,7 @@ import { Switch } from '../../Switch/Switch'
 /**
  * Metadata for TreeView stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Data Display/TreeView' }
 /**
  * Story template (edit/remove by hand if needed)
  *

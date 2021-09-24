@@ -17,7 +17,7 @@ import { Badge } from '../../Badge/Badge'
  * This is intended to be exported as story-level metadata from the main .stories.tsx file, like:
  * "export default { ...defaultStoryMeta } // Add/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Data Display/Avatar' }
 
 /**
  * Story template (edit/remove by hand if needed)
@@ -32,35 +32,35 @@ const Template = story<AvatarProps>(args => <Avatar {...args} />, {
 /** Default story for Avatar (edit/remove by hand if needed) */
 export const Default = story(Template)
 
-export const ImageAvatars = story<AvatarProps>(
-  () => {
-    return (
-      <Stack direction="row" spacing={2}>
-        <Avatar
-          alt="Good Boi"
-          src="https://images.dog.ceo/breeds/boxer/n02108089_11154.jpg"
-        />
-        <Avatar
-          alt="Good Boi"
-          src="https://images.dog.ceo/breeds/labrador/n02099712_4323.jpg"
-        />
-        <Avatar
-          alt="Good Boi"
-          src="https://images.dog.ceo/breeds/sheepdog-english/n02105641_10048.jpg"
-        />
-      </Stack>
-    )
-  },
-  {
-    parameters: {
-      docs: {
-        description: {
-          story: `Image avatars can be created by passing standard img props src or srcSet to the component.`,
-        },
-      },
+export const ImageAvatars = story<AvatarProps>(() => {
+  return (
+    <Stack direction="row" spacing={2}>
+      <Avatar
+        alt="Good Boi"
+        src="https://images.dog.ceo/breeds/boxer/n02108089_11154.jpg"
+      />
+      <Avatar
+        alt="Good Boi"
+        src="https://images.dog.ceo/breeds/labrador/n02099712_4323.jpg"
+      />
+      <Avatar
+        alt="Good Boi"
+        src="https://images.dog.ceo/breeds/sheepdog-english/n02105641_10048.jpg"
+      />
+    </Stack>
+  )
+})
+
+ImageAvatars.parameters = {
+  docs: {
+    description: {
+      story: `Image avatars can be created by passing standard img props src or srcSet to the component.`,
     },
   },
-)
+  creevey: {
+    skip: "Images don't load reliably",
+  },
+}
 
 export const LetterAvatars = story<AvatarProps>(
   () => {
@@ -83,37 +83,37 @@ export const LetterAvatars = story<AvatarProps>(
   },
 )
 
-export const Sizes = story<AvatarProps>(
-  () => {
-    return (
-      <Stack direction="row" spacing={2}>
-        <Avatar
-          alt="Good Boi"
-          src="https://images.dog.ceo/breeds/labrador/n02099712_4323.jpg"
-          sx={{ width: 24, height: 24 }}
-        />
-        <Avatar
-          alt="Good Boi"
-          src="https://images.dog.ceo/breeds/labrador/n02099712_4323.jpg"
-        />
-        <Avatar
-          alt="Good Boi"
-          src="https://images.dog.ceo/breeds/labrador/n02099712_4323.jpg"
-          sx={{ width: 56, height: 56 }}
-        />
-      </Stack>
-    )
-  },
-  {
-    parameters: {
-      docs: {
-        description: {
-          story: `You can change the size of the avatar with the height and width CSS properties.`,
-        },
-      },
+export const Sizes = story<AvatarProps>(() => {
+  return (
+    <Stack direction="row" spacing={2}>
+      <Avatar
+        alt="Good Boi"
+        src="https://images.dog.ceo/breeds/labrador/n02099712_4323.jpg"
+        sx={{ width: 24, height: 24 }}
+      />
+      <Avatar
+        alt="Good Boi"
+        src="https://images.dog.ceo/breeds/labrador/n02099712_4323.jpg"
+      />
+      <Avatar
+        alt="Good Boi"
+        src="https://images.dog.ceo/breeds/labrador/n02099712_4323.jpg"
+        sx={{ width: 56, height: 56 }}
+      />
+    </Stack>
+  )
+})
+
+Sizes.parameters = {
+  docs: {
+    description: {
+      story: `You can change the size of the avatar with the height and width CSS properties.`,
     },
   },
-)
+  creevey: {
+    skip: "Images don't load reliably",
+  },
+}
 
 export const IconAvatars = story<AvatarProps>(
   () => {
@@ -257,45 +257,45 @@ const SmallAvatar = styled(Avatar)(({ theme }) => ({
   border: `2px solid ${theme.palette.background.paper}`,
 }))
 
-export const WithBadge = story<AvatarProps>(
-  () => {
-    return (
-      <Stack direction="row" spacing={2}>
-        <StyledBadge
-          overlap="circular"
-          anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-          variant="dot"
-        >
-          <Avatar
-            alt="Good Boi"
+export const WithBadge = story<AvatarProps>(() => {
+  return (
+    <Stack direction="row" spacing={2}>
+      <StyledBadge
+        overlap="circular"
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+        variant="dot"
+      >
+        <Avatar
+          alt="Good Boi"
+          src="https://images.dog.ceo/breeds/puggle/IMG_070809.jpg"
+        />
+      </StyledBadge>
+      <Badge
+        overlap="circular"
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+        badgeContent={
+          <SmallAvatar
+            alt="Smol Boi"
             src="https://images.dog.ceo/breeds/puggle/IMG_070809.jpg"
           />
-        </StyledBadge>
-        <Badge
-          overlap="circular"
-          anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-          badgeContent={
-            <SmallAvatar
-              alt="Smol Boi"
-              src="https://images.dog.ceo/breeds/puggle/IMG_070809.jpg"
-            />
-          }
-        >
-          <Avatar
-            alt="Good Boi"
-            src="https://images.dog.ceo/breeds/puggle/IMG_104458.jpg"
-          />
-        </Badge>
-      </Stack>
-    )
-  },
-  {
-    parameters: {
-      docs: {
-        description: {
-          story: `Extra adornments like badges can be added to Avatars.`,
-        },
-      },
+        }
+      >
+        <Avatar
+          alt="Good Boi"
+          src="https://images.dog.ceo/breeds/puggle/IMG_104458.jpg"
+        />
+      </Badge>
+    </Stack>
+  )
+})
+
+WithBadge.parameters = {
+  docs: {
+    description: {
+      story: `Extra adornments like badges can be added to Avatars.`,
     },
   },
-)
+  creevey: {
+    skip: "Images don't load reliably",
+  },
+}
