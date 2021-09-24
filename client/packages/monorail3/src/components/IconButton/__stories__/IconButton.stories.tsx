@@ -3,9 +3,9 @@ import React from 'react'
 import { IconButton, IconButtonProps } from '../IconButton'
 import { story } from '../../../__tests__/helpers/storybook'
 import { defaultStoryMeta } from './IconButton.stories.gen'
-import DeleteIcon from '@material-ui/icons/Delete'
-import AlarmIcon from '@material-ui/icons/Alarm'
-import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart'
+import DeleteIcon from '@mui/icons-material/Delete'
+import AlarmIcon from '@mui/icons-material/Alarm'
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart'
 import { Stack } from '../../Stack/Stack'
 /**
  * Metadata for IconButton stories - update/extend as needed
@@ -19,7 +19,7 @@ export default { ...defaultStoryMeta, title: 'Inputs/IconButton' }
  */
 const Template = story<IconButtonProps>(
   args => (
-    <IconButton {...args}>
+    <IconButton {...args} size="large">
       <DeleteIcon />
     </IconButton>
   ),
@@ -34,16 +34,16 @@ export const Default = story(Template)
 export const Showcase = story<IconButtonProps>(
   () => (
     <Stack direction="row" spacing={1}>
-      <IconButton aria-label="delete">
+      <IconButton aria-label="delete" size="large">
         <DeleteIcon />
       </IconButton>
-      <IconButton aria-label="delete" disabled color="primary">
+      <IconButton aria-label="delete" disabled color="primary" size="large">
         <DeleteIcon />
       </IconButton>
-      <IconButton color="secondary" aria-label="add an alarm">
+      <IconButton color="secondary" aria-label="add an alarm" size="large">
         <AlarmIcon />
       </IconButton>
-      <IconButton color="primary" aria-label="add to shopping cart">
+      <IconButton color="primary" aria-label="add to shopping cart" size="large">
         <AddShoppingCartIcon />
       </IconButton>
     </Stack>
@@ -92,10 +92,10 @@ export const Sizes = story<IconButtonProps>(
 export const Colors = story<IconButtonProps>(
   () => (
     <Stack direction="row" spacing={1}>
-      <IconButton aria-label="fingerprint" color="secondary">
+      <IconButton aria-label="fingerprint" color="secondary" size="large">
         <DeleteIcon />
       </IconButton>
-      <IconButton aria-label="fingerprint" color="success">
+      <IconButton aria-label="fingerprint" color="success" size="large">
         <DeleteIcon />
       </IconButton>
     </Stack>

@@ -4,7 +4,7 @@ import {
   default as MUILink,
   LinkProps as MUILinkProps,
   LinkTypeMap,
-} from '@material-ui/core/Link'
+} from '@mui/material/Link'
 
 /**
  * Props for Link

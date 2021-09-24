@@ -8,22 +8,22 @@ import { CardContent } from '../../CardContent/CardContent'
 import { Typography } from '../../Typography/Typography'
 import { CardActions } from '../../CardActions/CardActions'
 import { Button } from '../../Button/Button'
-import { styled } from '@material-ui/core/styles'
+import { styled } from '@mui/material/styles'
 import { IconButton, IconButtonProps } from '../../IconButton/IconButton'
 import { CardHeader } from '../../CardHeader/CardHeader'
 import { Avatar } from '../../Avatar/Avatar'
 import { Collapse } from '../../Collapse/Collapse'
 import { CardMedia } from '../../CardMedia/CardMedia'
-import { red } from '@material-ui/core/colors'
+import { red } from '@mui/material/colors'
 import { CardActionArea } from '../../CardActionArea/CardActionArea'
 import { useTheme } from '../../../theme/useTheme'
-import FavoriteIcon from '@material-ui/icons/Favorite'
-import ShareIcon from '@material-ui/icons/Share'
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
-import MoreVertIcon from '@material-ui/icons/MoreVert'
-import SkipPreviousIcon from '@material-ui/icons/SkipPrevious'
-import PlayArrowIcon from '@material-ui/icons/PlayArrow'
-import SkipNextIcon from '@material-ui/icons/SkipNext'
+import FavoriteIcon from '@mui/icons-material/Favorite'
+import ShareIcon from '@mui/icons-material/Share'
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
+import MoreVertIcon from '@mui/icons-material/MoreVert'
+import SkipPreviousIcon from '@mui/icons-material/SkipPrevious'
+import PlayArrowIcon from '@mui/icons-material/PlayArrow'
+import SkipNextIcon from '@mui/icons-material/SkipNext'
 import { images } from '../../../__tests__/helpers/testData'
 /**
  * Metadata for Card stories - update/extend as needed
@@ -129,7 +129,7 @@ interface ExpandMoreProps extends IconButtonProps {
 
 const ExpandMore = styled((props: ExpandMoreProps) => {
   const { expand, ...other } = props
-  return <IconButton {...other} />
+  return <IconButton {...other} size="large" />;
 })(({ theme, expand }) => ({
   transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
   marginLeft: 'auto',
@@ -154,7 +154,7 @@ export const RecipeReviewCard = story<CardProps>(() => {
           </Avatar>
         }
         action={
-          <IconButton aria-label="settings">
+          <IconButton aria-label="settings" size="large">
             <MoreVertIcon />
           </IconButton>
         }
@@ -177,10 +177,10 @@ export const RecipeReviewCard = story<CardProps>(() => {
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites">
+        <IconButton aria-label="add to favorites" size="large">
           <FavoriteIcon />
         </IconButton>
-        <IconButton aria-label="share">
+        <IconButton aria-label="share" size="large">
           <ShareIcon />
         </IconButton>
         <ExpandMore
@@ -224,7 +224,7 @@ export const RecipeReviewCard = story<CardProps>(() => {
         </CardContent>
       </Collapse>
     </Card>
-  )
+  );
 })
 RecipeReviewCard.parameters = {
   docs: {
@@ -408,17 +408,17 @@ export const MediaControlCard = story<CardProps>(() => {
           </Typography>
         </CardContent>
         <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1 }}>
-          <IconButton aria-label="previous">
+          <IconButton aria-label="previous" size="large">
             {theme.direction === 'rtl' ? (
               <SkipNextIcon />
             ) : (
               <SkipPreviousIcon />
             )}
           </IconButton>
-          <IconButton aria-label="play/pause">
+          <IconButton aria-label="play/pause" size="large">
             <PlayArrowIcon sx={{ height: 38, width: 38 }} />
           </IconButton>
-          <IconButton aria-label="next">
+          <IconButton aria-label="next" size="large">
             {theme.direction === 'rtl' ? (
               <SkipPreviousIcon />
             ) : (
@@ -433,7 +433,7 @@ export const MediaControlCard = story<CardProps>(() => {
         title={images.album.title}
       />
     </Card>
-  )
+  );
 })
 
 MediaControlCard.parameters = {

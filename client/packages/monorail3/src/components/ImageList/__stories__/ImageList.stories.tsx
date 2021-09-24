@@ -8,8 +8,8 @@ import { Box } from '../../Box/Box'
 import { ListSubheader } from '../../ListSubheader/ListSubheader'
 import { ImageListItemBar } from '../../ImageListItemBar/ImageListItemBar'
 import { IconButton } from '../../IconButton/IconButton'
-import InfoIcon from '@material-ui/icons/Info'
-import StarBorderIcon from '@material-ui/icons/StarBorder'
+import InfoIcon from '@mui/icons-material/Info'
+import StarBorderIcon from '@mui/icons-material/StarBorder'
 
 /**
  * Metadata for ImageList stories - update/extend as needed
@@ -167,7 +167,7 @@ export const WithTitleBars = story<ImageListProps>(
               <IconButton
                 sx={{ color: 'rgba(255, 255, 255, 0.54)' }}
                 aria-label={`info about ${item.title}`}
-              >
+                size="large">
                 <InfoIcon />
               </IconButton>
             }
@@ -268,17 +268,14 @@ export const Custom = story<ImageListProps>(
               title={item.title}
               position="top"
               actionIcon={
-                <IconButton
-                  sx={{ color: 'white' }}
-                  aria-label={`star ${item.title}`}
-                >
+                <IconButton sx={{ color: 'white' }} aria-label={`star ${item.title}`} size="large">
                   <StarBorderIcon />
                 </IconButton>
               }
               actionPosition="left"
             />
           </ImageListItem>
-        )
+        );
       })}
     </ImageList>
   ),

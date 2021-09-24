@@ -4,7 +4,7 @@ import {
   default as MUIButton,
   ButtonProps as MUIButtonProps,
   ButtonTypeMap,
-} from '@material-ui/core/Button'
+} from '@mui/material/Button'
 
 /**
  * Props for Button

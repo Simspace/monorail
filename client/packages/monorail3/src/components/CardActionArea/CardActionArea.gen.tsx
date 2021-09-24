@@ -3,8 +3,8 @@ import React from 'react'
 import {
   default as MUICardActionArea,
   CardActionAreaProps as MUICardActionAreaProps,
-} from '@material-ui/core/CardActionArea'
-import { ButtonBaseTypeMap } from '@material-ui/core/ButtonBase'
+} from '@mui/material/CardActionArea'
+import { ButtonBaseTypeMap } from '@mui/material/ButtonBase'
 
 /**
  * Props for CardActionArea

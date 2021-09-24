@@ -4,7 +4,7 @@ import {
   default as MUIList,
   ListProps as MUIListProps,
   ListTypeMap,
-} from '@material-ui/core/List'
+} from '@mui/material/List'
 
 /**
  * Props for List

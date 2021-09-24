@@ -1,13 +1,13 @@
 // eslint-disable-next-line no-restricted-imports
-import * as MUI from '@material-ui/core'
+import { Theme, DeprecatedThemeOptions } from '@mui/material'
 import { baseTheme } from './baseTheme'
 
 /**
  * Constructs the `components` overrides using a subset of the overall theme that includes everything except `components`
  */
 export const getThemeComponents = (
-  _theme: MUI.Theme,
-): MUI.ThemeOptions['components'] => ({
+  _theme: Theme,
+): DeprecatedThemeOptions['components'] => ({
   // Make sure we apply the defaults here
   ...baseTheme.components,
 

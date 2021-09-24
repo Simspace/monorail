@@ -1,18 +1,17 @@
-import * as MUI from '@material-ui/core'
+import { PaletteOptions, createTheme, colors } from '@mui/material'
+
+import { adaptV4Theme } from '@mui/material/styles';
 
 import { defaultLightTheme } from './defaultLightTheme'
 
-const palette: MUI.PaletteOptions = {
+const palette: PaletteOptions = {
   ...defaultLightTheme.palette,
   primary: {
-    main: MUI.colors.purple[500],
+    main: colors.purple[500],
   },
 }
 
-export const pcteLightTheme = MUI.createTheme(
-  {
-    ...defaultLightTheme,
-    palette,
-  },
-  {},
-)
+export const pcteLightTheme = createTheme(adaptV4Theme({
+  ...defaultLightTheme,
+  palette,
+}, {}))

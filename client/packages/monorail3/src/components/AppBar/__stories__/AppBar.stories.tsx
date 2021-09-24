@@ -8,19 +8,19 @@ import { Toolbar } from '../../Toolbar/Toolbar'
 import { Button } from '../../Button/Button'
 import { IconButton } from '../../IconButton/IconButton'
 import { Typography } from '../../Typography/Typography'
-import { styled, alpha } from '@material-ui/core/styles'
+import { styled, alpha } from '@mui/material/styles'
 import { InputBase } from '../../InputBase/InputBase'
 import { Menu } from '../../Menu/Menu'
 import { MenuItem } from '../../MenuItem/MenuItem'
 import { Badge } from '../../Badge/Badge'
-import MenuIcon from '@material-ui/icons/Menu'
-import SearchIcon from '@material-ui/icons/Search'
-import AccountCircle from '@material-ui/icons/AccountCircle'
-import MailIcon from '@material-ui/icons/Mail'
-import AddIcon from '@material-ui/icons/Add'
-import NotificationsIcon from '@material-ui/icons/Notifications'
-import MoreIcon from '@material-ui/icons/MoreVert'
-import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp'
+import MenuIcon from '@mui/icons-material/Menu'
+import SearchIcon from '@mui/icons-material/Search'
+import AccountCircle from '@mui/icons-material/AccountCircle'
+import MailIcon from '@mui/icons-material/Mail'
+import AddIcon from '@mui/icons-material/Add'
+import NotificationsIcon from '@mui/icons-material/Notifications'
+import MoreIcon from '@mui/icons-material/MoreVert'
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
 import { FormGroup } from '../../FormGroup/FormGroup'
 import { FormControlLabel } from '../../FormControlLabel/FormControlLabel'
 import { Switch } from '../../Switch/Switch'
@@ -33,7 +33,7 @@ import { ListItem } from '../../ListItem/ListItem'
 import { ListItemAvatar } from '../../ListItemAvatar/ListItemAvatar'
 import { Avatar } from '../../Avatar/Avatar'
 import { ListItemText } from '../../ListItemText/ListItemText'
-import useScrollTrigger from '@material-ui/core/useScrollTrigger'
+import useScrollTrigger from '@mui/material/useScrollTrigger'
 import { Slide } from '../../Slide/Slide'
 import { Container } from '../../Container/Container'
 import { Zoom } from '../../Zoom/Zoom'
@@ -513,7 +513,7 @@ export const Dense = story<AppBarProps>(
             color="inherit"
             aria-label="menu"
             sx={{ mr: 2 }}
-          >
+            size="large">
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" color="inherit" component="div">
@@ -677,23 +677,23 @@ export const BottomBar = story<AppBarProps>(
         </Paper>
         <AppBar {...args}>
           <Toolbar>
-            <IconButton color="inherit" aria-label="open drawer">
+            <IconButton color="inherit" aria-label="open drawer" size="large">
               <MenuIcon />
             </IconButton>
             <StyledFab color="secondary" aria-label="add">
               <AddIcon />
             </StyledFab>
             <Box sx={{ flexGrow: 1 }} />
-            <IconButton color="inherit">
+            <IconButton color="inherit" size="large">
               <SearchIcon />
             </IconButton>
-            <IconButton color="inherit">
+            <IconButton color="inherit" size="large">
               <MoreIcon />
             </IconButton>
           </Toolbar>
         </AppBar>
       </React.Fragment>
-    )
+    );
   },
   {
     args: {

@@ -4,7 +4,7 @@ import {
   default as MUISlider,
   SliderProps as MUISliderProps,
   SliderTypeMap,
-} from '@material-ui/core/Slider'
+} from '@mui/material/Slider'
 
 /**
  * Props for Slider

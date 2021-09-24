@@ -8,7 +8,7 @@ import { story } from '../../../__tests__/helpers/storybook'
 import { defaultStoryMeta } from './MobileDateRangePicker.stories.gen'
 import { action } from '@storybook/addon-actions'
 import { TextField } from '../../TextField/TextField'
-import { DateRange } from '@material-ui/lab/DateRangePicker/RangeTypes'
+import { DateRange } from '@mui/lab/DateRangePicker/RangeTypes'
 import { AdapterDateFns, LocalizationProvider } from '../../../helpers/dateTime'
 import { Box } from '../../Box/Box'
 

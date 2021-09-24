@@ -17,18 +17,18 @@ import { Toolbar } from '../../Toolbar/Toolbar'
 import { Typography } from '../../Typography/Typography'
 import { Tooltip } from '../../Tooltip/Tooltip'
 import { IconButton } from '../../IconButton/IconButton'
-import DeleteIcon from '@material-ui/icons/Delete'
-import FilterListIcon from '@material-ui/icons/FilterList'
-import LastPageIcon from '@material-ui/icons/LastPage'
-import FirstPageIcon from '@material-ui/icons/FirstPage'
-import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft'
-import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight'
-import KeyboardArrowUp from '@material-ui/icons/KeyboardArrowUp'
-import KeyboardArrowDown from '@material-ui/icons/KeyboardArrowDown'
+import DeleteIcon from '@mui/icons-material/Delete'
+import FilterListIcon from '@mui/icons-material/FilterList'
+import LastPageIcon from '@mui/icons-material/LastPage'
+import FirstPageIcon from '@mui/icons-material/FirstPage'
+import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft'
+import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight'
+import KeyboardArrowUp from '@mui/icons-material/KeyboardArrowUp'
+import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown'
 import { TablePagination } from '../../TablePagination/TablePagination'
 import { FormControlLabel } from '../../FormControlLabel/FormControlLabel'
 import { Switch } from '../../Switch/Switch'
-import { tableCellClasses } from '@material-ui/core/TableCell'
+import { tableCellClasses } from '@mui/material/TableCell'
 import { useTheme } from '../../../theme/useTheme'
 import { TableFooter } from '../../TableFooter/TableFooter'
 import { Collapse } from '../../Collapse/Collapse'
@@ -394,19 +394,19 @@ export const SortingAndSelecting = story<TableProps>(
           )}
           {numSelected > 0 ? (
             <Tooltip title="Delete">
-              <IconButton>
+              <IconButton size="large">
                 <DeleteIcon />
               </IconButton>
             </Tooltip>
           ) : (
             <Tooltip title="Filter list">
-              <IconButton>
+              <IconButton size="large">
                 <FilterListIcon />
               </IconButton>
             </Tooltip>
           )}
         </Toolbar>
-      )
+      );
     }
 
     function EnhancedTable() {
@@ -713,14 +713,14 @@ export const CustomPaginationOptions = story<TableProps>(
             onClick={handleFirstPageButtonClick}
             disabled={page === 0}
             aria-label="first page"
-          >
+            size="large">
             {theme.direction === 'rtl' ? <LastPageIcon /> : <FirstPageIcon />}
           </IconButton>
           <IconButton
             onClick={handleBackButtonClick}
             disabled={page === 0}
             aria-label="previous page"
-          >
+            size="large">
             {theme.direction === 'rtl' ? (
               <KeyboardArrowRight />
             ) : (
@@ -731,7 +731,7 @@ export const CustomPaginationOptions = story<TableProps>(
             onClick={handleNextButtonClick}
             disabled={page >= Math.ceil(count / rowsPerPage) - 1}
             aria-label="next page"
-          >
+            size="large">
             {theme.direction === 'rtl' ? (
               <KeyboardArrowLeft />
             ) : (
@@ -742,11 +742,11 @@ export const CustomPaginationOptions = story<TableProps>(
             onClick={handleLastPageButtonClick}
             disabled={page >= Math.ceil(count / rowsPerPage) - 1}
             aria-label="last page"
-          >
+            size="large">
             {theme.direction === 'rtl' ? <FirstPageIcon /> : <LastPageIcon />}
           </IconButton>
         </Box>
-      )
+      );
     }
 
     function createData(name: string, calories: number, fat: number) {

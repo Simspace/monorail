@@ -3,7 +3,7 @@ import React from 'react'
 import {
   default as MUIOutlinedInput,
   OutlinedInputProps as MUIOutlinedInputProps,
-} from '@material-ui/core/OutlinedInput'
+} from '@mui/material/OutlinedInput'
 
 /**
  * Props for OutlinedInput

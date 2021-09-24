@@ -3,7 +3,7 @@ import React from 'react'
 import {
   default as MUIMenu,
   MenuProps as MUIMenuProps,
-} from '@material-ui/core/Menu'
+} from '@mui/material/Menu'
 
 /**
  * Props for Menu
