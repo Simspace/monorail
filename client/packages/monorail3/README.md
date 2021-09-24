@@ -3,8 +3,8 @@
 ## Table of Contents
 
 - [Overview](#Overview)
-- [Goals/core ideas](#goals/core-ideas)
-- [FAQ/Known issues](#faq/known-issues)
+- [Goals/core ideas](#goalscore-ideas)
+- [FAQ/Known issues](#faqknown-issues)
 - [Setup](#setup)
 - [Storybook](#storybook)
 - [Testing](#testing)
@@ -20,7 +20,7 @@
   - [Run the Script](#run-the-script)
   - [Code Gen Script](#code-gen-script)
 - [Styled Engine](#styled-engine)
-- [Custom styling/theming](#custom-styling/theming)
+- [Custom styling/theming](#custom-stylingtheming)
 
 ## Overview
 
