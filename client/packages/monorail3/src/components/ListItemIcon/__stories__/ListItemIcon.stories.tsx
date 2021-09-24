@@ -8,7 +8,7 @@ import FolderIcon from '@material-ui/icons/Folder'
 /**
  * Metadata for ListItemIcon stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Data Display/List/ListItemIcon' }
 
 /**
  * Story template (edit/remove by hand if needed)

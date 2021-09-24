@@ -34,7 +34,7 @@ import { TableFooter } from '../../TableFooter/TableFooter'
 import { Collapse } from '../../Collapse/Collapse'
 import { Alert } from '../../Alert/Alert'
 
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Data Display/Table' }
 
 const Template = story<TableProps>(args => {
   function createData(

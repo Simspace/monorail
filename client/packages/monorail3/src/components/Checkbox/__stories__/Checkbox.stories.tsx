@@ -7,7 +7,7 @@ import { defaultStoryMeta } from './Checkbox.stories.gen'
 /**
  * Metadata for Checkbox stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Inputs/Checkbox' }
 
 /**
  * Story template (edit/remove by hand if needed)
