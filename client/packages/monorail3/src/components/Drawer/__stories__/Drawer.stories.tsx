@@ -29,6 +29,7 @@ import { Alert } from '../../Alert/Alert'
  */
 export default {
   ...defaultStoryMeta,
+  title: 'Navigation/Drawer',
   parameters: {
     docs: {
       inlineStories: false,

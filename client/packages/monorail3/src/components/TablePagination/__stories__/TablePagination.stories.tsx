@@ -6,7 +6,10 @@ import { defaultStoryMeta } from './TablePagination.stories.gen'
 import { TableFooter } from '../../TableFooter/TableFooter'
 import { Table } from '../../Table/Table'
 
-export default { ...defaultStoryMeta }
+export default {
+  ...defaultStoryMeta,
+  title: 'Data Display/Table/TablePagination',
+}
 
 const Template = story<TablePaginationProps>(args => {
   const totalRows = 200

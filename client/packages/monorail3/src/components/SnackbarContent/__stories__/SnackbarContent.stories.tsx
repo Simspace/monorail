@@ -6,7 +6,10 @@ import { defaultStoryMeta } from './SnackbarContent.stories.gen'
 /**
  * Metadata for SnackbarContent stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default {
+  ...defaultStoryMeta,
+  title: 'Feedback/Snackbar/SnackbarContent',
+}
 /**
  * Story template (edit/remove by hand if needed)
  *

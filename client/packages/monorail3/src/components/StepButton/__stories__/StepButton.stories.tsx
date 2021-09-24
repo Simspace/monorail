@@ -13,7 +13,7 @@ import { Stepper } from '../../Stepper/Stepper'
 /**
  * Metadata for StepButton stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Navigation/Stepper/StepButton' }
 
 export const Default = story<StepButtonProps>(
   args => (

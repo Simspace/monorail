@@ -7,7 +7,7 @@ import { Button } from '../../Button/Button'
 /**
  * Metadata for DialogActions stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Feedback/Dialog/DialogActions' }
 /**
  * Story template (edit/remove by hand if needed)
  *

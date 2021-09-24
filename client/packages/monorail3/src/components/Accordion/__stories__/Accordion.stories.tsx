@@ -21,6 +21,7 @@ import { Button } from '../../Button/Button'
  */
 export default {
   ...defaultStoryMeta,
+  title: 'Surfaces/Accordion',
   subcomponents: { AccordionDetails, AccordionSummary }, // This adds docgen tabs to the Docs page for the Default story - not super helpful
 }
 

@@ -23,7 +23,7 @@ import { styled } from '@material-ui/core/styles'
 /**
  * Metadata for Divider stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Data Display/Divider' }
 /**
  * Story template (edit/remove by hand if needed)
  *
@@ -120,6 +120,12 @@ export const InsetDividers = () => {
   )
 }
 
+InsetDividers.parameters = {
+  creevey: {
+    skip: 'Images load unreliably',
+  },
+}
+
 export const SubheaderDividers = () => {
   return (
     <List
@@ -168,6 +174,12 @@ export const SubheaderDividers = () => {
       </ListItem>
     </List>
   )
+}
+
+SubheaderDividers.parameters = {
+  creevey: {
+    skip: 'Images load unreliably',
+  },
 }
 
 export const MiddleDividers = () => {
