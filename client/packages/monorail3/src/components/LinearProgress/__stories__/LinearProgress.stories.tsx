@@ -11,7 +11,7 @@ import { linearProgressClasses, styled } from '@material-ui/core'
 /**
  * Metadata for LinearProgress stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Feedback/LinearProgress' }
 /**
  * Story template (edit/remove by hand if needed)
  *

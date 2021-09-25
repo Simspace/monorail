@@ -21,7 +21,7 @@ import UpIcon from '@material-ui/icons/KeyboardArrowUp'
 /**
  * Metadata for Fab stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Inputs/Fab' }
 /**
  * Story template (edit/remove by hand if needed)
  *

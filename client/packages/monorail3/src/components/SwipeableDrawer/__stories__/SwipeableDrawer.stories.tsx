@@ -12,7 +12,10 @@ import { Skeleton } from '../../Skeleton/Skeleton'
 /**
  * Metadata for SwipeableDrawer stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default {
+  ...defaultStoryMeta,
+  title: 'Navigation/Drawer/SwipeableDrawer',
+}
 
 /**
  * Story template (edit/remove by hand if needed)

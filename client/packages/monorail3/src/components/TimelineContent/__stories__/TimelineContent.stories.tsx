@@ -6,7 +6,10 @@ import { defaultStoryMeta } from './TimelineContent.stories.gen'
 /**
  * Metadata for TimelineContent stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default {
+  ...defaultStoryMeta,
+  title: 'Data Display/Timeline/TimelineContent',
+}
 /**
  * Story template (edit/remove by hand if needed)
  *

@@ -45,6 +45,7 @@ import { Zoom } from '../../Zoom/Zoom'
  */
 export default {
   ...defaultStoryMeta,
+  title: 'Surfaces/AppBar',
   parameters: {
     docs: {
       iframeHeight: 400,

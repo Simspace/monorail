@@ -29,7 +29,9 @@ export default {
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
 const Template = story<DateTimePickerProps<Date>>(args => {
-  const [value, setValue] = React.useState<Date | null>(new Date())
+  const [value, setValue] = React.useState<Date | null>(
+    new Date('2018-01-01T00:00:00.000Z'),
+  )
 
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
@@ -149,7 +151,9 @@ export const FormProps = story<DateTimePickerProps<Date>>(
 
 export const DateAndTimeValidation = story<DateTimePickerProps<Date>>(
   args => {
-    const [value, setValue] = React.useState<Date | null>(new Date())
+    const [value, setValue] = React.useState<Date | null>(
+      new Date('2021-01-01T12:34:00.000Z'),
+    )
 
     return (
       <LocalizationProvider dateAdapter={AdapterDateFns}>
@@ -161,7 +165,7 @@ export const DateAndTimeValidation = story<DateTimePickerProps<Date>>(
             onChange={newValue => {
               setValue(newValue)
             }}
-            minDateTime={new Date()}
+            minDateTime={new Date('2021-01-01T12:34:00.000Z')}
           />
           <DateTimePicker
             renderInput={params => <TextField {...params} />}
@@ -194,7 +198,9 @@ export const DateAndTimeValidation = story<DateTimePickerProps<Date>>(
 
 export const StaticMode = story<DateTimePickerProps<Date>>(
   args => {
-    const [value, setValue] = React.useState<Date | null>(new Date())
+    const [value, setValue] = React.useState<Date | null>(
+      new Date('2021-01-01T12:34:00.000Z'),
+    )
 
     return (
       <LocalizationProvider dateAdapter={AdapterDateFns}>

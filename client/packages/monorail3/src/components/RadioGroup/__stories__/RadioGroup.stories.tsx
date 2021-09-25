@@ -15,7 +15,7 @@ import { styled } from '@material-ui/core/styles'
 /**
  * Metadata for RadioGroup stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Inputs/RadioGroup' }
 
 /**
  * Story template (edit/remove by hand if needed)

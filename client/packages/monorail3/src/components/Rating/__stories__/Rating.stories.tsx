@@ -20,7 +20,7 @@ import { IconContainerProps } from '@material-ui/core/Rating'
 /**
  * Metadata for Rating stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Inputs/Rating' }
 /**
  * Story template (edit/remove by hand if needed)
  *

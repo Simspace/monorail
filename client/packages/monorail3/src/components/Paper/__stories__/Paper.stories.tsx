@@ -10,7 +10,7 @@ import { Grid } from '../../Grid/Grid'
 /**
  * Metadata for Paper stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Surfaces/Paper' }
 /**
  * Story template (edit/remove by hand if needed)
  *
