@@ -43,7 +43,11 @@ export const Showcase = story<IconButtonProps>(
       <IconButton color="secondary" aria-label="add an alarm" size="large">
         <AlarmIcon />
       </IconButton>
-      <IconButton color="primary" aria-label="add to shopping cart" size="large">
+      <IconButton
+        color="primary"
+        aria-label="add to shopping cart"
+        size="large"
+      >
         <AddShoppingCartIcon />
       </IconButton>
     </Stack>

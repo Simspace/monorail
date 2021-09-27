@@ -39,14 +39,15 @@ function renderItem({ item, handleRemoveFruit }: RenderItemOptions) {
           aria-label="delete"
           title="Delete"
           onClick={() => handleRemoveFruit(item)}
-          size="large">
+          size="large"
+        >
           <DeleteIcon />
         </IconButton>
       }
     >
       <ListItemText primary={item} />
     </ListItem>
-  );
+  )
 }
 
 /**

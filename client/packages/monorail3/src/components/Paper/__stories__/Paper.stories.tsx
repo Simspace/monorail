@@ -11,23 +11,18 @@ import {
   Theme,
   StyledEngineProvider,
   adaptV4Theme,
-} from '@mui/material/styles';
+} from '@mui/material/styles'
 import { Grid } from '../../Grid/Grid'
 
-
-
 declare module '@mui/styles/defaultTheme' {
   // eslint-disable-next-line @typescript-eslint/no-empty-interface
   interface DefaultTheme extends Theme {}
 }
 
-
-
 declare module '@mui/styles/defaultTheme' {
   // eslint-disable-next-line @typescript-eslint/no-empty-interface
   interface DefaultTheme extends Theme {}
 }
-
 
 /**
  * Metadata for Paper stories - update/extend as needed

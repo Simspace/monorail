@@ -513,7 +513,8 @@ export const Dense = story<AppBarProps>(
             color="inherit"
             aria-label="menu"
             sx={{ mr: 2 }}
-            size="large">
+            size="large"
+          >
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" color="inherit" component="div">
@@ -693,7 +694,7 @@ export const BottomBar = story<AppBarProps>(
           </Toolbar>
         </AppBar>
       </React.Fragment>
-    );
+    )
   },
   {
     args: {

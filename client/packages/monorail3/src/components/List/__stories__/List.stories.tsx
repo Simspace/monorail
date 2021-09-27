@@ -43,7 +43,7 @@ import {
   Theme,
   StyledEngineProvider,
   adaptV4Theme,
-} from '@mui/material/styles';
+} from '@mui/material/styles'
 import { FormGroup } from '../../FormGroup/FormGroup'
 import { FormControlLabel } from '../../FormControlLabel/FormControlLabel'
 import { Checkbox } from '../../Checkbox/Checkbox'
@@ -55,20 +55,15 @@ import { Alert } from '../../Alert/Alert'
 import { Paper } from '../../Paper/Paper'
 import { Tooltip } from '../../Tooltip/Tooltip'
 
-
-
 declare module '@mui/styles/defaultTheme' {
   // eslint-disable-next-line @typescript-eslint/no-empty-interface
   interface DefaultTheme extends Theme {}
 }
 
-
-
 declare module '@mui/styles/defaultTheme' {
   // eslint-disable-next-line @typescript-eslint/no-empty-interface
   interface DefaultTheme extends Theme {}
 }
-
 
 /**
  * Metadata for List stories - update/extend as needed
@@ -364,7 +359,7 @@ export const InteractiveList = story<ListProps>(
           </Grid>
         </Grid>
       </Box>
-    );
+    )
   },
   {
     parameters: {
@@ -570,10 +565,10 @@ export const ListControlsCheckbox = story<ListProps>(
                 <ListItemText id={labelId} primary={`Line item ${value + 1}`} />
               </ListItemButton>
             </ListItem>
-          );
+          )
         })}
       </List>
-    );
+    )
   },
   {
     parameters: {
@@ -808,7 +803,7 @@ export const GutterlessListItem = story<ListProps>(
           </ListItem>
         ))}
       </List>
-    );
+    )
   },
   {
     parameters: {
@@ -868,20 +863,22 @@ export const CustomizedList = story<ListProps>(
       <Box sx={{ display: 'flex' }}>
         <StyledEngineProvider injectFirst>
           <ThemeProvider
-            theme={createTheme(adaptV4Theme({
-              components: {
-                MuiListItemButton: {
-                  defaultProps: {
-                    disableTouchRipple: true,
+            theme={createTheme(
+              adaptV4Theme({
+                components: {
+                  MuiListItemButton: {
+                    defaultProps: {
+                      disableTouchRipple: true,
+                    },
                   },
                 },
-              },
-              palette: {
-                mode: 'dark',
-                primary: { main: 'rgb(102, 157, 246)' },
-                background: { paper: 'rgb(5, 30, 52)' },
-              },
-            }))}
+                palette: {
+                  mode: 'dark',
+                  primary: { main: 'rgb(102, 157, 246)' },
+                  background: { paper: 'rgb(5, 30, 52)' },
+                },
+              }),
+            )}
           >
             <Paper elevation={0} sx={{ maxWidth: 256 }}>
               <FireNav component="nav" disablePadding>
@@ -963,7 +960,9 @@ export const CustomizedList = story<ListProps>(
                       px: 3,
                       pt: 2.5,
                       pb: open ? 0 : 2.5,
-                      '&:hover, &:focus': { '& svg': { opacity: open ? 1 : 0 } },
+                      '&:hover, &:focus': {
+                        '& svg': { opacity: open ? 1 : 0 },
+                      },
                     }}
                   >
                     <ListItemText
@@ -1020,7 +1019,7 @@ export const CustomizedList = story<ListProps>(
           </ThemeProvider>
         </StyledEngineProvider>
       </Box>
-    );
+    )
   },
   {
     parameters: {

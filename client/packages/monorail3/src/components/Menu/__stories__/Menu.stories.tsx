@@ -576,7 +576,8 @@ export const MaxHeight = story<MenuProps>(
           aria-expanded={open ? 'true' : undefined}
           aria-haspopup="true"
           onClick={handleClick}
-          size="large">
+          size="large"
+        >
           <MoreVert />
         </IconButton>
         <Menu
@@ -605,7 +606,7 @@ export const MaxHeight = story<MenuProps>(
           ))}
         </Menu>
       </div>
-    );
+    )
   },
   {
     parameters: {

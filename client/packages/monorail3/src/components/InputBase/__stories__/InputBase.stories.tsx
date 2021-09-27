@@ -53,15 +53,25 @@ export const CustomInputBase = story<InputBaseProps>(
           placeholder="Search Google Maps"
           inputProps={{ 'aria-label': 'search google maps' }}
         />
-        <IconButton type="submit" sx={{ p: '10px' }} aria-label="search" size="large">
+        <IconButton
+          type="submit"
+          sx={{ p: '10px' }}
+          aria-label="search"
+          size="large"
+        >
           <SearchIcon />
         </IconButton>
         <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
-        <IconButton color="primary" sx={{ p: '10px' }} aria-label="directions" size="large">
+        <IconButton
+          color="primary"
+          sx={{ p: '10px' }}
+          aria-label="directions"
+          size="large"
+        >
           <DirectionsIcon />
         </IconButton>
       </Paper>
-    );
+    )
   },
   {
     parameters: {

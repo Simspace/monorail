@@ -2,19 +2,17 @@
 /* eslint-disable import/no-extraneous-dependencies */
 
 import React from 'react'
-import { ThemeProvider, Theme, StyledEngineProvider } from '@mui/material';
+import { ThemeProvider, Theme, StyledEngineProvider } from '@mui/material'
 import { Story } from '@storybook/react'
 import { render, RenderOptions, RenderResult } from '@testing-library/react'
 import { createGlobalStyle } from 'styled-components'
 
 import { defaultLightTheme } from '../../theme/defaultLightTheme'
 
-
 declare module '@mui/styles/defaultTheme' {
   // eslint-disable-next-line @typescript-eslint/no-empty-interface
   interface DefaultTheme extends Theme {}
 }
-
 
 /**
  * Temporary fix for https://github.com/dequelabs/axe-core/issues/2587
@@ -42,7 +40,7 @@ export function renderWithTheme(
       </StyledEngineProvider>
     </div>,
     options,
-  );
+  )
 }
 
 /**

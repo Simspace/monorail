@@ -351,12 +351,13 @@ const BootstrapDialogTitle = (props: DialogTitleProps) => {
             top: 8,
             color: theme => theme.palette.grey[500],
           }}
-          size="large">
+          size="large"
+        >
           <CloseIcon />
         </IconButton>
       ) : null}
     </DialogTitle>
-  );
+  )
 }
 
 export const CustomizedDialogs = story<DialogProps>(
@@ -462,7 +463,8 @@ export const FullScreenDialog = story<DialogProps>(() => {
               color="inherit"
               onClick={handleClose}
               aria-label="close"
-              size="large">
+              size="large"
+            >
               <CloseIcon />
             </IconButton>
             <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
@@ -487,7 +489,7 @@ export const FullScreenDialog = story<DialogProps>(() => {
         </List>
       </Dialog>
     </div>
-  );
+  )
 })
 
 export const OptionalSizes = story<DialogProps>(

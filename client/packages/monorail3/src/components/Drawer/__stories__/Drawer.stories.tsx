@@ -206,7 +206,8 @@ export const ResponsiveDrawer = story<DrawerProps>(
               edge="start"
               onClick={handleDrawerToggle}
               sx={{ mr: 2, display: { sm: 'none' } }}
-              size="large">
+              size="large"
+            >
               <MenuIcon />
             </IconButton>
             <Typography variant="h6" noWrap component="div">
@@ -286,7 +287,7 @@ export const ResponsiveDrawer = story<DrawerProps>(
           </Typography>
         </Box>
       </Box>
-    );
+    )
   },
   {
     parameters: {
@@ -376,7 +377,8 @@ export const PersistentDrawer = story<DrawerProps>(
               onClick={handleDrawerOpen}
               edge="start"
               sx={{ mr: 2, ...(open && { display: 'none' }) }}
-              size="large">
+              size="large"
+            >
               <MenuIcon />
             </IconButton>
             <Typography variant="h6" noWrap component="div">
@@ -463,7 +465,7 @@ export const PersistentDrawer = story<DrawerProps>(
           </Typography>
         </PersistentDrawerMain>
       </Box>
-    );
+    )
   },
   {
     parameters: {
@@ -577,7 +579,8 @@ export const MiniDrawer = story<DrawerProps>(
                 marginRight: '36px',
                 ...(open && { display: 'none' }),
               }}
-              size="large">
+              size="large"
+            >
               <MenuIcon />
             </IconButton>
             <Typography variant="h6" noWrap component="div">
@@ -652,7 +655,7 @@ export const MiniDrawer = story<DrawerProps>(
           </Typography>
         </Box>
       </Box>
-    );
+    )
   },
   {
     parameters: {

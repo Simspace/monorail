@@ -167,7 +167,8 @@ export const WithTitleBars = story<ImageListProps>(
               <IconButton
                 sx={{ color: 'rgba(255, 255, 255, 0.54)' }}
                 aria-label={`info about ${item.title}`}
-                size="large">
+                size="large"
+              >
                 <InfoIcon />
               </IconButton>
             }
@@ -268,14 +269,18 @@ export const Custom = story<ImageListProps>(
               title={item.title}
               position="top"
               actionIcon={
-                <IconButton sx={{ color: 'white' }} aria-label={`star ${item.title}`} size="large">
+                <IconButton
+                  sx={{ color: 'white' }}
+                  aria-label={`star ${item.title}`}
+                  size="large"
+                >
                   <StarBorderIcon />
                 </IconButton>
               }
               actionPosition="left"
             />
           </ImageListItem>
-        );
+        )
       })}
     </ImageList>
   ),

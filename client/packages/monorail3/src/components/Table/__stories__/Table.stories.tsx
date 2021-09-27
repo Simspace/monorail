@@ -406,7 +406,7 @@ export const SortingAndSelecting = story<TableProps>(
             </Tooltip>
           )}
         </Toolbar>
-      );
+      )
     }
 
     function EnhancedTable() {
@@ -713,14 +713,16 @@ export const CustomPaginationOptions = story<TableProps>(
             onClick={handleFirstPageButtonClick}
             disabled={page === 0}
             aria-label="first page"
-            size="large">
+            size="large"
+          >
             {theme.direction === 'rtl' ? <LastPageIcon /> : <FirstPageIcon />}
           </IconButton>
           <IconButton
             onClick={handleBackButtonClick}
             disabled={page === 0}
             aria-label="previous page"
-            size="large">
+            size="large"
+          >
             {theme.direction === 'rtl' ? (
               <KeyboardArrowRight />
             ) : (
@@ -731,7 +733,8 @@ export const CustomPaginationOptions = story<TableProps>(
             onClick={handleNextButtonClick}
             disabled={page >= Math.ceil(count / rowsPerPage) - 1}
             aria-label="next page"
-            size="large">
+            size="large"
+          >
             {theme.direction === 'rtl' ? (
               <KeyboardArrowLeft />
             ) : (
@@ -742,11 +745,12 @@ export const CustomPaginationOptions = story<TableProps>(
             onClick={handleLastPageButtonClick}
             disabled={page >= Math.ceil(count / rowsPerPage) - 1}
             aria-label="last page"
-            size="large">
+            size="large"
+          >
             {theme.direction === 'rtl' ? <FirstPageIcon /> : <LastPageIcon />}
           </IconButton>
         </Box>
-      );
+      )
     }
 
     function createData(name: string, calories: number, fat: number) {

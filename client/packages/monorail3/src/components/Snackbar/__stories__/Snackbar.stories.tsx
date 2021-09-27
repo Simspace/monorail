@@ -345,14 +345,15 @@ export const Transitions = story<SnackbarProps>(
                 color="inherit"
                 sx={{ p: 0.5 }}
                 onClick={handleClose}
-                size="large">
+                size="large"
+              >
                 <CloseIcon />
               </IconButton>
             </React.Fragment>
           }
         />
       </div>
-    );
+    )
   },
   {
     parameters: {

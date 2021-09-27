@@ -142,7 +142,8 @@ export const Showcase = story<InputAdornmentProps>(
                     onClick={handleClickShowPassword}
                     onMouseDown={handleMouseDownPassword}
                     edge="end"
-                    size="large">
+                    size="large"
+                  >
                     {values.showPassword ? <VisibilityOff /> : <Visibility />}
                   </IconButton>
                 </InputAdornment>
@@ -206,7 +207,8 @@ export const Showcase = story<InputAdornmentProps>(
                     onClick={handleClickShowPassword}
                     onMouseDown={handleMouseDownPassword}
                     edge="end"
-                    size="large">
+                    size="large"
+                  >
                     {values.showPassword ? <VisibilityOff /> : <Visibility />}
                   </IconButton>
                 </InputAdornment>
@@ -267,7 +269,8 @@ export const Showcase = story<InputAdornmentProps>(
                     aria-label="toggle password visibility"
                     onClick={handleClickShowPassword}
                     onMouseDown={handleMouseDownPassword}
-                    size="large">
+                    size="large"
+                  >
                     {values.showPassword ? <VisibilityOff /> : <Visibility />}
                   </IconButton>
                 </InputAdornment>
@@ -287,7 +290,7 @@ export const Showcase = story<InputAdornmentProps>(
           </FormControl>
         </div>
       </Box>
-    );
+    )
   },
   {
     parameters: {

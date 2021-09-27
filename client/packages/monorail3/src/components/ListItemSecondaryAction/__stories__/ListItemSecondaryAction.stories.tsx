@@ -30,13 +30,15 @@ export default {
  */
 const Template = story<ListItemSecondaryActionProps>(
   args => {
-    return <>
-      <ListItemSecondaryAction {...args}>
-        <IconButton edge="start" aria-label="Delete" size="large">
-          <DeleteIcon />
-        </IconButton>
-      </ListItemSecondaryAction>
-    </>;
+    return (
+      <>
+        <ListItemSecondaryAction {...args}>
+          <IconButton edge="start" aria-label="Delete" size="large">
+            <DeleteIcon />
+          </IconButton>
+        </ListItemSecondaryAction>
+      </>
+    )
   },
   {
     args: {},
