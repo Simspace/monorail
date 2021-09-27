@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-restricted-imports
-import { Theme, DeprecatedThemeOptions } from '@mui/material'
+import { Theme, ThemeOptions } from '@mui/material'
 import { baseTheme } from './baseTheme'
 
 /**
@@ -7,7 +7,7 @@ import { baseTheme } from './baseTheme'
  */
 export const getThemeComponents = (
   _theme: Theme,
-): DeprecatedThemeOptions['components'] => ({
+): ThemeOptions['components'] => ({
   // Make sure we apply the defaults here
   ...baseTheme.components,
 
