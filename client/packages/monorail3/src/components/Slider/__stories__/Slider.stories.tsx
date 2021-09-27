@@ -18,6 +18,7 @@ import { Tooltip } from '../../Tooltip/Tooltip'
  */
 export default {
   ...defaultStoryMeta,
+  title: 'Inputs/Slider',
   parameters: {
     docs: {
       description: {

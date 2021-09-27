@@ -6,7 +6,7 @@ import { defaultStoryMeta } from './ScopedCssBaseline.stories.gen'
 /**
  * Metadata for ScopedCssBaseline stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Utils/ScopedCssBaseline' }
 /**
  * Story template (edit/remove by hand if needed)
  *

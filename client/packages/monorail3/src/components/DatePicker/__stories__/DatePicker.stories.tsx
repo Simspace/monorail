@@ -72,7 +72,9 @@ export const Default = story(Template, {
 
 export const StaticMode = story<DatePickerProps<Date>>(
   () => {
-    const [value, setValue] = React.useState<Date | null>(new Date())
+    const [value, setValue] = React.useState<Date | null>(
+      new Date('2021-01-01T12:34:00.000Z'),
+    )
 
     return (
       <StaticDatePicker
@@ -99,7 +101,9 @@ export const StaticMode = story<DatePickerProps<Date>>(
 
 export const Responsiveness = story<DatePickerProps<Date>>(
   () => {
-    const [value, setValue] = React.useState<Date | null>(new Date())
+    const [value, setValue] = React.useState<Date | null>(
+      new Date('2021-01-01T12:34:00.000Z'),
+    )
 
     return (
       <Stack spacing={3}>
@@ -209,7 +213,9 @@ export const Localization = story<DatePickerProps<Date>>(
 
     const [locale, setLocale] = React.useState<keyof typeof maskMap>('ru')
 
-    const [value, setValue] = React.useState<Date | null>(new Date())
+    const [value, setValue] = React.useState<Date | null>(
+      new Date('2021-01-01T12:34:00.000Z'),
+    )
 
     const selectLocale = (newLocale: any) => {
       setLocale(newLocale)
@@ -259,7 +265,9 @@ export const Localization = story<DatePickerProps<Date>>(
 
 export const ViewsPlayground = story<DatePickerProps<Date>>(
   () => {
-    const [value, setValue] = React.useState<Date | null>(new Date())
+    const [value, setValue] = React.useState<Date | null>(
+      new Date('2021-01-01T12:34:00.000Z'),
+    )
 
     return (
       <LocalizationProvider dateAdapter={AdapterDateFns}>
@@ -332,7 +340,9 @@ export const ViewsPlayground = story<DatePickerProps<Date>>(
 
 export const LandscapeOrientation = story<DatePickerProps<Date>>(
   () => {
-    const [value, setValue] = React.useState<Date | null>(new Date())
+    const [value, setValue] = React.useState<Date | null>(
+      new Date('2021-01-01T12:34:00.000Z'),
+    )
 
     return (
       <LocalizationProvider dateAdapter={AdapterDateFns}>
@@ -362,7 +372,9 @@ export const LandscapeOrientation = story<DatePickerProps<Date>>(
 
 export const CustomInputComponent = story<DatePickerProps<Date>>(
   () => {
-    const [value, setValue] = React.useState<Date | null>(new Date())
+    const [value, setValue] = React.useState<Date | null>(
+      new Date('2021-01-01T12:34:00.000Z'),
+    )
 
     return (
       <LocalizationProvider dateAdapter={AdapterDateFns}>
@@ -423,7 +435,9 @@ const CustomPickersDay = styled(PickersDay, {
 
 export const CustomizedDayRendering = story<DatePickerProps<Date>>(
   () => {
-    const [value, setValue] = React.useState<Date | null>(new Date())
+    const [value, setValue] = React.useState<Date | null>(
+      new Date('2021-01-01T12:34:00.000Z'),
+    )
 
     const renderWeekPickerDay = (
       date: Date,
@@ -505,7 +519,7 @@ function fakeFetch(date: Date, { signal }: { signal: AbortSignal }) {
   })
 }
 
-const initialValue = new Date()
+const initialValue = new Date('2021-01-01T12:34:00.000Z')
 
 export const DynamicData = story<DatePickerProps<Date>>(
   () => {

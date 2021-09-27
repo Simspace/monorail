@@ -18,7 +18,7 @@ import { Fade } from '../../Fade/Fade'
 /**
  * Metadata for Snackbar stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Feedback/Snackbar' }
 
 /**
  * Story template (edit/remove by hand if needed)
@@ -305,7 +305,10 @@ export const Transitions = story<SnackbarProps>(
     }, [snackPack, messageInfo, open])
 
     const handleClick = (message: string) => () => {
-      setSnackPack(prev => [...prev, { message, key: new Date().getTime() }])
+      setSnackPack(prev => [
+        ...prev,
+        { message, key: new Date('2021-01-01T12:34:00.000Z').getTime() },
+      ])
     }
 
     const handleClose = (

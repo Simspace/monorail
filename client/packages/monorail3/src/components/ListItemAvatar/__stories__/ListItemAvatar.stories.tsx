@@ -9,7 +9,10 @@ import FolderIcon from '@material-ui/icons/Folder'
 /**
  * Metadata for ListItemAvatar stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default {
+  ...defaultStoryMeta,
+  title: 'Data Display/List/ListItemAvatar',
+}
 
 /**
  * Story template (edit/remove by hand if needed)

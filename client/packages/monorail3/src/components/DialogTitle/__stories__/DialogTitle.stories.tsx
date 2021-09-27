@@ -6,7 +6,7 @@ import { defaultStoryMeta } from './DialogTitle.stories.gen'
 /**
  * Metadata for DialogTitle stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Feedback/Dialog/DialogTitle' }
 /**
  * Story template (edit/remove by hand if needed)
  *

@@ -7,6 +7,7 @@ export default {
     '@storybook/addon-essentials',
     //'@storybook/addon-controls', // included by default
     '@storybook/addon-a11y',
+    'creevey',
   ],
 
   typescript: {

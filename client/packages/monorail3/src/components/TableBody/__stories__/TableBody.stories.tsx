@@ -6,7 +6,7 @@ import { defaultStoryMeta } from './TableBody.stories.gen'
 import { TableCell } from '../../TableCell/TableCell'
 import { TableRow } from '../../TableRow/TableRow'
 
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Data Display/Table/TableBody' }
 
 const Template = story<TableBodyProps>(args => (
   <TableBody {...args}>
