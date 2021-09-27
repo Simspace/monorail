@@ -60,7 +60,9 @@ export const Default = story(Template, {
 
 export const StaticMode = story<TimePickerProps<Date>>(
   args => {
-    const [value, setValue] = React.useState<Date | null>(new Date())
+    const [value, setValue] = React.useState<Date | null>(
+      new Date('2021-01-01T12:34:00.000Z'),
+    )
 
     return (
       <LocalizationProvider dateAdapter={AdapterDateFns}>
@@ -138,7 +140,9 @@ By default, the TimePicker component renders the desktop version if the media qu
 
 export const FormProps = story<TimePickerProps<Date>>(
   args => {
-    const [value, setValue] = React.useState<Date | null>(new Date())
+    const [value, setValue] = React.useState<Date | null>(
+      new Date('2021-01-01T12:34:00.000Z'),
+    )
 
     return (
       <LocalizationProvider dateAdapter={AdapterDateFns}>
@@ -185,7 +189,9 @@ export const Localization = story<TimePickerProps<Date>>(
       ar: arSaLocale,
     }
     const [locale, setLocale] = React.useState<keyof typeof localeMap>('ru')
-    const [value, setValue] = React.useState<Date | null>(new Date())
+    const [value, setValue] = React.useState<Date | null>(
+      new Date('2021-01-01T12:34:00.000Z'),
+    )
 
     const selectLocale = (newLocale: any) => {
       setLocale(newLocale)
@@ -283,7 +289,9 @@ export const TimeValidation = story<TimePickerProps<Date>>(
 
 export const Landscape = story<TimePickerProps<Date>>(
   args => {
-    const [value, setValue] = React.useState<Date | null>(new Date())
+    const [value, setValue] = React.useState<Date | null>(
+      new Date('2021-01-01T12:34:00.000Z'),
+    )
 
     return (
       <LocalizationProvider dateAdapter={AdapterDateFns}>
@@ -313,7 +321,9 @@ export const Landscape = story<TimePickerProps<Date>>(
 
 export const Seconds = story<TimePickerProps<Date>>(
   args => {
-    const [value, setValue] = React.useState<Date | null>(new Date())
+    const [value, setValue] = React.useState<Date | null>(
+      new Date('2021-01-01T12:34:00.000Z'),
+    )
 
     return (
       <LocalizationProvider dateAdapter={AdapterDateFns}>

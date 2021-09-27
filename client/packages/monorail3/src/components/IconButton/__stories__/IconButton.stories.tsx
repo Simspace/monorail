@@ -10,7 +10,7 @@ import { Stack } from '../../Stack/Stack'
 /**
  * Metadata for IconButton stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Inputs/IconButton' }
 /**
  * Story template (edit/remove by hand if needed)
  *

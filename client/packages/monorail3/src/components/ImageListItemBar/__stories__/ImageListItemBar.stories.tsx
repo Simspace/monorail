@@ -9,7 +9,15 @@ import InfoIcon from '@material-ui/icons/Info'
 /**
  * Metadata for ImageListItemBar stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default {
+  ...defaultStoryMeta,
+  title: 'Layout/ImageList/ImageListItemBar',
+  parameters: {
+    creevey: {
+      skip: "Images don't load reliably",
+    },
+  },
+}
 /**
  * Story template (edit/remove by hand if needed)
  *

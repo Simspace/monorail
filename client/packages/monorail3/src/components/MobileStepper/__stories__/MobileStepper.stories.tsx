@@ -12,7 +12,7 @@ import { MobileStepper, MobileStepperProps } from '../MobileStepper'
 
 import { defaultStoryMeta } from './MobileStepper.stories.gen'
 
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Navigation/MobileStepper' }
 
 const steps = [
   {

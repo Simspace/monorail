@@ -11,7 +11,7 @@ import { defaultStoryMeta } from './Toolbar.stories.gen'
 /**
  * Metadata for Toolbar stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Inputs/Toolbar' }
 /**
  * Story template (edit/remove by hand if needed)
  *
