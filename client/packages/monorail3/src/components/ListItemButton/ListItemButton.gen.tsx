@@ -4,7 +4,7 @@ import {
   default as MUIListItemButton,
   ListItemButtonProps as MUIListItemButtonProps,
   ListItemButtonTypeMap,
-} from '@material-ui/core/ListItemButton'
+} from '@mui/material/ListItemButton'
 
 /**
  * Props for ListItemButton

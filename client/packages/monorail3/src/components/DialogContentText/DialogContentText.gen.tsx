@@ -4,7 +4,7 @@ import {
   default as MUIDialogContentText,
   DialogContentTextProps as MUIDialogContentTextProps,
   DialogContentTextTypeMap,
-} from '@material-ui/core/DialogContentText'
+} from '@mui/material/DialogContentText'
 
 /**
  * Props for DialogContentText

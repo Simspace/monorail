@@ -3,7 +3,7 @@ import React from 'react'
 import {
   default as MUIDialogContent,
   DialogContentProps as MUIDialogContentProps,
-} from '@material-ui/core/DialogContent'
+} from '@mui/material/DialogContent'
 
 /**
  * Props for DialogContent

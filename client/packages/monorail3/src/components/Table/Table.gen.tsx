@@ -4,7 +4,7 @@ import {
   default as MUITable,
   TableProps as MUITableProps,
   TableTypeMap,
-} from '@material-ui/core/Table'
+} from '@mui/material/Table'
 
 /**
  * Props for Table

@@ -6,14 +6,14 @@ import { defaultStoryMeta } from './Modal.stories.gen'
 import { Button } from '../../Button/Button'
 import { Typography } from '../../Typography/Typography'
 import { Box } from '../../Box/Box'
-import { styled } from '@material-ui/core/styles'
-import { ModalUnstyled } from '@material-ui/core'
+import { styled } from '@mui/material/styles'
+import { ModalUnstyled } from '@mui/material'
 import { Fade } from '../../Fade/Fade'
 import { Backdrop } from '../../Backdrop/Backdrop'
 /**
  * Metadata for Modal stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Utils/Modal' }
 
 /**
  * Story template (edit/remove by hand if needed)

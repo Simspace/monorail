@@ -5,7 +5,7 @@ import { story } from '../../../__tests__/helpers/storybook'
 import { defaultStoryMeta } from './TableRow.stories.gen'
 import { TableCell } from '../../TableCell/TableCell'
 
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Data Display/Table/TableRow' }
 
 const Template = story<TableRowProps>(args => (
   <TableRow>

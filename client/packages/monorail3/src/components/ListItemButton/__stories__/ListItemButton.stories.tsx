@@ -8,7 +8,10 @@ import { ListItemText } from '../../ListItemText/ListItemText'
 /**
  * Metadata for ListItemButton stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default {
+  ...defaultStoryMeta,
+  title: 'Data Display/List/ListItemButton',
+}
 
 /**
  * Story template (edit/remove by hand if needed)

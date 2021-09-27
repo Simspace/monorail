@@ -6,8 +6,8 @@ import { defaultStoryMeta } from './StaticTimePicker.stories.gen'
 import { action } from '@storybook/addon-actions'
 import { TextField } from '../../TextField/TextField'
 import { TimePickerProps } from '../../TimePicker/TimePicker'
-import AdapterDateFns from '@material-ui/lab/AdapterDateFns'
-import LocalizationProvider from '@material-ui/lab/LocalizationProvider'
+import AdapterDateFns from '@mui/lab/AdapterDateFns'
+import LocalizationProvider from '@mui/lab/LocalizationProvider'
 
 /**
  * Metadata for StaticTimePicker stories - update/extend as needed
@@ -18,7 +18,9 @@ export default {
 }
 
 const Template = story<TimePickerProps<Date>>(args => {
-  const [value, setValue] = React.useState<Date | null>(new Date())
+  const [value, setValue] = React.useState<Date | null>(
+    new Date('2021-01-01T12:34:00.000Z'),
+  )
 
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>

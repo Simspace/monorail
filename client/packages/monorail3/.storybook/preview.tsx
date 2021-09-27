@@ -2,11 +2,11 @@ import React from 'react'
 import { defaultDarkTheme } from '../src/theme/defaultDarkTheme'
 import { defaultLightTheme } from '../src/theme/defaultLightTheme'
 import { pcteLightTheme } from '../src/theme/pcteLightTheme'
-import * as MUI from '@material-ui/core'
-import { StyledEngineProvider } from '@material-ui/core/styles'
+import * as MUI from '@mui/material'
+import { StyledEngineProvider } from '@mui/material/styles'
 import { Parameters } from '@storybook/react'
-import AdapterDateFns from '@material-ui/lab/AdapterDateFns'
-import LocalizationProvider from '@material-ui/lab/LocalizationProvider'
+import AdapterDateFns from '@mui/lab/AdapterDateFns'
+import LocalizationProvider from '@mui/lab/LocalizationProvider'
 
 /**
  * Global storybook parameters

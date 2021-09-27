@@ -6,7 +6,7 @@ import { defaultStoryMeta } from './Tab.stories.gen'
 /**
  * Metadata for Tab stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Navigation/Tab' }
 /**
  * Story template (edit/remove by hand if needed)
  *

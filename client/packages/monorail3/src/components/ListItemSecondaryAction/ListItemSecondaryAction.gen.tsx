@@ -3,7 +3,7 @@ import React from 'react'
 import {
   default as MUIListItemSecondaryAction,
   ListItemSecondaryActionProps as MUIListItemSecondaryActionProps,
-} from '@material-ui/core/ListItemSecondaryAction'
+} from '@mui/material/ListItemSecondaryAction'
 
 /**
  * Props for ListItemSecondaryAction

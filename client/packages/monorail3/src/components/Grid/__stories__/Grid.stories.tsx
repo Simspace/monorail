@@ -3,7 +3,7 @@ import React from 'react'
 import { Grid, GridProps } from '../Grid'
 import { story } from '../../../__tests__/helpers/storybook'
 import { defaultStoryMeta } from './Grid.stories.gen'
-import { styled } from '@material-ui/core/styles'
+import { styled } from '@mui/material/styles'
 import { Paper } from '../../Paper/Paper'
 import { Box } from '../../Box/Box'
 import { Typography } from '../../Typography/Typography'
@@ -20,7 +20,7 @@ const Item = styled(Paper)(({ theme }) => ({
 /**
  * Metadata for Grid stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Layout/Grid' }
 /**
  * Story template (edit/remove by hand if needed)
  *

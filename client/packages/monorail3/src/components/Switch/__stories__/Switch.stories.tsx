@@ -1,6 +1,6 @@
 // Edit this file to add new stories
-import { pink } from '@material-ui/core/colors'
-import { alpha, styled } from '@material-ui/core/styles'
+import { pink } from '@mui/material/colors'
+import { alpha, styled } from '@mui/material/styles'
 import React from 'react'
 import { story } from '../../../__tests__/helpers/storybook'
 import { FormControl } from '../../FormControl/FormControl'
@@ -16,6 +16,7 @@ import { defaultStoryMeta } from './Switch.stories.gen'
  */
 export default {
   ...defaultStoryMeta,
+  title: 'Inputs/Switch',
 }
 /**
  * Story template (edit/remove by hand if needed)

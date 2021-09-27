@@ -6,7 +6,10 @@ import { defaultStoryMeta } from './TimelineDot.stories.gen'
 /**
  * Metadata for TimelineDot stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default {
+  ...defaultStoryMeta,
+  title: 'Data Display/Timeline/TimelineDot',
+}
 /**
  * Story template (edit/remove by hand if needed)
  *
