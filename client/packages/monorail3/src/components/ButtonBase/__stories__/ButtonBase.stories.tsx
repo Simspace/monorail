@@ -3,7 +3,7 @@ import React from 'react'
 import { ButtonBase, ButtonBaseProps } from '../ButtonBase'
 import { story } from '../../../__tests__/helpers/storybook'
 import { defaultStoryMeta } from './ButtonBase.stories.gen'
-import { styled, Theme } from '@material-ui/core/styles'
+import { styled, Theme } from '@mui/material/styles'
 import { Box } from '../../Box/Box'
 import { Typography } from '../../Typography/Typography'
 /**
@@ -35,7 +35,7 @@ export const ComplexButton = story(() => {
   const ImageButton = styled(ButtonBase)(({ theme }) => ({
     position: 'relative',
     height: 200,
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('lg')]: {
       width: '100% !important', // Overrides inline-style
       height: 100,
     },

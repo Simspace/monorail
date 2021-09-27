@@ -12,7 +12,7 @@ import {
   IceSkatingRounded,
   IceSkatingTwoTone,
   WarningAmberSharp,
-} from '@material-ui/icons'
+} from '@mui/icons-material'
 import { Step } from '../../Step/Step'
 import { Stepper } from '../../Stepper/Stepper'
 import { Typography } from '../../Typography/Typography'

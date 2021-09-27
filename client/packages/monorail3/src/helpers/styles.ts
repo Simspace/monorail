@@ -1,2 +1,2 @@
-export * from '@material-ui/core/styles'
-export * from '@material-ui/utils'
+export * from '@mui/material/styles'
+export * from '@mui/utils'

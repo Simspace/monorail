@@ -1,6 +1,6 @@
 // eslint-disable-next-line no-restricted-imports
-import * as _MUI from '@material-ui/core'
-import { Color } from '@material-ui/core'
+import * as _MUI from '@mui/material'
+import { Color } from '@mui/material'
 
 // This file is intended to house all our interface extensions/module augmentations for the MUI theme types.
 //
@@ -12,7 +12,7 @@ import { Color } from '@material-ui/core'
 // Note: there is some weird redundancy in some of these types, mostly because of how MUI has them setup as input options
 // provided by the theme creator and then the actual output theme types used by the theme consumer.
 
-declare module '@material-ui/core/styles/createPalette' {
+declare module '@mui/material/styles/createPalette' {
   /**
    * Extend the color `Palette` interface to add additional shades, colors, etc.
    *
@@ -81,7 +81,7 @@ declare module '@material-ui/core/styles/createPalette' {
   }
 }
 
-declare module '@material-ui/core/Button' {
+declare module '@mui/material/Button' {
   /**
    * Extend the Button size to allow a new size `extraSmall` (aka dense)
    */

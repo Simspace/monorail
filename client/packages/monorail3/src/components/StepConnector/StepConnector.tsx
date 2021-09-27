@@ -9,4 +9,4 @@ export * from './StepConnector.gen'
 
 // @TODO (@danm) - Wondering why we would re-export here, but for now
 // just following the `export all the things` pattern - (2021-07-20)
-export { stepConnectorClasses } from '@material-ui/core/StepConnector'
+export { stepConnectorClasses } from '@mui/material/StepConnector'

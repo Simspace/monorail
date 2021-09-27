@@ -4,7 +4,7 @@ import {
   default as MUIChip,
   ChipProps as MUIChipProps,
   ChipTypeMap,
-} from '@material-ui/core/Chip'
+} from '@mui/material/Chip'
 
 /**
  * Props for Chip

@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { KeyboardArrowLeft, KeyboardArrowRight } from '@material-ui/icons'
+import { KeyboardArrowLeft, KeyboardArrowRight } from '@mui/icons-material'
 
 import { Box } from '../../Box/Box'
 import { Button } from '../../Button/Button'

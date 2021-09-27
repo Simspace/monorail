@@ -4,9 +4,9 @@ import { SwipeableDrawer, SwipeableDrawerProps } from '../SwipeableDrawer'
 import { story } from '../../../__tests__/helpers/storybook'
 import { defaultStoryMeta } from './SwipeableDrawer.stories.gen'
 import { Button } from '../../Button/Button'
-import { CssBaseline, styled, Typography } from '@material-ui/core'
+import { CssBaseline, styled, Typography } from '@mui/material'
 import { Box } from '../../Box/Box'
-import { grey } from '@material-ui/core/colors'
+import { grey } from '@mui/material/colors'
 import { Skeleton } from '../../Skeleton/Skeleton'
 
 /**
