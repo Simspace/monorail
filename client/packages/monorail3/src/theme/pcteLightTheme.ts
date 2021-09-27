@@ -1,7 +1,5 @@
 import { PaletteOptions, createTheme, colors } from '@mui/material'
 
-import { adaptV4Theme } from '@mui/material/styles';
-
 import { defaultLightTheme } from './defaultLightTheme'
 
 const palette: PaletteOptions = {
@@ -11,7 +9,10 @@ const palette: PaletteOptions = {
   },
 }
 
-export const pcteLightTheme = createTheme(adaptV4Theme({
-  ...defaultLightTheme,
-  palette,
-}, {}))
+export const pcteLightTheme = createTheme(
+  {
+    ...defaultLightTheme,
+    palette,
+  },
+  {},
+)
