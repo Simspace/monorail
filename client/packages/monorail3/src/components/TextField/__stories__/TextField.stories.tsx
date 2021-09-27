@@ -22,7 +22,7 @@ import { IconButton } from '../../IconButton/IconButton'
 import { FilledInput } from '../../FilledInput/FilledInput'
 import { InputBase } from '../../InputBase/InputBase'
 
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Inputs/TextField' }
 
 const Template = story<TextFieldProps>(args => <TextField {...args} />, {
   args: { label: 'Text Field', inputProps: { 'aria-label': 'Text Field' } },

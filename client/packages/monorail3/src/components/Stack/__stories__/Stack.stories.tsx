@@ -10,7 +10,7 @@ import { Divider } from '../../Divider/Divider'
 /**
  * Metadata for Stack stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Layout/Stack' }
 
 const Item = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,

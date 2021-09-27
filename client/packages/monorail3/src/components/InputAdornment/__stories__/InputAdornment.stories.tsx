@@ -18,7 +18,7 @@ import { Input } from '../../Input/Input'
 /**
  * Metadata for InputAdornment stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Inputs/Input/InputAdornment' }
 
 /**
  * Story template (edit/remove by hand if needed)

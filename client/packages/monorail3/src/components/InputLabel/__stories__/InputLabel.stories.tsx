@@ -13,7 +13,7 @@ import { FilledInput } from '../../FilledInput/FilledInput'
 /**
  * Metadata for InputLabel stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Inputs/Input/InputLabel' }
 
 /**
  * Story template (edit/remove by hand if needed)

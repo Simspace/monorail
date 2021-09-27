@@ -18,7 +18,7 @@ import { Stack } from '../../Stack/Stack'
 /**
  * Metadata for ToggleButtonGroup stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Inputs/ToggleButtonGroup' }
 /**
  * Story template (edit/remove by hand if needed)
  *
