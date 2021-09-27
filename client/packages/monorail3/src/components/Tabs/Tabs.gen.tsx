@@ -4,7 +4,7 @@ import {
   default as MUITabs,
   TabsProps as MUITabsProps,
   TabsTypeMap,
-} from '@material-ui/core/Tabs'
+} from '@mui/material/Tabs'
 
 /**
  * Props for Tabs

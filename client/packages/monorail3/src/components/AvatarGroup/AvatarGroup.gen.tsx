@@ -3,7 +3,7 @@ import React from 'react'
 import {
   default as MUIAvatarGroup,
   AvatarGroupProps as MUIAvatarGroupProps,
-} from '@material-ui/core/AvatarGroup'
+} from '@mui/material/AvatarGroup'
 
 /**
  * Props for AvatarGroup

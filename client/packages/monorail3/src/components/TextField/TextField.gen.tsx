@@ -3,7 +3,7 @@ import React from 'react'
 import {
   default as MUITextField,
   TextFieldProps as MUITextFieldProps,
-} from '@material-ui/core/TextField'
+} from '@mui/material/TextField'
 
 /**
  * Props for TextField
