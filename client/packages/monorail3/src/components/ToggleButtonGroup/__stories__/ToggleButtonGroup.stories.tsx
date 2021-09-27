@@ -4,21 +4,21 @@ import { ToggleButtonGroup, ToggleButtonGroupProps } from '../ToggleButtonGroup'
 import { story } from '../../../__tests__/helpers/storybook'
 import { defaultStoryMeta } from './ToggleButtonGroup.stories.gen'
 import { ToggleButton } from '../../ToggleButton/ToggleButton'
-import FormatAlignLeftIcon from '@material-ui/icons/FormatAlignLeft'
-import FormatAlignCenterIcon from '@material-ui/icons/FormatAlignCenter'
-import FormatAlignRightIcon from '@material-ui/icons/FormatAlignRight'
-import FormatAlignJustifyIcon from '@material-ui/icons/FormatAlignJustify'
-import FormatBoldIcon from '@material-ui/icons/FormatBold'
-import FormatItalicIcon from '@material-ui/icons/FormatItalic'
-import FormatUnderlinedIcon from '@material-ui/icons/FormatUnderlined'
-import FormatColorFillIcon from '@material-ui/icons/FormatColorFill'
-import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown'
+import FormatAlignLeftIcon from '@mui/icons-material/FormatAlignLeft'
+import FormatAlignCenterIcon from '@mui/icons-material/FormatAlignCenter'
+import FormatAlignRightIcon from '@mui/icons-material/FormatAlignRight'
+import FormatAlignJustifyIcon from '@mui/icons-material/FormatAlignJustify'
+import FormatBoldIcon from '@mui/icons-material/FormatBold'
+import FormatItalicIcon from '@mui/icons-material/FormatItalic'
+import FormatUnderlinedIcon from '@mui/icons-material/FormatUnderlined'
+import FormatColorFillIcon from '@mui/icons-material/FormatColorFill'
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
 import { Stack } from '../../Stack/Stack'
 
 /**
  * Metadata for ToggleButtonGroup stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Inputs/ToggleButtonGroup' }
 /**
  * Story template (edit/remove by hand if needed)
  *

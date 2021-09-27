@@ -4,7 +4,7 @@ import {
   default as MUIBreadcrumbs,
   BreadcrumbsProps as MUIBreadcrumbsProps,
   BreadcrumbsTypeMap,
-} from '@material-ui/core/Breadcrumbs'
+} from '@mui/material/Breadcrumbs'
 
 /**
  * Props for Breadcrumbs

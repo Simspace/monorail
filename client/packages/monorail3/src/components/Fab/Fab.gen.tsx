@@ -4,7 +4,7 @@ import {
   default as MUIFab,
   FabProps as MUIFabProps,
   FabTypeMap,
-} from '@material-ui/core/Fab'
+} from '@mui/material/Fab'
 
 /**
  * Props for Fab

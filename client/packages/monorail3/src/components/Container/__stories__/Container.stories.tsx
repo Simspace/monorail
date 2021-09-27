@@ -4,7 +4,7 @@ import { Container, ContainerProps } from '../Container'
 import { story } from '../../../__tests__/helpers/storybook'
 import { defaultStoryMeta } from './Container.stories.gen'
 import { Box } from '../../Box/Box'
-import { grey } from '@material-ui/core/colors'
+import { grey } from '@mui/material/colors'
 import { Stack } from '../../Stack/Stack'
 import { Typography } from '../../Typography/Typography'
 import { CssBaseline } from '../../CssBaseline/CssBaseline'
@@ -14,7 +14,7 @@ import { CssBaseline } from '../../CssBaseline/CssBaseline'
  * This is intended to be exported as story-level metadata from the main .stories.tsx file, like:
  * "export default { ...defaultStoryMeta } // Add/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Layout/Container' }
 
 /**
  * Story template (edit/remove by hand if needed)

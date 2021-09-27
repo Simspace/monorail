@@ -14,7 +14,7 @@ import { Fade } from '../../Fade/Fade'
 /**
  * Metadata for StepContent stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Navigation/Stepper/StepContent' }
 
 const steps = [
   {

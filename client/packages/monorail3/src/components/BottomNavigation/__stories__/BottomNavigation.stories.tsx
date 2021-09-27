@@ -3,10 +3,10 @@ import React from 'react'
 import { BottomNavigation, BottomNavigationProps } from '../BottomNavigation'
 import { story } from '../../../__tests__/helpers/storybook'
 import { defaultStoryMeta } from './BottomNavigation.stories.gen'
-import FavoriteIcon from '@material-ui/icons/Favorite'
-import FolderIcon from '@material-ui/icons/Folder'
-import LocationOnIcon from '@material-ui/icons/LocationOn'
-import RestoreIcon from '@material-ui/icons/Restore'
+import FavoriteIcon from '@mui/icons-material/Favorite'
+import FolderIcon from '@mui/icons-material/Folder'
+import LocationOnIcon from '@mui/icons-material/LocationOn'
+import RestoreIcon from '@mui/icons-material/Restore'
 import { Box } from '../../Box/Box'
 import { BottomNavigationAction } from '../../BottomNavigationAction/BottomNavigationAction'
 import { Alert } from '../../Alert/Alert'
@@ -18,6 +18,7 @@ import { Alert } from '../../Alert/Alert'
  */
 export default {
   ...defaultStoryMeta,
+  title: 'Navigation/BottomNavigation',
 }
 
 /**

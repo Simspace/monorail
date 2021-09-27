@@ -7,20 +7,20 @@ import { Link } from '../../Link/Link'
 import { Typography } from '../../Typography/Typography'
 import { action } from '@storybook/addon-actions'
 import { Stack } from '../../Stack/Stack'
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
-import GrainIcon from '@material-ui/icons/Grain'
-import HomeIcon from '@material-ui/icons/Home'
-import NavigateNextIcon from '@material-ui/icons/NavigateNext'
-import WhatshotIcon from '@material-ui/icons/Whatshot'
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
+import GrainIcon from '@mui/icons-material/Grain'
+import HomeIcon from '@mui/icons-material/Home'
+import NavigateNextIcon from '@mui/icons-material/NavigateNext'
+import WhatshotIcon from '@mui/icons-material/Whatshot'
 import { Chip } from '../../Chip/Chip'
-import { emphasize, styled } from '@material-ui/core/styles'
+import { emphasize, styled } from '@mui/material/styles'
 
 /**
  * Metadata for Breadcrumbs stories - update/extend as needed
  * This is intended to be exported as story-level metadata from the main .stories.tsx file, like:
  * "export default { ...defaultStoryMeta } // Add/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Navigation/Breadcrumbs' }
 
 /**
  * Story template (edit/remove by hand if needed)

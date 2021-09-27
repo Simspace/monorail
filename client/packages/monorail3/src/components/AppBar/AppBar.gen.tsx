@@ -4,7 +4,7 @@ import {
   default as MUIAppBar,
   AppBarProps as MUIAppBarProps,
   AppBarTypeMap,
-} from '@material-ui/core/AppBar'
+} from '@mui/material/AppBar'
 
 /**
  * Props for AppBar

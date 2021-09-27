@@ -1,13 +1,12 @@
 import React from 'react'
 import { Box } from '../../components/Box/Box'
 import { useTheme } from '../useTheme'
-import * as MUI from '@material-ui/core'
+import { PaletteColor, Color as MUIColor } from '@mui/material'
 import {
   CommonColors,
-  TypeAction,
   TypeBackground,
   TypeText,
-} from '@material-ui/core/styles/createPalette'
+} from '@mui/material/styles/createPalette'
 
 export default {
   title: 'Theme/Palette',
@@ -42,7 +41,7 @@ const PaletteColorBox = ({
   paletteColor,
 }: {
   label: string
-  paletteColor: MUI.PaletteColor
+  paletteColor: PaletteColor
 }) => {
   return (
     <Box sx={{ display: 'flex', flexFlow: 'row' }}>
@@ -90,7 +89,7 @@ const ColorShadesBox = ({
   color,
 }: {
   label: string
-  color: MUI.Color
+  color: MUIColor
 }) => {
   const minWidth = '50px'
   return (

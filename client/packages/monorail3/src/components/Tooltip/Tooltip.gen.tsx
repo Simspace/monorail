@@ -3,7 +3,7 @@ import React from 'react'
 import {
   default as MUITooltip,
   TooltipProps as MUITooltipProps,
-} from '@material-ui/core/Tooltip'
+} from '@mui/material/Tooltip'
 
 /**
  * Props for Tooltip

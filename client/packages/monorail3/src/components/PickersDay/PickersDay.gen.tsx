@@ -3,7 +3,7 @@ import React from 'react'
 import {
   default as MUIPickersDay,
   PickersDayProps as MUIPickersDayProps,
-} from '@material-ui/lab/PickersDay'
+} from '@mui/lab/PickersDay'
 
 /**
  * Props for PickersDay

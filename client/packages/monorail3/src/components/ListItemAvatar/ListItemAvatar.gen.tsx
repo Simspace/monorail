@@ -3,7 +3,7 @@ import React from 'react'
 import {
   default as MUIListItemAvatar,
   ListItemAvatarProps as MUIListItemAvatarProps,
-} from '@material-ui/core/ListItemAvatar'
+} from '@mui/material/ListItemAvatar'
 
 /**
  * Props for ListItemAvatar

@@ -3,7 +3,7 @@ import React from 'react'
 import {
   default as MUICollapse,
   CollapseProps as MUICollapseProps,
-} from '@material-ui/core/Collapse'
+} from '@mui/material/Collapse'
 
 /**
  * Props for Collapse
