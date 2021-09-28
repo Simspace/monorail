@@ -8,7 +8,7 @@ import { FormControlLabel } from '../../FormControlLabel/FormControlLabel'
 /**
  * Metadata for FormHelperText stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Inputs/FormHelperText' }
 
 const Template = story<FormHelperTextProps>(
   args => (

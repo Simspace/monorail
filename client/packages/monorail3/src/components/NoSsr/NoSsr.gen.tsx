@@ -3,7 +3,7 @@ import React from 'react'
 import {
   default as MUINoSsr,
   NoSsrProps as MUINoSsrProps,
-} from '@material-ui/core/NoSsr'
+} from '@mui/material/NoSsr'
 
 /**
  * Props for NoSsr

@@ -3,8 +3,8 @@ import React from 'react'
 import {
   default as MUIStepButton,
   StepButtonProps as MUIStepButtonProps,
-} from '@material-ui/core/StepButton'
-import { ButtonBaseTypeMap } from '@material-ui/core'
+} from '@mui/material/StepButton'
+import { ButtonBaseTypeMap } from '@mui/material'
 
 /**
  * Props for StepButton

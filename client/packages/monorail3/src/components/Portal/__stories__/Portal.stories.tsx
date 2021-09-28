@@ -7,7 +7,7 @@ import { Box } from '../../Box/Box'
 /**
  * Metadata for Portal stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Utils/Portal' }
 /**
  * Story template (edit/remove by hand if needed)
  *

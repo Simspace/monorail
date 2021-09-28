@@ -9,7 +9,10 @@ import { Step } from '../../Step/Step'
 /**
  * Metadata for StepConnector stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default {
+  ...defaultStoryMeta,
+  title: 'Navigation/Stepper/StepConnector',
+}
 
 export const Default = story<StepConnectorProps>(
   args => (

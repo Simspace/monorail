@@ -165,7 +165,7 @@ const modules: Array<ModuleInfo> = [
     name: 'Autocomplete',
     storybookFolder1: 'Inputs',
     monorailComponentExtraImports: [
-      `import { ChipTypeMap } from '@material-ui/core/Chip'`,
+      `import { ChipTypeMap } from '@mui/material/Chip'`,
     ],
   },
   {
@@ -193,7 +193,7 @@ const modules: Array<ModuleInfo> = [
     storybookFolder1: 'Navigation',
     storybookFolder2: 'BottomNavigation',
     monorailComponentExtraImports: [
-      `import { ButtonBaseTypeMap } from '@material-ui/core/ButtonBase'`,
+      `import { ButtonBaseTypeMap } from '@mui/material/ButtonBase'`,
     ],
     monorailComponentRefType: 'HTMLButtonElement',
   },
@@ -244,7 +244,7 @@ const modules: Array<ModuleInfo> = [
     storybookFolder2: 'Card',
     monorailComponentRefType: 'HTMLButtonElement',
     monorailComponentExtraImports: [
-      `import { ButtonBaseTypeMap } from '@material-ui/core/ButtonBase'`,
+      `import { ButtonBaseTypeMap } from '@mui/material/ButtonBase'`,
     ],
   },
   {
@@ -762,7 +762,7 @@ const modules: Array<ModuleInfo> = [
     storybookFolder1: 'Navigation',
     storybookFolder2: 'Stepper',
     monorailComponentExtraImports: [
-      `import { ButtonBaseTypeMap } from '@material-ui/core'`,
+      `import { ButtonBaseTypeMap } from '@mui/material'`,
     ],
     monorailComponentRefType: 'HTMLButtonElement',
   },
@@ -853,7 +853,7 @@ const modules: Array<ModuleInfo> = [
     storybookFolder1: 'Data Display',
     storybookFolder2: 'Table',
     monorailComponentExtraImports: [
-      `import { TablePaginationBaseProps } from '@material-ui/core/TablePagination'`,
+      `import { TablePaginationBaseProps } from '@mui/material/TablePagination'`,
     ],
   },
   {
@@ -991,8 +991,8 @@ const project = new Project({})
 
 // Add all the material-ui/core, material-ui/lab, and Monorail typescript files
 project.addSourceFilesAtPaths([
-  './node_modules/@material-ui/core/**/*{.d.ts,.ts,.tsx}',
-  './node_modules/@material-ui/lab/**/*{.d.ts,.ts,.tsx}',
+  './node_modules/@mui/material/**/*{.d.ts,.ts,.tsx}',
+  './node_modules/@mui/lab/**/*{.d.ts,.ts,.tsx}',
   './src/**/*{.d.ts,.ts,.tsx}',
 ])
 
@@ -1084,11 +1084,11 @@ modules.forEach(module => {
 
       if (hasTypeMap) {
         writer.writeLine(
-          `import { default as MUI${muiComponentName}, ${muiPropsTypeName} as MUI${muiPropsTypeName}, ${muiComponentName}TypeMap } from '@material-ui/${importFolder}/${muiComponentName}'`,
+          `import { default as MUI${muiComponentName}, ${muiPropsTypeName} as MUI${muiPropsTypeName}, ${muiComponentName}TypeMap } from '@mui/${importFolder}/${muiComponentName}'`,
         )
       } else {
         writer.writeLine(
-          `import { default as MUI${muiComponentName}, ${muiPropsTypeName} as MUI${muiPropsTypeName} } from '@material-ui/${importFolder}/${muiComponentName}'`,
+          `import { default as MUI${muiComponentName}, ${muiPropsTypeName} as MUI${muiPropsTypeName} } from '@mui/${importFolder}/${muiComponentName}'`,
         )
       }
       // Some components reference other types in their type params, so allow for adding other arbitrary imports.

@@ -1,5 +1,27 @@
 # Monorail 3
 
+## Table of Contents
+
+- [Overview](#Overview)
+- [Goals/core ideas](#goalscore-ideas)
+- [FAQ/Known issues](#faqknown-issues)
+- [Setup](#setup)
+- [Storybook](#storybook)
+- [Testing](#testing)
+  - [Running Creevey](#running-creevey)
+  - [Accepting Changes](#accepting-changes)
+  - [Known Issues](#known-issues)
+- [Docgen](#docgen)
+- [Accessibility](#accessibility)
+- [Code Gen](#code-gen)
+  - [Overview](#code-gen-overview)
+  - [Code Gen Script](#code-gen-script)
+  - [Compile the Script](#compile-the-script)
+  - [Run the Script](#run-the-script)
+  - [Code Gen Script](#code-gen-script)
+- [Styled Engine](#styled-engine)
+- [Custom styling/theming](#custom-stylingtheming)
+
 ## Overview
 
 Monorail 3 is a UI component library backed by Material UI v5.
@@ -51,6 +73,45 @@ but the `yarn.lock` file is in the root workspaces directory.
 
 The storybook site is currently organized similarly to the MUI docs, please try to put new components in reasonable places going forward.
 
+## Testing
+
+Monorail 3 uses visual testing to assert that all component and theme changes are intentional. To accomplish this, we use [Creevey](https://github.com/wKich/creevey), which can test in headless mode for CI and with a GUI to make comparisons easy. It is currently set up to be integrated with Storybook.
+
+### Running Creevey
+
+Creevey requires Docker to run. You can run it a few different ways:
+
+- Running the GUI (Creevey runs on `localhost:3000`)
+  - If you already have a window with Storybook running, you can run the Creevey GUI from a new terminal tab using `yarn creevey --ui`
+  - If you want to run both in one command, you can use `yarn test:visual`
+- Running in the Terminal
+  - If you already have a window with Storybook running, you can run Creevey tests in a new terminal tab using `yarn creevey`
+  - If you want to run both in headless mode, you can use `yarn test:visual:ci`
+
+### Accepting changes
+
+Once you have run the tests, if you see failures, you can inspect the differences in the snapshots in the Creevey GUI. If the new version looks good to you, you can use the `Approve` button to accept the new image.
+
+For setting up all tests from scratch, you can run tests the first time, and then use `yarn creevey --update` to accept all the snapshots. ** DO NOT DO THIS IF YOU ARE MODIFYING THE COMPONENTS ** You want to compare images if to make sure there are no unwanted visual side-effects.
+
+### Known issues
+
+- Creevey does not understand parameters and options that are `({...spread})`, and therefore any parameter options must be put on the story instead of spread through the `story` helper function. e.g.
+
+```
+export const MyStory = story(() => ..., {args: blah})
+MyStory.parameters = {
+  docs: {...},
+  creevey: {
+    skip: true
+  }
+}
+```
+
+- Stories that include image fetches load those images unreliably during tests, and can create erroneous failures. These stories can be skipped
+- Pending stories (ones that haven't been written yet) should be skipped, since those will also fail
+- Some components have slightly unreliable visual footprints, like the underline in `Tabs` can sometimes not shift over correctly. These components will fail erroneously and should be skipped. They can also be given a higher threshold for failure using the `threshold` option.
+
 ## Docgen
 
 In legacy monorail, we had a scripted docgen workflow setup to generate the `.meta.json` files that were fed into the storybook stories for things like the docs page/controls/etc.
@@ -67,7 +128,7 @@ We also have a node-based `jest` test running setup to run the a11y tests outsid
 
 ## Code Gen
 
-### Overview
+### Code Gen Overview
 
 There is a code generation script setup to reduce the burden in creating some of the boilerplate code for exposing the MUI components. The script produces files that are intended to be 100% generated and not edited by hand, and also produces several "starter" files for components, which contain basic setup code, but are intended to be edited by hand going forward.
 
@@ -109,7 +170,7 @@ The script contains a list of MUI components along with some mostly optional cod
 
 The script works by inspecting the MUI `.d.ts` type definition files for each component to try to extract the props type and generate a component wrapper function for each component. Because many of the MUI components have generic type parameters, one of the main functions of the `ts-morph` helper is to extract and copy over the type params into the monorail modules.
 
-**Side note:** The Monorail components are being generated as wrapper functions, rather than re-exports of the MUI components, because I found that the storybook docgen was not able to work cleanly with re-exports of components. It seemed to be really wanting to find a function with `props` to inspect, and in some cases, it wasn't able to find what it was looking for when I just re-exported types and functions form `@material-ui/core`. I did not dig super deep into this, and just moved ahead with wrapper functions.
+**Side note:** The Monorail components are being generated as wrapper functions, rather than re-exports of the MUI components, because I found that the storybook docgen was not able to work cleanly with re-exports of components. It seemed to be really wanting to find a function with `props` to inspect, and in some cases, it wasn't able to find what it was looking for when I just re-exported types and functions form `@mui/material`. I did not dig super deep into this, and just moved ahead with wrapper functions.
 
 **Another side note:** We are generating wrappers for MUI components rather than using them directly in our applicaton code, so we have a thin layer of abstraction/indirection, in case we need to make unforeseen/surgical fixes or hacks to components. The purpose of this abstraction is not necessarily to try to hide the fact that we are using MUI, but just to give ourselves a thin layer of abstraction and control over MUI.
 
@@ -221,7 +282,7 @@ Here is an example of using `styled` to customize a component:
 
 ```typescript
 // other imports
-import { styled } from '@materail-ui/core/styles'
+import { styled } from '@mui/styles'
 
 const StyledAccordion = styled((props: AccordionProps) => (
   <Accordion disableGutters elevation={0} square {...props} />

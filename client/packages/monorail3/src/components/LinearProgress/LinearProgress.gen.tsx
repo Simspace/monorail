@@ -3,7 +3,7 @@ import React from 'react'
 import {
   default as MUILinearProgress,
   LinearProgressProps as MUILinearProgressProps,
-} from '@material-ui/core/LinearProgress'
+} from '@mui/material/LinearProgress'
 
 /**
  * Props for LinearProgress

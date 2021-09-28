@@ -4,7 +4,7 @@ import {
   default as MUIBottomNavigation,
   BottomNavigationProps as MUIBottomNavigationProps,
   BottomNavigationTypeMap,
-} from '@material-ui/core/BottomNavigation'
+} from '@mui/material/BottomNavigation'
 
 /**
  * Props for BottomNavigation
