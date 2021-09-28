@@ -4,7 +4,7 @@ import {
   default as MUIFormHelperText,
   FormHelperTextProps as MUIFormHelperTextProps,
   FormHelperTextTypeMap,
-} from '@material-ui/core/FormHelperText'
+} from '@mui/material/FormHelperText'
 
 /**
  * Props for FormHelperText

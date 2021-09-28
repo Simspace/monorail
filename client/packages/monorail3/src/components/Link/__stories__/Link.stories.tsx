@@ -8,7 +8,7 @@ import { Stack } from '../../Stack/Stack'
 /**
  * Metadata for Link stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Navigation/Link' }
 /**
  * Story template (edit/remove by hand if needed)
  *

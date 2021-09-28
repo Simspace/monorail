@@ -6,7 +6,7 @@ import { defaultStoryMeta } from './TabScrollButton.stories.gen'
 /**
  * Metadata for TabScrollButton stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Navigation/Tab/TabScrollButton' }
 /**
  * Story template (edit/remove by hand if needed)
  *

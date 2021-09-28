@@ -3,7 +3,7 @@ import React from 'react'
 import {
   default as MUITabScrollButton,
   TabScrollButtonProps as MUITabScrollButtonProps,
-} from '@material-ui/core/TabScrollButton'
+} from '@mui/material/TabScrollButton'
 
 /**
  * Props for TabScrollButton

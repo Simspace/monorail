@@ -3,7 +3,7 @@ import React from 'react'
 import {
   default as MUIDrawer,
   DrawerProps as MUIDrawerProps,
-} from '@material-ui/core/Drawer'
+} from '@mui/material/Drawer'
 
 /**
  * Props for Drawer

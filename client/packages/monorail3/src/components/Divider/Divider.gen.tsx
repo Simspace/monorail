@@ -4,7 +4,7 @@ import {
   default as MUIDivider,
   DividerProps as MUIDividerProps,
   DividerTypeMap,
-} from '@material-ui/core/Divider'
+} from '@mui/material/Divider'
 
 /**
  * Props for Divider

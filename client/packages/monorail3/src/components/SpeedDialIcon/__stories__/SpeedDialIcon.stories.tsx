@@ -6,7 +6,10 @@ import { defaultStoryMeta } from './SpeedDialIcon.stories.gen'
 /**
  * Metadata for SpeedDialIcon stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default {
+  ...defaultStoryMeta,
+  title: 'Navigation/SpeedDial/SpeedDialIcon',
+}
 /**
  * Story template (edit/remove by hand if needed)
  *

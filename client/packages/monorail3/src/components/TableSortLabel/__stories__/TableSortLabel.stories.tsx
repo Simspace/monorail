@@ -4,7 +4,10 @@ import { TableSortLabel, TableSortLabelProps } from '../TableSortLabel'
 import { story } from '../../../__tests__/helpers/storybook'
 import { defaultStoryMeta } from './TableSortLabel.stories.gen'
 
-export default { ...defaultStoryMeta }
+export default {
+  ...defaultStoryMeta,
+  title: 'Data Display/Table/TableSortLabel',
+}
 
 const Template = story<TableSortLabelProps>(
   args => {

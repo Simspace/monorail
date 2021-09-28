@@ -10,7 +10,7 @@ import { Typography } from '../../Typography/Typography'
 /**
  * Metadata for StepLabel stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Navigation/Stepper/StepLabel' }
 
 const steps = ['Select campaign settings', 'Create an ad group', 'Create an ad']
 

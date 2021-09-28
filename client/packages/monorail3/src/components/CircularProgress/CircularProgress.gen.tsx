@@ -3,7 +3,7 @@ import React from 'react'
 import {
   default as MUICircularProgress,
   CircularProgressProps as MUICircularProgressProps,
-} from '@material-ui/core/CircularProgress'
+} from '@mui/material/CircularProgress'
 
 /**
  * Props for CircularProgress

@@ -3,7 +3,7 @@ import React from 'react'
 import {
   default as MUIFilledInput,
   FilledInputProps as MUIFilledInputProps,
-} from '@material-ui/core/FilledInput'
+} from '@mui/material/FilledInput'
 
 /**
  * Props for FilledInput

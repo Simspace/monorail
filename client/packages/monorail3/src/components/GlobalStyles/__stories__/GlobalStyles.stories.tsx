@@ -6,7 +6,15 @@ import { defaultStoryMeta } from './GlobalStyles.stories.gen'
 /**
  * Metadata for GlobalStyles stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default {
+  ...defaultStoryMeta,
+  title: 'Utils/GlobalStyles',
+  parameters: {
+    creevey: {
+      skip: 'No story yet',
+    },
+  },
+}
 /**
  * Story template (edit/remove by hand if needed)
  *
@@ -17,8 +25,19 @@ const Template = story<GlobalStylesProps>(
   args => <GlobalStyles styles={{}} {...args} />,
   {
     args: {},
+    parameters: {
+      creevey: {
+        skip: 'No story yet',
+      },
+    },
   },
 )
 /** Default story for GlobalStyles (edit/remove by hand if needed) */
-export const Default = story(Template)
+export const Default = story(Template, {
+  parameters: {
+    creevey: {
+      skip: 'No story yet',
+    },
+  },
+})
 // TODO: add more stories below
