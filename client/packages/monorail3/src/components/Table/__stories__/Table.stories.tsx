@@ -338,7 +338,7 @@ export const SortingAndSelecting = story<TableProps>(
                 >
                   {headCell.label}
                   {orderBy === headCell.id ? (
-                    <Box component="span" sx={visuallyHidden}>
+                    <Box component="span" style={visuallyHidden}>
                       {order === 'desc'
                         ? 'sorted descending'
                         : 'sorted ascending'}

@@ -510,6 +510,7 @@ const modules: Array<ModuleInfo> = [
   {
     name: 'Link',
     storybookFolder1: 'Navigation',
+    monorailComponentRefType: 'HTMLAnchorElement',
   },
   {
     name: 'List',
