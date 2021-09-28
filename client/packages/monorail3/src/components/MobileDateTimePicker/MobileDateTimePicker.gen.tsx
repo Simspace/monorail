@@ -3,7 +3,7 @@ import React from 'react'
 import {
   default as MUIMobileDateTimePicker,
   MobileDateTimePickerProps as MUIMobileDateTimePickerProps,
-} from '@material-ui/lab/MobileDateTimePicker'
+} from '@mui/lab/MobileDateTimePicker'
 
 /**
  * Props for MobileDateTimePicker

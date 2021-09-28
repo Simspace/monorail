@@ -3,7 +3,7 @@ import React from 'react'
 import {
   default as MUIPagination,
   PaginationProps as MUIPaginationProps,
-} from '@material-ui/core/Pagination'
+} from '@mui/material/Pagination'
 
 /**
  * Props for Pagination

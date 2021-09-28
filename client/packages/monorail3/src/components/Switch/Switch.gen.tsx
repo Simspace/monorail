@@ -3,7 +3,7 @@ import React from 'react'
 import {
   default as MUISwitch,
   SwitchProps as MUISwitchProps,
-} from '@material-ui/core/Switch'
+} from '@mui/material/Switch'
 
 /**
  * Props for Switch

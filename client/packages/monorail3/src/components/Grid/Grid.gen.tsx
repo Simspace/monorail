@@ -4,7 +4,7 @@ import {
   default as MUIGrid,
   GridProps as MUIGridProps,
   GridTypeMap,
-} from '@material-ui/core/Grid'
+} from '@mui/material/Grid'
 
 /**
  * Props for Grid

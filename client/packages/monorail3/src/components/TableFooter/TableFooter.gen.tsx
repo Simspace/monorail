@@ -4,7 +4,7 @@ import {
   default as MUITableFooter,
   TableFooterProps as MUITableFooterProps,
   TableFooterTypeMap,
-} from '@material-ui/core/TableFooter'
+} from '@mui/material/TableFooter'
 
 /**
  * Props for TableFooter

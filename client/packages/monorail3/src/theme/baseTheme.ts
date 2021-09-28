@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-restricted-imports
-import * as MUI from '@material-ui/core'
+import { createTheme } from '@mui/material'
 import { gothamFontFaceDeclarations, gothamFontFamily } from './fonts/gotham'
 
 // This "default" theme should house the global defaults that apply to all themes. This would likely include
@@ -7,7 +7,7 @@ import { gothamFontFaceDeclarations, gothamFontFamily } from './fonts/gotham'
 // Specific themes can override these settings, but hopefully won't want/need to.
 // All other themes should use this as a baseline.
 
-export const baseTheme = MUI.createTheme(
+export const baseTheme = createTheme(
   {
     // TODO: add "global" settings that aren't likely to vary per theme (spacing, shadows, breakpoints, typography, etc.)
     spacing: 8,
@@ -19,8 +19,8 @@ export const baseTheme = MUI.createTheme(
     components: {
       MuiCssBaseline: {
         styleOverrides: `
-          ${gothamFontFaceDeclarations}
-        `,
+        ${gothamFontFaceDeclarations}
+      `,
       },
     },
   },
