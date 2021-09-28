@@ -4,7 +4,7 @@ import {
   default as MUIIconButton,
   IconButtonProps as MUIIconButtonProps,
   IconButtonTypeMap,
-} from '@material-ui/core/IconButton'
+} from '@mui/material/IconButton'
 
 /**
  * Props for IconButton

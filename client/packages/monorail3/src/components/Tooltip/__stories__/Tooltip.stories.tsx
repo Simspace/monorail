@@ -1,15 +1,14 @@
 // Edit this file to add new stories
 import React from 'react'
-import { Tooltip, TooltipProps } from '../Tooltip'
+import { Tooltip, TooltipProps, tooltipClasses } from '../Tooltip'
 import { story } from '../../../__tests__/helpers/storybook'
 import { defaultStoryMeta } from './Tooltip.stories.gen'
 import { IconButton } from '../../IconButton/IconButton'
-import DeleteIcon from '@material-ui/icons/Delete'
+import DeleteIcon from '@mui/icons-material/Delete'
 import { Box } from '../../Box/Box'
 import { Grid } from '../../Grid/Grid'
 import { Button } from '../../Button/Button'
-import tooltipClasses from '@material-ui/core/Tooltip/tooltipClasses'
-import { styled } from '@material-ui/core/styles'
+import { styled } from '@mui/styles'
 import { Typography } from '../../Typography/Typography'
 import { ClickAwayListener } from '../../ClickAwayListener/ClickAwayListener'
 import { Fade } from '../../Fade/Fade'
@@ -18,7 +17,7 @@ import { Zoom } from '../../Zoom/Zoom'
 /**
  * Metadata for Tooltip stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Feedback/Tooltip' }
 
 /**
  * Story template (edit/remove by hand if needed)
@@ -42,7 +41,7 @@ export const Default = story(Template)
 
 export const BasicTooltip = story<TooltipProps>(() => (
   <Tooltip title="Delete">
-    <IconButton>
+    <IconButton size="large">
       <DeleteIcon />
     </IconButton>
   </Tooltip>

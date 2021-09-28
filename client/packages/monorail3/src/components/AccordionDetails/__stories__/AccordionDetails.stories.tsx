@@ -7,7 +7,10 @@ import { defaultStoryMeta } from './AccordionDetails.stories.gen'
 /**
  * Metadata for AccordionDetails stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default {
+  ...defaultStoryMeta,
+  title: 'Surfaces/Accordion/AccordionDetails',
+}
 
 /**
  * Story template (edit/remove by hand if needed)

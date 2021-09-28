@@ -4,15 +4,18 @@ import { SwipeableDrawer, SwipeableDrawerProps } from '../SwipeableDrawer'
 import { story } from '../../../__tests__/helpers/storybook'
 import { defaultStoryMeta } from './SwipeableDrawer.stories.gen'
 import { Button } from '../../Button/Button'
-import { CssBaseline, styled, Typography } from '@material-ui/core'
+import { CssBaseline, styled, Typography } from '@mui/material'
 import { Box } from '../../Box/Box'
-import { grey } from '@material-ui/core/colors'
+import { grey } from '@mui/material/colors'
 import { Skeleton } from '../../Skeleton/Skeleton'
 
 /**
  * Metadata for SwipeableDrawer stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default {
+  ...defaultStoryMeta,
+  title: 'Navigation/Drawer/SwipeableDrawer',
+}
 
 /**
  * Story template (edit/remove by hand if needed)

@@ -4,7 +4,7 @@ import {
   default as MUICardHeader,
   CardHeaderProps as MUICardHeaderProps,
   CardHeaderTypeMap,
-} from '@material-ui/core/CardHeader'
+} from '@mui/material/CardHeader'
 
 /**
  * Props for CardHeader

@@ -10,7 +10,7 @@ import { FormHelperText } from '../../FormHelperText/FormHelperText'
 import { InputLabel } from '../../InputLabel/InputLabel'
 import { MenuItem } from '../../MenuItem/MenuItem'
 
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Inputs/Select' }
 
 const Template = story<SelectProps>(
   args => {
