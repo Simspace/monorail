@@ -3,7 +3,7 @@ import React from 'react'
 import { Stack, StackProps } from '../Stack'
 import { story } from '../../../__tests__/helpers/storybook'
 import { defaultStoryMeta } from './Stack.stories.gen'
-import { styled } from '@material-ui/core/styles'
+import { styled } from '@mui/material/styles'
 import { Paper } from '../../Paper/Paper'
 import { Divider } from '../../Divider/Divider'
 
