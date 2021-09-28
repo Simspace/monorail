@@ -310,6 +310,70 @@ const modules: Array<ModuleInfo> = [
     storybookFolder1: 'Utils',
   },
   {
+    name: 'DataGrid',
+    storybookFolder1: 'Data Grid',
+  },
+  {
+    name: 'DataGridLayout',
+    storybookFolder1: 'Data Grid',
+  },
+  {
+    name: 'DataGridColumns',
+    storybookFolder1: 'Data Grid',
+  },
+  {
+    name: 'DataGridRows',
+    storybookFolder1: 'Data Grid',
+  },
+  {
+    name: 'DataGridEditing',
+    storybookFolder1: 'Data Grid',
+  },
+  {
+    name: 'DataGridSorting',
+    storybookFolder1: 'Data Grid',
+  },
+  {
+    name: 'DataGridFiltering',
+    storybookFolder1: 'Data Grid',
+  },
+  {
+    name: 'DataGridPagination',
+    storybookFolder1: 'Data Grid',
+  },
+  {
+    name: 'DataGridSelection',
+    storybookFolder1: 'Data Grid',
+  },
+  {
+    name: 'DataGridEvents',
+    storybookFolder1: 'Data Grid',
+  },
+  {
+    name: 'DataGridExport',
+    storybookFolder1: 'Data Grid',
+  },
+  {
+    name: 'DataGridComponents',
+    storybookFolder1: 'Data Grid',
+  },
+  {
+    name: 'DataGridStyle',
+    storybookFolder1: 'Data Grid',
+  },
+  {
+    name: 'DataGridLocalization',
+    storybookFolder1: 'Data Grid',
+  },
+  {
+    name: 'DataGridVirtualization',
+    storybookFolder1: 'Data Grid',
+  },
+  {
+    name: 'DataGridAccessibility',
+    storybookFolder1: 'Data Grid',
+  },
+  {
     name: 'DatePicker',
     storybookFolder1: 'Inputs',
     storybookFolder2: 'Date and Time',
