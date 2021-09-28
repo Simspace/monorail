@@ -51,7 +51,7 @@ import { Tooltip } from '../../Tooltip/Tooltip'
 /**
  * Metadata for List stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Data Display/List' }
 
 /**
  * Story template (edit/remove by hand if needed)

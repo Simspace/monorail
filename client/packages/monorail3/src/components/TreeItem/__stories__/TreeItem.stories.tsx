@@ -6,7 +6,7 @@ import { defaultStoryMeta } from './TreeItem.stories.gen'
 /**
  * Metadata for TreeItem stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Data Display/TreeView/TreeItem' }
 /**
  * Story template (edit/remove by hand if needed)
  *
@@ -20,5 +20,13 @@ const Template = story<TreeItemProps>(
   },
 )
 /** Default story for TreeItem (edit/remove by hand if needed) */
-export const Default = story(Template)
-// TODO: add more stories below
+export const Default = story(Template, {
+  args: { label: "I'm a tree item!", nodeId: 'a' },
+  parameters: {
+    docs: {
+      description: {
+        component: `TreeItems are used as children for TreeView`,
+      },
+    },
+  },
+})

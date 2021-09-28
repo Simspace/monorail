@@ -6,3 +6,7 @@ import {
 } from './TextField'
 export * from './TextField.gen'
 // Add more functions/etc. below
+
+/**
+ * Text fields allow users to enter text into a UI. They typically appear in forms and dialogs.
+ */

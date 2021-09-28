@@ -6,7 +6,15 @@ import { defaultStoryMeta } from './TimelineSeparator.stories.gen'
 /**
  * Metadata for TimelineSeparator stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default {
+  ...defaultStoryMeta,
+  title: 'Data Display/Timeline/TimelineSeparator',
+  parameters: {
+    creevey: {
+      skip: 'No story yet',
+    },
+  },
+}
 /**
  * Story template (edit/remove by hand if needed)
  *
@@ -15,8 +23,16 @@ export default { ...defaultStoryMeta }
  */
 const Template = story<TimelineSeparatorProps>(
   args => <TimelineSeparator {...args} />,
-  { args: {} },
+  {
+    args: {},
+  },
 )
 /** Default story for TimelineSeparator (edit/remove by hand if needed) */
-export const Default = story(Template)
+export const Default = story(Template, {
+  parameters: {
+    creevey: {
+      skip: 'No story yet',
+    },
+  },
+})
 // TODO: add more stories below

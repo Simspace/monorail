@@ -40,7 +40,7 @@ import { Typography } from '../../Typography/Typography'
 /**
  * Metadata for Menu stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Navigation/Menu' }
 
 const Template = story<MenuProps>(
   args => {

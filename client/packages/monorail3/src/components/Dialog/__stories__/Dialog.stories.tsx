@@ -96,7 +96,7 @@ const SimpleDialog = (props: SimpleDialogProps) => {
 /**
  * Metadata for Dialog stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Feedback/Dialog' }
 /**
  * Story template (edit/remove by hand if needed)
  *
