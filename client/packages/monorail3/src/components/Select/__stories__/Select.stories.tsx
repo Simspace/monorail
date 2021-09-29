@@ -13,12 +13,12 @@ import { SelectChangeEvent } from '@mui/material/Select'
 
 export default { ...defaultStoryMeta, title: 'Inputs/Select' }
 
-const Template = story<SelectProps>(
+const Template = story<SelectProps<string>>(
   args => {
-    const [age, setAge] = React.useState<string>('')
+    const [age, setAge] = React.useState('')
 
-    const handleChange = (event: SelectChangeEvent<unknown>) => {
-      setAge(event.target.value as string)
+    const handleChange = (event: SelectChangeEvent<string>) => {
+      setAge(event.target.value)
     }
 
     return (
@@ -58,11 +58,13 @@ export const BasicSelect = story(Template, {
   },
 })
 
-export const FilledAndStandardVariants = story<SelectProps>(() => {
-  const [age, setAge] = React.useState<string>('')
-  const handleChange = (event: SelectChangeEvent<unknown>) => {
-    setAge(event.target.value as string)
+export const FilledAndStandardVariants = story<SelectProps<string>>(() => {
+  const [age, setAge] = React.useState('')
+
+  const handleChange = (event: SelectChangeEvent<string>) => {
+    setAge(event.target.value)
   }
+
   return (
     <div>
       <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
@@ -102,11 +104,11 @@ export const FilledAndStandardVariants = story<SelectProps>(() => {
   )
 })
 
-export const LabelsAndHelperText = story<SelectProps>(() => {
-  const [age, setAge] = React.useState<string>('')
+export const LabelsAndHelperText = story<SelectProps<string>>(() => {
+  const [age, setAge] = React.useState('')
 
-  const handleChange = (event: SelectChangeEvent<unknown>) => {
-    setAge(event.target.value as string)
+  const handleChange = (event: SelectChangeEvent<string>) => {
+    setAge(event.target.value)
   }
 
   return (
@@ -149,11 +151,11 @@ export const LabelsAndHelperText = story<SelectProps>(() => {
   )
 })
 
-export const AutoWidth = story<SelectProps>(() => {
-  const [age, setAge] = React.useState<string>('')
+export const AutoWidth = story<SelectProps<string>>(() => {
+  const [age, setAge] = React.useState('')
 
-  const handleChange = (event: SelectChangeEvent<unknown>) => {
-    setAge(event.target.value as string)
+  const handleChange = (event: SelectChangeEvent<string>) => {
+    setAge(event.target.value)
   }
 
   return (
@@ -180,11 +182,11 @@ export const AutoWidth = story<SelectProps>(() => {
   )
 })
 
-export const OtherProps = story<SelectProps>(() => {
-  const [age, setAge] = React.useState<string>('')
+export const OtherProps = story<SelectProps<string>>(() => {
+  const [age, setAge] = React.useState('')
 
-  const handleChange = (event: SelectChangeEvent<unknown>) => {
-    setAge(event.target.value as string)
+  const handleChange = (event: SelectChangeEvent<string>) => {
+    setAge(event.target.value)
   }
 
   return (
