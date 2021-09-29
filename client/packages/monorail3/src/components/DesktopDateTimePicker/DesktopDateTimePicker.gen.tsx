@@ -3,7 +3,7 @@ import React from 'react'
 import {
   default as MUIDesktopDateTimePicker,
   DesktopDateTimePickerProps as MUIDesktopDateTimePickerProps,
-} from '@material-ui/lab/DesktopDateTimePicker'
+} from '@mui/lab/DesktopDateTimePicker'
 
 /**
  * Props for DesktopDateTimePicker

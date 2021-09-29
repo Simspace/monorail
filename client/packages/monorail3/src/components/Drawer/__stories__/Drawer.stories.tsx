@@ -9,18 +9,18 @@ import { ListItem } from '../../ListItem/ListItem'
 import { ListItemText } from '../../ListItemText/ListItemText'
 import { Divider } from '../../Divider/Divider'
 import { Button } from '../../Button/Button'
-import InboxIcon from '@material-ui/icons/Inbox'
-import MailIcon from '@material-ui/icons/Mail'
+import InboxIcon from '@mui/icons-material/Inbox'
+import MailIcon from '@mui/icons-material/Mail'
 import { ListItemIcon } from '../../ListItemIcon/ListItemIcon'
 import { Toolbar } from '../../Toolbar/Toolbar'
 import { CssBaseline } from '../../CssBaseline/CssBaseline'
 import { AppBar, AppBarProps } from '../../AppBar/AppBar'
 import { IconButton } from '../../IconButton/IconButton'
-import MenuIcon from '@material-ui/icons/Menu'
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
-import ChevronRightIcon from '@material-ui/icons/ChevronRight'
+import MenuIcon from '@mui/icons-material/Menu'
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft'
+import ChevronRightIcon from '@mui/icons-material/ChevronRight'
 import { Typography } from '../../Typography/Typography'
-import { CSSObject, styled, Theme } from '@material-ui/core'
+import { CSSObject, styled, Theme } from '@mui/material'
 import { useTheme } from '../../../theme/useTheme'
 import { Alert } from '../../Alert/Alert'
 
@@ -206,6 +206,7 @@ export const ResponsiveDrawer = story<DrawerProps>(
               edge="start"
               onClick={handleDrawerToggle}
               sx={{ mr: 2, display: { sm: 'none' } }}
+              size="large"
             >
               <MenuIcon />
             </IconButton>
@@ -376,6 +377,7 @@ export const PersistentDrawer = story<DrawerProps>(
               onClick={handleDrawerOpen}
               edge="start"
               sx={{ mr: 2, ...(open && { display: 'none' }) }}
+              size="large"
             >
               <MenuIcon />
             </IconButton>
@@ -398,7 +400,7 @@ export const PersistentDrawer = story<DrawerProps>(
           open={open}
         >
           <PersistentDrawerHeader>
-            <IconButton onClick={handleDrawerClose}>
+            <IconButton onClick={handleDrawerClose} size="large">
               {theme.direction === 'ltr' ? (
                 <ChevronLeftIcon />
               ) : (
@@ -577,6 +579,7 @@ export const MiniDrawer = story<DrawerProps>(
                 marginRight: '36px',
                 ...(open && { display: 'none' }),
               }}
+              size="large"
             >
               <MenuIcon />
             </IconButton>
@@ -587,7 +590,7 @@ export const MiniDrawer = story<DrawerProps>(
         </MiniVariantAppBar>
         <MiniVariantDrawer variant="permanent" open={open}>
           <DrawerHeader>
-            <IconButton onClick={handleDrawerClose}>
+            <IconButton onClick={handleDrawerClose} size="large">
               {theme.direction === 'rtl' ? (
                 <ChevronRightIcon />
               ) : (

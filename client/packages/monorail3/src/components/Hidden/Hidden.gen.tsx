@@ -3,7 +3,7 @@ import React from 'react'
 import {
   default as MUIHidden,
   HiddenProps as MUIHiddenProps,
-} from '@material-ui/core/Hidden'
+} from '@mui/material/Hidden'
 
 /**
  * Props for Hidden

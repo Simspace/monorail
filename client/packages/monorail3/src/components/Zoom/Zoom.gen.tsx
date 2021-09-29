@@ -3,7 +3,7 @@ import React from 'react'
 import {
   default as MUIZoom,
   ZoomProps as MUIZoomProps,
-} from '@material-ui/core/Zoom'
+} from '@mui/material/Zoom'
 
 /**
  * Props for Zoom

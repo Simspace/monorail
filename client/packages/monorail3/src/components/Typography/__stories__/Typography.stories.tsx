@@ -4,7 +4,7 @@ import { Typography, TypographyProps } from '../Typography'
 import { story } from '../../../__tests__/helpers/storybook'
 import { defaultStoryMeta } from './Typography.stories.gen'
 import { Box } from '../../Box/Box'
-import { styled } from '@material-ui/core/styles'
+import { styled } from '@mui/material/styles'
 import { useTheme } from '../../../theme/useTheme'
 import { Stack } from '../../Stack/Stack'
 

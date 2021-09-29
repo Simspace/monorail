@@ -4,7 +4,7 @@ import {
   default as MUIBadge,
   BadgeProps as MUIBadgeProps,
   BadgeTypeMap,
-} from '@material-ui/core/Badge'
+} from '@mui/material/Badge'
 
 /**
  * Props for Badge

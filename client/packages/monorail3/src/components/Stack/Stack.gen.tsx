@@ -4,7 +4,7 @@ import {
   default as MUIStack,
   StackProps as MUIStackProps,
   StackTypeMap,
-} from '@material-ui/core/Stack'
+} from '@mui/material/Stack'
 
 /**
  * Props for Stack

@@ -3,7 +3,7 @@ import React from 'react'
 import {
   default as MUIDialogTitle,
   DialogTitleProps as MUIDialogTitleProps,
-} from '@material-ui/core/DialogTitle'
+} from '@mui/material/DialogTitle'
 
 /**
  * Props for DialogTitle

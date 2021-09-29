@@ -4,7 +4,7 @@ import { ImageListItemBar, ImageListItemBarProps } from '../ImageListItemBar'
 import { story } from '../../../__tests__/helpers/storybook'
 import { defaultStoryMeta } from './ImageListItemBar.stories.gen'
 import { IconButton } from '../../IconButton/IconButton'
-import InfoIcon from '@material-ui/icons/Info'
+import InfoIcon from '@mui/icons-material/Info'
 
 /**
  * Metadata for ImageListItemBar stories - update/extend as needed
@@ -31,7 +31,7 @@ const Template = story<ImageListItemBarProps>(
       title: 'title',
       subtitle: 'subtitle',
       actionIcon: (
-        <IconButton sx={{ color: 'rgba(255, 255, 255, 0.54)' }}>
+        <IconButton sx={{ color: 'rgba(255, 255, 255, 0.54)' }} size="large">
           <InfoIcon />
         </IconButton>
       ),
