@@ -79,7 +79,8 @@
       "<rootDir>/jest/jest.postsetup.ts"
     ],
     "moduleNameMapper": {
-      "@material-ui/styled-engine": "@material-ui/styled-engine-sc"
+      "@mui/styled-engine": "@mui/styled-engine-sc",
+      "@material-ui/core": "@mui/material"
     },
     "testEnvironment": "jsdom"
   }

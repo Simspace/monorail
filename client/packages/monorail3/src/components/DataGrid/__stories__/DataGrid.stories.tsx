@@ -8,7 +8,7 @@ import { GridValueGetterParams } from '@mui/x-data-grid'
 /**
  * Metadata for DataGrid stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Data Grid/DataGrid' }
 
 /**
  * Story template (edit/remove by hand if needed)
@@ -50,6 +50,7 @@ const Template = story<DataGridProps>(args => {
         }`,
     },
   ]
+
   const rows = [
     { id: 1, lastName: 'Snow', firstName: 'Jon', age: 35 },
     { id: 2, lastName: 'Lannister', firstName: 'Cersei', age: 42 },
@@ -62,15 +63,17 @@ const Template = story<DataGridProps>(args => {
     { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
   ]
   return (
-    <DataGrid
-      columns={columns}
-      rows={rows}
-      pageSize={5}
-      rowsPerPageOptions={[5]}
-      checkboxSelection
-      disableSelectionOnClick
-      {...args}
-    />
+    <div style={{ height: 400, width: '100%' }}>
+      <DataGrid
+        columns={columns}
+        rows={rows}
+        pageSize={5}
+        rowsPerPageOptions={[5]}
+        checkboxSelection
+        disableSelectionOnClick
+        {...args}
+      />
+    </div>
   )
 })
 
