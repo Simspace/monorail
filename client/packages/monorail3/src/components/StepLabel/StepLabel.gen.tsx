@@ -3,7 +3,7 @@ import React from 'react'
 import {
   default as MUIStepLabel,
   StepLabelProps as MUIStepLabelProps,
-} from '@material-ui/core/StepLabel'
+} from '@mui/material/StepLabel'
 
 /**
  * Props for StepLabel

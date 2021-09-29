@@ -3,7 +3,7 @@ import React from 'react'
 import {
   default as MUIStep,
   StepProps as MUIStepProps,
-} from '@material-ui/core/Step'
+} from '@mui/material/Step'
 
 /**
  * Props for Step

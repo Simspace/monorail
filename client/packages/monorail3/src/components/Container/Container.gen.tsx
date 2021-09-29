@@ -4,7 +4,7 @@ import {
   default as MUIContainer,
   ContainerProps as MUIContainerProps,
   ContainerTypeMap,
-} from '@material-ui/core/Container'
+} from '@mui/material/Container'
 
 /**
  * Props for Container

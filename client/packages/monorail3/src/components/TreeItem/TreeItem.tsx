@@ -11,4 +11,4 @@ export {
   useTreeItem,
   TreeItemContentProps,
   treeItemClasses,
-} from '@material-ui/lab/TreeItem'
+} from '@mui/lab/TreeItem'

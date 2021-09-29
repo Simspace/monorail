@@ -4,7 +4,7 @@ import {
   default as MUITableBody,
   TableBodyProps as MUITableBodyProps,
   TableBodyTypeMap,
-} from '@material-ui/core/TableBody'
+} from '@mui/material/TableBody'
 
 /**
  * Props for TableBody

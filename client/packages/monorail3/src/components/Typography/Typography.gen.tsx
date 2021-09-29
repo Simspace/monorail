@@ -4,7 +4,7 @@ import {
   default as MUITypography,
   TypographyProps as MUITypographyProps,
   TypographyTypeMap,
-} from '@material-ui/core/Typography'
+} from '@mui/material/Typography'
 
 /**
  * Props for Typography

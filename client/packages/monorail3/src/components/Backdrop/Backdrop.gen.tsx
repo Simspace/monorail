@@ -4,7 +4,7 @@ import {
   default as MUIBackdrop,
   BackdropProps as MUIBackdropProps,
   BackdropTypeMap,
-} from '@material-ui/core/Backdrop'
+} from '@mui/material/Backdrop'
 
 /**
  * Props for Backdrop

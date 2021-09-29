@@ -4,7 +4,7 @@ import { story } from '../../../__tests__/helpers/storybook'
 import { defaultStoryMeta } from './TableCell.stories.gen'
 import { TableCell, TableCellProps } from '../../TableCell/TableCell'
 
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Data Display/Table/TableCell' }
 
 const Template = story<TableCellProps>(args => (
   <TableCell {...args}>Cell 1</TableCell>

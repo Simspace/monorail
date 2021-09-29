@@ -3,7 +3,7 @@ import React from 'react'
 import { AccordionSummary, AccordionSummaryProps } from '../AccordionSummary'
 import { story } from '../../../__tests__/helpers/storybook'
 import { defaultStoryMeta } from './AccordionSummary.stories.gen'
-import ExpandMore from '@material-ui/icons/ExpandMore'
+import ExpandMore from '@mui/icons-material/ExpandMore'
 
 /**
  * Metadata for AccordionSummary stories - update/extend as needed
@@ -11,7 +11,10 @@ import ExpandMore from '@material-ui/icons/ExpandMore'
  * This is intended to be exported as story-level metadata from the main .stories.tsx file, like:
  * "export default { ...defaultStoryMeta } // Add/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default {
+  ...defaultStoryMeta,
+  title: 'Surfaces/Accordion/AccordionSummary',
+}
 
 /**
  * Story template (edit/remove by hand if needed)

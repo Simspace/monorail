@@ -3,7 +3,7 @@ import React from 'react'
 import {
   default as MUITreeItem,
   TreeItemProps as MUITreeItemProps,
-} from '@material-ui/lab/TreeItem'
+} from '@mui/lab/TreeItem'
 
 /**
  * Props for TreeItem

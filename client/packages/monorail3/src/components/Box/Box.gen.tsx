@@ -4,7 +4,7 @@ import {
   default as MUIBox,
   BoxProps as MUIBoxProps,
   BoxTypeMap,
-} from '@material-ui/core/Box'
+} from '@mui/material/Box'
 
 /**
  * Props for Box

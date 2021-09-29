@@ -3,7 +3,7 @@ import React from 'react'
 import {
   default as MUICssBaseline,
   CssBaselineProps as MUICssBaselineProps,
-} from '@material-ui/core/CssBaseline'
+} from '@mui/material/CssBaseline'
 
 /**
  * Props for CssBaseline

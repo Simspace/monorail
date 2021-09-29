@@ -44,7 +44,10 @@ const StyledDateRangePickerDay = styled(DateRangePickerDay)(
 ) as React.ComponentType<DateRangePickerDayProps<Date>>
 
 const Template = story(() => {
-  const [value, setValue] = React.useState<DateRange<Date>>([null, null])
+  const [value, setValue] = React.useState<DateRange<Date>>([
+    new Date('2021-01-05T12:34:00.000Z'),
+    new Date('2021-01-09T12:34:00.000Z'),
+  ])
 
   const renderWeekPickerDay = (
     date: Date,

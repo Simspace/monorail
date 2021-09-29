@@ -3,7 +3,7 @@ import React from 'react'
 import {
   default as MUIYearPicker,
   YearPickerProps as MUIYearPickerProps,
-} from '@material-ui/lab/YearPicker'
+} from '@mui/lab/YearPicker'
 
 /**
  * Props for YearPicker

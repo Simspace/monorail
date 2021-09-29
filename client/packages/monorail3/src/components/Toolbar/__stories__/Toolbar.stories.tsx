@@ -1,5 +1,5 @@
 // Edit this file to add new stories
-import MenuIcon from '@material-ui/icons/Menu'
+import MenuIcon from '@mui/icons-material/Menu'
 import React from 'react'
 import { story } from '../../../__tests__/helpers/storybook'
 import { Button } from '../../Button/Button'
@@ -11,7 +11,7 @@ import { defaultStoryMeta } from './Toolbar.stories.gen'
 /**
  * Metadata for Toolbar stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Inputs/Toolbar' }
 /**
  * Story template (edit/remove by hand if needed)
  *
