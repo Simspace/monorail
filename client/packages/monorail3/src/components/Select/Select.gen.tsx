@@ -3,7 +3,7 @@ import React from 'react'
 import {
   default as MUISelect,
   SelectProps as MUISelectProps,
-} from '@material-ui/core/Select'
+} from '@mui/material/Select'
 
 /**
  * Props for Select

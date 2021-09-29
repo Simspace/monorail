@@ -4,7 +4,7 @@ import { ListItemAvatar, ListItemAvatarProps } from '../ListItemAvatar'
 import { story } from '../../../__tests__/helpers/storybook'
 import { defaultStoryMeta } from './ListItemAvatar.stories.gen'
 import { Avatar } from '../../Avatar/Avatar'
-import FolderIcon from '@material-ui/icons/Folder'
+import FolderIcon from '@mui/icons-material/Folder'
 
 /**
  * Metadata for ListItemAvatar stories - update/extend as needed

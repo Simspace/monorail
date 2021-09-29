@@ -7,7 +7,7 @@ import {
 import { story } from '../../../__tests__/helpers/storybook'
 import { defaultStoryMeta } from './ListItemSecondaryAction.stories.gen'
 import { IconButton } from '../../IconButton/IconButton'
-import DeleteIcon from '@material-ui/icons/Delete'
+import DeleteIcon from '@mui/icons-material/Delete'
 
 /**
  * Metadata for ListItemSecondaryAction stories - update/extend as needed
@@ -33,7 +33,7 @@ const Template = story<ListItemSecondaryActionProps>(
     return (
       <>
         <ListItemSecondaryAction {...args}>
-          <IconButton edge="start" aria-label="Delete">
+          <IconButton edge="start" aria-label="Delete" size="large">
             <DeleteIcon />
           </IconButton>
         </ListItemSecondaryAction>

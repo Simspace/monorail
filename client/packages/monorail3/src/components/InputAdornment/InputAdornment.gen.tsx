@@ -4,7 +4,7 @@ import {
   default as MUIInputAdornment,
   InputAdornmentProps as MUIInputAdornmentProps,
   InputAdornmentTypeMap,
-} from '@material-ui/core/InputAdornment'
+} from '@mui/material/InputAdornment'
 
 /**
  * Props for InputAdornment

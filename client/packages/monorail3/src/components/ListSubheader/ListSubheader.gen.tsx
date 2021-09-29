@@ -4,7 +4,7 @@ import {
   default as MUIListSubheader,
   ListSubheaderProps as MUIListSubheaderProps,
   ListSubheaderTypeMap,
-} from '@material-ui/core/ListSubheader'
+} from '@mui/material/ListSubheader'
 
 /**
  * Props for ListSubheader

@@ -8,8 +8,8 @@ import { Step } from '../../Step/Step'
 import { Button } from '../../Button/Button'
 import { StepLabel } from '../../StepLabel/StepLabel'
 import { StepButton } from '../../StepButton/StepButton'
-import { styled } from '@material-ui/core/styles'
-import { GroupAdd, Check, Settings, VideoLabel } from '@material-ui/icons'
+import { styled } from '@mui/material/styles'
+import { GroupAdd, Check, Settings, VideoLabel } from '@mui/icons-material'
 import {
   StepConnector,
   stepConnectorClasses,

@@ -4,7 +4,7 @@ import {
   default as MUIScopedCssBaseline,
   ScopedCssBaselineProps as MUIScopedCssBaselineProps,
   ScopedCssBaselineTypeMap,
-} from '@material-ui/core/ScopedCssBaseline'
+} from '@mui/material/ScopedCssBaseline'
 
 /**
  * Props for ScopedCssBaseline
