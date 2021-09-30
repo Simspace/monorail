@@ -3,7 +3,7 @@ import React from 'react'
 import {
   default as MUIDesktopTimePicker,
   DesktopTimePickerProps as MUIDesktopTimePickerProps,
-} from '@material-ui/lab/DesktopTimePicker'
+} from '@mui/lab/DesktopTimePicker'
 
 /**
  * Props for DesktopTimePicker

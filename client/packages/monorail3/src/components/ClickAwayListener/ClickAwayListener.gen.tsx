@@ -3,7 +3,7 @@ import React from 'react'
 import {
   default as MUIClickAwayListener,
   ClickAwayListenerProps as MUIClickAwayListenerProps,
-} from '@material-ui/core/ClickAwayListener'
+} from '@mui/material/ClickAwayListener'
 
 /**
  * Props for ClickAwayListener

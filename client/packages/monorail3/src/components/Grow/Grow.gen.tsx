@@ -3,7 +3,7 @@ import React from 'react'
 import {
   default as MUIGrow,
   GrowProps as MUIGrowProps,
-} from '@material-ui/core/Grow'
+} from '@mui/material/Grow'
 
 /**
  * Props for Grow

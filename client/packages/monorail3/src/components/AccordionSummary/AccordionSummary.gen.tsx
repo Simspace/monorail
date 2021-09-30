@@ -4,7 +4,7 @@ import {
   default as MUIAccordionSummary,
   AccordionSummaryProps as MUIAccordionSummaryProps,
   AccordionSummaryTypeMap,
-} from '@material-ui/core/AccordionSummary'
+} from '@mui/material/AccordionSummary'
 
 /**
  * Props for AccordionSummary

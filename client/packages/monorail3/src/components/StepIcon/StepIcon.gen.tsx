@@ -3,7 +3,7 @@ import React from 'react'
 import {
   default as MUIStepIcon,
   StepIconProps as MUIStepIconProps,
-} from '@material-ui/core/StepIcon'
+} from '@mui/material/StepIcon'
 
 /**
  * Props for StepIcon

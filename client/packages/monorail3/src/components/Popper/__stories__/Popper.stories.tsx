@@ -6,7 +6,7 @@ import { defaultStoryMeta } from './Popper.stories.gen'
 /**
  * Metadata for Popper stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Utils/Popper' }
 /**
  * Story template (edit/remove by hand if needed)
  *

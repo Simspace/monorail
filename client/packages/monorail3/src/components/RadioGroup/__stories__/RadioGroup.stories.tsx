@@ -7,15 +7,15 @@ import { FormControl } from '../../FormControl/FormControl'
 import { FormLabel } from '../../FormLabel/FormLabel'
 import { FormControlLabel } from '../../FormControlLabel/FormControlLabel'
 import { Radio, RadioProps } from '../../Radio/Radio'
-import { pink } from '@material-ui/core/colors'
+import { pink } from '@mui/material/colors'
 import { FormHelperText } from '../../FormHelperText/FormHelperText'
 import { Button } from '../../Button/Button'
-import { styled } from '@material-ui/core/styles'
+import { styled } from '@mui/material/styles'
 
 /**
  * Metadata for RadioGroup stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Inputs/RadioGroup' }
 
 /**
  * Story template (edit/remove by hand if needed)

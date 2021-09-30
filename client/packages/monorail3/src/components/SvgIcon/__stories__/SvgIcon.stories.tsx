@@ -6,7 +6,7 @@ import { defaultStoryMeta } from './SvgIcon.stories.gen'
 /**
  * Metadata for SvgIcon stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Data Display/SvgIcon' }
 /**
  * Story template (edit/remove by hand if needed)
  *

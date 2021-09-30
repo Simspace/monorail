@@ -3,7 +3,7 @@ import React from 'react'
 import {
   default as MUICardMedia,
   CardMediaProps as MUICardMediaProps,
-} from '@material-ui/core/CardMedia'
+} from '@mui/material/CardMedia'
 
 /**
  * Props for CardMedia

@@ -3,7 +3,7 @@ import { TextareaAutosize, TextareaAutosizeProps } from '../TextareaAutosize'
 import { story } from '../../../__tests__/helpers/storybook'
 import { defaultStoryMeta } from './TextareaAutosize.stories.gen'
 
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Inputs/TextareaAutosize' }
 
 const Template = story<TextareaAutosizeProps>(
   args => <TextareaAutosize {...args} />,
