@@ -14,6 +14,7 @@ import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
 import CloseIcon from '@mui/icons-material/Close'
 import { Typography } from '../../Typography/Typography'
 import { Snackbar } from '../../Snackbar/Snackbar'
+import { useTheme } from '@mui/material'
 
 /**
  * Metadata for Alert stories - update/extend as needed
@@ -102,7 +103,7 @@ export const Actions = story<AlertProps>(
         <Alert
           action={
             <Button color="inherit" size="small">
-              UNDO
+              Undo
             </Button>
           }
         >

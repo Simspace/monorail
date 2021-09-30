@@ -14,6 +14,10 @@ export const baseTheme = createTheme(
 
     typography: {
       fontFamily: gothamFontFamily,
+      button: {
+        fontWeight: 700,
+        textTransform: 'capitalize',
+      },
     },
 
     components: {
