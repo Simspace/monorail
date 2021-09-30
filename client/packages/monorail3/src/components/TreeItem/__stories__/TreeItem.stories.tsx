@@ -6,7 +6,7 @@ import { defaultStoryMeta } from './TreeItem.stories.gen'
 /**
  * Metadata for TreeItem stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Data Display/TreeView/TreeItem' }
 /**
  * Story template (edit/remove by hand if needed)
  *

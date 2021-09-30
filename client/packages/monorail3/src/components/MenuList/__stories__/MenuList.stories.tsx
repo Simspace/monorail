@@ -7,7 +7,7 @@ import { defaultStoryMeta } from './MenuList.stories.gen'
 /**
  * Metadata for MenuList stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Navigation/Menu/MenuList' }
 
 const Template = story<MenuListProps>(
   args => (

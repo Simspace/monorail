@@ -4,7 +4,7 @@ import { ListItem, ListItemProps } from '../ListItem'
 import { story } from '../../../__tests__/helpers/storybook'
 import { defaultStoryMeta } from './ListItem.stories.gen'
 import { ListItemText } from '../../ListItemText/ListItemText'
-import FolderIcon from '@material-ui/icons/Folder'
+import FolderIcon from '@mui/icons-material/Folder'
 import { ListItemIcon } from '../../ListItemIcon/ListItemIcon'
 import { Avatar } from '../../Avatar/Avatar'
 import { ListItemAvatar } from '../../ListItemAvatar/ListItemAvatar'
@@ -12,7 +12,7 @@ import { ListItemAvatar } from '../../ListItemAvatar/ListItemAvatar'
 /**
  * Metadata for ListItem stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Data Display/List/ListItem' }
 /**
  * Story template (edit/remove by hand if needed)
  *

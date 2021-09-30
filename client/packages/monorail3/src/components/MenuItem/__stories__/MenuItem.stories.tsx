@@ -6,7 +6,7 @@ import { defaultStoryMeta } from './MenuItem.stories.gen'
 /**
  * Metadata for MenuItem stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Navigation/Menu/MenuItem' }
 
 const Template = story<MenuItemProps>(args => <MenuItem {...args} />, {
   args: {

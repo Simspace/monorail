@@ -3,7 +3,7 @@ import React from 'react'
 import {
   default as MUIClockPicker,
   ClockPickerProps as MUIClockPickerProps,
-} from '@material-ui/lab/ClockPicker'
+} from '@mui/lab/ClockPicker'
 
 /**
  * Props for ClockPicker

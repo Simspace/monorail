@@ -3,7 +3,7 @@ import React from 'react'
 import {
   default as MUIInput,
   InputProps as MUIInputProps,
-} from '@material-ui/core/Input'
+} from '@mui/material/Input'
 
 /**
  * Props for Input

@@ -4,7 +4,7 @@ import {
   default as MUISvgIcon,
   SvgIconProps as MUISvgIconProps,
   SvgIconTypeMap,
-} from '@material-ui/core/SvgIcon'
+} from '@mui/material/SvgIcon'
 
 /**
  * Props for SvgIcon

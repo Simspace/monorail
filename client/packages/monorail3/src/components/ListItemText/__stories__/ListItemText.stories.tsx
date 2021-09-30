@@ -6,7 +6,7 @@ import { defaultStoryMeta } from './ListItemText.stories.gen'
 /**
  * Metadata for ListItemText stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Data Display/List/ListItemText' }
 /**
  * Story template (edit/remove by hand if needed)
  *

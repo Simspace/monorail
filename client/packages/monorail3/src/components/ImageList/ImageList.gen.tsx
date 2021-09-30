@@ -4,7 +4,7 @@ import {
   default as MUIImageList,
   ImageListProps as MUIImageListProps,
   ImageListTypeMap,
-} from '@material-ui/core/ImageList'
+} from '@mui/material/ImageList'
 
 /**
  * Props for ImageList

@@ -3,7 +3,7 @@ import React from 'react'
 import {
   default as MUIPortal,
   PortalProps as MUIPortalProps,
-} from '@material-ui/core/Portal'
+} from '@mui/material/Portal'
 
 /**
  * Props for Portal
