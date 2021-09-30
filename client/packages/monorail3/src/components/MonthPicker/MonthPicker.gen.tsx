@@ -3,7 +3,7 @@ import React from 'react'
 import {
   default as MUIMonthPicker,
   MonthPickerProps as MUIMonthPickerProps,
-} from '@material-ui/lab/MonthPicker'
+} from '@mui/lab/MonthPicker'
 
 /**
  * Props for MonthPicker

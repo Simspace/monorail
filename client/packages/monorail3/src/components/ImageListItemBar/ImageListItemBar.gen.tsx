@@ -3,7 +3,7 @@ import React from 'react'
 import {
   default as MUIImageListItemBar,
   ImageListItemBarProps as MUIImageListItemBarProps,
-} from '@material-ui/core/ImageListItemBar'
+} from '@mui/material/ImageListItemBar'
 
 /**
  * Props for ImageListItemBar

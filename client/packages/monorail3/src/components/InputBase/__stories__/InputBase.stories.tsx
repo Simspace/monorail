@@ -6,9 +6,9 @@ import { defaultStoryMeta } from './InputBase.stories.gen'
 import { Paper } from '../../Paper/Paper'
 import { IconButton } from '../../IconButton/IconButton'
 import { Divider } from '../../Divider/Divider'
-import MenuIcon from '@material-ui/icons/Menu'
-import SearchIcon from '@material-ui/icons/Search'
-import DirectionsIcon from '@material-ui/icons/Directions'
+import MenuIcon from '@mui/icons-material/Menu'
+import SearchIcon from '@mui/icons-material/Search'
+import DirectionsIcon from '@mui/icons-material/Directions'
 
 /**
  * Metadata for InputBase stories - update/extend as needed
@@ -45,7 +45,7 @@ export const CustomInputBase = story<InputBaseProps>(
         component="form"
         sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: 400 }}
       >
-        <IconButton sx={{ p: '10px' }} aria-label="menu">
+        <IconButton sx={{ p: '10px' }} aria-label="menu" size="large">
           <MenuIcon />
         </IconButton>
         <InputBase
@@ -53,11 +53,21 @@ export const CustomInputBase = story<InputBaseProps>(
           placeholder="Search Google Maps"
           inputProps={{ 'aria-label': 'search google maps' }}
         />
-        <IconButton type="submit" sx={{ p: '10px' }} aria-label="search">
+        <IconButton
+          type="submit"
+          sx={{ p: '10px' }}
+          aria-label="search"
+          size="large"
+        >
           <SearchIcon />
         </IconButton>
         <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
-        <IconButton color="primary" sx={{ p: '10px' }} aria-label="directions">
+        <IconButton
+          color="primary"
+          sx={{ p: '10px' }}
+          aria-label="directions"
+          size="large"
+        >
           <DirectionsIcon />
         </IconButton>
       </Paper>

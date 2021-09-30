@@ -8,7 +8,7 @@ import { Typography } from '../../Typography/Typography'
 /**
  * Metadata for Hidden stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Utils/Hidden' }
 
 /**
  * Story template (edit/remove by hand if needed)

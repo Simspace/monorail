@@ -8,7 +8,7 @@ import { Button } from '../../Button/Button'
 /**
  * Metadata for Popover stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Utils/Popover' }
 /**
  * Story template (edit/remove by hand if needed)
  *

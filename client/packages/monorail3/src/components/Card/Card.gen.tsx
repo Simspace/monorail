@@ -4,7 +4,7 @@ import {
   default as MUICard,
   CardProps as MUICardProps,
   CardTypeMap,
-} from '@material-ui/core/Card'
+} from '@mui/material/Card'
 
 /**
  * Props for Card

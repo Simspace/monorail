@@ -3,7 +3,7 @@ import React from 'react'
 import {
   default as MUIDateRangePicker,
   DateRangePickerProps as MUIDateRangePickerProps,
-} from '@material-ui/lab/DateRangePicker'
+} from '@mui/lab/DateRangePicker'
 
 /**
  * Props for DateRangePicker
