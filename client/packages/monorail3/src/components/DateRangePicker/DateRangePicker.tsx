@@ -8,6 +8,6 @@ import {
 
 export * from './DateRangePicker.gen'
 
-export { DateRange } from '@mui/lab/DateRangePicker'
+export { DateRange } from '@mui/lab/DateRangePicker/RangeTypes'
 
 // Add more functions/etc. below
