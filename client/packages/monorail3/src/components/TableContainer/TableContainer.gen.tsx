@@ -4,7 +4,7 @@ import {
   default as MUITableContainer,
   TableContainerProps as MUITableContainerProps,
   TableContainerTypeMap,
-} from '@material-ui/core/TableContainer'
+} from '@mui/material/TableContainer'
 
 /**
  * Props for TableContainer

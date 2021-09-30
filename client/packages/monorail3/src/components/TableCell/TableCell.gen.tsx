@@ -3,7 +3,7 @@ import React from 'react'
 import {
   default as MUITableCell,
   TableCellProps as MUITableCellProps,
-} from '@material-ui/core/TableCell'
+} from '@mui/material/TableCell'
 
 /**
  * Props for TableCell

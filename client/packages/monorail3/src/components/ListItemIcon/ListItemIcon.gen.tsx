@@ -3,7 +3,7 @@ import React from 'react'
 import {
   default as MUIListItemIcon,
   ListItemIconProps as MUIListItemIconProps,
-} from '@material-ui/core/ListItemIcon'
+} from '@mui/material/ListItemIcon'
 
 /**
  * Props for ListItemIcon

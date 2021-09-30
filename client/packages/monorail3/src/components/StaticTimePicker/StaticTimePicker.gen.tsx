@@ -3,7 +3,7 @@ import React from 'react'
 import {
   default as MUIStaticTimePicker,
   StaticTimePickerProps as MUIStaticTimePickerProps,
-} from '@material-ui/lab/StaticTimePicker'
+} from '@mui/lab/StaticTimePicker'
 
 /**
  * Props for StaticTimePicker

@@ -10,9 +10,9 @@ import { Stack } from '../../Stack/Stack'
 import { MobileDateTimePicker } from '../../MobileDateTimePicker/MobileDateTimePicker'
 import { DesktopDateTimePicker } from '../../DesktopDateTimePicker/DesktopDateTimePicker'
 import { StaticDateTimePicker } from '../../StaticDateTimePicker/StaticDateTimePicker'
-import AlarmIcon from '@material-ui/icons/Alarm'
-import SnoozeIcon from '@material-ui/icons/Snooze'
-import ClockIcon from '@material-ui/icons/AccessTime'
+import AlarmIcon from '@mui/icons-material/Alarm'
+import SnoozeIcon from '@mui/icons-material/Snooze'
+import ClockIcon from '@mui/icons-material/AccessTime'
 
 /**
  * Metadata for DateTimePicker stories - update/extend as needed

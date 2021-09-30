@@ -3,7 +3,7 @@ import React from 'react'
 import {
   default as MUITreeView,
   TreeViewProps as MUITreeViewProps,
-} from '@material-ui/lab/TreeView'
+} from '@mui/lab/TreeView'
 
 /**
  * Props for TreeView

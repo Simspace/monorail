@@ -170,7 +170,7 @@ The script contains a list of MUI components along with some mostly optional cod
 
 The script works by inspecting the MUI `.d.ts` type definition files for each component to try to extract the props type and generate a component wrapper function for each component. Because many of the MUI components have generic type parameters, one of the main functions of the `ts-morph` helper is to extract and copy over the type params into the monorail modules.
 
-**Side note:** The Monorail components are being generated as wrapper functions, rather than re-exports of the MUI components, because I found that the storybook docgen was not able to work cleanly with re-exports of components. It seemed to be really wanting to find a function with `props` to inspect, and in some cases, it wasn't able to find what it was looking for when I just re-exported types and functions form `@material-ui/core`. I did not dig super deep into this, and just moved ahead with wrapper functions.
+**Side note:** The Monorail components are being generated as wrapper functions, rather than re-exports of the MUI components, because I found that the storybook docgen was not able to work cleanly with re-exports of components. It seemed to be really wanting to find a function with `props` to inspect, and in some cases, it wasn't able to find what it was looking for when I just re-exported types and functions form `@mui/material`. I did not dig super deep into this, and just moved ahead with wrapper functions.
 
 **Another side note:** We are generating wrappers for MUI components rather than using them directly in our applicaton code, so we have a thin layer of abstraction/indirection, in case we need to make unforeseen/surgical fixes or hacks to components. The purpose of this abstraction is not necessarily to try to hide the fact that we are using MUI, but just to give ourselves a thin layer of abstraction and control over MUI.
 
@@ -282,7 +282,7 @@ Here is an example of using `styled` to customize a component:
 
 ```typescript
 // other imports
-import { styled } from '@materail-ui/core/styles'
+import { styled } from '@mui/styles'
 
 const StyledAccordion = styled((props: AccordionProps) => (
   <Accordion disableGutters elevation={0} square {...props} />

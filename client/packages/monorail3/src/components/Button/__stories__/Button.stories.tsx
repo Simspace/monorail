@@ -3,8 +3,8 @@ import React from 'react'
 import { Button, ButtonProps } from '../Button'
 import { story } from '../../../__tests__/helpers/storybook'
 import { defaultStoryMeta } from './Button.stories.gen'
-import DeleteIcon from '@material-ui/icons/Delete'
-import SendIcon from '@material-ui/icons/Send'
+import DeleteIcon from '@mui/icons-material/Delete'
+import SendIcon from '@mui/icons-material/Send'
 import { Stack } from '../../Stack/Stack'
 
 /**

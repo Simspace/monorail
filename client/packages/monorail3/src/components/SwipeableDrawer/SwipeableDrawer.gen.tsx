@@ -3,7 +3,7 @@ import React from 'react'
 import {
   default as MUISwipeableDrawer,
   SwipeableDrawerProps as MUISwipeableDrawerProps,
-} from '@material-ui/core/SwipeableDrawer'
+} from '@mui/material/SwipeableDrawer'
 
 /**
  * Props for SwipeableDrawer

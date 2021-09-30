@@ -6,7 +6,7 @@ import { defaultStoryMeta } from './LinearProgress.stories.gen'
 import { Box } from '../../Box/Box'
 import { Stack } from '../../Stack/Stack'
 import { Typography } from '../../Typography/Typography'
-import { linearProgressClasses, styled } from '@material-ui/core'
+import { linearProgressClasses, styled } from '@mui/material'
 
 /**
  * Metadata for LinearProgress stories - update/extend as needed
