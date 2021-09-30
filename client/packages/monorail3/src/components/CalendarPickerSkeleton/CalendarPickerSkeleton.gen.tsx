@@ -3,7 +3,7 @@ import React from 'react'
 import {
   default as MUICalendarPickerSkeleton,
   CalendarPickerSkeletonProps as MUICalendarPickerSkeletonProps,
-} from '@material-ui/lab/CalendarPickerSkeleton'
+} from '@mui/lab/CalendarPickerSkeleton'
 
 /**
  * Props for CalendarPickerSkeleton

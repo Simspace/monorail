@@ -6,14 +6,17 @@ import {
 } from '../BottomNavigationAction'
 import { story } from '../../../__tests__/helpers/storybook'
 import { defaultStoryMeta } from './BottomNavigationAction.stories.gen'
-import RestoreIcon from '@material-ui/icons/Restore'
+import RestoreIcon from '@mui/icons-material/Restore'
 
 /**
  * Metadata for BottomNavigationAction stories - update/extend as needed
  * This is intended to be exported as story-level metadata from the main .stories.tsx file, like:
  * "export default { ...defaultStoryMeta } // Add/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default {
+  ...defaultStoryMeta,
+  title: 'Navigation/BottomNavigation/BottomNavigationAction',
+}
 
 /**
  * Story template (edit/remove by hand if needed)

@@ -1,4 +1,3 @@
-// Edit this file to add new stories
 import React from 'react'
 import { Stepper, StepperProps } from '../Stepper'
 import { story } from '../../../__tests__/helpers/storybook'
@@ -9,8 +8,8 @@ import { Step } from '../../Step/Step'
 import { Button } from '../../Button/Button'
 import { StepLabel } from '../../StepLabel/StepLabel'
 import { StepButton } from '../../StepButton/StepButton'
-import { styled } from '@material-ui/core/styles'
-import { GroupAdd, Check, Settings, VideoLabel } from '@material-ui/icons'
+import { styled } from '@mui/material/styles'
+import { GroupAdd, Check, Settings, VideoLabel } from '@mui/icons-material'
 import {
   StepConnector,
   stepConnectorClasses,
@@ -22,18 +21,29 @@ import { Paper } from '../../Paper/Paper'
 /**
  * Metadata for Stepper stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Navigation/Stepper' }
 /**
  * Story template (edit/remove by hand if needed)
  *
  * Note: there should be at least one "Default" story that uses this template with the "story" function.
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
-const Template = story<StepperProps>(args => <Stepper {...args} />, {
-  args: {},
-})
+const Template = story<StepperProps>(
+  args => (
+    <Stepper {...args}>
+      <Step key={'hey'}>
+        <StepLabel>hey</StepLabel>
+      </Step>
+    </Stepper>
+  ),
+  {
+    args: {},
+  },
+)
 /** Default story for Stepper (edit/remove by hand if needed) */
-export const Default = story(Template)
+export const Default = story(Template, {
+  args: { activeStep: 0, children: ['hey'] },
+})
 
 const steps = ['Select campaign settings', 'Create an ad group', 'Create an ad']
 

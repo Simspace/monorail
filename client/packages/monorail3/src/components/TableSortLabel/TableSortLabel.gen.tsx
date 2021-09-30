@@ -4,7 +4,7 @@ import {
   default as MUITableSortLabel,
   TableSortLabelProps as MUITableSortLabelProps,
   TableSortLabelTypeMap,
-} from '@material-ui/core/TableSortLabel'
+} from '@mui/material/TableSortLabel'
 
 /**
  * Props for TableSortLabel

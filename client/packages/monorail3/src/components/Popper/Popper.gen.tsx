@@ -3,7 +3,7 @@ import React from 'react'
 import {
   default as MUIPopper,
   PopperProps as MUIPopperProps,
-} from '@material-ui/core/Popper'
+} from '@mui/material/Popper'
 
 /**
  * Props for Popper

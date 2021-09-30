@@ -4,7 +4,7 @@ import {
   default as MUITableHead,
   TableHeadProps as MUITableHeadProps,
   TableHeadTypeMap,
-} from '@material-ui/core/TableHead'
+} from '@mui/material/TableHead'
 
 /**
  * Props for TableHead
