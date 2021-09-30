@@ -3,7 +3,7 @@ import React from 'react'
 import {
   default as MUIFade,
   FadeProps as MUIFadeProps,
-} from '@material-ui/core/Fade'
+} from '@mui/material/Fade'
 
 /**
  * Props for Fade

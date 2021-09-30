@@ -4,7 +4,7 @@ import {
   default as MUIToolbar,
   ToolbarProps as MUIToolbarProps,
   ToolbarTypeMap,
-} from '@material-ui/core/Toolbar'
+} from '@mui/material/Toolbar'
 
 /**
  * Props for Toolbar

@@ -3,7 +3,7 @@ import React from 'react'
 import {
   default as MUIRadioGroup,
   RadioGroupProps as MUIRadioGroupProps,
-} from '@material-ui/core/RadioGroup'
+} from '@mui/material/RadioGroup'
 
 /**
  * Props for RadioGroup

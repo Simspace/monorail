@@ -1,8 +1,8 @@
 import React from 'react'
-import AccountCircle from '@material-ui/icons/AccountCircle'
-import Visibility from '@material-ui/icons/Visibility'
-import VisibilityOff from '@material-ui/icons/VisibilityOff'
-import { alpha, styled } from '@material-ui/core/styles'
+import AccountCircle from '@mui/icons-material/AccountCircle'
+import Visibility from '@mui/icons-material/Visibility'
+import VisibilityOff from '@mui/icons-material/VisibilityOff'
+import { alpha, styled } from '@mui/material/styles'
 
 import { TextField, TextFieldProps } from '../TextField'
 import { Box } from '../../Box/Box'
@@ -22,7 +22,7 @@ import { IconButton } from '../../IconButton/IconButton'
 import { FilledInput } from '../../FilledInput/FilledInput'
 import { InputBase } from '../../InputBase/InputBase'
 
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Inputs/TextField' }
 
 const Template = story<TextFieldProps>(args => <TextField {...args} />, {
   args: { label: 'Text Field', inputProps: { 'aria-label': 'Text Field' } },
@@ -491,6 +491,7 @@ export const InputAdornments = story(
                     onClick={handleClickShowPassword}
                     onMouseDown={handleMouseDownPassword}
                     edge="end"
+                    size="large"
                   >
                     {values.showPassword ? <VisibilityOff /> : <Visibility />}
                   </IconButton>
@@ -555,6 +556,7 @@ export const InputAdornments = story(
                     onClick={handleClickShowPassword}
                     onMouseDown={handleMouseDownPassword}
                     edge="end"
+                    size="large"
                   >
                     {values.showPassword ? <VisibilityOff /> : <Visibility />}
                   </IconButton>
@@ -616,6 +618,7 @@ export const InputAdornments = story(
                     aria-label="toggle password visibility"
                     onClick={handleClickShowPassword}
                     onMouseDown={handleMouseDownPassword}
+                    size="large"
                   >
                     {values.showPassword ? <VisibilityOff /> : <Visibility />}
                   </IconButton>

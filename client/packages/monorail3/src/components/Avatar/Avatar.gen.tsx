@@ -4,7 +4,7 @@ import {
   default as MUIAvatar,
   AvatarProps as MUIAvatarProps,
   AvatarTypeMap,
-} from '@material-ui/core/Avatar'
+} from '@mui/material/Avatar'
 
 /**
  * Props for Avatar

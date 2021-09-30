@@ -3,7 +3,7 @@ import React from 'react'
 import {
   default as MUIInputLabel,
   InputLabelProps as MUIInputLabelProps,
-} from '@material-ui/core/InputLabel'
+} from '@mui/material/InputLabel'
 
 /**
  * Props for InputLabel

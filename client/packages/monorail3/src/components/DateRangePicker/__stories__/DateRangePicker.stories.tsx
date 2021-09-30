@@ -38,7 +38,10 @@ export default {
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
 const Template = story<DateRangePickerProps<Date>>(args => {
-  const [value, setValue] = React.useState<DateRange<Date>>([null, null])
+  const [value, setValue] = React.useState<DateRange<Date>>([
+    new Date('2021-01-05T12:34:00.000Z'),
+    new Date('2021-01-09T12:34:00.000Z'),
+  ])
 
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
@@ -74,7 +77,10 @@ export const Default = story(Template, {
 
 export const StaticMode = story(
   () => {
-    const [value, setValue] = React.useState<DateRange<Date>>([null, null])
+    const [value, setValue] = React.useState<DateRange<Date>>([
+      new Date('2021-01-05T12:34:00.000Z'),
+      new Date('2021-01-09T12:34:00.000Z'),
+    ])
 
     return (
       <LocalizationProvider dateAdapter={AdapterDateFns}>
@@ -108,7 +114,10 @@ export const StaticMode = story(
 
 export const Responsiveness = story(
   () => {
-    const [value, setValue] = React.useState<DateRange<Date>>([null, null])
+    const [value, setValue] = React.useState<DateRange<Date>>([
+      new Date('2021-01-05T12:34:00.000Z'),
+      new Date('2021-01-09T12:34:00.000Z'),
+    ])
 
     return (
       <LocalizationProvider dateAdapter={AdapterDateFns}>
@@ -164,7 +173,10 @@ By default, the DateRangePicker component renders the desktop version if the med
 
 export const FormProps = story(
   () => {
-    const [value, setValue] = React.useState<DateRange<Date>>([null, null])
+    const [value, setValue] = React.useState<DateRange<Date>>([
+      new Date('2021-01-05T12:34:00.000Z'),
+      new Date('2021-01-09T12:34:00.000Z'),
+    ])
 
     return (
       <LocalizationProvider dateAdapter={AdapterDateFns}>
@@ -218,7 +230,10 @@ export const FormProps = story(
 
 export const DifferentNumberOfMonths = story(
   () => {
-    const [value, setValue] = React.useState<DateRange<Date>>([null, null])
+    const [value, setValue] = React.useState<DateRange<Date>>([
+      new Date('2021-01-05T12:34:00.000Z'),
+      new Date('2021-01-09T12:34:00.000Z'),
+    ])
 
     return (
       <LocalizationProvider dateAdapter={AdapterDateFns}>
@@ -289,7 +304,10 @@ export const DisablingDates = story(
       return date ? addWeeks(date, amount) : undefined
     }
 
-    const [value, setValue] = React.useState<DateRange<Date>>([null, null])
+    const [value, setValue] = React.useState<DateRange<Date>>([
+      new Date('2021-01-05T12:34:00.000Z'),
+      new Date('2021-01-09T12:34:00.000Z'),
+    ])
 
     return (
       <LocalizationProvider dateAdapter={AdapterDateFns}>
@@ -383,7 +401,10 @@ const StyledDateRangePickerDay = styled(DateRangePickerDay)(
 
 export const CustomizedDayRendering = story(
   () => {
-    const [value, setValue] = React.useState<DateRange<Date>>([null, null])
+    const [value, setValue] = React.useState<DateRange<Date>>([
+      new Date('2021-01-05T12:34:00.000Z'),
+      new Date('2021-01-09T12:34:00.000Z'),
+    ])
 
     const renderWeekPickerDay = (
       date: Date,

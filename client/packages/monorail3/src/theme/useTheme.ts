@@ -1,7 +1,7 @@
 // eslint-disable-next-line no-restricted-imports
-import * as MUI from '@material-ui/core'
+import { useTheme as MUIuseTheme } from '@mui/material'
 
 /**
  * Hook to get access to the MUI theme
  */
-export const useTheme = MUI.useTheme
+export const useTheme = MUIuseTheme

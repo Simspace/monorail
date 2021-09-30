@@ -3,7 +3,7 @@ import React from 'react'
 import {
   default as MUIFormGroup,
   FormGroupProps as MUIFormGroupProps,
-} from '@material-ui/core/FormGroup'
+} from '@mui/material/FormGroup'
 
 /**
  * Props for FormGroup
