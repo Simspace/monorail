@@ -1,5 +1,6 @@
 import madge, { MadgeConfig } from 'madge'
 import fs from 'fs'
+import path from 'path'
 import { constVoid, pipe } from 'fp-ts/lib/function'
 import * as R from 'fp-ts/lib/ReadonlyRecord'
 import * as A from 'fp-ts/lib/ReadonlyArray'
@@ -8,47 +9,55 @@ import * as str from 'fp-ts/lib/string'
 import * as TE from 'fp-ts/lib/TaskEither'
 import * as T from 'fp-ts/lib/Task'
 
-const unsafeSplitInput = (s: string): [string, string] =>
-  s.split('/') as [string, string]
+const splitPath = (s: string): [dir: string, file: string] => {
+  const p = path.parse(s)
+  return [p.dir, p.name]
+}
 
-const normalizeInput = (input: Record<string, ReadonlyArray<string>>) => {
-  const keys = Object.keys(input).filter(s => s !== 'index.js')
-  const out: Record<string, ReadonlyArray<string>> = {}
-  for (const k of keys) {
-    const outKeys = Object.keys(out)
-    const [dir, file] = unsafeSplitInput(k)
-    const f0 = file.split('.')[0]
-    const deps = input[k]
-    const filteredDeps = pipe(
-      deps,
-      A.filterMap(dep => {
-        const [dirDep, fileDep] = unsafeSplitInput(dep)
-        const f = fileDep.split('.')[0]
-        if (dirDep === dir) {
-          if (f === dirDep) {
-            return O.none
+const normalizeInput = (input: Record<string, ReadonlyArray<string>>) =>
+  pipe(
+    R.keys(input),
+    A.filter(s => s !== 'index.js'),
+    A.reduce({} as Record<string, ReadonlyArray<string>>, (out, k) => {
+      const outKeys = Object.keys(out)
+      const [dir, file] = splitPath(k)
+      const deps = input[k]
+      const filteredDeps = pipe(
+        deps,
+        A.filterMap(dep => {
+          const [dirDep, fileDep] = splitPath(dep)
+          if (dirDep === dir) {
+            if (fileDep === dirDep) {
+              return O.none
+            } else {
+              return O.some(`${dirDep}/${fileDep}`)
+            }
           } else {
-            return O.some(`${dirDep}/${f}`)
+            if (fileDep === dirDep || fileDep === 'index') {
+              return O.some(dirDep)
+            } else {
+              return O.some(`${dirDep}/${fileDep}`)
+            }
+          }
+        }),
+      )
+      if (A.isNonEmpty(filteredDeps) || !A.elem(str.Eq)(dir)(outKeys)) {
+        if (dir !== file && file !== 'index') {
+          return {
+            ...out,
+            [`${dir}/${file}`]: filteredDeps,
           }
         } else {
-          if (f === dirDep || f === 'index') {
-            return O.some(dirDep)
-          } else {
-            return O.some(`${dirDep}/${f}`)
+          return {
+            ...out,
+            [dir]: filteredDeps,
           }
         }
-      }),
-    )
-    if (A.isNonEmpty(filteredDeps) || !A.elem(str.Eq)(dir)(outKeys)) {
-      if (dir !== f0 && f0 !== 'index') {
-        out[`${dir}/${f0}`] = filteredDeps
       } else {
-        out[dir] = filteredDeps
+        return out
       }
-    }
-  }
-  return out
-}
+    }),
+  )
 
 const processRawData = (input: Record<string, ReadonlyArray<string>>) => {
   input = normalizeInput(input)
