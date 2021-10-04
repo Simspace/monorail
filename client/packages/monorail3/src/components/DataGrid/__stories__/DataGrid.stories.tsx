@@ -4,6 +4,7 @@ import { DataGrid, DataGridProps } from '../DataGrid'
 import { story } from '../../../__tests__/helpers/storybook'
 import { defaultStoryMeta } from './DataGrid.stories.gen'
 import { GridValueGetterParams } from '@mui/x-data-grid'
+import { useDemoData } from '@mui/x-data-grid-generator'
 
 /**
  * Metadata for DataGrid stories - update/extend as needed
@@ -79,4 +80,25 @@ const Template = story<DataGridProps>(args => {
 
 /** Default story for DataGrid (edit/remove by hand if needed) */
 export const Default = story(Template)
-// TODO: add more stories below
+
+// export const DataGridLayoutFlex = story<DataGridProps>(args => {
+//   const { data } = useDemoData({
+//     dataSet: 'Commodity',
+//     rowLength: 5,
+//     maxColumns: 6,
+//   })
+//   console.log(data)
+
+//   return (
+//     <div style={{ height: 400, width: '100%' }}>
+//       <div style={{ display: 'flex', height: '100%' }}>
+//         <div style={{ flexGrow: 1 }}>
+//           <DataGrid {...args} {...data} />
+//         </div>
+//       </div>
+//     </div>
+//   )
+// })
+
+// export const DataGridLayoutPredefinedDimensions = story<DataGridProps>()
+// export const DataGridLayoutAutoHeight = story<DataGridProps>()
