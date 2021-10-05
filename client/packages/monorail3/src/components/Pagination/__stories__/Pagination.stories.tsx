@@ -5,13 +5,13 @@ import { story } from '../../../__tests__/helpers/storybook'
 import { defaultStoryMeta } from './Pagination.stories.gen'
 import { Stack } from '../../Stack/Stack'
 import { Typography } from '../../Typography/Typography'
-import styled from '@material-ui/core/styles/styled'
-import usePagination from '@material-ui/core/usePagination/usePagination'
+import styled from '@mui/material/styles/styled'
+import usePagination from '@mui/material/usePagination/usePagination'
 import { TablePagination } from '../../TablePagination/TablePagination'
 /**
  * Metadata for Pagination stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Navigation/Pagination' }
 /**
  * Story template (edit/remove by hand if needed)
  *

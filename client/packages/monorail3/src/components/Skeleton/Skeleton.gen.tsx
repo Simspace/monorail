@@ -4,7 +4,7 @@ import {
   default as MUISkeleton,
   SkeletonProps as MUISkeletonProps,
   SkeletonTypeMap,
-} from '@material-ui/core/Skeleton'
+} from '@mui/material/Skeleton'
 
 /**
  * Props for Skeleton

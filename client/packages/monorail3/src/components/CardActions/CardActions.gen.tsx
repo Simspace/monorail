@@ -3,7 +3,7 @@ import React from 'react'
 import {
   default as MUICardActions,
   CardActionsProps as MUICardActionsProps,
-} from '@material-ui/core/CardActions'
+} from '@mui/material/CardActions'
 
 /**
  * Props for CardActions
