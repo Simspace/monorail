@@ -78,7 +78,6 @@ const Template = story<DataGridProps>(args => {
   )
 })
 
-/** Default story for DataGrid (edit/remove by hand if needed) */
 export const Default = story(Template)
 
 // export const DataGridLayoutFlex = story<DataGridProps>(args => {

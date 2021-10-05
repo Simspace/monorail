@@ -72,7 +72,6 @@ By default, columns are ordered according to the order they are included in the 
   },
 )
 
-/** Default story for DataGrid (edit/remove by hand if needed) */
 export const Default = story(Template)
 
 export const HeaderColumnsGrid = story<DataGridProps>(
@@ -1193,6 +1192,7 @@ Grouping columns allows you to have multiple levels of columns in your header an
     },
   },
 })
+
 export const ColumnPinningGrid = story<DataGridProps>(args => <></>, {
   parameters: {
     docs: {
@@ -1204,6 +1204,7 @@ Sticky (or frozen, locked, or pinned) columns are columns that are visible at al
     },
   },
 })
+
 export const ColumnSpanningGrid = story<DataGridProps>(args => <></>, {
   parameters: {
     docs: {
