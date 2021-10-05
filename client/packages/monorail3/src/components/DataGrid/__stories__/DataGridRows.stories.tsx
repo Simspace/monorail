@@ -224,7 +224,7 @@ export const DenseHeightGrid = story<DataGridProps>(
 
     return (
       <div style={{ height: 400, width: '100%' }}>
-        <DataGrid rowHeight={25} {...data} />
+        <DataGrid rowHeight={25} {...args} {...data} />
       </div>
     )
   },

@@ -240,7 +240,11 @@ export const ColumnHidingGrid = story<DataGridProps>(
     ]
     return (
       <div style={{ height: 250, width: '100%' }}>
-        <DataGrid columns={[{ field: 'id', hide: true }]} rows={rows} />
+        <DataGrid
+          columns={[{ field: 'id', hide: true }]}
+          rows={rows}
+          {...args}
+        />
       </div>
     )
   },
@@ -313,7 +317,7 @@ export const ValueGetterGrid = story<DataGridProps>(
   args => {
     return (
       <div style={{ height: 400, width: '100%' }}>
-        <DataGrid rows={rows} columns={columns} />
+        <DataGrid rows={rows} columns={columns} {...args} />
       </div>
     )
   },
@@ -502,7 +506,7 @@ export const RenderCellGrid = story<DataGridProps>(
     ]
     return (
       <div style={{ height: 300, width: '100%' }}>
-        <DataGrid rows={rows} columns={columns} />
+        <DataGrid rows={rows} columns={columns} {...args} />
       </div>
     )
   },
@@ -740,7 +744,7 @@ export const RenderExpandCellGrid = story<DataGridProps>(
     ]
     return (
       <div style={{ height: 300, width: '100%' }}>
-        <DataGrid rows={rows} columns={columns} />
+        <DataGrid rows={rows} columns={columns} {...args} />
       </div>
     )
   },
@@ -790,7 +794,7 @@ export const RenderHeaderGrid = story<DataGridProps>(
     ]
     return (
       <div style={{ height: 300, width: '100%' }}>
-        <DataGrid rows={rows} columns={columns} />
+        <DataGrid rows={rows} columns={columns} {...args} />
       </div>
     )
   },
@@ -945,7 +949,7 @@ export const ColumnTypesGrid = story<DataGridProps>(
 
     return (
       <div style={{ height: 300, width: '100%' }}>
-        <DataGrid columns={columns} rows={rows} />
+        <DataGrid columns={columns} rows={rows} {...args} />
       </div>
     )
   },
@@ -1085,7 +1089,7 @@ export const ColumnMenuGrid = story<DataGridProps>(
 
     return (
       <div style={{ height: 400, width: '100%' }}>
-        <DataGrid {...data} disableColumnMenu />
+        <DataGrid {...args} {...data} disableColumnMenu />
       </div>
     )
   },
