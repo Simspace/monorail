@@ -1,22 +1,41 @@
-// Edit this file to add new stories
 import React from 'react'
 import { TextareaAutosize, TextareaAutosizeProps } from '../TextareaAutosize'
 import { story } from '../../../__tests__/helpers/storybook'
 import { defaultStoryMeta } from './TextareaAutosize.stories.gen'
-/**
- * Metadata for TextareaAutosize stories - update/extend as needed
- */
-export default { ...defaultStoryMeta }
-/**
- * Story template (edit/remove by hand if needed)
- *
- * Note: there should be at least one "Default" story that uses this template with the "story" function.
- * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
- */
+
+export default { ...defaultStoryMeta, title: 'Inputs/TextareaAutosize' }
+
 const Template = story<TextareaAutosizeProps>(
   args => <TextareaAutosize {...args} />,
   { args: {} },
 )
-/** Default story for TextareaAutosize (edit/remove by hand if needed) */
+
 export const Default = story(Template)
-// TODO: add more stories below
+
+export const Empty = story(() => (
+  <TextareaAutosize
+    aria-label="empty textarea"
+    placeholder="Empty"
+    style={{ width: 200 }}
+  />
+))
+
+export const MinimumHeight = story(() => (
+  <TextareaAutosize
+    aria-label="minimum height"
+    minRows={3}
+    placeholder="Minimum 3 rows"
+    style={{ width: 200 }}
+  />
+))
+
+export const MaximumHeight = story(() => (
+  <TextareaAutosize
+    maxRows={4}
+    aria-label="maximum height"
+    placeholder="Maximum 4 rows"
+    defaultValue="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+          ut labore et dolore magna aliqua."
+    style={{ width: 200 }}
+  />
+))

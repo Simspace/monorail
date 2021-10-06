@@ -3,7 +3,7 @@ import React from 'react'
 import {
   default as MUIStepper,
   StepperProps as MUIStepperProps,
-} from '@material-ui/core/Stepper'
+} from '@mui/material/Stepper'
 
 /**
  * Props for Stepper

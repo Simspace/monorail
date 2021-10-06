@@ -4,7 +4,7 @@ import {
   default as MUIIcon,
   IconProps as MUIIconProps,
   IconTypeMap,
-} from '@material-ui/core/Icon'
+} from '@mui/material/Icon'
 
 /**
  * Props for Icon

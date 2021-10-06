@@ -3,13 +3,13 @@ import React from 'react'
 import {
   default as MUIPickersDay,
   PickersDayProps as MUIPickersDayProps,
-} from '@material-ui/lab/PickersDay'
+} from '@mui/lab/PickersDay'
 
 /**
  * Props for PickersDay
  */
 export type PickersDayProps<TDate> = MUIPickersDayProps<TDate> & {
-  ref?: React.ForwardedRef<unknown>
+  ref?: React.ForwardedRef<HTMLButtonElement>
 }
 
 /**

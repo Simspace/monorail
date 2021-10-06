@@ -6,7 +6,10 @@ import { defaultStoryMeta } from './SpeedDialAction.stories.gen'
 /**
  * Metadata for SpeedDialAction stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default {
+  ...defaultStoryMeta,
+  title: 'Navigation/SpeedDial/SpeedDialAction',
+}
 /**
  * Story template (edit/remove by hand if needed)
  *

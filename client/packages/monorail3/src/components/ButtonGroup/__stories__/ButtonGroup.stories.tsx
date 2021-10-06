@@ -5,7 +5,7 @@ import { story } from '../../../__tests__/helpers/storybook'
 import { defaultStoryMeta } from './ButtonGroup.stories.gen'
 import { Button } from '../../Button/Button'
 import { Stack } from '../../Stack/Stack'
-import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown'
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
 import { ClickAwayListener } from '../../ClickAwayListener/ClickAwayListener'
 import { Grow } from '../../Grow/Grow'
 import { Paper } from '../../Paper/Paper'
@@ -19,7 +19,7 @@ import { Box } from '../../Box/Box'
  * This is intended to be exported as story-level metadata from the main .stories.tsx file, like:
  * "export default { ...defaultStoryMeta } // Add/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Inputs/ButtonGroup' }
 /**
  * Story template (edit/remove by hand if needed)
  *

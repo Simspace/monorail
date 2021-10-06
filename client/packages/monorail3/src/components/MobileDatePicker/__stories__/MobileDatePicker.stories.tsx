@@ -5,27 +5,36 @@ import { story } from '../../../__tests__/helpers/storybook'
 import { defaultStoryMeta } from './MobileDatePicker.stories.gen'
 import { action } from '@storybook/addon-actions'
 import { TextField } from '../../TextField/TextField'
-/**
- * Metadata for MobileDatePicker stories - update/extend as needed
- */
-export default { ...defaultStoryMeta }
-/**
- * Story template (edit/remove by hand if needed)
- *
- * Note: there should be at least one "Default" story that uses this template with the "story" function.
- * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
- */
-const Template = story<MobileDatePickerProps<Date>>(
-  args => (
+
+export default {
+  ...defaultStoryMeta,
+  title: 'Inputs/Date and Time/Date/MobileDatePicker',
+}
+
+const Template = story<MobileDatePickerProps<Date>>(args => {
+  const [value, setValue] = React.useState<Date | null>(
+    new Date('2021-01-01T12:34:00.000Z'),
+  )
+
+  return (
     <MobileDatePicker
-      value={new Date()}
+      value={value}
       renderInput={params => <TextField {...params} />}
-      onChange={action('onChange')}
+      onChange={newValue => {
+        setValue(newValue)
+        action('onChange')
+      }}
       {...args}
     />
-  ),
-  { args: {} },
-)
-/** Default story for MobileDatePicker (edit/remove by hand if needed) */
-export const Default = story(Template)
-// TODO: add more stories below
+  )
+})
+
+export const Default = story(Template, {
+  parameters: {
+    docs: {
+      description: {
+        component: `MobileDatePicker is used when the user is in a mobile browser, based on a media-query check. This component should not likely be used directly.`,
+      },
+    },
+  },
+})

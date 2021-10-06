@@ -1,23 +1,23 @@
 // Edit this file to add new stories
 import React from 'react'
-import { styled, alpha } from '@material-ui/core/styles'
-import Archive from '@material-ui/icons/Archive'
-import Check from '@material-ui/icons/Check'
-import Cloud from '@material-ui/icons/Cloud'
-import ContentCopy from '@material-ui/icons/ContentCopy'
-import ContentCut from '@material-ui/icons/ContentCut'
-import ContentPaste from '@material-ui/icons/ContentPaste'
-import Drafts from '@material-ui/icons/Drafts'
-import Edit from '@material-ui/icons/Edit'
-import FileCopy from '@material-ui/icons/FileCopy'
-import KeyboardArrowDown from '@material-ui/icons/KeyboardArrowDown'
-import Logout from '@material-ui/icons/Logout'
-import MoreHoriz from '@material-ui/icons/MoreHoriz'
-import MoreVert from '@material-ui/icons/MoreVert'
-import Send from '@material-ui/icons/Send'
-import Settings from '@material-ui/icons/Settings'
-import PersonAdd from '@material-ui/icons/PersonAdd'
-import PriorityHigh from '@material-ui/icons/PriorityHigh'
+import { styled, alpha } from '@mui/material/styles'
+import Archive from '@mui/icons-material/Archive'
+import Check from '@mui/icons-material/Check'
+import Cloud from '@mui/icons-material/Cloud'
+import ContentCopy from '@mui/icons-material/ContentCopy'
+import ContentCut from '@mui/icons-material/ContentCut'
+import ContentPaste from '@mui/icons-material/ContentPaste'
+import Drafts from '@mui/icons-material/Drafts'
+import Edit from '@mui/icons-material/Edit'
+import FileCopy from '@mui/icons-material/FileCopy'
+import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown'
+import Logout from '@mui/icons-material/Logout'
+import MoreHoriz from '@mui/icons-material/MoreHoriz'
+import MoreVert from '@mui/icons-material/MoreVert'
+import Send from '@mui/icons-material/Send'
+import Settings from '@mui/icons-material/Settings'
+import PersonAdd from '@mui/icons-material/PersonAdd'
+import PriorityHigh from '@mui/icons-material/PriorityHigh'
 
 import { Menu, MenuProps } from '../Menu'
 import { story } from '../../../__tests__/helpers/storybook'
@@ -40,7 +40,7 @@ import { Typography } from '../../Typography/Typography'
 /**
  * Metadata for Menu stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Navigation/Menu' }
 
 const Template = story<MenuProps>(
   args => {
@@ -576,6 +576,7 @@ export const MaxHeight = story<MenuProps>(
           aria-expanded={open ? 'true' : undefined}
           aria-haspopup="true"
           onClick={handleClick}
+          size="large"
         >
           <MoreVert />
         </IconButton>

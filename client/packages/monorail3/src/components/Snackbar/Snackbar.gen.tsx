@@ -3,7 +3,7 @@ import React from 'react'
 import {
   default as MUISnackbar,
   SnackbarProps as MUISnackbarProps,
-} from '@material-ui/core/Snackbar'
+} from '@mui/material/Snackbar'
 
 /**
  * Props for Snackbar

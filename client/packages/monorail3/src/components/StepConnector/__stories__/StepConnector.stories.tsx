@@ -1,22 +1,77 @@
-// Edit this file to add new stories
 import React from 'react'
 import { StepConnector, StepConnectorProps } from '../StepConnector'
 import { story } from '../../../__tests__/helpers/storybook'
 import { defaultStoryMeta } from './StepConnector.stories.gen'
+import { Box } from '../../Box/Box'
+import { StepLabel } from '../../StepLabel/StepLabel'
+import { Stepper } from '../../Stepper/Stepper'
+import { Step } from '../../Step/Step'
 /**
  * Metadata for StepConnector stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
-/**
- * Story template (edit/remove by hand if needed)
- *
- * Note: there should be at least one "Default" story that uses this template with the "story" function.
- * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
- */
-const Template = story<StepConnectorProps>(
-  args => <StepConnector {...args} />,
-  { args: {} },
+export default {
+  ...defaultStoryMeta,
+  title: 'Navigation/Stepper/StepConnector',
+}
+
+export const Default = story<StepConnectorProps>(
+  args => (
+    <Box sx={{ width: '100%' }}>
+      <Stepper connector={<StepConnector {...args} />}>
+        <Step>
+          <StepLabel>Click me</StepLabel>
+        </Step>
+        <Step>
+          <StepLabel>Not me</StepLabel>
+        </Step>
+        <Step>
+          <StepLabel>Click me</StepLabel>
+        </Step>
+      </Stepper>
+    </Box>
+  ),
+  {
+    parameters: {
+      docs: {
+        description: {
+          component: `
+A line that connects steps visually. Reacts to things like orientation and active state of a given \`Step\`.
+`,
+        },
+      },
+    },
+  },
 )
-/** Default story for StepConnector (edit/remove by hand if needed) */
-export const Default = story(Template)
-// TODO: add more stories below
+
+export const Custom = story(
+  () => (
+    <Box sx={{ width: '100%' }}>
+      <Stepper
+        connector={
+          <div style={{ border: '1px solid red', flex: '1 1 auto' }} />
+        }
+      >
+        <Step>
+          <StepLabel>Click me</StepLabel>
+        </Step>
+        <Step>
+          <StepLabel>Not me</StepLabel>
+        </Step>
+        <Step>
+          <StepLabel>Click me</StepLabel>
+        </Step>
+      </Stepper>
+    </Box>
+  ),
+  {
+    parameters: {
+      docs: {
+        description: {
+          story: `
+The \`Stepper\` component has a \`connector\` prop, which can be any JSX element. Careful with the flex!
+`,
+        },
+      },
+    },
+  },
+)

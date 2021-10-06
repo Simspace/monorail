@@ -6,7 +6,7 @@ import { defaultStoryMeta } from './ToggleButton.stories.gen'
 /**
  * Metadata for ToggleButton stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Inputs/ToggleButton' }
 /**
  * Story template (edit/remove by hand if needed)
  *

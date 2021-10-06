@@ -3,8 +3,8 @@ import React from 'react'
 import {
   default as MUIAutocomplete,
   AutocompleteProps as MUIAutocompleteProps,
-} from '@material-ui/core/Autocomplete'
-import { ChipTypeMap } from '@material-ui/core/Chip'
+} from '@mui/material/Autocomplete'
+import { ChipTypeMap } from '@mui/material/Chip'
 
 /**
  * Props for Autocomplete

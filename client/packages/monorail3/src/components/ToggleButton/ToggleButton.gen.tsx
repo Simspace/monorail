@@ -4,7 +4,7 @@ import {
   default as MUIToggleButton,
   ToggleButtonProps as MUIToggleButtonProps,
   ToggleButtonTypeMap,
-} from '@material-ui/core/ToggleButton'
+} from '@mui/material/ToggleButton'
 
 /**
  * Props for ToggleButton
