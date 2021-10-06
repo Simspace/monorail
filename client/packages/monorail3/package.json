@@ -23,6 +23,7 @@
     "@mui/material": "5.0.1",
     "@mui/styles": "5.0.1",
     "@mui/styled-engine-sc": "5.0.0",
+    "@mui/x-data-grid": "4.0.1",
     "@storybook/addon-a11y": "^6.3.7",
     "@storybook/addon-actions": "^6.3.7",
     "@storybook/addon-controls": "^6.3.7",
@@ -78,7 +79,8 @@
       "<rootDir>/jest/jest.postsetup.ts"
     ],
     "moduleNameMapper": {
-      "@material-ui/styled-engine": "@material-ui/styled-engine-sc"
+      "@mui/styled-engine": "@mui/styled-engine-sc",
+      "@material-ui/core": "@mui/material"
     },
     "testEnvironment": "jsdom"
   }
