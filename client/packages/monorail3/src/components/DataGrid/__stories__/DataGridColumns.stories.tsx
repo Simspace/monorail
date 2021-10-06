@@ -260,15 +260,14 @@ export const ColumnHidingGrid = story<DataGridProps>(
   },
 )
 
-export const ColumnSizingGrid = story(
-  args => {
-    return <></>
-  },
-  {
-    parameters: {
-      docs: {
-        description: {
-          story: `❗️ Only available in \`DataGridPro\` (https://mui.com/components/data-grid/columns/#resizing)
+export const ColumnSizingGrid = story(args => {
+  return <></>
+})
+
+ColumnSizingGrid.parameters = {
+  docs: {
+    description: {
+      story: `❗️ Only available in \`DataGridPro\` (https://mui.com/components/data-grid/columns/#resizing)
 
 By default, \`DataGridPro\` allows all columns to be resized by dragging the right portion of the column separator.
 
@@ -280,11 +279,12 @@ To capture changes in the width of a column there are two callbacks that are cal
 
 - \`onColumnResize\`: Called while a column is being resized.
 - \`onColumnWidthChange\`: Called after the width of a column is changed, but not during resizing.`,
-        },
-      },
     },
   },
-)
+  creevey: {
+    skip: "Story relies on DataGridPro (paid) which we don't have yet.",
+  },
+}
 
 //#region Value getter
 const getFullName = (params: GridValueGetterParams) => {
@@ -834,130 +834,129 @@ You can check the  [styling cells](https://mui.com/components/data-grid/style/#s
 )
 
 //#region Column Types
-export const ColumnTypesGrid = story<DataGridProps>(
-  args => {
-    const initialRows = [
+export const ColumnTypesGrid = story<DataGridProps>(args => {
+  const initialRows = [
+    {
+      id: 1,
+      name: 'Damien',
+      age: 25,
+      dateCreated: randomCreatedDate(),
+      lastLogin: randomUpdatedDate(),
+      isAdmin: true,
+      country: 'Spain',
+    },
+    {
+      id: 2,
+      name: 'Nicolas',
+      age: 36,
+      dateCreated: randomCreatedDate(),
+      lastLogin: randomUpdatedDate(),
+      isAdmin: false,
+      country: 'France',
+    },
+    {
+      id: 3,
+      name: 'Kate',
+      age: 19,
+      dateCreated: randomCreatedDate(),
+      lastLogin: randomUpdatedDate(),
+      isAdmin: false,
+      country: 'Brazil',
+    },
+  ]
+
+  const [rows, setRows] = React.useState(initialRows)
+
+  const deleteUser = React.useCallback(
+    (id: GridRowId) => () => {
+      setRows(prevRows => prevRows.filter(row => row.id !== id))
+    },
+    [],
+  )
+
+  const toggleAdmin = React.useCallback(
+    (id: GridRowId) => () => {
+      setRows(prevRows =>
+        prevRows.map(row =>
+          row.id === id ? { ...row, isAdmin: !row.isAdmin } : row,
+        ),
+      )
+    },
+    [],
+  )
+
+  const duplicateUser = React.useCallback(
+    (id: GridRowId) => () => {
+      setRows(prevRows => {
+        const rowToDuplicate = prevRows.find(row => row.id === id)!
+        const newRows = [...prevRows, { ...rowToDuplicate, id: Date.now() }]
+        console.log(newRows)
+        return newRows
+      })
+    },
+    [],
+  )
+
+  const columns = React.useMemo(
+    () => [
+      { field: 'name', type: 'string' },
+      { field: 'age', type: 'number' },
+      { field: 'dateCreated', type: 'date', width: 130 },
+      { field: 'lastLogin', type: 'dateTime', width: 180 },
+      { field: 'isAdmin', type: 'boolean', width: 120 },
       {
-        id: 1,
-        name: 'Damien',
-        age: 25,
-        dateCreated: randomCreatedDate(),
-        lastLogin: randomUpdatedDate(),
-        isAdmin: true,
-        country: 'Spain',
+        field: 'country',
+        type: 'singleSelect',
+        width: 120,
+        valueOptions: [
+          'Bulgaria',
+          'Netherlands',
+          'France',
+          'United Kingdom',
+          'Spain',
+          'Brazil',
+        ],
       },
       {
-        id: 2,
-        name: 'Nicolas',
-        age: 36,
-        dateCreated: randomCreatedDate(),
-        lastLogin: randomUpdatedDate(),
-        isAdmin: false,
-        country: 'France',
+        field: 'actions',
+        type: 'actions',
+        width: 80,
+        // TODO: Is any here ok?
+        getActions: (params: any) => [
+          <GridActionsCellItem
+            icon={<Delete />}
+            label="Delete"
+            onClick={deleteUser(params.id)}
+          />,
+          <GridActionsCellItem
+            icon={<Security />}
+            label="Toggle Admin"
+            onClick={toggleAdmin(params.id)}
+            showInMenu
+          />,
+          <GridActionsCellItem
+            icon={<FileCopy />}
+            label="Duplicate User"
+            onClick={duplicateUser(params.id)}
+            showInMenu
+          />,
+        ],
       },
-      {
-        id: 3,
-        name: 'Kate',
-        age: 19,
-        dateCreated: randomCreatedDate(),
-        lastLogin: randomUpdatedDate(),
-        isAdmin: false,
-        country: 'Brazil',
-      },
-    ]
+    ],
+    [deleteUser, toggleAdmin, duplicateUser],
+  )
 
-    const [rows, setRows] = React.useState(initialRows)
+  return (
+    <div style={{ height: 300, width: '100%' }}>
+      <DataGrid columns={columns} rows={rows} {...args} />
+    </div>
+  )
+})
 
-    const deleteUser = React.useCallback(
-      (id: GridRowId) => () => {
-        setRows(prevRows => prevRows.filter(row => row.id !== id))
-      },
-      [],
-    )
-
-    const toggleAdmin = React.useCallback(
-      (id: GridRowId) => () => {
-        setRows(prevRows =>
-          prevRows.map(row =>
-            row.id === id ? { ...row, isAdmin: !row.isAdmin } : row,
-          ),
-        )
-      },
-      [],
-    )
-
-    const duplicateUser = React.useCallback(
-      (id: GridRowId) => () => {
-        setRows(prevRows => {
-          const rowToDuplicate = prevRows.find(row => row.id === id)!
-          const newRows = [...prevRows, { ...rowToDuplicate, id: Date.now() }]
-          console.log(newRows)
-          return newRows
-        })
-      },
-      [],
-    )
-
-    const columns = React.useMemo(
-      () => [
-        { field: 'name', type: 'string' },
-        { field: 'age', type: 'number' },
-        { field: 'dateCreated', type: 'date', width: 130 },
-        { field: 'lastLogin', type: 'dateTime', width: 180 },
-        { field: 'isAdmin', type: 'boolean', width: 120 },
-        {
-          field: 'country',
-          type: 'singleSelect',
-          width: 120,
-          valueOptions: [
-            'Bulgaria',
-            'Netherlands',
-            'France',
-            'United Kingdom',
-            'Spain',
-            'Brazil',
-          ],
-        },
-        {
-          field: 'actions',
-          type: 'actions',
-          width: 80,
-          // TODO: Is any here ok?
-          getActions: (params: any) => [
-            <GridActionsCellItem
-              icon={<Delete />}
-              label="Delete"
-              onClick={deleteUser(params.id)}
-            />,
-            <GridActionsCellItem
-              icon={<Security />}
-              label="Toggle Admin"
-              onClick={toggleAdmin(params.id)}
-              showInMenu
-            />,
-            <GridActionsCellItem
-              icon={<FileCopy />}
-              label="Duplicate User"
-              onClick={duplicateUser(params.id)}
-              showInMenu
-            />,
-          ],
-        },
-      ],
-      [deleteUser, toggleAdmin, duplicateUser],
-    )
-
-    return (
-      <div style={{ height: 300, width: '100%' }}>
-        <DataGrid columns={columns} rows={rows} {...args} />
-      </div>
-    )
-  },
-  {
-    parameters: {
-      docs: {
-        description: {
-          story: `To facilitate configuration of the columns, some column types are predefined. By default, columns are assumed to hold strings, so the default column string type will be applied. As a result, column sorting will use the string comparator, and the column content will be aligned to the left side of the cell.
+ColumnTypesGrid.parameters = {
+  docs: {
+    description: {
+      story: `To facilitate configuration of the columns, some column types are predefined. By default, columns are assumed to hold strings, so the default column string type will be applied. As a result, column sorting will use the string comparator, and the column content will be aligned to the left side of the cell.
 
 The following are the native column types:
 
@@ -974,29 +973,31 @@ To use most of the column types, you only need to define the \`type\` property i
 - If the column type is \`'singleSelect'\`, you also need to set the \`valueOptions\` property in the respective column definition.
 
 
-    {
-      field: 'country',
-      type: 'singleSelect',
-      valueOptions: ['United Kingdom', 'Spain', 'Brazil']
-    }
+{
+  field: 'country',
+  type: 'singleSelect',
+  valueOptions: ['United Kingdom', 'Spain', 'Brazil']
+}
 
 
 - If the column type is \`'actions'\`, you need to provide a \`getActions\` function that returns an array of actions available for each row (React elements). You can add the \`showInMenu\` prop on the returned React elements to signal the data grid to group these actions inside a row menu.
 
 
-    {
-      field: 'actions',
-      type: 'actions',
-      getActions: (params: GridRowParams) => [
-        <GridActionsCellItem icon={...} onClick={...} label="Delete">,
-        <GridActionsCellItem icon={...} onClick={...} label="Print" showInMenu>,
-      ]
-    }`,
-        },
-      },
+{
+  field: 'actions',
+  type: 'actions',
+  getActions: (params: GridRowParams) => [
+    <GridActionsCellItem icon={...} onClick={...} label="Delete">,
+    <GridActionsCellItem icon={...} onClick={...} label="Print" showInMenu>,
+  ]
+}`,
     },
   },
-)
+  creevey: {
+    skip:
+      'Mismatch expected because data gets regenerated by mui/x-data-grid-generator.',
+  },
+}
 //endregion
 
 //#region Custom column types
@@ -1020,115 +1021,116 @@ const useCustomColumnTypesGridStyles = makeStyles({
   },
 })
 
-export const CustomColumnTypesGrid = story<DataGridProps>(
-  args => {
-    const rows = [
-      {
-        id: 1,
-        status: randomStatusOptions(),
-        subTotal: randomPrice(),
-        total: randomPrice(),
-      },
-      {
-        id: 2,
-        status: randomStatusOptions(),
-        subTotal: randomPrice(),
-        total: randomPrice(),
-      },
-      {
-        id: 3,
-        status: randomStatusOptions(),
-        subTotal: randomPrice(),
-        total: randomPrice(),
-      },
-    ]
+export const CustomColumnTypesGrid = story<DataGridProps>(args => {
+  const rows = [
+    {
+      id: 1,
+      status: randomStatusOptions(),
+      subTotal: randomPrice(),
+      total: randomPrice(),
+    },
+    {
+      id: 2,
+      status: randomStatusOptions(),
+      subTotal: randomPrice(),
+      total: randomPrice(),
+    },
+    {
+      id: 3,
+      status: randomStatusOptions(),
+      subTotal: randomPrice(),
+      total: randomPrice(),
+    },
+  ]
 
-    const classes = useCustomColumnTypesGridStyles()
+  const classes = useCustomColumnTypesGridStyles()
 
-    return (
-      <div style={{ height: 300, width: '100%' }} className={classes.root}>
-        <DataGrid
-          columns={[
-            { field: 'status', width: 130 },
-            { field: 'subTotal', ...usdPrice },
-            { field: 'total', ...usdPrice },
-          ]}
-          rows={rows}
-        />
-      </div>
-    )
-  },
-  {
-    parameters: {
-      docs: {
-        description: {
-          story: `You can extend the native column types with your own by simply spreading the necessary properties.
-          
+  return (
+    <div style={{ height: 300, width: '100%' }} className={classes.root}>
+      <DataGrid
+        columns={[
+          { field: 'status', width: 130 },
+          { field: 'subTotal', ...usdPrice },
+          { field: 'total', ...usdPrice },
+        ]}
+        rows={rows}
+      />
+    </div>
+  )
+})
+CustomColumnTypesGrid.storyName = 'Custom column types'
+CustomColumnTypesGrid.parameters = {
+  docs: {
+    description: {
+      story: `You can extend the native column types with your own by simply spreading the necessary properties.
+      
 The demo below defines a new column type: \`usdPrice\` that extends the native \`number\` column type. 
 
-    const usdPrice: GridColTypeDef = {
-      type: 'number',
-      width: 130,
-      valueFormatter: ({ value }) => valueFormatter.format(Number(value)),
-      cellClassName: 'font-tabular-nums',
-    };`,
-        },
-      },
+const usdPrice: GridColTypeDef = {
+  type: 'number',
+  width: 130,
+  valueFormatter: ({ value }) => valueFormatter.format(Number(value)),
+  cellClassName: 'font-tabular-nums',
+};`,
     },
   },
-)
+  creevey: {
+    skip:
+      'Mismatch expected because data gets regenerated by mui/x-data-grid-generator.',
+  },
+}
 //#endregion
 
-export const ColumnMenuGrid = story<DataGridProps>(
-  args => {
-    const { data } = useDemoData({
-      dataSet: 'Commodity',
-      rowLength: 20,
-      maxColumns: 5,
-    })
+export const ColumnMenuGrid = story<DataGridProps>(args => {
+  const { data } = useDemoData({
+    dataSet: 'Commodity',
+    rowLength: 20,
+    maxColumns: 5,
+  })
 
-    return (
-      <div style={{ height: 400, width: '100%' }}>
-        <DataGrid {...args} {...data} disableColumnMenu />
-      </div>
-    )
-  },
-  {
-    parameters: {
-      docs: {
-        description: {
-          story:
-            'By default, each column header displays a column menu. The column menu allows actions to be performed in the context of the target column, e.g. filtering. To disable the column menu, set the prop `disableColumnMenu={true}`.',
-        },
-      },
+  return (
+    <div style={{ height: 400, width: '100%' }}>
+      <DataGrid {...args} {...data} disableColumnMenu />
+    </div>
+  )
+})
+ColumnMenuGrid.storyName = 'Column menu'
+ColumnMenuGrid.parameters = {
+  docs: {
+    description: {
+      story:
+        'By default, each column header displays a column menu. The column menu allows actions to be performed in the context of the target column, e.g. filtering. To disable the column menu, set the prop `disableColumnMenu={true}`.',
     },
   },
-)
-
-export const ColumnSelectorGrid = story<DataGridProps>(
-  args => {
-    const { data } = useDemoData({
-      dataSet: 'Commodity',
-      rowLength: 10,
-      maxColumns: 10,
-    })
-
-    return (
-      <div style={{ height: 400, width: '100%' }}>
-        <DataGrid
-          {...data}
-          components={{
-            Toolbar: GridToolbar,
-          }}
-        />
-      </div>
-    )
+  creevey: {
+    skip:
+      'Mismatch expected because data gets regenerated by mui/x-data-grid-generator.',
   },
-  {
-    parameters: {
-      docs: {
-        description: {
-          story: `To enable the the toolbar you need to add \`Toolbar: GridToolbar\` to the grid \`components\` prop.
+}
+
+export const ColumnSelectorGrid = story<DataGridProps>(args => {
+  const { data } = useDemoData({
+    dataSet: 'Commodity',
+    rowLength: 10,
+    maxColumns: 10,
+  })
+
+  return (
+    <div style={{ height: 400, width: '100%' }}>
+      <DataGrid
+        {...data}
+        components={{
+          Toolbar: GridToolbar,
+        }}
+      />
+    </div>
+  )
+})
+ColumnSelectorGrid.storyName = 'Column selector'
+ColumnSelectorGrid.parameters = {
+  docs: {
+    description: {
+      story: `To enable the the toolbar you need to add \`Toolbar: GridToolbar\` to the grid \`components\` prop.
 
 In addition, the column selector can be shown by using the "Show columns" menu item in the column menu.
 
@@ -1136,40 +1138,41 @@ The user can choose which columns are visible using the column selector from the
 
 To disable the column selector, set the prop \`disableColumnSelector={true}\`.
 `,
-        },
-      },
     },
   },
-)
-
-export const ColumnOrderingGrid = story<DataGridProps>(
-  args => {
-    const { data } = useDemoData({
-      dataSet: 'Commodity',
-      rowLength: 20,
-      maxColumns: 20,
-    })
-
-    return (
-      <></>
-      // TODO: Uncomment once we have DataGridPro (paid)
-      // <div style={{ height: 400, width: '100%' }}>
-      //   <DataGridPro {...data} />
-      // </div>
-    )
+  creevey: {
+    skip:
+      'Mismatch expected because data gets regenerated by mui/x-data-grid-generator.',
   },
-  {
-    parameters: {
-      docs: {
-        description: {
-          story: `❗️ Only available in \`DataGridPro\` (https://mui.com/components/data-grid/columns/#column-reorder)
+}
+
+export const ColumnOrderingGrid = story<DataGridProps>(args => {
+  const { data } = useDemoData({
+    dataSet: 'Commodity',
+    rowLength: 20,
+    maxColumns: 20,
+  })
+
+  return (
+    <></>
+    // TODO: Uncomment once we have DataGridPro (paid)
+    // <div style={{ height: 400, width: '100%' }}>
+    //   <DataGridPro {...data} />
+    // </div>
+  )
+})
+
+ColumnOrderingGrid.parameters = {
+  docs: {
+    description: {
+      story: `❗️ Only available in \`DataGridPro\` (https://mui.com/components/data-grid/columns/#column-reorder)
 
 By default, \`DataGridPro\` allows all column reordering by dragging the header cells and moving them left or right.
 
 By default, \`DataGridPro\` allows all column reordering by dragging the header cells and moving them left or right.
 
 To disable reordering on all columns, set the prop \`disableColumnReorder={true}\`.
-        
+    
 To disable reordering in a specific column, set the \`disableReorder\` property to true in the \`GridColDef\` of the respective column.
 
 In addition, column reordering emits the following events that can be imported:
@@ -1178,45 +1181,55 @@ In addition, column reordering emits the following events that can be imported:
 - \`columnHeaderDragEnter\`: emitted when the cursor enters another header cell while dragging.
 - \`columnHeaderDragOver\`: emitted when dragging a header cell over another header cell.
 - \`columnHeaderDragEnd\`: emitted when dragging of a header cell stops.`,
-        },
-      },
     },
   },
-)
+  creevey: {
+    skip: "Story relies on DataGridPro (paid) which we don't have yet.",
+  },
+}
 
-export const ColumnGroupsGrid = story<DataGridProps>(args => <></>, {
-  parameters: {
-    docs: {
-      description: {
-        story: `🚧 This feature isn't implemented yet. It's coming.
+export const ColumnGroupsGrid = story<DataGridProps>(args => <></>)
+
+ColumnGroupsGrid.parameters = {
+  docs: {
+    description: {
+      story: `🚧 This feature isn't implemented yet. It's coming.
 
 
 Grouping columns allows you to have multiple levels of columns in your header and the ability, if needed, to 'open and close' column groups to show and hide additional columns.`,
-      },
     },
   },
-})
+  creevey: {
+    skip: "Story relies on DataGridPro (paid) which we don't have yet.",
+  },
+}
 
-export const ColumnPinningGrid = story<DataGridProps>(args => <></>, {
-  parameters: {
-    docs: {
-      description: {
-        story: `🚧 This feature isn't implemented yet. It's coming.
-        
+export const ColumnPinningGrid = story<DataGridProps>(args => <></>)
+
+ColumnPinningGrid.parameters = {
+  docs: {
+    description: {
+      story: `🚧 This feature isn't implemented yet. It's coming.
+      
 Sticky (or frozen, locked, or pinned) columns are columns that are visible at all times while the user scrolls the grid horizontally.`,
-      },
     },
   },
-})
+  creevey: {
+    skip: "Story relies on DataGridPro (paid) which we don't have yet.",
+  },
+}
 
-export const ColumnSpanningGrid = story<DataGridProps>(args => <></>, {
-  parameters: {
-    docs: {
-      description: {
-        story: `🚧 This feature isn't implemented yet. It's coming.
-        
+export const ColumnSpanningGrid = story<DataGridProps>(args => <></>)
+
+ColumnSpanningGrid.parameters = {
+  docs: {
+    description: {
+      story: `🚧 This feature isn't implemented yet. It's coming.
+      
 Each cell takes up the width of one column. Column spanning allows to change this default behavior. It allows cells to span multiple columns. This is very close to the "column spanning" in an HTML \`<table>\``,
-      },
     },
   },
-})
+  creevey: {
+    skip: "Story relies on DataGridPro (paid) which we don't have yet.",
+  },
+}
