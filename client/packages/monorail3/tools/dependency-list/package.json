@@ -1,0 +1,23 @@
+{
+  "name": "dependency-list",
+  "version": "0.0.0",
+  "author": "SimSpace",
+  "license": "UNLICENSED",
+  "description": "",
+  "engines": {
+    "node": "8.16.0 || 10.15.1 || 12.10.0 || 12.16.1"
+  },
+  "scripts": {
+    "generate": "ts-node generate.ts"
+  },
+  "devDependencies": {
+    "@types/node": "12.12.70",
+    "@types/madge": "5.0.0",
+    "typescript": "4.4.2",
+    "ts-node": "10.2.1"
+  },
+  "dependencies": {
+    "madge": "5.0.1",
+    "fp-ts": "2.11.4"
+  }
+}
