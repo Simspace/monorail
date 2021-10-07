@@ -31,6 +31,8 @@ export default {
           // Also, this kind of makes sense since we are using styled-components already.
           // https://next.material-ui.com/guides/styled-engine/#how-to-switch-to-styled-components
           '@mui/styled-engine': '@mui/styled-engine-sc',
+          // @mui/x-data-grid still references the legacy MUI paths - this works-around that for now
+          '@material-ui/core': '@mui/material',
         },
       },
     }

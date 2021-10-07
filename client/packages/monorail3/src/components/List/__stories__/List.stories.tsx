@@ -863,22 +863,20 @@ export const CustomizedList = story<ListProps>(
       <Box sx={{ display: 'flex' }}>
         <StyledEngineProvider injectFirst>
           <ThemeProvider
-            theme={createTheme(
-              adaptV4Theme({
-                components: {
-                  MuiListItemButton: {
-                    defaultProps: {
-                      disableTouchRipple: true,
-                    },
+            theme={createTheme({
+              components: {
+                MuiListItemButton: {
+                  defaultProps: {
+                    disableTouchRipple: true,
                   },
                 },
-                palette: {
-                  mode: 'dark',
-                  primary: { main: 'rgb(102, 157, 246)' },
-                  background: { paper: 'rgb(5, 30, 52)' },
-                },
-              }),
-            )}
+              },
+              palette: {
+                mode: 'dark',
+                primary: { main: 'rgb(102, 157, 246)' },
+                background: { paper: 'rgb(5, 30, 52)' },
+              },
+            })}
           >
             <Paper elevation={0} sx={{ maxWidth: 256 }}>
               <FireNav component="nav" disablePadding>
