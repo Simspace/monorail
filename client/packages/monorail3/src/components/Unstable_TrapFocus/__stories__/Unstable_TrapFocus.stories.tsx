@@ -10,7 +10,7 @@ import { Portal as PortalComponent } from '../../Portal/Portal'
 /**
  * Metadata for Unstable_TrapFocus stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Utils/Unstable_TrapFocus' }
 
 const Template = story<Unstable_TrapFocusProps>(
   args => {

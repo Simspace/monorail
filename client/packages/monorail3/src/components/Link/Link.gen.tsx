@@ -4,7 +4,7 @@ import {
   default as MUILink,
   LinkProps as MUILinkProps,
   LinkTypeMap,
-} from '@material-ui/core/Link'
+} from '@mui/material/Link'
 
 /**
  * Props for Link
@@ -12,7 +12,7 @@ import {
 export type LinkProps<
   D extends React.ElementType = LinkTypeMap['defaultComponent'],
   P = {}
-> = MUILinkProps<D, P> & { ref?: React.ForwardedRef<unknown> }
+> = MUILinkProps<D, P> & { ref?: React.ForwardedRef<HTMLAnchorElement> }
 
 /**
  * Link

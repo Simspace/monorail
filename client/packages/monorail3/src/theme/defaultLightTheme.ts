@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-restricted-imports
-import * as MUI from '@material-ui/core'
+import { PaletteOptions, Theme, createTheme, ThemeOptions } from '@mui/material'
 
 import { baseTheme } from './baseTheme'
 import { getThemeComponents } from './themeComponents'
@@ -123,7 +123,7 @@ export const DefaultLightTierColors = {
 }
 
 // https://www.figma.com/file/dKL9YeHgWyxmRHuIjs38f3O9/Monorail-Components?node-id=23496%3A27
-const palette: MUI.PaletteOptions = {
+const palette: PaletteOptions = {
   primary: {
     light: '#7AA8FF',
     main: '#1465FF',
@@ -174,20 +174,20 @@ const palette: MUI.PaletteOptions = {
 // We're doing this so we have all the base theme settings populated for doing the component-level overrides. We want
 // a Theme here, rather than ThemeOptions because we want all the values to be non-optional and filled-in for the
 // component overrides.
-const themeWithoutComponents: MUI.Theme = MUI.createTheme({
+const themeWithoutComponents: Theme = createTheme({
   ...baseTheme,
   palette: palette,
 })
 
 // Now create the `components` overrides using the theme we just created
-const components: MUI.ThemeOptions['components'] = getThemeComponents(
+const components: ThemeOptions['components'] = getThemeComponents(
   themeWithoutComponents,
 )
 
 /**
  * The default light theme which combines the `baseTheme`, the light theme overrides, and the component-level overrides.
  */
-export const defaultLightTheme: MUI.Theme = MUI.createTheme(
+export const defaultLightTheme: Theme = createTheme(
   {
     ...themeWithoutComponents,
     components: components,

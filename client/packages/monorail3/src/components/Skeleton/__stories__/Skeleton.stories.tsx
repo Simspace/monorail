@@ -6,7 +6,7 @@ import { defaultStoryMeta } from './Skeleton.stories.gen'
 /**
  * Metadata for Skeleton stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Feedback/Skeleton' }
 /**
  * Story template (edit/remove by hand if needed)
  *

@@ -8,7 +8,7 @@ import { Checkbox } from '../../Checkbox/Checkbox'
 /**
  * Metadata for FormGroup stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Inputs/FormGroup' }
 
 const Template = story<FormGroupProps>(
   args => (

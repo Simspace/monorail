@@ -3,7 +3,7 @@ import React from 'react'
 import {
   default as MUIPopover,
   PopoverProps as MUIPopoverProps,
-} from '@material-ui/core/Popover'
+} from '@mui/material/Popover'
 
 /**
  * Props for Popover

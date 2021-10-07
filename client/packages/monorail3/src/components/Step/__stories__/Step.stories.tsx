@@ -9,7 +9,7 @@ import { StepButton } from '../../StepButton/StepButton.gen'
 /**
  * Metadata for Step stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Navigation/Stepper/Step' }
 
 export const Default = story<StepProps>(
   args => (

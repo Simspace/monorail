@@ -3,7 +3,7 @@ import React from 'react'
 import {
   default as MUISlide,
   SlideProps as MUISlideProps,
-} from '@material-ui/core/Slide'
+} from '@mui/material/Slide'
 
 /**
  * Props for Slide

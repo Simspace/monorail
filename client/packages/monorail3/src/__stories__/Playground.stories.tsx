@@ -1,5 +1,5 @@
 import React from 'react'
-import MenuIcon from '@material-ui/icons/Menu'
+import MenuIcon from '@mui/icons-material/Menu'
 import { Container } from '../components/Container/Container'
 import { AppBar } from '../components/AppBar/AppBar'
 import { Toolbar } from '../components/Toolbar/Toolbar'

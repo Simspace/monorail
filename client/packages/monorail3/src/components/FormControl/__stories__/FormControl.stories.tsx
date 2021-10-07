@@ -10,7 +10,7 @@ import { Checkbox } from '../../Checkbox/Checkbox'
 /**
  * Metadata for FormControl stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Inputs/FormControl' }
 
 const Template = story<FormControlProps>(
   args => (

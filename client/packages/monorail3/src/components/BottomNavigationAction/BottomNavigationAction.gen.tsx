@@ -3,8 +3,8 @@ import React from 'react'
 import {
   default as MUIBottomNavigationAction,
   BottomNavigationActionProps as MUIBottomNavigationActionProps,
-} from '@material-ui/core/BottomNavigationAction'
-import { ButtonBaseTypeMap } from '@material-ui/core/ButtonBase'
+} from '@mui/material/BottomNavigationAction'
+import { ButtonBaseTypeMap } from '@mui/material/ButtonBase'
 
 /**
  * Props for BottomNavigationAction

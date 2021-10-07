@@ -3,7 +3,7 @@ import React from 'react'
 import {
   default as MUITimePicker,
   TimePickerProps as MUITimePickerProps,
-} from '@material-ui/lab/TimePicker'
+} from '@mui/lab/TimePicker'
 
 /**
  * Props for TimePicker
