@@ -3,7 +3,7 @@ import React from 'react'
 import {
   default as MUICalendarPicker,
   CalendarPickerProps as MUICalendarPickerProps,
-} from '@material-ui/lab/CalendarPicker'
+} from '@mui/lab/CalendarPicker'
 
 /**
  * Props for CalendarPicker

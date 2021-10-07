@@ -4,7 +4,7 @@ import {
   default as MUIModal,
   ModalProps as MUIModalProps,
   ModalTypeMap,
-} from '@material-ui/core/Modal'
+} from '@mui/material/Modal'
 
 /**
  * Props for Modal

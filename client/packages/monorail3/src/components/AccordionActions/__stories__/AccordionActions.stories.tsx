@@ -8,7 +8,10 @@ import { Button } from '../../Button/Button'
 /**
  * Metadata for AccordionActions stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default {
+  ...defaultStoryMeta,
+  title: 'Surfaces/Accordion/AccordionActions',
+}
 
 /**
  * Story template (edit/remove by hand if needed)

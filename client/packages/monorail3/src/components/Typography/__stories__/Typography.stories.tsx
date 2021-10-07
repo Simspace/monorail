@@ -4,14 +4,14 @@ import { Typography, TypographyProps } from '../Typography'
 import { story } from '../../../__tests__/helpers/storybook'
 import { defaultStoryMeta } from './Typography.stories.gen'
 import { Box } from '../../Box/Box'
-import { styled } from '@material-ui/core/styles'
+import { styled } from '@mui/material/styles'
 import { useTheme } from '../../../theme/useTheme'
 import { Stack } from '../../Stack/Stack'
 
 /**
  * Metadata for Typography stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Data Display/Typography' }
 
 /**
  * Story template (edit/remove by hand if needed)

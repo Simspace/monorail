@@ -3,7 +3,7 @@ import React from 'react'
 import {
   default as MUIDatePicker,
   DatePickerProps as MUIDatePickerProps,
-} from '@material-ui/lab/DatePicker'
+} from '@mui/lab/DatePicker'
 
 /**
  * Props for DatePicker

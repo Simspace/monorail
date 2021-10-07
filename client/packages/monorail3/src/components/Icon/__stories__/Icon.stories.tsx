@@ -6,7 +6,7 @@ import { defaultStoryMeta } from './Icon.stories.gen'
 /**
  * Metadata for Icon stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Data Display/Icon' }
 /**
  * Story template (edit/remove by hand if needed)
  *

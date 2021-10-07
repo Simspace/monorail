@@ -21,7 +21,10 @@ export default {
 }
 
 const Template = story<StaticDateRangePickerProps<Date>>(args => {
-  const [value, setValue] = React.useState<DateRange<Date>>([null, null])
+  const [value, setValue] = React.useState<DateRange<Date>>([
+    new Date('2021-01-01T12:34:00.000Z'),
+    new Date('2021-01-03T12:34:00.000Z'),
+  ])
 
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>

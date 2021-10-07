@@ -7,13 +7,13 @@ import { Box } from '../../Box/Box'
 import { FormControlLabel } from '../../FormControlLabel/FormControlLabel'
 import { Switch } from '../../Switch/Switch'
 import { Paper } from '../../Paper/Paper'
-import { formControlLabelClasses, Typography } from '@material-ui/core'
+import { formControlLabelClasses, Typography } from '@mui/material'
 /**
  * Metadata for Collapse stories - update/extend as needed
  * This is intended to be exported as story-level metadata from the main .stories.tsx file, like:
  * "export default { ...defaultStoryMeta } // Add/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Utils/Transitions/Collapse' }
 
 const box = (
   <Paper sx={{ m: 1 }} elevation={4}>
