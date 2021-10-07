@@ -3,8 +3,8 @@ import React from 'react'
 import { Badge, BadgeProps } from '../Badge'
 import { story } from '../../../__tests__/helpers/storybook'
 import { defaultStoryMeta } from './Badge.stories.gen'
-import { styled } from '@material-ui/core/styles'
-import MailIcon from '@material-ui/icons/Mail'
+import { styled } from '@mui/material/styles'
+import MailIcon from '@mui/icons-material/Mail'
 import { IconButton } from '../../IconButton/IconButton'
 import { Stack } from '../../Stack/Stack'
 import { Box } from '../../Box/Box'
@@ -12,9 +12,9 @@ import { ButtonGroup } from '../../ButtonGroup/ButtonGroup'
 import { Button } from '../../Button/Button'
 import { FormControlLabel } from '../../FormControlLabel/FormControlLabel'
 import { Switch } from '../../Switch/Switch'
-import AddIcon from '@material-ui/icons/Add'
-import RemoveIcon from '@material-ui/icons/Remove'
-import BadgeUnstyled from '@material-ui/unstyled/BadgeUnstyled'
+import AddIcon from '@mui/icons-material/Add'
+import RemoveIcon from '@mui/icons-material/Remove'
+import BadgeUnstyled from '@mui/core/BadgeUnstyled'
 
 /**
  * Metadata for Badge stories - update/extend as needed
@@ -74,7 +74,7 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 
 export const CustomizedBadges = story(
   () => (
-    <IconButton aria-label="cart">
+    <IconButton aria-label="cart" size="large">
       <StyledBadge badgeContent={4} color="secondary">
         <MailIcon />
       </StyledBadge>
@@ -394,7 +394,7 @@ function notificationsLabel(count: number) {
 
 export const Accessibility = story(
   () => (
-    <IconButton aria-label={notificationsLabel(100)}>
+    <IconButton aria-label={notificationsLabel(100)} size="large">
       <Badge badgeContent={100} color="secondary">
         <MailIcon />
       </Badge>

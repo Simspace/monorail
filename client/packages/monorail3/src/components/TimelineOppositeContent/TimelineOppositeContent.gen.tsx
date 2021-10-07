@@ -3,7 +3,7 @@ import React from 'react'
 import {
   default as MUITimelineOppositeContent,
   TimelineOppositeContentProps as MUITimelineOppositeContentProps,
-} from '@material-ui/lab/TimelineOppositeContent'
+} from '@mui/lab/TimelineOppositeContent'
 
 /**
  * Props for TimelineOppositeContent
