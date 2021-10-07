@@ -6,7 +6,10 @@ import { defaultStoryMeta } from './DialogContentText.stories.gen'
 /**
  * Metadata for DialogContentText stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default {
+  ...defaultStoryMeta,
+  title: 'Feedback/Dialog/DialogContentText',
+}
 /**
  * Story template (edit/remove by hand if needed)
  *

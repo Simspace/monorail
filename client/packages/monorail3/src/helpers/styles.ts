@@ -1,2 +1,2 @@
-export * from '@material-ui/core/styles'
-export * from '@material-ui/utils'
+export { alpha, styled } from '@mui/material/styles'
+export { visuallyHidden } from '@mui/utils'

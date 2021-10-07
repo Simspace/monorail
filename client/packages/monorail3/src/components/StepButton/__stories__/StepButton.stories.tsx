@@ -3,7 +3,7 @@ import React from 'react'
 import { StepButton, StepButtonProps } from '../StepButton'
 import { story } from '../../../__tests__/helpers/storybook'
 import { defaultStoryMeta } from './StepButton.stories.gen'
-import { WarningAmberTwoTone } from '@material-ui/icons'
+import { WarningAmberTwoTone } from '@mui/icons-material'
 import { StepLabel } from '../../StepLabel/StepLabel'
 import { Box } from '../../Box/Box'
 import { Step } from '../../Step/Step'
@@ -13,7 +13,7 @@ import { Stepper } from '../../Stepper/Stepper'
 /**
  * Metadata for StepButton stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Navigation/Stepper/StepButton' }
 
 export const Default = story<StepButtonProps>(
   args => (

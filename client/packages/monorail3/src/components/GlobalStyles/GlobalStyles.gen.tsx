@@ -3,7 +3,7 @@ import React from 'react'
 import {
   default as MUIGlobalStyles,
   GlobalStylesProps as MUIGlobalStylesProps,
-} from '@material-ui/core/GlobalStyles'
+} from '@mui/material/GlobalStyles'
 
 /**
  * Props for GlobalStyles

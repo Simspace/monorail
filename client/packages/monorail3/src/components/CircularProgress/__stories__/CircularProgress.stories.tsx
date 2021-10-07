@@ -7,9 +7,9 @@ import { Stack } from '../../Stack/Stack'
 import { Box } from '../../Box/Box'
 import { Fab } from '../../Fab/Fab'
 import { Button } from '../../Button/Button'
-import green from '@material-ui/core/colors/green'
-import CheckIcon from '@material-ui/icons/Check'
-import SaveIcon from '@material-ui/icons/Save'
+import green from '@mui/material/colors/green'
+import CheckIcon from '@mui/icons-material/Check'
+import SaveIcon from '@mui/icons-material/Save'
 import { Typography } from '../../Typography/Typography'
 
 /**
@@ -17,7 +17,7 @@ import { Typography } from '../../Typography/Typography'
  * This is intended to be exported as story-level metadata from the main .stories.tsx file, like:
  * "export default { ...defaultStoryMeta } // Add/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Feedback/CircularProgress' }
 
 /**
  * Story template (edit/remove by hand if needed)

@@ -4,7 +4,7 @@ import {
   default as MUIPaper,
   PaperProps as MUIPaperProps,
   PaperTypeMap,
-} from '@material-ui/core/Paper'
+} from '@mui/material/Paper'
 
 /**
  * Props for Paper

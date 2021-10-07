@@ -22,7 +22,9 @@ const Template = story<MonthPickerProps<Date>>(args => {
   const minDate = new Date('2020-01-01T00:00:00.000')
   const maxDate = new Date('2034-01-01T00:00:00.000')
 
-  const [date, setDate] = React.useState<Date | null>(new Date())
+  const [date, setDate] = React.useState<Date | null>(
+    new Date('2021-01-01T12:34:00.000Z'),
+  )
 
   return (
     <MonthPicker

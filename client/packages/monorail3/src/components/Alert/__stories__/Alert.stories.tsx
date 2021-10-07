@@ -9,16 +9,16 @@ import { Button } from '../../Button/Button'
 import { Box } from '../../Box/Box'
 import { Collapse } from '../../Collapse/Collapse'
 import { IconButton } from '../../IconButton/IconButton'
-import CheckIcon from '@material-ui/icons/Check'
-import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline'
-import CloseIcon from '@material-ui/icons/Close'
+import CheckIcon from '@mui/icons-material/Check'
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
+import CloseIcon from '@mui/icons-material/Close'
 import { Typography } from '../../Typography/Typography'
 import { Snackbar } from '../../Snackbar/Snackbar'
 
 /**
  * Metadata for Alert stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Feedback/Alert' }
 
 /**
  * Story template (edit/remove by hand if needed)
