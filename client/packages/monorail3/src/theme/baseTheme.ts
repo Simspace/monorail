@@ -1,6 +1,5 @@
 // eslint-disable-next-line no-restricted-imports
 import { createTheme } from '@mui/material'
-import { gothamFontFaceDeclarations, gothamFontFamily } from './fonts/gotham'
 
 // This "default" theme should house the global defaults that apply to all themes. This would likely include
 // common settings that are not likely to differ between specific themes, like spacing, shadows, breakpoints, etc.
@@ -13,20 +12,97 @@ export const baseTheme = createTheme(
     spacing: 8,
 
     typography: {
-      fontFamily: gothamFontFamily,
+      fontFamily: `'Proxima Nova', 'Open Sans', 'Gill Sans MT', 'Gill Sans', Corbel,
+      Arial, sans-serif`,
       button: {
         fontWeight: 700,
         textTransform: 'capitalize',
       },
-    },
-
-    components: {
-      MuiCssBaseline: {
-        styleOverrides: `
-        ${gothamFontFaceDeclarations}
-      `,
+      h1: {
+        fontSize: 64,
+      },
+      h2: {
+        fontSize: 56,
+      },
+      h3: {
+        fontSize: 48,
+      },
+      h4: {
+        fontSize: 32,
+      },
+      body2: {
+        fontWeight: 400,
+      },
+      subtitle2: {
+        fontWeight: 500,
       },
     },
+
+    // components: {
+    //   MuiCssBaseline: {
+    //     styleOverrides: `
+    //     @font-face {
+    //       font-family: 'Proxima Nova';
+    //       font-style: normal;
+    //       font-weight: 200;
+    //       src: url('./fonts/ProximaNova/proximanova-thin-webfont.woff2')
+    //           format('woff2'),
+    //         url('./fonts/ProximaNova/proximanova-thin-webfont.woff')
+    //           format('woff');
+    //     }
+
+    //     @font-face {
+    //       font-family: 'Proxima Nova';
+    //       font-style: normal;
+    //       font-weight: 300;
+    //       src: url('./fonts/ProximaNova/proximanova-light-webfont.woff2')
+    //           format('woff2'),
+    //         url('./fonts/ProximaNova/proximanova-light-webfont.woff')
+    //           format('woff');
+    //     }
+
+    //     @font-face {
+    //       font-family: 'Proxima Nova';
+    //       font-style: normal;
+    //       font-weight: 400;
+    //       src: url('./fonts/ProximaNova/proximanova-regular-webfont.woff2')
+    //           format('woff2'),
+    //         url('./fonts/ProximaNova/proximanova-regular-webfont.woff')
+    //           format('woff');
+    //     }
+
+    //     @font-face {
+    //       font-family: 'Proxima Nova';
+    //       font-style: normal;
+    //       font-weight: 500;
+    //       src: url('./fonts/ProximaNova/proximanova-medium-webfont.woff2')
+    //           format('woff2'),
+    //         url('./fonts/ProximaNova/proximanova-medium-webfont.woff')
+    //           format('woff');
+    //     }
+
+    //     @font-face {
+    //       font-family: 'Proxima Nova';
+    //       font-style: normal;
+    //       font-weight: 700;
+    //       src: url('./fonts/ProximaNova/proximanova-bold-webfont.woff2')
+    //           format('woff2'),
+    //         url('./fonts/ProximaNova/proximanova-bold-webfont.woff')
+    //           format('woff');
+    //     }
+
+    //     @font-face {
+    //       font-family: 'Proxima Nova';
+    //       font-style: normal;
+    //       font-weight: 800;
+    //       src: url('./fonts/ProximaNova/proximanova-extrabold-webfont.woff2')
+    //           format('woff2'),
+    //         url('./fonts/ProximaNova/proximanova-extrabold-webfont.woff')
+    //           format('woff');
+    //     }
+    //   `,
+    //   },
+    // },
   },
   {},
 )
