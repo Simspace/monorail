@@ -4,7 +4,7 @@ import {
   default as MUIButtonGroup,
   ButtonGroupProps as MUIButtonGroupProps,
   ButtonGroupTypeMap,
-} from '@material-ui/core/ButtonGroup'
+} from '@mui/material/ButtonGroup'
 
 /**
  * Props for ButtonGroup

@@ -3,7 +3,7 @@ import React from 'react'
 import {
   default as MUIRating,
   RatingProps as MUIRatingProps,
-} from '@material-ui/core/Rating'
+} from '@mui/material/Rating'
 
 /**
  * Props for Rating

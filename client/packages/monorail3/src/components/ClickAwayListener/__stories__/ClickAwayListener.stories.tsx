@@ -4,7 +4,7 @@ import { ClickAwayListener, ClickAwayListenerProps } from '../ClickAwayListener'
 import { story } from '../../../__tests__/helpers/storybook'
 import { defaultStoryMeta } from './ClickAwayListener.stories.gen'
 import { Box } from '../../Box/Box'
-import { SxProps } from '@material-ui/system'
+import { SxProps } from '@mui/system'
 import { Portal } from '../../Portal/Portal'
 
 /**

@@ -3,7 +3,7 @@ import React from 'react'
 import {
   default as MUIUnstable_TrapFocus,
   TrapFocusProps as MUITrapFocusProps,
-} from '@material-ui/core/Unstable_TrapFocus'
+} from '@mui/material/Unstable_TrapFocus'
 
 /**
  * Props for Unstable_TrapFocus

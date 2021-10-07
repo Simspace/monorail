@@ -3,7 +3,7 @@ import React from 'react'
 import {
   default as MUINativeSelect,
   NativeSelectProps as MUINativeSelectProps,
-} from '@material-ui/core/NativeSelect'
+} from '@mui/material/NativeSelect'
 
 /**
  * Props for NativeSelect

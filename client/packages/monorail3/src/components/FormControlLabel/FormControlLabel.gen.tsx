@@ -3,7 +3,7 @@ import React from 'react'
 import {
   default as MUIFormControlLabel,
   FormControlLabelProps as MUIFormControlLabelProps,
-} from '@material-ui/core/FormControlLabel'
+} from '@mui/material/FormControlLabel'
 
 /**
  * Props for FormControlLabel

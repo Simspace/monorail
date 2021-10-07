@@ -7,7 +7,7 @@ import { Box } from '../../Box/Box'
 import { FormControlLabel } from '../../FormControlLabel/FormControlLabel'
 import { Switch } from '../../Switch/Switch'
 import { Paper } from '../../Paper/Paper'
-import { formControlLabelClasses, Typography } from '@material-ui/core'
+import { formControlLabelClasses, Typography } from '@mui/material'
 /**
  * Metadata for Collapse stories - update/extend as needed
  * This is intended to be exported as story-level metadata from the main .stories.tsx file, like:

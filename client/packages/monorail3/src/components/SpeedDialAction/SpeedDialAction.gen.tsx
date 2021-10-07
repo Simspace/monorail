@@ -3,7 +3,7 @@ import React from 'react'
 import {
   default as MUISpeedDialAction,
   SpeedDialActionProps as MUISpeedDialActionProps,
-} from '@material-ui/core/SpeedDialAction'
+} from '@mui/material/SpeedDialAction'
 
 /**
  * Props for SpeedDialAction
