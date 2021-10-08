@@ -29,6 +29,7 @@ const Template = story<DataGridProps>(args => {
   return (
     <div style={{ height: 300, width: '100%' }}>
       <DataGrid
+        {...args}
         {...data}
         components={{
           Toolbar: CustomToolbar,
@@ -89,6 +90,7 @@ export const DensitySelectorSmallGrid = story<DataGridProps>(args => {
   return (
     <div style={{ height: 300, width: '100%' }}>
       <DataGrid
+        {...args}
         {...data}
         density="compact"
         components={{
@@ -103,7 +105,9 @@ DensitySelectorSmallGrid.storyName = 'Density prop'
 DensitySelectorSmallGrid.parameters = {
   docs: {
     description: {
-      story: `The vertical density of the data grid can be set using the \`density\` prop. The \`density\` prop applies the values determined by the \`rowHeight\` and \`headerHeight\` props if supplied. The user can override this setting with the toolbar density selector if provided.`,
+      story: `The vertical density of the data grid can be set using the \`density\` prop. The \`density\` prop applies the values determined by the \`rowHeight\` and \`headerHeight\` props if supplied. The user can override this setting with the toolbar density selector if provided.
+      
+**Keyboard navigation** - https://mui.com/components/data-grid/accessibility/#keyboard-navigation`,
     },
   },
   creevey: {
