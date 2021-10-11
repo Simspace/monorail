@@ -6,7 +6,7 @@ import {
 } from '../BottomNavigationAction'
 import { story } from '../../../__tests__/helpers/storybook'
 import { defaultStoryMeta } from './BottomNavigationAction.stories.gen'
-import RestoreIcon from '@material-ui/icons/Restore'
+import RestoreIcon from '@mui/icons-material/Restore'
 
 /**
  * Metadata for BottomNavigationAction stories - update/extend as needed

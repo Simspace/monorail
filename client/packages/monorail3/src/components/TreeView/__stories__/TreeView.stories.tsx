@@ -5,7 +5,7 @@ import { defaultStoryMeta } from './TreeView.stories.gen'
 import {
   ExpandMore as ExpandMoreIcon,
   ChevronRight as ChevronRightIcon,
-} from '@material-ui/icons'
+} from '@mui/icons-material'
 import {
   TreeItem,
   TreeItemContentProps,
@@ -16,17 +16,17 @@ import {
 import { Box } from '../../Box/Box'
 import { Button } from '../../Button/Button'
 import { Typography } from '../../Typography/Typography'
-import { alpha, styled } from '@material-ui/core/styles'
+import { alpha, styled } from '@mui/material/styles'
 import { SvgIconProps } from '../../SvgIcon/SvgIcon'
-import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount'
-import InfoIcon from '@material-ui/icons/Info'
-import ForumIcon from '@material-ui/icons/Forum'
-import LocalOfferIcon from '@material-ui/icons/LocalOffer'
-import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown'
-import ArrowRightIcon from '@material-ui/icons/ArrowRight'
-import MailIcon from '@material-ui/icons/Mail'
-import DeleteIcon from '@material-ui/icons/Delete'
-import Label from '@material-ui/icons/Label'
+import SupervisorAccountIcon from '@mui/icons-material/SupervisorAccount'
+import InfoIcon from '@mui/icons-material/Info'
+import ForumIcon from '@mui/icons-material/Forum'
+import LocalOfferIcon from '@mui/icons-material/LocalOffer'
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
+import ArrowRightIcon from '@mui/icons-material/ArrowRight'
+import MailIcon from '@mui/icons-material/Mail'
+import DeleteIcon from '@mui/icons-material/Delete'
+import Label from '@mui/icons-material/Label'
 import { FormControlLabel } from '../../FormControlLabel/FormControlLabel'
 import { Switch } from '../../Switch/Switch'
 

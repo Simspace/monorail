@@ -4,7 +4,7 @@ import {
   default as MUIFormLabel,
   FormLabelProps as MUIFormLabelProps,
   FormLabelTypeMap,
-} from '@material-ui/core/FormLabel'
+} from '@mui/material/FormLabel'
 
 /**
  * Props for FormLabel

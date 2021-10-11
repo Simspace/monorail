@@ -3,7 +3,7 @@ import React from 'react'
 import {
   default as MUITextareaAutosize,
   TextareaAutosizeProps as MUITextareaAutosizeProps,
-} from '@material-ui/core/TextareaAutosize'
+} from '@mui/material/TextareaAutosize'
 
 /**
  * Props for TextareaAutosize

@@ -3,7 +3,7 @@ import React from 'react'
 import { AccordionSummary, AccordionSummaryProps } from '../AccordionSummary'
 import { story } from '../../../__tests__/helpers/storybook'
 import { defaultStoryMeta } from './AccordionSummary.stories.gen'
-import ExpandMore from '@material-ui/icons/ExpandMore'
+import ExpandMore from '@mui/icons-material/ExpandMore'
 
 /**
  * Metadata for AccordionSummary stories - update/extend as needed

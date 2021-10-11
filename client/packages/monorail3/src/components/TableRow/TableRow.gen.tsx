@@ -4,7 +4,7 @@ import {
   default as MUITableRow,
   TableRowProps as MUITableRowProps,
   TableRowTypeMap,
-} from '@material-ui/core/TableRow'
+} from '@mui/material/TableRow'
 
 /**
  * Props for TableRow
