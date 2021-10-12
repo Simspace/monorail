@@ -4,19 +4,9 @@ import { DataGrid, DataGridProps } from '../DataGrid'
 import { story } from '../../../__tests__/helpers/storybook'
 import { defaultStoryMeta } from './DataGrid.stories.gen'
 import { GridValueGetterParams } from '@mui/x-data-grid'
-import { useDemoData } from '@mui/x-data-grid-generator'
 
-/**
- * Metadata for DataGrid stories - update/extend as needed
- */
 export default { ...defaultStoryMeta, title: 'Data Grid/DataGrid' }
 
-/**
- * Story template (edit/remove by hand if needed)
- *
- * Note: there should be at least one "Default" story that uses this template with the "story" function.
- * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
- */
 const Template = story<DataGridProps>(args => {
   const columns = [
     { field: 'id', headerName: 'ID', width: 90 },
@@ -79,25 +69,3 @@ const Template = story<DataGridProps>(args => {
 })
 
 export const Default = story(Template)
-
-// export const DataGridLayoutFlex = story<DataGridProps>(args => {
-//   const { data } = useDemoData({
-//     dataSet: 'Commodity',
-//     rowLength: 5,
-//     maxColumns: 6,
-//   })
-//   console.log(data)
-
-//   return (
-//     <div style={{ height: 400, width: '100%' }}>
-//       <div style={{ display: 'flex', height: '100%' }}>
-//         <div style={{ flexGrow: 1 }}>
-//           <DataGrid {...args} {...data} />
-//         </div>
-//       </div>
-//     </div>
-//   )
-// })
-
-// export const DataGridLayoutPredefinedDimensions = story<DataGridProps>()
-// export const DataGridLayoutAutoHeight = story<DataGridProps>()
