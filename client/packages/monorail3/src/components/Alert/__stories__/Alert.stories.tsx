@@ -14,7 +14,6 @@ import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
 import CloseIcon from '@mui/icons-material/Close'
 import { Typography } from '../../Typography/Typography'
 import { Snackbar } from '../../Snackbar/Snackbar'
-import { useTheme } from '@mui/material'
 
 /**
  * Metadata for Alert stories - update/extend as needed

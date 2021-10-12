@@ -20,9 +20,11 @@ export const baseTheme = createTheme(
       },
       h1: {
         fontSize: 64,
+        fontWeight: 400,
       },
       h2: {
         fontSize: 56,
+        fontWeight: 400,
       },
       h3: {
         fontSize: 48,
@@ -30,11 +32,17 @@ export const baseTheme = createTheme(
       h4: {
         fontSize: 32,
       },
+      h6: {
+        fontWeight: 400,
+      },
       body2: {
         fontWeight: 400,
       },
+      subtitle1: {
+        fontWeight: 700,
+      },
       subtitle2: {
-        fontWeight: 500,
+        fontWeight: 700,
       },
     },
 
