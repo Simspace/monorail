@@ -154,7 +154,7 @@ If a cell is in edit mode and has focus, any of the following interactions will 
   },
 }
 
-// TODO v5: remove
+// TODO v5: remove (copied from MUI)
 function getThemePaletteMode(palette: any): string {
   return palette.type || palette.mode
 }

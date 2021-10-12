@@ -101,7 +101,7 @@ export const InfiniteLoadingGrid = story<DataGridProps>(args => {
 
   return (
     <div style={{ height: 400, width: '100%' }}>
-      {/* TODO: Replace with DataGridPro and uncomment onRowsScrollEnd once we have mui/x-data-grid-pro */}
+      {/* TODO(storybook): Replace with DataGridPro and uncomment onRowsScrollEnd once we have mui/x-data-grid-pro */}
       <DataGrid
         {...data}
         rows={data.rows.concat(loadedRows)}
@@ -182,7 +182,7 @@ export const ApiRefRowsGrid = story<DataGridProps>(args => {
 
   return (
     <></>
-    // TODO: Uncomment once we have DataGridPro (paid)
+    // TODO(storybook): Uncomment once we have DataGridPro (paid)
     // <div style={{ height: 400, width: '100%' }}>
     //   <DataGridPro rows={rows} columns={columns} apiRef={apiRef} />
     // </div>

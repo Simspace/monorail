@@ -921,7 +921,6 @@ export const ColumnTypesGrid = story<DataGridProps>(args => {
         field: 'actions',
         type: 'actions',
         width: 80,
-        // TODO: Is any here ok?
         getActions: (params: any) => [
           <GridActionsCellItem
             icon={<Delete />}
@@ -1155,7 +1154,7 @@ export const ColumnOrderingGrid = story<DataGridProps>(args => {
 
   return (
     <></>
-    // TODO: Uncomment once we have DataGridPro (paid)
+    // TODO(storybook): Uncomment once we have DataGridPro (paid)
     // <div style={{ height: 400, width: '100%' }}>
     //   <DataGridPro {...data} />
     // </div>
