@@ -7,7 +7,6 @@ import {
 } from '../DateRangePicker'
 import { story } from '../../../__tests__/helpers/storybook'
 import { defaultStoryMeta } from './DateRangePicker.stories.gen'
-import { action } from '@storybook/addon-actions'
 import { TextField } from '../../TextField/TextField'
 import { Box } from '../../Box/Box'
 import { AdapterDateFns, LocalizationProvider } from '../../../helpers/dateTime'
