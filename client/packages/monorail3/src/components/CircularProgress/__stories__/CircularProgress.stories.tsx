@@ -7,9 +7,9 @@ import { Stack } from '../../Stack/Stack'
 import { Box } from '../../Box/Box'
 import { Fab } from '../../Fab/Fab'
 import { Button } from '../../Button/Button'
-import green from '@material-ui/core/colors/green'
-import CheckIcon from '@material-ui/icons/Check'
-import SaveIcon from '@material-ui/icons/Save'
+import green from '@mui/material/colors/green'
+import CheckIcon from '@mui/icons-material/Check'
+import SaveIcon from '@mui/icons-material/Save'
 import { Typography } from '../../Typography/Typography'
 
 /**

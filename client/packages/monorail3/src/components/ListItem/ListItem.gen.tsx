@@ -3,7 +3,7 @@ import React from 'react'
 import {
   default as MUIListItem,
   ListItemProps as MUIListItemProps,
-} from '@material-ui/core/ListItem'
+} from '@mui/material/ListItem'
 
 /**
  * Props for ListItem

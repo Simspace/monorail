@@ -3,7 +3,7 @@ import React from 'react'
 import {
   default as MUICheckbox,
   CheckboxProps as MUICheckboxProps,
-} from '@material-ui/core/Checkbox'
+} from '@mui/material/Checkbox'
 
 /**
  * Props for Checkbox

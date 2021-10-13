@@ -3,7 +3,7 @@ import React from 'react'
 import {
   default as MUITimelineSeparator,
   TimelineSeparatorProps as MUITimelineSeparatorProps,
-} from '@material-ui/lab/TimelineSeparator'
+} from '@mui/lab/TimelineSeparator'
 
 /**
  * Props for TimelineSeparator

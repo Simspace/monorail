@@ -4,7 +4,7 @@ import {
   default as MUIFormControl,
   FormControlProps as MUIFormControlProps,
   FormControlTypeMap,
-} from '@material-ui/core/FormControl'
+} from '@mui/material/FormControl'
 
 /**
  * Props for FormControl

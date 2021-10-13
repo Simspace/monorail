@@ -3,7 +3,7 @@ import React from 'react'
 import {
   default as MUIMenuList,
   MenuListProps as MUIMenuListProps,
-} from '@material-ui/core/MenuList'
+} from '@mui/material/MenuList'
 
 /**
  * Props for MenuList

@@ -10,19 +10,19 @@ import { List } from '../../List/List'
 import { ListItem } from '../../ListItem/ListItem'
 import { ListItemAvatar } from '../../ListItemAvatar/ListItemAvatar'
 import { Avatar } from '../../Avatar/Avatar'
-import { blue } from '@material-ui/core/colors'
+import { blue } from '@mui/material/colors'
 import { ListItemText } from '../../ListItemText/ListItemText'
-import PersonIcon from '@material-ui/icons/Person'
-import AddIcon from '@material-ui/icons/Add'
+import PersonIcon from '@mui/icons-material/Person'
+import AddIcon from '@mui/icons-material/Add'
 import { DialogContent } from '../../DialogContent/DialogContent'
 import { DialogContentText } from '../../DialogContentText/DialogContentText'
 import { DialogActions } from '../../DialogActions/DialogActions'
-import { TransitionProps } from '@material-ui/core/transitions'
+import { TransitionProps } from '@mui/material/transitions'
 import { Slide } from '../../Slide/Slide'
 import { TextField } from '../../TextField/TextField'
 import { IconButton } from '../../IconButton/IconButton'
-import CloseIcon from '@material-ui/icons/Close'
-import { styled, useTheme } from '@material-ui/core/styles'
+import CloseIcon from '@mui/icons-material/Close'
+import { Breakpoint, styled, useTheme } from '@mui/material/styles'
 import { AppBar } from '../../AppBar/AppBar'
 import { Toolbar } from '../../Toolbar/Toolbar'
 import { Divider } from '../../Divider/Divider'
@@ -33,12 +33,13 @@ import { Select } from '../../Select/Select'
 import { MenuItem } from '../../MenuItem/MenuItem'
 import { FormControlLabel } from '../../FormControlLabel/FormControlLabel'
 import { Switch } from '../../Switch/Switch'
-import useMediaQuery from '@material-ui/core/useMediaQuery'
+import useMediaQuery from '@mui/material/useMediaQuery'
 import { RadioGroup } from '../../RadioGroup/RadioGroup'
 import { Radio } from '../../Radio/Radio'
 import Draggable from 'react-draggable'
 import { Paper, PaperProps } from '../../Paper/Paper'
 import { longParagraph } from '../../../__tests__/helpers/testData'
+import { SelectChangeEvent } from '@mui/material/Select'
 
 const emails = ['username@gmail.com', 'user02@gmail.com']
 
@@ -351,6 +352,7 @@ const BootstrapDialogTitle = (props: DialogTitleProps) => {
             top: 8,
             color: theme => theme.palette.grey[500],
           }}
+          size="large"
         >
           <CloseIcon />
         </IconButton>
@@ -462,6 +464,7 @@ export const FullScreenDialog = story<DialogProps>(() => {
               color="inherit"
               onClick={handleClose}
               aria-label="close"
+              size="large"
             >
               <CloseIcon />
             </IconButton>
@@ -507,7 +510,7 @@ export const OptionalSizes = story<DialogProps>(
     }
 
     const handleMaxWidthChange = (
-      event: React.ChangeEvent<{ value: unknown }>,
+      event: SelectChangeEvent<DialogProps['maxWidth']>,
     ) => {
       setMaxWidth(event.target.value as DialogProps['maxWidth'])
     }
@@ -599,7 +602,7 @@ export const ResponsiveDialog = story<DialogProps>(
   () => {
     const [open, setOpen] = React.useState(false)
     const theme = useTheme()
-    const fullScreen = useMediaQuery(theme.breakpoints.down('md'))
+    const fullScreen = useMediaQuery(theme.breakpoints.down('xl'))
 
     const handleClickOpen = () => {
       setOpen(true)

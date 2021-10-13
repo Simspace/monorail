@@ -59,6 +59,7 @@ type ModuleInfo = {
   muiComponentName?: string
   // A special function for manipulating the type parameters string for the LHS of a type declaration
   muiComponentModifyTypeParametersLhsString?: (lhs: string) => string
+  muiImportFolder?: 'material' | 'lab' | 'x-data-grid'
   monorailComponentRefType?: string
   monorailComponentExtraImports?: Array<string>
   // TODO: The MUI lab DateRange components have an issue that I haven't been able to figure out with the component wrapper functions
@@ -66,7 +67,6 @@ type ModuleInfo = {
   monorailComponentTSIgnoreComponent?: boolean
   storybookFolder1: StorybookFolder1
   storybookFolder2?: StorybookFolder2
-  isLab?: boolean
 }
 
 /**
@@ -165,7 +165,7 @@ const modules: Array<ModuleInfo> = [
     name: 'Autocomplete',
     storybookFolder1: 'Inputs',
     monorailComponentExtraImports: [
-      `import { ChipTypeMap } from '@material-ui/core/Chip'`,
+      `import { ChipTypeMap } from '@mui/material/Chip'`,
     ],
   },
   {
@@ -193,7 +193,7 @@ const modules: Array<ModuleInfo> = [
     storybookFolder1: 'Navigation',
     storybookFolder2: 'BottomNavigation',
     monorailComponentExtraImports: [
-      `import { ButtonBaseTypeMap } from '@material-ui/core/ButtonBase'`,
+      `import { ButtonBaseTypeMap } from '@mui/material/ButtonBase'`,
     ],
     monorailComponentRefType: 'HTMLButtonElement',
   },
@@ -226,13 +226,13 @@ const modules: Array<ModuleInfo> = [
     storybookFolder1: 'Inputs',
     storybookFolder2: 'Date and Time',
     monorailComponentRefType: 'HTMLDivElement',
-    isLab: true,
+    muiImportFolder: 'lab',
   },
   {
     name: 'CalendarPickerSkeleton',
     storybookFolder1: 'Inputs',
     storybookFolder2: 'Date and Time',
-    isLab: true,
+    muiImportFolder: 'lab',
   },
   {
     name: 'Card',
@@ -244,7 +244,7 @@ const modules: Array<ModuleInfo> = [
     storybookFolder2: 'Card',
     monorailComponentRefType: 'HTMLButtonElement',
     monorailComponentExtraImports: [
-      `import { ButtonBaseTypeMap } from '@material-ui/core/ButtonBase'`,
+      `import { ButtonBaseTypeMap } from '@mui/material/ButtonBase'`,
     ],
   },
   {
@@ -292,7 +292,7 @@ const modules: Array<ModuleInfo> = [
     storybookFolder1: 'Inputs',
     storybookFolder2: 'Date and Time',
     monorailComponentRefType: 'HTMLDivElement',
-    isLab: true,
+    muiImportFolder: 'lab',
   },
   {
     name: 'Collapse',
@@ -310,11 +310,18 @@ const modules: Array<ModuleInfo> = [
     storybookFolder1: 'Utils',
   },
   {
+    name: 'DataGrid',
+    muiModuleFileName: 'data-grid.d.ts',
+    muiImportFolder: 'x-data-grid',
+    monorailComponentRefType: 'HTMLDivElement',
+    storybookFolder1: 'Data Grid',
+  },
+  {
     name: 'DatePicker',
     storybookFolder1: 'Inputs',
     storybookFolder2: 'Date and Time',
     monorailComponentRefType: 'HTMLDivElement',
-    isLab: true,
+    muiImportFolder: 'lab',
   },
   {
     name: 'DateRangePicker',
@@ -322,49 +329,49 @@ const modules: Array<ModuleInfo> = [
     storybookFolder2: 'Date and Time',
     monorailComponentRefType: 'HTMLDivElement',
     monorailComponentTSIgnoreComponent: true,
-    isLab: true,
+    muiImportFolder: 'lab',
   },
   {
     name: 'DateRangePickerDay',
     storybookFolder1: 'Inputs',
     storybookFolder2: 'Date and Time',
     monorailComponentRefType: 'HTMLButtonElement',
-    isLab: true,
+    muiImportFolder: 'lab',
   },
   {
     name: 'DateTimePicker',
     storybookFolder1: 'Inputs',
     storybookFolder2: 'Date and Time',
     monorailComponentRefType: 'HTMLDivElement',
-    isLab: true,
+    muiImportFolder: 'lab',
   },
   {
     name: 'DesktopDatePicker',
     storybookFolder1: 'Inputs',
     storybookFolder2: 'Date and Time',
     monorailComponentRefType: 'HTMLDivElement',
-    isLab: true,
+    muiImportFolder: 'lab',
   },
   {
     name: 'DesktopDateRangePicker',
     storybookFolder1: 'Inputs',
     storybookFolder2: 'Date and Time',
     monorailComponentTSIgnoreComponent: true,
-    isLab: true,
+    muiImportFolder: 'lab',
   },
   {
     name: 'DesktopDateTimePicker',
     storybookFolder1: 'Inputs',
     storybookFolder2: 'Date and Time',
     monorailComponentRefType: 'HTMLDivElement',
-    isLab: true,
+    muiImportFolder: 'lab',
   },
   {
     name: 'DesktopTimePicker',
     storybookFolder1: 'Inputs',
     storybookFolder2: 'Date and Time',
     monorailComponentRefType: 'HTMLDivElement',
-    isLab: true,
+    muiImportFolder: 'lab',
   },
   {
     name: 'Dialog',
@@ -510,6 +517,7 @@ const modules: Array<ModuleInfo> = [
   {
     name: 'Link',
     storybookFolder1: 'Navigation',
+    monorailComponentRefType: 'HTMLAnchorElement',
   },
   {
     name: 'List',
@@ -574,28 +582,28 @@ const modules: Array<ModuleInfo> = [
     storybookFolder1: 'Inputs',
     storybookFolder2: 'Date and Time',
     monorailComponentRefType: 'HTMLDivElement',
-    isLab: true,
+    muiImportFolder: 'lab',
   },
   {
     name: 'MobileDateRangePicker',
     storybookFolder1: 'Inputs',
     storybookFolder2: 'Date and Time',
     monorailComponentTSIgnoreComponent: true,
-    isLab: true,
+    muiImportFolder: 'lab',
   },
   {
     name: 'MobileDateTimePicker',
     storybookFolder1: 'Inputs',
     storybookFolder2: 'Date and Time',
     monorailComponentRefType: 'HTMLDivElement',
-    isLab: true,
+    muiImportFolder: 'lab',
   },
   {
     name: 'MobileTimePicker',
     storybookFolder1: 'Inputs',
     storybookFolder2: 'Date and Time',
     monorailComponentRefType: 'HTMLDivElement',
-    isLab: true,
+    muiImportFolder: 'lab',
   },
   {
     name: 'MobileStepper',
@@ -611,7 +619,7 @@ const modules: Array<ModuleInfo> = [
     storybookFolder1: 'Inputs',
     storybookFolder2: 'Date and Time',
     monorailComponentRefType: 'HTMLDivElement',
-    isLab: true,
+    muiImportFolder: 'lab',
   },
   {
     name: 'NativeSelect',
@@ -619,6 +627,7 @@ const modules: Array<ModuleInfo> = [
   },
   {
     name: 'NoSsr',
+    muiModuleFileName: 'index.d.ts',
     storybookFolder1: 'Utils',
   },
   {
@@ -639,7 +648,7 @@ const modules: Array<ModuleInfo> = [
     storybookFolder1: 'Inputs',
     storybookFolder2: 'Date and Time',
     monorailComponentRefType: 'HTMLButtonElement',
-    isLab: true,
+    muiImportFolder: 'lab',
   },
   {
     name: 'Popover',
@@ -728,7 +737,7 @@ const modules: Array<ModuleInfo> = [
     storybookFolder1: 'Inputs',
     storybookFolder2: 'Date and Time',
     monorailComponentRefType: 'HTMLDivElement',
-    isLab: true,
+    muiImportFolder: 'lab',
   },
   {
     name: 'StaticDateRangePicker',
@@ -736,21 +745,21 @@ const modules: Array<ModuleInfo> = [
     storybookFolder2: 'Date and Time',
     monorailComponentRefType: 'HTMLDivElement',
     monorailComponentTSIgnoreComponent: true,
-    isLab: true,
+    muiImportFolder: 'lab',
   },
   {
     name: 'StaticDateTimePicker',
     storybookFolder1: 'Inputs',
     storybookFolder2: 'Date and Time',
     monorailComponentRefType: 'HTMLDivElement',
-    isLab: true,
+    muiImportFolder: 'lab',
   },
   {
     name: 'StaticTimePicker',
     storybookFolder1: 'Inputs',
     storybookFolder2: 'Date and Time',
     monorailComponentRefType: 'HTMLDivElement',
-    isLab: true,
+    muiImportFolder: 'lab',
   },
   {
     name: 'Step',
@@ -762,7 +771,7 @@ const modules: Array<ModuleInfo> = [
     storybookFolder1: 'Navigation',
     storybookFolder2: 'Stepper',
     monorailComponentExtraImports: [
-      `import { ButtonBaseTypeMap } from '@material-ui/core'`,
+      `import { ButtonBaseTypeMap } from '@mui/material'`,
     ],
     monorailComponentRefType: 'HTMLButtonElement',
   },
@@ -853,7 +862,7 @@ const modules: Array<ModuleInfo> = [
     storybookFolder1: 'Data Display',
     storybookFolder2: 'Table',
     monorailComponentExtraImports: [
-      `import { TablePaginationBaseProps } from '@material-ui/core/TablePagination'`,
+      `import { TablePaginationBaseProps } from '@mui/material/TablePagination'`,
     ],
   },
   {
@@ -887,49 +896,49 @@ const modules: Array<ModuleInfo> = [
     storybookFolder1: 'Inputs',
     storybookFolder2: 'Date and Time',
     monorailComponentRefType: 'HTMLDivElement',
-    isLab: true,
+    muiImportFolder: 'lab',
   },
   {
     name: 'Timeline',
     storybookFolder1: 'Data Display',
     monorailComponentRefType: 'HTMLUListElement',
-    isLab: true,
+    muiImportFolder: 'lab',
   },
   {
     name: 'TimelineConnector',
     storybookFolder1: 'Data Display',
     storybookFolder2: 'Timeline',
-    isLab: true,
+    muiImportFolder: 'lab',
   },
   {
     name: 'TimelineContent',
     storybookFolder1: 'Data Display',
     storybookFolder2: 'Timeline',
-    isLab: true,
+    muiImportFolder: 'lab',
   },
   {
     name: 'TimelineDot',
     storybookFolder1: 'Data Display',
     storybookFolder2: 'Timeline',
-    isLab: true,
+    muiImportFolder: 'lab',
   },
   {
     name: 'TimelineItem',
     storybookFolder1: 'Data Display',
     storybookFolder2: 'Timeline',
-    isLab: true,
+    muiImportFolder: 'lab',
   },
   {
     name: 'TimelineOppositeContent',
     storybookFolder1: 'Data Display',
     storybookFolder2: 'Timeline',
-    isLab: true,
+    muiImportFolder: 'lab',
   },
   {
     name: 'TimelineSeparator',
     storybookFolder1: 'Data Display',
     storybookFolder2: 'Timeline',
-    isLab: true,
+    muiImportFolder: 'lab',
   },
   {
     name: 'ToggleButton',
@@ -954,12 +963,12 @@ const modules: Array<ModuleInfo> = [
     name: 'TreeItem',
     storybookFolder1: 'Data Display',
     storybookFolder2: 'TreeView',
-    isLab: true,
+    muiImportFolder: 'lab',
   },
   {
     name: 'TreeView',
     storybookFolder1: 'Data Display',
-    isLab: true,
+    muiImportFolder: 'lab',
   },
   {
     name: 'Typography',
@@ -976,7 +985,7 @@ const modules: Array<ModuleInfo> = [
     name: 'YearPicker',
     storybookFolder1: 'Inputs',
     storybookFolder2: 'Date and Time',
-    isLab: true,
+    muiImportFolder: 'lab',
   },
   {
     name: 'Zoom',
@@ -991,8 +1000,16 @@ const project = new Project({})
 
 // Add all the material-ui/core, material-ui/lab, and Monorail typescript files
 project.addSourceFilesAtPaths([
-  './node_modules/@material-ui/core/**/*{.d.ts,.ts,.tsx}',
-  './node_modules/@material-ui/lab/**/*{.d.ts,.ts,.tsx}',
+  // MUI 5 is now installed at the root - might need to shuffle this around if things change with workspaces
+  // List out all the possible places, and I assume it locates things in the order listed here?
+  '../../node_modules/@mui/material/**/*{.d.ts,.ts,.tsx}',
+  '../../node_modules/@mui/icons-material/**/*{.d.ts,.ts,.tsx}',
+  '../../node_modules/@mui/lab/**/*{.d.ts,.ts,.tsx}',
+  '../../node_modules/@mui/x-data-grid/**/*{.d.ts,.ts,.tsx}',
+  './node_modules/@mui/material/**/*{.d.ts,.ts,.tsx}',
+  './node_modules/@mui/icons-material/**/*{.d.ts,.ts,.tsx}',
+  './node_modules/@mui/lab/**/*{.d.ts,.ts,.tsx}',
+  './node_modules/@mui/x-data-grid/**/*{.d.ts,.ts,.tsx}',
   './src/**/*{.d.ts,.ts,.tsx}',
 ])
 
@@ -1012,11 +1029,18 @@ modules.forEach(module => {
   console.log(`Searching for source file: ${muiModuleFilePathSuffix}`)
 
   // Find the corresponding MUI module
-  const sourceFile = sourceFiles.find(sourceFile =>
+  let sourceFile = sourceFiles.find(sourceFile =>
     sourceFile.getFilePath().endsWith(muiModuleFilePathSuffix),
   )
 
-  if (typeof sourceFile === 'undefined') {
+  if (sourceFile === undefined) {
+    // Try just the module file name without the prefix
+    sourceFile = sourceFiles.find(sourceFile =>
+      sourceFile.getFilePath().endsWith(muiModuleFileName),
+    )
+  }
+
+  if (sourceFile === undefined) {
     // Just throw here to bail the script - we have a configuration problem that needs to be fixed
     throw new Error(
       `Failed to find MUI module in target file: ${muiModuleFileName}. Make sure you have a valid module name configured in the gen script, and override the muiModuleFileName for the module if needed.`,
@@ -1076,19 +1100,32 @@ modules.forEach(module => {
       writer.writeLine(codeGenMessage)
       // Write out imports
       writer.writeLine("import React from 'react'")
+
+      // Make sure we're importing the MUI component from the right place (@mui/material, @mui/lab, @mui/x-data-grid, etc.)
+      const importFolder =
+        module.muiImportFolder !== undefined
+          ? module.muiImportFolder
+          : 'material'
+
+      const importPath =
+        importFolder === 'x-data-grid'
+          ? '@mui/x-data-grid'
+          : `@mui/${importFolder}/${muiComponentName}`
+
+      const componentImportName =
+        module.muiImportFolder === 'x-data-grid' ? module.name : 'default'
+
       // Some components reference a type from MUI like `{Component}TypeMap` (e.g. ButtonTypeMap)
       // Write out an import for a *TypeMap, if there seems to be one in the MUI type params.
       // TODO: this is very naive right now - may need to make this more robust
 
-      const importFolder = module.isLab === true ? 'lab' : 'core'
-
       if (hasTypeMap) {
         writer.writeLine(
-          `import { default as MUI${muiComponentName}, ${muiPropsTypeName} as MUI${muiPropsTypeName}, ${muiComponentName}TypeMap } from '@material-ui/${importFolder}/${muiComponentName}'`,
+          `import { ${componentImportName} as MUI${muiComponentName}, ${muiPropsTypeName} as MUI${muiPropsTypeName}, ${muiComponentName}TypeMap } from '${importPath}'`,
         )
       } else {
         writer.writeLine(
-          `import { default as MUI${muiComponentName}, ${muiPropsTypeName} as MUI${muiPropsTypeName} } from '@material-ui/${importFolder}/${muiComponentName}'`,
+          `import { ${componentImportName} as MUI${muiComponentName}, ${muiPropsTypeName} as MUI${muiPropsTypeName} } from '${importPath}'`,
         )
       }
       // Some components reference other types in their type params, so allow for adding other arbitrary imports.
