@@ -517,6 +517,10 @@ ServerFilterGrid.parameters = {
 Below is a very simple demo on how you could achieve server-side filtering.`,
     },
   },
+
+  creevey: {
+    skip: "Story doesn't load reliably",
+  },
 }
 
 /**
