@@ -5,17 +5,8 @@ import { story } from '../../../__tests__/helpers/storybook'
 import { defaultStoryMeta } from './DataGrid.stories.gen'
 import { GridValueGetterParams } from '@mui/x-data-grid'
 
-/**
- * Metadata for DataGrid stories - update/extend as needed
- */
 export default { ...defaultStoryMeta, title: 'Data Grid/DataGrid' }
 
-/**
- * Story template (edit/remove by hand if needed)
- *
- * Note: there should be at least one "Default" story that uses this template with the "story" function.
- * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
- */
 const Template = story<DataGridProps>(args => {
   const columns = [
     { field: 'id', headerName: 'ID', width: 90 },
@@ -77,6 +68,4 @@ const Template = story<DataGridProps>(args => {
   )
 })
 
-/** Default story for DataGrid (edit/remove by hand if needed) */
 export const Default = story(Template)
-// TODO: add more stories below
