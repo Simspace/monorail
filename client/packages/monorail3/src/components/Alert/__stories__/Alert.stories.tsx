@@ -102,7 +102,7 @@ export const Actions = story<AlertProps>(
         <Alert
           action={
             <Button color="inherit" size="small">
-              UNDO
+              Undo
             </Button>
           }
         >
