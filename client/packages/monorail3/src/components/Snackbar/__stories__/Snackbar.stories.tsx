@@ -47,7 +47,7 @@ const Template = story<SnackbarProps>(
     const action = (
       <React.Fragment>
         <Button color="secondary" size="small" onClick={handleClose}>
-          UNDO
+          Undo
         </Button>
         <IconButton
           size="small"
@@ -338,7 +338,7 @@ export const Transitions = story<SnackbarProps>(
           action={
             <React.Fragment>
               <Button color="secondary" size="small" onClick={handleClose}>
-                UNDO
+                Undo
               </Button>
               <IconButton
                 aria-label="close"
