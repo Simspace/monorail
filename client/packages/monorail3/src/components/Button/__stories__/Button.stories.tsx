@@ -115,7 +115,7 @@ export const VariantsAndColors = story<ButtonProps>(
 
 export const Sizes = story<ButtonProps>(
   () => (
-    <Stack direction="row" spacing={2}>
+    <Stack direction="row" spacing={2} alignItems="center">
       <Button variant="contained" size="extraSmall">
         Extra Small (custom size)
       </Button>

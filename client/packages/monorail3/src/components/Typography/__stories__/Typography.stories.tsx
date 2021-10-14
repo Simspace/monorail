@@ -164,7 +164,7 @@ export const UsingSystemProps = story<TypographyProps>(
     parameters: {
       docs: {
         description: {
-          story: `As a CSS utility component, the Typography supports all system properties. You can use them as prop directly on the component. For instance, a margin-top:`,
+          story: `As a CSS utility component, the Typography supports all system properties. You can use them as prop directly on the component. For instance, a margin-bottom:`,
         },
       },
     },
