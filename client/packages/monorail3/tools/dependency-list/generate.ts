@@ -8,6 +8,7 @@ import * as O from 'fp-ts/lib/Option'
 import * as str from 'fp-ts/lib/string'
 import * as TE from 'fp-ts/lib/TaskEither'
 import * as T from 'fp-ts/lib/Task'
+import * as TS from 'topological-sort'
 
 const splitPath = (s: string): [dir: string, file: string] => {
   const p = path.parse(s)
@@ -120,6 +121,32 @@ const processRawData = (input: Record<string, ReadonlyArray<string>>) => {
   }
 }
 
+const topologicalSort = (
+  input: Record<string, ReadonlyArray<string>>,
+): ReadonlyArray<string> => {
+  // Normalize/clean all the dependency names
+  input = normalizeInput(input)
+
+  // Convert the Record to Map (TopologicalSort wants a Map)
+  const inputMap = pipe(
+    input,
+    R.reduceWithIndex(
+      new Map<string, ReadonlyArray<string>>(),
+      (key, acc, value) => {
+        acc.set(key, value)
+        return acc
+      },
+    ),
+  )
+
+  // Do the sort - reverse the list to create the right order of depdencies
+  const ts = new TS.TopologicalSort(inputMap)
+  const sortedMap = ts.sort()
+  const sortedKeys = [...sortedMap.keys()].reverse()
+
+  return sortedKeys
+}
+
 const mkdir = (
   path: fs.PathLike,
   options: fs.MakeDirectoryOptions,
@@ -170,24 +197,37 @@ const program = (source: string, config: MadgeConfig) =>
     TE.bind('dependencyList', ({ rawDependencyGraph }) =>
       TE.right(processRawData(rawDependencyGraph)),
     ),
+    TE.bind('dependencyListTopological', ({ rawDependencyGraph }) =>
+      TE.right(topologicalSort(rawDependencyGraph)),
+    ),
     TE.chainFirst(() => ensureDirExists('dependency-list-output')),
-    TE.chain(({ madgeInstance, rawDependencyGraph, dependencyList }) =>
-      TE.sequenceArray([
-        pipe(
-          TE.tryCatch(() => madgeInstance.svg(), toError),
-          TE.chain(svg =>
-            writeFile('dependency-list-output/dependency_graph.svg', svg),
+    TE.chain(
+      ({
+        madgeInstance,
+        rawDependencyGraph,
+        dependencyList,
+        dependencyListTopological,
+      }) =>
+        TE.sequenceArray([
+          pipe(
+            TE.tryCatch(() => madgeInstance.svg(), toError),
+            TE.chain(svg =>
+              writeFile('dependency-list-output/dependency_graph.svg', svg),
+            ),
           ),
-        ),
-        writeFile(
-          'dependency-list-output/raw_dependency_graph.json',
-          JSON.stringify(rawDependencyGraph),
-        ),
-        writeFile(
-          'dependency-list-output/dependency_list.json',
-          JSON.stringify(dependencyList),
-        ),
-      ]),
+          writeFile(
+            'dependency-list-output/raw_dependency_graph.json',
+            JSON.stringify(rawDependencyGraph),
+          ),
+          writeFile(
+            'dependency-list-output/dependency_list.json',
+            JSON.stringify(dependencyList),
+          ),
+          writeFile(
+            'dependency-list-output/dependency_list_topological_sort.txt',
+            dependencyListTopological.join('\n'),
+          ),
+        ]),
     ),
     TE.matchE(
       err =>
