@@ -5,6 +5,6 @@ import {
   SnackbarProps as _SnackbarProps,
 } from './Snackbar'
 export * from './Snackbar.gen'
-export { SnackbarOrigin } from '@mui/material'
+export { SnackbarOrigin } from '@mui/material/Snackbar'
 
 // Add more functions/etc. below
