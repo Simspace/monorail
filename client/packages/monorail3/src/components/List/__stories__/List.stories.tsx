@@ -42,7 +42,6 @@ import {
   ThemeProvider,
   Theme,
   StyledEngineProvider,
-  adaptV4Theme,
 } from '@mui/material/styles'
 import { FormGroup } from '../../FormGroup/FormGroup'
 import { FormControlLabel } from '../../FormControlLabel/FormControlLabel'
