@@ -126,12 +126,13 @@ const topologicalSort = (
   input: Record<string, ReadonlyArray<string>>,
 ): ReadonlyArray<string> => {
   // Normalize/clean all the dependency names
-  input = normalizeInput(input)
+  const normalizedInput = normalizeInput(input)
 
   // Create the graph nodes by using all the unique component names - the keys and values of the `input` record.
-  // The nodes are a map with a key for the node, and the node metadata value - in this case we don't care about the value, so just using {} for every node
+  // The nodes are a map with a key for the node, and the node metadata value - in this case we don't care about
+  // the metadata value for nodes, so just using {} for every node.
   const nodes: Map<string, {}> = pipe(
-    input,
+    normalizedInput,
     R.reduceWithIndex(new Set<string>(), (component, acc, dependencies) => {
       acc.add(component)
       dependencies.forEach(dependency => acc.add(dependency))
@@ -145,26 +146,27 @@ const topologicalSort = (
   // Create the graph using all the nodes
   const graph = new TS.TopologicalSort(nodes)
 
-  console.log(graph)
+  //console.log(graph)
 
   // Add the graph edges
   // The input map has a component name as a key and the dependencies as the value array, so add edges from the key to all the value nodes
-  pipe(input, R.toReadonlyArray, a =>
+  pipe(normalizedInput, R.toReadonlyArray, a =>
     a.forEach(([component, dependencies]) => {
       dependencies.forEach(dependency => {
         console.log('edge', component, dependency)
         try {
           graph.addEdge(component, dependency)
         } catch (e) {
-           // There seems to be a double accounting for FilledInput -> InputBase
+          // There seems to be a double accounting for FilledInput -> InputBase
           console.error('Ignoring bad edge:', component, dependency)
         }
       })
     }),
   )
 
-  // Do the sort - reverse the list to create the right order of depdencies
+  // Do the sort - reverse the list to create the right order of dependencies
   const sortedGraph = graph.sort()
+  console.log(sortedGraph)
 
   const sortedGraphKeys = [...sortedGraph.keys()].reverse()
 
