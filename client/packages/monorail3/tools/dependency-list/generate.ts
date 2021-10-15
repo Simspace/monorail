@@ -243,11 +243,11 @@ const program = (source: string, config: MadgeConfig) =>
           ),
           writeFile(
             'dependency-list-output/raw_dependency_graph.json',
-            JSON.stringify(rawDependencyGraph),
+            JSON.stringify(rawDependencyGraph, null, 2),
           ),
           writeFile(
             'dependency-list-output/dependency_list.json',
-            JSON.stringify(dependencyList),
+            JSON.stringify(dependencyList, null, 2),
           ),
           writeFile(
             'dependency-list-output/dependency_list_topological_sort.txt',
