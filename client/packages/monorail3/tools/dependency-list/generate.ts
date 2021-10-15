@@ -155,6 +155,7 @@ const topologicalSort = (
       dependencies.forEach(dependency => {
         console.log('edge', component, dependency)
         try {
+          // Edges represent dependencies
           graph.addEdge(component, dependency)
         } catch (e) {
           // There seems to be a double accounting for certain edges, just ignore them
@@ -168,6 +169,7 @@ const topologicalSort = (
   const sortedGraph = graph.sort()
   console.log(sortedGraph)
 
+  // Reverse the list to get execution order of dependencies
   const sortedGraphKeys = [...sortedGraph.keys()].reverse()
 
   return sortedGraphKeys
