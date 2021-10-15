@@ -157,7 +157,7 @@ const topologicalSort = (
         try {
           graph.addEdge(component, dependency)
         } catch (e) {
-          // There seems to be a double accounting for FilledInput -> InputBase
+          // There seems to be a double accounting for certain edges, just ignore them
           console.error('Ignoring bad edge:', component, dependency)
         }
       })
