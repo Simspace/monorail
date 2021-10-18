@@ -11,7 +11,7 @@ import {
  */
 export type FormControlProps<
   D extends React.ElementType = FormControlTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 > = MUIFormControlProps<D, P> & { ref?: React.ForwardedRef<HTMLDivElement> }
 
 /**
@@ -21,7 +21,7 @@ export const FormControl = React.forwardRef((props, ref) => (
   <MUIFormControl ref={ref} {...props} />
 )) as <
   D extends React.ElementType = FormControlTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 >(
   props: FormControlProps<D, P>,
 ) => JSX.Element
