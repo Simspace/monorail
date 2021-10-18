@@ -1,18 +1,19 @@
 // Edit this file to add new stories
 import React from 'react'
-import { Chip, ChipProps } from '../Chip'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './Chip.stories.gen'
-import { action } from '@storybook/addon-actions'
-import DoneIcon from '@mui/icons-material/Done'
 import DeleteIcon from '@mui/icons-material/Delete'
+import DoneIcon from '@mui/icons-material/Done'
 import FaceIcon from '@mui/icons-material/Face'
 import TagFacesIcon from '@mui/icons-material/TagFaces'
-import { Avatar } from '../../Avatar/Avatar'
-import { Stack } from '../../Stack/Stack'
 import { styled } from '@mui/material/styles'
+import { action } from '@storybook/addon-actions'
+
+import { story } from '../../../__tests__/helpers/storybook'
+import { Avatar } from '../../Avatar/Avatar'
 import { Paper } from '../../Paper/Paper'
+import { Stack } from '../../Stack/Stack'
 import { Typography } from '../../Typography/Typography'
+import { Chip, ChipProps } from '../Chip'
+import { defaultStoryMeta } from './Chip.stories.gen'
 
 /**
  * Metadata for Chip stories - update/extend as needed

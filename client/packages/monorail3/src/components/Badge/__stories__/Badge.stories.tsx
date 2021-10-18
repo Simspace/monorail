@@ -1,20 +1,21 @@
 // Edit this file to add new stories
 import React from 'react'
-import { Badge, BadgeProps } from '../Badge'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './Badge.stories.gen'
-import { styled } from '@mui/material/styles'
+import BadgeUnstyled from '@mui/core/BadgeUnstyled'
+import AddIcon from '@mui/icons-material/Add'
 import MailIcon from '@mui/icons-material/Mail'
+import RemoveIcon from '@mui/icons-material/Remove'
+import { styled } from '@mui/material/styles'
+
+import { story } from '../../../__tests__/helpers/storybook'
+import { Box } from '../../Box/Box'
+import { Button } from '../../Button/Button'
+import { ButtonGroup } from '../../ButtonGroup/ButtonGroup'
+import { FormControlLabel } from '../../FormControlLabel/FormControlLabel'
 import { IconButton } from '../../IconButton/IconButton'
 import { Stack } from '../../Stack/Stack'
-import { Box } from '../../Box/Box'
-import { ButtonGroup } from '../../ButtonGroup/ButtonGroup'
-import { Button } from '../../Button/Button'
-import { FormControlLabel } from '../../FormControlLabel/FormControlLabel'
 import { Switch } from '../../Switch/Switch'
-import AddIcon from '@mui/icons-material/Add'
-import RemoveIcon from '@mui/icons-material/Remove'
-import BadgeUnstyled from '@mui/core/BadgeUnstyled'
+import { Badge, BadgeProps } from '../Badge'
+import { defaultStoryMeta } from './Badge.stories.gen'
 
 /**
  * Metadata for Badge stories - update/extend as needed

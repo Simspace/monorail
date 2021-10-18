@@ -1,9 +1,10 @@
 // Edit this file to add new stories
 import React from 'react'
-import { AccordionSummary, AccordionSummaryProps } from '../AccordionSummary'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './AccordionSummary.stories.gen'
 import ExpandMore from '@mui/icons-material/ExpandMore'
+
+import { story } from '../../../__tests__/helpers/storybook'
+import { AccordionSummary, AccordionSummaryProps } from '../AccordionSummary'
+import { defaultStoryMeta } from './AccordionSummary.stories.gen'
 
 /**
  * Metadata for AccordionSummary stories - update/extend as needed
