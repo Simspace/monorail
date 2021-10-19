@@ -1,44 +1,18 @@
 {
-  "Accordion/Accordion.js": [
-    "Collapse/index.js",
-    "Paper/index.js"
-  ],
-  "Accordion/index.js": [
-    "Accordion/Accordion.js"
-  ],
+  "Accordion/Accordion.js": ["Collapse/index.js", "Paper/index.js"],
+  "Accordion/index.js": ["Accordion/Accordion.js"],
   "AccordionActions/AccordionActions.js": [],
-  "AccordionActions/index.js": [
-    "AccordionActions/AccordionActions.js"
-  ],
+  "AccordionActions/index.js": ["AccordionActions/AccordionActions.js"],
   "AccordionDetails/AccordionDetails.js": [],
-  "AccordionDetails/index.js": [
-    "AccordionDetails/AccordionDetails.js"
-  ],
-  "AccordionSummary/AccordionSummary.js": [
-    "ButtonBase/index.js"
-  ],
-  "AccordionSummary/index.js": [
-    "AccordionSummary/AccordionSummary.js"
-  ],
-  "Alert/Alert.js": [
-    "IconButton/index.js",
-    "Paper/index.js"
-  ],
-  "Alert/index.js": [
-    "Alert/Alert.js"
-  ],
-  "AlertTitle/AlertTitle.js": [
-    "Typography/index.js"
-  ],
-  "AlertTitle/index.js": [
-    "AlertTitle/AlertTitle.js"
-  ],
-  "AppBar/AppBar.js": [
-    "Paper/index.js"
-  ],
-  "AppBar/index.js": [
-    "AppBar/AppBar.js"
-  ],
+  "AccordionDetails/index.js": ["AccordionDetails/AccordionDetails.js"],
+  "AccordionSummary/AccordionSummary.js": ["ButtonBase/index.js"],
+  "AccordionSummary/index.js": ["AccordionSummary/AccordionSummary.js"],
+  "Alert/Alert.js": ["IconButton/index.js", "Paper/index.js"],
+  "Alert/index.js": ["Alert/Alert.js"],
+  "AlertTitle/AlertTitle.js": ["Typography/index.js"],
+  "AlertTitle/index.js": ["AlertTitle/AlertTitle.js"],
+  "AppBar/AppBar.js": ["Paper/index.js"],
+  "AppBar/index.js": ["AppBar/AppBar.js"],
   "Autocomplete/Autocomplete.js": [
     "Chip/index.js",
     "IconButton/index.js",
@@ -46,445 +20,212 @@
     "Paper/index.js",
     "Popper/index.js"
   ],
-  "Autocomplete/index.js": [
-    "Autocomplete/Autocomplete.js"
-  ],
+  "Autocomplete/index.js": ["Autocomplete/Autocomplete.js"],
   "Avatar/Avatar.js": [],
-  "Avatar/index.js": [
-    "Avatar/Avatar.js"
-  ],
-  "AvatarGroup/AvatarGroup.js": [
-    "Avatar/index.js"
-  ],
-  "AvatarGroup/index.js": [
-    "AvatarGroup/AvatarGroup.js"
-  ],
-  "Backdrop/Backdrop.js": [
-    "Fade/index.js"
-  ],
-  "Backdrop/index.js": [
-    "Backdrop/Backdrop.js"
-  ],
+  "Avatar/index.js": ["Avatar/Avatar.js"],
+  "AvatarGroup/AvatarGroup.js": ["Avatar/index.js"],
+  "AvatarGroup/index.js": ["AvatarGroup/AvatarGroup.js"],
+  "Backdrop/Backdrop.js": ["Fade/index.js"],
+  "Backdrop/index.js": ["Backdrop/Backdrop.js"],
   "Badge/Badge.js": [],
-  "Badge/index.js": [
-    "Badge/Badge.js"
-  ],
+  "Badge/index.js": ["Badge/Badge.js"],
   "BottomNavigation/BottomNavigation.js": [],
-  "BottomNavigation/index.js": [
-    "BottomNavigation/BottomNavigation.js"
-  ],
-  "BottomNavigationAction/BottomNavigationAction.js": [
-    "ButtonBase/index.js"
-  ],
+  "BottomNavigation/index.js": ["BottomNavigation/BottomNavigation.js"],
+  "BottomNavigationAction/BottomNavigationAction.js": ["ButtonBase/index.js"],
   "BottomNavigationAction/index.js": [
     "BottomNavigationAction/BottomNavigationAction.js"
   ],
   "Box/Box.js": [],
-  "Box/index.js": [
-    "Box/Box.js"
-  ],
-  "Breadcrumbs/BreadcrumbCollapsed.js": [
-    "ButtonBase/index.js"
-  ],
+  "Box/index.js": ["Box/Box.js"],
+  "Breadcrumbs/BreadcrumbCollapsed.js": ["ButtonBase/index.js"],
   "Breadcrumbs/Breadcrumbs.js": [
     "Breadcrumbs/BreadcrumbCollapsed.js",
     "Typography/index.js"
   ],
-  "Breadcrumbs/index.js": [
-    "Breadcrumbs/Breadcrumbs.js"
-  ],
-  "Button/Button.js": [
-    "ButtonBase/index.js"
-  ],
-  "Button/index.js": [
-    "Button/Button.js"
-  ],
-  "ButtonBase/ButtonBase.js": [
-    "ButtonBase/TouchRipple.js"
-  ],
+  "Breadcrumbs/index.js": ["Breadcrumbs/Breadcrumbs.js"],
+  "Button/Button.js": ["ButtonBase/index.js"],
+  "Button/index.js": ["Button/Button.js"],
+  "ButtonBase/ButtonBase.js": ["ButtonBase/TouchRipple.js"],
   "ButtonBase/Ripple.js": [],
-  "ButtonBase/TouchRipple.js": [
-    "ButtonBase/Ripple.js"
-  ],
-  "ButtonBase/index.js": [
-    "ButtonBase/ButtonBase.js"
-  ],
+  "ButtonBase/TouchRipple.js": ["ButtonBase/Ripple.js"],
+  "ButtonBase/index.js": ["ButtonBase/ButtonBase.js"],
   "ButtonGroup/ButtonGroup.js": [],
-  "ButtonGroup/index.js": [
-    "ButtonGroup/ButtonGroup.js"
-  ],
-  "Card/Card.js": [
-    "Paper/index.js"
-  ],
-  "Card/index.js": [
-    "Card/Card.js"
-  ],
-  "CardActionArea/CardActionArea.js": [
-    "ButtonBase/index.js"
-  ],
-  "CardActionArea/index.js": [
-    "CardActionArea/CardActionArea.js"
-  ],
+  "ButtonGroup/index.js": ["ButtonGroup/ButtonGroup.js"],
+  "Card/Card.js": ["Paper/index.js"],
+  "Card/index.js": ["Card/Card.js"],
+  "CardActionArea/CardActionArea.js": ["ButtonBase/index.js"],
+  "CardActionArea/index.js": ["CardActionArea/CardActionArea.js"],
   "CardActions/CardActions.js": [],
-  "CardActions/index.js": [
-    "CardActions/CardActions.js"
-  ],
+  "CardActions/index.js": ["CardActions/CardActions.js"],
   "CardContent/CardContent.js": [],
-  "CardContent/index.js": [
-    "CardContent/CardContent.js"
-  ],
-  "CardHeader/CardHeader.js": [
-    "Typography/index.js"
-  ],
-  "CardHeader/index.js": [
-    "CardHeader/CardHeader.js"
-  ],
+  "CardContent/index.js": ["CardContent/CardContent.js"],
+  "CardHeader/CardHeader.js": ["Typography/index.js"],
+  "CardHeader/index.js": ["CardHeader/CardHeader.js"],
   "CardMedia/CardMedia.js": [],
-  "CardMedia/index.js": [
-    "CardMedia/CardMedia.js"
-  ],
-  "Checkbox/Checkbox.js": [
-    "internal/SwitchBase.js"
-  ],
-  "Checkbox/index.js": [
-    "Checkbox/Checkbox.js"
-  ],
-  "Chip/Chip.js": [
-    "ButtonBase/index.js"
-  ],
-  "Chip/index.js": [
-    "Chip/Chip.js"
-  ],
+  "CardMedia/index.js": ["CardMedia/CardMedia.js"],
+  "Checkbox/Checkbox.js": ["internal/SwitchBase.js"],
+  "Checkbox/index.js": ["Checkbox/Checkbox.js"],
+  "Chip/Chip.js": ["ButtonBase/index.js"],
+  "Chip/index.js": ["Chip/Chip.js"],
   "CircularProgress/CircularProgress.js": [],
-  "CircularProgress/index.js": [
-    "CircularProgress/CircularProgress.js"
-  ],
+  "CircularProgress/index.js": ["CircularProgress/CircularProgress.js"],
   "ClickAwayListener/ClickAwayListener.tsx": [],
-  "ClickAwayListener/index.ts": [
-    "ClickAwayListener/ClickAwayListener.tsx"
-  ],
+  "ClickAwayListener/index.ts": ["ClickAwayListener/ClickAwayListener.tsx"],
   "Collapse/Collapse.js": [],
-  "Collapse/index.js": [
-    "Collapse/Collapse.js"
-  ],
+  "Collapse/index.js": ["Collapse/Collapse.js"],
   "Container/Container.js": [],
-  "Container/index.js": [
-    "Container/Container.js"
-  ],
-  "CssBaseline/CssBaseline.js": [
-    "GlobalStyles/index.js"
-  ],
-  "CssBaseline/index.js": [
-    "CssBaseline/CssBaseline.js"
-  ],
+  "Container/index.js": ["Container/Container.js"],
+  "CssBaseline/CssBaseline.js": ["GlobalStyles/index.js"],
+  "CssBaseline/index.js": ["CssBaseline/CssBaseline.js"],
   "Dialog/Dialog.js": [
     "Backdrop/index.js",
     "Fade/index.js",
     "Modal/index.js",
     "Paper/index.js"
   ],
-  "Dialog/index.js": [
-    "Dialog/Dialog.js"
-  ],
+  "Dialog/index.js": ["Dialog/Dialog.js"],
   "DialogActions/DialogActions.js": [],
-  "DialogActions/index.js": [
-    "DialogActions/DialogActions.js"
-  ],
+  "DialogActions/index.js": ["DialogActions/DialogActions.js"],
   "DialogContent/DialogContent.js": [],
-  "DialogContent/index.js": [
-    "DialogContent/DialogContent.js"
-  ],
-  "DialogContentText/DialogContentText.js": [
-    "Typography/index.js"
-  ],
-  "DialogContentText/index.js": [
-    "DialogContentText/DialogContentText.js"
-  ],
-  "DialogTitle/DialogTitle.js": [
-    "Typography/index.js"
-  ],
-  "DialogTitle/index.js": [
-    "DialogTitle/DialogTitle.js"
-  ],
+  "DialogContent/index.js": ["DialogContent/DialogContent.js"],
+  "DialogContentText/DialogContentText.js": ["Typography/index.js"],
+  "DialogContentText/index.js": ["DialogContentText/DialogContentText.js"],
+  "DialogTitle/DialogTitle.js": ["Typography/index.js"],
+  "DialogTitle/index.js": ["DialogTitle/DialogTitle.js"],
   "Divider/Divider.js": [],
-  "Divider/index.js": [
-    "Divider/Divider.js"
-  ],
-  "Drawer/Drawer.js": [
-    "Modal/index.js",
-    "Paper/index.js",
-    "Slide/index.js"
-  ],
-  "Drawer/index.js": [
-    "Drawer/Drawer.js"
-  ],
-  "Fab/Fab.js": [
-    "ButtonBase/index.js"
-  ],
-  "Fab/index.js": [
-    "Fab/Fab.js"
-  ],
+  "Divider/index.js": ["Divider/Divider.js"],
+  "Drawer/Drawer.js": ["Modal/index.js", "Paper/index.js", "Slide/index.js"],
+  "Drawer/index.js": ["Drawer/Drawer.js"],
+  "Fab/Fab.js": ["ButtonBase/index.js"],
+  "Fab/index.js": ["Fab/Fab.js"],
   "Fade/Fade.js": [],
-  "Fade/index.js": [
-    "Fade/Fade.js"
-  ],
+  "Fade/index.js": ["Fade/Fade.js"],
   "FilledInput/FilledInput.js": [
     "InputBase/InputBase.js",
     "InputBase/index.js"
   ],
-  "FilledInput/index.js": [
-    "FilledInput/FilledInput.js"
-  ],
+  "FilledInput/index.js": ["FilledInput/FilledInput.js"],
   "FormControl/FormControl.js": [],
-  "FormControl/index.js": [
-    "FormControl/FormControl.js"
-  ],
+  "FormControl/index.js": ["FormControl/FormControl.js"],
   "FormControlLabel/FormControlLabel.js": [
     "FormControl/index.js",
     "Typography/index.js"
   ],
-  "FormControlLabel/index.js": [
-    "FormControlLabel/FormControlLabel.js"
-  ],
+  "FormControlLabel/index.js": ["FormControlLabel/FormControlLabel.js"],
   "FormGroup/FormGroup.js": [],
-  "FormGroup/index.js": [
-    "FormGroup/FormGroup.js"
-  ],
+  "FormGroup/index.js": ["FormGroup/FormGroup.js"],
   "FormHelperText/FormHelperText.js": [],
-  "FormHelperText/index.js": [
-    "FormHelperText/FormHelperText.js"
-  ],
+  "FormHelperText/index.js": ["FormHelperText/FormHelperText.js"],
   "FormLabel/FormLabel.js": [],
-  "FormLabel/index.js": [
-    "FormLabel/FormLabel.js"
-  ],
+  "FormLabel/index.js": ["FormLabel/FormLabel.js"],
   "GlobalStyles/GlobalStyles.js": [],
-  "GlobalStyles/index.js": [
-    "GlobalStyles/GlobalStyles.js"
-  ],
+  "GlobalStyles/index.js": ["GlobalStyles/GlobalStyles.js"],
   "Grid/Grid.js": [],
-  "Grid/index.js": [
-    "Grid/Grid.js"
-  ],
+  "Grid/index.js": ["Grid/Grid.js"],
   "Grow/Grow.js": [],
-  "Grow/index.js": [
-    "Grow/Grow.js"
-  ],
-  "Hidden/Hidden.js": [
-    "Hidden/HiddenCss.js",
-    "Hidden/HiddenJs.js"
-  ],
+  "Grow/index.js": ["Grow/Grow.js"],
+  "Hidden/Hidden.js": ["Hidden/HiddenCss.js", "Hidden/HiddenJs.js"],
   "Hidden/HiddenCss.js": [],
   "Hidden/HiddenJs.js": [],
-  "Hidden/index.js": [
-    "Hidden/Hidden.js"
-  ],
+  "Hidden/index.js": ["Hidden/Hidden.js"],
   "Icon/Icon.js": [],
-  "Icon/index.js": [
-    "Icon/Icon.js"
-  ],
-  "IconButton/IconButton.js": [
-    "ButtonBase/index.js"
-  ],
-  "IconButton/index.js": [
-    "IconButton/IconButton.js"
-  ],
+  "Icon/index.js": ["Icon/Icon.js"],
+  "IconButton/IconButton.js": ["ButtonBase/index.js"],
+  "IconButton/index.js": ["IconButton/IconButton.js"],
   "ImageList/ImageList.js": [],
-  "ImageList/index.js": [
-    "ImageList/ImageList.js"
-  ],
+  "ImageList/index.js": ["ImageList/ImageList.js"],
   "ImageListItem/ImageListItem.js": [],
-  "ImageListItem/index.js": [
-    "ImageListItem/ImageListItem.js"
-  ],
+  "ImageListItem/index.js": ["ImageListItem/ImageListItem.js"],
   "ImageListItemBar/ImageListItemBar.js": [],
-  "ImageListItemBar/index.js": [
-    "ImageListItemBar/ImageListItemBar.js"
-  ],
-  "Input/Input.js": [
-    "InputBase/InputBase.js",
-    "InputBase/index.js"
-  ],
-  "Input/index.js": [
-    "Input/Input.js"
-  ],
-  "InputAdornment/InputAdornment.js": [
-    "Typography/index.js"
-  ],
-  "InputAdornment/index.js": [
-    "InputAdornment/InputAdornment.js"
-  ],
+  "ImageListItemBar/index.js": ["ImageListItemBar/ImageListItemBar.js"],
+  "Input/Input.js": ["InputBase/InputBase.js", "InputBase/index.js"],
+  "Input/index.js": ["Input/Input.js"],
+  "InputAdornment/InputAdornment.js": ["Typography/index.js"],
+  "InputAdornment/index.js": ["InputAdornment/InputAdornment.js"],
   "InputBase/InputBase.js": [
     "GlobalStyles/index.js",
     "TextareaAutosize/index.js"
   ],
-  "InputBase/index.js": [
-    "InputBase/InputBase.js"
-  ],
-  "InputLabel/InputLabel.js": [
-    "FormLabel/index.js"
-  ],
-  "InputLabel/index.js": [
-    "InputLabel/InputLabel.js"
-  ],
+  "InputBase/index.js": ["InputBase/InputBase.js"],
+  "InputLabel/InputLabel.js": ["FormLabel/index.js"],
+  "InputLabel/index.js": ["InputLabel/InputLabel.js"],
   "LinearProgress/LinearProgress.js": [],
-  "LinearProgress/index.js": [
-    "LinearProgress/LinearProgress.js"
-  ],
-  "Link/Link.js": [
-    "Typography/index.js"
-  ],
-  "Link/index.js": [
-    "Link/Link.js"
-  ],
+  "LinearProgress/index.js": ["LinearProgress/LinearProgress.js"],
+  "Link/Link.js": ["Typography/index.js"],
+  "Link/index.js": ["Link/Link.js"],
   "List/List.js": [],
-  "List/index.js": [
-    "List/List.js"
-  ],
+  "List/index.js": ["List/List.js"],
   "ListItem/ListItem.js": [
     "ButtonBase/index.js",
     "ListItemButton/index.js",
     "ListItemSecondaryAction/index.js"
   ],
-  "ListItem/index.js": [
-    "ListItem/ListItem.js"
-  ],
+  "ListItem/index.js": ["ListItem/ListItem.js"],
   "ListItemAvatar/ListItemAvatar.js": [],
-  "ListItemAvatar/index.js": [
-    "ListItemAvatar/ListItemAvatar.js"
-  ],
-  "ListItemButton/ListItemButton.js": [
-    "ButtonBase/index.js"
-  ],
-  "ListItemButton/index.js": [
-    "ListItemButton/ListItemButton.js"
-  ],
+  "ListItemAvatar/index.js": ["ListItemAvatar/ListItemAvatar.js"],
+  "ListItemButton/ListItemButton.js": ["ButtonBase/index.js"],
+  "ListItemButton/index.js": ["ListItemButton/ListItemButton.js"],
   "ListItemIcon/ListItemIcon.js": [],
-  "ListItemIcon/index.js": [
-    "ListItemIcon/ListItemIcon.js"
-  ],
+  "ListItemIcon/index.js": ["ListItemIcon/ListItemIcon.js"],
   "ListItemSecondaryAction/ListItemSecondaryAction.js": [],
   "ListItemSecondaryAction/index.js": [
     "ListItemSecondaryAction/ListItemSecondaryAction.js"
   ],
-  "ListItemText/ListItemText.js": [
-    "Typography/index.js"
-  ],
-  "ListItemText/index.js": [
-    "ListItemText/ListItemText.js"
-  ],
+  "ListItemText/ListItemText.js": ["Typography/index.js"],
+  "ListItemText/index.js": ["ListItemText/ListItemText.js"],
   "ListSubheader/ListSubheader.js": [],
-  "ListSubheader/index.js": [
-    "ListSubheader/ListSubheader.js"
-  ],
-  "Menu/Menu.js": [
-    "MenuList/index.js",
-    "Paper/index.js",
-    "Popover/index.js"
-  ],
-  "Menu/index.js": [
-    "Menu/Menu.js"
-  ],
+  "ListSubheader/index.js": ["ListSubheader/ListSubheader.js"],
+  "Menu/Menu.js": ["MenuList/index.js", "Paper/index.js", "Popover/index.js"],
+  "Menu/index.js": ["Menu/Menu.js"],
   "MenuItem/MenuItem.js": [
     "ButtonBase/index.js",
     "Divider/index.js",
     "ListItemIcon/index.js",
     "ListItemText/index.js"
   ],
-  "MenuItem/index.js": [
-    "MenuItem/MenuItem.js"
-  ],
-  "MenuList/MenuList.js": [
-    "List/index.js"
-  ],
-  "MenuList/index.js": [
-    "MenuList/MenuList.js"
-  ],
+  "MenuItem/index.js": ["MenuItem/MenuItem.js"],
+  "MenuList/MenuList.js": ["List/index.js"],
+  "MenuList/index.js": ["MenuList/MenuList.js"],
   "MobileStepper/MobileStepper.js": [
     "LinearProgress/index.js",
     "Paper/index.js"
   ],
-  "MobileStepper/index.js": [
-    "MobileStepper/MobileStepper.js"
-  ],
-  "Modal/Modal.js": [
-    "Backdrop/index.js"
-  ],
-  "Modal/index.js": [
-    "Modal/Modal.js"
-  ],
+  "MobileStepper/index.js": ["MobileStepper/MobileStepper.js"],
+  "Modal/Modal.js": ["Backdrop/index.js"],
+  "Modal/index.js": ["Modal/Modal.js"],
   "NativeSelect/NativeSelect.js": [
     "Input/index.js",
     "NativeSelect/NativeSelectInput.js"
   ],
   "NativeSelect/NativeSelectInput.js": [],
-  "NativeSelect/index.js": [
-    "NativeSelect/NativeSelect.js"
-  ],
+  "NativeSelect/index.js": ["NativeSelect/NativeSelect.js"],
   "NoSsr/index.js": [],
   "OutlinedInput/NotchedOutline.js": [],
   "OutlinedInput/OutlinedInput.js": [
     "InputBase/InputBase.js",
     "OutlinedInput/NotchedOutline.js"
   ],
-  "OutlinedInput/index.js": [
-    "OutlinedInput/OutlinedInput.js"
-  ],
-  "Pagination/Pagination.js": [
-    "PaginationItem/index.js"
-  ],
-  "Pagination/index.js": [
-    "Pagination/Pagination.js"
-  ],
-  "PaginationItem/PaginationItem.js": [
-    "ButtonBase/index.js"
-  ],
-  "PaginationItem/index.js": [
-    "PaginationItem/PaginationItem.js"
-  ],
+  "OutlinedInput/index.js": ["OutlinedInput/OutlinedInput.js"],
+  "Pagination/Pagination.js": ["PaginationItem/index.js"],
+  "Pagination/index.js": ["Pagination/Pagination.js"],
+  "PaginationItem/PaginationItem.js": ["ButtonBase/index.js"],
+  "PaginationItem/index.js": ["PaginationItem/PaginationItem.js"],
   "Paper/Paper.js": [],
-  "Paper/index.js": [
-    "Paper/Paper.js"
-  ],
-  "Popover/Popover.js": [
-    "Grow/index.js",
-    "Modal/index.js",
-    "Paper/index.js"
-  ],
-  "Popover/index.js": [
-    "Popover/Popover.js"
-  ],
-  "Popper/Popper.js": [
-    "Portal/index.js"
-  ],
-  "Popper/index.js": [
-    "Popper/Popper.js"
-  ],
+  "Paper/index.js": ["Paper/Paper.js"],
+  "Popover/Popover.js": ["Grow/index.js", "Modal/index.js", "Paper/index.js"],
+  "Popover/index.js": ["Popover/Popover.js"],
+  "Popper/Popper.js": ["Portal/index.js"],
+  "Popper/index.js": ["Popper/Popper.js"],
   "Portal/index.js": [],
-  "Radio/Radio.js": [
-    "Radio/RadioButtonIcon.js",
-    "internal/SwitchBase.js"
-  ],
+  "Radio/Radio.js": ["Radio/RadioButtonIcon.js", "internal/SwitchBase.js"],
   "Radio/RadioButtonIcon.js": [],
-  "Radio/index.js": [
-    "Radio/Radio.js"
-  ],
-  "RadioGroup/RadioGroup.js": [
-    "FormGroup/index.js"
-  ],
-  "RadioGroup/index.js": [
-    "RadioGroup/RadioGroup.js"
-  ],
+  "Radio/index.js": ["Radio/Radio.js"],
+  "RadioGroup/RadioGroup.js": ["FormGroup/index.js"],
+  "RadioGroup/index.js": ["RadioGroup/RadioGroup.js"],
   "Rating/Rating.js": [],
-  "Rating/index.js": [
-    "Rating/Rating.js"
-  ],
-  "ScopedCssBaseline/ScopedCssBaseline.js": [
-    "CssBaseline/CssBaseline.js"
-  ],
-  "ScopedCssBaseline/index.js": [
-    "ScopedCssBaseline/ScopedCssBaseline.js"
-  ],
+  "Rating/index.js": ["Rating/Rating.js"],
+  "ScopedCssBaseline/ScopedCssBaseline.js": ["CssBaseline/CssBaseline.js"],
+  "ScopedCssBaseline/index.js": ["ScopedCssBaseline/ScopedCssBaseline.js"],
   "Select/Select.js": [
     "FilledInput/index.js",
     "Input/index.js",
@@ -496,152 +237,66 @@
     "Menu/Menu.js",
     "NativeSelect/NativeSelectInput.js"
   ],
-  "Select/index.js": [
-    "Select/Select.js"
-  ],
+  "Select/index.js": ["Select/Select.js"],
   "Skeleton/Skeleton.js": [],
-  "Skeleton/index.js": [
-    "Skeleton/Skeleton.js"
-  ],
+  "Skeleton/index.js": ["Skeleton/Skeleton.js"],
   "Slide/Slide.js": [],
-  "Slide/index.js": [
-    "Slide/Slide.js"
-  ],
+  "Slide/index.js": ["Slide/Slide.js"],
   "Slider/Slider.js": [],
-  "Slider/index.js": [
-    "Slider/Slider.js"
-  ],
-  "Snackbar/Snackbar.js": [
-    "Grow/index.js",
-    "SnackbarContent/index.js"
-  ],
-  "Snackbar/index.js": [
-    "Snackbar/Snackbar.js"
-  ],
-  "SnackbarContent/SnackbarContent.js": [
-    "Paper/index.js"
-  ],
-  "SnackbarContent/index.js": [
-    "SnackbarContent/SnackbarContent.js"
-  ],
-  "SpeedDial/SpeedDial.js": [
-    "Fab/index.js",
-    "Zoom/index.js"
-  ],
-  "SpeedDial/index.js": [
-    "SpeedDial/SpeedDial.js"
-  ],
-  "SpeedDialAction/SpeedDialAction.js": [
-    "Fab/index.js",
-    "Tooltip/index.js"
-  ],
-  "SpeedDialAction/index.js": [
-    "SpeedDialAction/SpeedDialAction.js"
-  ],
+  "Slider/index.js": ["Slider/Slider.js"],
+  "Snackbar/Snackbar.js": ["Grow/index.js", "SnackbarContent/index.js"],
+  "Snackbar/index.js": ["Snackbar/Snackbar.js"],
+  "SnackbarContent/SnackbarContent.js": ["Paper/index.js"],
+  "SnackbarContent/index.js": ["SnackbarContent/SnackbarContent.js"],
+  "SpeedDial/SpeedDial.js": ["Fab/index.js", "Zoom/index.js"],
+  "SpeedDial/index.js": ["SpeedDial/SpeedDial.js"],
+  "SpeedDialAction/SpeedDialAction.js": ["Fab/index.js", "Tooltip/index.js"],
+  "SpeedDialAction/index.js": ["SpeedDialAction/SpeedDialAction.js"],
   "SpeedDialIcon/SpeedDialIcon.js": [],
-  "SpeedDialIcon/index.js": [
-    "SpeedDialIcon/SpeedDialIcon.js"
-  ],
+  "SpeedDialIcon/index.js": ["SpeedDialIcon/SpeedDialIcon.js"],
   "Stack/Stack.js": [],
-  "Stack/index.js": [
-    "Stack/Stack.js"
-  ],
+  "Stack/index.js": ["Stack/Stack.js"],
   "Step/Step.js": [],
-  "Step/index.js": [
-    "Step/Step.js"
-  ],
-  "StepButton/StepButton.js": [
-    "ButtonBase/index.js",
-    "StepLabel/index.js"
-  ],
-  "StepButton/index.js": [
-    "StepButton/StepButton.js"
-  ],
+  "Step/index.js": ["Step/Step.js"],
+  "StepButton/StepButton.js": ["ButtonBase/index.js", "StepLabel/index.js"],
+  "StepButton/index.js": ["StepButton/StepButton.js"],
   "StepConnector/StepConnector.js": [],
-  "StepConnector/index.js": [
-    "StepConnector/StepConnector.js"
-  ],
-  "StepContent/StepContent.js": [
-    "Collapse/index.js"
-  ],
-  "StepContent/index.js": [
-    "StepContent/StepContent.js"
-  ],
-  "StepIcon/StepIcon.js": [
-    "SvgIcon/index.js"
-  ],
-  "StepIcon/index.js": [
-    "StepIcon/StepIcon.js"
-  ],
-  "StepLabel/StepLabel.js": [
-    "StepIcon/index.js"
-  ],
-  "StepLabel/index.js": [
-    "StepLabel/StepLabel.js"
-  ],
-  "Stepper/Stepper.js": [
-    "StepConnector/index.js"
-  ],
-  "Stepper/index.js": [
-    "Stepper/Stepper.js"
-  ],
+  "StepConnector/index.js": ["StepConnector/StepConnector.js"],
+  "StepContent/StepContent.js": ["Collapse/index.js"],
+  "StepContent/index.js": ["StepContent/StepContent.js"],
+  "StepIcon/StepIcon.js": ["SvgIcon/index.js"],
+  "StepIcon/index.js": ["StepIcon/StepIcon.js"],
+  "StepLabel/StepLabel.js": ["StepIcon/index.js"],
+  "StepLabel/index.js": ["StepLabel/StepLabel.js"],
+  "Stepper/Stepper.js": ["StepConnector/index.js"],
+  "Stepper/index.js": ["Stepper/Stepper.js"],
   "StyledEngineProvider/index.js": [],
   "SvgIcon/SvgIcon.js": [],
-  "SvgIcon/index.js": [
-    "SvgIcon/SvgIcon.js"
-  ],
-  "SwipeableDrawer/SwipeArea.js": [
-    "Drawer/Drawer.js"
-  ],
+  "SvgIcon/index.js": ["SvgIcon/SvgIcon.js"],
+  "SwipeableDrawer/SwipeArea.js": ["Drawer/Drawer.js"],
   "SwipeableDrawer/SwipeableDrawer.js": [
     "Drawer/Drawer.js",
     "SwipeableDrawer/SwipeArea.js"
   ],
-  "SwipeableDrawer/index.js": [
-    "SwipeableDrawer/SwipeableDrawer.js"
-  ],
-  "Switch/Switch.js": [
-    "internal/SwitchBase.js"
-  ],
-  "Switch/index.js": [
-    "Switch/Switch.js"
-  ],
-  "Tab/Tab.js": [
-    "ButtonBase/index.js"
-  ],
-  "Tab/index.js": [
-    "Tab/Tab.js"
-  ],
-  "TabScrollButton/TabScrollButton.js": [
-    "ButtonBase/index.js"
-  ],
-  "TabScrollButton/index.js": [
-    "TabScrollButton/TabScrollButton.js"
-  ],
+  "SwipeableDrawer/index.js": ["SwipeableDrawer/SwipeableDrawer.js"],
+  "Switch/Switch.js": ["internal/SwitchBase.js"],
+  "Switch/index.js": ["Switch/Switch.js"],
+  "Tab/Tab.js": ["ButtonBase/index.js"],
+  "Tab/index.js": ["Tab/Tab.js"],
+  "TabScrollButton/TabScrollButton.js": ["ButtonBase/index.js"],
+  "TabScrollButton/index.js": ["TabScrollButton/TabScrollButton.js"],
   "Table/Table.js": [],
-  "Table/index.js": [
-    "Table/Table.js"
-  ],
+  "Table/index.js": ["Table/Table.js"],
   "TableBody/TableBody.js": [],
-  "TableBody/index.js": [
-    "TableBody/TableBody.js"
-  ],
+  "TableBody/index.js": ["TableBody/TableBody.js"],
   "TableCell/TableCell.js": [],
-  "TableCell/index.js": [
-    "TableCell/TableCell.js"
-  ],
+  "TableCell/index.js": ["TableCell/TableCell.js"],
   "TableContainer/TableContainer.js": [],
-  "TableContainer/index.js": [
-    "TableContainer/TableContainer.js"
-  ],
+  "TableContainer/index.js": ["TableContainer/TableContainer.js"],
   "TableFooter/TableFooter.js": [],
-  "TableFooter/index.js": [
-    "TableFooter/TableFooter.js"
-  ],
+  "TableFooter/index.js": ["TableFooter/TableFooter.js"],
   "TableHead/TableHead.js": [],
-  "TableHead/index.js": [
-    "TableHead/TableHead.js"
-  ],
+  "TableHead/index.js": ["TableHead/TableHead.js"],
   "TablePagination/TablePagination.js": [
     "InputBase/index.js",
     "MenuItem/index.js",
@@ -650,30 +305,15 @@
     "TablePagination/TablePaginationActions.js",
     "Toolbar/index.js"
   ],
-  "TablePagination/TablePaginationActions.js": [
-    "IconButton/index.js"
-  ],
-  "TablePagination/index.js": [
-    "TablePagination/TablePagination.js"
-  ],
+  "TablePagination/TablePaginationActions.js": ["IconButton/index.js"],
+  "TablePagination/index.js": ["TablePagination/TablePagination.js"],
   "TableRow/TableRow.js": [],
-  "TableRow/index.js": [
-    "TableRow/TableRow.js"
-  ],
-  "TableSortLabel/TableSortLabel.js": [
-    "ButtonBase/index.js"
-  ],
-  "TableSortLabel/index.js": [
-    "TableSortLabel/TableSortLabel.js"
-  ],
+  "TableRow/index.js": ["TableRow/TableRow.js"],
+  "TableSortLabel/TableSortLabel.js": ["ButtonBase/index.js"],
+  "TableSortLabel/index.js": ["TableSortLabel/TableSortLabel.js"],
   "Tabs/ScrollbarSize.js": [],
-  "Tabs/Tabs.js": [
-    "TabScrollButton/index.js",
-    "Tabs/ScrollbarSize.js"
-  ],
-  "Tabs/index.js": [
-    "Tabs/Tabs.js"
-  ],
+  "Tabs/Tabs.js": ["TabScrollButton/index.js", "Tabs/ScrollbarSize.js"],
+  "Tabs/index.js": ["Tabs/Tabs.js"],
   "TextField/TextField.js": [
     "FilledInput/index.js",
     "FormControl/index.js",
@@ -683,43 +323,22 @@
     "OutlinedInput/index.js",
     "Select/index.js"
   ],
-  "TextField/index.js": [
-    "TextField/TextField.js"
-  ],
+  "TextField/index.js": ["TextField/TextField.js"],
   "TextareaAutosize/TextareaAutosize.js": [],
-  "TextareaAutosize/index.js": [
-    "TextareaAutosize/TextareaAutosize.js"
-  ],
-  "ToggleButton/ToggleButton.js": [
-    "ButtonBase/index.js"
-  ],
-  "ToggleButton/index.js": [
-    "ToggleButton/ToggleButton.js"
-  ],
+  "TextareaAutosize/index.js": ["TextareaAutosize/TextareaAutosize.js"],
+  "ToggleButton/ToggleButton.js": ["ButtonBase/index.js"],
+  "ToggleButton/index.js": ["ToggleButton/ToggleButton.js"],
   "ToggleButtonGroup/ToggleButtonGroup.js": [],
-  "ToggleButtonGroup/index.js": [
-    "ToggleButtonGroup/ToggleButtonGroup.js"
-  ],
+  "ToggleButtonGroup/index.js": ["ToggleButtonGroup/ToggleButtonGroup.js"],
   "Toolbar/Toolbar.js": [],
-  "Toolbar/index.js": [
-    "Toolbar/Toolbar.js"
-  ],
-  "Tooltip/Tooltip.js": [
-    "Grow/index.js",
-    "Popper/index.js"
-  ],
-  "Tooltip/index.js": [
-    "Tooltip/Tooltip.js"
-  ],
+  "Toolbar/index.js": ["Toolbar/Toolbar.js"],
+  "Tooltip/Tooltip.js": ["Grow/index.js", "Popper/index.js"],
+  "Tooltip/index.js": ["Tooltip/Tooltip.js"],
   "Typography/Typography.js": [],
-  "Typography/index.js": [
-    "Typography/Typography.js"
-  ],
+  "Typography/index.js": ["Typography/Typography.js"],
   "Unstable_TrapFocus/index.js": [],
   "Zoom/Zoom.js": [],
-  "Zoom/index.js": [
-    "Zoom/Zoom.js"
-  ],
+  "Zoom/index.js": ["Zoom/Zoom.js"],
   "darkScrollbar/index.ts": [],
   "index.js": [
     "Accordion/index.js",
@@ -849,9 +468,7 @@
     "Typography/index.js",
     "Zoom/index.js"
   ],
-  "internal/SwitchBase.js": [
-    "ButtonBase/index.js"
-  ],
+  "internal/SwitchBase.js": ["ButtonBase/index.js"],
   "locale/index.ts": [],
   "transitions/index.ts": []
 }

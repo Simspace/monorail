@@ -73,268 +73,86 @@
     "transitions"
   ],
   "1": {
-    "Accordion": [
-      "Collapse",
-      "Paper"
-    ],
-    "AlertTitle": [
-      "Typography"
-    ],
-    "AppBar": [
-      "Paper"
-    ],
-    "AvatarGroup": [
-      "Avatar"
-    ],
-    "Backdrop": [
-      "Fade"
-    ],
-    "ButtonBase/TouchRipple": [
-      "ButtonBase/Ripple"
-    ],
-    "Card": [
-      "Paper"
-    ],
-    "CardHeader": [
-      "Typography"
-    ],
-    "CssBaseline": [
-      "GlobalStyles"
-    ],
-    "DialogContentText": [
-      "Typography"
-    ],
-    "DialogTitle": [
-      "Typography"
-    ],
-    "FormControlLabel": [
-      "FormControl",
-      "Typography"
-    ],
-    "Hidden": [
-      "Hidden/HiddenCss",
-      "Hidden/HiddenJs"
-    ],
-    "InputAdornment": [
-      "Typography"
-    ],
-    "InputBase": [
-      "GlobalStyles",
-      "TextareaAutosize"
-    ],
-    "InputLabel": [
-      "FormLabel"
-    ],
-    "Link": [
-      "Typography"
-    ],
-    "ListItemText": [
-      "Typography"
-    ],
-    "MenuList": [
-      "List"
-    ],
-    "MobileStepper": [
-      "LinearProgress",
-      "Paper"
-    ],
-    "Popper": [
-      "Portal"
-    ],
-    "RadioGroup": [
-      "FormGroup"
-    ],
-    "SnackbarContent": [
-      "Paper"
-    ],
-    "StepContent": [
-      "Collapse"
-    ],
-    "StepIcon": [
-      "SvgIcon"
-    ],
-    "Stepper": [
-      "StepConnector"
-    ]
+    "Accordion": ["Collapse", "Paper"],
+    "AlertTitle": ["Typography"],
+    "AppBar": ["Paper"],
+    "AvatarGroup": ["Avatar"],
+    "Backdrop": ["Fade"],
+    "ButtonBase/TouchRipple": ["ButtonBase/Ripple"],
+    "Card": ["Paper"],
+    "CardHeader": ["Typography"],
+    "CssBaseline": ["GlobalStyles"],
+    "DialogContentText": ["Typography"],
+    "DialogTitle": ["Typography"],
+    "FormControlLabel": ["FormControl", "Typography"],
+    "Hidden": ["Hidden/HiddenCss", "Hidden/HiddenJs"],
+    "InputAdornment": ["Typography"],
+    "InputBase": ["GlobalStyles", "TextareaAutosize"],
+    "InputLabel": ["FormLabel"],
+    "Link": ["Typography"],
+    "ListItemText": ["Typography"],
+    "MenuList": ["List"],
+    "MobileStepper": ["LinearProgress", "Paper"],
+    "Popper": ["Portal"],
+    "RadioGroup": ["FormGroup"],
+    "SnackbarContent": ["Paper"],
+    "StepContent": ["Collapse"],
+    "StepIcon": ["SvgIcon"],
+    "Stepper": ["StepConnector"]
   },
   "2": {
-    "ButtonBase": [
-      "ButtonBase/TouchRipple"
-    ],
-    "FilledInput": [
-      "InputBase",
-      "InputBase"
-    ],
-    "Input": [
-      "InputBase",
-      "InputBase"
-    ],
-    "Modal": [
-      "Backdrop"
-    ],
-    "OutlinedInput": [
-      "InputBase",
-      "OutlinedInput/NotchedOutline"
-    ],
-    "ScopedCssBaseline": [
-      "CssBaseline"
-    ],
-    "Snackbar": [
-      "Grow",
-      "SnackbarContent"
-    ],
-    "StepLabel": [
-      "StepIcon"
-    ],
-    "Tooltip": [
-      "Grow",
-      "Popper"
-    ]
+    "ButtonBase": ["ButtonBase/TouchRipple"],
+    "FilledInput": ["InputBase", "InputBase"],
+    "Input": ["InputBase", "InputBase"],
+    "Modal": ["Backdrop"],
+    "OutlinedInput": ["InputBase", "OutlinedInput/NotchedOutline"],
+    "ScopedCssBaseline": ["CssBaseline"],
+    "Snackbar": ["Grow", "SnackbarContent"],
+    "StepLabel": ["StepIcon"],
+    "Tooltip": ["Grow", "Popper"]
   },
   "3": {
-    "AccordionSummary": [
-      "ButtonBase"
-    ],
-    "BottomNavigationAction": [
-      "ButtonBase"
-    ],
-    "Breadcrumbs/BreadcrumbCollapsed": [
-      "ButtonBase"
-    ],
-    "Button": [
-      "ButtonBase"
-    ],
-    "CardActionArea": [
-      "ButtonBase"
-    ],
-    "Chip": [
-      "ButtonBase"
-    ],
-    "Dialog": [
-      "Backdrop",
-      "Fade",
-      "Modal",
-      "Paper"
-    ],
-    "Drawer": [
-      "Modal",
-      "Paper",
-      "Slide"
-    ],
-    "Fab": [
-      "ButtonBase"
-    ],
-    "IconButton": [
-      "ButtonBase"
-    ],
-    "ListItemButton": [
-      "ButtonBase"
-    ],
-    "MenuItem": [
-      "ButtonBase",
-      "Divider",
-      "ListItemIcon",
-      "ListItemText"
-    ],
-    "NativeSelect": [
-      "Input",
-      "NativeSelect/NativeSelectInput"
-    ],
-    "PaginationItem": [
-      "ButtonBase"
-    ],
-    "Popover": [
-      "Grow",
-      "Modal",
-      "Paper"
-    ],
-    "StepButton": [
-      "ButtonBase",
-      "StepLabel"
-    ],
-    "Tab": [
-      "ButtonBase"
-    ],
-    "TabScrollButton": [
-      "ButtonBase"
-    ],
-    "TableSortLabel": [
-      "ButtonBase"
-    ],
-    "ToggleButton": [
-      "ButtonBase"
-    ],
-    "internal/SwitchBase": [
-      "ButtonBase"
-    ]
+    "AccordionSummary": ["ButtonBase"],
+    "BottomNavigationAction": ["ButtonBase"],
+    "Breadcrumbs/BreadcrumbCollapsed": ["ButtonBase"],
+    "Button": ["ButtonBase"],
+    "CardActionArea": ["ButtonBase"],
+    "Chip": ["ButtonBase"],
+    "Dialog": ["Backdrop", "Fade", "Modal", "Paper"],
+    "Drawer": ["Modal", "Paper", "Slide"],
+    "Fab": ["ButtonBase"],
+    "IconButton": ["ButtonBase"],
+    "ListItemButton": ["ButtonBase"],
+    "MenuItem": ["ButtonBase", "Divider", "ListItemIcon", "ListItemText"],
+    "NativeSelect": ["Input", "NativeSelect/NativeSelectInput"],
+    "PaginationItem": ["ButtonBase"],
+    "Popover": ["Grow", "Modal", "Paper"],
+    "StepButton": ["ButtonBase", "StepLabel"],
+    "Tab": ["ButtonBase"],
+    "TabScrollButton": ["ButtonBase"],
+    "TableSortLabel": ["ButtonBase"],
+    "ToggleButton": ["ButtonBase"],
+    "internal/SwitchBase": ["ButtonBase"]
   },
   "4": {
-    "Alert": [
-      "IconButton",
-      "Paper"
-    ],
-    "Autocomplete": [
-      "Chip",
-      "IconButton",
-      "ListSubheader",
-      "Paper",
-      "Popper"
-    ],
-    "Breadcrumbs": [
-      "Breadcrumbs/BreadcrumbCollapsed",
-      "Typography"
-    ],
-    "Checkbox": [
-      "internal/SwitchBase"
-    ],
-    "ListItem": [
-      "ButtonBase",
-      "ListItemButton",
-      "ListItemSecondaryAction"
-    ],
-    "Menu": [
-      "MenuList",
-      "Paper",
-      "Popover"
-    ],
-    "Pagination": [
-      "PaginationItem"
-    ],
-    "Radio": [
-      "Radio/RadioButtonIcon",
-      "internal/SwitchBase"
-    ],
-    "SpeedDial": [
-      "Fab",
-      "Zoom"
-    ],
-    "SpeedDialAction": [
-      "Fab",
-      "Tooltip"
-    ],
-    "SwipeableDrawer/SwipeArea": [
-      "Drawer"
-    ],
-    "Switch": [
-      "internal/SwitchBase"
-    ],
-    "TablePagination/TablePaginationActions": [
-      "IconButton"
-    ],
-    "Tabs": [
-      "TabScrollButton",
-      "Tabs/ScrollbarSize"
-    ]
+    "Alert": ["IconButton", "Paper"],
+    "Autocomplete": ["Chip", "IconButton", "ListSubheader", "Paper", "Popper"],
+    "Breadcrumbs": ["Breadcrumbs/BreadcrumbCollapsed", "Typography"],
+    "Checkbox": ["internal/SwitchBase"],
+    "ListItem": ["ButtonBase", "ListItemButton", "ListItemSecondaryAction"],
+    "Menu": ["MenuList", "Paper", "Popover"],
+    "Pagination": ["PaginationItem"],
+    "Radio": ["Radio/RadioButtonIcon", "internal/SwitchBase"],
+    "SpeedDial": ["Fab", "Zoom"],
+    "SpeedDialAction": ["Fab", "Tooltip"],
+    "SwipeableDrawer/SwipeArea": ["Drawer"],
+    "Switch": ["internal/SwitchBase"],
+    "TablePagination/TablePaginationActions": ["IconButton"],
+    "Tabs": ["TabScrollButton", "Tabs/ScrollbarSize"]
   },
   "5": {
-    "Select/SelectInput": [
-      "Menu",
-      "NativeSelect/NativeSelectInput"
-    ],
-    "SwipeableDrawer": [
-      "Drawer",
-      "SwipeableDrawer/SwipeArea"
-    ]
+    "Select/SelectInput": ["Menu", "NativeSelect/NativeSelectInput"],
+    "SwipeableDrawer": ["Drawer", "SwipeableDrawer/SwipeArea"]
   },
   "6": {
     "Select": [
