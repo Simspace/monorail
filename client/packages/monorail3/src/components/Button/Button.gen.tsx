@@ -11,7 +11,7 @@ import {
  */
 export type ButtonProps<
   D extends React.ElementType = ButtonTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 > = MUIButtonProps<D, P> & { ref?: React.ForwardedRef<HTMLButtonElement> }
 
 /**
