@@ -11,7 +11,7 @@ import {
  */
 export type FormLabelProps<
   D extends React.ElementType = FormLabelTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 > = MUIFormLabelProps<D, P> & { ref?: React.ForwardedRef<HTMLLabelElement> }
 
 /**
@@ -21,7 +21,7 @@ export const FormLabel = React.forwardRef((props, ref) => (
   <MUIFormLabel ref={ref} {...props} />
 )) as <
   D extends React.ElementType = FormLabelTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 >(
   props: FormLabelProps<D, P>,
 ) => JSX.Element

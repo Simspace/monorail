@@ -8,11 +8,10 @@ import {
 /**
  * Props for DesktopDateTimePicker
  */
-export type DesktopDateTimePickerProps<
-  TDate = unknown
-> = MUIDesktopDateTimePickerProps<TDate> & {
-  ref?: React.ForwardedRef<HTMLDivElement>
-}
+export type DesktopDateTimePickerProps<TDate = unknown> =
+  MUIDesktopDateTimePickerProps<TDate> & {
+    ref?: React.ForwardedRef<HTMLDivElement>
+  }
 
 /**
  * DesktopDateTimePicker

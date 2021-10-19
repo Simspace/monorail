@@ -11,7 +11,7 @@ import {
  */
 export type BottomNavigationProps<
   D extends React.ElementType = BottomNavigationTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 > = MUIBottomNavigationProps<D, P> & {
   ref?: React.ForwardedRef<HTMLDivElement>
 }
@@ -23,7 +23,7 @@ export const BottomNavigation = React.forwardRef((props, ref) => (
   <MUIBottomNavigation ref={ref} {...props} />
 )) as <
   D extends React.ElementType = BottomNavigationTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 >(
   props: BottomNavigationProps<D, P>,
 ) => JSX.Element
