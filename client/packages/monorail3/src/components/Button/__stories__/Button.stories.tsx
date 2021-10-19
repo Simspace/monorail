@@ -3,8 +3,8 @@ import React from 'react'
 import { Button, ButtonProps } from '../Button'
 import { story } from '../../../__tests__/helpers/storybook'
 import { defaultStoryMeta } from './Button.stories.gen'
-import DeleteIcon from '@material-ui/icons/Delete'
-import SendIcon from '@material-ui/icons/Send'
+import DeleteIcon from '@mui/icons-material/Delete'
+import SendIcon from '@mui/icons-material/Send'
 import { Stack } from '../../Stack/Stack'
 
 /**
@@ -12,7 +12,7 @@ import { Stack } from '../../Stack/Stack'
  * This is intended to be exported as story-level metadata from the main .stories.tsx file, like:
  * "export default { ...defaultStoryMeta } // Add/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Inputs/Button' }
 
 /**
  * Story template (edit/remove by hand if needed)
@@ -115,7 +115,7 @@ export const VariantsAndColors = story<ButtonProps>(
 
 export const Sizes = story<ButtonProps>(
   () => (
-    <Stack direction="row" spacing={2}>
+    <Stack direction="row" spacing={2} alignItems="center">
       <Button variant="contained" size="extraSmall">
         Extra Small (custom size)
       </Button>

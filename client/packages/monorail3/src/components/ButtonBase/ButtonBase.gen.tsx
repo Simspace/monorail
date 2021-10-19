@@ -4,7 +4,7 @@ import {
   default as MUIButtonBase,
   ButtonBaseProps as MUIButtonBaseProps,
   ButtonBaseTypeMap,
-} from '@material-ui/core/ButtonBase'
+} from '@mui/material/ButtonBase'
 
 /**
  * Props for ButtonBase

@@ -4,7 +4,7 @@ import {
   default as MUIMenuItem,
   MenuItemProps as MUIMenuItemProps,
   MenuItemTypeMap,
-} from '@material-ui/core/MenuItem'
+} from '@mui/material/MenuItem'
 
 /**
  * Props for MenuItem

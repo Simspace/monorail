@@ -10,7 +10,7 @@ import { Switch } from '../../Switch/Switch'
 /**
  * Metadata for Slide stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Utils/Transitions/Slide' }
 
 const box = (
   <Paper sx={{ m: 1 }} elevation={4}>

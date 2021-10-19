@@ -5,13 +5,13 @@ import { story } from '../../../__tests__/helpers/storybook'
 import { defaultStoryMeta } from './CardHeader.stories.gen'
 import { Avatar } from '../../Avatar/Avatar'
 import { IconButton } from '../../IconButton/IconButton'
-import CloseIcon from '@material-ui/icons/Close'
+import CloseIcon from '@mui/icons-material/Close'
 /**
  * Metadata for CardHeader stories - update/extend as needed
  * This is intended to be exported as story-level metadata from the main .stories.tsx file, like:
  * "export default { ...defaultStoryMeta } // Add/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Surfaces/Card/CardHeader' }
 /**
  * Story template (edit/remove by hand if needed)
  *
@@ -37,7 +37,7 @@ export const WithAction = () => (
     title="Title"
     subheader="Subheader"
     action={
-      <IconButton>
+      <IconButton size="large">
         <CloseIcon />
       </IconButton>
     }

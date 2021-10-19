@@ -1,13 +1,13 @@
 // eslint-disable-next-line no-restricted-imports
-import * as MUI from '@material-ui/core'
+import { Theme, ThemeOptions } from '@mui/material'
 import { baseTheme } from './baseTheme'
 
 /**
  * Constructs the `components` overrides using a subset of the overall theme that includes everything except `components`
  */
 export const getThemeComponents = (
-  _theme: MUI.Theme,
-): MUI.ThemeOptions['components'] => ({
+  _theme: Theme,
+): ThemeOptions['components'] => ({
   // Make sure we apply the defaults here
   ...baseTheme.components,
 
@@ -19,15 +19,21 @@ export const getThemeComponents = (
     },
   },
   MuiButton: {
-    defaultProps: {
-      //disableRipple: true,
-    },
+    defaultProps: {},
     styleOverrides: {},
     variants: [],
   },
-  MuiIconButton: {
+  MuiButtonBase: {
     defaultProps: {
-      //disableRipple: true,
+      disableRipple: true,
     },
+  },
+  MuiButtonGroup: {
+    defaultProps: {
+      disableRipple: true,
+    },
+  },
+  MuiIconButton: {
+    defaultProps: {},
   },
 })

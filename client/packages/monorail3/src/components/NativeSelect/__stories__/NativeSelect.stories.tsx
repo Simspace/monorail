@@ -10,7 +10,7 @@ import { InputLabel } from '../../InputLabel/InputLabel'
 /**
  * Metadata for NativeSelect stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Inputs/NativeSelect' }
 /**
  * Story template (edit/remove by hand if needed)
  *

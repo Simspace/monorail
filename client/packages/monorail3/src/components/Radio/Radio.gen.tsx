@@ -3,7 +3,7 @@ import React from 'react'
 import {
   default as MUIRadio,
   RadioProps as MUIRadioProps,
-} from '@material-ui/core/Radio'
+} from '@mui/material/Radio'
 
 /**
  * Props for Radio
