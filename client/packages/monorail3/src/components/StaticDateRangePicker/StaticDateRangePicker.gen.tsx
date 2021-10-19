@@ -8,11 +8,10 @@ import {
 /**
  * Props for StaticDateRangePicker
  */
-export type StaticDateRangePickerProps<
-  TDate = unknown
-> = MUIStaticDateRangePickerProps<TDate> & {
-  ref?: React.ForwardedRef<HTMLDivElement>
-}
+export type StaticDateRangePickerProps<TDate = unknown> =
+  MUIStaticDateRangePickerProps<TDate> & {
+    ref?: React.ForwardedRef<HTMLDivElement>
+  }
 
 /**
  * StaticDateRangePicker
