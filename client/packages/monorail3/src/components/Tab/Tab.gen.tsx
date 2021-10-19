@@ -11,7 +11,7 @@ import {
  */
 export type TabProps<
   D extends React.ElementType = TabTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 > = MUITabProps<D, P> & { ref?: React.ForwardedRef<HTMLDivElement> }
 
 /**
