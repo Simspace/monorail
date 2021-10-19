@@ -11,7 +11,7 @@ import {
  */
 export type IconProps<
   D extends React.ElementType = IconTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 > = MUIIconProps<D, P> & { ref?: React.ForwardedRef<HTMLSpanElement> }
 
 /**

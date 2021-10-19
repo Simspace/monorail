@@ -11,7 +11,7 @@ import {
  */
 export type ScopedCssBaselineProps<
   D extends React.ElementType = ScopedCssBaselineTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 > = MUIScopedCssBaselineProps<D, P> & {
   ref?: React.ForwardedRef<HTMLDivElement>
 }
@@ -23,7 +23,7 @@ export const ScopedCssBaseline = React.forwardRef((props, ref) => (
   <MUIScopedCssBaseline ref={ref} {...props} />
 )) as <
   D extends React.ElementType = ScopedCssBaselineTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 >(
   props: ScopedCssBaselineProps<D, P>,
 ) => JSX.Element
