@@ -11,7 +11,7 @@ import {
  */
 export type DividerProps<
   D extends React.ElementType = DividerTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 > = MUIDividerProps<D, P> & { ref?: React.ForwardedRef<HTMLHRElement> }
 
 /**
@@ -21,7 +21,7 @@ export const Divider = React.forwardRef((props, ref) => (
   <MUIDivider ref={ref} {...props} />
 )) as <
   D extends React.ElementType = DividerTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 >(
   props: DividerProps<D, P>,
 ) => JSX.Element

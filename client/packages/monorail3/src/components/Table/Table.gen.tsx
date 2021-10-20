@@ -11,7 +11,7 @@ import {
  */
 export type TableProps<
   D extends React.ElementType = TableTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 > = MUITableProps<D, P> & { ref?: React.ForwardedRef<HTMLTableElement> }
 
 /**
