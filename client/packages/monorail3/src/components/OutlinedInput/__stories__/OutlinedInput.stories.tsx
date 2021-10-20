@@ -1,10 +1,11 @@
 // Edit this file to add new stories
 import React from 'react'
-import { OutlinedInput, OutlinedInputProps } from '../OutlinedInput'
+
 import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './OutlinedInput.stories.gen'
 import { FormControl } from '../../FormControl/FormControl'
 import { InputLabel } from '../../InputLabel/InputLabel'
+import { OutlinedInput, OutlinedInputProps } from '../OutlinedInput'
+import { defaultStoryMeta } from './OutlinedInput.stories.gen'
 
 /**
  * Metadata for OutlinedInput stories - update/extend as needed

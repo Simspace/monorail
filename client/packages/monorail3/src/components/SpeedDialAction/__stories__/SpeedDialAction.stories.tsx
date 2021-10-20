@@ -1,7 +1,8 @@
 // Edit this file to add new stories
 import React from 'react'
-import { SpeedDialAction, SpeedDialActionProps } from '../SpeedDialAction'
+
 import { story } from '../../../__tests__/helpers/storybook'
+import { SpeedDialAction, SpeedDialActionProps } from '../SpeedDialAction'
 import { defaultStoryMeta } from './SpeedDialAction.stories.gen'
 /**
  * Metadata for SpeedDialAction stories - update/extend as needed

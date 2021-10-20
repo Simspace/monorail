@@ -1,18 +1,19 @@
 // Edit this file to add new stories
 import React from 'react'
-import { Snackbar, SnackbarProps, SnackbarOrigin } from '../Snackbar'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './Snackbar.stories.gen'
-import { Button } from '../../Button/Button'
-import { IconButton } from '../../IconButton/IconButton'
 import CloseIcon from '@mui/icons-material/Close'
-import { Alert, AlertProps } from '../../Alert/Alert'
-import { Stack } from '../../Stack/Stack'
-import { SnackbarContent } from '../../SnackbarContent/SnackbarContent'
 import { TransitionProps } from '@mui/material/transitions'
-import { Slide } from '../../Slide/Slide'
-import { Grow } from '../../Grow/Grow'
+
+import { story } from '../../../__tests__/helpers/storybook'
+import { Alert, AlertProps } from '../../Alert/Alert'
+import { Button } from '../../Button/Button'
 import { Fade } from '../../Fade/Fade'
+import { Grow } from '../../Grow/Grow'
+import { IconButton } from '../../IconButton/IconButton'
+import { Slide } from '../../Slide/Slide'
+import { SnackbarContent } from '../../SnackbarContent/SnackbarContent'
+import { Stack } from '../../Stack/Stack'
+import { Snackbar, SnackbarOrigin,SnackbarProps } from '../Snackbar'
+import { defaultStoryMeta } from './Snackbar.stories.gen'
 
 /**
  * Metadata for Snackbar stories - update/extend as needed
@@ -284,7 +285,7 @@ interface SnackbarMessage {
 export const Transitions = story<SnackbarProps>(
   () => {
     const [snackPack, setSnackPack] = React.useState<
-      readonly SnackbarMessage[]
+      ReadonlyArray<SnackbarMessage>
     >([])
     const [open, setOpen] = React.useState(false)
     const [messageInfo, setMessageInfo] = React.useState<

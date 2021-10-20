@@ -1,15 +1,16 @@
 // Edit this file to add new stories
 import React from 'react'
-import { StepButton, StepButtonProps } from '../StepButton'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './StepButton.stories.gen'
 import { WarningAmberTwoTone } from '@mui/icons-material'
-import { StepLabel } from '../../StepLabel/StepLabel'
+
+import { story } from '../../../__tests__/helpers/storybook'
 import { Box } from '../../Box/Box'
-import { Step } from '../../Step/Step'
-import { Typography } from '../../Typography/Typography'
 import { Button } from '../../Button/Button'
+import { Step } from '../../Step/Step'
+import { StepLabel } from '../../StepLabel/StepLabel'
 import { Stepper } from '../../Stepper/Stepper'
+import { Typography } from '../../Typography/Typography'
+import { StepButton, StepButtonProps } from '../StepButton'
+import { defaultStoryMeta } from './StepButton.stories.gen'
 /**
  * Metadata for StepButton stories - update/extend as needed
  */

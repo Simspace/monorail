@@ -1,7 +1,8 @@
 // Edit this file to add new stories
 import React from 'react'
-import { TreeItem, TreeItemProps } from '../TreeItem'
+
 import { story } from '../../../__tests__/helpers/storybook'
+import { TreeItem, TreeItemProps } from '../TreeItem'
 import { defaultStoryMeta } from './TreeItem.stories.gen'
 /**
  * Metadata for TreeItem stories - update/extend as needed

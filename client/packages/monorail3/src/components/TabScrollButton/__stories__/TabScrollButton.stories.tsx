@@ -1,7 +1,8 @@
 // Edit this file to add new stories
 import React from 'react'
-import { TabScrollButton, TabScrollButtonProps } from '../TabScrollButton'
+
 import { story } from '../../../__tests__/helpers/storybook'
+import { TabScrollButton, TabScrollButtonProps } from '../TabScrollButton'
 import { defaultStoryMeta } from './TabScrollButton.stories.gen'
 /**
  * Metadata for TabScrollButton stories - update/extend as needed

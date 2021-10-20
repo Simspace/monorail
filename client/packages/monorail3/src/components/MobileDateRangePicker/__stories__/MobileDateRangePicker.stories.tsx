@@ -1,16 +1,16 @@
 // Edit this file to add new stories
 import React from 'react'
+import { DateRange } from '@mui/lab/DateRangePicker/RangeTypes'
+
+import { story } from '../../../__tests__/helpers/storybook'
+import { AdapterDateFns, LocalizationProvider } from '../../../helpers/dateTime'
+import { Box } from '../../Box/Box'
+import { TextField } from '../../TextField/TextField'
 import {
   MobileDateRangePicker,
   MobileDateRangePickerProps,
 } from '../MobileDateRangePicker'
-import { story } from '../../../__tests__/helpers/storybook'
 import { defaultStoryMeta } from './MobileDateRangePicker.stories.gen'
-import { action } from '@storybook/addon-actions'
-import { TextField } from '../../TextField/TextField'
-import { DateRange } from '@mui/lab/DateRangePicker/RangeTypes'
-import { AdapterDateFns, LocalizationProvider } from '../../../helpers/dateTime'
-import { Box } from '../../Box/Box'
 
 /**
  * Metadata for MobileDateRangePicker stories - update/extend as needed
@@ -26,6 +26,7 @@ const Template = story<MobileDateRangePickerProps<Date>>(args => {
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <MobileDateRangePicker
+        {...args}
         startText="Mobile start"
         value={value}
         onChange={newValue => {

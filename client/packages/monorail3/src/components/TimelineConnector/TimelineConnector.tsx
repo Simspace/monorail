@@ -1,5 +1,6 @@
 // Placeholder for extra functionality - add extra types/values/functions/etc. for TimelineConnector
 import React from 'react'
+
 import {
   TimelineConnector as _TimelineConnector,
   TimelineConnectorProps as _TimelineConnectorProps,

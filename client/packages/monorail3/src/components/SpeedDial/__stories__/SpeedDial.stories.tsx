@@ -1,16 +1,13 @@
 // Edit this file to add new stories
 import React from 'react'
-import { SpeedDial, SpeedDialProps } from '../SpeedDial'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './SpeedDial.stories.gen'
-
-import { styled } from '@mui/material/styles'
 import EditIcon from '@mui/icons-material/EditOutlined'
 import FileCopyIcon from '@mui/icons-material/FileCopyOutlined'
 import PrintIcon from '@mui/icons-material/Print'
 import SaveIcon from '@mui/icons-material/Save'
 import ShareIcon from '@mui/icons-material/Share'
+import { styled } from '@mui/material/styles'
 
+import { story } from '../../../__tests__/helpers/storybook'
 import { Backdrop } from '../../Backdrop/Backdrop'
 import { Box } from '../../Box/Box'
 import { FormControl } from '../../FormControl/FormControl'
@@ -21,6 +18,8 @@ import { RadioGroup } from '../../RadioGroup/RadioGroup'
 import { SpeedDialAction } from '../../SpeedDialAction/SpeedDialAction'
 import { SpeedDialIcon } from '../../SpeedDialIcon/SpeedDialIcon'
 import { Switch } from '../../Switch/Switch'
+import { SpeedDial, SpeedDialProps } from '../SpeedDial'
+import { defaultStoryMeta } from './SpeedDial.stories.gen'
 
 export default { ...defaultStoryMeta, title: 'Navigation/SpeedDial' }
 

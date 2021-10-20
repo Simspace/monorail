@@ -1,15 +1,15 @@
 // Edit this file to add new stories
 import React from 'react'
-import { story } from '../../../__tests__/helpers/storybook'
-import { Select, SelectProps } from '../Select'
-import { defaultStoryMeta } from './Select.stories.gen'
+import { SelectChangeEvent } from '@mui/material/Select'
 
+import { story } from '../../../__tests__/helpers/storybook'
 import { Box } from '../../Box/Box'
 import { FormControl } from '../../FormControl/FormControl'
 import { FormHelperText } from '../../FormHelperText/FormHelperText'
 import { InputLabel } from '../../InputLabel/InputLabel'
 import { MenuItem } from '../../MenuItem/MenuItem'
-import { SelectChangeEvent } from '@mui/material/Select'
+import { Select, SelectProps } from '../Select'
+import { defaultStoryMeta } from './Select.stories.gen'
 
 export default { ...defaultStoryMeta, title: 'Inputs/Select' }
 

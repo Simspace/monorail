@@ -1,5 +1,6 @@
 // Placeholder for extra functionality - add extra types/values/functions/etc. for SpeedDialIcon
 import React from 'react'
+
 import {
   SpeedDialIcon as _SpeedDialIcon,
   SpeedDialIconProps as _SpeedDialIconProps,

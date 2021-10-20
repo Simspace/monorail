@@ -1,5 +1,6 @@
 // Placeholder for extra functionality - add extra types/values/functions/etc. for TimelineContent
 import React from 'react'
+
 import {
   TimelineContent as _TimelineContent,
   TimelineContentProps as _TimelineContentProps,

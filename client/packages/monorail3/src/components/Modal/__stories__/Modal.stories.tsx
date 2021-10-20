@@ -1,15 +1,16 @@
 // Edit this file to add new stories
 import React from 'react'
-import { Modal, ModalProps } from '../Modal'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './Modal.stories.gen'
-import { Button } from '../../Button/Button'
-import { Typography } from '../../Typography/Typography'
-import { Box } from '../../Box/Box'
-import { styled } from '@mui/material/styles'
 import { ModalUnstyled } from '@mui/material'
-import { Fade } from '../../Fade/Fade'
+import { styled } from '@mui/material/styles'
+
+import { story } from '../../../__tests__/helpers/storybook'
 import { Backdrop } from '../../Backdrop/Backdrop'
+import { Box } from '../../Box/Box'
+import { Button } from '../../Button/Button'
+import { Fade } from '../../Fade/Fade'
+import { Typography } from '../../Typography/Typography'
+import { Modal, ModalProps } from '../Modal'
+import { defaultStoryMeta } from './Modal.stories.gen'
 /**
  * Metadata for Modal stories - update/extend as needed
  */
@@ -22,7 +23,7 @@ export default { ...defaultStoryMeta, title: 'Utils/Modal' }
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
 const Template = story<ModalProps>(
-  args => {
+  () => {
     const [open, setOpen] = React.useState(false)
     const handleOpen = () => setOpen(true)
     const handleClose = () => setOpen(false)

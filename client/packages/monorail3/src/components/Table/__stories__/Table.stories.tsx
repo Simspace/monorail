@@ -1,38 +1,39 @@
 // Edit this file to add new stories
 import React from 'react'
-import { Table, TableProps } from '../Table'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './Table.stories.gen'
-import { TableContainer } from '../../TableContainer/TableContainer'
-import { Paper } from '../../Paper/Paper'
-import { TableHead } from '../../TableHead/TableHead'
-import { TableBody } from '../../TableBody/TableBody'
-import { TableRow } from '../../TableRow/TableRow'
-import { TableCell } from '../../TableCell/TableCell'
-import { Checkbox } from '../../Checkbox/Checkbox'
-import { TableSortLabel } from '../../TableSortLabel/TableSortLabel'
-import { Box } from '../../Box/Box'
-import { alpha, styled, visuallyHidden } from '../../../helpers/styles'
-import { Toolbar } from '../../Toolbar/Toolbar'
-import { Typography } from '../../Typography/Typography'
-import { Tooltip } from '../../Tooltip/Tooltip'
-import { IconButton } from '../../IconButton/IconButton'
 import DeleteIcon from '@mui/icons-material/Delete'
 import FilterListIcon from '@mui/icons-material/FilterList'
-import LastPageIcon from '@mui/icons-material/LastPage'
 import FirstPageIcon from '@mui/icons-material/FirstPage'
+import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown'
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft'
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight'
 import KeyboardArrowUp from '@mui/icons-material/KeyboardArrowUp'
-import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown'
-import { TablePagination } from '../../TablePagination/TablePagination'
-import { FormControlLabel } from '../../FormControlLabel/FormControlLabel'
-import { Switch } from '../../Switch/Switch'
+import LastPageIcon from '@mui/icons-material/LastPage'
 import { tableCellClasses } from '@mui/material/TableCell'
+
+import { story } from '../../../__tests__/helpers/storybook'
+import { alpha, styled, visuallyHidden } from '../../../helpers/styles'
 import { useTheme } from '../../../theme/useTheme'
-import { TableFooter } from '../../TableFooter/TableFooter'
-import { Collapse } from '../../Collapse/Collapse'
 import { Alert } from '../../Alert/Alert'
+import { Box } from '../../Box/Box'
+import { Checkbox } from '../../Checkbox/Checkbox'
+import { Collapse } from '../../Collapse/Collapse'
+import { FormControlLabel } from '../../FormControlLabel/FormControlLabel'
+import { IconButton } from '../../IconButton/IconButton'
+import { Paper } from '../../Paper/Paper'
+import { Switch } from '../../Switch/Switch'
+import { TableBody } from '../../TableBody/TableBody'
+import { TableCell } from '../../TableCell/TableCell'
+import { TableContainer } from '../../TableContainer/TableContainer'
+import { TableFooter } from '../../TableFooter/TableFooter'
+import { TableHead } from '../../TableHead/TableHead'
+import { TablePagination } from '../../TablePagination/TablePagination'
+import { TableRow } from '../../TableRow/TableRow'
+import { TableSortLabel } from '../../TableSortLabel/TableSortLabel'
+import { Toolbar } from '../../Toolbar/Toolbar'
+import { Tooltip } from '../../Tooltip/Tooltip'
+import { Typography } from '../../Typography/Typography'
+import { Table, TableProps } from '../Table'
+import { defaultStoryMeta } from './Table.stories.gen'
 
 export default { ...defaultStoryMeta, title: 'Data Display/Table' }
 
@@ -229,7 +230,7 @@ export const SortingAndSelecting = story<TableProps>(
     // This method is created for cross-browser compatibility, if you don't
     // need to support IE11, you can use Array.prototype.sort() directly
     function stableSort<T>(
-      array: readonly T[],
+      array: ReadonlyArray<T>,
       comparator: (a: T, b: T) => number,
     ) {
       const stabilizedThis = array.map(
@@ -237,7 +238,7 @@ export const SortingAndSelecting = story<TableProps>(
       )
       stabilizedThis.sort((a, b) => {
         const order = comparator(a[0], b[0])
-        if (order !== 0) return order
+        if (order !== 0) {return order}
         return a[1] - b[1]
       })
       return stabilizedThis.map(el => el[0])
@@ -250,7 +251,7 @@ export const SortingAndSelecting = story<TableProps>(
       numeric: boolean
     }
 
-    const headCells: readonly HeadCell[] = [
+    const headCells: ReadonlyArray<HeadCell> = [
       {
         id: 'name',
         numeric: false,
@@ -412,7 +413,7 @@ export const SortingAndSelecting = story<TableProps>(
     function EnhancedTable() {
       const [order, setOrder] = React.useState<Order>('asc')
       const [orderBy, setOrderBy] = React.useState<keyof Data>('calories')
-      const [selected, setSelected] = React.useState<readonly string[]>([])
+      const [selected, setSelected] = React.useState<ReadonlyArray<string>>([])
       const [page, setPage] = React.useState(0)
       const [dense, setDense] = React.useState(false)
       const [rowsPerPage, setRowsPerPage] = React.useState(5)
@@ -439,7 +440,7 @@ export const SortingAndSelecting = story<TableProps>(
 
       const handleClick = (event: React.MouseEvent<unknown>, name: string) => {
         const selectedIndex = selected.indexOf(name)
-        let newSelected: readonly string[] = []
+        let newSelected: ReadonlyArray<string> = []
 
         if (selectedIndex === -1) {
           newSelected = newSelected.concat(selected, name)
@@ -877,7 +878,7 @@ export const StickyHeader = story<TableProps>(
       format?: (value: number) => string
     }
 
-    const columns: readonly Column[] = [
+    const columns: ReadonlyArray<Column> = [
       { id: 'name', label: 'Name', minWidth: 170 },
       { id: 'code', label: 'ISO\u00a0Code', minWidth: 100 },
       {
@@ -1030,7 +1031,7 @@ export const ColumnGrouping = story<TableProps>(
       format?: (value: number) => string
     }
 
-    const columns: Column[] = [
+    const columns: Array<Column> = [
       { id: 'name', label: 'Name', minWidth: 170 },
       { id: 'code', label: 'ISO\u00a0Code', minWidth: 100 },
       {
@@ -1344,7 +1345,7 @@ export const SpanningTable = story<TableProps>(
       price: number
     }
 
-    function subtotal(items: readonly Row[]) {
+    function subtotal(items: ReadonlyArray<Row>) {
       return items.map(({ price }) => price).reduce((sum, i) => sum + i, 0)
     }
 

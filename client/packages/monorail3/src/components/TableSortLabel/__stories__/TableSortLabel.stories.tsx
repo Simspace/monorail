@@ -1,7 +1,8 @@
 // Edit this file to add new stories
 import React from 'react'
-import { TableSortLabel, TableSortLabelProps } from '../TableSortLabel'
+
 import { story } from '../../../__tests__/helpers/storybook'
+import { TableSortLabel, TableSortLabelProps } from '../TableSortLabel'
 import { defaultStoryMeta } from './TableSortLabel.stories.gen'
 
 export default {

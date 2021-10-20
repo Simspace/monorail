@@ -1,7 +1,8 @@
 // Edit this file to add new stories
+import React from 'react'
 import { pink } from '@mui/material/colors'
 import { alpha, styled } from '@mui/material/styles'
-import React from 'react'
+
 import { story } from '../../../__tests__/helpers/storybook'
 import { FormControl } from '../../FormControl/FormControl'
 import { FormControlLabel } from '../../FormControlLabel/FormControlLabel'

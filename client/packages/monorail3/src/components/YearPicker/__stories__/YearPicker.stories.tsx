@@ -1,9 +1,10 @@
 // Edit this file to add new stories
 import React from 'react'
-import { YearPicker, YearPickerProps } from '../YearPicker'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './YearPicker.stories.gen'
 import { action } from '@storybook/addon-actions'
+
+import { story } from '../../../__tests__/helpers/storybook'
+import { YearPicker, YearPickerProps } from '../YearPicker'
+import { defaultStoryMeta } from './YearPicker.stories.gen'
 
 /**
  * Metadata for YearPicker stories - update/extend as needed
