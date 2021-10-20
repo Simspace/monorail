@@ -1,10 +1,11 @@
 // Edit this file to add new stories
 import React from 'react'
-import { ImageListItemBar, ImageListItemBarProps } from '../ImageListItemBar'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './ImageListItemBar.stories.gen'
-import { IconButton } from '../../IconButton/IconButton'
 import InfoIcon from '@mui/icons-material/Info'
+
+import { story } from '../../../__tests__/helpers/storybook'
+import { IconButton } from '../../IconButton/IconButton'
+import { ImageListItemBar, ImageListItemBarProps } from '../ImageListItemBar'
+import { defaultStoryMeta } from './ImageListItemBar.stories.gen'
 
 /**
  * Metadata for ImageListItemBar stories - update/extend as needed

@@ -1,14 +1,15 @@
 // Edit this file to add new stories
 import React from 'react'
-import { InputBase, InputBaseProps } from '../InputBase'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './InputBase.stories.gen'
-import { Paper } from '../../Paper/Paper'
-import { IconButton } from '../../IconButton/IconButton'
-import { Divider } from '../../Divider/Divider'
+import DirectionsIcon from '@mui/icons-material/Directions'
 import MenuIcon from '@mui/icons-material/Menu'
 import SearchIcon from '@mui/icons-material/Search'
-import DirectionsIcon from '@mui/icons-material/Directions'
+
+import { story } from '../../../__tests__/helpers/storybook'
+import { Divider } from '../../Divider/Divider'
+import { IconButton } from '../../IconButton/IconButton'
+import { Paper } from '../../Paper/Paper'
+import { InputBase, InputBaseProps } from '../InputBase'
+import { defaultStoryMeta } from './InputBase.stories.gen'
 
 /**
  * Metadata for InputBase stories - update/extend as needed
