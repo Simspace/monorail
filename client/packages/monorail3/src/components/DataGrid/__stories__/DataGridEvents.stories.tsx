@@ -1,9 +1,10 @@
 // Edit this file to add new stories
 import React from 'react'
-import { DataGrid, DataGridProps } from '../DataGrid'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './DataGrid.stories.gen'
 import { useDemoData } from '@mui/x-data-grid-generator'
+
+import { story } from '../../../__tests__/helpers/storybook'
+import { DataGrid, DataGridProps } from '../DataGrid'
+import { defaultStoryMeta } from './DataGrid.stories.gen'
 
 export default {
   ...defaultStoryMeta,
@@ -16,7 +17,7 @@ export default {
   },
 }
 
-const Template = story<DataGridProps>(args => {
+const Template = story<DataGridProps>(() => {
   // TODO(storybook): Uncomment once we have DataGridPro (paid)
   // const apiRef = useGridApiRef();
   // const [message, setMessage] = React.useState('');
@@ -141,7 +142,7 @@ Usually, double clicking a cell will put it into  [edit mode](https://mui.com/co
 /**
  * Catalog of events
  */
-export const CatalogOfEvents = story<DataGridProps>(args => <></>)
+export const CatalogOfEvents = story<DataGridProps>(() => <></>)
 CatalogOfEvents.storyName = 'Catalog of events'
 CatalogOfEvents.parameters = {
   docs: {

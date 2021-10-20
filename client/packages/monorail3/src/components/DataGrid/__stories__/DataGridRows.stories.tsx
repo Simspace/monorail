@@ -1,17 +1,15 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // Edit this file to add new stories
 import React from 'react'
-import { DataGrid, DataGridProps } from '../DataGrid'
+import { GridRowModel } from '@mui/x-data-grid'
+import { useDemoData } from '@mui/x-data-grid-generator'
+
 import { story } from '../../../__tests__/helpers/storybook'
+import { DataGrid, DataGridProps } from '../DataGrid'
 import { defaultStoryMeta } from './DataGrid.stories.gen'
-import { GridOverlay, GridRowModel, useGridApiRef } from '@mui/x-data-grid'
-import {
-  getCommodityColumns,
-  getRealData,
-  randomInt,
-  randomUserName,
-  useDemoData,
-} from '@mui/x-data-grid-generator'
-import { LinearProgress } from '@mui/material'
 
 export default {
   ...defaultStoryMeta,
@@ -28,12 +26,13 @@ const Template = story<DataGridProps>(args => {
   return (
     <div style={{ height: 250, width: '100%' }}>
       <DataGrid
+        {...args}
         columns={[{ field: 'name' }]}
         rows={
           [
             { id: 1, name: 'React' },
             { id: 2, name: 'Material-UI' },
-          ] as GridRowModel[]
+          ] as Array<GridRowModel>
         }
       />
     </div>
@@ -55,74 +54,78 @@ Grid rows can be defined with the rows prop. rows expects an array of objects. R
   },
 }
 
-const MAX_ROW_LENGTH = 500
+// TODO(storybook): Uncomment once we have DataGridPro (paid)
+// const MAX_ROW_LENGTH = 500
 
-const sleep = async (duration: number) => {
-  return new Promise<void>(resolve => {
-    setTimeout(() => {
-      resolve()
-    }, duration)
-  })
-}
+// const sleep = async (duration: number) => {
+//   return new Promise<void>(resolve => {
+//     setTimeout(() => {
+//       resolve()
+//     }, duration)
+//   })
+// }
 
-const CustomLoadingOverlay = () => {
+// const CustomLoadingOverlay = () => {
+//   return (
+//     <GridOverlay>
+//       <div style={{ position: 'absolute', top: 0, width: '100%' }}>
+//         <LinearProgress />
+//       </div>
+//     </GridOverlay>
+//   )
+// }
+
+export const InfiniteLoadingGrid = story<DataGridProps>(() => {
+  // TODO(storybook): Uncomment once we have DataGridPro (paid)
+  // const [loading, setLoading] = React.useState(false)
+  // const [loadedRows, setLoadedRows] = React.useState<any>([])
+  // const mounted = React.useRef(true)
+  // const { data } = useDemoData({
+  //   dataSet: 'Commodity',
+  //   rowLength: 20,
+  //   maxColumns: 6,
+  // })
+
+  // const loadServerRows = async (newRowLength: any) => {
+  //   setLoading(true)
+  //   const newData = await getRealData(newRowLength, getCommodityColumns())
+  //   // Simulate network throttle
+  //   await sleep(Math.random() * 500 + 100)
+
+  //   if (mounted.current) {
+  //     setLoading(false)
+  //     setLoadedRows(loadedRows.concat(newData.rows))
+  //   }
+  // }
+
+  // const handleOnRowsScrollEnd = (params: any) => {
+  //   if (loadedRows.length <= MAX_ROW_LENGTH) {
+  //     loadServerRows(params.viewportPageSize)
+  //   }
+  // }
+
+  // React.useEffect(() => {
+  //   return () => {
+  //     mounted.current = false
+  //   }
+  // }, [])
+
   return (
-    <GridOverlay>
-      <div style={{ position: 'absolute', top: 0, width: '100%' }}>
-        <LinearProgress />
-      </div>
-    </GridOverlay>
-  )
-}
-
-export const InfiniteLoadingGrid = story<DataGridProps>(args => {
-  const [loading, setLoading] = React.useState(false)
-  const [loadedRows, setLoadedRows] = React.useState<any>([])
-  const mounted = React.useRef(true)
-  const { data } = useDemoData({
-    dataSet: 'Commodity',
-    rowLength: 20,
-    maxColumns: 6,
-  })
-
-  const loadServerRows = async (newRowLength: any) => {
-    setLoading(true)
-    const newData = await getRealData(newRowLength, getCommodityColumns())
-    // Simulate network throttle
-    await sleep(Math.random() * 500 + 100)
-
-    if (mounted.current) {
-      setLoading(false)
-      setLoadedRows(loadedRows.concat(newData.rows))
-    }
-  }
-
-  const handleOnRowsScrollEnd = (params: any) => {
-    if (loadedRows.length <= MAX_ROW_LENGTH) {
-      loadServerRows(params.viewportPageSize)
-    }
-  }
-
-  React.useEffect(() => {
-    return () => {
-      mounted.current = false
-    }
-  }, [])
-
-  return (
-    <div style={{ height: 400, width: '100%' }}>
-      {/* TODO(storybook): Replace with DataGridPro and uncomment onRowsScrollEnd once we have mui/x-data-grid-pro */}
-      <DataGrid
-        {...data}
-        rows={data.rows.concat(loadedRows)}
-        loading={loading}
-        hideFooterPagination
-        // onRowsScrollEnd={handleOnRowsScrollEnd}
-        components={{
-          LoadingOverlay: CustomLoadingOverlay,
-        }}
-      />
-    </div>
+    <></>
+    // TODO(storybook): Uncomment once we have DataGridPro (paid)
+    // <div style={{ height: 400, width: '100%' }}>
+    //   <DataGridPro
+    //     {...args}
+    //     {...data}
+    //     rows={data.rows.concat(loadedRows)}
+    //     loading={loading}
+    //     hideFooterPagination
+    //     onRowsScrollEnd={handleOnRowsScrollEnd}
+    //     components={{
+    //       LoadingOverlay: CustomLoadingOverlay,
+    //     }}
+    //   />
+    // </div>
   )
 })
 
@@ -154,20 +157,20 @@ In addition, the area in which the callback provided to the  \`onRowsScrollEnd\`
   },
 }
 
-export const ApiRefRowsGrid = story<DataGridProps>(args => {
-  const columns = [
-    { field: 'id' },
-    { field: 'username', width: 150 },
-    { field: 'age', width: 80, type: 'number' },
-  ]
+export const ApiRefRowsGrid = story<DataGridProps>(() => {
+  // const columns = [
+  //   { field: 'id' },
+  //   { field: 'username', width: 150 },
+  //   { field: 'age', width: 80, type: 'number' },
+  // ]
 
-  const rows = [
-    { id: 1, username: randomUserName(), age: randomInt(10, 80) },
-    { id: 2, username: randomUserName(), age: randomInt(10, 80) },
-    { id: 3, username: randomUserName(), age: randomInt(10, 80) },
-    { id: 4, username: randomUserName(), age: randomInt(10, 80) },
-  ]
-  const apiRef = useGridApiRef()
+  // const rows = [
+  //   { id: 1, username: randomUserName(), age: randomInt(10, 80) },
+  //   { id: 2, username: randomUserName(), age: randomInt(10, 80) },
+  //   { id: 3, username: randomUserName(), age: randomInt(10, 80) },
+  //   { id: 4, username: randomUserName(), age: randomInt(10, 80) },
+  // ]
+  // const apiRef = useGridApiRef()
 
   // React.useEffect(() => {
   //   const subscription = interval(200).subscribe(() => { // internal() from rxjs
@@ -249,7 +252,7 @@ To change the row height for the whole grid, set the  \`rowHeight\`  prop:`,
   },
 }
 
-export const StylingRows = story<DataGridProps>(args => <></>)
+export const StylingRows = story<DataGridProps>(() => <></>)
 
 StylingRows.parameters = {
   docs: {
@@ -262,7 +265,7 @@ StylingRows.parameters = {
   },
 }
 
-export const RowSpanningGrid = story<DataGridProps>(args => <></>)
+export const RowSpanningGrid = story<DataGridProps>(() => <></>)
 
 RowSpanningGrid.parameters = {
   docs: {
@@ -278,7 +281,7 @@ Grouping columns allows you to have multiple levels of columns in your header an
   },
 }
 
-export const RowReorderGrid = story<DataGridProps>(args => <></>)
+export const RowReorderGrid = story<DataGridProps>(() => <></>)
 
 RowReorderGrid.parameters = {
   docs: {

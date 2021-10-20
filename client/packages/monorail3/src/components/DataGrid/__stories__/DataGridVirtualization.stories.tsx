@@ -1,9 +1,10 @@
 // Edit this file to add new stories
 import React from 'react'
-import { DataGrid, DataGridProps } from '../DataGrid'
+import { GridColDef, GridRowId } from '@mui/x-data-grid'
+
 import { story } from '../../../__tests__/helpers/storybook'
+import { DataGrid, DataGridProps } from '../DataGrid'
 import { defaultStoryMeta } from './DataGrid.stories.gen'
-import { GridColDef, GridRowId, GridRowsProp } from '@mui/x-data-grid'
 
 export default {
   ...defaultStoryMeta,
@@ -22,18 +23,18 @@ interface DataRowModel {
 }
 
 interface GridData {
-  columns: GridColDef[]
-  rows: DataRowModel[]
+  columns: Array<GridColDef>
+  rows: Array<DataRowModel>
 }
 
 const useData = (rowLength: number, columnLength: number) => {
   const [data, setData] = React.useState<GridData>({ columns: [], rows: [] })
 
   React.useEffect(() => {
-    const rows: DataRowModel[] = []
+    const rows: Array<DataRowModel> = []
 
     for (let i = 0; i < rowLength; i += 1) {
-      let row: DataRowModel = {
+      const row: DataRowModel = {
         id: i,
       }
 
@@ -44,7 +45,7 @@ const useData = (rowLength: number, columnLength: number) => {
       rows.push(row)
     }
 
-    const columns: GridColDef[] = [{ field: 'id', hide: true }]
+    const columns: Array<GridColDef> = [{ field: 'id', hide: true }]
 
     for (let j = 1; j <= columnLength; j += 1) {
       columns.push({ field: `price${j}M`, headerName: `${j}M` })
@@ -64,7 +65,7 @@ const Template = story<DataGridProps>(args => {
 
   return (
     <div style={{ height: 400, width: '100%' }}>
-      <DataGrid {...data} columnBuffer={2} />
+      <DataGrid {...args} {...data} columnBuffer={2} />
     </div>
   )
 })

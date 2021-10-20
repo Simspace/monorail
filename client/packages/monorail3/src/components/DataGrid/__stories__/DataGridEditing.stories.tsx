@@ -1,11 +1,12 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 // Edit this file to add new stories
 import React from 'react'
-import { DataGrid, DataGridProps } from '../DataGrid'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './DataGrid.stories.gen'
+import { createTheme, Theme } from '@mui/material/styles'
+import { makeStyles } from '@mui/styles'
 import {
-  GridActionsCellItem,
-  GridApiRef,
   GridCellEditCommitParams,
   GridCellParams,
   GridCellValue,
@@ -13,11 +14,8 @@ import {
   GridColumns,
   GridEditCellPropsParams,
   GridEditRowsModel,
-  GridEvents,
   GridRenderCellParams,
-  GridRowParams,
   GridRowsProp,
-  GridToolbarContainer,
   GridValueGetterParams,
   MuiEvent,
   useGridApiRef,
@@ -25,17 +23,16 @@ import {
 import {
   randomCreatedDate,
   randomEmail,
-  randomId,
   randomPrice,
   randomTraderName,
   randomUpdatedDate,
 } from '@mui/x-data-grid-generator'
-import { makeStyles } from '@mui/styles'
-import { createTheme, Theme } from '@mui/material/styles'
+
+import { story } from '../../../__tests__/helpers/storybook'
 import { Alert } from '../../Alert/Alert'
 import { Rating } from '../../Rating/Rating'
-import { Button } from '../../Button/Button'
-import { Add, Cancel, Delete, Edit, Save } from '@mui/icons-material'
+import { DataGrid, DataGridProps } from '../DataGrid'
+import { defaultStoryMeta } from './DataGrid.stories.gen'
 
 export default {
   ...defaultStoryMeta,
@@ -163,18 +160,11 @@ If a cell is in edit mode and has focus, any of the following interactions will 
   },
 }
 
-// TODO v5: remove (copied from MUI)
-function getThemePaletteMode(palette: any): string {
-  return palette.type || palette.mode
-}
-
 const defaultTheme = createTheme()
 const useStyles = makeStyles(
   (theme: Theme) => {
     const backgroundColor =
-      getThemePaletteMode(theme.palette) === 'dark'
-        ? '#376331'
-        : 'rgb(217 243 190)'
+      theme.palette.mode === 'dark' ? '#376331' : 'rgb(217 243 190)'
     return {
       root: {
         '& .MuiDataGrid-cell--editable': {
@@ -191,6 +181,7 @@ export const IsCellEditableGrid = story<DataGridProps>(args => {
   return (
     <div style={{ height: 400, width: '100%' }}>
       <DataGrid
+        {...args}
         className={classes.root}
         rows={rows}
         columns={columns}
@@ -231,6 +222,7 @@ export const CellEditControlGrid = story<DataGridProps>(args => {
       </Alert>
       <div style={{ height: 400, width: '100%' }}>
         <DataGrid
+          {...args}
           rows={rows}
           columns={columns}
           editRowsModel={editRowsModel}
@@ -261,7 +253,7 @@ const getFullName = (params: GridValueGetterParams) => {
 }
 
 export const ValueGetterGrid = story<DataGridProps>(args => {
-  const columns: GridColDef[] = [
+  const columns: Array<GridColDef> = [
     {
       field: 'firstName',
       headerName: 'First name',
@@ -291,7 +283,9 @@ export const ValueGetterGrid = story<DataGridProps>(args => {
     { id: 4, lastName: 'Stark', firstName: 'Arya' },
     { id: 5, lastName: 'Targaryen', firstName: 'Daenerys' },
   ]
-  const [rows, setRows] = React.useState<any[]>(defaultRows)
+  const [rows, setRows] = React.useState<
+    Array<{ id: number; lastName: string; firstName: string }>
+  >(defaultRows)
 
   const handleCellEditCommit = React.useCallback(
     ({ id, field, value }: GridCellEditCommitParams) => {
@@ -311,6 +305,7 @@ export const ValueGetterGrid = story<DataGridProps>(args => {
   return (
     <div style={{ height: 400, width: '100%' }}>
       <DataGrid
+        {...args}
         rows={rows}
         columns={columns}
         onCellEditCommit={handleCellEditCommit}
@@ -335,7 +330,7 @@ ValueGetterGrid.parameters = {
 //#region Client-side validation
 const useStylesValidateRowModelControlGrid = makeStyles(
   (theme: Theme) => {
-    const isDark = getThemePaletteMode(theme.palette) === 'dark'
+    const isDark = theme.palette.mode === 'dark'
 
     return {
       root: {
@@ -441,6 +436,7 @@ export const ValidateRowModelControlGrid = story<DataGridProps>(args => {
   return (
     <div style={{ height: 400, width: '100%' }}>
       <DataGrid
+        {...args}
         className={classes.root}
         rows={rows}
         columns={columns}
@@ -469,7 +465,7 @@ Alternatively, you can use the  \`GridEditRowsModel\`  state mentioned in the  [
 //#region Server-side validation
 const useStylesServerSideValidation = makeStyles(
   (theme: Theme) => {
-    const isDark = getThemePaletteMode(theme.palette) === 'dark'
+    const isDark = theme.palette.mode === 'dark'
 
     return {
       root: {
@@ -486,11 +482,45 @@ const useStylesServerSideValidation = makeStyles(
   { defaultTheme },
 )
 
-let promiseTimeout: any
-function validateName(username: string): Promise<boolean> {
-  const existingUsers = rows.map(row => row.name.toLowerCase())
+const columnsValidateServer: GridColumns = [
+  {
+    field: 'name',
+    headerName: 'MUI Contributor',
+    width: 180,
+    editable: true,
+  },
+]
 
-  return new Promise<any>(resolve => {
+const rowsValidateServer: Array<{ id: number; name: string }> = [
+  {
+    id: 1,
+    name: 'Damien',
+  },
+  {
+    id: 2,
+    name: 'Olivier',
+  },
+  {
+    id: 3,
+    name: 'Danail',
+  },
+  {
+    id: 4,
+    name: 'Matheus',
+  },
+  {
+    id: 5,
+    name: 'You?',
+  },
+]
+
+let promiseTimeout: ReturnType<typeof setTimeout>
+const validateName = (username: string): Promise<boolean> => {
+  const existingUsers = rowsValidateServer.map<string>(row =>
+    row.name.toLowerCase(),
+  )
+
+  return new Promise<boolean>(resolve => {
     promiseTimeout = setTimeout(() => {
       resolve(existingUsers.indexOf(username.toLowerCase()) === -1)
     }, Math.random() * 500 + 100) // simulate network latency
@@ -502,10 +532,14 @@ export const ValidateServerNameGrid = story<DataGridProps>(
     const apiRef = useGridApiRef()
     const classes = useStylesServerSideValidation()
 
-    const keyStrokeTimeoutRef = React.useRef<any>()
+    // @ts-ignore
+    const keyStrokeTimeoutRef = React.useRef<MutableRefObject>()
 
     const handleCellEditPropsChange = React.useCallback(
-      async ({ id, field, props }: GridEditCellPropsParams, event) => {
+      async (
+        { id, field, props }: GridEditCellPropsParams,
+        event: MuiEvent,
+      ) => {
         if (field === 'name') {
           clearTimeout(promiseTimeout)
           clearTimeout(keyStrokeTimeoutRef.current)
@@ -546,45 +580,14 @@ export const ValidateServerNameGrid = story<DataGridProps>(
       }
     }, [])
 
-    const columns: GridColumns = [
-      {
-        field: 'name',
-        headerName: 'MUI Contributor',
-        width: 180,
-        editable: true,
-      },
-    ]
-
-    const rows: GridRowsProp = [
-      {
-        id: 1,
-        name: 'Damien',
-      },
-      {
-        id: 2,
-        name: 'Olivier',
-      },
-      {
-        id: 3,
-        name: 'Danail',
-      },
-      {
-        id: 4,
-        name: 'Matheus',
-      },
-      {
-        id: 5,
-        name: 'You?',
-      },
-    ]
-
     return (
       <div style={{ height: 400, width: '100%' }}>
         <DataGrid
+          {...args}
           className={classes.root}
           // apiRef={apiRef}
-          rows={rows}
-          columns={columns}
+          rows={rowsValidateServer}
+          columns={columnsValidateServer}
           onEditCellPropsChange={handleCellEditPropsChange}
           isCellEditable={params => params.row.id === 5}
         />
@@ -613,8 +616,8 @@ This demo shows how you can validate a username asynchronously and prevent the u
 //#endregion
 
 //#region Custom edit component
-function renderRating(params: any) {
-  return <Rating readOnly value={params.value} />
+function renderRating(params: GridCellParams) {
+  return <Rating readOnly value={Number(params.value)} />
 }
 
 const useStylesCustomEditComponent = makeStyles({
@@ -666,7 +669,7 @@ function renderRatingEditInputCell(params: any) {
 }
 
 export const RenderRatingEditCellGrid = story<DataGridProps>(args => {
-  const columns = [
+  const columns: GridColumns = [
     {
       field: 'places',
       headerName: 'Places',
@@ -711,93 +714,95 @@ The demo lets you edit the ratings by double-clicking the cell.`,
 //#endregion
 
 //#region Edit using external button
-const useStylesStartEditButtonGrid = makeStyles(
-  (theme: Theme) => ({
-    root: {
-      justifyContent: 'center',
-      display: 'flex',
-      borderBottom: `1px solid ${theme.palette.divider}`,
-    },
-  }),
-  { defaultTheme },
-)
+// TODO(storybook): Uncomment once we have DataGridPro
+// const useStylesStartEditButtonGrid = makeStyles(
+//   (theme: Theme) => ({
+//     root: {
+//       justifyContent: 'center',
+//       display: 'flex',
+//       borderBottom: `1px solid ${theme.palette.divider}`,
+//     },
+//   }),
+//   { defaultTheme },
+// )
 
-interface EditToolbarProps {
-  apiRef: GridApiRef
-  selectedCellParams?: any
-  setSelectedCellParams: (value: any) => void
-}
+// interface EditToolbarProps {
+//   apiRef: GridApiRef
+//   selectedCellParams?: any
+//   setSelectedCellParams: (value: any) => void
+// }
 
-const EditToolbar = (props: EditToolbarProps) => {
-  const { selectedCellParams, apiRef, setSelectedCellParams } = props
-  const classes = useStylesStartEditButtonGrid()
+// const EditToolbar = (props: EditToolbarProps) => {
+//   const { selectedCellParams, apiRef, setSelectedCellParams } = props
+//   const classes = useStylesStartEditButtonGrid()
 
-  const handleClick = () => {
-    if (!selectedCellParams) {
-      return
-    }
-    const { id, field, cellMode } = selectedCellParams
-    if (cellMode === 'edit') {
-      apiRef.current.commitCellChange({ id, field })
-      apiRef.current.setCellMode(id, field, 'view')
-      setSelectedCellParams({ ...selectedCellParams, cellMode: 'view' })
-    } else {
-      apiRef.current.setCellMode(id, field, 'edit')
-      setSelectedCellParams({ ...selectedCellParams, cellMode: 'edit' })
-    }
-  }
+//   const handleClick = () => {
+//     if (!selectedCellParams) {
+//       return
+//     }
+//     const { id, field, cellMode } = selectedCellParams
+//     if (cellMode === 'edit') {
+//       apiRef.current.commitCellChange({ id, field })
+//       apiRef.current.setCellMode(id, field, 'view')
+//       setSelectedCellParams({ ...selectedCellParams, cellMode: 'view' })
+//     } else {
+//       apiRef.current.setCellMode(id, field, 'edit')
+//       setSelectedCellParams({ ...selectedCellParams, cellMode: 'edit' })
+//     }
+//   }
 
-  const handleMouseDown = (event: any) => {
-    // Keep the focus in the cell
-    event.preventDefault()
-  }
+//   const handleMouseDown = (event: React.MouseEvent<HTMLElement>) => {
+//     // Keep the focus in the cell
+//     event.preventDefault()
+//   }
 
-  return (
-    <div className={classes.root}>
-      <Button
-        onClick={handleClick}
-        onMouseDown={handleMouseDown}
-        disabled={!selectedCellParams}
-        color="primary"
-      >
-        {selectedCellParams?.cellMode === 'edit' ? 'Save' : 'Edit'}
-      </Button>
-    </div>
-  )
-}
+//   return (
+//     <div className={classes.root}>
+//       <Button
+//         onClick={handleClick}
+//         onMouseDown={handleMouseDown}
+//         disabled={!selectedCellParams}
+//         color="primary"
+//       >
+//         {selectedCellParams?.cellMode === 'edit' ? 'Save' : 'Edit'}
+//       </Button>
+//     </div>
+//   )
+// }
 
-export const StartEditButtonGrid = story<DataGridProps>(args => {
-  const apiRef = useGridApiRef()
-  const [
-    selectedCellParams,
-    setSelectedCellParams,
-  ] = React.useState<GridCellParams | null>(null)
+export const StartEditButtonGrid = story<DataGridProps>(() => {
+  // TODO(storybook): Uncomment once we have DataGridPro
+  // const apiRef = useGridApiRef()
+  // const [
+  //   selectedCellParams,
+  //   setSelectedCellParams,
+  // ] = React.useState<GridCellParams | null>(null)
 
-  const handleCellClick = React.useCallback((params: GridCellParams) => {
-    setSelectedCellParams(params)
-  }, [])
+  // const handleCellClick = React.useCallback((params: GridCellParams) => {
+  //   setSelectedCellParams(params)
+  // }, [])
 
-  const handleDoubleCellClick = React.useCallback((params, event) => {
-    event.defaultMuiPrevented = true
-  }, [])
+  // const handleDoubleCellClick = React.useCallback((params, event) => {
+  //   event.defaultMuiPrevented = true
+  // }, [])
 
-  // Prevent from rolling back on escape
-  const handleCellKeyDown = React.useCallback((params, event) => {
-    if (
-      ['Escape', 'Delete', 'Backspace', 'Enter'].includes(
-        (event as React.KeyboardEvent).key,
-      )
-    ) {
-      event.defaultMuiPrevented = true
-    }
-  }, [])
+  // // Prevent from rolling back on escape
+  // const handleCellKeyDown = React.useCallback((params, event) => {
+  //   if (
+  //     ['Escape', 'Delete', 'Backspace', 'Enter'].includes(
+  //       (event as React.KeyboardEvent).key,
+  //     )
+  //   ) {
+  //     event.defaultMuiPrevented = true
+  //   }
+  // }, [])
 
-  // Prevent from committing on focus out
-  const handleCellFocusOut = React.useCallback((params, event) => {
-    if (params.cellMode === 'edit' && event) {
-      event.defaultMuiPrevented = true
-    }
-  }, [])
+  // // Prevent from committing on focus out
+  // const handleCellFocusOut = React.useCallback((params, event) => {
+  //   if (params.cellMode === 'edit' && event) {
+  //     event.defaultMuiPrevented = true
+  //   }
+  // }, [])
 
   return (
     <></>
@@ -841,7 +846,7 @@ You can override the default [start editing](https://mui.com/components/data-gri
 }
 //#endregion
 
-export const CatchEditingEventsGrid = story<DataGridProps>(args => {
+export const CatchEditingEventsGrid = story<DataGridProps>(() => {
   // TODO(storybook): Uncomment once we have DataGridPro
   // const apiRef = useGridApiRef()
   // const [message, setMessage] = React.useState('')
@@ -973,6 +978,7 @@ export const RowEditControlGrid = story<DataGridProps>(args => {
     <div style={{ width: '100%' }}>
       <div style={{ height: 400, width: '100%' }}>
         <DataGrid
+          {...args}
           rows={rows}
           columns={columns}
           editRowsModel={editRowsModel}
@@ -1027,7 +1033,7 @@ The  \`editRowsModel\`  prop lets you control the editing state. You can handle 
 
 const useStylesConditionalValidationGrid = makeStyles(
   (theme: Theme) => {
-    const isDark = getThemePaletteMode(theme.palette) === 'dark'
+    const isDark = theme.palette.mode === 'dark'
 
     return {
       root: {
@@ -1127,6 +1133,7 @@ export const ConditionalValidationGrid = story<DataGridProps>(args => {
   return (
     <div style={{ height: 400, width: '100%' }}>
       <DataGrid
+        {...args}
         className={classes.root}
         rows={rows}
         columns={columns}
@@ -1155,21 +1162,22 @@ The following demo only requires a value for the "Paid at" column if the "Is pai
 }
 
 //#region Control with external buttons
-const useStylesFullFeaturedCrudGrid = makeStyles(
-  (theme: Theme) => ({
-    actions: {
-      color: theme.palette.text.secondary,
-    },
-    textPrimary: {
-      color: theme.palette.text.primary,
-    },
-  }),
-  { defaultTheme },
-)
+// TODO(storybook): Uncomment once we have DataGridPro
+// const useStylesFullFeaturedCrudGrid = makeStyles(
+//   (theme: Theme) => ({
+//     actions: {
+//       color: theme.palette.text.secondary,
+//     },
+//     textPrimary: {
+//       color: theme.palette.text.primary,
+//     },
+//   }),
+//   { defaultTheme },
+// )
 
-interface EditToolbarProps {
-  apiRef: GridApiRef
-}
+// interface EditToolbarProps {
+//   apiRef: GridApiRef
+// }
 
 // const EditToolbar = (props: EditToolbarProps) => {
 //   const { apiRef } = props
@@ -1196,8 +1204,9 @@ interface EditToolbarProps {
 //   )
 // }
 
-export const FullFeaturedCrudGrid = story<DataGridProps>(args => {
-  const classes = useStylesFullFeaturedCrudGrid()
+export const FullFeaturedCrudGrid = story<DataGridProps>(() => {
+  // TODO(storybook): Uncomment once we have DataGridPro
+  // const classes = useStylesFullFeaturedCrudGrid()
   // const apiRef = useGridApiRef()
 
   // const handleRowEditStart = (
@@ -1243,106 +1252,106 @@ export const FullFeaturedCrudGrid = story<DataGridProps>(args => {
   //   }
   // }
 
-  const columns: GridColumns = [
-    { field: 'name', headerName: 'Name', width: 180, editable: true },
-    { field: 'age', headerName: 'Age', type: 'number', editable: true },
-    {
-      field: 'dateCreated',
-      headerName: 'Date Created',
-      type: 'date',
-      width: 180,
-      editable: true,
-    },
-    {
-      field: 'lastLogin',
-      headerName: 'Last Login',
-      type: 'dateTime',
-      width: 220,
-      editable: true,
-    },
-    {
-      field: 'actions',
-      type: 'actions',
-      headerName: 'Actions',
-      width: 100,
-      cellClassName: classes.actions,
-      // getActions: ({ id }) => {
-      //   const isInEditMode = apiRef.current.getRowMode(id) === 'edit'
+  // const columns: GridColumns = [
+  //   { field: 'name', headerName: 'Name', width: 180, editable: true },
+  //   { field: 'age', headerName: 'Age', type: 'number', editable: true },
+  //   {
+  //     field: 'dateCreated',
+  //     headerName: 'Date Created',
+  //     type: 'date',
+  //     width: 180,
+  //     editable: true,
+  //   },
+  //   {
+  //     field: 'lastLogin',
+  //     headerName: 'Last Login',
+  //     type: 'dateTime',
+  //     width: 220,
+  //     editable: true,
+  //   },
+  //   {
+  //     field: 'actions',
+  //     type: 'actions',
+  //     headerName: 'Actions',
+  //     width: 100,
+  //     cellClassName: classes.actions,
+  // getActions: ({ id }) => {
+  //   const isInEditMode = apiRef.current.getRowMode(id) === 'edit'
 
-      //   if (isInEditMode) {
-      //     return [
-      //       <GridActionsCellItem
-      //         icon={<Save />}
-      //         label="Save"
-      //         onClick={handleSaveClick(id)}
-      //         color="primary"
-      //       />,
-      //       <GridActionsCellItem
-      //         icon={<Cancel />}
-      //         label="Cancel"
-      //         className={classes.textPrimary}
-      //         onClick={handleCancelClick(id)}
-      //         color="inherit"
-      //       />,
-      //     ]
-      //   }
+  //   if (isInEditMode) {
+  //     return [
+  //       <GridActionsCellItem
+  //         icon={<Save />}
+  //         label="Save"
+  //         onClick={handleSaveClick(id)}
+  //         color="primary"
+  //       />,
+  //       <GridActionsCellItem
+  //         icon={<Cancel />}
+  //         label="Cancel"
+  //         className={classes.textPrimary}
+  //         onClick={handleCancelClick(id)}
+  //         color="inherit"
+  //       />,
+  //     ]
+  //   }
 
-      //   return [
-      //     <GridActionsCellItem
-      //       icon={<Edit />}
-      //       label="Edit"
-      //       className={classes.textPrimary}
-      //       onClick={handleEditClick(id)}
-      //       color="inherit"
-      //     />,
-      //     <GridActionsCellItem
-      //       icon={<Delete />}
-      //       label="Delete"
-      //       onClick={handleDeleteClick(id)}
-      //       color="inherit"
-      //     />,
-      //   ]
-      // },
-    },
-  ]
+  //   return [
+  //     <GridActionsCellItem
+  //       icon={<Edit />}
+  //       label="Edit"
+  //       className={classes.textPrimary}
+  //       onClick={handleEditClick(id)}
+  //       color="inherit"
+  //     />,
+  //     <GridActionsCellItem
+  //       icon={<Delete />}
+  //       label="Delete"
+  //       onClick={handleDeleteClick(id)}
+  //       color="inherit"
+  //     />,
+  //   ]
+  // },
+  //   },
+  // ]
 
-  const rows: GridRowsProp = [
-    {
-      id: randomId(),
-      name: randomTraderName(),
-      age: 25,
-      dateCreated: randomCreatedDate(),
-      lastLogin: randomUpdatedDate(),
-    },
-    {
-      id: randomId(),
-      name: randomTraderName(),
-      age: 36,
-      dateCreated: randomCreatedDate(),
-      lastLogin: randomUpdatedDate(),
-    },
-    {
-      id: randomId(),
-      name: randomTraderName(),
-      age: 19,
-      dateCreated: randomCreatedDate(),
-      lastLogin: randomUpdatedDate(),
-    },
-    {
-      id: randomId(),
-      name: randomTraderName(),
-      age: 28,
-      dateCreated: randomCreatedDate(),
-      lastLogin: randomUpdatedDate(),
-    },
-    {
-      id: randomId(),
-      name: randomTraderName(),
-      age: 23,
-      dateCreated: randomCreatedDate(),
-      lastLogin: randomUpdatedDate(),
-    },
-  ]
+  // const rows: GridRowsProp = [
+  //   {
+  //     id: randomId(),
+  //     name: randomTraderName(),
+  //     age: 25,
+  //     dateCreated: randomCreatedDate(),
+  //     lastLogin: randomUpdatedDate(),
+  //   },
+  //   {
+  //     id: randomId(),
+  //     name: randomTraderName(),
+  //     age: 36,
+  //     dateCreated: randomCreatedDate(),
+  //     lastLogin: randomUpdatedDate(),
+  //   },
+  //   {
+  //     id: randomId(),
+  //     name: randomTraderName(),
+  //     age: 19,
+  //     dateCreated: randomCreatedDate(),
+  //     lastLogin: randomUpdatedDate(),
+  //   },
+  //   {
+  //     id: randomId(),
+  //     name: randomTraderName(),
+  //     age: 28,
+  //     dateCreated: randomCreatedDate(),
+  //     lastLogin: randomUpdatedDate(),
+  //   },
+  //   {
+  //     id: randomId(),
+  //     name: randomTraderName(),
+  //     age: 23,
+  //     dateCreated: randomCreatedDate(),
+  //     lastLogin: randomUpdatedDate(),
+  //   },
+  // ]
 
   return (
     <></>
@@ -1382,7 +1391,7 @@ Here is shown how a full-featured CRUD can be created.`,
 }
 //#endregion
 
-export const RowEditingEvents = story<DataGridProps>(args => <></>)
+export const RowEditingEvents = story<DataGridProps>(() => <></>)
 RowEditingEvents.storyName = 'Events'
 RowEditingEvents.parameters = {
   docs: {
@@ -1402,7 +1411,7 @@ The following events can be imported and used to customize the row edition:
   },
 }
 
-export const DataGridEditingApiRef = story<DataGridProps>(args => <></>)
+export const DataGridEditingApiRef = story<DataGridProps>(() => <></>)
 DataGridEditingApiRef.storyName = 'apiRef'
 DataGridEditingApiRef.parameters = {
   docs: {

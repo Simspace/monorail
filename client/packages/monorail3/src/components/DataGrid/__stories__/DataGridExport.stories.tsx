@@ -1,10 +1,11 @@
 // Edit this file to add new stories
 import React from 'react'
-import { DataGrid, DataGridProps } from '../DataGrid'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './DataGrid.stories.gen'
-import { useDemoData } from '@mui/x-data-grid-generator'
 import { GridToolbarContainer, GridToolbarExport } from '@mui/x-data-grid'
+import { useDemoData } from '@mui/x-data-grid-generator'
+
+import { story } from '../../../__tests__/helpers/storybook'
+import { DataGrid, DataGridProps } from '../DataGrid'
+import { defaultStoryMeta } from './DataGrid.stories.gen'
 
 export default {
   ...defaultStoryMeta,
@@ -35,6 +36,7 @@ const Template = story<DataGridProps>(args => {
   return (
     <div style={{ height: 300, width: '100%' }}>
       <DataGrid
+        {...args}
         {...data}
         components={{
           Toolbar: CustomToolbar,
@@ -64,7 +66,7 @@ The DataGrid allows the data to be exported to CSV by composing a  [toolbar](htt
 /**
  * Customize exported columns
  */
-export const CustomizeExportedColumns = story<DataGridProps>(args => <></>)
+export const CustomizeExportedColumns = story<DataGridProps>(() => <></>)
 CustomizeExportedColumns.storyName = 'Customize exported columns'
 CustomizeExportedColumns.parameters = {
   docs: {
@@ -100,7 +102,7 @@ Set  \`allColumns\`  in  [\`csvOptions\`](https://mui.com/api/data-grid/grid-exp
 /**
  * Export custom rendered cells
  */
-export const ExportCustomRenderedCells = story<DataGridProps>(args => <></>)
+export const ExportCustomRenderedCells = story<DataGridProps>(() => <></>)
 ExportCustomRenderedCells.storyName = 'Export custom rendered cells'
 ExportCustomRenderedCells.parameters = {
   docs: {
@@ -129,7 +131,7 @@ ExportCustomRenderedCells.parameters = {
 /**
  * Print
  */
-export const Print = story<DataGridProps>(args => <></>)
+export const Print = story<DataGridProps>(() => <></>)
 Print.storyName = 'Print'
 Print.parameters = {
   docs: {
@@ -147,7 +149,7 @@ Optimization of the layout of the grid for print mode. It can also be used to ex
 /**
  * Excel export
  */
-export const ExcelExport = story<DataGridProps>(args => <></>)
+export const ExcelExport = story<DataGridProps>(() => <></>)
 ExcelExport.storyName = 'Excel export'
 ExcelExport.parameters = {
   docs: {
@@ -165,7 +167,7 @@ You will be able to export the displayed data to Excel with an API call, or usin
 /**
  * Clipboard
  */
-export const Clipboard = story<DataGridProps>(args => <></>)
+export const Clipboard = story<DataGridProps>(() => <></>)
 Clipboard.storyName = 'Clipboard'
 Clipboard.parameters = {
   docs: {

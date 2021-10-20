@@ -1,10 +1,11 @@
 // Edit this file to add new stories
 import React from 'react'
-import { DesktopDatePicker, DesktopDatePickerProps } from '../DesktopDatePicker'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './DesktopDatePicker.stories.gen'
 import { action } from '@storybook/addon-actions'
+
+import { story } from '../../../__tests__/helpers/storybook'
 import { TextField } from '../../TextField/TextField'
+import { DesktopDatePicker, DesktopDatePickerProps } from '../DesktopDatePicker'
+import { defaultStoryMeta } from './DesktopDatePicker.stories.gen'
 
 export default {
   ...defaultStoryMeta,

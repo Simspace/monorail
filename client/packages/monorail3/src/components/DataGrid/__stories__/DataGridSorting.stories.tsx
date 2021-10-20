@@ -1,14 +1,10 @@
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-return */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // Edit this file to add new stories
 import React from 'react'
-import { DataGrid, DataGridProps } from '../DataGrid'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './DataGrid.stories.gen'
-import {
-  GridData,
-  randomCreatedDate,
-  randomUpdatedDate,
-  useDemoData,
-} from '@mui/x-data-grid-generator'
 import {
   GridColumns,
   GridRowsProp,
@@ -16,6 +12,16 @@ import {
   GridSortModel,
   GridValueGetterParams,
 } from '@mui/x-data-grid'
+import {
+  GridData,
+  randomCreatedDate,
+  randomUpdatedDate,
+  useDemoData,
+} from '@mui/x-data-grid-generator'
+
+import { story } from '../../../__tests__/helpers/storybook'
+import { DataGrid, DataGridProps } from '../DataGrid'
+import { defaultStoryMeta } from './DataGrid.stories.gen'
 
 export default { ...defaultStoryMeta, title: 'Data Grid/Sorting' }
 
@@ -144,7 +150,7 @@ export const ComparatorSortingGrid = story<DataGridProps>(args => {
   )
 })
 
-ComparatorSortingGrid.storyName
+ComparatorSortingGrid.storyName = 'Custom comparator'
 ComparatorSortingGrid.parameters = {
   docs: {
     description: {
@@ -345,23 +351,23 @@ ServerSortingGrid.parameters = {
 }
 // #endregion
 
-export const MultiSortingGrid = story<DataGridProps>(args => {
-  const { data } = useDemoData({
-    dataSet: 'Commodity',
-    rowLength: 100,
-    maxColumns: 6,
-  })
+export const MultiSortingGrid = story<DataGridProps>(() => {
+  // const { data } = useDemoData({
+  //   dataSet: 'Commodity',
+  //   rowLength: 100,
+  //   maxColumns: 6,
+  // })
 
-  const [sortModel, setSortModel] = React.useState<GridSortModel>([
-    {
-      field: 'commodity',
-      sort: 'asc' as GridSortDirection,
-    },
-    {
-      field: 'desk',
-      sort: 'desc' as GridSortDirection,
-    },
-  ])
+  // const [sortModel, setSortModel] = React.useState<GridSortModel>([
+  //   {
+  //     field: 'commodity',
+  //     sort: 'asc' as GridSortDirection,
+  //   },
+  //   {
+  //     field: 'desk',
+  //     sort: 'desc' as GridSortDirection,
+  //   },
+  // ])
 
   return (
     <></>
@@ -389,7 +395,7 @@ You can sort by multiple columns at the same time using \`DataGridPro\`. Hold do
   },
 }
 
-export const DataGridSortingApiRef = story<DataGridProps>(args => <></>)
+export const DataGridSortingApiRef = story<DataGridProps>(() => <></>)
 DataGridSortingApiRef.storyName = 'apiRef'
 DataGridSortingApiRef.parameters = {
   docs: {

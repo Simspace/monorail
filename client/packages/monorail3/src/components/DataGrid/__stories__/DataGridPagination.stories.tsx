@@ -1,10 +1,13 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 // Edit this file to add new stories
 import React from 'react'
-import { DataGrid, DataGridProps } from '../DataGrid'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './DataGrid.stories.gen'
-import { DataRowModel, GridData, useDemoData } from '@mui/x-data-grid-generator'
 import { GridRowId, GridRowsProp } from '@mui/x-data-grid'
+import { DataRowModel, GridData, useDemoData } from '@mui/x-data-grid-generator'
+
+import { story } from '../../../__tests__/helpers/storybook'
+import { DataGrid, DataGridProps } from '../DataGrid'
+import { defaultStoryMeta } from './DataGrid.stories.gen'
 
 export default { ...defaultStoryMeta, title: 'Data Grid/Pagination' }
 
@@ -17,7 +20,7 @@ const Template = story<DataGridProps>(args => {
 
   return (
     <div style={{ height: 400, width: '100%' }}>
-      <DataGrid pagination {...data} />
+      <DataGrid pagination {...args} {...data} />
     </div>
   )
 })
@@ -56,6 +59,7 @@ export const SizePaginationGrid = story<DataGridProps>(args => {
   return (
     <div style={{ height: 400, width: '100%' }}>
       <DataGrid
+        {...args}
         pageSize={pageSize}
         onPageSizeChange={newPageSize => setPageSize(newPageSize)}
         rowsPerPageOptions={[5, 10, 20]}
@@ -94,6 +98,7 @@ export const ControlledPaginationGrid = story<DataGridProps>(args => {
   return (
     <div style={{ height: 400, width: '100%' }}>
       <DataGrid
+        {...args}
         page={page}
         onPageChange={newPage => setPage(newPage)}
         pageSize={5}
@@ -130,7 +135,7 @@ export const AutoPaginationGrid = story<DataGridProps>(args => {
 
   return (
     <div style={{ height: 400, width: '100%' }}>
-      <DataGrid autoPageSize pagination {...data} />
+      <DataGrid autoPageSize pagination {...args} {...data} />
     </div>
   )
 })
@@ -192,6 +197,7 @@ export const ServerPaginationGrid = story<DataGridProps>(args => {
   return (
     <div style={{ height: 400, width: '100%' }}>
       <DataGrid
+        {...args}
         rows={rows}
         columns={data.columns}
         pagination
@@ -225,7 +231,7 @@ ServerPaginationGrid.parameters = {
  * Cursor-based pagination
  */
 interface ServerBasedGridResponse {
-  rows: DataRowModel[]
+  rows: Array<DataRowModel>
   nextCursor: GridRowId | null | undefined
 }
 
@@ -302,6 +308,7 @@ export const CursorPaginationGrid = story<DataGridProps>(args => {
   return (
     <div style={{ height: 400, width: '100%' }}>
       <DataGrid
+        {...args}
         rows={rows}
         columns={data.columns}
         pagination
@@ -333,12 +340,12 @@ CursorPaginationGrid.parameters = {
 /**
  * Customization - Paginate > 100 rows
  */
-export const BasisPaginationGrid = story<DataGridProps>(args => {
-  const { data } = useDemoData({
-    dataSet: 'Commodity',
-    rowLength: 1000,
-    maxColumns: 6,
-  })
+export const BasisPaginationGrid = story<DataGridProps>(() => {
+  // const { data } = useDemoData({
+  //   dataSet: 'Commodity',
+  //   rowLength: 1000,
+  //   maxColumns: 6,
+  // })
 
   return (
     <></>
@@ -369,7 +376,7 @@ The  \`DataGrid\`  component can display up to 100 rows per page. The  \`DataGri
 /**
  * apiRef - Pagination
  */
-export const ApiRefPaginationGrid = story<DataGridProps>(args => {
+export const ApiRefPaginationGrid = story<DataGridProps>(() => {
   // TODO(storybook): Uncomment once we have DataGridPro (paid)
   // const apiRef = useGridApiRef();
   // const { data } = useDemoData({

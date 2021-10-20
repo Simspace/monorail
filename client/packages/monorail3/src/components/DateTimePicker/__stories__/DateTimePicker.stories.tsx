@@ -1,18 +1,18 @@
 // Edit this file to add new stories
 import React from 'react'
-import { DateTimePicker, DateTimePickerProps } from '../DateTimePicker'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './DateTimePicker.stories.gen'
-import { action } from '@storybook/addon-actions'
-import { TextField } from '../../TextField/TextField'
-import { AdapterDateFns, LocalizationProvider } from '../../../helpers/dateTime'
-import { Stack } from '../../Stack/Stack'
-import { MobileDateTimePicker } from '../../MobileDateTimePicker/MobileDateTimePicker'
-import { DesktopDateTimePicker } from '../../DesktopDateTimePicker/DesktopDateTimePicker'
-import { StaticDateTimePicker } from '../../StaticDateTimePicker/StaticDateTimePicker'
+import ClockIcon from '@mui/icons-material/AccessTime'
 import AlarmIcon from '@mui/icons-material/Alarm'
 import SnoozeIcon from '@mui/icons-material/Snooze'
-import ClockIcon from '@mui/icons-material/AccessTime'
+
+import { story } from '../../../__tests__/helpers/storybook'
+import { AdapterDateFns, LocalizationProvider } from '../../../helpers/dateTime'
+import { DesktopDateTimePicker } from '../../DesktopDateTimePicker/DesktopDateTimePicker'
+import { MobileDateTimePicker } from '../../MobileDateTimePicker/MobileDateTimePicker'
+import { Stack } from '../../Stack/Stack'
+import { StaticDateTimePicker } from '../../StaticDateTimePicker/StaticDateTimePicker'
+import { TextField } from '../../TextField/TextField'
+import { DateTimePicker, DateTimePickerProps } from '../DateTimePicker'
+import { defaultStoryMeta } from './DateTimePicker.stories.gen'
 
 /**
  * Metadata for DateTimePicker stories - update/extend as needed
@@ -76,6 +76,7 @@ export const Responsiveness = story<DateTimePickerProps<Date>>(
             renderInput={params => <TextField {...params} />}
           />
           <DesktopDateTimePicker
+            {...args}
             value={value}
             onChange={newValue => {
               setValue(newValue)
@@ -83,6 +84,7 @@ export const Responsiveness = story<DateTimePickerProps<Date>>(
             renderInput={params => <TextField {...params} />}
           />
           <DateTimePicker
+            {...args}
             renderInput={params => <TextField {...params} />}
             value={value}
             onChange={newValue => {
@@ -117,6 +119,7 @@ export const FormProps = story<DateTimePickerProps<Date>>(
       <LocalizationProvider dateAdapter={AdapterDateFns}>
         <Stack spacing={3}>
           <DateTimePicker
+            {...args}
             label="disabled"
             disabled
             value={value}
@@ -126,6 +129,7 @@ export const FormProps = story<DateTimePickerProps<Date>>(
             renderInput={params => <TextField {...params} />}
           />
           <DateTimePicker
+            {...args}
             label="read-only"
             readOnly
             value={value}
@@ -159,6 +163,7 @@ export const DateAndTimeValidation = story<DateTimePickerProps<Date>>(
       <LocalizationProvider dateAdapter={AdapterDateFns}>
         <Stack spacing={3}>
           <DateTimePicker
+            {...args}
             renderInput={params => <TextField {...params} />}
             label="Ignore date and time"
             value={value}
@@ -168,6 +173,7 @@ export const DateAndTimeValidation = story<DateTimePickerProps<Date>>(
             minDateTime={new Date('2021-01-01T12:34:00.000Z')}
           />
           <DateTimePicker
+            {...args}
             renderInput={params => <TextField {...params} />}
             label="Ignore time in each day"
             value={value}
@@ -205,6 +211,7 @@ export const StaticMode = story<DateTimePickerProps<Date>>(
     return (
       <LocalizationProvider dateAdapter={AdapterDateFns}>
         <StaticDateTimePicker
+          {...args}
           displayStaticWrapperAs="desktop"
           openTo="year"
           value={value}
@@ -239,6 +246,7 @@ export const Customization = story<DateTimePickerProps<Date>>(
       <LocalizationProvider dateAdapter={AdapterDateFns}>
         <Stack spacing={3}>
           <DateTimePicker
+            {...args}
             disableFuture
             hideTabs
             showTodayButton
@@ -263,12 +271,15 @@ export const Customization = story<DateTimePickerProps<Date>>(
             )}
           />
           <MobileDateTimePicker
+            {...args}
             value={value}
             onChange={newValue => {
               setValue(newValue)
             }}
             label="With error handler"
+            /* eslint-disable no-console */
             onError={console.log}
+            /* eslint-enable no-console */
             minDate={new Date('2018-01-01T00:00')}
             inputFormat="yyyy/MM/dd hh:mm a"
             mask="___/__/__ __:__ _M"

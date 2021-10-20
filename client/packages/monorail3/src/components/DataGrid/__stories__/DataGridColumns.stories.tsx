@@ -1,8 +1,7 @@
 // Edit this file to add new stories
 import React from 'react'
-import { DataGrid, DataGridProps } from '../DataGrid'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './DataGrid.stories.gen'
+import { Delete, FileCopy, Security } from '@mui/icons-material'
+import { createStyles, makeStyles } from '@mui/styles'
 import {
   GridActionsCellItem,
   GridCellValue,
@@ -10,16 +9,11 @@ import {
   GridColTypeDef,
   GridRenderCellParams,
   GridRowId,
+  GridRowParams,
   GridToolbar,
   GridValueFormatterParams,
   GridValueGetterParams,
 } from '@mui/x-data-grid'
-import { Button } from '../../Button/Button'
-import { Popper } from '../../Popper/Popper'
-import { Paper } from '../../Paper/Paper'
-import { Typography } from '../../Typography/Typography'
-import { createStyles, makeStyles } from '@mui/styles'
-import { Delete, FileCopy, Security } from '@mui/icons-material'
 import {
   randomCreatedDate,
   randomPrice,
@@ -27,6 +21,14 @@ import {
   randomUpdatedDate,
   useDemoData,
 } from '@mui/x-data-grid-generator'
+
+import { story } from '../../../__tests__/helpers/storybook'
+import { Button } from '../../Button/Button'
+import { Paper } from '../../Paper/Paper'
+import { Popper } from '../../Popper/Popper'
+import { Typography } from '../../Typography/Typography'
+import { DataGrid, DataGridProps } from '../DataGrid'
+import { defaultStoryMeta } from './DataGrid.stories.gen'
 
 export default {
   ...defaultStoryMeta,
@@ -43,6 +45,7 @@ const Template = story<DataGridProps>(args => {
   return (
     <div style={{ height: 250, width: '100%' }}>
       <DataGrid
+        {...args}
         columns={[{ field: 'username' }, { field: 'age' }]}
         rows={[
           {
@@ -96,6 +99,7 @@ export const HeaderColumnsGrid = story<DataGridProps>(
     return (
       <div style={{ height: 250, width: '100%' }}>
         <DataGrid
+          {...args}
           columns={[
             {
               field: 'username',
@@ -136,6 +140,7 @@ export const ColumnWidthGrid = story<DataGridProps>(
     return (
       <div style={{ height: 250, width: '100%' }}>
         <DataGrid
+          {...args}
           columns={[{ field: 'username', width: 200 }, { field: 'age' }]}
           rows={rows}
         />
@@ -166,6 +171,7 @@ export const ColumnMinWidthGrid = story<DataGridProps>(
     return (
       <div style={{ height: 250, width: '100%' }}>
         <DataGrid
+          {...args}
           columns={[{ field: 'username', minWidth: 150 }, { field: 'age' }]}
           rows={rows}
         />
@@ -196,6 +202,7 @@ export const ColumnFluidWidthGrid = story<DataGridProps>(
     return (
       <div style={{ height: 250, width: '100%' }}>
         <DataGrid
+          {...args}
           columns={[
             {
               field: 'id',
@@ -270,7 +277,7 @@ export const ColumnHidingGrid = story<DataGridProps>(
   },
 )
 
-export const ColumnSizingGrid = story(args => {
+export const ColumnSizingGrid = story(() => {
   return <></>
 })
 
@@ -303,7 +310,7 @@ const getFullName = (params: GridValueGetterParams) => {
   }`
 }
 
-const columns: GridColDef[] = [
+const columns: Array<GridColDef> = [
   { field: 'firstName', headerName: 'First name', width: 130 },
   { field: 'lastName', headerName: 'Last name', width: 130 },
   {
@@ -387,6 +394,7 @@ export const ValueFormatterGrid = story<DataGridProps>(
     return (
       <div style={{ height: 300, width: '100%' }}>
         <DataGrid
+          {...args}
           rows={rows}
           columns={[
             {
@@ -443,6 +451,7 @@ export const ValueParserGrid = story<DataGridProps>(
     return (
       <div style={{ height: 300, width: '100%' }}>
         <DataGrid
+          {...args}
           rows={rows}
           columns={[
             {
@@ -479,7 +488,7 @@ In the following demo, the tax rate is displayed as a percentage (e.g. 20%) but 
 
 export const RenderCellGrid = story<DataGridProps>(
   args => {
-    const columns: GridColDef[] = [
+    const columns: Array<GridColDef> = [
       {
         field: 'date',
         headerName: 'Year',
@@ -688,7 +697,7 @@ function renderCellExpand(params: GridRenderCellParams) {
 
 export const RenderExpandCellGrid = story<DataGridProps>(
   args => {
-    const columns: GridColDef[] = [
+    const columns: Array<GridColDef> = [
       {
         field: 'col1',
         headerName: 'Column 1',
@@ -708,7 +717,7 @@ export const RenderExpandCellGrid = story<DataGridProps>(
         renderCell: renderCellExpand,
       },
     ]
-    const rows: any = [
+    const rows = [
       {
         id: 1,
         col1: 'Hello',
@@ -772,7 +781,7 @@ export const RenderExpandCellGrid = story<DataGridProps>(
 
 export const RenderHeaderGrid = story<DataGridProps>(
   args => {
-    const columns: GridColDef[] = [
+    const columns: Array<GridColDef> = [
       {
         field: 'date',
         width: 150,
@@ -900,7 +909,9 @@ export const ColumnTypesGrid = story<DataGridProps>(args => {
       setRows(prevRows => {
         const rowToDuplicate = prevRows.find(row => row.id === id)!
         const newRows = [...prevRows, { ...rowToDuplicate, id: Date.now() }]
+        /* eslint-disable no-console */
         console.log(newRows)
+        /* eslint-enable no-console */
         return newRows
       })
     },
@@ -931,19 +942,22 @@ export const ColumnTypesGrid = story<DataGridProps>(args => {
         field: 'actions',
         type: 'actions',
         width: 80,
-        getActions: (params: any) => [
+        getActions: (params: GridRowParams) => [
           <GridActionsCellItem
+            key={'Delete'}
             icon={<Delete />}
             label="Delete"
             onClick={deleteUser(params.id)}
           />,
           <GridActionsCellItem
+            key={'Toggle Admin'}
             icon={<Security />}
             label="Toggle Admin"
             onClick={toggleAdmin(params.id)}
             showInMenu
           />,
           <GridActionsCellItem
+            key={'Duplicate User'}
             icon={<FileCopy />}
             label="Duplicate User"
             onClick={duplicateUser(params.id)}
@@ -1057,6 +1071,7 @@ export const CustomColumnTypesGrid = story<DataGridProps>(args => {
   return (
     <div style={{ height: 300, width: '100%' }} className={classes.root}>
       <DataGrid
+        {...args}
         columns={[
           { field: 'status', width: 130 },
           { field: 'subTotal', ...usdPrice },
@@ -1127,6 +1142,7 @@ export const ColumnSelectorGrid = story<DataGridProps>(args => {
   return (
     <div style={{ height: 400, width: '100%' }}>
       <DataGrid
+        {...args}
         {...data}
         components={{
           Toolbar: GridToolbar,
@@ -1155,12 +1171,12 @@ To disable the column selector, set the prop \`disableColumnSelector={true}\`.
   },
 }
 
-export const ColumnOrderingGrid = story<DataGridProps>(args => {
-  const { data } = useDemoData({
-    dataSet: 'Commodity',
-    rowLength: 20,
-    maxColumns: 20,
-  })
+export const ColumnOrderingGrid = story<DataGridProps>(() => {
+  // const { data } = useDemoData({
+  //   dataSet: 'Commodity',
+  //   rowLength: 20,
+  //   maxColumns: 20,
+  // })
 
   return (
     <></>
@@ -1197,7 +1213,7 @@ In addition, column reordering emits the following events that can be imported:
   },
 }
 
-export const ColumnGroupsGrid = story<DataGridProps>(args => <></>)
+export const ColumnGroupsGrid = story<DataGridProps>(() => <></>)
 
 ColumnGroupsGrid.parameters = {
   docs: {
@@ -1213,7 +1229,7 @@ Grouping columns allows you to have multiple levels of columns in your header an
   },
 }
 
-export const ColumnPinningGrid = story<DataGridProps>(args => <></>)
+export const ColumnPinningGrid = story<DataGridProps>(() => <></>)
 
 ColumnPinningGrid.parameters = {
   docs: {
@@ -1228,7 +1244,7 @@ Sticky (or frozen, locked, or pinned) columns are columns that are visible at al
   },
 }
 
-export const ColumnSpanningGrid = story<DataGridProps>(args => <></>)
+export const ColumnSpanningGrid = story<DataGridProps>(() => <></>)
 
 ColumnSpanningGrid.parameters = {
   docs: {

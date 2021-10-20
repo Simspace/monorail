@@ -1,17 +1,18 @@
 // Edit this file to add new stories
 import React from 'react'
-import { DataGrid, DataGridProps } from '../DataGrid'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './DataGrid.stories.gen'
+import { createTheme, darken, lighten, Theme } from '@mui/material/styles'
 import { createStyles, makeStyles } from '@mui/styles'
 import {
   GridCellParams,
   GridColumns,
   useGridSlotComponentProps,
 } from '@mui/x-data-grid'
-import { createTheme, darken, lighten } from '@mui/material/styles'
 import { useDemoData } from '@mui/x-data-grid-generator'
+
+import { story } from '../../../__tests__/helpers/storybook'
 import { Pagination } from '../../Pagination/Pagination'
+import { DataGrid, DataGridProps } from '../DataGrid'
+import { defaultStoryMeta } from './DataGrid.stories.gen'
 
 export default {
   ...defaultStoryMeta,
@@ -119,10 +120,10 @@ The  \`GridColDef\`  type has properties to apply class names and custom CSS on 
  */
 const useStylesStylingRows = makeStyles(
   theme => {
-    const getBackgroundColor = (color: any) =>
+    const getBackgroundColor = (color: string) =>
       theme.palette.mode === 'dark' ? darken(color, 0.6) : lighten(color, 0.6)
 
-    const getHoverBackgroundColor = (color: any) =>
+    const getHoverBackgroundColor = (color: string) =>
       theme.palette.mode === 'dark' ? darken(color, 0.5) : lighten(color, 0.5)
 
     return {
@@ -400,7 +401,7 @@ This prop is called for every cell in every column. Different from the first opt
 /**
  * Custom theme
  */
-const customCheckbox = (theme: any) => {
+const customCheckbox = (theme: Theme) => {
   return {
     '& .MuiCheckbox-root svg': {
       width: 16,
@@ -511,7 +512,9 @@ const CustomPagination = () => {
       count={state.pagination.pageCount}
       // renderItem was causing the table to not render (GS 10/7/21)
       // renderItem={props2 => <PaginationItem {...props2} disableRipple />}
-      onChange={(event: any, value: any) => apiRef.current.setPage(value)}
+      onChange={(event: React.ChangeEvent<unknown>, value: number) =>
+        apiRef.current.setPage(value)
+      }
     />
   )
 }
