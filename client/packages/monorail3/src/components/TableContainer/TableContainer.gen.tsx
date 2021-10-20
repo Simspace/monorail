@@ -11,7 +11,7 @@ import {
  */
 export type TableContainerProps<
   D extends React.ElementType = TableContainerTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 > = MUITableContainerProps<D, P> & { ref?: React.ForwardedRef<HTMLDivElement> }
 
 /**
@@ -21,7 +21,7 @@ export const TableContainer = React.forwardRef((props, ref) => (
   <MUITableContainer ref={ref} {...props} />
 )) as <
   D extends React.ElementType = TableContainerTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 >(
   props: TableContainerProps<D, P>,
 ) => JSX.Element

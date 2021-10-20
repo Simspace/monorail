@@ -11,7 +11,7 @@ import {
  */
 export type ListSubheaderProps<
   D extends React.ElementType = ListSubheaderTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 > = MUIListSubheaderProps<D, P> & { ref?: React.ForwardedRef<HTMLLIElement> }
 
 /**
@@ -21,7 +21,7 @@ export const ListSubheader = React.forwardRef((props, ref) => (
   <MUIListSubheader ref={ref} {...props} />
 )) as <
   D extends React.ElementType = ListSubheaderTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 >(
   props: ListSubheaderProps<D, P>,
 ) => JSX.Element

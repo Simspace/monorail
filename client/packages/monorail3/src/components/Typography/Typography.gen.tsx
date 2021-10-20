@@ -11,7 +11,7 @@ import {
  */
 export type TypographyProps<
   D extends React.ElementType = TypographyTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 > = MUITypographyProps<D, P> & { ref?: React.ForwardedRef<HTMLSpanElement> }
 
 /**
@@ -21,7 +21,7 @@ export const Typography = React.forwardRef((props, ref) => (
   <MUITypography ref={ref} {...props} />
 )) as <
   D extends React.ElementType = TypographyTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 >(
   props: TypographyProps<D, P>,
 ) => JSX.Element
