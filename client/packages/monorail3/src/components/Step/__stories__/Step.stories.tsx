@@ -2,7 +2,6 @@ import React from 'react'
 
 import { story } from '../../../__tests__/helpers/storybook'
 import { Box } from '../../Box/Box'
-import { StepButton } from '../../StepButton/StepButton.gen'
 import { StepLabel } from '../../StepLabel/StepLabel'
 import { Stepper } from '../../Stepper/Stepper'
 import { Step, StepProps } from '../Step'

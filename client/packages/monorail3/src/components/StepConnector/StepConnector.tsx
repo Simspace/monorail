@@ -1,6 +1,4 @@
 // Placeholder for extra functionality - add extra types/values/functions/etc. for StepConnector
-import React from 'react'
-
 import {
   StepConnector as _StepConnector,
   StepConnectorProps as _StepConnectorProps,

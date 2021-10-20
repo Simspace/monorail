@@ -2,9 +2,9 @@
 import React from 'react'
 import {
   default as MUITablePagination,
+  TablePaginationBaseProps,
   TablePaginationProps as MUITablePaginationProps,
 } from '@mui/material/TablePagination'
-import { TablePaginationBaseProps } from '@mui/material/TablePagination'
 
 /**
  * Props for TablePagination

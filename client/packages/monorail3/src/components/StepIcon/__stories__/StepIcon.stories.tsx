@@ -14,7 +14,6 @@ import { Step } from '../../Step/Step'
 import { StepButton } from '../../StepButton/StepButton'
 import { StepLabel } from '../../StepLabel/StepLabel'
 import { Stepper } from '../../Stepper/Stepper'
-import { Typography } from '../../Typography/Typography'
 import { StepIcon, StepIconProps } from '../StepIcon'
 import { defaultStoryMeta } from './StepIcon.stories.gen'
 /**

@@ -1,11 +1,10 @@
 // Edit this file to add new stories
 import React from 'react'
-import { action } from '@storybook/addon-actions'
 
 import { story } from '../../../__tests__/helpers/storybook'
 import { DatePickerProps } from '../../DatePicker/DatePicker'
 import { TextField } from '../../TextField/TextField'
-import { StaticDatePicker, StaticDatePickerProps } from '../StaticDatePicker'
+import { StaticDatePicker } from '../StaticDatePicker'
 import { defaultStoryMeta } from './StaticDatePicker.stories.gen'
 
 export default {

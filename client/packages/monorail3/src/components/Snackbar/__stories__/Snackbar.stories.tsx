@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // Edit this file to add new stories
 import React from 'react'
 import CloseIcon from '@mui/icons-material/Close'
@@ -12,7 +13,7 @@ import { IconButton } from '../../IconButton/IconButton'
 import { Slide } from '../../Slide/Slide'
 import { SnackbarContent } from '../../SnackbarContent/SnackbarContent'
 import { Stack } from '../../Stack/Stack'
-import { Snackbar, SnackbarOrigin,SnackbarProps } from '../Snackbar'
+import { Snackbar, SnackbarOrigin, SnackbarProps } from '../Snackbar'
 import { defaultStoryMeta } from './Snackbar.stories.gen'
 
 /**
