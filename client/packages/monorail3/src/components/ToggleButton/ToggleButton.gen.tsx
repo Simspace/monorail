@@ -11,7 +11,7 @@ import {
  */
 export type ToggleButtonProps<
   D extends React.ElementType = ToggleButtonTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 > = MUIToggleButtonProps<D, P> & { ref?: React.ForwardedRef<HTMLButtonElement> }
 
 /**
@@ -21,7 +21,7 @@ export const ToggleButton = React.forwardRef((props, ref) => (
   <MUIToggleButton ref={ref} {...props} />
 )) as <
   D extends React.ElementType = ToggleButtonTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 >(
   props: ToggleButtonProps<D, P>,
 ) => JSX.Element

@@ -11,7 +11,7 @@ import {
  */
 export type SvgIconProps<
   D extends React.ElementType = SvgIconTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 > = MUISvgIconProps<D, P> & { ref?: React.ForwardedRef<SVGSVGElement> }
 
 /**
@@ -21,7 +21,7 @@ export const SvgIcon = React.forwardRef((props, ref) => (
   <MUISvgIcon ref={ref} {...props} />
 )) as <
   D extends React.ElementType = SvgIconTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 >(
   props: SvgIconProps<D, P>,
 ) => JSX.Element
