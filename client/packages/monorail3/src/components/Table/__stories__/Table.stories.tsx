@@ -304,11 +304,10 @@ export const SortingAndSelecting = story<TableProps>(
         rowCount,
         onRequestSort,
       } = props
-      const createSortHandler = (property: keyof Data) => (
-        event: React.MouseEvent<unknown>,
-      ) => {
-        onRequestSort(event, property)
-      }
+      const createSortHandler =
+        (property: keyof Data) => (event: React.MouseEvent<unknown>) => {
+          onRequestSort(event, property)
+        }
 
       return (
         <TableHead>
