@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 // Edit this file to add new stories
 import React from 'react'
 import AddIcon from '@mui/icons-material/Add'
@@ -143,7 +142,7 @@ function TabPanel(props: TabPanelProps) {
   )
 }
 
-function a11yProps(index: any) {
+function a11yProps(index: number) {
   return {
     id: `action-tab-${index}`,
     'aria-controls': `action-tabpanel-${index}`,

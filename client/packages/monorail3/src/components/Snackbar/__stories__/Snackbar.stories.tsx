@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 // Edit this file to add new stories
 import React from 'react'
 import CloseIcon from '@mui/icons-material/Close'
@@ -391,7 +390,7 @@ export const OtherTransitions = story<SnackbarProps>(
       open: boolean
       Transition: React.ComponentType<
         TransitionProps & {
-          children?: React.ReactElement<any, any>
+          children?: React.ReactElement<unknown>
         }
       >
     }>({
@@ -402,7 +401,7 @@ export const OtherTransitions = story<SnackbarProps>(
     const handleClick = (
       Transition: React.ComponentType<
         TransitionProps & {
-          children?: React.ReactElement<any, any>
+          children?: React.ReactElement<unknown>
         }
       >,
     ) => () => {

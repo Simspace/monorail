@@ -1,12 +1,21 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 // Edit this file to add new stories
 import React from 'react'
 import { createTheme, Theme } from '@mui/material/styles'
 import { makeStyles } from '@mui/styles'
 import {
+  randomCreatedDate,
+  randomEmail,
+  randomPrice,
+  randomTraderName,
+  randomUpdatedDate,
+} from '@mui/x-data-grid-generator'
+
+import { story } from '../../../__tests__/helpers/storybook'
+import { Alert } from '../../Alert/Alert'
+import { Rating } from '../../Rating/Rating'
+import {
+  DataGrid,
+  DataGridProps,
   GridCellEditCommitParams,
   GridCellParams,
   GridCellValue,
@@ -19,19 +28,7 @@ import {
   GridValueGetterParams,
   MuiEvent,
   useGridApiRef,
-} from '@mui/x-data-grid'
-import {
-  randomCreatedDate,
-  randomEmail,
-  randomPrice,
-  randomTraderName,
-  randomUpdatedDate,
-} from '@mui/x-data-grid-generator'
-
-import { story } from '../../../__tests__/helpers/storybook'
-import { Alert } from '../../Alert/Alert'
-import { Rating } from '../../Rating/Rating'
-import { DataGrid, DataGridProps } from '../DataGrid'
+} from '../DataGrid'
 import { defaultStoryMeta } from './DataGrid.stories.gen'
 
 export default {
@@ -629,14 +626,12 @@ const useStylesCustomEditComponent = makeStyles({
 })
 
 function RatingEditInputCell(props: GridRenderCellParams) {
+  /* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call */
   const { id, value, api, field } = props
   const classes = useStylesCustomEditComponent()
 
   const handleChange = (event: any) => {
-    api.setEditCellValue(
-      { id, field, value: Number(event.target.value) },
-      event,
-    )
+    api.setEditCellValue({ id, field, value: event.target.value }, event)
     // Check if the event is not from the keyboard
     // https://github.com/facebook/react/issues/7407
     if (event.nativeEvent.clientX !== 0 && event.nativeEvent.clientY !== 0) {
@@ -667,6 +662,7 @@ function RatingEditInputCell(props: GridRenderCellParams) {
 function renderRatingEditInputCell(params: any) {
   return <RatingEditInputCell {...params} />
 }
+/* eslint-enable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call*/
 
 export const RenderRatingEditCellGrid = story<DataGridProps>(args => {
   const columns: GridColumns = [

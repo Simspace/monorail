@@ -1,12 +1,9 @@
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-return */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable @typescript-eslint/no-explicit-any */
 // Edit this file to add new stories
 import React from 'react'
 import {
+  GridColDef,
   GridColumns,
+  GridRowData,
   GridRowsProp,
   GridSortDirection,
   GridSortModel,
@@ -77,7 +74,9 @@ const columns: GridColumns = [
         params.getValue(params.id, 'age') || 'x'
       }`,
     sortComparator: (v1, v2, param1, param2) =>
+      /* eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call */
       (param1.api.getCellValue(param1.id, 'age') as number) -
+      /* eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call */
       (param2.api.getCellValue(param2.id, 'age') as number),
     width: 150,
   },
@@ -232,10 +231,13 @@ export const DisableSortingGrid = story<DataGridProps>(args => {
       <DataGrid
         {...args}
         {...data}
-        columns={data.columns.map(column => ({
-          ...column,
-          sortable: false,
-        }))}
+        columns={data.columns.map(
+          column =>
+            ({
+              ...column,
+              sortable: false,
+            } as GridColDef),
+        )}
       />
     </div>
   )
@@ -262,8 +264,8 @@ DisableSortingGrid.parameters = {
 function loadServerRows(
   sortModel: GridSortModel,
   data: GridData,
-): Promise<any> {
-  return new Promise<any>(resolve => {
+): Promise<Array<GridRowData>> {
+  return new Promise<Array<GridRowData>>(resolve => {
     setTimeout(() => {
       if (sortModel.length === 0) {
         resolve(data.rows)

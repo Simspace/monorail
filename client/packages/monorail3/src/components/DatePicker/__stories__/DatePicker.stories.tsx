@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 // Edit this file to add new stories
 import React from 'react'
 import AdapterDateFns from '@mui/lab/AdapterDateFns'
@@ -197,6 +196,8 @@ export const FormProps = story<DatePickerProps<Date>>(
   },
 )
 
+type Locale = 'fr' | 'en' | 'ru' | 'de'
+
 export const Localization = story<DatePickerProps<Date>>(
   () => {
     const localeMap = {
@@ -219,7 +220,7 @@ export const Localization = story<DatePickerProps<Date>>(
       new Date('2021-01-01T12:34:00.000Z'),
     )
 
-    const selectLocale = (newLocale: any) => {
+    const selectLocale = (newLocale: Locale) => {
       setLocale(newLocale)
     }
 
@@ -238,7 +239,7 @@ export const Localization = story<DatePickerProps<Date>>(
               <ToggleButton
                 key={localeItem}
                 value={localeItem}
-                onClick={() => selectLocale(localeItem)}
+                onClick={() => selectLocale(localeItem as Locale)}
               >
                 {localeItem}
               </ToggleButton>

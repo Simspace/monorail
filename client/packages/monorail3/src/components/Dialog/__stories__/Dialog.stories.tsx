@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable @typescript-eslint/no-explicit-any */
 // Edit this file to add new stories
 import React from 'react'
 import Draggable from 'react-draggable'
@@ -213,7 +211,7 @@ If a title is required:
 
 const Transition = React.forwardRef(function Transition(
   props: TransitionProps & {
-    children?: React.ReactElement<any, any>
+    children?: React.ReactElement<unknown>
   },
   ref: React.Ref<unknown>,
 ) {
@@ -562,7 +560,7 @@ export const OptionalSizes = story<DialogProps>(
                     id: 'max-width',
                   }}
                 >
-                  <MenuItem value={false as any}>false</MenuItem>
+                  <MenuItem value={false}>false</MenuItem>
                   <MenuItem value="xs">xs</MenuItem>
                   <MenuItem value="sm">sm</MenuItem>
                   <MenuItem value="md">md</MenuItem>

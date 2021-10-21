@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 // Edit this file to add new stories
 import React from 'react'
 import DeleteIcon from '@mui/icons-material/Delete'
@@ -221,7 +220,7 @@ export const SortingAndSelecting = story<TableProps>(
 
     type Order = 'asc' | 'desc'
 
-    function getComparator<Key extends keyof any>(
+    function getComparator<Key extends keyof Data>(
       order: Order,
       orderBy: Key,
     ): (

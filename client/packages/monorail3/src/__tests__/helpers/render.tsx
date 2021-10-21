@@ -1,9 +1,9 @@
 /* eslint-disable no-restricted-imports */
-/* eslint-disable import/no-extraneous-dependencies */
 
 import React from 'react'
-import { ThemeProvider, Theme, StyledEngineProvider } from '@mui/material'
+import { StyledEngineProvider, Theme, ThemeProvider } from '@mui/material'
 import { Story } from '@storybook/react'
+/* eslint-disable-next-line import/no-extraneous-dependencies */
 import { render, RenderOptions, RenderResult } from '@testing-library/react'
 import { createGlobalStyle } from 'styled-components'
 

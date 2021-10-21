@@ -1,5 +1,6 @@
 // eslint-disable-next-line no-restricted-imports
 import { Theme, ThemeOptions } from '@mui/material'
+
 import { baseTheme } from './baseTheme'
 
 /**

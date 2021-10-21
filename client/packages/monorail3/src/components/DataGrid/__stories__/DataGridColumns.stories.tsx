@@ -909,9 +909,6 @@ export const ColumnTypesGrid = story<DataGridProps>(args => {
       setRows(prevRows => {
         const rowToDuplicate = prevRows.find(row => row.id === id)!
         const newRows = [...prevRows, { ...rowToDuplicate, id: Date.now() }]
-        /* eslint-disable no-console */
-        console.log(newRows)
-        /* eslint-enable no-console */
         return newRows
       })
     },

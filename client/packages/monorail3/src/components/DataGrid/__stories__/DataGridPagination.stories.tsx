@@ -1,8 +1,6 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 // Edit this file to add new stories
 import React from 'react'
-import { GridRowId, GridRowsProp } from '@mui/x-data-grid'
+import { GridRowData, GridRowId, GridRowsProp } from '@mui/x-data-grid'
 import { DataRowModel, GridData, useDemoData } from '@mui/x-data-grid-generator'
 
 import { story } from '../../../__tests__/helpers/storybook'
@@ -156,8 +154,11 @@ AutoPaginationGrid.parameters = {
 /**
  * Server-side pagination
  */
-function loadServerRows(page: number, data: GridData): Promise<any> {
-  return new Promise<any>(resolve => {
+function loadServerRows(
+  page: number,
+  data: GridData,
+): Promise<Array<GridRowData>> {
+  return new Promise<Array<GridRowData>>(resolve => {
     setTimeout(() => {
       resolve(data.rows.slice(page * 5, (page + 1) * 5))
     }, Math.random() * 500 + 100) // simulate network latency
@@ -247,6 +248,7 @@ function loadServerRowsCursorPaginationGrid(
       const end = start + PAGE_SIZE
       const rows = data.rows.slice(start, end)
 
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       resolve({ rows, nextCursor: data.rows[end]?.id })
     }, Math.random() * 500 + 100) // simulate network latency
   })
