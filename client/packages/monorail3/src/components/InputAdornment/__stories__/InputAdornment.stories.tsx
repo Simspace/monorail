@@ -10,15 +10,15 @@ import { TextField } from '../../TextField/TextField'
 import { OutlinedInput } from '../../OutlinedInput/OutlinedInput'
 import { InputLabel } from '../../InputLabel/InputLabel'
 import { IconButton } from '../../IconButton/IconButton'
-import Visibility from '@material-ui/icons/Visibility'
-import VisibilityOff from '@material-ui/icons/VisibilityOff'
+import Visibility from '@mui/icons-material/Visibility'
+import VisibilityOff from '@mui/icons-material/VisibilityOff'
 import { FilledInput } from '../../FilledInput/FilledInput'
 import { Input } from '../../Input/Input'
 
 /**
  * Metadata for InputAdornment stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Inputs/Input/InputAdornment' }
 
 /**
  * Story template (edit/remove by hand if needed)
@@ -79,11 +79,10 @@ export const Showcase = story<InputAdornmentProps>(
       showPassword: false,
     })
 
-    const handleChange = (prop: keyof State) => (
-      event: React.ChangeEvent<HTMLInputElement>,
-    ) => {
-      setValues({ ...values, [prop]: event.target.value })
-    }
+    const handleChange =
+      (prop: keyof State) => (event: React.ChangeEvent<HTMLInputElement>) => {
+        setValues({ ...values, [prop]: event.target.value })
+      }
 
     const handleClickShowPassword = () => {
       setValues({
@@ -142,6 +141,7 @@ export const Showcase = story<InputAdornmentProps>(
                     onClick={handleClickShowPassword}
                     onMouseDown={handleMouseDownPassword}
                     edge="end"
+                    size="large"
                   >
                     {values.showPassword ? <VisibilityOff /> : <Visibility />}
                   </IconButton>
@@ -206,6 +206,7 @@ export const Showcase = story<InputAdornmentProps>(
                     onClick={handleClickShowPassword}
                     onMouseDown={handleMouseDownPassword}
                     edge="end"
+                    size="large"
                   >
                     {values.showPassword ? <VisibilityOff /> : <Visibility />}
                   </IconButton>
@@ -267,6 +268,7 @@ export const Showcase = story<InputAdornmentProps>(
                     aria-label="toggle password visibility"
                     onClick={handleClickShowPassword}
                     onMouseDown={handleMouseDownPassword}
+                    size="large"
                   >
                     {values.showPassword ? <VisibilityOff /> : <Visibility />}
                   </IconButton>

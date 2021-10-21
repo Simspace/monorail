@@ -4,7 +4,7 @@ import {
   default as MUICardHeader,
   CardHeaderProps as MUICardHeaderProps,
   CardHeaderTypeMap,
-} from '@material-ui/core/CardHeader'
+} from '@mui/material/CardHeader'
 
 /**
  * Props for CardHeader
@@ -13,7 +13,7 @@ export type CardHeaderProps<
   DefaultComponent extends React.ElementType = CardHeaderTypeMap['defaultComponent'],
   Props = {},
   TitleTypographyComponent extends React.ElementType = 'span',
-  SubheaderTypographyComponent extends React.ElementType = 'span'
+  SubheaderTypographyComponent extends React.ElementType = 'span',
 > = MUICardHeaderProps<
   DefaultComponent,
   Props,
@@ -30,7 +30,7 @@ export const CardHeader = React.forwardRef((props, ref) => (
   DefaultComponent extends React.ElementType = CardHeaderTypeMap['defaultComponent'],
   Props = {},
   TitleTypographyComponent extends React.ElementType = 'span',
-  SubheaderTypographyComponent extends React.ElementType = 'span'
+  SubheaderTypographyComponent extends React.ElementType = 'span',
 >(
   props: CardHeaderProps<
     DefaultComponent,

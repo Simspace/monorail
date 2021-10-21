@@ -1,16 +1,15 @@
 // Edit this file to add new stories
 import React from 'react'
-import { Snackbar, SnackbarProps } from '../Snackbar'
+import { Snackbar, SnackbarProps, SnackbarOrigin } from '../Snackbar'
 import { story } from '../../../__tests__/helpers/storybook'
 import { defaultStoryMeta } from './Snackbar.stories.gen'
 import { Button } from '../../Button/Button'
 import { IconButton } from '../../IconButton/IconButton'
-import CloseIcon from '@material-ui/icons/Close'
+import CloseIcon from '@mui/icons-material/Close'
 import { Alert, AlertProps } from '../../Alert/Alert'
 import { Stack } from '../../Stack/Stack'
-import { SnackbarOrigin } from '@material-ui/core/Snackbar/Snackbar'
 import { SnackbarContent } from '../../SnackbarContent/SnackbarContent'
-import { TransitionProps } from '@material-ui/core/transitions'
+import { TransitionProps } from '@mui/material/transitions'
 import { Slide } from '../../Slide/Slide'
 import { Grow } from '../../Grow/Grow'
 import { Fade } from '../../Fade/Fade'
@@ -18,7 +17,7 @@ import { Fade } from '../../Fade/Fade'
 /**
  * Metadata for Snackbar stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Feedback/Snackbar' }
 
 /**
  * Story template (edit/remove by hand if needed)
@@ -48,7 +47,7 @@ const Template = story<SnackbarProps>(
     const action = (
       <React.Fragment>
         <Button color="secondary" size="small" onClick={handleClose}>
-          UNDO
+          Undo
         </Button>
         <IconButton
           size="small"
@@ -305,7 +304,10 @@ export const Transitions = story<SnackbarProps>(
     }, [snackPack, messageInfo, open])
 
     const handleClick = (message: string) => () => {
-      setSnackPack(prev => [...prev, { message, key: new Date().getTime() }])
+      setSnackPack(prev => [
+        ...prev,
+        { message, key: new Date('2021-01-01T12:34:00.000Z').getTime() },
+      ])
     }
 
     const handleClose = (
@@ -336,13 +338,14 @@ export const Transitions = story<SnackbarProps>(
           action={
             <React.Fragment>
               <Button color="secondary" size="small" onClick={handleClose}>
-                UNDO
+                Undo
               </Button>
               <IconButton
                 aria-label="close"
                 color="inherit"
                 sx={{ p: 0.5 }}
                 onClick={handleClose}
+                size="large"
               >
                 <CloseIcon />
               </IconButton>
@@ -394,18 +397,20 @@ export const OtherTransitions = story<SnackbarProps>(
       Transition: Fade,
     })
 
-    const handleClick = (
-      Transition: React.ComponentType<
-        TransitionProps & {
-          children?: React.ReactElement<any, any>
-        }
-      >,
-    ) => () => {
-      setState({
-        open: true,
-        Transition,
-      })
-    }
+    const handleClick =
+      (
+        Transition: React.ComponentType<
+          TransitionProps & {
+            children?: React.ReactElement<any, any>
+          }
+        >,
+      ) =>
+      () => {
+        setState({
+          open: true,
+          Transition,
+        })
+      }
 
     const handleClose = () => {
       setState({
@@ -463,12 +468,11 @@ export const SlideDirection = story<SnackbarProps>(
       React.ComponentType<TransitionProps> | undefined
     >(undefined)
 
-    const handleClick = (
-      Transition: React.ComponentType<TransitionProps>,
-    ) => () => {
-      setTransition(() => Transition)
-      setOpen(true)
-    }
+    const handleClick =
+      (Transition: React.ComponentType<TransitionProps>) => () => {
+        setTransition(() => Transition)
+        setOpen(true)
+      }
 
     const handleClose = () => {
       setOpen(false)

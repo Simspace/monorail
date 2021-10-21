@@ -9,9 +9,9 @@ import {
 import { story } from '../../../__tests__/helpers/storybook'
 import { defaultStoryMeta } from './Accordion.stories.gen'
 import { Typography } from '../../Typography/Typography'
-import ExpandMore from '@material-ui/icons/ExpandMore'
-import ArrowForwardIosSharp from '@material-ui/icons/ArrowForwardIosSharp'
-import { styled } from '@material-ui/core/styles'
+import ExpandMore from '@mui/icons-material/ExpandMore'
+import ArrowForwardIosSharp from '@mui/icons-material/ArrowForwardIosSharp'
+import { styled } from '@mui/material/styles'
 import { Divider } from '../../Divider/Divider'
 import { AccordionActions } from '../../AccordionActions/AccordionActions'
 import { Button } from '../../Button/Button'
@@ -21,6 +21,7 @@ import { Button } from '../../Button/Button'
  */
 export default {
   ...defaultStoryMeta,
+  title: 'Surfaces/Accordion',
   subcomponents: { AccordionDetails, AccordionSummary }, // This adds docgen tabs to the Docs page for the Default story - not super helpful
 }
 
@@ -198,12 +199,10 @@ const StyledAccordionDetails = styled(AccordionDetails)(({ theme }) => ({
 export const CustomStyled = () => {
   const [expanded, setExpanded] = React.useState('panel1')
 
-  const handleChange = (panel: string) => (
-    _event: unknown,
-    newExpanded: boolean,
-  ) => {
-    setExpanded(newExpanded ? panel : '')
-  }
+  const handleChange =
+    (panel: string) => (_event: unknown, newExpanded: boolean) => {
+      setExpanded(newExpanded ? panel : '')
+    }
 
   return (
     <div>

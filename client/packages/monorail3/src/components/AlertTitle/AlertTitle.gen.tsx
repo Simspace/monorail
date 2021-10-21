@@ -3,7 +3,7 @@ import React from 'react'
 import {
   default as MUIAlertTitle,
   AlertTitleProps as MUIAlertTitleProps,
-} from '@material-ui/core/AlertTitle'
+} from '@mui/material/AlertTitle'
 
 /**
  * Props for AlertTitle

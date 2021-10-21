@@ -14,16 +14,16 @@ import { Grid } from '../../Grid/Grid'
 import { Stack } from '../../Stack/Stack'
 import { Chip } from '../../Chip/Chip'
 import { Button } from '../../Button/Button'
-import FormatAlignLeftIcon from '@material-ui/icons/FormatAlignLeft'
-import FormatAlignCenterIcon from '@material-ui/icons/FormatAlignCenter'
-import FormatAlignRightIcon from '@material-ui/icons/FormatAlignRight'
-import FormatBoldIcon from '@material-ui/icons/FormatBold'
-import FormatItalicIcon from '@material-ui/icons/FormatItalic'
-import { styled } from '@material-ui/core/styles'
+import FormatAlignLeftIcon from '@mui/icons-material/FormatAlignLeft'
+import FormatAlignCenterIcon from '@mui/icons-material/FormatAlignCenter'
+import FormatAlignRightIcon from '@mui/icons-material/FormatAlignRight'
+import FormatBoldIcon from '@mui/icons-material/FormatBold'
+import FormatItalicIcon from '@mui/icons-material/FormatItalic'
+import { styled } from '@mui/material/styles'
 /**
  * Metadata for Divider stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Data Display/Divider' }
 /**
  * Story template (edit/remove by hand if needed)
  *
@@ -120,6 +120,12 @@ export const InsetDividers = () => {
   )
 }
 
+InsetDividers.parameters = {
+  creevey: {
+    skip: 'Images load unreliably',
+  },
+}
+
 export const SubheaderDividers = () => {
   return (
     <List
@@ -168,6 +174,12 @@ export const SubheaderDividers = () => {
       </ListItem>
     </List>
   )
+}
+
+SubheaderDividers.parameters = {
+  creevey: {
+    skip: 'Images load unreliably',
+  },
 }
 
 export const MiddleDividers = () => {

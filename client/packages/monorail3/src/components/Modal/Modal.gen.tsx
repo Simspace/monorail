@@ -4,14 +4,14 @@ import {
   default as MUIModal,
   ModalProps as MUIModalProps,
   ModalTypeMap,
-} from '@material-ui/core/Modal'
+} from '@mui/material/Modal'
 
 /**
  * Props for Modal
  */
 export type ModalProps<
   D extends React.ElementType = ModalTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 > = MUIModalProps<D, P> & { ref?: React.ForwardedRef<HTMLDivElement> }
 
 /**

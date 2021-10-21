@@ -19,7 +19,9 @@ export default {
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
 const Template = story<CalendarPickerProps<Date>>(args => {
-  const [date, setDate] = React.useState<Date | null>(new Date())
+  const [date, setDate] = React.useState<Date | null>(
+    new Date('2021-01-01T12:34:00.000Z'),
+  )
 
   return (
     <CalendarPicker

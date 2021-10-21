@@ -4,14 +4,14 @@ import {
   default as MUIAppBar,
   AppBarProps as MUIAppBarProps,
   AppBarTypeMap,
-} from '@material-ui/core/AppBar'
+} from '@mui/material/AppBar'
 
 /**
  * Props for AppBar
  */
 export type AppBarProps<
   D extends React.ElementType = AppBarTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 > = MUIAppBarProps<D, P> & { ref?: React.ForwardedRef<unknown> }
 
 /**

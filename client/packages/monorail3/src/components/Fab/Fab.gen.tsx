@@ -4,14 +4,14 @@ import {
   default as MUIFab,
   FabProps as MUIFabProps,
   FabTypeMap,
-} from '@material-ui/core/Fab'
+} from '@mui/material/Fab'
 
 /**
  * Props for Fab
  */
 export type FabProps<
   D extends React.ElementType = FabTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 > = MUIFabProps<D, P> & { ref?: React.ForwardedRef<HTMLButtonElement> }
 
 /**

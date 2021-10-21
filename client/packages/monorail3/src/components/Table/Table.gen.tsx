@@ -4,14 +4,14 @@ import {
   default as MUITable,
   TableProps as MUITableProps,
   TableTypeMap,
-} from '@material-ui/core/Table'
+} from '@mui/material/Table'
 
 /**
  * Props for Table
  */
 export type TableProps<
   D extends React.ElementType = TableTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 > = MUITableProps<D, P> & { ref?: React.ForwardedRef<HTMLTableElement> }
 
 /**

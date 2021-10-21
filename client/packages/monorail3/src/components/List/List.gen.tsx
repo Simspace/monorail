@@ -4,14 +4,14 @@ import {
   default as MUIList,
   ListProps as MUIListProps,
   ListTypeMap,
-} from '@material-ui/core/List'
+} from '@mui/material/List'
 
 /**
  * Props for List
  */
 export type ListProps<
   D extends React.ElementType = ListTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 > = MUIListProps<D, P> & { ref?: React.ForwardedRef<HTMLUListElement> }
 
 /**

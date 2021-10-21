@@ -4,14 +4,14 @@ import {
   default as MUITab,
   TabProps as MUITabProps,
   TabTypeMap,
-} from '@material-ui/core/Tab'
+} from '@mui/material/Tab'
 
 /**
  * Props for Tab
  */
 export type TabProps<
   D extends React.ElementType = TabTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 > = MUITabProps<D, P> & { ref?: React.ForwardedRef<HTMLDivElement> }
 
 /**

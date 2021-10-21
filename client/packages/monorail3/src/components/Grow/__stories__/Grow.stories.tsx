@@ -10,7 +10,7 @@ import { Paper } from '../../Paper/Paper'
 /**
  * Metadata for Grow stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Utils/Transitions/Grow' }
 
 const box = (
   <Paper sx={{ m: 1 }} elevation={4}>
