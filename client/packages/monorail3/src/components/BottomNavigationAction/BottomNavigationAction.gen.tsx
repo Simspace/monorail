@@ -11,7 +11,7 @@ import { ButtonBaseTypeMap } from '@mui/material/ButtonBase'
  */
 export type BottomNavigationActionProps<
   D extends React.ElementType = ButtonBaseTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 > = MUIBottomNavigationActionProps<D, P> & {
   ref?: React.ForwardedRef<HTMLButtonElement>
 }
@@ -23,7 +23,7 @@ export const BottomNavigationAction = React.forwardRef((props, ref) => (
   <MUIBottomNavigationAction ref={ref} {...props} />
 )) as <
   D extends React.ElementType = ButtonBaseTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 >(
   props: BottomNavigationActionProps<D, P>,
 ) => JSX.Element

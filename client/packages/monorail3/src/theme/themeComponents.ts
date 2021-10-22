@@ -20,15 +20,21 @@ export const getThemeComponents = (
     },
   },
   MuiButton: {
-    defaultProps: {
-      //disableRipple: true,
-    },
+    defaultProps: {},
     styleOverrides: {},
     variants: [],
   },
-  MuiIconButton: {
+  MuiButtonBase: {
     defaultProps: {
-      //disableRipple: true,
+      disableRipple: true,
     },
+  },
+  MuiButtonGroup: {
+    defaultProps: {
+      disableRipple: true,
+    },
+  },
+  MuiIconButton: {
+    defaultProps: {},
   },
 })

@@ -11,7 +11,7 @@ import {
  */
 export type ButtonGroupProps<
   D extends React.ElementType = ButtonGroupTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 > = MUIButtonGroupProps<D, P> & { ref?: React.ForwardedRef<HTMLDivElement> }
 
 /**
@@ -21,7 +21,7 @@ export const ButtonGroup = React.forwardRef((props, ref) => (
   <MUIButtonGroup ref={ref} {...props} />
 )) as <
   D extends React.ElementType = ButtonGroupTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 >(
   props: ButtonGroupProps<D, P>,
 ) => JSX.Element

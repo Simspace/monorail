@@ -305,12 +305,12 @@ export const ChipsArray = story<ChipProps>(
       { key: 4, label: 'Vue.js' },
     ])
 
-    const handleDelete = (chipToDelete: {
-      key: number
-      label: string
-    }) => () => {
-      setChipData(chips => chips.filter(chip => chip.key !== chipToDelete.key))
-    }
+    const handleDelete =
+      (chipToDelete: { key: number; label: string }) => () => {
+        setChipData(chips =>
+          chips.filter(chip => chip.key !== chipToDelete.key),
+        )
+      }
 
     return (
       <Paper

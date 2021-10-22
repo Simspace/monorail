@@ -125,9 +125,8 @@ const StyledSpeedDial = styled(SpeedDial)(({ theme }) => ({
 }))
 
 export const PlaygroundSpeedDial = story(() => {
-  const [direction, setDirection] = React.useState<SpeedDialProps['direction']>(
-    'up',
-  )
+  const [direction, setDirection] =
+    React.useState<SpeedDialProps['direction']>('up')
   const [hidden, setHidden] = React.useState(false)
 
   const handleDirectionChange = (

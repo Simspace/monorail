@@ -10,7 +10,7 @@ import {
  */
 export type CardMediaProps<
   D extends React.ElementType = 'div',
-  P = {}
+  P = {},
 > = MUICardMediaProps<D, P> & { ref?: React.ForwardedRef<HTMLDivElement> }
 
 /**

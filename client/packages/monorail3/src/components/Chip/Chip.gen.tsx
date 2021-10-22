@@ -11,7 +11,7 @@ import {
  */
 export type ChipProps<
   D extends React.ElementType = ChipTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 > = MUIChipProps<D, P> & { ref?: React.ForwardedRef<HTMLDivElement> }
 
 /**

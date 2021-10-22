@@ -11,7 +11,7 @@ import {
  */
 export type BadgeProps<
   D extends React.ElementType = BadgeTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 > = MUIBadgeProps<D, P> & { ref?: React.ForwardedRef<HTMLSpanElement> }
 
 /**

@@ -11,7 +11,7 @@ import {
  */
 export type AppBarProps<
   D extends React.ElementType = AppBarTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 > = MUIAppBarProps<D, P> & { ref?: React.ForwardedRef<unknown> }
 
 /**

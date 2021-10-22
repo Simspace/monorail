@@ -11,7 +11,7 @@ import {
  */
 export type CardContentProps<
   D extends React.ElementType = CardContentTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 > = MUICardContentProps<D, P> & { ref?: React.ForwardedRef<HTMLDivElement> }
 
 /**
@@ -21,7 +21,7 @@ export const CardContent = React.forwardRef((props, ref) => (
   <MUICardContent ref={ref} {...props} />
 )) as <
   D extends React.ElementType = CardContentTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 >(
   props: CardContentProps<D, P>,
 ) => JSX.Element

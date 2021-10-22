@@ -376,11 +376,10 @@ export const SelectedListItem = story<ListProps>(
   () => {
     const [selectedIndex, setSelectedIndex] = React.useState(1)
 
-    const handleListItemClick = (index: number) => (
-      _: React.MouseEvent<HTMLDivElement, MouseEvent>,
-    ) => {
-      setSelectedIndex(index)
-    }
+    const handleListItemClick =
+      (index: number) => (_: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+        setSelectedIndex(index)
+      }
 
     return (
       <Box sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>

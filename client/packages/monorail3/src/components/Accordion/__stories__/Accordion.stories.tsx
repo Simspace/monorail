@@ -200,12 +200,10 @@ const StyledAccordionDetails = styled(AccordionDetails)(({ theme }) => ({
 export const CustomStyled = () => {
   const [expanded, setExpanded] = React.useState('panel1')
 
-  const handleChange = (panel: string) => (
-    _event: unknown,
-    newExpanded: boolean,
-  ) => {
-    setExpanded(newExpanded ? panel : '')
-  }
+  const handleChange =
+    (panel: string) => (_event: unknown, newExpanded: boolean) => {
+      setExpanded(newExpanded ? panel : '')
+    }
 
   return (
     <div>

@@ -398,18 +398,20 @@ export const OtherTransitions = story<SnackbarProps>(
       Transition: Fade,
     })
 
-    const handleClick = (
-      Transition: React.ComponentType<
-        TransitionProps & {
-          children?: React.ReactElement<unknown>
-        }
-      >,
-    ) => () => {
-      setState({
-        open: true,
-        Transition,
-      })
-    }
+    const handleClick =
+      (
+        Transition: React.ComponentType<
+          TransitionProps & {
+            children?: React.ReactElement<unknown>
+          }
+        >,
+      ) =>
+      () => {
+        setState({
+          open: true,
+          Transition,
+        })
+      }
 
     const handleClose = () => {
       setState({
@@ -467,12 +469,11 @@ export const SlideDirection = story<SnackbarProps>(
       React.ComponentType<TransitionProps> | undefined
     >(undefined)
 
-    const handleClick = (
-      Transition: React.ComponentType<TransitionProps>,
-    ) => () => {
-      setTransition(() => Transition)
-      setOpen(true)
-    }
+    const handleClick =
+      (Transition: React.ComponentType<TransitionProps>) => () => {
+        setTransition(() => Transition)
+        setOpen(true)
+      }
 
     const handleClose = () => {
       setOpen(false)

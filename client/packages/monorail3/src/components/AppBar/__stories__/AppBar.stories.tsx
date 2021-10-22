@@ -174,10 +174,8 @@ export const WithPrimarySearchField = story<AppBarProps>(
     //#endregion
 
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
-    const [
-      mobileMoreAnchorEl,
-      setMobileMoreAnchorEl,
-    ] = React.useState<null | HTMLElement>(null)
+    const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
+      React.useState<null | HTMLElement>(null)
 
     const isMenuOpen = Boolean(anchorEl)
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl)
