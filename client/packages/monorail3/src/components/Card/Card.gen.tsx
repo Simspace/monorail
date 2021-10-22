@@ -11,7 +11,7 @@ import {
  */
 export type CardProps<
   D extends React.ElementType = CardTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 > = MUICardProps<D, P> & { ref?: React.ForwardedRef<unknown> }
 
 /**

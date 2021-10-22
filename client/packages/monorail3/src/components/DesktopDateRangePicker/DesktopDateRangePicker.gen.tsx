@@ -8,11 +8,10 @@ import {
 /**
  * Props for DesktopDateRangePicker
  */
-export type DesktopDateRangePickerProps<
-  TDate = unknown
-> = MUIDesktopDateRangePickerProps<TDate> & {
-  ref?: React.ForwardedRef<unknown>
-}
+export type DesktopDateRangePickerProps<TDate = unknown> =
+  MUIDesktopDateRangePickerProps<TDate> & {
+    ref?: React.ForwardedRef<unknown>
+  }
 
 /**
  * DesktopDateRangePicker
