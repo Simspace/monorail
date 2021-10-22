@@ -3,18 +3,6 @@ import React from 'react'
 import { Delete, FileCopy, Security } from '@mui/icons-material'
 import { createStyles, makeStyles } from '@mui/styles'
 import {
-  GridActionsCellItem,
-  GridCellValue,
-  GridColDef,
-  GridColTypeDef,
-  GridRenderCellParams,
-  GridRowId,
-  GridRowParams,
-  GridToolbar,
-  GridValueFormatterParams,
-  GridValueGetterParams,
-} from '@mui/x-data-grid'
-import {
   randomCreatedDate,
   randomPrice,
   randomStatusOptions,
@@ -27,7 +15,20 @@ import { Button } from '../../Button/Button'
 import { Paper } from '../../Paper/Paper'
 import { Popper } from '../../Popper/Popper'
 import { Typography } from '../../Typography/Typography'
-import { DataGrid, DataGridProps } from '../DataGrid'
+import {
+  DataGrid,
+  DataGridProps,
+  GridActionsCellItem,
+  GridCellValue,
+  GridColDef,
+  GridColTypeDef,
+  GridRenderCellParams,
+  GridRowId,
+  GridRowParams,
+  GridToolbar,
+  GridValueFormatterParams,
+  GridValueGetterParams,
+} from '../DataGrid'
 import { defaultStoryMeta } from './DataGrid.stories.gen'
 
 export default {

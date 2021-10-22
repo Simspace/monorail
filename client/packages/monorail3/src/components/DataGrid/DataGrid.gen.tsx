@@ -19,17 +19,4 @@ export const DataGrid = React.forwardRef((props, ref) => (
   <MUIDataGrid ref={ref} {...props} />
 )) as (props: DataGridProps) => JSX.Element
 
-export {
-  GridCellEditCommitParams,
-  GridCellParams,
-  GridCellValue,
-  GridColDef,
-  GridColumns,
-  GridEditCellPropsParams,
-  GridEditRowsModel,
-  GridRenderCellParams,
-  GridRowsProp,
-  GridValueGetterParams,
-  MuiEvent,
-  useGridApiRef,
-} from '@mui/x-data-grid'
+export * from '@mui/x-data-grid'

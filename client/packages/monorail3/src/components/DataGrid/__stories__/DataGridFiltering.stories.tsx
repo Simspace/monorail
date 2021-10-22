@@ -3,7 +3,16 @@ import React from 'react'
 import { Clear, Search } from '@mui/icons-material'
 import { createTheme, Theme } from '@mui/material/styles'
 import { createStyles, makeStyles } from '@mui/styles'
+import { GridData, useDemoData } from '@mui/x-data-grid-generator'
+
+import { story } from '../../../__tests__/helpers/storybook'
+import { IconButton } from '../../IconButton/IconButton'
+import { InputAdornment } from '../../InputAdornment/InputAdornment'
+import { Rating } from '../../Rating/Rating'
+import { TextField } from '../../TextField/TextField'
 import {
+  DataGrid,
+  DataGridProps,
   getGridNumericColumnOperators,
   GridCellParams,
   GridColDef,
@@ -17,15 +26,7 @@ import {
   GridToolbar,
   GridToolbarDensitySelector,
   GridToolbarFilterButton,
-} from '@mui/x-data-grid'
-import { GridData, useDemoData } from '@mui/x-data-grid-generator'
-
-import { story } from '../../../__tests__/helpers/storybook'
-import { IconButton } from '../../IconButton/IconButton'
-import { InputAdornment } from '../../InputAdornment/InputAdornment'
-import { Rating } from '../../Rating/Rating'
-import { TextField } from '../../TextField/TextField'
-import { DataGrid, DataGridProps } from '../DataGrid'
+} from '../DataGrid'
 import { defaultStoryMeta } from './DataGrid.stories.gen'
 
 export default { ...defaultStoryMeta, title: 'Data Grid/Filtering' }

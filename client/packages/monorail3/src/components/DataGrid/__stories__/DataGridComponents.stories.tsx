@@ -8,7 +8,15 @@ import {
 } from '@mui/icons-material'
 import { createTheme, Theme } from '@mui/material/styles'
 import { createStyles, makeStyles } from '@mui/styles'
+import { useDemoData } from '@mui/x-data-grid-generator'
+
+import { story } from '../../../__tests__/helpers/storybook'
+import { Button } from '../../Button/Button'
+import { LinearProgress } from '../../LinearProgress/LinearProgress'
+import { Pagination } from '../../Pagination/Pagination'
 import {
+  DataGrid,
+  DataGridProps,
   GridColumnMenu,
   GridColumnMenuContainer,
   GridColumnMenuProps,
@@ -22,14 +30,7 @@ import {
   GridToolbarFilterButton,
   SortGridMenuItems,
   useGridSlotComponentProps,
-} from '@mui/x-data-grid'
-import { useDemoData } from '@mui/x-data-grid-generator'
-
-import { story } from '../../../__tests__/helpers/storybook'
-import { Button } from '../../Button/Button'
-import { LinearProgress } from '../../LinearProgress/LinearProgress'
-import { Pagination } from '../../Pagination/Pagination'
-import { DataGrid, DataGridProps } from '../DataGrid'
+} from '../DataGrid'
 import { defaultStoryMeta } from './DataGrid.stories.gen'
 
 export default {

@@ -2,16 +2,17 @@
 import React from 'react'
 import { createTheme, darken, lighten, Theme } from '@mui/material/styles'
 import { createStyles, makeStyles } from '@mui/styles'
-import {
-  GridCellParams,
-  GridColumns,
-  useGridSlotComponentProps,
-} from '@mui/x-data-grid'
 import { useDemoData } from '@mui/x-data-grid-generator'
 
 import { story } from '../../../__tests__/helpers/storybook'
 import { Pagination } from '../../Pagination/Pagination'
-import { DataGrid, DataGridProps } from '../DataGrid'
+import {
+  DataGrid,
+  DataGridProps,
+  GridCellParams,
+  GridColumns,
+  useGridSlotComponentProps,
+} from '../DataGrid'
 import { defaultStoryMeta } from './DataGrid.stories.gen'
 
 export default {

@@ -1,10 +1,9 @@
 // Edit this file to add new stories
 import React from 'react'
-import { GridToolbar } from '@mui/x-data-grid'
 import { useDemoData } from '@mui/x-data-grid-generator'
 
 import { story } from '../../../__tests__/helpers/storybook'
-import { DataGrid, DataGridProps } from '../DataGrid'
+import { DataGrid, DataGridProps, GridToolbar } from '../DataGrid'
 import { defaultStoryMeta } from './DataGrid.stories.gen'
 
 export default { ...defaultStoryMeta, title: 'Data Grid/Localization' }
