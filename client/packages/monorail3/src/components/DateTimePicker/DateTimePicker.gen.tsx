@@ -8,9 +8,8 @@ import {
 /**
  * Props for DateTimePicker
  */
-export type DateTimePickerProps<
-  TDate = unknown
-> = MUIDateTimePickerProps<TDate> & { ref?: React.ForwardedRef<HTMLDivElement> }
+export type DateTimePickerProps<TDate = unknown> =
+  MUIDateTimePickerProps<TDate> & { ref?: React.ForwardedRef<HTMLDivElement> }
 
 /**
  * DateTimePicker
