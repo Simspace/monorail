@@ -497,9 +497,8 @@ export const OptionalSizes = story<DialogProps>(
   () => {
     const [open, setOpen] = React.useState(false)
     const [fullWidth, setFullWidth] = React.useState(true)
-    const [maxWidth, setMaxWidth] = React.useState<DialogProps['maxWidth']>(
-      'sm',
-    )
+    const [maxWidth, setMaxWidth] =
+      React.useState<DialogProps['maxWidth']>('sm')
 
     const handleClickOpen = () => {
       setOpen(true)
