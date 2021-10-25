@@ -11,7 +11,7 @@ import {
  */
 export type FabProps<
   D extends React.ElementType = FabTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 > = MUIFabProps<D, P> & { ref?: React.ForwardedRef<HTMLButtonElement> }
 
 /**
