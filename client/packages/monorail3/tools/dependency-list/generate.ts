@@ -6,8 +6,10 @@ import * as R from 'fp-ts/lib/ReadonlyRecord'
 import * as A from 'fp-ts/lib/ReadonlyArray'
 import * as O from 'fp-ts/lib/Option'
 import * as str from 'fp-ts/lib/string'
+import * as S from 'fp-ts/lib/Set'
 import * as TE from 'fp-ts/lib/TaskEither'
 import * as T from 'fp-ts/lib/Task'
+import * as TS from 'topological-sort'
 
 const splitPath = (s: string): [dir: string, file: string] => {
   const p = path.parse(s)
@@ -120,6 +122,59 @@ const processRawData = (input: Record<string, ReadonlyArray<string>>) => {
   }
 }
 
+const topologicalSort = (
+  input: Record<string, ReadonlyArray<string>>,
+): ReadonlyArray<string> => {
+  // Normalize/clean all the dependency names
+  const normalizedInput = normalizeInput(input)
+
+  // Create the graph nodes by using all the unique component names - the keys and values of the `input` record.
+  // The nodes are a map with a key for the node, and the node metadata value - in this case we don't care about
+  // the metadata value for nodes, so just using {} for every node.
+  const nodes: Map<string, {}> = pipe(
+    normalizedInput,
+    R.reduceWithIndex(new Set<string>(), (component, acc, dependencies) => {
+      acc.add(component)
+      dependencies.forEach(dependency => acc.add(dependency))
+      return acc
+    }),
+    S.toArray(str.Ord),
+    A.map(component => [component, {}] as const),
+    tuples => new Map<string, {}>(tuples),
+  )
+
+  // Create the graph using all the nodes
+  const graph = new TS.TopologicalSort(nodes)
+
+  //console.log(graph)
+
+  // Add the graph edges
+  // The input map has a component name as a key and the dependencies as the value array, so add edges from the key to all the value nodes
+  pipe(normalizedInput, R.toReadonlyArray, a =>
+    a.forEach(([component, dependencies]) => {
+      dependencies.forEach(dependency => {
+        console.log('edge', component, dependency)
+        try {
+          // Edges represent dependencies
+          graph.addEdge(component, dependency)
+        } catch (e) {
+          // There seems to be a double accounting for certain edges, just ignore them
+          console.error('Ignoring bad edge:', component, dependency)
+        }
+      })
+    }),
+  )
+
+  // Do the sort - reverse the list to create the right order of dependencies
+  const sortedGraph = graph.sort()
+  console.log(sortedGraph)
+
+  // Reverse the list to get execution order of dependencies
+  const sortedGraphKeys = [...sortedGraph.keys()].reverse()
+
+  return sortedGraphKeys
+}
+
 const mkdir = (
   path: fs.PathLike,
   options: fs.MakeDirectoryOptions,
@@ -170,24 +225,37 @@ const program = (source: string, config: MadgeConfig) =>
     TE.bind('dependencyList', ({ rawDependencyGraph }) =>
       TE.right(processRawData(rawDependencyGraph)),
     ),
+    TE.bind('dependencyListTopological', ({ rawDependencyGraph }) =>
+      TE.right(topologicalSort(rawDependencyGraph)),
+    ),
     TE.chainFirst(() => ensureDirExists('dependency-list-output')),
-    TE.chain(({ madgeInstance, rawDependencyGraph, dependencyList }) =>
-      TE.sequenceArray([
-        pipe(
-          TE.tryCatch(() => madgeInstance.svg(), toError),
-          TE.chain(svg =>
-            writeFile('dependency-list-output/dependency_graph.svg', svg),
+    TE.chain(
+      ({
+        madgeInstance,
+        rawDependencyGraph,
+        dependencyList,
+        dependencyListTopological,
+      }) =>
+        TE.sequenceArray([
+          pipe(
+            TE.tryCatch(() => madgeInstance.svg(), toError),
+            TE.chain(svg =>
+              writeFile('dependency-list-output/dependency_graph.svg', svg),
+            ),
           ),
-        ),
-        writeFile(
-          'dependency-list-output/raw_dependency_graph.json',
-          JSON.stringify(rawDependencyGraph),
-        ),
-        writeFile(
-          'dependency-list-output/dependency_list.json',
-          JSON.stringify(dependencyList),
-        ),
-      ]),
+          writeFile(
+            'dependency-list-output/raw_dependency_graph.json',
+            JSON.stringify(rawDependencyGraph, null, 2),
+          ),
+          writeFile(
+            'dependency-list-output/dependency_list.json',
+            JSON.stringify(dependencyList, null, 2),
+          ),
+          writeFile(
+            'dependency-list-output/dependency_list_topological_sort.txt',
+            dependencyListTopological.join('\n'),
+          ),
+        ]),
     ),
     TE.matchE(
       err =>

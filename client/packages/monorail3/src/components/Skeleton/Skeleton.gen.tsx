@@ -11,7 +11,7 @@ import {
  */
 export type SkeletonProps<
   D extends React.ElementType = SkeletonTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 > = MUISkeletonProps<D, P> & { ref?: React.ForwardedRef<HTMLSpanElement> }
 
 /**
@@ -21,7 +21,7 @@ export const Skeleton = React.forwardRef((props, ref) => (
   <MUISkeleton ref={ref} {...props} />
 )) as <
   D extends React.ElementType = SkeletonTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 >(
   props: SkeletonProps<D, P>,
 ) => JSX.Element

@@ -11,7 +11,7 @@ import {
  */
 export type PaperProps<
   D extends React.ElementType = PaperTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 > = MUIPaperProps<D, P> & { ref?: React.ForwardedRef<HTMLDivElement> }
 
 /**
