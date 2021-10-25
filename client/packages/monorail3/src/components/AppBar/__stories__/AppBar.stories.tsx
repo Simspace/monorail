@@ -8,7 +8,7 @@ import MenuIcon from '@mui/icons-material/Menu'
 import MoreIcon from '@mui/icons-material/MoreVert'
 import NotificationsIcon from '@mui/icons-material/Notifications'
 import SearchIcon from '@mui/icons-material/Search'
-import { alpha,styled } from '@mui/material/styles'
+import { alpha, styled } from '@mui/material/styles'
 import useScrollTrigger from '@mui/material/useScrollTrigger'
 
 import { story } from '../../../__tests__/helpers/storybook'

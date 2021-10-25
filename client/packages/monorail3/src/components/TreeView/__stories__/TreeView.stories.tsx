@@ -92,11 +92,17 @@ export const Controlled = story(
     const [expanded, setExpanded] = React.useState<Array<string>>([])
     const [selected, setSelected] = React.useState<Array<string>>([])
 
-    const handleToggle = (event: React.SyntheticEvent, nodeIds: Array<string>) => {
+    const handleToggle = (
+      event: React.SyntheticEvent,
+      nodeIds: Array<string>,
+    ) => {
       setExpanded(nodeIds)
     }
 
-    const handleSelect = (event: React.SyntheticEvent, nodeIds: Array<string>) => {
+    const handleSelect = (
+      event: React.SyntheticEvent,
+      nodeIds: Array<string>,
+    ) => {
       setSelected(nodeIds)
     }
 

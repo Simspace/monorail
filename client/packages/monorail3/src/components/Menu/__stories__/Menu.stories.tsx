@@ -17,7 +17,7 @@ import PersonAdd from '@mui/icons-material/PersonAdd'
 import PriorityHigh from '@mui/icons-material/PriorityHigh'
 import Send from '@mui/icons-material/Send'
 import Settings from '@mui/icons-material/Settings'
-import { alpha,styled } from '@mui/material/styles'
+import { alpha, styled } from '@mui/material/styles'
 
 import { story } from '../../../__tests__/helpers/storybook'
 import { Avatar } from '../../Avatar/Avatar'

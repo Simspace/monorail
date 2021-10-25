@@ -1,4 +1,4 @@
-import { colors,createTheme, PaletteOptions } from '@mui/material'
+import { colors, createTheme, PaletteOptions } from '@mui/material'
 
 import { defaultLightTheme } from './defaultLightTheme'
 
