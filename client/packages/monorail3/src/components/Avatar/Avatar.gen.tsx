@@ -11,7 +11,7 @@ import {
  */
 export type AvatarProps<
   D extends React.ElementType = AvatarTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 > = MUIAvatarProps<D, P> & { ref?: React.ForwardedRef<HTMLDivElement> }
 
 /**
