@@ -4,14 +4,14 @@ import {
   default as MUIGrid,
   GridProps as MUIGridProps,
   GridTypeMap,
-} from '@material-ui/core/Grid'
+} from '@mui/material/Grid'
 
 /**
  * Props for Grid
  */
 export type GridProps<
   D extends React.ElementType = GridTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 > = MUIGridProps<D, P> & { ref?: React.ForwardedRef<HTMLDivElement> }
 
 /**

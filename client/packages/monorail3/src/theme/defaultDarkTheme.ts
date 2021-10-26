@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-restricted-imports
-import * as MUI from '@material-ui/core'
+import { Theme, createTheme } from '@mui/material'
 
 //import { baseTheme } from './baseTheme'
 //import { getThemeComponents } from './themeComponents'
@@ -9,7 +9,7 @@ import { defaultLightTheme } from './defaultLightTheme'
 /**
  * The default light theme which combines the `baseTheme`, the light theme overrides, and the component-level overrides.
  */
-export const defaultDarkTheme: MUI.Theme = MUI.createTheme(
+export const defaultDarkTheme: Theme = createTheme(
   {
     ...defaultLightTheme,
     // TODO: not sure if setting mode:dark does anything useful here.

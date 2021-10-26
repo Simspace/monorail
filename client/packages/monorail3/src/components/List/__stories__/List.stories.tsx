@@ -8,35 +8,41 @@ import { ListItem } from '../../ListItem/ListItem'
 import { ListItemButton } from '../../ListItemButton/ListItemButton'
 import { ListItemIcon } from '../../ListItemIcon/ListItemIcon'
 import { ListItemText } from '../../ListItemText/ListItemText'
-import BeachAccessIcon from '@material-ui/icons/BeachAccess'
-import BluetoothIcon from '@material-ui/icons/Bluetooth'
-import CommentIcon from '@material-ui/icons/Comment'
-import InboxIcon from '@material-ui/icons/Inbox'
-import DraftsIcon from '@material-ui/icons/Drafts'
-import FolderIcon from '@material-ui/icons/Folder'
-import DeleteIcon from '@material-ui/icons/Delete'
-import SendIcon from '@material-ui/icons/Send'
-import ExpandMore from '@material-ui/icons/ExpandMore'
-import ExpandLess from '@material-ui/icons/ExpandLess'
-import StarBorder from '@material-ui/icons/StarBorder'
-import ImageIcon from '@material-ui/icons/Image'
-import StarIcon from '@material-ui/icons/Star'
-import WifiIcon from '@material-ui/icons/Wifi'
-import WorkIcon from '@material-ui/icons/Work'
-import PeopleIcon from '@material-ui/icons/People'
-import PermMediaIcon from '@material-ui/icons/PermMedia'
-import PublicIcon from '@material-ui/icons/Public'
-import DnsIcon from '@material-ui/icons/Dns'
-import HomeIcon from '@material-ui/icons/Home'
-import SettingsIcon from '@material-ui/icons/Settings'
-import ArrowRightIcon from '@material-ui/icons/ArrowRight'
-import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown'
+import BeachAccessIcon from '@mui/icons-material/BeachAccess'
+import BluetoothIcon from '@mui/icons-material/Bluetooth'
+import CommentIcon from '@mui/icons-material/Comment'
+import InboxIcon from '@mui/icons-material/Inbox'
+import DraftsIcon from '@mui/icons-material/Drafts'
+import FolderIcon from '@mui/icons-material/Folder'
+import DeleteIcon from '@mui/icons-material/Delete'
+import SendIcon from '@mui/icons-material/Send'
+import ExpandMore from '@mui/icons-material/ExpandMore'
+import ExpandLess from '@mui/icons-material/ExpandLess'
+import StarBorder from '@mui/icons-material/StarBorder'
+import ImageIcon from '@mui/icons-material/Image'
+import StarIcon from '@mui/icons-material/Star'
+import WifiIcon from '@mui/icons-material/Wifi'
+import WorkIcon from '@mui/icons-material/Work'
+import PeopleIcon from '@mui/icons-material/People'
+import PermMediaIcon from '@mui/icons-material/PermMedia'
+import PublicIcon from '@mui/icons-material/Public'
+import DnsIcon from '@mui/icons-material/Dns'
+import HomeIcon from '@mui/icons-material/Home'
+import SettingsIcon from '@mui/icons-material/Settings'
+import ArrowRightIcon from '@mui/icons-material/ArrowRight'
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 import { Divider } from '../../Divider/Divider'
 import { ListSubheader } from '../../ListSubheader/ListSubheader'
 import { Collapse } from '../../Collapse/Collapse'
 import { Avatar } from '../../Avatar/Avatar'
 import { ListItemAvatar } from '../../ListItemAvatar/ListItemAvatar'
-import { createTheme, styled, ThemeProvider } from '@material-ui/core/styles'
+import {
+  createTheme,
+  styled,
+  ThemeProvider,
+  Theme,
+  StyledEngineProvider,
+} from '@mui/material/styles'
 import { FormGroup } from '../../FormGroup/FormGroup'
 import { FormControlLabel } from '../../FormControlLabel/FormControlLabel'
 import { Checkbox } from '../../Checkbox/Checkbox'
@@ -48,10 +54,20 @@ import { Alert } from '../../Alert/Alert'
 import { Paper } from '../../Paper/Paper'
 import { Tooltip } from '../../Tooltip/Tooltip'
 
+declare module '@mui/styles/defaultTheme' {
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  interface DefaultTheme extends Theme {}
+}
+
+declare module '@mui/styles/defaultTheme' {
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  interface DefaultTheme extends Theme {}
+}
+
 /**
  * Metadata for List stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Data Display/List' }
 
 /**
  * Story template (edit/remove by hand if needed)
@@ -321,7 +337,7 @@ export const InteractiveList = story<ListProps>(
                 {generate(
                   <ListItem
                     secondaryAction={
-                      <IconButton edge="end" aria-label="delete">
+                      <IconButton edge="end" aria-label="delete" size="large">
                         <DeleteIcon />
                       </IconButton>
                     }
@@ -359,11 +375,11 @@ export const SelectedListItem = story<ListProps>(
   () => {
     const [selectedIndex, setSelectedIndex] = React.useState(1)
 
-    const handleListItemClick = (index: number) => (
-      event: React.MouseEvent<HTMLDivElement, MouseEvent>,
-    ) => {
-      setSelectedIndex(index)
-    }
+    const handleListItemClick =
+      (index: number) =>
+      (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+        setSelectedIndex(index)
+      }
 
     return (
       <Box sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
@@ -525,7 +541,7 @@ export const ListControlsCheckbox = story<ListProps>(
             <ListItem
               key={value}
               secondaryAction={
-                <IconButton edge="end" aria-label="comments">
+                <IconButton edge="end" aria-label="comments" size="large">
                   <CommentIcon />
                 </IconButton>
               }
@@ -777,7 +793,7 @@ export const GutterlessListItem = story<ListProps>(
             key={value}
             disableGutters
             secondaryAction={
-              <IconButton>
+              <IconButton size="large">
                 <CommentIcon />
               </IconButton>
             }
@@ -844,157 +860,161 @@ export const CustomizedList = story<ListProps>(
     const [open, setOpen] = React.useState(true)
     return (
       <Box sx={{ display: 'flex' }}>
-        <ThemeProvider
-          theme={createTheme({
-            components: {
-              MuiListItemButton: {
-                defaultProps: {
-                  disableTouchRipple: true,
+        <StyledEngineProvider injectFirst>
+          <ThemeProvider
+            theme={createTheme({
+              components: {
+                MuiListItemButton: {
+                  defaultProps: {
+                    disableTouchRipple: true,
+                  },
                 },
               },
-            },
-            palette: {
-              mode: 'dark',
-              primary: { main: 'rgb(102, 157, 246)' },
-              background: { paper: 'rgb(5, 30, 52)' },
-            },
-          })}
-        >
-          <Paper elevation={0} sx={{ maxWidth: 256 }}>
-            <FireNav component="nav" disablePadding>
-              <ListItemButton component="a" href="#customized-list">
-                <ListItemIcon sx={{ fontSize: 20 }}>🔥</ListItemIcon>
-                <ListItemText
-                  sx={{ my: 0 }}
-                  primary="Firebash"
-                  primaryTypographyProps={{
-                    fontSize: 20,
-                    fontWeight: 'medium',
-                    letterSpacing: 0,
-                  }}
-                />
-              </ListItemButton>
-              <Divider />
-              <ListItem component="div" disablePadding>
-                <ListItemButton sx={{ height: 56 }}>
-                  <ListItemIcon>
-                    <HomeIcon color="primary" />
-                  </ListItemIcon>
+              palette: {
+                mode: 'dark',
+                primary: { main: 'rgb(102, 157, 246)' },
+                background: { paper: 'rgb(5, 30, 52)' },
+              },
+            })}
+          >
+            <Paper elevation={0} sx={{ maxWidth: 256 }}>
+              <FireNav component="nav" disablePadding>
+                <ListItemButton component="a" href="#customized-list">
+                  <ListItemIcon sx={{ fontSize: 20 }}>🔥</ListItemIcon>
                   <ListItemText
-                    primary="Project Overview"
+                    sx={{ my: 0 }}
+                    primary="Firebash"
                     primaryTypographyProps={{
-                      color: 'primary',
+                      fontSize: 20,
                       fontWeight: 'medium',
-                      variant: 'body2',
+                      letterSpacing: 0,
                     }}
                   />
                 </ListItemButton>
-                <Tooltip title="Project Settings">
-                  <IconButton
-                    size="large"
+                <Divider />
+                <ListItem component="div" disablePadding>
+                  <ListItemButton sx={{ height: 56 }}>
+                    <ListItemIcon>
+                      <HomeIcon color="primary" />
+                    </ListItemIcon>
+                    <ListItemText
+                      primary="Project Overview"
+                      primaryTypographyProps={{
+                        color: 'primary',
+                        fontWeight: 'medium',
+                        variant: 'body2',
+                      }}
+                    />
+                  </ListItemButton>
+                  <Tooltip title="Project Settings">
+                    <IconButton
+                      size="large"
+                      sx={{
+                        '& svg': {
+                          color: 'rgba(255,255,255,0.8)',
+                          transition: '0.2s',
+                          transform: 'translateX(0) rotate(0)',
+                        },
+                        '&:hover, &:focus': {
+                          bgcolor: 'unset',
+                          '& svg:first-of-type': {
+                            transform: 'translateX(-4px) rotate(-20deg)',
+                          },
+                          '& svg:last-of-type': {
+                            right: 0,
+                            opacity: 1,
+                          },
+                        },
+                        '&:after': {
+                          content: '""',
+                          position: 'absolute',
+                          height: '80%',
+                          display: 'block',
+                          left: 0,
+                          width: '1px',
+                          bgcolor: 'divider',
+                        },
+                      }}
+                    >
+                      <SettingsIcon />
+                      <ArrowRightIcon
+                        sx={{ position: 'absolute', right: 4, opacity: 0 }}
+                      />
+                    </IconButton>
+                  </Tooltip>
+                </ListItem>
+                <Divider />
+                <Box
+                  sx={{
+                    bgcolor: open ? 'rgba(71, 98, 130, 0.2)' : null,
+                    pb: open ? 2 : 0,
+                  }}
+                >
+                  <ListItemButton
+                    alignItems="flex-start"
+                    onClick={() => setOpen(!open)}
                     sx={{
-                      '& svg': {
-                        color: 'rgba(255,255,255,0.8)',
-                        transition: '0.2s',
-                        transform: 'translateX(0) rotate(0)',
-                      },
+                      px: 3,
+                      pt: 2.5,
+                      pb: open ? 0 : 2.5,
                       '&:hover, &:focus': {
-                        bgcolor: 'unset',
-                        '& svg:first-of-type': {
-                          transform: 'translateX(-4px) rotate(-20deg)',
-                        },
-                        '& svg:last-of-type': {
-                          right: 0,
-                          opacity: 1,
-                        },
-                      },
-                      '&:after': {
-                        content: '""',
-                        position: 'absolute',
-                        height: '80%',
-                        display: 'block',
-                        left: 0,
-                        width: '1px',
-                        bgcolor: 'divider',
+                        '& svg': { opacity: open ? 1 : 0 },
                       },
                     }}
                   >
-                    <SettingsIcon />
-                    <ArrowRightIcon
-                      sx={{ position: 'absolute', right: 4, opacity: 0 }}
-                    />
-                  </IconButton>
-                </Tooltip>
-              </ListItem>
-              <Divider />
-              <Box
-                sx={{
-                  bgcolor: open ? 'rgba(71, 98, 130, 0.2)' : null,
-                  pb: open ? 2 : 0,
-                }}
-              >
-                <ListItemButton
-                  alignItems="flex-start"
-                  onClick={() => setOpen(!open)}
-                  sx={{
-                    px: 3,
-                    pt: 2.5,
-                    pb: open ? 0 : 2.5,
-                    '&:hover, &:focus': { '& svg': { opacity: open ? 1 : 0 } },
-                  }}
-                >
-                  <ListItemText
-                    primary="Build"
-                    primaryTypographyProps={{
-                      fontSize: 15,
-                      fontWeight: 'medium',
-                      lineHeight: '20px',
-                      mb: '2px',
-                    }}
-                    secondary="Authentication, Firestore Database, Realtime Database, Storage, Hosting, Functions, and Machine Learning"
-                    secondaryTypographyProps={{
-                      noWrap: true,
-                      fontSize: 12,
-                      lineHeight: '16px',
-                      color: open ? 'rgba(0,0,0,0)' : 'rgba(255,255,255,0.5)',
-                    }}
-                    sx={{ my: 0 }}
-                  />
-                  <KeyboardArrowDownIcon
-                    sx={{
-                      mr: -1,
-                      opacity: 0,
-                      transform: open ? 'rotate(-180deg)' : 'rotate(0)',
-                      transition: '0.2s',
-                    }}
-                  />
-                </ListItemButton>
-                {open &&
-                  data.map(item => (
-                    <ListItemButton
-                      key={item.label}
-                      sx={{
-                        py: 0,
-                        minHeight: 32,
-                        color: 'rgba(255,255,255,.8)',
+                    <ListItemText
+                      primary="Build"
+                      primaryTypographyProps={{
+                        fontSize: 15,
+                        fontWeight: 'medium',
+                        lineHeight: '20px',
+                        mb: '2px',
                       }}
-                    >
-                      <ListItemIcon sx={{ color: 'inherit' }}>
-                        {item.icon}
-                      </ListItemIcon>
-                      <ListItemText
-                        primary={item.label}
-                        primaryTypographyProps={{
-                          fontSize: 14,
-                          fontWeight: 'medium',
+                      secondary="Authentication, Firestore Database, Realtime Database, Storage, Hosting, Functions, and Machine Learning"
+                      secondaryTypographyProps={{
+                        noWrap: true,
+                        fontSize: 12,
+                        lineHeight: '16px',
+                        color: open ? 'rgba(0,0,0,0)' : 'rgba(255,255,255,0.5)',
+                      }}
+                      sx={{ my: 0 }}
+                    />
+                    <KeyboardArrowDownIcon
+                      sx={{
+                        mr: -1,
+                        opacity: 0,
+                        transform: open ? 'rotate(-180deg)' : 'rotate(0)',
+                        transition: '0.2s',
+                      }}
+                    />
+                  </ListItemButton>
+                  {open &&
+                    data.map(item => (
+                      <ListItemButton
+                        key={item.label}
+                        sx={{
+                          py: 0,
+                          minHeight: 32,
+                          color: 'rgba(255,255,255,.8)',
                         }}
-                      />
-                    </ListItemButton>
-                  ))}
-              </Box>
-            </FireNav>
-          </Paper>
-        </ThemeProvider>
+                      >
+                        <ListItemIcon sx={{ color: 'inherit' }}>
+                          {item.icon}
+                        </ListItemIcon>
+                        <ListItemText
+                          primary={item.label}
+                          primaryTypographyProps={{
+                            fontSize: 14,
+                            fontWeight: 'medium',
+                          }}
+                        />
+                      </ListItemButton>
+                    ))}
+                </Box>
+              </FireNav>
+            </Paper>
+          </ThemeProvider>
+        </StyledEngineProvider>
       </Box>
     )
   },

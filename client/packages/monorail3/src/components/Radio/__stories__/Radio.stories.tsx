@@ -8,7 +8,7 @@ import { Typography } from '../../Typography/Typography'
 /**
  * Metadata for Radio stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Inputs/Radio' }
 
 /**
  * Story template (edit/remove by hand if needed)

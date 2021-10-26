@@ -3,16 +3,15 @@ import React from 'react'
 import {
   default as MUIStaticDateTimePicker,
   StaticDateTimePickerProps as MUIStaticDateTimePickerProps,
-} from '@material-ui/lab/StaticDateTimePicker'
+} from '@mui/lab/StaticDateTimePicker'
 
 /**
  * Props for StaticDateTimePicker
  */
-export type StaticDateTimePickerProps<
-  TDate = unknown
-> = MUIStaticDateTimePickerProps<TDate> & {
-  ref?: React.ForwardedRef<HTMLDivElement>
-}
+export type StaticDateTimePickerProps<TDate = unknown> =
+  MUIStaticDateTimePickerProps<TDate> & {
+    ref?: React.ForwardedRef<HTMLDivElement>
+  }
 
 /**
  * StaticDateTimePicker

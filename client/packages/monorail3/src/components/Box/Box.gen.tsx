@@ -4,14 +4,14 @@ import {
   default as MUIBox,
   BoxProps as MUIBoxProps,
   BoxTypeMap,
-} from '@material-ui/core/Box'
+} from '@mui/material/Box'
 
 /**
  * Props for Box
  */
 export type BoxProps<
   D extends React.ElementType = BoxTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 > = MUIBoxProps<D, P> & { ref?: React.ForwardedRef<unknown> }
 
 /**

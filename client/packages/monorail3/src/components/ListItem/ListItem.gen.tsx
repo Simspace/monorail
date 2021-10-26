@@ -3,14 +3,14 @@ import React from 'react'
 import {
   default as MUIListItem,
   ListItemProps as MUIListItemProps,
-} from '@material-ui/core/ListItem'
+} from '@mui/material/ListItem'
 
 /**
  * Props for ListItem
  */
 export type ListItemProps<
   D extends React.ElementType = 'li',
-  P = {}
+  P = {},
 > = MUIListItemProps<D, P> & { ref?: React.ForwardedRef<HTMLLIElement> }
 
 /**

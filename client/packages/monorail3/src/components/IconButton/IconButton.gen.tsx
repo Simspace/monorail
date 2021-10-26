@@ -4,14 +4,14 @@ import {
   default as MUIIconButton,
   IconButtonProps as MUIIconButtonProps,
   IconButtonTypeMap,
-} from '@material-ui/core/IconButton'
+} from '@mui/material/IconButton'
 
 /**
  * Props for IconButton
  */
 export type IconButtonProps<
   D extends React.ElementType = IconButtonTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 > = MUIIconButtonProps<D, P> & { ref?: React.ForwardedRef<HTMLButtonElement> }
 
 /**
@@ -21,7 +21,7 @@ export const IconButton = React.forwardRef((props, ref) => (
   <MUIIconButton ref={ref} {...props} />
 )) as <
   D extends React.ElementType = IconButtonTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 >(
   props: IconButtonProps<D, P>,
 ) => JSX.Element

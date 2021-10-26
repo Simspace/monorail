@@ -4,7 +4,7 @@ import { ClickAwayListener, ClickAwayListenerProps } from '../ClickAwayListener'
 import { story } from '../../../__tests__/helpers/storybook'
 import { defaultStoryMeta } from './ClickAwayListener.stories.gen'
 import { Box } from '../../Box/Box'
-import { SxProps } from '@material-ui/system'
+import { SxProps } from '@mui/system'
 import { Portal } from '../../Portal/Portal'
 
 /**
@@ -12,7 +12,7 @@ import { Portal } from '../../Portal/Portal'
  * This is intended to be exported as story-level metadata from the main .stories.tsx file, like:
  * "export default { ...defaultStoryMeta } // Add/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Utils/ClickAwayListener' }
 
 /**
  * Story template (edit/remove by hand if needed)
