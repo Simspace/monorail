@@ -8,9 +8,8 @@ import {
 /**
  * Props for MobileDateRangePicker
  */
-export type MobileDateRangePickerProps<
-  TDate = unknown
-> = MUIMobileDateRangePickerProps<TDate> & { ref?: React.ForwardedRef<unknown> }
+export type MobileDateRangePickerProps<TDate = unknown> =
+  MUIMobileDateRangePickerProps<TDate> & { ref?: React.ForwardedRef<unknown> }
 
 /**
  * MobileDateRangePicker

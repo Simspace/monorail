@@ -10,7 +10,6 @@ import {
   ThemeProvider,
   Theme,
   StyledEngineProvider,
-  adaptV4Theme,
 } from '@mui/material/styles'
 import { Grid } from '../../Grid/Grid'
 
@@ -94,8 +93,8 @@ const Item = styled(Paper)(({ theme }) => ({
   lineHeight: '60px',
 }))
 
-const darkTheme = createTheme(adaptV4Theme({ palette: { mode: 'dark' } }))
-const lightTheme = createTheme(adaptV4Theme({ palette: { mode: 'light' } }))
+const darkTheme = createTheme({ palette: { mode: 'dark' } })
+const lightTheme = createTheme({ palette: { mode: 'light' } })
 
 export const Elevation = story<PaperProps>(
   () => (
