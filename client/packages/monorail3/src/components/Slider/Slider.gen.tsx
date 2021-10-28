@@ -11,7 +11,7 @@ import {
  */
 export type SliderProps<
   D extends React.ElementType = SliderTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 > = MUISliderProps<D, P> & { ref?: React.ForwardedRef<HTMLSpanElement> }
 
 /**

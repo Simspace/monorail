@@ -14,7 +14,7 @@ export type AutocompleteProps<
   Multiple extends boolean | undefined,
   DisableClearable extends boolean | undefined,
   FreeSolo extends boolean | undefined,
-  ChipComponent extends React.ElementType = ChipTypeMap['defaultComponent']
+  ChipComponent extends React.ElementType = ChipTypeMap['defaultComponent'],
 > = MUIAutocompleteProps<
   T,
   Multiple,
@@ -33,7 +33,7 @@ export const Autocomplete = React.forwardRef((props, ref) => (
   Multiple extends boolean | undefined,
   DisableClearable extends boolean | undefined,
   FreeSolo extends boolean | undefined,
-  ChipComponent extends React.ElementType = ChipTypeMap['defaultComponent']
+  ChipComponent extends React.ElementType = ChipTypeMap['defaultComponent'],
 >(
   props: AutocompleteProps<
     T,

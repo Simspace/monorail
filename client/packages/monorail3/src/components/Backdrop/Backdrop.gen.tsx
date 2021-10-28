@@ -11,7 +11,7 @@ import {
  */
 export type BackdropProps<
   D extends React.ElementType = BackdropTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 > = MUIBackdropProps<D, P> & { ref?: React.ForwardedRef<unknown> }
 
 /**
@@ -21,7 +21,7 @@ export const Backdrop = React.forwardRef((props, ref) => (
   <MUIBackdrop ref={ref} {...props} />
 )) as <
   D extends React.ElementType = BackdropTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 >(
   props: BackdropProps<D, P>,
 ) => JSX.Element
