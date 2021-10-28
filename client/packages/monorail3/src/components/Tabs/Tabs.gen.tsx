@@ -11,7 +11,7 @@ import {
  */
 export type TabsProps<
   D extends React.ElementType = TabsTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 > = MUITabsProps<D, P> & { ref?: React.ForwardedRef<HTMLButtonElement> }
 
 /**

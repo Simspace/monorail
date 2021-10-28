@@ -11,7 +11,7 @@ import {
  */
 export type ListProps<
   D extends React.ElementType = ListTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 > = MUIListProps<D, P> & { ref?: React.ForwardedRef<HTMLUListElement> }
 
 /**
