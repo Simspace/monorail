@@ -11,7 +11,7 @@ import {
  */
 export type IconButtonProps<
   D extends React.ElementType = IconButtonTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 > = MUIIconButtonProps<D, P> & { ref?: React.ForwardedRef<HTMLButtonElement> }
 
 /**
@@ -21,7 +21,7 @@ export const IconButton = React.forwardRef((props, ref) => (
   <MUIIconButton ref={ref} {...props} />
 )) as <
   D extends React.ElementType = IconButtonTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 >(
   props: IconButtonProps<D, P>,
 ) => JSX.Element
