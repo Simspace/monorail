@@ -11,7 +11,7 @@ import {
  */
 export type GridProps<
   D extends React.ElementType = GridTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 > = MUIGridProps<D, P> & { ref?: React.ForwardedRef<HTMLDivElement> }
 
 /**
