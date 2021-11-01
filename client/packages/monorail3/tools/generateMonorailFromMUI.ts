@@ -1063,13 +1063,12 @@ modules.forEach(module => {
 
   // The Props type parameters for the LHS of a declaration - this includes the type constraints and default types,
   // like <D extends React.ElementType<any> = "button", P = {}>
-  const muiPropsTypeParametersLhsString = getMuiComponentModifyTypeParametersLhsString(
-    module,
-  )(
-    muiPropsTypeParameters.length > 0
-      ? '<' + muiPropsTypeParameters.map(tp => tp.print()) + '>'
-      : '',
-  )
+  const muiPropsTypeParametersLhsString =
+    getMuiComponentModifyTypeParametersLhsString(module)(
+      muiPropsTypeParameters.length > 0
+        ? '<' + muiPropsTypeParameters.map(tp => tp.print()) + '>'
+        : '',
+    )
 
   // The Props type parameters for the RHS of a declaration - this is just the type params like <D, P>
   const muiPropsTypeParametersRhsString =
