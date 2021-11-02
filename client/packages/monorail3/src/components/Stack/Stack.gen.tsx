@@ -11,7 +11,7 @@ import {
  */
 export type StackProps<
   D extends React.ElementType = StackTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 > = MUIStackProps<D, P> & { ref?: React.ForwardedRef<unknown> }
 
 /**
