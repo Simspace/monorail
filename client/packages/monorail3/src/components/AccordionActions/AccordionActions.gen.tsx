@@ -3,7 +3,7 @@ import React from 'react'
 import {
   default as MUIAccordionActions,
   AccordionActionsProps as MUIAccordionActionsProps,
-} from '@material-ui/core/AccordionActions'
+} from '@mui/material/AccordionActions'
 
 /**
  * Props for AccordionActions

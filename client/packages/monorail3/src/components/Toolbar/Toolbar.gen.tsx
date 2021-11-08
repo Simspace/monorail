@@ -4,14 +4,14 @@ import {
   default as MUIToolbar,
   ToolbarProps as MUIToolbarProps,
   ToolbarTypeMap,
-} from '@material-ui/core/Toolbar'
+} from '@mui/material/Toolbar'
 
 /**
  * Props for Toolbar
  */
 export type ToolbarProps<
   D extends React.ElementType = ToolbarTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 > = MUIToolbarProps<D, P> & { ref?: React.ForwardedRef<HTMLDivElement> }
 
 /**
@@ -21,7 +21,7 @@ export const Toolbar = React.forwardRef((props, ref) => (
   <MUIToolbar ref={ref} {...props} />
 )) as <
   D extends React.ElementType = ToolbarTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 >(
   props: ToolbarProps<D, P>,
 ) => JSX.Element

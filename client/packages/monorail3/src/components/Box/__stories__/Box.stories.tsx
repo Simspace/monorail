@@ -5,7 +5,7 @@ import { story } from '../../../__tests__/helpers/storybook'
 import { defaultStoryMeta } from './Box.stories.gen'
 import { Typography } from '../../Typography/Typography.gen'
 import { Stack } from '../../Stack/Stack'
-import { styled } from '@material-ui/core'
+import { styled } from '@mui/material'
 import { Button } from '../../Button/Button'
 
 /**
@@ -13,7 +13,7 @@ import { Button } from '../../Button/Button'
  * This is intended to be exported as story-level metadata from the main .stories.tsx file, like:
  * "export default { ...defaultStoryMeta } // Add/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Layout/Box' }
 
 const Template = story<BoxProps>(args => <Box {...args} />, {
   args: {
@@ -48,7 +48,7 @@ export const WaysToStyleABox = () => {
       <Typography>1. As a styled component</Typography>
       <BorderedBox>Hello!</BorderedBox>
       <pre>{`
-import { styled } from '@material-ui/core'
+import { styled } from '@mui/material'
 
 export const BorderedBox = styled(Box)(
   ({ theme }) => \`

@@ -3,16 +3,15 @@ import React from 'react'
 import {
   default as MUIStaticDateRangePicker,
   StaticDateRangePickerProps as MUIStaticDateRangePickerProps,
-} from '@material-ui/lab/StaticDateRangePicker'
+} from '@mui/lab/StaticDateRangePicker'
 
 /**
  * Props for StaticDateRangePicker
  */
-export type StaticDateRangePickerProps<
-  TDate = unknown
-> = MUIStaticDateRangePickerProps<TDate> & {
-  ref?: React.ForwardedRef<HTMLDivElement>
-}
+export type StaticDateRangePickerProps<TDate = unknown> =
+  MUIStaticDateRangePickerProps<TDate> & {
+    ref?: React.ForwardedRef<HTMLDivElement>
+  }
 
 /**
  * StaticDateRangePicker

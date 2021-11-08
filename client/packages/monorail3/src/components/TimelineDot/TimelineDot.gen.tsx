@@ -3,7 +3,7 @@ import React from 'react'
 import {
   default as MUITimelineDot,
   TimelineDotProps as MUITimelineDotProps,
-} from '@material-ui/lab/TimelineDot'
+} from '@mui/lab/TimelineDot'
 
 /**
  * Props for TimelineDot

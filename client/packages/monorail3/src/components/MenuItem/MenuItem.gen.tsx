@@ -4,14 +4,14 @@ import {
   default as MUIMenuItem,
   MenuItemProps as MUIMenuItemProps,
   MenuItemTypeMap,
-} from '@material-ui/core/MenuItem'
+} from '@mui/material/MenuItem'
 
 /**
  * Props for MenuItem
  */
 export type MenuItemProps<
   D extends React.ElementType = MenuItemTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 > = MUIMenuItemProps<D, P> & { ref?: React.ForwardedRef<HTMLLIElement> }
 
 /**
@@ -21,7 +21,7 @@ export const MenuItem = React.forwardRef((props, ref) => (
   <MUIMenuItem ref={ref} {...props} />
 )) as <
   D extends React.ElementType = MenuItemTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 >(
   props: MenuItemProps<D, P>,
 ) => JSX.Element

@@ -4,13 +4,29 @@ import { Paper, PaperProps } from '../Paper'
 import { story } from '../../../__tests__/helpers/storybook'
 import { defaultStoryMeta } from './Paper.stories.gen'
 import { Box } from '../../Box/Box'
-import { createTheme, styled, ThemeProvider } from '@material-ui/core/styles'
+import {
+  createTheme,
+  styled,
+  ThemeProvider,
+  Theme,
+  StyledEngineProvider,
+} from '@mui/material/styles'
 import { Grid } from '../../Grid/Grid'
+
+declare module '@mui/styles/defaultTheme' {
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  interface DefaultTheme extends Theme {}
+}
+
+declare module '@mui/styles/defaultTheme' {
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  interface DefaultTheme extends Theme {}
+}
 
 /**
  * Metadata for Paper stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Surfaces/Paper' }
 /**
  * Story template (edit/remove by hand if needed)
  *
@@ -85,23 +101,25 @@ export const Elevation = story<PaperProps>(
     <Grid container spacing={2}>
       {[lightTheme, darkTheme].map((theme, index) => (
         <Grid item xs={6} key={index}>
-          <ThemeProvider theme={theme}>
-            <Box
-              sx={{
-                p: 2,
-                bgcolor: 'background.default',
-                display: 'grid',
-                gridTemplateColumns: { md: '1fr 1fr' },
-                gap: 2,
-              }}
-            >
-              {[0, 1, 2, 3, 4, 6, 8, 12, 16, 24].map(elevation => (
-                <Item key={elevation} elevation={elevation}>
-                  {`elevation=${elevation}`}
-                </Item>
-              ))}
-            </Box>
-          </ThemeProvider>
+          <StyledEngineProvider injectFirst>
+            <ThemeProvider theme={theme}>
+              <Box
+                sx={{
+                  p: 2,
+                  bgcolor: 'background.default',
+                  display: 'grid',
+                  gridTemplateColumns: { md: '1fr 1fr' },
+                  gap: 2,
+                }}
+              >
+                {[0, 1, 2, 3, 4, 6, 8, 12, 16, 24].map(elevation => (
+                  <Item key={elevation} elevation={elevation}>
+                    {`elevation=${elevation}`}
+                  </Item>
+                ))}
+              </Box>
+            </ThemeProvider>
+          </StyledEngineProvider>
         </Grid>
       ))}
     </Grid>

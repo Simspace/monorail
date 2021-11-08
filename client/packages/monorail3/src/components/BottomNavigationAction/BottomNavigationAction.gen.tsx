@@ -3,15 +3,15 @@ import React from 'react'
 import {
   default as MUIBottomNavigationAction,
   BottomNavigationActionProps as MUIBottomNavigationActionProps,
-} from '@material-ui/core/BottomNavigationAction'
-import { ButtonBaseTypeMap } from '@material-ui/core/ButtonBase'
+} from '@mui/material/BottomNavigationAction'
+import { ButtonBaseTypeMap } from '@mui/material/ButtonBase'
 
 /**
  * Props for BottomNavigationAction
  */
 export type BottomNavigationActionProps<
   D extends React.ElementType = ButtonBaseTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 > = MUIBottomNavigationActionProps<D, P> & {
   ref?: React.ForwardedRef<HTMLButtonElement>
 }
@@ -23,7 +23,7 @@ export const BottomNavigationAction = React.forwardRef((props, ref) => (
   <MUIBottomNavigationAction ref={ref} {...props} />
 )) as <
   D extends React.ElementType = ButtonBaseTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 >(
   props: BottomNavigationActionProps<D, P>,
 ) => JSX.Element

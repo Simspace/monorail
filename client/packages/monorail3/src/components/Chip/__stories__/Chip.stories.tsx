@@ -4,13 +4,13 @@ import { Chip, ChipProps } from '../Chip'
 import { story } from '../../../__tests__/helpers/storybook'
 import { defaultStoryMeta } from './Chip.stories.gen'
 import { action } from '@storybook/addon-actions'
-import DoneIcon from '@material-ui/icons/Done'
-import DeleteIcon from '@material-ui/icons/Delete'
-import FaceIcon from '@material-ui/icons/Face'
-import TagFacesIcon from '@material-ui/icons/TagFaces'
+import DoneIcon from '@mui/icons-material/Done'
+import DeleteIcon from '@mui/icons-material/Delete'
+import FaceIcon from '@mui/icons-material/Face'
+import TagFacesIcon from '@mui/icons-material/TagFaces'
 import { Avatar } from '../../Avatar/Avatar'
 import { Stack } from '../../Stack/Stack'
-import { styled } from '@material-ui/core/styles'
+import { styled } from '@mui/material/styles'
 import { Paper } from '../../Paper/Paper'
 import { Typography } from '../../Typography/Typography'
 
@@ -19,7 +19,7 @@ import { Typography } from '../../Typography/Typography'
  * This is intended to be exported as story-level metadata from the main .stories.tsx file, like:
  * "export default { ...defaultStoryMeta } // Add/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Data Display/Chip' }
 
 /**
  * Story template (edit/remove by hand if needed)
@@ -304,12 +304,12 @@ export const ChipsArray = story<ChipProps>(
       { key: 4, label: 'Vue.js' },
     ])
 
-    const handleDelete = (chipToDelete: {
-      key: number
-      label: string
-    }) => () => {
-      setChipData(chips => chips.filter(chip => chip.key !== chipToDelete.key))
-    }
+    const handleDelete =
+      (chipToDelete: { key: number; label: string }) => () => {
+        setChipData(chips =>
+          chips.filter(chip => chip.key !== chipToDelete.key),
+        )
+      }
 
     return (
       <Paper

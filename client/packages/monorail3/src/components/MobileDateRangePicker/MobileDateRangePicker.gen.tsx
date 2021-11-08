@@ -3,14 +3,13 @@ import React from 'react'
 import {
   default as MUIMobileDateRangePicker,
   MobileDateRangePickerProps as MUIMobileDateRangePickerProps,
-} from '@material-ui/lab/MobileDateRangePicker'
+} from '@mui/lab/MobileDateRangePicker'
 
 /**
  * Props for MobileDateRangePicker
  */
-export type MobileDateRangePickerProps<
-  TDate = unknown
-> = MUIMobileDateRangePickerProps<TDate> & { ref?: React.ForwardedRef<unknown> }
+export type MobileDateRangePickerProps<TDate = unknown> =
+  MUIMobileDateRangePickerProps<TDate> & { ref?: React.ForwardedRef<unknown> }
 
 /**
  * MobileDateRangePicker

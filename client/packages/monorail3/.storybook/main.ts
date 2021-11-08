@@ -7,6 +7,7 @@ export default {
     '@storybook/addon-essentials',
     //'@storybook/addon-controls', // included by default
     '@storybook/addon-a11y',
+    'creevey',
   ],
 
   typescript: {
@@ -29,7 +30,9 @@ export default {
           // I'm doing this b/c there was a problem with the storybook emotion theme conflicting with the MUI emotion.
           // Also, this kind of makes sense since we are using styled-components already.
           // https://next.material-ui.com/guides/styled-engine/#how-to-switch-to-styled-components
-          '@material-ui/styled-engine': '@material-ui/styled-engine-sc',
+          '@mui/styled-engine': '@mui/styled-engine-sc',
+          // @mui/x-data-grid still references the legacy MUI paths - this works-around that for now
+          '@material-ui/core': '@mui/material',
         },
       },
     }

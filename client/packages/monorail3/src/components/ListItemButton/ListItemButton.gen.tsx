@@ -4,14 +4,14 @@ import {
   default as MUIListItemButton,
   ListItemButtonProps as MUIListItemButtonProps,
   ListItemButtonTypeMap,
-} from '@material-ui/core/ListItemButton'
+} from '@mui/material/ListItemButton'
 
 /**
  * Props for ListItemButton
  */
 export type ListItemButtonProps<
   D extends React.ElementType = ListItemButtonTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 > = MUIListItemButtonProps<D, P> & { ref?: React.ForwardedRef<HTMLDivElement> }
 
 /**
@@ -21,7 +21,7 @@ export const ListItemButton = React.forwardRef((props, ref) => (
   <MUIListItemButton ref={ref} {...props} />
 )) as <
   D extends React.ElementType = ListItemButtonTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 >(
   props: ListItemButtonProps<D, P>,
 ) => JSX.Element
