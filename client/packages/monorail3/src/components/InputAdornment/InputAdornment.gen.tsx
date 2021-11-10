@@ -11,7 +11,7 @@ import {
  */
 export type InputAdornmentProps<
   D extends React.ElementType = InputAdornmentTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 > = MUIInputAdornmentProps<D, P> & { ref?: React.ForwardedRef<HTMLDivElement> }
 
 /**
@@ -21,7 +21,7 @@ export const InputAdornment = React.forwardRef((props, ref) => (
   <MUIInputAdornment ref={ref} {...props} />
 )) as <
   D extends React.ElementType = InputAdornmentTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 >(
   props: InputAdornmentProps<D, P>,
 ) => JSX.Element

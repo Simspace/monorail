@@ -22,7 +22,7 @@ import { Slide } from '../../Slide/Slide'
 import { TextField } from '../../TextField/TextField'
 import { IconButton } from '../../IconButton/IconButton'
 import CloseIcon from '@mui/icons-material/Close'
-import { styled, useTheme } from '@mui/material/styles'
+import { Breakpoint, styled, useTheme } from '@mui/material/styles'
 import { AppBar } from '../../AppBar/AppBar'
 import { Toolbar } from '../../Toolbar/Toolbar'
 import { Divider } from '../../Divider/Divider'
@@ -39,6 +39,7 @@ import { Radio } from '../../Radio/Radio'
 import Draggable from 'react-draggable'
 import { Paper, PaperProps } from '../../Paper/Paper'
 import { longParagraph } from '../../../__tests__/helpers/testData'
+import { SelectChangeEvent } from '@mui/material/Select'
 
 const emails = ['username@gmail.com', 'user02@gmail.com']
 
@@ -496,9 +497,8 @@ export const OptionalSizes = story<DialogProps>(
   () => {
     const [open, setOpen] = React.useState(false)
     const [fullWidth, setFullWidth] = React.useState(true)
-    const [maxWidth, setMaxWidth] = React.useState<DialogProps['maxWidth']>(
-      'sm',
-    )
+    const [maxWidth, setMaxWidth] =
+      React.useState<DialogProps['maxWidth']>('sm')
 
     const handleClickOpen = () => {
       setOpen(true)
@@ -509,7 +509,7 @@ export const OptionalSizes = story<DialogProps>(
     }
 
     const handleMaxWidthChange = (
-      event: React.ChangeEvent<{ value: unknown }>,
+      event: SelectChangeEvent<DialogProps['maxWidth']>,
     ) => {
       setMaxWidth(event.target.value as DialogProps['maxWidth'])
     }

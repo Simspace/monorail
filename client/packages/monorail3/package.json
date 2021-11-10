@@ -23,6 +23,8 @@
     "@mui/material": "5.0.1",
     "@mui/styles": "5.0.1",
     "@mui/styled-engine-sc": "5.0.0",
+    "@mui/x-data-grid": "5.0.0-beta.2",
+    "@mui/x-data-grid-generator": "5.0.0-beta.2",
     "@storybook/addon-a11y": "^6.3.7",
     "@storybook/addon-actions": "^6.3.7",
     "@storybook/addon-controls": "^6.3.7",
@@ -63,11 +65,11 @@
     "clean-barrel": "rm src/index.ts",
     "gen": "./tools/gen",
     "clean-gen": "find ./src/components -name '*.gen.*' -print | xargs rm && yarn gen",
-    "storybook": "start-storybook -p 6006 -s public",
-    "storybook:ci": "start-storybook --ci -p 6006 -s public",
+    "storybook": "start-storybook -p 6006 -s assets",
+    "storybook:ci": "start-storybook --ci -p 6006 -s assets",
     "test:visual": "start-server-and-test 'yarn storybook' 6006 'yarn creevey --ui'",
     "test:visual:ci": "start-server-and-test 'yarn storybook:ci' 6006 'yarn creevey'",
-    "build-storybook": "build-storybook -s public"
+    "build-storybook": "build-storybook -s assets"
   },
   "jest": {
     "testRegex": "^.+(jest|test)\\.(ts|tsx)$",
@@ -78,7 +80,8 @@
       "<rootDir>/jest/jest.postsetup.ts"
     ],
     "moduleNameMapper": {
-      "@material-ui/styled-engine": "@material-ui/styled-engine-sc"
+      "@mui/styled-engine": "@mui/styled-engine-sc",
+      "@material-ui/core": "@mui/material"
     },
     "testEnvironment": "jsdom"
   }

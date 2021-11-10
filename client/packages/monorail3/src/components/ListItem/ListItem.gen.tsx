@@ -10,7 +10,7 @@ import {
  */
 export type ListItemProps<
   D extends React.ElementType = 'li',
-  P = {}
+  P = {},
 > = MUIListItemProps<D, P> & { ref?: React.ForwardedRef<HTMLLIElement> }
 
 /**

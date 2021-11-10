@@ -11,8 +11,8 @@ import {
  */
 export type LinkProps<
   D extends React.ElementType = LinkTypeMap['defaultComponent'],
-  P = {}
-> = MUILinkProps<D, P> & { ref?: React.ForwardedRef<unknown> }
+  P = {},
+> = MUILinkProps<D, P> & { ref?: React.ForwardedRef<HTMLAnchorElement> }
 
 /**
  * Link
