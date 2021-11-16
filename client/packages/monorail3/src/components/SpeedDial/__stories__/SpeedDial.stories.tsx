@@ -4,12 +4,12 @@ import { SpeedDial, SpeedDialProps } from '../SpeedDial'
 import { story } from '../../../__tests__/helpers/storybook'
 import { defaultStoryMeta } from './SpeedDial.stories.gen'
 
-import { styled } from '@material-ui/core/styles'
-import EditIcon from '@material-ui/icons/EditOutlined'
-import FileCopyIcon from '@material-ui/icons/FileCopyOutlined'
-import PrintIcon from '@material-ui/icons/Print'
-import SaveIcon from '@material-ui/icons/Save'
-import ShareIcon from '@material-ui/icons/Share'
+import { styled } from '@mui/material/styles'
+import EditIcon from '@mui/icons-material/EditOutlined'
+import FileCopyIcon from '@mui/icons-material/FileCopyOutlined'
+import PrintIcon from '@mui/icons-material/Print'
+import SaveIcon from '@mui/icons-material/Save'
+import ShareIcon from '@mui/icons-material/Share'
 
 import { Backdrop } from '../../Backdrop/Backdrop'
 import { Box } from '../../Box/Box'
@@ -22,7 +22,7 @@ import { SpeedDialAction } from '../../SpeedDialAction/SpeedDialAction'
 import { SpeedDialIcon } from '../../SpeedDialIcon/SpeedDialIcon'
 import { Switch } from '../../Switch/Switch'
 
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Navigation/SpeedDial' }
 
 const Template = story<SpeedDialProps>(
   ({ children, ...rest }) => (
@@ -126,9 +126,8 @@ const StyledSpeedDial = styled(SpeedDial)(({ theme }) => ({
 }))
 
 export const PlaygroundSpeedDial = story(() => {
-  const [direction, setDirection] = React.useState<SpeedDialProps['direction']>(
-    'up',
-  )
+  const [direction, setDirection] =
+    React.useState<SpeedDialProps['direction']>('up')
   const [hidden, setHidden] = React.useState(false)
 
   const handleDirectionChange = (

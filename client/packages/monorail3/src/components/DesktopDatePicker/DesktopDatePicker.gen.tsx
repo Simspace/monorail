@@ -3,16 +3,15 @@ import React from 'react'
 import {
   default as MUIDesktopDatePicker,
   DesktopDatePickerProps as MUIDesktopDatePickerProps,
-} from '@material-ui/lab/DesktopDatePicker'
+} from '@mui/lab/DesktopDatePicker'
 
 /**
  * Props for DesktopDatePicker
  */
-export type DesktopDatePickerProps<
-  TDate = unknown
-> = MUIDesktopDatePickerProps<TDate> & {
-  ref?: React.ForwardedRef<HTMLDivElement>
-}
+export type DesktopDatePickerProps<TDate = unknown> =
+  MUIDesktopDatePickerProps<TDate> & {
+    ref?: React.ForwardedRef<HTMLDivElement>
+  }
 
 /**
  * DesktopDatePicker

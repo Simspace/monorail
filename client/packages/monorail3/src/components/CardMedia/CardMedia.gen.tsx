@@ -3,14 +3,14 @@ import React from 'react'
 import {
   default as MUICardMedia,
   CardMediaProps as MUICardMediaProps,
-} from '@material-ui/core/CardMedia'
+} from '@mui/material/CardMedia'
 
 /**
  * Props for CardMedia
  */
 export type CardMediaProps<
   D extends React.ElementType = 'div',
-  P = {}
+  P = {},
 > = MUICardMediaProps<D, P> & { ref?: React.ForwardedRef<HTMLDivElement> }
 
 /**

@@ -7,7 +7,7 @@ import { DialogContentText } from '../../DialogContentText/DialogContentText'
 /**
  * Metadata for DialogContent stories - update/extend as needed
  */
-export default { ...defaultStoryMeta }
+export default { ...defaultStoryMeta, title: 'Feedback/Dialog/DialogContent' }
 /**
  * Story template (edit/remove by hand if needed)
  *

@@ -4,14 +4,14 @@ import {
   default as MUIImageListItem,
   ImageListItemProps as MUIImageListItemProps,
   ImageListItemTypeMap,
-} from '@material-ui/core/ImageListItem'
+} from '@mui/material/ImageListItem'
 
 /**
  * Props for ImageListItem
  */
 export type ImageListItemProps<
   D extends React.ElementType = ImageListItemTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 > = MUIImageListItemProps<D, P> & { ref?: React.ForwardedRef<HTMLLIElement> }
 
 /**
@@ -21,7 +21,7 @@ export const ImageListItem = React.forwardRef((props, ref) => (
   <MUIImageListItem ref={ref} {...props} />
 )) as <
   D extends React.ElementType = ImageListItemTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 >(
   props: ImageListItemProps<D, P>,
 ) => JSX.Element

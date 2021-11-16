@@ -4,14 +4,14 @@ import {
   default as MUIIcon,
   IconProps as MUIIconProps,
   IconTypeMap,
-} from '@material-ui/core/Icon'
+} from '@mui/material/Icon'
 
 /**
  * Props for Icon
  */
 export type IconProps<
   D extends React.ElementType = IconTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 > = MUIIconProps<D, P> & { ref?: React.ForwardedRef<HTMLSpanElement> }
 
 /**

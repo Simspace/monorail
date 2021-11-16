@@ -3,7 +3,7 @@ import React from 'react'
 import {
   default as MUIToggleButtonGroup,
   ToggleButtonGroupProps as MUIToggleButtonGroupProps,
-} from '@material-ui/core/ToggleButtonGroup'
+} from '@mui/material/ToggleButtonGroup'
 
 /**
  * Props for ToggleButtonGroup

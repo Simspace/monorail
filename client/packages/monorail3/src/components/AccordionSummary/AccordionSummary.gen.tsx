@@ -4,14 +4,14 @@ import {
   default as MUIAccordionSummary,
   AccordionSummaryProps as MUIAccordionSummaryProps,
   AccordionSummaryTypeMap,
-} from '@material-ui/core/AccordionSummary'
+} from '@mui/material/AccordionSummary'
 
 /**
  * Props for AccordionSummary
  */
 export type AccordionSummaryProps<
   D extends React.ElementType = AccordionSummaryTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 > = MUIAccordionSummaryProps<D, P> & {
   ref?: React.ForwardedRef<HTMLDivElement>
 }
@@ -23,7 +23,7 @@ export const AccordionSummary = React.forwardRef((props, ref) => (
   <MUIAccordionSummary ref={ref} {...props} />
 )) as <
   D extends React.ElementType = AccordionSummaryTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 >(
   props: AccordionSummaryProps<D, P>,
 ) => JSX.Element

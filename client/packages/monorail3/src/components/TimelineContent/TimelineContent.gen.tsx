@@ -3,7 +3,7 @@ import React from 'react'
 import {
   default as MUITimelineContent,
   TimelineContentProps as MUITimelineContentProps,
-} from '@material-ui/lab/TimelineContent'
+} from '@mui/lab/TimelineContent'
 
 /**
  * Props for TimelineContent

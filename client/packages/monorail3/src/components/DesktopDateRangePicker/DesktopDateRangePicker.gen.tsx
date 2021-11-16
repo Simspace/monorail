@@ -3,16 +3,15 @@ import React from 'react'
 import {
   default as MUIDesktopDateRangePicker,
   DesktopDateRangePickerProps as MUIDesktopDateRangePickerProps,
-} from '@material-ui/lab/DesktopDateRangePicker'
+} from '@mui/lab/DesktopDateRangePicker'
 
 /**
  * Props for DesktopDateRangePicker
  */
-export type DesktopDateRangePickerProps<
-  TDate = unknown
-> = MUIDesktopDateRangePickerProps<TDate> & {
-  ref?: React.ForwardedRef<unknown>
-}
+export type DesktopDateRangePickerProps<TDate = unknown> =
+  MUIDesktopDateRangePickerProps<TDate> & {
+    ref?: React.ForwardedRef<unknown>
+  }
 
 /**
  * DesktopDateRangePicker

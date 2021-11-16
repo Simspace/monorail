@@ -4,14 +4,14 @@ import {
   default as MUIButtonBase,
   ButtonBaseProps as MUIButtonBaseProps,
   ButtonBaseTypeMap,
-} from '@material-ui/core/ButtonBase'
+} from '@mui/material/ButtonBase'
 
 /**
  * Props for ButtonBase
  */
 export type ButtonBaseProps<
   D extends React.ElementType = ButtonBaseTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 > = MUIButtonBaseProps<D, P> & { ref?: React.ForwardedRef<HTMLButtonElement> }
 
 /**
@@ -21,7 +21,7 @@ export const ButtonBase = React.forwardRef((props, ref) => (
   <MUIButtonBase ref={ref} {...props} />
 )) as <
   D extends React.ElementType = ButtonBaseTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 >(
   props: ButtonBaseProps<D, P>,
 ) => JSX.Element

@@ -4,14 +4,14 @@ import {
   default as MUIStack,
   StackProps as MUIStackProps,
   StackTypeMap,
-} from '@material-ui/core/Stack'
+} from '@mui/material/Stack'
 
 /**
  * Props for Stack
  */
 export type StackProps<
   D extends React.ElementType = StackTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 > = MUIStackProps<D, P> & { ref?: React.ForwardedRef<unknown> }
 
 /**

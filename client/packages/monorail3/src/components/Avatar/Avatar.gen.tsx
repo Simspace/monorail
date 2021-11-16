@@ -4,14 +4,14 @@ import {
   default as MUIAvatar,
   AvatarProps as MUIAvatarProps,
   AvatarTypeMap,
-} from '@material-ui/core/Avatar'
+} from '@mui/material/Avatar'
 
 /**
  * Props for Avatar
  */
 export type AvatarProps<
   D extends React.ElementType = AvatarTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 > = MUIAvatarProps<D, P> & { ref?: React.ForwardedRef<HTMLDivElement> }
 
 /**
