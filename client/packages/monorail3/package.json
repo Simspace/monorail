@@ -75,7 +75,8 @@
     "test:visual": "start-server-and-test 'yarn storybook' 6006 'yarn creevey --ui'",
     "test:visual:ci": "start-server-and-test 'yarn storybook:ci' 6006 'yarn creevey'",
     "build-storybook": "build-storybook -s assets",
-    "lint-staged": "# skipping linting for now"
+    "eslint": "NODE_OPTIONS=\"--max-old-space-size=8192\" eslint \"src/**/*.{js,ts,tsx}\" --cache",
+    "ci": "npm-run-all --parallel eslint test"
   },
   "jest": {
     "testRegex": "^.+(jest|test)\\.(ts|tsx)$",
@@ -90,5 +91,10 @@
       "@material-ui/core": "@mui/material"
     },
     "testEnvironment": "jsdom"
+  },
+  "lint-staged": {
+    "(jest|webpack|src)/**/*.{js,ts,tsx}": [
+      "eslint --fix-type layout --fix --cache"
+    ]
   }
 }
