@@ -1,26 +1,26 @@
 // Edit this file to add new stories
-import React from 'react'
-import DeleteIcon from '@mui/icons-material/Delete'
-import DoneIcon from '@mui/icons-material/Done'
-import FaceIcon from '@mui/icons-material/Face'
-import TagFacesIcon from '@mui/icons-material/TagFaces'
-import { styled } from '@mui/material/styles'
-import { action } from '@storybook/addon-actions'
+import React from "react";
+import DeleteIcon from "@mui/icons-material/Delete";
+import DoneIcon from "@mui/icons-material/Done";
+import FaceIcon from "@mui/icons-material/Face";
+import TagFacesIcon from "@mui/icons-material/TagFaces";
+import { styled } from "@mui/material/styles";
+import { action } from "@storybook/addon-actions";
 
-import { story } from '../../../__tests__/helpers/storybook'
-import { Avatar } from '../../Avatar/Avatar'
-import { Paper } from '../../Paper/Paper'
-import { Stack } from '../../Stack/Stack'
-import { Typography } from '../../Typography/Typography'
-import { Chip, ChipProps } from '../Chip'
-import { defaultStoryMeta } from './Chip.stories.gen'
+import { story } from "../../../__tests__/helpers/storybook";
+import { Avatar } from "../../Avatar/Avatar";
+import { Paper } from "../../Paper/Paper";
+import { Stack } from "../../Stack/Stack";
+import { Typography } from "../../Typography/Typography";
+import { Chip, ChipProps } from "../Chip";
+import { defaultStoryMeta } from "./Chip.stories.gen";
 
 /**
  * Metadata for Chip stories - update/extend as needed
  * This is intended to be exported as story-level metadata from the main .stories.tsx file, like:
  * "export default { ...defaultStoryMeta } // Add/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Data Display/Chip' }
+export default { ...defaultStoryMeta, title: "Data Display/Chip" };
 
 /**
  * Story template (edit/remove by hand if needed)
@@ -28,12 +28,12 @@ export default { ...defaultStoryMeta, title: 'Data Display/Chip' }
  * Note: there should be at least one "Default" story that uses this template with the "story" function.
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
-const Template = story<ChipProps>(args => <Chip {...args} />, {
-  args: { label: 'Ahoy!' },
-})
+const Template = story<ChipProps>((args) => <Chip {...args} />, {
+  args: { label: "Ahoy!" },
+});
 
 /** Default story for Chip (edit/remove by hand if needed) */
-export const Default = story(Template)
+export const Default = story(Template);
 
 export const Variants = story<ChipProps>(
   () => (
@@ -50,8 +50,8 @@ export const Variants = story<ChipProps>(
         },
       },
     },
-  },
-)
+  }
+);
 
 export const Clickable = story<ChipProps>(
   () => (
@@ -60,11 +60,11 @@ export const Clickable = story<ChipProps>(
         View the <strong>Actions</strong> pane in storybook Canvas to see events
       </Typography>
       <Stack direction="row" spacing={1}>
-        <Chip label="Clickable" onClick={action('onClick')} />
+        <Chip label="Clickable" onClick={action("onClick")} />
         <Chip
           label="Clickable"
           variant="outlined"
-          onClick={action('onClick')}
+          onClick={action("onClick")}
         />
       </Stack>
     </>
@@ -77,8 +77,8 @@ export const Clickable = story<ChipProps>(
         },
       },
     },
-  },
-)
+  }
+);
 
 export const Deletable = story<ChipProps>(
   () => (
@@ -87,11 +87,11 @@ export const Deletable = story<ChipProps>(
         View the <strong>Actions</strong> pane in storybook Canvas to see events
       </Typography>
       <Stack direction="row" spacing={1}>
-        <Chip label="Filled" onDelete={action('onDelete')} />
+        <Chip label="Filled" onDelete={action("onDelete")} />
         <Chip
           label="Outlined"
           variant="outlined"
-          onDelete={action('onDelete')}
+          onDelete={action("onDelete")}
         />
       </Stack>
     </>
@@ -104,8 +104,8 @@ export const Deletable = story<ChipProps>(
         },
       },
     },
-  },
-)
+  }
+);
 
 export const ClickableAndDeletable = story<ChipProps>(
   () => (
@@ -116,14 +116,14 @@ export const ClickableAndDeletable = story<ChipProps>(
       <Stack direction="row" spacing={1}>
         <Chip
           label="Filled"
-          onClick={action('onClick')}
-          onDelete={action('onDelete')}
+          onClick={action("onClick")}
+          onDelete={action("onDelete")}
         />
         <Chip
           label="Outlined"
           variant="outlined"
-          onClick={action('onClick')}
-          onDelete={action('onDelete')}
+          onClick={action("onClick")}
+          onDelete={action("onDelete")}
         />
       </Stack>
     </>
@@ -136,8 +136,8 @@ export const ClickableAndDeletable = story<ChipProps>(
         },
       },
     },
-  },
-)
+  }
+);
 
 export const AsLink = story<ChipProps>(
   () => (
@@ -160,22 +160,22 @@ export const AsLink = story<ChipProps>(
         },
       },
     },
-  },
-)
+  }
+);
 
 export const CustomDeleteIcon = story<ChipProps>(
   () => (
     <Stack direction="row" spacing={1}>
       <Chip
         label="Check it"
-        onClick={action('onClick')}
-        onDelete={action('onDelete')}
+        onClick={action("onClick")}
+        onDelete={action("onDelete")}
         deleteIcon={<DoneIcon />}
       />
       <Chip
         label="Trash it"
-        onClick={action('onClick')}
-        onDelete={action('onDelete')}
+        onClick={action("onClick")}
+        onDelete={action("onDelete")}
         deleteIcon={<DeleteIcon />}
         variant="outlined"
       />
@@ -189,8 +189,8 @@ export const CustomDeleteIcon = story<ChipProps>(
         },
       },
     },
-  },
-)
+  }
+);
 
 export const WithAvatar = story<ChipProps>(
   () => (
@@ -216,8 +216,8 @@ export const WithAvatar = story<ChipProps>(
         },
       },
     },
-  },
-)
+  }
+);
 
 export const WithIcon = story<ChipProps>(
   () => (
@@ -234,8 +234,8 @@ export const WithIcon = story<ChipProps>(
         },
       },
     },
-  },
-)
+  }
+);
 
 export const Colors = story<ChipProps>(
   () => (
@@ -268,8 +268,8 @@ export const Colors = story<ChipProps>(
         },
       },
     },
-  },
-)
+  }
+);
 
 export const Sizes = story<ChipProps>(
   () => (
@@ -288,47 +288,47 @@ export const Sizes = story<ChipProps>(
         },
       },
     },
-  },
-)
+  }
+);
 
-const ListItem = styled('li')(({ theme }) => ({
+const ListItem = styled("li")(({ theme }) => ({
   margin: theme.spacing(0.5),
-}))
+}));
 
 export const ChipsArray = story<ChipProps>(
   () => {
     const [chipData, setChipData] = React.useState([
-      { key: 0, label: 'Angular' },
-      { key: 1, label: 'jQuery' },
-      { key: 2, label: 'Polymer' },
-      { key: 3, label: 'React' },
-      { key: 4, label: 'Vue.js' },
-    ])
+      { key: 0, label: "Angular" },
+      { key: 1, label: "jQuery" },
+      { key: 2, label: "Polymer" },
+      { key: 3, label: "React" },
+      { key: 4, label: "Vue.js" },
+    ]);
 
     const handleDelete =
       (chipToDelete: { key: number; label: string }) => () => {
-        setChipData(chips =>
-          chips.filter(chip => chip.key !== chipToDelete.key),
-        )
-      }
+        setChipData((chips) =>
+          chips.filter((chip) => chip.key !== chipToDelete.key)
+        );
+      };
 
     return (
       <Paper
         sx={{
-          display: 'flex',
-          justifyContent: 'center',
-          flexWrap: 'wrap',
-          listStyle: 'none',
+          display: "flex",
+          justifyContent: "center",
+          flexWrap: "wrap",
+          listStyle: "none",
           p: 0.5,
           m: 0,
         }}
         component="ul"
       >
-        {chipData.map(data => {
-          let icon
+        {chipData.map((data) => {
+          let icon;
 
-          if (data.label === 'React') {
-            icon = <TagFacesIcon />
+          if (data.label === "React") {
+            icon = <TagFacesIcon />;
           }
 
           return (
@@ -337,14 +337,14 @@ export const ChipsArray = story<ChipProps>(
                 icon={icon}
                 label={data.label}
                 onDelete={
-                  data.label === 'React' ? undefined : handleDelete(data)
+                  data.label === "React" ? undefined : handleDelete(data)
                 }
               />
             </ListItem>
-          )
+          );
         })}
       </Paper>
-    )
+    );
   },
   {
     parameters: {
@@ -354,5 +354,5 @@ export const ChipsArray = story<ChipProps>(
         },
       },
     },
-  },
-)
+  }
+);

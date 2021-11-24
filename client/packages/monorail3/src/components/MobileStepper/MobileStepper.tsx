@@ -2,6 +2,6 @@
 import {
   MobileStepper as _MobileStepper,
   MobileStepperProps as _MobileStepperProps,
-} from './MobileStepper'
-export * from './MobileStepper.gen'
+} from "./MobileStepper";
+export * from "./MobileStepper.gen";
 // Add more functions/etc. below

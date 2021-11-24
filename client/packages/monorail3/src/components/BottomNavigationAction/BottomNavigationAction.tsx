@@ -2,6 +2,6 @@
 import {
   BottomNavigationAction as _BottomNavigationAction,
   BottomNavigationActionProps as _BottomNavigationActionProps,
-} from './BottomNavigationAction'
-export * from './BottomNavigationAction.gen'
+} from "./BottomNavigationAction";
+export * from "./BottomNavigationAction.gen";
 // Add more functions/etc. below

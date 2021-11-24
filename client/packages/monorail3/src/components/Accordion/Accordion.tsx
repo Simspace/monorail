@@ -2,6 +2,6 @@
 import {
   Accordion as _Accordion,
   AccordionProps as _AccordionProps,
-} from './Accordion'
-export * from './Accordion.gen'
+} from "./Accordion";
+export * from "./Accordion.gen";
 // Add more functions/etc. below

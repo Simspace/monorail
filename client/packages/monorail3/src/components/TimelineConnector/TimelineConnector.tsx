@@ -2,6 +2,6 @@
 import {
   TimelineConnector as _TimelineConnector,
   TimelineConnectorProps as _TimelineConnectorProps,
-} from './TimelineConnector'
-export * from './TimelineConnector.gen'
+} from "./TimelineConnector";
+export * from "./TimelineConnector.gen";
 // Add more functions/etc. below

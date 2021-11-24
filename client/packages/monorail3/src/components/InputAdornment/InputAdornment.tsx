@@ -2,6 +2,6 @@
 import {
   InputAdornment as _InputAdornment,
   InputAdornmentProps as _InputAdornmentProps,
-} from './InputAdornment'
-export * from './InputAdornment.gen'
+} from "./InputAdornment";
+export * from "./InputAdornment.gen";
 // Add more functions/etc. below

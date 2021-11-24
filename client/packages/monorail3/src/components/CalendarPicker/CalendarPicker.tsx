@@ -2,6 +2,6 @@
 import {
   CalendarPicker as _CalendarPicker,
   CalendarPickerProps as _CalendarPickerProps,
-} from './CalendarPicker'
-export * from './CalendarPicker.gen'
+} from "./CalendarPicker";
+export * from "./CalendarPicker.gen";
 // Add more functions/etc. below

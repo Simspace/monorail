@@ -2,6 +2,6 @@
 import {
   ImageListItem as _ImageListItem,
   ImageListItemProps as _ImageListItemProps,
-} from './ImageListItem'
-export * from './ImageListItem.gen'
+} from "./ImageListItem";
+export * from "./ImageListItem.gen";
 // Add more functions/etc. below

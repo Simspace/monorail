@@ -2,6 +2,6 @@
 import {
   FormControl as _FormControl,
   FormControlProps as _FormControlProps,
-} from './FormControl'
-export * from './FormControl.gen'
+} from "./FormControl";
+export * from "./FormControl.gen";
 // Add more functions/etc. below

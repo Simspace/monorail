@@ -1,15 +1,15 @@
 // Edit this file to add new stories
-import React from 'react'
+import React from "react";
 
-import { story } from '../../../__tests__/helpers/storybook'
-import { TableCell } from '../../TableCell/TableCell'
-import { TableRow } from '../../TableRow/TableRow'
-import { TableHead, TableHeadProps } from '../TableHead'
-import { defaultStoryMeta } from './TableHead.stories.gen'
+import { story } from "../../../__tests__/helpers/storybook";
+import { TableCell } from "../../TableCell/TableCell";
+import { TableRow } from "../../TableRow/TableRow";
+import { TableHead, TableHeadProps } from "../TableHead";
+import { defaultStoryMeta } from "./TableHead.stories.gen";
 
-export default { ...defaultStoryMeta, title: 'Data Display/Table/TableHead' }
+export default { ...defaultStoryMeta, title: "Data Display/Table/TableHead" };
 
-const Template = story<TableHeadProps>(args => (
+const Template = story<TableHeadProps>((args) => (
   <TableHead {...args}>
     <TableRow>
       <TableCell>Cell 1</TableCell>
@@ -22,7 +22,7 @@ const Template = story<TableHeadProps>(args => (
       <TableCell>Cell 3</TableCell>
     </TableRow>
   </TableHead>
-))
+));
 
 export const Default = story(Template, {
   parameters: {
@@ -32,4 +32,4 @@ export const Default = story(Template, {
       },
     },
   },
-})
+});

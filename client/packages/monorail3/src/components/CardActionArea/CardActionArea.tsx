@@ -2,6 +2,6 @@
 import {
   CardActionArea as _CardActionArea,
   CardActionAreaProps as _CardActionAreaProps,
-} from './CardActionArea'
-export * from './CardActionArea.gen'
+} from "./CardActionArea";
+export * from "./CardActionArea.gen";
 // Add more functions/etc. below

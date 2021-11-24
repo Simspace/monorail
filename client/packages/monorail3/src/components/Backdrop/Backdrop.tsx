@@ -2,6 +2,6 @@
 import {
   Backdrop as _Backdrop,
   BackdropProps as _BackdropProps,
-} from './Backdrop'
-export * from './Backdrop.gen'
+} from "./Backdrop";
+export * from "./Backdrop.gen";
 // Add more functions/etc. below

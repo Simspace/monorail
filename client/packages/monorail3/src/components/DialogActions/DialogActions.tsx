@@ -2,6 +2,6 @@
 import {
   DialogActions as _DialogActions,
   DialogActionsProps as _DialogActionsProps,
-} from './DialogActions'
-export * from './DialogActions.gen'
+} from "./DialogActions";
+export * from "./DialogActions.gen";
 // Add more functions/etc. below

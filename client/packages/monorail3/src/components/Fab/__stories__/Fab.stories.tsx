@@ -1,41 +1,43 @@
 // Edit this file to add new stories
-import React from 'react'
-import AddIcon from '@mui/icons-material/Add'
-import EditIcon from '@mui/icons-material/Edit'
-import FavoriteIcon from '@mui/icons-material/Favorite'
-import UpIcon from '@mui/icons-material/KeyboardArrowUp'
-import NavigationIcon from '@mui/icons-material/Navigation'
-import { useTheme } from '@mui/material/styles'
+import React from "react";
+import AddIcon from "@mui/icons-material/Add";
+import EditIcon from "@mui/icons-material/Edit";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import UpIcon from "@mui/icons-material/KeyboardArrowUp";
+import NavigationIcon from "@mui/icons-material/Navigation";
+import { useTheme } from "@mui/material/styles";
 
-import { story } from '../../../__tests__/helpers/storybook'
-import { AppBar } from '../../AppBar/AppBar'
-import { Box } from '../../Box/Box'
-import { Tab } from '../../Tab/Tab'
-import { Tabs } from '../../Tabs/Tabs'
-import { Typography } from '../../Typography/Typography'
-import { Zoom } from '../../Zoom/Zoom'
-import { Fab, FabProps } from '../Fab'
-import { defaultStoryMeta } from './Fab.stories.gen'
+import { story } from "../../../__tests__/helpers/storybook";
+import { AppBar } from "../../AppBar/AppBar";
+import { Box } from "../../Box/Box";
+import { Tab } from "../../Tab/Tab";
+import { Tabs } from "../../Tabs/Tabs";
+import { Typography } from "../../Typography/Typography";
+import { Zoom } from "../../Zoom/Zoom";
+import { Fab, FabProps } from "../Fab";
+import { defaultStoryMeta } from "./Fab.stories.gen";
 
 /**
  * Metadata for Fab stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Inputs/Fab' }
+export default { ...defaultStoryMeta, title: "Inputs/Fab" };
 /**
  * Story template (edit/remove by hand if needed)
  *
  * Note: there should be at least one "Default" story that uses this template with the "story" function.
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
-const Template = story<FabProps>(args => <Fab {...args}>FAB</Fab>, { args: {} })
+const Template = story<FabProps>((args) => <Fab {...args}>FAB</Fab>, {
+  args: {},
+});
 /** Default story for Fab (edit/remove by hand if needed) */
-export const Default = story(Template)
+export const Default = story(Template);
 
 export const Basic = story(
   () => (
     <Box
       sx={{
-        '& > :not(style)': { m: 1 },
+        "& > :not(style)": { m: 1 },
       }}
     >
       <Fab color="primary" aria-label="add">
@@ -64,14 +66,14 @@ Only use a FAB if it is the most suitable way to present a screen's primary acti
         },
       },
     },
-  },
-)
+  }
+);
 
 export const Size = story(
   () => (
     <Box
       sx={{
-        '& :not(style)': { m: 1 },
+        "& :not(style)": { m: 1 },
       }}
     >
       <Fab size="small" color="secondary" aria-label="add">
@@ -90,17 +92,17 @@ export const Size = story(
       docs: {
         description: {
           story:
-            'By default, the size is `large`. Use the `size` prop for smaller floating action buttons.',
+            "By default, the size is `large`. Use the `size` prop for smaller floating action buttons.",
         },
       },
     },
-  },
-)
+  }
+);
 
 export const Extended = story(() => (
   <Box
     sx={{
-      '& button': { m: 1 },
+      "& button": { m: 1 },
     }}
   >
     <Fab variant="extended" size="small" color="primary" aria-label="add">
@@ -116,17 +118,17 @@ export const Extended = story(() => (
       Extended
     </Fab>
   </Box>
-))
+));
 
 interface TabPanelProps {
-  children?: React.ReactNode
-  dir?: string
-  index: number
-  value: number
+  children?: React.ReactNode;
+  dir?: string;
+  index: number;
+  value: number;
 }
 
 function TabPanel(props: TabPanelProps) {
-  const { children, value, index, ...other } = props
+  const { children, value, index, ...other } = props;
 
   return (
     <Typography
@@ -139,54 +141,54 @@ function TabPanel(props: TabPanelProps) {
     >
       {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
     </Typography>
-  )
+  );
 }
 
 function a11yProps(index: number) {
   return {
     id: `action-tab-${index}`,
-    'aria-controls': `action-tabpanel-${index}`,
-  }
+    "aria-controls": `action-tabpanel-${index}`,
+  };
 }
 
 export const Animation = story(
   () => {
-    const theme = useTheme()
-    const [value, setValue] = React.useState(0)
+    const theme = useTheme();
+    const [value, setValue] = React.useState(0);
 
     const handleChange = (event: unknown, newValue: number) => {
-      setValue(newValue)
-    }
+      setValue(newValue);
+    };
 
     const transitionDuration = {
       enter: theme.transitions.duration.enteringScreen,
       exit: theme.transitions.duration.leavingScreen,
-    }
+    };
 
     const fabs = [
       {
-        color: 'primary' as 'primary',
+        color: "primary" as "primary",
         icon: <AddIcon />,
-        label: 'Add',
+        label: "Add",
       },
       {
-        color: 'secondary' as 'secondary',
+        color: "secondary" as "secondary",
         icon: <EditIcon />,
-        label: 'Edit',
+        label: "Edit",
       },
       {
-        color: 'inherit' as 'inherit',
+        color: "inherit" as "inherit",
         icon: <UpIcon />,
-        label: 'Expand',
+        label: "Expand",
       },
-    ]
+    ];
 
     return (
       <Box
         sx={{
-          bgColor: 'background.paper',
+          bgColor: "background.paper",
           width: 500,
-          position: 'relative',
+          position: "relative",
           minHeight: 200,
         }}
       >
@@ -227,7 +229,7 @@ export const Animation = story(
           >
             <Fab
               sx={{
-                position: 'absolute',
+                position: "absolute",
                 bottom: 16,
                 right: 16,
               }}
@@ -239,7 +241,7 @@ export const Animation = story(
           </Zoom>
         ))}
       </Box>
-    )
+    );
   },
   {
     parameters: {
@@ -254,5 +256,5 @@ The Zoom transition can be used to achieve this. Note that since both the exitin
         },
       },
     },
-  },
-)
+  }
+);

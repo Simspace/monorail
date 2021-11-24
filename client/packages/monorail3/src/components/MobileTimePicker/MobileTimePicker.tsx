@@ -2,6 +2,6 @@
 import {
   MobileTimePicker as _MobileTimePicker,
   MobileTimePickerProps as _MobileTimePickerProps,
-} from './MobileTimePicker'
-export * from './MobileTimePicker.gen'
+} from "./MobileTimePicker";
+export * from "./MobileTimePicker.gen";
 // Add more functions/etc. below

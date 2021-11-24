@@ -2,6 +2,6 @@
 import {
   Container as _Container,
   ContainerProps as _ContainerProps,
-} from './Container'
-export * from './Container.gen'
+} from "./Container";
+export * from "./Container.gen";
 // Add more functions/etc. below

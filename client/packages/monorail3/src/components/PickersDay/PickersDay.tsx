@@ -2,6 +2,6 @@
 import {
   PickersDay as _PickersDay,
   PickersDayProps as _PickersDayProps,
-} from './PickersDay'
-export * from './PickersDay.gen'
+} from "./PickersDay";
+export * from "./PickersDay.gen";
 // Add more functions/etc. below

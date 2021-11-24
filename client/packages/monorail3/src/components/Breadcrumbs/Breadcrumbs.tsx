@@ -2,6 +2,6 @@
 import {
   Breadcrumbs as _Breadcrumbs,
   BreadcrumbsProps as _BreadcrumbsProps,
-} from './Breadcrumbs'
-export * from './Breadcrumbs.gen'
+} from "./Breadcrumbs";
+export * from "./Breadcrumbs.gen";
 // Add more functions/etc. below

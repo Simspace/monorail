@@ -2,6 +2,6 @@
 import {
   TimelineDot as _TimelineDot,
   TimelineDotProps as _TimelineDotProps,
-} from './TimelineDot'
-export * from './TimelineDot.gen'
+} from "./TimelineDot";
+export * from "./TimelineDot.gen";
 // Add more functions/etc. below

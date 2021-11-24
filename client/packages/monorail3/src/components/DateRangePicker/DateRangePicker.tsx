@@ -2,10 +2,10 @@
 import {
   DateRangePicker as _DateRangePicker,
   DateRangePickerProps as _DateRangePickerProps,
-} from './DateRangePicker'
+} from "./DateRangePicker";
 
-export * from './DateRangePicker.gen'
+export * from "./DateRangePicker.gen";
 
-export { DateRange } from '@mui/lab/DateRangePicker/RangeTypes'
+export { DateRange } from "@mui/lab/DateRangePicker/RangeTypes";
 
 // Add more functions/etc. below

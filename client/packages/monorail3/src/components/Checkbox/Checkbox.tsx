@@ -2,6 +2,6 @@
 import {
   Checkbox as _Checkbox,
   CheckboxProps as _CheckboxProps,
-} from './Checkbox'
-export * from './Checkbox.gen'
+} from "./Checkbox";
+export * from "./Checkbox.gen";
 // Add more functions/etc. below

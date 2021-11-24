@@ -2,6 +2,6 @@
 import {
   AccordionSummary as _AccordionSummary,
   AccordionSummaryProps as _AccordionSummaryProps,
-} from './AccordionSummary'
-export * from './AccordionSummary.gen'
+} from "./AccordionSummary";
+export * from "./AccordionSummary.gen";
 // Add more functions/etc. below

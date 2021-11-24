@@ -2,6 +2,6 @@
 import {
   SnackbarContent as _SnackbarContent,
   SnackbarContentProps as _SnackbarContentProps,
-} from './SnackbarContent'
-export * from './SnackbarContent.gen'
+} from "./SnackbarContent";
+export * from "./SnackbarContent.gen";
 // Add more functions/etc. below

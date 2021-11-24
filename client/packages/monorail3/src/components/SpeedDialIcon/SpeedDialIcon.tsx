@@ -2,6 +2,6 @@
 import {
   SpeedDialIcon as _SpeedDialIcon,
   SpeedDialIconProps as _SpeedDialIconProps,
-} from './SpeedDialIcon'
-export * from './SpeedDialIcon.gen'
+} from "./SpeedDialIcon";
+export * from "./SpeedDialIcon.gen";
 // Add more functions/etc. below

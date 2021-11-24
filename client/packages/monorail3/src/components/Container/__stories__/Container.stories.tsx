@@ -1,21 +1,21 @@
 // Edit this file to add new stories
-import React from 'react'
-import { grey } from '@mui/material/colors'
+import React from "react";
+import { grey } from "@mui/material/colors";
 
-import { story } from '../../../__tests__/helpers/storybook'
-import { Box } from '../../Box/Box'
-import { CssBaseline } from '../../CssBaseline/CssBaseline'
-import { Stack } from '../../Stack/Stack'
-import { Typography } from '../../Typography/Typography'
-import { Container, ContainerProps } from '../Container'
-import { defaultStoryMeta } from './Container.stories.gen'
+import { story } from "../../../__tests__/helpers/storybook";
+import { Box } from "../../Box/Box";
+import { CssBaseline } from "../../CssBaseline/CssBaseline";
+import { Stack } from "../../Stack/Stack";
+import { Typography } from "../../Typography/Typography";
+import { Container, ContainerProps } from "../Container";
+import { defaultStoryMeta } from "./Container.stories.gen";
 
 /**
  * Metadata for Container stories - update/extend as needed
  * This is intended to be exported as story-level metadata from the main .stories.tsx file, like:
  * "export default { ...defaultStoryMeta } // Add/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Layout/Container' }
+export default { ...defaultStoryMeta, title: "Layout/Container" };
 
 /**
  * Story template (edit/remove by hand if needed)
@@ -24,7 +24,7 @@ export default { ...defaultStoryMeta, title: 'Layout/Container' }
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
 const Template = story<ContainerProps>(
-  args => (
+  (args) => (
     <Container {...args}>
       <Box backgroundColor={grey[200]}>
         <Stack direction="column" spacing={1}>
@@ -42,8 +42,8 @@ const Template = story<ContainerProps>(
   ),
   {
     args: {},
-  },
-)
+  }
+);
 
 /** Default story for Container (edit/remove by hand if needed) */
 /**
@@ -57,7 +57,7 @@ export const Default = story<ContainerProps>(Template, {
       },
     },
   },
-})
+});
 
 export const Fluid = story<ContainerProps>(
   () => {
@@ -83,7 +83,7 @@ export const Fluid = story<ContainerProps>(
           </Container>
         </Stack>
       </>
-    )
+    );
   },
   {
     parameters: {
@@ -93,8 +93,8 @@ export const Fluid = story<ContainerProps>(
         },
       },
     },
-  },
-)
+  }
+);
 
 export const Fixed = story<ContainerProps>(
   () => {
@@ -106,7 +106,7 @@ export const Fixed = story<ContainerProps>(
           <Box sx={{ bgcolor: grey[200] }}>The content</Box>
         </Container>
       </>
-    )
+    );
   },
   {
     parameters: {
@@ -116,5 +116,5 @@ export const Fixed = story<ContainerProps>(
         },
       },
     },
-  },
-)
+  }
+);

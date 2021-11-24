@@ -1,13 +1,13 @@
 // Edit this file to add new stories
-import React from 'react'
+import React from "react";
 
-import { story } from '../../../__tests__/helpers/storybook'
-import { TabScrollButton, TabScrollButtonProps } from '../TabScrollButton'
-import { defaultStoryMeta } from './TabScrollButton.stories.gen'
+import { story } from "../../../__tests__/helpers/storybook";
+import { TabScrollButton, TabScrollButtonProps } from "../TabScrollButton";
+import { defaultStoryMeta } from "./TabScrollButton.stories.gen";
 /**
  * Metadata for TabScrollButton stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Navigation/Tab/TabScrollButton' }
+export default { ...defaultStoryMeta, title: "Navigation/Tab/TabScrollButton" };
 /**
  * Story template (edit/remove by hand if needed)
  *
@@ -15,11 +15,11 @@ export default { ...defaultStoryMeta, title: 'Navigation/Tab/TabScrollButton' }
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
 const Template = story<TabScrollButtonProps>(
-  args => (
-    <TabScrollButton direction={'left'} orientation={'vertical'} {...args} />
+  (args) => (
+    <TabScrollButton direction={"left"} orientation={"vertical"} {...args} />
   ),
-  { args: {} },
-)
+  { args: {} }
+);
 /** Default story for TabScrollButton (edit/remove by hand if needed) */
-export const Default = story(Template)
+export const Default = story(Template);
 // TODO: add more stories below

@@ -1,17 +1,17 @@
-import React from 'react'
-import MenuIcon from '@mui/icons-material/Menu'
+import React from "react";
+import MenuIcon from "@mui/icons-material/Menu";
 
-import { AppBar } from '../components/AppBar/AppBar'
-import { Box } from '../components/Box/Box'
-import { Button } from '../components/Button/Button'
-import { Container } from '../components/Container/Container'
-import { IconButton } from '../components/IconButton/IconButton'
-import { Toolbar } from '../components/Toolbar/Toolbar'
-import { Typography } from '../components/Typography/Typography'
+import { AppBar } from "../components/AppBar/AppBar";
+import { Box } from "../components/Box/Box";
+import { Button } from "../components/Button/Button";
+import { Container } from "../components/Container/Container";
+import { IconButton } from "../components/IconButton/IconButton";
+import { Toolbar } from "../components/Toolbar/Toolbar";
+import { Typography } from "../components/Typography/Typography";
 
 export default {
-  title: 'Theme/Full Page Demo',
-}
+  title: "Theme/Full Page Demo",
+};
 
 // TODO: this needs to be built-out, but the intention is to have a somewhat realistic looking page
 // which can serve as a more built-out visual guide for theming.
@@ -41,5 +41,5 @@ export const FullPageDemo = () => {
         <Button>Click me</Button>
       </Box>
     </Container>
-  )
-}
+  );
+};

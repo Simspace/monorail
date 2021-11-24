@@ -2,6 +2,6 @@
 import {
   ToggleButton as _ToggleButton,
   ToggleButtonProps as _ToggleButtonProps,
-} from './ToggleButton'
-export * from './ToggleButton.gen'
+} from "./ToggleButton";
+export * from "./ToggleButton.gen";
 // Add more functions/etc. below

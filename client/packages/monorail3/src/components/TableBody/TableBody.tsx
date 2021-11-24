@@ -2,6 +2,6 @@
 import {
   TableBody as _TableBody,
   TableBodyProps as _TableBodyProps,
-} from './TableBody'
-export * from './TableBody.gen'
+} from "./TableBody";
+export * from "./TableBody.gen";
 // Add more functions/etc. below

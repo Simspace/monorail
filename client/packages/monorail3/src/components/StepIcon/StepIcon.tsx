@@ -2,6 +2,6 @@
 import {
   StepIcon as _StepIcon,
   StepIconProps as _StepIconProps,
-} from './StepIcon'
-export * from './StepIcon.gen'
+} from "./StepIcon";
+export * from "./StepIcon.gen";
 // Add more functions/etc. below

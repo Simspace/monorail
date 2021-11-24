@@ -1,13 +1,13 @@
 // Edit this file to add new stories
-import React from 'react'
-import RestoreIcon from '@mui/icons-material/Restore'
+import React from "react";
+import RestoreIcon from "@mui/icons-material/Restore";
 
-import { story } from '../../../__tests__/helpers/storybook'
+import { story } from "../../../__tests__/helpers/storybook";
 import {
   BottomNavigationAction,
   BottomNavigationActionProps,
-} from '../BottomNavigationAction'
-import { defaultStoryMeta } from './BottomNavigationAction.stories.gen'
+} from "../BottomNavigationAction";
+import { defaultStoryMeta } from "./BottomNavigationAction.stories.gen";
 
 /**
  * Metadata for BottomNavigationAction stories - update/extend as needed
@@ -16,8 +16,8 @@ import { defaultStoryMeta } from './BottomNavigationAction.stories.gen'
  */
 export default {
   ...defaultStoryMeta,
-  title: 'Navigation/BottomNavigation/BottomNavigationAction',
-}
+  title: "Navigation/BottomNavigation/BottomNavigationAction",
+};
 
 /**
  * Story template (edit/remove by hand if needed)
@@ -26,10 +26,10 @@ export default {
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
 const Template = story<BottomNavigationActionProps>(
-  args => <BottomNavigationAction aria-label="Action" {...args} />,
-  { args: { label: 'Recents', showLabel: true, icon: <RestoreIcon /> } },
-)
+  (args) => <BottomNavigationAction aria-label="Action" {...args} />,
+  { args: { label: "Recents", showLabel: true, icon: <RestoreIcon /> } }
+);
 
 /** Default story for BottomNavigationAction (edit/remove by hand if needed) */
-export const Default = story(Template)
+export const Default = story(Template);
 // TODO: add more stories below

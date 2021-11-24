@@ -1,14 +1,14 @@
 // Edit this file to add new stories
-import React from 'react'
+import React from "react";
 
-import { story } from '../../../__tests__/helpers/storybook'
-import { Box } from '../../Box/Box'
-import { Portal, PortalProps } from '../Portal'
-import { defaultStoryMeta } from './Portal.stories.gen'
+import { story } from "../../../__tests__/helpers/storybook";
+import { Box } from "../../Box/Box";
+import { Portal, PortalProps } from "../Portal";
+import { defaultStoryMeta } from "./Portal.stories.gen";
 /**
  * Metadata for Portal stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Utils/Portal' }
+export default { ...defaultStoryMeta, title: "Utils/Portal" };
 /**
  * Story template (edit/remove by hand if needed)
  *
@@ -16,30 +16,30 @@ export default { ...defaultStoryMeta, title: 'Utils/Portal' }
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
 const Template = story<PortalProps>(
-  args => {
-    const [show, setShow] = React.useState(false)
-    const container = React.useRef(null)
+  (args) => {
+    const [show, setShow] = React.useState(false);
+    const container = React.useRef(null);
 
     const handleClick = () => {
-      setShow(!show)
-    }
+      setShow(!show);
+    };
 
     return (
       <>
         <button type="button" onClick={handleClick}>
-          {show ? 'Unmount children' : 'Mount children'}
+          {show ? "Unmount children" : "Mount children"}
         </button>
         {show ? (
           <Portal container={container.current} {...args}>
             Portal Content
           </Portal>
         ) : null}
-        <Box sx={{ p: 1, my: 1, border: '1px solid' }} ref={container} />
+        <Box sx={{ p: 1, my: 1, border: "1px solid" }} ref={container} />
       </>
-    )
+    );
   },
-  { args: {} },
-)
+  { args: {} }
+);
 /** Default story for Portal (edit/remove by hand if needed) */
 export const Default = story(Template, {
   parameters: {
@@ -49,5 +49,5 @@ export const Default = story(Template, {
       },
     },
   },
-})
+});
 // TODO: add more stories below

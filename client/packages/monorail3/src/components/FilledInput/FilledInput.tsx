@@ -2,6 +2,6 @@
 import {
   FilledInput as _FilledInput,
   FilledInputProps as _FilledInputProps,
-} from './FilledInput'
-export * from './FilledInput.gen'
+} from "./FilledInput";
+export * from "./FilledInput.gen";
 // Add more functions/etc. below

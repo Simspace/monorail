@@ -2,6 +2,6 @@
 import {
   DatePicker as _DatePicker,
   DatePickerProps as _DatePickerProps,
-} from './DatePicker'
-export * from './DatePicker.gen'
+} from "./DatePicker";
+export * from "./DatePicker.gen";
 // Add more functions/etc. below

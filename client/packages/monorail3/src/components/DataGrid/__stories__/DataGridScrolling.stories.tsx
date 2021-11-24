@@ -1,11 +1,11 @@
 // Edit this file to add new stories
-import React from 'react'
+import React from "react";
 
-import { story } from '../../../__tests__/helpers/storybook'
-import { DataGridProps } from '../DataGrid'
-import { defaultStoryMeta } from './DataGrid.stories.gen'
+import { story } from "../../../__tests__/helpers/storybook";
+import { DataGridProps } from "../DataGrid";
+import { defaultStoryMeta } from "./DataGrid.stories.gen";
 
-export default { ...defaultStoryMeta, title: 'Data Grid/Scrolling' }
+export default { ...defaultStoryMeta, title: "Data Grid/Scrolling" };
 
 const Template = story<DataGridProps>(() => {
   // TODO(storybook): Uncomment once we have DataGridPro (paid)
@@ -110,10 +110,10 @@ const Template = story<DataGridProps>(() => {
     //     />
     //   </Box>
     // </div>
-  )
-})
+  );
+});
 
-export const Default = story(Template)
+export const Default = story(Template);
 
 Default.parameters = {
   docs: {
@@ -131,10 +131,10 @@ The following demo explores the usage of this API:`,
   creevey: {
     skip: "Story relies on DataGridPro (paid) which we don't have yet.",
   },
-}
+};
 
-export const DataGridScrollingApiRef = story<DataGridProps>(() => <></>)
-DataGridScrollingApiRef.storyName = 'apiRef'
+export const DataGridScrollingApiRef = story<DataGridProps>(() => <></>);
+DataGridScrollingApiRef.storyName = "apiRef";
 DataGridScrollingApiRef.parameters = {
   docs: {
     description: {
@@ -146,4 +146,4 @@ DataGridScrollingApiRef.parameters = {
   creevey: {
     skip: "Story relies on DataGridPro (paid) which we don't have yet.",
   },
-}
+};

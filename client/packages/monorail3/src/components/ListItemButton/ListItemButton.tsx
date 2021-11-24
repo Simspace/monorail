@@ -2,6 +2,6 @@
 import {
   ListItemButton as _ListItemButton,
   ListItemButtonProps as _ListItemButtonProps,
-} from './ListItemButton'
-export * from './ListItemButton.gen'
+} from "./ListItemButton";
+export * from "./ListItemButton.gen";
 // Add more functions/etc. below

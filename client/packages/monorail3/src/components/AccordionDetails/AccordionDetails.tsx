@@ -2,6 +2,6 @@
 import {
   AccordionDetails as _AccordionDetails,
   AccordionDetailsProps as _AccordionDetailsProps,
-} from './AccordionDetails'
-export * from './AccordionDetails.gen'
+} from "./AccordionDetails";
+export * from "./AccordionDetails.gen";
 // Add more functions/etc. below

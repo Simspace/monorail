@@ -2,6 +2,6 @@
 import {
   YearPicker as _YearPicker,
   YearPickerProps as _YearPickerProps,
-} from './YearPicker'
-export * from './YearPicker.gen'
+} from "./YearPicker";
+export * from "./YearPicker.gen";
 // Add more functions/etc. below

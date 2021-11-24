@@ -1,6 +1,6 @@
 // eslint-disable-next-line no-restricted-imports
-import * as _MUI from '@mui/material'
-import { Color } from '@mui/material'
+import * as _MUI from "@mui/material";
+import { Color } from "@mui/material";
 
 // This file is intended to house all our interface extensions/module augmentations for the MUI theme types.
 //
@@ -12,7 +12,7 @@ import { Color } from '@mui/material'
 // Note: there is some weird redundancy in some of these types, mostly because of how MUI has them setup as input options
 // provided by the theme creator and then the actual output theme types used by the theme consumer.
 
-declare module '@mui/material/styles/createPalette' {
+declare module "@mui/material/styles/createPalette" {
   /**
    * Extend the color `Palette` interface to add additional shades, colors, etc.
    *
@@ -27,27 +27,27 @@ declare module '@mui/material/styles/createPalette' {
      */
 
     colors: {
-      blue: Color
-      orange: Color
-      teal: Color
-      fuschia: Color
-      purple: Color
-    }
+      blue: Color;
+      orange: Color;
+      teal: Color;
+      fuschia: Color;
+      purple: Color;
+    };
 
     score: {
-      high: PaletteColor
-      highModerate: PaletteColor
-      moderate: PaletteColor
-      lowModerate: PaletteColor
-      low: PaletteColor
-    }
+      high: PaletteColor;
+      highModerate: PaletteColor;
+      moderate: PaletteColor;
+      lowModerate: PaletteColor;
+      low: PaletteColor;
+    };
 
     tiers: {
-      one: string
-      two: string
-      three: string
-      four: string
-    }
+      one: string;
+      two: string;
+      three: string;
+      four: string;
+    };
   }
 
   /**
@@ -57,36 +57,36 @@ declare module '@mui/material/styles/createPalette' {
    */
   interface PaletteOptions {
     score?: Partial<{
-      high: PaletteColorOptions
-      highModerate: PaletteColorOptions
-      moderate: PaletteColorOptions
-      lowModerate: PaletteColorOptions
-      low: PaletteColorOptions
-    }>
+      high: PaletteColorOptions;
+      highModerate: PaletteColorOptions;
+      moderate: PaletteColorOptions;
+      lowModerate: PaletteColorOptions;
+      low: PaletteColorOptions;
+    }>;
 
     colors?: Partial<{
-      blue: PaletteColorOptions
-      orange: PaletteColorOptions
-      teal: PaletteColorOptions
-      fuschia: PaletteColorOptions
-      purple: PaletteColorOptions
-    }>
+      blue: PaletteColorOptions;
+      orange: PaletteColorOptions;
+      teal: PaletteColorOptions;
+      fuschia: PaletteColorOptions;
+      purple: PaletteColorOptions;
+    }>;
 
     tiers?: Partial<{
-      one: string
-      two: string
-      three: string
-      four: string
-    }>
+      one: string;
+      two: string;
+      three: string;
+      four: string;
+    }>;
   }
 }
 
-declare module '@mui/material/Button' {
+declare module "@mui/material/Button" {
   /**
    * Extend the Button size to allow a new size `extraSmall` (aka dense)
    */
   interface ButtonPropsSizeOverrides {
-    extraSmall: true
+    extraSmall: true;
   }
 
   /**
@@ -95,9 +95,9 @@ declare module '@mui/material/Button' {
    * These seem to work out-of-the-box with no custom variant theming
    */
   interface ButtonPropsColorOverrides {
-    info: true
-    success: true
-    warning: true
-    error: true
+    info: true;
+    success: true;
+    warning: true;
+    error: true;
   }
 }

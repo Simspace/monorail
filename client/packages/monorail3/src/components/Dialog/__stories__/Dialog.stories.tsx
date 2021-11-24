@@ -1,71 +1,71 @@
 // Edit this file to add new stories
-import React from 'react'
-import Draggable from 'react-draggable'
-import AddIcon from '@mui/icons-material/Add'
-import CloseIcon from '@mui/icons-material/Close'
-import PersonIcon from '@mui/icons-material/Person'
-import { blue } from '@mui/material/colors'
-import { SelectChangeEvent } from '@mui/material/Select'
-import { styled, useTheme } from '@mui/material/styles'
-import { TransitionProps } from '@mui/material/transitions'
-import useMediaQuery from '@mui/material/useMediaQuery'
+import React from "react";
+import Draggable from "react-draggable";
+import AddIcon from "@mui/icons-material/Add";
+import CloseIcon from "@mui/icons-material/Close";
+import PersonIcon from "@mui/icons-material/Person";
+import { blue } from "@mui/material/colors";
+import { SelectChangeEvent } from "@mui/material/Select";
+import { styled, useTheme } from "@mui/material/styles";
+import { TransitionProps } from "@mui/material/transitions";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
-import { story } from '../../../__tests__/helpers/storybook'
-import { longParagraph } from '../../../__tests__/helpers/testData'
-import { AppBar } from '../../AppBar/AppBar'
-import { Avatar } from '../../Avatar/Avatar'
-import { Box } from '../../Box/Box'
-import { Button } from '../../Button/Button'
-import { DialogActions } from '../../DialogActions/DialogActions'
-import { DialogContent } from '../../DialogContent/DialogContent'
-import { DialogContentText } from '../../DialogContentText/DialogContentText'
-import { DialogTitle } from '../../DialogTitle/DialogTitle'
-import { Divider } from '../../Divider/Divider'
-import { FormControl } from '../../FormControl/FormControl'
-import { FormControlLabel } from '../../FormControlLabel/FormControlLabel'
-import { IconButton } from '../../IconButton/IconButton'
-import { InputLabel } from '../../InputLabel/InputLabel'
-import { List } from '../../List/List'
-import { ListItem } from '../../ListItem/ListItem'
-import { ListItemAvatar } from '../../ListItemAvatar/ListItemAvatar'
-import { ListItemText } from '../../ListItemText/ListItemText'
-import { MenuItem } from '../../MenuItem/MenuItem'
-import { Paper, PaperProps } from '../../Paper/Paper'
-import { Radio } from '../../Radio/Radio'
-import { RadioGroup } from '../../RadioGroup/RadioGroup'
-import { Select } from '../../Select/Select'
-import { Slide } from '../../Slide/Slide'
-import { Switch } from '../../Switch/Switch'
-import { TextField } from '../../TextField/TextField'
-import { Toolbar } from '../../Toolbar/Toolbar'
-import { Typography } from '../../Typography/Typography'
-import { Dialog, DialogProps } from '../Dialog'
-import { defaultStoryMeta } from './Dialog.stories.gen'
+import { story } from "../../../__tests__/helpers/storybook";
+import { longParagraph } from "../../../__tests__/helpers/testData";
+import { AppBar } from "../../AppBar/AppBar";
+import { Avatar } from "../../Avatar/Avatar";
+import { Box } from "../../Box/Box";
+import { Button } from "../../Button/Button";
+import { DialogActions } from "../../DialogActions/DialogActions";
+import { DialogContent } from "../../DialogContent/DialogContent";
+import { DialogContentText } from "../../DialogContentText/DialogContentText";
+import { DialogTitle } from "../../DialogTitle/DialogTitle";
+import { Divider } from "../../Divider/Divider";
+import { FormControl } from "../../FormControl/FormControl";
+import { FormControlLabel } from "../../FormControlLabel/FormControlLabel";
+import { IconButton } from "../../IconButton/IconButton";
+import { InputLabel } from "../../InputLabel/InputLabel";
+import { List } from "../../List/List";
+import { ListItem } from "../../ListItem/ListItem";
+import { ListItemAvatar } from "../../ListItemAvatar/ListItemAvatar";
+import { ListItemText } from "../../ListItemText/ListItemText";
+import { MenuItem } from "../../MenuItem/MenuItem";
+import { Paper, PaperProps } from "../../Paper/Paper";
+import { Radio } from "../../Radio/Radio";
+import { RadioGroup } from "../../RadioGroup/RadioGroup";
+import { Select } from "../../Select/Select";
+import { Slide } from "../../Slide/Slide";
+import { Switch } from "../../Switch/Switch";
+import { TextField } from "../../TextField/TextField";
+import { Toolbar } from "../../Toolbar/Toolbar";
+import { Typography } from "../../Typography/Typography";
+import { Dialog, DialogProps } from "../Dialog";
+import { defaultStoryMeta } from "./Dialog.stories.gen";
 
-const emails = ['username@gmail.com', 'user02@gmail.com']
+const emails = ["username@gmail.com", "user02@gmail.com"];
 
 export interface SimpleDialogProps {
-  open: boolean
-  selectedValue: string
-  onSimpleDialogClose: (value: string) => void
+  open: boolean;
+  selectedValue: string;
+  onSimpleDialogClose: (value: string) => void;
 }
 
 const SimpleDialog = (props: SimpleDialogProps) => {
-  const { onSimpleDialogClose, selectedValue, open } = props
+  const { onSimpleDialogClose, selectedValue, open } = props;
 
   const handleClose = () => {
-    onSimpleDialogClose(selectedValue)
-  }
+    onSimpleDialogClose(selectedValue);
+  };
 
   const handleListItemClick = (value: string) => {
-    onSimpleDialogClose(value)
-  }
+    onSimpleDialogClose(value);
+  };
 
   return (
     <Dialog onClose={handleClose} open={open}>
       <DialogTitle>Set backup account</DialogTitle>
       <List sx={{ pt: 0 }}>
-        {emails.map(email => (
+        {emails.map((email) => (
           <ListItem
             button
             onClick={() => handleListItemClick(email)}
@@ -82,7 +82,7 @@ const SimpleDialog = (props: SimpleDialogProps) => {
         <ListItem
           autoFocus
           button
-          onClick={() => handleListItemClick('addAccount')}
+          onClick={() => handleListItemClick("addAccount")}
         >
           <ListItemAvatar>
             <Avatar>
@@ -93,12 +93,12 @@ const SimpleDialog = (props: SimpleDialogProps) => {
         </ListItem>
       </List>
     </Dialog>
-  )
-}
+  );
+};
 /**
  * Metadata for Dialog stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Feedback/Dialog' }
+export default { ...defaultStoryMeta, title: "Feedback/Dialog" };
 /**
  * Story template (edit/remove by hand if needed)
  *
@@ -106,21 +106,21 @@ export default { ...defaultStoryMeta, title: 'Feedback/Dialog' }
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
 const Template = story<DialogProps>(
-  args => {
-    const [open, setOpen] = React.useState(false)
-    const [selectedValue, setSelectedValue] = React.useState(emails[1])
+  (args) => {
+    const [open, setOpen] = React.useState(false);
+    const [selectedValue, setSelectedValue] = React.useState(emails[1]);
 
     const handleClickOpen = () => {
-      setOpen(true)
-    }
+      setOpen(true);
+    };
 
     const handleClose = (/* _event: unknown, */ value: string) => {
-      setOpen(false)
-      setSelectedValue(value)
-    }
+      setOpen(false);
+      setSelectedValue(value);
+    };
 
     return (
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
+      <div style={{ display: "flex", justifyContent: "center" }}>
         <div>
           <Typography variant="subtitle1" component="div">
             Selected: {selectedValue}
@@ -137,28 +137,28 @@ const Template = story<DialogProps>(
           {...args}
         />
       </div>
-    )
+    );
   },
-  { args: {} },
-)
+  { args: {} }
+);
 /** Default story for Dialog (edit/remove by hand if needed) */
-export const Default = story(Template)
+export const Default = story(Template);
 // TODO: add more stories below
 
 export const AlertDialog = story<DialogProps>(
   () => {
-    const [open, setOpen] = React.useState(false)
+    const [open, setOpen] = React.useState(false);
 
     const handleClickOpen = () => {
-      setOpen(true)
-    }
+      setOpen(true);
+    };
 
     const handleClose = () => {
-      setOpen(false)
-    }
+      setOpen(false);
+    };
 
     return (
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
+      <div style={{ display: "flex", justifyContent: "center" }}>
         <Button variant="outlined" onClick={handleClickOpen}>
           Open alert dialog
         </Button>
@@ -185,7 +185,7 @@ export const AlertDialog = story<DialogProps>(
           </DialogActions>
         </Dialog>
       </div>
-    )
+    );
   },
   {
     parameters: {
@@ -206,32 +206,32 @@ If a title is required:
         },
       },
     },
-  },
-)
+  }
+);
 
 const Transition = React.forwardRef(function Transition(
   props: TransitionProps & {
-    children?: React.ReactElement<unknown>
+    children?: React.ReactElement<unknown>;
   },
-  ref: React.Ref<unknown>,
+  ref: React.Ref<unknown>
 ) {
-  return <Slide direction="up" ref={ref} {...props} />
-})
+  return <Slide direction="up" ref={ref} {...props} />;
+});
 
 export const Transitions = story<DialogProps>(
   () => {
-    const [open, setOpen] = React.useState(false)
+    const [open, setOpen] = React.useState(false);
 
     const handleClickOpen = () => {
-      setOpen(true)
-    }
+      setOpen(true);
+    };
 
     const handleClose = () => {
-      setOpen(false)
-    }
+      setOpen(false);
+    };
 
     return (
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
+      <div style={{ display: "flex", justifyContent: "center" }}>
         <Button variant="outlined" onClick={handleClickOpen}>
           Slide in alert dialog
         </Button>
@@ -255,34 +255,34 @@ export const Transitions = story<DialogProps>(
           </DialogActions>
         </Dialog>
       </div>
-    )
+    );
   },
   {
     parameters: {
       docs: {
         description: {
           story:
-            'You can also swap out the transition, the next example uses `Slide`.',
+            "You can also swap out the transition, the next example uses `Slide`.",
         },
       },
     },
-  },
-)
+  }
+);
 
 export const FormDialog = story<DialogProps>(
   () => {
-    const [open, setOpen] = React.useState(false)
+    const [open, setOpen] = React.useState(false);
 
     const handleClickOpen = () => {
-      setOpen(true)
-    }
+      setOpen(true);
+    };
 
     const handleClose = () => {
-      setOpen(false)
-    }
+      setOpen(false);
+    };
 
     return (
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
+      <div style={{ display: "flex", justifyContent: "center" }}>
         <Button variant="outlined" onClick={handleClickOpen}>
           Open form dialog
         </Button>
@@ -309,7 +309,7 @@ export const FormDialog = story<DialogProps>(
           </DialogActions>
         </Dialog>
       </div>
-    )
+    );
   },
   {
     parameters: {
@@ -319,26 +319,26 @@ export const FormDialog = story<DialogProps>(
         },
       },
     },
-  },
-)
+  }
+);
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
-  '& .MuDialogContent-root': {
+  "& .MuDialogContent-root": {
     padding: theme.spacing(2),
   },
-  '& .MuDialogActions-root': {
+  "& .MuDialogActions-root": {
     padding: theme.spacing(1),
   },
-}))
+}));
 
 export interface DialogTitleProps {
-  id: string
-  children?: React.ReactNode
-  onClose: () => void
+  id: string;
+  children?: React.ReactNode;
+  onClose: () => void;
 }
 
 const BootstrapDialogTitle = (props: DialogTitleProps) => {
-  const { children, onClose, ...other } = props
+  const { children, onClose, ...other } = props;
 
   return (
     <DialogTitle sx={{ m: 0, p: 2 }} {...other}>
@@ -348,10 +348,10 @@ const BootstrapDialogTitle = (props: DialogTitleProps) => {
           aria-label="close"
           onClick={onClose}
           sx={{
-            position: 'absolute',
+            position: "absolute",
             right: 8,
             top: 8,
-            color: theme => theme.palette.grey[500],
+            color: (theme) => theme.palette.grey[500],
           }}
           size="large"
         >
@@ -359,22 +359,22 @@ const BootstrapDialogTitle = (props: DialogTitleProps) => {
         </IconButton>
       ) : null}
     </DialogTitle>
-  )
-}
+  );
+};
 
 export const CustomizedDialogs = story<DialogProps>(
   () => {
-    const [open, setOpen] = React.useState(false)
+    const [open, setOpen] = React.useState(false);
 
     const handleClickOpen = () => {
-      setOpen(true)
-    }
+      setOpen(true);
+    };
     const handleClose = () => {
-      setOpen(false)
-    }
+      setOpen(false);
+    };
 
     return (
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
+      <div style={{ display: "flex", justifyContent: "center" }}>
         <Button variant="outlined" onClick={handleClickOpen}>
           Open dialog
         </Button>
@@ -413,42 +413,42 @@ export const CustomizedDialogs = story<DialogProps>(
           </DialogActions>
         </BootstrapDialog>
       </div>
-    )
+    );
   },
   {
     parameters: {
       docs: {
         description: {
           story:
-            'Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](https://next.material-ui.com/customization/how-to-customize/). The dialog has a close button added to aide usability.',
+            "Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](https://next.material-ui.com/customization/how-to-customize/). The dialog has a close button added to aide usability.",
         },
       },
     },
-  },
-)
+  }
+);
 
 const FullScreenTransition = React.forwardRef(function Transition(
   props: TransitionProps & {
-    children?: React.ReactElement
+    children?: React.ReactElement;
   },
-  ref: React.Ref<unknown>,
+  ref: React.Ref<unknown>
 ) {
-  return <Slide direction="up" ref={ref} {...props} />
-})
+  return <Slide direction="up" ref={ref} {...props} />;
+});
 
 export const FullScreenDialog = story<DialogProps>(() => {
-  const [open, setOpen] = React.useState(false)
+  const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
-    setOpen(true)
-  }
+    setOpen(true);
+  };
 
   const handleClose = () => {
-    setOpen(false)
-  }
+    setOpen(false);
+  };
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'center' }}>
+    <div style={{ display: "flex", justifyContent: "center" }}>
       <Button variant="outlined" onClick={handleClickOpen}>
         Open full-screen dialog
       </Button>
@@ -458,7 +458,7 @@ export const FullScreenDialog = story<DialogProps>(() => {
         onClose={handleClose}
         TransitionComponent={FullScreenTransition}
       >
-        <AppBar sx={{ position: 'relative' }}>
+        <AppBar sx={{ position: "relative" }}>
           <Toolbar>
             <IconButton
               edge="start"
@@ -491,38 +491,38 @@ export const FullScreenDialog = story<DialogProps>(() => {
         </List>
       </Dialog>
     </div>
-  )
-})
+  );
+});
 
 export const OptionalSizes = story<DialogProps>(
   () => {
-    const [open, setOpen] = React.useState(false)
-    const [fullWidth, setFullWidth] = React.useState(true)
+    const [open, setOpen] = React.useState(false);
+    const [fullWidth, setFullWidth] = React.useState(true);
     const [maxWidth, setMaxWidth] =
-      React.useState<DialogProps['maxWidth']>('sm')
+      React.useState<DialogProps["maxWidth"]>("sm");
 
     const handleClickOpen = () => {
-      setOpen(true)
-    }
+      setOpen(true);
+    };
 
     const handleClose = () => {
-      setOpen(false)
-    }
+      setOpen(false);
+    };
 
     const handleMaxWidthChange = (
-      event: SelectChangeEvent<DialogProps['maxWidth']>,
+      event: SelectChangeEvent<DialogProps["maxWidth"]>
     ) => {
-      setMaxWidth(event.target.value as DialogProps['maxWidth'])
-    }
+      setMaxWidth(event.target.value as DialogProps["maxWidth"]);
+    };
 
     const handleFullWidthChange = (
-      event: React.ChangeEvent<HTMLInputElement>,
+      event: React.ChangeEvent<HTMLInputElement>
     ) => {
-      setFullWidth(event.target.checked)
-    }
+      setFullWidth(event.target.checked);
+    };
 
     return (
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
+      <div style={{ display: "flex", justifyContent: "center" }}>
         <Button variant="outlined" onClick={handleClickOpen}>
           Open max-width dialog
         </Button>
@@ -541,10 +541,10 @@ export const OptionalSizes = story<DialogProps>(
               noValidate
               component="form"
               sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                m: 'auto',
-                width: 'fit-content',
+                display: "flex",
+                flexDirection: "column",
+                m: "auto",
+                width: "fit-content",
               }}
             >
               <FormControl sx={{ mt: 2, minWidth: 120 }}>
@@ -555,8 +555,8 @@ export const OptionalSizes = story<DialogProps>(
                   onChange={handleMaxWidthChange}
                   label="maxWidth"
                   inputProps={{
-                    name: 'max-width',
-                    id: 'max-width',
+                    name: "max-width",
+                    id: "max-width",
                   }}
                 >
                   <MenuItem value={false}>false</MenuItem>
@@ -584,36 +584,36 @@ export const OptionalSizes = story<DialogProps>(
           </DialogActions>
         </Dialog>
       </div>
-    )
+    );
   },
   {
     parameters: {
       docs: {
         description: {
           story:
-            'You can set a dialog maximum width by using the `maxWidth` enumerable in combination with the `fullWidth` boolean. When the `fullWidth` prop is true, the dialog will adapt based on the `maxWidth` value.',
+            "You can set a dialog maximum width by using the `maxWidth` enumerable in combination with the `fullWidth` boolean. When the `fullWidth` prop is true, the dialog will adapt based on the `maxWidth` value.",
         },
       },
     },
-  },
-)
+  }
+);
 
 export const ResponsiveDialog = story<DialogProps>(
   () => {
-    const [open, setOpen] = React.useState(false)
-    const theme = useTheme()
-    const fullScreen = useMediaQuery(theme.breakpoints.down('xl'))
+    const [open, setOpen] = React.useState(false);
+    const theme = useTheme();
+    const fullScreen = useMediaQuery(theme.breakpoints.down("xl"));
 
     const handleClickOpen = () => {
-      setOpen(true)
-    }
+      setOpen(true);
+    };
 
     const handleClose = () => {
-      setOpen(false)
-    }
+      setOpen(false);
+    };
 
     return (
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
+      <div style={{ display: "flex", justifyContent: "center" }}>
         <Button variant="outlined" onClick={handleClickOpen}>
           Open responsive dialog
         </Button>
@@ -642,80 +642,80 @@ export const ResponsiveDialog = story<DialogProps>(
           </DialogActions>
         </Dialog>
       </div>
-    )
+    );
   },
   {
     parameters: {
       docs: {
         description: {
           story:
-            'You may make a dialog responsively full screen using [useMediaQuery](https://next.material-ui.com/components/use-media-query/#usemediaquery).',
+            "You may make a dialog responsively full screen using [useMediaQuery](https://next.material-ui.com/components/use-media-query/#usemediaquery).",
         },
       },
     },
-  },
-)
+  }
+);
 
 const options = [
-  'None',
-  'Atria',
-  'Callisto',
-  'Dione',
-  'Ganymede',
-  'Hangouts Call',
-  'Luna',
-  'Oberon',
-  'Phobos',
-  'Pyxis',
-  'Sedna',
-  'Titania',
-  'Triton',
-  'Umbriel',
-]
+  "None",
+  "Atria",
+  "Callisto",
+  "Dione",
+  "Ganymede",
+  "Hangouts Call",
+  "Luna",
+  "Oberon",
+  "Phobos",
+  "Pyxis",
+  "Sedna",
+  "Titania",
+  "Triton",
+  "Umbriel",
+];
 
 export interface ConfirmationDialogRawProps {
-  id: string
-  keepMounted: boolean
-  value: string
-  open: boolean
-  onClose: (value?: string) => void
+  id: string;
+  keepMounted: boolean;
+  value: string;
+  open: boolean;
+  onClose: (value?: string) => void;
 }
 
 const ConfirmationDialogRaw = React.forwardRef<
   HTMLDivElement,
   ConfirmationDialogRawProps
->(props => {
-  const { onClose, value: valueProp, open, ...other } = props
-  const [value, setValue] = React.useState(valueProp)
-  const radioGroupRef = React.useRef<HTMLElement>(null)
+>((props) => {
+  const { onClose, value: valueProp, open, ...other } = props;
+  const [value, setValue] = React.useState(valueProp);
+  const radioGroupRef = React.useRef<HTMLElement>(null);
 
   React.useEffect(() => {
     if (!open) {
-      setValue(valueProp)
+      setValue(valueProp);
     }
-  }, [valueProp, open])
+  }, [valueProp, open]);
 
   const handleEntering = () => {
     if (radioGroupRef.current !== null) {
-      radioGroupRef.current.focus()
+      radioGroupRef.current.focus();
     }
-  }
+  };
 
   const handleCancel = () => {
-    onClose()
-  }
+    onClose();
+  };
 
   const handleOk = () => {
-    onClose(value)
-  }
+    onClose(value);
+  };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setValue((event.target as HTMLInputElement).value)
-  }
+    setValue((event.target as HTMLInputElement).value);
+  };
 
   return (
     <Dialog
-      sx={{ '& .MuiDialog-paper': { width: '80%', maxHeight: 435 } }}
+      sx={{ "& .MuiDialog-paper": { width: "80%", maxHeight: 435 } }}
       maxWidth="xs"
       TransitionProps={{ onEntering: handleEntering }}
       open={open}
@@ -730,7 +730,7 @@ const ConfirmationDialogRaw = React.forwardRef<
           value={value}
           onChange={handleChange}
         >
-          {options.map(option => (
+          {options.map((option) => (
             <FormControlLabel
               value={option}
               key={option}
@@ -747,33 +747,33 @@ const ConfirmationDialogRaw = React.forwardRef<
         <Button onClick={handleOk}>Ok</Button>
       </DialogActions>
     </Dialog>
-  )
-})
+  );
+});
 
 export const ConfirmationDialog = story<DialogProps>(
   () => {
-    const [open, setOpen] = React.useState(false)
-    const [value, setValue] = React.useState('Dione')
+    const [open, setOpen] = React.useState(false);
+    const [value, setValue] = React.useState("Dione");
 
     const handleClickListItem = () => {
-      setOpen(true)
-    }
+      setOpen(true);
+    };
 
     const handleClose = (newValue?: string) => {
-      setOpen(false)
+      setOpen(false);
 
       if (newValue) {
-        setValue(newValue)
+        setValue(newValue);
       }
-    }
+    };
 
     return (
       <Box
         sx={{
-          width: '100%',
+          width: "100%",
           maxWidth: 360,
-          bgcolor: 'background.paper',
-          margin: 'auto',
+          bgcolor: "background.paper",
+          margin: "auto",
         }}
       >
         <List component="div" role="group">
@@ -805,7 +805,7 @@ export const ConfirmationDialog = story<DialogProps>(
           />
         </List>
       </Box>
-    )
+    );
   },
   {
     parameters: {
@@ -816,8 +816,8 @@ export const ConfirmationDialog = story<DialogProps>(
         },
       },
     },
-  },
-)
+  }
+);
 
 const PaperComponent = (props: PaperProps) => {
   return (
@@ -827,23 +827,23 @@ const PaperComponent = (props: PaperProps) => {
     >
       <Paper {...props} />
     </Draggable>
-  )
-}
+  );
+};
 
 export const DraggableDialog = story<DialogProps>(
   () => {
-    const [open, setOpen] = React.useState(false)
+    const [open, setOpen] = React.useState(false);
 
     const handleClickOpen = () => {
-      setOpen(true)
-    }
+      setOpen(true);
+    };
 
     const handleClose = () => {
-      setOpen(false)
-    }
+      setOpen(false);
+    };
 
     return (
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
+      <div style={{ display: "flex", justifyContent: "center" }}>
         <Button variant="outlined" onClick={handleClickOpen}>
           Open draggable dialog
         </Button>
@@ -853,7 +853,7 @@ export const DraggableDialog = story<DialogProps>(
           PaperComponent={PaperComponent}
           aria-labelledby="draggable-dialog-title"
         >
-          <DialogTitle style={{ cursor: 'move' }} id="draggable-dialog-title">
+          <DialogTitle style={{ cursor: "move" }} id="draggable-dialog-title">
             Subscribe
           </DialogTitle>
           <DialogContent>
@@ -870,48 +870,48 @@ export const DraggableDialog = story<DialogProps>(
           </DialogActions>
         </Dialog>
       </div>
-    )
+    );
   },
   {
     parameters: {
       docs: {
         description: {
           story:
-            'You can create a draggable dialog by using [react-draggable](https://github.com/mzabriskie/react-draggable). To do so, you can pass the imported `Draggable` component as the `PaperComponent` of the `Dialog` component. This will make the entire dialog draggable.',
+            "You can create a draggable dialog by using [react-draggable](https://github.com/mzabriskie/react-draggable). To do so, you can pass the imported `Draggable` component as the `PaperComponent` of the `Dialog` component. This will make the entire dialog draggable.",
         },
       },
     },
-  },
-)
+  }
+);
 
 export const ScrollDialog = story<DialogProps>(
   () => {
-    const [open, setOpen] = React.useState(false)
-    const [scroll, setScroll] = React.useState<DialogProps['scroll']>('paper')
+    const [open, setOpen] = React.useState(false);
+    const [scroll, setScroll] = React.useState<DialogProps["scroll"]>("paper");
 
-    const handleClickOpen = (scrollType: DialogProps['scroll']) => () => {
-      setOpen(true)
-      setScroll(scrollType)
-    }
+    const handleClickOpen = (scrollType: DialogProps["scroll"]) => () => {
+      setOpen(true);
+      setScroll(scrollType);
+    };
 
     const handleClose = () => {
-      setOpen(false)
-    }
+      setOpen(false);
+    };
 
-    const descriptionElementRef = React.useRef<HTMLElement>(null)
+    const descriptionElementRef = React.useRef<HTMLElement>(null);
     React.useEffect(() => {
       if (open) {
-        const { current: descriptionElement } = descriptionElementRef
+        const { current: descriptionElement } = descriptionElementRef;
         if (descriptionElement !== null) {
-          descriptionElement.focus()
+          descriptionElement.focus();
         }
       }
-    }, [open])
+    }, [open]);
 
     return (
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <Button onClick={handleClickOpen('paper')}>scroll=paper</Button>
-        <Button onClick={handleClickOpen('body')}>scroll=body</Button>
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <Button onClick={handleClickOpen("paper")}>scroll=paper</Button>
+        <Button onClick={handleClickOpen("body")}>scroll=body</Button>
         <Dialog
           open={open}
           onClose={handleClose}
@@ -920,7 +920,7 @@ export const ScrollDialog = story<DialogProps>(
           aria-describedby="scroll-dialog-description"
         >
           <DialogTitle id="scroll-dialog-title">Subscribe</DialogTitle>
-          <DialogContent dividers={scroll === 'paper'}>
+          <DialogContent dividers={scroll === "paper"}>
             <DialogContentText
               id="scroll-dialog-description"
               ref={descriptionElementRef}
@@ -935,7 +935,7 @@ export const ScrollDialog = story<DialogProps>(
           </DialogActions>
         </Dialog>
       </div>
-    )
+    );
   },
   {
     parameters: {
@@ -946,5 +946,5 @@ export const ScrollDialog = story<DialogProps>(
         },
       },
     },
-  },
-)
+  }
+);

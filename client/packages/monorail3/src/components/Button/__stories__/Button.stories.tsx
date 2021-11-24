@@ -1,19 +1,19 @@
 // Edit this file to add new stories
-import React from 'react'
-import DeleteIcon from '@mui/icons-material/Delete'
-import SendIcon from '@mui/icons-material/Send'
+import React from "react";
+import DeleteIcon from "@mui/icons-material/Delete";
+import SendIcon from "@mui/icons-material/Send";
 
-import { story } from '../../../__tests__/helpers/storybook'
-import { Stack } from '../../Stack/Stack'
-import { Button, ButtonProps } from '../Button'
-import { defaultStoryMeta } from './Button.stories.gen'
+import { story } from "../../../__tests__/helpers/storybook";
+import { Stack } from "../../Stack/Stack";
+import { Button, ButtonProps } from "../Button";
+import { defaultStoryMeta } from "./Button.stories.gen";
 
 /**
  * Metadata for Button stories - update/extend as needed
  * This is intended to be exported as story-level metadata from the main .stories.tsx file, like:
  * "export default { ...defaultStoryMeta } // Add/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Inputs/Button' }
+export default { ...defaultStoryMeta, title: "Inputs/Button" };
 
 /**
  * Story template (edit/remove by hand if needed)
@@ -21,16 +21,16 @@ export default { ...defaultStoryMeta, title: 'Inputs/Button' }
  * Note: there should be at least one "Default" story that uses this template with the "story" function.
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
-const Template = story<ButtonProps>(args => <Button {...args} />, {
-  args: { children: 'Button' },
-})
+const Template = story<ButtonProps>((args) => <Button {...args} />, {
+  args: { children: "Button" },
+});
 
 /**
  * Default story for Button (edit/remove by hand if needed)
  * */
 export const Default = story(Template, {
-  args: { children: 'Button', variant: 'contained' },
-})
+  args: { children: "Button", variant: "contained" },
+});
 
 export const VariantsAndColors = story<ButtonProps>(
   () => (
@@ -111,8 +111,8 @@ export const VariantsAndColors = story<ButtonProps>(
         },
       },
     },
-  },
-)
+  }
+);
 
 export const Sizes = story<ButtonProps>(
   () => (
@@ -120,13 +120,13 @@ export const Sizes = story<ButtonProps>(
       <Button variant="contained" size="extraSmall">
         Extra Small (custom size)
       </Button>
-      <Button variant="contained" size={'small'}>
+      <Button variant="contained" size={"small"}>
         Small
       </Button>
-      <Button variant="contained" size={'medium'}>
+      <Button variant="contained" size={"medium"}>
         Medium
       </Button>
-      <Button variant="contained" size={'large'}>
+      <Button variant="contained" size={"large"}>
         Large
       </Button>
     </Stack>
@@ -141,8 +141,8 @@ export const Sizes = story<ButtonProps>(
         },
       },
     },
-  },
-)
+  }
+);
 
 export const ButtonsWithIconsAndLabel = story<ButtonProps>(
   () => (
@@ -163,5 +163,5 @@ export const ButtonsWithIconsAndLabel = story<ButtonProps>(
         },
       },
     },
-  },
-)
+  }
+);

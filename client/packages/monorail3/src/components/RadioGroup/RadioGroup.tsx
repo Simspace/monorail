@@ -2,6 +2,6 @@
 import {
   RadioGroup as _RadioGroup,
   RadioGroupProps as _RadioGroupProps,
-} from './RadioGroup'
-export * from './RadioGroup.gen'
+} from "./RadioGroup";
+export * from "./RadioGroup.gen";
 // Add more functions/etc. below

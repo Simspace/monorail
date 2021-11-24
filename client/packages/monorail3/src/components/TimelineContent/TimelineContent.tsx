@@ -2,6 +2,6 @@
 import {
   TimelineContent as _TimelineContent,
   TimelineContentProps as _TimelineContentProps,
-} from './TimelineContent'
-export * from './TimelineContent.gen'
+} from "./TimelineContent";
+export * from "./TimelineContent.gen";
 // Add more functions/etc. below

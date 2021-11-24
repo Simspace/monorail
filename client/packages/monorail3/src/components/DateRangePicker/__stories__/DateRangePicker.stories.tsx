@@ -1,35 +1,38 @@
 // Edit this file to add new stories
-import React from 'react'
-import { addWeeks } from 'date-fns'
+import React from "react";
+import { addWeeks } from "date-fns";
 
-import { story } from '../../../__tests__/helpers/storybook'
-import { AdapterDateFns, LocalizationProvider } from '../../../helpers/dateTime'
-import { styled } from '../../../helpers/styles'
-import { Box } from '../../Box/Box'
+import { story } from "../../../__tests__/helpers/storybook";
+import {
+  AdapterDateFns,
+  LocalizationProvider,
+} from "../../../helpers/dateTime";
+import { styled } from "../../../helpers/styles";
+import { Box } from "../../Box/Box";
 import {
   DateRangePickerDay,
   DateRangePickerDayProps,
-} from '../../DateRangePickerDay/DateRangePickerDay'
-import { DesktopDateRangePicker } from '../../DesktopDateRangePicker/DesktopDateRangePicker'
-import { MobileDateRangePicker } from '../../MobileDateRangePicker/MobileDateRangePicker'
-import { Stack } from '../../Stack/Stack'
-import { StaticDateRangePicker } from '../../StaticDateRangePicker/StaticDateRangePicker'
-import { TextField } from '../../TextField/TextField'
-import { Typography } from '../../Typography/Typography'
+} from "../../DateRangePickerDay/DateRangePickerDay";
+import { DesktopDateRangePicker } from "../../DesktopDateRangePicker/DesktopDateRangePicker";
+import { MobileDateRangePicker } from "../../MobileDateRangePicker/MobileDateRangePicker";
+import { Stack } from "../../Stack/Stack";
+import { StaticDateRangePicker } from "../../StaticDateRangePicker/StaticDateRangePicker";
+import { TextField } from "../../TextField/TextField";
+import { Typography } from "../../Typography/Typography";
 import {
   DateRange,
   DateRangePicker,
   DateRangePickerProps,
-} from '../DateRangePicker'
-import { defaultStoryMeta } from './DateRangePicker.stories.gen'
+} from "../DateRangePicker";
+import { defaultStoryMeta } from "./DateRangePicker.stories.gen";
 
 /**
  * Metadata for DateRangePicker stories - update/extend as needed
  */
 export default {
   ...defaultStoryMeta,
-  title: 'Inputs/Date and Time/Date Range/DateRangePicker',
-}
+  title: "Inputs/Date and Time/Date Range/DateRangePicker",
+};
 
 /**
  * Story template (edit/remove by hand if needed)
@@ -37,11 +40,11 @@ export default {
  * Note: there should be at least one "Default" story that uses this template with the "story" function.
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
-const Template = story<DateRangePickerProps<Date>>(args => {
+const Template = story<DateRangePickerProps<Date>>((args) => {
   const [value, setValue] = React.useState<DateRange<Date>>([
-    new Date('2021-01-05T12:34:00.000Z'),
-    new Date('2021-01-09T12:34:00.000Z'),
-  ])
+    new Date("2021-01-05T12:34:00.000Z"),
+    new Date("2021-01-09T12:34:00.000Z"),
+  ]);
 
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
@@ -49,8 +52,8 @@ const Template = story<DateRangePickerProps<Date>>(args => {
         startText="Check-in"
         endText="Check-out"
         value={value}
-        onChange={newValue => {
-          setValue(newValue)
+        onChange={(newValue) => {
+          setValue(newValue);
         }}
         renderInput={(startProps, endProps) => (
           <React.Fragment>
@@ -62,8 +65,8 @@ const Template = story<DateRangePickerProps<Date>>(args => {
         {...args}
       />
     </LocalizationProvider>
-  )
-})
+  );
+});
 
 export const Default = story(Template, {
   parameters: {
@@ -73,22 +76,22 @@ export const Default = story(Template, {
       },
     },
   },
-})
+});
 
 export const StaticMode = story(
   () => {
     const [value, setValue] = React.useState<DateRange<Date>>([
-      new Date('2021-01-05T12:34:00.000Z'),
-      new Date('2021-01-09T12:34:00.000Z'),
-    ])
+      new Date("2021-01-05T12:34:00.000Z"),
+      new Date("2021-01-09T12:34:00.000Z"),
+    ]);
 
     return (
       <LocalizationProvider dateAdapter={AdapterDateFns}>
         <StaticDateRangePicker
           displayStaticWrapperAs="desktop"
           value={value}
-          onChange={newValue => {
-            setValue(newValue)
+          onChange={(newValue) => {
+            setValue(newValue);
           }}
           renderInput={(startProps, endProps) => (
             <React.Fragment>
@@ -99,7 +102,7 @@ export const StaticMode = story(
           )}
         />
       </LocalizationProvider>
-    )
+    );
   },
   {
     parameters: {
@@ -109,15 +112,15 @@ export const StaticMode = story(
         },
       },
     },
-  },
-)
+  }
+);
 
 export const Responsiveness = story(
   () => {
     const [value, setValue] = React.useState<DateRange<Date>>([
-      new Date('2021-01-05T12:34:00.000Z'),
-      new Date('2021-01-09T12:34:00.000Z'),
-    ])
+      new Date("2021-01-05T12:34:00.000Z"),
+      new Date("2021-01-09T12:34:00.000Z"),
+    ]);
 
     return (
       <LocalizationProvider dateAdapter={AdapterDateFns}>
@@ -125,8 +128,8 @@ export const Responsiveness = story(
           <MobileDateRangePicker
             startText="Mobile start"
             value={value}
-            onChange={newValue => {
-              setValue(newValue)
+            onChange={(newValue) => {
+              setValue(newValue);
             }}
             renderInput={(startProps, endProps) => (
               <React.Fragment>
@@ -139,8 +142,8 @@ export const Responsiveness = story(
           <DesktopDateRangePicker
             startText="Desktop start"
             value={value}
-            onChange={newValue => {
-              setValue(newValue)
+            onChange={(newValue) => {
+              setValue(newValue);
             }}
             renderInput={(startProps, endProps) => (
               <React.Fragment>
@@ -152,7 +155,7 @@ export const Responsiveness = story(
           />
         </Stack>
       </LocalizationProvider>
-    )
+    );
   },
   {
     parameters: {
@@ -168,15 +171,15 @@ By default, the DateRangePicker component renders the desktop version if the med
         },
       },
     },
-  },
-)
+  }
+);
 
 export const FormProps = story(
   () => {
     const [value, setValue] = React.useState<DateRange<Date>>([
-      new Date('2021-01-05T12:34:00.000Z'),
-      new Date('2021-01-09T12:34:00.000Z'),
-    ])
+      new Date("2021-01-05T12:34:00.000Z"),
+      new Date("2021-01-09T12:34:00.000Z"),
+    ]);
 
     return (
       <LocalizationProvider dateAdapter={AdapterDateFns}>
@@ -186,8 +189,8 @@ export const FormProps = story(
             startText="disabled start"
             endText="disabled end"
             value={value}
-            onChange={newValue => {
-              setValue(newValue)
+            onChange={(newValue) => {
+              setValue(newValue);
             }}
             renderInput={(startProps, endProps) => (
               <React.Fragment>
@@ -202,8 +205,8 @@ export const FormProps = story(
             startText="read-only start"
             endText="read-only end"
             value={value}
-            onChange={newValue => {
-              setValue(newValue)
+            onChange={(newValue) => {
+              setValue(newValue);
             }}
             renderInput={(startProps, endProps) => (
               <React.Fragment>
@@ -215,7 +218,7 @@ export const FormProps = story(
           />
         </Stack>
       </LocalizationProvider>
-    )
+    );
   },
   {
     parameters: {
@@ -225,15 +228,15 @@ export const FormProps = story(
         },
       },
     },
-  },
-)
+  }
+);
 
 export const DifferentNumberOfMonths = story(
   () => {
     const [value, setValue] = React.useState<DateRange<Date>>([
-      new Date('2021-01-05T12:34:00.000Z'),
-      new Date('2021-01-09T12:34:00.000Z'),
-    ])
+      new Date("2021-01-05T12:34:00.000Z"),
+      new Date("2021-01-09T12:34:00.000Z"),
+    ]);
 
     return (
       <LocalizationProvider dateAdapter={AdapterDateFns}>
@@ -242,8 +245,8 @@ export const DifferentNumberOfMonths = story(
           <DateRangePicker
             calendars={1}
             value={value}
-            onChange={newValue => {
-              setValue(newValue)
+            onChange={(newValue) => {
+              setValue(newValue);
             }}
             renderInput={(startProps, endProps) => (
               <React.Fragment>
@@ -257,8 +260,8 @@ export const DifferentNumberOfMonths = story(
           <DateRangePicker
             calendars={2}
             value={value}
-            onChange={newValue => {
-              setValue(newValue)
+            onChange={(newValue) => {
+              setValue(newValue);
             }}
             renderInput={(startProps, endProps) => (
               <React.Fragment>
@@ -272,8 +275,8 @@ export const DifferentNumberOfMonths = story(
           <DateRangePicker
             calendars={3}
             value={value}
-            onChange={newValue => {
-              setValue(newValue)
+            onChange={(newValue) => {
+              setValue(newValue);
             }}
             renderInput={(startProps, endProps) => (
               <React.Fragment>
@@ -285,7 +288,7 @@ export const DifferentNumberOfMonths = story(
           />
         </Box>
       </LocalizationProvider>
-    )
+    );
   },
   {
     parameters: {
@@ -295,19 +298,19 @@ export const DifferentNumberOfMonths = story(
         },
       },
     },
-  },
-)
+  }
+);
 
 export const DisablingDates = story(
   () => {
     function getWeeksAfter(date: Date | null, amount: number) {
-      return date ? addWeeks(date, amount) : undefined
+      return date ? addWeeks(date, amount) : undefined;
     }
 
     const [value, setValue] = React.useState<DateRange<Date>>([
-      new Date('2021-01-05T12:34:00.000Z'),
-      new Date('2021-01-09T12:34:00.000Z'),
-    ])
+      new Date("2021-01-05T12:34:00.000Z"),
+      new Date("2021-01-09T12:34:00.000Z"),
+    ]);
 
     return (
       <LocalizationProvider dateAdapter={AdapterDateFns}>
@@ -315,8 +318,8 @@ export const DisablingDates = story(
           disablePast
           value={value}
           maxDate={getWeeksAfter(value[0], 4)}
-          onChange={newValue => {
-            setValue(newValue)
+          onChange={(newValue) => {
+            setValue(newValue);
           }}
           renderInput={(startProps, endProps) => (
             <React.Fragment>
@@ -327,7 +330,7 @@ export const DisablingDates = story(
           )}
         />
       </LocalizationProvider>
-    )
+    );
   },
   {
     parameters: {
@@ -337,19 +340,19 @@ export const DisablingDates = story(
         },
       },
     },
-  },
-)
+  }
+);
 
 export const CustomInputComponent = story(
   () => {
-    const [value, setValue] = React.useState<DateRange<Date>>([null, null])
+    const [value, setValue] = React.useState<DateRange<Date>>([null, null]);
 
     return (
       <LocalizationProvider dateAdapter={AdapterDateFns}>
         <DateRangePicker
           label="Advanced keyboard"
           value={value}
-          onChange={newValue => setValue(newValue)}
+          onChange={(newValue) => setValue(newValue)}
           renderInput={(startProps, endProps) => (
             <React.Fragment>
               <input
@@ -365,7 +368,7 @@ export const CustomInputComponent = story(
           )}
         />
       </LocalizationProvider>
-    )
+    );
   },
   {
     parameters: {
@@ -375,8 +378,8 @@ export const CustomInputComponent = story(
         },
       },
     },
-  },
-)
+  }
+);
 
 const StyledDateRangePickerDay = styled(DateRangePickerDay)(
   ({ theme, isHighlighting, isStartOfHighlighting, isEndOfHighlighting }) => ({
@@ -384,34 +387,34 @@ const StyledDateRangePickerDay = styled(DateRangePickerDay)(
       borderRadius: 0,
       backgroundColor: theme.palette.primary.main,
       color: theme.palette.common.white,
-      '&:hover, &:focus': {
+      "&:hover, &:focus": {
         backgroundColor: theme.palette.primary.dark,
       },
     }),
     ...(isStartOfHighlighting && {
-      borderTopLeftRadius: '50%',
-      borderBottomLeftRadius: '50%',
+      borderTopLeftRadius: "50%",
+      borderBottomLeftRadius: "50%",
     }),
     ...(isEndOfHighlighting && {
-      borderTopRightRadius: '50%',
-      borderBottomRightRadius: '50%',
+      borderTopRightRadius: "50%",
+      borderBottomRightRadius: "50%",
     }),
-  }),
-) as React.ComponentType<DateRangePickerDayProps<Date>>
+  })
+) as React.ComponentType<DateRangePickerDayProps<Date>>;
 
 export const CustomizedDayRendering = story(
   () => {
     const [value, setValue] = React.useState<DateRange<Date>>([
-      new Date('2021-01-05T12:34:00.000Z'),
-      new Date('2021-01-09T12:34:00.000Z'),
-    ])
+      new Date("2021-01-05T12:34:00.000Z"),
+      new Date("2021-01-09T12:34:00.000Z"),
+    ]);
 
     const renderWeekPickerDay = (
       date: Date,
-      dateRangePickerDayProps: DateRangePickerDayProps<Date>,
+      dateRangePickerDayProps: DateRangePickerDayProps<Date>
     ) => {
-      return <StyledDateRangePickerDay {...dateRangePickerDayProps} />
-    }
+      return <StyledDateRangePickerDay {...dateRangePickerDayProps} />;
+    };
 
     return (
       <LocalizationProvider dateAdapter={AdapterDateFns}>
@@ -419,7 +422,7 @@ export const CustomizedDayRendering = story(
           displayStaticWrapperAs="desktop"
           label="date range"
           value={value}
-          onChange={newValue => setValue(newValue)}
+          onChange={(newValue) => setValue(newValue)}
           renderDay={renderWeekPickerDay}
           renderInput={(startProps, endProps) => (
             <React.Fragment>
@@ -430,7 +433,7 @@ export const CustomizedDayRendering = story(
           )}
         />
       </LocalizationProvider>
-    )
+    );
   },
   {
     parameters: {
@@ -440,5 +443,5 @@ export const CustomizedDayRendering = story(
         },
       },
     },
-  },
-)
+  }
+);

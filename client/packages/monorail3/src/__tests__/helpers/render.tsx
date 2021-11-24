@@ -1,15 +1,15 @@
 /* eslint-disable no-restricted-imports */
 
-import React from 'react'
-import { StyledEngineProvider, Theme, ThemeProvider } from '@mui/material'
-import { Story } from '@storybook/react'
+import React from "react";
+import { StyledEngineProvider, Theme, ThemeProvider } from "@mui/material";
+import { Story } from "@storybook/react";
 /* eslint-disable-next-line import/no-extraneous-dependencies */
-import { render, RenderOptions, RenderResult } from '@testing-library/react'
-import { createGlobalStyle } from 'styled-components'
+import { render, RenderOptions, RenderResult } from "@testing-library/react";
+import { createGlobalStyle } from "styled-components";
 
-import { defaultLightTheme } from '../../theme/defaultLightTheme'
+import { defaultLightTheme } from "../../theme/defaultLightTheme";
 
-declare module '@mui/styles/defaultTheme' {
+declare module "@mui/styles/defaultTheme" {
   // eslint-disable-next-line @typescript-eslint/no-empty-interface
   interface DefaultTheme extends Theme {}
 }
@@ -23,14 +23,14 @@ const TemporaryJSDomFix = createGlobalStyle`
   svg title {
     display: inline;
   }
-`
+`;
 
 /**
  * Renders content for tests inside theme providers
  */
 export function renderWithTheme(
   ui: React.ReactElement,
-  options?: Omit<RenderOptions, 'queries'>,
+  options?: Omit<RenderOptions, "queries">
 ): RenderResult {
   return render(
     <div>
@@ -39,8 +39,8 @@ export function renderWithTheme(
         <ThemeProvider theme={defaultLightTheme}>{ui}</ThemeProvider>
       </StyledEngineProvider>
     </div>,
-    options,
-  )
+    options
+  );
 }
 
 /**
@@ -48,8 +48,8 @@ export function renderWithTheme(
  */
 export function renderStory(
   Story: Story,
-  props?: Story['args'],
-  options?: Omit<RenderOptions, 'queries'>,
+  props?: Story["args"],
+  options?: Omit<RenderOptions, "queries">
 ): RenderResult {
-  return renderWithTheme(<Story {...Story.args} {...props} />, options)
+  return renderWithTheme(<Story {...Story.args} {...props} />, options);
 }

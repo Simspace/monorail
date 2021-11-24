@@ -2,6 +2,6 @@
 import {
   ListItemSecondaryAction as _ListItemSecondaryAction,
   ListItemSecondaryActionProps as _ListItemSecondaryActionProps,
-} from './ListItemSecondaryAction'
-export * from './ListItemSecondaryAction.gen'
+} from "./ListItemSecondaryAction";
+export * from "./ListItemSecondaryAction.gen";
 // Add more functions/etc. below

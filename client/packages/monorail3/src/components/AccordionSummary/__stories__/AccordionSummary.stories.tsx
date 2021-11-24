@@ -1,10 +1,10 @@
 // Edit this file to add new stories
-import React from 'react'
-import ExpandMore from '@mui/icons-material/ExpandMore'
+import React from "react";
+import ExpandMore from "@mui/icons-material/ExpandMore";
 
-import { story } from '../../../__tests__/helpers/storybook'
-import { AccordionSummary, AccordionSummaryProps } from '../AccordionSummary'
-import { defaultStoryMeta } from './AccordionSummary.stories.gen'
+import { story } from "../../../__tests__/helpers/storybook";
+import { AccordionSummary, AccordionSummaryProps } from "../AccordionSummary";
+import { defaultStoryMeta } from "./AccordionSummary.stories.gen";
 
 /**
  * Metadata for AccordionSummary stories - update/extend as needed
@@ -14,8 +14,8 @@ import { defaultStoryMeta } from './AccordionSummary.stories.gen'
  */
 export default {
   ...defaultStoryMeta,
-  title: 'Surfaces/Accordion/AccordionSummary',
-}
+  title: "Surfaces/Accordion/AccordionSummary",
+};
 
 /**
  * Story template (edit/remove by hand if needed)
@@ -24,17 +24,17 @@ export default {
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
 const Template = story<AccordionSummaryProps>(
-  args => (
+  (args) => (
     <AccordionSummary {...args} expandIcon={<ExpandMore />}>
       Accordion Summary
     </AccordionSummary>
   ),
-  { args: {} },
-)
+  { args: {} }
+);
 
 /**
  * Default story for AccordionSummary (edit/remove by hand if needed)
  */
-export const Default = story(Template)
+export const Default = story(Template);
 
 // TODO: add more stories below

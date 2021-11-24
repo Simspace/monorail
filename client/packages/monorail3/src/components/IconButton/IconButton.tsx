@@ -2,6 +2,6 @@
 import {
   IconButton as _IconButton,
   IconButtonProps as _IconButtonProps,
-} from './IconButton'
-export * from './IconButton.gen'
+} from "./IconButton";
+export * from "./IconButton.gen";
 // Add more functions/etc. below

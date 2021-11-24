@@ -1,25 +1,25 @@
 // Edit this file to add new stories
-import React from 'react'
-import { SelectChangeEvent } from '@mui/material/Select'
+import React from "react";
+import { SelectChangeEvent } from "@mui/material/Select";
 
-import { story } from '../../../__tests__/helpers/storybook'
-import { Box } from '../../Box/Box'
-import { FormControl } from '../../FormControl/FormControl'
-import { FormHelperText } from '../../FormHelperText/FormHelperText'
-import { InputLabel } from '../../InputLabel/InputLabel'
-import { MenuItem } from '../../MenuItem/MenuItem'
-import { Select, SelectProps } from '../Select'
-import { defaultStoryMeta } from './Select.stories.gen'
+import { story } from "../../../__tests__/helpers/storybook";
+import { Box } from "../../Box/Box";
+import { FormControl } from "../../FormControl/FormControl";
+import { FormHelperText } from "../../FormHelperText/FormHelperText";
+import { InputLabel } from "../../InputLabel/InputLabel";
+import { MenuItem } from "../../MenuItem/MenuItem";
+import { Select, SelectProps } from "../Select";
+import { defaultStoryMeta } from "./Select.stories.gen";
 
-export default { ...defaultStoryMeta, title: 'Inputs/Select' }
+export default { ...defaultStoryMeta, title: "Inputs/Select" };
 
 const Template = story<SelectProps<string>>(
-  args => {
-    const [age, setAge] = React.useState('')
+  (args) => {
+    const [age, setAge] = React.useState("");
 
     const handleChange = (event: SelectChangeEvent<string>) => {
-      setAge(event.target.value)
-    }
+      setAge(event.target.value);
+    };
 
     return (
       <Box sx={{ minWidth: 120 }}>
@@ -39,14 +39,14 @@ const Template = story<SelectProps<string>>(
           </Select>
         </FormControl>
       </Box>
-    )
+    );
   },
   {
     args: {},
-  },
-)
+  }
+);
 /** Default story for Select (edit/remove by hand if needed) */
-export const Default = story(Template)
+export const Default = story(Template);
 
 export const BasicSelect = story(Template, {
   parameters: {
@@ -56,14 +56,14 @@ export const BasicSelect = story(Template, {
       },
     },
   },
-})
+});
 
 export const FilledAndStandardVariants = story<SelectProps<string>>(() => {
-  const [age, setAge] = React.useState('')
+  const [age, setAge] = React.useState("");
 
   const handleChange = (event: SelectChangeEvent<string>) => {
-    setAge(event.target.value)
-  }
+    setAge(event.target.value);
+  };
 
   return (
     <div>
@@ -101,15 +101,15 @@ export const FilledAndStandardVariants = story<SelectProps<string>>(() => {
         </Select>
       </FormControl>
     </div>
-  )
-})
+  );
+});
 
 export const LabelsAndHelperText = story<SelectProps<string>>(() => {
-  const [age, setAge] = React.useState('')
+  const [age, setAge] = React.useState("");
 
   const handleChange = (event: SelectChangeEvent<string>) => {
-    setAge(event.target.value)
-  }
+    setAge(event.target.value);
+  };
 
   return (
     <div>
@@ -136,7 +136,7 @@ export const LabelsAndHelperText = story<SelectProps<string>>(() => {
           value={age}
           onChange={handleChange}
           displayEmpty
-          inputProps={{ 'aria-label': 'Without label' }}
+          inputProps={{ "aria-label": "Without label" }}
         >
           <MenuItem value="">
             <em>None</em>
@@ -148,15 +148,15 @@ export const LabelsAndHelperText = story<SelectProps<string>>(() => {
         <FormHelperText>Without label</FormHelperText>
       </FormControl>
     </div>
-  )
-})
+  );
+});
 
 export const AutoWidth = story<SelectProps<string>>(() => {
-  const [age, setAge] = React.useState('')
+  const [age, setAge] = React.useState("");
 
   const handleChange = (event: SelectChangeEvent<string>) => {
-    setAge(event.target.value)
-  }
+    setAge(event.target.value);
+  };
 
   return (
     <div>
@@ -179,15 +179,15 @@ export const AutoWidth = story<SelectProps<string>>(() => {
         </Select>
       </FormControl>
     </div>
-  )
-})
+  );
+});
 
 export const OtherProps = story<SelectProps<string>>(() => {
-  const [age, setAge] = React.useState('')
+  const [age, setAge] = React.useState("");
 
   const handleChange = (event: SelectChangeEvent<string>) => {
-    setAge(event.target.value)
-  }
+    setAge(event.target.value);
+  };
 
   return (
     <div>
@@ -217,7 +217,7 @@ export const OtherProps = story<SelectProps<string>>(() => {
           value={age}
           label="Age"
           onChange={handleChange}
-          renderValue={value => `⚠️  - ${value}`}
+          renderValue={(value) => `⚠️  - ${value}`}
         >
           <MenuItem value="">
             <em>None</em>
@@ -266,5 +266,5 @@ export const OtherProps = story<SelectProps<string>>(() => {
         <FormHelperText>Required</FormHelperText>
       </FormControl>
     </div>
-  )
-})
+  );
+});

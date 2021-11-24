@@ -2,6 +2,6 @@
 import {
   ListItemAvatar as _ListItemAvatar,
   ListItemAvatarProps as _ListItemAvatarProps,
-} from './ListItemAvatar'
-export * from './ListItemAvatar.gen'
+} from "./ListItemAvatar";
+export * from "./ListItemAvatar.gen";
 // Add more functions/etc. below

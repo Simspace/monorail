@@ -2,6 +2,6 @@
 import {
   SwipeableDrawer as _SwipeableDrawer,
   SwipeableDrawerProps as _SwipeableDrawerProps,
-} from './SwipeableDrawer'
-export * from './SwipeableDrawer.gen'
+} from "./SwipeableDrawer";
+export * from "./SwipeableDrawer.gen";
 // Add more functions/etc. below

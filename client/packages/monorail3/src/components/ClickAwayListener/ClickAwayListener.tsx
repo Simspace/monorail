@@ -2,6 +2,6 @@
 import {
   ClickAwayListener as _ClickAwayListener,
   ClickAwayListenerProps as _ClickAwayListenerProps,
-} from './ClickAwayListener'
-export * from './ClickAwayListener.gen'
+} from "./ClickAwayListener";
+export * from "./ClickAwayListener.gen";
 // Add more functions/etc. below

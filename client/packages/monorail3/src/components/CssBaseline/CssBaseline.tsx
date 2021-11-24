@@ -2,6 +2,6 @@
 import {
   CssBaseline as _CssBaseline,
   CssBaselineProps as _CssBaselineProps,
-} from './CssBaseline'
-export * from './CssBaseline.gen'
+} from "./CssBaseline";
+export * from "./CssBaseline.gen";
 // Add more functions/etc. below

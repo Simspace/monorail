@@ -1,24 +1,24 @@
 // Edit this file to add new stories
-import React from 'react'
-import DeleteIcon from '@mui/icons-material/Delete'
-import { styled } from '@mui/styles'
+import React from "react";
+import DeleteIcon from "@mui/icons-material/Delete";
+import { styled } from "@mui/styles";
 
-import { story } from '../../../__tests__/helpers/storybook'
-import { Box } from '../../Box/Box'
-import { Button } from '../../Button/Button'
-import { ClickAwayListener } from '../../ClickAwayListener/ClickAwayListener'
-import { Fade } from '../../Fade/Fade'
-import { Grid } from '../../Grid/Grid'
-import { IconButton } from '../../IconButton/IconButton'
-import { Typography } from '../../Typography/Typography'
-import { Zoom } from '../../Zoom/Zoom'
-import { Tooltip, tooltipClasses, TooltipProps } from '../Tooltip'
-import { defaultStoryMeta } from './Tooltip.stories.gen'
+import { story } from "../../../__tests__/helpers/storybook";
+import { Box } from "../../Box/Box";
+import { Button } from "../../Button/Button";
+import { ClickAwayListener } from "../../ClickAwayListener/ClickAwayListener";
+import { Fade } from "../../Fade/Fade";
+import { Grid } from "../../Grid/Grid";
+import { IconButton } from "../../IconButton/IconButton";
+import { Typography } from "../../Typography/Typography";
+import { Zoom } from "../../Zoom/Zoom";
+import { Tooltip, tooltipClasses, TooltipProps } from "../Tooltip";
+import { defaultStoryMeta } from "./Tooltip.stories.gen";
 
 /**
  * Metadata for Tooltip stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Feedback/Tooltip' }
+export default { ...defaultStoryMeta, title: "Feedback/Tooltip" };
 
 /**
  * Story template (edit/remove by hand if needed)
@@ -27,18 +27,18 @@ export default { ...defaultStoryMeta, title: 'Feedback/Tooltip' }
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
 const Template = story<TooltipProps>(
-  args => (
+  (args) => (
     <Tooltip title="Tooltip title" {...args}>
       <>Tooltip children</>
     </Tooltip>
   ),
   {
     args: {},
-  },
-)
+  }
+);
 
 /** Default story for Tooltip (edit/remove by hand if needed) */
-export const Default = story(Template)
+export const Default = story(Template);
 
 export const BasicTooltip = story<TooltipProps>(() => (
   <Tooltip title="Delete">
@@ -46,7 +46,7 @@ export const BasicTooltip = story<TooltipProps>(() => (
       <DeleteIcon />
     </IconButton>
   </Tooltip>
-))
+));
 
 export const PositionedTooltips = story<TooltipProps>(
   () => (
@@ -119,19 +119,19 @@ export const PositionedTooltips = story<TooltipProps>(
         },
       },
     },
-  },
-)
+  }
+);
 
 const LightTooltip = styled(({ className, ...props }: TooltipProps) => (
   <Tooltip {...props} classes={{ popper: className }} />
 ))(({ theme }) => ({
   [`& .${tooltipClasses.tooltip}`]: {
     backgroundColor: theme.palette.common.white,
-    color: 'rgba(0, 0, 0, 0.87)',
+    color: "rgba(0, 0, 0, 0.87)",
     boxShadow: theme.shadows[1],
     fontSize: 11,
   },
-}))
+}));
 
 const BootstrapTooltip = styled(({ className, ...props }: TooltipProps) => (
   <Tooltip {...props} arrow classes={{ popper: className }} />
@@ -142,19 +142,19 @@ const BootstrapTooltip = styled(({ className, ...props }: TooltipProps) => (
   [`& .${tooltipClasses.tooltip}`]: {
     backgroundColor: theme.palette.common.black,
   },
-}))
+}));
 
 const HtmlTooltip = styled(({ className, ...props }: TooltipProps) => (
   <Tooltip {...props} classes={{ popper: className }} />
 ))(({ theme }) => ({
   [`& .${tooltipClasses.tooltip}`]: {
-    backgroundColor: '#f5f5f9',
-    color: 'rgba(0, 0, 0, 0.87)',
+    backgroundColor: "#f5f5f9",
+    color: "rgba(0, 0, 0, 0.87)",
     maxWidth: 220,
     fontSize: theme.typography.pxToRem(12),
-    border: '1px solid #dadde9',
+    border: "1px solid #dadde9",
   },
-}))
+}));
 
 export const CustomizedTooltips = story<TooltipProps>(
   () => (
@@ -169,7 +169,7 @@ export const CustomizedTooltips = story<TooltipProps>(
         title={
           <React.Fragment>
             <Typography color="inherit">Tooltip with HTML</Typography>
-            <em>{"And here's"}</em> <b>{'some'}</b> <u>{'amazing content'}</u>.{' '}
+            <em>{"And here's"}</em> <b>{"some"}</b> <u>{"amazing content"}</u>.{" "}
             {"It's very engaging. Right?"}
           </React.Fragment>
         }
@@ -186,8 +186,8 @@ export const CustomizedTooltips = story<TooltipProps>(
         },
       },
     },
-  },
-)
+  }
+);
 
 export const ArrowTooltips = story<TooltipProps>(
   () => (
@@ -203,20 +203,20 @@ export const ArrowTooltips = story<TooltipProps>(
         },
       },
     },
-  },
-)
+  }
+);
 
 export const TriggersTooltips = story<TooltipProps>(
   () => {
-    const [open, setOpen] = React.useState(false)
+    const [open, setOpen] = React.useState(false);
 
     const handleTooltipClose = () => {
-      setOpen(false)
-    }
+      setOpen(false);
+    };
 
     const handleTooltipOpen = () => {
-      setOpen(true)
-    }
+      setOpen(true);
+    };
     return (
       <div>
         <Grid container justifyContent="center">
@@ -256,7 +256,7 @@ export const TriggersTooltips = story<TooltipProps>(
           </Grid>
         </Grid>
       </div>
-    )
+    );
   },
   {
     parameters: {
@@ -266,20 +266,20 @@ export const TriggersTooltips = story<TooltipProps>(
         },
       },
     },
-  },
-)
+  }
+);
 
 export const ControlledTooltips = story<TooltipProps>(
   () => {
-    const [open, setOpen] = React.useState(false)
+    const [open, setOpen] = React.useState(false);
 
     const handleClose = () => {
-      setOpen(false)
-    }
+      setOpen(false);
+    };
 
     const handleOpen = () => {
-      setOpen(true)
-    }
+      setOpen(true);
+    };
     return (
       <Tooltip
         open={open}
@@ -289,7 +289,7 @@ export const ControlledTooltips = story<TooltipProps>(
       >
         <Button>Controlled</Button>
       </Tooltip>
-    )
+    );
   },
   {
     parameters: {
@@ -299,8 +299,8 @@ export const ControlledTooltips = story<TooltipProps>(
         },
       },
     },
-  },
-)
+  }
+);
 
 const CustomWidthTooltip = styled(({ className, ...props }: TooltipProps) => (
   <Tooltip {...props} classes={{ popper: className }} />
@@ -308,21 +308,21 @@ const CustomWidthTooltip = styled(({ className, ...props }: TooltipProps) => (
   [`& .${tooltipClasses.tooltip}`]: {
     maxWidth: 500,
   },
-})
+});
 
 const NoMaxWidthTooltip = styled(({ className, ...props }: TooltipProps) => (
   <Tooltip {...props} classes={{ popper: className }} />
 ))({
   [`& .${tooltipClasses.tooltip}`]: {
-    maxWidth: 'none',
+    maxWidth: "none",
   },
-})
+});
 
 const longText = `
 Aliquam eget finibus ante, non facilisis lectus. Sed vitae dignissim est, vel aliquam tellus.
 Praesent non nunc mollis, fermentum neque at, semper arcu.
 Nullam eget est sed sem iaculis gravida eget vitae justo.
-`
+`;
 
 export const VariableWidth = story<TooltipProps>(
   () => (
@@ -346,8 +346,8 @@ export const VariableWidth = story<TooltipProps>(
         },
       },
     },
-  },
-)
+  }
+);
 
 export const NotInteractiveTooltips = story<TooltipProps>(
   () => (
@@ -363,8 +363,8 @@ export const NotInteractiveTooltips = story<TooltipProps>(
         },
       },
     },
-  },
-)
+  }
+);
 
 export const DisabledTooltips = story<TooltipProps>(
   () => (
@@ -382,8 +382,8 @@ export const DisabledTooltips = story<TooltipProps>(
         },
       },
     },
-  },
-)
+  }
+);
 
 export const TransitionsTooltips = story<TooltipProps>(
   () => (
@@ -411,13 +411,13 @@ export const TransitionsTooltips = story<TooltipProps>(
         },
       },
     },
-  },
-)
+  }
+);
 
 export const FollowCursorTooltips = story<TooltipProps>(
   () => (
     <Tooltip title="You don't have permission to do this" followCursor>
-      <Box sx={{ bgcolor: 'text.disabled', color: 'background.paper', p: 2 }}>
+      <Box sx={{ bgcolor: "text.disabled", color: "background.paper", p: 2 }}>
         Disabled Action
       </Box>
     </Tooltip>
@@ -430,8 +430,8 @@ export const FollowCursorTooltips = story<TooltipProps>(
         },
       },
     },
-  },
-)
+  }
+);
 
 export const DelayTooltips = story<TooltipProps>(
   () => (
@@ -447,5 +447,5 @@ export const DelayTooltips = story<TooltipProps>(
         },
       },
     },
-  },
-)
+  }
+);

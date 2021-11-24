@@ -2,6 +2,6 @@
 import {
   Typography as _Typography,
   TypographyProps as _TypographyProps,
-} from './Typography'
-export * from './Typography.gen'
+} from "./Typography";
+export * from "./Typography.gen";
 // Add more functions/etc. below

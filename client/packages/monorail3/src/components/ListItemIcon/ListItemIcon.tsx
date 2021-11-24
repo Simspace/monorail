@@ -2,6 +2,6 @@
 import {
   ListItemIcon as _ListItemIcon,
   ListItemIconProps as _ListItemIconProps,
-} from './ListItemIcon'
-export * from './ListItemIcon.gen'
+} from "./ListItemIcon";
+export * from "./ListItemIcon.gen";
 // Add more functions/etc. below

@@ -2,6 +2,6 @@
 import {
   TableHead as _TableHead,
   TableHeadProps as _TableHeadProps,
-} from './TableHead'
-export * from './TableHead.gen'
+} from "./TableHead";
+export * from "./TableHead.gen";
 // Add more functions/etc. below

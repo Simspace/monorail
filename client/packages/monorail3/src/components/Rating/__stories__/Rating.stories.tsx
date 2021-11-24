@@ -1,43 +1,45 @@
 // Edit this file to add new stories
-import React from 'react'
-import FavoriteIcon from '@mui/icons-material/Favorite'
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
-import SentimentDissatisfiedIcon from '@mui/icons-material/SentimentDissatisfied'
-import SentimentSatisfiedIcon from '@mui/icons-material/SentimentSatisfied'
-import SentimentSatisfiedAltIcon from '@mui/icons-material/SentimentSatisfiedAlt'
-import SentimentVeryDissatisfiedIcon from '@mui/icons-material/SentimentVeryDissatisfied'
-import SentimentVerySatisfiedIcon from '@mui/icons-material/SentimentVerySatisfied'
-import StarIcon from '@mui/icons-material/Star'
-import { IconContainerProps } from '@mui/material/Rating'
-import { styled } from '@mui/material/styles'
+import React from "react";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import SentimentDissatisfiedIcon from "@mui/icons-material/SentimentDissatisfied";
+import SentimentSatisfiedIcon from "@mui/icons-material/SentimentSatisfied";
+import SentimentSatisfiedAltIcon from "@mui/icons-material/SentimentSatisfiedAlt";
+import SentimentVeryDissatisfiedIcon from "@mui/icons-material/SentimentVeryDissatisfied";
+import SentimentVerySatisfiedIcon from "@mui/icons-material/SentimentVerySatisfied";
+import StarIcon from "@mui/icons-material/Star";
+import { IconContainerProps } from "@mui/material/Rating";
+import { styled } from "@mui/material/styles";
 
-import { story } from '../../../__tests__/helpers/storybook'
-import { Box } from '../../Box/Box'
-import { Stack } from '../../Stack/Stack'
-import { Typography } from '../../Typography/Typography'
-import { Rating, RatingProps } from '../Rating'
-import { defaultStoryMeta } from './Rating.stories.gen'
+import { story } from "../../../__tests__/helpers/storybook";
+import { Box } from "../../Box/Box";
+import { Stack } from "../../Stack/Stack";
+import { Typography } from "../../Typography/Typography";
+import { Rating, RatingProps } from "../Rating";
+import { defaultStoryMeta } from "./Rating.stories.gen";
 
 /**
  * Metadata for Rating stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Inputs/Rating' }
+export default { ...defaultStoryMeta, title: "Inputs/Rating" };
 /**
  * Story template (edit/remove by hand if needed)
  *
  * Note: there should be at least one "Default" story that uses this template with the "story" function.
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
-const Template = story<RatingProps>(args => <Rating {...args} />, { args: {} })
+const Template = story<RatingProps>((args) => <Rating {...args} />, {
+  args: {},
+});
 /** Default story for Rating (edit/remove by hand if needed) */
-export const Default = story(Template)
+export const Default = story(Template);
 
 export const BasicRating = story<RatingProps>(() => {
-  const [value, setValue] = React.useState<number | null>(2)
+  const [value, setValue] = React.useState<number | null>(2);
   return (
     <Box
       sx={{
-        '& > legend': { mt: 2 },
+        "& > legend": { mt: 2 },
       }}
     >
       <Typography component="legend">Controlled</Typography>
@@ -45,7 +47,7 @@ export const BasicRating = story<RatingProps>(() => {
         name="simple-controlled"
         value={value}
         onChange={(_, newValue) => {
-          setValue(newValue)
+          setValue(newValue);
         }}
       />
       <Typography component="legend">Read only</Typography>
@@ -55,8 +57,8 @@ export const BasicRating = story<RatingProps>(() => {
       <Typography component="legend">No rating given</Typography>
       <Rating name="no-value" value={null} />
     </Box>
-  )
-})
+  );
+});
 
 export const HalfRating = story<RatingProps>(
   () => {
@@ -70,7 +72,7 @@ export const HalfRating = story<RatingProps>(
           readOnly
         />
       </Stack>
-    )
+    );
   },
   {
     parameters: {
@@ -80,33 +82,33 @@ export const HalfRating = story<RatingProps>(
         },
       },
     },
-  },
-)
+  }
+);
 
 const labels: { [index: string]: string } = {
-  0.5: 'Useless',
-  1: 'Useless+',
-  1.5: 'Poor',
-  2: 'Poor+',
-  2.5: 'Ok',
-  3: 'Ok+',
-  3.5: 'Good',
-  4: 'Good+',
-  4.5: 'Excellent',
-  5: 'Excellent+',
-}
+  0.5: "Useless",
+  1: "Useless+",
+  1.5: "Poor",
+  2: "Poor+",
+  2.5: "Ok",
+  3: "Ok+",
+  3.5: "Good",
+  4: "Good+",
+  4.5: "Excellent",
+  5: "Excellent+",
+};
 
 export const HoverFeedback = story<RatingProps>(
   () => {
-    const [value, setValue] = React.useState<number | null>(2)
-    const [hover, setHover] = React.useState(-1)
+    const [value, setValue] = React.useState<number | null>(2);
+    const [hover, setHover] = React.useState(-1);
 
     return (
       <Box
         sx={{
           width: 200,
-          display: 'flex',
-          alignItems: 'center',
+          display: "flex",
+          alignItems: "center",
         }}
       >
         <Rating
@@ -114,10 +116,10 @@ export const HoverFeedback = story<RatingProps>(
           value={value}
           precision={0.5}
           onChange={(_, newValue) => {
-            setValue(newValue)
+            setValue(newValue);
           }}
           onChangeActive={(_, newHover) => {
-            setHover(newHover)
+            setHover(newHover);
           }}
           emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
         />
@@ -125,7 +127,7 @@ export const HoverFeedback = story<RatingProps>(
           <Box sx={{ ml: 2 }}>{labels[hover !== -1 ? hover : value]}</Box>
         )}
       </Box>
-    )
+    );
   },
   {
     parameters: {
@@ -135,8 +137,8 @@ export const HoverFeedback = story<RatingProps>(
         },
       },
     },
-  },
-)
+  }
+);
 
 export const Sizes = story<RatingProps>(
   () => {
@@ -146,7 +148,7 @@ export const Sizes = story<RatingProps>(
         <Rating name="size-medium" defaultValue={2} />
         <Rating name="size-large" defaultValue={2} size="large" />
       </Stack>
-    )
+    );
   },
   {
     parameters: {
@@ -156,24 +158,24 @@ export const Sizes = story<RatingProps>(
         },
       },
     },
-  },
-)
+  }
+);
 
 export const CustomizedRating = story<RatingProps>(
   () => {
     const StyledRating = styled(Rating)({
-      '& .MuiRating-iconFilled': {
-        color: '#ff6d75',
+      "& .MuiRating-iconFilled": {
+        color: "#ff6d75",
       },
-      '& .MuiRating-iconHover': {
-        color: '#ff3d47',
+      "& .MuiRating-iconHover": {
+        color: "#ff3d47",
       },
-    })
+    });
 
     return (
       <Box
         sx={{
-          '& > legend': { mt: 2 },
+          "& > legend": { mt: 2 },
         }}
       >
         <Typography component="legend">Custom icon and color</Typography>
@@ -181,7 +183,7 @@ export const CustomizedRating = story<RatingProps>(
           name="customized-color"
           defaultValue={2}
           getLabelText={(value: number) =>
-            `${value} Heart${value !== 1 ? 's' : ''}`
+            `${value} Heart${value !== 1 ? "s" : ""}`
           }
           precision={0.5}
           icon={<FavoriteIcon fontSize="inherit" />}
@@ -190,7 +192,7 @@ export const CustomizedRating = story<RatingProps>(
         <Typography component="legend">10 stars</Typography>
         <Rating name="customized-10" defaultValue={2} max={10} />
       </Box>
-    )
+    );
   },
   {
     parameters: {
@@ -200,41 +202,41 @@ export const CustomizedRating = story<RatingProps>(
         },
       },
     },
-  },
-)
+  }
+);
 
 const customIcons: {
   [index: string]: {
-    icon: React.ReactElement
-    label: string
-  }
+    icon: React.ReactElement;
+    label: string;
+  };
 } = {
   1: {
     icon: <SentimentVeryDissatisfiedIcon />,
-    label: 'Very Dissatisfied',
+    label: "Very Dissatisfied",
   },
   2: {
     icon: <SentimentDissatisfiedIcon />,
-    label: 'Dissatisfied',
+    label: "Dissatisfied",
   },
   3: {
     icon: <SentimentSatisfiedIcon />,
-    label: 'Neutral',
+    label: "Neutral",
   },
   4: {
     icon: <SentimentSatisfiedAltIcon />,
-    label: 'Satisfied',
+    label: "Satisfied",
   },
   5: {
     icon: <SentimentVerySatisfiedIcon />,
-    label: 'Very Satisfied',
+    label: "Very Satisfied",
   },
-}
+};
 
 const IconContainer = (props: IconContainerProps) => {
-  const { value, ...other } = props
-  return <span {...other}>{customIcons[value].icon}</span>
-}
+  const { value, ...other } = props;
+  return <span {...other}>{customIcons[value].icon}</span>;
+};
 
 export const RadioGroup = story<RatingProps>(
   () => {
@@ -245,7 +247,7 @@ export const RadioGroup = story<RatingProps>(
         IconContainerComponent={IconContainer}
         highlightSelectedOnly
       />
-    )
+    );
   },
   {
     parameters: {
@@ -255,5 +257,5 @@ export const RadioGroup = story<RatingProps>(
         },
       },
     },
-  },
-)
+  }
+);

@@ -2,6 +2,6 @@
 import {
   StaticTimePicker as _StaticTimePicker,
   StaticTimePickerProps as _StaticTimePickerProps,
-} from './StaticTimePicker'
-export * from './StaticTimePicker.gen'
+} from "./StaticTimePicker";
+export * from "./StaticTimePicker.gen";
 // Add more functions/etc. below

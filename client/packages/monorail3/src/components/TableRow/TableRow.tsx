@@ -2,6 +2,6 @@
 import {
   TableRow as _TableRow,
   TableRowProps as _TableRowProps,
-} from './TableRow'
-export * from './TableRow.gen'
+} from "./TableRow";
+export * from "./TableRow.gen";
 // Add more functions/etc. below

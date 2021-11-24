@@ -2,6 +2,6 @@
 import {
   DesktopTimePicker as _DesktopTimePicker,
   DesktopTimePickerProps as _DesktopTimePickerProps,
-} from './DesktopTimePicker'
-export * from './DesktopTimePicker.gen'
+} from "./DesktopTimePicker";
+export * from "./DesktopTimePicker.gen";
 // Add more functions/etc. below

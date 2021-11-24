@@ -2,6 +2,6 @@
 import {
   DesktopDateRangePicker as _DesktopDateRangePicker,
   DesktopDateRangePickerProps as _DesktopDateRangePickerProps,
-} from './DesktopDateRangePicker'
-export * from './DesktopDateRangePicker.gen'
+} from "./DesktopDateRangePicker";
+export * from "./DesktopDateRangePicker.gen";
 // Add more functions/etc. below

@@ -1,64 +1,64 @@
 // Edit this file to add new stories
-import React from 'react'
-import Archive from '@mui/icons-material/Archive'
-import Check from '@mui/icons-material/Check'
-import Cloud from '@mui/icons-material/Cloud'
-import ContentCopy from '@mui/icons-material/ContentCopy'
-import ContentCut from '@mui/icons-material/ContentCut'
-import ContentPaste from '@mui/icons-material/ContentPaste'
-import Drafts from '@mui/icons-material/Drafts'
-import Edit from '@mui/icons-material/Edit'
-import FileCopy from '@mui/icons-material/FileCopy'
-import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown'
-import Logout from '@mui/icons-material/Logout'
-import MoreHoriz from '@mui/icons-material/MoreHoriz'
-import MoreVert from '@mui/icons-material/MoreVert'
-import PersonAdd from '@mui/icons-material/PersonAdd'
-import PriorityHigh from '@mui/icons-material/PriorityHigh'
-import Send from '@mui/icons-material/Send'
-import Settings from '@mui/icons-material/Settings'
-import { alpha, styled } from '@mui/material/styles'
+import React from "react";
+import Archive from "@mui/icons-material/Archive";
+import Check from "@mui/icons-material/Check";
+import Cloud from "@mui/icons-material/Cloud";
+import ContentCopy from "@mui/icons-material/ContentCopy";
+import ContentCut from "@mui/icons-material/ContentCut";
+import ContentPaste from "@mui/icons-material/ContentPaste";
+import Drafts from "@mui/icons-material/Drafts";
+import Edit from "@mui/icons-material/Edit";
+import FileCopy from "@mui/icons-material/FileCopy";
+import KeyboardArrowDown from "@mui/icons-material/KeyboardArrowDown";
+import Logout from "@mui/icons-material/Logout";
+import MoreHoriz from "@mui/icons-material/MoreHoriz";
+import MoreVert from "@mui/icons-material/MoreVert";
+import PersonAdd from "@mui/icons-material/PersonAdd";
+import PriorityHigh from "@mui/icons-material/PriorityHigh";
+import Send from "@mui/icons-material/Send";
+import Settings from "@mui/icons-material/Settings";
+import { alpha, styled } from "@mui/material/styles";
 
-import { story } from '../../../__tests__/helpers/storybook'
-import { Avatar } from '../../Avatar/Avatar'
-import { Box } from '../../Box/Box'
-import { Button } from '../../Button/Button'
-import { Divider } from '../../Divider/Divider'
-import { IconButton } from '../../IconButton/IconButton'
-import { List } from '../../List/List'
-import { ListItem } from '../../ListItem/ListItem'
-import { ListItemIcon } from '../../ListItemIcon/ListItemIcon'
-import { ListItemText } from '../../ListItemText/ListItemText'
-import { MenuItem } from '../../MenuItem/MenuItem'
-import { MenuList } from '../../MenuList/MenuList'
-import { Paper } from '../../Paper/Paper'
-import { Tooltip } from '../../Tooltip/Tooltip'
-import { Typography } from '../../Typography/Typography'
-import { Menu, MenuProps } from '../Menu'
-import { defaultStoryMeta } from './Menu.stories.gen'
+import { story } from "../../../__tests__/helpers/storybook";
+import { Avatar } from "../../Avatar/Avatar";
+import { Box } from "../../Box/Box";
+import { Button } from "../../Button/Button";
+import { Divider } from "../../Divider/Divider";
+import { IconButton } from "../../IconButton/IconButton";
+import { List } from "../../List/List";
+import { ListItem } from "../../ListItem/ListItem";
+import { ListItemIcon } from "../../ListItemIcon/ListItemIcon";
+import { ListItemText } from "../../ListItemText/ListItemText";
+import { MenuItem } from "../../MenuItem/MenuItem";
+import { MenuList } from "../../MenuList/MenuList";
+import { Paper } from "../../Paper/Paper";
+import { Tooltip } from "../../Tooltip/Tooltip";
+import { Typography } from "../../Typography/Typography";
+import { Menu, MenuProps } from "../Menu";
+import { defaultStoryMeta } from "./Menu.stories.gen";
 
 /**
  * Metadata for Menu stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Navigation/Menu' }
+export default { ...defaultStoryMeta, title: "Navigation/Menu" };
 
 const Template = story<MenuProps>(
-  args => {
-    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
-    const open = Boolean(anchorEl)
+  (args) => {
+    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+    const open = Boolean(anchorEl);
     const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-      setAnchorEl(event.currentTarget)
-    }
+      setAnchorEl(event.currentTarget);
+    };
     const handleClose = () => {
-      setAnchorEl(null)
-    }
+      setAnchorEl(null);
+    };
     return (
       <div>
         <Button
           id="basic-button"
           aria-controls="basic-menu"
           aria-haspopup="true"
-          aria-expanded={open ? 'true' : undefined}
+          aria-expanded={open ? "true" : undefined}
           onClick={handleClick}
         >
           Open Menu
@@ -69,15 +69,15 @@ const Template = story<MenuProps>(
           <MenuItem>Item 3</MenuItem>
         </Menu>
       </div>
-    )
+    );
   },
   {
     args: {},
-  },
-)
+  }
+);
 
 /** Default story for Menu */
-export const Default = story(Template)
+export const Default = story(Template);
 
 export const BasicMenu = story(Template, {
   parameters: {
@@ -91,11 +91,11 @@ Disambiguation: In contrast to simple menus, simple dialogs can present addition
       },
     },
   },
-})
+});
 
 export const IconMenu = story<MenuProps>(
   () => (
-    <Paper sx={{ width: 320, maxWidth: '100%' }}>
+    <Paper sx={{ width: 320, maxWidth: "100%" }}>
       <MenuList>
         <MenuItem>
           <ListItemIcon>
@@ -142,8 +142,8 @@ export const IconMenu = story<MenuProps>(
         },
       },
     },
-  },
-)
+  }
+);
 
 export const DenseMenu = story<MenuProps>(
   () => (
@@ -183,44 +183,44 @@ export const DenseMenu = story<MenuProps>(
       docs: {
         description: {
           story:
-            'For the menu that has long list and long text, you can use the `dense` prop to reduce the padding (this property only affects desktop viewport).',
+            "For the menu that has long list and long text, you can use the `dense` prop to reduce the padding (this property only affects desktop viewport).",
         },
       },
     },
-  },
-)
+  }
+);
 
 const selectedMenuOptions = [
-  'Show sensitive notification content',
-  'Show all notification content',
-  'Hide sensitive notification content',
-  'Hide all notification content',
-]
+  "Show sensitive notification content",
+  "Show all notification content",
+  "Hide sensitive notification content",
+  "Hide all notification content",
+];
 
 export const SelectedMenu = story<MenuProps>(
   () => {
-    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
-    const [selectedIndex, setSelectedIndex] = React.useState(1)
-    const open = Boolean(anchorEl)
+    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+    const [selectedIndex, setSelectedIndex] = React.useState(1);
+    const open = Boolean(anchorEl);
     const handleClickListItem = (event: React.MouseEvent<HTMLElement>) => {
-      setAnchorEl(event.currentTarget)
-    }
+      setAnchorEl(event.currentTarget);
+    };
 
     const handleMenuItemClick = (index: number) => () => {
-      setSelectedIndex(index)
-      setAnchorEl(null)
-    }
+      setSelectedIndex(index);
+      setAnchorEl(null);
+    };
 
     const handleClose = () => {
-      setAnchorEl(null)
-    }
+      setAnchorEl(null);
+    };
 
     return (
       <div>
         <List
           component="nav"
           aria-label="Device settings"
-          sx={{ bgcolor: 'background.paper' }}
+          sx={{ bgcolor: "background.paper" }}
         >
           <ListItem
             button
@@ -228,7 +228,7 @@ export const SelectedMenu = story<MenuProps>(
             aria-haspopup="listbox"
             aria-controls="lock-menu"
             aria-label="when device is locked"
-            aria-expanded={open ? 'true' : undefined}
+            aria-expanded={open ? "true" : undefined}
             onClick={handleClickListItem}
           >
             <ListItemText
@@ -243,8 +243,8 @@ export const SelectedMenu = story<MenuProps>(
           open={open}
           onClose={handleClose}
           MenuListProps={{
-            'aria-labelledby': 'lock-button',
-            role: 'listbox',
+            "aria-labelledby": "lock-button",
+            role: "listbox",
           }}
         >
           {selectedMenuOptions.map((option, index) => (
@@ -259,7 +259,7 @@ export const SelectedMenu = story<MenuProps>(
           ))}
         </Menu>
       </div>
-    )
+    );
   },
   {
     parameters: {
@@ -270,19 +270,19 @@ export const SelectedMenu = story<MenuProps>(
         },
       },
     },
-  },
-)
+  }
+);
 
 export const PositionedMenu = story<MenuProps>(
   () => {
-    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
-    const open = Boolean(anchorEl)
+    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+    const open = Boolean(anchorEl);
     const handleClick = (event: React.MouseEvent<HTMLElement>) => {
-      setAnchorEl(event.currentTarget)
-    }
+      setAnchorEl(event.currentTarget);
+    };
     const handleClose = () => {
-      setAnchorEl(null)
-    }
+      setAnchorEl(null);
+    };
 
     return (
       <div>
@@ -290,7 +290,7 @@ export const PositionedMenu = story<MenuProps>(
           id="demo-positioned-button"
           aria-controls="demo-positioned-menu"
           aria-haspopup="true"
-          aria-expanded={open ? 'true' : undefined}
+          aria-expanded={open ? "true" : undefined}
           onClick={handleClick}
         >
           Dashboard
@@ -302,12 +302,12 @@ export const PositionedMenu = story<MenuProps>(
           open={open}
           onClose={handleClose}
           anchorOrigin={{
-            vertical: 'top',
-            horizontal: 'left',
+            vertical: "top",
+            horizontal: "left",
           }}
           transformOrigin={{
-            vertical: 'top',
-            horizontal: 'left',
+            vertical: "top",
+            horizontal: "left",
           }}
         >
           <MenuItem onClick={handleClose}>Profile</MenuItem>
@@ -315,34 +315,34 @@ export const PositionedMenu = story<MenuProps>(
           <MenuItem onClick={handleClose}>Logout</MenuItem>
         </Menu>
       </div>
-    )
+    );
   },
   {
     parameters: {
       docs: {
         description: {
           story:
-            'Because the `Menu` component uses the `Popover` component to position itself, you can use the same [positioning props](https://next.material-ui.com/components/popover/#anchor-playground) to position it. For instance, you can display the menu on top of the anchor:',
+            "Because the `Menu` component uses the `Popover` component to position itself, you can use the same [positioning props](https://next.material-ui.com/components/popover/#anchor-playground) to position it. For instance, you can display the menu on top of the anchor:",
         },
       },
     },
-  },
-)
+  }
+);
 
 export const AccountMenu = story<MenuProps>(
   () => {
-    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
-    const open = Boolean(anchorEl)
+    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+    const open = Boolean(anchorEl);
     const handleClick = (event: React.MouseEvent<HTMLElement>) => {
-      setAnchorEl(event.currentTarget)
-    }
+      setAnchorEl(event.currentTarget);
+    };
     const handleClose = () => {
-      setAnchorEl(null)
-    }
+      setAnchorEl(null);
+    };
     return (
       <React.Fragment>
         <Box
-          sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}
+          sx={{ display: "flex", alignItems: "center", textAlign: "center" }}
         >
           <Typography sx={{ minWidth: 100 }}>Contact</Typography>
           <Typography sx={{ minWidth: 100 }}>Profile</Typography>
@@ -360,31 +360,31 @@ export const AccountMenu = story<MenuProps>(
           PaperProps={{
             elevation: 0,
             sx: {
-              overflow: 'visible',
-              filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
+              overflow: "visible",
+              filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
               mt: 1.5,
-              '& .MuiAvatar-root': {
+              "& .MuiAvatar-root": {
                 width: 32,
                 height: 32,
                 ml: -0.5,
                 mr: 1,
               },
-              '&:before': {
+              "&:before": {
                 content: '""',
-                display: 'block',
-                position: 'absolute',
+                display: "block",
+                position: "absolute",
                 top: 0,
                 right: 14,
                 width: 10,
                 height: 10,
-                bgcolor: 'background.paper',
-                transform: 'translateY(-50%) rotate(45deg)',
+                bgcolor: "background.paper",
+                transform: "translateY(-50%) rotate(45deg)",
                 zIndex: 0,
               },
             },
           }}
-          transformOrigin={{ horizontal: 'right', vertical: 'top' }}
-          anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+          transformOrigin={{ horizontal: "right", vertical: "top" }}
+          anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
         >
           <MenuItem>
             <Avatar /> Profile
@@ -413,19 +413,19 @@ export const AccountMenu = story<MenuProps>(
           </MenuItem>
         </Menu>
       </React.Fragment>
-    )
+    );
   },
   {
     parameters: {
       docs: {
         description: {
           story:
-            '`Menu` content can be mixed with other components like `Avatar`.',
+            "`Menu` content can be mixed with other components like `Avatar`.",
         },
       },
     },
-  },
-)
+  }
+);
 
 export const CustomizedMenu = story<MenuProps>(
   () => {
@@ -433,53 +433,53 @@ export const CustomizedMenu = story<MenuProps>(
       <Menu
         elevation={0}
         anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'right',
+          vertical: "bottom",
+          horizontal: "right",
         }}
         transformOrigin={{
-          vertical: 'top',
-          horizontal: 'right',
+          vertical: "top",
+          horizontal: "right",
         }}
         {...props}
       />
     ))(({ theme }) => ({
-      '& .MuiPaper-root': {
+      "& .MuiPaper-root": {
         borderRadius: 6,
         marginTop: theme.spacing(1),
         minWidth: 180,
         color:
-          theme.palette.mode === 'light'
-            ? 'rgb(55, 65, 81)'
+          theme.palette.mode === "light"
+            ? "rgb(55, 65, 81)"
             : theme.palette.grey[300],
         boxShadow:
-          'rgb(255, 255, 255) 0px 0px 0px 0px, rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px',
-        '& .MuiMenu-list': {
-          padding: '4px 0',
+          "rgb(255, 255, 255) 0px 0px 0px 0px, rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px",
+        "& .MuiMenu-list": {
+          padding: "4px 0",
         },
-        '& .MuiMenuItem-root': {
-          '& .MuiSvgIcon-root': {
+        "& .MuiMenuItem-root": {
+          "& .MuiSvgIcon-root": {
             fontSize: 18,
             color: theme.palette.text.secondary,
             marginRight: theme.spacing(1.5),
           },
-          '&:active': {
+          "&:active": {
             backgroundColor: alpha(
               theme.palette.primary.main,
-              theme.palette.action.selectedOpacity,
+              theme.palette.action.selectedOpacity
             ),
           },
         },
       },
-    }))
+    }));
 
-    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
-    const open = Boolean(anchorEl)
+    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+    const open = Boolean(anchorEl);
     const handleClick = (event: React.MouseEvent<HTMLElement>) => {
-      setAnchorEl(event.currentTarget)
-    }
+      setAnchorEl(event.currentTarget);
+    };
     const handleClose = () => {
-      setAnchorEl(null)
-    }
+      setAnchorEl(null);
+    };
 
     return (
       <div>
@@ -487,7 +487,7 @@ export const CustomizedMenu = story<MenuProps>(
           id="demo-customized-button"
           aria-controls="demo-customized-menu"
           aria-haspopup="true"
-          aria-expanded={open ? 'true' : undefined}
+          aria-expanded={open ? "true" : undefined}
           variant="contained"
           disableElevation
           onClick={handleClick}
@@ -498,7 +498,7 @@ export const CustomizedMenu = story<MenuProps>(
         <StyledMenu
           id="demo-customized-menu"
           MenuListProps={{
-            'aria-labelledby': 'demo-customized-button',
+            "aria-labelledby": "demo-customized-button",
           }}
           anchorEl={anchorEl}
           open={open}
@@ -523,49 +523,49 @@ export const CustomizedMenu = story<MenuProps>(
           </MenuItem>
         </StyledMenu>
       </div>
-    )
+    );
   },
   {
     parameters: {
       docs: {
         description: {
           story:
-            'Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](https://next.material-ui.com/customization/how-to-customize/).',
+            "Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](https://next.material-ui.com/customization/how-to-customize/).",
         },
       },
     },
-  },
-)
+  }
+);
 
 const maxHeightOptions = [
-  'None',
-  'Atria',
-  'Callisto',
-  'Dione',
-  'Ganymede',
-  'Hangouts Call',
-  'Luna',
-  'Oberon',
-  'Phobos',
-  'Pyxis',
-  'Sedna',
-  'Titania',
-  'Triton',
-  'Umbriel',
-]
+  "None",
+  "Atria",
+  "Callisto",
+  "Dione",
+  "Ganymede",
+  "Hangouts Call",
+  "Luna",
+  "Oberon",
+  "Phobos",
+  "Pyxis",
+  "Sedna",
+  "Titania",
+  "Triton",
+  "Umbriel",
+];
 
-const MAX_HEIGHT_MAX_HEIGHT = 48
+const MAX_HEIGHT_MAX_HEIGHT = 48;
 
 export const MaxHeight = story<MenuProps>(
   () => {
-    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
-    const open = Boolean(anchorEl)
+    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+    const open = Boolean(anchorEl);
     const handleClick = (event: React.MouseEvent<HTMLElement>) => {
-      setAnchorEl(event.currentTarget)
-    }
+      setAnchorEl(event.currentTarget);
+    };
     const handleClose = () => {
-      setAnchorEl(null)
-    }
+      setAnchorEl(null);
+    };
 
     return (
       <div>
@@ -573,7 +573,7 @@ export const MaxHeight = story<MenuProps>(
           aria-label="more"
           id="long-button"
           aria-controls="long-menu"
-          aria-expanded={open ? 'true' : undefined}
+          aria-expanded={open ? "true" : undefined}
           aria-haspopup="true"
           onClick={handleClick}
           size="large"
@@ -583,7 +583,7 @@ export const MaxHeight = story<MenuProps>(
         <Menu
           id="long-menu"
           MenuListProps={{
-            'aria-labelledby': 'long-button',
+            "aria-labelledby": "long-button",
           }}
           anchorEl={anchorEl}
           open={open}
@@ -591,14 +591,14 @@ export const MaxHeight = story<MenuProps>(
           PaperProps={{
             style: {
               maxHeight: MAX_HEIGHT_MAX_HEIGHT * 4.5,
-              width: '20ch',
+              width: "20ch",
             },
           }}
         >
-          {maxHeightOptions.map(option => (
+          {maxHeightOptions.map((option) => (
             <MenuItem
               key={option}
-              selected={option === 'Pyxis'}
+              selected={option === "Pyxis"}
               onClick={handleClose}
             >
               {option}
@@ -606,19 +606,19 @@ export const MaxHeight = story<MenuProps>(
           ))}
         </Menu>
       </div>
-    )
+    );
   },
   {
     parameters: {
       docs: {
         description: {
           story:
-            'If the height of a menu prevents all menu items from being displayed, the menu can scroll internally.',
+            "If the height of a menu prevents all menu items from being displayed, the menu can scroll internally.",
         },
       },
     },
-  },
-)
+  }
+);
 
 export const Limitations = story<MenuProps>(
   () => (
@@ -654,9 +654,9 @@ export const Limitations = story<MenuProps>(
       docs: {
         description: {
           story:
-            'There is [a flexbox bug](https://bugs.chromium.org/p/chromium/issues/detail?id=327437) that prevents `text-overflow: ellipsis` from working in a flexbox layout. You can use the `Typography` component with `noWrap` to workaround this issue:',
+            "There is [a flexbox bug](https://bugs.chromium.org/p/chromium/issues/detail?id=327437) that prevents `text-overflow: ellipsis` from working in a flexbox layout. You can use the `Typography` component with `noWrap` to workaround this issue:",
         },
       },
     },
-  },
-)
+  }
+);

@@ -2,6 +2,6 @@
 import {
   MobileDateRangePicker as _MobileDateRangePicker,
   MobileDateRangePickerProps as _MobileDateRangePickerProps,
-} from './MobileDateRangePicker'
-export * from './MobileDateRangePicker.gen'
+} from "./MobileDateRangePicker";
+export * from "./MobileDateRangePicker.gen";
 // Add more functions/etc. below

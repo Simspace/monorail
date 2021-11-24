@@ -2,6 +2,6 @@
 import {
   SpeedDialAction as _SpeedDialAction,
   SpeedDialActionProps as _SpeedDialActionProps,
-} from './SpeedDialAction'
-export * from './SpeedDialAction.gen'
+} from "./SpeedDialAction";
+export * from "./SpeedDialAction.gen";
 // Add more functions/etc. below

@@ -2,6 +2,6 @@
 import {
   StepContent as _StepContent,
   StepContentProps as _StepContentProps,
-} from './StepContent'
-export * from './StepContent.gen'
+} from "./StepContent";
+export * from "./StepContent.gen";
 // Add more functions/etc. below

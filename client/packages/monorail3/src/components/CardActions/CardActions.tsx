@@ -2,6 +2,6 @@
 import {
   CardActions as _CardActions,
   CardActionsProps as _CardActionsProps,
-} from './CardActions'
-export * from './CardActions.gen'
+} from "./CardActions";
+export * from "./CardActions.gen";
 // Add more functions/etc. below

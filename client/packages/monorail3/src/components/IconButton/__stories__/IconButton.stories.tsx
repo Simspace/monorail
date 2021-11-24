@@ -1,17 +1,17 @@
 // Edit this file to add new stories
-import React from 'react'
-import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart'
-import AlarmIcon from '@mui/icons-material/Alarm'
-import DeleteIcon from '@mui/icons-material/Delete'
+import React from "react";
+import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
+import AlarmIcon from "@mui/icons-material/Alarm";
+import DeleteIcon from "@mui/icons-material/Delete";
 
-import { story } from '../../../__tests__/helpers/storybook'
-import { Stack } from '../../Stack/Stack'
-import { IconButton, IconButtonProps } from '../IconButton'
-import { defaultStoryMeta } from './IconButton.stories.gen'
+import { story } from "../../../__tests__/helpers/storybook";
+import { Stack } from "../../Stack/Stack";
+import { IconButton, IconButtonProps } from "../IconButton";
+import { defaultStoryMeta } from "./IconButton.stories.gen";
 /**
  * Metadata for IconButton stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Inputs/IconButton' }
+export default { ...defaultStoryMeta, title: "Inputs/IconButton" };
 /**
  * Story template (edit/remove by hand if needed)
  *
@@ -19,17 +19,17 @@ export default { ...defaultStoryMeta, title: 'Inputs/IconButton' }
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
 const Template = story<IconButtonProps>(
-  args => (
+  (args) => (
     <IconButton {...args} size="large">
       <DeleteIcon />
     </IconButton>
   ),
   {
     args: {},
-  },
-)
+  }
+);
 /** Default story for IconButton (edit/remove by hand if needed) */
-export const Default = story(Template)
+export const Default = story(Template);
 // TODO: add more stories below
 
 export const Showcase = story<IconButtonProps>(
@@ -63,8 +63,8 @@ Icons are also appropriate for toggle buttons that allow a single choice to be s
         },
       },
     },
-  },
-)
+  }
+);
 
 export const Sizes = story<IconButtonProps>(
   () => (
@@ -91,8 +91,8 @@ export const Sizes = story<IconButtonProps>(
         },
       },
     },
-  },
-)
+  }
+);
 
 export const Colors = story<IconButtonProps>(
   () => (
@@ -113,5 +113,5 @@ export const Colors = story<IconButtonProps>(
         },
       },
     },
-  },
-)
+  }
+);

@@ -2,6 +2,6 @@
 import {
   Pagination as _Pagination,
   PaginationProps as _PaginationProps,
-} from './Pagination'
-export * from './Pagination.gen'
+} from "./Pagination";
+export * from "./Pagination.gen";
 // Add more functions/etc. below

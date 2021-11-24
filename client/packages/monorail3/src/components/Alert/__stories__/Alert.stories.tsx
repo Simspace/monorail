@@ -1,25 +1,25 @@
 // Edit this file to add new stories
-import React from 'react'
-import CheckIcon from '@mui/icons-material/Check'
-import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
-import CloseIcon from '@mui/icons-material/Close'
+import React from "react";
+import CheckIcon from "@mui/icons-material/Check";
+import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
+import CloseIcon from "@mui/icons-material/Close";
 
-import { story } from '../../../__tests__/helpers/storybook'
-import { AlertTitle } from '../../AlertTitle/AlertTitle'
-import { Box } from '../../Box/Box'
-import { Button } from '../../Button/Button'
-import { Collapse } from '../../Collapse/Collapse'
-import { IconButton } from '../../IconButton/IconButton'
-import { Snackbar } from '../../Snackbar/Snackbar'
-import { Stack } from '../../Stack/Stack'
-import { Typography } from '../../Typography/Typography'
-import { Alert, AlertProps } from '../Alert'
-import { defaultStoryMeta } from './Alert.stories.gen'
+import { story } from "../../../__tests__/helpers/storybook";
+import { AlertTitle } from "../../AlertTitle/AlertTitle";
+import { Box } from "../../Box/Box";
+import { Button } from "../../Button/Button";
+import { Collapse } from "../../Collapse/Collapse";
+import { IconButton } from "../../IconButton/IconButton";
+import { Snackbar } from "../../Snackbar/Snackbar";
+import { Stack } from "../../Stack/Stack";
+import { Typography } from "../../Typography/Typography";
+import { Alert, AlertProps } from "../Alert";
+import { defaultStoryMeta } from "./Alert.stories.gen";
 
 /**
  * Metadata for Alert stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Feedback/Alert' }
+export default { ...defaultStoryMeta, title: "Feedback/Alert" };
 
 /**
  * Story template (edit/remove by hand if needed)
@@ -28,25 +28,25 @@ export default { ...defaultStoryMeta, title: 'Feedback/Alert' }
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
 const Template = story<AlertProps>(
-  args => (
+  (args) => (
     <Alert {...args}>This is a test of the emergency broadcast system</Alert>
   ),
-  { args: { severity: 'warning' } },
-)
+  { args: { severity: "warning" } }
+);
 
 /** Default story for Alert (edit/remove by hand if needed) */
-export const Default = story(Template)
+export const Default = story(Template);
 
 export const Severities = story<AlertProps>(
   () => {
     return (
-      <Stack sx={{ width: '100%' }} spacing={2}>
+      <Stack sx={{ width: "100%" }} spacing={2}>
         <Alert severity="info">Info message</Alert>
         <Alert severity="success">Success message</Alert>
         <Alert severity="warning">Warning message</Alert>
         <Alert severity="error">Error message</Alert>
       </Stack>
-    )
+    );
   },
   {
     parameters: {
@@ -56,13 +56,13 @@ export const Severities = story<AlertProps>(
         },
       },
     },
-  },
-)
+  }
+);
 
 export const WithTitleAndDescriptions = story<AlertProps>(
   () => {
     return (
-      <Stack sx={{ width: '100%' }} spacing={2}>
+      <Stack sx={{ width: "100%" }} spacing={2}>
         <Alert severity="error">
           <AlertTitle>Error</AlertTitle>
           This is an error alert — <strong>check it out!</strong>
@@ -80,7 +80,7 @@ export const WithTitleAndDescriptions = story<AlertProps>(
           This is a success alert — <strong>check it out!</strong>
         </Alert>
       </Stack>
-    )
+    );
   },
   {
     parameters: {
@@ -90,13 +90,13 @@ export const WithTitleAndDescriptions = story<AlertProps>(
         },
       },
     },
-  },
-)
+  }
+);
 
 export const Actions = story<AlertProps>(
   () => {
     return (
-      <Stack sx={{ width: '100%' }} spacing={2}>
+      <Stack sx={{ width: "100%" }} spacing={2}>
         <Alert onClose={() => {}}>
           This is a success alert — check it out!
         </Alert>
@@ -110,7 +110,7 @@ export const Actions = story<AlertProps>(
           This is a success alert — check it out!
         </Alert>
       </Stack>
-    )
+    );
   },
   {
     parameters: {
@@ -122,15 +122,15 @@ If an onClose callback is provided and no action prop is set, a close icon is di
         },
       },
     },
-  },
-)
+  }
+);
 
 export const Transition = story<AlertProps>(
   () => {
-    const [open, setOpen] = React.useState(true)
+    const [open, setOpen] = React.useState(true);
 
     return (
-      <Box sx={{ width: '100%' }}>
+      <Box sx={{ width: "100%" }}>
         <Collapse in={open}>
           <Alert
             action={
@@ -139,7 +139,7 @@ export const Transition = story<AlertProps>(
                 color="inherit"
                 size="small"
                 onClick={() => {
-                  setOpen(false)
+                  setOpen(false);
                 }}
               >
                 <CloseIcon fontSize="inherit" />
@@ -154,13 +154,13 @@ export const Transition = story<AlertProps>(
           disabled={open}
           variant="outlined"
           onClick={() => {
-            setOpen(true)
+            setOpen(true);
           }}
         >
           Re-open
         </Button>
       </Box>
-    )
+    );
   },
   {
     parameters: {
@@ -170,13 +170,13 @@ export const Transition = story<AlertProps>(
         },
       },
     },
-  },
-)
+  }
+);
 
 export const Icons = story<AlertProps>(
   () => {
     return (
-      <Stack sx={{ width: '100%' }} spacing={2}>
+      <Stack sx={{ width: "100%" }} spacing={2}>
         <Alert icon={<CheckIcon fontSize="inherit" />} severity="success">
           This is a success alert — check it out!
         </Alert>
@@ -191,7 +191,7 @@ export const Icons = story<AlertProps>(
           This is a success alert — check it out!
         </Alert>
       </Stack>
-    )
+    );
   },
   {
     parameters: {
@@ -205,14 +205,14 @@ Setting the icon prop to false will remove the icon altogether.`,
         },
       },
     },
-  },
-)
+  }
+);
 
 export const Variants = story<AlertProps>(
   () => {
     return (
       <Stack direction="column" spacing={2}>
-        <Stack sx={{ width: '100%' }} spacing={2}>
+        <Stack sx={{ width: "100%" }} spacing={2}>
           <Typography>standard</Typography>
           <Alert variant="standard" severity="error">
             This is an error alert — check it out!
@@ -227,7 +227,7 @@ export const Variants = story<AlertProps>(
             This is a success alert — check it out!
           </Alert>
         </Stack>
-        <Stack sx={{ width: '100%' }} spacing={2}>
+        <Stack sx={{ width: "100%" }} spacing={2}>
           <Typography>outlined</Typography>
           <Alert variant="outlined" severity="error">
             This is an error alert — check it out!
@@ -242,7 +242,7 @@ export const Variants = story<AlertProps>(
             This is a success alert — check it out!
           </Alert>
         </Stack>
-        <Stack sx={{ width: '100%' }} spacing={2}>
+        <Stack sx={{ width: "100%" }} spacing={2}>
           <Typography>filled</Typography>
           <Alert variant="filled" severity="error">
             This is an error alert — check it out!
@@ -258,7 +258,7 @@ export const Variants = story<AlertProps>(
           </Alert>
         </Stack>
       </Stack>
-    )
+    );
   },
   {
     parameters: {
@@ -268,34 +268,34 @@ export const Variants = story<AlertProps>(
         },
       },
     },
-  },
-)
+  }
+);
 
 // TODO: this was copied from the MUI docs, but could probably become its own custom component
 const ToastAlert = React.forwardRef<HTMLDivElement, AlertProps>(function (
   props,
-  ref,
+  ref
 ) {
-  return <Alert elevation={6} ref={ref} variant="filled" {...props} />
-})
+  return <Alert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
 export const WithSnackbar = story<AlertProps>(
   () => {
-    const [open, setOpen] = React.useState(false)
+    const [open, setOpen] = React.useState(false);
 
     const handleClick = () => {
-      setOpen(true)
-    }
+      setOpen(true);
+    };
 
     const handleClose = (event?: React.SyntheticEvent, reason?: string) => {
-      if (reason === 'clickaway') {
-        return
+      if (reason === "clickaway") {
+        return;
       }
-      setOpen(false)
-    }
+      setOpen(false);
+    };
 
     return (
-      <Stack spacing={2} sx={{ width: '100%' }}>
+      <Stack spacing={2} sx={{ width: "100%" }}>
         <Button variant="outlined" onClick={handleClick}>
           Open success snackbar
         </Button>
@@ -303,21 +303,21 @@ export const WithSnackbar = story<AlertProps>(
           open={open}
           autoHideDuration={6000}
           anchorOrigin={{
-            horizontal: 'right',
-            vertical: 'top',
+            horizontal: "right",
+            vertical: "top",
           }}
           onClose={handleClose}
         >
           <ToastAlert
             onClose={handleClose}
             severity="success"
-            sx={{ width: '100%' }}
+            sx={{ width: "100%" }}
           >
             This is a success message!
           </ToastAlert>
         </Snackbar>
       </Stack>
-    )
+    );
   },
   {
     parameters: {
@@ -327,8 +327,8 @@ export const WithSnackbar = story<AlertProps>(
         },
       },
     },
-  },
-)
+  }
+);
 
 export const Color = story<AlertProps>(
   () => {
@@ -336,7 +336,7 @@ export const Color = story<AlertProps>(
       <Alert severity="success" color="info">
         This is a success alert — check it out!
       </Alert>
-    )
+    );
   },
   {
     parameters: {
@@ -346,5 +346,5 @@ export const Color = story<AlertProps>(
         },
       },
     },
-  },
-)
+  }
+);

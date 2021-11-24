@@ -2,6 +2,6 @@
 import {
   LinearProgress as _LinearProgress,
   LinearProgressProps as _LinearProgressProps,
-} from './LinearProgress'
-export * from './LinearProgress.gen'
+} from "./LinearProgress";
+export * from "./LinearProgress.gen";
 // Add more functions/etc. below

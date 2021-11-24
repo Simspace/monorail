@@ -1,19 +1,22 @@
 // Edit this file to add new stories
-import React from 'react'
-import { SxProps } from '@mui/system'
+import React from "react";
+import { SxProps } from "@mui/system";
 
-import { story } from '../../../__tests__/helpers/storybook'
-import { Box } from '../../Box/Box'
-import { Portal } from '../../Portal/Portal'
-import { ClickAwayListener, ClickAwayListenerProps } from '../ClickAwayListener'
-import { defaultStoryMeta } from './ClickAwayListener.stories.gen'
+import { story } from "../../../__tests__/helpers/storybook";
+import { Box } from "../../Box/Box";
+import { Portal } from "../../Portal/Portal";
+import {
+  ClickAwayListener,
+  ClickAwayListenerProps,
+} from "../ClickAwayListener";
+import { defaultStoryMeta } from "./ClickAwayListener.stories.gen";
 
 /**
  * Metadata for ClickAwayListener stories - update/extend as needed
  * This is intended to be exported as story-level metadata from the main .stories.tsx file, like:
  * "export default { ...defaultStoryMeta } // Add/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Utils/ClickAwayListener' }
+export default { ...defaultStoryMeta, title: "Utils/ClickAwayListener" };
 
 /**
  * Story template (edit/remove by hand if needed)
@@ -22,31 +25,31 @@ export default { ...defaultStoryMeta, title: 'Utils/ClickAwayListener' }
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
 const Template = story<ClickAwayListenerProps>(
-  args => {
-    const [open, setOpen] = React.useState(false)
+  (args) => {
+    const [open, setOpen] = React.useState(false);
 
     const handleClick = () => {
-      setOpen(prev => !prev)
-    }
+      setOpen((prev) => !prev);
+    };
 
     const handleClickAway = () => {
-      setOpen(false)
-    }
+      setOpen(false);
+    };
 
     const styles: SxProps = {
-      position: 'absolute' as const,
+      position: "absolute" as const,
       top: 28,
       right: 0,
       left: 0,
       zIndex: 1,
-      border: '1px solid',
+      border: "1px solid",
       p: 1,
-      bgcolor: 'background.paper',
-    }
+      bgcolor: "background.paper",
+    };
 
     return (
       <ClickAwayListener onClickAway={handleClickAway} {...args}>
-        <Box sx={{ position: 'relative' }}>
+        <Box sx={{ position: "relative" }}>
           <button type="button" onClick={handleClick}>
             Open menu dropdown
           </button>
@@ -57,36 +60,36 @@ const Template = story<ClickAwayListenerProps>(
           ) : null}
         </Box>
       </ClickAwayListener>
-    )
+    );
   },
-  { args: {} },
-)
+  { args: {} }
+);
 
 /** Default story for ClickAwayListener (edit/remove by hand if needed) */
-export const Default = story(Template)
+export const Default = story(Template);
 
 export const WithPortal = story<ClickAwayListenerProps>(
   () => {
-    const [open, setOpen] = React.useState(false)
+    const [open, setOpen] = React.useState(false);
 
     const handleClick = () => {
-      setOpen(prev => !prev)
-    }
+      setOpen((prev) => !prev);
+    };
 
     const handleClickAway = () => {
-      setOpen(false)
-    }
+      setOpen(false);
+    };
 
     const styles: SxProps = {
-      position: 'fixed',
+      position: "fixed",
       width: 200,
-      top: '50%',
-      left: '50%',
-      transform: 'translate(-50%, -50%)',
-      border: '1px solid',
+      top: "50%",
+      left: "50%",
+      transform: "translate(-50%, -50%)",
+      border: "1px solid",
       p: 1,
-      bgcolor: 'background.paper',
-    }
+      bgcolor: "background.paper",
+    };
 
     return (
       <ClickAwayListener onClickAway={handleClickAway}>
@@ -104,7 +107,7 @@ export const WithPortal = story<ClickAwayListenerProps>(
           ) : null}
         </div>
       </ClickAwayListener>
-    )
+    );
   },
   {
     parameters: {
@@ -114,31 +117,31 @@ export const WithPortal = story<ClickAwayListenerProps>(
         },
       },
     },
-  },
-)
+  }
+);
 
 export const LeadingEdge = story<ClickAwayListenerProps>(
   () => {
-    const [open, setOpen] = React.useState(false)
+    const [open, setOpen] = React.useState(false);
 
     const handleClick = () => {
-      setOpen(prev => !prev)
-    }
+      setOpen((prev) => !prev);
+    };
 
     const handleClickAway = () => {
-      setOpen(false)
-    }
+      setOpen(false);
+    };
 
     const styles: SxProps = {
-      position: 'absolute',
+      position: "absolute",
       top: 28,
       right: 0,
       left: 0,
       zIndex: 1,
-      border: '1px solid',
+      border: "1px solid",
       p: 1,
-      bgcolor: 'background.paper',
-    }
+      bgcolor: "background.paper",
+    };
 
     return (
       <ClickAwayListener
@@ -146,7 +149,7 @@ export const LeadingEdge = story<ClickAwayListenerProps>(
         touchEvent="onTouchStart"
         onClickAway={handleClickAway}
       >
-        <Box sx={{ position: 'relative' }}>
+        <Box sx={{ position: "relative" }}>
           <button type="button" onClick={handleClick}>
             Open menu dropdown
           </button>
@@ -157,7 +160,7 @@ export const LeadingEdge = story<ClickAwayListenerProps>(
           ) : null}
         </Box>
       </ClickAwayListener>
-    )
+    );
   },
   {
     parameters: {
@@ -167,5 +170,5 @@ export const LeadingEdge = story<ClickAwayListenerProps>(
         },
       },
     },
-  },
-)
+  }
+);

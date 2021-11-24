@@ -2,6 +2,6 @@
 import {
   AlertTitle as _AlertTitle,
   AlertTitleProps as _AlertTitleProps,
-} from './AlertTitle'
-export * from './AlertTitle.gen'
+} from "./AlertTitle";
+export * from "./AlertTitle.gen";
 // Add more functions/etc. below

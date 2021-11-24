@@ -1,60 +1,60 @@
 // Edit this file to add new stories
-import React from 'react'
-import DeleteIcon from '@mui/icons-material/Delete'
-import FilterListIcon from '@mui/icons-material/FilterList'
-import FirstPageIcon from '@mui/icons-material/FirstPage'
-import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown'
-import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft'
-import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight'
-import KeyboardArrowUp from '@mui/icons-material/KeyboardArrowUp'
-import LastPageIcon from '@mui/icons-material/LastPage'
-import { tableCellClasses } from '@mui/material/TableCell'
+import React from "react";
+import DeleteIcon from "@mui/icons-material/Delete";
+import FilterListIcon from "@mui/icons-material/FilterList";
+import FirstPageIcon from "@mui/icons-material/FirstPage";
+import KeyboardArrowDown from "@mui/icons-material/KeyboardArrowDown";
+import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
+import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
+import KeyboardArrowUp from "@mui/icons-material/KeyboardArrowUp";
+import LastPageIcon from "@mui/icons-material/LastPage";
+import { tableCellClasses } from "@mui/material/TableCell";
 
-import { story } from '../../../__tests__/helpers/storybook'
-import { alpha, styled, visuallyHidden } from '../../../helpers/styles'
-import { useTheme } from '../../../theme/useTheme'
-import { Alert } from '../../Alert/Alert'
-import { Box } from '../../Box/Box'
-import { Checkbox } from '../../Checkbox/Checkbox'
-import { Collapse } from '../../Collapse/Collapse'
-import { FormControlLabel } from '../../FormControlLabel/FormControlLabel'
-import { IconButton } from '../../IconButton/IconButton'
-import { Paper } from '../../Paper/Paper'
-import { Switch } from '../../Switch/Switch'
-import { TableBody } from '../../TableBody/TableBody'
-import { TableCell } from '../../TableCell/TableCell'
-import { TableContainer } from '../../TableContainer/TableContainer'
-import { TableFooter } from '../../TableFooter/TableFooter'
-import { TableHead } from '../../TableHead/TableHead'
-import { TablePagination } from '../../TablePagination/TablePagination'
-import { TableRow } from '../../TableRow/TableRow'
-import { TableSortLabel } from '../../TableSortLabel/TableSortLabel'
-import { Toolbar } from '../../Toolbar/Toolbar'
-import { Tooltip } from '../../Tooltip/Tooltip'
-import { Typography } from '../../Typography/Typography'
-import { Table, TableProps } from '../Table'
-import { defaultStoryMeta } from './Table.stories.gen'
+import { story } from "../../../__tests__/helpers/storybook";
+import { alpha, styled, visuallyHidden } from "../../../helpers/styles";
+import { useTheme } from "../../../theme/useTheme";
+import { Alert } from "../../Alert/Alert";
+import { Box } from "../../Box/Box";
+import { Checkbox } from "../../Checkbox/Checkbox";
+import { Collapse } from "../../Collapse/Collapse";
+import { FormControlLabel } from "../../FormControlLabel/FormControlLabel";
+import { IconButton } from "../../IconButton/IconButton";
+import { Paper } from "../../Paper/Paper";
+import { Switch } from "../../Switch/Switch";
+import { TableBody } from "../../TableBody/TableBody";
+import { TableCell } from "../../TableCell/TableCell";
+import { TableContainer } from "../../TableContainer/TableContainer";
+import { TableFooter } from "../../TableFooter/TableFooter";
+import { TableHead } from "../../TableHead/TableHead";
+import { TablePagination } from "../../TablePagination/TablePagination";
+import { TableRow } from "../../TableRow/TableRow";
+import { TableSortLabel } from "../../TableSortLabel/TableSortLabel";
+import { Toolbar } from "../../Toolbar/Toolbar";
+import { Tooltip } from "../../Tooltip/Tooltip";
+import { Typography } from "../../Typography/Typography";
+import { Table, TableProps } from "../Table";
+import { defaultStoryMeta } from "./Table.stories.gen";
 
-export default { ...defaultStoryMeta, title: 'Data Display/Table' }
+export default { ...defaultStoryMeta, title: "Data Display/Table" };
 
-const Template = story<TableProps>(args => {
+const Template = story<TableProps>((args) => {
   function createData(
     name: string,
     calories: number,
     fat: number,
     carbs: number,
-    protein: number,
+    protein: number
   ) {
-    return { name, calories, fat, carbs, protein }
+    return { name, calories, fat, carbs, protein };
   }
 
   const rows = [
-    createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-    createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-    createData('Eclair', 262, 16.0, 24, 6.0),
-    createData('Cupcake', 305, 3.7, 67, 4.3),
-    createData('Gingerbread', 356, 16.0, 49, 3.9),
-  ]
+    createData("Frozen yoghurt", 159, 6.0, 24, 4.0),
+    createData("Ice cream sandwich", 237, 9.0, 37, 4.3),
+    createData("Eclair", 262, 16.0, 24, 6.0),
+    createData("Cupcake", 305, 3.7, 67, 4.3),
+    createData("Gingerbread", 356, 16.0, 49, 3.9),
+  ];
 
   return (
     <TableContainer component={Paper}>
@@ -69,10 +69,10 @@ const Template = story<TableProps>(args => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map(row => (
+          {rows.map((row) => (
             <TableRow
               key={row.name}
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
               <TableCell component="th" scope="row">
                 {row.name}
@@ -86,8 +86,8 @@ const Template = story<TableProps>(args => {
         </TableBody>
       </Table>
     </TableContainer>
-  )
-})
+  );
+});
 
 export const Default = story(Template, {
   parameters: {
@@ -97,27 +97,27 @@ export const Default = story(Template, {
       },
     },
   },
-})
+});
 
 export const Density = story<TableProps>(
-  args => {
+  (args) => {
     function createData(
       name: string,
       calories: number,
       fat: number,
       carbs: number,
-      protein: number,
+      protein: number
     ) {
-      return { name, calories, fat, carbs, protein }
+      return { name, calories, fat, carbs, protein };
     }
 
     const rows = [
-      createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-      createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-      createData('Eclair', 262, 16.0, 24, 6.0),
-      createData('Cupcake', 305, 3.7, 67, 4.3),
-      createData('Gingerbread', 356, 16.0, 49, 3.9),
-    ]
+      createData("Frozen yoghurt", 159, 6.0, 24, 4.0),
+      createData("Ice cream sandwich", 237, 9.0, 37, 4.3),
+      createData("Eclair", 262, 16.0, 24, 6.0),
+      createData("Cupcake", 305, 3.7, 67, 4.3),
+      createData("Gingerbread", 356, 16.0, 49, 3.9),
+    ];
     return (
       <TableContainer component={Paper}>
         <Table
@@ -136,10 +136,10 @@ export const Density = story<TableProps>(
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map(row => (
+            {rows.map((row) => (
               <TableRow
                 key={row.name}
-                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
                 <TableCell component="th" scope="row">
                   {row.name}
@@ -153,7 +153,7 @@ export const Density = story<TableProps>(
           </TableBody>
         </Table>
       </TableContainer>
-    )
+    );
   },
   {
     parameters: {
@@ -163,17 +163,17 @@ export const Density = story<TableProps>(
         },
       },
     },
-  },
-)
+  }
+);
 
 export const SortingAndSelecting = story<TableProps>(
-  args => {
+  (args) => {
     interface Data {
-      calories: number
-      carbs: number
-      fat: number
-      name: string
-      protein: number
+      calories: number;
+      carbs: number;
+      fat: number;
+      name: string;
+      protein: number;
     }
 
     function createData(
@@ -181,7 +181,7 @@ export const SortingAndSelecting = story<TableProps>(
       calories: number,
       fat: number,
       carbs: number,
-      protein: number,
+      protein: number
     ): Data {
       return {
         name,
@@ -189,118 +189,118 @@ export const SortingAndSelecting = story<TableProps>(
         fat,
         carbs,
         protein,
-      }
+      };
     }
 
     const rows = [
-      createData('Cupcake', 305, 3.7, 67, 4.3),
-      createData('Donut', 452, 25.0, 51, 4.9),
-      createData('Eclair', 262, 16.0, 24, 6.0),
-      createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-      createData('Gingerbread', 356, 16.0, 49, 3.9),
-      createData('Honeycomb', 408, 3.2, 87, 6.5),
-      createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-      createData('Jelly Bean', 375, 0.0, 94, 0.0),
-      createData('KitKat', 518, 26.0, 65, 7.0),
-      createData('Lollipop', 392, 0.2, 98, 0.0),
-      createData('Marshmallow', 318, 0, 81, 2.0),
-      createData('Nougat', 360, 19.0, 9, 37.0),
-      createData('Oreo', 437, 18.0, 63, 4.0),
-    ]
+      createData("Cupcake", 305, 3.7, 67, 4.3),
+      createData("Donut", 452, 25.0, 51, 4.9),
+      createData("Eclair", 262, 16.0, 24, 6.0),
+      createData("Frozen yoghurt", 159, 6.0, 24, 4.0),
+      createData("Gingerbread", 356, 16.0, 49, 3.9),
+      createData("Honeycomb", 408, 3.2, 87, 6.5),
+      createData("Ice cream sandwich", 237, 9.0, 37, 4.3),
+      createData("Jelly Bean", 375, 0.0, 94, 0.0),
+      createData("KitKat", 518, 26.0, 65, 7.0),
+      createData("Lollipop", 392, 0.2, 98, 0.0),
+      createData("Marshmallow", 318, 0, 81, 2.0),
+      createData("Nougat", 360, 19.0, 9, 37.0),
+      createData("Oreo", 437, 18.0, 63, 4.0),
+    ];
 
     function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
       if (b[orderBy] < a[orderBy]) {
-        return -1
+        return -1;
       }
       if (b[orderBy] > a[orderBy]) {
-        return 1
+        return 1;
       }
-      return 0
+      return 0;
     }
 
-    type Order = 'asc' | 'desc'
+    type Order = "asc" | "desc";
 
     function getComparator<Key extends keyof Data>(
       order: Order,
-      orderBy: Key,
+      orderBy: Key
     ): (
       a: { [key in Key]: number | string },
-      b: { [key in Key]: number | string },
+      b: { [key in Key]: number | string }
     ) => number {
-      return order === 'desc'
+      return order === "desc"
         ? (a, b) => descendingComparator(a, b, orderBy)
-        : (a, b) => -descendingComparator(a, b, orderBy)
+        : (a, b) => -descendingComparator(a, b, orderBy);
     }
 
     // This method is created for cross-browser compatibility, if you don't
     // need to support IE11, you can use Array.prototype.sort() directly
     function stableSort<T>(
       array: ReadonlyArray<T>,
-      comparator: (a: T, b: T) => number,
+      comparator: (a: T, b: T) => number
     ) {
       const stabilizedThis = array.map(
-        (el, index) => [el, index] as [T, number],
-      )
+        (el, index) => [el, index] as [T, number]
+      );
       stabilizedThis.sort((a, b) => {
-        const order = comparator(a[0], b[0])
+        const order = comparator(a[0], b[0]);
         if (order !== 0) {
-          return order
+          return order;
         }
-        return a[1] - b[1]
-      })
-      return stabilizedThis.map(el => el[0])
+        return a[1] - b[1];
+      });
+      return stabilizedThis.map((el) => el[0]);
     }
 
     interface HeadCell {
-      disablePadding: boolean
-      id: keyof Data
-      label: string
-      numeric: boolean
+      disablePadding: boolean;
+      id: keyof Data;
+      label: string;
+      numeric: boolean;
     }
 
     const headCells: ReadonlyArray<HeadCell> = [
       {
-        id: 'name',
+        id: "name",
         numeric: false,
         disablePadding: true,
-        label: 'Dessert (100g serving)',
+        label: "Dessert (100g serving)",
       },
       {
-        id: 'calories',
+        id: "calories",
         numeric: true,
         disablePadding: false,
-        label: 'Calories',
+        label: "Calories",
       },
       {
-        id: 'fat',
+        id: "fat",
         numeric: true,
         disablePadding: false,
-        label: 'Fat (g)',
+        label: "Fat (g)",
       },
       {
-        id: 'carbs',
+        id: "carbs",
         numeric: true,
         disablePadding: false,
-        label: 'Carbs (g)',
+        label: "Carbs (g)",
       },
       {
-        id: 'protein',
+        id: "protein",
         numeric: true,
         disablePadding: false,
-        label: 'Protein (g)',
+        label: "Protein (g)",
       },
-    ]
+    ];
 
     interface EnhancedTableProps {
-      numSelected: number
+      numSelected: number;
       onRequestSort: (
         event: React.MouseEvent<unknown>,
-        property: keyof Data,
-      ) => void
-      onSelectAllClick: (event: React.ChangeEvent<HTMLInputElement>) => void
-      order: Order
-      orderBy: string
-      rowCount: number
+        property: keyof Data
+      ) => void;
+      onSelectAllClick: (event: React.ChangeEvent<HTMLInputElement>) => void;
+      order: Order;
+      orderBy: string;
+      rowCount: number;
     }
 
     function EnhancedTableHead(props: EnhancedTableProps) {
@@ -311,11 +311,11 @@ export const SortingAndSelecting = story<TableProps>(
         numSelected,
         rowCount,
         onRequestSort,
-      } = props
+      } = props;
       const createSortHandler =
         (property: keyof Data) => (event: React.MouseEvent<unknown>) => {
-          onRequestSort(event, property)
-        }
+          onRequestSort(event, property);
+        };
 
       return (
         <TableHead>
@@ -327,28 +327,28 @@ export const SortingAndSelecting = story<TableProps>(
                 checked={rowCount > 0 && numSelected === rowCount}
                 onChange={onSelectAllClick}
                 inputProps={{
-                  'aria-label': 'select all desserts',
+                  "aria-label": "select all desserts",
                 }}
               />
             </TableCell>
-            {headCells.map(headCell => (
+            {headCells.map((headCell) => (
               <TableCell
                 key={headCell.id}
-                align={headCell.numeric ? 'right' : 'left'}
-                padding={headCell.disablePadding ? 'none' : 'normal'}
+                align={headCell.numeric ? "right" : "left"}
+                padding={headCell.disablePadding ? "none" : "normal"}
                 sortDirection={orderBy === headCell.id ? order : false}
               >
                 <TableSortLabel
                   active={orderBy === headCell.id}
-                  direction={orderBy === headCell.id ? order : 'asc'}
+                  direction={orderBy === headCell.id ? order : "asc"}
                   onClick={createSortHandler(headCell.id)}
                 >
                   {headCell.label}
                   {orderBy === headCell.id ? (
                     <Box component="span" style={visuallyHidden}>
-                      {order === 'desc'
-                        ? 'sorted descending'
-                        : 'sorted ascending'}
+                      {order === "desc"
+                        ? "sorted descending"
+                        : "sorted ascending"}
                     </Box>
                   ) : null}
                 </TableSortLabel>
@@ -356,15 +356,15 @@ export const SortingAndSelecting = story<TableProps>(
             ))}
           </TableRow>
         </TableHead>
-      )
+      );
     }
 
     interface EnhancedTableToolbarProps {
-      numSelected: number
+      numSelected: number;
     }
 
     const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
-      const { numSelected } = props
+      const { numSelected } = props;
 
       return (
         <Toolbar
@@ -372,17 +372,17 @@ export const SortingAndSelecting = story<TableProps>(
             pl: { sm: 2 },
             pr: { xs: 1, sm: 1 },
             ...(numSelected > 0 && {
-              bgcolor: theme =>
+              bgcolor: (theme) =>
                 alpha(
                   theme.palette.primary.main,
-                  theme.palette.action.activatedOpacity,
+                  theme.palette.action.activatedOpacity
                 ),
             }),
           }}
         >
           {numSelected > 0 ? (
             <Typography
-              sx={{ flex: '1 1 100%' }}
+              sx={{ flex: "1 1 100%" }}
               color="inherit"
               variant="subtitle1"
               component="div"
@@ -391,7 +391,7 @@ export const SortingAndSelecting = story<TableProps>(
             </Typography>
           ) : (
             <Typography
-              sx={{ flex: '1 1 100%' }}
+              sx={{ flex: "1 1 100%" }}
               variant="h6"
               id="tableTitle"
               component="div"
@@ -413,89 +413,89 @@ export const SortingAndSelecting = story<TableProps>(
             </Tooltip>
           )}
         </Toolbar>
-      )
-    }
+      );
+    };
 
     function EnhancedTable() {
-      const [order, setOrder] = React.useState<Order>('asc')
-      const [orderBy, setOrderBy] = React.useState<keyof Data>('calories')
-      const [selected, setSelected] = React.useState<ReadonlyArray<string>>([])
-      const [page, setPage] = React.useState(0)
-      const [dense, setDense] = React.useState(false)
-      const [rowsPerPage, setRowsPerPage] = React.useState(5)
+      const [order, setOrder] = React.useState<Order>("asc");
+      const [orderBy, setOrderBy] = React.useState<keyof Data>("calories");
+      const [selected, setSelected] = React.useState<ReadonlyArray<string>>([]);
+      const [page, setPage] = React.useState(0);
+      const [dense, setDense] = React.useState(false);
+      const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
       const handleRequestSort = (
         event: React.MouseEvent<unknown>,
-        property: keyof Data,
+        property: keyof Data
       ) => {
-        const isAsc = orderBy === property && order === 'asc'
-        setOrder(isAsc ? 'desc' : 'asc')
-        setOrderBy(property)
-      }
+        const isAsc = orderBy === property && order === "asc";
+        setOrder(isAsc ? "desc" : "asc");
+        setOrderBy(property);
+      };
 
       const handleSelectAllClick = (
-        event: React.ChangeEvent<HTMLInputElement>,
+        event: React.ChangeEvent<HTMLInputElement>
       ) => {
         if (event.target.checked) {
-          const newSelecteds = rows.map(n => n.name)
-          setSelected(newSelecteds)
-          return
+          const newSelecteds = rows.map((n) => n.name);
+          setSelected(newSelecteds);
+          return;
         }
-        setSelected([])
-      }
+        setSelected([]);
+      };
 
       const handleClick = (event: React.MouseEvent<unknown>, name: string) => {
-        const selectedIndex = selected.indexOf(name)
-        let newSelected: ReadonlyArray<string> = []
+        const selectedIndex = selected.indexOf(name);
+        let newSelected: ReadonlyArray<string> = [];
 
         if (selectedIndex === -1) {
-          newSelected = newSelected.concat(selected, name)
+          newSelected = newSelected.concat(selected, name);
         } else if (selectedIndex === 0) {
-          newSelected = newSelected.concat(selected.slice(1))
+          newSelected = newSelected.concat(selected.slice(1));
         } else if (selectedIndex === selected.length - 1) {
-          newSelected = newSelected.concat(selected.slice(0, -1))
+          newSelected = newSelected.concat(selected.slice(0, -1));
         } else if (selectedIndex > 0) {
           newSelected = newSelected.concat(
             selected.slice(0, selectedIndex),
-            selected.slice(selectedIndex + 1),
-          )
+            selected.slice(selectedIndex + 1)
+          );
         }
 
-        setSelected(newSelected)
-      }
+        setSelected(newSelected);
+      };
 
       const handleChangePage = (event: unknown, newPage: number) => {
-        setPage(newPage)
-      }
+        setPage(newPage);
+      };
 
       const handleChangeRowsPerPage = (
-        event: React.ChangeEvent<HTMLInputElement>,
+        event: React.ChangeEvent<HTMLInputElement>
       ) => {
-        setRowsPerPage(parseInt(event.target.value, 10))
-        setPage(0)
-      }
+        setRowsPerPage(parseInt(event.target.value, 10));
+        setPage(0);
+      };
 
       const handleChangeDense = (
-        event: React.ChangeEvent<HTMLInputElement>,
+        event: React.ChangeEvent<HTMLInputElement>
       ) => {
-        setDense(event.target.checked)
-      }
+        setDense(event.target.checked);
+      };
 
-      const isSelected = (name: string) => selected.indexOf(name) !== -1
+      const isSelected = (name: string) => selected.indexOf(name) !== -1;
 
       // Avoid a layout jump when reaching the last page with empty rows.
       const emptyRows =
-        page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0
+        page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
       return (
-        <Box sx={{ width: '100%' }}>
-          <Paper sx={{ width: '100%', mb: 2 }}>
+        <Box sx={{ width: "100%" }}>
+          <Paper sx={{ width: "100%", mb: 2 }}>
             <EnhancedTableToolbar numSelected={selected.length} />
             <TableContainer>
               <Table
                 sx={{ minWidth: 750 }}
                 aria-labelledby="tableTitle"
-                size={dense ? 'small' : 'medium'}
+                size={dense ? "small" : "medium"}
                 {...args}
               >
                 <EnhancedTableHead
@@ -512,8 +512,8 @@ export const SortingAndSelecting = story<TableProps>(
                   {stableSort(rows, getComparator(order, orderBy))
                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                     .map((row, index) => {
-                      const isItemSelected = isSelected(row.name)
-                      const labelId = `enhanced-table-checkbox-${index}`
+                      const isItemSelected = isSelected(row.name);
+                      const labelId = `enhanced-table-checkbox-${index}`;
 
                       return (
                         <TableRow
@@ -532,7 +532,7 @@ export const SortingAndSelecting = story<TableProps>(
                               color="primary"
                               checked={isItemSelected}
                               inputProps={{
-                                'aria-labelledby': labelId,
+                                "aria-labelledby": labelId,
                               }}
                             />
                           </TableCell>
@@ -549,7 +549,7 @@ export const SortingAndSelecting = story<TableProps>(
                           <TableCell align="right">{row.carbs}</TableCell>
                           <TableCell align="right">{row.protein}</TableCell>
                         </TableRow>
-                      )
+                      );
                     })}
                   {emptyRows > 0 && (
                     <TableRow
@@ -578,10 +578,10 @@ export const SortingAndSelecting = story<TableProps>(
             label="Dense padding"
           />
         </Box>
-      )
+      );
     }
 
-    return <EnhancedTable />
+    return <EnhancedTable />;
   },
   {
     parameters: {
@@ -593,8 +593,8 @@ The Table has been given a fixed width to demonstrate horizontal scrolling. In o
         },
       },
     },
-  },
-)
+  }
+);
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -604,37 +604,37 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.body}`]: {
     fontSize: 14,
   },
-}))
+}));
 
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
-  '&:nth-of-type(odd)': {
+  "&:nth-of-type(odd)": {
     backgroundColor: theme.palette.action.hover,
   },
   // hide last border
-  '&:last-child td, &:last-child th': {
+  "&:last-child td, &:last-child th": {
     border: 0,
   },
-}))
+}));
 
 export const Customization = story<TableProps>(
-  args => {
+  (args) => {
     function createData(
       name: string,
       calories: number,
       fat: number,
       carbs: number,
-      protein: number,
+      protein: number
     ) {
-      return { name, calories, fat, carbs, protein }
+      return { name, calories, fat, carbs, protein };
     }
 
     const rows = [
-      createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-      createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-      createData('Eclair', 262, 16.0, 24, 6.0),
-      createData('Cupcake', 305, 3.7, 67, 4.3),
-      createData('Gingerbread', 356, 16.0, 49, 3.9),
-    ]
+      createData("Frozen yoghurt", 159, 6.0, 24, 4.0),
+      createData("Ice cream sandwich", 237, 9.0, 37, 4.3),
+      createData("Eclair", 262, 16.0, 24, 6.0),
+      createData("Cupcake", 305, 3.7, 67, 4.3),
+      createData("Gingerbread", 356, 16.0, 49, 3.9),
+    ];
     return (
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 700 }} aria-label="customized table" {...args}>
@@ -648,7 +648,7 @@ export const Customization = story<TableProps>(
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map(row => (
+            {rows.map((row) => (
               <StyledTableRow key={row.name}>
                 <StyledTableCell component="th" scope="row">
                   {row.name}
@@ -662,7 +662,7 @@ export const Customization = story<TableProps>(
           </TableBody>
         </Table>
       </TableContainer>
-    )
+    );
   },
   {
     parameters: {
@@ -672,48 +672,48 @@ export const Customization = story<TableProps>(
         },
       },
     },
-  },
-)
+  }
+);
 
 export const CustomPaginationOptions = story<TableProps>(
-  args => {
+  (args) => {
     interface TablePaginationActionsProps {
-      count: number
-      page: number
-      rowsPerPage: number
+      count: number;
+      page: number;
+      rowsPerPage: number;
       onPageChange: (
         event: React.MouseEvent<HTMLButtonElement>,
-        newPage: number,
-      ) => void
+        newPage: number
+      ) => void;
     }
 
     function TablePaginationActions(props: TablePaginationActionsProps) {
-      const theme = useTheme()
-      const { count, page, rowsPerPage, onPageChange } = props
+      const theme = useTheme();
+      const { count, page, rowsPerPage, onPageChange } = props;
 
       const handleFirstPageButtonClick = (
-        event: React.MouseEvent<HTMLButtonElement>,
+        event: React.MouseEvent<HTMLButtonElement>
       ) => {
-        onPageChange(event, 0)
-      }
+        onPageChange(event, 0);
+      };
 
       const handleBackButtonClick = (
-        event: React.MouseEvent<HTMLButtonElement>,
+        event: React.MouseEvent<HTMLButtonElement>
       ) => {
-        onPageChange(event, page - 1)
-      }
+        onPageChange(event, page - 1);
+      };
 
       const handleNextButtonClick = (
-        event: React.MouseEvent<HTMLButtonElement>,
+        event: React.MouseEvent<HTMLButtonElement>
       ) => {
-        onPageChange(event, page + 1)
-      }
+        onPageChange(event, page + 1);
+      };
 
       const handleLastPageButtonClick = (
-        event: React.MouseEvent<HTMLButtonElement>,
+        event: React.MouseEvent<HTMLButtonElement>
       ) => {
-        onPageChange(event, Math.max(0, Math.ceil(count / rowsPerPage) - 1))
-      }
+        onPageChange(event, Math.max(0, Math.ceil(count / rowsPerPage) - 1));
+      };
 
       return (
         <Box sx={{ flexShrink: 0, ml: 2.5 }}>
@@ -723,7 +723,7 @@ export const CustomPaginationOptions = story<TableProps>(
             aria-label="first page"
             size="large"
           >
-            {theme.direction === 'rtl' ? <LastPageIcon /> : <FirstPageIcon />}
+            {theme.direction === "rtl" ? <LastPageIcon /> : <FirstPageIcon />}
           </IconButton>
           <IconButton
             onClick={handleBackButtonClick}
@@ -731,7 +731,7 @@ export const CustomPaginationOptions = story<TableProps>(
             aria-label="previous page"
             size="large"
           >
-            {theme.direction === 'rtl' ? (
+            {theme.direction === "rtl" ? (
               <KeyboardArrowRight />
             ) : (
               <KeyboardArrowLeft />
@@ -743,7 +743,7 @@ export const CustomPaginationOptions = story<TableProps>(
             aria-label="next page"
             size="large"
           >
-            {theme.direction === 'rtl' ? (
+            {theme.direction === "rtl" ? (
               <KeyboardArrowLeft />
             ) : (
               <KeyboardArrowRight />
@@ -755,53 +755,53 @@ export const CustomPaginationOptions = story<TableProps>(
             aria-label="last page"
             size="large"
           >
-            {theme.direction === 'rtl' ? <FirstPageIcon /> : <LastPageIcon />}
+            {theme.direction === "rtl" ? <FirstPageIcon /> : <LastPageIcon />}
           </IconButton>
         </Box>
-      )
+      );
     }
 
     function createData(name: string, calories: number, fat: number) {
-      return { name, calories, fat }
+      return { name, calories, fat };
     }
 
     const rows = [
-      createData('Cupcake', 305, 3.7),
-      createData('Donut', 452, 25.0),
-      createData('Eclair', 262, 16.0),
-      createData('Frozen yoghurt', 159, 6.0),
-      createData('Gingerbread', 356, 16.0),
-      createData('Honeycomb', 408, 3.2),
-      createData('Ice cream sandwich', 237, 9.0),
-      createData('Jelly Bean', 375, 0.0),
-      createData('KitKat', 518, 26.0),
-      createData('Lollipop', 392, 0.2),
-      createData('Marshmallow', 318, 0),
-      createData('Nougat', 360, 19.0),
-      createData('Oreo', 437, 18.0),
-    ].sort((a, b) => (a.calories < b.calories ? -1 : 1))
+      createData("Cupcake", 305, 3.7),
+      createData("Donut", 452, 25.0),
+      createData("Eclair", 262, 16.0),
+      createData("Frozen yoghurt", 159, 6.0),
+      createData("Gingerbread", 356, 16.0),
+      createData("Honeycomb", 408, 3.2),
+      createData("Ice cream sandwich", 237, 9.0),
+      createData("Jelly Bean", 375, 0.0),
+      createData("KitKat", 518, 26.0),
+      createData("Lollipop", 392, 0.2),
+      createData("Marshmallow", 318, 0),
+      createData("Nougat", 360, 19.0),
+      createData("Oreo", 437, 18.0),
+    ].sort((a, b) => (a.calories < b.calories ? -1 : 1));
 
     function CustomPaginationActionsTable() {
-      const [page, setPage] = React.useState(0)
-      const [rowsPerPage, setRowsPerPage] = React.useState(5)
+      const [page, setPage] = React.useState(0);
+      const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
       // Avoid a layout jump when reaching the last page with empty rows.
       const emptyRows =
-        page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0
+        page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
       const handleChangePage = (
         event: React.MouseEvent<HTMLButtonElement> | null,
-        newPage: number,
+        newPage: number
       ) => {
-        setPage(newPage)
-      }
+        setPage(newPage);
+      };
 
       const handleChangeRowsPerPage = (
-        event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+        event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
       ) => {
-        setRowsPerPage(parseInt(event.target.value, 10))
-        setPage(0)
-      }
+        setRowsPerPage(parseInt(event.target.value, 10));
+        setPage(0);
+      };
 
       return (
         <TableContainer component={Paper}>
@@ -814,10 +814,10 @@ export const CustomPaginationOptions = story<TableProps>(
               {(rowsPerPage > 0
                 ? rows.slice(
                     page * rowsPerPage,
-                    page * rowsPerPage + rowsPerPage,
+                    page * rowsPerPage + rowsPerPage
                   )
                 : rows
-              ).map(row => (
+              ).map((row) => (
                 <TableRow key={row.name}>
                   <TableCell component="th" scope="row">
                     {row.name}
@@ -839,14 +839,14 @@ export const CustomPaginationOptions = story<TableProps>(
             <TableFooter>
               <TableRow>
                 <TablePagination
-                  rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
+                  rowsPerPageOptions={[5, 10, 25, { label: "All", value: -1 }]}
                   colSpan={3}
                   count={rows.length}
                   rowsPerPage={rowsPerPage}
                   page={page}
                   SelectProps={{
                     inputProps: {
-                      'aria-label': 'rows per page',
+                      "aria-label": "rows per page",
                     },
                     native: true,
                   }}
@@ -858,10 +858,10 @@ export const CustomPaginationOptions = story<TableProps>(
             </TableFooter>
           </Table>
         </TableContainer>
-      )
+      );
     }
 
-    return <CustomPaginationActionsTable />
+    return <CustomPaginationActionsTable />;
   },
   {
     parameters: {
@@ -876,102 +876,102 @@ The ActionsComponent prop of the TablePagination component allows the implementa
         },
       },
     },
-  },
-)
+  }
+);
 
 export const StickyHeader = story<TableProps>(
-  args => {
+  (args) => {
     interface Column {
-      id: 'name' | 'code' | 'population' | 'size' | 'density'
-      label: string
-      minWidth?: number
-      align?: 'right'
-      format?: (value: number) => string
+      id: "name" | "code" | "population" | "size" | "density";
+      label: string;
+      minWidth?: number;
+      align?: "right";
+      format?: (value: number) => string;
     }
 
     const columns: ReadonlyArray<Column> = [
-      { id: 'name', label: 'Name', minWidth: 170 },
-      { id: 'code', label: 'ISO\u00a0Code', minWidth: 100 },
+      { id: "name", label: "Name", minWidth: 170 },
+      { id: "code", label: "ISO\u00a0Code", minWidth: 100 },
       {
-        id: 'population',
-        label: 'Population',
+        id: "population",
+        label: "Population",
         minWidth: 170,
-        align: 'right',
-        format: (value: number) => value.toLocaleString('en-US'),
+        align: "right",
+        format: (value: number) => value.toLocaleString("en-US"),
       },
       {
-        id: 'size',
-        label: 'Size\u00a0(km\u00b2)',
+        id: "size",
+        label: "Size\u00a0(km\u00b2)",
         minWidth: 170,
-        align: 'right',
-        format: (value: number) => value.toLocaleString('en-US'),
+        align: "right",
+        format: (value: number) => value.toLocaleString("en-US"),
       },
       {
-        id: 'density',
-        label: 'Density',
+        id: "density",
+        label: "Density",
         minWidth: 170,
-        align: 'right',
+        align: "right",
         format: (value: number) => value.toFixed(2),
       },
-    ]
+    ];
 
     interface Data {
-      name: string
-      code: string
-      population: number
-      size: number
-      density: number
+      name: string;
+      code: string;
+      population: number;
+      size: number;
+      density: number;
     }
 
     function createData(
       name: string,
       code: string,
       population: number,
-      size: number,
+      size: number
     ): Data {
-      const density = population / size
-      return { name, code, population, size, density }
+      const density = population / size;
+      return { name, code, population, size, density };
     }
 
     const rows = [
-      createData('India', 'IN', 1324171354, 3287263),
-      createData('China', 'CN', 1403500365, 9596961),
-      createData('Italy', 'IT', 60483973, 301340),
-      createData('United States', 'US', 327167434, 9833520),
-      createData('Canada', 'CA', 37602103, 9984670),
-      createData('Australia', 'AU', 25475400, 7692024),
-      createData('Germany', 'DE', 83019200, 357578),
-      createData('Ireland', 'IE', 4857000, 70273),
-      createData('Mexico', 'MX', 126577691, 1972550),
-      createData('Japan', 'JP', 126317000, 377973),
-      createData('France', 'FR', 67022000, 640679),
-      createData('United Kingdom', 'GB', 67545757, 242495),
-      createData('Russia', 'RU', 146793744, 17098246),
-      createData('Nigeria', 'NG', 200962417, 923768),
-      createData('Brazil', 'BR', 210147125, 8515767),
-    ]
+      createData("India", "IN", 1324171354, 3287263),
+      createData("China", "CN", 1403500365, 9596961),
+      createData("Italy", "IT", 60483973, 301340),
+      createData("United States", "US", 327167434, 9833520),
+      createData("Canada", "CA", 37602103, 9984670),
+      createData("Australia", "AU", 25475400, 7692024),
+      createData("Germany", "DE", 83019200, 357578),
+      createData("Ireland", "IE", 4857000, 70273),
+      createData("Mexico", "MX", 126577691, 1972550),
+      createData("Japan", "JP", 126317000, 377973),
+      createData("France", "FR", 67022000, 640679),
+      createData("United Kingdom", "GB", 67545757, 242495),
+      createData("Russia", "RU", 146793744, 17098246),
+      createData("Nigeria", "NG", 200962417, 923768),
+      createData("Brazil", "BR", 210147125, 8515767),
+    ];
 
-    const [page, setPage] = React.useState(0)
-    const [rowsPerPage, setRowsPerPage] = React.useState(10)
+    const [page, setPage] = React.useState(0);
+    const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
     const handleChangePage = (event: unknown, newPage: number) => {
-      setPage(newPage)
-    }
+      setPage(newPage);
+    };
 
     const handleChangeRowsPerPage = (
-      event: React.ChangeEvent<HTMLInputElement>,
+      event: React.ChangeEvent<HTMLInputElement>
     ) => {
-      setRowsPerPage(+event.target.value)
-      setPage(0)
-    }
+      setRowsPerPage(+event.target.value);
+      setPage(0);
+    };
 
     return (
-      <Paper sx={{ width: '100%', overflow: 'hidden' }}>
+      <Paper sx={{ width: "100%", overflow: "hidden" }}>
         <TableContainer sx={{ maxHeight: 440 }}>
           <Table stickyHeader aria-label="sticky table" {...args}>
             <TableHead>
               <TableRow>
-                {columns.map(column => (
+                {columns.map((column) => (
                   <TableCell
                     key={column.id}
                     align={column.align}
@@ -985,7 +985,7 @@ export const StickyHeader = story<TableProps>(
             <TableBody>
               {rows
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map(row => {
+                .map((row) => {
                   return (
                     <TableRow
                       hover
@@ -993,18 +993,18 @@ export const StickyHeader = story<TableProps>(
                       tabIndex={-1}
                       key={row.code}
                     >
-                      {columns.map(column => {
-                        const value = row[column.id]
+                      {columns.map((column) => {
+                        const value = row[column.id];
                         return (
                           <TableCell key={column.id} align={column.align}>
-                            {column.format && typeof value === 'number'
+                            {column.format && typeof value === "number"
                               ? column.format(value)
                               : value}
                           </TableCell>
-                        )
+                        );
                       })}
                     </TableRow>
-                  )
+                  );
                 })}
             </TableBody>
           </Table>
@@ -1019,7 +1019,7 @@ export const StickyHeader = story<TableProps>(
           onRowsPerPageChange={handleChangeRowsPerPage}
         />
       </Paper>
-    )
+    );
   },
   {
     parameters: {
@@ -1029,97 +1029,97 @@ export const StickyHeader = story<TableProps>(
         },
       },
     },
-  },
-)
+  }
+);
 
 export const ColumnGrouping = story<TableProps>(
-  args => {
+  (args) => {
     interface Column {
-      id: 'name' | 'code' | 'population' | 'size' | 'density'
-      label: string
-      minWidth?: number
-      align?: 'right'
-      format?: (value: number) => string
+      id: "name" | "code" | "population" | "size" | "density";
+      label: string;
+      minWidth?: number;
+      align?: "right";
+      format?: (value: number) => string;
     }
 
     const columns: Array<Column> = [
-      { id: 'name', label: 'Name', minWidth: 170 },
-      { id: 'code', label: 'ISO\u00a0Code', minWidth: 100 },
+      { id: "name", label: "Name", minWidth: 170 },
+      { id: "code", label: "ISO\u00a0Code", minWidth: 100 },
       {
-        id: 'population',
-        label: 'Population',
+        id: "population",
+        label: "Population",
         minWidth: 170,
-        align: 'right',
-        format: (value: number) => value.toLocaleString('en-US'),
+        align: "right",
+        format: (value: number) => value.toLocaleString("en-US"),
       },
       {
-        id: 'size',
-        label: 'Size\u00a0(km\u00b2)',
+        id: "size",
+        label: "Size\u00a0(km\u00b2)",
         minWidth: 170,
-        align: 'right',
-        format: (value: number) => value.toLocaleString('en-US'),
+        align: "right",
+        format: (value: number) => value.toLocaleString("en-US"),
       },
       {
-        id: 'density',
-        label: 'Density',
+        id: "density",
+        label: "Density",
         minWidth: 170,
-        align: 'right',
+        align: "right",
         format: (value: number) => value.toFixed(2),
       },
-    ]
+    ];
 
     interface Data {
-      name: string
-      code: string
-      population: number
-      size: number
-      density: number
+      name: string;
+      code: string;
+      population: number;
+      size: number;
+      density: number;
     }
 
     function createData(
       name: string,
       code: string,
       population: number,
-      size: number,
+      size: number
     ): Data {
-      const density = population / size
-      return { name, code, population, size, density }
+      const density = population / size;
+      return { name, code, population, size, density };
     }
 
     const rows = [
-      createData('India', 'IN', 1324171354, 3287263),
-      createData('China', 'CN', 1403500365, 9596961),
-      createData('Italy', 'IT', 60483973, 301340),
-      createData('United States', 'US', 327167434, 9833520),
-      createData('Canada', 'CA', 37602103, 9984670),
-      createData('Australia', 'AU', 25475400, 7692024),
-      createData('Germany', 'DE', 83019200, 357578),
-      createData('Ireland', 'IE', 4857000, 70273),
-      createData('Mexico', 'MX', 126577691, 1972550),
-      createData('Japan', 'JP', 126317000, 377973),
-      createData('France', 'FR', 67022000, 640679),
-      createData('United Kingdom', 'GB', 67545757, 242495),
-      createData('Russia', 'RU', 146793744, 17098246),
-      createData('Nigeria', 'NG', 200962417, 923768),
-      createData('Brazil', 'BR', 210147125, 8515767),
-    ]
+      createData("India", "IN", 1324171354, 3287263),
+      createData("China", "CN", 1403500365, 9596961),
+      createData("Italy", "IT", 60483973, 301340),
+      createData("United States", "US", 327167434, 9833520),
+      createData("Canada", "CA", 37602103, 9984670),
+      createData("Australia", "AU", 25475400, 7692024),
+      createData("Germany", "DE", 83019200, 357578),
+      createData("Ireland", "IE", 4857000, 70273),
+      createData("Mexico", "MX", 126577691, 1972550),
+      createData("Japan", "JP", 126317000, 377973),
+      createData("France", "FR", 67022000, 640679),
+      createData("United Kingdom", "GB", 67545757, 242495),
+      createData("Russia", "RU", 146793744, 17098246),
+      createData("Nigeria", "NG", 200962417, 923768),
+      createData("Brazil", "BR", 210147125, 8515767),
+    ];
 
-    const [page, setPage] = React.useState(0)
-    const [rowsPerPage, setRowsPerPage] = React.useState(10)
+    const [page, setPage] = React.useState(0);
+    const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
     const handleChangePage = (event: unknown, newPage: number) => {
-      setPage(newPage)
-    }
+      setPage(newPage);
+    };
 
     const handleChangeRowsPerPage = (
-      event: React.ChangeEvent<HTMLInputElement>,
+      event: React.ChangeEvent<HTMLInputElement>
     ) => {
-      setRowsPerPage(+event.target.value)
-      setPage(0)
-    }
+      setRowsPerPage(+event.target.value);
+      setPage(0);
+    };
 
     return (
-      <Paper sx={{ width: '100%' }}>
+      <Paper sx={{ width: "100%" }}>
         <TableContainer sx={{ maxHeight: 440 }}>
           <Table stickyHeader aria-label="sticky table" {...args}>
             <TableHead>
@@ -1132,7 +1132,7 @@ export const ColumnGrouping = story<TableProps>(
                 </TableCell>
               </TableRow>
               <TableRow>
-                {columns.map(column => (
+                {columns.map((column) => (
                   <TableCell
                     key={column.id}
                     align={column.align}
@@ -1146,7 +1146,7 @@ export const ColumnGrouping = story<TableProps>(
             <TableBody>
               {rows
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map(row => {
+                .map((row) => {
                   return (
                     <TableRow
                       hover
@@ -1154,18 +1154,18 @@ export const ColumnGrouping = story<TableProps>(
                       tabIndex={-1}
                       key={row.code}
                     >
-                      {columns.map(column => {
-                        const value = row[column.id]
+                      {columns.map((column) => {
+                        const value = row[column.id];
                         return (
                           <TableCell key={column.id} align={column.align}>
-                            {column.format && typeof value === 'number'
+                            {column.format && typeof value === "number"
                               ? column.format(value)
                               : value}
                           </TableCell>
-                        )
+                        );
                       })}
                     </TableRow>
-                  )
+                  );
                 })}
             </TableBody>
           </Table>
@@ -1180,7 +1180,7 @@ export const ColumnGrouping = story<TableProps>(
           onRowsPerPageChange={handleChangeRowsPerPage}
         />
       </Paper>
-    )
+    );
   },
   {
     parameters: {
@@ -1190,18 +1190,18 @@ export const ColumnGrouping = story<TableProps>(
         },
       },
     },
-  },
-)
+  }
+);
 
 export const CollapsibleTable = story<TableProps>(
-  args => {
+  (args) => {
     function createData(
       name: string,
       calories: number,
       fat: number,
       carbs: number,
       protein: number,
-      price: number,
+      price: number
     ) {
       return {
         name,
@@ -1212,26 +1212,26 @@ export const CollapsibleTable = story<TableProps>(
         price,
         history: [
           {
-            date: '2020-01-05',
-            customerId: '11091700',
+            date: "2020-01-05",
+            customerId: "11091700",
             amount: 3,
           },
           {
-            date: '2020-01-02',
-            customerId: 'Anonymous',
+            date: "2020-01-02",
+            customerId: "Anonymous",
             amount: 1,
           },
         ],
-      }
+      };
     }
 
     function Row(props: { row: ReturnType<typeof createData> }) {
-      const { row } = props
-      const [open, setOpen] = React.useState(false)
+      const { row } = props;
+      const [open, setOpen] = React.useState(false);
 
       return (
         <React.Fragment>
-          <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
+          <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
             <TableCell>
               <IconButton
                 aria-label="expand row"
@@ -1266,7 +1266,7 @@ export const CollapsibleTable = story<TableProps>(
                       </TableRow>
                     </TableHead>
                     <TableBody>
-                      {row.history.map(historyRow => (
+                      {row.history.map((historyRow) => (
                         <TableRow key={historyRow.date}>
                           <TableCell component="th" scope="row">
                             {historyRow.date}
@@ -1288,16 +1288,16 @@ export const CollapsibleTable = story<TableProps>(
             </TableCell>
           </TableRow>
         </React.Fragment>
-      )
+      );
     }
 
     const rows = [
-      createData('Frozen yoghurt', 159, 6.0, 24, 4.0, 3.99),
-      createData('Ice cream sandwich', 237, 9.0, 37, 4.3, 4.99),
-      createData('Eclair', 262, 16.0, 24, 6.0, 3.79),
-      createData('Cupcake', 305, 3.7, 67, 4.3, 2.5),
-      createData('Gingerbread', 356, 16.0, 49, 3.9, 1.5),
-    ]
+      createData("Frozen yoghurt", 159, 6.0, 24, 4.0, 3.99),
+      createData("Ice cream sandwich", 237, 9.0, 37, 4.3, 4.99),
+      createData("Eclair", 262, 16.0, 24, 6.0, 3.79),
+      createData("Cupcake", 305, 3.7, 67, 4.3, 2.5),
+      createData("Gingerbread", 356, 16.0, 49, 3.9, 1.5),
+    ];
 
     return (
       <TableContainer component={Paper}>
@@ -1313,13 +1313,13 @@ export const CollapsibleTable = story<TableProps>(
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map(row => (
+            {rows.map((row) => (
               <Row key={row.name} row={row} />
             ))}
           </TableBody>
         </Table>
       </TableContainer>
-    )
+    );
   },
   {
     parameters: {
@@ -1329,46 +1329,46 @@ export const CollapsibleTable = story<TableProps>(
         },
       },
     },
-  },
-)
+  }
+);
 
 export const SpanningTable = story<TableProps>(
-  args => {
-    const TAX_RATE = 0.07
+  (args) => {
+    const TAX_RATE = 0.07;
 
     function ccyFormat(num: number) {
-      return `${num.toFixed(2)}`
+      return `${num.toFixed(2)}`;
     }
 
     function priceRow(qty: number, unit: number) {
-      return qty * unit
+      return qty * unit;
     }
 
     function createRow(desc: string, qty: number, unit: number) {
-      const price = priceRow(qty, unit)
-      return { desc, qty, unit, price }
+      const price = priceRow(qty, unit);
+      return { desc, qty, unit, price };
     }
 
     interface Row {
-      desc: string
-      qty: number
-      unit: number
-      price: number
+      desc: string;
+      qty: number;
+      unit: number;
+      price: number;
     }
 
     function subtotal(items: ReadonlyArray<Row>) {
-      return items.map(({ price }) => price).reduce((sum, i) => sum + i, 0)
+      return items.map(({ price }) => price).reduce((sum, i) => sum + i, 0);
     }
 
     const rows = [
-      createRow('Paperclips (Box)', 100, 1.15),
-      createRow('Paper (Case)', 10, 45.99),
-      createRow('Waste Basket', 2, 17.99),
-    ]
+      createRow("Paperclips (Box)", 100, 1.15),
+      createRow("Paper (Case)", 10, 45.99),
+      createRow("Waste Basket", 2, 17.99),
+    ];
 
-    const invoiceSubtotal = subtotal(rows)
-    const invoiceTaxes = TAX_RATE * invoiceSubtotal
-    const invoiceTotal = invoiceTaxes + invoiceSubtotal
+    const invoiceSubtotal = subtotal(rows);
+    const invoiceTaxes = TAX_RATE * invoiceSubtotal;
+    const invoiceTotal = invoiceTaxes + invoiceSubtotal;
 
     return (
       <TableContainer component={Paper}>
@@ -1388,7 +1388,7 @@ export const SpanningTable = story<TableProps>(
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map(row => (
+            {rows.map((row) => (
               <TableRow key={row.desc}>
                 <TableCell>{row.desc}</TableCell>
                 <TableCell align="right">{row.qty}</TableCell>
@@ -1404,7 +1404,7 @@ export const SpanningTable = story<TableProps>(
             <TableRow>
               <TableCell>Tax</TableCell>
               <TableCell align="right">{`${(TAX_RATE * 100).toFixed(
-                0,
+                0
               )} %`}</TableCell>
               <TableCell align="right">{ccyFormat(invoiceTaxes)}</TableCell>
             </TableRow>
@@ -1415,7 +1415,7 @@ export const SpanningTable = story<TableProps>(
           </TableBody>
         </Table>
       </TableContainer>
-    )
+    );
   },
   {
     parameters: {
@@ -1425,19 +1425,19 @@ export const SpanningTable = story<TableProps>(
         },
       },
     },
-  },
-)
+  }
+);
 
 export const VirtualizedTable = story<TableProps>(
   () => {
     return (
       <Alert severity="warning">
-        This example uses react-virtualized, which is not installed. See{' '}
+        This example uses react-virtualized, which is not installed. See{" "}
         <a href="https://next.material-ui.com/components/tables/#virtualized-table">
           MUI docs
         </a>
       </Alert>
-    )
+    );
   },
   {
     parameters: {
@@ -1447,26 +1447,26 @@ export const VirtualizedTable = story<TableProps>(
         },
       },
     },
-  },
-)
+  }
+);
 
 export const Accessibility = story<TableProps>(
-  args => {
+  (args) => {
     function createData(
       name: string,
       calories: number,
       fat: number,
       carbs: number,
-      protein: number,
+      protein: number
     ) {
-      return { name, calories, fat, carbs, protein }
+      return { name, calories, fat, carbs, protein };
     }
 
     const rows = [
-      createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-      createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-      createData('Eclair', 262, 16.0, 24, 6.0),
-    ]
+      createData("Frozen yoghurt", 159, 6.0, 24, 4.0),
+      createData("Ice cream sandwich", 237, 9.0, 37, 4.3),
+      createData("Eclair", 262, 16.0, 24, 6.0),
+    ];
 
     return (
       <TableContainer component={Paper}>
@@ -1482,7 +1482,7 @@ export const Accessibility = story<TableProps>(
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map(row => (
+            {rows.map((row) => (
               <TableRow key={row.name}>
                 <TableCell component="th" scope="row">
                   {row.name}
@@ -1496,7 +1496,7 @@ export const Accessibility = story<TableProps>(
           </TableBody>
         </Table>
       </TableContainer>
-    )
+    );
   },
   {
     parameters: {
@@ -1510,5 +1510,5 @@ A caption functions like a heading for a table. Most screen readers announce the
         },
       },
     },
-  },
-)
+  }
+);

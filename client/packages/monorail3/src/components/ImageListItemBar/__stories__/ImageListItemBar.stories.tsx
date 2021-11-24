@@ -1,24 +1,24 @@
 // Edit this file to add new stories
-import React from 'react'
-import InfoIcon from '@mui/icons-material/Info'
+import React from "react";
+import InfoIcon from "@mui/icons-material/Info";
 
-import { story } from '../../../__tests__/helpers/storybook'
-import { IconButton } from '../../IconButton/IconButton'
-import { ImageListItemBar, ImageListItemBarProps } from '../ImageListItemBar'
-import { defaultStoryMeta } from './ImageListItemBar.stories.gen'
+import { story } from "../../../__tests__/helpers/storybook";
+import { IconButton } from "../../IconButton/IconButton";
+import { ImageListItemBar, ImageListItemBarProps } from "../ImageListItemBar";
+import { defaultStoryMeta } from "./ImageListItemBar.stories.gen";
 
 /**
  * Metadata for ImageListItemBar stories - update/extend as needed
  */
 export default {
   ...defaultStoryMeta,
-  title: 'Layout/ImageList/ImageListItemBar',
+  title: "Layout/ImageList/ImageListItemBar",
   parameters: {
     creevey: {
       skip: "Images don't load reliably",
     },
   },
-}
+};
 /**
  * Story template (edit/remove by hand if needed)
  *
@@ -26,18 +26,18 @@ export default {
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
 const Template = story<ImageListItemBarProps>(
-  args => <ImageListItemBar {...args} />,
+  (args) => <ImageListItemBar {...args} />,
   {
     args: {
-      title: 'title',
-      subtitle: 'subtitle',
+      title: "title",
+      subtitle: "subtitle",
       actionIcon: (
-        <IconButton sx={{ color: 'rgba(255, 255, 255, 0.54)' }} size="large">
+        <IconButton sx={{ color: "rgba(255, 255, 255, 0.54)" }} size="large">
           <InfoIcon />
         </IconButton>
       ),
     },
-  },
-)
+  }
+);
 /** Default story for ImageListItemBar (edit/remove by hand if needed) */
-export const Default = story(Template)
+export const Default = story(Template);

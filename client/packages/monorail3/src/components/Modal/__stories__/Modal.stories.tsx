@@ -1,20 +1,20 @@
 // Edit this file to add new stories
-import React from 'react'
-import { ModalUnstyled } from '@mui/material'
-import { styled } from '@mui/material/styles'
+import React from "react";
+import { ModalUnstyled } from "@mui/material";
+import { styled } from "@mui/material/styles";
 
-import { story } from '../../../__tests__/helpers/storybook'
-import { Backdrop } from '../../Backdrop/Backdrop'
-import { Box } from '../../Box/Box'
-import { Button } from '../../Button/Button'
-import { Fade } from '../../Fade/Fade'
-import { Typography } from '../../Typography/Typography'
-import { Modal, ModalProps } from '../Modal'
-import { defaultStoryMeta } from './Modal.stories.gen'
+import { story } from "../../../__tests__/helpers/storybook";
+import { Backdrop } from "../../Backdrop/Backdrop";
+import { Box } from "../../Box/Box";
+import { Button } from "../../Button/Button";
+import { Fade } from "../../Fade/Fade";
+import { Typography } from "../../Typography/Typography";
+import { Modal, ModalProps } from "../Modal";
+import { defaultStoryMeta } from "./Modal.stories.gen";
 /**
  * Metadata for Modal stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Utils/Modal' }
+export default { ...defaultStoryMeta, title: "Utils/Modal" };
 
 /**
  * Story template (edit/remove by hand if needed)
@@ -24,12 +24,12 @@ export default { ...defaultStoryMeta, title: 'Utils/Modal' }
  */
 const Template = story<ModalProps>(
   () => {
-    const [open, setOpen] = React.useState(false)
-    const handleOpen = () => setOpen(true)
-    const handleClose = () => setOpen(false)
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
 
     return (
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
+      <div style={{ display: "flex", justifyContent: "center" }}>
         <Button onClick={handleOpen}>Open modal</Button>
         <Modal
           open={open}
@@ -39,13 +39,13 @@ const Template = story<ModalProps>(
         >
           <Box
             sx={{
-              position: 'absolute' as 'absolute',
-              top: '50%',
-              left: '50%',
-              transform: 'translate(-50%, -50%)',
+              position: "absolute" as "absolute",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
               width: 400,
-              bgcolor: 'background.paper',
-              border: '2px solid #000',
+              bgcolor: "background.paper",
+              border: "2px solid #000",
               boxShadow: 24,
               p: 4,
             }}
@@ -59,12 +59,12 @@ const Template = story<ModalProps>(
           </Box>
         </Modal>
       </div>
-    )
+    );
   },
-  { args: {} },
-)
+  { args: {} }
+);
 /** Default story for Modal (edit/remove by hand if needed) */
-export const Default = story(Template)
+export const Default = story(Template);
 
 const StyledModal = styled(ModalUnstyled)`
   position: fixed;
@@ -76,9 +76,9 @@ const StyledModal = styled(ModalUnstyled)`
   display: flex;
   align-items: center;
   justify-content: center;
-`
+`;
 
-const ModalUnstyledBackdrop = styled('div')`
+const ModalUnstyledBackdrop = styled("div")`
   z-index: -1;
   position: fixed;
   right: 0;
@@ -87,16 +87,16 @@ const ModalUnstyledBackdrop = styled('div')`
   left: 0;
   background-color: rgba(0, 0, 0, 0.5);
   -webkit-tap-highlight-color: transparent;
-`
+`;
 
 export const ModalUnstyledDemo = story<ModalProps>(
   () => {
-    const [open, setOpen] = React.useState(false)
-    const handleOpen = () => setOpen(true)
-    const handleClose = () => setOpen(false)
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
 
     return (
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
+      <div style={{ display: "flex", justifyContent: "center" }}>
         <button type="button" onClick={handleOpen}>
           Open modal
         </button>
@@ -110,8 +110,8 @@ export const ModalUnstyledDemo = story<ModalProps>(
           <Box
             sx={{
               width: 400,
-              bgcolor: 'background.paper',
-              border: '2px solid #000',
+              bgcolor: "background.paper",
+              border: "2px solid #000",
               p: 2,
               px: 4,
               pb: 3,
@@ -122,7 +122,7 @@ export const ModalUnstyledDemo = story<ModalProps>(
           </Box>
         </StyledModal>
       </div>
-    )
+    );
   },
   {
     parameters: {
@@ -132,31 +132,31 @@ export const ModalUnstyledDemo = story<ModalProps>(
         },
       },
     },
-  },
-)
+  }
+);
 
 const nestedModalStyles = {
-  position: 'absolute' as 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
+  position: "absolute" as "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
   width: 400,
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
+  bgcolor: "background.paper",
+  border: "2px solid #000",
   boxShadow: 24,
   pt: 2,
   px: 4,
   pb: 3,
-}
+};
 
 const ChildModal = () => {
-  const [open, setOpen] = React.useState(false)
+  const [open, setOpen] = React.useState(false);
   const handleOpen = () => {
-    setOpen(true)
-  }
+    setOpen(true);
+  };
   const handleClose = () => {
-    setOpen(false)
-  }
+    setOpen(false);
+  };
 
   return (
     <React.Fragment>
@@ -177,21 +177,21 @@ const ChildModal = () => {
         </Box>
       </Modal>
     </React.Fragment>
-  )
-}
+  );
+};
 
 export const NestedModal = story<ModalProps>(
   () => {
-    const [open, setOpen] = React.useState(false)
+    const [open, setOpen] = React.useState(false);
     const handleOpen = () => {
-      setOpen(true)
-    }
+      setOpen(true);
+    };
     const handleClose = () => {
-      setOpen(false)
-    }
+      setOpen(false);
+    };
 
     return (
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
+      <div style={{ display: "flex", justifyContent: "center" }}>
         <Button onClick={handleOpen}>Open modal</Button>
         <Modal
           open={open}
@@ -208,28 +208,28 @@ export const NestedModal = story<ModalProps>(
           </Box>
         </Modal>
       </div>
-    )
+    );
   },
   {
     parameters: {
       docs: {
         description: {
           story:
-            'Modals can be nested, for example a select within a dialog, but stacking of more than two modals, or any two modals with a backdrop is discouraged.',
+            "Modals can be nested, for example a select within a dialog, but stacking of more than two modals, or any two modals with a backdrop is discouraged.",
         },
       },
     },
-  },
-)
+  }
+);
 
 export const TransitionsModal = story<ModalProps>(
   () => {
-    const [open, setOpen] = React.useState(false)
-    const handleOpen = () => setOpen(true)
-    const handleClose = () => setOpen(false)
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
 
     return (
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
+      <div style={{ display: "flex", justifyContent: "center" }}>
         <Button onClick={handleOpen}>Open modal</Button>
         <Modal
           aria-labelledby="transition-modal-title"
@@ -245,13 +245,13 @@ export const TransitionsModal = story<ModalProps>(
           <Fade in={open}>
             <Box
               sx={{
-                position: 'absolute' as 'absolute',
-                top: '50%',
-                left: '50%',
-                transform: 'translate(-50%, -50%)',
+                position: "absolute" as "absolute",
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
                 width: 400,
-                bgcolor: 'background.paper',
-                border: '2px solid #000',
+                bgcolor: "background.paper",
+                border: "2px solid #000",
                 boxShadow: 24,
                 p: 4,
               }}
@@ -270,7 +270,7 @@ export const TransitionsModal = story<ModalProps>(
           </Fade>
         </Modal>
       </div>
-    )
+    );
   },
   {
     parameters: {
@@ -287,17 +287,17 @@ Modal has built-in support for react-transition-group.`,
         },
       },
     },
-  },
-)
+  }
+);
 
 export const KeepMountedModal = story<ModalProps>(
   () => {
-    const [open, setOpen] = React.useState(false)
-    const handleOpen = () => setOpen(true)
-    const handleClose = () => setOpen(false)
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
 
     return (
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
+      <div style={{ display: "flex", justifyContent: "center" }}>
         <Button onClick={handleOpen}>Open modal</Button>
         <Modal
           keepMounted
@@ -308,13 +308,13 @@ export const KeepMountedModal = story<ModalProps>(
         >
           <Box
             sx={{
-              position: 'absolute' as 'absolute',
-              top: '50%',
-              left: '50%',
-              transform: 'translate(-50%, -50%)',
+              position: "absolute" as "absolute",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
               width: 400,
-              bgcolor: 'background.paper',
-              border: '2px solid #000',
+              bgcolor: "background.paper",
+              border: "2px solid #000",
               boxShadow: 24,
               p: 4,
             }}
@@ -332,23 +332,23 @@ export const KeepMountedModal = story<ModalProps>(
           </Box>
         </Modal>
       </div>
-    )
+    );
   },
   {
     parameters: {
       docs: {
         description: {
           story:
-            'The content of modal is unmounted when closed. If you need to make the content available to search engines or render expensive component trees inside your modal while optimizing for interaction responsiveness it might be a good idea to change this default behavior by enabling the `keepMounted` prop:',
+            "The content of modal is unmounted when closed. If you need to make the content available to search engines or render expensive component trees inside your modal while optimizing for interaction responsiveness it might be a good idea to change this default behavior by enabling the `keepMounted` prop:",
         },
       },
     },
-  },
-)
+  }
+);
 
 export const ServerModal = story<ModalProps>(
   () => {
-    const rootRef = React.useRef<HTMLDivElement>(null)
+    const rootRef = React.useRef<HTMLDivElement>(null);
 
     return (
       <Box
@@ -356,11 +356,11 @@ export const ServerModal = story<ModalProps>(
           height: 300,
           flexGrow: 1,
           minWidth: 300,
-          transform: 'translateZ(0)',
+          transform: "translateZ(0)",
           // The position fixed scoping doesn't work in IE11.
           // Disable this demo to preserve the others.
-          '@media all and (-ms-high-contrast: none)': {
-            display: 'none',
+          "@media all and (-ms-high-contrast: none)": {
+            display: "none",
           },
         }}
         ref={rootRef}
@@ -373,20 +373,20 @@ export const ServerModal = story<ModalProps>(
           aria-labelledby="server-modal-title"
           aria-describedby="server-modal-description"
           sx={{
-            display: 'flex',
+            display: "flex",
             p: 1,
-            alignItems: 'center',
-            justifyContent: 'center',
+            alignItems: "center",
+            justifyContent: "center",
           }}
           container={() => rootRef.current}
         >
           <Box
             sx={{
-              position: 'relative',
+              position: "relative",
               width: 400,
-              bgcolor: 'background.paper',
-              border: '2px solid #000',
-              boxShadow: theme => theme.shadows[5],
+              bgcolor: "background.paper",
+              border: "2px solid #000",
+              boxShadow: (theme) => theme.shadows[5],
               p: 4,
             }}
           >
@@ -399,7 +399,7 @@ export const ServerModal = story<ModalProps>(
           </Box>
         </Modal>
       </Box>
-    )
+    );
   },
   {
     parameters: {
@@ -410,5 +410,5 @@ export const ServerModal = story<ModalProps>(
         },
       },
     },
-  },
-)
+  }
+);

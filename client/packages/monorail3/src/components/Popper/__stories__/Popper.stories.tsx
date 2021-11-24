@@ -1,13 +1,13 @@
 // Edit this file to add new stories
-import React from 'react'
+import React from "react";
 
-import { story } from '../../../__tests__/helpers/storybook'
-import { Popper, PopperProps } from '../Popper'
-import { defaultStoryMeta } from './Popper.stories.gen'
+import { story } from "../../../__tests__/helpers/storybook";
+import { Popper, PopperProps } from "../Popper";
+import { defaultStoryMeta } from "./Popper.stories.gen";
 /**
  * Metadata for Popper stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Utils/Popper' }
+export default { ...defaultStoryMeta, title: "Utils/Popper" };
 /**
  * Story template (edit/remove by hand if needed)
  *
@@ -15,15 +15,15 @@ export default { ...defaultStoryMeta, title: 'Utils/Popper' }
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
 const Template = story<PopperProps>(
-  args => {
-    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
+  (args) => {
+    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
     const handleClick = (event: React.MouseEvent<HTMLElement>) => {
-      setAnchorEl(anchorEl ? null : event.currentTarget)
-    }
+      setAnchorEl(anchorEl ? null : event.currentTarget);
+    };
 
-    const open = Boolean(anchorEl)
-    const id = open ? 'simple-popper' : undefined
+    const open = Boolean(anchorEl);
+    const id = open ? "simple-popper" : undefined;
     return (
       <>
         <button aria-describedby={id} type="button" onClick={handleClick}>
@@ -33,10 +33,10 @@ const Template = story<PopperProps>(
           Popper Content
         </Popper>
       </>
-    )
+    );
   },
-  { args: {} },
-)
+  { args: {} }
+);
 /** Default story for Popper (edit/remove by hand if needed) */
 export const Default = story(Template, {
   parameters: {
@@ -46,5 +46,5 @@ export const Default = story(Template, {
       },
     },
   },
-})
+});
 // TODO: add more stories below

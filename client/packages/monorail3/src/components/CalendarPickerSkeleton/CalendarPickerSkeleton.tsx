@@ -2,6 +2,6 @@
 import {
   CalendarPickerSkeleton as _CalendarPickerSkeleton,
   CalendarPickerSkeletonProps as _CalendarPickerSkeletonProps,
-} from './CalendarPickerSkeleton'
-export * from './CalendarPickerSkeleton.gen'
+} from "./CalendarPickerSkeleton";
+export * from "./CalendarPickerSkeleton.gen";
 // Add more functions/etc. below

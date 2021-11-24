@@ -1,16 +1,16 @@
 // Edit this file to add new stories
-import React from 'react'
+import React from "react";
 
-import { story } from '../../../__tests__/helpers/storybook'
-import { FormControl } from '../../FormControl/FormControl'
-import { InputLabel } from '../../InputLabel/InputLabel'
-import { OutlinedInput, OutlinedInputProps } from '../OutlinedInput'
-import { defaultStoryMeta } from './OutlinedInput.stories.gen'
+import { story } from "../../../__tests__/helpers/storybook";
+import { FormControl } from "../../FormControl/FormControl";
+import { InputLabel } from "../../InputLabel/InputLabel";
+import { OutlinedInput, OutlinedInputProps } from "../OutlinedInput";
+import { defaultStoryMeta } from "./OutlinedInput.stories.gen";
 
 /**
  * Metadata for OutlinedInput stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Inputs/Input/OutlinedInput' }
+export default { ...defaultStoryMeta, title: "Inputs/Input/OutlinedInput" };
 /**
  * Story template (edit/remove by hand if needed)
  *
@@ -18,7 +18,7 @@ export default { ...defaultStoryMeta, title: 'Inputs/Input/OutlinedInput' }
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
 const Template = story<OutlinedInputProps>(
-  args => (
+  (args) => (
     <FormControl variant="filled">
       <InputLabel htmlFor="filled">Label</InputLabel>
       <OutlinedInput {...args} />
@@ -26,11 +26,11 @@ const Template = story<OutlinedInputProps>(
   ),
   {
     args: {
-      id: 'filled',
-      placeholder: 'Placeholder',
+      id: "filled",
+      placeholder: "Placeholder",
     },
-  },
-)
+  }
+);
 /** Default story for OutlinedInput (edit/remove by hand if needed) */
 export const Default = story(Template, {
   parameters: {
@@ -40,15 +40,15 @@ export const Default = story(Template, {
       },
     },
   },
-})
+});
 
 export const Showcase = story<OutlinedInputProps>(
   () => {
-    const [name, setName] = React.useState('Composed TextField')
+    const [name, setName] = React.useState("Composed TextField");
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-      setName(event.target.value)
-    }
+      setName(event.target.value);
+    };
 
     return (
       <FormControl variant="filled">
@@ -59,7 +59,7 @@ export const Showcase = story<OutlinedInputProps>(
           onChange={handleChange}
         />
       </FormControl>
-    )
+    );
   },
   {
     parameters: {
@@ -69,5 +69,5 @@ export const Showcase = story<OutlinedInputProps>(
         },
       },
     },
-  },
-)
+  }
+);

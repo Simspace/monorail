@@ -1,18 +1,18 @@
 // Edit this file to add new stories
-import React from 'react'
+import React from "react";
 
-import { story } from '../../../__tests__/helpers/storybook'
-import { Checkbox } from '../../Checkbox/Checkbox'
-import { FormControlLabel } from '../../FormControlLabel/FormControlLabel'
-import { FormGroup, FormGroupProps } from '../FormGroup'
-import { defaultStoryMeta } from './FormGroup.stories.gen'
+import { story } from "../../../__tests__/helpers/storybook";
+import { Checkbox } from "../../Checkbox/Checkbox";
+import { FormControlLabel } from "../../FormControlLabel/FormControlLabel";
+import { FormGroup, FormGroupProps } from "../FormGroup";
+import { defaultStoryMeta } from "./FormGroup.stories.gen";
 /**
  * Metadata for FormGroup stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Inputs/FormGroup' }
+export default { ...defaultStoryMeta, title: "Inputs/FormGroup" };
 
 const Template = story<FormGroupProps>(
-  args => (
+  (args) => (
     <FormGroup {...args}>
       <FormControlLabel control={<Checkbox />} label="Option 1" />
       <FormControlLabel control={<Checkbox />} label="Option 2" />
@@ -25,10 +25,10 @@ const Template = story<FormGroupProps>(
       docs: {
         description: {
           component:
-            'FormGroup is a helpful wrapper used to group selection control components.',
+            "FormGroup is a helpful wrapper used to group selection control components.",
         },
       },
     },
-  },
-)
-export const Default = story(Template)
+  }
+);
+export const Default = story(Template);

@@ -1,4 +1,4 @@
 // Placeholder for extra functionality - add extra types/values/functions/etc. for Grid
-import { Grid as _Grid, GridProps as _GridProps } from './Grid'
-export * from './Grid.gen'
+import { Grid as _Grid, GridProps as _GridProps } from "./Grid";
+export * from "./Grid.gen";
 // Add more functions/etc. below

@@ -2,6 +2,6 @@
 import {
   TablePagination as _TablePagination,
   TablePaginationProps as _TablePaginationProps,
-} from './TablePagination'
-export * from './TablePagination.gen'
+} from "./TablePagination";
+export * from "./TablePagination.gen";
 // Add more functions/etc. below

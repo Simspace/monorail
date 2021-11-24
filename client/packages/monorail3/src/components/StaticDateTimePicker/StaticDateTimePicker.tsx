@@ -2,6 +2,6 @@
 import {
   StaticDateTimePicker as _StaticDateTimePicker,
   StaticDateTimePickerProps as _StaticDateTimePickerProps,
-} from './StaticDateTimePicker'
-export * from './StaticDateTimePicker.gen'
+} from "./StaticDateTimePicker";
+export * from "./StaticDateTimePicker.gen";
 // Add more functions/etc. below

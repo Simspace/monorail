@@ -1,27 +1,27 @@
 // Edit this file to add new stories
-import React from 'react'
-import { styled } from '@mui/material/styles'
+import React from "react";
+import { styled } from "@mui/material/styles";
 
-import { story } from '../../../__tests__/helpers/storybook'
-import { Avatar } from '../../Avatar/Avatar'
-import { Box } from '../../Box/Box'
-import { Paper } from '../../Paper/Paper'
-import { Typography } from '../../Typography/Typography'
-import { Grid, GridProps } from '../Grid'
-import { defaultStoryMeta } from './Grid.stories.gen'
+import { story } from "../../../__tests__/helpers/storybook";
+import { Avatar } from "../../Avatar/Avatar";
+import { Box } from "../../Box/Box";
+import { Paper } from "../../Paper/Paper";
+import { Typography } from "../../Typography/Typography";
+import { Grid, GridProps } from "../Grid";
+import { defaultStoryMeta } from "./Grid.stories.gen";
 
 const Item = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,
   padding: theme.spacing(1),
-  textAlign: 'center',
+  textAlign: "center",
   color: theme.palette.text.secondary,
   border: `1px solid ${theme.palette.grey[300]}`,
-}))
+}));
 
 /**
  * Metadata for Grid stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Layout/Grid' }
+export default { ...defaultStoryMeta, title: "Layout/Grid" };
 /**
  * Story template (edit/remove by hand if needed)
  *
@@ -29,7 +29,7 @@ export default { ...defaultStoryMeta, title: 'Layout/Grid' }
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
 const Template = story<GridProps>(
-  args => (
+  (args) => (
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={2} {...args}>
         <Grid item xs={8}>
@@ -47,10 +47,10 @@ const Template = story<GridProps>(
       </Grid>
     </Box>
   ),
-  { args: { container: true, spacing: 2 } },
-)
+  { args: { container: true, spacing: 2 } }
+);
 /** Default story for Grid */
-export const Default = story(Template)
+export const Default = story(Template);
 
 export const BasicGrid = story(Template, {
   parameters: {
@@ -64,7 +64,7 @@ A value given to a breakpoint applies to all the other breakpoints wider than it
       },
     },
   },
-})
+});
 
 export const MultipleBreakpoints = story<GridProps>(
   () => (
@@ -95,15 +95,15 @@ For example, xs={12} sm={6} sizes a component to occupy half of the viewport wid
         },
       },
     },
-  },
-)
+  }
+);
 
 export const Spacing = story<GridProps>(
   () => (
     <Grid sx={{ flexGrow: 1 }} container spacing={2}>
       <Grid item xs={12}>
         <Grid container justifyContent="center" spacing={3}>
-          {[0, 1, 2].map(value => (
+          {[0, 1, 2].map((value) => (
             <Grid key={value} item>
               <Item sx={{ height: 140, width: 100 }} />
             </Grid>
@@ -121,8 +121,8 @@ export const Spacing = story<GridProps>(
         },
       },
     },
-  },
-)
+  }
+);
 
 export const RowAndColumnSpacing = story<GridProps>(
   () => (
@@ -150,8 +150,8 @@ export const RowAndColumnSpacing = story<GridProps>(
         },
       },
     },
-  },
-)
+  }
+);
 
 export const AutoSizing = story<GridProps>(
   () => (
@@ -178,8 +178,8 @@ export const AutoSizing = story<GridProps>(
         },
       },
     },
-  },
-)
+  }
+);
 
 export const NestedGrid = story<GridProps>(
   () => {
@@ -195,7 +195,7 @@ export const NestedGrid = story<GridProps>(
           <Item>Item</Item>
         </Grid>
       </React.Fragment>
-    )
+    );
 
     return (
       <Box sx={{ flexGrow: 1 }}>
@@ -211,7 +211,7 @@ export const NestedGrid = story<GridProps>(
           </Grid>
         </Grid>
       </Box>
-    )
+    );
   },
 
   {
@@ -225,8 +225,8 @@ Defining an explicit width to a Grid element that is flex container, flex item, 
         },
       },
     },
-  },
-)
+  }
+);
 
 export const Columns = story<GridProps>(
   () => (
@@ -248,16 +248,16 @@ export const Columns = story<GridProps>(
         },
       },
     },
-  },
-)
+  }
+);
 
 export const Limitations = story<GridProps>(
   () => {
     const message = `Truncation should be conditionally applicable on this long line of text
- as this is a much longer line than what the container can support. `
+ as this is a much longer line than what the container can support. `;
     return (
-      <Box sx={{ flexGrow: 1, overflow: 'hidden', px: 3 }}>
-        <Item sx={{ maxWidth: 400, my: 1, mx: 'auto', p: 2 }}>
+      <Box sx={{ flexGrow: 1, overflow: "hidden", px: 3 }}>
+        <Item sx={{ maxWidth: 400, my: 1, mx: "auto", p: 2 }}>
           <Grid container wrap="nowrap" spacing={2}>
             <Grid item>
               <Avatar>W</Avatar>
@@ -267,7 +267,7 @@ export const Limitations = story<GridProps>(
             </Grid>
           </Grid>
         </Item>
-        <Item sx={{ maxWidth: 400, my: 1, mx: 'auto', p: 2 }}>
+        <Item sx={{ maxWidth: 400, my: 1, mx: "auto", p: 2 }}>
           <Grid container wrap="nowrap" spacing={2}>
             <Grid item>
               <Avatar>W</Avatar>
@@ -277,7 +277,7 @@ export const Limitations = story<GridProps>(
             </Grid>
           </Grid>
         </Item>
-        <Item sx={{ maxWidth: 400, my: 1, mx: 'auto', p: 2 }}>
+        <Item sx={{ maxWidth: 400, my: 1, mx: "auto", p: 2 }}>
           <Grid container wrap="nowrap" spacing={2}>
             <Grid item>
               <Avatar>W</Avatar>
@@ -288,7 +288,7 @@ export const Limitations = story<GridProps>(
           </Grid>
         </Item>
       </Box>
-    )
+    );
   },
 
   {
@@ -304,8 +304,8 @@ The initial setting on flex items is min-width: auto. It's causing a positioning
         },
       },
     },
-  },
-)
+  }
+);
 
 export const CSSGridLayout = story<GridProps>(
   () => (
@@ -333,5 +333,5 @@ export const CSSGridLayout = story<GridProps>(
         },
       },
     },
-  },
-)
+  }
+);

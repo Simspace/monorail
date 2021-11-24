@@ -1,26 +1,26 @@
 // Edit this file to add new stories
-import React from 'react'
+import React from "react";
 
-import { story } from '../../../__tests__/helpers/storybook'
-import { Stack } from '../../Stack/Stack'
-import { Link, LinkProps } from '../Link'
-import { defaultStoryMeta } from './Link.stories.gen'
+import { story } from "../../../__tests__/helpers/storybook";
+import { Stack } from "../../Stack/Stack";
+import { Link, LinkProps } from "../Link";
+import { defaultStoryMeta } from "./Link.stories.gen";
 
 /**
  * Metadata for Link stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Navigation/Link' }
+export default { ...defaultStoryMeta, title: "Navigation/Link" };
 /**
  * Story template (edit/remove by hand if needed)
  *
  * Note: there should be at least one "Default" story that uses this template with the "story" function.
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
-const Template = story<LinkProps>(args => <Link {...args} />, {
-  args: { children: 'A Simple Link' },
-})
+const Template = story<LinkProps>((args) => <Link {...args} />, {
+  args: { children: "A Simple Link" },
+});
 /** Default story for Link (edit/remove by hand if needed) */
-export const Default = story(Template)
+export const Default = story(Template);
 // TODO: add more stories below
 
 export const Basic = story<LinkProps>(
@@ -43,8 +43,8 @@ export const Basic = story<LinkProps>(
         },
       },
     },
-  },
-)
+  }
+);
 
 export const Underline = story<LinkProps>(
   () => (
@@ -68,5 +68,5 @@ export const Underline = story<LinkProps>(
         },
       },
     },
-  },
-)
+  }
+);

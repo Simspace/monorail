@@ -2,6 +2,6 @@
 import {
   TableContainer as _TableContainer,
   TableContainerProps as _TableContainerProps,
-} from './TableContainer'
-export * from './TableContainer.gen'
+} from "./TableContainer";
+export * from "./TableContainer.gen";
 // Add more functions/etc. below

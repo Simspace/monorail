@@ -1,26 +1,26 @@
 // Edit this file to add new stories
-import React from 'react'
-import AdapterDateFns from '@mui/lab/AdapterDateFns'
-import LocalizationProvider from '@mui/lab/LocalizationProvider'
+import React from "react";
+import AdapterDateFns from "@mui/lab/AdapterDateFns";
+import LocalizationProvider from "@mui/lab/LocalizationProvider";
 
-import { story } from '../../../__tests__/helpers/storybook'
-import { TextField } from '../../TextField/TextField'
-import { TimePickerProps } from '../../TimePicker/TimePicker'
-import { StaticTimePicker } from '../StaticTimePicker'
-import { defaultStoryMeta } from './StaticTimePicker.stories.gen'
+import { story } from "../../../__tests__/helpers/storybook";
+import { TextField } from "../../TextField/TextField";
+import { TimePickerProps } from "../../TimePicker/TimePicker";
+import { StaticTimePicker } from "../StaticTimePicker";
+import { defaultStoryMeta } from "./StaticTimePicker.stories.gen";
 
 /**
  * Metadata for StaticTimePicker stories - update/extend as needed
  */
 export default {
   ...defaultStoryMeta,
-  title: 'Inputs/Date and Time/Time/StaticTimePicker',
-}
+  title: "Inputs/Date and Time/Time/StaticTimePicker",
+};
 
-const Template = story<TimePickerProps<Date>>(args => {
+const Template = story<TimePickerProps<Date>>((args) => {
   const [value, setValue] = React.useState<Date | null>(
-    new Date('2021-01-01T12:34:00.000Z'),
-  )
+    new Date("2021-01-01T12:34:00.000Z")
+  );
 
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
@@ -28,14 +28,14 @@ const Template = story<TimePickerProps<Date>>(args => {
         {...args}
         displayStaticWrapperAs="mobile"
         value={value}
-        onChange={newValue => {
-          setValue(newValue)
+        onChange={(newValue) => {
+          setValue(newValue);
         }}
-        renderInput={params => <TextField {...params} />}
+        renderInput={(params) => <TextField {...params} />}
       />
     </LocalizationProvider>
-  )
-})
+  );
+});
 
 /** Default story for StaticTimePicker (edit/remove by hand if needed) */
 export const Default = story(Template, {
@@ -46,4 +46,4 @@ export const Default = story(Template, {
       },
     },
   },
-})
+});

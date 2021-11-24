@@ -1,40 +1,40 @@
-import React from 'react'
+import React from "react";
 import {
   ChevronRight as ChevronRightIcon,
   ExpandMore as ExpandMoreIcon,
-} from '@mui/icons-material'
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
-import ArrowRightIcon from '@mui/icons-material/ArrowRight'
-import DeleteIcon from '@mui/icons-material/Delete'
-import ForumIcon from '@mui/icons-material/Forum'
-import InfoIcon from '@mui/icons-material/Info'
-import Label from '@mui/icons-material/Label'
-import LocalOfferIcon from '@mui/icons-material/LocalOffer'
-import MailIcon from '@mui/icons-material/Mail'
-import SupervisorAccountIcon from '@mui/icons-material/SupervisorAccount'
-import { alpha, styled } from '@mui/material/styles'
+} from "@mui/icons-material";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import ArrowRightIcon from "@mui/icons-material/ArrowRight";
+import DeleteIcon from "@mui/icons-material/Delete";
+import ForumIcon from "@mui/icons-material/Forum";
+import InfoIcon from "@mui/icons-material/Info";
+import Label from "@mui/icons-material/Label";
+import LocalOfferIcon from "@mui/icons-material/LocalOffer";
+import MailIcon from "@mui/icons-material/Mail";
+import SupervisorAccountIcon from "@mui/icons-material/SupervisorAccount";
+import { alpha, styled } from "@mui/material/styles";
 
-import { story } from '../../../__tests__/helpers/storybook'
-import { Box } from '../../Box/Box'
-import { Button } from '../../Button/Button'
-import { FormControlLabel } from '../../FormControlLabel/FormControlLabel'
-import { SvgIconProps } from '../../SvgIcon/SvgIcon'
-import { Switch } from '../../Switch/Switch'
+import { story } from "../../../__tests__/helpers/storybook";
+import { Box } from "../../Box/Box";
+import { Button } from "../../Button/Button";
+import { FormControlLabel } from "../../FormControlLabel/FormControlLabel";
+import { SvgIconProps } from "../../SvgIcon/SvgIcon";
+import { Switch } from "../../Switch/Switch";
 import {
   TreeItem,
   treeItemClasses,
   TreeItemContentProps,
   TreeItemProps,
   useTreeItem,
-} from '../../TreeItem/TreeItem'
-import { Typography } from '../../Typography/Typography'
-import { TreeView, TreeViewProps } from '../TreeView'
-import { defaultStoryMeta } from './TreeView.stories.gen'
+} from "../../TreeItem/TreeItem";
+import { Typography } from "../../Typography/Typography";
+import { TreeView, TreeViewProps } from "../TreeView";
+import { defaultStoryMeta } from "./TreeView.stories.gen";
 
 /**
  * Metadata for TreeView stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Data Display/TreeView' }
+export default { ...defaultStoryMeta, title: "Data Display/TreeView" };
 /**
  * Story template (edit/remove by hand if needed)
  *
@@ -42,12 +42,12 @@ export default { ...defaultStoryMeta, title: 'Data Display/TreeView' }
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
 const Template = story<TreeViewProps>(
-  args => (
+  (args) => (
     <TreeView
       aria-label="file system navigator"
       defaultCollapseIcon={<ExpandMoreIcon />}
       defaultExpandIcon={<ChevronRightIcon />}
-      sx={{ height: 240, flexGrow: 1, maxWidth: 400, overflowY: 'auto' }}
+      sx={{ height: 240, flexGrow: 1, maxWidth: 400, overflowY: "auto" }}
       {...args}
     >
       <TreeItem nodeId="1" label="Applications">
@@ -63,8 +63,8 @@ const Template = story<TreeViewProps>(
   ),
   {
     args: {},
-  },
-)
+  }
+);
 /** Default story for TreeView (edit/remove by hand if needed) */
 export const Default = story(Template, {
   parameters: {
@@ -74,7 +74,7 @@ export const Default = story(Template, {
       },
     },
   },
-})
+});
 
 export const MultiSelection = story(Template, {
   args: { multiSelect: true },
@@ -85,49 +85,49 @@ export const MultiSelection = story(Template, {
       },
     },
   },
-})
+});
 
 export const Controlled = story(
   () => {
-    const [expanded, setExpanded] = React.useState<Array<string>>([])
-    const [selected, setSelected] = React.useState<Array<string>>([])
+    const [expanded, setExpanded] = React.useState<Array<string>>([]);
+    const [selected, setSelected] = React.useState<Array<string>>([]);
 
     const handleToggle = (
       event: React.SyntheticEvent,
-      nodeIds: Array<string>,
+      nodeIds: Array<string>
     ) => {
-      setExpanded(nodeIds)
-    }
+      setExpanded(nodeIds);
+    };
 
     const handleSelect = (
       event: React.SyntheticEvent,
-      nodeIds: Array<string>,
+      nodeIds: Array<string>
     ) => {
-      setSelected(nodeIds)
-    }
+      setSelected(nodeIds);
+    };
 
     const handleExpandClick = () => {
-      setExpanded(oldExpanded =>
-        oldExpanded.length === 0 ? ['1', '5', '6', '7'] : [],
-      )
-    }
+      setExpanded((oldExpanded) =>
+        oldExpanded.length === 0 ? ["1", "5", "6", "7"] : []
+      );
+    };
 
     const handleSelectClick = () => {
-      setSelected(oldSelected =>
+      setSelected((oldSelected) =>
         oldSelected.length === 0
-          ? ['1', '2', '3', '4', '5', '6', '7', '8', '9']
-          : [],
-      )
-    }
+          ? ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
+          : []
+      );
+    };
 
     return (
-      <Box sx={{ height: 270, flexGrow: 1, maxWidth: 400, overflowY: 'auto' }}>
+      <Box sx={{ height: 270, flexGrow: 1, maxWidth: 400, overflowY: "auto" }}>
         <Box sx={{ mb: 1 }}>
           <Button onClick={handleExpandClick}>
-            {expanded.length === 0 ? 'Expand all' : 'Collapse all'}
+            {expanded.length === 0 ? "Expand all" : "Collapse all"}
           </Button>
           <Button onClick={handleSelectClick}>
-            {selected.length === 0 ? 'Select all' : 'Unselect all'}
+            {selected.length === 0 ? "Select all" : "Unselect all"}
           </Button>
         </Box>
         <TreeView
@@ -155,7 +155,7 @@ export const Controlled = story(
           </TreeItem>
         </TreeView>
       </Box>
-    )
+    );
   },
   {
     parameters: {
@@ -165,57 +165,57 @@ export const Controlled = story(
         },
       },
     },
-  },
-)
+  }
+);
 
 export const RichObject = story(
   () => {
     interface RenderTree {
-      id: string
-      name: string
-      children?: ReadonlyArray<RenderTree>
+      id: string;
+      name: string;
+      children?: ReadonlyArray<RenderTree>;
     }
 
     const data: RenderTree = {
-      id: 'root',
-      name: 'Parent',
+      id: "root",
+      name: "Parent",
       children: [
         {
-          id: '1',
-          name: 'Child - 1',
+          id: "1",
+          name: "Child - 1",
         },
         {
-          id: '3',
-          name: 'Child - 3',
+          id: "3",
+          name: "Child - 3",
           children: [
             {
-              id: '4',
-              name: 'Child - 4',
+              id: "4",
+              name: "Child - 4",
             },
           ],
         },
       ],
-    }
+    };
 
     const renderTree = (nodes: RenderTree) => (
       <TreeItem key={nodes.id} nodeId={nodes.id} label={nodes.name}>
         {Array.isArray(nodes.children)
-          ? nodes.children.map(node => renderTree(node))
+          ? nodes.children.map((node) => renderTree(node))
           : null}
       </TreeItem>
-    )
+    );
 
     return (
       <TreeView
         aria-label="rich object"
         defaultCollapseIcon={<ExpandMoreIcon />}
-        defaultExpanded={['root']}
+        defaultExpanded={["root"]}
         defaultExpandIcon={<ChevronRightIcon />}
-        sx={{ height: 110, flexGrow: 1, maxWidth: 400, overflowY: 'auto' }}
+        sx={{ height: 110, flexGrow: 1, maxWidth: 400, overflowY: "auto" }}
       >
         {renderTree(data)}
       </TreeView>
-    )
+    );
   },
   {
     parameters: {
@@ -229,14 +229,14 @@ Let's consider a data variable with the following shape, recursion can be used t
         },
       },
     },
-  },
-)
+  }
+);
 
 export const ContentComponentPropExample1 = story(
   () => {
     const CustomContent = React.forwardRef(function CustomContent(
       props: TreeItemContentProps,
-      ref,
+      ref
     ) {
       const {
         classes,
@@ -246,7 +246,7 @@ export const ContentComponentPropExample1 = story(
         icon: iconProp,
         expansionIcon,
         displayIcon,
-      } = props
+      } = props;
 
       const {
         disabled,
@@ -256,38 +256,38 @@ export const ContentComponentPropExample1 = story(
         handleExpansion,
         handleSelection,
         preventSelection,
-      } = useTreeItem(nodeId)
+      } = useTreeItem(nodeId);
 
-      const icon = iconProp || expansionIcon || displayIcon
+      const icon = iconProp || expansionIcon || displayIcon;
 
       const handleMouseDown = (
-        event: React.MouseEvent<HTMLDivElement, MouseEvent>,
+        event: React.MouseEvent<HTMLDivElement, MouseEvent>
       ) => {
-        preventSelection(event)
-      }
+        preventSelection(event);
+      };
 
       const handleExpansionClick = (
-        event: React.MouseEvent<HTMLDivElement, MouseEvent>,
+        event: React.MouseEvent<HTMLDivElement, MouseEvent>
       ) => {
-        handleExpansion(event)
-      }
+        handleExpansion(event);
+      };
 
       const handleSelectionClick = (
-        event: React.MouseEvent<HTMLDivElement, MouseEvent>,
+        event: React.MouseEvent<HTMLDivElement, MouseEvent>
       ) => {
-        handleSelection(event)
-      }
+        handleSelection(event);
+      };
 
       return (
         // eslint-disable-next-line jsx-a11y/no-static-element-interactions
         <div
           className={[
             className,
-            expanded ? classes.expanded : '',
-            selected ? classes.selected : '',
-            focused ? classes.focused : '',
-            disabled ? classes.disabled : '',
-          ].join(' ')}
+            expanded ? classes.expanded : "",
+            selected ? classes.selected : "",
+            focused ? classes.focused : "",
+            disabled ? classes.disabled : "",
+          ].join(" ")}
           onMouseDown={handleMouseDown}
           ref={ref as React.Ref<HTMLDivElement>}
         >
@@ -303,12 +303,12 @@ export const ContentComponentPropExample1 = story(
             {label}
           </Typography>
         </div>
-      )
-    })
+      );
+    });
 
     const CustomTreeItem = (props: TreeItemProps) => (
       <TreeItem ContentComponent={CustomContent} {...props} />
-    )
+    );
 
     return (
       <>
@@ -317,7 +317,7 @@ export const ContentComponentPropExample1 = story(
           aria-label="icon expansion"
           defaultCollapseIcon={<ExpandMoreIcon />}
           defaultExpandIcon={<ChevronRightIcon />}
-          sx={{ height: 240, flexGrow: 1, maxWidth: 400, overflowY: 'auto' }}
+          sx={{ height: 240, flexGrow: 1, maxWidth: 400, overflowY: "auto" }}
         >
           <CustomTreeItem nodeId="1" label="Applications">
             <CustomTreeItem nodeId="2" label="Calendar" />
@@ -337,7 +337,7 @@ export const ContentComponentPropExample1 = story(
 
         <Typography>Increasing the width of the state indicator: </Typography>
       </>
-    )
+    );
   },
   {
     parameters: {
@@ -350,69 +350,69 @@ Such as limiting expansion to clicking the icon.   `,
         },
       },
     },
-  },
-)
+  }
+);
 
 export const ContentComponentPropExample2 = story(
   () => {
-    const CustomContentRoot = styled('div')(({ theme }) => ({
-      WebkitTapHighlightColor: 'transparent',
-      '&:hover, &.Mui-disabled, &.Mui-focused, &.Mui-selected, &.Mui-selected.Mui-focused, &.Mui-selected:hover':
+    const CustomContentRoot = styled("div")(({ theme }) => ({
+      WebkitTapHighlightColor: "transparent",
+      "&:hover, &.Mui-disabled, &.Mui-focused, &.Mui-selected, &.Mui-selected.Mui-focused, &.Mui-selected:hover":
         {
-          backgroundColor: 'transparent',
+          backgroundColor: "transparent",
         },
       [`& .MuiTreeItem-contentBar`]: {
-        position: 'absolute',
-        width: '100%',
+        position: "absolute",
+        width: "100%",
         height: 24,
         left: 0,
-        '&:hover &': {
+        "&:hover &": {
           backgroundColor: theme.palette.action.hover,
           // Reset on touch devices, it doesn't add specificity
-          '@media (hover: none)': {
-            backgroundColor: 'transparent',
+          "@media (hover: none)": {
+            backgroundColor: "transparent",
           },
         },
-        '&.Mui-disabled &': {
+        "&.Mui-disabled &": {
           opacity: theme.palette.action.disabledOpacity,
-          backgroundColor: 'transparent',
+          backgroundColor: "transparent",
         },
-        '&.Mui-focused &': {
+        "&.Mui-focused &": {
           backgroundColor: theme.palette.action.focus,
         },
-        '&.Mui-selected &': {
+        "&.Mui-selected &": {
           backgroundColor: alpha(
             theme.palette.primary.main,
-            theme.palette.action.selectedOpacity,
+            theme.palette.action.selectedOpacity
           ),
         },
-        '&.Mui-selected:hover &': {
+        "&.Mui-selected:hover &": {
           backgroundColor: alpha(
             theme.palette.primary.main,
             theme.palette.action.selectedOpacity +
-              theme.palette.action.hoverOpacity,
+              theme.palette.action.hoverOpacity
           ),
           // Reset on touch devices, it doesn't add specificity
-          '@media (hover: none)': {
+          "@media (hover: none)": {
             backgroundColor: alpha(
               theme.palette.primary.main,
-              theme.palette.action.selectedOpacity,
+              theme.palette.action.selectedOpacity
             ),
           },
         },
-        '&.Mui-selected.Mui-focused &': {
+        "&.Mui-selected.Mui-focused &": {
           backgroundColor: alpha(
             theme.palette.primary.main,
             theme.palette.action.selectedOpacity +
-              theme.palette.action.focusOpacity,
+              theme.palette.action.focusOpacity
           ),
         },
       },
-    }))
+    }));
 
     const CustomContent = React.forwardRef(function CustomContent(
       props: TreeItemContentProps,
-      ref,
+      ref
     ) {
       const {
         className,
@@ -422,7 +422,7 @@ export const ContentComponentPropExample2 = story(
         icon: iconProp,
         expansionIcon,
         displayIcon,
-      } = props
+      } = props;
 
       const {
         disabled,
@@ -432,33 +432,33 @@ export const ContentComponentPropExample2 = story(
         handleExpansion,
         handleSelection,
         preventSelection,
-      } = useTreeItem(nodeId)
+      } = useTreeItem(nodeId);
 
-      const icon = iconProp || expansionIcon || displayIcon
+      const icon = iconProp || expansionIcon || displayIcon;
 
       const handleMouseDown = (
-        event: React.MouseEvent<HTMLDivElement, MouseEvent>,
+        event: React.MouseEvent<HTMLDivElement, MouseEvent>
       ) => {
-        preventSelection(event)
-      }
+        preventSelection(event);
+      };
 
       const handleClick = (
-        event: React.MouseEvent<HTMLDivElement, MouseEvent>,
+        event: React.MouseEvent<HTMLDivElement, MouseEvent>
       ) => {
-        handleExpansion(event)
-        handleSelection(event)
-      }
+        handleExpansion(event);
+        handleSelection(event);
+      };
 
       return (
         <CustomContentRoot
           className={[
             className,
             classes.root,
-            expanded ? 'Mui-expanded' : '',
-            selected ? 'Mui-selected' : '',
-            focused ? 'Mui-focused' : '',
-            disabled ? 'Mui-disabled' : '',
-          ].join(' ')}
+            expanded ? "Mui-expanded" : "",
+            selected ? "Mui-selected" : "",
+            focused ? "Mui-focused" : "",
+            disabled ? "Mui-disabled" : "",
+          ].join(" ")}
           onClick={handleClick}
           onMouseDown={handleMouseDown}
           ref={ref as React.Ref<HTMLDivElement>}
@@ -469,19 +469,19 @@ export const ContentComponentPropExample2 = story(
             {label}
           </Typography>
         </CustomContentRoot>
-      )
-    })
+      );
+    });
 
     const CustomTreeItem = (props: TreeItemProps) => (
       <TreeItem ContentComponent={CustomContent} {...props} />
-    )
+    );
 
     return (
       <TreeView
         aria-label="icon expansion"
         defaultCollapseIcon={<ExpandMoreIcon />}
         defaultExpandIcon={<ChevronRightIcon />}
-        sx={{ height: 240, flexGrow: 1, maxWidth: 400, position: 'relative' }}
+        sx={{ height: 240, flexGrow: 1, maxWidth: 400, position: "relative" }}
       >
         <CustomTreeItem nodeId="1" label="Applications">
           <CustomTreeItem nodeId="2" label="Calendar" />
@@ -498,7 +498,7 @@ export const ContentComponentPropExample2 = story(
           </CustomTreeItem>
         </CustomTreeItem>
       </TreeView>
-    )
+    );
   },
   {
     parameters: {
@@ -511,24 +511,24 @@ Such as increasing the width of the state indicator.   `,
         },
       },
     },
-  },
-)
-declare module 'react' {
+  }
+);
+declare module "react" {
   interface CSSProperties {
-    '--tree-view-color'?: string
-    '--tree-view-bg-color'?: string
+    "--tree-view-color"?: string;
+    "--tree-view-bg-color"?: string;
   }
 }
 
 export const CustomizedTreeView = story(
   () => {
     type StyledTreeItemProps = TreeItemProps & {
-      bgColor?: string
-      color?: string
-      labelIcon: React.ElementType<SvgIconProps>
-      labelInfo?: string
-      labelText: string
-    }
+      bgColor?: string;
+      color?: string;
+      labelIcon: React.ElementType<SvgIconProps>;
+      labelInfo?: string;
+      labelText: string;
+    };
 
     const StyledTreeItemRoot = styled(TreeItem)(({ theme }) => ({
       color: theme.palette.text.secondary,
@@ -538,19 +538,19 @@ export const CustomizedTreeView = story(
         borderBottomRightRadius: theme.spacing(2),
         paddingRight: theme.spacing(1),
         fontWeight: theme.typography.fontWeightMedium,
-        '&.Mui-expanded': {
+        "&.Mui-expanded": {
           fontWeight: theme.typography.fontWeightRegular,
         },
-        '&:hover': {
+        "&:hover": {
           backgroundColor: theme.palette.action.hover,
         },
-        '&.Mui-focused, &.Mui-selected, &.Mui-selected.Mui-focused': {
+        "&.Mui-focused, &.Mui-selected, &.Mui-selected.Mui-focused": {
           backgroundColor: `var(--tree-view-bg-color, ${theme.palette.action.selected})`,
-          color: 'var(--tree-view-color)',
+          color: "var(--tree-view-color)",
         },
         [`& .${treeItemClasses.label}`]: {
-          fontWeight: 'inherit',
-          color: 'inherit',
+          fontWeight: "inherit",
+          color: "inherit",
         },
       },
       [`& .${treeItemClasses.group}`]: {
@@ -559,7 +559,7 @@ export const CustomizedTreeView = story(
           paddingLeft: theme.spacing(2),
         },
       },
-    }))
+    }));
 
     function StyledTreeItem(props: StyledTreeItemProps) {
       const {
@@ -569,16 +569,16 @@ export const CustomizedTreeView = story(
         labelInfo,
         labelText,
         ...other
-      } = props
+      } = props;
 
       return (
         <StyledTreeItemRoot
           label={
-            <Box sx={{ display: 'flex', alignItems: 'center', p: 0.5, pr: 0 }}>
+            <Box sx={{ display: "flex", alignItems: "center", p: 0.5, pr: 0 }}>
               <Box component={LabelIcon} color="inherit" sx={{ mr: 1 }} />
               <Typography
                 variant="body2"
-                sx={{ fontWeight: 'inherit', flexGrow: 1 }}
+                sx={{ fontWeight: "inherit", flexGrow: 1 }}
               >
                 {labelText}
               </Typography>
@@ -588,22 +588,22 @@ export const CustomizedTreeView = story(
             </Box>
           }
           style={{
-            '--tree-view-color': color,
-            '--tree-view-bg-color': bgColor,
+            "--tree-view-color": color,
+            "--tree-view-bg-color": bgColor,
           }}
           {...other}
         />
-      )
+      );
     }
 
     return (
       <TreeView
         aria-label="gmail"
-        defaultExpanded={['3']}
+        defaultExpanded={["3"]}
         defaultCollapseIcon={<ArrowDropDownIcon />}
         defaultExpandIcon={<ArrowRightIcon />}
         defaultEndIcon={<div style={{ width: 24 }} />}
-        sx={{ height: 264, flexGrow: 1, maxWidth: 400, overflowY: 'auto' }}
+        sx={{ height: 264, flexGrow: 1, maxWidth: 400, overflowY: "auto" }}
       >
         <StyledTreeItem nodeId="1" labelText="All Mail" labelIcon={MailIcon} />
         <StyledTreeItem nodeId="2" labelText="Trash" labelIcon={DeleteIcon} />
@@ -643,7 +643,7 @@ export const CustomizedTreeView = story(
         </StyledTreeItem>
         <StyledTreeItem nodeId="4" labelText="History" labelIcon={Label} />
       </TreeView>
-    )
+    );
   },
   {
     parameters: {
@@ -653,18 +653,18 @@ export const CustomizedTreeView = story(
         },
       },
     },
-  },
-)
+  }
+);
 
 export const DisabledTreeItems = story(
   () => {
-    const [focusDisabledItems, setFocusDisabledItems] = React.useState(false)
+    const [focusDisabledItems, setFocusDisabledItems] = React.useState(false);
     const handleToggle = (event: React.ChangeEvent<HTMLInputElement>) => {
-      setFocusDisabledItems(event.target.checked)
-    }
+      setFocusDisabledItems(event.target.checked);
+    };
 
     return (
-      <Box sx={{ height: 270, flexGrow: 1, maxWidth: 400, overflowY: 'auto' }}>
+      <Box sx={{ height: 270, flexGrow: 1, maxWidth: 400, overflowY: "auto" }}>
         <Box sx={{ mb: 1, ml: 1 }}>
           <FormControlLabel
             control={
@@ -703,7 +703,7 @@ export const DisabledTreeItems = story(
           </TreeItem>
         </TreeView>
       </Box>
-    )
+    );
   },
   {
     parameters: {
@@ -732,5 +732,5 @@ Programmatic focus will focus disabled items.`,
         },
       },
     },
-  },
-)
+  }
+);

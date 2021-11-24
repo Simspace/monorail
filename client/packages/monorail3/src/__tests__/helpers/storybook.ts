@@ -4,40 +4,40 @@
 /* eslint-disable no-restricted-imports */
 /* eslint-disable import/no-extraneous-dependencies */
 
-import { Args as DefaultArgs } from '@storybook/addons'
+import { Args as DefaultArgs } from "@storybook/addons";
 import {
   ArgTypes as StorybookArgTypes,
   Meta as StorybookMeta,
   Parameters as StorybookParameters,
   Story as StorybookStory,
-} from '@storybook/react'
+} from "@storybook/react";
 
-import { isNonEmptyString } from './typeGuards'
+import { isNonEmptyString } from "./typeGuards";
 
 type A11yParameter = {
   a11y?: {
-    element?: A11yElement | string
-    disable?: boolean
-  }
-}
+    element?: A11yElement | string;
+    disable?: boolean;
+  };
+};
 type A11yParameters = {
-  parameters?: A11yParameter
-}
+  parameters?: A11yParameter;
+};
 
 declare type DocsParameter = {
   docs?: {
-    inlineStories?: boolean
-    storyDescription?: string
+    inlineStories?: boolean;
+    storyDescription?: string;
     description?: {
-      story?: string // markdown-supporting documentation string for use in non-hero stories
-      component?: string // Use for the subtitle description in a hero story. supports markdown
-    }
-  }
-}
+      story?: string; // markdown-supporting documentation string for use in non-hero stories
+      component?: string; // Use for the subtitle description in a hero story. supports markdown
+    };
+  };
+};
 
-export type Meta = StorybookMeta & A11yParameters
+export type Meta = StorybookMeta & A11yParameters;
 export type Story<Args = DefaultArgs> = StorybookStory<Partial<Args>> &
-  A11yParameters
+  A11yParameters;
 
 /**
  * Selectors used by a11y tools to target specific elements for a11y checks
@@ -46,11 +46,11 @@ export enum A11yElement {
   /**
    * `Root` is the default. Only use it when overriding a non-default selector.
    */
-  Root = '#root',
-  Component = '#root > *',
-  Modal = '.MuiDialog-root',
-  Popover = '.MuiPopover-root',
-  Drawer = '.MuiDrawer-root',
+  Root = "#root",
+  Component = "#root > *",
+  Modal = ".MuiDialog-root",
+  Popover = ".MuiPopover-root",
+  Drawer = ".MuiDrawer-root",
 }
 
 //#region Parameters
@@ -78,36 +78,36 @@ export const DISABLED_CONTROLS = {
   controls: {
     disable: true,
   },
-} as const
+} as const;
 
 /**
  * Add this to the story `parameters` to disable the actions integration for this story
  */
 export const DISABLED_ACTIONS = {
   actions: { disable: true },
-} as const
+} as const;
 
 /**
  * Add this to the story `parameters` to enable the actions integration for this story
  */
 export const ENABLED_ACTIONS = {
   actions: { disable: false },
-} as const
+} as const;
 
 /**
  * Add this to the story `parameters` to disable the a11y integration for this story (and corresponding jest tests)
  */
 export const DISABLED_A11Y = {
   a11y: { disable: true },
-} as const
+} as const;
 
 export const DISABLED_ARG_TYPE = {
   table: { disable: true },
-} as const
+} as const;
 
 export const PADDING_REMOVED = {
-  layout: 'fullscreen',
-} as const
+  layout: "fullscreen",
+} as const;
 
 /**
  * Sets the normal "root" selector as the root for the a11y tests.
@@ -116,20 +116,20 @@ export const PADDING_REMOVED = {
  */
 export const A11Y_ELEMENT__ROOT = {
   a11y: { element: A11yElement.Root },
-}
+};
 
 export const A11Y_ELEMENT__COMPONENT = {
   a11y: { element: A11yElement.Component },
-}
+};
 //#endregion
 
 //#region Helper functions
 type StoryConfiguration<T> = {
-  args?: Partial<T>
-  argTypes?: StorybookArgTypes
-  parameters?: StorybookParameters & A11yParameter & DocsParameter
-  storyName?: string
-}
+  args?: Partial<T>;
+  argTypes?: StorybookArgTypes;
+  parameters?: StorybookParameters & A11yParameter & DocsParameter;
+  storyName?: string;
+};
 
 /**
  * Helper function for creating a story from a Template.
@@ -178,16 +178,16 @@ type StoryConfiguration<T> = {
  */
 export function story<T extends DefaultArgs>(
   Template: Story<T>,
-  { args, argTypes, parameters, storyName }: StoryConfiguration<T> = {},
+  { args, argTypes, parameters, storyName }: StoryConfiguration<T> = {}
 ): Story<T> {
-  const NewStory = Template.bind({})
-  NewStory.args = { ...Template.args, ...args } as Partial<T>
-  NewStory.argTypes = { ...Template.argTypes, ...argTypes }
-  NewStory.parameters = { ...Template.parameters, ...parameters }
+  const NewStory = Template.bind({});
+  NewStory.args = { ...Template.args, ...args } as Partial<T>;
+  NewStory.argTypes = { ...Template.argTypes, ...argTypes };
+  NewStory.parameters = { ...Template.parameters, ...parameters };
 
   if (isNonEmptyString(storyName)) {
-    NewStory.storyName = storyName
+    NewStory.storyName = storyName;
   }
 
-  return NewStory
+  return NewStory;
 }

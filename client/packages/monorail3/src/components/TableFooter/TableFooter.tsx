@@ -2,6 +2,6 @@
 import {
   TableFooter as _TableFooter,
   TableFooterProps as _TableFooterProps,
-} from './TableFooter'
-export * from './TableFooter.gen'
+} from "./TableFooter";
+export * from "./TableFooter.gen";
 // Add more functions/etc. below

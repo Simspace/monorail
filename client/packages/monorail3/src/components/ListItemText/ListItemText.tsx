@@ -2,6 +2,6 @@
 import {
   ListItemText as _ListItemText,
   ListItemTextProps as _ListItemTextProps,
-} from './ListItemText'
-export * from './ListItemText.gen'
+} from "./ListItemText";
+export * from "./ListItemText.gen";
 // Add more functions/etc. below

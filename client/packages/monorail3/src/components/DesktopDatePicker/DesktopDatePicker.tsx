@@ -2,6 +2,6 @@
 import {
   DesktopDatePicker as _DesktopDatePicker,
   DesktopDatePickerProps as _DesktopDatePickerProps,
-} from './DesktopDatePicker'
-export * from './DesktopDatePicker.gen'
+} from "./DesktopDatePicker";
+export * from "./DesktopDatePicker.gen";
 // Add more functions/etc. below

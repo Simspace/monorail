@@ -2,6 +2,6 @@
 import {
   DialogContent as _DialogContent,
   DialogContentProps as _DialogContentProps,
-} from './DialogContent'
-export * from './DialogContent.gen'
+} from "./DialogContent";
+export * from "./DialogContent.gen";
 // Add more functions/etc. below

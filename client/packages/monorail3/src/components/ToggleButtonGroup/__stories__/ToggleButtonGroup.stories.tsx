@@ -1,25 +1,28 @@
 // Edit this file to add new stories
-import React from 'react'
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
-import FormatAlignCenterIcon from '@mui/icons-material/FormatAlignCenter'
-import FormatAlignJustifyIcon from '@mui/icons-material/FormatAlignJustify'
-import FormatAlignLeftIcon from '@mui/icons-material/FormatAlignLeft'
-import FormatAlignRightIcon from '@mui/icons-material/FormatAlignRight'
-import FormatBoldIcon from '@mui/icons-material/FormatBold'
-import FormatColorFillIcon from '@mui/icons-material/FormatColorFill'
-import FormatItalicIcon from '@mui/icons-material/FormatItalic'
-import FormatUnderlinedIcon from '@mui/icons-material/FormatUnderlined'
+import React from "react";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import FormatAlignCenterIcon from "@mui/icons-material/FormatAlignCenter";
+import FormatAlignJustifyIcon from "@mui/icons-material/FormatAlignJustify";
+import FormatAlignLeftIcon from "@mui/icons-material/FormatAlignLeft";
+import FormatAlignRightIcon from "@mui/icons-material/FormatAlignRight";
+import FormatBoldIcon from "@mui/icons-material/FormatBold";
+import FormatColorFillIcon from "@mui/icons-material/FormatColorFill";
+import FormatItalicIcon from "@mui/icons-material/FormatItalic";
+import FormatUnderlinedIcon from "@mui/icons-material/FormatUnderlined";
 
-import { story } from '../../../__tests__/helpers/storybook'
-import { Stack } from '../../Stack/Stack'
-import { ToggleButton } from '../../ToggleButton/ToggleButton'
-import { ToggleButtonGroup, ToggleButtonGroupProps } from '../ToggleButtonGroup'
-import { defaultStoryMeta } from './ToggleButtonGroup.stories.gen'
+import { story } from "../../../__tests__/helpers/storybook";
+import { Stack } from "../../Stack/Stack";
+import { ToggleButton } from "../../ToggleButton/ToggleButton";
+import {
+  ToggleButtonGroup,
+  ToggleButtonGroupProps,
+} from "../ToggleButtonGroup";
+import { defaultStoryMeta } from "./ToggleButtonGroup.stories.gen";
 
 /**
  * Metadata for ToggleButtonGroup stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Inputs/ToggleButtonGroup' }
+export default { ...defaultStoryMeta, title: "Inputs/ToggleButtonGroup" };
 /**
  * Story template (edit/remove by hand if needed)
  *
@@ -27,15 +30,15 @@ export default { ...defaultStoryMeta, title: 'Inputs/ToggleButtonGroup' }
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
 const Template = story<ToggleButtonGroupProps>(
-  args => {
-    const [alignment, setAlignment] = React.useState<string | null>('left')
+  (args) => {
+    const [alignment, setAlignment] = React.useState<string | null>("left");
 
     const handleAlignment = (
       _event: React.MouseEvent<HTMLElement>,
-      newAlignment: string | null,
+      newAlignment: string | null
     ) => {
-      setAlignment(newAlignment)
-    }
+      setAlignment(newAlignment);
+    };
 
     return (
       <ToggleButtonGroup
@@ -58,23 +61,23 @@ const Template = story<ToggleButtonGroupProps>(
           <FormatAlignJustifyIcon />
         </ToggleButton>
       </ToggleButtonGroup>
-    )
+    );
   },
-  { args: {} },
-)
+  { args: {} }
+);
 /** Default story for ToggleButtonGroup (edit/remove by hand if needed) */
-export const Default = story(Template)
+export const Default = story(Template);
 
 export const MultipleSelection = story(
   () => {
-    const [formats, setFormats] = React.useState(() => ['bold', 'italic'])
+    const [formats, setFormats] = React.useState(() => ["bold", "italic"]);
 
     const handleFormat = (
       event: React.MouseEvent<HTMLElement>,
-      newFormats: Array<string>,
+      newFormats: Array<string>
     ) => {
-      setFormats(newFormats)
-    }
+      setFormats(newFormats);
+    };
 
     return (
       <ToggleButtonGroup
@@ -96,7 +99,7 @@ export const MultipleSelection = story(
           <ArrowDropDownIcon />
         </ToggleButton>
       </ToggleButtonGroup>
-    )
+    );
   },
   {
     args: { exclusive: false },
@@ -107,19 +110,19 @@ export const MultipleSelection = story(
         },
       },
     },
-  },
-)
+  }
+);
 
 export const Size = story(
   () => {
-    const [alignment, setAlignment] = React.useState('left')
+    const [alignment, setAlignment] = React.useState("left");
 
     const handleChange = (
       _event: React.MouseEvent<HTMLElement>,
-      newAlignment: string,
+      newAlignment: string
     ) => {
-      setAlignment(newAlignment)
-    }
+      setAlignment(newAlignment);
+    };
 
     const children = [
       <ToggleButton value="left" key="left">
@@ -134,16 +137,16 @@ export const Size = story(
       <ToggleButton value="justify" key="justify">
         <FormatAlignJustifyIcon fontSize="small" />
       </ToggleButton>,
-    ]
+    ];
 
     const control = {
       value: alignment,
       onChange: handleChange,
       exclusive: true,
-    }
+    };
 
     return (
-      <Stack spacing={2} alignItems={'center'}>
+      <Stack spacing={2} alignItems={"center"}>
         <ToggleButtonGroup size="small" {...control}>
           {children}
         </ToggleButtonGroup>
@@ -152,7 +155,7 @@ export const Size = story(
           {children}
         </ToggleButtonGroup>
       </Stack>
-    )
+    );
   },
   {
     args: { exclusive: false },
@@ -163,7 +166,7 @@ export const Size = story(
         },
       },
     },
-  },
-)
+  }
+);
 
-export const Color = story(Template, { args: { color: 'primary' } })
+export const Color = story(Template, { args: { color: "primary" } });

@@ -2,12 +2,12 @@
 import {
   TreeItem as _TreeItem,
   TreeItemProps as _TreeItemProps,
-} from './TreeItem'
-export * from './TreeItem.gen'
+} from "./TreeItem";
+export * from "./TreeItem.gen";
 // Add more functions/etc. below
 
 export {
   useTreeItem,
   TreeItemContentProps,
   treeItemClasses,
-} from '@mui/lab/TreeItem'
+} from "@mui/lab/TreeItem";

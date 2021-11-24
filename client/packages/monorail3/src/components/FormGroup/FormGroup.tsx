@@ -2,6 +2,6 @@
 import {
   FormGroup as _FormGroup,
   FormGroupProps as _FormGroupProps,
-} from './FormGroup'
-export * from './FormGroup.gen'
+} from "./FormGroup";
+export * from "./FormGroup.gen";
 // Add more functions/etc. below

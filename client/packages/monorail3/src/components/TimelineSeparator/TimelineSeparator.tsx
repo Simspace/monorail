@@ -2,6 +2,6 @@
 import {
   TimelineSeparator as _TimelineSeparator,
   TimelineSeparatorProps as _TimelineSeparatorProps,
-} from './TimelineSeparator'
-export * from './TimelineSeparator.gen'
+} from "./TimelineSeparator";
+export * from "./TimelineSeparator.gen";
 // Add more functions/etc. below

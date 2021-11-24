@@ -2,6 +2,6 @@
 import {
   TimelineItem as _TimelineItem,
   TimelineItemProps as _TimelineItemProps,
-} from './TimelineItem'
-export * from './TimelineItem.gen'
+} from "./TimelineItem";
+export * from "./TimelineItem.gen";
 // Add more functions/etc. below

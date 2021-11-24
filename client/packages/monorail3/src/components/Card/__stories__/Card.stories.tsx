@@ -1,37 +1,37 @@
 // Edit this file to add new stories
-import React from 'react'
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
-import FavoriteIcon from '@mui/icons-material/Favorite'
-import MoreVertIcon from '@mui/icons-material/MoreVert'
-import PlayArrowIcon from '@mui/icons-material/PlayArrow'
-import ShareIcon from '@mui/icons-material/Share'
-import SkipNextIcon from '@mui/icons-material/SkipNext'
-import SkipPreviousIcon from '@mui/icons-material/SkipPrevious'
-import { red } from '@mui/material/colors'
-import { styled } from '@mui/material/styles'
+import React from "react";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
+import PlayArrowIcon from "@mui/icons-material/PlayArrow";
+import ShareIcon from "@mui/icons-material/Share";
+import SkipNextIcon from "@mui/icons-material/SkipNext";
+import SkipPreviousIcon from "@mui/icons-material/SkipPrevious";
+import { red } from "@mui/material/colors";
+import { styled } from "@mui/material/styles";
 
-import { story } from '../../../__tests__/helpers/storybook'
-import { images } from '../../../__tests__/helpers/testData'
-import { useTheme } from '../../../theme/useTheme'
-import { Avatar } from '../../Avatar/Avatar'
-import { Box } from '../../Box/Box'
-import { Button } from '../../Button/Button'
-import { CardActionArea } from '../../CardActionArea/CardActionArea'
-import { CardActions } from '../../CardActions/CardActions'
-import { CardContent } from '../../CardContent/CardContent'
-import { CardHeader } from '../../CardHeader/CardHeader'
-import { CardMedia } from '../../CardMedia/CardMedia'
-import { Collapse } from '../../Collapse/Collapse'
-import { IconButton, IconButtonProps } from '../../IconButton/IconButton'
-import { Typography } from '../../Typography/Typography'
-import { Card, CardProps } from '../Card'
-import { defaultStoryMeta } from './Card.stories.gen'
+import { story } from "../../../__tests__/helpers/storybook";
+import { images } from "../../../__tests__/helpers/testData";
+import { useTheme } from "../../../theme/useTheme";
+import { Avatar } from "../../Avatar/Avatar";
+import { Box } from "../../Box/Box";
+import { Button } from "../../Button/Button";
+import { CardActionArea } from "../../CardActionArea/CardActionArea";
+import { CardActions } from "../../CardActions/CardActions";
+import { CardContent } from "../../CardContent/CardContent";
+import { CardHeader } from "../../CardHeader/CardHeader";
+import { CardMedia } from "../../CardMedia/CardMedia";
+import { Collapse } from "../../Collapse/Collapse";
+import { IconButton, IconButtonProps } from "../../IconButton/IconButton";
+import { Typography } from "../../Typography/Typography";
+import { Card, CardProps } from "../Card";
+import { defaultStoryMeta } from "./Card.stories.gen";
 /**
  * Metadata for Card stories - update/extend as needed
  * This is intended to be exported as story-level metadata from the main .stories.tsx file, like:
  * "export default { ...defaultStoryMeta } // Add/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Surfaces/Card' }
+export default { ...defaultStoryMeta, title: "Surfaces/Card" };
 /**
  * Story template (edit/remove by hand if needed)
  *
@@ -41,14 +41,14 @@ export default { ...defaultStoryMeta, title: 'Surfaces/Card' }
 const bull = (
   <Box
     component="span"
-    sx={{ display: 'inline-block', mx: '2px', transform: 'scale(0.8)' }}
+    sx={{ display: "inline-block", mx: "2px", transform: "scale(0.8)" }}
   >
     •
   </Box>
-)
+);
 
 const Template = story<CardProps>(
-  args => (
+  (args) => (
     <Card sx={{ maxWidth: 275 }} {...args}>
       <CardContent>
         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
@@ -77,15 +77,15 @@ const Template = story<CardProps>(
       docs: {
         description: {
           story:
-            'Although cards can support multiple actions, UI controls, and an overflow menu, use restraint and remember that cards are entry points to more complex and detailed information.',
+            "Although cards can support multiple actions, UI controls, and an overflow menu, use restraint and remember that cards are entry points to more complex and detailed information.",
         },
       },
     },
-  },
-)
+  }
+);
 
 /** Default story for Card (edit/remove by hand if needed) */
-export const Default = story(Template)
+export const Default = story(Template);
 
 export const OutlinedCard = story<CardProps>(
   () => {
@@ -111,7 +111,7 @@ export const OutlinedCard = story<CardProps>(
           <Button size="small">Learn More</Button>
         </CardActions>
       </Card>
-    )
+    );
   },
   {
     parameters: {
@@ -121,30 +121,30 @@ export const OutlinedCard = story<CardProps>(
         },
       },
     },
-  },
-)
+  }
+);
 
 interface ExpandMoreProps extends IconButtonProps {
-  expand: boolean
+  expand: boolean;
 }
 
 const ExpandMore = styled((props: ExpandMoreProps) => {
-  const { ...other } = props
-  return <IconButton {...other} size="large" />
+  const { ...other } = props;
+  return <IconButton {...other} size="large" />;
 })(({ theme, expand }) => ({
-  transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
-  marginLeft: 'auto',
-  transition: theme.transitions.create('transform', {
+  transform: !expand ? "rotate(0deg)" : "rotate(180deg)",
+  marginLeft: "auto",
+  transition: theme.transitions.create("transform", {
     duration: theme.transitions.duration.shortest,
   }),
-}))
+}));
 
 export const RecipeReviewCard = story<CardProps>(() => {
-  const [expanded, setExpanded] = React.useState(false)
+  const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
-    setExpanded(!expanded)
-  }
+    setExpanded(!expanded);
+  };
 
   return (
     <Card sx={{ maxWidth: 345 }}>
@@ -165,7 +165,7 @@ export const RecipeReviewCard = story<CardProps>(() => {
       <CardMedia
         sx={{
           height: 0,
-          paddingTop: '56.25%', // 16:9
+          paddingTop: "56.25%", // 16:9
         }}
         image={images.paella.url}
         title={images.lizard.title}
@@ -225,20 +225,20 @@ export const RecipeReviewCard = story<CardProps>(() => {
         </CardContent>
       </Collapse>
     </Card>
-  )
-})
+  );
+});
 RecipeReviewCard.parameters = {
   docs: {
     description: {
       story:
-        'On desktop, card content can expand. (Click the downward chevron to view the recipe.)',
+        "On desktop, card content can expand. (Click the downward chevron to view the recipe.)",
     },
   },
   creevey: {
     delay: 1000,
-    skip: 'Image load unreliable',
+    skip: "Image load unreliable",
   },
-}
+};
 
 export const MediaCard = story<CardProps>(() => {
   return (
@@ -262,17 +262,17 @@ export const MediaCard = story<CardProps>(() => {
         <Button size="small">Learn More</Button>
       </CardActions>
     </Card>
-  )
-})
+  );
+});
 
 MediaCard.parameters = {
   docs: {
     description: {
-      story: 'Example of a card using an image to reinforce the content.',
+      story: "Example of a card using an image to reinforce the content.",
     },
   },
-  creevey: { skip: 'Images load unreliably' },
-}
+  creevey: { skip: "Images load unreliably" },
+};
 
 export const ResponsiveMediaCard = story<CardProps>(() => {
   return (
@@ -298,20 +298,20 @@ export const ResponsiveMediaCard = story<CardProps>(() => {
         <Button size="small">Learn More</Button>
       </CardActions>
     </Card>
-  )
-})
+  );
+});
 
 ResponsiveMediaCard.parameters = {
   docs: {
     description: {
       story:
-        'By default, MUI uses the combination of a `<div>` element and a background image to display the media. It can be problematic in some situations, for example, you might want to display a video or a responsive image. Use the `component` prop for these use cases:',
+        "By default, MUI uses the combination of a `<div>` element and a background image to display the media. It can be problematic in some situations, for example, you might want to display a video or a responsive image. Use the `component` prop for these use cases:",
     },
   },
   creevey: {
     skip: "Images don't load reliably",
   },
-}
+};
 
 export const ActionAreaCard = story<CardProps>(() => {
   return (
@@ -333,20 +333,20 @@ export const ActionAreaCard = story<CardProps>(() => {
         </CardContent>
       </CardActionArea>
     </Card>
-  )
-})
+  );
+});
 
 ActionAreaCard.parameters = {
   docs: {
     description: {
       story:
-        'Often a card allow users to interact with the entirety of its surface to trigger its main action, be it an expansion, a link to another screen or some other behavior. The action area of the card can be specified by wrapping its contents in a `CardActionArea` component.',
+        "Often a card allow users to interact with the entirety of its surface to trigger its main action, be it an expansion, a link to another screen or some other behavior. The action area of the card can be specified by wrapping its contents in a `CardActionArea` component.",
     },
   },
   creevey: {
     skip: "Images don't load reliably",
   },
-}
+};
 
 export const MultiActionAreaCard = story<CardProps>(() => {
   return (
@@ -373,30 +373,30 @@ export const MultiActionAreaCard = story<CardProps>(() => {
         </Button>
       </CardActions>
     </Card>
-  )
-})
+  );
+});
 
 MultiActionAreaCard.parameters = {
   docs: {
     description: {
       story:
-        'A card can also offer supplemental actions which should stand detached from the main action area in order to avoid event overlap.',
+        "A card can also offer supplemental actions which should stand detached from the main action area in order to avoid event overlap.",
     },
   },
   creevey: {
     skip: "Images don't load reliably",
   },
-}
+};
 
 export const MediaControlCard = story<CardProps>(() => {
-  const theme = useTheme()
+  const theme = useTheme();
 
   return (
     <Card
-      sx={{ display: 'flex', maxWidth: 400, justifyContent: 'space-between' }}
+      sx={{ display: "flex", maxWidth: 400, justifyContent: "space-between" }}
     >
-      <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-        <CardContent sx={{ flex: '1 0 auto' }}>
+      <Box sx={{ display: "flex", flexDirection: "column" }}>
+        <CardContent sx={{ flex: "1 0 auto" }}>
           <Typography component="div" variant="h5">
             Live From Space
           </Typography>
@@ -408,9 +408,9 @@ export const MediaControlCard = story<CardProps>(() => {
             Mac Miller
           </Typography>
         </CardContent>
-        <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1 }}>
+        <Box sx={{ display: "flex", alignItems: "center", pl: 1, pb: 1 }}>
           <IconButton aria-label="previous" size="large">
-            {theme.direction === 'rtl' ? (
+            {theme.direction === "rtl" ? (
               <SkipNextIcon />
             ) : (
               <SkipPreviousIcon />
@@ -420,7 +420,7 @@ export const MediaControlCard = story<CardProps>(() => {
             <PlayArrowIcon sx={{ height: 38, width: 38 }} />
           </IconButton>
           <IconButton aria-label="next" size="large">
-            {theme.direction === 'rtl' ? (
+            {theme.direction === "rtl" ? (
               <SkipPreviousIcon />
             ) : (
               <SkipNextIcon />
@@ -434,8 +434,8 @@ export const MediaControlCard = story<CardProps>(() => {
         title={images.album.title}
       />
     </Card>
-  )
-})
+  );
+});
 
 MediaControlCard.parameters = {
   docs: {
@@ -447,4 +447,4 @@ MediaControlCard.parameters = {
   creevey: {
     skip: "Images don't load reliably",
   },
-}
+};

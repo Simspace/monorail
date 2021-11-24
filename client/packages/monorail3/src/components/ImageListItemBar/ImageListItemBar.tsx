@@ -2,6 +2,6 @@
 import {
   ImageListItemBar as _ImageListItemBar,
   ImageListItemBarProps as _ImageListItemBarProps,
-} from './ImageListItemBar'
-export * from './ImageListItemBar.gen'
+} from "./ImageListItemBar";
+export * from "./ImageListItemBar.gen";
 // Add more functions/etc. below

@@ -1,25 +1,25 @@
 // Edit this file to add new stories
-import React from 'react'
+import React from "react";
 import {
   createTheme,
   styled,
   StyledEngineProvider,
   Theme,
   ThemeProvider,
-} from '@mui/material/styles'
+} from "@mui/material/styles";
 
-import { story } from '../../../__tests__/helpers/storybook'
-import { Box } from '../../Box/Box'
-import { Grid } from '../../Grid/Grid'
-import { Paper, PaperProps } from '../Paper'
-import { defaultStoryMeta } from './Paper.stories.gen'
+import { story } from "../../../__tests__/helpers/storybook";
+import { Box } from "../../Box/Box";
+import { Grid } from "../../Grid/Grid";
+import { Paper, PaperProps } from "../Paper";
+import { defaultStoryMeta } from "./Paper.stories.gen";
 
-declare module '@mui/styles/defaultTheme' {
+declare module "@mui/styles/defaultTheme" {
   // eslint-disable-next-line @typescript-eslint/no-empty-interface
   interface DefaultTheme extends Theme {}
 }
 
-declare module '@mui/styles/defaultTheme' {
+declare module "@mui/styles/defaultTheme" {
   // eslint-disable-next-line @typescript-eslint/no-empty-interface
   interface DefaultTheme extends Theme {}
 }
@@ -27,25 +27,25 @@ declare module '@mui/styles/defaultTheme' {
 /**
  * Metadata for Paper stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Surfaces/Paper' }
+export default { ...defaultStoryMeta, title: "Surfaces/Paper" };
 /**
  * Story template (edit/remove by hand if needed)
  *
  * Note: there should be at least one "Default" story that uses this template with the "story" function.
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
-const Template = story<PaperProps>(args => <Paper {...args} />, {
-  args: { children: 'The content' },
-})
+const Template = story<PaperProps>((args) => <Paper {...args} />, {
+  args: { children: "The content" },
+});
 /** Default story for Paper (edit/remove by hand if needed) */
-export const Default = story(Template)
+export const Default = story(Template);
 
 export const BasicPaper = story<PaperProps>(() => (
   <Box
     sx={{
-      display: 'flex',
-      flexWrap: 'wrap',
-      '& > :not(style)': {
+      display: "flex",
+      flexWrap: "wrap",
+      "& > :not(style)": {
         m: 1,
         width: 128,
         height: 128,
@@ -56,15 +56,15 @@ export const BasicPaper = story<PaperProps>(() => (
     <Paper />
     <Paper elevation={3} />
   </Box>
-))
+));
 
 export const Variants = story<PaperProps>(
   () => (
     <Box
       sx={{
-        display: 'flex',
-        flexWrap: 'wrap',
-        '& > :not(style)': {
+        display: "flex",
+        flexWrap: "wrap",
+        "& > :not(style)": {
           m: 1,
           width: 128,
           height: 128,
@@ -83,19 +83,19 @@ export const Variants = story<PaperProps>(
         },
       },
     },
-  },
-)
+  }
+);
 
 const Item = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,
-  textAlign: 'center',
+  textAlign: "center",
   color: theme.palette.text.secondary,
   height: 60,
-  lineHeight: '60px',
-}))
+  lineHeight: "60px",
+}));
 
-const darkTheme = createTheme({ palette: { mode: 'dark' } })
-const lightTheme = createTheme({ palette: { mode: 'light' } })
+const darkTheme = createTheme({ palette: { mode: "dark" } });
+const lightTheme = createTheme({ palette: { mode: "light" } });
 
 export const Elevation = story<PaperProps>(
   () => (
@@ -107,13 +107,13 @@ export const Elevation = story<PaperProps>(
               <Box
                 sx={{
                   p: 2,
-                  bgcolor: 'background.default',
-                  display: 'grid',
-                  gridTemplateColumns: { md: '1fr 1fr' },
+                  bgcolor: "background.default",
+                  display: "grid",
+                  gridTemplateColumns: { md: "1fr 1fr" },
                   gap: 2,
                 }}
               >
-                {[0, 1, 2, 3, 4, 6, 8, 12, 16, 24].map(elevation => (
+                {[0, 1, 2, 3, 4, 6, 8, 12, 16, 24].map((elevation) => (
                   <Item key={elevation} elevation={elevation}>
                     {`elevation=${elevation}`}
                   </Item>
@@ -133,5 +133,5 @@ export const Elevation = story<PaperProps>(
         },
       },
     },
-  },
-)
+  }
+);

@@ -2,6 +2,6 @@
 import {
   MenuItem as _MenuItem,
   MenuItemProps as _MenuItemProps,
-} from './MenuItem'
-export * from './MenuItem.gen'
+} from "./MenuItem";
+export * from "./MenuItem.gen";
 // Add more functions/etc. below

@@ -1,25 +1,25 @@
 // Edit this file to add new stories
-import React from 'react'
+import React from "react";
 
-import { story } from '../../../__tests__/helpers/storybook'
-import { Box } from '../../Box/Box'
-import { FormControlLabel } from '../../FormControlLabel/FormControlLabel'
-import { Paper } from '../../Paper/Paper'
-import { Switch } from '../../Switch/Switch'
-import { Collapse, CollapseProps } from '../Collapse'
-import { defaultStoryMeta } from './Collapse.stories.gen'
+import { story } from "../../../__tests__/helpers/storybook";
+import { Box } from "../../Box/Box";
+import { FormControlLabel } from "../../FormControlLabel/FormControlLabel";
+import { Paper } from "../../Paper/Paper";
+import { Switch } from "../../Switch/Switch";
+import { Collapse, CollapseProps } from "../Collapse";
+import { defaultStoryMeta } from "./Collapse.stories.gen";
 /**
  * Metadata for Collapse stories - update/extend as needed
  * This is intended to be exported as story-level metadata from the main .stories.tsx file, like:
  * "export default { ...defaultStoryMeta } // Add/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Utils/Transitions/Collapse' }
+export default { ...defaultStoryMeta, title: "Utils/Transitions/Collapse" };
 
 const box = (
   <Paper sx={{ m: 1 }} elevation={4}>
     <Box component="svg" sx={{ width: 100, height: 100 }}></Box>
   </Paper>
-)
+);
 /**
  * Story template (edit/remove by hand if needed)
  *
@@ -27,12 +27,12 @@ const box = (
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
 const Template = story<CollapseProps>(
-  args => {
-    const [checked, setChecked] = React.useState(false)
+  (args) => {
+    const [checked, setChecked] = React.useState(false);
 
     const handleChange = () => {
-      setChecked(prev => !prev)
-    }
+      setChecked((prev) => !prev);
+    };
 
     return (
       <Box sx={{ height: 300 }}>
@@ -42,9 +42,9 @@ const Template = story<CollapseProps>(
         />
         <Box
           sx={{
-            '& > :not(style)': {
-              display: 'flex',
-              justifyContent: 'space-around',
+            "& > :not(style)": {
+              display: "flex",
+              justifyContent: "space-around",
               height: 120,
               width: 250,
             },
@@ -59,12 +59,12 @@ const Template = story<CollapseProps>(
             </Collapse>
           </div>
           <div>
-            <Box sx={{ width: '50%' }}>
+            <Box sx={{ width: "50%" }}>
               <Collapse {...args} orientation="horizontal" in={checked}>
                 {box}
               </Collapse>
             </Box>
-            <Box sx={{ width: '50%' }}>
+            <Box sx={{ width: "50%" }}>
               <Collapse
                 {...args}
                 orientation="horizontal"
@@ -77,11 +77,11 @@ const Template = story<CollapseProps>(
           </div>
         </Box>
       </Box>
-    )
+    );
   },
   {
     args: {},
-  },
-)
+  }
+);
 /** Default story for Collapse (edit/remove by hand if needed) */
-export const Default = story(Template)
+export const Default = story(Template);

@@ -2,6 +2,6 @@
 import {
   MenuList as _MenuList,
   MenuListProps as _MenuListProps,
-} from './MenuList'
-export * from './MenuList.gen'
+} from "./MenuList";
+export * from "./MenuList.gen";
 // Add more functions/etc. below

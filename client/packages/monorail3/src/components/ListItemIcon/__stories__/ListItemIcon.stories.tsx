@@ -1,15 +1,15 @@
 // Edit this file to add new stories
-import React from 'react'
-import FolderIcon from '@mui/icons-material/Folder'
+import React from "react";
+import FolderIcon from "@mui/icons-material/Folder";
 
-import { story } from '../../../__tests__/helpers/storybook'
-import { ListItemIcon, ListItemIconProps } from '../ListItemIcon'
-import { defaultStoryMeta } from './ListItemIcon.stories.gen'
+import { story } from "../../../__tests__/helpers/storybook";
+import { ListItemIcon, ListItemIconProps } from "../ListItemIcon";
+import { defaultStoryMeta } from "./ListItemIcon.stories.gen";
 
 /**
  * Metadata for ListItemIcon stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Data Display/List/ListItemIcon' }
+export default { ...defaultStoryMeta, title: "Data Display/List/ListItemIcon" };
 
 /**
  * Story template (edit/remove by hand if needed)
@@ -18,16 +18,16 @@ export default { ...defaultStoryMeta, title: 'Data Display/List/ListItemIcon' }
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
 const Template = story<ListItemIconProps>(
-  args => (
+  (args) => (
     <ListItemIcon {...args}>
       <FolderIcon />
     </ListItemIcon>
   ),
   {
     args: {},
-  },
-)
+  }
+);
 
 /** Default story for ListItemIcon (edit/remove by hand if needed) */
-export const Default = story(Template)
+export const Default = story(Template);
 // TODO: add more stories below

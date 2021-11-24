@@ -2,6 +2,6 @@
 import {
   FormLabel as _FormLabel,
   FormLabelProps as _FormLabelProps,
-} from './FormLabel'
-export * from './FormLabel.gen'
+} from "./FormLabel";
+export * from "./FormLabel.gen";
 // Add more functions/etc. below

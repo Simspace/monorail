@@ -2,8 +2,8 @@
 import {
   TextField as _TextField,
   TextFieldProps as _TextFieldProps,
-} from './TextField'
-export * from './TextField.gen'
+} from "./TextField";
+export * from "./TextField.gen";
 // Add more functions/etc. below
 
 /**
