@@ -1,24 +1,20 @@
 // Edit this file to add new stories
-import React from "react";
-
-import { story } from "../../../__tests__/helpers/storybook";
-import {
-  TimelineSeparator,
-  TimelineSeparatorProps,
-} from "../TimelineSeparator";
-import { defaultStoryMeta } from "./TimelineSeparator.stories.gen";
+import React from 'react'
+import { TimelineSeparator, TimelineSeparatorProps } from '../TimelineSeparator'
+import { story } from '../../../__tests__/helpers/storybook'
+import { defaultStoryMeta } from './TimelineSeparator.stories.gen'
 /**
  * Metadata for TimelineSeparator stories - update/extend as needed
  */
 export default {
   ...defaultStoryMeta,
-  title: "Data Display/Timeline/TimelineSeparator",
+  title: 'Data Display/Timeline/TimelineSeparator',
   parameters: {
     creevey: {
-      skip: "No story yet",
+      skip: 'No story yet',
     },
   },
-};
+}
 /**
  * Story template (edit/remove by hand if needed)
  *
@@ -26,17 +22,17 @@ export default {
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
 const Template = story<TimelineSeparatorProps>(
-  (args) => <TimelineSeparator {...args} />,
+  args => <TimelineSeparator {...args} />,
   {
     args: {},
-  }
-);
+  },
+)
 /** Default story for TimelineSeparator (edit/remove by hand if needed) */
 export const Default = story(Template, {
   parameters: {
     creevey: {
-      skip: "No story yet",
+      skip: 'No story yet',
     },
   },
-});
+})
 // TODO: add more stories below

@@ -1,8 +1,8 @@
-import { configureAxe } from "jest-axe";
+import { configureAxe } from 'jest-axe'
 
-import { renderStory } from "./render";
-import { A11yElement, Meta, Story } from "./storybook";
-import { isNotNil } from "./typeGuards";
+import { renderStory } from './render'
+import { A11yElement, Meta, Story } from './storybook'
+import { isNotNil } from './typeGuards'
 
 /**
  * This configures the a11y test framework axe
@@ -10,11 +10,11 @@ import { isNotNil } from "./typeGuards";
 const axe = configureAxe({
   rules: {
     // Ignore page-level rules
-    "landmark-one-main": { enabled: false },
+    'landmark-one-main': { enabled: false },
     region: { enabled: false },
-    "page-has-heading-one": { enabled: false },
+    'page-has-heading-one': { enabled: false },
   },
-});
+})
 
 /**
  * Checks if a story should be run through the a11y/axe checks.
@@ -22,18 +22,18 @@ const axe = configureAxe({
  * This looks at custom paramters.a11y metadata which might be tacked onto the story component function.
  */
 function shouldCheckA11y(item: Story) {
-  return !item.parameters?.a11y?.disable;
+  return !item.parameters?.a11y?.disable
 }
 
 //#region Type Guards
 function isStory(item: Story | Meta): item is Story {
-  return typeof item === "function";
+  return typeof item === 'function'
 }
 
 function isA11yStoryEntry(
-  entry: [string, Story | Meta]
+  entry: [string, Story | Meta],
 ): entry is [string, Story] {
-  return isStory(entry[1]) && shouldCheckA11y(entry[1]);
+  return isStory(entry[1]) && shouldCheckA11y(entry[1])
 }
 
 /**
@@ -46,7 +46,7 @@ function isValidTargetElement(targetElement?: string): targetElement is string {
     isNotNil(targetElement) &&
     targetElement !== A11yElement.Root &&
     targetElement !== A11yElement.Component
-  );
+  )
 }
 //#endregion
 
@@ -59,24 +59,24 @@ function isValidTargetElement(targetElement?: string): targetElement is string {
  * - Verify it is/isn't checked with a `console.log(results)` below
  */
 export async function generateA11yStoryTests(
-  storyModule: Record<string, Story | Meta>
+  storyModule: Record<string, Story | Meta>,
 ) {
-  const storiesTargetElement = storyModule.default.parameters?.a11y?.element;
+  const storiesTargetElement = storyModule.default.parameters?.a11y?.element
 
   Object.entries(storyModule)
     .filter(isA11yStoryEntry)
     .forEach(([storyName, story]) => {
       it(`${storyName} story is accessible`, async () => {
         const targetElement =
-          story.parameters?.a11y?.element ?? storiesTargetElement;
+          story.parameters?.a11y?.element ?? storiesTargetElement
 
-        const { baseElement, container } = renderStory(story);
+        const { baseElement, container } = renderStory(story)
 
         const results = isValidTargetElement(targetElement)
           ? await axe(baseElement.querySelector(targetElement) ?? baseElement)
-          : await axe(container);
+          : await axe(container)
 
-        expect(results).toHaveNoViolations();
-      });
-    });
+        expect(results).toHaveNoViolations()
+      })
+    })
 }

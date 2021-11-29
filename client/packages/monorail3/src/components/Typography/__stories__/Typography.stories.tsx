@@ -1,18 +1,17 @@
 // Edit this file to add new stories
-import React from "react";
-import { styled } from "@mui/material/styles";
-
-import { story } from "../../../__tests__/helpers/storybook";
-import { useTheme } from "../../../theme/useTheme";
-import { Box } from "../../Box/Box";
-import { Stack } from "../../Stack/Stack";
-import { Typography, TypographyProps } from "../Typography";
-import { defaultStoryMeta } from "./Typography.stories.gen";
+import React from 'react'
+import { Typography, TypographyProps } from '../Typography'
+import { story } from '../../../__tests__/helpers/storybook'
+import { defaultStoryMeta } from './Typography.stories.gen'
+import { Box } from '../../Box/Box'
+import { styled } from '@mui/material/styles'
+import { useTheme } from '../../../theme/useTheme'
+import { Stack } from '../../Stack/Stack'
 
 /**
  * Metadata for Typography stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: "Data Display/Typography" };
+export default { ...defaultStoryMeta, title: 'Data Display/Typography' }
 
 /**
  * Story template (edit/remove by hand if needed)
@@ -20,16 +19,16 @@ export default { ...defaultStoryMeta, title: "Data Display/Typography" };
  * Note: there should be at least one "Default" story that uses this template with the "story" function.
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
-const Template = story<TypographyProps>((args) => <Typography {...args} />, {
-  args: { children: "Typography is used for rendering text" },
-});
+const Template = story<TypographyProps>(args => <Typography {...args} />, {
+  args: { children: 'Typography is used for rendering text' },
+})
 
 /** Default story for Typography (edit/remove by hand if needed) */
-export const Default = story(Template);
+export const Default = story(Template)
 
 export const Variants = story<TypographyProps>(
   () => (
-    <Box sx={{ width: "100%", maxWidth: 800 }}>
+    <Box sx={{ width: '100%', maxWidth: 800 }}>
       <Typography variant="h1" component="div" gutterBottom>
         h1. Heading
       </Typography>
@@ -87,16 +86,16 @@ export const Variants = story<TypographyProps>(
         },
       },
     },
-  }
-);
+  },
+)
 
 // This has to be defined outside the story, or styled-components complains
-const CustomButtonDiv = styled("div")(({ theme }) => ({
+const CustomButtonDiv = styled('div')(({ theme }) => ({
   ...theme.typography.button,
   backgroundColor: theme.palette.primary.main,
   color: theme.palette.primary.contrastText,
   padding: theme.spacing(1),
-}));
+}))
 
 export const TypographyFromTheTheme = story<TypographyProps>(
   () => {
@@ -109,7 +108,7 @@ export const TypographyFromTheTheme = story<TypographyProps>(
           (See the code for how the div is styled)
         </Typography>
       </>
-    );
+    )
   },
   {
     parameters: {
@@ -119,8 +118,8 @@ export const TypographyFromTheTheme = story<TypographyProps>(
         },
       },
     },
-  }
-);
+  },
+)
 
 export const ChangingTheSemanticElement = story<TypographyProps>(
   () => {
@@ -128,7 +127,7 @@ export const ChangingTheSemanticElement = story<TypographyProps>(
       <Typography variant="h1" component="h2">
         h1. Heading (with h2 element)
       </Typography>
-    );
+    )
   },
   {
     parameters: {
@@ -138,12 +137,12 @@ export const ChangingTheSemanticElement = story<TypographyProps>(
         },
       },
     },
-  }
-);
+  },
+)
 
 export const UsingSystemProps = story<TypographyProps>(
   () => {
-    const theme = useTheme();
+    const theme = useTheme()
     return (
       <>
         <Typography mb={1} backgroundColor={theme.palette.grey[300]}>
@@ -159,7 +158,7 @@ export const UsingSystemProps = story<TypographyProps>(
           Bottom
         </Typography>
       </>
-    );
+    )
   },
   {
     parameters: {
@@ -169,12 +168,12 @@ export const UsingSystemProps = story<TypographyProps>(
         },
       },
     },
-  }
-);
+  },
+)
 
 export const Gutters = story<TypographyProps>(
   () => {
-    const theme = useTheme();
+    const theme = useTheme()
     return (
       <Stack direction="row" spacing={1}>
         <Stack direction="column">
@@ -209,7 +208,7 @@ export const Gutters = story<TypographyProps>(
           </Typography>
         </Stack>
       </Stack>
-    );
+    )
   },
   {
     parameters: {
@@ -219,5 +218,5 @@ export const Gutters = story<TypographyProps>(
         },
       },
     },
-  }
-);
+  },
+)

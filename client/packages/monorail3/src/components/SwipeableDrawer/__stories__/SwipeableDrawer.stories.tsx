@@ -1,22 +1,21 @@
 // Edit this file to add new stories
-import React from "react";
-import { CssBaseline, styled, Typography } from "@mui/material";
-import { grey } from "@mui/material/colors";
-
-import { story } from "../../../__tests__/helpers/storybook";
-import { Box } from "../../Box/Box";
-import { Button } from "../../Button/Button";
-import { Skeleton } from "../../Skeleton/Skeleton";
-import { SwipeableDrawer, SwipeableDrawerProps } from "../SwipeableDrawer";
-import { defaultStoryMeta } from "./SwipeableDrawer.stories.gen";
+import React from 'react'
+import { SwipeableDrawer, SwipeableDrawerProps } from '../SwipeableDrawer'
+import { story } from '../../../__tests__/helpers/storybook'
+import { defaultStoryMeta } from './SwipeableDrawer.stories.gen'
+import { Button } from '../../Button/Button'
+import { CssBaseline, styled, Typography } from '@mui/material'
+import { Box } from '../../Box/Box'
+import { grey } from '@mui/material/colors'
+import { Skeleton } from '../../Skeleton/Skeleton'
 
 /**
  * Metadata for SwipeableDrawer stories - update/extend as needed
  */
 export default {
   ...defaultStoryMeta,
-  title: "Navigation/Drawer/SwipeableDrawer",
-};
+  title: 'Navigation/Drawer/SwipeableDrawer',
+}
 
 /**
  * Story template (edit/remove by hand if needed)
@@ -25,8 +24,8 @@ export default {
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
 const Template = story<SwipeableDrawerProps>(
-  (args) => {
-    const [open, setOpen] = React.useState(false);
+  args => {
+    const [open, setOpen] = React.useState(false)
     return (
       <>
         <Typography>
@@ -46,57 +45,57 @@ const Template = story<SwipeableDrawerProps>(
           <Typography>Click or Swipe to close</Typography>
         </SwipeableDrawer>
       </>
-    );
+    )
   },
-  { args: { anchor: "left" } }
-);
+  { args: { anchor: 'left' } },
+)
 
 /** Default story for SwipeableDrawer (edit/remove by hand if needed) */
-export const Default = story(Template);
+export const Default = story(Template)
 
-const drawerBleeding = 56;
+const drawerBleeding = 56
 
 interface Props {
   /**
    * Injected by the documentation to work in an iframe.
    * You won't need it on your project.
    */
-  window?: () => Window;
+  window?: () => Window
 }
 
-const Root = styled("div")(({ theme }) => ({
-  height: "100%",
+const Root = styled('div')(({ theme }) => ({
+  height: '100%',
   backgroundColor:
-    theme.palette.mode === "light"
+    theme.palette.mode === 'light'
       ? grey[100]
       : theme.palette.background.default,
-}));
+}))
 
 const StyledBox = styled(Box)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === "light" ? "#fff" : grey[800],
-}));
+  backgroundColor: theme.palette.mode === 'light' ? '#fff' : grey[800],
+}))
 
 const Puller = styled(Box)(({ theme }) => ({
   width: 30,
   height: 6,
-  backgroundColor: theme.palette.mode === "light" ? grey[300] : grey[900],
+  backgroundColor: theme.palette.mode === 'light' ? grey[300] : grey[900],
   borderRadius: 3,
-  position: "absolute",
+  position: 'absolute',
   top: 8,
-  left: "calc(50% - 15px)",
-}));
+  left: 'calc(50% - 15px)',
+}))
 
 export const SwipeableEdgeDrawer = story<Props>(
   (props: Props) => {
-    const { window } = props;
+    const { window } = props
 
-    const [visible, setVisible] = React.useState(false);
+    const [visible, setVisible] = React.useState(false)
 
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = React.useState(false)
 
     // This is used only for the example
     const container =
-      window !== undefined ? () => window().document.body : undefined;
+      window !== undefined ? () => window().document.body : undefined
 
     return (
       <Root>
@@ -118,7 +117,7 @@ export const SwipeableEdgeDrawer = story<Props>(
             overflow: visible;
           }
       `}</style>
-        <Box sx={{ textAlign: "center", pt: 1 }}>
+        <Box sx={{ textAlign: 'center', pt: 1 }}>
           <Typography>
             View this example in a mobile device emulator (e.g. Chrome dev
             tools). Click the `Show Drawer` button to show the drawer at the
@@ -126,7 +125,7 @@ export const SwipeableEdgeDrawer = story<Props>(
             Swipe down or click the backdrop to close it.
           </Typography>
           <Button onClick={() => setVisible(!visible)}>
-            {visible ? "Hide" : "Show"} Drawer
+            {visible ? 'Hide' : 'Show'} Drawer
           </Button>
           {visible && (
             <Button onClick={() => setOpen(!open)}>Toggle Drawer</Button>
@@ -148,17 +147,17 @@ export const SwipeableEdgeDrawer = story<Props>(
           >
             <StyledBox
               sx={{
-                position: "absolute",
+                position: 'absolute',
                 top: -drawerBleeding,
                 borderTopLeftRadius: 8,
                 borderTopRightRadius: 8,
-                visibility: "visible",
+                visibility: 'visible',
                 right: 0,
                 left: 0,
               }}
             >
               <Puller />
-              <Typography sx={{ p: 2, color: "text.secondary" }}>
+              <Typography sx={{ p: 2, color: 'text.secondary' }}>
                 51 results
               </Typography>
             </StyledBox>
@@ -166,8 +165,8 @@ export const SwipeableEdgeDrawer = story<Props>(
               sx={{
                 px: 2,
                 pb: 2,
-                height: "100%",
-                overflow: "auto",
+                height: '100%',
+                overflow: 'auto',
               }}
             >
               <Skeleton variant="rectangular" height="100%" />
@@ -175,7 +174,7 @@ export const SwipeableEdgeDrawer = story<Props>(
           </SwipeableDrawer>
         )}
       </Root>
-    );
+    )
   },
   {
     parameters: {
@@ -187,5 +186,5 @@ If you are on a desktop, you can toggle the drawer with the "OPEN" button. If yo
         },
       },
     },
-  }
-);
+  },
+)

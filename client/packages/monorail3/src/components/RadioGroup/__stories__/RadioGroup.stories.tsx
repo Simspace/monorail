@@ -1,22 +1,21 @@
 // Edit this file to add new stories
-import React from "react";
-import { pink } from "@mui/material/colors";
-import { styled } from "@mui/material/styles";
-
-import { story } from "../../../__tests__/helpers/storybook";
-import { Button } from "../../Button/Button";
-import { FormControl } from "../../FormControl/FormControl";
-import { FormControlLabel } from "../../FormControlLabel/FormControlLabel";
-import { FormHelperText } from "../../FormHelperText/FormHelperText";
-import { FormLabel } from "../../FormLabel/FormLabel";
-import { Radio, RadioProps } from "../../Radio/Radio";
-import { RadioGroup, RadioGroupProps } from "../RadioGroup";
-import { defaultStoryMeta } from "./RadioGroup.stories.gen";
+import React from 'react'
+import { RadioGroup, RadioGroupProps } from '../RadioGroup'
+import { story } from '../../../__tests__/helpers/storybook'
+import { defaultStoryMeta } from './RadioGroup.stories.gen'
+import { FormControl } from '../../FormControl/FormControl'
+import { FormLabel } from '../../FormLabel/FormLabel'
+import { FormControlLabel } from '../../FormControlLabel/FormControlLabel'
+import { Radio, RadioProps } from '../../Radio/Radio'
+import { pink } from '@mui/material/colors'
+import { FormHelperText } from '../../FormHelperText/FormHelperText'
+import { Button } from '../../Button/Button'
+import { styled } from '@mui/material/styles'
 
 /**
  * Metadata for RadioGroup stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: "Inputs/RadioGroup" };
+export default { ...defaultStoryMeta, title: 'Inputs/RadioGroup' }
 
 /**
  * Story template (edit/remove by hand if needed)
@@ -25,7 +24,7 @@ export default { ...defaultStoryMeta, title: "Inputs/RadioGroup" };
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
 const Template = story<RadioGroupProps>(
-  (args) => {
+  args => {
     return (
       <FormControl component="fieldset">
         <FormLabel component="legend">Lunch Options</FormLabel>
@@ -52,15 +51,15 @@ const Template = story<RadioGroupProps>(
           />
         </RadioGroup>
       </FormControl>
-    );
+    )
   },
   {
     args: {},
-  }
-);
+  },
+)
 
 /** Default story for RadioGroup (edit/remove by hand if needed) */
-export const Default = story(Template);
+export const Default = story(Template)
 
 export const Direction = story<RadioGroupProps>(
   () => {
@@ -79,7 +78,7 @@ export const Direction = story<RadioGroupProps>(
           />
         </RadioGroup>
       </FormControl>
-    );
+    )
   },
   {
     parameters: {
@@ -89,16 +88,16 @@ export const Direction = story<RadioGroupProps>(
         },
       },
     },
-  }
-);
+  },
+)
 
 export const Controlled = story<RadioGroupProps>(
   () => {
-    const [value, setValue] = React.useState("a");
+    const [value, setValue] = React.useState('a')
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-      setValue(event.target.value);
-    };
+      setValue(event.target.value)
+    }
 
     return (
       <FormControl component="fieldset">
@@ -113,7 +112,7 @@ export const Controlled = story<RadioGroupProps>(
           <FormControlLabel value="b" control={<Radio />} label="Option B" />
         </RadioGroup>
       </FormControl>
-    );
+    )
   },
   {
     parameters: {
@@ -123,35 +122,35 @@ export const Controlled = story<RadioGroupProps>(
         },
       },
     },
-  }
-);
+  },
+)
 
 export const StandaloneRadioButtons = story<RadioGroupProps>(
   () => {
-    const [selectedValue, setSelectedValue] = React.useState("a");
+    const [selectedValue, setSelectedValue] = React.useState('a')
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-      setSelectedValue(event.target.value);
-    };
+      setSelectedValue(event.target.value)
+    }
 
     return (
       <div>
         <Radio
-          checked={selectedValue === "a"}
+          checked={selectedValue === 'a'}
           onChange={handleChange}
           value="a"
           name="radio-buttons"
-          inputProps={{ "aria-label": "A" }}
+          inputProps={{ 'aria-label': 'A' }}
         />
         <Radio
-          checked={selectedValue === "b"}
+          checked={selectedValue === 'b'}
           onChange={handleChange}
           value="b"
           name="radio-buttons"
-          inputProps={{ "aria-label": "B" }}
+          inputProps={{ 'aria-label': 'B' }}
         />
       </div>
-    );
+    )
   },
   {
     parameters: {
@@ -161,38 +160,38 @@ export const StandaloneRadioButtons = story<RadioGroupProps>(
         },
       },
     },
-  }
-);
+  },
+)
 
 export const Size = story<RadioGroupProps>(
   () => {
-    const [selectedValue, setSelectedValue] = React.useState("a");
+    const [selectedValue, setSelectedValue] = React.useState('a')
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-      setSelectedValue(event.target.value);
-    };
+      setSelectedValue(event.target.value)
+    }
 
     const controlProps = (item: string) => ({
       checked: selectedValue === item,
       onChange: handleChange,
       value: item,
-      name: "size-radio-button-demo",
-      inputProps: { "aria-label": item },
-    });
+      name: 'size-radio-button-demo',
+      inputProps: { 'aria-label': item },
+    })
 
     return (
       <div>
-        <Radio {...controlProps("a")} size="small" />
-        <Radio {...controlProps("b")} />
+        <Radio {...controlProps('a')} size="small" />
+        <Radio {...controlProps('b')} />
         <Radio
-          {...controlProps("c")}
+          {...controlProps('c')}
           sx={{
-            "& .MuiSvgIcon-root": {
+            '& .MuiSvgIcon-root': {
               fontSize: 28,
             },
           }}
         />
       </div>
-    );
+    )
   },
   {
     parameters: {
@@ -202,42 +201,42 @@ export const Size = story<RadioGroupProps>(
         },
       },
     },
-  }
-);
+  },
+)
 
 export const Color = story<RadioGroupProps>(
   () => {
-    const [selectedValue, setSelectedValue] = React.useState("a");
+    const [selectedValue, setSelectedValue] = React.useState('a')
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-      setSelectedValue(event.target.value);
-    };
+      setSelectedValue(event.target.value)
+    }
 
     const controlProps = (item: string) => ({
       checked: selectedValue === item,
       onChange: handleChange,
       value: item,
-      name: "color-radio-button-demo",
-      inputProps: { "aria-label": item },
-    });
+      name: 'color-radio-button-demo',
+      inputProps: { 'aria-label': item },
+    })
 
     return (
       <div>
-        <Radio {...controlProps("a")} />
-        <Radio {...controlProps("b")} color="secondary" />
-        <Radio {...controlProps("c")} color="success" />
-        <Radio {...controlProps("d")} color="default" />
+        <Radio {...controlProps('a')} />
+        <Radio {...controlProps('b')} color="secondary" />
+        <Radio {...controlProps('c')} color="success" />
+        <Radio {...controlProps('d')} color="default" />
         <Radio
-          {...controlProps("e")}
+          {...controlProps('e')}
           sx={{
             color: pink[800],
-            "&.Mui-checked": {
+            '&.Mui-checked': {
               color: pink[600],
             },
           }}
         />
       </div>
-    );
+    )
   },
   {
     parameters: {
@@ -247,8 +246,8 @@ export const Color = story<RadioGroupProps>(
         },
       },
     },
-  }
-);
+  },
+)
 
 export const LabelPlacement = story<RadioGroupProps>(
   () => {
@@ -282,7 +281,7 @@ export const LabelPlacement = story<RadioGroupProps>(
           <FormControlLabel value="end" control={<Radio />} label="End" />
         </RadioGroup>
       </FormControl>
-    );
+    )
   },
   {
     parameters: {
@@ -292,35 +291,35 @@ export const LabelPlacement = story<RadioGroupProps>(
         },
       },
     },
-  }
-);
+  },
+)
 
 export const ShowError = story<RadioGroupProps>(
   () => {
-    const [value, setValue] = React.useState("");
-    const [error, setError] = React.useState(false);
-    const [helperText, setHelperText] = React.useState("Choose wisely");
+    const [value, setValue] = React.useState('')
+    const [error, setError] = React.useState(false)
+    const [helperText, setHelperText] = React.useState('Choose wisely')
 
     const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-      setValue((event.target as HTMLInputElement).value);
-      setHelperText(" ");
-      setError(false);
-    };
+      setValue((event.target as HTMLInputElement).value)
+      setHelperText(' ')
+      setError(false)
+    }
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-      event.preventDefault();
+      event.preventDefault()
 
-      if (value === "best") {
-        setHelperText("You got it!");
-        setError(false);
-      } else if (value === "worst") {
-        setHelperText("Sorry, wrong answer!");
-        setError(true);
+      if (value === 'best') {
+        setHelperText('You got it!')
+        setError(false)
+      } else if (value === 'worst') {
+        setHelperText('Sorry, wrong answer!')
+        setError(true)
       } else {
-        setHelperText("Please select an option.");
-        setError(true);
+        setHelperText('Please select an option.')
+        setError(true)
       }
-    };
+    }
 
     return (
       <form onSubmit={handleSubmit}>
@@ -354,7 +353,7 @@ export const ShowError = story<RadioGroupProps>(
           </Button>
         </FormControl>
       </form>
-    );
+    )
   },
   {
     parameters: {
@@ -364,61 +363,61 @@ export const ShowError = story<RadioGroupProps>(
         },
       },
     },
-  }
-);
+  },
+)
 
-const BpIcon = styled("span")(({ theme }) => ({
-  borderRadius: "50%",
+const BpIcon = styled('span')(({ theme }) => ({
+  borderRadius: '50%',
   width: 16,
   height: 16,
   boxShadow:
-    theme.palette.mode === "dark"
-      ? "0 0 0 1px rgb(16 22 26 / 40%)"
-      : "inset 0 0 0 1px rgba(16,22,26,.2), inset 0 -1px 0 rgba(16,22,26,.1)",
-  backgroundColor: theme.palette.mode === "dark" ? "#394b59" : "#f5f8fa",
+    theme.palette.mode === 'dark'
+      ? '0 0 0 1px rgb(16 22 26 / 40%)'
+      : 'inset 0 0 0 1px rgba(16,22,26,.2), inset 0 -1px 0 rgba(16,22,26,.1)',
+  backgroundColor: theme.palette.mode === 'dark' ? '#394b59' : '#f5f8fa',
   backgroundImage:
-    theme.palette.mode === "dark"
-      ? "linear-gradient(180deg,hsla(0,0%,100%,.05),hsla(0,0%,100%,0))"
-      : "linear-gradient(180deg,hsla(0,0%,100%,.8),hsla(0,0%,100%,0))",
-  ".Mui-focusVisible &": {
-    outline: "2px auto rgba(19,124,189,.6)",
+    theme.palette.mode === 'dark'
+      ? 'linear-gradient(180deg,hsla(0,0%,100%,.05),hsla(0,0%,100%,0))'
+      : 'linear-gradient(180deg,hsla(0,0%,100%,.8),hsla(0,0%,100%,0))',
+  '.Mui-focusVisible &': {
+    outline: '2px auto rgba(19,124,189,.6)',
     outlineOffset: 2,
   },
-  "input:hover ~ &": {
-    backgroundColor: theme.palette.mode === "dark" ? "#30404d" : "#ebf1f5",
+  'input:hover ~ &': {
+    backgroundColor: theme.palette.mode === 'dark' ? '#30404d' : '#ebf1f5',
   },
-  "input:disabled ~ &": {
-    boxShadow: "none",
+  'input:disabled ~ &': {
+    boxShadow: 'none',
     background:
-      theme.palette.mode === "dark"
-        ? "rgba(57,75,89,.5)"
-        : "rgba(206,217,224,.5)",
+      theme.palette.mode === 'dark'
+        ? 'rgba(57,75,89,.5)'
+        : 'rgba(206,217,224,.5)',
   },
-}));
+}))
 
 const BpCheckedIcon = styled(BpIcon)({
-  backgroundColor: "#137cbd",
+  backgroundColor: '#137cbd',
   backgroundImage:
-    "linear-gradient(180deg,hsla(0,0%,100%,.1),hsla(0,0%,100%,0))",
-  "&:before": {
-    display: "block",
+    'linear-gradient(180deg,hsla(0,0%,100%,.1),hsla(0,0%,100%,0))',
+  '&:before': {
+    display: 'block',
     width: 16,
     height: 16,
-    backgroundImage: "radial-gradient(#fff,#fff 28%,transparent 32%)",
+    backgroundImage: 'radial-gradient(#fff,#fff 28%,transparent 32%)',
     content: '""',
   },
-  "input:hover ~ &": {
-    backgroundColor: "#106ba3",
+  'input:hover ~ &': {
+    backgroundColor: '#106ba3',
   },
-});
+})
 
 // Inspired by blueprintjs
 function BpRadio(props: RadioProps) {
   return (
     <Radio
       sx={{
-        "&:hover": {
-          bgcolor: "transparent",
+        '&:hover': {
+          bgcolor: 'transparent',
         },
       }}
       disableRipple
@@ -427,7 +426,7 @@ function BpRadio(props: RadioProps) {
       icon={<BpIcon />}
       {...props}
     />
-  );
+  )
 }
 
 export const CustomizedRadios = story<RadioGroupProps>(
@@ -451,7 +450,7 @@ export const CustomizedRadios = story<RadioGroupProps>(
           />
         </RadioGroup>
       </FormControl>
-    );
+    )
   },
   {
     parameters: {
@@ -461,5 +460,5 @@ export const CustomizedRadios = story<RadioGroupProps>(
         },
       },
     },
-  }
-);
+  },
+)

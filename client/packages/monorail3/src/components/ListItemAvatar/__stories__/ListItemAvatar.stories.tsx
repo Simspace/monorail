@@ -1,19 +1,18 @@
 // Edit this file to add new stories
-import React from "react";
-import FolderIcon from "@mui/icons-material/Folder";
-
-import { story } from "../../../__tests__/helpers/storybook";
-import { Avatar } from "../../Avatar/Avatar";
-import { ListItemAvatar, ListItemAvatarProps } from "../ListItemAvatar";
-import { defaultStoryMeta } from "./ListItemAvatar.stories.gen";
+import React from 'react'
+import { ListItemAvatar, ListItemAvatarProps } from '../ListItemAvatar'
+import { story } from '../../../__tests__/helpers/storybook'
+import { defaultStoryMeta } from './ListItemAvatar.stories.gen'
+import { Avatar } from '../../Avatar/Avatar'
+import FolderIcon from '@mui/icons-material/Folder'
 
 /**
  * Metadata for ListItemAvatar stories - update/extend as needed
  */
 export default {
   ...defaultStoryMeta,
-  title: "Data Display/List/ListItemAvatar",
-};
+  title: 'Data Display/List/ListItemAvatar',
+}
 
 /**
  * Story template (edit/remove by hand if needed)
@@ -22,16 +21,16 @@ export default {
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
 const Template = story<ListItemAvatarProps>(
-  (args) => (
-    <ListItemAvatar {...args}>
+  args => (
+    <ListItemAvatar>
       <Avatar>
         <FolderIcon />
       </Avatar>
     </ListItemAvatar>
   ),
-  { args: {} }
-);
+  { args: {} },
+)
 
 /** Default story for ListItemAvatar (edit/remove by hand if needed) */
-export const Default = story(Template);
+export const Default = story(Template)
 // TODO: add more stories below

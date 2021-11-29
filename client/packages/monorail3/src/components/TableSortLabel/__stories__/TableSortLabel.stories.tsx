@@ -1,29 +1,28 @@
 // Edit this file to add new stories
-import React from "react";
-
-import { story } from "../../../__tests__/helpers/storybook";
-import { TableSortLabel, TableSortLabelProps } from "../TableSortLabel";
-import { defaultStoryMeta } from "./TableSortLabel.stories.gen";
+import React from 'react'
+import { TableSortLabel, TableSortLabelProps } from '../TableSortLabel'
+import { story } from '../../../__tests__/helpers/storybook'
+import { defaultStoryMeta } from './TableSortLabel.stories.gen'
 
 export default {
   ...defaultStoryMeta,
-  title: "Data Display/Table/TableSortLabel",
-};
+  title: 'Data Display/Table/TableSortLabel',
+}
 
 const Template = story<TableSortLabelProps>(
-  (args) => {
-    const [direction, setDirection] = React.useState<"asc" | "desc">("asc");
+  args => {
+    const [direction, setDirection] = React.useState<'asc' | 'desc'>('asc')
 
     return (
       <TableSortLabel
         direction={direction}
-        onClick={() => setDirection(direction === "asc" ? "desc" : "asc")}
+        onClick={() => setDirection(direction === 'asc' ? 'desc' : 'asc')}
         {...args}
       />
-    );
+    )
   },
-  { args: { children: "Title" } }
-);
+  { args: { children: 'Title' } },
+)
 
 export const Default = story(Template, {
   parameters: {
@@ -33,4 +32,4 @@ export const Default = story(Template, {
       },
     },
   },
-});
+})

@@ -1,16 +1,12 @@
 // Edit this file to add new stories
-import React from "react";
-
-import { story } from "../../../__tests__/helpers/storybook";
-import {
-  ScopedCssBaseline,
-  ScopedCssBaselineProps,
-} from "../ScopedCssBaseline";
-import { defaultStoryMeta } from "./ScopedCssBaseline.stories.gen";
+import React from 'react'
+import { ScopedCssBaseline, ScopedCssBaselineProps } from '../ScopedCssBaseline'
+import { story } from '../../../__tests__/helpers/storybook'
+import { defaultStoryMeta } from './ScopedCssBaseline.stories.gen'
 /**
  * Metadata for ScopedCssBaseline stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: "Utils/ScopedCssBaseline" };
+export default { ...defaultStoryMeta, title: 'Utils/ScopedCssBaseline' }
 /**
  * Story template (edit/remove by hand if needed)
  *
@@ -18,7 +14,7 @@ export default { ...defaultStoryMeta, title: "Utils/ScopedCssBaseline" };
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
 const Template = story<ScopedCssBaselineProps>(
-  (args) => (
+  args => (
     <ScopedCssBaseline {...args}>
       <div>
         <code>ScopedCssBaseline</code> is useful when you need a CSS
@@ -29,8 +25,8 @@ const Template = story<ScopedCssBaselineProps>(
       </div>
     </ScopedCssBaseline>
   ),
-  { args: {} }
-);
+  { args: {} },
+)
 
 /** Default story for ScopedCssBaseline (edit/remove by hand if needed) */
-export const Default = story(Template);
+export const Default = story(Template)

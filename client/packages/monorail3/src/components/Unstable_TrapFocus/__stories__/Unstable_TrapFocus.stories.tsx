@@ -1,28 +1,27 @@
-import React from "react";
-
-import { story } from "../../../__tests__/helpers/storybook";
-import { Box } from "../../Box/Box";
-import { Portal as PortalComponent } from "../../Portal/Portal";
+import React from 'react'
 import {
   Unstable_TrapFocus as TrapFocus,
   Unstable_TrapFocusProps,
-} from "../Unstable_TrapFocus";
-import { defaultStoryMeta } from "./Unstable_TrapFocus.stories.gen";
+} from '../Unstable_TrapFocus'
+import { story } from '../../../__tests__/helpers/storybook'
+import { defaultStoryMeta } from './Unstable_TrapFocus.stories.gen'
+import { Box } from '../../Box/Box'
+import { Portal as PortalComponent } from '../../Portal/Portal'
 /**
  * Metadata for Unstable_TrapFocus stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: "Utils/Unstable_TrapFocus" };
+export default { ...defaultStoryMeta, title: 'Utils/Unstable_TrapFocus' }
 
 const Template = story<Unstable_TrapFocusProps>(
-  (args) => {
-    const [open, setOpen] = React.useState(args.open);
+  args => {
+    const [open, setOpen] = React.useState(args.open)
 
     return (
       <Box
         sx={{
-          display: "flex",
-          alignItems: "center",
-          flexDirection: "column",
+          display: 'flex',
+          alignItems: 'center',
+          flexDirection: 'column',
         }}
       >
         <button type="button" onClick={() => setOpen(true)}>
@@ -42,10 +41,10 @@ const Template = story<Unstable_TrapFocusProps>(
           </TrapFocus>
         )}
       </Box>
-    );
+    )
   },
-  { args: { open: false } }
-);
+  { args: { open: false } },
+)
 
 export const Default = story(Template, {
   args: { open: false },
@@ -62,7 +61,7 @@ https://next.material-ui.com/components/trap-focus/
       },
     },
   },
-});
+})
 
 export const DisableEnforceFocus = story(Template, {
   args: {
@@ -79,7 +78,7 @@ You can disable this behavior with the disableEnforceFocus prop.
       },
     },
   },
-});
+})
 
 export const LazyActivation = story(Template, {
   args: {
@@ -96,19 +95,19 @@ You can disable this behavior and make it lazy with the disableAutoFocus prop. W
       },
     },
   },
-});
+})
 
 export const Portal = story(
   () => {
-    const [open, setOpen] = React.useState(false);
-    const [container, setContainer] = React.useState<HTMLElement | null>(null);
+    const [open, setOpen] = React.useState(false)
+    const [container, setContainer] = React.useState<HTMLElement | null>(null)
 
     return (
       <Box
         sx={{
-          display: "flex",
-          alignItems: "center",
-          flexDirection: "column",
+          display: 'flex',
+          alignItems: 'center',
+          flexDirection: 'column',
         }}
       >
         <button type="button" onClick={() => setOpen(true)}>
@@ -135,7 +134,7 @@ export const Portal = story(
         )}
         <div ref={setContainer} />
       </Box>
-    );
+    )
   },
   {
     args: {
@@ -148,5 +147,5 @@ export const Portal = story(
         },
       },
     },
-  }
-);
+  },
+)

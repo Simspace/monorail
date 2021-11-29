@@ -1,26 +1,25 @@
 // Edit this file to add new stories
-import React from "react";
-import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
-
-import { story } from "../../../__tests__/helpers/storybook";
-import { Box } from "../../Box/Box";
-import { Button } from "../../Button/Button";
-import { ClickAwayListener } from "../../ClickAwayListener/ClickAwayListener";
-import { Grow } from "../../Grow/Grow";
-import { MenuItem } from "../../MenuItem/MenuItem";
-import { MenuList } from "../../MenuList/MenuList";
-import { Paper } from "../../Paper/Paper";
-import { Popper } from "../../Popper/Popper";
-import { Stack } from "../../Stack/Stack";
-import { ButtonGroup, ButtonGroupProps } from "../ButtonGroup";
-import { defaultStoryMeta } from "./ButtonGroup.stories.gen";
+import React from 'react'
+import { ButtonGroup, ButtonGroupProps } from '../ButtonGroup'
+import { story } from '../../../__tests__/helpers/storybook'
+import { defaultStoryMeta } from './ButtonGroup.stories.gen'
+import { Button } from '../../Button/Button'
+import { Stack } from '../../Stack/Stack'
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
+import { ClickAwayListener } from '../../ClickAwayListener/ClickAwayListener'
+import { Grow } from '../../Grow/Grow'
+import { Paper } from '../../Paper/Paper'
+import { Popper } from '../../Popper/Popper'
+import { MenuItem } from '../../MenuItem/MenuItem'
+import { MenuList } from '../../MenuList/MenuList'
+import { Box } from '../../Box/Box'
 
 /**
  * Metadata for ButtonGroup stories - update/extend as needed
  * This is intended to be exported as story-level metadata from the main .stories.tsx file, like:
  * "export default { ...defaultStoryMeta } // Add/extend as needed
  */
-export default { ...defaultStoryMeta, title: "Inputs/ButtonGroup" };
+export default { ...defaultStoryMeta, title: 'Inputs/ButtonGroup' }
 /**
  * Story template (edit/remove by hand if needed)
  *
@@ -28,7 +27,7 @@ export default { ...defaultStoryMeta, title: "Inputs/ButtonGroup" };
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
 const Template = story<ButtonGroupProps>(
-  (args) => (
+  args => (
     <ButtonGroup variant="contained" {...args}>
       <Button>One</Button>
       <Button>Two</Button>
@@ -44,13 +43,13 @@ const Template = story<ButtonGroupProps>(
         },
       },
     },
-  }
-);
+  },
+)
 /** Default story for ButtonGroup (edit/remove by hand if needed) */
-export const Default = story(Template, { args: { variant: "contained" } });
+export const Default = story(Template, { args: { variant: 'contained' } })
 
-export const Outlined = story(Template, { args: { variant: "outlined" } });
-export const Text = story(Template, { args: { variant: "text" } });
+export const Outlined = story(Template, { args: { variant: 'outlined' } })
+export const Text = story(Template, { args: { variant: 'text' } })
 
 export const Sizes = story<ButtonGroupProps>(
   () => (
@@ -80,8 +79,8 @@ export const Sizes = story<ButtonGroupProps>(
         },
       },
     },
-  }
-);
+  },
+)
 export const VerticalGroup = story<ButtonGroupProps>(
   () => (
     <Stack spacing={2} direction="row">
@@ -110,49 +109,47 @@ export const VerticalGroup = story<ButtonGroupProps>(
         },
       },
     },
-  }
-);
+  },
+)
 
 export const SplitButton = story<ButtonGroupProps>(
   () => {
     const options = [
-      "Create a merge commit",
-      "Squash and merge",
-      "Rebase and merge",
-    ];
+      'Create a merge commit',
+      'Squash and merge',
+      'Rebase and merge',
+    ]
 
-    const [open, setOpen] = React.useState(false);
-    const anchorRef = React.useRef<HTMLDivElement>(null);
-    const [selectedIndex, setSelectedIndex] = React.useState(1);
+    const [open, setOpen] = React.useState(false)
+    const anchorRef = React.useRef<HTMLDivElement>(null)
+    const [selectedIndex, setSelectedIndex] = React.useState(1)
 
     const handleClick = () => {
-      /* eslint-disable no-console */
-      console.info(`You clicked ${options[selectedIndex]}`);
-      /* eslint-enable no-console */
-    };
+      console.info(`You clicked ${options[selectedIndex]}`)
+    }
 
     const handleMenuItemClick = (
       event: React.MouseEvent<HTMLLIElement, MouseEvent>,
-      index: number
+      index: number,
     ) => {
-      setSelectedIndex(index);
-      setOpen(false);
-    };
+      setSelectedIndex(index)
+      setOpen(false)
+    }
 
     const handleToggle = () => {
-      setOpen((prevOpen) => !prevOpen);
-    };
+      setOpen(prevOpen => !prevOpen)
+    }
 
     const handleClose = (event: Event) => {
       if (
         anchorRef.current &&
         anchorRef.current.contains(event.target as HTMLElement)
       ) {
-        return;
+        return
       }
 
-      setOpen(false);
-    };
+      setOpen(false)
+    }
 
     return (
       <Box minHeight={180}>
@@ -164,8 +161,8 @@ export const SplitButton = story<ButtonGroupProps>(
           <Button onClick={handleClick}>{options[selectedIndex]}</Button>
           <Button
             size="small"
-            aria-controls={open ? "split-button-menu" : undefined}
-            aria-expanded={open ? "true" : undefined}
+            aria-controls={open ? 'split-button-menu' : undefined}
+            aria-expanded={open ? 'true' : undefined}
             aria-label="select merge strategy"
             aria-haspopup="menu"
             onClick={handleToggle}
@@ -185,7 +182,7 @@ export const SplitButton = story<ButtonGroupProps>(
               {...TransitionProps}
               style={{
                 transformOrigin:
-                  placement === "bottom" ? "center top" : "center bottom",
+                  placement === 'bottom' ? 'center top' : 'center bottom',
               }}
             >
               <Paper>
@@ -197,7 +194,7 @@ export const SplitButton = story<ButtonGroupProps>(
                         disabled={index === 2}
                         selected={index === selectedIndex}
                         onClick={(
-                          event: React.MouseEvent<HTMLLIElement, MouseEvent>
+                          event: React.MouseEvent<HTMLLIElement, MouseEvent>,
                         ) => handleMenuItemClick(event, index)}
                       >
                         {option}
@@ -210,7 +207,7 @@ export const SplitButton = story<ButtonGroupProps>(
           )}
         </Popper>
       </Box>
-    );
+    )
   },
   {
     parameters: {
@@ -220,5 +217,5 @@ export const SplitButton = story<ButtonGroupProps>(
         },
       },
     },
-  }
-);
+  },
+)

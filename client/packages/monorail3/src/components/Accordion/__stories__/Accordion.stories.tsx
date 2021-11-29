@@ -1,30 +1,29 @@
 // Edit this file to add new stories
-import React from "react";
-import ArrowForwardIosSharp from "@mui/icons-material/ArrowForwardIosSharp";
-import ExpandMore from "@mui/icons-material/ExpandMore";
-import { styled } from "@mui/material/styles";
-
-import { story } from "../../../__tests__/helpers/storybook";
-import { AccordionActions } from "../../AccordionActions/AccordionActions";
-import { AccordionDetails } from "../../AccordionDetails/AccordionDetails";
+import React from 'react'
+import { Accordion, AccordionProps } from '../Accordion'
+import { AccordionDetails } from '../../AccordionDetails/AccordionDetails'
 import {
   AccordionSummary,
   AccordionSummaryProps,
-} from "../../AccordionSummary/AccordionSummary";
-import { Button } from "../../Button/Button";
-import { Divider } from "../../Divider/Divider";
-import { Typography } from "../../Typography/Typography";
-import { Accordion, AccordionProps } from "../Accordion";
-import { defaultStoryMeta } from "./Accordion.stories.gen";
+} from '../../AccordionSummary/AccordionSummary'
+import { story } from '../../../__tests__/helpers/storybook'
+import { defaultStoryMeta } from './Accordion.stories.gen'
+import { Typography } from '../../Typography/Typography'
+import ExpandMore from '@mui/icons-material/ExpandMore'
+import ArrowForwardIosSharp from '@mui/icons-material/ArrowForwardIosSharp'
+import { styled } from '@mui/material/styles'
+import { Divider } from '../../Divider/Divider'
+import { AccordionActions } from '../../AccordionActions/AccordionActions'
+import { Button } from '../../Button/Button'
 
 /**
  * Metadata for Accordion stories - update/extend as needed
  */
 export default {
   ...defaultStoryMeta,
-  title: "Surfaces/Accordion",
+  title: 'Surfaces/Accordion',
   subcomponents: { AccordionDetails, AccordionSummary }, // This adds docgen tabs to the Docs page for the Default story - not super helpful
-};
+}
 
 /**
  * Story template (edit/remove by hand if needed)
@@ -33,7 +32,7 @@ export default {
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
 const Template = story<AccordionProps>(
-  (args) => (
+  args => (
     <Accordion {...args}>
       {/* TODO: could try to reuse stories from other components here, but then the "View Code" is not great */}
       <AccordionSummary>Summary</AccordionSummary>
@@ -42,14 +41,14 @@ const Template = story<AccordionProps>(
   ),
   {
     args: {
-      variant: "outlined",
+      variant: 'outlined',
       square: true,
     },
-  }
-);
+  },
+)
 
 /** Default story for Accordion (edit/remove by hand if needed) */
-export const Default = story(Template);
+export const Default = story(Template)
 
 export const Stacked = () => {
   return (
@@ -94,8 +93,8 @@ export const Stacked = () => {
         </AccordionSummary>
       </Accordion>
     </div>
-  );
-};
+  )
+}
 
 export const StackedDisableGutters = () => {
   return (
@@ -140,8 +139,8 @@ export const StackedDisableGutters = () => {
         </AccordionSummary>
       </Accordion>
     </div>
-  );
-};
+  )
+}
 
 export const Actions = () => {
   return (
@@ -158,58 +157,58 @@ export const Actions = () => {
         </Button>
       </AccordionActions>
     </Accordion>
-  );
-};
+  )
+}
 
 const StyledAccordion = styled((props: AccordionProps) => (
   <Accordion disableGutters elevation={0} square {...props} />
 ))(({ theme }) => ({
   border: `1px solid ${theme.palette.divider}`,
-  "&:not(:last-child)": {
+  '&:not(:last-child)': {
     borderBottom: 0,
   },
-  "&:before": {
-    display: "none",
+  '&:before': {
+    display: 'none',
   },
-}));
+}))
 
 const StyledAccordionSummary = styled((props: AccordionSummaryProps) => (
   <AccordionSummary
-    expandIcon={<ArrowForwardIosSharp sx={{ fontSize: "0.9rem" }} />}
+    expandIcon={<ArrowForwardIosSharp sx={{ fontSize: '0.9rem' }} />}
     {...props}
   />
 ))(({ theme }) => ({
   backgroundColor:
-    theme.palette.mode === "dark"
-      ? "rgba(255, 255, 255, .05)"
-      : "rgba(0, 0, 0, .03)",
-  flexDirection: "row-reverse",
-  "& .MuiAccordionSummary-expandIconWrapper.Mui-expanded": {
-    transform: "rotate(90deg)",
+    theme.palette.mode === 'dark'
+      ? 'rgba(255, 255, 255, .05)'
+      : 'rgba(0, 0, 0, .03)',
+  flexDirection: 'row-reverse',
+  '& .MuiAccordionSummary-expandIconWrapper.Mui-expanded': {
+    transform: 'rotate(90deg)',
   },
-  "& .MuiAccordionSummary-content": {
+  '& .MuiAccordionSummary-content': {
     marginLeft: theme.spacing(1),
   },
-}));
+}))
 
 const StyledAccordionDetails = styled(AccordionDetails)(({ theme }) => ({
   padding: theme.spacing(2),
-  borderTop: "1px solid rgba(0, 0, 0, .125)",
-}));
+  borderTop: '1px solid rgba(0, 0, 0, .125)',
+}))
 
 export const CustomStyled = () => {
-  const [expanded, setExpanded] = React.useState("panel1");
+  const [expanded, setExpanded] = React.useState('panel1')
 
   const handleChange =
     (panel: string) => (_event: unknown, newExpanded: boolean) => {
-      setExpanded(newExpanded ? panel : "");
-    };
+      setExpanded(newExpanded ? panel : '')
+    }
 
   return (
     <div>
       <StyledAccordion
-        expanded={expanded === "panel1"}
-        onChange={handleChange("panel1")}
+        expanded={expanded === 'panel1'}
+        onChange={handleChange('panel1')}
       >
         <StyledAccordionSummary
           aria-controls="panel1d-content"
@@ -227,8 +226,8 @@ export const CustomStyled = () => {
         </StyledAccordionDetails>
       </StyledAccordion>
       <StyledAccordion
-        expanded={expanded === "panel2"}
-        onChange={handleChange("panel2")}
+        expanded={expanded === 'panel2'}
+        onChange={handleChange('panel2')}
       >
         <StyledAccordionSummary
           aria-controls="panel2d-content"
@@ -246,8 +245,8 @@ export const CustomStyled = () => {
         </StyledAccordionDetails>
       </StyledAccordion>
       <StyledAccordion
-        expanded={expanded === "panel3"}
-        onChange={handleChange("panel3")}
+        expanded={expanded === 'panel3'}
+        onChange={handleChange('panel3')}
       >
         <StyledAccordionSummary
           aria-controls="panel3d-content"
@@ -265,5 +264,5 @@ export const CustomStyled = () => {
         </StyledAccordionDetails>
       </StyledAccordion>
     </div>
-  );
-};
+  )
+}

@@ -1,51 +1,50 @@
 // Edit this file to add new stories
-import React from "react";
-import FormatAlignCenterIcon from "@mui/icons-material/FormatAlignCenter";
-import FormatAlignLeftIcon from "@mui/icons-material/FormatAlignLeft";
-import FormatAlignRightIcon from "@mui/icons-material/FormatAlignRight";
-import FormatBoldIcon from "@mui/icons-material/FormatBold";
-import FormatItalicIcon from "@mui/icons-material/FormatItalic";
-import { styled } from "@mui/material/styles";
-
-import { story } from "../../../__tests__/helpers/storybook";
-import { Avatar } from "../../Avatar/Avatar";
-import { Box } from "../../Box/Box";
-import { Button } from "../../Button/Button";
-import { Chip } from "../../Chip/Chip";
-import { Grid } from "../../Grid/Grid";
-import { List } from "../../List/List";
-import { ListItem } from "../../ListItem/ListItem";
-import { ListItemAvatar } from "../../ListItemAvatar/ListItemAvatar";
-import { ListItemText } from "../../ListItemText/ListItemText";
-import { Stack } from "../../Stack/Stack";
-import { Typography } from "../../Typography/Typography";
-import { Divider, DividerProps } from "../Divider";
-import { defaultStoryMeta } from "./Divider.stories.gen";
+import React from 'react'
+import { Divider, DividerProps } from '../Divider'
+import { story } from '../../../__tests__/helpers/storybook'
+import { defaultStoryMeta } from './Divider.stories.gen'
+import { List } from '../../List/List'
+import { ListItem } from '../../ListItem/ListItem'
+import { ListItemText } from '../../ListItemText/ListItemText'
+import { ListItemAvatar } from '../../ListItemAvatar/ListItemAvatar'
+import { Avatar } from '../../Avatar/Avatar'
+import { Typography } from '../../Typography/Typography'
+import { Box } from '../../Box/Box'
+import { Grid } from '../../Grid/Grid'
+import { Stack } from '../../Stack/Stack'
+import { Chip } from '../../Chip/Chip'
+import { Button } from '../../Button/Button'
+import FormatAlignLeftIcon from '@mui/icons-material/FormatAlignLeft'
+import FormatAlignCenterIcon from '@mui/icons-material/FormatAlignCenter'
+import FormatAlignRightIcon from '@mui/icons-material/FormatAlignRight'
+import FormatBoldIcon from '@mui/icons-material/FormatBold'
+import FormatItalicIcon from '@mui/icons-material/FormatItalic'
+import { styled } from '@mui/material/styles'
 /**
  * Metadata for Divider stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: "Data Display/Divider" };
+export default { ...defaultStoryMeta, title: 'Data Display/Divider' }
 /**
  * Story template (edit/remove by hand if needed)
  *
  * Note: there should be at least one "Default" story that uses this template with the "story" function.
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
-const Template = story<DividerProps>((args) => <Divider {...args} />, {
+const Template = story<DividerProps>(args => <Divider {...args} />, {
   args: {},
-});
+})
 
 /** Default story for Divider (edit/remove by hand if needed) */
-export const Default = story(Template);
+export const Default = story(Template)
 
 export const ListDividers = story<DividerProps>(
   () => {
     return (
       <List
         sx={{
-          width: "100%",
+          width: '100%',
           maxWidth: 360,
-          bgcolor: "background.paper",
+          bgcolor: 'background.paper',
         }}
         component="nav"
         aria-label="mailbox folders"
@@ -65,27 +64,27 @@ export const ListDividers = story<DividerProps>(
           <ListItemText primary="Spam" />
         </ListItem>
       </List>
-    );
+    )
   },
   {
     parameters: {
       docs: {
         description: {
           story:
-            "The divider renders as an `<hr>` by default. You can save rendering this DOM element by using the `divider` prop on the `ListItem` component.",
+            'The divider renders as an `<hr>` by default. You can save rendering this DOM element by using the `divider` prop on the `ListItem` component.',
         },
       },
     },
-  }
-);
+  },
+)
 
 export const InsetDividers = () => {
   return (
     <List
       sx={{
-        width: "100%",
+        width: '100%',
         maxWidth: 360,
-        bgcolor: "background.paper",
+        bgcolor: 'background.paper',
       }}
     >
       <ListItem>
@@ -118,22 +117,22 @@ export const InsetDividers = () => {
         <ListItemText primary="Vacation" secondary="July 20, 2014" />
       </ListItem>
     </List>
-  );
-};
+  )
+}
 
 InsetDividers.parameters = {
   creevey: {
-    skip: "Images load unreliably",
+    skip: 'Images load unreliably',
   },
-};
+}
 
 export const SubheaderDividers = () => {
   return (
     <List
       sx={{
-        width: "100%",
+        width: '100%',
         maxWidth: 360,
-        bgcolor: "background.paper",
+        bgcolor: 'background.paper',
       }}
     >
       <ListItem>
@@ -174,18 +173,18 @@ export const SubheaderDividers = () => {
         <ListItemText primary="Vacation" secondary="July 20, 2014" />
       </ListItem>
     </List>
-  );
-};
+  )
+}
 
 SubheaderDividers.parameters = {
   creevey: {
-    skip: "Images load unreliably",
+    skip: 'Images load unreliably',
   },
-};
+}
 
 export const MiddleDividers = () => {
   return (
-    <Box sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}>
+    <Box sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
       <Box sx={{ my: 3, mx: 2 }}>
         <Grid container alignItems="center">
           <Grid item xs>
@@ -220,16 +219,16 @@ export const MiddleDividers = () => {
         <Button>Add to cart</Button>
       </Box>
     </Box>
-  );
-};
+  )
+}
 
-const Root = styled("div")(({ theme }) => ({
-  width: "100%",
+const Root = styled('div')(({ theme }) => ({
+  width: '100%',
   ...theme.typography.body2,
-  "& > :not(style) + :not(style)": {
+  '& > :not(style) + :not(style)': {
     marginTop: theme.spacing(2),
   },
-}));
+}))
 
 export const DividerText = story<DividerProps>(
   () => {
@@ -239,7 +238,7 @@ export const DividerText = story<DividerProps>(
    Nulla ut facilisis ligula. Interdum et malesuada fames ac ante ipsum primis in faucibus.
    Sed malesuada lobortis pretium.`}
       </div>
-    );
+    )
 
     return (
       <Root>
@@ -255,7 +254,7 @@ export const DividerText = story<DividerProps>(
         </Divider>
         {content}
       </Root>
-    );
+    )
   },
   {
     parameters: {
@@ -265,8 +264,8 @@ export const DividerText = story<DividerProps>(
         },
       },
     },
-  }
-);
+  },
+)
 
 export const VerticalDividers = story<DividerProps>(
   () => {
@@ -274,17 +273,17 @@ export const VerticalDividers = story<DividerProps>(
       <div>
         <Box
           sx={{
-            display: "flex",
-            alignItems: "center",
-            width: "fit-content",
-            border: (theme) => `1px solid ${theme.palette.divider}`,
+            display: 'flex',
+            alignItems: 'center',
+            width: 'fit-content',
+            border: theme => `1px solid ${theme.palette.divider}`,
             borderRadius: 1,
-            bgcolor: "background.paper",
-            color: "text.secondary",
-            "& svg": {
+            bgcolor: 'background.paper',
+            color: 'text.secondary',
+            '& svg': {
               m: 1.5,
             },
-            "& hr": {
+            '& hr': {
               mx: 0.5,
             },
           }}
@@ -297,19 +296,19 @@ export const VerticalDividers = story<DividerProps>(
           <FormatItalicIcon />
         </Box>
       </div>
-    );
+    )
   },
   {
     parameters: {
       docs: {
         description: {
           story:
-            "You can also render a divider vertically using the `orientation` prop.",
+            'You can also render a divider vertically using the `orientation` prop.',
         },
       },
     },
-  }
-);
+  },
+)
 
 export const VerticalDividerMiddle = story<DividerProps>(
   () => {
@@ -317,17 +316,17 @@ export const VerticalDividerMiddle = story<DividerProps>(
       <div>
         <Box
           sx={{
-            display: "flex",
-            alignItems: "center",
-            width: "fit-content",
-            border: (theme) => `1px solid ${theme.palette.divider}`,
+            display: 'flex',
+            alignItems: 'center',
+            width: 'fit-content',
+            border: theme => `1px solid ${theme.palette.divider}`,
             borderRadius: 1,
-            bgcolor: "background.paper",
-            color: "text.secondary",
-            "& svg": {
+            bgcolor: 'background.paper',
+            color: 'text.secondary',
+            '& svg': {
               m: 1.5,
             },
-            "& hr": {
+            '& hr': {
               mx: 0.5,
             },
           }}
@@ -340,7 +339,7 @@ export const VerticalDividerMiddle = story<DividerProps>(
           <FormatItalicIcon />
         </Box>
       </div>
-    );
+    )
   },
   {
     parameters: {
@@ -351,16 +350,16 @@ export const VerticalDividerMiddle = story<DividerProps>(
         },
       },
     },
-  }
-);
+  },
+)
 
 const StyledGrid = styled(Grid)(({ theme }) => ({
-  width: "100%",
+  width: '100%',
   ...theme.typography.body2,
   '& [role="separator"]': {
     margin: theme.spacing(0, 2),
   },
-}));
+}))
 
 export const VerticalDividerText = story<DividerProps>(
   () => {
@@ -370,7 +369,7 @@ export const VerticalDividerText = story<DividerProps>(
    Nulla ut facilisis ligula. Interdum et malesuada fames ac ante ipsum primis in faucibus.
    Sed malesuada lobortis pretium.`}
       </div>
-    );
+    )
 
     return (
       <StyledGrid container>
@@ -384,15 +383,15 @@ export const VerticalDividerText = story<DividerProps>(
           {content}
         </StyledGrid>
       </StyledGrid>
-    );
+    )
   },
   {
     parameters: {
       docs: {
         description: {
-          story: "You can also render a vertical divider with content.",
+          story: 'You can also render a vertical divider with content.',
         },
       },
     },
-  }
-);
+  },
+)

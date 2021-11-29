@@ -1,15 +1,14 @@
 // Edit this file to add new stories
-import React from "react";
-
-import { story } from "../../../__tests__/helpers/storybook";
-import { Typography } from "../../Typography/Typography";
-import { Hidden, HiddenProps } from "../Hidden";
-import { defaultStoryMeta } from "./Hidden.stories.gen";
+import React from 'react'
+import { Hidden, HiddenProps } from '../Hidden'
+import { story } from '../../../__tests__/helpers/storybook'
+import { defaultStoryMeta } from './Hidden.stories.gen'
+import { Typography } from '../../Typography/Typography'
 
 /**
  * Metadata for Hidden stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: "Utils/Hidden" };
+export default { ...defaultStoryMeta, title: 'Utils/Hidden' }
 
 /**
  * Story template (edit/remove by hand if needed)
@@ -17,19 +16,19 @@ export default { ...defaultStoryMeta, title: "Utils/Hidden" };
  * Note: there should be at least one "Default" story that uses this template with the "story" function.
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
-const Template = story<HiddenProps>((args) => <Hidden {...args} />, {
-  args: { children: "This content may be hidden at certain screen sizes." },
-});
+const Template = story<HiddenProps>(args => <Hidden {...args} />, {
+  args: { children: 'This content may be hidden at certain screen sizes.' },
+})
 
 /** Default story for Hidden (edit/remove by hand if needed) */
-export const Default = story(Template);
+export const Default = story(Template)
 
 export const Deprecated = story<HiddenProps>(
   () => {
     return (
       <div>
         <Typography>
-          Use the <code>sx</code> prop to replace{" "}
+          Use the <code>sx</code> prop to replace{' '}
           <code>implementation="css"</code>:
         </Typography>
 
@@ -46,7 +45,7 @@ export const Deprecated = story<HiddenProps>(
 +<Box component="button" sx={{ display: { xs: 'none', md: 'block' } }} />`}</pre>
 
         <Typography>
-          Use the <code>useMediaQuery</code> hook to replace{" "}
+          Use the <code>useMediaQuery</code> hook to replace{' '}
           <code>implementation="js"</code>:
         </Typography>
 
@@ -54,7 +53,7 @@ export const Deprecated = story<HiddenProps>(
 +const hidden = useMediaQuery(theme => theme.breakpoints.up('xl'));
 +return hidden ? null : <Paper />;`}</pre>
       </div>
-    );
+    )
   },
   {
     parameters: {
@@ -66,5 +65,5 @@ The approved way of doing this now is to use the system \`sx\` property, or \`us
         },
       },
     },
-  }
-);
+  },
+)

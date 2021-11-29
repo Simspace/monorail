@@ -1,16 +1,15 @@
 // Edit this file to add new stories
-import React from "react";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import FolderIcon from "@mui/icons-material/Folder";
-import LocationOnIcon from "@mui/icons-material/LocationOn";
-import RestoreIcon from "@mui/icons-material/Restore";
-
-import { story } from "../../../__tests__/helpers/storybook";
-import { Alert } from "../../Alert/Alert";
-import { BottomNavigationAction } from "../../BottomNavigationAction/BottomNavigationAction";
-import { Box } from "../../Box/Box";
-import { BottomNavigation, BottomNavigationProps } from "../BottomNavigation";
-import { defaultStoryMeta } from "./BottomNavigation.stories.gen";
+import React from 'react'
+import { BottomNavigation, BottomNavigationProps } from '../BottomNavigation'
+import { story } from '../../../__tests__/helpers/storybook'
+import { defaultStoryMeta } from './BottomNavigation.stories.gen'
+import FavoriteIcon from '@mui/icons-material/Favorite'
+import FolderIcon from '@mui/icons-material/Folder'
+import LocationOnIcon from '@mui/icons-material/LocationOn'
+import RestoreIcon from '@mui/icons-material/Restore'
+import { Box } from '../../Box/Box'
+import { BottomNavigationAction } from '../../BottomNavigationAction/BottomNavigationAction'
+import { Alert } from '../../Alert/Alert'
 
 /**
  * Metadata for BottomNavigation stories - update/extend as needed
@@ -19,8 +18,8 @@ import { defaultStoryMeta } from "./BottomNavigation.stories.gen";
  */
 export default {
   ...defaultStoryMeta,
-  title: "Navigation/BottomNavigation",
-};
+  title: 'Navigation/BottomNavigation',
+}
 
 /**
  * Story template (edit/remove by hand if needed)
@@ -29,8 +28,8 @@ export default {
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
 const Template = story<BottomNavigationProps>(
-  (args) => {
-    const [value, setValue] = React.useState(0);
+  args => {
+    const [value, setValue] = React.useState(0)
     return (
       <Box sx={{ width: 500 }}>
         <BottomNavigation
@@ -43,25 +42,25 @@ const Template = story<BottomNavigationProps>(
           <BottomNavigationAction label="Nearby" icon={<LocationOnIcon />} />
         </BottomNavigation>
       </Box>
-    );
+    )
   },
   {
     args: {
       showLabels: true,
     },
-  }
-);
+  },
+)
 
 /** Default story for BottomNavigation (edit/remove by hand if needed) */
-export const Default = story(Template);
+export const Default = story(Template)
 
 export const WithNoLabel = story<BottomNavigationProps>(
   () => {
-    const [value, setValue] = React.useState("recents");
+    const [value, setValue] = React.useState('recents')
 
     const handleChange = (event: React.SyntheticEvent, newValue: string) => {
-      setValue(newValue);
-    };
+      setValue(newValue)
+    }
 
     return (
       <BottomNavigation
@@ -90,7 +89,7 @@ export const WithNoLabel = story<BottomNavigationProps>(
           icon={<FolderIcon />}
         />
       </BottomNavigation>
-    );
+    )
   },
   {
     parameters: {
@@ -100,8 +99,8 @@ export const WithNoLabel = story<BottomNavigationProps>(
         },
       },
     },
-  }
-);
+  },
+)
 
 export const FixedBottomNavigation = story<BottomNavigationProps>(
   () => {
@@ -110,7 +109,7 @@ export const FixedBottomNavigation = story<BottomNavigationProps>(
         This example uses an iframe to fix the <code>BottomNavigation</code>.
         See MUI docs.
       </Alert>
-    );
+    )
   },
   {
     parameters: {
@@ -120,5 +119,5 @@ export const FixedBottomNavigation = story<BottomNavigationProps>(
         },
       },
     },
-  }
-);
+  },
+)

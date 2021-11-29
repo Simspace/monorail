@@ -1,37 +1,34 @@
 // Edit this file to add new stories
-import React from "react";
-import { pink } from "@mui/material/colors";
-import { alpha, styled } from "@mui/material/styles";
-
-import { story } from "../../../__tests__/helpers/storybook";
-import { FormControl } from "../../FormControl/FormControl";
-import { FormControlLabel } from "../../FormControlLabel/FormControlLabel";
-import { FormGroup } from "../../FormGroup/FormGroup";
-import { FormHelperText } from "../../FormHelperText/FormHelperText";
-import { FormLabel } from "../../FormLabel/FormLabel";
-import { Switch, SwitchProps } from "../Switch";
-import { defaultStoryMeta } from "./Switch.stories.gen";
+import { pink } from '@mui/material/colors'
+import { alpha, styled } from '@mui/material/styles'
+import React from 'react'
+import { story } from '../../../__tests__/helpers/storybook'
+import { FormControl } from '../../FormControl/FormControl'
+import { FormControlLabel } from '../../FormControlLabel/FormControlLabel'
+import { FormGroup } from '../../FormGroup/FormGroup'
+import { FormHelperText } from '../../FormHelperText/FormHelperText'
+import { FormLabel } from '../../FormLabel/FormLabel'
+import { Switch, SwitchProps } from '../Switch'
+import { defaultStoryMeta } from './Switch.stories.gen'
 
 /**
  * Metadata for Switch stories - update/extend as needed
  */
 export default {
   ...defaultStoryMeta,
-  title: "Inputs/Switch",
-};
+  title: 'Inputs/Switch',
+}
 /**
  * Story template (edit/remove by hand if needed)
  *
  * Note: there should be at least one "Default" story that uses this template with the "story" function.
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
-const Template = story<SwitchProps>((args) => <Switch {...args} />, {
-  args: {},
-});
+const Template = story<SwitchProps>(args => <Switch {...args} />, { args: {} })
 /** Default story for Switch (edit/remove by hand if needed) */
-export const Default = story(Template);
+export const Default = story(Template)
 
-const label = { inputProps: { "aria-label": "Switch demo" } };
+const label = { inputProps: { 'aria-label': 'Switch demo' } }
 
 export const BasicSwitches = story(() => (
   <div>
@@ -40,19 +37,19 @@ export const BasicSwitches = story(() => (
     <Switch {...label} disabled defaultChecked />
     <Switch {...label} disabled />
   </div>
-));
+))
 
 const GreenSwitch = styled(Switch)(({ theme }) => ({
-  "& .MuiSwitch-switchBase.Mui-checked": {
+  '& .MuiSwitch-switchBase.Mui-checked': {
     color: pink[600],
-    "&:hover": {
+    '&:hover': {
       backgroundColor: alpha(pink[600], theme.palette.action.hoverOpacity),
     },
   },
-  "& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track": {
+  '& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track': {
     backgroundColor: pink[600],
   },
-}));
+}))
 
 export const ColorSwitches = story(() => (
   <div>
@@ -62,23 +59,23 @@ export const ColorSwitches = story(() => (
     <Switch {...label} defaultChecked color="default" />
     <GreenSwitch {...label} defaultChecked />
   </div>
-));
+))
 
 export const ControlledSwitches = story(() => {
-  const [checked, setChecked] = React.useState(true);
+  const [checked, setChecked] = React.useState(true)
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setChecked(event.target.checked);
-  };
+    setChecked(event.target.checked)
+  }
 
   return (
     <Switch
       checked={checked}
       onChange={handleChange}
-      inputProps={{ "aria-label": "controlled" }}
+      inputProps={{ 'aria-label': 'controlled' }}
     />
-  );
-});
+  )
+})
 
 export const FormControlLabelPosition = story(() => (
   <FormControl component="fieldset">
@@ -110,28 +107,28 @@ export const FormControlLabelPosition = story(() => (
       />
     </FormGroup>
   </FormControl>
-));
+))
 
 export const SwitchLabels = story(() => (
   <FormGroup>
     <FormControlLabel control={<Switch defaultChecked />} label="Label" />
     <FormControlLabel disabled control={<Switch />} label="Disabled" />
   </FormGroup>
-));
+))
 
 export const SwitchesGroup = story(() => {
   const [state, setState] = React.useState({
     gilad: true,
     jason: false,
     antoine: true,
-  });
+  })
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setState({
       ...state,
       [event.target.name]: event.target.checked,
-    });
-  };
+    })
+  }
 
   return (
     <FormControl component="fieldset" variant="standard">
@@ -170,12 +167,12 @@ export const SwitchesGroup = story(() => {
       </FormGroup>
       <FormHelperText>Be careful</FormHelperText>
     </FormControl>
-  );
-});
+  )
+})
 
 export const SwitchesSize = story(() => (
   <div>
     <Switch {...label} defaultChecked size="small" />
     <Switch {...label} defaultChecked />
   </div>
-));
+))

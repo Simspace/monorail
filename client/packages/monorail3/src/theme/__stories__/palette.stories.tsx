@@ -1,51 +1,50 @@
-import React from "react";
-import { Color as MUIColor, PaletteColor } from "@mui/material";
+import React from 'react'
+import { Box } from '../../components/Box/Box'
+import { useTheme } from '../useTheme'
+import { PaletteColor, Color as MUIColor } from '@mui/material'
 import {
   CommonColors,
   TypeBackground,
   TypeText,
-} from "@mui/material/styles/createPalette";
-
-import { Box } from "../../components/Box/Box";
-import { useTheme } from "../useTheme";
+} from '@mui/material/styles/createPalette'
 
 export default {
-  title: "Theme/Palette",
-};
+  title: 'Theme/Palette',
+}
 
 const SingleColorBox = ({
   color,
   label,
   minWidth,
 }: {
-  color: string;
-  label: string;
-  minWidth: string;
+  color: string
+  label: string
+  minWidth: string
 }) => {
   return (
-    <Box sx={{ marginBottom: "8px" }}>
+    <Box sx={{ marginBottom: '8px' }}>
       <Box sx={{ minWidth }}>{label}</Box>
       <Box
         sx={{
-          height: "40px",
+          height: '40px',
           backgroundColor: color,
-          border: "1px solid black",
+          border: '1px solid black',
         }}
       />
-      <Box sx={{ fontSize: "60%", fontWeight: 100 }}>{color || "???"}</Box>
+      <Box sx={{ fontSize: '60%', fontWeight: 100 }}>{color || '???'}</Box>
     </Box>
-  );
-};
+  )
+}
 
 const PaletteColorBox = ({
   label,
   paletteColor,
 }: {
-  label: string;
-  paletteColor: PaletteColor;
+  label: string
+  paletteColor: PaletteColor
 }) => {
   return (
-    <Box sx={{ display: "flex", flexFlow: "row" }}>
+    <Box sx={{ display: 'flex', flexFlow: 'row' }}>
       <Box component="h2" sx={{ flex: 1 }}>
         {label}
       </Box>
@@ -62,12 +61,12 @@ const PaletteColorBox = ({
         minWidth="150px"
       />
     </Box>
-  );
-};
+  )
+}
 
 const CommonColorsBox = ({ commonColors }: { commonColors: CommonColors }) => {
   return (
-    <Box sx={{ display: "flex", flexFlow: "row" }}>
+    <Box sx={{ display: 'flex', flexFlow: 'row' }}>
       <Box component="h2" sx={{ flex: 1 }}>
         Common
       </Box>
@@ -82,19 +81,19 @@ const CommonColorsBox = ({ commonColors }: { commonColors: CommonColors }) => {
         minWidth="150px"
       />
     </Box>
-  );
-};
+  )
+}
 
 const ColorShadesBox = ({
   label,
   color,
 }: {
-  label: string;
-  color: MUIColor;
+  label: string
+  color: MUIColor
 }) => {
-  const minWidth = "50px";
+  const minWidth = '50px'
   return (
-    <Box sx={{ display: "flex", flexFlow: "row" }}>
+    <Box sx={{ display: 'flex', flexFlow: 'row' }}>
       <Box component="h2" sx={{ flex: 1 }}>
         {label}
       </Box>
@@ -108,18 +107,18 @@ const ColorShadesBox = ({
       <SingleColorBox label="700" color={color[700]} minWidth={minWidth} />
       <SingleColorBox label="800" color={color[800]} minWidth={minWidth} />
       <SingleColorBox label="900" color={color[900]} minWidth={minWidth} />
-      <SingleColorBox label="A100" color={color.A100} minWidth={minWidth} />
-      <SingleColorBox label="A200" color={color.A200} minWidth={minWidth} />
-      <SingleColorBox label="A400" color={color.A400} minWidth={minWidth} />
-      <SingleColorBox label="A700" color={color.A700} minWidth={minWidth} />
+      <SingleColorBox label="A100" color={color['A100']} minWidth={minWidth} />
+      <SingleColorBox label="A200" color={color['A200']} minWidth={minWidth} />
+      <SingleColorBox label="A400" color={color['A400']} minWidth={minWidth} />
+      <SingleColorBox label="A700" color={color['A700']} minWidth={minWidth} />
     </Box>
-  );
-};
+  )
+}
 
 const TextColorsBox = ({ typeText }: { typeText: TypeText }) => {
-  const minWidth = "150px";
+  const minWidth = '150px'
   return (
-    <Box sx={{ display: "flex", flexFlow: "row" }}>
+    <Box sx={{ display: 'flex', flexFlow: 'row' }}>
       <Box component="h2" sx={{ flex: 1 }}>
         Text
       </Box>
@@ -139,17 +138,17 @@ const TextColorsBox = ({ typeText }: { typeText: TypeText }) => {
         minWidth={minWidth}
       />
     </Box>
-  );
-};
+  )
+}
 
 const BackgroundColorsBox = ({
   typeBackground,
 }: {
-  typeBackground: TypeBackground;
+  typeBackground: TypeBackground
 }) => {
-  const minWidth = "150px";
+  const minWidth = '150px'
   return (
-    <Box sx={{ display: "flex", flexFlow: "row" }}>
+    <Box sx={{ display: 'flex', flexFlow: 'row' }}>
       <Box component="h2" sx={{ flex: 1 }}>
         Background
       </Box>
@@ -164,15 +163,16 @@ const BackgroundColorsBox = ({
         minWidth={minWidth}
       />
     </Box>
-  );
-};
+  )
+}
 
 export const Palette = () => {
-  const theme = useTheme();
+  const theme = useTheme()
+  console.log(theme)
   return (
     <>
       <h1>Colors</h1>
-      <Box sx={{ display: "flex", flexFlow: "column nowrap" }}>
+      <Box sx={{ display: 'flex', flexFlow: 'column nowrap' }}>
         <PaletteColorBox label="Primary" paletteColor={theme.palette.primary} />
         <PaletteColorBox
           label="Secondary"
@@ -199,10 +199,10 @@ export const Palette = () => {
       <SingleColorBox
         label="divider"
         color={theme.palette.divider}
-        minWidth={"100%"}
+        minWidth={'100%'}
       />
 
       <BackgroundColorsBox typeBackground={theme.palette.background} />
     </>
-  );
-};
+  )
+}

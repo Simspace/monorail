@@ -1,42 +1,42 @@
 // Edit this file to add new stories
-import React from "react";
-import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import InboxIcon from "@mui/icons-material/Inbox";
-import MailIcon from "@mui/icons-material/Mail";
-import MenuIcon from "@mui/icons-material/Menu";
-import { CSSObject, styled, Theme } from "@mui/material";
-
-import { story } from "../../../__tests__/helpers/storybook";
-import { useTheme } from "../../../theme/useTheme";
-import { AppBar, AppBarProps } from "../../AppBar/AppBar";
-import { Box } from "../../Box/Box";
-import { Button } from "../../Button/Button";
-import { CssBaseline } from "../../CssBaseline/CssBaseline";
-import { Divider } from "../../Divider/Divider";
-import { IconButton } from "../../IconButton/IconButton";
-import { List } from "../../List/List";
-import { ListItem } from "../../ListItem/ListItem";
-import { ListItemIcon } from "../../ListItemIcon/ListItemIcon";
-import { ListItemText } from "../../ListItemText/ListItemText";
-import { Toolbar } from "../../Toolbar/Toolbar";
-import { Typography } from "../../Typography/Typography";
-import { Drawer, DrawerProps } from "../Drawer";
-import { defaultStoryMeta } from "./Drawer.stories.gen";
+import React from 'react'
+import { Drawer, DrawerProps } from '../Drawer'
+import { story } from '../../../__tests__/helpers/storybook'
+import { defaultStoryMeta } from './Drawer.stories.gen'
+import { Box } from '../../Box/Box'
+import { List } from '../../List/List'
+import { ListItem } from '../../ListItem/ListItem'
+import { ListItemText } from '../../ListItemText/ListItemText'
+import { Divider } from '../../Divider/Divider'
+import { Button } from '../../Button/Button'
+import InboxIcon from '@mui/icons-material/Inbox'
+import MailIcon from '@mui/icons-material/Mail'
+import { ListItemIcon } from '../../ListItemIcon/ListItemIcon'
+import { Toolbar } from '../../Toolbar/Toolbar'
+import { CssBaseline } from '../../CssBaseline/CssBaseline'
+import { AppBar, AppBarProps } from '../../AppBar/AppBar'
+import { IconButton } from '../../IconButton/IconButton'
+import MenuIcon from '@mui/icons-material/Menu'
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft'
+import ChevronRightIcon from '@mui/icons-material/ChevronRight'
+import { Typography } from '../../Typography/Typography'
+import { CSSObject, styled, Theme } from '@mui/material'
+import { useTheme } from '../../../theme/useTheme'
+import { Alert } from '../../Alert/Alert'
 
 /**
  * Metadata for Drawer stories - update/extend as needed
  */
 export default {
   ...defaultStoryMeta,
-  title: "Navigation/Drawer",
+  title: 'Navigation/Drawer',
   parameters: {
     docs: {
       inlineStories: false,
       iframeHeight: 400,
     },
   },
-};
+}
 
 /**
  * Story template (edit/remove by hand if needed)
@@ -45,8 +45,8 @@ export default {
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
 const Template = story<DrawerProps>(
-  (args) => {
-    const [open, setOpen] = React.useState(false);
+  args => {
+    const [open, setOpen] = React.useState(false)
     return (
       <>
         <Button onClick={() => setOpen(!open)}>Toggle</Button>
@@ -55,17 +55,17 @@ const Template = story<DrawerProps>(
           <Button onClick={() => setOpen(!open)}>Toggle</Button>
         </Drawer>
       </>
-    );
+    )
   },
   {
-    args: { children: "The contents", anchor: "left" },
-  }
-);
+    args: { children: 'The contents', anchor: 'left' },
+  },
+)
 
 /** Default story for Drawer (edit/remove by hand if needed) */
-export const Default = story(Template);
+export const Default = story(Template)
 
-type Anchor = "top" | "left" | "bottom" | "right";
+type Anchor = 'top' | 'left' | 'bottom' | 'right'
 
 export const TemporaryDrawer = story<DrawerProps>(
   () => {
@@ -74,31 +74,31 @@ export const TemporaryDrawer = story<DrawerProps>(
       left: false,
       bottom: false,
       right: false,
-    });
+    })
 
     const toggleDrawer =
       (anchor: Anchor, open: boolean) =>
       (event: React.KeyboardEvent | React.MouseEvent) => {
         if (
-          event.type === "keydown" &&
-          ((event as React.KeyboardEvent).key === "Tab" ||
-            (event as React.KeyboardEvent).key === "Shift")
+          event.type === 'keydown' &&
+          ((event as React.KeyboardEvent).key === 'Tab' ||
+            (event as React.KeyboardEvent).key === 'Shift')
         ) {
-          return;
+          return
         }
 
-        setState({ ...state, [anchor]: open });
-      };
+        setState({ ...state, [anchor]: open })
+      }
 
     const list = (anchor: Anchor) => (
       <Box
-        sx={{ width: anchor === "top" || anchor === "bottom" ? "auto" : 250 }}
+        sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250 }}
         role="presentation"
         onClick={toggleDrawer(anchor, false)}
         onKeyDown={toggleDrawer(anchor, false)}
       >
         <List>
-          {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
+          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
             <ListItem button key={text}>
               <ListItemIcon>
                 {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
@@ -109,7 +109,7 @@ export const TemporaryDrawer = story<DrawerProps>(
         </List>
         <Divider />
         <List>
-          {["All mail", "Trash", "Spam"].map((text, index) => (
+          {['All mail', 'Trash', 'Spam'].map((text, index) => (
             <ListItem button key={text}>
               <ListItemIcon>
                 {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
@@ -119,11 +119,11 @@ export const TemporaryDrawer = story<DrawerProps>(
           ))}
         </List>
       </Box>
-    );
+    )
 
     return (
       <div>
-        {(["left", "right", "top", "bottom"] as const).map((anchor) => (
+        {(['left', 'right', 'top', 'bottom'] as const).map(anchor => (
           <React.Fragment key={anchor}>
             <Button onClick={toggleDrawer(anchor, true)}>{anchor}</Button>
             <Drawer
@@ -136,7 +136,7 @@ export const TemporaryDrawer = story<DrawerProps>(
           </React.Fragment>
         ))}
       </div>
-    );
+    )
   },
   {
     parameters: {
@@ -146,25 +146,25 @@ export const TemporaryDrawer = story<DrawerProps>(
         },
       },
     },
-  }
-);
+  },
+)
 
 export const ResponsiveDrawer = story<DrawerProps>(
   () => {
-    const drawerWidth = 240;
+    const drawerWidth = 240
 
-    const [mobileOpen, setMobileOpen] = React.useState(false);
+    const [mobileOpen, setMobileOpen] = React.useState(false)
 
     const handleDrawerToggle = () => {
-      setMobileOpen(!mobileOpen);
-    };
+      setMobileOpen(!mobileOpen)
+    }
 
     const drawer = (
       <div>
         <Toolbar />
         <Divider />
         <List>
-          {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
+          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
             <ListItem button key={text}>
               <ListItemIcon>
                 {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
@@ -175,7 +175,7 @@ export const ResponsiveDrawer = story<DrawerProps>(
         </List>
         <Divider />
         <List>
-          {["All mail", "Trash", "Spam"].map((text, index) => (
+          {['All mail', 'Trash', 'Spam'].map((text, index) => (
             <ListItem button key={text}>
               <ListItemIcon>
                 {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
@@ -185,12 +185,12 @@ export const ResponsiveDrawer = story<DrawerProps>(
           ))}
         </List>
       </div>
-    );
+    )
 
-    const container = window.document.body;
+    const container = window.document.body
 
     return (
-      <Box sx={{ display: "flex" }}>
+      <Box sx={{ display: 'flex' }}>
         <CssBaseline />
         <AppBar
           position="fixed"
@@ -205,7 +205,7 @@ export const ResponsiveDrawer = story<DrawerProps>(
               aria-label="open drawer"
               edge="start"
               onClick={handleDrawerToggle}
-              sx={{ mr: 2, display: { sm: "none" } }}
+              sx={{ mr: 2, display: { sm: 'none' } }}
               size="large"
             >
               <MenuIcon />
@@ -230,9 +230,9 @@ export const ResponsiveDrawer = story<DrawerProps>(
               keepMounted: true, // Better open performance on mobile.
             }}
             sx={{
-              display: { xs: "block", sm: "none" },
-              "& .MuiDrawer-paper": {
-                boxSizing: "border-box",
+              display: { xs: 'block', sm: 'none' },
+              '& .MuiDrawer-paper': {
+                boxSizing: 'border-box',
                 width: drawerWidth,
               },
             }}
@@ -242,9 +242,9 @@ export const ResponsiveDrawer = story<DrawerProps>(
           <Drawer
             variant="permanent"
             sx={{
-              display: { xs: "none", sm: "block" },
-              "& .MuiDrawer-paper": {
-                boxSizing: "border-box",
+              display: { xs: 'none', sm: 'block' },
+              '& .MuiDrawer-paper': {
+                boxSizing: 'border-box',
                 width: drawerWidth,
               },
             }}
@@ -287,7 +287,7 @@ export const ResponsiveDrawer = story<DrawerProps>(
           </Typography>
         </Box>
       </Box>
-    );
+    )
   },
   {
     parameters: {
@@ -297,77 +297,77 @@ export const ResponsiveDrawer = story<DrawerProps>(
         },
       },
     },
-  }
-);
+  },
+)
 
-const drawerWidth = 240;
+const drawerWidth = 240
 
-const PersistentDrawerMain = styled("main", {
-  shouldForwardProp: (prop) => prop !== "open",
+const PersistentDrawerMain = styled('main', {
+  shouldForwardProp: prop => prop !== 'open',
 })<{
-  open?: boolean;
+  open?: boolean
 }>(({ theme, open }) => ({
   flexGrow: 1,
   padding: theme.spacing(3),
-  transition: theme.transitions.create("margin", {
+  transition: theme.transitions.create('margin', {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
   }),
   marginLeft: `-${drawerWidth}px`,
   ...(open && {
-    transition: theme.transitions.create("margin", {
+    transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.easeOut,
       duration: theme.transitions.duration.enteringScreen,
     }),
     marginLeft: 0,
   }),
-}));
+}))
 
 interface PersistentAppBarProps extends AppBarProps {
-  open?: boolean;
+  open?: boolean
 }
 
 const PersistentDrawerAppBar = styled(AppBar, {
-  shouldForwardProp: (prop) => prop !== "open",
+  shouldForwardProp: prop => prop !== 'open',
 })<PersistentAppBarProps>(({ theme, open }) => ({
-  transition: theme.transitions.create(["margin", "width"], {
+  transition: theme.transitions.create(['margin', 'width'], {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
   }),
   ...(open && {
     width: `calc(100% - ${drawerWidth}px)`,
     marginLeft: `${drawerWidth}px`,
-    transition: theme.transitions.create(["margin", "width"], {
+    transition: theme.transitions.create(['margin', 'width'], {
       easing: theme.transitions.easing.easeOut,
       duration: theme.transitions.duration.enteringScreen,
     }),
   }),
-}));
+}))
 
-const PersistentDrawerHeader = styled("div")(({ theme }) => ({
-  display: "flex",
-  alignItems: "center",
+const PersistentDrawerHeader = styled('div')(({ theme }) => ({
+  display: 'flex',
+  alignItems: 'center',
   padding: theme.spacing(0, 1),
   // necessary for content to be below app bar
   ...theme.mixins.toolbar,
-  justifyContent: "flex-end",
-}));
+  justifyContent: 'flex-end',
+}))
 
 export const PersistentDrawer = story<DrawerProps>(
   () => {
-    const theme = useTheme();
-    const [open, setOpen] = React.useState(false);
+    const theme = useTheme()
+    const [open, setOpen] = React.useState(false)
 
     const handleDrawerOpen = () => {
-      setOpen(true);
-    };
+      setOpen(true)
+    }
 
     const handleDrawerClose = () => {
-      setOpen(false);
-    };
+      setOpen(false)
+    }
 
     return (
-      <Box sx={{ display: "flex" }}>
+      <Box sx={{ display: 'flex' }}>
         <CssBaseline />
         <PersistentDrawerAppBar position="fixed" open={open}>
           <Toolbar>
@@ -376,7 +376,7 @@ export const PersistentDrawer = story<DrawerProps>(
               aria-label="open drawer"
               onClick={handleDrawerOpen}
               edge="start"
-              sx={{ mr: 2, ...(open && { display: "none" }) }}
+              sx={{ mr: 2, ...(open && { display: 'none' }) }}
               size="large"
             >
               <MenuIcon />
@@ -390,9 +390,9 @@ export const PersistentDrawer = story<DrawerProps>(
           sx={{
             width: drawerWidth,
             flexShrink: 0,
-            "& .MuiDrawer-paper": {
+            '& .MuiDrawer-paper': {
               width: drawerWidth,
-              boxSizing: "border-box",
+              boxSizing: 'border-box',
             },
           }}
           variant="persistent"
@@ -401,7 +401,7 @@ export const PersistentDrawer = story<DrawerProps>(
         >
           <PersistentDrawerHeader>
             <IconButton onClick={handleDrawerClose} size="large">
-              {theme.direction === "ltr" ? (
+              {theme.direction === 'ltr' ? (
                 <ChevronLeftIcon />
               ) : (
                 <ChevronRightIcon />
@@ -410,7 +410,7 @@ export const PersistentDrawer = story<DrawerProps>(
           </PersistentDrawerHeader>
           <Divider />
           <List>
-            {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
+            {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
               <ListItem button key={text}>
                 <ListItemIcon>
                   {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
@@ -421,7 +421,7 @@ export const PersistentDrawer = story<DrawerProps>(
           </List>
           <Divider />
           <List>
-            {["All mail", "Trash", "Spam"].map((text, index) => (
+            {['All mail', 'Trash', 'Spam'].map((text, index) => (
               <ListItem button key={text}>
                 <ListItemIcon>
                   {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
@@ -465,7 +465,7 @@ export const PersistentDrawer = story<DrawerProps>(
           </Typography>
         </PersistentDrawerMain>
       </Box>
-    );
+    )
   },
   {
     parameters: {
@@ -479,94 +479,94 @@ Persistent navigation drawers are acceptable for all sizes larger than mobile. T
         },
       },
     },
-  }
-);
+  },
+)
 
-const miniVariantDrawerWidth = 240;
+const miniVariantDrawerWidth = 240
 
 const openedMixin = (theme: Theme): CSSObject => ({
   width: miniVariantDrawerWidth,
-  transition: theme.transitions.create("width", {
+  transition: theme.transitions.create('width', {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.enteringScreen,
   }),
-});
+})
 
 const closedMixin = (theme: Theme): CSSObject => ({
-  transition: theme.transitions.create("width", {
+  transition: theme.transitions.create('width', {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
   }),
-  overflowX: "hidden",
+  overflowX: 'hidden',
   width: `calc(${theme.spacing(7)} + 1px)`,
-  [theme.breakpoints.up("sm")]: {
+  [theme.breakpoints.up('sm')]: {
     width: `calc(${theme.spacing(9)} + 1px)`,
   },
-});
+})
 
-const DrawerHeader = styled("div")(({ theme }) => ({
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "flex-end",
+const DrawerHeader = styled('div')(({ theme }) => ({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'flex-end',
   padding: theme.spacing(0, 1),
   // necessary for content to be below app bar
   ...theme.mixins.toolbar,
-}));
+}))
 
 interface MiniVariantAppBarProps extends AppBarProps {
-  open?: boolean;
+  open?: boolean
 }
 
 const MiniVariantAppBar = styled(AppBar, {
-  shouldForwardProp: (prop) => prop !== "open",
+  shouldForwardProp: prop => prop !== 'open',
 })<MiniVariantAppBarProps>(({ theme, open }) => ({
   zIndex: theme.zIndex.drawer + 1,
-  transition: theme.transitions.create(["width", "margin"], {
+  transition: theme.transitions.create(['width', 'margin'], {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
   }),
   ...(open && {
     marginLeft: miniVariantDrawerWidth,
     width: `calc(100% - ${miniVariantDrawerWidth}px)`,
-    transition: theme.transitions.create(["width", "margin"], {
+    transition: theme.transitions.create(['width', 'margin'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
     }),
   }),
-}));
+}))
 
 const MiniVariantDrawer = styled(Drawer, {
-  shouldForwardProp: (prop) => prop !== "open",
+  shouldForwardProp: prop => prop !== 'open',
 })(({ theme, open }) => ({
   width: miniVariantDrawerWidth,
   flexShrink: 0,
-  whiteSpace: "nowrap",
-  boxSizing: "border-box",
+  whiteSpace: 'nowrap',
+  boxSizing: 'border-box',
   ...(open && {
     ...openedMixin(theme),
-    "& .MuiDrawer-paper": openedMixin(theme),
+    '& .MuiDrawer-paper': openedMixin(theme),
   }),
   ...(!open && {
     ...closedMixin(theme),
-    "& .MuiDrawer-paper": closedMixin(theme),
+    '& .MuiDrawer-paper': closedMixin(theme),
   }),
-}));
+}))
 
 export const MiniDrawer = story<DrawerProps>(
   () => {
-    const theme = useTheme();
-    const [open, setOpen] = React.useState(false);
+    const theme = useTheme()
+    const [open, setOpen] = React.useState(false)
 
     const handleDrawerOpen = () => {
-      setOpen(true);
-    };
+      setOpen(true)
+    }
 
     const handleDrawerClose = () => {
-      setOpen(false);
-    };
+      setOpen(false)
+    }
 
     return (
-      <Box sx={{ display: "flex" }}>
+      <Box sx={{ display: 'flex' }}>
         <CssBaseline />
         <MiniVariantAppBar position="fixed" open={open}>
           <Toolbar>
@@ -576,8 +576,8 @@ export const MiniDrawer = story<DrawerProps>(
               onClick={handleDrawerOpen}
               edge="start"
               sx={{
-                marginRight: "36px",
-                ...(open && { display: "none" }),
+                marginRight: '36px',
+                ...(open && { display: 'none' }),
               }}
               size="large"
             >
@@ -591,7 +591,7 @@ export const MiniDrawer = story<DrawerProps>(
         <MiniVariantDrawer variant="permanent" open={open}>
           <DrawerHeader>
             <IconButton onClick={handleDrawerClose} size="large">
-              {theme.direction === "rtl" ? (
+              {theme.direction === 'rtl' ? (
                 <ChevronRightIcon />
               ) : (
                 <ChevronLeftIcon />
@@ -600,7 +600,7 @@ export const MiniDrawer = story<DrawerProps>(
           </DrawerHeader>
           <Divider />
           <List>
-            {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
+            {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
               <ListItem button key={text}>
                 <ListItemIcon>
                   {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
@@ -611,7 +611,7 @@ export const MiniDrawer = story<DrawerProps>(
           </List>
           <Divider />
           <List>
-            {["All mail", "Trash", "Spam"].map((text, index) => (
+            {['All mail', 'Trash', 'Spam'].map((text, index) => (
               <ListItem button key={text}>
                 <ListItemIcon>
                   {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
@@ -655,7 +655,7 @@ export const MiniDrawer = story<DrawerProps>(
           </Typography>
         </Box>
       </Box>
-    );
+    )
   },
   {
     parameters: {
@@ -667,5 +667,5 @@ The mini variant is recommended for apps sections that need quick selection acce
         },
       },
     },
-  }
-);
+  },
+)

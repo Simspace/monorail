@@ -1,28 +1,27 @@
-import React from "react";
-import { Check, GroupAdd, Settings, VideoLabel } from "@mui/icons-material";
-import { styled } from "@mui/material/styles";
-
-import { story } from "../../../__tests__/helpers/storybook";
-import { Box } from "../../Box/Box";
-import { Button } from "../../Button/Button";
-import { Paper } from "../../Paper/Paper";
-import { Stack } from "../../Stack/Stack";
-import { Step } from "../../Step/Step";
-import { StepButton } from "../../StepButton/StepButton";
+import React from 'react'
+import { Stepper, StepperProps } from '../Stepper'
+import { story } from '../../../__tests__/helpers/storybook'
+import { defaultStoryMeta } from './Stepper.stories.gen'
+import { Box } from '../../Box/Box'
+import { Typography } from '../../Typography/Typography'
+import { Step } from '../../Step/Step'
+import { Button } from '../../Button/Button'
+import { StepLabel } from '../../StepLabel/StepLabel'
+import { StepButton } from '../../StepButton/StepButton'
+import { styled } from '@mui/material/styles'
+import { GroupAdd, Check, Settings, VideoLabel } from '@mui/icons-material'
 import {
   StepConnector,
   stepConnectorClasses,
-} from "../../StepConnector/StepConnector";
-import { StepContent } from "../../StepContent/StepContent";
-import { StepIconProps } from "../../StepIcon/StepIcon";
-import { StepLabel } from "../../StepLabel/StepLabel";
-import { Typography } from "../../Typography/Typography";
-import { Stepper, StepperProps } from "../Stepper";
-import { defaultStoryMeta } from "./Stepper.stories.gen";
+} from '../../StepConnector/StepConnector'
+import { StepIconProps } from '../../StepIcon/StepIcon'
+import { Stack } from '../../Stack/Stack'
+import { StepContent } from '../../StepContent/StepContent'
+import { Paper } from '../../Paper/Paper'
 /**
  * Metadata for Stepper stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: "Navigation/Stepper" };
+export default { ...defaultStoryMeta, title: 'Navigation/Stepper' }
 /**
  * Story template (edit/remove by hand if needed)
  *
@@ -30,122 +29,118 @@ export default { ...defaultStoryMeta, title: "Navigation/Stepper" };
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
 const Template = story<StepperProps>(
-  (args) => (
+  args => (
     <Stepper {...args}>
-      <Step key={"hey"}>
+      <Step key={'hey'}>
         <StepLabel>hey</StepLabel>
       </Step>
     </Stepper>
   ),
   {
     args: {},
-  }
-);
+  },
+)
 /** Default story for Stepper (edit/remove by hand if needed) */
 export const Default = story(Template, {
-  args: { activeStep: 0, children: ["hey"] },
-});
+  args: { activeStep: 0, children: ['hey'] },
+})
 
-const steps = [
-  "Select campaign settings",
-  "Create an ad group",
-  "Create an ad",
-];
+const steps = ['Select campaign settings', 'Create an ad group', 'Create an ad']
 
 const steps2 = [
-  "Select master blaster campaign settings",
-  "Create an ad group",
-  "Create an ad",
-];
+  'Select master blaster campaign settings',
+  'Create an ad group',
+  'Create an ad',
+]
 
 const steps3 = [
   {
-    label: "Select campaign settings",
+    label: 'Select campaign settings',
     description: `For each ad campaign that you create, you can control how much
               you're willing to spend on clicks and conversions, which networks
               and geographical locations you want your ads to show on, and more.`,
   },
   {
-    label: "Create an ad group",
+    label: 'Create an ad group',
     description:
-      "An ad group contains one or more ads which target a shared set of keywords.",
+      'An ad group contains one or more ads which target a shared set of keywords.',
   },
   {
-    label: "Create an ad",
+    label: 'Create an ad',
     description: `Try out different ad text to see what brings in the most customers,
               and learn how to enhance your ads using features like ad extensions.
               If you run into any problems with your ads, find out how to tell if
               they're running and how to resolve approval issues.`,
   },
-];
+]
 
 function HorizontalLinearStepperBase() {
-  const [activeStep, setActiveStep] = React.useState(0);
-  const [skipped, setSkipped] = React.useState(new Set<number>());
+  const [activeStep, setActiveStep] = React.useState(0)
+  const [skipped, setSkipped] = React.useState(new Set<number>())
 
   const isStepOptional = (step: number) => {
-    return step === 1;
-  };
+    return step === 1
+  }
 
   const isStepSkipped = (step: number) => {
-    return skipped.has(step);
-  };
+    return skipped.has(step)
+  }
 
   const handleNext = () => {
-    let newSkipped = skipped;
+    let newSkipped = skipped
     if (isStepSkipped(activeStep)) {
-      newSkipped = new Set(newSkipped.values());
-      newSkipped.delete(activeStep);
+      newSkipped = new Set(newSkipped.values())
+      newSkipped.delete(activeStep)
     }
 
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
-    setSkipped(newSkipped);
-  };
+    setActiveStep(prevActiveStep => prevActiveStep + 1)
+    setSkipped(newSkipped)
+  }
 
   const handleBack = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep - 1);
-  };
+    setActiveStep(prevActiveStep => prevActiveStep - 1)
+  }
 
   const handleSkip = () => {
     if (!isStepOptional(activeStep)) {
       // You probably want to guard against something like this,
       // it should never occur unless someone's actively trying to break something.
-      throw new Error("You can't skip a step that isn't optional.");
+      throw new Error("You can't skip a step that isn't optional.")
     }
 
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
-    setSkipped((prevSkipped) => {
-      const newSkipped = new Set(prevSkipped.values());
-      newSkipped.add(activeStep);
-      return newSkipped;
-    });
-  };
+    setActiveStep(prevActiveStep => prevActiveStep + 1)
+    setSkipped(prevSkipped => {
+      const newSkipped = new Set(prevSkipped.values())
+      newSkipped.add(activeStep)
+      return newSkipped
+    })
+  }
 
   const handleReset = () => {
-    setActiveStep(0);
-  };
+    setActiveStep(0)
+  }
 
   return (
-    <Box sx={{ width: "100%" }}>
+    <Box sx={{ width: '100%' }}>
       <Stepper activeStep={activeStep}>
         {steps.map((label, index) => {
-          const stepProps: { completed?: boolean } = {};
+          const stepProps: { completed?: boolean } = {}
           const labelProps: {
-            optional?: React.ReactNode;
-          } = {};
+            optional?: React.ReactNode
+          } = {}
           if (isStepOptional(index)) {
             labelProps.optional = (
               <Typography variant="caption">Optional</Typography>
-            );
+            )
           }
           if (isStepSkipped(index)) {
-            stepProps.completed = false;
+            stepProps.completed = false
           }
           return (
             <Step key={label} {...stepProps}>
               <StepLabel {...labelProps}>{label}</StepLabel>
             </Step>
-          );
+          )
         })}
       </Stepper>
       {activeStep === steps.length ? (
@@ -153,15 +148,15 @@ function HorizontalLinearStepperBase() {
           <Typography sx={{ mt: 2, mb: 1 }}>
             All steps completed - you&apos;re finished
           </Typography>
-          <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
-            <Box sx={{ flex: "1 1 auto" }} />
+          <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
+            <Box sx={{ flex: '1 1 auto' }} />
             <Button onClick={handleReset}>Reset</Button>
           </Box>
         </React.Fragment>
       ) : (
         <React.Fragment>
           <Typography sx={{ mt: 2, mb: 1 }}>Step {activeStep + 1}</Typography>
-          <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
+          <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
             <Button
               color="inherit"
               disabled={activeStep === 0}
@@ -170,24 +165,24 @@ function HorizontalLinearStepperBase() {
             >
               Back
             </Button>
-            <Box sx={{ flex: "1 1 auto" }} />
+            <Box sx={{ flex: '1 1 auto' }} />
             {isStepOptional(activeStep) && (
               <Button color="inherit" onClick={handleSkip} sx={{ mr: 1 }}>
                 Skip
               </Button>
             )}
             <Button onClick={handleNext}>
-              {activeStep === steps.length - 1 ? "Finish" : "Next"}
+              {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
             </Button>
           </Box>
         </React.Fragment>
       )}
     </Box>
-  );
+  )
 }
 
 export const HorizontalLinearStepper = story(HorizontalLinearStepperBase, {
-  storyName: "Horizontal Linear Stepper",
+  storyName: 'Horizontal Linear Stepper',
   parameters: {
     docs: {
       description: {
@@ -202,30 +197,30 @@ complete.`,
       },
     },
   },
-});
+})
 
 export const HorizontalNonLinearStepper = story(
   function () {
-    const [activeStep, setActiveStep] = React.useState(0);
+    const [activeStep, setActiveStep] = React.useState(0)
     const [completed, setCompleted] = React.useState<{
-      [k: number]: boolean;
-    }>({});
+      [k: number]: boolean
+    }>({})
 
     const totalSteps = () => {
-      return steps.length;
-    };
+      return steps.length
+    }
 
     const completedSteps = () => {
-      return Object.keys(completed).length;
-    };
+      return Object.keys(completed).length
+    }
 
     const isLastStep = () => {
-      return activeStep === totalSteps() - 1;
-    };
+      return activeStep === totalSteps() - 1
+    }
 
     const allStepsCompleted = () => {
-      return completedSteps() === totalSteps();
-    };
+      return completedSteps() === totalSteps()
+    }
 
     const handleNext = () => {
       const newActiveStep =
@@ -233,32 +228,32 @@ export const HorizontalNonLinearStepper = story(
           ? // It's the last step, but not all steps have been completed,
             // find the first step that has been completed
             steps.findIndex((step, i) => !(i in completed))
-          : activeStep + 1;
-      setActiveStep(newActiveStep);
-    };
+          : activeStep + 1
+      setActiveStep(newActiveStep)
+    }
 
     const handleBack = () => {
-      setActiveStep((prevActiveStep) => prevActiveStep - 1);
-    };
+      setActiveStep(prevActiveStep => prevActiveStep - 1)
+    }
 
     const handleStep = (step: number) => () => {
-      setActiveStep(step);
-    };
+      setActiveStep(step)
+    }
 
     const handleComplete = () => {
-      const newCompleted = completed;
-      newCompleted[activeStep] = true;
-      setCompleted(newCompleted);
-      handleNext();
-    };
+      const newCompleted = completed
+      newCompleted[activeStep] = true
+      setCompleted(newCompleted)
+      handleNext()
+    }
 
     const handleReset = () => {
-      setActiveStep(0);
-      setCompleted({});
-    };
+      setActiveStep(0)
+      setCompleted({})
+    }
 
     return (
-      <Box sx={{ width: "100%" }}>
+      <Box sx={{ width: '100%' }}>
         <Stepper nonLinear activeStep={activeStep}>
           {steps.map((label, index) => (
             <Step key={label} completed={completed[index]}>
@@ -274,8 +269,8 @@ export const HorizontalNonLinearStepper = story(
               <Typography sx={{ mt: 2, mb: 1 }}>
                 All steps completed - you&apos;re finished
               </Typography>
-              <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
-                <Box sx={{ flex: "1 1 auto" }} />
+              <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
+                <Box sx={{ flex: '1 1 auto' }} />
                 <Button onClick={handleReset}>Reset</Button>
               </Box>
             </React.Fragment>
@@ -284,7 +279,7 @@ export const HorizontalNonLinearStepper = story(
               <Typography sx={{ mt: 2, mb: 1 }}>
                 Step {activeStep + 1}
               </Typography>
-              <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
+              <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
                 <Button
                   color="inherit"
                   disabled={activeStep === 0}
@@ -293,7 +288,7 @@ export const HorizontalNonLinearStepper = story(
                 >
                   Back
                 </Button>
-                <Box sx={{ flex: "1 1 auto" }} />
+                <Box sx={{ flex: '1 1 auto' }} />
                 <Button onClick={handleNext} sx={{ mr: 1 }}>
                   Next
                 </Button>
@@ -301,15 +296,15 @@ export const HorizontalNonLinearStepper = story(
                   (completed[activeStep] ? (
                     <Typography
                       variant="caption"
-                      sx={{ display: "inline-block" }}
+                      sx={{ display: 'inline-block' }}
                     >
                       Step {activeStep + 1} already completed
                     </Typography>
                   ) : (
                     <Button onClick={handleComplete}>
                       {completedSteps() === totalSteps() - 1
-                        ? "Finish"
-                        : "Complete Step"}
+                        ? 'Finish'
+                        : 'Complete Step'}
                     </Button>
                   ))}
               </Box>
@@ -317,10 +312,10 @@ export const HorizontalNonLinearStepper = story(
           )}
         </div>
       </Box>
-    );
+    )
   },
   {
-    storyName: "Horizontal Nonlinear Stepper",
+    storyName: 'Horizontal Nonlinear Stepper',
     parameters: {
       docs: {
         description: {
@@ -336,26 +331,26 @@ if they need to be completed).
         },
       },
     },
-  }
-);
+  },
+)
 
 export const HorizontalLabelPositionBelowStepper = story(
   function () {
     return (
-      <Box sx={{ width: "100%" }}>
+      <Box sx={{ width: '100%' }}>
         <Stepper activeStep={1} alternativeLabel>
-          {steps2.map((label) => (
+          {steps2.map(label => (
             <Step key={label}>
               <StepLabel>{label}</StepLabel>
             </Step>
           ))}
         </Stepper>
       </Box>
-    );
+    )
   },
 
   {
-    storyName: "Alternative label",
+    storyName: 'Alternative label',
     parameters: {
       docs: {
         description: {
@@ -365,93 +360,93 @@ Labels can be placed below the step icon by setting the \`alternativeLabel\` pro
         },
       },
     },
-  }
-);
+  },
+)
 
 export const ErrorStep = story(function () {
   const isStepFailed = (step: number) => {
-    return step === 1;
-  };
+    return step === 1
+  }
 
   return (
-    <Box sx={{ width: "100%" }}>
+    <Box sx={{ width: '100%' }}>
       <Stepper activeStep={1}>
         {steps.map((label, index) => {
           const labelProps: {
-            optional?: React.ReactNode;
-            error?: boolean;
-          } = {};
+            optional?: React.ReactNode
+            error?: boolean
+          } = {}
           if (isStepFailed(index)) {
             labelProps.optional = (
               <Typography variant="caption" color="error">
                 Alert message
               </Typography>
-            );
-            labelProps.error = true;
+            )
+            labelProps.error = true
           }
 
           return (
             <Step key={label}>
               <StepLabel {...labelProps}>{label}</StepLabel>
             </Step>
-          );
+          )
         })}
       </Stepper>
     </Box>
-  );
-});
+  )
+})
 
 // This story leverages MUI's `styled` helper
 
 const QontoConnector = styled(StepConnector)(({ theme }) => ({
   [`&.${stepConnectorClasses.alternativeLabel}`]: {
     top: 10,
-    left: "calc(-50% + 16px)",
-    right: "calc(50% + 16px)",
+    left: 'calc(-50% + 16px)',
+    right: 'calc(50% + 16px)',
   },
   [`&.${stepConnectorClasses.active}`]: {
     [`& .${stepConnectorClasses.line}`]: {
-      borderColor: "#784af4",
+      borderColor: '#784af4',
     },
   },
   [`&.${stepConnectorClasses.completed}`]: {
     [`& .${stepConnectorClasses.line}`]: {
-      borderColor: "#784af4",
+      borderColor: '#784af4',
     },
   },
   [`& .${stepConnectorClasses.line}`]: {
     borderColor:
-      theme.palette.mode === "dark" ? theme.palette.grey[800] : "#eaeaf0",
+      theme.palette.mode === 'dark' ? theme.palette.grey[800] : '#eaeaf0',
     borderTopWidth: 3,
     borderRadius: 1,
   },
-}));
+}))
 
-const QontoStepIconRoot = styled("div")<{ styleProps: { active?: boolean } }>(
+const QontoStepIconRoot = styled('div')<{ styleProps: { active?: boolean } }>(
   ({ theme, styleProps }) => ({
-    color: theme.palette.mode === "dark" ? theme.palette.grey[700] : "#eaeaf0",
-    display: "flex",
+    color: theme.palette.mode === 'dark' ? theme.palette.grey[700] : '#eaeaf0',
+    display: 'flex',
     height: 22,
-    alignItems: "center",
+    alignItems: 'center',
     ...(styleProps.active && {
-      color: "#784af4",
+      color: '#784af4',
     }),
-    "& .QontoStepIcon-completedIcon": {
-      color: "#784af4",
+    '& .QontoStepIcon-completedIcon': {
+      color: '#784af4',
       zIndex: 1,
       fontSize: 18,
     },
-    "& .QontoStepIcon-circle": {
+    '& .QontoStepIcon-circle': {
       width: 8,
       height: 8,
-      borderRadius: "50%",
-      backgroundColor: "currentColor",
+      borderRadius: '50%',
+      backgroundColor: 'currentColor',
     },
-  })
-);
+  }),
+)
 
 function QontoStepIcon(props: StepIconProps) {
-  const { active, completed, className } = props;
+  const { active, completed, className } = props
 
   return (
     <QontoStepIconRoot styleProps={{ active }} className={className}>
@@ -461,7 +456,7 @@ function QontoStepIcon(props: StepIconProps) {
         <div className="QontoStepIcon-circle" />
       )}
     </QontoStepIconRoot>
-  );
+  )
 }
 
 const ColorlibConnector = styled(StepConnector)(({ theme }) => ({
@@ -471,56 +466,56 @@ const ColorlibConnector = styled(StepConnector)(({ theme }) => ({
   [`&.${stepConnectorClasses.active}`]: {
     [`& .${stepConnectorClasses.line}`]: {
       backgroundImage:
-        "linear-gradient( 95deg,rgb(242,113,33) 0%,rgb(233,64,87) 50%,rgb(138,35,135) 100%)",
+        'linear-gradient( 95deg,rgb(242,113,33) 0%,rgb(233,64,87) 50%,rgb(138,35,135) 100%)',
     },
   },
   [`&.${stepConnectorClasses.completed}`]: {
     [`& .${stepConnectorClasses.line}`]: {
       backgroundImage:
-        "linear-gradient( 95deg,rgb(242,113,33) 0%,rgb(233,64,87) 50%,rgb(138,35,135) 100%)",
+        'linear-gradient( 95deg,rgb(242,113,33) 0%,rgb(233,64,87) 50%,rgb(138,35,135) 100%)',
     },
   },
   [`& .${stepConnectorClasses.line}`]: {
     height: 3,
     border: 0,
     backgroundColor:
-      theme.palette.mode === "dark" ? theme.palette.grey[800] : "#eaeaf0",
+      theme.palette.mode === 'dark' ? theme.palette.grey[800] : '#eaeaf0',
     borderRadius: 1,
   },
-}));
+}))
 
-const ColorlibStepIconRoot = styled("div")<{
-  styleProps: { completed?: boolean; active?: boolean };
+const ColorlibStepIconRoot = styled('div')<{
+  styleProps: { completed?: boolean; active?: boolean }
 }>(({ theme, styleProps }) => ({
   backgroundColor:
-    theme.palette.mode === "dark" ? theme.palette.grey[700] : "#ccc",
+    theme.palette.mode === 'dark' ? theme.palette.grey[700] : '#ccc',
   zIndex: 1,
-  color: "#fff",
+  color: '#fff',
   width: 50,
   height: 50,
-  display: "flex",
-  borderRadius: "50%",
-  justifyContent: "center",
-  alignItems: "center",
+  display: 'flex',
+  borderRadius: '50%',
+  justifyContent: 'center',
+  alignItems: 'center',
   ...(styleProps.active && {
     backgroundImage:
-      "linear-gradient( 136deg, rgb(242,113,33) 0%, rgb(233,64,87) 50%, rgb(138,35,135) 100%)",
-    boxShadow: "0 4px 10px 0 rgba(0,0,0,.25)",
+      'linear-gradient( 136deg, rgb(242,113,33) 0%, rgb(233,64,87) 50%, rgb(138,35,135) 100%)',
+    boxShadow: '0 4px 10px 0 rgba(0,0,0,.25)',
   }),
   ...(styleProps.completed && {
     backgroundImage:
-      "linear-gradient( 136deg, rgb(242,113,33) 0%, rgb(233,64,87) 50%, rgb(138,35,135) 100%)",
+      'linear-gradient( 136deg, rgb(242,113,33) 0%, rgb(233,64,87) 50%, rgb(138,35,135) 100%)',
   }),
-}));
+}))
 
 function ColorlibStepIcon(props: StepIconProps) {
-  const { active, completed, className } = props;
+  const { active, completed, className } = props
 
   const icons: { [index: string]: React.ReactElement } = {
     1: <Settings />,
     2: <GroupAdd />,
     3: <VideoLabel />,
-  };
+  }
 
   return (
     <ColorlibStepIconRoot
@@ -529,15 +524,15 @@ function ColorlibStepIcon(props: StepIconProps) {
     >
       {icons[String(props.icon)]}
     </ColorlibStepIconRoot>
-  );
+  )
 }
 
 export const CustomizedSteppers = story(
   function () {
     return (
-      <Stack sx={{ width: "100%" }} spacing={4}>
+      <Stack sx={{ width: '100%' }} spacing={4}>
         <Stepper alternativeLabel activeStep={1} connector={<QontoConnector />}>
-          {steps.map((label) => (
+          {steps.map(label => (
             <Step key={label}>
               <StepLabel StepIconComponent={QontoStepIcon}>{label}</StepLabel>
             </Step>
@@ -548,7 +543,7 @@ export const CustomizedSteppers = story(
           activeStep={1}
           connector={<ColorlibConnector />}
         >
-          {steps.map((label) => (
+          {steps.map(label => (
             <Step key={label}>
               <StepLabel StepIconComponent={ColorlibStepIcon}>
                 {label}
@@ -557,10 +552,10 @@ export const CustomizedSteppers = story(
           ))}
         </Stepper>
       </Stack>
-    );
+    )
   },
   {
-    storyName: "Customized horizontal stepper",
+    storyName: 'Customized horizontal stepper',
     parameters: {
       docs: {
         description: {
@@ -571,24 +566,24 @@ this in the [overrides documentation page](https://next.material-ui.com/customiz
         },
       },
     },
-  }
-);
+  },
+)
 
 export const VerticalLinearStepper = story(
   function () {
-    const [activeStep, setActiveStep] = React.useState(0);
+    const [activeStep, setActiveStep] = React.useState(0)
 
     const handleNext = () => {
-      setActiveStep((prevActiveStep) => prevActiveStep + 1);
-    };
+      setActiveStep(prevActiveStep => prevActiveStep + 1)
+    }
 
     const handleBack = () => {
-      setActiveStep((prevActiveStep) => prevActiveStep - 1);
-    };
+      setActiveStep(prevActiveStep => prevActiveStep - 1)
+    }
 
     const handleReset = () => {
-      setActiveStep(0);
-    };
+      setActiveStep(0)
+    }
 
     return (
       <Box sx={{ maxWidth: 400 }}>
@@ -613,7 +608,7 @@ export const VerticalLinearStepper = story(
                       onClick={handleNext}
                       sx={{ mt: 1, mr: 1 }}
                     >
-                      {index === steps.length - 1 ? "Finish" : "Continue"}
+                      {index === steps.length - 1 ? 'Finish' : 'Continue'}
                     </Button>
                     <Button
                       disabled={index === 0}
@@ -637,10 +632,10 @@ export const VerticalLinearStepper = story(
           </Paper>
         )}
       </Box>
-    );
+    )
   },
   {
-    storyName: "Vertical stepper",
+    storyName: 'Vertical stepper',
     parameters: {
       docs: {
         description: {
@@ -651,5 +646,5 @@ ideal for mobile. All the features of the horizontal stepper can be implemented.
         },
       },
     },
-  }
-);
+  },
+)

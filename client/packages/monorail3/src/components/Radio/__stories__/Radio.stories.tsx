@@ -1,15 +1,14 @@
 // Edit this file to add new stories
-import React from "react";
-
-import { story } from "../../../__tests__/helpers/storybook";
-import { Typography } from "../../Typography/Typography";
-import { Radio, RadioProps } from "../Radio";
-import { defaultStoryMeta } from "./Radio.stories.gen";
+import React from 'react'
+import { Radio, RadioProps } from '../Radio'
+import { story } from '../../../__tests__/helpers/storybook'
+import { defaultStoryMeta } from './Radio.stories.gen'
+import { Typography } from '../../Typography/Typography'
 
 /**
  * Metadata for Radio stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: "Inputs/Radio" };
+export default { ...defaultStoryMeta, title: 'Inputs/Radio' }
 
 /**
  * Story template (edit/remove by hand if needed)
@@ -18,7 +17,7 @@ export default { ...defaultStoryMeta, title: "Inputs/Radio" };
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
 const Template = story<RadioProps>(
-  (args) => {
+  args => {
     return (
       <>
         <Radio {...args} />
@@ -26,10 +25,10 @@ const Template = story<RadioProps>(
           See <code>RadioGroup</code> for more examples
         </Typography>
       </>
-    );
+    )
   },
-  { args: {} }
-);
+  { args: {} },
+)
 
 /** Default story for Radio (edit/remove by hand if needed) */
-export const Default = story(Template);
+export const Default = story(Template)

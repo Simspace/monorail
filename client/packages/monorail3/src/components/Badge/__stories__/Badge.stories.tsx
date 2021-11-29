@@ -1,27 +1,27 @@
 // Edit this file to add new stories
-import React from "react";
-import AddIcon from "@mui/icons-material/Add";
-import MailIcon from "@mui/icons-material/Mail";
-import RemoveIcon from "@mui/icons-material/Remove";
-import { styled } from "@mui/material/styles";
-
-import { story } from "../../../__tests__/helpers/storybook";
-import { Box } from "../../Box/Box";
-import { Button } from "../../Button/Button";
-import { ButtonGroup } from "../../ButtonGroup/ButtonGroup";
-import { FormControlLabel } from "../../FormControlLabel/FormControlLabel";
-import { IconButton } from "../../IconButton/IconButton";
-import { Stack } from "../../Stack/Stack";
-import { Switch } from "../../Switch/Switch";
-import { Badge, BadgeProps } from "../Badge";
-import { defaultStoryMeta } from "./Badge.stories.gen";
+import React from 'react'
+import { Badge, BadgeProps } from '../Badge'
+import { story } from '../../../__tests__/helpers/storybook'
+import { defaultStoryMeta } from './Badge.stories.gen'
+import { styled } from '@mui/material/styles'
+import MailIcon from '@mui/icons-material/Mail'
+import { IconButton } from '../../IconButton/IconButton'
+import { Stack } from '../../Stack/Stack'
+import { Box } from '../../Box/Box'
+import { ButtonGroup } from '../../ButtonGroup/ButtonGroup'
+import { Button } from '../../Button/Button'
+import { FormControlLabel } from '../../FormControlLabel/FormControlLabel'
+import { Switch } from '../../Switch/Switch'
+import AddIcon from '@mui/icons-material/Add'
+import RemoveIcon from '@mui/icons-material/Remove'
+import BadgeUnstyled from '@mui/core/BadgeUnstyled'
 
 /**
  * Metadata for Badge stories - update/extend as needed
  * This is intended to be exported as story-level metadata from the main .stories.tsx file, like:
  * "export default { ...defaultStoryMeta } // Add/extend as needed
  */
-export default { ...defaultStoryMeta, title: "Data Display/Badge" };
+export default { ...defaultStoryMeta, title: 'Data Display/Badge' }
 /**
  * Story template (edit/remove by hand if needed)
  *
@@ -29,17 +29,17 @@ export default { ...defaultStoryMeta, title: "Data Display/Badge" };
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
 const Template = story<BadgeProps>(
-  (args) => (
+  args => (
     <Badge {...args}>
       <MailIcon color="action" />
     </Badge>
   ),
   {
-    args: { badgeContent: 4, color: "primary" },
-  }
-);
+    args: { badgeContent: 4, color: 'primary' },
+  },
+)
 /** Default story for Badge (edit/remove by hand if needed) */
-export const Default = story(Template);
+export const Default = story(Template)
 
 export const Color = story(
   () => (
@@ -56,21 +56,21 @@ export const Color = story(
     parameters: {
       docs: {
         description: {
-          story: "Use color prop to apply theme palette to component.",
+          story: 'Use color prop to apply theme palette to component.',
         },
       },
     },
-  }
-);
+  },
+)
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
-  "& .MuiBadge-badge": {
+  '& .MuiBadge-badge': {
     right: -3,
     top: 13,
     border: `2px solid ${theme.palette.background.paper}`,
-    padding: "0 4px",
+    padding: '0 4px',
   },
-}));
+}))
 
 export const CustomizedBadges = story(
   () => (
@@ -85,32 +85,32 @@ export const CustomizedBadges = story(
       docs: {
         description: {
           story:
-            "Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](https://material-ui.com/customization/components/).",
+            'Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](https://material-ui.com/customization/components/).',
         },
       },
     },
-  }
-);
+  },
+)
 
 export const BadgeVisibility = story(
   () => {
-    const [count, setCount] = React.useState(1);
-    const [invisible, setInvisible] = React.useState(false);
+    const [count, setCount] = React.useState(1)
+    const [invisible, setInvisible] = React.useState(false)
 
     const handleBadgeVisibility = () => {
-      setInvisible(!invisible);
-    };
+      setInvisible(!invisible)
+    }
 
     return (
       <Box
         sx={{
-          color: "action.active",
-          display: "flex",
-          flexDirection: "column",
-          "& > *": {
+          color: 'action.active',
+          display: 'flex',
+          flexDirection: 'column',
+          '& > *': {
             marginBottom: 2,
           },
-          "& .MuiBadge-root": {
+          '& .MuiBadge-root': {
             marginRight: 4,
           },
         }}
@@ -123,7 +123,7 @@ export const BadgeVisibility = story(
             <Button
               aria-label="reduce"
               onClick={() => {
-                setCount(Math.max(count - 1, 0));
+                setCount(Math.max(count - 1, 0))
               }}
             >
               <RemoveIcon fontSize="small" />
@@ -131,7 +131,7 @@ export const BadgeVisibility = story(
             <Button
               aria-label="increase"
               onClick={() => {
-                setCount(count + 1);
+                setCount(count + 1)
               }}
             >
               <AddIcon fontSize="small" />
@@ -143,7 +143,7 @@ export const BadgeVisibility = story(
             <MailIcon />
           </Badge>
           <FormControlLabel
-            sx={{ color: "text.primary" }}
+            sx={{ color: 'text.primary' }}
             control={
               <Switch checked={!invisible} onChange={handleBadgeVisibility} />
             }
@@ -151,23 +151,23 @@ export const BadgeVisibility = story(
           />
         </div>
       </Box>
-    );
+    )
   },
   {
     parameters: {
       docs: {
         description: {
           story:
-            "The visibility of badges can be controlled using the `invisible` prop.",
+            'The visibility of badges can be controlled using the `invisible` prop.',
         },
       },
     },
-  }
-);
+  },
+)
 
 export const ShowZeroBadge = story(
   () => (
-    <Stack spacing={4} direction="row" sx={{ color: "action.active" }}>
+    <Stack spacing={4} direction="row" sx={{ color: 'action.active' }}>
       <Badge color="secondary" badgeContent={0}>
         <MailIcon />
       </Badge>
@@ -181,16 +181,16 @@ export const ShowZeroBadge = story(
       docs: {
         description: {
           story:
-            "The badge auto hides with badgeContent is zero. You can override this with the `showZero` prop.",
+            'The badge auto hides with badgeContent is zero. You can override this with the `showZero` prop.',
         },
       },
     },
-  }
-);
+  },
+)
 
 export const MaximumValue = story(
   () => (
-    <Stack spacing={4} direction="row" sx={{ color: "action.active" }}>
+    <Stack spacing={4} direction="row" sx={{ color: 'action.active' }}>
       <Badge color="secondary" badgeContent={99}>
         <MailIcon />
       </Badge>
@@ -207,16 +207,16 @@ export const MaximumValue = story(
       docs: {
         description: {
           story:
-            "You can use the `max` prop to cap the value of the badge content.",
+            'You can use the `max` prop to cap the value of the badge content.',
         },
       },
     },
-  }
-);
+  },
+)
 
 export const DotBadge = story(
   () => (
-    <Box sx={{ color: "action.active" }}>
+    <Box sx={{ color: 'action.active' }}>
       <Badge color="secondary" variant="dot">
         <MailIcon />
       </Badge>
@@ -227,19 +227,19 @@ export const DotBadge = story(
       docs: {
         description: {
           story:
-            "The `dot` prop changes a badge into a small dot. This can be used as a notification that something has changed without giving a count.",
+            'The `dot` prop changes a badge into a small dot. This can be used as a notification that something has changed without giving a count.',
         },
       },
     },
-  }
-);
+  },
+)
 
-const shapeStyles = { bgcolor: "primary.main", width: 40, height: 40 };
-const shapeCircleStyles = { borderRadius: "50%" };
-const rectangle = <Box component="span" sx={shapeStyles} />;
+const shapeStyles = { bgcolor: 'primary.main', width: 40, height: 40 }
+const shapeCircleStyles = { borderRadius: '50%' }
+const rectangle = <Box component="span" sx={shapeStyles} />
 const circle = (
   <Box component="span" sx={{ ...shapeStyles, ...shapeCircleStyles }} />
-);
+)
 
 export const BadgeOverlap = story(
   () => (
@@ -268,129 +268,128 @@ export const BadgeOverlap = story(
       docs: {
         description: {
           story:
-            "You can use the `overlap` prop to place the badge relative to the corner of the wrapped element.",
+            'You can use the `overlap` prop to place the badge relative to the corner of the wrapped element.',
         },
       },
     },
-  }
-);
+  },
+)
 
 export const BadgeAlignment = story(Template, {
   args: {
     anchorOrigin: {
-      vertical: "bottom",
-      horizontal: "left",
+      vertical: 'bottom',
+      horizontal: 'left',
     },
   },
   parameters: {
     docs: {
       description: {
         story:
-          "You can use the `anchorOrigin` prop to move the badge to any corner of the wrapped element.",
+          'You can use the `anchorOrigin` prop to move the badge to any corner of the wrapped element.',
       },
     },
   },
-});
+})
 
-// const StyledBadgeUnstyled = styled(BadgeUnstyled)`
-//   box-sizing: border-box;
-//   margin: 0;
-//   padding: 0;
-//   color: rgba(0, 0, 0, 0.85);
-//   font-size: 14px;
-//   font-variant: tabular-nums;
-//   list-style: none;
-//   font-feature-settings: 'tnum';
-//   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-//     'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-//     'Segoe UI Symbol';
-//   position: relative;
-//   display: inline-block;
-//   line-height: 1;
+const StyledBadgeUnstyled = styled(BadgeUnstyled)`
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 14px;
+  font-variant: tabular-nums;
+  list-style: none;
+  font-feature-settings: 'tnum';
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+    'Segoe UI Symbol';
+  position: relative;
+  display: inline-block;
+  line-height: 1;
 
-//   & .MuiBadge-badge {
-//     z-index: auto;
-//     min-width: 20px;
-//     height: 20px;
-//     padding: 0 6px;
-//     color: #fff;
-//     font-weight: 400;
-//     font-size: 12px;
-//     line-height: 20px;
-//     white-space: nowrap;
-//     text-align: center;
-//     background: #ff4d4f;
-//     border-radius: 10px;
-//     box-shadow: 0 0 0 1px #fff;
-//   }
+  & .MuiBadge-badge {
+    z-index: auto;
+    min-width: 20px;
+    height: 20px;
+    padding: 0 6px;
+    color: #fff;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 20px;
+    white-space: nowrap;
+    text-align: center;
+    background: #ff4d4f;
+    border-radius: 10px;
+    box-shadow: 0 0 0 1px #fff;
+  }
 
-//   & .MuiBadge-dot {
-//     padding: 0;
-//     z-index: auto;
-//     min-width: 6px;
-//     width: 6px;
-//     height: 6px;
-//     background: #ff4d4f;
-//     border-radius: 100%;
-//     box-shadow: 0 0 0 1px #fff;
-//   }
+  & .MuiBadge-dot {
+    padding: 0;
+    z-index: auto;
+    min-width: 6px;
+    width: 6px;
+    height: 6px;
+    background: #ff4d4f;
+    border-radius: 100%;
+    box-shadow: 0 0 0 1px #fff;
+  }
 
-//   & .MuiBadge-anchorOriginTopRightCircular {
-//     position: absolute;
-//     top: 0;
-//     right: 0;
-//     transform: translate(50%, -50%);
-//     transform-origin: 100% 0;
-//   }
-// `
+  & .MuiBadge-anchorOriginTopRightCircular {
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(50%, -50%);
+    transform-origin: 100% 0;
+  }
+`
 
-// function BadgeContent() {
-//   return (
-//     <Box
-//       component="span"
-//       sx={{
-//         width: 42,
-//         height: 42,
-//         borderRadius: '2px',
-//         background: '#eee',
-//         display: 'inline-block',
-//         verticalAlign: 'middle',
-//       }}
-//     />
-//   )
-// }
+function BadgeContent() {
+  return (
+    <Box
+      component="span"
+      sx={{
+        width: 42,
+        height: 42,
+        borderRadius: '2px',
+        background: '#eee',
+        display: 'inline-block',
+        verticalAlign: 'middle',
+      }}
+    />
+  )
+}
 
-// This story has not been updated for MUI v5 (GS 10/25/2021)
-// export const Unstyled = story(
-//   () => (
-//     <Box sx={{ '& > :not(style) + :not(style)': { ml: 4 } }}>
-//       <StyledBadgeUnstyled badgeContent={5} overlap="circular">
-//         <BadgeContent />
-//       </StyledBadgeUnstyled>
-//       <StyledBadgeUnstyled badgeContent={5} variant="dot" overlap="circular">
-//         <BadgeContent />
-//       </StyledBadgeUnstyled>
-//     </Box>
-//   ),
-//   {
-//     parameters: {
-//       docs: {
-//         description: {
-//           story: `The badge also comes with an unstyled version. It's ideal for doing heavy customizations and minimizing bundle size.`,
-//         },
-//       },
-//     },
-//   },
-// )
+export const Unstyled = story(
+  () => (
+    <Box sx={{ '& > :not(style) + :not(style)': { ml: 4 } }}>
+      <StyledBadgeUnstyled badgeContent={5} overlap="circular">
+        <BadgeContent />
+      </StyledBadgeUnstyled>
+      <StyledBadgeUnstyled badgeContent={5} variant="dot" overlap="circular">
+        <BadgeContent />
+      </StyledBadgeUnstyled>
+    </Box>
+  ),
+  {
+    parameters: {
+      docs: {
+        description: {
+          story: `The badge also comes with an unstyled version. It's ideal for doing heavy customizations and minimizing bundle size.`,
+        },
+      },
+    },
+  },
+)
 
 function notificationsLabel(count: number) {
   if (count === 0) {
-    return "no notifications";
+    return 'no notifications'
   }
   if (count > 99) {
-    return "more than 99 notifications";
+    return 'more than 99 notifications'
   }
-  return `${count} notifications`;
+  return `${count} notifications`
 }
 
 export const Accessibility = story(
@@ -409,5 +408,5 @@ export const Accessibility = story(
         },
       },
     },
-  }
-);
+  },
+)

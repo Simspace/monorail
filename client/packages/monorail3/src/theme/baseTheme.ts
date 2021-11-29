@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-restricted-imports
-import { createTheme } from "@mui/material";
+import { createTheme } from '@mui/material'
 
 // This "default" theme should house the global defaults that apply to all themes. This would likely include
 // common settings that are not likely to differ between specific themes, like spacing, shadows, breakpoints, etc.
@@ -16,7 +16,7 @@ export const baseTheme = createTheme(
       Arial, sans-serif`,
       button: {
         fontWeight: 700,
-        textTransform: "capitalize",
+        textTransform: 'capitalize',
       },
       h1: {
         fontSize: 64,
@@ -112,5 +112,5 @@ export const baseTheme = createTheme(
     //   },
     // },
   },
-  {}
-);
+  {},
+)

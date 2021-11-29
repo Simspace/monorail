@@ -1,17 +1,16 @@
-import React from "react";
+import React from 'react'
+import { TextareaAutosize, TextareaAutosizeProps } from '../TextareaAutosize'
+import { story } from '../../../__tests__/helpers/storybook'
+import { defaultStoryMeta } from './TextareaAutosize.stories.gen'
 
-import { story } from "../../../__tests__/helpers/storybook";
-import { TextareaAutosize, TextareaAutosizeProps } from "../TextareaAutosize";
-import { defaultStoryMeta } from "./TextareaAutosize.stories.gen";
-
-export default { ...defaultStoryMeta, title: "Inputs/TextareaAutosize" };
+export default { ...defaultStoryMeta, title: 'Inputs/TextareaAutosize' }
 
 const Template = story<TextareaAutosizeProps>(
-  (args) => <TextareaAutosize {...args} />,
-  { args: {} }
-);
+  args => <TextareaAutosize {...args} />,
+  { args: {} },
+)
 
-export const Default = story(Template);
+export const Default = story(Template)
 
 export const Empty = story(() => (
   <TextareaAutosize
@@ -19,7 +18,7 @@ export const Empty = story(() => (
     placeholder="Empty"
     style={{ width: 200 }}
   />
-));
+))
 
 export const MinimumHeight = story(() => (
   <TextareaAutosize
@@ -28,7 +27,7 @@ export const MinimumHeight = story(() => (
     placeholder="Minimum 3 rows"
     style={{ width: 200 }}
   />
-));
+))
 
 export const MaximumHeight = story(() => (
   <TextareaAutosize
@@ -39,4 +38,4 @@ export const MaximumHeight = story(() => (
           ut labore et dolore magna aliqua."
     style={{ width: 200 }}
   />
-));
+))

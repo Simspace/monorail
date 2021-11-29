@@ -1,25 +1,24 @@
 // Edit this file to add new stories
-import React from "react";
-import Visibility from "@mui/icons-material/Visibility";
-import VisibilityOff from "@mui/icons-material/VisibilityOff";
-
-import { story } from "../../../__tests__/helpers/storybook";
-import { Box } from "../../Box/Box";
-import { FilledInput } from "../../FilledInput/FilledInput";
-import { FormControl } from "../../FormControl/FormControl";
-import { FormHelperText } from "../../FormHelperText/FormHelperText";
-import { IconButton } from "../../IconButton/IconButton";
-import { Input } from "../../Input/Input";
-import { InputLabel } from "../../InputLabel/InputLabel";
-import { OutlinedInput } from "../../OutlinedInput/OutlinedInput";
-import { TextField } from "../../TextField/TextField";
-import { InputAdornment, InputAdornmentProps } from "../InputAdornment";
-import { defaultStoryMeta } from "./InputAdornment.stories.gen";
+import React from 'react'
+import { InputAdornment, InputAdornmentProps } from '../InputAdornment'
+import { story } from '../../../__tests__/helpers/storybook'
+import { defaultStoryMeta } from './InputAdornment.stories.gen'
+import { Box } from '../../Box/Box'
+import { FormControl } from '../../FormControl/FormControl'
+import { FormHelperText } from '../../FormHelperText/FormHelperText'
+import { TextField } from '../../TextField/TextField'
+import { OutlinedInput } from '../../OutlinedInput/OutlinedInput'
+import { InputLabel } from '../../InputLabel/InputLabel'
+import { IconButton } from '../../IconButton/IconButton'
+import Visibility from '@mui/icons-material/Visibility'
+import VisibilityOff from '@mui/icons-material/VisibilityOff'
+import { FilledInput } from '../../FilledInput/FilledInput'
+import { Input } from '../../Input/Input'
 
 /**
  * Metadata for InputAdornment stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: "Inputs/Input/InputAdornment" };
+export default { ...defaultStoryMeta, title: 'Inputs/Input/InputAdornment' }
 
 /**
  * Story template (edit/remove by hand if needed)
@@ -28,10 +27,10 @@ export default { ...defaultStoryMeta, title: "Inputs/Input/InputAdornment" };
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
 const Template = story<InputAdornmentProps>(
-  (args) => (
+  args => (
     <TextField
       placeholder="Enter amount"
-      sx={{ m: 1, width: "50ch" }}
+      sx={{ m: 1, width: '50ch' }}
       InputProps={{
         startAdornment: (
           <InputAdornment position="end" {...args}>
@@ -48,8 +47,8 @@ const Template = story<InputAdornmentProps>(
   ),
   {
     args: {},
-  }
-);
+  },
+)
 
 export const Default = story(Template, {
   args: {},
@@ -60,81 +59,81 @@ export const Default = story(Template, {
       },
     },
   },
-});
+})
 
 interface State {
-  amount: string;
-  password: string;
-  weight: string;
-  weightRange: string;
-  showPassword: boolean;
+  amount: string
+  password: string
+  weight: string
+  weightRange: string
+  showPassword: boolean
 }
 
 export const Showcase = story<InputAdornmentProps>(
   () => {
     const [values, setValues] = React.useState<State>({
-      amount: "",
-      password: "",
-      weight: "",
-      weightRange: "",
+      amount: '',
+      password: '',
+      weight: '',
+      weightRange: '',
       showPassword: false,
-    });
+    })
 
     const handleChange =
       (prop: keyof State) => (event: React.ChangeEvent<HTMLInputElement>) => {
-        setValues({ ...values, [prop]: event.target.value });
-      };
+        setValues({ ...values, [prop]: event.target.value })
+      }
 
     const handleClickShowPassword = () => {
       setValues({
         ...values,
         showPassword: !values.showPassword,
-      });
-    };
+      })
+    }
 
     const handleMouseDownPassword = (
-      event: React.MouseEvent<HTMLButtonElement>
+      event: React.MouseEvent<HTMLButtonElement>,
     ) => {
-      event.preventDefault();
-    };
+      event.preventDefault()
+    }
 
     return (
-      <Box sx={{ display: "flex", flexWrap: "wrap" }}>
+      <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
         <div>
           <TextField
             label="With normal TextField"
             id="outlined-start-adornment"
-            sx={{ m: 1, width: "25ch" }}
+            sx={{ m: 1, width: '25ch' }}
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">kg</InputAdornment>
               ),
             }}
           />
-          <FormControl sx={{ m: 1, width: "25ch" }} variant="outlined">
+          <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
             <OutlinedInput
               id="outlined-adornment-weight"
               value={values.weight}
-              onChange={handleChange("weight")}
+              onChange={handleChange('weight')}
               endAdornment={<InputAdornment position="end">kg</InputAdornment>}
               aria-describedby="outlined-weight-helper-text"
               inputProps={{
-                "aria-label": "weight",
+                'aria-label': 'weight',
               }}
             />
             <FormHelperText id="outlined-weight-helper-text">
               Weight
             </FormHelperText>
           </FormControl>
-          <FormControl sx={{ m: 1, width: "25ch" }} variant="outlined">
+          <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
             <InputLabel htmlFor="outlined-adornment-password">
               Password
             </InputLabel>
             <OutlinedInput
               id="outlined-adornment-password"
-              type={values.showPassword ? "text" : "password"}
+              type={values.showPassword ? 'text' : 'password'}
               value={values.password}
-              onChange={handleChange("password")}
+              onChange={handleChange('password')}
               endAdornment={
                 <InputAdornment position="end">
                   <IconButton
@@ -156,7 +155,7 @@ export const Showcase = story<InputAdornmentProps>(
             <OutlinedInput
               id="outlined-adornment-amount"
               value={values.amount}
-              onChange={handleChange("amount")}
+              onChange={handleChange('amount')}
               startAdornment={
                 <InputAdornment position="start">$</InputAdornment>
               }
@@ -168,7 +167,7 @@ export const Showcase = story<InputAdornmentProps>(
           <TextField
             label="With normal TextField"
             id="filled-start-adornment"
-            sx={{ m: 1, width: "25ch" }}
+            sx={{ m: 1, width: '25ch' }}
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">kg</InputAdornment>
@@ -176,30 +175,30 @@ export const Showcase = story<InputAdornmentProps>(
             }}
             variant="filled"
           />
-          <FormControl sx={{ m: 1, width: "25ch" }} variant="filled">
+          <FormControl sx={{ m: 1, width: '25ch' }} variant="filled">
             <FilledInput
               id="filled-adornment-weight"
               value={values.weight}
-              onChange={handleChange("weight")}
+              onChange={handleChange('weight')}
               endAdornment={<InputAdornment position="end">kg</InputAdornment>}
               aria-describedby="filled-weight-helper-text"
               inputProps={{
-                "aria-label": "weight",
+                'aria-label': 'weight',
               }}
             />
             <FormHelperText id="filled-weight-helper-text">
               Weight
             </FormHelperText>
           </FormControl>
-          <FormControl sx={{ m: 1, width: "25ch" }} variant="filled">
+          <FormControl sx={{ m: 1, width: '25ch' }} variant="filled">
             <InputLabel htmlFor="filled-adornment-password">
               Password
             </InputLabel>
             <FilledInput
               id="filled-adornment-password"
-              type={values.showPassword ? "text" : "password"}
+              type={values.showPassword ? 'text' : 'password'}
               value={values.password}
-              onChange={handleChange("password")}
+              onChange={handleChange('password')}
               endAdornment={
                 <InputAdornment position="end">
                   <IconButton
@@ -220,7 +219,7 @@ export const Showcase = story<InputAdornmentProps>(
             <FilledInput
               id="filled-adornment-amount"
               value={values.amount}
-              onChange={handleChange("amount")}
+              onChange={handleChange('amount')}
               startAdornment={
                 <InputAdornment position="start">$</InputAdornment>
               }
@@ -231,7 +230,7 @@ export const Showcase = story<InputAdornmentProps>(
           <TextField
             label="With normal TextField"
             id="standard-start-adornment"
-            sx={{ m: 1, width: "25ch" }}
+            sx={{ m: 1, width: '25ch' }}
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">kg</InputAdornment>
@@ -239,30 +238,30 @@ export const Showcase = story<InputAdornmentProps>(
             }}
             variant="standard"
           />
-          <FormControl variant="standard" sx={{ m: 1, mt: 3, width: "25ch" }}>
+          <FormControl variant="standard" sx={{ m: 1, mt: 3, width: '25ch' }}>
             <Input
               id="standard-adornment-weight"
               value={values.weight}
-              onChange={handleChange("weight")}
+              onChange={handleChange('weight')}
               endAdornment={<InputAdornment position="end">kg</InputAdornment>}
               aria-describedby="standard-weight-helper-text"
               inputProps={{
-                "aria-label": "weight",
+                'aria-label': 'weight',
               }}
             />
             <FormHelperText id="standard-weight-helper-text">
               Weight
             </FormHelperText>
           </FormControl>
-          <FormControl sx={{ m: 1, width: "25ch" }} variant="standard">
+          <FormControl sx={{ m: 1, width: '25ch' }} variant="standard">
             <InputLabel htmlFor="standard-adornment-password">
               Password
             </InputLabel>
             <Input
               id="standard-adornment-password"
-              type={values.showPassword ? "text" : "password"}
+              type={values.showPassword ? 'text' : 'password'}
               value={values.password}
-              onChange={handleChange("password")}
+              onChange={handleChange('password')}
               endAdornment={
                 <InputAdornment position="end">
                   <IconButton
@@ -282,7 +281,7 @@ export const Showcase = story<InputAdornmentProps>(
             <Input
               id="standard-adornment-amount"
               value={values.amount}
-              onChange={handleChange("amount")}
+              onChange={handleChange('amount')}
               startAdornment={
                 <InputAdornment position="start">$</InputAdornment>
               }
@@ -290,7 +289,7 @@ export const Showcase = story<InputAdornmentProps>(
           </FormControl>
         </div>
       </Box>
-    );
+    )
   },
   {
     parameters: {
@@ -300,5 +299,5 @@ export const Showcase = story<InputAdornmentProps>(
         },
       },
     },
-  }
-);
+  },
+)

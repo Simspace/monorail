@@ -1,41 +1,38 @@
 // Edit this file to add new stories
-import React from "react";
-
-import { story } from "../../../__tests__/helpers/storybook";
-import {
-  AdapterDateFns,
-  LocalizationProvider,
-} from "../../../helpers/dateTime";
-import { Box } from "../../Box/Box";
-import { DateRange } from "../../DateRangePicker/DateRangePicker";
-import { TextField } from "../../TextField/TextField";
+import React from 'react'
 import {
   StaticDateRangePicker,
   StaticDateRangePickerProps,
-} from "../StaticDateRangePicker";
-import { defaultStoryMeta } from "./StaticDateRangePicker.stories.gen";
+} from '../StaticDateRangePicker'
+import { story } from '../../../__tests__/helpers/storybook'
+import { defaultStoryMeta } from './StaticDateRangePicker.stories.gen'
+import { action } from '@storybook/addon-actions'
+import { TextField } from '../../TextField/TextField'
+import { DateRange } from '../../DateRangePicker/DateRangePicker'
+import { AdapterDateFns, LocalizationProvider } from '../../../helpers/dateTime'
+import { Box } from '../../Box/Box'
 
 /**
  * Metadata for StaticDateRangePicker stories - update/extend as needed
  */
 export default {
   ...defaultStoryMeta,
-  title: "Inputs/Date and Time/Date Range/StaticDateRangePicker",
-};
+  title: 'Inputs/Date and Time/Date Range/StaticDateRangePicker',
+}
 
-const Template = story<StaticDateRangePickerProps<Date>>((args) => {
+const Template = story<StaticDateRangePickerProps<Date>>(args => {
   const [value, setValue] = React.useState<DateRange<Date>>([
-    new Date("2021-01-01T12:34:00.000Z"),
-    new Date("2021-01-03T12:34:00.000Z"),
-  ]);
+    new Date('2021-01-01T12:34:00.000Z'),
+    new Date('2021-01-03T12:34:00.000Z'),
+  ])
 
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <StaticDateRangePicker
         displayStaticWrapperAs="desktop"
         value={value}
-        onChange={(newValue) => {
-          setValue(newValue);
+        onChange={newValue => {
+          setValue(newValue)
         }}
         renderInput={(startProps, endProps) => (
           <React.Fragment>
@@ -47,8 +44,8 @@ const Template = story<StaticDateRangePickerProps<Date>>((args) => {
         {...args}
       />
     </LocalizationProvider>
-  );
-});
+  )
+})
 
 /** Default story for StaticDateRangePicker (edit/remove by hand if needed) */
 export const Default = story(Template, {
@@ -59,4 +56,4 @@ export const Default = story(Template, {
       },
     },
   },
-});
+})

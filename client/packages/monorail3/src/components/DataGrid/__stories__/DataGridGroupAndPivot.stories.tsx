@@ -1,15 +1,14 @@
 // Edit this file to add new stories
-import React from "react";
+import React from 'react'
+import { DataGrid, DataGridProps } from '../DataGrid'
+import { story } from '../../../__tests__/helpers/storybook'
+import { defaultStoryMeta } from './DataGrid.stories.gen'
 
-import { story } from "../../../__tests__/helpers/storybook";
-import { DataGridProps } from "../DataGrid";
-import { defaultStoryMeta } from "./DataGrid.stories.gen";
+export default { ...defaultStoryMeta, title: 'Data Grid/Group & Pivot' }
 
-export default { ...defaultStoryMeta, title: "Data Grid/Group & Pivot" };
+const Template = story<DataGridProps>(args => <></>)
 
-const Template = story<DataGridProps>(() => <></>);
-
-export const Default = story(Template);
+export const Default = story(Template)
 
 Default.parameters = {
   docs: {
@@ -22,13 +21,13 @@ Use grouping, pivoting and more to analyse the data in depth.`,
   creevey: {
     skip: `🚧 This feature isn't implemented yet. It's coming.`,
   },
-};
+}
 
 /**
  * Tree data
  */
-export const TreeData = story<DataGridProps>(() => <></>);
-TreeData.storyName = "Tree data";
+export const TreeData = story<DataGridProps>(args => <></>)
+TreeData.storyName = 'Tree data'
 TreeData.parameters = {
   docs: {
     description: {
@@ -42,12 +41,12 @@ Tree data allows to visualize self-referential hierarchical (tree-like structure
   creevey: {
     skip: `🚧 This feature isn't implemented yet. It's coming.`,
   },
-};
+}
 
 /**
  * Master detail
  */
-export const MasterDetail = story<DataGridProps>(() => <></>);
+export const MasterDetail = story<DataGridProps>(args => <></>)
 MasterDetail.parameters = {
   docs: {
     description: {
@@ -61,12 +60,12 @@ The feature allows to display row details on an expandable pane.`,
   creevey: {
     skip: `🚧 This feature isn't implemented yet. It's coming.`,
   },
-};
+}
 
 /**
  * Grouping
  */
-export const Grouping = story<DataGridProps>(() => <></>);
+export const Grouping = story<DataGridProps>(args => <></>)
 Grouping.parameters = {
   docs: {
     description: {
@@ -80,12 +79,12 @@ Group rows together that share a column value, this creates a visible header for
   creevey: {
     skip: `🚧 This feature isn't implemented yet. It's coming.`,
   },
-};
+}
 
 /**
  * Aggregation
  */
-export const Aggregation = story<DataGridProps>(() => <></>);
+export const Aggregation = story<DataGridProps>(args => <></>)
 Aggregation.parameters = {
   docs: {
     description: {
@@ -99,12 +98,12 @@ When grouping, you will be able to apply an aggregation function to populate the
   creevey: {
     skip: `🚧 This feature isn't implemented yet. It's coming.`,
   },
-};
+}
 
 /**
  * Pivoting
  */
-export const Pivoting = story<DataGridProps>(() => <></>);
+export const Pivoting = story<DataGridProps>(args => <></>)
 Pivoting.parameters = {
   docs: {
     description: {
@@ -118,4 +117,4 @@ Pivoting will allow you to take a columns values and turn them into columns.`,
   creevey: {
     skip: `🚧 This feature isn't implemented yet. It's coming.`,
   },
-};
+}

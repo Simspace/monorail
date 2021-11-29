@@ -1,7 +1,8 @@
 // Placeholder for extra functionality - add extra types/values/functions/etc. for BottomNavigation
+import React from 'react'
 import {
   BottomNavigation as _BottomNavigation,
   BottomNavigationProps as _BottomNavigationProps,
-} from "./BottomNavigation";
-export * from "./BottomNavigation.gen";
+} from './BottomNavigation'
+export * from './BottomNavigation.gen'
 // Add more functions/etc. below

@@ -1,29 +1,28 @@
 // Edit this file to add new stories
-import React from "react";
-import styled from "@mui/material/styles/styled";
-import usePagination from "@mui/material/usePagination/usePagination";
-
-import { story } from "../../../__tests__/helpers/storybook";
-import { Stack } from "../../Stack/Stack";
-import { TablePagination } from "../../TablePagination/TablePagination";
-import { Typography } from "../../Typography/Typography";
-import { Pagination, PaginationProps } from "../Pagination";
-import { defaultStoryMeta } from "./Pagination.stories.gen";
+import React from 'react'
+import { Pagination, PaginationProps } from '../Pagination'
+import { story } from '../../../__tests__/helpers/storybook'
+import { defaultStoryMeta } from './Pagination.stories.gen'
+import { Stack } from '../../Stack/Stack'
+import { Typography } from '../../Typography/Typography'
+import styled from '@mui/material/styles/styled'
+import usePagination from '@mui/material/usePagination/usePagination'
+import { TablePagination } from '../../TablePagination/TablePagination'
 /**
  * Metadata for Pagination stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: "Navigation/Pagination" };
+export default { ...defaultStoryMeta, title: 'Navigation/Pagination' }
 /**
  * Story template (edit/remove by hand if needed)
  *
  * Note: there should be at least one "Default" story that uses this template with the "story" function.
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
-const Template = story<PaginationProps>((args) => <Pagination {...args} />, {
+const Template = story<PaginationProps>(args => <Pagination {...args} />, {
   args: {},
-});
+})
 /** Default story for Pagination (edit/remove by hand if needed) */
-export const Default = story(Template);
+export const Default = story(Template)
 
 export const BasicPagination = story<PaginationProps>(() => (
   <Stack spacing={2}>
@@ -32,7 +31,7 @@ export const BasicPagination = story<PaginationProps>(() => (
     <Pagination count={10} color="secondary" />
     <Pagination count={10} disabled />
   </Stack>
-));
+))
 
 export const PaginationOutlined = story<PaginationProps>(() => (
   <Stack spacing={2}>
@@ -41,14 +40,14 @@ export const PaginationOutlined = story<PaginationProps>(() => (
     <Pagination count={10} variant="outlined" color="secondary" />
     <Pagination count={10} variant="outlined" disabled />
   </Stack>
-));
+))
 
 export const PaginationRounded = story<PaginationProps>(() => (
   <Stack spacing={2}>
     <Pagination count={10} shape="rounded" />
     <Pagination count={10} variant="outlined" shape="rounded" />
   </Stack>
-));
+))
 
 export const PaginationSize = story<PaginationProps>(() => (
   <Stack spacing={2}>
@@ -56,7 +55,7 @@ export const PaginationSize = story<PaginationProps>(() => (
     <Pagination count={10} />
     <Pagination count={10} size="large" />
   </Stack>
-));
+))
 
 export const PaginationButtons = story<PaginationProps>(
   () => (
@@ -73,8 +72,8 @@ export const PaginationButtons = story<PaginationProps>(
         },
       },
     },
-  }
-);
+  },
+)
 
 export const PaginationRanges = story<PaginationProps>(
   () => (
@@ -98,48 +97,48 @@ export const PaginationRanges = story<PaginationProps>(
         },
       },
     },
-  }
-);
+  },
+)
 
 export const PaginationControlled = story<PaginationProps>(() => {
-  const [page, setPage] = React.useState(1);
+  const [page, setPage] = React.useState(1)
   const handleChange = (_: React.ChangeEvent<unknown>, value: number) => {
-    setPage(value);
-  };
+    setPage(value)
+  }
 
   return (
     <Stack spacing={2}>
       <Typography>Page: {page}</Typography>
       <Pagination count={10} page={page} onChange={handleChange} />
     </Stack>
-  );
-});
+  )
+})
 
-const List = styled("ul")({
-  listStyle: "none",
+const List = styled('ul')({
+  listStyle: 'none',
   padding: 0,
   margin: 0,
-  display: "flex",
-});
+  display: 'flex',
+})
 
 export const UsePagination = story<PaginationProps>(
   () => {
     const { items } = usePagination({
       count: 10,
-    });
+    })
 
     return (
       <nav>
         <List>
           {items.map(({ page, type, selected, ...item }, index) => {
             const children =
-              type === "start-ellipsis" || type === "end-ellipsis" ? (
-                "…"
-              ) : type === "page" ? (
+              type === 'start-ellipsis' || type === 'end-ellipsis' ? (
+                '…'
+              ) : type === 'page' ? (
                 <button
                   type="button"
                   style={{
-                    fontWeight: selected ? "bold" : undefined,
+                    fontWeight: selected ? 'bold' : undefined,
                   }}
                   {...item}
                 >
@@ -149,13 +148,13 @@ export const UsePagination = story<PaginationProps>(
                 <button type="button" {...item}>
                   {type}
                 </button>
-              );
+              )
 
-            return <li key={index}>{children}</li>;
+            return <li key={index}>{children}</li>
           })}
         </List>
       </nav>
-    );
+    )
   },
   {
     parameters: {
@@ -165,27 +164,27 @@ export const UsePagination = story<PaginationProps>(
         },
       },
     },
-  }
-);
+  },
+)
 
 export const TablePaginationDemo = story<PaginationProps>(
   () => {
-    const [page, setPage] = React.useState(2);
-    const [rowsPerPage, setRowsPerPage] = React.useState(10);
+    const [page, setPage] = React.useState(2)
+    const [rowsPerPage, setRowsPerPage] = React.useState(10)
 
     const handleChangePage = (
       _: React.MouseEvent<HTMLButtonElement> | null,
-      newPage: number
+      newPage: number,
     ) => {
-      setPage(newPage);
-    };
+      setPage(newPage)
+    }
 
     const handleChangeRowsPerPage = (
-      event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+      event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
     ) => {
-      setRowsPerPage(parseInt(event.target.value, 10));
-      setPage(0);
-    };
+      setRowsPerPage(parseInt(event.target.value, 10))
+      setPage(0)
+    }
 
     return (
       <TablePagination
@@ -196,7 +195,7 @@ export const TablePaginationDemo = story<PaginationProps>(
         rowsPerPage={rowsPerPage}
         onRowsPerPageChange={handleChangeRowsPerPage}
       />
-    );
+    )
   },
   {
     parameters: {
@@ -206,5 +205,5 @@ export const TablePaginationDemo = story<PaginationProps>(
         },
       },
     },
-  }
-);
+  },
+)

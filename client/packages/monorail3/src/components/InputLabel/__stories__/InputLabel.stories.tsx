@@ -1,20 +1,19 @@
 // Edit this file to add new stories
-import React from "react";
-
-import { story } from "../../../__tests__/helpers/storybook";
-import { Box } from "../../Box/Box";
-import { FilledInput } from "../../FilledInput/FilledInput";
-import { FormControl } from "../../FormControl/FormControl";
-import { FormHelperText } from "../../FormHelperText/FormHelperText";
-import { Input } from "../../Input/Input";
-import { OutlinedInput } from "../../OutlinedInput/OutlinedInput";
-import { InputLabel, InputLabelProps } from "../InputLabel";
-import { defaultStoryMeta } from "./InputLabel.stories.gen";
+import React from 'react'
+import { InputLabel, InputLabelProps } from '../InputLabel'
+import { story } from '../../../__tests__/helpers/storybook'
+import { defaultStoryMeta } from './InputLabel.stories.gen'
+import { Box } from '../../Box/Box'
+import { FormControl } from '../../FormControl/FormControl'
+import { Input } from '../../Input/Input'
+import { FormHelperText } from '../../FormHelperText/FormHelperText'
+import { OutlinedInput } from '../../OutlinedInput/OutlinedInput'
+import { FilledInput } from '../../FilledInput/FilledInput'
 
 /**
  * Metadata for InputLabel stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: "Inputs/Input/InputLabel" };
+export default { ...defaultStoryMeta, title: 'Inputs/Input/InputLabel' }
 
 /**
  * Story template (edit/remove by hand if needed)
@@ -22,9 +21,9 @@ export default { ...defaultStoryMeta, title: "Inputs/Input/InputLabel" };
  * Note: there should be at least one "Default" story that uses this template with the "story" function.
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
-const Template = story<InputLabelProps>((args) => <InputLabel {...args} />, {
-  args: { children: "The label" },
-});
+const Template = story<InputLabelProps>(args => <InputLabel {...args} />, {
+  args: { children: 'The label' },
+})
 
 /** Default story for InputLabel (edit/remove by hand if needed) */
 export const Default = story(Template, {
@@ -35,21 +34,21 @@ export const Default = story(Template, {
       },
     },
   },
-});
+})
 
 export const Showcase = story<InputLabelProps>(
   () => {
-    const [name, setName] = React.useState("Composed TextField");
+    const [name, setName] = React.useState('Composed TextField')
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-      setName(event.target.value);
-    };
+      setName(event.target.value)
+    }
 
     return (
       <Box
         component="form"
         sx={{
-          "& > :not(style)": { m: 1 },
+          '& > :not(style)': { m: 1 },
         }}
         noValidate
         autoComplete="off"
@@ -103,7 +102,7 @@ export const Showcase = story<InputLabelProps>(
           />
         </FormControl>
       </Box>
-    );
+    )
   },
   {
     parameters: {
@@ -113,5 +112,5 @@ export const Showcase = story<InputLabelProps>(
         },
       },
     },
-  }
-);
+  },
+)

@@ -1,25 +1,24 @@
 // Edit this file to add new stories
-import React from "react";
-import VolumeDown from "@mui/icons-material/VolumeDown";
-import VolumeUp from "@mui/icons-material/VolumeUp";
-import { SliderThumb, styled } from "@mui/material";
-import MuiInput from "@mui/material/Input";
-
-import { story } from "../../../__tests__/helpers/storybook";
-import { Box } from "../../Box/Box";
-import { Grid } from "../../Grid/Grid";
-import { Stack } from "../../Stack/Stack";
-import { Tooltip } from "../../Tooltip/Tooltip";
-import { Typography } from "../../Typography/Typography";
-import { Slider, SliderProps } from "../Slider";
-import { defaultStoryMeta } from "./Slider.stories.gen";
+import React from 'react'
+import { Slider, SliderProps } from '../Slider'
+import { story } from '../../../__tests__/helpers/storybook'
+import { defaultStoryMeta } from './Slider.stories.gen'
+import { Box } from '../../Box/Box'
+import { Stack } from '../../Stack/Stack'
+import VolumeDown from '@mui/icons-material/VolumeDown'
+import VolumeUp from '@mui/icons-material/VolumeUp'
+import MuiInput from '@mui/material/Input'
+import { SliderThumb, styled } from '@mui/material'
+import { Typography } from '../../Typography/Typography'
+import { Grid } from '../../Grid/Grid'
+import { Tooltip } from '../../Tooltip/Tooltip'
 
 /**
  * Metadata for Slider stories - update/extend as needed
  */
 export default {
   ...defaultStoryMeta,
-  title: "Inputs/Slider",
+  title: 'Inputs/Slider',
   parameters: {
     docs: {
       description: {
@@ -27,25 +26,23 @@ export default {
       },
     },
   },
-};
+}
 /**
  * Story template (edit/remove by hand if needed)
  *
  * Note: there should be at least one "Default" story that uses this template with the "story" function.
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
-const Template = story<SliderProps>((args) => <Slider {...args} />, {
-  args: {},
-});
+const Template = story<SliderProps>(args => <Slider {...args} />, { args: {} })
 /** Default story for Slider (edit/remove by hand if needed) */
-export const Default = story(Template);
+export const Default = story(Template)
 
 export function ContinuousSlider() {
-  const [value, setValue] = React.useState<number>(30);
+  const [value, setValue] = React.useState<number>(30)
 
-  const handleChange = (_event: Event, newValue: number | Array<number>) => {
-    setValue(newValue as number);
-  };
+  const handleChange = (_event: Event, newValue: number | number[]) => {
+    setValue(newValue as number)
+  }
 
   return (
     <Box sx={{ width: 200 }}>
@@ -56,7 +53,7 @@ export function ContinuousSlider() {
       </Stack>
       <Slider disabled defaultValue={30} aria-label="Disabled slider" />
     </Box>
-  );
+  )
 }
 
 export function SliderSizes() {
@@ -70,12 +67,12 @@ export function SliderSizes() {
       />
       <Slider defaultValue={50} aria-label="Default" valueLabelDisplay="auto" />
     </Box>
-  );
+  )
 }
 
 export function DiscreteSlider() {
   function valuetext(value: number) {
-    return `${value}°C`;
+    return `${value}°C`
   }
 
   return (
@@ -92,12 +89,12 @@ export function DiscreteSlider() {
       />
       <Slider defaultValue={30} step={10} marks min={10} max={110} disabled />
     </Box>
-  );
+  )
 }
 
 export function DiscreteSliderSteps() {
   function valuetext(value: number) {
-    return `${value}°C`;
+    return `${value}°C`
   }
 
   return (
@@ -113,31 +110,31 @@ export function DiscreteSliderSteps() {
         valueLabelDisplay="auto"
       />
     </Box>
-  );
+  )
 }
 
 export function DiscreteSliderMarks() {
   const marks = [
     {
       value: 0,
-      label: "0°C",
+      label: '0°C',
     },
     {
       value: 20,
-      label: "20°C",
+      label: '20°C',
     },
     {
       value: 37,
-      label: "37°C",
+      label: '37°C',
     },
     {
       value: 100,
-      label: "100°C",
+      label: '100°C',
     },
-  ];
+  ]
 
   function valuetext(value: number) {
-    return `${value}°C`;
+    return `${value}°C`
   }
 
   return (
@@ -151,35 +148,35 @@ export function DiscreteSliderMarks() {
         marks={marks}
       />
     </Box>
-  );
+  )
 }
 
 export function DiscreteSliderValues() {
   const marks = [
     {
       value: 0,
-      label: "0°C",
+      label: '0°C',
     },
     {
       value: 20,
-      label: "20°C",
+      label: '20°C',
     },
     {
       value: 37,
-      label: "37°C",
+      label: '37°C',
     },
     {
       value: 100,
-      label: "100°C",
+      label: '100°C',
     },
-  ];
+  ]
 
   function valuetext(value: number) {
-    return `${value}°C`;
+    return `${value}°C`
   }
 
   function valueLabelFormat(value: number) {
-    return marks.findIndex((mark) => mark.value === value) + 1;
+    return marks.findIndex(mark => mark.value === value) + 1
   }
   return (
     <Box sx={{ width: 300 }}>
@@ -193,31 +190,31 @@ export function DiscreteSliderValues() {
         marks={marks}
       />
     </Box>
-  );
+  )
 }
 
 export function DiscreteSliderLabel() {
   const marks = [
     {
       value: 0,
-      label: "0°C",
+      label: '0°C',
     },
     {
       value: 20,
-      label: "20°C",
+      label: '20°C',
     },
     {
       value: 37,
-      label: "37°C",
+      label: '37°C',
     },
     {
       value: 100,
-      label: "100°C",
+      label: '100°C',
     },
-  ];
+  ]
 
   function valuetext(value: number) {
-    return `${value}°C`;
+    return `${value}°C`
   }
 
   return (
@@ -231,85 +228,85 @@ export function DiscreteSliderLabel() {
         valueLabelDisplay="on"
       />
     </Box>
-  );
+  )
 }
 
 export function RangeSlider() {
   function valuetext(value: number) {
-    return `${value}°C`;
+    return `${value}°C`
   }
-  const [value, setValue] = React.useState<Array<number>>([20, 37]);
+  const [value, setValue] = React.useState<number[]>([20, 37])
 
-  const handleChange = (_event: Event, newValue: number | Array<number>) => {
-    setValue(newValue as Array<number>);
-  };
+  const handleChange = (_event: Event, newValue: number | number[]) => {
+    setValue(newValue as number[])
+  }
 
   return (
     <Box sx={{ width: 300 }}>
       <Slider
-        getAriaLabel={() => "Temperature range"}
+        getAriaLabel={() => 'Temperature range'}
         value={value}
         onChange={handleChange}
         valueLabelDisplay="auto"
         getAriaValueText={valuetext}
       />
     </Box>
-  );
+  )
 }
 
 export function MinimumDistanceSlider() {
   function valuetext(value: number) {
-    return `${value}°C`;
+    return `${value}°C`
   }
 
-  const minDistance = 10;
+  const minDistance = 10
 
-  const [value1, setValue1] = React.useState<Array<number>>([20, 37]);
+  const [value1, setValue1] = React.useState<number[]>([20, 37])
 
   const handleChange1 = (
     _event: Event,
-    newValue: number | Array<number>,
-    activeThumb: number
+    newValue: number | number[],
+    activeThumb: number,
   ) => {
     if (!Array.isArray(newValue)) {
-      return;
+      return
     }
 
     if (activeThumb === 0) {
-      setValue1([Math.min(newValue[0], value1[1] - minDistance), value1[1]]);
+      setValue1([Math.min(newValue[0], value1[1] - minDistance), value1[1]])
     } else {
-      setValue1([value1[0], Math.max(newValue[1], value1[0] + minDistance)]);
+      setValue1([value1[0], Math.max(newValue[1], value1[0] + minDistance)])
     }
-  };
+  }
 
-  const [value2, setValue2] = React.useState<Array<number>>([20, 37]);
+  const [value2, setValue2] = React.useState<number[]>([20, 37])
 
   const handleChange2 = (
     _event: Event,
-    newValue: number | Array<number>,
-    activeThumb: number
+    newValue: number | number[],
+    activeThumb: number,
   ) => {
     if (!Array.isArray(newValue)) {
-      return;
+      return
     }
 
     if (newValue[1] - newValue[0] < minDistance) {
       if (activeThumb === 0) {
-        const clamped = Math.min(newValue[0], 100 - minDistance);
-        setValue2([clamped, clamped + minDistance]);
+        const clamped = Math.min(newValue[0], 100 - minDistance)
+        setValue2([clamped, clamped + minDistance])
       } else {
-        const clamped = Math.max(newValue[1], minDistance);
-        setValue2([clamped - minDistance, clamped]);
+        const clamped = Math.max(newValue[1], minDistance)
+        setValue2([clamped - minDistance, clamped])
       }
     } else {
-      setValue2(newValue as Array<number>);
+      setValue2(newValue as number[])
     }
-  };
+  }
 
   return (
     <Box sx={{ width: 300 }}>
       <Slider
-        getAriaLabel={() => "Minimum distance"}
+        getAriaLabel={() => 'Minimum distance'}
         value={value1}
         onChange={handleChange1}
         valueLabelDisplay="auto"
@@ -317,7 +314,7 @@ export function MinimumDistanceSlider() {
         disableSwap
       />
       <Slider
-        getAriaLabel={() => "Minimum distance shift"}
+        getAriaLabel={() => 'Minimum distance shift'}
         value={value2}
         onChange={handleChange2}
         valueLabelDisplay="auto"
@@ -325,36 +322,33 @@ export function MinimumDistanceSlider() {
         disableSwap
       />
     </Box>
-  );
+  )
 }
 
 export function InputSlider() {
   const Input = styled(MuiInput)`
     width: 42px;
-  `;
+  `
 
   const [value, setValue] = React.useState<
     number | string | Array<number | string>
-  >(30);
+  >(30)
 
-  const handleSliderChange = (
-    _event: Event,
-    newValue: number | Array<number>
-  ) => {
-    setValue(newValue);
-  };
+  const handleSliderChange = (_event: Event, newValue: number | number[]) => {
+    setValue(newValue)
+  }
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(event.target.value === "" ? "" : Number(event.target.value));
-  };
+    setValue(event.target.value === '' ? '' : Number(event.target.value))
+  }
 
   const handleBlur = () => {
     if (value < 0) {
-      setValue(0);
+      setValue(0)
     } else if (value > 100) {
-      setValue(100);
+      setValue(100)
     }
-  };
+  }
 
   return (
     <Box sx={{ width: 250 }}>
@@ -367,7 +361,7 @@ export function InputSlider() {
         </Grid>
         <Grid item xs>
           <Slider
-            value={typeof value === "number" ? value : 0}
+            value={typeof value === 'number' ? value : 0}
             onChange={handleSliderChange}
             aria-labelledby="input-slider"
           />
@@ -382,19 +376,19 @@ export function InputSlider() {
               step: 10,
               min: 0,
               max: 100,
-              type: "number",
-              "aria-labelledby": "input-slider",
+              type: 'number',
+              'aria-labelledby': 'input-slider',
             }}
           />
         </Grid>
       </Grid>
     </Box>
-  );
+  )
 }
 
 export function ColorSlider() {
   function valuetext(value: number) {
-    return `${value}°C`;
+    return `${value}°C`
   }
 
   return (
@@ -406,27 +400,27 @@ export function ColorSlider() {
         color="secondary"
       />
     </Box>
-  );
+  )
 }
 
 export function CustomizedSlider() {
   interface Props {
-    children: React.ReactElement;
-    value: number;
+    children: React.ReactElement
+    value: number
   }
 
   function ValueLabelComponent(props: Props) {
-    const { children, value } = props;
+    const { children, value } = props
 
     return (
       <Tooltip enterTouchDelay={0} placement="top" title={value}>
         {children}
       </Tooltip>
-    );
+    )
   }
 
   const iOSBoxShadow =
-    "0 3px 1px rgba(0,0,0,0.1),0 4px 8px rgba(0,0,0,0.13),0 0 0 1px rgba(0,0,0,0.02)";
+    '0 3px 1px rgba(0,0,0,0.1),0 4px 8px rgba(0,0,0,0.13),0 0 0 1px rgba(0,0,0,0.02)'
 
   const marks = [
     {
@@ -441,131 +435,131 @@ export function CustomizedSlider() {
     {
       value: 100,
     },
-  ];
+  ]
 
   const IOSSlider = styled(Slider)(({ theme }) => ({
-    color: theme.palette.mode === "dark" ? "#3880ff" : "#3880ff",
+    color: theme.palette.mode === 'dark' ? '#3880ff' : '#3880ff',
     height: 2,
-    padding: "15px 0",
-    "& .MuiSlider-thumb": {
+    padding: '15px 0',
+    '& .MuiSlider-thumb': {
       height: 28,
       width: 28,
-      backgroundColor: "#fff",
+      backgroundColor: '#fff',
       boxShadow: iOSBoxShadow,
-      "&:focus, &:hover, &.Mui-active": {
+      '&:focus, &:hover, &.Mui-active': {
         boxShadow:
-          "0 3px 1px rgba(0,0,0,0.1),0 4px 8px rgba(0,0,0,0.3),0 0 0 1px rgba(0,0,0,0.02)",
+          '0 3px 1px rgba(0,0,0,0.1),0 4px 8px rgba(0,0,0,0.3),0 0 0 1px rgba(0,0,0,0.02)',
         // Reset on touch devices, it doesn't add specificity
-        "@media (hover: none)": {
+        '@media (hover: none)': {
           boxShadow: iOSBoxShadow,
         },
       },
     },
-    "& .MuiSlider-valueLabel": {
+    '& .MuiSlider-valueLabel': {
       fontSize: 12,
-      fontWeight: "normal",
+      fontWeight: 'normal',
       top: -6,
-      backgroundColor: "unset",
+      backgroundColor: 'unset',
       color: theme.palette.text.primary,
-      "&:before": {
-        display: "none",
+      '&:before': {
+        display: 'none',
       },
-      "& *": {
-        background: "transparent",
-        color: theme.palette.mode === "dark" ? "#fff" : "#000",
+      '& *': {
+        background: 'transparent',
+        color: theme.palette.mode === 'dark' ? '#fff' : '#000',
       },
     },
-    "& .MuiSlider-track": {
-      border: "none",
+    '& .MuiSlider-track': {
+      border: 'none',
     },
-    "& .MuiSlider-rail": {
+    '& .MuiSlider-rail': {
       opacity: 0.5,
-      backgroundColor: "#bfbfbf",
+      backgroundColor: '#bfbfbf',
     },
-    "& .MuiSlider-mark": {
-      backgroundColor: "#bfbfbf",
+    '& .MuiSlider-mark': {
+      backgroundColor: '#bfbfbf',
       height: 8,
       width: 1,
-      "&.MuiSlider-markActive": {
+      '&.MuiSlider-markActive': {
         opacity: 1,
-        backgroundColor: "currentColor",
+        backgroundColor: 'currentColor',
       },
     },
-  }));
+  }))
 
   const PrettoSlider = styled(Slider)({
-    color: "#52af77",
+    color: '#52af77',
     height: 8,
-    "& .MuiSlider-track": {
-      border: "none",
+    '& .MuiSlider-track': {
+      border: 'none',
     },
-    "& .MuiSlider-thumb": {
+    '& .MuiSlider-thumb': {
       height: 24,
       width: 24,
-      backgroundColor: "#fff",
-      border: "2px solid currentColor",
-      "&:focus, &:hover, &.Mui-active, &.Mui-focusVisible": {
-        boxShadow: "inherit",
+      backgroundColor: '#fff',
+      border: '2px solid currentColor',
+      '&:focus, &:hover, &.Mui-active, &.Mui-focusVisible': {
+        boxShadow: 'inherit',
       },
-      "&:before": {
-        display: "none",
+      '&:before': {
+        display: 'none',
       },
     },
-    "& .MuiSlider-valueLabel": {
+    '& .MuiSlider-valueLabel': {
       lineHeight: 1.2,
       fontSize: 12,
-      background: "unset",
+      background: 'unset',
       padding: 0,
       width: 32,
       height: 32,
-      borderRadius: "50% 50% 50% 0",
-      backgroundColor: "#52af77",
-      transformOrigin: "bottom left",
-      transform: "translate(50%, -100%) rotate(-45deg) scale(0)",
-      "&:before": { display: "none" },
-      "&.MuiSlider-valueLabelOpen": {
-        transform: "translate(50%, -100%) rotate(-45deg) scale(1)",
+      borderRadius: '50% 50% 50% 0',
+      backgroundColor: '#52af77',
+      transformOrigin: 'bottom left',
+      transform: 'translate(50%, -100%) rotate(-45deg) scale(0)',
+      '&:before': { display: 'none' },
+      '&.MuiSlider-valueLabelOpen': {
+        transform: 'translate(50%, -100%) rotate(-45deg) scale(1)',
       },
-      "& > *": {
-        transform: "rotate(45deg)",
+      '& > *': {
+        transform: 'rotate(45deg)',
       },
     },
-  });
+  })
 
   const AirbnbSlider = styled(Slider)(({ theme }) => ({
-    color: "#3a8589",
+    color: '#3a8589',
     height: 3,
-    padding: "13px 0",
-    "& .MuiSlider-thumb": {
+    padding: '13px 0',
+    '& .MuiSlider-thumb': {
       height: 27,
       width: 27,
-      backgroundColor: "#fff",
-      border: "1px solid currentColor",
-      "&:hover": {
-        boxShadow: "0 0 0 8px rgba(58, 133, 137, 0.16)",
+      backgroundColor: '#fff',
+      border: '1px solid currentColor',
+      '&:hover': {
+        boxShadow: '0 0 0 8px rgba(58, 133, 137, 0.16)',
       },
-      "& .airbnb-bar": {
+      '& .airbnb-bar': {
         height: 9,
         width: 1,
-        backgroundColor: "currentColor",
+        backgroundColor: 'currentColor',
         marginLeft: 1,
         marginRight: 1,
       },
     },
-    "& .MuiSlider-track": {
+    '& .MuiSlider-track': {
       height: 3,
     },
-    "& .MuiSlider-rail": {
-      color: theme.palette.mode === "dark" ? "#bfbfbf" : "#d8d8d8",
-      opacity: theme.palette.mode === "dark" ? undefined : 1,
+    '& .MuiSlider-rail': {
+      color: theme.palette.mode === 'dark' ? '#bfbfbf' : '#d8d8d8',
+      opacity: theme.palette.mode === 'dark' ? undefined : 1,
       height: 3,
     },
-  }));
+  }))
 
   interface AirbnbThumbComponentProps extends React.HTMLAttributes<unknown> {}
 
   function AirbnbThumbComponent(props: AirbnbThumbComponentProps) {
-    const { children, ...other } = props;
+    const { children, ...other } = props
     return (
       <SliderThumb {...other}>
         {children}
@@ -573,7 +567,7 @@ export function CustomizedSlider() {
         <span className="airbnb-bar" />
         <span className="airbnb-bar" />
       </SliderThumb>
-    );
+    )
   }
 
   return (
@@ -606,38 +600,38 @@ export function CustomizedSlider() {
       <Typography gutterBottom>Airbnb</Typography>
       <AirbnbSlider
         components={{ Thumb: AirbnbThumbComponent }}
-        getAriaLabel={(index) =>
-          index === 0 ? "Minimum price" : "Maximum price"
+        getAriaLabel={index =>
+          index === 0 ? 'Minimum price' : 'Maximum price'
         }
         defaultValue={[20, 40]}
       />
     </Box>
-  );
+  )
 }
 
 export function VerticalSlider() {
   function valuetext(value: number) {
-    return `${value}°C`;
+    return `${value}°C`
   }
 
   const marks = [
     {
       value: 0,
-      label: "0°C",
+      label: '0°C',
     },
     {
       value: 20,
-      label: "20°C",
+      label: '20°C',
     },
     {
       value: 37,
-      label: "37°C",
+      label: '37°C',
     },
     {
       value: 100,
-      label: "100°C",
+      label: '100°C',
     },
-  ];
+  ]
 
   return (
     <Stack sx={{ height: 300 }} spacing={1} direction="row">
@@ -654,44 +648,44 @@ export function VerticalSlider() {
         disabled
       />
       <Slider
-        getAriaLabel={() => "Temperature"}
+        getAriaLabel={() => 'Temperature'}
         orientation="vertical"
         getAriaValueText={valuetext}
         defaultValue={[20, 37]}
         marks={marks}
       />
     </Stack>
-  );
+  )
 }
 
 export function TrackFalseSlider() {
-  const Separator = styled("div")(
+  const Separator = styled('div')(
     ({ theme }) => `
   height: ${theme.spacing(3)};
-`
-  );
+`,
+  )
 
   const marks = [
     {
       value: 0,
-      label: "0°C",
+      label: '0°C',
     },
     {
       value: 20,
-      label: "20°C",
+      label: '20°C',
     },
     {
       value: 37,
-      label: "37°C",
+      label: '37°C',
     },
     {
       value: 100,
-      label: "100°C",
+      label: '100°C',
     },
-  ];
+  ]
 
   function valuetext(value: number) {
-    return `${value}°C`;
+    return `${value}°C`
   }
 
   return (
@@ -718,37 +712,37 @@ export function TrackFalseSlider() {
         marks={marks}
       />
     </Box>
-  );
+  )
 }
 
 export function TrackInvertedSlider() {
-  const Separator = styled("div")(
+  const Separator = styled('div')(
     ({ theme }) => `
   height: ${theme.spacing(3)};
-`
-  );
+`,
+  )
 
   const marks = [
     {
       value: 0,
-      label: "0°C",
+      label: '0°C',
     },
     {
       value: 20,
-      label: "20°C",
+      label: '20°C',
     },
     {
       value: 37,
-      label: "37°C",
+      label: '37°C',
     },
     {
       value: 100,
-      label: "100°C",
+      label: '100°C',
     },
-  ];
+  ]
 
   function valuetext(value: number) {
-    return `${value}°C`;
+    return `${value}°C`
   }
 
   return (
@@ -775,35 +769,35 @@ export function TrackInvertedSlider() {
         marks={marks}
       />
     </Box>
-  );
+  )
 }
 
 export function NonLinearSlider() {
   function valueLabelFormat(value: number) {
-    const units = ["KB", "MB", "GB", "TB"];
+    const units = ['KB', 'MB', 'GB', 'TB']
 
-    let unitIndex = 0;
-    let scaledValue = value;
+    let unitIndex = 0
+    let scaledValue = value
 
     while (scaledValue >= 1024 && unitIndex < units.length - 1) {
-      unitIndex += 1;
-      scaledValue /= 1024;
+      unitIndex += 1
+      scaledValue /= 1024
     }
 
-    return `${scaledValue} ${units[unitIndex]}`;
+    return `${scaledValue} ${units[unitIndex]}`
   }
 
   function calculateValue(value: number) {
-    return 2 ** value;
+    return 2 ** value
   }
 
-  const [value, setValue] = React.useState<number>(10);
+  const [value, setValue] = React.useState<number>(10)
 
-  const handleChange = (_event: Event, newValue: number | Array<number>) => {
-    if (typeof newValue === "number") {
-      setValue(newValue);
+  const handleChange = (_event: Event, newValue: number | number[]) => {
+    if (typeof newValue === 'number') {
+      setValue(newValue)
     }
-  };
+  }
 
   return (
     <Box sx={{ width: 250 }}>
@@ -823,5 +817,5 @@ export function NonLinearSlider() {
         aria-labelledby="non-linear-slider"
       />
     </Box>
-  );
+  )
 }

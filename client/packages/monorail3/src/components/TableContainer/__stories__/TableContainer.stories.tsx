@@ -1,20 +1,19 @@
 // Edit this file to add new stories
-import React from "react";
-
-import { story } from "../../../__tests__/helpers/storybook";
-import { Table } from "../../Table/Table";
-import { TableBody } from "../../TableBody/TableBody";
-import { TableCell } from "../../TableCell/TableCell";
-import { TableRow } from "../../TableRow/TableRow";
-import { TableContainer, TableContainerProps } from "../TableContainer";
-import { defaultStoryMeta } from "./TableContainer.stories.gen";
+import React from 'react'
+import { TableBody } from '../../TableBody/TableBody'
+import { TableContainer, TableContainerProps } from '../TableContainer'
+import { TableRow } from '../../TableRow/TableRow'
+import { story } from '../../../__tests__/helpers/storybook'
+import { defaultStoryMeta } from './TableContainer.stories.gen'
+import { TableCell } from '../../TableCell/TableCell'
+import { Table } from '../../Table/Table'
 
 export default {
   ...defaultStoryMeta,
-  title: "Data Display/Table/TableContainer",
-};
+  title: 'Data Display/Table/TableContainer',
+}
 
-const Template = story<TableContainerProps>((args) => (
+const Template = story<TableContainerProps>(args => (
   <TableContainer {...args}>
     <Table>
       <TableBody>
@@ -31,7 +30,7 @@ const Template = story<TableContainerProps>((args) => (
       </TableBody>
     </Table>
   </TableContainer>
-));
+))
 
 export const Default = story(Template, {
   parameters: {
@@ -41,4 +40,4 @@ export const Default = story(Template, {
       },
     },
   },
-});
+})

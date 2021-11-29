@@ -1,24 +1,23 @@
 // Edit this file to add new stories
-import React from "react";
-import CloseIcon from "@mui/icons-material/Close";
-import { TransitionProps } from "@mui/material/transitions";
-
-import { story } from "../../../__tests__/helpers/storybook";
-import { Alert, AlertProps } from "../../Alert/Alert";
-import { Button } from "../../Button/Button";
-import { Fade } from "../../Fade/Fade";
-import { Grow } from "../../Grow/Grow";
-import { IconButton } from "../../IconButton/IconButton";
-import { Slide } from "../../Slide/Slide";
-import { SnackbarContent } from "../../SnackbarContent/SnackbarContent";
-import { Stack } from "../../Stack/Stack";
-import { Snackbar, SnackbarOrigin, SnackbarProps } from "../Snackbar";
-import { defaultStoryMeta } from "./Snackbar.stories.gen";
+import React from 'react'
+import { Snackbar, SnackbarProps, SnackbarOrigin } from '../Snackbar'
+import { story } from '../../../__tests__/helpers/storybook'
+import { defaultStoryMeta } from './Snackbar.stories.gen'
+import { Button } from '../../Button/Button'
+import { IconButton } from '../../IconButton/IconButton'
+import CloseIcon from '@mui/icons-material/Close'
+import { Alert, AlertProps } from '../../Alert/Alert'
+import { Stack } from '../../Stack/Stack'
+import { SnackbarContent } from '../../SnackbarContent/SnackbarContent'
+import { TransitionProps } from '@mui/material/transitions'
+import { Slide } from '../../Slide/Slide'
+import { Grow } from '../../Grow/Grow'
+import { Fade } from '../../Fade/Fade'
 
 /**
  * Metadata for Snackbar stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: "Feedback/Snackbar" };
+export default { ...defaultStoryMeta, title: 'Feedback/Snackbar' }
 
 /**
  * Story template (edit/remove by hand if needed)
@@ -27,23 +26,23 @@ export default { ...defaultStoryMeta, title: "Feedback/Snackbar" };
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
 const Template = story<SnackbarProps>(
-  (args) => {
-    const [open, setOpen] = React.useState(false);
+  args => {
+    const [open, setOpen] = React.useState(false)
 
     const handleClick = () => {
-      setOpen(true);
-    };
+      setOpen(true)
+    }
 
     const handleClose = (
       event: React.SyntheticEvent | React.MouseEvent,
-      reason?: string
+      reason?: string,
     ) => {
-      if (reason === "clickaway") {
-        return;
+      if (reason === 'clickaway') {
+        return
       }
 
-      setOpen(false);
-    };
+      setOpen(false)
+    }
 
     const action = (
       <React.Fragment>
@@ -59,7 +58,7 @@ const Template = story<SnackbarProps>(
           <CloseIcon fontSize="small" />
         </IconButton>
       </React.Fragment>
-    );
+    )
 
     return (
       <div>
@@ -73,40 +72,40 @@ const Template = story<SnackbarProps>(
           {...args}
         />
       </div>
-    );
+    )
   },
   {
     args: {},
-  }
-);
+  },
+)
 
 /** Default story for Snackbar (edit/remove by hand if needed) */
-export const Default = story(Template);
+export const Default = story(Template)
 
 const ToastAlert = React.forwardRef<HTMLDivElement, AlertProps>(
   function ToastAlert(props, ref) {
-    return <Alert elevation={6} ref={ref} variant="filled" {...props} />;
-  }
-);
+    return <Alert elevation={6} ref={ref} variant="filled" {...props} />
+  },
+)
 
 export const CustomizedSnackbars = story<SnackbarProps>(
   () => {
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = React.useState(false)
 
     const handleClick = () => {
-      setOpen(true);
-    };
+      setOpen(true)
+    }
 
     const handleClose = (event?: React.SyntheticEvent, reason?: string) => {
-      if (reason === "clickaway") {
-        return;
+      if (reason === 'clickaway') {
+        return
       }
 
-      setOpen(false);
-    };
+      setOpen(false)
+    }
 
     return (
-      <Stack spacing={2} sx={{ width: "100%" }}>
+      <Stack spacing={2} sx={{ width: '100%' }}>
         <Button variant="outlined" onClick={handleClick}>
           Open success snackbar
         </Button>
@@ -114,7 +113,7 @@ export const CustomizedSnackbars = story<SnackbarProps>(
           <ToastAlert
             onClose={handleClose}
             severity="success"
-            sx={{ width: "100%" }}
+            sx={{ width: '100%' }}
           >
             This is a success message!
           </ToastAlert>
@@ -124,7 +123,7 @@ export const CustomizedSnackbars = story<SnackbarProps>(
         <Alert severity="info">This is an information message!</Alert>
         <Alert severity="success">This is a success message!</Alert>
       </Stack>
-    );
+    )
   },
   {
     parameters: {
@@ -134,82 +133,82 @@ export const CustomizedSnackbars = story<SnackbarProps>(
         },
       },
     },
-  }
-);
+  },
+)
 
 interface State extends SnackbarOrigin {
-  open: boolean;
+  open: boolean
 }
 
 export const Positioned = story<SnackbarProps>(
   () => {
     const [state, setState] = React.useState<State>({
       open: false,
-      vertical: "top",
-      horizontal: "center",
-    });
-    const { vertical, horizontal, open } = state;
+      vertical: 'top',
+      horizontal: 'center',
+    })
+    const { vertical, horizontal, open } = state
 
     const handleClick = (newState: SnackbarOrigin) => () => {
-      setState({ open: true, ...newState });
-    };
+      setState({ open: true, ...newState })
+    }
 
     const handleClose = () => {
-      setState({ ...state, open: false });
-    };
+      setState({ ...state, open: false })
+    }
 
     const buttons = (
       <React.Fragment>
         <Button
           onClick={handleClick({
-            vertical: "top",
-            horizontal: "center",
+            vertical: 'top',
+            horizontal: 'center',
           })}
         >
           Top-Center
         </Button>
         <Button
           onClick={handleClick({
-            vertical: "top",
-            horizontal: "right",
+            vertical: 'top',
+            horizontal: 'right',
           })}
         >
           Top-Right
         </Button>
         <Button
           onClick={handleClick({
-            vertical: "bottom",
-            horizontal: "right",
+            vertical: 'bottom',
+            horizontal: 'right',
           })}
         >
           Bottom-Right
         </Button>
         <Button
           onClick={handleClick({
-            vertical: "bottom",
-            horizontal: "center",
+            vertical: 'bottom',
+            horizontal: 'center',
           })}
         >
           Bottom-Center
         </Button>
         <Button
           onClick={handleClick({
-            vertical: "bottom",
-            horizontal: "left",
+            vertical: 'bottom',
+            horizontal: 'left',
           })}
         >
           Bottom-Left
         </Button>
         <Button
           onClick={handleClick({
-            vertical: "top",
-            horizontal: "left",
+            vertical: 'top',
+            horizontal: 'left',
           })}
         >
           Top-Left
         </Button>
       </React.Fragment>
-    );
+    )
 
     return (
       <div>
@@ -222,7 +221,7 @@ export const Positioned = story<SnackbarProps>(
           key={vertical + horizontal}
         />
       </div>
-    );
+    )
   },
   {
     parameters: {
@@ -232,8 +231,8 @@ export const Positioned = story<SnackbarProps>(
         },
       },
     },
-  }
-);
+  },
+)
 
 export const MessageLength = story<SnackbarProps>(
   () => {
@@ -241,15 +240,15 @@ export const MessageLength = story<SnackbarProps>(
       <Button color="secondary" size="small">
         lorem ipsum dolorem
       </Button>
-    );
+    )
 
     return (
       <Stack spacing={2} sx={{ maxWidth: 600 }}>
         <SnackbarContent message="I love snacks." action={action} />
         <SnackbarContent
           message={
-            "I love candy. I love cookies. I love cupcakes. \
-          I love cheesecake. I love chocolate."
+            'I love candy. I love cookies. I love cupcakes. \
+          I love cheesecake. I love chocolate.'
           }
         />
         <SnackbarContent
@@ -258,13 +257,13 @@ export const MessageLength = story<SnackbarProps>(
         />
         <SnackbarContent
           message={
-            "I love candy. I love cookies. I love cupcakes. \
-          I love cheesecake. I love chocolate."
+            'I love candy. I love cookies. I love cupcakes. \
+          I love cheesecake. I love chocolate.'
           }
           action={action}
         />
       </Stack>
-    );
+    )
   },
   {
     parameters: {
@@ -274,61 +273,61 @@ export const MessageLength = story<SnackbarProps>(
         },
       },
     },
-  }
-);
+  },
+)
 
 interface SnackbarMessage {
-  message: string;
-  key: number;
+  message: string
+  key: number
 }
 
 export const Transitions = story<SnackbarProps>(
   () => {
     const [snackPack, setSnackPack] = React.useState<
-      ReadonlyArray<SnackbarMessage>
-    >([]);
-    const [open, setOpen] = React.useState(false);
+      readonly SnackbarMessage[]
+    >([])
+    const [open, setOpen] = React.useState(false)
     const [messageInfo, setMessageInfo] = React.useState<
       SnackbarMessage | undefined
-    >(undefined);
+    >(undefined)
 
     React.useEffect(() => {
       if (snackPack.length && !messageInfo) {
         // Set a new snack when we don't have an active one
-        setMessageInfo({ ...snackPack[0] });
-        setSnackPack((prev) => prev.slice(1));
-        setOpen(true);
+        setMessageInfo({ ...snackPack[0] })
+        setSnackPack(prev => prev.slice(1))
+        setOpen(true)
       } else if (snackPack.length && messageInfo && open) {
         // Close an active snack when a new one is added
-        setOpen(false);
+        setOpen(false)
       }
-    }, [snackPack, messageInfo, open]);
+    }, [snackPack, messageInfo, open])
 
     const handleClick = (message: string) => () => {
-      setSnackPack((prev) => [
+      setSnackPack(prev => [
         ...prev,
-        { message, key: new Date("2021-01-01T12:34:00.000Z").getTime() },
-      ]);
-    };
+        { message, key: new Date('2021-01-01T12:34:00.000Z').getTime() },
+      ])
+    }
 
     const handleClose = (
       event: React.SyntheticEvent | MouseEvent,
-      reason?: string
+      reason?: string,
     ) => {
-      if (reason === "clickaway") {
-        return;
+      if (reason === 'clickaway') {
+        return
       }
-      setOpen(false);
-    };
+      setOpen(false)
+    }
 
     const handleExited = () => {
-      setMessageInfo(undefined);
-    };
+      setMessageInfo(undefined)
+    }
 
     return (
       <div>
-        <Button onClick={handleClick("Message A")}>Show message A</Button>
-        <Button onClick={handleClick("Message B")}>Show message B</Button>
+        <Button onClick={handleClick('Message A')}>Show message A</Button>
+        <Button onClick={handleClick('Message B')}>Show message B</Button>
         <Snackbar
           key={messageInfo ? messageInfo.key : undefined}
           open={open}
@@ -354,7 +353,7 @@ export const Transitions = story<SnackbarProps>(
           }
         />
       </div>
-    );
+    )
   },
   {
     parameters: {
@@ -364,8 +363,8 @@ export const Transitions = story<SnackbarProps>(
         },
       },
     },
-  }
-);
+  },
+)
 
 export const WithFloatingActionButtons = story<SnackbarProps>(() => {
   return (
@@ -373,52 +372,52 @@ export const WithFloatingActionButtons = story<SnackbarProps>(() => {
       Snackbars show above <code>Fab</code>s on mobile- see MUI docs for an
       example.
     </Alert>
-  );
-});
+  )
+})
 
 export const OtherTransitions = story<SnackbarProps>(
   () => {
     function SlideTransition(props: TransitionProps) {
-      return <Slide {...props} direction="up" />;
+      return <Slide {...props} direction="up" />
     }
 
     function GrowTransition(props: TransitionProps) {
-      return <Grow {...props} />;
+      return <Grow {...props} />
     }
 
     const [state, setState] = React.useState<{
-      open: boolean;
+      open: boolean
       Transition: React.ComponentType<
         TransitionProps & {
-          children?: React.ReactElement<unknown>;
+          children?: React.ReactElement<any, any>
         }
-      >;
+      >
     }>({
       open: false,
       Transition: Fade,
-    });
+    })
 
     const handleClick =
       (
         Transition: React.ComponentType<
           TransitionProps & {
-            children?: React.ReactElement<unknown>;
+            children?: React.ReactElement<any, any>
           }
-        >
+        >,
       ) =>
       () => {
         setState({
           open: true,
           Transition,
-        });
-      };
+        })
+      }
 
     const handleClose = () => {
       setState({
         ...state,
         open: false,
-      });
-    };
+      })
+    }
 
     return (
       <div>
@@ -433,7 +432,7 @@ export const OtherTransitions = story<SnackbarProps>(
           key={state.Transition.name}
         />
       </div>
-    );
+    )
   },
   {
     parameters: {
@@ -443,41 +442,41 @@ export const OtherTransitions = story<SnackbarProps>(
         },
       },
     },
-  }
-);
+  },
+)
 
 export const SlideDirection = story<SnackbarProps>(
   () => {
     function TransitionLeft(props: TransitionProps) {
-      return <Slide {...props} direction="left" />;
+      return <Slide {...props} direction="left" />
     }
 
     function TransitionUp(props: TransitionProps) {
-      return <Slide {...props} direction="up" />;
+      return <Slide {...props} direction="up" />
     }
 
     function TransitionRight(props: TransitionProps) {
-      return <Slide {...props} direction="right" />;
+      return <Slide {...props} direction="right" />
     }
 
     function TransitionDown(props: TransitionProps) {
-      return <Slide {...props} direction="down" />;
+      return <Slide {...props} direction="down" />
     }
 
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = React.useState(false)
     const [transition, setTransition] = React.useState<
       React.ComponentType<TransitionProps> | undefined
-    >(undefined);
+    >(undefined)
 
     const handleClick =
       (Transition: React.ComponentType<TransitionProps>) => () => {
-        setTransition(() => Transition);
-        setOpen(true);
-      };
+        setTransition(() => Transition)
+        setOpen(true)
+      }
 
     const handleClose = () => {
-      setOpen(false);
-    };
+      setOpen(false)
+    }
 
     return (
       <div>
@@ -490,10 +489,10 @@ export const SlideDirection = story<SnackbarProps>(
           onClose={handleClose}
           TransitionComponent={transition}
           message="I love snacks"
-          key={transition ? transition.name : ""}
+          key={transition ? transition.name : ''}
         />
       </div>
-    );
+    )
   },
   {
     parameters: {
@@ -503,5 +502,5 @@ export const SlideDirection = story<SnackbarProps>(
         },
       },
     },
-  }
-);
+  },
+)

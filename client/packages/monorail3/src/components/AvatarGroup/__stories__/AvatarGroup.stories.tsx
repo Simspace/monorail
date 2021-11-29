@@ -1,18 +1,17 @@
 // Edit this file to add new stories
-import React from "react";
-
-import { story } from "../../../__tests__/helpers/storybook";
-import { Avatar } from "../../Avatar/Avatar";
-import { Box } from "../../Box/Box";
-import { AvatarGroup, AvatarGroupProps } from "../AvatarGroup";
-import { defaultStoryMeta } from "./AvatarGroup.stories.gen";
+import React from 'react'
+import { AvatarGroup, AvatarGroupProps } from '../AvatarGroup'
+import { story } from '../../../__tests__/helpers/storybook'
+import { defaultStoryMeta } from './AvatarGroup.stories.gen'
+import { Avatar } from '../../Avatar/Avatar'
+import { Box } from '../../Box/Box'
 
 /**
  * Metadata for AvatarGroup stories - update/extend as needed
  * This is intended to be exported as story-level metadata from the main .stories.tsx file, like:
  * "export default { ...defaultStoryMeta } // Add/extend as needed
  */
-export default { ...defaultStoryMeta, title: "Data Display/AvatarGroup" };
+export default { ...defaultStoryMeta, title: 'Data Display/AvatarGroup' }
 
 /**
  * Story template (edit/remove by hand if needed)
@@ -21,8 +20,8 @@ export default { ...defaultStoryMeta, title: "Data Display/AvatarGroup" };
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
 const Template = story<AvatarGroupProps>(
-  (args) => (
-    <Box sx={{ display: "flex", justifyContent: "center" }}>
+  args => (
+    <Box sx={{ display: 'flex', justifyContent: 'center' }}>
       <AvatarGroup {...args}>
         <Avatar>A</Avatar>
         <Avatar>B</Avatar>
@@ -32,15 +31,15 @@ const Template = story<AvatarGroupProps>(
   ),
   {
     args: {},
-  }
-);
+  },
+)
 
 /** Default story for AvatarGroup (edit/remove by hand if needed) */
-export const Default = story(Template);
+export const Default = story(Template)
 
 export const Max = story<AvatarGroupProps>(() => {
   return (
-    <Box sx={{ display: "flex", justifyContent: "center" }}>
+    <Box sx={{ display: 'flex', justifyContent: 'center' }}>
       <AvatarGroup max={4}>
         <Avatar
           alt="Rover"
@@ -64,8 +63,8 @@ export const Max = story<AvatarGroupProps>(() => {
         />
       </AvatarGroup>
     </Box>
-  );
-});
+  )
+})
 
 Max.parameters = {
   docs: {
@@ -76,4 +75,4 @@ Max.parameters = {
   creevey: {
     skip: "Images don't load reliably",
   },
-};
+}

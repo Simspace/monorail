@@ -1,20 +1,19 @@
 // Edit this file to add new stories
-import React from "react";
-
-import { story } from "../../../__tests__/helpers/storybook";
-import { Checkbox } from "../../Checkbox/Checkbox";
-import { FormControlLabel } from "../../FormControlLabel/FormControlLabel";
-import { FormGroup } from "../../FormGroup/FormGroup";
-import { FormLabel } from "../../FormLabel/FormLabel";
-import { FormControl, FormControlProps } from "../FormControl";
-import { defaultStoryMeta } from "./FormControl.stories.gen";
+import React from 'react'
+import { FormControl, FormControlProps } from '../FormControl'
+import { story } from '../../../__tests__/helpers/storybook'
+import { defaultStoryMeta } from './FormControl.stories.gen'
+import { FormLabel } from '../../FormLabel/FormLabel'
+import { FormGroup } from '../../FormGroup/FormGroup'
+import { FormControlLabel } from '../../FormControlLabel/FormControlLabel'
+import { Checkbox } from '../../Checkbox/Checkbox'
 /**
  * Metadata for FormControl stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: "Inputs/FormControl" };
+export default { ...defaultStoryMeta, title: 'Inputs/FormControl' }
 
 const Template = story<FormControlProps>(
-  (args) => (
+  args => (
     <FormControl {...args}>
       <FormLabel component="legend">Pick two</FormLabel>
       <FormGroup>
@@ -38,7 +37,7 @@ const Template = story<FormControlProps>(
       required: true,
       error: true,
       // component: "fieldset", TODO: default prop type is removing this from prop options!
-      variant: "standard",
+      variant: 'standard',
     },
     parameters: {
       docs: {
@@ -52,6 +51,6 @@ const Template = story<FormControlProps>(
         },
       },
     },
-  }
-);
-export const Default = story(Template);
+  },
+)
+export const Default = story(Template)

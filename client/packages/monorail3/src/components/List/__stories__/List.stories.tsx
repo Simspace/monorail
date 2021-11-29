@@ -1,66 +1,65 @@
 // Edit this file to add new stories
-import React from "react";
-import ArrowRightIcon from "@mui/icons-material/ArrowRight";
-import BeachAccessIcon from "@mui/icons-material/BeachAccess";
-import BluetoothIcon from "@mui/icons-material/Bluetooth";
-import CommentIcon from "@mui/icons-material/Comment";
-import DeleteIcon from "@mui/icons-material/Delete";
-import DnsIcon from "@mui/icons-material/Dns";
-import DraftsIcon from "@mui/icons-material/Drafts";
-import ExpandLess from "@mui/icons-material/ExpandLess";
-import ExpandMore from "@mui/icons-material/ExpandMore";
-import FolderIcon from "@mui/icons-material/Folder";
-import HomeIcon from "@mui/icons-material/Home";
-import ImageIcon from "@mui/icons-material/Image";
-import InboxIcon from "@mui/icons-material/Inbox";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import PeopleIcon from "@mui/icons-material/People";
-import PermMediaIcon from "@mui/icons-material/PermMedia";
-import PublicIcon from "@mui/icons-material/Public";
-import SendIcon from "@mui/icons-material/Send";
-import SettingsIcon from "@mui/icons-material/Settings";
-import StarIcon from "@mui/icons-material/Star";
-import StarBorder from "@mui/icons-material/StarBorder";
-import WifiIcon from "@mui/icons-material/Wifi";
-import WorkIcon from "@mui/icons-material/Work";
+import React from 'react'
+import { List, ListProps } from '../List'
+import { story } from '../../../__tests__/helpers/storybook'
+import { defaultStoryMeta } from './List.stories.gen'
+import { Box } from '../../Box/Box'
+import { ListItem } from '../../ListItem/ListItem'
+import { ListItemButton } from '../../ListItemButton/ListItemButton'
+import { ListItemIcon } from '../../ListItemIcon/ListItemIcon'
+import { ListItemText } from '../../ListItemText/ListItemText'
+import BeachAccessIcon from '@mui/icons-material/BeachAccess'
+import BluetoothIcon from '@mui/icons-material/Bluetooth'
+import CommentIcon from '@mui/icons-material/Comment'
+import InboxIcon from '@mui/icons-material/Inbox'
+import DraftsIcon from '@mui/icons-material/Drafts'
+import FolderIcon from '@mui/icons-material/Folder'
+import DeleteIcon from '@mui/icons-material/Delete'
+import SendIcon from '@mui/icons-material/Send'
+import ExpandMore from '@mui/icons-material/ExpandMore'
+import ExpandLess from '@mui/icons-material/ExpandLess'
+import StarBorder from '@mui/icons-material/StarBorder'
+import ImageIcon from '@mui/icons-material/Image'
+import StarIcon from '@mui/icons-material/Star'
+import WifiIcon from '@mui/icons-material/Wifi'
+import WorkIcon from '@mui/icons-material/Work'
+import PeopleIcon from '@mui/icons-material/People'
+import PermMediaIcon from '@mui/icons-material/PermMedia'
+import PublicIcon from '@mui/icons-material/Public'
+import DnsIcon from '@mui/icons-material/Dns'
+import HomeIcon from '@mui/icons-material/Home'
+import SettingsIcon from '@mui/icons-material/Settings'
+import ArrowRightIcon from '@mui/icons-material/ArrowRight'
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
+import { Divider } from '../../Divider/Divider'
+import { ListSubheader } from '../../ListSubheader/ListSubheader'
+import { Collapse } from '../../Collapse/Collapse'
+import { Avatar } from '../../Avatar/Avatar'
+import { ListItemAvatar } from '../../ListItemAvatar/ListItemAvatar'
 import {
   createTheme,
   styled,
-  StyledEngineProvider,
-  Theme,
   ThemeProvider,
-} from "@mui/material/styles";
+  Theme,
+  StyledEngineProvider,
+} from '@mui/material/styles'
+import { FormGroup } from '../../FormGroup/FormGroup'
+import { FormControlLabel } from '../../FormControlLabel/FormControlLabel'
+import { Checkbox } from '../../Checkbox/Checkbox'
+import { Grid } from '../../Grid/Grid'
+import { Typography } from '../../Typography/Typography'
+import { IconButton } from '../../IconButton/IconButton'
+import { Switch } from '../../Switch/Switch'
+import { Alert } from '../../Alert/Alert'
+import { Paper } from '../../Paper/Paper'
+import { Tooltip } from '../../Tooltip/Tooltip'
 
-import { story } from "../../../__tests__/helpers/storybook";
-import { Alert } from "../../Alert/Alert";
-import { Avatar } from "../../Avatar/Avatar";
-import { Box } from "../../Box/Box";
-import { Checkbox } from "../../Checkbox/Checkbox";
-import { Collapse } from "../../Collapse/Collapse";
-import { Divider } from "../../Divider/Divider";
-import { FormControlLabel } from "../../FormControlLabel/FormControlLabel";
-import { FormGroup } from "../../FormGroup/FormGroup";
-import { Grid } from "../../Grid/Grid";
-import { IconButton } from "../../IconButton/IconButton";
-import { ListItem } from "../../ListItem/ListItem";
-import { ListItemAvatar } from "../../ListItemAvatar/ListItemAvatar";
-import { ListItemButton } from "../../ListItemButton/ListItemButton";
-import { ListItemIcon } from "../../ListItemIcon/ListItemIcon";
-import { ListItemText } from "../../ListItemText/ListItemText";
-import { ListSubheader } from "../../ListSubheader/ListSubheader";
-import { Paper } from "../../Paper/Paper";
-import { Switch } from "../../Switch/Switch";
-import { Tooltip } from "../../Tooltip/Tooltip";
-import { Typography } from "../../Typography/Typography";
-import { List, ListProps } from "../List";
-import { defaultStoryMeta } from "./List.stories.gen";
-
-declare module "@mui/styles/defaultTheme" {
+declare module '@mui/styles/defaultTheme' {
   // eslint-disable-next-line @typescript-eslint/no-empty-interface
   interface DefaultTheme extends Theme {}
 }
 
-declare module "@mui/styles/defaultTheme" {
+declare module '@mui/styles/defaultTheme' {
   // eslint-disable-next-line @typescript-eslint/no-empty-interface
   interface DefaultTheme extends Theme {}
 }
@@ -68,7 +67,7 @@ declare module "@mui/styles/defaultTheme" {
 /**
  * Metadata for List stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: "Data Display/List" };
+export default { ...defaultStoryMeta, title: 'Data Display/List' }
 
 /**
  * Story template (edit/remove by hand if needed)
@@ -77,9 +76,9 @@ export default { ...defaultStoryMeta, title: "Data Display/List" };
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
 const Template = story<ListProps>(
-  (args) => {
+  args => {
     return (
-      <Box sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}>
+      <Box sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
         <nav aria-label="main mailbox folders">
           <List {...args}>
             <ListItem disablePadding>
@@ -116,25 +115,25 @@ const Template = story<ListProps>(
           </List>
         </nav>
       </Box>
-    );
+    )
   },
-  { args: {} }
-);
+  { args: {} },
+)
 
 /** Default story for List (edit/remove by hand if needed) */
-export const Default = story(Template);
+export const Default = story(Template)
 
 export const NestedList = story<ListProps>(
   () => {
-    const [open, setOpen] = React.useState(true);
+    const [open, setOpen] = React.useState(true)
 
     const handleClick = () => {
-      setOpen(!open);
-    };
+      setOpen(!open)
+    }
 
     return (
       <List
-        sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}
+        sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
         component="nav"
         aria-labelledby="nested-list-subheader"
         subheader={
@@ -173,7 +172,7 @@ export const NestedList = story<ListProps>(
           </List>
         </Collapse>
       </List>
-    );
+    )
   },
   {
     parameters: {
@@ -183,13 +182,13 @@ export const NestedList = story<ListProps>(
         },
       },
     },
-  }
-);
+  },
+)
 
 export const FolderList = story<ListProps>(
   () => {
     return (
-      <List sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}>
+      <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
         <ListItem>
           <ListItemAvatar>
             <Avatar>
@@ -215,7 +214,7 @@ export const FolderList = story<ListProps>(
           <ListItemText primary="Vacation" secondary="July 20, 2014" />
         </ListItem>
       </List>
-    );
+    )
   },
   {
     parameters: {
@@ -225,25 +224,25 @@ export const FolderList = story<ListProps>(
         },
       },
     },
-  }
-);
+  },
+)
 
 function generate(element: React.ReactElement) {
-  return [0, 1, 2].map((value) =>
+  return [0, 1, 2].map(value =>
     React.cloneElement(element, {
       key: value,
-    })
-  );
+    }),
+  )
 }
 
-const Demo = styled("div")(({ theme }) => ({
+const Demo = styled('div')(({ theme }) => ({
   backgroundColor: theme.palette.background.paper,
-}));
+}))
 
 export const InteractiveList = story<ListProps>(
   () => {
-    const [dense, setDense] = React.useState(false);
-    const [secondary, setSecondary] = React.useState(false);
+    const [dense, setDense] = React.useState(false)
+    const [secondary, setSecondary] = React.useState(false)
 
     return (
       <Box sx={{ flexGrow: 1, maxWidth: 752 }}>
@@ -252,7 +251,7 @@ export const InteractiveList = story<ListProps>(
             control={
               <Checkbox
                 checked={dense}
-                onChange={(event) => setDense(event.target.checked)}
+                onChange={event => setDense(event.target.checked)}
               />
             }
             label="Enable dense"
@@ -261,7 +260,7 @@ export const InteractiveList = story<ListProps>(
             control={
               <Checkbox
                 checked={secondary}
-                onChange={(event) => setSecondary(event.target.checked)}
+                onChange={event => setSecondary(event.target.checked)}
               />
             }
             label="Enable secondary text"
@@ -278,9 +277,9 @@ export const InteractiveList = story<ListProps>(
                   <ListItem>
                     <ListItemText
                       primary="Single-line item"
-                      secondary={secondary ? "Secondary text" : null}
+                      secondary={secondary ? 'Secondary text' : null}
                     />
-                  </ListItem>
+                  </ListItem>,
                 )}
               </List>
             </Demo>
@@ -298,9 +297,9 @@ export const InteractiveList = story<ListProps>(
                     </ListItemIcon>
                     <ListItemText
                       primary="Single-line item"
-                      secondary={secondary ? "Secondary text" : null}
+                      secondary={secondary ? 'Secondary text' : null}
                     />
-                  </ListItem>
+                  </ListItem>,
                 )}
               </List>
             </Demo>
@@ -322,9 +321,9 @@ export const InteractiveList = story<ListProps>(
                     </ListItemAvatar>
                     <ListItemText
                       primary="Single-line item"
-                      secondary={secondary ? "Secondary text" : null}
+                      secondary={secondary ? 'Secondary text' : null}
                     />
-                  </ListItem>
+                  </ListItem>,
                 )}
               </List>
             </Demo>
@@ -350,16 +349,16 @@ export const InteractiveList = story<ListProps>(
                     </ListItemAvatar>
                     <ListItemText
                       primary="Single-line item"
-                      secondary={secondary ? "Secondary text" : null}
+                      secondary={secondary ? 'Secondary text' : null}
                     />
-                  </ListItem>
+                  </ListItem>,
                 )}
               </List>
             </Demo>
           </Grid>
         </Grid>
       </Box>
-    );
+    )
   },
   {
     parameters: {
@@ -369,20 +368,21 @@ export const InteractiveList = story<ListProps>(
         },
       },
     },
-  }
-);
+  },
+)
 
 export const SelectedListItem = story<ListProps>(
   () => {
-    const [selectedIndex, setSelectedIndex] = React.useState(1);
+    const [selectedIndex, setSelectedIndex] = React.useState(1)
 
     const handleListItemClick =
-      (index: number) => (_: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-        setSelectedIndex(index);
-      };
+      (index: number) =>
+      (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+        setSelectedIndex(index)
+      }
 
     return (
-      <Box sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}>
+      <Box sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
         <List component="nav" aria-label="main mailbox folders">
           <ListItemButton
             selected={selectedIndex === 0}
@@ -419,7 +419,7 @@ export const SelectedListItem = story<ListProps>(
           </ListItemButton>
         </List>
       </Box>
-    );
+    )
   },
   {
     parameters: {
@@ -429,13 +429,13 @@ export const SelectedListItem = story<ListProps>(
         },
       },
     },
-  }
-);
+  },
+)
 
 export const AlignListItems = story<ListProps>(
   () => {
     return (
-      <List sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}>
+      <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
         <ListItem alignItems="flex-start">
           <ListItemAvatar>
             <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
@@ -445,7 +445,7 @@ export const AlignListItems = story<ListProps>(
             secondary={
               <React.Fragment>
                 <Typography
-                  sx={{ display: "inline" }}
+                  sx={{ display: 'inline' }}
                   component="span"
                   variant="body2"
                   color="text.primary"
@@ -467,7 +467,7 @@ export const AlignListItems = story<ListProps>(
             secondary={
               <React.Fragment>
                 <Typography
-                  sx={{ display: "inline" }}
+                  sx={{ display: 'inline' }}
                   component="span"
                   variant="body2"
                   color="text.primary"
@@ -489,20 +489,20 @@ export const AlignListItems = story<ListProps>(
             secondary={
               <React.Fragment>
                 <Typography
-                  sx={{ display: "inline" }}
+                  sx={{ display: 'inline' }}
                   component="span"
                   variant="body2"
                   color="text.primary"
                 >
                   Sandra Adams
                 </Typography>
-                {" — Do you have Paris recommendations? Have you ever…"}
+                {' — Do you have Paris recommendations? Have you ever…'}
               </React.Fragment>
             }
           />
         </ListItem>
       </List>
-    );
+    )
   },
   {
     parameters: {
@@ -512,30 +512,30 @@ export const AlignListItems = story<ListProps>(
         },
       },
     },
-  }
-);
+  },
+)
 
 export const ListControlsCheckbox = story<ListProps>(
   () => {
-    const [checked, setChecked] = React.useState([0]);
+    const [checked, setChecked] = React.useState([0])
 
     const handleToggle = (value: number) => () => {
-      const currentIndex = checked.indexOf(value);
-      const newChecked = [...checked];
+      const currentIndex = checked.indexOf(value)
+      const newChecked = [...checked]
 
       if (currentIndex === -1) {
-        newChecked.push(value);
+        newChecked.push(value)
       } else {
-        newChecked.splice(currentIndex, 1);
+        newChecked.splice(currentIndex, 1)
       }
 
-      setChecked(newChecked);
-    };
+      setChecked(newChecked)
+    }
 
     return (
-      <List sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}>
-        {[0, 1, 2, 3].map((value) => {
-          const labelId = `checkbox-list-label-${value}`;
+      <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+        {[0, 1, 2, 3].map(value => {
+          const labelId = `checkbox-list-label-${value}`
 
           return (
             <ListItem
@@ -558,16 +558,16 @@ export const ListControlsCheckbox = story<ListProps>(
                     checked={checked.indexOf(value) !== -1}
                     tabIndex={-1}
                     disableRipple
-                    inputProps={{ "aria-labelledby": labelId }}
+                    inputProps={{ 'aria-labelledby': labelId }}
                   />
                 </ListItemIcon>
                 <ListItemText id={labelId} primary={`Line item ${value + 1}`} />
               </ListItemButton>
             </ListItem>
-          );
+          )
         })}
       </List>
-    );
+    )
   },
   {
     parameters: {
@@ -579,33 +579,33 @@ The checkbox is the primary action and the state indicator for the list item. Th
         },
       },
     },
-  }
-);
+  },
+)
 
 export const ListControlsCheckboxSecondary = story<ListProps>(
   () => {
-    const [checked, setChecked] = React.useState([1]);
+    const [checked, setChecked] = React.useState([1])
 
     const handleToggle = (value: number) => () => {
-      const currentIndex = checked.indexOf(value);
-      const newChecked = [...checked];
+      const currentIndex = checked.indexOf(value)
+      const newChecked = [...checked]
 
       if (currentIndex === -1) {
-        newChecked.push(value);
+        newChecked.push(value)
       } else {
-        newChecked.splice(currentIndex, 1);
+        newChecked.splice(currentIndex, 1)
       }
 
-      setChecked(newChecked);
-    };
+      setChecked(newChecked)
+    }
 
     return (
       <List
         dense
-        sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}
+        sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
       >
-        {[0, 1, 2, 3].map((value) => {
-          const labelId = `checkbox-list-secondary-label-${value}`;
+        {[0, 1, 2, 3].map(value => {
+          const labelId = `checkbox-list-secondary-label-${value}`
           return (
             <ListItem
               key={value}
@@ -614,7 +614,7 @@ export const ListControlsCheckboxSecondary = story<ListProps>(
                   edge="end"
                   onChange={handleToggle(value)}
                   checked={checked.indexOf(value) !== -1}
-                  inputProps={{ "aria-labelledby": labelId }}
+                  inputProps={{ 'aria-labelledby': labelId }}
                 />
               }
               disablePadding
@@ -629,10 +629,10 @@ export const ListControlsCheckboxSecondary = story<ListProps>(
                 <ListItemText id={labelId} primary={`Line item ${value + 1}`} />
               </ListItemButton>
             </ListItem>
-          );
+          )
         })}
       </List>
-    );
+    )
   },
   {
     parameters: {
@@ -642,29 +642,29 @@ export const ListControlsCheckboxSecondary = story<ListProps>(
         },
       },
     },
-  }
-);
+  },
+)
 
 export const ListControlsSwitch = story<ListProps>(
   () => {
-    const [checked, setChecked] = React.useState(["wifi"]);
+    const [checked, setChecked] = React.useState(['wifi'])
 
     const handleToggle = (value: string) => () => {
-      const currentIndex = checked.indexOf(value);
-      const newChecked = [...checked];
+      const currentIndex = checked.indexOf(value)
+      const newChecked = [...checked]
 
       if (currentIndex === -1) {
-        newChecked.push(value);
+        newChecked.push(value)
       } else {
-        newChecked.splice(currentIndex, 1);
+        newChecked.splice(currentIndex, 1)
       }
 
-      setChecked(newChecked);
-    };
+      setChecked(newChecked)
+    }
 
     return (
       <List
-        sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}
+        sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
         subheader={<ListSubheader>Settings</ListSubheader>}
       >
         <ListItem>
@@ -674,10 +674,10 @@ export const ListControlsSwitch = story<ListProps>(
           <ListItemText id="switch-list-label-wifi" primary="Wi-Fi" />
           <Switch
             edge="end"
-            onChange={handleToggle("wifi")}
-            checked={checked.indexOf("wifi") !== -1}
+            onChange={handleToggle('wifi')}
+            checked={checked.indexOf('wifi') !== -1}
             inputProps={{
-              "aria-labelledby": "switch-list-label-wifi",
+              'aria-labelledby': 'switch-list-label-wifi',
             }}
           />
         </ListItem>
@@ -688,15 +688,15 @@ export const ListControlsSwitch = story<ListProps>(
           <ListItemText id="switch-list-label-bluetooth" primary="Bluetooth" />
           <Switch
             edge="end"
-            onChange={handleToggle("bluetooth")}
-            checked={checked.indexOf("bluetooth") !== -1}
+            onChange={handleToggle('bluetooth')}
+            checked={checked.indexOf('bluetooth') !== -1}
             inputProps={{
-              "aria-labelledby": "switch-list-label-bluetooth",
+              'aria-labelledby': 'switch-list-label-bluetooth',
             }}
           />
         </ListItem>
       </List>
-    );
+    )
   },
   {
     parameters: {
@@ -706,29 +706,29 @@ export const ListControlsSwitch = story<ListProps>(
         },
       },
     },
-  }
-);
+  },
+)
 
 export const StickySubheader = story<ListProps>(
   () => {
     return (
       <List
         sx={{
-          width: "100%",
+          width: '100%',
           maxWidth: 360,
-          bgcolor: "background.paper",
-          position: "relative",
-          overflow: "auto",
+          bgcolor: 'background.paper',
+          position: 'relative',
+          overflow: 'auto',
           maxHeight: 300,
-          "& ul": { padding: 0 },
+          '& ul': { padding: 0 },
         }}
         subheader={<li />}
       >
-        {[0, 1, 2, 3, 4].map((sectionId) => (
+        {[0, 1, 2, 3, 4].map(sectionId => (
           <li key={`section-${sectionId}`}>
             <ul>
               <ListSubheader>{`I'm sticky ${sectionId}`}</ListSubheader>
-              {[0, 1, 2].map((item) => (
+              {[0, 1, 2].map(item => (
                 <ListItem key={`item-${sectionId}-${item}`}>
                   <ListItemText primary={`Item ${item}`} />
                 </ListItem>
@@ -737,7 +737,7 @@ export const StickySubheader = story<ListProps>(
           </li>
         ))}
       </List>
-    );
+    )
   },
   {
     parameters: {
@@ -747,14 +747,14 @@ export const StickySubheader = story<ListProps>(
         },
       },
     },
-  }
-);
+  },
+)
 
 export const InsetListItem = story<ListProps>(
   () => {
     return (
       <List
-        sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}
+        sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
         aria-label="contacts"
       >
         <ListItem disablePadding>
@@ -771,7 +771,7 @@ export const InsetListItem = story<ListProps>(
           </ListItemButton>
         </ListItem>
       </List>
-    );
+    )
   },
   {
     parameters: {
@@ -781,14 +781,14 @@ export const InsetListItem = story<ListProps>(
         },
       },
     },
-  }
-);
+  },
+)
 
 export const GutterlessListItem = story<ListProps>(
   () => {
     return (
-      <List sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}>
-        {[1, 2, 3].map((value) => (
+      <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+        {[1, 2, 3].map(value => (
           <ListItem
             key={value}
             disableGutters
@@ -802,7 +802,7 @@ export const GutterlessListItem = story<ListProps>(
           </ListItem>
         ))}
       </List>
-    );
+    )
   },
   {
     parameters: {
@@ -812,8 +812,8 @@ export const GutterlessListItem = story<ListProps>(
         },
       },
     },
-  }
-);
+  },
+)
 
 export const VirtualizedList = story<ListProps>(
   () => {
@@ -822,7 +822,7 @@ export const VirtualizedList = story<ListProps>(
         This example requires react-window, which is not installed. See MUI
         docs.
       </Alert>
-    );
+    )
   },
   {
     parameters: {
@@ -832,34 +832,34 @@ export const VirtualizedList = story<ListProps>(
         },
       },
     },
-  }
-);
+  },
+)
 const data = [
-  { icon: <PeopleIcon />, label: "Authentication" },
-  { icon: <DnsIcon />, label: "Database" },
-  { icon: <PermMediaIcon />, label: "Storage" },
-  { icon: <PublicIcon />, label: "Hosting" },
-];
+  { icon: <PeopleIcon />, label: 'Authentication' },
+  { icon: <DnsIcon />, label: 'Database' },
+  { icon: <PermMediaIcon />, label: 'Storage' },
+  { icon: <PublicIcon />, label: 'Hosting' },
+]
 
 const FireNav = styled(List)<{ component?: React.ElementType }>({
-  "& .MuiListItemButton-root": {
+  '& .MuiListItemButton-root': {
     paddingLeft: 24,
     paddingRight: 24,
   },
-  "& .MuiListItemIcon-root": {
+  '& .MuiListItemIcon-root': {
     minWidth: 0,
     marginRight: 16,
   },
-  "& .MuiSvgIcon-root": {
+  '& .MuiSvgIcon-root': {
     fontSize: 20,
   },
-});
+})
 
 export const CustomizedList = story<ListProps>(
   () => {
-    const [open, setOpen] = React.useState(true);
+    const [open, setOpen] = React.useState(true)
     return (
-      <Box sx={{ display: "flex" }}>
+      <Box sx={{ display: 'flex' }}>
         <StyledEngineProvider injectFirst>
           <ThemeProvider
             theme={createTheme({
@@ -871,9 +871,9 @@ export const CustomizedList = story<ListProps>(
                 },
               },
               palette: {
-                mode: "dark",
-                primary: { main: "rgb(102, 157, 246)" },
-                background: { paper: "rgb(5, 30, 52)" },
+                mode: 'dark',
+                primary: { main: 'rgb(102, 157, 246)' },
+                background: { paper: 'rgb(5, 30, 52)' },
               },
             })}
           >
@@ -886,7 +886,7 @@ export const CustomizedList = story<ListProps>(
                     primary="Firebash"
                     primaryTypographyProps={{
                       fontSize: 20,
-                      fontWeight: "medium",
+                      fontWeight: 'medium',
                       letterSpacing: 0,
                     }}
                   />
@@ -900,9 +900,9 @@ export const CustomizedList = story<ListProps>(
                     <ListItemText
                       primary="Project Overview"
                       primaryTypographyProps={{
-                        color: "primary",
-                        fontWeight: "medium",
-                        variant: "body2",
+                        color: 'primary',
+                        fontWeight: 'medium',
+                        variant: 'body2',
                       }}
                     />
                   </ListItemButton>
@@ -910,35 +910,35 @@ export const CustomizedList = story<ListProps>(
                     <IconButton
                       size="large"
                       sx={{
-                        "& svg": {
-                          color: "rgba(255,255,255,0.8)",
-                          transition: "0.2s",
-                          transform: "translateX(0) rotate(0)",
+                        '& svg': {
+                          color: 'rgba(255,255,255,0.8)',
+                          transition: '0.2s',
+                          transform: 'translateX(0) rotate(0)',
                         },
-                        "&:hover, &:focus": {
-                          bgcolor: "unset",
-                          "& svg:first-of-type": {
-                            transform: "translateX(-4px) rotate(-20deg)",
+                        '&:hover, &:focus': {
+                          bgcolor: 'unset',
+                          '& svg:first-of-type': {
+                            transform: 'translateX(-4px) rotate(-20deg)',
                           },
-                          "& svg:last-of-type": {
+                          '& svg:last-of-type': {
                             right: 0,
                             opacity: 1,
                           },
                         },
-                        "&:after": {
+                        '&:after': {
                           content: '""',
-                          position: "absolute",
-                          height: "80%",
-                          display: "block",
+                          position: 'absolute',
+                          height: '80%',
+                          display: 'block',
                           left: 0,
-                          width: "1px",
-                          bgcolor: "divider",
+                          width: '1px',
+                          bgcolor: 'divider',
                         },
                       }}
                     >
                       <SettingsIcon />
                       <ArrowRightIcon
-                        sx={{ position: "absolute", right: 4, opacity: 0 }}
+                        sx={{ position: 'absolute', right: 4, opacity: 0 }}
                       />
                     </IconButton>
                   </Tooltip>
@@ -946,7 +946,7 @@ export const CustomizedList = story<ListProps>(
                 <Divider />
                 <Box
                   sx={{
-                    bgcolor: open ? "rgba(71, 98, 130, 0.2)" : null,
+                    bgcolor: open ? 'rgba(71, 98, 130, 0.2)' : null,
                     pb: open ? 2 : 0,
                   }}
                 >
@@ -957,8 +957,8 @@ export const CustomizedList = story<ListProps>(
                       px: 3,
                       pt: 2.5,
                       pb: open ? 0 : 2.5,
-                      "&:hover, &:focus": {
-                        "& svg": { opacity: open ? 1 : 0 },
+                      '&:hover, &:focus': {
+                        '& svg': { opacity: open ? 1 : 0 },
                       },
                     }}
                   >
@@ -966,16 +966,16 @@ export const CustomizedList = story<ListProps>(
                       primary="Build"
                       primaryTypographyProps={{
                         fontSize: 15,
-                        fontWeight: "medium",
-                        lineHeight: "20px",
-                        mb: "2px",
+                        fontWeight: 'medium',
+                        lineHeight: '20px',
+                        mb: '2px',
                       }}
                       secondary="Authentication, Firestore Database, Realtime Database, Storage, Hosting, Functions, and Machine Learning"
                       secondaryTypographyProps={{
                         noWrap: true,
                         fontSize: 12,
-                        lineHeight: "16px",
-                        color: open ? "rgba(0,0,0,0)" : "rgba(255,255,255,0.5)",
+                        lineHeight: '16px',
+                        color: open ? 'rgba(0,0,0,0)' : 'rgba(255,255,255,0.5)',
                       }}
                       sx={{ my: 0 }}
                     />
@@ -983,29 +983,29 @@ export const CustomizedList = story<ListProps>(
                       sx={{
                         mr: -1,
                         opacity: 0,
-                        transform: open ? "rotate(-180deg)" : "rotate(0)",
-                        transition: "0.2s",
+                        transform: open ? 'rotate(-180deg)' : 'rotate(0)',
+                        transition: '0.2s',
                       }}
                     />
                   </ListItemButton>
                   {open &&
-                    data.map((item) => (
+                    data.map(item => (
                       <ListItemButton
                         key={item.label}
                         sx={{
                           py: 0,
                           minHeight: 32,
-                          color: "rgba(255,255,255,.8)",
+                          color: 'rgba(255,255,255,.8)',
                         }}
                       >
-                        <ListItemIcon sx={{ color: "inherit" }}>
+                        <ListItemIcon sx={{ color: 'inherit' }}>
                           {item.icon}
                         </ListItemIcon>
                         <ListItemText
                           primary={item.label}
                           primaryTypographyProps={{
                             fontSize: 14,
-                            fontWeight: "medium",
+                            fontWeight: 'medium',
                           }}
                         />
                       </ListItemButton>
@@ -1016,7 +1016,7 @@ export const CustomizedList = story<ListProps>(
           </ThemeProvider>
         </StyledEngineProvider>
       </Box>
-    );
+    )
   },
   {
     parameters: {
@@ -1026,5 +1026,5 @@ export const CustomizedList = story<ListProps>(
         },
       },
     },
-  }
-);
+  },
+)

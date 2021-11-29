@@ -1,24 +1,23 @@
 // Edit this file to add new stories
-import React from "react";
-import FastfoodIcon from "@mui/icons-material/Fastfood";
-import HotelIcon from "@mui/icons-material/Hotel";
-import LaptopMacIcon from "@mui/icons-material/LaptopMac";
-import RepeatIcon from "@mui/icons-material/Repeat";
-
-import { story } from "../../../__tests__/helpers/storybook";
-import { TimelineConnector } from "../../TimelineConnector/TimelineConnector";
-import { TimelineContent } from "../../TimelineContent/TimelineContent";
-import { TimelineDot } from "../../TimelineDot/TimelineDot";
-import { TimelineItem } from "../../TimelineItem/TimelineItem";
-import { TimelineOppositeContent } from "../../TimelineOppositeContent/TimelineOppositeContent";
-import { TimelineSeparator } from "../../TimelineSeparator/TimelineSeparator";
-import { Typography } from "../../Typography/Typography";
-import { Timeline, TimelineProps } from "../Timeline";
-import { defaultStoryMeta } from "./Timeline.stories.gen";
+import React from 'react'
+import { Timeline, TimelineProps } from '../Timeline'
+import { story } from '../../../__tests__/helpers/storybook'
+import { defaultStoryMeta } from './Timeline.stories.gen'
+import { TimelineItem } from '../../TimelineItem/TimelineItem'
+import { TimelineSeparator } from '../../TimelineSeparator/TimelineSeparator'
+import { TimelineDot } from '../../TimelineDot/TimelineDot'
+import { TimelineConnector } from '../../TimelineConnector/TimelineConnector'
+import { TimelineContent } from '../../TimelineContent/TimelineContent'
+import { TimelineOppositeContent } from '../../TimelineOppositeContent/TimelineOppositeContent'
+import { Typography } from '../../Typography/Typography'
+import FastfoodIcon from '@mui/icons-material/Fastfood'
+import LaptopMacIcon from '@mui/icons-material/LaptopMac'
+import HotelIcon from '@mui/icons-material/Hotel'
+import RepeatIcon from '@mui/icons-material/Repeat'
 /**
  * Metadata for Timeline stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: "Data Display/Timeline" };
+export default { ...defaultStoryMeta, title: 'Data Display/Timeline' }
 /**
  * Story template (edit/remove by hand if needed)
  *
@@ -26,7 +25,7 @@ export default { ...defaultStoryMeta, title: "Data Display/Timeline" };
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
 const Template = story<TimelineProps>(
-  (args) => (
+  args => (
     <Timeline {...args}>
       <TimelineItem>
         <TimelineSeparator>
@@ -52,8 +51,8 @@ const Template = story<TimelineProps>(
   ),
   {
     args: {},
-  }
-);
+  },
+)
 
 /** Default story for Timeline (edit/remove by hand if needed) */
 export const Default = story(Template, {
@@ -64,11 +63,11 @@ export const Default = story(Template, {
       },
     },
   },
-});
+})
 
 export const LeftPositioned = story(Template, {
   args: {
-    position: "left",
+    position: 'left',
   },
   parameters: {
     docs: {
@@ -77,11 +76,11 @@ export const LeftPositioned = story(Template, {
       },
     },
   },
-});
+})
 
 export const Alternating = story(Template, {
   args: {
-    position: "alternate",
+    position: 'alternate',
   },
   parameters: {
     docs: {
@@ -90,10 +89,10 @@ export const Alternating = story(Template, {
       },
     },
   },
-});
+})
 
 export const Color = story<TimelineProps>(
-  (args) => (
+  args => (
     <Timeline {...args}>
       <TimelineItem>
         <TimelineSeparator>
@@ -112,7 +111,7 @@ export const Color = story<TimelineProps>(
   ),
   {
     args: {
-      position: "alternate",
+      position: 'alternate',
     },
     parameters: {
       docs: {
@@ -121,11 +120,11 @@ export const Color = story<TimelineProps>(
         },
       },
     },
-  }
-);
+  },
+)
 
 export const Outlined = story<TimelineProps>(
-  (args) => (
+  args => (
     <Timeline {...args}>
       <TimelineItem>
         <TimelineSeparator>
@@ -158,13 +157,13 @@ export const Outlined = story<TimelineProps>(
   ),
   {
     args: {
-      position: "alternate",
+      position: 'alternate',
     },
-  }
-);
+  },
+)
 
 export const OppositeContent = story<TimelineProps>(
-  (args) => (
+  args => (
     <Timeline {...args}>
       <TimelineItem>
         <TimelineOppositeContent color="text.secondary">
@@ -210,7 +209,7 @@ export const OppositeContent = story<TimelineProps>(
   ),
   {
     args: {
-      position: "alternate",
+      position: 'alternate',
     },
     parameters: {
       docs: {
@@ -219,15 +218,15 @@ export const OppositeContent = story<TimelineProps>(
         },
       },
     },
-  }
-);
+  },
+)
 
 export const Customization = story<TimelineProps>(
-  (args) => (
+  args => (
     <Timeline {...args}>
       <TimelineItem>
         <TimelineOppositeContent
-          sx={{ m: "auto 0" }}
+          sx={{ m: 'auto 0' }}
           align="right"
           variant="body2"
           color="text.secondary"
@@ -241,7 +240,7 @@ export const Customization = story<TimelineProps>(
           </TimelineDot>
           <TimelineConnector />
         </TimelineSeparator>
-        <TimelineContent sx={{ py: "12px", px: 2 }}>
+        <TimelineContent sx={{ py: '12px', px: 2 }}>
           <Typography variant="h6" component="span">
             Eat
           </Typography>
@@ -250,7 +249,7 @@ export const Customization = story<TimelineProps>(
       </TimelineItem>
       <TimelineItem>
         <TimelineOppositeContent
-          sx={{ m: "auto 0" }}
+          sx={{ m: 'auto 0' }}
           variant="body2"
           color="text.secondary"
         >
@@ -263,7 +262,7 @@ export const Customization = story<TimelineProps>(
           </TimelineDot>
           <TimelineConnector />
         </TimelineSeparator>
-        <TimelineContent sx={{ py: "12px", px: 2 }}>
+        <TimelineContent sx={{ py: '12px', px: 2 }}>
           <Typography variant="h6" component="span">
             Code
           </Typography>
@@ -276,9 +275,9 @@ export const Customization = story<TimelineProps>(
           <TimelineDot color="primary" variant="outlined">
             <HotelIcon />
           </TimelineDot>
-          <TimelineConnector sx={{ bgcolor: "secondary.main" }} />
+          <TimelineConnector sx={{ bgcolor: 'secondary.main' }} />
         </TimelineSeparator>
-        <TimelineContent sx={{ py: "12px", px: 2 }}>
+        <TimelineContent sx={{ py: '12px', px: 2 }}>
           <Typography variant="h6" component="span">
             Sleep
           </Typography>
@@ -287,13 +286,13 @@ export const Customization = story<TimelineProps>(
       </TimelineItem>
       <TimelineItem>
         <TimelineSeparator>
-          <TimelineConnector sx={{ bgcolor: "secondary.main" }} />
+          <TimelineConnector sx={{ bgcolor: 'secondary.main' }} />
           <TimelineDot color="secondary">
             <RepeatIcon />
           </TimelineDot>
           <TimelineConnector />
         </TimelineSeparator>
-        <TimelineContent sx={{ py: "12px", px: 2 }}>
+        <TimelineContent sx={{ py: '12px', px: 2 }}>
           <Typography variant="h6" component="span">
             Repeat
           </Typography>
@@ -304,7 +303,7 @@ export const Customization = story<TimelineProps>(
   ),
   {
     args: {
-      position: "alternate",
+      position: 'alternate',
     },
     parameters: {
       docs: {
@@ -313,5 +312,5 @@ export const Customization = story<TimelineProps>(
         },
       },
     },
-  }
-);
+  },
+)

@@ -1,4 +1,10 @@
-import React from "react";
+import React from 'react'
+import { StepIcon, StepIconProps } from '../StepIcon'
+import { story } from '../../../__tests__/helpers/storybook'
+import { defaultStoryMeta } from './StepIcon.stories.gen'
+import { Box } from '../../Box/Box'
+import { StepButton } from '../../StepButton/StepButton'
+import { StepLabel } from '../../StepLabel/StepLabel'
 import {
   ApprovalTwoTone,
   ErrorOutlineSharp,
@@ -6,20 +12,14 @@ import {
   IceSkatingRounded,
   IceSkatingTwoTone,
   WarningAmberSharp,
-} from "@mui/icons-material";
-
-import { story } from "../../../__tests__/helpers/storybook";
-import { Box } from "../../Box/Box";
-import { Step } from "../../Step/Step";
-import { StepButton } from "../../StepButton/StepButton";
-import { StepLabel } from "../../StepLabel/StepLabel";
-import { Stepper } from "../../Stepper/Stepper";
-import { StepIcon, StepIconProps } from "../StepIcon";
-import { defaultStoryMeta } from "./StepIcon.stories.gen";
+} from '@mui/icons-material'
+import { Step } from '../../Step/Step'
+import { Stepper } from '../../Stepper/Stepper'
+import { Typography } from '../../Typography/Typography'
 /**
  * Metadata for StepIcon stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: "Navigation/Stepper/StepIcon" };
+export default { ...defaultStoryMeta, title: 'Navigation/Stepper/StepIcon' }
 /**
  * Story template (edit/remove by hand if needed)
  *
@@ -28,8 +28,8 @@ export default { ...defaultStoryMeta, title: "Navigation/Stepper/StepIcon" };
  */
 
 export const Default = story<StepIconProps>(
-  (args) => (
-    <Box sx={{ width: "100%" }}>
+  args => (
+    <Box sx={{ width: '100%' }}>
       <Stepper>
         <Step>
           <StepIcon {...args} icon={<IceSkatingOutlined />} />
@@ -53,12 +53,12 @@ Steps have icons, but they don't do much on their own.
         },
       },
     },
-  }
-);
+  },
+)
 
 export const StepLabelIcon = story(
   () => (
-    <Box sx={{ width: "100%" }}>
+    <Box sx={{ width: '100%' }}>
       <Stepper>
         <Step>
           <StepLabel icon={<WarningAmberSharp />}>Warning</StepLabel>
@@ -82,12 +82,12 @@ Icons can be provided by way of the \`StepLabel\` component's \`icon\` prop.
         },
       },
     },
-  }
-);
+  },
+)
 
 export const IconStepButton = story(
   () => (
-    <Box sx={{ width: "100%" }}>
+    <Box sx={{ width: '100%' }}>
       <Stepper>
         <Step>
           <StepButton icon={<IceSkatingOutlined />}>
@@ -117,5 +117,5 @@ The \`StepButton\` component also has an \`icon\` prop, used similarly to \`Step
         },
       },
     },
-  }
-);
+  },
+)
