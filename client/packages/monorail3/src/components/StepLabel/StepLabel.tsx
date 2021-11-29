@@ -1,5 +1,6 @@
 // Placeholder for extra functionality - add extra types/values/functions/etc. for StepLabel
 import React from 'react'
+
 import {
   StepLabel as _StepLabel,
   StepLabelProps as _StepLabelProps,

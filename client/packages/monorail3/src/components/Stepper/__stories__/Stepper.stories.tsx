@@ -1,23 +1,24 @@
 import React from 'react'
-import { Stepper, StepperProps } from '../Stepper'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './Stepper.stories.gen'
-import { Box } from '../../Box/Box'
-import { Typography } from '../../Typography/Typography'
-import { Step } from '../../Step/Step'
-import { Button } from '../../Button/Button'
-import { StepLabel } from '../../StepLabel/StepLabel'
-import { StepButton } from '../../StepButton/StepButton'
+import { Check, GroupAdd, Settings, VideoLabel } from '@mui/icons-material'
 import { styled } from '@mui/material/styles'
-import { GroupAdd, Check, Settings, VideoLabel } from '@mui/icons-material'
+
+import { story } from '../../../__tests__/helpers/storybook'
+import { Box } from '../../Box/Box'
+import { Button } from '../../Button/Button'
+import { Paper } from '../../Paper/Paper'
+import { Stack } from '../../Stack/Stack'
+import { Step } from '../../Step/Step'
+import { StepButton } from '../../StepButton/StepButton'
 import {
   StepConnector,
   stepConnectorClasses,
 } from '../../StepConnector/StepConnector'
-import { StepIconProps } from '../../StepIcon/StepIcon'
-import { Stack } from '../../Stack/Stack'
 import { StepContent } from '../../StepContent/StepContent'
-import { Paper } from '../../Paper/Paper'
+import { StepIconProps } from '../../StepIcon/StepIcon'
+import { StepLabel } from '../../StepLabel/StepLabel'
+import { Typography } from '../../Typography/Typography'
+import { Stepper, StepperProps } from '../Stepper'
+import { defaultStoryMeta } from './Stepper.stories.gen'
 /**
  * Metadata for Stepper stories - update/extend as needed
  */

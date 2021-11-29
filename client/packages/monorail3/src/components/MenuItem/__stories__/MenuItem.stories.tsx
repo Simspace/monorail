@@ -1,7 +1,8 @@
 // Edit this file to add new stories
 import React from 'react'
-import { MenuItem, MenuItemProps } from '../MenuItem'
+
 import { story } from '../../../__tests__/helpers/storybook'
+import { MenuItem, MenuItemProps } from '../MenuItem'
 import { defaultStoryMeta } from './MenuItem.stories.gen'
 /**
  * Metadata for MenuItem stories - update/extend as needed

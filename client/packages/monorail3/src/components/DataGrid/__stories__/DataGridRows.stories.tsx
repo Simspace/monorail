@@ -1,8 +1,6 @@
 // Edit this file to add new stories
 import React from 'react'
-import { DataGrid, DataGridProps } from '../DataGrid'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './DataGrid.stories.gen'
+import { LinearProgress } from '@mui/material'
 import { GridOverlay, GridRowModel, useGridApiRef } from '@mui/x-data-grid'
 import {
   getCommodityColumns,
@@ -11,7 +9,10 @@ import {
   randomUserName,
   useDemoData,
 } from '@mui/x-data-grid-generator'
-import { LinearProgress } from '@mui/material'
+
+import { story } from '../../../__tests__/helpers/storybook'
+import { DataGrid, DataGridProps } from '../DataGrid'
+import { defaultStoryMeta } from './DataGrid.stories.gen'
 
 export default {
   ...defaultStoryMeta,
@@ -32,7 +33,7 @@ const Template = story<DataGridProps>(args => {
           [
             { id: 1, name: 'React' },
             { id: 2, name: 'Material-UI' },
-          ] as GridRowModel[]
+          ] as Array<GridRowModel>
         }
       />
     </div>

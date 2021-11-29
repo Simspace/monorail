@@ -1,12 +1,13 @@
 import React from 'react'
+
+import { story } from '../../../__tests__/helpers/storybook'
+import { Box } from '../../Box/Box'
+import { Portal as PortalComponent } from '../../Portal/Portal'
 import {
   Unstable_TrapFocus as TrapFocus,
   Unstable_TrapFocusProps,
 } from '../Unstable_TrapFocus'
-import { story } from '../../../__tests__/helpers/storybook'
 import { defaultStoryMeta } from './Unstable_TrapFocus.stories.gen'
-import { Box } from '../../Box/Box'
-import { Portal as PortalComponent } from '../../Portal/Portal'
 /**
  * Metadata for Unstable_TrapFocus stories - update/extend as needed
  */

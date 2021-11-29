@@ -1,22 +1,8 @@
 // Edit this file to add new stories
 import React from 'react'
-import frLocale from 'date-fns/locale/fr'
-import ruLocale from 'date-fns/locale/ru'
-import deLocale from 'date-fns/locale/de'
-import enLocale from 'date-fns/locale/en-US'
-import { DatePicker, DatePickerProps } from '../DatePicker'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './DatePicker.stories.gen'
-import { action } from '@storybook/addon-actions'
-import { TextField, TextFieldProps } from '../../TextField/TextField'
-import { StaticDatePicker } from '../../StaticDatePicker/StaticDatePicker'
-import { Stack } from '../../Stack/Stack'
-import { MobileDatePicker } from '../../MobileDatePicker/MobileDatePicker'
-import { DesktopDatePicker } from '../../DesktopDatePicker/DesktopDatePicker'
 import AdapterDateFns from '@mui/lab/AdapterDateFns'
 import LocalizationProvider from '@mui/lab/LocalizationProvider'
-import { ToggleButtonGroup } from '../../ToggleButtonGroup/ToggleButtonGroup'
-import { ToggleButton } from '../../ToggleButton/ToggleButton'
+import { action } from '@storybook/addon-actions'
 import {
   endOfWeek,
   getDaysInMonth,
@@ -25,11 +11,26 @@ import {
   isWithinInterval,
   startOfWeek,
 } from 'date-fns'
-import { Box } from '../../Box/Box'
-import { PickersDay, PickersDayProps } from '../../PickersDay/PickersDay'
+import deLocale from 'date-fns/locale/de'
+import enLocale from 'date-fns/locale/en-US'
+import frLocale from 'date-fns/locale/fr'
+import ruLocale from 'date-fns/locale/ru'
+
+import { story } from '../../../__tests__/helpers/storybook'
 import { styled } from '../../../helpers/styles'
-import { CalendarPickerSkeleton } from '../../CalendarPickerSkeleton/CalendarPickerSkeleton'
 import { Badge } from '../../Badge/Badge'
+import { Box } from '../../Box/Box'
+import { CalendarPickerSkeleton } from '../../CalendarPickerSkeleton/CalendarPickerSkeleton'
+import { DesktopDatePicker } from '../../DesktopDatePicker/DesktopDatePicker'
+import { MobileDatePicker } from '../../MobileDatePicker/MobileDatePicker'
+import { PickersDay, PickersDayProps } from '../../PickersDay/PickersDay'
+import { Stack } from '../../Stack/Stack'
+import { StaticDatePicker } from '../../StaticDatePicker/StaticDatePicker'
+import { TextField, TextFieldProps } from '../../TextField/TextField'
+import { ToggleButton } from '../../ToggleButton/ToggleButton'
+import { ToggleButtonGroup } from '../../ToggleButtonGroup/ToggleButtonGroup'
+import { DatePicker, DatePickerProps } from '../DatePicker'
+import { defaultStoryMeta } from './DatePicker.stories.gen'
 /**
  * Metadata for DatePicker stories - update/extend as needed
  */
@@ -502,7 +503,7 @@ function getRandomNumber(min: number, max: number) {
  * ⚠️ No IE11 support
  */
 function fakeFetch(date: Date, { signal }: { signal: AbortSignal }) {
-  return new Promise<{ daysToHighlight: number[] }>((resolve, reject) => {
+  return new Promise<{ daysToHighlight: Array<number> }>((resolve, reject) => {
     const timeout = setTimeout(() => {
       const daysInMonth = getDaysInMonth(date)
       const daysToHighlight = [1, 2, 3].map(() =>

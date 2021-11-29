@@ -1,12 +1,13 @@
 // Edit this file to add new stories
 import React from 'react'
-import { Slide, SlideProps } from '../Slide'
+
 import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './Slide.stories.gen'
-import { Paper } from '../../Paper/Paper'
 import { Box } from '../../Box/Box'
 import { FormControlLabel } from '../../FormControlLabel/FormControlLabel'
+import { Paper } from '../../Paper/Paper'
 import { Switch } from '../../Switch/Switch'
+import { Slide, SlideProps } from '../Slide'
+import { defaultStoryMeta } from './Slide.stories.gen'
 /**
  * Metadata for Slide stories - update/extend as needed
  */

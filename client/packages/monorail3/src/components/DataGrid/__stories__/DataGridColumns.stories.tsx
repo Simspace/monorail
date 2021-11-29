@@ -1,8 +1,7 @@
 // Edit this file to add new stories
 import React from 'react'
-import { DataGrid, DataGridProps } from '../DataGrid'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './DataGrid.stories.gen'
+import { Delete, FileCopy, Security } from '@mui/icons-material'
+import { createStyles, makeStyles } from '@mui/styles'
 import {
   GridActionsCellItem,
   GridCellValue,
@@ -14,12 +13,6 @@ import {
   GridValueFormatterParams,
   GridValueGetterParams,
 } from '@mui/x-data-grid'
-import { Button } from '../../Button/Button'
-import { Popper } from '../../Popper/Popper'
-import { Paper } from '../../Paper/Paper'
-import { Typography } from '../../Typography/Typography'
-import { createStyles, makeStyles } from '@mui/styles'
-import { Delete, FileCopy, Security } from '@mui/icons-material'
 import {
   randomCreatedDate,
   randomPrice,
@@ -27,6 +20,14 @@ import {
   randomUpdatedDate,
   useDemoData,
 } from '@mui/x-data-grid-generator'
+
+import { story } from '../../../__tests__/helpers/storybook'
+import { Button } from '../../Button/Button'
+import { Paper } from '../../Paper/Paper'
+import { Popper } from '../../Popper/Popper'
+import { Typography } from '../../Typography/Typography'
+import { DataGrid, DataGridProps } from '../DataGrid'
+import { defaultStoryMeta } from './DataGrid.stories.gen'
 
 export default {
   ...defaultStoryMeta,
@@ -301,7 +302,7 @@ const getFullName = (params: GridValueGetterParams) => {
   }`
 }
 
-const columns: GridColDef[] = [
+const columns: Array<GridColDef> = [
   { field: 'firstName', headerName: 'First name', width: 130 },
   { field: 'lastName', headerName: 'Last name', width: 130 },
   {
@@ -477,7 +478,7 @@ In the following demo, the tax rate is displayed as a percentage (e.g. 20%) but 
 
 export const RenderCellGrid = story<DataGridProps>(
   args => {
-    const columns: GridColDef[] = [
+    const columns: Array<GridColDef> = [
       {
         field: 'date',
         headerName: 'Year',
@@ -686,7 +687,7 @@ function renderCellExpand(params: GridRenderCellParams) {
 
 export const RenderExpandCellGrid = story<DataGridProps>(
   args => {
-    const columns: GridColDef[] = [
+    const columns: Array<GridColDef> = [
       {
         field: 'col1',
         headerName: 'Column 1',
@@ -764,7 +765,7 @@ export const RenderExpandCellGrid = story<DataGridProps>(
 
 export const RenderHeaderGrid = story<DataGridProps>(
   args => {
-    const columns: GridColDef[] = [
+    const columns: Array<GridColDef> = [
       {
         field: 'date',
         width: 150,

@@ -1,7 +1,8 @@
 // Edit this file to add new stories
 import React from 'react'
-import { DataGrid, DataGridProps } from '../DataGrid'
+
 import { story } from '../../../__tests__/helpers/storybook'
+import { DataGrid, DataGridProps } from '../DataGrid'
 import { defaultStoryMeta } from './DataGrid.stories.gen'
 
 export default { ...defaultStoryMeta, title: 'Data Grid/Group & Pivot' }

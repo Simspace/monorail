@@ -1,9 +1,6 @@
 // Edit this file to add new stories
 import React from 'react'
-import { DataGrid, DataGridProps } from '../DataGrid'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './DataGrid.stories.gen'
-import { useDemoData } from '@mui/x-data-grid-generator'
+import { Home } from '@mui/icons-material'
 import {
   GridCellParams,
   visibleGridColumnsLengthSelector,
@@ -11,11 +8,15 @@ import {
   visibleGridRowCountSelector,
   visibleSortedGridRowIdsSelector,
 } from '@mui/x-data-grid'
+import { useDemoData } from '@mui/x-data-grid-generator'
+
+import { story } from '../../../__tests__/helpers/storybook'
 import { Box } from '../../Box/Box'
-import { Grid } from '../../Grid/Grid'
 import { Button } from '../../Button/Button'
+import { Grid } from '../../Grid/Grid'
 import { IconButton } from '../../IconButton/IconButton'
-import { Home } from '@mui/icons-material'
+import { DataGrid, DataGridProps } from '../DataGrid'
+import { defaultStoryMeta } from './DataGrid.stories.gen'
 
 export default { ...defaultStoryMeta, title: 'Data Grid/Scrolling' }
 

@@ -1,26 +1,27 @@
 // Edit this file to add new stories
 import React from 'react'
+import { addWeeks } from 'date-fns'
+
+import { story } from '../../../__tests__/helpers/storybook'
+import { AdapterDateFns, LocalizationProvider } from '../../../helpers/dateTime'
+import { styled } from '../../../helpers/styles'
+import { Box } from '../../Box/Box'
+import {
+  DateRangePickerDay,
+  DateRangePickerDayProps,
+} from '../../DateRangePickerDay/DateRangePickerDay'
+import { DesktopDateRangePicker } from '../../DesktopDateRangePicker/DesktopDateRangePicker'
+import { MobileDateRangePicker } from '../../MobileDateRangePicker/MobileDateRangePicker'
+import { Stack } from '../../Stack/Stack'
+import { StaticDateRangePicker } from '../../StaticDateRangePicker/StaticDateRangePicker'
+import { TextField } from '../../TextField/TextField'
+import { Typography } from '../../Typography/Typography'
 import {
   DateRange,
   DateRangePicker,
   DateRangePickerProps,
 } from '../DateRangePicker'
-import { story } from '../../../__tests__/helpers/storybook'
 import { defaultStoryMeta } from './DateRangePicker.stories.gen'
-import { TextField } from '../../TextField/TextField'
-import { Box } from '../../Box/Box'
-import { AdapterDateFns, LocalizationProvider } from '../../../helpers/dateTime'
-import { StaticDateRangePicker } from '../../StaticDateRangePicker/StaticDateRangePicker'
-import { Stack } from '../../Stack/Stack'
-import { MobileDateRangePicker } from '../../MobileDateRangePicker/MobileDateRangePicker'
-import { DesktopDateRangePicker } from '../../DesktopDateRangePicker/DesktopDateRangePicker'
-import { Typography } from '../../Typography/Typography'
-import { addWeeks } from 'date-fns'
-import { styled } from '../../../helpers/styles'
-import {
-  DateRangePickerDay,
-  DateRangePickerDayProps,
-} from '../../DateRangePickerDay/DateRangePickerDay'
 
 /**
  * Metadata for DateRangePicker stories - update/extend as needed

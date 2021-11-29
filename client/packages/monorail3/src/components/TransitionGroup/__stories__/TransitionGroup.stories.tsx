@@ -1,6 +1,8 @@
 // Edit this file to add new stories
 import React from 'react'
-import { story } from '../../../__tests__/helpers/storybook'
+import { TransitionGroup } from 'react-transition-group'
+import { TransitionGroupProps } from 'react-transition-group/TransitionGroup'
+import DeleteIcon from '@mui/icons-material/Delete'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import Collapse from '@mui/material/Collapse'
@@ -8,9 +10,8 @@ import IconButton from '@mui/material/IconButton'
 import List from '@mui/material/List'
 import ListItem from '@mui/material/ListItem'
 import ListItemText from '@mui/material/ListItemText'
-import DeleteIcon from '@mui/icons-material/Delete'
-import { TransitionGroup } from 'react-transition-group'
-import { TransitionGroupProps } from 'react-transition-group/TransitionGroup'
+
+import { story } from '../../../__tests__/helpers/storybook'
 
 const defaultStoryMeta = {
   title: 'Utils/TransitionGroup',

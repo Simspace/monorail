@@ -1,9 +1,8 @@
 // Edit this file to add new stories
 import React from 'react'
-import { DataGrid, DataGridProps } from '../DataGrid'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './DataGrid.stories.gen'
-import { useDemoData } from '@mui/x-data-grid-generator'
+import { Clear, Search } from '@mui/icons-material'
+import { createTheme, Theme } from '@mui/material/styles'
+import { createStyles, makeStyles } from '@mui/styles'
 import {
   getGridNumericColumnOperators,
   GridColDef,
@@ -17,14 +16,16 @@ import {
   GridToolbarDensitySelector,
   GridToolbarFilterButton,
 } from '@mui/x-data-grid'
-import { createStyles, makeStyles } from '@mui/styles'
-import { Rating } from '../../Rating/Rating'
+import { useDemoData } from '@mui/x-data-grid-generator'
 import { Data } from 'slate'
-import { InputAdornment } from '../../InputAdornment/InputAdornment'
-import { createTheme, Theme } from '@mui/material/styles'
-import { TextField } from '../../TextField/TextField'
-import { Clear, Search } from '@mui/icons-material'
+
+import { story } from '../../../__tests__/helpers/storybook'
 import { IconButton } from '../../IconButton/IconButton'
+import { InputAdornment } from '../../InputAdornment/InputAdornment'
+import { Rating } from '../../Rating/Rating'
+import { TextField } from '../../TextField/TextField'
+import { DataGrid, DataGridProps } from '../DataGrid'
+import { defaultStoryMeta } from './DataGrid.stories.gen'
 
 export default { ...defaultStoryMeta, title: 'Data Grid/Filtering' }
 
@@ -451,10 +452,10 @@ function loadServerRows(commodityFilterValue?: string): Promise<any> {
 }
 
 export const ServerFilterGrid = story<DataGridProps>(args => {
-  const [columns] = React.useState<GridColDef[]>([
+  const [columns] = React.useState<Array<GridColDef>>([
     { field: 'commodity', width: 150 },
   ])
-  const [rows, setRows] = React.useState<GridRowModel[]>([])
+  const [rows, setRows] = React.useState<Array<GridRowModel>>([])
   const [filterValue, setFilterValue] = React.useState<string | undefined>()
   const [loading, setLoading] = React.useState(false)
 
@@ -703,7 +704,7 @@ export const QuickFilteringGrid = story<DataGridProps>(args => {
     maxColumns: 6,
   })
   const [searchText, setSearchText] = React.useState('')
-  const [rows, setRows] = React.useState<any[]>(data.rows)
+  const [rows, setRows] = React.useState<Array<any>>(data.rows)
 
   const requestSearch = (searchValue: string) => {
     setSearchText(searchValue)

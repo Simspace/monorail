@@ -30,6 +30,7 @@
     "@mui/x-data-grid": "5.0.0-beta.2",
     "@mui/x-data-grid-generator": "5.0.0-beta.2",
     "react-draggable": "4.4.4",
+    "@simspace/configs": "0.0.0",
     "@storybook/addon-a11y": "^6.3.7",
     "@storybook/addon-actions": "^6.3.7",
     "@storybook/addon-controls": "^6.3.7",
@@ -70,7 +71,6 @@
   },
   "main": "./dist/index.js",
   "scripts": {
-    "prebuild": "yarn generate-barrel",
     "build": "tsc",
     "postbuild": "yarn clean-barrel",
     "test": "jest",

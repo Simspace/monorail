@@ -1,12 +1,12 @@
 // Edit this file to add new stories
 import React from 'react'
-import { NativeSelect, NativeSelectProps } from '../NativeSelect'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './NativeSelect.stories.gen'
 
+import { story } from '../../../__tests__/helpers/storybook'
 import { Box } from '../../Box/Box'
 import { FormControl } from '../../FormControl/FormControl'
 import { InputLabel } from '../../InputLabel/InputLabel'
+import { NativeSelect, NativeSelectProps } from '../NativeSelect'
+import { defaultStoryMeta } from './NativeSelect.stories.gen'
 /**
  * Metadata for NativeSelect stories - update/extend as needed
  */

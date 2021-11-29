@@ -1,11 +1,12 @@
 // Edit this file to add new stories
 import React from 'react'
-import { ClockPicker, ClockPickerProps } from '../ClockPicker'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './ClockPicker.stories.gen'
 import { action } from '@storybook/addon-actions'
+
+import { story } from '../../../__tests__/helpers/storybook'
 import { Stack } from '../../Stack/Stack'
 import { Typography } from '../../Typography/Typography'
+import { ClockPicker, ClockPickerProps } from '../ClockPicker'
+import { defaultStoryMeta } from './ClockPicker.stories.gen'
 /**
  * Metadata for ClockPicker stories - update/extend as needed
  */

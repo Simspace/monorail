@@ -1,8 +1,8 @@
 // Edit this file to add new stories
 import React from 'react'
-import { DataGrid, DataGridProps } from '../DataGrid'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './DataGrid.stories.gen'
+import { Add, Cancel, Delete, Edit, Save } from '@mui/icons-material'
+import { createTheme, Theme } from '@mui/material/styles'
+import { makeStyles } from '@mui/styles'
 import {
   GridActionsCellItem,
   GridApiRef,
@@ -30,12 +30,13 @@ import {
   randomTraderName,
   randomUpdatedDate,
 } from '@mui/x-data-grid-generator'
-import { makeStyles } from '@mui/styles'
-import { createTheme, Theme } from '@mui/material/styles'
+
+import { story } from '../../../__tests__/helpers/storybook'
 import { Alert } from '../../Alert/Alert'
-import { Rating } from '../../Rating/Rating'
 import { Button } from '../../Button/Button'
-import { Add, Cancel, Delete, Edit, Save } from '@mui/icons-material'
+import { Rating } from '../../Rating/Rating'
+import { DataGrid, DataGridProps } from '../DataGrid'
+import { defaultStoryMeta } from './DataGrid.stories.gen'
 
 export default {
   ...defaultStoryMeta,
@@ -258,7 +259,7 @@ const getFullName = (params: GridValueGetterParams) => {
 }
 
 export const ValueGetterGrid = story<DataGridProps>(args => {
-  const columns: GridColDef[] = [
+  const columns: Array<GridColDef> = [
     {
       field: 'firstName',
       headerName: 'First name',
@@ -288,7 +289,7 @@ export const ValueGetterGrid = story<DataGridProps>(args => {
     { id: 4, lastName: 'Stark', firstName: 'Arya' },
     { id: 5, lastName: 'Targaryen', firstName: 'Daenerys' },
   ]
-  const [rows, setRows] = React.useState<any[]>(defaultRows)
+  const [rows, setRows] = React.useState<Array<any>>(defaultRows)
 
   const handleCellEditCommit = React.useCallback(
     ({ id, field, value }: GridCellEditCommitParams) => {

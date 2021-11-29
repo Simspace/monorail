@@ -1,5 +1,6 @@
 // Placeholder for extra functionality - add extra types/values/functions/etc. for InputLabel
 import React from 'react'
+
 import {
   InputLabel as _InputLabel,
   InputLabelProps as _InputLabelProps,

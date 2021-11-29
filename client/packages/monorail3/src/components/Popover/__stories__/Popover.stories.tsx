@@ -1,9 +1,10 @@
 // Edit this file to add new stories
 import React from 'react'
-import { Popover, PopoverProps } from '../Popover'
+
 import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './Popover.stories.gen'
 import { Button } from '../../Button/Button'
+import { Popover, PopoverProps } from '../Popover'
+import { defaultStoryMeta } from './Popover.stories.gen'
 
 /**
  * Metadata for Popover stories - update/extend as needed

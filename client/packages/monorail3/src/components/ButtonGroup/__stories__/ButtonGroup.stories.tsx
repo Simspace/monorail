@@ -1,18 +1,19 @@
 // Edit this file to add new stories
 import React from 'react'
-import { ButtonGroup, ButtonGroupProps } from '../ButtonGroup'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './ButtonGroup.stories.gen'
-import { Button } from '../../Button/Button'
-import { Stack } from '../../Stack/Stack'
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
+
+import { story } from '../../../__tests__/helpers/storybook'
+import { Box } from '../../Box/Box'
+import { Button } from '../../Button/Button'
 import { ClickAwayListener } from '../../ClickAwayListener/ClickAwayListener'
 import { Grow } from '../../Grow/Grow'
-import { Paper } from '../../Paper/Paper'
-import { Popper } from '../../Popper/Popper'
 import { MenuItem } from '../../MenuItem/MenuItem'
 import { MenuList } from '../../MenuList/MenuList'
-import { Box } from '../../Box/Box'
+import { Paper } from '../../Paper/Paper'
+import { Popper } from '../../Popper/Popper'
+import { Stack } from '../../Stack/Stack'
+import { ButtonGroup, ButtonGroupProps } from '../ButtonGroup'
+import { defaultStoryMeta } from './ButtonGroup.stories.gen'
 
 /**
  * Metadata for ButtonGroup stories - update/extend as needed

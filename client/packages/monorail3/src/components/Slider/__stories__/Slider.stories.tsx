@@ -1,17 +1,18 @@
 // Edit this file to add new stories
 import React from 'react'
-import { Slider, SliderProps } from '../Slider'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './Slider.stories.gen'
-import { Box } from '../../Box/Box'
-import { Stack } from '../../Stack/Stack'
 import VolumeDown from '@mui/icons-material/VolumeDown'
 import VolumeUp from '@mui/icons-material/VolumeUp'
-import MuiInput from '@mui/material/Input'
 import { SliderThumb, styled } from '@mui/material'
-import { Typography } from '../../Typography/Typography'
+import MuiInput from '@mui/material/Input'
+
+import { story } from '../../../__tests__/helpers/storybook'
+import { Box } from '../../Box/Box'
 import { Grid } from '../../Grid/Grid'
+import { Stack } from '../../Stack/Stack'
 import { Tooltip } from '../../Tooltip/Tooltip'
+import { Typography } from '../../Typography/Typography'
+import { Slider, SliderProps } from '../Slider'
+import { defaultStoryMeta } from './Slider.stories.gen'
 
 /**
  * Metadata for Slider stories - update/extend as needed
@@ -40,7 +41,7 @@ export const Default = story(Template)
 export function ContinuousSlider() {
   const [value, setValue] = React.useState<number>(30)
 
-  const handleChange = (_event: Event, newValue: number | number[]) => {
+  const handleChange = (_event: Event, newValue: number | Array<number>) => {
     setValue(newValue as number)
   }
 
@@ -235,10 +236,10 @@ export function RangeSlider() {
   function valuetext(value: number) {
     return `${value}°C`
   }
-  const [value, setValue] = React.useState<number[]>([20, 37])
+  const [value, setValue] = React.useState<Array<number>>([20, 37])
 
-  const handleChange = (_event: Event, newValue: number | number[]) => {
-    setValue(newValue as number[])
+  const handleChange = (_event: Event, newValue: number | Array<number>) => {
+    setValue(newValue as Array<number>)
   }
 
   return (
@@ -261,11 +262,11 @@ export function MinimumDistanceSlider() {
 
   const minDistance = 10
 
-  const [value1, setValue1] = React.useState<number[]>([20, 37])
+  const [value1, setValue1] = React.useState<Array<number>>([20, 37])
 
   const handleChange1 = (
     _event: Event,
-    newValue: number | number[],
+    newValue: number | Array<number>,
     activeThumb: number,
   ) => {
     if (!Array.isArray(newValue)) {
@@ -279,11 +280,11 @@ export function MinimumDistanceSlider() {
     }
   }
 
-  const [value2, setValue2] = React.useState<number[]>([20, 37])
+  const [value2, setValue2] = React.useState<Array<number>>([20, 37])
 
   const handleChange2 = (
     _event: Event,
-    newValue: number | number[],
+    newValue: number | Array<number>,
     activeThumb: number,
   ) => {
     if (!Array.isArray(newValue)) {
@@ -299,7 +300,7 @@ export function MinimumDistanceSlider() {
         setValue2([clamped - minDistance, clamped])
       }
     } else {
-      setValue2(newValue as number[])
+      setValue2(newValue as Array<number>)
     }
   }
 
@@ -334,7 +335,7 @@ export function InputSlider() {
     number | string | Array<number | string>
   >(30)
 
-  const handleSliderChange = (_event: Event, newValue: number | number[]) => {
+  const handleSliderChange = (_event: Event, newValue: number | Array<number>) => {
     setValue(newValue)
   }
 
@@ -793,7 +794,7 @@ export function NonLinearSlider() {
 
   const [value, setValue] = React.useState<number>(10)
 
-  const handleChange = (_event: Event, newValue: number | number[]) => {
+  const handleChange = (_event: Event, newValue: number | Array<number>) => {
     if (typeof newValue === 'number') {
       setValue(newValue)
     }

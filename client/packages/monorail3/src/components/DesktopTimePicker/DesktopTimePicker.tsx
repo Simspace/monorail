@@ -1,5 +1,6 @@
 // Placeholder for extra functionality - add extra types/values/functions/etc. for DesktopTimePicker
 import React from 'react'
+
 import {
   DesktopTimePicker as _DesktopTimePicker,
   DesktopTimePickerProps as _DesktopTimePickerProps,

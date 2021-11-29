@@ -1,8 +1,11 @@
 // Edit this file to add new stories
 import React from 'react'
-import { DataGrid, DataGridProps } from '../DataGrid'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './DataGrid.stories.gen'
+import {
+  ExpandLess,
+  ExpandMore,
+  FiberManualRecord,
+  StarOutline,
+} from '@mui/icons-material'
 import { createTheme, Theme } from '@mui/material/styles'
 import { createStyles, makeStyles } from '@mui/styles'
 import {
@@ -20,16 +23,14 @@ import {
   SortGridMenuItems,
   useGridSlotComponentProps,
 } from '@mui/x-data-grid'
-import {
-  ExpandLess,
-  ExpandMore,
-  FiberManualRecord,
-  StarOutline,
-} from '@mui/icons-material'
-import { Button } from '../../Button/Button'
 import { useDemoData } from '@mui/x-data-grid-generator'
-import { Pagination } from '../../Pagination/Pagination'
+
+import { story } from '../../../__tests__/helpers/storybook'
+import { Button } from '../../Button/Button'
 import { LinearProgress } from '../../LinearProgress/LinearProgress'
+import { Pagination } from '../../Pagination/Pagination'
+import { DataGrid, DataGridProps } from '../DataGrid'
+import { defaultStoryMeta } from './DataGrid.stories.gen'
 
 export default {
   ...defaultStoryMeta,
@@ -68,7 +69,7 @@ const CustomColumnMenuComponent = (
         hideMenu={hideMenu}
         currentColumn={currentColumn}
         // className={classes[color]}
-        className={classes['primary']}
+        className={classes.primary}
         {...other}
       >
         <SortGridMenuItems onClick={hideMenu} column={currentColumn!} />
@@ -82,7 +83,7 @@ const CustomColumnMenuComponent = (
         hideMenu={hideMenu}
         currentColumn={currentColumn}
         // className={classes[color]}
-        className={classes['primary']}
+        className={classes.primary}
         {...other}
       >
         <div
@@ -105,7 +106,7 @@ const CustomColumnMenuComponent = (
       hideMenu={hideMenu}
       currentColumn={currentColumn}
       // className={classes[color]}
-      className={classes['primary']}
+      className={classes.primary}
       {...other}
     />
   )

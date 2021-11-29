@@ -1,22 +1,23 @@
 // Edit this file to add new stories
 import React from 'react'
-import { Fab, FabProps } from '../Fab'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './Fab.stories.gen'
-import { Box } from '../../Box/Box'
 import AddIcon from '@mui/icons-material/Add'
 import EditIcon from '@mui/icons-material/Edit'
 import FavoriteIcon from '@mui/icons-material/Favorite'
+import UpIcon from '@mui/icons-material/KeyboardArrowUp'
 import NavigationIcon from '@mui/icons-material/Navigation'
+import { green } from '@mui/material/colors'
 import { useTheme } from '@mui/material/styles'
 import { SxProps } from '@mui/system'
-import { Typography } from '../../Typography/Typography'
-import { green } from '@mui/material/colors'
+
+import { story } from '../../../__tests__/helpers/storybook'
 import { AppBar } from '../../AppBar/AppBar'
-import { Tabs } from '../../Tabs/Tabs'
+import { Box } from '../../Box/Box'
 import { Tab } from '../../Tab/Tab'
+import { Tabs } from '../../Tabs/Tabs'
+import { Typography } from '../../Typography/Typography'
 import { Zoom } from '../../Zoom/Zoom'
-import UpIcon from '@mui/icons-material/KeyboardArrowUp'
+import { Fab, FabProps } from '../Fab'
+import { defaultStoryMeta } from './Fab.stories.gen'
 
 /**
  * Metadata for Fab stories - update/extend as needed

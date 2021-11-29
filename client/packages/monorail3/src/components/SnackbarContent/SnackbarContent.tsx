@@ -1,5 +1,6 @@
 // Placeholder for extra functionality - add extra types/values/functions/etc. for SnackbarContent
 import React from 'react'
+
 import {
   SnackbarContent as _SnackbarContent,
   SnackbarContentProps as _SnackbarContentProps,

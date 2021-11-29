@@ -1,7 +1,8 @@
 // Edit this file to add new stories
 import React from 'react'
-import { AlertTitle, AlertTitleProps } from '../AlertTitle'
+
 import { story } from '../../../__tests__/helpers/storybook'
+import { AlertTitle, AlertTitleProps } from '../AlertTitle'
 import { defaultStoryMeta } from './AlertTitle.stories.gen'
 /**
  * Metadata for AlertTitle stories - update/extend as needed
