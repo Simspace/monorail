@@ -1,13 +1,6 @@
 // Edit this file to add new stories
 import React from 'react'
 import {
-  GridColumns,
-  GridRowsProp,
-  GridSortDirection,
-  GridSortModel,
-  GridValueGetterParams,
-} from '@mui/x-data-grid'
-import {
   GridData,
   randomCreatedDate,
   randomUpdatedDate,
@@ -15,7 +8,17 @@ import {
 } from '@mui/x-data-grid-generator'
 
 import { story } from '../../../__tests__/helpers/storybook'
-import { DataGrid, DataGridProps } from '../DataGrid'
+import {
+  DataGrid,
+  DataGridProps,
+  GridColDef,
+  GridColumns,
+  GridRowData,
+  GridRowsProp,
+  GridSortDirection,
+  GridSortModel,
+  GridValueGetterParams,
+} from '../DataGrid'
 import { defaultStoryMeta } from './DataGrid.stories.gen'
 
 export default { ...defaultStoryMeta, title: 'Data Grid/Sorting' }
@@ -71,7 +74,9 @@ const columns: GridColumns = [
         params.getValue(params.id, 'age') || 'x'
       }`,
     sortComparator: (v1, v2, param1, param2) =>
+      /* eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call */
       (param1.api.getCellValue(param1.id, 'age') as number) -
+      /* eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call */
       (param2.api.getCellValue(param2.id, 'age') as number),
     width: 150,
   },
@@ -144,7 +149,7 @@ export const ComparatorSortingGrid = story<DataGridProps>(args => {
   )
 })
 
-ComparatorSortingGrid.storyName
+ComparatorSortingGrid.storyName = 'Custom comparator'
 ComparatorSortingGrid.parameters = {
   docs: {
     description: {
@@ -224,10 +229,13 @@ export const DisableSortingGrid = story<DataGridProps>(args => {
       <DataGrid
         {...args}
         {...data}
-        columns={data.columns.map(column => ({
-          ...column,
-          sortable: false,
-        }))}
+        columns={data.columns.map(
+          column =>
+            ({
+              ...column,
+              sortable: false,
+            } as GridColDef),
+        )}
       />
     </div>
   )
@@ -253,8 +261,8 @@ DisableSortingGrid.parameters = {
 function loadServerRows(
   sortModel: GridSortModel,
   data: GridData,
-): Promise<any> {
-  return new Promise<any>(resolve => {
+): Promise<Array<GridRowData>> {
+  return new Promise<Array<GridRowData>>(resolve => {
     setTimeout(() => {
       if (sortModel.length === 0) {
         resolve(data.rows)
@@ -341,23 +349,23 @@ ServerSortingGrid.parameters = {
 }
 // #endregion
 
-export const MultiSortingGrid = story<DataGridProps>(args => {
-  const { data } = useDemoData({
-    dataSet: 'Commodity',
-    rowLength: 100,
-    maxColumns: 6,
-  })
+export const MultiSortingGrid = story<DataGridProps>(() => {
+  // const { data } = useDemoData({
+  //   dataSet: 'Commodity',
+  //   rowLength: 100,
+  //   maxColumns: 6,
+  // })
 
-  const [sortModel, setSortModel] = React.useState<GridSortModel>([
-    {
-      field: 'commodity',
-      sort: 'asc' as GridSortDirection,
-    },
-    {
-      field: 'desk',
-      sort: 'desc' as GridSortDirection,
-    },
-  ])
+  // const [sortModel, setSortModel] = React.useState<GridSortModel>([
+  //   {
+  //     field: 'commodity',
+  //     sort: 'asc' as GridSortDirection,
+  //   },
+  //   {
+  //     field: 'desk',
+  //     sort: 'desc' as GridSortDirection,
+  //   },
+  // ])
 
   return (
     <></>
@@ -385,7 +393,7 @@ You can sort by multiple columns at the same time using \`DataGridPro\`. Hold do
   },
 }
 
-export const DataGridSortingApiRef = story<DataGridProps>(args => <></>)
+export const DataGridSortingApiRef = story<DataGridProps>(() => <></>)
 DataGridSortingApiRef.storyName = 'apiRef'
 DataGridSortingApiRef.parameters = {
   docs: {

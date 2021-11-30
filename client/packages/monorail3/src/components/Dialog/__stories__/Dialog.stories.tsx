@@ -6,7 +6,7 @@ import CloseIcon from '@mui/icons-material/Close'
 import PersonIcon from '@mui/icons-material/Person'
 import { blue } from '@mui/material/colors'
 import { SelectChangeEvent } from '@mui/material/Select'
-import { Breakpoint, styled, useTheme } from '@mui/material/styles'
+import { styled, useTheme } from '@mui/material/styles'
 import { TransitionProps } from '@mui/material/transitions'
 import useMediaQuery from '@mui/material/useMediaQuery'
 
@@ -211,7 +211,7 @@ If a title is required:
 
 const Transition = React.forwardRef(function Transition(
   props: TransitionProps & {
-    children?: React.ReactElement<any, any>
+    children?: React.ReactElement<unknown>
   },
   ref: React.Ref<unknown>,
 ) {
@@ -559,7 +559,7 @@ export const OptionalSizes = story<DialogProps>(
                     id: 'max-width',
                   }}
                 >
-                  <MenuItem value={false as any}>false</MenuItem>
+                  <MenuItem value={false}>false</MenuItem>
                   <MenuItem value="xs">xs</MenuItem>
                   <MenuItem value="sm">sm</MenuItem>
                   <MenuItem value="md">md</MenuItem>
@@ -684,7 +684,7 @@ export interface ConfirmationDialogRawProps {
 const ConfirmationDialogRaw = React.forwardRef<
   HTMLDivElement,
   ConfirmationDialogRawProps
->((props, ref) => {
+>(props => {
   const { onClose, value: valueProp, open, ...other } = props
   const [value, setValue] = React.useState(valueProp)
   const radioGroupRef = React.useRef<HTMLElement>(null)
@@ -696,7 +696,7 @@ const ConfirmationDialogRaw = React.forwardRef<
   }, [valueProp, open])
 
   const handleEntering = () => {
-    if (radioGroupRef.current != null) {
+    if (radioGroupRef.current !== null) {
       radioGroupRef.current.focus()
     }
   }

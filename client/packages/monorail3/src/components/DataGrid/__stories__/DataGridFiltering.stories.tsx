@@ -3,28 +3,30 @@ import React from 'react'
 import { Clear, Search } from '@mui/icons-material'
 import { createTheme, Theme } from '@mui/material/styles'
 import { createStyles, makeStyles } from '@mui/styles'
-import {
-  getGridNumericColumnOperators,
-  GridColDef,
-  GridColTypeDef,
-  GridFilterInputValueProps,
-  GridFilterItem,
-  GridFilterModel,
-  GridLinkOperator,
-  GridRowModel,
-  GridToolbar,
-  GridToolbarDensitySelector,
-  GridToolbarFilterButton,
-} from '@mui/x-data-grid'
-import { useDemoData } from '@mui/x-data-grid-generator'
-import { Data } from 'slate'
+import { GridData, useDemoData } from '@mui/x-data-grid-generator'
 
 import { story } from '../../../__tests__/helpers/storybook'
 import { IconButton } from '../../IconButton/IconButton'
 import { InputAdornment } from '../../InputAdornment/InputAdornment'
 import { Rating } from '../../Rating/Rating'
 import { TextField } from '../../TextField/TextField'
-import { DataGrid, DataGridProps } from '../DataGrid'
+import {
+  DataGrid,
+  DataGridProps,
+  getGridNumericColumnOperators,
+  GridCellParams,
+  GridColDef,
+  GridColTypeDef,
+  GridFilterInputValueProps,
+  GridFilterItem,
+  GridFilterModel,
+  GridFilterOperator,
+  GridRowData,
+  GridRowModel,
+  GridToolbar,
+  GridToolbarDensitySelector,
+  GridToolbarFilterButton,
+} from '../DataGrid'
 import { defaultStoryMeta } from './DataGrid.stories.gen'
 
 export default { ...defaultStoryMeta, title: 'Data Grid/Filtering' }
@@ -39,6 +41,7 @@ const Template = story<DataGridProps>(args => {
   return (
     <div style={{ height: 400, width: '100%' }}>
       <DataGrid
+        {...args}
         {...data}
         components={{
           Toolbar: GridToolbar,
@@ -113,7 +116,7 @@ export const FilterOperators = story<DataGridProps>(args => {
 
   return (
     <div style={{ height: 400, width: '100%' }}>
-      <DataGrid rows={data.rows} columns={columns} />
+      <DataGrid {...args} rows={data.rows} columns={columns} />
     </div>
   )
 })
@@ -146,11 +149,15 @@ export const DisableFilteringGrid = story<DataGridProps>(args => {
   return (
     <div style={{ height: 400, width: '100%' }}>
       <DataGrid
+        {...args}
         {...data}
-        columns={data.columns.map(column => ({
-          ...column,
-          filterable: false,
-        }))}
+        columns={data.columns.map(
+          column =>
+            ({
+              ...column,
+              filterable: false,
+            } as GridColDef),
+        )}
       />
     </div>
   )
@@ -196,8 +203,8 @@ function RatingInputValue(props: GridFilterInputValueProps) {
   const classes = useStyles()
   const { item, applyValue } = props
 
-  const handleFilterChange = (event: any) => {
-    applyValue({ ...item, value: event.target.value })
+  const handleFilterChange = (event: React.SyntheticEvent<Element, Event>) => {
+    applyValue({ ...item, value: (event.target as HTMLInputElement).value })
   }
 
   return (
@@ -214,8 +221,11 @@ function RatingInputValue(props: GridFilterInputValueProps) {
 }
 
 export const ExtendNumericOperator = story<DataGridProps>(args => {
-  const { data } = useDemoData({ dataSet: 'Employee', rowLength: 100 })
-  const columns = [...data.columns]
+  const { data }: { data: GridData } = useDemoData({
+    dataSet: 'Employee',
+    rowLength: 100,
+  })
+  const columns = [...(data.columns as Array<GridColDef>)]
 
   const [filterModel, setFilterModel] = React.useState<GridFilterModel>({
     items: [{ columnField: 'rating', value: '3.5', operatorValue: '>=' }],
@@ -226,7 +236,7 @@ export const ExtendNumericOperator = story<DataGridProps>(args => {
     const ratingColIndex = columns.findIndex(col => col.field === 'rating')
 
     const ratingFilterOperators = getGridNumericColumnOperators().map(
-      (operator: any) => ({
+      (operator: GridFilterOperator) => ({
         ...operator,
         InputComponent: RatingInputValue,
       }),
@@ -239,6 +249,7 @@ export const ExtendNumericOperator = story<DataGridProps>(args => {
   return (
     <div style={{ height: 400, width: '100%' }}>
       <DataGrid
+        {...args}
         rows={data.rows}
         columns={columns}
         filterModel={filterModel}
@@ -291,10 +302,10 @@ export const ColumnTypeFilteringGrid = story<DataGridProps>(args => {
     if (data.columns.length > 0) {
       const visibleFields = ['desk', 'commodity', 'totalPrice']
       const mappedColumns = data.columns.map(dataColumn => {
-        const mappedColumn = {
+        const mappedColumn: GridColDef = {
           ...dataColumn,
-          hide: visibleFields.indexOf(dataColumn.field) === -1,
-        }
+          hide: visibleFields.indexOf((dataColumn as GridColDef).field) === -1,
+        } as GridColDef
         if (mappedColumn.field === 'totalPrice') {
           mappedColumn.type = 'price'
           mappedColumn.width = 180
@@ -309,6 +320,7 @@ export const ColumnTypeFilteringGrid = story<DataGridProps>(args => {
   return (
     <div style={{ height: 400, width: '100%' }}>
       <DataGrid
+        {...args}
         rows={data.rows}
         columns={columns}
         columnTypes={{ price: priceColumnType }}
@@ -352,7 +364,7 @@ const ratingOnlyOperators = [
         return null
       }
 
-      return (params: any): boolean => {
+      return (params: GridCellParams): boolean => {
         return Number(params.value) >= Number(filterItem.value)
       }
     },
@@ -363,13 +375,15 @@ const ratingOnlyOperators = [
 
 export const CustomRatingOperator = story<DataGridProps>(args => {
   const { data } = useDemoData({ dataSet: 'Employee', rowLength: 100 })
-  const columns = [...data.columns]
+  const columns = [...(data.columns as Array<GridColDef>)]
   const [filterModel, setFilterModel] = React.useState<GridFilterModel>({
     items: [{ columnField: 'rating', value: '3.5', operatorValue: 'from' }],
   })
 
   if (columns.length > 0) {
-    const ratingColumn = columns.find(col => col.field === 'rating')
+    const ratingColumn: GridColDef = columns.find(
+      col => col.field === 'rating',
+    ) as GridColDef
     const newRatingColumn = {
       ...ratingColumn!,
       filterOperators: ratingOnlyOperators,
@@ -381,6 +395,7 @@ export const CustomRatingOperator = story<DataGridProps>(args => {
   return (
     <div style={{ height: 400, width: '100%' }}>
       <DataGrid
+        {...args}
         rows={data.rows}
         columns={columns}
         filterModel={filterModel}
@@ -426,7 +441,9 @@ In this demo, you can see how to create a completely new operator for the Rating
 /**
  * Server-side filtering
  */
-function loadServerRows(commodityFilterValue?: string): Promise<any> {
+function loadServerRows(
+  commodityFilterValue?: string,
+): Promise<Array<GridRowData>> {
   const serverRows = [
     { id: '1', commodity: 'rice' },
     { id: '2', commodity: 'soybeans' },
@@ -435,7 +452,7 @@ function loadServerRows(commodityFilterValue?: string): Promise<any> {
     { id: '5', commodity: 'oats' },
   ]
 
-  return new Promise<any>(resolve => {
+  return new Promise<Array<GridRowData>>(resolve => {
     setTimeout(() => {
       if (!commodityFilterValue) {
         resolve(serverRows)
@@ -486,6 +503,7 @@ export const ServerFilterGrid = story<DataGridProps>(args => {
   return (
     <div style={{ height: 400, width: '100%' }}>
       <DataGrid
+        {...args}
         rows={rows}
         columns={columns}
         filterMode="server"
@@ -521,23 +539,24 @@ Below is a very simple demo on how you could achieve server-side filtering.`,
 /**
  * Multi-column filtering
  */
-export const MultiFilteringGrid = story<DataGridProps>(args => {
-  const { data } = useDemoData({
-    dataSet: 'Commodity',
-    rowLength: 200,
-    maxColumns: 6,
-  })
-  const [filterModel, setFilterModel] = React.useState<GridFilterModel>({
-    items: [
-      {
-        id: 1,
-        columnField: 'commodity',
-        operatorValue: 'contains',
-        value: 'rice',
-      },
-      { id: 2, columnField: 'quantity', operatorValue: '>=', value: '20000' },
-    ],
-  })
+export const MultiFilteringGrid = story<DataGridProps>(() => {
+  // TODO(storybook): Uncomment once we have DataGridPro (paid)
+  // const { data } = useDemoData({
+  //   dataSet: 'Commodity',
+  //   rowLength: 200,
+  //   maxColumns: 6,
+  // })
+  // const [filterModel, setFilterModel] = React.useState<GridFilterModel>({
+  //   items: [
+  //     {
+  //       id: 1,
+  //       columnField: 'commodity',
+  //       operatorValue: 'contains',
+  //       value: 'rice',
+  //     },
+  //     { id: 2, columnField: 'quantity', operatorValue: '>=', value: '20000' },
+  //   ],
+  // })
   return (
     <></>
     // TODO(storybook): Uncomment once we have DataGridPro (paid)
@@ -565,30 +584,32 @@ DataGridPro supports filtering by multiple columns. The default operator that wi
   },
 }
 
-const filterModel: GridFilterModel = {
-  items: [
-    {
-      id: 1,
-      columnField: 'commodity',
-      operatorValue: 'contains',
-      value: 'rice',
-    },
-    {
-      id: 2,
-      columnField: 'commodity',
-      operatorValue: 'startsWith',
-      value: 'soy',
-    },
-  ],
-  linkOperator: GridLinkOperator.Or,
-}
+// TODO(storybook): Uncomment once we have DataGridPro (paid)
+// const filterModel: GridFilterModel = {
+//   items: [
+//     {
+//       id: 1,
+//       columnField: 'commodity',
+//       operatorValue: 'contains',
+//       value: 'rice',
+//     },
+//     {
+//       id: 2,
+//       columnField: 'commodity',
+//       operatorValue: 'startsWith',
+//       value: 'soy',
+//     },
+//   ],
+//   linkOperator: GridLinkOperator.Or,
+// }
 
-export const MultiFilteringWithOrGrid = story<DataGridProps>(args => {
-  const { data } = useDemoData({
-    dataSet: 'Commodity',
-    rowLength: 100,
-    maxColumns: 6,
-  })
+export const MultiFilteringWithOrGrid = story<DataGridProps>(() => {
+  // TODO(storybook): Uncomment once we have DataGridPro (paid)
+  // const { data } = useDemoData({
+  //   dataSet: 'Commodity',
+  //   rowLength: 100,
+  //   maxColumns: 6,
+  // })
 
   return (
     <></>
@@ -704,14 +725,16 @@ export const QuickFilteringGrid = story<DataGridProps>(args => {
     maxColumns: 6,
   })
   const [searchText, setSearchText] = React.useState('')
-  const [rows, setRows] = React.useState<Array<any>>(data.rows)
+  const [rows, setRows] = React.useState<Array<GridRowData>>(data.rows)
 
   const requestSearch = (searchValue: string) => {
     setSearchText(searchValue)
     const searchRegex = new RegExp(escapeRegExp(searchValue), 'i')
-    const filteredRows = data.rows.filter((row: any) => {
+    const filteredRows = data.rows.filter((row: GridRowData) => {
+      /* eslint-disable @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access */
       return Object.keys(row).some((field: any) => {
         return searchRegex.test(row[field].toString())
+        /* eslint-enable @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access */
       })
     })
     setRows(filteredRows)
@@ -724,13 +747,15 @@ export const QuickFilteringGrid = story<DataGridProps>(args => {
   return (
     <div style={{ height: 400, width: '100%' }}>
       <DataGrid
+        {...args}
         components={{ Toolbar: QuickSearchToolbar }}
         rows={rows}
         columns={data.columns}
         componentsProps={{
           toolbar: {
             value: searchText,
-            onChange: (event: any) => requestSearch(event.target.value),
+            onChange: (event: React.ChangeEvent<HTMLInputElement>) =>
+              requestSearch(event.target.value),
             clearSearch: () => requestSearch(''),
           },
         }}
@@ -754,7 +779,7 @@ QuickFilteringGrid.parameters = {
   },
 }
 
-export const DataGridFilteringApiRef = story<DataGridProps>(args => <></>)
+export const DataGridFilteringApiRef = story<DataGridProps>(() => <></>)
 DataGridFilteringApiRef.storyName = 'apiRef'
 DataGridFilteringApiRef.parameters = {
   docs: {

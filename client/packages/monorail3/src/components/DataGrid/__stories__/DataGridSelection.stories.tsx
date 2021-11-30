@@ -1,14 +1,17 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // Edit this file to add new stories
 import React from 'react'
-import {
-  GridRowParams,
-  GridRowsProp,
-  GridSelectionModel,
-} from '@mui/x-data-grid'
 import { GridData, useDemoData } from '@mui/x-data-grid-generator'
 
 import { story } from '../../../__tests__/helpers/storybook'
-import { DataGrid, DataGridProps } from '../DataGrid'
+import {
+  DataGrid,
+  DataGridProps,
+  GridRowParams,
+  GridRowsProp,
+  GridSelectionModel,
+} from '../DataGrid'
 import { defaultStoryMeta } from './DataGrid.stories.gen'
 
 export default {
@@ -59,12 +62,12 @@ Single row selection is enable by default with the  \`DataGrid\`  component. To 
 /**
  * Multiple row selection
  */
-export const MultipleRowSelectionGrid = story<DataGridProps>(args => {
-  const { data } = useDemoData({
-    dataSet: 'Commodity',
-    rowLength: 10,
-    maxColumns: 6,
-  })
+export const MultipleRowSelectionGrid = story<DataGridProps>(() => {
+  // const { data } = useDemoData({
+  //   dataSet: 'Commodity',
+  //   rowLength: 10,
+  //   maxColumns: 6,
+  // })
 
   return (
     <></>
@@ -275,6 +278,7 @@ export const ControlledSelectionServerPaginationGrid = story<DataGridProps>(
     return (
       <div style={{ height: 400, width: '100%' }}>
         <DataGrid
+          {...args}
           rows={rows}
           columns={data.columns}
           pagination
@@ -318,7 +322,7 @@ The following demo shows how to implement the first solution:`,
 /**
  * apiRef - Selection
  */
-export const DataGridSelectionApiRef = story<DataGridProps>(args => <></>)
+export const DataGridSelectionApiRef = story<DataGridProps>(() => <></>)
 DataGridSelectionApiRef.storyName = 'apiRef'
 DataGridSelectionApiRef.parameters = {
   docs: {
@@ -344,7 +348,7 @@ The grid exposes a set of methods that enables all of these features using the i
 /**
  * Range selection
  */
-export const RangeSelection = story<DataGridProps>(args => <></>)
+export const RangeSelection = story<DataGridProps>(() => <></>)
 RangeSelection.storyName = 'Row selection'
 RangeSelection.parameters = {
   docs: {

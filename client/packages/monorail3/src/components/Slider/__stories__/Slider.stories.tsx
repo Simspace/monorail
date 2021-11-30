@@ -335,7 +335,10 @@ export function InputSlider() {
     number | string | Array<number | string>
   >(30)
 
-  const handleSliderChange = (_event: Event, newValue: number | Array<number>) => {
+  const handleSliderChange = (
+    _event: Event,
+    newValue: number | Array<number>,
+  ) => {
     setValue(newValue)
   }
 

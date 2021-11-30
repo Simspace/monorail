@@ -12,7 +12,7 @@ import { Grid } from '../../Grid/Grid'
 import { IconButton } from '../../IconButton/IconButton'
 import { Typography } from '../../Typography/Typography'
 import { Zoom } from '../../Zoom/Zoom'
-import { Tooltip, tooltipClasses,TooltipProps } from '../Tooltip'
+import { Tooltip, tooltipClasses, TooltipProps } from '../Tooltip'
 import { defaultStoryMeta } from './Tooltip.stories.gen'
 
 /**

@@ -12,7 +12,7 @@ import { IconButton } from '../../IconButton/IconButton'
 import { Slide } from '../../Slide/Slide'
 import { SnackbarContent } from '../../SnackbarContent/SnackbarContent'
 import { Stack } from '../../Stack/Stack'
-import { Snackbar, SnackbarOrigin,SnackbarProps } from '../Snackbar'
+import { Snackbar, SnackbarOrigin, SnackbarProps } from '../Snackbar'
 import { defaultStoryMeta } from './Snackbar.stories.gen'
 
 /**
@@ -390,7 +390,7 @@ export const OtherTransitions = story<SnackbarProps>(
       open: boolean
       Transition: React.ComponentType<
         TransitionProps & {
-          children?: React.ReactElement<any, any>
+          children?: React.ReactElement<unknown>
         }
       >
     }>({
@@ -402,7 +402,7 @@ export const OtherTransitions = story<SnackbarProps>(
       (
         Transition: React.ComponentType<
           TransitionProps & {
-            children?: React.ReactElement<any, any>
+            children?: React.ReactElement<unknown>
           }
         >,
       ) =>

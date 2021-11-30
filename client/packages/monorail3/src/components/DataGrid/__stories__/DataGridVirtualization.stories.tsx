@@ -1,9 +1,8 @@
 // Edit this file to add new stories
 import React from 'react'
-import { GridColDef, GridRowId, GridRowsProp } from '@mui/x-data-grid'
 
 import { story } from '../../../__tests__/helpers/storybook'
-import { DataGrid, DataGridProps } from '../DataGrid'
+import { DataGrid, DataGridProps, GridColDef, GridRowId } from '../DataGrid'
 import { defaultStoryMeta } from './DataGrid.stories.gen'
 
 export default {
@@ -64,7 +63,7 @@ const Template = story<DataGridProps>(args => {
 
   return (
     <div style={{ height: 400, width: '100%' }}>
-      <DataGrid {...data} columnBuffer={2} />
+      <DataGrid {...args} {...data} columnBuffer={2} />
     </div>
   )
 })

@@ -196,6 +196,8 @@ export const FormProps = story<DatePickerProps<Date>>(
   },
 )
 
+type Locale = 'fr' | 'en' | 'ru' | 'de'
+
 export const Localization = story<DatePickerProps<Date>>(
   () => {
     const localeMap = {
@@ -218,7 +220,7 @@ export const Localization = story<DatePickerProps<Date>>(
       new Date('2021-01-01T12:34:00.000Z'),
     )
 
-    const selectLocale = (newLocale: any) => {
+    const selectLocale = (newLocale: Locale) => {
       setLocale(newLocale)
     }
 
@@ -237,7 +239,7 @@ export const Localization = story<DatePickerProps<Date>>(
               <ToggleButton
                 key={localeItem}
                 value={localeItem}
-                onClick={() => selectLocale(localeItem)}
+                onClick={() => selectLocale(localeItem as Locale)}
               >
                 {localeItem}
               </ToggleButton>
@@ -538,7 +540,7 @@ export const DynamicData = story<DatePickerProps<Date>>(
           setHighlightedDays(daysToHighlight)
           setIsLoading(false)
         })
-        .catch(error => {
+        .catch((error: Error) => {
           // ignore the error if it's caused by `controller.abort`
           if (error.name !== 'AbortError') {
             throw error

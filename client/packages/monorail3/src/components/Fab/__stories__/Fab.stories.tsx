@@ -5,9 +5,7 @@ import EditIcon from '@mui/icons-material/Edit'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import UpIcon from '@mui/icons-material/KeyboardArrowUp'
 import NavigationIcon from '@mui/icons-material/Navigation'
-import { green } from '@mui/material/colors'
 import { useTheme } from '@mui/material/styles'
-import { SxProps } from '@mui/system'
 
 import { story } from '../../../__tests__/helpers/storybook'
 import { AppBar } from '../../AppBar/AppBar'
@@ -144,25 +142,11 @@ function TabPanel(props: TabPanelProps) {
   )
 }
 
-function a11yProps(index: any) {
+function a11yProps(index: number) {
   return {
     id: `action-tab-${index}`,
     'aria-controls': `action-tabpanel-${index}`,
   }
-}
-
-const fabStyle = {
-  position: 'absolute',
-  bottom: 16,
-  right: 16,
-}
-
-const fabGreenStyle = {
-  color: 'common.white',
-  bgcolor: green[500],
-  '&:hover': {
-    bgcolor: green[600],
-  },
 }
 
 export const Animation = story(
@@ -182,19 +166,16 @@ export const Animation = story(
     const fabs = [
       {
         color: 'primary' as 'primary',
-        sx: fabStyle as SxProps,
         icon: <AddIcon />,
         label: 'Add',
       },
       {
         color: 'secondary' as 'secondary',
-        sx: fabStyle as SxProps,
         icon: <EditIcon />,
         label: 'Edit',
       },
       {
         color: 'inherit' as 'inherit',
-        sx: { ...fabStyle, ...fabGreenStyle } as SxProps,
         icon: <UpIcon />,
         label: 'Expand',
       },
@@ -203,7 +184,7 @@ export const Animation = story(
     return (
       <Box
         sx={{
-          bgcolor: 'background.paper',
+          bgColor: 'background.paper',
           width: 500,
           position: 'relative',
           minHeight: 200,
@@ -244,7 +225,15 @@ export const Animation = story(
             }}
             unmountOnExit
           >
-            <Fab sx={fab.sx} aria-label={fab.label} color={fab.color}>
+            <Fab
+              sx={{
+                position: 'absolute',
+                bottom: 16,
+                right: 16,
+              }}
+              aria-label={fab.label}
+              color={fab.color}
+            >
               {fab.icon}
             </Fab>
           </Zoom>

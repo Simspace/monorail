@@ -120,7 +120,12 @@ export const Density = story<TableProps>(
     ]
     return (
       <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
+        <Table
+          sx={{ minWidth: 650 }}
+          size="small"
+          aria-label="a dense table"
+          {...args}
+        >
           <TableHead>
             <TableRow>
               <TableCell>Dessert (100g serving)</TableCell>
@@ -215,7 +220,7 @@ export const SortingAndSelecting = story<TableProps>(
 
     type Order = 'asc' | 'desc'
 
-    function getComparator<Key extends keyof any>(
+    function getComparator<Key extends keyof Data>(
       order: Order,
       orderBy: Key,
     ): (
@@ -238,7 +243,9 @@ export const SortingAndSelecting = story<TableProps>(
       )
       stabilizedThis.sort((a, b) => {
         const order = comparator(a[0], b[0])
-        if (order !== 0) {return order}
+        if (order !== 0) {
+          return order
+        }
         return a[1] - b[1]
       })
       return stabilizedThis.map(el => el[0])
@@ -489,6 +496,7 @@ export const SortingAndSelecting = story<TableProps>(
                 sx={{ minWidth: 750 }}
                 aria-labelledby="tableTitle"
                 size={dense ? 'small' : 'medium'}
+                {...args}
               >
                 <EnhancedTableHead
                   numSelected={selected.length}
@@ -629,7 +637,7 @@ export const Customization = story<TableProps>(
     ]
     return (
       <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 700 }} aria-label="customized table">
+        <Table sx={{ minWidth: 700 }} aria-label="customized table" {...args}>
           <TableHead>
             <TableRow>
               <StyledTableCell>Dessert (100g serving)</StyledTableCell>
@@ -797,7 +805,11 @@ export const CustomPaginationOptions = story<TableProps>(
 
       return (
         <TableContainer component={Paper}>
-          <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
+          <Table
+            sx={{ minWidth: 500 }}
+            aria-label="custom pagination table"
+            {...args}
+          >
             <TableBody>
               {(rowsPerPage > 0
                 ? rows.slice(
@@ -956,7 +968,7 @@ export const StickyHeader = story<TableProps>(
     return (
       <Paper sx={{ width: '100%', overflow: 'hidden' }}>
         <TableContainer sx={{ maxHeight: 440 }}>
-          <Table stickyHeader aria-label="sticky table">
+          <Table stickyHeader aria-label="sticky table" {...args}>
             <TableHead>
               <TableRow>
                 {columns.map(column => (
@@ -1109,7 +1121,7 @@ export const ColumnGrouping = story<TableProps>(
     return (
       <Paper sx={{ width: '100%' }}>
         <TableContainer sx={{ maxHeight: 440 }}>
-          <Table stickyHeader aria-label="sticky table">
+          <Table stickyHeader aria-label="sticky table" {...args}>
             <TableHead>
               <TableRow>
                 <TableCell align="center" colSpan={2}>
@@ -1289,7 +1301,7 @@ export const CollapsibleTable = story<TableProps>(
 
     return (
       <TableContainer component={Paper}>
-        <Table aria-label="collapsible table">
+        <Table aria-label="collapsible table" {...args}>
           <TableHead>
             <TableRow>
               <TableCell />
@@ -1360,7 +1372,7 @@ export const SpanningTable = story<TableProps>(
 
     return (
       <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 700 }} aria-label="spanning table">
+        <Table sx={{ minWidth: 700 }} aria-label="spanning table" {...args}>
           <TableHead>
             <TableRow>
               <TableCell align="center" colSpan={3}>
@@ -1417,7 +1429,7 @@ export const SpanningTable = story<TableProps>(
 )
 
 export const VirtualizedTable = story<TableProps>(
-  args => {
+  () => {
     return (
       <Alert severity="warning">
         This example uses react-virtualized, which is not installed. See{' '}
@@ -1458,7 +1470,7 @@ export const Accessibility = story<TableProps>(
 
     return (
       <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} aria-label="caption table">
+        <Table sx={{ minWidth: 650 }} aria-label="caption table" {...args}>
           <caption>A basic table example with a caption</caption>
           <TableHead>
             <TableRow>

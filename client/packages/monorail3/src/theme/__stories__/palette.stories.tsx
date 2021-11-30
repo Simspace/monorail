@@ -1,5 +1,5 @@
 import React from 'react'
-import { Color as MUIColor,PaletteColor } from '@mui/material'
+import { Color as MUIColor, PaletteColor } from '@mui/material'
 import {
   CommonColors,
   TypeBackground,
@@ -169,7 +169,6 @@ const BackgroundColorsBox = ({
 
 export const Palette = () => {
   const theme = useTheme()
-  console.log(theme)
   return (
     <>
       <h1>Colors</h1>

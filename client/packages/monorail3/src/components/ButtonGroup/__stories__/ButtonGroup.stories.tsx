@@ -126,7 +126,9 @@ export const SplitButton = story<ButtonGroupProps>(
     const [selectedIndex, setSelectedIndex] = React.useState(1)
 
     const handleClick = () => {
+      /* eslint-disable no-console */
       console.info(`You clicked ${options[selectedIndex]}`)
+      /* eslint-enable no-console */
     }
 
     const handleMenuItemClick = (
