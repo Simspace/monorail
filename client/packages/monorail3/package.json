@@ -41,6 +41,7 @@
     "@storybook/preset-create-react-app": "^3.2.0",
     "@storybook/react": "^6.3.7",
     "@types/react-transition-group": "4.4.2",
+    "@typescript-eslint/eslint-plugin": "4.23.0",
     "@typescript-eslint/parser": "4.23.0",
     "barrelsby": "2.2.0",
     "creevey": "0.7.37",
