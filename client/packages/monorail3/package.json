@@ -60,7 +60,7 @@
     "postbuild": "yarn clean-barrel",
     "test": "jest",
     "clean": "rm -rf dist/ node_modules/ && yarn clean-barrel",
-    "prettier": "prettier './src/**/*{.ts,.tsx}' --write",
+    "prettier": "prettier './src/**/*{.js,.ts,.tsx}' --write",
     "generate-barrel": "barrelsby --directory ./src --exclude '(__tests__)|(__stories__)|(.gen.tsx)' --delete && yarn prettier",
     "clean-barrel": "rm src/index.ts",
     "gen": "./tools/gen",
@@ -69,8 +69,12 @@
     "storybook:ci": "start-storybook --ci -p 6006 -s assets",
     "test:visual": "start-server-and-test 'yarn storybook' 6006 'yarn creevey --ui'",
     "test:visual:ci": "start-server-and-test 'yarn storybook:ci' 6006 'yarn creevey'",
-    "build-storybook": "build-storybook -s assets",
-    "lint-staged": "# skipping linting for now"
+    "build-storybook": "build-storybook -s assets"
+  },
+  "lint-staged": {
+    "src/**/*.{js,ts,tsx}": [
+      "prettier --write"
+    ]
   },
   "jest": {
     "testRegex": "^.+(jest|test)\\.(ts|tsx)$",
