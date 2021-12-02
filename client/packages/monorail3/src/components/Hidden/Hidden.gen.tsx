@@ -8,7 +8,9 @@ import {
 /**
  * Props for Hidden
  */
-export type HiddenProps = MUIHiddenProps & { ref?: React.ForwardedRef<unknown> }
+export type HiddenProps = MUIHiddenProps & {
+  ref?: React.ForwardedRef<unknown>
+}
 
 /**
  * Hidden

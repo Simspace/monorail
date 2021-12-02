@@ -27,7 +27,9 @@ export default { ...defaultStoryMeta, title: 'Inputs/Fab' }
  * Note: there should be at least one "Default" story that uses this template with the "story" function.
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
-const Template = story<FabProps>(args => <Fab {...args}>FAB</Fab>, { args: {} })
+const Template = story<FabProps>(args => <Fab {...args}>FAB</Fab>, {
+  args: {},
+})
 /** Default story for Fab (edit/remove by hand if needed) */
 export const Default = story(Template)
 

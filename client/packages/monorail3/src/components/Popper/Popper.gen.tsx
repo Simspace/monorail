@@ -8,7 +8,9 @@ import {
 /**
  * Props for Popper
  */
-export type PopperProps = MUIPopperProps & { ref?: React.ForwardedRef<unknown> }
+export type PopperProps = MUIPopperProps & {
+  ref?: React.ForwardedRef<unknown>
+}
 
 /**
  * Popper

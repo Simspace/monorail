@@ -1,3 +1,3 @@
-const defaultConfig = require("@simspace/configs/prettier.config")
+const defaultConfig = require('@simspace/configs/prettier.config')
 
 module.exports = defaultConfig
