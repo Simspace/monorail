@@ -101,6 +101,7 @@ const Template = story<PickersDayProps<Date>>(args => {
 
 export const Default = story(Template, {
   parameters: {
+    a11y: { disable: true }, // MUI default violates a11y
     docs: {
       description: {
         component: `PickersDay can be used to customize how the day is rendered in a DatePicker`,

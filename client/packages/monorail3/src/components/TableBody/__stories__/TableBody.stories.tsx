@@ -9,18 +9,20 @@ import { TableRow } from '../../TableRow/TableRow'
 export default { ...defaultStoryMeta, title: 'Data Display/Table/TableBody' }
 
 const Template = story<TableBodyProps>(args => (
-  <TableBody {...args}>
-    <TableRow>
-      <TableCell>Cell 1</TableCell>
-      <TableCell>Cell 2</TableCell>
-      <TableCell>Cell 3</TableCell>
-    </TableRow>
-    <TableRow>
-      <TableCell>Cell 1</TableCell>
-      <TableCell>Cell 2</TableCell>
-      <TableCell>Cell 3</TableCell>
-    </TableRow>
-  </TableBody>
+  <table>
+    <TableBody {...args}>
+      <TableRow>
+        <TableCell>Cell 1</TableCell>
+        <TableCell>Cell 2</TableCell>
+        <TableCell>Cell 3</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>Cell 1</TableCell>
+        <TableCell>Cell 2</TableCell>
+        <TableCell>Cell 3</TableCell>
+      </TableRow>
+    </TableBody>
+  </table>
 ))
 
 export const Default = story(Template, {

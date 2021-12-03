@@ -33,5 +33,8 @@ const Template = story<CardMediaProps>(args => <CardMedia {...args} />, {
   },
 })
 /** Default story for CardMedia (edit/remove by hand if needed) */
-export const Default = story(Template)
-// TODO: add more stories below
+export const Default = story(Template, {
+  parameters: {
+    a11y: { disable: true }, // CardMedia uses invalid role (image instead of img)
+  },
+})

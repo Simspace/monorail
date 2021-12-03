@@ -9,18 +9,20 @@ import { TableCell } from '../../TableCell/TableCell'
 export default { ...defaultStoryMeta, title: 'Data Display/Table/TableFooter' }
 
 const Template = story<TableFooterProps>(args => (
-  <TableFooter {...args}>
-    <TableRow>
-      <TableCell>Cell 1</TableCell>
-      <TableCell>Cell 2</TableCell>
-      <TableCell>Cell 3</TableCell>
-    </TableRow>
-    <TableRow>
-      <TableCell>Cell 1</TableCell>
-      <TableCell>Cell 2</TableCell>
-      <TableCell>Cell 3</TableCell>
-    </TableRow>
-  </TableFooter>
+  <table>
+    <TableFooter {...args}>
+      <TableRow>
+        <TableCell>Cell 1</TableCell>
+        <TableCell>Cell 2</TableCell>
+        <TableCell>Cell 3</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>Cell 1</TableCell>
+        <TableCell>Cell 2</TableCell>
+        <TableCell>Cell 3</TableCell>
+      </TableRow>
+    </TableFooter>
+  </table>
 ))
 
 export const Default = story(Template, {

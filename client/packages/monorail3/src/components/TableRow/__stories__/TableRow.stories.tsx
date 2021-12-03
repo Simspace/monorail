@@ -8,11 +8,15 @@ import { TableCell } from '../../TableCell/TableCell'
 export default { ...defaultStoryMeta, title: 'Data Display/Table/TableRow' }
 
 const Template = story<TableRowProps>(args => (
-  <TableRow>
-    <TableCell>Cell 1</TableCell>
-    <TableCell>Cell 2</TableCell>
-    <TableCell>Cell 3</TableCell>
-  </TableRow>
+  <table>
+    <tbody>
+      <TableRow>
+        <TableCell>Cell 1</TableCell>
+        <TableCell>Cell 2</TableCell>
+        <TableCell>Cell 3</TableCell>
+      </TableRow>
+    </tbody>
+  </table>
 ))
 
 export const Default = story(Template, {

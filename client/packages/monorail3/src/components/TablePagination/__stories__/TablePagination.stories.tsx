@@ -22,18 +22,20 @@ const Template = story<TablePaginationProps>(args => {
   return (
     <Table>
       <TableFooter>
-        <TablePagination
-          page={page}
-          count={totalRows}
-          rowsPerPage={rowsPerPage}
-          rowsPerPageOptions={[5, 10, 25]}
-          onPageChange={(_, newPage) => setPage(newPage)}
-          onRowsPerPageChange={e => {
-            setRowsPerPage(parseInt(e.target.value, 10))
-            setPage(0)
-          }}
-          {...args}
-        />
+        <tr>
+          <TablePagination
+            page={page}
+            count={totalRows}
+            rowsPerPage={rowsPerPage}
+            rowsPerPageOptions={[5, 10, 25]}
+            onPageChange={(_, newPage) => setPage(newPage)}
+            onRowsPerPageChange={e => {
+              setRowsPerPage(parseInt(e.target.value, 10))
+              setPage(0)
+            }}
+            {...args}
+          />
+        </tr>
       </TableFooter>
     </Table>
   )
