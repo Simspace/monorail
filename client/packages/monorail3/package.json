@@ -76,7 +76,8 @@
   },
   "lint-staged": {
     "src/**/*.{js,ts,tsx}": [
-      "prettier --write"
+      "prettier --write",
+      "jest --findRelatedTests"
     ]
   },
   "jest": {

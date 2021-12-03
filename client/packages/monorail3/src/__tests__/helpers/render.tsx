@@ -2,10 +2,18 @@
 /* eslint-disable import/no-extraneous-dependencies */
 
 import React from 'react'
-import { ThemeProvider, Theme, StyledEngineProvider } from '@mui/material'
+import {
+  CssBaseline,
+  ThemeProvider,
+  Theme,
+  StyledEngineProvider,
+} from '@mui/material'
 import { Story } from '@storybook/react'
 import { render, RenderOptions, RenderResult } from '@testing-library/react'
 import { createGlobalStyle } from 'styled-components'
+
+import AdapterDateFns from '@mui/lab/AdapterDateFns'
+import LocalizationProvider from '@mui/lab/LocalizationProvider'
 
 import { defaultLightTheme } from '../../theme/defaultLightTheme'
 
@@ -33,12 +41,21 @@ export function renderWithTheme(
   options?: Omit<RenderOptions, 'queries'>,
 ): RenderResult {
   return render(
-    <div>
+    <LocalizationProvider dateAdapter={AdapterDateFns}>
       <TemporaryJSDomFix />
       <StyledEngineProvider injectFirst>
-        <ThemeProvider theme={defaultLightTheme}>{ui}</ThemeProvider>
+        <ThemeProvider theme={defaultLightTheme}>
+          <CssBaseline />
+          {ui}
+        </ThemeProvider>
       </StyledEngineProvider>
-    </div>,
+    </LocalizationProvider>,
+    // <div>
+    //   <TemporaryJSDomFix />
+    //   <StyledEngineProvider injectFirst>
+    //     <ThemeProvider theme={defaultLightTheme}></ThemeProvider>
+    //   </StyledEngineProvider>
+    // </div>,
     options,
   )
 }
