@@ -227,6 +227,9 @@ export const RecipeReviewCard = story<CardProps>(() => {
   )
 })
 RecipeReviewCard.parameters = {
+  a11y: {
+    disable: true, // MUI has invalid aria role on CardMedia (image instead of img)
+  },
   docs: {
     description: {
       story:
@@ -265,6 +268,9 @@ export const MediaCard = story<CardProps>(() => {
 })
 
 MediaCard.parameters = {
+  a11y: {
+    disable: true, // MUI has invalid aria role on CardMedia (image instead of img)
+  },
   docs: {
     description: {
       story: 'Example of a card using an image to reinforce the content.',
@@ -301,6 +307,9 @@ export const ResponsiveMediaCard = story<CardProps>(() => {
 })
 
 ResponsiveMediaCard.parameters = {
+  a11y: {
+    disable: true, // MUI has invalid aria role on CardMedia (image instead of img)
+  },
   docs: {
     description: {
       story:
@@ -336,6 +345,9 @@ export const ActionAreaCard = story<CardProps>(() => {
 })
 
 ActionAreaCard.parameters = {
+  a11y: {
+    disable: true, // MUI has invalid aria role on CardMedia (image instead of img)
+  },
   docs: {
     description: {
       story:
@@ -376,6 +388,9 @@ export const MultiActionAreaCard = story<CardProps>(() => {
 })
 
 MultiActionAreaCard.parameters = {
+  a11y: {
+    disable: true, // MUI has invalid aria role on CardMedia (image instead of img)
+  },
   docs: {
     description: {
       story:
@@ -437,6 +452,9 @@ export const MediaControlCard = story<CardProps>(() => {
 })
 
 MediaControlCard.parameters = {
+  a11y: {
+    disable: true, // MUI has invalid aria role on CardMedia (image instead of img)
+  },
   docs: {
     description: {
       story:
