@@ -41,6 +41,7 @@
     "date-fns": "2.23.0",
     "jest": "27.0.4",
     "jest-axe": "5.0.1",
+    "jest-config": "26.6.3",
     "prettier": "2.4.1",
     "react": "17.0.2",
     "react-docgen-typescript": "2.1.0",
@@ -79,19 +80,5 @@
       "prettier --write",
       "jest --findRelatedTests"
     ]
-  },
-  "jest": {
-    "testRegex": "^.+(jest|test)\\.(ts|tsx)$",
-    "setupFiles": [
-      "<rootDir>/jest/jest.setup.ts"
-    ],
-    "setupFilesAfterEnv": [
-      "<rootDir>/jest/jest.postsetup.ts"
-    ],
-    "moduleNameMapper": {
-      "@mui/styled-engine": "@mui/styled-engine-sc",
-      "@material-ui/core": "@mui/material"
-    },
-    "testEnvironment": "jsdom"
   }
 }
