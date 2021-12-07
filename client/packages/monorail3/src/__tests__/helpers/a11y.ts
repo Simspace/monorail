@@ -70,12 +70,16 @@ export async function generateA11yStoryTests(
       it(`${storyName} story is accessible`, async () => {
         const targetElement =
           story.parameters?.a11y?.element ?? storiesTargetElement
+        const rules = story.parameters?.a11y?.config ?? {}
 
         const { baseElement, container } = renderStory(story)
 
         const results = isValidTargetElement(targetElement)
-          ? await axe(baseElement.querySelector(targetElement) ?? baseElement)
-          : await axe(container)
+          ? await axe(
+              baseElement.querySelector(targetElement) ?? baseElement,
+              rules,
+            )
+          : await axe(container, rules)
 
         expect(results).toHaveNoViolations()
       })

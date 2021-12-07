@@ -228,7 +228,7 @@ export const RecipeReviewCard = story<CardProps>(() => {
 })
 RecipeReviewCard.parameters = {
   a11y: {
-    disable: true, // MUI has invalid aria role on CardMedia (image instead of img)
+    config: { rules: { 'aria-roles': { enabled: false } } }, // MUI has invalid aria role on CardMedia (image instead of img)
   },
   docs: {
     description: {
@@ -269,7 +269,7 @@ export const MediaCard = story<CardProps>(() => {
 
 MediaCard.parameters = {
   a11y: {
-    disable: true, // MUI has invalid aria role on CardMedia (image instead of img)
+    config: { rules: { 'aria-roles': { enabled: false } } }, // MUI has invalid aria role on CardMedia (image instead of img)
   },
   docs: {
     description: {
@@ -308,7 +308,7 @@ export const ResponsiveMediaCard = story<CardProps>(() => {
 
 ResponsiveMediaCard.parameters = {
   a11y: {
-    disable: true, // MUI has invalid aria role on CardMedia (image instead of img)
+    config: { rules: { 'aria-roles': { enabled: false } } }, // MUI has invalid aria role on CardMedia (image instead of img)
   },
   docs: {
     description: {
@@ -346,7 +346,7 @@ export const ActionAreaCard = story<CardProps>(() => {
 
 ActionAreaCard.parameters = {
   a11y: {
-    disable: true, // MUI has invalid aria role on CardMedia (image instead of img)
+    config: { rules: { 'aria-roles': { enabled: false } } }, // MUI has invalid aria role on CardMedia (image instead of img)
   },
   docs: {
     description: {
@@ -389,7 +389,7 @@ export const MultiActionAreaCard = story<CardProps>(() => {
 
 MultiActionAreaCard.parameters = {
   a11y: {
-    disable: true, // MUI has invalid aria role on CardMedia (image instead of img)
+    config: { rules: { 'aria-roles': { enabled: false } } }, // MUI has invalid aria role on CardMedia (image instead of img)
   },
   docs: {
     description: {
@@ -453,7 +453,7 @@ export const MediaControlCard = story<CardProps>(() => {
 
 MediaControlCard.parameters = {
   a11y: {
-    disable: true, // MUI has invalid aria role on CardMedia (image instead of img)
+    config: { rules: { 'aria-roles': { enabled: false } } }, // MUI has invalid aria role on CardMedia (image instead of img)
   },
   docs: {
     description: {
