@@ -50,12 +50,6 @@ export function renderWithTheme(
         </ThemeProvider>
       </StyledEngineProvider>
     </LocalizationProvider>,
-    // <div>
-    //   <TemporaryJSDomFix />
-    //   <StyledEngineProvider injectFirst>
-    //     <ThemeProvider theme={defaultLightTheme}></ThemeProvider>
-    //   </StyledEngineProvider>
-    // </div>,
     options,
   )
 }
