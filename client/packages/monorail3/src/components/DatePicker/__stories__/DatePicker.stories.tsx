@@ -117,14 +117,19 @@ export const Responsiveness = story<DatePickerProps<Date>>(
           renderInput={params => <TextField {...params} />}
         />
         <DesktopDatePicker
-          aria-label="for desktop"
-          label="For desktop"
+          // aria-label="for desktop"
+          // label="For desktop"
           value={value}
           minDate={new Date('2017-01-01')}
           onChange={newValue => {
             setValue(newValue)
           }}
-          renderInput={params => <TextField id="desktop" {...params} />}
+          renderInput={params => (
+            <TextField
+              //id="desktop"
+              {...params}
+            />
+          )}
         />
         <DatePicker
           disableFuture
