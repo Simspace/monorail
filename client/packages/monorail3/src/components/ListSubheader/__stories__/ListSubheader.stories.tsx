@@ -6,7 +6,10 @@ import { defaultStoryMeta } from './ListSubheader.stories.gen'
 /**
  * Metadata for ListSubheader stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Data Display/List/ListSubheader' }
+export default {
+  ...defaultStoryMeta,
+  title: 'Data Display/List/ListSubheader',
+}
 /**
  * Story template (edit/remove by hand if needed)
  *

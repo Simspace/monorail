@@ -8,7 +8,9 @@ import {
 /**
  * Props for Rating
  */
-export type RatingProps = MUIRatingProps & { ref?: React.ForwardedRef<unknown> }
+export type RatingProps = MUIRatingProps & {
+  ref?: React.ForwardedRef<unknown>
+}
 
 /**
  * Rating

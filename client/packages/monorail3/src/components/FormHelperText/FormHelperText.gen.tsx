@@ -11,7 +11,7 @@ import {
  */
 export type FormHelperTextProps<
   D extends React.ElementType = FormHelperTextTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 > = MUIFormHelperTextProps<D, P> & {
   ref?: React.ForwardedRef<HTMLParagraphElement>
 }
@@ -23,7 +23,7 @@ export const FormHelperText = React.forwardRef((props, ref) => (
   <MUIFormHelperText ref={ref} {...props} />
 )) as <
   D extends React.ElementType = FormHelperTextTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 >(
   props: FormHelperTextProps<D, P>,
 ) => JSX.Element
