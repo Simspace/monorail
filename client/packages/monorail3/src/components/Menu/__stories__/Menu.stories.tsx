@@ -251,7 +251,7 @@ export const SelectedMenu = story<MenuProps>(
               selected={index === selectedIndex}
               onClick={handleMenuItemClick(index)}
             >
-              {`${option}2`}
+              {option}
             </MenuItem>
           ))}
         </Menu>

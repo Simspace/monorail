@@ -4,19 +4,21 @@ import { TableRow, TableRowProps } from '../TableRow'
 import { story } from '../../../__tests__/helpers/storybook'
 import { defaultStoryMeta } from './TableRow.stories.gen'
 import { TableCell } from '../../TableCell/TableCell'
+import { Table } from '../../Table/Table'
+import { TableBody } from '../../TableBody/TableBody'
 
 export default { ...defaultStoryMeta, title: 'Data Display/Table/TableRow' }
 
 const Template = story<TableRowProps>(args => (
-  <table>
-    <tbody>
+  <Table>
+    <TableBody>
       <TableRow>
         <TableCell>Cell 1</TableCell>
         <TableCell>Cell 2</TableCell>
         <TableCell>Cell 3</TableCell>
       </TableRow>
-    </tbody>
-  </table>
+    </TableBody>
+  </Table>
 ))
 
 export const Default = story(Template, {

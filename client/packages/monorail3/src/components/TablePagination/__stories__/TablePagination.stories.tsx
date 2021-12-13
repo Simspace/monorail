@@ -5,6 +5,7 @@ import { story } from '../../../__tests__/helpers/storybook'
 import { defaultStoryMeta } from './TablePagination.stories.gen'
 import { TableFooter } from '../../TableFooter/TableFooter'
 import { Table } from '../../Table/Table'
+import { TableRow } from '../../TableRow/TableRow'
 
 export default {
   ...defaultStoryMeta,
@@ -22,7 +23,7 @@ const Template = story<TablePaginationProps>(args => {
   return (
     <Table>
       <TableFooter>
-        <tr>
+        <TableRow>
           <TablePagination
             page={page}
             count={totalRows}
@@ -35,7 +36,7 @@ const Template = story<TablePaginationProps>(args => {
             }}
             {...args}
           />
-        </tr>
+        </TableRow>
       </TableFooter>
     </Table>
   )

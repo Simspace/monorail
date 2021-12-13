@@ -5,11 +5,12 @@ import { story } from '../../../__tests__/helpers/storybook'
 import { defaultStoryMeta } from './TableBody.stories.gen'
 import { TableCell } from '../../TableCell/TableCell'
 import { TableRow } from '../../TableRow/TableRow'
+import { Table } from '../../Table/Table'
 
 export default { ...defaultStoryMeta, title: 'Data Display/Table/TableBody' }
 
 const Template = story<TableBodyProps>(args => (
-  <table>
+  <Table>
     <TableBody {...args}>
       <TableRow>
         <TableCell>Cell 1</TableCell>
@@ -22,7 +23,7 @@ const Template = story<TableBodyProps>(args => (
         <TableCell>Cell 3</TableCell>
       </TableRow>
     </TableBody>
-  </table>
+  </Table>
 ))
 
 export const Default = story(Template, {

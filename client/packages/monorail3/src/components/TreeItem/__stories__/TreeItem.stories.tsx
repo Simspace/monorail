@@ -16,7 +16,6 @@ export default { ...defaultStoryMeta, title: 'Data Display/TreeView/TreeItem' }
 const Template = story<TreeItemProps>(
   args => (
     <div role="tree">
-      {' '}
       <TreeItem nodeId={'a'} {...args} />
     </div>
   ),
