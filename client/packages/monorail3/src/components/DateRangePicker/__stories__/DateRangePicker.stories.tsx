@@ -53,9 +53,9 @@ const Template = story<DateRangePickerProps<Date>>(args => {
         }}
         renderInput={(startProps, endProps) => (
           <React.Fragment>
-            <TextField {...startProps} />
+            <TextField id="start" {...startProps} />
             <Box sx={{ mx: 2 }}> to </Box>
-            <TextField {...endProps} />
+            <TextField id="end" {...endProps} />
           </React.Fragment>
         )}
         {...args}
@@ -91,9 +91,9 @@ export const StaticMode = story(
           }}
           renderInput={(startProps, endProps) => (
             <React.Fragment>
-              <TextField {...startProps} />
+              <TextField id="start" {...startProps} />
               <Box sx={{ mx: 2 }}> to </Box>
-              <TextField {...endProps} />
+              <TextField id="end" {...endProps} />
             </React.Fragment>
           )}
         />
@@ -129,9 +129,9 @@ export const Responsiveness = story(
             }}
             renderInput={(startProps, endProps) => (
               <React.Fragment>
-                <TextField {...startProps} />
+                <TextField id="start" {...startProps} />
                 <Box sx={{ mx: 2 }}> to </Box>
-                <TextField {...endProps} />
+                <TextField id="end" {...endProps} />
               </React.Fragment>
             )}
           />
@@ -143,9 +143,9 @@ export const Responsiveness = story(
             }}
             renderInput={(startProps, endProps) => (
               <React.Fragment>
-                <TextField {...startProps} />
+                <TextField id="start2" {...startProps} />
                 <Box sx={{ mx: 2 }}> to </Box>
-                <TextField {...endProps} />
+                <TextField id="end2" {...endProps} />
               </React.Fragment>
             )}
           />
@@ -190,9 +190,9 @@ export const FormProps = story(
             }}
             renderInput={(startProps, endProps) => (
               <React.Fragment>
-                <TextField {...startProps} />
+                <TextField id="start" {...startProps} />
                 <Box sx={{ mx: 2 }}> to </Box>
-                <TextField {...endProps} />
+                <TextField id="end" {...endProps} />
               </React.Fragment>
             )}
           />
@@ -206,9 +206,9 @@ export const FormProps = story(
             }}
             renderInput={(startProps, endProps) => (
               <React.Fragment>
-                <TextField {...startProps} />
+                <TextField id="start2" {...startProps} />
                 <Box sx={{ mx: 2 }}> to </Box>
-                <TextField {...endProps} />
+                <TextField id="end2" {...endProps} />
               </React.Fragment>
             )}
           />
@@ -246,9 +246,9 @@ export const DifferentNumberOfMonths = story(
             }}
             renderInput={(startProps, endProps) => (
               <React.Fragment>
-                <TextField {...startProps} />
+                <TextField id="start" {...startProps} />
                 <Box sx={{ mx: 2 }}> to </Box>
-                <TextField {...endProps} />
+                <TextField id="end" {...endProps} />
               </React.Fragment>
             )}
           />
@@ -261,9 +261,9 @@ export const DifferentNumberOfMonths = story(
             }}
             renderInput={(startProps, endProps) => (
               <React.Fragment>
-                <TextField {...startProps} />
+                <TextField id="start2" {...startProps} />
                 <Box sx={{ mx: 2 }}> to </Box>
-                <TextField {...endProps} />
+                <TextField id="end2" {...endProps} />
               </React.Fragment>
             )}
           />
@@ -276,9 +276,9 @@ export const DifferentNumberOfMonths = story(
             }}
             renderInput={(startProps, endProps) => (
               <React.Fragment>
-                <TextField {...startProps} />
+                <TextField id="start3" {...startProps} />
                 <Box sx={{ mx: 2 }}> to </Box>
-                <TextField {...endProps} />
+                <TextField id="end3" {...endProps} />
               </React.Fragment>
             )}
           />
@@ -319,9 +319,9 @@ export const DisablingDates = story(
           }}
           renderInput={(startProps, endProps) => (
             <React.Fragment>
-              <TextField {...startProps} />
+              <TextField id="start" {...startProps} />
               <Box sx={{ mx: 2 }}> to </Box>
-              <TextField {...endProps} />
+              <TextField id="end" {...endProps} />
             </React.Fragment>
           )}
         />
@@ -352,11 +352,13 @@ export const CustomInputComponent = story(
           renderInput={(startProps, endProps) => (
             <React.Fragment>
               <input
+                aria-label="start"
                 ref={startProps.inputRef as React.Ref<HTMLInputElement>}
                 {...startProps.inputProps}
               />
               <Box sx={{ mx: 1 }}> to </Box>
               <input
+                aria-label="end"
                 ref={endProps.inputRef as React.Ref<HTMLInputElement>}
                 {...endProps.inputProps}
               />
@@ -422,9 +424,9 @@ export const CustomizedDayRendering = story(
           renderDay={renderWeekPickerDay}
           renderInput={(startProps, endProps) => (
             <React.Fragment>
-              <TextField {...startProps} />
+              <TextField id="start" {...startProps} />
               <Box sx={{ mx: 2 }}> to </Box>
-              <TextField {...endProps} />
+              <TextField id="end" {...endProps} />
             </React.Fragment>
           )}
         />

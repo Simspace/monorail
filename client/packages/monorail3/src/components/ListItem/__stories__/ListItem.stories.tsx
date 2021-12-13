@@ -21,7 +21,7 @@ export default { ...defaultStoryMeta, title: 'Data Display/List/ListItem' }
  */
 const Template = story<ListItemProps>(
   args => (
-    <>
+    <ul>
       <ListItem {...args}>
         <ListItemText primary="Primary text" secondary="Secondary text" />
       </ListItem>
@@ -37,7 +37,7 @@ const Template = story<ListItemProps>(
           </Avatar>
         </ListItemAvatar>
       </ListItem>
-    </>
+    </ul>
   ),
   {
     args: {},
