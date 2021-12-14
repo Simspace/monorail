@@ -18,6 +18,9 @@ type A11yParameter = {
   a11y?: {
     element?: A11yElement | string
     disable?: boolean
+    config?: {
+      rules: Record<string, { enabled: boolean }> // key is rule name
+    }
   }
 }
 type A11yParameters = {
