@@ -32,7 +32,9 @@ const Template = story<DesktopTimePickerProps<Date>>(args => {
       onChange={newValue => {
         setValue(newValue)
       }}
-      renderInput={params => <TextField {...params} />}
+      renderInput={params => (
+        <TextField id="picker" aria-label="time picker" {...params} />
+      )}
       {...args}
     />
   )

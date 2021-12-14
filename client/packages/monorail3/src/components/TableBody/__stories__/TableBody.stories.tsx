@@ -5,22 +5,25 @@ import { story } from '../../../__tests__/helpers/storybook'
 import { defaultStoryMeta } from './TableBody.stories.gen'
 import { TableCell } from '../../TableCell/TableCell'
 import { TableRow } from '../../TableRow/TableRow'
+import { Table } from '../../Table/Table'
 
 export default { ...defaultStoryMeta, title: 'Data Display/Table/TableBody' }
 
 const Template = story<TableBodyProps>(args => (
-  <TableBody {...args}>
-    <TableRow>
-      <TableCell>Cell 1</TableCell>
-      <TableCell>Cell 2</TableCell>
-      <TableCell>Cell 3</TableCell>
-    </TableRow>
-    <TableRow>
-      <TableCell>Cell 1</TableCell>
-      <TableCell>Cell 2</TableCell>
-      <TableCell>Cell 3</TableCell>
-    </TableRow>
-  </TableBody>
+  <Table>
+    <TableBody {...args}>
+      <TableRow>
+        <TableCell>Cell 1</TableCell>
+        <TableCell>Cell 2</TableCell>
+        <TableCell>Cell 3</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>Cell 1</TableCell>
+        <TableCell>Cell 2</TableCell>
+        <TableCell>Cell 3</TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
 ))
 
 export const Default = story(Template, {

@@ -19,7 +19,7 @@ export default { ...defaultStoryMeta, title: 'Inputs/IconButton' }
  */
 const Template = story<IconButtonProps>(
   args => (
-    <IconButton {...args} size="large">
+    <IconButton aria-label="default" {...args} size="large">
       <DeleteIcon />
     </IconButton>
   ),
