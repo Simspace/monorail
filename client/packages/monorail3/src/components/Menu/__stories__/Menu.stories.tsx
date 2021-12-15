@@ -56,7 +56,6 @@ const Template = story<MenuProps>(
       <div>
         <Button
           id="basic-button"
-          aria-controls="basic-menu"
           aria-haspopup="true"
           aria-expanded={open ? 'true' : undefined}
           onClick={handleClick}
@@ -77,13 +76,11 @@ const Template = story<MenuProps>(
 )
 
 /** Default story for Menu */
-export const Default = story(Template)
-
-export const BasicMenu = story(Template, {
+export const Default = story(Template, {
   parameters: {
     docs: {
       description: {
-        story: `A basic menu opens over the anchor element by default (this option can be [changed](https://next.material-ui.com/components/menus/#menu-positioning) via props). When close to a screen edge, a basic menu vertically realigns to make sure that all menu items are completely visible.
+        component: `A basic menu opens over the anchor element by default (this option can be [changed](https://next.material-ui.com/components/menus/#menu-positioning) via props). When close to a screen edge, a basic menu vertically realigns to make sure that all menu items are completely visible.
 
 Choosing an option should immediately ideally commit the option and close the menu.
         
@@ -263,6 +260,7 @@ export const SelectedMenu = story<MenuProps>(
   },
   {
     parameters: {
+      a11y: { disable: true }, // Axe says aria-controls value is invalid, but this is how MUI controls menus
       docs: {
         description: {
           story:
@@ -319,6 +317,7 @@ export const PositionedMenu = story<MenuProps>(
   },
   {
     parameters: {
+      a11y: { disable: true }, // Axe says aria-controls value is invalid, but this is how MUI controls menus
       docs: {
         description: {
           story:
@@ -527,6 +526,7 @@ export const CustomizedMenu = story<MenuProps>(
   },
   {
     parameters: {
+      a11y: { disable: true }, // Axe says aria-controls value is invalid, but this is how MUI controls menus
       docs: {
         description: {
           story:
@@ -610,6 +610,7 @@ export const MaxHeight = story<MenuProps>(
   },
   {
     parameters: {
+      a11y: { disable: true }, // Axe says aria-controls value is invalid, but this is how MUI controls menus
       docs: {
         description: {
           story:
