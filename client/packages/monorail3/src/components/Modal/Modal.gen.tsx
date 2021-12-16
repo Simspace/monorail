@@ -11,7 +11,7 @@ import {
  */
 export type ModalProps<
   D extends React.ElementType = ModalTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 > = MUIModalProps<D, P> & { ref?: React.ForwardedRef<HTMLDivElement> }
 
 /**

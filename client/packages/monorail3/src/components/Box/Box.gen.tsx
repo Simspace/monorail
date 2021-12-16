@@ -11,7 +11,7 @@ import {
  */
 export type BoxProps<
   D extends React.ElementType = BoxTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 > = MUIBoxProps<D, P> & { ref?: React.ForwardedRef<unknown> }
 
 /**
