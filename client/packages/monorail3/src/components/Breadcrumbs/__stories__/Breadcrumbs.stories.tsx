@@ -119,12 +119,12 @@ export const CustomSeparator = story<BreadcrumbsProps>(
         <Breadcrumbs separator="›" aria-label="breadcrumb">
           {breadcrumbs}
         </Breadcrumbs>
-        <Breadcrumbs separator="-" aria-label="breadcrumb">
+        <Breadcrumbs separator="-" aria-label="breadcrumb2">
           {breadcrumbs}
         </Breadcrumbs>
         <Breadcrumbs
           separator={<NavigateNextIcon fontSize="small" />}
-          aria-label="breadcrumb"
+          aria-label="breadcrumb3"
         >
           {breadcrumbs}
         </Breadcrumbs>
