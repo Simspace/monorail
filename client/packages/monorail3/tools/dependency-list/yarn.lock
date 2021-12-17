@@ -1096,6 +1096,11 @@ to-regex-range@^5.0.1:
   dependencies:
     is-number "^7.0.0"
 
+topological-sort@0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/topological-sort/-/topological-sort-0.3.0.tgz#3ca539982c71a13f0a7b3be2ad4ae4dd437a1e3b"
+  integrity sha512-BmO2t72jjJ3B9PZC3LTHyojgNynOKEvWG4GiYqyfSMUjtO6+yZK0oozlMYVA+tC6YvS3NZh4OPx6QaolEYOg6A==
+
 ts-node@10.2.1:
   version "10.2.1"
   resolved "https://registry.yarnpkg.com/ts-node/-/ts-node-10.2.1.tgz#4cc93bea0a7aba2179497e65bb08ddfc198b3ab5"

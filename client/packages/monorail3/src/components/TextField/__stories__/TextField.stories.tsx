@@ -428,11 +428,10 @@ export const InputAdornments = story(
       showPassword: false,
     })
 
-    const handleChange = (prop: keyof State) => (
-      event: React.ChangeEvent<HTMLInputElement>,
-    ) => {
-      setValues({ ...values, [prop]: event.target.value })
-    }
+    const handleChange =
+      (prop: keyof State) => (event: React.ChangeEvent<HTMLInputElement>) => {
+        setValues({ ...values, [prop]: event.target.value })
+      }
 
     const handleClickShowPassword = () => {
       setValues({
@@ -857,15 +856,23 @@ export const Color = story(
       }}
       noValidate
       autoComplete="off"
+      aria-label="color form"
     >
-      <TextField label="Outlined secondary" color="secondary" focused />
       <TextField
+        id="secondary"
+        label="Outlined secondary"
+        color="secondary"
+        focused
+      />
+      <TextField
+        id="success"
         label="Filled success"
         variant="filled"
         color="success"
         focused
       />
       <TextField
+        id="warning"
         label="Standard warning"
         variant="standard"
         color="warning"

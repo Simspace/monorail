@@ -18,8 +18,9 @@ const Template = story<DesktopDatePickerProps<Date>>(args => {
 
   return (
     <DesktopDatePicker
+      label="Desktop Date Picker"
       value={value}
-      renderInput={params => <TextField {...params} />}
+      renderInput={params => <TextField id="desktop" {...params} />}
       onChange={newValue => {
         setValue(newValue)
         action('onChange')

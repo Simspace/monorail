@@ -29,9 +29,13 @@ export default { ...defaultStoryMeta, title: 'Inputs/Input/InputAdornment' }
 const Template = story<InputAdornmentProps>(
   args => (
     <TextField
+      id="amount-field"
+      aria-label="Amount"
+      label="Amount"
       placeholder="Enter amount"
       sx={{ m: 1, width: '50ch' }}
       InputProps={{
+        'aria-label': 'amount',
         startAdornment: (
           <InputAdornment position="end" {...args}>
             $
@@ -79,11 +83,10 @@ export const Showcase = story<InputAdornmentProps>(
       showPassword: false,
     })
 
-    const handleChange = (prop: keyof State) => (
-      event: React.ChangeEvent<HTMLInputElement>,
-    ) => {
-      setValues({ ...values, [prop]: event.target.value })
-    }
+    const handleChange =
+      (prop: keyof State) => (event: React.ChangeEvent<HTMLInputElement>) => {
+        setValues({ ...values, [prop]: event.target.value })
+      }
 
     const handleClickShowPassword = () => {
       setValues({
