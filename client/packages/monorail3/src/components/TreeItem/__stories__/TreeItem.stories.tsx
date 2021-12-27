@@ -14,7 +14,11 @@ export default { ...defaultStoryMeta, title: 'Data Display/TreeView/TreeItem' }
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
 const Template = story<TreeItemProps>(
-  args => <TreeItem nodeId={'a'} {...args} />,
+  args => (
+    <div role="tree">
+      <TreeItem nodeId={'a'} {...args} />
+    </div>
+  ),
   {
     args: {},
   },
