@@ -22,7 +22,6 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight'
 import { Typography } from '../../Typography/Typography'
 import { CSSObject, styled, Theme } from '@mui/material'
 import { useTheme } from '../../../theme/useTheme'
-import { Alert } from '../../Alert/Alert'
 
 /**
  * Metadata for Drawer stories - update/extend as needed
@@ -97,7 +96,7 @@ export const TemporaryDrawer = story<DrawerProps>(
         onClick={toggleDrawer(anchor, false)}
         onKeyDown={toggleDrawer(anchor, false)}
       >
-        <List>
+        <List component="nav" aria-label="section 1">
           {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
             <ListItem button key={text}>
               <ListItemIcon>
@@ -108,7 +107,7 @@ export const TemporaryDrawer = story<DrawerProps>(
           ))}
         </List>
         <Divider />
-        <List>
+        <List component="nav" aria-label="section 2">
           {['All mail', 'Trash', 'Spam'].map((text, index) => (
             <ListItem button key={text}>
               <ListItemIcon>
@@ -163,7 +162,7 @@ export const ResponsiveDrawer = story<DrawerProps>(
       <div>
         <Toolbar />
         <Divider />
-        <List>
+        <List component="nav" aria-label="section 1">
           {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
             <ListItem button key={text}>
               <ListItemIcon>
@@ -174,7 +173,7 @@ export const ResponsiveDrawer = story<DrawerProps>(
           ))}
         </List>
         <Divider />
-        <List>
+        <List component="nav" aria-label="section 2">
           {['All mail', 'Trash', 'Spam'].map((text, index) => (
             <ListItem button key={text}>
               <ListItemIcon>
@@ -409,7 +408,7 @@ export const PersistentDrawer = story<DrawerProps>(
             </IconButton>
           </PersistentDrawerHeader>
           <Divider />
-          <List>
+          <List component="nav" aria-label="section 1">
             {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
               <ListItem button key={text}>
                 <ListItemIcon>
@@ -420,7 +419,7 @@ export const PersistentDrawer = story<DrawerProps>(
             ))}
           </List>
           <Divider />
-          <List>
+          <List component="nav" aria-label="section 2">
             {['All mail', 'Trash', 'Spam'].map((text, index) => (
               <ListItem button key={text}>
                 <ListItemIcon>
@@ -590,7 +589,11 @@ export const MiniDrawer = story<DrawerProps>(
         </MiniVariantAppBar>
         <MiniVariantDrawer variant="permanent" open={open}>
           <DrawerHeader>
-            <IconButton onClick={handleDrawerClose} size="large">
+            <IconButton
+              onClick={handleDrawerClose}
+              size="large"
+              aria-label="open"
+            >
               {theme.direction === 'rtl' ? (
                 <ChevronRightIcon />
               ) : (
@@ -599,7 +602,7 @@ export const MiniDrawer = story<DrawerProps>(
             </IconButton>
           </DrawerHeader>
           <Divider />
-          <List>
+          <List component="nav" aria-label="section 1">
             {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
               <ListItem button key={text}>
                 <ListItemIcon>
@@ -610,7 +613,7 @@ export const MiniDrawer = story<DrawerProps>(
             ))}
           </List>
           <Divider />
-          <List>
+          <List component="nav" aria-label="section 2">
             {['All mail', 'Trash', 'Spam'].map((text, index) => (
               <ListItem button key={text}>
                 <ListItemIcon>
