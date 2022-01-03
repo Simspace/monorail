@@ -30,11 +30,19 @@ const Template = story<DesktopDateTimePickerProps<Date>>(args => {
 
   return (
     <DesktopDateTimePicker
+      label="Date/Time"
+      aria-label="Date/Time"
       value={value}
       onChange={newValue => {
         setValue(newValue)
       }}
-      renderInput={params => <TextField {...params} />}
+      renderInput={params => (
+        <TextField
+          id="dtpicker input"
+          inputProps={{ 'aria-label': 'dtpicker' }}
+          {...params}
+        />
+      )}
       {...args}
     />
   )

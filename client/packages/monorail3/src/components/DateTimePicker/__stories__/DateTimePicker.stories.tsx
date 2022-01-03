@@ -69,21 +69,31 @@ export const Responsiveness = story<DateTimePickerProps<Date>>(
       <LocalizationProvider dateAdapter={AdapterDateFns}>
         <Stack spacing={3}>
           <MobileDateTimePicker
+            aria-label="mobile picker"
             value={value}
             onChange={newValue => {
               setValue(newValue)
             }}
-            renderInput={params => <TextField {...params} />}
+            renderInput={params => (
+              <TextField aria-label="mobile" id="mobile" {...params} />
+            )}
           />
           <DesktopDateTimePicker
+            label="Desktop picker" // for some reason, the aria-label isn't being put on the input, so this is needed to pass a11y
+            aria-label="desktop picker"
             value={value}
             onChange={newValue => {
               setValue(newValue)
             }}
-            renderInput={params => <TextField {...params} />}
+            renderInput={params => (
+              <TextField aria-label="desktop" id="desktop" {...params} />
+            )}
           />
           <DateTimePicker
-            renderInput={params => <TextField {...params} />}
+            aria-label="some other picker"
+            renderInput={params => (
+              <TextField aria-label="wut" id="wut" {...params} />
+            )}
             value={value}
             onChange={newValue => {
               setValue(newValue)
