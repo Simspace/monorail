@@ -257,7 +257,7 @@ export const Custom = story<ImageListProps>(
           <ImageListItem key={item.img} cols={cols} rows={rows}>
             <img
               {...customSrcset(item.img, 250, 200, rows, cols)}
-              alt={item.title}
+              alt={`${item.title} image`}
               loading="lazy"
             />
             <ImageListItemBar
