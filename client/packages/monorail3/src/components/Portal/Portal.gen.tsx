@@ -8,7 +8,9 @@ import {
 /**
  * Props for Portal
  */
-export type PortalProps = MUIPortalProps & { ref?: React.ForwardedRef<unknown> }
+export type PortalProps = MUIPortalProps & {
+  ref?: React.ForwardedRef<unknown>
+}
 
 /**
  * Portal
