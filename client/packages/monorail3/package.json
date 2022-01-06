@@ -98,7 +98,7 @@
     "test:visual": "start-server-and-test 'yarn storybook' 6006 'yarn creevey --ui'",
     "test:visual:ci": "start-server-and-test 'yarn storybook:ci' 6006 'yarn creevey'",
     "build-storybook": "build-storybook -s assets",
-    "eslint": "NODE_OPTIONS=\"--max-old-space-size=8192\" eslint \"src/**/*.{js,ts,tsx}\" --cache",
+    "eslint": "NODE_OPTIONS=\"--max-old-space-size=8192\" eslint \"src/**/*.{js,ts,tsx}\"",
     "ci": "npm-run-all --parallel eslint test"
   },
   "lint-staged": {
