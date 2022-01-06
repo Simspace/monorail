@@ -26,11 +26,13 @@ declare module '@mui/styles/defaultTheme' {
  *
  * Delete after https://github.com/jsdom/jsdom/issues/3064 is fixed
  */
+/* eslint-disable */
 const TemporaryJSDomFix = createGlobalStyle`
   svg title {
     display: inline;
   }
-`
+  `
+/* eslint-enable */
 
 /**
  * Renders content for tests inside theme providers
