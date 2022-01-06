@@ -21,8 +21,8 @@ const Template = story<RadioProps>(
   args => {
     return (
       <>
-        <Radio {...args} />
-        <Typography>
+        <Radio inputProps={{ 'aria-labelledby': 'radio-demo' }} {...args} />
+        <Typography id="radio-demo">
           See <code>RadioGroup</code> for more examples
         </Typography>
       </>

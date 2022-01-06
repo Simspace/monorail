@@ -34,5 +34,10 @@ const Template = story<CardMediaProps>(args => <CardMedia {...args} />, {
   },
 })
 /** Default story for CardMedia (edit/remove by hand if needed) */
-export const Default = story(Template)
-// TODO: add more stories below
+export const Default = story(Template, {
+  parameters: {
+    a11y: {
+      config: { rules: { 'aria-roles': { enabled: false } } }, // MUI has invalid aria role on CardMedia (image instead of img)
+    },
+  },
+})

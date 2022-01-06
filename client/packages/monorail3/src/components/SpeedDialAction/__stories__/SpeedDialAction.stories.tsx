@@ -18,7 +18,15 @@ export default {
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
 const Template = story<SpeedDialActionProps>(
-  args => <SpeedDialAction {...args} />,
+  args => (
+    <menu role="menu">
+      <SpeedDialAction
+        aria-label="speeddialaction"
+        tooltipTitle="I am a tooltip"
+        {...args}
+      />
+    </menu>
+  ),
   { args: {} },
 )
 /** Default story for SpeedDialAction (edit/remove by hand if needed) */

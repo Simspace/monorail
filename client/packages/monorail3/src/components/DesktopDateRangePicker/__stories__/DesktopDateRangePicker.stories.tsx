@@ -34,9 +34,9 @@ const Template = story<DesktopDateRangePickerProps<Date>>(args => {
         }}
         renderInput={(startProps, endProps) => (
           <React.Fragment>
-            <TextField {...startProps} />
+            <TextField id="start" label="Start" {...startProps} />
             <Box sx={{ mx: 2 }}> to </Box>
-            <TextField {...endProps} />
+            <TextField id="end" label="End" {...endProps} />
           </React.Fragment>
         )}
       />

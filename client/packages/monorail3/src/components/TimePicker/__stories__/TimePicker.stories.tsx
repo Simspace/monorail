@@ -104,8 +104,7 @@ export const Responsiveness = story<TimePickerProps<Date>>(
             onChange={newValue => {
               setValue(newValue)
             }}
-            renderInput={params => <TextField {...params} />}
-            {...args}
+            renderInput={params => <TextField id="For mobile" {...params} />}
           />
           <DesktopTimePicker
             label="For desktop"
@@ -113,14 +112,15 @@ export const Responsiveness = story<TimePickerProps<Date>>(
             onChange={newValue => {
               setValue(newValue)
             }}
-            renderInput={params => <TextField {...params} />}
-            {...args}
+            renderInput={params => <TextField id="For desktop" {...params} />}
           />
           <TimePicker
+            label="Default Picker"
             value={value}
             onChange={setValue}
-            renderInput={params => <TextField {...params} />}
-            {...args}
+            renderInput={params => (
+              <TextField id="Default Picker" {...params} />
+            )}
           />
         </Stack>
       </LocalizationProvider>
@@ -328,6 +328,7 @@ export const Landscape = story<TimePickerProps<Date>>(
   },
   {
     parameters: {
+      a11y: { disable: true }, // default MUI component has a violation Invalid ARIA attribute value: aria-activedescendant="mui-2526361"
       docs: {
         description: {
           story: `Render the control in landscape mode`,

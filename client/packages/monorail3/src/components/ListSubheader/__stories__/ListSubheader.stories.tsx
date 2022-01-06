@@ -18,7 +18,11 @@ export default {
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
 const Template = story<ListSubheaderProps>(
-  args => <ListSubheader {...args} />,
+  args => (
+    <ul>
+      <ListSubheader {...args} />
+    </ul>
+  ),
   { args: { children: 'List Subheader' } },
 )
 /** Default story for ListSubheader (edit/remove by hand if needed) */

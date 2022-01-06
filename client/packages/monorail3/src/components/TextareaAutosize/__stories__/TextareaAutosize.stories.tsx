@@ -7,7 +7,7 @@ import { defaultStoryMeta } from './TextareaAutosize.stories.gen'
 export default { ...defaultStoryMeta, title: 'Inputs/TextareaAutosize' }
 
 const Template = story<TextareaAutosizeProps>(
-  args => <TextareaAutosize {...args} />,
+  args => <TextareaAutosize aria-label="Demo Textarea" {...args} />,
   { args: {} },
 )
 

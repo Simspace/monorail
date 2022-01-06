@@ -109,6 +109,7 @@ export const Responsiveness = story<DatePickerProps<Date>>(
     return (
       <Stack spacing={3}>
         <MobileDatePicker
+          aria-label="for mobile"
           label="For mobile"
           value={value}
           onChange={newValue => {
@@ -117,13 +118,14 @@ export const Responsiveness = story<DatePickerProps<Date>>(
           renderInput={params => <TextField {...params} />}
         />
         <DesktopDatePicker
+          aria-label="for desktop"
           label="For desktop"
           value={value}
           minDate={new Date('2017-01-01')}
           onChange={newValue => {
             setValue(newValue)
           }}
-          renderInput={params => <TextField {...params} />}
+          renderInput={params => <TextField id="desktop" {...params} />}
         />
         <DatePicker
           disableFuture
@@ -389,7 +391,7 @@ export const CustomInputComponent = story<DatePickerProps<Date>>(
           }}
           renderInput={({ inputRef, inputProps, InputProps }) => (
             <Box sx={{ display: 'flex', alignItems: 'center' }}>
-              <input ref={inputRef} {...inputProps} />
+              <input aria-label="input" ref={inputRef} {...inputProps} />
               {InputProps?.endAdornment}
             </Box>
           )}
@@ -487,6 +489,7 @@ export const CustomizedDayRendering = story<DatePickerProps<Date>>(
   },
   {
     parameters: {
+      a11y: { disable: true }, // MUI component is violating a11y rule; revisit when datepickers are out of lab
       docs: {
         description: {
           story: `You can customize the rendering of the input with the renderInput prop. Make sure to spread ref and inputProps correctly to the custom input component.`,

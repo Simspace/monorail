@@ -19,8 +19,9 @@ const Template = story<MobileDatePickerProps<Date>>(args => {
 
   return (
     <MobileDatePicker
+      aria-label="mobile picker"
       value={value}
-      renderInput={params => <TextField {...params} />}
+      renderInput={params => <TextField id="mobile-input" {...params} />}
       onChange={newValue => {
         setValue(newValue)
         action('onChange')

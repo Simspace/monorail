@@ -684,10 +684,10 @@ export const BottomBar = story<AppBarProps>(
               <AddIcon />
             </StyledFab>
             <Box sx={{ flexGrow: 1 }} />
-            <IconButton color="inherit" size="large">
+            <IconButton color="inherit" size="large" aria-label="search">
               <SearchIcon />
             </IconButton>
-            <IconButton color="inherit" size="large">
+            <IconButton color="inherit" size="large" aria-label="more">
               <MoreIcon />
             </IconButton>
           </Toolbar>
@@ -702,6 +702,7 @@ export const BottomBar = story<AppBarProps>(
       sx: { top: 'auto', bottom: 0 },
     },
     parameters: {
+      a11y: { disable: true }, // the list subheaders seem to violate axe a11y
       docs: {
         inlineStories: false,
       },

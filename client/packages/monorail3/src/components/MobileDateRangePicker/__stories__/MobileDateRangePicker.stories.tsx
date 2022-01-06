@@ -27,6 +27,7 @@ const Template = story<MobileDateRangePickerProps<Date>>(args => {
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <MobileDateRangePicker
+        aria-label="Mobile Date Range Picker"
         startText="Mobile start"
         value={value}
         onChange={newValue => {
@@ -34,9 +35,9 @@ const Template = story<MobileDateRangePickerProps<Date>>(args => {
         }}
         renderInput={(startProps, endProps) => (
           <React.Fragment>
-            <TextField {...startProps} />
+            <TextField id="start" label="Start" {...startProps} />
             <Box sx={{ mx: 2 }}> to </Box>
-            <TextField {...endProps} />
+            <TextField label="End" id="end" {...endProps} />
           </React.Fragment>
         )}
       />

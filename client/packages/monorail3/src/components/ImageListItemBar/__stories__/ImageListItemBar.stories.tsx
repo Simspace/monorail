@@ -32,7 +32,11 @@ const Template = story<ImageListItemBarProps>(
       title: 'title',
       subtitle: 'subtitle',
       actionIcon: (
-        <IconButton sx={{ color: 'rgba(255, 255, 255, 0.54)' }} size="large">
+        <IconButton
+          aria-label="info"
+          sx={{ color: 'rgba(255, 255, 255, 0.54)' }}
+          size="large"
+        >
           <InfoIcon />
         </IconButton>
       ),

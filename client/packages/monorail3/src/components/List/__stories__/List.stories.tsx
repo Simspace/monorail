@@ -794,7 +794,7 @@ export const GutterlessListItem = story<ListProps>(
             key={value}
             disableGutters
             secondaryAction={
-              <IconButton size="large">
+              <IconButton aria-label="Comment" size="large">
                 <CommentIcon />
               </IconButton>
             }

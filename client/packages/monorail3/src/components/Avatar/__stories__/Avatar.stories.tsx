@@ -204,7 +204,7 @@ export const Fallbacks = story<AvatarProps>(
           alt="Remy Sharp"
           src="/broken-image.jpg"
         />
-        <Avatar src="/broken-image.jpg" />
+        <Avatar alt="oh no" src="/broken-image.jpg" />
       </Stack>
     )
   },
