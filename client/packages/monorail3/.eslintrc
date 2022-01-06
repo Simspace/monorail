@@ -1,8 +1,8 @@
 {
   "extends": [
-    "../eslint-config/.react.eslintrc",
-    "../eslint-config/.eslintrc",
-    "../eslint-config/.typescript.eslintrc" //TODO: Add this back when we add type-check to ci
+    "@simspace/eslint-config/.eslintrc",
+    "@simspace/eslint-config/.react.eslintrc",
+    "@simspace/eslint-config/.typescript.eslintrc" //TODO: Add this back when we add type-check to ci
   ],
   "root": true,
   "env": {
