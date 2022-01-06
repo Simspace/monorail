@@ -2,11 +2,11 @@
 import React from 'react'
 
 import { story } from '../../../__tests__/helpers/storybook'
+import { Table } from '../../Table/Table'
+import { TableBody } from '../../TableBody/TableBody'
 import { TableCell } from '../../TableCell/TableCell'
 import { TableRow, TableRowProps } from '../TableRow'
 import { defaultStoryMeta } from './TableRow.stories.gen'
-import { Table } from '../../Table/Table'
-import { TableBody } from '../../TableBody/TableBody'
 
 export default { ...defaultStoryMeta, title: 'Data Display/Table/TableRow' }
 

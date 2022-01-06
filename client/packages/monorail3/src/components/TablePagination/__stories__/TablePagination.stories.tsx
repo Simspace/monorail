@@ -4,9 +4,9 @@ import React from 'react'
 import { story } from '../../../__tests__/helpers/storybook'
 import { Table } from '../../Table/Table'
 import { TableFooter } from '../../TableFooter/TableFooter'
+import { TableRow } from '../../TableRow/TableRow'
 import { TablePagination, TablePaginationProps } from '../TablePagination'
 import { defaultStoryMeta } from './TablePagination.stories.gen'
-import { TableRow } from '../../TableRow/TableRow'
 
 export default {
   ...defaultStoryMeta,
