@@ -29,6 +29,7 @@
     "@mui/styled-engine-sc": "5.0.0",
     "@mui/x-data-grid": "5.0.0-beta.2",
     "@mui/x-data-grid-generator": "5.0.0-beta.2",
+    "@simspace/eslint-config": "1.0.0",
     "@simspace/configs": "1.0.0",
     "@storybook/addon-a11y": "^6.3.7",
     "@storybook/addon-actions": "^6.3.7",
