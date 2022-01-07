@@ -1,7 +1,6 @@
 // Edit this file to add new stories
 import React from 'react'
 import { DateRange } from '@mui/lab/DateRangePicker/RangeTypes'
-import { action } from '@storybook/addon-actions'
 
 import { story } from '../../../__tests__/helpers/storybook'
 import { AdapterDateFns, LocalizationProvider } from '../../../helpers/dateTime'
@@ -40,6 +39,7 @@ const Template = story<MobileDateRangePickerProps<Date>>(args => {
             <TextField label="End" id="end" {...endProps} />
           </React.Fragment>
         )}
+        {...args}
       />
     </LocalizationProvider>
   )

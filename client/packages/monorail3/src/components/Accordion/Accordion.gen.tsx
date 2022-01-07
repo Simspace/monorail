@@ -9,7 +9,7 @@ import {
  * Props for Accordion
  */
 export type AccordionProps = MUIAccordionProps & {
-  ref?: React.ForwardedRef<unknown>
+  ref?: React.ForwardedRef<HTMLDivElement>
 }
 
 /**

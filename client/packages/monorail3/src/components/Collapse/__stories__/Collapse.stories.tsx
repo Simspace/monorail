@@ -1,6 +1,5 @@
 // Edit this file to add new stories
 import React from 'react'
-import { formControlLabelClasses, Typography } from '@mui/material'
 
 import { story } from '../../../__tests__/helpers/storybook'
 import { Box } from '../../Box/Box'
@@ -52,8 +51,10 @@ const Template = story<CollapseProps>(
           }}
         >
           <div>
-            <Collapse in={checked}>{box}</Collapse>
-            <Collapse in={checked} collapsedSize={40}>
+            <Collapse in={checked} {...args}>
+              {box}
+            </Collapse>
+            <Collapse in={checked} collapsedSize={40} {...args}>
               {box}
             </Collapse>
           </div>
@@ -68,6 +69,7 @@ const Template = story<CollapseProps>(
                 orientation="horizontal"
                 in={checked}
                 collapsedSize={40}
+                {...args}
               >
                 {box}
               </Collapse>

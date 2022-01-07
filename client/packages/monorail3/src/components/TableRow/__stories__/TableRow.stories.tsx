@@ -13,7 +13,7 @@ export default { ...defaultStoryMeta, title: 'Data Display/Table/TableRow' }
 const Template = story<TableRowProps>(args => (
   <Table>
     <TableBody>
-      <TableRow>
+      <TableRow {...args}>
         <TableCell>Cell 1</TableCell>
         <TableCell>Cell 2</TableCell>
         <TableCell>Cell 3</TableCell>

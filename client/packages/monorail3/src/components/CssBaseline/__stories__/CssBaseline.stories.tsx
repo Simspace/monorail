@@ -2,7 +2,6 @@
 import React from 'react'
 
 import { story } from '../../../__tests__/helpers/storybook'
-import { ScopedCssBaseline } from '../../ScopedCssBaseline/ScopedCssBaseline'
 import { CssBaseline, CssBaselineProps } from '../CssBaseline'
 import { defaultStoryMeta } from './CssBaseline.stories.gen'
 

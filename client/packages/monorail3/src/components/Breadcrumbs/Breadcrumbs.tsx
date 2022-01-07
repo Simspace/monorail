@@ -1,6 +1,4 @@
 // Placeholder for extra functionality - add extra types/values/functions/etc. for Breadcrumbs
-import React from 'react'
-
 import {
   Breadcrumbs as _Breadcrumbs,
   BreadcrumbsProps as _BreadcrumbsProps,

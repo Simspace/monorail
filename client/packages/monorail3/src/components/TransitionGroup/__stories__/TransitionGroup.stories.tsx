@@ -63,7 +63,7 @@ export default { ...defaultStoryMeta }
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
 const Template = story<TransitionGroupProps>(
-  args => {
+  () => {
     const [fruitsInBasket, setFruitsInBasket] = React.useState(
       FRUITS.slice(0, 3),
     )

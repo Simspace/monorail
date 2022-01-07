@@ -121,6 +121,7 @@ export const Responsiveness = story<TimePickerProps<Date>>(
             renderInput={params => (
               <TextField id="Default Picker" {...params} />
             )}
+            {...args}
           />
         </Stack>
       </LocalizationProvider>

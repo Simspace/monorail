@@ -2,12 +2,11 @@
 import React from 'react'
 import AdapterDateFns from '@mui/lab/AdapterDateFns'
 import LocalizationProvider from '@mui/lab/LocalizationProvider'
-import { action } from '@storybook/addon-actions'
 
 import { story } from '../../../__tests__/helpers/storybook'
 import { TextField } from '../../TextField/TextField'
 import { TimePickerProps } from '../../TimePicker/TimePicker'
-import { StaticTimePicker, StaticTimePickerProps } from '../StaticTimePicker'
+import { StaticTimePicker } from '../StaticTimePicker'
 import { defaultStoryMeta } from './StaticTimePicker.stories.gen'
 
 /**
@@ -32,6 +31,7 @@ const Template = story<TimePickerProps<Date>>(args => {
           setValue(newValue)
         }}
         renderInput={params => <TextField {...params} />}
+        {...args}
       />
     </LocalizationProvider>
   )

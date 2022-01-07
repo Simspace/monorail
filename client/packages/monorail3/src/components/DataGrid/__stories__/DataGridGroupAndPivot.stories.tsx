@@ -2,12 +2,12 @@
 import React from 'react'
 
 import { story } from '../../../__tests__/helpers/storybook'
-import { DataGrid, DataGridProps } from '../DataGrid'
+import { DataGridProps } from '../DataGrid'
 import { defaultStoryMeta } from './DataGrid.stories.gen'
 
 export default { ...defaultStoryMeta, title: 'Data Grid/Group & Pivot' }
 
-const Template = story<DataGridProps>(args => <></>)
+const Template = story<DataGridProps>(() => <></>)
 
 export const Default = story(Template)
 
@@ -27,7 +27,7 @@ Use grouping, pivoting and more to analyse the data in depth.`,
 /**
  * Tree data
  */
-export const TreeData = story<DataGridProps>(args => <></>)
+export const TreeData = story<DataGridProps>(() => <></>)
 TreeData.storyName = 'Tree data'
 TreeData.parameters = {
   docs: {
@@ -47,7 +47,7 @@ Tree data allows to visualize self-referential hierarchical (tree-like structure
 /**
  * Master detail
  */
-export const MasterDetail = story<DataGridProps>(args => <></>)
+export const MasterDetail = story<DataGridProps>(() => <></>)
 MasterDetail.parameters = {
   docs: {
     description: {
@@ -66,7 +66,7 @@ The feature allows to display row details on an expandable pane.`,
 /**
  * Grouping
  */
-export const Grouping = story<DataGridProps>(args => <></>)
+export const Grouping = story<DataGridProps>(() => <></>)
 Grouping.parameters = {
   docs: {
     description: {
@@ -85,7 +85,7 @@ Group rows together that share a column value, this creates a visible header for
 /**
  * Aggregation
  */
-export const Aggregation = story<DataGridProps>(args => <></>)
+export const Aggregation = story<DataGridProps>(() => <></>)
 Aggregation.parameters = {
   docs: {
     description: {
@@ -104,7 +104,7 @@ When grouping, you will be able to apply an aggregation function to populate the
 /**
  * Pivoting
  */
-export const Pivoting = story<DataGridProps>(args => <></>)
+export const Pivoting = story<DataGridProps>(() => <></>)
 Pivoting.parameters = {
   docs: {
     description: {

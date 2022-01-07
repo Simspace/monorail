@@ -133,7 +133,11 @@ const getMonorailComponentRefType = (module: ModuleInfo): string =>
 
 // List of all the modules to generate, including extra metadata to help the code gen
 const modules: Array<ModuleInfo> = [
-  { name: 'Accordion', storybookFolder1: 'Surfaces' },
+  {
+    name: 'Accordion',
+    storybookFolder1: 'Surfaces',
+    monorailComponentRefType: 'HTMLButtonElement',
+  },
   {
     name: 'AccordionActions',
     storybookFolder1: 'Surfaces',
@@ -933,6 +937,7 @@ const modules: Array<ModuleInfo> = [
     storybookFolder1: 'Data Display',
     storybookFolder2: 'Timeline',
     muiImportFolder: 'lab',
+    monorailComponentRefType: 'HTMLButtonElement',
   },
   {
     name: 'TimelineSeparator',

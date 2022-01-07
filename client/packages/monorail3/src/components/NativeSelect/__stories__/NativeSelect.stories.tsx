@@ -32,6 +32,7 @@ const Template = story<NativeSelectProps>(
               name: 'age',
               id: 'uncontrolled-native',
             }}
+            {...args}
           >
             <option value={10}>Ten</option>
             <option value={20}>Twenty</option>

@@ -1,13 +1,6 @@
 // Edit this file to add new stories
 import React from 'react'
 import { Home } from '@mui/icons-material'
-import {
-  GridCellParams,
-  visibleGridColumnsLengthSelector,
-  visibleGridColumnsSelector,
-  visibleGridRowCountSelector,
-  visibleSortedGridRowIdsSelector,
-} from '@mui/x-data-grid'
 import { useDemoData } from '@mui/x-data-grid-generator'
 
 import { story } from '../../../__tests__/helpers/storybook'
@@ -24,10 +17,10 @@ const Template = story<DataGridProps>(args => {
   // TODO(storybook): Uncomment once we have DataGridPro (paid)
   // const apiRef = useGridApiRef()
 
-  const [coordinates, setCoordinates] = React.useState({
-    rowIndex: 0,
-    colIndex: 0,
-  })
+  // const [coordinates, setCoordinates] = React.useState({
+  //   rowIndex: 0,
+  //   colIndex: 0,
+  // })
 
   const { data } = useDemoData({
     dataSet: 'Commodity',
@@ -43,72 +36,77 @@ const Template = story<DataGridProps>(args => {
   //   apiRef.current.setCellFocus(id, column.field)
   // }, [apiRef, coordinates])
 
-  const handleClick = (position: string) => () => {
-    // TODO(storybook): Uncomment once we have DataGridPro (paid)
-    // const maxRowIndex = visibleGridRowCountSelector(apiRef.current.state) - 1
-    // const maxColIndex =
-    //   visibleGridColumnsLengthSelector(apiRef.current.state) - 1
-    // setCoordinates(coords => {
-    //   switch (position) {
-    //     case 'top':
-    //       return { ...coords, rowIndex: Math.max(0, coords.rowIndex - 1) }
-    //     case 'bottom':
-    //       return {
-    //         ...coords,
-    //         rowIndex: Math.min(maxRowIndex, coords.rowIndex + 1),
-    //       }
-    //     case 'left':
-    //       return { ...coords, colIndex: Math.max(0, coords.colIndex - 1) }
-    //     case 'right':
-    //       return {
-    //         ...coords,
-    //         colIndex: Math.min(maxColIndex, coords.colIndex + 1),
-    //       }
-    //     default:
-    //       return { ...coords, rowIndex: 0, colIndex: 0 }
-    //   }
-    // })
-  }
+  // TODO(storybook): Uncomment once we have DataGridPro (paid)
+  // const handleClick = (position: string) => () => {
+  // const maxRowIndex = visibleGridRowCountSelector(apiRef.current.state) - 1
+  // const maxColIndex =
+  //   visibleGridColumnsLengthSelector(apiRef.current.state) - 1
+  // setCoordinates(coords => {
+  //   switch (position) {
+  //     case 'top':
+  //       return { ...coords, rowIndex: Math.max(0, coords.rowIndex - 1) }
+  //     case 'bottom':
+  //       return {
+  //         ...coords,
+  //         rowIndex: Math.min(maxRowIndex, coords.rowIndex + 1),
+  //       }
+  //     case 'left':
+  //       return { ...coords, colIndex: Math.max(0, coords.colIndex - 1) }
+  //     case 'right':
+  //       return {
+  //         ...coords,
+  //         colIndex: Math.min(maxColIndex, coords.colIndex + 1),
+  //       }
+  //     default:
+  //       return { ...coords, rowIndex: 0, colIndex: 0 }
+  //   }
+  // })
+  // }
 
-  const handleCellClick = (params: GridCellParams) => {
-    // TODO(storybook): Uncomment once we have DataGridPro (paid)
-    // const rowIndex = visibleSortedGridRowIdsSelector(
-    //   apiRef.current.state,
-    // ).findIndex(id => id === params.id)
-    // const colIndex = visibleGridColumnsSelector(apiRef.current.state).findIndex(
-    //   column => column.field === params.field,
-    // )
-    // setCoordinates({ rowIndex, colIndex })
-  }
+  // TODO(storybook): Uncomment once we have DataGridPro (paid)
+  // const handleCellClick = (params: GridCellParams) => {
+  // const rowIndex = visibleSortedGridRowIdsSelector(
+  //   apiRef.current.state,
+  // ).findIndex(id => id === params.id)
+  // const colIndex = visibleGridColumnsSelector(apiRef.current.state).findIndex(
+  //   column => column.field === params.field,
+  // )
+  // setCoordinates({ rowIndex, colIndex })
+  // }
 
   return (
     <div style={{ width: '100%' }}>
       <Box sx={{ width: 300, margin: '0 auto 16px' }}>
         <Grid container justifyContent="center">
           <Grid item>
-            <Button onClick={handleClick('top')}>top</Button>
+            {/* <Button onClick={handleClick('top')}>top</Button> */}
+            <Button onClick={() => {}}>top</Button>
           </Grid>
         </Grid>
         <Grid container textAlign="center">
           <Grid item xs={4}>
-            <Button onClick={handleClick('left')}>left</Button>
+            {/* <Button onClick={handleClick('left')}>left</Button> */}
+            <Button onClick={() => {}}>left</Button>
           </Grid>
           <Grid item xs={4}>
             <IconButton
               color="primary"
               aria-label="home"
-              onClick={handleClick('home')}
+              // onClick={handleClick('home')}
+              onClick={() => {}}
             >
               <Home />
             </IconButton>
           </Grid>
           <Grid item xs={4}>
-            <Button onClick={handleClick('right')}>right</Button>
+            {/* <Button onClick={handleClick('right')}>right</Button> */}
+            <Button onClick={() => {}}>right</Button>
           </Grid>
         </Grid>
         <Grid container justifyContent="center">
           <Grid item>
-            <Button onClick={handleClick('bottom')}>bottom</Button>
+            {/* <Button onClick={handleClick('bottom')}>bottom</Button> */}
+            <Button onClick={() => {}}>bottom</Button>
           </Grid>
         </Grid>
       </Box>
@@ -117,9 +115,11 @@ const Template = story<DataGridProps>(args => {
           // TODO(storybook): Uncomment once we have DataGridPro (paid)
           // <DataGridPro
           // apiRef={apiRef}
-          onCellClick={handleCellClick}
+          // onCellClick={handleCellClick}
+          onCellClick={() => {}}
           hideFooter
           {...data}
+          {...args}
         />
       </Box>
     </div>
@@ -146,7 +146,7 @@ The following demo explores the usage of this API:`,
   },
 }
 
-export const DataGridScrollingApiRef = story<DataGridProps>(args => <></>)
+export const DataGridScrollingApiRef = story<DataGridProps>(() => <></>)
 DataGridScrollingApiRef.storyName = 'apiRef'
 DataGridScrollingApiRef.parameters = {
   docs: {

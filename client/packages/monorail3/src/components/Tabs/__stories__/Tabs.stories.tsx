@@ -267,10 +267,6 @@ export const FixedTabs = story(
       setValue(newValue)
     }
 
-    const handleChangeIndex = (index: number) => {
-      setValue(index)
-    }
-
     return (
       <Box sx={{ bgcolor: 'background.paper', width: 500 }}>
         <AppBar position="static">

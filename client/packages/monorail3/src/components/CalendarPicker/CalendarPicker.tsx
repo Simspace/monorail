@@ -1,6 +1,4 @@
 // Placeholder for extra functionality - add extra types/values/functions/etc. for CalendarPicker
-import React from 'react'
-
 import {
   CalendarPicker as _CalendarPicker,
   CalendarPickerProps as _CalendarPickerProps,

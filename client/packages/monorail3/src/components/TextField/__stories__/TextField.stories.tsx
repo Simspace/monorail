@@ -1,5 +1,4 @@
 import React from 'react'
-import AccountCircle from '@mui/icons-material/AccountCircle'
 import Visibility from '@mui/icons-material/Visibility'
 import VisibilityOff from '@mui/icons-material/VisibilityOff'
 import { alpha, styled } from '@mui/material/styles'
@@ -14,7 +13,6 @@ import { Input } from '../../Input/Input'
 import { InputAdornment } from '../../InputAdornment/InputAdornment'
 import { InputBase } from '../../InputBase/InputBase'
 import { InputLabel } from '../../InputLabel/InputLabel'
-import { MenuItem } from '../../MenuItem/MenuItem'
 import {
   OutlinedInput,
   OutlinedInputProps,

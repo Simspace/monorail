@@ -1,6 +1,4 @@
 // Placeholder for extra functionality - add extra types/values/functions/etc. for TableCell
-import React from 'react'
-
 import {
   TableCell as _TableCell,
   TableCellProps as _TableCellProps,

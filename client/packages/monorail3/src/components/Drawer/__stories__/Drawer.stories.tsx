@@ -9,7 +9,6 @@ import { CSSObject, styled, Theme } from '@mui/material'
 
 import { story } from '../../../__tests__/helpers/storybook'
 import { useTheme } from '../../../theme/useTheme'
-import { Alert } from '../../Alert/Alert'
 import { AppBar, AppBarProps } from '../../AppBar/AppBar'
 import { Box } from '../../Box/Box'
 import { Button } from '../../Button/Button'

@@ -4,7 +4,6 @@ import { WarningAmberTwoTone } from '@mui/icons-material'
 
 import { story } from '../../../__tests__/helpers/storybook'
 import { Box } from '../../Box/Box'
-import { Button } from '../../Button/Button'
 import { Step } from '../../Step/Step'
 import { StepLabel } from '../../StepLabel/StepLabel'
 import { Stepper } from '../../Stepper/Stepper'

@@ -1,6 +1,5 @@
 // Edit this file to add new stories
 import React from 'react'
-import { action } from '@storybook/addon-actions'
 import { endOfWeek, isSameDay, isWithinInterval, startOfWeek } from 'date-fns'
 
 import { story } from '../../../__tests__/helpers/storybook'

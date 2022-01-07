@@ -1,6 +1,4 @@
 // Placeholder for extra functionality - add extra types/values/functions/etc. for Skeleton
-import React from 'react'
-
 import {
   Skeleton as _Skeleton,
   SkeletonProps as _SkeletonProps,

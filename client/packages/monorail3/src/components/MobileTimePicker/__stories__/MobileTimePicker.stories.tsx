@@ -21,9 +21,10 @@ const Template = story<MobileTimePickerProps>(args => {
       label="For mobile"
       value={value}
       onChange={newValue => {
-        setValue(newValue)
+        setValue(newValue as Date)
       }}
       renderInput={params => <TextField {...params} />}
+      {...args}
     />
   )
 })

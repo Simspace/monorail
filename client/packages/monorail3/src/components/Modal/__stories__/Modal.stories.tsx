@@ -23,7 +23,7 @@ export default { ...defaultStoryMeta, title: 'Utils/Modal' }
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
 const Template = story<ModalProps>(
-  args => {
+  () => {
     const [open, setOpen] = React.useState(false)
     const handleOpen = () => setOpen(true)
     const handleClose = () => setOpen(false)

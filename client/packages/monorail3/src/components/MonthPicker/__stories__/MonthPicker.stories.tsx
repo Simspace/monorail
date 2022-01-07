@@ -1,6 +1,5 @@
 // Edit this file to add new stories
 import React from 'react'
-import { action } from '@storybook/addon-actions'
 
 import { story } from '../../../__tests__/helpers/storybook'
 import { MonthPicker, MonthPickerProps } from '../MonthPicker'
