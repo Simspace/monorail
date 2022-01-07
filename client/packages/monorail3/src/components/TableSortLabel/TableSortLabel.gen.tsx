@@ -12,7 +12,9 @@ import {
 export type TableSortLabelProps<
   D extends React.ElementType = TableSortLabelTypeMap['defaultComponent'],
   P = {},
-> = MUITableSortLabelProps<D, P> & { ref?: React.ForwardedRef<HTMLSpanElement> }
+> = MUITableSortLabelProps<D, P> & {
+  ref?: React.ForwardedRef<HTMLSpanElement>
+}
 
 /**
  * TableSortLabel
