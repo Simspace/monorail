@@ -10,7 +10,13 @@
     "es6": true,
     "node": true
   },
-  "ignorePatterns": ["dist/", "ts-dist/", "**/node_modules/", "**/*.d.ts"],
+  "ignorePatterns": [
+    "dist/",
+    "ts-dist/",
+    "**/node_modules/",
+    "**/*.d.ts",
+    "*.gen.*"
+  ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "project": ["./tsconfig.json"],
