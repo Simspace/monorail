@@ -18,5 +18,3 @@ export type DataGridProps = MUIDataGridProps & {
 export const DataGrid = React.forwardRef((props, ref) => (
   <MUIDataGrid ref={ref} {...props} />
 )) as (props: DataGridProps) => JSX.Element
-
-export * from '@mui/x-data-grid'
