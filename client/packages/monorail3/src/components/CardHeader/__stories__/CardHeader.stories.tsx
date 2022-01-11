@@ -37,7 +37,7 @@ export const WithAction = () => (
     title="Title"
     subheader="Subheader"
     action={
-      <IconButton size="large">
+      <IconButton size="large" aria-label="Close">
         <CloseIcon />
       </IconButton>
     }
