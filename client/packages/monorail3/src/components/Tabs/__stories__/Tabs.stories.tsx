@@ -1,15 +1,16 @@
 // Edit this file to add new stories
 import React from 'react'
-import { Tabs, TabsProps } from '../Tabs'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './Tabs.stories.gen'
-import { AppBar, Box, styled, Tab, Typography } from '@mui/material'
-import { TabPanel as LabTabPanel } from '@mui/lab'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import PersonPinIcon from '@mui/icons-material/PersonPin'
 import PhoneIcon from '@mui/icons-material/Phone'
+import { TabPanel as LabTabPanel } from '@mui/lab'
 import TabContext from '@mui/lab/TabContext'
 import TabList from '@mui/lab/TabList'
+import { AppBar, Box, styled, Tab, Typography } from '@mui/material'
+
+import { story } from '../../../__tests__/helpers/storybook'
+import { Tabs, TabsProps } from '../Tabs'
+import { defaultStoryMeta } from './Tabs.stories.gen'
 
 /**
  * Metadata for Tabs stories - update/extend as needed
@@ -264,10 +265,6 @@ export const FixedTabs = story(
 
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
       setValue(newValue)
-    }
-
-    const handleChangeIndex = (index: number) => {
-      setValue(index)
     }
 
     return (

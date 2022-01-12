@@ -1,12 +1,13 @@
 // Edit this file to add new stories
 import React from 'react'
-import { FormControl, FormControlProps } from '../FormControl'
+
 import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './FormControl.stories.gen'
-import { FormLabel } from '../../FormLabel/FormLabel'
-import { FormGroup } from '../../FormGroup/FormGroup'
-import { FormControlLabel } from '../../FormControlLabel/FormControlLabel'
 import { Checkbox } from '../../Checkbox/Checkbox'
+import { FormControlLabel } from '../../FormControlLabel/FormControlLabel'
+import { FormGroup } from '../../FormGroup/FormGroup'
+import { FormLabel } from '../../FormLabel/FormLabel'
+import { FormControl, FormControlProps } from '../FormControl'
+import { defaultStoryMeta } from './FormControl.stories.gen'
 /**
  * Metadata for FormControl stories - update/extend as needed
  */

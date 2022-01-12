@@ -1,11 +1,12 @@
 // Edit this file to add new stories
 import React from 'react'
-import { ClickAwayListener, ClickAwayListenerProps } from '../ClickAwayListener'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './ClickAwayListener.stories.gen'
-import { Box } from '../../Box/Box'
 import { SxProps } from '@mui/system'
+
+import { story } from '../../../__tests__/helpers/storybook'
+import { Box } from '../../Box/Box'
 import { Portal } from '../../Portal/Portal'
+import { ClickAwayListener, ClickAwayListenerProps } from '../ClickAwayListener'
+import { defaultStoryMeta } from './ClickAwayListener.stories.gen'
 
 /**
  * Metadata for ClickAwayListener stories - update/extend as needed

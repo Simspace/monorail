@@ -1,5 +1,4 @@
 // Placeholder for extra functionality - add extra types/values/functions/etc. for Autocomplete
-import React from 'react'
 import {
   Autocomplete as _Autocomplete,
   AutocompleteProps as _AutocompleteProps,

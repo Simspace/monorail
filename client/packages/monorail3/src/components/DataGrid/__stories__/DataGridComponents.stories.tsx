@@ -1,11 +1,22 @@
 // Edit this file to add new stories
 import React from 'react'
-import { DataGrid, DataGridProps } from '../DataGrid'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './DataGrid.stories.gen'
+import {
+  ExpandLess,
+  ExpandMore,
+  FiberManualRecord,
+  StarOutline,
+} from '@mui/icons-material'
 import { createTheme, Theme } from '@mui/material/styles'
 import { createStyles, makeStyles } from '@mui/styles'
+import { useDemoData } from '@mui/x-data-grid-generator'
+
+import { story } from '../../../__tests__/helpers/storybook'
+import { Button } from '../../Button/Button'
+import { LinearProgress } from '../../LinearProgress/LinearProgress'
+import { Pagination } from '../../Pagination/Pagination'
 import {
+  DataGrid,
+  DataGridProps,
   GridColumnMenu,
   GridColumnMenuContainer,
   GridColumnMenuProps,
@@ -19,17 +30,8 @@ import {
   GridToolbarFilterButton,
   SortGridMenuItems,
   useGridSlotComponentProps,
-} from '@mui/x-data-grid'
-import {
-  ExpandLess,
-  ExpandMore,
-  FiberManualRecord,
-  StarOutline,
-} from '@mui/icons-material'
-import { Button } from '../../Button/Button'
-import { useDemoData } from '@mui/x-data-grid-generator'
-import { Pagination } from '../../Pagination/Pagination'
-import { LinearProgress } from '../../LinearProgress/LinearProgress'
+} from '../DataGrid'
+import { defaultStoryMeta } from './DataGrid.stories.gen'
 
 export default {
   ...defaultStoryMeta,
@@ -60,15 +62,14 @@ const CustomColumnMenuComponent = (
   props: GridColumnMenuProps & { color: string },
 ) => {
   const classes = useStyles()
-  const { hideMenu, currentColumn, color, ...other } = props
+  const { hideMenu, currentColumn, ...other } = props
 
   if (currentColumn.field === 'name') {
     return (
       <GridColumnMenuContainer
         hideMenu={hideMenu}
         currentColumn={currentColumn}
-        // className={classes[color]}
-        className={classes['primary']}
+        className={classes.primary}
         {...other}
       >
         <SortGridMenuItems onClick={hideMenu} column={currentColumn!} />
@@ -81,8 +82,7 @@ const CustomColumnMenuComponent = (
       <GridColumnMenuContainer
         hideMenu={hideMenu}
         currentColumn={currentColumn}
-        // className={classes[color]}
-        className={classes['primary']}
+        className={classes.primary}
         {...other}
       >
         <div
@@ -104,8 +104,7 @@ const CustomColumnMenuComponent = (
     <GridColumnMenu
       hideMenu={hideMenu}
       currentColumn={currentColumn}
-      // className={classes[color]}
-      className={classes['primary']}
+      className={classes.primary}
       {...other}
     />
   )
@@ -125,7 +124,7 @@ const Template = story<DataGridProps>(args => {
       <Button
         color={color}
         variant="outlined"
-        onClick={(event: any) => {
+        onClick={(event: React.MouseEvent<HTMLElement>) => {
           event.stopPropagation()
           setColor(current => (current === 'primary' ? 'secondary' : 'primary'))
           // TODO(storybook): Uncomment once we have DataGridPro (paid)
@@ -686,6 +685,7 @@ export const CustomSortIcons = story<DataGridProps>(args => {
   return (
     <div style={{ height: 250, width: '100%' }}>
       <DataGrid
+        {...args}
         columns={columns}
         rows={rows}
         sortModel={[

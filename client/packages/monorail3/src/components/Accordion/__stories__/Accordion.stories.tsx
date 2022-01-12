@@ -1,20 +1,21 @@
 // Edit this file to add new stories
 import React from 'react'
-import { Accordion, AccordionProps } from '../Accordion'
+import ArrowForwardIosSharp from '@mui/icons-material/ArrowForwardIosSharp'
+import ExpandMore from '@mui/icons-material/ExpandMore'
+import { styled } from '@mui/material/styles'
+
+import { story } from '../../../__tests__/helpers/storybook'
+import { AccordionActions } from '../../AccordionActions/AccordionActions'
 import { AccordionDetails } from '../../AccordionDetails/AccordionDetails'
 import {
   AccordionSummary,
   AccordionSummaryProps,
 } from '../../AccordionSummary/AccordionSummary'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './Accordion.stories.gen'
-import { Typography } from '../../Typography/Typography'
-import ExpandMore from '@mui/icons-material/ExpandMore'
-import ArrowForwardIosSharp from '@mui/icons-material/ArrowForwardIosSharp'
-import { styled } from '@mui/material/styles'
-import { Divider } from '../../Divider/Divider'
-import { AccordionActions } from '../../AccordionActions/AccordionActions'
 import { Button } from '../../Button/Button'
+import { Divider } from '../../Divider/Divider'
+import { Typography } from '../../Typography/Typography'
+import { Accordion, AccordionProps } from '../Accordion'
+import { defaultStoryMeta } from './Accordion.stories.gen'
 
 /**
  * Metadata for Accordion stories - update/extend as needed

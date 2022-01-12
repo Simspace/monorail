@@ -1,12 +1,13 @@
 // Edit this file to add new stories
 import React from 'react'
-import { Grow, GrowProps } from '../Grow'
+
 import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './Grow.stories.gen'
 import { Box } from '../../Box/Box'
 import { FormControlLabel } from '../../FormControlLabel/FormControlLabel'
-import { Switch } from '../../Switch/Switch'
 import { Paper } from '../../Paper/Paper'
+import { Switch } from '../../Switch/Switch'
+import { Grow, GrowProps } from '../Grow'
+import { defaultStoryMeta } from './Grow.stories.gen'
 /**
  * Metadata for Grow stories - update/extend as needed
  */
