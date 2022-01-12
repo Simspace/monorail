@@ -17,4 +17,4 @@ export type TimelineProps = MUITimelineProps & {
  */
 export const Timeline = React.forwardRef((props, ref) => (
   <MUITimeline ref={ref} {...props} />
-)) as (props: TimelineProps) => JSX.Element
+)) //as (props: TimelineProps) => JSX.Element

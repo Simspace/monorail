@@ -87,6 +87,7 @@
     "postbuild": "yarn clean-barrel",
     "test": "jest",
     "clean": "rm -rf dist/ node_modules/ && yarn clean-barrel",
+    "type-check": "tsc --project tsconfig.json",
     "prettier:check": "prettier './src/**/*{.js,.ts,.tsx}' --list-different",
     "prettier:write": "prettier './src/**/*{.js,.ts,.tsx}' --write",
     "generate-barrel": "barrelsby --directory ./src --exclude '(__tests__)|(__stories__)|(.gen.tsx)' --delete && yarn prettier",

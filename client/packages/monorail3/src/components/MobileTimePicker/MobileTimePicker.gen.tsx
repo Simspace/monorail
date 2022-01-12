@@ -9,9 +9,7 @@ import {
  * Props for MobileTimePicker
  */
 export type MobileTimePickerProps<TDate = unknown> =
-  MUIMobileTimePickerProps<TDate> & {
-    ref?: React.ForwardedRef<HTMLDivElement>
-  }
+  MUIMobileTimePickerProps<TDate> & { ref?: React.ForwardedRef<HTMLDivElement> }
 
 /**
  * MobileTimePicker
