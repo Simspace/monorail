@@ -1,5 +1,4 @@
 // Placeholder for extra functionality - add extra types/values/functions/etc. for ButtonBase
-import React from 'react'
 import {
   ButtonBase as _ButtonBase,
   ButtonBaseProps as _ButtonBaseProps,

@@ -1,15 +1,16 @@
 // Edit this file to add new stories
 import React from 'react'
-import { BottomNavigation, BottomNavigationProps } from '../BottomNavigation'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './BottomNavigation.stories.gen'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import FolderIcon from '@mui/icons-material/Folder'
 import LocationOnIcon from '@mui/icons-material/LocationOn'
 import RestoreIcon from '@mui/icons-material/Restore'
-import { Box } from '../../Box/Box'
-import { BottomNavigationAction } from '../../BottomNavigationAction/BottomNavigationAction'
+
+import { story } from '../../../__tests__/helpers/storybook'
 import { Alert } from '../../Alert/Alert'
+import { BottomNavigationAction } from '../../BottomNavigationAction/BottomNavigationAction'
+import { Box } from '../../Box/Box'
+import { BottomNavigation, BottomNavigationProps } from '../BottomNavigation'
+import { defaultStoryMeta } from './BottomNavigation.stories.gen'
 
 /**
  * Metadata for BottomNavigation stories - update/extend as needed

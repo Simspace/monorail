@@ -1,10 +1,11 @@
 // Edit this file to add new stories
 import React from 'react'
-import { FormGroup, FormGroupProps } from '../FormGroup'
+
 import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './FormGroup.stories.gen'
-import { FormControlLabel } from '../../FormControlLabel/FormControlLabel'
 import { Checkbox } from '../../Checkbox/Checkbox'
+import { FormControlLabel } from '../../FormControlLabel/FormControlLabel'
+import { FormGroup, FormGroupProps } from '../FormGroup'
+import { defaultStoryMeta } from './FormGroup.stories.gen'
 /**
  * Metadata for FormGroup stories - update/extend as needed
  */

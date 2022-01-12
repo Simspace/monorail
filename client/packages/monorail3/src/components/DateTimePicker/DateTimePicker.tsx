@@ -1,5 +1,4 @@
 // Placeholder for extra functionality - add extra types/values/functions/etc. for DateTimePicker
-import React from 'react'
 import {
   DateTimePicker as _DateTimePicker,
   DateTimePickerProps as _DateTimePickerProps,

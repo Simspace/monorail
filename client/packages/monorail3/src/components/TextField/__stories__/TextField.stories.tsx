@@ -1,26 +1,24 @@
 import React from 'react'
-import AccountCircle from '@mui/icons-material/AccountCircle'
 import Visibility from '@mui/icons-material/Visibility'
 import VisibilityOff from '@mui/icons-material/VisibilityOff'
 import { alpha, styled } from '@mui/material/styles'
 
-import { TextField, TextFieldProps } from '../TextField'
-import { Box } from '../../Box/Box'
 import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './TextField.stories.gen'
-import { MenuItem } from '../../MenuItem/MenuItem'
+import { Box } from '../../Box/Box'
+import { FilledInput } from '../../FilledInput/FilledInput'
 import { FormControl } from '../../FormControl/FormControl'
-import { InputLabel } from '../../InputLabel/InputLabel'
+import { FormHelperText } from '../../FormHelperText/FormHelperText'
+import { IconButton } from '../../IconButton/IconButton'
 import { Input } from '../../Input/Input'
 import { InputAdornment } from '../../InputAdornment/InputAdornment'
+import { InputBase } from '../../InputBase/InputBase'
+import { InputLabel } from '../../InputLabel/InputLabel'
 import {
   OutlinedInput,
   OutlinedInputProps,
 } from '../../OutlinedInput/OutlinedInput'
-import { FormHelperText } from '../../FormHelperText/FormHelperText'
-import { IconButton } from '../../IconButton/IconButton'
-import { FilledInput } from '../../FilledInput/FilledInput'
-import { InputBase } from '../../InputBase/InputBase'
+import { TextField, TextFieldProps } from '../TextField'
+import { defaultStoryMeta } from './TextField.stories.gen'
 
 export default { ...defaultStoryMeta, title: 'Inputs/TextField' }
 

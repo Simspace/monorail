@@ -1,7 +1,8 @@
 // Edit this file to add new stories
 import React from 'react'
-import { AccordionDetails, AccordionDetailsProps } from '../AccordionDetails'
+
 import { story } from '../../../__tests__/helpers/storybook'
+import { AccordionDetails, AccordionDetailsProps } from '../AccordionDetails'
 import { defaultStoryMeta } from './AccordionDetails.stories.gen'
 
 /**

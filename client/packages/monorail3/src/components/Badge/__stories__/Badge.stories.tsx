@@ -1,20 +1,20 @@
 // Edit this file to add new stories
 import React from 'react'
-import { Badge, BadgeProps } from '../Badge'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './Badge.stories.gen'
-import { styled } from '@mui/material/styles'
+import AddIcon from '@mui/icons-material/Add'
 import MailIcon from '@mui/icons-material/Mail'
+import RemoveIcon from '@mui/icons-material/Remove'
+import { styled } from '@mui/material/styles'
+
+import { story } from '../../../__tests__/helpers/storybook'
+import { Box } from '../../Box/Box'
+import { Button } from '../../Button/Button'
+import { ButtonGroup } from '../../ButtonGroup/ButtonGroup'
+import { FormControlLabel } from '../../FormControlLabel/FormControlLabel'
 import { IconButton } from '../../IconButton/IconButton'
 import { Stack } from '../../Stack/Stack'
-import { Box } from '../../Box/Box'
-import { ButtonGroup } from '../../ButtonGroup/ButtonGroup'
-import { Button } from '../../Button/Button'
-import { FormControlLabel } from '../../FormControlLabel/FormControlLabel'
 import { Switch } from '../../Switch/Switch'
-import AddIcon from '@mui/icons-material/Add'
-import RemoveIcon from '@mui/icons-material/Remove'
-import BadgeUnstyled from '@mui/core/BadgeUnstyled'
+import { Badge, BadgeProps } from '../Badge'
+import { defaultStoryMeta } from './Badge.stories.gen'
 
 /**
  * Metadata for Badge stories - update/extend as needed
@@ -292,95 +292,96 @@ export const BadgeAlignment = story(Template, {
   },
 })
 
-const StyledBadgeUnstyled = styled(BadgeUnstyled)`
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  color: rgba(0, 0, 0, 0.85);
-  font-size: 14px;
-  font-variant: tabular-nums;
-  list-style: none;
-  font-feature-settings: 'tnum';
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-    'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-    'Segoe UI Symbol';
-  position: relative;
-  display: inline-block;
-  line-height: 1;
+// const StyledBadgeUnstyled = styled(BadgeUnstyled)`
+//   box-sizing: border-box;
+//   margin: 0;
+//   padding: 0;
+//   color: rgba(0, 0, 0, 0.85);
+//   font-size: 14px;
+//   font-variant: tabular-nums;
+//   list-style: none;
+//   font-feature-settings: 'tnum';
+//   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+//     'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+//     'Segoe UI Symbol';
+//   position: relative;
+//   display: inline-block;
+//   line-height: 1;
 
-  & .MuiBadge-badge {
-    z-index: auto;
-    min-width: 20px;
-    height: 20px;
-    padding: 0 6px;
-    color: #fff;
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 20px;
-    white-space: nowrap;
-    text-align: center;
-    background: #ff4d4f;
-    border-radius: 10px;
-    box-shadow: 0 0 0 1px #fff;
-  }
+//   & .MuiBadge-badge {
+//     z-index: auto;
+//     min-width: 20px;
+//     height: 20px;
+//     padding: 0 6px;
+//     color: #fff;
+//     font-weight: 400;
+//     font-size: 12px;
+//     line-height: 20px;
+//     white-space: nowrap;
+//     text-align: center;
+//     background: #ff4d4f;
+//     border-radius: 10px;
+//     box-shadow: 0 0 0 1px #fff;
+//   }
 
-  & .MuiBadge-dot {
-    padding: 0;
-    z-index: auto;
-    min-width: 6px;
-    width: 6px;
-    height: 6px;
-    background: #ff4d4f;
-    border-radius: 100%;
-    box-shadow: 0 0 0 1px #fff;
-  }
+//   & .MuiBadge-dot {
+//     padding: 0;
+//     z-index: auto;
+//     min-width: 6px;
+//     width: 6px;
+//     height: 6px;
+//     background: #ff4d4f;
+//     border-radius: 100%;
+//     box-shadow: 0 0 0 1px #fff;
+//   }
 
-  & .MuiBadge-anchorOriginTopRightCircular {
-    position: absolute;
-    top: 0;
-    right: 0;
-    transform: translate(50%, -50%);
-    transform-origin: 100% 0;
-  }
-`
+//   & .MuiBadge-anchorOriginTopRightCircular {
+//     position: absolute;
+//     top: 0;
+//     right: 0;
+//     transform: translate(50%, -50%);
+//     transform-origin: 100% 0;
+//   }
+// `
 
-function BadgeContent() {
-  return (
-    <Box
-      component="span"
-      sx={{
-        width: 42,
-        height: 42,
-        borderRadius: '2px',
-        background: '#eee',
-        display: 'inline-block',
-        verticalAlign: 'middle',
-      }}
-    />
-  )
-}
+// function BadgeContent() {
+//   return (
+//     <Box
+//       component="span"
+//       sx={{
+//         width: 42,
+//         height: 42,
+//         borderRadius: '2px',
+//         background: '#eee',
+//         display: 'inline-block',
+//         verticalAlign: 'middle',
+//       }}
+//     />
+//   )
+// }
 
-export const Unstyled = story(
-  () => (
-    <Box sx={{ '& > :not(style) + :not(style)': { ml: 4 } }}>
-      <StyledBadgeUnstyled badgeContent={5} overlap="circular">
-        <BadgeContent />
-      </StyledBadgeUnstyled>
-      <StyledBadgeUnstyled badgeContent={5} variant="dot" overlap="circular">
-        <BadgeContent />
-      </StyledBadgeUnstyled>
-    </Box>
-  ),
-  {
-    parameters: {
-      docs: {
-        description: {
-          story: `The badge also comes with an unstyled version. It's ideal for doing heavy customizations and minimizing bundle size.`,
-        },
-      },
-    },
-  },
-)
+// This story has not been updated for MUI v5 (GS 10/25/2021)
+// export const Unstyled = story(
+//   () => (
+//     <Box sx={{ '& > :not(style) + :not(style)': { ml: 4 } }}>
+//       <StyledBadgeUnstyled badgeContent={5} overlap="circular">
+//         <BadgeContent />
+//       </StyledBadgeUnstyled>
+//       <StyledBadgeUnstyled badgeContent={5} variant="dot" overlap="circular">
+//         <BadgeContent />
+//       </StyledBadgeUnstyled>
+//     </Box>
+//   ),
+//   {
+//     parameters: {
+//       docs: {
+//         description: {
+//           story: `The badge also comes with an unstyled version. It's ideal for doing heavy customizations and minimizing bundle size.`,
+//         },
+//       },
+//     },
+//   },
+// )
 
 function notificationsLabel(count: number) {
   if (count === 0) {

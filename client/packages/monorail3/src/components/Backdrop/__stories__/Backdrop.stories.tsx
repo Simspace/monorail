@@ -1,10 +1,11 @@
 // Edit this file to add new stories
 import React from 'react'
-import { Backdrop, BackdropProps } from '../Backdrop'
+
 import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './Backdrop.stories.gen'
 import { Button } from '../../Button/Button'
 import { CircularProgress } from '../../CircularProgress/CircularProgress'
+import { Backdrop, BackdropProps } from '../Backdrop'
+import { defaultStoryMeta } from './Backdrop.stories.gen'
 
 /**
  * Metadata for Backdrop stories - update/extend as needed

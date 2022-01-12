@@ -1,11 +1,12 @@
 // Edit this file to add new stories
 import React from 'react'
-import { TableBody, TableBodyProps } from '../TableBody'
+
 import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './TableBody.stories.gen'
+import { Table } from '../../Table/Table'
 import { TableCell } from '../../TableCell/TableCell'
 import { TableRow } from '../../TableRow/TableRow'
-import { Table } from '../../Table/Table'
+import { TableBody, TableBodyProps } from '../TableBody'
+import { defaultStoryMeta } from './TableBody.stories.gen'
 
 export default { ...defaultStoryMeta, title: 'Data Display/Table/TableBody' }
 

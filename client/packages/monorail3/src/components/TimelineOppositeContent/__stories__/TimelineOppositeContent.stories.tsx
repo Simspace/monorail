@@ -1,10 +1,11 @@
 // Edit this file to add new stories
 import React from 'react'
+
+import { story } from '../../../__tests__/helpers/storybook'
 import {
   TimelineOppositeContent,
   TimelineOppositeContentProps,
 } from '../TimelineOppositeContent'
-import { story } from '../../../__tests__/helpers/storybook'
 import { defaultStoryMeta } from './TimelineOppositeContent.stories.gen'
 /**
  * Metadata for TimelineOppositeContent stories - update/extend as needed
