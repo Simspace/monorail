@@ -15,6 +15,10 @@ export type TimelineProps = MUITimelineProps & {
 /**
  * Timeline
  */
-export const Timeline = React.forwardRef((props, ref) => (
-  <MUITimeline ref={ref} {...props} />
-)) //as (props: TimelineProps) => JSX.Element
+export const Timeline = React.forwardRef(
+  // TODO: This was hand edited to make it pass type-check - GS 01/12/22
+  // The ref type was being inferred as 'unknown' instead of HTMLUListElement
+  (props: TimelineProps, ref: React.Ref<HTMLUListElement> | undefined) => (
+    <MUITimeline ref={ref} {...props} />
+  ),
+) as (props: TimelineProps) => JSX.Element
