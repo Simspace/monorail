@@ -1,5 +1,4 @@
 // Placeholder for extra functionality - add extra types/values/functions/etc. for StaticTimePicker
-import React from 'react'
 import {
   StaticTimePicker as _StaticTimePicker,
   StaticTimePickerProps as _StaticTimePickerProps,

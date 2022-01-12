@@ -1,7 +1,8 @@
 // Edit this file to add new stories
 import React from 'react'
-import { SpeedDialIcon, SpeedDialIconProps } from '../SpeedDialIcon'
+
 import { story } from '../../../__tests__/helpers/storybook'
+import { SpeedDialIcon, SpeedDialIconProps } from '../SpeedDialIcon'
 import { defaultStoryMeta } from './SpeedDialIcon.stories.gen'
 /**
  * Metadata for SpeedDialIcon stories - update/extend as needed

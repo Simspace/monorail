@@ -1,7 +1,8 @@
 // Edit this file to add new stories
 import React from 'react'
-import { Tab, TabProps } from '../Tab'
+
 import { story } from '../../../__tests__/helpers/storybook'
+import { Tab, TabProps } from '../Tab'
 import { defaultStoryMeta } from './Tab.stories.gen'
 /**
  * Metadata for Tab stories - update/extend as needed

@@ -1,8 +1,9 @@
 // Edit this file to add new stories
 import React from 'react'
-import { MenuList, MenuListProps } from '../MenuList'
-import { MenuItem } from '../../MenuItem/MenuItem'
+
 import { story } from '../../../__tests__/helpers/storybook'
+import { MenuItem } from '../../MenuItem/MenuItem'
+import { MenuList, MenuListProps } from '../MenuList'
 import { defaultStoryMeta } from './MenuList.stories.gen'
 /**
  * Metadata for MenuList stories - update/extend as needed

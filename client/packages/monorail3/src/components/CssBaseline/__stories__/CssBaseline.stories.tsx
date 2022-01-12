@@ -1,9 +1,9 @@
 // Edit this file to add new stories
 import React from 'react'
-import { CssBaseline, CssBaselineProps } from '../CssBaseline'
+
 import { story } from '../../../__tests__/helpers/storybook'
+import { CssBaseline, CssBaselineProps } from '../CssBaseline'
 import { defaultStoryMeta } from './CssBaseline.stories.gen'
-import { ScopedCssBaseline } from '../../ScopedCssBaseline/ScopedCssBaseline'
 
 /**
  * Metadata for CssBaseline stories - update/extend as needed

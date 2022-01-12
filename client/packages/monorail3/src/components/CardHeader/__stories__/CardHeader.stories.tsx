@@ -1,11 +1,12 @@
 // Edit this file to add new stories
 import React from 'react'
-import { CardHeader, CardHeaderProps } from '../CardHeader'
+import CloseIcon from '@mui/icons-material/Close'
+
 import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './CardHeader.stories.gen'
 import { Avatar } from '../../Avatar/Avatar'
 import { IconButton } from '../../IconButton/IconButton'
-import CloseIcon from '@mui/icons-material/Close'
+import { CardHeader, CardHeaderProps } from '../CardHeader'
+import { defaultStoryMeta } from './CardHeader.stories.gen'
 /**
  * Metadata for CardHeader stories - update/extend as needed
  * This is intended to be exported as story-level metadata from the main .stories.tsx file, like:

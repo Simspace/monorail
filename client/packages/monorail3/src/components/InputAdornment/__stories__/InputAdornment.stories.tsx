@@ -1,19 +1,20 @@
 // Edit this file to add new stories
 import React from 'react'
-import { InputAdornment, InputAdornmentProps } from '../InputAdornment'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './InputAdornment.stories.gen'
-import { Box } from '../../Box/Box'
-import { FormControl } from '../../FormControl/FormControl'
-import { FormHelperText } from '../../FormHelperText/FormHelperText'
-import { TextField } from '../../TextField/TextField'
-import { OutlinedInput } from '../../OutlinedInput/OutlinedInput'
-import { InputLabel } from '../../InputLabel/InputLabel'
-import { IconButton } from '../../IconButton/IconButton'
 import Visibility from '@mui/icons-material/Visibility'
 import VisibilityOff from '@mui/icons-material/VisibilityOff'
+
+import { story } from '../../../__tests__/helpers/storybook'
+import { Box } from '../../Box/Box'
 import { FilledInput } from '../../FilledInput/FilledInput'
+import { FormControl } from '../../FormControl/FormControl'
+import { FormHelperText } from '../../FormHelperText/FormHelperText'
+import { IconButton } from '../../IconButton/IconButton'
 import { Input } from '../../Input/Input'
+import { InputLabel } from '../../InputLabel/InputLabel'
+import { OutlinedInput } from '../../OutlinedInput/OutlinedInput'
+import { TextField } from '../../TextField/TextField'
+import { InputAdornment, InputAdornmentProps } from '../InputAdornment'
+import { defaultStoryMeta } from './InputAdornment.stories.gen'
 
 /**
  * Metadata for InputAdornment stories - update/extend as needed

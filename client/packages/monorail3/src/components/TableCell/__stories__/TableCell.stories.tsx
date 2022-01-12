@@ -1,8 +1,9 @@
 // Edit this file to add new stories
 import React from 'react'
+
 import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './TableCell.stories.gen'
 import { TableCell, TableCellProps } from '../../TableCell/TableCell'
+import { defaultStoryMeta } from './TableCell.stories.gen'
 
 export default { ...defaultStoryMeta, title: 'Data Display/Table/TableCell' }
 

@@ -1,5 +1,4 @@
 // Placeholder for extra functionality - add extra types/values/functions/etc. for ScopedCssBaseline
-import React from 'react'
 import {
   ScopedCssBaseline as _ScopedCssBaseline,
   ScopedCssBaselineProps as _ScopedCssBaselineProps,

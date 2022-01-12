@@ -1,21 +1,22 @@
 // Edit this file to add new stories
 import React from 'react'
-import { Rating, RatingProps } from '../Rating'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './Rating.stories.gen'
-import { Box } from '../../Box/Box'
-import { Typography } from '../../Typography/Typography'
-import { Stack } from '../../Stack/Stack'
-import StarIcon from '@mui/icons-material/Star'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
-import { styled } from '@mui/material/styles'
-import SentimentVeryDissatisfiedIcon from '@mui/icons-material/SentimentVeryDissatisfied'
 import SentimentDissatisfiedIcon from '@mui/icons-material/SentimentDissatisfied'
 import SentimentSatisfiedIcon from '@mui/icons-material/SentimentSatisfied'
 import SentimentSatisfiedAltIcon from '@mui/icons-material/SentimentSatisfiedAlt'
+import SentimentVeryDissatisfiedIcon from '@mui/icons-material/SentimentVeryDissatisfied'
 import SentimentVerySatisfiedIcon from '@mui/icons-material/SentimentVerySatisfied'
+import StarIcon from '@mui/icons-material/Star'
 import { IconContainerProps } from '@mui/material/Rating'
+import { styled } from '@mui/material/styles'
+
+import { story } from '../../../__tests__/helpers/storybook'
+import { Box } from '../../Box/Box'
+import { Stack } from '../../Stack/Stack'
+import { Typography } from '../../Typography/Typography'
+import { Rating, RatingProps } from '../Rating'
+import { defaultStoryMeta } from './Rating.stories.gen'
 
 /**
  * Metadata for Rating stories - update/extend as needed

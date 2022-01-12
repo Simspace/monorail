@@ -1,10 +1,11 @@
 // Edit this file to add new stories
 import React from 'react'
-import { FilledInput, FilledInputProps } from '../FilledInput'
+
 import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './FilledInput.stories.gen'
 import { FormControl } from '../../FormControl/FormControl'
 import { InputLabel } from '../../InputLabel/InputLabel'
+import { FilledInput, FilledInputProps } from '../FilledInput'
+import { defaultStoryMeta } from './FilledInput.stories.gen'
 
 /**
  * Metadata for FilledInput stories - update/extend as needed
