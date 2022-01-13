@@ -32,6 +32,17 @@ const Template = story<ClickAwayListenerProps>(
       setOpen(false)
     }
 
+    const styles = {
+      position: 'absolute',
+      top: 28,
+      right: 0,
+      left: 0,
+      zIndex: 1,
+      border: '1px solid',
+      p: 1,
+      bgcolor: 'background.paper',
+    } as const
+
     return (
       <ClickAwayListener onClickAway={handleClickAway} {...args}>
         <Box sx={{ position: 'relative' }}>
@@ -39,18 +50,7 @@ const Template = story<ClickAwayListenerProps>(
             Open menu dropdown
           </button>
           {open ? (
-            <Box
-              sx={{
-                position: 'absolute',
-                top: 28,
-                right: 0,
-                left: 0,
-                zIndex: 1,
-                border: '1px solid',
-                p: 1,
-                bgcolor: 'background.paper',
-              }}
-            >
+            <Box sx={styles}>
               Click me, I will stay visible until you click outside.
             </Box>
           ) : null}
@@ -76,6 +76,17 @@ export const WithPortal = story<ClickAwayListenerProps>(
       setOpen(false)
     }
 
+    const styles = {
+      position: 'fixed',
+      width: 200,
+      top: '50%',
+      left: '50%',
+      transform: 'translate(-50%, -50%)',
+      border: '1px solid',
+      p: 1,
+      bgcolor: 'background.paper',
+    } as const
+
     return (
       <ClickAwayListener onClickAway={handleClickAway}>
         <div>
@@ -84,18 +95,7 @@ export const WithPortal = story<ClickAwayListenerProps>(
           </button>
           {open ? (
             <Portal>
-              <Box
-                sx={{
-                  position: 'fixed',
-                  width: 200,
-                  top: '50%',
-                  left: '50%',
-                  transform: 'translate(-50%, -50%)',
-                  border: '1px solid',
-                  p: 1,
-                  bgcolor: 'background.paper',
-                }}
-              >
+              <Box sx={styles}>
                 Click me, I will stay visible until you click outside. This
                 content is in a Portal.
               </Box>
@@ -128,6 +128,17 @@ export const LeadingEdge = story<ClickAwayListenerProps>(
       setOpen(false)
     }
 
+    const styles = {
+      position: 'absolute',
+      top: 28,
+      right: 0,
+      left: 0,
+      zIndex: 1,
+      border: '1px solid',
+      p: 1,
+      bgcolor: 'background.paper',
+    } as const
+
     return (
       <ClickAwayListener
         mouseEvent="onMouseDown"
@@ -139,18 +150,7 @@ export const LeadingEdge = story<ClickAwayListenerProps>(
             Open menu dropdown
           </button>
           {open ? (
-            <Box
-              sx={{
-                position: 'absolute',
-                top: 28,
-                right: 0,
-                left: 0,
-                zIndex: 1,
-                border: '1px solid',
-                p: 1,
-                bgcolor: 'background.paper',
-              }}
-            >
+            <Box sx={styles}>
               Click me, I will stay visible until you click outside.
             </Box>
           ) : null}
