@@ -1,16 +1,17 @@
 // Edit this file to add new stories
 import React from 'react'
-import { CircularProgress, CircularProgressProps } from '../CircularProgress'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './CircularProgress.stories.gen'
-import { Stack } from '../../Stack/Stack'
-import { Box } from '../../Box/Box'
-import { Fab } from '../../Fab/Fab'
-import { Button } from '../../Button/Button'
-import green from '@mui/material/colors/green'
 import CheckIcon from '@mui/icons-material/Check'
 import SaveIcon from '@mui/icons-material/Save'
+import green from '@mui/material/colors/green'
+
+import { story } from '../../../__tests__/helpers/storybook'
+import { Box } from '../../Box/Box'
+import { Button } from '../../Button/Button'
+import { Fab } from '../../Fab/Fab'
+import { Stack } from '../../Stack/Stack'
 import { Typography } from '../../Typography/Typography'
+import { CircularProgress, CircularProgressProps } from '../CircularProgress'
+import { defaultStoryMeta } from './CircularProgress.stories.gen'
 
 /**
  * Metadata for CircularProgress stories - update/extend as needed

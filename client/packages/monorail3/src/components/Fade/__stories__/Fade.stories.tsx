@@ -1,12 +1,13 @@
 // Edit this file to add new stories
 import React from 'react'
-import { Fade, FadeProps } from '../Fade'
+
 import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './Fade.stories.gen'
 import { Box } from '../../Box/Box'
 import { FormControlLabel } from '../../FormControlLabel/FormControlLabel'
-import { Switch } from '../../Switch/Switch'
 import { Paper } from '../../Paper/Paper'
+import { Switch } from '../../Switch/Switch'
+import { Fade, FadeProps } from '../Fade'
+import { defaultStoryMeta } from './Fade.stories.gen'
 /**
  * Metadata for Fade stories - update/extend as needed
  */

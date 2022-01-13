@@ -1,19 +1,20 @@
 // Edit this file to add new stories
 import React from 'react'
-import { ToggleButtonGroup, ToggleButtonGroupProps } from '../ToggleButtonGroup'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './ToggleButtonGroup.stories.gen'
-import { ToggleButton } from '../../ToggleButton/ToggleButton'
-import FormatAlignLeftIcon from '@mui/icons-material/FormatAlignLeft'
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
 import FormatAlignCenterIcon from '@mui/icons-material/FormatAlignCenter'
-import FormatAlignRightIcon from '@mui/icons-material/FormatAlignRight'
 import FormatAlignJustifyIcon from '@mui/icons-material/FormatAlignJustify'
+import FormatAlignLeftIcon from '@mui/icons-material/FormatAlignLeft'
+import FormatAlignRightIcon from '@mui/icons-material/FormatAlignRight'
 import FormatBoldIcon from '@mui/icons-material/FormatBold'
+import FormatColorFillIcon from '@mui/icons-material/FormatColorFill'
 import FormatItalicIcon from '@mui/icons-material/FormatItalic'
 import FormatUnderlinedIcon from '@mui/icons-material/FormatUnderlined'
-import FormatColorFillIcon from '@mui/icons-material/FormatColorFill'
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
+
+import { story } from '../../../__tests__/helpers/storybook'
 import { Stack } from '../../Stack/Stack'
+import { ToggleButton } from '../../ToggleButton/ToggleButton'
+import { ToggleButtonGroup, ToggleButtonGroupProps } from '../ToggleButtonGroup'
+import { defaultStoryMeta } from './ToggleButtonGroup.stories.gen'
 
 /**
  * Metadata for ToggleButtonGroup stories - update/extend as needed
@@ -70,7 +71,7 @@ export const MultipleSelection = story(
 
     const handleFormat = (
       event: React.MouseEvent<HTMLElement>,
-      newFormats: string[],
+      newFormats: Array<string>,
     ) => {
       setFormats(newFormats)
     }

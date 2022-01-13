@@ -1,11 +1,12 @@
 // Edit this file to add new stories
 import React from 'react'
-import { Stack, StackProps } from '../Stack'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './Stack.stories.gen'
 import { styled } from '@mui/material/styles'
-import { Paper } from '../../Paper/Paper'
+
+import { story } from '../../../__tests__/helpers/storybook'
 import { Divider } from '../../Divider/Divider'
+import { Paper } from '../../Paper/Paper'
+import { Stack, StackProps } from '../Stack'
+import { defaultStoryMeta } from './Stack.stories.gen'
 
 /**
  * Metadata for Stack stories - update/extend as needed

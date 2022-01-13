@@ -1,12 +1,13 @@
 // Edit this file to add new stories
 import React from 'react'
-import { Zoom, ZoomProps } from '../Zoom'
+
 import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './Zoom.stories.gen'
-import { Paper } from '../../Paper/Paper'
 import { Box } from '../../Box/Box'
 import { FormControlLabel } from '../../FormControlLabel/FormControlLabel'
+import { Paper } from '../../Paper/Paper'
 import { Switch } from '../../Switch/Switch'
+import { Zoom, ZoomProps } from '../Zoom'
+import { defaultStoryMeta } from './Zoom.stories.gen'
 /**
  * Metadata for Zoom stories - update/extend as needed
  */

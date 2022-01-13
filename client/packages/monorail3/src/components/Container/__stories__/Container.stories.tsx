@@ -1,13 +1,14 @@
 // Edit this file to add new stories
 import React from 'react'
-import { Container, ContainerProps } from '../Container'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './Container.stories.gen'
-import { Box } from '../../Box/Box'
 import { grey } from '@mui/material/colors'
+
+import { story } from '../../../__tests__/helpers/storybook'
+import { Box } from '../../Box/Box'
+import { CssBaseline } from '../../CssBaseline/CssBaseline'
 import { Stack } from '../../Stack/Stack'
 import { Typography } from '../../Typography/Typography'
-import { CssBaseline } from '../../CssBaseline/CssBaseline'
+import { Container, ContainerProps } from '../Container'
+import { defaultStoryMeta } from './Container.stories.gen'
 
 /**
  * Metadata for Container stories - update/extend as needed

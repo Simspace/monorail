@@ -1,11 +1,11 @@
 import React from 'react'
-import { Step, StepProps } from '../Step'
+
 import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './Step.stories.gen'
 import { Box } from '../../Box/Box'
-import { Stepper } from '../../Stepper/Stepper'
 import { StepLabel } from '../../StepLabel/StepLabel'
-import { StepButton } from '../../StepButton/StepButton.gen'
+import { Stepper } from '../../Stepper/Stepper'
+import { Step, StepProps } from '../Step'
+import { defaultStoryMeta } from './Step.stories.gen'
 /**
  * Metadata for Step stories - update/extend as needed
  */

@@ -1,15 +1,16 @@
 // Edit this file to add new stories
 import React from 'react'
-import { ImageList, ImageListProps } from '../ImageList'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './ImageList.stories.gen'
-import { ImageListItem } from '../../ImageListItem/ImageListItem'
-import { Box } from '../../Box/Box'
-import { ListSubheader } from '../../ListSubheader/ListSubheader'
-import { ImageListItemBar } from '../../ImageListItemBar/ImageListItemBar'
-import { IconButton } from '../../IconButton/IconButton'
 import InfoIcon from '@mui/icons-material/Info'
 import StarBorderIcon from '@mui/icons-material/StarBorder'
+
+import { story } from '../../../__tests__/helpers/storybook'
+import { Box } from '../../Box/Box'
+import { IconButton } from '../../IconButton/IconButton'
+import { ImageListItem } from '../../ImageListItem/ImageListItem'
+import { ImageListItemBar } from '../../ImageListItemBar/ImageListItemBar'
+import { ListSubheader } from '../../ListSubheader/ListSubheader'
+import { ImageList, ImageListProps } from '../ImageList'
+import { defaultStoryMeta } from './ImageList.stories.gen'
 
 /**
  * Metadata for ImageList stories - update/extend as needed

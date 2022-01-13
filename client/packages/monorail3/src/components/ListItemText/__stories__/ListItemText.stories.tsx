@@ -1,7 +1,8 @@
 // Edit this file to add new stories
 import React from 'react'
-import { ListItemText, ListItemTextProps } from '../ListItemText'
+
 import { story } from '../../../__tests__/helpers/storybook'
+import { ListItemText, ListItemTextProps } from '../ListItemText'
 import { defaultStoryMeta } from './ListItemText.stories.gen'
 /**
  * Metadata for ListItemText stories - update/extend as needed

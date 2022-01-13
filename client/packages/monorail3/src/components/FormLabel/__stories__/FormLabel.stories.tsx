@@ -1,7 +1,8 @@
 // Edit this file to add new stories
 import React from 'react'
-import { FormLabel, FormLabelProps } from '../FormLabel'
+
 import { story } from '../../../__tests__/helpers/storybook'
+import { FormLabel, FormLabelProps } from '../FormLabel'
 import { defaultStoryMeta } from './FormLabel.stories.gen'
 /**
  * Metadata for FormLabel stories - update/extend as needed
