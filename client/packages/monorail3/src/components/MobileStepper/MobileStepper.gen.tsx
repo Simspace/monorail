@@ -9,7 +9,7 @@ import {
  * Props for MobileStepper
  */
 export type MobileStepperProps = MUIMobileStepperProps & {
-  ref?: React.ForwardedRef<unknown>
+  ref?: React.ForwardedRef<HTMLDivElement>
 }
 
 /**

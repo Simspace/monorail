@@ -376,7 +376,7 @@ export const SelectedListItem = story<ListProps>(
   () => {
     const [selectedIndex, setSelectedIndex] = React.useState(1)
 
-    const handleListItemClick = (index: number) => _ => {
+    const handleListItemClick = (index: number) => () => {
       setSelectedIndex(index)
     }
 

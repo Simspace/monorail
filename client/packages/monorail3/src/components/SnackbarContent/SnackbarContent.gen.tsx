@@ -9,7 +9,7 @@ import {
  * Props for SnackbarContent
  */
 export type SnackbarContentProps = MUISnackbarContentProps & {
-  ref?: React.ForwardedRef<unknown>
+  ref?: React.ForwardedRef<HTMLDivElement>
 }
 
 /**
