@@ -9,7 +9,7 @@ import {
  * Props for Drawer
  */
 export type DrawerProps = MUIDrawerProps & {
-  ref?: React.ForwardedRef<unknown>
+  ref?: React.ForwardedRef<HTMLDivElement>
 }
 
 /**

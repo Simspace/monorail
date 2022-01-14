@@ -8,7 +8,9 @@ import {
 /**
  * Props for Menu
  */
-export type MenuProps = MUIMenuProps & { ref?: React.ForwardedRef<unknown> }
+export type MenuProps = MUIMenuProps & {
+  ref?: React.ForwardedRef<HTMLDivElement>
+}
 
 /**
  * Menu

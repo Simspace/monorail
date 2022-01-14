@@ -9,7 +9,7 @@ import {
  * Props for Popper
  */
 export type PopperProps = MUIPopperProps & {
-  ref?: React.ForwardedRef<unknown>
+  ref?: React.ForwardedRef<HTMLDivElement>
 }
 
 /**

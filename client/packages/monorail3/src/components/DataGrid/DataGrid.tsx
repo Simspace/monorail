@@ -29,6 +29,7 @@ export {
   GridRowModel,
   GridRowParams,
   GridRowsProp,
+  GridSelectionModel,
   GridSortDirection,
   GridSortModel,
   GridToolbar,

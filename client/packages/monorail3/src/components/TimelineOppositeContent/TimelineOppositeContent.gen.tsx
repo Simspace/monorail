@@ -9,7 +9,7 @@ import {
  * Props for TimelineOppositeContent
  */
 export type TimelineOppositeContentProps = MUITimelineOppositeContentProps & {
-  ref?: React.ForwardedRef<unknown>
+  ref?: React.ForwardedRef<HTMLButtonElement>
 }
 
 /**
