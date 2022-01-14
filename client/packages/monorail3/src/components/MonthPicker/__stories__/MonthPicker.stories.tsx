@@ -1,9 +1,9 @@
 // Edit this file to add new stories
 import React from 'react'
-import { MonthPicker, MonthPickerProps } from '../MonthPicker'
+
 import { story } from '../../../__tests__/helpers/storybook'
+import { MonthPicker, MonthPickerProps } from '../MonthPicker'
 import { defaultStoryMeta } from './MonthPicker.stories.gen'
-import { action } from '@storybook/addon-actions'
 /**
  * Metadata for MonthPicker stories - update/extend as needed
  */

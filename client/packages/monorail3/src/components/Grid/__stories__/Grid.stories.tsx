@@ -1,13 +1,14 @@
 // Edit this file to add new stories
 import React from 'react'
-import { Grid, GridProps } from '../Grid'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './Grid.stories.gen'
 import { styled } from '@mui/material/styles'
-import { Paper } from '../../Paper/Paper'
-import { Box } from '../../Box/Box'
-import { Typography } from '../../Typography/Typography'
+
+import { story } from '../../../__tests__/helpers/storybook'
 import { Avatar } from '../../Avatar/Avatar'
+import { Box } from '../../Box/Box'
+import { Paper } from '../../Paper/Paper'
+import { Typography } from '../../Typography/Typography'
+import { Grid, GridProps } from '../Grid'
+import { defaultStoryMeta } from './Grid.stories.gen'
 
 const Item = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,

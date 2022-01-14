@@ -9,7 +9,7 @@ import {
  * Props for Popover
  */
 export type PopoverProps = MUIPopoverProps & {
-  ref?: React.ForwardedRef<unknown>
+  ref?: React.ForwardedRef<HTMLDivElement>
 }
 
 /**

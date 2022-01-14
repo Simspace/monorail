@@ -1,12 +1,13 @@
 // Edit this file to add new stories
 import React from 'react'
-import { Typography, TypographyProps } from '../Typography'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './Typography.stories.gen'
-import { Box } from '../../Box/Box'
 import { styled } from '@mui/material/styles'
+
+import { story } from '../../../__tests__/helpers/storybook'
 import { useTheme } from '../../../theme/useTheme'
+import { Box } from '../../Box/Box'
 import { Stack } from '../../Stack/Stack'
+import { Typography, TypographyProps } from '../Typography'
+import { defaultStoryMeta } from './Typography.stories.gen'
 
 /**
  * Metadata for Typography stories - update/extend as needed

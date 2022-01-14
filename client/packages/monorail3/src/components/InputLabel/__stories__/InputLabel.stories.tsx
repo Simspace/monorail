@@ -1,14 +1,15 @@
 // Edit this file to add new stories
 import React from 'react'
-import { InputLabel, InputLabelProps } from '../InputLabel'
+
 import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './InputLabel.stories.gen'
 import { Box } from '../../Box/Box'
-import { FormControl } from '../../FormControl/FormControl'
-import { Input } from '../../Input/Input'
-import { FormHelperText } from '../../FormHelperText/FormHelperText'
-import { OutlinedInput } from '../../OutlinedInput/OutlinedInput'
 import { FilledInput } from '../../FilledInput/FilledInput'
+import { FormControl } from '../../FormControl/FormControl'
+import { FormHelperText } from '../../FormHelperText/FormHelperText'
+import { Input } from '../../Input/Input'
+import { OutlinedInput } from '../../OutlinedInput/OutlinedInput'
+import { InputLabel, InputLabelProps } from '../InputLabel'
+import { defaultStoryMeta } from './InputLabel.stories.gen'
 
 /**
  * Metadata for InputLabel stories - update/extend as needed

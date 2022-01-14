@@ -1,7 +1,8 @@
 // Edit this file to add new stories
 import React from 'react'
-import { CardContent, CardContentProps } from '../CardContent'
+
 import { story } from '../../../__tests__/helpers/storybook'
+import { CardContent, CardContentProps } from '../CardContent'
 import { defaultStoryMeta } from './CardContent.stories.gen'
 /**
  * Metadata for CardContent stories - update/extend as needed

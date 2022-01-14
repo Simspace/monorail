@@ -1,10 +1,11 @@
 // Edit this file to add new stories
 import React from 'react'
+
+import { story } from '../../../__tests__/helpers/storybook'
 import {
   CalendarPickerSkeleton,
   CalendarPickerSkeletonProps,
 } from '../CalendarPickerSkeleton'
-import { story } from '../../../__tests__/helpers/storybook'
 import { defaultStoryMeta } from './CalendarPickerSkeleton.stories.gen'
 
 /**

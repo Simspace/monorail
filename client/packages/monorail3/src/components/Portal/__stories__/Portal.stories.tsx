@@ -1,9 +1,10 @@
 // Edit this file to add new stories
 import React from 'react'
-import { Portal, PortalProps } from '../Portal'
+
 import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './Portal.stories.gen'
 import { Box } from '../../Box/Box'
+import { Portal, PortalProps } from '../Portal'
+import { defaultStoryMeta } from './Portal.stories.gen'
 /**
  * Metadata for Portal stories - update/extend as needed
  */

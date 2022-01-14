@@ -1,11 +1,12 @@
 // Edit this file to add new stories
 import React from 'react'
-import { TablePagination, TablePaginationProps } from '../TablePagination'
+
 import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './TablePagination.stories.gen'
-import { TableFooter } from '../../TableFooter/TableFooter'
 import { Table } from '../../Table/Table'
+import { TableFooter } from '../../TableFooter/TableFooter'
 import { TableRow } from '../../TableRow/TableRow'
+import { TablePagination, TablePaginationProps } from '../TablePagination'
+import { defaultStoryMeta } from './TablePagination.stories.gen'
 
 export default {
   ...defaultStoryMeta,

@@ -1,5 +1,4 @@
 // Placeholder for extra functionality - add extra types/values/functions/etc. for TableRow
-import React from 'react'
 import {
   TableRow as _TableRow,
   TableRowProps as _TableRowProps,

@@ -1,9 +1,10 @@
 // Edit this file to add new stories
 import React from 'react'
-import { Input, InputProps } from '../Input'
+
 import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './Input.stories.gen'
 import { Box } from '../../Box/Box'
+import { Input, InputProps } from '../Input'
+import { defaultStoryMeta } from './Input.stories.gen'
 
 /**
  * Metadata for Input stories - update/extend as needed

@@ -1,12 +1,13 @@
 // Edit this file to add new stories
 import React from 'react'
-import { TableBody } from '../../TableBody/TableBody'
-import { TableContainer, TableContainerProps } from '../TableContainer'
-import { TableRow } from '../../TableRow/TableRow'
+
 import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './TableContainer.stories.gen'
-import { TableCell } from '../../TableCell/TableCell'
 import { Table } from '../../Table/Table'
+import { TableBody } from '../../TableBody/TableBody'
+import { TableCell } from '../../TableCell/TableCell'
+import { TableRow } from '../../TableRow/TableRow'
+import { TableContainer, TableContainerProps } from '../TableContainer'
+import { defaultStoryMeta } from './TableContainer.stories.gen'
 
 export default {
   ...defaultStoryMeta,

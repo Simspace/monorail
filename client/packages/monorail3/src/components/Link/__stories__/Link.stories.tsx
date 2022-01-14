@@ -1,9 +1,10 @@
 // Edit this file to add new stories
 import React from 'react'
-import { Link, LinkProps } from '../Link'
+
 import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './Link.stories.gen'
 import { Stack } from '../../Stack/Stack'
+import { Link, LinkProps } from '../Link'
+import { defaultStoryMeta } from './Link.stories.gen'
 
 /**
  * Metadata for Link stories - update/extend as needed

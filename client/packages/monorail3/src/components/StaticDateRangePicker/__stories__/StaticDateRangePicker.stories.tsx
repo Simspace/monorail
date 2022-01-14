@@ -1,16 +1,16 @@
 // Edit this file to add new stories
 import React from 'react'
+
+import { story } from '../../../__tests__/helpers/storybook'
+import { AdapterDateFns, LocalizationProvider } from '../../../helpers/dateTime'
+import { Box } from '../../Box/Box'
+import { DateRange } from '../../DateRangePicker/DateRangePicker'
+import { TextField } from '../../TextField/TextField'
 import {
   StaticDateRangePicker,
   StaticDateRangePickerProps,
 } from '../StaticDateRangePicker'
-import { story } from '../../../__tests__/helpers/storybook'
 import { defaultStoryMeta } from './StaticDateRangePicker.stories.gen'
-import { action } from '@storybook/addon-actions'
-import { TextField } from '../../TextField/TextField'
-import { DateRange } from '../../DateRangePicker/DateRangePicker'
-import { AdapterDateFns, LocalizationProvider } from '../../../helpers/dateTime'
-import { Box } from '../../Box/Box'
 
 /**
  * Metadata for StaticDateRangePicker stories - update/extend as needed
