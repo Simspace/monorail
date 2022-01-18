@@ -1,30 +1,31 @@
 // Edit this file to add new stories
 import React from 'react'
-import { Card, CardProps } from '../Card'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './Card.stories.gen'
-import { Box } from '../../Box/Box'
-import { CardContent } from '../../CardContent/CardContent'
-import { Typography } from '../../Typography/Typography'
-import { CardActions } from '../../CardActions/CardActions'
-import { Button } from '../../Button/Button'
-import { styled } from '@mui/material/styles'
-import { IconButton, IconButtonProps } from '../../IconButton/IconButton'
-import { CardHeader } from '../../CardHeader/CardHeader'
-import { Avatar } from '../../Avatar/Avatar'
-import { Collapse } from '../../Collapse/Collapse'
-import { CardMedia } from '../../CardMedia/CardMedia'
-import { red } from '@mui/material/colors'
-import { CardActionArea } from '../../CardActionArea/CardActionArea'
-import { useTheme } from '../../../theme/useTheme'
-import FavoriteIcon from '@mui/icons-material/Favorite'
-import ShareIcon from '@mui/icons-material/Share'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
+import FavoriteIcon from '@mui/icons-material/Favorite'
 import MoreVertIcon from '@mui/icons-material/MoreVert'
-import SkipPreviousIcon from '@mui/icons-material/SkipPrevious'
 import PlayArrowIcon from '@mui/icons-material/PlayArrow'
+import ShareIcon from '@mui/icons-material/Share'
 import SkipNextIcon from '@mui/icons-material/SkipNext'
+import SkipPreviousIcon from '@mui/icons-material/SkipPrevious'
+import { red } from '@mui/material/colors'
+import { styled } from '@mui/material/styles'
+
+import { story } from '../../../__tests__/helpers/storybook'
 import { images } from '../../../__tests__/helpers/testData'
+import { useTheme } from '../../../theme/useTheme'
+import { Avatar } from '../../Avatar/Avatar'
+import { Box } from '../../Box/Box'
+import { Button } from '../../Button/Button'
+import { CardActionArea } from '../../CardActionArea/CardActionArea'
+import { CardActions } from '../../CardActions/CardActions'
+import { CardContent } from '../../CardContent/CardContent'
+import { CardHeader } from '../../CardHeader/CardHeader'
+import { CardMedia } from '../../CardMedia/CardMedia'
+import { Collapse } from '../../Collapse/Collapse'
+import { IconButton, IconButtonProps } from '../../IconButton/IconButton'
+import { Typography } from '../../Typography/Typography'
+import { Card, CardProps } from '../Card'
+import { defaultStoryMeta } from './Card.stories.gen'
 /**
  * Metadata for Card stories - update/extend as needed
  * This is intended to be exported as story-level metadata from the main .stories.tsx file, like:
@@ -128,7 +129,7 @@ interface ExpandMoreProps extends IconButtonProps {
 }
 
 const ExpandMore = styled((props: ExpandMoreProps) => {
-  const { expand, ...other } = props
+  const { expand: _expand, ...other } = props
   return <IconButton {...other} size="large" />
 })(({ theme, expand }) => ({
   transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
@@ -227,6 +228,9 @@ export const RecipeReviewCard = story<CardProps>(() => {
   )
 })
 RecipeReviewCard.parameters = {
+  a11y: {
+    config: { rules: { 'aria-roles': { enabled: false } } }, // MUI has invalid aria role on CardMedia (image instead of img)
+  },
   docs: {
     description: {
       story:
@@ -265,6 +269,9 @@ export const MediaCard = story<CardProps>(() => {
 })
 
 MediaCard.parameters = {
+  a11y: {
+    config: { rules: { 'aria-roles': { enabled: false } } }, // MUI has invalid aria role on CardMedia (image instead of img)
+  },
   docs: {
     description: {
       story: 'Example of a card using an image to reinforce the content.',
@@ -301,6 +308,9 @@ export const ResponsiveMediaCard = story<CardProps>(() => {
 })
 
 ResponsiveMediaCard.parameters = {
+  a11y: {
+    config: { rules: { 'aria-roles': { enabled: false } } }, // MUI has invalid aria role on CardMedia (image instead of img)
+  },
   docs: {
     description: {
       story:
@@ -336,6 +346,9 @@ export const ActionAreaCard = story<CardProps>(() => {
 })
 
 ActionAreaCard.parameters = {
+  a11y: {
+    config: { rules: { 'aria-roles': { enabled: false } } }, // MUI has invalid aria role on CardMedia (image instead of img)
+  },
   docs: {
     description: {
       story:
@@ -376,6 +389,9 @@ export const MultiActionAreaCard = story<CardProps>(() => {
 })
 
 MultiActionAreaCard.parameters = {
+  a11y: {
+    config: { rules: { 'aria-roles': { enabled: false } } }, // MUI has invalid aria role on CardMedia (image instead of img)
+  },
   docs: {
     description: {
       story:
@@ -437,6 +453,9 @@ export const MediaControlCard = story<CardProps>(() => {
 })
 
 MediaControlCard.parameters = {
+  a11y: {
+    config: { rules: { 'aria-roles': { enabled: false } } }, // MUI has invalid aria role on CardMedia (image instead of img)
+  },
   docs: {
     description: {
       story:

@@ -1,7 +1,8 @@
 // Edit this file to add new stories
 import React from 'react'
-import { TimelineConnector, TimelineConnectorProps } from '../TimelineConnector'
+
 import { story } from '../../../__tests__/helpers/storybook'
+import { TimelineConnector, TimelineConnectorProps } from '../TimelineConnector'
 import { defaultStoryMeta } from './TimelineConnector.stories.gen'
 /**
  * Metadata for TimelineConnector stories - update/extend as needed

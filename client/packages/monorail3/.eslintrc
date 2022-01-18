@@ -1,0 +1,53 @@
+{
+  "extends": [
+    "@simspace/eslint-config/.eslintrc",
+    "@simspace/eslint-config/.react.eslintrc",
+    "@simspace/eslint-config/.typescript.eslintrc" //TODO: Add this back when we add type-check to ci
+  ],
+  "root": true,
+  "env": {
+    "browser": true,
+    "es6": true,
+    "node": true
+  },
+  "ignorePatterns": [
+    "dist/",
+    "ts-dist/",
+    "**/node_modules/",
+    "**/*.d.ts",
+    "*.gen.*"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": ["./tsconfig.json"],
+    "sourceType": "module",
+    "ecmaFeatures": { "jsx": true },
+    // Fixes some issues with some of the type-based checks in @typescript-eslint
+    // See wall of text here: https://github.com/typescript-eslint/typescript-eslint/issues/2094
+    "EXPERIMENTAL_useSourceOfProjectReferenceRedirect": true
+  },
+
+  "rules": {
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      {
+        "argsIgnorePattern": "^_",
+        "varsIgnorePattern": "^_"
+      }
+    ],
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": [
+          "jest/**/*",
+          "**/*.test.ts",
+          "**/*.jest.ts",
+          "**/*.mocks.ts",
+          "**/__tests__/**/*",
+          "**/__stories__/**/*",
+          "**/__mocks__/**/*"
+        ]
+      }
+    ]
+  }
+}

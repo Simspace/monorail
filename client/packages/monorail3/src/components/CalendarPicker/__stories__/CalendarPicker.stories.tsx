@@ -1,9 +1,10 @@
 // Edit this file to add new stories
 import React from 'react'
-import { CalendarPicker, CalendarPickerProps } from '../CalendarPicker'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './CalendarPicker.stories.gen'
 import { action } from '@storybook/addon-actions'
+
+import { story } from '../../../__tests__/helpers/storybook'
+import { CalendarPicker, CalendarPickerProps } from '../CalendarPicker'
+import { defaultStoryMeta } from './CalendarPicker.stories.gen'
 /**
  * Metadata for CalendarPicker stories - update/extend as needed
  */

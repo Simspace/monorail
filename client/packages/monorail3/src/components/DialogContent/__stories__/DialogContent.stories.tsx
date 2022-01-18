@@ -1,9 +1,10 @@
 // Edit this file to add new stories
 import React from 'react'
-import { DialogContent, DialogContentProps } from '../DialogContent'
+
 import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './DialogContent.stories.gen'
 import { DialogContentText } from '../../DialogContentText/DialogContentText'
+import { DialogContent, DialogContentProps } from '../DialogContent'
+import { defaultStoryMeta } from './DialogContent.stories.gen'
 /**
  * Metadata for DialogContent stories - update/extend as needed
  */

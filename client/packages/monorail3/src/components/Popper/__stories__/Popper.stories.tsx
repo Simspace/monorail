@@ -1,7 +1,8 @@
 // Edit this file to add new stories
 import React from 'react'
-import { Popper, PopperProps } from '../Popper'
+
 import { story } from '../../../__tests__/helpers/storybook'
+import { Popper, PopperProps } from '../Popper'
 import { defaultStoryMeta } from './Popper.stories.gen'
 /**
  * Metadata for Popper stories - update/extend as needed

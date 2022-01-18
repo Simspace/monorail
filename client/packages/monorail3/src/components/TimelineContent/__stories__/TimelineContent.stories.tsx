@@ -1,7 +1,8 @@
 // Edit this file to add new stories
 import React from 'react'
-import { TimelineContent, TimelineContentProps } from '../TimelineContent'
+
 import { story } from '../../../__tests__/helpers/storybook'
+import { TimelineContent, TimelineContentProps } from '../TimelineContent'
 import { defaultStoryMeta } from './TimelineContent.stories.gen'
 /**
  * Metadata for TimelineContent stories - update/extend as needed

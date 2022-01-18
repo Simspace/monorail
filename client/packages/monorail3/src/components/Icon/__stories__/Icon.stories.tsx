@@ -1,7 +1,8 @@
 // Edit this file to add new stories
 import React from 'react'
-import { Icon, IconProps } from '../Icon'
+
 import { story } from '../../../__tests__/helpers/storybook'
+import { Icon, IconProps } from '../Icon'
 import { defaultStoryMeta } from './Icon.stories.gen'
 /**
  * Metadata for Icon stories - update/extend as needed

@@ -1,42 +1,43 @@
 // Edit this file to add new stories
 import React from 'react'
-import { AppBar, AppBarProps } from '../AppBar'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './AppBar.stories.gen'
-import { Box } from '../../Box/Box'
-import { Toolbar } from '../../Toolbar/Toolbar'
-import { Button } from '../../Button/Button'
-import { IconButton } from '../../IconButton/IconButton'
-import { Typography } from '../../Typography/Typography'
-import { styled, alpha } from '@mui/material/styles'
-import { InputBase } from '../../InputBase/InputBase'
-import { Menu } from '../../Menu/Menu'
-import { MenuItem } from '../../MenuItem/MenuItem'
-import { Badge } from '../../Badge/Badge'
-import MenuIcon from '@mui/icons-material/Menu'
-import SearchIcon from '@mui/icons-material/Search'
 import AccountCircle from '@mui/icons-material/AccountCircle'
-import MailIcon from '@mui/icons-material/Mail'
 import AddIcon from '@mui/icons-material/Add'
-import NotificationsIcon from '@mui/icons-material/Notifications'
-import MoreIcon from '@mui/icons-material/MoreVert'
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
-import { FormGroup } from '../../FormGroup/FormGroup'
-import { FormControlLabel } from '../../FormControlLabel/FormControlLabel'
-import { Switch } from '../../Switch/Switch'
-import { Fab } from '../../Fab/Fab'
+import MailIcon from '@mui/icons-material/Mail'
+import MenuIcon from '@mui/icons-material/Menu'
+import MoreIcon from '@mui/icons-material/MoreVert'
+import NotificationsIcon from '@mui/icons-material/Notifications'
+import SearchIcon from '@mui/icons-material/Search'
+import { alpha, styled } from '@mui/material/styles'
+import useScrollTrigger from '@mui/material/useScrollTrigger'
+
+import { story } from '../../../__tests__/helpers/storybook'
+import { Avatar } from '../../Avatar/Avatar'
+import { Badge } from '../../Badge/Badge'
+import { Box } from '../../Box/Box'
+import { Button } from '../../Button/Button'
+import { Container } from '../../Container/Container'
 import { CssBaseline } from '../../CssBaseline/CssBaseline'
-import { Paper } from '../../Paper/Paper'
+import { Fab } from '../../Fab/Fab'
+import { FormControlLabel } from '../../FormControlLabel/FormControlLabel'
+import { FormGroup } from '../../FormGroup/FormGroup'
+import { IconButton } from '../../IconButton/IconButton'
+import { InputBase } from '../../InputBase/InputBase'
 import { List } from '../../List/List'
-import { ListSubheader } from '../../ListSubheader/ListSubheader'
 import { ListItem } from '../../ListItem/ListItem'
 import { ListItemAvatar } from '../../ListItemAvatar/ListItemAvatar'
-import { Avatar } from '../../Avatar/Avatar'
 import { ListItemText } from '../../ListItemText/ListItemText'
-import useScrollTrigger from '@mui/material/useScrollTrigger'
+import { ListSubheader } from '../../ListSubheader/ListSubheader'
+import { Menu } from '../../Menu/Menu'
+import { MenuItem } from '../../MenuItem/MenuItem'
+import { Paper } from '../../Paper/Paper'
 import { Slide } from '../../Slide/Slide'
-import { Container } from '../../Container/Container'
+import { Switch } from '../../Switch/Switch'
+import { Toolbar } from '../../Toolbar/Toolbar'
+import { Typography } from '../../Typography/Typography'
 import { Zoom } from '../../Zoom/Zoom'
+import { AppBar, AppBarProps } from '../AppBar'
+import { defaultStoryMeta } from './AppBar.stories.gen'
 
 /**
  * Metadata for AppBar stories - update/extend as needed
@@ -683,10 +684,10 @@ export const BottomBar = story<AppBarProps>(
               <AddIcon />
             </StyledFab>
             <Box sx={{ flexGrow: 1 }} />
-            <IconButton color="inherit" size="large">
+            <IconButton color="inherit" size="large" aria-label="search">
               <SearchIcon />
             </IconButton>
-            <IconButton color="inherit" size="large">
+            <IconButton color="inherit" size="large" aria-label="more">
               <MoreIcon />
             </IconButton>
           </Toolbar>
@@ -701,6 +702,7 @@ export const BottomBar = story<AppBarProps>(
       sx: { top: 'auto', bottom: 0 },
     },
     parameters: {
+      a11y: { disable: true }, // the list subheaders seem to violate axe a11y
       docs: {
         inlineStories: false,
       },

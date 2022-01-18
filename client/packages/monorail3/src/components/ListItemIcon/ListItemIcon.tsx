@@ -1,5 +1,4 @@
 // Placeholder for extra functionality - add extra types/values/functions/etc. for ListItemIcon
-import React from 'react'
 import {
   ListItemIcon as _ListItemIcon,
   ListItemIconProps as _ListItemIconProps,

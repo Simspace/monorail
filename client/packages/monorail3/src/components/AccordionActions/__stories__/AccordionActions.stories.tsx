@@ -1,9 +1,10 @@
 // Edit this file to add new stories
 import React from 'react'
-import { AccordionActions, AccordionActionsProps } from '../AccordionActions'
+
 import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './AccordionActions.stories.gen'
 import { Button } from '../../Button/Button'
+import { AccordionActions, AccordionActionsProps } from '../AccordionActions'
+import { defaultStoryMeta } from './AccordionActions.stories.gen'
 
 /**
  * Metadata for AccordionActions stories - update/extend as needed

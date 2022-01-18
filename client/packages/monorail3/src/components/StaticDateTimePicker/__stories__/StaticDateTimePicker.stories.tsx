@@ -1,13 +1,13 @@
 // Edit this file to add new stories
 import React from 'react'
+
+import { story } from '../../../__tests__/helpers/storybook'
+import { TextField } from '../../TextField/TextField'
 import {
   StaticDateTimePicker,
   StaticDateTimePickerProps,
 } from '../StaticDateTimePicker'
-import { story } from '../../../__tests__/helpers/storybook'
 import { defaultStoryMeta } from './StaticDateTimePicker.stories.gen'
-import { action } from '@storybook/addon-actions'
-import { TextField } from '../../TextField/TextField'
 /**
  * Metadata for StaticDateTimePicker stories - update/extend as needed
  */

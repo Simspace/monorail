@@ -1,7 +1,8 @@
 // Edit this file to add new stories
 import React from 'react'
-import { Checkbox, CheckboxProps } from '../Checkbox'
+
 import { story } from '../../../__tests__/helpers/storybook'
+import { Checkbox, CheckboxProps } from '../Checkbox'
 import { defaultStoryMeta } from './Checkbox.stories.gen'
 
 /**

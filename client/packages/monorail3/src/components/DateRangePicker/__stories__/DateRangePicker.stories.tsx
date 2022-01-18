@@ -1,26 +1,27 @@
 // Edit this file to add new stories
 import React from 'react'
+import { addWeeks } from 'date-fns'
+
+import { story } from '../../../__tests__/helpers/storybook'
+import { AdapterDateFns, LocalizationProvider } from '../../../helpers/dateTime'
+import { styled } from '../../../helpers/styles'
+import { Box } from '../../Box/Box'
+import {
+  DateRangePickerDay,
+  DateRangePickerDayProps,
+} from '../../DateRangePickerDay/DateRangePickerDay'
+import { DesktopDateRangePicker } from '../../DesktopDateRangePicker/DesktopDateRangePicker'
+import { MobileDateRangePicker } from '../../MobileDateRangePicker/MobileDateRangePicker'
+import { Stack } from '../../Stack/Stack'
+import { StaticDateRangePicker } from '../../StaticDateRangePicker/StaticDateRangePicker'
+import { TextField } from '../../TextField/TextField'
+import { Typography } from '../../Typography/Typography'
 import {
   DateRange,
   DateRangePicker,
   DateRangePickerProps,
 } from '../DateRangePicker'
-import { story } from '../../../__tests__/helpers/storybook'
 import { defaultStoryMeta } from './DateRangePicker.stories.gen'
-import { TextField } from '../../TextField/TextField'
-import { Box } from '../../Box/Box'
-import { AdapterDateFns, LocalizationProvider } from '../../../helpers/dateTime'
-import { StaticDateRangePicker } from '../../StaticDateRangePicker/StaticDateRangePicker'
-import { Stack } from '../../Stack/Stack'
-import { MobileDateRangePicker } from '../../MobileDateRangePicker/MobileDateRangePicker'
-import { DesktopDateRangePicker } from '../../DesktopDateRangePicker/DesktopDateRangePicker'
-import { Typography } from '../../Typography/Typography'
-import { addWeeks } from 'date-fns'
-import { styled } from '../../../helpers/styles'
-import {
-  DateRangePickerDay,
-  DateRangePickerDayProps,
-} from '../../DateRangePickerDay/DateRangePickerDay'
 
 /**
  * Metadata for DateRangePicker stories - update/extend as needed
@@ -53,9 +54,9 @@ const Template = story<DateRangePickerProps<Date>>(args => {
         }}
         renderInput={(startProps, endProps) => (
           <React.Fragment>
-            <TextField {...startProps} />
+            <TextField id="start" {...startProps} />
             <Box sx={{ mx: 2 }}> to </Box>
-            <TextField {...endProps} />
+            <TextField id="end" {...endProps} />
           </React.Fragment>
         )}
         {...args}
@@ -91,9 +92,9 @@ export const StaticMode = story(
           }}
           renderInput={(startProps, endProps) => (
             <React.Fragment>
-              <TextField {...startProps} />
+              <TextField id="start" {...startProps} />
               <Box sx={{ mx: 2 }}> to </Box>
-              <TextField {...endProps} />
+              <TextField id="end" {...endProps} />
             </React.Fragment>
           )}
         />
@@ -129,9 +130,9 @@ export const Responsiveness = story(
             }}
             renderInput={(startProps, endProps) => (
               <React.Fragment>
-                <TextField {...startProps} />
+                <TextField id="start" {...startProps} />
                 <Box sx={{ mx: 2 }}> to </Box>
-                <TextField {...endProps} />
+                <TextField id="end" {...endProps} />
               </React.Fragment>
             )}
           />
@@ -143,9 +144,9 @@ export const Responsiveness = story(
             }}
             renderInput={(startProps, endProps) => (
               <React.Fragment>
-                <TextField {...startProps} />
+                <TextField id="start2" {...startProps} />
                 <Box sx={{ mx: 2 }}> to </Box>
-                <TextField {...endProps} />
+                <TextField id="end2" {...endProps} />
               </React.Fragment>
             )}
           />
@@ -190,9 +191,9 @@ export const FormProps = story(
             }}
             renderInput={(startProps, endProps) => (
               <React.Fragment>
-                <TextField {...startProps} />
+                <TextField id="start" {...startProps} />
                 <Box sx={{ mx: 2 }}> to </Box>
-                <TextField {...endProps} />
+                <TextField id="end" {...endProps} />
               </React.Fragment>
             )}
           />
@@ -206,9 +207,9 @@ export const FormProps = story(
             }}
             renderInput={(startProps, endProps) => (
               <React.Fragment>
-                <TextField {...startProps} />
+                <TextField id="start2" {...startProps} />
                 <Box sx={{ mx: 2 }}> to </Box>
-                <TextField {...endProps} />
+                <TextField id="end2" {...endProps} />
               </React.Fragment>
             )}
           />
@@ -246,9 +247,9 @@ export const DifferentNumberOfMonths = story(
             }}
             renderInput={(startProps, endProps) => (
               <React.Fragment>
-                <TextField {...startProps} />
+                <TextField id="start" {...startProps} />
                 <Box sx={{ mx: 2 }}> to </Box>
-                <TextField {...endProps} />
+                <TextField id="end" {...endProps} />
               </React.Fragment>
             )}
           />
@@ -261,9 +262,9 @@ export const DifferentNumberOfMonths = story(
             }}
             renderInput={(startProps, endProps) => (
               <React.Fragment>
-                <TextField {...startProps} />
+                <TextField id="start2" {...startProps} />
                 <Box sx={{ mx: 2 }}> to </Box>
-                <TextField {...endProps} />
+                <TextField id="end2" {...endProps} />
               </React.Fragment>
             )}
           />
@@ -276,9 +277,9 @@ export const DifferentNumberOfMonths = story(
             }}
             renderInput={(startProps, endProps) => (
               <React.Fragment>
-                <TextField {...startProps} />
+                <TextField id="start3" {...startProps} />
                 <Box sx={{ mx: 2 }}> to </Box>
-                <TextField {...endProps} />
+                <TextField id="end3" {...endProps} />
               </React.Fragment>
             )}
           />
@@ -319,9 +320,9 @@ export const DisablingDates = story(
           }}
           renderInput={(startProps, endProps) => (
             <React.Fragment>
-              <TextField {...startProps} />
+              <TextField id="start" {...startProps} />
               <Box sx={{ mx: 2 }}> to </Box>
-              <TextField {...endProps} />
+              <TextField id="end" {...endProps} />
             </React.Fragment>
           )}
         />
@@ -352,11 +353,13 @@ export const CustomInputComponent = story(
           renderInput={(startProps, endProps) => (
             <React.Fragment>
               <input
+                aria-label="start"
                 ref={startProps.inputRef as React.Ref<HTMLInputElement>}
                 {...startProps.inputProps}
               />
               <Box sx={{ mx: 1 }}> to </Box>
               <input
+                aria-label="end"
                 ref={endProps.inputRef as React.Ref<HTMLInputElement>}
                 {...endProps.inputProps}
               />
@@ -422,9 +425,9 @@ export const CustomizedDayRendering = story(
           renderDay={renderWeekPickerDay}
           renderInput={(startProps, endProps) => (
             <React.Fragment>
-              <TextField {...startProps} />
+              <TextField id="start" {...startProps} />
               <Box sx={{ mx: 2 }}> to </Box>
-              <TextField {...endProps} />
+              <TextField id="end" {...endProps} />
             </React.Fragment>
           )}
         />

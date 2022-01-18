@@ -1,16 +1,17 @@
 // Edit this file to add new stories
 import React from 'react'
-import { Avatar, AvatarProps } from '../Avatar'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './Avatar.stories.gen'
-import { Stack } from '../../Stack/Stack'
-import { useTheme } from '../../../theme/useTheme'
+import AssignmentIcon from '@mui/icons-material/Assignment'
 import FolderIcon from '@mui/icons-material/Folder'
 import PageviewIcon from '@mui/icons-material/Pageview'
-import AssignmentIcon from '@mui/icons-material/Assignment'
-import { Typography } from '../../Typography/Typography'
 import { styled } from '@mui/material/styles'
+
+import { story } from '../../../__tests__/helpers/storybook'
+import { useTheme } from '../../../theme/useTheme'
 import { Badge } from '../../Badge/Badge'
+import { Stack } from '../../Stack/Stack'
+import { Typography } from '../../Typography/Typography'
+import { Avatar, AvatarProps } from '../Avatar'
+import { defaultStoryMeta } from './Avatar.stories.gen'
 
 /**
  * Metadata for Avatar stories - update/extend as needed
@@ -203,7 +204,7 @@ export const Fallbacks = story<AvatarProps>(
           alt="Remy Sharp"
           src="/broken-image.jpg"
         />
-        <Avatar src="/broken-image.jpg" />
+        <Avatar alt="oh no" src="/broken-image.jpg" />
       </Stack>
     )
   },

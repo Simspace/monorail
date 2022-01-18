@@ -1,14 +1,15 @@
 // Edit this file to add new stories
 import React from 'react'
-import { InputBase, InputBaseProps } from '../InputBase'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './InputBase.stories.gen'
-import { Paper } from '../../Paper/Paper'
-import { IconButton } from '../../IconButton/IconButton'
-import { Divider } from '../../Divider/Divider'
+import DirectionsIcon from '@mui/icons-material/Directions'
 import MenuIcon from '@mui/icons-material/Menu'
 import SearchIcon from '@mui/icons-material/Search'
-import DirectionsIcon from '@mui/icons-material/Directions'
+
+import { story } from '../../../__tests__/helpers/storybook'
+import { Divider } from '../../Divider/Divider'
+import { IconButton } from '../../IconButton/IconButton'
+import { Paper } from '../../Paper/Paper'
+import { InputBase, InputBaseProps } from '../InputBase'
+import { defaultStoryMeta } from './InputBase.stories.gen'
 
 /**
  * Metadata for InputBase stories - update/extend as needed
@@ -21,11 +22,14 @@ export default { ...defaultStoryMeta, title: 'Inputs/Input/InputBase' }
  * Note: there should be at least one "Default" story that uses this template with the "story" function.
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
-const Template = story<InputBaseProps>(args => <InputBase {...args} />, {
-  args: {
-    placeholder: 'Placeholder',
+const Template = story<InputBaseProps>(
+  args => <InputBase inputProps={{ 'aria-label': 'Input Base' }} {...args} />,
+  {
+    args: {
+      placeholder: 'Placeholder',
+    },
   },
-})
+)
 
 /** Default story for InputBase (edit/remove by hand if needed) */
 export const Default = story(Template, {
@@ -50,6 +54,7 @@ export const CustomInputBase = story<InputBaseProps>(
         </IconButton>
         <InputBase
           sx={{ ml: 1, flex: 1 }}
+          aria-label="Search input"
           placeholder="Search Google Maps"
           inputProps={{ 'aria-label': 'search google maps' }}
         />
