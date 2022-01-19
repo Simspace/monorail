@@ -1,5 +1,4 @@
 // Placeholder for extra functionality - add extra types/values/functions/etc. for ImageListItemBar
-import React from 'react'
 import {
   ImageListItemBar as _ImageListItemBar,
   ImageListItemBarProps as _ImageListItemBarProps,

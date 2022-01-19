@@ -8,7 +8,9 @@ import {
 /**
  * Props for Radio
  */
-export type RadioProps = MUIRadioProps & { ref?: React.ForwardedRef<unknown> }
+export type RadioProps = MUIRadioProps & {
+  ref?: React.ForwardedRef<HTMLButtonElement>
+}
 
 /**
  * Radio

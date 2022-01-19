@@ -1,10 +1,4 @@
 import React from 'react'
-import { StepIcon, StepIconProps } from '../StepIcon'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './StepIcon.stories.gen'
-import { Box } from '../../Box/Box'
-import { StepButton } from '../../StepButton/StepButton'
-import { StepLabel } from '../../StepLabel/StepLabel'
 import {
   ApprovalTwoTone,
   ErrorOutlineSharp,
@@ -13,9 +7,15 @@ import {
   IceSkatingTwoTone,
   WarningAmberSharp,
 } from '@mui/icons-material'
+
+import { story } from '../../../__tests__/helpers/storybook'
+import { Box } from '../../Box/Box'
 import { Step } from '../../Step/Step'
+import { StepButton } from '../../StepButton/StepButton'
+import { StepLabel } from '../../StepLabel/StepLabel'
 import { Stepper } from '../../Stepper/Stepper'
-import { Typography } from '../../Typography/Typography'
+import { StepIcon, StepIconProps } from '../StepIcon'
+import { defaultStoryMeta } from './StepIcon.stories.gen'
 /**
  * Metadata for StepIcon stories - update/extend as needed
  */

@@ -1,7 +1,8 @@
 // Edit this file to add new stories
 import React from 'react'
-import { DialogTitle, DialogTitleProps } from '../DialogTitle'
+
 import { story } from '../../../__tests__/helpers/storybook'
+import { DialogTitle, DialogTitleProps } from '../DialogTitle'
 import { defaultStoryMeta } from './DialogTitle.stories.gen'
 /**
  * Metadata for DialogTitle stories - update/extend as needed

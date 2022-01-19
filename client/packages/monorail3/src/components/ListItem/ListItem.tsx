@@ -1,5 +1,4 @@
 // Placeholder for extra functionality - add extra types/values/functions/etc. for ListItem
-import React from 'react'
 import {
   ListItem as _ListItem,
   ListItemProps as _ListItemProps,

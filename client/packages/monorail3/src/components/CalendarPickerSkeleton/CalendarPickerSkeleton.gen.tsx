@@ -9,7 +9,7 @@ import {
  * Props for CalendarPickerSkeleton
  */
 export type CalendarPickerSkeletonProps = MUICalendarPickerSkeletonProps & {
-  ref?: React.ForwardedRef<unknown>
+  ref?: React.ForwardedRef<HTMLDivElement>
 }
 
 /**

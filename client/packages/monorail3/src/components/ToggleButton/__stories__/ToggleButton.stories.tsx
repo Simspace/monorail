@@ -1,7 +1,8 @@
 // Edit this file to add new stories
 import React from 'react'
-import { ToggleButton, ToggleButtonProps } from '../ToggleButton'
+
 import { story } from '../../../__tests__/helpers/storybook'
+import { ToggleButton, ToggleButtonProps } from '../ToggleButton'
 import { defaultStoryMeta } from './ToggleButton.stories.gen'
 /**
  * Metadata for ToggleButton stories - update/extend as needed
