@@ -9,7 +9,7 @@ import {
  * Props for TextareaAutosize
  */
 export type TextareaAutosizeProps = MUITextareaAutosizeProps & {
-  ref?: React.ForwardedRef<unknown>
+  ref?: React.ForwardedRef<HTMLTextAreaElement>
 }
 
 /**

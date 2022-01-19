@@ -9,7 +9,7 @@ import {
  * Props for Checkbox
  */
 export type CheckboxProps = MUICheckboxProps & {
-  ref?: React.ForwardedRef<unknown>
+  ref?: React.ForwardedRef<HTMLButtonElement>
 }
 
 /**

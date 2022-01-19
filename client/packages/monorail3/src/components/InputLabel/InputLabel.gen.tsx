@@ -9,7 +9,7 @@ import {
  * Props for InputLabel
  */
 export type InputLabelProps = MUIInputLabelProps & {
-  ref?: React.ForwardedRef<unknown>
+  ref?: React.ForwardedRef<HTMLLabelElement>
 }
 
 /**

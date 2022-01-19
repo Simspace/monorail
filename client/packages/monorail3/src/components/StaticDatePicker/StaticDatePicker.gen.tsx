@@ -9,9 +9,7 @@ import {
  * Props for StaticDatePicker
  */
 export type StaticDatePickerProps<TDate = unknown> =
-  MUIStaticDatePickerProps<TDate> & {
-    ref?: React.ForwardedRef<HTMLDivElement>
-  }
+  MUIStaticDatePickerProps<TDate> & { ref?: React.ForwardedRef<HTMLDivElement> }
 
 /**
  * StaticDatePicker

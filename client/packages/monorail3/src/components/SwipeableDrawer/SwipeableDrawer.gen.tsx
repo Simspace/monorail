@@ -9,7 +9,7 @@ import {
  * Props for SwipeableDrawer
  */
 export type SwipeableDrawerProps = MUISwipeableDrawerProps & {
-  ref?: React.ForwardedRef<unknown>
+  ref?: React.ForwardedRef<HTMLDivElement>
 }
 
 /**

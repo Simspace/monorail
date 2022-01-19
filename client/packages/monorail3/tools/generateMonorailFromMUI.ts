@@ -236,6 +236,7 @@ const modules: Array<ModuleInfo> = [
     name: 'CalendarPickerSkeleton',
     storybookFolder1: 'Inputs',
     storybookFolder2: 'Date and Time',
+    monorailComponentRefType: 'HTMLDivElement',
     muiImportFolder: 'lab',
   },
   {
@@ -277,6 +278,7 @@ const modules: Array<ModuleInfo> = [
   {
     name: 'Checkbox',
     storybookFolder1: 'Inputs',
+    monorailComponentRefType: 'HTMLButtonElement',
   },
   {
     name: 'Chip',
@@ -411,6 +413,7 @@ const modules: Array<ModuleInfo> = [
   {
     name: 'Drawer',
     storybookFolder1: 'Navigation',
+    monorailComponentRefType: 'HTMLDivElement',
   },
   {
     name: 'Fab',
@@ -513,6 +516,7 @@ const modules: Array<ModuleInfo> = [
     name: 'InputLabel',
     storybookFolder1: 'Inputs',
     storybookFolder2: 'Input',
+    monorailComponentRefType: 'HTMLLabelElement',
   },
   {
     name: 'LinearProgress',
@@ -569,6 +573,7 @@ const modules: Array<ModuleInfo> = [
   {
     name: 'Menu',
     storybookFolder1: 'Navigation',
+    monorailComponentRefType: 'HTMLDivElement',
   },
   {
     name: 'MenuItem',
@@ -580,6 +585,7 @@ const modules: Array<ModuleInfo> = [
     name: 'MenuList',
     storybookFolder1: 'Navigation',
     storybookFolder2: 'Menu',
+    monorailComponentRefType: 'HTMLUListElement',
   },
   {
     name: 'MobileDatePicker',
@@ -612,6 +618,7 @@ const modules: Array<ModuleInfo> = [
   {
     name: 'MobileStepper',
     storybookFolder1: 'Navigation',
+    monorailComponentRefType: 'HTMLDivElement',
   },
   {
     name: 'Modal',
@@ -657,10 +664,12 @@ const modules: Array<ModuleInfo> = [
   {
     name: 'Popover',
     storybookFolder1: 'Utils',
+    monorailComponentRefType: 'HTMLDivElement',
   },
   {
     name: 'Popper',
     storybookFolder1: 'Utils',
+    monorailComponentRefType: 'HTMLDivElement',
   },
   {
     name: 'Portal',
@@ -670,6 +679,7 @@ const modules: Array<ModuleInfo> = [
   {
     name: 'Radio',
     storybookFolder1: 'Inputs',
+    monorailComponentRefType: 'HTMLButtonElement',
   },
   {
     name: 'RadioGroup',
@@ -717,6 +727,7 @@ const modules: Array<ModuleInfo> = [
     name: 'SnackbarContent',
     storybookFolder1: 'Feedback',
     storybookFolder2: 'Snackbar',
+    monorailComponentRefType: 'HTMLDivElement',
   },
   {
     name: 'SpeedDial',
@@ -802,6 +813,7 @@ const modules: Array<ModuleInfo> = [
   {
     name: 'Stepper',
     storybookFolder1: 'Navigation',
+    monorailComponentRefType: 'HTMLDivElement',
   },
   {
     name: 'SvgIcon',
@@ -812,10 +824,12 @@ const modules: Array<ModuleInfo> = [
     name: 'SwipeableDrawer',
     storybookFolder1: 'Navigation',
     storybookFolder2: 'Drawer',
+    monorailComponentRefType: 'HTMLDivElement',
   },
   {
     name: 'Switch',
     storybookFolder1: 'Inputs',
+    monorailComponentRefType: 'HTMLButtonElement',
   },
   {
     name: 'Tab',
@@ -894,6 +908,7 @@ const modules: Array<ModuleInfo> = [
   {
     name: 'TextareaAutosize',
     storybookFolder1: 'Inputs',
+    monorailComponentRefType: 'HTMLTextAreaElement',
   },
   {
     name: 'TimePicker',
@@ -919,6 +934,7 @@ const modules: Array<ModuleInfo> = [
     storybookFolder1: 'Data Display',
     storybookFolder2: 'Timeline',
     muiImportFolder: 'lab',
+    monorailComponentRefType: 'HTMLSpanElement',
   },
   {
     name: 'TimelineDot',
