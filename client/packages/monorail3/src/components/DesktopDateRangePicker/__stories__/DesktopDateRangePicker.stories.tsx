@@ -1,16 +1,16 @@
 // Edit this file to add new stories
 import React from 'react'
+import { DateRange } from '@mui/lab/DateRangePicker/RangeTypes'
+
+import { story } from '../../../__tests__/helpers/storybook'
+import { AdapterDateFns, LocalizationProvider } from '../../../helpers/dateTime'
+import { Box } from '../../Box/Box'
+import { TextField } from '../../TextField/TextField'
 import {
   DesktopDateRangePicker,
   DesktopDateRangePickerProps,
 } from '../DesktopDateRangePicker'
-import { story } from '../../../__tests__/helpers/storybook'
 import { defaultStoryMeta } from './DesktopDateRangePicker.stories.gen'
-import { action } from '@storybook/addon-actions'
-import { TextField } from '../../TextField/TextField'
-import { DateRange } from '@mui/lab/DateRangePicker/RangeTypes'
-import { AdapterDateFns, LocalizationProvider } from '../../../helpers/dateTime'
-import { Box } from '../../Box/Box'
 
 /**
  * Metadata for DesktopDateRangePicker stories - update/extend as needed
@@ -38,6 +38,7 @@ const Template = story<DesktopDateRangePickerProps<Date>>(args => {
             <TextField id="end" label="End" {...endProps} />
           </React.Fragment>
         )}
+        {...args}
       />
     </LocalizationProvider>
   )

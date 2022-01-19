@@ -1,7 +1,8 @@
 // Edit this file to add new stories
 import React from 'react'
-import { SvgIcon, SvgIconProps } from '../SvgIcon'
+
 import { story } from '../../../__tests__/helpers/storybook'
+import { SvgIcon, SvgIconProps } from '../SvgIcon'
 import { defaultStoryMeta } from './SvgIcon.stories.gen'
 /**
  * Metadata for SvgIcon stories - update/extend as needed

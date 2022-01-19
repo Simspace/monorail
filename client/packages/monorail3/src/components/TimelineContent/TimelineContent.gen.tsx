@@ -9,7 +9,7 @@ import {
  * Props for TimelineContent
  */
 export type TimelineContentProps = MUITimelineContentProps & {
-  ref?: React.ForwardedRef<unknown>
+  ref?: React.ForwardedRef<HTMLSpanElement>
 }
 
 /**

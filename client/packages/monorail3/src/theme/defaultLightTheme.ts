@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-restricted-imports
-import { PaletteOptions, Theme, createTheme, ThemeOptions } from '@mui/material'
+import { createTheme, PaletteOptions, Theme, ThemeOptions } from '@mui/material'
 
 import { baseTheme } from './baseTheme'
 import { getThemeComponents } from './themeComponents'

@@ -1,9 +1,10 @@
 // Edit this file to add new stories
 import React from 'react'
-import { Hidden, HiddenProps } from '../Hidden'
+
 import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './Hidden.stories.gen'
 import { Typography } from '../../Typography/Typography'
+import { Hidden, HiddenProps } from '../Hidden'
+import { defaultStoryMeta } from './Hidden.stories.gen'
 
 /**
  * Metadata for Hidden stories - update/extend as needed

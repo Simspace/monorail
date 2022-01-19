@@ -1,12 +1,13 @@
 // Edit this file to add new stories
 import React from 'react'
-import { LinearProgress, LinearProgressProps } from '../LinearProgress'
+import { linearProgressClasses, styled } from '@mui/material'
+
 import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './LinearProgress.stories.gen'
 import { Box } from '../../Box/Box'
 import { Stack } from '../../Stack/Stack'
 import { Typography } from '../../Typography/Typography'
-import { linearProgressClasses, styled } from '@mui/material'
+import { LinearProgress, LinearProgressProps } from '../LinearProgress'
+import { defaultStoryMeta } from './LinearProgress.stories.gen'
 
 /**
  * Metadata for LinearProgress stories - update/extend as needed

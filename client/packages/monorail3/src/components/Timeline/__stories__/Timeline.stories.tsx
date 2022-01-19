@@ -1,19 +1,20 @@
 // Edit this file to add new stories
 import React from 'react'
-import { Timeline, TimelineProps } from '../Timeline'
+import FastfoodIcon from '@mui/icons-material/Fastfood'
+import HotelIcon from '@mui/icons-material/Hotel'
+import LaptopMacIcon from '@mui/icons-material/LaptopMac'
+import RepeatIcon from '@mui/icons-material/Repeat'
+
 import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './Timeline.stories.gen'
-import { TimelineItem } from '../../TimelineItem/TimelineItem'
-import { TimelineSeparator } from '../../TimelineSeparator/TimelineSeparator'
-import { TimelineDot } from '../../TimelineDot/TimelineDot'
 import { TimelineConnector } from '../../TimelineConnector/TimelineConnector'
 import { TimelineContent } from '../../TimelineContent/TimelineContent'
+import { TimelineDot } from '../../TimelineDot/TimelineDot'
+import { TimelineItem } from '../../TimelineItem/TimelineItem'
 import { TimelineOppositeContent } from '../../TimelineOppositeContent/TimelineOppositeContent'
+import { TimelineSeparator } from '../../TimelineSeparator/TimelineSeparator'
 import { Typography } from '../../Typography/Typography'
-import FastfoodIcon from '@mui/icons-material/Fastfood'
-import LaptopMacIcon from '@mui/icons-material/LaptopMac'
-import HotelIcon from '@mui/icons-material/Hotel'
-import RepeatIcon from '@mui/icons-material/Repeat'
+import { Timeline, TimelineProps } from '../Timeline'
+import { defaultStoryMeta } from './Timeline.stories.gen'
 /**
  * Metadata for Timeline stories - update/extend as needed
  */

@@ -1,17 +1,18 @@
 // Edit this file to add new stories
 import React from 'react'
-import { Paper, PaperProps } from '../Paper'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './Paper.stories.gen'
-import { Box } from '../../Box/Box'
 import {
   createTheme,
   styled,
-  ThemeProvider,
-  Theme,
   StyledEngineProvider,
+  Theme,
+  ThemeProvider,
 } from '@mui/material/styles'
+
+import { story } from '../../../__tests__/helpers/storybook'
+import { Box } from '../../Box/Box'
 import { Grid } from '../../Grid/Grid'
+import { Paper, PaperProps } from '../Paper'
+import { defaultStoryMeta } from './Paper.stories.gen'
 
 declare module '@mui/styles/defaultTheme' {
   // eslint-disable-next-line @typescript-eslint/no-empty-interface
