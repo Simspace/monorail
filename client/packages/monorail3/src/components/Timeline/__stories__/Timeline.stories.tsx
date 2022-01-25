@@ -4,21 +4,20 @@ import FastfoodIcon from '@mui/icons-material/Fastfood'
 import HotelIcon from '@mui/icons-material/Hotel'
 import LaptopMacIcon from '@mui/icons-material/LaptopMac'
 import RepeatIcon from '@mui/icons-material/Repeat'
+import Timeline, { TimelineProps } from '@mui/lab/Timeline'
+import TimelineConnector from '@mui/lab/TimelineConnector'
+import TimelineContent from '@mui/lab/TimelineContent'
+import TimelineDot from '@mui/lab/TimelineDot'
+import TimelineItem from '@mui/lab/TimelineItem'
+import TimelineOppositeContent from '@mui/lab/TimelineOppositeContent'
+import TimelineSeparator from '@mui/lab/TimelineSeparator'
+import Typography from '@mui/material/Typography'
 
 import { story } from '../../../__tests__/helpers/storybook'
-import { TimelineConnector } from '../../TimelineConnector/TimelineConnector'
-import { TimelineContent } from '../../TimelineContent/TimelineContent'
-import { TimelineDot } from '../../TimelineDot/TimelineDot'
-import { TimelineItem } from '../../TimelineItem/TimelineItem'
-import { TimelineOppositeContent } from '../../TimelineOppositeContent/TimelineOppositeContent'
-import { TimelineSeparator } from '../../TimelineSeparator/TimelineSeparator'
-import { Typography } from '../../Typography/Typography'
-import { Timeline, TimelineProps } from '../Timeline'
-import { defaultStoryMeta } from './Timeline.stories.gen'
 /**
  * Metadata for Timeline stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Data Display/Timeline' }
+export default { title: 'Data Display/Timeline', component: Timeline }
 /**
  * Story template (edit/remove by hand if needed)
  *
@@ -26,30 +25,32 @@ export default { ...defaultStoryMeta, title: 'Data Display/Timeline' }
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
 const Template = story<TimelineProps>(
-  args => (
-    <Timeline {...args}>
-      <TimelineItem>
-        <TimelineSeparator>
-          <TimelineDot />
-          <TimelineConnector />
-        </TimelineSeparator>
-        <TimelineContent>Eat</TimelineContent>
-      </TimelineItem>
-      <TimelineItem>
-        <TimelineSeparator>
-          <TimelineDot />
-          <TimelineConnector />
-        </TimelineSeparator>
-        <TimelineContent>Code</TimelineContent>
-      </TimelineItem>
-      <TimelineItem>
-        <TimelineSeparator>
-          <TimelineDot />
-        </TimelineSeparator>
-        <TimelineContent>Sleep</TimelineContent>
-      </TimelineItem>
-    </Timeline>
-  ),
+  _args => {
+    return (
+      <Timeline /*{...args}*/>
+        <TimelineItem>
+          <TimelineSeparator>
+            <TimelineDot />
+            <TimelineConnector />
+          </TimelineSeparator>
+          <TimelineContent>Eat</TimelineContent>
+        </TimelineItem>
+        <TimelineItem>
+          <TimelineSeparator>
+            <TimelineDot />
+            <TimelineConnector />
+          </TimelineSeparator>
+          <TimelineContent>Code</TimelineContent>
+        </TimelineItem>
+        <TimelineItem>
+          <TimelineSeparator>
+            <TimelineDot />
+          </TimelineSeparator>
+          <TimelineContent>Sleep</TimelineContent>
+        </TimelineItem>
+      </Timeline>
+    )
+  },
   {
     args: {},
   },
@@ -93,8 +94,8 @@ export const Alternating = story(Template, {
 })
 
 export const Color = story<TimelineProps>(
-  args => (
-    <Timeline {...args}>
+  _args => (
+    <Timeline /*{...args}*/>
       <TimelineItem>
         <TimelineSeparator>
           <TimelineDot color="secondary" />
@@ -125,8 +126,8 @@ export const Color = story<TimelineProps>(
 )
 
 export const Outlined = story<TimelineProps>(
-  args => (
-    <Timeline {...args}>
+  _args => (
+    <Timeline /*{...args}*/>
       <TimelineItem>
         <TimelineSeparator>
           <TimelineDot variant="outlined" />
@@ -164,8 +165,8 @@ export const Outlined = story<TimelineProps>(
 )
 
 export const OppositeContent = story<TimelineProps>(
-  args => (
-    <Timeline {...args}>
+  _args => (
+    <Timeline /*{...args}*/>
       <TimelineItem>
         <TimelineOppositeContent color="text.secondary">
           09:30 am
@@ -223,8 +224,8 @@ export const OppositeContent = story<TimelineProps>(
 )
 
 export const Customization = story<TimelineProps>(
-  args => (
-    <Timeline {...args}>
+  _args => (
+    <Timeline /*{...args}*/>
       <TimelineItem>
         <TimelineOppositeContent
           sx={{ m: 'auto 0' }}

@@ -12,29 +12,28 @@ import Label from '@mui/icons-material/Label'
 import LocalOfferIcon from '@mui/icons-material/LocalOffer'
 import MailIcon from '@mui/icons-material/Mail'
 import SupervisorAccountIcon from '@mui/icons-material/SupervisorAccount'
-import { alpha, styled } from '@mui/material/styles'
-
-import { story } from '../../../__tests__/helpers/storybook'
-import { Box } from '../../Box/Box'
-import { Button } from '../../Button/Button'
-import { FormControlLabel } from '../../FormControlLabel/FormControlLabel'
-import { SvgIconProps } from '../../SvgIcon/SvgIcon'
-import { Switch } from '../../Switch/Switch'
-import {
-  TreeItem,
+import TreeItem, {
   treeItemClasses,
   TreeItemContentProps,
   TreeItemProps,
   useTreeItem,
-} from '../../TreeItem/TreeItem'
-import { Typography } from '../../Typography/Typography'
-import { TreeView, TreeViewProps } from '../TreeView'
-import { defaultStoryMeta } from './TreeView.stories.gen'
+} from '@mui/lab/TreeItem'
+import TreeView, { TreeViewProps } from '@mui/lab/TreeView'
+import Box from '@mui/material/Box'
+import Button from '@mui/material/Button'
+import FormControlLabel from '@mui/material/FormControlLabel'
+import { alpha, styled } from '@mui/material/styles'
+import { SvgIconProps } from '@mui/material/SvgIcon'
+import Switch from '@mui/material/Switch'
+import Typography from '@mui/material/Typography'
+
+import { story } from '../../../__tests__/helpers/storybook'
 
 /**
  * Metadata for TreeView stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Data Display/TreeView' }
+export default { title: 'Data Display/TreeView', component: TreeView }
+
 /**
  * Story template (edit/remove by hand if needed)
  *

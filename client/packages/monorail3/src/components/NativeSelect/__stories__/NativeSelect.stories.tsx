@@ -1,16 +1,18 @@
 // Edit this file to add new stories
 import React from 'react'
+import {
+  Box,
+  FormControl,
+  InputLabel,
+  NativeSelect,
+  NativeSelectProps,
+} from '@mui/material'
 
 import { story } from '../../../__tests__/helpers/storybook'
-import { Box } from '../../Box/Box'
-import { FormControl } from '../../FormControl/FormControl'
-import { InputLabel } from '../../InputLabel/InputLabel'
-import { NativeSelect, NativeSelectProps } from '../NativeSelect'
-import { defaultStoryMeta } from './NativeSelect.stories.gen'
 /**
  * Metadata for NativeSelect stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Inputs/NativeSelect' }
+export default { title: 'Inputs/NativeSelect', component: NativeSelect }
 /**
  * Story template (edit/remove by hand if needed)
  *
