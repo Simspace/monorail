@@ -25,9 +25,11 @@ export default { title: 'Data Display/Timeline', component: Timeline }
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
 const Template = story<TimelineProps>(
-  _args => {
+  args => {
+    // TODO: Ignore the ref, there is a type error
+    const { ref: _ref, ...rest } = args
     return (
-      <Timeline /*{...args}*/>
+      <Timeline {...rest}>
         <TimelineItem>
           <TimelineSeparator>
             <TimelineDot />
@@ -94,23 +96,26 @@ export const Alternating = story(Template, {
 })
 
 export const Color = story<TimelineProps>(
-  _args => (
-    <Timeline /*{...args}*/>
-      <TimelineItem>
-        <TimelineSeparator>
-          <TimelineDot color="secondary" />
-          <TimelineConnector />
-        </TimelineSeparator>
-        <TimelineContent>Secondary</TimelineContent>
-      </TimelineItem>
-      <TimelineItem>
-        <TimelineSeparator>
-          <TimelineDot color="success" />
-        </TimelineSeparator>
-        <TimelineContent>Success</TimelineContent>
-      </TimelineItem>
-    </Timeline>
-  ),
+  args => {
+    const { ref: _ref, ...rest } = args
+    return (
+      <Timeline {...rest}>
+        <TimelineItem>
+          <TimelineSeparator>
+            <TimelineDot color="secondary" />
+            <TimelineConnector />
+          </TimelineSeparator>
+          <TimelineContent>Secondary</TimelineContent>
+        </TimelineItem>
+        <TimelineItem>
+          <TimelineSeparator>
+            <TimelineDot color="success" />
+          </TimelineSeparator>
+          <TimelineContent>Success</TimelineContent>
+        </TimelineItem>
+      </Timeline>
+    )
+  },
   {
     args: {
       position: 'alternate',
@@ -126,37 +131,40 @@ export const Color = story<TimelineProps>(
 )
 
 export const Outlined = story<TimelineProps>(
-  _args => (
-    <Timeline /*{...args}*/>
-      <TimelineItem>
-        <TimelineSeparator>
-          <TimelineDot variant="outlined" />
-          <TimelineConnector />
-        </TimelineSeparator>
-        <TimelineContent>Eat</TimelineContent>
-      </TimelineItem>
-      <TimelineItem>
-        <TimelineSeparator>
-          <TimelineDot variant="outlined" color="primary" />
-          <TimelineConnector />
-        </TimelineSeparator>
-        <TimelineContent>Code</TimelineContent>
-      </TimelineItem>
-      <TimelineItem>
-        <TimelineSeparator>
-          <TimelineDot variant="outlined" color="secondary" />
-          <TimelineConnector />
-        </TimelineSeparator>
-        <TimelineContent>Sleep</TimelineContent>
-      </TimelineItem>
-      <TimelineItem>
-        <TimelineSeparator>
-          <TimelineDot variant="outlined" />
-        </TimelineSeparator>
-        <TimelineContent>Repeat</TimelineContent>
-      </TimelineItem>
-    </Timeline>
-  ),
+  args => {
+    const { ref: _ref, ...rest } = args
+    return (
+      <Timeline {...rest}>
+        <TimelineItem>
+          <TimelineSeparator>
+            <TimelineDot variant="outlined" />
+            <TimelineConnector />
+          </TimelineSeparator>
+          <TimelineContent>Eat</TimelineContent>
+        </TimelineItem>
+        <TimelineItem>
+          <TimelineSeparator>
+            <TimelineDot variant="outlined" color="primary" />
+            <TimelineConnector />
+          </TimelineSeparator>
+          <TimelineContent>Code</TimelineContent>
+        </TimelineItem>
+        <TimelineItem>
+          <TimelineSeparator>
+            <TimelineDot variant="outlined" color="secondary" />
+            <TimelineConnector />
+          </TimelineSeparator>
+          <TimelineContent>Sleep</TimelineContent>
+        </TimelineItem>
+        <TimelineItem>
+          <TimelineSeparator>
+            <TimelineDot variant="outlined" />
+          </TimelineSeparator>
+          <TimelineContent>Repeat</TimelineContent>
+        </TimelineItem>
+      </Timeline>
+    )
+  },
   {
     args: {
       position: 'alternate',
@@ -165,50 +173,53 @@ export const Outlined = story<TimelineProps>(
 )
 
 export const OppositeContent = story<TimelineProps>(
-  _args => (
-    <Timeline /*{...args}*/>
-      <TimelineItem>
-        <TimelineOppositeContent color="text.secondary">
-          09:30 am
-        </TimelineOppositeContent>
-        <TimelineSeparator>
-          <TimelineDot />
-          <TimelineConnector />
-        </TimelineSeparator>
-        <TimelineContent>Eat</TimelineContent>
-      </TimelineItem>
-      <TimelineItem>
-        <TimelineOppositeContent color="text.secondary">
-          10:00 am
-        </TimelineOppositeContent>
-        <TimelineSeparator>
-          <TimelineDot />
-          <TimelineConnector />
-        </TimelineSeparator>
-        <TimelineContent>Code</TimelineContent>
-      </TimelineItem>
-      <TimelineItem>
-        <TimelineOppositeContent color="text.secondary">
-          12:00 am
-        </TimelineOppositeContent>
-        <TimelineSeparator>
-          <TimelineDot />
-          <TimelineConnector />
-        </TimelineSeparator>
-        <TimelineContent>Sleep</TimelineContent>
-      </TimelineItem>
-      <TimelineItem>
-        <TimelineOppositeContent color="text.secondary">
-          9:00 am
-        </TimelineOppositeContent>
-        <TimelineSeparator>
-          <TimelineDot />
-          <TimelineConnector />
-        </TimelineSeparator>
-        <TimelineContent>Repeat</TimelineContent>
-      </TimelineItem>
-    </Timeline>
-  ),
+  args => {
+    const { ref: _ref, ...rest } = args
+    return (
+      <Timeline {...rest}>
+        <TimelineItem>
+          <TimelineOppositeContent color="text.secondary">
+            09:30 am
+          </TimelineOppositeContent>
+          <TimelineSeparator>
+            <TimelineDot />
+            <TimelineConnector />
+          </TimelineSeparator>
+          <TimelineContent>Eat</TimelineContent>
+        </TimelineItem>
+        <TimelineItem>
+          <TimelineOppositeContent color="text.secondary">
+            10:00 am
+          </TimelineOppositeContent>
+          <TimelineSeparator>
+            <TimelineDot />
+            <TimelineConnector />
+          </TimelineSeparator>
+          <TimelineContent>Code</TimelineContent>
+        </TimelineItem>
+        <TimelineItem>
+          <TimelineOppositeContent color="text.secondary">
+            12:00 am
+          </TimelineOppositeContent>
+          <TimelineSeparator>
+            <TimelineDot />
+            <TimelineConnector />
+          </TimelineSeparator>
+          <TimelineContent>Sleep</TimelineContent>
+        </TimelineItem>
+        <TimelineItem>
+          <TimelineOppositeContent color="text.secondary">
+            9:00 am
+          </TimelineOppositeContent>
+          <TimelineSeparator>
+            <TimelineDot />
+            <TimelineConnector />
+          </TimelineSeparator>
+          <TimelineContent>Repeat</TimelineContent>
+        </TimelineItem>
+      </Timeline>
+    )
+  },
   {
     args: {
       position: 'alternate',
@@ -224,85 +235,88 @@ export const OppositeContent = story<TimelineProps>(
 )
 
 export const Customization = story<TimelineProps>(
-  _args => (
-    <Timeline /*{...args}*/>
-      <TimelineItem>
-        <TimelineOppositeContent
-          sx={{ m: 'auto 0' }}
-          align="right"
-          variant="body2"
-          color="text.secondary"
-        >
-          9:30 am
-        </TimelineOppositeContent>
-        <TimelineSeparator>
-          <TimelineConnector />
-          <TimelineDot>
-            <FastfoodIcon />
-          </TimelineDot>
-          <TimelineConnector />
-        </TimelineSeparator>
-        <TimelineContent sx={{ py: '12px', px: 2 }}>
-          <Typography variant="h6" component="span">
-            Eat
-          </Typography>
-          <Typography>Because you need strength</Typography>
-        </TimelineContent>
-      </TimelineItem>
-      <TimelineItem>
-        <TimelineOppositeContent
-          sx={{ m: 'auto 0' }}
-          variant="body2"
-          color="text.secondary"
-        >
-          10:00 am
-        </TimelineOppositeContent>
-        <TimelineSeparator>
-          <TimelineConnector />
-          <TimelineDot color="primary">
-            <LaptopMacIcon />
-          </TimelineDot>
-          <TimelineConnector />
-        </TimelineSeparator>
-        <TimelineContent sx={{ py: '12px', px: 2 }}>
-          <Typography variant="h6" component="span">
-            Code
-          </Typography>
-          <Typography>Because it&apos;s awesome!</Typography>
-        </TimelineContent>
-      </TimelineItem>
-      <TimelineItem>
-        <TimelineSeparator>
-          <TimelineConnector />
-          <TimelineDot color="primary" variant="outlined">
-            <HotelIcon />
-          </TimelineDot>
-          <TimelineConnector sx={{ bgcolor: 'secondary.main' }} />
-        </TimelineSeparator>
-        <TimelineContent sx={{ py: '12px', px: 2 }}>
-          <Typography variant="h6" component="span">
-            Sleep
-          </Typography>
-          <Typography>Because you need rest</Typography>
-        </TimelineContent>
-      </TimelineItem>
-      <TimelineItem>
-        <TimelineSeparator>
-          <TimelineConnector sx={{ bgcolor: 'secondary.main' }} />
-          <TimelineDot color="secondary">
-            <RepeatIcon />
-          </TimelineDot>
-          <TimelineConnector />
-        </TimelineSeparator>
-        <TimelineContent sx={{ py: '12px', px: 2 }}>
-          <Typography variant="h6" component="span">
-            Repeat
-          </Typography>
-          <Typography>Because this is the life you love!</Typography>
-        </TimelineContent>
-      </TimelineItem>
-    </Timeline>
-  ),
+  args => {
+    const { ref: _ref, ...rest } = args
+    return (
+      <Timeline {...rest}>
+        <TimelineItem>
+          <TimelineOppositeContent
+            sx={{ m: 'auto 0' }}
+            align="right"
+            variant="body2"
+            color="text.secondary"
+          >
+            9:30 am
+          </TimelineOppositeContent>
+          <TimelineSeparator>
+            <TimelineConnector />
+            <TimelineDot>
+              <FastfoodIcon />
+            </TimelineDot>
+            <TimelineConnector />
+          </TimelineSeparator>
+          <TimelineContent sx={{ py: '12px', px: 2 }}>
+            <Typography variant="h6" component="span">
+              Eat
+            </Typography>
+            <Typography>Because you need strength</Typography>
+          </TimelineContent>
+        </TimelineItem>
+        <TimelineItem>
+          <TimelineOppositeContent
+            sx={{ m: 'auto 0' }}
+            variant="body2"
+            color="text.secondary"
+          >
+            10:00 am
+          </TimelineOppositeContent>
+          <TimelineSeparator>
+            <TimelineConnector />
+            <TimelineDot color="primary">
+              <LaptopMacIcon />
+            </TimelineDot>
+            <TimelineConnector />
+          </TimelineSeparator>
+          <TimelineContent sx={{ py: '12px', px: 2 }}>
+            <Typography variant="h6" component="span">
+              Code
+            </Typography>
+            <Typography>Because it&apos;s awesome!</Typography>
+          </TimelineContent>
+        </TimelineItem>
+        <TimelineItem>
+          <TimelineSeparator>
+            <TimelineConnector />
+            <TimelineDot color="primary" variant="outlined">
+              <HotelIcon />
+            </TimelineDot>
+            <TimelineConnector sx={{ bgcolor: 'secondary.main' }} />
+          </TimelineSeparator>
+          <TimelineContent sx={{ py: '12px', px: 2 }}>
+            <Typography variant="h6" component="span">
+              Sleep
+            </Typography>
+            <Typography>Because you need rest</Typography>
+          </TimelineContent>
+        </TimelineItem>
+        <TimelineItem>
+          <TimelineSeparator>
+            <TimelineConnector sx={{ bgcolor: 'secondary.main' }} />
+            <TimelineDot color="secondary">
+              <RepeatIcon />
+            </TimelineDot>
+            <TimelineConnector />
+          </TimelineSeparator>
+          <TimelineContent sx={{ py: '12px', px: 2 }}>
+            <Typography variant="h6" component="span">
+              Repeat
+            </Typography>
+            <Typography>Because this is the life you love!</Typography>
+          </TimelineContent>
+        </TimelineItem>
+      </Timeline>
+    )
+  },
   {
     args: {
       position: 'alternate',
