@@ -378,7 +378,7 @@ export const CustomInputComponent = story(
 )
 
 const StyledDateRangePickerDay = styled(DateRangePickerDay)(
-  // TDOO: this doesn't typecheck
+  // TODO: this doesn't typecheck
   // @ts-ignore
   ({ theme, isHighlighting, isStartOfHighlighting, isEndOfHighlighting }) => ({
     ...(isHighlighting && {
