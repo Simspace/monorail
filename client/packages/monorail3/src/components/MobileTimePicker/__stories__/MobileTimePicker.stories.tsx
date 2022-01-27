@@ -1,9 +1,10 @@
 // Edit this file to add new stories
 import React from 'react'
-import { MobileTimePicker, MobileTimePickerProps } from '../MobileTimePicker'
+
 import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './MobileTimePicker.stories.gen'
 import { TextField } from '../../TextField/TextField'
+import { MobileTimePicker, MobileTimePickerProps } from '../MobileTimePicker'
+import { defaultStoryMeta } from './MobileTimePicker.stories.gen'
 
 export default {
   ...defaultStoryMeta,
@@ -20,9 +21,10 @@ const Template = story<MobileTimePickerProps>(args => {
       label="For mobile"
       value={value}
       onChange={newValue => {
-        setValue(newValue)
+        setValue(newValue as Date)
       }}
       renderInput={params => <TextField {...params} />}
+      {...args}
     />
   )
 })

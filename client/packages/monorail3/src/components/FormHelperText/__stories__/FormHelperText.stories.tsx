@@ -1,10 +1,11 @@
 // Edit this file to add new stories
 import React from 'react'
-import { FormHelperText, FormHelperTextProps } from '../FormHelperText'
+
 import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './FormHelperText.stories.gen'
 import { Checkbox } from '../../Checkbox/Checkbox'
 import { FormControlLabel } from '../../FormControlLabel/FormControlLabel'
+import { FormHelperText, FormHelperTextProps } from '../FormHelperText'
+import { defaultStoryMeta } from './FormHelperText.stories.gen'
 /**
  * Metadata for FormHelperText stories - update/extend as needed
  */

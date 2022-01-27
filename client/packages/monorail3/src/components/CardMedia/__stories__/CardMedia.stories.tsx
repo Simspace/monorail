@@ -1,9 +1,10 @@
 // Edit this file to add new stories
 import React from 'react'
-import { CardMedia, CardMediaProps } from '../CardMedia'
+
 import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './CardMedia.stories.gen'
 import { images } from '../../../__tests__/helpers/testData'
+import { CardMedia, CardMediaProps } from '../CardMedia'
+import { defaultStoryMeta } from './CardMedia.stories.gen'
 /**
  * Metadata for CardMedia stories - update/extend as needed
  * This is intended to be exported as story-level metadata from the main .stories.tsx file, like:
@@ -33,5 +34,10 @@ const Template = story<CardMediaProps>(args => <CardMedia {...args} />, {
   },
 })
 /** Default story for CardMedia (edit/remove by hand if needed) */
-export const Default = story(Template)
-// TODO: add more stories below
+export const Default = story(Template, {
+  parameters: {
+    a11y: {
+      config: { rules: { 'aria-roles': { enabled: false } } }, // MUI has invalid aria role on CardMedia (image instead of img)
+    },
+  },
+})

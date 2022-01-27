@@ -1,9 +1,7 @@
 // Edit this file to add new stories
 import React from 'react'
-import { Autocomplete, AutocompleteProps } from '../Autocomplete'
+
 import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './Autocomplete.stories.gen'
-import { TextField } from '../../TextField/TextField'
 import {
   countries,
   countryToFlag,
@@ -12,6 +10,9 @@ import {
 } from '../../../__tests__/helpers/testData'
 import { Box } from '../../Box/Box'
 import { Stack } from '../../Stack/Stack'
+import { TextField } from '../../TextField/TextField'
+import { Autocomplete, AutocompleteProps } from '../Autocomplete'
+import { defaultStoryMeta } from './Autocomplete.stories.gen'
 /**
  * Metadata for Autocomplete stories - update/extend as needed
  * This is intended to be exported as story-level metadata from the main .stories.tsx file, like:

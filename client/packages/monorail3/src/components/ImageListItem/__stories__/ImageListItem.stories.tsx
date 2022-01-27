@@ -1,7 +1,8 @@
 // Edit this file to add new stories
 import React from 'react'
-import { ImageListItem, ImageListItemProps } from '../ImageListItem'
+
 import { story } from '../../../__tests__/helpers/storybook'
+import { ImageListItem, ImageListItemProps } from '../ImageListItem'
 import { defaultStoryMeta } from './ImageListItem.stories.gen'
 /**
  * Metadata for ImageListItem stories - update/extend as needed
@@ -23,13 +24,16 @@ export default {
  */
 const Template = story<ImageListItemProps>(
   args => (
-    <ImageListItem {...args}>
-      <img
-        src={`https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c?w=164&h=164&fit=crop&auto=format`}
-        srcSet={`https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
-        loading="lazy"
-      />
-    </ImageListItem>
+    <ul>
+      <ImageListItem {...args}>
+        <img
+          alt="demo image"
+          src={`https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c?w=164&h=164&fit=crop&auto=format`}
+          srcSet={`https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
+          loading="lazy"
+        />
+      </ImageListItem>
+    </ul>
   ),
   {
     args: {},

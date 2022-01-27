@@ -1,10 +1,11 @@
 // Edit this file to add new stories
 import React from 'react'
-import { AvatarGroup, AvatarGroupProps } from '../AvatarGroup'
+
 import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './AvatarGroup.stories.gen'
 import { Avatar } from '../../Avatar/Avatar'
 import { Box } from '../../Box/Box'
+import { AvatarGroup, AvatarGroupProps } from '../AvatarGroup'
+import { defaultStoryMeta } from './AvatarGroup.stories.gen'
 
 /**
  * Metadata for AvatarGroup stories - update/extend as needed

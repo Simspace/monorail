@@ -1,12 +1,13 @@
 // Edit this file to add new stories
 import React from 'react'
-import { Box, BoxProps } from '../Box'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './Box.stories.gen'
-import { Typography } from '../../Typography/Typography.gen'
-import { Stack } from '../../Stack/Stack'
 import { styled } from '@mui/material'
+
+import { story } from '../../../__tests__/helpers/storybook'
 import { Button } from '../../Button/Button'
+import { Stack } from '../../Stack/Stack'
+import { Typography } from '../../Typography/Typography.gen'
+import { Box, BoxProps } from '../Box'
+import { defaultStoryMeta } from './Box.stories.gen'
 
 /**
  * Metadata for Box stories - update/extend as needed

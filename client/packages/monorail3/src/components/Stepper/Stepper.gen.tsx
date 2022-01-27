@@ -9,7 +9,7 @@ import {
  * Props for Stepper
  */
 export type StepperProps = MUIStepperProps & {
-  ref?: React.ForwardedRef<unknown>
+  ref?: React.ForwardedRef<HTMLDivElement>
 }
 
 /**

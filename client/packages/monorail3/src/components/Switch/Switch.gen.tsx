@@ -8,7 +8,9 @@ import {
 /**
  * Props for Switch
  */
-export type SwitchProps = MUISwitchProps & { ref?: React.ForwardedRef<unknown> }
+export type SwitchProps = MUISwitchProps & {
+  ref?: React.ForwardedRef<HTMLButtonElement>
+}
 
 /**
  * Switch

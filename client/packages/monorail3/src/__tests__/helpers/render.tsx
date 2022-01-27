@@ -2,7 +2,14 @@
 /* eslint-disable import/no-extraneous-dependencies */
 
 import React from 'react'
-import { ThemeProvider, Theme, StyledEngineProvider } from '@mui/material'
+import AdapterDateFns from '@mui/lab/AdapterDateFns'
+import LocalizationProvider from '@mui/lab/LocalizationProvider'
+import {
+  CssBaseline,
+  StyledEngineProvider,
+  Theme,
+  ThemeProvider,
+} from '@mui/material'
 import { Story } from '@storybook/react'
 import { render, RenderOptions, RenderResult } from '@testing-library/react'
 import { createGlobalStyle } from 'styled-components'
@@ -19,11 +26,13 @@ declare module '@mui/styles/defaultTheme' {
  *
  * Delete after https://github.com/jsdom/jsdom/issues/3064 is fixed
  */
+/* eslint-disable */
 const TemporaryJSDomFix = createGlobalStyle`
   svg title {
     display: inline;
   }
-`
+  `
+/* eslint-enable */
 
 /**
  * Renders content for tests inside theme providers
@@ -33,12 +42,15 @@ export function renderWithTheme(
   options?: Omit<RenderOptions, 'queries'>,
 ): RenderResult {
   return render(
-    <div>
+    <LocalizationProvider dateAdapter={AdapterDateFns}>
       <TemporaryJSDomFix />
       <StyledEngineProvider injectFirst>
-        <ThemeProvider theme={defaultLightTheme}>{ui}</ThemeProvider>
+        <ThemeProvider theme={defaultLightTheme}>
+          <CssBaseline />
+          {ui}
+        </ThemeProvider>
       </StyledEngineProvider>
-    </div>,
+    </LocalizationProvider>,
     options,
   )
 }

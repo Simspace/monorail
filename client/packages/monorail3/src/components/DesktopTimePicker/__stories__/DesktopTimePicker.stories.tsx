@@ -1,10 +1,10 @@
 // Edit this file to add new stories
 import React from 'react'
-import { DesktopTimePicker, DesktopTimePickerProps } from '../DesktopTimePicker'
+
 import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './DesktopTimePicker.stories.gen'
-import { action } from '@storybook/addon-actions'
 import { TextField } from '../../TextField/TextField'
+import { DesktopTimePicker, DesktopTimePickerProps } from '../DesktopTimePicker'
+import { defaultStoryMeta } from './DesktopTimePicker.stories.gen'
 
 /**
  * Metadata for DesktopTimePicker stories - update/extend as needed
@@ -32,7 +32,9 @@ const Template = story<DesktopTimePickerProps<Date>>(args => {
       onChange={newValue => {
         setValue(newValue)
       }}
-      renderInput={params => <TextField {...params} />}
+      renderInput={params => (
+        <TextField id="picker" aria-label="time picker" {...params} />
+      )}
       {...args}
     />
   )

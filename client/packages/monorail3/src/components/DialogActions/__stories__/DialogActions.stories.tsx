@@ -1,9 +1,10 @@
 // Edit this file to add new stories
 import React from 'react'
-import { DialogActions, DialogActionsProps } from '../DialogActions'
+
 import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './DialogActions.stories.gen'
 import { Button } from '../../Button/Button'
+import { DialogActions, DialogActionsProps } from '../DialogActions'
+import { defaultStoryMeta } from './DialogActions.stories.gen'
 /**
  * Metadata for DialogActions stories - update/extend as needed
  */

@@ -1,11 +1,11 @@
 // Edit this file to add new stories
 import React from 'react'
-import { ClickAwayListener, ClickAwayListenerProps } from '../ClickAwayListener'
+
 import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './ClickAwayListener.stories.gen'
 import { Box } from '../../Box/Box'
-import { SxProps } from '@mui/system'
 import { Portal } from '../../Portal/Portal'
+import { ClickAwayListener, ClickAwayListenerProps } from '../ClickAwayListener'
+import { defaultStoryMeta } from './ClickAwayListener.stories.gen'
 
 /**
  * Metadata for ClickAwayListener stories - update/extend as needed
@@ -32,8 +32,8 @@ const Template = story<ClickAwayListenerProps>(
       setOpen(false)
     }
 
-    const styles: SxProps = {
-      position: 'absolute' as const,
+    const styles = {
+      position: 'absolute',
       top: 28,
       right: 0,
       left: 0,
@@ -41,7 +41,7 @@ const Template = story<ClickAwayListenerProps>(
       border: '1px solid',
       p: 1,
       bgcolor: 'background.paper',
-    }
+    } as const
 
     return (
       <ClickAwayListener onClickAway={handleClickAway} {...args}>
@@ -76,7 +76,7 @@ export const WithPortal = story<ClickAwayListenerProps>(
       setOpen(false)
     }
 
-    const styles: SxProps = {
+    const styles = {
       position: 'fixed',
       width: 200,
       top: '50%',
@@ -85,7 +85,7 @@ export const WithPortal = story<ClickAwayListenerProps>(
       border: '1px solid',
       p: 1,
       bgcolor: 'background.paper',
-    }
+    } as const
 
     return (
       <ClickAwayListener onClickAway={handleClickAway}>
@@ -128,7 +128,7 @@ export const LeadingEdge = story<ClickAwayListenerProps>(
       setOpen(false)
     }
 
-    const styles: SxProps = {
+    const styles = {
       position: 'absolute',
       top: 28,
       right: 0,
@@ -137,7 +137,7 @@ export const LeadingEdge = story<ClickAwayListenerProps>(
       border: '1px solid',
       p: 1,
       bgcolor: 'background.paper',
-    }
+    } as const
 
     return (
       <ClickAwayListener

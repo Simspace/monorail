@@ -1,13 +1,14 @@
 // Edit this file to add new stories
 import React from 'react'
-import { Pagination, PaginationProps } from '../Pagination'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './Pagination.stories.gen'
-import { Stack } from '../../Stack/Stack'
-import { Typography } from '../../Typography/Typography'
 import styled from '@mui/material/styles/styled'
 import usePagination from '@mui/material/usePagination/usePagination'
+
+import { story } from '../../../__tests__/helpers/storybook'
+import { Stack } from '../../Stack/Stack'
 import { TablePagination } from '../../TablePagination/TablePagination'
+import { Typography } from '../../Typography/Typography'
+import { Pagination, PaginationProps } from '../Pagination'
+import { defaultStoryMeta } from './Pagination.stories.gen'
 /**
  * Metadata for Pagination stories - update/extend as needed
  */
@@ -26,42 +27,67 @@ export const Default = story(Template)
 
 export const BasicPagination = story<PaginationProps>(() => (
   <Stack spacing={2}>
-    <Pagination count={10} />
-    <Pagination count={10} color="primary" />
-    <Pagination count={10} color="secondary" />
-    <Pagination count={10} disabled />
+    <Pagination count={10} aria-label="default" />
+    <Pagination count={10} color="primary" aria-label="primary" />
+    <Pagination count={10} color="secondary" aria-label="secondary" />
+    <Pagination count={10} disabled aria-label="disabled" />
   </Stack>
 ))
 
 export const PaginationOutlined = story<PaginationProps>(() => (
   <Stack spacing={2}>
-    <Pagination count={10} variant="outlined" />
-    <Pagination count={10} variant="outlined" color="primary" />
-    <Pagination count={10} variant="outlined" color="secondary" />
-    <Pagination count={10} variant="outlined" disabled />
+    <Pagination count={10} variant="outlined" aria-label="default" />
+    <Pagination
+      count={10}
+      variant="outlined"
+      color="primary"
+      aria-label="primary"
+    />
+    <Pagination
+      count={10}
+      variant="outlined"
+      color="secondary"
+      aria-label="secondary"
+    />
+    <Pagination count={10} variant="outlined" disabled aria-label="disabled" />
   </Stack>
 ))
 
 export const PaginationRounded = story<PaginationProps>(() => (
   <Stack spacing={2}>
-    <Pagination count={10} shape="rounded" />
-    <Pagination count={10} variant="outlined" shape="rounded" />
+    <Pagination count={10} shape="rounded" aria-label="rounded" />
+    <Pagination
+      count={10}
+      variant="outlined"
+      shape="rounded"
+      aria-label="outlined"
+    />
   </Stack>
 ))
 
 export const PaginationSize = story<PaginationProps>(() => (
   <Stack spacing={2}>
-    <Pagination count={10} size="small" />
-    <Pagination count={10} />
-    <Pagination count={10} size="large" />
+    <Pagination count={10} size="small" aria-label="small" />
+    <Pagination count={10} aria-label="default" />
+    <Pagination count={10} size="large" aria-label="large" />
   </Stack>
 ))
 
 export const PaginationButtons = story<PaginationProps>(
   () => (
     <Stack spacing={2}>
-      <Pagination count={10} showFirstButton showLastButton />
-      <Pagination count={10} hidePrevButton hideNextButton />
+      <Pagination
+        count={10}
+        showFirstButton
+        showLastButton
+        aria-label="show-first-last"
+      />
+      <Pagination
+        count={10}
+        hidePrevButton
+        hideNextButton
+        aria-label="hide buttons"
+      />
     </Stack>
   ),
   {
@@ -78,15 +104,27 @@ export const PaginationButtons = story<PaginationProps>(
 export const PaginationRanges = story<PaginationProps>(
   () => (
     <Stack spacing={2}>
-      <Pagination count={11} defaultPage={6} siblingCount={0} />
-      <Pagination count={11} defaultPage={6} /> {/* Default ranges */}
       <Pagination
+        count={11}
+        defaultPage={6}
+        siblingCount={0}
+        aria-label="no siblings"
+      />
+      <Pagination count={11} defaultPage={6} aria-label="default ranges" />{' '}
+      {/* Default ranges */}
+      <Pagination
+        aria-label="no-sibling-boundary"
         count={11}
         defaultPage={6}
         siblingCount={0}
         boundaryCount={2}
       />
-      <Pagination count={11} defaultPage={6} boundaryCount={2} />
+      <Pagination
+        count={11}
+        defaultPage={6}
+        boundaryCount={2}
+        aria-label="boundary"
+      />
     </Stack>
   ),
   {

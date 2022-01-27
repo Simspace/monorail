@@ -9,7 +9,7 @@ import {
  * Props for MenuList
  */
 export type MenuListProps = MUIMenuListProps & {
-  ref?: React.ForwardedRef<unknown>
+  ref?: React.ForwardedRef<HTMLUListElement>
 }
 
 /**

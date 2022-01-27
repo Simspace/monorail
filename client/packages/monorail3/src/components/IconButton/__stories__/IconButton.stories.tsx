@@ -1,12 +1,13 @@
 // Edit this file to add new stories
 import React from 'react'
-import { IconButton, IconButtonProps } from '../IconButton'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './IconButton.stories.gen'
-import DeleteIcon from '@mui/icons-material/Delete'
-import AlarmIcon from '@mui/icons-material/Alarm'
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart'
+import AlarmIcon from '@mui/icons-material/Alarm'
+import DeleteIcon from '@mui/icons-material/Delete'
+
+import { story } from '../../../__tests__/helpers/storybook'
 import { Stack } from '../../Stack/Stack'
+import { IconButton, IconButtonProps } from '../IconButton'
+import { defaultStoryMeta } from './IconButton.stories.gen'
 /**
  * Metadata for IconButton stories - update/extend as needed
  */
@@ -19,7 +20,7 @@ export default { ...defaultStoryMeta, title: 'Inputs/IconButton' }
  */
 const Template = story<IconButtonProps>(
   args => (
-    <IconButton {...args} size="large">
+    <IconButton aria-label="default" {...args} size="large">
       <DeleteIcon />
     </IconButton>
   ),

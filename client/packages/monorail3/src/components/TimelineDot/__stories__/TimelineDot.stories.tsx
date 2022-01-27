@@ -1,7 +1,8 @@
 // Edit this file to add new stories
 import React from 'react'
-import { TimelineDot, TimelineDotProps } from '../TimelineDot'
+
 import { story } from '../../../__tests__/helpers/storybook'
+import { TimelineDot, TimelineDotProps } from '../TimelineDot'
 import { defaultStoryMeta } from './TimelineDot.stories.gen'
 /**
  * Metadata for TimelineDot stories - update/extend as needed

@@ -1,9 +1,10 @@
 // Edit this file to add new stories
 import React from 'react'
-import { Radio, RadioProps } from '../Radio'
+
 import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './Radio.stories.gen'
 import { Typography } from '../../Typography/Typography'
+import { Radio, RadioProps } from '../Radio'
+import { defaultStoryMeta } from './Radio.stories.gen'
 
 /**
  * Metadata for Radio stories - update/extend as needed
@@ -20,8 +21,8 @@ const Template = story<RadioProps>(
   args => {
     return (
       <>
-        <Radio {...args} />
-        <Typography>
+        <Radio inputProps={{ 'aria-labelledby': 'radio-demo' }} {...args} />
+        <Typography id="radio-demo">
           See <code>RadioGroup</code> for more examples
         </Typography>
       </>

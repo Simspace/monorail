@@ -1,12 +1,13 @@
 // Edit this file to add new stories
 import React from 'react'
+import RestoreIcon from '@mui/icons-material/Restore'
+
+import { story } from '../../../__tests__/helpers/storybook'
 import {
   BottomNavigationAction,
   BottomNavigationActionProps,
 } from '../BottomNavigationAction'
-import { story } from '../../../__tests__/helpers/storybook'
 import { defaultStoryMeta } from './BottomNavigationAction.stories.gen'
-import RestoreIcon from '@mui/icons-material/Restore'
 
 /**
  * Metadata for BottomNavigationAction stories - update/extend as needed

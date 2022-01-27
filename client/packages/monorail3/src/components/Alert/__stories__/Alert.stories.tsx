@@ -1,19 +1,20 @@
 // Edit this file to add new stories
 import React from 'react'
-import { Alert, AlertProps } from '../Alert'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './Alert.stories.gen'
-import { AlertTitle } from '../../AlertTitle/AlertTitle'
-import { Stack } from '../../Stack/Stack'
-import { Button } from '../../Button/Button'
-import { Box } from '../../Box/Box'
-import { Collapse } from '../../Collapse/Collapse'
-import { IconButton } from '../../IconButton/IconButton'
 import CheckIcon from '@mui/icons-material/Check'
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
 import CloseIcon from '@mui/icons-material/Close'
-import { Typography } from '../../Typography/Typography'
+
+import { story } from '../../../__tests__/helpers/storybook'
+import { AlertTitle } from '../../AlertTitle/AlertTitle'
+import { Box } from '../../Box/Box'
+import { Button } from '../../Button/Button'
+import { Collapse } from '../../Collapse/Collapse'
+import { IconButton } from '../../IconButton/IconButton'
 import { Snackbar } from '../../Snackbar/Snackbar'
+import { Stack } from '../../Stack/Stack'
+import { Typography } from '../../Typography/Typography'
+import { Alert, AlertProps } from '../Alert'
+import { defaultStoryMeta } from './Alert.stories.gen'
 
 /**
  * Metadata for Alert stories - update/extend as needed

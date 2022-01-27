@@ -1,7 +1,8 @@
 // Edit this file to add new stories
 import React from 'react'
-import { CardActionArea, CardActionAreaProps } from '../CardActionArea'
+
 import { story } from '../../../__tests__/helpers/storybook'
+import { CardActionArea, CardActionAreaProps } from '../CardActionArea'
 import { defaultStoryMeta } from './CardActionArea.stories.gen'
 
 /**

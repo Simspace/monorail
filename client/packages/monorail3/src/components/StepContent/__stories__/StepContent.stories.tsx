@@ -1,16 +1,17 @@
 import React from 'react'
-import { StepContent, StepContentProps } from '../StepContent'
+
 import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './StepContent.stories.gen'
 import { Box } from '../../Box/Box'
-import { Stepper } from '../../Stepper/Stepper'
+import { Button } from '../../Button/Button'
+import { Fade } from '../../Fade/Fade'
+import { Paper } from '../../Paper/Paper'
 import { Step } from '../../Step/Step'
 import { StepLabel } from '../../StepLabel/StepLabel'
+import { Stepper } from '../../Stepper/Stepper'
 import { Typography } from '../../Typography/Typography'
-import { Button } from '../../Button/Button'
-import { Paper } from '../../Paper/Paper'
 import { Zoom } from '../../Zoom/Zoom'
-import { Fade } from '../../Fade/Fade'
+import { StepContent, StepContentProps } from '../StepContent'
+import { defaultStoryMeta } from './StepContent.stories.gen'
 /**
  * Metadata for StepContent stories - update/extend as needed
  */
