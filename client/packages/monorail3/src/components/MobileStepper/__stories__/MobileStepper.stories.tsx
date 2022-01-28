@@ -1,16 +1,18 @@
 import React from 'react'
 import { KeyboardArrowLeft, KeyboardArrowRight } from '@mui/icons-material'
+import {
+  Box,
+  Button,
+  MobileStepper,
+  MobileStepperProps,
+  Paper,
+  Typography,
+  useTheme,
+} from '@mui/material'
 
 import { story } from '../../../__tests__/helpers/storybook'
-import { useTheme } from '../../../theme/useTheme'
-import { Box } from '../../Box/Box'
-import { Button } from '../../Button/Button'
-import { Paper } from '../../Paper/Paper'
-import { Typography } from '../../Typography/Typography'
-import { MobileStepper, MobileStepperProps } from '../MobileStepper'
-import { defaultStoryMeta } from './MobileStepper.stories.gen'
 
-export default { ...defaultStoryMeta, title: 'Navigation/MobileStepper' }
+export default { title: 'Navigation/MobileStepper', component: MobileStepper }
 
 const steps = [
   {

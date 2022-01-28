@@ -3,23 +3,25 @@ import React from 'react'
 import ClockIcon from '@mui/icons-material/AccessTime'
 import AlarmIcon from '@mui/icons-material/Alarm'
 import SnoozeIcon from '@mui/icons-material/Snooze'
+import {
+  DateTimePicker,
+  DateTimePickerProps,
+  DesktopDateTimePicker,
+  LocalizationProvider,
+  MobileDateTimePicker,
+  StaticDateTimePicker,
+} from '@mui/lab'
+import AdapterDateFns from '@mui/lab/AdapterDateFns'
+import { Stack, TextField } from '@mui/material'
 
 import { story } from '../../../__tests__/helpers/storybook'
-import { AdapterDateFns, LocalizationProvider } from '../../../helpers/dateTime'
-import { DesktopDateTimePicker } from '../../DesktopDateTimePicker/DesktopDateTimePicker'
-import { MobileDateTimePicker } from '../../MobileDateTimePicker/MobileDateTimePicker'
-import { Stack } from '../../Stack/Stack'
-import { StaticDateTimePicker } from '../../StaticDateTimePicker/StaticDateTimePicker'
-import { TextField } from '../../TextField/TextField'
-import { DateTimePicker, DateTimePickerProps } from '../DateTimePicker'
-import { defaultStoryMeta } from './DateTimePicker.stories.gen'
 
 /**
  * Metadata for DateTimePicker stories - update/extend as needed
  */
 export default {
-  ...defaultStoryMeta,
   title: 'Inputs/Date and Time/Date Time/DateTimePicker',
+  component: DateTimePicker,
 }
 
 /**
@@ -28,25 +30,27 @@ export default {
  * Note: there should be at least one "Default" story that uses this template with the "story" function.
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
-const Template = story<DateTimePickerProps<Date>>(args => {
-  const [value, setValue] = React.useState<Date | null>(
-    new Date('2018-01-01T00:00:00.000Z'),
-  )
+const Template = story<DateTimePickerProps<Date>>(
+  (args: Partial<DateTimePickerProps<Date>>) => {
+    const [value, setValue] = React.useState<Date | null>(
+      new Date('2018-01-01T00:00:00.000Z'),
+    )
 
-  return (
-    <LocalizationProvider dateAdapter={AdapterDateFns}>
-      <DateTimePicker
-        renderInput={props => <TextField {...props} />}
-        label="DateTimePicker"
-        value={value}
-        onChange={newValue => {
-          setValue(newValue)
-        }}
-        {...args}
-      />
-    </LocalizationProvider>
-  )
-})
+    return (
+      <LocalizationProvider dateAdapter={AdapterDateFns}>
+        <DateTimePicker
+          renderInput={props => <TextField {...props} />}
+          label="DateTimePicker"
+          value={value}
+          onChange={newValue => {
+            setValue(newValue)
+          }}
+          {...args}
+        />
+      </LocalizationProvider>
+    )
+  },
+)
 
 /** Default story for DateTimePicker (edit/remove by hand if needed) */
 export const Default = story(Template, {
@@ -60,7 +64,7 @@ export const Default = story(Template, {
 })
 
 export const Responsiveness = story<DateTimePickerProps<Date>>(
-  args => {
+  (args: Partial<DateTimePickerProps<Date>>) => {
     const [value, setValue] = React.useState<Date | null>(
       new Date('2018-01-01T00:00:00.000Z'),
     )

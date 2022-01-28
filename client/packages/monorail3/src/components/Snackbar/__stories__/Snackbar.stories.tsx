@@ -1,24 +1,28 @@
 // Edit this file to add new stories
 import React from 'react'
 import CloseIcon from '@mui/icons-material/Close'
+import {
+  Alert,
+  AlertProps,
+  Button,
+  Fade,
+  Grow,
+  IconButton,
+  Slide,
+  Snackbar,
+  SnackbarContent,
+  SnackbarOrigin,
+  SnackbarProps,
+  Stack,
+} from '@mui/material'
 import { TransitionProps } from '@mui/material/transitions'
 
 import { story } from '../../../__tests__/helpers/storybook'
-import { Alert, AlertProps } from '../../Alert/Alert'
-import { Button } from '../../Button/Button'
-import { Fade } from '../../Fade/Fade'
-import { Grow } from '../../Grow/Grow'
-import { IconButton } from '../../IconButton/IconButton'
-import { Slide } from '../../Slide/Slide'
-import { SnackbarContent } from '../../SnackbarContent/SnackbarContent'
-import { Stack } from '../../Stack/Stack'
-import { Snackbar, SnackbarOrigin, SnackbarProps } from '../Snackbar'
-import { defaultStoryMeta } from './Snackbar.stories.gen'
 
 /**
  * Metadata for Snackbar stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Feedback/Snackbar' }
+export default { title: 'Feedback/Snackbar', component: Snackbar }
 
 /**
  * Story template (edit/remove by hand if needed)
@@ -35,7 +39,7 @@ const Template = story<SnackbarProps>(
     }
 
     const handleClose = (
-      event: React.SyntheticEvent | React.MouseEvent,
+      _event: React.SyntheticEvent | React.MouseEvent,
       reason?: string,
     ) => {
       if (reason === 'clickaway') {
@@ -97,7 +101,7 @@ export const CustomizedSnackbars = story<SnackbarProps>(
       setOpen(true)
     }
 
-    const handleClose = (event?: React.SyntheticEvent, reason?: string) => {
+    const handleClose = (_event?: React.SyntheticEvent, reason?: string) => {
       if (reason === 'clickaway') {
         return
       }
@@ -312,7 +316,7 @@ export const Transitions = story<SnackbarProps>(
     }
 
     const handleClose = (
-      event: React.SyntheticEvent | MouseEvent,
+      _event: React.SyntheticEvent | MouseEvent,
       reason?: string,
     ) => {
       if (reason === 'clickaway') {
