@@ -1,15 +1,14 @@
 // Edit this file to add new stories
 import React from 'react'
+import { SpeedDialIcon, SpeedDialIconProps } from '@mui/material'
 
 import { story } from '../../../__tests__/helpers/storybook'
-import { SpeedDialIcon, SpeedDialIconProps } from '../SpeedDialIcon'
-import { defaultStoryMeta } from './SpeedDialIcon.stories.gen'
 /**
  * Metadata for SpeedDialIcon stories - update/extend as needed
  */
 export default {
-  ...defaultStoryMeta,
   title: 'Navigation/SpeedDial/SpeedDialIcon',
+  component: SpeedDialIcon,
 }
 /**
  * Story template (edit/remove by hand if needed)
