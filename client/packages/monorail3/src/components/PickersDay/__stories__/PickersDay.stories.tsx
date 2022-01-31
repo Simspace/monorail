@@ -1,20 +1,17 @@
 // Edit this file to add new stories
 import React from 'react'
+import { PickersDay, PickersDayProps, StaticDatePicker } from '@mui/lab'
+import { styled, TextField } from '@mui/material'
 import { endOfWeek, isSameDay, isWithinInterval, startOfWeek } from 'date-fns'
 
 import { story } from '../../../__tests__/helpers/storybook'
-import { styled } from '../../../helpers/styles'
-import { StaticDatePicker } from '../../StaticDatePicker/StaticDatePicker'
-import { TextField } from '../../TextField/TextField'
-import { PickersDay, PickersDayProps } from '../PickersDay'
-import { defaultStoryMeta } from './PickersDay.stories.gen'
 
 /**
  * Metadata for PickersDay stories - update/extend as needed
  */
 export default {
-  ...defaultStoryMeta,
   title: 'Inputs/Date and Time/Date/PickersDay',
+  component: PickersDay,
 }
 
 type CustomPickerDayProps = PickersDayProps<Date> & {

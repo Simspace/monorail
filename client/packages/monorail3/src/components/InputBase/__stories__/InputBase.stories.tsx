@@ -3,18 +3,20 @@ import React from 'react'
 import DirectionsIcon from '@mui/icons-material/Directions'
 import MenuIcon from '@mui/icons-material/Menu'
 import SearchIcon from '@mui/icons-material/Search'
+import {
+  Divider,
+  IconButton,
+  InputBase,
+  InputBaseProps,
+  Paper,
+} from '@mui/material'
 
 import { story } from '../../../__tests__/helpers/storybook'
-import { Divider } from '../../Divider/Divider'
-import { IconButton } from '../../IconButton/IconButton'
-import { Paper } from '../../Paper/Paper'
-import { InputBase, InputBaseProps } from '../InputBase'
-import { defaultStoryMeta } from './InputBase.stories.gen'
 
 /**
  * Metadata for InputBase stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Inputs/Input/InputBase' }
+export default { title: 'Inputs/Input/InputBase', component: InputBase }
 
 /**
  * Story template (edit/remove by hand if needed)

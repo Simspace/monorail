@@ -1,11 +1,10 @@
 // Edit this file to add new stories
 import React from 'react'
+import { DataGrid, DataGridProps } from '@mui/x-data-grid'
 
 import { story } from '../../../__tests__/helpers/storybook'
-import { DataGridProps } from '../DataGrid'
-import { defaultStoryMeta } from './DataGrid.stories.gen'
 
-export default { ...defaultStoryMeta, title: 'Data Grid/Group & Pivot' }
+export default { title: 'Data Grid/Group & Pivot', component: DataGrid }
 
 const Template = story<DataGridProps>(() => <></>)
 
