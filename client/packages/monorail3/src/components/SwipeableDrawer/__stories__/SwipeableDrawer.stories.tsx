@@ -1,21 +1,25 @@
 // Edit this file to add new stories
 import React from 'react'
-import { CssBaseline, styled, Typography } from '@mui/material'
+import {
+  Box,
+  Button,
+  CssBaseline,
+  Skeleton,
+  styled,
+  SwipeableDrawer,
+  SwipeableDrawerProps,
+  Typography,
+} from '@mui/material'
 import { grey } from '@mui/material/colors'
 
 import { story } from '../../../__tests__/helpers/storybook'
-import { Box } from '../../Box/Box'
-import { Button } from '../../Button/Button'
-import { Skeleton } from '../../Skeleton/Skeleton'
-import { SwipeableDrawer, SwipeableDrawerProps } from '../SwipeableDrawer'
-import { defaultStoryMeta } from './SwipeableDrawer.stories.gen'
 
 /**
  * Metadata for SwipeableDrawer stories - update/extend as needed
  */
 export default {
-  ...defaultStoryMeta,
   title: 'Navigation/Drawer/SwipeableDrawer',
+  component: SwipeableDrawer,
 }
 
 /**

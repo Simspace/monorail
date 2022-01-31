@@ -17,30 +17,32 @@ import PersonAdd from '@mui/icons-material/PersonAdd'
 import PriorityHigh from '@mui/icons-material/PriorityHigh'
 import Send from '@mui/icons-material/Send'
 import Settings from '@mui/icons-material/Settings'
+import {
+  Avatar,
+  Box,
+  Button,
+  Divider,
+  IconButton,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  Menu,
+  MenuItem,
+  MenuList,
+  MenuProps,
+  Paper,
+  Tooltip,
+  Typography,
+} from '@mui/material'
 import { alpha, styled } from '@mui/material/styles'
 
 import { story } from '../../../__tests__/helpers/storybook'
-import { Avatar } from '../../Avatar/Avatar'
-import { Box } from '../../Box/Box'
-import { Button } from '../../Button/Button'
-import { Divider } from '../../Divider/Divider'
-import { IconButton } from '../../IconButton/IconButton'
-import { List } from '../../List/List'
-import { ListItem } from '../../ListItem/ListItem'
-import { ListItemIcon } from '../../ListItemIcon/ListItemIcon'
-import { ListItemText } from '../../ListItemText/ListItemText'
-import { MenuItem } from '../../MenuItem/MenuItem'
-import { MenuList } from '../../MenuList/MenuList'
-import { Paper } from '../../Paper/Paper'
-import { Tooltip } from '../../Tooltip/Tooltip'
-import { Typography } from '../../Typography/Typography'
-import { Menu, MenuProps } from '../Menu'
-import { defaultStoryMeta } from './Menu.stories.gen'
 
 /**
  * Metadata for Menu stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Navigation/Menu' }
+export default { title: 'Navigation/Menu', component: Menu }
 
 const Template = story<MenuProps>(
   args => {

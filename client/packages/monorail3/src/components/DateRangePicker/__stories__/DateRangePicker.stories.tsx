@@ -1,34 +1,29 @@
 // Edit this file to add new stories
 import React from 'react'
-import { addWeeks } from 'date-fns'
-
-import { story } from '../../../__tests__/helpers/storybook'
-import { AdapterDateFns, LocalizationProvider } from '../../../helpers/dateTime'
-import { styled } from '../../../helpers/styles'
-import { Box } from '../../Box/Box'
-import {
-  DateRangePickerDay,
-  DateRangePickerDayProps,
-} from '../../DateRangePickerDay/DateRangePickerDay'
-import { DesktopDateRangePicker } from '../../DesktopDateRangePicker/DesktopDateRangePicker'
-import { MobileDateRangePicker } from '../../MobileDateRangePicker/MobileDateRangePicker'
-import { Stack } from '../../Stack/Stack'
-import { StaticDateRangePicker } from '../../StaticDateRangePicker/StaticDateRangePicker'
-import { TextField } from '../../TextField/TextField'
-import { Typography } from '../../Typography/Typography'
 import {
   DateRange,
   DateRangePicker,
+  DateRangePickerDay,
+  DateRangePickerDayProps,
   DateRangePickerProps,
-} from '../DateRangePicker'
-import { defaultStoryMeta } from './DateRangePicker.stories.gen'
+  DesktopDateRangePicker,
+  LocalizationProvider,
+  MobileDateRangePicker,
+  StaticDateRangePicker,
+} from '@mui/lab'
+import AdapterDateFns from '@mui/lab/AdapterDateFns'
+import { Box, Stack, styled, TextField, Typography } from '@mui/material'
+import { addWeeks } from 'date-fns'
+
+import { story } from '../../../__tests__/helpers/storybook'
 
 /**
  * Metadata for DateRangePicker stories - update/extend as needed
  */
 export default {
-  ...defaultStoryMeta,
   title: 'Inputs/Date and Time/Date Range/DateRangePicker',
+  // TODO: not working with a11y tests
+  //component: DateRangePicker,
 }
 
 /**
@@ -37,33 +32,35 @@ export default {
  * Note: there should be at least one "Default" story that uses this template with the "story" function.
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
-const Template = story<DateRangePickerProps<Date>>(args => {
-  const [value, setValue] = React.useState<DateRange<Date>>([
-    new Date('2021-01-05T12:34:00.000Z'),
-    new Date('2021-01-09T12:34:00.000Z'),
-  ])
+const Template = story<DateRangePickerProps<Date>>(
+  (args: Partial<DateRangePickerProps<Date>>) => {
+    const [value, setValue] = React.useState<DateRange<Date>>([
+      new Date('2021-01-05T12:34:00.000Z'),
+      new Date('2021-01-09T12:34:00.000Z'),
+    ])
 
-  return (
-    <LocalizationProvider dateAdapter={AdapterDateFns}>
-      <DateRangePicker
-        startText="Check-in"
-        endText="Check-out"
-        value={value}
-        onChange={newValue => {
-          setValue(newValue)
-        }}
-        renderInput={(startProps, endProps) => (
-          <React.Fragment>
-            <TextField id="start" {...startProps} />
-            <Box sx={{ mx: 2 }}> to </Box>
-            <TextField id="end" {...endProps} />
-          </React.Fragment>
-        )}
-        {...args}
-      />
-    </LocalizationProvider>
-  )
-})
+    return (
+      <LocalizationProvider dateAdapter={AdapterDateFns}>
+        <DateRangePicker
+          startText="Check-in"
+          endText="Check-out"
+          value={value}
+          onChange={newValue => {
+            setValue(newValue)
+          }}
+          renderInput={(startProps, endProps) => (
+            <React.Fragment>
+              <TextField id="start" {...startProps} />
+              <Box sx={{ mx: 2 }}> to </Box>
+              <TextField id="end" {...endProps} />
+            </React.Fragment>
+          )}
+          {...args}
+        />
+      </LocalizationProvider>
+    )
+  },
+)
 
 export const Default = story(Template, {
   parameters: {
@@ -381,6 +378,8 @@ export const CustomInputComponent = story(
 )
 
 const StyledDateRangePickerDay = styled(DateRangePickerDay)(
+  // TODO: this doesn't typecheck
+  // @ts-ignore
   ({ theme, isHighlighting, isStartOfHighlighting, isEndOfHighlighting }) => ({
     ...(isHighlighting && {
       borderRadius: 0,

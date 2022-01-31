@@ -2,24 +2,29 @@
 import React from 'react'
 import Visibility from '@mui/icons-material/Visibility'
 import VisibilityOff from '@mui/icons-material/VisibilityOff'
+import {
+  Box,
+  FilledInput,
+  FormControl,
+  FormHelperText,
+  IconButton,
+  Input,
+  InputAdornment,
+  InputAdornmentProps,
+  InputLabel,
+  OutlinedInput,
+  TextField,
+} from '@mui/material'
 
 import { story } from '../../../__tests__/helpers/storybook'
-import { Box } from '../../Box/Box'
-import { FilledInput } from '../../FilledInput/FilledInput'
-import { FormControl } from '../../FormControl/FormControl'
-import { FormHelperText } from '../../FormHelperText/FormHelperText'
-import { IconButton } from '../../IconButton/IconButton'
-import { Input } from '../../Input/Input'
-import { InputLabel } from '../../InputLabel/InputLabel'
-import { OutlinedInput } from '../../OutlinedInput/OutlinedInput'
-import { TextField } from '../../TextField/TextField'
-import { InputAdornment, InputAdornmentProps } from '../InputAdornment'
-import { defaultStoryMeta } from './InputAdornment.stories.gen'
 
 /**
  * Metadata for InputAdornment stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Inputs/Input/InputAdornment' }
+export default {
+  title: 'Inputs/Input/InputAdornment',
+  component: InputAdornment,
+}
 
 /**
  * Story template (edit/remove by hand if needed)
