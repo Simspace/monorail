@@ -1,14 +1,9 @@
 // Edit this file to add new stories
 import React from 'react'
+import { Avatar, Box, Grid, GridProps, Paper, Typography } from '@mui/material'
 import { styled } from '@mui/material/styles'
 
 import { story } from '../../../__tests__/helpers/storybook'
-import { Avatar } from '../../Avatar/Avatar'
-import { Box } from '../../Box/Box'
-import { Paper } from '../../Paper/Paper'
-import { Typography } from '../../Typography/Typography'
-import { Grid, GridProps } from '../Grid'
-import { defaultStoryMeta } from './Grid.stories.gen'
 
 const Item = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,
@@ -21,7 +16,7 @@ const Item = styled(Paper)(({ theme }) => ({
 /**
  * Metadata for Grid stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Layout/Grid' }
+export default { title: 'Layout/Grid', component: Grid }
 /**
  * Story template (edit/remove by hand if needed)
  *
@@ -29,7 +24,7 @@ export default { ...defaultStoryMeta, title: 'Layout/Grid' }
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
 const Template = story<GridProps>(
-  args => (
+  (args: GridProps) => (
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={2} {...args}>
         <Grid item xs={8}>

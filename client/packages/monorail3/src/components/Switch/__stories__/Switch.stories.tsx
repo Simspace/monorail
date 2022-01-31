@@ -1,23 +1,25 @@
 // Edit this file to add new stories
 import React from 'react'
+import {
+  FormControl,
+  FormControlLabel,
+  FormGroup,
+  FormHelperText,
+  FormLabel,
+  Switch,
+  SwitchProps,
+} from '@mui/material'
 import { pink } from '@mui/material/colors'
 import { alpha, styled } from '@mui/material/styles'
 
 import { story } from '../../../__tests__/helpers/storybook'
-import { FormControl } from '../../FormControl/FormControl'
-import { FormControlLabel } from '../../FormControlLabel/FormControlLabel'
-import { FormGroup } from '../../FormGroup/FormGroup'
-import { FormHelperText } from '../../FormHelperText/FormHelperText'
-import { FormLabel } from '../../FormLabel/FormLabel'
-import { Switch, SwitchProps } from '../Switch'
-import { defaultStoryMeta } from './Switch.stories.gen'
 
 /**
  * Metadata for Switch stories - update/extend as needed
  */
 export default {
-  ...defaultStoryMeta,
   title: 'Inputs/Switch',
+  component: Switch,
 }
 /**
  * Story template (edit/remove by hand if needed)

@@ -1,18 +1,23 @@
 // Edit this file to add new stories
 import React from 'react'
+import {
+  Box,
+  ClickAwayListener,
+  ClickAwayListenerProps,
+  Portal,
+} from '@mui/material'
 
 import { story } from '../../../__tests__/helpers/storybook'
-import { Box } from '../../Box/Box'
-import { Portal } from '../../Portal/Portal'
-import { ClickAwayListener, ClickAwayListenerProps } from '../ClickAwayListener'
-import { defaultStoryMeta } from './ClickAwayListener.stories.gen'
 
 /**
  * Metadata for ClickAwayListener stories - update/extend as needed
  * This is intended to be exported as story-level metadata from the main .stories.tsx file, like:
  * "export default { ...defaultStoryMeta } // Add/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Utils/ClickAwayListener' }
+export default {
+  title: 'Utils/ClickAwayListener',
+  component: ClickAwayListener,
+}
 
 /**
  * Story template (edit/remove by hand if needed)

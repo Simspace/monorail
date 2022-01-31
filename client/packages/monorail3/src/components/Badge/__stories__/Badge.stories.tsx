@@ -3,25 +3,27 @@ import React from 'react'
 import AddIcon from '@mui/icons-material/Add'
 import MailIcon from '@mui/icons-material/Mail'
 import RemoveIcon from '@mui/icons-material/Remove'
+import {
+  Badge,
+  BadgeProps,
+  Box,
+  Button,
+  ButtonGroup,
+  FormControlLabel,
+  IconButton,
+  Stack,
+  Switch,
+} from '@mui/material'
 import { styled } from '@mui/material/styles'
 
 import { story } from '../../../__tests__/helpers/storybook'
-import { Box } from '../../Box/Box'
-import { Button } from '../../Button/Button'
-import { ButtonGroup } from '../../ButtonGroup/ButtonGroup'
-import { FormControlLabel } from '../../FormControlLabel/FormControlLabel'
-import { IconButton } from '../../IconButton/IconButton'
-import { Stack } from '../../Stack/Stack'
-import { Switch } from '../../Switch/Switch'
-import { Badge, BadgeProps } from '../Badge'
-import { defaultStoryMeta } from './Badge.stories.gen'
 
 /**
  * Metadata for Badge stories - update/extend as needed
  * This is intended to be exported as story-level metadata from the main .stories.tsx file, like:
  * "export default { ...defaultStoryMeta } // Add/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Data Display/Badge' }
+export default { title: 'Data Display/Badge', component: Badge }
 /**
  * Story template (edit/remove by hand if needed)
  *
