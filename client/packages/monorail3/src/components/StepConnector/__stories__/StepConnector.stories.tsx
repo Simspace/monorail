@@ -1,18 +1,20 @@
 import React from 'react'
+import {
+  Box,
+  Step,
+  StepConnector,
+  StepConnectorProps,
+  StepLabel,
+  Stepper,
+} from '@mui/material'
 
 import { story } from '../../../__tests__/helpers/storybook'
-import { Box } from '../../Box/Box'
-import { Step } from '../../Step/Step'
-import { StepLabel } from '../../StepLabel/StepLabel'
-import { Stepper } from '../../Stepper/Stepper'
-import { StepConnector, StepConnectorProps } from '../StepConnector'
-import { defaultStoryMeta } from './StepConnector.stories.gen'
 /**
  * Metadata for StepConnector stories - update/extend as needed
  */
 export default {
-  ...defaultStoryMeta,
   title: 'Navigation/Stepper/StepConnector',
+  component: StepConnector,
 }
 
 export const Default = story<StepConnectorProps>(

@@ -1,15 +1,14 @@
 // Edit this file to add new stories
 import React from 'react'
+import { MonthPicker, MonthPickerProps } from '@mui/lab'
 
 import { story } from '../../../__tests__/helpers/storybook'
-import { MonthPicker, MonthPickerProps } from '../MonthPicker'
-import { defaultStoryMeta } from './MonthPicker.stories.gen'
 /**
  * Metadata for MonthPicker stories - update/extend as needed
  */
 export default {
-  ...defaultStoryMeta,
   title: 'Inputs/Date and Time/Date/MonthPicker',
+  component: MonthPicker,
 }
 
 /**
