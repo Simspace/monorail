@@ -1,15 +1,14 @@
 // Edit this file to add new stories
 import React from 'react'
+import { SpeedDialAction, SpeedDialActionProps } from '@mui/material'
 
 import { story } from '../../../__tests__/helpers/storybook'
-import { SpeedDialAction, SpeedDialActionProps } from '../SpeedDialAction'
-import { defaultStoryMeta } from './SpeedDialAction.stories.gen'
 /**
  * Metadata for SpeedDialAction stories - update/extend as needed
  */
 export default {
-  ...defaultStoryMeta,
   title: 'Navigation/SpeedDial/SpeedDialAction',
+  component: SpeedDialAction,
 }
 /**
  * Story template (edit/remove by hand if needed)

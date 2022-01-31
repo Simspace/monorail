@@ -1,15 +1,17 @@
 // Edit this file to add new stories
 import React from 'react'
 import FolderIcon from '@mui/icons-material/Folder'
+import { ListItemIcon, ListItemIconProps } from '@mui/material'
 
 import { story } from '../../../__tests__/helpers/storybook'
-import { ListItemIcon, ListItemIconProps } from '../ListItemIcon'
-import { defaultStoryMeta } from './ListItemIcon.stories.gen'
 
 /**
  * Metadata for ListItemIcon stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Data Display/List/ListItemIcon' }
+export default {
+  title: 'Data Display/List/ListItemIcon',
+  component: ListItemIcon,
+}
 
 /**
  * Story template (edit/remove by hand if needed)

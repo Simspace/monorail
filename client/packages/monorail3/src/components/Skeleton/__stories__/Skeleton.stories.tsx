@@ -1,13 +1,12 @@
 // Edit this file to add new stories
 import React from 'react'
+import { Skeleton, SkeletonProps } from '@mui/material'
 
 import { story } from '../../../__tests__/helpers/storybook'
-import { Skeleton, SkeletonProps } from '../Skeleton'
-import { defaultStoryMeta } from './Skeleton.stories.gen'
 /**
  * Metadata for Skeleton stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Feedback/Skeleton' }
+export default { title: 'Feedback/Skeleton', component: Skeleton }
 /**
  * Story template (edit/remove by hand if needed)
  *

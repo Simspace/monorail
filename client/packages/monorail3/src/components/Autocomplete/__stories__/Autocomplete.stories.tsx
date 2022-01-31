@@ -1,5 +1,12 @@
 // Edit this file to add new stories
 import React from 'react'
+import {
+  Autocomplete,
+  AutocompleteProps,
+  Box,
+  Stack,
+  TextField,
+} from '@mui/material'
 
 import { story } from '../../../__tests__/helpers/storybook'
 import {
@@ -8,17 +15,12 @@ import {
   Movie,
   movies,
 } from '../../../__tests__/helpers/testData'
-import { Box } from '../../Box/Box'
-import { Stack } from '../../Stack/Stack'
-import { TextField } from '../../TextField/TextField'
-import { Autocomplete, AutocompleteProps } from '../Autocomplete'
-import { defaultStoryMeta } from './Autocomplete.stories.gen'
 /**
  * Metadata for Autocomplete stories - update/extend as needed
  * This is intended to be exported as story-level metadata from the main .stories.tsx file, like:
  * "export default { ...defaultStoryMeta } // Add/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Inputs/Autocomplete' }
+export default { title: 'Inputs/Autocomplete', component: Autocomplete }
 
 type MovieAutocompleteProps = AutocompleteProps<
   Movie,
@@ -28,7 +30,7 @@ type MovieAutocompleteProps = AutocompleteProps<
   'div'
 >
 const MovieAutocomplete = (props: MovieAutocompleteProps) => (
-  <Autocomplete<Movie, boolean, boolean, boolean, 'div'> {...props} />
+  <Autocomplete<Movie, boolean, boolean, boolean> {...props} />
 )
 
 /**

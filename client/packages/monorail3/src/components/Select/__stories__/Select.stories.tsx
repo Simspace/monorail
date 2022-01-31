@@ -1,17 +1,19 @@
 // Edit this file to add new stories
 import React from 'react'
-import { SelectChangeEvent } from '@mui/material/Select'
+import {
+  Box,
+  FormControl,
+  FormHelperText,
+  InputLabel,
+  MenuItem,
+  Select,
+  SelectChangeEvent,
+  SelectProps,
+} from '@mui/material'
 
 import { story } from '../../../__tests__/helpers/storybook'
-import { Box } from '../../Box/Box'
-import { FormControl } from '../../FormControl/FormControl'
-import { FormHelperText } from '../../FormHelperText/FormHelperText'
-import { InputLabel } from '../../InputLabel/InputLabel'
-import { MenuItem } from '../../MenuItem/MenuItem'
-import { Select, SelectProps } from '../Select'
-import { defaultStoryMeta } from './Select.stories.gen'
 
-export default { ...defaultStoryMeta, title: 'Inputs/Select' }
+export default { title: 'Inputs/Select', component: Select }
 
 const Template = story<SelectProps<string>>(
   args => {
