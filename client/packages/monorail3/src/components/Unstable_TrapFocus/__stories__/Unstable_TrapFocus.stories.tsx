@@ -1,19 +1,20 @@
 import React from 'react'
+import Box from '@mui/material/Box'
+import Portal from '@mui/material/Portal'
+import Unstable_TrapFocus, {
+  TrapFocusProps,
+} from '@mui/material/Unstable_TrapFocus'
 
 import { story } from '../../../__tests__/helpers/storybook'
-import { Box } from '../../Box/Box'
-import { Portal as PortalComponent } from '../../Portal/Portal'
-import {
-  Unstable_TrapFocus as TrapFocus,
-  Unstable_TrapFocusProps,
-} from '../Unstable_TrapFocus'
-import { defaultStoryMeta } from './Unstable_TrapFocus.stories.gen'
+
+const TrapFocus = Unstable_TrapFocus
+
 /**
  * Metadata for Unstable_TrapFocus stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Utils/Unstable_TrapFocus' }
+export default { title: 'Utils/TrapFocus' }
 
-const Template = story<Unstable_TrapFocusProps>(
+const Template = story<TrapFocusProps>(
   args => {
     const [open, setOpen] = React.useState(args.open)
 
@@ -98,7 +99,7 @@ You can disable this behavior and make it lazy with the disableAutoFocus prop. W
   },
 })
 
-export const Portal = story(
+export const PortalExample = story(
   () => {
     const [open, setOpen] = React.useState(false)
     const [container, setContainer] = React.useState<HTMLElement | null>(null)
@@ -121,12 +122,12 @@ export const Portal = story(
                 First name: <input type="text" />
               </label>
               <br />
-              <PortalComponent container={container}>
+              <Portal container={container}>
                 <label>
                   Last name: <input type="text" />
                 </label>
                 <br />
-              </PortalComponent>
+              </Portal>
               <button type="button" onClick={() => setOpen(false)}>
                 Close
               </button>

@@ -1,15 +1,14 @@
 // Edit this file to add new stories
 import React from 'react'
+import { GlobalStyles, GlobalStylesProps } from '@mui/material'
 
 import { story } from '../../../__tests__/helpers/storybook'
-import { GlobalStyles, GlobalStylesProps } from '../GlobalStyles'
-import { defaultStoryMeta } from './GlobalStyles.stories.gen'
 /**
  * Metadata for GlobalStyles stories - update/extend as needed
  */
 export default {
-  ...defaultStoryMeta,
   title: 'Utils/GlobalStyles',
+  component: GlobalStyles,
   parameters: {
     creevey: {
       skip: 'No story yet',
@@ -23,7 +22,7 @@ export default {
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
 const Template = story<GlobalStylesProps>(
-  args => <GlobalStyles styles={{}} {...args} />,
+  (args: Partial<GlobalStylesProps>) => <GlobalStyles styles={{}} {...args} />,
   {
     args: {},
     parameters: {
