@@ -24,6 +24,30 @@ import StarBorder from '@mui/icons-material/StarBorder'
 import WifiIcon from '@mui/icons-material/Wifi'
 import WorkIcon from '@mui/icons-material/Work'
 import {
+  Alert,
+  Avatar,
+  Box,
+  Checkbox,
+  Collapse,
+  Divider,
+  FormControlLabel,
+  FormGroup,
+  Grid,
+  IconButton,
+  List,
+  ListItem,
+  ListItemAvatar,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+  ListProps,
+  ListSubheader,
+  Paper,
+  Switch,
+  Tooltip,
+  Typography,
+} from '@mui/material'
+import {
   createTheme,
   styled,
   StyledEngineProvider,
@@ -32,28 +56,6 @@ import {
 } from '@mui/material/styles'
 
 import { story } from '../../../__tests__/helpers/storybook'
-import { Alert } from '../../Alert/Alert'
-import { Avatar } from '../../Avatar/Avatar'
-import { Box } from '../../Box/Box'
-import { Checkbox } from '../../Checkbox/Checkbox'
-import { Collapse } from '../../Collapse/Collapse'
-import { Divider } from '../../Divider/Divider'
-import { FormControlLabel } from '../../FormControlLabel/FormControlLabel'
-import { FormGroup } from '../../FormGroup/FormGroup'
-import { Grid } from '../../Grid/Grid'
-import { IconButton } from '../../IconButton/IconButton'
-import { ListItem } from '../../ListItem/ListItem'
-import { ListItemAvatar } from '../../ListItemAvatar/ListItemAvatar'
-import { ListItemButton } from '../../ListItemButton/ListItemButton'
-import { ListItemIcon } from '../../ListItemIcon/ListItemIcon'
-import { ListItemText } from '../../ListItemText/ListItemText'
-import { ListSubheader } from '../../ListSubheader/ListSubheader'
-import { Paper } from '../../Paper/Paper'
-import { Switch } from '../../Switch/Switch'
-import { Tooltip } from '../../Tooltip/Tooltip'
-import { Typography } from '../../Typography/Typography'
-import { List, ListProps } from '../List'
-import { defaultStoryMeta } from './List.stories.gen'
 
 declare module '@mui/styles/defaultTheme' {
   // eslint-disable-next-line @typescript-eslint/no-empty-interface
@@ -68,7 +70,7 @@ declare module '@mui/styles/defaultTheme' {
 /**
  * Metadata for List stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Data Display/List' }
+export default { title: 'Data Display/List', component: List }
 
 /**
  * Story template (edit/remove by hand if needed)

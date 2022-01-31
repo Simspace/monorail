@@ -1,15 +1,13 @@
 // Edit this file to add new stories
 import React from 'react'
+import { Button, Popover, PopoverProps } from '@mui/material'
 
 import { story } from '../../../__tests__/helpers/storybook'
-import { Button } from '../../Button/Button'
-import { Popover, PopoverProps } from '../Popover'
-import { defaultStoryMeta } from './Popover.stories.gen'
 
 /**
  * Metadata for Popover stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Utils/Popover' }
+export default { title: 'Utils/Popover', component: Popover }
 /**
  * Story template (edit/remove by hand if needed)
  *

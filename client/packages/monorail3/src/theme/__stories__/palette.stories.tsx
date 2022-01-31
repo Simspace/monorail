@@ -1,13 +1,11 @@
 import React from 'react'
-import { Color as MUIColor, PaletteColor } from '@mui/material'
+import { Color as MUIColor, PaletteColor, useTheme } from '@mui/material'
+import Box from '@mui/material/Box'
 import {
   CommonColors,
   TypeBackground,
   TypeText,
 } from '@mui/material/styles/createPalette'
-
-import { Box } from '../../components/Box/Box'
-import { useTheme } from '../useTheme'
 
 export default {
   title: 'Theme/Palette',

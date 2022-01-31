@@ -5,29 +5,31 @@ import EditIcon from '@mui/icons-material/Edit'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import UpIcon from '@mui/icons-material/KeyboardArrowUp'
 import NavigationIcon from '@mui/icons-material/Navigation'
+import {
+  AppBar,
+  Box,
+  Fab,
+  FabProps,
+  Tab,
+  Tabs,
+  Typography,
+  Zoom,
+} from '@mui/material'
 import { useTheme } from '@mui/material/styles'
 
 import { story } from '../../../__tests__/helpers/storybook'
-import { AppBar } from '../../AppBar/AppBar'
-import { Box } from '../../Box/Box'
-import { Tab } from '../../Tab/Tab'
-import { Tabs } from '../../Tabs/Tabs'
-import { Typography } from '../../Typography/Typography'
-import { Zoom } from '../../Zoom/Zoom'
-import { Fab, FabProps } from '../Fab'
-import { defaultStoryMeta } from './Fab.stories.gen'
 
 /**
  * Metadata for Fab stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Inputs/Fab' }
+export default { title: 'Inputs/Fab', component: Fab }
 /**
  * Story template (edit/remove by hand if needed)
  *
  * Note: there should be at least one "Default" story that uses this template with the "story" function.
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
-const Template = story<FabProps>(args => <Fab {...args}>FAB</Fab>, {
+const Template = story<FabProps>((args: FabProps) => <Fab {...args}>FAB</Fab>, {
   args: {},
 })
 /** Default story for Fab (edit/remove by hand if needed) */
@@ -185,12 +187,14 @@ export const Animation = story(
 
     return (
       <Box
+      /* TODO: not typechecking
         sx={{
           bgColor: 'background.paper',
           width: 500,
           position: 'relative',
           minHeight: 200,
         }}
+         */
       >
         <AppBar position="static" color="default">
           <Tabs
