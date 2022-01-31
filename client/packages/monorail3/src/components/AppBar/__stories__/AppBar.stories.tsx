@@ -1,42 +1,45 @@
 // Edit this file to add new stories
 import React from 'react'
-import { AppBar, AppBarProps } from '../AppBar'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './AppBar.stories.gen'
-import { Box } from '../../Box/Box'
-import { Toolbar } from '../../Toolbar/Toolbar'
-import { Button } from '../../Button/Button'
-import { IconButton } from '../../IconButton/IconButton'
-import { Typography } from '../../Typography/Typography'
-import { styled, alpha } from '@mui/material/styles'
-import { InputBase } from '../../InputBase/InputBase'
-import { Menu } from '../../Menu/Menu'
-import { MenuItem } from '../../MenuItem/MenuItem'
-import { Badge } from '../../Badge/Badge'
-import MenuIcon from '@mui/icons-material/Menu'
-import SearchIcon from '@mui/icons-material/Search'
 import AccountCircle from '@mui/icons-material/AccountCircle'
-import MailIcon from '@mui/icons-material/Mail'
 import AddIcon from '@mui/icons-material/Add'
-import NotificationsIcon from '@mui/icons-material/Notifications'
-import MoreIcon from '@mui/icons-material/MoreVert'
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
-import { FormGroup } from '../../FormGroup/FormGroup'
-import { FormControlLabel } from '../../FormControlLabel/FormControlLabel'
-import { Switch } from '../../Switch/Switch'
-import { Fab } from '../../Fab/Fab'
-import { CssBaseline } from '../../CssBaseline/CssBaseline'
-import { Paper } from '../../Paper/Paper'
-import { List } from '../../List/List'
-import { ListSubheader } from '../../ListSubheader/ListSubheader'
-import { ListItem } from '../../ListItem/ListItem'
-import { ListItemAvatar } from '../../ListItemAvatar/ListItemAvatar'
-import { Avatar } from '../../Avatar/Avatar'
-import { ListItemText } from '../../ListItemText/ListItemText'
+import MailIcon from '@mui/icons-material/Mail'
+import MenuIcon from '@mui/icons-material/Menu'
+import MoreIcon from '@mui/icons-material/MoreVert'
+import NotificationsIcon from '@mui/icons-material/Notifications'
+import SearchIcon from '@mui/icons-material/Search'
+import {
+  AppBar,
+  AppBarProps,
+  Avatar,
+  Badge,
+  Box,
+  Button,
+  Container,
+  CssBaseline,
+  Fab,
+  FormControlLabel,
+  FormGroup,
+  IconButton,
+  InputBase,
+  List,
+  ListItem,
+  ListItemAvatar,
+  ListItemText,
+  ListSubheader,
+  Menu,
+  MenuItem,
+  Paper,
+  Slide,
+  Switch,
+  Toolbar,
+  Typography,
+  Zoom,
+} from '@mui/material'
+import { alpha, styled } from '@mui/material/styles'
 import useScrollTrigger from '@mui/material/useScrollTrigger'
-import { Slide } from '../../Slide/Slide'
-import { Container } from '../../Container/Container'
-import { Zoom } from '../../Zoom/Zoom'
+
+import { story } from '../../../__tests__/helpers/storybook'
 
 /**
  * Metadata for AppBar stories - update/extend as needed
@@ -44,8 +47,8 @@ import { Zoom } from '../../Zoom/Zoom'
  * "export default { ...defaultStoryMeta } // Add/extend as needed
  */
 export default {
-  ...defaultStoryMeta,
   title: 'Surfaces/AppBar',
+  component: AppBar,
   parameters: {
     docs: {
       iframeHeight: 400,

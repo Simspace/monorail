@@ -1,15 +1,23 @@
 // Edit this file to add new stories
 import React from 'react'
-import { TimelineConnector, TimelineConnectorProps } from '../TimelineConnector'
+import TimelineConnector, {
+  TimelineConnectorProps,
+} from '@mui/lab/TimelineConnector'
+
 import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './TimelineConnector.stories.gen'
 /**
  * Metadata for TimelineConnector stories - update/extend as needed
  */
 export default {
-  ...defaultStoryMeta,
-  // title: 'Data Display/Timeline/TimelineConnector',
+  title: 'Data Display/Timeline/TimelineConnector',
+  component: TimelineConnector,
+  parameters: {
+    creevey: {
+      skip: 'No story yet',
+    },
+  },
 }
+
 /**
  * Story template (edit/remove by hand if needed)
  *
@@ -27,12 +35,7 @@ const Template = story<TimelineConnectorProps>(
     },
   },
 )
+
 /** Default story for TimelineConnector (edit/remove by hand if needed) */
-export const Default = story(Template, {
-  parameters: {
-    creevey: {
-      skip: 'No story yet',
-    },
-  },
-})
+export const Default = story(Template, {})
 // TODO: add more stories below

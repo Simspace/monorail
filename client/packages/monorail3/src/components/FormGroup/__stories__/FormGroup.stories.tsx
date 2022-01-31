@@ -1,17 +1,20 @@
 // Edit this file to add new stories
 import React from 'react'
-import { FormGroup, FormGroupProps } from '../FormGroup'
+import {
+  Checkbox,
+  FormControlLabel,
+  FormGroup,
+  FormGroupProps,
+} from '@mui/material'
+
 import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './FormGroup.stories.gen'
-import { FormControlLabel } from '../../FormControlLabel/FormControlLabel'
-import { Checkbox } from '../../Checkbox/Checkbox'
 /**
  * Metadata for FormGroup stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Inputs/FormGroup' }
+export default { title: 'Inputs/FormGroup', component: FormGroup }
 
 const Template = story<FormGroupProps>(
-  args => (
+  (args: FormGroupProps) => (
     <FormGroup {...args}>
       <FormControlLabel control={<Checkbox />} label="Option 1" />
       <FormControlLabel control={<Checkbox />} label="Option 2" />

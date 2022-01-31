@@ -1,24 +1,27 @@
 // Edit this file to add new stories
 import React from 'react'
-import { Alert, AlertProps } from '../Alert'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './Alert.stories.gen'
-import { AlertTitle } from '../../AlertTitle/AlertTitle'
-import { Stack } from '../../Stack/Stack'
-import { Button } from '../../Button/Button'
-import { Box } from '../../Box/Box'
-import { Collapse } from '../../Collapse/Collapse'
-import { IconButton } from '../../IconButton/IconButton'
 import CheckIcon from '@mui/icons-material/Check'
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
 import CloseIcon from '@mui/icons-material/Close'
-import { Typography } from '../../Typography/Typography'
-import { Snackbar } from '../../Snackbar/Snackbar'
+import {
+  Alert,
+  AlertProps,
+  AlertTitle,
+  Box,
+  Button,
+  Collapse,
+  IconButton,
+  Snackbar,
+  Stack,
+  Typography,
+} from '@mui/material'
+
+import { story } from '../../../__tests__/helpers/storybook'
 
 /**
  * Metadata for Alert stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Feedback/Alert' }
+export default { title: 'Feedback/Alert', component: Alert }
 
 /**
  * Story template (edit/remove by hand if needed)
@@ -286,7 +289,7 @@ export const WithSnackbar = story<AlertProps>(
       setOpen(true)
     }
 
-    const handleClose = (event?: React.SyntheticEvent, reason?: string) => {
+    const handleClose = (_event?: React.SyntheticEvent, reason?: string) => {
       if (reason === 'clickaway') {
         return
       }

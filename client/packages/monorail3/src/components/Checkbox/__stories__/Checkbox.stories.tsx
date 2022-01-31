@@ -1,13 +1,13 @@
 // Edit this file to add new stories
 import React from 'react'
-import { Checkbox, CheckboxProps } from '../Checkbox'
+import { Checkbox, CheckboxProps } from '@mui/material'
+
 import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './Checkbox.stories.gen'
 
 /**
  * Metadata for Checkbox stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Inputs/Checkbox' }
+export default { title: 'Inputs/Checkbox', component: Checkbox }
 
 /**
  * Story template (edit/remove by hand if needed)

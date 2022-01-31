@@ -1,14 +1,14 @@
 // Edit this file to add new stories
 import React from 'react'
-import { ImageListItem, ImageListItemProps } from '../ImageListItem'
+import { ImageListItem, ImageListItemProps } from '@mui/material'
+
 import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './ImageListItem.stories.gen'
 /**
  * Metadata for ImageListItem stories - update/extend as needed
  */
 export default {
-  ...defaultStoryMeta,
   title: 'Layout/ImageList/ImageListItem',
+  component: ImageListItem,
   parameters: {
     creevey: {
       skip: "Images don't load reliably",
@@ -22,7 +22,7 @@ export default {
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
 const Template = story<ImageListItemProps>(
-  args => (
+  (args: ImageListItemProps) => (
     <ul>
       <ImageListItem {...args}>
         <img

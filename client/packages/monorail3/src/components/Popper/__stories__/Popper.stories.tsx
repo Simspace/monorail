@@ -1,12 +1,12 @@
 // Edit this file to add new stories
 import React from 'react'
-import { Popper, PopperProps } from '../Popper'
+import { Popper, PopperProps } from '@mui/material'
+
 import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './Popper.stories.gen'
 /**
  * Metadata for Popper stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Utils/Popper' }
+export default { title: 'Utils/Popper', component: Popper }
 /**
  * Story template (edit/remove by hand if needed)
  *

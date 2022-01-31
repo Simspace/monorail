@@ -1,15 +1,18 @@
 // Edit this file to add new stories
 import React from 'react'
-import { OutlinedInput, OutlinedInputProps } from '../OutlinedInput'
+import {
+  FormControl,
+  InputLabel,
+  OutlinedInput,
+  OutlinedInputProps,
+} from '@mui/material'
+
 import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './OutlinedInput.stories.gen'
-import { FormControl } from '../../FormControl/FormControl'
-import { InputLabel } from '../../InputLabel/InputLabel'
 
 /**
  * Metadata for OutlinedInput stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Inputs/Input/OutlinedInput' }
+export default { title: 'Inputs/Input/OutlinedInput', component: OutlinedInput }
 /**
  * Story template (edit/remove by hand if needed)
  *

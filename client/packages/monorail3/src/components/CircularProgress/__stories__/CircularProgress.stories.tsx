@@ -1,23 +1,29 @@
 // Edit this file to add new stories
 import React from 'react'
-import { CircularProgress, CircularProgressProps } from '../CircularProgress'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './CircularProgress.stories.gen'
-import { Stack } from '../../Stack/Stack'
-import { Box } from '../../Box/Box'
-import { Fab } from '../../Fab/Fab'
-import { Button } from '../../Button/Button'
-import green from '@mui/material/colors/green'
 import CheckIcon from '@mui/icons-material/Check'
 import SaveIcon from '@mui/icons-material/Save'
-import { Typography } from '../../Typography/Typography'
+import {
+  Box,
+  Button,
+  CircularProgress,
+  CircularProgressProps,
+  Fab,
+  Stack,
+  Typography,
+} from '@mui/material'
+import green from '@mui/material/colors/green'
+
+import { story } from '../../../__tests__/helpers/storybook'
 
 /**
  * Metadata for CircularProgress stories - update/extend as needed
  * This is intended to be exported as story-level metadata from the main .stories.tsx file, like:
  * "export default { ...defaultStoryMeta } // Add/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Feedback/CircularProgress' }
+export default {
+  title: 'Feedback/CircularProgress',
+  component: CircularProgress,
+}
 
 /**
  * Story template (edit/remove by hand if needed)

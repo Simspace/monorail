@@ -1,27 +1,28 @@
 // Edit this file to add new stories
 import React from 'react'
-import { Accordion, AccordionProps } from '../Accordion'
-import { AccordionDetails } from '../../AccordionDetails/AccordionDetails'
+import ArrowForwardIosSharp from '@mui/icons-material/ArrowForwardIosSharp'
+import ExpandMore from '@mui/icons-material/ExpandMore'
 import {
+  Accordion,
+  AccordionActions,
+  AccordionDetails,
+  AccordionProps,
   AccordionSummary,
   AccordionSummaryProps,
-} from '../../AccordionSummary/AccordionSummary'
+  Button,
+  Divider,
+  styled,
+  Typography,
+} from '@mui/material'
+
 import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './Accordion.stories.gen'
-import { Typography } from '../../Typography/Typography'
-import ExpandMore from '@mui/icons-material/ExpandMore'
-import ArrowForwardIosSharp from '@mui/icons-material/ArrowForwardIosSharp'
-import { styled } from '@mui/material/styles'
-import { Divider } from '../../Divider/Divider'
-import { AccordionActions } from '../../AccordionActions/AccordionActions'
-import { Button } from '../../Button/Button'
 
 /**
  * Metadata for Accordion stories - update/extend as needed
  */
 export default {
-  ...defaultStoryMeta,
   title: 'Surfaces/Accordion',
+  component: Accordion,
   subcomponents: { AccordionDetails, AccordionSummary }, // This adds docgen tabs to the Docs page for the Default story - not super helpful
 }
 

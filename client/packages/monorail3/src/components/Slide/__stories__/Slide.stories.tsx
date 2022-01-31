@@ -1,16 +1,19 @@
 // Edit this file to add new stories
 import React from 'react'
-import { Slide, SlideProps } from '../Slide'
+import {
+  Box,
+  FormControlLabel,
+  Paper,
+  Slide,
+  SlideProps,
+  Switch,
+} from '@mui/material'
+
 import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './Slide.stories.gen'
-import { Paper } from '../../Paper/Paper'
-import { Box } from '../../Box/Box'
-import { FormControlLabel } from '../../FormControlLabel/FormControlLabel'
-import { Switch } from '../../Switch/Switch'
 /**
  * Metadata for Slide stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Utils/Transitions/Slide' }
+export default { title: 'Utils/Transitions/Slide', component: Slide }
 
 const box = (
   <Paper sx={{ m: 1 }} elevation={4}>

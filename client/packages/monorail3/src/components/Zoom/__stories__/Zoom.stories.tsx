@@ -1,16 +1,17 @@
 // Edit this file to add new stories
 import React from 'react'
-import { Zoom, ZoomProps } from '../Zoom'
+import Box from '@mui/material/Box'
+import FormControlLabel from '@mui/material/FormControlLabel'
+import Paper from '@mui/material/Paper'
+import Switch from '@mui/material/Switch'
+import Zoom, { ZoomProps } from '@mui/material/Zoom'
+
 import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './Zoom.stories.gen'
-import { Paper } from '../../Paper/Paper'
-import { Box } from '../../Box/Box'
-import { FormControlLabel } from '../../FormControlLabel/FormControlLabel'
-import { Switch } from '../../Switch/Switch'
-/**
- * Metadata for Zoom stories - update/extend as needed
- */
-export default { ...defaultStoryMeta, title: 'Utils/Transitions/Zoom' }
+
+export default {
+  title: 'Utils/Transitions/Zoom',
+  component: Zoom,
+}
 
 const box = (
   <Paper sx={{ m: 1 }} elevation={4}>

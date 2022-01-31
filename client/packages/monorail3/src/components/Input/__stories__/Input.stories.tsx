@@ -1,14 +1,13 @@
 // Edit this file to add new stories
 import React from 'react'
-import { Input, InputProps } from '../Input'
+import { Box, Input, InputProps } from '@mui/material'
+
 import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './Input.stories.gen'
-import { Box } from '../../Box/Box'
 
 /**
  * Metadata for Input stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Inputs/Input' }
+export default { title: 'Inputs/Input', component: Input }
 
 /**
  * Story template (edit/remove by hand if needed)

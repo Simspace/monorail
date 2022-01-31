@@ -1,24 +1,30 @@
 // Edit this file to add new stories
 import React from 'react'
-import { InputAdornment, InputAdornmentProps } from '../InputAdornment'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './InputAdornment.stories.gen'
-import { Box } from '../../Box/Box'
-import { FormControl } from '../../FormControl/FormControl'
-import { FormHelperText } from '../../FormHelperText/FormHelperText'
-import { TextField } from '../../TextField/TextField'
-import { OutlinedInput } from '../../OutlinedInput/OutlinedInput'
-import { InputLabel } from '../../InputLabel/InputLabel'
-import { IconButton } from '../../IconButton/IconButton'
 import Visibility from '@mui/icons-material/Visibility'
 import VisibilityOff from '@mui/icons-material/VisibilityOff'
-import { FilledInput } from '../../FilledInput/FilledInput'
-import { Input } from '../../Input/Input'
+import {
+  Box,
+  FilledInput,
+  FormControl,
+  FormHelperText,
+  IconButton,
+  Input,
+  InputAdornment,
+  InputAdornmentProps,
+  InputLabel,
+  OutlinedInput,
+  TextField,
+} from '@mui/material'
+
+import { story } from '../../../__tests__/helpers/storybook'
 
 /**
  * Metadata for InputAdornment stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Inputs/Input/InputAdornment' }
+export default {
+  title: 'Inputs/Input/InputAdornment',
+  component: InputAdornment,
+}
 
 /**
  * Story template (edit/remove by hand if needed)

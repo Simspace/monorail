@@ -1,22 +1,28 @@
 // Edit this file to add new stories
 import React from 'react'
-import frLocale from 'date-fns/locale/fr'
-import ruLocale from 'date-fns/locale/ru'
-import deLocale from 'date-fns/locale/de'
-import enLocale from 'date-fns/locale/en-US'
-import { DatePicker, DatePickerProps } from '../DatePicker'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './DatePicker.stories.gen'
-import { action } from '@storybook/addon-actions'
-import { TextField, TextFieldProps } from '../../TextField/TextField'
-import { StaticDatePicker } from '../../StaticDatePicker/StaticDatePicker'
-import { Stack } from '../../Stack/Stack'
-import { MobileDatePicker } from '../../MobileDatePicker/MobileDatePicker'
-import { DesktopDatePicker } from '../../DesktopDatePicker/DesktopDatePicker'
+import {
+  CalendarPickerSkeleton,
+  DatePicker,
+  DatePickerProps,
+  DesktopDatePicker,
+  MobileDatePicker,
+  PickersDay,
+  PickersDayProps,
+  StaticDatePicker,
+} from '@mui/lab'
 import AdapterDateFns from '@mui/lab/AdapterDateFns'
 import LocalizationProvider from '@mui/lab/LocalizationProvider'
-import { ToggleButtonGroup } from '../../ToggleButtonGroup/ToggleButtonGroup'
-import { ToggleButton } from '../../ToggleButton/ToggleButton'
+import {
+  Badge,
+  Box,
+  Stack,
+  styled,
+  TextField,
+  TextFieldProps,
+  ToggleButton,
+  ToggleButtonGroup,
+} from '@mui/material'
+import { action } from '@storybook/addon-actions'
 import {
   endOfWeek,
   getDaysInMonth,
@@ -25,17 +31,18 @@ import {
   isWithinInterval,
   startOfWeek,
 } from 'date-fns'
-import { Box } from '../../Box/Box'
-import { PickersDay, PickersDayProps } from '../../PickersDay/PickersDay'
-import { styled } from '../../../helpers/styles'
-import { CalendarPickerSkeleton } from '../../CalendarPickerSkeleton/CalendarPickerSkeleton'
-import { Badge } from '../../Badge/Badge'
+import deLocale from 'date-fns/locale/de'
+import enLocale from 'date-fns/locale/en-US'
+import frLocale from 'date-fns/locale/fr'
+import ruLocale from 'date-fns/locale/ru'
+
+import { story } from '../../../__tests__/helpers/storybook'
 /**
  * Metadata for DatePicker stories - update/extend as needed
  */
 export default {
-  ...defaultStoryMeta,
   title: 'Inputs/Date and Time/Date/DatePicker',
+  component: DatePicker,
 }
 
 /**
@@ -44,21 +51,23 @@ export default {
  * Note: there should be at least one "Default" story that uses this template with the "story" function.
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
-const Template = story<DatePickerProps<Date>>(args => {
-  const [value, setValue] = React.useState<Date | null>(null)
+const Template = story<DatePickerProps<Date>>(
+  (args: Partial<DatePickerProps<Date>>) => {
+    const [value, setValue] = React.useState<Date | null>(null)
 
-  return (
-    <DatePicker
-      value={value}
-      onChange={newValue => {
-        setValue(newValue)
-        action('onChange')
-      }}
-      renderInput={(params: TextFieldProps) => <TextField {...params} />}
-      {...args}
-    />
-  )
-})
+    return (
+      <DatePicker
+        value={value}
+        onChange={newValue => {
+          setValue(newValue)
+          action('onChange')
+        }}
+        renderInput={(params: TextFieldProps) => <TextField {...params} />}
+        {...args}
+      />
+    )
+  },
+)
 
 export const Default = story(Template, {
   parameters: {
@@ -197,6 +206,8 @@ export const FormProps = story<DatePickerProps<Date>>(
   },
 )
 
+type Locale = 'fr' | 'en' | 'ru' | 'de'
+
 export const Localization = story<DatePickerProps<Date>>(
   () => {
     const localeMap = {
@@ -219,7 +230,7 @@ export const Localization = story<DatePickerProps<Date>>(
       new Date('2021-01-01T12:34:00.000Z'),
     )
 
-    const selectLocale = (newLocale: any) => {
+    const selectLocale = (newLocale: Locale) => {
       setLocale(newLocale)
     }
 
@@ -238,7 +249,7 @@ export const Localization = story<DatePickerProps<Date>>(
               <ToggleButton
                 key={localeItem}
                 value={localeItem}
-                onClick={() => selectLocale(localeItem)}
+                onClick={() => selectLocale(localeItem as Locale)}
               >
                 {localeItem}
               </ToggleButton>
@@ -505,7 +516,7 @@ function getRandomNumber(min: number, max: number) {
  * ⚠️ No IE11 support
  */
 function fakeFetch(date: Date, { signal }: { signal: AbortSignal }) {
-  return new Promise<{ daysToHighlight: number[] }>((resolve, reject) => {
+  return new Promise<{ daysToHighlight: Array<number> }>((resolve, reject) => {
     const timeout = setTimeout(() => {
       const daysInMonth = getDaysInMonth(date)
       const daysToHighlight = [1, 2, 3].map(() =>
@@ -540,7 +551,7 @@ export const DynamicData = story<DatePickerProps<Date>>(
           setHighlightedDays(daysToHighlight)
           setIsLoading(false)
         })
-        .catch(error => {
+        .catch((error: Error) => {
           // ignore the error if it's caused by `controller.abort`
           if (error.name !== 'AbortError') {
             throw error

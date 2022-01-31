@@ -1,14 +1,14 @@
 // Edit this file to add new stories
 import React from 'react'
-import { TimelineItem, TimelineItemProps } from '../TimelineItem'
+import TimelineItem, { TimelineItemProps } from '@mui/lab/TimelineItem'
+
 import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './TimelineItem.stories.gen'
 /**
  * Metadata for TimelineItem stories - update/extend as needed
  */
 export default {
-  ...defaultStoryMeta,
   title: 'Data Display/Timeline/TimelineItem',
+  component: TimelineItem,
 }
 /**
  * Story template (edit/remove by hand if needed)

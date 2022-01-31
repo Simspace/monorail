@@ -1,19 +1,22 @@
 // Edit this file to add new stories
 import React from 'react'
-import { FormControl, FormControlProps } from '../FormControl'
+import {
+  Checkbox,
+  FormControl,
+  FormControlLabel,
+  FormControlProps,
+  FormGroup,
+  FormLabel,
+} from '@mui/material'
+
 import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './FormControl.stories.gen'
-import { FormLabel } from '../../FormLabel/FormLabel'
-import { FormGroup } from '../../FormGroup/FormGroup'
-import { FormControlLabel } from '../../FormControlLabel/FormControlLabel'
-import { Checkbox } from '../../Checkbox/Checkbox'
 /**
  * Metadata for FormControl stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Inputs/FormControl' }
+export default { title: 'Inputs/FormControl', component: FormControl }
 
 const Template = story<FormControlProps>(
-  args => (
+  (args: FormControlProps) => (
     <FormControl {...args}>
       <FormLabel component="legend">Pick two</FormLabel>
       <FormGroup>

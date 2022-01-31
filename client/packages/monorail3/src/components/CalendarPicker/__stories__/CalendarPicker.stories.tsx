@@ -1,15 +1,16 @@
 // Edit this file to add new stories
 import React from 'react'
-import { CalendarPicker, CalendarPickerProps } from '../CalendarPicker'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './CalendarPicker.stories.gen'
+import { CalendarPicker, CalendarPickerProps } from '@mui/lab'
 import { action } from '@storybook/addon-actions'
+
+import { story } from '../../../__tests__/helpers/storybook'
 /**
  * Metadata for CalendarPicker stories - update/extend as needed
  */
 export default {
-  ...defaultStoryMeta,
   title: 'Inputs/Date and Time/Date/CalendarPicker',
+  // TODO: CalendarPickerPropsWithClasses not exported
+  //component: CalendarPicker,
 }
 
 /**
