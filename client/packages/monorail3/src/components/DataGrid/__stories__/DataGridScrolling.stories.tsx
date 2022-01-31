@@ -1,17 +1,13 @@
 // Edit this file to add new stories
 import React from 'react'
 import { Home } from '@mui/icons-material'
+import { Box, Button, Grid, IconButton } from '@mui/material'
+import { DataGrid, DataGridProps } from '@mui/x-data-grid'
 import { useDemoData } from '@mui/x-data-grid-generator'
 
 import { story } from '../../../__tests__/helpers/storybook'
-import { Box } from '../../Box/Box'
-import { Button } from '../../Button/Button'
-import { Grid } from '../../Grid/Grid'
-import { IconButton } from '../../IconButton/IconButton'
-import { DataGrid, DataGridProps } from '../DataGrid'
-import { defaultStoryMeta } from './DataGrid.stories.gen'
 
-export default { ...defaultStoryMeta, title: 'Data Grid/Scrolling' }
+export default { title: 'Data Grid/Scrolling', component: DataGrid }
 
 const Template = story<DataGridProps>(args => {
   // TODO(storybook): Uncomment once we have DataGridPro (paid)

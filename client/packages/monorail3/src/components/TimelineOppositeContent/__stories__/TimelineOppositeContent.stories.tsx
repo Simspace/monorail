@@ -1,18 +1,16 @@
 // Edit this file to add new stories
 import React from 'react'
+import TimelineOppositeContent, {
+  TimelineOppositeContentProps,
+} from '@mui/lab/TimelineOppositeContent'
 
 import { story } from '../../../__tests__/helpers/storybook'
-import {
-  TimelineOppositeContent,
-  TimelineOppositeContentProps,
-} from '../TimelineOppositeContent'
-import { defaultStoryMeta } from './TimelineOppositeContent.stories.gen'
 /**
  * Metadata for TimelineOppositeContent stories - update/extend as needed
  */
 export default {
-  ...defaultStoryMeta,
   title: 'Data Display/Timeline/TimelineOppositeContent',
+  component: TimelineOppositeContent,
 }
 /**
  * Story template (edit/remove by hand if needed)

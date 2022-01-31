@@ -1,18 +1,16 @@
 // Edit this file to add new stories
 import React from 'react'
 import FolderIcon from '@mui/icons-material/Folder'
+import { Avatar, ListItemAvatar, ListItemAvatarProps } from '@mui/material'
 
 import { story } from '../../../__tests__/helpers/storybook'
-import { Avatar } from '../../Avatar/Avatar'
-import { ListItemAvatar, ListItemAvatarProps } from '../ListItemAvatar'
-import { defaultStoryMeta } from './ListItemAvatar.stories.gen'
 
 /**
  * Metadata for ListItemAvatar stories - update/extend as needed
  */
 export default {
-  ...defaultStoryMeta,
   title: 'Data Display/List/ListItemAvatar',
+  component: ListItemAvatar,
 }
 
 /**
