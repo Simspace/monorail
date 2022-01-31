@@ -1,7 +1,27 @@
 // Edit this file to add new stories
 import React from 'react'
+import {
+  CalendarPickerSkeleton,
+  DatePicker,
+  DatePickerProps,
+  DesktopDatePicker,
+  MobileDatePicker,
+  PickersDay,
+  PickersDayProps,
+  StaticDatePicker,
+} from '@mui/lab'
 import AdapterDateFns from '@mui/lab/AdapterDateFns'
 import LocalizationProvider from '@mui/lab/LocalizationProvider'
+import {
+  Badge,
+  Box,
+  Stack,
+  styled,
+  TextField,
+  TextFieldProps,
+  ToggleButton,
+  ToggleButtonGroup,
+} from '@mui/material'
 import { action } from '@storybook/addon-actions'
 import {
   endOfWeek,
@@ -17,26 +37,12 @@ import frLocale from 'date-fns/locale/fr'
 import ruLocale from 'date-fns/locale/ru'
 
 import { story } from '../../../__tests__/helpers/storybook'
-import { styled } from '../../../helpers/styles'
-import { Badge } from '../../Badge/Badge'
-import { Box } from '../../Box/Box'
-import { CalendarPickerSkeleton } from '../../CalendarPickerSkeleton/CalendarPickerSkeleton'
-import { DesktopDatePicker } from '../../DesktopDatePicker/DesktopDatePicker'
-import { MobileDatePicker } from '../../MobileDatePicker/MobileDatePicker'
-import { PickersDay, PickersDayProps } from '../../PickersDay/PickersDay'
-import { Stack } from '../../Stack/Stack'
-import { StaticDatePicker } from '../../StaticDatePicker/StaticDatePicker'
-import { TextField, TextFieldProps } from '../../TextField/TextField'
-import { ToggleButton } from '../../ToggleButton/ToggleButton'
-import { ToggleButtonGroup } from '../../ToggleButtonGroup/ToggleButtonGroup'
-import { DatePicker, DatePickerProps } from '../DatePicker'
-import { defaultStoryMeta } from './DatePicker.stories.gen'
 /**
  * Metadata for DatePicker stories - update/extend as needed
  */
 export default {
-  ...defaultStoryMeta,
   title: 'Inputs/Date and Time/Date/DatePicker',
+  component: DatePicker,
 }
 
 /**
@@ -45,21 +51,23 @@ export default {
  * Note: there should be at least one "Default" story that uses this template with the "story" function.
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
-const Template = story<DatePickerProps<Date>>(args => {
-  const [value, setValue] = React.useState<Date | null>(null)
+const Template = story<DatePickerProps<Date>>(
+  (args: Partial<DatePickerProps<Date>>) => {
+    const [value, setValue] = React.useState<Date | null>(null)
 
-  return (
-    <DatePicker
-      value={value}
-      onChange={newValue => {
-        setValue(newValue)
-        action('onChange')
-      }}
-      renderInput={(params: TextFieldProps) => <TextField {...params} />}
-      {...args}
-    />
-  )
-})
+    return (
+      <DatePicker
+        value={value}
+        onChange={newValue => {
+          setValue(newValue)
+          action('onChange')
+        }}
+        renderInput={(params: TextFieldProps) => <TextField {...params} />}
+        {...args}
+      />
+    )
+  },
+)
 
 export const Default = story(Template, {
   parameters: {
