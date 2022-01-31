@@ -1,26 +1,22 @@
 import React from 'react'
 import Visibility from '@mui/icons-material/Visibility'
 import VisibilityOff from '@mui/icons-material/VisibilityOff'
+import Box from '@mui/material/Box'
+import FilledInput from '@mui/material/FilledInput'
+import FormControl from '@mui/material/FormControl'
+import FormHelperText from '@mui/material/FormHelperText'
+import IconButton from '@mui/material/IconButton'
+import Input from '@mui/material/Input'
+import InputAdornment from '@mui/material/InputAdornment'
+import InputBase from '@mui/material/InputBase'
+import InputLabel from '@mui/material/InputLabel'
+import OutlinedInput, { OutlinedInputProps } from '@mui/material/OutlinedInput'
 import { alpha, styled } from '@mui/material/styles'
+import TextField, { TextFieldProps } from '@mui/material/TextField'
 
 import { story } from '../../../__tests__/helpers/storybook'
-import { Box } from '../../Box/Box'
-import { FilledInput } from '../../FilledInput/FilledInput'
-import { FormControl } from '../../FormControl/FormControl'
-import { FormHelperText } from '../../FormHelperText/FormHelperText'
-import { IconButton } from '../../IconButton/IconButton'
-import { Input } from '../../Input/Input'
-import { InputAdornment } from '../../InputAdornment/InputAdornment'
-import { InputBase } from '../../InputBase/InputBase'
-import { InputLabel } from '../../InputLabel/InputLabel'
-import {
-  OutlinedInput,
-  OutlinedInputProps,
-} from '../../OutlinedInput/OutlinedInput'
-import { TextField, TextFieldProps } from '../TextField'
-import { defaultStoryMeta } from './TextField.stories.gen'
 
-export default { ...defaultStoryMeta, title: 'Inputs/TextField' }
+export default { title: 'Inputs/TextField', component: TextField }
 
 const Template = story<TextFieldProps>(args => <TextField {...args} />, {
   args: { label: 'Text Field', inputProps: { 'aria-label': 'Text Field' } },

@@ -1,13 +1,12 @@
 // Edit this file to add new stories
 import React from 'react'
+import { SvgIcon, SvgIconProps } from '@mui/material'
 
 import { story } from '../../../__tests__/helpers/storybook'
-import { SvgIcon, SvgIconProps } from '../SvgIcon'
-import { defaultStoryMeta } from './SvgIcon.stories.gen'
 /**
  * Metadata for SvgIcon stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Data Display/SvgIcon' }
+export default { title: 'Data Display/SvgIcon', component: SvgIcon }
 /**
  * Story template (edit/remove by hand if needed)
  *
