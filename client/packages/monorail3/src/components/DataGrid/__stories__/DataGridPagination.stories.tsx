@@ -1,18 +1,17 @@
 // Edit this file to add new stories
 import React from 'react'
-import { DataRowModel, GridData, useDemoData } from '@mui/x-data-grid-generator'
-
-import { story } from '../../../__tests__/helpers/storybook'
 import {
   DataGrid,
   DataGridProps,
   GridRowData,
   GridRowId,
   GridRowsProp,
-} from '../DataGrid'
-import { defaultStoryMeta } from './DataGrid.stories.gen'
+} from '@mui/x-data-grid'
+import { DataRowModel, GridData, useDemoData } from '@mui/x-data-grid-generator'
 
-export default { ...defaultStoryMeta, title: 'Data Grid/Pagination' }
+import { story } from '../../../__tests__/helpers/storybook'
+
+export default { title: 'Data Grid/Pagination', component: DataGrid }
 
 const Template = story<DataGridProps>(args => {
   const { data } = useDemoData({
