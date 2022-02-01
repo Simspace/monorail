@@ -1,20 +1,22 @@
 // Edit this file to add new stories
 import React from 'react'
-import { ModalUnstyled } from '@mui/material'
+import {
+  Backdrop,
+  Box,
+  Button,
+  Fade,
+  Modal,
+  ModalProps,
+  ModalUnstyled,
+  Typography,
+} from '@mui/material'
 import { styled } from '@mui/material/styles'
 
 import { story } from '../../../__tests__/helpers/storybook'
-import { Backdrop } from '../../Backdrop/Backdrop'
-import { Box } from '../../Box/Box'
-import { Button } from '../../Button/Button'
-import { Fade } from '../../Fade/Fade'
-import { Typography } from '../../Typography/Typography'
-import { Modal, ModalProps } from '../Modal'
-import { defaultStoryMeta } from './Modal.stories.gen'
 /**
  * Metadata for Modal stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Utils/Modal' }
+export default { title: 'Utils/Modal', component: Modal }
 
 /**
  * Story template (edit/remove by hand if needed)
