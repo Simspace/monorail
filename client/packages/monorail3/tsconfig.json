@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "composite": true,
+    "esModuleInterop": true,
+    "lib": ["es5", "dom", "dom.iterable", "esnext"],
+    "target": "es5",
+    "jsx": "react",
+    "resolveJsonModule": true,
+    "sourceMap": true,
+    "declarationMap": true,
+    "stripInternal": true,
+    "outDir": "./dist",
+    "skipLibCheck": true,
+    "rootDir": ".",
+    "strict": true
+  },
+  "include": [
+    "src/**/*",
+    "tools/**/*",
+    ".storybook",
+    "creevey.config.js",
+    "jest/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "tools/dependency-list",
+    "visual-test-images/**/*",
+    "visual-test-report/**/*"
+  ]
+}
