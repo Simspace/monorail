@@ -1,20 +1,18 @@
 // Edit this file to add new stories
 import React from 'react'
+import { StaticTimePicker, TimePickerProps } from '@mui/lab'
 import AdapterDateFns from '@mui/lab/AdapterDateFns'
 import LocalizationProvider from '@mui/lab/LocalizationProvider'
+import { TextField } from '@mui/material'
 
 import { story } from '../../../__tests__/helpers/storybook'
-import { TextField } from '../../TextField/TextField'
-import { TimePickerProps } from '../../TimePicker/TimePicker'
-import { StaticTimePicker } from '../StaticTimePicker'
-import { defaultStoryMeta } from './StaticTimePicker.stories.gen'
 
 /**
  * Metadata for StaticTimePicker stories - update/extend as needed
  */
 export default {
-  ...defaultStoryMeta,
   title: 'Inputs/Date and Time/Time/StaticTimePicker',
+  component: StaticTimePicker,
 }
 
 const Template = story<TimePickerProps<Date>>(args => {
