@@ -5,35 +5,40 @@ import FormatAlignLeftIcon from '@mui/icons-material/FormatAlignLeft'
 import FormatAlignRightIcon from '@mui/icons-material/FormatAlignRight'
 import FormatBoldIcon from '@mui/icons-material/FormatBold'
 import FormatItalicIcon from '@mui/icons-material/FormatItalic'
+import {
+  Avatar,
+  Box,
+  Button,
+  Chip,
+  Divider,
+  DividerProps,
+  Grid,
+  List,
+  ListItem,
+  ListItemAvatar,
+  ListItemText,
+  Stack,
+  Typography,
+} from '@mui/material'
 import { styled } from '@mui/material/styles'
 
 import { story } from '../../../__tests__/helpers/storybook'
-import { Avatar } from '../../Avatar/Avatar'
-import { Box } from '../../Box/Box'
-import { Button } from '../../Button/Button'
-import { Chip } from '../../Chip/Chip'
-import { Grid } from '../../Grid/Grid'
-import { List } from '../../List/List'
-import { ListItem } from '../../ListItem/ListItem'
-import { ListItemAvatar } from '../../ListItemAvatar/ListItemAvatar'
-import { ListItemText } from '../../ListItemText/ListItemText'
-import { Stack } from '../../Stack/Stack'
-import { Typography } from '../../Typography/Typography'
-import { Divider, DividerProps } from '../Divider'
-import { defaultStoryMeta } from './Divider.stories.gen'
 /**
  * Metadata for Divider stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Data Display/Divider' }
+export default { title: 'Data Display/Divider', component: Divider }
 /**
  * Story template (edit/remove by hand if needed)
  *
  * Note: there should be at least one "Default" story that uses this template with the "story" function.
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
-const Template = story<DividerProps>(args => <Divider {...args} />, {
-  args: {},
-})
+const Template = story<DividerProps>(
+  (args: DividerProps) => <Divider {...args} />,
+  {
+    args: {},
+  },
+)
 
 /** Default story for Divider (edit/remove by hand if needed) */
 export const Default = story(Template)
