@@ -8,20 +8,22 @@ import SentimentSatisfiedAltIcon from '@mui/icons-material/SentimentSatisfiedAlt
 import SentimentVeryDissatisfiedIcon from '@mui/icons-material/SentimentVeryDissatisfied'
 import SentimentVerySatisfiedIcon from '@mui/icons-material/SentimentVerySatisfied'
 import StarIcon from '@mui/icons-material/Star'
-import { IconContainerProps } from '@mui/material/Rating'
+import {
+  Box,
+  IconContainerProps,
+  Rating,
+  RatingProps,
+  Stack,
+  Typography,
+} from '@mui/material'
 import { styled } from '@mui/material/styles'
 
 import { story } from '../../../__tests__/helpers/storybook'
-import { Box } from '../../Box/Box'
-import { Stack } from '../../Stack/Stack'
-import { Typography } from '../../Typography/Typography'
-import { Rating, RatingProps } from '../Rating'
-import { defaultStoryMeta } from './Rating.stories.gen'
 
 /**
  * Metadata for Rating stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Inputs/Rating' }
+export default { title: 'Inputs/Rating', component: Rating }
 /**
  * Story template (edit/remove by hand if needed)
  *
