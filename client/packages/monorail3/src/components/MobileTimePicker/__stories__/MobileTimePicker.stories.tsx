@@ -1,14 +1,13 @@
 // Edit this file to add new stories
 import React from 'react'
+import { MobileTimePicker, MobileTimePickerProps } from '@mui/lab'
+import { TextField } from '@mui/material'
 
 import { story } from '../../../__tests__/helpers/storybook'
-import { TextField } from '../../TextField/TextField'
-import { MobileTimePicker, MobileTimePickerProps } from '../MobileTimePicker'
-import { defaultStoryMeta } from './MobileTimePicker.stories.gen'
 
 export default {
-  ...defaultStoryMeta,
   title: 'Inputs/Date and Time/Time/MobileTimePicker',
+  component: MobileTimePicker,
 }
 
 const Template = story<MobileTimePickerProps>(args => {

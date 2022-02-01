@@ -1,15 +1,16 @@
 // Edit this file to add new stories
 import React from 'react'
+import TimelineSeparator, {
+  TimelineSeparatorProps,
+} from '@mui/lab/TimelineSeparator'
 
 import { story } from '../../../__tests__/helpers/storybook'
-import { TimelineSeparator, TimelineSeparatorProps } from '../TimelineSeparator'
-import { defaultStoryMeta } from './TimelineSeparator.stories.gen'
 /**
  * Metadata for TimelineSeparator stories - update/extend as needed
  */
 export default {
-  ...defaultStoryMeta,
   title: 'Data Display/Timeline/TimelineSeparator',
+  component: TimelineSeparator,
   parameters: {
     creevey: {
       skip: 'No story yet',
