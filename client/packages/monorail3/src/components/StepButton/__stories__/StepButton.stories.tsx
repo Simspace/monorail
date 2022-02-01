@@ -1,19 +1,21 @@
 // Edit this file to add new stories
 import React from 'react'
 import { WarningAmberTwoTone } from '@mui/icons-material'
+import {
+  Box,
+  Step,
+  StepButton,
+  StepButtonProps,
+  StepLabel,
+  Stepper,
+  Typography,
+} from '@mui/material'
 
 import { story } from '../../../__tests__/helpers/storybook'
-import { Box } from '../../Box/Box'
-import { Step } from '../../Step/Step'
-import { StepLabel } from '../../StepLabel/StepLabel'
-import { Stepper } from '../../Stepper/Stepper'
-import { Typography } from '../../Typography/Typography'
-import { StepButton, StepButtonProps } from '../StepButton'
-import { defaultStoryMeta } from './StepButton.stories.gen'
 /**
  * Metadata for StepButton stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Navigation/Stepper/StepButton' }
+export default { title: 'Navigation/Stepper/StepButton', component: StepButton }
 
 export const Default = story<StepButtonProps>(
   args => (

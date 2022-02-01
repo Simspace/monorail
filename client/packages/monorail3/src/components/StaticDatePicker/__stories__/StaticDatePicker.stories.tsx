@@ -1,15 +1,13 @@
 // Edit this file to add new stories
 import React from 'react'
+import { DatePickerProps, StaticDatePicker } from '@mui/lab'
+import { TextField } from '@mui/material'
 
 import { story } from '../../../__tests__/helpers/storybook'
-import { DatePickerProps } from '../../DatePicker/DatePicker'
-import { TextField } from '../../TextField/TextField'
-import { StaticDatePicker } from '../StaticDatePicker'
-import { defaultStoryMeta } from './StaticDatePicker.stories.gen'
 
 export default {
-  ...defaultStoryMeta,
   title: 'Inputs/Date and Time/Date/StaticDatePicker',
+  component: StaticDatePicker,
 }
 
 const Template = story<DatePickerProps<Date>>(args => {
