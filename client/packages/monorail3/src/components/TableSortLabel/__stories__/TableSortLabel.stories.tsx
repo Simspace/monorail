@@ -1,13 +1,12 @@
 // Edit this file to add new stories
 import React from 'react'
+import { TableSortLabel, TableSortLabelProps } from '@mui/material'
 
 import { story } from '../../../__tests__/helpers/storybook'
-import { TableSortLabel, TableSortLabelProps } from '../TableSortLabel'
-import { defaultStoryMeta } from './TableSortLabel.stories.gen'
 
 export default {
-  ...defaultStoryMeta,
   title: 'Data Display/Table/TableSortLabel',
+  component: TableSortLabel,
 }
 
 const Template = story<TableSortLabelProps>(
