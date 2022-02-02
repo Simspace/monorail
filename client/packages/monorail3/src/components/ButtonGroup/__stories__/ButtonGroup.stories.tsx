@@ -1,26 +1,28 @@
 // Edit this file to add new stories
 import React from 'react'
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
+import {
+  Box,
+  Button,
+  ButtonGroup,
+  ButtonGroupProps,
+  ClickAwayListener,
+  Grow,
+  MenuItem,
+  MenuList,
+  Paper,
+  Popper,
+  Stack,
+} from '@mui/material'
 
 import { story } from '../../../__tests__/helpers/storybook'
-import { Box } from '../../Box/Box'
-import { Button } from '../../Button/Button'
-import { ClickAwayListener } from '../../ClickAwayListener/ClickAwayListener'
-import { Grow } from '../../Grow/Grow'
-import { MenuItem } from '../../MenuItem/MenuItem'
-import { MenuList } from '../../MenuList/MenuList'
-import { Paper } from '../../Paper/Paper'
-import { Popper } from '../../Popper/Popper'
-import { Stack } from '../../Stack/Stack'
-import { ButtonGroup, ButtonGroupProps } from '../ButtonGroup'
-import { defaultStoryMeta } from './ButtonGroup.stories.gen'
 
 /**
  * Metadata for ButtonGroup stories - update/extend as needed
  * This is intended to be exported as story-level metadata from the main .stories.tsx file, like:
  * "export default { ...defaultStoryMeta } // Add/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Inputs/ButtonGroup' }
+export default { title: 'Inputs/ButtonGroup', component: ButtonGroup }
 /**
  * Story template (edit/remove by hand if needed)
  *

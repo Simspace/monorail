@@ -2,27 +2,26 @@
 import React from 'react'
 import { MobileTimePicker } from '@mui/lab'
 import AdapterDateFns from '@mui/lab/AdapterDateFns'
+import DesktopTimePicker from '@mui/lab/DesktopTimePicker'
 import LocalizationProvider from '@mui/lab/LocalizationProvider'
+import StaticTimePicker from '@mui/lab/StaticTimePicker'
+import TimePicker, { TimePickerProps } from '@mui/lab/TimePicker'
+import Stack from '@mui/material/Stack'
+import TextField from '@mui/material/TextField'
+import ToggleButton from '@mui/material/ToggleButton'
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup'
 import arSaLocale from 'date-fns/locale/ar-SA'
 import enLocale from 'date-fns/locale/en-US'
 import frLocale from 'date-fns/locale/fr'
 import ruLocale from 'date-fns/locale/ru'
 
 import { story } from '../../../__tests__/helpers/storybook'
-import { DesktopTimePicker } from '../../DesktopTimePicker/DesktopTimePicker'
-import { Stack } from '../../Stack/Stack'
-import { StaticTimePicker } from '../../StaticTimePicker/StaticTimePicker'
-import { TextField } from '../../TextField/TextField'
-import { ToggleButton } from '../../ToggleButton/ToggleButton'
-import { ToggleButtonGroup } from '../../ToggleButtonGroup/ToggleButtonGroup'
-import { TimePicker, TimePickerProps } from '../TimePicker'
-import { defaultStoryMeta } from './TimePicker.stories.gen'
 /**
  * Metadata for TimePicker stories - update/extend as needed
  */
 export default {
-  ...defaultStoryMeta,
   title: 'Inputs/Date and Time/Time/TimePicker',
+  component: TimePicker,
 }
 
 /**
