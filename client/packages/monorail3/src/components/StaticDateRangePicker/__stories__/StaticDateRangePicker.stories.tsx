@@ -1,22 +1,20 @@
 // Edit this file to add new stories
 import React from 'react'
-
-import { story } from '../../../__tests__/helpers/storybook'
-import { AdapterDateFns, LocalizationProvider } from '../../../helpers/dateTime'
-import { Box } from '../../Box/Box'
-import { DateRange } from '../../DateRangePicker/DateRangePicker'
-import { TextField } from '../../TextField/TextField'
 import {
+  DateRange,
+  LocalizationProvider,
   StaticDateRangePicker,
   StaticDateRangePickerProps,
-} from '../StaticDateRangePicker'
-import { defaultStoryMeta } from './StaticDateRangePicker.stories.gen'
+} from '@mui/lab'
+import AdapterDateFns from '@mui/lab/AdapterDateFns'
+import { Box, TextField } from '@mui/material'
+
+import { story } from '../../../__tests__/helpers/storybook'
 
 /**
  * Metadata for StaticDateRangePicker stories - update/extend as needed
  */
 export default {
-  ...defaultStoryMeta,
   title: 'Inputs/Date and Time/Date Range/StaticDateRangePicker',
 }
 
