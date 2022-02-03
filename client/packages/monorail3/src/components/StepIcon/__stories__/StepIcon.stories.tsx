@@ -7,19 +7,21 @@ import {
   IceSkatingTwoTone,
   WarningAmberSharp,
 } from '@mui/icons-material'
+import {
+  Box,
+  Step,
+  StepButton,
+  StepIcon,
+  StepIconProps,
+  StepLabel,
+  Stepper,
+} from '@mui/material'
 
 import { story } from '../../../__tests__/helpers/storybook'
-import { Box } from '../../Box/Box'
-import { Step } from '../../Step/Step'
-import { StepButton } from '../../StepButton/StepButton'
-import { StepLabel } from '../../StepLabel/StepLabel'
-import { Stepper } from '../../Stepper/Stepper'
-import { StepIcon, StepIconProps } from '../StepIcon'
-import { defaultStoryMeta } from './StepIcon.stories.gen'
 /**
  * Metadata for StepIcon stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Navigation/Stepper/StepIcon' }
+export default { title: 'Navigation/Stepper/StepIcon', component: StepIcon }
 /**
  * Story template (edit/remove by hand if needed)
  *
@@ -28,7 +30,7 @@ export default { ...defaultStoryMeta, title: 'Navigation/Stepper/StepIcon' }
  */
 
 export const Default = story<StepIconProps>(
-  args => (
+  (args: Partial<StepIconProps>) => (
     <Box sx={{ width: '100%' }}>
       <Stepper>
         <Step>

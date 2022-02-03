@@ -1,16 +1,15 @@
 // Edit this file to add new stories
 import React from 'react'
+import { AccordionDetails, AccordionDetailsProps } from '@mui/material'
 
 import { story } from '../../../__tests__/helpers/storybook'
-import { AccordionDetails, AccordionDetailsProps } from '../AccordionDetails'
-import { defaultStoryMeta } from './AccordionDetails.stories.gen'
 
 /**
  * Metadata for AccordionDetails stories - update/extend as needed
  */
 export default {
-  ...defaultStoryMeta,
   title: 'Surfaces/Accordion/AccordionDetails',
+  component: AccordionDetails,
 }
 
 /**
