@@ -1,14 +1,6 @@
 // Edit this file to add new stories
 import React from 'react'
 import {
-  GridData,
-  randomCreatedDate,
-  randomUpdatedDate,
-  useDemoData,
-} from '@mui/x-data-grid-generator'
-
-import { story } from '../../../__tests__/helpers/storybook'
-import {
   DataGrid,
   DataGridProps,
   GridColDef,
@@ -18,12 +10,19 @@ import {
   GridSortDirection,
   GridSortModel,
   GridValueGetterParams,
-} from '../DataGrid'
-import { defaultStoryMeta } from './DataGrid.stories.gen'
+} from '@mui/x-data-grid'
+import {
+  GridData,
+  randomCreatedDate,
+  randomUpdatedDate,
+  useDemoData,
+} from '@mui/x-data-grid-generator'
 
-export default { ...defaultStoryMeta, title: 'Data Grid/Sorting' }
+import { story } from '../../../__tests__/helpers/storybook'
 
-const Template = story<DataGridProps>(args => {
+export default { title: 'Data Grid/Sorting', component: DataGrid }
+
+const Template = story<DataGridProps>((args: Partial<DataGridProps>) => {
   const { data } = useDemoData({
     dataSet: 'Commodity',
     rowLength: 10,

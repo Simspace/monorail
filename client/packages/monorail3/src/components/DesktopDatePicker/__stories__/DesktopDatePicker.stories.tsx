@@ -1,35 +1,36 @@
 // Edit this file to add new stories
 import React from 'react'
+import { DesktopDatePicker, DesktopDatePickerProps } from '@mui/lab'
+import { TextField } from '@mui/material'
 import { action } from '@storybook/addon-actions'
 
 import { story } from '../../../__tests__/helpers/storybook'
-import { TextField } from '../../TextField/TextField'
-import { DesktopDatePicker, DesktopDatePickerProps } from '../DesktopDatePicker'
-import { defaultStoryMeta } from './DesktopDatePicker.stories.gen'
 
 export default {
-  ...defaultStoryMeta,
   title: 'Inputs/Date and Time/Date/DesktopDatePicker',
+  component: DesktopDatePicker,
 }
 
-const Template = story<DesktopDatePickerProps<Date>>(args => {
-  const [value, setValue] = React.useState<Date | null>(
-    new Date('2021-01-01T12:34:00.000Z'),
-  )
+const Template = story<DesktopDatePickerProps<Date>>(
+  (args: Partial<DesktopDatePickerProps<Date>>) => {
+    const [value, setValue] = React.useState<Date | null>(
+      new Date('2021-01-01T12:34:00.000Z'),
+    )
 
-  return (
-    <DesktopDatePicker
-      label="Desktop Date Picker"
-      value={value}
-      renderInput={params => <TextField id="desktop" {...params} />}
-      onChange={newValue => {
-        setValue(newValue)
-        action('onChange')
-      }}
-      {...args}
-    />
-  )
-})
+    return (
+      <DesktopDatePicker
+        label="Desktop Date Picker"
+        value={value}
+        renderInput={params => <TextField id="desktop" {...params} />}
+        onChange={newValue => {
+          setValue(newValue)
+          action('onChange')
+        }}
+        {...args}
+      />
+    )
+  },
+)
 
 export const Default = story(Template, {
   parameters: {
