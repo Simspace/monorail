@@ -1,14 +1,13 @@
 // Edit this file to add new stories
 import React from 'react'
+import { CssBaseline, CssBaselineProps } from '@mui/material'
 
 import { story } from '../../../__tests__/helpers/storybook'
-import { CssBaseline, CssBaselineProps } from '../CssBaseline'
-import { defaultStoryMeta } from './CssBaseline.stories.gen'
 
 /**
  * Metadata for CssBaseline stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Utils/CssBaseline' }
+export default { title: 'Utils/CssBaseline', component: CssBaseline }
 
 /**
  * Story template (edit/remove by hand if needed)
