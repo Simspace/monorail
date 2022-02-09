@@ -1,14 +1,15 @@
 // Edit this file to add new stories
 import React from 'react'
+import { Button, DialogActions, DialogActionsProps } from '@mui/material'
 
 import { story } from '../../../__tests__/helpers/storybook'
-import { Button } from '../../Button/Button'
-import { DialogActions, DialogActionsProps } from '../DialogActions'
-import { defaultStoryMeta } from './DialogActions.stories.gen'
 /**
  * Metadata for DialogActions stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Feedback/Dialog/DialogActions' }
+export default {
+  title: 'Feedback/Dialog/DialogActions',
+  component: DialogActions,
+}
 /**
  * Story template (edit/remove by hand if needed)
  *
@@ -16,7 +17,7 @@ export default { ...defaultStoryMeta, title: 'Feedback/Dialog/DialogActions' }
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
 const Template = story<DialogActionsProps>(
-  args => (
+  (args: DialogActionsProps) => (
     <DialogActions {...args}>
       <Button variant="text">Action 1</Button>
       <Button variant="contained">Action 2</Button>

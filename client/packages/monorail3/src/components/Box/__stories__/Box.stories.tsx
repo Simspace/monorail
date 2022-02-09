@@ -1,20 +1,15 @@
 // Edit this file to add new stories
 import React from 'react'
-import { styled } from '@mui/material'
+import { Box, BoxProps, Button, Stack, styled, Typography } from '@mui/material'
 
 import { story } from '../../../__tests__/helpers/storybook'
-import { Button } from '../../Button/Button'
-import { Stack } from '../../Stack/Stack'
-import { Typography } from '../../Typography/Typography.gen'
-import { Box, BoxProps } from '../Box'
-import { defaultStoryMeta } from './Box.stories.gen'
 
 /**
  * Metadata for Box stories - update/extend as needed
  * This is intended to be exported as story-level metadata from the main .stories.tsx file, like:
  * "export default { ...defaultStoryMeta } // Add/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Layout/Box' }
+export default { title: 'Layout/Box', component: Box }
 
 const Template = story<BoxProps>(args => <Box {...args} />, {
   args: {

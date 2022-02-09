@@ -1,13 +1,12 @@
 // Edit this file to add new stories
 import React from 'react'
+import ToggleButton, { ToggleButtonProps } from '@mui/material/ToggleButton'
 
 import { story } from '../../../__tests__/helpers/storybook'
-import { ToggleButton, ToggleButtonProps } from '../ToggleButton'
-import { defaultStoryMeta } from './ToggleButton.stories.gen'
 /**
  * Metadata for ToggleButton stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Inputs/ToggleButton' }
+export default { title: 'Inputs/ToggleButton', component: ToggleButton }
 /**
  * Story template (edit/remove by hand if needed)
  *

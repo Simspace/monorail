@@ -1,17 +1,19 @@
 // Edit this file to add new stories
 import React from 'react'
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableContainerProps,
+  TableRow,
+} from '@mui/material'
 
 import { story } from '../../../__tests__/helpers/storybook'
-import { Table } from '../../Table/Table'
-import { TableBody } from '../../TableBody/TableBody'
-import { TableCell } from '../../TableCell/TableCell'
-import { TableRow } from '../../TableRow/TableRow'
-import { TableContainer, TableContainerProps } from '../TableContainer'
-import { defaultStoryMeta } from './TableContainer.stories.gen'
 
 export default {
-  ...defaultStoryMeta,
   title: 'Data Display/Table/TableContainer',
+  component: TableContainer,
 }
 
 const Template = story<TableContainerProps>(args => (
