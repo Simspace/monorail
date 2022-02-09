@@ -1,45 +1,41 @@
 import React from 'react'
-import { Stepper, StepperProps } from '../Stepper'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './Stepper.stories.gen'
-import { Box } from '../../Box/Box'
-import { Typography } from '../../Typography/Typography'
-import { Step } from '../../Step/Step'
-import { Button } from '../../Button/Button'
-import { StepLabel } from '../../StepLabel/StepLabel'
-import { StepButton } from '../../StepButton/StepButton'
-import { styled } from '@mui/material/styles'
-import { GroupAdd, Check, Settings, VideoLabel } from '@mui/icons-material'
+import { Check, GroupAdd, Settings, VideoLabel } from '@mui/icons-material'
 import {
+  Box,
+  Button,
+  Paper,
+  Stack,
+  Step,
+  StepButton,
   StepConnector,
   stepConnectorClasses,
-} from '../../StepConnector/StepConnector'
-import { StepIconProps } from '../../StepIcon/StepIcon'
-import { Stack } from '../../Stack/Stack'
-import { StepContent } from '../../StepContent/StepContent'
-import { Paper } from '../../Paper/Paper'
+  StepContent,
+  StepIconProps,
+  StepLabel,
+  Stepper,
+  StepperProps,
+  Typography,
+} from '@mui/material'
+import { styled } from '@mui/material/styles'
+
+import { story } from '../../../__tests__/helpers/storybook'
 /**
  * Metadata for Stepper stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Navigation/Stepper' }
+export default { title: 'Navigation/Stepper', component: Stepper }
 /**
  * Story template (edit/remove by hand if needed)
  *
  * Note: there should be at least one "Default" story that uses this template with the "story" function.
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
-const Template = story<StepperProps>(
-  args => (
-    <Stepper {...args}>
-      <Step key={'hey'}>
-        <StepLabel>hey</StepLabel>
-      </Step>
-    </Stepper>
-  ),
-  {
-    args: {},
-  },
-)
+const Template = story<StepperProps>((args: StepperProps) => (
+  <Stepper {...args}>
+    <Step key={'hey'}>
+      <StepLabel>hey</StepLabel>
+    </Step>
+  </Stepper>
+))
 /** Default story for Stepper (edit/remove by hand if needed) */
 export const Default = story(Template, {
   args: { activeStep: 0, children: ['hey'] },
@@ -227,7 +223,7 @@ export const HorizontalNonLinearStepper = story(
         isLastStep() && !allStepsCompleted()
           ? // It's the last step, but not all steps have been completed,
             // find the first step that has been completed
-            steps.findIndex((step, i) => !(i in completed))
+            steps.findIndex((_step, i) => !(i in completed))
           : activeStep + 1
       setActiveStep(newActiveStep)
     }

@@ -1,20 +1,26 @@
 import React from 'react'
-import { StepContent, StepContentProps } from '../StepContent'
+import {
+  Box,
+  Button,
+  Fade,
+  Paper,
+  Step,
+  StepContent,
+  StepContentProps,
+  StepLabel,
+  Stepper,
+  Typography,
+  Zoom,
+} from '@mui/material'
+
 import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './StepContent.stories.gen'
-import { Box } from '../../Box/Box'
-import { Stepper } from '../../Stepper/Stepper'
-import { Step } from '../../Step/Step'
-import { StepLabel } from '../../StepLabel/StepLabel'
-import { Typography } from '../../Typography/Typography'
-import { Button } from '../../Button/Button'
-import { Paper } from '../../Paper/Paper'
-import { Zoom } from '../../Zoom/Zoom'
-import { Fade } from '../../Fade/Fade'
 /**
  * Metadata for StepContent stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Navigation/Stepper/StepContent' }
+export default {
+  title: 'Navigation/Stepper/StepContent',
+  component: StepContent,
+}
 
 const steps = [
   {

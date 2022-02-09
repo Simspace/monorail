@@ -1,7 +1,6 @@
 import React from 'react'
-import { Box } from '../../components/Box/Box'
-import { useTheme } from '../useTheme'
-import { PaletteColor, Color as MUIColor } from '@mui/material'
+import { Color as MUIColor, PaletteColor, useTheme } from '@mui/material'
+import Box from '@mui/material/Box'
 import {
   CommonColors,
   TypeBackground,
@@ -107,10 +106,10 @@ const ColorShadesBox = ({
       <SingleColorBox label="700" color={color[700]} minWidth={minWidth} />
       <SingleColorBox label="800" color={color[800]} minWidth={minWidth} />
       <SingleColorBox label="900" color={color[900]} minWidth={minWidth} />
-      <SingleColorBox label="A100" color={color['A100']} minWidth={minWidth} />
-      <SingleColorBox label="A200" color={color['A200']} minWidth={minWidth} />
-      <SingleColorBox label="A400" color={color['A400']} minWidth={minWidth} />
-      <SingleColorBox label="A700" color={color['A700']} minWidth={minWidth} />
+      <SingleColorBox label="A100" color={color.A100} minWidth={minWidth} />
+      <SingleColorBox label="A200" color={color.A200} minWidth={minWidth} />
+      <SingleColorBox label="A400" color={color.A400} minWidth={minWidth} />
+      <SingleColorBox label="A700" color={color.A700} minWidth={minWidth} />
     </Box>
   )
 }
@@ -168,7 +167,6 @@ const BackgroundColorsBox = ({
 
 export const Palette = () => {
   const theme = useTheme()
-  console.log(theme)
   return (
     <>
       <h1>Colors</h1>

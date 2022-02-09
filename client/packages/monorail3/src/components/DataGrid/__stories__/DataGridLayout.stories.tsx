@@ -1,11 +1,11 @@
 // Edit this file to add new stories
 import React from 'react'
-import { DataGrid, DataGridProps } from '../DataGrid'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './DataGrid.stories.gen'
+import { DataGrid, DataGridProps } from '@mui/x-data-grid'
 import { useDemoData } from '@mui/x-data-grid-generator'
 
-export default { ...defaultStoryMeta, title: 'Data Grid/Layout' }
+import { story } from '../../../__tests__/helpers/storybook'
+
+export default { title: 'Data Grid/Layout', component: DataGrid }
 
 const Template = story<DataGridProps>(args => {
   const { data } = useDemoData({
@@ -18,7 +18,7 @@ const Template = story<DataGridProps>(args => {
     <div style={{ height: 400, width: '100%' }}>
       <div style={{ display: 'flex', height: '100%' }}>
         <div style={{ flexGrow: 1 }}>
-          <DataGrid {...data} />
+          <DataGrid {...data} {...args} />
         </div>
       </div>
     </div>

@@ -1,12 +1,14 @@
 import React from 'react'
-import { TextareaAutosize, TextareaAutosizeProps } from '../TextareaAutosize'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './TextareaAutosize.stories.gen'
+import TextareaAutosize, {
+  TextareaAutosizeProps,
+} from '@mui/material/TextareaAutosize'
 
-export default { ...defaultStoryMeta, title: 'Inputs/TextareaAutosize' }
+import { story } from '../../../__tests__/helpers/storybook'
+
+export default { title: 'Inputs/TextareaAutosize', component: TextareaAutosize }
 
 const Template = story<TextareaAutosizeProps>(
-  args => <TextareaAutosize {...args} />,
+  args => <TextareaAutosize aria-label="Demo Textarea" {...args} />,
   { args: {} },
 )
 

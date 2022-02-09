@@ -1,13 +1,12 @@
 // Edit this file to add new stories
 import React from 'react'
-import { MenuList, MenuListProps } from '../MenuList'
-import { MenuItem } from '../../MenuItem/MenuItem'
+import { MenuItem, MenuList, MenuListProps } from '@mui/material'
+
 import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './MenuList.stories.gen'
 /**
  * Metadata for MenuList stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Navigation/Menu/MenuList' }
+export default { title: 'Navigation/Menu/MenuList', component: MenuList }
 
 const Template = story<MenuListProps>(
   args => (

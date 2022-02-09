@@ -1,16 +1,15 @@
 // Edit this file to add new stories
 import React from 'react'
-import { IconButton, IconButtonProps } from '../IconButton'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './IconButton.stories.gen'
-import DeleteIcon from '@mui/icons-material/Delete'
-import AlarmIcon from '@mui/icons-material/Alarm'
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart'
-import { Stack } from '../../Stack/Stack'
+import AlarmIcon from '@mui/icons-material/Alarm'
+import DeleteIcon from '@mui/icons-material/Delete'
+import { IconButton, IconButtonProps, Stack } from '@mui/material'
+
+import { story } from '../../../__tests__/helpers/storybook'
 /**
  * Metadata for IconButton stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Inputs/IconButton' }
+export default { title: 'Inputs/IconButton', component: IconButton }
 /**
  * Story template (edit/remove by hand if needed)
  *
@@ -18,8 +17,8 @@ export default { ...defaultStoryMeta, title: 'Inputs/IconButton' }
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
 const Template = story<IconButtonProps>(
-  args => (
-    <IconButton {...args} size="large">
+  (args: IconButtonProps) => (
+    <IconButton aria-label="default" {...args} size="large">
       <DeleteIcon />
     </IconButton>
   ),

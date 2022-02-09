@@ -3,31 +3,27 @@ import React from 'react'
 import {
   DateRange,
   DateRangePicker,
-  DateRangePickerProps,
-} from '../DateRangePicker'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './DateRangePicker.stories.gen'
-import { TextField } from '../../TextField/TextField'
-import { Box } from '../../Box/Box'
-import { AdapterDateFns, LocalizationProvider } from '../../../helpers/dateTime'
-import { StaticDateRangePicker } from '../../StaticDateRangePicker/StaticDateRangePicker'
-import { Stack } from '../../Stack/Stack'
-import { MobileDateRangePicker } from '../../MobileDateRangePicker/MobileDateRangePicker'
-import { DesktopDateRangePicker } from '../../DesktopDateRangePicker/DesktopDateRangePicker'
-import { Typography } from '../../Typography/Typography'
-import { addWeeks } from 'date-fns'
-import { styled } from '../../../helpers/styles'
-import {
   DateRangePickerDay,
   DateRangePickerDayProps,
-} from '../../DateRangePickerDay/DateRangePickerDay'
+  DateRangePickerProps,
+  DesktopDateRangePicker,
+  LocalizationProvider,
+  MobileDateRangePicker,
+  StaticDateRangePicker,
+} from '@mui/lab'
+import AdapterDateFns from '@mui/lab/AdapterDateFns'
+import { Box, Stack, styled, TextField, Typography } from '@mui/material'
+import { addWeeks } from 'date-fns'
+
+import { story } from '../../../__tests__/helpers/storybook'
 
 /**
  * Metadata for DateRangePicker stories - update/extend as needed
  */
 export default {
-  ...defaultStoryMeta,
   title: 'Inputs/Date and Time/Date Range/DateRangePicker',
+  // TODO: not working with a11y tests
+  //component: DateRangePicker,
 }
 
 /**
@@ -36,33 +32,35 @@ export default {
  * Note: there should be at least one "Default" story that uses this template with the "story" function.
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
-const Template = story<DateRangePickerProps<Date>>(args => {
-  const [value, setValue] = React.useState<DateRange<Date>>([
-    new Date('2021-01-05T12:34:00.000Z'),
-    new Date('2021-01-09T12:34:00.000Z'),
-  ])
+const Template = story<DateRangePickerProps<Date>>(
+  (args: Partial<DateRangePickerProps<Date>>) => {
+    const [value, setValue] = React.useState<DateRange<Date>>([
+      new Date('2021-01-05T12:34:00.000Z'),
+      new Date('2021-01-09T12:34:00.000Z'),
+    ])
 
-  return (
-    <LocalizationProvider dateAdapter={AdapterDateFns}>
-      <DateRangePicker
-        startText="Check-in"
-        endText="Check-out"
-        value={value}
-        onChange={newValue => {
-          setValue(newValue)
-        }}
-        renderInput={(startProps, endProps) => (
-          <React.Fragment>
-            <TextField {...startProps} />
-            <Box sx={{ mx: 2 }}> to </Box>
-            <TextField {...endProps} />
-          </React.Fragment>
-        )}
-        {...args}
-      />
-    </LocalizationProvider>
-  )
-})
+    return (
+      <LocalizationProvider dateAdapter={AdapterDateFns}>
+        <DateRangePicker
+          startText="Check-in"
+          endText="Check-out"
+          value={value}
+          onChange={newValue => {
+            setValue(newValue)
+          }}
+          renderInput={(startProps, endProps) => (
+            <React.Fragment>
+              <TextField id="start" {...startProps} />
+              <Box sx={{ mx: 2 }}> to </Box>
+              <TextField id="end" {...endProps} />
+            </React.Fragment>
+          )}
+          {...args}
+        />
+      </LocalizationProvider>
+    )
+  },
+)
 
 export const Default = story(Template, {
   parameters: {
@@ -91,9 +89,9 @@ export const StaticMode = story(
           }}
           renderInput={(startProps, endProps) => (
             <React.Fragment>
-              <TextField {...startProps} />
+              <TextField id="start" {...startProps} />
               <Box sx={{ mx: 2 }}> to </Box>
-              <TextField {...endProps} />
+              <TextField id="end" {...endProps} />
             </React.Fragment>
           )}
         />
@@ -129,9 +127,9 @@ export const Responsiveness = story(
             }}
             renderInput={(startProps, endProps) => (
               <React.Fragment>
-                <TextField {...startProps} />
+                <TextField id="start" {...startProps} />
                 <Box sx={{ mx: 2 }}> to </Box>
-                <TextField {...endProps} />
+                <TextField id="end" {...endProps} />
               </React.Fragment>
             )}
           />
@@ -143,9 +141,9 @@ export const Responsiveness = story(
             }}
             renderInput={(startProps, endProps) => (
               <React.Fragment>
-                <TextField {...startProps} />
+                <TextField id="start2" {...startProps} />
                 <Box sx={{ mx: 2 }}> to </Box>
-                <TextField {...endProps} />
+                <TextField id="end2" {...endProps} />
               </React.Fragment>
             )}
           />
@@ -190,9 +188,9 @@ export const FormProps = story(
             }}
             renderInput={(startProps, endProps) => (
               <React.Fragment>
-                <TextField {...startProps} />
+                <TextField id="start" {...startProps} />
                 <Box sx={{ mx: 2 }}> to </Box>
-                <TextField {...endProps} />
+                <TextField id="end" {...endProps} />
               </React.Fragment>
             )}
           />
@@ -206,9 +204,9 @@ export const FormProps = story(
             }}
             renderInput={(startProps, endProps) => (
               <React.Fragment>
-                <TextField {...startProps} />
+                <TextField id="start2" {...startProps} />
                 <Box sx={{ mx: 2 }}> to </Box>
-                <TextField {...endProps} />
+                <TextField id="end2" {...endProps} />
               </React.Fragment>
             )}
           />
@@ -246,9 +244,9 @@ export const DifferentNumberOfMonths = story(
             }}
             renderInput={(startProps, endProps) => (
               <React.Fragment>
-                <TextField {...startProps} />
+                <TextField id="start" {...startProps} />
                 <Box sx={{ mx: 2 }}> to </Box>
-                <TextField {...endProps} />
+                <TextField id="end" {...endProps} />
               </React.Fragment>
             )}
           />
@@ -261,9 +259,9 @@ export const DifferentNumberOfMonths = story(
             }}
             renderInput={(startProps, endProps) => (
               <React.Fragment>
-                <TextField {...startProps} />
+                <TextField id="start2" {...startProps} />
                 <Box sx={{ mx: 2 }}> to </Box>
-                <TextField {...endProps} />
+                <TextField id="end2" {...endProps} />
               </React.Fragment>
             )}
           />
@@ -276,9 +274,9 @@ export const DifferentNumberOfMonths = story(
             }}
             renderInput={(startProps, endProps) => (
               <React.Fragment>
-                <TextField {...startProps} />
+                <TextField id="start3" {...startProps} />
                 <Box sx={{ mx: 2 }}> to </Box>
-                <TextField {...endProps} />
+                <TextField id="end3" {...endProps} />
               </React.Fragment>
             )}
           />
@@ -319,9 +317,9 @@ export const DisablingDates = story(
           }}
           renderInput={(startProps, endProps) => (
             <React.Fragment>
-              <TextField {...startProps} />
+              <TextField id="start" {...startProps} />
               <Box sx={{ mx: 2 }}> to </Box>
-              <TextField {...endProps} />
+              <TextField id="end" {...endProps} />
             </React.Fragment>
           )}
         />
@@ -352,11 +350,13 @@ export const CustomInputComponent = story(
           renderInput={(startProps, endProps) => (
             <React.Fragment>
               <input
+                aria-label="start"
                 ref={startProps.inputRef as React.Ref<HTMLInputElement>}
                 {...startProps.inputProps}
               />
               <Box sx={{ mx: 1 }}> to </Box>
               <input
+                aria-label="end"
                 ref={endProps.inputRef as React.Ref<HTMLInputElement>}
                 {...endProps.inputProps}
               />
@@ -378,6 +378,8 @@ export const CustomInputComponent = story(
 )
 
 const StyledDateRangePickerDay = styled(DateRangePickerDay)(
+  // TODO: this doesn't typecheck
+  // @ts-ignore
   ({ theme, isHighlighting, isStartOfHighlighting, isEndOfHighlighting }) => ({
     ...(isHighlighting && {
       borderRadius: 0,
@@ -422,9 +424,9 @@ export const CustomizedDayRendering = story(
           renderDay={renderWeekPickerDay}
           renderInput={(startProps, endProps) => (
             <React.Fragment>
-              <TextField {...startProps} />
+              <TextField id="start" {...startProps} />
               <Box sx={{ mx: 2 }}> to </Box>
-              <TextField {...endProps} />
+              <TextField id="end" {...endProps} />
             </React.Fragment>
           )}
         />

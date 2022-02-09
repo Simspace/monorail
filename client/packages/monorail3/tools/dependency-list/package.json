@@ -14,7 +14,7 @@
     "@types/madge": "5.0.0",
     "@types/node": "12.12.70",
     "ts-node": "10.2.1",
-    "typescript": "4.4.2"
+    "typescript": "4.5.2"
   },
   "dependencies": {
     "fp-ts": "2.11.4",

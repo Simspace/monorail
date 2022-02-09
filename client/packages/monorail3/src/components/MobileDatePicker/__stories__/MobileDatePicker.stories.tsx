@@ -1,14 +1,14 @@
 // Edit this file to add new stories
 import React from 'react'
-import { MobileDatePicker, MobileDatePickerProps } from '../MobileDatePicker'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './MobileDatePicker.stories.gen'
+import { MobileDatePicker, MobileDatePickerProps } from '@mui/lab'
+import { TextField } from '@mui/material'
 import { action } from '@storybook/addon-actions'
-import { TextField } from '../../TextField/TextField'
+
+import { story } from '../../../__tests__/helpers/storybook'
 
 export default {
-  ...defaultStoryMeta,
   title: 'Inputs/Date and Time/Date/MobileDatePicker',
+  component: MobileDatePicker,
 }
 
 const Template = story<MobileDatePickerProps<Date>>(args => {
@@ -18,8 +18,9 @@ const Template = story<MobileDatePickerProps<Date>>(args => {
 
   return (
     <MobileDatePicker
+      aria-label="mobile picker"
       value={value}
-      renderInput={params => <TextField {...params} />}
+      renderInput={params => <TextField id="mobile-input" {...params} />}
       onChange={newValue => {
         setValue(newValue)
         action('onChange')

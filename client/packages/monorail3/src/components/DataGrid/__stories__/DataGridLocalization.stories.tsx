@@ -1,12 +1,11 @@
 // Edit this file to add new stories
 import React from 'react'
-import { DataGrid, DataGridProps } from '../DataGrid'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './DataGrid.stories.gen'
+import { DataGrid, DataGridProps, GridToolbar } from '@mui/x-data-grid'
 import { useDemoData } from '@mui/x-data-grid-generator'
-import { GridToolbar } from '@mui/x-data-grid'
 
-export default { ...defaultStoryMeta, title: 'Data Grid/Localization' }
+import { story } from '../../../__tests__/helpers/storybook'
+
+export default { title: 'Data Grid/Localization', component: DataGrid }
 
 const Template = story<DataGridProps>(args => {
   const { data } = useDemoData({
@@ -18,6 +17,7 @@ const Template = story<DataGridProps>(args => {
   return (
     <div style={{ height: 400, width: '100%' }}>
       <DataGrid
+        {...args}
         {...data}
         localeText={{
           toolbarDensity: 'Size',
@@ -53,7 +53,7 @@ You can use the  \`localeText\`  prop to pass in your own text and translations.
   },
 }
 
-export const LocaleText = story<DataGridProps>(args => <></>)
+export const LocaleText = story<DataGridProps>(() => <></>)
 LocaleText.storyName = 'Locale text'
 LocaleText.parameters = {
   docs: {

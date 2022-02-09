@@ -1,28 +1,27 @@
 // Edit this file to add new stories
 import React from 'react'
-import frLocale from 'date-fns/locale/fr'
-import ruLocale from 'date-fns/locale/ru'
+import { MobileTimePicker } from '@mui/lab'
+import AdapterDateFns from '@mui/lab/AdapterDateFns'
+import DesktopTimePicker from '@mui/lab/DesktopTimePicker'
+import LocalizationProvider from '@mui/lab/LocalizationProvider'
+import StaticTimePicker from '@mui/lab/StaticTimePicker'
+import TimePicker, { TimePickerProps } from '@mui/lab/TimePicker'
+import Stack from '@mui/material/Stack'
+import TextField from '@mui/material/TextField'
+import ToggleButton from '@mui/material/ToggleButton'
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup'
 import arSaLocale from 'date-fns/locale/ar-SA'
 import enLocale from 'date-fns/locale/en-US'
-import { TimePicker, TimePickerProps } from '../TimePicker'
+import frLocale from 'date-fns/locale/fr'
+import ruLocale from 'date-fns/locale/ru'
+
 import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './TimePicker.stories.gen'
-import { action } from '@storybook/addon-actions'
-import { TextField } from '../../TextField/TextField'
-import { StaticTimePicker } from '../../StaticTimePicker/StaticTimePicker'
-import LocalizationProvider from '@mui/lab/LocalizationProvider'
-import AdapterDateFns from '@mui/lab/AdapterDateFns'
-import { Stack } from '../../Stack/Stack'
-import { DesktopTimePicker } from '../../DesktopTimePicker/DesktopTimePicker'
-import { MobileTimePicker } from '@mui/lab'
-import { ToggleButtonGroup } from '../../ToggleButtonGroup/ToggleButtonGroup'
-import { ToggleButton } from '../../ToggleButton/ToggleButton'
 /**
  * Metadata for TimePicker stories - update/extend as needed
  */
 export default {
-  ...defaultStoryMeta,
   title: 'Inputs/Date and Time/Time/TimePicker',
+  component: TimePicker,
 }
 
 /**
@@ -73,6 +72,7 @@ export const StaticMode = story<TimePickerProps<Date>>(
             setValue(newValue)
           }}
           renderInput={params => <TextField {...params} />}
+          {...args}
         />
       </LocalizationProvider>
     )
@@ -103,7 +103,7 @@ export const Responsiveness = story<TimePickerProps<Date>>(
             onChange={newValue => {
               setValue(newValue)
             }}
-            renderInput={params => <TextField {...params} />}
+            renderInput={params => <TextField id="For mobile" {...params} />}
           />
           <DesktopTimePicker
             label="For desktop"
@@ -111,12 +111,16 @@ export const Responsiveness = story<TimePickerProps<Date>>(
             onChange={newValue => {
               setValue(newValue)
             }}
-            renderInput={params => <TextField {...params} />}
+            renderInput={params => <TextField id="For desktop" {...params} />}
           />
           <TimePicker
+            label="Default Picker"
             value={value}
             onChange={setValue}
-            renderInput={params => <TextField {...params} />}
+            renderInput={params => (
+              <TextField id="Default Picker" {...params} />
+            )}
+            {...args}
           />
         </Stack>
       </LocalizationProvider>
@@ -155,6 +159,7 @@ export const FormProps = story<TimePickerProps<Date>>(
               setValue(newValue)
             }}
             renderInput={params => <TextField {...params} />}
+            {...args}
           />
           <TimePicker
             label="read-only"
@@ -164,6 +169,7 @@ export const FormProps = story<TimePickerProps<Date>>(
               setValue(newValue)
             }}
             renderInput={params => <TextField {...params} />}
+            {...args}
           />
         </Stack>
       </LocalizationProvider>
@@ -193,7 +199,9 @@ export const Localization = story<TimePickerProps<Date>>(
       new Date('2021-01-01T12:34:00.000Z'),
     )
 
-    const selectLocale = (newLocale: any) => {
+    const selectLocale = (
+      newLocale: React.SetStateAction<'en' | 'fr' | 'ru' | 'ar'>,
+    ) => {
       setLocale(newLocale)
     }
 
@@ -212,7 +220,13 @@ export const Localization = story<TimePickerProps<Date>>(
               <ToggleButton
                 key={localeItem}
                 value={localeItem}
-                onClick={() => selectLocale(localeItem)}
+                onClick={() =>
+                  selectLocale(
+                    localeItem as React.SetStateAction<
+                      'en' | 'fr' | 'ru' | 'ar'
+                    >,
+                  )
+                }
               >
                 {localeItem}
               </ToggleButton>
@@ -222,6 +236,7 @@ export const Localization = story<TimePickerProps<Date>>(
             value={value}
             onChange={newValue => setValue(newValue)}
             renderInput={params => <TextField {...params} />}
+            {...args}
           />
         </div>
       </LocalizationProvider>
@@ -256,6 +271,7 @@ export const TimeValidation = story<TimePickerProps<Date>>(
             }}
             minTime={new Date(0, 0, 0, 8)}
             maxTime={new Date(0, 0, 0, 18, 45)}
+            {...args}
           />
           <TimePicker
             renderInput={params => <TextField {...params} />}
@@ -271,6 +287,7 @@ export const TimeValidation = story<TimePickerProps<Date>>(
 
               return false
             }}
+            {...args}
           />
         </Stack>
       </LocalizationProvider>
@@ -304,12 +321,14 @@ export const Landscape = story<TimePickerProps<Date>>(
             setValue(newValue)
           }}
           renderInput={params => <TextField {...params} />}
+          {...args}
         />
       </LocalizationProvider>
     )
   },
   {
     parameters: {
+      a11y: { disable: true }, // default MUI component has a violation Invalid ARIA attribute value: aria-activedescendant="mui-2526361"
       docs: {
         description: {
           story: `Render the control in landscape mode`,
@@ -340,6 +359,7 @@ export const Seconds = story<TimePickerProps<Date>>(
               setValue(newValue)
             }}
             renderInput={params => <TextField {...params} />}
+            {...args}
           />
           <TimePicker
             ampmInClock
@@ -352,6 +372,7 @@ export const Seconds = story<TimePickerProps<Date>>(
               setValue(newValue)
             }}
             renderInput={params => <TextField {...params} />}
+            {...args}
           />
         </Stack>
       </LocalizationProvider>

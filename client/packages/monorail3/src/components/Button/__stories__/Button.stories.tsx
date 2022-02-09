@@ -1,18 +1,17 @@
 // Edit this file to add new stories
 import React from 'react'
-import { Button, ButtonProps } from '../Button'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './Button.stories.gen'
 import DeleteIcon from '@mui/icons-material/Delete'
 import SendIcon from '@mui/icons-material/Send'
-import { Stack } from '../../Stack/Stack'
+import { Button, ButtonProps, Stack } from '@mui/material'
+
+import { story } from '../../../__tests__/helpers/storybook'
 
 /**
  * Metadata for Button stories - update/extend as needed
  * This is intended to be exported as story-level metadata from the main .stories.tsx file, like:
  * "export default { ...defaultStoryMeta } // Add/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Inputs/Button' }
+export default { title: 'Inputs/Button', component: Button }
 
 /**
  * Story template (edit/remove by hand if needed)

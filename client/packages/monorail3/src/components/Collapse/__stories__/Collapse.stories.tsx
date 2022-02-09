@@ -1,19 +1,21 @@
 // Edit this file to add new stories
 import React from 'react'
-import { Collapse, CollapseProps } from '../Collapse'
+import {
+  Box,
+  Collapse,
+  CollapseProps,
+  FormControlLabel,
+  Paper,
+  Switch,
+} from '@mui/material'
+
 import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './Collapse.stories.gen'
-import { Box } from '../../Box/Box'
-import { FormControlLabel } from '../../FormControlLabel/FormControlLabel'
-import { Switch } from '../../Switch/Switch'
-import { Paper } from '../../Paper/Paper'
-import { formControlLabelClasses, Typography } from '@mui/material'
 /**
  * Metadata for Collapse stories - update/extend as needed
  * This is intended to be exported as story-level metadata from the main .stories.tsx file, like:
  * "export default { ...defaultStoryMeta } // Add/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Utils/Transitions/Collapse' }
+export default { title: 'Utils/Transitions/Collapse', component: Collapse }
 
 const box = (
   <Paper sx={{ m: 1 }} elevation={4}>
@@ -51,8 +53,10 @@ const Template = story<CollapseProps>(
           }}
         >
           <div>
-            <Collapse in={checked}>{box}</Collapse>
-            <Collapse in={checked} collapsedSize={40}>
+            <Collapse in={checked} {...args}>
+              {box}
+            </Collapse>
+            <Collapse in={checked} collapsedSize={40} {...args}>
               {box}
             </Collapse>
           </div>
@@ -67,6 +71,7 @@ const Template = story<CollapseProps>(
                 orientation="horizontal"
                 in={checked}
                 collapsedSize={40}
+                {...args}
               >
                 {box}
               </Collapse>

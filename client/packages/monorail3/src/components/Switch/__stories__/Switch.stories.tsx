@@ -1,22 +1,25 @@
 // Edit this file to add new stories
+import React from 'react'
+import {
+  FormControl,
+  FormControlLabel,
+  FormGroup,
+  FormHelperText,
+  FormLabel,
+  Switch,
+  SwitchProps,
+} from '@mui/material'
 import { pink } from '@mui/material/colors'
 import { alpha, styled } from '@mui/material/styles'
-import React from 'react'
+
 import { story } from '../../../__tests__/helpers/storybook'
-import { FormControl } from '../../FormControl/FormControl'
-import { FormControlLabel } from '../../FormControlLabel/FormControlLabel'
-import { FormGroup } from '../../FormGroup/FormGroup'
-import { FormHelperText } from '../../FormHelperText/FormHelperText'
-import { FormLabel } from '../../FormLabel/FormLabel'
-import { Switch, SwitchProps } from '../Switch'
-import { defaultStoryMeta } from './Switch.stories.gen'
 
 /**
  * Metadata for Switch stories - update/extend as needed
  */
 export default {
-  ...defaultStoryMeta,
   title: 'Inputs/Switch',
+  component: Switch,
 }
 /**
  * Story template (edit/remove by hand if needed)
@@ -24,7 +27,12 @@ export default {
  * Note: there should be at least one "Default" story that uses this template with the "story" function.
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
-const Template = story<SwitchProps>(args => <Switch {...args} />, { args: {} })
+const Template = story<SwitchProps>(
+  args => <Switch inputProps={{ 'aria-label': 'Switch' }} {...args} />,
+  {
+    args: {},
+  },
+)
 /** Default story for Switch (edit/remove by hand if needed) */
 export const Default = story(Template)
 

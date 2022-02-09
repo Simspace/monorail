@@ -1,17 +1,15 @@
 // Edit this file to add new stories
 import React from 'react'
-import { ClockPicker, ClockPickerProps } from '../ClockPicker'
+import { ClockPicker, ClockPickerProps } from '@mui/lab'
+import { Stack, Typography } from '@mui/material'
+
 import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './ClockPicker.stories.gen'
-import { action } from '@storybook/addon-actions'
-import { Stack } from '../../Stack/Stack'
-import { Typography } from '../../Typography/Typography'
 /**
  * Metadata for ClockPicker stories - update/extend as needed
  */
 export default {
-  ...defaultStoryMeta,
   title: 'Inputs/Date and Time/Time/ClockPicker',
+  component: ClockPicker,
 }
 
 /**

@@ -1,25 +1,28 @@
 // Edit this file to add new stories
 import React from 'react'
-import { ButtonGroup, ButtonGroupProps } from '../ButtonGroup'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './ButtonGroup.stories.gen'
-import { Button } from '../../Button/Button'
-import { Stack } from '../../Stack/Stack'
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
-import { ClickAwayListener } from '../../ClickAwayListener/ClickAwayListener'
-import { Grow } from '../../Grow/Grow'
-import { Paper } from '../../Paper/Paper'
-import { Popper } from '../../Popper/Popper'
-import { MenuItem } from '../../MenuItem/MenuItem'
-import { MenuList } from '../../MenuList/MenuList'
-import { Box } from '../../Box/Box'
+import {
+  Box,
+  Button,
+  ButtonGroup,
+  ButtonGroupProps,
+  ClickAwayListener,
+  Grow,
+  MenuItem,
+  MenuList,
+  Paper,
+  Popper,
+  Stack,
+} from '@mui/material'
+
+import { story } from '../../../__tests__/helpers/storybook'
 
 /**
  * Metadata for ButtonGroup stories - update/extend as needed
  * This is intended to be exported as story-level metadata from the main .stories.tsx file, like:
  * "export default { ...defaultStoryMeta } // Add/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Inputs/ButtonGroup' }
+export default { title: 'Inputs/ButtonGroup', component: ButtonGroup }
 /**
  * Story template (edit/remove by hand if needed)
  *
@@ -125,7 +128,9 @@ export const SplitButton = story<ButtonGroupProps>(
     const [selectedIndex, setSelectedIndex] = React.useState(1)
 
     const handleClick = () => {
+      /* eslint-disable no-console */
       console.info(`You clicked ${options[selectedIndex]}`)
+      /* eslint-enable no-console */
     }
 
     const handleMenuItemClick = (
