@@ -1,15 +1,14 @@
 // Edit this file to add new stories
 import React from 'react'
+import { SnackbarContent, SnackbarContentProps } from '@mui/material'
 
 import { story } from '../../../__tests__/helpers/storybook'
-import { SnackbarContent, SnackbarContentProps } from '../SnackbarContent'
-import { defaultStoryMeta } from './SnackbarContent.stories.gen'
 /**
  * Metadata for SnackbarContent stories - update/extend as needed
  */
 export default {
-  ...defaultStoryMeta,
   title: 'Feedback/Snackbar/SnackbarContent',
+  component: SnackbarContent,
 }
 /**
  * Story template (edit/remove by hand if needed)

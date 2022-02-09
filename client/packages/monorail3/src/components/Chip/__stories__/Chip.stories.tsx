@@ -4,23 +4,25 @@ import DeleteIcon from '@mui/icons-material/Delete'
 import DoneIcon from '@mui/icons-material/Done'
 import FaceIcon from '@mui/icons-material/Face'
 import TagFacesIcon from '@mui/icons-material/TagFaces'
+import {
+  Avatar,
+  Chip,
+  ChipProps,
+  Paper,
+  Stack,
+  Typography,
+} from '@mui/material'
 import { styled } from '@mui/material/styles'
 import { action } from '@storybook/addon-actions'
 
 import { story } from '../../../__tests__/helpers/storybook'
-import { Avatar } from '../../Avatar/Avatar'
-import { Paper } from '../../Paper/Paper'
-import { Stack } from '../../Stack/Stack'
-import { Typography } from '../../Typography/Typography'
-import { Chip, ChipProps } from '../Chip'
-import { defaultStoryMeta } from './Chip.stories.gen'
 
 /**
  * Metadata for Chip stories - update/extend as needed
  * This is intended to be exported as story-level metadata from the main .stories.tsx file, like:
  * "export default { ...defaultStoryMeta } // Add/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Data Display/Chip' }
+export default { title: 'Data Display/Chip', component: Chip }
 
 /**
  * Story template (edit/remove by hand if needed)

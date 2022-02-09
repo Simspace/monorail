@@ -4,13 +4,15 @@ import FavoriteIcon from '@mui/icons-material/Favorite'
 import FolderIcon from '@mui/icons-material/Folder'
 import LocationOnIcon from '@mui/icons-material/LocationOn'
 import RestoreIcon from '@mui/icons-material/Restore'
+import {
+  Alert,
+  BottomNavigation,
+  BottomNavigationAction,
+  BottomNavigationProps,
+  Box,
+} from '@mui/material'
 
 import { story } from '../../../__tests__/helpers/storybook'
-import { Alert } from '../../Alert/Alert'
-import { BottomNavigationAction } from '../../BottomNavigationAction/BottomNavigationAction'
-import { Box } from '../../Box/Box'
-import { BottomNavigation, BottomNavigationProps } from '../BottomNavigation'
-import { defaultStoryMeta } from './BottomNavigation.stories.gen'
 
 /**
  * Metadata for BottomNavigation stories - update/extend as needed
@@ -18,8 +20,8 @@ import { defaultStoryMeta } from './BottomNavigation.stories.gen'
  * "export default { ...defaultStoryMeta } // Add/extend as needed
  */
 export default {
-  ...defaultStoryMeta,
   title: 'Navigation/BottomNavigation',
+  component: BottomNavigation,
 }
 
 /**
@@ -59,7 +61,7 @@ export const WithNoLabel = story<BottomNavigationProps>(
   () => {
     const [value, setValue] = React.useState('recents')
 
-    const handleChange = (event: React.SyntheticEvent, newValue: string) => {
+    const handleChange = (_event: React.SyntheticEvent, newValue: string) => {
       setValue(newValue)
     }
 

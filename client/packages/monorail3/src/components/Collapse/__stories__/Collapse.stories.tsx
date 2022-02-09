@@ -1,19 +1,21 @@
 // Edit this file to add new stories
 import React from 'react'
+import {
+  Box,
+  Collapse,
+  CollapseProps,
+  FormControlLabel,
+  Paper,
+  Switch,
+} from '@mui/material'
 
 import { story } from '../../../__tests__/helpers/storybook'
-import { Box } from '../../Box/Box'
-import { FormControlLabel } from '../../FormControlLabel/FormControlLabel'
-import { Paper } from '../../Paper/Paper'
-import { Switch } from '../../Switch/Switch'
-import { Collapse, CollapseProps } from '../Collapse'
-import { defaultStoryMeta } from './Collapse.stories.gen'
 /**
  * Metadata for Collapse stories - update/extend as needed
  * This is intended to be exported as story-level metadata from the main .stories.tsx file, like:
  * "export default { ...defaultStoryMeta } // Add/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Utils/Transitions/Collapse' }
+export default { title: 'Utils/Transitions/Collapse', component: Collapse }
 
 const box = (
   <Paper sx={{ m: 1 }} elevation={4}>
