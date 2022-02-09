@@ -1,25 +1,28 @@
 // Edit this file to add new stories
 import React from 'react'
-import { Chip, ChipProps } from '../Chip'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './Chip.stories.gen'
-import { action } from '@storybook/addon-actions'
-import DoneIcon from '@mui/icons-material/Done'
 import DeleteIcon from '@mui/icons-material/Delete'
+import DoneIcon from '@mui/icons-material/Done'
 import FaceIcon from '@mui/icons-material/Face'
 import TagFacesIcon from '@mui/icons-material/TagFaces'
-import { Avatar } from '../../Avatar/Avatar'
-import { Stack } from '../../Stack/Stack'
+import {
+  Avatar,
+  Chip,
+  ChipProps,
+  Paper,
+  Stack,
+  Typography,
+} from '@mui/material'
 import { styled } from '@mui/material/styles'
-import { Paper } from '../../Paper/Paper'
-import { Typography } from '../../Typography/Typography'
+import { action } from '@storybook/addon-actions'
+
+import { story } from '../../../__tests__/helpers/storybook'
 
 /**
  * Metadata for Chip stories - update/extend as needed
  * This is intended to be exported as story-level metadata from the main .stories.tsx file, like:
  * "export default { ...defaultStoryMeta } // Add/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Data Display/Chip' }
+export default { title: 'Data Display/Chip', component: Chip }
 
 /**
  * Story template (edit/remove by hand if needed)

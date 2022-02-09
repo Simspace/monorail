@@ -1,19 +1,22 @@
 // Edit this file to add new stories
 import React from 'react'
-import { InputLabel, InputLabelProps } from '../InputLabel'
+import {
+  Box,
+  FilledInput,
+  FormControl,
+  FormHelperText,
+  Input,
+  InputLabel,
+  InputLabelProps,
+  OutlinedInput,
+} from '@mui/material'
+
 import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './InputLabel.stories.gen'
-import { Box } from '../../Box/Box'
-import { FormControl } from '../../FormControl/FormControl'
-import { Input } from '../../Input/Input'
-import { FormHelperText } from '../../FormHelperText/FormHelperText'
-import { OutlinedInput } from '../../OutlinedInput/OutlinedInput'
-import { FilledInput } from '../../FilledInput/FilledInput'
 
 /**
  * Metadata for InputLabel stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Inputs/Input/InputLabel' }
+export default { title: 'Inputs/Input/InputLabel', component: InputLabel }
 
 /**
  * Story template (edit/remove by hand if needed)

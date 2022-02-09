@@ -1,23 +1,23 @@
 // Edit this file to add new stories
 import React from 'react'
 import {
+  LocalizationProvider,
   MobileDateRangePicker,
   MobileDateRangePickerProps,
-} from '../MobileDateRangePicker'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './MobileDateRangePicker.stories.gen'
-import { action } from '@storybook/addon-actions'
-import { TextField } from '../../TextField/TextField'
+} from '@mui/lab'
+import AdapterDateFns from '@mui/lab/AdapterDateFns'
 import { DateRange } from '@mui/lab/DateRangePicker/RangeTypes'
-import { AdapterDateFns, LocalizationProvider } from '../../../helpers/dateTime'
-import { Box } from '../../Box/Box'
+import { Box, TextField } from '@mui/material'
+
+import { story } from '../../../__tests__/helpers/storybook'
 
 /**
  * Metadata for MobileDateRangePicker stories - update/extend as needed
  */
 export default {
-  ...defaultStoryMeta,
   title: 'Inputs/Date and Time/Date Range/MobileDateRangePicker',
+  // TODO: This component type is non-standard and not compatible with the expected types
+  //component: MobileDateRangePicker,
 }
 
 const Template = story<MobileDateRangePickerProps<Date>>(args => {
@@ -39,12 +39,12 @@ const Template = story<MobileDateRangePickerProps<Date>>(args => {
             <TextField label="End" id="end" {...endProps} />
           </React.Fragment>
         )}
+        {...args}
       />
     </LocalizationProvider>
   )
 })
 
-/** Default story for MobileDateRangePicker (edit/remove by hand if needed) */
 export const Default = story(Template, {
   parameters: {
     docs: {

@@ -1,15 +1,18 @@
 // Edit this file to add new stories
 import React from 'react'
-import { TablePagination, TablePaginationProps } from '../TablePagination'
+import {
+  Table,
+  TableFooter,
+  TablePagination,
+  TablePaginationProps,
+  TableRow,
+} from '@mui/material'
+
 import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './TablePagination.stories.gen'
-import { TableFooter } from '../../TableFooter/TableFooter'
-import { Table } from '../../Table/Table'
-import { TableRow } from '../../TableRow/TableRow'
 
 export default {
-  ...defaultStoryMeta,
   title: 'Data Display/Table/TablePagination',
+  component: TablePagination,
 }
 
 const Template = story<TablePaginationProps>(args => {

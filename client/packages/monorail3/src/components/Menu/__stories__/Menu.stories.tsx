@@ -1,6 +1,5 @@
 // Edit this file to add new stories
 import React from 'react'
-import { styled, alpha } from '@mui/material/styles'
 import Archive from '@mui/icons-material/Archive'
 import Check from '@mui/icons-material/Check'
 import Cloud from '@mui/icons-material/Cloud'
@@ -14,33 +13,36 @@ import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown'
 import Logout from '@mui/icons-material/Logout'
 import MoreHoriz from '@mui/icons-material/MoreHoriz'
 import MoreVert from '@mui/icons-material/MoreVert'
-import Send from '@mui/icons-material/Send'
-import Settings from '@mui/icons-material/Settings'
 import PersonAdd from '@mui/icons-material/PersonAdd'
 import PriorityHigh from '@mui/icons-material/PriorityHigh'
+import Send from '@mui/icons-material/Send'
+import Settings from '@mui/icons-material/Settings'
+import {
+  Avatar,
+  Box,
+  Button,
+  Divider,
+  IconButton,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  Menu,
+  MenuItem,
+  MenuList,
+  MenuProps,
+  Paper,
+  Tooltip,
+  Typography,
+} from '@mui/material'
+import { alpha, styled } from '@mui/material/styles'
 
-import { Menu, MenuProps } from '../Menu'
 import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './Menu.stories.gen'
-import { Avatar } from '../../Avatar/Avatar'
-import { Box } from '../../Box/Box'
-import { Button } from '../../Button/Button'
-import { Divider } from '../../Divider/Divider'
-import { IconButton } from '../../IconButton/IconButton'
-import { List } from '../../List/List'
-import { ListItem } from '../../ListItem/ListItem'
-import { ListItemIcon } from '../../ListItemIcon/ListItemIcon'
-import { ListItemText } from '../../ListItemText/ListItemText'
-import { MenuItem } from '../../MenuItem/MenuItem'
-import { MenuList } from '../../MenuList/MenuList'
-import { Paper } from '../../Paper/Paper'
-import { Tooltip } from '../../Tooltip/Tooltip'
-import { Typography } from '../../Typography/Typography'
 
 /**
  * Metadata for Menu stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Navigation/Menu' }
+export default { title: 'Navigation/Menu', component: Menu }
 
 const Template = story<MenuProps>(
   args => {

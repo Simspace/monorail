@@ -1,8 +1,8 @@
 // Edit this file to add new stories
 import React from 'react'
-import { CardMedia, CardMediaProps } from '../CardMedia'
+import { CardMedia, CardMediaProps } from '@mui/material'
+
 import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './CardMedia.stories.gen'
 import { images } from '../../../__tests__/helpers/testData'
 /**
  * Metadata for CardMedia stories - update/extend as needed
@@ -10,8 +10,8 @@ import { images } from '../../../__tests__/helpers/testData'
  * "export default { ...defaultStoryMeta } // Add/extend as needed
  */
 export default {
-  ...defaultStoryMeta,
   title: 'Surfaces/Card/CardMedia',
+  component: CardMedia,
   parameters: {
     creevey: {
       skip: 'Images are unreliable',

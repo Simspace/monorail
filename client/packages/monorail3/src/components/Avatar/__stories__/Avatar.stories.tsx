@@ -1,23 +1,26 @@
 // Edit this file to add new stories
 import React from 'react'
-import { Avatar, AvatarProps } from '../Avatar'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './Avatar.stories.gen'
-import { Stack } from '../../Stack/Stack'
-import { useTheme } from '../../../theme/useTheme'
+import AssignmentIcon from '@mui/icons-material/Assignment'
 import FolderIcon from '@mui/icons-material/Folder'
 import PageviewIcon from '@mui/icons-material/Pageview'
-import AssignmentIcon from '@mui/icons-material/Assignment'
-import { Typography } from '../../Typography/Typography'
+import {
+  Avatar,
+  AvatarProps,
+  Badge,
+  Stack,
+  Typography,
+  useTheme,
+} from '@mui/material'
 import { styled } from '@mui/material/styles'
-import { Badge } from '../../Badge/Badge'
+
+import { story } from '../../../__tests__/helpers/storybook'
 
 /**
  * Metadata for Avatar stories - update/extend as needed
  * This is intended to be exported as story-level metadata from the main .stories.tsx file, like:
  * "export default { ...defaultStoryMeta } // Add/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Data Display/Avatar' }
+export default { title: 'Data Display/Avatar', component: Avatar }
 
 /**
  * Story template (edit/remove by hand if needed)

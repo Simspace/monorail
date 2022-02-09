@@ -1,18 +1,15 @@
 // Edit this file to add new stories
 import React from 'react'
-import {
-  CalendarPickerSkeleton,
-  CalendarPickerSkeletonProps,
-} from '../CalendarPickerSkeleton'
+import { CalendarPickerSkeleton, CalendarPickerSkeletonProps } from '@mui/lab'
+
 import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './CalendarPickerSkeleton.stories.gen'
 
 /**
  * Metadata for CalendarPickerSkeleton stories - update/extend as needed
  */
 export default {
-  ...defaultStoryMeta,
   title: 'Inputs/Date and Time/Date/CalendarPicker/CalendarPickerSkeleton',
+  component: CalendarPickerSkeleton,
 }
 
 /**

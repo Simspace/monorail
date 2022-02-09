@@ -1,16 +1,19 @@
 // Edit this file to add new stories
 import React from 'react'
-import { ListItemButton, ListItemButtonProps } from '../ListItemButton'
+import {
+  ListItemButton,
+  ListItemButtonProps,
+  ListItemText,
+} from '@mui/material'
+
 import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './ListItemButton.stories.gen'
-import { ListItemText } from '../../ListItemText/ListItemText'
 
 /**
  * Metadata for ListItemButton stories - update/extend as needed
  */
 export default {
-  ...defaultStoryMeta,
   title: 'Data Display/List/ListItemButton',
+  component: ListItemButton,
 }
 
 /**
@@ -21,7 +24,7 @@ export default {
  */
 const Template = story<ListItemButtonProps>(
   args => (
-    <ListItemButton component="a" href="#simple-list" {...args}>
+    <ListItemButton {...args}>
       <ListItemText primary="Spam" />
     </ListItemButton>
   ),

@@ -1,28 +1,29 @@
 // Edit this file to add new stories
 import React from 'react'
-import { SpeedDial, SpeedDialProps } from '../SpeedDial'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './SpeedDial.stories.gen'
-
-import { styled } from '@mui/material/styles'
 import EditIcon from '@mui/icons-material/EditOutlined'
 import FileCopyIcon from '@mui/icons-material/FileCopyOutlined'
 import PrintIcon from '@mui/icons-material/Print'
 import SaveIcon from '@mui/icons-material/Save'
 import ShareIcon from '@mui/icons-material/Share'
+import {
+  Backdrop,
+  Box,
+  FormControl,
+  FormControlLabel,
+  FormLabel,
+  Radio,
+  RadioGroup,
+  SpeedDial,
+  SpeedDialAction,
+  SpeedDialIcon,
+  SpeedDialProps,
+  Switch,
+} from '@mui/material'
+import { styled } from '@mui/material/styles'
 
-import { Backdrop } from '../../Backdrop/Backdrop'
-import { Box } from '../../Box/Box'
-import { FormControl } from '../../FormControl/FormControl'
-import { FormControlLabel } from '../../FormControlLabel/FormControlLabel'
-import { FormLabel } from '../../FormLabel/FormLabel'
-import { Radio } from '../../Radio/Radio'
-import { RadioGroup } from '../../RadioGroup/RadioGroup'
-import { SpeedDialAction } from '../../SpeedDialAction/SpeedDialAction'
-import { SpeedDialIcon } from '../../SpeedDialIcon/SpeedDialIcon'
-import { Switch } from '../../Switch/Switch'
+import { story } from '../../../__tests__/helpers/storybook'
 
-export default { ...defaultStoryMeta, title: 'Navigation/SpeedDial' }
+export default { title: 'Navigation/SpeedDial', component: SpeedDial }
 
 const Template = story<SpeedDialProps>(
   ({ children, ...rest }) => (
