@@ -1,12 +1,15 @@
 // Edit this file to add new stories
 import React from 'react'
-import { ScopedCssBaseline, ScopedCssBaselineProps } from '../ScopedCssBaseline'
+import { ScopedCssBaseline, ScopedCssBaselineProps } from '@mui/material'
+
 import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './ScopedCssBaseline.stories.gen'
 /**
  * Metadata for ScopedCssBaseline stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Utils/ScopedCssBaseline' }
+export default {
+  title: 'Utils/ScopedCssBaseline',
+  component: ScopedCssBaseline,
+}
 /**
  * Story template (edit/remove by hand if needed)
  *

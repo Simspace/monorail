@@ -1,20 +1,23 @@
 // Edit this file to add new stories
 import React from 'react'
-import { Container, ContainerProps } from '../Container'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './Container.stories.gen'
-import { Box } from '../../Box/Box'
+import {
+  Box,
+  Container,
+  ContainerProps,
+  CssBaseline,
+  Stack,
+  Typography,
+} from '@mui/material'
 import { grey } from '@mui/material/colors'
-import { Stack } from '../../Stack/Stack'
-import { Typography } from '../../Typography/Typography'
-import { CssBaseline } from '../../CssBaseline/CssBaseline'
+
+import { story } from '../../../__tests__/helpers/storybook'
 
 /**
  * Metadata for Container stories - update/extend as needed
  * This is intended to be exported as story-level metadata from the main .stories.tsx file, like:
  * "export default { ...defaultStoryMeta } // Add/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Layout/Container' }
+export default { title: 'Layout/Container', component: Container }
 
 /**
  * Story template (edit/remove by hand if needed)
@@ -25,7 +28,7 @@ export default { ...defaultStoryMeta, title: 'Layout/Container' }
 const Template = story<ContainerProps>(
   args => (
     <Container {...args}>
-      <Box backgroundColor={grey[200]}>
+      <Box /*backgroundColor={grey[200]}*/>
         <Stack direction="column" spacing={1}>
           <Typography>
             The container centers your content horizontally. It's the most basic
@@ -66,19 +69,19 @@ export const Fluid = story<ContainerProps>(
         <CssBaseline />
         <Stack direction="column" spacing={1}>
           <Container maxWidth="xs">
-            <Box backgroundColor={grey[200]}>The content (xs)</Box>
+            <Box /*backgroundColor={grey[200]}*/>The content (xs)</Box>
           </Container>
           <Container maxWidth="sm">
-            <Box backgroundColor={grey[200]}>The content (sm)</Box>
+            <Box /*backgroundColor={grey[200]}*/>The content (sm)</Box>
           </Container>
           <Container maxWidth="md">
-            <Box backgroundColor={grey[200]}>The content (md)</Box>
+            <Box /*backgroundColor={grey[200]}*/>The content (md)</Box>
           </Container>
           <Container maxWidth="lg">
-            <Box backgroundColor={grey[200]}>The content (lg)</Box>
+            <Box /*backgroundColor={grey[200]}*/>The content (lg)</Box>
           </Container>
           <Container maxWidth="xl">
-            <Box backgroundColor={grey[200]}>The content (xl)</Box>
+            <Box /*backgroundColor={grey[200]}*/>The content (xl)</Box>
           </Container>
         </Stack>
       </>

@@ -1,12 +1,14 @@
 import React from 'react'
 import MenuIcon from '@mui/icons-material/Menu'
-import { Container } from '../components/Container/Container'
-import { AppBar } from '../components/AppBar/AppBar'
-import { Toolbar } from '../components/Toolbar/Toolbar'
-import { IconButton } from '../components/IconButton/IconButton'
-import { Typography } from '../components/Typography/Typography'
-import { Button } from '../components/Button/Button'
-import { Box } from '../components/Box/Box'
+import {
+  AppBar,
+  Box,
+  Button,
+  Container,
+  IconButton,
+  Toolbar,
+  Typography,
+} from '@mui/material'
 
 export default {
   title: 'Theme/Full Page Demo',

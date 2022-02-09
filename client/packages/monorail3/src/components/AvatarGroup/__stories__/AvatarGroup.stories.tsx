@@ -1,17 +1,15 @@
 // Edit this file to add new stories
 import React from 'react'
-import { AvatarGroup, AvatarGroupProps } from '../AvatarGroup'
+import { Avatar, AvatarGroup, AvatarGroupProps, Box } from '@mui/material'
+
 import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './AvatarGroup.stories.gen'
-import { Avatar } from '../../Avatar/Avatar'
-import { Box } from '../../Box/Box'
 
 /**
  * Metadata for AvatarGroup stories - update/extend as needed
  * This is intended to be exported as story-level metadata from the main .stories.tsx file, like:
  * "export default { ...defaultStoryMeta } // Add/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Data Display/AvatarGroup' }
+export default { title: 'Data Display/AvatarGroup', component: AvatarGroup }
 
 /**
  * Story template (edit/remove by hand if needed)

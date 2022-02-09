@@ -1,23 +1,28 @@
 // Edit this file to add new stories
 import React from 'react'
-import { Snackbar, SnackbarProps, SnackbarOrigin } from '../Snackbar'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './Snackbar.stories.gen'
-import { Button } from '../../Button/Button'
-import { IconButton } from '../../IconButton/IconButton'
 import CloseIcon from '@mui/icons-material/Close'
-import { Alert, AlertProps } from '../../Alert/Alert'
-import { Stack } from '../../Stack/Stack'
-import { SnackbarContent } from '../../SnackbarContent/SnackbarContent'
+import {
+  Alert,
+  AlertProps,
+  Button,
+  Fade,
+  Grow,
+  IconButton,
+  Slide,
+  Snackbar,
+  SnackbarContent,
+  SnackbarOrigin,
+  SnackbarProps,
+  Stack,
+} from '@mui/material'
 import { TransitionProps } from '@mui/material/transitions'
-import { Slide } from '../../Slide/Slide'
-import { Grow } from '../../Grow/Grow'
-import { Fade } from '../../Fade/Fade'
+
+import { story } from '../../../__tests__/helpers/storybook'
 
 /**
  * Metadata for Snackbar stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Feedback/Snackbar' }
+export default { title: 'Feedback/Snackbar', component: Snackbar }
 
 /**
  * Story template (edit/remove by hand if needed)
@@ -34,7 +39,7 @@ const Template = story<SnackbarProps>(
     }
 
     const handleClose = (
-      event: React.SyntheticEvent | React.MouseEvent,
+      _event: React.SyntheticEvent | React.MouseEvent,
       reason?: string,
     ) => {
       if (reason === 'clickaway') {
@@ -96,7 +101,7 @@ export const CustomizedSnackbars = story<SnackbarProps>(
       setOpen(true)
     }
 
-    const handleClose = (event?: React.SyntheticEvent, reason?: string) => {
+    const handleClose = (_event?: React.SyntheticEvent, reason?: string) => {
       if (reason === 'clickaway') {
         return
       }
@@ -284,7 +289,7 @@ interface SnackbarMessage {
 export const Transitions = story<SnackbarProps>(
   () => {
     const [snackPack, setSnackPack] = React.useState<
-      readonly SnackbarMessage[]
+      ReadonlyArray<SnackbarMessage>
     >([])
     const [open, setOpen] = React.useState(false)
     const [messageInfo, setMessageInfo] = React.useState<
@@ -311,7 +316,7 @@ export const Transitions = story<SnackbarProps>(
     }
 
     const handleClose = (
-      event: React.SyntheticEvent | MouseEvent,
+      _event: React.SyntheticEvent | MouseEvent,
       reason?: string,
     ) => {
       if (reason === 'clickaway') {
@@ -389,7 +394,7 @@ export const OtherTransitions = story<SnackbarProps>(
       open: boolean
       Transition: React.ComponentType<
         TransitionProps & {
-          children?: React.ReactElement<any, any>
+          children?: React.ReactElement<unknown>
         }
       >
     }>({
@@ -401,7 +406,7 @@ export const OtherTransitions = story<SnackbarProps>(
       (
         Transition: React.ComponentType<
           TransitionProps & {
-            children?: React.ReactElement<any, any>
+            children?: React.ReactElement<unknown>
           }
         >,
       ) =>

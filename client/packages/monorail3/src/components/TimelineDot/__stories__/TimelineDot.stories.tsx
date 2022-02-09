@@ -1,14 +1,14 @@
 // Edit this file to add new stories
 import React from 'react'
-import { TimelineDot, TimelineDotProps } from '../TimelineDot'
+import TimelineDot, { TimelineDotProps } from '@mui/lab/TimelineDot'
+
 import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './TimelineDot.stories.gen'
 /**
  * Metadata for TimelineDot stories - update/extend as needed
  */
 export default {
-  ...defaultStoryMeta,
   title: 'Data Display/Timeline/TimelineDot',
+  component: TimelineDot,
 }
 /**
  * Story template (edit/remove by hand if needed)

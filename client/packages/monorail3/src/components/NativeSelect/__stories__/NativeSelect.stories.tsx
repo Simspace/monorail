@@ -1,16 +1,18 @@
 // Edit this file to add new stories
 import React from 'react'
-import { NativeSelect, NativeSelectProps } from '../NativeSelect'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './NativeSelect.stories.gen'
+import {
+  Box,
+  FormControl,
+  InputLabel,
+  NativeSelect,
+  NativeSelectProps,
+} from '@mui/material'
 
-import { Box } from '../../Box/Box'
-import { FormControl } from '../../FormControl/FormControl'
-import { InputLabel } from '../../InputLabel/InputLabel'
+import { story } from '../../../__tests__/helpers/storybook'
 /**
  * Metadata for NativeSelect stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Inputs/NativeSelect' }
+export default { title: 'Inputs/NativeSelect', component: NativeSelect }
 /**
  * Story template (edit/remove by hand if needed)
  *
@@ -32,6 +34,7 @@ const Template = story<NativeSelectProps>(
               name: 'age',
               id: 'uncontrolled-native',
             }}
+            {...args}
           >
             <option value={10}>Ten</option>
             <option value={20}>Twenty</option>

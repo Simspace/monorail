@@ -1,39 +1,39 @@
 import React from 'react'
-import { TreeView, TreeViewProps } from '../TreeView'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './TreeView.stories.gen'
 import {
-  ExpandMore as ExpandMoreIcon,
   ChevronRight as ChevronRightIcon,
+  ExpandMore as ExpandMoreIcon,
 } from '@mui/icons-material'
-import {
-  TreeItem,
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
+import ArrowRightIcon from '@mui/icons-material/ArrowRight'
+import DeleteIcon from '@mui/icons-material/Delete'
+import ForumIcon from '@mui/icons-material/Forum'
+import InfoIcon from '@mui/icons-material/Info'
+import Label from '@mui/icons-material/Label'
+import LocalOfferIcon from '@mui/icons-material/LocalOffer'
+import MailIcon from '@mui/icons-material/Mail'
+import SupervisorAccountIcon from '@mui/icons-material/SupervisorAccount'
+import TreeItem, {
+  treeItemClasses,
   TreeItemContentProps,
   TreeItemProps,
   useTreeItem,
-  treeItemClasses,
-} from '../../TreeItem/TreeItem'
-import { Box } from '../../Box/Box'
-import { Button } from '../../Button/Button'
-import { Typography } from '../../Typography/Typography'
+} from '@mui/lab/TreeItem'
+import TreeView, { TreeViewProps } from '@mui/lab/TreeView'
+import Box from '@mui/material/Box'
+import Button from '@mui/material/Button'
+import FormControlLabel from '@mui/material/FormControlLabel'
 import { alpha, styled } from '@mui/material/styles'
-import { SvgIconProps } from '../../SvgIcon/SvgIcon'
-import SupervisorAccountIcon from '@mui/icons-material/SupervisorAccount'
-import InfoIcon from '@mui/icons-material/Info'
-import ForumIcon from '@mui/icons-material/Forum'
-import LocalOfferIcon from '@mui/icons-material/LocalOffer'
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
-import ArrowRightIcon from '@mui/icons-material/ArrowRight'
-import MailIcon from '@mui/icons-material/Mail'
-import DeleteIcon from '@mui/icons-material/Delete'
-import Label from '@mui/icons-material/Label'
-import { FormControlLabel } from '../../FormControlLabel/FormControlLabel'
-import { Switch } from '../../Switch/Switch'
+import { SvgIconProps } from '@mui/material/SvgIcon'
+import Switch from '@mui/material/Switch'
+import Typography from '@mui/material/Typography'
+
+import { story } from '../../../__tests__/helpers/storybook'
 
 /**
  * Metadata for TreeView stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Data Display/TreeView' }
+export default { title: 'Data Display/TreeView', component: TreeView }
+
 /**
  * Story template (edit/remove by hand if needed)
  *
@@ -88,14 +88,20 @@ export const MultiSelection = story(Template, {
 
 export const Controlled = story(
   () => {
-    const [expanded, setExpanded] = React.useState<string[]>([])
-    const [selected, setSelected] = React.useState<string[]>([])
+    const [expanded, setExpanded] = React.useState<Array<string>>([])
+    const [selected, setSelected] = React.useState<Array<string>>([])
 
-    const handleToggle = (event: React.SyntheticEvent, nodeIds: string[]) => {
+    const handleToggle = (
+      event: React.SyntheticEvent,
+      nodeIds: Array<string>,
+    ) => {
       setExpanded(nodeIds)
     }
 
-    const handleSelect = (event: React.SyntheticEvent, nodeIds: string[]) => {
+    const handleSelect = (
+      event: React.SyntheticEvent,
+      nodeIds: Array<string>,
+    ) => {
       setSelected(nodeIds)
     }
 
@@ -166,7 +172,7 @@ export const RichObject = story(
     interface RenderTree {
       id: string
       name: string
-      children?: readonly RenderTree[]
+      children?: ReadonlyArray<RenderTree>
     }
 
     const data: RenderTree = {

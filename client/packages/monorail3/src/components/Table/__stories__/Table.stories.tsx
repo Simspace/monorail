@@ -1,40 +1,45 @@
 // Edit this file to add new stories
 import React from 'react'
-import { Table, TableProps } from '../Table'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './Table.stories.gen'
-import { TableContainer } from '../../TableContainer/TableContainer'
-import { Paper } from '../../Paper/Paper'
-import { TableHead } from '../../TableHead/TableHead'
-import { TableBody } from '../../TableBody/TableBody'
-import { TableRow } from '../../TableRow/TableRow'
-import { TableCell } from '../../TableCell/TableCell'
-import { Checkbox } from '../../Checkbox/Checkbox'
-import { TableSortLabel } from '../../TableSortLabel/TableSortLabel'
-import { Box } from '../../Box/Box'
-import { alpha, styled, visuallyHidden } from '../../../helpers/styles'
-import { Toolbar } from '../../Toolbar/Toolbar'
-import { Typography } from '../../Typography/Typography'
-import { Tooltip } from '../../Tooltip/Tooltip'
-import { IconButton } from '../../IconButton/IconButton'
 import DeleteIcon from '@mui/icons-material/Delete'
 import FilterListIcon from '@mui/icons-material/FilterList'
-import LastPageIcon from '@mui/icons-material/LastPage'
 import FirstPageIcon from '@mui/icons-material/FirstPage'
+import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown'
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft'
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight'
 import KeyboardArrowUp from '@mui/icons-material/KeyboardArrowUp'
-import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown'
-import { TablePagination } from '../../TablePagination/TablePagination'
-import { FormControlLabel } from '../../FormControlLabel/FormControlLabel'
-import { Switch } from '../../Switch/Switch'
+import LastPageIcon from '@mui/icons-material/LastPage'
+import {
+  Alert,
+  alpha,
+  Box,
+  Checkbox,
+  Collapse,
+  FormControlLabel,
+  IconButton,
+  Paper,
+  styled,
+  Switch,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableFooter,
+  TableHead,
+  TablePagination,
+  TableProps,
+  TableRow,
+  TableSortLabel,
+  Toolbar,
+  Tooltip,
+  Typography,
+  useTheme,
+} from '@mui/material'
 import { tableCellClasses } from '@mui/material/TableCell'
-import { useTheme } from '../../../theme/useTheme'
-import { TableFooter } from '../../TableFooter/TableFooter'
-import { Collapse } from '../../Collapse/Collapse'
-import { Alert } from '../../Alert/Alert'
+import { visuallyHidden } from '@mui/utils'
 
-export default { ...defaultStoryMeta, title: 'Data Display/Table' }
+import { story } from '../../../__tests__/helpers/storybook'
+
+export default { title: 'Data Display/Table', component: Table }
 
 const Template = story<TableProps>(args => {
   function createData(
@@ -119,7 +124,12 @@ export const Density = story<TableProps>(
     ]
     return (
       <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
+        <Table
+          sx={{ minWidth: 650 }}
+          size="small"
+          aria-label="a dense table"
+          {...args}
+        >
           <TableHead>
             <TableRow>
               <TableCell>Dessert (100g serving)</TableCell>
@@ -214,7 +224,7 @@ export const SortingAndSelecting = story<TableProps>(
 
     type Order = 'asc' | 'desc'
 
-    function getComparator<Key extends keyof any>(
+    function getComparator<Key extends keyof Data>(
       order: Order,
       orderBy: Key,
     ): (
@@ -229,7 +239,7 @@ export const SortingAndSelecting = story<TableProps>(
     // This method is created for cross-browser compatibility, if you don't
     // need to support IE11, you can use Array.prototype.sort() directly
     function stableSort<T>(
-      array: readonly T[],
+      array: ReadonlyArray<T>,
       comparator: (a: T, b: T) => number,
     ) {
       const stabilizedThis = array.map(
@@ -237,7 +247,9 @@ export const SortingAndSelecting = story<TableProps>(
       )
       stabilizedThis.sort((a, b) => {
         const order = comparator(a[0], b[0])
-        if (order !== 0) return order
+        if (order !== 0) {
+          return order
+        }
         return a[1] - b[1]
       })
       return stabilizedThis.map(el => el[0])
@@ -250,7 +262,7 @@ export const SortingAndSelecting = story<TableProps>(
       numeric: boolean
     }
 
-    const headCells: readonly HeadCell[] = [
+    const headCells: ReadonlyArray<HeadCell> = [
       {
         id: 'name',
         numeric: false,
@@ -411,13 +423,13 @@ export const SortingAndSelecting = story<TableProps>(
     function EnhancedTable() {
       const [order, setOrder] = React.useState<Order>('asc')
       const [orderBy, setOrderBy] = React.useState<keyof Data>('calories')
-      const [selected, setSelected] = React.useState<readonly string[]>([])
+      const [selected, setSelected] = React.useState<ReadonlyArray<string>>([])
       const [page, setPage] = React.useState(0)
       const [dense, setDense] = React.useState(false)
       const [rowsPerPage, setRowsPerPage] = React.useState(5)
 
       const handleRequestSort = (
-        event: React.MouseEvent<unknown>,
+        _event: React.MouseEvent<unknown>,
         property: keyof Data,
       ) => {
         const isAsc = orderBy === property && order === 'asc'
@@ -436,9 +448,9 @@ export const SortingAndSelecting = story<TableProps>(
         setSelected([])
       }
 
-      const handleClick = (event: React.MouseEvent<unknown>, name: string) => {
+      const handleClick = (_event: React.MouseEvent<unknown>, name: string) => {
         const selectedIndex = selected.indexOf(name)
-        let newSelected: readonly string[] = []
+        let newSelected: ReadonlyArray<string> = []
 
         if (selectedIndex === -1) {
           newSelected = newSelected.concat(selected, name)
@@ -456,7 +468,7 @@ export const SortingAndSelecting = story<TableProps>(
         setSelected(newSelected)
       }
 
-      const handleChangePage = (event: unknown, newPage: number) => {
+      const handleChangePage = (_event: unknown, newPage: number) => {
         setPage(newPage)
       }
 
@@ -488,6 +500,7 @@ export const SortingAndSelecting = story<TableProps>(
                 sx={{ minWidth: 750 }}
                 aria-labelledby="tableTitle"
                 size={dense ? 'small' : 'medium'}
+                {...args}
               >
                 <EnhancedTableHead
                   numSelected={selected.length}
@@ -628,7 +641,7 @@ export const Customization = story<TableProps>(
     ]
     return (
       <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 700 }} aria-label="customized table">
+        <Table sx={{ minWidth: 700 }} aria-label="customized table" {...args}>
           <TableHead>
             <TableRow>
               <StyledTableCell>Dessert (100g serving)</StyledTableCell>
@@ -781,7 +794,7 @@ export const CustomPaginationOptions = story<TableProps>(
         page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0
 
       const handleChangePage = (
-        event: React.MouseEvent<HTMLButtonElement> | null,
+        _event: React.MouseEvent<HTMLButtonElement> | null,
         newPage: number,
       ) => {
         setPage(newPage)
@@ -796,7 +809,11 @@ export const CustomPaginationOptions = story<TableProps>(
 
       return (
         <TableContainer component={Paper}>
-          <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
+          <Table
+            sx={{ minWidth: 500 }}
+            aria-label="custom pagination table"
+            {...args}
+          >
             <TableBody>
               {(rowsPerPage > 0
                 ? rows.slice(
@@ -876,7 +893,7 @@ export const StickyHeader = story<TableProps>(
       format?: (value: number) => string
     }
 
-    const columns: readonly Column[] = [
+    const columns: ReadonlyArray<Column> = [
       { id: 'name', label: 'Name', minWidth: 170 },
       { id: 'code', label: 'ISO\u00a0Code', minWidth: 100 },
       {
@@ -941,7 +958,7 @@ export const StickyHeader = story<TableProps>(
     const [page, setPage] = React.useState(0)
     const [rowsPerPage, setRowsPerPage] = React.useState(10)
 
-    const handleChangePage = (event: unknown, newPage: number) => {
+    const handleChangePage = (_event: unknown, newPage: number) => {
       setPage(newPage)
     }
 
@@ -955,7 +972,7 @@ export const StickyHeader = story<TableProps>(
     return (
       <Paper sx={{ width: '100%', overflow: 'hidden' }}>
         <TableContainer sx={{ maxHeight: 440 }}>
-          <Table stickyHeader aria-label="sticky table">
+          <Table stickyHeader aria-label="sticky table" {...args}>
             <TableHead>
               <TableRow>
                 {columns.map(column => (
@@ -1029,7 +1046,7 @@ export const ColumnGrouping = story<TableProps>(
       format?: (value: number) => string
     }
 
-    const columns: Column[] = [
+    const columns: Array<Column> = [
       { id: 'name', label: 'Name', minWidth: 170 },
       { id: 'code', label: 'ISO\u00a0Code', minWidth: 100 },
       {
@@ -1094,7 +1111,7 @@ export const ColumnGrouping = story<TableProps>(
     const [page, setPage] = React.useState(0)
     const [rowsPerPage, setRowsPerPage] = React.useState(10)
 
-    const handleChangePage = (event: unknown, newPage: number) => {
+    const handleChangePage = (_event: unknown, newPage: number) => {
       setPage(newPage)
     }
 
@@ -1108,7 +1125,7 @@ export const ColumnGrouping = story<TableProps>(
     return (
       <Paper sx={{ width: '100%' }}>
         <TableContainer sx={{ maxHeight: 440 }}>
-          <Table stickyHeader aria-label="sticky table">
+          <Table stickyHeader aria-label="sticky table" {...args}>
             <TableHead>
               <TableRow>
                 <TableCell align="center" colSpan={2}>
@@ -1288,7 +1305,7 @@ export const CollapsibleTable = story<TableProps>(
 
     return (
       <TableContainer component={Paper}>
-        <Table aria-label="collapsible table">
+        <Table aria-label="collapsible table" {...args}>
           <TableHead>
             <TableRow>
               <TableCell />
@@ -1343,7 +1360,7 @@ export const SpanningTable = story<TableProps>(
       price: number
     }
 
-    function subtotal(items: readonly Row[]) {
+    function subtotal(items: ReadonlyArray<Row>) {
       return items.map(({ price }) => price).reduce((sum, i) => sum + i, 0)
     }
 
@@ -1359,7 +1376,7 @@ export const SpanningTable = story<TableProps>(
 
     return (
       <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 700 }} aria-label="spanning table">
+        <Table sx={{ minWidth: 700 }} aria-label="spanning table" {...args}>
           <TableHead>
             <TableRow>
               <TableCell align="center" colSpan={3}>
@@ -1416,7 +1433,7 @@ export const SpanningTable = story<TableProps>(
 )
 
 export const VirtualizedTable = story<TableProps>(
-  args => {
+  () => {
     return (
       <Alert severity="warning">
         This example uses react-virtualized, which is not installed. See{' '}
@@ -1457,7 +1474,7 @@ export const Accessibility = story<TableProps>(
 
     return (
       <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} aria-label="caption table">
+        <Table sx={{ minWidth: 650 }} aria-label="caption table" {...args}>
           <caption>A basic table example with a caption</caption>
           <TableHead>
             <TableRow>

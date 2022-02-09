@@ -1,17 +1,15 @@
 // Edit this file to add new stories
 import React from 'react'
-import { Paper, PaperProps } from '../Paper'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './Paper.stories.gen'
-import { Box } from '../../Box/Box'
+import { Box, Grid, Paper, PaperProps } from '@mui/material'
 import {
   createTheme,
   styled,
-  ThemeProvider,
-  Theme,
   StyledEngineProvider,
+  Theme,
+  ThemeProvider,
 } from '@mui/material/styles'
-import { Grid } from '../../Grid/Grid'
+
+import { story } from '../../../__tests__/helpers/storybook'
 
 declare module '@mui/styles/defaultTheme' {
   // eslint-disable-next-line @typescript-eslint/no-empty-interface
@@ -26,7 +24,7 @@ declare module '@mui/styles/defaultTheme' {
 /**
  * Metadata for Paper stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Surfaces/Paper' }
+export default { title: 'Surfaces/Paper', component: Paper }
 /**
  * Story template (edit/remove by hand if needed)
  *

@@ -1,14 +1,13 @@
 // Edit this file to add new stories
 import React from 'react'
-import { Link, LinkProps } from '../Link'
+import { Link, LinkProps, Stack } from '@mui/material'
+
 import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './Link.stories.gen'
-import { Stack } from '../../Stack/Stack'
 
 /**
  * Metadata for Link stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Navigation/Link' }
+export default { title: 'Navigation/Link', component: Link }
 /**
  * Story template (edit/remove by hand if needed)
  *

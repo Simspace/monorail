@@ -1,23 +1,23 @@
 // Edit this file to add new stories
 import React from 'react'
-import { Tooltip, TooltipProps, tooltipClasses } from '../Tooltip'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './Tooltip.stories.gen'
-import { IconButton } from '../../IconButton/IconButton'
 import DeleteIcon from '@mui/icons-material/Delete'
-import { Box } from '../../Box/Box'
-import { Grid } from '../../Grid/Grid'
-import { Button } from '../../Button/Button'
+import Box from '@mui/material/Box'
+import Button from '@mui/material/Button'
+import ClickAwayListener from '@mui/material/ClickAwayListener'
+import Fade from '@mui/material/Fade'
+import Grid from '@mui/material/Grid'
+import IconButton from '@mui/material/IconButton'
+import Tooltip, { tooltipClasses, TooltipProps } from '@mui/material/Tooltip'
+import Typography from '@mui/material/Typography'
+import Zoom from '@mui/material/Zoom'
 import { styled } from '@mui/styles'
-import { Typography } from '../../Typography/Typography'
-import { ClickAwayListener } from '../../ClickAwayListener/ClickAwayListener'
-import { Fade } from '../../Fade/Fade'
-import { Zoom } from '../../Zoom/Zoom'
+
+import { story } from '../../../__tests__/helpers/storybook'
 
 /**
  * Metadata for Tooltip stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Feedback/Tooltip' }
+export default { title: 'Feedback/Tooltip', component: Tooltip }
 
 /**
  * Story template (edit/remove by hand if needed)

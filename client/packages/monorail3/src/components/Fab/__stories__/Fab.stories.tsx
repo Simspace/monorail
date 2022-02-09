@@ -1,34 +1,35 @@
 // Edit this file to add new stories
 import React from 'react'
-import { Fab, FabProps } from '../Fab'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './Fab.stories.gen'
-import { Box } from '../../Box/Box'
 import AddIcon from '@mui/icons-material/Add'
 import EditIcon from '@mui/icons-material/Edit'
 import FavoriteIcon from '@mui/icons-material/Favorite'
-import NavigationIcon from '@mui/icons-material/Navigation'
-import { useTheme } from '@mui/material/styles'
-import { SxProps } from '@mui/system'
-import { Typography } from '../../Typography/Typography'
-import { green } from '@mui/material/colors'
-import { AppBar } from '../../AppBar/AppBar'
-import { Tabs } from '../../Tabs/Tabs'
-import { Tab } from '../../Tab/Tab'
-import { Zoom } from '../../Zoom/Zoom'
 import UpIcon from '@mui/icons-material/KeyboardArrowUp'
+import NavigationIcon from '@mui/icons-material/Navigation'
+import {
+  AppBar,
+  Box,
+  Fab,
+  FabProps,
+  Tab,
+  Tabs,
+  Typography,
+  Zoom,
+} from '@mui/material'
+import { useTheme } from '@mui/material/styles'
+
+import { story } from '../../../__tests__/helpers/storybook'
 
 /**
  * Metadata for Fab stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Inputs/Fab' }
+export default { title: 'Inputs/Fab', component: Fab }
 /**
  * Story template (edit/remove by hand if needed)
  *
  * Note: there should be at least one "Default" story that uses this template with the "story" function.
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
-const Template = story<FabProps>(args => <Fab {...args}>FAB</Fab>, {
+const Template = story<FabProps>((args: FabProps) => <Fab {...args}>FAB</Fab>, {
   args: {},
 })
 /** Default story for Fab (edit/remove by hand if needed) */
@@ -145,25 +146,11 @@ function TabPanel(props: TabPanelProps) {
   )
 }
 
-function a11yProps(index: any) {
+function a11yProps(index: number) {
   return {
     id: `action-tab-${index}`,
     'aria-controls': `action-tabpanel-${index}`,
   }
-}
-
-const fabStyle = {
-  position: 'absolute',
-  bottom: 16,
-  right: 16,
-}
-
-const fabGreenStyle = {
-  color: 'common.white',
-  bgcolor: green[500],
-  '&:hover': {
-    bgcolor: green[600],
-  },
 }
 
 export const Animation = story(
@@ -183,19 +170,16 @@ export const Animation = story(
     const fabs = [
       {
         color: 'primary' as 'primary',
-        sx: fabStyle as SxProps,
         icon: <AddIcon />,
         label: 'Add',
       },
       {
         color: 'secondary' as 'secondary',
-        sx: fabStyle as SxProps,
         icon: <EditIcon />,
         label: 'Edit',
       },
       {
         color: 'inherit' as 'inherit',
-        sx: { ...fabStyle, ...fabGreenStyle } as SxProps,
         icon: <UpIcon />,
         label: 'Expand',
       },
@@ -203,12 +187,14 @@ export const Animation = story(
 
     return (
       <Box
+      /* TODO: not typechecking
         sx={{
-          bgcolor: 'background.paper',
+          bgColor: 'background.paper',
           width: 500,
           position: 'relative',
           minHeight: 200,
         }}
+         */
       >
         <AppBar position="static" color="default">
           <Tabs
@@ -245,7 +231,15 @@ export const Animation = story(
             }}
             unmountOnExit
           >
-            <Fab sx={fab.sx} aria-label={fab.label} color={fab.color}>
+            <Fab
+              sx={{
+                position: 'absolute',
+                bottom: 16,
+                right: 16,
+              }}
+              aria-label={fab.label}
+              color={fab.color}
+            >
               {fab.icon}
             </Fab>
           </Zoom>

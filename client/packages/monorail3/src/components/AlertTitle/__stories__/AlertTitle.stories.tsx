@@ -1,14 +1,14 @@
 // Edit this file to add new stories
 import React from 'react'
-import { AlertTitle, AlertTitleProps } from '../AlertTitle'
+import { AlertTitle, AlertTitleProps } from '@mui/material'
+
 import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './AlertTitle.stories.gen'
 /**
  * Metadata for AlertTitle stories - update/extend as needed
  * This is intended to be exported as story-level metadata from the main .stories.tsx file, like:
  * "export default { ...defaultStoryMeta } // Add/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Feedback/Alert/AlertTitle' }
+export default { title: 'Feedback/Alert/AlertTitle', component: AlertTitle }
 /**
  * Story template (edit/remove by hand if needed)
  *

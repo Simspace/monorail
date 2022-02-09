@@ -1,17 +1,20 @@
 // Edit this file to add new stories
 import React from 'react'
-import { Pagination, PaginationProps } from '../Pagination'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './Pagination.stories.gen'
-import { Stack } from '../../Stack/Stack'
-import { Typography } from '../../Typography/Typography'
+import {
+  Pagination,
+  PaginationProps,
+  Stack,
+  TablePagination,
+  Typography,
+} from '@mui/material'
 import styled from '@mui/material/styles/styled'
 import usePagination from '@mui/material/usePagination/usePagination'
-import { TablePagination } from '../../TablePagination/TablePagination'
+
+import { story } from '../../../__tests__/helpers/storybook'
 /**
  * Metadata for Pagination stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Navigation/Pagination' }
+export default { title: 'Navigation/Pagination', component: Pagination }
 /**
  * Story template (edit/remove by hand if needed)
  *
