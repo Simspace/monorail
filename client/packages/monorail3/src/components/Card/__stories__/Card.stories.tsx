@@ -7,31 +7,34 @@ import PlayArrowIcon from '@mui/icons-material/PlayArrow'
 import ShareIcon from '@mui/icons-material/Share'
 import SkipNextIcon from '@mui/icons-material/SkipNext'
 import SkipPreviousIcon from '@mui/icons-material/SkipPrevious'
+import {
+  Avatar,
+  Box,
+  Button,
+  Card,
+  CardActionArea,
+  CardActions,
+  CardContent,
+  CardHeader,
+  CardMedia,
+  CardProps,
+  Collapse,
+  IconButton,
+  IconButtonProps,
+  Typography,
+  useTheme,
+} from '@mui/material'
 import { red } from '@mui/material/colors'
 import { styled } from '@mui/material/styles'
 
 import { story } from '../../../__tests__/helpers/storybook'
 import { images } from '../../../__tests__/helpers/testData'
-import { useTheme } from '../../../theme/useTheme'
-import { Avatar } from '../../Avatar/Avatar'
-import { Box } from '../../Box/Box'
-import { Button } from '../../Button/Button'
-import { CardActionArea } from '../../CardActionArea/CardActionArea'
-import { CardActions } from '../../CardActions/CardActions'
-import { CardContent } from '../../CardContent/CardContent'
-import { CardHeader } from '../../CardHeader/CardHeader'
-import { CardMedia } from '../../CardMedia/CardMedia'
-import { Collapse } from '../../Collapse/Collapse'
-import { IconButton, IconButtonProps } from '../../IconButton/IconButton'
-import { Typography } from '../../Typography/Typography'
-import { Card, CardProps } from '../Card'
-import { defaultStoryMeta } from './Card.stories.gen'
 /**
  * Metadata for Card stories - update/extend as needed
  * This is intended to be exported as story-level metadata from the main .stories.tsx file, like:
  * "export default { ...defaultStoryMeta } // Add/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Surfaces/Card' }
+export default { title: 'Surfaces/Card', component: Card }
 /**
  * Story template (edit/remove by hand if needed)
  *
@@ -129,7 +132,7 @@ interface ExpandMoreProps extends IconButtonProps {
 }
 
 const ExpandMore = styled((props: ExpandMoreProps) => {
-  const { _expand, ...other } = props
+  const { expand: _expand, ...other } = props
   return <IconButton {...other} size="large" />
 })(({ theme, expand }) => ({
   transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',

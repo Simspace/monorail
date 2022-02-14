@@ -1,16 +1,18 @@
 // Edit this file to add new stories
 import React from 'react'
+import {
+  FilledInput,
+  FilledInputProps,
+  FormControl,
+  InputLabel,
+} from '@mui/material'
 
 import { story } from '../../../__tests__/helpers/storybook'
-import { FormControl } from '../../FormControl/FormControl'
-import { InputLabel } from '../../InputLabel/InputLabel'
-import { FilledInput, FilledInputProps } from '../FilledInput'
-import { defaultStoryMeta } from './FilledInput.stories.gen'
 
 /**
  * Metadata for FilledInput stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Inputs/Input/FilledInput' }
+export default { title: 'Inputs/Input/FilledInput', component: FilledInput }
 /**
  * Story template (edit/remove by hand if needed)
  *
@@ -18,7 +20,7 @@ export default { ...defaultStoryMeta, title: 'Inputs/Input/FilledInput' }
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
 const Template = story<FilledInputProps>(
-  args => (
+  (args: FilledInputProps) => (
     <FormControl variant="filled">
       <InputLabel htmlFor="filled">Label</InputLabel>
       <FilledInput {...args} />
