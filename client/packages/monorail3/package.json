@@ -6,6 +6,7 @@
   "author": "SimSpace",
   "license": "UNLICENSED",
   "peerDependencies": {
+    "@mui/base": "5.0.0-alpha.68",
     "@mui/icons-material": "5.4.1",
     "@mui/lab": "5.0.0-alpha.68",
     "@mui/material": "5.4.1",
@@ -21,6 +22,7 @@
   },
   "devDependencies": {
     "@emotion/react": "11.4.1",
+    "@mui/base": "5.0.0-alpha.68",
     "@mui/icons-material": "5.4.1",
     "@mui/lab": "5.0.0-alpha.68",
     "@mui/material": "5.4.1",
