@@ -39,7 +39,7 @@ const Template = story<SnackbarProps>(
     }
 
     const handleClose = (
-      _event: React.SyntheticEvent | React.MouseEvent,
+      _event: React.SyntheticEvent | Event,
       reason?: string,
     ) => {
       if (reason === 'clickaway') {
@@ -101,7 +101,10 @@ export const CustomizedSnackbars = story<SnackbarProps>(
       setOpen(true)
     }
 
-    const handleClose = (_event?: React.SyntheticEvent, reason?: string) => {
+    const handleClose = (
+      _event?: React.SyntheticEvent | Event,
+      reason?: string,
+    ) => {
       if (reason === 'clickaway') {
         return
       }
@@ -316,7 +319,7 @@ export const Transitions = story<SnackbarProps>(
     }
 
     const handleClose = (
-      _event: React.SyntheticEvent | MouseEvent,
+      _event: React.SyntheticEvent | Event,
       reason?: string,
     ) => {
       if (reason === 'clickaway') {
