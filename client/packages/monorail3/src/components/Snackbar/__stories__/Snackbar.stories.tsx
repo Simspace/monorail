@@ -380,23 +380,26 @@ export const WithFloatingActionButtons = story<SnackbarProps>(() => {
   )
 })
 
+// This type exists because the action transition components (e.g. Slide, Fade)
+// are incompatible with TransitionProps as defined in MUI because they have a
+// non-optional children prop.
+type TransitionPropsWithChild = TransitionProps & {
+  children: React.ReactElement<unknown>
+}
+
 export const OtherTransitions = story<SnackbarProps>(
   () => {
-    function SlideTransition(props: TransitionProps) {
+    function SlideTransition(props: TransitionPropsWithChild) {
       return <Slide {...props} direction="up" />
     }
 
-    function GrowTransition(props: TransitionProps) {
+    function GrowTransition(props: TransitionPropsWithChild) {
       return <Grow {...props} />
     }
 
     const [state, setState] = React.useState<{
       open: boolean
-      Transition: React.ComponentType<
-        TransitionProps & {
-          children?: React.ReactElement<unknown>
-        }
-      >
+      Transition: React.ComponentType<TransitionPropsWithChild>
     }>({
       open: false,
       Transition: Fade,
@@ -406,7 +409,7 @@ export const OtherTransitions = story<SnackbarProps>(
       (
         Transition: React.ComponentType<
           TransitionProps & {
-            children?: React.ReactElement<unknown>
+            children: React.ReactElement<unknown>
           }
         >,
       ) =>
@@ -452,29 +455,29 @@ export const OtherTransitions = story<SnackbarProps>(
 
 export const SlideDirection = story<SnackbarProps>(
   () => {
-    function TransitionLeft(props: TransitionProps) {
+    function TransitionLeft(props: TransitionPropsWithChild) {
       return <Slide {...props} direction="left" />
     }
 
-    function TransitionUp(props: TransitionProps) {
+    function TransitionUp(props: TransitionPropsWithChild) {
       return <Slide {...props} direction="up" />
     }
 
-    function TransitionRight(props: TransitionProps) {
+    function TransitionRight(props: TransitionPropsWithChild) {
       return <Slide {...props} direction="right" />
     }
 
-    function TransitionDown(props: TransitionProps) {
+    function TransitionDown(props: TransitionPropsWithChild) {
       return <Slide {...props} direction="down" />
     }
 
     const [open, setOpen] = React.useState(false)
     const [transition, setTransition] = React.useState<
-      React.ComponentType<TransitionProps> | undefined
+      React.ComponentType<TransitionPropsWithChild> | undefined
     >(undefined)
 
     const handleClick =
-      (Transition: React.ComponentType<TransitionProps>) => () => {
+      (Transition: React.ComponentType<TransitionPropsWithChild>) => () => {
         setTransition(() => Transition)
         setOpen(true)
       }
