@@ -1,6 +1,9 @@
 // eslint-disable-next-line no-restricted-imports
 import { createTheme } from '@mui/material'
 
+import { FontSize, LineHeight } from '../components/Typography/FontSize'
+import { FontWeight } from '../components/Typography/FontWeight'
+
 // This "default" theme should house the global defaults that apply to all themes. This would likely include
 // common settings that are not likely to differ between specific themes, like spacing, shadows, breakpoints, etc.
 // Specific themes can override these settings, but hopefully won't want/need to.
@@ -9,40 +12,78 @@ import { createTheme } from '@mui/material'
 export const baseTheme = createTheme(
   {
     // TODO: add "global" settings that aren't likely to vary per theme (spacing, shadows, breakpoints, typography, etc.)
-    spacing: 8,
+    spacing: 4,
 
     typography: {
+      htmlFontSize: 16,
       fontFamily: `'Proxima Nova', 'Open Sans', 'Gill Sans MT', 'Gill Sans', Corbel,
       Arial, sans-serif`,
-      button: {
-        fontWeight: 700,
-        textTransform: 'capitalize',
+      data1: {
+        fontSize: FontSize.Data1,
+        lineHeight: LineHeight.Data1,
+        fontWeight: FontWeight.Light,
+      },
+      data2: {
+        fontSize: FontSize.Data2,
+        lineHeight: LineHeight.Data2,
+        fontWeight: FontWeight.Light,
+      },
+      data3: {
+        fontSize: FontSize.Data3,
+        lineHeight: LineHeight.Data3,
+        fontWeight: FontWeight.Light,
       },
       h1: {
-        fontSize: 64,
-        fontWeight: 400,
+        fontSize: FontSize.H1,
+        lineHeight: LineHeight.H1,
+        fontWeight: FontWeight.Medium,
       },
       h2: {
-        fontSize: 56,
-        fontWeight: 400,
+        fontSize: FontSize.H2,
+        lineHeight: LineHeight.H1,
+        fontWeight: FontWeight.Medium,
       },
       h3: {
-        fontSize: 48,
+        fontSize: FontSize.H3,
+        lineHeight: LineHeight.H1,
+        fontWeight: FontWeight.Medium,
       },
-      h4: {
-        fontSize: 32,
-      },
-      h6: {
-        fontWeight: 400,
+      body1: {
+        fontSize: FontSize.Body1,
+        lineHeight: LineHeight.Body1,
+        fontWeight: FontWeight.Book,
       },
       body2: {
-        fontWeight: 400,
+        fontSize: FontSize.Body2,
+        lineHeight: LineHeight.Body2,
+        fontWeight: FontWeight.Medium,
       },
       subtitle1: {
-        fontWeight: 700,
+        fontSize: FontSize.Subtitle1,
+        lineHeight: LineHeight.Subtitle1,
+        fontWeight: FontWeight.Medium,
       },
       subtitle2: {
-        fontWeight: 700,
+        fontSize: FontSize.Subtitle2,
+        lineHeight: LineHeight.Subtitle2,
+        fontWeight: FontWeight.Book,
+      },
+      overline: {
+        fontSize: FontSize.Overline,
+        lineHeight: LineHeight.Overline,
+        fontWeight: FontWeight.Book,
+        textTransform: 'uppercase',
+      },
+      caption: {
+        fontSize: FontSize.Caption,
+        lineHeight: LineHeight.Caption,
+        fontWeight: FontWeight.Book,
+      },
+      button: {
+        fontSize: FontSize.Button,
+        lineHeight: LineHeight.Button,
+        fontWeight: FontWeight.Bold,
+        textTransform: 'capitalize',
       },
     },
 
