@@ -5,23 +5,25 @@ import GrainIcon from '@mui/icons-material/Grain'
 import HomeIcon from '@mui/icons-material/Home'
 import NavigateNextIcon from '@mui/icons-material/NavigateNext'
 import WhatshotIcon from '@mui/icons-material/Whatshot'
+import {
+  Breadcrumbs,
+  BreadcrumbsProps,
+  Chip,
+  Link,
+  Stack,
+  Typography,
+} from '@mui/material'
 import { emphasize, styled } from '@mui/material/styles'
 import { action } from '@storybook/addon-actions'
 
 import { story } from '../../../__tests__/helpers/storybook'
-import { Chip } from '../../Chip/Chip'
-import { Link } from '../../Link/Link'
-import { Stack } from '../../Stack/Stack'
-import { Typography } from '../../Typography/Typography'
-import { Breadcrumbs, BreadcrumbsProps } from '../Breadcrumbs'
-import { defaultStoryMeta } from './Breadcrumbs.stories.gen'
 
 /**
  * Metadata for Breadcrumbs stories - update/extend as needed
  * This is intended to be exported as story-level metadata from the main .stories.tsx file, like:
  * "export default { ...defaultStoryMeta } // Add/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Navigation/Breadcrumbs' }
+export default { title: 'Navigation/Breadcrumbs', component: Breadcrumbs }
 
 /**
  * Story template (edit/remove by hand if needed)
@@ -247,12 +249,13 @@ export const Customized = story<BreadcrumbsProps>(
       <div role="presentation" onClick={action('Click')}>
         <Breadcrumbs aria-label="breadcrumb">
           <StyledBreadcrumb
-            component="a"
-            href="#"
+            // TODO: doesn't typecheck
+            //component="a"
+            //href="#"
             label="Home"
             icon={<HomeIcon fontSize="small" />}
           />
-          <StyledBreadcrumb component="a" href="#" label="Catalog" />
+          <StyledBreadcrumb /*component="a" href="#"*/ label="Catalog" />
           <StyledBreadcrumb
             label="Accessories"
             deleteIcon={<ExpandMoreIcon />}
