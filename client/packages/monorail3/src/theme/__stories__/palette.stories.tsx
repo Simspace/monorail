@@ -176,7 +176,7 @@ export const Palette = () => {
           label="Secondary"
           paletteColor={theme.palette.secondary}
         />
-        {/*<PaletteColorBox label="Accent" paletteColor={theme.palette.accent} />*/}
+        <PaletteColorBox label="Accent" paletteColor={theme.palette.accent} />
         <PaletteColorBox label="Info" paletteColor={theme.palette.info} />
         <PaletteColorBox label="Success" paletteColor={theme.palette.success} />
         <PaletteColorBox label="Warning" paletteColor={theme.palette.warning} />
@@ -186,11 +186,11 @@ export const Palette = () => {
       <CommonColorsBox commonColors={theme.palette.common} />
 
       <ColorShadesBox label="Grey" color={theme.palette.grey} />
-      <ColorShadesBox label="Blue" color={theme.palette.colors.blue} />
-      <ColorShadesBox label="Fuschia" color={theme.palette.colors.fuschia} />
-      <ColorShadesBox label="Orange" color={theme.palette.colors.orange} />
-      <ColorShadesBox label="Purple" color={theme.palette.colors.purple} />
-      <ColorShadesBox label="Teal" color={theme.palette.colors.teal} />
+      <ColorShadesBox label="Blue" color={theme.palette.chart.blue} />
+      <ColorShadesBox label="Fuschia" color={theme.palette.chart.fuschia} />
+      <ColorShadesBox label="Orange" color={theme.palette.chart.orange} />
+      <ColorShadesBox label="Purple" color={theme.palette.chart.purple} />
+      <ColorShadesBox label="Teal" color={theme.palette.chart.teal} />
 
       <TextColorsBox typeText={theme.palette.text} />
 

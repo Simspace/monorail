@@ -16,8 +16,9 @@ export const baseTheme = createTheme(
 
     typography: {
       htmlFontSize: 16,
-      fontFamily: `'Proxima Nova', 'Open Sans', 'Gill Sans MT', 'Gill Sans', Corbel,
-      Arial, sans-serif`,
+      fontFamily: `'Gotham SSm A', 'Gotham SSm B', -apple-system, BlinkMacSystemFont,
+      'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji',
+      'Segoe UI Emoji', 'Segoe UI Symbol'`,
       data1: {
         fontSize: FontSize.Data1,
         lineHeight: LineHeight.Data1,

@@ -215,6 +215,14 @@ const palette: PaletteOptions = {
     main: '#1465FF',
     dark: '#1050CB',
   },
+  secondary: {
+    // hover: '#FFF8F0',
+    // selected: '#FFE6C7',
+    // active: '#FCCF87',
+    light: '#FFAD39',
+    main: '#FF8000',
+    dark: '#CF530A',
+  },
   accent: {
     light: '#0C3D99',
     main: '#0C3D99',

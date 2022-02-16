@@ -29,7 +29,7 @@ const Template = story<ToolbarProps>(args => (
     >
       <MenuIcon />
     </IconButton>
-    <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+    <Typography variant="h3" component="div" sx={{ flexGrow: 1 }}>
       News
     </Typography>
     <Button color="inherit">Login</Button>
