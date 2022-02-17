@@ -28,14 +28,6 @@ declare module '@mui/material/styles/createPalette' {
 
     accent: PaletteColor
 
-    colors: {
-      blue: Color
-      orange: Color
-      teal: Color
-      fuchsia: Color
-      purple: Color
-    }
-
     score: {
       high: PaletteColor
       highModerate: PaletteColor
@@ -82,14 +74,6 @@ declare module '@mui/material/styles/createPalette' {
       moderate: PaletteColorOptions
       lowModerate: PaletteColorOptions
       low: PaletteColorOptions
-    }>
-
-    colors?: Partial<{
-      blue: PaletteColorOptions
-      orange: PaletteColorOptions
-      teal: PaletteColorOptions
-      fuchsia: PaletteColorOptions
-      purple: PaletteColorOptions
     }>
 
     tiers?: Partial<{
