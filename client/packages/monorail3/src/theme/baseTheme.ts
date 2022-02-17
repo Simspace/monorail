@@ -11,7 +11,9 @@ import { FontWeight } from '../components/Typography/FontWeight'
 
 export const baseTheme = createTheme(
   {
-    // TODO: add "global" settings that aren't likely to vary per theme (spacing, shadows, breakpoints, typography, etc.)
+    // TODO[M3 Phase 2]: Define breakpoints in preparation for rebrand
+    // breakpoints: {},
+
     spacing: 4,
 
     typography: {
@@ -115,6 +117,37 @@ export const baseTheme = createTheme(
       '0 11px 14px -7px rgba(0,0,0,.2),0 23px 36px 3px rgba(0,0,0,.14),0 9px 44px 8px rgba(0,0,0,.12)',
       '0 11px 15px -7px rgba(0,0,0,.2),0 24px 38px 3px rgba(0,0,0,.14),0 9px 46px 8px rgba(0,0,0,.12)',
     ],
+
+    transitions: {
+      // We are accepting MUI's defaults for Phase 1.
+      // TODO[M3 Phase 2]: Pair with UX to figure out what needs to be adjusted
+      easing: {
+        easeInOut: 'cubic-bezier(0.4, 0, 0.2, 1)',
+        easeOut: 'cubic-bezier(0.0, 0, 0.2, 1)',
+        easeIn: 'cubic-bezier(0.4, 0, 1, 1)',
+        sharp: 'cubic-bezier(0.4, 0, 0.6, 1)',
+      },
+      duration: {
+        shortest: 150,
+        shorter: 200,
+        short: 250,
+        standard: 300,
+        complex: 375,
+        enteringScreen: 225,
+        leavingScreen: 195,
+      },
+    },
+
+    zIndex: {
+      // These are MUI's defaults. We can adjust the levels as we theme components.
+      mobileStepper: 1000,
+      speedDial: 1050,
+      appBar: 1050,
+      drawer: 1200,
+      modal: 1300,
+      snackbar: 1400,
+      tooltip: 1500,
+    },
 
     components: {
       MuiCssBaseline: {
