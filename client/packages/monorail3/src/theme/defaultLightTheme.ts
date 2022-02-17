@@ -53,7 +53,7 @@ export const DefaultLightColors = {
     A400: '#46DAB9',
     A700: '#00D8A7',
   },
-  fuschia: {
+  fuchsia: {
     50: '#FFE3F7',
     100: '#FFC3ED',
     200: '#F3A9D4',
@@ -171,7 +171,7 @@ export const DefaultLightChartColors = {
     A200: '#71E1C8',
     A100: '#98ECD9',
   },
-  fuschia: {
+  fuchsia: {
     50: '#FFE3F7',
     100: '#FFC3ED',
     200: '#F3A9D4',

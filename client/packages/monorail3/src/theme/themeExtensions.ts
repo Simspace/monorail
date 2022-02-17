@@ -32,7 +32,7 @@ declare module '@mui/material/styles/createPalette' {
       blue: Color
       orange: Color
       teal: Color
-      fuschia: Color
+      fuchsia: Color
       purple: Color
     }
 
@@ -52,11 +52,11 @@ declare module '@mui/material/styles/createPalette' {
     }
 
     chart: {
-      blue: PaletteColor
-      orange: PaletteColor
-      teal: PaletteColor
-      fuschia: PaletteColor
-      purple: PaletteColor
+      blue: Color
+      orange: Color
+      teal: Color
+      fuchsia: Color
+      purple: Color
     }
 
     admin: PaletteColor
@@ -88,7 +88,7 @@ declare module '@mui/material/styles/createPalette' {
       blue: PaletteColorOptions
       orange: PaletteColorOptions
       teal: PaletteColorOptions
-      fuschia: PaletteColorOptions
+      fuchsia: PaletteColorOptions
       purple: PaletteColorOptions
     }>
 
@@ -103,7 +103,7 @@ declare module '@mui/material/styles/createPalette' {
       blue: PaletteColorOptions
       orange: PaletteColorOptions
       teal: PaletteColorOptions
-      fuschia: PaletteColorOptions
+      fuchsia: PaletteColorOptions
       purple: PaletteColorOptions
     }>
   }

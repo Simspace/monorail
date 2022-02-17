@@ -187,7 +187,7 @@ export const Palette = () => {
 
       <ColorShadesBox label="Grey" color={theme.palette.grey} />
       <ColorShadesBox label="Blue" color={theme.palette.chart.blue} />
-      <ColorShadesBox label="Fuschia" color={theme.palette.chart.fuschia} />
+      <ColorShadesBox label="Fuchsia" color={theme.palette.chart.fuchsia} />
       <ColorShadesBox label="Orange" color={theme.palette.chart.orange} />
       <ColorShadesBox label="Purple" color={theme.palette.chart.purple} />
       <ColorShadesBox label="Teal" color={theme.palette.chart.teal} />
