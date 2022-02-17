@@ -1,5 +1,6 @@
 // Edit this file to add new stories
 import React from 'react'
+import { ModalUnstyled } from '@mui/base'
 import {
   Backdrop,
   Box,
@@ -7,7 +8,6 @@ import {
   Fade,
   Modal,
   ModalProps,
-  ModalUnstyled,
   Typography,
 } from '@mui/material'
 import { styled } from '@mui/material/styles'
