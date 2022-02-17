@@ -11,6 +11,7 @@ export const Shadows = () => {
     <Stack direction="row" gap={16} flexWrap="wrap" sx={{ m: 6 }}>
       {theme.shadows.map((_, idx) => (
         <Paper
+          key={idx}
           elevation={idx}
           sx={{
             display: 'flex',
