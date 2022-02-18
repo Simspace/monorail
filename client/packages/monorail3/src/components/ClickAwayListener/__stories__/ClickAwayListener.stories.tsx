@@ -1,11 +1,7 @@
 // Edit this file to add new stories
 import React from 'react'
-import {
-  Box,
-  ClickAwayListener,
-  ClickAwayListenerProps,
-  Portal,
-} from '@mui/material'
+import { Portal } from '@mui/base'
+import { Box, ClickAwayListener, ClickAwayListenerProps } from '@mui/material'
 
 import { story } from '../../../__tests__/helpers/storybook'
 
