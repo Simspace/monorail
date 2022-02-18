@@ -214,7 +214,7 @@ If a title is required:
 
 const Transition = React.forwardRef(function Transition(
   props: TransitionProps & {
-    children?: React.ReactElement<unknown>
+    children: React.ReactElement<unknown>
   },
   ref: React.Ref<unknown>,
 ) {
@@ -432,7 +432,7 @@ export const CustomizedDialogs = story<DialogProps>(
 
 const FullScreenTransition = React.forwardRef(function Transition(
   props: TransitionProps & {
-    children?: React.ReactElement
+    children: React.ReactElement
   },
   ref: React.Ref<unknown>,
 ) {

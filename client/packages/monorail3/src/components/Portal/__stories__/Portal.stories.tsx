@@ -1,6 +1,7 @@
 // Edit this file to add new stories
 import React from 'react'
-import { Box, Portal, PortalProps } from '@mui/material'
+import { Portal, PortalProps } from '@mui/base'
+import { Box } from '@mui/material'
 
 import { story } from '../../../__tests__/helpers/storybook'
 /**
