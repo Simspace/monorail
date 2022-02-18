@@ -1,7 +1,6 @@
 import React from 'react'
 import {
   Color as MUIColor,
-  Divider,
   PaletteColor,
   Typography,
   useTheme,
