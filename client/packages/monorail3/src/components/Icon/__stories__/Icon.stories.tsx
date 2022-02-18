@@ -1,10 +1,10 @@
 // Edit this file to add new stories
 import React from 'react'
-import { Box, Icon, IconProps, Stack, styled, Typography } from '@mui/material'
 import { AccessAlarm, ThreeDRotation } from '@mui/icons-material'
-import * as Icons from '../../../icons/Icons'
+import { Box, Icon, IconProps, Stack, styled, Typography } from '@mui/material'
 
 import { story } from '../../../__tests__/helpers/storybook'
+import * as Icons from '../../../icons/Icons'
 import { Illustration } from '../../../icons/Illustration'
 /**
  * Metadata for Icon stories - update/extend as needed
