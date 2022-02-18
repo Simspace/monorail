@@ -1,6 +1,6 @@
 import React from 'react'
 // eslint-disable-next-line no-restricted-imports
-import { SvgIcon, SvgIconProps } from '@material-ui/core'
+import SvgIcon, { SvgIconProps } from '@mui/material/SvgIcon'
 
 export const EventPaused = (props: SvgIconProps) => (
   <SvgIcon width="136" height="136" viewBox="0 0 136 136" {...props}>

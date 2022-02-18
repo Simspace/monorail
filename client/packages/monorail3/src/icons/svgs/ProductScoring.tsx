@@ -1,6 +1,6 @@
 import React from 'react'
 // eslint-disable-next-line no-restricted-imports
-import { SvgIcon, SvgIconProps } from '@material-ui/core'
+import SvgIcon, { SvgIconProps } from '@mui/material/SvgIcon'
 
 export const ProductScoring = (props: SvgIconProps) => (
   <SvgIcon {...props} viewBox="0 0 40 40" height="40" width="40">

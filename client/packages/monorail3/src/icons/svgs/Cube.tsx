@@ -1,6 +1,6 @@
 import React from 'react'
 // eslint-disable-next-line no-restricted-imports
-import { SvgIcon, SvgIconProps } from '@material-ui/core'
+import SvgIcon, { SvgIconProps } from '@mui/material/SvgIcon'
 
 export const Cube = (props: SvgIconProps) => (
   <SvgIcon fill="none" height={16} width={14} viewBox="0 0 14 16" {...props}>

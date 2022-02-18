@@ -1,6 +1,6 @@
 import React from 'react'
 // eslint-disable-next-line no-restricted-imports
-import { SvgIcon, SvgIconProps } from '@material-ui/core'
+import SvgIcon, { SvgIconProps } from '@mui/material/SvgIcon'
 
 export const SpiderChart = (props: SvgIconProps) => (
   <SvgIcon viewBox="0 0 345 294" width="345" height="294" {...props}>

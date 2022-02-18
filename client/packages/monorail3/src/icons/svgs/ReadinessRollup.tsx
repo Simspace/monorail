@@ -1,6 +1,6 @@
 import React from 'react'
 // eslint-disable-next-line no-restricted-imports
-import { SvgIcon, SvgIconProps } from '@material-ui/core'
+import SvgIcon, { SvgIconProps } from '@mui/material/SvgIcon'
 
 export const ReadinessRollup = (props: SvgIconProps) => (
   <SvgIcon width="239" height="239" viewBox="0 0 239 239" {...props}>

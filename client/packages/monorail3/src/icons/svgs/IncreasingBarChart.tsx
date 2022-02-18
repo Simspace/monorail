@@ -1,6 +1,6 @@
 import React from 'react'
 // eslint-disable-next-line no-restricted-imports
-import { SvgIcon, SvgIconProps } from '@material-ui/core'
+import SvgIcon, { SvgIconProps } from '@mui/material/SvgIcon'
 
 export const IncreasingBarChart = (props: SvgIconProps) => (
   <SvgIcon viewBox="0 0 12 12" {...props}>

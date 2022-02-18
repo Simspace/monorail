@@ -1,6 +1,7 @@
 import React from 'react'
 // eslint-disable-next-line no-restricted-imports
-import { makeStyles, SvgIcon, SvgIconProps } from '@material-ui/core'
+import SvgIcon, { SvgIconProps } from '@mui/material/SvgIcon'
+import { makeStyles } from '@mui/styles'
 
 const useStyles = makeStyles({
   loadingFadeInline: {

@@ -1,6 +1,6 @@
 import React from 'react'
 // eslint-disable-next-line no-restricted-imports
-import { SvgIcon, SvgIconProps } from '@material-ui/core'
+import SvgIcon, { SvgIconProps } from '@mui/material/SvgIcon'
 
 export const RestoreFromTrash = (props: SvgIconProps) => (
   <SvgIcon height="24" viewBox="0 0 24 24" width="24" {...props}>
