@@ -1,12 +1,12 @@
 // Edit this file to add new stories
 import React from 'react'
-import { TreeItem, TreeItemProps } from '../TreeItem'
+import TreeItem, { TreeItemProps } from '@mui/lab/TreeItem'
+
 import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './TreeItem.stories.gen'
 /**
  * Metadata for TreeItem stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Data Display/TreeView/TreeItem' }
+export default { title: 'Data Display/TreeView/TreeItem', component: TreeItem }
 /**
  * Story template (edit/remove by hand if needed)
  *
@@ -14,7 +14,11 @@ export default { ...defaultStoryMeta, title: 'Data Display/TreeView/TreeItem' }
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
 const Template = story<TreeItemProps>(
-  args => <TreeItem nodeId={'a'} {...args} />,
+  args => (
+    <div role="tree">
+      <TreeItem nodeId={'a'} {...args} />
+    </div>
+  ),
   {
     args: {},
   },

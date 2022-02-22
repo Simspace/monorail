@@ -1,17 +1,16 @@
 // Edit this file to add new stories
 import React from 'react'
-import { Typography, TypographyProps } from '../Typography'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './Typography.stories.gen'
-import { Box } from '../../Box/Box'
+import Box from '@mui/material/Box'
+import Stack from '@mui/material/Stack'
 import { styled } from '@mui/material/styles'
-import { useTheme } from '../../../theme/useTheme'
-import { Stack } from '../../Stack/Stack'
+import Typography, { TypographyProps } from '@mui/material/Typography'
+
+import { story } from '../../../__tests__/helpers/storybook'
 
 /**
  * Metadata for Typography stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Data Display/Typography' }
+export default { title: 'Data Display/Typography', component: Typography }
 
 /**
  * Story template (edit/remove by hand if needed)
@@ -142,21 +141,12 @@ export const ChangingTheSemanticElement = story<TypographyProps>(
 
 export const UsingSystemProps = story<TypographyProps>(
   () => {
-    const theme = useTheme()
     return (
       <>
-        <Typography mb={1} backgroundColor={theme.palette.grey[300]}>
-          Margin-bottom 1
-        </Typography>
-        <Typography mb={2} backgroundColor={theme.palette.grey[300]}>
-          Margin-bottom 2
-        </Typography>
-        <Typography mb={3} backgroundColor={theme.palette.grey[300]}>
-          Margin-bottom 3
-        </Typography>
-        <Typography backgroundColor={theme.palette.grey[300]}>
-          Bottom
-        </Typography>
+        <Typography mb={1}>Margin-bottom 1</Typography>
+        <Typography mb={2}>Margin-bottom 2</Typography>
+        <Typography mb={3}>Margin-bottom 3</Typography>
+        <Typography>Bottom</Typography>
       </>
     )
   },
@@ -173,39 +163,17 @@ export const UsingSystemProps = story<TypographyProps>(
 
 export const Gutters = story<TypographyProps>(
   () => {
-    const theme = useTheme()
     return (
       <Stack direction="row" spacing={1}>
         <Stack direction="column">
-          <Typography gutterBottom backgroundColor={theme.palette.grey[300]}>
-            Gutter bottom
-          </Typography>
-          <Typography gutterBottom backgroundColor={theme.palette.grey[300]}>
-            Gutter bottom
-          </Typography>
-          <Typography gutterBottom backgroundColor={theme.palette.grey[300]}>
-            Gutter bottom
-          </Typography>
+          <Typography gutterBottom>Gutter bottom</Typography>
+          <Typography gutterBottom>Gutter bottom</Typography>
+          <Typography gutterBottom>Gutter bottom</Typography>
         </Stack>
         <Stack direction="column">
-          <Typography
-            gutterBottom={false}
-            backgroundColor={theme.palette.grey[300]}
-          >
-            No gutter bottom
-          </Typography>
-          <Typography
-            gutterBottom={false}
-            backgroundColor={theme.palette.grey[300]}
-          >
-            No gutter bottom
-          </Typography>
-          <Typography
-            gutterBottom={false}
-            backgroundColor={theme.palette.grey[300]}
-          >
-            No gutter bottom
-          </Typography>
+          <Typography gutterBottom={false}>No gutter bottom</Typography>
+          <Typography gutterBottom={false}>No gutter bottom</Typography>
+          <Typography gutterBottom={false}>No gutter bottom</Typography>
         </Stack>
       </Stack>
     )

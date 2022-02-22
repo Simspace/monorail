@@ -1,38 +1,44 @@
 // Edit this file to add new stories
 import React from 'react'
-import { Divider, DividerProps } from '../Divider'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './Divider.stories.gen'
-import { List } from '../../List/List'
-import { ListItem } from '../../ListItem/ListItem'
-import { ListItemText } from '../../ListItemText/ListItemText'
-import { ListItemAvatar } from '../../ListItemAvatar/ListItemAvatar'
-import { Avatar } from '../../Avatar/Avatar'
-import { Typography } from '../../Typography/Typography'
-import { Box } from '../../Box/Box'
-import { Grid } from '../../Grid/Grid'
-import { Stack } from '../../Stack/Stack'
-import { Chip } from '../../Chip/Chip'
-import { Button } from '../../Button/Button'
-import FormatAlignLeftIcon from '@mui/icons-material/FormatAlignLeft'
 import FormatAlignCenterIcon from '@mui/icons-material/FormatAlignCenter'
+import FormatAlignLeftIcon from '@mui/icons-material/FormatAlignLeft'
 import FormatAlignRightIcon from '@mui/icons-material/FormatAlignRight'
 import FormatBoldIcon from '@mui/icons-material/FormatBold'
 import FormatItalicIcon from '@mui/icons-material/FormatItalic'
+import {
+  Avatar,
+  Box,
+  Button,
+  Chip,
+  Divider,
+  DividerProps,
+  Grid,
+  List,
+  ListItem,
+  ListItemAvatar,
+  ListItemText,
+  Stack,
+  Typography,
+} from '@mui/material'
 import { styled } from '@mui/material/styles'
+
+import { story } from '../../../__tests__/helpers/storybook'
 /**
  * Metadata for Divider stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Data Display/Divider' }
+export default { title: 'Data Display/Divider', component: Divider }
 /**
  * Story template (edit/remove by hand if needed)
  *
  * Note: there should be at least one "Default" story that uses this template with the "story" function.
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
-const Template = story<DividerProps>(args => <Divider {...args} />, {
-  args: {},
-})
+const Template = story<DividerProps>(
+  (args: DividerProps) => <Divider {...args} />,
+  {
+    args: {},
+  },
+)
 
 /** Default story for Divider (edit/remove by hand if needed) */
 export const Default = story(Template)

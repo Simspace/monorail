@@ -1,26 +1,32 @@
 // Edit this file to add new stories
 import React from 'react'
-import { TableBody, TableBodyProps } from '../TableBody'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './TableBody.stories.gen'
-import { TableCell } from '../../TableCell/TableCell'
-import { TableRow } from '../../TableRow/TableRow'
+import {
+  Table,
+  TableBody,
+  TableBodyProps,
+  TableCell,
+  TableRow,
+} from '@mui/material'
 
-export default { ...defaultStoryMeta, title: 'Data Display/Table/TableBody' }
+import { story } from '../../../__tests__/helpers/storybook'
+
+export default { title: 'Data Display/Table/TableBody', component: TableBody }
 
 const Template = story<TableBodyProps>(args => (
-  <TableBody {...args}>
-    <TableRow>
-      <TableCell>Cell 1</TableCell>
-      <TableCell>Cell 2</TableCell>
-      <TableCell>Cell 3</TableCell>
-    </TableRow>
-    <TableRow>
-      <TableCell>Cell 1</TableCell>
-      <TableCell>Cell 2</TableCell>
-      <TableCell>Cell 3</TableCell>
-    </TableRow>
-  </TableBody>
+  <Table>
+    <TableBody {...args}>
+      <TableRow>
+        <TableCell>Cell 1</TableCell>
+        <TableCell>Cell 2</TableCell>
+        <TableCell>Cell 3</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>Cell 1</TableCell>
+        <TableCell>Cell 2</TableCell>
+        <TableCell>Cell 3</TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
 ))
 
 export const Default = story(Template, {

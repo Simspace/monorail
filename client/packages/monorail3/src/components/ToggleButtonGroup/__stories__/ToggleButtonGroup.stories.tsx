@@ -1,24 +1,29 @@
 // Edit this file to add new stories
 import React from 'react'
-import { ToggleButtonGroup, ToggleButtonGroupProps } from '../ToggleButtonGroup'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './ToggleButtonGroup.stories.gen'
-import { ToggleButton } from '../../ToggleButton/ToggleButton'
-import FormatAlignLeftIcon from '@mui/icons-material/FormatAlignLeft'
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
 import FormatAlignCenterIcon from '@mui/icons-material/FormatAlignCenter'
-import FormatAlignRightIcon from '@mui/icons-material/FormatAlignRight'
 import FormatAlignJustifyIcon from '@mui/icons-material/FormatAlignJustify'
+import FormatAlignLeftIcon from '@mui/icons-material/FormatAlignLeft'
+import FormatAlignRightIcon from '@mui/icons-material/FormatAlignRight'
 import FormatBoldIcon from '@mui/icons-material/FormatBold'
+import FormatColorFillIcon from '@mui/icons-material/FormatColorFill'
 import FormatItalicIcon from '@mui/icons-material/FormatItalic'
 import FormatUnderlinedIcon from '@mui/icons-material/FormatUnderlined'
-import FormatColorFillIcon from '@mui/icons-material/FormatColorFill'
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
-import { Stack } from '../../Stack/Stack'
+import Stack from '@mui/material/Stack'
+import ToggleButton from '@mui/material/ToggleButton'
+import ToggleButtonGroup, {
+  ToggleButtonGroupProps,
+} from '@mui/material/ToggleButtonGroup'
+
+import { story } from '../../../__tests__/helpers/storybook'
 
 /**
  * Metadata for ToggleButtonGroup stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Inputs/ToggleButtonGroup' }
+export default {
+  title: 'Inputs/ToggleButtonGroup',
+  component: ToggleButtonGroup,
+}
 /**
  * Story template (edit/remove by hand if needed)
  *
@@ -70,7 +75,7 @@ export const MultipleSelection = story(
 
     const handleFormat = (
       event: React.MouseEvent<HTMLElement>,
-      newFormats: string[],
+      newFormats: Array<string>,
     ) => {
       setFormats(newFormats)
     }
@@ -121,16 +126,16 @@ export const Size = story(
     }
 
     const children = [
-      <ToggleButton value="left" key="left">
+      <ToggleButton value="left" key="left" aria-label="left">
         <FormatAlignLeftIcon fontSize="small" />
       </ToggleButton>,
-      <ToggleButton value="center" key="center">
+      <ToggleButton value="center" key="center" aria-label="center">
         <FormatAlignCenterIcon fontSize="small" />
       </ToggleButton>,
-      <ToggleButton value="right" key="right">
+      <ToggleButton value="right" key="right" aria-label="right">
         <FormatAlignRightIcon fontSize="small" />
       </ToggleButton>,
-      <ToggleButton value="justify" key="justify">
+      <ToggleButton value="justify" key="justify" aria-label="justify">
         <FormatAlignJustifyIcon fontSize="small" />
       </ToggleButton>,
     ]

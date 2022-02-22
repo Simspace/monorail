@@ -1,33 +1,38 @@
 // Edit this file to add new stories
 import React from 'react'
-import { Rating, RatingProps } from '../Rating'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './Rating.stories.gen'
-import { Box } from '../../Box/Box'
-import { Typography } from '../../Typography/Typography'
-import { Stack } from '../../Stack/Stack'
-import StarIcon from '@mui/icons-material/Star'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
-import { styled } from '@mui/material/styles'
-import SentimentVeryDissatisfiedIcon from '@mui/icons-material/SentimentVeryDissatisfied'
 import SentimentDissatisfiedIcon from '@mui/icons-material/SentimentDissatisfied'
 import SentimentSatisfiedIcon from '@mui/icons-material/SentimentSatisfied'
 import SentimentSatisfiedAltIcon from '@mui/icons-material/SentimentSatisfiedAlt'
+import SentimentVeryDissatisfiedIcon from '@mui/icons-material/SentimentVeryDissatisfied'
 import SentimentVerySatisfiedIcon from '@mui/icons-material/SentimentVerySatisfied'
-import { IconContainerProps } from '@mui/material/Rating'
+import StarIcon from '@mui/icons-material/Star'
+import {
+  Box,
+  IconContainerProps,
+  Rating,
+  RatingProps,
+  Stack,
+  Typography,
+} from '@mui/material'
+import { styled } from '@mui/material/styles'
+
+import { story } from '../../../__tests__/helpers/storybook'
 
 /**
  * Metadata for Rating stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Inputs/Rating' }
+export default { title: 'Inputs/Rating', component: Rating }
 /**
  * Story template (edit/remove by hand if needed)
  *
  * Note: there should be at least one "Default" story that uses this template with the "story" function.
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
-const Template = story<RatingProps>(args => <Rating {...args} />, { args: {} })
+const Template = story<RatingProps>(args => <Rating {...args} />, {
+  args: {},
+})
 /** Default story for Rating (edit/remove by hand if needed) */
 export const Default = story(Template)
 

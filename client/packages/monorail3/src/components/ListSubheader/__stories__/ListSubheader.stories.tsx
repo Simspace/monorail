@@ -1,12 +1,15 @@
 // Edit this file to add new stories
 import React from 'react'
-import { ListSubheader, ListSubheaderProps } from '../ListSubheader'
+import { ListSubheader, ListSubheaderProps } from '@mui/material'
+
 import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './ListSubheader.stories.gen'
 /**
  * Metadata for ListSubheader stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Data Display/List/ListSubheader' }
+export default {
+  title: 'Data Display/List/ListSubheader',
+  component: ListSubheader,
+}
 /**
  * Story template (edit/remove by hand if needed)
  *
@@ -14,7 +17,11 @@ export default { ...defaultStoryMeta, title: 'Data Display/List/ListSubheader' }
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
 const Template = story<ListSubheaderProps>(
-  args => <ListSubheader {...args} />,
+  args => (
+    <ul>
+      <ListSubheader {...args} />
+    </ul>
+  ),
   { args: { children: 'List Subheader' } },
 )
 /** Default story for ListSubheader (edit/remove by hand if needed) */

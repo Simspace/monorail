@@ -1,22 +1,22 @@
 // Edit this file to add new stories
 import React from 'react'
-import { Tabs, TabsProps } from '../Tabs'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './Tabs.stories.gen'
-import { AppBar, Box, styled, Tab, Typography } from '@mui/material'
-import { TabPanel as LabTabPanel } from '@mui/lab'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import PersonPinIcon from '@mui/icons-material/PersonPin'
 import PhoneIcon from '@mui/icons-material/Phone'
+import { TabPanel as LabTabPanel } from '@mui/lab'
 import TabContext from '@mui/lab/TabContext'
 import TabList from '@mui/lab/TabList'
+import { AppBar, Box, styled, Tab, Typography } from '@mui/material'
+import Tabs, { TabsProps } from '@mui/material/Tabs'
+
+import { story } from '../../../__tests__/helpers/storybook'
 
 /**
  * Metadata for Tabs stories - update/extend as needed
  */
 export default {
-  ...defaultStoryMeta,
   title: 'Navigation/Tabs',
+  component: Tabs,
   parameters: {
     creevey: {
       skip: 'Underline length is flakey',
@@ -266,10 +266,6 @@ export const FixedTabs = story(
       setValue(newValue)
     }
 
-    const handleChangeIndex = (index: number) => {
-      setValue(index)
-    }
-
     return (
       <Box sx={{ bgcolor: 'background.paper', width: 500 }}>
         <AppBar position="static">
@@ -322,7 +318,6 @@ export const FullWidth = story(
       <Box sx={{ width: '100%' }}>
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
           <Tabs
-            fullWidth
             value={value}
             onChange={handleChange}
             aria-label="basic tabs example"

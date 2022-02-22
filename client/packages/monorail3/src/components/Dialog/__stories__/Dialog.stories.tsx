@@ -1,45 +1,49 @@
 // Edit this file to add new stories
 import React from 'react'
-import { Dialog, DialogProps } from '../Dialog'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './Dialog.stories.gen'
-import { Typography } from '../../Typography/Typography'
-import { Button } from '../../Button/Button'
-import { DialogTitle } from '../../DialogTitle/DialogTitle'
-import { List } from '../../List/List'
-import { ListItem } from '../../ListItem/ListItem'
-import { ListItemAvatar } from '../../ListItemAvatar/ListItemAvatar'
-import { Avatar } from '../../Avatar/Avatar'
-import { blue } from '@mui/material/colors'
-import { ListItemText } from '../../ListItemText/ListItemText'
-import PersonIcon from '@mui/icons-material/Person'
-import AddIcon from '@mui/icons-material/Add'
-import { DialogContent } from '../../DialogContent/DialogContent'
-import { DialogContentText } from '../../DialogContentText/DialogContentText'
-import { DialogActions } from '../../DialogActions/DialogActions'
-import { TransitionProps } from '@mui/material/transitions'
-import { Slide } from '../../Slide/Slide'
-import { TextField } from '../../TextField/TextField'
-import { IconButton } from '../../IconButton/IconButton'
-import CloseIcon from '@mui/icons-material/Close'
-import { Breakpoint, styled, useTheme } from '@mui/material/styles'
-import { AppBar } from '../../AppBar/AppBar'
-import { Toolbar } from '../../Toolbar/Toolbar'
-import { Divider } from '../../Divider/Divider'
-import { Box } from '../../Box/Box'
-import { FormControl } from '../../FormControl/FormControl'
-import { InputLabel } from '../../InputLabel/InputLabel'
-import { Select } from '../../Select/Select'
-import { MenuItem } from '../../MenuItem/MenuItem'
-import { FormControlLabel } from '../../FormControlLabel/FormControlLabel'
-import { Switch } from '../../Switch/Switch'
-import useMediaQuery from '@mui/material/useMediaQuery'
-import { RadioGroup } from '../../RadioGroup/RadioGroup'
-import { Radio } from '../../Radio/Radio'
 import Draggable from 'react-draggable'
-import { Paper, PaperProps } from '../../Paper/Paper'
-import { longParagraph } from '../../../__tests__/helpers/testData'
+import AddIcon from '@mui/icons-material/Add'
+import CloseIcon from '@mui/icons-material/Close'
+import PersonIcon from '@mui/icons-material/Person'
+import {
+  AppBar,
+  Avatar,
+  Box,
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogProps,
+  DialogTitle,
+  Divider,
+  FormControl,
+  FormControlLabel,
+  IconButton,
+  InputLabel,
+  List,
+  ListItem,
+  ListItemAvatar,
+  ListItemText,
+  MenuItem,
+  Paper,
+  PaperProps,
+  Radio,
+  RadioGroup,
+  Select,
+  Slide,
+  Switch,
+  TextField,
+  Toolbar,
+  Typography,
+} from '@mui/material'
+import { blue } from '@mui/material/colors'
 import { SelectChangeEvent } from '@mui/material/Select'
+import { styled, useTheme } from '@mui/material/styles'
+import { TransitionProps } from '@mui/material/transitions'
+import useMediaQuery from '@mui/material/useMediaQuery'
+
+import { story } from '../../../__tests__/helpers/storybook'
+import { longParagraph } from '../../../__tests__/helpers/testData'
 
 const emails = ['username@gmail.com', 'user02@gmail.com']
 
@@ -97,7 +101,7 @@ const SimpleDialog = (props: SimpleDialogProps) => {
 /**
  * Metadata for Dialog stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Feedback/Dialog' }
+export default { title: 'Feedback/Dialog', component: Dialog }
 /**
  * Story template (edit/remove by hand if needed)
  *
@@ -105,7 +109,7 @@ export default { ...defaultStoryMeta, title: 'Feedback/Dialog' }
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
 const Template = story<DialogProps>(
-  args => {
+  (args: Partial<DialogProps>) => {
     const [open, setOpen] = React.useState(false)
     const [selectedValue, setSelectedValue] = React.useState(emails[1])
 
@@ -210,7 +214,7 @@ If a title is required:
 
 const Transition = React.forwardRef(function Transition(
   props: TransitionProps & {
-    children?: React.ReactElement<any, any>
+    children: React.ReactElement<unknown>
   },
   ref: React.Ref<unknown>,
 ) {
@@ -428,7 +432,7 @@ export const CustomizedDialogs = story<DialogProps>(
 
 const FullScreenTransition = React.forwardRef(function Transition(
   props: TransitionProps & {
-    children?: React.ReactElement
+    children: React.ReactElement
   },
   ref: React.Ref<unknown>,
 ) {
@@ -558,7 +562,7 @@ export const OptionalSizes = story<DialogProps>(
                     id: 'max-width',
                   }}
                 >
-                  <MenuItem value={false as any}>false</MenuItem>
+                  <MenuItem value={''}>false</MenuItem>
                   <MenuItem value="xs">xs</MenuItem>
                   <MenuItem value="sm">sm</MenuItem>
                   <MenuItem value="md">md</MenuItem>
@@ -683,7 +687,7 @@ export interface ConfirmationDialogRawProps {
 const ConfirmationDialogRaw = React.forwardRef<
   HTMLDivElement,
   ConfirmationDialogRawProps
->((props, ref) => {
+>(props => {
   const { onClose, value: valueProp, open, ...other } = props
   const [value, setValue] = React.useState(valueProp)
   const radioGroupRef = React.useRef<HTMLElement>(null)
@@ -695,7 +699,7 @@ const ConfirmationDialogRaw = React.forwardRef<
   }, [valueProp, open])
 
   const handleEntering = () => {
-    if (radioGroupRef.current != null) {
+    if (radioGroupRef.current !== null) {
       radioGroupRef.current.focus()
     }
   }

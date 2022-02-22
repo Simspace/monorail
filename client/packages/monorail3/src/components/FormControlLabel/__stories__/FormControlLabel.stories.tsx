@@ -1,19 +1,22 @@
 // Edit this file to add new stories
 import React from 'react'
-import { FormControlLabel, FormControlLabelProps } from '../FormControlLabel'
+import {
+  Checkbox,
+  FormControlLabel,
+  FormControlLabelProps,
+  FormGroup,
+  Radio,
+  Switch,
+} from '@mui/material'
+
 import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './FormControlLabel.stories.gen'
-import { Checkbox } from '../../Checkbox/Checkbox'
-import { Switch } from '../../Switch/Switch'
-import { FormGroup } from '../../FormGroup/FormGroup'
-import { Radio } from '../../Radio/Radio'
 /**
  * Metadata for FormControlLabel stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Inputs/FormControlLabel' }
+export default { title: 'Inputs/FormControlLabel', component: FormControlLabel }
 
 const Template = story<FormControlLabelProps>(
-  args => (
+  (args: Partial<FormControlLabelProps>) => (
     <FormGroup>
       <FormControlLabel label="Checkbox" control={<Checkbox />} {...args} />
       <FormControlLabel control={<Switch />} label="Switch" {...args} />

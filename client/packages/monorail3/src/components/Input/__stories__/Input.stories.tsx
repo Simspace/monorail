@@ -1,14 +1,13 @@
 // Edit this file to add new stories
 import React from 'react'
-import { Input, InputProps } from '../Input'
+import { Box, Input, InputProps } from '@mui/material'
+
 import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './Input.stories.gen'
-import { Box } from '../../Box/Box'
 
 /**
  * Metadata for Input stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Inputs/Input' }
+export default { title: 'Inputs/Input', component: Input }
 
 /**
  * Story template (edit/remove by hand if needed)
@@ -16,9 +15,12 @@ export default { ...defaultStoryMeta, title: 'Inputs/Input' }
  * Note: there should be at least one "Default" story that uses this template with the "story" function.
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
-const Template = story<InputProps>(args => <Input {...args} />, {
-  args: { placeholder: 'Placeholder text' },
-})
+const Template = story<InputProps>(
+  args => <Input inputProps={{ 'aria-label': 'an input' }} {...args} />,
+  {
+    args: { placeholder: 'Placeholder text' },
+  },
+)
 
 /** Default story for Input (edit/remove by hand if needed) */
 export const Default = story(Template, {

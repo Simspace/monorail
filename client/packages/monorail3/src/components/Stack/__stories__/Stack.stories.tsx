@@ -1,16 +1,14 @@
 // Edit this file to add new stories
 import React from 'react'
-import { Stack, StackProps } from '../Stack'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './Stack.stories.gen'
+import { Divider, Paper, Stack, StackProps } from '@mui/material'
 import { styled } from '@mui/material/styles'
-import { Paper } from '../../Paper/Paper'
-import { Divider } from '../../Divider/Divider'
+
+import { story } from '../../../__tests__/helpers/storybook'
 
 /**
  * Metadata for Stack stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Layout/Stack' }
+export default { title: 'Layout/Stack', component: Stack }
 
 const Item = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,

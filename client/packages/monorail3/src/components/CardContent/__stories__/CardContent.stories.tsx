@@ -1,14 +1,14 @@
 // Edit this file to add new stories
 import React from 'react'
-import { CardContent, CardContentProps } from '../CardContent'
+import { CardContent, CardContentProps } from '@mui/material'
+
 import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './CardContent.stories.gen'
 /**
  * Metadata for CardContent stories - update/extend as needed
  * This is intended to be exported as story-level metadata from the main .stories.tsx file, like:
  * "export default { ...defaultStoryMeta } // Add/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Surfaces/Card/CardContent' }
+export default { title: 'Surfaces/Card/CardContent', component: CardContent }
 /**
  * Story template (edit/remove by hand if needed)
  *

@@ -1,16 +1,15 @@
 // Edit this file to add new stories
 import React from 'react'
-import { AccordionActions, AccordionActionsProps } from '../AccordionActions'
+import { AccordionActions, AccordionActionsProps, Button } from '@mui/material'
+
 import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './AccordionActions.stories.gen'
-import { Button } from '../../Button/Button'
 
 /**
  * Metadata for AccordionActions stories - update/extend as needed
  */
 export default {
-  ...defaultStoryMeta,
   title: 'Surfaces/Accordion/AccordionActions',
+  component: AccordionActions,
 }
 
 /**

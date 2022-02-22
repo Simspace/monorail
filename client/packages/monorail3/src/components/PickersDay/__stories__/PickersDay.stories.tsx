@@ -1,20 +1,17 @@
 // Edit this file to add new stories
 import React from 'react'
-import { PickersDay, PickersDayProps } from '../PickersDay'
+import { PickersDay, PickersDayProps, StaticDatePicker } from '@mui/lab'
+import { styled, TextField } from '@mui/material'
+import { endOfWeek, isSameDay, isWithinInterval, startOfWeek } from 'date-fns'
+
 import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './PickersDay.stories.gen'
-import { action } from '@storybook/addon-actions'
-import { styled } from '../../../helpers/styles'
-import { endOfWeek, isWithinInterval, isSameDay, startOfWeek } from 'date-fns'
-import { StaticDatePicker } from '../../StaticDatePicker/StaticDatePicker'
-import { TextField } from '../../TextField/TextField'
 
 /**
  * Metadata for PickersDay stories - update/extend as needed
  */
 export default {
-  ...defaultStoryMeta,
   title: 'Inputs/Date and Time/Date/PickersDay',
+  component: PickersDay,
 }
 
 type CustomPickerDayProps = PickersDayProps<Date> & {
@@ -101,6 +98,11 @@ const Template = story<PickersDayProps<Date>>(args => {
 
 export const Default = story(Template, {
   parameters: {
+    a11y: {
+      config: {
+        rules: { 'aria-required-children': { enabled: false } }, // MUI component violates a11y
+      },
+    },
     docs: {
       description: {
         component: `PickersDay can be used to customize how the day is rendered in a DatePicker`,

@@ -1,15 +1,14 @@
 // Edit this file to add new stories
 import React from 'react'
-import { CardActions, CardActionsProps } from '../CardActions'
+import { Button, CardActions, CardActionsProps } from '@mui/material'
+
 import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './CardActions.stories.gen'
-import { Button } from '../../Button/Button'
 /**
  * Metadata for CardActions stories - update/extend as needed
  * This is intended to be exported as story-level metadata from the main .stories.tsx file, like:
  * "export default { ...defaultStoryMeta } // Add/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Surfaces/Card/CardActions' }
+export default { title: 'Surfaces/Card/CardActions', component: CardActions }
 /**
  * Story template (edit/remove by hand if needed)
  *

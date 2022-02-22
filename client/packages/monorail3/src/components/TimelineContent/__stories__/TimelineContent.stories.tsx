@@ -1,14 +1,14 @@
 // Edit this file to add new stories
 import React from 'react'
-import { TimelineContent, TimelineContentProps } from '../TimelineContent'
+import TimelineContent, { TimelineContentProps } from '@mui/lab/TimelineContent'
+
 import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './TimelineContent.stories.gen'
 /**
  * Metadata for TimelineContent stories - update/extend as needed
  */
 export default {
-  ...defaultStoryMeta,
   title: 'Data Display/Timeline/TimelineContent',
+  component: TimelineContent,
 }
 /**
  * Story template (edit/remove by hand if needed)

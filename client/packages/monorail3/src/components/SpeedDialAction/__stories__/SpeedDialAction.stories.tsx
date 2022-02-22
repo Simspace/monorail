@@ -1,14 +1,14 @@
 // Edit this file to add new stories
 import React from 'react'
-import { SpeedDialAction, SpeedDialActionProps } from '../SpeedDialAction'
+import { SpeedDialAction, SpeedDialActionProps } from '@mui/material'
+
 import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './SpeedDialAction.stories.gen'
 /**
  * Metadata for SpeedDialAction stories - update/extend as needed
  */
 export default {
-  ...defaultStoryMeta,
   title: 'Navigation/SpeedDial/SpeedDialAction',
+  component: SpeedDialAction,
 }
 /**
  * Story template (edit/remove by hand if needed)
@@ -17,7 +17,15 @@ export default {
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
 const Template = story<SpeedDialActionProps>(
-  args => <SpeedDialAction {...args} />,
+  args => (
+    <menu role="menu">
+      <SpeedDialAction
+        aria-label="speeddialaction"
+        tooltipTitle="I am a tooltip"
+        {...args}
+      />
+    </menu>
+  ),
   { args: {} },
 )
 /** Default story for SpeedDialAction (edit/remove by hand if needed) */

@@ -1,10 +1,10 @@
 // Edit this file to add new stories
 import React from 'react'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './TableCell.stories.gen'
-import { TableCell, TableCellProps } from '../../TableCell/TableCell'
+import { TableCell, TableCellProps } from '@mui/material'
 
-export default { ...defaultStoryMeta, title: 'Data Display/Table/TableCell' }
+import { story } from '../../../__tests__/helpers/storybook'
+
+export default { title: 'Data Display/Table/TableCell', component: TableCell }
 
 const Template = story<TableCellProps>(args => (
   <TableCell {...args}>Cell 1</TableCell>
