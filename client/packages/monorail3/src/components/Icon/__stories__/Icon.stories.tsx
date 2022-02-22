@@ -163,16 +163,6 @@ export const Illustrations = story<IconProps>(() => (
         }
       />
       <IconContainer
-        label="Cactus"
-        icon={
-          <Illustration
-            Svg={Icons.Cactus}
-            $width={ILLUSTRATION_SIZE}
-            $height={ILLUSTRATION_SIZE}
-          />
-        }
-      />
-      <IconContainer
         label="Calendar"
         icon={
           <Illustration
@@ -182,16 +172,6 @@ export const Illustrations = story<IconProps>(() => (
           />
         }
       />
-      {/* <IconContainer
-        label="Check"
-        icon={
-          <Illustration
-            Svg={Icons.Check}
-            $width={ILLUSTRATION_SIZE}
-            $height={ILLUSTRATION_SIZE}
-          />
-        }
-      /> */}
       <IconContainer
         label="Chickenlets"
         icon={
@@ -202,17 +182,6 @@ export const Illustrations = story<IconProps>(() => (
           />
         }
       />
-
-      {/* <IconContainer
-        label="Desktop Outline"
-        icon={
-          <Illustration
-            Svg={Icons.DesktopOutline}
-            $width={ILLUSTRATION_SIZE}
-            $height={ILLUSTRATION_SIZE}
-          />
-        }
-      /> */}
       <IconContainer
         label="DNS Outline"
         icon={
@@ -228,36 +197,6 @@ export const Illustrations = story<IconProps>(() => (
         icon={
           <Illustration
             Svg={Icons.EmptyUpload}
-            $width={ILLUSTRATION_SIZE}
-            $height={ILLUSTRATION_SIZE}
-          />
-        }
-      />
-      {/* <IconContainer
-        label="Empty Icon Upload"
-        icon={
-          <Illustration
-            Svg={Icons.EmptyIconUpload}
-            $width={ILLUSTRATION_SIZE}
-            $height={ILLUSTRATION_SIZE}
-          />
-        }
-      /> */}
-      {/* <IconContainer
-        label="Error Face"
-        icon={
-          <Illustration
-            Svg={Icons.ErrorFace}
-            $width={ILLUSTRATION_SIZE}
-            $height={ILLUSTRATION_SIZE}
-          />
-        }
-      /> */}
-      <IconContainer
-        label="Error Robot"
-        icon={
-          <Illustration
-            Svg={Icons.ErrorRobot}
             $width={ILLUSTRATION_SIZE}
             $height={ILLUSTRATION_SIZE}
           />
@@ -314,16 +253,6 @@ export const Illustrations = story<IconProps>(() => (
         }
       />
       <IconContainer
-        label="Ghost VM"
-        icon={
-          <Illustration
-            Svg={Icons.GhostVm}
-            $width={ILLUSTRATION_SIZE}
-            $height={ILLUSTRATION_SIZE}
-          />
-        }
-      />
-      <IconContainer
         label="Happy Sun"
         icon={
           <Illustration
@@ -343,26 +272,6 @@ export const Illustrations = story<IconProps>(() => (
           />
         }
       />
-      {/* <IconContainer
-        label="Puzzle Piece"
-        icon={
-          <Illustration
-            Svg={Icons.PuzzlePiece}
-            $width={ILLUSTRATION_SIZE}
-            $height={ILLUSTRATION_SIZE}
-          />
-        }
-      /> */}
-      {/* <IconContainer
-        label="ServerOutline"
-        icon={
-          <Illustration
-            Svg={Icons.ServerOutline}
-            $width={ILLUSTRATION_SIZE}
-            $height={ILLUSTRATION_SIZE}
-          />
-        }
-      /> */}
       <IconContainer
         label="Shrug"
         icon={
