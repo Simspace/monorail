@@ -1,10 +1,9 @@
 import React, { ComponentType, CSSProperties } from 'react'
 import styled, { css } from 'styled-components'
 
-// import { isNotNaN } from '../../../../monorail/src/sharedHelpers/typeGuards'
-import { SvgIconProps } from './types'
+import { isNotNaN } from '@simspace/monorail/sharedHelpers/typeGuards'
 
-const isNotNaN = (x: unknown): x is number => typeof x === 'number' && !isNaN(x)
+import { SvgIconProps } from './types'
 
 export interface IllustrationProps extends SvgIconProps {
   Svg: ComponentType<SvgIconProps>
