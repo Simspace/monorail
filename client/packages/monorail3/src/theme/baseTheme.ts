@@ -43,12 +43,12 @@ export const baseTheme = createTheme(
       },
       h2: {
         fontSize: FontSize.H2,
-        lineHeight: LineHeight.H1,
+        lineHeight: LineHeight.H2,
         fontWeight: FontWeight.Medium,
       },
       h3: {
         fontSize: FontSize.H3,
-        lineHeight: LineHeight.H1,
+        lineHeight: LineHeight.H3,
         fontWeight: FontWeight.Medium,
       },
       body1: {
