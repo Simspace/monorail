@@ -89,7 +89,7 @@
   "main": "./dist/index.js",
   "scripts": {
     "build": "tsc",
-    "test": "jest",
+    "test": "jest --passWithNoTests",
     "clean": "rm -rf dist/ node_modules/",
     "type-check": "tsc --project tsconfig.json",
     "eslint": "NODE_OPTIONS=\"--max-old-space-size=8192\" eslint \"src/**/*.{js,ts,tsx}\"",

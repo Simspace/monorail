@@ -20,7 +20,8 @@ const jestConfig = {
     'yarn-cache',
   ],
   setupFilesAfterEnv: ['<rootDir>/jest/jest.postsetup.ts'],
-  testRegex: '^.+(jest|test)\\.(ts|tsx|js|jsx)$',
+  // TODO: this test regex disables `*.gen.*` tests, because of a timeout issue with a11y tests in CI
+  testRegex: '^(?!.*gen\\.(?:test|jest)).+\\.(test|jest)\.(ts|tsx|js|jsx)$',
   testURL: 'http://localhost/',
   transform: {
     '^.+\\.(js|jsx|ts|tsx)$': 'babel-jest',
