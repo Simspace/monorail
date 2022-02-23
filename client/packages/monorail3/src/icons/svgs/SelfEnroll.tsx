@@ -1,5 +1,4 @@
 import React from 'react'
-// eslint-disable-next-line no-restricted-imports
 import SvgIcon, { SvgIconProps } from '@mui/material/SvgIcon'
 
 export const SelfEnroll = (props: SvgIconProps) => (
