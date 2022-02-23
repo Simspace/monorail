@@ -3,6 +3,10 @@ import styled, { css } from 'styled-components'
 
 import { SvgIconProps } from './types'
 
+/**
+ * We'll likely have sharedHelpers/typeGuards in a separate workspace/package
+ * TODO: Replace isNotNaN once we have that in palce - GS 2/23/22
+ */
 export const isNotNaN = (x: unknown): x is number =>
   typeof x === 'number' && !isNaN(x)
 
