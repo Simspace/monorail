@@ -1,7 +1,7 @@
 // eslint-disable-next-line no-restricted-imports
 import { Theme, ThemeOptions } from '@mui/material'
-import { MonorailBreadcrumbsOverrides } from '../components/Breadcrumbs/themeOverrides'
 
+import { MonorailBreadcrumbsOverrides } from '../components/Breadcrumbs/themeOverrides'
 import { baseTheme } from './baseTheme'
 
 /**

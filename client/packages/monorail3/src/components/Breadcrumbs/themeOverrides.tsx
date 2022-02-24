@@ -1,13 +1,12 @@
-import { Components, Theme } from '@mui/material'
-import ChevronRightIcon from '@mui/icons-material/ChevronRight'
+import React from 'react'
 import ChevronRight from '@mui/icons-material/ChevronRight'
-
-// const DefaultIcon = <ChevronRight />
+import { Components, Theme } from '@mui/material'
 
 export const MonorailBreadcrumbsOverrides: Components<Theme>['MuiBreadcrumbs'] =
   {
     defaultProps: {
-      // separator: <ChevronRight />,
+      separator: <ChevronRight fontSize="small" />,
+      maxItems: 8,
     },
     styleOverrides: {
       root: ({ theme }) => ({
