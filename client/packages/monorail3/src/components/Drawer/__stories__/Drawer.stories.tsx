@@ -215,7 +215,7 @@ export const ResponsiveDrawer = story<DrawerProps>(
             >
               <MenuIcon />
             </IconButton>
-            <Typography variant="h6" noWrap component="div">
+            <Typography variant="h3" noWrap component="div">
               Responsive drawer
             </Typography>
           </Toolbar>
@@ -386,7 +386,7 @@ export const PersistentDrawer = story<DrawerProps>(
             >
               <MenuIcon />
             </IconButton>
-            <Typography variant="h6" noWrap component="div">
+            <Typography variant="h3" noWrap component="div">
               Persistent drawer
             </Typography>
           </Toolbar>
@@ -588,7 +588,7 @@ export const MiniDrawer = story<DrawerProps>(
             >
               <MenuIcon />
             </IconButton>
-            <Typography variant="h6" noWrap component="div">
+            <Typography variant="h3" noWrap component="div">
               Mini variant drawer
             </Typography>
           </Toolbar>

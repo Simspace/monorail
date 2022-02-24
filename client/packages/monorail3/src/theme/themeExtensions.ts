@@ -26,13 +26,7 @@ declare module '@mui/material/styles/createPalette' {
      * and it's convenient for them to be specified consistently in the theme.
      */
 
-    colors: {
-      blue: Color
-      orange: Color
-      teal: Color
-      fuschia: Color
-      purple: Color
-    }
+    accent: PaletteColor
 
     score: {
       high: PaletteColor
@@ -48,6 +42,22 @@ declare module '@mui/material/styles/createPalette' {
       three: string
       four: string
     }
+
+    chart: {
+      blue: Color
+      orange: Color
+      teal: Color
+      fuchsia: Color
+      purple: Color
+    }
+
+    admin: PaletteColor
+    content: PaletteColor
+    events: PaletteColor
+    network: PaletteColor
+    personnel: PaletteColor
+    reports: PaletteColor
+    techOps: PaletteColor
   }
 
   /**
@@ -56,6 +66,8 @@ declare module '@mui/material/styles/createPalette' {
    * Because these are custom and have no MUI-provided defaults, they are required to be set, so they can be safely used.
    */
   interface PaletteOptions {
+    accent?: PaletteColorOptions
+
     score?: Partial<{
       high: PaletteColorOptions
       highModerate: PaletteColorOptions
@@ -64,21 +76,27 @@ declare module '@mui/material/styles/createPalette' {
       low: PaletteColorOptions
     }>
 
-    colors?: Partial<{
-      blue: PaletteColorOptions
-      orange: PaletteColorOptions
-      teal: PaletteColorOptions
-      fuschia: PaletteColorOptions
-      purple: PaletteColorOptions
-    }>
-
     tiers?: Partial<{
       one: string
       two: string
       three: string
       four: string
     }>
+
+    chart?: Partial<{
+      blue: PaletteColorOptions
+      orange: PaletteColorOptions
+      teal: PaletteColorOptions
+      fuchsia: PaletteColorOptions
+      purple: PaletteColorOptions
+    }>
   }
+
+  // interface SimplePaletteColorOptions {
+  //   hover: string
+  //   selected: string
+  //   active: string
+  // }
 }
 
 declare module '@mui/material/Button' {
