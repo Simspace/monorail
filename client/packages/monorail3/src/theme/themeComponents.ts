@@ -2,6 +2,7 @@
 import { Theme, ThemeOptions } from '@mui/material'
 
 import { MonorailBreadcrumbsOverrides } from '../components/Breadcrumbs/themeOverrides'
+import { MonorailSvgIconOverrides } from '../components/SvgIcon/themeOverrides'
 import { baseTheme } from './baseTheme'
 
 /**
@@ -40,4 +41,5 @@ export const getThemeComponents = (
   // MuiIconButton: {
   //   defaultProps: {},
   // },
+  MuiSvgIcon: MonorailSvgIconOverrides,
 })
