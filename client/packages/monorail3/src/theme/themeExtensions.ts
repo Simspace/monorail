@@ -26,14 +26,14 @@ declare module '@mui/material/styles/createPalette' {
      * and it's convenient for them to be specified consistently in the theme.
      */
 
-    accent: PaletteColor
+    accent: PaletteColorNoButtonState
 
     score: {
-      high: PaletteColor
-      highModerate: PaletteColor
-      moderate: PaletteColor
-      lowModerate: PaletteColor
-      low: PaletteColor
+      high: PaletteColorNoButtonState
+      highModerate: PaletteColorNoButtonState
+      moderate: PaletteColorNoButtonState
+      lowModerate: PaletteColorNoButtonState
+      low: PaletteColorNoButtonState
     }
 
     tiers: {
@@ -66,14 +66,14 @@ declare module '@mui/material/styles/createPalette' {
    * Because these are custom and have no MUI-provided defaults, they are required to be set, so they can be safely used.
    */
   interface PaletteOptions {
-    accent?: PaletteColorOptions
+    accent?: PaletteColorOptionsNoButtonState
 
     score?: Partial<{
-      high: PaletteColorOptions
-      highModerate: PaletteColorOptions
-      moderate: PaletteColorOptions
-      lowModerate: PaletteColorOptions
-      low: PaletteColorOptions
+      high: PaletteColorOptionsNoButtonState
+      highModerate: PaletteColorOptionsNoButtonState
+      moderate: PaletteColorOptionsNoButtonState
+      lowModerate: PaletteColorOptionsNoButtonState
+      low: PaletteColorOptionsNoButtonState
     }>
 
     tiers?: Partial<{
@@ -92,11 +92,35 @@ declare module '@mui/material/styles/createPalette' {
     }>
   }
 
-  // interface SimplePaletteColorOptions {
-  //   hover: string
-  //   selected: string
-  //   active: string
-  // }
+  interface PaletteColor {
+    hover: string
+    selected: string
+    active: string
+  }
+
+  interface PaletteColorNoButtonState {
+    light: string
+    main: string
+    dark: string
+    contrastText: string
+  }
+
+  interface SimplePaletteColorOptions {
+    hover: string
+    selected: string
+    active: string
+  }
+
+  interface SimplePaletteColorOptionsNoButtonState {
+    light?: string
+    main: string
+    dark?: string
+    contrastText?: string
+  }
+
+  type PaletteColorOptionsNoButtonState =
+    | SimplePaletteColorOptionsNoButtonState
+    | ColorPartial
 }
 
 declare module '@mui/material/Button' {
@@ -117,5 +141,6 @@ declare module '@mui/material/Button' {
     success: true
     warning: true
     error: true
+    inherit: false
   }
 }

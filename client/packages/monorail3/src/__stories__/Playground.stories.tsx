@@ -34,7 +34,7 @@ export const FullPageDemo = () => {
           <Typography variant="h3" component="div" sx={{ flexGrow: 1 }}>
             My Cool New App
           </Typography>
-          <Button color="inherit">Login</Button>
+          {/* <Button color="inherit">Login</Button> */}
         </Toolbar>
       </AppBar>
       <Box mt={8}>
