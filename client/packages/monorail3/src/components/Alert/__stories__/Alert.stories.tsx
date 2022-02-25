@@ -289,7 +289,10 @@ export const WithSnackbar = story<AlertProps>(
       setOpen(true)
     }
 
-    const handleClose = (_event?: React.SyntheticEvent, reason?: string) => {
+    const handleClose = (
+      _event?: React.SyntheticEvent | Event,
+      reason?: string,
+    ) => {
       if (reason === 'clickaway') {
         return
       }
