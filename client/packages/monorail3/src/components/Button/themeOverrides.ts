@@ -1,5 +1,7 @@
+import type {} from '@mui/lab/themeAugmentation'
 import { Components, darken, experimental_sx as sx, Theme } from '@mui/material'
 
+// TODO: Add tertiary color
 export const MonorailButtonOverrides: Components<Theme>['MuiButton'] = {
   defaultProps: {
     disableElevation: true,
@@ -10,14 +12,7 @@ export const MonorailButtonOverrides: Components<Theme>['MuiButton'] = {
   styleOverrides: {
     root: ({ ownerState, theme }) => {
       const color = ownerState.color ?? 'primary'
-      // console.log(theme)
-      // console.log(ownerState)
-      // console.log(theme.palette[color])
-      // console.log(theme.palette[color].dark)
       return {
-        // Button text styles are defined in theme.typography
-        // fontSize: 14,
-        borderRadius: '3px',
         '&.Mui-focusVisible': {
           boxShadow: `0 0 0 3px ${theme.palette[color].light}`,
           outline: `1px solid ${theme.palette[color].dark}`,
@@ -41,21 +36,29 @@ export const MonorailButtonOverrides: Components<Theme>['MuiButton'] = {
         },
       }
     },
-    // sizeSmall: { fontSize: '0.875rem', padding: '4px 8px', minWidth: 'auto' },
-    // sizeMedium: { fontSize: '1rem', padding: '4px 12px' },
-    // sizeLarge: { fontSize: '1rem', padding: '8px 16px' },
-    // code below uses theme.spacing. should be the same measurements but produce different results.
-    sizeSmall: sx({ py: 2, px: 4, minWidth: 'auto', fontSize: '0.875rem' }),
-    sizeMedium: sx({ py: 2.5, px: 6 }),
-    sizeLarge: sx({ py: 3.5, px: 6, fontSize: '1rem' }),
+    sizeSmall: sx({
+      height: 28,
+      py: 2,
+      px: 4,
+      minWidth: 'auto',
+      fontSize: '0.875rem',
+    }),
+    sizeMedium: sx({ height: 40, py: 2.5, px: 6 }),
+    sizeLarge: sx({ height: 48, py: 3.5, px: 6, fontSize: '1rem' }),
     iconSizeSmall: {
-      fontSize: 16,
+      '> *:nth-of-type(1)': {
+        fontSize: 20,
+      },
     },
     iconSizeMedium: {
-      fontSize: 16,
+      '> *:nth-of-type(1)': {
+        fontSize: 24,
+      },
     },
     iconSizeLarge: {
-      fontSize: 16,
+      '> *:nth-of-type(1)': {
+        fontSize: 24,
+      },
     },
     contained: ({ ownerState, theme }) => {
       const color = ownerState.color ?? 'primary'
@@ -118,19 +121,20 @@ export const MonorailButtonOverrides: Components<Theme>['MuiButton'] = {
     startIcon: ({ ownerState }) => {
       switch (ownerState.size) {
         case 'large':
-          return sx({ marginRight: 2, marginLeft: -1.5 })
-        // return {
-        //   marginRight: '4px',
-        //   marginLeft: '-6px',
-        // }
+          return {
+            marginRight: '8px',
+            marginLeft: '-2px',
+          }
         case 'medium':
-          return sx({ marginRight: 2, marginLeft: -3 })
+          return {
+            marginRight: '8px',
+            marginLeft: '-10px',
+          }
         case 'small':
-          return sx({ marginRight: 1, marginLeft: -1 })
-        // return {
-        //   marginRight: '4px',
-        //   marginLeft: '-4px',
-        // }
+          return {
+            marginRight: '6px',
+            marginLeft: '-2px',
+          }
         default:
           return
       }
@@ -139,18 +143,18 @@ export const MonorailButtonOverrides: Components<Theme>['MuiButton'] = {
       switch (ownerState.size) {
         case 'large':
           return {
-            marginRight: '-6px',
-            marginLeft: '4px',
+            marginRight: '-2px',
+            marginLeft: '8px',
           }
         case 'medium':
           return {
-            marginRight: '-5px',
-            marginLeft: '4px',
+            marginRight: '-10px',
+            marginLeft: '8px',
           }
         case 'small':
           return {
-            marginRight: '-4px',
-            marginLeft: '4px',
+            marginRight: '-2px',
+            marginLeft: '6px',
           }
         default:
           return
@@ -158,3 +162,19 @@ export const MonorailButtonOverrides: Components<Theme>['MuiButton'] = {
     },
   },
 }
+
+export const MonorailLoadingButtonOverrides: Components<Theme>['MuiLoadingButton'] =
+  {
+    defaultProps: {
+      // TODO: Make logo spinner default
+      // loadingIndicator: [Logo Spinner component here]
+    },
+    styleOverrides: {
+      loadingIndicator: ({ ownerState, theme }) => {
+        const color = ownerState.color ?? 'primary'
+        return {
+          color: theme.palette[color].light,
+        }
+      },
+    },
+  }

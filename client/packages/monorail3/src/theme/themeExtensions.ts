@@ -125,13 +125,6 @@ declare module '@mui/material/styles/createPalette' {
 
 declare module '@mui/material/Button' {
   /**
-   * Extend the Button size to allow a new size `extraSmall` (aka dense)
-   */
-  interface ButtonPropsSizeOverrides {
-    extraSmall: true
-  }
-
-  /**
    * Extend the Button color prop to allow for the other semantic styles.
    *
    * These seem to work out-of-the-box with no custom variant theming

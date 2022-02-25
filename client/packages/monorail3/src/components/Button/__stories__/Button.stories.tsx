@@ -1,9 +1,11 @@
 // Edit this file to add new stories
 import React from 'react'
 import SelectAllOutlined from '@mui/icons-material/SelectAllOutlined'
-import { Button, ButtonProps, Stack, Typography } from '@mui/material'
+import SaveIcon from '@mui/icons-material/Save'
+import { Box, Button, ButtonProps, Stack, Typography } from '@mui/material'
 
 import { story } from '../../../__tests__/helpers/storybook'
+import { LoadingButton } from '@mui/lab'
 
 /**
  * Metadata for Button stories - update/extend as needed
@@ -29,6 +31,7 @@ export const Default = story(Template, {
   args: { children: 'Button', variant: 'contained' },
 })
 
+// TODO: Add tertiary color
 const colors = [
   'primary',
   'secondary',
@@ -41,7 +44,7 @@ const variants = ['contained', 'outlined', 'text'] as const
 const sizes = ['small', 'medium', 'large'] as const
 
 const buttons = variants.map(variant => (
-  <React.Fragment key={variant}>
+  <Box mb={10} key={variant}>
     <Typography variant="h1">{variant}</Typography>
     {sizes.map(size => (
       <React.Fragment key={size}>
@@ -62,7 +65,17 @@ const buttons = variants.map(variant => (
         </Stack>
       </React.Fragment>
     ))}
-  </React.Fragment>
+    <Typography variant="subtitle1" margin={2}>
+      disabled
+    </Typography>
+    <Stack direction="row" spacing={2} margin={2}>
+      {colors.map(color => (
+        <Button variant={variant} color={color} size="medium" disabled>
+          Disabled
+        </Button>
+      ))}
+    </Stack>
+  </Box>
 ))
 
 export const VariantsAndColors = story<ButtonProps>(() => <>{buttons}</>, {
@@ -78,9 +91,6 @@ export const VariantsAndColors = story<ButtonProps>(() => <>{buttons}</>, {
 export const Sizes = story<ButtonProps>(
   () => (
     <Stack direction="row" spacing={2} alignItems="center">
-      <Button variant="contained" size="extraSmall">
-        Extra Small (custom size)
-      </Button>
       <Button variant="contained" size={'small'}>
         Small
       </Button>
@@ -109,9 +119,9 @@ export const ButtonsWithIconsAndLabel = story<ButtonProps>(
   () => (
     <React.Fragment>
       {variants.map(variant => (
-        <React.Fragment>
+        <Box mb={10} key={variant}>
           <Typography variant="h1">{variant}</Typography>
-          <Stack direction="column" spacing={2} margin={2}>
+          <Stack direction="column" spacing={4} margin={2}>
             {sizes.map(size => (
               <Stack direction="row" spacing={2}>
                 <Button
@@ -139,7 +149,7 @@ export const ButtonsWithIconsAndLabel = story<ButtonProps>(
               </Stack>
             ))}
           </Stack>
-        </React.Fragment>
+        </Box>
       ))}
     </React.Fragment>
   ),
@@ -148,6 +158,42 @@ export const ButtonsWithIconsAndLabel = story<ButtonProps>(
       docs: {
         description: {
           story: `Sometimes you might want to have icons for certain buttons to enhance the UX of the application as we recognize logos more easily than plain text. For example, if you have a delete button you can label it with a dustbin icon.`,
+        },
+      },
+    },
+  },
+)
+
+export const LoadingButtons = story<ButtonProps>(
+  () => (
+    <Stack direction="row" spacing={2}>
+      <LoadingButton loading variant="outlined">
+        Submit
+      </LoadingButton>
+      <LoadingButton
+        loading
+        loadingIndicator="Loading..."
+        variant="outlined"
+        color="success"
+      >
+        Fetch data
+      </LoadingButton>
+      <LoadingButton
+        loading
+        loadingPosition="start"
+        startIcon={<SaveIcon />}
+        variant="outlined"
+        color="error"
+      >
+        Save
+      </LoadingButton>
+    </Stack>
+  ),
+  {
+    parameters: {
+      docs: {
+        description: {
+          story: `The loading buttons can show loading state and disable interactions.`,
         },
       },
     },

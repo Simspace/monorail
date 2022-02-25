@@ -201,6 +201,7 @@ const palette: PaletteOptions = {
   divider: '#E0E0E0',
   background: {
     default: '#FAFAFA',
+    paper: '#FFFFFF',
   },
   action: {
     activatedOpacity: 0.23,
