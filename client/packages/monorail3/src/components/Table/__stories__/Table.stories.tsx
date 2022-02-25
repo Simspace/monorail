@@ -396,7 +396,7 @@ export const SortingAndSelecting = story<TableProps>(
           ) : (
             <Typography
               sx={{ flex: '1 1 100%' }}
-              variant="h6"
+              variant="h3"
               id="tableTitle"
               component="div"
             >
@@ -1257,7 +1257,7 @@ export const CollapsibleTable = story<TableProps>(
             <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
               <Collapse in={open} timeout="auto" unmountOnExit>
                 <Box sx={{ margin: 1 }}>
-                  <Typography variant="h6" gutterBottom component="div">
+                  <Typography variant="h3" gutterBottom component="div">
                     History
                   </Typography>
                   <Table size="small" aria-label="purchases">

@@ -61,7 +61,7 @@ function isValidTargetElement(targetElement?: string): targetElement is string {
 export async function generateA11yStoryTests(
   storyModule: Record<string, Story | Meta>,
 ) {
-  jest.setTimeout(30000)
+  jest.setTimeout(60000)
   const storiesTargetElement = storyModule.default.parameters?.a11y?.element
 
   Object.entries(storyModule)
