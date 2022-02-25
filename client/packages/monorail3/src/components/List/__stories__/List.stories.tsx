@@ -271,7 +271,7 @@ export const InteractiveList = story<ListProps>(
         </FormGroup>
         <Grid container spacing={2}>
           <Grid item xs={12} md={6}>
-            <Typography sx={{ mt: 4, mb: 2 }} variant="h6" component="div">
+            <Typography sx={{ mt: 4, mb: 2 }} variant="h3" component="div">
               Text only
             </Typography>
             <Demo>
@@ -288,7 +288,7 @@ export const InteractiveList = story<ListProps>(
             </Demo>
           </Grid>
           <Grid item xs={12} md={6}>
-            <Typography sx={{ mt: 4, mb: 2 }} variant="h6" component="div">
+            <Typography sx={{ mt: 4, mb: 2 }} variant="h3" component="div">
               Icon with text
             </Typography>
             <Demo>
@@ -310,7 +310,7 @@ export const InteractiveList = story<ListProps>(
         </Grid>
         <Grid container spacing={2}>
           <Grid item xs={12} md={6}>
-            <Typography sx={{ mt: 4, mb: 2 }} variant="h6" component="div">
+            <Typography sx={{ mt: 4, mb: 2 }} variant="h3" component="div">
               Avatar with text
             </Typography>
             <Demo>
@@ -332,7 +332,7 @@ export const InteractiveList = story<ListProps>(
             </Demo>
           </Grid>
           <Grid item xs={12} md={6}>
-            <Typography sx={{ mt: 4, mb: 2 }} variant="h6" component="div">
+            <Typography sx={{ mt: 4, mb: 2 }} variant="h3" component="div">
               Avatar with text and icon
             </Typography>
             <Demo>

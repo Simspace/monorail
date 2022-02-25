@@ -27,7 +27,7 @@ const box = (
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
 const Template = story<GrowProps>(
-  (args: GrowProps) => {
+  args => {
     const [checked, setChecked] = React.useState(false)
 
     const handleChange = () => {

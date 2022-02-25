@@ -154,7 +154,7 @@ const Template = story<AppBarProps>(
             >
               <MenuIcon />
             </IconButton>
-            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            <Typography variant="h3" component="div" sx={{ flexGrow: 1 }}>
               News
             </Typography>
             <Button color="inherit">Login</Button>
@@ -291,7 +291,7 @@ export const WithPrimarySearchField = story<AppBarProps>(
               <MenuIcon />
             </IconButton>
             <Typography
-              variant="h6"
+              variant="h3"
               noWrap
               component="div"
               sx={{ display: { xs: 'none', sm: 'block' } }}
@@ -412,7 +412,7 @@ export const WithMenu = story<AppBarProps>(
             >
               <MenuIcon />
             </IconButton>
-            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            <Typography variant="h3" component="div" sx={{ flexGrow: 1 }}>
               Photos
             </Typography>
             {auth && (
@@ -472,7 +472,7 @@ export const WithSearchField = story<AppBarProps>(
             <MenuIcon />
           </IconButton>
           <Typography
-            variant="h6"
+            variant="h3"
             noWrap
             component="div"
             sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
@@ -518,7 +518,7 @@ export const Dense = story<AppBarProps>(
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" color="inherit" component="div">
+          <Typography variant="h3" color="inherit" component="div">
             Photos
           </Typography>
         </Toolbar>
@@ -552,7 +552,7 @@ export const Prominent = story<AppBarProps>(
             <MenuIcon />
           </IconButton>
           <Typography
-            variant="h5"
+            variant="h3"
             noWrap
             component="div"
             sx={{ flexGrow: 1, alignSelf: 'flex-end' }}
@@ -647,7 +647,7 @@ export const BottomBar = story<AppBarProps>(
         <CssBaseline />
         <Paper square sx={{ pb: '50px' }}>
           <Typography
-            variant="h5"
+            variant="h3"
             gutterBottom
             component="div"
             sx={{ p: 2, pb: 0 }}
@@ -741,7 +741,7 @@ export const HidesOnScroll = story<AppBarProps>(
         <HideOnScroll>
           <AppBar {...args}>
             <Toolbar>
-              <Typography variant="h6" component="div">
+              <Typography variant="h3" component="div">
                 Scroll to Hide App Bar
               </Typography>
             </Toolbar>
@@ -804,7 +804,7 @@ export const ElevateOnScroll = story<AppBarProps>(
         <ElevationScroll>
           <AppBar {...args}>
             <Toolbar>
-              <Typography variant="h6" component="div">
+              <Typography variant="h3" component="div">
                 Scroll to Elevate App Bar
               </Typography>
             </Toolbar>
@@ -885,7 +885,7 @@ export const BackToTop = story<AppBarProps>(
         <CssBaseline />
         <AppBar {...args}>
           <Toolbar>
-            <Typography variant="h6" component="div">
+            <Typography variant="h3" component="div">
               Scroll to see button
             </Typography>
           </Toolbar>
