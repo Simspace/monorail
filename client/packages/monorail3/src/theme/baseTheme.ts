@@ -1,7 +1,6 @@
 // eslint-disable-next-line no-restricted-imports
 import { createTheme } from '@mui/material'
 
-import { MonorailButtonOverrides } from '../components/Button/themeOverrides'
 import { FontSize, LineHeight } from '../components/Typography/FontSize'
 import { FontWeight } from '../components/Typography/FontWeight'
 
@@ -151,7 +150,6 @@ export const baseTheme = createTheme(
     },
 
     components: {
-      MuiButton: MonorailButtonOverrides,
       MuiCssBaseline: {
         styleOverrides: `
         @font-face {
