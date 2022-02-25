@@ -1,6 +1,5 @@
 // Edit this file to add new stories
 import React from 'react'
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import GrainIcon from '@mui/icons-material/Grain'
 import HomeIcon from '@mui/icons-material/Home'
 import NavigateNextIcon from '@mui/icons-material/NavigateNext'
@@ -8,12 +7,10 @@ import WhatshotIcon from '@mui/icons-material/Whatshot'
 import {
   Breadcrumbs,
   BreadcrumbsProps,
-  Chip,
   Link,
   Stack,
   Typography,
 } from '@mui/material'
-import { emphasize, styled } from '@mui/material/styles'
 import { action } from '@storybook/addon-actions'
 
 import { story } from '../../../__tests__/helpers/storybook'
@@ -46,33 +43,6 @@ const Template = story<BreadcrumbsProps>(
 
 /** Default story for Breadcrumbs (edit/remove by hand if needed) */
 export const Default = story(Template)
-
-export const LastItemInteractive = story<BreadcrumbsProps>(
-  () => {
-    return (
-      <Breadcrumbs aria-label="breadcrumb">
-        <Link href="/">Material-UI</Link>
-        <Link href="/getting-started/installation/">Core</Link>
-        <Link
-          color="text.primary"
-          href="/components/breadcrumbs/"
-          aria-current="page"
-        >
-          Breadcrumbs
-        </Link>
-      </Breadcrumbs>
-    )
-  },
-  {
-    parameters: {
-      docs: {
-        description: {
-          story: `Keep the last breadcrumb interactive.`,
-        },
-      },
-    },
-  },
-)
 
 export const CustomSeparator = story<BreadcrumbsProps>(
   () => {
@@ -173,59 +143,6 @@ export const Collapsed = story<BreadcrumbsProps>(
       docs: {
         description: {
           story: `Collapse longer breadcrumb paths.`,
-        },
-      },
-    },
-  },
-)
-
-const StyledBreadcrumb = styled(Chip)(({ theme }) => {
-  const backgroundColor =
-    theme.palette.mode === 'light'
-      ? theme.palette.grey[100]
-      : theme.palette.grey[800]
-  return {
-    backgroundColor,
-    height: theme.spacing(3),
-    color: theme.palette.text.primary,
-    fontWeight: theme.typography.fontWeightRegular,
-    '&:hover, &:focus': {
-      backgroundColor: emphasize(backgroundColor, 0.06),
-    },
-    '&:active': {
-      boxShadow: theme.shadows[1],
-      backgroundColor: emphasize(backgroundColor, 0.12),
-    },
-  }
-})
-
-export const Customized = story<BreadcrumbsProps>(
-  () => {
-    return (
-      <div role="presentation" onClick={action('Click')}>
-        <Breadcrumbs aria-label="breadcrumb">
-          <StyledBreadcrumb
-            // TODO: doesn't typecheck
-            //component="a"
-            //href="#"
-            label="Home"
-            icon={<HomeIcon fontSize="small" />}
-          />
-          <StyledBreadcrumb /*component="a" href="#"*/ label="Catalog" />
-          <StyledBreadcrumb
-            label="Accessories"
-            deleteIcon={<ExpandMoreIcon />}
-            onDelete={action('Delete')}
-          />
-        </Breadcrumbs>
-      </div>
-    )
-  },
-  {
-    parameters: {
-      docs: {
-        description: {
-          story: `Here is an example of customizing the component.`,
         },
       },
     },
