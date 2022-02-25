@@ -14,6 +14,6 @@ export const MonorailBreadcrumbsOverrides: Components<Theme>['MuiBreadcrumbs'] =
       }),
       separator: ({ theme }) => ({
         color: theme.palette.grey[600],
-      })
+      }),
     },
   }
