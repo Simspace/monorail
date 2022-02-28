@@ -1,6 +1,7 @@
 // eslint-disable-next-line no-restricted-imports
 import { Theme, ThemeOptions } from '@mui/material'
 
+import { MonorailSvgIconOverrides } from '../components/SvgIcon/themeOverrides'
 import { baseTheme } from './baseTheme'
 
 /**
@@ -37,4 +38,5 @@ export const getThemeComponents = (
   // MuiIconButton: {
   //   defaultProps: {},
   // },
+  MuiSvgIcon: MonorailSvgIconOverrides,
 })
