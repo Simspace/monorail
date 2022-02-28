@@ -1,13 +1,14 @@
 import React from 'react'
 import MenuIcon from '@mui/icons-material/Menu'
-
-import { AppBar } from '../components/AppBar/AppBar'
-import { Box } from '../components/Box/Box'
-import { Button } from '../components/Button/Button'
-import { Container } from '../components/Container/Container'
-import { IconButton } from '../components/IconButton/IconButton'
-import { Toolbar } from '../components/Toolbar/Toolbar'
-import { Typography } from '../components/Typography/Typography'
+import {
+  AppBar,
+  Box,
+  Button,
+  Container,
+  IconButton,
+  Toolbar,
+  Typography,
+} from '@mui/material'
 
 export default {
   title: 'Theme/Full Page Demo',
@@ -30,7 +31,7 @@ export const FullPageDemo = () => {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          <Typography variant="h3" component="div" sx={{ flexGrow: 1 }}>
             My Cool New App
           </Typography>
           <Button color="inherit">Login</Button>

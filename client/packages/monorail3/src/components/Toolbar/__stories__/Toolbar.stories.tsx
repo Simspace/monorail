@@ -1,18 +1,17 @@
 // Edit this file to add new stories
 import React from 'react'
 import MenuIcon from '@mui/icons-material/Menu'
+import Button from '@mui/material/Button'
+import IconButton from '@mui/material/IconButton'
+import Toolbar, { ToolbarProps } from '@mui/material/Toolbar'
+import Typography from '@mui/material/Typography'
 
 import { story } from '../../../__tests__/helpers/storybook'
-import { Button } from '../../Button/Button'
-import { IconButton } from '../../IconButton/IconButton'
-import { Toolbar, ToolbarProps } from '../../Toolbar/Toolbar'
-import { Typography } from '../../Typography/Typography'
-import { defaultStoryMeta } from './Toolbar.stories.gen'
 
 /**
  * Metadata for Toolbar stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Inputs/Toolbar' }
+export default { title: 'Inputs/Toolbar', component: Toolbar }
 /**
  * Story template (edit/remove by hand if needed)
  *
@@ -30,7 +29,7 @@ const Template = story<ToolbarProps>(args => (
     >
       <MenuIcon />
     </IconButton>
-    <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+    <Typography variant="h3" component="div" sx={{ flexGrow: 1 }}>
       News
     </Typography>
     <Button color="inherit">Login</Button>

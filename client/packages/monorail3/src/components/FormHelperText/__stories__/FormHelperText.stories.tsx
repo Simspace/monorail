@@ -1,18 +1,20 @@
 // Edit this file to add new stories
 import React from 'react'
+import {
+  Checkbox,
+  FormControlLabel,
+  FormHelperText,
+  FormHelperTextProps,
+} from '@mui/material'
 
 import { story } from '../../../__tests__/helpers/storybook'
-import { Checkbox } from '../../Checkbox/Checkbox'
-import { FormControlLabel } from '../../FormControlLabel/FormControlLabel'
-import { FormHelperText, FormHelperTextProps } from '../FormHelperText'
-import { defaultStoryMeta } from './FormHelperText.stories.gen'
 /**
  * Metadata for FormHelperText stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Inputs/FormHelperText' }
+export default { title: 'Inputs/FormHelperText', component: FormHelperText }
 
 const Template = story<FormHelperTextProps>(
-  args => (
+  (args: FormHelperTextProps) => (
     <>
       <FormControlLabel
         control={<Checkbox onChange={() => void 0} />}

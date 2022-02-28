@@ -1,20 +1,22 @@
 import React from 'react'
+import {
+  Box,
+  Step,
+  StepLabel,
+  StepLabelProps,
+  Stepper,
+  Typography,
+} from '@mui/material'
 
 import { story } from '../../../__tests__/helpers/storybook'
-import { Box } from '../../Box/Box'
-import { Step } from '../../Step/Step'
-import { Stepper } from '../../Stepper/Stepper'
-import { Typography } from '../../Typography/Typography'
-import { StepLabel, StepLabelProps } from '../StepLabel'
-import { defaultStoryMeta } from './StepLabel.stories.gen'
 /**
  * Metadata for StepLabel stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Navigation/Stepper/StepLabel' }
+export default { title: 'Navigation/Stepper/StepLabel', component: StepLabel }
 
 const steps = ['Select campaign settings', 'Create an ad group', 'Create an ad']
 
-const Template = story<StepLabelProps>(args => {
+const Template = story<StepLabelProps>((args: StepLabelProps) => {
   return (
     <Box sx={{ width: '100%' }}>
       <Stepper activeStep={1}>
