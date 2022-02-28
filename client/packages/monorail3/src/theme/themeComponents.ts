@@ -1,11 +1,11 @@
 // eslint-disable-next-line no-restricted-imports
+import type {} from '@mui/lab/themeAugmentation'
 import { Theme, ThemeOptions } from '@mui/material'
+
 import {
   MonorailButtonOverrides,
   MonorailLoadingButtonOverrides,
 } from '../components/Button/themeOverrides'
-import type {} from '@mui/lab/themeAugmentation'
-
 import { baseTheme } from './baseTheme'
 
 /**

@@ -1,11 +1,11 @@
 // Edit this file to add new stories
 import React from 'react'
-import SelectAllOutlined from '@mui/icons-material/SelectAllOutlined'
 import SaveIcon from '@mui/icons-material/Save'
+import SelectAllOutlined from '@mui/icons-material/SelectAllOutlined'
+import { LoadingButton } from '@mui/lab'
 import { Box, Button, ButtonProps, Stack, Typography } from '@mui/material'
 
 import { story } from '../../../__tests__/helpers/storybook'
-import { LoadingButton } from '@mui/lab'
 
 /**
  * Metadata for Button stories - update/extend as needed
@@ -70,7 +70,13 @@ const buttons = variants.map(variant => (
     </Typography>
     <Stack direction="row" spacing={2} margin={2}>
       {colors.map(color => (
-        <Button variant={variant} color={color} size="medium" disabled>
+        <Button
+          disabled
+          variant={variant}
+          color={color}
+          size="medium"
+          key={`${variant}-${color}-disabled`}
+        >
           Disabled
         </Button>
       ))}
@@ -123,7 +129,7 @@ export const ButtonsWithIconsAndLabel = story<ButtonProps>(
           <Typography variant="h1">{variant}</Typography>
           <Stack direction="column" spacing={4} margin={2}>
             {sizes.map(size => (
-              <Stack direction="row" spacing={2}>
+              <Stack direction="row" spacing={2} key={size}>
                 <Button
                   variant={variant}
                   size={size}

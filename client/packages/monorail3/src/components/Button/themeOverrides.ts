@@ -8,6 +8,7 @@ export const MonorailButtonOverrides: Components<Theme>['MuiButton'] = {
     disableRipple: true,
     disableFocusRipple: true,
     fullWidth: false,
+    variant: 'contained',
   },
   styleOverrides: {
     root: ({ ownerState, theme }) => {
