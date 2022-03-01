@@ -38,7 +38,7 @@ export const MonorailButtonOverrides: Components<Theme>['MuiButton'] = {
       }
     },
     sizeSmall: sx({
-      height: 28,
+      height: 32,
       py: 2,
       px: 4,
       minWidth: 'auto',
