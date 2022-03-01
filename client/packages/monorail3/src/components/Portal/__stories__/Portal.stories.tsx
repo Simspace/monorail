@@ -1,14 +1,13 @@
 // Edit this file to add new stories
 import React from 'react'
+import { Portal, PortalProps } from '@mui/base'
+import { Box } from '@mui/material'
 
 import { story } from '../../../__tests__/helpers/storybook'
-import { Box } from '../../Box/Box'
-import { Portal, PortalProps } from '../Portal'
-import { defaultStoryMeta } from './Portal.stories.gen'
 /**
  * Metadata for Portal stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Utils/Portal' }
+export default { title: 'Utils/Portal', component: Portal }
 /**
  * Story template (edit/remove by hand if needed)
  *

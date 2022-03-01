@@ -1,16 +1,15 @@
 // Edit this file to add new stories
 import React from 'react'
+import YearPicker, { YearPickerProps } from '@mui/lab/YearPicker'
 
 import { story } from '../../../__tests__/helpers/storybook'
-import { YearPicker, YearPickerProps } from '../YearPicker'
-import { defaultStoryMeta } from './YearPicker.stories.gen'
 
 /**
  * Metadata for YearPicker stories - update/extend as needed
  */
 export default {
-  ...defaultStoryMeta,
   title: 'Inputs/Date and Time/Date/YearPicker',
+  component: YearPicker,
 }
 
 /**

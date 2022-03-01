@@ -2,27 +2,27 @@
 import React from 'react'
 import ArrowForwardIosSharp from '@mui/icons-material/ArrowForwardIosSharp'
 import ExpandMore from '@mui/icons-material/ExpandMore'
-import { styled } from '@mui/material/styles'
-
-import { story } from '../../../__tests__/helpers/storybook'
-import { AccordionActions } from '../../AccordionActions/AccordionActions'
-import { AccordionDetails } from '../../AccordionDetails/AccordionDetails'
 import {
+  Accordion,
+  AccordionActions,
+  AccordionDetails,
+  AccordionProps,
   AccordionSummary,
   AccordionSummaryProps,
-} from '../../AccordionSummary/AccordionSummary'
-import { Button } from '../../Button/Button'
-import { Divider } from '../../Divider/Divider'
-import { Typography } from '../../Typography/Typography'
-import { Accordion, AccordionProps } from '../Accordion'
-import { defaultStoryMeta } from './Accordion.stories.gen'
+  Button,
+  Divider,
+  styled,
+  Typography,
+} from '@mui/material'
+
+import { story } from '../../../__tests__/helpers/storybook'
 
 /**
  * Metadata for Accordion stories - update/extend as needed
  */
 export default {
-  ...defaultStoryMeta,
   title: 'Surfaces/Accordion',
+  component: Accordion,
   subcomponents: { AccordionDetails, AccordionSummary }, // This adds docgen tabs to the Docs page for the Default story - not super helpful
 }
 

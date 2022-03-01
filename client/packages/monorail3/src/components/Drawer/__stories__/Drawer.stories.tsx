@@ -5,31 +5,36 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight'
 import InboxIcon from '@mui/icons-material/Inbox'
 import MailIcon from '@mui/icons-material/Mail'
 import MenuIcon from '@mui/icons-material/Menu'
-import { CSSObject, styled, Theme } from '@mui/material'
+import {
+  AppBar,
+  AppBarProps,
+  Box,
+  Button,
+  CssBaseline,
+  CSSObject,
+  Divider,
+  Drawer,
+  DrawerProps,
+  IconButton,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  styled,
+  Theme,
+  Toolbar,
+  Typography,
+  useTheme,
+} from '@mui/material'
 
 import { story } from '../../../__tests__/helpers/storybook'
-import { useTheme } from '../../../theme/useTheme'
-import { AppBar, AppBarProps } from '../../AppBar/AppBar'
-import { Box } from '../../Box/Box'
-import { Button } from '../../Button/Button'
-import { CssBaseline } from '../../CssBaseline/CssBaseline'
-import { Divider } from '../../Divider/Divider'
-import { IconButton } from '../../IconButton/IconButton'
-import { List } from '../../List/List'
-import { ListItem } from '../../ListItem/ListItem'
-import { ListItemIcon } from '../../ListItemIcon/ListItemIcon'
-import { ListItemText } from '../../ListItemText/ListItemText'
-import { Toolbar } from '../../Toolbar/Toolbar'
-import { Typography } from '../../Typography/Typography'
-import { Drawer, DrawerProps } from '../Drawer'
-import { defaultStoryMeta } from './Drawer.stories.gen'
 
 /**
  * Metadata for Drawer stories - update/extend as needed
  */
 export default {
-  ...defaultStoryMeta,
   title: 'Navigation/Drawer',
+  component: Drawer,
   parameters: {
     docs: {
       inlineStories: false,
@@ -45,7 +50,7 @@ export default {
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
 const Template = story<DrawerProps>(
-  args => {
+  (args: DrawerProps) => {
     const [open, setOpen] = React.useState(false)
     return (
       <>
@@ -210,7 +215,7 @@ export const ResponsiveDrawer = story<DrawerProps>(
             >
               <MenuIcon />
             </IconButton>
-            <Typography variant="h6" noWrap component="div">
+            <Typography variant="h3" noWrap component="div">
               Responsive drawer
             </Typography>
           </Toolbar>
@@ -381,7 +386,7 @@ export const PersistentDrawer = story<DrawerProps>(
             >
               <MenuIcon />
             </IconButton>
-            <Typography variant="h6" noWrap component="div">
+            <Typography variant="h3" noWrap component="div">
               Persistent drawer
             </Typography>
           </Toolbar>
@@ -583,7 +588,7 @@ export const MiniDrawer = story<DrawerProps>(
             >
               <MenuIcon />
             </IconButton>
-            <Typography variant="h6" noWrap component="div">
+            <Typography variant="h3" noWrap component="div">
               Mini variant drawer
             </Typography>
           </Toolbar>

@@ -1,6 +1,8 @@
 // eslint-disable-next-line no-restricted-imports
 import { Theme, ThemeOptions } from '@mui/material'
 
+import { MonorailBreadcrumbsOverrides } from '../components/Breadcrumbs/themeOverrides'
+import { MonorailSvgIconOverrides } from '../components/SvgIcon/themeOverrides'
 import { baseTheme } from './baseTheme'
 
 /**
@@ -12,29 +14,32 @@ export const getThemeComponents = (
   // Make sure we apply the defaults here
   ...baseTheme.components,
 
+  MuiBreadcrumbs: MonorailBreadcrumbsOverrides,
+
   // TODO: we may want to split these into separate files - one theme override per component? Or maybe we just do it all here for consistency
-  MuiAccordion: {
-    defaultProps: {
-      variant: 'outlined',
-      square: true,
-    },
-  },
-  MuiButton: {
-    defaultProps: {},
-    styleOverrides: {},
-    variants: [],
-  },
-  MuiButtonBase: {
-    defaultProps: {
-      disableRipple: true,
-    },
-  },
-  MuiButtonGroup: {
-    defaultProps: {
-      disableRipple: true,
-    },
-  },
-  MuiIconButton: {
-    defaultProps: {},
-  },
+  // MuiAccordion: {
+  //   defaultProps: {
+  //     variant: 'outlined',
+  //     square: true,
+  //   },
+  // },
+  // MuiButton: {
+  //   defaultProps: {},
+  //   styleOverrides: {},
+  //   variants: [],
+  // },
+  // MuiButtonBase: {
+  //   defaultProps: {
+  //     disableRipple: true,
+  //   },
+  // },
+  // MuiButtonGroup: {
+  //   defaultProps: {
+  //     disableRipple: true,
+  //   },
+  // },
+  // MuiIconButton: {
+  //   defaultProps: {},
+  // },
+  MuiSvgIcon: MonorailSvgIconOverrides,
 })

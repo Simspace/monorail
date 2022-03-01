@@ -1,21 +1,27 @@
 import React from 'react'
+import {
+  Box,
+  Button,
+  Fade,
+  Paper,
+  Step,
+  StepContent,
+  StepContentProps,
+  StepLabel,
+  Stepper,
+  Typography,
+  Zoom,
+} from '@mui/material'
+import { TransitionProps } from '@mui/material/transitions'
 
 import { story } from '../../../__tests__/helpers/storybook'
-import { Box } from '../../Box/Box'
-import { Button } from '../../Button/Button'
-import { Fade } from '../../Fade/Fade'
-import { Paper } from '../../Paper/Paper'
-import { Step } from '../../Step/Step'
-import { StepLabel } from '../../StepLabel/StepLabel'
-import { Stepper } from '../../Stepper/Stepper'
-import { Typography } from '../../Typography/Typography'
-import { Zoom } from '../../Zoom/Zoom'
-import { StepContent, StepContentProps } from '../StepContent'
-import { defaultStoryMeta } from './StepContent.stories.gen'
 /**
  * Metadata for StepContent stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Navigation/Stepper/StepContent' }
+export default {
+  title: 'Navigation/Stepper/StepContent',
+  component: StepContent,
+}
 
 const steps = [
   {
@@ -120,7 +126,9 @@ additional information for each step. It has nice transition properties built in
 
 export const FadeTransition = story(Template, {
   args: {
-    TransitionComponent: Fade,
+    // MUI 5.4.1 has a bug in the TransitionComponent type for StepContentProps:
+    // https://github.com/mui/material-ui/issues/31001
+    TransitionComponent: Fade as React.JSXElementConstructor<TransitionProps>,
     TransitionProps: {
       appear: false,
     },
@@ -140,7 +148,9 @@ Using \`Fade\` for the \`TransitionComponent\` prop.
 
 export const ZoomTransition = story(Template, {
   args: {
-    TransitionComponent: Zoom,
+    // MUI 5.4.1 has a bug in the TransitionComponent type for StepContentProps:
+    // https://github.com/mui/material-ui/issues/31001
+    TransitionComponent: Zoom as React.JSXElementConstructor<TransitionProps>,
     TransitionProps: {
       appear: false,
     },

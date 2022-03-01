@@ -7,17 +7,16 @@ import { TabPanel as LabTabPanel } from '@mui/lab'
 import TabContext from '@mui/lab/TabContext'
 import TabList from '@mui/lab/TabList'
 import { AppBar, Box, styled, Tab, Typography } from '@mui/material'
+import Tabs, { TabsProps } from '@mui/material/Tabs'
 
 import { story } from '../../../__tests__/helpers/storybook'
-import { Tabs, TabsProps } from '../Tabs'
-import { defaultStoryMeta } from './Tabs.stories.gen'
 
 /**
  * Metadata for Tabs stories - update/extend as needed
  */
 export default {
-  ...defaultStoryMeta,
   title: 'Navigation/Tabs',
+  component: Tabs,
   parameters: {
     creevey: {
       skip: 'Underline length is flakey',
@@ -319,7 +318,6 @@ export const FullWidth = story(
       <Box sx={{ width: '100%' }}>
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
           <Tabs
-            fullWidth
             value={value}
             onChange={handleChange}
             aria-label="basic tabs example"
