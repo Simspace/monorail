@@ -19,7 +19,7 @@ export default { title: 'Inputs/Toolbar', component: Toolbar }
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
 const Template = story<ToolbarProps>(args => (
-  <Toolbar {...args}>
+  <Toolbar {...args} sx={{ backgroundColor: 'accent.dark' }}>
     <IconButton
       size="large"
       edge="start"
@@ -32,7 +32,7 @@ const Template = story<ToolbarProps>(args => (
     <Typography variant="h3" component="div" sx={{ flexGrow: 1 }}>
       News
     </Typography>
-    <Button color="inherit">Login</Button>
+    <Button>Login</Button>
   </Toolbar>
 ))
 
