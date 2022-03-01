@@ -31,7 +31,7 @@ export const FullPageDemo = () => {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          <Typography variant="h3" component="div" sx={{ flexGrow: 1 }}>
             My Cool New App
           </Typography>
           <Button color="inherit">Login</Button>

@@ -57,7 +57,7 @@ const Template = story<CardProps>(
         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
           Word of the Day
         </Typography>
-        <Typography variant="h5" component="div">
+        <Typography variant="h2" component="div">
           be{bull}nev{bull}o{bull}lent
         </Typography>
         <Typography sx={{ mb: 1.5 }} color="text.secondary">
@@ -98,7 +98,7 @@ export const OutlinedCard = story<CardProps>(
           <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
             Word of the Day
           </Typography>
-          <Typography variant="h5" component="div">
+          <Typography variant="h2" component="div">
             be{bull}nev{bull}o{bull}lent
           </Typography>
           <Typography sx={{ mb: 1.5 }} color="text.secondary">
@@ -255,7 +255,7 @@ export const MediaCard = story<CardProps>(() => {
         title={images.lizard.title}
       />
       <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
+        <Typography gutterBottom variant="h2" component="div">
           Lizard
         </Typography>
         <Typography variant="body2" color="text.secondary">
@@ -294,7 +294,7 @@ export const ResponsiveMediaCard = story<CardProps>(() => {
         title={images.lizard.title}
       />
       <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
+        <Typography gutterBottom variant="h2" component="div">
           Lizard
         </Typography>
         <Typography variant="body2" color="text.secondary">
@@ -335,7 +335,7 @@ export const ActionAreaCard = story<CardProps>(() => {
           title={images.lizard.title}
         />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
+          <Typography gutterBottom variant="h2" component="div">
             Lizard
           </Typography>
           <Typography variant="body2" color="text.secondary">
@@ -373,7 +373,7 @@ export const MultiActionAreaCard = story<CardProps>(() => {
           title={images.lizard.title}
         />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
+          <Typography gutterBottom variant="h2" component="div">
             Lizard
           </Typography>
           <Typography variant="body2" color="text.secondary">
@@ -415,7 +415,7 @@ export const MediaControlCard = story<CardProps>(() => {
     >
       <Box sx={{ display: 'flex', flexDirection: 'column' }}>
         <CardContent sx={{ flex: '1 0 auto' }}>
-          <Typography component="div" variant="h5">
+          <Typography component="div" variant="h2">
             Live From Space
           </Typography>
           <Typography

@@ -472,7 +472,7 @@ export const FullScreenDialog = story<DialogProps>(() => {
             >
               <CloseIcon />
             </IconButton>
-            <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
+            <Typography sx={{ ml: 2, flex: 1 }} variant="h3" component="div">
               Sound
             </Typography>
             <Button autoFocus color="inherit" onClick={handleClose}>

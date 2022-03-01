@@ -194,12 +194,12 @@ export const MiddleDividers = () => {
       <Box sx={{ my: 3, mx: 2 }}>
         <Grid container alignItems="center">
           <Grid item xs>
-            <Typography gutterBottom variant="h4" component="div">
+            <Typography gutterBottom variant="h1" component="div">
               Toothbrush
             </Typography>
           </Grid>
           <Grid item>
-            <Typography gutterBottom variant="h6" component="div">
+            <Typography gutterBottom variant="h3" component="div">
               $4.50
             </Typography>
           </Grid>

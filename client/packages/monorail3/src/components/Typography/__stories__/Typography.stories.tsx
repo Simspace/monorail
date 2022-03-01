@@ -28,6 +28,15 @@ export const Default = story(Template)
 export const Variants = story<TypographyProps>(
   () => (
     <Box sx={{ width: '100%', maxWidth: 800 }}>
+      <Typography variant="data1" gutterBottom component="div">
+        data1. Heading
+      </Typography>
+      <Typography variant="data2" gutterBottom component="div">
+        data2. Heading
+      </Typography>
+      <Typography variant="data3" gutterBottom component="div">
+        data3. Heading
+      </Typography>
       <Typography variant="h1" component="div" gutterBottom>
         h1. Heading
       </Typography>
@@ -36,15 +45,6 @@ export const Variants = story<TypographyProps>(
       </Typography>
       <Typography variant="h3" gutterBottom component="div">
         h3. Heading
-      </Typography>
-      <Typography variant="h4" gutterBottom component="div">
-        h4. Heading
-      </Typography>
-      <Typography variant="h5" gutterBottom component="div">
-        h5. Heading
-      </Typography>
-      <Typography variant="h6" gutterBottom component="div">
-        h6. Heading
       </Typography>
       <Typography variant="subtitle1" gutterBottom component="div">
         subtitle1. Lorem ipsum dolor sit amet, consectetur adipisicing elit.

@@ -52,7 +52,7 @@ const Template = story<ModalProps>(
               p: 4,
             }}
           >
-            <Typography id="modal-modal-title" variant="h6" component="h2">
+            <Typography id="modal-modal-title" variant="h3" component="h2">
               Text in a modal
             </Typography>
             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
@@ -260,7 +260,7 @@ export const TransitionsModal = story<ModalProps>(
             >
               <Typography
                 id="transition-modal-title"
-                variant="h6"
+                variant="h3"
                 component="h2"
               >
                 Text in a modal
@@ -323,7 +323,7 @@ export const KeepMountedModal = story<ModalProps>(
           >
             <Typography
               id="keep-mounted-modal-title"
-              variant="h6"
+              variant="h3"
               component="h2"
             >
               Text in a modal
@@ -392,7 +392,7 @@ export const ServerModal = story<ModalProps>(
               p: 4,
             }}
           >
-            <Typography id="server-modal-title" variant="h6" component="h2">
+            <Typography id="server-modal-title" variant="h3" component="h2">
               Server-side modal
             </Typography>
             <Typography id="server-modal-description" sx={{ pt: 2 }}>
