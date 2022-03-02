@@ -165,6 +165,7 @@ export const SplitButton = story<ButtonGroupProps>(
         >
           <Button onClick={handleClick}>{options[selectedIndex]}</Button>
           <Button
+            size="small"
             aria-controls={open ? 'split-button-menu' : undefined}
             aria-expanded={open ? 'true' : undefined}
             aria-label="select merge strategy"
