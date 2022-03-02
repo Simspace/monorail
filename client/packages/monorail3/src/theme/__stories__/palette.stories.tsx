@@ -1,8 +1,14 @@
 import React from 'react'
-import { Color as MUIColor, PaletteColor, useTheme } from '@mui/material'
+import {
+  Color as MUIColor,
+  PaletteColor,
+  Typography,
+  useTheme,
+} from '@mui/material'
 import Box from '@mui/material/Box'
 import {
   CommonColors,
+  PaletteColorNoButtonState,
   TypeBackground,
   TypeText,
 } from '@mui/material/styles/createPalette'
@@ -40,33 +46,65 @@ const PaletteColorBox = ({
   paletteColor,
 }: {
   label: string
-  paletteColor: PaletteColor
+  paletteColor: PaletteColor | PaletteColorNoButtonState
 }) => {
+  const minWidth = '100px'
   return (
-    <Box sx={{ display: 'flex', flexFlow: 'row' }}>
-      <Box component="h2" sx={{ flex: 1 }}>
+    <Box sx={{ display: 'flex', flexFlow: 'row', alignItems: 'center' }}>
+      <Box component="h3" sx={{ flex: 1 }}>
         {label}
       </Box>
       <SingleColorBox
         color={paletteColor.light}
         label="Light"
-        minWidth="150px"
+        minWidth={minWidth}
       />
-      <SingleColorBox color={paletteColor.main} label="Main" minWidth="150px" />
-      <SingleColorBox color={paletteColor.dark} label="Dark" minWidth="150px" />
+      <SingleColorBox
+        color={paletteColor.main}
+        label="Main"
+        minWidth={minWidth}
+      />
+      <SingleColorBox
+        color={paletteColor.dark}
+        label="Dark"
+        minWidth={minWidth}
+      />
       <SingleColorBox
         color={paletteColor.contrastText}
         label="Contrast Text"
-        minWidth="150px"
+        minWidth={minWidth}
       />
+      {'hover' in paletteColor &&
+      'selected' in paletteColor &&
+      'active' in paletteColor ? (
+        <>
+          <SingleColorBox
+            color={paletteColor.hover}
+            label="Hover"
+            minWidth={minWidth}
+          />
+          <SingleColorBox
+            color={paletteColor.selected}
+            label="Selected"
+            minWidth={minWidth}
+          />
+          <SingleColorBox
+            color={paletteColor.active}
+            label="Active"
+            minWidth={minWidth}
+          />
+        </>
+      ) : (
+        <></>
+      )}
     </Box>
   )
 }
 
 const CommonColorsBox = ({ commonColors }: { commonColors: CommonColors }) => {
   return (
-    <Box sx={{ display: 'flex', flexFlow: 'row' }}>
-      <Box component="h2" sx={{ flex: 1 }}>
+    <Box sx={{ display: 'flex', flexFlow: 'row', alignItems: 'center' }}>
+      <Box component="h3" sx={{ flex: 1 }}>
         Common
       </Box>
       <SingleColorBox
@@ -92,8 +130,8 @@ const ColorShadesBox = ({
 }) => {
   const minWidth = '50px'
   return (
-    <Box sx={{ display: 'flex', flexFlow: 'row' }}>
-      <Box component="h2" sx={{ flex: 1 }}>
+    <Box sx={{ display: 'flex', flexFlow: 'row', alignItems: 'center' }}>
+      <Box component="h3" sx={{ flex: 1 }}>
         {label}
       </Box>
       <SingleColorBox label="50" color={color[50]} minWidth={minWidth} />
@@ -117,8 +155,8 @@ const ColorShadesBox = ({
 const TextColorsBox = ({ typeText }: { typeText: TypeText }) => {
   const minWidth = '150px'
   return (
-    <Box sx={{ display: 'flex', flexFlow: 'row' }}>
-      <Box component="h2" sx={{ flex: 1 }}>
+    <Box sx={{ display: 'flex', flexFlow: 'row', alignItems: 'center' }}>
+      <Box component="h3" sx={{ flex: 1 }}>
         Text
       </Box>
       <SingleColorBox
@@ -147,8 +185,8 @@ const BackgroundColorsBox = ({
 }) => {
   const minWidth = '150px'
   return (
-    <Box sx={{ display: 'flex', flexFlow: 'row' }}>
-      <Box component="h2" sx={{ flex: 1 }}>
+    <Box sx={{ display: 'flex', flexFlow: 'row', alignItems: 'center' }}>
+      <Box component="h3" sx={{ flex: 1 }}>
         Background
       </Box>
       <SingleColorBox
@@ -169,38 +207,91 @@ export const Palette = () => {
   const theme = useTheme()
   return (
     <>
-      <h1>Colors</h1>
-      <Box sx={{ display: 'flex', flexFlow: 'column nowrap' }}>
+      <Typography variant="h1" component="h2" gutterBottom>
+        Colors
+      </Typography>
+      <Box sx={{ display: 'flex', flexFlow: 'column nowrap', mb: 10 }}>
         <PaletteColorBox label="Primary" paletteColor={theme.palette.primary} />
         <PaletteColorBox
           label="Secondary"
           paletteColor={theme.palette.secondary}
         />
-        {/*<PaletteColorBox label="Accent" paletteColor={theme.palette.accent} />*/}
+        <PaletteColorBox label="Accent" paletteColor={theme.palette.accent} />
         <PaletteColorBox label="Info" paletteColor={theme.palette.info} />
         <PaletteColorBox label="Success" paletteColor={theme.palette.success} />
         <PaletteColorBox label="Warning" paletteColor={theme.palette.warning} />
         <PaletteColorBox label="Error" paletteColor={theme.palette.error} />
       </Box>
 
-      <CommonColorsBox commonColors={theme.palette.common} />
+      <Typography variant="h1" component="h2" gutterBottom>
+        Common
+      </Typography>
+      <Box sx={{ display: 'flex', flexFlow: 'column nowrap', mb: 10 }}>
+        <TextColorsBox typeText={theme.palette.text} />
+        <BackgroundColorsBox typeBackground={theme.palette.background} />
+        <CommonColorsBox commonColors={theme.palette.common} />
+        <SingleColorBox
+          label="divider"
+          color={theme.palette.divider}
+          minWidth={'100%'}
+        />
+      </Box>
 
+      <Typography variant="h1" component="h2" gutterBottom>
+        Score
+      </Typography>
+      <Box sx={{ display: 'flex', flexFlow: 'column nowrap', mb: 10 }}>
+        <PaletteColorBox label="High" paletteColor={theme.palette.score.high} />
+        <PaletteColorBox
+          label="High Moderate"
+          paletteColor={theme.palette.score.highModerate}
+        />
+        <PaletteColorBox
+          label="Moderate"
+          paletteColor={theme.palette.score.moderate}
+        />
+        <PaletteColorBox
+          label="Low Moderate"
+          paletteColor={theme.palette.score.lowModerate}
+        />
+        <PaletteColorBox label="Low" paletteColor={theme.palette.score.low} />
+      </Box>
+
+      <Typography variant="h1" component="h2" gutterBottom>
+        Tiers
+      </Typography>
+      <Box sx={{ display: 'flex', flexFlow: 'column nowrap', mb: 10 }}>
+        <SingleColorBox
+          label="One"
+          color={theme.palette.tiers.one}
+          minWidth={'100%'}
+        />
+        <SingleColorBox
+          label="Two"
+          color={theme.palette.tiers.two}
+          minWidth={'100%'}
+        />
+        <SingleColorBox
+          label="Three"
+          color={theme.palette.tiers.three}
+          minWidth={'100%'}
+        />
+        <SingleColorBox
+          label="Four"
+          color={theme.palette.tiers.four}
+          minWidth={'100%'}
+        />
+      </Box>
+
+      <Typography variant="h1" component="h2" gutterBottom>
+        Chart
+      </Typography>
       <ColorShadesBox label="Grey" color={theme.palette.grey} />
-      <ColorShadesBox label="Blue" color={theme.palette.colors.blue} />
-      <ColorShadesBox label="Fuschia" color={theme.palette.colors.fuschia} />
-      <ColorShadesBox label="Orange" color={theme.palette.colors.orange} />
-      <ColorShadesBox label="Purple" color={theme.palette.colors.purple} />
-      <ColorShadesBox label="Teal" color={theme.palette.colors.teal} />
-
-      <TextColorsBox typeText={theme.palette.text} />
-
-      <SingleColorBox
-        label="divider"
-        color={theme.palette.divider}
-        minWidth={'100%'}
-      />
-
-      <BackgroundColorsBox typeBackground={theme.palette.background} />
+      <ColorShadesBox label="Blue" color={theme.palette.chart.blue} />
+      <ColorShadesBox label="Fuchsia" color={theme.palette.chart.fuchsia} />
+      <ColorShadesBox label="Orange" color={theme.palette.chart.orange} />
+      <ColorShadesBox label="Purple" color={theme.palette.chart.purple} />
+      <ColorShadesBox label="Teal" color={theme.palette.chart.teal} />
     </>
   )
 }

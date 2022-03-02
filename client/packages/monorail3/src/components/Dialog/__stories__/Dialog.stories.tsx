@@ -214,7 +214,7 @@ If a title is required:
 
 const Transition = React.forwardRef(function Transition(
   props: TransitionProps & {
-    children?: React.ReactElement<unknown>
+    children: React.ReactElement<unknown>
   },
   ref: React.Ref<unknown>,
 ) {
@@ -432,7 +432,7 @@ export const CustomizedDialogs = story<DialogProps>(
 
 const FullScreenTransition = React.forwardRef(function Transition(
   props: TransitionProps & {
-    children?: React.ReactElement
+    children: React.ReactElement
   },
   ref: React.Ref<unknown>,
 ) {
@@ -462,7 +462,7 @@ export const FullScreenDialog = story<DialogProps>(() => {
         TransitionComponent={FullScreenTransition}
       >
         <AppBar sx={{ position: 'relative' }}>
-          <Toolbar>
+          <Toolbar sx={{ backgroundColor: 'accent.dark' }}>
             <IconButton
               edge="start"
               color="inherit"
@@ -472,10 +472,10 @@ export const FullScreenDialog = story<DialogProps>(() => {
             >
               <CloseIcon />
             </IconButton>
-            <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
+            <Typography sx={{ ml: 2, flex: 1 }} variant="h3" component="div">
               Sound
             </Typography>
-            <Button autoFocus color="inherit" onClick={handleClose}>
+            <Button autoFocus color="primary" onClick={handleClose}>
               save
             </Button>
           </Toolbar>

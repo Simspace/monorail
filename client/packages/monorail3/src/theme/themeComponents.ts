@@ -1,6 +1,13 @@
 // eslint-disable-next-line no-restricted-imports
+import type {} from '@mui/lab/themeAugmentation'
 import { Theme, ThemeOptions } from '@mui/material'
 
+import { MonorailBreadcrumbsOverrides } from '../components/Breadcrumbs/themeOverrides'
+import {
+  MonorailButtonOverrides,
+  MonorailLoadingButtonOverrides,
+} from '../components/Button/themeOverrides'
+import { MonorailSvgIconOverrides } from '../components/SvgIcon/themeOverrides'
 import { baseTheme } from './baseTheme'
 
 /**
@@ -12,18 +19,13 @@ export const getThemeComponents = (
   // Make sure we apply the defaults here
   ...baseTheme.components,
 
-  // TODO: we may want to split these into separate files - one theme override per component? Or maybe we just do it all here for consistency
   MuiAccordion: {
     defaultProps: {
       variant: 'outlined',
       square: true,
     },
   },
-  MuiButton: {
-    defaultProps: {},
-    styleOverrides: {},
-    variants: [],
-  },
+  MuiButton: MonorailButtonOverrides,
   MuiButtonBase: {
     defaultProps: {
       disableRipple: true,
@@ -34,7 +36,7 @@ export const getThemeComponents = (
       disableRipple: true,
     },
   },
-  MuiIconButton: {
-    defaultProps: {},
-  },
+  MuiBreadcrumbs: MonorailBreadcrumbsOverrides,
+  MuiLoadingButton: MonorailLoadingButtonOverrides,
+  MuiSvgIcon: MonorailSvgIconOverrides,
 })
