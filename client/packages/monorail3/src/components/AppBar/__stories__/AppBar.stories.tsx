@@ -157,7 +157,7 @@ const Template = story<AppBarProps>(
             <Typography variant="h3" component="div" sx={{ flexGrow: 1 }}>
               News
             </Typography>
-            <Button color="inherit">Login</Button>
+            <Button>Login</Button>
           </Toolbar>
         </AppBar>
       </Box>
