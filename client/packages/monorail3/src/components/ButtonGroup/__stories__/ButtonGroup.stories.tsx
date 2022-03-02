@@ -100,7 +100,7 @@ export const Colors = story<ButtonGroupProps>(() => (
       <ButtonGroup
         key={`button-group-${color}`}
         color={color}
-        aria-label="medium secondary button group"
+        aria-label={`medium ${color} button group`}
       >
         <Button>One</Button>
         <Button>Two</Button>
