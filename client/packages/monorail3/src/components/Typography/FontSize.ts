@@ -48,7 +48,7 @@ export const LineHeight: Record<TypographyVariant, string | number> = {
   Subtitle2: 1.5714285714,
   Overline: 1.6666666667,
   Caption: 1.6666666667,
-  Button: 'normal',
+  Button: 1.25,
 }
 
 /**
