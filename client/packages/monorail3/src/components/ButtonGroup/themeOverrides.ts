@@ -7,6 +7,15 @@ export const MonorailButtonGroupOverrides: Components<Theme>['MuiButtonGroup'] =
       disableElevation: true,
     },
     styleOverrides: {
+      grouped: ({ ownerState, theme }) => {
+        const color = ownerState.color ?? 'primary'
+        return {
+          '&.Mui-focusVisible': {
+            boxShadow: `0 0 0 3px ${theme.palette[color].light}`,
+            outline: `1px solid ${theme.palette[color].dark}`,
+          },
+        }
+      },
       groupedOutlined: {
         '&:hover': {
           zIndex: 1,
