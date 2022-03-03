@@ -1,8 +1,9 @@
 // Edit this file to add new stories
 import React from 'react'
-import DeleteIcon from '@mui/icons-material/Delete'
-import SendIcon from '@mui/icons-material/Send'
-import { Button, ButtonProps, Stack } from '@mui/material'
+import SaveIcon from '@mui/icons-material/Save'
+import SelectAllOutlined from '@mui/icons-material/SelectAllOutlined'
+import { LoadingButton } from '@mui/lab'
+import { Box, Button, ButtonProps, Stack, Typography } from '@mui/material'
 
 import { story } from '../../../__tests__/helpers/storybook'
 
@@ -30,94 +31,72 @@ export const Default = story(Template, {
   args: { children: 'Button', variant: 'contained' },
 })
 
-export const VariantsAndColors = story<ButtonProps>(
-  () => (
-    <>
-      <h1>Contained</h1>
-      <Button variant="contained" color="primary">
-        Primary
-      </Button>
-      <Button variant="contained" color="secondary">
-        Secondary
-      </Button>
-      <Button variant="contained" color="info">
-        Info
-      </Button>
-      <Button variant="contained" color="success">
-        Success
-      </Button>
-      <Button variant="contained" color="warning">
-        Warning
-      </Button>
-      <Button variant="contained" color="error">
-        Error
-      </Button>
-      <Button variant="contained" color="inherit">
-        Inherit
-      </Button>
-      <h1>Outlined</h1>
-      <Button variant="outlined" color="primary">
-        Primary
-      </Button>
-      <Button variant="outlined" color="secondary">
-        Secondary
-      </Button>
-      <Button variant="outlined" color="info">
-        Info
-      </Button>
-      <Button variant="outlined" color="success">
-        Success
-      </Button>
-      <Button variant="outlined" color="warning">
-        Warning
-      </Button>
-      <Button variant="outlined" color="error">
-        Error
-      </Button>
-      <Button variant="outlined" color="inherit">
-        Inherit
-      </Button>
-      <h1>Text</h1>
-      <Button variant="text" color="primary">
-        Primary
-      </Button>
-      <Button variant="text" color="secondary">
-        Secondary
-      </Button>
-      <Button variant="text" color="info">
-        Info
-      </Button>
-      <Button variant="text" color="success">
-        Success
-      </Button>
-      <Button variant="text" color="warning">
-        Warning
-      </Button>
-      <Button variant="text" color="error">
-        Error
-      </Button>
-      <Button variant="text" color="inherit">
-        Inherit
-      </Button>
-    </>
-  ),
-  {
-    parameters: {
-      docs: {
-        description: {
-          story: `Use variant to set the display style and color to set the coloring`,
-        },
+// TODO: Add tertiary color
+const colors = [
+  'primary',
+  'secondary',
+  'info',
+  'success',
+  'warning',
+  'error',
+] as const
+const variants = ['contained', 'outlined', 'text'] as const
+const sizes = ['small', 'medium', 'large'] as const
+
+const buttons = variants.map(variant => (
+  <Box mb={10} key={variant}>
+    <Typography variant="h1">{variant}</Typography>
+    {sizes.map(size => (
+      <React.Fragment key={size}>
+        <Typography variant="subtitle1" margin={2}>
+          {size}
+        </Typography>
+        <Stack direction="row" spacing={2} margin={2}>
+          {colors.map(color => (
+            <Button
+              key={`${variant}-${size}-${color}`}
+              variant={variant}
+              color={color}
+              size={size}
+            >
+              {color}
+            </Button>
+          ))}
+        </Stack>
+      </React.Fragment>
+    ))}
+    <Typography variant="subtitle1" margin={2}>
+      disabled
+    </Typography>
+    <Stack direction="row" spacing={2} margin={2}>
+      {colors.map(color => (
+        <Button
+          disabled
+          variant={variant}
+          color={color}
+          size="medium"
+          key={`${variant}-${color}-disabled`}
+        >
+          Disabled
+        </Button>
+      ))}
+    </Stack>
+  </Box>
+))
+
+export const VariantsAndColors = story<ButtonProps>(() => <>{buttons}</>, {
+  parameters: {
+    docs: {
+      description: {
+        story: `Use variant to set the display style and color to set the coloring`,
       },
     },
   },
-)
+})
 
 export const Sizes = story<ButtonProps>(
   () => (
     <Stack direction="row" spacing={2} alignItems="center">
-      <Button variant="contained" size="extraSmall">
-        Extra Small (custom size)
-      </Button>
       <Button variant="contained" size={'small'}>
         Small
       </Button>
@@ -144,20 +123,83 @@ export const Sizes = story<ButtonProps>(
 
 export const ButtonsWithIconsAndLabel = story<ButtonProps>(
   () => (
-    <Stack direction="row" spacing={2}>
-      <Button variant="outlined" startIcon={<DeleteIcon />}>
-        Delete
-      </Button>
-      <Button variant="contained" endIcon={<SendIcon />}>
-        Send
-      </Button>
-    </Stack>
+    <React.Fragment>
+      {variants.map(variant => (
+        <Box mb={10} key={variant}>
+          <Typography variant="h1">{variant}</Typography>
+          <Stack direction="column" spacing={4} margin={2}>
+            {sizes.map(size => (
+              <Stack direction="row" spacing={2} key={size}>
+                <Button
+                  variant={variant}
+                  size={size}
+                  startIcon={<SelectAllOutlined />}
+                >
+                  {size}
+                </Button>
+                <Button
+                  variant={variant}
+                  size={size}
+                  endIcon={<SelectAllOutlined />}
+                >
+                  {size}
+                </Button>
+                <Button
+                  variant={variant}
+                  size={size}
+                  startIcon={<SelectAllOutlined />}
+                  endIcon={<SelectAllOutlined />}
+                >
+                  {size}
+                </Button>
+              </Stack>
+            ))}
+          </Stack>
+        </Box>
+      ))}
+    </React.Fragment>
   ),
   {
     parameters: {
       docs: {
         description: {
           story: `Sometimes you might want to have icons for certain buttons to enhance the UX of the application as we recognize logos more easily than plain text. For example, if you have a delete button you can label it with a dustbin icon.`,
+        },
+      },
+    },
+  },
+)
+
+export const LoadingButtons = story<ButtonProps>(
+  () => (
+    <Stack direction="row" spacing={2}>
+      <LoadingButton loading variant="outlined">
+        Submit
+      </LoadingButton>
+      <LoadingButton
+        loading
+        loadingIndicator="Loading..."
+        variant="outlined"
+        color="success"
+      >
+        Fetch data
+      </LoadingButton>
+      <LoadingButton
+        loading
+        loadingPosition="start"
+        startIcon={<SaveIcon />}
+        variant="outlined"
+        color="error"
+      >
+        Save
+      </LoadingButton>
+    </Stack>
+  ),
+  {
+    parameters: {
+      docs: {
+        description: {
+          story: `The loading buttons can show loading state and disable interactions.`,
         },
       },
     },
