@@ -2,24 +2,27 @@
 import React from 'react'
 import VolumeDown from '@mui/icons-material/VolumeDown'
 import VolumeUp from '@mui/icons-material/VolumeUp'
-import { SliderThumb, styled } from '@mui/material'
+import {
+  Box,
+  Grid,
+  Slider,
+  SliderProps,
+  SliderThumb,
+  Stack,
+  styled,
+  Tooltip,
+  Typography,
+} from '@mui/material'
 import MuiInput from '@mui/material/Input'
 
 import { story } from '../../../__tests__/helpers/storybook'
-import { Box } from '../../Box/Box'
-import { Grid } from '../../Grid/Grid'
-import { Stack } from '../../Stack/Stack'
-import { Tooltip } from '../../Tooltip/Tooltip'
-import { Typography } from '../../Typography/Typography'
-import { Slider, SliderProps } from '../Slider'
-import { defaultStoryMeta } from './Slider.stories.gen'
 
 /**
  * Metadata for Slider stories - update/extend as needed
  */
 export default {
-  ...defaultStoryMeta,
   title: 'Inputs/Slider',
+  component: Slider,
   parameters: {
     docs: {
       description: {

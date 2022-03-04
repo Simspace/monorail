@@ -8,34 +8,38 @@ import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft'
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight'
 import KeyboardArrowUp from '@mui/icons-material/KeyboardArrowUp'
 import LastPageIcon from '@mui/icons-material/LastPage'
+import {
+  Alert,
+  alpha,
+  Box,
+  Checkbox,
+  Collapse,
+  FormControlLabel,
+  IconButton,
+  Paper,
+  styled,
+  Switch,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableFooter,
+  TableHead,
+  TablePagination,
+  TableProps,
+  TableRow,
+  TableSortLabel,
+  Toolbar,
+  Tooltip,
+  Typography,
+  useTheme,
+} from '@mui/material'
 import { tableCellClasses } from '@mui/material/TableCell'
+import { visuallyHidden } from '@mui/utils'
 
 import { story } from '../../../__tests__/helpers/storybook'
-import { alpha, styled, visuallyHidden } from '../../../helpers/styles'
-import { useTheme } from '../../../theme/useTheme'
-import { Alert } from '../../Alert/Alert'
-import { Box } from '../../Box/Box'
-import { Checkbox } from '../../Checkbox/Checkbox'
-import { Collapse } from '../../Collapse/Collapse'
-import { FormControlLabel } from '../../FormControlLabel/FormControlLabel'
-import { IconButton } from '../../IconButton/IconButton'
-import { Paper } from '../../Paper/Paper'
-import { Switch } from '../../Switch/Switch'
-import { TableBody } from '../../TableBody/TableBody'
-import { TableCell } from '../../TableCell/TableCell'
-import { TableContainer } from '../../TableContainer/TableContainer'
-import { TableFooter } from '../../TableFooter/TableFooter'
-import { TableHead } from '../../TableHead/TableHead'
-import { TablePagination } from '../../TablePagination/TablePagination'
-import { TableRow } from '../../TableRow/TableRow'
-import { TableSortLabel } from '../../TableSortLabel/TableSortLabel'
-import { Toolbar } from '../../Toolbar/Toolbar'
-import { Tooltip } from '../../Tooltip/Tooltip'
-import { Typography } from '../../Typography/Typography'
-import { Table, TableProps } from '../Table'
-import { defaultStoryMeta } from './Table.stories.gen'
 
-export default { ...defaultStoryMeta, title: 'Data Display/Table' }
+export default { title: 'Data Display/Table', component: Table }
 
 const Template = story<TableProps>(args => {
   function createData(
@@ -392,7 +396,7 @@ export const SortingAndSelecting = story<TableProps>(
           ) : (
             <Typography
               sx={{ flex: '1 1 100%' }}
-              variant="h6"
+              variant="h3"
               id="tableTitle"
               component="div"
             >
@@ -425,7 +429,7 @@ export const SortingAndSelecting = story<TableProps>(
       const [rowsPerPage, setRowsPerPage] = React.useState(5)
 
       const handleRequestSort = (
-        event: React.MouseEvent<unknown>,
+        _event: React.MouseEvent<unknown>,
         property: keyof Data,
       ) => {
         const isAsc = orderBy === property && order === 'asc'
@@ -444,7 +448,7 @@ export const SortingAndSelecting = story<TableProps>(
         setSelected([])
       }
 
-      const handleClick = (event: React.MouseEvent<unknown>, name: string) => {
+      const handleClick = (_event: React.MouseEvent<unknown>, name: string) => {
         const selectedIndex = selected.indexOf(name)
         let newSelected: ReadonlyArray<string> = []
 
@@ -464,7 +468,7 @@ export const SortingAndSelecting = story<TableProps>(
         setSelected(newSelected)
       }
 
-      const handleChangePage = (event: unknown, newPage: number) => {
+      const handleChangePage = (_event: unknown, newPage: number) => {
         setPage(newPage)
       }
 
@@ -790,7 +794,7 @@ export const CustomPaginationOptions = story<TableProps>(
         page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0
 
       const handleChangePage = (
-        event: React.MouseEvent<HTMLButtonElement> | null,
+        _event: React.MouseEvent<HTMLButtonElement> | null,
         newPage: number,
       ) => {
         setPage(newPage)
@@ -954,7 +958,7 @@ export const StickyHeader = story<TableProps>(
     const [page, setPage] = React.useState(0)
     const [rowsPerPage, setRowsPerPage] = React.useState(10)
 
-    const handleChangePage = (event: unknown, newPage: number) => {
+    const handleChangePage = (_event: unknown, newPage: number) => {
       setPage(newPage)
     }
 
@@ -1107,7 +1111,7 @@ export const ColumnGrouping = story<TableProps>(
     const [page, setPage] = React.useState(0)
     const [rowsPerPage, setRowsPerPage] = React.useState(10)
 
-    const handleChangePage = (event: unknown, newPage: number) => {
+    const handleChangePage = (_event: unknown, newPage: number) => {
       setPage(newPage)
     }
 
@@ -1253,7 +1257,7 @@ export const CollapsibleTable = story<TableProps>(
             <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
               <Collapse in={open} timeout="auto" unmountOnExit>
                 <Box sx={{ margin: 1 }}>
-                  <Typography variant="h6" gutterBottom component="div">
+                  <Typography variant="h3" gutterBottom component="div">
                     History
                   </Typography>
                   <Table size="small" aria-label="purchases">

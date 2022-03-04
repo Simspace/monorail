@@ -8,36 +8,38 @@ import MenuIcon from '@mui/icons-material/Menu'
 import MoreIcon from '@mui/icons-material/MoreVert'
 import NotificationsIcon from '@mui/icons-material/Notifications'
 import SearchIcon from '@mui/icons-material/Search'
+import {
+  AppBar,
+  AppBarProps,
+  Avatar,
+  Badge,
+  Box,
+  Button,
+  Container,
+  CssBaseline,
+  Fab,
+  FormControlLabel,
+  FormGroup,
+  IconButton,
+  InputBase,
+  List,
+  ListItem,
+  ListItemAvatar,
+  ListItemText,
+  ListSubheader,
+  Menu,
+  MenuItem,
+  Paper,
+  Slide,
+  Switch,
+  Toolbar,
+  Typography,
+  Zoom,
+} from '@mui/material'
 import { alpha, styled } from '@mui/material/styles'
 import useScrollTrigger from '@mui/material/useScrollTrigger'
 
 import { story } from '../../../__tests__/helpers/storybook'
-import { Avatar } from '../../Avatar/Avatar'
-import { Badge } from '../../Badge/Badge'
-import { Box } from '../../Box/Box'
-import { Button } from '../../Button/Button'
-import { Container } from '../../Container/Container'
-import { CssBaseline } from '../../CssBaseline/CssBaseline'
-import { Fab } from '../../Fab/Fab'
-import { FormControlLabel } from '../../FormControlLabel/FormControlLabel'
-import { FormGroup } from '../../FormGroup/FormGroup'
-import { IconButton } from '../../IconButton/IconButton'
-import { InputBase } from '../../InputBase/InputBase'
-import { List } from '../../List/List'
-import { ListItem } from '../../ListItem/ListItem'
-import { ListItemAvatar } from '../../ListItemAvatar/ListItemAvatar'
-import { ListItemText } from '../../ListItemText/ListItemText'
-import { ListSubheader } from '../../ListSubheader/ListSubheader'
-import { Menu } from '../../Menu/Menu'
-import { MenuItem } from '../../MenuItem/MenuItem'
-import { Paper } from '../../Paper/Paper'
-import { Slide } from '../../Slide/Slide'
-import { Switch } from '../../Switch/Switch'
-import { Toolbar } from '../../Toolbar/Toolbar'
-import { Typography } from '../../Typography/Typography'
-import { Zoom } from '../../Zoom/Zoom'
-import { AppBar, AppBarProps } from '../AppBar'
-import { defaultStoryMeta } from './AppBar.stories.gen'
 
 /**
  * Metadata for AppBar stories - update/extend as needed
@@ -45,8 +47,8 @@ import { defaultStoryMeta } from './AppBar.stories.gen'
  * "export default { ...defaultStoryMeta } // Add/extend as needed
  */
 export default {
-  ...defaultStoryMeta,
   title: 'Surfaces/AppBar',
+  component: AppBar,
   parameters: {
     docs: {
       iframeHeight: 400,
@@ -152,10 +154,10 @@ const Template = story<AppBarProps>(
             >
               <MenuIcon />
             </IconButton>
-            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            <Typography variant="h3" component="div" sx={{ flexGrow: 1 }}>
               News
             </Typography>
-            <Button color="inherit">Login</Button>
+            <Button>Login</Button>
           </Toolbar>
         </AppBar>
       </Box>
@@ -289,7 +291,7 @@ export const WithPrimarySearchField = story<AppBarProps>(
               <MenuIcon />
             </IconButton>
             <Typography
-              variant="h6"
+              variant="h3"
               noWrap
               component="div"
               sx={{ display: { xs: 'none', sm: 'block' } }}
@@ -410,7 +412,7 @@ export const WithMenu = story<AppBarProps>(
             >
               <MenuIcon />
             </IconButton>
-            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            <Typography variant="h3" component="div" sx={{ flexGrow: 1 }}>
               Photos
             </Typography>
             {auth && (
@@ -470,7 +472,7 @@ export const WithSearchField = story<AppBarProps>(
             <MenuIcon />
           </IconButton>
           <Typography
-            variant="h6"
+            variant="h3"
             noWrap
             component="div"
             sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
@@ -516,7 +518,7 @@ export const Dense = story<AppBarProps>(
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" color="inherit" component="div">
+          <Typography variant="h3" color="inherit" component="div">
             Photos
           </Typography>
         </Toolbar>
@@ -550,7 +552,7 @@ export const Prominent = story<AppBarProps>(
             <MenuIcon />
           </IconButton>
           <Typography
-            variant="h5"
+            variant="h3"
             noWrap
             component="div"
             sx={{ flexGrow: 1, alignSelf: 'flex-end' }}
@@ -645,7 +647,7 @@ export const BottomBar = story<AppBarProps>(
         <CssBaseline />
         <Paper square sx={{ pb: '50px' }}>
           <Typography
-            variant="h5"
+            variant="h3"
             gutterBottom
             component="div"
             sx={{ p: 2, pb: 0 }}
@@ -739,7 +741,7 @@ export const HidesOnScroll = story<AppBarProps>(
         <HideOnScroll>
           <AppBar {...args}>
             <Toolbar>
-              <Typography variant="h6" component="div">
+              <Typography variant="h3" component="div">
                 Scroll to Hide App Bar
               </Typography>
             </Toolbar>
@@ -802,7 +804,7 @@ export const ElevateOnScroll = story<AppBarProps>(
         <ElevationScroll>
           <AppBar {...args}>
             <Toolbar>
-              <Typography variant="h6" component="div">
+              <Typography variant="h3" component="div">
                 Scroll to Elevate App Bar
               </Typography>
             </Toolbar>
@@ -883,7 +885,7 @@ export const BackToTop = story<AppBarProps>(
         <CssBaseline />
         <AppBar {...args}>
           <Toolbar>
-            <Typography variant="h6" component="div">
+            <Typography variant="h3" component="div">
               Scroll to see button
             </Typography>
           </Toolbar>

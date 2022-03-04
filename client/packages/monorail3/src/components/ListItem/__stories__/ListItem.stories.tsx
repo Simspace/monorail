@@ -1,19 +1,25 @@
 // Edit this file to add new stories
 import React from 'react'
 import FolderIcon from '@mui/icons-material/Folder'
+import {
+  Avatar,
+  ListItem,
+  ListItemAvatar,
+  ListItemIcon,
+  ListItemProps,
+  ListItemText,
+} from '@mui/material'
 
 import { story } from '../../../__tests__/helpers/storybook'
-import { Avatar } from '../../Avatar/Avatar'
-import { ListItemAvatar } from '../../ListItemAvatar/ListItemAvatar'
-import { ListItemIcon } from '../../ListItemIcon/ListItemIcon'
-import { ListItemText } from '../../ListItemText/ListItemText'
-import { ListItem, ListItemProps } from '../ListItem'
-import { defaultStoryMeta } from './ListItem.stories.gen'
 
 /**
  * Metadata for ListItem stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Data Display/List/ListItem' }
+export default {
+  title: 'Data Display/List/ListItem',
+  // TODO: ListItemBaseProps is not exported, so tsc complains here
+  //component: ListItem,
+}
 /**
  * Story template (edit/remove by hand if needed)
  *
