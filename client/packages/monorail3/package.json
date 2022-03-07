@@ -88,9 +88,9 @@
   },
   "main": "./dist/index.js",
   "scripts": {
-    "build": "tsc",
+    "build": "tsc -b",
     "test": "jest --passWithNoTests",
-    "clean": "rm -rf dist/ node_modules/",
+    "clean": "rm -rf dist/",
     "type-check": "tsc --project tsconfig.json",
     "eslint": "NODE_OPTIONS=\"--max-old-space-size=8192\" eslint \"src/**/*.{js,ts,tsx}\"",
     "prettier:check": "prettier './src/**/*{.js,.ts,.tsx}' --list-different",
@@ -100,7 +100,9 @@
     "build-storybook": "build-storybook -s assets",
     "test:visual": "start-server-and-test 'yarn storybook' 6006 'yarn creevey --ui'",
     "test:visual:ci": "start-server-and-test 'yarn storybook:ci' 6006 'yarn creevey'",
-    "ci": "npm-run-all --parallel eslint test"
+    "ci": "npm-run-all --parallel eslint test",
+    "nix-post-build": "yarn build",
+    "dev": "yarn build --watch"
   },
   "lint-staged": {
     "src/**/*.{js,ts,tsx}": [
