@@ -7,6 +7,7 @@ import {
   MonorailButtonOverrides,
   MonorailLoadingButtonOverrides,
 } from '../components/Button/themeOverrides'
+import { MonorailButtonGroupOverrides } from '../components/ButtonGroup/themeOverrides'
 import { MonorailSvgIconOverrides } from '../components/SvgIcon/themeOverrides'
 import { baseTheme } from './baseTheme'
 
@@ -31,11 +32,7 @@ export const getThemeComponents = (
       disableRipple: true,
     },
   },
-  MuiButtonGroup: {
-    defaultProps: {
-      disableRipple: true,
-    },
-  },
+  MuiButtonGroup: MonorailButtonGroupOverrides,
   MuiBreadcrumbs: MonorailBreadcrumbsOverrides,
   MuiLoadingButton: MonorailLoadingButtonOverrides,
   MuiSvgIcon: MonorailSvgIconOverrides,
