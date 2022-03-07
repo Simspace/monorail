@@ -154,7 +154,7 @@ function HorizontalLinearStepperBase() {
           <Typography sx={{ mt: 2, mb: 1 }}>Step {activeStep + 1}</Typography>
           <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
             <Button
-              color="inherit"
+              variant="text"
               disabled={activeStep === 0}
               onClick={handleBack}
               sx={{ mr: 1 }}
@@ -163,7 +163,7 @@ function HorizontalLinearStepperBase() {
             </Button>
             <Box sx={{ flex: '1 1 auto' }} />
             {isStepOptional(activeStep) && (
-              <Button color="inherit" onClick={handleSkip} sx={{ mr: 1 }}>
+              <Button variant="outlined" onClick={handleSkip} sx={{ mr: 1 }}>
                 Skip
               </Button>
             )}
@@ -277,7 +277,7 @@ export const HorizontalNonLinearStepper = story(
               </Typography>
               <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
                 <Button
-                  color="inherit"
+                  variant="text"
                   disabled={activeStep === 0}
                   onClick={handleBack}
                   sx={{ mr: 1 }}
@@ -285,7 +285,7 @@ export const HorizontalNonLinearStepper = story(
                   Back
                 </Button>
                 <Box sx={{ flex: '1 1 auto' }} />
-                <Button onClick={handleNext} sx={{ mr: 1 }}>
+                <Button variant="outlined" onClick={handleNext} sx={{ mr: 1 }}>
                   Next
                 </Button>
                 {activeStep !== steps.length &&
