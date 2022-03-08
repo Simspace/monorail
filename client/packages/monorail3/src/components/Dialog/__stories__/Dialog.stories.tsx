@@ -462,7 +462,7 @@ export const FullScreenDialog = story<DialogProps>(() => {
         TransitionComponent={FullScreenTransition}
       >
         <AppBar sx={{ position: 'relative' }}>
-          <Toolbar>
+          <Toolbar sx={{ backgroundColor: 'accent.dark' }}>
             <IconButton
               edge="start"
               color="inherit"
@@ -475,7 +475,7 @@ export const FullScreenDialog = story<DialogProps>(() => {
             <Typography sx={{ ml: 2, flex: 1 }} variant="h3" component="div">
               Sound
             </Typography>
-            <Button autoFocus color="inherit" onClick={handleClose}>
+            <Button autoFocus color="primary" onClick={handleClose}>
               save
             </Button>
           </Toolbar>
