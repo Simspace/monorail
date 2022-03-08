@@ -104,7 +104,7 @@ export const Actions = story<AlertProps>(
         </Alert>
         <Alert
           action={
-            <Button color="inherit" size="small">
+            <Button color="success" size="small">
               Undo
             </Button>
           }
