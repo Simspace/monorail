@@ -8,6 +8,7 @@ import {
 import Box from '@mui/material/Box'
 import {
   CommonColors,
+  PaletteColorNoButtonState,
   TypeBackground,
   TypeText,
 } from '@mui/material/styles/createPalette'
@@ -45,8 +46,9 @@ const PaletteColorBox = ({
   paletteColor,
 }: {
   label: string
-  paletteColor: PaletteColor
+  paletteColor: PaletteColor | PaletteColorNoButtonState
 }) => {
+  const minWidth = '100px'
   return (
     <Box sx={{ display: 'flex', flexFlow: 'row', alignItems: 'center' }}>
       <Box component="h3" sx={{ flex: 1 }}>
@@ -55,15 +57,46 @@ const PaletteColorBox = ({
       <SingleColorBox
         color={paletteColor.light}
         label="Light"
-        minWidth="150px"
+        minWidth={minWidth}
       />
-      <SingleColorBox color={paletteColor.main} label="Main" minWidth="150px" />
-      <SingleColorBox color={paletteColor.dark} label="Dark" minWidth="150px" />
+      <SingleColorBox
+        color={paletteColor.main}
+        label="Main"
+        minWidth={minWidth}
+      />
+      <SingleColorBox
+        color={paletteColor.dark}
+        label="Dark"
+        minWidth={minWidth}
+      />
       <SingleColorBox
         color={paletteColor.contrastText}
         label="Contrast Text"
-        minWidth="150px"
+        minWidth={minWidth}
       />
+      {'hover' in paletteColor &&
+      'selected' in paletteColor &&
+      'active' in paletteColor ? (
+        <>
+          <SingleColorBox
+            color={paletteColor.hover}
+            label="Hover"
+            minWidth={minWidth}
+          />
+          <SingleColorBox
+            color={paletteColor.selected}
+            label="Selected"
+            minWidth={minWidth}
+          />
+          <SingleColorBox
+            color={paletteColor.active}
+            label="Active"
+            minWidth={minWidth}
+          />
+        </>
+      ) : (
+        <></>
+      )}
     </Box>
   )
 }
