@@ -1,20 +1,22 @@
 // Edit this file to add new stories
 import React from 'react'
-import { ModalUnstyled } from '@mui/material'
+import { ModalUnstyled } from '@mui/base'
+import {
+  Backdrop,
+  Box,
+  Button,
+  Fade,
+  Modal,
+  ModalProps,
+  Typography,
+} from '@mui/material'
 import { styled } from '@mui/material/styles'
 
 import { story } from '../../../__tests__/helpers/storybook'
-import { Backdrop } from '../../Backdrop/Backdrop'
-import { Box } from '../../Box/Box'
-import { Button } from '../../Button/Button'
-import { Fade } from '../../Fade/Fade'
-import { Typography } from '../../Typography/Typography'
-import { Modal, ModalProps } from '../Modal'
-import { defaultStoryMeta } from './Modal.stories.gen'
 /**
  * Metadata for Modal stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Utils/Modal' }
+export default { title: 'Utils/Modal', component: Modal }
 
 /**
  * Story template (edit/remove by hand if needed)
@@ -50,7 +52,7 @@ const Template = story<ModalProps>(
               p: 4,
             }}
           >
-            <Typography id="modal-modal-title" variant="h6" component="h2">
+            <Typography id="modal-modal-title" variant="h3" component="h2">
               Text in a modal
             </Typography>
             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
@@ -258,7 +260,7 @@ export const TransitionsModal = story<ModalProps>(
             >
               <Typography
                 id="transition-modal-title"
-                variant="h6"
+                variant="h3"
                 component="h2"
               >
                 Text in a modal
@@ -321,7 +323,7 @@ export const KeepMountedModal = story<ModalProps>(
           >
             <Typography
               id="keep-mounted-modal-title"
-              variant="h6"
+              variant="h3"
               component="h2"
             >
               Text in a modal
@@ -390,7 +392,7 @@ export const ServerModal = story<ModalProps>(
               p: 4,
             }}
           >
-            <Typography id="server-modal-title" variant="h6" component="h2">
+            <Typography id="server-modal-title" variant="h3" component="h2">
               Server-side modal
             </Typography>
             <Typography id="server-modal-description" sx={{ pt: 2 }}>

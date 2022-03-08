@@ -3,23 +3,25 @@ import React from 'react'
 import CheckIcon from '@mui/icons-material/Check'
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
 import CloseIcon from '@mui/icons-material/Close'
+import {
+  Alert,
+  AlertProps,
+  AlertTitle,
+  Box,
+  Button,
+  Collapse,
+  IconButton,
+  Snackbar,
+  Stack,
+  Typography,
+} from '@mui/material'
 
 import { story } from '../../../__tests__/helpers/storybook'
-import { AlertTitle } from '../../AlertTitle/AlertTitle'
-import { Box } from '../../Box/Box'
-import { Button } from '../../Button/Button'
-import { Collapse } from '../../Collapse/Collapse'
-import { IconButton } from '../../IconButton/IconButton'
-import { Snackbar } from '../../Snackbar/Snackbar'
-import { Stack } from '../../Stack/Stack'
-import { Typography } from '../../Typography/Typography'
-import { Alert, AlertProps } from '../Alert'
-import { defaultStoryMeta } from './Alert.stories.gen'
 
 /**
  * Metadata for Alert stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Feedback/Alert' }
+export default { title: 'Feedback/Alert', component: Alert }
 
 /**
  * Story template (edit/remove by hand if needed)
@@ -102,7 +104,7 @@ export const Actions = story<AlertProps>(
         </Alert>
         <Alert
           action={
-            <Button color="inherit" size="small">
+            <Button color="success" size="small">
               Undo
             </Button>
           }
@@ -287,7 +289,10 @@ export const WithSnackbar = story<AlertProps>(
       setOpen(true)
     }
 
-    const handleClose = (event?: React.SyntheticEvent, reason?: string) => {
+    const handleClose = (
+      _event?: React.SyntheticEvent | Event,
+      reason?: string,
+    ) => {
       if (reason === 'clickaway') {
         return
       }

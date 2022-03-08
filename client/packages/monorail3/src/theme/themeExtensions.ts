@@ -26,20 +26,14 @@ declare module '@mui/material/styles/createPalette' {
      * and it's convenient for them to be specified consistently in the theme.
      */
 
-    colors: {
-      blue: Color
-      orange: Color
-      teal: Color
-      fuschia: Color
-      purple: Color
-    }
+    accent: PaletteColorNoButtonState
 
     score: {
-      high: PaletteColor
-      highModerate: PaletteColor
-      moderate: PaletteColor
-      lowModerate: PaletteColor
-      low: PaletteColor
+      high: PaletteColorNoButtonState
+      highModerate: PaletteColorNoButtonState
+      moderate: PaletteColorNoButtonState
+      lowModerate: PaletteColorNoButtonState
+      low: PaletteColorNoButtonState
     }
 
     tiers: {
@@ -48,6 +42,22 @@ declare module '@mui/material/styles/createPalette' {
       three: string
       four: string
     }
+
+    chart: {
+      blue: Color
+      orange: Color
+      teal: Color
+      fuchsia: Color
+      purple: Color
+    }
+
+    admin: PaletteColor
+    content: PaletteColor
+    events: PaletteColor
+    network: PaletteColor
+    personnel: PaletteColor
+    reports: PaletteColor
+    techOps: PaletteColor
   }
 
   /**
@@ -56,20 +66,14 @@ declare module '@mui/material/styles/createPalette' {
    * Because these are custom and have no MUI-provided defaults, they are required to be set, so they can be safely used.
    */
   interface PaletteOptions {
-    score?: Partial<{
-      high: PaletteColorOptions
-      highModerate: PaletteColorOptions
-      moderate: PaletteColorOptions
-      lowModerate: PaletteColorOptions
-      low: PaletteColorOptions
-    }>
+    accent?: PaletteColorOptionsNoButtonState
 
-    colors?: Partial<{
-      blue: PaletteColorOptions
-      orange: PaletteColorOptions
-      teal: PaletteColorOptions
-      fuschia: PaletteColorOptions
-      purple: PaletteColorOptions
+    score?: Partial<{
+      high: PaletteColorOptionsNoButtonState
+      highModerate: PaletteColorOptionsNoButtonState
+      moderate: PaletteColorOptionsNoButtonState
+      lowModerate: PaletteColorOptionsNoButtonState
+      low: PaletteColorOptionsNoButtonState
     }>
 
     tiers?: Partial<{
@@ -78,17 +82,48 @@ declare module '@mui/material/styles/createPalette' {
       three: string
       four: string
     }>
+
+    chart?: Partial<{
+      blue: PaletteColorOptions
+      orange: PaletteColorOptions
+      teal: PaletteColorOptions
+      fuchsia: PaletteColorOptions
+      purple: PaletteColorOptions
+    }>
   }
+
+  interface PaletteColor {
+    hover: string
+    selected: string
+    active: string
+  }
+
+  interface PaletteColorNoButtonState {
+    light: string
+    main: string
+    dark: string
+    contrastText: string
+  }
+
+  interface SimplePaletteColorOptions {
+    hover: string
+    selected: string
+    active: string
+  }
+
+  interface SimplePaletteColorOptionsNoButtonState {
+    light?: string
+    main: string
+    dark?: string
+    contrastText?: string
+  }
+
+  type PaletteColorOptionsNoButtonState =
+    | SimplePaletteColorOptionsNoButtonState
+    | ColorPartial
 }
 
 declare module '@mui/material/Button' {
-  /**
-   * Extend the Button size to allow a new size `extraSmall` (aka dense)
-   */
-  interface ButtonPropsSizeOverrides {
-    extraSmall: true
-  }
-
   /**
    * Extend the Button color prop to allow for the other semantic styles.
    *
@@ -99,5 +134,19 @@ declare module '@mui/material/Button' {
     success: true
     warning: true
     error: true
+    inherit: false
+  }
+}
+
+declare module '@mui/material/ButtonGroup' {
+  /**
+   * Extend the ButtonGroup color prop to allow for the other semantic styles.
+   */
+  interface ButtonGroupPropsColorOverrides {
+    info: true
+    success: true
+    warning: true
+    error: true
+    inherit: false
   }
 }
