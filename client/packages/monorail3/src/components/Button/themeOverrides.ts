@@ -38,14 +38,14 @@ export const MonorailButtonOverrides: Components<Theme>['MuiButton'] = {
       }
     },
     sizeSmall: sx({
-      height: 32,
       py: 2,
       px: 4,
       minWidth: 'auto',
       fontSize: '0.875rem',
+      lineHeight: '1rem',
     }),
-    sizeMedium: sx({ height: 40, py: 2.5, px: 6 }),
-    sizeLarge: sx({ height: 48, py: 3.5, px: 6, fontSize: '1rem' }),
+    sizeMedium: sx({ py: 2.5, px: 6 }),
+    sizeLarge: sx({ py: 3.5, px: 6, fontSize: '1rem' }),
     iconSizeSmall: {
       '> *:nth-of-type(1)': {
         fontSize: 20,
