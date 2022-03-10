@@ -137,3 +137,16 @@ declare module '@mui/material/Button' {
     inherit: false
   }
 }
+
+declare module '@mui/material/ButtonGroup' {
+  /**
+   * Extend the ButtonGroup color prop to allow for the other semantic styles.
+   */
+  interface ButtonGroupPropsColorOverrides {
+    info: true
+    success: true
+    warning: true
+    error: true
+    inherit: false
+  }
+}
