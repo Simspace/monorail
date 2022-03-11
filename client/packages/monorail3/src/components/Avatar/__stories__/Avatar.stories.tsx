@@ -1,5 +1,6 @@
 // Edit this file to add new stories
 import React from 'react'
+import { Person } from '@mui/icons-material'
 import AssignmentIcon from '@mui/icons-material/Assignment'
 import FolderIcon from '@mui/icons-material/Folder'
 import PageviewIcon from '@mui/icons-material/Pageview'
@@ -14,6 +15,7 @@ import {
 import { styled } from '@mui/material/styles'
 
 import { story } from '../../../__tests__/helpers/storybook'
+import { AccountGroup } from '../../../icons/Icons'
 
 /**
  * Metadata for Avatar stories - update/extend as needed
@@ -92,17 +94,24 @@ export const Sizes = story<AvatarProps>(() => {
       <Avatar
         alt="Good Boi"
         src="https://images.dog.ceo/breeds/labrador/n02099712_4323.jpg"
-        sx={{ width: 24, height: 24 }}
+        sx={{ width: 32, height: 32 }}
       />
       <Avatar
         alt="Good Boi"
         src="https://images.dog.ceo/breeds/labrador/n02099712_4323.jpg"
       />
-      <Avatar
-        alt="Good Boi"
-        src="https://images.dog.ceo/breeds/labrador/n02099712_4323.jpg"
-        sx={{ width: 56, height: 56 }}
-      />
+      <Avatar sx={{ width: 32, height: 32 }}>
+        <Person />
+      </Avatar>
+      <Avatar>
+        <Person fontSize="large" />
+      </Avatar>
+      <Avatar sx={{ width: 32, height: 32 }}>
+        <AccountGroup />
+      </Avatar>
+      <Avatar>
+        <AccountGroup fontSize="large" />
+      </Avatar>
     </Stack>
   )
 })
@@ -110,7 +119,9 @@ export const Sizes = story<AvatarProps>(() => {
 Sizes.parameters = {
   docs: {
     description: {
-      story: `You can change the size of the avatar with the height and width CSS properties.`,
+      story: `You can change the size of the avatar with the height and width CSS properties.
+      
+We only use two sizes: 40px x 40px (default) and 32px x 32px.`,
     },
   },
   creevey: {
@@ -125,6 +136,12 @@ export const IconAvatars = story<AvatarProps>(
       <Stack direction="row" spacing={2}>
         <Avatar>
           <FolderIcon />
+        </Avatar>
+        <Avatar>
+          <Person />
+        </Avatar>
+        <Avatar>
+          <AccountGroup fontSize="large" />
         </Avatar>
         <Avatar sx={{ bgcolor: theme.palette.primary.main }}>
           <PageviewIcon />
@@ -148,33 +165,37 @@ export const IconAvatars = story<AvatarProps>(
 
 export const Variants = story<AvatarProps>(
   () => {
-    const theme = useTheme()
+    const variants = ['square', 'rounded', 'circular'] as const
     return (
-      <Stack direction="row" spacing={2}>
-        <Stack direction="column" spacing={1}>
-          <Avatar sx={{ bgcolor: theme.palette.primary.main }} variant="square">
-            N
-          </Avatar>
-          <Typography>square</Typography>
-        </Stack>
-        <Stack direction="column" spacing={1}>
-          <Avatar
-            sx={{ bgcolor: theme.palette.primary.main }}
-            variant="rounded"
+      <Stack direction="row" spacing={8}>
+        {variants.map(variant => (
+          <Stack
+            direction="column"
+            spacing={2}
+            key={variant}
+            alignItems="center"
           >
-            <AssignmentIcon />
-          </Avatar>
-          <Typography>rounded</Typography>
-        </Stack>
-        <Stack direction="column" spacing={1}>
-          <Avatar
-            sx={{ bgcolor: theme.palette.primary.main }}
-            variant="circular"
-          >
-            <AssignmentIcon />
-          </Avatar>
-          <Typography>circular</Typography>
-        </Stack>
+            <Typography variant="h3">{variant}</Typography>
+            <Typography>32px x 32px</Typography>
+            <Avatar variant={variant} sx={{ width: 32, height: 32 }}>
+              WW
+            </Avatar>
+            <Avatar variant={variant} sx={{ width: 32, height: 32 }}>
+              <Person />
+            </Avatar>
+            <Avatar variant={variant} sx={{ width: 32, height: 32 }}>
+              <AccountGroup />
+            </Avatar>
+            <Typography>40px x 40px</Typography>
+            <Avatar variant={variant}>WW</Avatar>
+            <Avatar variant={variant}>
+              <Person fontSize="large" />
+            </Avatar>
+            <Avatar variant={variant}>
+              <AccountGroup fontSize="large" />
+            </Avatar>
+          </Stack>
+        ))}
       </Stack>
     )
   },
