@@ -106,10 +106,10 @@ export const Sizes = story<AvatarProps>(() => {
       <Avatar>
         <Person fontSize="large" />
       </Avatar>
-      <Avatar sx={{ width: 32, height: 32 }}>
+      <Avatar variant="rounded" sx={{ width: 32, height: 32 }}>
         <AccountGroup />
       </Avatar>
-      <Avatar>
+      <Avatar variant="rounded">
         <AccountGroup fontSize="large" />
       </Avatar>
     </Stack>
@@ -140,7 +140,7 @@ export const IconAvatars = story<AvatarProps>(
         <Avatar>
           <Person />
         </Avatar>
-        <Avatar>
+        <Avatar variant="rounded">
           <AccountGroup fontSize="large" />
         </Avatar>
         <Avatar sx={{ bgcolor: theme.palette.primary.main }}>
