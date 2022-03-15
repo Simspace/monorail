@@ -92,15 +92,28 @@ export const Sizes = story<IconButtonProps>(
   },
 )
 
+// TODO: Add tertiary
+const colors = [
+  'primary',
+  'secondary',
+  'info',
+  'success',
+  'warning',
+  'error',
+] as const
+
 export const Colors = story<IconButtonProps>(
   () => (
     <Stack direction="row" spacing={1}>
-      <IconButton aria-label="fingerprint" color="secondary" size="large">
-        <DeleteIcon />
-      </IconButton>
-      <IconButton aria-label="fingerprint" color="success" size="large">
-        <DeleteIcon />
-      </IconButton>
+      {colors.map(color => (
+        <IconButton
+          aria-label="fingerprint"
+          color={color}
+          key={`icon-button-color-${color}`}
+        >
+          <DeleteIcon />
+        </IconButton>
+      ))}
     </Stack>
   ),
   {
