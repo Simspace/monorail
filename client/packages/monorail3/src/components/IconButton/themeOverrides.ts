@@ -3,7 +3,23 @@ import { Components, Theme } from '@mui/material'
 export const MonorailIconButtonOverrides: Components<Theme>['MuiIconButton'] = {
   defaultProps: {},
   styleOverrides: {
-    root: {},
+    root: ({ ownerState, theme }) => {
+      const color = ownerState.color ?? 'primary'
+      return {
+        '&.Mui-focusVisible': {
+          boxShadow: `0 0 0 3px ${
+            ownerState.color === 'default'
+              ? theme.palette.primary.light
+              : theme.palette[color].light
+          }`,
+          outline: `1px solid ${
+            ownerState.color === 'default'
+              ? theme.palette.primary.dark
+              : theme.palette[color].dark
+          }`,
+        },
+      }
+    },
     sizeSmall: {
       height: 32,
       width: 32,
