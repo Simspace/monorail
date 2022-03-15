@@ -1,13 +1,16 @@
 // Edit this file to add new stories
 import React from 'react'
-import { TableBody, TableBodyProps } from '../TableBody'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './TableBody.stories.gen'
-import { TableCell } from '../../TableCell/TableCell'
-import { TableRow } from '../../TableRow/TableRow'
-import { Table } from '../../Table/Table'
+import {
+  Table,
+  TableBody,
+  TableBodyProps,
+  TableCell,
+  TableRow,
+} from '@mui/material'
 
-export default { ...defaultStoryMeta, title: 'Data Display/Table/TableBody' }
+import { story } from '../../../__tests__/helpers/storybook'
+
+export default { title: 'Data Display/Table/TableBody', component: TableBody }
 
 const Template = story<TableBodyProps>(args => (
   <Table>

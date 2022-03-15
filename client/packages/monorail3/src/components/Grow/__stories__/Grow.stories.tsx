@@ -1,16 +1,19 @@
 // Edit this file to add new stories
 import React from 'react'
-import { Grow, GrowProps } from '../Grow'
+import {
+  Box,
+  FormControlLabel,
+  Grow,
+  GrowProps,
+  Paper,
+  Switch,
+} from '@mui/material'
+
 import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './Grow.stories.gen'
-import { Box } from '../../Box/Box'
-import { FormControlLabel } from '../../FormControlLabel/FormControlLabel'
-import { Switch } from '../../Switch/Switch'
-import { Paper } from '../../Paper/Paper'
 /**
  * Metadata for Grow stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Utils/Transitions/Grow' }
+export default { title: 'Utils/Transitions/Grow', component: Grow }
 
 const box = (
   <Paper sx={{ m: 1 }} elevation={4}>

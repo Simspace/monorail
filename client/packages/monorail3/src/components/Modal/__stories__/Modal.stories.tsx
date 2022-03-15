@@ -1,19 +1,22 @@
 // Edit this file to add new stories
 import React from 'react'
-import { Modal, ModalProps } from '../Modal'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './Modal.stories.gen'
-import { Button } from '../../Button/Button'
-import { Typography } from '../../Typography/Typography'
-import { Box } from '../../Box/Box'
+import { ModalUnstyled } from '@mui/base'
+import {
+  Backdrop,
+  Box,
+  Button,
+  Fade,
+  Modal,
+  ModalProps,
+  Typography,
+} from '@mui/material'
 import { styled } from '@mui/material/styles'
-import { ModalUnstyled } from '@mui/material'
-import { Fade } from '../../Fade/Fade'
-import { Backdrop } from '../../Backdrop/Backdrop'
+
+import { story } from '../../../__tests__/helpers/storybook'
 /**
  * Metadata for Modal stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Utils/Modal' }
+export default { title: 'Utils/Modal', component: Modal }
 
 /**
  * Story template (edit/remove by hand if needed)
@@ -22,7 +25,7 @@ export default { ...defaultStoryMeta, title: 'Utils/Modal' }
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
 const Template = story<ModalProps>(
-  args => {
+  () => {
     const [open, setOpen] = React.useState(false)
     const handleOpen = () => setOpen(true)
     const handleClose = () => setOpen(false)
@@ -49,7 +52,7 @@ const Template = story<ModalProps>(
               p: 4,
             }}
           >
-            <Typography id="modal-modal-title" variant="h6" component="h2">
+            <Typography id="modal-modal-title" variant="h3" component="h2">
               Text in a modal
             </Typography>
             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
@@ -257,7 +260,7 @@ export const TransitionsModal = story<ModalProps>(
             >
               <Typography
                 id="transition-modal-title"
-                variant="h6"
+                variant="h3"
                 component="h2"
               >
                 Text in a modal
@@ -320,7 +323,7 @@ export const KeepMountedModal = story<ModalProps>(
           >
             <Typography
               id="keep-mounted-modal-title"
-              variant="h6"
+              variant="h3"
               component="h2"
             >
               Text in a modal
@@ -389,7 +392,7 @@ export const ServerModal = story<ModalProps>(
               p: 4,
             }}
           >
-            <Typography id="server-modal-title" variant="h6" component="h2">
+            <Typography id="server-modal-title" variant="h3" component="h2">
               Server-side modal
             </Typography>
             <Typography id="server-modal-description" sx={{ pt: 2 }}>

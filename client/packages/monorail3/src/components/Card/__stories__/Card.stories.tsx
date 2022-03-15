@@ -1,36 +1,40 @@
 // Edit this file to add new stories
 import React from 'react'
-import { Card, CardProps } from '../Card'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './Card.stories.gen'
-import { Box } from '../../Box/Box'
-import { CardContent } from '../../CardContent/CardContent'
-import { Typography } from '../../Typography/Typography'
-import { CardActions } from '../../CardActions/CardActions'
-import { Button } from '../../Button/Button'
-import { styled } from '@mui/material/styles'
-import { IconButton, IconButtonProps } from '../../IconButton/IconButton'
-import { CardHeader } from '../../CardHeader/CardHeader'
-import { Avatar } from '../../Avatar/Avatar'
-import { Collapse } from '../../Collapse/Collapse'
-import { CardMedia } from '../../CardMedia/CardMedia'
-import { red } from '@mui/material/colors'
-import { CardActionArea } from '../../CardActionArea/CardActionArea'
-import { useTheme } from '../../../theme/useTheme'
-import FavoriteIcon from '@mui/icons-material/Favorite'
-import ShareIcon from '@mui/icons-material/Share'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
+import FavoriteIcon from '@mui/icons-material/Favorite'
 import MoreVertIcon from '@mui/icons-material/MoreVert'
-import SkipPreviousIcon from '@mui/icons-material/SkipPrevious'
 import PlayArrowIcon from '@mui/icons-material/PlayArrow'
+import ShareIcon from '@mui/icons-material/Share'
 import SkipNextIcon from '@mui/icons-material/SkipNext'
+import SkipPreviousIcon from '@mui/icons-material/SkipPrevious'
+import {
+  Avatar,
+  Box,
+  Button,
+  Card,
+  CardActionArea,
+  CardActions,
+  CardContent,
+  CardHeader,
+  CardMedia,
+  CardProps,
+  Collapse,
+  IconButton,
+  IconButtonProps,
+  Typography,
+  useTheme,
+} from '@mui/material'
+import { red } from '@mui/material/colors'
+import { styled } from '@mui/material/styles'
+
+import { story } from '../../../__tests__/helpers/storybook'
 import { images } from '../../../__tests__/helpers/testData'
 /**
  * Metadata for Card stories - update/extend as needed
  * This is intended to be exported as story-level metadata from the main .stories.tsx file, like:
  * "export default { ...defaultStoryMeta } // Add/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Surfaces/Card' }
+export default { title: 'Surfaces/Card', component: Card }
 /**
  * Story template (edit/remove by hand if needed)
  *
@@ -53,7 +57,7 @@ const Template = story<CardProps>(
         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
           Word of the Day
         </Typography>
-        <Typography variant="h5" component="div">
+        <Typography variant="h2" component="div">
           be{bull}nev{bull}o{bull}lent
         </Typography>
         <Typography sx={{ mb: 1.5 }} color="text.secondary">
@@ -94,7 +98,7 @@ export const OutlinedCard = story<CardProps>(
           <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
             Word of the Day
           </Typography>
-          <Typography variant="h5" component="div">
+          <Typography variant="h2" component="div">
             be{bull}nev{bull}o{bull}lent
           </Typography>
           <Typography sx={{ mb: 1.5 }} color="text.secondary">
@@ -128,7 +132,7 @@ interface ExpandMoreProps extends IconButtonProps {
 }
 
 const ExpandMore = styled((props: ExpandMoreProps) => {
-  const { expand, ...other } = props
+  const { expand: _expand, ...other } = props
   return <IconButton {...other} size="large" />
 })(({ theme, expand }) => ({
   transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
@@ -251,7 +255,7 @@ export const MediaCard = story<CardProps>(() => {
         title={images.lizard.title}
       />
       <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
+        <Typography gutterBottom variant="h2" component="div">
           Lizard
         </Typography>
         <Typography variant="body2" color="text.secondary">
@@ -290,7 +294,7 @@ export const ResponsiveMediaCard = story<CardProps>(() => {
         title={images.lizard.title}
       />
       <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
+        <Typography gutterBottom variant="h2" component="div">
           Lizard
         </Typography>
         <Typography variant="body2" color="text.secondary">
@@ -331,7 +335,7 @@ export const ActionAreaCard = story<CardProps>(() => {
           title={images.lizard.title}
         />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
+          <Typography gutterBottom variant="h2" component="div">
             Lizard
           </Typography>
           <Typography variant="body2" color="text.secondary">
@@ -369,7 +373,7 @@ export const MultiActionAreaCard = story<CardProps>(() => {
           title={images.lizard.title}
         />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
+          <Typography gutterBottom variant="h2" component="div">
             Lizard
           </Typography>
           <Typography variant="body2" color="text.secondary">
@@ -411,7 +415,7 @@ export const MediaControlCard = story<CardProps>(() => {
     >
       <Box sx={{ display: 'flex', flexDirection: 'column' }}>
         <CardContent sx={{ flex: '1 0 auto' }}>
-          <Typography component="div" variant="h5">
+          <Typography component="div" variant="h2">
             Live From Space
           </Typography>
           <Typography

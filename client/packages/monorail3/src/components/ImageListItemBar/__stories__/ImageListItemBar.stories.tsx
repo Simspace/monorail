@@ -1,17 +1,20 @@
 // Edit this file to add new stories
 import React from 'react'
-import { ImageListItemBar, ImageListItemBarProps } from '../ImageListItemBar'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './ImageListItemBar.stories.gen'
-import { IconButton } from '../../IconButton/IconButton'
 import InfoIcon from '@mui/icons-material/Info'
+import {
+  IconButton,
+  ImageListItemBar,
+  ImageListItemBarProps,
+} from '@mui/material'
+
+import { story } from '../../../__tests__/helpers/storybook'
 
 /**
  * Metadata for ImageListItemBar stories - update/extend as needed
  */
 export default {
-  ...defaultStoryMeta,
   title: 'Layout/ImageList/ImageListItemBar',
+  component: ImageListItemBar,
   parameters: {
     creevey: {
       skip: "Images don't load reliably",
@@ -25,7 +28,7 @@ export default {
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
 const Template = story<ImageListItemBarProps>(
-  args => <ImageListItemBar {...args} />,
+  (args: ImageListItemBarProps) => <ImageListItemBar {...args} />,
   {
     args: {
       title: 'title',

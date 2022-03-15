@@ -1,14 +1,13 @@
 // Edit this file to add new stories
 import React from 'react'
-import { Radio, RadioProps } from '../Radio'
+import { Radio, RadioProps, Typography } from '@mui/material'
+
 import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './Radio.stories.gen'
-import { Typography } from '../../Typography/Typography'
 
 /**
  * Metadata for Radio stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Inputs/Radio' }
+export default { title: 'Inputs/Radio', component: Radio }
 
 /**
  * Story template (edit/remove by hand if needed)

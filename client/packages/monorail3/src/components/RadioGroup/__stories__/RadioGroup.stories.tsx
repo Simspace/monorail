@@ -1,21 +1,25 @@
 // Edit this file to add new stories
 import React from 'react'
-import { RadioGroup, RadioGroupProps } from '../RadioGroup'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './RadioGroup.stories.gen'
-import { FormControl } from '../../FormControl/FormControl'
-import { FormLabel } from '../../FormLabel/FormLabel'
-import { FormControlLabel } from '../../FormControlLabel/FormControlLabel'
-import { Radio, RadioProps } from '../../Radio/Radio'
+import {
+  Button,
+  FormControl,
+  FormControlLabel,
+  FormHelperText,
+  FormLabel,
+  Radio,
+  RadioGroup,
+  RadioGroupProps,
+  RadioProps,
+} from '@mui/material'
 import { pink } from '@mui/material/colors'
-import { FormHelperText } from '../../FormHelperText/FormHelperText'
-import { Button } from '../../Button/Button'
 import { styled } from '@mui/material/styles'
+
+import { story } from '../../../__tests__/helpers/storybook'
 
 /**
  * Metadata for RadioGroup stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Inputs/RadioGroup' }
+export default { title: 'Inputs/RadioGroup', component: RadioGroup }
 
 /**
  * Story template (edit/remove by hand if needed)

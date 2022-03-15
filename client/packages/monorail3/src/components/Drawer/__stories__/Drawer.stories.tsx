@@ -1,34 +1,40 @@
 // Edit this file to add new stories
 import React from 'react'
-import { Drawer, DrawerProps } from '../Drawer'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './Drawer.stories.gen'
-import { Box } from '../../Box/Box'
-import { List } from '../../List/List'
-import { ListItem } from '../../ListItem/ListItem'
-import { ListItemText } from '../../ListItemText/ListItemText'
-import { Divider } from '../../Divider/Divider'
-import { Button } from '../../Button/Button'
-import InboxIcon from '@mui/icons-material/Inbox'
-import MailIcon from '@mui/icons-material/Mail'
-import { ListItemIcon } from '../../ListItemIcon/ListItemIcon'
-import { Toolbar } from '../../Toolbar/Toolbar'
-import { CssBaseline } from '../../CssBaseline/CssBaseline'
-import { AppBar, AppBarProps } from '../../AppBar/AppBar'
-import { IconButton } from '../../IconButton/IconButton'
-import MenuIcon from '@mui/icons-material/Menu'
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft'
 import ChevronRightIcon from '@mui/icons-material/ChevronRight'
-import { Typography } from '../../Typography/Typography'
-import { CSSObject, styled, Theme } from '@mui/material'
-import { useTheme } from '../../../theme/useTheme'
+import InboxIcon from '@mui/icons-material/Inbox'
+import MailIcon from '@mui/icons-material/Mail'
+import MenuIcon from '@mui/icons-material/Menu'
+import {
+  AppBar,
+  AppBarProps,
+  Box,
+  Button,
+  CssBaseline,
+  CSSObject,
+  Divider,
+  Drawer,
+  DrawerProps,
+  IconButton,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  styled,
+  Theme,
+  Toolbar,
+  Typography,
+  useTheme,
+} from '@mui/material'
+
+import { story } from '../../../__tests__/helpers/storybook'
 
 /**
  * Metadata for Drawer stories - update/extend as needed
  */
 export default {
-  ...defaultStoryMeta,
   title: 'Navigation/Drawer',
+  component: Drawer,
   parameters: {
     docs: {
       inlineStories: false,
@@ -44,7 +50,7 @@ export default {
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
 const Template = story<DrawerProps>(
-  args => {
+  (args: DrawerProps) => {
     const [open, setOpen] = React.useState(false)
     return (
       <>
@@ -209,7 +215,7 @@ export const ResponsiveDrawer = story<DrawerProps>(
             >
               <MenuIcon />
             </IconButton>
-            <Typography variant="h6" noWrap component="div">
+            <Typography variant="h3" noWrap component="div">
               Responsive drawer
             </Typography>
           </Toolbar>
@@ -380,7 +386,7 @@ export const PersistentDrawer = story<DrawerProps>(
             >
               <MenuIcon />
             </IconButton>
-            <Typography variant="h6" noWrap component="div">
+            <Typography variant="h3" noWrap component="div">
               Persistent drawer
             </Typography>
           </Toolbar>
@@ -582,7 +588,7 @@ export const MiniDrawer = story<DrawerProps>(
             >
               <MenuIcon />
             </IconButton>
-            <Typography variant="h6" noWrap component="div">
+            <Typography variant="h3" noWrap component="div">
               Mini variant drawer
             </Typography>
           </Toolbar>

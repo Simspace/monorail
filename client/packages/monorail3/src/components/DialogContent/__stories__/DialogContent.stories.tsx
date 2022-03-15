@@ -1,13 +1,19 @@
 // Edit this file to add new stories
 import React from 'react'
-import { DialogContent, DialogContentProps } from '../DialogContent'
+import {
+  DialogContent,
+  DialogContentProps,
+  DialogContentText,
+} from '@mui/material'
+
 import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './DialogContent.stories.gen'
-import { DialogContentText } from '../../DialogContentText/DialogContentText'
 /**
  * Metadata for DialogContent stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Feedback/Dialog/DialogContent' }
+export default {
+  title: 'Feedback/Dialog/DialogContent',
+  component: DialogContent,
+}
 /**
  * Story template (edit/remove by hand if needed)
  *
@@ -15,7 +21,7 @@ export default { ...defaultStoryMeta, title: 'Feedback/Dialog/DialogContent' }
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
 const Template = story<DialogContentProps>(
-  args => (
+  (args: DialogContentProps) => (
     <DialogContent {...args}>
       <DialogContentText>Dialog Content</DialogContentText>
     </DialogContent>

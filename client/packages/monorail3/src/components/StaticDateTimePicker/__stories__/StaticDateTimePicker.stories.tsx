@@ -1,19 +1,15 @@
 // Edit this file to add new stories
 import React from 'react'
-import {
-  StaticDateTimePicker,
-  StaticDateTimePickerProps,
-} from '../StaticDateTimePicker'
+import { StaticDateTimePicker, StaticDateTimePickerProps } from '@mui/lab'
+import { TextField } from '@mui/material'
+
 import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './StaticDateTimePicker.stories.gen'
-import { action } from '@storybook/addon-actions'
-import { TextField } from '../../TextField/TextField'
 /**
  * Metadata for StaticDateTimePicker stories - update/extend as needed
  */
 export default {
-  ...defaultStoryMeta,
   title: 'Inputs/Date and Time/Date Time/StaticDateTimePicker',
+  component: StaticDateTimePicker,
 }
 
 /**

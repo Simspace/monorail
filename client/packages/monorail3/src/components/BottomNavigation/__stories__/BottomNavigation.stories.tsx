@@ -1,15 +1,18 @@
 // Edit this file to add new stories
 import React from 'react'
-import { BottomNavigation, BottomNavigationProps } from '../BottomNavigation'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './BottomNavigation.stories.gen'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import FolderIcon from '@mui/icons-material/Folder'
 import LocationOnIcon from '@mui/icons-material/LocationOn'
 import RestoreIcon from '@mui/icons-material/Restore'
-import { Box } from '../../Box/Box'
-import { BottomNavigationAction } from '../../BottomNavigationAction/BottomNavigationAction'
-import { Alert } from '../../Alert/Alert'
+import {
+  Alert,
+  BottomNavigation,
+  BottomNavigationAction,
+  BottomNavigationProps,
+  Box,
+} from '@mui/material'
+
+import { story } from '../../../__tests__/helpers/storybook'
 
 /**
  * Metadata for BottomNavigation stories - update/extend as needed
@@ -17,8 +20,8 @@ import { Alert } from '../../Alert/Alert'
  * "export default { ...defaultStoryMeta } // Add/extend as needed
  */
 export default {
-  ...defaultStoryMeta,
   title: 'Navigation/BottomNavigation',
+  component: BottomNavigation,
 }
 
 /**
@@ -58,7 +61,7 @@ export const WithNoLabel = story<BottomNavigationProps>(
   () => {
     const [value, setValue] = React.useState('recents')
 
-    const handleChange = (event: React.SyntheticEvent, newValue: string) => {
+    const handleChange = (_event: React.SyntheticEvent, newValue: string) => {
       setValue(newValue)
     }
 

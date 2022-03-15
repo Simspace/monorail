@@ -1,14 +1,14 @@
 // Edit this file to add new stories
 import React from 'react'
-import { NoSsr, NoSsrProps } from '../NoSsr'
+import { NoSsr, NoSsrProps } from '@mui/material'
+
 import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './NoSsr.stories.gen'
 /**
  * Metadata for NoSsr stories - update/extend as needed
  */
 export default {
-  ...defaultStoryMeta,
   title: 'Utils/NoSsr',
+  component: NoSsr,
   parameters: {
     creevey: {
       skip: 'No story yet',

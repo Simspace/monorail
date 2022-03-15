@@ -1,58 +1,61 @@
 // Edit this file to add new stories
 import React from 'react'
-import { List, ListProps } from '../List'
-import { story } from '../../../__tests__/helpers/storybook'
-import { defaultStoryMeta } from './List.stories.gen'
-import { Box } from '../../Box/Box'
-import { ListItem } from '../../ListItem/ListItem'
-import { ListItemButton } from '../../ListItemButton/ListItemButton'
-import { ListItemIcon } from '../../ListItemIcon/ListItemIcon'
-import { ListItemText } from '../../ListItemText/ListItemText'
+import ArrowRightIcon from '@mui/icons-material/ArrowRight'
 import BeachAccessIcon from '@mui/icons-material/BeachAccess'
 import BluetoothIcon from '@mui/icons-material/Bluetooth'
 import CommentIcon from '@mui/icons-material/Comment'
-import InboxIcon from '@mui/icons-material/Inbox'
-import DraftsIcon from '@mui/icons-material/Drafts'
-import FolderIcon from '@mui/icons-material/Folder'
 import DeleteIcon from '@mui/icons-material/Delete'
-import SendIcon from '@mui/icons-material/Send'
-import ExpandMore from '@mui/icons-material/ExpandMore'
+import DnsIcon from '@mui/icons-material/Dns'
+import DraftsIcon from '@mui/icons-material/Drafts'
 import ExpandLess from '@mui/icons-material/ExpandLess'
-import StarBorder from '@mui/icons-material/StarBorder'
+import ExpandMore from '@mui/icons-material/ExpandMore'
+import FolderIcon from '@mui/icons-material/Folder'
+import HomeIcon from '@mui/icons-material/Home'
 import ImageIcon from '@mui/icons-material/Image'
-import StarIcon from '@mui/icons-material/Star'
-import WifiIcon from '@mui/icons-material/Wifi'
-import WorkIcon from '@mui/icons-material/Work'
+import InboxIcon from '@mui/icons-material/Inbox'
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 import PeopleIcon from '@mui/icons-material/People'
 import PermMediaIcon from '@mui/icons-material/PermMedia'
 import PublicIcon from '@mui/icons-material/Public'
-import DnsIcon from '@mui/icons-material/Dns'
-import HomeIcon from '@mui/icons-material/Home'
+import SendIcon from '@mui/icons-material/Send'
 import SettingsIcon from '@mui/icons-material/Settings'
-import ArrowRightIcon from '@mui/icons-material/ArrowRight'
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
-import { Divider } from '../../Divider/Divider'
-import { ListSubheader } from '../../ListSubheader/ListSubheader'
-import { Collapse } from '../../Collapse/Collapse'
-import { Avatar } from '../../Avatar/Avatar'
-import { ListItemAvatar } from '../../ListItemAvatar/ListItemAvatar'
+import StarIcon from '@mui/icons-material/Star'
+import StarBorder from '@mui/icons-material/StarBorder'
+import WifiIcon from '@mui/icons-material/Wifi'
+import WorkIcon from '@mui/icons-material/Work'
+import {
+  Alert,
+  Avatar,
+  Box,
+  Checkbox,
+  Collapse,
+  Divider,
+  FormControlLabel,
+  FormGroup,
+  Grid,
+  IconButton,
+  List,
+  ListItem,
+  ListItemAvatar,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+  ListProps,
+  ListSubheader,
+  Paper,
+  Switch,
+  Tooltip,
+  Typography,
+} from '@mui/material'
 import {
   createTheme,
   styled,
-  ThemeProvider,
-  Theme,
   StyledEngineProvider,
+  Theme,
+  ThemeProvider,
 } from '@mui/material/styles'
-import { FormGroup } from '../../FormGroup/FormGroup'
-import { FormControlLabel } from '../../FormControlLabel/FormControlLabel'
-import { Checkbox } from '../../Checkbox/Checkbox'
-import { Grid } from '../../Grid/Grid'
-import { Typography } from '../../Typography/Typography'
-import { IconButton } from '../../IconButton/IconButton'
-import { Switch } from '../../Switch/Switch'
-import { Alert } from '../../Alert/Alert'
-import { Paper } from '../../Paper/Paper'
-import { Tooltip } from '../../Tooltip/Tooltip'
+
+import { story } from '../../../__tests__/helpers/storybook'
 
 declare module '@mui/styles/defaultTheme' {
   // eslint-disable-next-line @typescript-eslint/no-empty-interface
@@ -67,7 +70,7 @@ declare module '@mui/styles/defaultTheme' {
 /**
  * Metadata for List stories - update/extend as needed
  */
-export default { ...defaultStoryMeta, title: 'Data Display/List' }
+export default { title: 'Data Display/List', component: List }
 
 /**
  * Story template (edit/remove by hand if needed)
@@ -268,7 +271,7 @@ export const InteractiveList = story<ListProps>(
         </FormGroup>
         <Grid container spacing={2}>
           <Grid item xs={12} md={6}>
-            <Typography sx={{ mt: 4, mb: 2 }} variant="h6" component="div">
+            <Typography sx={{ mt: 4, mb: 2 }} variant="h3" component="div">
               Text only
             </Typography>
             <Demo>
@@ -285,7 +288,7 @@ export const InteractiveList = story<ListProps>(
             </Demo>
           </Grid>
           <Grid item xs={12} md={6}>
-            <Typography sx={{ mt: 4, mb: 2 }} variant="h6" component="div">
+            <Typography sx={{ mt: 4, mb: 2 }} variant="h3" component="div">
               Icon with text
             </Typography>
             <Demo>
@@ -307,7 +310,7 @@ export const InteractiveList = story<ListProps>(
         </Grid>
         <Grid container spacing={2}>
           <Grid item xs={12} md={6}>
-            <Typography sx={{ mt: 4, mb: 2 }} variant="h6" component="div">
+            <Typography sx={{ mt: 4, mb: 2 }} variant="h3" component="div">
               Avatar with text
             </Typography>
             <Demo>
@@ -329,7 +332,7 @@ export const InteractiveList = story<ListProps>(
             </Demo>
           </Grid>
           <Grid item xs={12} md={6}>
-            <Typography sx={{ mt: 4, mb: 2 }} variant="h6" component="div">
+            <Typography sx={{ mt: 4, mb: 2 }} variant="h3" component="div">
               Avatar with text and icon
             </Typography>
             <Demo>
@@ -375,11 +378,9 @@ export const SelectedListItem = story<ListProps>(
   () => {
     const [selectedIndex, setSelectedIndex] = React.useState(1)
 
-    const handleListItemClick =
-      (index: number) =>
-      (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-        setSelectedIndex(index)
-      }
+    const handleListItemClick = (index: number) => () => {
+      setSelectedIndex(index)
+    }
 
     return (
       <Box sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
@@ -872,7 +873,6 @@ export const CustomizedList = story<ListProps>(
               },
               palette: {
                 mode: 'dark',
-                primary: { main: 'rgb(102, 157, 246)' },
                 background: { paper: 'rgb(5, 30, 52)' },
               },
             })}
