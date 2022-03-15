@@ -3,7 +3,7 @@ import React from 'react'
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart'
 import AlarmIcon from '@mui/icons-material/Alarm'
 import DeleteIcon from '@mui/icons-material/Delete'
-import { IconButton, IconButtonProps, Stack } from '@mui/material'
+import { IconButton, IconButtonProps, Stack, Typography } from '@mui/material'
 
 import { story } from '../../../__tests__/helpers/storybook'
 /**
@@ -94,6 +94,7 @@ export const Sizes = story<IconButtonProps>(
 
 // TODO: Add tertiary
 const colors = [
+  'default',
   'primary',
   'secondary',
   'info',
@@ -104,15 +105,19 @@ const colors = [
 
 export const Colors = story<IconButtonProps>(
   () => (
-    <Stack direction="row" spacing={1}>
+    <Stack spacing={2}>
       {colors.map(color => (
-        <IconButton
-          aria-label="fingerprint"
-          color={color}
+        <Stack
+          direction="row"
+          spacing={2}
+          alignItems="center"
           key={`icon-button-color-${color}`}
         >
-          <DeleteIcon />
-        </IconButton>
+          <IconButton aria-label="fingerprint" color={color}>
+            <DeleteIcon />
+          </IconButton>
+          <Typography>{color}</Typography>
+        </Stack>
       ))}
     </Stack>
   ),

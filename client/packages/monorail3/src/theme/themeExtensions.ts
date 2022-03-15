@@ -28,6 +28,8 @@ declare module '@mui/material/styles/createPalette' {
 
     accent: PaletteColorNoButtonState
 
+    default: PaletteColor
+
     score: {
       high: PaletteColorNoButtonState
       highModerate: PaletteColorNoButtonState
@@ -67,6 +69,8 @@ declare module '@mui/material/styles/createPalette' {
    */
   interface PaletteOptions {
     accent?: PaletteColorOptionsNoButtonState
+
+    default?: PaletteColor
 
     score?: Partial<{
       high: PaletteColorOptionsNoButtonState
@@ -147,6 +151,22 @@ declare module '@mui/material/ButtonGroup' {
     success: true
     warning: true
     error: true
+    inherit: false
+  }
+}
+
+declare module '@mui/material/IconButton' {
+  /**
+   * Extend the Button color prop to allow for the other semantic styles.
+   *
+   * These seem to work out-of-the-box with no custom variant theming
+   */
+  interface IconButtonPropsColorOverrides {
+    info: true
+    success: true
+    warning: true
+    error: true
+    default: true
     inherit: false
   }
 }
