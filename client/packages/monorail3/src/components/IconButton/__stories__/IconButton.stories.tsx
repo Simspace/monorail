@@ -85,13 +85,13 @@ export const Sizes = story<IconButtonProps>(
   () => (
     <Stack direction="row" spacing={4}>
       <IconButton aria-label="delete" size="small" variant="outlined" color="primary">
-        <DeleteIcon />
+        <DeleteIcon fontSize='inherit' />
       </IconButton>
       <IconButton aria-label="delete" size="medium" variant="outlined" color="primary">
         <DeleteIcon />
       </IconButton>
       <IconButton aria-label="delete" size="large" variant="outlined" color="primary">
-        <DeleteIcon fontSize="large" />
+        <DeleteIcon fontSize="inherit" />
       </IconButton>
     </Stack>
   ),
@@ -99,7 +99,9 @@ export const Sizes = story<IconButtonProps>(
     parameters: {
       docs: {
         description: {
-          story: `For larger or smaller icon buttons, use the size prop.`,
+          story: `For larger or smaller icon buttons, use the size prop. 
+
+Use fontSize="inherit" for the icon when using size="small" or size="large". fontSizes are defined in the theme.`,
         },
       },
     },
