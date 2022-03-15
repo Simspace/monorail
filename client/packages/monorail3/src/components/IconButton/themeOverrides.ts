@@ -18,6 +18,15 @@ export const MonorailIconButtonOverrides: Components<Theme>['MuiIconButton'] = {
               : theme.palette[color].dark
           }`,
         },
+        '&.Mui-disabled': {
+          color: theme.palette[color].light
+        },
+        '&:hover': {
+          backgroundColor: theme.palette[color].hover,
+        },
+        '&:active': {
+          backgroundColor: theme.palette[color].active,
+        }
       }
     },
     sizeSmall: {

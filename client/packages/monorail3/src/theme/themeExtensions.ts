@@ -157,9 +157,7 @@ declare module '@mui/material/ButtonGroup' {
 
 declare module '@mui/material/IconButton' {
   /**
-   * Extend the Button color prop to allow for the other semantic styles.
-   *
-   * These seem to work out-of-the-box with no custom variant theming
+   * Extend the IconButton color prop to allow for the other semantic styles.
    */
   interface IconButtonPropsColorOverrides {
     info: true

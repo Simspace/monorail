@@ -36,7 +36,7 @@ export const Showcase = story<IconButtonProps>(
       <IconButton aria-label="delete" size="large">
         <DeleteIcon />
       </IconButton>
-      <IconButton aria-label="delete" disabled color="primary" size="large">
+      <IconButton aria-label="delete" disabled size="large">
         <DeleteIcon />
       </IconButton>
       <IconButton color="secondary" aria-label="add an alarm" size="large">
@@ -113,7 +113,10 @@ export const Colors = story<IconButtonProps>(
           alignItems="center"
           key={`icon-button-color-${color}`}
         >
-          <IconButton aria-label="fingerprint" color={color}>
+          <IconButton aria-label="delete" color={color}>
+            <DeleteIcon />
+          </IconButton>
+          <IconButton aria-label="delete" disabled color={color}>
             <DeleteIcon />
           </IconButton>
           <Typography>{color}</Typography>
