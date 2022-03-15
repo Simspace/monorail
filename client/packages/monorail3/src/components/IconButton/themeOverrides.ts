@@ -1,4 +1,4 @@
-import { Components, Theme } from '@mui/material'
+import { Components, darken, Theme } from '@mui/material'
 
 export const MonorailIconButtonOverrides: Components<Theme>['MuiIconButton'] = {
   defaultProps: {},
@@ -12,7 +12,7 @@ export const MonorailIconButtonOverrides: Components<Theme>['MuiIconButton'] = {
               ? theme.palette.primary.light
               : theme.palette[color].light
           }`,
-          outline: `1px solid ${
+          border: `1px solid ${
             ownerState.color === 'default'
               ? theme.palette.primary.dark
               : theme.palette[color].dark
@@ -21,12 +21,41 @@ export const MonorailIconButtonOverrides: Components<Theme>['MuiIconButton'] = {
         '&.Mui-disabled': {
           color: theme.palette[color].light
         },
-        '&:hover': {
-          backgroundColor: theme.palette[color].hover,
-        },
-        '&:active': {
-          backgroundColor: theme.palette[color].active,
-        }
+        ...(ownerState.shape === 'rounded' && {
+          borderRadius: 3
+        }),
+        ...(ownerState.variant === 'chromeless' && {
+          backgroundColor: 'transparent',
+          '&:hover': {
+            backgroundColor: theme.palette[color].hover,
+          },
+          '&:active': {
+            backgroundColor: theme.palette[color].active
+          },
+        }),
+        ...(ownerState.variant === 'contained' && {
+          backgroundColor: theme.palette[color].main,
+          color: theme.palette.getContrastText(theme.palette[color].main),
+          '&:hover': {
+            backgroundColor: theme.palette[color].dark,
+          },
+          '&:active': {
+            backgroundColor: darken(
+              theme.palette[color].dark,
+              theme.palette.action.activatedOpacity,
+            ),
+          },
+        }),
+        ...(ownerState.variant === 'outlined' && {
+          border: `1px solid ${theme.palette[color].main}`,
+          backgroundColor: theme.palette.background.paper,
+          '&:hover': {
+            backgroundColor: theme.palette[color].hover,
+          },
+          '&:active': {
+            backgroundColor: theme.palette[color].active
+          },
+        })
       }
     },
     sizeSmall: {

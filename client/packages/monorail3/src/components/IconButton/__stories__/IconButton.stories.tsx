@@ -3,9 +3,10 @@ import React from 'react'
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart'
 import AlarmIcon from '@mui/icons-material/Alarm'
 import DeleteIcon from '@mui/icons-material/Delete'
-import { IconButton, IconButtonProps, Stack, Typography } from '@mui/material'
+import {  Stack, Typography } from '@mui/material'
 
 import { story } from '../../../__tests__/helpers/storybook'
+import { IconButton, IconButtonProps } from '../IconButton'
 /**
  * Metadata for IconButton stories - update/extend as needed
  */
@@ -64,20 +65,33 @@ Icons are also appropriate for toggle buttons that allow a single choice to be s
   },
 )
 
-export const Sizes = story<IconButtonProps>(
+export const Variants = story<IconButtonProps>(
   () => (
     <Stack direction="row" spacing={1}>
-      <IconButton aria-label="delete" size="small">
-        <DeleteIcon fontSize="inherit" />
-      </IconButton>
-      <IconButton aria-label="delete" size="small">
-        <DeleteIcon fontSize="small" />
-      </IconButton>
-      <IconButton aria-label="delete" size="large">
+      <IconButton aria-label="delete" variant="chromeless" color="primary">
         <DeleteIcon />
       </IconButton>
-      <IconButton aria-label="delete" size="large">
-        <DeleteIcon fontSize="inherit" />
+      <IconButton aria-label="delete" variant="outlined" color="primary">
+        <DeleteIcon />
+      </IconButton>
+      <IconButton aria-label="delete" variant="contained" color="primary">
+        <DeleteIcon />
+      </IconButton>
+    </Stack>
+  ),
+)
+
+export const Sizes = story<IconButtonProps>(
+  () => (
+    <Stack direction="row" spacing={4}>
+      <IconButton aria-label="delete" size="small" variant="outlined" color="primary">
+        <DeleteIcon />
+      </IconButton>
+      <IconButton aria-label="delete" size="medium" variant="outlined" color="primary">
+        <DeleteIcon />
+      </IconButton>
+      <IconButton aria-label="delete" size="large" variant="outlined" color="primary">
+        <DeleteIcon fontSize="large" />
       </IconButton>
     </Stack>
   ),
@@ -90,9 +104,27 @@ export const Sizes = story<IconButtonProps>(
       },
     },
   },
-)
+  )
+  
+  export const Shapes = story<IconButtonProps>(
+    () => (
+      <Stack direction="row" spacing={4}>
+        <IconButton aria-label="delete" shape="circular" variant="outlined" color="primary">
+          <DeleteIcon />
+        </IconButton>
+        <IconButton aria-label="delete" shape="rounded" variant="outlined" color="primary">
+          <DeleteIcon />
+        </IconButton>
+        <IconButton aria-label="delete" shape="circular" variant="contained" color="primary">
+          <DeleteIcon />
+        </IconButton>
+        <IconButton aria-label="delete" shape="rounded" variant="contained" color="primary">
+          <DeleteIcon />
+        </IconButton>
+      </Stack>
+    ),
+  )
 
-// TODO: Add tertiary
 const colors = [
   'default',
   'primary',
