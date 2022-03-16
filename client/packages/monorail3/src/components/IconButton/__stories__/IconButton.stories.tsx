@@ -29,24 +29,22 @@ const Template = story<IconButtonProps>(
 )
 /** Default story for IconButton (edit/remove by hand if needed) */
 export const Default = story(Template)
-// TODO: add more stories below
 
 export const Showcase = story<IconButtonProps>(
   () => (
-    <Stack direction="row" spacing={1}>
-      <IconButton aria-label="delete" size="large">
+    <Stack direction="row" spacing={4}>
+      <IconButton aria-label="delete">
         <DeleteIcon />
       </IconButton>
-      <IconButton aria-label="delete" disabled size="large">
+      <IconButton aria-label="delete" disabled>
         <DeleteIcon />
       </IconButton>
-      <IconButton color="secondary" aria-label="add an alarm" size="large">
+      <IconButton color="secondary" aria-label="add an alarm">
         <AlarmIcon />
       </IconButton>
       <IconButton
         color="primary"
         aria-label="add to shopping cart"
-        size="large"
       >
         <AddShoppingCartIcon />
       </IconButton>
@@ -67,7 +65,7 @@ Icons are also appropriate for toggle buttons that allow a single choice to be s
 
 export const Variants = story<IconButtonProps>(
   () => (
-    <Stack direction="row" spacing={1}>
+    <Stack direction="row" spacing={4}>
       <IconButton aria-label="delete" variant="chromeless" color="primary">
         <DeleteIcon />
       </IconButton>
