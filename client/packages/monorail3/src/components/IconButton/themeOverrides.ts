@@ -67,6 +67,10 @@ export const MonorailIconButtonOverrides: Components<Theme>['MuiIconButton'] = {
           theme.palette.action.activatedOpacity,
         ),
       },
+      '&.Mui-focusVisible': {
+        boxShadow: `0 0 0 3px ${theme.palette.primary.light}`,
+        border: `1px solid ${theme.palette.primary.dark}`,
+      },
     }),
     sizeSmall: {
       height: 32,
