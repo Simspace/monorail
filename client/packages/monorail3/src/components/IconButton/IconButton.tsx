@@ -9,4 +9,6 @@ export interface IconButtonProps extends MUI.IconButtonProps {
 
 const StyledIconButton = styled(MUI.IconButton)``
 
-export const IconButton = (props: IconButtonProps) => <StyledIconButton variant="chromeless" shape="circular" {...props} />
+export const IconButton = (props: IconButtonProps) => (
+  <StyledIconButton variant="chromeless" shape="circular" {...props} />
+)

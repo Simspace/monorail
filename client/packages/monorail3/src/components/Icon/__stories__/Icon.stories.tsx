@@ -8,7 +8,7 @@ import DeleteIcon from '@mui/icons-material/Delete'
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined'
 import HomeIcon from '@mui/icons-material/Home'
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined'
-import { Box, Icon, IconProps, Stack, styled, Typography } from '@mui/material'
+import { Box, Icon, IconProps, styled, Typography } from '@mui/material'
 
 import { story } from '../../../__tests__/helpers/storybook'
 import * as Icons from '../../../icons/Icons'
@@ -111,7 +111,11 @@ export const Colors = story<IconProps>(() => (
   <IconsContainer>
     <Box display="grid" gridTemplateColumns="repeat(12, 1fr)" gap={8}>
       {colors.map(color => (
-        <IconContainer label={color} icon={<HomeIcon color={color} />} />
+        <IconContainer
+          key={`icon-${color}`}
+          label={color}
+          icon={<HomeIcon color={color} />}
+        />
       ))}
     </Box>
   </IconsContainer>
@@ -122,7 +126,11 @@ const sizes = ['small', 'medium', 'large', 'inherit'] as const
 export const Sizes = story<IconProps>(() => (
   <Box display="grid" gridTemplateColumns="repeat(12, 1fr)" gap={8}>
     {sizes.map(size => (
-      <IconContainer label={size} icon={<HomeIcon fontSize={size} />} />
+      <IconContainer
+        key={`icon-${size}`}
+        label={size}
+        icon={<HomeIcon fontSize={size} />}
+      />
     ))}
   </Box>
 ))
