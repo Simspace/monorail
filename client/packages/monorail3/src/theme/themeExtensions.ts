@@ -168,3 +168,12 @@ declare module '@mui/material/IconButton' {
     inherit: false
   }
 }
+
+declare module '@mui/material/SvgIcon' {
+  /**
+   * Extend the SvgIcon color prop to apply a default grey color.
+   */
+  interface SvgIconPropsColorOverrides {
+    default: true
+  }
+}

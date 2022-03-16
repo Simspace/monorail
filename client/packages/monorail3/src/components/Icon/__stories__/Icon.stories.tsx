@@ -8,7 +8,7 @@ import DeleteIcon from '@mui/icons-material/Delete'
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined'
 import HomeIcon from '@mui/icons-material/Home'
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined'
-import { Box, Icon, IconProps, styled, Typography } from '@mui/material'
+import { Box, Icon, IconProps, Stack, styled, Typography } from '@mui/material'
 
 import { story } from '../../../__tests__/helpers/storybook'
 import * as Icons from '../../../icons/Icons'
@@ -54,25 +54,31 @@ export const MaterialIcons = story<IconProps>(
   () => (
     <IconsContainer>
       <Box display="grid" gridTemplateColumns="repeat(12, 1fr)" gap={8}>
-        <IconContainer label="Home" icon={<HomeIcon />} />
-        <IconContainer label="Home Outlined" icon={<HomeOutlinedIcon />} />
-        <IconContainer label="Delete" icon={<DeleteIcon />} />
+        <IconContainer label="Home" icon={<HomeIcon color="default" />} />
+        <IconContainer
+          label="Home Outlined"
+          icon={<HomeOutlinedIcon color="default" />}
+        />
+        <IconContainer label="Delete" icon={<DeleteIcon color="default" />} />
         <IconContainer
           label="Delete Outlined"
-          icon={<DeleteOutlineOutlinedIcon />}
+          icon={<DeleteOutlineOutlinedIcon color="default" />}
         />
-        <IconContainer label="Account Circle" icon={<AccountCircleIcon />} />
+        <IconContainer
+          label="Account Circle"
+          icon={<AccountCircleIcon color="default" />}
+        />
         <IconContainer
           label="Account Circle Outlined"
-          icon={<AccountCircleOutlinedIcon />}
+          icon={<AccountCircleOutlinedIcon color="default" />}
         />
         <IconContainer
           label="Arrow Drop Down Circle"
-          icon={<ArrowDropDownCircleIcon />}
+          icon={<ArrowDropDownCircleIcon color="default" />}
         />
         <IconContainer
           label="Arrow Drop Down Circle Outlined"
-          icon={<ArrowDropDownCircleOutlinedIcon />}
+          icon={<ArrowDropDownCircleOutlinedIcon color="default" />}
         />
       </Box>
     </IconsContainer>
@@ -87,6 +93,39 @@ export const MaterialIcons = story<IconProps>(
     },
   },
 )
+
+const colors = [
+  'default',
+  'inherit',
+  'disabled',
+  'action',
+  'primary',
+  'secondary',
+  'error',
+  'info',
+  'success',
+  'warning',
+] as const
+
+export const Colors = story<IconProps>(() => (
+  <IconsContainer>
+    <Box display="grid" gridTemplateColumns="repeat(12, 1fr)" gap={8}>
+      {colors.map(color => (
+        <IconContainer label={color} icon={<HomeIcon color={color} />} />
+      ))}
+    </Box>
+  </IconsContainer>
+))
+
+const sizes = ['small', 'medium', 'large', 'inherit'] as const
+
+export const Sizes = story<IconProps>(() => (
+  <Box display="grid" gridTemplateColumns="repeat(12, 1fr)" gap={8}>
+    {sizes.map(size => (
+      <IconContainer label={size} icon={<HomeIcon fontSize={size} />} />
+    ))}
+  </Box>
+))
 
 export const AllCustomIcons = story<IconProps>(args => (
   <IconsContainer>
