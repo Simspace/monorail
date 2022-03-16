@@ -1,4 +1,4 @@
-import { Components, darken, Theme } from '@mui/material'
+import { alpha, Components, darken, Theme } from '@mui/material'
 
 export const MonorailIconButtonOverrides: Components<Theme>['MuiIconButton'] = {
   defaultProps: {},
@@ -60,6 +60,14 @@ export const MonorailIconButtonOverrides: Components<Theme>['MuiIconButton'] = {
         }
       )
     },
+    colorInherit: ({ theme }) => ({
+      '&:active': {
+        backgroundColor: alpha(
+          theme.palette.action.active,
+          theme.palette.action.activatedOpacity,
+        ),
+      },
+    }),
     sizeSmall: {
       height: 32,
       width: 32,

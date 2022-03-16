@@ -155,6 +155,7 @@ export const Shapes = story<IconButtonProps>(() => (
 
 const colors = [
   'default',
+  'inherit',
   'primary',
   'secondary',
   'info',
