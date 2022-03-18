@@ -7,11 +7,11 @@ export const MonorailSvgIconOverrides: Components<Theme>['MuiSvgIcon'] = {
       ownerState.color === 'default' && {
         fill: theme.palette.default.main,
       },
-    fontSizeSmall: {
-      fontSize: '1rem', // 16px
-    },
-    fontSizeLarge: {
-      fontSize: '2rem', // 32px
-    },
+    fontSizeSmall: ({ theme }) => ({
+      fontSize: theme.typography.pxToRem(16),
+    }),
+    fontSizeLarge: ({ theme }) => ({
+      fontSize: theme.typography.pxToRem(32),
+    }),
   },
 }
