@@ -3,6 +3,7 @@ import type {} from '@mui/lab/themeAugmentation'
 import { Theme, ThemeOptions } from '@mui/material'
 
 import { MonorailAvatarOverrides } from '../components/Avatar/themeOverrides'
+import { MonorailBadgeOverrides } from '../components/Badge/themeOverrides'
 import { MonorailBreadcrumbsOverrides } from '../components/Breadcrumbs/themeOverrides'
 import {
   MonorailButtonOverrides,
@@ -28,6 +29,7 @@ export const getThemeComponents = (
     },
   },
   MuiAvatar: MonorailAvatarOverrides,
+  MuiBadge: MonorailBadgeOverrides,
   MuiButton: MonorailButtonOverrides,
   MuiButtonBase: {
     defaultProps: {
