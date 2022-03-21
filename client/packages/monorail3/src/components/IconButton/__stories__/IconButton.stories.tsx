@@ -3,9 +3,10 @@ import React from 'react'
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart'
 import AlarmIcon from '@mui/icons-material/Alarm'
 import DeleteIcon from '@mui/icons-material/Delete'
-import { IconButton, IconButtonProps, Stack } from '@mui/material'
+import { Stack, Typography } from '@mui/material'
 
 import { story } from '../../../__tests__/helpers/storybook'
+import { IconButton, IconButtonProps } from '../IconButton'
 /**
  * Metadata for IconButton stories - update/extend as needed
  */
@@ -28,25 +29,20 @@ const Template = story<IconButtonProps>(
 )
 /** Default story for IconButton (edit/remove by hand if needed) */
 export const Default = story(Template)
-// TODO: add more stories below
 
 export const Showcase = story<IconButtonProps>(
   () => (
-    <Stack direction="row" spacing={1}>
-      <IconButton aria-label="delete" size="large">
+    <Stack direction="row" spacing={4}>
+      <IconButton aria-label="delete">
         <DeleteIcon />
       </IconButton>
-      <IconButton aria-label="delete" disabled color="primary" size="large">
+      <IconButton aria-label="delete" disabled>
         <DeleteIcon />
       </IconButton>
-      <IconButton color="secondary" aria-label="add an alarm" size="large">
+      <IconButton color="secondary" aria-label="add an alarm">
         <AlarmIcon />
       </IconButton>
-      <IconButton
-        color="primary"
-        aria-label="add to shopping cart"
-        size="large"
-      >
+      <IconButton color="primary" aria-label="add to shopping cart">
         <AddShoppingCartIcon />
       </IconButton>
     </Stack>
@@ -64,19 +60,45 @@ Icons are also appropriate for toggle buttons that allow a single choice to be s
   },
 )
 
+export const Variants = story<IconButtonProps>(() => (
+  <Stack direction="row" spacing={4}>
+    <IconButton aria-label="delete" variant="chromeless" color="primary">
+      <DeleteIcon />
+    </IconButton>
+    <IconButton aria-label="delete" variant="outlined" color="primary">
+      <DeleteIcon />
+    </IconButton>
+    <IconButton aria-label="delete" variant="contained" color="primary">
+      <DeleteIcon />
+    </IconButton>
+  </Stack>
+))
+
 export const Sizes = story<IconButtonProps>(
   () => (
-    <Stack direction="row" spacing={1}>
-      <IconButton aria-label="delete" size="small">
+    <Stack direction="row" spacing={4}>
+      <IconButton
+        aria-label="delete"
+        size="small"
+        variant="outlined"
+        color="primary"
+      >
         <DeleteIcon fontSize="inherit" />
       </IconButton>
-      <IconButton aria-label="delete" size="small">
-        <DeleteIcon fontSize="small" />
-      </IconButton>
-      <IconButton aria-label="delete" size="large">
+      <IconButton
+        aria-label="delete"
+        size="medium"
+        variant="outlined"
+        color="primary"
+      >
         <DeleteIcon />
       </IconButton>
-      <IconButton aria-label="delete" size="large">
+      <IconButton
+        aria-label="delete"
+        size="large"
+        variant="outlined"
+        color="primary"
+      >
         <DeleteIcon fontSize="inherit" />
       </IconButton>
     </Stack>
@@ -85,22 +107,82 @@ export const Sizes = story<IconButtonProps>(
     parameters: {
       docs: {
         description: {
-          story: `For larger or smaller icon buttons, use the size prop.`,
+          story: `For larger or smaller icon buttons, use the size prop. 
+
+Use fontSize="inherit" for the icon when using size="small" or size="large". fontSizes are defined in the theme.`,
         },
       },
     },
   },
 )
 
+export const Shapes = story<IconButtonProps>(() => (
+  <Stack direction="row" spacing={4}>
+    <IconButton
+      aria-label="delete"
+      shape="circular"
+      variant="outlined"
+      color="primary"
+    >
+      <DeleteIcon />
+    </IconButton>
+    <IconButton
+      aria-label="delete"
+      shape="rounded"
+      variant="outlined"
+      color="primary"
+    >
+      <DeleteIcon />
+    </IconButton>
+    <IconButton
+      aria-label="delete"
+      shape="circular"
+      variant="contained"
+      color="primary"
+    >
+      <DeleteIcon />
+    </IconButton>
+    <IconButton
+      aria-label="delete"
+      shape="rounded"
+      variant="contained"
+      color="primary"
+    >
+      <DeleteIcon />
+    </IconButton>
+  </Stack>
+))
+
+const colors = [
+  'default',
+  'inherit',
+  'primary',
+  'secondary',
+  'info',
+  'success',
+  'warning',
+  'error',
+] as const
+
 export const Colors = story<IconButtonProps>(
   () => (
-    <Stack direction="row" spacing={1}>
-      <IconButton aria-label="fingerprint" color="secondary" size="large">
-        <DeleteIcon />
-      </IconButton>
-      <IconButton aria-label="fingerprint" color="success" size="large">
-        <DeleteIcon />
-      </IconButton>
+    <Stack spacing={2}>
+      {colors.map(color => (
+        <Stack
+          direction="row"
+          spacing={2}
+          alignItems="center"
+          key={`icon-button-color-${color}`}
+        >
+          <IconButton aria-label="delete" color={color}>
+            <DeleteIcon />
+          </IconButton>
+          <IconButton aria-label="delete" disabled color={color}>
+            <DeleteIcon />
+          </IconButton>
+          <Typography>{color}</Typography>
+        </Stack>
+      ))}
     </Stack>
   ),
   {
