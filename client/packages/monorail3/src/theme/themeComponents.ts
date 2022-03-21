@@ -11,6 +11,7 @@ import {
 } from '../components/Button/themeOverrides'
 import { MonorailButtonGroupOverrides } from '../components/ButtonGroup/themeOverrides'
 import { MonorailRatingOverrides } from '../components/Rating/themeOverrides'
+import { MonorailSkeletonOverrides } from '../components/Skeleton/themeOverrides'
 import { MonorailSvgIconOverrides } from '../components/SvgIcon/themeOverrides'
 import { baseTheme } from './baseTheme'
 
@@ -39,6 +40,7 @@ export const getThemeComponents = (
   },
   MuiButtonGroup: MonorailButtonGroupOverrides,
   MuiBreadcrumbs: MonorailBreadcrumbsOverrides,
+  MuiSkeleton: MonorailSkeletonOverrides,
   MuiLoadingButton: MonorailLoadingButtonOverrides,
   MuiRating: MonorailRatingOverrides,
   MuiSvgIcon: MonorailSvgIconOverrides,
