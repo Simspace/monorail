@@ -140,6 +140,15 @@ const palette: PaletteOptions = {
     main: '#FF8000',
     dark: '#CF530A',
   },
+  default: {
+    hover: '#F0F0F0',
+    selected: '#EBEBEB',
+    active: '#E0E0E0',
+    light: '#C2C2C2',
+    main: '#757575',
+    dark: '#424242',
+    contrastText: '#1C1C1C',
+  },
   accent: {
     light: '#0C3D99',
     main: '#0C3D99',
