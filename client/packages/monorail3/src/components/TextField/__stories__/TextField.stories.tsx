@@ -288,7 +288,6 @@ export const InputAdornments = story(
                     onClick={handleClickShowPassword}
                     onMouseDown={handleMouseDownPassword}
                     edge="end"
-                    size="large"
                   >
                     {values.showPassword ? <VisibilityOff /> : <Visibility />}
                   </IconButton>

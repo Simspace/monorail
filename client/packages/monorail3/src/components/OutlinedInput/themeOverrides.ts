@@ -11,11 +11,20 @@ export const MonorailOutlinedInputOverrides: Components<Theme>['MuiOutlinedInput
           borderStyle: 'dashed',
         },
       },
+      multiline: {
+        padding: '4px 0',
+      },
       input: {
         padding: '12px',
       },
-      multiline: {
-        padding: '4px 0',
+      inputSizeSmall: {
+        padding: '8px 12px',
+      },
+      inputAdornedStart: {
+        paddingLeft: 0,
+      },
+      inputAdornedEnd: {
+        paddingRight: 0,
       },
     },
   }
