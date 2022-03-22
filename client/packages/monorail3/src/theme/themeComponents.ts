@@ -9,7 +9,9 @@ import {
   MonorailLoadingButtonOverrides,
 } from '../components/Button/themeOverrides'
 import { MonorailButtonGroupOverrides } from '../components/ButtonGroup/themeOverrides'
+import { MonorailFormHelperTextOverrides } from '../components/FormHelperText/themeOverrides'
 import { MonorailIconButtonOverrides } from '../components/IconButton/themeOverrides'
+import { MonorailInputBaseOverrides } from '../components/InputBase/themeOverrides'
 import { MonorailInputLabelOverrides } from '../components/InputLabel/themeOverrides'
 import { MonorailOutlinedInputOverrides } from '../components/OutlinedInput/themeOverrides'
 import { MonorailSvgIconOverrides } from '../components/SvgIcon/themeOverrides'
@@ -40,7 +42,9 @@ export const getThemeComponents = (
   },
   MuiButtonGroup: MonorailButtonGroupOverrides,
   MuiBreadcrumbs: MonorailBreadcrumbsOverrides,
+  MuiFormHelperText: MonorailFormHelperTextOverrides,
   MuiIconButton: MonorailIconButtonOverrides,
+  MuiInputBase: MonorailInputBaseOverrides,
   MuiInputLabel: MonorailInputLabelOverrides,
   MuiLoadingButton: MonorailLoadingButtonOverrides,
   MuiOutlinedInput: MonorailOutlinedInputOverrides,
