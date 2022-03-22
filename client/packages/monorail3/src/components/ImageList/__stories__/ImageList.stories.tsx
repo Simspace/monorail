@@ -3,7 +3,6 @@ import React from 'react'
 import InfoIcon from '@mui/icons-material/Info'
 import StarBorderIcon from '@mui/icons-material/StarBorder'
 import {
-  Box,
   IconButton,
   ImageList,
   ImageListItem,
