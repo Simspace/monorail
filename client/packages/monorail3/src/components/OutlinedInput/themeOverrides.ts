@@ -5,5 +5,14 @@ export const MonorailOutlinedInputOverrides: Components<Theme>['MuiOutlinedInput
     defaultProps: {
       notched: false,
     },
-    styleOverrides: {},
+    styleOverrides: {
+      root: {
+        '&.Mui-disabled > .MuiOutlinedInput-notchedOutline': {
+          borderStyle: 'dashed',
+        },
+      },
+      input: {
+        padding: '12px',
+      },
+    },
   }
