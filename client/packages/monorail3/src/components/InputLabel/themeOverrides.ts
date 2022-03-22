@@ -5,5 +5,19 @@ export const MonorailInputLabelOverrides: Components<Theme>['MuiInputLabel'] = {
     disableAnimation: true,
     shrink: false,
   },
-  styleOverrides: {},
+  styleOverrides: {
+    root: ({ theme }) => {
+      return {
+        '&.Mui-disabled': {
+          color: theme.palette.default.main,
+        },
+        position: 'relative',
+        left: 'auto',
+        top: 'auto',
+        transform: 'none',
+        background: 'transparent',
+        color: theme.palette.default.main,
+      }
+    },
+  },
 }
