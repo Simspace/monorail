@@ -106,49 +106,6 @@ export const Quilted = story<ImageListProps>(
   },
 )
 
-export const Woven = story(Template, {
-  args: {
-    cols: 3,
-    gap: 8,
-    variant: 'woven',
-  },
-  parameters: {
-    docs: {
-      description: {
-        story: `Woven image lists use alternating container ratios to create a rhythmic layout. A woven image list is best for browsing peer content.`,
-      },
-    },
-  },
-})
-
-export const Masonry = story<ImageListProps>(
-  () => (
-    <Box sx={{ width: 500, height: 450, overflowY: 'scroll' }}>
-      <ImageList variant="masonry" cols={3} gap={8}>
-        {itemData.map(item => (
-          <ImageListItem key={item.img}>
-            <img
-              src={`${item.img}?w=248&fit=crop&auto=format`}
-              srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
-              alt={item.title}
-              loading="lazy"
-            />
-          </ImageListItem>
-        ))}
-      </ImageList>
-    </Box>
-  ),
-  {
-    parameters: {
-      docs: {
-        description: {
-          story: `Masonry image lists use dynamically sized container heights that reflect the aspect ratio of each image. This image list is best used for browsing uncropped peer content.`,
-        },
-      },
-    },
-  },
-)
-
 export const WithTitleBars = story<ImageListProps>(
   () => (
     <ImageList sx={{ width: 500, height: 450 }}>
@@ -221,24 +178,6 @@ export const TitleBarBelowImage = story<ImageListProps>(
     },
   },
 )
-
-export const TitleBarBelowImageMasonry = story<ImageListProps>(() => (
-  <Box sx={{ width: 500, height: 450, overflowY: 'scroll' }}>
-    <ImageList variant="masonry" cols={3} gap={8}>
-      {withTitleItemData.map(item => (
-        <ImageListItem key={item.img}>
-          <img
-            src={`${item.img}?w=248&fit=crop&auto=format`}
-            srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
-            alt={item.title}
-            loading="lazy"
-          />
-          <ImageListItemBar position="below" title={item.author} />
-        </ImageListItem>
-      ))}
-    </ImageList>
-  </Box>
-))
 
 export const Custom = story<ImageListProps>(
   () => (
