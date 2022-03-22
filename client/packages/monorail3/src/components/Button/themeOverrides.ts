@@ -1,7 +1,6 @@
 import type {} from '@mui/lab/themeAugmentation'
-import { Components, darken, experimental_sx as sx, Theme } from '@mui/material'
+import { Components, darken, Theme } from '@mui/material'
 
-// TODO: Add tertiary color
 export const MonorailButtonOverrides: Components<Theme>['MuiButton'] = {
   defaultProps: {
     disableElevation: true,
@@ -37,30 +36,36 @@ export const MonorailButtonOverrides: Components<Theme>['MuiButton'] = {
         },
       }
     },
-    sizeSmall: sx({
-      py: 2,
-      px: 4,
+    sizeSmall: ({ theme }) => ({
+      padding: '4px 16px',
       minWidth: 'auto',
-      fontSize: '0.875rem',
-      lineHeight: '1rem',
+      fontSize: theme.typography.pxToRem(14),
+      lineHeight: theme.typography.pxToRem(24),
     }),
-    sizeMedium: sx({ py: 2.5, px: 6 }),
-    sizeLarge: sx({ py: 3.5, px: 6, fontSize: '1rem' }),
-    iconSizeSmall: {
+    sizeMedium: ({ theme }) => ({
+      padding: '8px 24px',
+      lineHeight: theme.typography.pxToRem(24),
+    }),
+    sizeLarge: ({ theme }) => ({
+      padding: '12px 24px',
+      fontSize: theme.typography.pxToRem(16),
+      lineHeight: theme.typography.pxToRem(24),
+    }),
+    iconSizeSmall: ({ theme }) => ({
       '> *:nth-of-type(1)': {
-        fontSize: 20,
+        fontSize: theme.typography.pxToRem(20),
       },
-    },
-    iconSizeMedium: {
+    }),
+    iconSizeMedium: ({ theme }) => ({
       '> *:nth-of-type(1)': {
-        fontSize: 24,
+        fontSize: theme.typography.pxToRem(24),
       },
-    },
-    iconSizeLarge: {
+    }),
+    iconSizeLarge: ({ theme }) => ({
       '> *:nth-of-type(1)': {
-        fontSize: 24,
+        fontSize: theme.typography.pxToRem(24),
       },
-    },
+    }),
     contained: ({ ownerState, theme }) => {
       const color = ownerState.color ?? 'primary'
       return {
