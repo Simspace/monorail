@@ -86,14 +86,7 @@ export const FormProps = story(
             readOnly: true,
           }}
         />
-        <TextField
-          id="outlined-number"
-          label="Number"
-          type="number"
-          InputLabelProps={{
-            shrink: true,
-          }}
-        />
+        <TextField id="outlined-number" label="Number" type="number" />
         <TextField id="outlined-search" label="Search field" type="search" />
         <TextField
           id="outlined-helperText"

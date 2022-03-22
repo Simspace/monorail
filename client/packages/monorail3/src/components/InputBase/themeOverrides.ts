@@ -13,6 +13,7 @@ export const MonorailInputBaseOverrides: Components<Theme>['MuiInputBase'] = {
             borderWidth: '1px',
           },
         },
+        lineHeight: theme.typography.body1.lineHeight,
       }
     },
   },
