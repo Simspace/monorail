@@ -4,10 +4,11 @@ export const MonorailFormHelperTextOverrides: Components<Theme>['MuiFormHelperTe
   {
     defaultProps: {},
     styleOverrides: {
-      root: {
+      root: ({ theme }) => ({
+        color: theme.palette.default.main,
         marginTop: '2px',
         marginLeft: ' 12px',
         marginRight: ' 12px',
-      },
+      }),
     },
   }
