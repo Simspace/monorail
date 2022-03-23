@@ -208,6 +208,7 @@ const palette: PaletteOptions = {
     A700: '#1C1C1C',
   },
   divider: '#E0E0E0',
+  rating: '#F7C244',
   background: {
     default: '#FAFAFA',
     paper: '#FFFFFF',
