@@ -1,11 +1,7 @@
 import { Components, Theme } from '@mui/material'
 
 export const MonorailTextFieldOverrides: Components<Theme>['MuiTextField'] = {
-  defaultProps: {
-    // Guarantees TextFields will have consistent heights
-    // https://mui.com/components/text-fields/#helper-text
-    helperText: ' ',
-  },
+  defaultProps: {},
   /**
    * The following styles are located in:
    * margin - FormControl/themeOverrides.ts

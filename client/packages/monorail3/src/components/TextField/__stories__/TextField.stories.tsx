@@ -2,11 +2,9 @@ import React from 'react'
 import Visibility from '@mui/icons-material/Visibility'
 import VisibilityOff from '@mui/icons-material/VisibilityOff'
 import Box from '@mui/material/Box'
-import FilledInput from '@mui/material/FilledInput'
 import FormControl from '@mui/material/FormControl'
 import FormHelperText from '@mui/material/FormHelperText'
 import IconButton from '@mui/material/IconButton'
-import Input from '@mui/material/Input'
 import InputAdornment from '@mui/material/InputAdornment'
 import InputBase from '@mui/material/InputBase'
 import InputLabel from '@mui/material/InputLabel'
@@ -402,7 +400,7 @@ export const Margin = story(
   },
 )
 
-export const Components = story(
+export const ComposedTextField = story(
   () => {
     const [name, setName] = React.useState('Composed TextField')
 
@@ -419,13 +417,17 @@ export const Components = story(
         noValidate
         autoComplete="off"
       >
-        <FormControl variant="standard">
+        <FormControl variant="outlined">
           <InputLabel htmlFor="component-simple">Name</InputLabel>
-          <Input id="component-simple" value={name} onChange={handleChange} />
+          <OutlinedInput
+            id="component-simple"
+            value={name}
+            onChange={handleChange}
+          />
         </FormControl>
-        <FormControl variant="standard">
+        <FormControl>
           <InputLabel htmlFor="component-helper">Name</InputLabel>
-          <Input
+          <OutlinedInput
             id="component-helper"
             value={name}
             onChange={handleChange}
@@ -435,14 +437,18 @@ export const Components = story(
             Some important helper text
           </FormHelperText>
         </FormControl>
-        <FormControl disabled variant="standard">
+        <FormControl disabled>
           <InputLabel htmlFor="component-disabled">Name</InputLabel>
-          <Input id="component-disabled" value={name} onChange={handleChange} />
+          <OutlinedInput
+            id="component-disabled"
+            value={name}
+            onChange={handleChange}
+          />
           <FormHelperText>Disabled</FormHelperText>
         </FormControl>
-        <FormControl error variant="standard">
+        <FormControl error>
           <InputLabel htmlFor="component-error">Name</InputLabel>
-          <Input
+          <OutlinedInput
             id="component-error"
             value={name}
             onChange={handleChange}
@@ -450,22 +456,24 @@ export const Components = story(
           />
           <FormHelperText id="component-error-text">Error</FormHelperText>
         </FormControl>
-        <FormControl>
-          <InputLabel htmlFor="component-outlined">Name</InputLabel>
-          <OutlinedInput
-            id="component-outlined"
-            value={name}
-            onChange={handleChange}
-            label="Name"
-          />
-        </FormControl>
-        <FormControl variant="filled">
-          <InputLabel htmlFor="component-filled">Name</InputLabel>
-          <FilledInput
-            id="component-filled"
-            value={name}
-            onChange={handleChange}
-          />
+
+        <FormControl sx={{ display: 'flex', flexDirection: 'row' }}>
+          <InputLabel
+            sx={{ fontWeight: 700, m: 0, mt: 3, mr: 3, left: 0 }}
+            id="label-on-left"
+          >
+            Select
+          </InputLabel>
+          <div>
+            <OutlinedInput
+              id="label-on-left"
+              value={name}
+              onChange={handleChange}
+            />
+            <FormHelperText id="label-on-left-text">
+              Some important helper text
+            </FormHelperText>
+          </div>
         </FormControl>
       </Box>
     )
