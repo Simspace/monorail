@@ -6,8 +6,8 @@ export const MonorailRatingOverrides: Components<Theme>['MuiRating'] = {
     iconEmpty: ({ theme }) => ({
       color: theme.palette.grey['600'],
     }),
-    iconFilled: {
-      color: '#F7C244',
-    },
+    iconFilled: ({ ownerState, theme }) => ({
+      color: ownerState.readOnly ? theme.palette.grey['600'] : '#F7C244',
+    }),
   },
 }
