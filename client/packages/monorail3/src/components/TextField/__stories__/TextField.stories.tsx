@@ -29,7 +29,7 @@ export const BasicTextField = story(
     <Box
       component="form"
       sx={{
-        '& > :not(style)': { m: 1, width: '25ch' },
+        '& > :not(style)': { mr: 1, width: '25ch' },
       }}
       noValidate
       autoComplete="off"
@@ -54,7 +54,7 @@ export const FormProps = story(
     <Box
       component="form"
       sx={{
-        '& .MuiTextField-root': { m: 2, width: '25ch' },
+        '& .MuiTextField-root': { mr: 2, width: '25ch' },
       }}
       noValidate
       autoComplete="off"
@@ -114,7 +114,7 @@ export const Validation = story(
     <Box
       component="form"
       sx={{
-        '& .MuiTextField-root': { m: 2, width: '25ch' },
+        '& .MuiTextField-root': { mr: 2, width: '25ch' },
       }}
       noValidate
       autoComplete="off"
@@ -159,7 +159,7 @@ export const Multiline = story(
       <Box
         component="form"
         sx={{
-          '& .MuiTextField-root': { m: 2, width: '25ch' },
+          '& .MuiTextField-root': { mr: 2, width: '25ch' },
         }}
         noValidate
         autoComplete="off"
@@ -243,14 +243,14 @@ export const InputAdornments = story(
           <TextField
             label="With normal TextField"
             id="outlined-start-adornment"
-            sx={{ m: 2, width: '25ch' }}
+            sx={{ mr: 2, width: '25ch' }}
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">kg</InputAdornment>
               ),
             }}
           />
-          <FormControl sx={{ m: 2, width: '25ch' }} variant="outlined">
+          <FormControl sx={{ mr: 2, width: '25ch' }} variant="outlined">
             <OutlinedInput
               id="outlined-adornment-weight"
               value={values.weight}
@@ -265,7 +265,7 @@ export const InputAdornments = story(
               Weight
             </FormHelperText>
           </FormControl>
-          <FormControl sx={{ m: 2, width: '25ch' }} variant="outlined">
+          <FormControl sx={{ mr: 2, width: '25ch' }} variant="outlined">
             <InputLabel htmlFor="outlined-adornment-password">
               Password
             </InputLabel>
@@ -289,7 +289,7 @@ export const InputAdornments = story(
               label="Password"
             />
           </FormControl>
-          <FormControl fullWidth sx={{ m: 2 }}>
+          <FormControl fullWidth sx={{ mr: 2 }}>
             <InputLabel htmlFor="outlined-adornment-amount">Amount</InputLabel>
             <OutlinedInput
               id="outlined-adornment-amount"
@@ -322,7 +322,7 @@ export const Sizes = story(
     <Box
       component="form"
       sx={{
-        '& .MuiTextField-root': { m: 1, width: '25ch' },
+        '& .MuiTextField-root': { mr: 1, width: '25ch' },
       }}
       noValidate
       autoComplete="off"
@@ -414,7 +414,7 @@ export const Components = story(
       <Box
         component="form"
         sx={{
-          '& > :not(style)': { m: 2 },
+          '& > :not(style)': { mr: 2 },
         }}
         noValidate
         autoComplete="off"
@@ -487,7 +487,7 @@ export const Color = story(
     <Box
       component="form"
       sx={{
-        '& > :not(style)': { m: 2, width: '25ch' },
+        '& > :not(style)': { mr: 2, width: '25ch' },
       }}
       noValidate
       autoComplete="off"
