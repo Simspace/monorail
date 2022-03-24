@@ -165,7 +165,7 @@ export const IconAvatars = story<AvatarProps>(
 
 export const Variants = story<AvatarProps>(
   () => {
-    const variants = ['square', 'rounded', 'circular'] as const
+    const variants = ['rounded', 'circular'] as const
     return (
       <Stack direction="row" spacing={8}>
         {variants.map(variant => (
@@ -203,7 +203,7 @@ export const Variants = story<AvatarProps>(
     parameters: {
       docs: {
         description: {
-          story: `If you need square or rounded avatars, use the variant prop.`,
+          story: `We only use the rounded and circular variants in our designs.`,
         },
       },
     },
