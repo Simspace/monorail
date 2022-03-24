@@ -1,6 +1,12 @@
 // Edit this file to add new stories
 import React from 'react'
-import { Avatar, AvatarGroup, AvatarGroupProps, Box } from '@mui/material'
+import {
+  Avatar,
+  AvatarGroup,
+  AvatarGroupProps,
+  Box,
+  Stack,
+} from '@mui/material'
 
 import { story } from '../../../__tests__/helpers/storybook'
 
@@ -74,3 +80,45 @@ Max.parameters = {
     skip: "Images don't load reliably",
   },
 }
+
+export const Spacing = story<AvatarGroupProps>(() => {
+  return (
+    <Stack direction="column" gap={4}>
+      <AvatarGroup max={4} spacing="medium">
+        <Avatar>WW</Avatar>
+        <Avatar>WW</Avatar>
+        <Avatar>WW</Avatar>
+        <Avatar>WW</Avatar>
+        <Avatar>WW</Avatar>
+      </AvatarGroup>
+      <AvatarGroup max={4} spacing="small">
+        <Avatar>WW</Avatar>
+        <Avatar>WW</Avatar>
+        <Avatar>WW</Avatar>
+        <Avatar>WW</Avatar>
+        <Avatar>WW</Avatar>
+      </AvatarGroup>
+      <AvatarGroup max={4} spacing={0}>
+        <Avatar>WW</Avatar>
+        <Avatar>WW</Avatar>
+        <Avatar>WW</Avatar>
+        <Avatar>WW</Avatar>
+        <Avatar>WW</Avatar>
+      </AvatarGroup>
+    </Stack>
+  )
+})
+
+export const Total = story<AvatarGroupProps>(() => {
+  return (
+    <Stack direction="column" gap={4}>
+      <AvatarGroup total={10}>
+        <Avatar>WW</Avatar>
+        <Avatar>WW</Avatar>
+        <Avatar>WW</Avatar>
+        <Avatar>WW</Avatar>
+        <Avatar>WW</Avatar>
+      </AvatarGroup>
+    </Stack>
+  )
+})

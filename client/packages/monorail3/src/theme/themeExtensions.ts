@@ -28,6 +28,8 @@ declare module '@mui/material/styles/createPalette' {
 
     accent: PaletteColorNoButtonState
 
+    default: PaletteColor
+
     score: {
       high: PaletteColorNoButtonState
       highModerate: PaletteColorNoButtonState
@@ -67,6 +69,8 @@ declare module '@mui/material/styles/createPalette' {
    */
   interface PaletteOptions {
     accent?: PaletteColorOptionsNoButtonState
+
+    default?: PaletteColor
 
     score?: Partial<{
       high: PaletteColorOptionsNoButtonState
@@ -148,5 +152,31 @@ declare module '@mui/material/ButtonGroup' {
     warning: true
     error: true
     inherit: false
+  }
+}
+
+declare module '@mui/material/IconButton' {
+  /**
+   * Extend the IconButton color prop to allow for the other semantic styles.
+   */
+  interface IconButtonPropsColorOverrides {
+    info: true
+    success: true
+    warning: true
+    error: true
+    default: true
+    /**
+     * Warning: Disabling 'inherit' will break Alert, because Alert's close button uses 'inherit' under the hood.
+     */
+    inherit: true
+  }
+}
+
+declare module '@mui/material/SvgIcon' {
+  /**
+   * Extend the SvgIcon color prop to apply a default grey color.
+   */
+  interface SvgIconPropsColorOverrides {
+    default: true
   }
 }

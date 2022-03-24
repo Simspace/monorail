@@ -2,12 +2,14 @@
 import type {} from '@mui/lab/themeAugmentation'
 import { Theme, ThemeOptions } from '@mui/material'
 
+import { MonorailAvatarOverrides } from '../components/Avatar/themeOverrides'
 import { MonorailBreadcrumbsOverrides } from '../components/Breadcrumbs/themeOverrides'
 import {
   MonorailButtonOverrides,
   MonorailLoadingButtonOverrides,
 } from '../components/Button/themeOverrides'
 import { MonorailButtonGroupOverrides } from '../components/ButtonGroup/themeOverrides'
+import { MonorailIconButtonOverrides } from '../components/IconButton/themeOverrides'
 import { MonorailSvgIconOverrides } from '../components/SvgIcon/themeOverrides'
 import { baseTheme } from './baseTheme'
 
@@ -26,6 +28,7 @@ export const getThemeComponents = (
       square: true,
     },
   },
+  MuiAvatar: MonorailAvatarOverrides,
   MuiButton: MonorailButtonOverrides,
   MuiButtonBase: {
     defaultProps: {
@@ -34,6 +37,7 @@ export const getThemeComponents = (
   },
   MuiButtonGroup: MonorailButtonGroupOverrides,
   MuiBreadcrumbs: MonorailBreadcrumbsOverrides,
+  MuiIconButton: MonorailIconButtonOverrides,
   MuiLoadingButton: MonorailLoadingButtonOverrides,
   MuiSvgIcon: MonorailSvgIconOverrides,
 })
