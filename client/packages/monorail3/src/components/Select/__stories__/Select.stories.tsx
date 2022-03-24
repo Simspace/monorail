@@ -1,5 +1,6 @@
 // Edit this file to add new stories
 import React from 'react'
+import Person from '@mui/icons-material/Person'
 import {
   Box,
   FormControl,
@@ -13,7 +14,6 @@ import {
 } from '@mui/material'
 
 import { story } from '../../../__tests__/helpers/storybook'
-import Person from '@mui/icons-material/Person'
 
 export default { title: 'Inputs/Select', component: Select }
 
