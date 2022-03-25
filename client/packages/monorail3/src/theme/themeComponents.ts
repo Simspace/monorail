@@ -1,6 +1,7 @@
 // eslint-disable-next-line no-restricted-imports
 import type {} from '@mui/lab/themeAugmentation'
 import { Theme, ThemeOptions } from '@mui/material'
+import { MonorailAutocompleteOverrides } from '../components/Autocomplete/themeOverrides'
 
 import { MonorailAvatarOverrides } from '../components/Avatar/themeOverrides'
 import { MonorailBreadcrumbsOverrides } from '../components/Breadcrumbs/themeOverrides'
@@ -35,6 +36,7 @@ export const getThemeComponents = (
       square: true,
     },
   },
+  MuiAutocomplete: MonorailAutocompleteOverrides,
   MuiAvatar: MonorailAvatarOverrides,
   MuiButton: MonorailButtonOverrides,
   MuiButtonBase: {
