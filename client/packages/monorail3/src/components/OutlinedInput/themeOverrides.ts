@@ -6,11 +6,6 @@ export const MonorailOutlinedInputOverrides: Components<Theme>['MuiOutlinedInput
       notched: false,
     },
     styleOverrides: {
-      root: {
-        '&.Mui-disabled > .MuiOutlinedInput-notchedOutline': {
-          borderStyle: 'dashed',
-        },
-      },
       multiline: {
         padding: '4px 0',
       },
