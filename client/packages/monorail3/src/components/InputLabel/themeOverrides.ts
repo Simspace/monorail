@@ -8,9 +8,6 @@ export const MonorailInputLabelOverrides: Components<Theme>['MuiInputLabel'] = {
   styleOverrides: {
     root: ({ theme }) => {
       return {
-        '&.Mui-disabled': {
-          color: theme.palette.default.main,
-        },
         position: 'relative',
         left: '4px', // Label above TextField
         top: 'auto',
