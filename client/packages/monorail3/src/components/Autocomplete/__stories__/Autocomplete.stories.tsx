@@ -4,6 +4,7 @@ import {
   Autocomplete,
   AutocompleteProps,
   Box,
+  Chip,
   Stack,
   TextField,
 } from '@mui/material'
@@ -128,3 +129,68 @@ export const FreeSolo = () => (
     </Stack>
   </>
 )
+
+export const MultipleValues = story<MovieAutocompleteProps>(() => {
+  return (
+    <Stack spacing={3} sx={{ width: 500 }}>
+      <Autocomplete
+        multiple
+        id="tags-standard"
+        options={movies}
+        getOptionLabel={option => option.label}
+        defaultValue={[movies[13]]}
+        renderInput={params => (
+          <TextField
+            {...params}
+            label="Multiple values"
+            placeholder="Favorites"
+          />
+        )}
+      />
+      <Autocomplete
+        multiple
+        id="tags-outlined"
+        options={movies}
+        getOptionLabel={option => option.label}
+        defaultValue={[movies[13]]}
+        filterSelectedOptions
+        renderInput={params => (
+          <TextField
+            {...params}
+            label="filterSelectedOptions"
+            placeholder="Favorites"
+          />
+        )}
+      />
+      <Autocomplete
+        multiple
+        id="tags-filled"
+        options={movies.map(option => option.label)}
+        defaultValue={[movies[13].label]}
+        freeSolo
+        renderTags={(value: readonly string[], getTagProps) =>
+          value.map((option: string, index: number) => (
+            <Chip
+              variant="outlined"
+              label={option}
+              {...getTagProps({ index })}
+            />
+          ))
+        }
+        renderInput={params => (
+          <TextField {...params} label="freeSolo" placeholder="Favorites" />
+        )}
+      />
+      <Autocomplete
+        multiple
+        id="tags-readOnly"
+        options={movies.map(option => option.label)}
+        defaultValue={[movies[12].label, movies[13].label]}
+        readOnly
+        renderInput={params => (
+          <TextField {...params} label="readOnly" placeholder="Favorites" />
+        )}
+      />
+    </Stack>
+  )
+})

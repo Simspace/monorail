@@ -14,7 +14,11 @@ export const MonorailInputBaseOverrides: Components<Theme>['MuiInputBase'] = {
           },
         },
         lineHeight: theme.typography.body1.lineHeight,
+        minHeight: 48,
       }
+    },
+    sizeSmall: {
+      minHeight: 40,
     },
   },
 }

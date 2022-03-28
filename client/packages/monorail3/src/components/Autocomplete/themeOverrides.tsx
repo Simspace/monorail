@@ -6,6 +6,12 @@ export const MonorailAutocompleteOverrides: Components<Theme>['MuiAutocomplete']
   {
     defaultProps: {
       clearIcon: <ClearIcon fontSize="medium" />,
+      ChipProps: {
+        // color: 'info',
+        sx: {
+          borderRadius: 4,
+        },
+      },
     },
     styleOverrides: {
       root: {
@@ -17,7 +23,8 @@ export const MonorailAutocompleteOverrides: Components<Theme>['MuiAutocomplete']
         },
       },
       tag: ({ theme }) => ({
-        backgroundCOlor: theme.palette.primary.light,
+        backgroundColor: theme.palette.primary.selected,
+        borderRadius: 4,
       }),
       endAdornment: {
         top: 'calc(50% - 20px)',
