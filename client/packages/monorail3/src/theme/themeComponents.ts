@@ -3,13 +3,23 @@ import type {} from '@mui/lab/themeAugmentation'
 import { Theme, ThemeOptions } from '@mui/material'
 
 import { MonorailAvatarOverrides } from '../components/Avatar/themeOverrides'
+import { MonorailBadgeOverrides } from '../components/Badge/themeOverrides'
 import { MonorailBreadcrumbsOverrides } from '../components/Breadcrumbs/themeOverrides'
 import {
   MonorailButtonOverrides,
   MonorailLoadingButtonOverrides,
 } from '../components/Button/themeOverrides'
 import { MonorailButtonGroupOverrides } from '../components/ButtonGroup/themeOverrides'
+import { MonorailFormControlOverrides } from '../components/FormControl/themeOverrides'
+import { MonorailFormHelperTextOverrides } from '../components/FormHelperText/themeOverrides'
+import { MonorailIconButtonOverrides } from '../components/IconButton/themeOverrides'
+import { MonorailInputBaseOverrides } from '../components/InputBase/themeOverrides'
+import { MonorailInputLabelOverrides } from '../components/InputLabel/themeOverrides'
+import { MonorailOutlinedInputOverrides } from '../components/OutlinedInput/themeOverrides'
+import { MonorailRatingOverrides } from '../components/Rating/themeOverrides'
+import { MonorailSkeletonOverrides } from '../components/Skeleton/themeOverrides'
 import { MonorailSvgIconOverrides } from '../components/SvgIcon/themeOverrides'
+import { MonorailTextFieldOverrides } from '../components/TextField/themeOverrides'
 import { baseTheme } from './baseTheme'
 
 /**
@@ -28,6 +38,7 @@ export const getThemeComponents = (
     },
   },
   MuiAvatar: MonorailAvatarOverrides,
+  MuiBadge: MonorailBadgeOverrides,
   MuiButton: MonorailButtonOverrides,
   MuiButtonBase: {
     defaultProps: {
@@ -36,6 +47,15 @@ export const getThemeComponents = (
   },
   MuiButtonGroup: MonorailButtonGroupOverrides,
   MuiBreadcrumbs: MonorailBreadcrumbsOverrides,
+  MuiFormControl: MonorailFormControlOverrides,
+  MuiFormHelperText: MonorailFormHelperTextOverrides,
+  MuiIconButton: MonorailIconButtonOverrides,
+  MuiInputBase: MonorailInputBaseOverrides,
+  MuiInputLabel: MonorailInputLabelOverrides,
   MuiLoadingButton: MonorailLoadingButtonOverrides,
+  MuiOutlinedInput: MonorailOutlinedInputOverrides,
+  MuiRating: MonorailRatingOverrides,
+  MuiSkeleton: MonorailSkeletonOverrides,
   MuiSvgIcon: MonorailSvgIconOverrides,
+  MuiTextField: MonorailTextFieldOverrides,
 })
