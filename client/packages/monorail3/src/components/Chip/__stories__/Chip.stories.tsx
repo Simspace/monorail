@@ -252,13 +252,122 @@ export const Colors = story<ChipProps>(
         <Chip color="error" label="Error" />
       </Stack>
       <Stack direction="column" spacing={1}>
-        <Chip color="default" label="Default" variant="outlined" />
-        <Chip color="primary" label="Primary" variant="outlined" />
-        <Chip color="secondary" label="Secondary" variant="outlined" />
-        <Chip color="info" label="Info" variant="outlined" />
-        <Chip color="success" label="Success" variant="outlined" />
-        <Chip color="warning" label="Warning" variant="outlined" />
-        <Chip color="error" label="Error" variant="outlined" />
+        <Chip color="default" variant="outlined" label="Default" />
+        <Chip color="primary" variant="outlined" label="Primary" />
+        <Chip color="secondary" variant="outlined" label="Secondary" />
+        <Chip color="info" variant="outlined" label="Info" />
+        <Chip color="success" variant="outlined" label="Success" />
+        <Chip color="warning" variant="outlined" label="Warning" />
+        <Chip color="error" variant="outlined" label="Error" />
+      </Stack>
+      <Stack direction="column" spacing={1}>
+        <Chip
+          color="default"
+          avatar={<Avatar>F</Avatar>}
+          clickable
+          onDelete={action('onDelete')}
+          label="Default"
+        />
+        <Chip
+          color="primary"
+          avatar={<Avatar>F</Avatar>}
+          clickable
+          onDelete={action('onDelete')}
+          label="Primary"
+        />
+        <Chip
+          color="secondary"
+          avatar={<Avatar>F</Avatar>}
+          clickable
+          onDelete={action('onDelete')}
+          label="Secondary"
+        />
+        <Chip
+          color="info"
+          avatar={<Avatar>F</Avatar>}
+          clickable
+          onDelete={action('onDelete')}
+          label="Info"
+        />
+        <Chip
+          color="success"
+          avatar={<Avatar>F</Avatar>}
+          clickable
+          onDelete={action('onDelete')}
+          label="Success"
+        />
+        <Chip
+          color="warning"
+          avatar={<Avatar>F</Avatar>}
+          clickable
+          onDelete={action('onDelete')}
+          label="Warning"
+        />
+        <Chip
+          color="error"
+          avatar={<Avatar>F</Avatar>}
+          clickable
+          onDelete={action('onDelete')}
+          label="Error"
+        />
+      </Stack>
+      <Stack direction="column" spacing={1}>
+        <Chip
+          color="default"
+          avatar={<Avatar>F</Avatar>}
+          clickable
+          onDelete={action('onDelete')}
+          label="Default"
+          variant="outlined"
+        />
+        <Chip
+          color="primary"
+          avatar={<Avatar>F</Avatar>}
+          clickable
+          onDelete={action('onDelete')}
+          label="Primary"
+          variant="outlined"
+        />
+        <Chip
+          color="secondary"
+          avatar={<Avatar>F</Avatar>}
+          clickable
+          onDelete={action('onDelete')}
+          label="Secondary"
+          variant="outlined"
+        />
+        <Chip
+          color="info"
+          avatar={<Avatar>F</Avatar>}
+          clickable
+          onDelete={action('onDelete')}
+          label="Info"
+          variant="outlined"
+        />
+        <Chip
+          color="success"
+          avatar={<Avatar>F</Avatar>}
+          clickable
+          onDelete={action('onDelete')}
+          label="Success"
+          variant="outlined"
+        />
+        <Chip
+          color="warning"
+          avatar={<Avatar>F</Avatar>}
+          clickable
+          onDelete={action('onDelete')}
+          label="Warning"
+          variant="outlined"
+        />
+        <Chip
+          color="error"
+          avatar={<Avatar>F</Avatar>}
+          clickable
+          onDelete={action('onDelete')}
+          label="Error"
+          variant="outlined"
+        />
       </Stack>
     </Stack>
   ),
