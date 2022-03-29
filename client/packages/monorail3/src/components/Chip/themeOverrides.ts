@@ -12,6 +12,10 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
           variant === 'filled' && {
             background: theme.palette.default.selected,
           }),
+        '&.Mui-focusVisible': {
+          boxShadow: `0 0 0 3px ${theme.palette[color].light}`,
+          border: `1px solid ${theme.palette[color].dark}`,
+        },
       }
     },
     label: {
@@ -19,7 +23,6 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
     },
     clickable: ({ ownerState, theme }) => {
       const color = ownerState.color ?? 'default'
-      // const clickable = ownerState.clickable
       return {
         '&.MuiChip-clickable:active': {
           boxShadow: 'none',
@@ -46,10 +49,49 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
         }),
       }
     },
+    deleteIcon: ({ ownerState, theme }) => {
+      const color = ownerState.color ?? 'default'
+      const variant = ownerState.variant ?? 'filled'
+      return {
+        marginLeft: -4,
+        color:
+          variant === 'filled'
+            ? theme.palette[color].selected
+            : theme.palette[color].main,
+        '&:hover': {
+          color:
+            variant === 'filled'
+              ? theme.palette[color].hover
+              : theme.palette[color].dark,
+        },
+        ...(color === 'default' && {
+          color:
+            variant === 'filled'
+              ? theme.palette.default.main
+              : theme.palette.default.light,
+          '&:hover': {
+            color:
+              variant === 'filled'
+                ? theme.palette.default.dark
+                : theme.palette.default.main,
+          },
+        }),
+      }
+    },
+    filled: {
+      border: '1px solid transparent',
+    },
     outlined: ({ ownerState, theme }) => {
       const color = ownerState.color ?? 'default'
       return {
         backgroundColor: theme.palette.background.paper,
+        borderColor: theme.palette[color].main,
+        ...(color === 'default' && {
+          borderColor: theme.palette.default.light,
+        }),
+        ...(color === 'error' && {
+          borderColor: theme.palette.error.light,
+        }),
         ...(ownerState.clickable && {
           '&.MuiChip-clickable:hover': {
             backgroundColor: theme.palette[color].hover,
@@ -61,13 +103,35 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
         }),
       }
     },
-    avatar: ({ ownerState, theme }) => ({
-      marginLeft: '4px',
-      marginRight: '-3px',
-      // ...((ownerState.color === 'secondary') |
-      //   (ownerState.color === 'warning') && {
-      //   backgroundColor: theme.palette[ownerState.color].light,
-      // }),
+    avatar: ({ ownerState, theme }) => {
+      const color = ownerState.color ?? 'default'
+      return {
+        marginLeft: '4px',
+        marginRight: '-3px',
+        ...(color === 'default' && {
+          color: theme.palette.default.main,
+          backgroundColor: theme.palette.default.light,
+        }),
+        ...(color === 'warning' && {
+          color: theme.palette.common.white,
+          backgroundColor: theme.palette.warning.dark,
+        }),
+        ...(color === 'info' && {
+          color: theme.palette.info.contrastText,
+          backgroundColor: theme.palette.info.dark,
+        }),
+        ...(color === 'success' && {
+          color: theme.palette.success.contrastText,
+          backgroundColor: theme.palette.success.dark,
+        }),
+        ...(color === 'error' && {
+          color: theme.palette.error.contrastText,
+          backgroundColor: theme.palette.error.dark,
+        }),
+      }
+    },
+    avatarColorSecondary: ({ theme }) => ({
+      color: theme.palette.common.white,
     }),
   },
 }
