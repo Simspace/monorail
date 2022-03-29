@@ -226,6 +226,43 @@ export const Showcase = story<ChipProps>(() => (
         variant="outlined"
       />
     </Stack>
+    <Stack direction="column" alignItems="flex-start" spacing={2}>
+      <Chip variant="rectangular" label="Rectangular" />
+      <Chip variant="rectangular" icon={<FaceIcon />} label="Rectangular" />
+      <Chip
+        variant="rectangular"
+        avatar={<Avatar>F</Avatar>}
+        label="Rectangular"
+      />
+      <Chip
+        variant="rectangular"
+        avatar={<Avatar>F</Avatar>}
+        onDelete={action('onDelete')}
+        label="Rectangular"
+      />
+    </Stack>
+    <Stack direction="column" alignItems="flex-start" spacing={2}>
+      <Chip clickable variant="rectangular" label="Rectangular" />
+      <Chip
+        clickable
+        variant="rectangular"
+        icon={<FaceIcon />}
+        label="Rectangular"
+      />
+      <Chip
+        clickable
+        variant="rectangular"
+        avatar={<Avatar>F</Avatar>}
+        label="Rectangular"
+      />
+      <Chip
+        clickable
+        variant="rectangular"
+        avatar={<Avatar>F</Avatar>}
+        onDelete={action('onDelete')}
+        label="Rectangular"
+      />
+    </Stack>
   </Stack>
 ))
 
@@ -234,6 +271,7 @@ export const Variants = story<ChipProps>(
     <Stack direction="row" spacing={1}>
       <Chip label="Filled" variant="filled" />
       <Chip label="Outlined" variant="outlined" />
+      <Chip label="Rectangular" variant="rectangular" />
     </Stack>
   ),
   {

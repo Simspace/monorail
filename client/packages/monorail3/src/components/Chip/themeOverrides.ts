@@ -1,5 +1,14 @@
 import { Components, darken, Theme } from '@mui/material'
 
+declare module '@mui/material/Chip' {
+  /**
+   * Extend the Chip variant prop to add `rectangular` variant.
+   */
+  interface ChipPropsVariantOverrides {
+    rectangular: true
+  }
+}
+
 export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
   defaultProps: {},
   styleOverrides: {
@@ -16,6 +25,11 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
           boxShadow: `0 0 0 3px ${theme.palette[color].light}`,
           border: `1px solid ${theme.palette[color].dark}`,
         },
+        ...(variant === 'rectangular' && {
+          border: '1px solid transparent',
+          borderRadius: 4,
+          backgroundColor: theme.palette.grey[100],
+        }),
       }
     },
     label: {
@@ -23,6 +37,7 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
     },
     clickable: ({ ownerState, theme }) => {
       const color = ownerState.color ?? 'default'
+      const variant = ownerState.variant ?? 'filled'
       return {
         '&.MuiChip-clickable:active': {
           boxShadow: 'none',
@@ -47,12 +62,48 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
         ...(color === 'warning' && {
           backgroundColor: theme.palette.warning.light,
         }),
+        ...(variant === 'rectangular' && {
+          backgroundColor: theme.palette.primary.selected,
+          color: theme.palette.primary.dark,
+          '&:hover': {
+            backgroundColor: '#BDD3FE',
+          },
+          '&.MuiChip-clickable:active': {
+            backgroundColor: darken(
+              theme.palette.primary.light,
+              theme.palette.action.activatedOpacity,
+            ),
+          },
+          '&.Mui-focusVisible': {
+            backgroundColor: theme.palette.primary.active,
+            boxShadow: `0 0 0 3px ${theme.palette.primary.light}`,
+            border: `1px solid ${theme.palette.primary.dark}`,
+          },
+          '& > .MuiChip-avatar': {
+            backgroundColor: theme.palette.primary.light,
+            color: theme.palette.primary.dark,
+          },
+          '& > .MuiChip-deleteIcon': {
+            color: theme.palette.primary.light,
+            '&:hover': {
+              color: '#4787FF',
+            },
+          },
+          '& > .MuiChip-icon': {
+            color: theme.palette.primary.dark,
+          },
+        }),
       }
+    },
+    icon: {
+      marginRight: -5,
+      marginLeft: 4,
     },
     deleteIcon: ({ ownerState, theme }) => {
       const color = ownerState.color ?? 'default'
       const variant = ownerState.variant ?? 'filled'
       return {
+        marginRight: 3,
         marginLeft: -4,
         color:
           variant === 'filled'
@@ -106,8 +157,8 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
     avatar: ({ ownerState, theme }) => {
       const color = ownerState.color ?? 'default'
       return {
-        marginLeft: '4px',
-        marginRight: '-3px',
+        marginLeft: 4,
+        marginRight: -3,
         ...(color === 'default' && {
           color: theme.palette.default.main,
           backgroundColor: theme.palette.default.light,
