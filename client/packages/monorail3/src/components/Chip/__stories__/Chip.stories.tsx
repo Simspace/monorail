@@ -241,8 +241,8 @@ export const WithIcon = story<ChipProps>(
 
 export const Colors = story<ChipProps>(
   () => (
-    <Stack direction="row" spacing={1}>
-      <Stack direction="column" spacing={1}>
+    <Stack direction="row" spacing={2}>
+      <Stack direction="column" alignItems="flex-start" spacing={2}>
         <Chip color="default" label="Default" />
         <Chip color="primary" label="Primary" />
         <Chip color="secondary" label="Secondary" />
@@ -251,7 +251,7 @@ export const Colors = story<ChipProps>(
         <Chip color="warning" label="Warning" />
         <Chip color="error" label="Error" />
       </Stack>
-      <Stack direction="column" spacing={1}>
+      <Stack direction="column" alignItems="flex-start" spacing={2}>
         <Chip color="default" variant="outlined" label="Default" />
         <Chip color="primary" variant="outlined" label="Primary" />
         <Chip color="secondary" variant="outlined" label="Secondary" />
@@ -260,7 +260,7 @@ export const Colors = story<ChipProps>(
         <Chip color="warning" variant="outlined" label="Warning" />
         <Chip color="error" variant="outlined" label="Error" />
       </Stack>
-      <Stack direction="column" spacing={1}>
+      <Stack direction="column" alignItems="flex-start" spacing={2}>
         <Chip
           color="default"
           avatar={<Avatar>F</Avatar>}
@@ -311,7 +311,7 @@ export const Colors = story<ChipProps>(
           label="Error"
         />
       </Stack>
-      <Stack direction="column" spacing={1}>
+      <Stack direction="column" alignItems="flex-start" spacing={2}>
         <Chip
           color="default"
           avatar={<Avatar>F</Avatar>}
