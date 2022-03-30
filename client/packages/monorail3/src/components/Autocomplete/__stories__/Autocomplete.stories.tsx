@@ -168,12 +168,13 @@ export const MultipleValues = story<MovieAutocompleteProps>(() => {
         options={movies.map(option => option.label)}
         defaultValue={[movies[13].label]}
         freeSolo
-        renderTags={(value: readonly string[], getTagProps) =>
+        renderTags={(value: ReadonlyArray<string>, getTagProps) =>
           value.map((option: string, index: number) => (
             <Chip
               variant="outlined"
               label={option}
               {...getTagProps({ index })}
+              key={`${option}-${index}`}
             />
           ))
         }
