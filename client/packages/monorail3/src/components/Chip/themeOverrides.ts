@@ -29,11 +29,53 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
           border: '1px solid transparent',
           borderRadius: 4,
           backgroundColor: theme.palette.grey[100],
+          '&.Mui-focusVisible': {
+            boxShadow: `0 0 0 3px ${theme.palette[color].light}`,
+            border: `1px solid ${theme.palette[color].dark}`,
+            backgroundColor: theme.palette.default.light,
+          },
         }),
       }
     },
     label: {
       padding: 6,
+    },
+    filled: ({ ownerState, theme }) => {
+      const color = ownerState.color ?? 'default'
+      return {
+        border: '1px solid transparent',
+        '&.Mui-focusVisible': {
+          backgroundColor:
+            color === 'default'
+              ? theme.palette.default.light
+              : theme.palette[color].dark,
+        },
+      }
+    },
+    outlined: ({ ownerState, theme }) => {
+      const color = ownerState.color ?? 'default'
+      return {
+        backgroundColor: theme.palette.background.paper,
+        borderColor: theme.palette[color].main,
+        '&.Mui-focusVisible': {
+          backgroundColor: theme.palette[color].hover,
+        },
+        ...(color === 'default' && {
+          borderColor: theme.palette.default.light,
+        }),
+        ...(color === 'error' && {
+          borderColor: theme.palette.error.light,
+        }),
+        ...(ownerState.clickable && {
+          '&.MuiChip-clickable:hover': {
+            backgroundColor: theme.palette[color].hover,
+          },
+          '&.MuiChip-clickable:active': {
+            backgroundColor: theme.palette[color].active,
+            boxShadow: 'none',
+          },
+        }),
+      }
     },
     clickable: ({ ownerState, theme }) => {
       const color = ownerState.color ?? 'default'
@@ -95,6 +137,9 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
         }),
       }
     },
+    sizeSmall: {
+      padding: '2px 5px',
+    },
     icon: {
       marginRight: -5,
       marginLeft: 4,
@@ -125,31 +170,6 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
               variant === 'filled'
                 ? theme.palette.default.dark
                 : theme.palette.default.main,
-          },
-        }),
-      }
-    },
-    filled: {
-      border: '1px solid transparent',
-    },
-    outlined: ({ ownerState, theme }) => {
-      const color = ownerState.color ?? 'default'
-      return {
-        backgroundColor: theme.palette.background.paper,
-        borderColor: theme.palette[color].main,
-        ...(color === 'default' && {
-          borderColor: theme.palette.default.light,
-        }),
-        ...(color === 'error' && {
-          borderColor: theme.palette.error.light,
-        }),
-        ...(ownerState.clickable && {
-          '&.MuiChip-clickable:hover': {
-            backgroundColor: theme.palette[color].hover,
-          },
-          '&.MuiChip-clickable:active': {
-            backgroundColor: theme.palette[color].active,
-            boxShadow: 'none',
           },
         }),
       }

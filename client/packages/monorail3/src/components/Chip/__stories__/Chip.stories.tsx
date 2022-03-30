@@ -268,7 +268,7 @@ export const Showcase = story<ChipProps>(() => (
 
 export const Variants = story<ChipProps>(
   () => (
-    <Stack direction="row" spacing={1}>
+    <Stack direction="row" spacing={2}>
       <Chip label="Filled" variant="filled" />
       <Chip label="Outlined" variant="outlined" />
       <Chip label="Rectangular" variant="rectangular" />
@@ -291,7 +291,7 @@ export const Clickable = story<ChipProps>(
       <Typography gutterBottom>
         View the <strong>Actions</strong> pane in storybook Canvas to see events
       </Typography>
-      <Stack direction="row" spacing={1}>
+      <Stack direction="row" spacing={2}>
         <Chip label="Clickable" onClick={action('onClick')} />
         <Chip
           label="Clickable"
@@ -318,7 +318,7 @@ export const Deletable = story<ChipProps>(
       <Typography gutterBottom>
         View the <strong>Actions</strong> pane in storybook Canvas to see events
       </Typography>
-      <Stack direction="row" spacing={1}>
+      <Stack direction="row" spacing={2}>
         <Chip label="Filled" onDelete={action('onDelete')} />
         <Chip
           label="Outlined"
@@ -345,7 +345,7 @@ export const ClickableAndDeletable = story<ChipProps>(
       <Typography gutterBottom>
         View the <strong>Actions</strong> pane in storybook Canvas to see events
       </Typography>
-      <Stack direction="row" spacing={1}>
+      <Stack direction="row" spacing={2}>
         <Chip
           label="Filled"
           onClick={action('onClick')}
@@ -373,7 +373,7 @@ export const ClickableAndDeletable = story<ChipProps>(
 
 export const AsLink = story<ChipProps>(
   () => (
-    <Stack direction="row" spacing={1}>
+    <Stack direction="row" spacing={2}>
       <Chip label="Filled" component="a" href="#nowhere" clickable />
       <Chip
         label="Outlined"
@@ -397,7 +397,7 @@ export const AsLink = story<ChipProps>(
 
 export const CustomDeleteIcon = story<ChipProps>(
   () => (
-    <Stack direction="row" spacing={1}>
+    <Stack direction="row" spacing={2}>
       <Chip
         label="Check it"
         onClick={action('onClick')}
@@ -426,7 +426,7 @@ export const CustomDeleteIcon = story<ChipProps>(
 
 export const WithAvatar = story<ChipProps>(
   () => (
-    <Stack direction="row" spacing={1}>
+    <Stack direction="row" spacing={2}>
       <Chip avatar={<Avatar>M</Avatar>} label="Avatar" />
       <Chip
         avatar={
@@ -453,7 +453,7 @@ export const WithAvatar = story<ChipProps>(
 
 export const WithIcon = story<ChipProps>(
   () => (
-    <Stack direction="row" spacing={1}>
+    <Stack direction="row" spacing={2}>
       <Chip icon={<FaceIcon />} label="With Icon" />
       <Chip icon={<FaceIcon />} label="With Icon" variant="outlined" />
     </Stack>
@@ -482,6 +482,57 @@ export const Colors = story<ChipProps>(
         <Chip color="error" label="Error" />
       </Stack>
       <Stack direction="column" alignItems="flex-start" spacing={2}>
+        <Chip
+          disabled
+          icon={<FaceIcon />}
+          onDelete={action('onDelete')}
+          color="default"
+          label="Default"
+        />
+        <Chip
+          disabled
+          icon={<FaceIcon />}
+          onDelete={action('onDelete')}
+          color="primary"
+          label="Primary"
+        />
+        <Chip
+          disabled
+          icon={<FaceIcon />}
+          onDelete={action('onDelete')}
+          color="secondary"
+          label="Secondary"
+        />
+        <Chip
+          disabled
+          icon={<FaceIcon />}
+          onDelete={action('onDelete')}
+          color="info"
+          label="Info"
+        />
+        <Chip
+          disabled
+          icon={<FaceIcon />}
+          onDelete={action('onDelete')}
+          color="success"
+          label="Success"
+        />
+        <Chip
+          disabled
+          icon={<FaceIcon />}
+          onDelete={action('onDelete')}
+          color="warning"
+          label="Warning"
+        />
+        <Chip
+          disabled
+          icon={<FaceIcon />}
+          onDelete={action('onDelete')}
+          color="error"
+          label="Error"
+        />
+      </Stack>
+      <Stack direction="column" alignItems="flex-start" spacing={2}>
         <Chip color="default" variant="outlined" label="Default" />
         <Chip color="primary" variant="outlined" label="Primary" />
         <Chip color="secondary" variant="outlined" label="Secondary" />
@@ -489,6 +540,64 @@ export const Colors = story<ChipProps>(
         <Chip color="success" variant="outlined" label="Success" />
         <Chip color="warning" variant="outlined" label="Warning" />
         <Chip color="error" variant="outlined" label="Error" />
+      </Stack>
+      <Stack direction="column" alignItems="flex-start" spacing={2}>
+        <Chip
+          disabled
+          icon={<FaceIcon />}
+          onDelete={action('onDelete')}
+          color="default"
+          variant="outlined"
+          label="Default"
+        />
+        <Chip
+          disabled
+          icon={<FaceIcon />}
+          onDelete={action('onDelete')}
+          color="primary"
+          variant="outlined"
+          label="Primary"
+        />
+        <Chip
+          disabled
+          icon={<FaceIcon />}
+          onDelete={action('onDelete')}
+          color="secondary"
+          variant="outlined"
+          label="Secondary"
+        />
+        <Chip
+          disabled
+          icon={<FaceIcon />}
+          onDelete={action('onDelete')}
+          color="info"
+          variant="outlined"
+          label="Info"
+        />
+        <Chip
+          disabled
+          icon={<FaceIcon />}
+          onDelete={action('onDelete')}
+          color="success"
+          variant="outlined"
+          label="Success"
+        />
+        <Chip
+          disabled
+          icon={<FaceIcon />}
+          onDelete={action('onDelete')}
+          color="warning"
+          variant="outlined"
+          label="Warning"
+        />
+        <Chip
+          disabled
+          icon={<FaceIcon />}
+          onDelete={action('onDelete')}
+          color="error"
+          variant="outlined"
+          label="Error"
+        />
       </Stack>
     </Stack>
   ),
@@ -505,7 +614,7 @@ export const Colors = story<ChipProps>(
 
 export const Sizes = story<ChipProps>(
   () => (
-    <Stack direction="row" spacing={1}>
+    <Stack direction="row" spacing={2}>
       <Chip size="small" label="Small" />
       <Chip size="small" label="Small" variant="outlined" />
       <Chip size="medium" label="Medium" />
@@ -524,7 +633,7 @@ export const Sizes = story<ChipProps>(
 )
 
 const ListItem = styled('li')(({ theme }) => ({
-  margin: theme.spacing(0.5),
+  margin: theme.spacing(1),
 }))
 
 export const ChipsArray = story<ChipProps>(
