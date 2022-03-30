@@ -4,19 +4,23 @@ import { Theme, ThemeOptions } from '@mui/material'
 import { MonorailAutocompleteOverrides } from '../components/Autocomplete/themeOverrides'
 
 import { MonorailAvatarOverrides } from '../components/Avatar/themeOverrides'
+import { MonorailBadgeOverrides } from '../components/Badge/themeOverrides'
 import { MonorailBreadcrumbsOverrides } from '../components/Breadcrumbs/themeOverrides'
 import {
   MonorailButtonOverrides,
   MonorailLoadingButtonOverrides,
 } from '../components/Button/themeOverrides'
 import { MonorailButtonGroupOverrides } from '../components/ButtonGroup/themeOverrides'
+import { MonorailChipOverrides } from '../components/Chip/themeOverrides'
 import { MonorailFormControlOverrides } from '../components/FormControl/themeOverrides'
 import { MonorailFormHelperTextOverrides } from '../components/FormHelperText/themeOverrides'
 import { MonorailIconButtonOverrides } from '../components/IconButton/themeOverrides'
 import { MonorailInputBaseOverrides } from '../components/InputBase/themeOverrides'
 import { MonorailInputLabelOverrides } from '../components/InputLabel/themeOverrides'
 import { MonorailOutlinedInputOverrides } from '../components/OutlinedInput/themeOverrides'
+import { MonorailRatingOverrides } from '../components/Rating/themeOverrides'
 import { MonorailSelectOverrides } from '../components/Select/themeOverrides'
+import { MonorailSkeletonOverrides } from '../components/Skeleton/themeOverrides'
 import { MonorailSvgIconOverrides } from '../components/SvgIcon/themeOverrides'
 import { MonorailTextFieldOverrides } from '../components/TextField/themeOverrides'
 import { baseTheme } from './baseTheme'
@@ -38,6 +42,7 @@ export const getThemeComponents = (
   },
   MuiAutocomplete: MonorailAutocompleteOverrides,
   MuiAvatar: MonorailAvatarOverrides,
+  MuiBadge: MonorailBadgeOverrides,
   MuiButton: MonorailButtonOverrides,
   MuiButtonBase: {
     defaultProps: {
@@ -46,6 +51,7 @@ export const getThemeComponents = (
   },
   MuiButtonGroup: MonorailButtonGroupOverrides,
   MuiBreadcrumbs: MonorailBreadcrumbsOverrides,
+  MuiChip: MonorailChipOverrides,
   MuiFormControl: MonorailFormControlOverrides,
   MuiFormHelperText: MonorailFormHelperTextOverrides,
   MuiIconButton: MonorailIconButtonOverrides,
@@ -53,7 +59,9 @@ export const getThemeComponents = (
   MuiInputLabel: MonorailInputLabelOverrides,
   MuiLoadingButton: MonorailLoadingButtonOverrides,
   MuiOutlinedInput: MonorailOutlinedInputOverrides,
+  MuiRating: MonorailRatingOverrides,
   MuiSelect: MonorailSelectOverrides,
+  MuiSkeleton: MonorailSkeletonOverrides,
   MuiSvgIcon: MonorailSvgIconOverrides,
   MuiTextField: MonorailTextFieldOverrides,
 })

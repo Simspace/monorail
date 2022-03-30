@@ -53,6 +53,8 @@ declare module '@mui/material/styles/createPalette' {
       purple: Color
     }
 
+    rating: string
+
     admin: PaletteColor
     content: PaletteColor
     events: PaletteColor
@@ -94,6 +96,8 @@ declare module '@mui/material/styles/createPalette' {
       fuchsia: PaletteColorOptions
       purple: PaletteColorOptions
     }>
+
+    rating?: string
   }
 
   interface PaletteColor {

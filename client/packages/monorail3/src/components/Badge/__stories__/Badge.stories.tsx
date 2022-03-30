@@ -13,6 +13,7 @@ import {
   IconButton,
   Stack,
   Switch,
+  Typography,
 } from '@mui/material'
 import { styled } from '@mui/material/styles'
 
@@ -43,15 +44,32 @@ const Template = story<BadgeProps>(
 /** Default story for Badge (edit/remove by hand if needed) */
 export const Default = story(Template)
 
+const colors = [
+  'default',
+  'primary',
+  'secondary',
+  'error',
+  'info',
+  'success',
+  'warning',
+] as const
+
 export const Color = story(
   () => (
-    <Stack spacing={2} direction="row">
-      <Badge badgeContent={4} color="secondary">
-        <MailIcon color="action" />
-      </Badge>
-      <Badge badgeContent={4} color="success">
-        <MailIcon color="action" />
-      </Badge>
+    <Stack spacing={4}>
+      {colors.map(color => (
+        <Stack
+          alignItems="center"
+          direction="row"
+          key={`badge-${color}`}
+          spacing={6}
+        >
+          <Badge badgeContent={4} color={color}>
+            <MailIcon color="action" />
+          </Badge>
+          <Typography>{color}</Typography>
+        </Stack>
+      ))}
     </Stack>
   ),
   {
@@ -192,7 +210,7 @@ export const ShowZeroBadge = story(
 
 export const MaximumValue = story(
   () => (
-    <Stack spacing={4} direction="row" sx={{ color: 'action.active' }}>
+    <Stack spacing={8} direction="row" sx={{ color: 'action.active' }}>
       <Badge color="secondary" badgeContent={99}>
         <MailIcon />
       </Badge>
