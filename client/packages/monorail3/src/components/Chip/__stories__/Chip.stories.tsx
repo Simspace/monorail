@@ -15,6 +15,7 @@ import {
 import { styled } from '@mui/material/styles'
 import { action } from '@storybook/addon-actions'
 
+import { capitalizeFirstLetter } from '../../../__tests__/helpers/helpers'
 import { story } from '../../../__tests__/helpers/storybook'
 
 /**
@@ -37,194 +38,84 @@ const Template = story<ChipProps>(args => <Chip {...args} />, {
 /** Default story for Chip (edit/remove by hand if needed) */
 export const Default = story(Template)
 
+const colors = [
+  'default',
+  'primary',
+  'secondary',
+  'error',
+  'info',
+  'success',
+  'warning',
+] as const
+
 export const Showcase = story<ChipProps>(() => (
   <Stack direction="row" spacing={2}>
     <Stack direction="column" alignItems="flex-start" spacing={2}>
-      <Chip color="default" label="Default" />
-      <Chip color="primary" label="Primary" />
-      <Chip color="secondary" label="Secondary" />
-      <Chip color="info" label="Info" />
-      <Chip color="success" label="Success" />
-      <Chip color="warning" label="Warning" />
-      <Chip color="error" label="Error" />
+      {colors.map(color => (
+        <Chip
+          color={color}
+          label={capitalizeFirstLetter(color)}
+          key={`chip-filled-${color}`}
+        />
+      ))}
     </Stack>
     <Stack direction="column" alignItems="flex-start" spacing={2}>
-      <Chip color="default" variant="outlined" label="Default" />
-      <Chip color="primary" variant="outlined" label="Primary" />
-      <Chip color="secondary" variant="outlined" label="Secondary" />
-      <Chip color="info" variant="outlined" label="Info" />
-      <Chip color="success" variant="outlined" label="Success" />
-      <Chip color="warning" variant="outlined" label="Warning" />
-      <Chip color="error" variant="outlined" label="Error" />
+      {colors.map(color => (
+        <Chip
+          variant="outlined"
+          color={color}
+          label={capitalizeFirstLetter(color)}
+          key={`chip-outlined-${color}`}
+        />
+      ))}
     </Stack>
     <Stack direction="column" alignItems="flex-start" spacing={2}>
-      <Chip
-        color="default"
-        avatar={<Avatar>F</Avatar>}
-        clickable
-        onDelete={action('onDelete')}
-        label="Default"
-      />
-      <Chip
-        color="primary"
-        avatar={<Avatar>F</Avatar>}
-        clickable
-        onDelete={action('onDelete')}
-        label="Primary"
-      />
-      <Chip
-        color="secondary"
-        avatar={<Avatar>F</Avatar>}
-        clickable
-        onDelete={action('onDelete')}
-        label="Secondary"
-      />
-      <Chip
-        color="info"
-        avatar={<Avatar>F</Avatar>}
-        clickable
-        onDelete={action('onDelete')}
-        label="Info"
-      />
-      <Chip
-        color="success"
-        avatar={<Avatar>F</Avatar>}
-        clickable
-        onDelete={action('onDelete')}
-        label="Success"
-      />
-      <Chip
-        color="warning"
-        avatar={<Avatar>F</Avatar>}
-        clickable
-        onDelete={action('onDelete')}
-        label="Warning"
-      />
-      <Chip
-        color="error"
-        avatar={<Avatar>F</Avatar>}
-        clickable
-        onDelete={action('onDelete')}
-        label="Error"
-      />
+      {colors.map(color => (
+        <Chip
+          avatar={<Avatar>F</Avatar>}
+          clickable
+          onDelete={action('onDelete')}
+          color={color}
+          label={capitalizeFirstLetter(color)}
+          key={`chip-filled-with-avatar-${color}-clickable`}
+        />
+      ))}
     </Stack>
     <Stack direction="column" alignItems="flex-start" spacing={2}>
-      <Chip
-        color="default"
-        avatar={<Avatar>F</Avatar>}
-        clickable
-        onDelete={action('onDelete')}
-        label="Default"
-        variant="outlined"
-      />
-      <Chip
-        color="primary"
-        avatar={<Avatar>F</Avatar>}
-        clickable
-        onDelete={action('onDelete')}
-        label="Primary"
-        variant="outlined"
-      />
-      <Chip
-        color="secondary"
-        avatar={<Avatar>F</Avatar>}
-        clickable
-        onDelete={action('onDelete')}
-        label="Secondary"
-        variant="outlined"
-      />
-      <Chip
-        color="info"
-        avatar={<Avatar>F</Avatar>}
-        clickable
-        onDelete={action('onDelete')}
-        label="Info"
-        variant="outlined"
-      />
-      <Chip
-        color="success"
-        avatar={<Avatar>F</Avatar>}
-        clickable
-        onDelete={action('onDelete')}
-        label="Success"
-        variant="outlined"
-      />
-      <Chip
-        color="warning"
-        avatar={<Avatar>F</Avatar>}
-        clickable
-        onDelete={action('onDelete')}
-        label="Warning"
-        variant="outlined"
-      />
-      <Chip
-        color="error"
-        avatar={<Avatar>F</Avatar>}
-        clickable
-        onDelete={action('onDelete')}
-        label="Error"
-        variant="outlined"
-      />
+      {colors.map(color => (
+        <Chip
+          variant="outlined"
+          avatar={<Avatar>F</Avatar>}
+          clickable
+          onDelete={action('onDelete')}
+          color={color}
+          label={capitalizeFirstLetter(color)}
+          key={`chip-outlined-with-avatar-${color}-clickable`}
+        />
+      ))}
     </Stack>
     <Stack direction="column" alignItems="flex-start" spacing={2}>
-      <Chip color="default" icon={<FaceIcon />} clickable label="Default" />
-      <Chip color="primary" icon={<FaceIcon />} clickable label="Primary" />
-      <Chip color="secondary" icon={<FaceIcon />} clickable label="Secondary" />
-      <Chip color="info" icon={<FaceIcon />} clickable label="Info" />
-      <Chip color="success" icon={<FaceIcon />} clickable label="Success" />
-      <Chip color="warning" icon={<FaceIcon />} clickable label="Warning" />
-      <Chip color="error" icon={<FaceIcon />} clickable label="Error" />
+      {colors.map(color => (
+        <Chip
+          icon={<FaceIcon />}
+          clickable
+          color={color}
+          label={capitalizeFirstLetter(color)}
+          key={`chip-filled-with-icon-${color}-clickable`}
+        />
+      ))}
     </Stack>
     <Stack direction="column" alignItems="flex-start" spacing={2}>
-      <Chip
-        color="default"
-        icon={<FaceIcon />}
-        clickable
-        label="Default"
-        variant="outlined"
-      />
-      <Chip
-        color="primary"
-        icon={<FaceIcon />}
-        clickable
-        label="Primary"
-        variant="outlined"
-      />
-      <Chip
-        color="secondary"
-        icon={<FaceIcon />}
-        clickable
-        label="Secondary"
-        variant="outlined"
-      />
-      <Chip
-        color="info"
-        icon={<FaceIcon />}
-        clickable
-        label="Info"
-        variant="outlined"
-      />
-      <Chip
-        color="success"
-        icon={<FaceIcon />}
-        clickable
-        label="Success"
-        variant="outlined"
-      />
-      <Chip
-        color="warning"
-        icon={<FaceIcon />}
-        clickable
-        label="Warning"
-        variant="outlined"
-      />
-      <Chip
-        color="error"
-        icon={<FaceIcon />}
-        clickable
-        label="Error"
-        variant="outlined"
-      />
+      {colors.map(color => (
+        <Chip
+          variant="outlined"
+          icon={<FaceIcon />}
+          clickable
+          color={color}
+          label={capitalizeFirstLetter(color)}
+          key={`chip-outlined-with-icon-${color}-clickable`}
+        />
+      ))}
     </Stack>
     <Stack direction="column" alignItems="flex-start" spacing={2}>
       <Chip variant="rectangular" label="Rectangular" />
@@ -473,131 +364,48 @@ export const Colors = story<ChipProps>(
   () => (
     <Stack direction="row" spacing={2}>
       <Stack direction="column" alignItems="flex-start" spacing={2}>
-        <Chip color="default" label="Default" />
-        <Chip color="primary" label="Primary" />
-        <Chip color="secondary" label="Secondary" />
-        <Chip color="info" label="Info" />
-        <Chip color="success" label="Success" />
-        <Chip color="warning" label="Warning" />
-        <Chip color="error" label="Error" />
+        {colors.map(color => (
+          <Chip
+            color={color}
+            label={capitalizeFirstLetter(color)}
+            key={`chip-filled-${color}`}
+          />
+        ))}
       </Stack>
       <Stack direction="column" alignItems="flex-start" spacing={2}>
-        <Chip
-          disabled
-          icon={<FaceIcon />}
-          onDelete={action('onDelete')}
-          color="default"
-          label="Default"
-        />
-        <Chip
-          disabled
-          icon={<FaceIcon />}
-          onDelete={action('onDelete')}
-          color="primary"
-          label="Primary"
-        />
-        <Chip
-          disabled
-          icon={<FaceIcon />}
-          onDelete={action('onDelete')}
-          color="secondary"
-          label="Secondary"
-        />
-        <Chip
-          disabled
-          icon={<FaceIcon />}
-          onDelete={action('onDelete')}
-          color="info"
-          label="Info"
-        />
-        <Chip
-          disabled
-          icon={<FaceIcon />}
-          onDelete={action('onDelete')}
-          color="success"
-          label="Success"
-        />
-        <Chip
-          disabled
-          icon={<FaceIcon />}
-          onDelete={action('onDelete')}
-          color="warning"
-          label="Warning"
-        />
-        <Chip
-          disabled
-          icon={<FaceIcon />}
-          onDelete={action('onDelete')}
-          color="error"
-          label="Error"
-        />
+        {colors.map(color => (
+          <Chip
+            disabled
+            icon={<FaceIcon />}
+            onDelete={action('onDelete')}
+            color={color}
+            label={capitalizeFirstLetter(color)}
+            key={`chip-filled-${color}-disabled`}
+          />
+        ))}
       </Stack>
       <Stack direction="column" alignItems="flex-start" spacing={2}>
-        <Chip color="default" variant="outlined" label="Default" />
-        <Chip color="primary" variant="outlined" label="Primary" />
-        <Chip color="secondary" variant="outlined" label="Secondary" />
-        <Chip color="info" variant="outlined" label="Info" />
-        <Chip color="success" variant="outlined" label="Success" />
-        <Chip color="warning" variant="outlined" label="Warning" />
-        <Chip color="error" variant="outlined" label="Error" />
+        {colors.map(color => (
+          <Chip
+            variant="outlined"
+            color={color}
+            label={capitalizeFirstLetter(color)}
+            key={`chip-outlined-${color}`}
+          />
+        ))}
       </Stack>
       <Stack direction="column" alignItems="flex-start" spacing={2}>
-        <Chip
-          disabled
-          icon={<FaceIcon />}
-          onDelete={action('onDelete')}
-          color="default"
-          variant="outlined"
-          label="Default"
-        />
-        <Chip
-          disabled
-          icon={<FaceIcon />}
-          onDelete={action('onDelete')}
-          color="primary"
-          variant="outlined"
-          label="Primary"
-        />
-        <Chip
-          disabled
-          icon={<FaceIcon />}
-          onDelete={action('onDelete')}
-          color="secondary"
-          variant="outlined"
-          label="Secondary"
-        />
-        <Chip
-          disabled
-          icon={<FaceIcon />}
-          onDelete={action('onDelete')}
-          color="info"
-          variant="outlined"
-          label="Info"
-        />
-        <Chip
-          disabled
-          icon={<FaceIcon />}
-          onDelete={action('onDelete')}
-          color="success"
-          variant="outlined"
-          label="Success"
-        />
-        <Chip
-          disabled
-          icon={<FaceIcon />}
-          onDelete={action('onDelete')}
-          color="warning"
-          variant="outlined"
-          label="Warning"
-        />
-        <Chip
-          disabled
-          icon={<FaceIcon />}
-          onDelete={action('onDelete')}
-          color="error"
-          variant="outlined"
-          label="Error"
-        />
+        {colors.map(color => (
+          <Chip
+            disabled
+            icon={<FaceIcon />}
+            onDelete={action('onDelete')}
+            variant="outlined"
+            color={color}
+            label={capitalizeFirstLetter(color)}
+            key={`chip-outlined-${color}-disabled`}
+          />
+        ))}
       </Stack>
     </Stack>
   ),
