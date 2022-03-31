@@ -17,10 +17,6 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
       const variant = ownerState.variant ?? 'filled'
       return {
         fontWeight: theme.typography.fontWeightBold,
-        ...(color === 'default' &&
-          variant === 'filled' && {
-            background: theme.palette.default.selected,
-          }),
         '&.Mui-focusVisible': {
           boxShadow: `0 0 0 3px ${theme.palette[color].light}`,
           border: `1px solid ${theme.palette[color].dark}`,
@@ -44,10 +40,24 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
       const color = ownerState.color ?? 'default'
       return {
         border: '1px solid transparent',
+        backgroundColor:
+          color === 'default'
+            ? theme.palette.default.selected
+            : color === 'secondary'
+            ? theme.palette.secondary.light
+            : color === 'warning'
+            ? theme.palette.warning.light
+            : theme.palette[color].main,
         '&.Mui-focusVisible': {
           backgroundColor:
             color === 'default'
-              ? theme.palette.default.light
+              ? theme.palette.default.active
+              : color === 'primary' || color === 'info'
+              ? theme.palette.primary.main
+              : color === 'success'
+              ? theme.palette.success.main
+              : color === 'error'
+              ? '#D5251F'
               : theme.palette[color].dark,
         },
       }
@@ -81,6 +91,54 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
       const color = ownerState.color ?? 'default'
       const variant = ownerState.variant ?? 'filled'
       return {
+        ...(variant === 'filled' &&
+          color === 'secondary' && {
+            '&.Mui-focusVisible': {
+              borderColor: '#833405',
+              color: theme.palette.getContrastText(
+                theme.palette.secondary.dark,
+              ),
+            },
+          }),
+        ...(variant === 'filled' &&
+          color === 'warning' && {
+            '&.Mui-focusVisible': {
+              borderColor: '#833405',
+              color: theme.palette.getContrastText(theme.palette.warning.dark),
+            },
+          }),
+        '&:hover': {
+          '& > .MuiAvatar-root': {
+            backgroundColor:
+              color === 'default'
+                ? theme.palette.default.light
+                : color === 'primary'
+                ? '#0C3D9C'
+                : color === 'secondary'
+                ? '#A94408'
+                : color === 'warning'
+                ? '#A94408'
+                : color === 'error'
+                ? '#850900'
+                : color === 'success'
+                ? '#065324'
+                : '#0C3D9C', // info
+          },
+        },
+        ...(variant === 'filled' &&
+          color === 'secondary' && {
+            '&.MuiChip-clickable:hover': {
+              color: theme.palette.getContrastText(
+                theme.palette.secondary.dark,
+              ),
+            },
+          }),
+        ...(variant === 'filled' &&
+          color === 'warning' && {
+            '&.MuiChip-clickable:hover': {
+              color: theme.palette.getContrastText(theme.palette.warning.dark),
+            },
+          }),
         '&.MuiChip-clickable:active': {
           boxShadow: 'none',
           backgroundColor: darken(
@@ -111,10 +169,8 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
             backgroundColor: '#BDD3FE',
           },
           '&.MuiChip-clickable:active': {
-            backgroundColor: darken(
-              theme.palette.primary.light,
-              theme.palette.action.activatedOpacity,
-            ),
+            boxShadow: 'none',
+            backgroundColor: theme.palette.primary.active,
           },
           '&.Mui-focusVisible': {
             backgroundColor: theme.palette.primary.active,
@@ -161,15 +217,9 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
               : theme.palette[color].dark,
         },
         ...(color === 'default' && {
-          color:
-            variant === 'filled'
-              ? theme.palette.default.main
-              : theme.palette.default.light,
+          color: theme.palette.default.main,
           '&:hover': {
-            color:
-              variant === 'filled'
-                ? theme.palette.default.dark
-                : theme.palette.default.main,
+            color: theme.palette.default.dark,
           },
         }),
       }
