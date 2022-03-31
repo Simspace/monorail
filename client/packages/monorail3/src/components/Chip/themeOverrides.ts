@@ -15,6 +15,7 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
     root: ({ ownerState, theme }) => {
       const color = ownerState.color ?? 'default'
       const variant = ownerState.variant ?? 'filled'
+
       return {
         fontWeight: theme.typography.fontWeightBold,
         '&.Mui-focusVisible': {
@@ -38,6 +39,7 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
     },
     filled: ({ ownerState, theme }) => {
       const color = ownerState.color ?? 'default'
+
       return {
         border: '1px solid transparent',
         backgroundColor:
@@ -64,8 +66,9 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
     },
     outlined: ({ ownerState, theme }) => {
       const color = ownerState.color ?? 'default'
+
       return {
-        backgroundColor: theme.palette.background.paper,
+        backgroundColor: theme.palette.common.white,
         borderColor: theme.palette[color].main,
         '&.Mui-focusVisible': {
           backgroundColor: theme.palette[color].hover,
@@ -90,6 +93,7 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
     clickable: ({ ownerState, theme }) => {
       const color = ownerState.color ?? 'default'
       const variant = ownerState.variant ?? 'filled'
+
       return {
         ...(variant === 'filled' &&
           color === 'secondary' && {
@@ -203,6 +207,7 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
     deleteIcon: ({ ownerState, theme }) => {
       const color = ownerState.color ?? 'default'
       const variant = ownerState.variant ?? 'filled'
+
       return {
         marginRight: 3,
         marginLeft: -4,
@@ -226,12 +231,21 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
     },
     avatar: ({ ownerState, theme }) => {
       const color = ownerState.color ?? 'default'
+      const variant = ownerState.variant ?? 'filled'
+
       return {
         marginLeft: 4,
         marginRight: -3,
         ...(color === 'default' && {
-          color: theme.palette.default.main,
-          backgroundColor: theme.palette.default.light,
+          ...(variant === 'filled' || variant === 'rectangular'
+            ? {
+                color: theme.palette.default.main,
+                backgroundColor: theme.palette.default.light,
+              }
+            : {
+                color: theme.palette.common.white,
+                backgroundColor: theme.palette.default.main,
+              }),
         }),
         ...(color === 'warning' && {
           color: theme.palette.common.white,
