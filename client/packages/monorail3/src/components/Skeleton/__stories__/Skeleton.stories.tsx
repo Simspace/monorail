@@ -117,7 +117,7 @@ const YouTube = (props: MediaProps) => {
         : data
       ).map((item, index) => (
         <Box key={index} sx={{ width: 210, marginRight: 1, my: 10 }}>
-          {item ? (
+          {item !== undefined ? (
             <img
               style={{ width: 210, height: 118 }}
               alt={item.title}
@@ -126,7 +126,7 @@ const YouTube = (props: MediaProps) => {
           ) : (
             <Skeleton variant="rectangular" width={210} height={118} />
           )}
-          {item ? (
+          {item !== undefined ? (
             <Box sx={{ pr: 4 }}>
               <Typography gutterBottom variant="body2">
                 {item.title}

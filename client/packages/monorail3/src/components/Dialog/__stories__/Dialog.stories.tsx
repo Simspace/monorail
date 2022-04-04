@@ -346,7 +346,7 @@ const BootstrapDialogTitle = (props: DialogTitleProps) => {
   return (
     <DialogTitle sx={{ m: 0, p: 2 }} {...other}>
       {children}
-      {onClose ? (
+      {onClose !== undefined ? (
         <IconButton
           aria-label="close"
           onClick={onClose}
@@ -765,7 +765,7 @@ export const ConfirmationDialog = story<DialogProps>(
     const handleClose = (newValue?: string) => {
       setOpen(false)
 
-      if (newValue) {
+      if (newValue !== undefined) {
         setValue(newValue)
       }
     }
