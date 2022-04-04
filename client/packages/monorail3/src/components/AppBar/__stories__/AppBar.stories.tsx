@@ -857,7 +857,7 @@ export const BackToTop = story<AppBarProps>(
 
       const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
         const anchor = (
-          (event.target as HTMLDivElement).ownerDocument || document
+          (event.target as HTMLDivElement).ownerDocument ?? document
         ).querySelector('#back-to-top-anchor')
 
         if (anchor) {

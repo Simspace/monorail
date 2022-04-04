@@ -300,8 +300,8 @@ To capture changes in the width of a column there are two callbacks that are cal
 
 //#region Value getter
 const getFullName = (params: GridValueGetterParams) => {
-  return `${params.getValue(params.id, 'firstName') || ''} ${
-    params.getValue(params.id, 'lastName') || ''
+  return `${params.getValue(params.id, 'firstName') ?? ''} ${
+    params.getValue(params.id, 'lastName') ?? ''
   }`
 }
 
@@ -684,7 +684,11 @@ const GridCellExpand = React.memo(function GridCellExpand(
 function renderCellExpand(params: GridRenderCellParams) {
   return (
     <GridCellExpand
-      value={params.value ? params.value.toString() : ''}
+      value={
+        params.value !== undefined && params.value !== null
+          ? params.value.toString()
+          : ''
+      }
       width={params.colDef.computedWidth}
     />
   )

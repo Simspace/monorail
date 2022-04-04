@@ -76,8 +76,8 @@ export const Quilted = story<ImageListProps>(
       {quiltedItemData.map(item => (
         <ImageListItem
           key={item.img}
-          cols={item.cols || 1}
-          rows={item.rows || 1}
+          cols={item.cols ?? 1}
+          rows={item.rows ?? 1}
         >
           <img
             {...srcset(item.img, 121, item.rows, item.cols)}
@@ -191,8 +191,8 @@ export const Custom = story<ImageListProps>(
       gap={1}
     >
       {withTitleItemData.map(item => {
-        const cols = item.featured ? 2 : 1
-        const rows = item.featured ? 2 : 1
+        const cols = item.featured === true ? 2 : 1
+        const rows = item.featured === true ? 2 : 1
 
         return (
           <ImageListItem key={item.img} cols={cols} rows={rows}>
