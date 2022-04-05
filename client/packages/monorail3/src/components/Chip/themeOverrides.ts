@@ -79,7 +79,7 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
         ...(color === 'error' && {
           borderColor: theme.palette.error.light,
         }),
-        ...(ownerState.clickable && {
+        ...(ownerState.clickable !== undefined && {
           '&.MuiChip-clickable:hover': {
             backgroundColor: theme.palette[color].hover,
           },
