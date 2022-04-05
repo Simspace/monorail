@@ -1,8 +1,8 @@
 // eslint-disable-next-line no-restricted-imports
 import type {} from '@mui/lab/themeAugmentation'
 import { Theme, ThemeOptions } from '@mui/material'
-import { MonorailAutocompleteOverrides } from '../components/Autocomplete/themeOverrides'
 
+import { MonorailAutocompleteOverrides } from '../components/Autocomplete/themeOverrides'
 import { MonorailAvatarOverrides } from '../components/Avatar/themeOverrides'
 import { MonorailBadgeOverrides } from '../components/Badge/themeOverrides'
 import { MonorailBreadcrumbsOverrides } from '../components/Breadcrumbs/themeOverrides'

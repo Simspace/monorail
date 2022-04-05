@@ -12,15 +12,15 @@ export const MonorailAutocompleteOverrides: Components<Theme>['MuiAutocomplete']
       },
     },
     styleOverrides: {
-      root: {
+      root: ({ ownerState }) => ({
         '.MuiOutlinedInput-root': {
-          padding: 0,
+          // Tags have a built-in 3px margin + 9px = 12px
+          padding: ownerState.multiple ? '2px 9px' : '0 12px',
           '& .MuiAutocomplete-input': {
-            padding: '12px',
+            padding: 0,
           },
         },
-      },
-      tag: {},
+      }),
       endAdornment: {
         top: 'calc(50% - 20px)',
       },
