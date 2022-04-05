@@ -194,6 +194,7 @@ export const MultipleValues = story<MovieAutocompleteProps>(args => {
         options={movies}
         defaultValue={[movies[12].label, movies[13].label]}
         readOnly
+        ChipProps={{ clickable: false, variant: 'rectangular' }}
         renderInput={params => (
           <TextField {...params} label="readOnly" placeholder="Favorites" />
         )}
