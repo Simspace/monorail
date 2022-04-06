@@ -62,7 +62,7 @@ export const BasicSelect = story(Template, {
   },
 })
 
-export const FilledAndStandardVariants = story<SelectProps<string>>(() => {
+export const Sizes = story<SelectProps<string>>(() => {
   const [age, setAge] = React.useState('')
 
   const handleChange = (event: SelectChangeEvent<string>) => {
@@ -81,9 +81,6 @@ export const FilledAndStandardVariants = story<SelectProps<string>>(() => {
           onChange={handleChange}
           label="Small"
         >
-          <MenuItem value="">
-            <em>None</em>
-          </MenuItem>
           <MenuItem value={10}>Ten</MenuItem>
           <MenuItem value={20}>Twenty</MenuItem>
           <MenuItem value={30}>Thirty</MenuItem>
@@ -97,9 +94,6 @@ export const FilledAndStandardVariants = story<SelectProps<string>>(() => {
           value={age}
           onChange={handleChange}
         >
-          <MenuItem value="">
-            <em>None</em>
-          </MenuItem>
           <MenuItem value={10}>Ten</MenuItem>
           <MenuItem value={20}>Twenty</MenuItem>
           <MenuItem value={30}>Thirty</MenuItem>
@@ -125,11 +119,9 @@ export const LabelsAndHelperText = story<SelectProps<string>>(() => {
           id="demo-simple-select-helper"
           value={age}
           label="Age"
+          displayEmpty
           onChange={handleChange}
         >
-          <MenuItem value="">
-            <em>None</em>
-          </MenuItem>
           <MenuItem value={10}>Ten</MenuItem>
           <MenuItem value={20}>Twenty</MenuItem>
           <MenuItem value={30}>Thirty</MenuItem>
@@ -143,9 +135,6 @@ export const LabelsAndHelperText = story<SelectProps<string>>(() => {
           displayEmpty
           inputProps={{ 'aria-label': 'Without label' }}
         >
-          <MenuItem value="">
-            <em>None</em>
-          </MenuItem>
           <MenuItem value={10}>Ten</MenuItem>
           <MenuItem value={20}>Twenty</MenuItem>
           <MenuItem value={30}>Thirty</MenuItem>
@@ -166,9 +155,6 @@ export const LabelsAndHelperText = story<SelectProps<string>>(() => {
             displayEmpty
             inputProps={{ 'aria-label': 'Without label' }}
           >
-            <MenuItem value="">
-              <em>None</em>
-            </MenuItem>
             <MenuItem value={10}>Ten</MenuItem>
             <MenuItem value={20}>Twenty</MenuItem>
             <MenuItem value={30}>Thirty</MenuItem>
@@ -204,9 +190,6 @@ export const Adornments = story<SelectProps<string>>(() => {
           autoWidth
           label="Age"
         >
-          <MenuItem value="">
-            <em>None</em>
-          </MenuItem>
           <MenuItem value={10}>Twenty</MenuItem>
           <MenuItem value={21}>Twenty one</MenuItem>
           <MenuItem value={22}>Twenty one and a half</MenuItem>
@@ -235,9 +218,6 @@ export const AutoWidth = story<SelectProps<string>>(() => {
           autoWidth
           label="Age"
         >
-          <MenuItem value="">
-            <em>None</em>
-          </MenuItem>
           <MenuItem value={10}>Twenty</MenuItem>
           <MenuItem value={21}>Twenty one</MenuItem>
           <MenuItem value={22}>Twenty one and a half</MenuItem>
@@ -265,9 +245,6 @@ export const OtherProps = story<SelectProps<string>>(() => {
           label="Age"
           onChange={handleChange}
         >
-          <MenuItem value="">
-            <em>None</em>
-          </MenuItem>
           <MenuItem value={10}>Ten</MenuItem>
           <MenuItem value={20}>Twenty</MenuItem>
           <MenuItem value={30}>Thirty</MenuItem>
@@ -282,11 +259,8 @@ export const OtherProps = story<SelectProps<string>>(() => {
           value={age}
           label="Age"
           onChange={handleChange}
-          renderValue={value => `⚠️  - ${value}`}
+          renderValue={value => `${value}`}
         >
-          <MenuItem value="">
-            <em>None</em>
-          </MenuItem>
           <MenuItem value={10}>Ten</MenuItem>
           <MenuItem value={20}>Twenty</MenuItem>
           <MenuItem value={30}>Thirty</MenuItem>
@@ -303,9 +277,6 @@ export const OtherProps = story<SelectProps<string>>(() => {
           onChange={handleChange}
           inputProps={{ readOnly: true }}
         >
-          <MenuItem value="">
-            <em>None</em>
-          </MenuItem>
           <MenuItem value={10}>Ten</MenuItem>
           <MenuItem value={20}>Twenty</MenuItem>
           <MenuItem value={30}>Thirty</MenuItem>
@@ -321,9 +292,6 @@ export const OtherProps = story<SelectProps<string>>(() => {
           label="Age *"
           onChange={handleChange}
         >
-          <MenuItem value="">
-            <em>None</em>
-          </MenuItem>
           <MenuItem value={10}>Ten</MenuItem>
           <MenuItem value={20}>Twenty</MenuItem>
           <MenuItem value={30}>Thirty</MenuItem>

@@ -1,10 +1,12 @@
 import React from 'react'
 import ClearIcon from '@mui/icons-material/Clear'
 import { Components, Theme } from '@mui/material'
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 
 export const MonorailAutocompleteOverrides: Components<Theme>['MuiAutocomplete'] =
   {
     defaultProps: {
+      popupIcon: <ExpandMoreIcon />,
       clearIcon: <ClearIcon fontSize="medium" />,
       ChipProps: {
         clickable: true,
