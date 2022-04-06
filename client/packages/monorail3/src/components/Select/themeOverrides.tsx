@@ -1,6 +1,5 @@
-import React from 'react'
-import { Components, Theme } from '@mui/material'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
+import { Components, Theme } from '@mui/material'
 
 export const MonorailSelectOverrides: Components<Theme>['MuiSelect'] = {
   defaultProps: {
