@@ -2,6 +2,7 @@
 import type {} from '@mui/lab/themeAugmentation'
 import { Theme, ThemeOptions } from '@mui/material'
 
+import { MonorailAutocompleteOverrides } from '../components/Autocomplete/themeOverrides'
 import { MonorailAvatarOverrides } from '../components/Avatar/themeOverrides'
 import { MonorailBadgeOverrides } from '../components/Badge/themeOverrides'
 import { MonorailBreadcrumbsOverrides } from '../components/Breadcrumbs/themeOverrides'
@@ -18,6 +19,7 @@ import { MonorailInputBaseOverrides } from '../components/InputBase/themeOverrid
 import { MonorailInputLabelOverrides } from '../components/InputLabel/themeOverrides'
 import { MonorailOutlinedInputOverrides } from '../components/OutlinedInput/themeOverrides'
 import { MonorailRatingOverrides } from '../components/Rating/themeOverrides'
+import { MonorailSelectOverrides } from '../components/Select/themeOverrides'
 import { MonorailSkeletonOverrides } from '../components/Skeleton/themeOverrides'
 import { MonorailSvgIconOverrides } from '../components/SvgIcon/themeOverrides'
 import { MonorailTextFieldOverrides } from '../components/TextField/themeOverrides'
@@ -38,6 +40,7 @@ export const getThemeComponents = (
       square: true,
     },
   },
+  MuiAutocomplete: MonorailAutocompleteOverrides,
   MuiAvatar: MonorailAvatarOverrides,
   MuiBadge: MonorailBadgeOverrides,
   MuiButton: MonorailButtonOverrides,
@@ -57,6 +60,7 @@ export const getThemeComponents = (
   MuiLoadingButton: MonorailLoadingButtonOverrides,
   MuiOutlinedInput: MonorailOutlinedInputOverrides,
   MuiRating: MonorailRatingOverrides,
+  MuiSelect: MonorailSelectOverrides,
   MuiSkeleton: MonorailSkeletonOverrides,
   MuiSvgIcon: MonorailSvgIconOverrides,
   MuiTextField: MonorailTextFieldOverrides,

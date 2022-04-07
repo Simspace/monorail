@@ -1,5 +1,6 @@
 // Edit this file to add new stories
 import React from 'react'
+import AccountBoxIcon from '@mui/icons-material/AccountBox'
 import DeleteIcon from '@mui/icons-material/Delete'
 import DoneIcon from '@mui/icons-material/Done'
 import FaceIcon from '@mui/icons-material/Face'
@@ -72,6 +73,27 @@ export const Showcase = story<ChipProps>(() => (
     <Stack direction="column" alignItems="flex-start" spacing={2}>
       {colors.map(color => (
         <Chip
+          color={color}
+          label={capitalizeFirstLetter(color)}
+          key={`chip-filled-${color}`}
+          onDelete={action('onDelete')}
+        />
+      ))}
+    </Stack>
+    <Stack direction="column" alignItems="flex-start" spacing={2}>
+      {colors.map(color => (
+        <Chip
+          variant="outlined"
+          color={color}
+          label={capitalizeFirstLetter(color)}
+          key={`chip-outlined-${color}`}
+          onDelete={action('onDelete')}
+        />
+      ))}
+    </Stack>
+    <Stack direction="column" alignItems="flex-start" spacing={2}>
+      {colors.map(color => (
+        <Chip
           avatar={<Avatar>F</Avatar>}
           clickable
           onDelete={action('onDelete')}
@@ -97,7 +119,7 @@ export const Showcase = story<ChipProps>(() => (
     <Stack direction="column" alignItems="flex-start" spacing={2}>
       {colors.map(color => (
         <Chip
-          icon={<FaceIcon />}
+          icon={<AccountBoxIcon />}
           clickable
           color={color}
           label={capitalizeFirstLetter(color)}
