@@ -192,7 +192,7 @@ export const MultipleValues = story<MovieAutocompleteProps>(args => {
         multiple
         id="tags-readOnly"
         options={movies}
-        defaultValue={[movies[12].label, movies[13].label]}
+        defaultValue={[movies[12], movies[13]]}
         readOnly
         ChipProps={{ clickable: false, variant: 'rectangular' }}
         renderInput={params => (

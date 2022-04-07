@@ -1,17 +1,30 @@
 import React from 'react'
 import ClearIcon from '@mui/icons-material/Clear'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
-import { Components, Theme } from '@mui/material'
+import { Components, Popper, Theme } from '@mui/material'
 
 export const MonorailAutocompleteOverrides: Components<Theme>['MuiAutocomplete'] =
   {
     defaultProps: {
       popupIcon: <ExpandMoreIcon />,
-      clearIcon: <ClearIcon fontSize="medium" />,
+      clearIcon: <ClearIcon />,
       ChipProps: {
         clickable: true,
         variant: 'rectangular',
       },
+      PopperComponent: props => (
+        <Popper
+          {...props}
+          modifiers={[
+            {
+              name: 'offset',
+              options: {
+                offset: [0, 8],
+              },
+            },
+          ]}
+        />
+      ),
     },
     styleOverrides: {
       root: ({ ownerState }) => ({
@@ -25,9 +38,6 @@ export const MonorailAutocompleteOverrides: Components<Theme>['MuiAutocomplete']
       }),
       endAdornment: {
         top: 'calc(50% - 20px)',
-      },
-      popper: {
-        marginTop: 2,
       },
       input: {
         padding: 0,
