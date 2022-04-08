@@ -34,9 +34,6 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
         }),
       }
     },
-    label: {
-      padding: 6,
-    },
     filled: ({ ownerState, theme }) => {
       const color = ownerState.color ?? 'default'
 
@@ -200,17 +197,16 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
     sizeSmall: {
       padding: '2px 5px',
     },
-    icon: {
-      marginRight: -5,
-      marginLeft: 4,
-    },
+    icon: ({ ownerState }) => ({
+      marginLeft: ownerState.variant === 'rectangular' ? 4 : 10,
+      marginRight: -8,
+    }),
     deleteIcon: ({ ownerState, theme }) => {
       const color = ownerState.color ?? 'default'
       const variant = ownerState.variant ?? 'filled'
 
       return {
         marginRight: 3,
-        marginLeft: -4,
         color:
           variant === 'filled'
             ? theme.palette[color].selected
@@ -235,7 +231,6 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
 
       return {
         marginLeft: 4,
-        marginRight: -3,
         ...(color === 'default' && {
           ...(variant === 'filled' || variant === 'rectangular'
             ? {

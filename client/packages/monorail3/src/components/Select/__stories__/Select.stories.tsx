@@ -1,9 +1,11 @@
 // Edit this file to add new stories
 import React from 'react'
+import Person from '@mui/icons-material/Person'
 import {
   Box,
   FormControl,
   FormHelperText,
+  InputAdornment,
   InputLabel,
   MenuItem,
   Select,
@@ -60,7 +62,7 @@ export const BasicSelect = story(Template, {
   },
 })
 
-export const FilledAndStandardVariants = story<SelectProps<string>>(() => {
+export const Sizes = story<SelectProps<string>>(() => {
   const [age, setAge] = React.useState('')
 
   const handleChange = (event: SelectChangeEvent<string>) => {
@@ -69,34 +71,29 @@ export const FilledAndStandardVariants = story<SelectProps<string>>(() => {
 
   return (
     <div>
-      <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
-        <InputLabel id="demo-simple-select-standard-label">Age</InputLabel>
+      <FormControl sx={{ m: 2, minWidth: 120 }}>
+        <InputLabel id="demo-simple-select-small-label">Small</InputLabel>
         <Select
-          labelId="demo-simple-select-standard-label"
+          size="small"
+          labelId="demo-simple-select-small-label"
           id="demo-simple-select-standard"
           value={age}
           onChange={handleChange}
-          label="Age"
+          label="Small"
         >
-          <MenuItem value="">
-            <em>None</em>
-          </MenuItem>
           <MenuItem value={10}>Ten</MenuItem>
           <MenuItem value={20}>Twenty</MenuItem>
           <MenuItem value={30}>Thirty</MenuItem>
         </Select>
       </FormControl>
-      <FormControl variant="filled" sx={{ m: 1, minWidth: 120 }}>
-        <InputLabel id="demo-simple-select-filled-label">Age</InputLabel>
+      <FormControl sx={{ m: 2, minWidth: 120 }}>
+        <InputLabel id="demo-simple-select-medium-label">Medium</InputLabel>
         <Select
-          labelId="demo-simple-select-filled-label"
+          labelId="demo-simple-select-medium-label"
           id="demo-simple-select-filled"
           value={age}
           onChange={handleChange}
         >
-          <MenuItem value="">
-            <em>None</em>
-          </MenuItem>
           <MenuItem value={10}>Ten</MenuItem>
           <MenuItem value={20}>Twenty</MenuItem>
           <MenuItem value={30}>Thirty</MenuItem>
@@ -115,39 +112,88 @@ export const LabelsAndHelperText = story<SelectProps<string>>(() => {
 
   return (
     <div>
-      <FormControl sx={{ m: 1, minWidth: 120 }}>
+      <FormControl sx={{ m: 4, minWidth: 120 }}>
         <InputLabel id="demo-simple-select-helper-label">Age</InputLabel>
         <Select
           labelId="demo-simple-select-helper-label"
           id="demo-simple-select-helper"
           value={age}
           label="Age"
+          displayEmpty
           onChange={handleChange}
         >
-          <MenuItem value="">
-            <em>None</em>
-          </MenuItem>
           <MenuItem value={10}>Ten</MenuItem>
           <MenuItem value={20}>Twenty</MenuItem>
           <MenuItem value={30}>Thirty</MenuItem>
         </Select>
         <FormHelperText>With label + helper text</FormHelperText>
       </FormControl>
-      <FormControl sx={{ m: 1, minWidth: 120 }}>
+      <FormControl sx={{ m: 4, minWidth: 120 }}>
         <Select
           value={age}
           onChange={handleChange}
           displayEmpty
           inputProps={{ 'aria-label': 'Without label' }}
         >
-          <MenuItem value="">
-            <em>None</em>
-          </MenuItem>
           <MenuItem value={10}>Ten</MenuItem>
           <MenuItem value={20}>Twenty</MenuItem>
           <MenuItem value={30}>Thirty</MenuItem>
         </Select>
         <FormHelperText>Without label</FormHelperText>
+      </FormControl>
+      <FormControl sx={{ m: 4, display: 'inline-flex', flexDirection: 'row' }}>
+        <InputLabel
+          sx={{ fontWeight: 700, m: 0, mt: 3, mr: 3, left: 0 }}
+          id="label-on-left"
+        >
+          Select
+        </InputLabel>
+        <div>
+          <Select
+            value={age}
+            onChange={handleChange}
+            displayEmpty
+            inputProps={{ 'aria-label': 'Without label' }}
+          >
+            <MenuItem value={10}>Ten</MenuItem>
+            <MenuItem value={20}>Twenty</MenuItem>
+            <MenuItem value={30}>Thirty</MenuItem>
+          </Select>
+          <FormHelperText>Label on left</FormHelperText>
+        </div>
+      </FormControl>
+    </div>
+  )
+})
+
+export const Adornments = story<SelectProps<string>>(() => {
+  const [age, setAge] = React.useState('')
+
+  const handleChange = (event: SelectChangeEvent<string>) => {
+    setAge(event.target.value)
+  }
+
+  return (
+    <div>
+      <FormControl sx={{ m: 1, minWidth: 80 }}>
+        <InputLabel id="demo-simple-select-autowidth-label">Age</InputLabel>
+        <Select
+          startAdornment={
+            <InputAdornment position="start">
+              <Person />
+            </InputAdornment>
+          }
+          labelId="demo-simple-select-autowidth-label"
+          id="demo-simple-select-autowidth"
+          value={age}
+          onChange={handleChange}
+          autoWidth
+          label="Age"
+        >
+          <MenuItem value={10}>Twenty</MenuItem>
+          <MenuItem value={21}>Twenty one</MenuItem>
+          <MenuItem value={22}>Twenty one and a half</MenuItem>
+        </Select>
       </FormControl>
     </div>
   )
@@ -172,9 +218,6 @@ export const AutoWidth = story<SelectProps<string>>(() => {
           autoWidth
           label="Age"
         >
-          <MenuItem value="">
-            <em>None</em>
-          </MenuItem>
           <MenuItem value={10}>Twenty</MenuItem>
           <MenuItem value={21}>Twenty one</MenuItem>
           <MenuItem value={22}>Twenty one and a half</MenuItem>
@@ -202,9 +245,6 @@ export const OtherProps = story<SelectProps<string>>(() => {
           label="Age"
           onChange={handleChange}
         >
-          <MenuItem value="">
-            <em>None</em>
-          </MenuItem>
           <MenuItem value={10}>Ten</MenuItem>
           <MenuItem value={20}>Twenty</MenuItem>
           <MenuItem value={30}>Thirty</MenuItem>
@@ -219,11 +259,8 @@ export const OtherProps = story<SelectProps<string>>(() => {
           value={age}
           label="Age"
           onChange={handleChange}
-          renderValue={value => `⚠️  - ${value}`}
+          renderValue={value => `${value}`}
         >
-          <MenuItem value="">
-            <em>None</em>
-          </MenuItem>
           <MenuItem value={10}>Ten</MenuItem>
           <MenuItem value={20}>Twenty</MenuItem>
           <MenuItem value={30}>Thirty</MenuItem>
@@ -240,9 +277,6 @@ export const OtherProps = story<SelectProps<string>>(() => {
           onChange={handleChange}
           inputProps={{ readOnly: true }}
         >
-          <MenuItem value="">
-            <em>None</em>
-          </MenuItem>
           <MenuItem value={10}>Ten</MenuItem>
           <MenuItem value={20}>Twenty</MenuItem>
           <MenuItem value={30}>Thirty</MenuItem>
@@ -258,9 +292,6 @@ export const OtherProps = story<SelectProps<string>>(() => {
           label="Age *"
           onChange={handleChange}
         >
-          <MenuItem value="">
-            <em>None</em>
-          </MenuItem>
           <MenuItem value={10}>Ten</MenuItem>
           <MenuItem value={20}>Twenty</MenuItem>
           <MenuItem value={30}>Thirty</MenuItem>
