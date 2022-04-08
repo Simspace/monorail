@@ -4,6 +4,74 @@ import { createTheme, PaletteOptions, Theme, ThemeOptions } from '@mui/material'
 import { baseTheme } from './baseTheme'
 import { getThemeComponents } from './themeComponents'
 
+// #region Raw Colors (Option Tokens)
+/**
+ * Context-free named colors. Only meant to be used by aliases
+ */
+export enum RawColor {
+  Transparent = 'transparent',
+  White = '#FFFFFF',
+  Black = '#000000',
+
+  Grey050 = '#F0F0F0',
+  Grey100 = '#EBEBEB',
+  Grey200 = '#E0E0E0',
+  Grey300 = '#C2C2C2',
+  Grey400 = '#A6A6A6',
+  Grey500 = '#8F8F8F',
+  Grey600 = '#757575',
+  Grey700 = '#616161',
+  Grey800 = '#424242',
+  Grey900 = '#1C1C1C',
+  GreyA100 = '#EBEBEB',
+  GreyA300 = '#8F8F8F',
+  GreyA700 = '#616161',
+  GreyA900 = '#1C1C1C',
+
+  Blue050 = '#F5F9FF',
+  Blue100 = '#D9E4FD',
+  Blue200 = '#BDD3FE',
+  Blue300 = '#A1C1FF',
+  Blue400 = '#7AA8FF',
+  Blue500 = '#4787FF',
+  Blue600 = '#1465FF',
+  Blue700 = '#1050CB',
+  Blue800 = '#0C3D9C',
+
+  Orange050 = '#FFF8F0',
+  Orange100 = '#FFE6C7',
+  Orange200 = '#FCCF87',
+  Orange300 = '#FFAD39',
+  Orange400 = '#FF8000',
+  Orange500 = '#E16705',
+  Orange600 = '#CF530A',
+  Orange700 = '#A94408',
+  Orange800 = '#833405',
+
+  Yellow = '#F3BE1F',
+
+  Green050 = '#E8FCEE',
+  Green100 = '#BBF7CD',
+  Green200 = '#86E1A1',
+  Green300 = '#31C367',
+  Green400 = '#1AB053',
+  Green500 = '#029C3F',
+  Green600 = '#058538',
+  Green700 = '#058538',
+  Green800 = '#065324',
+
+  Red050 = '#FFF6F5',
+  Red100 = '#FFE3E0',
+  Red200 = '#FCCDC8',
+  Red300 = '#F8B6AF',
+  Red400 = '#FF8480',
+  Red500 = '#FD3D3D',
+  Red600 = '#D5251F',
+  Red700 = '#AD0C00',
+  Red800 = '#850900',
+}
+// #endregion Raw Colors (Option Tokens)
+
 export const DefaultLightScoreColors = {
   high: {
     light: '#0FBD6F',
