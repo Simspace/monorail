@@ -26,16 +26,16 @@ declare module '@mui/material/styles/createPalette' {
      * and it's convenient for them to be specified consistently in the theme.
      */
 
-    accent: PaletteColorNoButtonState
+    accent: PaletteColorOptions
 
-    default: PaletteColor
+    default: PaletteColorOptions
 
     score: {
-      high: PaletteColorNoButtonState
-      highModerate: PaletteColorNoButtonState
-      moderate: PaletteColorNoButtonState
-      lowModerate: PaletteColorNoButtonState
-      low: PaletteColorNoButtonState
+      high: PaletteColor
+      highModerate: PaletteColor
+      moderate: PaletteColor
+      lowModerate: PaletteColor
+      low: PaletteColor
     }
 
     tiers: {
@@ -54,14 +54,6 @@ declare module '@mui/material/styles/createPalette' {
     }
 
     rating: string
-
-    admin: PaletteColor
-    content: PaletteColor
-    events: PaletteColor
-    network: PaletteColor
-    personnel: PaletteColor
-    reports: PaletteColor
-    techOps: PaletteColor
   }
 
   /**
@@ -70,16 +62,16 @@ declare module '@mui/material/styles/createPalette' {
    * Because these are custom and have no MUI-provided defaults, they are required to be set, so they can be safely used.
    */
   interface PaletteOptions {
-    accent?: PaletteColorOptionsNoButtonState
+    accent?: PaletteColorOptions
 
-    default?: PaletteColor
+    default?: PaletteColorOptions
 
     score?: Partial<{
-      high: PaletteColorOptionsNoButtonState
-      highModerate: PaletteColorOptionsNoButtonState
-      moderate: PaletteColorOptionsNoButtonState
-      lowModerate: PaletteColorOptionsNoButtonState
-      low: PaletteColorOptionsNoButtonState
+      high: PaletteColor
+      highModerate: PaletteColor
+      moderate: PaletteColor
+      lowModerate: PaletteColor
+      low: PaletteColor
     }>
 
     tiers?: Partial<{
@@ -100,35 +92,71 @@ declare module '@mui/material/styles/createPalette' {
     rating?: string
   }
 
-  interface PaletteColor {
-    hover: string
-    selected: string
-    active: string
-  }
+  // interface PaletteColor {
+  //   background: {
+  //     default: {
+  //       idle: string
+  //       hover: string
+  //       active: string
+  //       disabled: string
+  //     }
+  //   }
+  // }
 
-  interface PaletteColorNoButtonState {
-    light: string
-    main: string
-    dark: string
-    contrastText: string
-  }
+  // interface ColorTokenInteraction {
+  //   idle: string
+  //   hover: string
+  //   active: string
+  //   disabled: string
+  // }
 
-  interface SimplePaletteColorOptions {
-    hover: string
-    selected: string
-    active: string
-  }
+  // interface ColorTokenProminence {
+  //   default: ColorTokenInteraction
+  //   weak: ColorTokenInteraction
+  //   medium: ColorTokenInteraction
+  //   strong: ColorTokenInteraction
+  // }
 
-  interface SimplePaletteColorOptionsNoButtonState {
-    light?: string
-    main: string
-    dark?: string
-    contrastText?: string
-  }
+  // interface ColorTokenUsage {
+  //   background: ColorTokenProminence
+  //   text: ColorTokenProminence
+  //   border: ColorTokenProminence
+  //   icon: ColorTokenProminence
+  //   focusRing: {
+  //     inner: string
+  //     outer: string
+  //   }
+  // }
 
-  type PaletteColorOptionsNoButtonState =
-    | SimplePaletteColorOptionsNoButtonState
-    | ColorPartial
+  // interface PaletteColor {
+  //   light: string
+  //   main: string
+  //   dark: string
+  //   contrastText: string
+  // }
+
+  // interface SimplePaletteColorOptions {
+  //   hover: string
+  //   selected: string
+  //   active: string
+  // }
+
+  // interface SimplePaletteColorOptions {
+  //   hover: string
+  //   selected: string
+  //   active: string
+  // }
+
+  // interface SimplePaletteColor {
+  //   light?: string
+  //   main: string
+  //   dark?: string
+  //   contrastText?: string
+  // }
+
+  // type PaletteColor =
+  //   | SimplePaletteColor
+  //   | ColorPartial
 }
 
 declare module '@mui/material/Button' {
