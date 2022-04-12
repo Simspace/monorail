@@ -1,5 +1,5 @@
 import type {} from '@mui/lab/themeAugmentation'
-import { ButtonProps, Components, darken, Theme } from '@mui/material'
+import { Components, darken, Theme } from '@mui/material'
 
 const buttonTokens = {
   contained: {

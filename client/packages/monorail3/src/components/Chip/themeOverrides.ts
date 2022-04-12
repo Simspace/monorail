@@ -1,4 +1,5 @@
 import { Components, darken, Theme } from '@mui/material'
+import { SimpleInterpolation } from '@mui/styled-engine'
 
 declare module '@mui/material/Chip' {
   /**
@@ -8,6 +9,85 @@ declare module '@mui/material/Chip' {
     rectangular: true
   }
 }
+
+const chipTokens = {
+  filled: {
+    // "Emphasis/Prominence" candidate for promotion
+    strong: {
+      bg: {
+        idle: 600,
+        hover: 700,
+        active: 800,
+        focused: 600,
+      },
+      label: 'white',
+      icon: 'white',
+      deleteIcon: 50,
+      avatar: {
+        bg: 800,
+        text: 'white',
+      },
+    },
+    medium: {
+      bg: {
+        idle: 200,
+        hover: 300,
+        active: 400,
+        focused: 200,
+      },
+      label: 'primary',
+      icon: 600,
+      deleteIcon: 600,
+      avatar: {
+        bg: 800,
+        text: 'white',
+      },
+    },
+    weak: {
+      bg: {
+        idle: 100,
+        hover: 200,
+        active: 300,
+        focused: 100,
+      },
+      label: 'primary',
+      icon: 600,
+      deleteIcon: 600,
+      avatar: {
+        bg: 300,
+        text: 600,
+      },
+    },
+  },
+  outlined: {
+    bg: {
+      hover: 50,
+      active: 200,
+    },
+    border: 400,
+    label: 600,
+    icon: 600,
+    deleteIcon: 600,
+    avatar: {
+      bg: 600,
+    },
+  },
+  rectangular: {
+    bg: {
+      idle: 100,
+      hover: 200,
+      active: 300,
+      focused: 100,
+    },
+    label: 'primary',
+    icon: 600,
+    deleteIcon: 600,
+    avatar: {
+      bg: 300,
+      text: 600,
+    },
+  },
+} as const
 
 export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
   defaultProps: {},
@@ -19,17 +99,21 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
       return {
         fontWeight: theme.typography.fontWeightBold,
         '&.Mui-focusVisible': {
-          boxShadow: `0 0 0 3px ${theme.palette[color].light}`,
-          border: `1px solid ${theme.palette[color].dark}`,
+          boxShadow: `0 0 0 3px ${theme.palette[color].focusRing?.outer}`,
+          border: `1px solid ${theme.palette[color].focusRing?.inner}`,
         },
         ...(variant === 'rectangular' && {
           border: '1px solid transparent',
           borderRadius: 4,
-          backgroundColor: theme.palette.grey[100],
+          color: theme.palette.text.primary,
+          backgroundColor:
+            theme.palette.default[chipTokens.rectangular.bg.idle],
           '&.Mui-focusVisible': {
-            boxShadow: `0 0 0 3px ${theme.palette[color].light}`,
-            border: `1px solid ${theme.palette[color].dark}`,
-            backgroundColor: theme.palette.default.light,
+            boxShadow: `0 0 0 3px ${theme.palette.default.focusRing?.outer}`,
+            border: `1px solid ${theme.palette.default.focusRing?.inner}`,
+            backgroundColor: !ownerState.clickable
+              ? theme.palette.default[chipTokens.rectangular.bg.focused]
+              : theme.palette.primary[chipTokens.rectangular.bg.focused],
           },
         }),
       }
@@ -41,23 +125,17 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
         border: '1px solid transparent',
         backgroundColor:
           color === 'default'
-            ? theme.palette.default.selected
-            : color === 'secondary'
-            ? theme.palette.secondary.light
-            : color === 'warning'
-            ? theme.palette.warning.light
-            : theme.palette[color].main,
+            ? theme.palette[color][chipTokens.filled.weak.bg.idle]
+            : color === 'secondary' || color === 'warning'
+            ? theme.palette[color][chipTokens.filled.medium.bg.idle]
+            : theme.palette[color][chipTokens.filled.strong.bg.idle],
         '&.Mui-focusVisible': {
           backgroundColor:
             color === 'default'
-              ? theme.palette.default.active
-              : color === 'primary' || color === 'info'
-              ? theme.palette.primary.main
-              : color === 'success'
-              ? theme.palette.success.main
-              : color === 'error'
-              ? '#D5251F'
-              : theme.palette[color].dark,
+              ? theme.palette[color][chipTokens.filled.weak.bg.focused]
+              : color === 'secondary' || color === 'warning'
+              ? theme.palette[color][chipTokens.filled.medium.bg.focused]
+              : theme.palette[color][chipTokens.filled.strong.bg.focused],
         },
       }
     },
@@ -66,132 +144,73 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
 
       return {
         backgroundColor: theme.palette.common.white,
-        borderColor: theme.palette[color].main,
+        borderColor: theme.palette[color][chipTokens.outlined.border],
+        color:
+          color === 'default'
+            ? theme.palette.text.primary
+            : theme.palette[color][chipTokens.outlined.label],
         '&.Mui-focusVisible': {
-          backgroundColor: theme.palette[color].hover,
+          backgroundColor: theme.palette.common.white,
         },
-        ...(color === 'default' && {
-          borderColor: theme.palette.default.light,
-        }),
-        ...(color === 'error' && {
-          borderColor: theme.palette.error.light,
-        }),
-        ...(ownerState.clickable && {
-          '&.MuiChip-clickable:hover': {
-            backgroundColor: theme.palette[color].hover,
-          },
-          '&.MuiChip-clickable:active': {
-            backgroundColor: theme.palette[color].active,
-            boxShadow: 'none',
-          },
-        }),
       }
     },
     clickable: ({ ownerState, theme }) => {
       const color = ownerState.color ?? 'default'
       const variant = ownerState.variant ?? 'filled'
 
-      return {
-        ...(variant === 'filled' &&
-          color === 'secondary' && {
-            '&.Mui-focusVisible': {
-              borderColor: '#833405',
-              color: theme.palette.getContrastText(
-                theme.palette.secondary.dark,
-              ),
-            },
-          }),
-        ...(variant === 'filled' &&
-          color === 'warning' && {
-            '&.Mui-focusVisible': {
-              borderColor: '#833405',
-              color: theme.palette.getContrastText(theme.palette.warning.dark),
-            },
-          }),
+      const filledStyles: SimpleInterpolation = {
         '&:hover': {
-          '& > .MuiAvatar-root': {
-            backgroundColor:
-              color === 'default'
-                ? theme.palette.default.light
-                : color === 'primary'
-                ? '#0C3D9C'
-                : color === 'secondary'
-                ? '#A94408'
-                : color === 'warning'
-                ? '#A94408'
-                : color === 'error'
-                ? '#850900'
-                : color === 'success'
-                ? '#065324'
-                : '#0C3D9C', // info
-          },
+          backgroundColor:
+            color === 'default'
+              ? theme.palette[color][chipTokens.filled.weak.bg.hover]
+              : color === 'secondary' || color === 'warning'
+              ? theme.palette[color][chipTokens.filled.medium.bg.hover]
+              : theme.palette[color][chipTokens.filled.strong.bg.hover],
         },
-        ...(variant === 'filled' &&
-          color === 'secondary' && {
-            '&.MuiChip-clickable:hover': {
-              color: theme.palette.getContrastText(
-                theme.palette.secondary.dark,
-              ),
-            },
-          }),
-        ...(variant === 'filled' &&
-          color === 'warning' && {
-            '&.MuiChip-clickable:hover': {
-              color: theme.palette.getContrastText(theme.palette.warning.dark),
-            },
-          }),
+        '&:active': {
+          boxShadow: 'none',
+          backgroundColor:
+            color === 'default'
+              ? theme.palette[color][chipTokens.filled.weak.bg.active]
+              : color === 'secondary' || color === 'warning'
+              ? theme.palette[color][chipTokens.filled.medium.bg.active]
+              : theme.palette[color][chipTokens.filled.strong.bg.active],
+        },
+      }
+
+      const outlinedStyles: SimpleInterpolation = {
+        '&.MuiChip-clickable:hover': {
+          backgroundColor: theme.palette[color][chipTokens.outlined.bg.hover],
+        },
         '&.MuiChip-clickable:active': {
           boxShadow: 'none',
-          backgroundColor: darken(
-            theme.palette[color].dark,
-            theme.palette.action.activatedOpacity,
-          ),
+          backgroundColor: theme.palette[color][chipTokens.outlined.bg.active],
         },
-        ...(color === 'default' && {
-          backgroundColor: theme.palette.default.selected,
-          '&:hover': {
-            backgroundColor: theme.palette.default.active,
-          },
-          '&.MuiChip-clickable:active': {
-            boxShadow: 'none',
-            backgroundColor: theme.palette.default.light,
-          },
-        }),
-        ...(color === 'secondary' && {
-          backgroundColor: theme.palette.secondary.light,
-        }),
-        ...(color === 'warning' && {
-          backgroundColor: theme.palette.warning.light,
-        }),
-        ...(variant === 'rectangular' && {
-          backgroundColor: theme.palette.primary.selected,
-          color: theme.palette.primary.dark,
-          '&:hover': {
-            backgroundColor: '#BDD3FE',
-          },
-          '&.MuiChip-clickable:active': {
-            boxShadow: 'none',
-            backgroundColor: theme.palette.primary.active,
-          },
-          '&.Mui-focusVisible': {
-            backgroundColor: theme.palette.primary.active,
-            boxShadow: `0 0 0 3px ${theme.palette.primary.light}`,
-            border: `1px solid ${theme.palette.primary.dark}`,
-          },
-          '& > .MuiChip-avatar': {
-            backgroundColor: theme.palette.primary.light,
-            color: theme.palette.primary.dark,
-          },
-          '& > .MuiChip-deleteIcon': {
-            color: theme.palette.primary.light,
-            '&:hover': {
-              color: '#4787FF',
-            },
-          },
-          '& > .MuiChip-icon': {
-            color: theme.palette.primary.dark,
-          },
-        }),
+      }
+
+      const clickableRectangularStyles: SimpleInterpolation = {
+        backgroundColor: theme.palette.primary[chipTokens.rectangular.bg.idle],
+        '&:hover': {
+          backgroundColor:
+            theme.palette.primary[chipTokens.rectangular.bg.hover],
+        },
+        '&:active': {
+          boxShadow: 'none',
+          backgroundColor:
+            theme.palette.primary[chipTokens.rectangular.bg.active],
+        },
+        '& > .MuiChip-deleteIcon': {
+          color: theme.palette.primary[chipTokens.rectangular.deleteIcon],
+        },
+        '& > .MuiChip-icon': {
+          color: theme.palette.primary[chipTokens.rectangular.icon],
+        },
+      }
+
+      return {
+        ...(variant === 'filled' && filledStyles),
+        ...(variant === 'outlined' && outlinedStyles),
+        ...(variant === 'rectangular' && clickableRectangularStyles),
       }
     },
     sizeSmall: {
@@ -205,63 +224,89 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
       const color = ownerState.color ?? 'default'
       const variant = ownerState.variant ?? 'filled'
 
-      return {
-        marginRight: 3,
-        color:
-          variant === 'filled'
-            ? theme.palette[color].selected
-            : theme.palette[color].main,
+      const filledStyles: SimpleInterpolation = {
         '&:hover': {
           color:
-            variant === 'filled'
-              ? theme.palette[color].hover
-              : theme.palette[color].dark,
+            color === 'default'
+              ? theme.palette.default[chipTokens.filled.weak.deleteIcon]
+              : color === 'secondary' || color === 'warning'
+              ? theme.palette[color][chipTokens.filled.medium.deleteIcon]
+              : theme.palette[color][chipTokens.filled.strong.deleteIcon],
         },
-        ...(color === 'default' && {
-          color: theme.palette.default.main,
-          '&:hover': {
-            color: theme.palette.default.dark,
-          },
-        }),
+        color:
+          color === 'default'
+            ? theme.palette.default[chipTokens.filled.weak.deleteIcon]
+            : color === 'secondary' || color === 'warning'
+            ? theme.palette[color][chipTokens.filled.medium.deleteIcon]
+            : theme.palette[color][chipTokens.filled.strong.deleteIcon],
+      }
+
+      const outlinedStyles: SimpleInterpolation = {
+        color: theme.palette[color][chipTokens.outlined.deleteIcon],
+        '&:hover': {
+          color: theme.palette[color][chipTokens.outlined.deleteIcon],
+        },
+      }
+
+      const rectangularStyles: SimpleInterpolation = {
+        color: !ownerState.clickable
+          ? theme.palette.default[chipTokens.rectangular.deleteIcon]
+          : theme.palette.primary[chipTokens.rectangular.deleteIcon],
+        '&:hover': {
+          color: !ownerState.clickable
+            ? theme.palette.default[chipTokens.rectangular.deleteIcon]
+            : theme.palette.primary[chipTokens.rectangular.deleteIcon],
+        },
+      }
+
+      return {
+        marginRight: 3,
+        ...(variant === 'filled' && filledStyles),
+        ...(variant === 'outlined' && outlinedStyles),
+        ...(variant === 'rectangular' && rectangularStyles),
       }
     },
     avatar: ({ ownerState, theme }) => {
       const color = ownerState.color ?? 'default'
       const variant = ownerState.variant ?? 'filled'
 
+      const filledStyles: SimpleInterpolation = {
+        color:
+          color === 'default'
+            ? theme.palette.default[chipTokens.filled.weak.avatar.text]
+            : theme.palette.common.white,
+        backgroundColor:
+          color === 'default'
+            ? theme.palette.default[chipTokens.filled.weak.avatar.bg]
+            : theme.palette[color][chipTokens.filled.strong.avatar.bg],
+      }
+
+      const outlinedStyles: SimpleInterpolation = {
+        color: theme.palette.common.white,
+        backgroundColor: theme.palette[color][chipTokens.outlined.avatar.bg],
+      }
+
+      const readOnlyRectangularStyles: SimpleInterpolation = {
+        color: theme.palette.default[chipTokens.rectangular.avatar.text],
+        backgroundColor:
+          theme.palette.default[chipTokens.rectangular.avatar.bg],
+      }
+
+      const clickableRectangularStyles: SimpleInterpolation = {
+        color: theme.palette.primary[chipTokens.rectangular.avatar.text],
+        backgroundColor:
+          theme.palette.primary[chipTokens.rectangular.avatar.bg],
+      }
+
       return {
         marginLeft: 4,
-        ...(color === 'default' && {
-          ...(variant === 'filled' || variant === 'rectangular'
-            ? {
-                color: theme.palette.default.main,
-                backgroundColor: theme.palette.default.light,
-              }
-            : {
-                color: theme.palette.common.white,
-                backgroundColor: theme.palette.default.main,
-              }),
-        }),
-        ...(color === 'warning' && {
-          color: theme.palette.common.white,
-          backgroundColor: theme.palette.warning.dark,
-        }),
-        ...(color === 'info' && {
-          color: theme.palette.info.contrastText,
-          backgroundColor: theme.palette.info.dark,
-        }),
-        ...(color === 'success' && {
-          color: theme.palette.success.contrastText,
-          backgroundColor: theme.palette.success.dark,
-        }),
-        ...(color === 'error' && {
-          color: theme.palette.error.contrastText,
-          backgroundColor: theme.palette.error.dark,
-        }),
+        ...(variant === 'filled' && filledStyles),
+        ...(variant === 'outlined' && outlinedStyles),
+        ...(variant === 'rectangular' && readOnlyRectangularStyles),
+        ...(variant === 'rectangular' &&
+          ownerState.clickable &&
+          clickableRectangularStyles),
       }
     },
-    avatarColorSecondary: ({ theme }) => ({
-      color: theme.palette.common.white,
-    }),
   },
 }
