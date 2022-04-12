@@ -196,6 +196,11 @@ export const DefaultLightChartColors = {
 }
 
 // https://www.figma.com/file/dKL9YeHgWyxmRHuIjs38f3O9/Monorail-Components?node-id=23496%3A27
+/**
+ * MUI Palette with additional Monorail colors.
+ * Raw colors available globally (use sparingly).
+ * Mainly used to assign to component tokens in themeOverrides files.
+ */
 const palette: PaletteOptions = {
   primary: {
     light: RawColor.Blue400,
@@ -210,7 +215,10 @@ const palette: PaletteOptions = {
     600: RawColor.Blue600,
     700: RawColor.Blue700,
     800: RawColor.Blue800,
-    // Usage
+    focusRing: {
+      inner: RawColor.Blue800,
+      outer: RawColor.Blue400,
+    },
   },
   secondary: {
     light: RawColor.Orange300,
@@ -225,6 +233,10 @@ const palette: PaletteOptions = {
     600: RawColor.Orange600,
     700: RawColor.Orange700,
     800: RawColor.Orange800,
+    focusRing: {
+      inner: RawColor.Orange800,
+      outer: RawColor.Orange400,
+    },
   },
   default: {
     light: RawColor.Grey300,
@@ -240,12 +252,20 @@ const palette: PaletteOptions = {
     600: RawColor.Grey600,
     700: RawColor.Grey700,
     800: RawColor.Grey800,
+    focusRing: {
+      inner: RawColor.Blue800,
+      outer: RawColor.Blue400,
+    },
   },
   accent: {
     light: '#0C3D99',
     main: '#0C3D99',
     dark: '#161C4F',
     contrastText: baseTheme.palette.getContrastText('#0C3D99'),
+    focusRing: {
+      inner: RawColor.Blue800,
+      outer: RawColor.Blue400,
+    },
   },
   success: {
     light: RawColor.Green300,
@@ -260,6 +280,10 @@ const palette: PaletteOptions = {
     600: RawColor.Green600,
     700: RawColor.Green700,
     800: RawColor.Green800,
+    focusRing: {
+      inner: RawColor.Green800,
+      outer: RawColor.Green400,
+    },
   },
   error: {
     light: RawColor.Red400,
@@ -274,6 +298,10 @@ const palette: PaletteOptions = {
     600: RawColor.Red600,
     700: RawColor.Red700,
     800: RawColor.Red800,
+    focusRing: {
+      inner: RawColor.Red800,
+      outer: RawColor.Red400,
+    },
   },
   warning: {
     light: RawColor.Orange300,
@@ -288,6 +316,10 @@ const palette: PaletteOptions = {
     600: RawColor.Orange600,
     700: RawColor.Orange700,
     800: RawColor.Orange800,
+    focusRing: {
+      inner: RawColor.Orange800,
+      outer: RawColor.Orange400,
+    },
   },
   info: {
     light: RawColor.Blue400,
@@ -302,6 +334,10 @@ const palette: PaletteOptions = {
     600: RawColor.Blue600,
     700: RawColor.Blue700,
     800: RawColor.Blue800,
+    focusRing: {
+      inner: RawColor.Blue800,
+      outer: RawColor.Blue400,
+    },
   },
   text: {
     primary: RawColor.Grey900,

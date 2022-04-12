@@ -26,9 +26,9 @@ declare module '@mui/material/styles/createPalette' {
      * and it's convenient for them to be specified consistently in the theme.
      */
 
-    accent: PaletteColorOptions
+    accent: PaletteColor
 
-    default: PaletteColorOptions
+    default: PaletteColor
 
     score: {
       high: PaletteColor
@@ -92,16 +92,32 @@ declare module '@mui/material/styles/createPalette' {
     rating?: string
   }
 
-  // interface PaletteColor {
-  //   background: {
-  //     default: {
-  //       idle: string
-  //       hover: string
-  //       active: string
-  //       disabled: string
-  //     }
-  //   }
-  // }
+  interface PaletteColor {
+    light: string
+    main: string
+    dark: string
+    contrastText: string
+    50?: string
+    100?: string
+    200?: string
+    300?: string
+    400?: string
+    500?: string
+    600?: string
+    700?: string
+    800?: string
+    focusRing?: {
+      inner: string
+      outer: string
+    }
+  }
+
+  interface SimplePaletteColorOptions {
+    focusRing: {
+      inner: string
+      outer: string
+    }
+  }
 
   // interface ColorTokenInteraction {
   //   idle: string
