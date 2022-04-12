@@ -173,9 +173,7 @@ export const ButtonsWithIconsAndLabel = story<ButtonProps>(
 export const LoadingButtons = story<ButtonProps>(
   () => (
     <Stack direction="row" spacing={2}>
-      <LoadingButton loading variant="outlined">
-        Submit
-      </LoadingButton>
+      <LoadingButton loading>Submit</LoadingButton>
       <LoadingButton
         loading
         loadingIndicator="Loading..."
@@ -188,7 +186,7 @@ export const LoadingButtons = story<ButtonProps>(
         loading
         loadingPosition="start"
         startIcon={<SaveIcon />}
-        variant="outlined"
+        variant="text"
         color="error"
       >
         Save

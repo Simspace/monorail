@@ -1,5 +1,37 @@
 import type {} from '@mui/lab/themeAugmentation'
-import { Components, darken, Theme } from '@mui/material'
+import { ButtonProps, Components, darken, Theme } from '@mui/material'
+
+const buttonTokens = {
+  contained: {
+    bg: {
+      idle: 600,
+      hover: 700,
+      active: 800,
+      disabled: 400,
+    },
+  },
+  outlined: {
+    bg: {
+      hover: 50,
+      active: 100,
+    },
+    border: 400,
+    text: {
+      idle: 600,
+      disabled: 400,
+    },
+  },
+  text: {
+    bg: {
+      hover: 50,
+      active: 100,
+    },
+    text: {
+      idle: 600,
+      disabled: 400,
+    },
+  },
+} as const
 
 export const MonorailButtonOverrides: Components<Theme>['MuiButton'] = {
   defaultProps: {
@@ -14,8 +46,8 @@ export const MonorailButtonOverrides: Components<Theme>['MuiButton'] = {
       const color = ownerState.color ?? 'primary'
       return {
         '&.Mui-focusVisible': {
-          boxShadow: `0 0 0 3px ${theme.palette[color].light}`,
-          outline: `1px solid ${theme.palette[color].dark}`,
+          boxShadow: `0 0 0 4px ${theme.palette[color].focusRing?.outer}`,
+          outline: `1px solid ${theme.palette[color].focusRing?.inner}`,
         },
         '&.Mui-disabled': {
           border: 'none',
@@ -23,15 +55,15 @@ export const MonorailButtonOverrides: Components<Theme>['MuiButton'] = {
           // but it wouldn't override the default styles
           // This pattern seems to work better for .Mui-[state]
           ...(ownerState.variant === 'contained' && {
-            backgroundColor: theme.palette[color].light,
+            backgroundColor:
+              theme.palette[color][buttonTokens.contained.bg.disabled],
             color: theme.palette.common.white,
           }),
           ...(ownerState.variant === 'outlined' && {
-            outline: `1px solid ${theme.palette[color].light}`,
-            color: theme.palette[color].light,
+            color: theme.palette[color][buttonTokens.outlined.text.disabled],
           }),
           ...(ownerState.variant === 'text' && {
-            color: theme.palette[color].light,
+            color: theme.palette[color][buttonTokens.text.text.disabled],
           }),
         },
       }
@@ -43,7 +75,7 @@ export const MonorailButtonOverrides: Components<Theme>['MuiButton'] = {
       lineHeight: theme.typography.pxToRem(24),
     }),
     sizeMedium: ({ theme }) => ({
-      padding: '8px 24px',
+      padding: '8px 16px',
       lineHeight: theme.typography.pxToRem(24),
     }),
     sizeLarge: ({ theme }) => ({
@@ -86,42 +118,43 @@ export const MonorailButtonOverrides: Components<Theme>['MuiButton'] = {
       return {
         backgroundColor: theme.palette.common.white,
         border: 'none',
-        outline: `1px solid ${theme.palette[color].light}`,
+        outline: `1px solid ${
+          theme.palette[color][buttonTokens.outlined.border]
+        }`,
+        color: theme.palette[color][buttonTokens.outlined.text.idle],
         '&:hover': {
           border: 'none',
-          outline: `1px solid ${theme.palette[color!].main}`,
-          backgroundColor: theme.palette[color].hover,
+          backgroundColor: theme.palette[color][buttonTokens.outlined.bg.hover],
         },
         '&:active': {
-          outline: `1px solid ${theme.palette[color].dark}`,
-          backgroundColor: theme.palette[color].active,
+          backgroundColor:
+            theme.palette[color][buttonTokens.outlined.bg.active],
         },
       }
     },
     text: ({ ownerState, theme }) => {
       const color = ownerState.color ?? 'primary'
       return {
+        color: theme.palette[color][buttonTokens.text.text.idle],
         '&:hover': {
-          backgroundColor: theme.palette[color].hover,
+          backgroundColor: theme.palette[color][buttonTokens.text.bg.hover],
         },
         '&:active': {
-          backgroundColor: theme.palette[color].active,
+          backgroundColor: theme.palette[color][buttonTokens.text.bg.active],
         },
       }
     },
     disabled: ({ ownerState, theme }) => {
       const color = ownerState.color ?? 'primary'
-      switch (ownerState.variant) {
-        case 'contained':
-          return {
-            backgroundColor: theme.palette[color].main,
-          }
-        case 'outlined':
-          return {
-            color: theme.palette[color].light,
-          }
-        default:
-          return
+
+      return {
+        color: theme.palette[color][buttonTokens.outlined.text.disabled],
+        backgroundColor: theme.palette.common.white,
+        ...(ownerState.variant === 'contained' && {
+          backgroundColor:
+            theme.palette[color][buttonTokens.contained.bg.disabled],
+          color: theme.palette.common.white,
+        }),
       }
     },
     startIcon: ({ ownerState }) => {
@@ -134,7 +167,7 @@ export const MonorailButtonOverrides: Components<Theme>['MuiButton'] = {
         case 'medium':
           return {
             marginRight: '8px',
-            marginLeft: '-10px',
+            marginLeft: '-2px',
           }
         case 'small':
           return {
@@ -154,7 +187,7 @@ export const MonorailButtonOverrides: Components<Theme>['MuiButton'] = {
           }
         case 'medium':
           return {
-            marginRight: '-10px',
+            marginRight: '-2px',
             marginLeft: '8px',
           }
         case 'small':
@@ -172,14 +205,16 @@ export const MonorailButtonOverrides: Components<Theme>['MuiButton'] = {
 export const MonorailLoadingButtonOverrides: Components<Theme>['MuiLoadingButton'] =
   {
     defaultProps: {
-      // TODO: Make logo spinner default
-      // loadingIndicator: [Logo Spinner component here]
+      // TODO:
+      // - Tokenize brand logo in theme(SimSpace, PCTE)
+      // - Make logo default loading spinner
+      // - loadingIndicator: [Logo Spinner component here]
     },
     styleOverrides: {
       loadingIndicator: ({ ownerState, theme }) => {
         const color = ownerState.color ?? 'primary'
         return {
-          color: theme.palette[color].light,
+          color: theme.palette[color][buttonTokens.contained.bg.disabled],
         }
       },
     },
