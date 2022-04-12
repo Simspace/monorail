@@ -1,9 +1,13 @@
 // Edit this file to add new stories
 import React from 'react'
+import CheckBoxIcon from '@mui/icons-material/CheckBox'
+import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank'
 import {
   Autocomplete,
   AutocompleteProps,
   Box,
+  Checkbox,
+  Chip,
   Stack,
   TextField,
 } from '@mui/material'
@@ -128,3 +132,153 @@ export const FreeSolo = () => (
     </Stack>
   </>
 )
+
+export const MultipleValues = story<MovieAutocompleteProps>(args => {
+  return (
+    <Stack spacing={3} sx={{ width: 500 }}>
+      <MovieAutocomplete
+        multiple
+        id="tags-standard"
+        options={movies}
+        getOptionLabel={option => option.label}
+        defaultValue={[movies[13]]}
+        renderInput={params => (
+          <TextField
+            {...params}
+            label="Multiple values"
+            placeholder="Favorites"
+          />
+        )}
+        {...args}
+      />
+      <MovieAutocomplete
+        multiple
+        id="tags-outlined"
+        options={movies}
+        getOptionLabel={option => option.label}
+        defaultValue={[movies[13]]}
+        filterSelectedOptions
+        renderInput={params => (
+          <TextField
+            {...params}
+            label="filterSelectedOptions"
+            placeholder="Favorites"
+          />
+        )}
+        {...args}
+      />
+      <MovieAutocomplete
+        multiple
+        id="tags-filled"
+        options={movies}
+        defaultValue={[movies[13].label]}
+        freeSolo
+        renderTags={(value: ReadonlyArray<Movie>, getTagProps) =>
+          value.map((option: Movie, index: number) => (
+            <Chip
+              variant="outlined"
+              label={option}
+              {...getTagProps({ index })}
+              key={`${option}-${index}`}
+            />
+          ))
+        }
+        renderInput={params => (
+          <TextField {...params} label="freeSolo" placeholder="Favorites" />
+        )}
+        {...args}
+      />
+      <MovieAutocomplete
+        multiple
+        id="tags-readOnly"
+        options={movies}
+        defaultValue={[movies[12], movies[13]]}
+        readOnly
+        ChipProps={{ clickable: false, variant: 'rectangular' }}
+        renderInput={params => (
+          <TextField {...params} label="readOnly" placeholder="Favorites" />
+        )}
+        {...args}
+      />
+    </Stack>
+  )
+})
+
+export const Sizes = story(args => {
+  return (
+    <Stack spacing={2} sx={{ width: 500 }}>
+      <Autocomplete
+        id="size-small-outlined"
+        size="small"
+        options={movies}
+        getOptionLabel={option => option.label}
+        defaultValue={movies[13]}
+        renderInput={params => (
+          <TextField {...params} label="Size small" placeholder="Favorites" />
+        )}
+        {...args}
+      />
+      <Autocomplete
+        multiple
+        id="size-small-outlined-multi"
+        size="small"
+        options={movies}
+        getOptionLabel={option => option.label}
+        defaultValue={[movies[13]]}
+        renderInput={params => (
+          <TextField {...params} label="Size small" placeholder="Favorites" />
+        )}
+        {...args}
+      />
+    </Stack>
+  )
+})
+
+export const LimitTags = story(args => {
+  return (
+    <Autocomplete
+      multiple
+      limitTags={2}
+      id="multiple-limit-tags"
+      options={movies}
+      getOptionLabel={option => option.label}
+      defaultValue={[movies[13], movies[12], movies[11]]}
+      renderInput={params => (
+        <TextField {...params} label="limitTags" placeholder="Favorites" />
+      )}
+      sx={{ width: '500px' }}
+      {...args}
+    />
+  )
+})
+
+const icon = <CheckBoxOutlineBlankIcon fontSize="small" />
+const checkedIcon = <CheckBoxIcon fontSize="small" />
+
+export const CheckboxesTags = story(args => {
+  return (
+    <Autocomplete
+      multiple
+      id="checkboxes-tags-demo"
+      options={movies}
+      disableCloseOnSelect
+      getOptionLabel={option => option.label}
+      renderOption={(props, option, { selected }) => (
+        <li {...props}>
+          <Checkbox
+            icon={icon}
+            checkedIcon={checkedIcon}
+            style={{ marginRight: 8 }}
+            checked={selected}
+          />
+          {option.label}
+        </li>
+      )}
+      style={{ width: 500 }}
+      renderInput={params => (
+        <TextField {...params} label="Checkboxes" placeholder="Favorites" />
+      )}
+      {...args}
+    />
+  )
+})

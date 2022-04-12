@@ -11,9 +11,6 @@ export const MonorailOutlinedInputOverrides: Components<Theme>['MuiOutlinedInput
         padding: 0,
       },
       input: {
-        padding: '12px',
-      },
-      inputSizeSmall: {
         padding: '8px 12px',
       },
       inputAdornedStart: {
