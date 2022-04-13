@@ -1,4 +1,4 @@
-import { Components, darken, Theme } from '@mui/material'
+import { Components, Theme } from '@mui/material'
 import { SimpleInterpolation } from '@mui/styled-engine'
 
 declare module '@mui/material/Chip' {
@@ -20,12 +20,9 @@ const chipTokens = {
         active: 800,
         focused: 600,
       },
-      label: 'white',
-      icon: 'white',
       deleteIcon: 50,
       avatar: {
         bg: 800,
-        text: 'white',
       },
     },
     medium: {
@@ -35,12 +32,10 @@ const chipTokens = {
         active: 400,
         focused: 200,
       },
-      label: 'primary',
       icon: 600,
       deleteIcon: 600,
       avatar: {
         bg: 800,
-        text: 'white',
       },
     },
     weak: {
@@ -50,7 +45,6 @@ const chipTokens = {
         active: 300,
         focused: 100,
       },
-      label: 'primary',
       icon: 600,
       deleteIcon: 600,
       avatar: {
@@ -79,7 +73,6 @@ const chipTokens = {
       active: 300,
       focused: 100,
     },
-    label: 'primary',
     icon: 600,
     deleteIcon: 600,
     avatar: {

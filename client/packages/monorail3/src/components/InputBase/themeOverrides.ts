@@ -7,9 +7,9 @@ export const MonorailInputBaseOverrides: Components<Theme>['MuiInputBase'] = {
       const color = ownerState.color ?? 'primary'
       return {
         '&.Mui-focused': {
-          boxShadow: `0 0 0 3px ${theme.palette[color].light}`,
+          boxShadow: `0 0 0 3px ${theme.palette[color].focusRing?.outer}`,
           '& > fieldset.MuiOutlinedInput-notchedOutline': {
-            borderColor: `${theme.palette[color].dark}`,
+            borderColor: `${theme.palette[color].focusRing?.inner}`,
             borderWidth: '1px',
           },
         },

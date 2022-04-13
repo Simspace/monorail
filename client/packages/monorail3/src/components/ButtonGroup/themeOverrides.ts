@@ -1,5 +1,18 @@
 import { Components, Theme } from '@mui/material'
 
+declare module '@mui/material/ButtonGroup' {
+  /**
+   * Extend the ButtonGroup color prop to allow for the other semantic styles.
+   */
+  interface ButtonGroupPropsColorOverrides {
+    info: true
+    success: true
+    warning: true
+    error: true
+    inherit: false
+  }
+}
+
 export const MonorailButtonGroupOverrides: Components<Theme>['MuiButtonGroup'] =
   {
     defaultProps: {
@@ -11,8 +24,8 @@ export const MonorailButtonGroupOverrides: Components<Theme>['MuiButtonGroup'] =
         const color = ownerState.color ?? 'primary'
         return {
           '&.Mui-focusVisible': {
-            boxShadow: `0 0 0 3px ${theme.palette[color].light}`,
-            outline: `1px solid ${theme.palette[color].dark}`,
+            boxShadow: `0 0 0 4px ${theme.palette[color].focusRing?.outer}`,
+            outline: `1px solid ${theme.palette[color].focusRing?.inner}`,
           },
         }
       },

@@ -6,7 +6,7 @@ export const MonorailSkeletonOverrides: Components<Theme>['MuiSkeleton'] = {
   },
   styleOverrides: {
     root: ({ theme }) => ({
-      backgroundColor: theme.palette.grey['300'],
+      backgroundColor: theme.palette.default.light,
     }),
   },
 }
