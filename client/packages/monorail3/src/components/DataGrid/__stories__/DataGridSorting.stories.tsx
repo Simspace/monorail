@@ -69,8 +69,8 @@ const columns: GridColumns = [
   {
     field: 'username',
     valueGetter: (params: GridValueGetterParams) =>
-      `${params.getValue(params.id, 'name') || 'unknown'} - ${
-        params.getValue(params.id, 'age') || 'x'
+      `${params.getValue(params.id, 'name') ?? 'unknown'} - ${
+        params.getValue(params.id, 'age') ?? 'x'
       }`,
     sortComparator: (v1, v2, param1, param2) =>
       /* eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call */

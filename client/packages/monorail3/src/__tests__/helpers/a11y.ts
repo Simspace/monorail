@@ -22,7 +22,7 @@ const axe = configureAxe({
  * This looks at custom paramters.a11y metadata which might be tacked onto the story component function.
  */
 function shouldCheckA11y(item: Story) {
-  return !item.parameters?.a11y?.disable
+  return item.parameters?.a11y?.disable !== true
 }
 
 //#region Type Guards

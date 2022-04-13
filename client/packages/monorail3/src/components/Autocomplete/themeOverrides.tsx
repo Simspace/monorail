@@ -27,10 +27,14 @@ export const MonorailAutocompleteOverrides: Components<Theme>['MuiAutocomplete']
       ),
     },
     styleOverrides: {
-      root: ({ ownerState }) => ({
+      root: ({
+        ownerState: { multiple = false },
+      }: {
+        ownerState: { multiple?: boolean }
+      }) => ({
         '.MuiOutlinedInput-root': {
           // Tags have a built-in 3px margin + 9px = 12px
-          padding: ownerState.multiple ? '2px 9px' : '0 12px',
+          padding: multiple ? '2px 9px' : '0 12px',
           '& .MuiAutocomplete-input': {
             padding: 0,
           },

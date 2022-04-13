@@ -16,7 +16,7 @@ export default { title: 'Utils/TrapFocus' }
 
 const Template = story<TrapFocusProps>(
   args => {
-    const [open, setOpen] = React.useState(args.open)
+    const [open, setOpen] = React.useState(args.open ?? false)
 
     return (
       <Box

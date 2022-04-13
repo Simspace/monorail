@@ -353,9 +353,9 @@ const ratingOnlyOperators = [
     value: 'from',
     getApplyFilterFn: (filterItem: GridFilterItem) => {
       if (
-        !filterItem.columnField ||
-        !filterItem.value ||
-        !filterItem.operatorValue
+        filterItem.columnField === undefined ||
+        filterItem.value === undefined ||
+        filterItem.operatorValue === undefined
       ) {
         return null
       }
@@ -450,7 +450,7 @@ function loadServerRows(
 
   return new Promise<Array<GridRowData>>(resolve => {
     setTimeout(() => {
-      if (!commodityFilterValue) {
+      if (commodityFilterValue === undefined) {
         resolve(serverRows)
         return
       }

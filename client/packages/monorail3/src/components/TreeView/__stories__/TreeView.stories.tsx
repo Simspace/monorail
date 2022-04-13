@@ -257,7 +257,7 @@ export const ContentComponentPropExample1 = story(
         preventSelection,
       } = useTreeItem(nodeId)
 
-      const icon = iconProp || expansionIcon || displayIcon
+      const icon = iconProp ?? expansionIcon ?? displayIcon
 
       const handleMouseDown = (
         event: React.MouseEvent<HTMLDivElement, MouseEvent>,
@@ -433,7 +433,7 @@ export const ContentComponentPropExample2 = story(
         preventSelection,
       } = useTreeItem(nodeId)
 
-      const icon = iconProp || expansionIcon || displayIcon
+      const icon = iconProp ?? expansionIcon ?? displayIcon
 
       const handleMouseDown = (
         event: React.MouseEvent<HTMLDivElement, MouseEvent>,
