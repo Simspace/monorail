@@ -61,8 +61,8 @@ export const MonorailButtonOverrides: Components<Theme>['MuiButton'] = {
       const color = ownerState.color ?? 'primary'
       return {
         '&.Mui-focusVisible': {
-          boxShadow: `0 0 0 4px ${theme.palette[color].focusRing?.outer}`,
-          outline: `1px solid ${theme.palette[color].focusRing?.inner}`,
+          boxShadow: `0 0 0 4px ${theme.palette[color].focusRing.outer}`,
+          outline: `1px solid ${theme.palette[color].focusRing.inner}`,
         },
         '&.Mui-disabled': {
           border: 'none',

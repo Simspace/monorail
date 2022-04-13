@@ -67,11 +67,11 @@ declare module '@mui/material/styles/createPalette' {
     default?: PaletteColorOptions
 
     score?: Partial<{
-      high: PaletteColor
-      highModerate: PaletteColor
-      moderate: PaletteColor
-      lowModerate: PaletteColor
-      low: PaletteColor
+      high: SimplePaletteColorOptions
+      highModerate: SimplePaletteColorOptions
+      moderate: SimplePaletteColorOptions
+      lowModerate: SimplePaletteColorOptions
+      low: SimplePaletteColorOptions
     }>
 
     tiers?: Partial<{
@@ -93,29 +93,25 @@ declare module '@mui/material/styles/createPalette' {
   }
 
   interface PaletteColor {
-    light: string
-    main: string
-    dark: string
-    contrastText: string
-    50?: string
-    100?: string
-    200?: string
-    300?: string
-    400?: string
-    500?: string
-    600?: string
-    700?: string
-    800?: string
-    focusRing?: {
+    50: string
+    100: string
+    200: string
+    300: string
+    400: string
+    500: string
+    600: string
+    700: string
+    800: string
+    focusRing: {
       inner: string
       outer: string
     }
   }
 
   interface SimplePaletteColorOptions {
-    focusRing: {
+    focusRing?: Partial<{
       inner: string
       outer: string
-    }
+    }>
   }
 }

@@ -85,15 +85,15 @@ const chipTokens = {
 export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
   defaultProps: {},
   styleOverrides: {
-    root: ({ ownerState, theme }) => {
-      const color = ownerState.color ?? 'default'
-      const variant = ownerState.variant ?? 'filled'
-
+    root: ({
+      ownerState: { clickable = false, color = 'default', variant = 'filled' },
+      theme,
+    }) => {
       return {
         fontWeight: theme.typography.fontWeightBold,
         '&.Mui-focusVisible': {
-          boxShadow: `0 0 0 3px ${theme.palette[color].focusRing?.outer}`,
-          border: `1px solid ${theme.palette[color].focusRing?.inner}`,
+          boxShadow: `0 0 0 3px ${theme.palette[color].focusRing.outer}`,
+          border: `1px solid ${theme.palette[color].focusRing.inner}`,
         },
         ...(variant === 'rectangular' && {
           border: '1px solid transparent',
@@ -102,18 +102,16 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
           backgroundColor:
             theme.palette.default[chipTokens.rectangular.bg.idle],
           '&.Mui-focusVisible': {
-            boxShadow: `0 0 0 3px ${theme.palette.default.focusRing?.outer}`,
-            border: `1px solid ${theme.palette.default.focusRing?.inner}`,
-            backgroundColor: !ownerState.clickable
+            boxShadow: `0 0 0 3px ${theme.palette.default.focusRing.outer}`,
+            border: `1px solid ${theme.palette.default.focusRing.inner}`,
+            backgroundColor: !clickable
               ? theme.palette.default[chipTokens.rectangular.bg.focused]
               : theme.palette.primary[chipTokens.rectangular.bg.focused],
           },
         }),
       }
     },
-    filled: ({ ownerState, theme }) => {
-      const color = ownerState.color ?? 'default'
-
+    filled: ({ ownerState: { color = 'default' }, theme }) => {
       return {
         border: '1px solid transparent',
         backgroundColor:
@@ -132,9 +130,7 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
         },
       }
     },
-    outlined: ({ ownerState, theme }) => {
-      const color = ownerState.color ?? 'default'
-
+    outlined: ({ ownerState: { color = 'default' }, theme }) => {
       return {
         backgroundColor: theme.palette.common.white,
         borderColor: theme.palette[color][chipTokens.outlined.border],
@@ -147,10 +143,10 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
         },
       }
     },
-    clickable: ({ ownerState, theme }) => {
-      const color = ownerState.color ?? 'default'
-      const variant = ownerState.variant ?? 'filled'
-
+    clickable: ({
+      ownerState: { color = 'default', variant = 'default' },
+      theme,
+    }) => {
       const filledStyles: SimpleInterpolation = {
         '&:hover': {
           backgroundColor:
@@ -209,14 +205,14 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
     sizeSmall: {
       padding: '2px 5px',
     },
-    icon: ({ ownerState }) => ({
-      marginLeft: ownerState.variant === 'rectangular' ? 4 : 10,
+    icon: ({ ownerState: { variant = 'filled' } }) => ({
+      marginLeft: variant === 'rectangular' ? 4 : 10,
       marginRight: -8,
     }),
-    deleteIcon: ({ ownerState, theme }) => {
-      const color = ownerState.color ?? 'default'
-      const variant = ownerState.variant ?? 'filled'
-
+    deleteIcon: ({
+      ownerState: { clickable = false, color = 'default', variant = 'filled' },
+      theme,
+    }) => {
       const filledStyles: SimpleInterpolation = {
         '&:hover': {
           color:
@@ -242,11 +238,11 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
       }
 
       const rectangularStyles: SimpleInterpolation = {
-        color: !ownerState.clickable
+        color: !clickable
           ? theme.palette.default[chipTokens.rectangular.deleteIcon]
           : theme.palette.primary[chipTokens.rectangular.deleteIcon],
         '&:hover': {
-          color: !ownerState.clickable
+          color: !clickable
             ? theme.palette.default[chipTokens.rectangular.deleteIcon]
             : theme.palette.primary[chipTokens.rectangular.deleteIcon],
         },
@@ -259,10 +255,10 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
         ...(variant === 'rectangular' && rectangularStyles),
       }
     },
-    avatar: ({ ownerState, theme }) => {
-      const color = ownerState.color ?? 'default'
-      const variant = ownerState.variant ?? 'filled'
-
+    avatar: ({
+      ownerState: { clickable = false, color = 'default', variant = 'filled' },
+      theme,
+    }) => {
       const filledStyles: SimpleInterpolation = {
         color:
           color === 'default'
@@ -297,7 +293,7 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
         ...(variant === 'outlined' && outlinedStyles),
         ...(variant === 'rectangular' && readOnlyRectangularStyles),
         ...(variant === 'rectangular' &&
-          ownerState.clickable &&
+          clickable &&
           clickableRectangularStyles),
       }
     },

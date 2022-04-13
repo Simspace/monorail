@@ -2,13 +2,13 @@ import React from 'react'
 import {
   Color as MUIColor,
   PaletteColor,
+  Stack,
   Typography,
   useTheme,
 } from '@mui/material'
 import Box from '@mui/material/Box'
 import {
   CommonColors,
-  PaletteColorNoButtonState,
   TypeBackground,
   TypeText,
 } from '@mui/material/styles/createPalette'
@@ -27,8 +27,8 @@ const SingleColorBox = ({
   minWidth: string
 }) => {
   return (
-    <Box sx={{ marginBottom: '8px' }}>
-      <Box sx={{ minWidth }}>{label}</Box>
+    <Box sx={{ marginBottom: 2 }}>
+      <Typography sx={{ minWidth, marginRight: 2 }}>{label}</Typography>
       <Box
         sx={{
           height: '40px',
@@ -46,57 +46,99 @@ const PaletteColorBox = ({
   paletteColor,
 }: {
   label: string
-  paletteColor: PaletteColor | PaletteColorNoButtonState
+  paletteColor: PaletteColor
 }) => {
-  const minWidth = '100px'
+  const minWidth = '64px'
   return (
     <Box sx={{ display: 'flex', flexFlow: 'row', alignItems: 'center' }}>
-      <Box component="h3" sx={{ flex: 1 }}>
+      <Box component="h3" alignSelf="flex-start" sx={{ minWidth: 160 }}>
         {label}
       </Box>
-      <SingleColorBox
-        color={paletteColor.light}
-        label="Light"
-        minWidth={minWidth}
-      />
-      <SingleColorBox
-        color={paletteColor.main}
-        label="Main"
-        minWidth={minWidth}
-      />
-      <SingleColorBox
-        color={paletteColor.dark}
-        label="Dark"
-        minWidth={minWidth}
-      />
-      <SingleColorBox
-        color={paletteColor.contrastText}
-        label="Contrast Text"
-        minWidth={minWidth}
-      />
-      {'hover' in paletteColor &&
-      'selected' in paletteColor &&
-      'active' in paletteColor ? (
-        <>
-          <SingleColorBox
-            color={paletteColor.hover}
-            label="Hover"
-            minWidth={minWidth}
-          />
-          <SingleColorBox
-            color={paletteColor.selected}
-            label="Selected"
-            minWidth={minWidth}
-          />
-          <SingleColorBox
-            color={paletteColor.active}
-            label="Active"
-            minWidth={minWidth}
-          />
-        </>
-      ) : (
-        <></>
-      )}
+      <Stack direction="row" flexWrap="wrap" alignItems="flex-start">
+        <SingleColorBox
+          color={paletteColor.light}
+          label="Light"
+          minWidth={minWidth}
+        />
+        <SingleColorBox
+          color={paletteColor.main}
+          label="Main"
+          minWidth={minWidth}
+        />
+        <SingleColorBox
+          color={paletteColor.dark}
+          label="Dark"
+          minWidth={minWidth}
+        />
+        <SingleColorBox
+          color={paletteColor.contrastText}
+          label="Contrast Text"
+          minWidth={minWidth}
+        />
+        {paletteColor[50] && (
+          <>
+            <SingleColorBox
+              label="50"
+              color={paletteColor[50]}
+              minWidth={minWidth}
+            />
+            <SingleColorBox
+              label="100"
+              color={paletteColor[100]}
+              minWidth={minWidth}
+            />
+            <SingleColorBox
+              label="200"
+              color={paletteColor[200]}
+              minWidth={minWidth}
+            />
+            <SingleColorBox
+              label="300"
+              color={paletteColor[300]}
+              minWidth={minWidth}
+            />
+            <SingleColorBox
+              label="400"
+              color={paletteColor[400]}
+              minWidth={minWidth}
+            />
+            <SingleColorBox
+              label="500"
+              color={paletteColor[500]}
+              minWidth={minWidth}
+            />
+            <SingleColorBox
+              label="600"
+              color={paletteColor[600]}
+              minWidth={minWidth}
+            />
+            <SingleColorBox
+              label="700"
+              color={paletteColor[700]}
+              minWidth={minWidth}
+            />
+            <SingleColorBox
+              label="800"
+              color={paletteColor[800]}
+              minWidth={minWidth}
+            />
+          </>
+        )}
+        {'focusRing' in paletteColor && (
+          <>
+            <SingleColorBox
+              color={paletteColor.focusRing.outer}
+              label="focus outer"
+              minWidth={minWidth}
+            />
+            <SingleColorBox
+              color={paletteColor.focusRing.inner}
+              label="focus inner"
+              minWidth={minWidth}
+            />
+          </>
+        )}
+      </Stack>
     </Box>
   )
 }
