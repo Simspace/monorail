@@ -419,12 +419,12 @@ const QontoConnector = styled(StepConnector)(({ theme }) => ({
 }))
 
 const QontoStepIconRoot = styled('div')<{ styleProps: { active?: boolean } }>(
-  ({ theme, styleProps }) => ({
+  ({ theme, styleProps: { active = false } }) => ({
     color: theme.palette.mode === 'dark' ? theme.palette.grey[700] : '#eaeaf0',
     display: 'flex',
     height: 22,
     alignItems: 'center',
-    ...(styleProps.active && {
+    ...(active && {
       color: '#784af4',
     }),
     '& .QontoStepIcon-completedIcon': {
@@ -442,7 +442,7 @@ const QontoStepIconRoot = styled('div')<{ styleProps: { active?: boolean } }>(
 )
 
 function QontoStepIcon(props: StepIconProps) {
-  const { active, completed, className } = props
+  const { active, completed = false, className } = props
 
   return (
     <QontoStepIconRoot styleProps={{ active }} className={className}>
@@ -482,7 +482,7 @@ const ColorlibConnector = styled(StepConnector)(({ theme }) => ({
 
 const ColorlibStepIconRoot = styled('div')<{
   styleProps: { completed?: boolean; active?: boolean }
-}>(({ theme, styleProps }) => ({
+}>(({ theme, styleProps: { completed = false, active = false } }) => ({
   backgroundColor:
     theme.palette.mode === 'dark' ? theme.palette.grey[700] : '#ccc',
   zIndex: 1,
@@ -493,12 +493,12 @@ const ColorlibStepIconRoot = styled('div')<{
   borderRadius: '50%',
   justifyContent: 'center',
   alignItems: 'center',
-  ...(styleProps.active && {
+  ...(active && {
     backgroundImage:
       'linear-gradient( 136deg, rgb(242,113,33) 0%, rgb(233,64,87) 50%, rgb(138,35,135) 100%)',
     boxShadow: '0 4px 10px 0 rgba(0,0,0,.25)',
   }),
-  ...(styleProps.completed && {
+  ...(completed && {
     backgroundImage:
       'linear-gradient( 136deg, rgb(242,113,33) 0%, rgb(233,64,87) 50%, rgb(138,35,135) 100%)',
   }),

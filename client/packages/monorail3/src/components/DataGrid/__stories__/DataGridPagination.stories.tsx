@@ -243,7 +243,10 @@ function loadServerRowsCursorPaginationGrid(
 ): Promise<ServerBasedGridResponse> {
   return new Promise<ServerBasedGridResponse>(resolve => {
     setTimeout(() => {
-      const start = cursor ? data.rows.findIndex(row => row.id === cursor) : 0
+      const start =
+        cursor !== null && cursor !== undefined
+          ? data.rows.findIndex(row => row.id === cursor)
+          : 0
       const end = start + PAGE_SIZE
       const rows = data.rows.slice(start, end)
 
@@ -268,7 +271,7 @@ export const CursorPaginationGrid = story<DataGridProps>(args => {
 
   const handlePageChange = (newPage: number) => {
     // We have the cursor, we can allow the page transition.
-    if (newPage === 0 || pagesNextCursor.current[newPage - 1]) {
+    if (newPage === 0 ?? pagesNextCursor.current[newPage - 1]) {
       setPage(newPage)
     }
   }
@@ -279,7 +282,7 @@ export const CursorPaginationGrid = story<DataGridProps>(args => {
     ;(async () => {
       const nextCursor = pagesNextCursor.current[page - 1]
 
-      if (!nextCursor && page > 0) {
+      if (nextCursor === undefined && page > 0) {
         return
       }
 
@@ -289,7 +292,7 @@ export const CursorPaginationGrid = story<DataGridProps>(args => {
         data,
       )
 
-      if (response.nextCursor) {
+      if (response.nextCursor !== undefined && response.nextCursor !== null) {
         pagesNextCursor.current[page] = response.nextCursor
       }
 

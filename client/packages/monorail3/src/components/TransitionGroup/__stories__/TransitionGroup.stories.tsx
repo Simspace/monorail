@@ -70,7 +70,7 @@ const Template = story<TransitionGroupProps>(
 
     const handleAddFruit = () => {
       const nextHiddenItem = FRUITS.find(i => !fruitsInBasket.includes(i))
-      if (nextHiddenItem) {
+      if (typeof nextHiddenItem === 'string') {
         setFruitsInBasket(prev => [nextHiddenItem, ...prev])
       }
     }

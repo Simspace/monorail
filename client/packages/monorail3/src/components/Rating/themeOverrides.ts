@@ -3,10 +3,8 @@ import { Components, Theme } from '@mui/material'
 export const MonorailRatingOverrides: Components<Theme>['MuiRating'] = {
   defaultProps: {},
   styleOverrides: {
-    iconEmpty: ({ ownerState, theme }) => ({
-      color: ownerState.readOnly
-        ? theme.palette.rating
-        : theme.palette.default.main,
+    iconEmpty: ({ ownerState: { readOnly = false }, theme }) => ({
+      color: readOnly ? theme.palette.rating : theme.palette.default.main,
     }),
     iconFilled: ({ theme }) => ({
       color: theme.palette.rating,

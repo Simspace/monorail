@@ -311,7 +311,7 @@ const PersistentDrawerMain = styled('main', {
   shouldForwardProp: prop => prop !== 'open',
 })<{
   open?: boolean
-}>(({ theme, open }) => ({
+}>(({ theme, open = false }) => ({
   flexGrow: 1,
   padding: theme.spacing(3),
   transition: theme.transitions.create('margin', {
@@ -334,7 +334,7 @@ interface PersistentAppBarProps extends AppBarProps {
 
 const PersistentDrawerAppBar = styled(AppBar, {
   shouldForwardProp: prop => prop !== 'open',
-})<PersistentAppBarProps>(({ theme, open }) => ({
+})<PersistentAppBarProps>(({ theme, open = false }) => ({
   transition: theme.transitions.create(['margin', 'width'], {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
@@ -524,7 +524,7 @@ interface MiniVariantAppBarProps extends AppBarProps {
 
 const MiniVariantAppBar = styled(AppBar, {
   shouldForwardProp: prop => prop !== 'open',
-})<MiniVariantAppBarProps>(({ theme, open }) => ({
+})<MiniVariantAppBarProps>(({ theme, open = false }) => ({
   zIndex: theme.zIndex.drawer + 1,
   transition: theme.transitions.create(['width', 'margin'], {
     easing: theme.transitions.easing.sharp,
@@ -542,7 +542,7 @@ const MiniVariantAppBar = styled(AppBar, {
 
 const MiniVariantDrawer = styled(Drawer, {
   shouldForwardProp: prop => prop !== 'open',
-})(({ theme, open }) => ({
+})(({ theme, open = false }) => ({
   width: miniVariantDrawerWidth,
   flexShrink: 0,
   whiteSpace: 'nowrap',
