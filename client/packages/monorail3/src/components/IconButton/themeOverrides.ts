@@ -49,8 +49,14 @@ const iconButtonTokens = {
 export const MonorailIconButtonOverrides: Components<Theme>['MuiIconButton'] = {
   defaultProps: {},
   styleOverrides: {
-    root: ({ ownerState, theme }) => {
-      const color = ownerState.color ?? 'primary'
+    root: ({
+      ownerState: {
+        color = 'primary',
+        variant = 'chromeless',
+        shape = 'rounded',
+      },
+      theme,
+    }) => {
       return (
         color !== 'inherit' && {
           '&.Mui-focusVisible': {
@@ -60,10 +66,10 @@ export const MonorailIconButtonOverrides: Components<Theme>['MuiIconButton'] = {
           '&.Mui-disabled': {
             color: theme.palette[color].light,
           },
-          ...(ownerState.shape === 'rounded' && {
+          ...(shape === 'rounded' && {
             borderRadius: 3,
           }),
-          ...(ownerState.variant === 'chromeless' && {
+          ...(variant === 'chromeless' && {
             backgroundColor: 'transparent',
             '&:hover': {
               backgroundColor:
@@ -74,7 +80,7 @@ export const MonorailIconButtonOverrides: Components<Theme>['MuiIconButton'] = {
                 theme.palette[color][iconButtonTokens.chromeless.bg.active],
             },
           }),
-          ...(ownerState.variant === 'contained' && {
+          ...(variant === 'contained' && {
             backgroundColor: theme.palette[color].main,
             color: theme.palette.getContrastText(theme.palette[color].main),
             '&:hover': {
@@ -86,7 +92,7 @@ export const MonorailIconButtonOverrides: Components<Theme>['MuiIconButton'] = {
                 theme.palette[color][iconButtonTokens.contained.bg.active],
             },
           }),
-          ...(ownerState.variant === 'outlined' && {
+          ...(variant === 'outlined' && {
             border: `1px solid ${theme.palette[color].main}`,
             backgroundColor: theme.palette.common.white,
             '&:hover': {

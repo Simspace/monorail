@@ -5,8 +5,7 @@ export const MonorailBadgeOverrides: Components<Theme>['MuiBadge'] = {
     max: 999,
   },
   styleOverrides: {
-    badge: ({ ownerState, theme }) => {
-      const color = ownerState.color ?? 'primary'
+    badge: ({ ownerState: { color = 'primary' }, theme }) => {
       return {
         backgroundColor:
           color === 'default'

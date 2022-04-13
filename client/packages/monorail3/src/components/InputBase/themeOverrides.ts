@@ -3,8 +3,7 @@ import { Components, Theme } from '@mui/material'
 export const MonorailInputBaseOverrides: Components<Theme>['MuiInputBase'] = {
   defaultProps: {},
   styleOverrides: {
-    root: ({ ownerState, theme }) => {
-      const color = ownerState.color ?? 'primary'
+    root: ({ ownerState: { color = 'primary' }, theme }) => {
       return {
         '&.Mui-focused': {
           boxShadow: `0 0 0 3px ${theme.palette[color].focusRing.outer}`,

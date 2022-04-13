@@ -1,5 +1,5 @@
 import type {} from '@mui/lab/themeAugmentation'
-import { Components, darken, Theme } from '@mui/material'
+import { Components, Theme } from '@mui/material'
 
 declare module '@mui/material/Button' {
   /**
@@ -57,11 +57,14 @@ export const MonorailButtonOverrides: Components<Theme>['MuiButton'] = {
     variant: 'contained',
   },
   styleOverrides: {
-    root: ({ ownerState, theme }) => {
-      const color = ownerState.color ?? 'primary'
+    root: ({
+      ownerState: { color = 'primary', variant = 'contained' },
+      theme,
+    }) => {
       return {
         '&.Mui-focusVisible': {
           boxShadow: `0 0 0 4px ${theme.palette[color].focusRing.outer}`,
+          // boxShadow: `0 0 0 4px ${theme.palette[color].focusRing.outer}`,
           outline: `1px solid ${theme.palette[color].focusRing.inner}`,
         },
         '&.Mui-disabled': {
@@ -69,15 +72,15 @@ export const MonorailButtonOverrides: Components<Theme>['MuiButton'] = {
           // I tried using the disabled prop, https://mui.com/api/button/#css
           // but it wouldn't override the default styles
           // This pattern seems to work better for .Mui-[state]
-          ...(ownerState.variant === 'contained' && {
+          ...(variant === 'contained' && {
             backgroundColor:
               theme.palette[color][buttonTokens.contained.bg.disabled],
             color: theme.palette.common.white,
           }),
-          ...(ownerState.variant === 'outlined' && {
+          ...(variant === 'outlined' && {
             color: theme.palette[color][buttonTokens.outlined.text.disabled],
           }),
-          ...(ownerState.variant === 'text' && {
+          ...(variant === 'text' && {
             color: theme.palette[color][buttonTokens.text.text.disabled],
           }),
         },
@@ -113,23 +116,20 @@ export const MonorailButtonOverrides: Components<Theme>['MuiButton'] = {
         fontSize: theme.typography.pxToRem(24),
       },
     }),
-    contained: ({ ownerState, theme }) => {
-      const color = ownerState.color ?? 'primary'
+    contained: ({ ownerState: { color = 'primary' }, theme }) => {
       return {
         color: theme.palette.common.white,
         '&:hover': {
-          backgroundColor: theme.palette[color].dark,
+          backgroundColor:
+            theme.palette[color][buttonTokens.contained.bg.hover],
         },
         '&:active': {
-          backgroundColor: darken(
-            theme.palette[color].dark,
-            theme.palette.action.activatedOpacity,
-          ),
+          backgroundColor:
+            theme.palette[color][buttonTokens.contained.bg.active],
         },
       }
     },
-    outlined: ({ ownerState, theme }) => {
-      const color = ownerState.color ?? 'primary'
+    outlined: ({ ownerState: { color = 'primary' }, theme }) => {
       return {
         backgroundColor: theme.palette.common.white,
         border: 'none',
@@ -147,8 +147,7 @@ export const MonorailButtonOverrides: Components<Theme>['MuiButton'] = {
         },
       }
     },
-    text: ({ ownerState, theme }) => {
-      const color = ownerState.color ?? 'primary'
+    text: ({ ownerState: { color = 'primary' }, theme }) => {
       return {
         color: theme.palette[color][buttonTokens.text.text.idle],
         '&:hover': {
@@ -159,13 +158,14 @@ export const MonorailButtonOverrides: Components<Theme>['MuiButton'] = {
         },
       }
     },
-    disabled: ({ ownerState, theme }) => {
-      const color = ownerState.color ?? 'primary'
-
+    disabled: ({
+      ownerState: { color = 'primary', variant = 'contained' },
+      theme,
+    }) => {
       return {
         color: theme.palette[color][buttonTokens.outlined.text.disabled],
         backgroundColor: theme.palette.common.white,
-        ...(ownerState.variant === 'contained' && {
+        ...(variant === 'contained' && {
           backgroundColor:
             theme.palette[color][buttonTokens.contained.bg.disabled],
           color: theme.palette.common.white,
@@ -226,8 +226,7 @@ export const MonorailLoadingButtonOverrides: Components<Theme>['MuiLoadingButton
       // - loadingIndicator: [Logo Spinner component here]
     },
     styleOverrides: {
-      loadingIndicator: ({ ownerState, theme }) => {
-        const color = ownerState.color ?? 'primary'
+      loadingIndicator: ({ ownerState: { color = 'primary' }, theme }) => {
         return {
           color: theme.palette[color][buttonTokens.contained.bg.disabled],
         }
