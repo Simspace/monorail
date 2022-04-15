@@ -38,15 +38,14 @@ export const MonorailSwitchOverrides: Components<Theme>['MuiSwitch'] = {
       },
     }),
     switchBase: ({ ownerState: { color = 'primary' }, theme }) => ({
+      padding: 8,
+      transform: 'translate(5px)',
       '&.Mui-focusVisible': {
         '& + .MuiSwitch-track': {
           boxShadow: `0 0 0 3px ${theme.palette.primary.focusRing.outer}`,
           borderColor: theme.palette.primary.focusRing.inner,
         },
       },
-
-      padding: 8,
-      transform: 'translate(5px)',
       '&:hover': {
         backgroundColor: 'transparent',
         '&.Mui-checked .MuiSwitch-thumb': {
@@ -123,6 +122,7 @@ export const MonorailSwitchOverrides: Components<Theme>['MuiSwitch'] = {
       padding: '4px 12px 4px 6px',
       '& > .MuiSwitch-switchBase': {
         padding: 8,
+        transform: 'translate(2px)',
       },
       '& .MuiSwitch-switchBase.Mui-checked': {
         transform: 'translateX(22px)',
