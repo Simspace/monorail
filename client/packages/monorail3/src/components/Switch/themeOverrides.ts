@@ -29,7 +29,7 @@ export const MonorailSwitchOverrides: Components<Theme>['MuiSwitch'] = {
   defaultProps: {},
   styleOverrides: {
     root: ({ theme }) => ({
-      padding: 0,
+      padding: '4px 16px 4px 8px',
       '&:hover': {
         '& .MuiSwitch-track': {
           borderColor: theme.palette.default[switchTokens.border.hover],
@@ -38,14 +38,15 @@ export const MonorailSwitchOverrides: Components<Theme>['MuiSwitch'] = {
       },
     }),
     switchBase: ({ ownerState: { color = 'primary' }, theme }) => ({
-      // Focus styles not working
       '&.Mui-focusVisible': {
-        '& > .MuiSwitch-track': {
+        '& + .MuiSwitch-track': {
+          boxShadow: `0 0 0 3px ${theme.palette.primary.focusRing.outer}`,
           borderColor: theme.palette.primary.focusRing.inner,
         },
       },
 
-      padding: 4,
+      padding: 8,
+      transform: 'translate(5px)',
       '&:hover': {
         backgroundColor: 'transparent',
         '&.Mui-checked .MuiSwitch-thumb': {
@@ -57,7 +58,7 @@ export const MonorailSwitchOverrides: Components<Theme>['MuiSwitch'] = {
         },
       },
       '&.Mui-checked': {
-        transform: 'translate(28px)',
+        transform: 'translate(32px)',
         '&:hover': {
           backgroundColor: 'transparent',
         },
@@ -68,6 +69,12 @@ export const MonorailSwitchOverrides: Components<Theme>['MuiSwitch'] = {
         },
         '& .MuiSwitch-thumb': {
           backgroundColor: theme.palette.common.white,
+        },
+        '&.Mui-focusVisible': {
+          '& + .MuiSwitch-track': {
+            boxShadow: `0 0 0 3px ${theme.palette[color].focusRing.outer}`,
+            borderColor: theme.palette[color].focusRing.inner,
+          },
         },
       },
       '&.Mui-disabled': {
@@ -106,15 +113,19 @@ export const MonorailSwitchOverrides: Components<Theme>['MuiSwitch'] = {
       opacity: 1,
     }),
     sizeMedium: {
-      height: 32,
-      width: 60,
+      height: 40,
+      width: 84,
     },
     disabled: {},
     sizeSmall: {
-      height: 24,
-      width: 44,
+      height: 32,
+      width: 62,
+      padding: '4px 12px 4px 6px',
+      '& > .MuiSwitch-switchBase': {
+        padding: 8,
+      },
       '& .MuiSwitch-switchBase.Mui-checked': {
-        transform: 'translateX(20px)',
+        transform: 'translateX(22px)',
       },
     },
   },
