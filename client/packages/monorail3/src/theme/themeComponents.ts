@@ -17,6 +17,14 @@ import { MonorailFormHelperTextOverrides } from '../components/FormHelperText/th
 import { MonorailIconButtonOverrides } from '../components/IconButton/themeOverrides'
 import { MonorailInputBaseOverrides } from '../components/InputBase/themeOverrides'
 import { MonorailInputLabelOverrides } from '../components/InputLabel/themeOverrides'
+import { MonorailListOverrides } from '../components/List/themeOverrides'
+import { MonorailListItemOverrides } from '../components/ListItem/themeOverrides'
+import { MonorailListItemAvatarOverrides } from '../components/ListItemAvatar/themeOverrides'
+import { MonorailListItemButtonOverrides } from '../components/ListItemButton/themeOverrides'
+import { MonorailListItemIconOverrides } from '../components/ListItemIcon/themeOverrides'
+import { MonorailListItemSecondaryActionOverrides } from '../components/ListItemSecondaryAction/themeOverrides'
+import { MonorailListItemTextOverrides } from '../components/ListItemText/themeOverrides'
+import { MonorailListSubheaderOverrides } from '../components/ListSubheader/themeOverrides'
 import { MonorailOutlinedInputOverrides } from '../components/OutlinedInput/themeOverrides'
 import { MonorailRatingOverrides } from '../components/Rating/themeOverrides'
 import { MonorailSelectOverrides } from '../components/Select/themeOverrides'
@@ -59,6 +67,14 @@ export const getThemeComponents = (
   MuiInputBase: MonorailInputBaseOverrides,
   MuiInputLabel: MonorailInputLabelOverrides,
   MuiLoadingButton: MonorailLoadingButtonOverrides,
+  MuiList: MonorailListOverrides,
+  MuiListItem: MonorailListItemOverrides,
+  MuiListItemAvatar: MonorailListItemAvatarOverrides,
+  MuiListItemButton: MonorailListItemButtonOverrides,
+  MuiListItemIcon: MonorailListItemIconOverrides,
+  MuiListItemSecondaryAction: MonorailListItemSecondaryActionOverrides,
+  MuiListItemText: MonorailListItemTextOverrides,
+  MuiListSubheader: MonorailListSubheaderOverrides,
   MuiOutlinedInput: MonorailOutlinedInputOverrides,
   MuiRating: MonorailRatingOverrides,
   MuiSelect: MonorailSelectOverrides,
