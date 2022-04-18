@@ -294,7 +294,17 @@ export const InteractiveList = story<ListProps>(
             <Demo>
               <List dense={dense}>
                 {generate(
-                  <ListItem>
+                  <ListItem
+                    secondaryAction={
+                      <IconButton
+                        edge="end"
+                        aria-label="delete"
+                        size={dense ? 'small' : 'medium'}
+                      >
+                        <DeleteIcon />
+                      </IconButton>
+                    }
+                  >
                     <ListItemIcon sx={{ minWidth: dense ? 40 : 48 }}>
                       <FolderIcon fontSize={dense ? 'small' : 'medium'} />
                     </ListItemIcon>
