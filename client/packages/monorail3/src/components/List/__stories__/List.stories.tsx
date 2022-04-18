@@ -166,7 +166,7 @@ export const NestedList = story<ListProps>(
         </ListItemButton>
         <Collapse in={open} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
-            <ListItemButton sx={{ pl: 4 }}>
+            <ListItemButton sx={{ pl: 8 }}>
               <ListItemIcon>
                 <StarBorder />
               </ListItemIcon>
@@ -295,8 +295,8 @@ export const InteractiveList = story<ListProps>(
               <List dense={dense}>
                 {generate(
                   <ListItem>
-                    <ListItemIcon>
-                      <FolderIcon />
+                    <ListItemIcon sx={{ minWidth: dense ? 40 : 48 }}>
+                      <FolderIcon fontSize={dense ? 'small' : 'medium'} />
                     </ListItemIcon>
                     <ListItemText
                       primary="Single-line item"
@@ -318,8 +318,14 @@ export const InteractiveList = story<ListProps>(
                 {generate(
                   <ListItem>
                     <ListItemAvatar>
-                      <Avatar>
-                        <FolderIcon />
+                      <Avatar
+                        sx={
+                          dense
+                            ? { width: 32, height: 32 }
+                            : { width: 40, height: 40 }
+                        }
+                      >
+                        <FolderIcon fontSize={dense ? 'medium' : 'large'} />
                       </Avatar>
                     </ListItemAvatar>
                     <ListItemText
@@ -340,14 +346,20 @@ export const InteractiveList = story<ListProps>(
                 {generate(
                   <ListItem
                     secondaryAction={
-                      <IconButton edge="end" aria-label="delete" size="large">
+                      <IconButton edge="end" aria-label="delete">
                         <DeleteIcon />
                       </IconButton>
                     }
                   >
                     <ListItemAvatar>
-                      <Avatar>
-                        <FolderIcon />
+                      <Avatar
+                        sx={
+                          dense
+                            ? { width: 32, height: 32 }
+                            : { width: 40, height: 40 }
+                        }
+                      >
+                        <FolderIcon fontSize={dense ? 'medium' : 'large'} />
                       </Avatar>
                     </ListItemAvatar>
                     <ListItemText
@@ -794,7 +806,7 @@ export const GutterlessListItem = story<ListProps>(
             key={value}
             disableGutters
             secondaryAction={
-              <IconButton aria-label="Comment" size="large">
+              <IconButton aria-label="Comment">
                 <CommentIcon />
               </IconButton>
             }
