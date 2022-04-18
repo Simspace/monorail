@@ -33,7 +33,6 @@ import {
   FormControlLabel,
   FormGroup,
   Grid,
-  IconButton,
   List,
   ListItem,
   ListItemAvatar,
@@ -56,6 +55,7 @@ import {
 } from '@mui/material/styles'
 
 import { story } from '../../../__tests__/helpers/storybook'
+import { IconButton } from '../../IconButton/IconButton'
 
 declare module '@mui/styles/defaultTheme' {
   // eslint-disable-next-line @typescript-eslint/no-empty-interface
@@ -542,7 +542,7 @@ export const ListControlsCheckbox = story<ListProps>(
             <ListItem
               key={value}
               secondaryAction={
-                <IconButton edge="end" aria-label="comments" size="large">
+                <IconButton edge="end" aria-label="comments" shape="circular">
                   <CommentIcon />
                 </IconButton>
               }

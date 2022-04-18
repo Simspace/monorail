@@ -1,7 +1,16 @@
-import { Components, Theme } from '@mui/material'
+import { Components, listItemButtonClasses, Theme } from '@mui/material'
 
 export const MonorailListItemButtonOverrides: Components<Theme>['MuiListItemButton'] =
   {
     defaultProps: {},
-    styleOverrides: {},
+    styleOverrides: {
+      root: ({ theme }) => ({
+        [`&.${listItemButtonClasses.selected}`]: {
+          backgroundColor: theme.palette.action.selected,
+        },
+        '&:active': {
+          backgroundColor: theme.palette.primary[200],
+        },
+      }),
+    },
   }
