@@ -453,7 +453,9 @@ export const AlignListItems = story<ListProps>(
       <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
         <ListItem alignItems="flex-start">
           <ListItemAvatar>
-            <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+            <Avatar alt="Remy Sharp">
+              <Typography fontWeight="bold">RS</Typography>
+            </Avatar>
           </ListItemAvatar>
           <ListItemText
             primary="Brunch this weekend?"
@@ -475,7 +477,9 @@ export const AlignListItems = story<ListProps>(
         <Divider variant="inset" component="li" />
         <ListItem alignItems="flex-start">
           <ListItemAvatar>
-            <Avatar alt="Travis Howard" src="/static/images/avatar/2.jpg" />
+            <Avatar alt="Travis Howard">
+              <Typography fontWeight="bold">TH</Typography>
+            </Avatar>
           </ListItemAvatar>
           <ListItemText
             primary="Summer BBQ"
@@ -497,7 +501,9 @@ export const AlignListItems = story<ListProps>(
         <Divider variant="inset" component="li" />
         <ListItem alignItems="flex-start">
           <ListItemAvatar>
-            <Avatar alt="Cindy Baker" src="/static/images/avatar/3.jpg" />
+            <Avatar alt="Cindy Baker">
+              <Typography fontWeight="bold">CB</Typography>
+            </Avatar>
           </ListItemAvatar>
           <ListItemText
             primary="Oui Oui"
@@ -636,11 +642,16 @@ export const ListControlsCheckboxSecondary = story<ListProps>(
             >
               <ListItemButton>
                 <ListItemAvatar>
-                  <Avatar
-                    alt={`Avatar n°${value + 1}`}
-                    src={`/static/images/avatar/${value + 1}.jpg`}
-                    sx={{ height: 32, width: 32 }}
-                  />
+                  <Avatar sx={{ height: 32, width: 32 }}>
+                    <Typography
+                      sx={{
+                        typography: 'body2',
+                        fontWeight: 'bold',
+                      }}
+                    >
+                      AA
+                    </Typography>
+                  </Avatar>
                 </ListItemAvatar>
                 <ListItemText id={labelId} primary={`Line item ${value + 1}`} />
               </ListItemButton>
