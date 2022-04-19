@@ -11,11 +11,14 @@ export const MonorailListItemTextOverrides: Components<Theme>['MuiListItemText']
         marginTop: 0,
         marginBottom: 0,
         [`&.${listItemTextClasses.dense}`]: {
-          marginTop: 5,
-          marginBottom: 5,
+          marginTop: 2,
+          marginBottom: 2,
         },
       },
       dense: {
+        // To give dense ListItem a total height of 32px
+        marginTop: 1,
+        marginBottom: 1,
         [`& > .${listItemTextClasses.secondary}`]: {
           marginTop: 0,
         },

@@ -321,23 +321,15 @@ export const InteractiveList = story<ListProps>(
         <Grid container spacing={2}>
           <Grid item xs={12} md={6}>
             <Typography sx={{ mt: 4, mb: 2 }} variant="h3" component="div">
-              Avatar with text
+              Checkbox with text
             </Typography>
             <Demo>
               <List dense={dense}>
                 {generate(
                   <ListItem>
-                    <ListItemAvatar>
-                      <Avatar
-                        sx={
-                          dense
-                            ? { width: 32, height: 32 }
-                            : { width: 40, height: 40 }
-                        }
-                      >
-                        <FolderIcon fontSize={dense ? 'medium' : 'large'} />
-                      </Avatar>
-                    </ListItemAvatar>
+                    <ListItemIcon sx={{ minWidth: dense ? 40 : 48 }}>
+                      <Checkbox size={dense ? 'small' : 'medium'} />
+                    </ListItemIcon>
                     <ListItemText
                       primary="Single-line item"
                       secondary={secondary ? 'Secondary text' : null}
@@ -647,6 +639,7 @@ export const ListControlsCheckboxSecondary = story<ListProps>(
                   <Avatar
                     alt={`Avatar n°${value + 1}`}
                     src={`/static/images/avatar/${value + 1}.jpg`}
+                    sx={{ height: 32, width: 32 }}
                   />
                 </ListItemAvatar>
                 <ListItemText id={labelId} primary={`Line item ${value + 1}`} />
