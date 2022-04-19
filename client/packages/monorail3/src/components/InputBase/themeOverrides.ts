@@ -1,13 +1,18 @@
-import { Components, Theme } from '@mui/material'
+import {
+  Components,
+  inputBaseClasses,
+  outlinedInputClasses,
+  Theme,
+} from '@mui/material'
 
 export const MonorailInputBaseOverrides: Components<Theme>['MuiInputBase'] = {
   defaultProps: {},
   styleOverrides: {
     root: ({ ownerState: { color = 'primary' }, theme }) => {
       return {
-        '&.Mui-focused': {
+        [`&.${inputBaseClasses.focused}`]: {
           boxShadow: `0 0 0 3px ${theme.palette[color].focusRing.outer}`,
-          '& > fieldset.MuiOutlinedInput-notchedOutline': {
+          [`& > fieldset.${outlinedInputClasses.notchedOutline}`]: {
             borderColor: `${theme.palette[color].focusRing.inner}`,
             borderWidth: '1px',
           },

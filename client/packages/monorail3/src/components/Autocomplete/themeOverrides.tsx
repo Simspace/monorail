@@ -1,7 +1,13 @@
 import React from 'react'
 import ClearIcon from '@mui/icons-material/Clear'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
-import { Components, Popper, Theme } from '@mui/material'
+import {
+  autocompleteClasses,
+  Components,
+  outlinedInputClasses,
+  Popper,
+  Theme,
+} from '@mui/material'
 
 export const MonorailAutocompleteOverrides: Components<Theme>['MuiAutocomplete'] =
   {
@@ -32,10 +38,10 @@ export const MonorailAutocompleteOverrides: Components<Theme>['MuiAutocomplete']
       }: {
         ownerState: { multiple?: boolean }
       }) => ({
-        '.MuiOutlinedInput-root': {
+        [`.${outlinedInputClasses.root}`]: {
           // Tags have a built-in 3px margin + 9px = 12px
           padding: multiple ? '2px 9px' : '0 12px',
-          '& .MuiAutocomplete-input': {
+          [`& .${autocompleteClasses.input}`]: {
             padding: 0,
           },
         },

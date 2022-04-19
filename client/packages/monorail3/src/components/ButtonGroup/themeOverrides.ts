@@ -1,4 +1,4 @@
-import { Components, Theme } from '@mui/material'
+import { buttonClasses, Components, Theme } from '@mui/material'
 
 declare module '@mui/material/ButtonGroup' {
   /**
@@ -22,7 +22,7 @@ export const MonorailButtonGroupOverrides: Components<Theme>['MuiButtonGroup'] =
     styleOverrides: {
       grouped: ({ ownerState: { color = 'primary' }, theme }) => {
         return {
-          '&.Mui-focusVisible': {
+          [`&.${buttonClasses.focusVisible}`]: {
             boxShadow: `0 0 0 4px ${theme.palette[color].focusRing.outer}`,
             outline: `1px solid ${theme.palette[color].focusRing.inner}`,
           },
@@ -32,7 +32,7 @@ export const MonorailButtonGroupOverrides: Components<Theme>['MuiButtonGroup'] =
         '&:hover': {
           zIndex: 1,
         },
-        '&.Mui-focusVisible': {
+        [`&.${buttonClasses.focusVisible}`]: {
           zIndex: 1,
         },
       },

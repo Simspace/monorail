@@ -1,4 +1,4 @@
-import { Components, Theme } from '@mui/material'
+import { Components, switchClasses, Theme } from '@mui/material'
 
 const switchTokens = {
   track: {
@@ -31,7 +31,7 @@ export const MonorailSwitchOverrides: Components<Theme>['MuiSwitch'] = {
     root: ({ theme }) => ({
       padding: '4px 16px 4px 8px',
       '&:hover': {
-        '& .MuiSwitch-track': {
+        [`& .${switchClasses.track}`]: {
           borderColor: theme.palette.default[switchTokens.border.hover],
           backgroundColor: theme.palette.default[switchTokens.track.hover],
         },
@@ -41,56 +41,56 @@ export const MonorailSwitchOverrides: Components<Theme>['MuiSwitch'] = {
       padding: 8,
       transform: 'translate(5px)',
       '&.Mui-focusVisible': {
-        '& + .MuiSwitch-track': {
+        [`& + .${switchClasses.track}`]: {
           boxShadow: `0 0 0 3px ${theme.palette.primary.focusRing.outer}`,
           borderColor: theme.palette.primary.focusRing.inner,
         },
       },
       '&:hover': {
         backgroundColor: 'transparent',
-        '&.Mui-checked .MuiSwitch-thumb': {
+        [`&.${switchClasses.checked} .${switchClasses.thumb}`]: {
           backgroundColor:
             theme.palette[color][switchTokens.checked.thumb.hover],
         },
-        '&.Mui-disabled': {
+        [`&.${switchClasses.disabled}`]: {
           borderColor: 'transparent',
         },
       },
-      '&.Mui-checked': {
+      [`&.${switchClasses.checked}`]: {
         transform: 'translate(32px)',
         '&:hover': {
           backgroundColor: 'transparent',
         },
-        '& + .MuiSwitch-track': {
+        [`& + .${switchClasses.track}`]: {
           backgroundColor: theme.palette[color].main,
           opacity: 1,
           borderColor: 'transparent',
         },
-        '& .MuiSwitch-thumb': {
+        [`& .${switchClasses.thumb}`]: {
           backgroundColor: theme.palette.common.white,
         },
         '&.Mui-focusVisible': {
-          '& + .MuiSwitch-track': {
+          [`& + .${switchClasses.track}`]: {
             boxShadow: `0 0 0 3px ${theme.palette[color].focusRing.outer}`,
             borderColor: theme.palette[color].focusRing.inner,
           },
         },
       },
-      '&.Mui-disabled': {
-        '& + .MuiSwitch-track': {
+      [`&.${switchClasses.disabled}`]: {
+        [`& + .${switchClasses.track}`]: {
           backgroundColor: theme.palette.default[switchTokens.track.disabled],
           opacity: 1,
           borderColor: 'transparent',
         },
-        '& > .MuiSwitch-thumb': {
+        [`& > .${switchClasses.thumb}`]: {
           backgroundColor: theme.palette.common.white,
         },
-        '&.Mui-checked': {
-          '& + .MuiSwitch-track': {
+        [`&.${switchClasses.checked}`]: {
+          [`& + .${switchClasses.track}`]: {
             backgroundColor:
               theme.palette.default[switchTokens.checked.track.disabled],
           },
-          '& > .MuiSwitch-thumb': {
+          [`& > .${switchClasses.thumb}`]: {
             backgroundColor:
               theme.palette.default[switchTokens.checked.thumb.disabled],
           },
@@ -120,11 +120,11 @@ export const MonorailSwitchOverrides: Components<Theme>['MuiSwitch'] = {
       height: 32,
       width: 62,
       padding: '4px 12px 4px 6px',
-      '& > .MuiSwitch-switchBase': {
+      [`& > .${switchClasses.switchBase}`]: {
         padding: 8,
         transform: 'translate(2px)',
       },
-      '& .MuiSwitch-switchBase.Mui-checked': {
+      [`& .${switchClasses.switchBase}.${switchClasses.checked}`]: {
         transform: 'translateX(22px)',
       },
     },
