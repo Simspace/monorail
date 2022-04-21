@@ -25,6 +25,8 @@ import { MonorailListItemIconOverrides } from '../components/ListItemIcon/themeO
 import { MonorailListItemSecondaryActionOverrides } from '../components/ListItemSecondaryAction/themeOverrides'
 import { MonorailListItemTextOverrides } from '../components/ListItemText/themeOverrides'
 import { MonorailListSubheaderOverrides } from '../components/ListSubheader/themeOverrides'
+import { MonorailMenuOverrides } from '../components/Menu/themeOverrides'
+import { MonorailMenuItemOverrides } from '../components/MenuItem/themeOverrides'
 import { MonorailOutlinedInputOverrides } from '../components/OutlinedInput/themeOverrides'
 import { MonorailRatingOverrides } from '../components/Rating/themeOverrides'
 import { MonorailSelectOverrides } from '../components/Select/themeOverrides'
@@ -75,6 +77,8 @@ export const getThemeComponents = (
   MuiListItemSecondaryAction: MonorailListItemSecondaryActionOverrides,
   MuiListItemText: MonorailListItemTextOverrides,
   MuiListSubheader: MonorailListSubheaderOverrides,
+  MuiMenu: MonorailMenuOverrides,
+  MuiMenuItem: MonorailMenuItemOverrides,
   MuiOutlinedInput: MonorailOutlinedInputOverrides,
   MuiRating: MonorailRatingOverrides,
   MuiSelect: MonorailSelectOverrides,
