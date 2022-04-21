@@ -6,11 +6,10 @@ import {
   FormGroup,
   FormHelperText,
   FormLabel,
+  Stack,
   Switch,
   SwitchProps,
 } from '@mui/material'
-import { pink } from '@mui/material/colors'
-import { alpha, styled } from '@mui/material/styles'
 
 import { story } from '../../../__tests__/helpers/storybook'
 
@@ -47,26 +46,22 @@ export const BasicSwitches = story(() => (
   </div>
 ))
 
-const GreenSwitch = styled(Switch)(({ theme }) => ({
-  '& .MuiSwitch-switchBase.Mui-checked': {
-    color: pink[600],
-    '&:hover': {
-      backgroundColor: alpha(pink[600], theme.palette.action.hoverOpacity),
-    },
-  },
-  '& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track': {
-    backgroundColor: pink[600],
-  },
-}))
+const colors = [
+  'default',
+  'primary',
+  'secondary',
+  'error',
+  'warning',
+  'info',
+  'success',
+] as const
 
 export const ColorSwitches = story(() => (
-  <div>
-    <Switch {...label} defaultChecked />
-    <Switch {...label} defaultChecked color="secondary" />
-    <Switch {...label} defaultChecked color="warning" />
-    <Switch {...label} defaultChecked color="default" />
-    <GreenSwitch {...label} defaultChecked />
-  </div>
+  <Stack direction="row" gap={4}>
+    {colors.map(color => (
+      <Switch key={`switch-${color}`} {...label} defaultChecked color={color} />
+    ))}
+  </Stack>
 ))
 
 export const ControlledSwitches = story(() => {
