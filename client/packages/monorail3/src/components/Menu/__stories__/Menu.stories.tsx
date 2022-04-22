@@ -345,10 +345,10 @@ export const AccountMenu = story<MenuProps>(
         <Box
           sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}
         >
-          <Typography sx={{ minWidth: 100 }}>Contact</Typography>
-          <Typography sx={{ minWidth: 100 }}>Profile</Typography>
+          <Typography sx={{ minWidth: 90 }}>Contact</Typography>
+          <Typography sx={{ minWidth: 90 }}>Profile</Typography>
           <Tooltip title="Account settings">
-            <IconButton onClick={handleClick} size="small" sx={{ ml: 2 }}>
+            <IconButton onClick={handleClick} size="small">
               <Avatar sx={{ width: 32, height: 32 }}>M</Avatar>
             </IconButton>
           </Tooltip>
@@ -363,21 +363,21 @@ export const AccountMenu = story<MenuProps>(
             sx: {
               overflow: 'visible',
               filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
-              mt: 1.5,
+              mt: 6,
               '& .MuiAvatar-root': {
                 width: 32,
                 height: 32,
-                ml: -0.5,
-                mr: 1,
+                ml: 1.5,
+                mr: 2.5,
               },
               '&:before': {
                 content: '""',
                 display: 'block',
                 position: 'absolute',
                 top: 0,
-                right: 14,
-                width: 10,
-                height: 10,
+                right: 28,
+                width: 20,
+                height: 20,
                 bgcolor: 'background.paper',
                 transform: 'translateY(-50%) rotate(45deg)',
                 zIndex: 0,
