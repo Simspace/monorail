@@ -73,14 +73,15 @@ export const MonorailButtonOverrides: Components<Theme>['MuiButton'] = {
           // This pattern seems to work better for .Mui-[state]
           ...(variant === 'contained' && {
             backgroundColor:
-              theme.palette[color][buttonTokens.contained.bg.disabled],
+              theme.palette[color].shades[buttonTokens.contained.bg.disabled],
             color: theme.palette.common.white,
           }),
           ...(variant === 'outlined' && {
-            color: theme.palette[color][buttonTokens.outlined.text.disabled],
+            color:
+              theme.palette[color].shades[buttonTokens.outlined.text.disabled],
           }),
           ...(variant === 'text' && {
-            color: theme.palette[color][buttonTokens.text.text.disabled],
+            color: theme.palette[color].shades[buttonTokens.text.text.disabled],
           }),
         },
       }
@@ -120,11 +121,11 @@ export const MonorailButtonOverrides: Components<Theme>['MuiButton'] = {
         color: theme.palette.common.white,
         '&:hover': {
           backgroundColor:
-            theme.palette[color][buttonTokens.contained.bg.hover],
+            theme.palette[color].shades[buttonTokens.contained.bg.hover],
         },
         '&:active': {
           backgroundColor:
-            theme.palette[color][buttonTokens.contained.bg.active],
+            theme.palette[color].shades[buttonTokens.contained.bg.active],
         },
       }
     },
@@ -133,27 +134,30 @@ export const MonorailButtonOverrides: Components<Theme>['MuiButton'] = {
         backgroundColor: theme.palette.common.white,
         border: 'none',
         outline: `1px solid ${
-          theme.palette[color][buttonTokens.outlined.border]
+          theme.palette[color].shades[buttonTokens.outlined.border]
         }`,
-        color: theme.palette[color][buttonTokens.outlined.text.idle],
+        color: theme.palette[color].shades[buttonTokens.outlined.text.idle],
         '&:hover': {
           border: 'none',
-          backgroundColor: theme.palette[color][buttonTokens.outlined.bg.hover],
+          backgroundColor:
+            theme.palette[color].shades[buttonTokens.outlined.bg.hover],
         },
         '&:active': {
           backgroundColor:
-            theme.palette[color][buttonTokens.outlined.bg.active],
+            theme.palette[color].shades[buttonTokens.outlined.bg.active],
         },
       }
     },
     text: ({ ownerState: { color = 'primary' }, theme }) => {
       return {
-        color: theme.palette[color][buttonTokens.text.text.idle],
+        color: theme.palette[color].shades[buttonTokens.text.text.idle],
         '&:hover': {
-          backgroundColor: theme.palette[color][buttonTokens.text.bg.hover],
+          backgroundColor:
+            theme.palette[color].shades[buttonTokens.text.bg.hover],
         },
         '&:active': {
-          backgroundColor: theme.palette[color][buttonTokens.text.bg.active],
+          backgroundColor:
+            theme.palette[color].shades[buttonTokens.text.bg.active],
         },
       }
     },
@@ -162,11 +166,11 @@ export const MonorailButtonOverrides: Components<Theme>['MuiButton'] = {
       theme,
     }) => {
       return {
-        color: theme.palette[color][buttonTokens.outlined.text.disabled],
+        color: theme.palette[color].shades[buttonTokens.outlined.text.disabled],
         backgroundColor: theme.palette.common.white,
         ...(variant === 'contained' && {
           backgroundColor:
-            theme.palette[color][buttonTokens.contained.bg.disabled],
+            theme.palette[color].shades[buttonTokens.contained.bg.disabled],
           color: theme.palette.common.white,
         }),
       }
@@ -227,7 +231,8 @@ export const MonorailLoadingButtonOverrides: Components<Theme>['MuiLoadingButton
     styleOverrides: {
       loadingIndicator: ({ ownerState: { color = 'primary' }, theme }) => {
         return {
-          color: theme.palette[color][buttonTokens.contained.bg.disabled],
+          color:
+            theme.palette[color].shades[buttonTokens.contained.bg.disabled],
         }
       },
     },

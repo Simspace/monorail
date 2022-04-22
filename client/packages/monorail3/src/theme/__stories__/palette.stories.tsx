@@ -75,51 +75,51 @@ const PaletteColorBox = ({
           label="Contrast Text"
           minWidth={minWidth}
         />
-        {paletteColor[50] && (
+        {'shades' in paletteColor && (
           <>
             <SingleColorBox
               label="50"
-              color={paletteColor[50]}
+              color={paletteColor.shades[50]}
               minWidth={minWidth}
             />
             <SingleColorBox
               label="100"
-              color={paletteColor[100]}
+              color={paletteColor.shades[100]}
               minWidth={minWidth}
             />
             <SingleColorBox
               label="200"
-              color={paletteColor[200]}
+              color={paletteColor.shades[200]}
               minWidth={minWidth}
             />
             <SingleColorBox
               label="300"
-              color={paletteColor[300]}
+              color={paletteColor.shades[300]}
               minWidth={minWidth}
             />
             <SingleColorBox
               label="400"
-              color={paletteColor[400]}
+              color={paletteColor.shades[400]}
               minWidth={minWidth}
             />
             <SingleColorBox
               label="500"
-              color={paletteColor[500]}
+              color={paletteColor.shades[500]}
               minWidth={minWidth}
             />
             <SingleColorBox
               label="600"
-              color={paletteColor[600]}
+              color={paletteColor.shades[600]}
               minWidth={minWidth}
             />
             <SingleColorBox
               label="700"
-              color={paletteColor[700]}
+              color={paletteColor.shades[700]}
               minWidth={minWidth}
             />
             <SingleColorBox
               label="800"
-              color={paletteColor[800]}
+              color={paletteColor.shades[800]}
               minWidth={minWidth}
             />
           </>
