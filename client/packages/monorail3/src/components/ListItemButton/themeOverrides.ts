@@ -9,7 +9,8 @@ export const MonorailListItemButtonOverrides: Components<Theme>['MuiListItemButt
           backgroundColor: theme.palette.action.selected,
         },
         '&:active': {
-          backgroundColor: theme.palette.primary[200],
+          // TODO: Tokenize this as weak.active
+          backgroundColor: theme.palette.primary.shades[200],
         },
       }),
     },

@@ -16,7 +16,8 @@ export const MonorailMenuItemOverrides: Components<Theme>['MuiMenuItem'] = {
         minWidth: 48,
       },
       '&:active': {
-        backgroundColor: theme.palette.primary[200],
+        // TODO: Tokenize this as weak.active
+        backgroundColor: theme.palette.primary.shades[200],
       },
       [`&.${menuItemClasses.selected}`]: {
         backgroundColor: theme.palette.action.selected,

@@ -73,11 +73,15 @@ export const MonorailIconButtonOverrides: Components<Theme>['MuiIconButton'] = {
             backgroundColor: 'transparent',
             '&:hover': {
               backgroundColor:
-                theme.palette[color][iconButtonTokens.chromeless.bg.hover],
+                theme.palette[color].shades[
+                  iconButtonTokens.chromeless.bg.hover
+                ],
             },
             '&:active': {
               backgroundColor:
-                theme.palette[color][iconButtonTokens.chromeless.bg.active],
+                theme.palette[color].shades[
+                  iconButtonTokens.chromeless.bg.active
+                ],
             },
           }),
           ...(variant === 'contained' && {
@@ -85,11 +89,15 @@ export const MonorailIconButtonOverrides: Components<Theme>['MuiIconButton'] = {
             color: theme.palette.getContrastText(theme.palette[color].main),
             '&:hover': {
               backgroundColor:
-                theme.palette[color][iconButtonTokens.contained.bg.hover],
+                theme.palette[color].shades[
+                  iconButtonTokens.contained.bg.hover
+                ],
             },
             '&:active': {
               backgroundColor:
-                theme.palette[color][iconButtonTokens.contained.bg.active],
+                theme.palette[color].shades[
+                  iconButtonTokens.contained.bg.active
+                ],
             },
           }),
           ...(variant === 'outlined' && {
@@ -97,11 +105,13 @@ export const MonorailIconButtonOverrides: Components<Theme>['MuiIconButton'] = {
             backgroundColor: theme.palette.common.white,
             '&:hover': {
               backgroundColor:
-                theme.palette[color][iconButtonTokens.outlined.bg.hover],
+                theme.palette[color].shades[iconButtonTokens.outlined.bg.hover],
             },
             '&:active': {
               backgroundColor:
-                theme.palette[color][iconButtonTokens.outlined.bg.active],
+                theme.palette[color].shades[
+                  iconButtonTokens.outlined.bg.active
+                ],
             },
           }),
         }

@@ -32,8 +32,9 @@ export const MonorailSwitchOverrides: Components<Theme>['MuiSwitch'] = {
       padding: '4px 16px 4px 8px',
       '&:hover': {
         [`& .${switchClasses.track}`]: {
-          borderColor: theme.palette.default[switchTokens.border.hover],
-          backgroundColor: theme.palette.default[switchTokens.track.hover],
+          borderColor: theme.palette.default.shades[switchTokens.border.hover],
+          backgroundColor:
+            theme.palette.default.shades[switchTokens.track.hover],
         },
       },
     }),
@@ -50,7 +51,7 @@ export const MonorailSwitchOverrides: Components<Theme>['MuiSwitch'] = {
         backgroundColor: 'transparent',
         [`&.${switchClasses.checked} .${switchClasses.thumb}`]: {
           backgroundColor:
-            theme.palette[color][switchTokens.checked.thumb.hover],
+            theme.palette[color].shades[switchTokens.checked.thumb.hover],
         },
         [`&.${switchClasses.disabled}`]: {
           borderColor: 'transparent',
@@ -78,7 +79,8 @@ export const MonorailSwitchOverrides: Components<Theme>['MuiSwitch'] = {
       },
       [`&.${switchClasses.disabled}`]: {
         [`& + .${switchClasses.track}`]: {
-          backgroundColor: theme.palette.default[switchTokens.track.disabled],
+          backgroundColor:
+            theme.palette.default.shades[switchTokens.track.disabled],
           opacity: 1,
           borderColor: 'transparent',
         },
@@ -88,11 +90,11 @@ export const MonorailSwitchOverrides: Components<Theme>['MuiSwitch'] = {
         [`&.${switchClasses.checked}`]: {
           [`& + .${switchClasses.track}`]: {
             backgroundColor:
-              theme.palette.default[switchTokens.checked.track.disabled],
+              theme.palette.default.shades[switchTokens.checked.track.disabled],
           },
           [`& > .${switchClasses.thumb}`]: {
             backgroundColor:
-              theme.palette.default[switchTokens.checked.thumb.disabled],
+              theme.palette.default.shades[switchTokens.checked.thumb.disabled],
           },
         },
       },
@@ -100,13 +102,15 @@ export const MonorailSwitchOverrides: Components<Theme>['MuiSwitch'] = {
     // checked doesn't seem to work, so I used `.Mui-checked` inside `switchBase` -GS 4/15/22
     checked: {},
     thumb: ({ theme }) => ({
-      backgroundColor: theme.palette.default[switchTokens.thumb.idle],
+      backgroundColor: theme.palette.default.shades[switchTokens.thumb.idle],
       boxShadow: 'none',
       width: 24,
       height: 24,
     }),
     track: ({ theme }) => ({
-      border: `2px solid ${theme.palette.default[switchTokens.border.idle]}`,
+      border: `2px solid ${
+        theme.palette.default.shades[switchTokens.border.idle]
+      }`,
       backgroundColor: theme.palette.common.white,
       borderRadius: 100,
       opacity: 1,
