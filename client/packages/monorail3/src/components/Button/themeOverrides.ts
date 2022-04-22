@@ -1,5 +1,5 @@
 import type {} from '@mui/lab/themeAugmentation'
-import { Components, Theme } from '@mui/material'
+import { buttonClasses, Components, Theme } from '@mui/material'
 
 declare module '@mui/material/Button' {
   /**
@@ -62,12 +62,11 @@ export const MonorailButtonOverrides: Components<Theme>['MuiButton'] = {
       theme,
     }) => {
       return {
-        '&.Mui-focusVisible': {
+        [`&.${buttonClasses.focusVisible}`]: {
           boxShadow: `0 0 0 4px ${theme.palette[color].focusRing.outer}`,
-          // boxShadow: `0 0 0 4px ${theme.palette[color].focusRing.outer}`,
           outline: `1px solid ${theme.palette[color].focusRing.inner}`,
         },
-        '&.Mui-disabled': {
+        [`&.${buttonClasses.disabled}`]: {
           border: 'none',
           // I tried using the disabled prop, https://mui.com/api/button/#css
           // but it wouldn't override the default styles

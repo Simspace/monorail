@@ -33,7 +33,6 @@ import {
   FormControlLabel,
   FormGroup,
   Grid,
-  IconButton,
   List,
   ListItem,
   ListItemAvatar,
@@ -56,6 +55,7 @@ import {
 } from '@mui/material/styles'
 
 import { story } from '../../../__tests__/helpers/storybook'
+import { IconButton } from '../../IconButton/IconButton'
 
 declare module '@mui/styles/defaultTheme' {
   // eslint-disable-next-line @typescript-eslint/no-empty-interface
@@ -166,7 +166,7 @@ export const NestedList = story<ListProps>(
         </ListItemButton>
         <Collapse in={open} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
-            <ListItemButton sx={{ pl: 4 }}>
+            <ListItemButton sx={{ pl: 8 }}>
               <ListItemIcon>
                 <StarBorder />
               </ListItemIcon>
@@ -294,9 +294,19 @@ export const InteractiveList = story<ListProps>(
             <Demo>
               <List dense={dense}>
                 {generate(
-                  <ListItem>
-                    <ListItemIcon>
-                      <FolderIcon />
+                  <ListItem
+                    secondaryAction={
+                      <IconButton
+                        edge="end"
+                        aria-label="delete"
+                        size={dense ? 'small' : 'medium'}
+                      >
+                        <DeleteIcon />
+                      </IconButton>
+                    }
+                  >
+                    <ListItemIcon sx={{ minWidth: dense ? 40 : 48 }}>
+                      <FolderIcon fontSize={dense ? 'small' : 'medium'} />
                     </ListItemIcon>
                     <ListItemText
                       primary="Single-line item"
@@ -311,17 +321,15 @@ export const InteractiveList = story<ListProps>(
         <Grid container spacing={2}>
           <Grid item xs={12} md={6}>
             <Typography sx={{ mt: 4, mb: 2 }} variant="h3" component="div">
-              Avatar with text
+              Checkbox with text
             </Typography>
             <Demo>
               <List dense={dense}>
                 {generate(
                   <ListItem>
-                    <ListItemAvatar>
-                      <Avatar>
-                        <FolderIcon />
-                      </Avatar>
-                    </ListItemAvatar>
+                    <ListItemIcon sx={{ minWidth: dense ? 40 : 48 }}>
+                      <Checkbox size={dense ? 'small' : 'medium'} />
+                    </ListItemIcon>
                     <ListItemText
                       primary="Single-line item"
                       secondary={secondary ? 'Secondary text' : null}
@@ -340,14 +348,20 @@ export const InteractiveList = story<ListProps>(
                 {generate(
                   <ListItem
                     secondaryAction={
-                      <IconButton edge="end" aria-label="delete" size="large">
+                      <IconButton edge="end" aria-label="delete">
                         <DeleteIcon />
                       </IconButton>
                     }
                   >
                     <ListItemAvatar>
-                      <Avatar>
-                        <FolderIcon />
+                      <Avatar
+                        sx={
+                          dense
+                            ? { width: 32, height: 32 }
+                            : { width: 40, height: 40 }
+                        }
+                      >
+                        <FolderIcon fontSize={dense ? 'medium' : 'large'} />
                       </Avatar>
                     </ListItemAvatar>
                     <ListItemText
@@ -439,7 +453,9 @@ export const AlignListItems = story<ListProps>(
       <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
         <ListItem alignItems="flex-start">
           <ListItemAvatar>
-            <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+            <Avatar alt="Remy Sharp">
+              <Typography fontWeight="bold">RS</Typography>
+            </Avatar>
           </ListItemAvatar>
           <ListItemText
             primary="Brunch this weekend?"
@@ -461,7 +477,9 @@ export const AlignListItems = story<ListProps>(
         <Divider variant="inset" component="li" />
         <ListItem alignItems="flex-start">
           <ListItemAvatar>
-            <Avatar alt="Travis Howard" src="/static/images/avatar/2.jpg" />
+            <Avatar alt="Travis Howard">
+              <Typography fontWeight="bold">TH</Typography>
+            </Avatar>
           </ListItemAvatar>
           <ListItemText
             primary="Summer BBQ"
@@ -483,7 +501,9 @@ export const AlignListItems = story<ListProps>(
         <Divider variant="inset" component="li" />
         <ListItem alignItems="flex-start">
           <ListItemAvatar>
-            <Avatar alt="Cindy Baker" src="/static/images/avatar/3.jpg" />
+            <Avatar alt="Cindy Baker">
+              <Typography fontWeight="bold">CB</Typography>
+            </Avatar>
           </ListItemAvatar>
           <ListItemText
             primary="Oui Oui"
@@ -542,7 +562,7 @@ export const ListControlsCheckbox = story<ListProps>(
             <ListItem
               key={value}
               secondaryAction={
-                <IconButton edge="end" aria-label="comments" size="large">
+                <IconButton edge="end" aria-label="comments" shape="circular">
                   <CommentIcon />
                 </IconButton>
               }
@@ -622,10 +642,16 @@ export const ListControlsCheckboxSecondary = story<ListProps>(
             >
               <ListItemButton>
                 <ListItemAvatar>
-                  <Avatar
-                    alt={`Avatar n°${value + 1}`}
-                    src={`/static/images/avatar/${value + 1}.jpg`}
-                  />
+                  <Avatar sx={{ height: 32, width: 32 }}>
+                    <Typography
+                      sx={{
+                        typography: 'body2',
+                        fontWeight: 'bold',
+                      }}
+                    >
+                      AA
+                    </Typography>
+                  </Avatar>
                 </ListItemAvatar>
                 <ListItemText id={labelId} primary={`Line item ${value + 1}`} />
               </ListItemButton>
@@ -794,7 +820,7 @@ export const GutterlessListItem = story<ListProps>(
             key={value}
             disableGutters
             secondaryAction={
-              <IconButton aria-label="Comment" size="large">
+              <IconButton aria-label="Comment">
                 <CommentIcon />
               </IconButton>
             }

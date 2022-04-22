@@ -1,4 +1,4 @@
-import { Components, Theme } from '@mui/material'
+import { chipClasses, Components, Theme } from '@mui/material'
 import { SimpleInterpolation } from '@mui/styled-engine'
 
 declare module '@mui/material/Chip' {
@@ -91,7 +91,7 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
     }) => {
       return {
         fontWeight: theme.typography.fontWeightBold,
-        '&.Mui-focusVisible': {
+        [`&.${chipClasses.focusVisible}`]: {
           boxShadow: `0 0 0 3px ${theme.palette[color].focusRing.outer}`,
           border: `1px solid ${theme.palette[color].focusRing.inner}`,
         },
@@ -101,7 +101,7 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
           color: theme.palette.text.primary,
           backgroundColor:
             theme.palette.default[chipTokens.rectangular.bg.idle],
-          '&.Mui-focusVisible': {
+          [`&.${chipClasses.focusVisible}`]: {
             boxShadow: `0 0 0 3px ${theme.palette.default.focusRing.outer}`,
             border: `1px solid ${theme.palette.default.focusRing.inner}`,
             backgroundColor: !clickable
@@ -120,7 +120,7 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
             : color === 'secondary' || color === 'warning'
             ? theme.palette[color][chipTokens.filled.medium.bg.idle]
             : theme.palette[color][chipTokens.filled.strong.bg.idle],
-        '&.Mui-focusVisible': {
+        [`&.${chipClasses.focusVisible}`]: {
           backgroundColor:
             color === 'default'
               ? theme.palette[color][chipTokens.filled.weak.bg.focused]
@@ -138,7 +138,7 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
           color === 'default'
             ? theme.palette.text.primary
             : theme.palette[color][chipTokens.outlined.label],
-        '&.Mui-focusVisible': {
+        [`&.${chipClasses.focusVisible}`]: {
           backgroundColor: theme.palette.common.white,
         },
       }
@@ -168,10 +168,10 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
       }
 
       const outlinedStyles: SimpleInterpolation = {
-        '&.MuiChip-clickable:hover': {
+        [`&.${chipClasses.clickable}:hover`]: {
           backgroundColor: theme.palette[color][chipTokens.outlined.bg.hover],
         },
-        '&.MuiChip-clickable:active': {
+        [`&.${chipClasses.clickable}:active`]: {
           boxShadow: 'none',
           backgroundColor: theme.palette[color][chipTokens.outlined.bg.active],
         },
@@ -188,10 +188,10 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
           backgroundColor:
             theme.palette.primary[chipTokens.rectangular.bg.active],
         },
-        '& > .MuiChip-deleteIcon': {
+        [`& > .${chipClasses.deleteIcon}`]: {
           color: theme.palette.primary[chipTokens.rectangular.deleteIcon],
         },
-        '& > .MuiChip-icon': {
+        [`& > .${chipClasses.icon}`]: {
           color: theme.palette.primary[chipTokens.rectangular.icon],
         },
       }

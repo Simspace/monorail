@@ -1,4 +1,4 @@
-import { alpha, Components, Theme } from '@mui/material'
+import { alpha, buttonBaseClasses, Components, Theme } from '@mui/material'
 
 declare module '@mui/material/IconButton' {
   /**
@@ -59,11 +59,11 @@ export const MonorailIconButtonOverrides: Components<Theme>['MuiIconButton'] = {
     }) => {
       return (
         color !== 'inherit' && {
-          '&.Mui-focusVisible': {
+          [`&.${buttonBaseClasses.focusVisible}`]: {
             boxShadow: `0 0 0 3px ${theme.palette[color].focusRing.outer}`,
             border: `1px solid ${theme.palette[color].focusRing.inner}`,
           },
-          '&.Mui-disabled': {
+          [`&.${buttonBaseClasses.disabled}`]: {
             color: theme.palette[color].light,
           },
           ...(shape === 'rounded' && {
@@ -114,7 +114,7 @@ export const MonorailIconButtonOverrides: Components<Theme>['MuiIconButton'] = {
           theme.palette.action.activatedOpacity,
         ),
       },
-      '&.Mui-focusVisible': {
+      [`&.${buttonBaseClasses.focusVisible}`]: {
         boxShadow: `0 0 0 3px ${theme.palette.primary.focusRing.outer}`,
         border: `1px solid ${theme.palette.primary.focusRing.inner}`,
       },
