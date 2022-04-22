@@ -12,6 +12,18 @@ import { Color } from '@mui/material'
 // Note: there is some weird redundancy in some of these types, mostly because of how MUI has them setup as input options
 // provided by the theme creator and then the actual output theme types used by the theme consumer.
 
+type ColorShades = {
+  50: string
+  100: string
+  200: string
+  300: string
+  400: string
+  500: string
+  600: string
+  700: string
+  800: string
+}
+
 declare module '@mui/material/styles/createPalette' {
   /**
    * Extend the color `Palette` interface to add additional shades, colors, etc.
@@ -93,15 +105,7 @@ declare module '@mui/material/styles/createPalette' {
   }
 
   interface PaletteColor {
-    50: string
-    100: string
-    200: string
-    300: string
-    400: string
-    500: string
-    600: string
-    700: string
-    800: string
+    shades: ColorShades
     focusRing: {
       inner: string
       outer: string
@@ -109,6 +113,7 @@ declare module '@mui/material/styles/createPalette' {
   }
 
   interface SimplePaletteColorOptions {
+    shades?: ColorShades
     focusRing?: Partial<{
       inner: string
       outer: string
