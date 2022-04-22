@@ -22,6 +22,12 @@ export const MonorailListItemTextOverrides: Components<Theme>['MuiListItemText']
         [`& > .${listItemTextClasses.secondary}`]: {
           marginTop: 0,
         },
+        [`&.${listItemTextClasses.inset}`]: {
+          paddingLeft: 40,
+        },
+      },
+      inset: {
+        paddingLeft: 48,
       },
     },
   }

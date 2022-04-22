@@ -98,7 +98,7 @@ export const IconMenu = story<MenuProps>(
       <MenuList>
         <MenuItem>
           <ListItemIcon>
-            <ContentCut fontSize="small" />
+            <ContentCut />
           </ListItemIcon>
           <ListItemText>Cut</ListItemText>
           <Typography variant="body2" color="text.secondary">
@@ -107,7 +107,7 @@ export const IconMenu = story<MenuProps>(
         </MenuItem>
         <MenuItem>
           <ListItemIcon>
-            <ContentCopy fontSize="small" />
+            <ContentCopy />
           </ListItemIcon>
           <ListItemText>Copy</ListItemText>
           <Typography variant="body2" color="text.secondary">
@@ -116,7 +116,7 @@ export const IconMenu = story<MenuProps>(
         </MenuItem>
         <MenuItem>
           <ListItemIcon>
-            <ContentPaste fontSize="small" />
+            <ContentPaste />
           </ListItemIcon>
           <ListItemText>Paste</ListItemText>
           <Typography variant="body2" color="text.secondary">
@@ -126,7 +126,7 @@ export const IconMenu = story<MenuProps>(
         <Divider />
         <MenuItem>
           <ListItemIcon>
-            <Cloud fontSize="small" />
+            <Cloud />
           </ListItemIcon>
           <ListItemText>Web Clipboard</ListItemText>
         </MenuItem>
@@ -396,19 +396,19 @@ export const AccountMenu = story<MenuProps>(
           <Divider />
           <MenuItem>
             <ListItemIcon>
-              <PersonAdd fontSize="small" />
+              <PersonAdd />
             </ListItemIcon>
             Add another account
           </MenuItem>
           <MenuItem>
             <ListItemIcon>
-              <Settings fontSize="small" />
+              <Settings />
             </ListItemIcon>
             Settings
           </MenuItem>
           <MenuItem>
             <ListItemIcon>
-              <Logout fontSize="small" />
+              <Logout />
             </ListItemIcon>
             Logout
           </MenuItem>
@@ -629,13 +629,13 @@ export const Limitations = story<MenuProps>(
       <MenuList>
         <MenuItem>
           <ListItemIcon>
-            <Send fontSize="small" />
+            <Send />
           </ListItemIcon>
           <Typography variant="inherit">A short message</Typography>
         </MenuItem>
         <MenuItem>
           <ListItemIcon>
-            <PriorityHigh fontSize="small" />
+            <PriorityHigh />
           </ListItemIcon>
           <Typography variant="inherit">
             A very long text that overflows
@@ -643,7 +643,7 @@ export const Limitations = story<MenuProps>(
         </MenuItem>
         <MenuItem>
           <ListItemIcon>
-            <Drafts fontSize="small" />
+            <Drafts />
           </ListItemIcon>
           <Typography variant="inherit" noWrap>
             A very long text that overflows

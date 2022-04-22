@@ -305,8 +305,8 @@ export const InteractiveList = story<ListProps>(
                       </IconButton>
                     }
                   >
-                    <ListItemIcon sx={{ minWidth: dense ? 40 : 48 }}>
-                      <FolderIcon fontSize={dense ? 'small' : 'medium'} />
+                    <ListItemIcon>
+                      <FolderIcon />
                     </ListItemIcon>
                     <ListItemText
                       primary="Single-line item"
@@ -327,7 +327,7 @@ export const InteractiveList = story<ListProps>(
               <List dense={dense}>
                 {generate(
                   <ListItem>
-                    <ListItemIcon sx={{ minWidth: dense ? 40 : 48 }}>
+                    <ListItemIcon>
                       <Checkbox size={dense ? 'small' : 'medium'} />
                     </ListItemIcon>
                     <ListItemText
@@ -354,14 +354,8 @@ export const InteractiveList = story<ListProps>(
                     }
                   >
                     <ListItemAvatar>
-                      <Avatar
-                        sx={
-                          dense
-                            ? { width: 32, height: 32 }
-                            : { width: 40, height: 40 }
-                        }
-                      >
-                        <FolderIcon fontSize={dense ? 'medium' : 'large'} />
+                      <Avatar>
+                        <FolderIcon />
                       </Avatar>
                     </ListItemAvatar>
                     <ListItemText
@@ -783,11 +777,12 @@ export const InsetListItem = story<ListProps>(
       <List
         sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
         aria-label="contacts"
+        dense
       >
         <ListItem disablePadding>
           <ListItemButton>
             <ListItemIcon>
-              <StarIcon />
+              <StarIcon fontSize="small" />
             </ListItemIcon>
             <ListItemText primary="Chelsea Otakan" />
           </ListItemButton>
