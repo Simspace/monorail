@@ -4,9 +4,10 @@ export const MonorailListItemIconOverrides: Components<Theme>['MuiListItemIcon']
   {
     defaultProps: {},
     styleOverrides: {
-      root: {
+      root: ({ theme }) => ({
         minWidth: 48,
         paddingLeft: 8,
-      },
+        color: theme.palette.default.main,
+      }),
     },
   }

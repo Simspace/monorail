@@ -6,6 +6,7 @@ export const MonorailListSubheaderOverrides: Components<Theme>['MuiListSubheader
     styleOverrides: {
       root: {
         lineHeight: '32px',
+        backgroundColor: 'transparent',
       },
     },
   }
