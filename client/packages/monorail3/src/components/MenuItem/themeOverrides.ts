@@ -12,6 +12,7 @@ export const MonorailMenuItemOverrides: Components<Theme>['MuiMenuItem'] = {
     root: ({ theme }) => ({
       paddingTop: 12,
       paddingBottom: 12,
+      paddingRight: 24,
       [`& .${listItemIconClasses.root}`]: {
         minWidth: 48,
       },

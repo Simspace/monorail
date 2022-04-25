@@ -345,11 +345,11 @@ export const AccountMenu = story<MenuProps>(
         <Box
           sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}
         >
-          <Typography sx={{ minWidth: 90 }}>Contact</Typography>
-          <Typography sx={{ minWidth: 90 }}>Profile</Typography>
+          <Typography sx={{ minWidth: 100 }}>Contact</Typography>
+          <Typography sx={{ minWidth: 100 }}>Profile</Typography>
           <Tooltip title="Account settings">
-            <IconButton onClick={handleClick} size="small">
-              <Avatar sx={{ width: 32, height: 32 }}>M</Avatar>
+            <IconButton onClick={handleClick} sx={{ ml: 2.5 }}>
+              <Avatar>M</Avatar>
             </IconButton>
           </Tooltip>
         </Box>
