@@ -406,6 +406,45 @@ MultiActionAreaCard.parameters = {
   },
 }
 
+export const SimpleActionCard = story<CardProps>(
+  () => {
+    return (
+      <Card sx={{ maxWidth: 444 }}>
+        <CardHeader
+          title="Card header"
+          subheader="Subheader"
+          action={
+            <IconButton aria-label="Card actions">
+              <MoreVertIcon />
+            </IconButton>
+          }
+        />
+        <CardContent>
+          <Typography>Content Goes Here</Typography>
+        </CardContent>
+        <CardActions>
+          <Button size="small" variant="text">
+            Small
+          </Button>
+          <Button size="small" variant="outlined">
+            Small
+          </Button>
+        </CardActions>
+      </Card>
+    )
+  },
+  {
+    parameters: {
+      docs: {
+        description: {
+          story:
+            'A basic card with actions in the header and footer to compare with Figma',
+        },
+      },
+    },
+  },
+)
+
 export const MediaControlCard = story<CardProps>(() => {
   const theme = useTheme()
 
