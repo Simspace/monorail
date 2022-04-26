@@ -107,7 +107,7 @@ export const ColorCheckboxes = story<CheckboxProps>(args => {
       <div>
         {colors.map(color => (
           <Checkbox
-            key={`checkbox-${color}`}
+            key={`checkbox-${color}-disabled`}
             {...label}
             color={color}
             defaultChecked
