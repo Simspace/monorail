@@ -26,7 +26,9 @@ export const MonorailCheckboxOverrides: Components<Theme>['MuiCheckbox'] = {
         },
       },
       [`&.Mui-focusVisible`]: {
-        backgroundColor: theme.palette[color].shades[200],
+        boxShadow: `0 0 0 4px ${theme.palette[color].focusRing.outer}`,
+        outline: `1px solid ${theme.palette[color].focusRing.inner}`,
+        zIndex: 1,
       },
     }),
   },
