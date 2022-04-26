@@ -15,7 +15,6 @@ import {
   FormLabel,
   styled,
 } from '@mui/material'
-import { pink } from '@mui/material/colors'
 
 import { story } from '../../../__tests__/helpers/storybook'
 
@@ -37,8 +36,17 @@ const Template = story<CheckboxProps>(args => <Checkbox {...args} />, {
 /** Default story for Checkbox (edit/remove by hand if needed) */
 export const Default = story(Template)
 
-// TODO: add more stories below
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } }
+
+const colors = [
+  'default',
+  'primary',
+  'secondary',
+  'error',
+  'info',
+  'success',
+  'warning',
+] as const
 
 export const Checkboxes = story<CheckboxProps>(args => {
   return (
@@ -84,23 +92,31 @@ export const SizeCheckboxes = story<CheckboxProps>(args => {
 
 export const ColorCheckboxes = story<CheckboxProps>(args => {
   return (
-    <div>
-      <Checkbox {...label} defaultChecked {...args} />
-      <Checkbox {...label} defaultChecked color="secondary" {...args} />
-      <Checkbox {...label} defaultChecked color="success" {...args} />
-      <Checkbox {...label} defaultChecked color="default" {...args} />
-      <Checkbox
-        {...label}
-        defaultChecked
-        sx={{
-          color: pink[800],
-          '&.Mui-checked': {
-            color: pink[600],
-          },
-        }}
-        {...args}
-      />
-    </div>
+    <>
+      <div>
+        {colors.map(color => (
+          <Checkbox
+            key={`checkbox-${color}`}
+            {...label}
+            color={color}
+            defaultChecked
+            {...args}
+          />
+        ))}
+      </div>
+      <div>
+        {colors.map(color => (
+          <Checkbox
+            key={`checkbox-${color}`}
+            {...label}
+            color={color}
+            defaultChecked
+            disabled
+            {...args}
+          />
+        ))}
+      </div>
+    </>
   )
 })
 
