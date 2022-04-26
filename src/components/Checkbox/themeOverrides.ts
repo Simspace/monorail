@@ -27,9 +27,6 @@ export const MonorailCheckboxOverrides: Components<Theme>['MuiCheckbox'] = {
       },
       [`&.Mui-focusVisible`]: {
         backgroundColor: theme.palette[color].shades[200],
-        // color === 'secondary' || color === 'warning' || color === 'success'
-        //   ? theme.palette[color].shades[200]
-        //   : theme.palette[color].shades[300],
       },
     }),
   },
