@@ -14,6 +14,7 @@ import { MonorailButtonGroupOverrides } from '../components/ButtonGroup/themeOve
 import { MonorailCheckboxOverrides } from '../components/Checkbox/themeOverrides'
 import { MonorailChipOverrides } from '../components/Chip/themeOverrides'
 import { MonorailFormControlOverrides } from '../components/FormControl/themeOverrides'
+import { MonorailFormControlLabelOverrides } from '../components/FormControlLabel/themeOverrides'
 import { MonorailFormHelperTextOverrides } from '../components/FormHelperText/themeOverrides'
 import { MonorailIconButtonOverrides } from '../components/IconButton/themeOverrides'
 import { MonorailInputBaseOverrides } from '../components/InputBase/themeOverrides'
@@ -67,6 +68,7 @@ export const getThemeComponents = (
   MuiCheckbox: MonorailCheckboxOverrides,
   MuiChip: MonorailChipOverrides,
   MuiFormControl: MonorailFormControlOverrides,
+  MuiFormControlLabel: MonorailFormControlLabelOverrides,
   MuiFormHelperText: MonorailFormHelperTextOverrides,
   MuiIconButton: MonorailIconButtonOverrides,
   MuiInputBase: MonorailInputBaseOverrides,

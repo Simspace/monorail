@@ -10,6 +10,7 @@ export const MonorailCheckboxOverrides: Components<Theme>['MuiCheckbox'] = {
   styleOverrides: {
     root: ({ ownerState: { color = 'primary', size = 'medium' }, theme }) => ({
       padding: 8,
+      borderRadius: 3,
       ...(size === 'small' && {
         padding: 6,
         [`& .${svgIconClasses.root}`]: {
