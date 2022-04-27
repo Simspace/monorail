@@ -11,7 +11,6 @@ import {
   RadioGroup,
   RadioProps,
   styled,
-  Typography,
   useRadioGroup,
 } from '@mui/material'
 
@@ -33,9 +32,6 @@ const Template = story<RadioProps>(
     return (
       <>
         <Radio inputProps={{ 'aria-labelledby': 'radio-demo' }} {...args} />
-        <Typography id="radio-demo">
-          See <code>RadioGroup</code> for more examples
-        </Typography>
       </>
     )
   },
@@ -275,6 +271,7 @@ export const FormControlLabelPlacement = story<RadioProps>(args => {
           control={<Radio {...args} />}
           label="Start"
           labelPlacement="start"
+          sx={{ mr: 4 }}
         />
         <FormControlLabel
           value="bottom"
@@ -340,7 +337,7 @@ export const ErrorRadios = story<RadioProps>(args => {
           />
         </RadioGroup>
         <FormHelperText>{helperText}</FormHelperText>
-        <Button sx={{ mt: 1, mr: 1 }} type="submit" variant="outlined">
+        <Button sx={{ mt: 2, mr: 2 }} type="submit" variant="outlined">
           Check Answer
         </Button>
       </FormControl>
