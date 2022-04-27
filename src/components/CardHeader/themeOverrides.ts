@@ -1,7 +1,14 @@
 import { Components, Theme } from '@mui/material'
 
 export const MonorailCardHeaderOverrides: Components<Theme>['MuiCardHeader'] = {
-  defaultProps: {},
+  defaultProps: {
+    titleTypographyProps: {
+      variant: 'h2',
+    },
+    subheaderTypographyProps: {
+      variant: 'subtitle1',
+    },
+  },
   styleOverrides: {
     action: {
       alignSelf: 'center', // vertically centered within header
