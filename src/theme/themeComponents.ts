@@ -2,6 +2,7 @@
 import type {} from '@mui/lab/themeAugmentation'
 import { Theme, ThemeOptions } from '@mui/material'
 
+import { MonorailAlertOverrides } from '../components/Alert/themeOverrides'
 import { MonorailAutocompleteOverrides } from '../components/Autocomplete/themeOverrides'
 import { MonorailAvatarOverrides } from '../components/Avatar/themeOverrides'
 import { MonorailBadgeOverrides } from '../components/Badge/themeOverrides'
@@ -51,6 +52,7 @@ export const getThemeComponents = (
       square: true,
     },
   },
+  MuiAlert: MonorailAlertOverrides,
   MuiAutocomplete: MonorailAutocompleteOverrides,
   MuiAvatar: MonorailAvatarOverrides,
   MuiBadge: MonorailBadgeOverrides,

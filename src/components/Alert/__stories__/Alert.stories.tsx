@@ -95,85 +95,85 @@ export const WithTitleAndDescriptions = story<AlertProps>(
   },
 )
 
-export const Actions = story<AlertProps>(
-  () => {
-    return (
-      <Stack sx={{ width: '100%' }} spacing={2}>
-        <Alert onClose={() => {}}>
-          This is a success alert — check it out!
-        </Alert>
-        <Alert
-          action={
-            <Button color="success" size="small">
-              Undo
-            </Button>
-          }
-        >
-          This is a success alert — check it out!
-        </Alert>
-      </Stack>
-    )
-  },
-  {
-    parameters: {
-      docs: {
-        description: {
-          story: `An alert can have an action, such as a close or undo button. It is rendered after the message, at the end of the alert.
+// export const Actions = story<AlertProps>(
+//   () => {
+//     return (
+//       <Stack sx={{ width: '100%' }} spacing={2}>
+//         <Alert onClose={() => {}}>
+//           This is a success alert — check it out!
+//         </Alert>
+//         <Alert
+//           action={
+//             <Button color="success" size="small">
+//               Undo
+//             </Button>
+//           }
+//         >
+//           This is a success alert — check it out!
+//         </Alert>
+//       </Stack>
+//     )
+//   },
+//   {
+//     parameters: {
+//       docs: {
+//         description: {
+//           story: `An alert can have an action, such as a close or undo button. It is rendered after the message, at the end of the alert.
 
-If an onClose callback is provided and no action prop is set, a close icon is displayed. The action prop can be used to provide an alternative action, for example using a Button or IconButton.`,
-        },
-      },
-    },
-  },
-)
+// If an onClose callback is provided and no action prop is set, a close icon is displayed. The action prop can be used to provide an alternative action, for example using a Button or IconButton.`,
+//         },
+//       },
+//     },
+//   },
+// )
 
-export const Transition = story<AlertProps>(
-  () => {
-    const [open, setOpen] = React.useState(true)
+// export const Transition = story<AlertProps>(
+//   () => {
+//     const [open, setOpen] = React.useState(true)
 
-    return (
-      <Box sx={{ width: '100%' }}>
-        <Collapse in={open}>
-          <Alert
-            action={
-              <IconButton
-                aria-label="close"
-                color="inherit"
-                size="small"
-                onClick={() => {
-                  setOpen(false)
-                }}
-              >
-                <CloseIcon fontSize="inherit" />
-              </IconButton>
-            }
-            sx={{ mb: 2 }}
-          >
-            Close me!
-          </Alert>
-        </Collapse>
-        <Button
-          disabled={open}
-          variant="outlined"
-          onClick={() => {
-            setOpen(true)
-          }}
-        >
-          Re-open
-        </Button>
-      </Box>
-    )
-  },
-  {
-    parameters: {
-      docs: {
-        description: {
-          story: `You can use a transition component such as Collapse to transition the appearance of the alert.`,
-        },
-      },
-    },
-  },
-)
+//     return (
+//       <Box sx={{ width: '100%' }}>
+//         <Collapse in={open}>
+//           <Alert
+//             action={
+//               <IconButton
+//                 aria-label="close"
+//                 color="inherit"
+//                 size="small"
+//                 onClick={() => {
+//                   setOpen(false)
+//                 }}
+//               >
+//                 <CloseIcon fontSize="inherit" />
+//               </IconButton>
+//             }
+//             sx={{ mb: 2 }}
+//           >
+//             Close me!
+//           </Alert>
+//         </Collapse>
+//         <Button
+//           disabled={open}
+//           variant="outlined"
+//           onClick={() => {
+//             setOpen(true)
+//           }}
+//         >
+//           Re-open
+//         </Button>
+//       </Box>
+//     )
+//   },
+//   {
+//     parameters: {
+//       docs: {
+//         description: {
+//           story: `You can use a transition component such as Collapse to transition the appearance of the alert.`,
+//         },
+//       },
+//     },
+//   },
+// )
 
 export const Icons = story<AlertProps>(
   () => {
