@@ -1,0 +1,15 @@
+import { Components, Theme } from '@mui/material'
+
+export const MonorailAvatarOverrides: Components<Theme>['MuiAvatar'] = {
+  defaultProps: {},
+  styleOverrides: {
+    root: ({ theme }) => ({
+      backgroundColor: theme.palette.accent.dark,
+      fontSize: theme.typography.body2.fontSize,
+      fontWeight: theme.typography.fontWeightBold,
+    }),
+    rounded: {
+      borderRadius: 4,
+    },
+  },
+}

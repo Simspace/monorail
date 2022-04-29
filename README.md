@@ -1,92 +1,241 @@
-# Monorail
+# Monorail 3
 
+## Table of Contents
 
+- [Overview](#Overview)
+- [Goals/core ideas](#goalscore-ideas)
+- [FAQ/Known issues](#faqknown-issues)
+- [Setup](#setup)
+- [Storybook](#storybook)
+- [Testing](#testing)
+  - [Running Creevey](#running-creevey)
+  - [Accepting Changes](#accepting-changes)
+  - [Known Issues](#known-issues)
+- [Docgen](#docgen)
+- [Accessibility](#accessibility)
+- [Styled Engine](#styled-engine)
+- [Custom styling/theming](#custom-stylingtheming)
 
-## Getting started
+## Overview
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+Monorail 3 is a UI component library backed by Material UI v5.
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+## Goals/core ideas
 
-## Add your files
+- This library aims to leverage Material UI (MUI) as much as possible using built-in customization facilities
+- The overarching goal is to extend/customize MUI to our liking (within reason) without breaking the core assumptions and capabilities of MUI, and following the patterns and conventions established by MUI
+- The point of this goal is to avoid creating a lot of extra work and maintenance for ourselves in building and maintaining a custom UI library.
 
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
+## FAQ/Known issues
+
+**General comment**: for issues with external libraries like storybook and docgen, the stance is that if there is a sensible/general fix for the problem that we can apply on our side, we can do it. If the fix requires non-trivial hacks, workarounds, or other unsavory code, we should not apply fixes on our side, and report the issue to the external repository. We are not looking to maintain all of these tools or super-custom setups ourselves.
+
+- There are various quirks with the docgen where it doesn't produce useful controls for manipulating property values
+  - `ReactNode` props (e.g. `children`) are rendered with a JSON editor, which is not useful
+  - The "system" props (e.g. `sx` props, or CSS-like props that you can set directly on components)
+  - Examples: `children` props, `Box` component, others
+- There is an issue with the docgen for certain components, where if the MUI props type is defined in a certain way, `react-docgen-typescript` will not generate a full controls table for the component.
+  - You may see only a `ref` in the Controls/Docs table
+  - Seems to affect all the components that are defined with a `forwardRef`
+  - Possibly related to prop types that are defined as an `interface` that `extends` another interface
+  - Possibly related to prop types that `Omit` certain attributes from other types
+  - Examples: `Select`, `ToggleButtonGroup`, others
+  - Some related issues:
+    - https://github.com/strothj/react-docgen-typescript-loader/issues/47
+    - https://stackoverflow.com/questions/63919936/missing-materialui-table-props-in-storybook
+    - https://github.com/styleguidist/react-docgen-typescript/issues/335
+  - The current stance on this is to not try to address it ourselves at this time, and hope for an eventual fix to `react-docgen-typescript`. If no fix ever comes, we may need to do something ourselves.
+
+## Setup
+
+Note: we are in a `yarn workspaces` setup, so the dependencies in this package are specified in this `./package.json`,
+but the `yarn.lock` file is in the root workspaces directory.
+
+```sh
+# From portal-suite root dir
+
+> cd client/packages/monorail3
+
+# Install dependencies
+> yarn
+
+# Run storybook site
+> yarn storybook
+```
+
+## Storybook
+
+The storybook site is currently organized similarly to the MUI docs, please try to put new components in reasonable places going forward.
+
+## Testing
+
+Monorail 3 uses visual testing to assert that all component and theme changes are intentional. To accomplish this, we use [Creevey](https://github.com/wKich/creevey), which can test in headless mode for CI and with a GUI to make comparisons easy. It is currently set up to be integrated with Storybook.
+
+### Running Creevey
+
+Creevey requires Docker to run. You can run it a few different ways:
+
+- Running the GUI (Creevey runs on `localhost:3000`)
+  - If you already have a window with Storybook running, you can run the Creevey GUI from a new terminal tab using `yarn creevey --ui`
+  - If you want to run both in one command, you can use `yarn test:visual`
+- Running in the Terminal
+  - If you already have a window with Storybook running, you can run Creevey tests in a new terminal tab using `yarn creevey`
+  - If you want to run both in headless mode, you can use `yarn test:visual:ci`
+
+### Accepting changes
+
+Once you have run the tests, if you see failures, you can inspect the differences in the snapshots in the Creevey GUI. If the new version looks good to you, you can use the `Approve` button to accept the new image.
+
+For setting up all tests from scratch, you can run tests the first time, and then use `yarn creevey --update` to accept all the snapshots. ** DO NOT DO THIS IF YOU ARE MODIFYING THE COMPONENTS ** You want to compare images if to make sure there are no unwanted visual side-effects.
+
+### Known issues
+
+- Creevey does not understand parameters and options that are `({...spread})`, and therefore any parameter options must be put on the story instead of spread through the `story` helper function. e.g.
 
 ```
-cd existing_repo
-git remote add origin https://gitlab.com/simspace/monorail.git
-git branch -M main
-git push -uf origin main
+export const MyStory = story(() => ..., {args: blah})
+MyStory.parameters = {
+  docs: {...},
+  creevey: {
+    skip: true
+  }
+}
 ```
 
-## Integrate with your tools
+- Stories that include image fetches load those images unreliably during tests, and can create erroneous failures. These stories can be skipped
+- Pending stories (ones that haven't been written yet) should be skipped, since those will also fail
+- Some components have slightly unreliable visual footprints, like the underline in `Tabs` can sometimes not shift over correctly. These components will fail erroneously and should be skipped. They can also be given a higher threshold for failure using the `threshold` option.
 
-- [ ] [Set up project integrations](https://gitlab.com/simspace/monorail/-/settings/integrations)
+## Docgen
 
-## Collaborate with your team
+In legacy monorail, we had a scripted docgen workflow setup to generate the `.meta.json` files that were fed into the storybook stories for things like the docs page/controls/etc.
 
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Automatically merge when pipeline succeeds](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
+In monorail3, we are going to try using the on-the-fly docgen, which is configured in the `./storybook/main.js` with `reactDocgen: 'react-docgen-typescript`.
 
-## Test and Deploy
+Note that there are some issues with MUI types which result in badly-generated types in the docs and controls. (e.g. values like `falsefalse` for `Button` `disabled`). There's not currently a good solution for this, but we'll keep an eye on it.
 
-Use the built-in continuous integration in GitLab.
+## Accessibility
 
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing(SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
+We are currently setup to use the `storybook-a11y` addon, so you can view a11y information for components and stories in storybook.
 
-***
+We also have a node-based `jest` test running setup to run the a11y tests outside of storybook. These basic a11y tests are generated for each component using a script - see code gen below.
 
-# Editing this README
+## Code Gen
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!).  Thank you to [makeareadme.com](https://www.makeareadme.com/) for this template.
+## Styled Engine
 
-## Suggestions for a good README
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
+At this time, we are using `styled-components` as the styled engine for MUI. This is being done for several reasons at this time, but in theory could change:
 
-## Name
-Choose a self-explaining name for your project.
+There is an issue with `@emotion` v10/11 compatibility in storybook, which causes problems with the Storybook emotion theme interfering with the MUI theme. There are some possible workarounds, but these unfortunately do not work cleanly in our current monorepo setup:
 
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
+See:
 
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+- https://github.com/storybookjs/storybook/issues/13277
+- https://github.com/mui-org/material-ui/issues/24282
+- https://github.com/chakra-ui/chakra-ui/blob/a5abb6f9477d87a1cbc0c2d784e009d2bc8a8c6d/.storybook/main.js#L11-L23
 
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+The `webpackFinal` hack works with MUI 5 in an isolated project, but it doesn't work cleanly in the portal-suite repo at this time, because of how our yarn workspaces are setup, and also possibly because we already have another older instance of storybook setup.
 
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+Another unrelated reason for using `styled-components` is that we are already using it in portal-client, so this will allow us to not have two competing styling engines in the app bundle.
 
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+`styled-components` must be aliased in the webpack config for Material UI, as documented here:
 
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
+https://next.material-ui.com/guides/styled-engine/#how-to-switch-to-styled-components
 
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
+## Custom styling/theming
 
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
+For the main Monorail 3 components we are aiming to do most/all of the custom styling using the MUI theme, and specifically the `components` part of the theme that lets you set/override the styles for individual components.
 
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
+Component-level theme customizations should be made in `./src/theme/themeComponents.ts`. To override the styles/default props/variants for a component, add a top-level key to the object returned by `getThemeComponents`, e.g.:
 
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
+```typescript
+export const getThemeComponents = (
+  // This function is given access to the fully-populated theme, minus the `components` portion, which is what we're creating here
+  // All style overrides should use appropriate settings from the theme for colors, spacing, elevation/shadows, typography, etc.
+  theme: MUI.Theme,
+): MUI.ThemeOptions['components'] => ({
+  // TODO: we may want to split these into separate files - one theme override per component? Or maybe we just do it all here for consistency
+  MuiButton: {
+    // Setup theme-level default props. These can be overridden when constructing the components
+    defaultProps: {
+      disableRipple: true,
+    },
+    // Add style overrides to the specific "class buckets" for a component. The class keys are type-safe and correspond to different layers (elements) of the component or its children
+    styleOverrides: {
+      root: {
+        backgroundColor: theme.palette.primary.main, // Just an example
+      },
+    },
+    // Handle custom variants - see themeExtensions for setting up custom variants or other custom extensions for components
+    variants: [
+      // Styles for custom size extraSmall
+      {
+        props: { size: 'extraSmall' },
+        style: {
+          // TODO: these styles are just for demo purposes at this time
+          fontSize: 11,
+          height: 18,
+          padding: '8px 0',
+        },
+      },
+    ],
+  },
+  MuiAccordion: {
+    // Set default props to apply for components
+    defaultProps: {
+      variant: 'outlined',
+      square: true,
+    },
+  },
+})
+```
 
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
+We should be able to do most of our themeing in this file (and by filling out the core parts of the theme, like `palette`, `typography`, etc.).
 
-## License
-For open source projects, say how it is licensed.
+In cases where you need to custom style a component, the recommendation is to use the `styled` function from MUI, and not `styled-components` (nor `emotion`) directly. The `styled` function from MUI is an abstraction around the underlying `StyledEngine`, but basically works the same as `styled-components` or `emotion`.
 
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+**Note**: For styling MUI components, we are trying to style them via the theme `components`, and not via `styled` at the component level, so that we get consistent theming across the core components (e.g. when one MUI component uses another built-in MUI component, we need the custom styles to come from the theme).
+
+Here is an example of using `styled` to customize a component:
+
+```typescript
+// other imports
+import { styled } from '@mui/styles'
+
+const StyledAccordion = styled((props: AccordionProps) => (
+  <Accordion disableGutters elevation={0} square {...props} />
+))(({ theme }) => ({
+  border: `1px solid ${theme.palette.divider}`,
+  '&:not(:last-child)': {
+    borderBottom: 0,
+  },
+  '&:before': {
+    display: 'none',
+  },
+}))
+
+const StyledAccordionSummary = styled((props: AccordionSummaryProps) => (
+  <AccordionSummary
+    expandIcon={<ArrowForwardIosSharp sx={{ fontSize: '0.9rem' }} />}
+    {...props}
+  />
+))(({ theme }) => ({
+  backgroundColor:
+    // This is just an example - not a best practice to have hard-coded colors like this
+    theme.palette.mode === 'dark'
+      ? 'rgba(255, 255, 255, .05)'
+      : 'rgba(0, 0, 0, .03)',
+  flexDirection: 'row-reverse',
+  '& .MuiAccordionSummary-expandIconWrapper.Mui-expanded': {
+    transform: 'rotate(90deg)',
+  },
+  '& .MuiAccordionSummary-content': {
+    marginLeft: theme.spacing(1),
+  },
+}))
+
+const StyledAccordionDetails = styled(AccordionDetails)(({ theme }) => ({
+  padding: theme.spacing(2),
+  borderTop: '1px solid rgba(0, 0, 0, .125)',
+}))
+```

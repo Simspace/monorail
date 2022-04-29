@@ -1,0 +1,12 @@
+node_modules
+dist
+
+# MacOS nonsense
+*.DS_Store
+
+# We're using a workflow where the barrel file is only created as a dist artifact,
+# so this file is generated during the build step, then removed.
+yarn-error.log
+src/index.ts
+visual-test-report
+report

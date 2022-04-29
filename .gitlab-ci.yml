@@ -1,0 +1,28 @@
+image: node:lts
+
+cache:
+  paths:
+    - node_modules/
+    - .yarn
+
+stages:
+  - build
+
+before_script:
+  - yarn install --frozen-lockfile
+
+Build:
+  stage: build
+  script:
+    - yarn build
+
+Lint:
+  stage: build
+  script:
+    - yarn eslint
+    - yarn prettier:check
+
+Test:
+  stage: build
+  script:
+    - yarn test
