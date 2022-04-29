@@ -9,7 +9,6 @@ const jestConfig = {
   testEnvironment: 'jsdom',
   coverageReporters: [...defaults.coverageReporters, 'cobertura'],
 
-  globalSetup: '@simspace/configs/jest/jest.globalSetup.js',
   moduleFileExtensions: [...defaults.moduleFileExtensions, 'ts', 'tsx'],
 
   modulePathIgnorePatterns: [
