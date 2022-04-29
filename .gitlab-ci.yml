@@ -5,6 +5,10 @@ cache:
     - node_modules/
     - .yarn
 
+workflow:
+  rules:
+    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
+
 stages:
   - build
 
