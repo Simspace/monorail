@@ -7,8 +7,8 @@ cache:
 
 stages:
   - build
+  - lint
   - test
-  - storybook
 
 before_script:
   - yarn install --frozen-lockfile
@@ -17,6 +17,12 @@ Build:
   stage: build
   script:
     - yarn build
+
+Lint:
+  stage: lint
+  script:
+    - yarn eslint
+    - yarn prettier:check
 
 Test:
   stage: test
