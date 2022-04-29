@@ -6,6 +6,7 @@
 
 import { Args as DefaultArgs } from '@storybook/addons'
 import {
+  ArgTypes,
   ArgTypes as StorybookArgTypes,
   Meta as StorybookMeta,
   Parameters as StorybookParameters,
@@ -185,7 +186,7 @@ export function story<T extends DefaultArgs>(
 ): Story<T> {
   const NewStory = Template.bind({})
   NewStory.args = { ...Template.args, ...args } as Partial<T>
-  NewStory.argTypes = { ...Template.argTypes, ...argTypes }
+  NewStory.argTypes = { ...Template.argTypes, ...argTypes } as Partial<ArgTypes<Partial<T>>>
   NewStory.parameters = { ...Template.parameters, ...parameters }
 
   if (isNonEmptyString(storyName)) {

@@ -47,6 +47,7 @@
     "@testing-library/user-event": "12.4.0",
     "@types/jest": "27.0.3",
     "@types/jest-axe": "3.5.3",
+    "@types/react": "17.0.39",
     "@types/react-transition-group": "4.4.2",
     "@types/styled-components": "5.1.20",
     "@typescript-eslint/eslint-plugin": "4.23.0",
@@ -81,6 +82,8 @@
   },
   "resolutions": {
     "@mui/styled-engine": "npm:@mui/styled-engine-sc@5.4.1",
+    "@mui/system": "5.4.1",
+    "@types/react": "17.0.39",
     "@types/react-syntax-highlighter": "^11.0.5",
     "react-syntax-highlighter": "^13.5.3"
   },

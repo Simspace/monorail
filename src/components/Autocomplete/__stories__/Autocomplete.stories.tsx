@@ -177,7 +177,7 @@ export const MultipleValues = story<MovieAutocompleteProps>(args => {
           value.map((option: Movie, index: number) => (
             <Chip
               variant="outlined"
-              label={option}
+              label={option.label}
               {...getTagProps({ index })}
               key={`${option}-${index}`}
             />
