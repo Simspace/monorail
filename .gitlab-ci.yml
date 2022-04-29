@@ -21,12 +21,4 @@ Build:
 Test:
   stage: test
   script:
-    - yarn build
-
-pages:
-  stage: storybook
-  artifacts:
-    paths:
-      - public
-  script:
-    - yarn build-storybook -o public
+    - yarn test
