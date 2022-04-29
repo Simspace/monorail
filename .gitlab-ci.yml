@@ -1,0 +1,32 @@
+image: node:latest
+
+cache:
+  paths:
+    - node_modules/
+    - .yarn
+
+stages:
+  - build
+  - test
+  - storybook
+
+before_script:
+  - yarn install --frozen-lockfile
+
+Build:
+  stage: build
+  script:
+    - yarn build
+
+Test:
+  stage: test
+  script:
+    - yarn build
+
+pages:
+  stage: storybook
+  artifacts:
+    paths:
+      - public
+  script:
+    - yarn build-storybook -o public
