@@ -8,9 +8,7 @@ cache:
 workflow:
   rules:
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
-    - if: $CI_COMMIT_BRANCH && $CI_OPEN_MERGE_REQUESTS
-      when: never
-    - if: $CI_COMMIT_BRANCH
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
 
 stages:
   - build
@@ -59,7 +57,7 @@ deploy-storybook:
 remove-storybook:
   stage: deploy
   cache:
-    key: 'my-storybook'
+    key: 'storybook'
     paths:
       - public
   script:
@@ -74,7 +72,7 @@ remove-storybook:
 pages:
   stage: pages
   cache:
-    key: 'my-storybook'
+    key: 'storybook'
     paths:
       - public
   artifacts:
