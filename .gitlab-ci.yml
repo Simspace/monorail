@@ -57,7 +57,7 @@ deploy-storybook:
 remove-storybook:
   stage: deploy
   cache:
-    key: 'storybook'
+    key: 'monorail-storybook'
     paths:
       - public
   script:
@@ -72,7 +72,7 @@ remove-storybook:
 pages:
   stage: pages
   cache:
-    key: 'storybook'
+    key: 'monorail-storybook'
     paths:
       - public
   artifacts:
