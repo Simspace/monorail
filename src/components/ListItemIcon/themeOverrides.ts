@@ -9,9 +9,9 @@ export const MonorailListItemIconOverrides: Components<Theme>['MuiListItemIcon']
         paddingLeft: 8,
         color: theme.palette.default.main,
       }),
-        [`& > .${checkboxClasses.root}`]: {
-          marginLeft: -8,
-          marginRight: 8,
-        },
+      [`& > .${checkboxClasses.root}`]: {
+        marginLeft: -8,
+        marginRight: 8,
       },
+    },
   }
