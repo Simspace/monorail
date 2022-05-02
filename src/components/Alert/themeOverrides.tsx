@@ -5,17 +5,6 @@ import InfoIcon from '@mui/icons-material/Info'
 import WarningIcon from '@mui/icons-material/Warning'
 import { alertClasses, Components, Theme } from '@mui/material'
 
-// declare module '@mui/material/Alert' {
-//   interface AlertPropsColorOverrides {
-//     default: true
-//     primary: true
-//     secondary: true
-//   }
-// }
-
-//"default" | "primary" | "secondary" | "error" | "info" | "success" | "warning"
-//"success" | "info" | "warning" | "error" | "default" | "primary" | "secondary"
-
 const alertTokens = {
   outlined: {
     borderColor: 500,
@@ -39,39 +28,37 @@ export const MonorailAlertOverrides: Components<Theme>['MuiAlert'] = {
     },
   },
   styleOverrides: {
-    root: ({
-      ownerState: { variant = 'outlined', severity = 'success' },
-      theme,
-    }) => ({
-      ...(variant === 'standard' && {
+    standard: ({ ownerState, theme }) => {
+      const severity = ownerState?.severity ?? 'success'
+      return {
         color: theme.palette[severity].shades[alertTokens.standard.text],
         backgroundColor:
           theme.palette[severity].shades[alertTokens.standard.bg],
         [`& .${alertClasses.icon}`]: {
           color: theme.palette[severity].shades[alertTokens.standard.icon],
         },
-      }),
-      ...(variant === 'outlined' && {
+      }
+    },
+    outlined: ({ ownerState, theme }) => {
+      const severity = ownerState?.severity ?? 'success'
+      return {
         color: theme.palette.text.primary,
-        backgroundColor: theme.palette.common.white,
+        borderColor:
+          theme.palette[severity].shades[alertTokens.outlined.borderColor],
         [`& .${alertClasses.icon}`]: {
           color: theme.palette[severity].shades[alertTokens.outlined.icon],
         },
-      }),
-      ...(variant === 'filled' && {
+      }
+    },
+    filled: ({ ownerState, theme }) => {
+      const severity = ownerState?.severity ?? 'success'
+      return {
         color: theme.palette.common.white,
         backgroundColor: theme.palette[severity].main,
         [`& .${alertClasses.icon}`]: {
           color: theme.palette.common.white,
         },
-      }),
-    }),
-    // outlined: ({ ownerState: { severity = 'success' }, theme }) => ({
-    //   borderColor:
-    //     theme.palette[severity].shades[alertTokens.outlined.borderColor],
-    //   [`& .${alertClasses.icon}`]: {
-    //     color: theme.palette[severity].shades[alertTokens.outlined.icon],
-    //   },
-    // }),
+      }
+    },
   },
 }
