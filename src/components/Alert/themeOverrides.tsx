@@ -12,7 +12,7 @@ const alertTokens = {
   },
   standard: {
     bg: 50,
-    icon: 600,
+    icon: 500,
     text: 800,
   },
 } as const
@@ -28,6 +28,17 @@ export const MonorailAlertOverrides: Components<Theme>['MuiAlert'] = {
     },
   },
   styleOverrides: {
+    root: {
+      paddingTop: 8,
+      paddingBottom: 8,
+    },
+    icon: {
+      opacity: 1,
+    },
+    message: {},
+    action: {
+      marginRight: 0,
+    },
     standard: ({ ownerState, theme }) => {
       const severity = ownerState?.severity ?? 'success'
       return {
@@ -42,6 +53,7 @@ export const MonorailAlertOverrides: Components<Theme>['MuiAlert'] = {
     outlined: ({ ownerState, theme }) => {
       const severity = ownerState?.severity ?? 'success'
       return {
+        backgroundColor: theme.palette.background.paper,
         color: theme.palette.text.primary,
         borderColor:
           theme.palette[severity].shades[alertTokens.outlined.borderColor],
@@ -59,6 +71,15 @@ export const MonorailAlertOverrides: Components<Theme>['MuiAlert'] = {
           color: theme.palette.common.white,
         },
       }
+    },
+  },
+}
+
+export const MonorailAlertTitleOverrides: Components<Theme>['MuiAlertTitle'] = {
+  defaultProps: {},
+  styleOverrides: {
+    root: {
+      marginBottom: 2,
     },
   },
 }

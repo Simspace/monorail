@@ -104,9 +104,12 @@ export const Actions = story<AlertProps>(
         </Alert>
         <Alert
           action={
-            <Button color="success" size="small">
-              Undo
-            </Button>
+            <Stack direction="row" gap={2}>
+              <Button variant="outlined" size="small">
+                Close
+              </Button>
+              <Button size="small">Undo</Button>
+            </Stack>
           }
         >
           This is a success alert — check it out!
@@ -244,21 +247,6 @@ export const Variants = story<AlertProps>(
             This is a success alert — check it out!
           </Alert>
         </Stack>
-        <Stack sx={{ width: '100%' }} spacing={2}>
-          <Typography>filled</Typography>
-          <Alert variant="filled" severity="error">
-            This is an error alert — check it out!
-          </Alert>
-          <Alert variant="filled" severity="warning">
-            This is a warning alert — check it out!
-          </Alert>
-          <Alert variant="filled" severity="info">
-            This is an info alert — check it out!
-          </Alert>
-          <Alert variant="filled" severity="success">
-            This is a success alert — check it out!
-          </Alert>
-        </Stack>
       </Stack>
     )
   },
@@ -278,7 +266,7 @@ const ToastAlert = React.forwardRef<HTMLDivElement, AlertProps>(function (
   props,
   ref,
 ) {
-  return <Alert elevation={6} ref={ref} variant="filled" {...props} />
+  return <Alert elevation={6} ref={ref} {...props} />
 })
 
 export const WithSnackbar = story<AlertProps>(
