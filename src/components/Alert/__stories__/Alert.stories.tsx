@@ -218,22 +218,7 @@ export const Variants = story<AlertProps>(
     return (
       <Stack direction="column" spacing={2}>
         <Stack sx={{ width: '100%' }} spacing={2}>
-          <Typography>standard</Typography>
-          <Alert variant="standard" severity="error">
-            This is an error alert — check it out!
-          </Alert>
-          <Alert variant="standard" severity="warning">
-            This is a warning alert — check it out!
-          </Alert>
-          <Alert variant="standard" severity="info">
-            This is an info alert — check it out!
-          </Alert>
-          <Alert variant="standard" severity="success">
-            This is a success alert — check it out!
-          </Alert>
-        </Stack>
-        <Stack sx={{ width: '100%' }} spacing={2}>
-          <Typography>outlined</Typography>
+          <Typography>Outlined (Default)</Typography>
           <Alert variant="outlined" severity="error">
             This is an error alert — check it out!
           </Alert>
@@ -244,6 +229,21 @@ export const Variants = story<AlertProps>(
             This is an info alert — check it out!
           </Alert>
           <Alert variant="outlined" severity="success">
+            This is a success alert — check it out!
+          </Alert>
+        </Stack>
+        <Stack sx={{ width: '100%' }} spacing={2}>
+          <Typography>Standard</Typography>
+          <Alert variant="standard" severity="error">
+            This is an error alert — check it out!
+          </Alert>
+          <Alert variant="standard" severity="warning">
+            This is a warning alert — check it out!
+          </Alert>
+          <Alert variant="standard" severity="info">
+            This is an info alert — check it out!
+          </Alert>
+          <Alert variant="standard" severity="success">
             This is a success alert — check it out!
           </Alert>
         </Stack>
