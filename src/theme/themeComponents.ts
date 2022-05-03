@@ -35,6 +35,7 @@ import { MonorailOutlinedInputOverrides } from '../components/OutlinedInput/them
 import { MonorailRatingOverrides } from '../components/Rating/themeOverrides'
 import { MonorailSelectOverrides } from '../components/Select/themeOverrides'
 import { MonorailSkeletonOverrides } from '../components/Skeleton/themeOverrides'
+import { MonorailSnackbarOverrides } from '../components/Snackbar/themeOverrides'
 import { MonorailSvgIconOverrides } from '../components/SvgIcon/themeOverrides'
 import { MonorailSwitchOverrides } from '../components/Switch/themeOverrides'
 import { MonorailTextFieldOverrides } from '../components/TextField/themeOverrides'
@@ -89,6 +90,7 @@ export const getThemeComponents = (
   MuiRating: MonorailRatingOverrides,
   MuiSelect: MonorailSelectOverrides,
   MuiSkeleton: MonorailSkeletonOverrides,
+  MuiSnackbar: MonorailSnackbarOverrides,
   MuiSvgIcon: MonorailSvgIconOverrides,
   MuiSwitch: MonorailSwitchOverrides,
   MuiTextField: MonorailTextFieldOverrides,
