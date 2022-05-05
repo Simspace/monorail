@@ -1,13 +1,13 @@
 // Edit this file to add new stories
 import React from 'react'
-import CloseIcon from '@mui/icons-material/Close'
 import {
   Alert,
   AlertProps,
+  AlertTitle,
   Button,
+  Chip,
   Fade,
   Grow,
-  IconButton,
   Slide,
   Snackbar,
   SnackbarContent,
@@ -33,10 +33,18 @@ export default { title: 'Feedback/Snackbar', component: Snackbar }
 const Template = story<SnackbarProps>(
   args => {
     const [open, setOpen] = React.useState(false)
+    const [transition, setTransition] = React.useState<
+      React.ComponentType<TransitionPropsWithChild> | undefined
+    >(undefined)
 
-    const handleClick = () => {
-      setOpen(true)
+    function TransitionRight(props: TransitionPropsWithChild) {
+      return <Slide {...props} direction="left" />
     }
+    const handleClick =
+      (Transition: React.ComponentType<TransitionPropsWithChild>) => () => {
+        setTransition(() => Transition)
+        setOpen(true)
+      }
 
     const handleClose = (
       _event: React.SyntheticEvent | Event,
@@ -49,33 +57,22 @@ const Template = story<SnackbarProps>(
       setOpen(false)
     }
 
-    const action = (
-      <React.Fragment>
-        <Button color="secondary" size="small" onClick={handleClose}>
-          Undo
-        </Button>
-        <IconButton
-          size="small"
-          aria-label="close"
-          color="inherit"
-          onClick={handleClose}
-        >
-          <CloseIcon fontSize="small" />
-        </IconButton>
-      </React.Fragment>
-    )
-
     return (
       <div>
-        <Button onClick={handleClick}>Open simple snackbar</Button>
+        <Button onClick={handleClick(TransitionRight)}>
+          Open simple snackbar
+        </Button>
         <Snackbar
           open={open}
           autoHideDuration={6000}
-          onClose={handleClose}
-          message="Note archived"
-          action={action}
+          TransitionComponent={transition}
           {...args}
-        />
+        >
+          <Alert severity="success" onClose={handleClose}>
+            <AlertTitle>Success!</AlertTitle>
+            Note archived
+          </Alert>
+        </Snackbar>
       </div>
     )
   },
@@ -89,17 +86,26 @@ export const Default = story(Template)
 
 const ToastAlert = React.forwardRef<HTMLDivElement, AlertProps>(
   function ToastAlert(props, ref) {
-    return <Alert elevation={6} ref={ref} variant="filled" {...props} />
+    return <Alert ref={ref} variant="filled" {...props} />
   },
 )
 
 export const CustomizedSnackbars = story<SnackbarProps>(
   () => {
     const [open, setOpen] = React.useState(false)
+    const [transition, setTransition] = React.useState<
+      React.ComponentType<TransitionPropsWithChild> | undefined
+    >(undefined)
 
-    const handleClick = () => {
-      setOpen(true)
+    function TransitionRight(props: TransitionPropsWithChild) {
+      return <Slide {...props} direction="left" />
     }
+
+    const handleClick =
+      (Transition: React.ComponentType<TransitionPropsWithChild>) => () => {
+        setTransition(() => Transition)
+        setOpen(true)
+      }
 
     const handleClose = (
       _event?: React.SyntheticEvent | Event,
@@ -114,10 +120,15 @@ export const CustomizedSnackbars = story<SnackbarProps>(
 
     return (
       <Stack spacing={2} sx={{ width: '100%' }}>
-        <Button variant="outlined" onClick={handleClick}>
+        <Button variant="outlined" onClick={handleClick(TransitionRight)}>
           Open success snackbar
         </Button>
-        <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+        <Snackbar
+          open={open}
+          autoHideDuration={6000}
+          onClose={handleClose}
+          TransitionComponent={transition}
+        >
           <ToastAlert
             onClose={handleClose}
             severity="success"
@@ -224,10 +235,10 @@ export const Positioned = story<SnackbarProps>(
         <Snackbar
           anchorOrigin={{ vertical, horizontal }}
           open={open}
-          onClose={handleClose}
-          message="I love snacks"
           key={vertical + horizontal}
-        />
+        >
+          <Chip label="I love snacks" onDelete={handleClose} />
+        </Snackbar>
       </div>
     )
   },
@@ -298,6 +309,9 @@ export const Transitions = story<SnackbarProps>(
     const [messageInfo, setMessageInfo] = React.useState<
       SnackbarMessage | undefined
     >(undefined)
+    const [transition, setTransition] = React.useState<
+      React.ComponentType<TransitionPropsWithChild> | undefined
+    >(undefined)
 
     React.useEffect(() => {
       if (snackPack.length && !messageInfo) {
@@ -311,12 +325,22 @@ export const Transitions = story<SnackbarProps>(
       }
     }, [snackPack, messageInfo, open])
 
-    const handleClick = (message: string) => () => {
-      setSnackPack(prev => [
-        ...prev,
-        { message, key: new Date('2021-01-01T12:34:00.000Z').getTime() },
-      ])
+    function TransitionRight(props: TransitionPropsWithChild) {
+      return <Slide {...props} direction="left" />
     }
+
+    const handleClick =
+      (
+        message: string,
+        Transition: React.ComponentType<TransitionPropsWithChild>,
+      ) =>
+      () => {
+        setSnackPack(prev => [
+          ...prev,
+          { message, key: new Date('2021-01-01T12:34:00.000Z').getTime() },
+        ])
+        setTransition(() => Transition)
+      }
 
     const handleClose = (
       _event: React.SyntheticEvent | Event,
@@ -334,32 +358,24 @@ export const Transitions = story<SnackbarProps>(
 
     return (
       <div>
-        <Button onClick={handleClick('Message A')}>Show message A</Button>
-        <Button onClick={handleClick('Message B')}>Show message B</Button>
+        <Button onClick={handleClick('Message A', TransitionRight)}>
+          Show message A
+        </Button>
+        <Button onClick={handleClick('Message B', TransitionRight)}>
+          Show message B
+        </Button>
         <Snackbar
           key={messageInfo ? messageInfo.key : undefined}
           open={open}
           autoHideDuration={6000}
           onClose={handleClose}
+          TransitionComponent={transition}
           TransitionProps={{ onExited: handleExited }}
-          message={messageInfo ? messageInfo.message : undefined}
-          action={
-            <React.Fragment>
-              <Button color="secondary" size="small" onClick={handleClose}>
-                Undo
-              </Button>
-              <IconButton
-                aria-label="close"
-                color="inherit"
-                sx={{ p: 0.5 }}
-                onClick={handleClose}
-                size="large"
-              >
-                <CloseIcon />
-              </IconButton>
-            </React.Fragment>
-          }
-        />
+        >
+          <Alert severity="info" onClose={handleClose}>
+            {messageInfo ? messageInfo.message : undefined}
+          </Alert>
+        </Snackbar>
       </div>
     )
   },
@@ -393,7 +409,7 @@ type TransitionPropsWithChild = TransitionProps & {
 export const OtherTransitions = story<SnackbarProps>(
   () => {
     function SlideTransition(props: TransitionPropsWithChild) {
-      return <Slide {...props} direction="up" />
+      return <Slide {...props} direction="left" />
     }
 
     function GrowTransition(props: TransitionPropsWithChild) {
@@ -437,11 +453,13 @@ export const OtherTransitions = story<SnackbarProps>(
         <Button onClick={handleClick(SlideTransition)}>Slide Transition</Button>
         <Snackbar
           open={state.open}
-          onClose={handleClose}
           TransitionComponent={state.Transition}
-          message="I love snacks"
           key={state.Transition.name}
-        />
+        >
+          <Alert severity="info" onClose={handleClose}>
+            I love snacks
+          </Alert>
+        </Snackbar>
       </div>
     )
   },
@@ -497,11 +515,13 @@ export const SlideDirection = story<SnackbarProps>(
         <Button onClick={handleClick(TransitionDown)}>Down</Button>
         <Snackbar
           open={open}
-          onClose={handleClose}
           TransitionComponent={transition}
-          message="I love snacks"
           key={transition ? transition.name : ''}
-        />
+        >
+          <Alert severity="success" onClose={handleClose}>
+            I love snacks
+          </Alert>
+        </Snackbar>
       </div>
     )
   },
