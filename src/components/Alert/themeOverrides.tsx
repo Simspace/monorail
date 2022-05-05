@@ -3,7 +3,12 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle'
 import ErrorIcon from '@mui/icons-material/Error'
 import InfoIcon from '@mui/icons-material/Info'
 import WarningIcon from '@mui/icons-material/Warning'
-import { alertClasses, Components, Theme } from '@mui/material'
+import {
+  alertClasses,
+  Components,
+  iconButtonClasses,
+  Theme,
+} from '@mui/material'
 
 const alertTokens = {
   outlined: {
@@ -38,6 +43,9 @@ export const MonorailAlertOverrides: Components<Theme>['MuiAlert'] = {
     message: {},
     action: {
       marginRight: 0,
+      [`& .${iconButtonClasses.root}`]: {
+        alignSelf: 'center',
+      },
     },
     standard: ({ ownerState, theme }) => {
       const severity = ownerState?.severity ?? 'success'
