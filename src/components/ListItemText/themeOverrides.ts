@@ -4,12 +4,16 @@ export const MonorailListItemTextOverrides: Components<Theme>['MuiListItemText']
   {
     defaultProps: {},
     styleOverrides: {
+      root: {
+        marginTop: 8,
+        marginBottom: 8,
+      },
       secondary: {
         marginTop: 2,
       },
       multiline: {
-        marginTop: 0,
-        marginBottom: 0,
+        marginTop: 4,
+        marginBottom: 4,
         [`&.${listItemTextClasses.dense}`]: {
           marginTop: 2,
           marginBottom: 2,
