@@ -443,18 +443,6 @@ export const CustomizedRadios = story<RadioProps>(args => {
   )
 })
 
-interface StyledFormControlLabelProps extends FormControlLabelProps {
-  checked: boolean
-}
-
-const StyledFormControlLabel = styled((props: StyledFormControlLabelProps) => (
-  <FormControlLabel {...props} />
-))(({ theme, checked }) => ({
-  '.MuiFormControlLabel-label': checked && {
-    color: theme.palette.primary.main,
-  },
-}))
-
 function MyFormControlLabel(props: FormControlLabelProps) {
   const radioGroup = useRadioGroup()
 
@@ -464,7 +452,7 @@ function MyFormControlLabel(props: FormControlLabelProps) {
     checked = radioGroup.value === props.value
   }
 
-  return <StyledFormControlLabel checked={checked} {...props} />
+  return <FormControlLabel checked={checked} {...props} />
 }
 
 export const UseRadioGroup = story<RadioProps>(args => {
