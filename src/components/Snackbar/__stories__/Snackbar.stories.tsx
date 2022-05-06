@@ -14,8 +14,10 @@ import {
   SnackbarOrigin,
   SnackbarProps,
   Stack,
+  styled,
 } from '@mui/material'
 import { TransitionProps } from '@mui/material/transitions'
+import { SnackbarProvider, useSnackbar, VariantType } from 'notistack'
 
 import { story } from '../../../__tests__/helpers/storybook'
 
@@ -577,6 +579,76 @@ export const SlideDirection = story<SnackbarProps>(
       docs: {
         description: {
           story: `You can change the direction of the Slide transition.`,
+        },
+      },
+    },
+  },
+)
+
+const StyledAlert = styled(Alert)`
+  min-width: 480px;
+`
+
+const MyApp = () => {
+  const { enqueueSnackbar } = useSnackbar()
+
+  const handleClick = () => {
+    enqueueSnackbar('This is an error message.', {
+      anchorOrigin: {
+        vertical: 'top',
+        horizontal: 'right',
+      },
+      content: (key, message) => (
+        <StyledAlert severity="error" key={key}>
+          <AlertTitle>Error</AlertTitle>
+          {message}
+        </StyledAlert>
+      ),
+    })
+  }
+
+  const handleClickVariant = (variant: VariantType) => () => {
+    // variant could be success, error, warning, info, or default
+    enqueueSnackbar('This is a success message!', {
+      variant,
+      anchorOrigin: {
+        vertical: 'top',
+        horizontal: 'right',
+      },
+      content: (key, message) => (
+        <StyledAlert severity="success" key={key}>
+          <AlertTitle>Success</AlertTitle>
+          {message}
+        </StyledAlert>
+      ),
+    })
+  }
+
+  return (
+    <React.Fragment>
+      <Button variant="text" onClick={handleClick}>
+        Show error toast
+      </Button>
+      <Button variant="text" onClick={handleClickVariant('success')}>
+        Show success toast
+      </Button>
+    </React.Fragment>
+  )
+}
+
+export const IntegrationNotistack = story<SnackbarProps>(
+  () => {
+    return (
+      <SnackbarProvider maxSnack={3}>
+        <MyApp />
+      </SnackbarProvider>
+    )
+  },
+  {
+    parameters: {
+      docs: {
+        description: {
+          story: `This example demonstrates how to use [notistack](https://github.com/iamhosseindhv/notistack). notistack has an imperative API that makes it easy to display snackbars, without having to handle their open/close state. It also enables you to stack them on top of one another (although this is discouraged by the Material Design guidelines).`,
         },
       },
     },
