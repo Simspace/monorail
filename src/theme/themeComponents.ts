@@ -15,6 +15,12 @@ import {
   MonorailLoadingButtonOverrides,
 } from '../components/Button/themeOverrides'
 import { MonorailButtonGroupOverrides } from '../components/ButtonGroup/themeOverrides'
+import { MonorailCardOverrides } from '../components/Card/themeOverrides'
+import { MonorailCardActionAreaOverrides } from '../components/CardActionArea/themeOverrides'
+import { MonorailCardActionsOverrides } from '../components/CardActions/themeOverrides'
+import { MonorailCardContentOverrides } from '../components/CardContent/themeOverrides'
+import { MonorailCardHeaderOverrides } from '../components/CardHeader/themeOverrides'
+import { MonorailCardMediaOverrides } from '../components/CardMedia/themeOverrides'
 import { MonorailChipOverrides } from '../components/Chip/themeOverrides'
 import { MonorailFormControlOverrides } from '../components/FormControl/themeOverrides'
 import { MonorailFormHelperTextOverrides } from '../components/FormHelperText/themeOverrides'
@@ -69,6 +75,12 @@ export const getThemeComponents = (
   },
   MuiButtonGroup: MonorailButtonGroupOverrides,
   MuiBreadcrumbs: MonorailBreadcrumbsOverrides,
+  MuiCard: MonorailCardOverrides,
+  MuiCardActionArea: MonorailCardActionAreaOverrides,
+  MuiCardActions: MonorailCardActionsOverrides,
+  MuiCardContent: MonorailCardContentOverrides,
+  MuiCardHeader: MonorailCardHeaderOverrides,
+  MuiCardMedia: MonorailCardMediaOverrides,
   MuiChip: MonorailChipOverrides,
   MuiFormControl: MonorailFormControlOverrides,
   MuiFormHelperText: MonorailFormHelperTextOverrides,

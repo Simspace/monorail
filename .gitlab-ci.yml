@@ -7,26 +7,85 @@ cache:
 
 workflow:
   rules:
-    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
 
 stages:
   - build
+  - test
+  - storybook
+  - deploy
+  - pages
 
 before_script:
   - yarn install --frozen-lockfile
 
-Build:
+build:
   stage: build
   script:
     - yarn build
 
-Lint:
-  stage: build
+lint:
+  stage: test
   script:
     - yarn eslint
     - yarn prettier:check
 
-Test:
-  stage: build
+test:
+  stage: test
   script:
     - yarn test
+
+storybook:
+  stage: storybook
+  artifacts:
+    expire_in: 2 weeks
+    when: always
+    paths:
+      - storybook/
+  script: yarn build-storybook --output-dir storybook
+
+deploy-storybook:
+  stage: deploy
+  script:
+    - echo "Creating storybook environment for $CI_COMMIT_REF_SLUG"
+  environment:
+    name: storybook/$CI_COMMIT_REF_SLUG
+    url: https://simspace.gitlab.io/r9y/monorail/$CI_COMMIT_REF_SLUG/storybook/
+    on_stop: remove-storybook
+
+remove-storybook:
+  stage: deploy
+  cache:
+    key: 'monorail-storybook'
+    paths:
+      - public
+  script:
+    - rm -rf "public/$CI_COMMIT_REF_SLUG/storybook"
+  when: manual
+  variables:
+    GIT_STRATEGY: none
+  environment:
+    name: storybook/$CI_COMMIT_REF_SLUG
+    action: stop
+
+pages:
+  stage: pages
+  cache:
+    key: 'monorail-storybook'
+    paths:
+      - public
+  artifacts:
+    paths:
+      - public
+  dependencies:
+    - storybook
+  script:
+    - if [ "$CI_COMMIT_REF_NAME" == "main" ]; then
+      mkdir -p public;
+      touch public/index.html;
+      echo "<!DOCTYPE HTML><script>window.location.href = 'https://simspace.gitlab.io/r9y/monorail/main/storybook'</script>" > public/index.html;
+      fi;
+    - rm -rf "public/$CI_COMMIT_REF_SLUG"
+    - mkdir -p "public/$CI_COMMIT_REF_SLUG";
+    - mv storybook "public/$CI_COMMIT_REF_SLUG"
