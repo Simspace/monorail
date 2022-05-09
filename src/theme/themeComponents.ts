@@ -48,6 +48,8 @@ import { MonorailSnackbarOverrides } from '../components/Snackbar/themeOverrides
 import { MonorailSvgIconOverrides } from '../components/SvgIcon/themeOverrides'
 import { MonorailSwitchOverrides } from '../components/Switch/themeOverrides'
 import { MonorailTextFieldOverrides } from '../components/TextField/themeOverrides'
+import { MonorailToggleButtonOverrides } from '../components/ToggleButton/themeOverrides'
+import { MonorailToggleButtonGroupOverrides } from '../components/ToggleButtonGroup/themeOverrides'
 import { baseTheme } from './baseTheme'
 
 /**
@@ -112,4 +114,6 @@ export const getThemeComponents = (
   MuiSvgIcon: MonorailSvgIconOverrides,
   MuiSwitch: MonorailSwitchOverrides,
   MuiTextField: MonorailTextFieldOverrides,
+  MuiToggleButton: MonorailToggleButtonOverrides,
+  MuiToggleButtonGroup: MonorailToggleButtonGroupOverrides,
 })
