@@ -15,13 +15,19 @@ export const MonorailSnackbarOverrides: Components<Theme>['MuiSnackbar'] = {
     TransitionComponent: Slide,
   },
   styleOverrides: {
-    root: ({ theme }) => ({
+    root: ({ ownerState: { anchorOrigin }, theme }) => ({
       [`& .${chipClasses.root}`]: {
         boxShadow: theme.shadows[6],
       },
       [`& .${alertClasses.root}`]: {
         boxShadow: theme.shadows[6],
-        minWidth: 480,
+        width: '100%',
+        maxWidth: 480,
+      },
+      [theme.breakpoints.up('sm')]: {
+        ...(anchorOrigin?.horizontal === 'right' && {
+          left: 8,
+        }),
       },
     }),
   },
