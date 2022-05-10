@@ -7,7 +7,7 @@ import {
 
 declare module '@mui/material/ToggleButton' {
   /**
-   * Extend the ToggleButton color variant to disable `standard`.
+   * Extend the ToggleButton color variant to replace `standard` with `default`.
    */
   interface ToggleButtonPropsColorOverrides {
     standard: false
@@ -17,7 +17,7 @@ declare module '@mui/material/ToggleButton' {
 
 declare module '@mui/material/ToggleButtonGroup' {
   /**
-   * Extend the ToggleButton color variant to disable `standard`.
+   * Extend the ToggleButtonGroup color variant to replace `standard` with `default`.
    */
   interface ToggleButtonGroupPropsColorOverrides {
     standard: false
@@ -32,6 +32,16 @@ export const MonorailToggleButtonOverrides: Components<Theme>['MuiToggleButton']
     },
     styleOverrides: {
       root: ({ ownerState: { color = 'primary' }, theme }) => ({
+        '&:hover': {
+          backgroundColor: theme.palette[color].shades[100],
+        },
+        [`&.Mui-selected`]: {
+          backgroundColor: theme.palette[color].shades[200],
+          color: theme.palette.text.primary,
+          '&:not(:last-of-type)': {
+            borderRightColor: theme.palette.default.shades[300],
+          },
+        },
         [`&.Mui-focusVisible`]: {
           boxShadow: `0 0 0 4px ${theme.palette[color].focusRing.outer}`,
           borderColor: theme.palette[color].focusRing.inner,
@@ -44,6 +54,9 @@ export const MonorailToggleButtonOverrides: Components<Theme>['MuiToggleButton']
           color: theme.palette.text.disabled,
         },
       }),
+      selected: {
+        // Does not work
+      },
       // primary: {
 
       // }
