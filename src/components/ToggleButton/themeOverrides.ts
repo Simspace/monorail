@@ -72,7 +72,7 @@ export const MonorailToggleButtonOverrides: Components<Theme>['MuiToggleButton']
       color: 'default',
     },
     styleOverrides: {
-      root: ({ ownerState: { color = 'primary' }, theme }) => ({
+      root: ({ ownerState: { color = 'default' }, theme }) => ({
         // Keep backgroundColor transparent, otherwise will hide vertical borders.
         border: `1px solid ${
           theme.palette[toggleButtonTokens.default.border.idle]
