@@ -9,7 +9,6 @@ import FormatBoldIcon from '@mui/icons-material/FormatBold'
 import FormatColorFillIcon from '@mui/icons-material/FormatColorFill'
 import FormatItalicIcon from '@mui/icons-material/FormatItalic'
 import FormatUnderlinedIcon from '@mui/icons-material/FormatUnderlined'
-import { Typography } from '@mui/material'
 import Stack from '@mui/material/Stack'
 import ToggleButton from '@mui/material/ToggleButton'
 import ToggleButtonGroup, {
@@ -170,79 +169,3 @@ export const Size = story(
     },
   },
 )
-
-const colors = [
-  'default',
-  'primary',
-  'secondary',
-  'error',
-  'info',
-  'success',
-  'warning',
-] as const
-
-export const Color = story<ToggleButtonGroupProps>(args => {
-  const [alignment, setAlignment] = React.useState<string | null>('left')
-
-  const handleAlignment = (
-    _event: React.MouseEvent<HTMLElement>,
-    newAlignment: string | null,
-  ) => {
-    setAlignment(newAlignment)
-  }
-
-  return (
-    <Stack direction="column" gap={4}>
-      {colors.map(color => (
-        <Stack key={`toggle-button-group-${color}`} direction="row" gap={4}>
-          <Typography sx={{ width: 100 }}>{color}</Typography>
-          <ToggleButtonGroup
-            // key={`toggle-button-group-${color}`}
-            color={color}
-            value={alignment}
-            exclusive
-            aria-label="text alignment"
-            onChange={handleAlignment}
-            {...args}
-          >
-            <ToggleButton value="left" aria-label="left aligned">
-              <FormatAlignLeftIcon />
-            </ToggleButton>
-            <ToggleButton value="center" aria-label="centered">
-              <FormatAlignCenterIcon />
-            </ToggleButton>
-            <ToggleButton value="right" aria-label="right aligned">
-              <FormatAlignRightIcon />
-            </ToggleButton>
-            <ToggleButton value="justify" aria-label="justified" disabled>
-              <FormatAlignJustifyIcon />
-            </ToggleButton>
-          </ToggleButtonGroup>
-          {/* text */}
-          <ToggleButtonGroup
-            // key={`toggle-button-group-${color}`}
-            color={color}
-            value={alignment}
-            exclusive
-            aria-label="text alignment"
-            onChange={handleAlignment}
-            {...args}
-          >
-            <ToggleButton value="left" aria-label="left aligned">
-              Button
-            </ToggleButton>
-            <ToggleButton value="center" aria-label="centered">
-              Button
-            </ToggleButton>
-            <ToggleButton value="right" aria-label="right aligned">
-              Button
-            </ToggleButton>
-            <ToggleButton value="justify" aria-label="justified" disabled>
-              Disabled
-            </ToggleButton>
-          </ToggleButtonGroup>
-        </Stack>
-      ))}
-    </Stack>
-  )
-})
