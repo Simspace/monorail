@@ -16,7 +16,7 @@ declare module '@mui/material/Button' {
   }
 }
 
-const buttonTokens = {
+export const buttonTokens = {
   contained: {
     bg: {
       idle: 600,
