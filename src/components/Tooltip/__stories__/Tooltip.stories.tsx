@@ -282,20 +282,11 @@ export const ControlledTooltips = story<TooltipProps>(
     // default to open to make it easier to inspect with browser dev tools
     const [open, setOpen] = React.useState(true)
 
-    const handleClose = () => {
-      setOpen(false)
-    }
-
     const handleOpen = () => {
       setOpen(true)
     }
     return (
-      <Tooltip
-        open={open}
-        onClose={handleClose}
-        onOpen={handleOpen}
-        title="Add"
-      >
+      <Tooltip open={open} onClose={() => {}} onOpen={handleOpen} title="Add">
         <Button>Controlled</Button>
       </Tooltip>
     )
