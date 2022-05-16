@@ -190,9 +190,18 @@ export const CustomizedTooltips = story<TooltipProps>(
 
 export const ArrowTooltips = story<TooltipProps>(
   () => (
-    <Tooltip title="Add" arrow>
-      <Button>Arrow</Button>
-    </Tooltip>
+    <Grid container justifyContent="center" spacing={2}>
+      <Grid item>
+        <Tooltip title="Add" arrow>
+          <Button>Arrow</Button>
+        </Tooltip>
+      </Grid>
+      <Grid item>
+        <Tooltip title="Add" arrow placement="right">
+          <Button>Tooltip Right</Button>
+        </Tooltip>
+      </Grid>
+    </Grid>
   ),
   {
     parameters: {
@@ -270,7 +279,8 @@ export const TriggersTooltips = story<TooltipProps>(
 
 export const ControlledTooltips = story<TooltipProps>(
   () => {
-    const [open, setOpen] = React.useState(false)
+    // default to open to make it easier to inspect with browser dev tools
+    const [open, setOpen] = React.useState(true)
 
     const handleClose = () => {
       setOpen(false)
