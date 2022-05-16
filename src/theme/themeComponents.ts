@@ -2,6 +2,10 @@
 import type {} from '@mui/lab/themeAugmentation'
 import { Theme, ThemeOptions } from '@mui/material'
 
+import {
+  MonorailAlertOverrides,
+  MonorailAlertTitleOverrides,
+} from '../components/Alert/themeOverrides'
 import { MonorailAutocompleteOverrides } from '../components/Autocomplete/themeOverrides'
 import { MonorailAvatarOverrides } from '../components/Avatar/themeOverrides'
 import { MonorailBadgeOverrides } from '../components/Badge/themeOverrides'
@@ -40,9 +44,14 @@ import { MonorailRadioOverrides } from '../components/Radio/themeOverrides'
 import { MonorailRatingOverrides } from '../components/Rating/themeOverrides'
 import { MonorailSelectOverrides } from '../components/Select/themeOverrides'
 import { MonorailSkeletonOverrides } from '../components/Skeleton/themeOverrides'
+import { MonorailSnackbarOverrides } from '../components/Snackbar/themeOverrides'
 import { MonorailSvgIconOverrides } from '../components/SvgIcon/themeOverrides'
 import { MonorailSwitchOverrides } from '../components/Switch/themeOverrides'
 import { MonorailTextFieldOverrides } from '../components/TextField/themeOverrides'
+import {
+  MonorailToggleButtonGroupOverrides,
+  MonorailToggleButtonOverrides,
+} from '../components/ToggleButton/themeOverrides'
 import { MonorailTooltipOverrides } from '../components/Tooltip/themeOverrides'
 import { baseTheme } from './baseTheme'
 
@@ -61,6 +70,8 @@ export const getThemeComponents = (
       square: true,
     },
   },
+  MuiAlert: MonorailAlertOverrides,
+  MuiAlertTitle: MonorailAlertTitleOverrides,
   MuiAutocomplete: MonorailAutocompleteOverrides,
   MuiAvatar: MonorailAvatarOverrides,
   MuiBadge: MonorailBadgeOverrides,
@@ -102,8 +113,11 @@ export const getThemeComponents = (
   MuiRating: MonorailRatingOverrides,
   MuiSelect: MonorailSelectOverrides,
   MuiSkeleton: MonorailSkeletonOverrides,
+  MuiSnackbar: MonorailSnackbarOverrides,
   MuiSvgIcon: MonorailSvgIconOverrides,
   MuiSwitch: MonorailSwitchOverrides,
   MuiTextField: MonorailTextFieldOverrides,
+  MuiToggleButton: MonorailToggleButtonOverrides,
+  MuiToggleButtonGroup: MonorailToggleButtonGroupOverrides,
   MuiTooltip: MonorailTooltipOverrides,
 })
