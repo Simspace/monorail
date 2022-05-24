@@ -3,7 +3,6 @@ const { defaults } = require('jest-config')
 const jestConfig = {
   setupFiles: ['<rootDir>/jest/jest.setup.ts'],
   moduleNameMapper: {
-    '@mui/styled-engine': '@mui/styled-engine-sc',
     '@material-ui/core': '@mui/material',
   },
   testEnvironment: 'jsdom',
