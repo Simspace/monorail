@@ -4,6 +4,7 @@ Thank you for your interest in helping build Monorail!
 
 ## Table of Contents
 
+- [Links](#links)
 - [FAQ/Known issues](#faqknown-issues)
 - [Setup](#setup)
 - [Storybook](#storybook)
@@ -13,6 +14,12 @@ Thank you for your interest in helping build Monorail!
   - [Known Issues](#known-issues)
 - [Accessibility](#accessibility)
 - [Customization/Theming](#customizationtheming)
+- [Design Tokens](#designtokens)
+
+## Links
+
+- [Monorail3 Roadmap](https://github.com/Simspace/portal-suite/wiki/Monorail-3-Roadmap)
+- [Tracking Spreadsheet](https://docs.google.com/spreadsheets/d/1P2sDbicJj4AyoaBcPQv1pN1V8XDa1HFcoC2cYwecq2s/edit#gid=121241698)
 
 ## FAQ/Known issues
 
@@ -94,20 +101,20 @@ We are currently setup to use the `storybook-a11y` addon, so you can view a11y i
 
 We also have a node-based `jest` test running setup to run the a11y tests outside of storybook. These basic a11y tests are generated for each component using a script - see code gen below.
 
-# Customization/Theming
+## Customization/Theming
 
 For the main Monorail 3 components we are aiming to do most/all of the custom styling using the MUI theme, and specifically the `components` part of the theme that lets you set/override the styles for individual components.
 
 - [Theming MUI components](#themingmuicomponents)
 - [Extending MUI components](#extendingmuicomponents)
 
-## Theming MUI components
+### Theming MUI components
 
-### 1. Create a `themeOverrides` file
+#### 1. Create a `themeOverrides` file
 
 - Component-level theme customizations should be made in `./src/components/Component/themeOverrides.ts`
 
-### 2. `themeOverrides` file setup
+#### 2. `themeOverrides` file setup
 
 1. Module augmentation (if necessary)
 2. Component tokens (If necessary. See Component token structure)
@@ -135,15 +142,15 @@ For the main Monorail 3 components we are aiming to do most/all of the custom st
   }
   ```
 
-### 3. Add to `themeComponents.ts` object
+#### 3. Add to `themeComponents.ts` object
 
 Make sure to add the new `themeOverrides.ts` file to our `src/theme/themeComponents.ts` object. This is in alphabetical order.
 
-### 4. Set default props
+#### 4. Set default props
 
 ⚠️ Note: Try to trace a component’s dependency if the new behavior is desired globally. A good example is `disableRipple`. Instead of disabling it at the instance level (e.g., `IconButton`), it is set at the primitive level (e.g., `ButtonBase`).
 
-### 5. Prop based theming
+#### 5. Prop based theming
 
 [MUI docs: Overrides based on props](https://mui.com/material-ui/customization/theme-components/#overrides-based-on-props)
 
@@ -280,19 +287,62 @@ More often than not, you’ll have to wrap a component if you want to add varian
 4. Remove `fill`
 5. To add custom icons, wrap them in `SvgIcon`, isntead of `Icon`.
 
-## Components not in MUI
+### Components not in MUI
 
 Some comopnents have yet to be built by the MUI team. See [MUI’s Roadmap](https://mui.com/material-ui/discover-more/roadmap/#main-content).
 
-In this case, our first approach is to try to assemble it using our pre-existing components. If that is not a viable solution, look for a library, preferrably one that provides only the behavior (link to Caorusel example). We’ll temporarily adopt it as our official Monorail component. Then, we’ll reasses once MUI releases theirs.
+In this case, our first approach is to try to assemble it using our pre-existing components. If that is not a viable solution, look for a library, preferrably one that provides only the behavior (See [Carousel PR](https://github.com/Simspace/portal-suite/pull/7793)). We’ll temporarily adopt it as our official Monorail component. Then, we’ll reasses once MUI releases theirs.
 
-## Consistent coding style
+### Consistent coding style
 
-We try to follow MUI's coding style. For examples, check out the [components list](https://github.com/mui/material-ui/tree/4b8e3541daf05499a56e1aa7257aec519c52ffc6/packages/mui-material/src):
+We try to follow MUI's coding style. For examples, check out the [MUI's list of components](https://github.com/mui/material-ui/tree/4b8e3541daf05499a56e1aa7257aec519c52ffc6/packages/mui-material/src):
 
-# Design Tokens [WIP]
+### Component caveats
 
-## Color
+1. **Popper** - Refer to Popper.js API for customization. Use the [modifiers](https://popper.js.org/docs/v2/modifiers/)
+   prop.
+
+## Design Tokens
+
+⚠️ This section is a WIP. More docs and a dev talk on the topic soon. - Gabe S. 5/26/22
+
+MUI's theme object comes with design tokens out of the box. To see a full list of default tokens, you can go to [mui.com](https://mui.com/material-ui/getting-started/installation/) and enter `window.theme` in the console.
+
+We've taken a minimal approach in tokenizing to make room for changes. As patterns solidify, we tokenize those design decisions and add them to the object (example below). If you identify a pattern, let's discuss it in #eng-monorail to get FE and UX on the same page.
+
+```ts
+// src/theme/defaultLightTheme.ts
+
+const palette: PaletteOptions = {
+  primary: {
+    // ...Other colors such as light, main, dark
+    focusRing: {
+      inner: RawColor.Blue800,
+      outer: RawColor.Blue400,
+    },
+  },
+}
+
+// src/theme/themeExtensions.ts
+
+declare module '@mui/material/styles/createPalette' {
+  interface PaletteColor {
+    focusRing: {
+      inner: string
+      outer: string
+    }
+  }
+
+  interface SimplePaletteColorOptions {
+    focusRing?: Partial<{
+      inner: string
+      outer: string
+    }>
+  }
+}
+```
+
+### Color
 
 | Color token                                                  | Usage                                                                                                                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -300,11 +350,6 @@ We try to follow MUI's coding style. For examples, check out the [components lis
 | `theme.palette.common.white` or `theme.palette.common.black` | Elements that should remain white or black no matter what theme is used. Example: White text on a blue button.                                                |
 |                                                              |                                                                                                                                                               |
 
-## Spacing
+### Spacing
 
-## Typography
-
-# Component caveats
-
-1. **Popper** - Refer to Popper.js API for customization. Use the [modifiers](https://popper.js.org/docs/v2/modifiers/)
-   prop.
+### Typography
