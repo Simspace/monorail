@@ -1,5 +1,5 @@
 import React, { ComponentType, CSSProperties } from 'react'
-import styled, { css } from 'styled-components'
+import styled, { css } from '@mui/styled-engine'
 
 import { SvgIconProps } from './types'
 

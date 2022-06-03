@@ -26,13 +26,15 @@ export default {
         ...config.resolve,
         alias: {
           ...config.resolve.alias,
-          // This alias is required to enable styled-components as the styled engine for MUI.
-          // I'm doing this b/c there was a problem with the storybook emotion theme conflicting with the MUI emotion.
-          // Also, this kind of makes sense since we are using styled-components already.
-          // https://next.material-ui.com/guides/styled-engine/#how-to-switch-to-styled-components
-          '@mui/styled-engine': '@mui/styled-engine-sc',
           // @mui/x-data-grid still references the legacy MUI paths - this works-around that for now
           '@material-ui/core': '@mui/material',
+
+          // this is the solution used by chakra-ui to prevent storybook from wrecking the emotion theme set by mui
+          // see: https://github.com/chakra-ui/chakra-ui/blob/a5abb6f9477d87a1cbc0c2d784e009d2bc8a8c6d/.storybook/main.js
+          // see: https://github.com/storybookjs/storybook/issues/10231#issuecomment-728038867
+          // see: https://github.com/mui/material-ui/issues/24282
+          '@emotion/core': '@emotion/react',
+          'emotion-theming': '@emotion/react',
         },
       },
     }
