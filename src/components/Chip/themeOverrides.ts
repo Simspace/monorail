@@ -1,5 +1,5 @@
 import { chipClasses, Components, Theme } from '@mui/material'
-import { SimpleInterpolation } from '@mui/styled-engine'
+import { InterpolationPrimitive } from '@mui/styled-engine'
 
 declare module '@mui/material/Chip' {
   /**
@@ -149,7 +149,7 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
       ownerState: { color = 'default', variant = 'default' },
       theme,
     }) => {
-      const filledStyles: SimpleInterpolation = {
+      const filledStyles: InterpolationPrimitive = {
         '&:hover': {
           backgroundColor:
             color === 'default'
@@ -169,7 +169,7 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
         },
       }
 
-      const outlinedStyles: SimpleInterpolation = {
+      const outlinedStyles: InterpolationPrimitive = {
         [`&.${chipClasses.clickable}:hover`]: {
           backgroundColor:
             theme.palette[color].shades[chipTokens.outlined.bg.hover],
@@ -181,7 +181,7 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
         },
       }
 
-      const clickableRectangularStyles: SimpleInterpolation = {
+      const clickableRectangularStyles: InterpolationPrimitive = {
         backgroundColor:
           theme.palette.primary.shades[chipTokens.rectangular.bg.idle],
         '&:hover': {
@@ -219,7 +219,7 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
       ownerState: { clickable = false, color = 'default', variant = 'filled' },
       theme,
     }) => {
-      const filledStyles: SimpleInterpolation = {
+      const filledStyles: InterpolationPrimitive = {
         '&:hover': {
           color:
             color === 'default'
@@ -238,14 +238,14 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
             : theme.palette[color].shades[chipTokens.filled.strong.deleteIcon],
       }
 
-      const outlinedStyles: SimpleInterpolation = {
+      const outlinedStyles: InterpolationPrimitive = {
         color: theme.palette[color].shades[chipTokens.outlined.deleteIcon],
         '&:hover': {
           color: theme.palette[color].shades[chipTokens.outlined.deleteIcon],
         },
       }
 
-      const rectangularStyles: SimpleInterpolation = {
+      const rectangularStyles: InterpolationPrimitive = {
         color: !clickable
           ? theme.palette.default.shades[chipTokens.rectangular.deleteIcon]
           : theme.palette.primary.shades[chipTokens.rectangular.deleteIcon],
@@ -267,7 +267,7 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
       ownerState: { clickable = false, color = 'default', variant = 'filled' },
       theme,
     }) => {
-      const filledStyles: SimpleInterpolation = {
+      const filledStyles: InterpolationPrimitive = {
         color:
           color === 'default'
             ? theme.palette.default.shades[chipTokens.filled.weak.avatar.text]
@@ -278,19 +278,19 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
             : theme.palette[color].shades[chipTokens.filled.strong.avatar.bg],
       }
 
-      const outlinedStyles: SimpleInterpolation = {
+      const outlinedStyles: InterpolationPrimitive = {
         color: theme.palette.common.white,
         backgroundColor:
           theme.palette[color].shades[chipTokens.outlined.avatar.bg],
       }
 
-      const readOnlyRectangularStyles: SimpleInterpolation = {
+      const readOnlyRectangularStyles: InterpolationPrimitive = {
         color: theme.palette.default.shades[chipTokens.rectangular.avatar.text],
         backgroundColor:
           theme.palette.default.shades[chipTokens.rectangular.avatar.bg],
       }
 
-      const clickableRectangularStyles: SimpleInterpolation = {
+      const clickableRectangularStyles: InterpolationPrimitive = {
         color: theme.palette.primary.shades[chipTokens.rectangular.avatar.text],
         backgroundColor:
           theme.palette.primary.shades[chipTokens.rectangular.avatar.bg],

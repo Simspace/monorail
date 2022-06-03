@@ -10,9 +10,9 @@ import {
   Theme,
   ThemeProvider,
 } from '@mui/material'
+import { css, GlobalStyles } from '@mui/styled-engine'
 import { Story } from '@storybook/react'
 import { render, RenderOptions, RenderResult } from '@testing-library/react'
-import { createGlobalStyle } from 'styled-components'
 
 import { defaultLightTheme } from '../../theme/defaultLightTheme'
 
@@ -26,13 +26,15 @@ declare module '@mui/styles/defaultTheme' {
  *
  * Delete after https://github.com/jsdom/jsdom/issues/3064 is fixed
  */
-/* eslint-disable */
-const TemporaryJSDomFix = createGlobalStyle`
-  svg title {
-    display: inline;
-  }
-  `
-/* eslint-enable */
+const TemporaryJSDomFix = () => (
+  <GlobalStyles
+    styles={css`
+      svg title {
+        display: inline;
+      }
+    `}
+  />
+)
 
 /**
  * Renders content for tests inside theme providers
