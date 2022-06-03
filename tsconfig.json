@@ -1,27 +1,27 @@
 {
   "compilerOptions": {
     "allowJs": true,
-    "composite": true,
     "esModuleInterop": true,
-    "lib": ["es5", "dom", "dom.iterable", "esnext"],
-    "target": "es5",
+    "incremental": true,
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "target": "ES2015",
     "jsx": "react",
+    "moduleResolution": "node",
     "resolveJsonModule": true,
     "sourceMap": true,
-    "declarationMap": true,
     "stripInternal": true,
     "outDir": "./dist",
     "skipLibCheck": true,
     "rootDir": ".",
-    "strict": true,
-    "tsBuildInfoFile": "./dist/tsconfig.tsbuildinfo"
+    "strict": true
   },
   "include": [
     "src/**/*",
     "tools/**/*",
     ".storybook",
     "creevey.config.js",
-    "jest/**/*"
+    "jest/**/*",
+    "scripts/**/*"
   ],
   "exclude": [
     "node_modules",

@@ -1,10 +1,28 @@
 {
   "name": "@simspace/monorail3",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Monorail 3",
   "repository": "https://gitlab.com/simspace/monorail",
   "author": "SimSpace",
   "license": "UNLICENSED",
+  "publishConfig": {
+    "access": "restricted"
+  },
+  "main": "./build/index.js",
+  "module": "./build/esm/index.js",
+  "typesVersions": {
+    "*": {
+      "*": [
+        "./build/*.d.ts"
+      ]
+    }
+  },
+  "exports": {
+    "./*": {
+      "require": "./build/*.js",
+      "import": "./build/esm/*.js"
+    }
+  },
   "peerDependencies": {
     "@emotion/react": "11.4.1",
     "@emotion/styled": "11.8.1",
@@ -31,6 +49,7 @@
     "@mui/styled-engine": "5.4.1",
     "@mui/styles": "5.4.1",
     "@mui/system": "5.4.1",
+    "@mui/utils": "5.4.1",
     "@mui/x-data-grid": "5.0.0-beta.2",
     "@mui/x-data-grid-generator": "5.0.0-beta.2",
     "@storybook/addon-a11y": "^6.3.7",
@@ -46,6 +65,7 @@
     "@testing-library/jest-dom": "5.11.6",
     "@testing-library/react": "11.2.2",
     "@testing-library/user-event": "12.4.0",
+    "@types/glob": "^7.2.0",
     "@types/jest": "27.0.3",
     "@types/jest-axe": "3.5.3",
     "@types/react": "17.0.39",
@@ -53,6 +73,7 @@
     "@typescript-eslint/eslint-plugin": "4.23.0",
     "@typescript-eslint/parser": "4.23.0",
     "babel-jest": "27.0.2",
+    "concurrently": "^7.2.1",
     "creevey": "0.7.37",
     "date-fns": "2.23.0",
     "eslint": "7.32.0",
@@ -65,6 +86,7 @@
     "eslint-plugin-react-hooks": "4.2.0",
     "eslint-plugin-redux-saga": "1.2.1",
     "eslint-plugin-simple-import-sort": "7.0.0",
+    "glob": "^8.0.3",
     "jest": "27.0.4",
     "jest-axe": "5.0.1",
     "jest-config": "27.4.3",
@@ -78,6 +100,7 @@
     "react-transition-group": "4.4.2",
     "start-server-and-test": "1.14.0",
     "ts-morph": "11.0.0",
+    "ts-node": "^10.8.0",
     "typescript": "4.5.2"
   },
   "resolutions": {
@@ -86,12 +109,13 @@
     "@types/react-syntax-highlighter": "^11.0.5",
     "react-syntax-highlighter": "^13.5.3"
   },
-  "main": "./dist/index.js",
   "scripts": {
-    "build": "tsc -b",
+    "build": "concurrently \"yarn build-esm\" \"yarn build-cjs\"",
+    "build:pack": "yarn build && yarn ts-node -O \"{\\\"module\\\": \\\"commonjs\\\"}\" scripts/pack.ts",
+    "build-esm": "tsc -b tsconfig.build-esm.json",
+    "build-cjs": "tsc -b tsconfig.build-cjs.json",
     "test": "jest --passWithNoTests",
     "clean": "rm -rf dist/",
-    "type-check": "tsc --project tsconfig.json",
     "eslint": "NODE_OPTIONS=\"--max-old-space-size=8192\" eslint \"src/**/*.{js,ts,tsx}\"",
     "prettier:check": "prettier './src/**/*{.js,.ts,.tsx}' --list-different",
     "prettier:write": "prettier './src/**/*{.js,.ts,.tsx}' --write",
@@ -110,5 +134,6 @@
       "eslint --fix-type layout --fix --cache",
       "jest --findRelatedTests"
     ]
-  }
+  },
+  "packageManager": "yarn@3.2.1"
 }

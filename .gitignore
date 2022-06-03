@@ -10,3 +10,15 @@ yarn-error.log
 src/index.ts
 visual-test-report
 report
+
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+
+dist
+coverage
+build
