@@ -22,8 +22,11 @@ before_script:
 
 build:
   stage: build
+  artifacts:
+    paths:
+      - dist
   script:
-    - yarn build
+    - yarn build:pack
 
 lint:
   stage: test
@@ -89,3 +92,43 @@ pages:
     - rm -rf "public/$CI_COMMIT_REF_SLUG"
     - mkdir -p "public/$CI_COMMIT_REF_SLUG";
     - mv storybook "public/$CI_COMMIT_REF_SLUG"
+
+publish:
+  stage: deploy
+  dependencies:
+    - build
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH || $CI_COMMIT_REF_NAME =~ /^v\d+\.\d+\.\d+.*$/
+  script:
+    - |
+      {
+        echo "@simspace:registry=${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/npm/"
+        echo "${CI_API_V4_URL#http*:}/projects/${CI_PROJECT_ID}/packages/npm/:_authToken=${CI_JOB_TOKEN}"
+      } >> dist/.npmrc
+      echo ".npmrc" >> dist/.npmignore
+
+    - echo "Created the following .npmrc:"; cat dist/.npmrc
+
+    # Extract a few values from package.json
+    - NPM_PACKAGE_NAME=$(node -p "require('./package.json').name")
+    - NPM_PACKAGE_VERSION=$(node -p "require('./package.json').version")
+    - REPO_PACKAGE_VERSION=$(node ./scripts/get-latest-published-version.js $NPM_PACKAGE_NAME)
+
+    # Validate that the package name is properly scoped to the project's root namespace.
+    # For more information, see https://docs.gitlabcom/ee/user/packages/npm_registry/#package-naming-convention
+    - |
+      if [[ ! $NPM_PACKAGE_NAME =~ ^@$CI_PROJECT_ROOT_NAMESPACE/ ]]; then
+        echo "Invalid package scope! Packages must be scoped in the root namespace of the project, e.g. \"@${CI_PROJECT_ROOT_NAMESPACE}/${CI_PROJECT_NAME}\""
+        echo 'For more information, see https://docs.gitlab.com/ee/user/packages/npm_registry/#package-naming-convention'
+        exit 1
+      fi
+
+    # Compare the version in package.json to all published versions.
+    # If the package.json version has not yet been published, run `npm publish`.
+    - |
+      if [[ ${REPO_PACKAGE_VERSION} != *"${NPM_PACKAGE_VERSION}"* ]]; then
+        cd dist && npm publish
+        echo "Successfully published version ${NPM_PACKAGE_VERSION} of ${NPM_PACKAGE_NAME} to GitLab's NPM registry: ${CI_PROJECT_URL}/-/packages"
+      else
+        echo "Version ${NPM_PACKAGE_VERSION} of ${NPM_PACKAGE_NAME} has already been published, so no new version has been published."
+      fi
