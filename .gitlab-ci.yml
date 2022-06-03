@@ -118,7 +118,7 @@ publish:
     # Extract a few values from package.json
     - NPM_PACKAGE_NAME=$(node -p "require('./package.json').name")
     - NPM_PACKAGE_VERSION=$(node -p "require('./package.json').version")
-    # - REPO_PACKAGE_VERSION=$(node ./scripts/get-latest-published-version.js $NPM_PACKAGE_NAME)
+    - REPO_PACKAGE_VERSION=$(node ./scripts/get-latest-published-version.js $NPM_PACKAGE_NAME)
 
     # Validate that the package name is properly scoped to the project's root namespace.
     # For more information, see https://docs.gitlabcom/ee/user/packages/npm_registry/#package-naming-convention
@@ -132,10 +132,9 @@ publish:
     # Compare the version in package.json to all published versions.
     # If the package.json version has not yet been published, run `npm publish`.
     - |
-      cd dist && npm publish
-      # if [[ ${REPO_PACKAGE_VERSION} != *"${NPM_PACKAGE_VERSION}"* ]]; then
-      #   cd dist && npm publish
-      #   echo "Successfully published version ${NPM_PACKAGE_VERSION} of ${NPM_PACKAGE_NAME} to GitLab's NPM registry: ${CI_PROJECT_URL}/-/packages"
-      # else
-      #   echo "Version ${NPM_PACKAGE_VERSION} of ${NPM_PACKAGE_NAME} has already been published, so no new version has been published."
-      # fi
+      if [[ ${REPO_PACKAGE_VERSION} != *"${NPM_PACKAGE_VERSION}"* ]]; then
+        cd dist && npm publish
+        echo "Successfully published version ${NPM_PACKAGE_VERSION} of ${NPM_PACKAGE_NAME} to GitLab's NPM registry: ${CI_PROJECT_URL}/-/packages"
+      else
+        echo "Version ${NPM_PACKAGE_VERSION} of ${NPM_PACKAGE_NAME} has already been published, so no new version has been published."
+      fi
