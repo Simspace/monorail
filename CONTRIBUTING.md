@@ -48,9 +48,8 @@ Thank you for your interest in helping build Monorail!
 ## Merge Requests
 
 1. Ensure it passes CI `yarn type-check`, `yarn eslint`, `yarn prettier:check`.
-2. Post merge request link in `#eng-team-reusability-pr` and tag `@team-reusability-ux`
-3. Ping `@team-reusability-fe` for code review after
-4.
+2. Post merge request link in `#eng-team-reusability-pr` and tag `@team-reusability-ux`.
+3. Ping `@team-reusability-fe` for code review after getting an approval from UX.
 
 ## Storybook
 
@@ -179,7 +178,7 @@ In cases where you need to custom style a component, the recommendation is to us
 
 **Note**: For styling MUI components, we are trying to style them via the theme `components`, and not via `styled` at the component level, so that we get consistent theming across the core components (e.g. when one MUI component uses another built-in MUI component, we need the custom styles to come from the theme).
 
-Here is an example of using `styled` to customize a component:
+Here is an example of using overrides to customize a component:
 
 ```typescript
 import { chipClasses, Components, Theme } from '@mui/material'
