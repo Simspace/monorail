@@ -7,7 +7,7 @@ import {
   FormHelperTextProps,
 } from '@mui/material'
 
-import { story } from '../../../__tests__/helpers/storybook'
+import { story } from '../../../test-helpers/storybook'
 /**
  * Metadata for FormHelperText stories - update/extend as needed
  */

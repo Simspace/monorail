@@ -2,7 +2,7 @@
 import React from 'react'
 import { CardActionArea, CardActionAreaProps } from '@mui/material'
 
-import { story } from '../../../__tests__/helpers/storybook'
+import { story } from '../../../test-helpers/storybook'
 
 /**
  * Metadata for CardActionArea stories - update/extend as needed

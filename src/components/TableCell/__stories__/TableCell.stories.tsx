@@ -2,7 +2,7 @@
 import React from 'react'
 import { TableCell, TableCellProps } from '@mui/material'
 
-import { story } from '../../../__tests__/helpers/storybook'
+import { story } from '../../../test-helpers/storybook'
 
 export default { title: 'Data Display/Table/TableCell', component: TableCell }
 

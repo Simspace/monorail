@@ -4,7 +4,7 @@ import TabScrollButton, {
   TabScrollButtonProps,
 } from '@mui/material/TabScrollButton'
 
-import { story } from '../../../__tests__/helpers/storybook'
+import { story } from '../../../test-helpers/storybook'
 /**
  * Metadata for TabScrollButton stories - update/extend as needed
  */

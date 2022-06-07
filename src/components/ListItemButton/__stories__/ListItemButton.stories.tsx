@@ -6,7 +6,7 @@ import {
   ListItemText,
 } from '@mui/material'
 
-import { story } from '../../../__tests__/helpers/storybook'
+import { story } from '../../../test-helpers/storybook'
 
 /**
  * Metadata for ListItemButton stories - update/extend as needed

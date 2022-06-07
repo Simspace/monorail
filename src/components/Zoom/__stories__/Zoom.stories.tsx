@@ -6,7 +6,7 @@ import Paper from '@mui/material/Paper'
 import Switch from '@mui/material/Switch'
 import Zoom, { ZoomProps } from '@mui/material/Zoom'
 
-import { story } from '../../../__tests__/helpers/storybook'
+import { story } from '../../../test-helpers/storybook'
 
 export default {
   title: 'Utils/Transitions/Zoom',

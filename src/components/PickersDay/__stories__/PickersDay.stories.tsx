@@ -4,7 +4,7 @@ import { PickersDay, PickersDayProps, StaticDatePicker } from '@mui/lab'
 import { styled, TextField } from '@mui/material'
 import { endOfWeek, isSameDay, isWithinInterval, startOfWeek } from 'date-fns'
 
-import { story } from '../../../__tests__/helpers/storybook'
+import { story } from '../../../test-helpers/storybook'
 
 /**
  * Metadata for PickersDay stories - update/extend as needed

@@ -27,7 +27,7 @@ import { SvgIconProps } from '@mui/material/SvgIcon'
 import Switch from '@mui/material/Switch'
 import Typography from '@mui/material/Typography'
 
-import { story } from '../../../__tests__/helpers/storybook'
+import { story } from '../../../test-helpers/storybook'
 
 /**
  * Metadata for TreeView stories - update/extend as needed

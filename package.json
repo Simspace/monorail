@@ -114,7 +114,7 @@
     "build:pack": "yarn build && yarn ts-node -O \"{\\\"module\\\": \\\"commonjs\\\"}\" scripts/pack.ts",
     "build-esm": "tsc -b tsconfig.build-esm.json",
     "build-cjs": "tsc -b tsconfig.build-cjs.json",
-    "test": "jest --passWithNoTests",
+    "test": "jest",
     "clean": "rm -rf dist/",
     "eslint": "NODE_OPTIONS=\"--max-old-space-size=8192\" eslint \"src/**/*.{js,ts,tsx}\"",
     "prettier:check": "prettier './src/**/*{.js,.ts,.tsx}' --list-different",

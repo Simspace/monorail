@@ -2,7 +2,7 @@
 import React from 'react'
 import TimelineContent, { TimelineContentProps } from '@mui/lab/TimelineContent'
 
-import { story } from '../../../__tests__/helpers/storybook'
+import { story } from '../../../test-helpers/storybook'
 /**
  * Metadata for TimelineContent stories - update/extend as needed
  */

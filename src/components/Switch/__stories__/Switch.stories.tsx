@@ -11,7 +11,7 @@ import {
   SwitchProps,
 } from '@mui/material'
 
-import { story } from '../../../__tests__/helpers/storybook'
+import { story } from '../../../test-helpers/storybook'
 
 /**
  * Metadata for Switch stories - update/extend as needed

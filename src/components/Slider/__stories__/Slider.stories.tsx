@@ -15,7 +15,7 @@ import {
 } from '@mui/material'
 import MuiInput from '@mui/material/Input'
 
-import { story } from '../../../__tests__/helpers/storybook'
+import { story } from '../../../test-helpers/storybook'
 
 /**
  * Metadata for Slider stories - update/extend as needed

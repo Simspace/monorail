@@ -14,7 +14,7 @@ import {
 } from '@mui/material'
 import { TransitionProps } from '@mui/material/transitions'
 
-import { story } from '../../../__tests__/helpers/storybook'
+import { story } from '../../../test-helpers/storybook'
 /**
  * Metadata for StepContent stories - update/extend as needed
  */

@@ -5,7 +5,7 @@ import SelectAllOutlined from '@mui/icons-material/SelectAllOutlined'
 import { LoadingButton } from '@mui/lab'
 import { Box, Button, ButtonProps, Stack, Typography } from '@mui/material'
 
-import { story } from '../../../__tests__/helpers/storybook'
+import { story } from '../../../test-helpers/storybook'
 
 /**
  * Metadata for Button stories - update/extend as needed

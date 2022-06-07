@@ -17,7 +17,7 @@ import {
   Stepper,
 } from '@mui/material'
 
-import { story } from '../../../__tests__/helpers/storybook'
+import { story } from '../../../test-helpers/storybook'
 /**
  * Metadata for StepIcon stories - update/extend as needed
  */

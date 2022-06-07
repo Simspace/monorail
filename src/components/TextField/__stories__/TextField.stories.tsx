@@ -12,7 +12,7 @@ import OutlinedInput, { OutlinedInputProps } from '@mui/material/OutlinedInput'
 import { alpha, styled } from '@mui/material/styles'
 import TextField, { TextFieldProps } from '@mui/material/TextField'
 
-import { story } from '../../../__tests__/helpers/storybook'
+import { story } from '../../../test-helpers/storybook'
 
 export default { title: 'Inputs/TextField', component: TextField }
 

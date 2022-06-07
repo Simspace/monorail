@@ -25,7 +25,7 @@ import {
   useDemoData,
 } from '@mui/x-data-grid-generator'
 
-import { story } from '../../../__tests__/helpers/storybook'
+import { story } from '../../../test-helpers/storybook'
 
 export default {
   title: 'Data Grid/Columns',

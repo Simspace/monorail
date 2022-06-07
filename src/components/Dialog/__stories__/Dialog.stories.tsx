@@ -42,8 +42,8 @@ import { styled, useTheme } from '@mui/material/styles'
 import { TransitionProps } from '@mui/material/transitions'
 import useMediaQuery from '@mui/material/useMediaQuery'
 
-import { story } from '../../../__tests__/helpers/storybook'
-import { longParagraph } from '../../../__tests__/helpers/testData'
+import { story } from '../../../test-helpers/storybook'
+import { longParagraph } from '../../../test-helpers/testData'
 
 const emails = ['username@gmail.com', 'user02@gmail.com']
 

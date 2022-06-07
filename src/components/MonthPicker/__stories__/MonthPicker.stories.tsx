@@ -2,7 +2,7 @@
 import React from 'react'
 import { MonthPicker, MonthPickerProps } from '@mui/lab'
 
-import { story } from '../../../__tests__/helpers/storybook'
+import { story } from '../../../test-helpers/storybook'
 /**
  * Metadata for MonthPicker stories - update/extend as needed
  */

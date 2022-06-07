@@ -7,7 +7,7 @@ import {
   ListItemSecondaryActionProps,
 } from '@mui/material'
 
-import { story } from '../../../__tests__/helpers/storybook'
+import { story } from '../../../test-helpers/storybook'
 
 /**
  * Metadata for ListItemSecondaryAction stories - update/extend as needed

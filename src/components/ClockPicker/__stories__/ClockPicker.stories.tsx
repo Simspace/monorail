@@ -3,7 +3,7 @@ import React from 'react'
 import { ClockPicker, ClockPickerProps } from '@mui/lab'
 import { Stack, Typography } from '@mui/material'
 
-import { story } from '../../../__tests__/helpers/storybook'
+import { story } from '../../../test-helpers/storybook'
 /**
  * Metadata for ClockPicker stories - update/extend as needed
  */

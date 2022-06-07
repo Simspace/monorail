@@ -4,7 +4,7 @@ import TimelineOppositeContent, {
   TimelineOppositeContentProps,
 } from '@mui/lab/TimelineOppositeContent'
 
-import { story } from '../../../__tests__/helpers/storybook'
+import { story } from '../../../test-helpers/storybook'
 /**
  * Metadata for TimelineOppositeContent stories - update/extend as needed
  */

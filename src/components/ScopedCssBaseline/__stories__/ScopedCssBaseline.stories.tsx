@@ -2,7 +2,7 @@
 import React from 'react'
 import { ScopedCssBaseline, ScopedCssBaselineProps } from '@mui/material'
 
-import { story } from '../../../__tests__/helpers/storybook'
+import { story } from '../../../test-helpers/storybook'
 /**
  * Metadata for ScopedCssBaseline stories - update/extend as needed
  */

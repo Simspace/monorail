@@ -9,7 +9,7 @@ import {
   Switch,
 } from '@mui/material'
 
-import { story } from '../../../__tests__/helpers/storybook'
+import { story } from '../../../test-helpers/storybook'
 /**
  * Metadata for FormControlLabel stories - update/extend as needed
  */

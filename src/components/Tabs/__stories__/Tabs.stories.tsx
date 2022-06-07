@@ -9,7 +9,7 @@ import TabList from '@mui/lab/TabList'
 import { AppBar, Box, styled, Tab, Typography } from '@mui/material'
 import Tabs, { TabsProps } from '@mui/material/Tabs'
 
-import { story } from '../../../__tests__/helpers/storybook'
+import { story } from '../../../test-helpers/storybook'
 
 /**
  * Metadata for Tabs stories - update/extend as needed

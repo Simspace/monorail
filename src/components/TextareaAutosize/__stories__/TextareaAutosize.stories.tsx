@@ -3,7 +3,7 @@ import TextareaAutosize, {
   TextareaAutosizeProps,
 } from '@mui/material/TextareaAutosize'
 
-import { story } from '../../../__tests__/helpers/storybook'
+import { story } from '../../../test-helpers/storybook'
 
 export default { title: 'Inputs/TextareaAutosize', component: TextareaAutosize }
 

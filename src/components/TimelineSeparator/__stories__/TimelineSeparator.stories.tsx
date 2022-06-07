@@ -4,7 +4,7 @@ import TimelineSeparator, {
   TimelineSeparatorProps,
 } from '@mui/lab/TimelineSeparator'
 
-import { story } from '../../../__tests__/helpers/storybook'
+import { story } from '../../../test-helpers/storybook'
 /**
  * Metadata for TimelineSeparator stories - update/extend as needed
  */

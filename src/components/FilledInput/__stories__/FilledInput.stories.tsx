@@ -7,7 +7,7 @@ import {
   InputLabel,
 } from '@mui/material'
 
-import { story } from '../../../__tests__/helpers/storybook'
+import { story } from '../../../test-helpers/storybook'
 
 /**
  * Metadata for FilledInput stories - update/extend as needed

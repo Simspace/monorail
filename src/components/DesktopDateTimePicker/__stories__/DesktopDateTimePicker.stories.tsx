@@ -3,7 +3,7 @@ import React from 'react'
 import { DesktopDateTimePicker, DesktopDateTimePickerProps } from '@mui/lab'
 import { TextField } from '@mui/material'
 
-import { story } from '../../../__tests__/helpers/storybook'
+import { story } from '../../../test-helpers/storybook'
 
 /**
  * Metadata for DesktopDateTimePicker stories - update/extend as needed

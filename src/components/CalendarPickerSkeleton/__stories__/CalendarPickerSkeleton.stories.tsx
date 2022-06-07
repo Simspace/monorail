@@ -2,7 +2,7 @@
 import React from 'react'
 import { CalendarPickerSkeleton, CalendarPickerSkeletonProps } from '@mui/lab'
 
-import { story } from '../../../__tests__/helpers/storybook'
+import { story } from '../../../test-helpers/storybook'
 
 /**
  * Metadata for CalendarPickerSkeleton stories - update/extend as needed

@@ -27,8 +27,8 @@ import {
 import { red } from '@mui/material/colors'
 import { styled } from '@mui/material/styles'
 
-import { story } from '../../../__tests__/helpers/storybook'
-import { images } from '../../../__tests__/helpers/testData'
+import { story } from '../../../test-helpers/storybook'
+import { images } from '../../../test-helpers/testData'
 /**
  * Metadata for Card stories - update/extend as needed
  * This is intended to be exported as story-level metadata from the main .stories.tsx file, like:

@@ -2,7 +2,7 @@
 import React from 'react'
 import YearPicker, { YearPickerProps } from '@mui/lab/YearPicker'
 
-import { story } from '../../../__tests__/helpers/storybook'
+import { story } from '../../../test-helpers/storybook'
 
 /**
  * Metadata for YearPicker stories - update/extend as needed

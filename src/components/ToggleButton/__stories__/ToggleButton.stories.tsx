@@ -15,7 +15,7 @@ import ToggleButtonGroup, {
   ToggleButtonGroupProps,
 } from '@mui/material/ToggleButtonGroup'
 
-import { story } from '../../../__tests__/helpers/storybook'
+import { story } from '../../../test-helpers/storybook'
 
 /**
  * Metadata for ToggleButtonGroup stories - update/extend as needed

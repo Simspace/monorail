@@ -54,7 +54,7 @@ import {
   ThemeProvider,
 } from '@mui/material/styles'
 
-import { story } from '../../../__tests__/helpers/storybook'
+import { story } from '../../../test-helpers/storybook'
 import { IconButton } from '../../IconButton/IconButton'
 
 declare module '@mui/styles/defaultTheme' {

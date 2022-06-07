@@ -2,8 +2,8 @@
 import React from 'react'
 import { CardMedia, CardMediaProps } from '@mui/material'
 
-import { story } from '../../../__tests__/helpers/storybook'
-import { images } from '../../../__tests__/helpers/testData'
+import { story } from '../../../test-helpers/storybook'
+import { images } from '../../../test-helpers/testData'
 /**
  * Metadata for CardMedia stories - update/extend as needed
  * This is intended to be exported as story-level metadata from the main .stories.tsx file, like:

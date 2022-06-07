@@ -37,7 +37,7 @@ import {
 import { tableCellClasses } from '@mui/material/TableCell'
 import { visuallyHidden } from '@mui/utils'
 
-import { story } from '../../../__tests__/helpers/storybook'
+import { story } from '../../../test-helpers/storybook'
 
 export default { title: 'Data Display/Table', component: Table }
 

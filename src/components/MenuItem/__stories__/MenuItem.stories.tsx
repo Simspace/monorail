@@ -2,7 +2,7 @@
 import React from 'react'
 import { MenuItem, MenuItemProps } from '@mui/material'
 
-import { story } from '../../../__tests__/helpers/storybook'
+import { story } from '../../../test-helpers/storybook'
 /**
  * Metadata for MenuItem stories - update/extend as needed
  */

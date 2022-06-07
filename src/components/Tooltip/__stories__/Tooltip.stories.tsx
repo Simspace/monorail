@@ -12,7 +12,7 @@ import Typography from '@mui/material/Typography'
 import Zoom from '@mui/material/Zoom'
 import { styled } from '@mui/styles'
 
-import { story } from '../../../__tests__/helpers/storybook'
+import { story } from '../../../test-helpers/storybook'
 
 /**
  * Metadata for Tooltip stories - update/extend as needed

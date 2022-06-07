@@ -2,7 +2,7 @@
 import React from 'react'
 import { GlobalStyles, GlobalStylesProps } from '@mui/material'
 
-import { story } from '../../../__tests__/helpers/storybook'
+import { story } from '../../../test-helpers/storybook'
 /**
  * Metadata for GlobalStyles stories - update/extend as needed
  */

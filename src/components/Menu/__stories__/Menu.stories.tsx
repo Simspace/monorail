@@ -37,7 +37,7 @@ import {
 } from '@mui/material'
 import { alpha, styled } from '@mui/material/styles'
 
-import { story } from '../../../__tests__/helpers/storybook'
+import { story } from '../../../test-helpers/storybook'
 
 /**
  * Metadata for Menu stories - update/extend as needed
