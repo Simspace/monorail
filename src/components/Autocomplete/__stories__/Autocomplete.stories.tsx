@@ -12,13 +12,13 @@ import {
   TextField,
 } from '@mui/material'
 
-import { story } from '../../../__tests__/helpers/storybook'
+import { story } from '../../../test-helpers/storybook'
 import {
   countries,
   countryToFlag,
   Movie,
   movies,
-} from '../../../__tests__/helpers/testData'
+} from '../../../test-helpers/testData'
 /**
  * Metadata for Autocomplete stories - update/extend as needed
  * This is intended to be exported as story-level metadata from the main .stories.tsx file, like:
@@ -171,7 +171,7 @@ export const MultipleValues = story<MovieAutocompleteProps>(args => {
         multiple
         id="tags-filled"
         options={movies}
-        defaultValue={[movies[13].label]}
+        defaultValue={[movies[13]]}
         freeSolo
         renderTags={(value: ReadonlyArray<Movie>, getTagProps) =>
           value.map((option: Movie, index: number) => (

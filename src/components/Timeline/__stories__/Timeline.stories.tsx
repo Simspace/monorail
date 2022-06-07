@@ -13,7 +13,7 @@ import TimelineOppositeContent from '@mui/lab/TimelineOppositeContent'
 import TimelineSeparator from '@mui/lab/TimelineSeparator'
 import Typography from '@mui/material/Typography'
 
-import { story } from '../../../__tests__/helpers/storybook'
+import { story } from '../../../test-helpers/storybook'
 /**
  * Metadata for Timeline stories - update/extend as needed
  */

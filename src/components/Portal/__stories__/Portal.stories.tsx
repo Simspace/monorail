@@ -3,7 +3,7 @@ import React from 'react'
 import { Portal, PortalProps } from '@mui/base'
 import { Box } from '@mui/material'
 
-import { story } from '../../../__tests__/helpers/storybook'
+import { story } from '../../../test-helpers/storybook'
 /**
  * Metadata for Portal stories - update/extend as needed
  */

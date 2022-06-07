@@ -16,8 +16,8 @@ import {
 import { styled } from '@mui/material/styles'
 import { action } from '@storybook/addon-actions'
 
-import { capitalizeFirstLetter } from '../../../__tests__/helpers/helpers'
-import { story } from '../../../__tests__/helpers/storybook'
+import { capitalizeFirstLetter } from '../../../test-helpers/helpers'
+import { story } from '../../../test-helpers/storybook'
 
 /**
  * Metadata for Chip stories - update/extend as needed

@@ -14,7 +14,7 @@ import {
 import AdapterDateFns from '@mui/lab/AdapterDateFns'
 import { Stack, TextField } from '@mui/material'
 
-import { story } from '../../../__tests__/helpers/storybook'
+import { story } from '../../../test-helpers/storybook'
 
 /**
  * Metadata for DateTimePicker stories - update/extend as needed

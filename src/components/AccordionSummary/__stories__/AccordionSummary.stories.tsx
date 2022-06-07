@@ -3,7 +3,7 @@ import React from 'react'
 import ExpandMore from '@mui/icons-material/ExpandMore'
 import { AccordionSummary, AccordionSummaryProps } from '@mui/material'
 
-import { story } from '../../../__tests__/helpers/storybook'
+import { story } from '../../../test-helpers/storybook'
 
 /**
  * Metadata for AccordionSummary stories - update/extend as needed

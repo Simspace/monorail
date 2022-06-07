@@ -6,7 +6,7 @@ import IconButton from '@mui/material/IconButton'
 import Toolbar, { ToolbarProps } from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
 
-import { story } from '../../../__tests__/helpers/storybook'
+import { story } from '../../../test-helpers/storybook'
 
 /**
  * Metadata for Toolbar stories - update/extend as needed

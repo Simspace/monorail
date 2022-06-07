@@ -12,7 +12,7 @@ import {
   Box,
 } from '@mui/material'
 
-import { story } from '../../../__tests__/helpers/storybook'
+import { story } from '../../../test-helpers/storybook'
 
 /**
  * Metadata for BottomNavigation stories - update/extend as needed

@@ -3,7 +3,7 @@ import React from 'react'
 import { Divider, Paper, Stack, StackProps } from '@mui/material'
 import { styled } from '@mui/material/styles'
 
-import { story } from '../../../__tests__/helpers/storybook'
+import { story } from '../../../test-helpers/storybook'
 
 /**
  * Metadata for Stack stories - update/extend as needed

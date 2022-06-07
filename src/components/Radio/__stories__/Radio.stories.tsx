@@ -14,7 +14,7 @@ import {
   useRadioGroup,
 } from '@mui/material'
 
-import { story } from '../../../__tests__/helpers/storybook'
+import { story } from '../../../test-helpers/storybook'
 
 /**
  * Metadata for Radio stories - update/extend as needed
@@ -31,7 +31,7 @@ const Template = story<RadioProps>(
   args => {
     return (
       <>
-        <Radio inputProps={{ 'aria-labelledby': 'radio-demo' }} {...args} />
+        <FormControlLabel control={<Radio {...args} />} label="Radio Demo" />
       </>
     )
   },

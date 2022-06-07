@@ -3,7 +3,7 @@ import React from 'react'
 import { Avatar, Box, Grid, GridProps, Paper, Typography } from '@mui/material'
 import { styled } from '@mui/material/styles'
 
-import { story } from '../../../__tests__/helpers/storybook'
+import { story } from '../../../test-helpers/storybook'
 
 const Item = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,

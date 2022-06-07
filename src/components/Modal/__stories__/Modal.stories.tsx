@@ -12,7 +12,7 @@ import {
 } from '@mui/material'
 import { styled } from '@mui/material/styles'
 
-import { story } from '../../../__tests__/helpers/storybook'
+import { story } from '../../../test-helpers/storybook'
 /**
  * Metadata for Modal stories - update/extend as needed
  */
@@ -372,8 +372,8 @@ export const ServerModal = story<ModalProps>(
           disableEnforceFocus
           disableAutoFocus
           open
-          aria-labelledby="server-modal-title"
-          aria-describedby="server-modal-description"
+          // aria-labelledby="server-modal-title"
+          // aria-describedby="server-modal-description"
           sx={{
             display: 'flex',
             p: 1,

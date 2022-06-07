@@ -10,9 +10,9 @@ import HomeIcon from '@mui/icons-material/Home'
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined'
 import { Box, Icon, IconProps, styled, Typography } from '@mui/material'
 
-import { story } from '../../../__tests__/helpers/storybook'
 import * as Icons from '../../../icons/Icons'
 import { Illustration } from '../../../icons/Illustration'
+import { story } from '../../../test-helpers/storybook'
 /**
  * Metadata for Icon stories - update/extend as needed
  */

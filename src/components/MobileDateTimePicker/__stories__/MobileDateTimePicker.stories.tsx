@@ -3,7 +3,7 @@ import React from 'react'
 import { MobileDateTimePicker, MobileDateTimePickerProps } from '@mui/lab'
 import { TextField } from '@mui/material'
 
-import { story } from '../../../__tests__/helpers/storybook'
+import { story } from '../../../test-helpers/storybook'
 
 /**
  * Metadata for MobileDateTimePicker stories - update/extend as needed

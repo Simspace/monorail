@@ -3,7 +3,7 @@ import React from 'react'
 import { CalendarPicker, CalendarPickerProps } from '@mui/lab'
 import { action } from '@storybook/addon-actions'
 
-import { story } from '../../../__tests__/helpers/storybook'
+import { story } from '../../../test-helpers/storybook'
 /**
  * Metadata for CalendarPicker stories - update/extend as needed
  */

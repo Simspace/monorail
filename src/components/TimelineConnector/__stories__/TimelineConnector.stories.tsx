@@ -4,7 +4,7 @@ import TimelineConnector, {
   TimelineConnectorProps,
 } from '@mui/lab/TimelineConnector'
 
-import { story } from '../../../__tests__/helpers/storybook'
+import { story } from '../../../test-helpers/storybook'
 /**
  * Metadata for TimelineConnector stories - update/extend as needed
  */

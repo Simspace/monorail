@@ -14,8 +14,8 @@ import {
 } from '@mui/material'
 import { styled } from '@mui/material/styles'
 
-import { story } from '../../../__tests__/helpers/storybook'
 import { AccountGroup } from '../../../icons/Icons'
+import { story } from '../../../test-helpers/storybook'
 
 /**
  * Metadata for Avatar stories - update/extend as needed

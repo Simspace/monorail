@@ -39,7 +39,7 @@ import {
 import { alpha, styled } from '@mui/material/styles'
 import useScrollTrigger from '@mui/material/useScrollTrigger'
 
-import { story } from '../../../__tests__/helpers/storybook'
+import { story } from '../../../test-helpers/storybook'
 
 /**
  * Metadata for AppBar stories - update/extend as needed

@@ -9,7 +9,7 @@ import {
 import AdapterDateFns from '@mui/lab/AdapterDateFns'
 import { Box, TextField } from '@mui/material'
 
-import { story } from '../../../__tests__/helpers/storybook'
+import { story } from '../../../test-helpers/storybook'
 
 /**
  * Metadata for StaticDateRangePicker stories - update/extend as needed

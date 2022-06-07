@@ -2,7 +2,7 @@
 import React from 'react'
 import { Tab, TabProps } from '@mui/material'
 
-import { story } from '../../../__tests__/helpers/storybook'
+import { story } from '../../../test-helpers/storybook'
 /**
  * Metadata for Tab stories - update/extend as needed
  */

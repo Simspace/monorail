@@ -27,7 +27,7 @@ import {
   useTheme,
 } from '@mui/material'
 
-import { story } from '../../../__tests__/helpers/storybook'
+import { story } from '../../../test-helpers/storybook'
 
 /**
  * Metadata for Drawer stories - update/extend as needed

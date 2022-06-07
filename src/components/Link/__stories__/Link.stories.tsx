@@ -2,7 +2,7 @@
 import React from 'react'
 import { Link, LinkProps, Stack } from '@mui/material'
 
-import { story } from '../../../__tests__/helpers/storybook'
+import { story } from '../../../test-helpers/storybook'
 
 /**
  * Metadata for Link stories - update/extend as needed

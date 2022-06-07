@@ -17,7 +17,7 @@ import {
 } from '@mui/material'
 import { useTheme } from '@mui/material/styles'
 
-import { story } from '../../../__tests__/helpers/storybook'
+import { story } from '../../../test-helpers/storybook'
 
 /**
  * Metadata for Fab stories - update/extend as needed

@@ -2,7 +2,7 @@
 import React from 'react'
 import { Box, Input, InputProps } from '@mui/material'
 
-import { story } from '../../../__tests__/helpers/storybook'
+import { story } from '../../../test-helpers/storybook'
 
 /**
  * Metadata for Input stories - update/extend as needed

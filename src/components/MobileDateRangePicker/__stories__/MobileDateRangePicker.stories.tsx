@@ -9,7 +9,7 @@ import AdapterDateFns from '@mui/lab/AdapterDateFns'
 import { DateRange } from '@mui/lab/DateRangePicker/RangeTypes'
 import { Box, TextField } from '@mui/material'
 
-import { story } from '../../../__tests__/helpers/storybook'
+import { story } from '../../../test-helpers/storybook'
 
 /**
  * Metadata for MobileDateRangePicker stories - update/extend as needed

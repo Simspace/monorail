@@ -10,7 +10,7 @@ import {
 import styled from '@mui/material/styles/styled'
 import usePagination from '@mui/material/usePagination/usePagination'
 
-import { story } from '../../../__tests__/helpers/storybook'
+import { story } from '../../../test-helpers/storybook'
 /**
  * Metadata for Pagination stories - update/extend as needed
  */

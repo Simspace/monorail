@@ -2,7 +2,7 @@
 import React from 'react'
 import { SpeedDialIcon, SpeedDialIconProps } from '@mui/material'
 
-import { story } from '../../../__tests__/helpers/storybook'
+import { story } from '../../../test-helpers/storybook'
 /**
  * Metadata for SpeedDialIcon stories - update/extend as needed
  */

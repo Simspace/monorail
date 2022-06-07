@@ -11,7 +11,7 @@ import {
   Typography,
 } from '@mui/material'
 
-import { story } from '../../../__tests__/helpers/storybook'
+import { story } from '../../../test-helpers/storybook'
 /**
  * Metadata for StepButton stories - update/extend as needed
  */

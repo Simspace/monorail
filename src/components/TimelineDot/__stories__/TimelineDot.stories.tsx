@@ -2,7 +2,7 @@
 import React from 'react'
 import TimelineDot, { TimelineDotProps } from '@mui/lab/TimelineDot'
 
-import { story } from '../../../__tests__/helpers/storybook'
+import { story } from '../../../test-helpers/storybook'
 /**
  * Metadata for TimelineDot stories - update/extend as needed
  */

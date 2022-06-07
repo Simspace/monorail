@@ -3,7 +3,7 @@ import React from 'react'
 import { Box, ButtonBase, ButtonBaseProps, Typography } from '@mui/material'
 import { styled, Theme } from '@mui/material/styles'
 
-import { story } from '../../../__tests__/helpers/storybook'
+import { story } from '../../../test-helpers/storybook'
 /**
  * Metadata for ButtonBase stories - update/extend as needed
  * This is intended to be exported as story-level metadata from the main .stories.tsx file, like:

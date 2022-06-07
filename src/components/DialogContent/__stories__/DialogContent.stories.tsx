@@ -6,7 +6,7 @@ import {
   DialogContentText,
 } from '@mui/material'
 
-import { story } from '../../../__tests__/helpers/storybook'
+import { story } from '../../../test-helpers/storybook'
 /**
  * Metadata for DialogContent stories - update/extend as needed
  */

@@ -8,7 +8,7 @@ import {
   Stack,
 } from '@mui/material'
 
-import { story } from '../../../__tests__/helpers/storybook'
+import { story } from '../../../test-helpers/storybook'
 
 /**
  * Metadata for AvatarGroup stories - update/extend as needed

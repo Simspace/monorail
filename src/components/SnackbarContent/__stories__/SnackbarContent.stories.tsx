@@ -2,7 +2,7 @@
 import React from 'react'
 import { SnackbarContent, SnackbarContentProps } from '@mui/material'
 
-import { story } from '../../../__tests__/helpers/storybook'
+import { story } from '../../../test-helpers/storybook'
 /**
  * Metadata for SnackbarContent stories - update/extend as needed
  */

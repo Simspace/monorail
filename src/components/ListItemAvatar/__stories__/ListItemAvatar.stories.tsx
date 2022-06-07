@@ -3,7 +3,7 @@ import React from 'react'
 import FolderIcon from '@mui/icons-material/Folder'
 import { Avatar, ListItemAvatar, ListItemAvatarProps } from '@mui/material'
 
-import { story } from '../../../__tests__/helpers/storybook'
+import { story } from '../../../test-helpers/storybook'
 
 /**
  * Metadata for ListItemAvatar stories - update/extend as needed

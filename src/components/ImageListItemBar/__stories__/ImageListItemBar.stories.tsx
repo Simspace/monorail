@@ -7,7 +7,7 @@ import {
   ImageListItemBarProps,
 } from '@mui/material'
 
-import { story } from '../../../__tests__/helpers/storybook'
+import { story } from '../../../test-helpers/storybook'
 
 /**
  * Metadata for ImageListItemBar stories - update/extend as needed

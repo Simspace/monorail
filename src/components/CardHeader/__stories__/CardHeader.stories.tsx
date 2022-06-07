@@ -3,7 +3,7 @@ import React from 'react'
 import CloseIcon from '@mui/icons-material/Close'
 import { Avatar, CardHeader, CardHeaderProps, IconButton } from '@mui/material'
 
-import { story } from '../../../__tests__/helpers/storybook'
+import { story } from '../../../test-helpers/storybook'
 /**
  * Metadata for CardHeader stories - update/extend as needed
  * This is intended to be exported as story-level metadata from the main .stories.tsx file, like:

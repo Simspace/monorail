@@ -2,7 +2,7 @@
 import React from 'react'
 import { Button, Popover, PopoverProps } from '@mui/material'
 
-import { story } from '../../../__tests__/helpers/storybook'
+import { story } from '../../../test-helpers/storybook'
 
 /**
  * Metadata for Popover stories - update/extend as needed

@@ -2,7 +2,7 @@
 import React from 'react'
 import { ImageListItem, ImageListItemProps } from '@mui/material'
 
-import { story } from '../../../__tests__/helpers/storybook'
+import { story } from '../../../test-helpers/storybook'
 /**
  * Metadata for ImageListItem stories - update/extend as needed
  */

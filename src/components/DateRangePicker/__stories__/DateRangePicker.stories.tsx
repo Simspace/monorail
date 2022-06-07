@@ -15,7 +15,7 @@ import AdapterDateFns from '@mui/lab/AdapterDateFns'
 import { Box, Stack, styled, TextField, Typography } from '@mui/material'
 import { addWeeks } from 'date-fns'
 
-import { story } from '../../../__tests__/helpers/storybook'
+import { story } from '../../../test-helpers/storybook'
 
 /**
  * Metadata for DateRangePicker stories - update/extend as needed

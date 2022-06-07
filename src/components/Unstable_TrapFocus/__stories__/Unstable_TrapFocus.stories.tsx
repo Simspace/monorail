@@ -5,7 +5,7 @@ import Unstable_TrapFocus, {
   TrapFocusProps,
 } from '@mui/material/Unstable_TrapFocus'
 
-import { story } from '../../../__tests__/helpers/storybook'
+import { story } from '../../../test-helpers/storybook'
 
 const TrapFocus = Unstable_TrapFocus
 

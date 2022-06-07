@@ -2,7 +2,7 @@
 import React from 'react'
 import { Box, BoxProps, Button, Stack, styled, Typography } from '@mui/material'
 
-import { story } from '../../../__tests__/helpers/storybook'
+import { story } from '../../../test-helpers/storybook'
 
 /**
  * Metadata for Box stories - update/extend as needed

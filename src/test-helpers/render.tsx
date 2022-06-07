@@ -14,7 +14,7 @@ import { css, GlobalStyles } from '@mui/styled-engine'
 import { Story } from '@storybook/react'
 import { render, RenderOptions, RenderResult } from '@testing-library/react'
 
-import { defaultLightTheme } from '../../theme/defaultLightTheme'
+import { defaultLightTheme } from '../theme/defaultLightTheme'
 
 declare module '@mui/styles/defaultTheme' {
   // eslint-disable-next-line @typescript-eslint/no-empty-interface

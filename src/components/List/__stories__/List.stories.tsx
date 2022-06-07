@@ -54,7 +54,7 @@ import {
   ThemeProvider,
 } from '@mui/material/styles'
 
-import { story } from '../../../__tests__/helpers/storybook'
+import { story } from '../../../test-helpers/storybook'
 import { IconButton } from '../../IconButton/IconButton'
 
 declare module '@mui/styles/defaultTheme' {
@@ -230,12 +230,13 @@ export const FolderList = story<ListProps>(
   },
 )
 
-function generate(element: React.ReactElement) {
-  return [0, 1, 2].map(value =>
-    React.cloneElement(element, {
-      key: value,
-    }),
-  )
+function generate(prefix: string, element: (id: string) => React.ReactElement) {
+  return [0, 1, 2].map(value => {
+    const id = `${prefix}-${value}`
+    return React.cloneElement(element(id), {
+      key: id,
+    })
+  })
 }
 
 const Demo = styled('div')(({ theme }) => ({
@@ -276,14 +277,14 @@ export const InteractiveList = story<ListProps>(
             </Typography>
             <Demo>
               <List dense={dense}>
-                {generate(
+                {generate('interactive-list-item-0', () => (
                   <ListItem>
                     <ListItemText
                       primary="Single-line item"
                       secondary={secondary ? 'Secondary text' : null}
                     />
-                  </ListItem>,
-                )}
+                  </ListItem>
+                ))}
               </List>
             </Demo>
           </Grid>
@@ -293,7 +294,7 @@ export const InteractiveList = story<ListProps>(
             </Typography>
             <Demo>
               <List dense={dense}>
-                {generate(
+                {generate('interactive-list-item-1', () => (
                   <ListItem
                     secondaryAction={
                       <IconButton
@@ -312,8 +313,8 @@ export const InteractiveList = story<ListProps>(
                       primary="Single-line item"
                       secondary={secondary ? 'Secondary text' : null}
                     />
-                  </ListItem>,
-                )}
+                  </ListItem>
+                ))}
               </List>
             </Demo>
           </Grid>
@@ -325,17 +326,21 @@ export const InteractiveList = story<ListProps>(
             </Typography>
             <Demo>
               <List dense={dense}>
-                {generate(
+                {generate('interactive-list-item-2', id => (
                   <ListItem>
                     <ListItemIcon>
-                      <Checkbox size={dense ? 'small' : 'medium'} />
+                      <Checkbox
+                        size={dense ? 'small' : 'medium'}
+                        inputProps={{ 'aria-labelledby': id }}
+                      />
                     </ListItemIcon>
                     <ListItemText
+                      id={id}
                       primary="Single-line item"
                       secondary={secondary ? 'Secondary text' : null}
                     />
-                  </ListItem>,
-                )}
+                  </ListItem>
+                ))}
               </List>
             </Demo>
           </Grid>
@@ -345,7 +350,7 @@ export const InteractiveList = story<ListProps>(
             </Typography>
             <Demo>
               <List dense={dense}>
-                {generate(
+                {generate('interactive-list-item-3', () => (
                   <ListItem
                     secondaryAction={
                       <IconButton edge="end" aria-label="delete">
@@ -362,8 +367,8 @@ export const InteractiveList = story<ListProps>(
                       primary="Single-line item"
                       secondary={secondary ? 'Secondary text' : null}
                     />
-                  </ListItem>,
-                )}
+                  </ListItem>
+                ))}
               </List>
             </Demo>
           </Grid>

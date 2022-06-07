@@ -5,7 +5,7 @@ import AlarmIcon from '@mui/icons-material/Alarm'
 import DeleteIcon from '@mui/icons-material/Delete'
 import { Stack, Typography } from '@mui/material'
 
-import { story } from '../../../__tests__/helpers/storybook'
+import { story } from '../../../test-helpers/storybook'
 import { IconButton, IconButtonProps } from '../IconButton'
 /**
  * Metadata for IconButton stories - update/extend as needed

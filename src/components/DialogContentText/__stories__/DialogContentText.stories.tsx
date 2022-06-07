@@ -2,7 +2,7 @@
 import React from 'react'
 import { DialogContentText, DialogContentTextProps } from '@mui/material'
 
-import { story } from '../../../__tests__/helpers/storybook'
+import { story } from '../../../test-helpers/storybook'
 /**
  * Metadata for DialogContentText stories - update/extend as needed
  */

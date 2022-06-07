@@ -2,7 +2,7 @@
 import React from 'react'
 import { DataGrid, DataGridProps } from '@mui/x-data-grid'
 
-import { story } from '../../../__tests__/helpers/storybook'
+import { story } from '../../../test-helpers/storybook'
 
 export default { title: 'Data Grid/Group & Pivot', component: DataGrid }
 

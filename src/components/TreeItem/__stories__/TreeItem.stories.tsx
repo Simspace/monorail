@@ -2,7 +2,7 @@
 import React from 'react'
 import TreeItem, { TreeItemProps } from '@mui/lab/TreeItem'
 
-import { story } from '../../../__tests__/helpers/storybook'
+import { story } from '../../../test-helpers/storybook'
 /**
  * Metadata for TreeItem stories - update/extend as needed
  */

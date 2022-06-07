@@ -19,7 +19,7 @@ const jestConfig = {
   ],
   setupFilesAfterEnv: ['<rootDir>/jest/jest.postsetup.ts'],
   // TODO: this test regex disables `*.gen.*` tests, because of a timeout issue with a11y tests in CI
-  testRegex: '^(?!.*gen\\.(?:test|jest)).+\\.(test|jest)\\.(ts|tsx|js|jsx)$',
+  // testRegex: '^(?!.*gen\\.(?:test|jest)).+\\.(test|jest)\\.(ts|tsx|js|jsx)$',
   testURL: 'http://localhost/',
   transform: {
     '^.+\\.(js|jsx|ts|tsx)$': 'babel-jest',

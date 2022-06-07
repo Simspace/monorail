@@ -7,7 +7,7 @@ import {
   OutlinedInputProps,
 } from '@mui/material'
 
-import { story } from '../../../__tests__/helpers/storybook'
+import { story } from '../../../test-helpers/storybook'
 
 /**
  * Metadata for OutlinedInput stories - update/extend as needed

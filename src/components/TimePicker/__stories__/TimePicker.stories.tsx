@@ -15,7 +15,7 @@ import enLocale from 'date-fns/locale/en-US'
 import frLocale from 'date-fns/locale/fr'
 import ruLocale from 'date-fns/locale/ru'
 
-import { story } from '../../../__tests__/helpers/storybook'
+import { story } from '../../../test-helpers/storybook'
 /**
  * Metadata for TimePicker stories - update/extend as needed
  */
