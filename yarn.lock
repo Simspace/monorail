@@ -3063,6 +3063,7 @@ __metadata:
     "@storybook/addon-docs": ^6.5.7
     "@storybook/addon-essentials": ^6.5.7
     "@storybook/addon-links": ^6.5.7
+    "@storybook/core": ^6.5.7
     "@storybook/node-logger": ^6.5.7
     "@storybook/preset-create-react-app": ^3.2.0
     "@storybook/react": ^6.5.7
@@ -3929,7 +3930,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/core@npm:6.5.7":
+"@storybook/core@npm:6.5.7, @storybook/core@npm:^6.5.7":
   version: 6.5.7
   resolution: "@storybook/core@npm:6.5.7"
   dependencies:
