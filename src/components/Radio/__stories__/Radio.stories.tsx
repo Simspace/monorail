@@ -31,7 +31,7 @@ const Template = story<RadioProps>(
   args => {
     return (
       <>
-        <Radio inputProps={{ 'aria-labelledby': 'radio-demo' }} {...args} />
+        <FormControlLabel control={<Radio {...args} />} label="Radio Demo" />
       </>
     )
   },

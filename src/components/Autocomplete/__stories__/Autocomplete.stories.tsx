@@ -171,7 +171,7 @@ export const MultipleValues = story<MovieAutocompleteProps>(args => {
         multiple
         id="tags-filled"
         options={movies}
-        defaultValue={[movies[13].label]}
+        defaultValue={[movies[13]]}
         freeSolo
         renderTags={(value: ReadonlyArray<Movie>, getTagProps) =>
           value.map((option: Movie, index: number) => (

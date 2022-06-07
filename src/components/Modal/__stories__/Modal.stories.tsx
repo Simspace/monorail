@@ -372,8 +372,8 @@ export const ServerModal = story<ModalProps>(
           disableEnforceFocus
           disableAutoFocus
           open
-          aria-labelledby="server-modal-title"
-          aria-describedby="server-modal-description"
+          // aria-labelledby="server-modal-title"
+          // aria-describedby="server-modal-description"
           sx={{
             display: 'flex',
             p: 1,

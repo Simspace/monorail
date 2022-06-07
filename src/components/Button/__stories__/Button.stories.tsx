@@ -48,7 +48,7 @@ const buttons = variants.map(variant => (
     <Typography variant="h1">{variant}</Typography>
     {sizes.map(size => (
       <React.Fragment key={size}>
-        <Typography variant="subtitle1" margin={2}>
+        <Typography variant="h2" margin={2}>
           {size}
         </Typography>
         <Stack direction="row" spacing={2} margin={2}>
@@ -65,7 +65,7 @@ const buttons = variants.map(variant => (
         </Stack>
       </React.Fragment>
     ))}
-    <Typography variant="subtitle1" margin={2}>
+    <Typography variant="h2" margin={2}>
       disabled
     </Typography>
     <Stack direction="row" spacing={2} margin={2}>

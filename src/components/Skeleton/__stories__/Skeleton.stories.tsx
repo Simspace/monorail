@@ -312,7 +312,10 @@ const SkeletonChildrenDemo = (props: { loading?: boolean }) => {
               <Avatar />
             </Skeleton>
           ) : (
-            <Avatar src="https://pbs.twimg.com/profile_images/877631054525472768/Xp5FAPD5_reasonably_small.jpg" />
+            <Avatar
+              alt="TED"
+              src="https://pbs.twimg.com/profile_images/877631054525472768/Xp5FAPD5_reasonably_small.jpg"
+            />
           )}
         </Box>
         <Box sx={{ width: '100%' }}>

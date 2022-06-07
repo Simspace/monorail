@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { configureAxe } from 'jest-axe'
 
 import { renderStory } from './render'
@@ -13,6 +14,9 @@ const axe = configureAxe({
     'landmark-one-main': { enabled: false },
     region: { enabled: false },
     'page-has-heading-one': { enabled: false },
+    'aria-progressbar-name': { enabled: false },
+    'nested-interactive': { enabled: false },
+    'duplicate-id': { enabled: false },
   },
 })
 

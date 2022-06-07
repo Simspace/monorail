@@ -443,8 +443,9 @@ export const ComposedTextField = story(
             id="component-disabled"
             value={name}
             onChange={handleChange}
+            aria-describedby="component-disabled-text"
           />
-          <FormHelperText>Disabled</FormHelperText>
+          <FormHelperText id="component-disabled-text">Disabled</FormHelperText>
         </FormControl>
         <FormControl error>
           <InputLabel htmlFor="component-error">Name</InputLabel>
@@ -459,8 +460,8 @@ export const ComposedTextField = story(
 
         <FormControl sx={{ display: 'flex', flexDirection: 'row' }}>
           <InputLabel
+            htmlFor="label-on-left"
             sx={{ fontWeight: 700, m: 0, mt: 3, mr: 3, left: 0 }}
-            id="label-on-left"
           >
             Select
           </InputLabel>
@@ -469,6 +470,7 @@ export const ComposedTextField = story(
               id="label-on-left"
               value={name}
               onChange={handleChange}
+              aria-describedby="label-on-left-text"
             />
             <FormHelperText id="label-on-left-text">
               Some important helper text
