@@ -47,10 +47,8 @@ import { MonorailSkeletonOverrides } from '../components/Skeleton/themeOverrides
 import { MonorailSnackbarOverrides } from '../components/Snackbar/themeOverrides'
 import { MonorailSvgIconOverrides } from '../components/SvgIcon/themeOverrides'
 import { MonorailSwitchOverrides } from '../components/Switch/themeOverrides'
-import {
-  MonorailTabOverrides,
-  MonorailTabsOverrides,
-} from '../components/Tabs/themeOverrides'
+import { MonorailTabOverrides } from '../components/Tab/themeOverrides'
+import { MonorailTabsOverrides } from '../components/Tabs/themeOverrides'
 import { MonorailTextFieldOverrides } from '../components/TextField/themeOverrides'
 import {
   MonorailToggleButtonGroupOverrides,

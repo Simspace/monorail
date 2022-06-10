@@ -6,7 +6,7 @@ import PhoneIcon from '@mui/icons-material/Phone'
 import { TabPanel as LabTabPanel } from '@mui/lab'
 import TabContext from '@mui/lab/TabContext'
 import TabList from '@mui/lab/TabList'
-import { AppBar, Box, styled, Tab, Typography } from '@mui/material'
+import { AppBar, Box, Stack, styled, Tab, Typography } from '@mui/material'
 import Tabs, { TabsProps } from '@mui/material/Tabs'
 
 import { story } from '../../../test-helpers/storybook'
@@ -188,7 +188,7 @@ export const ColoredTab = story(() => {
   }
 
   return (
-    <Box sx={{ width: '100%' }}>
+    <Stack gap={4} sx={{ width: '100%' }}>
       <Tabs
         value={value}
         onChange={handleChange}
@@ -200,7 +200,29 @@ export const ColoredTab = story(() => {
         <Tab value="two" label="Item Two" />
         <Tab value="three" label="Item Three" />
       </Tabs>
-    </Box>
+      <Tabs
+        value={value}
+        onChange={handleChange}
+        textColor="secondary"
+        indicatorColor="secondary"
+        aria-label="secondary tabs example"
+      >
+        <Tab value="one" icon={<PhoneIcon />} />
+        <Tab value="two" icon={<FavoriteIcon />} />
+        <Tab value="three" icon={<PersonPinIcon />} />
+      </Tabs>
+      <Tabs
+        value={value}
+        onChange={handleChange}
+        textColor="secondary"
+        indicatorColor="secondary"
+        aria-label="secondary tabs example"
+      >
+        <Tab value="one" label="Item One" icon={<PhoneIcon />} />
+        <Tab value="two" label="Item Two" icon={<FavoriteIcon />} />
+        <Tab value="three" label="Item Three" icon={<PersonPinIcon />} />
+      </Tabs>
+    </Stack>
   )
 })
 
@@ -765,9 +787,9 @@ export const NavTabs = story(
           onChange={handleChange}
           aria-label="nav tabs example"
         >
-          <LinkTab label="Page One" href="/drafts" />
-          <LinkTab label="Page Two" href="/trash" />
-          <LinkTab label="Page Three" href="/spam" />
+          <LinkTab label="Page One" href="/drafts" aria-label="favorite" />
+          <LinkTab label="Page Two" href="/trash" aria-label="favorite" />
+          <LinkTab label="Page Three" href="/spam" aria-label="favorite" />
         </Tabs>
       </Box>
     )
