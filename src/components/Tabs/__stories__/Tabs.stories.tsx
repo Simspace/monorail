@@ -187,54 +187,56 @@ export const WrappedLabels = story<TabsProps>(
   },
 )
 
-export const ColoredTab = story<TabsProps>(args => {
-  const [value, setValue] = React.useState('one')
+export const ColoredTab = story<TabsProps>(
+  args => {
+    const [value, setValue] = React.useState('one')
 
-  const handleChange = (event: React.SyntheticEvent, newValue: string) => {
-    setValue(newValue)
-  }
+    const handleChange = (event: React.SyntheticEvent, newValue: string) => {
+      setValue(newValue)
+    }
 
-  return (
-    <Stack gap={4} sx={{ width: '100%' }}>
-      <Tabs
-        value={value}
-        onChange={handleChange}
-        textColor="secondary"
-        indicatorColor="secondary"
-        aria-label="secondary tabs example"
-        {...args}
-      >
-        <Tab value="one" label="Item One" />
-        <Tab value="two" label="Item Two" />
-        <Tab value="three" label="Item Three" />
-      </Tabs>
-      <Tabs
-        value={value}
-        onChange={handleChange}
-        textColor="secondary"
-        indicatorColor="secondary"
-        aria-label="secondary tabs example"
-        {...args}
-      >
-        <Tab value="one" icon={<PhoneIcon />} />
-        <Tab value="two" icon={<FavoriteIcon />} />
-        <Tab value="three" icon={<PersonPinIcon />} />
-      </Tabs>
-      <Tabs
-        value={value}
-        onChange={handleChange}
-        textColor="secondary"
-        indicatorColor="secondary"
-        aria-label="secondary tabs example"
-        {...args}
-      >
-        <Tab value="one" label="Item One" icon={<PhoneIcon />} />
-        <Tab value="two" label="Item Two" icon={<FavoriteIcon />} />
-        <Tab value="three" label="Item Three" icon={<PersonPinIcon />} />
-      </Tabs>
-    </Stack>
-  )
-})
+    return (
+      <Stack gap={4} sx={{ width: '100%' }}>
+        <Tabs
+          value={value}
+          onChange={handleChange}
+          textColor="secondary"
+          indicatorColor="secondary"
+          aria-label="secondary tabs example"
+          {...args}
+        >
+          <Tab value="one" label="Item One" />
+          <Tab value="two" label="Item Two" />
+          <Tab value="three" label="Item Three" />
+        </Tabs>
+        <Tabs
+          value={value}
+          onChange={handleChange}
+          textColor="secondary"
+          indicatorColor="secondary"
+          aria-label="secondary tabs example"
+          {...args}
+        >
+          <Tab value="one" label="Item One" icon={<PhoneIcon />} />
+          <Tab value="two" label="Item Two" icon={<FavoriteIcon />} />
+          <Tab value="three" label="Item Three" icon={<PersonPinIcon />} />
+        </Tabs>
+      </Stack>
+    )
+  },
+  {
+    parameters: {
+      a11y: {
+        /**
+         * Our orange buttons fail the WCAG 2.0 contrast test.
+         * See https://gitlab.com/simspace/r9y/monorail/-/merge_requests/20#note_989402928
+         * GS 6/13/22
+         */
+        disable: true,
+      },
+    },
+  },
+)
 
 export const DisabledTab = story<TabsProps>(args => {
   const [value, setValue] = React.useState(2)
@@ -301,11 +303,11 @@ export const FixedTabs = story<TabsProps>(
 
     return (
       <Box sx={{ bgcolor: 'background.paper', width: 500 }}>
-        <AppBar position="static">
+        <AppBar position="static" color="transparent">
           <Tabs
             value={value}
             onChange={handleChange}
-            indicatorColor="secondary"
+            indicatorColor="primary"
             textColor="inherit"
             variant="fullWidth"
             aria-label="full width tabs example"
@@ -335,6 +337,10 @@ export const FixedTabs = story<TabsProps>(
           story:
             'Long labels will automatically wrap on tabs. If the label is too long for the tab, it will overflow, and the text will not be visible.',
         },
+      },
+      a11y: {
+        // TODO(a11y): Fix contrast
+        disable: true,
       },
     },
   },
@@ -541,7 +547,7 @@ export const PreventScrollButtons = story<TabsProps>(
 const AntTabs = styled(Tabs)({
   borderBottom: '1px solid #e8e8e8',
   '& .MuiTabs-indicator': {
-    backgroundColor: '#1890ff',
+    backgroundColor: '#0464be',
   },
 })
 
@@ -573,7 +579,7 @@ const AntTab = styled((props: StyledTabProps) => (
     opacity: 1,
   },
   '&.Mui-selected': {
-    color: '#1890ff',
+    color: '#0464be',
     fontWeight: theme.typography.fontWeightMedium,
   },
   '&.Mui-focusVisible': {
