@@ -21,12 +21,6 @@ const Template = story<TabProps>(
   ),
   {
     args: { label: 'Item 1' },
-    parameters: {
-      a11y: {
-        // TODO: Fix contrast
-        disable: true,
-      },
-    },
   },
 )
 /** Default story for Tab (edit/remove by hand if needed) */
