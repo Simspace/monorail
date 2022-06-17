@@ -3123,6 +3123,7 @@ __metadata:
     react: 17.0.2
     react-dom: 17.0.2
     react-draggable: 4.4.4
+    react-transition-group: 4.4.2
   languageName: unknown
   linkType: soft
 

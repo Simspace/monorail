@@ -41,7 +41,8 @@
     "date-fns": "2.23.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "react-draggable": "4.4.4"
+    "react-draggable": "4.4.4",
+    "react-transition-group": "4.4.2"
   },
   "devDependencies": {
     "@emotion/react": "11.4.1",
