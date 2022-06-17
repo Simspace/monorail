@@ -3100,7 +3100,7 @@ __metadata:
     notistack: ^2.0.4
     prettier: 2.5.1
     react: 17.0.2
-    react-docgen-typescript: 2.1.0
+    react-docgen-typescript: 2.2.2
     react-dom: 17.0.2
     react-draggable: 4.4.4
     react-transition-group: 4.4.2
@@ -15527,12 +15527,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-docgen-typescript@npm:2.1.0":
-  version: 2.1.0
-  resolution: "react-docgen-typescript@npm:2.1.0"
+"react-docgen-typescript@npm:2.2.2, react-docgen-typescript@npm:^2.1.1":
+  version: 2.2.2
+  resolution: "react-docgen-typescript@npm:2.2.2"
   peerDependencies:
     typescript: ">= 4.3.x"
-  checksum: b1ab06ba635631c8f4575e33a85c6c591dd22cefb18f7a4d0b30a4c7c2e4f51e74d0bd597f59272189345e56949e13f4b387496a87bb75705c5d80e070585a04
+  checksum: a9826459ea44e818f21402728dd47f5cae60bd936574cefd4f90ad101ff3eebacd67b6e017b793309734ce62c037aa3072dbc855d2b0e29bad1a38cbf5bac115
   languageName: node
   linkType: hard
 
@@ -15542,15 +15542,6 @@ __metadata:
   peerDependencies:
     typescript: ">= 3.x"
   checksum: f5e5519cf3f1136b8e66bb3c459e02edf4d6c0d3bc1ee0fa848c8446f93f5332fb67c794f36e3597fd7374dea7433243537a4fd2b9311aa5d0c5a844ab8cb980
-  languageName: node
-  linkType: hard
-
-"react-docgen-typescript@npm:^2.1.1":
-  version: 2.2.2
-  resolution: "react-docgen-typescript@npm:2.2.2"
-  peerDependencies:
-    typescript: ">= 4.3.x"
-  checksum: a9826459ea44e818f21402728dd47f5cae60bd936574cefd4f90ad101ff3eebacd67b6e017b793309734ce62c037aa3072dbc855d2b0e29bad1a38cbf5bac115
   languageName: node
   linkType: hard
 
