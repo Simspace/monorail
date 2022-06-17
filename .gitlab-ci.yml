@@ -28,16 +28,16 @@ build:
   script:
     - yarn build:pack
 
-lint:
-  stage: test
-  script:
-    - yarn eslint
-    - yarn prettier:check
+# lint:
+#   stage: test
+#   script:
+#     - yarn eslint
+#     - yarn prettier:check
 
-test:
-  stage: test
-  script:
-    - yarn test
+# test:
+#   stage: test
+#   script:
+#     - yarn test
 
 storybook:
   stage: storybook
