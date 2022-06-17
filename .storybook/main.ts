@@ -43,7 +43,9 @@ export default {
           'emotion-theming': '@emotion/react',
         },
       },
-      optimization: {},
+      optimization: {
+        minimize: false
+      },
     }
   },
 }
