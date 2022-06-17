@@ -4,6 +4,7 @@
 /* eslint-disable no-restricted-imports */
 /* eslint-disable import/no-extraneous-dependencies */
 
+import { Theme } from '@mui/material'
 import { Args as DefaultArgs } from '@storybook/addons'
 import {
   ArgTypes,
@@ -13,6 +14,7 @@ import {
   Story as StorybookStory,
 } from '@storybook/react'
 
+import { defaultLightTheme } from '../theme/defaultLightTheme'
 import { isNonEmptyString } from './typeGuards'
 
 type A11yParameter = {
@@ -182,10 +184,22 @@ type StoryConfiguration<T> = {
  */
 export function story<T extends DefaultArgs>(
   Template: Story<T>,
-  { args, argTypes, parameters, storyName }: StoryConfiguration<T> = {},
+  {
+    args,
+    argTypes,
+    parameters,
+    storyName,
+    muiName,
+  }: StoryConfiguration<T> & {
+    muiName?: keyof NonNullable<Theme['components']>
+  } = {},
 ): Story<T> {
+  let themeProps = {}
+  if (muiName) {
+    themeProps = defaultLightTheme.components?.[muiName]?.defaultProps
+  }
   const NewStory = Template.bind({})
-  NewStory.args = { ...Template.args, ...args } as Partial<T>
+  NewStory.args = { ...themeProps, ...Template.args, ...args } as Partial<T>
   NewStory.argTypes = { ...Template.argTypes, ...argTypes } as Partial<
     ArgTypes<Partial<T>>
   >

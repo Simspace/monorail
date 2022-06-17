@@ -2,6 +2,7 @@
 import React from 'react'
 import Visibility from '@mui/icons-material/Visibility'
 import VisibilityOff from '@mui/icons-material/VisibilityOff'
+
 import {
   Box,
   FilledInput,
@@ -14,8 +15,7 @@ import {
   InputLabel,
   OutlinedInput,
   TextField,
-} from '@mui/material'
-
+} from '../../..'
 import { story } from '../../../test-helpers/storybook'
 
 /**
@@ -57,6 +57,7 @@ const Template = story<InputAdornmentProps>(
   ),
   {
     args: {},
+    muiName: 'MuiInputAdornment',
   },
 )
 

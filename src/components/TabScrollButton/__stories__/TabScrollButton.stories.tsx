@@ -1,9 +1,7 @@
 // Edit this file to add new stories
 import React from 'react'
-import TabScrollButton, {
-  TabScrollButtonProps,
-} from '@mui/material/TabScrollButton'
 
+import { TabScrollButton, TabScrollButtonProps } from '../../..'
 import { story } from '../../../test-helpers/storybook'
 /**
  * Metadata for TabScrollButton stories - update/extend as needed

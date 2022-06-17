@@ -2,6 +2,8 @@
 import React from 'react'
 import VolumeDown from '@mui/icons-material/VolumeDown'
 import VolumeUp from '@mui/icons-material/VolumeUp'
+import MuiInput from '@mui/material/Input'
+
 import {
   Box,
   Grid,
@@ -12,9 +14,7 @@ import {
   styled,
   Tooltip,
   Typography,
-} from '@mui/material'
-import MuiInput from '@mui/material/Input'
-
+} from '../../..'
 import { story } from '../../../test-helpers/storybook'
 
 /**
@@ -41,6 +41,7 @@ const Template = story<SliderProps>(
   args => <Slider aria-label="I am aria-labeled" {...args} />,
   {
     args: {},
+    muiName: 'MuiSlider',
   },
 )
 /** Default story for Slider (edit/remove by hand if needed) */

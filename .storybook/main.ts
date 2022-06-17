@@ -16,6 +16,12 @@ export default {
     // maintain all the generated .meta.json files, but there is a tradeoff with performance, and sometimes correctness when
     // using the auto-gen like this.
     reactDocgen: 'react-docgen-typescript',
+    reactDocgenTypescriptOptions: {
+      compilerOptions: {
+        allowSyntheticDefaultImports: false,
+        esModuleInterop: false,
+      },
+    },
   },
 
   // Attempt to address and issue with storybook and MUI's emotion versions
@@ -36,6 +42,9 @@ export default {
           '@emotion/core': '@emotion/react',
           'emotion-theming': '@emotion/react',
         },
+      },
+      optimization: {
+        minimizer: config.optimization.minimizer
       },
     }
   },

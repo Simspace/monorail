@@ -1,14 +1,7 @@
 // Edit this file to add new stories
 import React from 'react'
-import {
-  Box,
-  Fade,
-  FadeProps,
-  FormControlLabel,
-  Paper,
-  Switch,
-} from '@mui/material'
 
+import { Box, Fade, FadeProps, FormControlLabel, Paper, Switch } from '../../..'
 import { story } from '../../../test-helpers/storybook'
 /**
  * Metadata for Fade stories - update/extend as needed

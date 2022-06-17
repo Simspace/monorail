@@ -8,16 +8,16 @@ import SentimentSatisfiedAltIcon from '@mui/icons-material/SentimentSatisfiedAlt
 import SentimentVeryDissatisfiedIcon from '@mui/icons-material/SentimentVeryDissatisfied'
 import SentimentVerySatisfiedIcon from '@mui/icons-material/SentimentVerySatisfied'
 import StarIcon from '@mui/icons-material/Star'
+
 import {
   Box,
   IconContainerProps,
   Rating,
   RatingProps,
   Stack,
+  styled,
   Typography,
-} from '@mui/material'
-import { styled } from '@mui/material/styles'
-
+} from '../../..'
 import { story } from '../../../test-helpers/storybook'
 
 /**
@@ -32,6 +32,7 @@ export default { title: 'Inputs/Rating', component: Rating }
  */
 const Template = story<RatingProps>(args => <Rating {...args} />, {
   args: {},
+  muiName: 'MuiRating',
 })
 /** Default story for Rating (edit/remove by hand if needed) */
 export const Default = story(Template)

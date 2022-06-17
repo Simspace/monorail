@@ -1,8 +1,8 @@
 // Edit this file to add new stories
 import React from 'react'
-import { CalendarPicker, CalendarPickerProps } from '@mui/lab'
 import { action } from '@storybook/addon-actions'
 
+import { CalendarPicker, CalendarPickerProps } from '../../..'
 import { story } from '../../../test-helpers/storybook'
 /**
  * Metadata for CalendarPicker stories - update/extend as needed
@@ -10,7 +10,7 @@ import { story } from '../../../test-helpers/storybook'
 export default {
   title: 'Inputs/Date and Time/Date/CalendarPicker',
   // TODO: CalendarPickerPropsWithClasses not exported
-  //component: CalendarPicker,
+  // component: CalendarPicker,
 }
 
 /**
@@ -19,22 +19,27 @@ export default {
  * Note: there should be at least one "Default" story that uses this template with the "story" function.
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
-const Template = story<CalendarPickerProps<Date>>(args => {
-  const [date, setDate] = React.useState<Date | null>(
-    new Date('2021-01-01T12:34:00.000Z'),
-  )
+const Template = story<CalendarPickerProps<Date>>(
+  args => {
+    const [date, setDate] = React.useState<Date | null>(
+      new Date('2021-01-01T12:34:00.000Z'),
+    )
 
-  return (
-    <CalendarPicker
-      date={date}
-      onChange={newDate => {
-        setDate(newDate)
-        action('onChange')
-      }}
-      {...args}
-    />
-  )
-})
+    return (
+      <CalendarPicker
+        date={date}
+        onChange={newDate => {
+          setDate(newDate)
+          action('onChange')
+        }}
+        {...args}
+      />
+    )
+  },
+  {
+    muiName: 'MuiCalendarPicker',
+  },
+)
 
 /** Default story for CalendarPicker (edit/remove by hand if needed) */
 export const Default = story(Template, {

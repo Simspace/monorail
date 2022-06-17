@@ -1,5 +1,6 @@
 // Edit this file to add new stories
 import React from 'react'
+
 import {
   Checkbox,
   FormControl,
@@ -7,9 +8,9 @@ import {
   FormControlProps,
   FormGroup,
   FormLabel,
-} from '@mui/material'
-
+} from '../../..'
 import { story } from '../../../test-helpers/storybook'
+
 /**
  * Metadata for FormControl stories - update/extend as needed
  */
@@ -54,6 +55,7 @@ const Template = story<FormControlProps>(
         },
       },
     },
+    muiName: 'MuiFormControl',
   },
 )
 export const Default = story(Template)

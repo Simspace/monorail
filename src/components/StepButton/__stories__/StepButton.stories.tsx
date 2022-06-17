@@ -1,6 +1,7 @@
 // Edit this file to add new stories
 import React from 'react'
 import { WarningAmberTwoTone } from '@mui/icons-material'
+
 import {
   Box,
   Step,
@@ -9,8 +10,7 @@ import {
   StepLabel,
   Stepper,
   Typography,
-} from '@mui/material'
-
+} from '../../..'
 import { story } from '../../../test-helpers/storybook'
 /**
  * Metadata for StepButton stories - update/extend as needed
@@ -43,6 +43,7 @@ A clickable, labeled step.
         },
       },
     },
+    muiName: 'MuiStepButton',
   },
 )
 

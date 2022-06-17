@@ -9,15 +9,15 @@ import InputAdornment from '@mui/material/InputAdornment'
 import InputBase from '@mui/material/InputBase'
 import InputLabel from '@mui/material/InputLabel'
 import OutlinedInput, { OutlinedInputProps } from '@mui/material/OutlinedInput'
-import { alpha, styled } from '@mui/material/styles'
-import TextField, { TextFieldProps } from '@mui/material/TextField'
 
+import { alpha, styled, TextField, TextFieldProps } from '../../..'
 import { story } from '../../../test-helpers/storybook'
 
 export default { title: 'Inputs/TextField', component: TextField }
 
 const Template = story<TextFieldProps>(args => <TextField {...args} />, {
   args: { label: 'Text Field', inputProps: { 'aria-label': 'Text Field' } },
+  muiName: 'MuiTextField',
 })
 
 export const Default = story(Template)

@@ -1,18 +1,17 @@
-import React from 'react'
-import * as MUI from '@mui/material'
+import {
+  ExtendButtonBase,
+  IconButton as MuiIconButton,
+  IconButtonTypeMap,
+} from '@mui/material'
 
-export interface IconButtonProps extends MUI.IconButtonProps {
-  variant?: 'contained' | 'outlined' | 'chromeless'
-  shape?: 'circular' | 'rounded'
-}
+export const IconButton: ExtendButtonBase<
+  IconButtonTypeMap<
+    {
+      variant?: 'contained' | 'outlined' | 'chromeless'
+      shape?: 'circular' | 'rounded'
+    },
+    'button'
+  >
+> = MuiIconButton
 
-export const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
-  (props, ref) => (
-    <MUI.IconButton
-      ref={ref}
-      variant="chromeless"
-      shape="circular"
-      {...props}
-    />
-  ),
-)
+export * from '@mui/material/IconButton'

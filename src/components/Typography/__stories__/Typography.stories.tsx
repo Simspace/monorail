@@ -1,10 +1,7 @@
 // Edit this file to add new stories
 import React from 'react'
-import Box from '@mui/material/Box'
-import Stack from '@mui/material/Stack'
-import { styled } from '@mui/material/styles'
-import Typography, { TypographyProps } from '@mui/material/Typography'
 
+import { Box, Stack, styled, Typography, TypographyProps } from '../../..'
 import { story } from '../../../test-helpers/storybook'
 
 /**
@@ -20,6 +17,7 @@ export default { title: 'Data Display/Typography', component: Typography }
  */
 const Template = story<TypographyProps>(args => <Typography {...args} />, {
   args: { children: 'Typography is used for rendering text' },
+  muiName: 'MuiTypography',
 })
 
 /** Default story for Typography (edit/remove by hand if needed) */

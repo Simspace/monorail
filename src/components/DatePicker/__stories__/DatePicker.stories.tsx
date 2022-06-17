@@ -1,27 +1,7 @@
 // Edit this file to add new stories
 import React from 'react'
-import {
-  CalendarPickerSkeleton,
-  DatePicker,
-  DatePickerProps,
-  DesktopDatePicker,
-  MobileDatePicker,
-  PickersDay,
-  PickersDayProps,
-  StaticDatePicker,
-} from '@mui/lab'
 import AdapterDateFns from '@mui/lab/AdapterDateFns'
 import LocalizationProvider from '@mui/lab/LocalizationProvider'
-import {
-  Badge,
-  Box,
-  Stack,
-  styled,
-  TextField,
-  TextFieldProps,
-  ToggleButton,
-  ToggleButtonGroup,
-} from '@mui/material'
 import { action } from '@storybook/addon-actions'
 import {
   endOfWeek,
@@ -36,7 +16,26 @@ import enLocale from 'date-fns/locale/en-US'
 import frLocale from 'date-fns/locale/fr'
 import ruLocale from 'date-fns/locale/ru'
 
+import {
+  Badge,
+  Box,
+  CalendarPickerSkeleton,
+  DatePicker,
+  DatePickerProps,
+  DesktopDatePicker,
+  MobileDatePicker,
+  PickersDay,
+  PickersDayProps,
+  Stack,
+  StaticDatePicker,
+  styled,
+  TextField,
+  TextFieldProps,
+  ToggleButton,
+  ToggleButtonGroup,
+} from '../../..'
 import { story } from '../../../test-helpers/storybook'
+
 /**
  * Metadata for DatePicker stories - update/extend as needed
  */
@@ -67,6 +66,7 @@ const Template = story<DatePickerProps<Date>>(
       />
     )
   },
+  { muiName: 'MuiDatePicker' },
 )
 
 export const Default = story(Template, {

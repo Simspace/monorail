@@ -1,9 +1,8 @@
 // Edit this file to add new stories
 import React from 'react'
-import { DesktopDatePicker, DesktopDatePickerProps } from '@mui/lab'
-import { TextField } from '@mui/material'
 import { action } from '@storybook/addon-actions'
 
+import { DesktopDatePicker, DesktopDatePickerProps, TextField } from '../../..'
 import { story } from '../../../test-helpers/storybook'
 
 export default {

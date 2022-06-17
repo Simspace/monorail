@@ -1,7 +1,7 @@
 // Edit this file to add new stories
 import React from 'react'
-import { ListSubheader, ListSubheaderProps } from '@mui/material'
 
+import { ListSubheader, ListSubheaderProps } from '../../..'
 import { story } from '../../../test-helpers/storybook'
 /**
  * Metadata for ListSubheader stories - update/extend as needed
@@ -22,7 +22,7 @@ const Template = story<ListSubheaderProps>(
       <ListSubheader {...args} />
     </ul>
   ),
-  { args: { children: 'List Subheader' } },
+  { args: { children: 'List Subheader' }, muiName: 'MuiListSubheader' },
 )
 /** Default story for ListSubheader (edit/remove by hand if needed) */
 export const Default = story(Template)

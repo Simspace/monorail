@@ -1,8 +1,6 @@
 import React from 'react'
-import TextareaAutosize, {
-  TextareaAutosizeProps,
-} from '@mui/material/TextareaAutosize'
 
+import { TextareaAutosize, TextareaAutosizeProps } from '../../..'
 import { story } from '../../../test-helpers/storybook'
 
 export default { title: 'Inputs/TextareaAutosize', component: TextareaAutosize }

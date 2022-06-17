@@ -1,11 +1,7 @@
 // Edit this file to add new stories
 import React from 'react'
-import {
-  ListItemButton,
-  ListItemButtonProps,
-  ListItemText,
-} from '@mui/material'
 
+import { ListItemButton, ListItemButtonProps, ListItemText } from '../../..'
 import { story } from '../../../test-helpers/storybook'
 
 /**
@@ -28,7 +24,7 @@ const Template = story<ListItemButtonProps>(
       <ListItemText primary="Spam" />
     </ListItemButton>
   ),
-  { args: {} },
+  { args: {}, muiName: 'MuiListItemButton' },
 )
 
 /** Default story for ListItemButton (edit/remove by hand if needed) */

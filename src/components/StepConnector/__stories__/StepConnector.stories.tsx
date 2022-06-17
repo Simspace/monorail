@@ -1,4 +1,5 @@
 import React from 'react'
+
 import {
   Box,
   Step,
@@ -6,8 +7,7 @@ import {
   StepConnectorProps,
   StepLabel,
   Stepper,
-} from '@mui/material'
-
+} from '../../..'
 import { story } from '../../../test-helpers/storybook'
 /**
  * Metadata for StepConnector stories - update/extend as needed
@@ -43,6 +43,7 @@ A line that connects steps visually. Reacts to things like orientation and activ
         },
       },
     },
+    muiName: 'MuiStepConnector',
   },
 )
 

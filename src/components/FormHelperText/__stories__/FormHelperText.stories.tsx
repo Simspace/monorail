@@ -1,12 +1,12 @@
 // Edit this file to add new stories
 import React from 'react'
+
 import {
   Checkbox,
   FormControlLabel,
   FormHelperText,
   FormHelperTextProps,
-} from '@mui/material'
-
+} from '../../..'
 import { story } from '../../../test-helpers/storybook'
 /**
  * Metadata for FormHelperText stories - update/extend as needed
@@ -33,6 +33,7 @@ const Template = story<FormHelperTextProps>(
         },
       },
     },
+    muiName: 'MuiFormHelperText',
   },
 )
 /** Default story for FormHelperText (edit/remove by hand if needed) */

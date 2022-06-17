@@ -2,6 +2,9 @@
 import React from 'react'
 import CheckIcon from '@mui/icons-material/Check'
 import ErrorIcon from '@mui/icons-material/Error'
+import { TransitionProps } from '@mui/material/transitions'
+import { SnackbarProvider, useSnackbar, VariantType } from 'notistack'
+
 import {
   Alert,
   AlertTitle,
@@ -15,10 +18,7 @@ import {
   SnackbarProps,
   Stack,
   styled,
-} from '@mui/material'
-import { TransitionProps } from '@mui/material/transitions'
-import { SnackbarProvider, useSnackbar, VariantType } from 'notistack'
-
+} from '../../..'
 import { story } from '../../../test-helpers/storybook'
 
 /**
@@ -80,6 +80,7 @@ const Template = story<SnackbarProps>(
   },
   {
     args: {},
+    muiName: 'MuiSnackbar',
   },
 )
 

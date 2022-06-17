@@ -1,12 +1,12 @@
 // Edit this file to add new stories
 import React from 'react'
 import DeleteIcon from '@mui/icons-material/Delete'
+
 import {
   IconButton,
   ListItemSecondaryAction,
   ListItemSecondaryActionProps,
-} from '@mui/material'
-
+} from '../../..'
 import { story } from '../../../test-helpers/storybook'
 
 /**
@@ -47,6 +47,7 @@ const Template = story<ListItemSecondaryActionProps>(
         skip: 'Story unreliable; component is never used directly anyway',
       },
     },
+    muiName: 'MuiListItemSecondaryAction',
   },
 )
 

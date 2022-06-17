@@ -4,15 +4,18 @@ import FastfoodIcon from '@mui/icons-material/Fastfood'
 import HotelIcon from '@mui/icons-material/Hotel'
 import LaptopMacIcon from '@mui/icons-material/LaptopMac'
 import RepeatIcon from '@mui/icons-material/Repeat'
-import Timeline, { TimelineProps } from '@mui/lab/Timeline'
-import TimelineConnector from '@mui/lab/TimelineConnector'
-import TimelineContent from '@mui/lab/TimelineContent'
-import TimelineDot from '@mui/lab/TimelineDot'
-import TimelineItem from '@mui/lab/TimelineItem'
-import TimelineOppositeContent from '@mui/lab/TimelineOppositeContent'
-import TimelineSeparator from '@mui/lab/TimelineSeparator'
-import Typography from '@mui/material/Typography'
 
+import {
+  Timeline,
+  TimelineConnector,
+  TimelineContent,
+  TimelineDot,
+  TimelineItem,
+  TimelineOppositeContent,
+  TimelineProps,
+  TimelineSeparator,
+  Typography,
+} from '../../..'
 import { story } from '../../../test-helpers/storybook'
 /**
  * Metadata for Timeline stories - update/extend as needed
@@ -55,6 +58,7 @@ const Template = story<TimelineProps>(
   },
   {
     args: {},
+    muiName: 'MuiTimeline',
   },
 )
 

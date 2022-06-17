@@ -1,4 +1,6 @@
 import React from 'react'
+import { TransitionProps } from '@mui/material/transitions'
+
 import {
   Box,
   Button,
@@ -11,9 +13,7 @@ import {
   Stepper,
   Typography,
   Zoom,
-} from '@mui/material'
-import { TransitionProps } from '@mui/material/transitions'
-
+} from '../../..'
 import { story } from '../../../test-helpers/storybook'
 /**
  * Metadata for StepContent stories - update/extend as needed
@@ -122,6 +122,7 @@ additional information for each step. It has nice transition properties built in
       },
     },
   },
+  muiName: 'MuiStepContent',
 })
 
 export const FadeTransition = story(Template, {

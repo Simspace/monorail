@@ -1,8 +1,7 @@
 // Edit this file to add new stories
 import React from 'react'
-import { Divider, Paper, Stack, StackProps } from '@mui/material'
-import { styled } from '@mui/material/styles'
 
+import { Divider, Paper, Stack, StackProps, styled } from '../../..'
 import { story } from '../../../test-helpers/storybook'
 
 /**
@@ -36,6 +35,7 @@ const Template = story<StackProps>(
   {
     args: {},
     parameters: {},
+    muiName: 'MuiStack',
   },
 )
 

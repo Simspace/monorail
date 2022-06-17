@@ -1,6 +1,7 @@
 // Edit this file to add new stories
 import React from 'react'
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
+
 import {
   Box,
   Button,
@@ -13,8 +14,7 @@ import {
   Paper,
   Popper,
   Stack,
-} from '@mui/material'
-
+} from '../../..'
 import { story } from '../../../test-helpers/storybook'
 
 /**
@@ -46,6 +46,7 @@ const Template = story<ButtonGroupProps>(
         },
       },
     },
+    muiName: 'MuiButtonGroup',
   },
 )
 /** Default story for ButtonGroup (edit/remove by hand if needed) */

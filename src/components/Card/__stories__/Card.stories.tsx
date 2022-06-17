@@ -7,6 +7,8 @@ import PlayArrowIcon from '@mui/icons-material/PlayArrow'
 import ShareIcon from '@mui/icons-material/Share'
 import SkipNextIcon from '@mui/icons-material/SkipNext'
 import SkipPreviousIcon from '@mui/icons-material/SkipPrevious'
+import { red } from '@mui/material/colors'
+
 import {
   Avatar,
   Box,
@@ -21,12 +23,10 @@ import {
   Collapse,
   IconButton,
   IconButtonProps,
+  styled,
   Typography,
   useTheme,
-} from '@mui/material'
-import { red } from '@mui/material/colors'
-import { styled } from '@mui/material/styles'
-
+} from '../../..'
 import { story } from '../../../test-helpers/storybook'
 import { images } from '../../../test-helpers/testData'
 /**
@@ -84,6 +84,7 @@ const Template = story<CardProps>(
         },
       },
     },
+    muiName: 'MuiCard',
   },
 )
 

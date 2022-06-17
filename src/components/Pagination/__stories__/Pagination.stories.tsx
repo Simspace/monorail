@@ -1,15 +1,15 @@
 // Edit this file to add new stories
 import React from 'react'
+import styled from '@mui/material/styles/styled'
+import usePagination from '@mui/material/usePagination/usePagination'
+
 import {
   Pagination,
   PaginationProps,
   Stack,
   TablePagination,
   Typography,
-} from '@mui/material'
-import styled from '@mui/material/styles/styled'
-import usePagination from '@mui/material/usePagination/usePagination'
-
+} from '../../..'
 import { story } from '../../../test-helpers/storybook'
 /**
  * Metadata for Pagination stories - update/extend as needed
@@ -23,6 +23,7 @@ export default { title: 'Navigation/Pagination', component: Pagination }
  */
 const Template = story<PaginationProps>(args => <Pagination {...args} />, {
   args: {},
+  muiName: 'MuiPagination',
 })
 /** Default story for Pagination (edit/remove by hand if needed) */
 export const Default = story(Template)

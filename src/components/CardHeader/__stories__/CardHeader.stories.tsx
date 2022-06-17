@@ -1,8 +1,8 @@
 // Edit this file to add new stories
 import React from 'react'
 import CloseIcon from '@mui/icons-material/Close'
-import { Avatar, CardHeader, CardHeaderProps, IconButton } from '@mui/material'
 
+import { Avatar, CardHeader, CardHeaderProps, IconButton } from '../../..'
 import { story } from '../../../test-helpers/storybook'
 /**
  * Metadata for CardHeader stories - update/extend as needed
@@ -21,6 +21,7 @@ const Template = story<CardHeaderProps>(args => <CardHeader {...args} />, {
     title: 'Title',
     subheader: 'Subheader',
   },
+  muiName: 'MuiCardHeader',
 })
 /** Default story for CardHeader (edit/remove by hand if needed) */
 export const Default = story(Template)

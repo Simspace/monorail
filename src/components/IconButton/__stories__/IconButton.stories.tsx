@@ -3,10 +3,10 @@ import React from 'react'
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart'
 import AlarmIcon from '@mui/icons-material/Alarm'
 import DeleteIcon from '@mui/icons-material/Delete'
-import { Stack, Typography } from '@mui/material'
 
+import { IconButton, IconButtonProps, Stack, Typography } from '../../..'
 import { story } from '../../../test-helpers/storybook'
-import { IconButton, IconButtonProps } from '../IconButton'
+
 /**
  * Metadata for IconButton stories - update/extend as needed
  */
@@ -25,6 +25,7 @@ const Template = story<IconButtonProps>(
   ),
   {
     args: {},
+    muiName: 'MuiIconButton',
   },
 )
 /** Default story for IconButton (edit/remove by hand if needed) */

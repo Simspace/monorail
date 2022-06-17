@@ -1,5 +1,6 @@
 // Edit this file to add new stories
 import React from 'react'
+
 import {
   Box,
   FilledInput,
@@ -9,8 +10,7 @@ import {
   InputLabel,
   InputLabelProps,
   OutlinedInput,
-} from '@mui/material'
-
+} from '../../..'
 import { story } from '../../../test-helpers/storybook'
 
 /**
@@ -26,6 +26,7 @@ export default { title: 'Inputs/Input/InputLabel', component: InputLabel }
  */
 const Template = story<InputLabelProps>(args => <InputLabel {...args} />, {
   args: { children: 'The label' },
+  muiName: 'MuiInputLabel',
 })
 
 /** Default story for InputLabel (edit/remove by hand if needed) */

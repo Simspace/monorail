@@ -1,6 +1,6 @@
 import React from 'react'
-import { Box, Step, StepLabel, Stepper, StepProps } from '@mui/material'
 
+import { Box, Step, StepLabel, Stepper, StepProps } from '../../..'
 import { story } from '../../../test-helpers/storybook'
 /**
  * Metadata for Step stories - update/extend as needed
@@ -27,6 +27,7 @@ Steppers convey progress through numbered steps. It provides a wizard-like workf
         },
       },
     },
+    muiName: 'MuiStep',
   },
 )
 

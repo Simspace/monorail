@@ -3,6 +3,7 @@ import React from 'react'
 import CheckIcon from '@mui/icons-material/Check'
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
 import CloseIcon from '@mui/icons-material/Close'
+
 import {
   Alert,
   AlertProps,
@@ -14,8 +15,7 @@ import {
   Snackbar,
   Stack,
   Typography,
-} from '@mui/material'
-
+} from '../../..'
 import { story } from '../../../test-helpers/storybook'
 
 /**
@@ -33,7 +33,7 @@ const Template = story<AlertProps>(
   args => (
     <Alert {...args}>This is a test of the emergency broadcast system</Alert>
   ),
-  { args: { severity: 'warning' } },
+  { args: { severity: 'warning' }, muiName: 'MuiAlert' },
 )
 
 /** Default story for Alert (edit/remove by hand if needed) */

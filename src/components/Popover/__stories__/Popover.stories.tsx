@@ -1,7 +1,7 @@
 // Edit this file to add new stories
 import React from 'react'
-import { Button, Popover, PopoverProps } from '@mui/material'
 
+import { Button, Popover, PopoverProps } from '../../..'
 import { story } from '../../../test-helpers/storybook'
 
 /**
@@ -57,6 +57,7 @@ const Template = story<PopoverProps>(
         },
       },
     },
+    muiName: 'MuiPopover',
   },
 )
 /** Default story for Popover (edit/remove by hand if needed) */

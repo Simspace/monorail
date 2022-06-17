@@ -1,7 +1,7 @@
 // Edit this file to add new stories
 import React from 'react'
-import { ListItemText, ListItemTextProps } from '@mui/material'
 
+import { ListItemText, ListItemTextProps } from '../../..'
 import { story } from '../../../test-helpers/storybook'
 /**
  * Metadata for ListItemText stories - update/extend as needed
@@ -18,6 +18,7 @@ export default {
  */
 const Template = story<ListItemTextProps>(args => <ListItemText {...args} />, {
   args: { primary: 'Primary', secondary: 'Secondary' },
+  muiName: 'MuiListItemText',
 })
 /** Default story for ListItemText (edit/remove by hand if needed) */
 export const Default = story(Template)

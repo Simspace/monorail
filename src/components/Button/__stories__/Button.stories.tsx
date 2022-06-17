@@ -3,8 +3,8 @@ import React from 'react'
 import SaveIcon from '@mui/icons-material/Save'
 import SelectAllOutlined from '@mui/icons-material/SelectAllOutlined'
 import { LoadingButton } from '@mui/lab'
-import { Box, Button, ButtonProps, Stack, Typography } from '@mui/material'
 
+import { Box, Button, ButtonProps, Stack, Typography } from '../../..'
 import { story } from '../../../test-helpers/storybook'
 
 /**
@@ -22,6 +22,7 @@ export default { title: 'Inputs/Button', component: Button }
  */
 const Template = story<ButtonProps>(args => <Button {...args} />, {
   args: { children: 'Button' },
+  muiName: 'MuiButton',
 })
 
 /**

@@ -7,6 +7,7 @@ import {
   IceSkatingTwoTone,
   WarningAmberSharp,
 } from '@mui/icons-material'
+
 import {
   Box,
   Step,
@@ -15,8 +16,7 @@ import {
   StepIconProps,
   StepLabel,
   Stepper,
-} from '@mui/material'
-
+} from '../../..'
 import { story } from '../../../test-helpers/storybook'
 /**
  * Metadata for StepIcon stories - update/extend as needed
@@ -55,6 +55,7 @@ Steps have icons, but they don't do much on their own.
         },
       },
     },
+    muiName: 'MuiStepIcon',
   },
 )
 

@@ -1,8 +1,9 @@
 // Edit this file to add new stories
 import React from 'react'
-import { DialogTitle, DialogTitleProps } from '@mui/material'
 
+import { DialogTitle, DialogTitleProps } from '../../..'
 import { story } from '../../../test-helpers/storybook'
+
 /**
  * Metadata for DialogTitle stories - update/extend as needed
  */
@@ -17,6 +18,7 @@ const Template = story<DialogTitleProps>(
   (args: DialogTitleProps) => <DialogTitle {...args}>Dialog Title</DialogTitle>,
   {
     args: {},
+    muiName: 'MuiDialogTitle',
   },
 )
 /** Default story for DialogTitle (edit/remove by hand if needed) */

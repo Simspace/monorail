@@ -1,7 +1,7 @@
 // Edit this file to add new stories
 import React from 'react'
-import { CardMedia, CardMediaProps } from '@mui/material'
 
+import { CardMedia, CardMediaProps } from '../../..'
 import { story } from '../../../test-helpers/storybook'
 import { images } from '../../../test-helpers/testData'
 /**
@@ -34,6 +34,7 @@ const Template = story<CardMediaProps<'img'>>(
         height: 160,
       },
     },
+    muiName: 'MuiCardMedia',
   },
 )
 /** Default story for CardMedia (edit/remove by hand if needed) */

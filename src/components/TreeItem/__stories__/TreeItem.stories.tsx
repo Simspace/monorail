@@ -1,7 +1,7 @@
 // Edit this file to add new stories
 import React from 'react'
-import TreeItem, { TreeItemProps } from '@mui/lab/TreeItem'
 
+import { TreeItem, TreeItemProps } from '../../..'
 import { story } from '../../../test-helpers/storybook'
 /**
  * Metadata for TreeItem stories - update/extend as needed
@@ -21,6 +21,7 @@ const Template = story<TreeItemProps>(
   ),
   {
     args: {},
+    muiName: 'MuiTreeItem',
   },
 )
 /** Default story for TreeItem (edit/remove by hand if needed) */

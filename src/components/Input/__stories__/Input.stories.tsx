@@ -1,7 +1,7 @@
 // Edit this file to add new stories
 import React from 'react'
-import { Box, Input, InputProps } from '@mui/material'
 
+import { Box, Input, InputProps } from '../../..'
 import { story } from '../../../test-helpers/storybook'
 
 /**
@@ -19,6 +19,7 @@ const Template = story<InputProps>(
   args => <Input inputProps={{ 'aria-label': 'an input' }} {...args} />,
   {
     args: { placeholder: 'Placeholder text' },
+    muiName: 'MuiInput',
   },
 )
 

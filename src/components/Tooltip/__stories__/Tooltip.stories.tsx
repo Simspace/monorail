@@ -1,17 +1,21 @@
 // Edit this file to add new stories
 import React from 'react'
 import DeleteIcon from '@mui/icons-material/Delete'
-import Box from '@mui/material/Box'
-import Button from '@mui/material/Button'
-import ClickAwayListener from '@mui/material/ClickAwayListener'
-import Fade from '@mui/material/Fade'
-import Grid from '@mui/material/Grid'
-import IconButton from '@mui/material/IconButton'
-import Tooltip, { tooltipClasses, TooltipProps } from '@mui/material/Tooltip'
-import Typography from '@mui/material/Typography'
-import Zoom from '@mui/material/Zoom'
-import { styled } from '@mui/styles'
 
+import {
+  Box,
+  Button,
+  ClickAwayListener,
+  Fade,
+  Grid,
+  IconButton,
+  styled,
+  Tooltip,
+  tooltipClasses,
+  TooltipProps,
+  Typography,
+  Zoom,
+} from '../../..'
 import { story } from '../../../test-helpers/storybook'
 
 /**
@@ -33,6 +37,7 @@ const Template = story<TooltipProps>(
   ),
   {
     args: {},
+    muiName: 'MuiTooltip',
   },
 )
 

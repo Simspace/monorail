@@ -8,6 +8,9 @@ import MenuIcon from '@mui/icons-material/Menu'
 import MoreIcon from '@mui/icons-material/MoreVert'
 import NotificationsIcon from '@mui/icons-material/Notifications'
 import SearchIcon from '@mui/icons-material/Search'
+import { alpha, styled } from '@mui/material/styles'
+import useScrollTrigger from '@mui/material/useScrollTrigger'
+
 import {
   AppBar,
   AppBarProps,
@@ -35,10 +38,7 @@ import {
   Toolbar,
   Typography,
   Zoom,
-} from '@mui/material'
-import { alpha, styled } from '@mui/material/styles'
-import useScrollTrigger from '@mui/material/useScrollTrigger'
-
+} from '../../..'
 import { story } from '../../../test-helpers/storybook'
 
 /**
@@ -163,7 +163,7 @@ const Template = story<AppBarProps>(
       </Box>
     )
   },
-  { args: { position: 'static' } },
+  { args: { position: 'static' }, muiName: 'MuiAppBar' },
 )
 
 /** Default story for AppBar (edit/remove by hand if needed) */

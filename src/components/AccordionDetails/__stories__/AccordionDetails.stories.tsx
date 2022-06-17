@@ -1,7 +1,7 @@
 // Edit this file to add new stories
 import React from 'react'
-import { AccordionDetails, AccordionDetailsProps } from '@mui/material'
 
+import { AccordionDetails, AccordionDetailsProps } from '../../..'
 import { story } from '../../../test-helpers/storybook'
 
 /**
@@ -20,7 +20,7 @@ export default {
  */
 const Template = story<AccordionDetailsProps>(
   args => <AccordionDetails {...args}>Accordion Details</AccordionDetails>,
-  { args: {} },
+  { args: {}, muiName: 'MuiAccordionDetails' },
 )
 
 /** Default story for AccordionDetails (edit/remove by hand if needed) */

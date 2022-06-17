@@ -1,7 +1,7 @@
 // Edit this file to add new stories
 import React from 'react'
-import { Tab, TabProps } from '@mui/material'
 
+import { Tab, TabProps } from '../../..'
 import { story } from '../../../test-helpers/storybook'
 /**
  * Metadata for Tab stories - update/extend as needed
@@ -21,6 +21,7 @@ const Template = story<TabProps>(
   ),
   {
     args: { label: 'Item 1' },
+    muiName: 'MuiTab',
   },
 )
 /** Default story for Tab (edit/remove by hand if needed) */

@@ -1,8 +1,8 @@
 // Edit this file to add new stories
 import React from 'react'
 import FolderIcon from '@mui/icons-material/Folder'
-import { Avatar, ListItemAvatar, ListItemAvatarProps } from '@mui/material'
 
+import { Avatar, ListItemAvatar, ListItemAvatarProps } from '../../..'
 import { story } from '../../../test-helpers/storybook'
 
 /**
@@ -27,7 +27,7 @@ const Template = story<ListItemAvatarProps>(
       </Avatar>
     </ListItemAvatar>
   ),
-  { args: {} },
+  { args: {}, muiName: 'MuiListItemAvatar' },
 )
 
 /** Default story for ListItemAvatar (edit/remove by hand if needed) */

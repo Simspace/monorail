@@ -1,7 +1,7 @@
 // Edit this file to add new stories
 import React from 'react'
-import { TableSortLabel, TableSortLabelProps } from '@mui/material'
 
+import { TableSortLabel, TableSortLabelProps } from '../../..'
 import { story } from '../../../test-helpers/storybook'
 
 export default {
@@ -21,7 +21,7 @@ const Template = story<TableSortLabelProps>(
       />
     )
   },
-  { args: { children: 'Title' } },
+  { args: { children: 'Title' }, muiName: 'MuiTableSortLabel' },
 )
 
 export const Default = story(Template, {

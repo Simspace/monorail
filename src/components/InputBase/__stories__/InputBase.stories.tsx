@@ -3,14 +3,8 @@ import React from 'react'
 import DirectionsIcon from '@mui/icons-material/Directions'
 import MenuIcon from '@mui/icons-material/Menu'
 import SearchIcon from '@mui/icons-material/Search'
-import {
-  Divider,
-  IconButton,
-  InputBase,
-  InputBaseProps,
-  Paper,
-} from '@mui/material'
 
+import { Divider, IconButton, InputBase, InputBaseProps, Paper } from '../../..'
 import { story } from '../../../test-helpers/storybook'
 
 /**
@@ -30,6 +24,7 @@ const Template = story<InputBaseProps>(
     args: {
       placeholder: 'Placeholder',
     },
+    muiName: 'MuiInputBase',
   },
 )
 

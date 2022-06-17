@@ -1,7 +1,7 @@
 // Edit this file to add new stories
 import React from 'react'
-import TimelineContent, { TimelineContentProps } from '@mui/lab/TimelineContent'
 
+import { TimelineContent, TimelineContentProps } from '../../..'
 import { story } from '../../../test-helpers/storybook'
 /**
  * Metadata for TimelineContent stories - update/extend as needed
@@ -18,7 +18,7 @@ export default {
  */
 const Template = story<TimelineContentProps>(
   args => <TimelineContent {...args} />,
-  { args: {} },
+  { args: {}, muiName: 'MuiTimelineContent' },
 )
 /** Default story for TimelineContent (edit/remove by hand if needed) */
 export const Default = story(Template)

@@ -1,11 +1,7 @@
 // Edit this file to add new stories
 import React from 'react'
-import {
-  DialogContent,
-  DialogContentProps,
-  DialogContentText,
-} from '@mui/material'
 
+import { DialogContent, DialogContentProps, DialogContentText } from '../../..'
 import { story } from '../../../test-helpers/storybook'
 /**
  * Metadata for DialogContent stories - update/extend as needed
@@ -28,6 +24,7 @@ const Template = story<DialogContentProps>(
   ),
   {
     args: {},
+    muiName: 'MuiDialogContent',
   },
 )
 /** Default story for DialogContent (edit/remove by hand if needed) */

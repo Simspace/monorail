@@ -1,7 +1,7 @@
 // Edit this file to add new stories
 import React from 'react'
-import { SpeedDialAction, SpeedDialActionProps } from '@mui/material'
 
+import { SpeedDialAction, SpeedDialActionProps } from '../../..'
 import { story } from '../../../test-helpers/storybook'
 /**
  * Metadata for SpeedDialAction stories - update/extend as needed
@@ -26,7 +26,7 @@ const Template = story<SpeedDialActionProps>(
       />
     </menu>
   ),
-  { args: {} },
+  { args: {}, muiName: 'MuiSpeedDialAction' },
 )
 /** Default story for SpeedDialAction (edit/remove by hand if needed) */
 export const Default = story(Template)

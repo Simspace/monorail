@@ -8,7 +8,7 @@
   "publishConfig": {
     "access": "restricted"
   },
-  "main": "./build/index.js",
+  "main": "./build/cjs/index.js",
   "module": "./build/esm/index.js",
   "typesVersions": {
     "*": {
@@ -19,8 +19,12 @@
   },
   "exports": {
     "./*": {
-      "require": "./build/*.js",
-      "import": "./build/esm/*.js"
+      "import": "./build/esm/*.js",
+      "require": "./build/cjs/*.js"
+    },
+    ".": {
+      "import": "./build/esm/index.js",
+      "require": "./build/cjs/index.js"
     }
   },
   "peerDependencies": {

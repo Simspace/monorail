@@ -1,12 +1,12 @@
 // Edit this file to add new stories
 import React from 'react'
+
 import {
   FormControl,
   InputLabel,
   OutlinedInput,
   OutlinedInputProps,
-} from '@mui/material'
-
+} from '../../..'
 import { story } from '../../../test-helpers/storybook'
 
 /**
@@ -31,6 +31,7 @@ const Template = story<OutlinedInputProps>(
       id: 'filled',
       placeholder: 'Placeholder',
     },
+    muiName: 'MuiOutlinedInput',
   },
 )
 /** Default story for OutlinedInput (edit/remove by hand if needed) */

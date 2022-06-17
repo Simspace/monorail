@@ -1,7 +1,7 @@
 // Edit this file to add new stories
 import React from 'react'
-import { AlertTitle, AlertTitleProps } from '@mui/material'
 
+import { AlertTitle, AlertTitleProps } from '../../..'
 import { story } from '../../../test-helpers/storybook'
 /**
  * Metadata for AlertTitle stories - update/extend as needed
@@ -17,6 +17,7 @@ export default { title: 'Feedback/Alert/AlertTitle', component: AlertTitle }
  */
 const Template = story<AlertTitleProps>(args => <AlertTitle {...args} />, {
   args: { children: 'Alert Title' },
+  muiName: 'MuiAlertTitle',
 })
 /** Default story for AlertTitle (edit/remove by hand if needed) */
 export const Default = story(Template)

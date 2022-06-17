@@ -5,6 +5,7 @@ import FormatAlignLeftIcon from '@mui/icons-material/FormatAlignLeft'
 import FormatAlignRightIcon from '@mui/icons-material/FormatAlignRight'
 import FormatBoldIcon from '@mui/icons-material/FormatBold'
 import FormatItalicIcon from '@mui/icons-material/FormatItalic'
+
 import {
   Avatar,
   Box,
@@ -18,10 +19,9 @@ import {
   ListItemAvatar,
   ListItemText,
   Stack,
+  styled,
   Typography,
-} from '@mui/material'
-import { styled } from '@mui/material/styles'
-
+} from '../../..'
 import { story } from '../../../test-helpers/storybook'
 /**
  * Metadata for Divider stories - update/extend as needed
@@ -37,6 +37,7 @@ const Template = story<DividerProps>(
   (args: DividerProps) => <Divider {...args} />,
   {
     args: {},
+    muiName: 'MuiDivider',
   },
 )
 

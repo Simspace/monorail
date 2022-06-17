@@ -1,12 +1,7 @@
 // Edit this file to add new stories
 import React from 'react'
-import {
-  DataGrid,
-  DataGridProps,
-  GridColDef,
-  GridRowId,
-} from '@mui/x-data-grid'
 
+import { DataGrid, DataGridProps, GridColDef, GridRowId } from '../../..'
 import { story } from '../../../test-helpers/storybook'
 
 export default {

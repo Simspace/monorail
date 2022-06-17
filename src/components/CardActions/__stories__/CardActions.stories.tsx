@@ -1,8 +1,9 @@
 // Edit this file to add new stories
 import React from 'react'
-import { Button, CardActions, CardActionsProps } from '@mui/material'
 
+import { Button, CardActions, CardActionsProps } from '../../..'
 import { story } from '../../../test-helpers/storybook'
+
 /**
  * Metadata for CardActions stories - update/extend as needed
  * This is intended to be exported as story-level metadata from the main .stories.tsx file, like:
@@ -24,6 +25,7 @@ const Template = story<CardActionsProps>(
   ),
   {
     args: {},
+    muiName: 'MuiCardActions',
   },
 )
 /** Default story for CardActions (edit/remove by hand if needed) */

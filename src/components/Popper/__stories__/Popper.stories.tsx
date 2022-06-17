@@ -1,7 +1,7 @@
 // Edit this file to add new stories
 import React from 'react'
-import { Popper, PopperProps } from '@mui/material'
 
+import { Popper, PopperProps } from '../../..'
 import { story } from '../../../test-helpers/storybook'
 /**
  * Metadata for Popper stories - update/extend as needed

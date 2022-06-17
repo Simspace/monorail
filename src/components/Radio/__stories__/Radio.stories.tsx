@@ -1,5 +1,6 @@
 // Edit this file to add new stories
 import React from 'react'
+
 import {
   Button,
   FormControl,
@@ -12,8 +13,7 @@ import {
   RadioProps,
   styled,
   useRadioGroup,
-} from '@mui/material'
-
+} from '../../..'
 import { story } from '../../../test-helpers/storybook'
 
 /**
@@ -35,7 +35,7 @@ const Template = story<RadioProps>(
       </>
     )
   },
-  { args: {} },
+  { args: {}, muiName: 'MuiRadio' },
 )
 
 /** Default story for Radio (edit/remove by hand if needed) */

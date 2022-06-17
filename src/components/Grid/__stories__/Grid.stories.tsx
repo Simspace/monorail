@@ -1,8 +1,15 @@
 // Edit this file to add new stories
 import React from 'react'
-import { Avatar, Box, Grid, GridProps, Paper, Typography } from '@mui/material'
-import { styled } from '@mui/material/styles'
 
+import {
+  Avatar,
+  Box,
+  Grid,
+  GridProps,
+  Paper,
+  styled,
+  Typography,
+} from '../../..'
 import { story } from '../../../test-helpers/storybook'
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -59,6 +66,7 @@ A value given to a breakpoint applies to all the other breakpoints wider than it
       },
     },
   },
+  muiName: 'MuiGrid',
 })
 
 export const MultipleBreakpoints = story<GridProps>(

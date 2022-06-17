@@ -1,15 +1,17 @@
 // Edit this file to add new stories
 import React from 'react'
+import AdapterDateFns from '@mui/lab/AdapterDateFns'
+
 import {
+  Box,
   DateRange,
   DateRangePickerDay,
   DateRangePickerDayProps,
   LocalizationProvider,
   StaticDateRangePicker,
-} from '@mui/lab'
-import AdapterDateFns from '@mui/lab/AdapterDateFns'
-import { Box, styled, TextField } from '@mui/material'
-
+  styled,
+  TextField,
+} from '../../..'
 import { story } from '../../../test-helpers/storybook'
 
 /**
@@ -76,6 +78,7 @@ const Template = story<DateRangePickerDayProps<Date>>(
       </LocalizationProvider>
     )
   },
+  { muiName: 'MuiDateRangePickerDay' },
 )
 
 export const Default = story(Template, {

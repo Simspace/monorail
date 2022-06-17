@@ -1,5 +1,6 @@
 import React from 'react'
 import { KeyboardArrowLeft, KeyboardArrowRight } from '@mui/icons-material'
+
 import {
   Box,
   Button,
@@ -8,8 +9,7 @@ import {
   Paper,
   Typography,
   useTheme,
-} from '@mui/material'
-
+} from '../../..'
 import { story } from '../../../test-helpers/storybook'
 
 export default { title: 'Navigation/MobileStepper', component: MobileStepper }

@@ -1,4 +1,5 @@
 import React from 'react'
+
 import {
   Box,
   Step,
@@ -6,8 +7,7 @@ import {
   StepLabelProps,
   Stepper,
   Typography,
-} from '@mui/material'
-
+} from '../../..'
 import { story } from '../../../test-helpers/storybook'
 /**
  * Metadata for StepLabel stories - update/extend as needed
@@ -16,20 +16,25 @@ export default { title: 'Navigation/Stepper/StepLabel', component: StepLabel }
 
 const steps = ['Select campaign settings', 'Create an ad group', 'Create an ad']
 
-const Template = story<StepLabelProps>((args: StepLabelProps) => {
-  return (
-    <Box sx={{ width: '100%' }}>
-      <Stepper activeStep={1}>
-        {/* These steps could be provided by args, but there's not much of a use case right now. */}
-        {steps.map(label => (
-          <Step key={label}>
-            <StepLabel {...args}>{label}</StepLabel>
-          </Step>
-        ))}
-      </Stepper>
-    </Box>
-  )
-})
+const Template = story<StepLabelProps>(
+  (args: StepLabelProps) => {
+    return (
+      <Box sx={{ width: '100%' }}>
+        <Stepper activeStep={1}>
+          {/* These steps could be provided by args, but there's not much of a use case right now. */}
+          {steps.map(label => (
+            <Step key={label}>
+              <StepLabel {...args}>{label}</StepLabel>
+            </Step>
+          ))}
+        </Stepper>
+      </Box>
+    )
+  },
+  {
+    muiName: 'MuiStepLabel',
+  },
+)
 
 export const Default = story(Template)
 

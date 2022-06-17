@@ -3,12 +3,19 @@ import React from 'react'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import PersonPinIcon from '@mui/icons-material/PersonPin'
 import PhoneIcon from '@mui/icons-material/Phone'
-import { TabPanel as LabTabPanel } from '@mui/lab'
-import TabContext from '@mui/lab/TabContext'
-import TabList from '@mui/lab/TabList'
-import { AppBar, Box, styled, Tab, Typography } from '@mui/material'
-import Tabs, { TabsProps } from '@mui/material/Tabs'
 
+import {
+  AppBar,
+  Box,
+  styled,
+  Tab,
+  TabContext,
+  TabList,
+  TabPanel as LabTabPanel,
+  Tabs,
+  TabsProps,
+  Typography,
+} from '../../..'
 import { story } from '../../../test-helpers/storybook'
 
 /**
@@ -90,7 +97,7 @@ const Template = story<TabsProps>(
       </Box>
     )
   },
-  { args: {} },
+  { args: {}, muiName: 'MuiTabs' },
 )
 /** Default story for Tabs (edit/remove by hand if needed) */
 export const Default = story(Template)

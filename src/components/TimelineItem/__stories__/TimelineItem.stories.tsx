@@ -1,7 +1,7 @@
 // Edit this file to add new stories
 import React from 'react'
-import TimelineItem, { TimelineItemProps } from '@mui/lab/TimelineItem'
 
+import { TimelineItem, TimelineItemProps } from '../../..'
 import { story } from '../../../test-helpers/storybook'
 /**
  * Metadata for TimelineItem stories - update/extend as needed
@@ -24,6 +24,7 @@ const Template = story<TimelineItemProps>(
   ),
   {
     args: {},
+    muiName: 'MuiTimelineItem',
   },
 )
 /** Default story for TimelineItem (edit/remove by hand if needed) */

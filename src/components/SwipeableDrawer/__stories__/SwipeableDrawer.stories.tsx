@@ -1,5 +1,7 @@
 // Edit this file to add new stories
 import React from 'react'
+import { grey } from '@mui/material/colors'
+
 import {
   Box,
   Button,
@@ -9,9 +11,7 @@ import {
   SwipeableDrawer,
   SwipeableDrawerProps,
   Typography,
-} from '@mui/material'
-import { grey } from '@mui/material/colors'
-
+} from '../../..'
 import { story } from '../../../test-helpers/storybook'
 
 /**

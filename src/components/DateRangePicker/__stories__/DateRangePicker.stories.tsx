@@ -1,6 +1,10 @@
 // Edit this file to add new stories
 import React from 'react'
+import AdapterDateFns from '@mui/lab/AdapterDateFns'
+import { addWeeks } from 'date-fns'
+
 import {
+  Box,
   DateRange,
   DateRangePicker,
   DateRangePickerDay,
@@ -9,12 +13,12 @@ import {
   DesktopDateRangePicker,
   LocalizationProvider,
   MobileDateRangePicker,
+  Stack,
   StaticDateRangePicker,
-} from '@mui/lab'
-import AdapterDateFns from '@mui/lab/AdapterDateFns'
-import { Box, Stack, styled, TextField, Typography } from '@mui/material'
-import { addWeeks } from 'date-fns'
-
+  styled,
+  TextField,
+  Typography,
+} from '../../..'
 import { story } from '../../../test-helpers/storybook'
 
 /**

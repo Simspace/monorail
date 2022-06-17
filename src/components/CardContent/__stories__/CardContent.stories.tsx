@@ -1,7 +1,7 @@
 // Edit this file to add new stories
 import React from 'react'
-import { CardContent, CardContentProps } from '@mui/material'
 
+import { CardContent, CardContentProps } from '../../..'
 import { story } from '../../../test-helpers/storybook'
 /**
  * Metadata for CardContent stories - update/extend as needed
@@ -17,6 +17,7 @@ export default { title: 'Surfaces/Card/CardContent', component: CardContent }
  */
 const Template = story<CardContentProps>(args => <CardContent {...args} />, {
   args: { children: 'Card Content' },
+  muiName: 'MuiCardContent',
 })
 /** Default story for CardContent (edit/remove by hand if needed) */
 export const Default = story(Template)

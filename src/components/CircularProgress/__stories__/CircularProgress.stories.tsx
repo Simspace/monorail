@@ -2,6 +2,8 @@
 import React from 'react'
 import CheckIcon from '@mui/icons-material/Check'
 import SaveIcon from '@mui/icons-material/Save'
+import green from '@mui/material/colors/green'
+
 import {
   Box,
   Button,
@@ -10,9 +12,7 @@ import {
   Fab,
   Stack,
   Typography,
-} from '@mui/material'
-import green from '@mui/material/colors/green'
-
+} from '../../..'
 import { story } from '../../../test-helpers/storybook'
 
 /**
@@ -33,7 +33,7 @@ export default {
  */
 const Template = story<CircularProgressProps>(
   args => <CircularProgress aria-label="Circular Progress" {...args} />,
-  { args: {} },
+  { args: {}, muiName: 'MuiCircularProgress' },
 )
 
 /** Default story for CircularProgress (edit/remove by hand if needed) */

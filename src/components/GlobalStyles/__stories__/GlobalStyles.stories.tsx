@@ -1,7 +1,7 @@
 // Edit this file to add new stories
 import React from 'react'
-import { GlobalStyles, GlobalStylesProps } from '@mui/material'
 
+import { GlobalStyles, GlobalStylesProps } from '../../..'
 import { story } from '../../../test-helpers/storybook'
 /**
  * Metadata for GlobalStyles stories - update/extend as needed

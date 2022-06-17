@@ -1,7 +1,7 @@
 // Edit this file to add new stories
 import React from 'react'
-import { FormLabel, FormLabelProps } from '@mui/material'
 
+import { FormLabel, FormLabelProps } from '../../..'
 import { story } from '../../../test-helpers/storybook'
 /**
  * Metadata for FormLabel stories - update/extend as needed
@@ -20,6 +20,7 @@ const Template = story<FormLabelProps>(
         },
       },
     },
+    muiName: 'MuiFormLabel',
   },
 )
 /** Default story for FormLabel (edit/remove by hand if needed) */

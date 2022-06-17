@@ -2,6 +2,7 @@
 import React from 'react'
 import InfoIcon from '@mui/icons-material/Info'
 import StarBorderIcon from '@mui/icons-material/StarBorder'
+
 import {
   IconButton,
   ImageList,
@@ -9,8 +10,7 @@ import {
   ImageListItemBar,
   ImageListProps,
   ListSubheader,
-} from '@mui/material'
-
+} from '../../..'
 import { story } from '../../../test-helpers/storybook'
 
 /**
@@ -50,6 +50,7 @@ const Template = story<ImageListProps>(
     args: {
       sx: { width: 500, height: 450 },
     },
+    muiName: 'MuiImageList',
   },
 )
 

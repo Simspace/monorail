@@ -1,14 +1,15 @@
 // Edit this file to add new stories
 import React from 'react'
+import AdapterDateFns from '@mui/lab/AdapterDateFns'
+
 import {
+  Box,
   DateRange,
   LocalizationProvider,
   StaticDateRangePicker,
   StaticDateRangePickerProps,
-} from '@mui/lab'
-import AdapterDateFns from '@mui/lab/AdapterDateFns'
-import { Box, TextField } from '@mui/material'
-
+  TextField,
+} from '../../..'
 import { story } from '../../../test-helpers/storybook'
 
 /**

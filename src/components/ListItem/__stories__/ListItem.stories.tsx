@@ -1,6 +1,7 @@
 // Edit this file to add new stories
 import React from 'react'
 import FolderIcon from '@mui/icons-material/Folder'
+
 import {
   Avatar,
   ListItem,
@@ -8,8 +9,7 @@ import {
   ListItemIcon,
   ListItemProps,
   ListItemText,
-} from '@mui/material'
-
+} from '../../..'
 import { story } from '../../../test-helpers/storybook'
 
 /**
@@ -48,6 +48,7 @@ const Template = story<ListItemProps>(
   ),
   {
     args: {},
+    muiName: 'MuiListItem',
   },
 )
 /** Default story for ListItem (edit/remove by hand if needed) */

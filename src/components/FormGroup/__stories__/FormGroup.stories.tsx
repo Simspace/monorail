@@ -1,13 +1,9 @@
 // Edit this file to add new stories
 import React from 'react'
-import {
-  Checkbox,
-  FormControlLabel,
-  FormGroup,
-  FormGroupProps,
-} from '@mui/material'
 
+import { Checkbox, FormControlLabel, FormGroup, FormGroupProps } from '../../..'
 import { story } from '../../../test-helpers/storybook'
+
 /**
  * Metadata for FormGroup stories - update/extend as needed
  */
@@ -31,6 +27,7 @@ const Template = story<FormGroupProps>(
         },
       },
     },
+    muiName: 'MuiFormGroup',
   },
 )
 export const Default = story(Template)

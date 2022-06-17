@@ -4,15 +4,15 @@ import GrainIcon from '@mui/icons-material/Grain'
 import HomeIcon from '@mui/icons-material/Home'
 import NavigateNextIcon from '@mui/icons-material/NavigateNext'
 import WhatshotIcon from '@mui/icons-material/Whatshot'
+import { action } from '@storybook/addon-actions'
+
 import {
   Breadcrumbs,
   BreadcrumbsProps,
   Link,
   Stack,
   Typography,
-} from '@mui/material'
-import { action } from '@storybook/addon-actions'
-
+} from '../../..'
 import { story } from '../../../test-helpers/storybook'
 
 /**
@@ -38,6 +38,7 @@ const Template = story<BreadcrumbsProps>(
   ),
   {
     args: {},
+    muiName: 'MuiBreadcrumbs',
   },
 )
 

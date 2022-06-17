@@ -1,17 +1,17 @@
 // Edit this file to add new stories
 import React from 'react'
-import { Pagination } from '@mui/material'
 import { createTheme, darken, lighten, Theme } from '@mui/material/styles'
 import { createStyles, makeStyles } from '@mui/styles'
+import { useDemoData } from '@mui/x-data-grid-generator'
+
 import {
   DataGrid,
   DataGridProps,
   GridCellParams,
   GridColumns,
+  Pagination,
   useGridSlotComponentProps,
-} from '@mui/x-data-grid'
-import { useDemoData } from '@mui/x-data-grid-generator'
-
+} from '../../..'
 import { story } from '../../../test-helpers/storybook'
 
 export default {

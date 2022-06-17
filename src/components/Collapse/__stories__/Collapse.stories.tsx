@@ -1,5 +1,6 @@
 // Edit this file to add new stories
 import React from 'react'
+
 import {
   Box,
   Collapse,
@@ -7,9 +8,9 @@ import {
   FormControlLabel,
   Paper,
   Switch,
-} from '@mui/material'
-
+} from '../../..'
 import { story } from '../../../test-helpers/storybook'
+
 /**
  * Metadata for Collapse stories - update/extend as needed
  * This is intended to be exported as story-level metadata from the main .stories.tsx file, like:
@@ -83,6 +84,7 @@ const Template = story<CollapseProps>(
   },
   {
     args: {},
+    muiName: 'MuiCollapse',
   },
 )
 /** Default story for Collapse (edit/remove by hand if needed) */
