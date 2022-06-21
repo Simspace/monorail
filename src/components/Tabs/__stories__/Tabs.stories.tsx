@@ -3,10 +3,12 @@ import React from 'react'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import PersonPinIcon from '@mui/icons-material/PersonPin'
 import PhoneIcon from '@mui/icons-material/Phone'
+import PhoneMissedIcon from '@mui/icons-material/PhoneMissed'
 
 import {
   AppBar,
   Box,
+  Stack,
   styled,
   Tab,
   TabContext,
@@ -79,6 +81,7 @@ const Template = story<TabsProps>(
             value={value}
             onChange={handleChange}
             aria-label="basic tabs example"
+            {...args}
           >
             <Tab label="Item One" {...a11yProps(0)} />
             <Tab label="Item Two" {...a11yProps(1)} />
@@ -112,8 +115,8 @@ export const BasicTabs = story(Template, {
   },
 })
 
-export const ExperimentalAPI = story(
-  () => {
+export const ExperimentalAPI = story<TabsProps>(
+  args => {
     const [value, setValue] = React.useState('1')
 
     const handleChange = (event: React.SyntheticEvent, newValue: string) => {
@@ -124,7 +127,11 @@ export const ExperimentalAPI = story(
       <Box sx={{ width: '100%', typography: 'body1' }}>
         <TabContext value={value}>
           <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-            <TabList onChange={handleChange} aria-label="lab API tabs example">
+            <TabList
+              onChange={handleChange}
+              aria-label="lab API tabs example"
+              {...args}
+            >
               <Tab label="Item One" value="1" />
               <Tab label="Item Two" value="2" />
               <Tab label="Item Three" value="3" />
@@ -149,8 +156,8 @@ export const ExperimentalAPI = story(
   },
 )
 
-export const WrappedLabels = story(
-  () => {
+export const WrappedLabels = story<TabsProps>(
+  args => {
     const [value, setValue] = React.useState('one')
 
     const handleChange = (event: React.SyntheticEvent, newValue: string) => {
@@ -163,6 +170,7 @@ export const WrappedLabels = story(
           value={value}
           onChange={handleChange}
           aria-label="wrapped label tabs example"
+          {...args}
         >
           <Tab
             value="one"
@@ -187,31 +195,58 @@ export const WrappedLabels = story(
   },
 )
 
-export const ColoredTab = story(() => {
-  const [value, setValue] = React.useState('one')
+export const ColoredTab = story<TabsProps>(
+  args => {
+    const [value, setValue] = React.useState('one')
 
-  const handleChange = (event: React.SyntheticEvent, newValue: string) => {
-    setValue(newValue)
-  }
+    const handleChange = (event: React.SyntheticEvent, newValue: string) => {
+      setValue(newValue)
+    }
 
-  return (
-    <Box sx={{ width: '100%' }}>
-      <Tabs
-        value={value}
-        onChange={handleChange}
-        textColor="secondary"
-        indicatorColor="secondary"
-        aria-label="secondary tabs example"
-      >
-        <Tab value="one" label="Item One" />
-        <Tab value="two" label="Item Two" />
-        <Tab value="three" label="Item Three" />
-      </Tabs>
-    </Box>
-  )
-})
+    return (
+      <Stack gap={4} sx={{ width: '100%' }}>
+        <Tabs
+          value={value}
+          onChange={handleChange}
+          textColor="secondary"
+          indicatorColor="secondary"
+          aria-label="secondary tabs example"
+          {...args}
+        >
+          <Tab value="one" label="Item One" />
+          <Tab value="two" label="Item Two" />
+          <Tab value="three" label="Item Three" />
+        </Tabs>
+        <Tabs
+          value={value}
+          onChange={handleChange}
+          textColor="secondary"
+          indicatorColor="secondary"
+          aria-label="secondary tabs example"
+          {...args}
+        >
+          <Tab value="one" label="Item One" icon={<PhoneIcon />} />
+          <Tab value="two" label="Item Two" icon={<FavoriteIcon />} />
+          <Tab value="three" label="Item Three" icon={<PersonPinIcon />} />
+        </Tabs>
+      </Stack>
+    )
+  },
+  {
+    parameters: {
+      a11y: {
+        /**
+         * Our orange buttons fail the WCAG 2.0 contrast test.
+         * See https://gitlab.com/simspace/r9y/monorail/-/merge_requests/20#note_989402928
+         * GS 6/13/22
+         */
+        disable: true,
+      },
+    },
+  },
+)
 
-export const DisabledTab = story(() => {
+export const DisabledTab = story<TabsProps>(args => {
   const [value, setValue] = React.useState(2)
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
@@ -223,6 +258,7 @@ export const DisabledTab = story(() => {
       value={value}
       onChange={handleChange}
       aria-label="disabled tabs example"
+      {...args}
     >
       <Tab label="Active" />
       <Tab label="Disabled" disabled />
@@ -231,8 +267,8 @@ export const DisabledTab = story(() => {
   )
 })
 
-export const FixedTabs = story(
-  () => {
+export const FixedTabs = story<TabsProps>(
+  args => {
     interface TabPanelProps {
       children?: React.ReactNode
       dir?: string
@@ -275,14 +311,15 @@ export const FixedTabs = story(
 
     return (
       <Box sx={{ bgcolor: 'background.paper', width: 500 }}>
-        <AppBar position="static">
+        <AppBar position="static" color="transparent">
           <Tabs
             value={value}
             onChange={handleChange}
-            indicatorColor="secondary"
+            indicatorColor="primary"
             textColor="inherit"
             variant="fullWidth"
             aria-label="full width tabs example"
+            {...args}
           >
             <Tab label="Item One" {...a11yProps(0)} />
             <Tab label="Item Two" {...a11yProps(1)} />
@@ -309,12 +346,16 @@ export const FixedTabs = story(
             'Long labels will automatically wrap on tabs. If the label is too long for the tab, it will overflow, and the text will not be visible.',
         },
       },
+      a11y: {
+        // TODO(a11y): Fix contrast
+        disable: true,
+      },
     },
   },
 )
 
-export const FullWidth = story(
-  () => {
+export const FullWidth = story<TabsProps>(
+  args => {
     const [value, setValue] = React.useState(0)
 
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
@@ -328,6 +369,7 @@ export const FullWidth = story(
             value={value}
             onChange={handleChange}
             aria-label="basic tabs example"
+            {...args}
           >
             <Tab label="Item One" {...a11yProps(0)} />
             <Tab label="Item Two" {...a11yProps(1)} />
@@ -358,8 +400,8 @@ export const FullWidth = story(
   },
 )
 
-export const Centered = story(
-  () => {
+export const Centered = story<TabsProps>(
+  args => {
     const [value, setValue] = React.useState(0)
 
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
@@ -368,7 +410,7 @@ export const Centered = story(
 
     return (
       <Box sx={{ width: '100%', bgcolor: 'background.paper' }}>
-        <Tabs value={value} onChange={handleChange} centered>
+        <Tabs value={value} onChange={handleChange} centered {...args}>
           <Tab label="Item One" />
           <Tab label="Item Two" />
           <Tab label="Item Three" />
@@ -387,8 +429,8 @@ export const Centered = story(
   },
 )
 
-export const ScrollableTabs = story(
-  () => {
+export const ScrollableTabs = story<TabsProps>(
+  args => {
     const [value, setValue] = React.useState(0)
 
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
@@ -403,6 +445,7 @@ export const ScrollableTabs = story(
           variant="scrollable"
           scrollButtons="auto"
           aria-label="scrollable auto tabs example"
+          {...args}
         >
           <Tab label="Item One" />
           <Tab label="Item Two" />
@@ -427,8 +470,8 @@ export const ScrollableTabs = story(
   },
 )
 
-export const ForcedScrollButtons = story(
-  () => {
+export const ForcedScrollButtons = story<TabsProps>(
+  args => {
     const [value, setValue] = React.useState(0)
 
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
@@ -443,6 +486,7 @@ export const ForcedScrollButtons = story(
           variant="scrollable"
           scrollButtons="auto"
           aria-label="scrollable auto tabs example"
+          {...args}
         >
           <Tab label="Item One" />
           <Tab label="Item Two" />
@@ -467,8 +511,8 @@ export const ForcedScrollButtons = story(
   },
 )
 
-export const PreventScrollButtons = story(
-  () => {
+export const PreventScrollButtons = story<TabsProps>(
+  args => {
     const [value, setValue] = React.useState(0)
 
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
@@ -483,6 +527,7 @@ export const PreventScrollButtons = story(
           variant="scrollable"
           scrollButtons={false}
           aria-label="scrollable prevent tabs example"
+          {...args}
         >
           <Tab label="Item One" />
           <Tab label="Item Two" />
@@ -510,7 +555,7 @@ export const PreventScrollButtons = story(
 const AntTabs = styled(Tabs)({
   borderBottom: '1px solid #e8e8e8',
   '& .MuiTabs-indicator': {
-    backgroundColor: '#1890ff',
+    backgroundColor: '#0464be',
   },
 })
 
@@ -542,7 +587,7 @@ const AntTab = styled((props: StyledTabProps) => (
     opacity: 1,
   },
   '&.Mui-selected': {
-    color: '#1890ff',
+    color: '#0464be',
     fontWeight: theme.typography.fontWeightMedium,
   },
   '&.Mui-focusVisible': {
@@ -594,8 +639,8 @@ const StyledTab = styled((props: StyledTabProps) => (
   },
 }))
 
-export const Customization = story(
-  () => {
+export const Customization = story<TabsProps>(
+  args => {
     const [value, setValue] = React.useState(0)
 
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
@@ -609,6 +654,7 @@ export const Customization = story(
             value={value}
             onChange={handleChange}
             aria-label="ant example"
+            {...args}
           >
             <AntTab label="Tab 1" />
             <AntTab label="Tab 2" />
@@ -621,6 +667,7 @@ export const Customization = story(
             value={value}
             onChange={handleChange}
             aria-label="styled tabs example"
+            {...args}
           >
             <StyledTab label="Workflows" />
             <StyledTab label="Datasets" />
@@ -671,8 +718,8 @@ function a11yPropsV(index: number) {
   }
 }
 
-export const VerticalTabs = story(
-  () => {
+export const VerticalTabs = story<TabsProps>(
+  args => {
     const [value, setValue] = React.useState(0)
 
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
@@ -695,6 +742,7 @@ export const VerticalTabs = story(
           onChange={handleChange}
           aria-label="Vertical tabs example"
           sx={{ borderRight: 1, borderColor: 'divider' }}
+          {...args}
         >
           <Tab label="Item One" {...a11yPropsV(0)} />
           <Tab label="Item Two" {...a11yPropsV(1)} />
@@ -757,8 +805,8 @@ function LinkTab(props: LinkTabProps) {
   )
 }
 
-export const NavTabs = story(
-  () => {
+export const NavTabs = story<TabsProps>(
+  args => {
     const [value, setValue] = React.useState(0)
 
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
@@ -771,10 +819,11 @@ export const NavTabs = story(
           value={value}
           onChange={handleChange}
           aria-label="nav tabs example"
+          {...args}
         >
-          <LinkTab label="Page One" href="/drafts" />
-          <LinkTab label="Page Two" href="/trash" />
-          <LinkTab label="Page Three" href="/spam" />
+          <LinkTab label="Page One" href="/drafts" aria-label="favorite" />
+          <LinkTab label="Page Two" href="/trash" aria-label="favorite" />
+          <LinkTab label="Page Three" href="/spam" aria-label="favorite" />
         </Tabs>
       </Box>
     )
@@ -791,8 +840,8 @@ export const NavTabs = story(
   },
 )
 
-export const IconTabs = story(
-  () => {
+export const IconTabs = story<TabsProps>(
+  args => {
     const [value, setValue] = React.useState(0)
 
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
@@ -800,15 +849,27 @@ export const IconTabs = story(
     }
 
     return (
-      <Tabs
-        value={value}
-        onChange={handleChange}
-        aria-label="icon tabs example"
-      >
-        <Tab icon={<PhoneIcon />} aria-label="phone" />
-        <Tab icon={<FavoriteIcon />} aria-label="favorite" />
-        <Tab icon={<PersonPinIcon />} aria-label="person" />
-      </Tabs>
+      <div>
+        <Tabs
+          value={value}
+          onChange={handleChange}
+          aria-label="icon tabs example"
+          {...args}
+        >
+          <Tab icon={<PhoneIcon />} aria-label="phone" />
+          <Tab icon={<FavoriteIcon />} aria-label="favorite" />
+          <Tab icon={<PersonPinIcon />} aria-label="person" />
+        </Tabs>
+        <Tabs
+          value={value}
+          onChange={handleChange}
+          aria-label="icon label tabs example"
+        >
+          <Tab icon={<PhoneIcon />} label="RECENTS" />
+          <Tab icon={<FavoriteIcon />} label="FAVORITES" />
+          <Tab icon={<PersonPinIcon />} label="NEARBY" />
+        </Tabs>
+      </div>
     )
   },
   {
@@ -822,8 +883,42 @@ export const IconTabs = story(
   },
 )
 
-export const Accessibility = story(
-  () => {
+export const IconPosition = story<TabsProps>(
+  args => {
+    const [value, setValue] = React.useState(0)
+
+    const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+      setValue(newValue)
+    }
+
+    return (
+      <Tabs
+        value={value}
+        onChange={handleChange}
+        aria-label="icon position tabs example"
+        {...args}
+      >
+        <Tab icon={<PhoneIcon />} label="top" />
+        <Tab icon={<PhoneMissedIcon />} iconPosition="start" label="start" />
+        <Tab icon={<FavoriteIcon />} iconPosition="end" label="end" />
+        <Tab icon={<PersonPinIcon />} iconPosition="bottom" label="bottom" />
+      </Tabs>
+    )
+  },
+  {
+    parameters: {
+      docs: {
+        description: {
+          story:
+            'By default, the icon is positioned at the `top` of a tab. Other supported positions are `start`, `end`, `bottom`',
+        },
+      },
+    },
+  },
+)
+
+export const Accessibility = story<TabsProps>(
+  args => {
     const [value, setValue] = React.useState(0)
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
       setValue(newValue)
@@ -836,6 +931,7 @@ export const Accessibility = story(
           value={value}
           aria-label="Tabs where selection follows focus"
           selectionFollowsFocus
+          {...args}
         >
           <Tab label="Item One" />
           <Tab label="Item Two" />
