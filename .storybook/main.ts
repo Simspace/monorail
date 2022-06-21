@@ -1,4 +1,13 @@
+import { PropItem } from 'react-docgen-typescript'
+
+const ARIA_PROP_REGEX = /aria.*/
+const ON_PROP_REGEX = /on.*/
+
 export default {
+  core: {
+    builder: "webpack5"
+  },
+
   stories: ['../src/**/*.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
 
   addons: [
@@ -21,6 +30,17 @@ export default {
         allowSyntheticDefaultImports: false,
         esModuleInterop: false,
       },
+      propFilter: (prop: PropItem) => {
+        /*
+         * if (prop.description.length === 0) {
+         *   return false
+         * }
+         */
+        if ([ARIA_PROP_REGEX, ON_PROP_REGEX].find((regex) => regex.test(prop.name))) {
+          return false
+        }
+        return true
+      }
     },
   },
 

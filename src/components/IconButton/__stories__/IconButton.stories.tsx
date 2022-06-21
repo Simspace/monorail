@@ -19,7 +19,7 @@ export default { title: 'Inputs/IconButton', component: IconButton }
  */
 const Template = story<IconButtonProps>(
   (args: IconButtonProps) => (
-    <IconButton aria-label="default" {...args} size="large">
+    <IconButton aria-label="default" {...args}>
       <DeleteIcon />
     </IconButton>
   ),
