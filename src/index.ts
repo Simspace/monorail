@@ -1,9 +1,8 @@
 export * from './components'
+export type { CSSObject, Theme } from '@mui/material'
 export {
   styled,
   useTheme,
-  CSSObject,
-  Theme,
   createTheme,
   StyledEngineProvider,
   ThemeProvider,

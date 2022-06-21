@@ -156,6 +156,7 @@
     "spaced-comment": "off",
     "use-isnan": "error",
     "valid-typeof": "off",
+    "@typescript-eslint/consistent-type-exports": "error",
     "@typescript-eslint/no-unused-vars": [
       "error",
       {
