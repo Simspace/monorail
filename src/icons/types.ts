@@ -3,6 +3,6 @@ import { ComponentType } from 'react'
 import { SvgIconProps } from '@mui/material/SvgIcon'
 
 // eslint-disable-next-line no-restricted-imports
-export { SvgIconProps } from '@mui/material/SvgIcon'
+export type { SvgIconProps } from '@mui/material/SvgIcon'
 
 export type SvgIconType = ComponentType<SvgIconProps>
