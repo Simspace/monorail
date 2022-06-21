@@ -1,7 +1,7 @@
 // Edit this file to add new stories
 import React from 'react'
-import { AccordionActions, AccordionActionsProps, Button } from '@mui/material'
 
+import { AccordionActions, AccordionActionsProps, Button } from '../../..'
 import { story } from '../../../test-helpers/storybook'
 
 /**
@@ -25,7 +25,7 @@ const Template = story<AccordionActionsProps>(
       <Button variant="contained">Action 2</Button>
     </AccordionActions>
   ),
-  { args: {} },
+  { args: {}, muiName: 'MuiAccordionActions' },
 )
 
 /** Default story for AccordionActions (edit/remove by hand if needed) */

@@ -3,6 +3,8 @@ import React from 'react'
 import AddIcon from '@mui/icons-material/Add'
 import MailIcon from '@mui/icons-material/Mail'
 import RemoveIcon from '@mui/icons-material/Remove'
+import { styled } from '@mui/material/styles'
+
 import {
   Badge,
   BadgeProps,
@@ -14,9 +16,7 @@ import {
   Stack,
   Switch,
   Typography,
-} from '@mui/material'
-import { styled } from '@mui/material/styles'
-
+} from '../../..'
 import { story } from '../../../test-helpers/storybook'
 
 /**
@@ -39,6 +39,7 @@ const Template = story<BadgeProps>(
   ),
   {
     args: { badgeContent: 4, color: 'primary' },
+    muiName: 'MuiBadge',
   },
 )
 /** Default story for Badge (edit/remove by hand if needed) */

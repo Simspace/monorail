@@ -1,6 +1,7 @@
 // Edit this file to add new stories
 import React from 'react'
 import Person from '@mui/icons-material/Person'
+
 import {
   Box,
   FormControl,
@@ -11,8 +12,7 @@ import {
   Select,
   SelectChangeEvent,
   SelectProps,
-} from '@mui/material'
-
+} from '../../..'
 import { story } from '../../../test-helpers/storybook'
 
 export default { title: 'Inputs/Select', component: Select }
@@ -47,6 +47,7 @@ const Template = story<SelectProps<string>>(
   },
   {
     args: {},
+    muiName: 'MuiSelect',
   },
 )
 /** Default story for Select (edit/remove by hand if needed) */

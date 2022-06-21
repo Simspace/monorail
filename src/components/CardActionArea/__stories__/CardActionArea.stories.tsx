@@ -1,7 +1,7 @@
 // Edit this file to add new stories
 import React from 'react'
-import { CardActionArea, CardActionAreaProps } from '@mui/material'
 
+import { CardActionArea, CardActionAreaProps } from '../../..'
 import { story } from '../../../test-helpers/storybook'
 
 /**
@@ -22,7 +22,7 @@ export default {
  */
 const Template = story<CardActionAreaProps>(
   args => <CardActionArea {...args} />,
-  { args: { children: 'Card Action Area' } },
+  { args: { children: 'Card Action Area' }, muiName: 'MuiCardActionArea' },
 )
 
 /** Default story for CardActionArea (edit/remove by hand if needed) */

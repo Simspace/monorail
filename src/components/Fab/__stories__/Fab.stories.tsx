@@ -5,6 +5,7 @@ import EditIcon from '@mui/icons-material/Edit'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import UpIcon from '@mui/icons-material/KeyboardArrowUp'
 import NavigationIcon from '@mui/icons-material/Navigation'
+
 import {
   AppBar,
   Box,
@@ -13,10 +14,9 @@ import {
   Tab,
   Tabs,
   Typography,
+  useTheme,
   Zoom,
-} from '@mui/material'
-import { useTheme } from '@mui/material/styles'
-
+} from '../../..'
 import { story } from '../../../test-helpers/storybook'
 
 /**
@@ -31,6 +31,7 @@ export default { title: 'Inputs/Fab', component: Fab }
  */
 const Template = story<FabProps>((args: FabProps) => <Fab {...args}>FAB</Fab>, {
   args: {},
+  muiName: 'MuiFab',
 })
 /** Default story for Fab (edit/remove by hand if needed) */
 export const Default = story(Template)

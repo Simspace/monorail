@@ -1,8 +1,8 @@
 // Edit this file to add new stories
 import React from 'react'
 import ExpandMore from '@mui/icons-material/ExpandMore'
-import { AccordionSummary, AccordionSummaryProps } from '@mui/material'
 
+import { AccordionSummary, AccordionSummaryProps } from '../../..'
 import { story } from '../../../test-helpers/storybook'
 
 /**
@@ -28,7 +28,7 @@ const Template = story<AccordionSummaryProps>(
       Accordion Summary
     </AccordionSummary>
   ),
-  { args: {} },
+  { args: {}, muiName: 'MuiAccordionSummary' },
 )
 
 /**

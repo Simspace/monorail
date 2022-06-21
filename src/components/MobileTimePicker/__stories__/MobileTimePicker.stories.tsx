@@ -1,8 +1,7 @@
 // Edit this file to add new stories
 import React from 'react'
-import { MobileTimePicker, MobileTimePickerProps } from '@mui/lab'
-import { TextField } from '@mui/material'
 
+import { MobileTimePicker, MobileTimePickerProps, TextField } from '../../..'
 import { story } from '../../../test-helpers/storybook'
 
 export default {

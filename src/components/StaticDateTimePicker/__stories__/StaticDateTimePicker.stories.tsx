@@ -1,8 +1,11 @@
 // Edit this file to add new stories
 import React from 'react'
-import { StaticDateTimePicker, StaticDateTimePickerProps } from '@mui/lab'
-import { TextField } from '@mui/material'
 
+import {
+  StaticDateTimePicker,
+  StaticDateTimePickerProps,
+  TextField,
+} from '../../..'
 import { story } from '../../../test-helpers/storybook'
 /**
  * Metadata for StaticDateTimePicker stories - update/extend as needed

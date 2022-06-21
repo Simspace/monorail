@@ -2,6 +2,7 @@
 import React from 'react'
 import CheckBoxIcon from '@mui/icons-material/CheckBox'
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank'
+
 import {
   Autocomplete,
   AutocompleteProps,
@@ -10,8 +11,7 @@ import {
   Chip,
   Stack,
   TextField,
-} from '@mui/material'
-
+} from '../../..'
 import { story } from '../../../test-helpers/storybook'
 import {
   countries,
@@ -53,6 +53,7 @@ const Template = story<MovieAutocompleteProps>(
   ),
   {
     args: {},
+    muiName: 'MuiAutocomplete',
   },
 )
 

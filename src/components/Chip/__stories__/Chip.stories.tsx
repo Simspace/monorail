@@ -5,17 +5,17 @@ import DeleteIcon from '@mui/icons-material/Delete'
 import DoneIcon from '@mui/icons-material/Done'
 import FaceIcon from '@mui/icons-material/Face'
 import TagFacesIcon from '@mui/icons-material/TagFaces'
+import { action } from '@storybook/addon-actions'
+
 import {
   Avatar,
   Chip,
   ChipProps,
   Paper,
   Stack,
+  styled,
   Typography,
-} from '@mui/material'
-import { styled } from '@mui/material/styles'
-import { action } from '@storybook/addon-actions'
-
+} from '../../..'
 import { capitalizeFirstLetter } from '../../../test-helpers/helpers'
 import { story } from '../../../test-helpers/storybook'
 
@@ -34,6 +34,7 @@ export default { title: 'Data Display/Chip', component: Chip }
  */
 const Template = story<ChipProps>(args => <Chip {...args} />, {
   args: { label: 'Ahoy!' },
+  muiName: 'MuiChip',
 })
 
 /** Default story for Chip (edit/remove by hand if needed) */

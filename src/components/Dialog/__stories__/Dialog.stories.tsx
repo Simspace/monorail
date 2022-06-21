@@ -4,6 +4,10 @@ import Draggable from 'react-draggable'
 import AddIcon from '@mui/icons-material/Add'
 import CloseIcon from '@mui/icons-material/Close'
 import PersonIcon from '@mui/icons-material/Person'
+import { blue } from '@mui/material/colors'
+import { TransitionProps } from '@mui/material/transitions'
+import useMediaQuery from '@mui/material/useMediaQuery'
+
 import {
   AppBar,
   Avatar,
@@ -30,18 +34,15 @@ import {
   Radio,
   RadioGroup,
   Select,
+  SelectChangeEvent,
   Slide,
+  styled,
   Switch,
   TextField,
   Toolbar,
   Typography,
-} from '@mui/material'
-import { blue } from '@mui/material/colors'
-import { SelectChangeEvent } from '@mui/material/Select'
-import { styled, useTheme } from '@mui/material/styles'
-import { TransitionProps } from '@mui/material/transitions'
-import useMediaQuery from '@mui/material/useMediaQuery'
-
+  useTheme,
+} from '../../..'
 import { story } from '../../../test-helpers/storybook'
 import { longParagraph } from '../../../test-helpers/testData'
 
@@ -142,7 +143,7 @@ const Template = story<DialogProps>(
       </div>
     )
   },
-  { args: {} },
+  { args: {}, muiName: 'MuiDialog' },
 )
 /** Default story for Dialog (edit/remove by hand if needed) */
 export const Default = story(Template)

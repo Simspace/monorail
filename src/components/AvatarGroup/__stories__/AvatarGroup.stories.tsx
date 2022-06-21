@@ -1,13 +1,7 @@
 // Edit this file to add new stories
 import React from 'react'
-import {
-  Avatar,
-  AvatarGroup,
-  AvatarGroupProps,
-  Box,
-  Stack,
-} from '@mui/material'
 
+import { Avatar, AvatarGroup, AvatarGroupProps, Box, Stack } from '../../..'
 import { story } from '../../../test-helpers/storybook'
 
 /**
@@ -35,6 +29,7 @@ const Template = story<AvatarGroupProps>(
   ),
   {
     args: {},
+    muiName: 'MuiAvatarGroup',
   },
 )
 

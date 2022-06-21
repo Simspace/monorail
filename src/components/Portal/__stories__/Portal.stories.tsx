@@ -1,8 +1,7 @@
 // Edit this file to add new stories
 import React from 'react'
-import { Portal, PortalProps } from '@mui/base'
-import { Box } from '@mui/material'
 
+import { Box, Portal, PortalProps } from '../../..'
 import { story } from '../../../test-helpers/storybook'
 /**
  * Metadata for Portal stories - update/extend as needed

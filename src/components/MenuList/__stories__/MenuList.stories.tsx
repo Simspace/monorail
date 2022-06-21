@@ -1,7 +1,7 @@
 // Edit this file to add new stories
 import React from 'react'
-import { MenuItem, MenuList, MenuListProps } from '@mui/material'
 
+import { MenuItem, MenuList, MenuListProps } from '../../..'
 import { story } from '../../../test-helpers/storybook'
 /**
  * Metadata for MenuList stories - update/extend as needed

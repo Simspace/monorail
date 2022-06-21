@@ -1,7 +1,7 @@
 // Edit this file to add new stories
 import React from 'react'
-import { Button, DialogActions, DialogActionsProps } from '@mui/material'
 
+import { Button, DialogActions, DialogActionsProps } from '../../..'
 import { story } from '../../../test-helpers/storybook'
 /**
  * Metadata for DialogActions stories - update/extend as needed
@@ -23,7 +23,7 @@ const Template = story<DialogActionsProps>(
       <Button variant="contained">Action 2</Button>
     </DialogActions>
   ),
-  { args: {} },
+  { args: {}, muiName: 'MuiDialogActions' },
 )
 /** Default story for DialogActions (edit/remove by hand if needed) */
 export const Default = story(Template)

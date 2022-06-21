@@ -8,8 +8,8 @@ import DeleteIcon from '@mui/icons-material/Delete'
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined'
 import HomeIcon from '@mui/icons-material/Home'
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined'
-import { Box, Icon, IconProps, styled, Typography } from '@mui/material'
 
+import { Box, Icon, IconProps, styled, Typography } from '../../..'
 import * as Icons from '../../../icons/Icons'
 import { Illustration } from '../../../icons/Illustration'
 import { story } from '../../../test-helpers/storybook'
@@ -46,6 +46,7 @@ const IconContainer = ({
 
 const Template = story<IconProps>((args: IconProps) => <Icon {...args} />, {
   args: {},
+  muiName: 'MuiIcon',
 })
 
 export const Default = story(Template)

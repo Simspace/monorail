@@ -9,12 +9,13 @@ import FormatBoldIcon from '@mui/icons-material/FormatBold'
 import FormatColorFillIcon from '@mui/icons-material/FormatColorFill'
 import FormatItalicIcon from '@mui/icons-material/FormatItalic'
 import FormatUnderlinedIcon from '@mui/icons-material/FormatUnderlined'
-import Stack from '@mui/material/Stack'
-import ToggleButton from '@mui/material/ToggleButton'
-import ToggleButtonGroup, {
-  ToggleButtonGroupProps,
-} from '@mui/material/ToggleButtonGroup'
 
+import {
+  Stack,
+  ToggleButton,
+  ToggleButtonGroup,
+  ToggleButtonGroupProps,
+} from '../../..'
 import { story } from '../../../test-helpers/storybook'
 
 /**
@@ -64,7 +65,7 @@ const Template = story<ToggleButtonGroupProps>(
       </ToggleButtonGroup>
     )
   },
-  { args: {} },
+  { args: {}, muiName: 'MuiToggleButton' },
 )
 /** Default story for ToggleButtonGroup (edit/remove by hand if needed) */
 export const Default = story(Template)

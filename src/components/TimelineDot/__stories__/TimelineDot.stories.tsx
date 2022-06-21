@@ -1,7 +1,7 @@
 // Edit this file to add new stories
 import React from 'react'
-import TimelineDot, { TimelineDotProps } from '@mui/lab/TimelineDot'
 
+import { TimelineDot, TimelineDotProps } from '../../..'
 import { story } from '../../../test-helpers/storybook'
 /**
  * Metadata for TimelineDot stories - update/extend as needed
@@ -18,6 +18,7 @@ export default {
  */
 const Template = story<TimelineDotProps>(args => <TimelineDot {...args} />, {
   args: {},
+  muiName: 'MuiTimelineDot',
 })
 /** Default story for TimelineDot (edit/remove by hand if needed) */
 export const Default = story(Template)

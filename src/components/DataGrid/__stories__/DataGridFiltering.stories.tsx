@@ -1,9 +1,10 @@
 // Edit this file to add new stories
 import React from 'react'
 import { Clear, Search } from '@mui/icons-material'
-import { IconButton, InputAdornment, Rating, TextField } from '@mui/material'
 import { createTheme, Theme } from '@mui/material/styles'
 import { createStyles, makeStyles } from '@mui/styles'
+import { GridData, useDemoData } from '@mui/x-data-grid-generator'
+
 import {
   DataGrid,
   DataGridProps,
@@ -20,9 +21,11 @@ import {
   GridToolbar,
   GridToolbarDensitySelector,
   GridToolbarFilterButton,
-} from '@mui/x-data-grid'
-import { GridData, useDemoData } from '@mui/x-data-grid-generator'
-
+  IconButton,
+  InputAdornment,
+  Rating,
+  TextField,
+} from '../../..'
 import { story } from '../../../test-helpers/storybook'
 
 export default { title: 'Data Grid/Filtering', component: DataGrid }

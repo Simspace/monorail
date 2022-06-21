@@ -1,6 +1,7 @@
 // Edit this file to add new stories
 import React from 'react'
 import MoreVertIcon from '@mui/icons-material/MoreVert'
+
 import {
   Avatar,
   Box,
@@ -16,8 +17,7 @@ import {
   styled,
   Typography,
   TypographyProps,
-} from '@mui/material'
-
+} from '../../..'
 import { story } from '../../../test-helpers/storybook'
 /**
  * Metadata for Skeleton stories - update/extend as needed
@@ -31,6 +31,7 @@ export default { title: 'Feedback/Skeleton', component: Skeleton }
  */
 const Template = story<SkeletonProps>(args => <Skeleton {...args} />, {
   args: {},
+  muiName: 'MuiSkeleton',
 })
 /** Default story for Skeleton (edit/remove by hand if needed) */
 export const Default = story(Template)

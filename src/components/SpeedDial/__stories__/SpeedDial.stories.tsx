@@ -5,6 +5,7 @@ import FileCopyIcon from '@mui/icons-material/FileCopyOutlined'
 import PrintIcon from '@mui/icons-material/Print'
 import SaveIcon from '@mui/icons-material/Save'
 import ShareIcon from '@mui/icons-material/Share'
+
 import {
   Backdrop,
   Box,
@@ -17,10 +18,9 @@ import {
   SpeedDialAction,
   SpeedDialIcon,
   SpeedDialProps,
+  styled,
   Switch,
-} from '@mui/material'
-import { styled } from '@mui/material/styles'
-
+} from '../../..'
 import { story } from '../../../test-helpers/storybook'
 
 export default { title: 'Navigation/SpeedDial', component: SpeedDial }
@@ -35,6 +35,7 @@ const Template = story<SpeedDialProps>(
   ),
   {
     args: {},
+    muiName: 'MuiSpeedDial',
   },
 )
 

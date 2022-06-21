@@ -1,11 +1,8 @@
 // Edit this file to add new stories
 import React from 'react'
 import RestoreIcon from '@mui/icons-material/Restore'
-import {
-  BottomNavigationAction,
-  BottomNavigationActionProps,
-} from '@mui/material'
 
+import { BottomNavigationAction, BottomNavigationActionProps } from '../../..'
 import { story } from '../../../test-helpers/storybook'
 
 /**
@@ -26,7 +23,10 @@ export default {
  */
 const Template = story<BottomNavigationActionProps>(
   args => <BottomNavigationAction aria-label="Action" {...args} />,
-  { args: { label: 'Recents', showLabel: true, icon: <RestoreIcon /> } },
+  {
+    args: { label: 'Recents', showLabel: true, icon: <RestoreIcon /> },
+    muiName: 'MuiBottomNavigationAction',
+  },
 )
 
 /** Default story for BottomNavigationAction (edit/remove by hand if needed) */

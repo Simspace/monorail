@@ -4,6 +4,7 @@ import Bookmark from '@mui/icons-material/Bookmark'
 import BookmarkBorder from '@mui/icons-material/BookmarkBorder'
 import Favorite from '@mui/icons-material/Favorite'
 import FavoriteBorder from '@mui/icons-material/FavoriteBorder'
+
 import {
   Box,
   Checkbox,
@@ -14,8 +15,7 @@ import {
   FormHelperText,
   FormLabel,
   styled,
-} from '@mui/material'
-
+} from '../../..'
 import { story } from '../../../test-helpers/storybook'
 
 /**
@@ -31,6 +31,7 @@ export default { title: 'Inputs/Checkbox', component: Checkbox }
  */
 const Template = story<CheckboxProps>(args => <Checkbox {...args} />, {
   args: { inputProps: { 'aria-label': 'Checkbox' } },
+  muiName: 'MuiCheckbox',
 })
 
 /** Default story for Checkbox (edit/remove by hand if needed) */

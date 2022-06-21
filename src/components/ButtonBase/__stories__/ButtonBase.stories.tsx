@@ -1,9 +1,10 @@
 // Edit this file to add new stories
 import React from 'react'
-import { Box, ButtonBase, ButtonBaseProps, Typography } from '@mui/material'
 import { styled, Theme } from '@mui/material/styles'
 
+import { Box, ButtonBase, ButtonBaseProps, Typography } from '../../..'
 import { story } from '../../../test-helpers/storybook'
+
 /**
  * Metadata for ButtonBase stories - update/extend as needed
  * This is intended to be exported as story-level metadata from the main .stories.tsx file, like:
@@ -25,6 +26,7 @@ const Template = story<ButtonBaseProps>(args => <ButtonBase {...args} />, {
       },
     },
   },
+  muiName: 'MuiButtonBase',
 })
 /** Default story for ButtonBase (edit/remove by hand if needed) */
 export const Default = story(Template)

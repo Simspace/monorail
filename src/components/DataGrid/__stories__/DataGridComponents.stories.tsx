@@ -6,10 +6,12 @@ import {
   FiberManualRecord,
   StarOutline,
 } from '@mui/icons-material'
-import { Button, LinearProgress, Pagination } from '@mui/material'
 import { createTheme, Theme } from '@mui/material/styles'
 import { createStyles, makeStyles } from '@mui/styles'
+import { useDemoData } from '@mui/x-data-grid-generator'
+
 import {
+  Button,
   DataGrid,
   DataGridProps,
   GridColumnMenu,
@@ -23,11 +25,11 @@ import {
   GridToolbarDensitySelector,
   GridToolbarExport,
   GridToolbarFilterButton,
+  LinearProgress,
+  Pagination,
   SortGridMenuItems,
   useGridSlotComponentProps,
-} from '@mui/x-data-grid'
-import { useDemoData } from '@mui/x-data-grid-generator'
-
+} from '../../..'
 import { story } from '../../../test-helpers/storybook'
 
 export default {

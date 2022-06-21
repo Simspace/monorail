@@ -4,6 +4,8 @@ import { Person } from '@mui/icons-material'
 import AssignmentIcon from '@mui/icons-material/Assignment'
 import FolderIcon from '@mui/icons-material/Folder'
 import PageviewIcon from '@mui/icons-material/Pageview'
+import { styled } from '@mui/material/styles'
+
 import {
   Avatar,
   AvatarProps,
@@ -11,9 +13,7 @@ import {
   Stack,
   Typography,
   useTheme,
-} from '@mui/material'
-import { styled } from '@mui/material/styles'
-
+} from '../../..'
 import { AccountGroup } from '../../../icons/Icons'
 import { story } from '../../../test-helpers/storybook'
 
@@ -32,6 +32,7 @@ export default { title: 'Data Display/Avatar', component: Avatar }
  */
 const Template = story<AvatarProps>(args => <Avatar {...args} />, {
   args: { children: 'AZ' },
+  muiName: 'MuiAvatar',
 })
 
 /** Default story for Avatar (edit/remove by hand if needed) */

@@ -1,7 +1,7 @@
 // Edit this file to add new stories
 import React from 'react'
-import { Box, BoxProps, Button, Stack, styled, Typography } from '@mui/material'
 
+import { Box, BoxProps, Button, Stack, styled, Typography } from '../../..'
 import { story } from '../../../test-helpers/storybook'
 
 /**
@@ -44,7 +44,7 @@ export const WaysToStyleABox = () => {
       <Typography>1. As a styled component</Typography>
       <BorderedBox>Hello!</BorderedBox>
       <pre>{`
-import { styled } from '@mui/material'
+import { styled } from '../../..'
 
 export const BorderedBox = styled(Box)(
   ({ theme }) => \`

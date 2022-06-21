@@ -1,5 +1,6 @@
 // Edit this file to add new stories
 import React from 'react'
+
 import {
   FormControl,
   FormControlLabel,
@@ -9,8 +10,7 @@ import {
   Stack,
   Switch,
   SwitchProps,
-} from '@mui/material'
-
+} from '../../..'
 import { story } from '../../../test-helpers/storybook'
 
 /**
@@ -30,6 +30,7 @@ const Template = story<SwitchProps>(
   args => <Switch inputProps={{ 'aria-label': 'Switch' }} {...args} />,
   {
     args: {},
+    muiName: 'MuiSwitch',
   },
 )
 /** Default story for Switch (edit/remove by hand if needed) */

@@ -1,6 +1,7 @@
 // Edit this file to add new stories
 import React from 'react'
 import { ModalUnstyled } from '@mui/base'
+
 import {
   Backdrop,
   Box,
@@ -8,10 +9,9 @@ import {
   Fade,
   Modal,
   ModalProps,
+  styled,
   Typography,
-} from '@mui/material'
-import { styled } from '@mui/material/styles'
-
+} from '../../..'
 import { story } from '../../../test-helpers/storybook'
 /**
  * Metadata for Modal stories - update/extend as needed
@@ -63,7 +63,7 @@ const Template = story<ModalProps>(
       </div>
     )
   },
-  { args: {} },
+  { args: {}, muiName: 'MuiModal' },
 )
 /** Default story for Modal (edit/remove by hand if needed) */
 export const Default = story(Template)

@@ -1,12 +1,8 @@
 // Edit this file to add new stories
 import React from 'react'
 import InfoIcon from '@mui/icons-material/Info'
-import {
-  IconButton,
-  ImageListItemBar,
-  ImageListItemBarProps,
-} from '@mui/material'
 
+import { IconButton, ImageListItemBar, ImageListItemBarProps } from '../../..'
 import { story } from '../../../test-helpers/storybook'
 
 /**
@@ -43,6 +39,7 @@ const Template = story<ImageListItemBarProps>(
         </IconButton>
       ),
     },
+    muiName: 'MuiImageListItemBar',
   },
 )
 /** Default story for ImageListItemBar (edit/remove by hand if needed) */

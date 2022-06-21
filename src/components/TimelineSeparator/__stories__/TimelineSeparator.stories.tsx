@@ -1,9 +1,7 @@
 // Edit this file to add new stories
 import React from 'react'
-import TimelineSeparator, {
-  TimelineSeparatorProps,
-} from '@mui/lab/TimelineSeparator'
 
+import { TimelineSeparator, TimelineSeparatorProps } from '../../..'
 import { story } from '../../../test-helpers/storybook'
 /**
  * Metadata for TimelineSeparator stories - update/extend as needed
@@ -27,6 +25,7 @@ const Template = story<TimelineSeparatorProps>(
   args => <TimelineSeparator {...args} />,
   {
     args: {},
+    muiName: 'MuiTimelineSeparator',
   },
 )
 /** Default story for TimelineSeparator (edit/remove by hand if needed) */

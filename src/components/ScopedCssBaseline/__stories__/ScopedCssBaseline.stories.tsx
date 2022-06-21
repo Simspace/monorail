@@ -1,7 +1,7 @@
 // Edit this file to add new stories
 import React from 'react'
-import { ScopedCssBaseline, ScopedCssBaselineProps } from '@mui/material'
 
+import { ScopedCssBaseline, ScopedCssBaselineProps } from '../../..'
 import { story } from '../../../test-helpers/storybook'
 /**
  * Metadata for ScopedCssBaseline stories - update/extend as needed
@@ -28,7 +28,7 @@ const Template = story<ScopedCssBaselineProps>(
       </div>
     </ScopedCssBaseline>
   ),
-  { args: {} },
+  { args: {}, muiName: 'MuiScopedCssBaseline' },
 )
 
 /** Default story for ScopedCssBaseline (edit/remove by hand if needed) */

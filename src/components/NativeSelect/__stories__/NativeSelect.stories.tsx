@@ -1,13 +1,13 @@
 // Edit this file to add new stories
 import React from 'react'
+
 import {
   Box,
   FormControl,
   InputLabel,
   NativeSelect,
   NativeSelectProps,
-} from '@mui/material'
-
+} from '../../..'
 import { story } from '../../../test-helpers/storybook'
 /**
  * Metadata for NativeSelect stories - update/extend as needed
@@ -46,6 +46,7 @@ const Template = story<NativeSelectProps>(
   },
   {
     args: {},
+    muiName: 'MuiNativeSelect',
   },
 )
 /** Default story for NativeSelect (edit/remove by hand if needed) */

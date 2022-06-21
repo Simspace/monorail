@@ -1,7 +1,7 @@
 // Edit this file to add new stories
 import React from 'react'
-import { NoSsr, NoSsrProps } from '@mui/material'
 
+import { NoSsr, NoSsrProps } from '../../..'
 import { story } from '../../../test-helpers/storybook'
 /**
  * Metadata for NoSsr stories - update/extend as needed

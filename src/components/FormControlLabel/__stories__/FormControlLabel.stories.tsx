@@ -1,5 +1,6 @@
 // Edit this file to add new stories
 import React from 'react'
+
 import {
   Checkbox,
   FormControlLabel,
@@ -7,8 +8,7 @@ import {
   FormGroup,
   Radio,
   Switch,
-} from '@mui/material'
-
+} from '../../..'
 import { story } from '../../../test-helpers/storybook'
 /**
  * Metadata for FormControlLabel stories - update/extend as needed
@@ -33,6 +33,7 @@ const Template = story<FormControlLabelProps>(
         },
       },
     },
+    muiName: 'MuiFormControlLabel',
   },
 )
 export const Default = story(Template)

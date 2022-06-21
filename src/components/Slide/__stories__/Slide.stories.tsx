@@ -1,5 +1,6 @@
 // Edit this file to add new stories
 import React from 'react'
+
 import {
   Box,
   FormControlLabel,
@@ -7,8 +8,7 @@ import {
   Slide,
   SlideProps,
   Switch,
-} from '@mui/material'
-
+} from '../../..'
 import { story } from '../../../test-helpers/storybook'
 /**
  * Metadata for Slide stories - update/extend as needed

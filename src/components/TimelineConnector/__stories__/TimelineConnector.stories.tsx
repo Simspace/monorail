@@ -1,9 +1,7 @@
 // Edit this file to add new stories
 import React from 'react'
-import TimelineConnector, {
-  TimelineConnectorProps,
-} from '@mui/lab/TimelineConnector'
 
+import { TimelineConnector, TimelineConnectorProps } from '../../..'
 import { story } from '../../../test-helpers/storybook'
 /**
  * Metadata for TimelineConnector stories - update/extend as needed
@@ -33,6 +31,7 @@ const Template = story<TimelineConnectorProps>(
         skip: 'No story yet',
       },
     },
+    muiName: 'MuiTimelineConnector',
   },
 )
 

@@ -2,15 +2,15 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 // Edit this file to add new stories
 import React from 'react'
+import { GridData, useDemoData } from '@mui/x-data-grid-generator'
+
 import {
   DataGrid,
   DataGridProps,
   GridRowParams,
   GridRowsProp,
   GridSelectionModel,
-} from '@mui/x-data-grid'
-import { GridData, useDemoData } from '@mui/x-data-grid-generator'
-
+} from '../../..'
 import { story } from '../../../test-helpers/storybook'
 
 export default {

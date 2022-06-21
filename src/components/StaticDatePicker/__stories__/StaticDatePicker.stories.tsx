@@ -1,8 +1,7 @@
 // Edit this file to add new stories
 import React from 'react'
-import { DatePickerProps, StaticDatePicker } from '@mui/lab'
-import { TextField } from '@mui/material'
 
+import { DatePickerProps, StaticDatePicker, TextField } from '../../..'
 import { story } from '../../../test-helpers/storybook'
 
 export default {

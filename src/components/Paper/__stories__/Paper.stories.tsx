@@ -1,14 +1,17 @@
 // Edit this file to add new stories
 import React from 'react'
-import { Box, Grid, Paper, PaperProps } from '@mui/material'
+
 import {
+  Box,
   createTheme,
+  Grid,
+  Paper,
+  PaperProps,
   styled,
   StyledEngineProvider,
   Theme,
   ThemeProvider,
-} from '@mui/material/styles'
-
+} from '../../..'
 import { story } from '../../../test-helpers/storybook'
 
 declare module '@mui/styles/defaultTheme' {
@@ -33,6 +36,7 @@ export default { title: 'Surfaces/Paper', component: Paper }
  */
 const Template = story<PaperProps>(args => <Paper {...args} />, {
   args: { children: 'The content' },
+  muiName: 'MuiPaper',
 })
 /** Default story for Paper (edit/remove by hand if needed) */
 export const Default = story(Template)

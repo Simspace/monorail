@@ -1,14 +1,7 @@
 // Edit this file to add new stories
 import React from 'react'
-import {
-  Box,
-  FormControlLabel,
-  Grow,
-  GrowProps,
-  Paper,
-  Switch,
-} from '@mui/material'
 
+import { Box, FormControlLabel, Grow, GrowProps, Paper, Switch } from '../../..'
 import { story } from '../../../test-helpers/storybook'
 /**
  * Metadata for Grow stories - update/extend as needed

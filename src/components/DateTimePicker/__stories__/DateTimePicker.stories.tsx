@@ -3,17 +3,18 @@ import React from 'react'
 import ClockIcon from '@mui/icons-material/AccessTime'
 import AlarmIcon from '@mui/icons-material/Alarm'
 import SnoozeIcon from '@mui/icons-material/Snooze'
+import AdapterDateFns from '@mui/lab/AdapterDateFns'
+
 import {
   DateTimePicker,
   DateTimePickerProps,
   DesktopDateTimePicker,
   LocalizationProvider,
   MobileDateTimePicker,
+  Stack,
   StaticDateTimePicker,
-} from '@mui/lab'
-import AdapterDateFns from '@mui/lab/AdapterDateFns'
-import { Stack, TextField } from '@mui/material'
-
+  TextField,
+} from '../../..'
 import { story } from '../../../test-helpers/storybook'
 
 /**
@@ -50,6 +51,7 @@ const Template = story<DateTimePickerProps<Date>>(
       </LocalizationProvider>
     )
   },
+  { muiName: 'MuiDateTimePicker' },
 )
 
 /** Default story for DateTimePicker (edit/remove by hand if needed) */

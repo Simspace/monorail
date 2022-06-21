@@ -1,9 +1,17 @@
 // Edit this file to add new stories
 import React from 'react'
 import { Delete, FileCopy, Security } from '@mui/icons-material'
-import { Button, Paper, Popper, Typography } from '@mui/material'
 import { createStyles, makeStyles } from '@mui/styles'
 import {
+  randomCreatedDate,
+  randomPrice,
+  randomStatusOptions,
+  randomUpdatedDate,
+  useDemoData,
+} from '@mui/x-data-grid-generator'
+
+import {
+  Button,
   DataGrid,
   DataGridProps,
   GridActionsCellItem,
@@ -16,15 +24,10 @@ import {
   GridToolbar,
   GridValueFormatterParams,
   GridValueGetterParams,
-} from '@mui/x-data-grid'
-import {
-  randomCreatedDate,
-  randomPrice,
-  randomStatusOptions,
-  randomUpdatedDate,
-  useDemoData,
-} from '@mui/x-data-grid-generator'
-
+  Paper,
+  Popper,
+  Typography,
+} from '../../..'
 import { story } from '../../../test-helpers/storybook'
 
 export default {

@@ -1,5 +1,6 @@
 import React from 'react'
 import { Check, GroupAdd, Settings, VideoLabel } from '@mui/icons-material'
+
 import {
   Box,
   Button,
@@ -14,10 +15,9 @@ import {
   StepLabel,
   Stepper,
   StepperProps,
+  styled,
   Typography,
-} from '@mui/material'
-import { styled } from '@mui/material/styles'
-
+} from '../../..'
 import { story } from '../../../test-helpers/storybook'
 /**
  * Metadata for Stepper stories - update/extend as needed
@@ -29,13 +29,16 @@ export default { title: 'Navigation/Stepper', component: Stepper }
  * Note: there should be at least one "Default" story that uses this template with the "story" function.
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
-const Template = story<StepperProps>((args: StepperProps) => (
-  <Stepper {...args}>
-    <Step key={'hey'}>
-      <StepLabel>hey</StepLabel>
-    </Step>
-  </Stepper>
-))
+const Template = story<StepperProps>(
+  (args: StepperProps) => (
+    <Stepper {...args}>
+      <Step key={'hey'}>
+        <StepLabel>hey</StepLabel>
+      </Step>
+    </Stepper>
+  ),
+  { muiName: 'MuiStepper' },
+)
 /** Default story for Stepper (edit/remove by hand if needed) */
 export const Default = story(Template, {
   args: { activeStep: 0, children: ['hey'] },

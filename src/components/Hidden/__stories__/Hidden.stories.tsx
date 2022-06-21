@@ -1,7 +1,7 @@
 // Edit this file to add new stories
 import React from 'react'
-import { Hidden, HiddenProps, Typography } from '@mui/material'
 
+import { Hidden, HiddenProps, Typography } from '../../..'
 import { story } from '../../../test-helpers/storybook'
 
 /**

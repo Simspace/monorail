@@ -1,33 +1,30 @@
 // Edit this file to add new stories
 import React from 'react'
-import {
-  Table,
-  TableCell,
-  TableHead,
-  TableHeadProps,
-  TableRow,
-} from '@mui/material'
 
+import { Table, TableCell, TableHead, TableHeadProps, TableRow } from '../../..'
 import { story } from '../../../test-helpers/storybook'
 
 export default { title: 'Data Display/Table/TableHead', component: TableHead }
 
-const Template = story<TableHeadProps>(args => (
-  <Table>
-    <TableHead {...args}>
-      <TableRow>
-        <TableCell>Cell 1</TableCell>
-        <TableCell>Cell 2</TableCell>
-        <TableCell>Cell 3</TableCell>
-      </TableRow>
-      <TableRow>
-        <TableCell>Cell 1</TableCell>
-        <TableCell>Cell 2</TableCell>
-        <TableCell>Cell 3</TableCell>
-      </TableRow>
-    </TableHead>
-  </Table>
-))
+const Template = story<TableHeadProps>(
+  args => (
+    <Table>
+      <TableHead {...args}>
+        <TableRow>
+          <TableCell>Cell 1</TableCell>
+          <TableCell>Cell 2</TableCell>
+          <TableCell>Cell 3</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>Cell 1</TableCell>
+          <TableCell>Cell 2</TableCell>
+          <TableCell>Cell 3</TableCell>
+        </TableRow>
+      </TableHead>
+    </Table>
+  ),
+  { muiName: 'MuiTableHead' },
+)
 
 export const Default = story(Template, {
   parameters: {

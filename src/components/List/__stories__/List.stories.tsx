@@ -23,12 +23,14 @@ import StarIcon from '@mui/icons-material/Star'
 import StarBorder from '@mui/icons-material/StarBorder'
 import WifiIcon from '@mui/icons-material/Wifi'
 import WorkIcon from '@mui/icons-material/Work'
+
 import {
   Alert,
   Avatar,
   Box,
   Checkbox,
   Collapse,
+  createTheme,
   Divider,
   FormControlLabel,
   FormGroup,
@@ -42,18 +44,14 @@ import {
   ListProps,
   ListSubheader,
   Paper,
-  Switch,
-  Tooltip,
-  Typography,
-} from '@mui/material'
-import {
-  createTheme,
   styled,
   StyledEngineProvider,
+  Switch,
   Theme,
   ThemeProvider,
-} from '@mui/material/styles'
-
+  Tooltip,
+  Typography,
+} from '../../..'
 import { story } from '../../../test-helpers/storybook'
 import { IconButton } from '../../IconButton/IconButton'
 
@@ -120,7 +118,7 @@ const Template = story<ListProps>(
       </Box>
     )
   },
-  { args: {} },
+  { args: {}, muiName: 'MuiList' },
 )
 
 /** Default story for List (edit/remove by hand if needed) */

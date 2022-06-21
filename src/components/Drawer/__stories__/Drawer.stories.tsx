@@ -5,6 +5,7 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight'
 import InboxIcon from '@mui/icons-material/Inbox'
 import MailIcon from '@mui/icons-material/Mail'
 import MenuIcon from '@mui/icons-material/Menu'
+
 import {
   AppBar,
   AppBarProps,
@@ -25,8 +26,7 @@ import {
   Toolbar,
   Typography,
   useTheme,
-} from '@mui/material'
-
+} from '../../..'
 import { story } from '../../../test-helpers/storybook'
 
 /**
@@ -64,6 +64,7 @@ const Template = story<DrawerProps>(
   },
   {
     args: { children: 'The contents', anchor: 'left' },
+    muiName: 'MuiDrawer',
   },
 )
 

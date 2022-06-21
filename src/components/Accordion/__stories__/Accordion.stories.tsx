@@ -2,6 +2,7 @@
 import React from 'react'
 import ArrowForwardIosSharp from '@mui/icons-material/ArrowForwardIosSharp'
 import ExpandMore from '@mui/icons-material/ExpandMore'
+
 import {
   Accordion,
   AccordionActions,
@@ -13,8 +14,7 @@ import {
   Divider,
   styled,
   Typography,
-} from '@mui/material'
-
+} from '../../..'
 import { story } from '../../../test-helpers/storybook'
 
 /**
@@ -45,6 +45,7 @@ const Template = story<AccordionProps>(
       variant: 'outlined',
       square: true,
     },
+    muiName: 'MuiAccordion',
   },
 )
 

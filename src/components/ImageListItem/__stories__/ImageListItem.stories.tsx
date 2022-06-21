@@ -1,7 +1,7 @@
 // Edit this file to add new stories
 import React from 'react'
-import { ImageListItem, ImageListItemProps } from '@mui/material'
 
+import { ImageListItem, ImageListItemProps } from '../../..'
 import { story } from '../../../test-helpers/storybook'
 /**
  * Metadata for ImageListItem stories - update/extend as needed
@@ -36,6 +36,7 @@ const Template = story<ImageListItemProps>(
   ),
   {
     args: {},
+    muiName: 'MuiImageListItem',
   },
 )
 /** Default story for ImageListItem (edit/remove by hand if needed) */

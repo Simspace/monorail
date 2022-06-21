@@ -1,5 +1,6 @@
 // Edit this file to add new stories
 import React from 'react'
+
 import {
   Box,
   LinearProgress,
@@ -8,8 +9,7 @@ import {
   Stack,
   styled,
   Typography,
-} from '@mui/material'
-
+} from '../../..'
 import { story } from '../../../test-helpers/storybook'
 
 /**
@@ -26,6 +26,7 @@ const Template = story<LinearProgressProps>(
   args => <LinearProgress {...args} />,
   {
     args: {},
+    muiName: 'MuiLinearProgress',
   },
 )
 

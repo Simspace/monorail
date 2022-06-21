@@ -1,7 +1,7 @@
 // Edit this file to add new stories
 import React from 'react'
-import { CssBaseline, CssBaselineProps } from '@mui/material'
 
+import { CssBaseline, CssBaselineProps } from '../../..'
 import { story } from '../../../test-helpers/storybook'
 
 /**
@@ -29,6 +29,7 @@ const Template = story<CssBaselineProps>(
   ),
   {
     args: {},
+    muiName: 'MuiCssBaseline',
   },
 )
 

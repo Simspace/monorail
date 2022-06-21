@@ -1,10 +1,14 @@
 // Edit this file to add new stories
 import React from 'react'
-import { StaticTimePicker, TimePickerProps } from '@mui/lab'
+import {} from '@mui/lab'
 import AdapterDateFns from '@mui/lab/AdapterDateFns'
-import LocalizationProvider from '@mui/lab/LocalizationProvider'
-import { TextField } from '@mui/material'
 
+import {
+  LocalizationProvider,
+  StaticTimePicker,
+  TextField,
+  TimePickerProps,
+} from '../../..'
 import { story } from '../../../test-helpers/storybook'
 
 /**

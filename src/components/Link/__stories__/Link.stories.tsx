@@ -1,7 +1,7 @@
 // Edit this file to add new stories
 import React from 'react'
-import { Link, LinkProps, Stack } from '@mui/material'
 
+import { Link, LinkProps, Stack } from '../../..'
 import { story } from '../../../test-helpers/storybook'
 
 /**
@@ -16,6 +16,7 @@ export default { title: 'Navigation/Link', component: Link }
  */
 const Template = story<LinkProps>(args => <Link {...args} />, {
   args: { children: 'A Simple Link' },
+  muiName: 'MuiLink',
 })
 /** Default story for Link (edit/remove by hand if needed) */
 export const Default = story(Template)

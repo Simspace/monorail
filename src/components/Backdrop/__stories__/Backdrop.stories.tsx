@@ -1,12 +1,7 @@
 // Edit this file to add new stories
 import React from 'react'
-import {
-  Backdrop,
-  BackdropProps,
-  Button,
-  CircularProgress,
-} from '@mui/material'
 
+import { Backdrop, BackdropProps, Button, CircularProgress } from '../../..'
 import { story } from '../../../test-helpers/storybook'
 
 /**
@@ -46,9 +41,9 @@ const Template = story<BackdropProps>(
       </div>
     )
   },
-
   {
     args: {},
+    muiName: 'MuiBackdrop',
   },
 )
 

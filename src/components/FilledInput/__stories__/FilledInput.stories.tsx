@@ -1,12 +1,12 @@
 // Edit this file to add new stories
 import React from 'react'
+
 import {
   FilledInput,
   FilledInputProps,
   FormControl,
   InputLabel,
-} from '@mui/material'
-
+} from '../../..'
 import { story } from '../../../test-helpers/storybook'
 
 /**
@@ -31,6 +31,7 @@ const Template = story<FilledInputProps>(
       id: 'filled',
       placeholder: 'Placeholder',
     },
+    muiName: 'MuiFilledInput',
   },
 )
 /** Default story for FilledInput (edit/remove by hand if needed) */

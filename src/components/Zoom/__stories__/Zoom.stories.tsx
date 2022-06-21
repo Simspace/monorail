@@ -1,11 +1,7 @@
 // Edit this file to add new stories
 import React from 'react'
-import Box from '@mui/material/Box'
-import FormControlLabel from '@mui/material/FormControlLabel'
-import Paper from '@mui/material/Paper'
-import Switch from '@mui/material/Switch'
-import Zoom, { ZoomProps } from '@mui/material/Zoom'
 
+import { Box, FormControlLabel, Paper, Switch, Zoom, ZoomProps } from '../../..'
 import { story } from '../../../test-helpers/storybook'
 
 export default {

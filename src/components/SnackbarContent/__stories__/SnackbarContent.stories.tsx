@@ -1,7 +1,7 @@
 // Edit this file to add new stories
 import React from 'react'
-import { SnackbarContent, SnackbarContentProps } from '@mui/material'
 
+import { SnackbarContent, SnackbarContentProps } from '../../..'
 import { story } from '../../../test-helpers/storybook'
 /**
  * Metadata for SnackbarContent stories - update/extend as needed
@@ -18,7 +18,7 @@ export default {
  */
 const Template = story<SnackbarContentProps>(
   args => <SnackbarContent {...args} />,
-  { args: {} },
+  { args: {}, muiName: 'MuiSnackbarContent' },
 )
 /** Default story for SnackbarContent (edit/remove by hand if needed) */
 export const Default = story(Template)

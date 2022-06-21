@@ -17,7 +17,9 @@ import PersonAdd from '@mui/icons-material/PersonAdd'
 import PriorityHigh from '@mui/icons-material/PriorityHigh'
 import Send from '@mui/icons-material/Send'
 import Settings from '@mui/icons-material/Settings'
+
 import {
+  alpha,
   Avatar,
   Box,
   Button,
@@ -32,11 +34,10 @@ import {
   MenuList,
   MenuProps,
   Paper,
+  styled,
   Tooltip,
   Typography,
-} from '@mui/material'
-import { alpha, styled } from '@mui/material/styles'
-
+} from '../../..'
 import { story } from '../../../test-helpers/storybook'
 
 /**
@@ -74,6 +75,7 @@ const Template = story<MenuProps>(
   },
   {
     args: {},
+    muiName: 'MuiMenu',
   },
 )
 

@@ -12,21 +12,24 @@ import Label from '@mui/icons-material/Label'
 import LocalOfferIcon from '@mui/icons-material/LocalOffer'
 import MailIcon from '@mui/icons-material/Mail'
 import SupervisorAccountIcon from '@mui/icons-material/SupervisorAccount'
-import TreeItem, {
+
+import {
+  alpha,
+  Box,
+  Button,
+  FormControlLabel,
+  styled,
+  SvgIconProps,
+  Switch,
+  TreeItem,
   treeItemClasses,
   TreeItemContentProps,
   TreeItemProps,
+  TreeView,
+  TreeViewProps,
+  Typography,
   useTreeItem,
-} from '@mui/lab/TreeItem'
-import TreeView, { TreeViewProps } from '@mui/lab/TreeView'
-import Box from '@mui/material/Box'
-import Button from '@mui/material/Button'
-import FormControlLabel from '@mui/material/FormControlLabel'
-import { alpha, styled } from '@mui/material/styles'
-import { SvgIconProps } from '@mui/material/SvgIcon'
-import Switch from '@mui/material/Switch'
-import Typography from '@mui/material/Typography'
-
+} from '../../..'
 import { story } from '../../../test-helpers/storybook'
 
 /**
@@ -62,6 +65,7 @@ const Template = story<TreeViewProps>(
   ),
   {
     args: {},
+    muiName: 'MuiTreeView',
   },
 )
 /** Default story for TreeView (edit/remove by hand if needed) */
