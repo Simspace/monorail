@@ -96,6 +96,17 @@ export function DiscreteSlider() {
         marks
         min={10}
         max={110}
+        size="small"
+      />
+      <Slider
+        aria-label="Temperature"
+        defaultValue={30}
+        getAriaValueText={valuetext}
+        valueLabelDisplay="auto"
+        step={10}
+        marks
+        min={10}
+        max={110}
       />
       <Slider
         aria-label="temperature2"
@@ -426,6 +437,13 @@ export function ColorSlider() {
         defaultValue={30}
         getAriaValueText={valuetext}
         color="secondary"
+      />
+      <Slider
+        aria-label="Temperature"
+        defaultValue={30}
+        getAriaValueText={valuetext}
+        color="secondary"
+        size="small"
       />
     </Box>
   )
