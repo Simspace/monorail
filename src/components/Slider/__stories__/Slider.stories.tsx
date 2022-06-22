@@ -579,6 +579,14 @@ export function TrackInvertedSlider() {
         defaultValue={30}
         marks={marks}
       />
+      <Slider
+        track="inverted"
+        aria-labelledby="track-inverted-slider"
+        getAriaValueText={valuetext}
+        defaultValue={30}
+        marks={marks}
+        color="secondary"
+      />
       <Separator />
       <Typography id="track-inverted-range-slider" gutterBottom>
         Inverted track range
@@ -589,6 +597,14 @@ export function TrackInvertedSlider() {
         getAriaValueText={valuetext}
         defaultValue={[20, 37]}
         marks={marks}
+      />
+      <Slider
+        track="inverted"
+        aria-labelledby="track-inverted-range-slider"
+        getAriaValueText={valuetext}
+        defaultValue={[20, 37]}
+        marks={marks}
+        color="secondary"
       />
     </Box>
   )

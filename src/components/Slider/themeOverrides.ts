@@ -62,6 +62,26 @@ export const MonorailSliderOverrides: Components<Theme>['MuiSlider'] = {
     sizeSmall: {
       height: 4,
     },
+    trackInverted: ({ theme }) => ({
+      [`&.${sliderClasses.colorPrimary}`]: {
+        [`& .${sliderClasses.track}`]: {
+          backgroundColor: theme.palette.primary.shades[300],
+          borderColor: theme.palette.primary.shades[300],
+        },
+        [`& .${sliderClasses.rail}`]: {
+          backgroundColor: theme.palette.primary.shades[600],
+        },
+      },
+      [`&.${sliderClasses.colorSecondary}`]: {
+        [`& .${sliderClasses.track}`]: {
+          backgroundColor: theme.palette.secondary.shades[300],
+          borderColor: theme.palette.secondary.shades[300],
+        },
+        [`& .${sliderClasses.rail}`]: {
+          backgroundColor: theme.palette.secondary.shades[600],
+        },
+      },
+    }),
     thumbSizeSmall: ({ ownerState, theme }) => {
       const color = ownerState.color ?? 'primary'
       return {
