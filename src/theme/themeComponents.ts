@@ -44,6 +44,7 @@ import { MonorailRadioOverrides } from '../components/Radio/themeOverrides'
 import { MonorailRatingOverrides } from '../components/Rating/themeOverrides'
 import { MonorailSelectOverrides } from '../components/Select/themeOverrides'
 import { MonorailSkeletonOverrides } from '../components/Skeleton/themeOverrides'
+import { MonorailSliderOverrides } from '../components/Slider/themeOverrides'
 import { MonorailSnackbarOverrides } from '../components/Snackbar/themeOverrides'
 import { MonorailSvgIconOverrides } from '../components/SvgIcon/themeOverrides'
 import { MonorailSwitchOverrides } from '../components/Switch/themeOverrides'
@@ -114,6 +115,7 @@ export const getThemeComponents = (
   MuiRadio: MonorailRadioOverrides,
   MuiRating: MonorailRatingOverrides,
   MuiSelect: MonorailSelectOverrides,
+  MuiSlider: MonorailSliderOverrides,
   MuiSkeleton: MonorailSkeletonOverrides,
   MuiSnackbar: MonorailSnackbarOverrides,
   MuiSvgIcon: MonorailSvgIconOverrides,
