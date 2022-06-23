@@ -4,10 +4,8 @@ import React from 'react'
 import {
   Box,
   LinearProgress,
-  linearProgressClasses,
   LinearProgressProps,
   Stack,
-  styled,
   Typography,
 } from '../../..'
 import { story } from '../../../test-helpers/storybook'
@@ -33,20 +31,28 @@ const Template = story<LinearProgressProps>(
 /** Default story for LinearProgress (edit/remove by hand if needed) */
 export const Default = story(Template)
 
+const sizes = ['small', 'medium'] as const
+const colors = ['primary', 'secondary', 'error', 'default'] as const
+
 export function LinearIndeterminate() {
   return (
-    <Box sx={{ width: '100%' }}>
-      <LinearProgress />
-    </Box>
-  )
-}
-
-export function LinearColor() {
-  return (
-    <Stack sx={{ width: '100%', color: 'grey.500' }} spacing={2}>
-      <LinearProgress color="secondary" />
-      <LinearProgress color="success" />
-      <LinearProgress color="inherit" />
+    <Stack spacing={8}>
+      {colors.flatMap(color => (
+        <Stack direction="row" spacing={8} alignItems="center">
+          {sizes.map(size => (
+            <Box
+              key={`linear-progress-buffer-${color}-${size}`}
+              sx={{ width: 156 }}
+            >
+              <LinearProgress
+                key={`linear-progress-indeterminate-${color}-${size}`}
+                color={color}
+                size={size}
+              />
+            </Box>
+          ))}
+        </Stack>
+      ))}
     </Stack>
   )
 }
@@ -71,10 +77,31 @@ export function LinearDeterminate() {
   }, [])
 
   return (
-    <Box sx={{ width: '100%' }}>
-      <LinearProgress variant="determinate" value={progress} />
-    </Box>
+    <Stack spacing={8}>
+      {colors.flatMap(color => (
+        <Stack direction="row" spacing={8} alignItems="center">
+          {sizes.map(size => (
+            <Box
+              key={`linear-progress-buffer-${color}-${size}`}
+              sx={{ width: 156 }}
+            >
+              <LinearProgress
+                key={`linear-progress-determinate-${color}-${size}`}
+                variant="determinate"
+                color={color}
+                size={size}
+                value={progress}
+              />
+            </Box>
+          ))}
+        </Stack>
+      ))}
+    </Stack>
   )
+}
+
+function clamp(n: number, high: number): number {
+  return n > high ? high : n
 }
 
 export function LinearBuffer() {
@@ -84,14 +111,14 @@ export function LinearBuffer() {
   const progressRef = React.useRef(() => {})
   React.useEffect(() => {
     progressRef.current = () => {
-      if (progress > 100) {
+      if (progress >= 100) {
         setProgress(0)
         setBuffer(10)
       } else {
         const diff = Math.random() * 10
         const diff2 = Math.random() * 10
-        setProgress(progress + diff)
-        setBuffer(progress + diff + diff2)
+        setProgress(clamp(progress + diff, 100))
+        setBuffer(clamp(progress + diff + diff2, 100))
       }
     }
   })
@@ -107,9 +134,26 @@ export function LinearBuffer() {
   }, [])
 
   return (
-    <Box sx={{ width: '100%' }}>
-      <LinearProgress variant="buffer" value={progress} valueBuffer={buffer} />
-    </Box>
+    <Stack spacing={8}>
+      {colors.flatMap(color => (
+        <Stack direction="row" spacing={8} alignItems="center">
+          {sizes.map(size => (
+            <Box
+              key={`linear-progress-buffer-${color}-${size}`}
+              sx={{ width: 156 }}
+            >
+              <LinearProgress
+                variant="buffer"
+                color={color}
+                size={size}
+                value={progress}
+                valueBuffer={buffer}
+              />
+            </Box>
+          ))}
+        </Stack>
+      ))}
+    </Stack>
   )
 }
 
@@ -117,16 +161,34 @@ function LinearProgressWithLabel(
   props: LinearProgressProps & { value: number },
 ) {
   return (
-    <Box sx={{ display: 'flex', alignItems: 'center' }}>
-      <Box sx={{ width: '100%', mr: 1 }}>
-        <LinearProgress variant="determinate" {...props} />
-      </Box>
-      <Box sx={{ minWidth: 35 }}>
-        <Typography variant="body2" color="text.secondary">{`${Math.round(
-          props.value,
-        )}%`}</Typography>
-      </Box>
-    </Box>
+    <Stack direction="column" spacing={8}>
+      {colors.flatMap(color => (
+        <Stack direction="row" spacing={8}>
+          {sizes.map(size => (
+            <Box
+              key={`linear-progress-label-${color}-${size}`}
+              sx={{ display: 'flex', alignItems: 'center' }}
+            >
+              <Box sx={{ width: 156, mr: 1 }}>
+                <LinearProgress
+                  color={color}
+                  size={size}
+                  variant="determinate"
+                  {...props}
+                />
+              </Box>
+              <Box justifyContent="space-between" sx={{ width: 35 }}>
+                <Typography
+                  sx={{ ml: 1 }}
+                  variant="body2"
+                  color="text.secondary"
+                >{`${Math.round(props.value)}%`}</Typography>
+              </Box>
+            </Box>
+          ))}
+        </Stack>
+      ))}
+    </Stack>
   )
 }
 
@@ -150,35 +212,3 @@ export function LinearWithValueLabel() {
     </Box>
   )
 }
-
-export const CustomizedLinearProgress = story<LinearProgressProps>(
-  () => {
-    const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
-      height: 10,
-      borderRadius: 5,
-      [`&.${linearProgressClasses.colorPrimary}`]: {
-        backgroundColor:
-          theme.palette.grey[theme.palette.mode === 'light' ? 200 : 800],
-      },
-      [`& .${linearProgressClasses.bar}`]: {
-        borderRadius: 5,
-        backgroundColor: theme.palette.mode === 'light' ? '#1a90ff' : '#308fe8',
-      },
-    }))
-
-    return (
-      <Box sx={{ flexGrow: 1 }}>
-        <BorderLinearProgress variant="determinate" value={50} />
-      </Box>
-    )
-  },
-  {
-    parameters: {
-      docs: {
-        description: {
-          story: `See the MUI docs for more information on customization and debugging. https://next.material-ui.com/components/progress/#customized-progress`,
-        },
-      },
-    },
-  },
-)

@@ -1,15 +1,11 @@
 // Edit this file to add new stories
 import React from 'react'
-import CheckIcon from '@mui/icons-material/Check'
-import SaveIcon from '@mui/icons-material/Save'
-import green from '@mui/material/colors/green'
+import BlurOnIcon from '@mui/icons-material/BlurOn'
 
 import {
   Box,
-  Button,
   CircularProgress,
   CircularProgressProps,
-  Fab,
   Stack,
   Typography,
 } from '../../..'
@@ -39,12 +35,23 @@ const Template = story<CircularProgressProps>(
 /** Default story for CircularProgress (edit/remove by hand if needed) */
 export const Default = story(Template)
 
-export const Variants = story<CircularProgressProps>(
+const sizes = ['small', 'medium', 'large'] as const
+const colors = ['primary', 'secondary', 'error', 'default'] as const
+
+export const CircularIndeterminate = story<CircularProgressProps>(
   () => (
     <Stack direction="row" spacing={1}>
-      <CircularProgress color="secondary" />
-      <CircularProgress color="success" />
-      <CircularProgress color="inherit" />
+      {colors.flatMap(color => (
+        <Stack direction="column" alignItems="center" spacing={8}>
+          {sizes.map(size => (
+            <CircularProgress
+              key={`circular-progress-indeterminate-${color}-${size}`}
+              color={color}
+              size={size}
+            />
+          ))}
+        </Stack>
+      ))}
     </Stack>
   ),
   {
@@ -75,12 +82,20 @@ export const CircularDeterminate = story<CircularProgressProps>(
     }, [])
 
     return (
-      <Stack spacing={2} direction="row">
-        <CircularProgress variant="determinate" value={25} />
-        <CircularProgress variant="determinate" value={50} />
-        <CircularProgress variant="determinate" value={75} />
-        <CircularProgress variant="determinate" value={100} />
-        <CircularProgress variant="determinate" value={progress} />
+      <Stack direction="row" spacing={2}>
+        {colors.flatMap(color => (
+          <Stack direction="column" alignItems="center" spacing={8}>
+            {sizes.map(size => (
+              <CircularProgress
+                key={`circular-progress-indeterminate-${color}-${size}`}
+                color={color}
+                size={size}
+                variant="determinate"
+                value={progress}
+              />
+            ))}
+          </Stack>
+        ))}
       </Stack>
     )
   },
@@ -89,99 +104,6 @@ export const CircularDeterminate = story<CircularProgressProps>(
       docs: {
         description: {
           story: `The CircularProgress component supports determinate states.`,
-        },
-      },
-    },
-  },
-)
-
-export const CircularIntegration = story<CircularProgressProps>(
-  () => {
-    const [loading, setLoading] = React.useState(false)
-    const [success, setSuccess] = React.useState(false)
-    const timer = React.useRef<number>()
-
-    const buttonSx = {
-      ...(success && {
-        bgcolor: green[500],
-        '&:hover': {
-          bgcolor: green[700],
-        },
-      }),
-    }
-
-    React.useEffect(() => {
-      return () => {
-        clearTimeout(timer.current)
-      }
-    }, [])
-
-    const handleButtonClick = () => {
-      if (!loading) {
-        setSuccess(false)
-        setLoading(true)
-        timer.current = window.setTimeout(() => {
-          setSuccess(true)
-          setLoading(false)
-        }, 2000)
-      }
-    }
-
-    return (
-      <Box sx={{ display: 'flex', alignItems: 'center' }}>
-        <Box sx={{ m: 1, position: 'relative' }}>
-          <Fab
-            aria-label="save"
-            color="primary"
-            sx={buttonSx}
-            onClick={handleButtonClick}
-          >
-            {success ? <CheckIcon /> : <SaveIcon />}
-          </Fab>
-          {loading && (
-            <CircularProgress
-              size={68}
-              sx={{
-                color: green[500],
-                position: 'absolute',
-                top: -6,
-                left: -6,
-                zIndex: 1,
-              }}
-            />
-          )}
-        </Box>
-        <Box sx={{ m: 1, position: 'relative' }}>
-          <Button
-            variant="contained"
-            sx={buttonSx}
-            disabled={loading}
-            onClick={handleButtonClick}
-          >
-            Accept terms
-          </Button>
-          {loading && (
-            <CircularProgress
-              size={24}
-              sx={{
-                color: green[500],
-                position: 'absolute',
-                top: '50%',
-                left: '50%',
-                marginTop: -12,
-                marginLeft: -12,
-              }}
-            />
-          )}
-        </Box>
-      </Box>
-    )
-  },
-  {
-    parameters: {
-      docs: {
-        description: {
-          story: `The CircularProgress component may be integrated with other components.`,
         },
       },
     },
@@ -204,27 +126,44 @@ export const CircularProgressWithLabel = story<CircularProgressProps>(
     }, [])
 
     return (
-      <Box sx={{ position: 'relative', display: 'inline-flex' }}>
-        <CircularProgress variant="determinate" value={progress} />
-        <Box
-          sx={{
-            top: 0,
-            left: 0,
-            bottom: 0,
-            right: 0,
-            position: 'absolute',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
-        >
-          <Typography
-            variant="caption"
-            component="div"
-            color="text.secondary"
-          >{`${Math.round(progress)}%`}</Typography>
-        </Box>
-      </Box>
+      <Stack direction="row" spacing={2}>
+        {colors.flatMap(color => (
+          <Stack direction="column" alignItems="center" spacing={8}>
+            {(['medium', 'large'] as const).map(size => (
+              <Box
+                key={`circular-progress-label-${color}-${size}`}
+                sx={{ position: 'relative', display: 'inline-flex' }}
+              >
+                <CircularProgress
+                  color={color}
+                  size={size}
+                  thickness={4}
+                  variant="determinate"
+                  value={progress}
+                />
+                <Box
+                  sx={{
+                    top: 0,
+                    left: 0,
+                    bottom: 0,
+                    right: 0,
+                    position: 'absolute',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}
+                >
+                  <Typography
+                    variant="caption"
+                    component="div"
+                    color="text.secondary"
+                  >{`${Math.round(progress)}%`}</Typography>
+                </Box>
+              </Box>
+            ))}
+          </Stack>
+        ))}
+      </Stack>
     )
   },
   {
@@ -237,3 +176,36 @@ export const CircularProgressWithLabel = story<CircularProgressProps>(
     },
   },
 )
+
+export const CircularProgressWithIcon = story<CircularProgressProps>(() => {
+  return (
+    <Stack direction="row" spacing={1}>
+      {colors.flatMap(color => (
+        <Stack direction="column" alignItems="center" spacing={8}>
+          {(['medium', 'large'] as const).map(size => (
+            <Box
+              key={`circular-progress-icon-${color}-${size}`}
+              sx={{ position: 'relative', display: 'inline-flex' }}
+            >
+              <CircularProgress color={color} size={size} />
+              <Box
+                sx={{
+                  top: 0,
+                  left: 0,
+                  bottom: 0,
+                  right: 0,
+                  position: 'absolute',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}
+              >
+                <BlurOnIcon />
+              </Box>
+            </Box>
+          ))}
+        </Stack>
+      ))}
+    </Stack>
+  )
+})
