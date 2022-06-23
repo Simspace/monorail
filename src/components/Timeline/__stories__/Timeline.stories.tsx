@@ -259,7 +259,7 @@ export const Customization = story<TimelineProps>(
             </TimelineDot>
             <TimelineConnector />
           </TimelineSeparator>
-          <TimelineContent sx={{ py: '12px', px: 2 }}>
+          <TimelineContent sx={{ py: '12px', px: 4 }}>
             <Typography variant="h3" component="span">
               Eat
             </Typography>
@@ -281,7 +281,7 @@ export const Customization = story<TimelineProps>(
             </TimelineDot>
             <TimelineConnector />
           </TimelineSeparator>
-          <TimelineContent sx={{ py: '12px', px: 2 }}>
+          <TimelineContent sx={{ py: '12px', px: 4 }}>
             <Typography variant="h3" component="span">
               Code
             </Typography>
@@ -296,7 +296,7 @@ export const Customization = story<TimelineProps>(
             </TimelineDot>
             <TimelineConnector sx={{ bgcolor: 'secondary.main' }} />
           </TimelineSeparator>
-          <TimelineContent sx={{ py: '12px', px: 2 }}>
+          <TimelineContent sx={{ py: '12px', px: 4 }}>
             <Typography variant="h3" component="span">
               Sleep
             </Typography>
@@ -311,7 +311,7 @@ export const Customization = story<TimelineProps>(
             </TimelineDot>
             <TimelineConnector />
           </TimelineSeparator>
-          <TimelineContent sx={{ py: '12px', px: 2 }}>
+          <TimelineContent sx={{ py: '12px', px: 4 }}>
             <Typography variant="h3" component="span">
               Repeat
             </Typography>
