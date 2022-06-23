@@ -24,6 +24,11 @@ import { MonorailCardMediaOverrides } from '../components/CardMedia/themeOverrid
 import { MonorailCheckboxOverrides } from '../components/Checkbox/themeOverrides'
 import { MonorailChipOverrides } from '../components/Chip/themeOverrides'
 import { MonorailCircularProgressOverrides } from '../components/CircularProgress/themeOverrides'
+import { MonorailDialogOverrides } from '../components/Dialog/themeOverrides'
+import { MonorailDialogActionsOverrides } from '../components/DialogActions/themeOverrides'
+import { MonorailDialogContentOverrides } from '../components/DialogContent/themeOverrides'
+import { MonorailDialogContentTextOverrides } from '../components/DialogContentText/themeOverrides'
+import { MonorailDialogTitleOverrides } from '../components/DialogTitle/themeOverrides'
 import { MonorailFormControlOverrides } from '../components/FormControl/themeOverrides'
 import { MonorailFormControlLabelOverrides } from '../components/FormControlLabel/themeOverrides'
 import { MonorailFormHelperTextOverrides } from '../components/FormHelperText/themeOverrides'
@@ -104,6 +109,11 @@ export const getThemeComponents = (
   MuiCheckbox: MonorailCheckboxOverrides,
   MuiChip: MonorailChipOverrides,
   MuiCircularProgress: MonorailCircularProgressOverrides,
+  MuiDialog: MonorailDialogOverrides,
+  MuiDialogActions: MonorailDialogActionsOverrides,
+  MuiDialogContent: MonorailDialogContentOverrides,
+  MuiDialogContentText: MonorailDialogContentTextOverrides,
+  MuiDialogTitle: MonorailDialogTitleOverrides,
   MuiFormControl: MonorailFormControlOverrides,
   MuiFormControlLabel: MonorailFormControlLabelOverrides,
   MuiFormHelperText: MonorailFormHelperTextOverrides,
