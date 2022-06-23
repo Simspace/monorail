@@ -53,6 +53,13 @@ import { MonorailSwitchOverrides } from '../components/Switch/themeOverrides'
 import { MonorailTabOverrides } from '../components/Tab/themeOverrides'
 import { MonorailTabsOverrides } from '../components/Tabs/themeOverrides'
 import { MonorailTextFieldOverrides } from '../components/TextField/themeOverrides'
+import { MonorailTimelineOverrides } from '../components/Timeline/themeOverrides'
+import { MonorailTimelineConnectorOverrides } from '../components/TimelineConnector/themeOverrides'
+import { MonorailTimelineContentOverrides } from '../components/TimelineContent/themeOverrides'
+import { MonorailTimelineDotOverrides } from '../components/TimelineDot/themeOverrides'
+import { MonorailTimelineItemOverrides } from '../components/TimelineItem/themeOverrides'
+import { MonorailTimelineOppositeContentOverrides } from '../components/TimelineOppositeContent/themeOverrides'
+import { MonorailTimelineSeparatorOverrides } from '../components/TimelineSeparator/themeOverrides'
 import {
   MonorailToggleButtonGroupOverrides,
   MonorailToggleButtonOverrides,
@@ -127,6 +134,13 @@ export const getThemeComponents = (
   MuiTab: MonorailTabOverrides,
   MuiTabs: MonorailTabsOverrides,
   MuiTextField: MonorailTextFieldOverrides,
+  MuiTimeline: MonorailTimelineOverrides,
+  MuiTimelineConnector: MonorailTimelineConnectorOverrides,
+  MuiTimelineContent: MonorailTimelineContentOverrides,
+  MuiTimelineDot: MonorailTimelineDotOverrides,
+  MuiTimelineItem: MonorailTimelineItemOverrides,
+  MuiTimelineOppositeContent: MonorailTimelineOppositeContentOverrides,
+  MuiTimelineSeparator: MonorailTimelineSeparatorOverrides,
   MuiToggleButton: MonorailToggleButtonOverrides,
   MuiToggleButtonGroup: MonorailToggleButtonGroupOverrides,
   MuiTooltip: MonorailTooltipOverrides,
