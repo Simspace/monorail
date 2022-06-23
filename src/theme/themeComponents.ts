@@ -23,12 +23,14 @@ import { MonorailCardHeaderOverrides } from '../components/CardHeader/themeOverr
 import { MonorailCardMediaOverrides } from '../components/CardMedia/themeOverrides'
 import { MonorailCheckboxOverrides } from '../components/Checkbox/themeOverrides'
 import { MonorailChipOverrides } from '../components/Chip/themeOverrides'
+import { MonorailCircularProgressOverrides } from '../components/CircularProgress/themeOverrides'
 import { MonorailFormControlOverrides } from '../components/FormControl/themeOverrides'
 import { MonorailFormControlLabelOverrides } from '../components/FormControlLabel/themeOverrides'
 import { MonorailFormHelperTextOverrides } from '../components/FormHelperText/themeOverrides'
 import { MonorailIconButtonOverrides } from '../components/IconButton/themeOverrides'
 import { MonorailInputBaseOverrides } from '../components/InputBase/themeOverrides'
 import { MonorailInputLabelOverrides } from '../components/InputLabel/themeOverrides'
+import { MonorailLinearProgressOverrides } from '../components/LinearProgress/themeOverrides'
 import { MonorailListOverrides } from '../components/List/themeOverrides'
 import { MonorailListItemOverrides } from '../components/ListItem/themeOverrides'
 import { MonorailListItemAvatarOverrides } from '../components/ListItemAvatar/themeOverrides'
@@ -44,6 +46,7 @@ import { MonorailRadioOverrides } from '../components/Radio/themeOverrides'
 import { MonorailRatingOverrides } from '../components/Rating/themeOverrides'
 import { MonorailSelectOverrides } from '../components/Select/themeOverrides'
 import { MonorailSkeletonOverrides } from '../components/Skeleton/themeOverrides'
+import { MonorailSliderOverrides } from '../components/Slider/themeOverrides'
 import { MonorailSnackbarOverrides } from '../components/Snackbar/themeOverrides'
 import { MonorailSvgIconOverrides } from '../components/SvgIcon/themeOverrides'
 import { MonorailSwitchOverrides } from '../components/Switch/themeOverrides'
@@ -100,6 +103,7 @@ export const getThemeComponents = (
   MuiCardMedia: MonorailCardMediaOverrides,
   MuiCheckbox: MonorailCheckboxOverrides,
   MuiChip: MonorailChipOverrides,
+  MuiCircularProgress: MonorailCircularProgressOverrides,
   MuiFormControl: MonorailFormControlOverrides,
   MuiFormControlLabel: MonorailFormControlLabelOverrides,
   MuiFormHelperText: MonorailFormHelperTextOverrides,
@@ -107,6 +111,7 @@ export const getThemeComponents = (
   MuiInputBase: MonorailInputBaseOverrides,
   MuiInputLabel: MonorailInputLabelOverrides,
   MuiLoadingButton: MonorailLoadingButtonOverrides,
+  MuiLinearProgress: MonorailLinearProgressOverrides,
   MuiList: MonorailListOverrides,
   MuiListItem: MonorailListItemOverrides,
   MuiListItemAvatar: MonorailListItemAvatarOverrides,
@@ -121,6 +126,7 @@ export const getThemeComponents = (
   MuiRadio: MonorailRadioOverrides,
   MuiRating: MonorailRatingOverrides,
   MuiSelect: MonorailSelectOverrides,
+  MuiSlider: MonorailSliderOverrides,
   MuiSkeleton: MonorailSkeletonOverrides,
   MuiSnackbar: MonorailSnackbarOverrides,
   MuiSvgIcon: MonorailSvgIconOverrides,
