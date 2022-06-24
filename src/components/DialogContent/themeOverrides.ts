@@ -8,7 +8,7 @@ export const MonorailDialogContentOverrides: Components<Theme>['MuiDialogContent
     styleOverrides: {
       root: ({ theme }) => {
         return {
-          padding: theme.spacing(2, 4),
+          padding: theme.spacing(2, 6),
         }
       },
     },
