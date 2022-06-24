@@ -11,5 +11,6 @@ export const MonorailPaginationOverrides: Components<Theme>['MuiPagination'] = {
   defaultProps: {
     color: 'primary',
     shape: 'rounded',
+    size: 'large',
   },
 }
