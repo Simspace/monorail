@@ -22,7 +22,7 @@ export default { title: 'Navigation/Pagination', component: Pagination }
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
 const Template = story<PaginationProps>(args => <Pagination {...args} />, {
-  args: {},
+  args: { count: 9 },
   muiName: 'MuiPagination',
 })
 /** Default story for Pagination (edit/remove by hand if needed) */
@@ -31,40 +31,7 @@ export const Default = story(Template)
 export const BasicPagination = story<PaginationProps>(() => (
   <Stack spacing={2}>
     <Pagination count={10} aria-label="default" />
-    <Pagination count={10} color="primary" aria-label="primary" />
-    <Pagination count={10} color="secondary" aria-label="secondary" />
     <Pagination count={10} disabled aria-label="disabled" />
-  </Stack>
-))
-
-export const PaginationOutlined = story<PaginationProps>(() => (
-  <Stack spacing={2}>
-    <Pagination count={10} variant="outlined" aria-label="default" />
-    <Pagination
-      count={10}
-      variant="outlined"
-      color="primary"
-      aria-label="primary"
-    />
-    <Pagination
-      count={10}
-      variant="outlined"
-      color="secondary"
-      aria-label="secondary"
-    />
-    <Pagination count={10} variant="outlined" disabled aria-label="disabled" />
-  </Stack>
-))
-
-export const PaginationRounded = story<PaginationProps>(() => (
-  <Stack spacing={2}>
-    <Pagination count={10} shape="rounded" aria-label="rounded" />
-    <Pagination
-      count={10}
-      variant="outlined"
-      shape="rounded"
-      aria-label="outlined"
-    />
   </Stack>
 ))
 
