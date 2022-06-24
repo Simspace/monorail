@@ -10,7 +10,7 @@ export const MonorailPaginationItemOverrides: Components<Theme>['MuiPaginationIt
       root: ({ ownerState: { color = 'primary' }, theme }) => {
         return {
           color: theme.palette[color].shades[600],
-          fontWeight: 325,
+          fontWeight: theme.typography.subtitle2.fontWeight,
           [`&.${paginationItemClasses.focusVisible}`]: {
             backgroundColor: theme.palette[color].shades[50],
             boxShadow: `0 0 0 4px ${theme.palette[color].focusRing.outer}`,
@@ -19,7 +19,7 @@ export const MonorailPaginationItemOverrides: Components<Theme>['MuiPaginationIt
           [`&.${paginationItemClasses.selected}`]: {
             backgroundColor: theme.palette.grey[200],
             color: theme.palette.text.primary,
-            fontWeight: 400,
+            fontWeight: theme.typography.fontWeightBold,
           },
           [`&.${paginationItemClasses.selected}:hover`]: {
             backgroundColor: theme.palette.grey[200],
