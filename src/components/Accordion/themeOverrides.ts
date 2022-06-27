@@ -10,7 +10,7 @@ declare module '@mui/material/Accordion' {
     /**
      * If `true`, adjacent Accordions will not have borders between them
      */
-    borderless?: true
+    borderless?: boolean
   }
 }
 
@@ -23,7 +23,7 @@ export const MonorailAccordionOverrides: Components<Theme>['MuiAccordion'] = {
   styleOverrides: {
     root: ({ ownerState }) => {
       const overrides: CSSInterpolation = {}
-      if (ownerState.borderless) {
+      if (ownerState.borderless === true) {
         overrides[`&.${accordionClasses.root}:not(:first-of-type)`] = {
           borderTop: 'none',
         }
