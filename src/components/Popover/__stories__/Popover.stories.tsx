@@ -1,5 +1,6 @@
 // Edit this file to add new stories
 import React from 'react'
+import { Box, Typography } from '@mui/material'
 
 import { Button, Popover, PopoverProps } from '../../..'
 import { story } from '../../../test-helpers/storybook'
@@ -39,11 +40,13 @@ const Template = story<PopoverProps>(
           onClose={handleClose}
           anchorOrigin={{
             vertical: 'bottom',
-            horizontal: 'center',
+            horizontal: 'left',
           }}
           {...args}
         >
-          Popover Content
+          <Box padding={2}>
+            <Typography>Popover Content</Typography>
+          </Box>
         </Popover>
       </>
     )
@@ -106,7 +109,9 @@ export const Hover = story(
           onClose={handlePopoverClose}
           disableRestoreFocus
         >
-          Popover Content
+          <Box padding={2}>
+            <Typography>Popover Content</Typography>
+          </Box>
         </Popover>
       </>
     )
