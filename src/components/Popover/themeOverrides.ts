@@ -4,7 +4,7 @@ export const MonorailPopoverOverrides: Components<Theme>['MuiPopover'] = {
   styleOverrides: {
     root: ({ theme }) => {
       return {
-        margin: theme.spacing(2, 0),
+        margin: theme.spacing(4, 0),
       }
     },
   },
