@@ -79,6 +79,20 @@ export const Default = story(Template, {
   },
 })
 
+export const NativeDatePicker = story<DatePickerProps>(() => {
+  return (
+    <Box component="form" noValidate>
+      <TextField
+        id="date"
+        label="Birthday"
+        type="date"
+        defaultValue="2017-05-24"
+        sx={{ width: 220 }}
+      />
+    </Box>
+  )
+})
+
 export const StaticMode = story<DatePickerProps<Date>>(
   () => {
     const [value, setValue] = React.useState<Date | null>(
