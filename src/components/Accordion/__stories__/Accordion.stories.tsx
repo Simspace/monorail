@@ -1,7 +1,10 @@
 // Edit this file to add new stories
 import React from 'react'
 import ArrowForwardIosSharp from '@mui/icons-material/ArrowForwardIosSharp'
+import CheckCircle from '@mui/icons-material/CheckCircle'
+import Error from '@mui/icons-material/Error'
 import ExpandMore from '@mui/icons-material/ExpandMore'
+import Warning from '@mui/icons-material/Warning'
 
 import {
   Accordion,
@@ -10,8 +13,11 @@ import {
   AccordionProps,
   AccordionSummary,
   AccordionSummaryProps,
+  Box,
   Button,
+  Chip,
   Divider,
+  Stack,
   styled,
   Typography,
 } from '../../..'
@@ -34,17 +40,25 @@ export default {
  */
 const Template = story<AccordionProps>(
   args => (
-    <Accordion {...args}>
-      {/* TODO: could try to reuse stories from other components here, but then the "View Code" is not great */}
-      <AccordionSummary>Summary</AccordionSummary>
-      <AccordionDetails>Details</AccordionDetails>
-    </Accordion>
+    <Box minHeight={288}>
+      <Accordion {...args}>
+        {/* TODO: could try to reuse stories from other components here, but then the "View Code" is not great */}
+        <AccordionSummary>Summary</AccordionSummary>
+        <AccordionDetails>Details</AccordionDetails>
+      </Accordion>
+      <Accordion {...args}>
+        {/* TODO: could try to reuse stories from other components here, but then the "View Code" is not great */}
+        <AccordionSummary>Summary</AccordionSummary>
+        <AccordionDetails>Details</AccordionDetails>
+      </Accordion>
+      <Accordion {...args}>
+        {/* TODO: could try to reuse stories from other components here, but then the "View Code" is not great */}
+        <AccordionSummary>Summary</AccordionSummary>
+        <AccordionDetails>Details</AccordionDetails>
+      </Accordion>
+    </Box>
   ),
   {
-    args: {
-      variant: 'outlined',
-      square: true,
-    },
     muiName: 'MuiAccordion',
   },
 )
@@ -58,43 +72,34 @@ export const Stacked = story(
       <div>
         <Accordion>
           <AccordionSummary
-            expandIcon={<ExpandMore />}
-            aria-controls="panel1a-content"
-            id="panel1a-header"
+            aria-controls="stacked-panel1a-content"
+            id="stacked-panel1a-header"
           >
-            <Typography>Accordion 1</Typography>
+            Accordion 1
           </AccordionSummary>
-          <AccordionDetails id="panel1a-content">
-            <Typography>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-              eget.
-            </Typography>
+          <AccordionDetails id="stacked-panel1a-content">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+            malesuada lacus ex, sit amet blandit leo lobortis eget.
           </AccordionDetails>
         </Accordion>
         <Accordion>
           <AccordionSummary
-            expandIcon={<ExpandMore />}
-            aria-controls="panel2a-content"
-            id="panel2a-header"
+            aria-controls="stacked-panel2a-content"
+            id="stacked-panel2a-header"
           >
-            <Typography>Accordion 2</Typography>
+            Accordion 2
           </AccordionSummary>
-          <AccordionDetails id="panel2a-content">
-            <Typography>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-              eget.
-            </Typography>
+          <AccordionDetails id="stacked-panel2a-content">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+            malesuada lacus ex, sit amet blandit leo lobortis eget.
           </AccordionDetails>
         </Accordion>
         <Accordion disabled>
           <AccordionSummary
-            expandIcon={<ExpandMore />}
-            aria-controls="panel3a-content"
-            id="panel3a-header"
+            aria-controls="stacked-panel3a-content"
+            id="stacked-panel3a-header"
           >
-            <Typography>Disabled Accordion</Typography>
+            Disabled Accordion
           </AccordionSummary>
         </Accordion>
       </div>
@@ -109,49 +114,154 @@ export const Stacked = story(
   },
 )
 
-export const StackedDisableGutters = story(
+export const StackedBorderless = story(
   () => {
     return (
       <div>
-        <Accordion disableGutters>
+        <Accordion borderless>
           <AccordionSummary
-            expandIcon={<ExpandMore />}
-            aria-controls="panel1a-content"
-            id="panel1a-header"
+            aria-controls="borderless-panel1a-content"
+            id="borderless-panel1a-header"
           >
-            <Typography>Accordion 1</Typography>
+            Accordion 1
           </AccordionSummary>
-          <AccordionDetails id="panel1a-content">
-            <Typography>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-              eget.
-            </Typography>
+          <AccordionDetails id="borderless-panel1a-content">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+            malesuada lacus ex, sit amet blandit leo lobortis eget.
           </AccordionDetails>
         </Accordion>
-        <Accordion disableGutters>
+        <Accordion borderless>
           <AccordionSummary
-            expandIcon={<ExpandMore />}
-            aria-controls="panel2a-content"
-            id="panel2a-header"
+            aria-controls="borderless-panel2a-content"
+            id="borderless-panel2a-header"
           >
-            <Typography>Accordion 2</Typography>
+            Accordion 2
           </AccordionSummary>
-          <AccordionDetails id="panel2a-content">
-            <Typography>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-              eget.
-            </Typography>
+          <AccordionDetails id="borderless-panel2a-content">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+            malesuada lacus ex, sit amet blandit leo lobortis eget.
           </AccordionDetails>
         </Accordion>
-        <Accordion disableGutters disabled>
+        <Accordion borderless disabled>
           <AccordionSummary
-            expandIcon={<ExpandMore />}
-            aria-controls="panel3a-content"
-            id="panel3a-header"
+            aria-controls="borderless-panel3a-content"
+            id="borderless-panel3a-header"
           >
-            <Typography>Disabled Accordion</Typography>
+            Disabled Accordion
+          </AccordionSummary>
+        </Accordion>
+      </div>
+    )
+  },
+  {
+    parameters: {
+      a11y: {
+        disable: true, // a11y considers having aria-controls on summary and the same id on details a violation, but this is how uncontrolled accordion works
+      },
+    },
+  },
+)
+
+export const AccordionWithChip = story(
+  () => {
+    return (
+      <div>
+        <Accordion borderless>
+          <AccordionSummary
+            aria-controls="chip-panel1a-content"
+            id="chip-panel1a-header"
+          >
+            <Stack direction="row" spacing={2}>
+              <Chip size="small" color="default" label="10" />
+              <span>Accordion 1</span>
+            </Stack>
+          </AccordionSummary>
+          <AccordionDetails id="chip-panel1a-content">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+            malesuada lacus ex, sit amet blandit leo lobortis eget.
+          </AccordionDetails>
+        </Accordion>
+        <Accordion borderless>
+          <AccordionSummary
+            aria-controls="chip-panel2a-content"
+            id="chip-panel2a-header"
+          >
+            <Stack direction="row" spacing={2}>
+              <Chip size="small" color="default" label="10" />
+              <span>Accordion 2</span>
+            </Stack>
+          </AccordionSummary>
+          <AccordionDetails id="chip-panel2a-content">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+            malesuada lacus ex, sit amet blandit leo lobortis eget.
+          </AccordionDetails>
+        </Accordion>
+        <Accordion borderless disabled>
+          <AccordionSummary
+            aria-controls="chip-panel3a-content"
+            id="chip-panel3a-header"
+          >
+            <Stack direction="row" spacing={2}>
+              <Chip size="small" color="default" label="10" />
+              <span>Disabled Accordion</span>
+            </Stack>
+          </AccordionSummary>
+        </Accordion>
+      </div>
+    )
+  },
+  {
+    parameters: {
+      a11y: {
+        disable: true, // a11y considers having aria-controls on summary and the same id on details a violation, but this is how uncontrolled accordion works
+      },
+    },
+  },
+)
+
+export const AccordionWithIcon = story(
+  () => {
+    return (
+      <div>
+        <Accordion borderless>
+          <AccordionSummary
+            aria-controls="icon-panel1a-content"
+            id="icon-panel1a-header"
+          >
+            <Stack direction="row" spacing={2}>
+              <CheckCircle color="success" />
+              <span>Accordion 1</span>
+            </Stack>
+          </AccordionSummary>
+          <AccordionDetails id="icon-panel1a-content">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+            malesuada lacus ex, sit amet blandit leo lobortis eget.
+          </AccordionDetails>
+        </Accordion>
+        <Accordion borderless>
+          <AccordionSummary
+            aria-controls="icon-panel2a-content"
+            id="icon-panel2a-header"
+          >
+            <Stack direction="row" spacing={2}>
+              <Warning color="warning" />
+              <span>Accordion 2</span>
+            </Stack>
+          </AccordionSummary>
+          <AccordionDetails id="icon-panel2a-content">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+            malesuada lacus ex, sit amet blandit leo lobortis eget.
+          </AccordionDetails>
+        </Accordion>
+        <Accordion borderless disabled>
+          <AccordionSummary
+            aria-controls="icon-panel3a-content"
+            id="icon-panel3a-header"
+          >
+            <Stack direction="row" spacing={2}>
+              <Error color="error" />
+              <span>Disabled Accordion</span>
+            </Stack>
           </AccordionSummary>
         </Accordion>
       </div>

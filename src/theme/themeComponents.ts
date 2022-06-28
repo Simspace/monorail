@@ -2,6 +2,10 @@
 import type {} from '@mui/lab/themeAugmentation'
 import { Theme, ThemeOptions } from '@mui/material'
 
+import { MonorailAccordionOverrides } from '../components/Accordion/themeOverrides'
+import { MonorailAccordionActionsOverrides } from '../components/AccordionActions/themeOverrides'
+import { MonorailAccordionDetailsOverrides } from '../components/AccordionDetails/themeOverrides'
+import { MonorailAccordionSummaryOverrides } from '../components/AccordionSummary/themeOverrides'
 import {
   MonorailAlertOverrides,
   MonorailAlertTitleOverrides,
@@ -83,12 +87,10 @@ export const getThemeComponents = (
   // Make sure we apply the defaults here
   ...baseTheme.components,
 
-  MuiAccordion: {
-    defaultProps: {
-      variant: 'outlined',
-      square: true,
-    },
-  },
+  MuiAccordion: MonorailAccordionOverrides,
+  MuiAccordionActions: MonorailAccordionActionsOverrides,
+  MuiAccordionDetails: MonorailAccordionDetailsOverrides,
+  MuiAccordionSummary: MonorailAccordionSummaryOverrides,
   MuiAlert: MonorailAlertOverrides,
   MuiAlertTitle: MonorailAlertTitleOverrides,
   MuiAutocomplete: MonorailAutocompleteOverrides,
