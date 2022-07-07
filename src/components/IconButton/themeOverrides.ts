@@ -67,7 +67,7 @@ export const MonorailIconButtonOverrides: Components<Theme>['MuiIconButton'] = {
             color: theme.palette[color].light,
           },
           ...(shape === 'rounded' && {
-            borderRadius: 3,
+            borderRadius: 4,
           }),
           ...(variant === 'chromeless' && {
             backgroundColor: 'transparent',
