@@ -16,38 +16,6 @@ declare module '@mui/material/Button' {
   }
 }
 
-export const buttonTokens = {
-  contained: {
-    bg: {
-      idle: 600,
-      hover: 700,
-      active: 800,
-      disabled: 400,
-    },
-  },
-  outlined: {
-    bg: {
-      hover: 50,
-      active: 100,
-    },
-    border: 400,
-    text: {
-      idle: 600,
-      disabled: 400,
-    },
-  },
-  text: {
-    bg: {
-      hover: 50,
-      active: 100,
-    },
-    text: {
-      idle: 600,
-      disabled: 400,
-    },
-  },
-} as const
-
 export const MonorailButtonOverrides: Components<Theme>['MuiButton'] = {
   defaultProps: {
     disableElevation: true,
@@ -72,16 +40,15 @@ export const MonorailButtonOverrides: Components<Theme>['MuiButton'] = {
           // but it wouldn't override the default styles
           // This pattern seems to work better for .Mui-[state]
           ...(variant === 'contained' && {
-            backgroundColor:
-              theme.palette[color].shades[buttonTokens.contained.bg.disabled],
-            color: theme.palette.common.white,
+            backgroundColor: theme.palette[color].main,
+            color: theme.palette[color].contrastText,
+            opacity: 0.6,
           }),
           ...(variant === 'outlined' && {
-            color:
-              theme.palette[color].shades[buttonTokens.outlined.text.disabled],
+            color: theme.palette[color].weakEmphasis.disabled.text,
           }),
           ...(variant === 'text' && {
-            color: theme.palette[color].shades[buttonTokens.text.text.disabled],
+            color: theme.palette[color].weakEmphasis.disabled.text,
           }),
         },
       }
@@ -118,14 +85,12 @@ export const MonorailButtonOverrides: Components<Theme>['MuiButton'] = {
     }),
     contained: ({ ownerState: { color = 'primary' }, theme }) => {
       return {
-        color: theme.palette.common.white,
+        color: theme.palette[color].contrastText,
         '&:hover': {
-          backgroundColor:
-            theme.palette[color].shades[buttonTokens.contained.bg.hover],
+          backgroundColor: theme.palette[color].hover,
         },
         '&:active': {
-          backgroundColor:
-            theme.palette[color].shades[buttonTokens.contained.bg.active],
+          backgroundColor: theme.palette[color].active,
         },
       }
     },
@@ -133,85 +98,67 @@ export const MonorailButtonOverrides: Components<Theme>['MuiButton'] = {
       return {
         backgroundColor: theme.palette.common.white,
         border: 'none',
-        outline: `1px solid ${
-          theme.palette[color].shades[buttonTokens.outlined.border]
-        }`,
-        color: theme.palette[color].shades[buttonTokens.outlined.text.idle],
+        outline: `1px solid ${theme.palette[color].border.light}`,
+        color: theme.palette[color].weakEmphasis.contrastText,
         '&:hover': {
           border: 'none',
-          backgroundColor:
-            theme.palette[color].shades[buttonTokens.outlined.bg.hover],
+          backgroundColor: theme.palette[color].weakEmphasis.hover,
         },
         '&:active': {
-          backgroundColor:
-            theme.palette[color].shades[buttonTokens.outlined.bg.active],
+          backgroundColor: theme.palette[color].weakEmphasis.active,
         },
       }
     },
     text: ({ ownerState: { color = 'primary' }, theme }) => {
       return {
-        color: theme.palette[color].shades[buttonTokens.text.text.idle],
+        color: theme.palette[color].weakEmphasis.contrastText,
         '&:hover': {
-          backgroundColor:
-            theme.palette[color].shades[buttonTokens.text.bg.hover],
+          backgroundColor: theme.palette[color].weakEmphasis.hover,
         },
         '&:active': {
-          backgroundColor:
-            theme.palette[color].shades[buttonTokens.text.bg.active],
+          backgroundColor: theme.palette[color].weakEmphasis.active,
         },
       }
     },
-    disabled: ({
-      ownerState: { color = 'primary', variant = 'contained' },
-      theme,
-    }) => {
-      return {
-        color: theme.palette[color].shades[buttonTokens.outlined.text.disabled],
-        backgroundColor: theme.palette.common.white,
-        ...(variant === 'contained' && {
-          backgroundColor:
-            theme.palette[color].shades[buttonTokens.contained.bg.disabled],
-          color: theme.palette.common.white,
-        }),
-      }
-    },
-    startIcon: ({ ownerState }) => {
+    startIcon: ({ ownerState, theme }) => {
       switch (ownerState.size) {
         case 'large':
           return {
-            marginRight: '8px',
-            marginLeft: '-2px',
+            // TODO: Would it be useful to create a pxToSpacing() ?
+            // theme.spacing(pxToSpacing(8))
+            marginRight: theme.spacing(2), // 8px
+            marginLeft: theme.spacing(-0.5), // -2px
           }
         case 'medium':
           return {
-            marginRight: '8px',
-            marginLeft: '-2px',
+            marginRight: theme.spacing(2), // 8px
+            marginLeft: theme.spacing(-0.5), // -2px
           }
         case 'small':
           return {
-            marginRight: '6px',
-            marginLeft: '-2px',
+            marginRight: theme.spacing(1.5), // 6px
+            marginLeft: theme.spacing(-0.5), // -2px
           }
         default:
           return
       }
     },
-    endIcon: ({ ownerState }) => {
+    endIcon: ({ ownerState, theme }) => {
       switch (ownerState.size) {
         case 'large':
           return {
-            marginRight: '-2px',
-            marginLeft: '8px',
+            marginRight: theme.spacing(-0.5), // -2px
+            marginLeft: theme.spacing(2), // 8px
           }
         case 'medium':
           return {
-            marginRight: '-2px',
-            marginLeft: '8px',
+            marginRight: theme.spacing(-0.5), // -2px
+            marginLeft: theme.spacing(2), // 8px
           }
         case 'small':
           return {
-            marginRight: '-2px',
-            marginLeft: '6px',
+            marginRight: theme.spacing(-0.5), // -2px
+            marginLeft: theme.spacing(1.5), // 6px
           }
         default:
           return
@@ -231,8 +178,7 @@ export const MonorailLoadingButtonOverrides: Components<Theme>['MuiLoadingButton
     styleOverrides: {
       loadingIndicator: ({ ownerState: { color = 'primary' }, theme }) => {
         return {
-          color:
-            theme.palette[color].shades[buttonTokens.contained.bg.disabled],
+          color: theme.palette[color].disabled.background,
         }
       },
     },

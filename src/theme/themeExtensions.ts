@@ -106,6 +106,43 @@ declare module '@mui/material/styles/createPalette' {
 
   interface PaletteColor {
     shades: ColorShades
+    hover: string
+    active: string
+    disabled: {
+      background: string
+      text: string
+    }
+    mediumEmphasis: {
+      light: string
+      main: string
+      dark: string
+      contrastText: string
+      hover: string
+      active: string
+      disabled: {
+        background: string
+        text: string
+      }
+    }
+    weakEmphasis: {
+      light: string
+      main: string
+      dark: string
+      contrastText: string
+      hover: string
+      selected: string
+      active: string
+      selectedHovered: string
+      disabled: {
+        background: string
+        text: string
+      }
+    }
+    border: {
+      light: string
+      main: string
+      dark: string
+    }
     focusRing: {
       inner: string
       outer: string
@@ -114,6 +151,61 @@ declare module '@mui/material/styles/createPalette' {
 
   interface SimplePaletteColorOptions {
     shades?: ColorShades
+    hover?: string
+    active?: string
+    disabled?: Partial<{
+      background: string
+      text: string
+    }>
+    /**
+     * Commonly used for less prominent elements
+     */
+    mediumEmphasis?: Partial<{
+      light: string
+      main: string
+      dark: string
+      contrastText: string
+      hover: string
+      active: string
+      disabled: Partial<{
+        background: string
+        text: string
+      }>
+    }>
+    /**
+     * Commonly used for `outlined` and `text` variants.
+     */
+    weakEmphasis?: Partial<{
+      transparent: string
+      main: string
+      dark: string
+      contrastText: string
+      hover: string
+      selected: string
+      active: string
+      selectedHovered: string
+      disabled: Partial<{
+        background: string
+        text: string
+      }>
+    }>
+    border?: Partial<{
+      /**
+       * Weak emphasis. Current usage:Outlined Buttons
+       */
+      light: string
+      /**
+       * Medium emphasis. Current usage: Alert border
+       */
+      main: string
+      /**
+       * Strong emphasis. Current usage: Contained Button Group
+       */
+      dark: string
+    }>
+    /**
+     * Pre-defined inner and outer focus ring color pairing
+     */
     focusRing?: Partial<{
       inner: string
       outer: string

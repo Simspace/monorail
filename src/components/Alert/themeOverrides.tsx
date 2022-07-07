@@ -5,18 +5,6 @@ import InfoIcon from '@mui/icons-material/Info'
 import WarningIcon from '@mui/icons-material/Warning'
 import { alertClasses, Components, Theme } from '@mui/material'
 
-const alertTokens = {
-  outlined: {
-    borderColor: 500,
-    icon: 500,
-  },
-  standard: {
-    bg: 50,
-    icon: 500,
-    text: 800,
-  },
-} as const
-
 export const MonorailAlertOverrides: Components<Theme>['MuiAlert'] = {
   defaultProps: {
     variant: 'outlined',
@@ -44,11 +32,10 @@ export const MonorailAlertOverrides: Components<Theme>['MuiAlert'] = {
     standard: ({ ownerState, theme }) => {
       const severity = ownerState?.severity ?? 'success'
       return {
-        color: theme.palette[severity].shades[alertTokens.standard.text],
-        backgroundColor:
-          theme.palette[severity].shades[alertTokens.standard.bg],
+        color: theme.palette[severity].mediumEmphasis.contrastText,
+        backgroundColor: theme.palette[severity].mediumEmphasis.light,
         [`& .${alertClasses.icon}`]: {
-          color: theme.palette[severity].shades[alertTokens.standard.icon],
+          color: theme.palette[severity].main,
         },
       }
     },
@@ -57,10 +44,9 @@ export const MonorailAlertOverrides: Components<Theme>['MuiAlert'] = {
       return {
         backgroundColor: theme.palette.background.paper,
         color: theme.palette.text.primary,
-        borderColor:
-          theme.palette[severity].shades[alertTokens.outlined.borderColor],
+        borderColor: theme.palette[severity].border.main,
         [`& .${alertClasses.icon}`]: {
-          color: theme.palette[severity].shades[alertTokens.outlined.icon],
+          color: theme.palette[severity].main,
         },
       }
     },
