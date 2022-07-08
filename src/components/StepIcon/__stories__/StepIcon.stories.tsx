@@ -33,14 +33,8 @@ export const Default = story<StepIconProps>(
   (args: Partial<StepIconProps>) => (
     <Box sx={{ width: '100%' }}>
       <Stepper>
-        <Step>
-          <StepIcon {...args} icon={<IceSkatingOutlined />} />
-        </Step>
-        <Step>
-          <StepIcon icon={<IceSkatingTwoTone />} />
-        </Step>
-        <Step>
-          <StepIcon icon={<IceSkatingRounded />} />
+        <Step {...args}>
+          <StepLabel />
         </Step>
       </Stepper>
     </Box>
