@@ -8,7 +8,6 @@ import {
   StepButton,
   StepButtonProps,
   StepLabel,
-  Stepper,
   Typography,
 } from '../../..'
 import { story } from '../../../test-helpers/storybook'
@@ -20,17 +19,9 @@ export default { title: 'Navigation/Stepper/StepButton', component: StepButton }
 export const Default = story<StepButtonProps>(
   args => (
     <Box sx={{ width: '100%' }}>
-      <Stepper>
-        <Step>
-          <StepButton {...args}>Click me</StepButton>
-        </Step>
-        <Step>
-          <StepButton>Not me</StepButton>
-        </Step>
-        <Step>
-          <StepButton>Not me</StepButton>
-        </Step>
-      </Stepper>
+      <Step>
+        <StepButton {...args}>Click me</StepButton>
+      </Step>
     </Box>
   ),
   {

@@ -12,7 +12,7 @@ export const Default = story<StepProps>(
     <Box sx={{ width: '100%' }}>
       <Stepper>
         <Step {...args}>
-          <StepLabel>I'm a step</StepLabel>
+          <StepLabel optional="Optional">Step title</StepLabel>
         </Step>
       </Stepper>
     </Box>
@@ -21,9 +21,8 @@ export const Default = story<StepProps>(
     parameters: {
       docs: {
         description: {
-          component: `
-Steppers convey progress through numbered steps. It provides a wizard-like workflow.
-`,
+          component:
+            'Steppers convey progress through numbered steps. It provides a wizard-like workflow.',
         },
       },
     },
@@ -45,9 +44,7 @@ export const CompletedStep = story(
     parameters: {
       docs: {
         description: {
-          story: `
-Mark a step as completed.
-`,
+          story: 'Mark a step as completed.',
         },
       },
     },
@@ -74,9 +71,7 @@ export const ExpandedStep = story(
     parameters: {
       docs: {
         description: {
-          story: `
-The \`expanded\` prop is available to \`Step\` components, but I'm not sure what it does.
-`,
+          story: 'The `expanded` prop is available to `Step` components.',
         },
       },
     },

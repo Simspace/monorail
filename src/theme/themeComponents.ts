@@ -50,6 +50,7 @@ import { MonorailListItemTextOverrides } from '../components/ListItemText/themeO
 import { MonorailListSubheaderOverrides } from '../components/ListSubheader/themeOverrides'
 import { MonorailMenuOverrides } from '../components/Menu/themeOverrides'
 import { MonorailMenuItemOverrides } from '../components/MenuItem/themeOverrides'
+import { MonorailMobileStepperOverrides } from '../components/MobileStepper/themeOverrides'
 import { MonorailOutlinedInputOverrides } from '../components/OutlinedInput/themeOverrides'
 import { MonorailPaginationOverrides } from '../components/Pagination/themeOverrides'
 import { MonorailPaginationItemOverrides } from '../components/PaginationItem/themeOverrides'
@@ -60,6 +61,13 @@ import { MonorailSelectOverrides } from '../components/Select/themeOverrides'
 import { MonorailSkeletonOverrides } from '../components/Skeleton/themeOverrides'
 import { MonorailSliderOverrides } from '../components/Slider/themeOverrides'
 import { MonorailSnackbarOverrides } from '../components/Snackbar/themeOverrides'
+import { MonorailStepOverrides } from '../components/Step/themeOverrides'
+import { MonorailStepButtonOverrides } from '../components/StepButton/themeOverrides'
+import { MonorailStepConnectorOverrides } from '../components/StepConnector/themeOverrides'
+import { MonorailStepContentOverrides } from '../components/StepContent/themeOverrides'
+import { MonorailStepIconOverrides } from '../components/StepIcon/themeOverrides'
+import { MonorailStepLabelOverrides } from '../components/StepLabel/themeOverrides'
+import { MonorailStepperOverrides } from '../components/Stepper/themeOverrides'
 import { MonorailSvgIconOverrides } from '../components/SvgIcon/themeOverrides'
 import { MonorailSwitchOverrides } from '../components/Switch/themeOverrides'
 import { MonorailTabOverrides } from '../components/Tab/themeOverrides'
@@ -137,6 +145,7 @@ export const getThemeComponents = (
   MuiListSubheader: MonorailListSubheaderOverrides,
   MuiMenu: MonorailMenuOverrides,
   MuiMenuItem: MonorailMenuItemOverrides,
+  MuiMobileStepper: MonorailMobileStepperOverrides,
   MuiOutlinedInput: MonorailOutlinedInputOverrides,
   MuiPagination: MonorailPaginationOverrides,
   MuiPaginationItem: MonorailPaginationItemOverrides,
@@ -147,6 +156,13 @@ export const getThemeComponents = (
   MuiSlider: MonorailSliderOverrides,
   MuiSkeleton: MonorailSkeletonOverrides,
   MuiSnackbar: MonorailSnackbarOverrides,
+  MuiStep: MonorailStepOverrides,
+  MuiStepButton: MonorailStepButtonOverrides,
+  MuiStepConnector: MonorailStepConnectorOverrides,
+  MuiStepContent: MonorailStepContentOverrides,
+  MuiStepIcon: MonorailStepIconOverrides,
+  MuiStepLabel: MonorailStepLabelOverrides,
+  MuiStepper: MonorailStepperOverrides,
   MuiSvgIcon: MonorailSvgIconOverrides,
   MuiSwitch: MonorailSwitchOverrides,
   MuiTab: MonorailTabOverrides,

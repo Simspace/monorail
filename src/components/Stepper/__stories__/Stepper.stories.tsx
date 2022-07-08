@@ -32,8 +32,14 @@ export default { title: 'Navigation/Stepper', component: Stepper }
 const Template = story<StepperProps>(
   (args: StepperProps) => (
     <Stepper {...args}>
-      <Step key={'hey'}>
-        <StepLabel>hey</StepLabel>
+      <Step>
+        <StepLabel>A longer step title</StepLabel>
+      </Step>
+      <Step>
+        <StepLabel>Step title</StepLabel>
+      </Step>
+      <Step>
+        <StepLabel>Step title</StepLabel>
       </Step>
     </Stepper>
   ),
@@ -41,15 +47,15 @@ const Template = story<StepperProps>(
 )
 /** Default story for Stepper (edit/remove by hand if needed) */
 export const Default = story(Template, {
-  args: { activeStep: 0, children: ['hey'] },
+  args: { activeStep: 0 },
 })
 
-const steps = ['Select campaign settings', 'Create an ad group', 'Create an ad']
-
-const steps2 = [
-  'Select master blaster campaign settings',
-  'Create an ad group',
-  'Create an ad',
+const steps = [
+  'Plan Details',
+  'Prerequisites',
+  'Content Modules',
+  'Assessments',
+  'Event Options',
 ]
 
 const steps3 = [
@@ -75,44 +81,17 @@ const steps3 = [
 
 function HorizontalLinearStepperBase() {
   const [activeStep, setActiveStep] = React.useState(0)
-  const [skipped, setSkipped] = React.useState(new Set<number>())
 
-  const isStepOptional = (step: number) => {
-    return step === 1
-  }
+  const isStepComplete = (step: number) => activeStep > step
 
-  const isStepSkipped = (step: number) => {
-    return skipped.has(step)
-  }
+  const isStepIncomplete = (step: number) => activeStep < step
 
   const handleNext = () => {
-    let newSkipped = skipped
-    if (isStepSkipped(activeStep)) {
-      newSkipped = new Set(newSkipped.values())
-      newSkipped.delete(activeStep)
-    }
-
     setActiveStep(prevActiveStep => prevActiveStep + 1)
-    setSkipped(newSkipped)
   }
 
   const handleBack = () => {
     setActiveStep(prevActiveStep => prevActiveStep - 1)
-  }
-
-  const handleSkip = () => {
-    if (!isStepOptional(activeStep)) {
-      // You probably want to guard against something like this,
-      // it should never occur unless someone's actively trying to break something.
-      throw new Error("You can't skip a step that isn't optional.")
-    }
-
-    setActiveStep(prevActiveStep => prevActiveStep + 1)
-    setSkipped(prevSkipped => {
-      const newSkipped = new Set(prevSkipped.values())
-      newSkipped.add(activeStep)
-      return newSkipped
-    })
   }
 
   const handleReset = () => {
@@ -127,13 +106,15 @@ function HorizontalLinearStepperBase() {
           const labelProps: {
             optional?: React.ReactNode
           } = {}
-          if (isStepOptional(index)) {
+          if (isStepComplete(index)) {
             labelProps.optional = (
-              <Typography variant="caption">Optional</Typography>
+              <Typography variant="caption">Complete</Typography>
             )
           }
-          if (isStepSkipped(index)) {
-            stepProps.completed = false
+          if (isStepIncomplete(index)) {
+            labelProps.optional = (
+              <Typography variant="caption">Incomplete</Typography>
+            )
           }
           return (
             <Step key={label} {...stepProps}>
@@ -148,7 +129,6 @@ function HorizontalLinearStepperBase() {
             All steps completed - you&apos;re finished
           </Typography>
           <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
-            <Box sx={{ flex: '1 1 auto' }} />
             <Button onClick={handleReset}>Reset</Button>
           </Box>
         </React.Fragment>
@@ -160,16 +140,10 @@ function HorizontalLinearStepperBase() {
               variant="text"
               disabled={activeStep === 0}
               onClick={handleBack}
-              sx={{ mr: 1 }}
+              sx={{ mr: 2 }}
             >
               Back
             </Button>
-            <Box sx={{ flex: '1 1 auto' }} />
-            {isStepOptional(activeStep) && (
-              <Button variant="outlined" onClick={handleSkip} sx={{ mr: 1 }}>
-                Skip
-              </Button>
-            )}
             <Button onClick={handleNext}>
               {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
             </Button>
@@ -283,14 +257,14 @@ export const HorizontalNonLinearStepper = story(
                   variant="text"
                   disabled={activeStep === 0}
                   onClick={handleBack}
-                  sx={{ mr: 1 }}
+                  sx={{ mr: 2 }}
                 >
                   Back
                 </Button>
-                <Box sx={{ flex: '1 1 auto' }} />
-                <Button variant="outlined" onClick={handleNext} sx={{ mr: 1 }}>
+                <Button onClick={handleNext} sx={{ mr: 2 }}>
                   Next
                 </Button>
+                <Box sx={{ flex: '1 1 auto' }} />
                 {activeStep !== steps.length &&
                   (completed[activeStep] ? (
                     <Typography
@@ -338,11 +312,15 @@ export const HorizontalLabelPositionBelowStepper = story(
     return (
       <Box sx={{ width: '100%' }}>
         <Stepper activeStep={1} alternativeLabel>
-          {steps2.map(label => (
-            <Step key={label}>
-              <StepLabel>{label}</StepLabel>
-            </Step>
-          ))}
+          <Step>
+            <StepLabel optional="Optional">Step title</StepLabel>
+          </Step>
+          <Step>
+            <StepLabel optional="Optional">Step title</StepLabel>
+          </Step>
+          <Step>
+            <StepLabel>Step title</StepLabel>
+          </Step>
         </Stepper>
       </Box>
     )
