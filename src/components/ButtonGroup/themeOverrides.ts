@@ -23,8 +23,7 @@ export const MonorailButtonGroupOverrides: Components<Theme>['MuiButtonGroup'] =
       grouped: ({ ownerState: { color = 'primary' }, theme }) => {
         return {
           [`&.${buttonClasses.focusVisible}`]: {
-            boxShadow: `0 0 0 4px ${theme.palette[color].focusRing.outer}`,
-            outline: `1px solid ${theme.palette[color].focusRing.inner}`,
+            boxShadow: `inset 0 0 0 1px ${theme.palette[color].focusRing.inner}, 0 0 0 4px ${theme.palette[color].focusRing.outer}`,
           },
         }
       },
@@ -34,16 +33,6 @@ export const MonorailButtonGroupOverrides: Components<Theme>['MuiButtonGroup'] =
         },
         [`&.${buttonClasses.focusVisible}`]: {
           zIndex: 1,
-        },
-      },
-      groupedOutlinedHorizontal: {
-        '&:not(:first-of-type)': {
-          marginLeft: 1,
-        },
-      },
-      groupedOutlinedVertical: {
-        '&:not(:first-of-type)': {
-          marginTop: 1,
         },
       },
     },

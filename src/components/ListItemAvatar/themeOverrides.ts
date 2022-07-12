@@ -4,13 +4,13 @@ export const MonorailListItemAvatarOverrides: Components<Theme>['MuiListItemAvat
   {
     defaultProps: {},
     styleOverrides: {
-      root: {
-        paddingTop: 4,
-        paddingBottom: 4,
+      root: ({ theme }) => ({
+        paddingTop: theme.spacing(1),
+        paddingBottom: theme.spacing(1),
         [`& + .${listItemTextClasses.multiline}`]: {
-          paddingTop: 8,
-          paddingBottom: 8,
+          paddingTop: theme.spacing(2),
+          paddingBottom: theme.spacing(2),
         },
-      },
+      }),
     },
   }

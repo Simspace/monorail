@@ -30,9 +30,9 @@ export const MonorailButtonOverrides: Components<Theme>['MuiButton'] = {
       theme,
     }) => {
       return {
+        border: 'none',
         [`&.${buttonClasses.focusVisible}`]: {
-          boxShadow: `0 0 0 4px ${theme.palette[color].focusRing.outer}`,
-          outline: `1px solid ${theme.palette[color].focusRing.inner}`,
+          boxShadow: `inset 0 0 0 1px ${theme.palette[color].focusRing.inner}, 0 0 0 3px ${theme.palette[color].focusRing.outer}`,
         },
         [`&.${buttonClasses.disabled}`]: {
           border: 'none',
@@ -42,7 +42,7 @@ export const MonorailButtonOverrides: Components<Theme>['MuiButton'] = {
           ...(variant === 'contained' && {
             backgroundColor: theme.palette[color].main,
             color: theme.palette[color].contrastText,
-            opacity: 0.6,
+            opacity: theme.palette.action.disabledOpacity,
           }),
           ...(variant === 'outlined' && {
             color: theme.palette[color].weakEmphasis.disabled.text,
@@ -54,17 +54,17 @@ export const MonorailButtonOverrides: Components<Theme>['MuiButton'] = {
       }
     },
     sizeSmall: ({ theme }) => ({
-      padding: '4px 16px',
+      padding: theme.spacing(1, 4), // '4px 16px'
       minWidth: 'auto',
       fontSize: theme.typography.pxToRem(14),
       lineHeight: theme.typography.pxToRem(24),
     }),
     sizeMedium: ({ theme }) => ({
-      padding: '8px 16px',
+      padding: theme.spacing(2, 4), // '8px 16px'
       lineHeight: theme.typography.pxToRem(24),
     }),
     sizeLarge: ({ theme }) => ({
-      padding: '12px 24px',
+      padding: theme.spacing(3, 6), // '12px 24px'
       fontSize: theme.typography.pxToRem(16),
       lineHeight: theme.typography.pxToRem(24),
     }),
@@ -97,12 +97,12 @@ export const MonorailButtonOverrides: Components<Theme>['MuiButton'] = {
     outlined: ({ ownerState: { color = 'primary' }, theme }) => {
       return {
         backgroundColor: theme.palette.common.white,
-        border: 'none',
-        outline: `1px solid ${theme.palette[color].border.light}`,
+        boxShadow: `inset 0 0 0 1px ${theme.palette[color].border.light}`,
         color: theme.palette[color].weakEmphasis.contrastText,
         '&:hover': {
           border: 'none',
           backgroundColor: theme.palette[color].weakEmphasis.hover,
+          boxShadow: `inset 0 0 0 1px ${theme.palette[color].border.main}`,
         },
         '&:active': {
           backgroundColor: theme.palette[color].weakEmphasis.active,

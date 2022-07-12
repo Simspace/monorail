@@ -16,10 +16,10 @@ export const MonorailAlertOverrides: Components<Theme>['MuiAlert'] = {
     },
   },
   styleOverrides: {
-    root: {
-      paddingTop: 8,
-      paddingBottom: 8,
-    },
+    root: ({ theme }) => ({
+      paddingTop: theme.spacing(2),
+      paddingBottom: theme.spacing(2),
+    }),
     icon: {
       opacity: 1,
     },
@@ -66,8 +66,8 @@ export const MonorailAlertOverrides: Components<Theme>['MuiAlert'] = {
 export const MonorailAlertTitleOverrides: Components<Theme>['MuiAlertTitle'] = {
   defaultProps: {},
   styleOverrides: {
-    root: {
-      marginBottom: 2,
-    },
+    root: ({ theme }) => ({
+      marginBottom: theme.spacing(0.5),
+    }),
   },
 }

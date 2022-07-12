@@ -27,14 +27,14 @@ export const MonorailLinearProgressOverrides: Components<Theme>['MuiLinearProgre
           }),
           backgroundColor:
             color === 'primary' || color === 'default'
-              ? theme.palette[color].shades[50]
+              ? theme.palette[color].mediumEmphasis.light
               : theme.palette[color].shades[300],
         }
       },
       buffer: ({ ownerState: { color = 'primary' }, theme }) => {
         return {
-          outline: `1px solid ${theme.palette[color].shades[300]}`,
-          backgroundColor: theme.palette[color].shades[50],
+          boxShadow: `inset 0 0 0 1px ${theme.palette[color].shades[300]}`,
+          backgroundColor: theme.palette[color].mediumEmphasis.light,
           [`> .${linearProgressClasses.dashed}`]: {
             visibility: 'hidden',
           },

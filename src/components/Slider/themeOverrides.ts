@@ -6,18 +6,18 @@ export const MonorailSliderOverrides: Components<Theme>['MuiSlider'] = {
     root: ({ theme }) => ({
       height: 20,
       borderRadius: 2,
-      padding: '10px 0', // Resizes click target to 40px (medium) and 24px (small)
+      padding: theme.spacing(2.5, 0), // Resizes click target to 40px (medium) and 24px (small)
       [`&.${sliderClasses.disabled}`]: {
         [`& .${sliderClasses.thumb}`]: {
-          backgroundColor: theme.palette.default.shades[50],
+          backgroundColor: theme.palette.default.mediumEmphasis.light,
           borderColor: theme.palette.text.disabled,
         },
         [`& .${sliderClasses.track}`]: {
-          backgroundColor: theme.palette.default.shades[300],
-          borderColor: theme.palette.default.shades[300],
+          backgroundColor: theme.palette.default.light,
+          borderColor: theme.palette.default.light,
         },
         [`& .${sliderClasses.rail}`]: {
-          backgroundColor: theme.palette.default.shades[100],
+          backgroundColor: theme.palette.default.mediumEmphasis.main,
         },
       },
     }),
@@ -26,7 +26,7 @@ export const MonorailSliderOverrides: Components<Theme>['MuiSlider'] = {
       return {
         height: 32,
         width: 12,
-        border: `1px solid ${theme.palette.grey[600]}`,
+        border: `1px solid ${theme.palette.default.main}`,
         borderRadius: 1,
         backgroundColor: theme.palette.common.white,
         '&::before': {
@@ -37,17 +37,17 @@ export const MonorailSliderOverrides: Components<Theme>['MuiSlider'] = {
           border: `1px solid ${theme.palette[color].focusRing.inner}`,
         },
         '&:hover': {
-          backgroundColor: theme.palette.default.shades[50],
+          backgroundColor: theme.palette.default.mediumEmphasis.light,
           boxShadow: `0 0 0 4px ${theme.palette[color].focusRing.outer}`,
           [`&.${sliderClasses.thumbSizeSmall}`]: {
-            backgroundColor: theme.palette[color].shades[700],
+            backgroundColor: theme.palette[color].hover,
           },
         },
         [`&.${sliderClasses.active}`]: {
-          backgroundColor: theme.palette.default.shades[200],
+          backgroundColor: theme.palette.default.mediumEmphasis.dark,
           boxShadow: `0 0 0 4px ${theme.palette[color].focusRing.outer}`,
           [`&.${sliderClasses.thumbSizeSmall}`]: {
-            backgroundColor: theme.palette[color].shades[800],
+            backgroundColor: theme.palette[color].active,
           },
         },
       }

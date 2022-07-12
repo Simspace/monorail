@@ -1,21 +1,11 @@
 import { Components, radioClasses, svgIconClasses, Theme } from '@mui/material'
 
-const radioTokens = {
-  bg: {
-    hover: 100,
-  },
-  icon: {
-    idle: 600,
-    hover: 700,
-  },
-} as const
-
 export const MonorailRadioOverrides: Components<Theme>['MuiRadio'] = {
   defaultProps: {},
   styleOverrides: {
     root: ({ ownerState: { color = 'primary', size = 'medium' }, theme }) => ({
-      color: theme.palette.default.shades[radioTokens.icon.idle],
-      padding: 8,
+      color: theme.palette.default.weakEmphasis.contrastText,
+      padding: theme.spacing(2),
       ...(size === 'small' && {
         padding: 6,
         [`& .${svgIconClasses.root}`]: {
@@ -23,9 +13,9 @@ export const MonorailRadioOverrides: Components<Theme>['MuiRadio'] = {
         },
       }),
       '&:hover': {
-        backgroundColor: theme.palette.default.shades[radioTokens.bg.hover],
+        backgroundColor: theme.palette.default.mediumEmphasis.hover,
         [`& .${svgIconClasses.root}`]: {
-          color: theme.palette.default.shades[radioTokens.icon.hover],
+          color: theme.palette.default.hover,
         },
       },
       [`&.${radioClasses.checked}`]: {
@@ -34,9 +24,9 @@ export const MonorailRadioOverrides: Components<Theme>['MuiRadio'] = {
           color: theme.palette.action.disabled,
         },
         '&:hover': {
-          backgroundColor: theme.palette[color].shades[radioTokens.bg.hover],
+          backgroundColor: theme.palette[color].mediumEmphasis.hover,
           [`& .${svgIconClasses.root}`]: {
-            color: theme.palette[color].shades[radioTokens.icon.hover],
+            color: theme.palette[color].hover,
           },
         },
       },

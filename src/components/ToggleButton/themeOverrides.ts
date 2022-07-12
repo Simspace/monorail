@@ -25,26 +25,6 @@ declare module '@mui/material/ToggleButtonGroup' {
   }
 }
 
-const toggleButtonTokens = {
-  // variant/color prop > sentiment > usage > prominence > interaction
-  bg: {
-    hover: 100,
-  },
-  text: 'secondary',
-  border: {
-    idle: 'divider',
-    hover: 300,
-  },
-  selected: {
-    bg: {
-      idle: 200,
-      hover: 300,
-    },
-    text: 'primary',
-    border: 300,
-  },
-} as const
-
 export const MonorailToggleButtonOverrides: Components<Theme>['MuiToggleButton'] =
   {
     defaultProps: {
@@ -53,38 +33,28 @@ export const MonorailToggleButtonOverrides: Components<Theme>['MuiToggleButton']
     styleOverrides: {
       root: ({ ownerState: { color = 'default' }, theme }) => ({
         // Keep backgroundColor transparent, otherwise will hide vertical borders.
-        border: `1px solid ${theme.palette[toggleButtonTokens.border.idle]}`,
-        color: theme.palette.text[toggleButtonTokens.text],
+        border: `1px solid ${theme.palette.default.border.light}`,
+        color: theme.palette.text.secondary,
 
         '&:hover': {
           zIndex: 1,
-          backgroundColor:
-            theme.palette[color].shades[toggleButtonTokens.bg.hover],
-          border: `1px solid ${
-            theme.palette.default.shades[toggleButtonTokens.border.hover]
-          }`,
+          backgroundColor: theme.palette[color].weakEmphasis.hover,
+          border: `1px solid ${theme.palette.default.border.main}`,
           [`&.${toggleButtonGroupClasses.grouped}:not(:first-of-type)`]: {
             // Theming this using MuiToggleButtonGroup wasn't successful.
-            borderLeft: `1px solid ${
-              theme.palette.default.shades[toggleButtonTokens.border.hover]
-            }`,
+            borderLeft: `1px solid ${theme.palette.default.border.main}`,
           },
         },
         [`&.Mui-selected`]: {
           // There is a styleOverrides.selected key but it doesn't seem to work.
-          backgroundColor:
-            theme.palette[color].shades[toggleButtonTokens.selected.bg.idle],
-          color: theme.palette.text[toggleButtonTokens.selected.text],
-          borderColor:
-            theme.palette.default.shades[toggleButtonTokens.selected.border],
+          backgroundColor: theme.palette.default.weakEmphasis.selected,
+          color: theme.palette.text.primary,
+          borderColor: theme.palette.default.border.main,
           '&:hover': {
-            backgroundColor:
-              theme.palette[color].shades[toggleButtonTokens.selected.bg.hover],
+            backgroundColor: theme.palette.default.light,
           },
           [`&.${toggleButtonGroupClasses.grouped}:not(:first-of-type)`]: {
-            borderLeft: `1px solid ${
-              theme.palette.default.shades[toggleButtonTokens.selected.border]
-            }`,
+            borderLeft: `1px solid ${theme.palette.default.border.main}`,
           },
         },
         [`&.Mui-focusVisible`]: {

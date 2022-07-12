@@ -47,15 +47,7 @@ export const BasicSwitches = story(() => (
   </div>
 ))
 
-const colors = [
-  'default',
-  'primary',
-  'secondary',
-  'error',
-  'warning',
-  'info',
-  'success',
-] as const
+const colors = ['default', 'primary', 'error', 'info', 'success'] as const
 
 export const ColorSwitches = story(() => (
   <Stack direction="row" gap={4}>

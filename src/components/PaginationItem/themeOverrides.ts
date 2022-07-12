@@ -10,11 +10,11 @@ export const MonorailPaginationItemOverrides: Components<Theme>['MuiPaginationIt
     styleOverrides: {
       root: ({ ownerState: { color = 'primary' }, theme }) => {
         return {
-          color: theme.palette[color].shades[600],
+          color: theme.palette[color].weakEmphasis.contrastText,
           fontWeight: theme.typography.subtitle2.fontWeight,
           margin: 0,
           ['&:hover']: {
-            backgroundColor: theme.palette[color].shades[100],
+            backgroundColor: theme.palette[color].weakEmphasis.hover,
           },
           // focus-visible
           [`&.${paginationItemClasses.focusVisible}`]: {
@@ -24,25 +24,26 @@ export const MonorailPaginationItemOverrides: Components<Theme>['MuiPaginationIt
             outline: `1px solid ${theme.palette[color].focusRing.inner}`,
           },
           [`&.${paginationItemClasses.focusVisible}:hover`]: {
-            backgroundColor: theme.palette[color].shades[100],
+            backgroundColor: theme.palette[color].weakEmphasis.hover,
           },
           // selected
           [`&.${paginationItemClasses.selected}`]: {
-            backgroundColor: theme.palette.grey[200],
+            backgroundColor: theme.palette.default.weakEmphasis.selected,
             color: theme.palette.text.primary,
             fontWeight: theme.typography.fontWeightBold,
-          },
-          [`&.${paginationItemClasses.selected}:hover`]: {
-            backgroundColor: theme.palette.grey[200],
+            '&:hover': {
+              backgroundColor:
+                theme.palette.default.weakEmphasis.selectedHovered,
+            },
           },
           [`&.${paginationItemClasses.selected}.${paginationItemClasses.focusVisible}`]:
             {
               zIndex: 1,
-              backgroundColor: theme.palette.grey[200],
+              backgroundColor: theme.palette.default.weakEmphasis.selected,
             },
           [`&.${paginationItemClasses.selected}.${paginationItemClasses.disabled}`]:
             {
-              backgroundColor: theme.palette.grey[200],
+              backgroundColor: theme.palette.default.weakEmphasis.selected,
             },
           // disabled
           [`&.${paginationItemClasses.disabled}`]: {

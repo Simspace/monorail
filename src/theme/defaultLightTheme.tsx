@@ -239,7 +239,7 @@ const palette: PaletteOptions = {
 
     border: {
       light: RawColor.Blue400,
-      main: RawColor.Blue500,
+      main: RawColor.Blue600,
       dark: RawColor.Blue800,
     },
 
@@ -296,7 +296,7 @@ const palette: PaletteOptions = {
 
     border: {
       light: RawColor.Orange400,
-      main: RawColor.Orange500,
+      main: RawColor.Orange600,
       dark: RawColor.Orange800,
     },
 
@@ -344,19 +344,19 @@ const palette: PaletteOptions = {
       transparent: RawColor.Transparent,
       main: RawColor.White,
       dark: RawColor.Grey050,
-      contrastText: RawColor.Grey900,
-      hover: RawColor.Grey050,
-      active: RawColor.Grey100,
-      // selected: RawColor.Grey200
-      // selectedHovered:RawColor.Grey300
+      contrastText: RawColor.Grey600,
+      hover: RawColor.Grey100,
+      active: RawColor.Grey300,
+      selected: RawColor.Grey200,
+      selectedHovered: RawColor.Grey300,
       disabled: {
         text: RawColor.Grey400,
       },
     },
 
     border: {
-      light: RawColor.Grey200,
-      main: RawColor.Grey300,
+      light: RawColor.Grey400,
+      main: RawColor.Grey600,
       dark: RawColor.Grey500,
     },
 
@@ -654,7 +654,7 @@ const palette: PaletteOptions = {
     // active: RawColor.Blue200,
     // active: 'rgba(0, 0, 0, 0.54)',
     // disabledBackground: 'rgba(0, 0, 0, 0.12)',
-    // disabledOpacity: 0.38,
+    disabledOpacity: 0.4, // default = 0.38
     // focus: 'rgba(0,0,0, 0.12)',
     // focusOpacity: 0.12,
     hover: RawColor.Blue050,

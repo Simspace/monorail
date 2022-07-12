@@ -17,35 +17,6 @@ declare module '@mui/material/IconButton' {
   }
 }
 
-const iconButtonTokens = {
-  contained: {
-    bg: {
-      idle: 600,
-      hover: 700,
-      active: 800,
-    },
-  },
-  outlined: {
-    border: 600,
-    bg: {
-      hover: 50,
-      active: 200,
-    },
-    icon: {
-      idle: 600,
-    },
-  },
-  chromeless: {
-    bg: {
-      hover: 50,
-      active: 200,
-    },
-    icon: {
-      idle: 600,
-    },
-  },
-} as const
-
 export const MonorailIconButtonOverrides: Components<Theme>['MuiIconButton'] = {
   defaultProps: {},
   styleOverrides: {
@@ -72,46 +43,30 @@ export const MonorailIconButtonOverrides: Components<Theme>['MuiIconButton'] = {
           ...(variant === 'chromeless' && {
             backgroundColor: 'transparent',
             '&:hover': {
-              backgroundColor:
-                theme.palette[color].shades[
-                  iconButtonTokens.chromeless.bg.hover
-                ],
+              backgroundColor: theme.palette[color].weakEmphasis.hover,
             },
             '&:active': {
-              backgroundColor:
-                theme.palette[color].shades[
-                  iconButtonTokens.chromeless.bg.active
-                ],
+              backgroundColor: theme.palette[color].weakEmphasis.active,
             },
           }),
           ...(variant === 'contained' && {
             backgroundColor: theme.palette[color].main,
             color: theme.palette.getContrastText(theme.palette[color].main),
             '&:hover': {
-              backgroundColor:
-                theme.palette[color].shades[
-                  iconButtonTokens.contained.bg.hover
-                ],
+              backgroundColor: theme.palette[color].hover,
             },
             '&:active': {
-              backgroundColor:
-                theme.palette[color].shades[
-                  iconButtonTokens.contained.bg.active
-                ],
+              backgroundColor: theme.palette[color].active,
             },
           }),
           ...(variant === 'outlined' && {
             border: `1px solid ${theme.palette[color].main}`,
             backgroundColor: theme.palette.common.white,
             '&:hover': {
-              backgroundColor:
-                theme.palette[color].shades[iconButtonTokens.outlined.bg.hover],
+              backgroundColor: theme.palette[color].weakEmphasis.hover,
             },
             '&:active': {
-              backgroundColor:
-                theme.palette[color].shades[
-                  iconButtonTokens.outlined.bg.active
-                ],
+              backgroundColor: theme.palette[color].weakEmphasis.active,
             },
           }),
         }
@@ -119,6 +74,7 @@ export const MonorailIconButtonOverrides: Components<Theme>['MuiIconButton'] = {
     },
     colorInherit: ({ theme }) => ({
       '&:active': {
+        // This needs to stay transparent to interact with a colored background properly. See Alert (standard variant).
         backgroundColor: alpha(
           theme.palette.action.active,
           theme.palette.action.activatedOpacity,

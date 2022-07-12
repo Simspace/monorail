@@ -12,8 +12,8 @@ export const MonorailListItemOverrides: Components<Theme>['MuiListItem'] = {
   defaultProps: {},
   styleOverrides: {
     root: ({ theme }) => ({
-      paddingTop: 4,
-      paddingBottom: 4,
+      paddingTop: theme.spacing(1),
+      paddingBottom: theme.spacing(1),
       [`& .${avatarClasses.root} .${svgIconClasses.root}`]: {
         fontSize: theme.typography.pxToRem(32),
       },
@@ -36,8 +36,8 @@ export const MonorailListItemOverrides: Components<Theme>['MuiListItem'] = {
         [`& > .${checkboxClasses.root}`]: {
           // <Checkbox size="small"/> adds unwanted height.
           // Do the same for Radio if needed - GS 04/26/2022
-          marginTop: -4,
-          marginBottom: -4,
+          marginTop: theme.spacing(-1),
+          marginBottom: theme.spacing(-1),
         },
       },
     }),

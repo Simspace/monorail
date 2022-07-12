@@ -4,34 +4,34 @@ export const MonorailListItemTextOverrides: Components<Theme>['MuiListItemText']
   {
     defaultProps: {},
     styleOverrides: {
-      root: {
-        marginTop: 8,
-        marginBottom: 8,
-      },
-      secondary: {
-        marginTop: 2,
-      },
-      multiline: {
-        marginTop: 4,
-        marginBottom: 4,
+      root: ({ theme }) => ({
+        marginTop: theme.spacing(2),
+        marginBottom: theme.spacing(2),
+      }),
+      secondary: ({ theme }) => ({
+        marginTop: theme.spacing(0.5),
+      }),
+      multiline: ({ theme }) => ({
+        marginTop: theme.spacing(1),
+        marginBottom: theme.spacing(1),
         [`&.${listItemTextClasses.dense}`]: {
-          marginTop: 2,
-          marginBottom: 2,
+          marginTop: theme.spacing(0.5),
+          marginBottom: theme.spacing(0.5),
         },
-      },
-      dense: {
+      }),
+      dense: ({ theme }) => ({
         // To give dense ListItem a total height of 32px
-        marginTop: 1,
-        marginBottom: 1,
+        marginTop: theme.spacing(0.25),
+        marginBottom: theme.spacing(0.25),
         [`& > .${listItemTextClasses.secondary}`]: {
           marginTop: 0,
         },
         [`&.${listItemTextClasses.inset}`]: {
-          paddingLeft: 40,
+          paddingLeft: theme.spacing(10),
         },
-      },
-      inset: {
-        paddingLeft: 48,
-      },
+      }),
+      inset: ({ theme }) => ({
+        paddingLeft: theme.spacing(12),
+      }),
     },
   }

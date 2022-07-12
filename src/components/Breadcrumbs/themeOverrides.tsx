@@ -13,7 +13,7 @@ export const MonorailBreadcrumbsOverrides: Components<Theme>['MuiBreadcrumbs'] =
         color: theme.palette.primary.main,
       }),
       separator: ({ theme }) => ({
-        color: theme.palette.grey[600],
+        color: theme.palette.default.main,
       }),
     },
   }
