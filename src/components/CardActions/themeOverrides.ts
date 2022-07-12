@@ -4,9 +4,9 @@ export const MonorailCardActionsOverrides: Components<Theme>['MuiCardActions'] =
   {
     defaultProps: {},
     styleOverrides: {
-      root: {
+      root: ({ theme }) => ({
         justifyContent: 'right',
-        padding: '1rem',
-      },
+        padding: theme.spacing(4),
+      }),
     },
   }

@@ -4,13 +4,13 @@ export const MonorailFormControlOverrides: Components<Theme>['MuiFormControl'] =
   {
     defaultProps: {},
     styleOverrides: {
-      marginNormal: {
+      marginNormal: ({ theme }) => ({
         marginTop: 0,
-        marginBottom: '26px', // 48px with helperText
-      },
-      marginDense: {
+        marginBottom: theme.spacing(6.5), // 26px, 48px total height with helperText
+      }),
+      marginDense: ({ theme }) => ({
         marginTop: 0,
-        marginBottom: '18px', // 40px with helperText
-      },
+        marginBottom: theme.spacing(4.5), // 18px, 40px total height with helperText
+      }),
     },
   }

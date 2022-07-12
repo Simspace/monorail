@@ -10,9 +10,9 @@ export const MonorailMenuItemOverrides: Components<Theme>['MuiMenuItem'] = {
   defaultProps: {},
   styleOverrides: {
     root: ({ theme }) => ({
-      paddingTop: 12,
-      paddingBottom: 12,
-      paddingRight: 24,
+      paddingTop: theme.spacing(3),
+      paddingBottom: theme.spacing(3),
+      paddingRight: theme.spacing(6),
       [`&.${menuItemClasses.focusVisible}`]: {
         boxShadow: `0 0 0 4px ${theme.palette.primary.focusRing.outer}`,
         outline: `1px solid ${theme.palette.primary.focusRing.inner}`,
@@ -23,25 +23,24 @@ export const MonorailMenuItemOverrides: Components<Theme>['MuiMenuItem'] = {
         minWidth: 48,
       },
       '&:active': {
-        // TODO: Tokenize this as weak.active
-        backgroundColor: theme.palette.primary.shades[200],
+        backgroundColor: theme.palette.primary.mediumEmphasis.active,
       },
       [`&.${menuItemClasses.selected}`]: {
         backgroundColor: theme.palette.action.selected,
       },
       [`& .${listItemTextClasses.inset}`]: {
-        paddingLeft: 48,
+        paddingLeft: theme.spacing(12),
       },
     }),
-    dense: {
-      paddingTop: 4,
-      paddingBottom: 4,
+    dense: ({ theme }) => ({
+      paddingTop: theme.spacing(1),
+      paddingBottom: theme.spacing(1),
       [`& .${listItemIconClasses.root}`]: {
         minWidth: 40,
       },
       [`& .${listItemTextClasses.inset}`]: {
-        paddingLeft: 40,
+        paddingLeft: theme.spacing(10),
       },
-    },
+    }),
   },
 }

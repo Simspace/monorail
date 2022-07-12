@@ -6,9 +6,9 @@ export const MonorailFormHelperTextOverrides: Components<Theme>['MuiFormHelperTe
     styleOverrides: {
       root: ({ theme }) => ({
         color: theme.palette.default.main,
-        marginTop: '2px',
-        marginLeft: ' 12px',
-        marginRight: ' 12px',
+        marginTop: theme.spacing(0.5), // 2px
+        marginLeft: theme.spacing(3), // 12px
+        marginRight: theme.spacing(3), // 12px
       }),
     },
   }

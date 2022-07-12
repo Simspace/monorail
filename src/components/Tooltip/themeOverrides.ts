@@ -4,13 +4,13 @@ export const MonorailTooltipOverrides: Components<Theme>['MuiTooltip'] = {
   defaultProps: {},
   styleOverrides: {
     tooltip: ({ theme }) => ({
-      backgroundColor: theme.palette.grey[800],
+      backgroundColor: theme.palette.default.dark,
       fontSize: theme.typography.body2.fontSize,
       lineHeight: theme.typography.pxToRem(20), // this isn't body2.lineHeight, but it matches figma
-      padding: '12px 16px',
+      padding: theme.spacing(3, 4),
     }),
     arrow: ({ theme }) => ({
-      color: theme.palette.grey[800],
+      color: theme.palette.default.dark,
     }),
   },
 }

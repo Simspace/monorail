@@ -18,6 +18,7 @@ import {
   MonorailButtonOverrides,
   MonorailLoadingButtonOverrides,
 } from '../components/Button/themeOverrides'
+import { MonorailButtonBaseOverrides } from '../components/ButtonBase/themeOverrides'
 import { MonorailButtonGroupOverrides } from '../components/ButtonGroup/themeOverrides'
 import { MonorailCardOverrides } from '../components/Card/themeOverrides'
 import { MonorailCardActionAreaOverrides } from '../components/CardActionArea/themeOverrides'
@@ -106,11 +107,7 @@ export const getThemeComponents = (
   MuiAvatar: MonorailAvatarOverrides,
   MuiBadge: MonorailBadgeOverrides,
   MuiButton: MonorailButtonOverrides,
-  MuiButtonBase: {
-    defaultProps: {
-      disableRipple: true,
-    },
-  },
+  MuiButtonBase: MonorailButtonBaseOverrides,
   MuiButtonGroup: MonorailButtonGroupOverrides,
   MuiBreadcrumbs: MonorailBreadcrumbsOverrides,
   MuiCard: MonorailCardOverrides,

@@ -4,9 +4,9 @@ export const MonorailListSubheaderOverrides: Components<Theme>['MuiListSubheader
   {
     defaultProps: {},
     styleOverrides: {
-      root: {
-        lineHeight: '32px',
+      root: ({ theme }) => ({
+        lineHeight: theme.typography.pxToRem(32),
         backgroundColor: 'transparent',
-      },
+      }),
     },
   }
