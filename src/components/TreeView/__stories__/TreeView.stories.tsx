@@ -125,11 +125,11 @@ export const Controlled = story(
 
     return (
       <Box sx={{ height: 270, flexGrow: 1, maxWidth: 400, overflowY: 'auto' }}>
-        <Box sx={{ mb: 1 }}>
-          <Button onClick={handleExpandClick}>
+        <Box sx={{ mb: 2 }}>
+          <Button variant="text" onClick={handleExpandClick}>
             {expanded.length === 0 ? 'Expand all' : 'Collapse all'}
           </Button>
-          <Button onClick={handleSelectClick}>
+          <Button variant="text" onClick={handleSelectClick}>
             {selected.length === 0 ? 'Select all' : 'Unselect all'}
           </Button>
         </Box>

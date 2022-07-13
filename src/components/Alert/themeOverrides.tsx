@@ -35,7 +35,7 @@ export const MonorailAlertOverrides: Components<Theme>['MuiAlert'] = {
         color: theme.palette[severity].mediumEmphasis.contrastText,
         backgroundColor: theme.palette[severity].mediumEmphasis.light,
         [`& .${alertClasses.icon}`]: {
-          color: theme.palette[severity].main,
+          color: theme.palette[severity].weakEmphasis.contrastText,
         },
       }
     },
@@ -46,7 +46,7 @@ export const MonorailAlertOverrides: Components<Theme>['MuiAlert'] = {
         color: theme.palette.text.primary,
         borderColor: theme.palette[severity].border.main,
         [`& .${alertClasses.icon}`]: {
-          color: theme.palette[severity].main,
+          color: theme.palette[severity].weakEmphasis.contrastText,
         },
       }
     },
