@@ -9,6 +9,11 @@ export const MonorailTreeItemOverrides: Components<Theme>['MuiTreeItem'] = {
       '&:hover': {
         backgroundColor: theme.palette.action.hover,
       },
+      [`&.${treeItemClasses.focused}`]: {
+        boxShadow: `0 0 0 4px ${theme.palette.primary.focusRing.outer}`,
+        outline: `1px solid ${theme.palette.primary.focusRing.inner}`,
+        backgroundColor: 'transparent',
+      },
       [`& .${treeItemClasses.selected}`]: {
         backgroundColor: theme.palette.action.selected,
       },
