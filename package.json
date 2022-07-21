@@ -143,5 +143,8 @@
       "jest --findRelatedTests"
     ]
   },
-  "packageManager": "yarn@3.2.1"
+  "packageManager": "yarn@3.2.1",
+  "dependencies": {
+    "react-glider": "^3.1.0"
+  }
 }

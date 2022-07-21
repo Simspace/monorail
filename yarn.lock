@@ -3018,6 +3018,32 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@reach/auto-id@npm:^0.16.0":
+  version: 0.16.0
+  resolution: "@reach/auto-id@npm:0.16.0"
+  dependencies:
+    "@reach/utils": 0.16.0
+    tslib: ^2.3.0
+  peerDependencies:
+    react: ^16.8.0 || 17.x
+    react-dom: ^16.8.0 || 17.x
+  checksum: 80211f7db1c0e3b107e2c1d3fe8055e7e41d7399b51ff0da5f0c9df43d90b77aa4a31a896545c699f9629b3fbc3c762ee0518de70faf8112098886c6759d3f15
+  languageName: node
+  linkType: hard
+
+"@reach/utils@npm:0.16.0":
+  version: 0.16.0
+  resolution: "@reach/utils@npm:0.16.0"
+  dependencies:
+    tiny-warning: ^1.0.3
+    tslib: ^2.3.0
+  peerDependencies:
+    react: ^16.8.0 || 17.x
+    react-dom: ^16.8.0 || 17.x
+  checksum: 36bc0eb41a71798eb6186b23de265ba709e51dae5bf214fb8505c66bb3f2e6a41bb2401457350436ba89ca9e3a50f93a04fe7c33d15648ce11e568a85622d770
+  languageName: node
+  linkType: hard
+
 "@sideway/address@npm:^4.1.3":
   version: 4.1.4
   resolution: "@sideway/address@npm:4.1.4"
@@ -3105,6 +3131,7 @@ __metadata:
     react-docgen-typescript: 2.2.2
     react-dom: 17.0.2
     react-draggable: 4.4.4
+    react-glider: ^3.1.0
     react-transition-group: 4.4.2
     start-server-and-test: 1.14.0
     ts-morph: 11.0.0
@@ -10455,6 +10482,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"glider-js@npm:1.7.7":
+  version: 1.7.7
+  resolution: "glider-js@npm:1.7.7"
+  checksum: 40c58b5f7d7beb6eb4573719ca27eee03089e9a5c9d244b74cbc99e931660a9c4ec9d6a2d291f737a66bd53ed9ae565631e0f0987f2cd99a76deaba522296517
+  languageName: node
+  linkType: hard
+
 "glob-parent@npm:^3.1.0":
   version: 3.1.0
   resolution: "glob-parent@npm:3.1.0"
@@ -15965,6 +15999,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-glider@npm:^3.1.0":
+  version: 3.1.0
+  resolution: "react-glider@npm:3.1.0"
+  dependencies:
+    "@reach/auto-id": ^0.16.0
+    glider-js: 1.7.7
+  peerDependencies:
+    react: ^0.14.0 || ^15.0.1 || ^16.0.0 || ^17.0.0
+    react-dom: ^0.14.0 || ^15.0.1 || ^16.0.0 || ^17.0.0
+  checksum: d56adfa1a7b9d2d7ac2b7a400eb4f101032a515c1fb475cbf36fa5be870ba6799cc56138150d3ae5a7e0195944f85971aa2b90e9b366fa61b4d76a7398da82a4
+  languageName: node
+  linkType: hard
+
 "react-inspector@npm:^5.1.0":
   version: 5.1.1
   resolution: "react-inspector@npm:5.1.1"
@@ -18149,7 +18196,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tiny-warning@npm:^1.0.2":
+"tiny-warning@npm:^1.0.2, tiny-warning@npm:^1.0.3":
   version: 1.0.3
   resolution: "tiny-warning@npm:1.0.3"
   checksum: da62c4acac565902f0624b123eed6dd3509bc9a8d30c06e017104bedcf5d35810da8ff72864400ad19c5c7806fc0a8323c68baf3e326af7cb7d969f846100d71
@@ -18390,7 +18437,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tslib@npm:^2.0.0, tslib@npm:^2.0.1, tslib@npm:^2.0.3, tslib@npm:^2.1.0":
+"tslib@npm:^2.0.0, tslib@npm:^2.0.1, tslib@npm:^2.0.3, tslib@npm:^2.1.0, tslib@npm:^2.3.0":
   version: 2.4.0
   resolution: "tslib@npm:2.4.0"
   checksum: 8c4aa6a3c5a754bf76aefc38026134180c053b7bd2f81338cb5e5ebf96fefa0f417bff221592bf801077f5bf990562f6264fecbc42cd3309b33872cb6fc3b113

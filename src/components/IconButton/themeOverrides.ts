@@ -30,12 +30,18 @@ export const MonorailIconButtonOverrides: Components<Theme>['MuiIconButton'] = {
     }) => {
       return (
         color !== 'inherit' && {
+          color: theme.palette[color].weakEmphasis.contrastText,
           [`&.${buttonBaseClasses.focusVisible}`]: {
             boxShadow: `0 0 0 3px ${theme.palette[color].focusRing.outer}`,
             border: `1px solid ${theme.palette[color].focusRing.inner}`,
           },
           [`&.${buttonBaseClasses.disabled}`]: {
-            color: theme.palette[color].light,
+            color: theme.palette[color].weakEmphasis.contrastText,
+            opacity: theme.palette.action.disabledOpacity,
+            ...(variant === 'contained' && {
+              backgroundColor: theme.palette[color].main,
+              color: theme.palette.getContrastText(theme.palette[color].main),
+            }),
           },
           ...(shape === 'rounded' && {
             borderRadius: 4,
@@ -60,7 +66,7 @@ export const MonorailIconButtonOverrides: Components<Theme>['MuiIconButton'] = {
             },
           }),
           ...(variant === 'outlined' && {
-            border: `1px solid ${theme.palette[color].main}`,
+            border: `1px solid ${theme.palette[color].border.main}`,
             backgroundColor: theme.palette.common.white,
             '&:hover': {
               backgroundColor: theme.palette[color].weakEmphasis.hover,
