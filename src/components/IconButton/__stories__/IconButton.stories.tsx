@@ -155,10 +155,10 @@ export const Shapes = story<IconButtonProps>(() => (
 ))
 
 const colors = [
-  'default',
   'inherit',
   'primary',
   'secondary',
+  'default',
   'info',
   'success',
   'warning',
@@ -167,21 +167,43 @@ const colors = [
 
 export const Colors = story<IconButtonProps>(
   () => (
-    <Stack spacing={2}>
+    <Stack spacing={4}>
       {colors.map(color => (
         <Stack
           direction="row"
-          spacing={2}
+          spacing={4}
           alignItems="center"
           key={`icon-button-color-${color}`}
         >
+          <Typography sx={{ minWidth: 90 }}>{color}</Typography>
           <IconButton aria-label="delete" color={color}>
             <DeleteIcon />
           </IconButton>
           <IconButton aria-label="delete" disabled color={color}>
             <DeleteIcon />
           </IconButton>
-          <Typography>{color}</Typography>
+          <IconButton variant="outlined" aria-label="delete" color={color}>
+            <DeleteIcon />
+          </IconButton>
+          <IconButton
+            variant="outlined"
+            aria-label="delete"
+            disabled
+            color={color}
+          >
+            <DeleteIcon />
+          </IconButton>
+          <IconButton variant="contained" aria-label="delete" color={color}>
+            <DeleteIcon />
+          </IconButton>
+          <IconButton
+            variant="contained"
+            aria-label="delete"
+            disabled
+            color={color}
+          >
+            <DeleteIcon />
+          </IconButton>
         </Stack>
       ))}
     </Stack>
