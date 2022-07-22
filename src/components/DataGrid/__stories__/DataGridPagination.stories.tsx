@@ -1,19 +1,22 @@
 // Edit this file to add new stories
 import React from 'react'
-import { DataRowModel, GridData, useDemoData } from '@mui/x-data-grid-generator'
+import { GridDemoData, useDemoData } from '@mui/x-data-grid-generator'
 
 import {
   DataGrid,
   DataGridProps,
   GridRowData,
-  GridRowId,
   GridRowsProp,
+  useGridApiRef,
 } from '../../..'
 import { story } from '../../../test-helpers/storybook'
+import { GridRowModel } from '..'
+import { DataGridToolbar } from '../components/DataGridToolbar'
 
 export default { title: 'Data Grid/Pagination', component: DataGrid }
 
 const Template = story<DataGridProps>(args => {
+  const apiRef = useGridApiRef()
   const { data } = useDemoData({
     dataSet: 'Commodity',
     rowLength: 1000,
@@ -21,8 +24,16 @@ const Template = story<DataGridProps>(args => {
   })
 
   return (
-    <div style={{ height: 400, width: '100%' }}>
-      <DataGrid pagination {...args} {...data} />
+    <div style={{ height: 800, width: '100%' }}>
+      <DataGridToolbar apiRef={apiRef} />
+      <DataGrid
+        apiRef={apiRef}
+        pagination
+        checkboxSelection
+        disableSelectionOnClick
+        {...args}
+        {...data}
+      />
     </div>
   )
 })
@@ -156,8 +167,8 @@ AutoPaginationGrid.parameters = {
  */
 function loadServerRows(
   page: number,
-  data: GridData,
-): Promise<Array<GridRowData>> {
+  data: GridDemoData,
+): Promise<Array<GridRowModel>> {
   return new Promise<Array<GridRowData>>(resolve => {
     setTimeout(() => {
       resolve(data.rows.slice(page * 5, (page + 1) * 5))
@@ -227,118 +238,120 @@ ServerPaginationGrid.parameters = {
   },
 }
 
+// TODO: Type GridDemoData correctly
+
 /**
  * Cursor-based pagination
  */
-interface ServerBasedGridResponse {
-  rows: Array<DataRowModel>
-  nextCursor: GridRowId | null | undefined
-}
+// interface ServerBasedGridResponse {
+//   rows: Array<GridRowModel>
+//   nextCursor: GridRowId | null | undefined
+// }
 
-const PAGE_SIZE = 5
+// const PAGE_SIZE = 5
 
-function loadServerRowsCursorPaginationGrid(
-  cursor: GridRowId | null | undefined,
-  data: GridData,
-): Promise<ServerBasedGridResponse> {
-  return new Promise<ServerBasedGridResponse>(resolve => {
-    setTimeout(() => {
-      const start =
-        cursor !== null && cursor !== undefined
-          ? data.rows.findIndex(row => row.id === cursor)
-          : 0
-      const end = start + PAGE_SIZE
-      const rows = data.rows.slice(start, end)
+// function loadServerRowsCursorPaginationGrid(
+//   cursor: GridRowId | null | undefined,
+//   data: GridDemoData,
+// ): Promise<ServerBasedGridResponse> {
+//   return new Promise<ServerBasedGridResponse>(resolve => {
+//     setTimeout(() => {
+//       const start =
+//         cursor !== null && cursor !== undefined
+//           ? data.rows.findIndex(row => row.id === cursor)
+//           : 0
+//       const end = start + PAGE_SIZE
+//       const rows = data.rows.slice(start, end)
 
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-      resolve({ rows, nextCursor: data.rows[end]?.id })
-    }, Math.random() * 500 + 100) // simulate network latency
-  })
-}
+//       // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+//       resolve({ rows, nextCursor: data.rows[end]?.id })
+//     }, Math.random() * 500 + 100) // simulate network latency
+//   })
+// }
 
-export const CursorPaginationGrid = story<DataGridProps>(args => {
-  const { data } = useDemoData({
-    dataSet: 'Commodity',
-    rowLength: 100,
-    maxColumns: 6,
-  })
+// export const CursorPaginationGrid = story<DataGridProps>(args => {
+//   const { data } = useDemoData({
+//     dataSet: 'Commodity',
+//     rowLength: 100,
+//     maxColumns: 6,
+//   })
 
-  const pagesNextCursor = React.useRef<{ [page: number]: GridRowId }>({})
+//   const pagesNextCursor = React.useRef<{ [page: number]: GridRowId }>({})
 
-  const [rows, setRows] = React.useState<GridRowsProp>([])
-  const [page, setPage] = React.useState(0)
-  const [loading, setLoading] = React.useState<boolean>(false)
+//   const [rows, setRows] = React.useState<GridRowsProp>([])
+//   const [page, setPage] = React.useState(0)
+//   const [loading, setLoading] = React.useState<boolean>(false)
 
-  const handlePageChange = (newPage: number) => {
-    // We have the cursor, we can allow the page transition.
-    if (newPage === 0 ?? pagesNextCursor.current[newPage - 1]) {
-      setPage(newPage)
-    }
-  }
+//   const handlePageChange = (newPage: number) => {
+//     // We have the cursor, we can allow the page transition.
+//     if (newPage === 0 ?? pagesNextCursor.current[newPage - 1]) {
+//       setPage(newPage)
+//     }
+//   }
 
-  React.useEffect(() => {
-    let active = true
+//   React.useEffect(() => {
+//     let active = true
 
-    ;(async () => {
-      const nextCursor = pagesNextCursor.current[page - 1]
+//     ;(async () => {
+//       const nextCursor = pagesNextCursor.current[page - 1]
 
-      if (nextCursor === undefined && page > 0) {
-        return
-      }
+//       if (nextCursor === undefined && page > 0) {
+//         return
+//       }
 
-      setLoading(true)
-      const response = await loadServerRowsCursorPaginationGrid(
-        nextCursor,
-        data,
-      )
+//       setLoading(true)
+//       const response = await loadServerRowsCursorPaginationGrid(
+//         nextCursor,
+//         data,
+//       )
 
-      if (response.nextCursor !== undefined && response.nextCursor !== null) {
-        pagesNextCursor.current[page] = response.nextCursor
-      }
+//       if (response.nextCursor !== undefined && response.nextCursor !== null) {
+//         pagesNextCursor.current[page] = response.nextCursor
+//       }
 
-      if (!active) {
-        return
-      }
+//       if (!active) {
+//         return
+//       }
 
-      setRows(response.rows)
-      setLoading(false)
-    })()
+//       setRows(response.rows)
+//       setLoading(false)
+//     })()
 
-    return () => {
-      active = false
-    }
-  }, [page, data])
+//     return () => {
+//       active = false
+//     }
+//   }, [page, data])
 
-  return (
-    <div style={{ height: 400, width: '100%' }}>
-      <DataGrid
-        {...args}
-        rows={rows}
-        columns={data.columns}
-        pagination
-        pageSize={5}
-        rowsPerPageOptions={[5]}
-        rowCount={100}
-        paginationMode="server"
-        onPageChange={handlePageChange}
-        page={page}
-        loading={loading}
-      />
-    </div>
-  )
-})
+//   return (
+//     <div style={{ height: 400, width: '100%' }}>
+//       <DataGrid
+//         {...args}
+//         rows={rows}
+//         columns={data.columns}
+//         pagination
+//         pageSize={5}
+//         rowsPerPageOptions={[5]}
+//         rowCount={100}
+//         paginationMode="server"
+//         onPageChange={handlePageChange}
+//         page={page}
+//         loading={loading}
+//       />
+//     </div>
+//   )
+// })
 
-CursorPaginationGrid.storyName = 'Cursor-based pagination'
-CursorPaginationGrid.parameters = {
-  docs: {
-    description: {
-      story: `You can adapt the pagination for your cursor-based pagination. To do so, you just have to keep track of the next cursor associated with each page you fetched.`,
-    },
-  },
-  creevey: {
-    skip: 'Mismatch expected because data gets regenerated by mui/x-data-grid-generator.',
-  },
-}
+// CursorPaginationGrid.storyName = 'Cursor-based pagination'
+// CursorPaginationGrid.parameters = {
+//   docs: {
+//     description: {
+//       story: `You can adapt the pagination for your cursor-based pagination. To do so, you just have to keep track of the next cursor associated with each page you fetched.`,
+//     },
+//   },
+//   creevey: {
+//     skip: 'Mismatch expected because data gets regenerated by mui/x-data-grid-generator.',
+//   },
+// }
 
 /**
  * Customization - Paginate > 100 rows

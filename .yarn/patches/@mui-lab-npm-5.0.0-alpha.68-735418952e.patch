@@ -1,0 +1,38 @@
+diff --git a/themeAugmentation/components.d.ts b/themeAugmentation/components.d.ts
+index 9d5203aaa9929da7795281b8ae7e9a19c97c40d9..13614afae21687a30dc89701de7d03290e542452 100644
+--- a/themeAugmentation/components.d.ts
++++ b/themeAugmentation/components.d.ts
+@@ -189,6 +189,6 @@ export interface LabComponents {
+   };
+ }
+ 
+-declare module '@mui/material/styles' {
++declare module '@mui/material/styles/components' {
+   interface Components extends LabComponents {}
+ }
+diff --git a/themeAugmentation/overrides.d.ts b/themeAugmentation/overrides.d.ts
+index aa0493ab114c934a286325e27b5433e6f1cb0211..687a4c9ab18c6517e190e59074a3ca86e0a00c2d 100644
+--- a/themeAugmentation/overrides.d.ts
++++ b/themeAugmentation/overrides.d.ts
+@@ -43,7 +43,7 @@ export interface LabComponentNameToClassKey {
+   MuiPickerStaticWrapper: PickerStaticWrapperClassKey;
+ }
+ 
+-declare module '@mui/material/styles' {
++declare module '@mui/material/styles/overrides' {
+   interface ComponentNameToClassKey extends LabComponentNameToClassKey {}
+ }
+ 
+diff --git a/themeAugmentation/props.d.ts b/themeAugmentation/props.d.ts
+index aea04147ada1772829c5050c882d4096e6c930b9..89538d835c80e76a4b8e4c315835d800371106b9 100644
+--- a/themeAugmentation/props.d.ts
++++ b/themeAugmentation/props.d.ts
+@@ -64,7 +64,7 @@ export interface LabComponentsPropsList {
+   MuiYearPicker: YearPickerProps<unknown>;
+ }
+ 
+-declare module '@mui/material/styles' {
++declare module '@mui/material/styles/props' {
+   interface ComponentsPropsList extends LabComponentsPropsList {}
+ }
+ 

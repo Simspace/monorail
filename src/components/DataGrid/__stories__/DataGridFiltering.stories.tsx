@@ -3,12 +3,12 @@ import React from 'react'
 import { Clear, Search } from '@mui/icons-material'
 import { createTheme, Theme } from '@mui/material/styles'
 import { createStyles, makeStyles } from '@mui/styles'
-import { GridData, useDemoData } from '@mui/x-data-grid-generator'
+import { useDemoData } from '@mui/x-data-grid-generator'
 
 import {
   DataGrid,
   DataGridProps,
-  getGridNumericColumnOperators,
+  getGridNumericOperators,
   GridCellParams,
   GridColDef,
   GridColTypeDef,
@@ -220,7 +220,7 @@ function RatingInputValue(props: GridFilterInputValueProps) {
 }
 
 export const ExtendNumericOperator = story<DataGridProps>(args => {
-  const { data }: { data: GridData } = useDemoData({
+  const { data } = useDemoData({
     dataSet: 'Employee',
     rowLength: 100,
   })
@@ -234,7 +234,7 @@ export const ExtendNumericOperator = story<DataGridProps>(args => {
     const ratingColumn = columns.find(column => column.field === 'rating')!
     const ratingColIndex = columns.findIndex(col => col.field === 'rating')
 
-    const ratingFilterOperators = getGridNumericColumnOperators().map(
+    const ratingFilterOperators = getGridNumericOperators().map(
       (operator: GridFilterOperator) => ({
         ...operator,
         InputComponent: RatingInputValue,
@@ -281,7 +281,7 @@ In this demo, the Rating column reuses the numeric filter and the same rating co
  */
 const priceColumnType: GridColTypeDef = {
   extendType: 'number',
-  filterOperators: getGridNumericColumnOperators()
+  filterOperators: getGridNumericOperators()
     .filter(operator => operator.value === '>' || operator.value === '<')
     .map(operator => {
       return {

@@ -1,0 +1,71 @@
+diff --git a/themeAugmentation/overrides.d.ts b/themeAugmentation/overrides.d.ts
+index fb9e2a854a6512d542a9d84d3c4401a46d48a95e..0b374e8cd6d89af35c566697bf7e3dbe77a47be4 100644
+--- a/themeAugmentation/overrides.d.ts
++++ b/themeAugmentation/overrides.d.ts
+@@ -1,8 +1,13 @@
+ import { GridClassKey } from '../constants/gridClasses';
+-export interface DataGridComponentNameToClassKey {
+-    MuiDataGrid: GridClassKey;
+-}
+-declare module '@mui/material/styles/overrides' {
+-    interface ComponentNameToClassKey extends DataGridComponentNameToClassKey {
+-    }
+-}
++
++/*
++ * export interface DataGridComponentNameToClassKey {
++ *     MuiDataGrid: GridClassKey;
++ * }
++ * declare module '@mui/material/styles/overrides' {
++ *     interface ComponentNameToClassKey extends DataGridComponentNameToClassKey {
++ *     }
++ * }
++ */
++
++export {};
+diff --git a/themeAugmentation/props.d.ts b/themeAugmentation/props.d.ts
+index cd1ac2638b79d2fca875cc1c3d489af0b405df5b..a25d969e8a8f6ab1b4959d5268b9caa049eb2989 100644
+--- a/themeAugmentation/props.d.ts
++++ b/themeAugmentation/props.d.ts
+@@ -1,19 +1,24 @@
+ import { ComponentsOverrides, ComponentsProps } from '@mui/material/styles';
+ import { DataGridProps } from '../models/props/DataGridProps';
+-export interface DataGridComponentsPropsList {
+-    MuiDataGrid: DataGridProps;
+-}
+-export interface DataGridComponents {
+-    MuiDataGrid?: {
+-        defaultProps?: ComponentsProps['MuiDataGrid'];
+-        styleOverrides?: ComponentsOverrides['MuiDataGrid'];
+-    };
+-}
+-declare module '@mui/material/styles' {
+-    interface ComponentsPropsList extends DataGridComponentsPropsList {
+-    }
+-}
+-declare module '@mui/material/styles/components' {
+-    interface Components extends DataGridComponents {
+-    }
+-}
++
++/*
++ * export interface DataGridComponentsPropsList {
++ *     MuiDataGrid: DataGridProps;
++ * }
++ * export interface DataGridComponents {
++ *     MuiDataGrid?: {
++ *         defaultProps?: ComponentsProps['MuiDataGrid'];
++ *         styleOverrides?: ComponentsOverrides['MuiDataGrid'];
++ *     };
++ * }
++ * declare module '@mui/material/styles' {
++ *     interface ComponentsPropsList extends DataGridComponentsPropsList {
++ *     }
++ * }
++ * declare module '@mui/material/styles/components' {
++ *     interface Components extends DataGridComponents {
++ *     }
++ * }
++ */
++
++export {};

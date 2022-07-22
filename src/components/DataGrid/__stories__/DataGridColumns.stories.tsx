@@ -29,6 +29,7 @@ import {
   Typography,
 } from '../../..'
 import { story } from '../../../test-helpers/storybook'
+import { GridRowModel } from '..'
 
 export default {
   title: 'Data Grid/Columns',
@@ -308,7 +309,7 @@ const getFullName = (params: GridValueGetterParams) => {
   }`
 }
 
-const columns: Array<GridColDef> = [
+const columns: Array<GridColDef<GridRowModel, string>> = [
   { field: 'firstName', headerName: 'First name', width: 130 },
   { field: 'lastName', headerName: 'Last name', width: 130 },
   {
@@ -684,7 +685,7 @@ const GridCellExpand = React.memo(function GridCellExpand(
   )
 })
 
-function renderCellExpand(params: GridRenderCellParams) {
+function renderCellExpand(params: GridRenderCellParams<string>) {
   return (
     <GridCellExpand
       value={

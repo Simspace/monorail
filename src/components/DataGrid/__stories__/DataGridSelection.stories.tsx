@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 // Edit this file to add new stories
 import React from 'react'
-import { GridData, useDemoData } from '@mui/x-data-grid-generator'
+import { GridDemoData, useDemoData } from '@mui/x-data-grid-generator'
 
 import {
   DataGrid,
@@ -164,7 +164,9 @@ export const DisableRowSelection = story<DataGridProps>(args => {
       <DataGrid
         {...args}
         {...data}
-        isRowSelectable={(params: GridRowParams) => params.row.quantity > 50000}
+        isRowSelectable={(params: GridRowParams<{ quantity: number }>) =>
+          params.row.quantity > 50000
+        }
         checkboxSelection
       />
     </div>
@@ -228,7 +230,7 @@ ControlledSelectionGrid.parameters = {
 /**
  * Usage with server-side pagination
  */
-function loadServerRows(page: number, data: GridData): Promise<any> {
+function loadServerRows(page: number, data: GridDemoData): Promise<any> {
   return new Promise(resolve => {
     setTimeout(() => {
       resolve(data.rows.slice(page * 5, (page + 1) * 5))
