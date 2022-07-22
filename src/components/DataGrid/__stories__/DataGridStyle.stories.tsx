@@ -9,8 +9,10 @@ import {
   DataGridProps,
   GridCellParams,
   GridColumns,
+  gridPageCountSelector,
+  gridPageSelector,
   Pagination,
-  useGridSlotComponentProps,
+  useGridApiContext,
 } from '../../..'
 import { story } from '../../../test-helpers/storybook'
 
@@ -498,15 +500,15 @@ const useStylesCustomTheme = makeStyles(
 )
 
 const CustomPagination = () => {
-  const { state, apiRef } = useGridSlotComponentProps()
+  const apiRef = useGridApiContext()
 
   return (
     <Pagination
       color="primary"
       variant="outlined"
       shape="rounded"
-      page={state.pagination.page}
-      count={state.pagination.pageCount}
+      page={gridPageSelector(apiRef)}
+      count={gridPageCountSelector(apiRef)}
       // renderItem was causing the table to not render (GS 10/7/21)
       // renderItem={props2 => <PaginationItem {...props2} disableRipple />}
       onChange={(event: React.ChangeEvent<unknown>, value: number) =>

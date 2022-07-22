@@ -13,4 +13,11 @@ export const MonorailPaginationOverrides: Components<Theme>['MuiPagination'] = {
     shape: 'rounded',
     size: 'large',
   },
+  styleOverrides: {
+    ul: {
+      display: 'flex',
+      flexDirection: 'row',
+      alignItems: 'center',
+    },
+  },
 }

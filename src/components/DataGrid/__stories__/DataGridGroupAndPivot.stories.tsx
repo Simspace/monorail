@@ -1,7 +1,13 @@
 // Edit this file to add new stories
 import React from 'react'
+import { useMovieData } from '@mui/x-data-grid-generator'
 
-import { DataGrid, DataGridProps } from '../../..'
+import {
+  DataGrid,
+  DataGridProps,
+  useGridApiRef,
+  useKeepGroupedColumnsHidden,
+} from '../../..'
 import { story } from '../../../test-helpers/storybook'
 
 export default { title: 'Data Grid/Group & Pivot', component: DataGrid }
@@ -65,13 +71,35 @@ The feature allows to display row details on an expandable pane.`,
 /**
  * Grouping
  */
-export const Grouping = story<DataGridProps>(() => <></>)
+export const Grouping = story<DataGridProps>(() => {
+  const data = useMovieData()
+  const apiRef = useGridApiRef()
+
+  const initialState = useKeepGroupedColumnsHidden({
+    apiRef,
+    initialState: {
+      rowGrouping: {
+        model: ['company'],
+      },
+    },
+  })
+
+  return (
+    <div style={{ height: 400, width: '100%' }}>
+      <DataGrid
+        {...data}
+        apiRef={apiRef}
+        rowGroupingColumnMode="single"
+        initialState={initialState}
+      />
+    </div>
+  )
+})
+
 Grouping.parameters = {
   docs: {
     description: {
       story: `❗️ Only available in the Premium plan
-      
-🚧 This feature isn't implemented yet. It's coming.
       
 Group rows together that share a column value, this creates a visible header for each group and allows the end-user to collapse groups that they don't want to see.`,
     },

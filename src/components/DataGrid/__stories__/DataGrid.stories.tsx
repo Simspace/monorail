@@ -1,8 +1,17 @@
 // Edit this file to add new stories
 import React from 'react'
+import { Person } from '@mui/icons-material'
 
-import { DataGrid, DataGridProps, GridValueGetterParams } from '../../..'
+import {
+  DataGrid,
+  DataGridProps,
+  GridValueGetterParams,
+  MenuItem,
+  Typography,
+  useGridApiRef,
+} from '../../..'
 import { story } from '../../../test-helpers/storybook'
+import { DataGridToolbar } from '../components/DataGridToolbar'
 
 export default {
   title: 'Data Grid/DataGrid',
@@ -14,41 +23,60 @@ export default {
   },
 }
 
-const Template = story<DataGridProps>(args => {
-  const columns = [
-    { field: 'id', headerName: 'ID', width: 90 },
-    {
-      field: 'firstName',
-      headerName: 'First name',
-      width: 150,
-      editable: true,
-    },
-    {
-      field: 'lastName',
-      headerName: 'Last name',
-      width: 150,
-      editable: true,
-    },
-    {
-      field: 'age',
-      headerName: 'Age',
-      type: 'number',
-      width: 110,
-      editable: true,
-    },
-    {
-      field: 'fullName',
-      headerName: 'Full name',
-      description: 'This column has a value getter and is not sortable.',
-      sortable: false,
-      width: 160,
-      valueGetter: (params: GridValueGetterParams) =>
-        `${params.getValue(params.id, 'firstName') ?? ''} ${
-          params.getValue(params.id, 'lastName') ?? ''
-        }`,
-    },
-  ]
+const columns: DataGridProps['columns'] = [
+  { field: 'id', headerName: 'ID' },
+  {
+    field: 'firstName',
+    headerName: 'First name',
+    minWidth: 150,
+    editable: true,
+    renderHeader: ({ colDef }) => (
+      <React.Fragment>
+        <Person />
+        <Typography variant="body2">{colDef.headerName}</Typography>
+      </React.Fragment>
+    ),
+  },
+  {
+    field: 'lastName',
+    headerName: 'Last name',
+    minWidth: 150,
+    editable: true,
+    headerActions: ({ closeMenu }) => [
+      <MenuItem
+        key="lastName-action1"
+        onClick={() => {
+          closeMenu()
+        }}
+      >
+        Action 1
+      </MenuItem>,
+      <MenuItem key="lastName-action2">Action 2</MenuItem>,
+      <MenuItem key="lastName-action3">Action 3</MenuItem>,
+    ],
+  },
+  {
+    field: 'age',
+    headerName: 'Age',
+    type: 'number',
+    minWidth: 110,
+    editable: true,
+  },
+  {
+    field: 'fullName',
+    headerName: 'Full name',
+    description: 'This column has a value getter and is not sortable.',
+    sortable: false,
+    minWidth: 160,
+    valueGetter: (params: GridValueGetterParams) =>
+      `${params.getValue(params.id, 'firstName') ?? ''} ${
+        params.getValue(params.id, 'lastName') ?? ''
+      }`,
+  },
+]
 
+const Template = story<DataGridProps>(args => {
+  const apiRef = useGridApiRef()
   const rows = [
     { id: 1, lastName: 'Snow', firstName: 'Jon', age: 35 },
     { id: 2, lastName: 'Lannister', firstName: 'Cersei', age: 42 },
@@ -61,12 +89,12 @@ const Template = story<DataGridProps>(args => {
     { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
   ]
   return (
-    <div style={{ height: 400, width: '100%' }}>
+    <div style={{ height: 600, width: '100%' }}>
+      <DataGridToolbar apiRef={apiRef} />
       <DataGrid
+        apiRef={apiRef}
         columns={columns}
         rows={rows}
-        pageSize={5}
-        rowsPerPageOptions={[5]}
         checkboxSelection
         disableSelectionOnClick
         {...args}

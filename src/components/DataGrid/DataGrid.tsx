@@ -1,304 +1,109 @@
-import { DataGrid as MuiDataGrid } from '@mui/x-data-grid'
+import React from 'react'
+import { CSSInterpolation, MenuItemProps, Theme } from '@mui/material'
+import { SystemStyleObject } from '@mui/system'
+import { DataGridPremium, useGridApiRef } from '@mui/x-data-grid-premium'
 
-export const DataGrid: typeof MuiDataGrid = MuiDataGrid
-
-export type {
-  AutoSizerProps,
-  AutoSizerSize,
-  CursorCoordinates,
+import { Divider } from '../Divider'
+import { DataGridColumnHeader } from './components/DataGridColumnHeader'
+import { DataGridFooter } from './components/DataGridFooter'
+import { DataGridHeader } from './components/DataGridHeader'
+import { DataGridRow } from './components/DataGridRow'
+import {
+  dataGridClasses,
   DataGridProps,
-  ElementSize,
-  FilterColumnLookup,
-  GridActionsCellItemProps,
-  GridActionsColDef,
-  GridAlignment,
-  GridApi,
-  GridApiRef,
-  GridCallbackDetails,
-  GridCellClassFn,
-  GridCellClassNamePropType,
-  GridCellEditCommitParams,
-  GridCellIdentifier,
-  GridCellIndexCoordinates,
-  GridCellMode,
-  GridCellParams,
-  GridCellProps,
-  GridCellValue,
-  GridClassKey as DataGridClassKey,
-  GridClasses as DataGridClasses,
-  GridClipboardApi,
-  GridColDef,
-  GridColType,
-  GridColTypeDef,
-  GridColumnApi,
-  GridColumnHeaderClassFn,
-  GridColumnHeaderClassNamePropType,
-  GridColumnHeaderIndexCoordinates,
-  GridColumnHeaderMenuProps,
-  GridColumnHeaderParams,
-  GridColumnHeaderSeparatorProps,
-  GridColumnHeaderSortIconProps,
-  GridColumnHeaderTitleProps,
-  GridColumnHeadersItemCollectionProps,
-  GridColumnIdentifier,
-  GridColumnLookup,
-  GridColumnMenuApi,
-  GridColumnMenuProps,
-  GridColumnMenuState,
-  GridColumnOrderChangeParams,
-  GridColumnReorderState,
-  GridColumnResizeParams,
-  GridColumnResizeState,
-  GridColumnTypesRecord,
-  GridColumnVisibilityChangeParams,
-  GridColumns,
-  GridColumnsMeta,
-  GridColumnsState,
-  GridCommitCellChangeParams,
-  GridComparatorFn,
-  GridComponentProps,
-  GridContainerProps,
-  GridControlStateApi,
-  GridCoreApi,
-  GridCsvExportApi,
-  GridDensity,
-  GridDensityApi,
-  GridDensityOption,
-  GridEditCellProps,
-  GridEditCellPropsParams,
-  GridEditCellValueParams,
-  GridEditMode,
-  GridEditRowApi,
-  GridEditRowProps,
-  GridEditRowsModel,
-  GridEmptyCellProps,
   GridEnrichedColDef,
-  GridEventsApi,
-  GridExportCsvDelimiter,
-  GridExportCsvOptions,
-  GridExportFormat,
-  GridFeatureMode,
-  GridFieldComparatorList,
-  GridFilterApi,
-  GridFilterFormProps,
-  GridFilterInputValueProps,
-  GridFilterItem,
-  GridFilterItemProps,
-  GridFilterModel,
-  GridFilterOperator,
-  GridFocusApi,
-  GridFocusState,
-  GridFooterContainerProps,
-  GridIconSlotsComponent,
-  GridInputComponentProps,
-  GridInputSelectionModel,
-  GridLocaleText,
-  GridLocaleTextApi,
-  GridMenuProps,
-  GridNativeColTypes,
-  GridOverlayProps,
-  GridPageApi,
-  GridPageSizeApi,
-  GridPanelClasses,
-  GridPanelProps,
-  GridParamsApi,
-  GridPreferencePanelState,
-  GridPreferencesPanelApi,
-  GridRenderCellParams,
-  GridRenderColumnsProps,
-  GridRenderContextProps,
-  GridRenderEditCellParams,
-  GridRenderPaginationProps,
-  GridRenderRowProps,
-  GridRootContainerRef,
-  GridRootProps,
-  GridRowApi,
-  GridRowData,
-  GridRowId,
-  GridRowIdGetter,
-  GridRowMode,
-  GridRowModel,
-  GridRowModelUpdate,
-  GridRowParams,
-  GridRowProps,
-  GridRowScrollEndParams,
-  GridRowsLookup,
-  GridRowsProp,
-  GridScrollApi,
-  GridScrollBarState,
-  GridScrollFn,
-  GridScrollParams,
-  GridSelectionApi,
-  GridSelectionModel,
-  GridSlotComponentProps,
-  GridSlotsComponent,
-  GridSlotsComponentsProps,
-  GridSortApi,
-  GridSortCellParams,
-  GridSortColumnLookup,
-  GridSortDirection,
-  GridSortItem,
-  GridSortModel,
-  GridSortModelParams,
-  GridSortingState,
-  GridState,
-  GridStateApi,
-  GridStateChangeParams,
-  GridStateColDef,
-  GridTabIndexState,
-  GridToolbarContainerProps,
-  GridToolbarExportProps,
-  GridToolbarFilterButtonProps,
-  GridTranslationKeys,
-  GridTypeFilterInputValueProps,
-  GridUpdateAction,
-  GridValueFormatterParams,
-  GridValueGetterParams,
-  GridViewportRowsChangeParams,
-  GridViewportSizeState,
-  GridVirtualizationApi,
-  GridWindowProps,
-  InternalGridRowsState,
-  InternalRenderingState,
-  Logger,
-  MuiEvent,
-  VisibleGridRowsState,
-} from '@mui/x-data-grid'
+  GridValidRowModel,
+} from './internal'
 
-export {
-  getGridNumericColumnOperators,
-  GridActionsCell,
-  GridActionsCellItem,
-  GridAddIcon,
-  GridApiContext,
-  GridArrowDownwardIcon,
-  GridArrowUpwardIcon,
-  GridAutoSizer,
-  GridBody,
-  GridCell,
-  GridCellCheckboxForwardRef,
-  GridCellCheckboxRenderer,
-  GridCellModes,
-  GridCheckCircleIcon,
-  GridCheckIcon,
-  GridCloseIcon,
-  GridColumnHeaderItem,
-  GridColumnHeaderMenu,
-  GridColumnHeaderSeparator,
-  GridColumnHeaderSortIcon,
-  GridColumnHeaderTitle,
-  GridColumnHeadersItemCollection,
-  GridColumnIcon,
-  GridColumnMenu,
-  GridColumnMenuContainer,
-  GridColumnsContainer,
-  GridColumnsHeader,
-  GridColumnsMenuItem,
-  GridColumnsPanel,
-  GridDataContainer,
-  GridDensityTypes,
-  GridDragIcon,
-  GridEditInputCell,
-  GridEditModes,
-  GridEditSingleSelectCell,
-  GridEmptyCell,
-  GridErrorHandler,
-  GridEvents,
-  GridFeatureModeConstant,
-  GridFilterAltIcon,
-  GridFilterForm,
-  GridFilterInputValue,
-  GridFilterListIcon,
-  GridFilterMenuItem,
-  GridFilterPanel,
-  GridFooter,
-  GridFooterContainer,
-  GridFooterPlaceholder,
-  GridHeader,
-  GridHeaderCheckbox,
-  GridHeaderPlaceholder,
-  GridLinkOperator,
-  GridLoadIcon,
-  GridLoadingOverlay,
-  GridMenu,
-  GridMenuIcon,
-  GridMoreVertIcon,
-  GridNoRowsOverlay,
-  GridOverlay,
-  GridOverlays,
-  GridPagination,
-  GridPanel,
-  GridPanelContent,
-  GridPanelFooter,
-  GridPanelHeader,
-  GridPanelWrapper,
-  GridPreferencePanelsValue,
-  GridPreferencesPanel,
-  GridRenderingZone,
-  GridRoot,
-  GridRow,
-  GridRowCells,
-  GridRowCount,
-  GridRowModes,
-  GridSaveAltIcon,
-  GridScrollArea,
-  GridSearchIcon,
-  GridSelectedRowCount,
-  GridSeparatorIcon,
-  GridStickyContainer,
-  GridTableRowsIcon,
-  GridToolbar,
-  GridToolbarColumnsButton,
-  GridToolbarContainer,
-  GridToolbarDensitySelector,
-  GridToolbarExport,
-  GridToolbarFilterButton,
-  GridTripleDotsVerticalIcon,
-  GridViewHeadlineIcon,
-  GridViewStreamIcon,
-  GridViewport,
-  GridWindow,
-  HideGridColMenuItem,
-  MAX_PAGE_SIZE,
-  SUBMIT_FILTER_STROKE_TIME,
-  SortGridMenuItems,
-  activeGridFilterItemsSelector,
-  allGridColumnsFieldsSelector,
-  allGridColumnsSelector,
-  getDataGridUtilityClass,
-  gridCheckboxSelectionColDef,
-  gridClasses as dataGridClasses,
-  useApi,
-  useDataGridComponent,
-  useGridApi,
-  useGridApiMethod,
-  useGridApiRef,
-  useGridColumnMenu,
-  useGridColumnReorder,
-  useGridColumnResize,
-  useGridColumns,
-  useGridContainerProps,
-  useGridControlState,
-  useGridEditRows,
-  useGridFilter,
-  useGridFocus,
-  useGridKeyboard,
-  useGridKeyboardNavigation,
-  useGridLogger,
-  useGridLoggerFactory,
-  useGridPage,
-  useGridPageSize,
-  useGridParamsApi,
-  useGridPreferencesPanel,
-  useGridRootProps,
-  useGridRows,
-  useGridScroll,
-  useGridScrollFn,
-  useGridSelection,
-  useGridSelector,
-  useGridSlotComponentProps,
-  useGridSorting,
-  useGridState,
-  useGridVirtualization,
-  useNativeEventListener,
-} from '@mui/x-data-grid'
+interface HeaderActionsParams {
+  closeMenu: () => void
+}
+
+declare module '@mui/x-data-grid/models/colDef/gridColDef' {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars
+  interface GridColDef<R extends GridValidRowModel = any, V = any, F = V> {
+    /** @internal */
+    originalColDef?: GridEnrichedColDef<R, V, F>
+    headerActions?: (
+      params: HeaderActionsParams,
+    ) => ReadonlyArray<React.ReactElement<MenuItemProps>>
+  }
+}
+
+declare module '@mui/x-data-grid-premium/models/dataGridPremiumProps' {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-explicit-any
+  interface DataGridPremiumProps<R extends GridValidRowModel = any> {
+    stripedRows?: boolean
+  }
+}
+
+export const DataGrid: <R extends GridValidRowModel>(
+  props: DataGridProps<R> & React.RefAttributes<HTMLDivElement>,
+) => React.ReactElement | null = React.forwardRef(function DataGrid(
+  initProps: DataGridProps,
+  ref: React.ForwardedRef<HTMLDivElement>,
+) {
+  const { columns, sx, ...props } = initProps
+
+  const apiRef = useGridApiRef()
+  React.useImperativeHandle(props.apiRef, () => apiRef.current)
+
+  const processedColumns: Array<GridEnrichedColDef> = React.useMemo(
+    () =>
+      columns.map(col => ({
+        ...col,
+        originalColDef: col,
+        renderHeader: DataGridColumnHeader,
+        disableColumnMenu: true,
+        hideSortIcons: true,
+        headerAlign: 'left',
+        flex: 1,
+      })),
+    [columns],
+  )
+
+  const dataGridStyles = React.useCallback(
+    (theme: Theme) => getDataGridStyles(initProps, theme),
+    [initProps],
+  )
+
+  return (
+    <DataGridPremium
+      {...props}
+      disableSelectionOnClick
+      apiRef={apiRef}
+      ref={ref}
+      columns={processedColumns}
+      components={{
+        Footer: DataGridFooter,
+        Row: DataGridRow,
+        Header: DataGridHeader,
+        ColumnResizeIcon: Divider,
+      }}
+      groupingColDef={{
+        renderHeader: DataGridColumnHeader,
+        disableColumnMenu: true,
+        hideSortIcons: true,
+        headerAlign: 'left',
+        flex: 1,
+      }}
+      sx={[
+        dataGridStyles,
+        ...(sx !== undefined ? (Array.isArray(sx) ? sx : [sx]) : []),
+      ]}
+    />
+  )
+})
+
+function getDataGridStyles(
+  props: DataGridProps,
+  theme: Theme,
+): SystemStyleObject<Theme> {
+  const overrides: CSSInterpolation = {}
+  if (props.stripedRows === true) {
+    overrides[`& .${dataGridClasses.row}:nth-of-type(even)`] = {
+      backgroundColor: theme.palette.default.mediumEmphasis.main,
+    }
+  }
+  return overrides
+}

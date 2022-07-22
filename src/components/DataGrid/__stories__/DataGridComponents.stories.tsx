@@ -19,6 +19,8 @@ import {
   GridColumnMenuProps,
   GridFilterMenuItem,
   GridOverlay,
+  gridPageCountSelector,
+  gridPageSelector,
   GridToolbar,
   GridToolbarColumnsButton,
   GridToolbarContainer,
@@ -28,7 +30,7 @@ import {
   LinearProgress,
   Pagination,
   SortGridMenuItems,
-  useGridSlotComponentProps,
+  useGridApiContext,
 } from '../../..'
 import { story } from '../../../test-helpers/storybook'
 
@@ -217,6 +219,28 @@ It can be used as below:
 
       return <div>Row count: {rows.length} </div>;
     }
+
+### Interacting with the Grid
+
+The grid exposes several hooks to help you to access the grid Data while overriding component slots.
+
+- \`useGridApiContext\`: returns the \`apiRef\`.
+- \`useGridSelector\`: returns the result of a selector on the current state.
+
+function CustomPagination() {
+  const apiRef = useGridApiContext();
+  const [state] = useGridState(apiRef);
+  const pageSize = useGridSelector(apIRef, gridPageSizeSelector);
+  const page = useGridSelector(apIRef, gridPageSelector);
+
+  return (
+    <Pagination
+      count={state.pagination.pageCount}
+      page={state.pagination.page + 1}
+      onChange={(event, value) => apiRef.current.setPage(value - 1)}
+    />
+  );
+}
 
 ## Components
 
@@ -440,15 +464,15 @@ const useStylesPagination = makeStyles({
 })
 
 function CustomPagination() {
-  const { state, apiRef } = useGridSlotComponentProps()
+  const apiRef = useGridApiContext()
   const classes = useStylesPagination()
 
   return (
     <Pagination
       className={classes.root}
       color="primary"
-      count={state.pagination.pageCount}
-      page={state.pagination.page + 1}
+      count={gridPageCountSelector(apiRef)}
+      page={gridPageSelector(apiRef) + 1}
       onChange={(event, value) => apiRef.current.setPage(value - 1)}
     />
   )

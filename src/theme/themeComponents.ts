@@ -1,6 +1,7 @@
 // eslint-disable-next-line no-restricted-imports
 import type {} from '@mui/lab/themeAugmentation'
 import { Theme, ThemeOptions } from '@mui/material'
+import type {} from '@mui/x-data-grid-pro/themeAugmentation'
 
 import { MonorailAccordionOverrides } from '../components/Accordion/themeOverrides'
 import { MonorailAccordionActionsOverrides } from '../components/AccordionActions/themeOverrides'
@@ -29,6 +30,7 @@ import { MonorailCardMediaOverrides } from '../components/CardMedia/themeOverrid
 import { MonorailCheckboxOverrides } from '../components/Checkbox/themeOverrides'
 import { MonorailChipOverrides } from '../components/Chip/themeOverrides'
 import { MonorailCircularProgressOverrides } from '../components/CircularProgress/themeOverrides'
+import { MonorailDataGridOverrides } from '../components/DataGrid/themeOverrides'
 import { MonorailDateRangePickerDayOverrides } from '../components/DateRangePickerDay/themeOverrides'
 import { MonorailDialogOverrides } from '../components/Dialog/themeOverrides'
 import { MonorailDialogActionsOverrides } from '../components/DialogActions/themeOverrides'
@@ -122,6 +124,7 @@ export const getThemeComponents = (
   MuiCheckbox: MonorailCheckboxOverrides,
   MuiChip: MonorailChipOverrides,
   MuiCircularProgress: MonorailCircularProgressOverrides,
+  MuiDataGrid: MonorailDataGridOverrides,
   MuiDateRangePickerDay: MonorailDateRangePickerDayOverrides,
   MuiDialog: MonorailDialogOverrides,
   MuiDialogActions: MonorailDialogActionsOverrides,

@@ -5,7 +5,7 @@ const ON_PROP_REGEX = /on.*/
 
 export default {
   core: {
-    builder: "webpack5"
+    builder: 'webpack5',
   },
 
   stories: ['../src/**/*.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
@@ -36,11 +36,13 @@ export default {
          *   return false
          * }
          */
-        if ([ARIA_PROP_REGEX, ON_PROP_REGEX].find((regex) => regex.test(prop.name))) {
+        if (
+          [ARIA_PROP_REGEX, ON_PROP_REGEX].find(regex => regex.test(prop.name))
+        ) {
           return false
         }
         return true
-      }
+      },
     },
   },
 
