@@ -1,5 +1,6 @@
 // Edit this file to add new stories
-import React from 'react'
+import React, { useCallback, useState } from 'react'
+import Draggable, { DraggableEvent } from 'react-draggable'
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft'
 import ChevronRightIcon from '@mui/icons-material/ChevronRight'
 import InboxIcon from '@mui/icons-material/Inbox'
@@ -19,6 +20,7 @@ import {
   IconButton,
   List,
   ListItem,
+  ListItemButton,
   ListItemIcon,
   ListItemText,
   styled,
@@ -306,7 +308,7 @@ export const ResponsiveDrawer = story<DrawerProps>(
   },
 )
 
-const drawerWidth = 240
+const DRAWER_WIDTH = 240
 
 const PersistentDrawerMain = styled('main', {
   shouldForwardProp: prop => prop !== 'open',
@@ -319,7 +321,7 @@ const PersistentDrawerMain = styled('main', {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
   }),
-  marginLeft: `-${drawerWidth}px`,
+  marginLeft: `-${DRAWER_WIDTH}px`,
   ...(open && {
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.easeOut,
@@ -341,8 +343,8 @@ const PersistentDrawerAppBar = styled(AppBar, {
     duration: theme.transitions.duration.leavingScreen,
   }),
   ...(open && {
-    width: `calc(100% - ${drawerWidth}px)`,
-    marginLeft: `${drawerWidth}px`,
+    width: `calc(100% - ${DRAWER_WIDTH}px)`,
+    marginLeft: `${DRAWER_WIDTH}px`,
     transition: theme.transitions.create(['margin', 'width'], {
       easing: theme.transitions.easing.easeOut,
       duration: theme.transitions.duration.enteringScreen,
@@ -394,10 +396,10 @@ export const PersistentDrawer = story<DrawerProps>(
         </PersistentDrawerAppBar>
         <Drawer
           sx={{
-            width: drawerWidth,
+            width: DRAWER_WIDTH,
             flexShrink: 0,
             '& .MuiDrawer-paper': {
-              width: drawerWidth,
+              width: DRAWER_WIDTH,
               boxSizing: 'border-box',
             },
           }}
@@ -475,6 +477,195 @@ export const PersistentDrawer = story<DrawerProps>(
   },
   {
     parameters: {
+      docs: {
+        description: {
+          story: `Persistent navigation drawers can toggle open or closed. The drawer sits on the same surface elevation as the content. It is closed by default and opens by selecting the menu icon, and stays open until closed by the user. The state of the drawer is remembered from action to action and session to session.
+
+When the drawer is outside of the page grid and opens, the drawer forces other content to change size and adapt to the smaller viewport.
+
+Persistent navigation drawers are acceptable for all sizes larger than mobile. They are not recommended for apps with multiple levels of hierarchy that require using an up arrow for navigation.`,
+        },
+      },
+    },
+  },
+)
+
+const MIN_DRAWER_WIDTH = 60
+const MAX_DRAWER_WIDTH = 600
+const HANDLE_WIDTH = 5
+
+export const ResizableDrawer = story<DrawerProps>(
+  () => {
+    const [newDrawerWidth, setNewDrawerWidth] = useState<number>(DRAWER_WIDTH)
+
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const handleMouseDown = (e: DraggableEvent) => {
+      document.addEventListener('mouseup', handleMouseUp, true)
+      document.addEventListener('mousemove', handleMouseMove, true)
+    }
+
+    const handleMouseUp = () => {
+      document.removeEventListener('mouseup', handleMouseUp, true)
+      document.removeEventListener('mousemove', handleMouseMove, true)
+    }
+
+    const handleMouseMove = useCallback((e: MouseEvent) => {
+      const newWidth = e.clientX - document.body.offsetLeft
+      setNewDrawerWidth(newWidth)
+    }, [])
+
+    return (
+      <Box sx={{ display: 'flex' }}>
+        <CssBaseline />
+        <Drawer
+          sx={{
+            flexShrink: 0,
+            minWidth: MIN_DRAWER_WIDTH,
+            maxWidth: MAX_DRAWER_WIDTH,
+            '& .MuiDrawer-paper': {
+              boxSizing: 'border-box',
+              overflowX: 'hidden',
+              minWidth: MIN_DRAWER_WIDTH,
+              maxWidth: MAX_DRAWER_WIDTH,
+            },
+          }}
+          variant="permanent"
+          anchor="left"
+          style={{
+            width: newDrawerWidth,
+          }}
+          PaperProps={{
+            style: { width: newDrawerWidth },
+          }}
+        >
+          <Draggable
+            axis="x"
+            onDrag={e => handleMouseDown(e)}
+            defaultPosition={{ x: DRAWER_WIDTH - HANDLE_WIDTH, y: 0 }}
+            bounds={{
+              left: MIN_DRAWER_WIDTH - HANDLE_WIDTH,
+              right: MAX_DRAWER_WIDTH - HANDLE_WIDTH,
+            }}
+          >
+            <Box
+              sx={theme => ({
+                width: HANDLE_WIDTH,
+                height: '100%',
+                backgroundColor: 'transparent',
+                position: 'fixed',
+                top: 0,
+                bottom: 0,
+                cursor: 'col-resize',
+                transition: '0s background-color',
+                zIndex: theme.zIndex.drawer + 1,
+
+                '&:hover': {
+                  backgroundColor: theme.palette.primary.main,
+                  transitionDelay: `0.35s`,
+                },
+                '&:active': {
+                  backgroundColor: theme.palette.primary.main,
+                },
+              })}
+            />
+          </Draggable>
+          <Toolbar />
+          <Divider />
+          <List>
+            {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+              <ListItem key={text} disablePadding>
+                <ListItemButton sx={{ width: '100%' }}>
+                  <ListItemIcon>
+                    {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                  </ListItemIcon>
+                  <ListItemText
+                    primary={text}
+                    sx={{
+                      '& > span': {
+                        whiteSpace: 'nowrap',
+                        overflow: 'hidden',
+                        textOverflow: 'ellipsis',
+                      },
+                    }}
+                  />
+                </ListItemButton>
+              </ListItem>
+            ))}
+          </List>
+          <Divider />
+          <List>
+            {['All mail', 'Trash', 'Spam'].map((text, index) => (
+              <ListItem key={text} disablePadding>
+                <ListItemButton sx={{ width: '100%' }}>
+                  <ListItemIcon>
+                    {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                  </ListItemIcon>
+                  <ListItemText
+                    primary={text}
+                    sx={{
+                      '& > span': {
+                        whiteSpace: 'nowrap',
+                        overflow: 'hidden',
+                        textOverflow: 'ellipsis',
+                      },
+                    }}
+                  />
+                </ListItemButton>
+              </ListItem>
+            ))}
+          </List>
+        </Drawer>
+
+        <Box
+          component="main"
+          sx={{ flexGrow: 1, bgcolor: 'background.default' }}
+        >
+          <AppBar sx={{ position: 'relative' }}>
+            <Toolbar>
+              <Typography variant="h3" noWrap component="div">
+                Resizable drawer
+              </Typography>
+            </Toolbar>
+          </AppBar>
+          <Box sx={{ p: 3 }}>
+            <Typography paragraph>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              Rhoncus dolor purus non enim praesent elementum facilisis leo vel.
+              Risus at ultrices mi tempus imperdiet. Semper risus in hendrerit
+              gravida rutrum quisque non tellus. Convallis convallis tellus id
+              interdum velit laoreet id donec ultrices. Odio morbi quis commodo
+              odio aenean sed adipiscing. Amet nisl suscipit adipiscing bibendum
+              est ultricies integer quis. Cursus euismod quis viverra nibh cras.
+              Metus vulputate eu scelerisque felis imperdiet proin fermentum
+              leo. Mauris commodo quis imperdiet massa tincidunt. Cras tincidunt
+              lobortis feugiat vivamus at augue. At augue eget arcu dictum
+              varius duis at consectetur lorem. Velit sed ullamcorper morbi
+              tincidunt. Lorem donec massa sapien faucibus et molestie ac.
+            </Typography>
+            <Typography paragraph>
+              Consequat mauris nunc congue nisi vitae suscipit. Fringilla est
+              ullamcorper eget nulla facilisi etiam dignissim diam. Pulvinar
+              elementum integer enim neque volutpat ac tincidunt. Ornare
+              suspendisse sed nisi lacus sed viverra tellus. Purus sit amet
+              volutpat consequat mauris. Elementum eu facilisis sed odio morbi.
+              Euismod lacinia at quis risus sed vulputate odio. Morbi tincidunt
+              ornare massa eget egestas purus viverra accumsan in. In hendrerit
+              gravida rutrum quisque non tellus orci ac. Pellentesque nec nam
+              aliquam sem et tortor. Habitant morbi tristique senectus et.
+              Adipiscing elit duis tristique sollicitudin nibh sit. Ornare
+              aenean euismod elementum nisi quis eleifend. Commodo viverra
+              maecenas accumsan lacus vel facilisis. Nulla posuere sollicitudin
+              aliquam ultrices sagittis orci a.
+            </Typography>
+          </Box>
+        </Box>
+      </Box>
+    )
+  },
+  {
+    parameters: {
+      layout: 'fullscreen',
       docs: {
         description: {
           story: `Persistent navigation drawers can toggle open or closed. The drawer sits on the same surface elevation as the content. It is closed by default and opens by selecting the menu icon, and stays open until closed by the user. The state of the drawer is remembered from action to action and session to session.
