@@ -3,20 +3,47 @@ import { CSSInterpolation, MenuItemProps, Theme } from '@mui/material'
 import { SystemStyleObject } from '@mui/system'
 import { DataGridPremium, useGridApiRef } from '@mui/x-data-grid-premium'
 
+import { combineSxProps } from '../../utils/sx'
 import { Divider } from '../Divider'
 import { DataGridColumnHeader } from './components/DataGridColumnHeader'
 import { DataGridFooter } from './components/DataGridFooter'
 import { DataGridHeader } from './components/DataGridHeader'
 import { DataGridRow } from './components/DataGridRow'
 import {
+  DATE_FILTER_DEFAULT_LOCALE_TEXT,
+  DateFilterLocaleText,
+} from './filters/DateFilter'
+import {
+  ENUM_FILTER_DEFAULT_LOCALE_TEXT,
+  EnumFilterLocaleText,
+} from './filters/EnumFilter'
+import {
+  NUMERIC_FILTER_DEFAULT_LOCALE_TEXT,
+  NumericFilterLocaleText,
+} from './filters/NumericFilter'
+import {
+  TEXT_FILTER_DEFAULT_LOCALE_TEXT,
+  TextFilterLocaleText,
+} from './filters/TextFilter'
+import {
   dataGridClasses,
   DataGridProps,
   GridEnrichedColDef,
   GridValidRowModel,
 } from './internal'
+import { GridColumnFilterDefinition } from './models/GridColumnFilterDefinition'
 
 interface HeaderActionsParams {
   closeMenu: () => void
+}
+
+declare module '@mui/x-data-grid/models/api/gridLocaleTextApi' {
+  interface GridLocaleText {
+    TextFilter: TextFilterLocaleText
+    EnumFilter: EnumFilterLocaleText
+    NumericFilter: NumericFilterLocaleText
+    DateFilter: DateFilterLocaleText
+  }
 }
 
 declare module '@mui/x-data-grid/models/colDef/gridColDef' {
@@ -27,6 +54,7 @@ declare module '@mui/x-data-grid/models/colDef/gridColDef' {
     headerActions?: (
       params: HeaderActionsParams,
     ) => ReadonlyArray<React.ReactElement<MenuItemProps>>
+    filter?: GridColumnFilterDefinition<R, V, F>
   }
 }
 
@@ -70,9 +98,17 @@ export const DataGrid: <R extends GridValidRowModel>(
   return (
     <DataGridPremium
       {...props}
-      disableSelectionOnClick
       apiRef={apiRef}
       ref={ref}
+      disableColumnFilter
+      disableSelectionOnClick
+      localeText={{
+        EnumFilter: ENUM_FILTER_DEFAULT_LOCALE_TEXT,
+        TextFilter: TEXT_FILTER_DEFAULT_LOCALE_TEXT,
+        NumericFilter: NUMERIC_FILTER_DEFAULT_LOCALE_TEXT,
+        DateFilter: DATE_FILTER_DEFAULT_LOCALE_TEXT,
+        ...props.localeText,
+      }}
       columns={processedColumns}
       components={{
         Footer: DataGridFooter,
@@ -87,10 +123,7 @@ export const DataGrid: <R extends GridValidRowModel>(
         headerAlign: 'left',
         flex: 1,
       }}
-      sx={[
-        dataGridStyles,
-        ...(sx !== undefined ? (Array.isArray(sx) ? sx : [sx]) : []),
-      ]}
+      sx={combineSxProps(dataGridStyles, sx)}
     />
   )
 })

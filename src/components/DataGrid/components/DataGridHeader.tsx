@@ -1,10 +1,16 @@
 import React from 'react'
 import { useGridApiContext } from '@mui/x-data-grid-premium'
 
+import { useInitializeGridSubState } from '../hooks/useInitializeGridSubState'
 import { dataGridClasses } from '../internal'
 
 export function DataGridHeader() {
   const apiRef = useGridApiContext()
+
+  useInitializeGridSubState(apiRef, 'textFilter', () => new Map())
+  useInitializeGridSubState(apiRef, 'dateFilter', () => new Map())
+  useInitializeGridSubState(apiRef, 'enumFilter', () => new Map())
+  useInitializeGridSubState(apiRef, 'numericFilter', () => new Map())
 
   const isGrouped = React.useMemo(
     () => apiRef.current.state.rowGrouping.model.length !== 0,
