@@ -5,10 +5,16 @@ import { Theme } from '@mui/material'
 import { SxProps } from '@mui/system'
 
 import { Filter, SortAscending, SortDescending } from '../../../icons/Icons'
+import { Badge } from '../../Badge'
 import { IconButton } from '../../IconButton'
 import { Menu } from '../../Menu'
+import { Popover } from '../../Popover'
 import { Stack } from '../../Stack'
 import { Typography } from '../../Typography'
+import { DateFilter } from '../filters/DateFilter'
+import { EnumFilter } from '../filters/EnumFilter'
+import { NumericFilter } from '../filters/NumericFilter'
+import { TextFilter } from '../filters/TextFilter'
 import {
   GridColumnHeaderEventLookup,
   GridColumnHeaderParams,
@@ -31,6 +37,11 @@ export function DataGridColumnHeader(props: DataGridColumnHeaderProps) {
     apiRef.current.state.columns.lookup[field].originalColDef
   const isActionsMenuOpen = actionsAnchorEl !== null
 
+  const [filterAnchorEl, setFilterAnchorEl] =
+    React.useState<HTMLButtonElement | null>(null)
+
+  const isFilterOpen = filterAnchorEl !== null
+
   const handleActionsButtonClick = React.useCallback(
     (event: React.MouseEvent<HTMLButtonElement>) => {
       event.stopPropagation()
@@ -42,6 +53,23 @@ export function DataGridColumnHeader(props: DataGridColumnHeaderProps) {
   const handleActionsMenuClose = React.useCallback(() => {
     setActionsAnchorEl(null)
   }, [])
+
+  const handleFilterButtonClick = React.useCallback(
+    (event: React.MouseEvent<HTMLButtonElement>) => {
+      event.stopPropagation()
+      setFilterAnchorEl(event.currentTarget)
+    },
+    [],
+  )
+
+  const handleFilterPopoverClose = React.useCallback(() => {
+    setFilterAnchorEl(null)
+  }, [])
+
+  const isFiltered =
+    apiRef.current.state.filter.filterModel.items.find(
+      item => item.columnField === field,
+    ) !== undefined
 
   const publishEvent = React.useCallback(
     function <E extends keyof GridColumnHeaderEventLookup>(
@@ -62,6 +90,25 @@ export function DataGridColumnHeader(props: DataGridColumnHeaderProps) {
     [apiRef, field],
   )
 
+  const filter = React.useMemo(() => {
+    if (colDef.filter) {
+      switch (colDef.filter.type) {
+        case 'enum': {
+          return <EnumFilter def={colDef.filter} field={colDef.field} />
+        }
+        case 'numeric': {
+          return <NumericFilter field={colDef.field} />
+        }
+        case 'date': {
+          return <DateFilter field={colDef.field} />
+        }
+        case 'text': {
+          return <TextFilter field={colDef.field} />
+        }
+      }
+    }
+  }, [colDef])
+
   const headerActions = React.useMemo(() => {
     // eslint-disable-next-line eqeqeq
     if (colDef.headerActions == null) {
@@ -77,6 +124,7 @@ export function DataGridColumnHeader(props: DataGridColumnHeaderProps) {
       direction="row"
       alignItems="center"
       flex="1 1 0"
+      sx={theme => ({ margin: theme.spacing(0, 2) })}
       onClick={publishEvent('columnHeaderClick')}
       onKeyDown={publishEvent('columnHeaderKeyDown')}
     >
@@ -85,20 +133,41 @@ export function DataGridColumnHeader(props: DataGridColumnHeaderProps) {
         colDef={colDef}
         originalColDef={originalColDef}
       />
-      {colDef.filterable !== false && (
-        <IconButton
-          aria-label="filter"
-          color="default"
-          variant="chromeless"
-          size="small"
-          tabIndex={-1}
-          onClick={event => {
-            event.stopPropagation()
-            // TODO: column filter implementation
-          }}
-        >
-          <Filter />
-        </IconButton>
+      {colDef.filter !== undefined && (
+        <>
+          <IconButton
+            aria-label="filter"
+            color="default"
+            variant="chromeless"
+            size="small"
+            tabIndex={-1}
+            onClick={handleFilterButtonClick}
+          >
+            <Badge color="primary" variant="dot" invisible={!isFiltered}>
+              <Filter />
+            </Badge>
+          </IconButton>
+          <Popover
+            onClose={handleFilterPopoverClose}
+            open={isFilterOpen}
+            anchorEl={filterAnchorEl}
+            transformOrigin={{
+              horizontal: 'right',
+              vertical: 'top',
+            }}
+            anchorOrigin={{
+              vertical: 'bottom',
+              horizontal: 'right',
+            }}
+            PaperProps={{
+              sx: {
+                overflowY: 'hidden',
+              },
+            }}
+          >
+            {filter}
+          </Popover>
+        </>
       )}
       {headerActions !== null && (
         <React.Fragment>

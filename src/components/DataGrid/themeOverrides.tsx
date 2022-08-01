@@ -39,7 +39,7 @@ export const MonorailDataGridOverrides: Components<Theme>['MuiDataGrid'] = {
     },
     columnHeader: ({ theme }) => {
       return {
-        padding: theme.spacing(0, 2),
+        padding: 0,
         height: theme.spacing(14),
         '&:focus': {
           outline: 'none',
