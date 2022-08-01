@@ -9,7 +9,7 @@ type SxPropsInner<Theme extends object> =
   | SystemStyleObject<Theme>
   | ((theme: Theme) => SystemStyleObject<Theme>)
 
-export function combineSxProps(
+export function combineSxProps<Theme extends object = {}>(
   ...props: ReadonlyArray<SxProps<Theme> | undefined>
 ): Array<SxPropsInner<Theme>> {
   const result: Array<SxPropsInner<Theme>> = []
@@ -20,7 +20,9 @@ export function combineSxProps(
     if (Array.isArray(sx)) {
       result.push(...sx)
     } else {
-      result.push(sx)
+      result.push(
+        sx as Exclude<SxProps<Theme>, ReadonlyArray<SxPropsInner<Theme>>>,
+      )
     }
   }
   return result

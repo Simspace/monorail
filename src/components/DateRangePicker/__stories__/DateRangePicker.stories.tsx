@@ -1,6 +1,6 @@
 // Edit this file to add new stories
 import React from 'react'
-import AdapterDateFns from '@mui/lab/AdapterDateFns'
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
 import { addWeeks } from 'date-fns'
 
 import {

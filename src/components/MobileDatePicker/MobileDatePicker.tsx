@@ -1,5 +1,11 @@
-import { MobileDatePicker as MuiMobileDatePicker } from '@mui/lab'
+import {
+  MobileDatePicker as MuiMobileDatePicker,
+  MobileDatePickerProps as MuiMobileDatePickerProps,
+} from '@mui/x-date-pickers'
 
 export const MobileDatePicker: typeof MuiMobileDatePicker = MuiMobileDatePicker
 
-export * from '@mui/lab/MobileDatePicker'
+export interface MobileDatePickerProps<TInputDate = Date, TDate = TInputDate>
+  extends MuiMobileDatePickerProps<TInputDate, TDate> {}
+
+export * from '@mui/x-date-pickers/MobileDatePicker'

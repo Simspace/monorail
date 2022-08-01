@@ -1,5 +1,8 @@
-import { dateRangePickerDayClasses, pickersDayClasses } from '@mui/lab'
 import { buttonBaseClasses, Components, Theme } from '@mui/material'
+import {
+  dateRangePickerDayClasses,
+  pickersDayClasses,
+} from '@mui/x-date-pickers-pro'
 
 export const MonorailDateRangePickerDayOverrides: Components<Theme>['MuiDateRangePickerDay'] =
   {

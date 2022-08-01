@@ -5,8 +5,8 @@ import { pcteLightTheme } from '../src/theme/pcteLightTheme'
 import * as MUI from '@mui/material'
 import { StyledEngineProvider } from '@mui/material/styles'
 import { Parameters } from '@storybook/react'
-import AdapterDateFns from '@mui/lab/AdapterDateFns'
-import LocalizationProvider from '@mui/lab/LocalizationProvider'
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 
 /**
  * Global storybook parameters
