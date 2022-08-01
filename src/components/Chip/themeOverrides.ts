@@ -1,5 +1,4 @@
-import { chipClasses, Components, Theme } from '@mui/material'
-import { InterpolationPrimitive } from '@mui/styled-engine'
+import { chipClasses, Components, CSSInterpolation, Theme } from '@mui/material'
 
 declare module '@mui/material/Chip' {
   /**
@@ -70,7 +69,7 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
       ownerState: { color = 'default', variant = 'default' },
       theme,
     }) => {
-      const filledStyles: InterpolationPrimitive = {
+      const filledStyles: CSSInterpolation = {
         '&:hover': {
           backgroundColor:
             color === 'default'
@@ -86,7 +85,7 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
         },
       }
 
-      const outlinedStyles: InterpolationPrimitive = {
+      const outlinedStyles: CSSInterpolation = {
         [`&.${chipClasses.clickable}:hover`]: {
           backgroundColor: theme.palette[color].weakEmphasis.hover,
         },
@@ -96,7 +95,7 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
         },
       }
 
-      const clickableRectangularStyles: InterpolationPrimitive = {
+      const clickableRectangularStyles: CSSInterpolation = {
         backgroundColor: theme.palette.primary.mediumEmphasis.main,
         '&:hover': {
           backgroundColor: theme.palette.primary.mediumEmphasis.hover,
@@ -130,7 +129,7 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
       ownerState: { clickable = false, color = 'default', variant = 'filled' },
       theme,
     }) => {
-      const filledStyles: InterpolationPrimitive = {
+      const filledStyles: CSSInterpolation = {
         '&:hover': {
           color:
             color === 'default'
@@ -147,14 +146,14 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
             : theme.palette[color].mediumEmphasis.light,
       }
 
-      const outlinedStyles: InterpolationPrimitive = {
+      const outlinedStyles: CSSInterpolation = {
         color: theme.palette[color].weakEmphasis.contrastText,
         '&:hover': {
           color: theme.palette[color].weakEmphasis.contrastText,
         },
       }
 
-      const rectangularStyles: InterpolationPrimitive = {
+      const rectangularStyles: CSSInterpolation = {
         color: !clickable
           ? theme.palette.default.weakEmphasis.contrastText
           : theme.palette.primary.weakEmphasis.contrastText,
@@ -176,7 +175,7 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
       ownerState: { clickable = false, color = 'default', variant = 'filled' },
       theme,
     }) => {
-      const filledStyles: InterpolationPrimitive = {
+      const filledStyles: CSSInterpolation = {
         color:
           color === 'default'
             ? theme.palette.default.weakEmphasis.contrastText
@@ -187,17 +186,17 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
             : theme.palette[color].mediumEmphasis.contrastText,
       }
 
-      const outlinedStyles: InterpolationPrimitive = {
+      const outlinedStyles: CSSInterpolation = {
         color: theme.palette.common.white,
         backgroundColor: theme.palette[color].shades[600],
       }
 
-      const readOnlyRectangularStyles: InterpolationPrimitive = {
+      const readOnlyRectangularStyles: CSSInterpolation = {
         color: theme.palette.default.weakEmphasis.contrastText,
         backgroundColor: theme.palette.default.shades[300],
       }
 
-      const clickableRectangularStyles: InterpolationPrimitive = {
+      const clickableRectangularStyles: CSSInterpolation = {
         color: theme.palette.primary.weakEmphasis.contrastText,
         backgroundColor: theme.palette.primary.shades[300],
       }

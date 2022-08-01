@@ -29,11 +29,24 @@ export default { title: 'Inputs/Autocomplete', component: Autocomplete }
 type MovieAutocompleteProps = AutocompleteProps<
   Movie,
   boolean,
+  false,
+  false,
+  'div'
+>
+
+type MovieAutocompleteFreeSoloProps = AutocompleteProps<
+  Movie,
+  boolean,
   boolean,
   boolean,
   'div'
 >
+
 const MovieAutocomplete = (props: MovieAutocompleteProps) => (
+  <Autocomplete {...props} />
+)
+
+const MovieAutocompleteFreeSolo = (props: MovieAutocompleteFreeSoloProps) => (
   <Autocomplete<Movie, boolean, boolean, boolean> {...props} />
 )
 
@@ -168,13 +181,14 @@ export const MultipleValues = story<MovieAutocompleteProps>(args => {
         )}
         {...args}
       />
-      <MovieAutocomplete
+      <MovieAutocompleteFreeSolo
         multiple
+        freeSolo
         id="tags-filled"
         options={movies}
         defaultValue={[movies[13]]}
-        freeSolo
-        renderTags={(value: ReadonlyArray<Movie>, getTagProps) =>
+        // @ts-expect-error -- Incorrect conditional type in @mui/material/Autocomplete
+        renderTags={(value, getTagProps) =>
           value.map((option: Movie, index: number) => (
             <Chip
               variant="outlined"

@@ -1,5 +1,5 @@
-import { StaticTimePicker as MuiStaticTimePicker } from '@mui/lab'
+import { StaticTimePicker as MuiStaticTimePicker } from '@mui/x-date-pickers'
 
 export const StaticTimePicker: typeof MuiStaticTimePicker = MuiStaticTimePicker
 
-export * from '@mui/lab/StaticTimePicker'
+export * from '@mui/x-date-pickers/StaticTimePicker'

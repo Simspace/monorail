@@ -1,5 +1,5 @@
-import { PickersDay as MuiPickersDay } from '@mui/lab'
+import { PickersDay as MuiPickersDay } from '@mui/x-date-pickers'
 
 export const PickersDay: typeof MuiPickersDay = MuiPickersDay
 
-export * from '@mui/lab/PickersDay'
+export * from '@mui/x-date-pickers/PickersDay'

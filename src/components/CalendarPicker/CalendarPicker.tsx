@@ -1,5 +1,5 @@
-import { CalendarPicker as MuiCalendarPicker } from '@mui/lab'
+import { CalendarPicker as MuiCalendarPicker } from '@mui/x-date-pickers'
 
 export const CalendarPicker: typeof MuiCalendarPicker = MuiCalendarPicker
 
-export * from '@mui/lab/CalendarPicker'
+export * from '@mui/x-date-pickers/CalendarPicker'

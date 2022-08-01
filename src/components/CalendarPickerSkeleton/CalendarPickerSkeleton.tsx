@@ -1,6 +1,6 @@
-import { CalendarPickerSkeleton as MuiCalendarPickerSkeleton } from '@mui/lab'
+import { CalendarPickerSkeleton as MuiCalendarPickerSkeleton } from '@mui/x-date-pickers'
 
 export const CalendarPickerSkeleton: typeof MuiCalendarPickerSkeleton =
   MuiCalendarPickerSkeleton
 
-export * from '@mui/lab/CalendarPickerSkeleton'
+export * from '@mui/x-date-pickers/CalendarPickerSkeleton'

@@ -1,5 +1,11 @@
-import { DatePicker as MuiDatePicker } from '@mui/lab'
+import {
+  DatePicker as MuiDatePicker,
+  DatePickerProps as MuiDatePickerProps,
+} from '@mui/x-date-pickers'
 
 export const DatePicker: typeof MuiDatePicker = MuiDatePicker
 
-export * from '@mui/lab/DatePicker'
+export interface DatePickerProps<TInputDate = Date, TDate = TInputDate>
+  extends MuiDatePickerProps<TInputDate, TDate> {}
+
+export * from '@mui/x-date-pickers/DatePicker'

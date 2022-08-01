@@ -1,6 +1,6 @@
-import { LocalizationProvider as MuiLocalizationProvider } from '@mui/lab'
+import { LocalizationProvider as MuiLocalizationProvider } from '@mui/x-date-pickers'
 
 export const LocalizationProvider: typeof MuiLocalizationProvider =
   MuiLocalizationProvider
 
-export * from '@mui/lab/LocalizationProvider'
+export * from '@mui/x-date-pickers/LocalizationProvider'

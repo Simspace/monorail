@@ -3,7 +3,7 @@ import React from 'react'
 import ClockIcon from '@mui/icons-material/AccessTime'
 import AlarmIcon from '@mui/icons-material/Alarm'
 import SnoozeIcon from '@mui/icons-material/Snooze'
-import AdapterDateFns from '@mui/lab/AdapterDateFns'
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
 
 import {
   DateTimePicker,
@@ -294,8 +294,6 @@ export const Customization = story<DateTimePickerProps<Date>>(
           <DateTimePicker
             disableFuture
             hideTabs
-            showTodayButton
-            todayText="now"
             openTo="hours"
             value={value}
             onChange={newValue => {
@@ -331,7 +329,6 @@ export const Customization = story<DateTimePickerProps<Date>>(
             renderInput={params => <TextField {...params} />}
           />
           <DateTimePicker
-            clearable
             value={clearedDate}
             onChange={newValue => setClearedDate(newValue)}
             renderInput={params => (

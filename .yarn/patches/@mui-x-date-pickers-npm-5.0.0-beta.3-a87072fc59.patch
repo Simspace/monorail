@@ -1,38 +1,38 @@
 diff --git a/themeAugmentation/components.d.ts b/themeAugmentation/components.d.ts
-index 9d5203aaa9929da7795281b8ae7e9a19c97c40d9..13614afae21687a30dc89701de7d03290e542452 100644
+index 9827b5f8e8abdd0eef2d61440e07d82769c5f73d..1511ea17280cc5229c87658dcdc2aca85ece5032 100644
 --- a/themeAugmentation/components.d.ts
 +++ b/themeAugmentation/components.d.ts
-@@ -189,6 +189,6 @@ export interface LabComponents {
+@@ -48,6 +48,6 @@ export interface PickerComponents<Theme = unknown> {
    };
  }
  
 -declare module '@mui/material/styles' {
 +declare module '@mui/material/styles/components' {
-   interface Components extends LabComponents {}
+   interface Components<Theme = unknown> extends PickerComponents<Theme> {}
  }
 diff --git a/themeAugmentation/overrides.d.ts b/themeAugmentation/overrides.d.ts
-index aa0493ab114c934a286325e27b5433e6f1cb0211..687a4c9ab18c6517e190e59074a3ca86e0a00c2d 100644
+index 4383e1b810bba3ab1adfea386ea66985c9386fc1..f401d57f1d28db8fecbdbbae2067b3ddd5aad905 100644
 --- a/themeAugmentation/overrides.d.ts
 +++ b/themeAugmentation/overrides.d.ts
-@@ -43,7 +43,7 @@ export interface LabComponentNameToClassKey {
+@@ -19,7 +19,7 @@ export interface PickersComponentNameToClassKey {
    MuiPickerStaticWrapper: PickerStaticWrapperClassKey;
  }
  
 -declare module '@mui/material/styles' {
 +declare module '@mui/material/styles/overrides' {
-   interface ComponentNameToClassKey extends LabComponentNameToClassKey {}
+   interface ComponentNameToClassKey extends PickersComponentNameToClassKey {}
  }
  
 diff --git a/themeAugmentation/props.d.ts b/themeAugmentation/props.d.ts
-index aea04147ada1772829c5050c882d4096e6c930b9..89538d835c80e76a4b8e4c315835d800371106b9 100644
+index 6a3fbd371fc122319730d7005c5732ad91e87ee4..66988b5f9ede7113fe25e66b71a9c5f3a54c3b74 100644
 --- a/themeAugmentation/props.d.ts
 +++ b/themeAugmentation/props.d.ts
-@@ -64,7 +64,7 @@ export interface LabComponentsPropsList {
-   MuiYearPicker: YearPickerProps<unknown>;
+@@ -38,7 +38,7 @@ export interface PickersComponentsPropsList {
+   MuiPickerStaticWrapper: PickerStaticWrapperProps;
  }
  
 -declare module '@mui/material/styles' {
 +declare module '@mui/material/styles/props' {
-   interface ComponentsPropsList extends LabComponentsPropsList {}
+   interface ComponentsPropsList extends PickersComponentsPropsList {}
  }
  
