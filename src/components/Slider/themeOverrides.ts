@@ -39,15 +39,22 @@ export const MonorailSliderOverrides: Components<Theme>['MuiSlider'] = {
         '&:hover': {
           backgroundColor: theme.palette.default.mediumEmphasis.light,
           boxShadow: `0 0 0 4px ${theme.palette[color].focusRing.outer}`,
+          border: `1px solid ${theme.palette[color].focusRing.inner}`,
           [`&.${sliderClasses.thumbSizeSmall}`]: {
-            backgroundColor: theme.palette[color].hover,
+            backgroundColor:
+              color === 'secondary'
+                ? theme.palette.secondary.shades[700]
+                : theme.palette[color].hover,
           },
         },
         [`&.${sliderClasses.active}`]: {
           backgroundColor: theme.palette.default.mediumEmphasis.dark,
           boxShadow: `0 0 0 4px ${theme.palette[color].focusRing.outer}`,
           [`&.${sliderClasses.thumbSizeSmall}`]: {
-            backgroundColor: theme.palette[color].active,
+            backgroundColor:
+              color === 'secondary'
+                ? theme.palette.secondary.shades[800]
+                : theme.palette[color].active,
           },
         },
       }
@@ -55,12 +62,21 @@ export const MonorailSliderOverrides: Components<Theme>['MuiSlider'] = {
     rail: ({ ownerState, theme }) => {
       const color = ownerState.color ?? 'primary'
       return {
+        // Widen the rail to create padding around the first and last mark.
+        width: 'calc(100% + 10px)',
+        transform: 'translate(-4px, -50%)',
         backgroundColor: theme.palette[color].shades[300],
         opacity: 1,
       }
     },
+    track: {
+      // Widen the track to create padding around the first and last mark.
+      width: 'calc(100% + 10px)',
+      transform: 'translate(-4px, -50%)',
+    },
     sizeSmall: {
-      height: 4,
+      height: 8,
+      borderRadius: 8,
     },
     trackInverted: ({ theme }) => ({
       [`&.${sliderClasses.colorPrimary}`]: {
@@ -88,7 +104,10 @@ export const MonorailSliderOverrides: Components<Theme>['MuiSlider'] = {
         height: 20,
         width: 20,
         borderRadius: '50%',
-        backgroundColor: theme.palette[color].shades[600],
+        backgroundColor:
+          color === 'secondary'
+            ? theme.palette.secondary.shades[600]
+            : theme.palette[color].main,
         border: 'none',
       }
     },
@@ -114,7 +133,6 @@ export const MonorailSliderOverrides: Components<Theme>['MuiSlider'] = {
       height: 4,
       width: 4,
       borderRadius: '50%',
-      transform: 'translate(-2px, -50%)',
     },
   },
 }
