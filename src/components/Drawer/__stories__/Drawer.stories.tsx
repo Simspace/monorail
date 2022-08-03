@@ -492,7 +492,8 @@ Persistent navigation drawers are acceptable for all sizes larger than mobile. T
 
 const MIN_DRAWER_WIDTH = 60
 const MAX_DRAWER_WIDTH = 600
-const HANDLE_WIDTH = 5
+const HANDLE_WIDTH = 10
+const HANDLE_POSITION = HANDLE_WIDTH / 2
 
 export const ResizableDrawer = story<DrawerProps>(
   () => {
@@ -541,10 +542,10 @@ export const ResizableDrawer = story<DrawerProps>(
           <Draggable
             axis="x"
             onDrag={e => handleMouseDown(e)}
-            defaultPosition={{ x: DRAWER_WIDTH - HANDLE_WIDTH, y: 0 }}
+            defaultPosition={{ x: DRAWER_WIDTH - HANDLE_POSITION, y: 0 }}
             bounds={{
-              left: MIN_DRAWER_WIDTH - HANDLE_WIDTH,
-              right: MAX_DRAWER_WIDTH - HANDLE_WIDTH,
+              left: MIN_DRAWER_WIDTH - HANDLE_POSITION,
+              right: MAX_DRAWER_WIDTH - HANDLE_POSITION,
             }}
           >
             <Box
@@ -556,12 +557,14 @@ export const ResizableDrawer = story<DrawerProps>(
                 top: 0,
                 bottom: 0,
                 cursor: 'col-resize',
-                transition: '0s background-color',
+                transition: `${theme.transitions.create(['background-color'], {
+                  duration: theme.transitions.duration.short,
+                })}`,
                 zIndex: theme.zIndex.drawer + 1,
 
                 '&:hover': {
                   backgroundColor: theme.palette.primary.main,
-                  transitionDelay: `0.35s`,
+                  transitionDelay: `${theme.transitions.duration.standard}ms`,
                 },
                 '&:active': {
                   backgroundColor: theme.palette.primary.main,

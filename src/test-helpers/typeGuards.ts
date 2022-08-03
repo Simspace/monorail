@@ -35,3 +35,9 @@ export const isString = (x: unknown): x is string => typeof x === 'string'
  */
 export const isNonEmptyString = (x: unknown): x is string =>
   isString(x) && x.length > 0
+
+/**
+ * Type guard for the `Array` type with `.length > 0`
+ */
+export const isNonEmptyArray = <T>(as: Array<T> | unknown): as is Array<T> =>
+  Array.isArray(as) && as.length > 0
