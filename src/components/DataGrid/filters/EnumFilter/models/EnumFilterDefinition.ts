@@ -11,10 +11,5 @@ export interface EnumFilterDefinition<
   type: 'enum'
   values: Array<V>
   renderValue?: (value: V) => React.ReactNode
-}
-
-declare module '../../../models/GridColumnFilterDefinition' {
-  interface GridColumnFilterDefinitionMap<R, V, F> {
-    Enum: EnumFilterDefinition<R, V, F>
-  }
+  external?: boolean
 }

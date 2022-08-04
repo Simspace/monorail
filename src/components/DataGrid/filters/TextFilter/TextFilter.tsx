@@ -9,17 +9,18 @@ import { ClearFilterButton } from '../components/ClearFilterButton'
 import { FilterContainer } from '../components/FilterContainer'
 import { useDebouncedSyncFilter } from '../hooks/useDebouncedSyncFilter'
 import { useInitializeTextFilterState } from './hooks/useInitializeTextFilterState'
+import { TextFilterDefinition } from './models'
 import { TextFilterOperator } from './models/TextFilterOperator'
 
-export interface TextFilterProps {
+export interface TextFilterProps extends Omit<TextFilterDefinition, 'field'> {
   field: string
 }
 
 export function TextFilter(props: TextFilterProps) {
-  const { field } = props
+  const { field, external } = props
 
   const apiRef = useGridApiContext()
-  useInitializeTextFilterState(field, 'contains')
+  useInitializeTextFilterState(field, 'contains', external)
 
   const state = apiRef.current.state.textFilter.get(field)!
 
@@ -28,12 +29,19 @@ export function TextFilter(props: TextFilterProps) {
 
   const forceUpdate = useForceUpdate()
 
+  const beforeSyncFilter = () => {
+    apiRef.current.state.filterSubscriptions.get(field)?.forEach(f => {
+      f(state)
+    })
+  }
+
   const syncFilter = useDebouncedSyncFilter(
     apiRef,
     `text-${field}`,
     field,
     state,
     state => state.searchText.length !== 0,
+    beforeSyncFilter,
   )
 
   const localeText = React.useMemo(

@@ -8,14 +8,17 @@ import { getTextFilterInitialState } from '../models/TextFilterState'
 export function useInitializeTextFilterState(
   field: string,
   initialOperator: TextFilterOperator,
+  external?: boolean,
 ): void {
   const apiRef = useGridApiContext()
 
   const initState = React.useCallback(() => {
     const column = gridColumnLookupSelector(apiRef)[field]
-    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
-    if (!column.filterOperators?.includes(textFilterOperator)) {
-      column.filterOperators = [textFilterOperator]
+    if (external !== true) {
+      // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+      if (!column.filterOperators?.includes(textFilterOperator)) {
+        column.filterOperators = [textFilterOperator]
+      }
     }
     if (!apiRef.current.state.textFilter.has(field)) {
       apiRef.current.state.textFilter.set(
@@ -23,7 +26,7 @@ export function useInitializeTextFilterState(
         getTextFilterInitialState(initialOperator),
       )
     }
-  }, [apiRef, field, initialOperator])
+  }, [apiRef, field, initialOperator, external])
 
   React.useEffect(() => {
     initState()

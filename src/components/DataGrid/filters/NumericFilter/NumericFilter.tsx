@@ -11,22 +11,32 @@ import { FilterContainer } from '../components/FilterContainer'
 import { useDebouncedSyncFilter } from '../hooks/useDebouncedSyncFilter'
 import { numericOperators } from './constants'
 import { useInitializeNumericFilterState } from './hooks'
-import { NumericFilterOperator, NumericFilterState } from './models'
+import {
+  NumericFilterDefinition,
+  NumericFilterOperator,
+  NumericFilterState,
+} from './models'
 
-interface NumericFilterProps {
+interface NumericFilterProps extends Omit<NumericFilterDefinition, 'field'> {
   field: string
 }
 
 export function NumericFilter(props: NumericFilterProps) {
-  const { field } = props
+  const { field, external } = props
 
   const apiRef = useGridApiContext()
-  useInitializeNumericFilterState(apiRef, field)
+  useInitializeNumericFilterState(apiRef, field, external)
 
   const forceUpdate = useForceUpdate()
 
   const state = apiRef.current.state.numericFilter.get(field)!
   const isChanged = getIsChanged(state)
+
+  const beforeSyncFilter = () => {
+    apiRef.current.state.filterSubscriptions.get(field)?.forEach(f => {
+      f(state)
+    })
+  }
 
   const syncFilter = useDebouncedSyncFilter(
     apiRef,
@@ -34,6 +44,7 @@ export function NumericFilter(props: NumericFilterProps) {
     field,
     state,
     getIsFiltered,
+    beforeSyncFilter,
   )
 
   const handleOperatorSelectChange = React.useCallback(

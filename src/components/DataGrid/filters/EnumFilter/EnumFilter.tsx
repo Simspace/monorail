@@ -22,10 +22,10 @@ import { useInitializeEnumFilterState } from './hooks'
 import { EnumFilterProps } from './models/EnumFilterProps'
 
 export function EnumFilter(props: EnumFilterProps) {
-  const { def, field } = props
+  const { field, renderValue, values, external } = props
 
   const apiRef = useGridApiContext()
-  useInitializeEnumFilterState(field)
+  useInitializeEnumFilterState(field, external)
 
   const state = apiRef.current.state.enumFilter.get(field)!
   const selectedSize = state.uiSelected.size
@@ -34,15 +34,20 @@ export function EnumFilter(props: EnumFilterProps) {
 
   const forceUpdate = useForceUpdate()
 
+  const beforeSyncFilter = () => {
+    state.selected = new Set(state.uiSelected)
+    apiRef.current.state.filterSubscriptions.get(field)?.forEach(f => {
+      f(state)
+    })
+  }
+
   const syncFilter = useDebouncedSyncFilter(
     apiRef,
     `enum-${field}`,
     field,
     state,
     state => state.selected.size > 0,
-    () => {
-      state.selected = new Set(state.uiSelected)
-    },
+    beforeSyncFilter,
   )
 
   const handleMinWidthCallback = React.useCallback(
@@ -137,9 +142,9 @@ export function EnumFilter(props: EnumFilterProps) {
             flexDirection: 'column',
           })}
         >
-          {filterMap(def.values, (value, index) => {
+          {filterMap(values, (value, index) => {
             if (String(value).includes(searchText)) {
-              const label = def.renderValue?.(value) ?? value
+              const label = renderValue?.(value) ?? value
               return (
                 <EnumFilterItem
                   key={index}

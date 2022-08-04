@@ -17,22 +17,32 @@ import { FilterContainer } from '../components/FilterContainer'
 import { useDebouncedSyncFilter } from '../hooks/useDebouncedSyncFilter'
 import { dateOperators } from './constants'
 import { useInitializeDateFilterState } from './hooks'
-import { DateFilterOperator, DateFilterState } from './models'
+import {
+  DateFilterDefinition,
+  DateFilterOperator,
+  DateFilterState,
+} from './models'
 
-interface DateFilterProps {
+interface DateFilterProps extends Omit<DateFilterDefinition, 'type'> {
   field: string
 }
 
 export function DateFilter(props: DateFilterProps) {
-  const { field } = props
+  const { field, external } = props
 
   const apiRef = useGridApiContext()
-  useInitializeDateFilterState(apiRef, field)
+  useInitializeDateFilterState(apiRef, field, external)
 
   const forceUpdate = useForceUpdate()
 
   const state = apiRef.current.state.dateFilter.get(field)!
   const isChanged = getIsChanged(state)
+
+  const beforeSyncFilter = () => {
+    apiRef.current.state.filterSubscriptions.get(field)?.forEach(f => {
+      f(state)
+    })
+  }
 
   const syncFilter = useDebouncedSyncFilter(
     apiRef,
@@ -40,6 +50,7 @@ export function DateFilter(props: DateFilterProps) {
     field,
     state,
     getIsFiltered,
+    beforeSyncFilter,
   )
 
   const handleOperatorSelectChange = React.useCallback(

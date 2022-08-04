@@ -94,16 +94,16 @@ export function DataGridColumnHeader(props: DataGridColumnHeaderProps) {
     if (colDef.filter) {
       switch (colDef.filter.type) {
         case 'enum': {
-          return <EnumFilter def={colDef.filter} field={colDef.field} />
+          return <EnumFilter field={colDef.field} {...colDef.filter} />
         }
         case 'numeric': {
-          return <NumericFilter field={colDef.field} />
+          return <NumericFilter field={colDef.field} {...colDef.filter} />
         }
         case 'date': {
-          return <DateFilter field={colDef.field} />
+          return <DateFilter field={colDef.field} {...colDef.filter} />
         }
         case 'text': {
-          return <TextFilter field={colDef.field} />
+          return <TextFilter field={colDef.field} {...colDef.filter} />
         }
       }
     }

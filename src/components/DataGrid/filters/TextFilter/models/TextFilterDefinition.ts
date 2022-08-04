@@ -8,10 +8,5 @@ export interface TextFilterDefinition<
   F = V,
 > {
   type: 'text'
-}
-
-declare module '../../../models/GridColumnFilterDefinition' {
-  interface GridColumnFilterDefinitionMap<R, V, F> {
-    Text: TextFilterDefinition<R, V, F>
-  }
+  external?: boolean
 }

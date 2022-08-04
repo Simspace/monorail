@@ -5,10 +5,10 @@ export const EnumFilterStateTypeId = Symbol.for(
 )
 export type EnumFilterStateTypeId = typeof EnumFilterStateTypeId
 
-export interface EnumFilterState {
+export interface EnumFilterState<V = unknown> {
   [EnumFilterStateTypeId]: EnumFilterStateTypeId
-  uiSelected: Set<unknown>
-  selected: Set<unknown>
+  uiSelected: Set<V>
+  selected: Set<V>
   searchText: string
   width: number
 }

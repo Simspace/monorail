@@ -5,7 +5,6 @@ import { Person } from '@mui/icons-material'
 import {
   DataGrid,
   DataGridProps,
-  GridColumns,
   GridValueGetterParams,
   MenuItem,
   Typography,
@@ -13,6 +12,7 @@ import {
 } from '../../..'
 import { story } from '../../../test-helpers/storybook'
 import { DataGridToolbar } from '../components/DataGridToolbar'
+import { createTable } from '../models/tableDef'
 
 export default {
   title: 'Data Grid/DataGrid',
@@ -110,11 +110,11 @@ interface FilterStoryRow {
   id: number
   firstName: string
   lastName: string
-  occupation: 'barista' | 'lifeguard' | 'waiter' | 'engineer' | 'designer'
+  occupation: string
   hireDate: Date
 }
 
-const filterStoryColumns: GridColumns<FilterStoryRow> = [
+const filterStoryColumns = createTable<FilterStoryRow>()(
   {
     field: 'id',
     headerName: 'ID',
@@ -191,7 +191,7 @@ const filterStoryColumns: GridColumns<FilterStoryRow> = [
       type: 'text',
     },
   },
-]
+)
 
 export const Filters = story(() => {
   const apiRef = useGridApiRef()
@@ -274,12 +274,13 @@ export const Filters = story(() => {
       hireDate: getRandomDate(),
     },
   ]
+
   return (
     <div style={{ height: 600, width: '100%' }}>
       <DataGridToolbar apiRef={apiRef} />
       <DataGrid
         apiRef={apiRef}
-        columns={filterStoryColumns}
+        columns={filterStoryColumns.columns}
         rows={rows}
         checkboxSelection
         disableSelectionOnClick
