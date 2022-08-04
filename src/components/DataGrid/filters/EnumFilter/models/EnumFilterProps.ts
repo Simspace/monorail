@@ -6,7 +6,6 @@ export interface EnumFilterProps<
   R extends GridValidRowModel = any,
   V = any,
   F = V,
-> {
-  def: EnumFilterDefinition<R, V, F>
+> extends Omit<EnumFilterDefinition<R, V, F>, 'type'> {
   field: string
 }

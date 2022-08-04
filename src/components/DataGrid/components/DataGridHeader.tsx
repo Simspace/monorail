@@ -11,6 +11,7 @@ export function DataGridHeader() {
   useInitializeGridSubState(apiRef, 'dateFilter', () => new Map())
   useInitializeGridSubState(apiRef, 'enumFilter', () => new Map())
   useInitializeGridSubState(apiRef, 'numericFilter', () => new Map())
+  useInitializeGridSubState(apiRef, 'filterSubscriptions', () => new Map())
 
   const isGrouped = React.useMemo(
     () => apiRef.current.state.rowGrouping.model.length !== 0,
