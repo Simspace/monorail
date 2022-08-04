@@ -1,5 +1,5 @@
 import type {} from '@mui/lab/themeAugmentation'
-import { buttonClasses, Components, Theme } from '@mui/material'
+import { buttonClasses, ButtonProps, Components, Theme } from '@mui/material'
 
 declare module '@mui/material/Button' {
   /**
@@ -83,42 +83,109 @@ export const MonorailButtonOverrides: Components<Theme>['MuiButton'] = {
         fontSize: theme.typography.pxToRem(24),
       },
     }),
-    contained: ({ ownerState: { color = 'primary' }, theme }) => {
-      return {
-        color: theme.palette[color].contrastText,
-        '&:hover': {
-          backgroundColor: theme.palette[color].hover,
-        },
-        '&:active': {
-          backgroundColor: theme.palette[color].active,
-        },
+    contained: ({
+      ownerState: { color = 'primary', inverted = false },
+      theme,
+    }: {
+      ownerState: {
+        color?: ButtonProps['color']
+        inverted?: boolean
       }
+      theme: Theme
+    }) => {
+      return inverted
+        ? {
+            backgroundColor: theme.palette.common.white,
+            color:
+              color === 'secondary' || color === 'warning'
+                ? 'currentColor'
+                : theme.palette[color].weakEmphasis.contrastText,
+            '&:hover': {
+              backgroundColor: theme.palette[color].weakEmphasis.hover,
+            },
+            '&:active': {
+              backgroundColor: theme.palette[color].weakEmphasis.active,
+            },
+          }
+        : {
+            color: theme.palette[color].contrastText,
+            '&:hover': {
+              backgroundColor: theme.palette[color].hover,
+            },
+            '&:active': {
+              backgroundColor: theme.palette[color].active,
+            },
+          }
     },
-    outlined: ({ ownerState: { color = 'primary' }, theme }) => {
-      return {
-        backgroundColor: theme.palette.common.white,
-        boxShadow: `inset 0 0 0 1px ${theme.palette[color].border.light}`,
-        color: theme.palette[color].weakEmphasis.contrastText,
-        '&:hover': {
-          border: 'none',
-          backgroundColor: theme.palette[color].weakEmphasis.hover,
-          boxShadow: `inset 0 0 0 1px ${theme.palette[color].border.main}`,
-        },
-        '&:active': {
-          backgroundColor: theme.palette[color].weakEmphasis.active,
-        },
+    outlined: ({
+      ownerState: { color = 'primary', inverted = false },
+      theme,
+    }: {
+      ownerState: {
+        color?: ButtonProps['color']
+        inverted?: boolean
       }
+      theme: Theme
+    }) => {
+      return inverted
+        ? {
+            backgroundColor: 'transparent',
+            color: 'currentColor',
+            boxShadow: `inset 0 0 0 1px currentColor`,
+            '&:hover': {
+              border: 'none',
+              backgroundColor: theme.palette[color].hover,
+              boxShadow: `inset 0 0 0 1px currentColor`,
+            },
+            '&:active': {
+              backgroundColor: theme.palette[color].active,
+              boxShadow: `inset 0 0 0 1px currentColor`,
+            },
+          }
+        : {
+            backgroundColor: theme.palette.common.white,
+            boxShadow: `inset 0 0 0 1px ${theme.palette[color].border.light}`,
+            color: theme.palette[color].weakEmphasis.contrastText,
+            '&:hover': {
+              border: 'none',
+              backgroundColor: theme.palette[color].weakEmphasis.hover,
+              boxShadow: `inset 0 0 0 1px ${theme.palette[color].border.main}`,
+            },
+            '&:active': {
+              backgroundColor: theme.palette[color].weakEmphasis.active,
+            },
+          }
     },
-    text: ({ ownerState: { color = 'primary' }, theme }) => {
-      return {
-        color: theme.palette[color].weakEmphasis.contrastText,
-        '&:hover': {
-          backgroundColor: theme.palette[color].weakEmphasis.hover,
-        },
-        '&:active': {
-          backgroundColor: theme.palette[color].weakEmphasis.active,
-        },
+    text: ({
+      ownerState: { color = 'primary', inverted = false },
+      theme,
+    }: {
+      ownerState: {
+        color?: ButtonProps['color']
+        inverted?: boolean
       }
+      theme: Theme
+    }) => {
+      return inverted
+        ? {
+            backgroundColor: 'transparent',
+            color: 'currentColor',
+            '&:hover': {
+              backgroundColor: theme.palette[color].hover,
+            },
+            '&:active': {
+              backgroundColor: theme.palette[color].active,
+            },
+          }
+        : {
+            color: theme.palette[color].weakEmphasis.contrastText,
+            '&:hover': {
+              backgroundColor: theme.palette[color].weakEmphasis.hover,
+            },
+            '&:active': {
+              backgroundColor: theme.palette[color].weakEmphasis.active,
+            },
+          }
     },
     startIcon: ({ ownerState, theme }) => {
       switch (ownerState.size) {
