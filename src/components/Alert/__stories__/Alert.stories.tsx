@@ -114,6 +114,86 @@ export const Actions = story<AlertProps>(
         >
           This is a success alert — check it out!
         </Alert>
+        <Alert
+          variant="filled"
+          severity="error"
+          action={
+            <Stack direction="row" gap={2}>
+              <Button variant="outlined" size="small" color="error" inverted>
+                Close
+              </Button>
+              <Button size="small" color="error" inverted>
+                Undo
+              </Button>
+            </Stack>
+          }
+        >
+          This is an error alert — check it out!
+        </Alert>
+        <Alert
+          variant="filled"
+          severity="warning"
+          action={
+            <Stack direction="row" gap={2}>
+              <Button variant="outlined" size="small" color="warning" inverted>
+                Close
+              </Button>
+              <Button size="small" color="warning" inverted>
+                Undo
+              </Button>
+            </Stack>
+          }
+        >
+          This is a warning alert — check it out!
+        </Alert>
+        <Alert
+          variant="filled"
+          severity="info"
+          action={
+            <Stack direction="row" gap={2}>
+              <Button variant="outlined" size="small" inverted>
+                Close
+              </Button>
+              <Button size="small" inverted>
+                Undo
+              </Button>
+            </Stack>
+          }
+        >
+          This is an info alert — check it out!
+        </Alert>
+        <Alert
+          variant="filled"
+          severity="success"
+          action={
+            <Stack direction="row" gap={2}>
+              <Button variant="outlined" size="small" color="success" inverted>
+                Close
+              </Button>
+              <Button size="small" color="success" inverted>
+                Undo
+              </Button>
+            </Stack>
+          }
+        >
+          This is a success alert — check it out!
+        </Alert>
+        <Alert
+          variant="filled"
+          severity="success"
+          action={
+            <Stack direction="row" gap={2}>
+              <Button variant="text" size="small" color="success" inverted>
+                Close
+              </Button>
+              <Button size="small" color="success" inverted>
+                Undo
+              </Button>
+            </Stack>
+          }
+        >
+          This is a success alert — check it out!
+        </Alert>
       </Stack>
     )
   },
@@ -244,6 +324,21 @@ export const Variants = story<AlertProps>(
             This is an info alert — check it out!
           </Alert>
           <Alert variant="standard" severity="success">
+            This is a success alert — check it out!
+          </Alert>
+        </Stack>
+        <Stack sx={{ width: '100%' }} spacing={2}>
+          <Typography>Filled</Typography>
+          <Alert variant="filled" severity="error">
+            This is an error alert — check it out!
+          </Alert>
+          <Alert variant="filled" severity="warning">
+            This is a warning alert — check it out!
+          </Alert>
+          <Alert variant="filled" severity="info">
+            This is an info alert — check it out!
+          </Alert>
+          <Alert variant="filled" severity="success">
             This is a success alert — check it out!
           </Alert>
         </Stack>
