@@ -5,6 +5,7 @@ import { FormControlLabel } from '../../FormControlLabel'
 import { MenuItem } from '../../MenuItem'
 import { Pagination } from '../../Pagination'
 import { Select, SelectChangeEvent } from '../../Select'
+import { SelectionFooter } from '../../SelectionFooter'
 import { Stack } from '../../Stack'
 import { Typography } from '../../Typography'
 import {
@@ -31,31 +32,11 @@ function DataGridSimpleFooter() {
   const apiRef = useGridApiContext()
   const rowCount = useGridSelector(apiRef, gridRowCountSelector)
   return (
-    <Box
-      sx={theme => ({
-        height: theme.spacing(9.5),
-        backgroundColor: theme.palette.default.mediumEmphasis.main,
-        boxShadow: '0 -2px 1px -1px rgba(0,0,0,.2)',
-        padding: theme.spacing(0, 6),
-      })}
-    >
-      <Stack
-        height="100%"
-        direction="row"
-        justifyContent="space-between"
-        alignItems="center"
-      >
-        <Typography variant="body2">
-          {apiRef.current.state.selection.length} Selected
-        </Typography>
-        <Stack direction="row">
-          <Typography variant="body2">Showing&nbsp;</Typography>
-          <Typography variant="subtitle2">
-            {rowCount} of {rowCount}
-          </Typography>
-        </Stack>
-      </Stack>
-    </Box>
+    <SelectionFooter
+      selectedCount={apiRef.current.state.selection.length}
+      shownCount={rowCount}
+      totalCount={rowCount}
+    />
   )
 }
 

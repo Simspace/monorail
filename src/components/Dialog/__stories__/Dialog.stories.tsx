@@ -7,15 +7,22 @@ import useMediaQuery from '@mui/material/useMediaQuery'
 import {
   Box,
   Button,
+  Checkbox,
   Dialog,
   DialogActions,
   DialogContent,
   DialogContentText,
+  DialogHeader,
   DialogProps,
   DialogTitle,
   FormControl,
   FormControlLabel,
   InputLabel,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
   MenuItem,
   Paper,
   PaperProps,
@@ -29,6 +36,8 @@ import {
 } from '../../..'
 import { story } from '../../../test-helpers/storybook'
 import { longParagraph } from '../../../test-helpers/testData'
+import { useForceUpdate } from '../../../utils/hooks/useForceUpdate'
+import { SelectionFooter } from '../../SelectionFooter'
 
 export interface SimpleDialogProps {
   open: boolean
@@ -98,6 +107,69 @@ const Template = story<DialogProps>(
 
 /** Default story for Dialog (edit/remove by hand if needed) */
 export const Default = story(Template)
+
+export const SelectionDialog = story(() => {
+  const [open, setOpen] = React.useState(false)
+
+  const checked = React.useRef(new Set<number>())
+  const forceUpdate = useForceUpdate()
+
+  const handleClickOpen = () => {
+    setOpen(true)
+  }
+
+  const handleClickClose = () => {
+    setOpen(false)
+  }
+
+  const handleToggle = (value: number) => () => {
+    if (checked.current.has(value)) {
+      checked.current.delete(value)
+    } else {
+      checked.current.add(value)
+    }
+    forceUpdate()
+  }
+
+  const items = Array(20)
+    .fill(0)
+    .map((_, index) => (
+      <ListItem disablePadding disableGutters sx={{ padding: 0 }} key={index}>
+        <ListItemButton onClick={handleToggle(index)}>
+          <ListItemIcon>
+            <Checkbox
+              checked={checked.current.has(index)}
+              edge="start"
+              tabIndex={-1}
+            />
+          </ListItemIcon>
+          <ListItemText primary="List Item" />
+        </ListItemButton>
+      </ListItem>
+    ))
+
+  return (
+    <div style={{ display: 'flex', justifyContent: 'center' }}>
+      <Button onClick={handleClickOpen}>Open dialog</Button>
+      <Dialog maxWidth="sm" fullWidth open={open} onClose={handleClickClose}>
+        <DialogHeader title="Dialog Title" />
+        <DialogContent disablePadding>
+          <List disablePadding>{items}</List>
+        </DialogContent>
+        <SelectionFooter
+          selectedCount={checked.current.size}
+          shownCount={items.length}
+          totalCount={items.length}
+          disableBorder
+        />
+        <DialogActions>
+          <Button variant="text">Medium</Button>
+          <Button onClick={handleClickClose}>Close</Button>
+        </DialogActions>
+      </Dialog>
+    </div>
+  )
+})
 
 export const Sizes = story<DialogProps>(
   () => {
