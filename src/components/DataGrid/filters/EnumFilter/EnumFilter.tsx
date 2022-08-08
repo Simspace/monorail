@@ -1,20 +1,21 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import React from 'react'
 import { Search } from '@mui/icons-material'
+import { SxProps, Theme } from '@mui/material'
 
 import { filterMap } from '../../../../utils/array'
 import { useForceUpdate } from '../../../../utils/hooks/useForceUpdate'
 import { combineSxProps } from '../../../../utils/sx'
 import { Checkbox } from '../../../Checkbox'
-import {
-  FormControlLabel,
-  FormControlLabelProps,
-} from '../../../FormControlLabel'
 import { InputAdornment } from '../../../InputAdornment'
+import { List } from '../../../List'
+import { ListItem } from '../../../ListItem'
+import { ListItemButton, listItemButtonClasses } from '../../../ListItemButton'
+import { ListItemIcon } from '../../../ListItemIcon'
+import { ListItemText } from '../../../ListItemText'
 import { ScrollShadow } from '../../../ScrollShadow'
 import { Stack } from '../../../Stack'
 import { TextField } from '../../../TextField'
-import { Typography } from '../../../Typography'
 import { useGridApiContext } from '../../internal'
 import { ClearFilterButton } from '../components/ClearFilterButton'
 import { useDebouncedSyncFilter } from '../hooks/useDebouncedSyncFilter'
@@ -70,31 +71,15 @@ export function EnumFilter(props: EnumFilterProps) {
     [state, forceUpdate],
   )
 
-  const handleFilterItemChange = React.useCallback(
-    (value: unknown) =>
-      (event: React.SyntheticEvent<Element, Event>, checked: boolean) => {
-        if (checked) {
-          state.uiSelected.add(value)
-        } else {
-          state.uiSelected.delete(value)
-        }
-        forceUpdate()
-        syncFilter()
-      },
-    [state, forceUpdate, syncFilter],
-  )
-
-  const handleFilterItemKeyUp = React.useCallback(
-    (value: unknown) => (event: React.KeyboardEvent<HTMLLabelElement>) => {
-      if (event.key === 'Enter') {
-        if (state.uiSelected.has(value)) {
-          state.uiSelected.delete(value)
-        } else {
-          state.uiSelected.add(value)
-        }
-        forceUpdate()
-        syncFilter()
+  const handleFilterItemClick = React.useCallback(
+    (value: unknown) => (_event: React.MouseEvent<HTMLDivElement>) => {
+      if (state.uiSelected.has(value)) {
+        state.uiSelected.delete(value)
+      } else {
+        state.uiSelected.add(value)
       }
+      forceUpdate()
+      syncFilter()
     },
     [state, forceUpdate, syncFilter],
   )
@@ -136,7 +121,8 @@ export function EnumFilter(props: EnumFilterProps) {
         autoFocus
       />
       <ScrollShadow bottomShadow={isFiltered}>
-        <Stack
+        <List
+          disablePadding
           sx={theme => ({
             maxHeight: theme.spacing(76),
             flexDirection: 'column',
@@ -149,15 +135,13 @@ export function EnumFilter(props: EnumFilterProps) {
                 <EnumFilterItem
                   key={index}
                   label={label}
-                  value={value}
                   checked={state.uiSelected.has(value)}
-                  onChange={handleFilterItemChange(value)}
-                  onKeyUp={handleFilterItemKeyUp(value)}
+                  onClick={handleFilterItemClick(value)}
                 />
               )
             }
           })}
-        </Stack>
+        </List>
       </ScrollShadow>
       <ClearFilterButton
         sx={theme => ({
@@ -175,48 +159,58 @@ export function EnumFilter(props: EnumFilterProps) {
   )
 }
 
-interface EnumFilterItemProps<V>
-  extends Omit<FormControlLabelProps, 'control'> {
-  value: V
+interface EnumFilterItemProps {
+  label: string
+  checked: boolean
+  onClick: (event: React.MouseEvent<HTMLDivElement>) => void
+  sx?: SxProps<Theme>
 }
 
-const EnumFilterItem = React.memo(function EnumFilterItem<V>(
-  props: EnumFilterItemProps<V>,
+const EnumFilterItem = React.memo(function EnumFilterItem(
+  props: EnumFilterItemProps,
 ) {
-  const { label, value, sx, onChange, ...other } = props
+  const { label, sx, checked, onClick } = props
   return (
-    <FormControlLabel
-      {...other}
-      onChange={onChange}
-      value={value}
-      label={
-        <Typography
-          sx={theme => ({ margin: theme.spacing(0, 0, 0, 2) })}
-          variant="body1"
-        >
-          {label}
-        </Typography>
-      }
-      control={<Checkbox />}
+    <ListItem
+      disableGutters
+      disablePadding
+      dense
       sx={combineSxProps(
-        theme => ({
-          minHeight: theme.spacing(12),
+        {
           flex: 1,
           minWidth: 0,
           margin: 0,
-          padding: theme.spacing(0, 0, 0, 4),
-
-          '&:hover': {
-            backgroundColor: theme.palette.default.mediumEmphasis.main,
-          },
-          '& > p': {
+          padding: 0,
+          '& span': {
             whiteSpace: 'nowrap',
             overflow: 'hidden',
             textOverflow: 'ellipsis',
           },
-        }),
+        },
         sx,
       )}
-    />
+    >
+      <ListItemButton
+        sx={theme => ({
+          minHeight: theme.spacing(12),
+          padding: 0,
+          [`&.${listItemButtonClasses.focusVisible}`]: {
+            outline: 'none',
+            boxShadow: `inset 0 0 0 1px ${theme.palette.primary.focusRing.inner}, inset 0 0 0 4px ${theme.palette.primary.focusRing.outer}`,
+            borderRadius: 0,
+          },
+        })}
+        onClick={onClick}
+      >
+        <ListItemIcon
+          sx={theme => ({
+            margin: theme.spacing(0, 0, 0, 4),
+          })}
+        >
+          <Checkbox tabIndex={-1} edge="start" checked={checked} disableHover />
+        </ListItemIcon>
+        <ListItemText primary={label} />
+      </ListItemButton>
+    </ListItem>
   )
 })

@@ -141,6 +141,7 @@ export const SelectionDialog = story(() => {
               checked={checked.current.has(index)}
               edge="start"
               tabIndex={-1}
+              disableHover
             />
           </ListItemIcon>
           <ListItemText primary="List Item" />
