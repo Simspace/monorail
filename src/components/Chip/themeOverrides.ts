@@ -54,14 +54,14 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
     },
     outlined: ({ ownerState: { color = 'default' }, theme }) => {
       return {
-        backgroundColor: theme.palette.common.white,
+        backgroundColor: theme.palette.background.paper,
         borderColor: theme.palette[color].border.light,
         color:
           color === 'default'
             ? theme.palette.text.primary
             : theme.palette[color].weakEmphasis.contrastText,
         [`&.${chipClasses.focusVisible}`]: {
-          backgroundColor: theme.palette.common.white,
+          backgroundColor: theme.palette.background.paper,
         },
       }
     },

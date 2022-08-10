@@ -94,11 +94,11 @@ declare module '@mui/material/styles/createPalette' {
     }>
 
     chart?: Partial<{
-      blue: PaletteColorOptions
-      orange: PaletteColorOptions
-      teal: PaletteColorOptions
-      fuchsia: PaletteColorOptions
-      purple: PaletteColorOptions
+      blue: PaletteColorOptions | Record<string, string>
+      orange: PaletteColorOptions | Record<string, string>
+      teal: PaletteColorOptions | Record<string, string>
+      fuchsia: PaletteColorOptions | Record<string, string>
+      purple: PaletteColorOptions | Record<string, string>
     }>
 
     rating?: string
