@@ -1,4 +1,8 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
+/* eslint-disable import/no-extraneous-dependencies */
+import {
+  Meta as StorybookMeta,
+  Story as StorybookStory,
+} from '@storybook/react'
 import { configureAxe } from 'jest-axe'
 
 import { renderStory } from './render'
@@ -62,6 +66,9 @@ function isValidTargetElement(targetElement?: string): targetElement is string {
  * - https://github.com/jsdom/jsdom#unimplemented-parts-of-the-web-platform
  * - Verify it is/isn't checked with a `console.log(results)` below
  */
+export async function generateA11yStoryTests(
+  storyModule: Record<string, StorybookStory | StorybookMeta>,
+): Promise<void>
 export async function generateA11yStoryTests(
   storyModule: Record<string, Story | Meta>,
 ) {
