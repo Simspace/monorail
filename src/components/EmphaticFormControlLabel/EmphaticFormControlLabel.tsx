@@ -166,10 +166,10 @@ const EmphaticFormControlLabelRoot = styled('label', {
     [`& .${emphaticFormControlLabelClasses.control}`]: {
       cursor: 'default',
       [`& .${svgIconClasses.root}`]: {
-        color: theme.palette.error.weakEmphasis.contrastText,
+        color: theme.palette.error.lowEmphasis.contrastText,
       },
       [`&:hover .${svgIconClasses.root}`]: {
-        color: theme.palette.error.weakEmphasis.contrastText,
+        color: theme.palette.error.lowEmphasis.contrastText,
       },
     },
   },
@@ -180,10 +180,10 @@ const EmphaticFormControlLabelRoot = styled('label', {
     [`& .${emphaticFormControlLabelClasses.control}`]: {
       cursor: 'default',
       [`& .${svgIconClasses.root}`]: {
-        color: theme.palette.success.weakEmphasis.contrastText,
+        color: theme.palette.success.lowEmphasis.contrastText,
       },
       [`&:hover .${svgIconClasses.root}`]: {
-        color: theme.palette.success.weakEmphasis.contrastText,
+        color: theme.palette.success.lowEmphasis.contrastText,
       },
     },
   },

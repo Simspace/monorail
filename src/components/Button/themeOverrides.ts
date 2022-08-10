@@ -45,10 +45,10 @@ export const MonorailButtonOverrides: Components<Theme>['MuiButton'] = {
             opacity: theme.palette.action.disabledOpacity,
           }),
           ...(variant === 'outlined' && {
-            color: theme.palette[color].weakEmphasis.disabled.text,
+            color: theme.palette[color].lowEmphasis.disabled.text,
           }),
           ...(variant === 'text' && {
-            color: theme.palette[color].weakEmphasis.disabled.text,
+            color: theme.palette[color].lowEmphasis.disabled.text,
           }),
         },
       }
@@ -99,12 +99,12 @@ export const MonorailButtonOverrides: Components<Theme>['MuiButton'] = {
             color:
               color === 'secondary' || color === 'warning'
                 ? 'currentColor'
-                : theme.palette[color].weakEmphasis.contrastText,
+                : theme.palette[color].lowEmphasis.contrastText,
             '&:hover': {
-              backgroundColor: theme.palette[color].weakEmphasis.hover,
+              backgroundColor: theme.palette[color].lowEmphasis.hover,
             },
             '&:active': {
-              backgroundColor: theme.palette[color].weakEmphasis.active,
+              backgroundColor: theme.palette[color].lowEmphasis.active,
             },
           }
         : {
@@ -145,14 +145,14 @@ export const MonorailButtonOverrides: Components<Theme>['MuiButton'] = {
         : {
             backgroundColor: theme.palette.common.white,
             boxShadow: `inset 0 0 0 1px ${theme.palette[color].border.light}`,
-            color: theme.palette[color].weakEmphasis.contrastText,
+            color: theme.palette[color].lowEmphasis.contrastText,
             '&:hover': {
               border: 'none',
-              backgroundColor: theme.palette[color].weakEmphasis.hover,
+              backgroundColor: theme.palette[color].lowEmphasis.hover,
               boxShadow: `inset 0 0 0 1px ${theme.palette[color].border.main}`,
             },
             '&:active': {
-              backgroundColor: theme.palette[color].weakEmphasis.active,
+              backgroundColor: theme.palette[color].lowEmphasis.active,
             },
           }
     },
@@ -178,12 +178,12 @@ export const MonorailButtonOverrides: Components<Theme>['MuiButton'] = {
             },
           }
         : {
-            color: theme.palette[color].weakEmphasis.contrastText,
+            color: theme.palette[color].lowEmphasis.contrastText,
             '&:hover': {
-              backgroundColor: theme.palette[color].weakEmphasis.hover,
+              backgroundColor: theme.palette[color].lowEmphasis.hover,
             },
             '&:active': {
-              backgroundColor: theme.palette[color].weakEmphasis.active,
+              backgroundColor: theme.palette[color].lowEmphasis.active,
             },
           }
     },

@@ -59,7 +59,7 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
         color:
           color === 'default'
             ? theme.palette.text.primary
-            : theme.palette[color].weakEmphasis.contrastText,
+            : theme.palette[color].lowEmphasis.contrastText,
         [`&.${chipClasses.focusVisible}`]: {
           backgroundColor: theme.palette.background.paper,
         },
@@ -87,11 +87,11 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
 
       const outlinedStyles: CSSInterpolation = {
         [`&.${chipClasses.clickable}:hover`]: {
-          backgroundColor: theme.palette[color].weakEmphasis.hover,
+          backgroundColor: theme.palette[color].lowEmphasis.hover,
         },
         [`&.${chipClasses.clickable}:active`]: {
           boxShadow: 'none',
-          backgroundColor: theme.palette[color].weakEmphasis.active,
+          backgroundColor: theme.palette[color].lowEmphasis.active,
         },
       }
 
@@ -105,10 +105,10 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
           backgroundColor: theme.palette.primary.mediumEmphasis.active,
         },
         [`& > .${chipClasses.deleteIcon}`]: {
-          color: theme.palette.primary.weakEmphasis.contrastText,
+          color: theme.palette.primary.lowEmphasis.contrastText,
         },
         [`& > .${chipClasses.icon}`]: {
-          color: theme.palette.primary.weakEmphasis.contrastText,
+          color: theme.palette.primary.lowEmphasis.contrastText,
         },
       }
 
@@ -133,34 +133,34 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
         '&:hover': {
           color:
             color === 'default'
-              ? theme.palette.default.weakEmphasis.contrastText
+              ? theme.palette.default.lowEmphasis.contrastText
               : color === 'secondary' || color === 'warning'
               ? theme.palette[color].shades[700]
               : theme.palette[color].mediumEmphasis.light,
         },
         color:
           color === 'default'
-            ? theme.palette.default.weakEmphasis.contrastText
+            ? theme.palette.default.lowEmphasis.contrastText
             : color === 'secondary' || color === 'warning'
             ? theme.palette[color].shades[600]
             : theme.palette[color].mediumEmphasis.light,
       }
 
       const outlinedStyles: CSSInterpolation = {
-        color: theme.palette[color].weakEmphasis.contrastText,
+        color: theme.palette[color].lowEmphasis.contrastText,
         '&:hover': {
-          color: theme.palette[color].weakEmphasis.contrastText,
+          color: theme.palette[color].lowEmphasis.contrastText,
         },
       }
 
       const rectangularStyles: CSSInterpolation = {
         color: !clickable
-          ? theme.palette.default.weakEmphasis.contrastText
-          : theme.palette.primary.weakEmphasis.contrastText,
+          ? theme.palette.default.lowEmphasis.contrastText
+          : theme.palette.primary.lowEmphasis.contrastText,
         '&:hover': {
           color: !clickable
-            ? theme.palette.default.weakEmphasis.contrastText
-            : theme.palette.primary.weakEmphasis.contrastText,
+            ? theme.palette.default.lowEmphasis.contrastText
+            : theme.palette.primary.lowEmphasis.contrastText,
         },
       }
 
@@ -178,7 +178,7 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
       const filledStyles: CSSInterpolation = {
         color:
           color === 'default'
-            ? theme.palette.default.weakEmphasis.contrastText
+            ? theme.palette.default.lowEmphasis.contrastText
             : theme.palette.common.white,
         backgroundColor:
           color === 'default'
@@ -192,12 +192,12 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
       }
 
       const readOnlyRectangularStyles: CSSInterpolation = {
-        color: theme.palette.default.weakEmphasis.contrastText,
+        color: theme.palette.default.lowEmphasis.contrastText,
         backgroundColor: theme.palette.default.shades[300],
       }
 
       const clickableRectangularStyles: CSSInterpolation = {
-        color: theme.palette.primary.weakEmphasis.contrastText,
+        color: theme.palette.primary.lowEmphasis.contrastText,
         backgroundColor: theme.palette.primary.shades[300],
       }
 

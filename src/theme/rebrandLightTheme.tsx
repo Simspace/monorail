@@ -241,19 +241,7 @@ const palette: PaletteOptions = {
       background: RawColor.Blue400,
     },
 
-    mediumEmphasis: {
-      light: RawColor.Blue050,
-      main: RawColor.Blue100,
-      dark: RawColor.Blue200,
-      contrastText: RawColor.Blue800,
-      hover: RawColor.Blue200,
-      active: RawColor.Blue300,
-      disabled: {
-        background: RawColor.Blue050,
-      },
-    },
-
-    weakEmphasis: {
+    lowEmphasis: {
       transparent: RawColor.Transparent,
       main: RawColor.White,
       dark: RawColor.Blue050,
@@ -298,19 +286,7 @@ const palette: PaletteOptions = {
       background: RawColor.Orange100,
     },
 
-    mediumEmphasis: {
-      light: RawColor.Orange050,
-      main: RawColor.Orange100,
-      dark: RawColor.Orange200,
-      contrastText: RawColor.Orange800,
-      hover: RawColor.Orange200,
-      active: RawColor.Orange300,
-      disabled: {
-        background: RawColor.Orange050,
-      },
-    },
-
-    weakEmphasis: {
+    lowEmphasis: {
       transparent: RawColor.Transparent,
       main: RawColor.White,
       dark: RawColor.Orange050,
@@ -356,19 +332,7 @@ const palette: PaletteOptions = {
       background: RawColor.Grey400,
     },
 
-    mediumEmphasis: {
-      light: RawColor.Grey050,
-      main: RawColor.Grey100,
-      dark: RawColor.Grey200,
-      contrastText: RawColor.Grey900,
-      hover: RawColor.Grey200,
-      active: RawColor.Grey300,
-      disabled: {
-        background: RawColor.Grey050,
-      },
-    },
-
-    weakEmphasis: {
+    lowEmphasis: {
       transparent: RawColor.Transparent,
       main: RawColor.White,
       dark: RawColor.Grey050,
@@ -430,19 +394,7 @@ const palette: PaletteOptions = {
       background: RawColor.Green400,
     },
 
-    mediumEmphasis: {
-      light: RawColor.Green050,
-      main: RawColor.Green100,
-      dark: RawColor.Green200,
-      contrastText: RawColor.Green800,
-      hover: RawColor.Green200,
-      active: RawColor.Green300,
-      disabled: {
-        background: RawColor.Green050,
-      },
-    },
-
-    weakEmphasis: {
+    lowEmphasis: {
       transparent: RawColor.Transparent,
       main: RawColor.White,
       dark: RawColor.Green050,
@@ -487,19 +439,7 @@ const palette: PaletteOptions = {
       background: RawColor.Red400,
     },
 
-    mediumEmphasis: {
-      light: RawColor.Red050,
-      main: RawColor.Red100,
-      dark: RawColor.Red200,
-      contrastText: RawColor.Red800,
-      hover: RawColor.Red200,
-      active: RawColor.Red300,
-      disabled: {
-        background: RawColor.Red050,
-      },
-    },
-
-    weakEmphasis: {
+    lowEmphasis: {
       transparent: RawColor.Transparent,
       main: RawColor.White,
       dark: RawColor.Red050,
@@ -544,19 +484,7 @@ const palette: PaletteOptions = {
       background: RawColor.Orange100,
     },
 
-    mediumEmphasis: {
-      light: RawColor.Orange050,
-      main: RawColor.Orange100,
-      dark: RawColor.Orange200,
-      contrastText: RawColor.Orange800,
-      hover: RawColor.Orange200,
-      active: RawColor.Orange300,
-      disabled: {
-        background: RawColor.Orange050,
-      },
-    },
-
-    weakEmphasis: {
+    lowEmphasis: {
       transparent: RawColor.Transparent,
       main: RawColor.White,
       dark: RawColor.Orange050,
@@ -601,19 +529,7 @@ const palette: PaletteOptions = {
       background: RawColor.Blue400,
     },
 
-    mediumEmphasis: {
-      light: RawColor.Blue050,
-      main: RawColor.Blue100,
-      dark: RawColor.Blue200,
-      contrastText: RawColor.Blue800,
-      hover: RawColor.Blue200,
-      active: RawColor.Blue300,
-      disabled: {
-        background: RawColor.Blue050,
-      },
-    },
-
-    weakEmphasis: {
+    lowEmphasis: {
       transparent: RawColor.Transparent,
       main: RawColor.White,
       dark: RawColor.Blue050,

@@ -4,7 +4,7 @@ export const MonorailRadioOverrides: Components<Theme>['MuiRadio'] = {
   defaultProps: {},
   styleOverrides: {
     root: ({ ownerState: { color = 'primary', size = 'medium' }, theme }) => ({
-      color: theme.palette.default.weakEmphasis.contrastText,
+      color: theme.palette.default.lowEmphasis.contrastText,
       padding: theme.spacing(2),
       ...(size === 'small' && {
         padding: 6,
