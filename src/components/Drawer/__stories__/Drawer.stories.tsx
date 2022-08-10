@@ -1,6 +1,5 @@
 // Edit this file to add new stories
-import React, { useCallback, useState } from 'react'
-import Draggable, { DraggableEvent } from 'react-draggable'
+import React from 'react'
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft'
 import ChevronRightIcon from '@mui/icons-material/ChevronRight'
 import InboxIcon from '@mui/icons-material/Inbox'
@@ -30,6 +29,7 @@ import {
   useTheme,
 } from '../../..'
 import { story } from '../../../test-helpers/storybook'
+import { ResizableDrawer } from '../../ResizableDrawer'
 
 /**
  * Metadata for Drawer stories - update/extend as needed
@@ -490,88 +490,12 @@ Persistent navigation drawers are acceptable for all sizes larger than mobile. T
   },
 )
 
-const MIN_DRAWER_WIDTH = 60
-const MAX_DRAWER_WIDTH = 600
-const HANDLE_WIDTH = 10
-const HANDLE_POSITION = HANDLE_WIDTH / 2
-
-export const ResizableDrawer = story<DrawerProps>(
+export const ResizableDrawer_ = story<DrawerProps>(
   () => {
-    const [newDrawerWidth, setNewDrawerWidth] = useState<number>(DRAWER_WIDTH)
-
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const handleMouseDown = (e: DraggableEvent) => {
-      document.addEventListener('mouseup', handleMouseUp, true)
-      document.addEventListener('mousemove', handleMouseMove, true)
-    }
-
-    const handleMouseUp = () => {
-      document.removeEventListener('mouseup', handleMouseUp, true)
-      document.removeEventListener('mousemove', handleMouseMove, true)
-    }
-
-    const handleMouseMove = useCallback((e: MouseEvent) => {
-      const newWidth = e.clientX - document.body.offsetLeft
-      setNewDrawerWidth(newWidth)
-    }, [])
-
     return (
       <Box sx={{ display: 'flex' }}>
         <CssBaseline />
-        <Drawer
-          sx={{
-            flexShrink: 0,
-            minWidth: MIN_DRAWER_WIDTH,
-            maxWidth: MAX_DRAWER_WIDTH,
-            '& .MuiDrawer-paper': {
-              boxSizing: 'border-box',
-              overflowX: 'hidden',
-              minWidth: MIN_DRAWER_WIDTH,
-              maxWidth: MAX_DRAWER_WIDTH,
-            },
-          }}
-          variant="permanent"
-          anchor="left"
-          style={{
-            width: newDrawerWidth,
-          }}
-          PaperProps={{
-            style: { width: newDrawerWidth },
-          }}
-        >
-          <Draggable
-            axis="x"
-            onDrag={e => handleMouseDown(e)}
-            defaultPosition={{ x: DRAWER_WIDTH - HANDLE_POSITION, y: 0 }}
-            bounds={{
-              left: MIN_DRAWER_WIDTH - HANDLE_POSITION,
-              right: MAX_DRAWER_WIDTH - HANDLE_POSITION,
-            }}
-          >
-            <Box
-              sx={theme => ({
-                width: HANDLE_WIDTH,
-                height: '100%',
-                backgroundColor: 'transparent',
-                position: 'fixed',
-                top: 0,
-                bottom: 0,
-                cursor: 'col-resize',
-                transition: `${theme.transitions.create(['background-color'], {
-                  duration: theme.transitions.duration.short,
-                })}`,
-                zIndex: theme.zIndex.drawer + 1,
-
-                '&:hover': {
-                  backgroundColor: theme.palette.primary.main,
-                  transitionDelay: `${theme.transitions.duration.standard}ms`,
-                },
-                '&:active': {
-                  backgroundColor: theme.palette.primary.main,
-                },
-              })}
-            />
-          </Draggable>
+        <ResizableDrawer>
           <Toolbar />
           <Divider />
           <List>
@@ -617,7 +541,7 @@ export const ResizableDrawer = story<DrawerProps>(
               </ListItem>
             ))}
           </List>
-        </Drawer>
+        </ResizableDrawer>
 
         <Box
           component="main"
