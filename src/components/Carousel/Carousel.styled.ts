@@ -121,7 +121,7 @@ export const GliderCarousel = styled('div')(({ theme }) => ({
     '& .glider::-webkit-scrollbar-thumb': {
       opacity: 1,
       borderRadius: 99,
-      backgroundColor: theme.palette.default.mediumEmphasis.dark,
+      backgroundColor: theme.palette.default.lowEmphasis.dark,
       boxShadow: `0 0 1px ${theme.palette.common.white}25`,
     },
   },

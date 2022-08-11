@@ -23,7 +23,7 @@ export const MonorailMenuItemOverrides: Components<Theme>['MuiMenuItem'] = {
         minWidth: 48,
       },
       '&:active': {
-        backgroundColor: theme.palette.primary.mediumEmphasis.active,
+        backgroundColor: theme.palette.primary.lowEmphasis.active,
       },
       [`&.${menuItemClasses.selected}`]: {
         backgroundColor: theme.palette.action.selected,

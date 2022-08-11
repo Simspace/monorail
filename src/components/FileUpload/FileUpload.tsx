@@ -195,11 +195,11 @@ const DropTarget = styled('div', {
   ({ theme, onlyVisibleWhileDragging, isDragging, status, sx }) => {
     const dropTargetStatusStyles: Record<string, CSSProperties> = {
       [DROP_TARGET_STATUS.Active]: {
-        background: theme.palette.primary.mediumEmphasis.light,
+        background: theme.palette.primary.lowEmphasis.light,
         border: `2px dashed ${theme.palette.primary.border.light}`,
       },
       [DROP_TARGET_STATUS.Initial]: {
-        background: theme.palette.default.mediumEmphasis.light,
+        background: theme.palette.default.lowEmphasis.light,
         border: `2px dashed ${theme.palette.default.border.light}`,
       },
       [DROP_TARGET_STATUS.HasFile]: {
@@ -211,7 +211,7 @@ const DropTarget = styled('div', {
         border: `1px solid ${theme.palette.default.border.light}`,
       },
       error: {
-        background: theme.palette.error.mediumEmphasis.light,
+        background: theme.palette.error.lowEmphasis.light,
         border: `1px solid ${theme.palette.error.border.light}`,
       },
     }

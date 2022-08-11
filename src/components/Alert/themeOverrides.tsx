@@ -32,8 +32,8 @@ export const MonorailAlertOverrides: Components<Theme>['MuiAlert'] = {
     standard: ({ ownerState, theme }) => {
       const severity = ownerState?.severity ?? 'success'
       return {
-        color: theme.palette[severity].mediumEmphasis.contrastText,
-        backgroundColor: theme.palette[severity].mediumEmphasis.light,
+        color: theme.palette[severity].lowEmphasis.contrastText,
+        backgroundColor: theme.palette[severity].lowEmphasis.light,
         [`& .${alertClasses.icon}`]: {
           color: theme.palette[severity].lowEmphasis.contrastText,
         },

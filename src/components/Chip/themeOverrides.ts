@@ -26,13 +26,13 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
           border: '1px solid transparent',
           borderRadius: 4,
           color: theme.palette.text.primary,
-          backgroundColor: theme.palette.default.mediumEmphasis.main,
+          backgroundColor: theme.palette.default.lowEmphasis.main,
           [`&.${chipClasses.focusVisible}`]: {
             boxShadow: `0 0 0 3px ${theme.palette.default.focusRing.outer}`,
             border: `1px solid ${theme.palette.default.focusRing.inner}`,
             backgroundColor: !clickable
-              ? theme.palette.default.mediumEmphasis.main
-              : theme.palette.primary.mediumEmphasis.main,
+              ? theme.palette.default.lowEmphasis.main
+              : theme.palette.primary.lowEmphasis.main,
           },
         }),
       }
@@ -42,12 +42,12 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
         border: '1px solid transparent',
         backgroundColor:
           color === 'default'
-            ? theme.palette[color].mediumEmphasis.main
+            ? theme.palette[color].lowEmphasis.main
             : theme.palette[color].main,
         [`&.${chipClasses.focusVisible}`]: {
           backgroundColor:
             color === 'default'
-              ? theme.palette[color].mediumEmphasis.main
+              ? theme.palette[color].lowEmphasis.main
               : theme.palette[color].main,
         },
       }
@@ -73,14 +73,14 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
         '&:hover': {
           backgroundColor:
             color === 'default'
-              ? theme.palette[color].mediumEmphasis.hover
+              ? theme.palette[color].lowEmphasis.hover
               : theme.palette[color].hover,
         },
         '&:active': {
           boxShadow: 'none',
           backgroundColor:
             color === 'default'
-              ? theme.palette[color].mediumEmphasis.active
+              ? theme.palette[color].lowEmphasis.active
               : theme.palette[color].active,
         },
       }
@@ -96,13 +96,13 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
       }
 
       const clickableRectangularStyles: CSSInterpolation = {
-        backgroundColor: theme.palette.primary.mediumEmphasis.main,
+        backgroundColor: theme.palette.primary.lowEmphasis.main,
         '&:hover': {
-          backgroundColor: theme.palette.primary.mediumEmphasis.hover,
+          backgroundColor: theme.palette.primary.lowEmphasis.hover,
         },
         '&:active': {
           boxShadow: 'none',
-          backgroundColor: theme.palette.primary.mediumEmphasis.active,
+          backgroundColor: theme.palette.primary.lowEmphasis.active,
         },
         [`& > .${chipClasses.deleteIcon}`]: {
           color: theme.palette.primary.lowEmphasis.contrastText,
@@ -136,14 +136,14 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
               ? theme.palette.default.lowEmphasis.contrastText
               : color === 'secondary' || color === 'warning'
               ? theme.palette[color].shades[700]
-              : theme.palette[color].mediumEmphasis.light,
+              : theme.palette[color].lowEmphasis.light,
         },
         color:
           color === 'default'
             ? theme.palette.default.lowEmphasis.contrastText
             : color === 'secondary' || color === 'warning'
             ? theme.palette[color].shades[600]
-            : theme.palette[color].mediumEmphasis.light,
+            : theme.palette[color].lowEmphasis.light,
       }
 
       const outlinedStyles: CSSInterpolation = {
@@ -183,7 +183,7 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
         backgroundColor:
           color === 'default'
             ? theme.palette.default.shades[300]
-            : theme.palette[color].mediumEmphasis.contrastText,
+            : theme.palette[color].lowEmphasis.contrastText,
       }
 
       const outlinedStyles: CSSInterpolation = {
