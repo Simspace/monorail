@@ -3,6 +3,16 @@ import {
   StaticDateRangePickerProps as MuiStaticDateRangePickerProps,
 } from '@mui/x-date-pickers-pro'
 
+/**
+ *
+ * Demos:
+ *
+ * - [Date Range Picker](https://mui.com/x/react-date-pickers/date-range-picker/)
+ *
+ * API:
+ *
+ * - [StaticDateRangePicker API](https://mui.com/x/api/date-pickers/static-date-range-picker/)
+ */
 export const StaticDateRangePicker: typeof MuiStaticDateRangePicker =
   MuiStaticDateRangePicker
 
