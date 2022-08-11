@@ -243,7 +243,7 @@ const palette: PaletteOptions = {
     },
 
     lowEmphasis: {
-      transparent: RawColor.Transparent,
+      light: RawColor.Transparent,
       main: RawColor.White,
       dark: RawColor.Blue800,
       contrastText: RawColor.Blue200,
@@ -288,7 +288,7 @@ const palette: PaletteOptions = {
     },
 
     lowEmphasis: {
-      transparent: RawColor.Transparent,
+      light: RawColor.Transparent,
       main: RawColor.White,
       dark: RawColor.Orange050,
       contrastText: RawColor.Orange600,
@@ -334,7 +334,7 @@ const palette: PaletteOptions = {
     },
 
     lowEmphasis: {
-      transparent: RawColor.Transparent,
+      light: RawColor.Transparent,
       main: RawColor.Grey900,
       dark: RawColor.Grey050,
       contrastText: RawColor.Grey400,
@@ -396,7 +396,7 @@ const palette: PaletteOptions = {
     },
 
     lowEmphasis: {
-      transparent: RawColor.Transparent,
+      light: RawColor.Transparent,
       main: RawColor.White,
       dark: RawColor.Green050,
       contrastText: RawColor.Green600,
@@ -441,7 +441,7 @@ const palette: PaletteOptions = {
     },
 
     lowEmphasis: {
-      transparent: RawColor.Transparent,
+      light: RawColor.Transparent,
       main: RawColor.White,
       dark: RawColor.Red050,
       contrastText: RawColor.Red600,
@@ -486,7 +486,7 @@ const palette: PaletteOptions = {
     },
 
     lowEmphasis: {
-      transparent: RawColor.Transparent,
+      light: RawColor.Transparent,
       main: RawColor.White,
       dark: RawColor.Orange050,
       contrastText: RawColor.Orange600,
@@ -531,7 +531,7 @@ const palette: PaletteOptions = {
     },
 
     lowEmphasis: {
-      transparent: RawColor.Transparent,
+      light: RawColor.Transparent,
       main: RawColor.White,
       dark: RawColor.Blue050,
       contrastText: RawColor.Blue600,

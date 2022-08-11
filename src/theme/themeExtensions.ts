@@ -149,7 +149,7 @@ declare module '@mui/material/styles/createPalette' {
      * Commonly used for `outlined` and `text` variants.
      */
     lowEmphasis?: Partial<{
-      transparent: string
+      light: string
       main: string
       dark: string
       contrastText: string
