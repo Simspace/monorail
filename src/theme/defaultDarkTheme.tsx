@@ -218,7 +218,7 @@ const palette: PaletteOptions = {
       light: RawColor.Blue800,
       main: RawColor.Grey900,
       dark: RawColor.Blue700,
-      contrastText: RawColor.Blue200,
+      contrastText: RawColor.Blue500,
       hover: RawColor.Blue700,
       active: RawColor.Blue800,
       disabled: {
@@ -263,7 +263,7 @@ const palette: PaletteOptions = {
       light: RawColor.Orange800,
       main: RawColor.Grey900,
       dark: RawColor.Orange700,
-      contrastText: RawColor.Orange200,
+      contrastText: RawColor.Orange500,
       hover: RawColor.Orange700,
       active: RawColor.Orange800,
       disabled: {
@@ -309,7 +309,7 @@ const palette: PaletteOptions = {
       light: RawColor.Grey800,
       main: RawColor.Grey900,
       dark: RawColor.Grey700,
-      contrastText: RawColor.Grey200,
+      contrastText: RawColor.Grey500,
       hover: RawColor.Grey700,
       active: RawColor.Grey800,
       selected: RawColor.Grey800,
@@ -371,7 +371,7 @@ const palette: PaletteOptions = {
       light: RawColor.Green800,
       main: RawColor.Grey900,
       dark: RawColor.Green700,
-      contrastText: RawColor.Green200,
+      contrastText: RawColor.Green500,
       hover: RawColor.Green700,
       active: RawColor.Green800,
       disabled: {
@@ -416,7 +416,7 @@ const palette: PaletteOptions = {
       light: RawColor.Red800,
       main: RawColor.Grey900,
       dark: RawColor.Red700,
-      contrastText: RawColor.Red200,
+      contrastText: RawColor.Red500,
       hover: RawColor.Red700,
       active: RawColor.Red800,
       disabled: {
@@ -461,7 +461,7 @@ const palette: PaletteOptions = {
       light: RawColor.Orange800,
       main: RawColor.Grey900,
       dark: RawColor.Orange700,
-      contrastText: RawColor.Orange200,
+      contrastText: RawColor.Orange500,
       hover: RawColor.Orange700,
       active: RawColor.Orange800,
       disabled: {
@@ -506,7 +506,7 @@ const palette: PaletteOptions = {
       light: RawColor.Blue800,
       main: RawColor.Grey900,
       dark: RawColor.Blue700,
-      contrastText: RawColor.Blue200,
+      contrastText: RawColor.Blue500,
       hover: RawColor.Blue700,
       active: RawColor.Blue800,
       disabled: {

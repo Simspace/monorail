@@ -98,7 +98,7 @@ export const MonorailButtonOverrides: Components<Theme>['MuiButton'] = {
             backgroundColor: theme.palette.common.white,
             color:
               color === 'secondary' || color === 'warning'
-                ? 'currentColor'
+                ? theme.palette.getContrastText(theme.palette[color].main)
                 : theme.palette[color].lowEmphasis.contrastText,
             '&:hover': {
               backgroundColor: theme.palette[color].lowEmphasis.hover,
@@ -171,10 +171,10 @@ export const MonorailButtonOverrides: Components<Theme>['MuiButton'] = {
             backgroundColor: 'transparent',
             color: 'currentColor',
             '&:hover': {
-              backgroundColor: theme.palette[color].hover,
+              backgroundColor: theme.palette[color].lowEmphasis.hover,
             },
             '&:active': {
-              backgroundColor: theme.palette[color].active,
+              backgroundColor: theme.palette[color].lowEmphasis.active,
             },
           }
         : {

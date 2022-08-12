@@ -67,6 +67,22 @@ const buttons = variants.map(variant => (
       </React.Fragment>
     ))}
     <Typography variant="h2" margin={2}>
+      inverted
+    </Typography>
+    <Stack direction="row" spacing={2} margin={2}>
+      {colors.map(color => (
+        <Button
+          variant={variant}
+          color={color}
+          size="medium"
+          key={`${variant}-${color}-inverted`}
+          inverted
+        >
+          {color}
+        </Button>
+      ))}
+    </Stack>
+    <Typography variant="h2" margin={2}>
       disabled
     </Typography>
     <Stack direction="row" spacing={2} margin={2}>

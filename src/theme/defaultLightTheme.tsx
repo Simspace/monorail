@@ -573,10 +573,10 @@ const palette: PaletteOptions = {
     disabledOpacity: 0.4, // default = 0.38
     // focus: 'rgba(0,0,0, 0.12)',
     // focusOpacity: 0.12,
-    hover: RawColor.Blue050,
+    hover: RawColor.Blue100,
     // hover: 'rgba(0,0,0,0.4)',
     // hoverOpacity: 0.04,
-    selected: RawColor.Blue100,
+    selected: RawColor.Blue200,
     // selected: 'rgba(0,0,0,0.8)',
     // selectedOpacity: 0.08,
   },
