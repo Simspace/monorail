@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { defaultDarkTheme } from '../src/theme/defaultDarkTheme'
 import { defaultLightTheme } from '../src/theme/defaultLightTheme'
 import { pcteLightTheme } from '../src/theme/pcteLightTheme'
@@ -10,14 +10,13 @@ import { StyledEngineProvider } from '@mui/material/styles'
 import { DecoratorFn, Parameters } from '@storybook/react'
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
-import { excludeProps } from '../src/utils/styled/excludeProps'
 
 /**
  * Global storybook parameters
  */
 export const parameters: Parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
-  layout: 'fullscreen',
+  layout: 'padded',
   controls: {
     matchers: {
       //color: /(background|color)$/i, // MUI uses MUI-specific color identifiers for most color props
@@ -61,15 +60,6 @@ export const globalTypes = {
   },
 }
 
-const ThemeBlock = MUI.styled('div', {
-  shouldForwardProp: excludeProps('fill'),
-})<{ fill: boolean }>(({ fill, theme }) => ({
-  height: fill ? '100vh' : 'auto',
-  overflow: 'auto',
-  padding: theme.spacing(4, 4, 10, 4),
-  background: theme.palette.background.paper,
-}))
-
 export const withTheme: DecoratorFn = (Story, context) => {
   const sbTheme: MonorailTheme =
     context.parameters.theme || context.globals.theme
@@ -97,14 +87,26 @@ export const withTheme: DecoratorFn = (Story, context) => {
     }
   }, [sbMode, sbTheme])
 
+  React.useEffect(() => {
+    const sbDocsPreview = document.querySelectorAll<HTMLElement>('.docs-story')
+
+    document.documentElement.style.backgroundColor =
+      theme.palette.background.paper
+    document.body.style.backgroundColor = theme.palette.background.paper
+
+    if (sbDocsPreview) {
+      sbDocsPreview!.forEach(
+        el => (el.style.backgroundColor = theme.palette.background.paper),
+      )
+    }
+  }, [context.viewMode, theme])
+
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <StyledEngineProvider injectFirst>
         <MUI.ThemeProvider theme={theme}>
           <MUI.CssBaseline />
-          <ThemeBlock fill={context.viewMode === 'story' ? true : false}>
-            <Story />
-          </ThemeBlock>
+          <Story />
         </MUI.ThemeProvider>
       </StyledEngineProvider>
     </LocalizationProvider>

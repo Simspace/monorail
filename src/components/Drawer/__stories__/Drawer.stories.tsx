@@ -42,6 +42,7 @@ export default {
       inlineStories: false,
       iframeHeight: 400,
     },
+    layout: 'fullscreen',
   },
 }
 
@@ -668,7 +669,6 @@ export const ResizableDrawer = story<DrawerProps>(
   },
   {
     parameters: {
-      layout: 'fullscreen',
       docs: {
         description: {
           story: `Persistent navigation drawers can toggle open or closed. The drawer sits on the same surface elevation as the content. It is closed by default and opens by selecting the menu icon, and stays open until closed by the user. The state of the drawer is remembered from action to action and session to session.
