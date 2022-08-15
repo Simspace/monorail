@@ -41,6 +41,23 @@ declare type DocsParameter = {
   }
 }
 
+type LayoutParameter = {
+  /**
+   * The layout parameter allows you to configure how stories are positioned in Storybook's Canvas tab.
+   *
+   * `padded` - Add extra padding around the component
+   *
+   * `fullscreen` - Allow the component to expand to the full width and height of the Canvas
+   *
+   * `centered` - Center the component horizontally and vertically in the Canvas
+   *
+   * [Docs: Story Layout](https://storybook.js.org/docs/react/configure/story-layout)
+   *
+   * @default 'padded'
+   */
+  layout?: 'padded' | 'fullscreen' | 'centered'
+}
+
 export type Meta = StorybookMeta & A11yParameters
 export type Story<Args = DefaultArgs> = StorybookStory<Partial<Args>> &
   A11yParameters
@@ -61,7 +78,7 @@ export enum A11yElement {
 
 //#region Parameters
 
-// These are intended to be used to add parameters metadata to story componenents, which using the `story` helper function
+// These are intended to be used to add parameters metadata to story components, which is using the `story` helper function
 //
 // Example:
 //
@@ -111,10 +128,6 @@ export const DISABLED_ARG_TYPE = {
   table: { disable: true },
 } as const
 
-export const PADDING_REMOVED = {
-  layout: 'fullscreen',
-} as const
-
 /**
  * Sets the normal "root" selector as the root for the a11y tests.
  *
@@ -133,7 +146,10 @@ export const A11Y_ELEMENT__COMPONENT = {
 type StoryConfiguration<T> = {
   args?: Partial<T>
   argTypes?: StorybookArgTypes
-  parameters?: StorybookParameters & A11yParameter & DocsParameter
+  parameters?: StorybookParameters &
+    A11yParameter &
+    DocsParameter &
+    LayoutParameter
   storyName?: string
 }
 
