@@ -3,6 +3,16 @@ import {
   DesktopTimePickerProps as MuiDesktopTimePickerProps,
 } from '@mui/x-date-pickers'
 
+/**
+ *
+ * Demos:
+ *
+ * - [Time Picker](https://mui.com/x/react-date-pickers/time-picker/)
+ *
+ * API:
+ *
+ * - [DesktopTimePicker API](https://mui.com/x/api/date-pickers/desktop-time-picker/)
+ */
 export const DesktopTimePicker: typeof MuiDesktopTimePicker =
   MuiDesktopTimePicker
 

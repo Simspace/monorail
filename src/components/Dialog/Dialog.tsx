@@ -4,6 +4,18 @@ import { Dialog as MuiDialog } from '@mui/material'
 import { DialogEventContext } from './dialogEventContext'
 import { DialogProps } from './dialogProps'
 
+/**
+ * Dialogs are overlaid modal paper based components with a backdrop.
+ *
+ * Demos:
+ *
+ * - [Dialogs](https://mui.com/material-ui/react-dialog/)
+ *
+ * API:
+ *
+ * - [Dialog API](https://mui.com/material-ui/api/dialog/)
+ * - inherits [Modal API](https://mui.com/material-ui/api/modal/)
+ */
 export const Dialog = React.forwardRef(function Dialog(props, ref) {
   const { children, onClose, ...other } = props
 

@@ -8,10 +8,7 @@ import {
 export const MonorailCheckboxOverrides: Components<Theme>['MuiCheckbox'] = {
   defaultProps: {},
   styleOverrides: {
-    root: ({
-      ownerState: { color = 'primary', size = 'medium', disableHover },
-      theme,
-    }) => ({
+    root: ({ ownerState: { color = 'primary', size = 'medium' }, theme }) => ({
       color: theme.palette.default.main,
       padding: 8,
       borderRadius: 4,
@@ -38,38 +35,20 @@ export const MonorailCheckboxOverrides: Components<Theme>['MuiCheckbox'] = {
             color: theme.palette[color].hover,
           },
         },
-        ...(disableHover === true && {
-          '&:hover': {
-            backgroundColor: 'transparent',
-          },
-        }),
       },
       [`&.Mui-focusVisible`]: {
         boxShadow: `0 0 0 4px ${theme.palette[color].focusRing.outer}`,
         outline: `1px solid ${theme.palette[color].focusRing.inner}`,
         zIndex: 1,
       },
-      ...(disableHover === true && {
-        '&:hover': {
-          backgroundColor: 'transparent',
-        },
-      }),
     }),
-    indeterminate: ({
-      ownerState: { color = 'primary', disableHover },
-      theme,
-    }) => ({
+    indeterminate: ({ ownerState: { color = 'primary' }, theme }) => ({
       '&:hover': {
         backgroundColor: theme.palette[color].lowEmphasis.hover,
         [`& .${svgIconClasses.root}`]: {
           color: theme.palette[color].hover,
         },
       },
-      ...(disableHover === true && {
-        '&:hover': {
-          backgroundColor: 'transparent',
-        },
-      }),
     }),
   },
 }

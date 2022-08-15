@@ -3,6 +3,17 @@ import {
   DatePickerProps as MuiDatePickerProps,
 } from '@mui/x-date-pickers'
 
+/**
+ *
+ * Demos:
+ *
+ * - [Date Picker](https://mui.com/x/react-date-pickers/date-picker/)
+ * - [Pickers](https://mui.com/x/react-date-pickers/)
+ *
+ * API:
+ *
+ * - [DatePicker API](https://mui.com/x/api/date-pickers/date-picker/)
+ */
 export const DatePicker: typeof MuiDatePicker = MuiDatePicker
 
 export interface DatePickerProps<TInputDate = Date, TDate = TInputDate>
