@@ -21,7 +21,7 @@ export const MonorailRadioOverrides: Components<Theme>['MuiRadio'] = {
       [`&.${radioClasses.checked}`]: {
         color: theme.palette[color].main,
         [`&.${radioClasses.disabled}`]: {
-          color: theme.palette.action.disabled,
+          color: theme.palette.text.disabled,
         },
         '&:hover': {
           backgroundColor: theme.palette[color].lowEmphasis.hover,

@@ -66,8 +66,8 @@ export const MonorailToggleButtonOverrides: Components<Theme>['MuiToggleButton']
           },
         },
         [`&.${toggleButtonClasses.disabled}`]: {
-          color: theme.palette.text.disabled,
-          border: `1px solid ${theme.palette.divider}`,
+          color: theme.palette.text.secondary,
+          border: `1px solid ${theme.palette.default.border.light}`,
         },
       }),
     },

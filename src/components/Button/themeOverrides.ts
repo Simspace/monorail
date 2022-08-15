@@ -42,13 +42,13 @@ export const MonorailButtonOverrides: Components<Theme>['MuiButton'] = {
           ...(variant === 'contained' && {
             backgroundColor: theme.palette[color].main,
             color: theme.palette[color].contrastText,
-            opacity: theme.palette.action.disabledOpacity,
           }),
           ...(variant === 'outlined' && {
-            color: theme.palette[color].lowEmphasis.disabled.text,
+            color: theme.palette[color].lowEmphasis.contrastText,
+            boxShadow: `inset 0 0 0 1px ${theme.palette[color].border.light}`,
           }),
           ...(variant === 'text' && {
-            color: theme.palette[color].lowEmphasis.disabled.text,
+            color: theme.palette[color].lowEmphasis.contrastText,
           }),
         },
       }
@@ -245,7 +245,7 @@ export const MonorailLoadingButtonOverrides: Components<Theme>['MuiLoadingButton
     styleOverrides: {
       loadingIndicator: ({ ownerState: { color = 'primary' }, theme }) => {
         return {
-          color: theme.palette[color].disabled.background,
+          color: theme.palette[color].lowEmphasis.contrastText,
         }
       },
     },

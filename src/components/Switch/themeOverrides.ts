@@ -59,9 +59,7 @@ export const MonorailSwitchOverrides: Components<Theme>['MuiSwitch'] = {
         [`&.${switchClasses.checked}`]: {
           [`& + .${switchClasses.track}`]: {
             backgroundColor: theme.palette.action.disabled,
-          },
-          [`& > .${switchClasses.thumb}`]: {
-            backgroundColor: theme.palette.default.lowEmphasis.light,
+            opacity: 1,
           },
         },
       },

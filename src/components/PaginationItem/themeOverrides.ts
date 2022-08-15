@@ -50,7 +50,7 @@ export const MonorailPaginationItemOverrides: Components<Theme>['MuiPaginationIt
             },
           // disabled
           [`&.${paginationItemClasses.disabled}`]: {
-            color: theme.palette.text.disabled,
+            color: theme.palette.text.primary,
           },
         }
       },

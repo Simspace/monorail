@@ -66,6 +66,10 @@ export const withTheme: DecoratorFn = (Story, context) => {
   const sbMode: MUI.PaletteMode =
     context.parameters.colorMode || context.globals.colorMode
 
+  /**
+   * ⚠️ All themes except `MonorailTheme.Classic` are NOT official color palettes.
+   * They are used as placeholders and are meant to demonstrate theme switching.
+   */
   const theme = React.useMemo(() => {
     if (sbMode === 'dark') {
       switch (sbTheme) {

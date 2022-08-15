@@ -37,7 +37,6 @@ export const MonorailIconButtonOverrides: Components<Theme>['MuiIconButton'] = {
           },
           [`&.${buttonBaseClasses.disabled}`]: {
             color: theme.palette[color].lowEmphasis.contrastText,
-            opacity: theme.palette.action.disabledOpacity,
             ...(variant === 'contained' && {
               backgroundColor: theme.palette[color].main,
               color: theme.palette.getContrastText(theme.palette[color].main),
