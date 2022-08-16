@@ -8,7 +8,7 @@ export const MonorailSwitchOverrides: Components<Theme>['MuiSwitch'] = {
       '&:hover': {
         [`& .${switchClasses.track}`]: {
           borderColor: theme.palette.default.border.main,
-          backgroundColor: theme.palette.default.weakEmphasis.hover,
+          backgroundColor: theme.palette.default.lowEmphasis.hover,
         },
       },
     }),
@@ -24,7 +24,7 @@ export const MonorailSwitchOverrides: Components<Theme>['MuiSwitch'] = {
       '&:hover': {
         backgroundColor: 'transparent',
         [`&.${switchClasses.checked} .${switchClasses.thumb}`]: {
-          backgroundColor: theme.palette[color].weakEmphasis.hover,
+          backgroundColor: theme.palette[color].lowEmphasis.hover,
         },
         [`&.${switchClasses.disabled}`]: {
           borderColor: 'transparent',
@@ -59,9 +59,7 @@ export const MonorailSwitchOverrides: Components<Theme>['MuiSwitch'] = {
         [`&.${switchClasses.checked}`]: {
           [`& + .${switchClasses.track}`]: {
             backgroundColor: theme.palette.action.disabled,
-          },
-          [`& > .${switchClasses.thumb}`]: {
-            backgroundColor: theme.palette.default.mediumEmphasis.light,
+            opacity: 1,
           },
         },
       },
@@ -102,7 +100,7 @@ export const MonorailSwitchOverrides: Components<Theme>['MuiSwitch'] = {
       ':hover': {
         [`& .${switchClasses.switchBase}.${switchClasses.checked}`]: {
           [`& .${switchClasses.thumb}`]: {
-            backgroundColor: theme.palette[color].weakEmphasis.hover,
+            backgroundColor: theme.palette[color].lowEmphasis.hover,
           },
         },
       },

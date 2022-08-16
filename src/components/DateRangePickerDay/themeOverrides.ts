@@ -57,7 +57,7 @@ export const MonorailDateRangePickerDayOverrides: Components<Theme>['MuiDateRang
             },
             '&:active': {
               border: `1px solid ${theme.palette.primary.border.main}`,
-              backgroundColor: theme.palette.primary.mediumEmphasis.light,
+              backgroundColor: theme.palette.primary.lowEmphasis.light,
             },
             // Start day selected
             [classes.unselectedDay + '.Mui-selected']: {
@@ -72,15 +72,15 @@ export const MonorailDateRangePickerDayOverrides: Components<Theme>['MuiDateRang
           [classes.dayInsideRangeUnselected]: {
             '&:hover': {
               border: `1px solid ${theme.palette.primary.border.light}`,
-              backgroundColor: theme.palette.primary.mediumEmphasis.main,
+              backgroundColor: theme.palette.primary.lowEmphasis.main,
             },
             '&:active': {
               border: `1px solid ${theme.palette.primary.border.main}`,
-              backgroundColor: theme.palette.primary.mediumEmphasis.dark,
+              backgroundColor: theme.palette.primary.lowEmphasis.dark,
             },
           },
           [`&.${dateRangePickerDayClasses.rangeIntervalDayHighlight}`]: {
-            backgroundColor: theme.palette.primary.mediumEmphasis.main,
+            backgroundColor: theme.palette.primary.lowEmphasis.main,
             '&:first-of-type': {
               borderTopLeftRadius: BORDER_RADIUS,
               borderBottomLeftRadius: BORDER_RADIUS,

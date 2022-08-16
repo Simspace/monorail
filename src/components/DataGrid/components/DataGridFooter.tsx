@@ -64,7 +64,7 @@ export function DataGridPaginationFooter() {
     <Box
       sx={theme => ({
         height: theme.spacing(14),
-        backgroundColor: theme.palette.default.mediumEmphasis.main,
+        backgroundColor: theme.palette.default.lowEmphasis.main,
         // TODO: codify this upper drop shadow
         boxShadow: '0 -2px 1px -1px rgba(0,0,0,.2)',
         padding: theme.spacing(0, 6),

@@ -30,14 +30,13 @@ export const MonorailIconButtonOverrides: Components<Theme>['MuiIconButton'] = {
     }) => {
       return (
         color !== 'inherit' && {
-          color: theme.palette[color].weakEmphasis.contrastText,
+          color: theme.palette[color].lowEmphasis.contrastText,
           [`&.${buttonBaseClasses.focusVisible}`]: {
             boxShadow: `0 0 0 3px ${theme.palette[color].focusRing.outer}`,
             border: `1px solid ${theme.palette[color].focusRing.inner}`,
           },
           [`&.${buttonBaseClasses.disabled}`]: {
-            color: theme.palette[color].weakEmphasis.contrastText,
-            opacity: theme.palette.action.disabledOpacity,
+            color: theme.palette[color].lowEmphasis.contrastText,
             ...(variant === 'contained' && {
               backgroundColor: theme.palette[color].main,
               color: theme.palette.getContrastText(theme.palette[color].main),
@@ -49,10 +48,10 @@ export const MonorailIconButtonOverrides: Components<Theme>['MuiIconButton'] = {
           ...(variant === 'chromeless' && {
             backgroundColor: 'transparent',
             '&:hover': {
-              backgroundColor: theme.palette[color].weakEmphasis.hover,
+              backgroundColor: theme.palette[color].lowEmphasis.hover,
             },
             '&:active': {
-              backgroundColor: theme.palette[color].weakEmphasis.active,
+              backgroundColor: theme.palette[color].lowEmphasis.active,
             },
           }),
           ...(variant === 'contained' && {
@@ -69,10 +68,10 @@ export const MonorailIconButtonOverrides: Components<Theme>['MuiIconButton'] = {
             border: `1px solid ${theme.palette[color].border.main}`,
             backgroundColor: theme.palette.common.white,
             '&:hover': {
-              backgroundColor: theme.palette[color].weakEmphasis.hover,
+              backgroundColor: theme.palette[color].lowEmphasis.hover,
             },
             '&:active': {
-              backgroundColor: theme.palette[color].weakEmphasis.active,
+              backgroundColor: theme.palette[color].lowEmphasis.active,
             },
           }),
         }

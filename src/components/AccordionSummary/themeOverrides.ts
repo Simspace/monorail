@@ -27,7 +27,7 @@ export const MonorailAccordionSummaryOverrides: Components<Theme>['MuiAccordionS
             fontWeight: theme.typography.body1.fontWeight,
           },
           [':hover']: {
-            backgroundColor: theme.palette.default.weakEmphasis.hover,
+            backgroundColor: theme.palette.default.lowEmphasis.hover,
           },
         }
       },

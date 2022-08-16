@@ -126,7 +126,7 @@ const EmphaticFormControlLabelRoot = styled('label', {
   paddingRight: theme.spacing(3),
   '&:hover': {
     borderColor: theme.palette.primary.light,
-    backgroundColor: theme.palette.primary.mediumEmphasis.main,
+    backgroundColor: theme.palette.primary.lowEmphasis.main,
     [`& > .${emphaticFormControlLabelClasses.control} .${svgIconClasses.root}`]:
       {
         color: theme.palette.primary.hover,
@@ -146,7 +146,7 @@ const EmphaticFormControlLabelRoot = styled('label', {
   },
   [`&.${emphaticFormControlLabelClasses.checked}`]: {
     borderColor: theme.palette.primary.light,
-    backgroundColor: theme.palette.primary.mediumEmphasis.dark,
+    backgroundColor: theme.palette.primary.lowEmphasis.dark,
     [`& .${emphaticFormControlLabelClasses.control}`]: {
       [`& .${svgIconClasses.root}`]: {
         color: theme.palette.primary.active,
@@ -162,28 +162,28 @@ const EmphaticFormControlLabelRoot = styled('label', {
   [`&.${emphaticFormControlLabelClasses.error}`]: {
     cursor: 'default',
     borderColor: theme.palette.error.border.main,
-    backgroundColor: theme.palette.error.mediumEmphasis.light,
+    backgroundColor: theme.palette.error.lowEmphasis.light,
     [`& .${emphaticFormControlLabelClasses.control}`]: {
       cursor: 'default',
       [`& .${svgIconClasses.root}`]: {
-        color: theme.palette.error.weakEmphasis.contrastText,
+        color: theme.palette.error.lowEmphasis.contrastText,
       },
       [`&:hover .${svgIconClasses.root}`]: {
-        color: theme.palette.error.weakEmphasis.contrastText,
+        color: theme.palette.error.lowEmphasis.contrastText,
       },
     },
   },
   [`&.${emphaticFormControlLabelClasses.success}`]: {
     cursor: 'default',
     borderColor: theme.palette.success.border.main,
-    backgroundColor: theme.palette.success.mediumEmphasis.light,
+    backgroundColor: theme.palette.success.lowEmphasis.light,
     [`& .${emphaticFormControlLabelClasses.control}`]: {
       cursor: 'default',
       [`& .${svgIconClasses.root}`]: {
-        color: theme.palette.success.weakEmphasis.contrastText,
+        color: theme.palette.success.lowEmphasis.contrastText,
       },
       [`&:hover .${svgIconClasses.root}`]: {
-        color: theme.palette.success.weakEmphasis.contrastText,
+        color: theme.palette.success.lowEmphasis.contrastText,
       },
     },
   },

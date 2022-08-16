@@ -19,7 +19,7 @@ export const MonorailStepLabelOverrides: Components<Theme>['MuiStepLabel'] = {
           padding: theme.spacing(4, 0),
         },
         [`&.${stepLabelClasses.disabled} > * > .${stepIconClasses.root}`]: {
-          color: theme.palette.default.disabled.background,
+          opacity: theme.palette.action.disabledOpacity,
         },
       }
     },

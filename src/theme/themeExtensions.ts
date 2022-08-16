@@ -112,19 +112,7 @@ declare module '@mui/material/styles/createPalette' {
       background: string
       text: string
     }
-    mediumEmphasis: {
-      light: string
-      main: string
-      dark: string
-      contrastText: string
-      hover: string
-      active: string
-      disabled: {
-        background: string
-        text: string
-      }
-    }
-    weakEmphasis: {
+    lowEmphasis: {
       light: string
       main: string
       dark: string
@@ -158,25 +146,10 @@ declare module '@mui/material/styles/createPalette' {
       text: string
     }>
     /**
-     * Commonly used for less prominent elements
-     */
-    mediumEmphasis?: Partial<{
-      light: string
-      main: string
-      dark: string
-      contrastText: string
-      hover: string
-      active: string
-      disabled: Partial<{
-        background: string
-        text: string
-      }>
-    }>
-    /**
      * Commonly used for `outlined` and `text` variants.
      */
-    weakEmphasis?: Partial<{
-      transparent: string
+    lowEmphasis?: Partial<{
+      light: string
       main: string
       dark: string
       contrastText: string

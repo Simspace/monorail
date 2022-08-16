@@ -91,9 +91,9 @@ export const GliderCarousel = styled('div')(({ theme }) => ({
       outline: 'none',
       display: 'block',
       cursor: 'pointer',
-      color: theme.palette.default.weakEmphasis.dark,
+      color: theme.palette.default.lowEmphasis.dark,
       borderRadius: 999,
-      backgroundColor: theme.palette.default.weakEmphasis.dark,
+      backgroundColor: theme.palette.default.lowEmphasis.dark,
       width: 12,
       height: 12,
       margin: theme.spacing(1.75), // 7px TODO: investigate why it's 7px
@@ -121,7 +121,7 @@ export const GliderCarousel = styled('div')(({ theme }) => ({
     '& .glider::-webkit-scrollbar-thumb': {
       opacity: 1,
       borderRadius: 99,
-      backgroundColor: theme.palette.default.mediumEmphasis.dark,
+      backgroundColor: theme.palette.default.lowEmphasis.dark,
       boxShadow: `0 0 1px ${theme.palette.common.white}25`,
     },
   },

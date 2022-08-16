@@ -38,7 +38,7 @@ export const MonorailToggleButtonOverrides: Components<Theme>['MuiToggleButton']
 
         '&:hover': {
           zIndex: 1,
-          backgroundColor: theme.palette[color].weakEmphasis.hover,
+          backgroundColor: theme.palette[color].lowEmphasis.hover,
           border: `1px solid ${theme.palette.default.border.main}`,
           [`&.${toggleButtonGroupClasses.grouped}:not(:first-of-type)`]: {
             // Theming this using MuiToggleButtonGroup wasn't successful.
@@ -47,7 +47,7 @@ export const MonorailToggleButtonOverrides: Components<Theme>['MuiToggleButton']
         },
         [`&.Mui-selected`]: {
           // There is a styleOverrides.selected key but it doesn't seem to work.
-          backgroundColor: theme.palette.default.weakEmphasis.selected,
+          backgroundColor: theme.palette.default.lowEmphasis.selected,
           color: theme.palette.text.primary,
           borderColor: theme.palette.default.border.main,
           '&:hover': {
@@ -66,8 +66,8 @@ export const MonorailToggleButtonOverrides: Components<Theme>['MuiToggleButton']
           },
         },
         [`&.${toggleButtonClasses.disabled}`]: {
-          color: theme.palette.text.disabled,
-          border: `1px solid ${theme.palette.divider}`,
+          color: theme.palette.text.secondary,
+          border: `1px solid ${theme.palette.default.border.light}`,
         },
       }),
     },

@@ -20,6 +20,9 @@ import { story } from '../../../test-helpers/storybook'
 export default {
   title: 'Navigation/Drawer/SwipeableDrawer',
   component: SwipeableDrawer,
+  parameters: {
+    layout: 'fullscreen',
+  },
 }
 
 /**

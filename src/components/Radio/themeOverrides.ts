@@ -4,7 +4,7 @@ export const MonorailRadioOverrides: Components<Theme>['MuiRadio'] = {
   defaultProps: {},
   styleOverrides: {
     root: ({ ownerState: { color = 'primary', size = 'medium' }, theme }) => ({
-      color: theme.palette.default.weakEmphasis.contrastText,
+      color: theme.palette.default.lowEmphasis.contrastText,
       padding: theme.spacing(2),
       ...(size === 'small' && {
         padding: 6,
@@ -13,7 +13,7 @@ export const MonorailRadioOverrides: Components<Theme>['MuiRadio'] = {
         },
       }),
       '&:hover': {
-        backgroundColor: theme.palette.default.mediumEmphasis.hover,
+        backgroundColor: theme.palette.default.lowEmphasis.hover,
         [`& .${svgIconClasses.root}`]: {
           color: theme.palette.default.hover,
         },
@@ -21,10 +21,10 @@ export const MonorailRadioOverrides: Components<Theme>['MuiRadio'] = {
       [`&.${radioClasses.checked}`]: {
         color: theme.palette[color].main,
         [`&.${radioClasses.disabled}`]: {
-          color: theme.palette.action.disabled,
+          color: theme.palette.text.disabled,
         },
         '&:hover': {
-          backgroundColor: theme.palette[color].mediumEmphasis.hover,
+          backgroundColor: theme.palette[color].lowEmphasis.hover,
           [`& .${svgIconClasses.root}`]: {
             color: theme.palette[color].hover,
           },

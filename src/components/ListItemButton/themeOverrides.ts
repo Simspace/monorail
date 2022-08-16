@@ -15,7 +15,7 @@ export const MonorailListItemButtonOverrides: Components<Theme>['MuiListItemButt
           borderRadius: 3,
         },
         '&:active': {
-          backgroundColor: theme.palette.primary.mediumEmphasis.active,
+          backgroundColor: theme.palette.primary.lowEmphasis.active,
         },
       }),
     },

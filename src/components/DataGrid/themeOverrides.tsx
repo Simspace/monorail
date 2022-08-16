@@ -16,10 +16,10 @@ export const MonorailDataGridOverrides: Components<Theme>['MuiDataGrid'] = {
     row: ({ theme }) => {
       return {
         [`&.${dataGridClasses.grouped}`]: {
-          backgroundColor: theme.palette.default.mediumEmphasis.light,
+          backgroundColor: theme.palette.default.lowEmphasis.light,
         },
         ['&:hover']: {
-          backgroundColor: theme.palette.default.weakEmphasis.hover,
+          backgroundColor: theme.palette.default.lowEmphasis.hover,
         },
         [`&.${dataGridClasses.grouped}:hover`]: {
           cursor: 'pointer',
@@ -28,7 +28,7 @@ export const MonorailDataGridOverrides: Components<Theme>['MuiDataGrid'] = {
     },
     columnHeaders: ({ theme }) => {
       return {
-        backgroundColor: theme.palette.default.mediumEmphasis.main,
+        backgroundColor: theme.palette.default.lowEmphasis.main,
         borderBottom: 'none',
         boxShadow: `inset 0px -1px ${theme.palette.divider}`,
         borderRadius: '0',
@@ -91,7 +91,7 @@ export const MonorailDataGridOverrides: Components<Theme>['MuiDataGrid'] = {
     },
     footerContainer: ({ theme }) => {
       return {
-        backgroundColor: theme.palette.default.mediumEmphasis.main,
+        backgroundColor: theme.palette.default.lowEmphasis.main,
         borderTop: `1px solid ${theme.palette.divider}`,
       }
     },
@@ -122,7 +122,7 @@ export const MonorailDataGridOverrides: Components<Theme>['MuiDataGrid'] = {
       return {
         height: theme.spacing(20),
         padding: theme.spacing(4, 8),
-        backgroundColor: theme.palette.default.mediumEmphasis.light,
+        backgroundColor: theme.palette.default.lowEmphasis.light,
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',

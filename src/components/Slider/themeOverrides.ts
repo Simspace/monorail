@@ -9,7 +9,7 @@ export const MonorailSliderOverrides: Components<Theme>['MuiSlider'] = {
       padding: theme.spacing(2.5, 0), // Resizes click target to 40px (medium) and 24px (small)
       [`&.${sliderClasses.disabled}`]: {
         [`& .${sliderClasses.thumb}`]: {
-          backgroundColor: theme.palette.default.mediumEmphasis.light,
+          backgroundColor: theme.palette.default.lowEmphasis.light,
           borderColor: theme.palette.text.disabled,
         },
         [`& .${sliderClasses.track}`]: {
@@ -17,7 +17,7 @@ export const MonorailSliderOverrides: Components<Theme>['MuiSlider'] = {
           borderColor: theme.palette.default.light,
         },
         [`& .${sliderClasses.rail}`]: {
-          backgroundColor: theme.palette.default.mediumEmphasis.main,
+          backgroundColor: theme.palette.default.lowEmphasis.main,
         },
       },
     }),
@@ -37,7 +37,7 @@ export const MonorailSliderOverrides: Components<Theme>['MuiSlider'] = {
           border: `1px solid ${theme.palette[color].focusRing.inner}`,
         },
         '&:hover': {
-          backgroundColor: theme.palette.default.mediumEmphasis.light,
+          backgroundColor: theme.palette.default.lowEmphasis.light,
           boxShadow: `0 0 0 4px ${theme.palette[color].focusRing.outer}`,
           border: `1px solid ${theme.palette[color].focusRing.inner}`,
           [`&.${sliderClasses.thumbSizeSmall}`]: {
@@ -48,7 +48,7 @@ export const MonorailSliderOverrides: Components<Theme>['MuiSlider'] = {
           },
         },
         [`&.${sliderClasses.active}`]: {
-          backgroundColor: theme.palette.default.mediumEmphasis.dark,
+          backgroundColor: theme.palette.default.lowEmphasis.dark,
           boxShadow: `0 0 0 4px ${theme.palette[color].focusRing.outer}`,
           [`&.${sliderClasses.thumbSizeSmall}`]: {
             backgroundColor:

@@ -237,32 +237,14 @@ const palette: PaletteOptions = {
     dark: RawColor.Blue700,
     hover: RawColor.Blue700,
     active: RawColor.Blue800,
-    disabled: {
-      background: RawColor.Blue400,
-    },
 
-    mediumEmphasis: {
+    lowEmphasis: {
       light: RawColor.Blue050,
       main: RawColor.Blue100,
-      dark: RawColor.Blue200,
-      contrastText: RawColor.Blue800,
-      hover: RawColor.Blue200,
-      active: RawColor.Blue300,
-      disabled: {
-        background: RawColor.Blue050,
-      },
-    },
-
-    weakEmphasis: {
-      transparent: RawColor.Transparent,
-      main: RawColor.White,
-      dark: RawColor.Blue050,
+      dark: RawColor.Blue300,
       contrastText: RawColor.Blue600,
-      hover: RawColor.Blue050,
-      active: RawColor.Blue100,
-      disabled: {
-        text: RawColor.Blue400,
-      },
+      hover: RawColor.Blue100,
+      active: RawColor.Blue300,
     },
 
     border: {
@@ -294,32 +276,14 @@ const palette: PaletteOptions = {
     dark: RawColor.Orange300,
     hover: RawColor.Orange300,
     active: RawColor.Orange400,
-    disabled: {
-      background: RawColor.Orange100,
-    },
 
-    mediumEmphasis: {
+    lowEmphasis: {
       light: RawColor.Orange050,
       main: RawColor.Orange100,
-      dark: RawColor.Orange200,
-      contrastText: RawColor.Orange800,
-      hover: RawColor.Orange200,
-      active: RawColor.Orange300,
-      disabled: {
-        background: RawColor.Orange050,
-      },
-    },
-
-    weakEmphasis: {
-      transparent: RawColor.Transparent,
-      main: RawColor.White,
-      dark: RawColor.Orange050,
+      dark: RawColor.Orange300,
       contrastText: RawColor.Orange600,
-      hover: RawColor.Orange050,
-      active: RawColor.Orange100,
-      disabled: {
-        text: RawColor.Orange400,
-      },
+      hover: RawColor.Orange100,
+      active: RawColor.Orange300,
     },
 
     border: {
@@ -352,34 +316,16 @@ const palette: PaletteOptions = {
     contrastText: RawColor.White,
     hover: RawColor.Grey700,
     active: RawColor.Grey800,
-    disabled: {
-      background: RawColor.Grey400,
-    },
 
-    mediumEmphasis: {
+    lowEmphasis: {
       light: RawColor.Grey050,
       main: RawColor.Grey100,
-      dark: RawColor.Grey200,
-      contrastText: RawColor.Grey900,
-      hover: RawColor.Grey200,
-      active: RawColor.Grey300,
-      disabled: {
-        background: RawColor.Grey050,
-      },
-    },
-
-    weakEmphasis: {
-      transparent: RawColor.Transparent,
-      main: RawColor.White,
-      dark: RawColor.Grey050,
+      dark: RawColor.Grey300,
       contrastText: RawColor.Grey600,
       hover: RawColor.Grey100,
       active: RawColor.Grey300,
       selected: RawColor.Grey200,
-      selectedHovered: RawColor.Grey300,
-      disabled: {
-        text: RawColor.Grey400,
-      },
+      selectedHovered: RawColor.Grey400,
     },
 
     border: {
@@ -426,32 +372,14 @@ const palette: PaletteOptions = {
     dark: RawColor.Green700,
     hover: RawColor.Green700,
     active: RawColor.Green800,
-    disabled: {
-      background: RawColor.Green400,
-    },
 
-    mediumEmphasis: {
+    lowEmphasis: {
       light: RawColor.Green050,
       main: RawColor.Green100,
-      dark: RawColor.Green200,
-      contrastText: RawColor.Green800,
-      hover: RawColor.Green200,
-      active: RawColor.Green300,
-      disabled: {
-        background: RawColor.Green050,
-      },
-    },
-
-    weakEmphasis: {
-      transparent: RawColor.Transparent,
-      main: RawColor.White,
-      dark: RawColor.Green050,
+      dark: RawColor.Green300,
       contrastText: RawColor.Green600,
-      hover: RawColor.Green050,
-      active: RawColor.Green100,
-      disabled: {
-        text: RawColor.Green400,
-      },
+      hover: RawColor.Green100,
+      active: RawColor.Green300,
     },
 
     border: {
@@ -483,32 +411,14 @@ const palette: PaletteOptions = {
     dark: RawColor.Red700,
     hover: RawColor.Red700,
     active: RawColor.Red800,
-    disabled: {
-      background: RawColor.Red400,
-    },
 
-    mediumEmphasis: {
+    lowEmphasis: {
       light: RawColor.Red050,
       main: RawColor.Red100,
-      dark: RawColor.Red200,
-      contrastText: RawColor.Red800,
-      hover: RawColor.Red200,
-      active: RawColor.Red300,
-      disabled: {
-        background: RawColor.Red050,
-      },
-    },
-
-    weakEmphasis: {
-      transparent: RawColor.Transparent,
-      main: RawColor.White,
-      dark: RawColor.Red050,
+      dark: RawColor.Red300,
       contrastText: RawColor.Red600,
-      hover: RawColor.Red050,
-      active: RawColor.Red100,
-      disabled: {
-        text: RawColor.Red400,
-      },
+      hover: RawColor.Red100,
+      active: RawColor.Red300,
     },
 
     border: {
@@ -540,32 +450,14 @@ const palette: PaletteOptions = {
     dark: RawColor.Orange300,
     hover: RawColor.Orange300,
     active: RawColor.Orange400,
-    disabled: {
-      background: RawColor.Orange100,
-    },
 
-    mediumEmphasis: {
+    lowEmphasis: {
       light: RawColor.Orange050,
       main: RawColor.Orange100,
-      dark: RawColor.Orange200,
-      contrastText: RawColor.Orange800,
-      hover: RawColor.Orange200,
-      active: RawColor.Orange300,
-      disabled: {
-        background: RawColor.Orange050,
-      },
-    },
-
-    weakEmphasis: {
-      transparent: RawColor.Transparent,
-      main: RawColor.White,
-      dark: RawColor.Orange050,
+      dark: RawColor.Orange300,
       contrastText: RawColor.Orange600,
-      hover: RawColor.Orange050,
-      active: RawColor.Orange100,
-      disabled: {
-        text: RawColor.Orange400,
-      },
+      hover: RawColor.Orange100,
+      active: RawColor.Orange300,
     },
 
     border: {
@@ -597,32 +489,14 @@ const palette: PaletteOptions = {
     dark: RawColor.Blue700,
     hover: RawColor.Blue700,
     active: RawColor.Blue800,
-    disabled: {
-      background: RawColor.Blue400,
-    },
 
-    mediumEmphasis: {
+    lowEmphasis: {
       light: RawColor.Blue050,
       main: RawColor.Blue100,
-      dark: RawColor.Blue200,
-      contrastText: RawColor.Blue800,
-      hover: RawColor.Blue200,
-      active: RawColor.Blue300,
-      disabled: {
-        background: RawColor.Blue050,
-      },
-    },
-
-    weakEmphasis: {
-      transparent: RawColor.Transparent,
-      main: RawColor.White,
-      dark: RawColor.Blue050,
+      dark: RawColor.Blue300,
       contrastText: RawColor.Blue600,
-      hover: RawColor.Blue050,
-      active: RawColor.Blue100,
-      disabled: {
-        text: RawColor.Blue400,
-      },
+      hover: RawColor.Blue100,
+      active: RawColor.Blue300,
     },
 
     border: {

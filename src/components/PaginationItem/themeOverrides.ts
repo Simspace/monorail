@@ -10,14 +10,14 @@ export const MonorailPaginationItemOverrides: Components<Theme>['MuiPaginationIt
     styleOverrides: {
       root: ({ ownerState: { color = 'primary' }, theme }) => {
         return {
-          color: theme.palette[color].weakEmphasis.contrastText,
+          color: theme.palette[color].lowEmphasis.contrastText,
           fontWeight: theme.typography.subtitle2.fontWeight,
           margin: 0,
           '&:hover': {
-            backgroundColor: theme.palette[color].weakEmphasis.hover,
+            backgroundColor: theme.palette[color].lowEmphasis.hover,
           },
           '&:active': {
-            backgroundColor: theme.palette[color].weakEmphasis.active,
+            backgroundColor: theme.palette[color].lowEmphasis.active,
           },
           // focus-visible
           [`&.${paginationItemClasses.focusVisible}`]: {
@@ -27,30 +27,30 @@ export const MonorailPaginationItemOverrides: Components<Theme>['MuiPaginationIt
             outline: `1px solid ${theme.palette[color].focusRing.inner}`,
           },
           [`&.${paginationItemClasses.focusVisible}:hover`]: {
-            backgroundColor: theme.palette[color].weakEmphasis.hover,
+            backgroundColor: theme.palette[color].lowEmphasis.hover,
           },
           // selected
           [`&.${paginationItemClasses.selected}`]: {
-            backgroundColor: theme.palette.default.weakEmphasis.selected,
+            backgroundColor: theme.palette.default.lowEmphasis.selected,
             color: theme.palette.text.primary,
             fontWeight: theme.typography.fontWeightBold,
             '&:hover': {
               backgroundColor:
-                theme.palette.default.weakEmphasis.selectedHovered,
+                theme.palette.default.lowEmphasis.selectedHovered,
             },
           },
           [`&.${paginationItemClasses.selected}.${paginationItemClasses.focusVisible}`]:
             {
               zIndex: 1,
-              backgroundColor: theme.palette.default.weakEmphasis.selected,
+              backgroundColor: theme.palette.default.lowEmphasis.selected,
             },
           [`&.${paginationItemClasses.selected}.${paginationItemClasses.disabled}`]:
             {
-              backgroundColor: theme.palette.default.weakEmphasis.selected,
+              backgroundColor: theme.palette.default.lowEmphasis.selected,
             },
           // disabled
           [`&.${paginationItemClasses.disabled}`]: {
-            color: theme.palette.text.disabled,
+            color: theme.palette.text.primary,
           },
         }
       },
