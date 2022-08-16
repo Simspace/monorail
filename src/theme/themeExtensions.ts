@@ -22,6 +22,11 @@ type ColorShades = {
   600: string
   700: string
   800: string
+  900?: string
+  A100?: string
+  A200?: string
+  A400?: string
+  A700?: string
 }
 
 declare module '@mui/material/styles/createPalette' {
@@ -40,6 +45,10 @@ declare module '@mui/material/styles/createPalette' {
 
     accent: PaletteColor
 
+    /**
+     * Tertiary colors. Named `default` to mirror MUI's color variant.
+     * @see IconButton,Badge,Checkbox,Radio,Chip,Progress
+     * */
     default: PaletteColor
 
     score: {
@@ -65,6 +74,7 @@ declare module '@mui/material/styles/createPalette' {
       purple: Color
     }
 
+    /** Color token for `Rating` when filled */
     rating: string
   }
 
@@ -76,6 +86,10 @@ declare module '@mui/material/styles/createPalette' {
   interface PaletteOptions {
     accent?: PaletteColorOptions
 
+    /**
+     * Tertiary colors. Named `default` to mirror MUI's color variant.
+     * @see IconButton,Badge,Checkbox,Radio,Chip,Progress
+     * */
     default?: PaletteColorOptions
 
     score?: Partial<{
@@ -101,86 +115,118 @@ declare module '@mui/material/styles/createPalette' {
       purple: PaletteColorOptions | Record<string, string>
     }>
 
+    /** Color token for `Rating` when filled */
     rating?: string
   }
 
   interface PaletteColor {
+    /**
+     * Use sparingly.
+     *
+     * Access to raw color palette for one-off applications or
+     * as a stand-in for un-tokenized color patterns.
+     *
+     * This is a replacement for `@mui/material/colors` since we aren't able to directly modify its color scale.
+     *
+     */
     shades: ColorShades
+    /** Shade: 700 (300 for Orange) */
     hover: string
+    /** Shade: 800 (400 for Orange) */
     active: string
-    disabled: {
-      background: string
-      text: string
-    }
+    /**
+     * Subdued color scheme for less prominent elements.
+     * Commonly used for `outlined` and `text` (chromeless) variants.
+     */
     lowEmphasis: {
+      /** Shade: 50 */
       light: string
+      /** Shade: 100 */
       main: string
+      /** Shade: 300 */
       dark: string
+      /** Shade: 600 */
       contrastText: string
+      /** Shade: 100 */
       hover: string
+      /** Shade: 200 */
       selected: string
+      /** Shade: 300 */
       active: string
+      /** Shade: 400 */
       selectedHovered: string
-      disabled: {
-        background: string
-        text: string
-      }
     }
     border: {
+      /** Shade: 400 */
       light: string
+      /** Shade: 600 (500 for Orange) */
       main: string
+      /** Shade: 800 */
       dark: string
     }
+    /**
+     * Pre-defined inner and outer focus ring color pairing
+     */
     focusRing: {
+      /** Shade: 800 */
       inner: string
+      /** Shade: 400 */
       outer: string
     }
   }
 
   interface SimplePaletteColorOptions {
-    shades?: ColorShades
-    hover?: string
-    active?: string
-    disabled?: Partial<{
-      background: string
-      text: string
-    }>
     /**
-     * Commonly used for `outlined` and `text` variants.
+     * Use sparingly.
+     *
+     * Access to raw color palette for one-off applications or
+     * as a stand-in for un-tokenized color patterns.
+     *
+     * This is a replacement for `@mui/material/colors` since we aren't able to directly modify its color scale.
+     *
+     */
+    shades?: ColorShades
+    /** Shade: 700 (300 for Orange) */
+    hover?: string
+    /** Shade: 800 (400 for Orange) */
+    active?: string
+    /**
+     * Subdued color scheme for less prominent elements.
+     * Commonly used for `outlined` and `text` (chromeless) variants.
      */
     lowEmphasis?: Partial<{
+      /** Shade: 50 */
       light: string
+      /** Shade: 100 */
       main: string
+      /** Shade: 300 */
       dark: string
+      /** Shade: 600 */
       contrastText: string
+      /** Shade: 100 */
       hover: string
+      /** Shade: 200 */
       selected: string
+      /** Shade: 300 */
       active: string
+      /** Shade: 400 */
       selectedHovered: string
-      disabled: Partial<{
-        background: string
-        text: string
-      }>
     }>
     border?: Partial<{
-      /**
-       * Weak emphasis. Current usage:Outlined Buttons
-       */
+      /** Shade: 400 */
       light: string
-      /**
-       * Medium emphasis. Current usage: Alert border
-       */
+      /** Shade: 600 (500 for Orange) */
       main: string
-      /**
-       * Strong emphasis. Current usage: Contained Button Group
-       */
+      /** Shade: 800 */
       dark: string
     }>
     /**
      * Pre-defined inner and outer focus ring color pairing
      */
     focusRing?: Partial<{
+      /** Shade: 800 */
       inner: string
+      /** Shade: 400 */
       outer: string
     }>
   }

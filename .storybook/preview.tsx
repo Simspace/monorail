@@ -1,6 +1,7 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { defaultDarkTheme } from '../src/theme/defaultDarkTheme'
 import { defaultLightTheme } from '../src/theme/defaultLightTheme'
+import { muiLightTheme, muiDarkTheme } from '../src/theme/muiTheme'
 import { pcteLightTheme } from '../src/theme/pcteLightTheme'
 import { pcteDarkTheme } from '../src/theme/pcteDarkTheme'
 import { rebrandDarkTheme } from '../src/theme/rebrandDarkTheme'
@@ -25,10 +26,11 @@ export const parameters: Parameters = {
   },
 }
 
-enum MonorailTheme {
+enum ThemeOption {
   Classic = 'Classic',
   PCTE = 'PCTE',
   Rebrand = 'Rebrand',
+  MUI = 'MUI',
 }
 
 /**
@@ -38,9 +40,14 @@ export const globalTypes = {
   theme: {
     name: 'Theme',
     description: 'Theme switcher',
-    defaultValue: MonorailTheme.Classic,
+    defaultValue: ThemeOption.Classic,
     toolbar: {
-      items: [MonorailTheme.Classic, MonorailTheme.PCTE, MonorailTheme.Rebrand],
+      items: [
+        ThemeOption.Classic,
+        ThemeOption.PCTE,
+        ThemeOption.Rebrand,
+        ThemeOption.MUI,
+      ],
       showName: true,
       dynamicTitle: true,
     },
@@ -61,33 +68,39 @@ export const globalTypes = {
 }
 
 export const withTheme: DecoratorFn = (Story, context) => {
-  const sbTheme: MonorailTheme =
-    context.parameters.theme || context.globals.theme
+  const sbTheme: ThemeOption = context.parameters.theme || context.globals.theme
   const sbMode: MUI.PaletteMode =
     context.parameters.colorMode || context.globals.colorMode
 
   /**
-   * ⚠️ All themes except `MonorailTheme.Classic` are NOT official color palettes.
+   * ⚠️ All theme options except `MonorailTheme.Classic` are NOT official color palettes.
    * They are used as placeholders and are meant to demonstrate theme switching.
+   *
+   * The MUI theme option is a combination of `baseTheme` and MUI's default component behavior.
+   * It is compatible with our extended design tokens.
    */
   const theme = React.useMemo(() => {
     if (sbMode === 'dark') {
       switch (sbTheme) {
-        case MonorailTheme.Classic:
+        case ThemeOption.Classic:
           return defaultDarkTheme
-        case MonorailTheme.PCTE:
+        case ThemeOption.PCTE:
           return pcteDarkTheme
-        case MonorailTheme.Rebrand:
+        case ThemeOption.Rebrand:
           return rebrandDarkTheme
+        case ThemeOption.MUI:
+          return muiDarkTheme
       }
     }
     switch (sbTheme) {
-      case MonorailTheme.Classic:
+      case ThemeOption.Classic:
         return defaultLightTheme
-      case MonorailTheme.PCTE:
+      case ThemeOption.PCTE:
         return pcteLightTheme
-      case MonorailTheme.Rebrand:
+      case ThemeOption.Rebrand:
         return rebrandLightTheme
+      case ThemeOption.MUI:
+        return muiLightTheme
     }
   }, [sbMode, sbTheme])
 

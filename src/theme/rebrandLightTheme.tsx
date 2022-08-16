@@ -582,8 +582,10 @@ const components: ThemeOptions['components'] = getThemeComponents(
   themeWithoutComponents,
 )
 
-/**
- * The default light theme which combines the `baseTheme`, the light theme overrides, and the component-level overrides.
+/** The UNOFFICIAL rebranded Portal light theme which combines:
+ * - `baseTheme`
+ * - Extended color tokens
+ * - `themeComponents` component overrides
  */
 export const rebrandLightTheme: Theme = createTheme(
   {
