@@ -1,5 +1,9 @@
 # Monorail 3
 
+### [Quick Start Guide](https://www.notion.so/simspace/Quick-start-Guide-5ad2ee81b9c7415b88033e775f7359d6)
+
+### [Contribution Guide](https://www.notion.so/simspace/Contribution-Guide-8768ba426df14c3caee8bccface805f1)
+
 ## Table of Contents
 
 - [Overview](#Overview)
@@ -33,45 +37,6 @@ Monorail 3 is an encapsulation of the SimSpace design language, backed by Materi
 # Run storybook site
 > yarn storybook
 ```
-
-## Installing in a GitLab repo
-
-The `@simspace/monorail3` package is hosted on our private GitLab package registry. To install it
-
-1. Generate a GitLab API token that has API read access
-2. Configure your package manager in your project to look for `@simspace` scoped packages in the GitLab package registry.
-
-If using `npm` or `yarn@1`:
-
-```sh
-$ npm config set @simspace:registry https://gitlab.com/api/v4/packages/npm/
-```
-
-If using modern `yarn`:
-
-```sh
-$ yarn config set "npmScopes.simspace.npmRegistryServer" "https://gitlab.com/api/v4/packages/npm/"
-```
-
-3. Configure your package manager's global configuration to use your API key
-
-If using `npm` or `yarn@1`:
-
-```sh
-$ echo "//gitlab.com/api/v4/packages/npm/:_authToken=<your_token>" >> ~/.npmrc
-```
-
-If using modern `yarn`:
-
-```sh
-$ yarn config set -H "npmRegistries[\"//gitlab.com/api/v4/packages/npm/\"].npmAlwaysAuth" "true"
-$ yarn config set -H "npmRegistries[\"//gitlab.com/api/v4/packages/npm/\"].npmAuthToken" "<your_token>"
-```
-
-4. ```sh
-   $ npm install @simspace/monorail3
-   $ yarn add @simspace/monorail3
-   ```
 
 ## Storybook
 
@@ -131,6 +96,3 @@ We also have a node-based `jest` test running setup to run the a11y tests outsid
   - The "system" props (e.g. `sx` props, or CSS-like props that you can set directly on components)
   - Examples: `children` props, `Box` component, others
 
-## [Quick Start Guide](https://www.notion.so/simspace/Quick-start-Guide-5ad2ee81b9c7415b88033e775f7359d6)
-
-## [Contribution Guide](https://www.notion.so/simspace/Contribution-Guide-8768ba426df14c3caee8bccface805f1)
