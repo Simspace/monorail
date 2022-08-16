@@ -2,6 +2,7 @@
 import { createTheme, PaletteOptions, Theme } from '@mui/material'
 import {
   blue,
+  deepPurple,
   green,
   grey,
   lime,
@@ -105,42 +106,42 @@ export const RawColor = {
 
 export const DefaultLightScoreColors = {
   high: {
-    light: '#0FBD6F',
-    main: '#007544',
-    dark: '#004E2D',
-    contrastText: baseTheme.palette.getContrastText('#007544'),
+    light: green[300],
+    main: green[600],
+    dark: green[900],
+    contrastText: baseTheme.palette.getContrastText(green[900]),
   },
   highModerate: {
     light: lime[300],
     main: lime[600],
     dark: lime[900],
-    contrastText: baseTheme.palette.getContrastText('#70840F'),
+    contrastText: baseTheme.palette.getContrastText(lime[900]),
   },
   moderate: {
-    light: '#F7CF08',
-    main: '#D18105',
-    dark: '#A36403',
-    contrastText: baseTheme.palette.getContrastText('#D18105'),
+    light: yellow[300],
+    main: yellow[600],
+    dark: yellow[900],
+    contrastText: baseTheme.palette.getContrastText(yellow[900]),
   },
   lowModerate: {
-    light: '#FF8000',
-    main: '#B84514',
-    dark: '#93340B',
-    contrastText: baseTheme.palette.getContrastText('#B84514'),
+    light: orange[300],
+    main: orange[600],
+    dark: orange[900],
+    contrastText: baseTheme.palette.getContrastText(orange[900]),
   },
   low: {
-    light: '#FF6B66',
-    main: '#D41C0B',
-    dark: '#B51405',
-    contrastText: baseTheme.palette.getContrastText('#D41C0B'),
+    light: red[300],
+    main: red[600],
+    dark: red[900],
+    contrastText: baseTheme.palette.getContrastText(red[900]),
   },
 }
 
 export const DefaultLightTierColors = {
-  one: '#8D74F1',
-  two: '#F54545',
-  three: '#E56000',
-  four: '#08A45E',
+  one: deepPurple[400],
+  two: red[400],
+  three: orange[400],
+  four: green[400],
 }
 
 export const DefaultLightChartColors = {
@@ -554,11 +555,20 @@ const palette: PaletteOptions = {
 // We're doing this so we have all the base theme settings populated for doing the component-level overrides. We want
 // a Theme here, rather than ThemeOptions because we want all the values to be non-optional and filled-in for the
 // component overrides.
+
+/** Light theme without component overrides.
+ * - Default MUI component behavior
+ * - Uses `@mui/material/colors` as global color tokens
+ */
 export const muiLightTheme: Theme = createTheme({
   ...baseTheme,
   palette: palette,
 })
 
+/** Dark theme without component overrides.
+ * - Default MUI component behavior
+ * - Uses `@mui/material/colors` as global color tokens
+ */
 export const muiDarkTheme: Theme = createTheme({
   ...baseTheme,
   palette: {

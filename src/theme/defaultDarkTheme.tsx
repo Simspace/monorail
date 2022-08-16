@@ -551,7 +551,10 @@ const palette: PaletteOptions = {
 // component overrides.
 const themeWithoutComponents: Theme = createTheme({
   ...baseTheme,
-  palette: palette,
+  palette: {
+    mode: 'dark',
+    ...palette,
+  },
 })
 
 // Now create the `components` overrides using the theme we just created
@@ -559,15 +562,15 @@ const components: ThemeOptions['components'] = getThemeComponents(
   themeWithoutComponents,
 )
 
-/**
- * The default light theme which combines the `baseTheme`, the light theme overrides, and the component-level overrides.
+/** The UNOFFICIAL default dark theme which combines:
+ * - `baseTheme`
+ * - Extended color tokens with `palette.mode` set to `'dark'`
+ * - `themeComponents` component overrides
  */
 export const defaultDarkTheme: Theme = createTheme(
   {
     ...themeWithoutComponents,
     components: components,
-    // TODO: not sure if setting mode:dark does anything useful here.
-    // The hope is that it would automatically adjust an existing light theme, but not sure if it does that
   },
   {},
 )
