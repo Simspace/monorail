@@ -54,7 +54,7 @@ deploy-storybook:
     - echo "Creating storybook environment for $CI_COMMIT_REF_SLUG"
   environment:
     name: storybook/$CI_COMMIT_REF_SLUG
-    url: https://simspace.gitlab.io/r9y/monorail/$CI_COMMIT_REF_SLUG/storybook/
+    url: https://simspace.gitlab.io/engineering/ux-engineering/monorail/$CI_COMMIT_REF_SLUG/storybook/
     on_stop: remove-storybook
 
 remove-storybook:
