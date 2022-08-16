@@ -131,4 +131,6 @@ We also have a node-based `jest` test running setup to run the a11y tests outsid
   - The "system" props (e.g. `sx` props, or CSS-like props that you can set directly on components)
   - Examples: `children` props, `Box` component, others
 
+## [Quick Start Guide](https://www.notion.so/simspace/Quick-start-Guide-5ad2ee81b9c7415b88033e775f7359d6)
+
 ## [Contribution Guide](https://www.notion.so/simspace/Contribution-Guide-8768ba426df14c3caee8bccface805f1)
