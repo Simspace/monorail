@@ -26,7 +26,7 @@ const jestConfig = {
     '^.+\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga|xml)$':
       './jest/assetTransformer',
   },
-  transformIgnorePatterns: ['node_modules/(?!@mui|@babel)'],
+  transformIgnorePatterns: ['node_modules/(?!@mui|@babel|react-dnd|dnd-core|@react-dnd)'],
 }
 
 module.exports = jestConfig
