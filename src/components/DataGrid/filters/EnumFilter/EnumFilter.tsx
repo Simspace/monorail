@@ -120,7 +120,7 @@ export function EnumFilter(props: EnumFilterProps) {
         })}
         autoFocus
       />
-      <ScrollShadow bottomShadow={isFiltered}>
+      <ScrollShadow bottom={isFiltered}>
         <List
           disablePadding
           sx={theme => ({

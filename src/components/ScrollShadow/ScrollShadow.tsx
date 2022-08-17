@@ -1,21 +1,37 @@
 import React from 'react'
-import { CSSInterpolation, styled, SxProps, Theme } from '@mui/material'
+import { CSSInterpolation, styled, useThemeProps } from '@mui/material'
+import composeClasses from '@mui/utils/composeClasses'
+import clsx from 'clsx'
 
 import { useRequestAnimationFrame } from '../../utils/hooks/useRequestAnimationFrame'
 import { excludeProps } from '../../utils/styled/excludeProps'
 import { sx } from '../../utils/sx'
+import { getScrollShadowUtilityClass } from './scrollShadowClasses'
+import { ScrollShadowProps } from './scrollShadowProps'
 
-const ScrollShadowContainer = styled('div')(
-  sx({
-    display: 'flex',
-    flexFlow: 'column nowrap',
-    overflow: 'hidden',
-    height: '100%',
-    position: 'relative',
-  }),
-)
+interface ScrollShadowOwnerState
+  extends Omit<ScrollShadowProps, 'top' | 'bottom'> {
+  top: boolean
+  bottom: boolean
+}
 
-const ScrollContainer = styled('div')(
+const ScrollShadowRoot = styled('div', {
+  name: 'MonorailScrollShadow',
+  slot: 'Root',
+  overridesResolver: (props, styles) => styles.root,
+})({
+  display: 'flex',
+  flexFlow: 'column nowrap',
+  overflow: 'hidden',
+  height: '100%',
+  position: 'relative',
+})
+
+const ScrollContainer = styled('div', {
+  name: 'MonorailScrollShadow',
+  slot: 'ScrollContainer',
+  overridesResolver: (props, styles) => styles.scrollContainer,
+})(
   sx({
     flex: 1,
     height: '100%',
@@ -29,120 +45,141 @@ interface ShadowProps {
 }
 
 const Shadow = styled('div', {
+  name: 'MonorailScrollShadow',
+  slot: 'Shadow',
+  overridesResolver: (props: ShadowProps, styles) => {
+    const { position } = props
+    return position === 'top' ? styles.topShadow : styles.bottomShadow
+  },
   shouldForwardProp: excludeProps('position'),
-})<ShadowProps>(({ position }) =>
-  sx(theme => {
-    const styles: CSSInterpolation = {
-      backgroundColor: theme.palette.common.white,
-      height: theme.spacing(4),
-      pointerEvents: 'none',
-      zIndex: 5,
-      opacity: 0,
-      transition: 'opacity 100ms',
-      position: 'absolute',
-      left: theme.spacing(-2),
-      right: theme.spacing(-2),
-      boxShadow: theme.shadows[6],
+})<ShadowProps>(({ position, theme }) => {
+  const styles: CSSInterpolation = {
+    backgroundColor: theme.palette.common.white,
+    height: theme.spacing(4),
+    pointerEvents: 'none',
+    zIndex: 5,
+    opacity: 0,
+    transition: 'opacity 100ms',
+    position: 'absolute',
+    left: theme.spacing(-2),
+    right: theme.spacing(-2),
+    boxShadow: theme.shadows[6],
+  }
+  switch (position) {
+    case 'top': {
+      styles.top = theme.spacing(-4.5)
+      break
     }
-    switch (position) {
-      case 'top': {
-        styles.top = theme.spacing(-4.5)
-        break
-      }
-      case 'bottom': {
-        styles.bottom = theme.spacing(-4.5)
-        styles.transform = 'rotate(180deg)'
-        break
-      }
+    case 'bottom': {
+      styles.bottom = theme.spacing(-4.5)
+      styles.transform = 'rotate(180deg)'
+      break
     }
-    return styles
-  }),
-)
+  }
+  return styles
+})
 
 const MAX_SCROLL_AMOUNT = 128
 
-interface ScrollShadowProps extends React.ComponentPropsWithRef<'div'> {
-  bottomShadow?: boolean
-  children: React.ReactNode
-  sx?: SxProps<Theme>
-}
+export const ScrollShadow = React.forwardRef(function ScrollShadow(
+  inProps: ScrollShadowProps,
+  ref,
+) {
+  const props = useThemeProps({
+    name: 'MonorailScrollShadow',
+    props: inProps,
+  })
+  const { className, top = true, bottom = false, children, ...other } = props
 
-export const ScrollShadow: React.ForwardRefExoticComponent<ScrollShadowProps> =
-  React.forwardRef(
-    (props: ScrollShadowProps, ref: React.ForwardedRef<HTMLDivElement>) => {
-      const { bottomShadow = false, children, ...other } = props
+  const scrollContainerRef = React.useRef<HTMLDivElement | null>(null)
+  const topShadowRef = React.useRef<HTMLDivElement>(null)
+  const bottomShadowRef = React.useRef<HTMLDivElement | null>(null)
 
-      const scrollContainerRef = React.useRef<HTMLDivElement | null>(null)
-      const topShadowRef = React.useRef<HTMLDivElement>(null)
-      const bottomShadowRef = React.useRef<HTMLDivElement | null>(null)
+  const scheduleAnimation = useRequestAnimationFrame()
 
-      const scheduleAnimation = useRequestAnimationFrame()
+  const updateShadows = () => {
+    const scrollContainerElement = scrollContainerRef.current
+    if (scrollContainerElement === null) {
+      return
+    }
 
-      const updateShadows = () => {
-        const scrollContainerElement = scrollContainerRef.current
-        if (scrollContainerElement === null) {
-          return
-        }
+    if (topShadowRef.current !== null) {
+      const topShadowElement = topShadowRef.current
+      const scrollTop = scrollContainerElement.scrollTop
 
-        if (topShadowRef.current !== null) {
-          const topShadowElement = topShadowRef.current
-          const scrollTop = scrollContainerElement.scrollTop
-
-          if (shouldAnimateShadowOpacity(topShadowElement, scrollTop)) {
-            scheduleAnimation(() => {
-              topShadowElement.style.opacity = calculateScrollOpacity(scrollTop)
-            })
-          }
-        }
-
-        if (bottomShadowRef.current !== null) {
-          const bottomShadowElement = bottomShadowRef.current
-          const scrollBottom =
-            scrollContainerElement.scrollHeight -
-            scrollContainerElement.clientHeight -
-            scrollContainerElement.scrollTop
-
-          if (shouldAnimateShadowOpacity(bottomShadowElement, scrollBottom)) {
-            scheduleAnimation(() => {
-              bottomShadowElement.style.opacity =
-                calculateScrollOpacity(scrollBottom)
-            })
-          }
-        }
+      if (shouldAnimateShadowOpacity(topShadowElement, scrollTop)) {
+        scheduleAnimation(() => {
+          topShadowElement.style.opacity = calculateScrollOpacity(scrollTop)
+        })
       }
+    }
 
-      const handleScrollContainerRefCallback = (
-        element: HTMLDivElement | null,
-      ) => {
-        scrollContainerRef.current = element
-        if (!bottomShadow) {
-          scheduleAnimation(updateShadows)
-        }
+    if (bottomShadowRef.current !== null) {
+      const bottomShadowElement = bottomShadowRef.current
+      const scrollBottom =
+        scrollContainerElement.scrollHeight -
+        scrollContainerElement.clientHeight -
+        scrollContainerElement.scrollTop
+
+      if (shouldAnimateShadowOpacity(bottomShadowElement, scrollBottom)) {
+        scheduleAnimation(() => {
+          bottomShadowElement.style.opacity =
+            calculateScrollOpacity(scrollBottom)
+        })
       }
+    }
+  }
 
-      const handleBottomShadowRefCallback = (
-        element: HTMLDivElement | null,
-      ) => {
-        bottomShadowRef.current = element
-        scheduleAnimation(updateShadows)
-      }
+  const handleScrollContainerRefCallback = (element: HTMLDivElement | null) => {
+    scrollContainerRef.current = element
+    if (!bottom) {
+      scheduleAnimation(updateShadows)
+    }
+  }
 
-      return (
-        <ScrollShadowContainer ref={ref} {...other}>
-          <Shadow ref={topShadowRef} position="top" />
-          <ScrollContainer
-            onScroll={updateShadows}
-            ref={handleScrollContainerRefCallback}
-          >
-            {children}
-          </ScrollContainer>
-          {bottomShadow && (
-            <Shadow ref={handleBottomShadowRefCallback} position="bottom" />
-          )}
-        </ScrollShadowContainer>
-      )
-    },
+  const handleBottomShadowRefCallback = (element: HTMLDivElement | null) => {
+    bottomShadowRef.current = element
+    scheduleAnimation(updateShadows)
+  }
+
+  const ownerState: ScrollShadowOwnerState = {
+    ...props,
+    top,
+    bottom,
+  }
+
+  const classes = useUtilityClasses(ownerState)
+
+  return (
+    <ScrollShadowRoot
+      className={clsx(classes.root, className)}
+      ref={ref}
+      {...other}
+    >
+      {top && (
+        <Shadow
+          className={classes.topShadow}
+          ref={topShadowRef}
+          position="top"
+        />
+      )}
+      <ScrollContainer
+        className={classes.scrollContainer}
+        onScroll={updateShadows}
+        ref={handleScrollContainerRefCallback}
+      >
+        {children}
+      </ScrollContainer>
+      {bottom && (
+        <Shadow
+          className={classes.bottomShadow}
+          ref={handleBottomShadowRefCallback}
+          position="bottom"
+        />
+      )}
+    </ScrollShadowRoot>
   )
+}) as (props: ScrollShadowProps) => JSX.Element
 
 function shouldAnimateShadowOpacity(
   shadowElement: HTMLDivElement,
@@ -168,4 +205,17 @@ function calculateScrollOpacity(scrollAmount: number) {
     return '1'
   }
   return Math.min((1 / MAX_SCROLL_AMOUNT) * scrollAmount, 1).toString(10)
+}
+
+function useUtilityClasses(ownerState: ScrollShadowOwnerState) {
+  const { classes } = ownerState
+
+  const slots = {
+    root: ['root'],
+    scrollContainer: ['scrollContainer'],
+    topShadow: ['topShadow'],
+    bottomShadow: ['bottomShadow'],
+  }
+
+  return composeClasses(slots, getScrollShadowUtilityClass, classes)
 }
