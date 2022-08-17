@@ -12,11 +12,13 @@ export {
 
 export type { CSSObject } from '@mui/material'
 
+export type { Theme } from '@mui/material'
 export {
-  StyledEngineProvider,
   alpha,
+  createTheme,
   generateUtilityClass,
   generateUtilityClasses,
+  StyledEngineProvider,
 } from '@mui/material'
 
 export { default as composeClasses } from '@mui/base/composeClasses'

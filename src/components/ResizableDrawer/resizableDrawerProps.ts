@@ -1,3 +1,4 @@
+import React from 'react'
 import { DrawerProps, ModalProps, PaperProps, SxProps } from '@mui/material'
 import { Theme } from '@mui/system'
 
@@ -9,6 +10,10 @@ export interface ResizableDrawerProps extends StandardElementProps<'div'> {
    * Override or extend the styles applied to the component.
    */
   classes?: Partial<ResizableDrawerClasses>
+  /**
+   * The content of the component.
+   */
+  children?: React.ReactNode
   /**
    * Side from which the drawer will appear.
    * @default 'left'
