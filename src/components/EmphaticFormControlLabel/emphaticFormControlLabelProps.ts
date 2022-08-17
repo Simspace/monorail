@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { SxProps, Theme } from '@mui/material'
 
-import { StandardElementProps } from '../../utils/types/standardElementProps'
+import { StandardElementProps } from '../../types'
 import { TypographyProps } from '../Typography'
 import { ControlProps } from './controlProps'
 import { EmphaticFormControlLabelClasses } from './emphaticFormControlLabelClasses'

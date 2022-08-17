@@ -9,7 +9,7 @@
  * See, add support cases, and replace usages in manage resources, attack designer, hardhat, reports and analytics,
  */
 
-import { clamp, roundToPrecision } from './Math.helpers'
+import { clamp, roundToPrecision } from './math'
 
 export enum Unit {
   BYTE = 'BYTE',
@@ -57,12 +57,13 @@ export function bytesToSize(
     return { value: 0, unit: Unit.BYTE }
   }
   const i = clamp(
+    Math.round(Math.floor(Math.log(bytes) / Math.log(1024))),
     0,
     3,
-  )(Math.round(Math.floor(Math.log(bytes) / Math.log(1024))))
+  )
 
   return {
-    value: roundToPrecision(precision)(bytes / Math.pow(1024, i)),
+    value: roundToPrecision(bytes / Math.pow(1024, i), precision),
     unit: numberToUnitMap[i],
   }
 }
@@ -100,7 +101,7 @@ export function sizeInGBs(size: Size, precision = 0) {
   } else {
     const bytes = sizeToBytes(size)
     return {
-      value: roundToPrecision(precision)(bytes / Math.pow(1024, 3)),
+      value: roundToPrecision(bytes / Math.pow(1024, 3), precision),
       unit: Unit.GB,
     }
   }

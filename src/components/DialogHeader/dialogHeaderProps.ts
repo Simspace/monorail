@@ -2,7 +2,7 @@ import React from 'react'
 import { Theme } from '@mui/material'
 import { SxProps } from '@mui/system'
 
-import { StandardElementProps } from '../../utils/types/standardElementProps'
+import { StandardElementProps } from '../../types'
 import { TypographyProps } from '../Typography'
 import { DialogHeaderClasses } from './dialogHeaderClasses'
 

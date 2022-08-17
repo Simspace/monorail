@@ -1,6 +1,14 @@
 export * from './components'
 export * from './theme'
 export * from './styles'
+export * from './types'
+export {
+  sx,
+  excludeProps,
+  combineSxProps,
+  useForceUpdate,
+  useRequestAnimationFrame,
+} from './utils'
 
 export type { CSSObject } from '@mui/material'
 
@@ -9,8 +17,6 @@ export {
   alpha,
   generateUtilityClass,
   generateUtilityClasses,
-  unstable_composeClasses as composeClasses,
 } from '@mui/material'
 
-export type { LocalizationProviderProps } from '@mui/x-date-pickers-pro'
-export { LocalizationProvider } from '@mui/x-date-pickers-pro'
+export { default as composeClasses } from '@mui/base/composeClasses'

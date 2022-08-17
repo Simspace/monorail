@@ -1,6 +1,6 @@
 import { SxProps, Theme } from '@mui/material'
 
-import { StandardElementProps } from '../../utils/types/standardElementProps'
+import { StandardElementProps } from '../../types'
 import { ScrollShadowClasses } from './scrollShadowClasses'
 
 export interface ScrollShadowProps extends StandardElementProps<'div'> {

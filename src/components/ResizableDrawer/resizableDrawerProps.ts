@@ -1,7 +1,7 @@
 import { DrawerProps, ModalProps, PaperProps, SxProps } from '@mui/material'
 import { Theme } from '@mui/system'
 
-import { StandardElementProps } from '../../utils/types/standardElementProps'
+import { StandardElementProps } from '../../types'
 import { ResizableDrawerClasses } from './resizableDrawerClasses'
 
 export interface ResizableDrawerProps extends StandardElementProps<'div'> {

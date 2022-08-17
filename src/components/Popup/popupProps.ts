@@ -11,7 +11,7 @@ import { TransitionProps } from '@mui/material/transitions'
 import { MUIStyledCommonProps } from '@mui/system'
 import { Options, OptionsGeneric, VirtualElement } from '@popperjs/core'
 
-import { StandardElementProps } from '../../utils/types/standardElementProps'
+import { StandardElementProps } from '../../types'
 import { PopupClasses } from './popupClasses'
 
 export interface PopupProps extends StandardElementProps<'div', 'title'> {
