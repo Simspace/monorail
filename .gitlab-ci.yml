@@ -18,7 +18,7 @@ stages:
   - pages
 
 before_script:
-  - yarn install --frozen-lockfile
+  - yarn install --immutable
 
 build:
   stage: build
