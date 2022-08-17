@@ -5,3 +5,5 @@ declare module '@mui/material/styles/overrides' {
     MonorailPopup: PopupClasses
   }
 }
+
+export {}
