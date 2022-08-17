@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react'
 import {
-  InternalStandardProps as StandardProps,
   PaperProps,
   PopperPlacementType,
   PopperProps,
@@ -12,10 +11,10 @@ import { TransitionProps } from '@mui/material/transitions'
 import { MUIStyledCommonProps } from '@mui/system'
 import { Options, OptionsGeneric, VirtualElement } from '@popperjs/core'
 
+import { StandardElementProps } from '../../utils/types/standardElementProps'
 import { PopupClasses } from './popupClasses'
 
-export interface PopupProps
-  extends StandardProps<React.HTMLAttributes<HTMLDivElement>, 'title'> {
+export interface PopupProps extends StandardElementProps<'div', 'title'> {
   /**
    * An HTML element, [virtualElement](https://popper.js.org/docs/v2/virtual-elements/),
    * or a function that returns either.

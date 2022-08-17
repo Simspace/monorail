@@ -1,18 +1,39 @@
 import React from 'react'
-import { InternalStandardProps as StandardProps } from '@mui/material'
+import { Theme } from '@mui/material'
+import { SxProps } from '@mui/system'
 
+import { StandardElementProps } from '../../utils/types/standardElementProps'
 import { TypographyProps } from '../Typography'
 import { DialogHeaderClasses } from './dialogHeaderClasses'
 
 export interface DialogHeaderProps
-  extends StandardProps<
-    React.HTMLAttributes<HTMLDivElement> & React.RefAttributes<HTMLDivElement>,
-    'title'
-  > {
+  extends StandardElementProps<'div', 'title'> {
+  /**
+   * Override or extend the styles applied to the component.
+   */
   classes?: Partial<DialogHeaderClasses>
+  /**
+   * The title displayed in the header
+   */
   title: React.ReactChild
+  /**
+   * The icon to the left of the title
+   * @default undefined
+   */
   icon?: React.ReactElement
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
   componentsProps?: {
+    /**
+     * Props applied to the Typography component
+     * @default {}
+     */
     typography?: TypographyProps
   }
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>
 }

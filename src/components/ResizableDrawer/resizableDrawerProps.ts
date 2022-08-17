@@ -1,14 +1,13 @@
-import {
-  DrawerProps,
-  InternalStandardProps as StandardProps,
-  ModalProps,
-  PaperProps,
-} from '@mui/material'
+import { DrawerProps, ModalProps, PaperProps, SxProps } from '@mui/material'
+import { Theme } from '@mui/system'
 
+import { StandardElementProps } from '../../utils/types/standardElementProps'
 import { ResizableDrawerClasses } from './resizableDrawerClasses'
 
-export interface ResizableDrawerProps
-  extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
+export interface ResizableDrawerProps extends StandardElementProps<'div'> {
+  /**
+   * Override or extend the styles applied to the component.
+   */
   classes?: Partial<ResizableDrawerClasses>
   /**
    * Side from which the drawer will appear.
@@ -54,4 +53,6 @@ export interface ResizableDrawerProps
     paper?: Partial<PaperProps>
     modal?: Partial<ModalProps>
   }
+
+  sx?: SxProps<Theme>
 }
