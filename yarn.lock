@@ -2909,7 +2909,7 @@ __metadata:
 
 "@mui/x-data-grid-pro@patch:@mui/x-data-grid-pro@npm:5.15.0#.yarn/patches/@mui-x-data-grid-pro-npm-5.15.0-a4d9069608.patch::locator=%40simspace%2Fmonorail3%40workspace%3A.":
   version: 5.15.0
-  resolution: "@mui/x-data-grid-pro@patch:@mui/x-data-grid-pro@npm%3A5.15.0#.yarn/patches/@mui-x-data-grid-pro-npm-5.15.0-a4d9069608.patch::version=5.15.0&hash=64836e&locator=%40simspace%2Fmonorail3%40workspace%3A."
+  resolution: "@mui/x-data-grid-pro@patch:@mui/x-data-grid-pro@npm%3A5.15.0#.yarn/patches/@mui-x-data-grid-pro-npm-5.15.0-a4d9069608.patch::version=5.15.0&hash=3e5b8a&locator=%40simspace%2Fmonorail3%40workspace%3A."
   dependencies:
     "@babel/runtime": ^7.18.6
     "@mui/utils": ^5.4.1
@@ -2924,7 +2924,7 @@ __metadata:
     "@mui/system": ^5.4.1
     react: ^17.0.2 || ^18.0.0
     react-dom: ^17.0.2 || ^18.0.0
-  checksum: f50b2ca8b3c3f5da10596e69023890653868b6cdba3c21d3a19f66b25ed98e433f8d035d82e8893384ebaba3d06d101f063bc1637c810a7072351035e8bd9096
+  checksum: 98e5aa6f0cf25fe52000d084a168c12f1d8f8e3a0f2f589d73367b2424949f41bcb59d1f12fa4470513eb060c5cf067f263dfa70e92ed1cd1ea409036540095f
   languageName: node
   linkType: hard
 
