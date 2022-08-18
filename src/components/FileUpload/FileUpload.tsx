@@ -7,22 +7,18 @@ import FileUploadIcon from '@mui/icons-material/FileUpload'
 import WarningIcon from '@mui/icons-material/Warning'
 import { experimental_sx, SxProps, Theme } from '@mui/material'
 
-import {
-  Box,
-  Button,
-  FormControl,
-  FormHelperText,
-  FormHelperTextProps,
-  FormLabel,
-  IconButton,
-  LinearProgress,
-  styled,
-  Typography,
-  TypographyProps,
-} from '../..'
+import { styled } from '../../styles'
 import { bytesToSize, formatSize } from '../../utils/helpers/fileSizeFormatters'
 import { excludeProps } from '../../utils/styled/excludeProps'
 import { sx } from '../../utils/sx'
+import { Box } from '../Box'
+import { Button } from '../Button'
+import { FormControl } from '../FormControl'
+import { FormHelperText, FormHelperTextProps } from '../FormHelperText'
+import { FormLabel } from '../FormLabel'
+import { IconButton } from '../IconButton'
+import { LinearProgress } from '../LinearProgress'
+import { Typography, TypographyProps } from '../Typography'
 
 //#region Status
 const DROP_TARGET_STATUS = {
