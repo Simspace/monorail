@@ -4,7 +4,8 @@
     "rootDir": "src",
     "module": "ESNext",
     "outDir": "./build/esm",
-    "declaration": false,
+    "declaration": true,
+    "declarationDir": "./build/dts",
     "tsBuildInfoFile": "./build/tsconfig.build-esm.tsbuildinfo"
   },
   "include": ["src/**/*"],

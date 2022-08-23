@@ -1,12 +1,12 @@
-import '@mui/x-data-grid-premium/typeOverloads'
+import type {} from '@mui/x-data-grid-premium/typeOverloads'
 export { LicenseInfo } from '@mui/x-license-pro'
 export * from '@mui/x-data-grid/components'
 export * from '@mui/x-data-grid-pro/components'
 export type {
   GridClasses as DataGridClasses,
   GridClassKey as DataGridClassKey,
-} from '@mui/x-data-grid/constants/gridClasses'
-export { getDataGridUtilityClass } from '@mui/x-data-grid/constants/gridClasses'
+  getDataGridUtilityClass,
+} from '@mui/x-data-grid/constants'
 export * from '@mui/x-data-grid/hooks'
 export * from '@mui/x-data-grid-pro/hooks'
 export * from '@mui/x-data-grid/locales'
@@ -27,7 +27,7 @@ export {
   useGridApiContext,
   useGridApiRef,
   useGridRootProps,
-} from '@mui/x-data-grid-premium/typeOverloads/reexports'
+} from '@mui/x-data-grid-premium'
 export type {
   GridApiRef,
   GridApi,
