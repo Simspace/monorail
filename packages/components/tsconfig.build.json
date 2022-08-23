@@ -1,0 +1,20 @@
+{
+  "extends": "../config/tsconfig.base.json",
+  "compilerOptions": {
+    "rootDir": "./src",
+    "outDir": "./build/esm",
+    "declaration": true,
+    "declarationDir": "./build/dts",
+    "sourceMap": true,
+    "tsBuildInfoFile": "build/tsbuildinfo/esm.tsbuildinfo"
+  },
+  "include": ["./src/**/*"],
+  "references": [
+    {
+      "path": "../types/tsconfig.build.json"
+    },
+    {
+      "path": "../utils/tsconfig.build.json"
+    }
+  ]
+}

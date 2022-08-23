@@ -1,0 +1,28 @@
+{
+  "name": "@monorail/types",
+  "typesVersions": {
+    "*": {
+      "*": [
+        "./build/dts/*.d.ts"
+      ]
+    }
+  },
+  "scripts": {
+    "build": "yarn org:tsc -b ./tsconfig.json",
+    "build-pack": "yarn build && yarn org:concurrently \"yarn build-cjs\" && monorail-pack",
+    "build-cjs": "babel build/esm --config-file ./.babel.cjs.json --out-dir build/cjs --out-file-extension .js --source-maps",
+    "clean": "rm -rf build dist",
+    "eslint": "NODE_OPTIONS=\"--max-old-space-size=8192\" eslint \"src/**/*.{js,ts,tsx}\"",
+    "prettier:check": "prettier './src/**/*{.js,.ts,.tsx}' --list-different",
+    "prettier:write": "prettier './src/**/*{.js,.ts,.tsx}' --write"
+  },
+  "peerDependencies": {
+    "@mui/material": "5.9.2",
+    "react": "17.0.2"
+  },
+  "devDependencies": {
+    "@monorail/scripts": "workspace:*",
+    "@mui/material": "5.9.2",
+    "@types/react": "17.0.39"
+  }
+}

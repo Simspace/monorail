@@ -1,0 +1,36 @@
+{
+  "name": "@monorail/utils",
+  "typesVersions": {
+    "*": {
+      "*": [
+        "./build/dts/*.d.ts"
+      ]
+    }
+  },
+  "exports": {
+    "./*": {
+      "import": "./build/esm/*",
+      "require": "./build/cjs/*.js"
+    },
+    ".": {
+      "import": "./build/esm/index.js",
+      "require": "./build/cjs/index.js"
+    }
+  },
+  "scripts": {
+    "build": "yarn tsc -b ./tsconfig.json",
+    "build-pack": "yarn build && yarn org:concurrently \"yarn build-cjs\" && monorail-pack",
+    "build-cjs": "babel build/esm --config-file ./.babel.cjs.json --out-dir build/cjs --out-file-extension .js --source-maps"
+  },
+  "peerDependencies": {
+    "@mui/styles": "5.9.2",
+    "@mui/system": "5.9.2",
+    "@mui/utils": "5.9.1"
+  },
+  "devDependencies": {
+    "@monorail/scripts": "workspace:*",
+    "@mui/styles": "5.9.2",
+    "@mui/system": "5.9.2",
+    "@mui/utils": "5.9.1"
+  }
+}

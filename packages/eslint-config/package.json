@@ -1,0 +1,10 @@
+{
+  "name": "@monorail/eslint-config",
+  "version": "0.0.0",
+  "private": true,
+  "exports": {
+    ".": {
+      "require": "./index.cjs"
+    }
+  }
+}

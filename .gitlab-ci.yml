@@ -24,9 +24,11 @@ build:
   stage: build
   artifacts:
     paths:
-      - dist
+      - packages/**/dist
+      - packages/**/build
   script:
-    - yarn build:pack
+    - yarn workspace @monorail/scripts build
+    - yarn build-pack
 
 lint:
   stage: test
@@ -41,11 +43,13 @@ test:
 
 storybook:
   stage: storybook
+  dependencies:
+    - build
   artifacts:
     expire_in: 2 weeks
     when: always
     paths:
-      - storybook/
+      - ./packages/storybook/storybook
   script: yarn build-storybook --output-dir storybook
 
 deploy-storybook:
@@ -60,7 +64,7 @@ deploy-storybook:
 remove-storybook:
   stage: deploy
   cache:
-    key: 'monorail-storybook'
+    key: "monorail-storybook"
     paths:
       - public
   script:
@@ -86,7 +90,7 @@ remove-storybook:
 pages:
   stage: pages
   cache:
-    key: 'monorail-storybook'
+    key: "monorail-storybook"
     paths:
       - public
   artifacts:
@@ -104,7 +108,7 @@ pages:
       git checkout pages
       rm -rf public/${CI_COMMIT_REF_SLUG}
       mkdir -p "public/${CI_COMMIT_REF_SLUG}"
-      mv storybook "public/${CI_COMMIT_REF_SLUG}"
+      mv ./packages/storybook/storybook "public/${CI_COMMIT_REF_SLUG}"
       git reset --soft HEAD^
       git add .
       git commit -m "[CI] Publish Pages"

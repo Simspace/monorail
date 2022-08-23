@@ -1,0 +1,15 @@
+{
+  "extends": "../config/tsconfig.base.json",
+  "include": ["src/**/*"],
+  "compilerOptions": {
+    "noEmit": true
+  },
+  "references": [
+    {
+      "path": "../components/tsconfig.build.json"
+    },
+    {
+      "path": "../themes/tsconfig.build.json"
+    }
+  ]
+}

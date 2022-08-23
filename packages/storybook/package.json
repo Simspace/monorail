@@ -1,0 +1,38 @@
+{
+  "name": "@monorail/storybook",
+  "version": "0.0.2",
+  "description": "Monorail 3 Storybook",
+  "repository": "https://gitlab.com/simspace/monorail",
+  "author": "SimSpace",
+  "license": "UNLICENSED",
+  "publishConfig": {
+    "access": "restricted"
+  },
+  "scripts": {
+    "storybook": "TS_NODE_PROJECT=./.storybook/tsconfig.json start-storybook -p 6006 -s assets",
+    "build-storybook": "TS_NODE_PROJECT=./.storybook/tsconfig.json build-storybook -s assets",
+    "test": "yarn org:jest"
+  },
+  "devDependencies": {
+    "@monorail/components": "workspace:*",
+    "@monorail/themes": "workspace:*",
+    "@storybook/addon-a11y": "^6.5.9",
+    "@storybook/addon-actions": "^6.5.9",
+    "@storybook/addon-controls": "^6.5.9",
+    "@storybook/addon-docs": "^6.5.9",
+    "@storybook/addon-essentials": "^6.5.9",
+    "@storybook/addon-links": "^6.5.9",
+    "@storybook/builder-webpack5": "^6.5.9",
+    "@storybook/core": "^6.5.9",
+    "@storybook/manager-webpack5": "^6.5.9",
+    "@storybook/node-logger": "^6.5.9",
+    "@storybook/preset-create-react-app": "^3.2.0",
+    "@storybook/react": "^6.5.9",
+    "@testing-library/dom": "7.31.0",
+    "@testing-library/jest-dom": "5.11.6",
+    "@testing-library/react": "11.2.2",
+    "@testing-library/user-event": "12.4.0",
+    "creevey": "0.7.37",
+    "enhanced-resolve": "^5.10.0"
+  }
+}

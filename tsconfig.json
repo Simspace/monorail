@@ -1,32 +1,17 @@
 {
-  "compilerOptions": {
-    "allowJs": true,
-    "esModuleInterop": true,
-    "incremental": true,
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "target": "ES2015",
-    "jsx": "react",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "sourceMap": true,
-    "stripInternal": true,
-    "outDir": "./dist",
-    "skipLibCheck": true,
-    "rootDir": ".",
-    "strict": true
-  },
-  "include": [
-    "src/**/*",
-    "tools/**/*",
-    ".storybook",
-    "creevey.config.js",
-    "jest/**/*",
-    "scripts/**/*"
-  ],
-  "exclude": [
-    "node_modules",
-    "tools/dependency-list",
-    "visual-test-images/**/*",
-    "visual-test-report/**/*"
+  "extends": "./packages/config/tsconfig.base.json",
+  "references": [
+    {
+      "path": "packages/components"
+    },
+    {
+      "path": "packages/scripts"
+    },
+    {
+      "path": "packages/themes"
+    },
+    {
+      "path": "packages/utils"
+    }
   ]
 }
