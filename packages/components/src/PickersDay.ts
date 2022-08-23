@@ -1,1 +1,1 @@
-export * from './PickersDay/PickersDay'
+export * from './PickersDay/PickersDay.js'

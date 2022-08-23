@@ -3,14 +3,14 @@ import { Search, ViewColumn, ViewModule } from '@mui/icons-material'
 import { unstable_debounce } from '@mui/utils'
 import { GridApi, SUBMIT_FILTER_STROKE_TIME } from '@mui/x-data-grid-premium'
 
-import { Box } from '../../Box'
-import { InputAdornment } from '../../InputAdornment'
-import { Select } from '../../Select'
-import { Stack } from '../../Stack'
-import { TextField } from '../../TextField'
-import { ToggleButton } from '../../ToggleButton'
-import { ToggleButtonGroup } from '../../ToggleButtonGroup'
-import { Typography } from '../../Typography'
+import { Box } from '../../Box.js'
+import { InputAdornment } from '../../InputAdornment.js'
+import { Select } from '../../Select.js'
+import { Stack } from '../../Stack.js'
+import { TextField } from '../../TextField.js'
+import { ToggleButton } from '../../ToggleButton.js'
+import { ToggleButtonGroup } from '../../ToggleButtonGroup.js'
+import { Typography } from '../../Typography.js'
 
 export interface DataGridToolbarProps {
   apiRef: React.MutableRefObject<GridApi>

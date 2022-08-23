@@ -12,13 +12,13 @@ import {
 import composeClasses from '@mui/utils/composeClasses'
 import clsx from 'clsx'
 
-import { Typography } from '../Typography'
-import { ControlProps } from './controlProps'
+import { Typography } from '../Typography.js'
+import { ControlProps } from './controlProps.js'
 import {
   emphaticFormControlLabelClasses,
   getEmphaticFormControlLabelUtilityClasses,
-} from './emphaticFormControlLabelClasses'
-import { EmphaticFormControlLabelProps } from './emphaticFormControlLabelProps'
+} from './emphaticFormControlLabelClasses.js'
+import { EmphaticFormControlLabelProps } from './emphaticFormControlLabelProps.js'
 
 interface EmphaticFormControlLabelRootProps
   extends Omit<EmphaticFormControlLabelProps, 'control' | 'label'> {

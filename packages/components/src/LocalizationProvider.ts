@@ -1,1 +1,1 @@
-export * from './LocalizationProvider/LocalizationProvider'
+export * from './LocalizationProvider/LocalizationProvider.js'

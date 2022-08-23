@@ -1,1 +1,1 @@
-export * from './CircularProgress/CircularProgress'
+export * from './CircularProgress/CircularProgress.js'

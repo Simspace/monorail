@@ -1,1 +1,1 @@
-export * from './CardActionArea/CardActionArea'
+export * from './CardActionArea/CardActionArea.js'

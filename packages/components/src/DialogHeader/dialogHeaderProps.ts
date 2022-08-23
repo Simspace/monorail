@@ -3,8 +3,8 @@ import { StandardElementProps } from '@monorail/types'
 import { Theme } from '@mui/material'
 import { SxProps } from '@mui/system'
 
-import { TypographyProps } from '../Typography'
-import { DialogHeaderClasses } from './dialogHeaderClasses'
+import { TypographyProps } from '../Typography.js'
+import { DialogHeaderClasses } from './dialogHeaderClasses.js'
 
 export interface DialogHeaderProps
   extends StandardElementProps<'div', 'title'> {

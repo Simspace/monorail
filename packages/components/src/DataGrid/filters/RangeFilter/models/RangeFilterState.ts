@@ -1,6 +1,6 @@
 import { isPlainObject } from '@mui/utils'
 
-import { RangeFilterOperator } from './RangeFilterOperator'
+import { RangeFilterOperator } from './RangeFilterOperator.js'
 
 export const RangeFilterStateTypeId = Symbol.for(
   '@simspace/monorail3/RangeFilterState',

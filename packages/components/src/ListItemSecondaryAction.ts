@@ -1,1 +1,1 @@
-export * from './ListItemSecondaryAction/ListItemSecondaryAction'
+export * from './ListItemSecondaryAction/ListItemSecondaryAction.js'

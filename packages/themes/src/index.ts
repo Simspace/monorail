@@ -1,1 +1,1 @@
-export * from './electric-bluegaloo'
+export * from './electric-bluegaloo.js'

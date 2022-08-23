@@ -1,1 +1,1 @@
-export * from './Switch/Switch'
+export * from './Switch/Switch.js'

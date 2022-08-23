@@ -1,1 +1,1 @@
-export * from './OutlinedInput/OutlinedInput'
+export * from './OutlinedInput/OutlinedInput.js'

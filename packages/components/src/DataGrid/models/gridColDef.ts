@@ -1,7 +1,7 @@
-import { MenuItemProps } from '../../MenuItem'
-import { GridValidRowModel } from '../internal'
-import { GridColFilterDef } from './gridColFilterType'
-import { HeaderActionParams } from './headerActionParams'
+import { MenuItemProps } from '../../MenuItem.js'
+import { GridValidRowModel } from '../internal.js'
+import { GridColFilterDef } from './gridColFilterType.js'
+import { HeaderActionParams } from './headerActionParams.js'
 
 declare module '@mui/x-data-grid/models/colDef/gridColDef' {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars

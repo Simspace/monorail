@@ -1,1 +1,1 @@
-export * from './DialogContentText/DialogContentText'
+export * from './DialogContentText/DialogContentText.js'

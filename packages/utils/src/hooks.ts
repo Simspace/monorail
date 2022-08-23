@@ -1,2 +1,2 @@
-export * from './hooks/useForceUpdate'
-export * from './hooks/useRequestAnimationFrame'
+export * from './hooks/useForceUpdate.js'
+export * from './hooks/useRequestAnimationFrame.js'

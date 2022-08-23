@@ -9,7 +9,7 @@
  * See, add support cases, and replace usages in manage resources, attack designer, hardhat, reports and analytics,
  */
 
-import { clamp, roundToPrecision } from './math'
+import { clamp, roundToPrecision } from './math.js'
 
 export enum Unit {
   BYTE = 'BYTE',

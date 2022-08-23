@@ -1,1 +1,1 @@
-export * from './MobileTimePicker/MobileTimePicker'
+export * from './MobileTimePicker/MobileTimePicker.js'

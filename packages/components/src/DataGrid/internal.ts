@@ -35,4 +35,4 @@ export type {
   GridState,
 } from '@mui/x-data-grid-premium/typeOverloads/reexports'
 
-export * from './constants'
+export * from './constants.js'

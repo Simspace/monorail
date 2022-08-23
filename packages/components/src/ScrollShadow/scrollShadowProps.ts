@@ -1,7 +1,7 @@
 import { StandardElementProps } from '@monorail/types'
 import { SxProps, Theme } from '@mui/material'
 
-import { ScrollShadowClasses } from './scrollShadowClasses'
+import { ScrollShadowClasses } from './scrollShadowClasses.js'
 
 export interface ScrollShadowProps extends StandardElementProps<'div'> {
   classes?: Partial<ScrollShadowClasses>

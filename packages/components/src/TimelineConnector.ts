@@ -1,1 +1,1 @@
-export * from './TimelineConnector/TimelineConnector'
+export * from './TimelineConnector/TimelineConnector.js'

@@ -1,1 +1,1 @@
-export * from './FormGroup/FormGroup'
+export * from './FormGroup/FormGroup.js'

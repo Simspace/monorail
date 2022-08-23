@@ -1,1 +1,1 @@
-export * from './SwipeableDrawer/SwipeableDrawer'
+export * from './SwipeableDrawer/SwipeableDrawer.js'

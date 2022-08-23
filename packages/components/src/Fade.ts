@@ -1,1 +1,1 @@
-export * from './Fade/Fade'
+export * from './Fade/Fade.js'

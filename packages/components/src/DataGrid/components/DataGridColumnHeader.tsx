@@ -4,17 +4,17 @@ import Sort from '@mui/icons-material/Sort'
 import { Theme } from '@mui/material'
 import { SxProps } from '@mui/system'
 
-import { Badge } from '../../Badge'
-import { IconButton } from '../../IconButton'
-import { Filter, SortAscending, SortDescending } from '../../icons'
-import { Menu } from '../../Menu'
-import { Popover } from '../../Popover'
-import { Stack } from '../../Stack'
-import { Typography } from '../../Typography'
-import { DateFilter } from '../filters/DateFilter'
-import { EnumFilter } from '../filters/EnumFilter'
-import { NumericFilter } from '../filters/NumericFilter'
-import { TextFilter } from '../filters/TextFilter'
+import { Badge } from '../../Badge.js'
+import { IconButton } from '../../IconButton.js'
+import { Filter, SortAscending, SortDescending } from '../../icons.js'
+import { Menu } from '../../Menu.js'
+import { Popover } from '../../Popover.js'
+import { Stack } from '../../Stack.js'
+import { Typography } from '../../Typography.js'
+import { DateFilter } from '../filters/DateFilter.js'
+import { EnumFilter } from '../filters/EnumFilter.js'
+import { NumericFilter } from '../filters/NumericFilter.js'
+import { TextFilter } from '../filters/TextFilter.js'
 import {
   GridColumnHeaderEventLookup,
   GridColumnHeaderParams,
@@ -24,7 +24,7 @@ import {
   GridSortDirection,
   useGridApiContext,
   useGridSelector,
-} from '../internal'
+} from '../internal.js'
 
 interface DataGridColumnHeaderProps extends GridColumnHeaderParams {}
 

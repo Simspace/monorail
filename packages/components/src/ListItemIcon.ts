@@ -1,1 +1,1 @@
-export * from './ListItemIcon/ListItemIcon'
+export * from './ListItemIcon/ListItemIcon.js'

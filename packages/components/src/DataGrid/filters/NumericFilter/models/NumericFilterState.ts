@@ -1,6 +1,6 @@
-import { RangeFilterState, RangeFilterStateTypeId } from '../../RangeFilter'
-import { numericOperators } from '../constants'
-import { NumericFilterOperator } from './NumericFilterOperator'
+import { RangeFilterState, RangeFilterStateTypeId } from '../../RangeFilter.js'
+import { numericOperators } from '../constants.js'
+import { NumericFilterOperator } from './NumericFilterOperator.js'
 
 export interface NumericFilterState
   extends RangeFilterState<NumericFilterOperator, number> {}

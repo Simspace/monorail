@@ -2,9 +2,9 @@ import React, { FC } from 'react'
 import Glider, { GliderProps } from 'react-glider'
 import useId from '@mui/utils/useId'
 
-import { IconButtonProps } from '../IconButton'
-import { Arrows } from './Arrows'
-import { GliderCarousel, Wrapper } from './Carousel.styled'
+import { IconButtonProps } from '../IconButton.js'
+import { Arrows } from './Arrows.js'
+import { GliderCarousel, Wrapper } from './Carousel.styled.js'
 
 type Props = {
   itemWidth?: number

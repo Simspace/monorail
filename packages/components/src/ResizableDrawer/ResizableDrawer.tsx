@@ -4,9 +4,9 @@ import { CSSObject, styled } from '@mui/material'
 import composeClasses from '@mui/utils/composeClasses'
 import clsx from 'clsx'
 
-import { Drawer, drawerClasses } from '../Drawer'
-import { getResizableDrawerUtilityClass } from './resizableDrawerClasses'
-import { ResizableDrawerProps } from './resizableDrawerProps'
+import { Drawer, drawerClasses } from '../Drawer.js'
+import { getResizableDrawerUtilityClass } from './resizableDrawerClasses.js'
+import { ResizableDrawerProps } from './resizableDrawerProps.js'
 
 const DRAWER_SIZE = 240
 const MIN_DRAWER_SIZE = 60

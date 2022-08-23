@@ -1,1 +1,1 @@
-export * from './TimelineSeparator/TimelineSeparator'
+export * from './TimelineSeparator/TimelineSeparator.js'

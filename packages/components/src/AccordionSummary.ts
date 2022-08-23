@@ -1,1 +1,1 @@
-export * from './AccordionSummary/AccordionSummary'
+export * from './AccordionSummary/AccordionSummary.js'

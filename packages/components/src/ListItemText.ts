@@ -1,1 +1,1 @@
-export * from './ListItemText/ListItemText'
+export * from './ListItemText/ListItemText.js'

@@ -1,4 +1,4 @@
-export * from './ScrollShadow/ScrollShadow'
-export * from './ScrollShadow/scrollShadowProps'
-export * from './ScrollShadow/scrollShadowClasses'
+export * from './ScrollShadow/ScrollShadow.js'
+export * from './ScrollShadow/scrollShadowProps.js'
+export * from './ScrollShadow/scrollShadowClasses.js'
 export type {} from './ScrollShadow/themeAugmentation'

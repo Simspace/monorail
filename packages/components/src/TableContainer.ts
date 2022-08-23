@@ -1,1 +1,1 @@
-export * from './TableContainer/TableContainer'
+export * from './TableContainer/TableContainer.js'

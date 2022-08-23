@@ -1,4 +1,4 @@
-export * from './EmphaticFormControlLabel/EmphaticFormControlLabel'
-export * from './EmphaticFormControlLabel/emphaticFormControlLabelClasses'
-export * from './EmphaticFormControlLabel/emphaticFormControlLabelProps'
+export * from './EmphaticFormControlLabel/EmphaticFormControlLabel.js'
+export * from './EmphaticFormControlLabel/emphaticFormControlLabelClasses.js'
+export * from './EmphaticFormControlLabel/emphaticFormControlLabelProps.js'
 export type {} from './EmphaticFormControlLabel/themeAugmentation'

@@ -1,1 +1,1 @@
-export * from './SvgIcon/SvgIcon'
+export * from './SvgIcon/SvgIcon.js'

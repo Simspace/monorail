@@ -1,1 +1,1 @@
-export * from './DateTimePicker/DateTimePicker'
+export * from './DateTimePicker/DateTimePicker.js'

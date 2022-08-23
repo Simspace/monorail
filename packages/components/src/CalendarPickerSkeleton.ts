@@ -1,1 +1,1 @@
-export * from './CalendarPickerSkeleton/CalendarPickerSkeleton'
+export * from './CalendarPickerSkeleton/CalendarPickerSkeleton.js'

@@ -1,1 +1,1 @@
-export * from './TabPanel/TabPanel'
+export * from './TabPanel/TabPanel.js'

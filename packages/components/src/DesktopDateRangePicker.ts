@@ -1,1 +1,1 @@
-export * from './DesktopDateRangePicker/DesktopDateRangePicker'
+export * from './DesktopDateRangePicker/DesktopDateRangePicker.js'

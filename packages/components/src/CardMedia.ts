@@ -1,1 +1,1 @@
-export * from './CardMedia/CardMedia'
+export * from './CardMedia/CardMedia.js'

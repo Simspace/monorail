@@ -12,14 +12,14 @@ import FileUploadIcon from '@mui/icons-material/FileUpload'
 import WarningIcon from '@mui/icons-material/Warning'
 import { experimental_sx, styled, SxProps, Theme } from '@mui/material'
 
-import { Box } from '../Box'
-import { Button } from '../Button'
-import { FormControl } from '../FormControl'
-import { FormHelperText, FormHelperTextProps } from '../FormHelperText'
-import { FormLabel } from '../FormLabel'
-import { IconButton } from '../IconButton'
-import { LinearProgress } from '../LinearProgress'
-import { Typography, TypographyProps } from '../Typography'
+import { Box } from '../Box.js'
+import { Button } from '../Button.js'
+import { FormControl } from '../FormControl.js'
+import { FormHelperText, FormHelperTextProps } from '../FormHelperText.js'
+import { FormLabel } from '../FormLabel.js'
+import { IconButton } from '../IconButton.js'
+import { LinearProgress } from '../LinearProgress.js'
+import { Typography, TypographyProps } from '../Typography.js'
 
 //#region Status
 const DROP_TARGET_STATUS = {

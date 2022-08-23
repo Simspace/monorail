@@ -1,7 +1,7 @@
 import { endOfDay, startOfDay } from 'date-fns'
 
-import { RangeFilterOperator } from '../../RangeFilter'
-import { DateFilterOperator } from '../models'
+import { RangeFilterOperator } from '../../RangeFilter.js'
+import { DateFilterOperator } from '../models.js'
 
 export const dateOperators: {
   [K in DateFilterOperator]: RangeFilterOperator<K, Date>

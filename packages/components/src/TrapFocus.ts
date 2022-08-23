@@ -1,1 +1,1 @@
-export * from './TrapFocus/TrapFocus'
+export * from './TrapFocus/TrapFocus.js'

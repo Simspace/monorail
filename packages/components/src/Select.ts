@@ -1,1 +1,1 @@
-export * from './Select/Select'
+export * from './Select/Select.js'

@@ -1,1 +1,1 @@
-export * from './AccordionActions/AccordionActions'
+export * from './AccordionActions/AccordionActions.js'

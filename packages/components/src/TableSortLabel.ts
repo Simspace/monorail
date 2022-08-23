@@ -1,1 +1,1 @@
-export * from './TableSortLabel/TableSortLabel'
+export * from './TableSortLabel/TableSortLabel.js'

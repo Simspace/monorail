@@ -1,1 +1,1 @@
-export * from './ImageList/ImageList'
+export * from './ImageList/ImageList.js'

@@ -4,21 +4,21 @@ import { CSSInterpolation, Theme } from '@mui/material'
 import { SystemStyleObject } from '@mui/system'
 import { DataGridPremium, useGridApiRef } from '@mui/x-data-grid-premium'
 
-import { Divider } from '../Divider'
-import { DataGridColumnHeader } from './components/DataGridColumnHeader'
-import { DataGridFooter } from './components/DataGridFooter'
-import { DataGridHeader } from './components/DataGridHeader'
-import { DataGridRow } from './components/DataGridRow'
-import { DATE_FILTER_DEFAULT_LOCALE_TEXT } from './filters/DateFilter'
-import { ENUM_FILTER_DEFAULT_LOCALE_TEXT } from './filters/EnumFilter'
-import { NUMERIC_FILTER_DEFAULT_LOCALE_TEXT } from './filters/NumericFilter'
-import { TEXT_FILTER_DEFAULT_LOCALE_TEXT } from './filters/TextFilter'
+import { Divider } from '../Divider.js'
+import { DataGridColumnHeader } from './components/DataGridColumnHeader.js'
+import { DataGridFooter } from './components/DataGridFooter.js'
+import { DataGridHeader } from './components/DataGridHeader.js'
+import { DataGridRow } from './components/DataGridRow.js'
+import { DATE_FILTER_DEFAULT_LOCALE_TEXT } from './filters/DateFilter.js'
+import { ENUM_FILTER_DEFAULT_LOCALE_TEXT } from './filters/EnumFilter.js'
+import { NUMERIC_FILTER_DEFAULT_LOCALE_TEXT } from './filters/NumericFilter.js'
+import { TEXT_FILTER_DEFAULT_LOCALE_TEXT } from './filters/TextFilter.js'
 import {
   dataGridClasses,
   DataGridProps,
   GridEnrichedColDef,
   GridValidRowModel,
-} from './internal'
+} from './internal.js'
 
 export const DataGrid: <R extends GridValidRowModel>(
   props: DataGridProps<R> & React.RefAttributes<HTMLDivElement>,

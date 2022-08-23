@@ -1,16 +1,16 @@
 import React from 'react'
 import { useForceUpdate } from '@monorail/utils'
 
-import { MenuItem } from '../../../MenuItem'
-import { Select, SelectChangeEvent } from '../../../Select'
-import { TextField } from '../../../TextField'
-import { useGridApiContext } from '../../internal'
-import { ClearFilterButton } from '../components/ClearFilterButton'
-import { FilterContainer } from '../components/FilterContainer'
-import { useDebouncedSyncFilter } from '../hooks/useDebouncedSyncFilter'
-import { useInitializeTextFilterState } from './hooks/useInitializeTextFilterState'
-import { TextFilterDefinition } from './models'
-import { TextFilterOperator } from './models/TextFilterOperator'
+import { MenuItem } from '../../../MenuItem.js'
+import { Select, SelectChangeEvent } from '../../../Select.js'
+import { TextField } from '../../../TextField.js'
+import { useGridApiContext } from '../../internal.js'
+import { ClearFilterButton } from '../components/ClearFilterButton.js'
+import { FilterContainer } from '../components/FilterContainer.js'
+import { useDebouncedSyncFilter } from '../hooks/useDebouncedSyncFilter.js'
+import { useInitializeTextFilterState } from './hooks/useInitializeTextFilterState.js'
+import { TextFilterDefinition } from './models.js'
+import { TextFilterOperator } from './models/TextFilterOperator.js'
 
 export interface TextFilterProps extends Omit<TextFilterDefinition, 'field'> {
   field: string

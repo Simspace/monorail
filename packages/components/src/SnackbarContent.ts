@@ -1,1 +1,1 @@
-export * from './SnackbarContent/SnackbarContent'
+export * from './SnackbarContent/SnackbarContent.js'

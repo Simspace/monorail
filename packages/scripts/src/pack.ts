@@ -78,12 +78,12 @@ async function writePackageJson(project: Project, workspace: Workspace) {
 
   const exports: any = {};
   exports["./*"]     = {
-    import: "./_esm/*.js",
-    require: "./_cjs/*.js",
+    import: "./_mjs/*.mjs",
+    require: "./_cjs/*.cjs",
   };
   exports["."] = {
-    import: "./_esm/index.js",
-    require: "./_cjs/index.js",
+    import: "./_mjs/index.mjs",
+    require: "./_cjs/index.cjs",
   };
   rawManifest.exports = exports;
 
@@ -155,9 +155,9 @@ if (await exists("./src")) {
   await fs.mkdir("./dist/_src");
   await exec("cp -r ./src/* ./dist/_src");
 }
-if (await exists("./build/esm")) {
-  await fs.mkdir("./dist/_esm");
-  await exec("cp -r ./build/esm/* ./dist/_esm");
+if (await exists("./build/mjs")) {
+  await fs.mkdir("./dist/_mjs");
+  await exec("cp -r ./build/mjs/* ./dist/_mjs");
 }
 if (await exists("./build/cjs")) {
   await fs.mkdir("./dist/_cjs");

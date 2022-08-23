@@ -1,7 +1,7 @@
 import React from 'react'
 import { InternalStandardProps as StandardProps } from '@mui/material'
 
-import { SelectionFooterLocaleText } from './selectionFooterLocaleText'
+import { SelectionFooterLocaleText } from './selectionFooterLocaleText.js'
 
 export interface SelectionFooterProps
   extends StandardProps<

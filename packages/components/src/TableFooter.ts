@@ -1,1 +1,1 @@
-export * from './TableFooter/TableFooter'
+export * from './TableFooter/TableFooter.js'

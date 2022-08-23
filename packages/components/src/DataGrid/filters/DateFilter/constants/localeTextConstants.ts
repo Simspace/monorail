@@ -1,4 +1,4 @@
-import { DateFilterLocaleText } from '../models/DateFilterLocaleText'
+import { DateFilterLocaleText } from '../models/DateFilterLocaleText.js'
 
 export const DATE_FILTER_DEFAULT_LOCALE_TEXT: DateFilterLocaleText = {
   clearFilterButton: 'Clear Filter',

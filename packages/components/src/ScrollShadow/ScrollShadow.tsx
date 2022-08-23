@@ -4,8 +4,8 @@ import { CSSInterpolation, styled, useThemeProps } from '@mui/material'
 import composeClasses from '@mui/utils/composeClasses'
 import clsx from 'clsx'
 
-import { getScrollShadowUtilityClass } from './scrollShadowClasses'
-import { ScrollShadowProps } from './scrollShadowProps'
+import { getScrollShadowUtilityClass } from './scrollShadowClasses.js'
+import { ScrollShadowProps } from './scrollShadowProps.js'
 
 interface ScrollShadowOwnerState
   extends Omit<ScrollShadowProps, 'top' | 'bottom'> {

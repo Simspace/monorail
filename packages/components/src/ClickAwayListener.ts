@@ -1,1 +1,1 @@
-export * from './ClickAwayListener/ClickAwayListener'
+export * from './ClickAwayListener/ClickAwayListener.js'

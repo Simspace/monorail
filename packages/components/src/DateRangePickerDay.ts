@@ -1,1 +1,1 @@
-export * from './DateRangePickerDay/DateRangePickerDay'
+export * from './DateRangePickerDay/DateRangePickerDay.js'

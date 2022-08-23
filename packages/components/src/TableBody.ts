@@ -1,1 +1,1 @@
-export * from './TableBody/TableBody'
+export * from './TableBody/TableBody.js'

@@ -1,1 +1,1 @@
-export * from './FormControlLabel/FormControlLabel'
+export * from './FormControlLabel/FormControlLabel.js'

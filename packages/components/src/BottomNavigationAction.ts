@@ -1,1 +1,1 @@
-export * from './BottomNavigationAction/BottomNavigationAction'
+export * from './BottomNavigationAction/BottomNavigationAction.js'

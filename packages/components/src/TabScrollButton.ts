@@ -1,1 +1,1 @@
-export * from './TabScrollButton/TabScrollButton'
+export * from './TabScrollButton/TabScrollButton.js'

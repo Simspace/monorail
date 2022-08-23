@@ -1,1 +1,1 @@
-export * from './TabContext/TabContext'
+export * from './TabContext/TabContext.js'

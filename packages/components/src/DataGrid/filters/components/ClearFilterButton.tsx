@@ -3,7 +3,7 @@ import { excludeProps } from '@monorail/utils/styled'
 import { sx } from '@monorail/utils/sx'
 import { styled, SxProps, Theme } from '@mui/material'
 
-import { Button } from '../../../Button'
+import { Button } from '../../../Button.js'
 
 interface ClearFilterContainerProps {
   isFiltered: boolean

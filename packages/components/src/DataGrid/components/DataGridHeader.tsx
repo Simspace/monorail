@@ -1,8 +1,8 @@
 import React from 'react'
 import { useGridApiContext } from '@mui/x-data-grid-premium'
 
-import { useInitializeGridSubState } from '../hooks/useInitializeGridSubState'
-import { dataGridClasses } from '../internal'
+import { useInitializeGridSubState } from '../hooks/useInitializeGridSubState.js'
+import { dataGridClasses } from '../internal.js'
 
 export function DataGridHeader() {
   const apiRef = useGridApiContext()

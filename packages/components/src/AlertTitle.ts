@@ -1,1 +1,1 @@
-export * from './AlertTitle/AlertTitle'
+export * from './AlertTitle/AlertTitle.js'

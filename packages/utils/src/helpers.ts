@@ -1,2 +1,2 @@
-export * from './helpers/fileSizeFormatters'
-export * from './helpers/math'
+export * from './helpers/fileSizeFormatters.js'
+export * from './helpers/math.js'

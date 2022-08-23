@@ -1,1 +1,1 @@
-export * from './MonthPicker/MonthPicker'
+export * from './MonthPicker/MonthPicker.js'

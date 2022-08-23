@@ -5,11 +5,11 @@ import { capitalize, styled, useThemeProps } from '@mui/material'
 import composeClasses from '@mui/utils/composeClasses'
 import clsx from 'clsx'
 
-import { Fade } from '../Fade'
-import { Paper, PaperProps } from '../Paper'
-import { Popper as MuiPopper } from '../Popper'
-import { getPopupUtilityClass, popupClasses } from './popupClasses'
-import { PopupProps } from './popupProps'
+import { Fade } from '../Fade.js'
+import { Paper, PaperProps } from '../Paper.js'
+import { Popper as MuiPopper } from '../Popper.js'
+import { getPopupUtilityClass, popupClasses } from './popupClasses.js'
+import { PopupProps } from './popupProps.js'
 
 const Arrow = styled('div', {
   overridesResolver: (props, styles) => styles.arrow,

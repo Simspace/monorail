@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 
-import { GridFilterOperator } from '../../../internal'
-import { isRangeFilterState, RangeFilterState } from '../models'
+import { GridFilterOperator } from '../../../internal.js'
+import { isRangeFilterState, RangeFilterState } from '../models.js'
 
 export const rangeFilterGetApplyFilterFn: GridFilterOperator['getApplyFilterFn'] =
   filterItem => {

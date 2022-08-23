@@ -1,1 +1,1 @@
-export * from './ListItemAvatar/ListItemAvatar'
+export * from './ListItemAvatar/ListItemAvatar.js'

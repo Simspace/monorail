@@ -1,1 +1,1 @@
-export * from './Popper/Popper'
+export * from './Popper/Popper.js'

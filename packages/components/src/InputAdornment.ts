@@ -1,1 +1,1 @@
-export * from './InputAdornment/InputAdornment'
+export * from './InputAdornment/InputAdornment.js'

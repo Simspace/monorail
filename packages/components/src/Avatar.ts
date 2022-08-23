@@ -1,1 +1,1 @@
-export * from './Avatar/Avatar'
+export * from './Avatar/Avatar.js'

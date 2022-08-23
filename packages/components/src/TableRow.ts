@@ -1,1 +1,1 @@
-export * from './TableRow/TableRow'
+export * from './TableRow/TableRow.js'

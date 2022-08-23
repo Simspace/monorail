@@ -2,9 +2,9 @@
 import { StandardElementProps } from '@monorail/types'
 import { SxProps, Theme } from '@mui/material'
 
-import { TypographyProps } from '../Typography'
-import { ControlProps } from './controlProps'
-import { EmphaticFormControlLabelClasses } from './emphaticFormControlLabelClasses'
+import { TypographyProps } from '../Typography.js'
+import { ControlProps } from './controlProps.js'
+import { EmphaticFormControlLabelClasses } from './emphaticFormControlLabelClasses.js'
 
 export interface EmphaticFormControlLabelProps<
   P extends ControlProps = ControlProps,

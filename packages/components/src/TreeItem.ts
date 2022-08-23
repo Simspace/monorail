@@ -1,1 +1,1 @@
-export * from './TreeItem/TreeItem'
+export * from './TreeItem/TreeItem.js'

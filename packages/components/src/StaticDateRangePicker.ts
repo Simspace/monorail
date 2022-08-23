@@ -1,1 +1,1 @@
-export * from './StaticDateRangePicker/StaticDateRangePicker'
+export * from './StaticDateRangePicker/StaticDateRangePicker.js'

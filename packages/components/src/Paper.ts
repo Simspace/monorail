@@ -1,1 +1,1 @@
-export * from './Paper/Paper'
+export * from './Paper/Paper.js'

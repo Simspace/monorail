@@ -1,1 +1,1 @@
-export * from './DesktopDatePicker/DesktopDatePicker'
+export * from './DesktopDatePicker/DesktopDatePicker.js'

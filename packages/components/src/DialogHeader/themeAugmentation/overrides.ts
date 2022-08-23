@@ -1,4 +1,4 @@
-import { DialogHeaderClassKey } from '../dialogHeaderClasses'
+import { DialogHeaderClassKey } from '../dialogHeaderClasses.js'
 
 declare module '@mui/material/styles/overrides' {
   interface ComponentNameToClassKey {

@@ -1,1 +1,1 @@
-export * from './GlobalStyles/GlobalStyles'
+export * from './GlobalStyles/GlobalStyles.js'

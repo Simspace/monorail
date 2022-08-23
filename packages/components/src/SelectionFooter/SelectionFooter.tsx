@@ -2,10 +2,10 @@ import React from 'react'
 import { sx } from '@monorail/utils'
 import { styled, useThemeProps } from '@mui/material'
 
-import { Stack } from '../Stack'
-import { Typography } from '../Typography'
-import { DEFAULT_SELECTION_FOOTER_LOCALE_TEXT } from './selectionFooterLocaleText'
-import { SelectionFooterProps } from './selectionFooterProps'
+import { Stack } from '../Stack.js'
+import { Typography } from '../Typography.js'
+import { DEFAULT_SELECTION_FOOTER_LOCALE_TEXT } from './selectionFooterLocaleText.js'
+import { SelectionFooterProps } from './selectionFooterProps.js'
 
 export interface SelectionFooterRootProps {
   ownerState: SelectionFooterProps

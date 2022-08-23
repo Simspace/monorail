@@ -1,1 +1,1 @@
-export * from './InputLabel/InputLabel'
+export * from './InputLabel/InputLabel.js'

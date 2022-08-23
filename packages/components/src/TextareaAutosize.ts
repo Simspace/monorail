@@ -1,1 +1,1 @@
-export * from './TextareaAutosize/TextareaAutosize'
+export * from './TextareaAutosize/TextareaAutosize.js'

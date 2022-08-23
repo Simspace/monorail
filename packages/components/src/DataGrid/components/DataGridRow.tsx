@@ -5,7 +5,7 @@ import {
   GridRow,
   GridRowProps,
   useGridApiContext,
-} from '../internal'
+} from '../internal.js'
 
 export function DataGridRow(props: GridRowProps) {
   const { rowId } = props

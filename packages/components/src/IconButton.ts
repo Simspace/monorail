@@ -1,1 +1,1 @@
-export * from './IconButton/IconButton'
+export * from './IconButton/IconButton.js'

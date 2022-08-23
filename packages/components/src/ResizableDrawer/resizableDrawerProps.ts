@@ -3,7 +3,7 @@ import { StandardElementProps } from '@monorail/types'
 import { DrawerProps, ModalProps, PaperProps, SxProps } from '@mui/material'
 import { Theme } from '@mui/system'
 
-import { ResizableDrawerClasses } from './resizableDrawerClasses'
+import { ResizableDrawerClasses } from './resizableDrawerClasses.js'
 
 export interface ResizableDrawerProps extends StandardElementProps<'div'> {
   /**

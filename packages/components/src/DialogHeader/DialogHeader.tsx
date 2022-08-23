@@ -4,11 +4,11 @@ import { sx } from '@monorail/utils'
 import { Close } from '@mui/icons-material'
 import { styled, useThemeProps } from '@mui/material'
 
-import { Box } from '../Box'
-import { DialogEventContext } from '../Dialog/dialogEventContext'
-import { IconButton } from '../IconButton'
-import { Typography } from '../Typography'
-import { DialogHeaderProps } from './dialogHeaderProps'
+import { Box } from '../Box.js'
+import { DialogEventContext } from '../Dialog/dialogEventContext.js'
+import { IconButton } from '../IconButton.js'
+import { Typography } from '../Typography.js'
+import { DialogHeaderProps } from './dialogHeaderProps.js'
 
 interface DialogHeaderRootProps extends Omit<DialogHeaderProps, 'title'> {
   ownerState: DialogHeaderProps

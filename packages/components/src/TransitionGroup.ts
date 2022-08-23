@@ -1,1 +1,1 @@
-export * from './TransitionGroup/TransitionGroup'
+export * from './TransitionGroup/TransitionGroup.js'

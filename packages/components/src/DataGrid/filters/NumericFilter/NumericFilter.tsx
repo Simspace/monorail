@@ -2,20 +2,20 @@ import React from 'react'
 import { useForceUpdate } from '@monorail/utils'
 import { SelectChangeEvent } from '@mui/material'
 
-import { MenuItem } from '../../../MenuItem'
-import { Select } from '../../../Select'
-import { TextField } from '../../../TextField'
-import { useGridApiContext } from '../../internal'
-import { ClearFilterButton } from '../components/ClearFilterButton'
-import { FilterContainer } from '../components/FilterContainer'
-import { useDebouncedSyncFilter } from '../hooks/useDebouncedSyncFilter'
-import { numericOperators } from './constants'
-import { useInitializeNumericFilterState } from './hooks'
+import { MenuItem } from '../../../MenuItem.js'
+import { Select } from '../../../Select.js'
+import { TextField } from '../../../TextField.js'
+import { useGridApiContext } from '../../internal.js'
+import { ClearFilterButton } from '../components/ClearFilterButton.js'
+import { FilterContainer } from '../components/FilterContainer.js'
+import { useDebouncedSyncFilter } from '../hooks/useDebouncedSyncFilter.js'
+import { numericOperators } from './constants.js'
+import { useInitializeNumericFilterState } from './hooks.js'
 import {
   NumericFilterDefinition,
   NumericFilterOperator,
   NumericFilterState,
-} from './models'
+} from './models.js'
 
 interface NumericFilterProps extends Omit<NumericFilterDefinition, 'field'> {
   field: string

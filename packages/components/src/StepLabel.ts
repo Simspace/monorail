@@ -1,1 +1,1 @@
-export * from './StepLabel/StepLabel'
+export * from './StepLabel/StepLabel.js'

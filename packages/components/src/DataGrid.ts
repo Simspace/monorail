@@ -1,4 +1,8 @@
-export * from './DataGrid/DataGrid'
-export * from './DataGrid/internal'
-export * from './DataGrid/components/DataGridToolbar'
-export * from './DataGrid/models'
+// codegen:start { preset: barrel, include: ./DataGrid/*.ts?(x) }
+export * from './DataGrid/constants.js'
+export * from './DataGrid/DataGrid.js'
+export * from './DataGrid/internal.js'
+export * from './DataGrid/models.js'
+// codegen:end
+
+export * from './DataGrid/components/DataGridToolbar.js'

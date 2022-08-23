@@ -1,1 +1,1 @@
-export * from './TimelineOppositeContent/TimelineOppositeContent'
+export * from './TimelineOppositeContent/TimelineOppositeContent.js'

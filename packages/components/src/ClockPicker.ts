@@ -1,1 +1,1 @@
-export * from './ClockPicker/ClockPicker'
+export * from './ClockPicker/ClockPicker.js'

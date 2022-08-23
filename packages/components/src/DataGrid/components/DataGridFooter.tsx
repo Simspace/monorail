@@ -1,13 +1,13 @@
 import React from 'react'
 
-import { Box } from '../../Box'
-import { FormControlLabel } from '../../FormControlLabel'
-import { MenuItem } from '../../MenuItem'
-import { Pagination } from '../../Pagination'
-import { Select, SelectChangeEvent } from '../../Select'
-import { SelectionFooter } from '../../SelectionFooter'
-import { Stack } from '../../Stack'
-import { Typography } from '../../Typography'
+import { Box } from '../../Box.js'
+import { FormControlLabel } from '../../FormControlLabel.js'
+import { MenuItem } from '../../MenuItem.js'
+import { Pagination } from '../../Pagination.js'
+import { Select, SelectChangeEvent } from '../../Select.js'
+import { SelectionFooter } from '../../SelectionFooter.js'
+import { Stack } from '../../Stack.js'
+import { Typography } from '../../Typography.js'
 import {
   GridApi,
   gridPageCountSelector,
@@ -17,7 +17,7 @@ import {
   useGridApiContext,
   useGridRootProps,
   useGridSelector,
-} from '../internal'
+} from '../internal.js'
 
 export function DataGridFooter() {
   const rootProps = useGridRootProps()

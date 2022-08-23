@@ -1,1 +1,1 @@
-export * from './MobileStepper/MobileStepper'
+export * from './MobileStepper/MobileStepper.js'

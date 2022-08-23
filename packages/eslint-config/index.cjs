@@ -6,6 +6,8 @@ module.exports = {
     node: true,
   },
   plugins: [
+    'codegen',
+    '@0x706b/module-specifier-extensions',
     'import',
     'jsdoc',
     'simple-import-sort',
@@ -31,6 +33,23 @@ module.exports = {
     },
   },
   rules: {
+    "@0x706b/module-specifier-extensions/module-specifier-extensions": [
+      "error",
+      {
+        remove: ["^@@monorail.*$"],
+        extensions: {
+          ".tsx": ".js",
+        }
+      },
+    ],
+    'codegen/codegen': [
+      "error",
+      {
+        presets: {
+          barrel: require('@fncts/codegen/barrel')
+        }
+      }
+    ],
     'array-callback-return': 'off',
     'arrow-body-style': 'off',
     'arrow-parens': ['off', 'always'],

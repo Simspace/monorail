@@ -2,8 +2,8 @@
 import type {} from '@monorail/types'
 import { createTheme } from '@mui/material'
 
-import { FontSize, LineHeight } from '../../common/FontSize'
-import { FontWeight } from '../../common/FontWeight'
+import { FontSize, LineHeight } from '../../common/FontSize.js'
+import { FontWeight } from '../../common/FontWeight.js'
 
 // This "default" theme should house the global defaults that apply to all themes. This would likely include
 // common settings that are not likely to differ between specific themes, like spacing, shadows, breakpoints, etc.

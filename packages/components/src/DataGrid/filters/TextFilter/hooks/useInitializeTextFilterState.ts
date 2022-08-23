@@ -1,9 +1,9 @@
 import React from 'react'
 
-import { gridColumnLookupSelector, useGridApiContext } from '../../../internal'
-import { textFilterOperator } from '../constants'
-import { TextFilterOperator } from '../models/TextFilterOperator'
-import { getTextFilterInitialState } from '../models/TextFilterState'
+import { gridColumnLookupSelector, useGridApiContext } from '../../../internal.js'
+import { textFilterOperator } from '../constants.js'
+import { TextFilterOperator } from '../models/TextFilterOperator.js'
+import { getTextFilterInitialState } from '../models/TextFilterState.js'
 
 export function useInitializeTextFilterState(
   field: string,

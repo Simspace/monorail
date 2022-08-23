@@ -1,1 +1,1 @@
-export * from './ImageListItemBar/ImageListItemBar'
+export * from './ImageListItemBar/ImageListItemBar.js'

@@ -1,1 +1,1 @@
-export * from './SpeedDialAction/SpeedDialAction'
+export * from './SpeedDialAction/SpeedDialAction.js'

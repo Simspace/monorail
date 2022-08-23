@@ -1,1 +1,1 @@
-export * from './MobileDateRangePicker/MobileDateRangePicker'
+export * from './MobileDateRangePicker/MobileDateRangePicker.js'

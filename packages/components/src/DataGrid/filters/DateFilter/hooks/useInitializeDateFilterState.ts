@@ -1,8 +1,8 @@
 import React from 'react'
 
-import { GridApi, gridColumnLookupSelector } from '../../../internal'
-import { dateFilterOperator } from '../constants'
-import { getDateFilterInitialState } from '../models'
+import { GridApi, gridColumnLookupSelector } from '../../../internal.js'
+import { dateFilterOperator } from '../constants.js'
+import { getDateFilterInitialState } from '../models.js'
 
 export function useInitializeDateFilterState(
   apiRef: React.MutableRefObject<GridApi>,

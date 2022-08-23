@@ -1,1 +1,1 @@
-export * from './DialogTitle/DialogTitle'
+export * from './DialogTitle/DialogTitle.js'

@@ -1,1 +1,1 @@
-export * from './styled/excludeProps'
+export * from './styled/excludeProps.js'

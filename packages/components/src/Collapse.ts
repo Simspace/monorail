@@ -1,1 +1,1 @@
-export * from './Collapse/Collapse'
+export * from './Collapse/Collapse.js'

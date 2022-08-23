@@ -1,0 +1,9 @@
+{
+	"plugins": [
+    ["replace-import-extension", {
+      "extMapping": {
+        ".js": ".mjs"
+      }
+    }]
+	]
+}

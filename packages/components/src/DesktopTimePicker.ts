@@ -1,1 +1,1 @@
-export * from './DesktopTimePicker/DesktopTimePicker'
+export * from './DesktopTimePicker/DesktopTimePicker.js'

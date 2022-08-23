@@ -1,1 +1,1 @@
-export * from './ToggleButton/ToggleButton'
+export * from './ToggleButton/ToggleButton.js'

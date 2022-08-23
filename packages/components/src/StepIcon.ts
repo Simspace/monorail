@@ -1,1 +1,1 @@
-export * from './StepIcon/StepIcon'
+export * from './StepIcon/StepIcon.js'

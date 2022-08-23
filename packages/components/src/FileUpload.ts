@@ -1,1 +1,1 @@
-export * from './FileUpload/FileUpload'
+export * from './FileUpload/FileUpload.js'

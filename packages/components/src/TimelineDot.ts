@@ -1,1 +1,1 @@
-export * from './TimelineDot/TimelineDot'
+export * from './TimelineDot/TimelineDot.js'

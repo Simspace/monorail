@@ -1,1 +1,1 @@
-export * from './ScopedCssBaseline/ScopedCssBaseline'
+export * from './ScopedCssBaseline/ScopedCssBaseline.js'

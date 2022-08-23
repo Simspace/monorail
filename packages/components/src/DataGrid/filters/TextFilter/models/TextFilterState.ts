@@ -1,6 +1,6 @@
 import { isPlainObject } from '@mui/utils'
 
-import { TextFilterOperator } from './TextFilterOperator'
+import { TextFilterOperator } from './TextFilterOperator.js'
 
 export const TextFilterStateTypeId = Symbol.for(
   '@simspace/monorail3/TextFilterState',

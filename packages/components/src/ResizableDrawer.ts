@@ -1,3 +1,3 @@
-export * from './ResizableDrawer/ResizableDrawer'
-export * from './ResizableDrawer/resizableDrawerProps'
-export * from './ResizableDrawer/resizableDrawerClasses'
+export * from './ResizableDrawer/ResizableDrawer.js'
+export * from './ResizableDrawer/resizableDrawerProps.js'
+export * from './ResizableDrawer/resizableDrawerClasses.js'

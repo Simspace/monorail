@@ -1,8 +1,8 @@
 import React from 'react'
 
-import { GridApi, gridColumnLookupSelector } from '../../../internal'
-import { numericFilterOperator } from '../constants/numericFilterOperator'
-import { getNumericFilterInitialState } from '../models'
+import { GridApi, gridColumnLookupSelector } from '../../../internal.js'
+import { numericFilterOperator } from '../constants/numericFilterOperator.js'
+import { getNumericFilterInitialState } from '../models.js'
 
 export function useInitializeNumericFilterState(
   apiRef: React.MutableRefObject<GridApi>,

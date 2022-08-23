@@ -1,1 +1,1 @@
-export * from './Fab/Fab'
+export * from './Fab/Fab.js'

@@ -1,1 +1,1 @@
-export * from './TableCell/TableCell'
+export * from './TableCell/TableCell.js'

@@ -1,6 +1,6 @@
-import { RangeFilterState, RangeFilterStateTypeId } from '../../RangeFilter'
-import { dateOperators } from '../constants'
-import { DateFilterOperator } from './DateFilterOperators'
+import { RangeFilterState, RangeFilterStateTypeId } from '../../RangeFilter.js'
+import { dateOperators } from '../constants.js'
+import { DateFilterOperator } from './DateFilterOperators.js'
 
 export interface DateFilterState
   extends RangeFilterState<DateFilterOperator, Date> {}
