@@ -19,3 +19,5 @@ report
 dist
 coverage
 build
+
+.ultra.cache.json
