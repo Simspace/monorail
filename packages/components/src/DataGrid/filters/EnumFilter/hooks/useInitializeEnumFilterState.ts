@@ -1,6 +1,9 @@
 import React from 'react'
 
-import { gridColumnLookupSelector, useGridApiContext } from '../../../internal.js'
+import {
+  gridColumnLookupSelector,
+  useGridApiContext,
+} from '../../../internal.js'
 import { enumFilterOperator } from '../constants.js'
 import { getEnumFilterInitialState } from '../models.js'
 

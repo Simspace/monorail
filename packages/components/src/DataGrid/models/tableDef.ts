@@ -3,7 +3,10 @@ import React from 'react'
 
 import { CreateTableOverloads } from '../generated/CreateTableOverloads.js'
 import { GridApi, GridColDef, GridValidRowModel } from '../internal.js'
-import { GridColFilterState, GridColFilterTypeMap } from './gridColFilterType.js'
+import {
+  GridColFilterState,
+  GridColFilterTypeMap,
+} from './gridColFilterType.js'
 import { MakeTypedColDef } from './makeTypedColDef.js'
 
 /**

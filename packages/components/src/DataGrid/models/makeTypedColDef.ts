@@ -2,7 +2,10 @@
 import { GridValidRowModel } from '@mui/x-data-grid'
 import { GridColDef } from '@mui/x-data-grid-premium'
 
-import { GridColFilterType, GridColFilterTypeToDef } from './gridColFilterType.js'
+import {
+  GridColFilterType,
+  GridColFilterTypeToDef,
+} from './gridColFilterType.js'
 
 type GridColDefOmits = 'field' | 'filter'
 

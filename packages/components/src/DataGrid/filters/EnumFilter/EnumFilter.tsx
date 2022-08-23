@@ -8,7 +8,10 @@ import { Checkbox } from '../../../Checkbox.js'
 import { InputAdornment } from '../../../InputAdornment.js'
 import { List } from '../../../List.js'
 import { ListItem } from '../../../ListItem.js'
-import { ListItemButton, listItemButtonClasses } from '../../../ListItemButton.js'
+import {
+  ListItemButton,
+  listItemButtonClasses,
+} from '../../../ListItemButton.js'
 import { ListItemIcon } from '../../../ListItemIcon.js'
 import { ListItemText } from '../../../ListItemText.js'
 import { ScrollShadow } from '../../../ScrollShadow.js'

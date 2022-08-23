@@ -21,6 +21,7 @@
     "build-pack": "ultra -r build-pack",
     "build-storybook": "yarn workspace @monorail/storybook build-storybook --output-dir storybook",
     "prettier:check": "ultra -r prettier:check",
+    "prettier:write": "ultra -r prettier:write",
     "eslint": "ultra -r eslint"
   },
   "devDependencies": {
