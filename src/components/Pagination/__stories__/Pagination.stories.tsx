@@ -1,7 +1,7 @@
 // Edit this file to add new stories
 import React from 'react'
-import styled from '@mui/material/styles/styled'
-import usePagination from '@mui/material/usePagination/usePagination'
+import { styled } from '@mui/material/styles'
+import usePagination from '@mui/material/usePagination'
 
 import {
   Pagination,
