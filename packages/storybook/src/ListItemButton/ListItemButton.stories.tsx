@@ -6,7 +6,7 @@ import {
   ListItemText,
 } from '@monorail/components'
 
-import { story } from '../helpers/storybook'
+import { story } from '../helpers/storybook.js'
 
 /**
  * Metadata for ListItemButton stories - update/extend as needed

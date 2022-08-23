@@ -12,7 +12,7 @@ import {
 import { styled } from '@mui/material'
 import { grey } from '@mui/material/colors'
 
-import { story } from '../helpers/storybook'
+import { story } from '../helpers/storybook.js'
 
 /**
  * Metadata for SwipeableDrawer stories - update/extend as needed

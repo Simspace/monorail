@@ -10,7 +10,7 @@ import {
 import { KeyboardArrowLeft, KeyboardArrowRight } from '@mui/icons-material'
 import { useTheme } from '@mui/material'
 
-import { story } from '../helpers/storybook'
+import { story } from '../helpers/storybook.js'
 
 export default { title: 'Navigation/MobileStepper', component: MobileStepper }
 

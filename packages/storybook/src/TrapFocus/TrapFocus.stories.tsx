@@ -1,9 +1,9 @@
 import React from 'react'
+import { TrapFocus, TrapFocusProps } from '@monorail/components'
 import Box from '@mui/material/Box'
 import Portal from '@mui/material/Portal'
 
-import { TrapFocus, TrapFocusProps } from '@monorail/components'
-import { story } from '../helpers/storybook'
+import { story } from '../helpers/storybook.js'
 
 /**
  * Metadata for Unstable_TrapFocus stories - update/extend as needed

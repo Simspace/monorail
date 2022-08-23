@@ -7,7 +7,7 @@ import {
 } from '@monorail/components'
 import { Portal } from '@mui/base'
 
-import { story } from '../helpers/storybook'
+import { story } from '../helpers/storybook.js'
 
 /**
  * Metadata for ClickAwayListener stories - update/extend as needed

@@ -1,7 +1,7 @@
 import React from 'react'
 import { TextareaAutosize, TextareaAutosizeProps } from '@monorail/components'
 
-import { story } from '../helpers/storybook'
+import { story } from '../helpers/storybook.js'
 
 export default { title: 'Inputs/TextareaAutosize', component: TextareaAutosize }
 

@@ -2,7 +2,7 @@
 import React from 'react'
 import { TimelineSeparator, TimelineSeparatorProps } from '@monorail/components'
 
-import { story } from '../helpers/storybook'
+import { story } from '../helpers/storybook.js'
 /**
  * Metadata for TimelineSeparator stories - update/extend as needed
  */

@@ -16,7 +16,7 @@ import CheckIcon from '@mui/icons-material/Check'
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
 import CloseIcon from '@mui/icons-material/Close'
 
-import { story } from '../helpers/storybook'
+import { story } from '../helpers/storybook.js'
 
 /**
  * Metadata for Alert stories - update/extend as needed

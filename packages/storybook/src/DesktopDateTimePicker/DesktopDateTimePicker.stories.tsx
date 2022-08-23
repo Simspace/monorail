@@ -6,7 +6,7 @@ import {
   TextField,
 } from '@monorail/components'
 
-import { story } from '../helpers/storybook'
+import { story } from '../helpers/storybook.js'
 
 /**
  * Metadata for DesktopDateTimePicker stories - update/extend as needed

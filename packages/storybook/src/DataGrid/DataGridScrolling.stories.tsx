@@ -11,7 +11,7 @@ import {
 import { Home } from '@mui/icons-material'
 import { useDemoData } from '@mui/x-data-grid-generator'
 
-import { story } from '../helpers/storybook'
+import { story } from '../helpers/storybook.js'
 
 export default { title: 'Data Grid/Scrolling', component: DataGrid }
 

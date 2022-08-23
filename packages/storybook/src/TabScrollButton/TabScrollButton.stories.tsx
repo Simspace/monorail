@@ -2,7 +2,7 @@
 import React from 'react'
 import { TabScrollButton, TabScrollButtonProps } from '@monorail/components'
 
-import { story } from '../helpers/storybook'
+import { story } from '../helpers/storybook.js'
 /**
  * Metadata for TabScrollButton stories - update/extend as needed
  */

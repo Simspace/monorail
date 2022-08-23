@@ -9,7 +9,7 @@ import {
 } from '@monorail/components'
 import BlurOnIcon from '@mui/icons-material/BlurOn'
 
-import { story } from '../helpers/storybook'
+import { story } from '../helpers/storybook.js'
 
 /**
  * Metadata for CircularProgress stories - update/extend as needed

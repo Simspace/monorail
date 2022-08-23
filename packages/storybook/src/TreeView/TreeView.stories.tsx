@@ -29,7 +29,7 @@ import MailIcon from '@mui/icons-material/Mail'
 import SupervisorAccountIcon from '@mui/icons-material/SupervisorAccount'
 import { alpha, styled } from '@mui/material'
 
-import { story } from '../helpers/storybook'
+import { story } from '../helpers/storybook.js'
 
 /**
  * Metadata for TreeView stories - update/extend as needed

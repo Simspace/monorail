@@ -18,7 +18,7 @@ import PhoneIcon from '@mui/icons-material/Phone'
 import PhoneMissedIcon from '@mui/icons-material/PhoneMissed'
 import { styled } from '@mui/material'
 
-import { story } from '../helpers/storybook'
+import { story } from '../helpers/storybook.js'
 
 /**
  * Metadata for Tabs stories - update/extend as needed

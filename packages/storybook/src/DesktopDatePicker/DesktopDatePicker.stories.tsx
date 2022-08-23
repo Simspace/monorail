@@ -7,7 +7,7 @@ import {
 } from '@monorail/components'
 import { action } from '@storybook/addon-actions'
 
-import { story } from '../helpers/storybook'
+import { story } from '../helpers/storybook.js'
 
 export default {
   title: 'Inputs/Date and Time/Date/DesktopDatePicker',

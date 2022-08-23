@@ -2,7 +2,7 @@
 import React from 'react'
 import { GlobalStyles, GlobalStylesProps } from '@monorail/components'
 
-import { story } from '../helpers/storybook'
+import { story } from '../helpers/storybook.js'
 /**
  * Metadata for GlobalStyles stories - update/extend as needed
  */

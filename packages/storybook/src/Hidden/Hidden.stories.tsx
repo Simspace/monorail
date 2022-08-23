@@ -2,7 +2,7 @@
 import React from 'react'
 import { Hidden, HiddenProps, Typography } from '@monorail/components'
 
-import { story } from '../helpers/storybook'
+import { story } from '../helpers/storybook.js'
 
 /**
  * Metadata for Hidden stories - update/extend as needed

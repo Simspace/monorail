@@ -2,7 +2,7 @@
 import React from 'react'
 import { MonthPicker, MonthPickerProps } from '@monorail/components'
 
-import { story } from '../helpers/storybook'
+import { story } from '../helpers/storybook.js'
 /**
  * Metadata for MonthPicker stories - update/extend as needed
  */

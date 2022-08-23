@@ -11,7 +11,7 @@ import {
 import InfoIcon from '@mui/icons-material/Info'
 import StarBorderIcon from '@mui/icons-material/StarBorder'
 
-import { story } from '../helpers/storybook'
+import { story } from '../helpers/storybook.js'
 
 /**
  * Metadata for ImageList stories - update/extend as needed

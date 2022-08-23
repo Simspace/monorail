@@ -2,7 +2,7 @@
 import React from 'react'
 import { CardActionArea, CardActionAreaProps } from '@monorail/components'
 
-import { story } from '../helpers/storybook'
+import { story } from '../helpers/storybook.js'
 
 /**
  * Metadata for CardActionArea stories - update/extend as needed

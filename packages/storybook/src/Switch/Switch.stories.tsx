@@ -11,7 +11,7 @@ import {
   SwitchProps,
 } from '@monorail/components'
 
-import { story } from '../helpers/storybook'
+import { story } from '../helpers/storybook.js'
 
 /**
  * Metadata for Switch stories - update/extend as needed

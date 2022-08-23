@@ -8,7 +8,7 @@ import {
 } from '@monorail/components'
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
 
-import { story } from '../helpers/storybook'
+import { story } from '../helpers/storybook.js'
 
 /**
  * Metadata for StaticTimePicker stories - update/extend as needed

@@ -8,7 +8,7 @@ import {
 } from '@monorail/components'
 import CloseIcon from '@mui/icons-material/Close'
 
-import { story } from '../helpers/storybook'
+import { story } from '../helpers/storybook.js'
 /**
  * Metadata for CardHeader stories - update/extend as needed
  * This is intended to be exported as story-level metadata from the main .stories.tsx file, like:

@@ -9,7 +9,7 @@ import {
   FormLabel,
 } from '@monorail/components'
 
-import { story } from '../helpers/storybook'
+import { story } from '../helpers/storybook.js'
 
 /**
  * Metadata for FormControl stories - update/extend as needed

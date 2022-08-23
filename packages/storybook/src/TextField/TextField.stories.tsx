@@ -12,7 +12,7 @@ import InputBase from '@mui/material/InputBase'
 import InputLabel from '@mui/material/InputLabel'
 import OutlinedInput, { OutlinedInputProps } from '@mui/material/OutlinedInput'
 
-import { story } from '../helpers/storybook'
+import { story } from '../helpers/storybook.js'
 
 export default { title: 'Inputs/TextField', component: TextField }
 

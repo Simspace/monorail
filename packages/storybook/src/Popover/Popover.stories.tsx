@@ -3,7 +3,7 @@ import React from 'react'
 import { Button, Popover, PopoverProps } from '@monorail/components'
 import { Box, Typography } from '@mui/material'
 
-import { story } from '../helpers/storybook'
+import { story } from '../helpers/storybook.js'
 
 /**
  * Metadata for Popover stories - update/extend as needed

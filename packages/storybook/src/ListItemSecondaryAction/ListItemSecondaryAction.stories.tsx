@@ -7,7 +7,7 @@ import {
 } from '@monorail/components'
 import DeleteIcon from '@mui/icons-material/Delete'
 
-import { story } from '../helpers/storybook'
+import { story } from '../helpers/storybook.js'
 
 /**
  * Metadata for ListItemSecondaryAction stories - update/extend as needed

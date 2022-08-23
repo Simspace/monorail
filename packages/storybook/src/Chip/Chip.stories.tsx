@@ -16,8 +16,8 @@ import TagFacesIcon from '@mui/icons-material/TagFaces'
 import { styled } from '@mui/material'
 import { action } from '@storybook/addon-actions'
 
-import { capitalizeFirstLetter } from '../helpers/helpers'
-import { story } from '../helpers/storybook'
+import { capitalizeFirstLetter } from '../helpers/helpers.js'
+import { story } from '../helpers/storybook.js'
 
 /**
  * Metadata for Chip stories - update/extend as needed

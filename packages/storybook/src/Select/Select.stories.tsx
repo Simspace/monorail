@@ -13,7 +13,7 @@ import {
 } from '@monorail/components'
 import Person from '@mui/icons-material/Person'
 
-import { story } from '../helpers/storybook'
+import { story } from '../helpers/storybook.js'
 
 export default { title: 'Inputs/Select', component: Select }
 

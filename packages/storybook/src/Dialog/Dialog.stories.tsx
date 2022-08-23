@@ -36,8 +36,8 @@ import { useTheme } from '@mui/material'
 import { TransitionProps } from '@mui/material/transitions'
 import useMediaQuery from '@mui/material/useMediaQuery'
 
-import { story } from '../helpers/storybook'
-import { longParagraph } from '../helpers/testData'
+import { story } from '../helpers/storybook.js'
+import { longParagraph } from '../helpers/testData.js'
 
 export interface SimpleDialogProps {
   open: boolean

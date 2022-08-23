@@ -3,7 +3,7 @@ import React from 'react'
 import { Box, BoxProps, Button, Stack, Typography } from '@monorail/components'
 import { styled } from '@mui/material'
 
-import { story } from '../helpers/storybook'
+import { story } from '../helpers/storybook.js'
 
 /**
  * Metadata for Box stories - update/extend as needed

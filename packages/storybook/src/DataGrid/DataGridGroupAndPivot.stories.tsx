@@ -8,7 +8,7 @@ import {
 } from '@monorail/components'
 import { useMovieData } from '@mui/x-data-grid-generator'
 
-import { story } from '../helpers/storybook'
+import { story } from '../helpers/storybook.js'
 
 export default { title: 'Data Grid/Group & Pivot', component: DataGrid }
 

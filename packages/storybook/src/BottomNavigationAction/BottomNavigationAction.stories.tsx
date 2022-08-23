@@ -6,7 +6,7 @@ import {
 } from '@monorail/components'
 import RestoreIcon from '@mui/icons-material/Restore'
 
-import { story } from '../helpers/storybook'
+import { story } from '../helpers/storybook.js'
 
 /**
  * Metadata for BottomNavigationAction stories - update/extend as needed

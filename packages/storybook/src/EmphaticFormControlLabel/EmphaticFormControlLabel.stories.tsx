@@ -10,7 +10,7 @@ import {
 import { CheckBoxError, CheckBoxWarning } from '@monorail/components/icons'
 import { Cancel, CheckCircle, Error } from '@mui/icons-material'
 
-import { story } from '../helpers/storybook'
+import { story } from '../helpers/storybook.js'
 
 /**
  * Metadata for FormControlLabel stories - update/extend as needed

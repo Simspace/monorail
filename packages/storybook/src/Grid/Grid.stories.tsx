@@ -8,9 +8,9 @@ import {
   Paper,
   Typography,
 } from '@monorail/components'
-import {styled} from '@mui/material'
+import { styled } from '@mui/material'
 
-import { story } from '../helpers/storybook'
+import { story } from '../helpers/storybook.js'
 
 const Item = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,

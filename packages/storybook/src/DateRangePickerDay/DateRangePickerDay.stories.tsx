@@ -12,7 +12,7 @@ import {
 import { styled } from '@mui/material'
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
 
-import { story } from '../helpers/storybook'
+import { story } from '../helpers/storybook.js'
 
 /**
  * Metadata for DateRangePickerDay stories - update/extend as needed

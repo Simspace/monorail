@@ -2,7 +2,7 @@
 import React from 'react'
 import { Box, Input, InputProps } from '@monorail/components'
 
-import { story } from '../helpers/storybook'
+import { story } from '../helpers/storybook.js'
 
 /**
  * Metadata for Input stories - update/extend as needed

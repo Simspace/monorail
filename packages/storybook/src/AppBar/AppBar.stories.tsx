@@ -39,7 +39,7 @@ import SearchIcon from '@mui/icons-material/Search'
 import { alpha, styled } from '@mui/material/styles'
 import useScrollTrigger from '@mui/material/useScrollTrigger'
 
-import { story } from '../helpers/storybook'
+import { story } from '../helpers/storybook.js'
 
 /**
  * Metadata for AppBar stories - update/extend as needed

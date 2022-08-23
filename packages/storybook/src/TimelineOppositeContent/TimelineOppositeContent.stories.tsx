@@ -5,7 +5,7 @@ import {
   TimelineOppositeContentProps,
 } from '@monorail/components'
 
-import { story } from '../helpers/storybook'
+import { story } from '../helpers/storybook.js'
 /**
  * Metadata for TimelineOppositeContent stories - update/extend as needed
  */

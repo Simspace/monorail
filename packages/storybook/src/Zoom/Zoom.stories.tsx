@@ -9,7 +9,7 @@ import {
   ZoomProps,
 } from '@monorail/components'
 
-import { story } from '../helpers/storybook'
+import { story } from '../helpers/storybook.js'
 
 export default {
   title: 'Utils/Transitions/Zoom',

@@ -16,7 +16,7 @@ import HotelIcon from '@mui/icons-material/Hotel'
 import LaptopMacIcon from '@mui/icons-material/LaptopMac'
 import RepeatIcon from '@mui/icons-material/Repeat'
 
-import { story } from '../helpers/storybook'
+import { story } from '../helpers/storybook.js'
 /**
  * Metadata for Timeline stories - update/extend as needed
  */

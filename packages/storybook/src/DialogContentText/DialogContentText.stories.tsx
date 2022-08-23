@@ -2,7 +2,7 @@
 import React from 'react'
 import { DialogContentText, DialogContentTextProps } from '@monorail/components'
 
-import { story } from '../helpers/storybook'
+import { story } from '../helpers/storybook.js'
 /**
  * Metadata for DialogContentText stories - update/extend as needed
  */

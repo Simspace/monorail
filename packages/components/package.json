@@ -34,9 +34,7 @@
     "clean": "rm -rf dist build",
     "eslint": "NODE_OPTIONS=\"--max-old-space-size=8192\" yarn org:eslint \"src/**/*.{js,ts,tsx}\"",
     "prettier:check": "prettier './src/**/*{.js,.ts,.tsx}' --list-different",
-    "prettier:write": "prettier './src/**/*{.js,.ts,.tsx}' --write",
-    "storybook": "start-storybook -p 6006 -s assets",
-    "build-storybook": "build-storybook -s assets"
+    "prettier:write": "prettier './src/**/*{.js,.ts,.tsx}' --write"
   },
   "peerDependencies": {
     "@emotion/react": "11.4.1",

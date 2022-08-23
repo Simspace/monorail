@@ -11,7 +11,7 @@ import SaveIcon from '@mui/icons-material/Save'
 import SelectAllOutlined from '@mui/icons-material/SelectAllOutlined'
 import { LoadingButton } from '@mui/lab'
 
-import { story } from '../helpers/storybook'
+import { story } from '../helpers/storybook.js'
 
 /**
  * Metadata for Button stories - update/extend as needed

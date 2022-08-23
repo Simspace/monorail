@@ -3,7 +3,7 @@ import React from 'react'
 import { DataGrid, DataGridProps, GridToolbar } from '@monorail/components'
 import { useDemoData } from '@mui/x-data-grid-generator'
 
-import { story } from '../helpers/storybook'
+import { story } from '../helpers/storybook.js'
 
 export default { title: 'Data Grid/Localization', component: DataGrid }
 

@@ -12,7 +12,7 @@ import {
 } from '@monorail/components'
 import { Person } from '@mui/icons-material'
 
-import { story } from '../helpers/storybook'
+import { story } from '../helpers/storybook.js'
 
 export default {
   title: 'Data Grid/DataGrid',

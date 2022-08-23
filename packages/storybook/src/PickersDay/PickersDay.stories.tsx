@@ -9,7 +9,7 @@ import {
 import { styled } from '@mui/material'
 import { endOfWeek, isSameDay, isWithinInterval, startOfWeek } from 'date-fns'
 
-import { story } from '../helpers/storybook'
+import { story } from '../helpers/storybook.js'
 
 /**
  * Metadata for PickersDay stories - update/extend as needed

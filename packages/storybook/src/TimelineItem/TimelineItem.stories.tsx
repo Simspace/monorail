@@ -2,7 +2,7 @@
 import React from 'react'
 import { TimelineItem, TimelineItemProps } from '@monorail/components'
 
-import { story } from '../helpers/storybook'
+import { story } from '../helpers/storybook.js'
 /**
  * Metadata for TimelineItem stories - update/extend as needed
  */

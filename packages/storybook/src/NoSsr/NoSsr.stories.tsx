@@ -2,7 +2,7 @@
 import React from 'react'
 import { NoSsr, NoSsrProps } from '@monorail/components'
 
-import { story } from '../helpers/storybook'
+import { story } from '../helpers/storybook.js'
 /**
  * Metadata for NoSsr stories - update/extend as needed
  */

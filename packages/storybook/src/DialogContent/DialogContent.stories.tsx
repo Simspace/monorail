@@ -6,7 +6,7 @@ import {
   DialogContentText,
 } from '@monorail/components'
 
-import { story } from '../helpers/storybook'
+import { story } from '../helpers/storybook.js'
 /**
  * Metadata for DialogContent stories - update/extend as needed
  */

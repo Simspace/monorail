@@ -2,7 +2,7 @@
 import React from 'react'
 import { AccordionDetails, AccordionDetailsProps } from '@monorail/components'
 
-import { story } from '../helpers/storybook'
+import { story } from '../helpers/storybook.js'
 
 /**
  * Metadata for AccordionDetails stories - update/extend as needed

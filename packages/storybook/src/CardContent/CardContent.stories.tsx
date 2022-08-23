@@ -2,7 +2,7 @@
 import React from 'react'
 import { CardContent, CardContentProps } from '@monorail/components'
 
-import { story } from '../helpers/storybook'
+import { story } from '../helpers/storybook.js'
 /**
  * Metadata for CardContent stories - update/extend as needed
  * This is intended to be exported as story-level metadata from the main .stories.tsx file, like:

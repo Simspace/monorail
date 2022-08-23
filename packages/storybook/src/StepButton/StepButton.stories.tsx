@@ -10,7 +10,7 @@ import {
 } from '@monorail/components'
 import { WarningAmberTwoTone } from '@mui/icons-material'
 
-import { story } from '../helpers/storybook'
+import { story } from '../helpers/storybook.js'
 /**
  * Metadata for StepButton stories - update/extend as needed
  */

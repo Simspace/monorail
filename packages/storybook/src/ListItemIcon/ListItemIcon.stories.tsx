@@ -3,7 +3,7 @@ import React from 'react'
 import { ListItemIcon, ListItemIconProps } from '@monorail/components'
 import FolderIcon from '@mui/icons-material/Folder'
 
-import { story } from '../helpers/storybook'
+import { story } from '../helpers/storybook.js'
 
 /**
  * Metadata for ListItemIcon stories - update/extend as needed

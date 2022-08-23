@@ -3,7 +3,7 @@ import React from 'react'
 import { CalendarPicker, CalendarPickerProps } from '@monorail/components'
 import { action } from '@storybook/addon-actions'
 
-import { story } from '../helpers/storybook'
+import { story } from '../helpers/storybook.js'
 /**
  * Metadata for CalendarPicker stories - update/extend as needed
  */

@@ -18,7 +18,7 @@ import {
 import MoreVertIcon from '@mui/icons-material/MoreVert'
 import { styled } from '@mui/material'
 
-import { story } from '../helpers/storybook'
+import { story } from '../helpers/storybook.js'
 /**
  * Metadata for Skeleton stories - update/extend as needed
  */

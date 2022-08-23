@@ -2,7 +2,7 @@
 import React from 'react'
 import { SnackbarContent, SnackbarContentProps } from '@monorail/components'
 
-import { story } from '../helpers/storybook'
+import { story } from '../helpers/storybook.js'
 /**
  * Metadata for SnackbarContent stories - update/extend as needed
  */

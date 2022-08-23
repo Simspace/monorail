@@ -18,7 +18,7 @@ import {
 import { Check, GroupAdd, Settings, VideoLabel } from '@mui/icons-material'
 import { styled } from '@mui/material'
 
-import { story } from '../helpers/storybook'
+import { story } from '../helpers/storybook.js'
 /**
  * Metadata for Stepper stories - update/extend as needed
  */

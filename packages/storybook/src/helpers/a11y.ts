@@ -5,9 +5,9 @@ import {
 } from '@storybook/react'
 import { configureAxe } from 'jest-axe'
 
-import { renderStory } from './render'
-import { A11yElement, Meta, Story } from './storybook'
-import { isNotNil } from './typeGuards'
+import { renderStory } from './render.js'
+import { A11yElement, Meta, Story } from './storybook.js'
+import { isNotNil } from './typeGuards.js'
 
 /**
  * This configures the a11y test framework axe

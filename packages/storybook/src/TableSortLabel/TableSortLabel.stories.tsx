@@ -2,7 +2,7 @@
 import React from 'react'
 import { TableSortLabel, TableSortLabelProps } from '@monorail/components'
 
-import { story } from '../helpers/storybook'
+import { story } from '../helpers/storybook.js'
 
 export default {
   title: 'Data Display/Table/TableSortLabel',

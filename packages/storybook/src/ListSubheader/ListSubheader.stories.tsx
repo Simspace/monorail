@@ -2,7 +2,7 @@
 import React from 'react'
 import { ListSubheader, ListSubheaderProps } from '@monorail/components'
 
-import { story } from '../helpers/storybook'
+import { story } from '../helpers/storybook.js'
 /**
  * Metadata for ListSubheader stories - update/extend as needed
  */

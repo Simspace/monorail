@@ -8,7 +8,7 @@ import {
   Typography,
 } from '@monorail/components'
 
-import { story } from '../helpers/storybook'
+import { story } from '../helpers/storybook.js'
 
 /**
  * Metadata for LinearProgress stories - update/extend as needed

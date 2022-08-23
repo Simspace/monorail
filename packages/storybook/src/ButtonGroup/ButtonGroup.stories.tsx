@@ -15,7 +15,7 @@ import {
 } from '@monorail/components'
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
 
-import { story } from '../helpers/storybook'
+import { story } from '../helpers/storybook.js'
 
 /**
  * Metadata for ButtonGroup stories - update/extend as needed

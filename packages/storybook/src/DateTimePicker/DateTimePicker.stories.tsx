@@ -15,7 +15,7 @@ import AlarmIcon from '@mui/icons-material/Alarm'
 import SnoozeIcon from '@mui/icons-material/Snooze'
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
 
-import { story } from '../helpers/storybook'
+import { story } from '../helpers/storybook.js'
 
 /**
  * Metadata for DateTimePicker stories - update/extend as needed

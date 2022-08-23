@@ -2,7 +2,7 @@
 import React from 'react'
 import { SpeedDialIcon, SpeedDialIconProps } from '@monorail/components'
 
-import { story } from '../helpers/storybook'
+import { story } from '../helpers/storybook.js'
 /**
  * Metadata for SpeedDialIcon stories - update/extend as needed
  */

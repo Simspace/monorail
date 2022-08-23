@@ -12,7 +12,7 @@ import {
 import { ModalUnstyled } from '@mui/base'
 import { styled } from '@mui/material'
 
-import { story } from '../helpers/storybook'
+import { story } from '../helpers/storybook.js'
 /**
  * Metadata for Modal stories - update/extend as needed
  */

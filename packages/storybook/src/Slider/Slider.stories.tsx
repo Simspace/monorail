@@ -13,7 +13,7 @@ import VolumeUp from '@mui/icons-material/VolumeUp'
 import { styled } from '@mui/material'
 import MuiInput from '@mui/material/Input'
 
-import { story } from '../helpers/storybook'
+import { story } from '../helpers/storybook.js'
 
 /**
  * Metadata for Slider stories - update/extend as needed

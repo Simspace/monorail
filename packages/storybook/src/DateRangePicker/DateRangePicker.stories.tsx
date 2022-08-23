@@ -19,7 +19,7 @@ import { styled } from '@mui/material'
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
 import { addWeeks } from 'date-fns'
 
-import { story } from '../helpers/storybook'
+import { story } from '../helpers/storybook.js'
 
 /**
  * Metadata for DateRangePicker stories - update/extend as needed

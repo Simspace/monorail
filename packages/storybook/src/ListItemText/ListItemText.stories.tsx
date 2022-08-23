@@ -2,7 +2,7 @@
 import React from 'react'
 import { ListItemText, ListItemTextProps } from '@monorail/components'
 
-import { story } from '../helpers/storybook'
+import { story } from '../helpers/storybook.js'
 /**
  * Metadata for ListItemText stories - update/extend as needed
  */

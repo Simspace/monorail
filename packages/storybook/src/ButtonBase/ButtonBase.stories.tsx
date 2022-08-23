@@ -8,7 +8,7 @@ import {
 } from '@monorail/components'
 import { styled, Theme } from '@mui/material/styles'
 
-import { story } from '../helpers/storybook'
+import { story } from '../helpers/storybook.js'
 
 /**
  * Metadata for ButtonBase stories - update/extend as needed

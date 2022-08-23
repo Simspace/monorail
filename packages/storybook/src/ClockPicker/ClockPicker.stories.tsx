@@ -7,7 +7,7 @@ import {
   Typography,
 } from '@monorail/components'
 
-import { story } from '../helpers/storybook'
+import { story } from '../helpers/storybook.js'
 
 /**
  * Metadata for ClockPicker stories - update/extend as needed

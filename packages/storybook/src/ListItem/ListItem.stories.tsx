@@ -10,7 +10,7 @@ import {
 } from '@monorail/components'
 import FolderIcon from '@mui/icons-material/Folder'
 
-import { story } from '../helpers/storybook'
+import { story } from '../helpers/storybook.js'
 
 /**
  * Metadata for ListItem stories - update/extend as needed

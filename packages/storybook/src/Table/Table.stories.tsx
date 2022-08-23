@@ -35,7 +35,7 @@ import { alpha, styled, useTheme } from '@mui/material'
 import { tableCellClasses } from '@mui/material/TableCell'
 import { visuallyHidden } from '@mui/utils'
 
-import { story } from '../helpers/storybook'
+import { story } from '../helpers/storybook.js'
 
 export default { title: 'Data Display/Table', component: Table }
 

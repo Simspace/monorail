@@ -13,7 +13,7 @@ import NavigateNextIcon from '@mui/icons-material/NavigateNext'
 import WhatshotIcon from '@mui/icons-material/Whatshot'
 import { action } from '@storybook/addon-actions'
 
-import { story } from '../helpers/storybook'
+import { story } from '../helpers/storybook.js'
 
 /**
  * Metadata for Breadcrumbs stories - update/extend as needed

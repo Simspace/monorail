@@ -10,7 +10,7 @@ import {
 } from '@monorail/components'
 import { grey } from '@mui/material/colors'
 
-import { story } from '../helpers/storybook'
+import { story } from '../helpers/storybook.js'
 
 /**
  * Metadata for Container stories - update/extend as needed

@@ -7,7 +7,7 @@ import {
 } from '@monorail/components'
 import InfoIcon from '@mui/icons-material/Info'
 
-import { story } from '../helpers/storybook'
+import { story } from '../helpers/storybook.js'
 
 /**
  * Metadata for ImageListItemBar stories - update/extend as needed

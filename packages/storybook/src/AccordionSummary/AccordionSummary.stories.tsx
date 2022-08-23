@@ -3,7 +3,7 @@ import React from 'react'
 import { AccordionSummary, AccordionSummaryProps } from '@monorail/components'
 import ExpandMore from '@mui/icons-material/ExpandMore'
 
-import { story } from '../helpers/storybook'
+import { story } from '../helpers/storybook.js'
 
 /**
  * Metadata for AccordionSummary stories - update/extend as needed

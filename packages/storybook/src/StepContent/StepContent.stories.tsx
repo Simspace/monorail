@@ -14,7 +14,7 @@ import {
 } from '@monorail/components'
 import { TransitionProps } from '@mui/material/transitions'
 
-import { story } from '../helpers/storybook'
+import { story } from '../helpers/storybook.js'
 /**
  * Metadata for StepContent stories - update/extend as needed
  */

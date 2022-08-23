@@ -2,7 +2,7 @@
 import React from 'react'
 import { TreeItem, TreeItemProps } from '@monorail/components'
 
-import { story } from '../helpers/storybook'
+import { story } from '../helpers/storybook.js'
 /**
  * Metadata for TreeItem stories - update/extend as needed
  */

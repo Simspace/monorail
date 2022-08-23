@@ -15,7 +15,7 @@ import PageviewIcon from '@mui/icons-material/Pageview'
 import { useTheme } from '@mui/material'
 import { styled } from '@mui/material/styles'
 
-import { story } from '../helpers/storybook'
+import { story } from '../helpers/storybook.js'
 
 /**
  * Metadata for Avatar stories - update/extend as needed

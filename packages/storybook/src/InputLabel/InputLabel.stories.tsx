@@ -11,7 +11,7 @@ import {
   OutlinedInput,
 } from '@monorail/components'
 
-import { story } from '../helpers/storybook'
+import { story } from '../helpers/storybook.js'
 
 /**
  * Metadata for InputLabel stories - update/extend as needed

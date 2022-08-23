@@ -2,7 +2,7 @@
 import React from 'react'
 import { Box, Portal, PortalProps } from '@monorail/components'
 
-import { story } from '../helpers/storybook'
+import { story } from '../helpers/storybook.js'
 /**
  * Metadata for Portal stories - update/extend as needed
  */

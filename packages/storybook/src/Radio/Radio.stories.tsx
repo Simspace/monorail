@@ -14,7 +14,7 @@ import {
 } from '@monorail/components'
 import { styled } from '@mui/material'
 
-import { story } from '../helpers/storybook'
+import { story } from '../helpers/storybook.js'
 
 /**
  * Metadata for Radio stories - update/extend as needed

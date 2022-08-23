@@ -17,7 +17,7 @@ import {
   WarningAmberSharp,
 } from '@mui/icons-material'
 
-import { story } from '../helpers/storybook'
+import { story } from '../helpers/storybook.js'
 /**
  * Metadata for StepIcon stories - update/extend as needed
  */

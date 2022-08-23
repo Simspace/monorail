@@ -15,7 +15,7 @@ import {
   Story as StorybookStory,
 } from '@storybook/react'
 
-import { isNonEmptyString } from './typeGuards'
+import { isNonEmptyString } from './typeGuards.js'
 
 type A11yParameter = {
   a11y?: {

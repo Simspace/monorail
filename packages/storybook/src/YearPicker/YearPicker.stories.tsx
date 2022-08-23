@@ -2,7 +2,7 @@
 import React from 'react'
 import { YearPicker, YearPickerProps } from '@monorail/components'
 
-import { story } from '../helpers/storybook'
+import { story } from '../helpers/storybook.js'
 
 /**
  * Metadata for YearPicker stories - update/extend as needed

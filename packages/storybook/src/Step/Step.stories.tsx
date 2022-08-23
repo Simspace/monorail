@@ -1,7 +1,7 @@
 import React from 'react'
 import { Box, Step, StepLabel, Stepper, StepProps } from '@monorail/components'
 
-import { story } from '../helpers/storybook'
+import { story } from '../helpers/storybook.js'
 /**
  * Metadata for Step stories - update/extend as needed
  */

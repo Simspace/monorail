@@ -19,7 +19,7 @@ import { styled } from '@mui/material'
 import { TransitionProps } from '@mui/material/transitions'
 import { SnackbarProvider, useSnackbar, VariantType } from 'notistack'
 
-import { story } from '../helpers/storybook'
+import { story } from '../helpers/storybook.js'
 
 /**
  * Metadata for Snackbar stories - update/extend as needed

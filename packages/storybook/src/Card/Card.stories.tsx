@@ -26,8 +26,8 @@ import SkipPreviousIcon from '@mui/icons-material/SkipPrevious'
 import { styled, useTheme } from '@mui/material'
 import { red } from '@mui/material/colors'
 
-import { story } from '../helpers/storybook'
-import { images } from '../helpers/testData'
+import { story } from '../helpers/storybook.js'
+import { images } from '../helpers/testData.js'
 /**
  * Metadata for Card stories - update/extend as needed
  * This is intended to be exported as story-level metadata from the main .stories.tsx file, like:

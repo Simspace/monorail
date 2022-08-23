@@ -10,7 +10,7 @@ import {
   Typography,
 } from '@monorail/components'
 
-import { story } from '../helpers/storybook'
+import { story } from '../helpers/storybook.js'
 
 export default { title: 'Inputs/FileUpload', component: FileUpload }
 

@@ -2,7 +2,7 @@
 import React from 'react'
 import { ScopedCssBaseline, ScopedCssBaselineProps } from '@monorail/components'
 
-import { story } from '../helpers/storybook'
+import { story } from '../helpers/storybook.js'
 /**
  * Metadata for ScopedCssBaseline stories - update/extend as needed
  */

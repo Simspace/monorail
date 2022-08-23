@@ -17,7 +17,7 @@ import MailIcon from '@mui/icons-material/Mail'
 import RemoveIcon from '@mui/icons-material/Remove'
 import { styled } from '@mui/material/styles'
 
-import { story } from '../helpers/storybook'
+import { story } from '../helpers/storybook.js'
 
 /**
  * Metadata for Badge stories - update/extend as needed

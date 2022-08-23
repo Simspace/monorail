@@ -3,7 +3,7 @@ import React from 'react'
 import { Divider, Paper, Stack, StackProps } from '@monorail/components'
 import { styled } from '@mui/material'
 
-import { story } from '../helpers/storybook'
+import { story } from '../helpers/storybook.js'
 
 /**
  * Metadata for Stack stories - update/extend as needed

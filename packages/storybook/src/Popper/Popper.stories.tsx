@@ -11,7 +11,7 @@ import {
 } from '@monorail/components'
 import { styled } from '@mui/material'
 
-import { story } from '../helpers/storybook'
+import { story } from '../helpers/storybook.js'
 /**
  * Metadata for Popper stories - update/extend as needed
  */

@@ -2,7 +2,7 @@
 import React from 'react'
 import { MenuItem, MenuList, MenuListProps } from '@monorail/components'
 
-import { story } from '../helpers/storybook'
+import { story } from '../helpers/storybook.js'
 /**
  * Metadata for MenuList stories - update/extend as needed
  */

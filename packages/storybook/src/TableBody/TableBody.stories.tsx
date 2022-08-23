@@ -8,7 +8,7 @@ import {
   TableRow,
 } from '@monorail/components'
 
-import { story } from '../helpers/storybook'
+import { story } from '../helpers/storybook.js'
 
 export default { title: 'Data Display/Table/TableBody', component: TableBody }
 

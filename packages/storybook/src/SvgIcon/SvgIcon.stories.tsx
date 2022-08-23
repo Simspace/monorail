@@ -2,7 +2,7 @@
 import React from 'react'
 import { SvgIcon, SvgIconProps } from '@monorail/components'
 
-import { story } from '../helpers/storybook'
+import { story } from '../helpers/storybook.js'
 /**
  * Metadata for SvgIcon stories - update/extend as needed
  */

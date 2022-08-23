@@ -12,7 +12,7 @@ import FolderIcon from '@mui/icons-material/Folder'
 import LocationOnIcon from '@mui/icons-material/LocationOn'
 import RestoreIcon from '@mui/icons-material/Restore'
 
-import { story } from '../helpers/storybook'
+import { story } from '../helpers/storybook.js'
 
 /**
  * Metadata for BottomNavigation stories - update/extend as needed

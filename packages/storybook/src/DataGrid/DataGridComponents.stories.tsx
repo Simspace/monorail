@@ -32,7 +32,7 @@ import { createTheme, Theme } from '@mui/material/styles'
 import { createStyles, makeStyles } from '@mui/styles'
 import { useDemoData } from '@mui/x-data-grid-generator'
 
-import { story } from '../helpers/storybook'
+import { story } from '../helpers/storybook.js'
 
 export default {
   title: 'Data Grid/Components',

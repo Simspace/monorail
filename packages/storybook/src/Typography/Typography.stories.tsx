@@ -3,7 +3,7 @@ import React from 'react'
 import { Box, Stack, Typography, TypographyProps } from '@monorail/components'
 import { styled } from '@mui/material'
 
-import { story } from '../helpers/storybook'
+import { story } from '../helpers/storybook.js'
 
 /**
  * Metadata for Typography stories - update/extend as needed

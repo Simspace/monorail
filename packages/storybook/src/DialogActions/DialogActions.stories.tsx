@@ -2,7 +2,7 @@
 import React from 'react'
 import { Button, DialogActions, DialogActionsProps } from '@monorail/components'
 
-import { story } from '../helpers/storybook'
+import { story } from '../helpers/storybook.js'
 /**
  * Metadata for DialogActions stories - update/extend as needed
  */
