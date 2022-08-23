@@ -44,6 +44,9 @@ export default {
       resolve: {
         ...config.resolve,
         symlinks: true,
+        extensionAlias: {
+          '.js': ['.ts', '.tsx', '.js']
+        }
       },
     }
   },
