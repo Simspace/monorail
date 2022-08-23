@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { GridValidRowModel } from '../../..'
+import { GridValidRowModel } from '../../../internal'
 import { EnumFilterDefinition } from './EnumFilterDefinition'
 
 export interface EnumFilterProps<

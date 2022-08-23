@@ -1,0 +1,5 @@
+export * from './SelectionFooter/SelectionFooter'
+export * from './SelectionFooter/selectionFooterClasses'
+export * from './SelectionFooter/selectionFooterProps'
+export * from './SelectionFooter/selectionFooterLocaleText'
+export type {} from './SelectionFooter/themeAugmentation'

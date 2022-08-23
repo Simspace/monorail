@@ -7,8 +7,8 @@ import {
   TablePagination,
   Typography,
 } from '@monorail/components'
-import styled from '@mui/material/styles/styled'
-import usePagination from '@mui/material/usePagination/usePagination'
+import { styled } from '@mui/material/styles'
+import usePagination from '@mui/material/usePagination'
 
 import { story } from '../helpers/storybook'
 /**
