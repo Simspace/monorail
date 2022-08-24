@@ -27,9 +27,9 @@
     "eslint": "ultra -r eslint"
   },
   "devDependencies": {
-    "@0x706b/eslint-plugin-module-specifier-extensions": "^0.1.7",
+    "@0x706b/eslint-plugin-module-specifier-extensions": "0.1.7",
     "@babel/cli": "^7.18.10",
-    "@fncts/codegen": "^0.0.12",
+    "@fncts/codegen": "0.0.12",
     "@typescript-eslint/experimental-utils": "^5.33.1",
     "babel-jest": "27.0.2",
     "babel-plugin-replace-import-extension": "^1.1.3",

@@ -5,7 +5,7 @@ __metadata:
   version: 6
   cacheKey: 8
 
-"@0x706b/eslint-plugin-module-specifier-extensions@npm:^0.1.7":
+"@0x706b/eslint-plugin-module-specifier-extensions@npm:0.1.7":
   version: 0.1.7
   resolution: "@0x706b/eslint-plugin-module-specifier-extensions@npm:0.1.7"
   dependencies:
@@ -2522,7 +2522,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@fncts/codegen@npm:^0.0.12":
+"@fncts/codegen@npm:0.0.12":
   version: 0.0.12
   resolution: "@fncts/codegen@npm:0.0.12"
   dependencies:
@@ -3035,13 +3035,28 @@ __metadata:
     "@mui/x-date-pickers-pro": ^5.0.0-beta.3
     "@mui/x-license-pro": ^5.15.0
     "@popperjs/core": ^2.11.5
-    date-fns: ^2.23.0
+    date-fns: ^2.25.0
+    dayjs: ^1.10.7
+    luxon: ^1.28.0 || ^2.0.0 || ^3.0.0
+    moment: ^2.29.1
     react: ^17.0.2
     react-dnd: ^15.1.2
     react-dnd-html5-backend: ^15.1.3
     react-dom: ^17.0.2
     react-draggable: ^4.4.4
     react-transition-group: ^4.4.2
+  dependenciesMeta:
+    date-fns:
+      optional: true
+  peerDependenciesMeta:
+    date-fns:
+      optional: true
+    dayjs:
+      optional: true
+    luxon:
+      optional: true
+    moment:
+      optional: true
   languageName: unknown
   linkType: soft
 
@@ -3172,13 +3187,25 @@ __metadata:
     "@mui/x-date-pickers-pro": ^5.0.0-beta.3
     "@mui/x-license-pro": ^5.15.0
     "@popperjs/core": ^2.11.5
-    date-fns: ^2.23.0
+    date-fns: ^2.25.0
+    dayjs: ^1.10.7
+    luxon: ^1.28.0 || ^2.0.0 || ^3.0.0
+    moment: ^2.29.1
     react: ^17.0.2
     react-dnd: ^15.1.2
     react-dnd-html5-backend: ^15.1.3
     react-dom: ^17.0.2
     react-draggable: ^4.4.4
     react-transition-group: ^4.4.2
+  peerDependenciesMeta:
+    date-fns:
+      optional: true
+    dayjs:
+      optional: true
+    luxon:
+      optional: true
+    moment:
+      optional: true
   languageName: unknown
   linkType: soft
 
@@ -16205,9 +16232,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "monorail@workspace:."
   dependencies:
-    "@0x706b/eslint-plugin-module-specifier-extensions": ^0.1.7
+    "@0x706b/eslint-plugin-module-specifier-extensions": 0.1.7
     "@babel/cli": ^7.18.10
-    "@fncts/codegen": ^0.0.12
+    "@fncts/codegen": 0.0.12
     "@typescript-eslint/experimental-utils": ^5.33.1
     babel-jest: 27.0.2
     babel-plugin-replace-import-extension: ^1.1.3
