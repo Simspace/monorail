@@ -1,6 +1,11 @@
 import type {} from '@monorail/types'
 export type {} from './themeAugmentation'
 
+export type { Theme } from '@mui/material'
+export { ThemeProvider, StyledEngineProvider } from '@mui/material'
+export type { LocalizationProviderProps } from '@mui/x-date-pickers'
+export { LocalizationProvider } from '@mui/x-date-pickers'
+
 export * from './Accordion.js'
 export * from './AccordionActions.js'
 export * from './AccordionDetails.js'
