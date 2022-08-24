@@ -5,9 +5,7 @@
   "repository": "https://gitlab.com/simspace/monorail",
   "author": "SimSpace",
   "license": "UNLICENSED",
-  "publishConfig": {
-    "access": "restricted"
-  },
+  "private": true,
   "scripts": {
     "build": "tsc -b ./tsconfig.json",
     "clean": "rm -rf build",
