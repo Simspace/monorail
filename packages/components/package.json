@@ -47,6 +47,7 @@
     "@mui/styled-engine": "^5.8.7",
     "@mui/styles": "^5.9.2",
     "@mui/utils": "^5.9.1",
+    "@mui/system": "^5.9.2",
     "@mui/x-data-grid": "^5.15.0",
     "@mui/x-data-grid-premium": "^5.15.0",
     "@mui/x-data-grid-pro": "^5.15.0",
