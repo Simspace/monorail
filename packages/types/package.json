@@ -18,8 +18,8 @@
     "prettier:write": "prettier './src/**/*{.js,.ts,.tsx}' --write"
   },
   "peerDependencies": {
-    "@mui/material": "5.9.2",
-    "react": "17.0.2"
+    "@mui/material": "^5.9.2",
+    "react": "^17.0.2"
   },
   "devDependencies": {
     "@monorail/scripts": "workspace:*",
