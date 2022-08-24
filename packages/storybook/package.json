@@ -11,7 +11,7 @@
   "scripts": {
     "build": "tsc -b ./tsconfig.json",
     "clean": "rm -rf build",
-    "storybook": "TS_NODE_PROJECT=./.storybook/tsconfig.json start-storybook -p 6006 -s assets",
+    "storybook": "yarn org:concurrently \"TS_NODE_PROJECT=./.storybook/tsconfig.json start-storybook -p 6006 -s assets\" \"yarn org:build --watch\"",
     "build-storybook": "TS_NODE_PROJECT=./.storybook/tsconfig.json build-storybook -s assets",
     "test": "yarn org:jest",
     "eslint": "NODE_OPTIONS=\"--max-old-space-size=8192\" yarn org:eslint \"src/**/*.{js,ts,tsx}\"",
