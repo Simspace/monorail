@@ -12,6 +12,9 @@
     },
     {
       "path": "packages/utils"
+    },
+    {
+      "path": "packages/storybook"
     }
   ]
 }

@@ -1,4 +1,5 @@
 import type {} from '@monorail/types'
+export type {} from './themeAugmentation'
 
 export * from './Accordion.js'
 export * from './AccordionActions.js'

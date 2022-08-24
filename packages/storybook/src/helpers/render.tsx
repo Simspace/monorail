@@ -2,7 +2,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 
 import React from 'react'
-import { electricBluegalooLight } from '@monorail/themes'
+import { classicLight } from '@monorail/themes'
 import {
   CssBaseline,
   StyledEngineProvider,
@@ -46,7 +46,7 @@ export function renderWithTheme(
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <TemporaryJSDomFix />
       <StyledEngineProvider injectFirst>
-        <ThemeProvider theme={electricBluegalooLight}>
+        <ThemeProvider theme={classicLight}>
           <CssBaseline />
           {ui}
         </ThemeProvider>

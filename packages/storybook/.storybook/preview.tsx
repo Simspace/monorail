@@ -1,5 +1,14 @@
 import React from 'react'
-import { electricBluegalooDark, electricBluegalooLight } from '@monorail/themes'
+import {
+  classicLight,
+  classicDark,
+  pcteDark,
+  pcteLight,
+  rebrandDarkTheme,
+  rebrandLightTheme,
+  muiDark,
+  muiLight,
+} from '@monorail/themes'
 import * as MUI from '@mui/material'
 import { StyledEngineProvider } from '@mui/material/styles'
 import { DecoratorFn, Parameters } from '@storybook/react'
@@ -20,11 +29,11 @@ export const parameters: Parameters = {
   },
 }
 
-enum ThemeOption {
-  ElectricBluegaloo = 'Electric Bluegaloo',
-  // PCTE = 'PCTE',
-  // Rebrand = 'Rebrand',
-  // MUI = 'MUI',
+const enum ThemeOption {
+  Classic = 'Classic',
+  PCTE = 'PCTE',
+  Rebrand = 'Rebrand',
+  MUI = 'MUI',
 }
 
 /**
@@ -34,13 +43,13 @@ export const globalTypes = {
   theme: {
     name: 'Theme',
     description: 'Theme switcher',
-    defaultValue: ThemeOption.ElectricBluegaloo,
+    defaultValue: ThemeOption.Classic,
     toolbar: {
       items: [
-        ThemeOption.ElectricBluegaloo,
-        // ThemeOption.PCTE,
-        // ThemeOption.Rebrand,
-        // ThemeOption.MUI,
+        ThemeOption.Classic,
+        ThemeOption.PCTE,
+        ThemeOption.Rebrand,
+        ThemeOption.MUI,
       ],
       showName: true,
       dynamicTitle: true,
@@ -76,25 +85,25 @@ export const withTheme: DecoratorFn = (Story, context) => {
   const theme = React.useMemo(() => {
     if (sbMode === 'dark') {
       switch (sbTheme) {
-        case ThemeOption.ElectricBluegaloo:
-          return electricBluegalooDark
-        // case ThemeOption.PCTE:
-        //   return pcteDarkTheme
-        // case ThemeOption.Rebrand:
-        //   return rebrandDarkTheme
-        // case ThemeOption.MUI:
-        //   return muiDarkTheme
+        case ThemeOption.Classic:
+          return classicDark
+        case ThemeOption.PCTE:
+          return pcteDark
+        case ThemeOption.Rebrand:
+          return rebrandDarkTheme
+        case ThemeOption.MUI:
+          return muiDark
       }
     }
     switch (sbTheme) {
-      case ThemeOption.ElectricBluegaloo:
-        return electricBluegalooLight
-      // case ThemeOption.PCTE:
-      //   return pcteLightTheme
-      // case ThemeOption.Rebrand:
-      //   return rebrandLightTheme
-      // case ThemeOption.MUI:
-      //   return muiLightTheme
+      case ThemeOption.Classic:
+        return classicLight
+      case ThemeOption.PCTE:
+        return pcteLight
+      case ThemeOption.Rebrand:
+        return rebrandLightTheme
+      case ThemeOption.MUI:
+        return muiLight
     }
   }, [sbMode, sbTheme])
 

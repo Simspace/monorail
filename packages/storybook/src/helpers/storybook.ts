@@ -1,10 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unsafe-return */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable no-restricted-imports */
-/* eslint-disable import/no-extraneous-dependencies */
 
-import { electricBluegalooLight } from '@monorail/themes'
+import { classicLight } from '@monorail/themes'
 import { Theme } from '@mui/material'
 import { Args as DefaultArgs } from '@storybook/addons'
 import {
@@ -210,9 +208,9 @@ export function story<T extends DefaultArgs>(
     muiName?: keyof NonNullable<Theme['components']>
   } = {},
 ): Story<T> {
-  let themeProps = {}
+  let themeProps: {} | undefined = {}
   if (muiName) {
-    themeProps = electricBluegalooLight.components?.[muiName]?.defaultProps
+    themeProps = classicLight.components?.[muiName]?.defaultProps
   }
   const NewStory = Template.bind({})
   NewStory.args = { ...themeProps, ...Template.args, ...args } as Partial<T>

@@ -21,7 +21,7 @@ import ExpandMore from '@mui/icons-material/ExpandMore'
 import Warning from '@mui/icons-material/Warning'
 import { styled } from '@mui/material'
 
-import { story } from '../helpers'
+import { story } from '../helpers.js'
 
 /**
  * Metadata for Accordion stories - update/extend as needed

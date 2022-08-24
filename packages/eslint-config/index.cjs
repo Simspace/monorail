@@ -46,7 +46,8 @@ module.exports = {
       "error",
       {
         presets: {
-          barrel: require('@fncts/codegen/barrel')
+          barrel: require('@fncts/codegen/barrel'),
+          'type-barrel': require('@fncts/codegen/type-barrel')
         }
       }
     ],
