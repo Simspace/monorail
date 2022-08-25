@@ -64,7 +64,18 @@ remove-storybook:
     paths:
       - public
   script:
-    - rm -rf "public/$CI_COMMIT_REF_SLUG/storybook"
+    - |
+      git config --global user.email "<>"
+      git config --global user.name "CI"
+      git remote set-url origin https://${CI_REGISTRY_USER}:${CI_PUSH_TOKEN}@${CI_REPOSITORY_URL#*@}
+      rm -rf public
+      git fetch
+      git checkout pages
+      rm -rf public/${CI_COMMIT_REF_SLUG}
+      git reset --soft HEAD^
+      git add .
+      git commit -m "[CI] Publish Pages"
+      git push origin pages -f
   when: manual
   variables:
     GIT_STRATEGY: none
@@ -84,14 +95,20 @@ pages:
   dependencies:
     - storybook
   script:
-    - if [ "$CI_COMMIT_REF_NAME" == "main" ]; then
-      mkdir -p public;
-      touch public/index.html;
-      echo "<!DOCTYPE HTML><script>window.location.href = 'https://simspace.gitlab.io/r9y/monorail/main/storybook'</script>" > public/index.html;
-      fi;
-    - rm -rf "public/$CI_COMMIT_REF_SLUG"
-    - mkdir -p "public/$CI_COMMIT_REF_SLUG";
-    - mv storybook "public/$CI_COMMIT_REF_SLUG"
+    - |
+      git config --global user.email "<>"
+      git config --global user.name "CI"
+      git remote set-url origin https://${CI_REGISTRY_USER}:${CI_PUSH_TOKEN}@${CI_REPOSITORY_URL#*@}
+      rm -rf public
+      git fetch
+      git checkout pages
+      rm -rf public/${CI_COMMIT_REF_SLUG}
+      mkdir -p "public/${CI_COMMIT_REF_SLUG}"
+      mv storybook "public/${CI_COMMIT_REF_SLUG}"
+      git reset --soft HEAD^
+      git add .
+      git commit -m "[CI] Publish Pages"
+      git push origin pages -f
 
 publish:
   stage: deploy

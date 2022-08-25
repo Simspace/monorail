@@ -21,7 +21,7 @@ export default { title: 'Inputs/Button', component: Button }
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
 const Template = story<ButtonProps>(args => <Button {...args} />, {
-  args: { children: 'Button' },
+  args: { children: 'It Worked!' },
   muiName: 'MuiButton',
 })
 
