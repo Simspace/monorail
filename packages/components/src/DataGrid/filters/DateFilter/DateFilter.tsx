@@ -15,8 +15,9 @@ import { useGridApiContext } from '../../internal.js'
 import { ClearFilterButton } from '../components/ClearFilterButton.js'
 import { FilterContainer } from '../components/FilterContainer.js'
 import { useDebouncedSyncFilter } from '../hooks/useDebouncedSyncFilter.js'
-import { dateOperators } from './constants.js'
+import { getDateOperators } from './constants.js'
 import { useInitializeDateFilterState } from './hooks.js'
+import { useDateAdapter } from './hooks/useDateAdapter.js'
 import {
   DateFilterDefinition,
   DateFilterOperator,
@@ -31,7 +32,12 @@ export function DateFilter(props: DateFilterProps) {
   const { field, external } = props
 
   const apiRef = useGridApiContext()
-  useInitializeDateFilterState(apiRef, field, external)
+  const adapter = useDateAdapter()
+  const dateOperators = React.useMemo(
+    () => getDateOperators(adapter.utils),
+    [adapter],
+  )
+  useInitializeDateFilterState(apiRef, adapter!.utils, field, external)
 
   const forceUpdate = useForceUpdate()
 
@@ -59,7 +65,7 @@ export function DateFilter(props: DateFilterProps) {
       forceUpdate()
       syncFilter()
     },
-    [state, forceUpdate, syncFilter],
+    [dateOperators, state, forceUpdate, syncFilter],
   )
 
   const handleFirstInputChange = React.useCallback(
@@ -86,7 +92,7 @@ export function DateFilter(props: DateFilterProps) {
     state.second = null
     forceUpdate()
     syncFilter()
-  }, [state, forceUpdate, syncFilter])
+  }, [dateOperators.on, state, forceUpdate, syncFilter])
 
   const filterBody = React.useMemo(() => {
     switch (state.operator.type) {

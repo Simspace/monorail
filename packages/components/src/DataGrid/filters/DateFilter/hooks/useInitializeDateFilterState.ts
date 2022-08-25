@@ -1,4 +1,5 @@
 import React from 'react'
+import type { IUtils } from '@date-io/core/IUtils'
 
 import { GridApi, gridColumnLookupSelector } from '../../../internal.js'
 import { dateFilterOperator } from '../constants.js'
@@ -6,6 +7,7 @@ import { getDateFilterInitialState } from '../models.js'
 
 export function useInitializeDateFilterState(
   apiRef: React.MutableRefObject<GridApi>,
+  adapter: IUtils<Date>,
   field: string,
   external?: boolean,
 ): void {
@@ -18,9 +20,12 @@ export function useInitializeDateFilterState(
       }
     }
     if (!apiRef.current.state.dateFilter.has(field)) {
-      apiRef.current.state.dateFilter.set(field, getDateFilterInitialState())
+      apiRef.current.state.dateFilter.set(
+        field,
+        getDateFilterInitialState(adapter),
+      )
     }
-  }, [apiRef, field, external])
+  }, [apiRef, adapter, field, external])
 
   React.useEffect(() => {
     initState()

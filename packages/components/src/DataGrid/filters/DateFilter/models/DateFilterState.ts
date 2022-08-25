@@ -1,14 +1,18 @@
+import { IUtils } from '@date-io/core/IUtils'
+
 import { RangeFilterState, RangeFilterStateTypeId } from '../../RangeFilter.js'
-import { dateOperators } from '../constants.js'
+import { getDateOperators } from '../constants.js'
 import { DateFilterOperator } from './DateFilterOperators.js'
 
-export interface DateFilterState
-  extends RangeFilterState<DateFilterOperator, Date> {}
+export interface DateFilterState<TDate = Date>
+  extends RangeFilterState<DateFilterOperator, TDate> {}
 
-export function getDateFilterInitialState(): DateFilterState {
+export function getDateFilterInitialState<TDate = Date>(
+  adapter: IUtils<TDate>,
+): DateFilterState<TDate> {
   return {
     [RangeFilterStateTypeId]: RangeFilterStateTypeId,
-    operator: dateOperators.on,
+    operator: getDateOperators(adapter).on,
     first: null,
     second: null,
   }

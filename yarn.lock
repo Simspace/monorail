@@ -2975,6 +2975,11 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@monorail/components@workspace:packages/components"
   dependencies:
+    "@date-io/core": ^2.14.0
+    "@date-io/date-fns": ^2.14.0
+    "@date-io/dayjs": ^2.14.0
+    "@date-io/luxon": ^2.14.0
+    "@date-io/moment": ^2.14.0
     "@emotion/react": 11.4.1
     "@emotion/styled": 11.8.1
     "@monorail/scripts": "workspace:*"
@@ -3118,7 +3123,6 @@ __metadata:
     "@mui/material": 5.9.2
     "@types/react": 17.0.39
   peerDependencies:
-    "@mui/material": ^5.9.2
     react: ^17.0.2
   languageName: unknown
   linkType: soft

@@ -7,7 +7,7 @@ import { TextFilterState } from '../filters/TextFilter.js'
 declare module '@mui/x-data-grid-premium/models/gridStatePremium' {
   interface GridStatePremium {
     enumFilter: Map<string, EnumFilterState>
-    dateFilter: Map<string, DateFilterState>
+    dateFilter: Map<string, DateFilterState<Date>>
     numericFilter: Map<string, NumericFilterState>
     textFilter: Map<string, TextFilterState>
     filterSubscriptions: Map<string, Set<(state: any) => void>>

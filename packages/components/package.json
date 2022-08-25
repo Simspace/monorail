@@ -41,6 +41,11 @@
     ]
   },
   "dependencies": {
+    "@date-io/core": "^2.14.0",
+    "@date-io/date-fns": "^2.14.0",
+    "@date-io/dayjs": "^2.14.0",
+    "@date-io/luxon": "^2.14.0",
+    "@date-io/moment": "^2.14.0",
     "@mui/base": "5.0.0-alpha.91",
     "@mui/icons-material": "5.8.4",
     "@mui/lab": "5.0.0-alpha.92",
