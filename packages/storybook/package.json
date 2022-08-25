@@ -1,20 +1,20 @@
 {
   "name": "@monorail/storybook",
   "version": "0.0.2",
+  "private": true,
   "description": "Monorail 3 Storybook",
   "repository": "https://gitlab.com/simspace/monorail",
-  "author": "SimSpace",
   "license": "UNLICENSED",
-  "private": true,
+  "author": "SimSpace",
   "scripts": {
     "build": "tsc -b ./tsconfig.json",
-    "clean": "rm -rf build",
-    "storybook": "yarn org:concurrently \"TS_NODE_PROJECT=./.storybook/tsconfig.json start-storybook -p 6006 -s assets\" \"yarn org:build --watch\"",
     "build-storybook": "TS_NODE_PROJECT=./.storybook/tsconfig.json build-storybook -s assets",
-    "test": "yarn org:jest",
+    "clean": "rm -rf build",
     "eslint": "NODE_OPTIONS=\"--max-old-space-size=8192\" yarn org:eslint \"src/**/*.{js,ts,tsx}\"",
     "prettier:check": "prettier './src/**/*{.js,.ts,.tsx}' --list-different",
-    "prettier:write": "prettier './src/**/*{.js,.ts,.tsx}' --write"
+    "prettier:write": "prettier './src/**/*{.js,.ts,.tsx}' --write",
+    "storybook": "yarn org:concurrently \"TS_NODE_PROJECT=./.storybook/tsconfig.json start-storybook -p 6006 -s assets\" \"yarn org:build --watch\"",
+    "test": "yarn org:jest"
   },
   "devDependencies": {
     "@monorail/components": "workspace:*",

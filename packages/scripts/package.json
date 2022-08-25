@@ -1,18 +1,18 @@
 {
   "name": "@monorail/scripts",
-  "private": true,
   "version": "0.0.0",
-  "bin": {
-    "monorail-pack": "./bin/monorail-pack.mjs"
-  },
+  "private": true,
   "type": "module",
   "exports": {
     "./*": "./build/esm/*.js"
   },
+  "bin": {
+    "monorail-pack": "./bin/monorail-pack.mjs"
+  },
   "scripts": {
     "build": "tsc -b ./tsconfig.json",
-    "format": "prettier --list-different -w src/**/*.ts && eslint --fix src/**/*.ts",
-    "clean": "rm -rf ./build"
+    "clean": "rm -rf ./build",
+    "format": "prettier --list-different -w src/**/*.ts && eslint --fix src/**/*.ts"
   },
   "devDependencies": {
     "@monorail/config": "workspace:*",

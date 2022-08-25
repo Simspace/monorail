@@ -1,30 +1,41 @@
 {
   "name": "monorail",
   "version": "0.0.3",
+  "private": true,
   "description": "Monorail 3",
   "repository": "https://gitlab.com/simspace/monorail",
-  "private": true,
-  "author": "SimSpace",
   "license": "UNLICENSED",
+  "author": "SimSpace",
   "workspaces": [
     "packages/*"
   ],
   "scripts": {
-    "org:concurrently": "cd $INIT_CWD && concurrently",
-    "org:monorail-pack": "cd $INIT_CWD && monorail-pack",
-    "org:eslint": "cd $INIT_CWD && eslint",
-    "org:tsc": "cd $INIT_CWD && tsc",
-    "org:jest": "cd $INIT_CWD && jest",
-    "org:build": "tsc -b ./tsconfig.json --verbose",
     "build": "yarn org:build",
-    "clean": "ultra -r clean",
-    "test": "ultra -r test",
     "build-pack": "ultra -r build-pack",
     "build-storybook": "yarn workspace @monorail/storybook build-storybook --output-dir storybook",
-    "storybook": "yarn workspace @monorail/storybook storybook",
+    "clean": "ultra -r clean",
+    "eslint": "ultra -r eslint",
+    "org:build": "tsc -b ./tsconfig.json --verbose",
+    "org:concurrently": "cd $INIT_CWD && concurrently",
+    "org:eslint": "cd $INIT_CWD && eslint",
+    "org:jest": "cd $INIT_CWD && jest",
+    "org:monorail-pack": "cd $INIT_CWD && monorail-pack",
+    "org:tsc": "cd $INIT_CWD && tsc",
     "prettier:check": "ultra -r prettier:check",
     "prettier:write": "ultra -r prettier:write",
-    "eslint": "ultra -r eslint"
+    "storybook": "yarn workspace @monorail/storybook storybook",
+    "test": "ultra -r test"
+  },
+  "resolutions": {
+    "@mui/lab@5.0.0-alpha.92": "patch:@mui/lab@npm:5.0.0-alpha.92#.yarn/patches/@mui-lab-npm-5.0.0-alpha.92-3f8a0aeb7b.patch",
+    "@mui/x-data-grid-pro@5.15.0": "patch:@mui/x-data-grid-pro@npm:5.15.0#.yarn/patches/@mui-x-data-grid-pro-npm-5.15.0-a4d9069608.patch",
+    "@mui/x-data-grid@5.15.0": "patch:@mui/x-data-grid@npm:5.15.0#.yarn/patches/@mui-x-data-grid-npm-5.15.0-be98809963.patch",
+    "@mui/x-date-pickers": "patch:@mui/x-date-pickers@npm:5.0.0-beta.3#.yarn/patches/@mui-x-date-pickers-npm-5.0.0-beta.3-a87072fc59.patch",
+    "@mui/x-date-pickers-pro": "patch:@mui/x-date-pickers-pro@npm:5.0.0-beta.3#.yarn/patches/@mui-x-date-pickers-pro-npm-5.0.0-beta.3-007ec014e8.patch",
+    "@types/react": "17.0.39",
+    "@types/react-syntax-highlighter": "^11.0.5",
+    "react-syntax-highlighter": "^13.5.3",
+    "webpack": "5.74.0"
   },
   "devDependencies": {
     "@0x706b/eslint-plugin-module-specifier-extensions": "0.1.7",
@@ -55,17 +66,6 @@
     "ts-node": "^10.8.0",
     "typescript": "4.7.4",
     "ultra-runner": "^3.10.5"
-  },
-  "resolutions": {
-    "@types/react": "17.0.39",
-    "@types/react-syntax-highlighter": "^11.0.5",
-    "react-syntax-highlighter": "^13.5.3",
-    "@mui/x-data-grid@5.15.0": "patch:@mui/x-data-grid@npm:5.15.0#.yarn/patches/@mui-x-data-grid-npm-5.15.0-be98809963.patch",
-    "@mui/lab@5.0.0-alpha.92": "patch:@mui/lab@npm:5.0.0-alpha.92#.yarn/patches/@mui-lab-npm-5.0.0-alpha.92-3f8a0aeb7b.patch",
-    "@mui/x-date-pickers-pro": "patch:@mui/x-date-pickers-pro@npm:5.0.0-beta.3#.yarn/patches/@mui-x-date-pickers-pro-npm-5.0.0-beta.3-007ec014e8.patch",
-    "@mui/x-date-pickers": "patch:@mui/x-date-pickers@npm:5.0.0-beta.3#.yarn/patches/@mui-x-date-pickers-npm-5.0.0-beta.3-a87072fc59.patch",
-    "@mui/x-data-grid-pro@5.15.0": "patch:@mui/x-data-grid-pro@npm:5.15.0#.yarn/patches/@mui-x-data-grid-pro-npm-5.15.0-a4d9069608.patch",
-    "webpack": "5.74.0"
   },
   "packageManager": "yarn@3.2.1"
 }
