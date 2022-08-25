@@ -2983,6 +2983,8 @@ __metadata:
     "@emotion/react": 11.4.1
     "@emotion/styled": 11.8.1
     "@monorail/scripts": "workspace:*"
+    "@monorail/types": "workspace:*"
+    "@monorail/utils": "workspace:*"
     "@mui/base": 5.0.0-alpha.91
     "@mui/icons-material": 5.8.4
     "@mui/lab": 5.0.0-alpha.92
@@ -3026,8 +3028,6 @@ __metadata:
     typescript: ^4.7.4
   peerDependencies:
     "@mui/styled-engine": ^5.8.7
-    "@mui/styles": ^5.9.2
-    "@mui/x-data-grid": ^5.15.0
     date-fns: ^2.25.0
     dayjs: ^1.10.7
     luxon: ^1.28.0 || ^2.0.0 || ^3.0.0
@@ -3127,7 +3127,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@monorail/utils@workspace:packages/utils":
+"@monorail/utils@workspace:*, @monorail/utils@workspace:packages/utils":
   version: 0.0.0-use.local
   resolution: "@monorail/utils@workspace:packages/utils"
   dependencies:
