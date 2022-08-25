@@ -1,6 +1,6 @@
 {
   "name": "@monorail/components",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Monorail 3 Components Library",
   "repository": "https://gitlab.com/simspace/monorail",
   "license": "UNLICENSED",
@@ -63,6 +63,7 @@
     "@mui/x-license-pro": "5.15.0",
     "@popperjs/core": "^2.11.5",
     "clsx": "^1.2.1",
+    "date-fns": "^2.25.0",
     "react-glider": "^3.1.0"
   },
   "devDependencies": {
@@ -98,7 +99,7 @@
     "@typescript-eslint/parser": "5.33.1",
     "babel-jest": "27.0.2",
     "concurrently": "^7.2.1",
-    "date-fns": "2.23.0",
+    "date-fns": "2.25.0",
     "notistack": "^2.0.4",
     "react": "17.0.2",
     "react-dnd": "15.1.2",
