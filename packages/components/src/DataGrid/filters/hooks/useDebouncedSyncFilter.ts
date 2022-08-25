@@ -1,6 +1,7 @@
 import React from 'react'
 import { unstable_debounce } from '@mui/utils'
-import { GridApi, SUBMIT_FILTER_STROKE_TIME } from '@mui/x-data-grid-premium'
+import type { GridApi } from '@mui/x-data-grid-premium'
+import { SUBMIT_FILTER_STROKE_TIME } from '@mui/x-data-grid-premium'
 
 export function useDebouncedSyncFilter<S>(
   apiRef: React.MutableRefObject<GridApi>,

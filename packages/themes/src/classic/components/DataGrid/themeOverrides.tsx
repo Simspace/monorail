@@ -1,5 +1,7 @@
+import type { Components, Theme } from '@mui/material'
+import { checkboxClasses } from '@mui/material'
+
 import { dataGridClasses } from '@monorail/components'
-import { checkboxClasses, Components, Theme } from '@mui/material'
 
 export const MonorailDataGridOverrides: Components<Theme>['MuiDataGrid'] = {
   styleOverrides: {

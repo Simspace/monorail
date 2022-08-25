@@ -1,11 +1,8 @@
 // Edit this file to add new stories
 import React from 'react'
-import {
-  FormControl,
-  InputLabel,
-  OutlinedInput,
-  OutlinedInputProps,
-} from '@monorail/components'
+
+import type { OutlinedInputProps } from '@monorail/components'
+import { FormControl, InputLabel, OutlinedInput } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 

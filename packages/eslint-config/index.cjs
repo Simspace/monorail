@@ -81,7 +81,6 @@ module.exports = {
     'no-console': 'error',
     'no-debugger': 'error',
     'no-duplicate-case': 'error',
-    'no-duplicate-imports': 'error',
     'no-empty': 'error',
     'no-eval': 'error',
     'no-extra-bind': 'error',
@@ -129,9 +128,8 @@ module.exports = {
       'error',
       {
         groups: [
-          ['^react*', '^@?\\w', '^fp-ts*'],
-          ['^@simspace/monorail'],
-          ['^src/'],
+          ['^react*', '^@?\\w'],
+          ['^@monorail/.*'],
           ['^[^.]'],
           ['^\\.'],
           ['^\\u0000'],
@@ -143,6 +141,7 @@ module.exports = {
     'spaced-comment': 'off',
     'use-isnan': 'error',
     'valid-typeof': 'off',
+    '@typescript-eslint/consistent-type-imports': 'error',
     '@typescript-eslint/consistent-type-exports': 'error',
     '@typescript-eslint/no-unused-vars': [
       'error',
@@ -151,6 +150,7 @@ module.exports = {
         varsIgnorePattern: '^_',
       },
     ],
+    'import/no-duplicates': "error",
     'import/no-extraneous-dependencies': [
       'error',
       {

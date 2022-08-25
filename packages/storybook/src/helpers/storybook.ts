@@ -2,16 +2,17 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 
-import { classicLight } from '@monorail/themes'
-import { Theme } from '@mui/material'
-import { Args as DefaultArgs } from '@storybook/addons'
-import {
+import type { Theme } from '@mui/material'
+import type { Args as DefaultArgs } from '@storybook/addons'
+import type {
   ArgTypes,
   ArgTypes as StorybookArgTypes,
   Meta as StorybookMeta,
   Parameters as StorybookParameters,
   Story as StorybookStory,
 } from '@storybook/react'
+
+import { classicLight } from '@monorail/themes'
 
 import { isNonEmptyString } from './typeGuards.js'
 

@@ -1,5 +1,9 @@
 // Edit this file to add new stories
 import React from 'react'
+import Visibility from '@mui/icons-material/Visibility'
+import VisibilityOff from '@mui/icons-material/VisibilityOff'
+
+import type { InputAdornmentProps } from '@monorail/components'
 import {
   Box,
   FilledInput,
@@ -8,13 +12,10 @@ import {
   IconButton,
   Input,
   InputAdornment,
-  InputAdornmentProps,
   InputLabel,
   OutlinedInput,
   TextField,
 } from '@monorail/components'
-import Visibility from '@mui/icons-material/Visibility'
-import VisibilityOff from '@mui/icons-material/VisibilityOff'
 
 import { story } from '../helpers/storybook.js'
 

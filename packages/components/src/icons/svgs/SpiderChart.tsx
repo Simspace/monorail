@@ -1,5 +1,6 @@
 import React from 'react'
-import SvgIcon, { SvgIconProps } from '@mui/material/SvgIcon'
+import type { SvgIconProps } from '@mui/material/SvgIcon'
+import SvgIcon from '@mui/material/SvgIcon'
 
 export const SpiderChart = (props: SvgIconProps) => (
   <SvgIcon viewBox="0 0 345 294" width="345" height="294" {...props}>

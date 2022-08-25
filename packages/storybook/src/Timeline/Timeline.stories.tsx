@@ -1,5 +1,11 @@
 // Edit this file to add new stories
 import React from 'react'
+import FastfoodIcon from '@mui/icons-material/Fastfood'
+import HotelIcon from '@mui/icons-material/Hotel'
+import LaptopMacIcon from '@mui/icons-material/LaptopMac'
+import RepeatIcon from '@mui/icons-material/Repeat'
+
+import type { TimelineProps } from '@monorail/components'
 import {
   Timeline,
   TimelineConnector,
@@ -7,14 +13,9 @@ import {
   TimelineDot,
   TimelineItem,
   TimelineOppositeContent,
-  TimelineProps,
   TimelineSeparator,
   Typography,
 } from '@monorail/components'
-import FastfoodIcon from '@mui/icons-material/Fastfood'
-import HotelIcon from '@mui/icons-material/Hotel'
-import LaptopMacIcon from '@mui/icons-material/LaptopMac'
-import RepeatIcon from '@mui/icons-material/Repeat'
 
 import { story } from '../helpers/storybook.js'
 /**

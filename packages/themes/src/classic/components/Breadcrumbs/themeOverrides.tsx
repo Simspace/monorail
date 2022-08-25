@@ -1,6 +1,6 @@
 import React from 'react'
 import ChevronRight from '@mui/icons-material/ChevronRight'
-import { Components, Theme } from '@mui/material'
+import type { Components, Theme } from '@mui/material'
 
 export const MonorailBreadcrumbsOverrides: Components<Theme>['MuiBreadcrumbs'] =
   {

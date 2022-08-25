@@ -1,15 +1,17 @@
 import React from 'react'
-import { useForceUpdate } from '@monorail/utils'
 import {
   CalendarToday,
   DateRange as DateRangeIcon,
   EventBusy,
 } from '@mui/icons-material'
 
+import { useForceUpdate } from '@monorail/utils'
+
 import { DatePicker } from '../../../DatePicker.js'
 import { ChevronDoubleLeft, ChevronDoubleRight } from '../../../icons.js'
 import { MenuItem } from '../../../MenuItem.js'
-import { Select, SelectChangeEvent } from '../../../Select.js'
+import type { SelectChangeEvent } from '../../../Select.js'
+import { Select } from '../../../Select.js'
 import { TextField } from '../../../TextField.js'
 import { useGridApiContext } from '../../internal.js'
 import { ClearFilterButton } from '../components/ClearFilterButton.js'
@@ -18,7 +20,7 @@ import { useDebouncedSyncFilter } from '../hooks/useDebouncedSyncFilter.js'
 import { getDateOperators } from './constants.js'
 import { useInitializeDateFilterState } from './hooks.js'
 import { useDateAdapter } from './hooks/useDateAdapter.js'
-import {
+import type {
   DateFilterDefinition,
   DateFilterOperator,
   DateFilterState,

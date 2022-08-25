@@ -1,16 +1,16 @@
 // Edit this file to add new stories
 import React from 'react'
+import { Person } from '@mui/icons-material'
+
+import type { DataGridProps, GridValueGetterParams } from '@monorail/components'
 import {
   createTable,
   DataGrid,
-  DataGridProps,
   DataGridToolbar,
-  GridValueGetterParams,
   MenuItem,
   Typography,
   useGridApiRef,
 } from '@monorail/components'
-import { Person } from '@mui/icons-material'
 
 import { story } from '../helpers/storybook.js'
 

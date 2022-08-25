@@ -1,7 +1,5 @@
-import {
-  MobileTimePicker as MuiMobileTimePicker,
-  MobileTimePickerProps as MuiMobileTimePickerProps,
-} from '@mui/x-date-pickers'
+import type { MobileTimePickerProps as MuiMobileTimePickerProps } from '@mui/x-date-pickers'
+import { MobileTimePicker as MuiMobileTimePicker } from '@mui/x-date-pickers'
 
 /**
  *

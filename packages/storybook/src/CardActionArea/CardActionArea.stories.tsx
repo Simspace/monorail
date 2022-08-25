@@ -1,6 +1,8 @@
 // Edit this file to add new stories
 import React from 'react'
-import { CardActionArea, CardActionAreaProps } from '@monorail/components'
+
+import type { CardActionAreaProps } from '@monorail/components'
+import { CardActionArea } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 

@@ -1,4 +1,4 @@
-import { Components, CSSInterpolation, Theme } from '@mui/material'
+import type { Components, CSSInterpolation, Theme } from '@mui/material'
 
 export const MonorailCircularProgressOverrides: Components<Theme>['MuiCircularProgress'] =
   {

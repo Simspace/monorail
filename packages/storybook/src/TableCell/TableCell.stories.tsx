@@ -1,6 +1,8 @@
 // Edit this file to add new stories
 import React from 'react'
-import { TableCell, TableCellProps } from '@monorail/components'
+
+import type { TableCellProps } from '@monorail/components'
+import { TableCell } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 

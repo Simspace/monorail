@@ -1,6 +1,8 @@
 // Edit this file to add new stories
 import React from 'react'
-import { CardContent, CardContentProps } from '@monorail/components'
+
+import type { CardContentProps } from '@monorail/components'
+import { CardContent } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 /**

@@ -1,6 +1,8 @@
 // Edit this file to add new stories
 import React from 'react'
-import { MonthPicker, MonthPickerProps } from '@monorail/components'
+
+import type { MonthPickerProps } from '@monorail/components'
+import { MonthPicker } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 /**

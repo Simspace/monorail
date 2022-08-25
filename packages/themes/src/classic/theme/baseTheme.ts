@@ -1,6 +1,7 @@
 // eslint-disable-next-line no-restricted-imports
-import type {} from '@monorail/types'
 import { createTheme } from '@mui/material'
+
+import type {} from '@monorail/types'
 
 import { FontSize, LineHeight } from '../../common/FontSize.js'
 import { FontWeight } from '../../common/FontWeight.js'

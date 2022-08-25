@@ -1,5 +1,6 @@
 import { generateUtilityClasses } from '@mui/base'
-import { GridClasses, gridClasses } from '@mui/x-data-grid-premium'
+import type { GridClasses } from '@mui/x-data-grid-premium'
+import { gridClasses } from '@mui/x-data-grid-premium'
 
 export interface DataGridGroupedClasses {
   grouped: string

@@ -1,11 +1,9 @@
 // Edit this file to add new stories
 import React from 'react'
-import {
-  Avatar,
-  ListItemAvatar,
-  ListItemAvatarProps,
-} from '@monorail/components'
 import FolderIcon from '@mui/icons-material/Folder'
+
+import type { ListItemAvatarProps } from '@monorail/components'
+import { Avatar, ListItemAvatar } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 

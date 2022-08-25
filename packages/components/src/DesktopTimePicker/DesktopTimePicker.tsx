@@ -1,7 +1,5 @@
-import {
-  DesktopTimePicker as MuiDesktopTimePicker,
-  DesktopTimePickerProps as MuiDesktopTimePickerProps,
-} from '@mui/x-date-pickers'
+import type { DesktopTimePickerProps as MuiDesktopTimePickerProps } from '@mui/x-date-pickers'
+import { DesktopTimePicker as MuiDesktopTimePicker } from '@mui/x-date-pickers'
 
 /**
  *

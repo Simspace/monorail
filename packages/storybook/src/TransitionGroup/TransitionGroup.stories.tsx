@@ -1,5 +1,8 @@
 // Edit this file to add new stories
 import React from 'react'
+import DeleteIcon from '@mui/icons-material/Delete'
+
+import type { TransitionGroupProps } from '@monorail/components'
 import {
   Box,
   Button,
@@ -9,9 +12,7 @@ import {
   ListItem,
   ListItemText,
   TransitionGroup,
-  TransitionGroupProps,
 } from '@monorail/components'
-import DeleteIcon from '@mui/icons-material/Delete'
 
 import { story } from '../helpers/storybook.js'
 

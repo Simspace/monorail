@@ -1,6 +1,6 @@
 import React from 'react'
 import { MuiPickersAdapterContext } from '@mui/x-date-pickers'
-import { MuiPickersAdapterContextValue } from '@mui/x-date-pickers/LocalizationProvider/LocalizationProvider'
+import type { MuiPickersAdapterContextValue } from '@mui/x-date-pickers/LocalizationProvider/LocalizationProvider'
 
 export function useDateAdapter() {
   const adapter = React.useContext(MuiPickersAdapterContext)

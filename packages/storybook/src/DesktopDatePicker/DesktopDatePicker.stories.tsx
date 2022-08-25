@@ -1,11 +1,9 @@
 // Edit this file to add new stories
 import React from 'react'
-import {
-  DesktopDatePicker,
-  DesktopDatePickerProps,
-  TextField,
-} from '@monorail/components'
 import { action } from '@storybook/addon-actions'
+
+import type { DesktopDatePickerProps } from '@monorail/components'
+import { DesktopDatePicker, TextField } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 

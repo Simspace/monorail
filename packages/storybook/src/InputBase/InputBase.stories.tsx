@@ -1,15 +1,11 @@
 // Edit this file to add new stories
 import React from 'react'
-import {
-  Divider,
-  IconButton,
-  InputBase,
-  InputBaseProps,
-  Paper,
-} from '@monorail/components'
 import DirectionsIcon from '@mui/icons-material/Directions'
 import MenuIcon from '@mui/icons-material/Menu'
 import SearchIcon from '@mui/icons-material/Search'
+
+import type { InputBaseProps } from '@monorail/components'
+import { Divider, IconButton, InputBase, Paper } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 

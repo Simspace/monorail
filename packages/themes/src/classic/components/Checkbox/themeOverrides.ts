@@ -1,9 +1,5 @@
-import {
-  checkboxClasses,
-  Components,
-  svgIconClasses,
-  Theme,
-} from '@mui/material'
+import type { Components, Theme } from '@mui/material'
+import { checkboxClasses, svgIconClasses } from '@mui/material'
 
 export const MonorailCheckboxOverrides: Components<Theme>['MuiCheckbox'] = {
   defaultProps: {},

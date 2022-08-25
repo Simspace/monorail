@@ -1,5 +1,5 @@
 import React from 'react'
-import { GridApi, GridState } from '@mui/x-data-grid-premium'
+import type { GridApi, GridState } from '@mui/x-data-grid-premium'
 
 export function useInitializeGridSubState<K extends keyof GridState>(
   apiRef: React.MutableRefObject<GridApi>,

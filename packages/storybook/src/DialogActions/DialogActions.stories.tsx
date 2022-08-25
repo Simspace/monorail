@@ -1,6 +1,8 @@
 // Edit this file to add new stories
 import React from 'react'
-import { Button, DialogActions, DialogActionsProps } from '@monorail/components'
+
+import type { DialogActionsProps } from '@monorail/components'
+import { Button, DialogActions } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 /**

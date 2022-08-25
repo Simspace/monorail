@@ -2,13 +2,9 @@
 import React from 'react'
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
-import {
-  Box,
-  FileUpload,
-  FileUploadProps,
-  Stack,
-  Typography,
-} from '@monorail/components'
+
+import type { FileUploadProps } from '@monorail/components'
+import { Box, FileUpload, Stack, Typography } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 

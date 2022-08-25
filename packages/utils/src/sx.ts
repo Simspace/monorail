@@ -1,5 +1,5 @@
-import { Theme } from '@mui/material'
-import { CSSObject, SxProps, SystemStyleObject } from '@mui/system'
+import type { Theme } from '@mui/material'
+import type { CSSObject, SxProps, SystemStyleObject } from '@mui/system'
 import muiSx from '@mui/system/sx'
 
 export const sx: (styles: SxProps<Theme>) => CSSObject = muiSx

@@ -1,4 +1,4 @@
-import { PopupProps } from '../popupProps.js'
+import type { PopupProps } from '../popupProps.js'
 
 declare module '@mui/material/styles/props' {
   interface ComponentsPropsList {

@@ -1,5 +1,12 @@
 // Edit this file to add new stories
 import React from 'react'
+import FavoriteIcon from '@mui/icons-material/Favorite'
+import PersonPinIcon from '@mui/icons-material/PersonPin'
+import PhoneIcon from '@mui/icons-material/Phone'
+import PhoneMissedIcon from '@mui/icons-material/PhoneMissed'
+import { styled } from '@mui/material'
+
+import type { TabsProps } from '@monorail/components'
 import {
   AppBar,
   Box,
@@ -9,14 +16,8 @@ import {
   TabList,
   TabPanel as LabTabPanel,
   Tabs,
-  TabsProps,
   Typography,
 } from '@monorail/components'
-import FavoriteIcon from '@mui/icons-material/Favorite'
-import PersonPinIcon from '@mui/icons-material/PersonPin'
-import PhoneIcon from '@mui/icons-material/Phone'
-import PhoneMissedIcon from '@mui/icons-material/PhoneMissed'
-import { styled } from '@mui/material'
 
 import { story } from '../helpers/storybook.js'
 

@@ -1,5 +1,6 @@
 import React from 'react'
-import SvgIcon, { SvgIconProps } from '@mui/material/SvgIcon'
+import type { SvgIconProps } from '@mui/material/SvgIcon'
+import SvgIcon from '@mui/material/SvgIcon'
 
 export const ReadinessRollup = (props: SvgIconProps) => (
   <SvgIcon width="239" height="239" viewBox="0 0 239 239" {...props}>

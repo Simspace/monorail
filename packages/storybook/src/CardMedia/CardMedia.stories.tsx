@@ -1,6 +1,8 @@
 // Edit this file to add new stories
 import React from 'react'
-import { CardMedia, CardMediaProps } from '@monorail/components'
+
+import type { CardMediaProps } from '@monorail/components'
+import { CardMedia } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 import { images } from '../helpers/testData.js'

@@ -1,14 +1,15 @@
 // Edit this file to add new stories
 import React from 'react'
+import { grey } from '@mui/material/colors'
+
+import type { ContainerProps } from '@monorail/components'
 import {
   Box,
   Container,
-  ContainerProps,
   CssBaseline,
   Stack,
   Typography,
 } from '@monorail/components'
-import { grey } from '@mui/material/colors'
 
 import { story } from '../helpers/storybook.js'
 

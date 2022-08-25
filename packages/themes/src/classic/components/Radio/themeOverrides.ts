@@ -1,4 +1,5 @@
-import { Components, radioClasses, svgIconClasses, Theme } from '@mui/material'
+import type { Components, Theme } from '@mui/material'
+import { radioClasses, svgIconClasses } from '@mui/material'
 
 export const MonorailRadioOverrides: Components<Theme>['MuiRadio'] = {
   defaultProps: {},

@@ -1,13 +1,9 @@
 // Edit this file to add new stories
 import React from 'react'
-import {
-  Box,
-  CircularProgress,
-  CircularProgressProps,
-  Stack,
-  Typography,
-} from '@monorail/components'
 import BlurOnIcon from '@mui/icons-material/BlurOn'
+
+import type { CircularProgressProps } from '@monorail/components'
+import { Box, CircularProgress, Stack, Typography } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 

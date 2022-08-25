@@ -1,4 +1,4 @@
-import { EmphaticFormControlLabelProps } from '../emphaticFormControlLabelProps.js'
+import type { EmphaticFormControlLabelProps } from '../emphaticFormControlLabelProps.js'
 
 declare module '@mui/material/styles/props' {
   interface ComponentsPropsList {

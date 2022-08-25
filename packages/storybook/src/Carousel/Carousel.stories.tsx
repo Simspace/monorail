@@ -1,11 +1,7 @@
 import React from 'react'
-import {
-  Card,
-  CardContent,
-  Carousel,
-  CarouselProps,
-  Typography,
-} from '@monorail/components'
+
+import type { CarouselProps } from '@monorail/components'
+import { Card, CardContent, Carousel, Typography } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 

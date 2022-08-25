@@ -1,8 +1,5 @@
-import {
-  ExtendButtonBase,
-  IconButton as MuiIconButton,
-  IconButtonTypeMap,
-} from '@mui/material'
+import type { ExtendButtonBase, IconButtonTypeMap } from '@mui/material'
+import { IconButton as MuiIconButton } from '@mui/material'
 
 /**
  * Refer to the [Icons](https://mui.com/material-ui/icons/) section of the documentation

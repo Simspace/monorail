@@ -1,11 +1,5 @@
 // Edit this file to add new stories
 import React from 'react'
-import {
-  Stack,
-  ToggleButton,
-  ToggleButtonGroup,
-  ToggleButtonGroupProps,
-} from '@monorail/components'
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
 import FormatAlignCenterIcon from '@mui/icons-material/FormatAlignCenter'
 import FormatAlignJustifyIcon from '@mui/icons-material/FormatAlignJustify'
@@ -15,6 +9,9 @@ import FormatBoldIcon from '@mui/icons-material/FormatBold'
 import FormatColorFillIcon from '@mui/icons-material/FormatColorFill'
 import FormatItalicIcon from '@mui/icons-material/FormatItalic'
 import FormatUnderlinedIcon from '@mui/icons-material/FormatUnderlined'
+
+import type { ToggleButtonGroupProps } from '@monorail/components'
+import { Stack, ToggleButton, ToggleButtonGroup } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 

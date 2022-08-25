@@ -1,11 +1,7 @@
 import React from 'react'
 
-import {
-  dataGridClasses,
-  GridRow,
-  GridRowProps,
-  useGridApiContext,
-} from '../internal.js'
+import type { GridRowProps } from '../internal.js'
+import { dataGridClasses, GridRow, useGridApiContext } from '../internal.js'
 
 export function DataGridRow(props: GridRowProps) {
   const { rowId } = props

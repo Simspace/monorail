@@ -1,6 +1,8 @@
 // Edit this file to add new stories
 import React from 'react'
-import { DialogTitle, DialogTitleProps } from '@monorail/components'
+
+import type { DialogTitleProps } from '@monorail/components'
+import { DialogTitle } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 

@@ -1,8 +1,19 @@
 // Edit this file to add new stories
 import React from 'react'
+import AccountCircle from '@mui/icons-material/AccountCircle'
+import AddIcon from '@mui/icons-material/Add'
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
+import MailIcon from '@mui/icons-material/Mail'
+import MenuIcon from '@mui/icons-material/Menu'
+import MoreIcon from '@mui/icons-material/MoreVert'
+import NotificationsIcon from '@mui/icons-material/Notifications'
+import SearchIcon from '@mui/icons-material/Search'
+import { alpha, styled } from '@mui/material/styles'
+import useScrollTrigger from '@mui/material/useScrollTrigger'
+
+import type { AppBarProps } from '@monorail/components'
 import {
   AppBar,
-  AppBarProps,
   Avatar,
   Badge,
   Box,
@@ -28,16 +39,6 @@ import {
   Typography,
   Zoom,
 } from '@monorail/components'
-import AccountCircle from '@mui/icons-material/AccountCircle'
-import AddIcon from '@mui/icons-material/Add'
-import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
-import MailIcon from '@mui/icons-material/Mail'
-import MenuIcon from '@mui/icons-material/Menu'
-import MoreIcon from '@mui/icons-material/MoreVert'
-import NotificationsIcon from '@mui/icons-material/Notifications'
-import SearchIcon from '@mui/icons-material/Search'
-import { alpha, styled } from '@mui/material/styles'
-import useScrollTrigger from '@mui/material/useScrollTrigger'
 
 import { story } from '../helpers/storybook.js'
 

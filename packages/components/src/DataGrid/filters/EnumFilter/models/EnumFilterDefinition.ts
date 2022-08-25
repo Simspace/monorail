@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React from 'react'
-import { GridValidRowModel } from '@mui/x-data-grid-premium'
+import type React from 'react'
+import type { GridValidRowModel } from '@mui/x-data-grid-premium'
 
 export interface EnumFilterDefinition<
   R extends GridValidRowModel = any,

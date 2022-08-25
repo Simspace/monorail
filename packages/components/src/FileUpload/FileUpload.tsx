@@ -1,25 +1,30 @@
-import React, { CSSProperties } from 'react'
+import type { CSSProperties } from 'react'
+import React from 'react'
 import { useDrop } from 'react-dnd'
 import { NativeTypes } from 'react-dnd-html5-backend'
+import CancelIcon from '@mui/icons-material/Cancel'
+import DescriptionIcon from '@mui/icons-material/Description'
+import FileUploadIcon from '@mui/icons-material/FileUpload'
+import WarningIcon from '@mui/icons-material/Warning'
+import type { SxProps, Theme } from '@mui/material'
+import { experimental_sx, styled } from '@mui/material'
+
 import { excludeProps, sx } from '@monorail/utils'
 import {
   bytesToSize,
   formatSize,
 } from '@monorail/utils/helpers/fileSizeFormatters'
-import CancelIcon from '@mui/icons-material/Cancel'
-import DescriptionIcon from '@mui/icons-material/Description'
-import FileUploadIcon from '@mui/icons-material/FileUpload'
-import WarningIcon from '@mui/icons-material/Warning'
-import { experimental_sx, styled, SxProps, Theme } from '@mui/material'
 
 import { Box } from '../Box.js'
 import { Button } from '../Button.js'
 import { FormControl } from '../FormControl.js'
-import { FormHelperText, FormHelperTextProps } from '../FormHelperText.js'
+import type { FormHelperTextProps } from '../FormHelperText.js'
+import { FormHelperText } from '../FormHelperText.js'
 import { FormLabel } from '../FormLabel.js'
 import { IconButton } from '../IconButton.js'
 import { LinearProgress } from '../LinearProgress.js'
-import { Typography, TypographyProps } from '../Typography.js'
+import type { TypographyProps } from '../Typography.js'
+import { Typography } from '../Typography.js'
 
 //#region Status
 const DROP_TARGET_STATUS = {

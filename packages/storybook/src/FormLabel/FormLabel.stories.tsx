@@ -1,6 +1,8 @@
 // Edit this file to add new stories
 import React from 'react'
-import { FormLabel, FormLabelProps } from '@monorail/components'
+
+import type { FormLabelProps } from '@monorail/components'
+import { FormLabel } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 /**

@@ -1,9 +1,10 @@
 // Edit this file to add new stories
 import React from 'react'
+
+import type { CollapseProps } from '@monorail/components'
 import {
   Box,
   Collapse,
-  CollapseProps,
   FormControlLabel,
   Paper,
   Switch,

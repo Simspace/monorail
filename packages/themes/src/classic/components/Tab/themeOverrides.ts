@@ -1,4 +1,5 @@
-import { Components, svgIconClasses, Theme } from '@mui/material'
+import type { Components, Theme } from '@mui/material'
+import { svgIconClasses } from '@mui/material'
 
 export const MonorailTabOverrides: Components<Theme>['MuiTab'] = {
   defaultProps: {},

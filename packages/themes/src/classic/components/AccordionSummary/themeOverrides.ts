@@ -1,6 +1,6 @@
 import React from 'react'
 import ExpandMore from '@mui/icons-material/ExpandMore'
-import { Components, Theme } from '@mui/material'
+import type { Components, Theme } from '@mui/material'
 import { accordionSummaryClasses } from '@mui/material/AccordionSummary'
 
 export const MonorailAccordionSummaryOverrides: Components<Theme>['MuiAccordionSummary'] =

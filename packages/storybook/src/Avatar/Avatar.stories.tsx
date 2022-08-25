@@ -1,19 +1,15 @@
 // Edit this file to add new stories
 import React from 'react'
-import {
-  Avatar,
-  AvatarProps,
-  Badge,
-  Stack,
-  Typography,
-} from '@monorail/components'
-import { AccountGroup } from '@monorail/components/icons'
 import { Person } from '@mui/icons-material'
 import AssignmentIcon from '@mui/icons-material/Assignment'
 import FolderIcon from '@mui/icons-material/Folder'
 import PageviewIcon from '@mui/icons-material/Pageview'
 import { useTheme } from '@mui/material'
 import { styled } from '@mui/material/styles'
+
+import type { AvatarProps } from '@monorail/components'
+import { Avatar, Badge, Stack, Typography } from '@monorail/components'
+import { AccountGroup } from '@monorail/components/icons'
 
 import { story } from '../helpers/storybook.js'
 

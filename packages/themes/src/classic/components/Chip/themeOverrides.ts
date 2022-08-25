@@ -1,4 +1,5 @@
-import { chipClasses, Components, CSSInterpolation, Theme } from '@mui/material'
+import type { Components, CSSInterpolation, Theme } from '@mui/material'
+import { chipClasses } from '@mui/material'
 
 export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
   defaultProps: {},

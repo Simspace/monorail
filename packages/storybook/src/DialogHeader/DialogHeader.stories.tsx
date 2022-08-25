@@ -1,4 +1,7 @@
 import React from 'react'
+import { Person } from '@mui/icons-material'
+
+import type { DialogProps } from '@monorail/components'
 import {
   Button,
   Dialog,
@@ -6,9 +9,7 @@ import {
   DialogContent,
   DialogContentText,
   DialogHeader,
-  DialogProps,
 } from '@monorail/components'
-import { Person } from '@mui/icons-material'
 
 import { story } from '../helpers/storybook.js'
 

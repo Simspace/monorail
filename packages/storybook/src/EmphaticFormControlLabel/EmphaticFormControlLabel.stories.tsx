@@ -1,14 +1,15 @@
 import React from 'react'
+import { Cancel, CheckCircle, Error } from '@mui/icons-material'
+
+import type { EmphaticFormControlLabelProps } from '@monorail/components'
 import {
   Checkbox,
   EmphaticFormControlLabel,
-  EmphaticFormControlLabelProps,
   FormGroup,
   Radio,
   Stack,
 } from '@monorail/components'
 import { CheckBoxError, CheckBoxWarning } from '@monorail/components/icons'
-import { Cancel, CheckCircle, Error } from '@mui/icons-material'
 
 import { story } from '../helpers/storybook.js'
 

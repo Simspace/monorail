@@ -1,9 +1,10 @@
 // Edit this file to add new stories
 import React from 'react'
+
+import type { FormControlLabelProps } from '@monorail/components'
 import {
   Checkbox,
   FormControlLabel,
-  FormControlLabelProps,
   FormGroup,
   Radio,
   Switch,

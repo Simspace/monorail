@@ -1,12 +1,9 @@
 // Edit this file to add new stories
 import React from 'react'
-import {
-  Avatar,
-  CardHeader,
-  CardHeaderProps,
-  IconButton,
-} from '@monorail/components'
 import CloseIcon from '@mui/icons-material/Close'
+
+import type { CardHeaderProps } from '@monorail/components'
+import { Avatar, CardHeader, IconButton } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 /**

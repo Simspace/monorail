@@ -1,6 +1,8 @@
 // Edit this file to add new stories
 import React from 'react'
-import { TimelineSeparator, TimelineSeparatorProps } from '@monorail/components'
+
+import type { TimelineSeparatorProps } from '@monorail/components'
+import { TimelineSeparator } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 /**

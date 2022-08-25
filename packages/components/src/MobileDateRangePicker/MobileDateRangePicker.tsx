@@ -1,7 +1,5 @@
-import {
-  MobileDateRangePicker as MuiMobileDateRangePicker,
-  MobileDateRangePickerProps as MuiMobileDateRangePickerProps,
-} from '@mui/x-date-pickers-pro'
+import type { MobileDateRangePickerProps as MuiMobileDateRangePickerProps } from '@mui/x-date-pickers-pro'
+import { MobileDateRangePicker as MuiMobileDateRangePicker } from '@mui/x-date-pickers-pro'
 
 /**
  *

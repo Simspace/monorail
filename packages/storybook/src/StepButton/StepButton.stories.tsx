@@ -1,14 +1,15 @@
 // Edit this file to add new stories
 import React from 'react'
+import { WarningAmberTwoTone } from '@mui/icons-material'
+
+import type { StepButtonProps } from '@monorail/components'
 import {
   Box,
   Step,
   StepButton,
-  StepButtonProps,
   StepLabel,
   Typography,
 } from '@monorail/components'
-import { WarningAmberTwoTone } from '@mui/icons-material'
 
 import { story } from '../helpers/storybook.js'
 /**

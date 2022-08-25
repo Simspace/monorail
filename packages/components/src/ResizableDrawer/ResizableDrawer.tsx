@@ -1,12 +1,14 @@
 import React from 'react'
-import { excludeProps } from '@monorail/utils'
-import { CSSObject, styled } from '@mui/material'
+import type { CSSObject } from '@mui/material'
+import { styled } from '@mui/material'
 import composeClasses from '@mui/utils/composeClasses'
 import clsx from 'clsx'
 
+import { excludeProps } from '@monorail/utils'
+
 import { Drawer, drawerClasses } from '../Drawer.js'
 import { getResizableDrawerUtilityClass } from './resizableDrawerClasses.js'
-import { ResizableDrawerProps } from './resizableDrawerProps.js'
+import type { ResizableDrawerProps } from './resizableDrawerProps.js'
 
 const DRAWER_SIZE = 240
 const MIN_DRAWER_SIZE = 60

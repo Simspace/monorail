@@ -1,7 +1,9 @@
 // Edit this file to add new stories
 import React from 'react'
-import { Divider, Paper, Stack, StackProps } from '@monorail/components'
 import { styled } from '@mui/material'
+
+import type { StackProps } from '@monorail/components'
+import { Divider, Paper, Stack } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 

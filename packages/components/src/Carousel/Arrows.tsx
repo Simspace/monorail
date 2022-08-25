@@ -1,9 +1,11 @@
-import React, { VFC } from 'react'
+import type { VFC } from 'react'
+import React from 'react'
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft'
 import ChevronRightIcon from '@mui/icons-material/ChevronRight'
 import { styled } from '@mui/material'
 
-import { IconButton, IconButtonProps } from '../IconButton.js'
+import type { IconButtonProps } from '../IconButton.js'
+import { IconButton } from '../IconButton.js'
 
 type Props = {
   uniqueIdentifier: string

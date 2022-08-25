@@ -1,6 +1,8 @@
 // Edit this file to add new stories
 import React from 'react'
-import { YearPicker, YearPickerProps } from '@monorail/components'
+
+import type { YearPickerProps } from '@monorail/components'
+import { YearPicker } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 

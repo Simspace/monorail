@@ -1,5 +1,6 @@
 import React from 'react'
-import SvgIcon, { SvgIconProps } from '@mui/material/SvgIcon'
+import type { SvgIconProps } from '@mui/material/SvgIcon'
+import SvgIcon from '@mui/material/SvgIcon'
 
 export const Risk = (props: SvgIconProps) => (
   <SvgIcon viewBox="0 0 48 48" height="48" width="48" {...props}>

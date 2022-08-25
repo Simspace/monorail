@@ -1,5 +1,16 @@
 // Edit this file to add new stories
 import React from 'react'
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
+import FavoriteIcon from '@mui/icons-material/Favorite'
+import MoreVertIcon from '@mui/icons-material/MoreVert'
+import PlayArrowIcon from '@mui/icons-material/PlayArrow'
+import ShareIcon from '@mui/icons-material/Share'
+import SkipNextIcon from '@mui/icons-material/SkipNext'
+import SkipPreviousIcon from '@mui/icons-material/SkipPrevious'
+import { styled, useTheme } from '@mui/material'
+import { red } from '@mui/material/colors'
+
+import type { CardProps, IconButtonProps } from '@monorail/components'
 import {
   Avatar,
   Box,
@@ -10,21 +21,10 @@ import {
   CardContent,
   CardHeader,
   CardMedia,
-  CardProps,
   Collapse,
   IconButton,
-  IconButtonProps,
   Typography,
 } from '@monorail/components'
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
-import FavoriteIcon from '@mui/icons-material/Favorite'
-import MoreVertIcon from '@mui/icons-material/MoreVert'
-import PlayArrowIcon from '@mui/icons-material/PlayArrow'
-import ShareIcon from '@mui/icons-material/Share'
-import SkipNextIcon from '@mui/icons-material/SkipNext'
-import SkipPreviousIcon from '@mui/icons-material/SkipPrevious'
-import { styled, useTheme } from '@mui/material'
-import { red } from '@mui/material/colors'
 
 import { story } from '../helpers/storybook.js'
 import { images } from '../helpers/testData.js'

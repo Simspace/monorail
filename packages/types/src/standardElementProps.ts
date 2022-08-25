@@ -1,5 +1,5 @@
-import React from 'react'
-import { DistributiveOmit } from '@mui/types'
+import type React from 'react'
+import type { DistributiveOmit } from '@mui/types'
 
 export type StandardElementProps<
   C extends React.ElementType,

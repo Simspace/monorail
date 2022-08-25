@@ -1,5 +1,4 @@
 import React from 'react'
-import { TextField, TextFieldProps } from '@monorail/components'
 import Visibility from '@mui/icons-material/Visibility'
 import VisibilityOff from '@mui/icons-material/VisibilityOff'
 import { alpha, styled } from '@mui/material'
@@ -10,7 +9,11 @@ import IconButton from '@mui/material/IconButton'
 import InputAdornment from '@mui/material/InputAdornment'
 import InputBase from '@mui/material/InputBase'
 import InputLabel from '@mui/material/InputLabel'
-import OutlinedInput, { OutlinedInputProps } from '@mui/material/OutlinedInput'
+import type { OutlinedInputProps } from '@mui/material/OutlinedInput'
+import OutlinedInput from '@mui/material/OutlinedInput'
+
+import type { TextFieldProps } from '@monorail/components'
+import { TextField } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 

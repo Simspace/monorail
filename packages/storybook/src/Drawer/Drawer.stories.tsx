@@ -1,14 +1,21 @@
 // Edit this file to add new stories
 import React from 'react'
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft'
+import ChevronRightIcon from '@mui/icons-material/ChevronRight'
+import InboxIcon from '@mui/icons-material/Inbox'
+import MailIcon from '@mui/icons-material/Mail'
+import MenuIcon from '@mui/icons-material/Menu'
+import type { CSSObject, Theme } from '@mui/material'
+import { styled, useTheme } from '@mui/material'
+
+import type { AppBarProps, DrawerProps } from '@monorail/components'
 import {
   AppBar,
-  AppBarProps,
   Box,
   Button,
   CssBaseline,
   Divider,
   Drawer,
-  DrawerProps,
   IconButton,
   List,
   ListItem,
@@ -19,12 +26,6 @@ import {
   Toolbar,
   Typography,
 } from '@monorail/components'
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft'
-import ChevronRightIcon from '@mui/icons-material/ChevronRight'
-import InboxIcon from '@mui/icons-material/Inbox'
-import MailIcon from '@mui/icons-material/Mail'
-import MenuIcon from '@mui/icons-material/Menu'
-import { CSSObject, styled, Theme, useTheme } from '@mui/material'
 
 import { story } from '../helpers/storybook.js'
 

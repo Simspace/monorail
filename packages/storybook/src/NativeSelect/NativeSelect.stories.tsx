@@ -1,11 +1,12 @@
 // Edit this file to add new stories
 import React from 'react'
+
+import type { NativeSelectProps } from '@monorail/components'
 import {
   Box,
   FormControl,
   InputLabel,
   NativeSelect,
-  NativeSelectProps,
 } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'

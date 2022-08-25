@@ -1,5 +1,7 @@
 // Edit this file to add new stories
 import React from 'react'
+
+import type { InputLabelProps } from '@monorail/components'
 import {
   Box,
   FilledInput,
@@ -7,7 +9,6 @@ import {
   FormHelperText,
   Input,
   InputLabel,
-  InputLabelProps,
   OutlinedInput,
 } from '@monorail/components'
 

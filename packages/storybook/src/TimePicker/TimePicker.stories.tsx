@@ -1,11 +1,8 @@
 // Edit this file to add new stories
 import React from 'react'
-import {
-  Box,
-  TextField,
-  TimePicker,
-  TimePickerProps,
-} from '@monorail/components'
+
+import type { TimePickerProps } from '@monorail/components'
+import { Box, TextField, TimePicker } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 /**

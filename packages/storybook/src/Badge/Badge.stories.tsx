@@ -1,8 +1,13 @@
 // Edit this file to add new stories
 import React from 'react'
+import AddIcon from '@mui/icons-material/Add'
+import MailIcon from '@mui/icons-material/Mail'
+import RemoveIcon from '@mui/icons-material/Remove'
+import { styled } from '@mui/material/styles'
+
+import type { BadgeProps } from '@monorail/components'
 import {
   Badge,
-  BadgeProps,
   Box,
   Button,
   ButtonGroup,
@@ -12,10 +17,6 @@ import {
   Switch,
   Typography,
 } from '@monorail/components'
-import AddIcon from '@mui/icons-material/Add'
-import MailIcon from '@mui/icons-material/Mail'
-import RemoveIcon from '@mui/icons-material/Remove'
-import { styled } from '@mui/material/styles'
 
 import { story } from '../helpers/storybook.js'
 

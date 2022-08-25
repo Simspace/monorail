@@ -1,11 +1,8 @@
 // Edit this file to add new stories
 import React from 'react'
-import {
-  Backdrop,
-  BackdropProps,
-  Button,
-  CircularProgress,
-} from '@monorail/components'
+
+import type { BackdropProps } from '@monorail/components'
+import { Backdrop, Button, CircularProgress } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 

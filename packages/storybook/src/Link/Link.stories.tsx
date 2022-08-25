@@ -1,6 +1,8 @@
 // Edit this file to add new stories
 import React from 'react'
-import { Link, LinkProps, Stack } from '@monorail/components'
+
+import type { LinkProps } from '@monorail/components'
+import { Link, Stack } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 

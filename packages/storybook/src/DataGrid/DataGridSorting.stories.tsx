@@ -1,7 +1,12 @@
 // Edit this file to add new stories
 import React from 'react'
 import {
-  DataGrid,
+  randomCreatedDate,
+  randomUpdatedDate,
+  useDemoData,
+} from '@mui/x-data-grid-generator'
+
+import type {
   DataGridProps,
   GridColDef,
   GridColumns,
@@ -10,11 +15,7 @@ import {
   GridSortModel,
   GridValueGetterParams,
 } from '@monorail/components'
-import {
-  randomCreatedDate,
-  randomUpdatedDate,
-  useDemoData,
-} from '@mui/x-data-grid-generator'
+import { DataGrid } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 

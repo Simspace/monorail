@@ -1,15 +1,16 @@
 // Edit this file to add new stories
 import React from 'react'
+import { styled } from '@mui/material'
+
+import type { PopperProps } from '@monorail/components'
 import {
   Box,
   Button,
   Fade,
   Paper,
   Popper,
-  PopperProps,
   Typography,
 } from '@monorail/components'
-import { styled } from '@mui/material'
 
 import { story } from '../helpers/storybook.js'
 /**

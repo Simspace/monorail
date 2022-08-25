@@ -1,7 +1,5 @@
-import {
-  DateRangePicker as MuiDateRangePicker,
-  DateRangePickerProps as MuiDateRangePickerProps,
-} from '@mui/x-date-pickers-pro'
+import type { DateRangePickerProps as MuiDateRangePickerProps } from '@mui/x-date-pickers-pro'
+import { DateRangePicker as MuiDateRangePicker } from '@mui/x-date-pickers-pro'
 
 /**
  *

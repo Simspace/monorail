@@ -1,4 +1,8 @@
 import React from 'react'
+import { Check, GroupAdd, Settings, VideoLabel } from '@mui/icons-material'
+import { styled } from '@mui/material'
+
+import type { StepIconProps, StepperProps } from '@monorail/components'
 import {
   Box,
   Button,
@@ -9,14 +13,10 @@ import {
   StepConnector,
   stepConnectorClasses,
   StepContent,
-  StepIconProps,
   StepLabel,
   Stepper,
-  StepperProps,
   Typography,
 } from '@monorail/components'
-import { Check, GroupAdd, Settings, VideoLabel } from '@mui/icons-material'
-import { styled } from '@mui/material'
 
 import { story } from '../helpers/storybook.js'
 /**

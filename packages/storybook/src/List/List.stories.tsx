@@ -1,29 +1,5 @@
 // Edit this file to add new stories
 import React from 'react'
-import {
-  Alert,
-  Avatar,
-  Box,
-  Checkbox,
-  Collapse,
-  Divider,
-  FormControlLabel,
-  FormGroup,
-  Grid,
-  IconButton,
-  List,
-  ListItem,
-  ListItemAvatar,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
-  ListProps,
-  ListSubheader,
-  Paper,
-  Switch,
-  Tooltip,
-  Typography,
-} from '@monorail/components'
 import ArrowRightIcon from '@mui/icons-material/ArrowRight'
 import BeachAccessIcon from '@mui/icons-material/BeachAccess'
 import BluetoothIcon from '@mui/icons-material/Bluetooth'
@@ -47,13 +23,38 @@ import StarIcon from '@mui/icons-material/Star'
 import StarBorder from '@mui/icons-material/StarBorder'
 import WifiIcon from '@mui/icons-material/Wifi'
 import WorkIcon from '@mui/icons-material/Work'
+import type { Theme } from '@mui/material'
 import {
   createTheme,
   styled,
   StyledEngineProvider,
-  Theme,
   ThemeProvider,
 } from '@mui/material'
+
+import type { ListProps } from '@monorail/components'
+import {
+  Alert,
+  Avatar,
+  Box,
+  Checkbox,
+  Collapse,
+  Divider,
+  FormControlLabel,
+  FormGroup,
+  Grid,
+  IconButton,
+  List,
+  ListItem,
+  ListItemAvatar,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+  ListSubheader,
+  Paper,
+  Switch,
+  Tooltip,
+  Typography,
+} from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 

@@ -1,4 +1,5 @@
-import { Components, listItemButtonClasses, Theme } from '@mui/material'
+import type { Components, Theme } from '@mui/material'
+import { listItemButtonClasses } from '@mui/material'
 
 export const MonorailListItemButtonOverrides: Components<Theme>['MuiListItemButton'] =
   {

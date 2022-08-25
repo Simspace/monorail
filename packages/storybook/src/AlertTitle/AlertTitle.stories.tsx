@@ -1,6 +1,8 @@
 // Edit this file to add new stories
 import React from 'react'
-import { AlertTitle, AlertTitleProps } from '@monorail/components'
+
+import type { AlertTitleProps } from '@monorail/components'
+import { AlertTitle } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 /**

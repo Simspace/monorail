@@ -1,5 +1,8 @@
 // Edit this file to add new stories
 import React from 'react'
+import Person from '@mui/icons-material/Person'
+
+import type { SelectChangeEvent, SelectProps } from '@monorail/components'
 import {
   Box,
   FormControl,
@@ -8,10 +11,7 @@ import {
   InputLabel,
   MenuItem,
   Select,
-  SelectChangeEvent,
-  SelectProps,
 } from '@monorail/components'
-import Person from '@mui/icons-material/Person'
 
 import { story } from '../helpers/storybook.js'
 

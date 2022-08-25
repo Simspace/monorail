@@ -1,10 +1,11 @@
-import React from 'react'
-import { StandardElementProps } from '@monorail/types'
-import { Theme } from '@mui/material'
-import { SxProps } from '@mui/system'
+import type React from 'react'
+import type { Theme } from '@mui/material'
+import type { SxProps } from '@mui/system'
 
-import { TypographyProps } from '../Typography.js'
-import { DialogHeaderClasses } from './dialogHeaderClasses.js'
+import type { StandardElementProps } from '@monorail/types'
+
+import type { TypographyProps } from '../Typography.js'
+import type { DialogHeaderClasses } from './dialogHeaderClasses.js'
 
 export interface DialogHeaderProps
   extends StandardElementProps<'div', 'title'> {

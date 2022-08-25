@@ -1,15 +1,10 @@
 // Edit this file to add new stories
 import React from 'react'
-import {
-  Box,
-  Button,
-  DataGrid,
-  DataGridProps,
-  Grid,
-  IconButton,
-} from '@monorail/components'
 import { Home } from '@mui/icons-material'
 import { useDemoData } from '@mui/x-data-grid-generator'
+
+import type { DataGridProps } from '@monorail/components'
+import { Box, Button, DataGrid, Grid, IconButton } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 

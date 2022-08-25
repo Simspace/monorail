@@ -1,4 +1,5 @@
-import { buttonBaseClasses, Components, Theme } from '@mui/material'
+import type { Components, Theme } from '@mui/material'
+import { buttonBaseClasses } from '@mui/material'
 import {
   dateRangePickerDayClasses,
   pickersDayClasses,

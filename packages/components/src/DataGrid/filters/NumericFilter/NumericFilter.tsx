@@ -1,6 +1,7 @@
 import React from 'react'
+import type { SelectChangeEvent } from '@mui/material'
+
 import { useForceUpdate } from '@monorail/utils'
-import { SelectChangeEvent } from '@mui/material'
 
 import { MenuItem } from '../../../MenuItem.js'
 import { Select } from '../../../Select.js'
@@ -11,7 +12,7 @@ import { FilterContainer } from '../components/FilterContainer.js'
 import { useDebouncedSyncFilter } from '../hooks/useDebouncedSyncFilter.js'
 import { numericOperators } from './constants.js'
 import { useInitializeNumericFilterState } from './hooks.js'
-import {
+import type {
   NumericFilterDefinition,
   NumericFilterOperator,
   NumericFilterState,

@@ -1,10 +1,11 @@
 // Edit this file to add new stories
 import React from 'react'
+
+import type { FormHelperTextProps } from '@monorail/components'
 import {
   Checkbox,
   FormControlLabel,
   FormHelperText,
-  FormHelperTextProps,
 } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'

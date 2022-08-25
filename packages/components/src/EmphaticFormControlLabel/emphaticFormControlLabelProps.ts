@@ -1,10 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { StandardElementProps } from '@monorail/types'
-import { SxProps, Theme } from '@mui/material'
+import type { SxProps, Theme } from '@mui/material'
 
-import { TypographyProps } from '../Typography.js'
-import { ControlProps } from './controlProps.js'
-import { EmphaticFormControlLabelClasses } from './emphaticFormControlLabelClasses.js'
+import type { StandardElementProps } from '@monorail/types'
+
+import type { TypographyProps } from '../Typography.js'
+import type { ControlProps } from './controlProps.js'
+import type { EmphaticFormControlLabelClasses } from './emphaticFormControlLabelClasses.js'
 
 export interface EmphaticFormControlLabelProps<
   P extends ControlProps = ControlProps,

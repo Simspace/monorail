@@ -1,14 +1,11 @@
 // Edit this file to add new stories
 import React from 'react'
-import {
-  IconButton,
-  IconButtonProps,
-  Stack,
-  Typography,
-} from '@monorail/components'
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart'
 import AlarmIcon from '@mui/icons-material/Alarm'
 import DeleteIcon from '@mui/icons-material/Delete'
+
+import type { IconButtonProps } from '@monorail/components'
+import { IconButton, Stack, Typography } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 

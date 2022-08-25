@@ -1,5 +1,6 @@
 import React from 'react'
-import SvgIcon, { SvgIconProps } from '@mui/material/SvgIcon'
+import type { SvgIconProps } from '@mui/material/SvgIcon'
+import SvgIcon from '@mui/material/SvgIcon'
 
 export const ContentCatalogTraining = (props: SvgIconProps) => (
   <SvgIcon id="Layer_1" data-name="Layer 1" viewBox="0 0 1000 440" {...props}>

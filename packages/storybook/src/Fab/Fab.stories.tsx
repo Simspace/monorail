@@ -1,21 +1,22 @@
 // Edit this file to add new stories
 import React from 'react'
-import {
-  AppBar,
-  Box,
-  Fab,
-  FabProps,
-  Tab,
-  Tabs,
-  Typography,
-  Zoom,
-} from '@monorail/components'
 import AddIcon from '@mui/icons-material/Add'
 import EditIcon from '@mui/icons-material/Edit'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import UpIcon from '@mui/icons-material/KeyboardArrowUp'
 import NavigationIcon from '@mui/icons-material/Navigation'
 import { useTheme } from '@mui/material'
+
+import type { FabProps } from '@monorail/components'
+import {
+  AppBar,
+  Box,
+  Fab,
+  Tab,
+  Tabs,
+  Typography,
+  Zoom,
+} from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 

@@ -1,4 +1,5 @@
-import { alpha, buttonBaseClasses, Components, Theme } from '@mui/material'
+import type { Components, Theme } from '@mui/material'
+import { alpha, buttonBaseClasses } from '@mui/material'
 
 declare module '@mui/material/IconButton' {
   /**

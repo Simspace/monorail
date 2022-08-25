@@ -2,18 +2,16 @@
 /* eslint-disable import/no-extraneous-dependencies */
 
 import React from 'react'
-import { classicLight } from '@monorail/themes'
-import {
-  CssBaseline,
-  StyledEngineProvider,
-  Theme,
-  ThemeProvider,
-} from '@mui/material'
+import type { Theme } from '@mui/material'
+import { CssBaseline, StyledEngineProvider, ThemeProvider } from '@mui/material'
 import { css, GlobalStyles } from '@mui/styled-engine'
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
-import { Story } from '@storybook/react'
-import { render, RenderOptions, RenderResult } from '@testing-library/react'
+import type { Story } from '@storybook/react'
+import type { RenderOptions, RenderResult } from '@testing-library/react'
+import { render } from '@testing-library/react'
+
+import { classicLight } from '@monorail/themes'
 
 declare module '@mui/styles/defaultTheme' {
   // eslint-disable-next-line @typescript-eslint/no-empty-interface

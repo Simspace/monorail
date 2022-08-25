@@ -1,6 +1,6 @@
 // eslint-disable-next-line no-restricted-imports
+import type { Color } from '@mui/material'
 import * as _MUI from '@mui/material'
-import { Color } from '@mui/material'
 
 // This file is intended to house all our interface extensions/module augmentations for the MUI theme types.
 //

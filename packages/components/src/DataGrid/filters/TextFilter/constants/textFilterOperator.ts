@@ -1,8 +1,6 @@
-import { GridFilterOperator } from '../../../internal.js'
-import {
-  isTextFilterState,
-  TextFilterState,
-} from '../models/TextFilterState.js'
+import type { GridFilterOperator } from '../../../internal.js'
+import type { TextFilterState } from '../models/TextFilterState.js'
+import { isTextFilterState } from '../models/TextFilterState.js'
 
 export const textFilterOperator: GridFilterOperator = {
   label: 'Text',

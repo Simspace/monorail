@@ -1,12 +1,13 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import {
+import type {
   Meta as StorybookMeta,
   Story as StorybookStory,
 } from '@storybook/react'
 import { configureAxe } from 'jest-axe'
 
 import { renderStory } from './render.js'
-import { A11yElement, Meta, Story } from './storybook.js'
+import type { Meta, Story } from './storybook.js'
+import { A11yElement } from './storybook.js'
 import { isNotNil } from './typeGuards.js'
 
 /**

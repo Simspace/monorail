@@ -1,7 +1,5 @@
-import {
-  TimePicker as MuiTimePicker,
-  TimePickerProps as MuiTimePickerProps,
-} from '@mui/x-date-pickers'
+import type { TimePickerProps as MuiTimePickerProps } from '@mui/x-date-pickers'
+import { TimePicker as MuiTimePicker } from '@mui/x-date-pickers'
 
 /**
  *

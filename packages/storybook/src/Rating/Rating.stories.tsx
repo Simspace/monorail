@@ -1,13 +1,5 @@
 // Edit this file to add new stories
 import React from 'react'
-import {
-  Box,
-  IconContainerProps,
-  Rating,
-  RatingProps,
-  Stack,
-  Typography,
-} from '@monorail/components'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
 import SentimentDissatisfiedIcon from '@mui/icons-material/SentimentDissatisfied'
@@ -17,6 +9,9 @@ import SentimentVeryDissatisfiedIcon from '@mui/icons-material/SentimentVeryDiss
 import SentimentVerySatisfiedIcon from '@mui/icons-material/SentimentVerySatisfied'
 import StarIcon from '@mui/icons-material/Star'
 import { styled } from '@mui/material'
+
+import type { IconContainerProps, RatingProps } from '@monorail/components'
+import { Box, Rating, Stack, Typography } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 

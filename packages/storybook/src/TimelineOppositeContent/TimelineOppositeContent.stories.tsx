@@ -1,9 +1,8 @@
 // Edit this file to add new stories
 import React from 'react'
-import {
-  TimelineOppositeContent,
-  TimelineOppositeContentProps,
-} from '@monorail/components'
+
+import type { TimelineOppositeContentProps } from '@monorail/components'
+import { TimelineOppositeContent } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 /**

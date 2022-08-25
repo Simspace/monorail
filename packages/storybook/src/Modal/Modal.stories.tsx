@@ -1,16 +1,17 @@
 // Edit this file to add new stories
 import React from 'react'
+import { ModalUnstyled } from '@mui/base'
+import { styled } from '@mui/material'
+
+import type { ModalProps } from '@monorail/components'
 import {
   Backdrop,
   Box,
   Button,
   Fade,
   Modal,
-  ModalProps,
   Typography,
 } from '@monorail/components'
-import { ModalUnstyled } from '@mui/base'
-import { styled } from '@mui/material'
 
 import { story } from '../helpers/storybook.js'
 /**

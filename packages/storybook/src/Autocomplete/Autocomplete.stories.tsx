@@ -1,19 +1,21 @@
 // Edit this file to add new stories
 import React from 'react'
+import CheckBoxIcon from '@mui/icons-material/CheckBox'
+import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank'
+
+import type { AutocompleteProps } from '@monorail/components'
 import {
   Autocomplete,
-  AutocompleteProps,
   Box,
   Checkbox,
   Chip,
   Stack,
   TextField,
 } from '@monorail/components'
-import CheckBoxIcon from '@mui/icons-material/CheckBox'
-import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank'
 
 import { story } from '../helpers/storybook.js'
-import { countries, countryToFlag, Movie, movies } from '../helpers/testData.js'
+import type { Movie } from '../helpers/testData.js'
+import { countries, countryToFlag, movies } from '../helpers/testData.js'
 /**
  * Metadata for Autocomplete stories - update/extend as needed
  * This is intended to be exported as story-level metadata from the main .stories.tsx file, like:

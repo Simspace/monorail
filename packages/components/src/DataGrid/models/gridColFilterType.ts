@@ -1,13 +1,22 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { GridValidRowModel } from '@mui/x-data-grid'
+import type { GridValidRowModel } from '@mui/x-data-grid'
 
-import { DateFilterDefinition, DateFilterState } from '../filters/DateFilter.js'
-import { EnumFilterDefinition, EnumFilterState } from '../filters/EnumFilter.js'
-import {
+import type {
+  DateFilterDefinition,
+  DateFilterState,
+} from '../filters/DateFilter.js'
+import type {
+  EnumFilterDefinition,
+  EnumFilterState,
+} from '../filters/EnumFilter.js'
+import type {
   NumericFilterDefinition,
   NumericFilterState,
 } from '../filters/NumericFilter.js'
-import { TextFilterDefinition, TextFilterState } from '../filters/TextFilter.js'
+import type {
+  TextFilterDefinition,
+  TextFilterState,
+} from '../filters/TextFilter.js'
 
 export interface GridColFilterTypeMap<R = GridValidRowModel, V = any, F = V> {
   enum: {

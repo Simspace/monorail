@@ -1,11 +1,9 @@
 // Edit this file to add new stories
 import React from 'react'
-import {
-  IconButton,
-  ImageListItemBar,
-  ImageListItemBarProps,
-} from '@monorail/components'
 import InfoIcon from '@mui/icons-material/Info'
+
+import type { ImageListItemBarProps } from '@monorail/components'
+import { IconButton, ImageListItemBar } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 

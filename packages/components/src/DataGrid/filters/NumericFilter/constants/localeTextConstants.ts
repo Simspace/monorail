@@ -1,4 +1,4 @@
-import { NumericFilterLocaleText } from '../models.js'
+import type { NumericFilterLocaleText } from '../models.js'
 
 export const NUMERIC_FILTER_DEFAULT_LOCALE_TEXT: NumericFilterLocaleText = {
   clearFilterButton: 'Clear Filter',

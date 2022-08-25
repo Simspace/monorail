@@ -1,12 +1,13 @@
 // Edit this file to add new stories
 import React from 'react'
+import { useMovieData } from '@mui/x-data-grid-generator'
+
+import type { DataGridProps } from '@monorail/components'
 import {
   DataGrid,
-  DataGridProps,
   useGridApiRef,
   useKeepGroupedColumnsHidden,
 } from '@monorail/components'
-import { useMovieData } from '@mui/x-data-grid-generator'
 
 import { story } from '../helpers/storybook.js'
 

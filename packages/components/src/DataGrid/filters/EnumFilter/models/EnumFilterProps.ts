@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { GridValidRowModel } from '../../../internal.js'
-import { EnumFilterDefinition } from './EnumFilterDefinition.js'
+import type { GridValidRowModel } from '../../../internal.js'
+import type { EnumFilterDefinition } from './EnumFilterDefinition.js'
 
 export interface EnumFilterProps<
   R extends GridValidRowModel = any,

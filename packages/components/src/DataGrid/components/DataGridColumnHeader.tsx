@@ -1,8 +1,8 @@
 import React from 'react'
 import MoreVert from '@mui/icons-material/MoreVert'
 import Sort from '@mui/icons-material/Sort'
-import { Theme } from '@mui/material'
-import { SxProps } from '@mui/system'
+import type { Theme } from '@mui/material'
+import type { SxProps } from '@mui/system'
 
 import { Badge } from '../../Badge.js'
 import { IconButton } from '../../IconButton.js'
@@ -15,13 +15,15 @@ import { DateFilter } from '../filters/DateFilter.js'
 import { EnumFilter } from '../filters/EnumFilter.js'
 import { NumericFilter } from '../filters/NumericFilter.js'
 import { TextFilter } from '../filters/TextFilter.js'
-import {
+import type {
   GridColumnHeaderEventLookup,
   GridColumnHeaderParams,
   GridEnrichedColDef,
   GridEventsStr,
-  gridSortColumnLookupSelector,
   GridSortDirection,
+} from '../internal.js'
+import {
+  gridSortColumnLookupSelector,
   useGridApiContext,
   useGridSelector,
 } from '../internal.js'

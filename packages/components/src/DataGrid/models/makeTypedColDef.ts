@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { GridValidRowModel } from '@mui/x-data-grid'
-import { GridColDef } from '@mui/x-data-grid-premium'
+import type { GridValidRowModel } from '@mui/x-data-grid'
+import type { GridColDef } from '@mui/x-data-grid-premium'
 
-import {
+import type {
   GridColFilterType,
   GridColFilterTypeToDef,
 } from './gridColFilterType.js'

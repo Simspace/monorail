@@ -1,15 +1,16 @@
 // Edit this file to add new stories
 import React from 'react'
+import InfoIcon from '@mui/icons-material/Info'
+import StarBorderIcon from '@mui/icons-material/StarBorder'
+
+import type { ImageListProps } from '@monorail/components'
 import {
   IconButton,
   ImageList,
   ImageListItem,
   ImageListItemBar,
-  ImageListProps,
   ListSubheader,
 } from '@monorail/components'
-import InfoIcon from '@mui/icons-material/Info'
-import StarBorderIcon from '@mui/icons-material/StarBorder'
 
 import { story } from '../helpers/storybook.js'
 

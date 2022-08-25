@@ -1,7 +1,5 @@
-import {
-  DesktopDatePicker as MuiDesktopDatePicker,
-  DesktopDatePickerProps as MuiDesktopDatePickerProps,
-} from '@mui/x-date-pickers'
+import type { DesktopDatePickerProps as MuiDesktopDatePickerProps } from '@mui/x-date-pickers'
+import { DesktopDatePicker as MuiDesktopDatePicker } from '@mui/x-date-pickers'
 
 /**
  *

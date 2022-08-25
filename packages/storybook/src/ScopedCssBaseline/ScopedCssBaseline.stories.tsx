@@ -1,6 +1,8 @@
 // Edit this file to add new stories
 import React from 'react'
-import { ScopedCssBaseline, ScopedCssBaselineProps } from '@monorail/components'
+
+import type { ScopedCssBaselineProps } from '@monorail/components'
+import { ScopedCssBaseline } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 /**

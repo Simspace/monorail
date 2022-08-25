@@ -1,8 +1,5 @@
 // Edit this file to add new stories
 import React from 'react'
-import { Box, Icon, IconProps, Typography } from '@monorail/components'
-import * as Icons from '@monorail/components/icons'
-import { Illustration } from '@monorail/components/icons/Illustration'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle'
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined'
 import ArrowDropDownCircleIcon from '@mui/icons-material/ArrowDropDownCircle'
@@ -12,6 +9,11 @@ import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined
 import HomeIcon from '@mui/icons-material/Home'
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined'
 import { styled } from '@mui/material'
+
+import type { IconProps } from '@monorail/components'
+import { Box, Icon, Typography } from '@monorail/components'
+import * as Icons from '@monorail/components/icons'
+import { Illustration } from '@monorail/components/icons/Illustration'
 
 import { story } from '../helpers/storybook.js'
 /**

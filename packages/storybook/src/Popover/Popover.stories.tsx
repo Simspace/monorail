@@ -1,7 +1,9 @@
 // Edit this file to add new stories
 import React from 'react'
-import { Button, Popover, PopoverProps } from '@monorail/components'
 import { Box, Typography } from '@mui/material'
+
+import type { PopoverProps } from '@monorail/components'
+import { Button, Popover } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 

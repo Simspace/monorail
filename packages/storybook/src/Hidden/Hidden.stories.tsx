@@ -1,6 +1,8 @@
 // Edit this file to add new stories
 import React from 'react'
-import { Hidden, HiddenProps, Typography } from '@monorail/components'
+
+import type { HiddenProps } from '@monorail/components'
+import { Hidden, Typography } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 

@@ -1,5 +1,5 @@
-import { RangeFilterOperator } from '../../RangeFilter.js'
-import { NumericFilterOperator } from '../models.js'
+import type { RangeFilterOperator } from '../../RangeFilter.js'
+import type { NumericFilterOperator } from '../models.js'
 
 export const numericOperators: {
   [K in NumericFilterOperator]: RangeFilterOperator<K, number>

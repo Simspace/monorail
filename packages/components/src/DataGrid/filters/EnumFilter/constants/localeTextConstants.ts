@@ -1,4 +1,4 @@
-import { EnumFilterLocaleText } from '../models/EnumFilterLocaleText.js'
+import type { EnumFilterLocaleText } from '../models/EnumFilterLocaleText.js'
 
 export const ENUM_FILTER_DEFAULT_LOCALE_TEXT: EnumFilterLocaleText = {
   clearSelectionButton: count =>

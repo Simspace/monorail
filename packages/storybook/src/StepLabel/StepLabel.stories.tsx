@@ -1,5 +1,7 @@
 import React from 'react'
-import { StepLabel, StepLabelProps } from '@monorail/components'
+
+import type { StepLabelProps } from '@monorail/components'
+import { StepLabel } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 /**

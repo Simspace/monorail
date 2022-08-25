@@ -1,14 +1,15 @@
 import React from 'react'
+import { KeyboardArrowLeft, KeyboardArrowRight } from '@mui/icons-material'
+import { useTheme } from '@mui/material'
+
+import type { MobileStepperProps } from '@monorail/components'
 import {
   Box,
   Button,
   MobileStepper,
-  MobileStepperProps,
   Paper,
   Typography,
 } from '@monorail/components'
-import { KeyboardArrowLeft, KeyboardArrowRight } from '@mui/icons-material'
-import { useTheme } from '@mui/material'
 
 import { story } from '../helpers/storybook.js'
 

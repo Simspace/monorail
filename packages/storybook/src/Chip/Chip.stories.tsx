@@ -1,13 +1,5 @@
 // Edit this file to add new stories
 import React from 'react'
-import {
-  Avatar,
-  Chip,
-  ChipProps,
-  Paper,
-  Stack,
-  Typography,
-} from '@monorail/components'
 import AccountBoxIcon from '@mui/icons-material/AccountBox'
 import DeleteIcon from '@mui/icons-material/Delete'
 import DoneIcon from '@mui/icons-material/Done'
@@ -15,6 +7,9 @@ import FaceIcon from '@mui/icons-material/Face'
 import TagFacesIcon from '@mui/icons-material/TagFaces'
 import { styled } from '@mui/material'
 import { action } from '@storybook/addon-actions'
+
+import type { ChipProps } from '@monorail/components'
+import { Avatar, Chip, Paper, Stack, Typography } from '@monorail/components'
 
 import { capitalizeFirstLetter } from '../helpers/helpers.js'
 import { story } from '../helpers/storybook.js'

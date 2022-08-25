@@ -1,16 +1,17 @@
 // Edit this file to add new stories
 import React from 'react'
+import { styled } from '@mui/material'
+import { grey } from '@mui/material/colors'
+
+import type { SwipeableDrawerProps } from '@monorail/components'
 import {
   Box,
   Button,
   CssBaseline,
   Skeleton,
   SwipeableDrawer,
-  SwipeableDrawerProps,
   Typography,
 } from '@monorail/components'
-import { styled } from '@mui/material'
-import { grey } from '@mui/material/colors'
 
 import { story } from '../helpers/storybook.js'
 

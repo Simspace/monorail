@@ -1,6 +1,8 @@
 // Edit this file to add new stories
 import React from 'react'
-import { CssBaseline, CssBaselineProps } from '@monorail/components'
+
+import type { CssBaselineProps } from '@monorail/components'
+import { CssBaseline } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 

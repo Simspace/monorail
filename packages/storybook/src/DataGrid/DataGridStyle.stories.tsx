@@ -1,18 +1,22 @@
 // Edit this file to add new stories
 import React from 'react'
-import {
-  DataGrid,
+import type { Theme } from '@mui/material/styles'
+import { createTheme, darken, lighten } from '@mui/material/styles'
+import { createStyles, makeStyles } from '@mui/styles'
+import { useDemoData } from '@mui/x-data-grid-generator'
+
+import type {
   DataGridProps,
   GridCellParams,
   GridColumns,
+} from '@monorail/components'
+import {
+  DataGrid,
   gridPageCountSelector,
   gridPageSelector,
   Pagination,
   useGridApiContext,
 } from '@monorail/components'
-import { createTheme, darken, lighten, Theme } from '@mui/material/styles'
-import { createStyles, makeStyles } from '@mui/styles'
-import { useDemoData } from '@mui/x-data-grid-generator'
 
 import { story } from '../helpers/storybook.js'
 

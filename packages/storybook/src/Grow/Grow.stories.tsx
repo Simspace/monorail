@@ -1,10 +1,11 @@
 // Edit this file to add new stories
 import React from 'react'
+
+import type { GrowProps } from '@monorail/components'
 import {
   Box,
   FormControlLabel,
   Grow,
-  GrowProps,
   Paper,
   Switch,
 } from '@monorail/components'

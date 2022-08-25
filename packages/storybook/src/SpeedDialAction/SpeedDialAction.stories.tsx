@@ -1,6 +1,8 @@
 // Edit this file to add new stories
 import React from 'react'
-import { SpeedDialAction, SpeedDialActionProps } from '@monorail/components'
+
+import type { SpeedDialActionProps } from '@monorail/components'
+import { SpeedDialAction } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 /**

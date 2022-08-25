@@ -1,6 +1,8 @@
 import React from 'react'
-import { Box, ScrollShadow, ScrollShadowProps } from '@monorail/components'
-import { Story } from '@storybook/react'
+import type { Story } from '@storybook/react'
+
+import type { ScrollShadowProps } from '@monorail/components'
+import { Box, ScrollShadow } from '@monorail/components'
 
 export default { title: 'Utils/ScrollShadow', component: ScrollShadow }
 

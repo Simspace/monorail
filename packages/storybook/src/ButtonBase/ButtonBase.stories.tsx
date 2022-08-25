@@ -1,12 +1,10 @@
 // Edit this file to add new stories
 import React from 'react'
-import {
-  Box,
-  ButtonBase,
-  ButtonBaseProps,
-  Typography,
-} from '@monorail/components'
-import { styled, Theme } from '@mui/material/styles'
+import type { Theme } from '@mui/material/styles'
+import { styled } from '@mui/material/styles'
+
+import type { ButtonBaseProps } from '@monorail/components'
+import { Box, ButtonBase, Typography } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 

@@ -1,4 +1,4 @@
-import { TextFilterLocaleText } from '../models/TextFilterLocaleText.js'
+import type { TextFilterLocaleText } from '../models/TextFilterLocaleText.js'
 
 export const TEXT_FILTER_DEFAULT_LOCALE_TEXT: TextFilterLocaleText = {
   contains: 'Contains',

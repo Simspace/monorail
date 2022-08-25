@@ -2,7 +2,7 @@ import React from 'react'
 import { Dialog as MuiDialog } from '@mui/material'
 
 import { DialogEventContext } from './dialogEventContext.js'
-import { DialogProps } from './dialogProps.js'
+import type { DialogProps } from './dialogProps.js'
 
 /**
  * Dialogs are overlaid modal paper based components with a backdrop.

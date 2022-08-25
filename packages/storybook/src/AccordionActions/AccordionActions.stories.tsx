@@ -1,10 +1,8 @@
 // Edit this file to add new stories
 import React from 'react'
-import {
-  AccordionActions,
-  AccordionActionsProps,
-  Button,
-} from '@monorail/components'
+
+import type { AccordionActionsProps } from '@monorail/components'
+import { AccordionActions, Button } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 

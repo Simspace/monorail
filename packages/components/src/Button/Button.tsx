@@ -1,8 +1,5 @@
-import {
-  Button as MuiButton,
-  ButtonTypeMap,
-  ExtendButtonBase,
-} from '@mui/material'
+import type { ButtonTypeMap, ExtendButtonBase } from '@mui/material'
+import { Button as MuiButton } from '@mui/material'
 
 /**
  *

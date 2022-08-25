@@ -1,12 +1,19 @@
 // Edit this file to add new stories
 import React from 'react'
+import FormatAlignCenterIcon from '@mui/icons-material/FormatAlignCenter'
+import FormatAlignLeftIcon from '@mui/icons-material/FormatAlignLeft'
+import FormatAlignRightIcon from '@mui/icons-material/FormatAlignRight'
+import FormatBoldIcon from '@mui/icons-material/FormatBold'
+import FormatItalicIcon from '@mui/icons-material/FormatItalic'
+import { styled } from '@mui/material'
+
+import type { DividerProps } from '@monorail/components'
 import {
   Avatar,
   Box,
   Button,
   Chip,
   Divider,
-  DividerProps,
   Grid,
   List,
   ListItem,
@@ -15,12 +22,6 @@ import {
   Stack,
   Typography,
 } from '@monorail/components'
-import FormatAlignCenterIcon from '@mui/icons-material/FormatAlignCenter'
-import FormatAlignLeftIcon from '@mui/icons-material/FormatAlignLeft'
-import FormatAlignRightIcon from '@mui/icons-material/FormatAlignRight'
-import FormatBoldIcon from '@mui/icons-material/FormatBold'
-import FormatItalicIcon from '@mui/icons-material/FormatItalic'
-import { styled } from '@mui/material'
 
 import { story } from '../helpers/storybook.js'
 /**

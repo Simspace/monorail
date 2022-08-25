@@ -1,5 +1,7 @@
 import React from 'react'
-import { PaginationItem, PaginationItemProps } from '@monorail/components'
+
+import type { PaginationItemProps } from '@monorail/components'
+import { PaginationItem } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 

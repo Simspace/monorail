@@ -1,12 +1,8 @@
 // Edit this file to add new stories
 import React from 'react'
-import {
-  Avatar,
-  AvatarGroup,
-  AvatarGroupProps,
-  Box,
-  Stack,
-} from '@monorail/components'
+
+import type { AvatarGroupProps } from '@monorail/components'
+import { Avatar, AvatarGroup, Box, Stack } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 

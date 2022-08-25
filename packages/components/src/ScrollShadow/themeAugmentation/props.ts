@@ -1,4 +1,4 @@
-import { ScrollShadowProps } from '../scrollShadowProps.js'
+import type { ScrollShadowProps } from '../scrollShadowProps.js'
 
 declare module '@mui/material/styles/props' {
   interface ComponentsPropsList {

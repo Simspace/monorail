@@ -1,17 +1,12 @@
 // Edit this file to add new stories
 import React from 'react'
-import {
-  Box,
-  Grid,
-  Slider,
-  SliderProps,
-  Stack,
-  Typography,
-} from '@monorail/components'
 import VolumeDown from '@mui/icons-material/VolumeDown'
 import VolumeUp from '@mui/icons-material/VolumeUp'
 import { styled } from '@mui/material'
 import MuiInput from '@mui/material/Input'
+
+import type { SliderProps } from '@monorail/components'
+import { Box, Grid, Slider, Stack, Typography } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 

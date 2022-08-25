@@ -1,12 +1,13 @@
 // Edit this file to add new stories
 import React from 'react'
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
+
+import type { TimePickerProps } from '@monorail/components'
 import {
   LocalizationProvider,
   StaticTimePicker,
   TextField,
-  TimePickerProps,
 } from '@monorail/components'
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
 
 import { story } from '../helpers/storybook.js'
 

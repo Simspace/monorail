@@ -1,14 +1,17 @@
 // Edit this file to add new stories
 import React from 'react'
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
+
+import type {
+  DateRange,
+  MobileDateRangePickerProps,
+} from '@monorail/components'
 import {
   Box,
-  DateRange,
   LocalizationProvider,
   MobileDateRangePicker,
-  MobileDateRangePickerProps,
   TextField,
 } from '@monorail/components'
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
 
 import { story } from '../helpers/storybook.js'
 

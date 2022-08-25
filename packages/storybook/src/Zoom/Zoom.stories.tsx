@@ -1,12 +1,13 @@
 // Edit this file to add new stories
 import React from 'react'
+
+import type { ZoomProps } from '@monorail/components'
 import {
   Box,
   FormControlLabel,
   Paper,
   Switch,
   Zoom,
-  ZoomProps,
 } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'

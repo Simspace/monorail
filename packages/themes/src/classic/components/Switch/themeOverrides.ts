@@ -1,4 +1,5 @@
-import { Components, switchClasses, Theme } from '@mui/material'
+import type { Components, Theme } from '@mui/material'
+import { switchClasses } from '@mui/material'
 
 export const MonorailSwitchOverrides: Components<Theme>['MuiSwitch'] = {
   defaultProps: {},

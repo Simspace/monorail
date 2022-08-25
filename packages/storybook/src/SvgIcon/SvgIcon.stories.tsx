@@ -1,6 +1,8 @@
 // Edit this file to add new stories
 import React from 'react'
-import { SvgIcon, SvgIconProps } from '@monorail/components'
+
+import type { SvgIconProps } from '@monorail/components'
+import { SvgIcon } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 /**

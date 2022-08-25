@@ -1,5 +1,6 @@
 import React from 'react'
-import SvgIcon, { SvgIconProps } from '@mui/material/SvgIcon'
+import type { SvgIconProps } from '@mui/material/SvgIcon'
+import SvgIcon from '@mui/material/SvgIcon'
 
 export const UELogo = (props: SvgIconProps) => (
   <SvgIcon id="ue-logo" viewBox="0 0 50 47" {...props}>

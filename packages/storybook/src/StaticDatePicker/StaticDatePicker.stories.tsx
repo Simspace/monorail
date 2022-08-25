@@ -1,10 +1,8 @@
 // Edit this file to add new stories
 import React from 'react'
-import {
-  DatePickerProps,
-  StaticDatePicker,
-  TextField,
-} from '@monorail/components'
+
+import type { DatePickerProps } from '@monorail/components'
+import { StaticDatePicker, TextField } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 

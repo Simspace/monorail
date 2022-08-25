@@ -1,4 +1,5 @@
-import { Components, linearProgressClasses, Theme } from '@mui/material'
+import type { Components, Theme } from '@mui/material'
+import { linearProgressClasses } from '@mui/material'
 
 export const MonorailLinearProgressOverrides: Components<Theme>['MuiLinearProgress'] =
   {

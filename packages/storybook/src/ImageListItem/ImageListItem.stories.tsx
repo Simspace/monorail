@@ -1,6 +1,8 @@
 // Edit this file to add new stories
 import React from 'react'
-import { ImageListItem, ImageListItemProps } from '@monorail/components'
+
+import type { ImageListItemProps } from '@monorail/components'
+import { ImageListItem } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 /**

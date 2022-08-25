@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React from 'react'
+import type React from 'react'
 
 export interface ControlProps {
   checked?: boolean

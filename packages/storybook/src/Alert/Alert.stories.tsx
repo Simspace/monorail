@@ -1,8 +1,12 @@
 // Edit this file to add new stories
 import React from 'react'
+import CheckIcon from '@mui/icons-material/Check'
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
+import CloseIcon from '@mui/icons-material/Close'
+
+import type { AlertProps } from '@monorail/components'
 import {
   Alert,
-  AlertProps,
   AlertTitle,
   Box,
   Button,
@@ -12,9 +16,6 @@ import {
   Stack,
   Typography,
 } from '@monorail/components'
-import CheckIcon from '@mui/icons-material/Check'
-import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
-import CloseIcon from '@mui/icons-material/Close'
 
 import { story } from '../helpers/storybook.js'
 

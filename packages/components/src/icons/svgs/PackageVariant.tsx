@@ -1,5 +1,6 @@
 import React from 'react'
-import SvgIcon, { SvgIconProps } from '@mui/material/SvgIcon'
+import type { SvgIconProps } from '@mui/material/SvgIcon'
+import SvgIcon from '@mui/material/SvgIcon'
 
 export const PackageVariant = (props: SvgIconProps) => (
   <SvgIcon width="24" height="24" fill="none" viewBox="0 0 24 24" {...props}>

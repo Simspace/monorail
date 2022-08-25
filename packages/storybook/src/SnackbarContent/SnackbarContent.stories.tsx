@@ -1,6 +1,8 @@
 // Edit this file to add new stories
 import React from 'react'
-import { SnackbarContent, SnackbarContentProps } from '@monorail/components'
+
+import type { SnackbarContentProps } from '@monorail/components'
+import { SnackbarContent } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 /**

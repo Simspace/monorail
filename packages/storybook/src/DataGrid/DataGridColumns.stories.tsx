@@ -1,24 +1,5 @@
 // Edit this file to add new stories
 import React from 'react'
-import {
-  Button,
-  DataGrid,
-  DataGridProps,
-  GridActionsCellItem,
-  GridCellValue,
-  GridColDef,
-  GridColTypeDef,
-  GridRenderCellParams,
-  GridRowId,
-  GridRowModel,
-  GridRowParams,
-  GridToolbar,
-  GridValueFormatterParams,
-  GridValueGetterParams,
-  Paper,
-  Popper,
-  Typography,
-} from '@monorail/components'
 import { Delete, FileCopy, Security } from '@mui/icons-material'
 import { createStyles, makeStyles } from '@mui/styles'
 import {
@@ -28,6 +9,28 @@ import {
   randomUpdatedDate,
   useDemoData,
 } from '@mui/x-data-grid-generator'
+
+import type {
+  DataGridProps,
+  GridCellValue,
+  GridColDef,
+  GridColTypeDef,
+  GridRenderCellParams,
+  GridRowId,
+  GridRowModel,
+  GridRowParams,
+  GridValueFormatterParams,
+  GridValueGetterParams,
+} from '@monorail/components'
+import {
+  Button,
+  DataGrid,
+  GridActionsCellItem,
+  GridToolbar,
+  Paper,
+  Popper,
+  Typography,
+} from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 

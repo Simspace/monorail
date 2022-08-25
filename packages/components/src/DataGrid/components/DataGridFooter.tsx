@@ -4,12 +4,13 @@ import { Box } from '../../Box.js'
 import { FormControlLabel } from '../../FormControlLabel.js'
 import { MenuItem } from '../../MenuItem.js'
 import { Pagination } from '../../Pagination.js'
-import { Select, SelectChangeEvent } from '../../Select.js'
+import type { SelectChangeEvent } from '../../Select.js'
+import { Select } from '../../Select.js'
 import { SelectionFooter } from '../../SelectionFooter.js'
 import { Stack } from '../../Stack.js'
 import { Typography } from '../../Typography.js'
+import type { GridApi } from '../internal.js'
 import {
-  GridApi,
   gridPageCountSelector,
   gridPageSelector,
   gridPageSizeSelector,

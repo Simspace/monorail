@@ -1,15 +1,15 @@
 // Edit this file to add new stories
 import React from 'react'
-import {
-  DataGrid,
+import type { GridDemoData } from '@mui/x-data-grid-generator'
+import { useDemoData } from '@mui/x-data-grid-generator'
+
+import type {
   DataGridProps,
-  DataGridToolbar,
   GridRowData,
   GridRowModel,
   GridRowsProp,
-  useGridApiRef,
 } from '@monorail/components'
-import { GridDemoData, useDemoData } from '@mui/x-data-grid-generator'
+import { DataGrid, DataGridToolbar, useGridApiRef } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 

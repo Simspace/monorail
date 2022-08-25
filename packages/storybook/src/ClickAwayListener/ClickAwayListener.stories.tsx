@@ -1,11 +1,9 @@
 // Edit this file to add new stories
 import React from 'react'
-import {
-  Box,
-  ClickAwayListener,
-  ClickAwayListenerProps,
-} from '@monorail/components'
 import { Portal } from '@mui/base'
+
+import type { ClickAwayListenerProps } from '@monorail/components'
+import { Box, ClickAwayListener } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 

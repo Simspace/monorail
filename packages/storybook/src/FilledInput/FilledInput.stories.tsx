@@ -1,11 +1,8 @@
 // Edit this file to add new stories
 import React from 'react'
-import {
-  FilledInput,
-  FilledInputProps,
-  FormControl,
-  InputLabel,
-} from '@monorail/components'
+
+import type { FilledInputProps } from '@monorail/components'
+import { FilledInput, FormControl, InputLabel } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 

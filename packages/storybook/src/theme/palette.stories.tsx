@@ -1,13 +1,8 @@
 import React from 'react'
-import {
-  Color as MUIColor,
-  PaletteColor,
-  Stack,
-  Typography,
-  useTheme,
-} from '@mui/material'
+import type { Color as MUIColor, PaletteColor } from '@mui/material'
+import { Stack, Typography, useTheme } from '@mui/material'
 import Box from '@mui/material/Box'
-import {
+import type {
   CommonColors,
   TypeBackground,
   TypeText,

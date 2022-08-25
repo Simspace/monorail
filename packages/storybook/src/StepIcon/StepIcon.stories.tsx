@@ -1,14 +1,5 @@
 import React from 'react'
 import {
-  Box,
-  Step,
-  StepButton,
-  StepIcon,
-  StepIconProps,
-  StepLabel,
-  Stepper,
-} from '@monorail/components'
-import {
   ApprovalTwoTone,
   ErrorOutlineSharp,
   IceSkatingOutlined,
@@ -16,6 +7,16 @@ import {
   IceSkatingTwoTone,
   WarningAmberSharp,
 } from '@mui/icons-material'
+
+import type { StepIconProps } from '@monorail/components'
+import {
+  Box,
+  Step,
+  StepButton,
+  StepIcon,
+  StepLabel,
+  Stepper,
+} from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 /**

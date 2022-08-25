@@ -1,12 +1,21 @@
 // Edit this file to add new stories
 import React from 'react'
+import ArrowForwardIosSharp from '@mui/icons-material/ArrowForwardIosSharp'
+import CheckCircle from '@mui/icons-material/CheckCircle'
+import Error from '@mui/icons-material/Error'
+import ExpandMore from '@mui/icons-material/ExpandMore'
+import Warning from '@mui/icons-material/Warning'
+import { styled } from '@mui/material'
+
+import type {
+  AccordionProps,
+  AccordionSummaryProps,
+} from '@monorail/components'
 import {
   Accordion,
   AccordionActions,
   AccordionDetails,
-  AccordionProps,
   AccordionSummary,
-  AccordionSummaryProps,
   Box,
   Button,
   Chip,
@@ -14,12 +23,6 @@ import {
   Stack,
   Typography,
 } from '@monorail/components'
-import ArrowForwardIosSharp from '@mui/icons-material/ArrowForwardIosSharp'
-import CheckCircle from '@mui/icons-material/CheckCircle'
-import Error from '@mui/icons-material/Error'
-import ExpandMore from '@mui/icons-material/ExpandMore'
-import Warning from '@mui/icons-material/Warning'
-import { styled } from '@mui/material'
 
 import { story } from '../helpers.js'
 

@@ -1,11 +1,8 @@
 // Edit this file to add new stories
 import React from 'react'
-import {
-  Checkbox,
-  FormControlLabel,
-  FormGroup,
-  FormGroupProps,
-} from '@monorail/components'
+
+import type { FormGroupProps } from '@monorail/components'
+import { Checkbox, FormControlLabel, FormGroup } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 

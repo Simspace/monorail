@@ -1,5 +1,9 @@
 // Edit this file to add new stories
 import React from 'react'
+import MoreVertIcon from '@mui/icons-material/MoreVert'
+import { styled } from '@mui/material'
+
+import type { SkeletonProps, TypographyProps } from '@monorail/components'
 import {
   Avatar,
   Box,
@@ -10,13 +14,9 @@ import {
   Grid,
   IconButton,
   Skeleton,
-  SkeletonProps,
   Stack,
   Typography,
-  TypographyProps,
 } from '@monorail/components'
-import MoreVertIcon from '@mui/icons-material/MoreVert'
-import { styled } from '@mui/material'
 
 import { story } from '../helpers/storybook.js'
 /**

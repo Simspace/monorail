@@ -1,14 +1,9 @@
 // Edit this file to add new stories
 import React from 'react'
-import {
-  Avatar,
-  Box,
-  Grid,
-  GridProps,
-  Paper,
-  Typography,
-} from '@monorail/components'
 import { styled } from '@mui/material'
+
+import type { GridProps } from '@monorail/components'
+import { Avatar, Box, Grid, Paper, Typography } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 

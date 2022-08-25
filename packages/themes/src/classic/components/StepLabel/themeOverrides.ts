@@ -1,9 +1,5 @@
-import {
-  Components,
-  stepIconClasses,
-  stepLabelClasses,
-  Theme,
-} from '@mui/material'
+import type { Components, Theme } from '@mui/material'
+import { stepIconClasses, stepLabelClasses } from '@mui/material'
 
 export const MonorailStepLabelOverrides: Components<Theme>['MuiStepLabel'] = {
   styleOverrides: {

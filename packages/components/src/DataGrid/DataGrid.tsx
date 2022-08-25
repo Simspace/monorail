@@ -1,8 +1,9 @@
 import React from 'react'
-import { combineSxProps } from '@monorail/utils/sx'
-import { CSSInterpolation, Theme } from '@mui/material'
-import { SystemStyleObject } from '@mui/system'
+import type { CSSInterpolation, Theme } from '@mui/material'
+import type { SystemStyleObject } from '@mui/system'
 import { DataGridPremium, useGridApiRef } from '@mui/x-data-grid-premium'
+
+import { combineSxProps } from '@monorail/utils/sx'
 
 import { Divider } from '../Divider.js'
 import { DataGridColumnHeader } from './components/DataGridColumnHeader.js'
@@ -13,12 +14,12 @@ import { DATE_FILTER_DEFAULT_LOCALE_TEXT } from './filters/DateFilter.js'
 import { ENUM_FILTER_DEFAULT_LOCALE_TEXT } from './filters/EnumFilter.js'
 import { NUMERIC_FILTER_DEFAULT_LOCALE_TEXT } from './filters/NumericFilter.js'
 import { TEXT_FILTER_DEFAULT_LOCALE_TEXT } from './filters/TextFilter.js'
-import {
-  dataGridClasses,
+import type {
   DataGridProps,
   GridEnrichedColDef,
   GridValidRowModel,
 } from './internal.js'
+import { dataGridClasses } from './internal.js'
 
 export const DataGrid: <R extends GridValidRowModel>(
   props: DataGridProps<R> & React.RefAttributes<HTMLDivElement>,

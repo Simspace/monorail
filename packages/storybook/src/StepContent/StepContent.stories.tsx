@@ -1,4 +1,7 @@
 import React from 'react'
+import type { TransitionProps } from '@mui/material/transitions'
+
+import type { StepContentProps } from '@monorail/components'
 import {
   Box,
   Button,
@@ -6,13 +9,11 @@ import {
   Paper,
   Step,
   StepContent,
-  StepContentProps,
   StepLabel,
   Stepper,
   Typography,
   Zoom,
 } from '@monorail/components'
-import { TransitionProps } from '@mui/material/transitions'
 
 import { story } from '../helpers/storybook.js'
 /**

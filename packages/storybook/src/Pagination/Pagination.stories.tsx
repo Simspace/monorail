@@ -1,14 +1,15 @@
 // Edit this file to add new stories
 import React from 'react'
+import { styled } from '@mui/material/styles'
+import usePagination from '@mui/material/usePagination'
+
+import type { PaginationProps } from '@monorail/components'
 import {
   Pagination,
-  PaginationProps,
   Stack,
   TablePagination,
   Typography,
 } from '@monorail/components'
-import { styled } from '@mui/material/styles'
-import usePagination from '@mui/material/usePagination'
 
 import { story } from '../helpers/storybook.js'
 /**

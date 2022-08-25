@@ -1,5 +1,7 @@
 // Edit this file to add new stories
 import React from 'react'
+
+import type { SwitchProps } from '@monorail/components'
 import {
   FormControl,
   FormControlLabel,
@@ -8,7 +10,6 @@ import {
   FormLabel,
   Stack,
   Switch,
-  SwitchProps,
 } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'

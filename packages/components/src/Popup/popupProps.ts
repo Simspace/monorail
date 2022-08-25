@@ -1,18 +1,19 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React from 'react'
-import { StandardElementProps } from '@monorail/types'
-import {
+import type React from 'react'
+import type {
   PaperProps,
   PopperPlacementType,
   PopperProps,
   SxProps,
   Theme,
 } from '@mui/material'
-import { TransitionProps } from '@mui/material/transitions'
-import { MUIStyledCommonProps } from '@mui/system'
-import { Options, OptionsGeneric, VirtualElement } from '@popperjs/core'
+import type { TransitionProps } from '@mui/material/transitions'
+import type { MUIStyledCommonProps } from '@mui/system'
+import type { Options, OptionsGeneric, VirtualElement } from '@popperjs/core'
 
-import { PopupClasses } from './popupClasses.js'
+import type { StandardElementProps } from '@monorail/types'
+
+import type { PopupClasses } from './popupClasses.js'
 
 export interface PopupProps extends StandardElementProps<'div', 'title'> {
   /**

@@ -1,11 +1,12 @@
 // Edit this file to add new stories
 import React from 'react'
+
+import type { TableContainerProps } from '@monorail/components'
 import {
   Table,
   TableBody,
   TableCell,
   TableContainer,
-  TableContainerProps,
   TableRow,
 } from '@monorail/components'
 

@@ -1,10 +1,11 @@
 // Edit this file to add new stories
 import React from 'react'
+
+import type { TablePaginationProps } from '@monorail/components'
 import {
   Table,
   TableFooter,
   TablePagination,
-  TablePaginationProps,
   TableRow,
 } from '@monorail/components'
 

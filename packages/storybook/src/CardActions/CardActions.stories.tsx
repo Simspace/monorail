@@ -1,6 +1,8 @@
 // Edit this file to add new stories
 import React from 'react'
-import { Button, CardActions, CardActionsProps } from '@monorail/components'
+
+import type { CardActionsProps } from '@monorail/components'
+import { Button, CardActions } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 

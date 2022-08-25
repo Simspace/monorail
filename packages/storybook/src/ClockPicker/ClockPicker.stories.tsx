@@ -1,11 +1,8 @@
 // Edit this file to add new stories
 import React from 'react'
-import {
-  ClockPicker,
-  ClockPickerProps,
-  Stack,
-  Typography,
-} from '@monorail/components'
+
+import type { ClockPickerProps } from '@monorail/components'
+import { ClockPicker, Stack, Typography } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 

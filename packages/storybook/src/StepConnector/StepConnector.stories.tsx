@@ -1,9 +1,10 @@
 import React from 'react'
+
+import type { StepConnectorProps } from '@monorail/components'
 import {
   Box,
   Step,
   StepConnector,
-  StepConnectorProps,
   StepLabel,
   Stepper,
 } from '@monorail/components'

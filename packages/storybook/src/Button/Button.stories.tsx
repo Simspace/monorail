@@ -1,15 +1,11 @@
 // Edit this file to add new stories
 import React from 'react'
-import {
-  Box,
-  Button,
-  ButtonProps,
-  Stack,
-  Typography,
-} from '@monorail/components'
 import SaveIcon from '@mui/icons-material/Save'
 import SelectAllOutlined from '@mui/icons-material/SelectAllOutlined'
 import { LoadingButton } from '@mui/lab'
+
+import type { ButtonProps } from '@monorail/components'
+import { Box, Button, Stack, Typography } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 

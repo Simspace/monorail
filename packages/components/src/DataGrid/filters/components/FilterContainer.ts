@@ -1,5 +1,6 @@
-import { sx } from '@monorail/utils'
 import { styled } from '@mui/material'
+
+import { sx } from '@monorail/utils'
 
 export const FilterContainer = styled('div')(
   sx(theme => ({

@@ -1,22 +1,5 @@
 // Edit this file to add new stories
 import React from 'react'
-import {
-  Badge,
-  Box,
-  CalendarPickerSkeleton,
-  DatePicker,
-  DatePickerProps,
-  DesktopDatePicker,
-  MobileDatePicker,
-  PickersDay,
-  PickersDayProps,
-  Stack,
-  StaticDatePicker,
-  TextField,
-  TextFieldProps,
-  ToggleButton,
-  ToggleButtonGroup,
-} from '@monorail/components'
 import { styled } from '@mui/material'
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
@@ -33,6 +16,26 @@ import deLocale from 'date-fns/locale/de'
 import enLocale from 'date-fns/locale/en-US'
 import frLocale from 'date-fns/locale/fr'
 import ruLocale from 'date-fns/locale/ru'
+
+import type {
+  DatePickerProps,
+  PickersDayProps,
+  TextFieldProps,
+} from '@monorail/components'
+import {
+  Badge,
+  Box,
+  CalendarPickerSkeleton,
+  DatePicker,
+  DesktopDatePicker,
+  MobileDatePicker,
+  PickersDay,
+  Stack,
+  StaticDatePicker,
+  TextField,
+  ToggleButton,
+  ToggleButtonGroup,
+} from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 

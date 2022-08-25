@@ -1,6 +1,7 @@
-import { GridFilterOperator } from '@mui/x-data-grid-premium'
+import type { GridFilterOperator } from '@mui/x-data-grid-premium'
 
-import { EnumFilterState, isEnumFilterState } from '../models.js'
+import type { EnumFilterState } from '../models.js'
+import { isEnumFilterState } from '../models.js'
 
 export const enumFilterOperator: GridFilterOperator = {
   label: 'Enum',

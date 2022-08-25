@@ -1,7 +1,9 @@
 // Edit this file to add new stories
 import React from 'react'
-import { AccordionSummary, AccordionSummaryProps } from '@monorail/components'
 import ExpandMore from '@mui/icons-material/ExpandMore'
+
+import type { AccordionSummaryProps } from '@monorail/components'
+import { AccordionSummary } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 

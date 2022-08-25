@@ -1,5 +1,6 @@
 import React from 'react'
-import SvgIcon, { SvgIconProps } from '@mui/material/SvgIcon'
+import type { SvgIconProps } from '@mui/material/SvgIcon'
+import SvgIcon from '@mui/material/SvgIcon'
 
 export const RestoreFromTrash = (props: SvgIconProps) => (
   <SvgIcon height="24" viewBox="0 0 24 24" width="24" {...props}>

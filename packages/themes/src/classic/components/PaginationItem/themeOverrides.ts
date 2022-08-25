@@ -1,4 +1,5 @@
-import { Components, paginationItemClasses, Theme } from '@mui/material'
+import type { Components, Theme } from '@mui/material'
+import { paginationItemClasses } from '@mui/material'
 
 export const MonorailPaginationItemOverrides: Components<Theme>['MuiPaginationItem'] =
   {

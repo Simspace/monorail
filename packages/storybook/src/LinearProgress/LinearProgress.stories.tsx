@@ -1,12 +1,8 @@
 // Edit this file to add new stories
 import React from 'react'
-import {
-  Box,
-  LinearProgress,
-  LinearProgressProps,
-  Stack,
-  Typography,
-} from '@monorail/components'
+
+import type { LinearProgressProps } from '@monorail/components'
+import { Box, LinearProgress, Stack, Typography } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 

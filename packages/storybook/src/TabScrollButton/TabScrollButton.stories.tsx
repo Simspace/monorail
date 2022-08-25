@@ -1,6 +1,8 @@
 // Edit this file to add new stories
 import React from 'react'
-import { TabScrollButton, TabScrollButtonProps } from '@monorail/components'
+
+import type { TabScrollButtonProps } from '@monorail/components'
+import { TabScrollButton } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 /**

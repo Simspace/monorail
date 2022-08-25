@@ -1,7 +1,9 @@
 // eslint-disable-next-line no-restricted-imports
+import type { PaletteOptions, Theme, ThemeOptions } from '@mui/material'
+import { createTheme } from '@mui/material'
+
 import { baseTheme } from '@monorail/themes/classic/theme/baseTheme'
 import { getThemeComponents } from '@monorail/themes/classic/theme/themeComponents'
-import { createTheme, PaletteOptions, Theme, ThemeOptions } from '@mui/material'
 
 // #region Raw Colors (Option Tokens)
 /**

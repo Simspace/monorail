@@ -1,11 +1,9 @@
 // Edit this file to add new stories
 import React from 'react'
-import {
-  IconButton,
-  ListItemSecondaryAction,
-  ListItemSecondaryActionProps,
-} from '@monorail/components'
 import DeleteIcon from '@mui/icons-material/Delete'
+
+import type { ListItemSecondaryActionProps } from '@monorail/components'
+import { IconButton, ListItemSecondaryAction } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 

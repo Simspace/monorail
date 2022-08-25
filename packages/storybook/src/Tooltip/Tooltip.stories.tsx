@@ -1,5 +1,9 @@
 // Edit this file to add new stories
 import React from 'react'
+import DeleteIcon from '@mui/icons-material/Delete'
+import { styled } from '@mui/material'
+
+import type { TooltipProps } from '@monorail/components'
 import {
   Box,
   Button,
@@ -9,12 +13,9 @@ import {
   IconButton,
   Tooltip,
   tooltipClasses,
-  TooltipProps,
   Typography,
   Zoom,
 } from '@monorail/components'
-import DeleteIcon from '@mui/icons-material/Delete'
-import { styled } from '@mui/material'
 
 import { story } from '../helpers/storybook.js'
 

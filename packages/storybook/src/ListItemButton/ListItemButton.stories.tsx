@@ -1,10 +1,8 @@
 // Edit this file to add new stories
 import React from 'react'
-import {
-  ListItemButton,
-  ListItemButtonProps,
-  ListItemText,
-} from '@monorail/components'
+
+import type { ListItemButtonProps } from '@monorail/components'
+import { ListItemButton, ListItemText } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 

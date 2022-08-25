@@ -1,9 +1,5 @@
-import {
-  Components,
-  inputBaseClasses,
-  outlinedInputClasses,
-  Theme,
-} from '@mui/material'
+import type { Components, Theme } from '@mui/material'
+import { inputBaseClasses, outlinedInputClasses } from '@mui/material'
 
 export const MonorailInputBaseOverrides: Components<Theme>['MuiInputBase'] = {
   defaultProps: {},

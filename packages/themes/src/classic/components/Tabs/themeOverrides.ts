@@ -1,4 +1,5 @@
-import { Components, tabsClasses, Theme } from '@mui/material'
+import type { Components, Theme } from '@mui/material'
+import { tabsClasses } from '@mui/material'
 
 export const MonorailTabsOverrides: Components<Theme>['MuiTabs'] = {
   defaultProps: {},

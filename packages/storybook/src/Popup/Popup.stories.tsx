@@ -1,12 +1,8 @@
 import React from 'react'
-import {
-  Box,
-  Button,
-  Popup,
-  PopupProps,
-  Typography,
-} from '@monorail/components'
-import { Story } from '@storybook/react'
+import type { Story } from '@storybook/react'
+
+import type { PopupProps } from '@monorail/components'
+import { Box, Button, Popup, Typography } from '@monorail/components'
 
 export default { title: 'Utils/Popup', component: Popup }
 

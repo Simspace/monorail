@@ -1,10 +1,8 @@
 // Edit this file to add new stories
 import React from 'react'
-import {
-  DesktopTimePicker,
-  DesktopTimePickerProps,
-  TextField,
-} from '@monorail/components'
+
+import type { DesktopTimePickerProps } from '@monorail/components'
+import { DesktopTimePicker, TextField } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 

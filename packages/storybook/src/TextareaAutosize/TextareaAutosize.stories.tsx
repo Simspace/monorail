@@ -1,5 +1,7 @@
 import React from 'react'
-import { TextareaAutosize, TextareaAutosizeProps } from '@monorail/components'
+
+import type { TextareaAutosizeProps } from '@monorail/components'
+import { TextareaAutosize } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 

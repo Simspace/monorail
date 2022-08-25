@@ -1,9 +1,5 @@
-import {
-  Components,
-  Theme,
-  toggleButtonClasses,
-  toggleButtonGroupClasses,
-} from '@mui/material'
+import type { Components, Theme } from '@mui/material'
+import { toggleButtonClasses, toggleButtonGroupClasses } from '@mui/material'
 
 declare module '@mui/material/ToggleButton' {
   /**

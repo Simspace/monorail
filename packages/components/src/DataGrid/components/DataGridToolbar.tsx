@@ -1,7 +1,8 @@
 import React from 'react'
 import { Search, ViewColumn, ViewModule } from '@mui/icons-material'
 import { unstable_debounce } from '@mui/utils'
-import { GridApi, SUBMIT_FILTER_STROKE_TIME } from '@mui/x-data-grid-premium'
+import type { GridApi } from '@mui/x-data-grid-premium'
+import { SUBMIT_FILTER_STROKE_TIME } from '@mui/x-data-grid-premium'
 
 import { Box } from '../../Box.js'
 import { InputAdornment } from '../../InputAdornment.js'

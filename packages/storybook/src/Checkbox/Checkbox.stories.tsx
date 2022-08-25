@@ -1,20 +1,21 @@
 // Edit this file to add new stories
 import React from 'react'
+import Bookmark from '@mui/icons-material/Bookmark'
+import BookmarkBorder from '@mui/icons-material/BookmarkBorder'
+import Favorite from '@mui/icons-material/Favorite'
+import FavoriteBorder from '@mui/icons-material/FavoriteBorder'
+import { styled } from '@mui/material'
+
+import type { CheckboxProps } from '@monorail/components'
 import {
   Box,
   Checkbox,
-  CheckboxProps,
   FormControl,
   FormControlLabel,
   FormGroup,
   FormHelperText,
   FormLabel,
 } from '@monorail/components'
-import Bookmark from '@mui/icons-material/Bookmark'
-import BookmarkBorder from '@mui/icons-material/BookmarkBorder'
-import Favorite from '@mui/icons-material/Favorite'
-import FavoriteBorder from '@mui/icons-material/FavoriteBorder'
-import { styled } from '@mui/material'
 
 import { story } from '../helpers/storybook.js'
 

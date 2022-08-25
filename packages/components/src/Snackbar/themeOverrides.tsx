@@ -1,10 +1,5 @@
-import {
-  alertClasses,
-  chipClasses,
-  Components,
-  Slide,
-  Theme,
-} from '@mui/material'
+import type { Components, Theme } from '@mui/material'
+import { alertClasses, chipClasses, Slide } from '@mui/material'
 
 export const MonorailSnackbarOverrides: Components<Theme>['MuiSnackbar'] = {
   defaultProps: {

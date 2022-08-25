@@ -1,7 +1,8 @@
 import React from 'react'
 import type { IUtils } from '@date-io/core/IUtils'
 
-import { GridApi, gridColumnLookupSelector } from '../../../internal.js'
+import type { GridApi } from '../../../internal.js'
+import { gridColumnLookupSelector } from '../../../internal.js'
 import { dateFilterOperator } from '../constants.js'
 import { getDateFilterInitialState } from '../models.js'
 

@@ -1,17 +1,13 @@
 // Edit this file to add new stories
 import React from 'react'
-import {
-  Breadcrumbs,
-  BreadcrumbsProps,
-  Link,
-  Stack,
-  Typography,
-} from '@monorail/components'
 import GrainIcon from '@mui/icons-material/Grain'
 import HomeIcon from '@mui/icons-material/Home'
 import NavigateNextIcon from '@mui/icons-material/NavigateNext'
 import WhatshotIcon from '@mui/icons-material/Whatshot'
 import { action } from '@storybook/addon-actions'
+
+import type { BreadcrumbsProps } from '@monorail/components'
+import { Breadcrumbs, Link, Stack, Typography } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 

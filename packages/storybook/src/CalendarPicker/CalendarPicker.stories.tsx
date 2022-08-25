@@ -1,7 +1,9 @@
 // Edit this file to add new stories
 import React from 'react'
-import { CalendarPicker, CalendarPickerProps } from '@monorail/components'
 import { action } from '@storybook/addon-actions'
+
+import type { CalendarPickerProps } from '@monorail/components'
+import { CalendarPicker } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 /**

@@ -1,7 +1,9 @@
 import React from 'react'
-import { TrapFocus, TrapFocusProps } from '@monorail/components'
 import Box from '@mui/material/Box'
 import Portal from '@mui/material/Portal'
+
+import type { TrapFocusProps } from '@monorail/components'
+import { TrapFocus } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 

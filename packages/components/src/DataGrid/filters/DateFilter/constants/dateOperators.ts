@@ -1,7 +1,7 @@
-import { IUtils } from '@date-io/core/IUtils'
+import type { IUtils } from '@date-io/core/IUtils'
 
-import { RangeFilterOperator } from '../../RangeFilter.js'
-import { DateFilterOperator } from '../models.js'
+import type { RangeFilterOperator } from '../../RangeFilter.js'
+import type { DateFilterOperator } from '../models.js'
 
 export const getDateOperators = <TDate>(
   adapter: IUtils<TDate>,

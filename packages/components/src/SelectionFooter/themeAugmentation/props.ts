@@ -1,4 +1,4 @@
-import { SelectionFooterProps } from '../selectionFooterProps.js'
+import type { SelectionFooterProps } from '../selectionFooterProps.js'
 
 declare module '@mui/material/styles/props' {
   interface ComponentsPropsList {

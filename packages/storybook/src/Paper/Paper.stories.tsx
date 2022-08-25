@@ -1,13 +1,15 @@
 // Edit this file to add new stories
 import React from 'react'
-import { Box, Grid, Paper, PaperProps } from '@monorail/components'
+import type { Theme } from '@mui/material'
 import {
   createTheme,
   styled,
   StyledEngineProvider,
-  Theme,
   ThemeProvider,
 } from '@mui/material'
+
+import type { PaperProps } from '@monorail/components'
+import { Box, Grid, Paper } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 

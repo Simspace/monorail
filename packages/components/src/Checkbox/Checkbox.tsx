@@ -1,11 +1,7 @@
+import type { CheckboxProps, CSSObject } from '@mui/material'
+import { Checkbox as MuiCheckbox, checkboxClasses, styled } from '@mui/material'
+
 import { excludeProps, sx } from '@monorail/utils'
-import {
-  Checkbox as MuiCheckbox,
-  checkboxClasses,
-  CheckboxProps,
-  CSSObject,
-  styled,
-} from '@mui/material'
 
 declare module '@mui/material/Checkbox/Checkbox' {
   interface CheckboxProps {

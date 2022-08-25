@@ -1,5 +1,6 @@
 import React from 'react'
-import SvgIcon, { SvgIconProps } from '@mui/material/SvgIcon'
+import type { SvgIconProps } from '@mui/material/SvgIcon'
+import SvgIcon from '@mui/material/SvgIcon'
 
 export const Robot = (props: SvgIconProps) => (
   <SvgIcon width="16" height="14" viewBox="0 0 16 14" fill="none" {...props}>

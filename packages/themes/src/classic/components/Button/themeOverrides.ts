@@ -1,5 +1,6 @@
 import type {} from '@mui/lab/themeAugmentation'
-import { buttonClasses, ButtonProps, Components, Theme } from '@mui/material'
+import type { ButtonProps, Components, Theme } from '@mui/material'
+import { buttonClasses } from '@mui/material'
 
 declare module '@mui/material/Button' {
   /**

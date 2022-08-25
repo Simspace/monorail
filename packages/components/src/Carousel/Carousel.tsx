@@ -1,8 +1,10 @@
-import React, { FC } from 'react'
-import Glider, { GliderProps } from 'react-glider'
+import type { FC } from 'react'
+import React from 'react'
+import type { GliderProps } from 'react-glider'
+import Glider from 'react-glider'
 import useId from '@mui/utils/useId'
 
-import { IconButtonProps } from '../IconButton.js'
+import type { IconButtonProps } from '../IconButton.js'
 import { Arrows } from './Arrows.js'
 import { GliderCarousel, Wrapper } from './Carousel.styled.js'
 

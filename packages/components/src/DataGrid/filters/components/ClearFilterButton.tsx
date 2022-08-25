@@ -1,7 +1,9 @@
 import React from 'react'
+import type { SxProps, Theme } from '@mui/material'
+import { styled } from '@mui/material'
+
 import { excludeProps } from '@monorail/utils/styled'
 import { sx } from '@monorail/utils/sx'
-import { styled, SxProps, Theme } from '@mui/material'
 
 import { Button } from '../../../Button.js'
 

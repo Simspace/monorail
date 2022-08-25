@@ -1,6 +1,7 @@
 import React from 'react'
 
-import { GridApi, gridColumnLookupSelector } from '../../../internal.js'
+import type { GridApi } from '../../../internal.js'
+import { gridColumnLookupSelector } from '../../../internal.js'
 import { numericFilterOperator } from '../constants/numericFilterOperator.js'
 import { getNumericFilterInitialState } from '../models.js'
 

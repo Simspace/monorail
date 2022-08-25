@@ -1,13 +1,10 @@
 // Edit this file to add new stories
 import React from 'react'
-import {
-  PickersDay,
-  PickersDayProps,
-  StaticDatePicker,
-  TextField,
-} from '@monorail/components'
 import { styled } from '@mui/material'
 import { endOfWeek, isSameDay, isWithinInterval, startOfWeek } from 'date-fns'
+
+import type { PickersDayProps } from '@monorail/components'
+import { PickersDay, StaticDatePicker, TextField } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 

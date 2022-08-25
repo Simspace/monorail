@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react'
 
-import { CreateTableOverloads } from '../generated/CreateTableOverloads.js'
-import { GridApi, GridColDef, GridValidRowModel } from '../internal.js'
-import {
+import type { CreateTableOverloads } from '../generated/CreateTableOverloads.js'
+import type { GridApi, GridColDef, GridValidRowModel } from '../internal.js'
+import type {
   GridColFilterState,
   GridColFilterTypeMap,
 } from './gridColFilterType.js'
-import { MakeTypedColDef } from './makeTypedColDef.js'
+import type { MakeTypedColDef } from './makeTypedColDef.js'
 
 /**
  * Phantom type key

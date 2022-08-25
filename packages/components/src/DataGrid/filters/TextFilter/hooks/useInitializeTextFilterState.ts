@@ -5,7 +5,7 @@ import {
   useGridApiContext,
 } from '../../../internal.js'
 import { textFilterOperator } from '../constants.js'
-import { TextFilterOperator } from '../models/TextFilterOperator.js'
+import type { TextFilterOperator } from '../models/TextFilterOperator.js'
 import { getTextFilterInitialState } from '../models/TextFilterState.js'
 
 export function useInitializeTextFilterState(

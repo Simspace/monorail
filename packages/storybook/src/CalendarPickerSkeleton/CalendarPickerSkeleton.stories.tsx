@@ -1,9 +1,8 @@
 // Edit this file to add new stories
 import React from 'react'
-import {
-  CalendarPickerSkeleton,
-  CalendarPickerSkeletonProps,
-} from '@monorail/components'
+
+import type { CalendarPickerSkeletonProps } from '@monorail/components'
+import { CalendarPickerSkeleton } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 

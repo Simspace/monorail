@@ -1,23 +1,5 @@
 // Edit this file to add new stories
 import React from 'react'
-import {
-  Avatar,
-  Box,
-  Button,
-  Divider,
-  IconButton,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-  Menu,
-  MenuItem,
-  MenuList,
-  MenuProps,
-  Paper,
-  Tooltip,
-  Typography,
-} from '@monorail/components'
 import Archive from '@mui/icons-material/Archive'
 import Check from '@mui/icons-material/Check'
 import Cloud from '@mui/icons-material/Cloud'
@@ -36,6 +18,25 @@ import PriorityHigh from '@mui/icons-material/PriorityHigh'
 import Send from '@mui/icons-material/Send'
 import Settings from '@mui/icons-material/Settings'
 import { alpha, styled } from '@mui/material'
+
+import type { MenuProps } from '@monorail/components'
+import {
+  Avatar,
+  Box,
+  Button,
+  Divider,
+  IconButton,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  Menu,
+  MenuItem,
+  MenuList,
+  Paper,
+  Tooltip,
+  Typography,
+} from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 

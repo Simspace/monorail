@@ -1,11 +1,13 @@
 import React from 'react'
-import { excludeProps, sx, useRequestAnimationFrame } from '@monorail/utils'
-import { CSSInterpolation, styled, useThemeProps } from '@mui/material'
+import type { CSSInterpolation } from '@mui/material'
+import { styled, useThemeProps } from '@mui/material'
 import composeClasses from '@mui/utils/composeClasses'
 import clsx from 'clsx'
 
+import { excludeProps, sx, useRequestAnimationFrame } from '@monorail/utils'
+
 import { getScrollShadowUtilityClass } from './scrollShadowClasses.js'
-import { ScrollShadowProps } from './scrollShadowProps.js'
+import type { ScrollShadowProps } from './scrollShadowProps.js'
 
 interface ScrollShadowOwnerState
   extends Omit<ScrollShadowProps, 'top' | 'bottom'> {

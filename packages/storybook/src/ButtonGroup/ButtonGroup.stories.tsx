@@ -1,10 +1,12 @@
 // Edit this file to add new stories
 import React from 'react'
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
+
+import type { ButtonGroupProps } from '@monorail/components'
 import {
   Box,
   Button,
   ButtonGroup,
-  ButtonGroupProps,
   ClickAwayListener,
   Grow,
   MenuItem,
@@ -13,7 +15,6 @@ import {
   Popper,
   Stack,
 } from '@monorail/components'
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
 
 import { story } from '../helpers/storybook.js'
 

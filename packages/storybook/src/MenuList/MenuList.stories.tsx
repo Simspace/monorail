@@ -1,6 +1,8 @@
 // Edit this file to add new stories
 import React from 'react'
-import { MenuItem, MenuList, MenuListProps } from '@monorail/components'
+
+import type { MenuListProps } from '@monorail/components'
+import { MenuItem, MenuList } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 /**

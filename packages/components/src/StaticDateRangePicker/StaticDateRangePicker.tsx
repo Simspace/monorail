@@ -1,7 +1,5 @@
-import {
-  StaticDateRangePicker as MuiStaticDateRangePicker,
-  StaticDateRangePickerProps as MuiStaticDateRangePickerProps,
-} from '@mui/x-date-pickers-pro'
+import type { StaticDateRangePickerProps as MuiStaticDateRangePickerProps } from '@mui/x-date-pickers-pro'
+import { StaticDateRangePicker as MuiStaticDateRangePicker } from '@mui/x-date-pickers-pro'
 
 /**
  *

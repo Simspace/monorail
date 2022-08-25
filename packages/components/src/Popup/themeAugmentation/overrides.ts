@@ -1,4 +1,4 @@
-import { PopupClasses } from '../popupClasses.js'
+import type { PopupClasses } from '../popupClasses.js'
 
 declare module '@mui/material/styles/overrides' {
   interface ComponentNameToClassKey {

@@ -1,11 +1,12 @@
 // Edit this file to add new stories
 import React from 'react'
+
+import type { SlideProps } from '@monorail/components'
 import {
   Box,
   FormControlLabel,
   Paper,
   Slide,
-  SlideProps,
   Switch,
 } from '@monorail/components'
 

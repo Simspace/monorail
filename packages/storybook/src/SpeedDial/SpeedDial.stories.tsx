@@ -1,5 +1,13 @@
 // Edit this file to add new stories
 import React from 'react'
+import EditIcon from '@mui/icons-material/EditOutlined'
+import FileCopyIcon from '@mui/icons-material/FileCopyOutlined'
+import PrintIcon from '@mui/icons-material/Print'
+import SaveIcon from '@mui/icons-material/Save'
+import ShareIcon from '@mui/icons-material/Share'
+import { styled } from '@mui/material'
+
+import type { SpeedDialProps } from '@monorail/components'
 import {
   Backdrop,
   Box,
@@ -11,15 +19,8 @@ import {
   SpeedDial,
   SpeedDialAction,
   SpeedDialIcon,
-  SpeedDialProps,
   Switch,
 } from '@monorail/components'
-import EditIcon from '@mui/icons-material/EditOutlined'
-import FileCopyIcon from '@mui/icons-material/FileCopyOutlined'
-import PrintIcon from '@mui/icons-material/Print'
-import SaveIcon from '@mui/icons-material/Save'
-import ShareIcon from '@mui/icons-material/Share'
-import { styled } from '@mui/material'
 
 import { story } from '../helpers/storybook.js'
 

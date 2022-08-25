@@ -1,6 +1,8 @@
 // Edit this file to add new stories
 import React from 'react'
-import { NoSsr, NoSsrProps } from '@monorail/components'
+
+import type { NoSsrProps } from '@monorail/components'
+import { NoSsr } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 /**

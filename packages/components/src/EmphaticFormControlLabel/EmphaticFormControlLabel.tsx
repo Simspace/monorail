@@ -1,10 +1,10 @@
 /* eslint-disable eqeqeq */
 /* eslint-disable @typescript-eslint/strict-boolean-expressions */
 import React from 'react'
+import type { TypographyProps } from '@mui/material'
 import {
   styled,
   svgIconClasses,
-  TypographyProps,
   useControlled,
   useFormControl,
   useThemeProps,
@@ -13,12 +13,12 @@ import composeClasses from '@mui/utils/composeClasses'
 import clsx from 'clsx'
 
 import { Typography } from '../Typography.js'
-import { ControlProps } from './controlProps.js'
+import type { ControlProps } from './controlProps.js'
 import {
   emphaticFormControlLabelClasses,
   getEmphaticFormControlLabelUtilityClasses,
 } from './emphaticFormControlLabelClasses.js'
-import { EmphaticFormControlLabelProps } from './emphaticFormControlLabelProps.js'
+import type { EmphaticFormControlLabelProps } from './emphaticFormControlLabelProps.js'
 
 interface EmphaticFormControlLabelRootProps
   extends Omit<EmphaticFormControlLabelProps, 'control' | 'label'> {

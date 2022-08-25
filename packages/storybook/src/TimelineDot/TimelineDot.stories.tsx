@@ -1,6 +1,8 @@
 // Edit this file to add new stories
 import React from 'react'
-import { TimelineDot, TimelineDotProps } from '@monorail/components'
+
+import type { TimelineDotProps } from '@monorail/components'
+import { TimelineDot } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 /**

@@ -1,6 +1,8 @@
 // Edit this file to add new stories
 import React from 'react'
-import { Box, Portal, PortalProps } from '@monorail/components'
+
+import type { PortalProps } from '@monorail/components'
+import { Box, Portal } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 /**

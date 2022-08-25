@@ -1,9 +1,10 @@
 // Edit this file to add new stories
 import React from 'react'
+
+import type { FadeProps } from '@monorail/components'
 import {
   Box,
   Fade,
-  FadeProps,
   FormControlLabel,
   Paper,
   Switch,

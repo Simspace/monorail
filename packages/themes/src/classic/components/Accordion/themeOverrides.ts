@@ -1,9 +1,5 @@
-import {
-  accordionClasses,
-  Components,
-  CSSInterpolation,
-  Theme,
-} from '@mui/material'
+import type { Components, CSSInterpolation, Theme } from '@mui/material'
+import { accordionClasses } from '@mui/material'
 
 export const MonorailAccordionOverrides: Components<Theme>['MuiAccordion'] = {
   defaultProps: {

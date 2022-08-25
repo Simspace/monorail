@@ -1,9 +1,15 @@
-import React from 'react'
-import { StandardElementProps } from '@monorail/types'
-import { DrawerProps, ModalProps, PaperProps, SxProps } from '@mui/material'
-import { Theme } from '@mui/system'
+import type React from 'react'
+import type {
+  DrawerProps,
+  ModalProps,
+  PaperProps,
+  SxProps,
+} from '@mui/material'
+import type { Theme } from '@mui/system'
 
-import { ResizableDrawerClasses } from './resizableDrawerClasses.js'
+import type { StandardElementProps } from '@monorail/types'
+
+import type { ResizableDrawerClasses } from './resizableDrawerClasses.js'
 
 export interface ResizableDrawerProps extends StandardElementProps<'div'> {
   /**

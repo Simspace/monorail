@@ -1,6 +1,6 @@
 // eslint-disable-next-line no-restricted-imports
 import type {} from '@mui/lab/themeAugmentation'
-import { Theme, ThemeOptions } from '@mui/material'
+import type { Theme, ThemeOptions } from '@mui/material'
 import type {} from '@mui/x-data-grid-pro/themeAugmentation'
 import type {} from '@mui/x-date-pickers/themeAugmentation'
 import type {} from '@mui/x-date-pickers-pro/themeAugmentation'

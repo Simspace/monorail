@@ -1,11 +1,12 @@
 import React from 'react'
-import { sx } from '@monorail/utils'
 import { styled, useThemeProps } from '@mui/material'
+
+import { sx } from '@monorail/utils'
 
 import { Stack } from '../Stack.js'
 import { Typography } from '../Typography.js'
 import { DEFAULT_SELECTION_FOOTER_LOCALE_TEXT } from './selectionFooterLocaleText.js'
-import { SelectionFooterProps } from './selectionFooterProps.js'
+import type { SelectionFooterProps } from './selectionFooterProps.js'
 
 export interface SelectionFooterRootProps {
   ownerState: SelectionFooterProps

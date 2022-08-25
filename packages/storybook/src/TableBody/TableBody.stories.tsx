@@ -1,12 +1,8 @@
 // Edit this file to add new stories
 import React from 'react'
-import {
-  Table,
-  TableBody,
-  TableBodyProps,
-  TableCell,
-  TableRow,
-} from '@monorail/components'
+
+import type { TableBodyProps } from '@monorail/components'
+import { Table, TableBody, TableCell, TableRow } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 

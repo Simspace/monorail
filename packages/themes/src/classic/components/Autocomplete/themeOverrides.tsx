@@ -1,12 +1,11 @@
 import React from 'react'
 import ClearIcon from '@mui/icons-material/Clear'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
+import type { Components, Theme } from '@mui/material'
 import {
   autocompleteClasses,
-  Components,
   outlinedInputClasses,
   Popper,
-  Theme,
 } from '@mui/material'
 
 export const MonorailAutocompleteOverrides: Components<Theme>['MuiAutocomplete'] =

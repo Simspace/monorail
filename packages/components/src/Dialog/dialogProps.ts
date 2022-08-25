@@ -1,5 +1,5 @@
-import { DialogProps as MuiDialogProps } from '@mui/material/Dialog'
-import { DistributiveOmit } from '@mui/types'
+import type { DialogProps as MuiDialogProps } from '@mui/material/Dialog'
+import type { DistributiveOmit } from '@mui/types'
 
 export interface DialogProps
   extends DistributiveOmit<MuiDialogProps, 'onClose'> {

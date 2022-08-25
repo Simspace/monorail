@@ -1,6 +1,8 @@
 // Edit this file to add new stories
 import React from 'react'
-import { TableSortLabel, TableSortLabelProps } from '@monorail/components'
+
+import type { TableSortLabelProps } from '@monorail/components'
+import { TableSortLabel } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 

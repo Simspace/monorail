@@ -1,6 +1,8 @@
 // Edit this file to add new stories
 import React from 'react'
-import { Tab, TabProps } from '@monorail/components'
+
+import type { TabProps } from '@monorail/components'
+import { Tab } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 /**

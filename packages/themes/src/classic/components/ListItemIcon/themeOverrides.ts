@@ -1,4 +1,5 @@
-import { checkboxClasses, Components, Theme } from '@mui/material'
+import type { Components, Theme } from '@mui/material'
+import { checkboxClasses } from '@mui/material'
 
 export const MonorailListItemIconOverrides: Components<Theme>['MuiListItemIcon'] =
   {

@@ -1,7 +1,5 @@
-import {
-  DesktopDateRangePicker as MuiDesktopDateRangePicker,
-  DesktopDateRangePickerProps as MuiDesktopDateRangePickerProps,
-} from '@mui/x-date-pickers-pro'
+import type { DesktopDateRangePickerProps as MuiDesktopDateRangePickerProps } from '@mui/x-date-pickers-pro'
+import { DesktopDateRangePicker as MuiDesktopDateRangePicker } from '@mui/x-date-pickers-pro'
 
 /**
  *

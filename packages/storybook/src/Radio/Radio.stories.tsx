@@ -1,18 +1,18 @@
 // Edit this file to add new stories
 import React from 'react'
+import { styled } from '@mui/material'
+
+import type { FormControlLabelProps, RadioProps } from '@monorail/components'
 import {
   Button,
   FormControl,
   FormControlLabel,
-  FormControlLabelProps,
   FormHelperText,
   FormLabel,
   Radio,
   RadioGroup,
-  RadioProps,
   useRadioGroup,
 } from '@monorail/components'
-import { styled } from '@mui/material'
 
 import { story } from '../helpers/storybook.js'
 

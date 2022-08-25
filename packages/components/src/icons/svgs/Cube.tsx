@@ -1,5 +1,6 @@
 import React from 'react'
-import SvgIcon, { SvgIconProps } from '@mui/material/SvgIcon'
+import type { SvgIconProps } from '@mui/material/SvgIcon'
+import SvgIcon from '@mui/material/SvgIcon'
 
 export const Cube = (props: SvgIconProps) => (
   <SvgIcon fill="none" height={16} width={14} viewBox="0 0 14 16" {...props}>

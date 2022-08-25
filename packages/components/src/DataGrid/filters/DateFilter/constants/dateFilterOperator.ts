@@ -1,4 +1,4 @@
-import { GridFilterOperator } from '../../../internal.js'
+import type { GridFilterOperator } from '../../../internal.js'
 import { rangeFilterGetApplyFilterFn } from '../../RangeFilter.js'
 
 export const dateFilterOperator: GridFilterOperator = {

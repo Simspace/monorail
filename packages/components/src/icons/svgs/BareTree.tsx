@@ -1,5 +1,6 @@
 import React from 'react'
-import SvgIcon, { SvgIconProps } from '@mui/material/SvgIcon'
+import type { SvgIconProps } from '@mui/material/SvgIcon'
+import SvgIcon from '@mui/material/SvgIcon'
 
 export const BareTree = (props: SvgIconProps) => (
   <SvgIcon width="136" height="136" viewBox="0 0 136 136" {...props}>

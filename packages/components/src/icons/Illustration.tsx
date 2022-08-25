@@ -1,7 +1,8 @@
-import React, { ComponentType, CSSProperties } from 'react'
+import type { ComponentType, CSSProperties } from 'react'
+import React from 'react'
 import styled, { css } from '@mui/styled-engine'
 
-import { SvgIconProps } from './types.js'
+import type { SvgIconProps } from './types.js'
 
 /**
  * We'll likely have sharedHelpers/typeGuards in a separate workspace/package

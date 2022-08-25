@@ -1,16 +1,17 @@
 // Edit this file to add new stories
 import React from 'react'
-import {
-  Alert,
-  BottomNavigation,
-  BottomNavigationAction,
-  BottomNavigationProps,
-  Box,
-} from '@monorail/components'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import FolderIcon from '@mui/icons-material/Folder'
 import LocationOnIcon from '@mui/icons-material/LocationOn'
 import RestoreIcon from '@mui/icons-material/Restore'
+
+import type { BottomNavigationProps } from '@monorail/components'
+import {
+  Alert,
+  BottomNavigation,
+  BottomNavigationAction,
+  Box,
+} from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 

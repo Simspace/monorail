@@ -1,11 +1,10 @@
+import type { Components, Theme } from '@mui/material'
 import {
   avatarClasses,
   checkboxClasses,
-  Components,
   listItemAvatarClasses,
   listItemIconClasses,
   svgIconClasses,
-  Theme,
 } from '@mui/material'
 
 export const MonorailListItemOverrides: Components<Theme>['MuiListItem'] = {

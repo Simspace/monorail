@@ -1,20 +1,5 @@
 import React from 'react'
 import {
-  Box,
-  Button,
-  FormControlLabel,
-  SvgIconProps,
-  Switch,
-  TreeItem,
-  treeItemClasses,
-  TreeItemContentProps,
-  TreeItemProps,
-  TreeView,
-  TreeViewProps,
-  Typography,
-  useTreeItem,
-} from '@monorail/components'
-import {
   ChevronRight as ChevronRightIcon,
   ExpandMore as ExpandMoreIcon,
 } from '@mui/icons-material'
@@ -28,6 +13,24 @@ import LocalOfferIcon from '@mui/icons-material/LocalOffer'
 import MailIcon from '@mui/icons-material/Mail'
 import SupervisorAccountIcon from '@mui/icons-material/SupervisorAccount'
 import { alpha, styled } from '@mui/material'
+
+import type {
+  SvgIconProps,
+  TreeItemContentProps,
+  TreeItemProps,
+  TreeViewProps,
+} from '@monorail/components'
+import {
+  Box,
+  Button,
+  FormControlLabel,
+  Switch,
+  TreeItem,
+  treeItemClasses,
+  TreeView,
+  Typography,
+  useTreeItem,
+} from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 

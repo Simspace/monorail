@@ -1,5 +1,6 @@
 import React from 'react'
-import SvgIcon, { SvgIconProps } from '@mui/material/SvgIcon' // eslint-disable-line no-restricted-imports
+import type { SvgIconProps } from '@mui/material/SvgIcon'
+import SvgIcon from '@mui/material/SvgIcon' // eslint-disable-line no-restricted-imports
 
 export const Calendar = (props: SvgIconProps) => (
   <SvgIcon

@@ -1,8 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import React from 'react'
-import { combineSxProps, filterMap, useForceUpdate } from '@monorail/utils'
 import { Search } from '@mui/icons-material'
-import { SxProps, Theme } from '@mui/material'
+import type { SxProps, Theme } from '@mui/material'
+
+import { combineSxProps, filterMap, useForceUpdate } from '@monorail/utils'
 
 import { Checkbox } from '../../../Checkbox.js'
 import { InputAdornment } from '../../../InputAdornment.js'
@@ -21,7 +22,7 @@ import { useGridApiContext } from '../../internal.js'
 import { ClearFilterButton } from '../components/ClearFilterButton.js'
 import { useDebouncedSyncFilter } from '../hooks/useDebouncedSyncFilter.js'
 import { useInitializeEnumFilterState } from './hooks.js'
-import { EnumFilterProps } from './models/EnumFilterProps.js'
+import type { EnumFilterProps } from './models/EnumFilterProps.js'
 
 export function EnumFilter(props: EnumFilterProps) {
   const { field, renderValue, values, external } = props

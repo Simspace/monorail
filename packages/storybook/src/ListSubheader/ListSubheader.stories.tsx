@@ -1,6 +1,8 @@
 // Edit this file to add new stories
 import React from 'react'
-import { ListSubheader, ListSubheaderProps } from '@monorail/components'
+
+import type { ListSubheaderProps } from '@monorail/components'
+import { ListSubheader } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 /**

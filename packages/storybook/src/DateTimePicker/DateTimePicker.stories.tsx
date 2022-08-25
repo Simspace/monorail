@@ -1,8 +1,13 @@
 // Edit this file to add new stories
 import React from 'react'
+import ClockIcon from '@mui/icons-material/AccessTime'
+import AlarmIcon from '@mui/icons-material/Alarm'
+import SnoozeIcon from '@mui/icons-material/Snooze'
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
+
+import type { DateTimePickerProps } from '@monorail/components'
 import {
   DateTimePicker,
-  DateTimePickerProps,
   DesktopDateTimePicker,
   LocalizationProvider,
   MobileDateTimePicker,
@@ -10,10 +15,6 @@ import {
   StaticDateTimePicker,
   TextField,
 } from '@monorail/components'
-import ClockIcon from '@mui/icons-material/AccessTime'
-import AlarmIcon from '@mui/icons-material/Alarm'
-import SnoozeIcon from '@mui/icons-material/Snooze'
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
 
 import { story } from '../helpers/storybook.js'
 

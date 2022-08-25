@@ -1,5 +1,6 @@
 import React from 'react'
-import SvgIcon, { SvgIconProps } from '@mui/material/SvgIcon'
+import type { SvgIconProps } from '@mui/material/SvgIcon'
+import SvgIcon from '@mui/material/SvgIcon'
 
 export const Ribbon = (props: SvgIconProps) => (
   <SvgIcon width={10} height={13} viewBox="0 0 10 13" fill="none" {...props}>
