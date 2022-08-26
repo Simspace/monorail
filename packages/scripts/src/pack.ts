@@ -79,10 +79,12 @@ async function writePackageJson(project: Project, workspace: Workspace) {
 
   const exports: any = {};
   exports["./*"]     = {
+    browser: "./_esm/*.js",
     import: "./_mjs/*.mjs",
     require: "./_cjs/*.cjs",
   };
   exports["."] = {
+    browser: "./_esm/index.js",
     import: "./_mjs/index.mjs",
     require: "./_cjs/index.cjs",
   };
@@ -155,6 +157,10 @@ await fs.mkdir("dist");
 if (await exists("./src")) {
   await fs.mkdir("./dist/_src");
   await exec("cp -r ./src/* ./dist/_src");
+}
+if (await exists("./build/esm")) {
+  await fs.mkdir("./dist/_esm");
+  await exec("cp -r ./build/esm/* ./dist/_esm");
 }
 if (await exists("./build/mjs")) {
   await fs.mkdir("./dist/_mjs");
