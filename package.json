@@ -13,6 +13,7 @@
     "build": "yarn org:build",
     "build-pack": "ultra -r build-pack",
     "build-storybook": "yarn workspace @monorail/storybook build-storybook --output-dir storybook",
+    "build-playroom": "NODE_OPTIONS=\"--max-old-space-size=8192\" yarn playroom build",
     "clean": "ultra -r clean",
     "eslint": "ultra -r eslint",
     "org:build": "tsc -b ./tsconfig.json --verbose",
@@ -24,6 +25,7 @@
     "prettier:check": "ultra -r prettier:check",
     "prettier:write": "ultra -r prettier:write",
     "storybook": "yarn workspace @monorail/storybook storybook",
+    "start-playroom": "yarn playroom start",
     "test": "ultra -r test"
   },
   "resolutions": {
@@ -61,6 +63,7 @@
     "jest-axe": "5.0.1",
     "jest-config": "27.4.3",
     "lint-staged": "10.2.8",
+    "playroom": "^0.28.0",
     "prettier": "2.5.1",
     "ts-morph": "11.0.0",
     "ts-node": "^10.8.0",

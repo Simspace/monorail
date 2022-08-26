@@ -13,7 +13,7 @@ workflow:
 stages:
   - build
   - test
-  - storybook
+  - build-deployments
   - deploy
   - pages
 
@@ -42,7 +42,7 @@ test:
     - yarn test
 
 storybook:
-  stage: storybook
+  stage: build-deployments
   dependencies:
     - build
   artifacts:
@@ -51,6 +51,15 @@ storybook:
     paths:
       - ./packages/storybook/storybook
   script: yarn build-storybook --output-dir storybook
+
+playroom:
+  stage: build-deployments
+  dependencies:
+    - build
+  artifacts:
+    paths:
+      - ./playroom
+  script: yarn build-playroom
 
 deploy-storybook:
   stage: deploy
@@ -89,15 +98,12 @@ remove-storybook:
 
 pages:
   stage: pages
-  cache:
-    key: "monorail-storybook"
-    paths:
-      - public
   artifacts:
     paths:
       - public
   dependencies:
     - storybook
+    - playroom
   script:
     - |
       git config --global user.email "<>"
@@ -109,6 +115,7 @@ pages:
       rm -rf public/${CI_COMMIT_REF_SLUG}
       mkdir -p "public/${CI_COMMIT_REF_SLUG}"
       mv ./packages/storybook/storybook "public/${CI_COMMIT_REF_SLUG}"
+      mv ./playroom "public/${CI_COMMIT_REF_SLUG}"
       git reset --soft HEAD^
       git add .
       git commit -m "[CI] Publish Pages"
