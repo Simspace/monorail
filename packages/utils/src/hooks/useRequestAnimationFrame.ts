@@ -1,5 +1,12 @@
 import React from 'react'
 
+/**
+ * A react hook that will track scheduled animation frame callbacks and
+ * release all non-executed callbacks when unmounted.
+ *
+ * @returns A function that will schedule a callback to be executed
+ * on the next animation frame
+ */
 export function useRequestAnimationFrame(): (
   callback: (time: number) => void,
 ) => void {
