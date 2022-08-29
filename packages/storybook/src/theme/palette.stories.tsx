@@ -21,7 +21,7 @@ const SingleColorBox = ({
   label: string
   minWidth: string
 }) => {
-  return (
+  return color ? (
     <Box sx={{ marginBottom: 2 }}>
       <Typography sx={{ minWidth, marginRight: 2 }}>{label}</Typography>
       <Box
@@ -33,6 +33,8 @@ const SingleColorBox = ({
       />
       <Box sx={{ fontSize: '60%', fontWeight: 100 }}>{color || '???'}</Box>
     </Box>
+  ) : (
+    <></>
   )
 }
 
@@ -50,71 +52,76 @@ const PaletteColorBox = ({
         {label}
       </Box>
       <Stack direction="row" flexWrap="wrap" alignItems="flex-start">
-        <SingleColorBox
-          color={paletteColor.light}
-          label="Light"
-          minWidth={minWidth}
-        />
-        <SingleColorBox
-          color={paletteColor.main}
-          label="Main"
-          minWidth={minWidth}
-        />
-        <SingleColorBox
-          color={paletteColor.dark}
-          label="Dark"
-          minWidth={minWidth}
-        />
-        <SingleColorBox
-          color={paletteColor.contrastText}
-          label="Contrast Text"
-          minWidth={minWidth}
-        />
+        {paletteColor !== undefined && (
+          <>
+            <SingleColorBox
+              color={paletteColor.light}
+              label="Light"
+              minWidth={minWidth}
+            />
+            <SingleColorBox
+              color={paletteColor.main}
+              label="Main"
+              minWidth={minWidth}
+            />
+            <SingleColorBox
+              color={paletteColor.dark}
+              label="Dark"
+              minWidth={minWidth}
+            />
+            <SingleColorBox
+              color={paletteColor.contrastText}
+              label="Contrast Text"
+              minWidth={minWidth}
+            />
+          </>
+        )}
+
         {'shades' in paletteColor && (
           <>
             <SingleColorBox
               label="50"
-              color={paletteColor.shades[50]}
+              color={paletteColor.shades[50] ?? paletteColor[50]}
               minWidth={minWidth}
             />
             <SingleColorBox
               label="100"
-              color={paletteColor.shades[100]}
+              color={paletteColor.shades[100] ?? paletteColor[100]}
               minWidth={minWidth}
             />
             <SingleColorBox
               label="200"
-              color={paletteColor.shades[200]}
+              color={paletteColor.shades[200] ?? paletteColor[200]}
               minWidth={minWidth}
             />
             <SingleColorBox
               label="300"
-              color={paletteColor.shades[300]}
+              color={paletteColor.shades[300] ?? paletteColor[300]}
               minWidth={minWidth}
             />
             <SingleColorBox
               label="400"
-              color={paletteColor.shades[400]}
+              color={paletteColor.shades[400] ?? paletteColor[400]}
               minWidth={minWidth}
             />
             <SingleColorBox
               label="500"
-              color={paletteColor.shades[500]}
+              color={paletteColor.shades[500] ?? paletteColor[500]}
               minWidth={minWidth}
             />
             <SingleColorBox
               label="600"
-              color={paletteColor.shades[600]}
+              color={paletteColor.shades[600] ?? paletteColor[600]}
               minWidth={minWidth}
             />
             <SingleColorBox
               label="700"
-              color={paletteColor.shades[700]}
+              color={paletteColor.shades[700] ?? paletteColor[700]}
               minWidth={minWidth}
             />
             <SingleColorBox
               label="800"
-              color={paletteColor.shades[800]}
+              color={paletteColor.shades[800] ?? paletteColor[800]}
               minWidth={minWidth}
             />
           </>
@@ -274,61 +281,78 @@ export const Palette = () => {
         />
       </Box>
 
-      <Typography variant="h1" component="h2" gutterBottom>
-        Score
-      </Typography>
-      <Box sx={{ display: 'flex', flexFlow: 'column nowrap', mb: 10 }}>
-        <PaletteColorBox label="High" paletteColor={theme.palette.score.high} />
-        <PaletteColorBox
-          label="High Moderate"
-          paletteColor={theme.palette.score.highModerate}
-        />
-        <PaletteColorBox
-          label="Moderate"
-          paletteColor={theme.palette.score.moderate}
-        />
-        <PaletteColorBox
-          label="Low Moderate"
-          paletteColor={theme.palette.score.lowModerate}
-        />
-        <PaletteColorBox label="Low" paletteColor={theme.palette.score.low} />
-      </Box>
+      {'score' in theme.palette && (
+        <>
+          <Typography variant="h1" component="h2" gutterBottom>
+            Score
+          </Typography>
+          <Box sx={{ display: 'flex', flexFlow: 'column nowrap', mb: 10 }}>
+            <PaletteColorBox
+              label="High"
+              paletteColor={theme.palette.score.high}
+            />
+            <PaletteColorBox
+              label="High Moderate"
+              paletteColor={theme.palette.score.highModerate}
+            />
+            <PaletteColorBox
+              label="Moderate"
+              paletteColor={theme.palette.score.moderate}
+            />
+            <PaletteColorBox
+              label="Low Moderate"
+              paletteColor={theme.palette.score.lowModerate}
+            />
+            <PaletteColorBox
+              label="Low"
+              paletteColor={theme.palette.score.low}
+            />
+          </Box>
+        </>
+      )}
+      {'tiers' in theme.palette && (
+        <>
+          <Typography variant="h1" component="h2" gutterBottom>
+            Tiers
+          </Typography>
+          <Box sx={{ display: 'flex', flexFlow: 'column nowrap', mb: 10 }}>
+            <SingleColorBox
+              label="One"
+              color={theme.palette.tiers.one}
+              minWidth={'100%'}
+            />
+            <SingleColorBox
+              label="Two"
+              color={theme.palette.tiers.two}
+              minWidth={'100%'}
+            />
+            <SingleColorBox
+              label="Three"
+              color={theme.palette.tiers.three}
+              minWidth={'100%'}
+            />
+            <SingleColorBox
+              label="Four"
+              color={theme.palette.tiers.four}
+              minWidth={'100%'}
+            />
+          </Box>
+        </>
+      )}
 
-      <Typography variant="h1" component="h2" gutterBottom>
-        Tiers
-      </Typography>
-      <Box sx={{ display: 'flex', flexFlow: 'column nowrap', mb: 10 }}>
-        <SingleColorBox
-          label="One"
-          color={theme.palette.tiers.one}
-          minWidth={'100%'}
-        />
-        <SingleColorBox
-          label="Two"
-          color={theme.palette.tiers.two}
-          minWidth={'100%'}
-        />
-        <SingleColorBox
-          label="Three"
-          color={theme.palette.tiers.three}
-          minWidth={'100%'}
-        />
-        <SingleColorBox
-          label="Four"
-          color={theme.palette.tiers.four}
-          minWidth={'100%'}
-        />
-      </Box>
-
-      <Typography variant="h1" component="h2" gutterBottom>
-        Chart
-      </Typography>
-      <ColorShadesBox label="Grey" color={theme.palette.grey} />
-      <ColorShadesBox label="Blue" color={theme.palette.chart.blue} />
-      <ColorShadesBox label="Fuchsia" color={theme.palette.chart.fuchsia} />
-      <ColorShadesBox label="Orange" color={theme.palette.chart.orange} />
-      <ColorShadesBox label="Purple" color={theme.palette.chart.purple} />
-      <ColorShadesBox label="Teal" color={theme.palette.chart.teal} />
+      {'chart' in theme.palette && (
+        <>
+          <Typography variant="h1" component="h2" gutterBottom>
+            Chart
+          </Typography>
+          <ColorShadesBox label="Grey" color={theme.palette.grey} />
+          <ColorShadesBox label="Blue" color={theme.palette.chart.blue} />
+          <ColorShadesBox label="Fuchsia" color={theme.palette.chart.fuchsia} />
+          <ColorShadesBox label="Orange" color={theme.palette.chart.orange} />
+          <ColorShadesBox label="Purple" color={theme.palette.chart.purple} />
+          <ColorShadesBox label="Teal" color={theme.palette.chart.teal} />
+        </>
+      )}
     </>
   )
 }
