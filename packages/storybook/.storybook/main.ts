@@ -1,4 +1,5 @@
 import { PropItem } from 'react-docgen-typescript'
+import path from 'path'
 
 const ARIA_PROP_REGEX = /aria.*/
 const ON_PROP_REGEX = /on.*/
@@ -45,8 +46,31 @@ export default {
         ...config.resolve,
         symlinks: true,
         extensionAlias: {
-          '.js': ['.ts', '.tsx', '.js']
-        }
+          '.js': ['.ts', '.tsx', '.js'],
+        },
+        alias: {
+          '@monorail/components$': path.resolve(
+            __dirname,
+            '../../components/src/index.ts',
+          ),
+          '@monorail/components': path.resolve(
+            __dirname,
+            '../../components/src',
+          ),
+          '@monorail/themes$': path.resolve(
+            __dirname,
+            '../../themes/src/index.ts',
+          ),
+          '@monorail/themes': path.resolve(__dirname, '../../themes/src'),
+          '@monorail/utils$': path.resolve(
+            __dirname,
+            '../../utils/src/index.ts',
+          ),
+          '@monorail/utils': path.resolve(__dirname, '../../utils/src'),
+        },
+        fallback: {
+          assert: require.resolve('assert'),
+        },
       },
     }
   },

@@ -13,7 +13,7 @@
     "eslint": "NODE_OPTIONS=\"--max-old-space-size=8192\" yarn org:eslint \"src/**/*.{js,ts,tsx}\"",
     "prettier:check": "prettier './src/**/*{.js,.ts,.tsx}' --list-different",
     "prettier:write": "prettier './src/**/*{.js,.ts,.tsx}' --write",
-    "storybook": "yarn org:concurrently \"TS_NODE_PROJECT=./.storybook/tsconfig.json start-storybook -p 6006 -s assets\" \"yarn org:build --watch\"",
+    "storybook": "TS_NODE_PROJECT=./.storybook/tsconfig.json start-storybook --debug-webpack -p 6006 -s assets",
     "test": "yarn org:jest"
   },
   "devDependencies": {
