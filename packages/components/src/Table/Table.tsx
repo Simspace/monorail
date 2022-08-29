@@ -4,7 +4,8 @@ import { Table as MuiTable } from '@mui/material'
  *
  * Demos:
  *
- * - [Tables](https://mui.com/material-ui/react-table/)
+ * - [Table](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/data-display-table--default)
+ * - [Tables (MUI)](https://mui.com/material-ui/react-table/)
  *
  * API:
  *

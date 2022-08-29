@@ -4,6 +4,7 @@ import { ImageListItemBar as MuiImageListItemBar } from '@mui/material'
  *
  * Demos:
  *
+ * - [Image List Item Bar](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/layout-imagelist-imagelistitembar--default)
  * - [Image list](https://mui.com/material-ui/react-image-list/)
  *
  * API:

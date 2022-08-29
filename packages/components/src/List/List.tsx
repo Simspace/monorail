@@ -4,8 +4,9 @@ import { List as MuiList } from '@mui/material'
  *
  * Demos:
  *
- * - [Lists](https://mui.com/material-ui/react-list/)
- * - [Transfer list](https://mui.com/material-ui/react-transfer-list/)
+ * - [List](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/data-display-list--default)
+ * - [Lists (MUI)](https://mui.com/material-ui/react-list/)
+ * - [Transfer list (MUI)](https://mui.com/material-ui/react-transfer-list/)
  *
  * API:
  *

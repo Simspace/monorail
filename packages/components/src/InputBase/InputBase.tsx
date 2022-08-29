@@ -7,7 +7,8 @@ import { InputBase as MuiInputBase } from '@mui/material'
  *
  * Demos:
  *
- * - [Text fields](https://mui.com/material-ui/react-text-field/)
+ * - [Input Base](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/inputs-input-inputbase--default)
+ * - [Text fields (MUI)](https://mui.com/material-ui/react-text-field/)
  *
  * API:
  *

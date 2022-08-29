@@ -4,6 +4,7 @@ import { CalendarPickerSkeleton as MuiCalendarPickerSkeleton } from '@mui/x-date
  *
  * Demos:
  *
+ * - [Calendar Picker Skeleton](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/inputs-date-and-time-date-calendarpicker-calendarpickerskeleton--default)
  * - [Date Picker](https://mui.com/x/react-date-pickers/date-picker/)
  *
  * API:

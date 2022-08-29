@@ -4,7 +4,8 @@ import { BottomNavigation as MuiBottomNavigation } from '@mui/material'
  *
  * Demos:
  *
- * - [Bottom navigation](https://mui.com/material-ui/react-bottom-navigation/)
+ * - [Bottom navigation](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/story/navigation-bottomnavigation--default)
+ * - [Bottom navigation (MUI)](https://mui.com/material-ui/react-bottom-navigation/)
  *
  * API:
  *

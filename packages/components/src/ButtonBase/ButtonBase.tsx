@@ -7,7 +7,8 @@ import { ButtonBase as MuiButtonBase } from '@mui/material'
  *
  * Demos:
  *
- * - [Buttons](https://mui.com/material-ui/react-button/)
+ * - [ButtonBase](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/inputs-buttonbase--default)
+ * - [Buttons (MUI)](https://mui.com/material-ui/react-button/)
  *
  * API:
  *

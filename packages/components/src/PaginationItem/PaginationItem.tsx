@@ -10,7 +10,8 @@ declare module '@mui/material/PaginationItem' {
  *
  * Demos:
  *
- * - [Pagination](https://mui.com/material-ui/react-pagination/)
+ * - [Pagination Item](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/navigation-paginationitem--default)
+ * - [Pagination (MUI)](https://mui.com/material-ui/react-pagination/)
  *
  * API:
  *

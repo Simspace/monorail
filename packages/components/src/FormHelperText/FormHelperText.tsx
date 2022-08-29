@@ -4,7 +4,8 @@ import { FormHelperText as MuiFormHelperText } from '@mui/material'
  *
  * Demos:
  *
- * - [Text fields](https://mui.com/material-ui/react-text-field/)
+ * - [Form Helper Text](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/inputs-formhelpertext--default)
+ * - [Text fields (MUI)](https://mui.com/material-ui/react-text-field/)
  *
  * API:
  *

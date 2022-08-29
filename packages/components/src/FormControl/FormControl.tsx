@@ -26,10 +26,11 @@ import { FormControl as MuiFormControl } from '@mui/material'
  *
  * Demos:
  *
- * - [Checkboxes](https://mui.com/material-ui/react-checkbox/)
- * - [Radio buttons](https://mui.com/material-ui/react-radio-button/)
- * - [Switches](https://mui.com/material-ui/react-switch/)
- * - [Text fields](https://mui.com/material-ui/react-text-field/)
+ * - [Form Control](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/inputs-formcontrol--default)
+ * - [Checkboxes (MUI)](https://mui.com/material-ui/react-checkbox/)
+ * - [Radio buttons (MUI)](https://mui.com/material-ui/react-radio-button/)
+ * - [Switches (MUI)](https://mui.com/material-ui/react-switch/)
+ * - [Text fields (MUI)](https://mui.com/material-ui/react-text-field/)
  *
  * API:
  *

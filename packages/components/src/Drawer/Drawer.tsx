@@ -6,7 +6,8 @@ import { Drawer as MuiDrawer } from '@mui/material'
  *
  * Demos:
  *
- * - [Drawers](https://mui.com/material-ui/react-drawer/)
+ * - [Drawer](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/navigation-drawer--default)
+ * - [Drawers (MUI)](https://mui.com/material-ui/react-drawer/)
  *
  * API:
  *

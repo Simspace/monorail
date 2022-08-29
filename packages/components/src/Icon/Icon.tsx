@@ -4,8 +4,9 @@ import { Icon as MuiIcon } from '@mui/material'
  *
  * Demos:
  *
- * - [Icons](https://mui.com/material-ui/icons/)
- * - [Material icons](https://mui.com/material-ui/material-icons/)
+ * - [Icon](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/data-display-icon--default)
+ * - [Icons (MUI)](https://mui.com/material-ui/icons/)
+ * - [Material icons (MUI)](https://mui.com/material-ui/material-icons/)
  *
  * API:
  *

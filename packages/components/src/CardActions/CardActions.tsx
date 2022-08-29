@@ -4,7 +4,8 @@ import { CardActions as MuiCardActions } from '@mui/material'
  *
  * Demos:
  *
- * - [Cards](https://mui.com/material-ui/react-card/)
+ * - [Card](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/surfaces-card--default)
+ * - [Cards (MUI)](https://mui.com/material-ui/react-card/)
  *
  * API:
  *

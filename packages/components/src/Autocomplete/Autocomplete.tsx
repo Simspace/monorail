@@ -4,7 +4,8 @@ import { Autocomplete as MuiAutocomplete } from '@mui/material'
  *
  * Demos:
  *
- * - [Autocomplete](https://mui.com/material-ui/react-autocomplete/)
+ * - [Autocomplete](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/inputs-autocomplete--default)
+ * - [Autocomplete (MUI)](https://mui.com/material-ui/react-autocomplete/)
  *
  * API:
  *

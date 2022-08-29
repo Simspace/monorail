@@ -4,8 +4,9 @@ import { Badge as MuiBadge } from '@mui/material'
  *
  * Demos:
  *
- * - [Avatars](https://mui.com/material-ui/react-avatar/)
- * - [Badges](https://mui.com/material-ui/react-badge/)
+ * - [Badge](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/data-display-badge--default)
+ * - [Avatars (MUI)](https://mui.com/material-ui/react-avatar/)
+ * - [Badges (MUI)](https://mui.com/material-ui/react-badge/)
  *
  * API:
  *

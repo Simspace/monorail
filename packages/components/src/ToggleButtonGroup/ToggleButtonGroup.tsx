@@ -4,7 +4,8 @@ import { ToggleButtonGroup as MuiToggleButtonGroup } from '@mui/material'
  *
  * Demos:
  *
- * - [Toggle button](https://mui.com/material-ui/react-toggle-button/)
+ * - [Toggle button](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/inputs-togglebutton--default)
+ * - [Toggle button (MUI)](https://mui.com/material-ui/react-toggle-button/)
  *
  * API:
  *

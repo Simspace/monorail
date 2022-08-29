@@ -4,7 +4,8 @@ import { FilledInput as MuiFilledInput } from '@mui/material'
  *
  * Demos:
  *
- * - [Text fields](https://mui.com/material-ui/react-text-field/)
+ * - [Filled Input](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/inputs-input-filledinput--default)
+ * - [Text fields (MUI)](https://mui.com/material-ui/react-text-field/)
  *
  * API:
  *

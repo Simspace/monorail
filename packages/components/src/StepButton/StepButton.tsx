@@ -4,7 +4,8 @@ import { StepButton as MuiStepButton } from '@mui/material'
  *
  * Demos:
  *
- * - [Steppers](https://mui.com/material-ui/react-stepper/)
+ * - [Step Button](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/navigation-stepper-stepbutton--default)
+ * - [Steppers (MUI)](https://mui.com/material-ui/react-stepper/)
  *
  * API:
  *

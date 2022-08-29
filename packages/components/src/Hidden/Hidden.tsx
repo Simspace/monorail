@@ -5,7 +5,8 @@ import { Hidden as MuiHidden } from '@mui/material'
  *
  * Demos:
  *
- * - [Hidden](https://mui.com/material-ui/react-hidden/)
+ * - [Hidden](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/utils-hidden--default)
+ * - [Hidden (MUI)](https://mui.com/material-ui/react-hidden/)
  *
  * API:
  *

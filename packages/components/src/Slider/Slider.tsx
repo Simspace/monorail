@@ -4,7 +4,8 @@ import { Slider as MuiSlider } from '@mui/material'
  *
  * Demos:
  *
- * - [Slider](https://mui.com/material-ui/react-slider/)
+ * - [Slider](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/inputs-slider--default)
+ * - [Slider (MUI)](https://mui.com/material-ui/react-slider/)
  *
  * API:
  *

@@ -4,8 +4,9 @@ import { Typography as MuiTypography } from '@mui/material'
  *
  * Demos:
  *
- * - [Breadcrumbs](https://mui.com/material-ui/react-breadcrumbs/)
- * - [Typography](https://mui.com/material-ui/react-typography/)
+ * - [Typography](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/data-display-typography--default)
+ * - [Breadcrumbs (MUI)](https://mui.com/material-ui/react-breadcrumbs/)
+ * - [Typography (MUI)](https://mui.com/material-ui/react-typography/)
  *
  * API:
  *

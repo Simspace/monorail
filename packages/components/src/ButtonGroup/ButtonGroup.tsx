@@ -4,7 +4,8 @@ import { ButtonGroup as MuiButtonGroup } from '@mui/material'
  *
  * Demos:
  *
- * - [Button group](https://mui.com/material-ui/react-button-group/)
+ * - [Button group](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/inputs-buttongroup--default)
+ * - [Button group (MUI)](https://mui.com/material-ui/react-button-group/)
  *
  * API:
  *

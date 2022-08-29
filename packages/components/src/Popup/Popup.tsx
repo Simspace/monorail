@@ -90,6 +90,13 @@ const PopupPopper = styled(MuiPopper, {
   }),
 }))
 
+/**
+ * A precomposed Popper + Paper + Transition + an optional arrow
+ *
+ * Demos:
+ *
+ * - [Popup](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/utils-popup--default)
+ */
 export const Popup = React.forwardRef(function Popup(
   inProps,
   ref: React.ForwardedRef<HTMLDivElement>,

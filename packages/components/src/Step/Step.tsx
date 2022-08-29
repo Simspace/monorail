@@ -4,7 +4,8 @@ import { Step as MuiStep } from '@mui/material'
  *
  * Demos:
  *
- * - [Steppers](https://mui.com/material-ui/react-stepper/)
+ * - [Step](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/navigation-stepper-step--default)
+ * - [Steppers (MUI)](https://mui.com/material-ui/react-stepper/)
  *
  * API:
  *

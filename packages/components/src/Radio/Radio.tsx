@@ -4,7 +4,8 @@ import { Radio as MuiRadio } from '@mui/material'
  *
  * Demos:
  *
- * - [Radio buttons](https://mui.com/material-ui/react-radio-button/)
+ * - [Radio](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/inputs-radio--default)
+ * - [Radio buttons (MUI)](https://mui.com/material-ui/react-radio-button/)
  *
  * API:
  *

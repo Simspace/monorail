@@ -8,7 +8,8 @@ import { MenuList as MuiMenuList } from '@mui/material'
  *
  * Demos:
  *
- * - [Menus](https://mui.com/material-ui/react-menu/)
+ * - [Menu List](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/navigation-menu-menulist--default)
+ * - [Menus (MUI)](https://mui.com/material-ui/react-menu/)
  *
  * API:
  *

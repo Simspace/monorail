@@ -4,7 +4,8 @@ import { Toolbar as MuiToolbar } from '@mui/material'
  *
  * Demos:
  *
- * - [App bar](https://mui.com/material-ui/react-app-bar/)
+ * - [Toolbar](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/inputs-toolbar--default)
+ * - [App bar (MUI)](https://mui.com/material-ui/react-app-bar/)
  *
  * API:
  *

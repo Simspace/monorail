@@ -5,8 +5,9 @@ import { TimePicker as MuiTimePicker } from '@mui/x-date-pickers'
  *
  * Demos:
  *
- * - [Pickers](https://mui.com/x/react-date-pickers/)
- * - [Time Picker](https://mui.com/x/react-date-pickers/time-picker/)
+ * - [Time Picker](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/inputs-date-and-time-time-timepicker--default)
+ * - [Pickers (MUI)](https://mui.com/x/react-date-pickers/)
+ * - [Time Picker (MUI)](https://mui.com/x/react-date-pickers/time-picker/)
  *
  * API:
  *

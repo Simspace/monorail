@@ -274,6 +274,9 @@ type DropTargetMonitor = {
  * It has a min height and width to accommodate content without shifting in different states,
  * but otherwise, will grow to fill the container it is put in.
  *
+ * Demos:
+ *
+ * - [FileUpload](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/inputs-fileupload--default)
  */
 export const FileUpload: React.VFC<FileUploadProps> = ({
   required = false,

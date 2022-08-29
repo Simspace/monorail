@@ -4,7 +4,8 @@ import { ImageList as MuiImageList } from '@mui/material'
  *
  * Demos:
  *
- * - [Image list](https://mui.com/material-ui/react-image-list/)
+ * - [Image List](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/layout-imagelist--default)
+ * - [Image list (MUI)](https://mui.com/material-ui/react-image-list/)
  *
  * API:
  *

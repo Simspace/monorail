@@ -4,8 +4,9 @@ import { Switch as MuiSwitch } from '@mui/material'
  *
  * Demos:
  *
- * - [Switches](https://mui.com/material-ui/react-switch/)
- * - [Transfer list](https://mui.com/material-ui/react-transfer-list/)
+ * - [Switch](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/inputs-switch--default)
+ * - [Switches (MUI)](https://mui.com/material-ui/react-switch/)
+ * - [Transfer list (MUI)](https://mui.com/material-ui/react-transfer-list/)
  *
  * API:
  *

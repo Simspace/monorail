@@ -4,8 +4,9 @@ import { Link as MuiLink } from '@mui/material'
  *
  * Demos:
  *
- * - [Breadcrumbs](https://mui.com/material-ui/react-breadcrumbs/)
- * - [Links](https://mui.com/material-ui/react-link/)
+ * - [Link](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/navigation-link--default)
+ * - [Breadcrumbs (MUI)](https://mui.com/material-ui/react-breadcrumbs/)
+ * - [Links (MUI)](https://mui.com/material-ui/react-link/)
  *
  * API:
  *

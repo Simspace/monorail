@@ -6,7 +6,8 @@ import { Fade as MuiFade } from '@mui/material'
  *
  * Demos:
  *
- * - [Transitions](https://mui.com/material-ui/transitions/)
+ * - [Fade](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/utils-transitions-fade--default)
+ * - [Transitions (MUI)](https://mui.com/material-ui/transitions/)
  *
  * API:
  *

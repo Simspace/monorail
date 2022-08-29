@@ -4,8 +4,9 @@ import { Popover as MuiPopover } from '@mui/material'
  *
  * Demos:
  *
- * - [Menus](https://mui.com/material-ui/react-menu/)
- * - [Popover](https://mui.com/material-ui/react-popover/)
+ * - [Popover](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/utils-popover--default)
+ * - [Menus (MUI)](https://mui.com/material-ui/react-menu/)
+ * - [Popover (MUI)](https://mui.com/material-ui/react-popover/)
  *
  * API:
  *

@@ -4,7 +4,8 @@ import { Snackbar as MuiSnackbar } from '@mui/material'
  *
  * Demos:
  *
- * - [Snackbars](https://mui.com/material-ui/react-snackbar/)
+ * - [Snackbar](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/feedback-snackbar--default)
+ * - [Snackbars (MUI)](https://mui.com/material-ui/react-snackbar/)
  *
  * API:
  *

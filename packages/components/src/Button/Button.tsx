@@ -5,8 +5,9 @@ import { Button as MuiButton } from '@mui/material'
  *
  * Demos:
  *
- * - [Button group](https://mui.com/material-ui/react-button-group/)
- * - [Buttons](https://mui.com/material-ui/react-button/)
+ * - [Button](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/inputs-button--default)
+ * - [Button group (MUI)](https://mui.com/material-ui/react-button-group/)
+ * - [Buttons (MUI)](https://mui.com/material-ui/react-button/)
  *
  * API:
  *

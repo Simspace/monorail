@@ -4,7 +4,8 @@ import { Tooltip as MuiTooltip } from '@mui/material'
  *
  * Demos:
  *
- * - [Tooltips](https://mui.com/material-ui/react-tooltip/)
+ * - [Tooltip](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/feedback-tooltip--default)
+ * - [Tooltips (MUI)](https://mui.com/material-ui/react-tooltip/)
  *
  * API:
  *

@@ -4,7 +4,8 @@ import { TimelineItem as MuiTimelineItem } from '@mui/lab'
  *
  * Demos:
  *
- * - [Timeline](https://mui.com/material-ui/react-timeline/)
+ * - [Timeline](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/data-display-timeline--default)
+ * - [Timeline (MUI)](https://mui.com/material-ui/react-timeline/)
  *
  * API:
  *

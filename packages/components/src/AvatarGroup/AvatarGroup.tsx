@@ -4,7 +4,8 @@ import { AvatarGroup as MuiAvatarGroup } from '@mui/material'
  *
  * Demos:
  *
- * - [Avatars](https://mui.com/material-ui/react-avatar/)
+ * - [AvatarGroup](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/data-display-avatargroup--default)
+ * - [Avatars (MUI)](https://mui.com/material-ui/react-avatar/)
  *
  * API:
  *

@@ -6,7 +6,8 @@ import { ClickAwayListener as MuiClickAwayListener } from '@mui/material'
  *
  * Demos:
  *
- * - [Click away listener](https://mui.com/base/react-click-away-listener/)
+ * - [Click away listener](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/utils-clickawaylistener--default)
+ * - [Click away listener (MUI)](https://mui.com/base/react-click-away-listener/)
  *
  * API:
  *

@@ -4,7 +4,8 @@ import { Skeleton as MuiSkeleton } from '@mui/material'
  *
  * Demos:
  *
- * - [Skeleton](https://mui.com/material-ui/react-skeleton/)
+ * - [Skeleton](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/feedback-skeleton--default)
+ * - [Skeleton (MUI)](https://mui.com/material-ui/react-skeleton/)
  *
  * API:
  *

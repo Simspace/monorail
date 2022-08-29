@@ -7,6 +7,7 @@ import { Zoom as MuiZoom } from '@mui/material'
  *
  * Demos:
  *
+ * - [Zoom](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/utils-transitions-zoom--default)
  * - [Transitions](https://mui.com/material-ui/transitions/)
  *
  * API:

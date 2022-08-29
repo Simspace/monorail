@@ -4,7 +4,8 @@ import { Fab as MuiFab } from '@mui/material'
  *
  * Demos:
  *
- * - [Floating action button](https://mui.com/material-ui/react-floating-action-button/)
+ * - [Floating action button](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/inputs-fab--default)
+ * - [Floating action button (MUI)](https://mui.com/material-ui/react-floating-action-button/)
  *
  * API:
  *

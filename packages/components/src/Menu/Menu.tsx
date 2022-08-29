@@ -4,8 +4,9 @@ import { Menu as MuiMenu } from '@mui/material'
  *
  * Demos:
  *
- * - [App bar](https://mui.com/material-ui/react-app-bar/)
- * - [Menus](https://mui.com/material-ui/react-menu/)
+ * - [Menu](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/navigation-menu--default)
+ * - [App bar (MUI)](https://mui.com/material-ui/react-app-bar/)
+ * - [Menus (MUI)](https://mui.com/material-ui/react-menu/)
  *
  * API:
  *

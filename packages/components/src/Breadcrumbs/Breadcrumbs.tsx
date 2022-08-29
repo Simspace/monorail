@@ -4,7 +4,8 @@ import { Breadcrumbs as MuiBreadcrumbs } from '@mui/material'
  *
  * Demos:
  *
- * - [Breadcrumbs](https://mui.com/material-ui/react-breadcrumbs/)
+ * - [Breadcrumbs](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/navigation-breadcrumbs--default)
+ * - [Breadcrumbs (MUI)](https://mui.com/material-ui/react-breadcrumbs/)
  *
  * API:
  *

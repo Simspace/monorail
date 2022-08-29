@@ -4,8 +4,9 @@ import { Paper as MuiPaper } from '@mui/material'
  *
  * Demos:
  *
- * - [Cards](https://mui.com/material-ui/react-card/)
- * - [Paper](https://mui.com/material-ui/react-paper/)
+ * - [Paper](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/surfaces-paper--default)
+ * - [Cards (MUI)](https://mui.com/material-ui/react-card/)
+ * - [Paper (MUI)](https://mui.com/material-ui/react-paper/)
  *
  * API:
  *

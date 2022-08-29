@@ -4,7 +4,8 @@ import { AppBar as MuiAppBar } from '@mui/material'
  *
  * Demos:
  *
- * - [App bar](https://mui.com/material-ui/react-app-bar/)
+ * - [App bar](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/surfaces-appbar--default)
+ * - [App bar (MUI)](https://mui.com/material-ui/react-app-bar/)
  *
  * API:
  *

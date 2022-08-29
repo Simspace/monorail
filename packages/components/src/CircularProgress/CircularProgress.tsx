@@ -22,6 +22,7 @@ export type CircularProgressProps = Omit<MuiCircularProgressProps, 'size'> & {
  *
  * Demos:
  *
+ * - [Circular Progress](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/feedback-circularprogress--default)
  * - [Progress](https://mui.com/material-ui/react-progress/)
  *
  * API:

@@ -4,7 +4,8 @@ import { Tabs as MuiTabs } from '@mui/material'
  *
  * Demos:
  *
- * - [Tabs](https://mui.com/material-ui/react-tabs/)
+ * - [Tabs](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/navigation-tabs--default)
+ * - [Tabs (MUI)](https://mui.com/material-ui/react-tabs/)
  *
  * API:
  *

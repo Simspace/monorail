@@ -7,9 +7,10 @@ import { Collapse as MuiCollapse } from '@mui/material'
  *
  * Demos:
  *
- * - [Cards](https://mui.com/material-ui/react-card/)
- * - [Lists](https://mui.com/material-ui/react-list/)
- * - [Transitions](https://mui.com/material-ui/transitions/)
+ * - [Collapse](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/utils-transitions-collapse--default)
+ * - [Cards (MUI)](https://mui.com/material-ui/react-card/)
+ * - [Lists (MUI)](https://mui.com/material-ui/react-list/)
+ * - [Transitions (MUI)](https://mui.com/material-ui/transitions/)
  *
  * API:
  *

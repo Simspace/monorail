@@ -6,8 +6,9 @@ import { Slide as MuiSlide } from '@mui/material'
  *
  * Demos:
  *
- * - [Dialogs](https://mui.com/material-ui/react-dialog/)
- * - [Transitions](https://mui.com/material-ui/transitions/)
+ * - [Slide](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/utils-transitions-slide--default)
+ * - [Dialogs (MUI)](https://mui.com/material-ui/react-dialog/)
+ * - [Transitions (MUI)](https://mui.com/material-ui/transitions/)
  *
  * API:
  *

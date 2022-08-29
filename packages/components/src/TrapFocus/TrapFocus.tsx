@@ -5,7 +5,8 @@ import MuiTrapFocus from '@mui/material/Unstable_TrapFocus'
  *
  * Demos:
  *
- * - [Trap focus](https://mui.com/base/react-trap-focus/)
+ * - [Trap focus](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/utils-trapfocus--default)
+ * - [Trap focus (MUI)](https://mui.com/base/react-trap-focus/)
  *
  * API:
  *

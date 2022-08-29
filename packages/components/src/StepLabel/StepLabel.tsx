@@ -4,7 +4,8 @@ import { StepLabel as MuiStepLabel } from '@mui/material'
  *
  * Demos:
  *
- * - [Steppers](https://mui.com/material-ui/react-stepper/)
+ * - [Step Label](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/navigation-stepper-steplabel--default)
+ * - [Steppers (MUI)](https://mui.com/material-ui/react-stepper/)
  *
  * API:
  *
