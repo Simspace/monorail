@@ -9,7 +9,7 @@
     "jsx": "react",
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "sourceMap": true,
+    "sourceMap": false,
     "stripInternal": true,
     "skipLibCheck": true,
     "baseUrl": ".",

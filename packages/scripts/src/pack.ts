@@ -5,8 +5,6 @@ import { Configuration, Project, structUtils } from "@yarnpkg/core";
 import { ppath } from "@yarnpkg/fslib";
 import child_process from "child_process";
 import fs from "fs/promises";
-import glob from "glob";
-import { posix } from "path";
 import { promisify } from "util";
 
 const exec = promisify(child_process.exec);
@@ -99,47 +97,11 @@ async function writePackageJson(project: Project, workspace: Workspace) {
   await fs.writeFile("./dist/package.json", content);
 }
 
-function rewriteSourceMap(content: string, path: string) {
-  const dir = posix.dirname(path);
-  return JSON.stringify(
-    Object.entries(JSON.parse(content))
-      .map(([k, v]) =>
-        k === "sources"
-          ? ([
-              k,
-              (v as Array<string>).map((source) => {
-                if (path.match(/dist\/_(.+)\//)) {
-                  source = source.replace(/(.*)\.\.\/src(.*)/gm, "$1_src$2");
-                } else {
-                  source = source.replace(/(.*)\.\.\/\.\.\/src(.*)/gm, "$1_src$2");
-                }
-                source = posix.relative(dir, posix.join(dir, source));
-                return source.startsWith(".") ? source : "./" + source;
-              }),
-            ] as const)
-          : ([k, v] as const),
-      )
-      .reduce((acc, [k, v]) => ({ ...acc, [k]: v }), {}),
-  );
-}
-
 function exists(path: string) {
   return fs.access(path).then(
     () => true,
     () => false,
   );
-}
-
-function getGlob(g: string): Promise<string[]> {
-  return new Promise((resolve, reject) => {
-    glob(g, (err, res) => {
-      if (err) {
-        reject(err);
-      } else {
-        resolve(res);
-      }
-    });
-  });
 }
 
 const cwd = ppath.cwd();
@@ -154,10 +116,7 @@ if (await exists("dist")) {
   await exec("rm -rf dist");
 }
 await fs.mkdir("dist");
-if (await exists("./src")) {
-  await fs.mkdir("./dist/_src");
-  await exec("cp -r ./src/* ./dist/_src");
-}
+
 if (await exists("./build/esm")) {
   await fs.mkdir("./dist/_esm");
   await exec("cp -r ./build/esm/* ./dist/_esm");
@@ -175,15 +134,5 @@ if (await exists("./build/dts")) {
 }
 
 await writePackageJson(project, workspace);
-
-const sourceMapPaths = await getGlob("dist/**/*.map");
-
-await Promise.all(
-  sourceMapPaths.map(async (path) => {
-    let content = await fs.readFile(path, { encoding: "utf-8" });
-    content     = rewriteSourceMap(content, path);
-    await fs.writeFile(path, content);
-  }),
-);
 
 console.log("Done!");

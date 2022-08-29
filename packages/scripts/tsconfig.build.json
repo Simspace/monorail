@@ -5,10 +5,7 @@
     "outDir": "./build/esm",
     "declaration": true,
     "declarationDir": "./build/dts",
-    "sourceMap": true,
     "tsBuildInfoFile": "build/tsbuildinfo/esm.tsbuildinfo"
   },
-  "include": [
-    "./src/**/*"
-  ]
+  "include": ["./src/**/*"]
 }
