@@ -21,6 +21,18 @@ import type {
 } from './internal.js'
 import { dataGridClasses } from './internal.js'
 
+/**
+ * Displays complex data in a scannable structure composed of columns, rows, headers, and cells.
+ *
+ * Demos:
+ *
+ * - [DataGrid](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook//?path=/docs/data-grid-datagrid--default)
+ * - [DataGrid (MUI)](https://mui.com/x/react-data-grid/demo/)
+ *
+ * API:
+ *
+ * - [DataGrid API](https://mui.com/x/api/data-grid/)
+ */
 export const DataGrid: <R extends GridValidRowModel>(
   props: DataGridProps<R> & React.RefAttributes<HTMLDivElement>,
 ) => React.ReactElement | null = React.forwardRef(function DataGrid(

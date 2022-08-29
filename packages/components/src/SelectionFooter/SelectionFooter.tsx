@@ -19,6 +19,7 @@ const SelectionFooterRoot = styled('div', {
 })<SelectionFooterRootProps>(({ ownerState }) =>
   sx(theme => ({
     minHeight: theme.spacing(9.5),
+    // TODO: use a design token
     backgroundColor: theme.palette.default.shades[50],
     padding: theme.spacing(0, 6),
     display: 'flex',
@@ -31,6 +32,13 @@ const SelectionFooterRoot = styled('div', {
   })),
 )
 
+/**
+ * A precomposed footer that contains information about a selection
+ *
+ * Demos:
+ *
+ * - [SelectionDialog](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/feedback-dialog--selection-dialog)
+ */
 export const SelectionFooter = React.forwardRef((inProps, ref) => {
   const props = useThemeProps({
     name: 'MonorailSelectionFooter',

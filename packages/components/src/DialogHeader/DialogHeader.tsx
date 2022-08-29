@@ -41,6 +41,14 @@ const DialogIconContainer = styled('div', {
   })),
 )
 
+/**
+ * A precomposed header for a `Dialog` that contains a title, close button, and optional icon to the left
+ * of the title
+ *
+ * Demos:
+ *
+ * - [DialogHeader](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/feedback-dialog-dialogheader--default)
+ */
 export const DialogHeader: (props: DialogHeaderProps) => JSX.Element =
   React.forwardRef(function DialogHeader(
     inProps: DialogHeaderProps,

@@ -132,6 +132,15 @@ const ResizeHandle = styled('div', {
   }
 })
 
+/**
+ * A precomposed container that can be resized using the mouse.
+ *
+ * @note Though it is techincally a `Drawer`, it can be made permanent to act as a resizable region of the page.
+ *
+ * Demos:
+ *
+ * - [ResizableDrawer](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/story/navigation-drawer--resizable-drawer)
+ */
 export const ResizableDrawer = React.forwardRef(
   (props, ref: React.ForwardedRef<HTMLDivElement>) => {
     const {

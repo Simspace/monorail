@@ -16,6 +16,14 @@ export type CarouselProps = Props & { GliderProps?: Partial<GliderProps> } & {
   IconButtonProps?: Partial<IconButtonProps>
 }
 
+/**
+ * A container for multiple pieces of uniform content - often `Card`s - arranged horizontally.
+ * This content can be dragged or cycled through like a slideshow.
+ *
+ * Demos:
+ *
+ * - [Carousel](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/data-display-carousel--default)
+ */
 export const Carousel: FC<CarouselProps> = props => {
   const { children, itemWidth } = props
   const uid = useId()!

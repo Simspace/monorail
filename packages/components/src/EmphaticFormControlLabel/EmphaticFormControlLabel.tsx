@@ -131,6 +131,16 @@ interface EmphaticFormControlLabelPropsInternal
   }
 }
 
+/**
+ * A precomposed label for a form control that is outlined and has a background color
+ * that depends on hover, checked, error, and success state. Can be used to create
+ * more emphatic `Checkbox` and `Radio` components when the choice/selection action
+ * is the primary action on the page.
+ *
+ * Demos:
+ *
+ * - [EmphaticFormControlLabel](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/inputs-emphaticformcontrollabel--default)
+ */
 export const EmphaticFormControlLabel = React.forwardRef(
   function EmphaticFormControlLabel(
     inProps: EmphaticFormControlLabelPropsInternal,
