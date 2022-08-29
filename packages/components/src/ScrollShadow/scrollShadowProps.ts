@@ -5,6 +5,13 @@ import type { StandardElementProps } from '@monorail/types'
 import type { ScrollShadowClasses } from './scrollShadowClasses.js'
 
 export interface ScrollShadowProps extends StandardElementProps<'div'> {
+  /**
+   * The content of the component.
+   */
+  children: React.ReactNode
+  /**
+   * Override or extend the styles applied to the component.
+   */
   classes?: Partial<ScrollShadowClasses>
   /**
    * Should a shadow at the top of the container be displayed?
@@ -18,6 +25,8 @@ export interface ScrollShadowProps extends StandardElementProps<'div'> {
    * @default false
    */
   bottom?: boolean
-  children: React.ReactNode
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
   sx?: SxProps<Theme>
 }

@@ -81,6 +81,14 @@ const Shadow = styled('div', {
 
 const MAX_SCROLL_AMOUNT = 128
 
+/**
+ * A container for scrolling content that will display a shadow at the top and/or bottom
+ * of the container when content overflows the Y axis.
+ *
+ * Demos:
+ *
+ * - [ScrollShadow](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/utils-scrollshadow--default)
+ */
 export const ScrollShadow = React.forwardRef(function ScrollShadow(
   inProps: ScrollShadowProps,
   ref,
