@@ -577,6 +577,7 @@ const components: ThemeOptions['components'] = getThemeComponents(
  */
 export const pcteDark: Theme = createTheme(
   {
+    ...{ name: 'pcteDark' },
     ...themeWithoutComponents,
     components: components,
   },

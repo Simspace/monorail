@@ -590,6 +590,7 @@ const components: ThemeOptions['components'] = getThemeComponents(
  */
 export const rebrandLightTheme: Theme = createTheme(
   {
+    ...{ name: 'rebrandLight' },
     ...themeWithoutComponents,
     components: components,
   },

@@ -562,6 +562,7 @@ const palette: PaletteOptions = {
  * - Uses `@mui/material/colors` as global color tokens
  */
 export const muiLight: Theme = createTheme({
+  ...{ name: 'muiLight' },
   palette: palette,
 })
 
@@ -570,6 +571,7 @@ export const muiLight: Theme = createTheme({
  * - Uses `@mui/material/colors` as global color tokens
  */
 export const muiDark: Theme = createTheme({
+  ...{ name: 'muiDark' },
   palette: {
     mode: 'dark',
     ...palette,

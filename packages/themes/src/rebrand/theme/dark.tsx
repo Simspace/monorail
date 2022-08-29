@@ -591,6 +591,7 @@ const components: ThemeOptions['components'] = getThemeComponents(
  */
 export const rebrandDarkTheme: Theme = createTheme(
   {
+    ...{ name: 'rebrandDark' },
     ...themeWithoutComponents,
     components: components,
   },

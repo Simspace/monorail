@@ -1,7 +1,6 @@
-import React, { VFC } from 'react'
+import React from 'react'
 import type { PaletteColor, PaletteMode } from '@mui/material'
 import {
-  alpha,
   capitalize,
   Card,
   CardContent,
@@ -12,8 +11,14 @@ import {
 import Box from '@mui/material/Box'
 import type { CommonColors, Palette } from '@mui/material/styles/createPalette'
 
-import { Tab, TabPanel, Tabs } from '@monorail/components'
-import { RawColor } from '@monorail/themes/classic/theme/light'
+import { Tab, Tabs } from '@monorail/components'
+import { RawColor as ClassicDarkRawColors } from '@monorail/themes/classic/theme/dark'
+import { RawColor as ClassicLightRawColors } from '@monorail/themes/classic/theme/light'
+import { RawColor as MuiRawColors } from '@monorail/themes/mui/theme'
+import { RawColor as PcteDarkRawColors } from '@monorail/themes/pcte/theme/dark'
+import { RawColor as PcteLightRawColors } from '@monorail/themes/pcte/theme/light'
+import { RawColor as RebrandDarkRawColors } from '@monorail/themes/rebrand/theme/dark'
+import { RawColor as RebrandLightRawColors } from '@monorail/themes/rebrand/theme/light'
 
 export default {
   title: 'Theme/Colors',
@@ -42,6 +47,17 @@ const colorAliases = [
   'tiers',
 ] as const
 
+enum ThemeName {
+  ClassicLight = 'classicLight',
+  ClassicDark = 'classicDark',
+  MUILight = 'muiLight',
+  MUIDark = 'muiDark',
+  PCTELight = 'pcteLight',
+  PCTEDark = 'pcteDark',
+  RebrandLight = 'rebrandLight',
+  RebrandDark = 'rebrandDark',
+}
+
 const ColorSwatchContainer = ({
   children,
 }: {
@@ -52,7 +68,7 @@ const ColorSwatchContainer = ({
   </Stack>
 )
 
-const ColorSwatch = ({
+const ColorCard = ({
   token,
   mapping,
   colorValue,
@@ -60,32 +76,31 @@ const ColorSwatch = ({
   description,
 }: {
   token: string
-  mapping: string
+  mapping?: string
   colorValue: string
   figmaStyle: string
-  description: string
+  description?: string
 }) => {
   return (
     <Card variant="outlined" sx={{ minWidth: 275, width: '32%' }}>
       <CardContent>
         <Stack gap={2}>
           <Box
-            sx={theme => ({
+            sx={{
               width: '100%',
               height: 80,
               bgcolor: colorValue,
-              boxShadow: `inset 0 0 0 1px ${theme.palette.getContrastText(
-                colorValue,
-              )}`,
-            })}
+            }}
           />
           <Typography variant="h3" sx={{ wordWrap: 'break-word' }}>
             {token}
           </Typography>
-          <Typography>{mapping}</Typography>
+          <Typography>{`RawColor.${mapping}`}</Typography>
           <Typography>{colorValue}</Typography>
           <Typography>{figmaStyle}</Typography>
-          <Typography>{description}</Typography>
+          <Typography variant="body2" color="text.secondary">
+            {description}
+          </Typography>
         </Stack>
       </CardContent>
     </Card>
@@ -115,14 +130,14 @@ const Common = ({
 
   return (
     <ColorSwatchContainer>
-      <ColorSwatch
+      <ColorCard
         token="palette.common.white"
         mapping={'White'}
         figmaStyle={`${capitalize(colorMode)}/Common/White`}
         colorValue={paletteColor.white}
         description="Elements that should remain white no matter what theme is used. Example: White text on a blue button."
       />
-      <ColorSwatch
+      <ColorCard
         token="palette.common.black"
         mapping={'Black'}
         figmaStyle={`${capitalize(colorMode)}/Common/Black`}
@@ -133,153 +148,184 @@ const Common = ({
   )
 }
 
+// #region Sentiment Color Cards
 const Sentiment = ({
   paletteColor,
   alias,
   colorMode,
+  rawColorObj,
 }: {
   paletteColor: PaletteColor
   alias: keyof Palette
   colorMode: PaletteMode
+  rawColorObj?: Record<string, string>
 }) => {
+  const getObjectKey = (value: string) => {
+    if (rawColorObj !== undefined) {
+      return Object.keys(rawColorObj).find(key => rawColorObj[key] === value)
+    }
+  }
+  const capitalizedColorMode = capitalize(colorMode)
+
   return (
     <>
       <Typography variant="h2">Strong Emphasis</Typography>
       <ColorSwatchContainer>
-        <ColorSwatch
+        <ColorCard
           token={`palette.${alias}.light`}
-          mapping={'Blue400'}
-          figmaStyle={`${colorMode}/${capitalize(alias)}/Light`}
+          mapping={getObjectKey(paletteColor.light)}
+          figmaStyle={`${capitalizedColorMode}/${capitalize(alias)}/Light`}
           colorValue={paletteColor.light}
-          description="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Pariatur culpa"
+          description="Use to achieve lower contrast on components with Strong Emphasis. Don’t use for state colors."
         />
-        <ColorSwatch
+        <ColorCard
           token={`palette.${alias}.main`}
-          mapping={'Blue600'}
-          figmaStyle={`${colorMode}/${capitalize(alias)}/Main`}
+          mapping={getObjectKey(paletteColor.main)}
+          figmaStyle={`${capitalizedColorMode}/${capitalize(alias)}/Main`}
           colorValue={paletteColor.main}
-          description="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Pariatur culpa"
         />
-        <ColorSwatch
+        <ColorCard
           token={`palette.${alias}.dark`}
-          mapping={'Blue700'}
-          figmaStyle={`${colorMode}/${capitalize(alias)}/Dark`}
+          mapping={getObjectKey(paletteColor.dark)}
+          figmaStyle={`${capitalizedColorMode}/${capitalize(alias)}/Dark`}
           colorValue={paletteColor.dark}
-          description="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Pariatur culpa"
+          description="Use to achieve higher contrast on components with Strong Emphasis. Don’t use for state colors."
         />
-        <ColorSwatch
+        <ColorCard
           token={`palette.${alias}.contrastText`}
-          mapping={'Blue700'}
-          figmaStyle={`${colorMode}/${capitalize(alias)}/Contrast Text`}
+          mapping={getObjectKey(paletteColor.contrastText)}
+          figmaStyle={`${capitalizedColorMode}/${capitalize(
+            alias,
+          )}/Contrast Text`}
           colorValue={paletteColor.contrastText}
-          description="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Pariatur culpa"
+          description="Use for contrast elements on components with Strong Emphasis."
         />
-        <ColorSwatch
+        <ColorCard
           token={`palette.${alias}.hover`}
-          mapping={'Blue700'}
-          figmaStyle={`${colorMode}/${capitalize(alias)}/Hover`}
+          mapping={getObjectKey(paletteColor.hover)}
+          figmaStyle={`${capitalizedColorMode}/${capitalize(alias)}/Hover`}
           colorValue={paletteColor.hover}
-          description="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Pariatur culpa"
+          description="Use for hover states on components with Strong Emphasis."
         />
-        <ColorSwatch
+        <ColorCard
           token={`palette.${alias}.active`}
-          mapping={'Blue800'}
-          figmaStyle={`${colorMode}/${capitalize(alias)}/Acitve`}
+          mapping={getObjectKey(paletteColor.active)}
+          figmaStyle={`${capitalizedColorMode}/${capitalize(alias)}/Acitve`}
           colorValue={paletteColor.active}
-          description="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Pariatur culpa"
+          description="Use for active states on components with Strong Emphasis."
         />
       </ColorSwatchContainer>
+
       <Typography variant="h2">Low Emphasis</Typography>
       <ColorSwatchContainer>
-        <ColorSwatch
+        <ColorCard
           token={`palette.${alias}.lowEmphasis.light`}
-          mapping={'Blue400'}
-          figmaStyle={`${colorMode}/${capitalize(alias)}/Low Emphasis/Light`}
+          mapping={getObjectKey(paletteColor.lowEmphasis.light)}
+          figmaStyle={`${capitalizedColorMode}/${capitalize(
+            alias,
+          )}/Low Emphasis/Light`}
           colorValue={paletteColor.lowEmphasis.light}
-          description="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Pariatur culpa"
+          description="Use to achieve a lower contrast on components with Strong Emphasis. Don’t use for state colors."
         />
-        <ColorSwatch
+        <ColorCard
           token={`palette.${alias}.lowEmphasis.main`}
-          mapping={'Blue600'}
-          figmaStyle={`${colorMode}/${capitalize(alias)}/Low Emphasis/Main`}
+          mapping={getObjectKey(paletteColor.lowEmphasis.main)}
+          figmaStyle={`${capitalizedColorMode}/${capitalize(
+            alias,
+          )}/Low Emphasis/Main`}
           colorValue={paletteColor.lowEmphasis.main}
-          description="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Pariatur culpa"
         />
-        <ColorSwatch
+        <ColorCard
           token={`palette.${alias}.lowEmphasis.dark`}
-          mapping={'Blue700'}
-          figmaStyle={`${colorMode}/${capitalize(alias)}/Low Emphasis/Dark`}
+          mapping={getObjectKey(paletteColor.lowEmphasis.dark)}
+          figmaStyle={`${capitalizedColorMode}/${capitalize(
+            alias,
+          )}/Low Emphasis/Dark`}
           colorValue={paletteColor.lowEmphasis.dark}
-          description="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Pariatur culpa"
+          description="Use to achieve a higher contrast on components with Strong Emphasis. Don’t use for state colors."
         />
-        <ColorSwatch
+        <ColorCard
           token={`palette.${alias}.lowEmphasis.contrastText`}
-          mapping={'Blue700'}
-          figmaStyle={`${colorMode}/${capitalize(
+          mapping={getObjectKey(paletteColor.lowEmphasis.contrastText)}
+          figmaStyle={`${capitalizedColorMode}/${capitalize(
             alias,
           )}/Low Emphasis/contrastText`}
           colorValue={paletteColor.lowEmphasis.contrastText}
-          description="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Pariatur culpa"
+          description="Use for contrast elements on components with Low Emphasis."
         />
-        <ColorSwatch
+        <ColorCard
           token={`palette.${alias}.lowEmphasis.hover`}
-          mapping={'Blue700'}
-          figmaStyle={`${colorMode}/${capitalize(alias)}/Low Emphasis/.Hover`}
+          mapping={getObjectKey(paletteColor.lowEmphasis.hover)}
+          figmaStyle={`${capitalizedColorMode}/${capitalize(
+            alias,
+          )}/Low Emphasis/.Hover`}
           colorValue={paletteColor.lowEmphasis.hover}
-          description="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Pariatur culpa"
+          description="Use for hover states on components with Low Emphasis."
         />
-        <ColorSwatch
+        <ColorCard
           token={`palette.${alias}.lowEmphasis.active`}
-          mapping={'Blue800'}
-          figmaStyle={`${colorMode}/${capitalize(alias)}/Low Emphasis/.Acitve`}
+          mapping={getObjectKey(paletteColor.lowEmphasis.active)}
+          figmaStyle={`${capitalizedColorMode}/${capitalize(
+            alias,
+          )}/Low Emphasis/.Active`}
           colorValue={paletteColor.lowEmphasis.active}
-          description="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Pariatur culpa"
+          description="Use for active states on components with Low Emphasis."
         />
       </ColorSwatchContainer>
+
       <Typography variant="h2">Border</Typography>
       <ColorSwatchContainer>
-        <ColorSwatch
+        <ColorCard
           token={`palette.${alias}.border.light`}
-          mapping={'Blue400'}
-          figmaStyle={`${colorMode}/${capitalize(alias)}/Low Emphasis/Light`}
+          mapping={getObjectKey(paletteColor.border.light)}
+          figmaStyle={`${capitalizedColorMode}/${capitalize(
+            alias,
+          )}/Border Light`}
           colorValue={paletteColor.light}
-          description="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Pariatur culpa"
         />
-        <ColorSwatch
+        <ColorCard
           token={`palette.${alias}.border.main`}
-          mapping={'Blue600'}
-          figmaStyle={`${colorMode}/${capitalize(alias)}/Main`}
+          mapping={getObjectKey(paletteColor.border.main)}
+          figmaStyle={`${capitalizedColorMode}/${capitalize(
+            alias,
+          )}/Border Main`}
           colorValue={paletteColor.main}
-          description="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Pariatur culpa"
         />
-        <ColorSwatch
+        <ColorCard
           token={`palette.${alias}.border.dark`}
-          mapping={'Blue700'}
-          figmaStyle={`${colorMode}/${capitalize(alias)}/Dark`}
+          mapping={getObjectKey(paletteColor.border.dark)}
+          figmaStyle={`${capitalizedColorMode}/${capitalize(
+            alias,
+          )}/Border Dark`}
           colorValue={paletteColor.dark}
-          description="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Pariatur culpa"
         />
       </ColorSwatchContainer>
+
       <Typography variant="h2">Focus Ring</Typography>
       <ColorSwatchContainer>
-        <ColorSwatch
+        <ColorCard
           token={`palette.${alias}.focusRing.inner`}
-          mapping={'Blue400'}
-          figmaStyle={`${colorMode}/${capitalize(alias)}/Low Emphasis/Light`}
+          mapping={getObjectKey(paletteColor.focusRing.inner)}
+          figmaStyle={`${capitalizedColorMode}/${capitalize(
+            alias,
+          )}/Inner Focus Ring`}
           colorValue={paletteColor.focusRing.inner}
-          description="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Pariatur culpa"
+          description="Pre-defined inner focus ring color"
         />
-        <ColorSwatch
+        <ColorCard
           token={`palette.${alias}.focusRing.outer`}
-          mapping={'Blue600'}
-          figmaStyle={`${colorMode}/${capitalize(alias)}/Main`}
+          mapping={getObjectKey(paletteColor.focusRing.outer)}
+          figmaStyle={`${capitalizedColorMode}/${capitalize(
+            alias,
+          )}/Outer Focus Ring`}
           colorValue={paletteColor.focusRing.outer}
-          description="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Pariatur culpa"
+          description="Pre-defined outer focus ring color"
         />
       </ColorSwatchContainer>
     </>
   )
 }
+// #endregion
 
 function TabPanelV(props: TabPanelProps) {
   const { children, value, index, ...other } = props
@@ -319,6 +365,27 @@ export const Colors = () => {
     setValue(newValue)
   }
 
+  const rawColorMapping = React.useMemo(() => {
+    switch (theme.name) {
+      case ThemeName.ClassicLight:
+        return ClassicLightRawColors
+      case ThemeName.ClassicDark:
+        return ClassicDarkRawColors
+      case ThemeName.MUILight:
+        return MuiRawColors
+      case ThemeName.MUIDark:
+        return MuiRawColors
+      case ThemeName.PCTELight:
+        return PcteLightRawColors
+      case ThemeName.PCTEDark:
+        return PcteDarkRawColors
+      case ThemeName.RebrandLight:
+        return RebrandLightRawColors
+      case ThemeName.RebrandDark:
+        return RebrandDarkRawColors
+    }
+  }, [theme.name])
+
   const getTokenMapping = (alias: string) => {
     switch (alias) {
       case 'common':
@@ -334,6 +401,7 @@ export const Colors = () => {
             alias="primary"
             paletteColor={theme.palette.primary}
             colorMode={theme.palette.mode}
+            rawColorObj={rawColorMapping}
           />
         )
       case 'secondary':
@@ -342,6 +410,7 @@ export const Colors = () => {
             alias="secondary"
             paletteColor={theme.palette.secondary}
             colorMode={theme.palette.mode}
+            rawColorObj={rawColorMapping}
           />
         )
       case 'default':
@@ -350,6 +419,7 @@ export const Colors = () => {
             alias="default"
             paletteColor={theme.palette.default}
             colorMode={theme.palette.mode}
+            rawColorObj={rawColorMapping}
           />
         )
       case 'accent':
@@ -360,6 +430,7 @@ export const Colors = () => {
             alias="success"
             paletteColor={theme.palette.success}
             colorMode={theme.palette.mode}
+            rawColorObj={rawColorMapping}
           />
         )
       case 'error':
@@ -368,6 +439,7 @@ export const Colors = () => {
             alias="error"
             paletteColor={theme.palette.error}
             colorMode={theme.palette.mode}
+            rawColorObj={rawColorMapping}
           />
         )
       case 'warning':
@@ -376,6 +448,7 @@ export const Colors = () => {
             alias="warning"
             paletteColor={theme.palette.warning}
             colorMode={theme.palette.mode}
+            rawColorObj={rawColorMapping}
           />
         )
       case 'info':
@@ -384,6 +457,7 @@ export const Colors = () => {
             alias="info"
             paletteColor={theme.palette.info}
             colorMode={theme.palette.mode}
+            rawColorObj={rawColorMapping}
           />
         )
       case 'text':
@@ -414,9 +488,6 @@ export const Colors = () => {
         return
     }
   }
-
-  // console.log(theme.)
-  console.log(Object.entries(RawColor))
 
   return (
     <Stack>

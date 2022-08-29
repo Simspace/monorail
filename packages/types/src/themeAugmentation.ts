@@ -29,6 +29,16 @@ type ColorShades = {
   A700?: string
 }
 
+declare module '@mui/material/styles/createTheme' {
+  interface ThemeOptions {
+    name?: string
+  }
+
+  interface Theme {
+    name: string
+  }
+}
+
 declare module '@mui/material/styles/createPalette' {
   /**
    * Extend the color `Palette` interface to add additional shades, colors, etc.
