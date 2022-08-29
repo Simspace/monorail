@@ -204,6 +204,10 @@ export const DefaultLightChartColors = {
  */
 const palette: PaletteOptions = {
   // sentiment > emphasis > state/usage
+  common: {
+    white: RawColor.White,
+    black: RawColor.Black,
+  },
   primary: {
     light: RawColor.Blue400,
     main: RawColor.Blue600,
