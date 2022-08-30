@@ -80,6 +80,8 @@ remove-storybook:
     - |
       git config --global user.email "<>"
       git config --global user.name "CI"
+      git clone https://${CI_REGISTRY_USER}:${CI_PUSH_TOKEN}@${CI_REPOSITORY_URL#*@} tmp
+      cd tmp
       git remote set-url origin https://${CI_REGISTRY_USER}:${CI_PUSH_TOKEN}@${CI_REPOSITORY_URL#*@}
       rm -rf public
       git fetch
