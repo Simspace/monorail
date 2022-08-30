@@ -2,16 +2,9 @@ import React from 'react'
 import { capitalize, Typography, useTheme } from '@mui/material'
 import Box from '@mui/material/Box'
 
-import { RawColor as ClassicDarkRawColors } from '@monorail/themes/classic/theme/dark'
-import { RawColor as ClassicLightRawColors } from '@monorail/themes/classic/theme/light'
-import { RawColor as MuiRawColors } from '@monorail/themes/mui/theme'
-import { RawColor as PcteDarkRawColors } from '@monorail/themes/pcte/theme/dark'
-import { RawColor as PcteLightRawColors } from '@monorail/themes/pcte/theme/light'
-import { RawColor as RebrandDarkRawColors } from '@monorail/themes/rebrand/theme/dark'
-import { RawColor as RebrandLightRawColors } from '@monorail/themes/rebrand/theme/light'
-
+import { getRawColorObject } from '../../helpers.js'
 import { ColorMap, ColorSwatchContainer } from './palette.components'
-import { ThemeName } from './palette.types'
+import type { ThemeName } from './palette.types'
 
 export default {
   title: 'Theme/Palette/Score',
@@ -24,26 +17,10 @@ export const Score = () => {
   const theme = useTheme()
   const colorMode = capitalize(theme.palette.mode)
 
-  const rawColorMapping = React.useMemo(() => {
-    switch (theme.name) {
-      case ThemeName.ClassicLight:
-        return ClassicLightRawColors
-      case ThemeName.ClassicDark:
-        return ClassicDarkRawColors
-      case ThemeName.MUILight:
-        return MuiRawColors
-      case ThemeName.MUIDark:
-        return MuiRawColors
-      case ThemeName.PCTELight:
-        return PcteLightRawColors
-      case ThemeName.PCTEDark:
-        return PcteDarkRawColors
-      case ThemeName.RebrandLight:
-        return RebrandLightRawColors
-      case ThemeName.RebrandDark:
-        return RebrandDarkRawColors
-    }
-  }, [theme.name])
+  const rawColorMapping = React.useMemo(
+    () => getRawColorObject(theme.name as ThemeName),
+    [theme.name],
+  )
 
   const scoreColors = [
     {
@@ -186,7 +163,7 @@ export const Score = () => {
   return (
     <Box gap={4} sx={{ p: 4 }}>
       {scoreColors.map(score => (
-        <>
+        <React.Fragment key={`score-${score.name}`}>
           <Typography variant="h2" gutterBottom>
             {score.name}
           </Typography>
@@ -197,7 +174,7 @@ export const Score = () => {
               rawColorObj={rawColorMapping}
             />
           </ColorSwatchContainer>
-        </>
+        </React.Fragment>
       ))}
     </Box>
   )

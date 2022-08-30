@@ -2,17 +2,10 @@ import React from 'react'
 import { alpha, capitalize, useTheme } from '@mui/material'
 
 import { Box, Typography } from '@monorail/components'
-import { RawColor as ClassicDarkRawColors } from '@monorail/themes/classic/theme/dark'
-import { RawColor as ClassicLightRawColors } from '@monorail/themes/classic/theme/light'
-import { RawColor as MuiRawColors } from '@monorail/themes/mui/theme'
-import { RawColor as PcteDarkRawColors } from '@monorail/themes/pcte/theme/dark'
-import { RawColor as PcteLightRawColors } from '@monorail/themes/pcte/theme/light'
-import { RawColor as RebrandDarkRawColors } from '@monorail/themes/rebrand/theme/dark'
-import { RawColor as RebrandLightRawColors } from '@monorail/themes/rebrand/theme/light'
 
+import { getRawColorObject } from '../../helpers.js'
 import { ColorMap, ColorSwatchContainer } from './palette.components'
-import type { ColorCardProps } from './palette.types'
-import { ThemeName } from './palette.types'
+import type { ColorCardProps, ThemeName } from './palette.types'
 
 export default {
   title: 'Theme/Palette/Action',
@@ -26,26 +19,10 @@ export const Action = () => {
 
   const colorMode = capitalize(theme.palette.mode)
 
-  const rawColorMapping = React.useMemo(() => {
-    switch (theme.name) {
-      case ThemeName.ClassicLight:
-        return ClassicLightRawColors
-      case ThemeName.ClassicDark:
-        return ClassicDarkRawColors
-      case ThemeName.MUILight:
-        return MuiRawColors
-      case ThemeName.MUIDark:
-        return MuiRawColors
-      case ThemeName.PCTELight:
-        return PcteLightRawColors
-      case ThemeName.PCTEDark:
-        return PcteDarkRawColors
-      case ThemeName.RebrandLight:
-        return RebrandLightRawColors
-      case ThemeName.RebrandDark:
-        return RebrandDarkRawColors
-    }
-  }, [theme.name])
+  const rawColorMapping = React.useMemo(
+    () => getRawColorObject(theme.name as ThemeName),
+    [theme.name],
+  )
 
   const action: Array<ColorCardProps> = [
     {
