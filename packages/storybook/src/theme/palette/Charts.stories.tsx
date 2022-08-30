@@ -66,7 +66,7 @@ export const Charts = () => {
   const theme = useTheme()
 
   return (
-    <Box p={3}>
+    <Box p={4}>
       <Typography variant="h2" gutterBottom>
         Chart
       </Typography>

@@ -1,20 +1,9 @@
 import React from 'react'
 import type { PaletteColor } from '@mui/material'
-import {
-  alpha,
-  capitalize,
-  Card,
-  CardContent,
-  Stack,
-  Typography,
-  useTheme,
-} from '@mui/material'
+import { capitalize, Stack, Typography, useTheme } from '@mui/material'
 import Box from '@mui/material/Box'
-import type {
-  Palette,
-  PaletteOptions,
-} from '@mui/material/styles/createPalette'
 
+import type { TabPanelProps } from '@monorail/components'
 import { Tab, Tabs } from '@monorail/components'
 import { RawColor as ClassicDarkRawColors } from '@monorail/themes/classic/theme/dark'
 import { RawColor as ClassicLightRawColors } from '@monorail/themes/classic/theme/light'
@@ -23,6 +12,10 @@ import { RawColor as PcteDarkRawColors } from '@monorail/themes/pcte/theme/dark'
 import { RawColor as PcteLightRawColors } from '@monorail/themes/pcte/theme/light'
 import { RawColor as RebrandDarkRawColors } from '@monorail/themes/rebrand/theme/dark'
 import { RawColor as RebrandLightRawColors } from '@monorail/themes/rebrand/theme/light'
+
+import { ColorMap, ColorSwatchContainer } from './palette.components'
+import type { ColorCardProps, ColorSwatchProps } from './palette.types'
+import { ThemeName } from './palette.types'
 
 export default {
   title: 'Theme/Palette/Semantic Colors',
@@ -45,120 +38,9 @@ const colorAliases = [
   'divider',
   'rating',
   'background',
-  'action',
   'score',
   'tiers',
 ] as const
-
-enum ThemeName {
-  ClassicLight = 'classicLight',
-  ClassicDark = 'classicDark',
-  MUILight = 'muiLight',
-  MUIDark = 'muiDark',
-  PCTELight = 'pcteLight',
-  PCTEDark = 'pcteDark',
-  RebrandLight = 'rebrandLight',
-  RebrandDark = 'rebrandDark',
-}
-
-type ColorCard = {
-  token: string
-  mapping?: string
-  colorValue: string
-  figmaStyle: string
-  description?: string
-}
-
-type ColorSwatch = {
-  alias?: keyof Palette
-  paletteColor?: PaletteOptions
-  colorMode: string
-  rawColorObj?: Record<string, string>
-  data?: Array<ColorCard>
-}
-
-const ColorSwatchContainer = ({
-  children,
-}: {
-  children: Array<JSX.Element> | JSX.Element
-}) => (
-  <Stack direction="row" flexWrap="wrap" gap={4} mb={10}>
-    {children}
-  </Stack>
-)
-
-const ColorCard = ({
-  token,
-  mapping,
-  colorValue,
-  figmaStyle,
-  description,
-}: ColorCard) => {
-  return (
-    <Card variant="outlined" sx={{ minWidth: 275, width: '32%' }}>
-      <CardContent>
-        <Stack gap={2}>
-          <Box
-            sx={{
-              width: '100%',
-              height: 80,
-              bgcolor: colorValue,
-            }}
-          />
-          <Typography variant="h3" sx={{ wordWrap: 'break-word' }}>
-            {token}
-          </Typography>
-          <Typography>{`RawColor.${mapping}`}</Typography>
-          <Typography>{colorValue}</Typography>
-          <Typography>{figmaStyle}</Typography>
-          <Typography variant="body2" color="text.secondary">
-            {description}
-          </Typography>
-        </Stack>
-      </CardContent>
-    </Card>
-  )
-}
-/**
- * TODO:
- *
- * Pull information from Notion.
- * - figmaStyle
- * - description
- *
- * Figure out how to display token variable (Object.key?) instead of typing it out
- *
- * How to display global token assigned to alias instead of the color value?
- *
- *
- */
-
-const ColorMap = ({ data, colorMode, rawColorObj }: ColorSwatch) => {
-  const getObjectKey = (value: string) => {
-    if (rawColorObj !== undefined) {
-      return Object.keys(rawColorObj).find(key => rawColorObj[key] === value)
-    }
-  }
-
-  return (
-    <>
-      {data !== undefined ? (
-        data.map(color => (
-          <ColorCard
-            key={color.token}
-            token={color.token}
-            mapping={getObjectKey(color.colorValue)}
-            colorValue={color.colorValue}
-            figmaStyle={`${colorMode}/${color.figmaStyle}`}
-            description={color.description}
-          />
-        ))
-      ) : (
-        <Typography color="error">No Colors</Typography>
-      )}
-    </>
-  )
-}
 
 // #region Sentiment Color Cards
 const Sentiment = ({
@@ -166,13 +48,15 @@ const Sentiment = ({
   colorMode,
   rawColorMapping,
 }: {
-  sentiment: Record<string, Array<ColorCard>>
+  sentiment: Record<string, Array<ColorCardProps>>
   colorMode: string
-  rawColorMapping: ColorSwatch['rawColorObj']
+  rawColorMapping: ColorSwatchProps['rawColorObj']
 }) => {
   return (
     <>
-      <Typography variant="h2">Strong Emphasis</Typography>
+      <Typography variant="h2" gutterBottom>
+        Strong Emphasis
+      </Typography>
       <ColorSwatchContainer>
         <ColorMap
           data={sentiment.strongEmphasis}
@@ -180,7 +64,9 @@ const Sentiment = ({
           rawColorObj={rawColorMapping}
         />
       </ColorSwatchContainer>
-      <Typography variant="h2">Low Emphasis</Typography>
+      <Typography variant="h2" gutterBottom>
+        Low Emphasis
+      </Typography>
       <ColorSwatchContainer>
         <ColorMap
           data={sentiment.lowEmphasis}
@@ -188,7 +74,9 @@ const Sentiment = ({
           rawColorObj={rawColorMapping}
         />
       </ColorSwatchContainer>
-      <Typography variant="h2">Border</Typography>
+      <Typography variant="h2" gutterBottom>
+        Border
+      </Typography>
       <ColorSwatchContainer>
         <ColorMap
           data={sentiment.border}
@@ -196,7 +84,9 @@ const Sentiment = ({
           rawColorObj={rawColorMapping}
         />
       </ColorSwatchContainer>
-      <Typography variant="h2">Focus Ring</Typography>
+      <Typography variant="h2" gutterBottom>
+        Focus Ring
+      </Typography>
       <ColorSwatchContainer>
         <ColorMap
           data={sentiment.focusRing}
@@ -209,7 +99,7 @@ const Sentiment = ({
 }
 // #endregion
 
-function TabPanelV(props: TabPanelProps) {
+function TabPanelV(props: TabPanelProps & { index: string }) {
   const { children, value, index, ...other } = props
 
   return (
@@ -224,7 +114,7 @@ function TabPanelV(props: TabPanelProps) {
       {...other}
     >
       {value === index && (
-        <Box gap={4} sx={{ p: 3 }}>
+        <Box gap={4} sx={{ p: 4 }}>
           {children}
         </Box>
       )}
@@ -288,7 +178,7 @@ export const SemanticColors = () => {
   ]
 
   const sentiment = (
-    alias: ColorSwatch['alias'],
+    alias: ColorSwatchProps['alias'],
     paletteColor: PaletteColor,
   ) => ({
     strongEmphasis: [
@@ -445,89 +335,6 @@ export const SemanticColors = () => {
     },
   ]
 
-  const action: Array<ColorCard> = [
-    {
-      token: 'palette.action.activatedOpacity',
-      colorValue: alpha(
-        theme.palette.primary.main,
-        theme.palette.action.activatedOpacity,
-      ),
-      figmaStyle: 'N/A',
-      description:
-        'alpha(theme.palette.primary.main, theme.palette.action.activatedOpacity)',
-    },
-    {
-      token: 'palette.action.active',
-      colorValue: theme.palette.action.active,
-      figmaStyle: 'N/A',
-    },
-    {
-      token: 'palette.action.disabled',
-      colorValue: theme.palette.action.disabled,
-      figmaStyle: 'N/A',
-    },
-    {
-      token: 'palette.action.disabledBackground',
-      colorValue: theme.palette.action.disabledBackground,
-      figmaStyle: 'N/A',
-    },
-    {
-      token: 'palette.action.disabledOpacity',
-      colorValue: alpha(
-        theme.palette.primary.main,
-        theme.palette.action.disabledOpacity,
-      ),
-      figmaStyle: 'N/A',
-      description:
-        'alpha(theme.palette.primary.main, theme.palette.action.disabledOpacity)',
-    },
-    {
-      token: 'palette.action.focus',
-      colorValue: theme.palette.action.focus,
-      figmaStyle: 'N/A',
-    },
-    {
-      token: 'palette.action.focusOpacity',
-      colorValue: alpha(
-        theme.palette.primary.main,
-        theme.palette.action.focusOpacity,
-      ),
-      figmaStyle: 'N/A',
-      description:
-        'alpha(theme.palette.primary.main, theme.palette.action.focusOpacity)',
-    },
-    {
-      token: 'palette.action.hover',
-      colorValue: theme.palette.action.hover,
-      figmaStyle: 'N/A',
-    },
-    {
-      token: 'palette.action.hoverOpacity',
-      colorValue: alpha(
-        theme.palette.primary.main,
-        theme.palette.action.hoverOpacity,
-      ),
-      figmaStyle: 'N/A',
-      description:
-        'alpha(theme.palette.primary.main, theme.palette.action.hoverOpacity)',
-    },
-    {
-      token: 'palette.action.selected',
-      colorValue: theme.palette.action.selected,
-      figmaStyle: 'N/A',
-    },
-    {
-      token: 'palette.action.selectedOpacity',
-      colorValue: alpha(
-        theme.palette.primary.main,
-        theme.palette.action.selectedOpacity,
-      ),
-      figmaStyle: 'N/A',
-      description:
-        'alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity)',
-    },
-  ]
-
   const getTokenMapping = (alias: string) => {
     switch (alias) {
       case 'common':
@@ -641,16 +448,6 @@ export const SemanticColors = () => {
             />
           </ColorSwatchContainer>
         )
-      case 'action':
-        return (
-          <ColorSwatchContainer>
-            <ColorMap
-              data={action}
-              colorMode={colorMode}
-              rawColorObj={rawColorMapping}
-            />
-          </ColorSwatchContainer>
-        )
       case 'score':
         // return <Score />
         return
@@ -685,7 +482,7 @@ export const SemanticColors = () => {
           ))}
         </Tabs>
         {colorAliases.map((alias, idx) => (
-          <TabPanelV value={value} index={idx} key={idx}>
+          <TabPanelV value={value.toString()} index={idx.toString()} key={idx}>
             {getTokenMapping(alias)}
           </TabPanelV>
         ))}
