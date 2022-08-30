@@ -53,11 +53,14 @@ export const ColorCard = ({
       <CardContent>
         <Stack gap={2}>
           <Box
-            sx={{
+            sx={theme => ({
               width: '100%',
               height: 120,
               bgcolor: colorValue,
-            }}
+              border: colorValue.toLowerCase().includes('#fff')
+                ? `1px solid ${theme.palette.divider}`
+                : 'none',
+            })}
           ></Box>
           <Typography fontWeight="medium" sx={{ wordWrap: 'break-word' }}>
             {token}
