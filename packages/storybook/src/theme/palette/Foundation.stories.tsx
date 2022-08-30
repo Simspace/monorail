@@ -4,7 +4,7 @@ import Box from '@mui/material/Box'
 
 import { getRawColorObject } from '../../helpers.js'
 import { ColorMap, ColorSwatchContainer } from './palette.components'
-import type { ThemeName } from './palette.types'
+import type { ColorCardProps, ThemeName } from './palette.types'
 
 export default {
   title: 'Theme/Palette/Foundation',
@@ -22,7 +22,7 @@ export const Foundation = () => {
     [theme.name],
   )
 
-  const common = [
+  const common: Array<ColorCardProps> = [
     {
       token: 'palette.common.white',
       description:

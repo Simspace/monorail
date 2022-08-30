@@ -30,8 +30,7 @@ const colorAliases = [
   'error',
   'warning',
   'info',
-  'score',
-  'tiers',
+  'grey',
 ] as const
 
 // #region Sentiment Color Cards
@@ -82,6 +81,16 @@ const Sentiment = ({
       <ColorSwatchContainer>
         <ColorMap
           data={sentiment.focusRing}
+          colorMode={colorMode}
+          rawColorObj={rawColorMapping}
+        />
+      </ColorSwatchContainer>
+      <Typography variant="h2" gutterBottom>
+        Shades
+      </Typography>
+      <ColorSwatchContainer>
+        <ColorMap
+          data={sentiment.shades}
           colorMode={colorMode}
           rawColorObj={rawColorMapping}
         />
@@ -139,106 +148,121 @@ export const SemanticColors = () => {
   const sentiment = (
     alias: ColorSwatchProps['alias'],
     paletteColor: PaletteColor,
-  ) => ({
-    strongEmphasis: [
-      {
-        token: `palette.${alias}.light`,
-        description:
-          'Use to achieve lower contrast on components with Strong Emphasis. Don’t use for state colors.',
-        colorValue: paletteColor.light,
-        figmaStyle: `${capitalize(alias as string)}/Light`,
-      },
-      {
-        token: `palette.${alias}.main`,
-        colorValue: paletteColor.main,
-        figmaStyle: `${capitalize(alias as string)}/Main`,
-      },
-      {
-        token: `palette.${alias}.dark`,
-        colorValue: paletteColor.dark,
-        figmaStyle: `${capitalize(alias as string)}/Dark`,
-      },
-      {
-        token: `palette.${alias}.contrastText`,
-        colorValue: paletteColor.contrastText,
-        figmaStyle: `${capitalize(alias as string)}/contrastText`,
-      },
-      {
-        token: `palette.${alias}.hover`,
-        colorValue: paletteColor.hover,
-        figmaStyle: `${capitalize(alias as string)}/Hover`,
-      },
-      {
-        token: `palette.${alias}.active`,
-        colorValue: paletteColor.active,
-        figmaStyle: `${capitalize(alias as string)}/Active`,
-      },
-    ],
-    lowEmphasis: [
-      {
-        token: `palette.${alias}.lowEmphasis.light`,
-        description:
-          'Use to achieve lower contrast on components with Strong Emphasis. Don’t use for state colors.',
-        colorValue: paletteColor.lowEmphasis.light,
-        figmaStyle: `${capitalize(alias as string)}/Low Emphasis/Light`,
-      },
-      {
-        token: `palette.${alias}.lowEmphasis.main`,
-        colorValue: paletteColor.lowEmphasis.main,
-        figmaStyle: `${capitalize(alias as string)}/Low Emphasis/Main`,
-      },
-      {
-        token: `palette.${alias}.lowEmphasis.dark`,
-        colorValue: paletteColor.lowEmphasis.dark,
-        figmaStyle: `${capitalize(alias as string)}/Low Emphasis/Dark`,
-      },
-      {
-        token: `palette.${alias}.lowEmphasis.contrastText`,
-        colorValue: paletteColor.lowEmphasis.contrastText,
-        figmaStyle: `${capitalize(alias as string)}/Low Emphasis/contrastText`,
-      },
-      {
-        token: `palette.${alias}.lowEmphasis.hover`,
-        colorValue: paletteColor.lowEmphasis.hover,
-        figmaStyle: `${capitalize(alias as string)}/Low Emphasis/.Hover`,
-      },
-      {
-        token: `palette.${alias}.lowEmphasis.active`,
-        colorValue: paletteColor.lowEmphasis.active,
-        figmaStyle: `${capitalize(alias as string)}/Low Emphasis/.Active`,
-      },
-    ],
-    border: [
-      {
-        token: `palette.${alias}.border.light`,
-        colorValue: paletteColor.border.light,
-        figmaStyle: `${capitalize(alias as string)}/Border/Light`,
-      },
-      {
-        token: `palette.${alias}.border.main`,
-        colorValue: paletteColor.border.main,
-        figmaStyle: `${capitalize(alias as string)}/Border/Main`,
-      },
-      {
-        token: `palette.${alias}.border.dark`,
-        colorValue: paletteColor.border.dark,
-        figmaStyle: `${capitalize(alias as string)}/Border/Dark`,
-      },
-    ],
-    focusRing: [
-      {
-        token: `palette.${alias}.focusRing.inner`,
-        colorValue: paletteColor.focusRing.inner,
-        figmaStyle: `${capitalize(alias as string)}/Inner Focus Ring`,
-      },
-      {
-        token: `palette.${alias}.focusRing.outer`,
-        colorValue: paletteColor.focusRing.outer,
-        figmaStyle: `${capitalize(alias as string)}/Outer Focus Ring`,
-      },
-    ],
-    shades: [],
-  })
+  ): {
+    strongEmphasis: Array<ColorCardProps>
+    lowEmphasis: Array<ColorCardProps>
+    border: Array<ColorCardProps>
+    focusRing: Array<ColorCardProps>
+    // shades: Array<keyof ColorShades> | []
+  } => {
+    // const colorShades =
+    //   alias !== undefined && 'shades' in paletteColor
+    //     ? Object.keys(paletteColor.shades)
+    //     : []
+
+    return {
+      strongEmphasis: [
+        {
+          token: `palette.${alias}.light`,
+          description:
+            'Use to achieve lower contrast on components with Strong Emphasis. Don’t use for state colors.',
+          colorValue: paletteColor.light,
+          figmaStyle: `${capitalize(alias as string)}/Light`,
+        },
+        {
+          token: `palette.${alias}.main`,
+          colorValue: paletteColor.main,
+          figmaStyle: `${capitalize(alias as string)}/Main`,
+        },
+        {
+          token: `palette.${alias}.dark`,
+          colorValue: paletteColor.dark,
+          figmaStyle: `${capitalize(alias as string)}/Dark`,
+        },
+        {
+          token: `palette.${alias}.contrastText`,
+          colorValue: paletteColor.contrastText,
+          figmaStyle: `${capitalize(alias as string)}/contrastText`,
+        },
+        {
+          token: `palette.${alias}.hover`,
+          colorValue: paletteColor.hover,
+          figmaStyle: `${capitalize(alias as string)}/Hover`,
+        },
+        {
+          token: `palette.${alias}.active`,
+          colorValue: paletteColor.active,
+          figmaStyle: `${capitalize(alias as string)}/Active`,
+        },
+      ],
+      lowEmphasis: [
+        {
+          token: `palette.${alias}.lowEmphasis.light`,
+          description:
+            'Use to achieve lower contrast on components with Strong Emphasis. Don’t use for state colors.',
+          colorValue: paletteColor.lowEmphasis.light,
+          figmaStyle: `${capitalize(alias as string)}/Low Emphasis/Light`,
+        },
+        {
+          token: `palette.${alias}.lowEmphasis.main`,
+          colorValue: paletteColor.lowEmphasis.main,
+          figmaStyle: `${capitalize(alias as string)}/Low Emphasis/Main`,
+        },
+        {
+          token: `palette.${alias}.lowEmphasis.dark`,
+          colorValue: paletteColor.lowEmphasis.dark,
+          figmaStyle: `${capitalize(alias as string)}/Low Emphasis/Dark`,
+        },
+        {
+          token: `palette.${alias}.lowEmphasis.contrastText`,
+          colorValue: paletteColor.lowEmphasis.contrastText,
+          figmaStyle: `${capitalize(
+            alias as string,
+          )}/Low Emphasis/contrastText`,
+        },
+        {
+          token: `palette.${alias}.lowEmphasis.hover`,
+          colorValue: paletteColor.lowEmphasis.hover,
+          figmaStyle: `${capitalize(alias as string)}/Low Emphasis/.Hover`,
+        },
+        {
+          token: `palette.${alias}.lowEmphasis.active`,
+          colorValue: paletteColor.lowEmphasis.active,
+          figmaStyle: `${capitalize(alias as string)}/Low Emphasis/.Active`,
+        },
+      ],
+      border: [
+        {
+          token: `palette.${alias}.border.light`,
+          colorValue: paletteColor.border.light,
+          figmaStyle: `${capitalize(alias as string)}/Border/Light`,
+        },
+        {
+          token: `palette.${alias}.border.main`,
+          colorValue: paletteColor.border.main,
+          figmaStyle: `${capitalize(alias as string)}/Border/Main`,
+        },
+        {
+          token: `palette.${alias}.border.dark`,
+          colorValue: paletteColor.border.dark,
+          figmaStyle: `${capitalize(alias as string)}/Border/Dark`,
+        },
+      ],
+      focusRing: [
+        {
+          token: `palette.${alias}.focusRing.inner`,
+          colorValue: paletteColor.focusRing.inner,
+          figmaStyle: `${capitalize(alias as string)}/Inner Focus Ring`,
+        },
+        {
+          token: `palette.${alias}.focusRing.outer`,
+          colorValue: paletteColor.focusRing.outer,
+          figmaStyle: `${capitalize(alias as string)}/Outer Focus Ring`,
+        },
+      ],
+      // shades: colorShades,
+    }
+  }
 
   const getTokenMapping = (alias: string) => {
     switch (alias) {
@@ -302,12 +326,6 @@ export const SemanticColors = () => {
         )
       case 'grey':
         // return <Scale />
-        return
-      case 'score':
-        // return <Score />
-        return
-      case 'tiers':
-        // return <Tiers />
         return
     }
   }

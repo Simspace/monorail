@@ -12,7 +12,7 @@ import * as _MUI from '@mui/material'
 // Note: there is some weird redundancy in some of these types, mostly because of how MUI has them setup as input options
 // provided by the theme creator and then the actual output theme types used by the theme consumer.
 
-type ColorShades = {
+export type ColorShades = {
   50: string
   100: string
   200: string

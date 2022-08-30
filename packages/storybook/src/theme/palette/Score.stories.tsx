@@ -4,7 +4,7 @@ import Box from '@mui/material/Box'
 
 import { getRawColorObject } from '../../helpers.js'
 import { ColorMap, ColorSwatchContainer } from './palette.components'
-import type { ThemeName } from './palette.types'
+import type { ColorCardProps, ThemeName } from './palette.types'
 
 export default {
   title: 'Theme/Palette/Score',
@@ -22,7 +22,7 @@ export const Score = () => {
     [theme.name],
   )
 
-  const scoreColors = [
+  const scoreColors: Array<{ name: string; data: Array<ColorCardProps> }> = [
     {
       name: 'Low',
       data: [
