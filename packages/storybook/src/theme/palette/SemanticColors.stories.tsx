@@ -25,7 +25,6 @@ export default {
 }
 
 const colorAliases = [
-  'common',
   'primary',
   'secondary',
   'default',
@@ -34,10 +33,6 @@ const colorAliases = [
   'error',
   'warning',
   'info',
-  'text',
-  'divider',
-  'rating',
-  'background',
   'score',
   'tiers',
 ] as const
@@ -160,23 +155,6 @@ export const SemanticColors = () => {
     }
   }, [theme.name])
 
-  const common = [
-    {
-      token: 'palette.common.white',
-      description:
-        'Elements that should remain white no matter what theme is used. Example: White text on a blue button.',
-      colorValue: theme.palette.common.white,
-      figmaStyle: 'Common/White',
-    },
-    {
-      token: 'palette.common.black',
-      description:
-        'Elements that should remain black no matter what theme is used. Example: Black text on a yellow button.',
-      colorValue: theme.palette.common.black,
-      figmaStyle: 'Common/Black',
-    },
-  ]
-
   const sentiment = (
     alias: ColorSwatchProps['alias'],
     paletteColor: PaletteColor,
@@ -281,72 +259,8 @@ export const SemanticColors = () => {
     shades: [],
   })
 
-  const text = [
-    {
-      token: 'palette.text.primary',
-      description: 'Use for most texts. Headings, paragraphs, labels.',
-      colorValue: theme.palette.text.primary,
-      figmaStyle: 'Text/Primary',
-    },
-    {
-      token: 'palette.text.secondary',
-      description: '',
-      colorValue: theme.palette.text.secondary,
-      figmaStyle: 'Text/Secondary',
-    },
-    {
-      token: 'palette.text.disabled',
-      description: '',
-      colorValue: theme.palette.text.disabled,
-      figmaStyle: 'Text/Disabled',
-    },
-  ]
-
-  const divider = [
-    {
-      token: 'palette.divider',
-      description: '',
-      colorValue: theme.palette.divider,
-      figmaStyle: 'Divider',
-    },
-  ]
-
-  const rating = [
-    {
-      token: 'palette.rating',
-      description: 'Use when Rating component is filled.',
-      colorValue: theme.palette.rating,
-      figmaStyle: 'Rating',
-    },
-  ]
-
-  const background = [
-    {
-      token: 'palette.background.default',
-      colorValue: theme.palette.background.default,
-      figmaStyle: 'Background/Default',
-    },
-    {
-      token: 'palette.background.paper',
-      colorValue: theme.palette.background.paper,
-      description:
-        'Commonly used on surfaces. As a rule of thumb, if the background should turn from light to dark when switching from light to dark mode, use background.paper.',
-      figmaStyle: 'Background/Default',
-    },
-  ]
-
   const getTokenMapping = (alias: string) => {
     switch (alias) {
-      case 'common':
-        return (
-          <ColorSwatchContainer>
-            <ColorMap
-              data={common}
-              colorMode={colorMode}
-              rawColorObj={rawColorMapping}
-            />
-          </ColorSwatchContainer>
-        )
       case 'primary':
         return (
           <Sentiment
@@ -405,49 +319,9 @@ export const SemanticColors = () => {
             rawColorMapping={rawColorMapping}
           />
         )
-      case 'text':
-        return (
-          <ColorSwatchContainer>
-            <ColorMap
-              data={text}
-              colorMode={colorMode}
-              rawColorObj={rawColorMapping}
-            />
-          </ColorSwatchContainer>
-        )
       case 'grey':
         // return <Scale />
         return
-      case 'divider':
-        return (
-          <ColorSwatchContainer>
-            <ColorMap
-              data={divider}
-              colorMode={colorMode}
-              rawColorObj={rawColorMapping}
-            />
-          </ColorSwatchContainer>
-        )
-      case 'rating':
-        return (
-          <ColorSwatchContainer>
-            <ColorMap
-              data={rating}
-              colorMode={colorMode}
-              rawColorObj={rawColorMapping}
-            />
-          </ColorSwatchContainer>
-        )
-      case 'background':
-        return (
-          <ColorSwatchContainer>
-            <ColorMap
-              data={background}
-              colorMode={colorMode}
-              rawColorObj={rawColorMapping}
-            />
-          </ColorSwatchContainer>
-        )
       case 'score':
         // return <Score />
         return

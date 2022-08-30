@@ -1,7 +1,7 @@
 import React from 'react'
 import { alpha, capitalize, useTheme } from '@mui/material'
 
-import { Box } from '@monorail/components'
+import { Box, Typography } from '@monorail/components'
 import { RawColor as ClassicDarkRawColors } from '@monorail/themes/classic/theme/dark'
 import { RawColor as ClassicLightRawColors } from '@monorail/themes/classic/theme/light'
 import { RawColor as MuiRawColors } from '@monorail/themes/mui/theme'
@@ -137,6 +137,9 @@ export const Action = () => {
 
   return (
     <Box p={4}>
+      <Typography variant="h2" gutterBottom>
+        Action Colors
+      </Typography>
       <ColorSwatchContainer>
         <ColorMap
           data={action}
