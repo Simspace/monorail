@@ -27,6 +27,33 @@ export const parameters: Parameters = {
       date: /Date$/,
     },
   },
+  options: {
+    storySort: {
+      order: [
+        'Surfaces',
+        'Feedback',
+        'Inputs',
+        'Data Display',
+        'Navigation',
+        'Layout',
+        'Data Grid',
+        'Utils',
+        'Theme',
+        [
+          'Palette',
+          [
+            'Semantic Colors',
+            'Foundation',
+            'Action',
+            'Utility',
+            'Charts',
+            'Score',
+            'Tiers',
+          ],
+        ],
+      ],
+    },
+  },
 }
 
 const enum ThemeOption {
