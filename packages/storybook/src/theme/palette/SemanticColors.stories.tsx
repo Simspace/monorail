@@ -1,6 +1,7 @@
 import React from 'react'
-import { alpha, PaletteColor, PaletteMode } from '@mui/material'
+import type { PaletteColor } from '@mui/material'
 import {
+  alpha,
   capitalize,
   Card,
   CardContent,
@@ -10,11 +11,8 @@ import {
 } from '@mui/material'
 import Box from '@mui/material/Box'
 import type {
-  CommonColors,
   Palette,
   PaletteOptions,
-  TypeDivider,
-  TypeText,
 } from '@mui/material/styles/createPalette'
 
 import { Tab, Tabs } from '@monorail/components'
@@ -27,7 +25,7 @@ import { RawColor as RebrandDarkRawColors } from '@monorail/themes/rebrand/theme
 import { RawColor as RebrandLightRawColors } from '@monorail/themes/rebrand/theme/light'
 
 export default {
-  title: 'Theme/Colors',
+  title: 'Theme/Palette/Semantic Colors',
   parameters: {
     layout: 'fullscreen',
   },
@@ -48,7 +46,6 @@ const colorAliases = [
   'rating',
   'background',
   'action',
-  'chart',
   'score',
   'tiers',
 ] as const
@@ -227,9 +224,9 @@ function TabPanelV(props: TabPanelProps) {
       {...other}
     >
       {value === index && (
-        <Stack gap={4} sx={{ p: 3 }}>
+        <Box gap={4} sx={{ p: 3 }}>
           {children}
-        </Stack>
+        </Box>
       )}
     </Box>
   )
@@ -242,7 +239,7 @@ function a11yPropsV(index: number) {
   }
 }
 
-export const Colors = () => {
+export const SemanticColors = () => {
   const theme = useTheme()
   const [value, setValue] = React.useState(0)
 
@@ -654,9 +651,6 @@ export const Colors = () => {
             />
           </ColorSwatchContainer>
         )
-      case 'chart':
-        // return <Scale />
-        return
       case 'score':
         // return <Score />
         return
@@ -672,15 +666,19 @@ export const Colors = () => {
         sx={{
           flexGrow: 1,
           bgcolor: 'background.paper',
-          display: 'flex',
         }}
       >
         <Tabs
           value={value}
-          orientation="vertical"
           variant="scrollable"
           onChange={handleChange}
-          sx={{ minWidth: 160 }}
+          sx={{
+            minWidth: 160,
+            position: 'sticky',
+            top: 0,
+            left: 0,
+            bgcolor: 'background.paper',
+          }}
         >
           {colorAliases.map((alias, idx) => (
             <Tab key={alias} label={capitalize(alias)} {...a11yPropsV(idx)} />
@@ -689,20 +687,6 @@ export const Colors = () => {
         {colorAliases.map((alias, idx) => (
           <TabPanelV value={value} index={idx} key={idx}>
             {getTokenMapping(alias)}
-            {/* 
-              - Render alias name
-              - Render 
-              - If 'text'
-              - If 'grey'
-              - If 'divider'
-              - If 'rating'
-              - If 'background'
-              - If 'action'
-              - If 'chart'
-              - If 'score'
-              - If 'tiers'
-              */}
-            {/* <Typography>{theme.palette[alias].shades[100]}</Typography> */}
           </TabPanelV>
         ))}
       </Box>

@@ -9,7 +9,7 @@ import type {
 } from '@mui/material/styles/createPalette'
 
 export default {
-  title: 'Theme/Palette',
+  title: 'Theme/OldPalette',
 }
 
 const SingleColorBox = ({
@@ -81,47 +81,47 @@ const PaletteColorBox = ({
           <>
             <SingleColorBox
               label="50"
-              color={paletteColor.shades[50] ?? paletteColor[50]}
+              color={paletteColor.shades[50]}
               minWidth={minWidth}
             />
             <SingleColorBox
               label="100"
-              color={paletteColor.shades[100] ?? paletteColor[100]}
+              color={paletteColor.shades[100]}
               minWidth={minWidth}
             />
             <SingleColorBox
               label="200"
-              color={paletteColor.shades[200] ?? paletteColor[200]}
+              color={paletteColor.shades[200]}
               minWidth={minWidth}
             />
             <SingleColorBox
               label="300"
-              color={paletteColor.shades[300] ?? paletteColor[300]}
+              color={paletteColor.shades[300]}
               minWidth={minWidth}
             />
             <SingleColorBox
               label="400"
-              color={paletteColor.shades[400] ?? paletteColor[400]}
+              color={paletteColor.shades[400]}
               minWidth={minWidth}
             />
             <SingleColorBox
               label="500"
-              color={paletteColor.shades[500] ?? paletteColor[500]}
+              color={paletteColor.shades[500]}
               minWidth={minWidth}
             />
             <SingleColorBox
               label="600"
-              color={paletteColor.shades[600] ?? paletteColor[600]}
+              color={paletteColor.shades[600]}
               minWidth={minWidth}
             />
             <SingleColorBox
               label="700"
-              color={paletteColor.shades[700] ?? paletteColor[700]}
+              color={paletteColor.shades[700]}
               minWidth={minWidth}
             />
             <SingleColorBox
               label="800"
-              color={paletteColor.shades[800] ?? paletteColor[800]}
+              color={paletteColor.shades[800]}
               minWidth={minWidth}
             />
           </>
