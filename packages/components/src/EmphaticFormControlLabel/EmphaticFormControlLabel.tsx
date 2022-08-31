@@ -48,7 +48,7 @@ const EmphaticFormControlLabelRoot = styled('label', {
   borderRadius: theme.spacing(1),
   paddingRight: theme.spacing(3),
   '&:hover': {
-    borderColor: theme.palette.primary.light,
+    borderColor: theme.palette.primary.border.light,
     backgroundColor: theme.palette.primary.lowEmphasis.main,
     [`& > .${emphaticFormControlLabelClasses.control} .${svgIconClasses.root}`]:
       {
@@ -68,7 +68,7 @@ const EmphaticFormControlLabelRoot = styled('label', {
     },
   },
   [`&.${emphaticFormControlLabelClasses.checked}`]: {
-    borderColor: theme.palette.primary.light,
+    borderColor: theme.palette.primary.border.light,
     backgroundColor: theme.palette.primary.lowEmphasis.dark,
     [`& .${emphaticFormControlLabelClasses.control}`]: {
       [`& .${svgIconClasses.root}`]: {

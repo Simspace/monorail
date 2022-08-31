@@ -7,7 +7,7 @@ import type { TabPanelProps } from '@monorail/components'
 import { Tab, Tabs } from '@monorail/components'
 
 import { getRawColorObject } from '../../helpers.js'
-import { ColorMap, ColorSwatchContainer } from './palette.components'
+import { ColorMap } from './palette.components'
 import type {
   ColorCardProps,
   ColorSwatchProps,
@@ -48,43 +48,35 @@ const Sentiment = ({
       <Typography variant="h2" gutterBottom>
         Strong Emphasis
       </Typography>
-      <ColorSwatchContainer>
-        <ColorMap
-          colorMetadata={sentiment.strongEmphasis}
-          colorMode={colorMode}
-          rawColorObj={rawColorMapping}
-        />
-      </ColorSwatchContainer>
+      <ColorMap
+        colorMetadata={sentiment.strongEmphasis}
+        colorMode={colorMode}
+        rawColorObj={rawColorMapping}
+      />
       <Typography variant="h2" gutterBottom>
         Low Emphasis
       </Typography>
-      <ColorSwatchContainer>
-        <ColorMap
-          colorMetadata={sentiment.lowEmphasis}
-          colorMode={colorMode}
-          rawColorObj={rawColorMapping}
-        />
-      </ColorSwatchContainer>
+      <ColorMap
+        colorMetadata={sentiment.lowEmphasis}
+        colorMode={colorMode}
+        rawColorObj={rawColorMapping}
+      />
       <Typography variant="h2" gutterBottom>
         Border
       </Typography>
-      <ColorSwatchContainer>
-        <ColorMap
-          colorMetadata={sentiment.border}
-          colorMode={colorMode}
-          rawColorObj={rawColorMapping}
-        />
-      </ColorSwatchContainer>
+      <ColorMap
+        colorMetadata={sentiment.border}
+        colorMode={colorMode}
+        rawColorObj={rawColorMapping}
+      />
       <Typography variant="h2" gutterBottom>
         Focus Ring
       </Typography>
-      <ColorSwatchContainer>
-        <ColorMap
-          colorMetadata={sentiment.focusRing}
-          colorMode={colorMode}
-          rawColorObj={rawColorMapping}
-        />
-      </ColorSwatchContainer>
+      <ColorMap
+        colorMetadata={sentiment.focusRing}
+        colorMode={colorMode}
+        rawColorObj={rawColorMapping}
+      />
       <Typography variant="h2" gutterBottom>
         Shades
       </Typography>
@@ -92,13 +84,11 @@ const Sentiment = ({
         Access to global color tokens. Only use when you can't find an alias
         token for your use case.
       </Typography>
-      <ColorSwatchContainer>
-        <ColorMap
-          colorMetadata={sentiment.shades}
-          colorMode={colorMode}
-          rawColorObj={rawColorMapping}
-        />
-      </ColorSwatchContainer>
+      <ColorMap
+        colorMetadata={sentiment.shades}
+        colorMode={colorMode}
+        rawColorObj={rawColorMapping}
+      />
     </>
   )
 }
@@ -392,13 +382,11 @@ export const SemanticColors = () => {
         )
       case 'grey':
         return (
-          <ColorSwatchContainer>
-            <ColorMap
-              colorMetadata={greyColors}
-              colorMode={colorMode}
-              rawColorObj={rawColorMapping}
-            />
-          </ColorSwatchContainer>
+          <ColorMap
+            colorMetadata={greyColors}
+            colorMode={colorMode}
+            rawColorObj={rawColorMapping}
+          />
         )
     }
   }

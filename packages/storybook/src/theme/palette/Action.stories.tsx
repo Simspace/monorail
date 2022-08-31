@@ -4,7 +4,7 @@ import { alpha, capitalize, useTheme } from '@mui/material'
 import { Box, Typography } from '@monorail/components'
 
 import { getRawColorObject } from '../../helpers.js'
-import { ColorMap, ColorSwatchContainer } from './palette.components'
+import { ColorMap } from './palette.components'
 import type { ColorCardProps, ThemeName } from './palette.types'
 
 export default {
@@ -106,13 +106,11 @@ export const Action = () => {
       <Typography variant="h2" gutterBottom>
         Action Colors
       </Typography>
-      <ColorSwatchContainer>
-        <ColorMap
-          colorMetadata={action}
-          colorMode={colorMode}
-          rawColorObj={rawColorMapping}
-        />
-      </ColorSwatchContainer>
+      <ColorMap
+        colorMetadata={action}
+        colorMode={colorMode}
+        rawColorObj={rawColorMapping}
+      />
     </Box>
   )
 }

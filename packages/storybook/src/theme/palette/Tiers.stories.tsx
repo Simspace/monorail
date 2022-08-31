@@ -4,7 +4,7 @@ import { capitalize, useTheme } from '@mui/material'
 import { Box, Typography } from '@monorail/components'
 
 import { getRawColorObject } from '../../helpers.js'
-import { ColorMap, ColorSwatchContainer } from './palette.components'
+import { ColorMap } from './palette.components'
 import type { ColorCardProps, ThemeName } from './palette.types'
 
 export default {
@@ -52,13 +52,11 @@ export const Tiers = () => {
       <Typography variant="h2" gutterBottom>
         Tiers
       </Typography>
-      <ColorSwatchContainer>
-        <ColorMap
-          colorMetadata={tiers}
-          colorMode={colorMode}
-          rawColorObj={rawColorMapping}
-        />
-      </ColorSwatchContainer>
+      <ColorMap
+        colorMetadata={tiers}
+        colorMode={colorMode}
+        rawColorObj={rawColorMapping}
+      />
     </Box>
   )
 }

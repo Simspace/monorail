@@ -3,7 +3,7 @@ import { capitalize, Typography, useTheme } from '@mui/material'
 import Box from '@mui/material/Box'
 
 import { getRawColorObject } from '../../helpers.js'
-import { ColorMap, ColorSwatchContainer } from './palette.components'
+import { ColorMap } from './palette.components'
 import type { ColorCardProps, ThemeName } from './palette.types'
 
 export default {
@@ -80,33 +80,27 @@ export const Foundation = () => {
       <Typography variant="h2" gutterBottom>
         Common
       </Typography>
-      <ColorSwatchContainer>
-        <ColorMap
-          colorMetadata={commonColors}
-          colorMode={colorMode}
-          rawColorObj={rawColorMapping}
-        />
-      </ColorSwatchContainer>
+      <ColorMap
+        colorMetadata={commonColors}
+        colorMode={colorMode}
+        rawColorObj={rawColorMapping}
+      />
       <Typography variant="h2" gutterBottom>
         Text
       </Typography>
-      <ColorSwatchContainer>
-        <ColorMap
-          colorMetadata={textColors}
-          colorMode={colorMode}
-          rawColorObj={rawColorMapping}
-        />
-      </ColorSwatchContainer>
+      <ColorMap
+        colorMetadata={textColors}
+        colorMode={colorMode}
+        rawColorObj={rawColorMapping}
+      />
       <Typography variant="h2" gutterBottom>
         Background
       </Typography>
-      <ColorSwatchContainer>
-        <ColorMap
-          colorMetadata={backgroundColors}
-          colorMode={colorMode}
-          rawColorObj={rawColorMapping}
-        />
-      </ColorSwatchContainer>
+      <ColorMap
+        colorMetadata={backgroundColors}
+        colorMode={colorMode}
+        rawColorObj={rawColorMapping}
+      />
     </Box>
   )
 }

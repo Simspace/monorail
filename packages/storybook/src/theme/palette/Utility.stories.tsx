@@ -3,7 +3,7 @@ import { capitalize, Typography, useTheme } from '@mui/material'
 import Box from '@mui/material/Box'
 
 import { getRawColorObject } from '../../helpers.js'
-import { ColorMap, ColorSwatchContainer } from './palette.components'
+import { ColorMap } from './palette.components'
 import type { ThemeName } from './palette.types'
 
 export default {
@@ -42,13 +42,11 @@ export const Utility = () => {
       <Typography variant="h2" gutterBottom>
         Utility Colors
       </Typography>
-      <ColorSwatchContainer>
-        <ColorMap
-          colorMetadata={utilityColors}
-          colorMode={colorMode}
-          rawColorObj={rawColorMapping}
-        />
-      </ColorSwatchContainer>
+      <ColorMap
+        colorMetadata={utilityColors}
+        colorMode={colorMode}
+        rawColorObj={rawColorMapping}
+      />
     </Box>
   )
 }

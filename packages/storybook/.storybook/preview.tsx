@@ -30,14 +30,6 @@ export const parameters: Parameters = {
   options: {
     storySort: {
       order: [
-        'Surfaces',
-        'Feedback',
-        'Inputs',
-        'Data Display',
-        'Navigation',
-        'Layout',
-        'Data Grid',
-        'Utils',
         'Theme',
         [
           'Palette',
@@ -50,7 +42,16 @@ export const parameters: Parameters = {
             'Score',
             'Tiers',
           ],
+          'Shadows',
         ],
+        'Surfaces',
+        'Feedback',
+        'Inputs',
+        'Data Display',
+        'Navigation',
+        'Layout',
+        'Data Grid',
+        'Utils',
       ],
     },
   },

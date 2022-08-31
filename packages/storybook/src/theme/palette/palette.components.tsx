@@ -5,7 +5,7 @@ import Box from '@mui/material/Box'
 
 import type { ColorCardProps, ColorSwatchProps } from './palette.types'
 
-export const ColorSwatchContainer = ({
+const ColorSwatchContainer = ({
   children,
 }: {
   children: Array<JSX.Element> | JSX.Element
@@ -91,7 +91,7 @@ export const ColorMap = ({
   }
 
   return (
-    <>
+    <ColorSwatchContainer>
       {colorMetadata !== undefined ? (
         colorMetadata.map(color => {
           const figmaStyle =
@@ -117,7 +117,7 @@ export const ColorMap = ({
       ) : (
         <Typography color="error">No Colors</Typography>
       )}
-    </>
+    </ColorSwatchContainer>
   )
 }
 
