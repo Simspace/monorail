@@ -54,7 +54,7 @@ export const Tiers = () => {
       </Typography>
       <ColorSwatchContainer>
         <ColorMap
-          data={tiers}
+          colorMetadata={tiers}
           colorMode={colorMode}
           rawColorObj={rawColorMapping}
         />

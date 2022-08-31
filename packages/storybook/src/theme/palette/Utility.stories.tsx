@@ -44,7 +44,7 @@ export const Utility = () => {
       </Typography>
       <ColorSwatchContainer>
         <ColorMap
-          data={utilityColors}
+          colorMetadata={utilityColors}
           colorMode={colorMode}
           rawColorObj={rawColorMapping}
         />

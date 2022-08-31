@@ -1,5 +1,5 @@
 import React from 'react'
-import type { PaletteColor } from '@mui/material'
+import type { Color, PaletteColor } from '@mui/material'
 import { capitalize, Stack, Typography, useTheme } from '@mui/material'
 import Box from '@mui/material/Box'
 
@@ -50,7 +50,7 @@ const Sentiment = ({
       </Typography>
       <ColorSwatchContainer>
         <ColorMap
-          data={sentiment.strongEmphasis}
+          colorMetadata={sentiment.strongEmphasis}
           colorMode={colorMode}
           rawColorObj={rawColorMapping}
         />
@@ -60,7 +60,7 @@ const Sentiment = ({
       </Typography>
       <ColorSwatchContainer>
         <ColorMap
-          data={sentiment.lowEmphasis}
+          colorMetadata={sentiment.lowEmphasis}
           colorMode={colorMode}
           rawColorObj={rawColorMapping}
         />
@@ -70,7 +70,7 @@ const Sentiment = ({
       </Typography>
       <ColorSwatchContainer>
         <ColorMap
-          data={sentiment.border}
+          colorMetadata={sentiment.border}
           colorMode={colorMode}
           rawColorObj={rawColorMapping}
         />
@@ -80,7 +80,7 @@ const Sentiment = ({
       </Typography>
       <ColorSwatchContainer>
         <ColorMap
-          data={sentiment.focusRing}
+          colorMetadata={sentiment.focusRing}
           colorMode={colorMode}
           rawColorObj={rawColorMapping}
         />
@@ -88,9 +88,13 @@ const Sentiment = ({
       <Typography variant="h2" gutterBottom>
         Shades
       </Typography>
+      <Typography gutterBottom>
+        Access to global color tokens. Only use when you can't find an alias
+        token for your use case.
+      </Typography>
       <ColorSwatchContainer>
         <ColorMap
-          data={sentiment.shades}
+          colorMetadata={sentiment.shades}
           colorMode={colorMode}
           rawColorObj={rawColorMapping}
         />
@@ -145,6 +149,57 @@ export const SemanticColors = () => {
     [theme.name],
   )
 
+  const greyColors = Object.keys(theme.palette.grey).map(shade => ({
+    token: `palette.grey[${shade}]`,
+    colorValue: theme.palette.grey[shade as keyof Color],
+  }))
+
+  const accentColors = {
+    strongEmphasis: [
+      {
+        token: `palette.accent.light`,
+        description:
+          'Use to achieve lower contrast on components with Strong Emphasis. Don’t use for state colors.',
+        colorValue: theme.palette.accent.light,
+        figmaStyle: `Accent/Light`,
+      },
+      {
+        token: `palette.accent.main`,
+        colorValue: theme.palette.accent.main,
+        figmaStyle: `Accent/Main`,
+      },
+      {
+        token: `palette.accent.dark`,
+        colorValue: theme.palette.accent.dark,
+        figmaStyle: `Accent/Dark`,
+      },
+      {
+        token: `palette.accent.contrastText`,
+        colorValue: theme.palette.accent.contrastText,
+        figmaStyle: `Accent/contrastText`,
+      },
+    ],
+    border: [
+      {
+        token: `palette.accent.border.main`,
+        colorValue: theme.palette.accent.border.main,
+        figmaStyle: `Accent/Border/Main`,
+      },
+    ],
+    focusRing: [
+      {
+        token: `palette.accent.focusRing.inner`,
+        colorValue: theme.palette.accent.focusRing.inner,
+        figmaStyle: `Accent/Inner Focus Ring`,
+      },
+      {
+        token: `palette.accent.focusRing.outer`,
+        colorValue: theme.palette.accent.focusRing.outer,
+        figmaStyle: `Accent/Outer Focus Ring`,
+      },
+    ],
+  }
+
   const sentiment = (
     alias: ColorSwatchProps['alias'],
     paletteColor: PaletteColor,
@@ -153,12 +208,17 @@ export const SemanticColors = () => {
     lowEmphasis: Array<ColorCardProps>
     border: Array<ColorCardProps>
     focusRing: Array<ColorCardProps>
-    // shades: Array<keyof ColorShades> | []
+    shades: Array<ColorCardProps>
   } => {
-    // const colorShades =
-    //   alias !== undefined && 'shades' in paletteColor
-    //     ? Object.keys(paletteColor.shades)
-    //     : []
+    const colorShades = Object.keys(paletteColor.shades).map(shade => {
+      const colorValue =
+        shade !== undefined ? paletteColor.shades[shade as keyof Color] : ''
+
+      return {
+        token: `palette.primary.shades[${shade}]`,
+        colorValue,
+      }
+    })
 
     return {
       strongEmphasis: [
@@ -260,7 +320,7 @@ export const SemanticColors = () => {
           figmaStyle: `${capitalize(alias as string)}/Outer Focus Ring`,
         },
       ],
-      // shades: colorShades,
+      shades: colorShades,
     }
   }
 
@@ -291,7 +351,13 @@ export const SemanticColors = () => {
           />
         )
       case 'accent':
-        return
+        return (
+          <Sentiment
+            sentiment={accentColors}
+            colorMode={colorMode}
+            rawColorMapping={rawColorMapping}
+          />
+        )
       case 'success':
         return (
           <Sentiment
@@ -325,8 +391,15 @@ export const SemanticColors = () => {
           />
         )
       case 'grey':
-        // return <Scale />
-        return
+        return (
+          <ColorSwatchContainer>
+            <ColorMap
+              colorMetadata={greyColors}
+              colorMode={colorMode}
+              rawColorObj={rawColorMapping}
+            />
+          </ColorSwatchContainer>
+        )
     }
   }
 

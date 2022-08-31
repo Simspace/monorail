@@ -22,7 +22,7 @@ export const Foundation = () => {
     [theme.name],
   )
 
-  const common: Array<ColorCardProps> = [
+  const commonColors: Array<ColorCardProps> = [
     {
       token: 'palette.common.white',
       description:
@@ -39,7 +39,7 @@ export const Foundation = () => {
     },
   ]
 
-  const text = [
+  const textColors = [
     {
       token: 'palette.text.primary',
       description: 'Use for most texts. Headings, paragraphs, labels.',
@@ -60,7 +60,7 @@ export const Foundation = () => {
     },
   ]
 
-  const background = [
+  const backgroundColors = [
     {
       token: 'palette.background.default',
       colorValue: theme.palette.background.default,
@@ -82,7 +82,7 @@ export const Foundation = () => {
       </Typography>
       <ColorSwatchContainer>
         <ColorMap
-          data={common}
+          colorMetadata={commonColors}
           colorMode={colorMode}
           rawColorObj={rawColorMapping}
         />
@@ -92,7 +92,7 @@ export const Foundation = () => {
       </Typography>
       <ColorSwatchContainer>
         <ColorMap
-          data={text}
+          colorMetadata={textColors}
           colorMode={colorMode}
           rawColorObj={rawColorMapping}
         />
@@ -102,7 +102,7 @@ export const Foundation = () => {
       </Typography>
       <ColorSwatchContainer>
         <ColorMap
-          data={background}
+          colorMetadata={backgroundColors}
           colorMode={colorMode}
           rawColorObj={rawColorMapping}
         />

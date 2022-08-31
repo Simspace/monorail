@@ -32,24 +32,20 @@ export const Action = () => {
         theme.palette.action.activatedOpacity,
       ),
       opacity: theme.palette.action.activatedOpacity,
-      figmaStyle: 'N/A',
       description:
         'alpha(theme.palette.primary.main, theme.palette.action.activatedOpacity)',
     },
     {
       token: 'palette.action.active',
       colorValue: theme.palette.action.active,
-      figmaStyle: 'N/A',
     },
     {
       token: 'palette.action.disabled',
       colorValue: theme.palette.action.disabled,
-      figmaStyle: 'N/A',
     },
     {
       token: 'palette.action.disabledBackground',
       colorValue: theme.palette.action.disabledBackground,
-      figmaStyle: 'N/A',
     },
     {
       token: 'palette.action.disabledOpacity',
@@ -58,14 +54,12 @@ export const Action = () => {
         theme.palette.action.disabledOpacity,
       ),
       opacity: theme.palette.action.disabledOpacity,
-      figmaStyle: 'N/A',
       description:
         'alpha(theme.palette.primary.main, theme.palette.action.disabledOpacity)',
     },
     {
       token: 'palette.action.focus',
       colorValue: theme.palette.action.focus,
-      figmaStyle: 'N/A',
     },
     {
       token: 'palette.action.focusOpacity',
@@ -74,14 +68,12 @@ export const Action = () => {
         theme.palette.action.focusOpacity,
       ),
       opacity: theme.palette.action.focusOpacity,
-      figmaStyle: 'N/A',
       description:
         'alpha(theme.palette.primary.main, theme.palette.action.focusOpacity)',
     },
     {
       token: 'palette.action.hover',
       colorValue: theme.palette.action.hover,
-      figmaStyle: 'N/A',
     },
     {
       token: 'palette.action.hoverOpacity',
@@ -90,14 +82,12 @@ export const Action = () => {
         theme.palette.action.hoverOpacity,
       ),
       opacity: theme.palette.action.hoverOpacity,
-      figmaStyle: 'N/A',
       description:
         'alpha(theme.palette.primary.main, theme.palette.action.hoverOpacity)',
     },
     {
       token: 'palette.action.selected',
       colorValue: theme.palette.action.selected,
-      figmaStyle: 'N/A',
     },
     {
       token: 'palette.action.selectedOpacity',
@@ -106,7 +96,6 @@ export const Action = () => {
         theme.palette.action.selectedOpacity,
       ),
       opacity: theme.palette.action.selectedOpacity,
-      figmaStyle: 'N/A',
       description:
         'alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity)',
     },
@@ -119,7 +108,7 @@ export const Action = () => {
       </Typography>
       <ColorSwatchContainer>
         <ColorMap
-          data={action}
+          colorMetadata={action}
           colorMode={colorMode}
           rawColorObj={rawColorMapping}
         />

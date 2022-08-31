@@ -169,7 +169,7 @@ export const Score = () => {
           </Typography>
           <ColorSwatchContainer>
             <ColorMap
-              data={score.data}
+              colorMetadata={score.data}
               colorMode={colorMode}
               rawColorObj={rawColorMapping}
             />

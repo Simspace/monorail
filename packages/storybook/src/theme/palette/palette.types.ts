@@ -17,8 +17,8 @@ export enum ThemeName {
 export type ColorCardProps = {
   token: string
   mapping?: string
-  colorValue: string
-  figmaStyle: string
+  colorValue?: string
+  figmaStyle?: string
   description?: string
   opacity?: number
 }
@@ -28,5 +28,5 @@ export type ColorSwatchProps = {
   paletteColor?: PaletteOptions
   colorMode: string
   rawColorObj?: Record<string, string>
-  data?: Array<ColorCardProps>
+  colorMetadata?: Array<ColorCardProps>
 }
