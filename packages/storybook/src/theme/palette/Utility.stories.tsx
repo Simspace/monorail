@@ -24,13 +24,13 @@ export const Utility = () => {
 
   const utilityColors = [
     {
-      token: 'palette.divider',
+      token: 'theme.palette.divider',
       description: '',
       colorValue: theme.palette.divider,
       figmaStyle: 'Divider',
     },
     {
-      token: 'palette.rating',
+      token: 'theme.palette.rating',
       description: 'Use when Rating component is filled.',
       colorValue: theme.palette.rating,
       figmaStyle: 'Rating',

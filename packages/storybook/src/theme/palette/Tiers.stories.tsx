@@ -26,22 +26,22 @@ export const Tiers = () => {
 
   const tiers: Array<ColorCardProps> = [
     {
-      token: 'palette.tiers.one',
+      token: '.one',
       colorValue: theme.palette.tiers.one,
       figmaStyle: 'Tiers/One',
     },
     {
-      token: 'palette.tiers.two',
+      token: '.two',
       colorValue: theme.palette.tiers.two,
       figmaStyle: 'Tiers/Two',
     },
     {
-      token: 'palette.tiers.three',
+      token: '.three',
       colorValue: theme.palette.tiers.three,
       figmaStyle: 'Tiers/Three',
     },
     {
-      token: 'palette.tiers.four',
+      token: '.four',
       colorValue: theme.palette.tiers.four,
       figmaStyle: 'Tiers/Four',
     },
@@ -52,6 +52,7 @@ export const Tiers = () => {
       <Typography variant="h2" gutterBottom>
         Tiers
       </Typography>
+      <Typography gutterBottom>{`theme.palette.tiers`}</Typography>
       <ColorMap
         colorMetadata={tiers}
         colorMode={colorMode}

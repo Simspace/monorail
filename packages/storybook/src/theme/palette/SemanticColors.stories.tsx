@@ -1,6 +1,6 @@
 import React from 'react'
 import type { Color, PaletteColor } from '@mui/material'
-import { capitalize, Stack, Typography, useTheme } from '@mui/material'
+import { capitalize, Typography, useTheme } from '@mui/material'
 import Box from '@mui/material/Box'
 
 import type { TabPanelProps } from '@monorail/components'
@@ -35,17 +35,25 @@ const colorAliases = [
 
 // #region Sentiment Color Cards
 const Sentiment = ({
+  alias,
   sentiment,
   colorMode,
   rawColorMapping,
 }: {
+  alias: string
   sentiment: Record<string, Array<ColorCardProps>>
   colorMode: string
   rawColorMapping: ColorSwatchProps['rawColorObj']
 }) => {
   return (
     <>
-      <Typography variant="h2" gutterBottom>
+      <Box mb={10}>
+        <Typography variant="h2" gutterBottom>
+          {`${capitalize(alias)} Colors`}
+        </Typography>
+        <Typography gutterBottom>{`theme.palette.${alias}`}</Typography>
+      </Box>
+      <Typography variant="h3" gutterBottom>
         Strong Emphasis
       </Typography>
       <ColorMap
@@ -53,15 +61,19 @@ const Sentiment = ({
         colorMode={colorMode}
         rawColorObj={rawColorMapping}
       />
-      <Typography variant="h2" gutterBottom>
-        Low Emphasis
-      </Typography>
-      <ColorMap
-        colorMetadata={sentiment.lowEmphasis}
-        colorMode={colorMode}
-        rawColorObj={rawColorMapping}
-      />
-      <Typography variant="h2" gutterBottom>
+      {sentiment.lowEmphasis !== undefined && (
+        <>
+          <Typography variant="h3" gutterBottom>
+            Low Emphasis
+          </Typography>
+          <ColorMap
+            colorMetadata={sentiment.lowEmphasis}
+            colorMode={colorMode}
+            rawColorObj={rawColorMapping}
+          />
+        </>
+      )}
+      <Typography variant="h3" gutterBottom>
         Border
       </Typography>
       <ColorMap
@@ -69,7 +81,7 @@ const Sentiment = ({
         colorMode={colorMode}
         rawColorObj={rawColorMapping}
       />
-      <Typography variant="h2" gutterBottom>
+      <Typography variant="h3" gutterBottom>
         Focus Ring
       </Typography>
       <ColorMap
@@ -77,18 +89,22 @@ const Sentiment = ({
         colorMode={colorMode}
         rawColorObj={rawColorMapping}
       />
-      <Typography variant="h2" gutterBottom>
-        Shades
-      </Typography>
-      <Typography gutterBottom>
-        Access to global color tokens. Only use when you can't find an alias
-        token for your use case.
-      </Typography>
-      <ColorMap
-        colorMetadata={sentiment.shades}
-        colorMode={colorMode}
-        rawColorObj={rawColorMapping}
-      />
+      {sentiment.lowEmphasis !== undefined && (
+        <>
+          <Typography variant="h3" gutterBottom>
+            Shades
+          </Typography>
+          <Typography gutterBottom>
+            Access to global color tokens. Only use when you can't find an alias
+            token for your use case.
+          </Typography>
+          <ColorMap
+            colorMetadata={sentiment.shades}
+            colorMode={colorMode}
+            rawColorObj={rawColorMapping}
+          />
+        </>
+      )}
     </>
   )
 }
@@ -147,43 +163,43 @@ export const SemanticColors = () => {
   const accentColors = {
     strongEmphasis: [
       {
-        token: `palette.accent.light`,
+        token: `.light`,
         description:
           'Use to achieve lower contrast on components with Strong Emphasis. Don’t use for state colors.',
         colorValue: theme.palette.accent.light,
         figmaStyle: `Accent/Light`,
       },
       {
-        token: `palette.accent.main`,
+        token: `.main`,
         colorValue: theme.palette.accent.main,
         figmaStyle: `Accent/Main`,
       },
       {
-        token: `palette.accent.dark`,
+        token: `.dark`,
         colorValue: theme.palette.accent.dark,
         figmaStyle: `Accent/Dark`,
       },
       {
-        token: `palette.accent.contrastText`,
+        token: `.contrastText`,
         colorValue: theme.palette.accent.contrastText,
         figmaStyle: `Accent/contrastText`,
       },
     ],
     border: [
       {
-        token: `palette.accent.border.main`,
+        token: `.border.main`,
         colorValue: theme.palette.accent.border.main,
         figmaStyle: `Accent/Border/Main`,
       },
     ],
     focusRing: [
       {
-        token: `palette.accent.focusRing.inner`,
+        token: `.focusRing.inner`,
         colorValue: theme.palette.accent.focusRing.inner,
         figmaStyle: `Accent/Inner Focus Ring`,
       },
       {
-        token: `palette.accent.focusRing.outer`,
+        token: `.focusRing.outer`,
         colorValue: theme.palette.accent.focusRing.outer,
         figmaStyle: `Accent/Outer Focus Ring`,
       },
@@ -205,7 +221,7 @@ export const SemanticColors = () => {
         shade !== undefined ? paletteColor.shades[shade as keyof Color] : ''
 
       return {
-        token: `palette.primary.shades[${shade}]`,
+        token: `.shades[${shade}]`,
         colorValue,
       }
     })
@@ -213,99 +229,99 @@ export const SemanticColors = () => {
     return {
       strongEmphasis: [
         {
-          token: `palette.${alias}.light`,
+          token: `.light`,
           description:
             'Use to achieve lower contrast on components with Strong Emphasis. Don’t use for state colors.',
           colorValue: paletteColor.light,
           figmaStyle: `${capitalize(alias as string)}/Light`,
         },
         {
-          token: `palette.${alias}.main`,
+          token: `.main`,
           colorValue: paletteColor.main,
           figmaStyle: `${capitalize(alias as string)}/Main`,
         },
         {
-          token: `palette.${alias}.dark`,
+          token: `.dark`,
           colorValue: paletteColor.dark,
           figmaStyle: `${capitalize(alias as string)}/Dark`,
         },
         {
-          token: `palette.${alias}.contrastText`,
+          token: `.contrastText`,
           colorValue: paletteColor.contrastText,
           figmaStyle: `${capitalize(alias as string)}/contrastText`,
         },
         {
-          token: `palette.${alias}.hover`,
+          token: `.hover`,
           colorValue: paletteColor.hover,
           figmaStyle: `${capitalize(alias as string)}/Hover`,
         },
         {
-          token: `palette.${alias}.active`,
+          token: `.active`,
           colorValue: paletteColor.active,
           figmaStyle: `${capitalize(alias as string)}/Active`,
         },
       ],
       lowEmphasis: [
         {
-          token: `palette.${alias}.lowEmphasis.light`,
+          token: `.lowEmphasis.light`,
           description:
             'Use to achieve lower contrast on components with Strong Emphasis. Don’t use for state colors.',
           colorValue: paletteColor.lowEmphasis.light,
           figmaStyle: `${capitalize(alias as string)}/Low Emphasis/Light`,
         },
         {
-          token: `palette.${alias}.lowEmphasis.main`,
+          token: `.lowEmphasis.main`,
           colorValue: paletteColor.lowEmphasis.main,
           figmaStyle: `${capitalize(alias as string)}/Low Emphasis/Main`,
         },
         {
-          token: `palette.${alias}.lowEmphasis.dark`,
+          token: `.lowEmphasis.dark`,
           colorValue: paletteColor.lowEmphasis.dark,
           figmaStyle: `${capitalize(alias as string)}/Low Emphasis/Dark`,
         },
         {
-          token: `palette.${alias}.lowEmphasis.contrastText`,
+          token: `.lowEmphasis.contrastText`,
           colorValue: paletteColor.lowEmphasis.contrastText,
           figmaStyle: `${capitalize(
             alias as string,
           )}/Low Emphasis/contrastText`,
         },
         {
-          token: `palette.${alias}.lowEmphasis.hover`,
+          token: `.lowEmphasis.hover`,
           colorValue: paletteColor.lowEmphasis.hover,
           figmaStyle: `${capitalize(alias as string)}/Low Emphasis/.Hover`,
         },
         {
-          token: `palette.${alias}.lowEmphasis.active`,
+          token: `.lowEmphasis.active`,
           colorValue: paletteColor.lowEmphasis.active,
           figmaStyle: `${capitalize(alias as string)}/Low Emphasis/.Active`,
         },
       ],
       border: [
         {
-          token: `palette.${alias}.border.light`,
+          token: `.border.light`,
           colorValue: paletteColor.border.light,
           figmaStyle: `${capitalize(alias as string)}/Border/Light`,
         },
         {
-          token: `palette.${alias}.border.main`,
+          token: `.border.main`,
           colorValue: paletteColor.border.main,
           figmaStyle: `${capitalize(alias as string)}/Border/Main`,
         },
         {
-          token: `palette.${alias}.border.dark`,
+          token: `.border.dark`,
           colorValue: paletteColor.border.dark,
           figmaStyle: `${capitalize(alias as string)}/Border/Dark`,
         },
       ],
       focusRing: [
         {
-          token: `palette.${alias}.focusRing.inner`,
+          token: `.focusRing.inner`,
           colorValue: paletteColor.focusRing.inner,
           figmaStyle: `${capitalize(alias as string)}/Inner Focus Ring`,
         },
         {
-          token: `palette.${alias}.focusRing.outer`,
+          token: `.focusRing.outer`,
           colorValue: paletteColor.focusRing.outer,
           figmaStyle: `${capitalize(alias as string)}/Outer Focus Ring`,
         },
@@ -319,6 +335,7 @@ export const SemanticColors = () => {
       case 'primary':
         return (
           <Sentiment
+            alias={alias}
             sentiment={sentiment('primary', theme.palette.primary)}
             colorMode={colorMode}
             rawColorMapping={rawColorMapping}
@@ -327,6 +344,7 @@ export const SemanticColors = () => {
       case 'secondary':
         return (
           <Sentiment
+            alias={alias}
             sentiment={sentiment('secondary', theme.palette.secondary)}
             colorMode={colorMode}
             rawColorMapping={rawColorMapping}
@@ -335,6 +353,7 @@ export const SemanticColors = () => {
       case 'default':
         return (
           <Sentiment
+            alias={alias}
             sentiment={sentiment('default', theme.palette.default)}
             colorMode={colorMode}
             rawColorMapping={rawColorMapping}
@@ -343,6 +362,7 @@ export const SemanticColors = () => {
       case 'accent':
         return (
           <Sentiment
+            alias={alias}
             sentiment={accentColors}
             colorMode={colorMode}
             rawColorMapping={rawColorMapping}
@@ -351,6 +371,7 @@ export const SemanticColors = () => {
       case 'success':
         return (
           <Sentiment
+            alias={alias}
             sentiment={sentiment('success', theme.palette.success)}
             colorMode={colorMode}
             rawColorMapping={rawColorMapping}
@@ -359,6 +380,7 @@ export const SemanticColors = () => {
       case 'error':
         return (
           <Sentiment
+            alias={alias}
             sentiment={sentiment('error', theme.palette.error)}
             colorMode={colorMode}
             rawColorMapping={rawColorMapping}
@@ -367,6 +389,7 @@ export const SemanticColors = () => {
       case 'warning':
         return (
           <Sentiment
+            alias={alias}
             sentiment={sentiment('warning', theme.palette.warning)}
             colorMode={colorMode}
             rawColorMapping={rawColorMapping}
@@ -375,6 +398,7 @@ export const SemanticColors = () => {
       case 'info':
         return (
           <Sentiment
+            alias={alias}
             sentiment={sentiment('info', theme.palette.info)}
             colorMode={colorMode}
             rawColorMapping={rawColorMapping}
@@ -392,11 +416,14 @@ export const SemanticColors = () => {
   }
 
   return (
-    <Stack>
+    <Box sx={{ flexGrow: 1 }}>
       <Box
         sx={{
-          flexGrow: 1,
-          bgcolor: 'background.paper',
+          borderBottom: 1,
+          borderColor: 'divider',
+          position: 'sticky',
+          left: 0,
+          top: 0,
         }}
       >
         <Tabs
@@ -405,9 +432,6 @@ export const SemanticColors = () => {
           onChange={handleChange}
           sx={{
             minWidth: 160,
-            position: 'sticky',
-            top: 0,
-            left: 0,
             bgcolor: 'background.paper',
           }}
         >
@@ -415,12 +439,12 @@ export const SemanticColors = () => {
             <Tab key={alias} label={capitalize(alias)} {...a11yPropsV(idx)} />
           ))}
         </Tabs>
-        {colorAliases.map((alias, idx) => (
-          <TabPanelV value={value.toString()} index={idx.toString()} key={idx}>
-            {getTokenMapping(alias)}
-          </TabPanelV>
-        ))}
       </Box>
-    </Stack>
+      {colorAliases.map((alias, idx) => (
+        <TabPanelV value={value.toString()} index={idx.toString()} key={idx}>
+          {getTokenMapping(alias)}
+        </TabPanelV>
+      ))}
+    </Box>
   )
 }

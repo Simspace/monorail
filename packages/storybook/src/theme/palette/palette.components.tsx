@@ -1,21 +1,28 @@
 import React from 'react'
 import type { Color } from '@mui/material'
-import { Card, CardContent, Stack, Typography } from '@mui/material'
+import { styled, Typography } from '@mui/material'
 import Box from '@mui/material/Box'
+import { getContrastRatio } from '@mui/system'
+
+import {
+  Paper,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+} from '@monorail/components'
 
 import type { ColorCardProps, ColorSwatchProps } from './palette.types'
 
-const ColorSwatchContainer = ({
-  children,
-}: {
-  children: Array<JSX.Element> | JSX.Element
-}) => (
-  <Stack direction="row" flexWrap="wrap" gap={4} mb={10}>
-    {children}
-  </Stack>
-)
+const StyledTableRow = styled(TableRow)(({ theme }) => ({
+  ' > td, > th': {
+    borderBottom: `1px solid ${theme.palette.divider}`,
+  },
+}))
 
-export const ColorCard = ({
+export const ColorTokenRow = ({
   token,
   mapping,
   colorValue,
@@ -23,59 +30,35 @@ export const ColorCard = ({
   description,
   opacity,
 }: ColorCardProps) => {
-  const showColorMap =
-    mapping !== undefined ? (
-      <Typography>{`RawColor.${mapping}`}</Typography>
-    ) : (
-      <></>
-    )
-
-  const showOpacity =
-    opacity !== undefined ? (
-      <Typography>{`Opacity: ${opacity}`}</Typography>
-    ) : (
-      <></>
-    )
-
-  const showColorValue =
-    opacity === undefined ? <Typography>{colorValue}</Typography> : <></>
-
-  const showDescription =
-    description !== undefined ? (
-      <Typography variant="body2" color="text.secondary" mt={3}>
-        {description}
-      </Typography>
-    ) : (
-      <></>
-    )
-
   return (
-    <Card variant="outlined" sx={{ minWidth: 275, width: '24%' }}>
-      <CardContent>
-        <Stack gap={2}>
-          <Box
-            sx={theme => ({
-              width: '100%',
-              height: 120,
-              bgcolor: colorValue,
-              border:
-                colorValue !== undefined &&
-                colorValue.toLowerCase().includes('#fff')
-                  ? `1px solid ${theme.palette.divider}`
-                  : 'none',
-            })}
-          ></Box>
-          <Typography fontWeight="medium" sx={{ wordWrap: 'break-word' }}>
-            {token}
-          </Typography>
-          <Typography>{figmaStyle}</Typography>
-          {showColorMap}
-          {showOpacity}
-          {showColorValue}
-          {showDescription}
-        </Stack>
-      </CardContent>
-    </Card>
+    <StyledTableRow>
+      <TableCell component="th" scope="row" sx={{ width: '20%' }}>
+        {token}
+      </TableCell>
+      <TableCell sx={{ width: '7%' }}>
+        <Box
+          sx={theme => ({
+            width: 40,
+            height: 40,
+            bgcolor: colorValue,
+            border:
+              colorValue !== undefined &&
+              getContrastRatio(colorValue, theme.palette.background.paper) <=
+                theme.palette.contrastThreshold
+                ? `1px solid ${theme.palette.divider}`
+                : 'none',
+          })}
+        ></Box>
+      </TableCell>
+      <TableCell sx={{ width: '10%' }}>{mapping ?? '---'}</TableCell>
+      <TableCell>{opacity ?? colorValue}</TableCell>
+      <TableCell sx={{ width: '20%' }}>{figmaStyle}</TableCell>
+      <TableCell sx={{ width: '30%' }}>
+        <Typography sx={{ maxWidth: '80ch' }} variant="body2">
+          {description ?? '---'}
+        </Typography>
+      </TableCell>
+    </StyledTableRow>
   )
 }
 
@@ -91,33 +74,51 @@ export const ColorMap = ({
   }
 
   return (
-    <ColorSwatchContainer>
-      {colorMetadata !== undefined ? (
-        colorMetadata.map(color => {
-          const figmaStyle =
-            color.figmaStyle !== undefined
-              ? `${colorMode}/${color.figmaStyle}`
-              : 'No Figma Style'
+    <TableContainer
+      component={Paper}
+      elevation={0}
+      sx={{ mb: 10, borderColor: 'divider' }}
+    >
+      <Table>
+        <TableHead>
+          <StyledTableRow>
+            <TableCell variant="head">Token</TableCell>
+            <TableCell variant="head">Color</TableCell>
+            <TableCell variant="head">Mapping</TableCell>
+            <TableCell variant="head">Value</TableCell>
+            <TableCell variant="head">Figma Style</TableCell>
+            <TableCell variant="head">Description</TableCell>
+          </StyledTableRow>
+        </TableHead>
+        <TableBody>
+          {colorMetadata !== undefined ? (
+            colorMetadata.map(color => {
+              const figmaStyle =
+                color.figmaStyle !== undefined
+                  ? `${colorMode}/${color.figmaStyle}`
+                  : '---'
 
-          const colorValue =
-            color.colorValue !== undefined ? color.colorValue : ''
+              const colorValue =
+                color.colorValue !== undefined ? color.colorValue : ''
 
-          return (
-            <ColorCard
-              key={color.token}
-              token={color.token}
-              mapping={getObjectKey(colorValue)}
-              opacity={color.opacity}
-              colorValue={color.colorValue}
-              figmaStyle={figmaStyle}
-              description={color.description}
-            />
-          )
-        })
-      ) : (
-        <Typography color="error">No Colors</Typography>
-      )}
-    </ColorSwatchContainer>
+              return (
+                <ColorTokenRow
+                  key={color.token}
+                  token={color.token}
+                  mapping={getObjectKey(colorValue)}
+                  opacity={color.opacity}
+                  colorValue={color.colorValue}
+                  figmaStyle={figmaStyle}
+                  description={color.description}
+                />
+              )
+            })
+          ) : (
+            <></>
+          )}
+        </TableBody>
+      </Table>
+    </TableContainer>
   )
 }
 

@@ -24,14 +24,14 @@ export const Foundation = () => {
 
   const commonColors: Array<ColorCardProps> = [
     {
-      token: 'palette.common.white',
+      token: '.white',
       description:
         'Elements that should remain white no matter what theme is used. Example: White text on a blue button.',
       colorValue: theme.palette.common.white,
       figmaStyle: 'Common/White',
     },
     {
-      token: 'palette.common.black',
+      token: '.black',
       description:
         'Elements that should remain black no matter what theme is used. Example: Black text on a yellow button.',
       colorValue: theme.palette.common.black,
@@ -41,19 +41,19 @@ export const Foundation = () => {
 
   const textColors = [
     {
-      token: 'palette.text.primary',
+      token: '.primary',
       description: 'Use for most texts. Headings, paragraphs, labels.',
       colorValue: theme.palette.text.primary,
       figmaStyle: 'Text/Primary',
     },
     {
-      token: 'palette.text.secondary',
+      token: '.secondary',
       description: '',
       colorValue: theme.palette.text.secondary,
       figmaStyle: 'Text/Secondary',
     },
     {
-      token: 'palette.text.disabled',
+      token: '.disabled',
       description: '',
       colorValue: theme.palette.text.disabled,
       figmaStyle: 'Text/Disabled',
@@ -62,12 +62,12 @@ export const Foundation = () => {
 
   const backgroundColors = [
     {
-      token: 'palette.background.default',
+      token: '.default',
       colorValue: theme.palette.background.default,
       figmaStyle: 'Background/Default',
     },
     {
-      token: 'palette.background.paper',
+      token: '.paper',
       colorValue: theme.palette.background.paper,
       description:
         'Commonly used on surfaces. As a rule of thumb, if the background should turn from light to dark when switching from light to dark mode, use background.paper.',
@@ -80,6 +80,7 @@ export const Foundation = () => {
       <Typography variant="h2" gutterBottom>
         Common
       </Typography>
+      <Typography gutterBottom>{`theme.palette.common`}</Typography>
       <ColorMap
         colorMetadata={commonColors}
         colorMode={colorMode}
@@ -88,6 +89,7 @@ export const Foundation = () => {
       <Typography variant="h2" gutterBottom>
         Text
       </Typography>
+      <Typography gutterBottom>{`theme.palette.text`}</Typography>
       <ColorMap
         colorMetadata={textColors}
         colorMode={colorMode}
@@ -96,6 +98,7 @@ export const Foundation = () => {
       <Typography variant="h2" gutterBottom>
         Background
       </Typography>
+      <Typography gutterBottom>{`theme.palette.background`}</Typography>
       <ColorMap
         colorMetadata={backgroundColors}
         colorMode={colorMode}

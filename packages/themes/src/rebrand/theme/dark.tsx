@@ -545,7 +545,7 @@ const palette: PaletteOptions = {
     800: RawColor.Grey800,
     900: RawColor.Grey900,
   },
-  divider: RawColor.Grey200,
+  divider: RawColor.Grey800,
   rating: RawColor.Yellow400,
   background: {
     default: '#FAFAFA',

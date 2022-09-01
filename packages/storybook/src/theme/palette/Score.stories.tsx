@@ -27,22 +27,22 @@ export const Score = () => {
       name: 'Low',
       data: [
         {
-          token: 'palette.score.low.light',
+          token: '.low.light',
           colorValue: theme.palette.score.low.light,
           figmaStyle: 'Score/Low/Light',
         },
         {
-          token: 'palette.score.low.main',
+          token: '.low.main',
           colorValue: theme.palette.score.low.main,
           figmaStyle: 'Score/Low/Main',
         },
         {
-          token: 'palette.score.low.dark',
+          token: '.low.dark',
           colorValue: theme.palette.score.low.dark,
           figmaStyle: 'Score/Low/Dark',
         },
         {
-          token: 'palette.score.low.contrastText',
+          token: '.low.contrastText',
           colorValue: theme.palette.score.low.contrastText,
           figmaStyle: 'Score/Low/Contrast Text',
           description:
@@ -54,22 +54,22 @@ export const Score = () => {
       name: 'Low Moderate',
       data: [
         {
-          token: 'palette.score.lowModerate.light',
+          token: '.lowModerate.light',
           colorValue: theme.palette.score.lowModerate.light,
           figmaStyle: 'Score/Low Moderate/Light',
         },
         {
-          token: 'palette.score.lowModerate.main',
+          token: '.lowModerate.main',
           colorValue: theme.palette.score.lowModerate.main,
           figmaStyle: 'Score/Low Moderate/Main',
         },
         {
-          token: 'palette.score.lowModerate.dark',
+          token: '.lowModerate.dark',
           colorValue: theme.palette.score.lowModerate.dark,
           figmaStyle: 'Score/Low Moderate/Dark',
         },
         {
-          token: 'palette.score.lowModerate.contrastText',
+          token: '.lowModerate.contrastText',
           colorValue: theme.palette.score.lowModerate.contrastText,
           figmaStyle: 'Score/Low Moderate/Contrast Text',
           description:
@@ -81,22 +81,22 @@ export const Score = () => {
       name: 'Moderate',
       data: [
         {
-          token: 'palette.score.moderate.light',
+          token: '.moderate.light',
           colorValue: theme.palette.score.moderate.light,
           figmaStyle: 'Score/Moderate/Light',
         },
         {
-          token: 'palette.score.moderate.main',
+          token: '.moderate.main',
           colorValue: theme.palette.score.moderate.main,
           figmaStyle: 'Score/Moderate/Main',
         },
         {
-          token: 'palette.score.moderate.dark',
+          token: '.moderate.dark',
           colorValue: theme.palette.score.moderate.dark,
           figmaStyle: 'Score/Moderate/Dark',
         },
         {
-          token: 'palette.score.moderate.contrastText',
+          token: '.moderate.contrastText',
           colorValue: theme.palette.score.moderate.contrastText,
           figmaStyle: 'Score/Moderate/Contrast Text',
           description:
@@ -108,22 +108,22 @@ export const Score = () => {
       name: 'High Moderate',
       data: [
         {
-          token: 'palette.score.highModerate.light',
+          token: '.highModerate.light',
           colorValue: theme.palette.score.highModerate.light,
           figmaStyle: 'Score/High Moderate/Light',
         },
         {
-          token: 'palette.score.highModerate.main',
+          token: '.highModerate.main',
           colorValue: theme.palette.score.highModerate.main,
           figmaStyle: 'Score/High Moderate/Main',
         },
         {
-          token: 'palette.score.highModerate.dark',
+          token: '.highModerate.dark',
           colorValue: theme.palette.score.highModerate.dark,
           figmaStyle: 'Score/High Moderate/Dark',
         },
         {
-          token: 'palette.score.highModerate.contrastText',
+          token: '.highModerate.contrastText',
           colorValue: theme.palette.score.highModerate.contrastText,
           figmaStyle: 'Score/High Moderate/Contrast Text',
           description:
@@ -135,22 +135,22 @@ export const Score = () => {
       name: 'High',
       data: [
         {
-          token: 'palette.score.high.light',
+          token: '.high.light',
           colorValue: theme.palette.score.high.light,
           figmaStyle: 'Score/High/Light',
         },
         {
-          token: 'palette.score.high.main',
+          token: '.high.main',
           colorValue: theme.palette.score.high.main,
           figmaStyle: 'Score/High/Main',
         },
         {
-          token: 'palette.score.high.dark',
+          token: '.high.dark',
           colorValue: theme.palette.score.high.dark,
           figmaStyle: 'Score/High/Dark',
         },
         {
-          token: 'palette.score.high.contrastText',
+          token: '.high.contrastText',
           colorValue: theme.palette.score.high.contrastText,
           figmaStyle: 'Score/High/Contrast Text',
           description:
@@ -167,6 +167,7 @@ export const Score = () => {
           <Typography variant="h2" gutterBottom>
             {score.name}
           </Typography>
+          <Typography gutterBottom>{`theme.palette.score`}</Typography>
           <ColorMap
             colorMetadata={score.data}
             colorMode={colorMode}
