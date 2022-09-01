@@ -4,8 +4,8 @@ import { capitalize, useTheme } from '@mui/material'
 import { Box, Typography } from '@monorail/components'
 
 import { getRawColorObject } from '../../helpers.js'
-import { ColorMap } from './palette.components'
-import type { ColorCardProps, ThemeName } from './palette.types'
+import { ColorTokenTable } from './palette.components'
+import type { ColorTokenTableProps, ThemeName } from './palette.types'
 
 export default {
   title: 'Theme/Palette/Tiers',
@@ -24,7 +24,7 @@ export const Tiers = () => {
     [theme.name],
   )
 
-  const tiers: Array<ColorCardProps> = [
+  const tiers: Array<ColorTokenTableProps> = [
     {
       token: '.one',
       colorValue: theme.palette.tiers.one,
@@ -53,7 +53,7 @@ export const Tiers = () => {
         Tiers
       </Typography>
       <Typography gutterBottom>{`theme.palette.tiers`}</Typography>
-      <ColorMap
+      <ColorTokenTable
         colorMetadata={tiers}
         colorMode={colorMode}
         rawColorObj={rawColorMapping}

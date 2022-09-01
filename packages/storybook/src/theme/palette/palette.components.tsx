@@ -14,7 +14,7 @@ import {
   TableRow,
 } from '@monorail/components'
 
-import type { ColorCardProps, ColorSwatchProps } from './palette.types'
+import type { ColorTokenRowProps, ColorTokenTableProps } from './palette.types'
 
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
   ' > td, > th': {
@@ -29,7 +29,7 @@ export const ColorTokenRow = ({
   figmaStyle,
   description,
   opacity,
-}: ColorCardProps) => {
+}: ColorTokenRowProps) => {
   return (
     <StyledTableRow>
       <TableCell component="th" scope="row" sx={{ width: '20%' }}>
@@ -62,11 +62,11 @@ export const ColorTokenRow = ({
   )
 }
 
-export const ColorMap = ({
+export const ColorTokenTable = ({
   colorMetadata,
   colorMode,
   rawColorObj,
-}: ColorSwatchProps) => {
+}: ColorTokenTableProps) => {
   const getObjectKey = (value: string) => {
     if (rawColorObj !== undefined) {
       return Object.keys(rawColorObj).find(key => rawColorObj[key] === value)

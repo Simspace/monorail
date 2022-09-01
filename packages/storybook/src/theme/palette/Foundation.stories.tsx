@@ -3,8 +3,8 @@ import { capitalize, Typography, useTheme } from '@mui/material'
 import Box from '@mui/material/Box'
 
 import { getRawColorObject } from '../../helpers.js'
-import { ColorMap } from './palette.components'
-import type { ColorCardProps, ThemeName } from './palette.types'
+import { ColorTokenTable } from './palette.components'
+import type { ColorTokenTableProps, ThemeName } from './palette.types'
 
 export default {
   title: 'Theme/Palette/Foundation',
@@ -22,7 +22,7 @@ export const Foundation = () => {
     [theme.name],
   )
 
-  const commonColors: Array<ColorCardProps> = [
+  const commonColors: Array<ColorTokenTableProps> = [
     {
       token: '.white',
       description:
@@ -81,7 +81,7 @@ export const Foundation = () => {
         Common
       </Typography>
       <Typography gutterBottom>{`theme.palette.common`}</Typography>
-      <ColorMap
+      <ColorTokenTable
         colorMetadata={commonColors}
         colorMode={colorMode}
         rawColorObj={rawColorMapping}
@@ -90,7 +90,7 @@ export const Foundation = () => {
         Text
       </Typography>
       <Typography gutterBottom>{`theme.palette.text`}</Typography>
-      <ColorMap
+      <ColorTokenTable
         colorMetadata={textColors}
         colorMode={colorMode}
         rawColorObj={rawColorMapping}
@@ -99,7 +99,7 @@ export const Foundation = () => {
         Background
       </Typography>
       <Typography gutterBottom>{`theme.palette.background`}</Typography>
-      <ColorMap
+      <ColorTokenTable
         colorMetadata={backgroundColors}
         colorMode={colorMode}
         rawColorObj={rawColorMapping}

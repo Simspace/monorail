@@ -4,8 +4,8 @@ import { alpha, capitalize, useTheme } from '@mui/material'
 import { Box, Typography } from '@monorail/components'
 
 import { getRawColorObject } from '../../helpers.js'
-import { ColorMap } from './palette.components'
-import type { ColorCardProps, ThemeName } from './palette.types'
+import { ColorTokenTable } from './palette.components'
+import type { ColorTokenTableProps, ThemeName } from './palette.types'
 
 export default {
   title: 'Theme/Palette/Action',
@@ -24,7 +24,7 @@ export const Action = () => {
     [theme.name],
   )
 
-  const action: Array<ColorCardProps> = [
+  const action: Array<ColorTokenTableProps> = [
     {
       token: '.activatedOpacity',
       colorValue: alpha(
@@ -107,7 +107,7 @@ export const Action = () => {
         Action Colors
       </Typography>
       <Typography gutterBottom>{`theme.palette.action`}</Typography>
-      <ColorMap
+      <ColorTokenTable
         colorMetadata={action}
         colorMode={colorMode}
         rawColorObj={rawColorMapping}

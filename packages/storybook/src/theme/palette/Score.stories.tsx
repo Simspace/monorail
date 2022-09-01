@@ -3,8 +3,8 @@ import { capitalize, Typography, useTheme } from '@mui/material'
 import Box from '@mui/material/Box'
 
 import { getRawColorObject } from '../../helpers.js'
-import { ColorMap } from './palette.components'
-import type { ColorCardProps, ThemeName } from './palette.types'
+import { ColorTokenTable } from './palette.components'
+import type { ColorTokenTableProps, ThemeName } from './palette.types'
 
 export default {
   title: 'Theme/Palette/Score',
@@ -22,7 +22,10 @@ export const Score = () => {
     [theme.name],
   )
 
-  const scoreColors: Array<{ name: string; data: Array<ColorCardProps> }> = [
+  const scoreColors: Array<{
+    name: string
+    data: Array<ColorTokenTableProps>
+  }> = [
     {
       name: 'Low',
       data: [
@@ -168,7 +171,7 @@ export const Score = () => {
             {score.name}
           </Typography>
           <Typography gutterBottom>{`theme.palette.score`}</Typography>
-          <ColorMap
+          <ColorTokenTable
             colorMetadata={score.data}
             colorMode={colorMode}
             rawColorObj={rawColorMapping}

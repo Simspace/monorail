@@ -14,7 +14,7 @@ export enum ThemeName {
   RebrandDark = 'rebrandDark',
 }
 
-export type ColorCardProps = {
+export type ColorTokenRowProps = {
   token: string
   mapping?: string
   colorValue?: string
@@ -23,10 +23,10 @@ export type ColorCardProps = {
   opacity?: number
 }
 
-export type ColorSwatchProps = {
+export type ColorTokenTableProps = {
   alias?: keyof Palette
   paletteColor?: PaletteOptions
   colorMode: string
   rawColorObj?: Record<string, string>
-  colorMetadata?: Array<ColorCardProps>
+  colorMetadata?: Array<ColorTokenRowProps>
 }

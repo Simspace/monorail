@@ -7,10 +7,10 @@ import type { TabPanelProps } from '@monorail/components'
 import { Tab, Tabs } from '@monorail/components'
 
 import { getRawColorObject } from '../../helpers.js'
-import { ColorMap } from './palette.components'
+import { ColorTokenTable } from './palette.components'
 import type {
-  ColorCardProps,
-  ColorSwatchProps,
+  ColorTokenTableProps,
+  ColorTokenTableProps,
   ThemeName,
 } from './palette.types'
 
@@ -41,9 +41,9 @@ const Sentiment = ({
   rawColorMapping,
 }: {
   alias: string
-  sentiment: Record<string, Array<ColorCardProps>>
+  sentiment: Record<string, Array<ColorTokenTableProps>>
   colorMode: string
-  rawColorMapping: ColorSwatchProps['rawColorObj']
+  rawColorMapping: ColorTokenTableProps['rawColorObj']
 }) => {
   return (
     <>
@@ -56,7 +56,7 @@ const Sentiment = ({
       <Typography variant="h3" gutterBottom>
         Strong Emphasis
       </Typography>
-      <ColorMap
+      <ColorTokenTable
         colorMetadata={sentiment.strongEmphasis}
         colorMode={colorMode}
         rawColorObj={rawColorMapping}
@@ -66,7 +66,7 @@ const Sentiment = ({
           <Typography variant="h3" gutterBottom>
             Low Emphasis
           </Typography>
-          <ColorMap
+          <ColorTokenTable
             colorMetadata={sentiment.lowEmphasis}
             colorMode={colorMode}
             rawColorObj={rawColorMapping}
@@ -76,7 +76,7 @@ const Sentiment = ({
       <Typography variant="h3" gutterBottom>
         Border
       </Typography>
-      <ColorMap
+      <ColorTokenTable
         colorMetadata={sentiment.border}
         colorMode={colorMode}
         rawColorObj={rawColorMapping}
@@ -84,7 +84,7 @@ const Sentiment = ({
       <Typography variant="h3" gutterBottom>
         Focus Ring
       </Typography>
-      <ColorMap
+      <ColorTokenTable
         colorMetadata={sentiment.focusRing}
         colorMode={colorMode}
         rawColorObj={rawColorMapping}
@@ -98,7 +98,7 @@ const Sentiment = ({
             Access to global color tokens. Only use when you can't find an alias
             token for your use case.
           </Typography>
-          <ColorMap
+          <ColorTokenTable
             colorMetadata={sentiment.shades}
             colorMode={colorMode}
             rawColorObj={rawColorMapping}
@@ -207,14 +207,14 @@ export const SemanticColors = () => {
   }
 
   const sentiment = (
-    alias: ColorSwatchProps['alias'],
+    alias: ColorTokenTableProps['alias'],
     paletteColor: PaletteColor,
   ): {
-    strongEmphasis: Array<ColorCardProps>
-    lowEmphasis: Array<ColorCardProps>
-    border: Array<ColorCardProps>
-    focusRing: Array<ColorCardProps>
-    shades: Array<ColorCardProps>
+    strongEmphasis: Array<ColorTokenTableProps>
+    lowEmphasis: Array<ColorTokenTableProps>
+    border: Array<ColorTokenTableProps>
+    focusRing: Array<ColorTokenTableProps>
+    shades: Array<ColorTokenTableProps>
   } => {
     const colorShades = Object.keys(paletteColor.shades).map(shade => {
       const colorValue =
@@ -406,7 +406,7 @@ export const SemanticColors = () => {
         )
       case 'grey':
         return (
-          <ColorMap
+          <ColorTokenTable
             colorMetadata={greyColors}
             colorMode={colorMode}
             rawColorObj={rawColorMapping}
