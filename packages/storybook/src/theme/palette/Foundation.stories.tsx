@@ -4,7 +4,7 @@ import Box from '@mui/material/Box'
 
 import { getRawColorObject } from '../../helpers.js'
 import { ColorTokenTable } from './palette.components'
-import type { ColorTokenTableProps, ThemeName } from './palette.types'
+import type { ColorTokenRowProps, ThemeName } from './palette.types'
 
 export default {
   title: 'Theme/Palette/Foundation',
@@ -22,7 +22,7 @@ export const Foundation = () => {
     [theme.name],
   )
 
-  const commonColors: Array<ColorTokenTableProps> = [
+  const commonColors: Array<ColorTokenRowProps> = [
     {
       token: '.white',
       description:

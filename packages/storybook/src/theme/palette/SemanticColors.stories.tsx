@@ -9,7 +9,7 @@ import { Tab, Tabs } from '@monorail/components'
 import { getRawColorObject } from '../../helpers.js'
 import { ColorTokenTable } from './palette.components'
 import type {
-  ColorTokenTableProps,
+  ColorTokenRowProps,
   ColorTokenTableProps,
   ThemeName,
 } from './palette.types'
@@ -41,7 +41,7 @@ const Sentiment = ({
   rawColorMapping,
 }: {
   alias: string
-  sentiment: Record<string, Array<ColorTokenTableProps>>
+  sentiment: Record<string, Array<ColorTokenRowProps>>
   colorMode: string
   rawColorMapping: ColorTokenTableProps['rawColorObj']
 }) => {
@@ -210,11 +210,11 @@ export const SemanticColors = () => {
     alias: ColorTokenTableProps['alias'],
     paletteColor: PaletteColor,
   ): {
-    strongEmphasis: Array<ColorTokenTableProps>
-    lowEmphasis: Array<ColorTokenTableProps>
-    border: Array<ColorTokenTableProps>
-    focusRing: Array<ColorTokenTableProps>
-    shades: Array<ColorTokenTableProps>
+    strongEmphasis: Array<ColorTokenRowProps>
+    lowEmphasis: Array<ColorTokenRowProps>
+    border: Array<ColorTokenRowProps>
+    focusRing: Array<ColorTokenRowProps>
+    shades: Array<ColorTokenRowProps>
   } => {
     const colorShades = Object.keys(paletteColor.shades).map(shade => {
       const colorValue =

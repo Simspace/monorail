@@ -4,7 +4,7 @@ import Box from '@mui/material/Box'
 
 import { getRawColorObject } from '../../helpers.js'
 import { ColorTokenTable } from './palette.components'
-import type { ColorTokenTableProps, ThemeName } from './palette.types'
+import type { ColorTokenRowProps, ThemeName } from './palette.types'
 
 export default {
   title: 'Theme/Palette/Score',
@@ -24,7 +24,7 @@ export const Score = () => {
 
   const scoreColors: Array<{
     name: string
-    data: Array<ColorTokenTableProps>
+    data: Array<ColorTokenRowProps>
   }> = [
     {
       name: 'Low',

@@ -5,7 +5,7 @@ import { Box, Typography } from '@monorail/components'
 
 import { getRawColorObject } from '../../helpers.js'
 import { ColorTokenTable } from './palette.components'
-import type { ColorTokenTableProps, ThemeName } from './palette.types'
+import type { ColorTokenRowProps, ThemeName } from './palette.types'
 
 export default {
   title: 'Theme/Palette/Action',
@@ -24,7 +24,7 @@ export const Action = () => {
     [theme.name],
   )
 
-  const action: Array<ColorTokenTableProps> = [
+  const action: Array<ColorTokenRowProps> = [
     {
       token: '.activatedOpacity',
       colorValue: alpha(
