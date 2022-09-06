@@ -22,6 +22,10 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }))
 
+const StyledTableCell = styled(TableCell)(() => ({
+  wordBreak: 'break-all',
+}))
+
 export const ColorTokenRow = ({
   token,
   mapping,
@@ -32,9 +36,9 @@ export const ColorTokenRow = ({
 }: ColorTokenRowProps) => {
   return (
     <StyledTableRow>
-      <TableCell component="th" scope="row" sx={{ width: '20%' }}>
+      <StyledTableCell component="th" scope="row" sx={{ width: '20%' }}>
         {token}
-      </TableCell>
+      </StyledTableCell>
       <TableCell sx={{ width: '7%' }}>
         <Box
           sx={theme => ({
@@ -52,12 +56,12 @@ export const ColorTokenRow = ({
       </TableCell>
       <TableCell sx={{ width: '10%' }}>{mapping ?? '---'}</TableCell>
       <TableCell>{opacity ?? colorValue}</TableCell>
-      <TableCell sx={{ width: '20%' }}>{figmaStyle}</TableCell>
-      <TableCell sx={{ width: '30%' }}>
+      <StyledTableCell sx={{ width: '20%' }}>{figmaStyle}</StyledTableCell>
+      <StyledTableCell sx={{ width: '30%' }}>
         <Typography sx={{ maxWidth: '80ch' }} variant="body2">
           {description ?? '---'}
         </Typography>
-      </TableCell>
+      </StyledTableCell>
     </StyledTableRow>
   )
 }
@@ -73,13 +77,16 @@ export const ColorTokenTable = ({
     }
   }
 
+  const getFigmaStyle = (figmaStyle?: string) =>
+    figmaStyle !== undefined ? `${colorMode}/${figmaStyle}` : '---'
+
   return (
     <TableContainer
       component={Paper}
       elevation={0}
       sx={{ mb: 10, borderColor: 'divider' }}
     >
-      <Table>
+      <Table sx={{ minWidth: 1040 }}>
         <TableHead>
           <StyledTableRow>
             <TableCell variant="head">Token</TableCell>
@@ -93,13 +100,8 @@ export const ColorTokenTable = ({
         <TableBody>
           {colorMetadata !== undefined ? (
             colorMetadata.map(color => {
-              const figmaStyle =
-                color.figmaStyle !== undefined
-                  ? `${colorMode}/${color.figmaStyle}`
-                  : '---'
-
-              const colorValue =
-                color.colorValue !== undefined ? color.colorValue : ''
+              const figmaStyle = getFigmaStyle(color.figmaStyle)
+              const colorValue = color.colorValue ?? ''
 
               return (
                 <ColorTokenRow

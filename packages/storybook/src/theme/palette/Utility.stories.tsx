@@ -25,7 +25,6 @@ export const Utility = () => {
   const utilityColors = [
     {
       token: 'theme.palette.divider',
-      description: '',
       colorValue: theme.palette.divider,
       figmaStyle: 'Divider',
     },

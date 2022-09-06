@@ -96,7 +96,7 @@ const Sentiment = ({
           </Typography>
           <Typography gutterBottom>
             Access to global color tokens. Only use when you can't find an alias
-            token for your use case.
+            token for your use case. For charts, use theme.palette.chart.
           </Typography>
           <ColorTokenTable
             colorMetadata={sentiment.shades}
@@ -160,7 +160,11 @@ export const SemanticColors = () => {
     colorValue: theme.palette.grey[shade as keyof Color],
   }))
 
-  const accentColors = {
+  const accentColors: {
+    strongEmphasis: Array<ColorTokenRowProps>
+    border: Array<ColorTokenRowProps>
+    focusRing: Array<ColorTokenRowProps>
+  } = {
     strongEmphasis: [
       {
         token: `.light`,
@@ -178,11 +182,15 @@ export const SemanticColors = () => {
         token: `.dark`,
         colorValue: theme.palette.accent.dark,
         figmaStyle: `Accent/Dark`,
+        description:
+          'Use to achieve higher contrast on components with Strong Emphasis. Don’t use for state colors.',
       },
       {
         token: `.contrastText`,
         colorValue: theme.palette.accent.contrastText,
         figmaStyle: `Accent/contrastText`,
+        description:
+          'Use for contrast text and icons on components with Low Emphasis.',
       },
     ],
     border: [
@@ -197,11 +205,13 @@ export const SemanticColors = () => {
         token: `.focusRing.inner`,
         colorValue: theme.palette.accent.focusRing.inner,
         figmaStyle: `Accent/Inner Focus Ring`,
+        description: 'Pre-defined inner focus ring color.',
       },
       {
         token: `.focusRing.outer`,
         colorValue: theme.palette.accent.focusRing.outer,
         figmaStyle: `Accent/Outer Focus Ring`,
+        description: 'Pre-defined inner focus ring color.',
       },
     ],
   }
@@ -230,10 +240,10 @@ export const SemanticColors = () => {
       strongEmphasis: [
         {
           token: `.light`,
-          description:
-            'Use to achieve lower contrast on components with Strong Emphasis. Don’t use for state colors.',
           colorValue: paletteColor.light,
           figmaStyle: `${capitalize(alias as string)}/Light`,
+          description:
+            'Use to achieve lower contrast on components with Strong Emphasis. Don’t use for state colors.',
         },
         {
           token: `.main`,
@@ -244,30 +254,38 @@ export const SemanticColors = () => {
           token: `.dark`,
           colorValue: paletteColor.dark,
           figmaStyle: `${capitalize(alias as string)}/Dark`,
+          description:
+            'Use to achieve higher contrast on components with Strong Emphasis. Don’t use for state colors.',
         },
         {
           token: `.contrastText`,
           colorValue: paletteColor.contrastText,
           figmaStyle: `${capitalize(alias as string)}/contrastText`,
+          description:
+            'Use for contrast text and icons on components with Strong Emphasis.',
         },
         {
           token: `.hover`,
           colorValue: paletteColor.hover,
           figmaStyle: `${capitalize(alias as string)}/Hover`,
+          description:
+            'Use for hover states on components with Strong Emphasis.',
         },
         {
           token: `.active`,
           colorValue: paletteColor.active,
           figmaStyle: `${capitalize(alias as string)}/Active`,
+          description:
+            'Use for active states on components with Strong Emphasis.',
         },
       ],
       lowEmphasis: [
         {
           token: `.lowEmphasis.light`,
-          description:
-            'Use to achieve lower contrast on components with Strong Emphasis. Don’t use for state colors.',
           colorValue: paletteColor.lowEmphasis.light,
           figmaStyle: `${capitalize(alias as string)}/Low Emphasis/Light`,
+          description:
+            'Use to achieve lower contrast on components with Strong Emphasis. Don’t use for state colors.',
         },
         {
           token: `.lowEmphasis.main`,
@@ -278,6 +296,8 @@ export const SemanticColors = () => {
           token: `.lowEmphasis.dark`,
           colorValue: paletteColor.lowEmphasis.dark,
           figmaStyle: `${capitalize(alias as string)}/Low Emphasis/Dark`,
+          description:
+            'Use to achieve a higher contrast on components with Strong Emphasis. Don’t use for state colors.',
         },
         {
           token: `.lowEmphasis.contrastText`,
@@ -285,16 +305,20 @@ export const SemanticColors = () => {
           figmaStyle: `${capitalize(
             alias as string,
           )}/Low Emphasis/contrastText`,
+          description:
+            'Use for contrast text and icons on components with Low Emphasis.',
         },
         {
           token: `.lowEmphasis.hover`,
           colorValue: paletteColor.lowEmphasis.hover,
           figmaStyle: `${capitalize(alias as string)}/Low Emphasis/.Hover`,
+          description: 'Use for hover states on components with Low Emphasis.',
         },
         {
           token: `.lowEmphasis.active`,
           colorValue: paletteColor.lowEmphasis.active,
           figmaStyle: `${capitalize(alias as string)}/Low Emphasis/.Active`,
+          description: 'Use for active states on components with Low Emphasis.',
         },
       ],
       border: [
@@ -319,11 +343,13 @@ export const SemanticColors = () => {
           token: `.focusRing.inner`,
           colorValue: paletteColor.focusRing.inner,
           figmaStyle: `${capitalize(alias as string)}/Inner Focus Ring`,
+          description: 'Pre-defined inner focus ring color.',
         },
         {
           token: `.focusRing.outer`,
           colorValue: paletteColor.focusRing.outer,
           figmaStyle: `${capitalize(alias as string)}/Outer Focus Ring`,
+          description: 'Pre-defined outer focus ring color.',
         },
       ],
       shades: colorShades,

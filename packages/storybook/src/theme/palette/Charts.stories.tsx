@@ -20,6 +20,7 @@ export const Charts = () => {
       <Typography variant="h2" gutterBottom>
         Chart
       </Typography>
+      <Typography gutterBottom>theme.palette.chart</Typography>
       {Object.keys(theme.palette.chart).map(chartColor => (
         <ColorShadesBox
           key={`chart-color-${chartColor}`}
