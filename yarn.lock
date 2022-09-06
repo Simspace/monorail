@@ -3883,6 +3883,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@juggle/resize-observer@npm:^3.3.1":
+  version: 3.4.0
+  resolution: "@juggle/resize-observer@npm:3.4.0"
+  checksum: 2505028c05cc2e17639fcad06218b1c4b60f932a4ebb4b41ab546ef8c157031ae377e3f560903801f6d01706dbefd4943b6c4704bf19ed86dfa1c62f1473a570
+  languageName: node
+  linkType: hard
+
 "@leichtgewicht/ip-codec@npm:^2.0.1":
   version: 2.0.4
   resolution: "@leichtgewicht/ip-codec@npm:2.0.4"
@@ -3988,6 +3995,7 @@ __metadata:
     react-transition-group: 4.4.2
     start-server-and-test: 1.14.0
     typescript: ^4.7.4
+    use-resize-observer: ^9.0.2
   peerDependencies:
     "@mui/styled-engine": ^5.8.7
     date-fns: ^2.25.0
@@ -23353,6 +23361,18 @@ __metadata:
     "@types/react":
       optional: true
   checksum: ed3f2ddddf6f21825e2ede4c2e0f0db8dcce5129802b69d1f0575fc1b42380436e8c76a6cd885d4e9aa8e292e60fb8b959c955f33c6a9123b83814a1a1875367
+  languageName: node
+  linkType: hard
+
+"use-resize-observer@npm:^9.0.2":
+  version: 9.0.2
+  resolution: "use-resize-observer@npm:9.0.2"
+  dependencies:
+    "@juggle/resize-observer": ^3.3.1
+  peerDependencies:
+    react: 16.8.0 - 18
+    react-dom: 16.8.0 - 18
+  checksum: a79f9f4027ebfc44305ba29bd479a8e72c94e5a9b4feced7ef2cd2e3ead92f89e06ade5beeb8977c30b7e20cfce31e49c99390f8baa5bd7fa331905dace0ef96
   languageName: node
   linkType: hard
 

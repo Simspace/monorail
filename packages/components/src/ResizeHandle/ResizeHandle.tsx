@@ -3,6 +3,7 @@ import type { CSSObject } from '@mui/material'
 import { Divider, styled, useThemeProps } from '@mui/material'
 import composeClasses from '@mui/utils/composeClasses'
 import clsx from 'clsx'
+import useResizeObserver from 'use-resize-observer'
 
 import { excludeProps } from '@monorail/utils'
 
@@ -123,12 +124,8 @@ export const ResizeHandle = React.forwardRef(function ResizeHandle(
   const innerRef = React.useRef<HTMLDivElement | null>(null)
   React.useImperativeHandle(ref, () => innerRef.current!)
 
-  const handleInnerRef = (element: HTMLDivElement | null) => {
-    innerRef.current = element
-    if (element?.parentElement) {
-      calculateSize(element.parentElement)
-    }
-  }
+  const parentRef = React.useRef<HTMLElement | null>(null)
+  React.useImperativeHandle(parentRef, () => innerRef.current?.parentElement!)
 
   const props = useThemeProps({
     name: 'MonorailResizeHandle',
@@ -141,18 +138,21 @@ export const ResizeHandle = React.forwardRef(function ResizeHandle(
 
   const [size, setSize] = React.useState(0)
 
-  const calculateSize = (parentElement: HTMLElement) => {
-    switch (context.direction) {
-      case 'row': {
-        setSize(parentElement.offsetHeight)
-        break
+  useResizeObserver({
+    ref: parentRef,
+    onResize: () => {
+      switch (context.direction) {
+        case 'row': {
+          setSize(parentRef.current!.offsetHeight)
+          break
+        }
+        case 'column': {
+          setSize(parentRef.current!.offsetWidth)
+          break
+        }
       }
-      case 'column': {
-        setSize(parentElement.offsetWidth)
-        break
-      }
-    }
-  }
+    },
+  })
 
   const handleMouseDown = (event: React.MouseEvent<HTMLDivElement>) => {
     active.current = true
@@ -219,7 +219,7 @@ export const ResizeHandle = React.forwardRef(function ResizeHandle(
       {...other}
       isDragging={isDragging}
       direction={context.direction}
-      ref={handleInnerRef}
+      ref={innerRef}
       className={clsx(classes.root, props.className)}
       onMouseDown={handleMouseDown}
       style={style}
