@@ -5,6 +5,7 @@ import { styled, useThemeProps } from '@mui/material'
 import composeClasses from '@mui/utils/composeClasses'
 import useEnhancedEffect from '@mui/utils/useEnhancedEffect.js'
 import clsx from 'clsx'
+import useResizeObserver from 'use-resize-observer'
 
 import { useDidUpdate, useForceUpdate, usePrevious } from '@monorail/utils'
 
@@ -449,7 +450,7 @@ export const ResizableContainer = React.forwardRef(function ResizableContainer(
 
     if (!isInitialized.current) {
       for (const element of processedChildren.current) {
-        if (!element.ref) {
+        if (!element.ref || !element.ref.current) {
           return
         }
       }
@@ -483,6 +484,14 @@ export const ResizableContainer = React.forwardRef(function ResizableContainer(
       events.current.unsubscribe()
     }
   }, [handleStartResize, handleResize, handleElementSizeChange])
+
+  useResizeObserver({
+    ref: parentRef,
+    onResize: () => {
+      computeSize(processedChildren.current)
+      forceUpdate()
+    },
+  })
 
   const ownerState = {
     direction,
