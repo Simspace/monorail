@@ -92,6 +92,7 @@ export interface ResizeEventMap {
   startResize: MouseStartResizeEvent | TouchStartResizeEvent
   stopResize: MouseStopResizeEvent | TouchStopResizeEvent
   elementSizeChange: ElementSizeChangeEvent
+  forceUpdate: void
 }
 
 export type ResizeEvent = keyof ResizeEventMap

@@ -7,7 +7,7 @@ import useEnhancedEffect from '@mui/utils/useEnhancedEffect.js'
 import clsx from 'clsx'
 import useResizeObserver from 'use-resize-observer'
 
-import { useDidUpdate, useForceUpdate, usePrevious } from '@monorail/utils'
+import { useDidUpdate, useForceUpdate, usePrevious, useRequestAnimationFrame } from '@monorail/utils'
 
 import { ResizeHandle } from '../ResizeHandle.js'
 import { getResizableContainerUtilityClass } from './resizableContainerClasses.js'
@@ -71,9 +71,14 @@ export const ResizableContainer = React.forwardRef(function ResizableContainer(
   const previousChildren = usePrevious(children as Array<ResizeChild>)
   const previousDirection = usePrevious(direction)
 
-  const forceUpdate = useForceUpdate()
+  const innerForceUpdate = useForceUpdate()
 
   const events = React.useRef(new ResizeEventEmitter())
+
+  const forceUpdate = React.useCallback(() => {
+    innerForceUpdate()
+    events.current.publish('forceUpdate', undefined)
+  }, [innerForceUpdate])
 
   const processedChildren = React.useRef<Array<ResizeChild>>([])
   const activeElements = React.useRef<Array<ResizeChild>>([])
@@ -485,12 +490,20 @@ export const ResizableContainer = React.forwardRef(function ResizableContainer(
     }
   }, [handleStartResize, handleResize, handleElementSizeChange])
 
+  const schedule = useRequestAnimationFrame()
+
+  const handleParentResize = React.useCallback(() => {
+    schedule(() => {
+      if (isInitialized.current) {
+        computeSize(processedChildren.current)
+        forceUpdate()
+      }
+    })
+  }, [computeSize, forceUpdate, schedule])
+
   useResizeObserver({
     ref: parentRef,
-    onResize: () => {
-      computeSize(processedChildren.current)
-      forceUpdate()
-    },
+    onResize: handleParentResize,
   })
 
   const ownerState = {

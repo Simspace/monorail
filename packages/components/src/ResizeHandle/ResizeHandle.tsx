@@ -2,9 +2,10 @@ import React from 'react'
 import type { CSSObject } from '@mui/material'
 import { Divider, styled, useThemeProps } from '@mui/material'
 import composeClasses from '@mui/utils/composeClasses'
+import useEnhancedEffect from '@mui/utils/useEnhancedEffect.js'
 import clsx from 'clsx'
 
-import { excludeProps } from '@monorail/utils'
+import { excludeProps, useForceUpdate } from '@monorail/utils'
 
 import { useResizableContainerContext } from '../ResizableContainer/ResizableContainerContext.js'
 import { getResizeHandleUtilityClass } from './resizeHandleClasses.js'
@@ -134,6 +135,11 @@ export const ResizeHandle = React.forwardRef(function ResizeHandle(
   const { index, ...other } = props
 
   const context = useResizableContainerContext()
+
+  const forceUpdate = useForceUpdate()
+  useEnhancedEffect(() => {
+    context.events.subscribe('forceUpdate', forceUpdate)
+  }, [])
 
   const handleMouseDown = (event: React.MouseEvent<HTMLDivElement>) => {
     active.current = true
