@@ -10,6 +10,7 @@ export default {
   title: 'Theme/Palette/Score',
   parameters: {
     layout: 'fullscreen',
+    options: { showPanel: false },
   },
 }
 

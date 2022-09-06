@@ -11,6 +11,7 @@ export default {
   title: 'Theme/Palette/Action',
   parameters: {
     layout: 'fullscreen',
+    options: { showPanel: false },
   },
 }
 

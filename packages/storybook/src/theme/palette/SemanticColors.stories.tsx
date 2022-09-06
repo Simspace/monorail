@@ -18,6 +18,7 @@ export default {
   title: 'Theme/Palette/Semantic Colors',
   parameters: {
     layout: 'fullscreen',
+    options: { showPanel: false },
   },
 }
 

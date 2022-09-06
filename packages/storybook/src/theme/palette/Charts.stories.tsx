@@ -9,6 +9,7 @@ export default {
   title: 'Theme/Palette/Charts',
   parameters: {
     layout: 'fullscreen',
+    options: { showPanel: false },
   },
 }
 

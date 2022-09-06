@@ -11,6 +11,7 @@ export default {
   title: 'Theme/Palette/Tiers',
   parameters: {
     layout: 'fullscreen',
+    options: { showPanel: false },
   },
 }
 

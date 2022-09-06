@@ -10,6 +10,7 @@ export default {
   title: 'Theme/Palette/Foundation',
   parameters: {
     layout: 'fullscreen',
+    options: { showPanel: false },
   },
 }
 
