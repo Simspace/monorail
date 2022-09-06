@@ -1,5 +1,5 @@
 import React from 'react'
-import { alpha, capitalize, useTheme } from '@mui/material'
+import { alpha, useTheme } from '@mui/material'
 
 import { Box, Typography } from '@monorail/components'
 
@@ -16,8 +16,6 @@ export default {
 
 export const Action = () => {
   const theme = useTheme()
-
-  const colorMode = capitalize(theme.palette.mode)
 
   const rawColorMapping = React.useMemo(
     () => getRawColorObject(theme.name as ThemeName),
@@ -107,11 +105,7 @@ export const Action = () => {
         Action Colors
       </Typography>
       <Typography gutterBottom>{`theme.palette.action`}</Typography>
-      <ColorTokenTable
-        colorMetadata={action}
-        colorMode={colorMode}
-        rawColorObj={rawColorMapping}
-      />
+      <ColorTokenTable colorMetadata={action} rawColorObj={rawColorMapping} />
     </Box>
   )
 }

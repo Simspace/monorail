@@ -49,7 +49,7 @@ export const ColorTokenRow = ({
               colorValue !== undefined &&
               getContrastRatio(colorValue, theme.palette.background.paper) <=
                 theme.palette.contrastThreshold
-                ? `1px solid ${theme.palette.divider}`
+                ? `1px solid ${theme.palette.default.border.light}`
                 : 'none',
           })}
         ></Box>
@@ -68,7 +68,6 @@ export const ColorTokenRow = ({
 
 export const ColorTokenTable = ({
   colorMetadata,
-  colorMode,
   rawColorObj,
 }: ColorTokenTableProps) => {
   const getObjectKey = (value: string) => {
@@ -78,7 +77,7 @@ export const ColorTokenTable = ({
   }
 
   const getFigmaStyle = (figmaStyle?: string) =>
-    figmaStyle !== undefined ? `${colorMode}/${figmaStyle}` : '---'
+    figmaStyle !== undefined ? `${figmaStyle}` : '---'
 
   return (
     <TableContainer

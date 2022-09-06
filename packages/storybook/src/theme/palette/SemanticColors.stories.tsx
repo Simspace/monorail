@@ -37,7 +37,6 @@ const colorAliases = [
 const Sentiment = ({
   alias,
   sentiment,
-  colorMode,
   rawColorMapping,
 }: {
   alias: string
@@ -58,7 +57,6 @@ const Sentiment = ({
       </Typography>
       <ColorTokenTable
         colorMetadata={sentiment.strongEmphasis}
-        colorMode={colorMode}
         rawColorObj={rawColorMapping}
       />
       {sentiment.lowEmphasis !== undefined && (
@@ -68,7 +66,6 @@ const Sentiment = ({
           </Typography>
           <ColorTokenTable
             colorMetadata={sentiment.lowEmphasis}
-            colorMode={colorMode}
             rawColorObj={rawColorMapping}
           />
         </>
@@ -78,7 +75,6 @@ const Sentiment = ({
       </Typography>
       <ColorTokenTable
         colorMetadata={sentiment.border}
-        colorMode={colorMode}
         rawColorObj={rawColorMapping}
       />
       <Typography variant="h3" gutterBottom>
@@ -86,7 +82,6 @@ const Sentiment = ({
       </Typography>
       <ColorTokenTable
         colorMetadata={sentiment.focusRing}
-        colorMode={colorMode}
         rawColorObj={rawColorMapping}
       />
       {sentiment.lowEmphasis !== undefined && (
@@ -100,7 +95,6 @@ const Sentiment = ({
           </Typography>
           <ColorTokenTable
             colorMetadata={sentiment.shades}
-            colorMode={colorMode}
             rawColorObj={rawColorMapping}
           />
         </>
@@ -434,7 +428,6 @@ export const SemanticColors = () => {
         return (
           <ColorTokenTable
             colorMetadata={greyColors}
-            colorMode={colorMode}
             rawColorObj={rawColorMapping}
           />
         )

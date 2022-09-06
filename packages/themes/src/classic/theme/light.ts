@@ -570,8 +570,8 @@ const components: ThemeOptions['components'] = getThemeComponents(
  */
 export const classicLight: Theme = createTheme(
   {
-    ...{ name: 'classicLight' },
     ...themeWithoutComponents,
+    name: 'classicLight',
     components: components,
   },
   {},

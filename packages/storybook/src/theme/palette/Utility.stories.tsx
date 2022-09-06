@@ -1,5 +1,5 @@
 import React from 'react'
-import { capitalize, Typography, useTheme } from '@mui/material'
+import { Typography, useTheme } from '@mui/material'
 import Box from '@mui/material/Box'
 
 import { getRawColorObject } from '../../helpers.js'
@@ -15,7 +15,6 @@ export default {
 
 export const Utility = () => {
   const theme = useTheme()
-  const colorMode = capitalize(theme.palette.mode)
 
   const rawColorMapping = React.useMemo(
     () => getRawColorObject(theme.name as ThemeName),
@@ -43,7 +42,6 @@ export const Utility = () => {
       </Typography>
       <ColorTokenTable
         colorMetadata={utilityColors}
-        colorMode={colorMode}
         rawColorObj={rawColorMapping}
       />
     </Box>

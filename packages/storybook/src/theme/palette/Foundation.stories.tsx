@@ -1,5 +1,5 @@
 import React from 'react'
-import { capitalize, Typography, useTheme } from '@mui/material'
+import { Typography, useTheme } from '@mui/material'
 import Box from '@mui/material/Box'
 
 import { getRawColorObject } from '../../helpers.js'
@@ -15,7 +15,6 @@ export default {
 
 export const Foundation = () => {
   const theme = useTheme()
-  const colorMode = capitalize(theme.palette.mode)
 
   const rawColorMapping = React.useMemo(
     () => getRawColorObject(theme.name as ThemeName),
@@ -83,7 +82,6 @@ export const Foundation = () => {
       <Typography gutterBottom>{`theme.palette.common`}</Typography>
       <ColorTokenTable
         colorMetadata={commonColors}
-        colorMode={colorMode}
         rawColorObj={rawColorMapping}
       />
       <Typography variant="h2" gutterBottom>
@@ -92,7 +90,6 @@ export const Foundation = () => {
       <Typography gutterBottom>{`theme.palette.text`}</Typography>
       <ColorTokenTable
         colorMetadata={textColors}
-        colorMode={colorMode}
         rawColorObj={rawColorMapping}
       />
       <Typography variant="h2" gutterBottom>
@@ -101,7 +98,6 @@ export const Foundation = () => {
       <Typography gutterBottom>{`theme.palette.background`}</Typography>
       <ColorTokenTable
         colorMetadata={backgroundColors}
-        colorMode={colorMode}
         rawColorObj={rawColorMapping}
       />
     </Box>

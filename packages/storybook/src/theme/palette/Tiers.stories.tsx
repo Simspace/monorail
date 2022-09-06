@@ -1,5 +1,5 @@
 import React from 'react'
-import { capitalize, useTheme } from '@mui/material'
+import { useTheme } from '@mui/material'
 
 import { Box, Typography } from '@monorail/components'
 
@@ -16,8 +16,6 @@ export default {
 
 export const Tiers = () => {
   const theme = useTheme()
-
-  const colorMode = capitalize(theme.palette.mode)
 
   const rawColorMapping = React.useMemo(
     () => getRawColorObject(theme.name as ThemeName),
@@ -53,11 +51,7 @@ export const Tiers = () => {
         Tiers
       </Typography>
       <Typography gutterBottom>{`theme.palette.tiers`}</Typography>
-      <ColorTokenTable
-        colorMetadata={tiers}
-        colorMode={colorMode}
-        rawColorObj={rawColorMapping}
-      />
+      <ColorTokenTable colorMetadata={tiers} rawColorObj={rawColorMapping} />
     </Box>
   )
 }

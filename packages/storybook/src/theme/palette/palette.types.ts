@@ -26,7 +26,6 @@ export type ColorTokenRowProps = {
 export type ColorTokenTableProps = {
   alias?: keyof Palette
   paletteColor?: PaletteOptions
-  colorMode: string
   rawColorObj?: Record<string, string>
   colorMetadata?: Array<ColorTokenRowProps>
 }
