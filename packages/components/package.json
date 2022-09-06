@@ -64,8 +64,7 @@
     "@popperjs/core": "^2.11.5",
     "clsx": "^1.2.1",
     "date-fns": "^2.25.0",
-    "react-glider": "^3.1.0",
-    "use-resize-observer": "^9.0.2"
+    "react-glider": "^3.1.0"
   },
   "devDependencies": {
     "@emotion/react": "11.4.1",

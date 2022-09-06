@@ -3,7 +3,6 @@ import type { CSSObject } from '@mui/material'
 import { Divider, styled, useThemeProps } from '@mui/material'
 import composeClasses from '@mui/utils/composeClasses'
 import clsx from 'clsx'
-import useResizeObserver from 'use-resize-observer'
 
 import { excludeProps } from '@monorail/utils'
 
@@ -20,7 +19,7 @@ export const ResizeHandleRoot = styled('div', {
   name: 'MonorailResizeHandle',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-  shouldForwardProp: excludeProps('isDragging', 'direction'),
+  shouldForwardProp: excludeProps('isDragging', 'direction', 'computedSize'),
 })<ResizeHandleOwnerState>(({ theme, direction }) => {
   const baseStyles: CSSObject = {
     backgroundColor: 'transparent',
@@ -136,24 +135,6 @@ export const ResizeHandle = React.forwardRef(function ResizeHandle(
 
   const context = useResizableContainerContext()
 
-  const [size, setSize] = React.useState(0)
-
-  useResizeObserver({
-    ref: parentRef,
-    onResize: () => {
-      switch (context.direction) {
-        case 'row': {
-          setSize(parentRef.current!.offsetHeight)
-          break
-        }
-        case 'column': {
-          setSize(parentRef.current!.offsetWidth)
-          break
-        }
-      }
-    },
-  })
-
   const handleMouseDown = (event: React.MouseEvent<HTMLDivElement>) => {
     active.current = true
     setIsDragging(true)
@@ -207,10 +188,10 @@ export const ResizeHandle = React.forwardRef(function ResizeHandle(
   const style = {
     ...other.style,
     ...(context.direction === 'row' && {
-      height: size,
+      height: props.computedSize,
     }),
     ...(context.direction === 'column' && {
-      width: size,
+      width: props.computedSize,
     }),
   }
 

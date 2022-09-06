@@ -15,4 +15,6 @@ export interface ResizeHandleProps extends StandardElementProps<'div'> {
   index?: number
   /** @internal */
   flex?: number
+  /** @internal */
+  computedSize?: number
 }
