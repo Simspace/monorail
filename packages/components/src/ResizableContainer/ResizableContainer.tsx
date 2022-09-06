@@ -442,6 +442,11 @@ export const ResizableContainer = React.forwardRef(function ResizableContainer(
     }
 
     if (!isInitialized.current) {
+      for (const element of processedChildren.current) {
+        if (!element.ref) {
+          return
+        }
+      }
       computeSize(processedChildren.current)
       isInitialized.current = true
       forceUpdate()
