@@ -36,6 +36,7 @@
     "@testing-library/react": "11.2.2",
     "@testing-library/user-event": "12.4.0",
     "creevey": "0.7.37",
-    "enhanced-resolve": "^5.10.0"
+    "enhanced-resolve": "^5.10.0",
+    "lorem-ipsum": "^2.0.8"
   }
 }

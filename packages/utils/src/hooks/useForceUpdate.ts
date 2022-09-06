@@ -8,7 +8,7 @@ import React from 'react'
  */
 export function useForceUpdate(): () => void {
   const [, forceUpdate] = React.useState(false)
-  return () => {
+  return React.useCallback(() => {
     forceUpdate(b => !b)
-  }
+  }, [])
 }
