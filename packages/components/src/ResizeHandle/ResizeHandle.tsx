@@ -120,8 +120,15 @@ export const ResizeHandle = React.forwardRef(function ResizeHandle(
 ) {
   const active = React.useRef(false)
   const [isDragging, setIsDragging] = React.useState(false)
-  const innerRef = React.useRef<HTMLDivElement>(null)
+  const innerRef = React.useRef<HTMLDivElement | null>(null)
   React.useImperativeHandle(ref, () => innerRef.current!)
+
+  const handleInnerRef = (element: HTMLDivElement | null) => {
+    innerRef.current = element
+    if (element?.parentElement) {
+      calculateSize(element.parentElement)
+    }
+  }
 
   const props = useThemeProps({
     name: 'MonorailResizeHandle',
@@ -131,6 +138,21 @@ export const ResizeHandle = React.forwardRef(function ResizeHandle(
   const { index, ...other } = props
 
   const context = useResizableContainerContext()
+
+  const [size, setSize] = React.useState(0)
+
+  const calculateSize = (parentElement: HTMLElement) => {
+    switch (context.direction) {
+      case 'row': {
+        setSize(parentElement.offsetHeight)
+        break
+      }
+      case 'column': {
+        setSize(parentElement.offsetWidth)
+        break
+      }
+    }
+  }
 
   const handleMouseDown = (event: React.MouseEvent<HTMLDivElement>) => {
     active.current = true
@@ -182,14 +204,25 @@ export const ResizeHandle = React.forwardRef(function ResizeHandle(
 
   const classes = useUtilityClasses(ownerState)
 
+  const style = {
+    ...other.style,
+    ...(context.direction === 'row' && {
+      height: size,
+    }),
+    ...(context.direction === 'column' && {
+      width: size,
+    }),
+  }
+
   return (
     <ResizeHandleRoot
       {...other}
       isDragging={isDragging}
       direction={context.direction}
-      ref={innerRef}
+      ref={handleInnerRef}
       className={clsx(classes.root, props.className)}
       onMouseDown={handleMouseDown}
+      style={style}
     >
       <ResizeHandleHint
         orientation={context.direction === 'row' ? 'vertical' : 'horizontal'}
