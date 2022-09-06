@@ -71,17 +71,16 @@ export const ResizableContainer = React.forwardRef(function ResizableContainer(
   const previousChildren = usePrevious(children as Array<ResizeChild>)
   const previousDirection = usePrevious(direction)
 
-  const innerForceUpdate = useForceUpdate()
+  const processedChildren = React.useRef<Array<ResizeChild>>([])
+  const activeElements = React.useRef<Array<ResizeChild>>([])
 
   const events = React.useRef(new ResizeEventEmitter())
 
+  const innerForceUpdate = useForceUpdate()
   const forceUpdate = React.useCallback(() => {
     innerForceUpdate()
     events.current.publish('forceUpdate', undefined)
   }, [innerForceUpdate])
-
-  const processedChildren = React.useRef<Array<ResizeChild>>([])
-  const activeElements = React.useRef<Array<ResizeChild>>([])
 
   /**
    * Computes initial flex values for each child element of this container
@@ -106,7 +105,7 @@ export const ResizableContainer = React.forwardRef(function ResizableContainer(
     let flexData = initialFlexData
 
     for (let iterations = 0; iterations < maxRecDepth; iterations++) {
-      let hasContraint = false
+      let hasConstraint = false
       const freeElements = computeFreeElements(flexData)
       const freeFlex = computeFreeFlex(flexData)
 
@@ -120,7 +119,7 @@ export const ResizableContainer = React.forwardRef(function ResizableContainer(
         const constrainedFlex = Math.min(entry.sizeFlex, Math.min(entry.maxFlex, Math.max(entry.minFlex, proposedFlex)))
         const constrained = entry.constrained || constrainedFlex !== proposedFlex
 
-        hasContraint = hasContraint || constrained
+        hasConstraint = hasConstraint || constrained
 
         return {
           ...entry,
@@ -129,7 +128,7 @@ export const ResizableContainer = React.forwardRef(function ResizableContainer(
         }
       })
 
-      if (!hasContraint) {
+      if (!hasConstraint) {
         break
       }
     }

@@ -32,6 +32,12 @@ const Template: Story<Partial<ResizableContainerProps>> = args => {
             <Typography>{loremIpsum({ count: 10 })}</Typography>
           </Box>
         </ResizableElement>
+        <ResizeHandle propagate />
+        <ResizableElement>
+          <Box p={4}>
+            <Typography>{loremIpsum({ count: 10 })}</Typography>
+          </Box>
+        </ResizableElement>
       </ResizableContainer>
     </div>
   )
