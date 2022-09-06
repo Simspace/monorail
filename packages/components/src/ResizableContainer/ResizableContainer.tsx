@@ -461,7 +461,7 @@ export const ResizableContainer = React.forwardRef(function ResizableContainer(
       }
       computeSize(processedChildren.current)
       isInitialized.current = true
-      forceUpdate()
+      events.current.publish('forceUpdate', undefined)
     }
   })
 
