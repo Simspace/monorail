@@ -16,5 +16,5 @@ export interface ResizeHandleProps extends StandardElementProps<'div'> {
   /** @internal */
   flex?: number
   /** @internal */
-  computedSize?: number
+  computedSize?: React.MutableRefObject<number>
 }

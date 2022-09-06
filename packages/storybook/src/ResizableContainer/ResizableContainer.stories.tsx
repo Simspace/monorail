@@ -19,7 +19,7 @@ export default {
 
 const Template: Story<Partial<ResizableContainerProps>> = args => {
   return (
-    <div style={{ height: '500px', width: 'auto' }}>
+    <div style={{ width: 'auto' }}>
       <ResizableContainer direction="row" {...args}>
         <ResizableElement flex={0.75} minSize="20%">
           <Box p={4}>

@@ -361,9 +361,13 @@ export const ResizableContainer = React.forwardRef(function ResizableContainer(
 
   const computeSize = React.useCallback(
     (elements: Array<ResizeChild>) => {
+      computedSize.current = 0
       switch (direction) {
         case 'row': {
           elements.forEach(element => {
+            if (element.type === getComponentType(ResizeHandle)) {
+              return
+            }
             if (element.ref?.current && computedSize.current < element.ref.current.offsetHeight) {
               computedSize.current = element.ref.current.offsetHeight
             }
@@ -372,6 +376,9 @@ export const ResizableContainer = React.forwardRef(function ResizableContainer(
         }
         case 'column': {
           elements.forEach(element => {
+            if (element.type === getComponentType(ResizeHandle)) {
+              return
+            }
             if (element.ref?.current && computedSize.current < element.ref.current.offsetWidth) {
               computedSize.current = element.ref.current.offsetWidth
             }
@@ -403,12 +410,11 @@ export const ResizableContainer = React.forwardRef(function ResizableContainer(
         if (availableOffset) {
           activeElements.current = dispatchOffset(data.index, availableOffset)
           adjustFlex(activeElements.current)
-          computeSize(processedChildren.current)
           forceUpdate()
         }
       }
     },
-    [adjustFlex, computeAvailableOffset, direction, dispatchOffset, forceUpdate, computeSize],
+    [adjustFlex, computeAvailableOffset, direction, dispatchOffset, forceUpdate],
   )
 
   const handleElementSizeChange = React.useCallback(
@@ -503,11 +509,12 @@ export const ResizableContainer = React.forwardRef(function ResizableContainer(
           size: computeSizeBound(parentRef.current, direction, child.props.size, Number.MAX_VALUE),
         }),
         ...(child.type === getComponentType(ResizeHandle) && {
-          computedSize: computedSize.current,
+          computedSize,
         }),
       }
       return React.cloneElement(child, props)
     }) as Array<ResizeChild>
+    computeSize(processedChildren.current)
     return processedChildren.current
   }
 

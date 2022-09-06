@@ -188,10 +188,10 @@ export const ResizeHandle = React.forwardRef(function ResizeHandle(
   const style = {
     ...other.style,
     ...(context.direction === 'row' && {
-      height: props.computedSize,
+      height: props.computedSize?.current,
     }),
     ...(context.direction === 'column' && {
-      width: props.computedSize,
+      width: props.computedSize?.current,
     }),
   }
 
