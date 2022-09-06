@@ -140,7 +140,7 @@ export const ResizableContainer = React.forwardRef(function ResizableContainer(
    */
   const getSize = React.useCallback(
     (element: ResizeChild | undefined): number => {
-      const domElement = element?.ref.current
+      const domElement = element?.ref?.current
       switch (direction) {
         case 'row':
           return domElement?.offsetWidth ?? 0
@@ -364,7 +364,7 @@ export const ResizableContainer = React.forwardRef(function ResizableContainer(
       switch (direction) {
         case 'row': {
           elements.forEach(element => {
-            if (element.ref.current && computedSize.current < element.ref.current.offsetHeight) {
+            if (element.ref?.current && computedSize.current < element.ref.current.offsetHeight) {
               computedSize.current = element.ref.current.offsetHeight
             }
           })
@@ -372,7 +372,7 @@ export const ResizableContainer = React.forwardRef(function ResizableContainer(
         }
         case 'column': {
           elements.forEach(element => {
-            if (element.ref.current && computedSize.current < element.ref.current.offsetWidth) {
+            if (element.ref?.current && computedSize.current < element.ref.current.offsetWidth) {
               computedSize.current = element.ref.current.offsetWidth
             }
           })
@@ -570,7 +570,7 @@ interface ResizeChildProps {
 }
 
 interface ResizeChild extends React.ReactElement<ResizeChildProps> {
-  ref: React.RefObject<HTMLElement>
+  ref: React.RefObject<HTMLElement> | null
 }
 
 interface InitialFlexData {
