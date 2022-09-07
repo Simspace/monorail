@@ -8,7 +8,7 @@ import type { ResizableElementProps } from '../ResizableElement.js'
 import type { ResizeHandleProps } from '../ResizeHandle.js'
 import type { ResizableContainerClasses } from './resizableContainerClasses'
 
-export type ResizableContainerDirection = 'row' | 'column'
+export type ResizableContainerOrientation = 'vertical' | 'horizontal'
 
 export interface ResizableContainerProps
   extends Omit<StandardElementProps<'div'>, 'children'> {
@@ -30,10 +30,10 @@ export interface ResizableContainerProps
       >
   >
   /**
-   * Side from which the container will resize.
-   * @default 'row'
+   * Orientation in which descendent elements will be layed out
+   * @default 'vertical'
    */
-  direction?: ResizableContainerDirection
+  orientation?: ResizableContainerOrientation
   /**
    * The maximum depth used to compute flex values
    * @default 100

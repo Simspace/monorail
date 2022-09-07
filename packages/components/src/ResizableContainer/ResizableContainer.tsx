@@ -12,7 +12,7 @@ import { useDidUpdate, useForceUpdate, usePrevious, useRequestAnimationFrame } f
 import { ResizeHandle } from '../ResizeHandle.js'
 import { getResizableContainerUtilityClass } from './resizableContainerClasses.js'
 import { ResizableContainerContext } from './ResizableContainerContext.js'
-import type { ResizableContainerDirection, ResizableContainerProps } from './resizableContainerProps.js'
+import type { ResizableContainerOrientation, ResizableContainerProps } from './resizableContainerProps.js'
 import type { ElementSizeChangeEvent, ResizeEventMap } from './ResizeEventEmitter.js'
 import { ResizeEventEmitter } from './ResizeEventEmitter.js'
 import { getFinalSize, parseBoundValue } from './util.js'
@@ -29,7 +29,7 @@ const ResizableContainerRoot = styled('div', {
   overridesResolver: (props, styles) => styles.root,
 })<ResizableContainerRootProps>(({ ownerState }) => ({
   display: 'flex',
-  flexDirection: ownerState.direction,
+  flexDirection: ownerState.orientation === 'vertical' ? 'row' : 'column',
   justifyContent: 'flex-start',
   alignItems: 'stretch',
   alignContent: 'stretch',
@@ -48,10 +48,10 @@ export const ResizableContainer = React.forwardRef(function ResizableContainer(
   })
 
   const {
-    direction = 'row',
+    orientation = 'vertical',
     className,
     children,
-    maxDepth: maxRecDepth = 100,
+    maxDepth = 2,
     windowResizeAware = false,
     ...other
   } = props
@@ -69,7 +69,7 @@ export const ResizableContainer = React.forwardRef(function ResizableContainer(
 
   const previousPosition = React.useRef(0)
   const previousChildren = usePrevious(children as Array<ResizeChild>)
-  const previousDirection = usePrevious(direction)
+  const previousDirection = usePrevious(orientation)
 
   const processedChildren = React.useRef<Array<ResizeChild>>([])
   const activeElements = React.useRef<Array<ResizeChild>>([])
@@ -88,14 +88,14 @@ export const ResizableContainer = React.forwardRef(function ResizableContainer(
   const computeInitialFlexData = React.useCallback((): Array<FlexData> => {
     const children = getValidChildren(props.children)
 
-    const pixelFlex = computePixelFlex(innerRef.current, direction)
+    const pixelFlex = computePixelFlex(innerRef.current, orientation)
 
     const initialFlexData = children.map(child => {
       const props = child.props
       return {
-        sizeFlex: computeSizeBound(parentRef.current, direction, child.props.size, Number.MAX_VALUE) * pixelFlex,
-        maxFlex: computeSizeBound(parentRef.current, direction, child.props.maxSize, Number.MAX_VALUE) * pixelFlex,
-        minFlex: computeSizeBound(parentRef.current, direction, child.props.minSize, 1) * pixelFlex,
+        sizeFlex: computeSizeBound(parentRef.current, orientation, child.props.size, Number.MAX_VALUE) * pixelFlex,
+        maxFlex: computeSizeBound(parentRef.current, orientation, child.props.maxSize, Number.MAX_VALUE) * pixelFlex,
+        minFlex: computeSizeBound(parentRef.current, orientation, child.props.minSize, 1) * pixelFlex,
         constrained: props.flex !== undefined,
         flex: props.flex || 0,
         type: child.type,
@@ -104,7 +104,7 @@ export const ResizableContainer = React.forwardRef(function ResizableContainer(
 
     let flexData = initialFlexData
 
-    for (let iterations = 0; iterations < maxRecDepth; iterations++) {
+    for (let iterations = 0; iterations < maxDepth; iterations++) {
       let hasConstraint = false
       const freeElements = computeFreeElements(flexData)
       const freeFlex = computeFreeFlex(flexData)
@@ -137,7 +137,7 @@ export const ResizableContainer = React.forwardRef(function ResizableContainer(
       flex: entry.type !== getComponentType(ResizeHandle) ? entry.flex : 0.0,
       ref: React.createRef(),
     }))
-  }, [maxRecDepth, props.children, direction])
+  }, [maxDepth, props.children, orientation])
 
   /**
    * Returns the offsetWidth or offsetHeight of the given DOM element,
@@ -146,14 +146,14 @@ export const ResizableContainer = React.forwardRef(function ResizableContainer(
   const getSize = React.useCallback(
     (element: ResizeChild | undefined): number => {
       const domElement = element?.ref?.current
-      switch (direction) {
-        case 'row':
+      switch (orientation) {
+        case 'vertical':
           return domElement?.offsetWidth ?? 0
-        case 'column':
+        case 'horizontal':
           return domElement?.offsetHeight ?? 0
       }
     },
-    [direction],
+    [orientation],
   )
 
   /**
@@ -260,12 +260,12 @@ export const ResizableContainer = React.forwardRef(function ResizableContainer(
     (data: ResizeEventMap['startResize']) => {
       const pos = data.source === 'touch' ? data.event.changedTouches[0] : data.event
 
-      switch (direction) {
-        case 'row':
+      switch (orientation) {
+        case 'vertical':
           document.body.style.cursor = 'col-resize'
           previousPosition.current = pos.clientX
           break
-        case 'column':
+        case 'horizontal':
           document.body.style.cursor = 'row-resize'
           previousPosition.current = pos.clientY
           break
@@ -273,7 +273,7 @@ export const ResizableContainer = React.forwardRef(function ResizableContainer(
 
       activeElements.current = [processedChildren.current[data.index - 1], processedChildren.current[data.index + 1]]
     },
-    [direction],
+    [orientation],
   )
 
   const handleStopResize = React.useCallback((_: ResizeEventMap['stopResize']) => {
@@ -287,11 +287,11 @@ export const ResizableContainer = React.forwardRef(function ResizableContainer(
       const newSize = Math.max(size + offset, 0)
       const currentFlex = flexData[index].flex
       const newFlex =
-        currentFlex > 0 ? (currentFlex * newSize) / size : computePixelFlex(innerRef.current, direction) * newSize
+        currentFlex > 0 ? (currentFlex * newSize) / size : computePixelFlex(innerRef.current, orientation) * newSize
 
       flexData[index].flex = !isFinite(newFlex) || isNaN(newFlex) ? 0 : newFlex
     },
-    [flexData, getSize, direction],
+    [flexData, getSize, orientation],
   )
 
   /**
@@ -367,8 +367,8 @@ export const ResizableContainer = React.forwardRef(function ResizableContainer(
   const computeSize = React.useCallback(
     (elements: Array<ResizeChild>) => {
       computedSize.current = 0
-      switch (direction) {
-        case 'row': {
+      switch (orientation) {
+        case 'vertical': {
           elements.forEach(element => {
             if (element.type === getComponentType(ResizeHandle)) {
               return
@@ -379,7 +379,7 @@ export const ResizableContainer = React.forwardRef(function ResizableContainer(
           })
           break
         }
-        case 'column': {
+        case 'horizontal': {
           elements.forEach(element => {
             if (element.type === getComponentType(ResizeHandle)) {
               return
@@ -392,21 +392,20 @@ export const ResizableContainer = React.forwardRef(function ResizableContainer(
         }
       }
     },
-    [direction],
+    [orientation],
   )
 
   const handleResize = React.useCallback(
     (data: ResizeEventMap['resize']) => {
       const position = data.source === 'touch' ? data.event.changedTouches[0] : data.event
-      const offset = getOffset(previousPosition, direction, position, data.target)
+      const offset = getOffset(previousPosition, orientation, position, data.target)
 
-      switch (direction) {
-        case 'column':
-          previousPosition.current = position.clientY
-          break
-        case 'row':
-        default:
+      switch (orientation) {
+        case 'vertical':
           previousPosition.current = position.clientX
+          break
+        case 'horizontal':
+          previousPosition.current = position.clientY
           break
       }
 
@@ -419,14 +418,14 @@ export const ResizableContainer = React.forwardRef(function ResizableContainer(
         }
       }
     },
-    [adjustFlex, computeAvailableOffset, direction, dispatchOffset, forceUpdate],
+    [adjustFlex, computeAvailableOffset, orientation, dispatchOffset, forceUpdate],
   )
 
   const handleElementSizeChange = React.useCallback(
     (data: ElementSizeChangeEvent) => {
       queueMicrotask(() => {
         const size = getSize(processedChildren.current[data.index])
-        const offset = computeSizeBound(parentRef.current, direction, data.size, 1) - size
+        const offset = computeSizeBound(parentRef.current, orientation, data.size, 1) - size
         const resizeDirection = data.direction
         const splitterIndex = data.index + resizeDirection
         const availableOffset = computeAvailableOffset(splitterIndex, resizeDirection * offset)
@@ -439,14 +438,14 @@ export const ResizableContainer = React.forwardRef(function ResizableContainer(
         }
       })
     },
-    [adjustFlex, computeAvailableOffset, dispatchOffset, getSize, direction],
+    [adjustFlex, computeAvailableOffset, dispatchOffset, getSize, orientation],
   )
 
   useDidUpdate(() => {
     const children = getValidChildren(props.children)
     if (
       children.length !== flexData.length ||
-      previousDirection !== direction ||
+      previousDirection !== orientation ||
       hasFlexChanged(children, previousChildren)
     ) {
       setFlexData(computeInitialFlexData())
@@ -506,7 +505,7 @@ export const ResizableContainer = React.forwardRef(function ResizableContainer(
   })
 
   const ownerState = {
-    direction,
+    orientation,
     children,
     ...other,
   }
@@ -525,9 +524,9 @@ export const ResizableContainer = React.forwardRef(function ResizableContainer(
         ref: childFlexData.ref,
         index,
         ...(child.type !== getComponentType(ResizeHandle) && {
-          maxSize: computeSizeBound(parentRef.current, direction, child.props.maxSize, Number.MAX_VALUE),
-          minSize: computeSizeBound(parentRef.current, direction, child.props.minSize, 1),
-          size: computeSizeBound(parentRef.current, direction, child.props.size, Number.MAX_VALUE),
+          maxSize: computeSizeBound(parentRef.current, orientation, child.props.maxSize, Number.MAX_VALUE),
+          minSize: computeSizeBound(parentRef.current, orientation, child.props.minSize, 1),
+          size: computeSizeBound(parentRef.current, orientation, child.props.size, Number.MAX_VALUE),
         }),
         ...(child.type === getComponentType(ResizeHandle) && {
           computedSize,
@@ -541,7 +540,7 @@ export const ResizableContainer = React.forwardRef(function ResizableContainer(
 
   const contextValue: ResizableContainerContext = {
     events: events.current,
-    direction,
+    orientation: orientation,
   }
 
   return (
@@ -598,7 +597,7 @@ interface ResizeChildProps {
   size: number
   flex: number
   propagate: boolean
-  direction: ResizableContainerDirection
+  direction: ResizableContainerOrientation
   index: number
 }
 
@@ -623,18 +622,18 @@ interface FlexData {
 /**
  * Converts an element's width or height into a decimal value
  */
-function computePixelFlex(target: HTMLElement | null, direction: ResizableContainerDirection): number {
+function computePixelFlex(target: HTMLElement | null, direction: ResizableContainerOrientation): number {
   if (!target) {
     return 0.0
   }
   switch (direction) {
-    case 'column': {
+    case 'horizontal': {
       if (target.offsetHeight === 0.0) {
         return 0.0
       }
       return 1.0 / target.offsetHeight
     }
-    case 'row': {
+    case 'vertical': {
       if (target.offsetWidth === 0.0) {
         return 0.0
       }
@@ -673,7 +672,7 @@ function computeFreeElements(flexData: Array<InitialFlexData>): number {
  */
 function computeSizeBound(
   containingElement: HTMLElement | null,
-  direction: ResizableContainerDirection,
+  direction: ResizableContainerOrientation,
   bound: string | number | undefined,
   def: number,
 ): number {
@@ -682,10 +681,10 @@ function computeSizeBound(
     return def
   }
   switch (direction) {
-    case 'row': {
+    case 'vertical': {
       return Math.floor(getFinalSize(containingElement.offsetWidth, value))
     }
-    case 'column': {
+    case 'horizontal': {
       return Math.floor(getFinalSize(containingElement.offsetHeight, value))
     }
   }
@@ -697,14 +696,14 @@ function computeSizeBound(
  */
 function getOffset(
   previousPosition: React.MutableRefObject<number>,
-  direction: ResizableContainerDirection,
+  direction: ResizableContainerOrientation,
   pos: { clientX: number; clientY: number },
   target: HTMLElement,
 ): number {
   const { top, bottom, left, right } = target.getBoundingClientRect()
 
   switch (direction) {
-    case 'row': {
+    case 'vertical': {
       const offset = pos.clientX - previousPosition.current
       if (offset > 0) {
         if (pos.clientX > left) {
@@ -717,7 +716,7 @@ function getOffset(
       }
       break
     }
-    case 'column': {
+    case 'horizontal': {
       const offset = pos.clientY - previousPosition.current
       if (offset > 0) {
         if (pos.clientY >= top) {

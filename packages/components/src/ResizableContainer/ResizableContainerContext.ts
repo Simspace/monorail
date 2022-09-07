@@ -1,10 +1,11 @@
 import React from 'react'
 
+import type { ResizableContainerOrientation } from './resizableContainerProps.js'
 import type { ResizeEventEmitter } from './ResizeEventEmitter.js'
 
 export interface ResizableContainerContext {
   events: ResizeEventEmitter
-  direction: 'row' | 'column'
+  orientation: ResizableContainerOrientation
 }
 
 export const ResizableContainerContext =

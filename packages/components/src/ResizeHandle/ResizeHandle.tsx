@@ -7,12 +7,13 @@ import clsx from 'clsx'
 
 import { excludeProps, useForceUpdate } from '@monorail/utils'
 
+import type { ResizableContainerOrientation } from '../ResizableContainer.js'
 import { useResizableContainerContext } from '../ResizableContainer/ResizableContainerContext.js'
 import { getResizeHandleUtilityClass } from './resizeHandleClasses.js'
 import type { ResizeHandleProps } from './resizeHandleProps.js'
 
 interface ResizeHandleOwnerState extends ResizeHandleProps {
-  direction: 'row' | 'column'
+  orientation: ResizableContainerOrientation
   isDragging: boolean
 }
 
@@ -20,8 +21,13 @@ export const ResizeHandleRoot = styled('div', {
   name: 'MonorailResizeHandle',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-  shouldForwardProp: excludeProps('isDragging', 'direction', 'computedSize'),
-})<ResizeHandleOwnerState>(({ theme, direction }) => {
+  shouldForwardProp: excludeProps(
+    'isDragging',
+    'direction',
+    'computedSize',
+    'propagate',
+  ),
+})<ResizeHandleOwnerState>(({ theme, orientation }) => {
   const baseStyles: CSSObject = {
     backgroundColor: 'transparent',
     position: 'relative',
@@ -38,8 +44,8 @@ export const ResizeHandleRoot = styled('div', {
       },
     },
   }
-  switch (direction) {
-    case 'row':
+  switch (orientation) {
+    case 'vertical':
       return {
         ...baseStyles,
         flexDirection: 'row',
@@ -57,7 +63,7 @@ export const ResizeHandleRoot = styled('div', {
           })}`,
         },
       }
-    case 'column':
+    case 'horizontal':
       return {
         ...baseStyles,
         flexDirection: 'column',
@@ -95,25 +101,25 @@ const ResizeHandleHint = styled(Divider)(({ orientation = 'vertical' }) => {
   }
 })
 
-const ResizeHandleInner = styled('div')<{ direction: 'row' | 'column' }>(
-  ({ direction }) => {
-    switch (direction) {
-      case 'row': {
-        return {
-          position: 'absolute',
-          left: '4px',
-          top: 0,
-        }
-      }
-      case 'column': {
-        return {
-          position: 'absolute',
-          top: '4px',
-        }
+const ResizeHandleInner = styled('div')<{
+  orientation: ResizableContainerOrientation
+}>(({ orientation }) => {
+  switch (orientation) {
+    case 'vertical': {
+      return {
+        position: 'absolute',
+        left: '4px',
+        top: 0,
       }
     }
-  },
-)
+    case 'horizontal': {
+      return {
+        position: 'absolute',
+        top: '4px',
+      }
+    }
+  }
+})
 
 export const ResizeHandle = React.forwardRef(function ResizeHandle(
   inProps,
@@ -153,6 +159,18 @@ export const ResizeHandle = React.forwardRef(function ResizeHandle(
     })
   }
 
+  const handleTouchStart = (event: React.TouchEvent<HTMLDivElement>) => {
+    active.current = true
+    setIsDragging(true)
+    document.addEventListener('touchend', handleTouchEnd)
+    document.addEventListener('touchmove', handleTouchMove)
+    context.events.publish('startResize', {
+      source: 'touch',
+      index: index!,
+      event,
+    })
+  }
+
   const handleMouseUp = (event: MouseEvent) => {
     if (active.current) {
       active.current = false
@@ -161,6 +179,20 @@ export const ResizeHandle = React.forwardRef(function ResizeHandle(
       document.removeEventListener('mousemove', handleMouseMove)
       context.events.publish('stopResize', {
         source: 'mouse',
+        index: index!,
+        event,
+      })
+    }
+  }
+
+  const handleTouchEnd = (event: TouchEvent) => {
+    if (active.current) {
+      active.current = false
+      setIsDragging(false)
+      document.removeEventListener('touchend', handleTouchEnd)
+      document.removeEventListener('touchmove', handleTouchMove)
+      context.events.publish('stopResize', {
+        source: 'touch',
         index: index!,
         event,
       })
@@ -183,20 +215,36 @@ export const ResizeHandle = React.forwardRef(function ResizeHandle(
     }
   }
 
+  const handleTouchMove = (event: TouchEvent) => {
+    if (active.current) {
+      const domElement = innerRef.current!
+
+      context.events.publish('resize', {
+        source: 'touch',
+        index: index!,
+        target: domElement,
+        event,
+      })
+
+      event.stopPropagation()
+      event.preventDefault()
+    }
+  }
+
   const ownerState = {
     ...props,
     isDragging,
-    direction: context.direction,
+    orientation: context.orientation,
   }
 
   const classes = useUtilityClasses(ownerState)
 
   const style = {
     ...other.style,
-    ...(context.direction === 'row' && {
+    ...(context.orientation === 'vertical' && {
       height: props.computedSize?.current,
     }),
-    ...(context.direction === 'column' && {
+    ...(context.orientation === 'horizontal' && {
       width: props.computedSize?.current,
     }),
   }
@@ -205,17 +253,16 @@ export const ResizeHandle = React.forwardRef(function ResizeHandle(
     <ResizeHandleRoot
       {...other}
       isDragging={isDragging}
-      direction={context.direction}
+      orientation={context.orientation}
       ref={innerRef}
       className={clsx(classes.root, props.className)}
       onMouseDown={handleMouseDown}
+      onTouchStart={handleTouchStart}
       style={style}
     >
-      <ResizeHandleHint
-        orientation={context.direction === 'row' ? 'vertical' : 'horizontal'}
-      />
+      <ResizeHandleHint orientation={context.orientation} />
       <ResizeHandleInner
-        direction={context.direction}
+        orientation={context.orientation}
         className={classes.handle}
       />
     </ResizeHandleRoot>
