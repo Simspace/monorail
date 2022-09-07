@@ -9,7 +9,10 @@ import { excludeProps, useForceUpdate } from '@monorail/utils'
 
 import type { ResizableContainerOrientation } from '../ResizableContainer.js'
 import { useResizableContainerContext } from '../ResizableContainer/ResizableContainerContext.js'
-import { getResizeHandleUtilityClass } from './resizeHandleClasses.js'
+import {
+  getResizeHandleUtilityClass,
+  resizeHandleClasses,
+} from './resizeHandleClasses.js'
 import type { ResizeHandleProps } from './resizeHandleProps.js'
 
 interface ResizeHandleOwnerState extends ResizeHandleProps {
@@ -33,13 +36,20 @@ export const ResizeHandleRoot = styled('div', {
     position: 'relative',
     zIndex: theme.zIndex.drawer + 1,
     '&:hover': {
-      ['& > div']: {
+      [`& > .${resizeHandleClasses.handle}`]: {
+        backgroundColor: theme.palette.primary.hover,
+        transitionDelay: `${theme.transitions.duration.standard}ms`,
+      },
+      [`& > .${resizeHandleClasses.grip}`]: {
         backgroundColor: theme.palette.primary.hover,
         transitionDelay: `${theme.transitions.duration.standard}ms`,
       },
     },
     '&:active': {
-      ['& > div']: {
+      [`& > .${resizeHandleClasses.handle}`]: {
+        backgroundColor: theme.palette.primary.hover,
+      },
+      [`& > .${resizeHandleClasses.grip}`]: {
         backgroundColor: theme.palette.primary.hover,
       },
     },
@@ -54,7 +64,7 @@ export const ResizeHandleRoot = styled('div', {
         top: 0,
         right: 0,
         cursor: 'col-resize',
-        '& > div': {
+        [`& > .${resizeHandleClasses.handle}`]: {
           width: '2px',
           height: '100%',
           backgroundColor: 'transparent',
@@ -72,7 +82,7 @@ export const ResizeHandleRoot = styled('div', {
         left: 0,
         bottom: 0,
         cursor: 'row-resize',
-        '& > div': {
+        [`& > .${resizeHandleClasses.handle}`]: {
           height: '2px',
           width: '100%',
           backgroundColor: 'transparent',
@@ -89,15 +99,44 @@ const ResizeHandleHint = styled(Divider)(({ orientation = 'vertical' }) => {
     case 'vertical': {
       return {
         position: 'absolute',
-        left: '5px',
+        left: '4px',
+        borderRightWidth: '2px',
       }
     }
     case 'horizontal': {
       return {
         position: 'relative',
-        top: '5px',
+        top: '4px',
+        height: '2px',
       }
     }
+  }
+})
+
+const ResizeHandleGrip = styled('div')<{
+  orientation: ResizableContainerOrientation
+}>(({ theme, orientation }) => {
+  return {
+    position: 'absolute',
+    backgroundColor: theme.palette.default.light,
+    transition: `${theme.transitions.create(['background-color'], {
+      duration: theme.transitions.duration.short,
+    })}`,
+    zIndex: theme.zIndex.drawer + 2,
+    ...(orientation === 'vertical' && {
+      width: 10,
+      height: 80,
+      borderRadius: 120,
+      top: 'calc(50% - 40px)',
+      left: '0',
+    }),
+    ...(orientation === 'horizontal' && {
+      height: 10,
+      width: 80,
+      borderRadius: 120,
+      left: 'calc(50% - 40px)',
+      top: '0',
+    }),
   }
 })
 
@@ -261,6 +300,10 @@ export const ResizeHandle = React.forwardRef(function ResizeHandle(
       style={style}
     >
       <ResizeHandleHint orientation={context.orientation} />
+      <ResizeHandleGrip
+        className={classes.grip}
+        orientation={context.orientation}
+      />
       <ResizeHandleInner
         orientation={context.orientation}
         className={classes.handle}
@@ -273,8 +316,9 @@ function useUtilityClasses(ownerState: ResizeHandleOwnerState) {
   const { classes, isDragging } = ownerState
 
   const slots = {
-    root: ['root', isDragging && 'rootDragging'],
-    handle: ['handle', isDragging && 'handleDragging'],
+    root: ['root', isDragging && 'dragging'],
+    handle: ['handle', isDragging && 'dragging'],
+    grip: ['grip', isDragging && 'dragging'],
   }
 
   return composeClasses(slots, getResizeHandleUtilityClass, classes)

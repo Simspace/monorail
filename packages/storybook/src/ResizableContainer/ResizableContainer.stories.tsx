@@ -19,25 +19,27 @@ export default {
 
 const Template: Story<Partial<ResizableContainerProps>> = args => {
   return (
-    <ResizableContainer orientation="vertical" {...args}>
-      <ResizableElement size={300} minSize="20%">
-        <Box p={4}>
-          <Typography>{loremIpsum({ count: 10 })}</Typography>
-        </Box>
-      </ResizableElement>
-      <ResizeHandle />
-      <ResizableElement>
-        <Box p={4}>
-          <Typography>{loremIpsum({ count: 10 })}</Typography>
-        </Box>
-      </ResizableElement>
-      <ResizeHandle propagate />
-      <ResizableElement>
-        <Box p={4}>
-          <Typography>{loremIpsum({ count: 10 })}</Typography>
-        </Box>
-      </ResizableElement>
-    </ResizableContainer>
+    <Box height={500}>
+      <ResizableContainer orientation="vertical" {...args}>
+        <ResizableElement size={300} minSize="20%">
+          <Box p={4}>
+            <Typography>{loremIpsum({ count: 10 })}</Typography>
+          </Box>
+        </ResizableElement>
+        <ResizeHandle />
+        <ResizableElement>
+          <Box p={4}>
+            <Typography>{loremIpsum({ count: 10 })}</Typography>
+          </Box>
+        </ResizableElement>
+        <ResizeHandle propagate />
+        <ResizableElement>
+          <Box p={4}>
+            <Typography>{loremIpsum({ count: 10 })}</Typography>
+          </Box>
+        </ResizableElement>
+      </ResizableContainer>
+    </Box>
   )
 }
 
