@@ -115,7 +115,8 @@ const ResizeHandleHint = styled(Divider)(({ orientation = 'vertical' }) => {
 
 const ResizeHandleGrip = styled('div')<{
   orientation: ResizableContainerOrientation
-}>(({ theme, orientation }) => {
+  gripPosition: 'center' | 'top' | 'bottom' | 'left' | 'right'
+}>(({ theme, orientation, gripPosition }) => {
   return {
     position: 'absolute',
     backgroundColor: theme.palette.default.light,
@@ -128,14 +129,30 @@ const ResizeHandleGrip = styled('div')<{
       height: 80,
       borderRadius: 120,
       top: 'calc(50% - 40px)',
-      left: '0',
+      ...(gripPosition === 'center' && {
+        left: 0,
+      }),
+      ...(gripPosition === 'left' && {
+        left: -10,
+      }),
+      ...(gripPosition === 'right' && {
+        left: 10,
+      }),
     }),
     ...(orientation === 'horizontal' && {
       height: 10,
       width: 80,
       borderRadius: 120,
       left: 'calc(50% - 40px)',
-      top: '0',
+      ...(gripPosition === 'center' && {
+        top: 0,
+      }),
+      ...(gripPosition === 'top' && {
+        top: -10,
+      }),
+      ...(gripPosition === 'bottom' && {
+        top: 10,
+      }),
     }),
   }
 })
@@ -177,7 +194,7 @@ export const ResizeHandle = React.forwardRef(function ResizeHandle(
     props: inProps,
   })
 
-  const { index, ...other } = props
+  const { index, grip = true, gripPosition = 'center', ...other } = props
 
   const context = useResizableContainerContext()
 
@@ -300,10 +317,13 @@ export const ResizeHandle = React.forwardRef(function ResizeHandle(
       style={style}
     >
       <ResizeHandleHint orientation={context.orientation} />
-      <ResizeHandleGrip
-        className={classes.grip}
-        orientation={context.orientation}
-      />
+      {grip && (
+        <ResizeHandleGrip
+          className={classes.grip}
+          orientation={context.orientation}
+          gripPosition={gripPosition}
+        />
+      )}
       <ResizeHandleInner
         orientation={context.orientation}
         className={classes.handle}
