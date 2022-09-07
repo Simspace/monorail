@@ -144,7 +144,7 @@ export const ResizeHandle = React.forwardRef(function ResizeHandle(
 
   const forceUpdate = useForceUpdate()
   useEnhancedEffect(() => {
-    context.events.subscribe('forceUpdate', forceUpdate)
+    context.events.addEventListener('forceUpdate', forceUpdate)
   }, [])
 
   const handleMouseDown = (event: React.MouseEvent<HTMLDivElement>) => {
@@ -152,7 +152,7 @@ export const ResizeHandle = React.forwardRef(function ResizeHandle(
     setIsDragging(true)
     document.addEventListener('mouseup', handleMouseUp)
     document.addEventListener('mousemove', handleMouseMove)
-    context.events.publish('startResize', {
+    context.events.dispatchEvent('startResize', {
       source: 'mouse',
       index: index!,
       event,
@@ -164,7 +164,7 @@ export const ResizeHandle = React.forwardRef(function ResizeHandle(
     setIsDragging(true)
     document.addEventListener('touchend', handleTouchEnd)
     document.addEventListener('touchmove', handleTouchMove)
-    context.events.publish('startResize', {
+    context.events.dispatchEvent('startResize', {
       source: 'touch',
       index: index!,
       event,
@@ -177,7 +177,7 @@ export const ResizeHandle = React.forwardRef(function ResizeHandle(
       setIsDragging(false)
       document.removeEventListener('mouseup', handleMouseUp)
       document.removeEventListener('mousemove', handleMouseMove)
-      context.events.publish('stopResize', {
+      context.events.dispatchEvent('stopResize', {
         source: 'mouse',
         index: index!,
         event,
@@ -191,7 +191,7 @@ export const ResizeHandle = React.forwardRef(function ResizeHandle(
       setIsDragging(false)
       document.removeEventListener('touchend', handleTouchEnd)
       document.removeEventListener('touchmove', handleTouchMove)
-      context.events.publish('stopResize', {
+      context.events.dispatchEvent('stopResize', {
         source: 'touch',
         index: index!,
         event,
@@ -203,7 +203,7 @@ export const ResizeHandle = React.forwardRef(function ResizeHandle(
     if (active.current) {
       const domElement = innerRef.current!
 
-      context.events.publish('resize', {
+      context.events.dispatchEvent('resize', {
         source: 'mouse',
         index: index!,
         target: domElement,
@@ -219,7 +219,7 @@ export const ResizeHandle = React.forwardRef(function ResizeHandle(
     if (active.current) {
       const domElement = innerRef.current!
 
-      context.events.publish('resize', {
+      context.events.dispatchEvent('resize', {
         source: 'touch',
         index: index!,
         target: domElement,

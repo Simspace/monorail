@@ -1,43 +1,41 @@
 import type React from 'react'
 
-export class ResizeEventEmitter {
+export class ResizeEventTarget {
   private events: {
     [K in ResizeEvent]?: Set<(data: ResizeEventMap[K]) => void>
   } = {}
 
-  subscribe<K extends ResizeEvent>(
-    event: K,
-    handler: (data: ResizeEventMap[K]) => void,
+  addEventListener<K extends ResizeEvent>(
+    type: K,
+    callback: (data: ResizeEventMap[K]) => void,
   ): this {
-    this.events[event] ||= new Set<
-      (data: ResizeEventMap[ResizeEvent]) => void
-    >()
-    this.events[event]!.add(handler)
+    this.events[type] ||= new Set<(data: ResizeEventMap[ResizeEvent]) => void>()
+    this.events[type]!.add(callback)
     return this
   }
 
-  unsubscribe(): this
-  unsubscribe<K extends ResizeEvent>(
-    event: K,
-    handler: (data: ResizeEventMap[K]) => void,
+  removeEventListener(): this
+  removeEventListener<K extends ResizeEvent>(
+    type: K,
+    callback: (data: ResizeEventMap[K]) => void,
   ): this
-  unsubscribe<K extends ResizeEvent>(
-    event?: K,
-    handler?: (data: ResizeEventMap[K]) => void,
+  removeEventListener<K extends ResizeEvent>(
+    type?: K,
+    callback?: (data: ResizeEventMap[K]) => void,
   ): this {
-    if (event === undefined) {
+    if (type === undefined) {
       this.events = {}
       return this
     }
-    this.events[event]?.delete(handler!)
+    this.events[type]?.delete(callback!)
     return this
   }
 
-  publish<K extends ResizeEvent>(event: K, data: ResizeEventMap[K]): void {
-    if (this.events[event] === undefined) {
+  dispatchEvent<K extends ResizeEvent>(type: K, data: ResizeEventMap[K]): void {
+    if (this.events[type] === undefined) {
       return
     }
-    this.events[event]!.forEach(f => {
+    this.events[type]!.forEach(f => {
       f(data)
     })
   }

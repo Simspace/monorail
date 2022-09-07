@@ -13,8 +13,8 @@ import { ResizeHandle } from '../ResizeHandle.js'
 import { getResizableContainerUtilityClass } from './resizableContainerClasses.js'
 import { ResizableContainerContext } from './ResizableContainerContext.js'
 import type { ResizableContainerOrientation, ResizableContainerProps } from './resizableContainerProps.js'
-import type { ElementSizeChangeEvent, ResizeEventMap } from './ResizeEventEmitter.js'
-import { ResizeEventEmitter } from './ResizeEventEmitter.js'
+import type { ElementSizeChangeEvent, ResizeEventMap } from './ResizeEventTarget.js'
+import { ResizeEventTarget } from './ResizeEventTarget.js'
 import { getFinalSize, parseBoundValue } from './util.js'
 
 interface ResizableContainerOwnerState extends ResizableContainerProps {}
@@ -47,14 +47,7 @@ export const ResizableContainer = React.forwardRef(function ResizableContainer(
     props: inProps,
   })
 
-  const {
-    orientation = 'vertical',
-    className,
-    children,
-    maxDepth = 2,
-    windowResizeAware = false,
-    ...other
-  } = props
+  const { orientation = 'vertical', className, children, maxDepth = 2, windowResizeAware = false, ...other } = props
 
   const innerRef = React.useRef<HTMLDivElement>(null)
   React.useImperativeHandle(ref, () => innerRef.current!)
@@ -74,12 +67,12 @@ export const ResizableContainer = React.forwardRef(function ResizableContainer(
   const processedChildren = React.useRef<Array<ResizeChild>>([])
   const activeElements = React.useRef<Array<ResizeChild>>([])
 
-  const events = React.useRef(new ResizeEventEmitter())
+  const events = React.useRef(new ResizeEventTarget())
 
   const innerForceUpdate = useForceUpdate()
   const forceUpdate = React.useCallback(() => {
     innerForceUpdate()
-    events.current.publish('forceUpdate', undefined)
+    events.current.dispatchEvent('forceUpdate', undefined)
   }, [innerForceUpdate])
 
   /**
@@ -459,7 +452,7 @@ export const ResizableContainer = React.forwardRef(function ResizableContainer(
       }
       computeSize(processedChildren.current)
       isInitialized.current = true
-      events.current.publish('forceUpdate', undefined)
+      events.current.dispatchEvent('forceUpdate', undefined)
     }
   })
 
@@ -479,12 +472,12 @@ export const ResizableContainer = React.forwardRef(function ResizableContainer(
   }, [windowResizeAware])
 
   useEnhancedEffect(() => {
-    events.current.subscribe('elementSizeChange', handleElementSizeChange)
-    events.current.subscribe('stopResize', handleStopResize)
-    events.current.subscribe('startResize', handleStartResize)
-    events.current.subscribe('resize', handleResize)
+    events.current.addEventListener('elementSizeChange', handleElementSizeChange)
+    events.current.addEventListener('stopResize', handleStopResize)
+    events.current.addEventListener('startResize', handleStartResize)
+    events.current.addEventListener('resize', handleResize)
     return () => {
-      events.current.unsubscribe()
+      events.current.removeEventListener()
     }
   }, [handleStartResize, handleResize, handleElementSizeChange])
 

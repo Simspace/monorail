@@ -34,7 +34,7 @@ export const ResizableElement = React.forwardRef(function ResizableElement(
   const context = useResizableContainerContext()
 
   useDidUpdate(() => {
-    context.events.publish('elementSizeChange', {
+    context.events.dispatchEvent('elementSizeChange', {
       index: index!,
       size,
       direction,
