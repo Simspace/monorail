@@ -105,7 +105,7 @@ const Sentiment = ({
 }
 // #endregion
 
-function TabPanelV(props: TabPanelProps & { index: string }) {
+function TabPanel(props: TabPanelProps & { index: string }) {
   const { children, value, index, ...other } = props
 
   return (
@@ -461,9 +461,9 @@ export const SemanticColors = () => {
         </Tabs>
       </Box>
       {colorAliases.map((alias, idx) => (
-        <TabPanelV value={value.toString()} index={idx.toString()} key={idx}>
+        <TabPanel value={value.toString()} index={idx.toString()} key={idx}>
           {getTokenMapping(alias)}
-        </TabPanelV>
+        </TabPanel>
       ))}
     </Box>
   )
