@@ -19,7 +19,7 @@ export default { title: 'Inputs/Toolbar', component: Toolbar }
  */
 const Template = story<ToolbarProps>(
   args => (
-    <Toolbar {...args} sx={{ backgroundColor: 'accent.dark' }}>
+    <Toolbar {...args} sx={{ bgcolor: 'secondary.dark' }}>
       <IconButton
         size="large"
         edge="start"
