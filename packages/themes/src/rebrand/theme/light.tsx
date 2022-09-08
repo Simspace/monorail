@@ -1,6 +1,6 @@
 // eslint-disable-next-line no-restricted-imports
 import type { PaletteOptions, Theme, ThemeOptions } from '@mui/material'
-import { createTheme } from '@mui/material'
+import { alpha, createTheme } from '@mui/material'
 
 import { baseTheme } from '@monorail/themes/classic/theme/baseTheme'
 import { getThemeComponents } from '@monorail/themes/classic/theme/themeComponents'
@@ -23,7 +23,7 @@ export enum RawColor {
   Grey600 = '#626273',
   Grey700 = '#4D4C5C',
   Grey800 = '#3A3943',
-  Grey900 = '#2E2E2E',
+  Grey900 = '#272629',
 
   Blue050 = '#EDF1F9',
   Blue100 = '#CCD9EE',
@@ -42,7 +42,7 @@ export enum RawColor {
   Orange300 = '#F69165',
   Orange400 = '#EB7645',
   Orange500 = '#D06442',
-  Orange600 = '#D06442',
+  Orange600 = '#B8513B',
   Orange700 = '#A13E32',
   Orange800 = '#8A2B28',
   Orange900 = '#6E1E23',
@@ -178,42 +178,45 @@ const palette: PaletteOptions = {
     black: RawColor.Black,
   },
   primary: {
-    light: RawColor.Blue400,
-    main: RawColor.Blue600,
-    dark: RawColor.Blue700,
-    hover: RawColor.Blue700,
-    active: RawColor.Blue800,
+    light: RawColor.Purple400,
+    main: RawColor.Purple600,
+    dark: RawColor.Purple700,
+    hover: RawColor.Purple700,
+    active: RawColor.Purple800,
 
     lowEmphasis: {
-      light: RawColor.Blue050,
-      main: RawColor.Blue100,
-      dark: RawColor.Blue300,
-      contrastText: RawColor.Blue600,
-      hover: RawColor.Blue100,
-      active: RawColor.Blue300,
+      light: RawColor.Purple050,
+      main: RawColor.Purple100,
+      dark: RawColor.Purple300,
+      contrastText: RawColor.Purple600,
+      hover: alpha(RawColor.Purple400, baseTheme.palette.action.hoverOpacity),
+      active: alpha(
+        RawColor.Purple400,
+        baseTheme.palette.action.activatedOpacity,
+      ),
     },
 
     border: {
-      light: RawColor.Blue400,
-      main: RawColor.Blue600,
-      dark: RawColor.Blue800,
+      light: RawColor.Purple400,
+      main: RawColor.Purple600,
+      dark: RawColor.Purple800,
     },
 
     focusRing: {
-      inner: RawColor.Blue800,
-      outer: RawColor.Blue400,
+      inner: RawColor.Purple800,
+      outer: RawColor.Purple400,
     },
 
     shades: {
-      50: RawColor.Blue050,
-      100: RawColor.Blue100,
-      200: RawColor.Blue200,
-      300: RawColor.Blue300,
-      400: RawColor.Blue400,
-      500: RawColor.Blue500,
-      600: RawColor.Blue600,
-      700: RawColor.Blue700,
-      800: RawColor.Blue800,
+      50: RawColor.Purple050,
+      100: RawColor.Purple100,
+      200: RawColor.Purple200,
+      300: RawColor.Purple300,
+      400: RawColor.Purple400,
+      500: RawColor.Purple500,
+      600: RawColor.Purple600,
+      700: RawColor.Purple700,
+      800: RawColor.Purple800,
     },
   },
   secondary: {
@@ -228,8 +231,11 @@ const palette: PaletteOptions = {
       main: RawColor.Orange100,
       dark: RawColor.Orange300,
       contrastText: RawColor.Orange600,
-      hover: RawColor.Orange100,
-      active: RawColor.Orange300,
+      hover: alpha(RawColor.Orange400, baseTheme.palette.action.hoverOpacity),
+      active: alpha(
+        RawColor.Orange400,
+        baseTheme.palette.action.activatedOpacity,
+      ),
     },
 
     border: {
@@ -268,10 +274,11 @@ const palette: PaletteOptions = {
       main: RawColor.Grey100,
       dark: RawColor.Grey300,
       contrastText: RawColor.Grey600,
-      hover: RawColor.Grey100,
-      active: RawColor.Grey300,
-      selected: RawColor.Grey200,
-      selectedHovered: RawColor.Grey400,
+      hover: alpha(RawColor.Grey400, baseTheme.palette.action.hoverOpacity),
+      active: alpha(
+        RawColor.Grey400,
+        baseTheme.palette.action.activatedOpacity,
+      ),
     },
 
     border: {
@@ -297,21 +304,6 @@ const palette: PaletteOptions = {
       800: RawColor.Grey800,
     },
   },
-  accent: {
-    light: '#0C3D99',
-    main: '#0C3D99',
-    dark: '#161C4F',
-    contrastText: baseTheme.palette.getContrastText('#0C3D99'),
-
-    border: {
-      main: '#0C3D99',
-    },
-
-    focusRing: {
-      inner: RawColor.Blue800,
-      outer: RawColor.Blue400,
-    },
-  },
   success: {
     light: RawColor.Green300,
     main: RawColor.Green500,
@@ -324,8 +316,11 @@ const palette: PaletteOptions = {
       main: RawColor.Green100,
       dark: RawColor.Green300,
       contrastText: RawColor.Green600,
-      hover: RawColor.Green100,
-      active: RawColor.Green300,
+      hover: alpha(RawColor.Green400, baseTheme.palette.action.hoverOpacity),
+      active: alpha(
+        RawColor.Green400,
+        baseTheme.palette.action.activatedOpacity,
+      ),
     },
 
     border: {
@@ -363,8 +358,8 @@ const palette: PaletteOptions = {
       main: RawColor.Red100,
       dark: RawColor.Red300,
       contrastText: RawColor.Red600,
-      hover: RawColor.Red100,
-      active: RawColor.Red300,
+      hover: alpha(RawColor.Red600, baseTheme.palette.action.hoverOpacity),
+      active: alpha(RawColor.Red600, baseTheme.palette.action.activatedOpacity),
     },
 
     border: {
@@ -402,8 +397,11 @@ const palette: PaletteOptions = {
       main: RawColor.Orange100,
       dark: RawColor.Orange300,
       contrastText: RawColor.Orange600,
-      hover: RawColor.Orange100,
-      active: RawColor.Orange300,
+      hover: alpha(RawColor.Orange400, baseTheme.palette.action.hoverOpacity),
+      active: alpha(
+        RawColor.Orange400,
+        baseTheme.palette.action.activatedOpacity,
+      ),
     },
 
     border: {
@@ -441,8 +439,11 @@ const palette: PaletteOptions = {
       main: RawColor.Blue100,
       dark: RawColor.Blue300,
       contrastText: RawColor.Blue600,
-      hover: RawColor.Blue100,
-      active: RawColor.Blue300,
+      hover: alpha(RawColor.Blue400, baseTheme.palette.action.hoverOpacity),
+      active: alpha(
+        RawColor.Blue400,
+        baseTheme.palette.action.activatedOpacity,
+      ),
     },
 
     border: {
@@ -470,7 +471,7 @@ const palette: PaletteOptions = {
   },
   text: {
     primary: RawColor.Grey900,
-    secondary: RawColor.Grey700,
+    secondary: RawColor.Grey600,
     disabled: RawColor.Grey400,
   },
   grey: {
@@ -485,28 +486,27 @@ const palette: PaletteOptions = {
     800: RawColor.Grey800,
     900: RawColor.Grey900,
   },
-  divider: RawColor.Grey200,
-  rating: RawColor.Yellow400,
+  divider: RawColor.Grey100,
+  rating: RawColor.Yellow300,
   background: {
-    default: '#FAFAFA',
+    default: RawColor.Grey050,
     paper: RawColor.White,
   },
   action: {
-    activatedOpacity: 0.23,
+    active: alpha(RawColor.Blue500, baseTheme.palette.action.activatedOpacity),
+    activatedOpacity: baseTheme.palette.action.activatedOpacity,
     disabled: RawColor.Grey300,
-    // Exposing available action color tokens and their default values - GS 3/25/22
-    // active: RawColor.Blue200,
-    // active: 'rgba(0, 0, 0, 0.54)',
     // disabledBackground: 'rgba(0, 0, 0, 0.12)',
-    disabledOpacity: 0.4, // default = 0.38
-    // focus: 'rgba(0,0,0, 0.12)',
-    // focusOpacity: 0.12,
-    hover: RawColor.Blue050,
-    // hover: 'rgba(0,0,0,0.4)',
-    // hoverOpacity: 0.04,
-    selected: RawColor.Blue100,
-    // selected: 'rgba(0,0,0,0.8)',
-    // selectedOpacity: 0.08,
+    disabledOpacity: baseTheme.palette.action.disabledOpacity,
+    focus: alpha(RawColor.Purple600, baseTheme.palette.action.focusOpacity),
+    focusOpacity: baseTheme.palette.action.focusOpacity,
+    hover: alpha(RawColor.Purple600, baseTheme.palette.action.hoverOpacity),
+    hoverOpacity: baseTheme.palette.action.hoverOpacity,
+    selected: alpha(
+      RawColor.Purple600,
+      baseTheme.palette.action.selectedOpacity,
+    ),
+    selectedOpacity: baseTheme.palette.action.selectedOpacity,
   },
 
   chart: DefaultLightChartColors,
