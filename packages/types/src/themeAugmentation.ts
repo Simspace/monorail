@@ -47,15 +47,6 @@ declare module '@mui/material/styles/createPalette' {
    */
   interface Palette {
     /**
-     * Special non-semantic color settings for specific things in the application.
-     *
-     * It's debatable whether these should be specified like this in the theme, but these colors are used across the app
-     * and it's convenient for them to be specified consistently in the theme.
-     */
-
-    accent: PaletteColor
-
-    /**
      * Tertiary colors. Named `default` to mirror MUI's color variant.
      * @see IconButton,Badge,Checkbox,Radio,Chip,Progress
      * */
@@ -94,8 +85,6 @@ declare module '@mui/material/styles/createPalette' {
    * Because these are custom and have no MUI-provided defaults, they are required to be set, so they can be safely used.
    */
   interface PaletteOptions {
-    accent?: PaletteColorOptions
-
     /**
      * Tertiary colors. Named `default` to mirror MUI's color variant.
      * @see IconButton,Badge,Checkbox,Radio,Chip,Progress

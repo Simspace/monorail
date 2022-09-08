@@ -26,7 +26,6 @@ const colorAliases = [
   'primary',
   'secondary',
   'default',
-  'accent',
   'success',
   'error',
   'warning',
@@ -154,62 +153,6 @@ export const SemanticColors = () => {
     token: `palette.grey[${shade}]`,
     colorValue: theme.palette.grey[shade as keyof Color],
   }))
-
-  const accentColors: {
-    strongEmphasis: Array<ColorTokenRowProps>
-    border: Array<ColorTokenRowProps>
-    focusRing: Array<ColorTokenRowProps>
-  } = {
-    strongEmphasis: [
-      {
-        token: `.light`,
-        description:
-          'Use to achieve lower contrast on components with Strong Emphasis. Don’t use for state colors.',
-        colorValue: theme.palette.accent.light,
-        figmaStyle: `Accent/Light`,
-      },
-      {
-        token: `.main`,
-        colorValue: theme.palette.accent.main,
-        figmaStyle: `Accent/Main`,
-      },
-      {
-        token: `.dark`,
-        colorValue: theme.palette.accent.dark,
-        figmaStyle: `Accent/Dark`,
-        description:
-          'Use to achieve higher contrast on components with Strong Emphasis. Don’t use for state colors.',
-      },
-      {
-        token: `.contrastText`,
-        colorValue: theme.palette.accent.contrastText,
-        figmaStyle: `Accent/contrastText`,
-        description:
-          'Use for contrast text and icons on components with Low Emphasis.',
-      },
-    ],
-    border: [
-      {
-        token: `.border.main`,
-        colorValue: theme.palette.accent.border.main,
-        figmaStyle: `Accent/Border/Main`,
-      },
-    ],
-    focusRing: [
-      {
-        token: `.focusRing.inner`,
-        colorValue: theme.palette.accent.focusRing.inner,
-        figmaStyle: `Accent/Inner Focus Ring`,
-        description: 'Pre-defined inner focus ring color.',
-      },
-      {
-        token: `.focusRing.outer`,
-        colorValue: theme.palette.accent.focusRing.outer,
-        figmaStyle: `Accent/Outer Focus Ring`,
-        description: 'Pre-defined inner focus ring color.',
-      },
-    ],
-  }
 
   const sentiment = (
     alias: ColorTokenTableProps['alias'],
@@ -376,15 +319,6 @@ export const SemanticColors = () => {
           <Sentiment
             alias={alias}
             sentiment={sentiment('default', theme.palette.default)}
-            colorMode={colorMode}
-            rawColorMapping={rawColorMapping}
-          />
-        )
-      case 'accent':
-        return (
-          <Sentiment
-            alias={alias}
-            sentiment={accentColors}
             colorMode={colorMode}
             rawColorMapping={rawColorMapping}
           />
