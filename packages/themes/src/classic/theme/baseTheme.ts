@@ -151,6 +151,16 @@ export const baseTheme = createTheme(
       tooltip: 1500,
     },
 
+    palette: {
+      action: {
+        hoverOpacity: 0.12,
+        selectedOpacity: 0.24,
+        disabledOpacity: 0.6,
+        activatedOpacity: 0.24,
+        focusOpacity: 0.24,
+      },
+    },
+
     components: {
       MuiCssBaseline: {
         styleOverrides: `
