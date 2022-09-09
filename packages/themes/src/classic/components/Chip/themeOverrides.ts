@@ -1,5 +1,5 @@
 import type { Components, CSSInterpolation, Theme } from '@mui/material'
-import { chipClasses } from '@mui/material'
+import { chipClasses, darken, getContrastRatio } from '@mui/material'
 
 export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
   defaultProps: {},
@@ -65,14 +65,17 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
         '&:hover': {
           backgroundColor:
             color === 'default'
-              ? theme.palette[color].lowEmphasis.hover
+              ? theme.palette[color].lowEmphasis.dark
               : theme.palette[color].hover,
         },
         '&:active': {
           boxShadow: 'none',
           backgroundColor:
             color === 'default'
-              ? theme.palette[color].lowEmphasis.active
+              ? darken(
+                  theme.palette.default.lowEmphasis.dark,
+                  theme.palette.action.activatedOpacity,
+                )
               : theme.palette[color].active,
         },
       }
@@ -90,11 +93,14 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
       const clickableRectangularStyles: CSSInterpolation = {
         backgroundColor: theme.palette.primary.lowEmphasis.main,
         '&:hover': {
-          backgroundColor: theme.palette.primary.lowEmphasis.hover,
+          backgroundColor: theme.palette.primary.lowEmphasis.dark,
         },
         '&:active': {
           boxShadow: 'none',
-          backgroundColor: theme.palette.primary.lowEmphasis.active,
+          backgroundColor: darken(
+            theme.palette.primary.lowEmphasis.dark,
+            theme.palette.action.activatedOpacity,
+          ),
         },
         [`& > .${chipClasses.deleteIcon}`]: {
           color: theme.palette.primary.lowEmphasis.contrastText,
@@ -121,21 +127,24 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
       ownerState: { clickable = false, color = 'default', variant = 'filled' },
       theme,
     }) => {
+      const filledBackgroundColor =
+        color === 'default'
+          ? theme.palette[color].lowEmphasis.main
+          : theme.palette[color].main
+
+      const filledDeleteIconColor =
+        getContrastRatio(
+          theme.palette.default.lowEmphasis.contrastText,
+          filledBackgroundColor,
+        ) <= theme.palette.contrastThreshold
+          ? theme.palette[color].lowEmphasis.light
+          : theme.palette[color].lowEmphasis.contrastText
+
       const filledStyles: CSSInterpolation = {
         '&:hover': {
-          color:
-            color === 'default'
-              ? theme.palette.default.lowEmphasis.contrastText
-              : color === 'secondary' || color === 'warning'
-              ? theme.palette[color].shades[700]
-              : theme.palette[color].lowEmphasis.light,
+          color: filledDeleteIconColor,
         },
-        color:
-          color === 'default'
-            ? theme.palette.default.lowEmphasis.contrastText
-            : color === 'secondary' || color === 'warning'
-            ? theme.palette[color].shades[600]
-            : theme.palette[color].lowEmphasis.light,
+        color: filledDeleteIconColor,
       }
 
       const outlinedStyles: CSSInterpolation = {

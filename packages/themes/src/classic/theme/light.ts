@@ -1,6 +1,6 @@
 // eslint-disable-next-line no-restricted-imports
 import type { PaletteOptions, Theme, ThemeOptions } from '@mui/material'
-import { createTheme } from '@mui/material'
+import { alpha, createTheme, darken, lighten } from '@mui/material'
 
 import { baseTheme } from './baseTheme.js'
 import { getThemeComponents } from './themeComponents.js'
@@ -220,8 +220,11 @@ const palette: PaletteOptions = {
       main: RawColor.Blue100,
       dark: RawColor.Blue300,
       contrastText: RawColor.Blue600,
-      hover: RawColor.Blue100,
-      active: RawColor.Blue300,
+      hover: alpha(RawColor.Blue400, baseTheme.palette.action.hoverOpacity),
+      active: alpha(
+        RawColor.Blue400,
+        baseTheme.palette.action.activatedOpacity,
+      ),
     },
 
     border: {
@@ -248,42 +251,43 @@ const palette: PaletteOptions = {
     },
   },
   secondary: {
-    light: RawColor.Orange100,
-    main: RawColor.Orange200,
-    dark: RawColor.Orange300,
-    hover: RawColor.Orange300,
-    active: RawColor.Orange400,
+    light: lighten('#0C3D99', 0.5),
+    main: '#0C3D99',
+    dark: '#161C4F',
+    hover: darken('#0C3D99', baseTheme.palette.action.hoverOpacity),
+    active: '#161C4F',
+    contrastText: baseTheme.palette.getContrastText('#0C3D99'),
 
     lowEmphasis: {
-      light: RawColor.Orange050,
-      main: RawColor.Orange100,
-      dark: RawColor.Orange300,
-      contrastText: RawColor.Orange600,
-      hover: RawColor.Orange100,
-      active: RawColor.Orange300,
+      light: RawColor.Blue050,
+      main: RawColor.Blue100,
+      dark: RawColor.Blue300,
+      contrastText: '#0C3D99',
+      hover: alpha('#0C3D99', baseTheme.palette.action.hoverOpacity),
+      active: alpha('#0C3D99', baseTheme.palette.action.activatedOpacity),
     },
 
     border: {
-      light: RawColor.Orange400,
-      main: RawColor.Orange600,
-      dark: RawColor.Orange800,
+      light: lighten('#0C3D99', 0.5),
+      main: '#0C3D99',
+      dark: darken('#161C4F', 0.5),
     },
 
     focusRing: {
-      inner: RawColor.Orange800,
-      outer: RawColor.Orange400,
+      inner: RawColor.Blue800,
+      outer: RawColor.Blue400,
     },
 
     shades: {
-      50: RawColor.Orange050,
-      100: RawColor.Orange100,
-      200: RawColor.Orange200,
-      300: RawColor.Orange300,
-      400: RawColor.Orange400,
-      500: RawColor.Orange500,
-      600: RawColor.Orange600,
-      700: RawColor.Orange700,
-      800: RawColor.Orange800,
+      50: RawColor.Blue050,
+      100: RawColor.Blue100,
+      200: RawColor.Blue200,
+      300: RawColor.Blue300,
+      400: lighten('#0C3D99', 0.5),
+      500: RawColor.Blue500,
+      600: '#0C3D99',
+      700: '#161C4F',
+      800: RawColor.Blue800,
     },
   },
   default: {
@@ -299,10 +303,11 @@ const palette: PaletteOptions = {
       main: RawColor.Grey100,
       dark: RawColor.Grey300,
       contrastText: RawColor.Grey600,
-      hover: RawColor.Grey100,
-      active: RawColor.Grey300,
-      selected: RawColor.Grey200,
-      selectedHovered: RawColor.Grey400,
+      hover: alpha(RawColor.Grey400, baseTheme.palette.action.hoverOpacity),
+      active: alpha(
+        RawColor.Grey400,
+        baseTheme.palette.action.activatedOpacity,
+      ),
     },
 
     border: {
@@ -328,21 +333,6 @@ const palette: PaletteOptions = {
       800: RawColor.Grey800,
     },
   },
-  accent: {
-    light: '#0C3D99',
-    main: '#0C3D99',
-    dark: '#161C4F',
-    contrastText: baseTheme.palette.getContrastText('#0C3D99'),
-
-    border: {
-      main: '#0C3D99',
-    },
-
-    focusRing: {
-      inner: RawColor.Blue800,
-      outer: RawColor.Blue400,
-    },
-  },
   success: {
     light: RawColor.Green300,
     main: RawColor.Green500,
@@ -355,8 +345,11 @@ const palette: PaletteOptions = {
       main: RawColor.Green100,
       dark: RawColor.Green300,
       contrastText: RawColor.Green600,
-      hover: RawColor.Green100,
-      active: RawColor.Green300,
+      hover: alpha(RawColor.Green400, baseTheme.palette.action.hoverOpacity),
+      active: alpha(
+        RawColor.Green400,
+        baseTheme.palette.action.activatedOpacity,
+      ),
     },
 
     border: {
@@ -394,8 +387,8 @@ const palette: PaletteOptions = {
       main: RawColor.Red100,
       dark: RawColor.Red300,
       contrastText: RawColor.Red600,
-      hover: RawColor.Red100,
-      active: RawColor.Red300,
+      hover: alpha(RawColor.Red400, baseTheme.palette.action.hoverOpacity),
+      active: alpha(RawColor.Red400, baseTheme.palette.action.activatedOpacity),
     },
 
     border: {
@@ -433,8 +426,11 @@ const palette: PaletteOptions = {
       main: RawColor.Orange100,
       dark: RawColor.Orange300,
       contrastText: RawColor.Orange600,
-      hover: RawColor.Orange100,
-      active: RawColor.Orange300,
+      hover: alpha(RawColor.Orange400, baseTheme.palette.action.hoverOpacity),
+      active: alpha(
+        RawColor.Orange400,
+        baseTheme.palette.action.activatedOpacity,
+      ),
     },
 
     border: {
@@ -472,8 +468,11 @@ const palette: PaletteOptions = {
       main: RawColor.Blue100,
       dark: RawColor.Blue300,
       contrastText: RawColor.Blue600,
-      hover: RawColor.Blue100,
-      active: RawColor.Blue300,
+      hover: alpha(RawColor.Blue400, baseTheme.palette.action.hoverOpacity),
+      active: alpha(
+        RawColor.Blue400,
+        baseTheme.palette.action.activatedOpacity,
+      ),
     },
 
     border: {
@@ -527,21 +526,17 @@ const palette: PaletteOptions = {
     paper: RawColor.White,
   },
   action: {
-    activatedOpacity: 0.23,
+    active: alpha(RawColor.Blue500, baseTheme.palette.action.activatedOpacity),
+    activatedOpacity: baseTheme.palette.action.activatedOpacity,
     disabled: RawColor.Grey300,
-    // Exposing available action color tokens and their default values - GS 3/25/22
-    // active: RawColor.Blue200,
-    // active: 'rgba(0, 0, 0, 0.54)',
     // disabledBackground: 'rgba(0, 0, 0, 0.12)',
-    disabledOpacity: 0.4, // default = 0.38
-    // focus: 'rgba(0,0,0, 0.12)',
-    // focusOpacity: 0.12,
-    hover: RawColor.Blue100,
-    // hover: 'rgba(0,0,0,0.4)',
-    // hoverOpacity: 0.04,
-    selected: RawColor.Blue200,
-    // selected: 'rgba(0,0,0,0.8)',
-    // selectedOpacity: 0.08,
+    disabledOpacity: baseTheme.palette.action.disabledOpacity,
+    focus: alpha(RawColor.Blue600, baseTheme.palette.action.focusOpacity),
+    focusOpacity: baseTheme.palette.action.focusOpacity,
+    hover: alpha(RawColor.Blue600, baseTheme.palette.action.hoverOpacity),
+    hoverOpacity: baseTheme.palette.action.hoverOpacity,
+    selected: alpha(RawColor.Blue600, baseTheme.palette.action.selectedOpacity),
+    selectedOpacity: baseTheme.palette.action.selectedOpacity,
   },
 
   chart: DefaultLightChartColors,
@@ -549,7 +544,7 @@ const palette: PaletteOptions = {
   tiers: DefaultLightTierColors,
 }
 
-// Constuct a Theme with the base settings plus our customizations, but without the components overrides provided yet.
+// Construct a Theme with the base settings plus our customizations, but without the components overrides provided yet.
 // We're doing this so we have all the base theme settings populated for doing the component-level overrides. We want
 // a Theme here, rather than ThemeOptions because we want all the values to be non-optional and filled-in for the
 // component overrides.

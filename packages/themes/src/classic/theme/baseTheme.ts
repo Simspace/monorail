@@ -156,8 +156,8 @@ export const baseTheme = createTheme(
         hoverOpacity: 0.12,
         selectedOpacity: 0.24,
         disabledOpacity: 0.6,
-        activatedOpacity: 0.24,
-        focusOpacity: 0.24,
+        activatedOpacity: 0.32,
+        focusOpacity: 0.32,
       },
     },
 
