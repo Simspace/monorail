@@ -12,8 +12,8 @@ import { styled } from '@mui/material'
 
 import type { IconProps } from '@monorail/components'
 import { Box, Icon, Typography } from '@monorail/components'
-import * as Icons from '@monorail/components/icons'
 import { Illustration } from '@monorail/components/icons/Illustration'
+import * as Icons from '@monorail/components/icons/svgs'
 
 import { story } from '../helpers/storybook.js'
 /**

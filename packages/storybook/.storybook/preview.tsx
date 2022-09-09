@@ -10,10 +10,10 @@ import {
   muiLight,
 } from '@monorail/themes'
 import * as MUI from '@mui/material'
-import { StyledEngineProvider } from '@mui/material/styles'
 import { DecoratorFn, Parameters } from '@storybook/react'
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
+import { StyledEngineProvider } from '@monorail/components/StyledEngineProviderEmotion'
 
 /**
  * Global storybook parameters

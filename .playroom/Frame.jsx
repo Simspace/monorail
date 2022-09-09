@@ -1,12 +1,15 @@
 import React from "react";
 import { ThemeProvider, CssBaseline, useTheme } from "@mui/material";
+import { StyledEngineProvider } from "@monorail/components/StyledEngineProviderEmotion";
 
 export default function FrameComponent({ theme, children }) {
   return (
     <ThemeProvider theme={theme}>
-      <Effects />
-      <CssBaseline />
-      {children}
+      <StyledEngineProvider injectFirst>
+        <Effects />
+        <CssBaseline />
+        {children}
+      </StyledEngineProvider>
     </ThemeProvider>
   );
 }

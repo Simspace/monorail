@@ -3997,6 +3997,9 @@ __metadata:
     typescript: ^4.7.4
     use-resize-observer: ^9.0.2
   peerDependencies:
+    "@emotion/cache": ^11.9.3
+    "@emotion/react": ^11.4.1
+    "@emotion/styled": ^11.3.0
     "@mui/styled-engine": ^5.8.7
     date-fns: ^2.25.0
     dayjs: ^1.10.7
@@ -4008,6 +4011,12 @@ __metadata:
     react-draggable: ^4.4.4
     react-transition-group: ^4.4.2
   peerDependenciesMeta:
+    "@emotion/cache":
+      optional: true
+    "@emotion/react":
+      optional: true
+    "@emotion/styled":
+      optional: true
     date-fns:
       optional: true
     dayjs:
