@@ -1,3 +1,5 @@
+import type { Theme } from '@mui/material'
+
 export interface PopoutProps {
   /**
    * The title of the window or tab
@@ -19,6 +21,12 @@ export interface PopoutProps {
    * The content of the window or tab
    */
   children?: React.ReactNode
+  /**
+   * The MUI theme that will be provided to the content within this window
+   *
+   * @default the theme provided by the ThemeProvider
+   */
+  theme?: Theme
   /**
    * The features of the window or tab
    *

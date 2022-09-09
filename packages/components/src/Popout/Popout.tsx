@@ -20,12 +20,13 @@ export function Popout(props: PopoutProps): JSX.Element | null {
     children,
     url,
     target,
-    features = {},
+    theme,
+    features,
   } = props
 
   const { StyledEngineProvider } = useStyledEngineContext()
 
-  const theme = useTheme()
+  const providedTheme = useTheme()
 
   const [externalWindow, setExternalWindow] = React.useState<Window | null>(
     null,
@@ -35,41 +36,7 @@ export function Popout(props: PopoutProps): JSX.Element | null {
   )
 
   React.useEffect(() => {
-    let windowFeatures = ''
-
-    if (features.popup !== undefined) {
-      windowFeatures += `popup=${features.popup},`
-    } else {
-      windowFeatures += 'popup=true,'
-    }
-
-    if (features.width !== undefined) {
-      windowFeatures += `width=${features.width},`
-    } else {
-      windowFeatures += `width=800,`
-    }
-
-    if (features.height !== undefined) {
-      windowFeatures += `height=${features.height},`
-    } else {
-      windowFeatures += 'height=600,'
-    }
-
-    if (features.left !== undefined) {
-      windowFeatures += `left=${features.left},`
-    }
-
-    if (features.top !== undefined) {
-      windowFeatures += `top=${features.top},`
-    }
-
-    if (features.noopener ?? false) {
-      windowFeatures += 'noopener,'
-    }
-
-    if (features.noreferrer ?? false) {
-      windowFeatures += 'noreferrer'
-    }
+    const windowFeatures = processWindowFeatures(features)
 
     const externalWindow = window.open(url, target, windowFeatures)
 
@@ -106,7 +73,7 @@ export function Popout(props: PopoutProps): JSX.Element | null {
   }
 
   return ReactDOM.createPortal(
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={theme ?? providedTheme}>
       <StyledEngineProvider
         container={externalWindow!.document.head}
         injectFirst
@@ -117,4 +84,44 @@ export function Popout(props: PopoutProps): JSX.Element | null {
     </ThemeProvider>,
     externalRoot,
   )
+}
+
+function processWindowFeatures(features: PopoutProps['features'] = {}): string {
+  let windowFeatures = ''
+
+  if (features.popup !== undefined) {
+    windowFeatures += `popup=${features.popup},`
+  } else {
+    windowFeatures += 'popup=true,'
+  }
+
+  if (features.width !== undefined) {
+    windowFeatures += `width=${features.width},`
+  } else {
+    windowFeatures += `width=800,`
+  }
+
+  if (features.height !== undefined) {
+    windowFeatures += `height=${features.height},`
+  } else {
+    windowFeatures += 'height=600,'
+  }
+
+  if (features.left !== undefined) {
+    windowFeatures += `left=${features.left},`
+  }
+
+  if (features.top !== undefined) {
+    windowFeatures += `top=${features.top},`
+  }
+
+  if (features.noopener ?? false) {
+    windowFeatures += 'noopener,'
+  }
+
+  if (features.noreferrer ?? false) {
+    windowFeatures += 'noreferrer'
+  }
+
+  return windowFeatures
 }
