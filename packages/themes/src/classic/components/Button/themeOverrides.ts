@@ -1,6 +1,6 @@
 import type {} from '@mui/lab/themeAugmentation'
 import type { ButtonProps, Components, Theme } from '@mui/material'
-import { buttonClasses } from '@mui/material'
+import { alpha, buttonClasses } from '@mui/material'
 
 declare module '@mui/material/Button' {
   /**
@@ -97,15 +97,14 @@ export const MonorailButtonOverrides: Components<Theme>['MuiButton'] = {
       return inverted
         ? {
             backgroundColor: theme.palette.common.white,
-            color:
-              color === 'secondary' || color === 'warning'
-                ? theme.palette.getContrastText(theme.palette[color].main)
-                : theme.palette[color].lowEmphasis.contrastText,
+            color: theme.palette[color].lowEmphasis.contrastText,
+            // Making an exception to not use .hover and .active tokens because of this variant needs a special visual treatment.
+            // We can tokenize this pattern if it becomes more common. GS 9/9/22
             '&:hover': {
-              backgroundColor: theme.palette[color].lowEmphasis.hover,
+              backgroundColor: theme.palette[color].lowEmphasis.light,
             },
             '&:active': {
-              backgroundColor: theme.palette[color].lowEmphasis.active,
+              backgroundColor: theme.palette[color].lowEmphasis.main,
             },
           }
         : {
@@ -135,11 +134,17 @@ export const MonorailButtonOverrides: Components<Theme>['MuiButton'] = {
             boxShadow: `inset 0 0 0 1px currentColor`,
             '&:hover': {
               border: 'none',
-              backgroundColor: theme.palette[color].hover,
+              backgroundColor: alpha(
+                theme.palette.grey[900],
+                theme.palette.action.hoverOpacity,
+              ),
               boxShadow: `inset 0 0 0 1px currentColor`,
             },
             '&:active': {
-              backgroundColor: theme.palette[color].active,
+              backgroundColor: alpha(
+                theme.palette.grey[900],
+                theme.palette.action.activatedOpacity,
+              ),
               boxShadow: `inset 0 0 0 1px currentColor`,
             },
           }
@@ -172,10 +177,16 @@ export const MonorailButtonOverrides: Components<Theme>['MuiButton'] = {
             backgroundColor: 'transparent',
             color: 'currentColor',
             '&:hover': {
-              backgroundColor: theme.palette[color].lowEmphasis.hover,
+              backgroundColor: alpha(
+                theme.palette.grey[900],
+                theme.palette.action.hoverOpacity,
+              ),
             },
             '&:active': {
-              backgroundColor: theme.palette[color].lowEmphasis.active,
+              backgroundColor: alpha(
+                theme.palette.grey[900],
+                theme.palette.action.activatedOpacity,
+              ),
             },
           }
         : {
@@ -192,20 +203,18 @@ export const MonorailButtonOverrides: Components<Theme>['MuiButton'] = {
       switch (ownerState.size) {
         case 'large':
           return {
-            // TODO: Would it be useful to create a pxToSpacing() ?
-            // theme.spacing(pxToSpacing(8))
-            marginRight: theme.spacing(2), // 8px
-            marginLeft: theme.spacing(-0.5), // -2px
+            marginRight: theme.spacing(2),
+            marginLeft: theme.spacing(-0.5),
           }
         case 'medium':
           return {
-            marginRight: theme.spacing(2), // 8px
-            marginLeft: theme.spacing(-0.5), // -2px
+            marginRight: theme.spacing(2),
+            marginLeft: theme.spacing(-0.5),
           }
         case 'small':
           return {
-            marginRight: theme.spacing(1.5), // 6px
-            marginLeft: theme.spacing(-0.5), // -2px
+            marginRight: theme.spacing(1.5),
+            marginLeft: theme.spacing(-0.5),
           }
         default:
           return
@@ -215,18 +224,18 @@ export const MonorailButtonOverrides: Components<Theme>['MuiButton'] = {
       switch (ownerState.size) {
         case 'large':
           return {
-            marginRight: theme.spacing(-0.5), // -2px
-            marginLeft: theme.spacing(2), // 8px
+            marginRight: theme.spacing(-0.5),
+            marginLeft: theme.spacing(2),
           }
         case 'medium':
           return {
-            marginRight: theme.spacing(-0.5), // -2px
-            marginLeft: theme.spacing(2), // 8px
+            marginRight: theme.spacing(-0.5),
+            marginLeft: theme.spacing(2),
           }
         case 'small':
           return {
-            marginRight: theme.spacing(-0.5), // -2px
-            marginLeft: theme.spacing(1.5), // 6px
+            marginRight: theme.spacing(-0.5),
+            marginLeft: theme.spacing(1.5),
           }
         default:
           return

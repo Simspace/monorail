@@ -152,10 +152,10 @@ export const Actions = story<AlertProps>(
           severity="info"
           action={
             <Stack direction="row" gap={2}>
-              <Button variant="outlined" size="small" inverted>
+              <Button variant="outlined" size="small" color="info" inverted>
                 Close
               </Button>
-              <Button size="small" inverted>
+              <Button size="small" color="info" inverted>
                 Undo
               </Button>
             </Stack>

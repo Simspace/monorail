@@ -7,6 +7,7 @@ export const MonorailAvatarOverrides: Components<Theme>['MuiAvatar'] = {
       backgroundColor: theme.palette.secondary.dark,
       fontSize: theme.typography.body2.fontSize,
       fontWeight: theme.typography.fontWeightBold,
+      color: theme.palette.secondary.contrastText,
     }),
     rounded: {
       borderRadius: 4,

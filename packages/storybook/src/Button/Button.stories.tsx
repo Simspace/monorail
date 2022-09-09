@@ -51,10 +51,10 @@ const buttons = variants.map(variant => (
     <Typography variant="h1">{variant}</Typography>
     {sizes.map(size => (
       <React.Fragment key={size}>
-        <Typography variant="h2" margin={2}>
+        <Typography variant="h2" my={2}>
           {size}
         </Typography>
-        <Stack direction="row" spacing={2} margin={2}>
+        <Stack direction="row" spacing={2} my={2}>
           {colors.map(color => (
             <Button
               key={`${variant}-${size}-${color}`}
@@ -68,26 +68,10 @@ const buttons = variants.map(variant => (
         </Stack>
       </React.Fragment>
     ))}
-    <Typography variant="h2" margin={2}>
-      inverted
-    </Typography>
-    <Stack direction="row" spacing={2} margin={2}>
-      {colors.map(color => (
-        <Button
-          variant={variant}
-          color={color}
-          size="medium"
-          key={`${variant}-${color}-inverted`}
-          inverted
-        >
-          {color}
-        </Button>
-      ))}
-    </Stack>
-    <Typography variant="h2" margin={2}>
+    <Typography variant="h2" my={2}>
       disabled
     </Typography>
-    <Stack direction="row" spacing={2} margin={2}>
+    <Stack direction="row" spacing={2} my={2}>
       {colors.map(color => (
         <Button
           disabled
@@ -97,6 +81,35 @@ const buttons = variants.map(variant => (
           key={`${variant}-${color}-disabled`}
         >
           Disabled
+        </Button>
+      ))}
+    </Stack>
+    <Typography variant="h2" my={2}>
+      inverted
+    </Typography>
+    <Typography>
+      Used when placing buttons on top of colored containers to create contrast.
+      Inverted text and inverted outlined Buttons inherit the text color of the
+      containing element. See the Alert/Actions story for examples.
+    </Typography>
+    <Stack
+      direction="row"
+      spacing={2}
+      my={2}
+      sx={{
+        p: 2,
+        bgcolor: 'default.light',
+      }}
+    >
+      {colors.map(color => (
+        <Button
+          variant={variant}
+          color={color}
+          size="medium"
+          key={`${variant}-${color}-inverted`}
+          inverted
+        >
+          {color}
         </Button>
       ))}
     </Stack>
