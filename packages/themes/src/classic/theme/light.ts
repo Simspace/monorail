@@ -1,6 +1,6 @@
 // eslint-disable-next-line no-restricted-imports
 import type { PaletteOptions, Theme, ThemeOptions } from '@mui/material'
-import { alpha, createTheme, darken, lighten } from '@mui/material'
+import { alpha, createTheme, lighten } from '@mui/material'
 
 import { baseTheme } from './baseTheme.js'
 import { getThemeComponents } from './themeComponents.js'
@@ -254,41 +254,6 @@ const palette: PaletteOptions = {
     light: lighten('#0C3D99', 0.5),
     main: '#0C3D99',
     dark: '#161C4F',
-    hover: darken('#0C3D99', baseTheme.palette.action.hoverOpacity),
-    active: '#161C4F',
-    contrastText: baseTheme.palette.getContrastText('#0C3D99'),
-
-    lowEmphasis: {
-      light: RawColor.Blue050,
-      main: RawColor.Blue100,
-      dark: RawColor.Blue300,
-      contrastText: '#0C3D99',
-      hover: alpha('#0C3D99', baseTheme.palette.action.hoverOpacity),
-      active: alpha('#0C3D99', baseTheme.palette.action.activatedOpacity),
-    },
-
-    border: {
-      light: lighten('#0C3D99', 0.5),
-      main: '#0C3D99',
-      dark: darken('#161C4F', 0.5),
-    },
-
-    focusRing: {
-      inner: RawColor.Blue800,
-      outer: RawColor.Blue400,
-    },
-
-    shades: {
-      50: RawColor.Blue050,
-      100: RawColor.Blue100,
-      200: RawColor.Blue200,
-      300: RawColor.Blue300,
-      400: lighten('#0C3D99', 0.5),
-      500: RawColor.Blue500,
-      600: '#0C3D99',
-      700: '#161C4F',
-      800: RawColor.Blue800,
-    },
   },
   default: {
     light: RawColor.Grey300,
