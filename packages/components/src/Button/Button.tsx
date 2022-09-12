@@ -1,6 +1,22 @@
 import type { ButtonTypeMap, ExtendButtonBase } from '@mui/material'
 import { Button as MuiButton } from '@mui/material'
 
+declare module '@mui/material/Button' {
+  /**
+   * Extend the Button color prop to allow for the other semantic styles.
+   *
+   * These seem to work out-of-the-box with no custom variant theming
+   */
+  interface ButtonPropsColorOverrides {
+    info: true
+    success: true
+    warning: true
+    error: true
+    inherit: false
+    secondary: false
+  }
+}
+
 /**
  *
  * Demos:

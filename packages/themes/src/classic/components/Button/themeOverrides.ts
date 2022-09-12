@@ -2,22 +2,6 @@ import type {} from '@mui/lab/themeAugmentation'
 import type { ButtonProps, Components, Theme } from '@mui/material'
 import { alpha, buttonClasses } from '@mui/material'
 
-declare module '@mui/material/Button' {
-  /**
-   * Extend the Button color prop to allow for the other semantic styles.
-   *
-   * These seem to work out-of-the-box with no custom variant theming
-   */
-  interface ButtonPropsColorOverrides {
-    info: true
-    success: true
-    warning: true
-    error: true
-    inherit: false
-    secondary: false
-  }
-}
-
 export const MonorailButtonOverrides: Components<Theme>['MuiButton'] = {
   defaultProps: {
     disableElevation: true,

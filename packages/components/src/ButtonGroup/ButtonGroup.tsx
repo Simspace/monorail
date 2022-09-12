@@ -1,7 +1,7 @@
 import { ButtonGroup as MuiButtonGroup } from '@mui/material'
 
 declare module '@mui/material/ButtonGroup' {
-  interface ButtonPropsColorOverrides {
+  interface ButtonGroupPropsColorOverrides {
     secondary: false
   }
 }
