@@ -4,6 +4,7 @@ declare module '@mui/material/LinearProgress' {
   interface LinearProgressPropsColorOverrides {
     inherit: false
     default: true
+    secondary: false
   }
   interface LinearProgressProps {
     size?: 'small' | 'medium'

@@ -1,5 +1,11 @@
 import { Tabs as MuiTabs } from '@mui/material'
 
+declare module '@mui/material/Tabs' {
+  interface TabsPropsIndicatorColorOverrides {
+    secondary: false
+  }
+}
+
 /**
  *
  * Demos:

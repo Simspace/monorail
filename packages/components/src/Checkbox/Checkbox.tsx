@@ -7,6 +7,9 @@ declare module '@mui/material/Checkbox/Checkbox' {
   interface CheckboxProps {
     disableHover?: boolean
   }
+  interface CheckboxPropsColorOverrides {
+    secondary: false
+  }
 }
 
 /**

@@ -1,11 +1,11 @@
 import type { Components, Theme } from '@mui/material'
-import { switchClasses } from '@mui/material'
+import { alpha, switchClasses } from '@mui/material'
 
 export const MonorailSwitchOverrides: Components<Theme>['MuiSwitch'] = {
   defaultProps: {},
   styleOverrides: {
     root: ({ theme }) => ({
-      padding: theme.spacing(1, 4, 1, 2), // '4px 16px 4px 8px'
+      padding: theme.spacing(1, 4, 1, 2),
       '&:hover': {
         [`& .${switchClasses.track}`]: {
           borderColor: theme.palette.default.border.main,
@@ -23,16 +23,19 @@ export const MonorailSwitchOverrides: Components<Theme>['MuiSwitch'] = {
         },
       },
       '&:hover': {
-        backgroundColor: 'transparent',
-        [`&.${switchClasses.checked} .${switchClasses.thumb}`]: {
-          backgroundColor: theme.palette[color].lowEmphasis.hover,
-        },
+        backgroundColor: theme.palette.action.focus,
         [`&.${switchClasses.disabled}`]: {
           borderColor: 'transparent',
         },
       },
       [`&.${switchClasses.checked}`]: {
         transform: 'translate(32px)',
+        ':hover': {
+          backgroundColor: alpha(
+            theme.palette[color].main,
+            theme.palette.action.focusOpacity,
+          ),
+        },
         [`& + .${switchClasses.track}`]: {
           backgroundColor: theme.palette[color].main,
           opacity: 1,
@@ -87,7 +90,7 @@ export const MonorailSwitchOverrides: Components<Theme>['MuiSwitch'] = {
     sizeSmall: ({ ownerState: { color = 'primary' }, theme }) => ({
       height: 32,
       width: 62,
-      padding: theme.spacing(1, 3, 1, 1.5), // '4px 12px 4px 6px'
+      padding: theme.spacing(1, 3, 1, 1.5),
       [`& > .${switchClasses.switchBase}`]: {
         padding: 8,
         transform: 'translate(2px)',
@@ -96,13 +99,6 @@ export const MonorailSwitchOverrides: Components<Theme>['MuiSwitch'] = {
         transform: 'translateX(22px)',
         [`& + .${switchClasses.track}`]: {
           backgroundColor: theme.palette[color].main,
-        },
-      },
-      ':hover': {
-        [`& .${switchClasses.switchBase}.${switchClasses.checked}`]: {
-          [`& .${switchClasses.thumb}`]: {
-            backgroundColor: theme.palette[color].lowEmphasis.hover,
-          },
         },
       },
     }),

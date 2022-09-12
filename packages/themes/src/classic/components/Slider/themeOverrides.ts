@@ -42,20 +42,14 @@ export const MonorailSliderOverrides: Components<Theme>['MuiSlider'] = {
           boxShadow: `0 0 0 4px ${theme.palette[color].focusRing.outer}`,
           border: `1px solid ${theme.palette[color].focusRing.inner}`,
           [`&.${sliderClasses.thumbSizeSmall}`]: {
-            backgroundColor:
-              color === 'secondary'
-                ? theme.palette.secondary.shades[700]
-                : theme.palette[color].hover,
+            backgroundColor: theme.palette[color].hover,
           },
         },
         [`&.${sliderClasses.active}`]: {
           backgroundColor: theme.palette.default.lowEmphasis.dark,
           boxShadow: `0 0 0 4px ${theme.palette[color].focusRing.outer}`,
           [`&.${sliderClasses.thumbSizeSmall}`]: {
-            backgroundColor:
-              color === 'secondary'
-                ? theme.palette.secondary.shades[800]
-                : theme.palette[color].active,
+            backgroundColor: theme.palette[color].active,
           },
         },
       }
@@ -89,15 +83,6 @@ export const MonorailSliderOverrides: Components<Theme>['MuiSlider'] = {
           backgroundColor: theme.palette.primary.shades[600],
         },
       },
-      [`&.${sliderClasses.colorSecondary}`]: {
-        [`& .${sliderClasses.track}`]: {
-          backgroundColor: theme.palette.secondary.shades[300],
-          borderColor: theme.palette.secondary.shades[300],
-        },
-        [`& .${sliderClasses.rail}`]: {
-          backgroundColor: theme.palette.secondary.shades[600],
-        },
-      },
     }),
     thumbSizeSmall: ({ ownerState, theme }) => {
       const color = ownerState.color ?? 'primary'
@@ -105,10 +90,7 @@ export const MonorailSliderOverrides: Components<Theme>['MuiSlider'] = {
         height: 20,
         width: 20,
         borderRadius: '50%',
-        backgroundColor:
-          color === 'secondary'
-            ? theme.palette.secondary.shades[600]
-            : theme.palette[color].main,
+        backgroundColor: theme.palette[color].main,
         border: 'none',
       }
     },
@@ -119,15 +101,6 @@ export const MonorailSliderOverrides: Components<Theme>['MuiSlider'] = {
       },
       [`& .${sliderClasses.rail}`]: {
         backgroundColor: theme.palette.primary.shades[300],
-      },
-    }),
-    colorSecondary: ({ theme }) => ({
-      [`& .${sliderClasses.track}`]: {
-        backgroundColor: theme.palette.secondary.shades[600],
-        borderColor: theme.palette.secondary.shades[600],
-      },
-      [`& .${sliderClasses.rail}`]: {
-        backgroundColor: theme.palette.secondary.shades[300],
       },
     }),
     mark: {

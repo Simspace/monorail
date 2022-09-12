@@ -1,6 +1,12 @@
 import type { ExtendButtonBase, IconButtonTypeMap } from '@mui/material'
 import { IconButton as MuiIconButton } from '@mui/material'
 
+declare module '@mui/material/IconButton' {
+  interface IconButtonPropsColorOverrides {
+    secondary: false
+  }
+}
+
 /**
  * Refer to the [Icons](https://mui.com/material-ui/icons/) section of the documentation
  * regarding the available icon options.

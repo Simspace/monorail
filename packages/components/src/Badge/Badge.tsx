@@ -1,5 +1,11 @@
 import { Badge as MuiBadge } from '@mui/material'
 
+declare module '@mui/material/Badge' {
+  interface BadgePropsColorOverrides {
+    secondary: false
+  }
+}
+
 /**
  *
  * Demos:

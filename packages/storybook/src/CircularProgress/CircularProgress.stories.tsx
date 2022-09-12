@@ -32,7 +32,7 @@ const Template = story<CircularProgressProps>(
 export const Default = story(Template)
 
 const sizes = ['small', 'medium', 'large'] as const
-const colors = ['primary', 'secondary', 'error', 'default'] as const
+const colors = ['primary', 'error', 'default'] as const
 
 export const CircularIndeterminate = story<CircularProgressProps>(
   () => (

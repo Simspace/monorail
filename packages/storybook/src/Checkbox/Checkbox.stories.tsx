@@ -43,7 +43,6 @@ const label = { inputProps: { 'aria-label': 'Checkbox demo' } }
 const colors = [
   'default',
   'primary',
-  'secondary',
   'error',
   'info',
   'success',

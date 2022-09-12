@@ -1,5 +1,11 @@
 import { Slider as MuiSlider } from '@mui/material'
 
+declare module '@mui/material/Slider' {
+  interface SliderPropsColorOverrides {
+    secondary: false
+  }
+}
+
 /**
  *
  * Demos:

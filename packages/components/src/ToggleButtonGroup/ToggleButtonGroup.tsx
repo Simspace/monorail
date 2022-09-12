@@ -1,5 +1,15 @@
 import { ToggleButtonGroup as MuiToggleButtonGroup } from '@mui/material'
 
+declare module '@mui/material/ToggleButtonGroup' {
+  /**
+   * Extend the ToggleButtonGroup color variant to replace `standard` with `default`.
+   */
+  interface ToggleButtonGroupPropsColorOverrides {
+    standard: false
+    default: true
+  }
+}
+
 /**
  *
  * Demos:

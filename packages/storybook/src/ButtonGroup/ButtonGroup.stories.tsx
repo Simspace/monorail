@@ -64,11 +64,6 @@ export const Sizes = story<ButtonGroupProps>(
         <Button>Two</Button>
         <Button>Three</Button>
       </ButtonGroup>
-      <ButtonGroup color="secondary" aria-label="medium secondary button group">
-        <Button>One</Button>
-        <Button>Two</Button>
-        <Button>Three</Button>
-      </ButtonGroup>
       <ButtonGroup size="large" aria-label="large button group">
         <Button>One</Button>
         <Button>Two</Button>
@@ -87,14 +82,7 @@ export const Sizes = story<ButtonGroupProps>(
   },
 )
 
-const colors = [
-  'primary',
-  'secondary',
-  'info',
-  'success',
-  'warning',
-  'error',
-] as const
+const colors = ['primary', 'info', 'success', 'warning', 'error'] as const
 
 export const Colors = story<ButtonGroupProps>(() => (
   <Stack spacing={2}>

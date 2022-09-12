@@ -1,5 +1,13 @@
 import { ToggleButton as MuiToggleButton } from '@mui/material'
 
+declare module '@mui/material/ToggleButton' {
+  interface ToggleButtonPropsColorOverrides {
+    standard: false
+    default: true
+    secondary: false
+  }
+}
+
 /**
  *
  * Demos:

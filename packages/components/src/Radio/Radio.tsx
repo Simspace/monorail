@@ -1,5 +1,11 @@
 import { Radio as MuiRadio } from '@mui/material'
 
+declare module '@mui/material/Radio' {
+  interface RadioPropsColorOverrides {
+    secondary: false
+  }
+}
+
 /**
  *
  * Demos:

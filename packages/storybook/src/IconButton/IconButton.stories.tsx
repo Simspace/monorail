@@ -1,7 +1,6 @@
 // Edit this file to add new stories
 import React from 'react'
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart'
-import AlarmIcon from '@mui/icons-material/Alarm'
 import DeleteIcon from '@mui/icons-material/Delete'
 
 import type { IconButtonProps } from '@monorail/components'
@@ -41,9 +40,6 @@ export const Showcase = story<IconButtonProps>(
       </IconButton>
       <IconButton aria-label="delete" disabled>
         <DeleteIcon />
-      </IconButton>
-      <IconButton color="secondary" aria-label="add an alarm">
-        <AlarmIcon />
       </IconButton>
       <IconButton color="primary" aria-label="add to shopping cart">
         <AddShoppingCartIcon />
@@ -159,7 +155,6 @@ export const Shapes = story<IconButtonProps>(() => (
 const colors = [
   'inherit',
   'primary',
-  'secondary',
   'default',
   'info',
   'success',

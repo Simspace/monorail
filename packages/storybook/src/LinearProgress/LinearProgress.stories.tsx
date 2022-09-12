@@ -28,7 +28,7 @@ const Template = story<LinearProgressProps>(
 export const Default = story(Template)
 
 const sizes = ['small', 'medium'] as const
-const colors = ['primary', 'secondary', 'error', 'default'] as const
+const colors = ['primary', 'error', 'default'] as const
 
 export function LinearIndeterminate() {
   return (

@@ -49,11 +49,10 @@ export const Default = story(Template)
 const colors = [
   'default',
   'primary',
-  'secondary',
-  'error',
-  'info',
   'success',
+  'error',
   'warning',
+  'info',
 ] as const
 
 export const Color = story(
@@ -97,7 +96,7 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 export const CustomizedBadges = story(
   () => (
     <IconButton aria-label="cart" size="large">
-      <StyledBadge badgeContent={4} color="secondary">
+      <StyledBadge badgeContent={4}>
         <MailIcon />
       </StyledBadge>
     </IconButton>
@@ -138,7 +137,7 @@ export const BadgeVisibility = story(
         }}
       >
         <div>
-          <Badge color="secondary" badgeContent={count}>
+          <Badge badgeContent={count}>
             <MailIcon />
           </Badge>
           <ButtonGroup>
@@ -161,7 +160,7 @@ export const BadgeVisibility = story(
           </ButtonGroup>
         </div>
         <div>
-          <Badge color="secondary" variant="dot" invisible={invisible}>
+          <Badge variant="dot" invisible={invisible}>
             <MailIcon />
           </Badge>
           <FormControlLabel
@@ -190,10 +189,10 @@ export const BadgeVisibility = story(
 export const ShowZeroBadge = story(
   () => (
     <Stack spacing={4} direction="row" sx={{ color: 'action.active' }}>
-      <Badge color="secondary" badgeContent={0}>
+      <Badge badgeContent={0}>
         <MailIcon />
       </Badge>
-      <Badge color="secondary" badgeContent={0} showZero>
+      <Badge badgeContent={0} showZero>
         <MailIcon />
       </Badge>
     </Stack>
@@ -213,13 +212,13 @@ export const ShowZeroBadge = story(
 export const MaximumValue = story(
   () => (
     <Stack spacing={8} direction="row" sx={{ color: 'action.active' }}>
-      <Badge color="secondary" badgeContent={99}>
+      <Badge badgeContent={99}>
         <MailIcon />
       </Badge>
-      <Badge color="secondary" badgeContent={100}>
+      <Badge badgeContent={100}>
         <MailIcon />
       </Badge>
-      <Badge color="secondary" badgeContent={1000} max={999}>
+      <Badge badgeContent={1000} max={999}>
         <MailIcon />
       </Badge>
     </Stack>
@@ -239,7 +238,7 @@ export const MaximumValue = story(
 export const DotBadge = story(
   () => (
     <Box sx={{ color: 'action.active' }}>
-      <Badge color="secondary" variant="dot">
+      <Badge variant="dot">
         <MailIcon />
       </Badge>
     </Box>
@@ -256,7 +255,7 @@ export const DotBadge = story(
   },
 )
 
-const shapeStyles = { bgcolor: 'primary.main', width: 40, height: 40 }
+const shapeStyles = { bgcolor: 'primary.dark', width: 40, height: 40 }
 const shapeCircleStyles = { borderRadius: '50%' }
 const rectangle = <Box component="span" sx={shapeStyles} />
 const circle = (
@@ -266,21 +265,14 @@ const circle = (
 export const BadgeOverlap = story(
   () => (
     <Stack spacing={3} direction="row">
-      <Badge color="secondary" badgeContent=" ">
+      <Badge badgeContent=" ">{rectangle}</Badge>
+      <Badge badgeContent=" " variant="dot">
         {rectangle}
       </Badge>
-      <Badge color="secondary" badgeContent=" " variant="dot">
-        {rectangle}
-      </Badge>
-      <Badge color="secondary" overlap="circular" badgeContent=" ">
+      <Badge overlap="circular" badgeContent=" ">
         {circle}
       </Badge>
-      <Badge
-        color="secondary"
-        overlap="circular"
-        badgeContent=" "
-        variant="dot"
-      >
+      <Badge overlap="circular" badgeContent=" " variant="dot">
         {circle}
       </Badge>
     </Stack>
@@ -418,7 +410,7 @@ function notificationsLabel(count: number) {
 export const Accessibility = story(
   () => (
     <IconButton aria-label={notificationsLabel(100)} size="large">
-      <Badge badgeContent={100} color="secondary">
+      <Badge badgeContent={100}>
         <MailIcon />
       </Badge>
     </IconButton>

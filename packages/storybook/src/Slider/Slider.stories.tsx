@@ -80,7 +80,7 @@ export function ContinuousSliderLabel() {
   }
 
   return (
-    <Box sx={{ width: 300 }}>
+    <Box sx={{ width: 300, mt: 8 }}>
       <Slider
         aria-label="Always visible"
         defaultValue={80}
@@ -94,7 +94,7 @@ export function ContinuousSliderLabel() {
 
 export function SliderSizes() {
   return (
-    <Box width={300}>
+    <Box sx={{ width: 300, mt: 8 }}>
       <Slider
         size="small"
         defaultValue={70}
@@ -112,7 +112,7 @@ export function DiscreteSlider() {
   }
 
   return (
-    <Box sx={{ width: 300 }}>
+    <Box sx={{ width: 300, mt: 8 }}>
       <Slider
         aria-label="Temperature"
         defaultValue={30}
@@ -154,7 +154,7 @@ export const DiscreteSliderSteps = story(
     }
 
     return (
-      <Box sx={{ width: 300 }}>
+      <Box sx={{ width: 300, mt: 8 }}>
         <Slider
           aria-label="Small steps"
           defaultValue={0.00000005}
@@ -200,7 +200,7 @@ export function DiscreteSliderMarks() {
   }
 
   return (
-    <Box sx={{ width: 300 }}>
+    <Box sx={{ width: 300, mt: 8 }}>
       <Slider
         aria-label="Custom marks"
         defaultValue={20}
@@ -241,7 +241,7 @@ export function DiscreteSliderValues() {
     return marks.findIndex(mark => mark.value === value) + 1
   }
   return (
-    <Box sx={{ width: 300 }}>
+    <Box sx={{ width: 300, mt: 8 }}>
       <Slider
         aria-label="Restricted values"
         defaultValue={20}
@@ -280,7 +280,7 @@ export function DiscreteSliderLabel() {
   }
 
   return (
-    <Box sx={{ width: 300 }}>
+    <Box sx={{ width: 300, mt: 8 }}>
       <Slider
         aria-label="Always visible"
         defaultValue={80}
@@ -304,7 +304,7 @@ export function RangeSlider() {
   }
 
   return (
-    <Box sx={{ width: 300 }}>
+    <Box sx={{ width: 300, mt: 8 }}>
       <Slider
         getAriaLabel={() => 'Temperature range'}
         value={value}
@@ -366,7 +366,7 @@ export function MinimumDistanceSlider() {
   }
 
   return (
-    <Box sx={{ width: 300 }}>
+    <Box sx={{ width: 300, mt: 8 }}>
       <Slider
         getAriaLabel={() => 'Minimum distance'}
         value={value1}
@@ -447,30 +447,6 @@ export function InputSlider() {
           />
         </Grid>
       </Grid>
-    </Box>
-  )
-}
-
-export function ColorSlider() {
-  function valuetext(value: number) {
-    return `${value}°C`
-  }
-
-  return (
-    <Box sx={{ width: 300 }}>
-      <Slider
-        aria-label="Temperature"
-        defaultValue={30}
-        getAriaValueText={valuetext}
-        color="secondary"
-      />
-      <Slider
-        aria-label="Temperature"
-        defaultValue={30}
-        getAriaValueText={valuetext}
-        color="secondary"
-        size="small"
-      />
     </Box>
   )
 }
@@ -574,14 +550,6 @@ export function TrackInvertedSlider() {
         defaultValue={30}
         marks={marks}
       />
-      <Slider
-        track="inverted"
-        aria-labelledby="track-inverted-slider"
-        getAriaValueText={valuetext}
-        defaultValue={30}
-        marks={marks}
-        color="secondary"
-      />
       <Separator />
       <Typography id="track-inverted-range-slider" gutterBottom>
         Inverted track range
@@ -592,14 +560,6 @@ export function TrackInvertedSlider() {
         getAriaValueText={valuetext}
         defaultValue={[20, 37]}
         marks={marks}
-      />
-      <Slider
-        track="inverted"
-        aria-labelledby="track-inverted-range-slider"
-        getAriaValueText={valuetext}
-        defaultValue={[20, 37]}
-        marks={marks}
-        color="secondary"
       />
     </Box>
   )

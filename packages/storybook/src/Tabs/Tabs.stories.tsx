@@ -10,7 +10,6 @@ import type { TabsProps } from '@monorail/components'
 import {
   AppBar,
   Box,
-  Stack,
   Tab,
   TabContext,
   TabList,
@@ -191,57 +190,6 @@ export const WrappedLabels = story<TabsProps>(
           story:
             'Long labels will automatically wrap on tabs. If the label is too long for the tab, it will overflow, and the text will not be visible.',
         },
-      },
-    },
-  },
-)
-
-export const ColoredTab = story<TabsProps>(
-  args => {
-    const [value, setValue] = React.useState('one')
-
-    const handleChange = (event: React.SyntheticEvent, newValue: string) => {
-      setValue(newValue)
-    }
-
-    return (
-      <Stack gap={4} sx={{ width: '100%' }}>
-        <Tabs
-          value={value}
-          onChange={handleChange}
-          textColor="secondary"
-          indicatorColor="secondary"
-          aria-label="secondary tabs example"
-          {...args}
-        >
-          <Tab value="one" label="Item One" />
-          <Tab value="two" label="Item Two" />
-          <Tab value="three" label="Item Three" />
-        </Tabs>
-        <Tabs
-          value={value}
-          onChange={handleChange}
-          textColor="secondary"
-          indicatorColor="secondary"
-          aria-label="secondary tabs example"
-          {...args}
-        >
-          <Tab value="one" label="Item One" icon={<PhoneIcon />} />
-          <Tab value="two" label="Item Two" icon={<FavoriteIcon />} />
-          <Tab value="three" label="Item Three" icon={<PersonPinIcon />} />
-        </Tabs>
-      </Stack>
-    )
-  },
-  {
-    parameters: {
-      a11y: {
-        /**
-         * Our orange buttons fail the WCAG 2.0 contrast test.
-         * See https://gitlab.com/simspace/r9y/monorail/-/merge_requests/20#note_989402928
-         * GS 6/13/22
-         */
-        disable: true,
       },
     },
   },

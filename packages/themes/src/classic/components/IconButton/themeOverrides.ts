@@ -12,7 +12,7 @@ declare module '@mui/material/IconButton' {
     error: true
     default: true
     /**
-     * Warning: Disabling 'inherit' will break Alert, because Alert's close button uses 'inherit' under the hood.
+     * Warning: Disabling 'inherit' will break Alert, because Alert's close button uses 'inherit' internally.
      */
     inherit: true
   }

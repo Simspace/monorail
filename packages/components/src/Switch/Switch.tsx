@@ -1,5 +1,11 @@
 import { Switch as MuiSwitch } from '@mui/material'
 
+declare module '@mui/material/Switch' {
+  interface SwitchPropsColorOverrides {
+    secondary: false
+  }
+}
+
 /**
  *
  * Demos:

@@ -1,26 +1,6 @@
 import type { Components, Theme } from '@mui/material'
 import { toggleButtonClasses, toggleButtonGroupClasses } from '@mui/material'
 
-declare module '@mui/material/ToggleButton' {
-  /**
-   * Extend the ToggleButton color variant to replace `standard` with `default`.
-   */
-  interface ToggleButtonPropsColorOverrides {
-    standard: false
-    default: true
-  }
-}
-
-declare module '@mui/material/ToggleButtonGroup' {
-  /**
-   * Extend the ToggleButtonGroup color variant to replace `standard` with `default`.
-   */
-  interface ToggleButtonGroupPropsColorOverrides {
-    standard: false
-    default: true
-  }
-}
-
 export const MonorailToggleButtonOverrides: Components<Theme>['MuiToggleButton'] =
   {
     defaultProps: {

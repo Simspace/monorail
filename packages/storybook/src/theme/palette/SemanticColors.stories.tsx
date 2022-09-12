@@ -336,10 +336,18 @@ export const SemanticColors = () => {
         )
       case 'secondary':
         return (
-          <ColorTokenTable
-            colorMetadata={secondaryColors}
-            rawColorObj={rawColorMapping}
-          />
+          <>
+            <Box mb={10}>
+              <Typography variant="h2" gutterBottom>
+                {`Secondary Colors`}
+              </Typography>
+              <Typography gutterBottom>{`theme.palette.secondary`}</Typography>
+            </Box>
+            <ColorTokenTable
+              colorMetadata={secondaryColors}
+              rawColorObj={rawColorMapping}
+            />
+          </>
         )
       case 'default':
         return (

@@ -44,7 +44,6 @@ export const Default = story(Template)
 const colors = [
   'default',
   'primary',
-  'secondary',
   'error',
   'info',
   'success',

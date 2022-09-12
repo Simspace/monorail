@@ -6,6 +6,7 @@ declare module '@mui/material/CircularProgress' {
   interface CircularProgressPropsColorOverrides {
     inherit: false
     default: true
+    secondary: false
   }
 }
 

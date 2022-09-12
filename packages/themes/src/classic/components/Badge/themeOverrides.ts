@@ -3,6 +3,7 @@ import type { Components, Theme } from '@mui/material'
 export const MonorailBadgeOverrides: Components<Theme>['MuiBadge'] = {
   defaultProps: {
     max: 999,
+    color: 'primary',
   },
   styleOverrides: {
     badge: ({ ownerState: { color = 'primary' }, theme }) => {
