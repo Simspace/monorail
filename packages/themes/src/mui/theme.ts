@@ -283,40 +283,6 @@ const palette: PaletteOptions = {
     light: RawColor.Orange100,
     main: RawColor.Orange200,
     dark: RawColor.Orange300,
-    hover: RawColor.Orange300,
-    active: RawColor.Orange400,
-
-    lowEmphasis: {
-      light: RawColor.Orange050,
-      main: RawColor.Orange100,
-      dark: RawColor.Orange300,
-      contrastText: RawColor.Orange600,
-      hover: RawColor.Orange100,
-      active: RawColor.Orange300,
-    },
-
-    border: {
-      light: RawColor.Orange400,
-      main: RawColor.Orange600,
-      dark: RawColor.Orange800,
-    },
-
-    focusRing: {
-      inner: RawColor.Orange800,
-      outer: RawColor.Orange400,
-    },
-
-    shades: {
-      50: RawColor.Orange050,
-      100: RawColor.Orange100,
-      200: RawColor.Orange200,
-      300: RawColor.Orange300,
-      400: RawColor.Orange400,
-      500: RawColor.Orange500,
-      600: RawColor.Orange600,
-      700: RawColor.Orange700,
-      800: RawColor.Orange800,
-    },
   },
   default: {
     light: RawColor.Grey300,
@@ -358,21 +324,6 @@ const palette: PaletteOptions = {
       600: RawColor.Grey600,
       700: RawColor.Grey700,
       800: RawColor.Grey800,
-    },
-  },
-  accent: {
-    light: '#0C3D99',
-    main: '#0C3D99',
-    dark: '#161C4F',
-    contrastText: baseTheme.palette.getContrastText('#0C3D99'),
-
-    border: {
-      main: '#0C3D99',
-    },
-
-    focusRing: {
-      inner: RawColor.Blue800,
-      outer: RawColor.Blue400,
     },
   },
   success: {

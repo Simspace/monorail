@@ -1,5 +1,10 @@
 // eslint-disable-next-line no-restricted-imports
-import type { PaletteOptions, Theme, ThemeOptions } from '@mui/material'
+import type {
+  PaletteOptions,
+  Theme,
+  ThemeOptions,
+  TypeAction,
+} from '@mui/material'
 import { alpha, createTheme } from '@mui/material'
 
 import { baseTheme } from '@monorail/themes/classic/theme/baseTheme'
@@ -165,6 +170,20 @@ export const DefaultLightChartColors = {
   },
 }
 
+const action: TypeAction = {
+  active: alpha(RawColor.Purple600, 0.32),
+  activatedOpacity: 0.32,
+  disabled: RawColor.Grey300,
+  disabledBackground: alpha(RawColor.Black, 0.32),
+  disabledOpacity: 0.6,
+  focus: alpha(RawColor.Purple600, 0.32),
+  focusOpacity: 0.32,
+  hover: alpha(RawColor.Purple600, 0.12),
+  hoverOpacity: 0.12,
+  selected: alpha(RawColor.Purple600, 0.24),
+  selectedOpacity: 0.24,
+}
+
 // https://www.figma.com/file/dKL9YeHgWyxmRHuIjs38f3O9/Monorail-Components?node-id=23496%3A27
 /**
  * MUI Palette with additional Monorail colors.
@@ -189,11 +208,8 @@ const palette: PaletteOptions = {
       main: RawColor.Purple100,
       dark: RawColor.Purple300,
       contrastText: RawColor.Purple600,
-      hover: alpha(RawColor.Purple400, baseTheme.palette.action.hoverOpacity),
-      active: alpha(
-        RawColor.Purple400,
-        baseTheme.palette.action.activatedOpacity,
-      ),
+      hover: alpha(RawColor.Purple400, action.hoverOpacity),
+      active: alpha(RawColor.Purple400, action.activatedOpacity),
     },
 
     border: {
@@ -237,11 +253,8 @@ const palette: PaletteOptions = {
       main: RawColor.Grey100,
       dark: RawColor.Grey300,
       contrastText: RawColor.Grey600,
-      hover: alpha(RawColor.Grey400, baseTheme.palette.action.hoverOpacity),
-      active: alpha(
-        RawColor.Grey400,
-        baseTheme.palette.action.activatedOpacity,
-      ),
+      hover: alpha(RawColor.Grey400, action.hoverOpacity),
+      active: alpha(RawColor.Grey400, action.activatedOpacity),
     },
 
     border: {
@@ -279,11 +292,8 @@ const palette: PaletteOptions = {
       main: RawColor.Green100,
       dark: RawColor.Green300,
       contrastText: RawColor.Green600,
-      hover: alpha(RawColor.Green400, baseTheme.palette.action.hoverOpacity),
-      active: alpha(
-        RawColor.Green400,
-        baseTheme.palette.action.activatedOpacity,
-      ),
+      hover: alpha(RawColor.Green400, action.hoverOpacity),
+      active: alpha(RawColor.Green400, action.activatedOpacity),
     },
 
     border: {
@@ -321,8 +331,8 @@ const palette: PaletteOptions = {
       main: RawColor.Red100,
       dark: RawColor.Red300,
       contrastText: RawColor.Red600,
-      hover: alpha(RawColor.Red600, baseTheme.palette.action.hoverOpacity),
-      active: alpha(RawColor.Red600, baseTheme.palette.action.activatedOpacity),
+      hover: alpha(RawColor.Red600, action.hoverOpacity),
+      active: alpha(RawColor.Red600, action.activatedOpacity),
     },
 
     border: {
@@ -360,11 +370,8 @@ const palette: PaletteOptions = {
       main: RawColor.Orange100,
       dark: RawColor.Orange300,
       contrastText: RawColor.Orange600,
-      hover: alpha(RawColor.Orange400, baseTheme.palette.action.hoverOpacity),
-      active: alpha(
-        RawColor.Orange400,
-        baseTheme.palette.action.activatedOpacity,
-      ),
+      hover: alpha(RawColor.Orange400, action.hoverOpacity),
+      active: alpha(RawColor.Orange400, action.activatedOpacity),
     },
 
     border: {
@@ -402,11 +409,8 @@ const palette: PaletteOptions = {
       main: RawColor.Blue100,
       dark: RawColor.Blue300,
       contrastText: RawColor.Blue600,
-      hover: alpha(RawColor.Blue400, baseTheme.palette.action.hoverOpacity),
-      active: alpha(
-        RawColor.Blue400,
-        baseTheme.palette.action.activatedOpacity,
-      ),
+      hover: alpha(RawColor.Blue400, action.hoverOpacity),
+      active: alpha(RawColor.Blue400, action.activatedOpacity),
     },
 
     border: {
@@ -455,23 +459,7 @@ const palette: PaletteOptions = {
     default: RawColor.Grey050,
     paper: RawColor.White,
   },
-  action: {
-    active: alpha(RawColor.Blue500, baseTheme.palette.action.activatedOpacity),
-    activatedOpacity: baseTheme.palette.action.activatedOpacity,
-    disabled: RawColor.Grey300,
-    // disabledBackground: 'rgba(0, 0, 0, 0.12)',
-    disabledOpacity: baseTheme.palette.action.disabledOpacity,
-    focus: alpha(RawColor.Purple600, baseTheme.palette.action.focusOpacity),
-    focusOpacity: baseTheme.palette.action.focusOpacity,
-    hover: alpha(RawColor.Purple600, baseTheme.palette.action.hoverOpacity),
-    hoverOpacity: baseTheme.palette.action.hoverOpacity,
-    selected: alpha(
-      RawColor.Purple600,
-      baseTheme.palette.action.selectedOpacity,
-    ),
-    selectedOpacity: baseTheme.palette.action.selectedOpacity,
-  },
-
+  action: action,
   chart: DefaultLightChartColors,
 }
 

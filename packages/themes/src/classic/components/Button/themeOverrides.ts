@@ -102,10 +102,10 @@ export const MonorailButtonOverrides: Components<Theme>['MuiButton'] = {
             // Making an exception to not use .hover and .active tokens because of this variant needs a special visual treatment.
             // We can tokenize this pattern if it becomes more common. GS 9/9/22
             '&:hover': {
-              backgroundColor: theme.palette[color].lowEmphasis.light,
+              backgroundColor: alpha(theme.palette.common.white, 0.8),
             },
             '&:active': {
-              backgroundColor: theme.palette[color].lowEmphasis.main,
+              backgroundColor: alpha(theme.palette.common.white, 0.5),
             },
           }
         : {
@@ -150,7 +150,7 @@ export const MonorailButtonOverrides: Components<Theme>['MuiButton'] = {
             },
           }
         : {
-            backgroundColor: theme.palette.common.white,
+            backgroundColor: theme.palette.background.paper,
             boxShadow: `inset 0 0 0 1px ${theme.palette[color].border.light}`,
             color: theme.palette[color].lowEmphasis.contrastText,
             '&:hover': {

@@ -1,6 +1,11 @@
 // eslint-disable-next-line no-restricted-imports
-import type { PaletteOptions, Theme, ThemeOptions } from '@mui/material'
-import { createTheme } from '@mui/material'
+import type {
+  PaletteOptions,
+  Theme,
+  ThemeOptions,
+  TypeAction,
+} from '@mui/material'
+import { alpha, createTheme } from '@mui/material'
 
 import { baseTheme } from '@monorail/themes/classic/theme/baseTheme'
 import { getThemeComponents } from '@monorail/themes/classic/theme/themeComponents'
@@ -224,6 +229,20 @@ export const DefaultLightChartColors = {
   },
 }
 
+const action: TypeAction = {
+  active: alpha(RawColor.Blue600, 0.48),
+  activatedOpacity: 0.48,
+  disabled: RawColor.Grey300,
+  disabledBackground: alpha(RawColor.Black, 0.4),
+  disabledOpacity: 0.4,
+  focus: alpha(RawColor.Blue600, 0.56),
+  focusOpacity: 0.56,
+  hover: alpha(RawColor.Blue600, 0.24),
+  hoverOpacity: 0.24,
+  selected: alpha(RawColor.Blue600, 0.4),
+  selectedOpacity: 0.4,
+}
+
 // https://www.figma.com/file/dKL9YeHgWyxmRHuIjs38f3O9/Monorail-Components?node-id=23496%3A27
 /**
  * MUI Palette with additional Monorail colors.
@@ -238,86 +257,52 @@ const palette: PaletteOptions = {
     black: RawColor.Black,
   },
   primary: {
-    light: RawColor.Blue400,
-    main: RawColor.Blue600,
-    dark: RawColor.Blue700,
-    hover: RawColor.Blue700,
-    active: RawColor.Blue800,
+    light: RawColor.Purple200,
+    main: RawColor.Purple300,
+    dark: RawColor.Purple500,
+    hover: RawColor.Purple400,
+    active: RawColor.Purple500,
 
     lowEmphasis: {
-      light: RawColor.Blue800,
+      light: RawColor.Purple800,
       main: RawColor.Grey900,
-      dark: RawColor.Blue700,
-      contrastText: RawColor.Blue500,
-      hover: RawColor.Blue700,
-      active: RawColor.Blue800,
+      dark: RawColor.Purple700,
+      contrastText: RawColor.Purple500,
+      hover: alpha(RawColor.Purple600, action.hoverOpacity),
+      active: alpha(RawColor.Purple600, action.activatedOpacity),
     },
 
     border: {
-      light: RawColor.Blue400,
-      main: RawColor.Blue600,
-      dark: RawColor.Blue800,
+      light: RawColor.Purple800,
+      main: RawColor.Purple500,
+      dark: RawColor.Purple400,
     },
 
     focusRing: {
-      inner: RawColor.Blue800,
-      outer: RawColor.Blue400,
+      inner: RawColor.Purple800,
+      outer: RawColor.Purple400,
     },
 
     shades: {
-      50: RawColor.Blue050,
-      100: RawColor.Blue100,
-      200: RawColor.Blue200,
-      300: RawColor.Blue300,
-      400: RawColor.Blue400,
-      500: RawColor.Blue500,
-      600: RawColor.Blue600,
-      700: RawColor.Blue700,
-      800: RawColor.Blue800,
+      50: RawColor.Purple050,
+      100: RawColor.Purple100,
+      200: RawColor.Purple200,
+      300: RawColor.Purple300,
+      400: RawColor.Purple400,
+      500: RawColor.Purple500,
+      600: RawColor.Purple600,
+      700: RawColor.Purple700,
+      800: RawColor.Purple800,
     },
   },
   secondary: {
-    light: RawColor.Orange100,
+    light: RawColor.Orange300,
     main: RawColor.Orange200,
-    dark: RawColor.Orange300,
-    hover: RawColor.Orange300,
-    active: RawColor.Orange400,
-
-    lowEmphasis: {
-      light: RawColor.Orange800,
-      main: RawColor.Grey900,
-      dark: RawColor.Orange700,
-      contrastText: RawColor.Orange500,
-      hover: RawColor.Orange700,
-      active: RawColor.Orange800,
-    },
-
-    border: {
-      light: RawColor.Orange400,
-      main: RawColor.Orange600,
-      dark: RawColor.Orange800,
-    },
-
-    focusRing: {
-      inner: RawColor.Orange800,
-      outer: RawColor.Orange400,
-    },
-
-    shades: {
-      50: RawColor.Orange050,
-      100: RawColor.Orange100,
-      200: RawColor.Orange200,
-      300: RawColor.Orange300,
-      400: RawColor.Orange400,
-      500: RawColor.Orange500,
-      600: RawColor.Orange600,
-      700: RawColor.Orange700,
-      800: RawColor.Orange800,
-    },
+    dark: RawColor.Orange100,
   },
   default: {
     light: RawColor.Grey700,
-    main: RawColor.Grey600,
+    main: RawColor.Grey400,
     dark: RawColor.Grey800,
     contrastText: RawColor.White,
     hover: RawColor.Grey700,
@@ -328,16 +313,14 @@ const palette: PaletteOptions = {
       main: RawColor.Grey900,
       dark: RawColor.Grey700,
       contrastText: RawColor.Grey500,
-      hover: RawColor.Grey700,
-      active: RawColor.Grey800,
-      selected: RawColor.Grey800,
-      selectedHovered: RawColor.Grey700,
+      hover: alpha(RawColor.Grey600, action.hoverOpacity),
+      active: alpha(RawColor.Grey600, action.activatedOpacity),
     },
 
     border: {
-      light: RawColor.Grey400,
+      light: RawColor.Grey800,
       main: RawColor.Grey600,
-      dark: RawColor.Grey500,
+      dark: RawColor.Grey400,
     },
 
     focusRing: {
@@ -357,41 +340,26 @@ const palette: PaletteOptions = {
       800: RawColor.Grey800,
     },
   },
-  accent: {
-    light: '#0C3D99',
-    main: '#0C3D99',
-    dark: '#161C4F',
-    contrastText: baseTheme.palette.getContrastText('#0C3D99'),
-
-    border: {
-      main: '#0C3D99',
-    },
-
-    focusRing: {
-      inner: RawColor.Blue800,
-      outer: RawColor.Blue400,
-    },
-  },
   success: {
-    light: RawColor.Green300,
-    main: RawColor.Green500,
-    dark: RawColor.Green700,
-    hover: RawColor.Green700,
-    active: RawColor.Green800,
+    light: RawColor.Green200,
+    main: RawColor.Green300,
+    dark: RawColor.Green500,
+    hover: RawColor.Green400,
+    active: RawColor.Green500,
 
     lowEmphasis: {
       light: RawColor.Green800,
       main: RawColor.Grey900,
       dark: RawColor.Green700,
       contrastText: RawColor.Green500,
-      hover: RawColor.Green700,
-      active: RawColor.Green800,
+      hover: alpha(RawColor.Green600, action.hoverOpacity),
+      active: alpha(RawColor.Green600, action.activatedOpacity),
     },
 
     border: {
-      light: RawColor.Green400,
+      light: RawColor.Green800,
       main: RawColor.Green500,
-      dark: RawColor.Green800,
+      dark: RawColor.Green400,
     },
 
     focusRing: {
@@ -412,25 +380,25 @@ const palette: PaletteOptions = {
     },
   },
   error: {
-    light: RawColor.Red400,
-    main: RawColor.Red500,
-    dark: RawColor.Red700,
-    hover: RawColor.Red700,
-    active: RawColor.Red800,
+    light: RawColor.Red300,
+    main: RawColor.Red400,
+    dark: RawColor.Red500,
+    hover: RawColor.Red500,
+    active: RawColor.Red600,
 
     lowEmphasis: {
       light: RawColor.Red800,
       main: RawColor.Grey900,
       dark: RawColor.Red700,
       contrastText: RawColor.Red500,
-      hover: RawColor.Red700,
-      active: RawColor.Red800,
+      hover: alpha(RawColor.Red600, action.hoverOpacity),
+      active: alpha(RawColor.Red600, action.activatedOpacity),
     },
 
     border: {
-      light: RawColor.Red400,
+      light: RawColor.Red800,
       main: RawColor.Red500,
-      dark: RawColor.Red800,
+      dark: RawColor.Red400,
     },
 
     focusRing: {
@@ -462,14 +430,14 @@ const palette: PaletteOptions = {
       main: RawColor.Grey900,
       dark: RawColor.Orange700,
       contrastText: RawColor.Orange500,
-      hover: RawColor.Orange700,
-      active: RawColor.Orange800,
+      hover: alpha(RawColor.Orange600, action.hoverOpacity),
+      active: alpha(RawColor.Orange600, action.activatedOpacity),
     },
 
     border: {
-      light: RawColor.Orange400,
+      light: RawColor.Orange800,
       main: RawColor.Orange500,
-      dark: RawColor.Orange800,
+      dark: RawColor.Orange400,
     },
 
     focusRing: {
@@ -490,25 +458,25 @@ const palette: PaletteOptions = {
     },
   },
   info: {
-    light: RawColor.Blue400,
-    main: RawColor.Blue600,
-    dark: RawColor.Blue700,
-    hover: RawColor.Blue700,
-    active: RawColor.Blue800,
+    light: RawColor.Blue200,
+    main: RawColor.Blue300,
+    dark: RawColor.Blue500,
+    hover: RawColor.Blue400,
+    active: RawColor.Blue500,
 
     lowEmphasis: {
       light: RawColor.Blue800,
       main: RawColor.Grey900,
       dark: RawColor.Blue700,
       contrastText: RawColor.Blue500,
-      hover: RawColor.Blue700,
-      active: RawColor.Blue800,
+      hover: alpha(RawColor.Blue600, action.hoverOpacity),
+      active: alpha(RawColor.Blue600, action.activatedOpacity),
     },
 
     border: {
-      light: RawColor.Blue400,
+      light: RawColor.Blue800,
       main: RawColor.Blue500,
-      dark: RawColor.Blue800,
+      dark: RawColor.Blue400,
     },
 
     focusRing: {
@@ -548,33 +516,17 @@ const palette: PaletteOptions = {
   divider: RawColor.Grey800,
   rating: RawColor.Yellow400,
   background: {
-    default: '#FAFAFA',
+    default: RawColor.Grey800,
     paper: RawColor.Grey900,
   },
-  action: {
-    activatedOpacity: 0.23,
-    disabled: RawColor.Grey300,
-    // Exposing available action color tokens and their default values - GS 3/25/22
-    // active: RawColor.Blue200,
-    // active: 'rgba(0, 0, 0, 0.54)',
-    // disabledBackground: 'rgba(0, 0, 0, 0.12)',
-    disabledOpacity: 0.4, // default = 0.38
-    // focus: 'rgba(0,0,0, 0.12)',
-    // focusOpacity: 0.12,
-    hover: RawColor.Blue700,
-    // hover: 'rgba(0,0,0,0.4)',
-    // hoverOpacity: 0.04,
-    selected: RawColor.Blue800,
-    // selected: 'rgba(0,0,0,0.8)',
-    // selectedOpacity: 0.08,
-  },
+  action: action,
 
   chart: DefaultLightChartColors,
   score: DefaultLightScoreColors,
   tiers: DefaultLightTierColors,
 }
 
-// Constuct a Theme with the base settings plus our customizations, but without the components overrides provided yet.
+// Construct a Theme with the base settings plus our customizations, but without the components overrides provided yet.
 // We're doing this so we have all the base theme settings populated for doing the component-level overrides. We want
 // a Theme here, rather than ThemeOptions because we want all the values to be non-optional and filled-in for the
 // component overrides.
