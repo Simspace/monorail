@@ -38,7 +38,12 @@ export const CircularIndeterminate = story<CircularProgressProps>(
   () => (
     <Stack direction="row" spacing={1}>
       {colors.flatMap(color => (
-        <Stack direction="column" alignItems="center" spacing={8}>
+        <Stack
+          direction="column"
+          alignItems="center"
+          spacing={8}
+          key={`circular-progress-indeterminate-${color}`}
+        >
           {sizes.map(size => (
             <CircularProgress
               key={`circular-progress-indeterminate-${color}-${size}`}
@@ -80,7 +85,12 @@ export const CircularDeterminate = story<CircularProgressProps>(
     return (
       <Stack direction="row" spacing={2}>
         {colors.flatMap(color => (
-          <Stack direction="column" alignItems="center" spacing={8}>
+          <Stack
+            direction="column"
+            alignItems="center"
+            spacing={8}
+            key={`circular-progress-indeterminate-${color}`}
+          >
             {sizes.map(size => (
               <CircularProgress
                 key={`circular-progress-indeterminate-${color}-${size}`}
@@ -124,7 +134,12 @@ export const CircularProgressWithLabel = story<CircularProgressProps>(
     return (
       <Stack direction="row" spacing={2}>
         {colors.flatMap(color => (
-          <Stack direction="column" alignItems="center" spacing={8}>
+          <Stack
+            direction="column"
+            alignItems="center"
+            spacing={8}
+            key={`circular-progress-label-${color}`}
+          >
             {(['medium', 'large'] as const).map(size => (
               <Box
                 key={`circular-progress-label-${color}-${size}`}
@@ -177,7 +192,12 @@ export const CircularProgressWithIcon = story<CircularProgressProps>(() => {
   return (
     <Stack direction="row" spacing={1}>
       {colors.flatMap(color => (
-        <Stack direction="column" alignItems="center" spacing={8}>
+        <Stack
+          direction="column"
+          alignItems="center"
+          spacing={8}
+          key={`circular-progress-icon-${color}`}
+        >
           {(['medium', 'large'] as const).map(size => (
             <Box
               key={`circular-progress-icon-${color}-${size}`}

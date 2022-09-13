@@ -20,7 +20,7 @@ const SelectionFooterRoot = styled('div', {
   sx(theme => ({
     minHeight: theme.spacing(9.5),
     // TODO: use a design token
-    backgroundColor: theme.palette.default.shades[50],
+    backgroundColor: theme.palette.background.default,
     padding: theme.spacing(0, 6),
     display: 'flex',
     flexDirection: 'row',

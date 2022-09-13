@@ -267,14 +267,14 @@ const palette: PaletteOptions = {
       light: RawColor.Purple800,
       main: RawColor.Grey900,
       dark: RawColor.Purple700,
-      contrastText: RawColor.Purple500,
+      contrastText: RawColor.Purple300,
       hover: alpha(RawColor.Purple600, action.hoverOpacity),
       active: alpha(RawColor.Purple600, action.activatedOpacity),
     },
 
     border: {
       light: RawColor.Purple800,
-      main: RawColor.Purple500,
+      main: RawColor.Purple600,
       dark: RawColor.Purple400,
     },
 
@@ -312,7 +312,7 @@ const palette: PaletteOptions = {
       light: RawColor.Grey800,
       main: RawColor.Grey900,
       dark: RawColor.Grey700,
-      contrastText: RawColor.Grey500,
+      contrastText: RawColor.Grey300,
       hover: alpha(RawColor.Grey600, action.hoverOpacity),
       active: alpha(RawColor.Grey600, action.activatedOpacity),
     },
@@ -351,14 +351,14 @@ const palette: PaletteOptions = {
       light: RawColor.Green800,
       main: RawColor.Grey900,
       dark: RawColor.Green700,
-      contrastText: RawColor.Green500,
+      contrastText: RawColor.Green300,
       hover: alpha(RawColor.Green600, action.hoverOpacity),
       active: alpha(RawColor.Green600, action.activatedOpacity),
     },
 
     border: {
       light: RawColor.Green800,
-      main: RawColor.Green500,
+      main: RawColor.Green600,
       dark: RawColor.Green400,
     },
 
@@ -390,14 +390,14 @@ const palette: PaletteOptions = {
       light: RawColor.Red800,
       main: RawColor.Grey900,
       dark: RawColor.Red700,
-      contrastText: RawColor.Red500,
+      contrastText: RawColor.Red300,
       hover: alpha(RawColor.Red600, action.hoverOpacity),
       active: alpha(RawColor.Red600, action.activatedOpacity),
     },
 
     border: {
       light: RawColor.Red800,
-      main: RawColor.Red500,
+      main: RawColor.Red600,
       dark: RawColor.Red400,
     },
 
@@ -429,14 +429,14 @@ const palette: PaletteOptions = {
       light: RawColor.Orange800,
       main: RawColor.Grey900,
       dark: RawColor.Orange700,
-      contrastText: RawColor.Orange500,
+      contrastText: RawColor.Orange300,
       hover: alpha(RawColor.Orange600, action.hoverOpacity),
       active: alpha(RawColor.Orange600, action.activatedOpacity),
     },
 
     border: {
       light: RawColor.Orange800,
-      main: RawColor.Orange500,
+      main: RawColor.Orange600,
       dark: RawColor.Orange400,
     },
 
@@ -468,14 +468,14 @@ const palette: PaletteOptions = {
       light: RawColor.Blue800,
       main: RawColor.Grey900,
       dark: RawColor.Blue700,
-      contrastText: RawColor.Blue500,
+      contrastText: RawColor.Blue300,
       hover: alpha(RawColor.Blue600, action.hoverOpacity),
       active: alpha(RawColor.Blue600, action.activatedOpacity),
     },
 
     border: {
       light: RawColor.Blue800,
-      main: RawColor.Blue500,
+      main: RawColor.Blue600,
       dark: RawColor.Blue400,
     },
 

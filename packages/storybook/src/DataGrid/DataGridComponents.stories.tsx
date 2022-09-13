@@ -113,7 +113,6 @@ const CustomColumnMenuComponent = (
 }
 
 const Template = story<DataGridProps>(args => {
-  const [color, setColor] = React.useState<'primary' | 'secondary'>('primary')
   // TODO(storybook): Uncomment once we have DataGridPro (paid)
   // const apiRef = useGridApiRef();
 
@@ -123,16 +122,7 @@ const Template = story<DataGridProps>(args => {
         width: '100%',
       }}
     >
-      <Button
-        color={color}
-        variant="outlined"
-        onClick={(event: React.MouseEvent<HTMLElement>) => {
-          event.stopPropagation()
-          setColor(current => (current === 'primary' ? 'secondary' : 'primary'))
-          // TODO(storybook): Uncomment once we have DataGridPro (paid)
-          // apiRef.current.showColumnMenu('default');
-        }}
-      >
+      <Button color={'primary'} variant="outlined">
         Toggle menu background
       </Button>
       <div style={{ height: 250, width: '100%', marginTop: 16 }}>
@@ -162,9 +152,6 @@ const Template = story<DataGridProps>(args => {
           ]}
           components={{
             ColumnMenu: CustomColumnMenuComponent,
-          }}
-          componentsProps={{
-            columnMenu: { color },
           }}
         />
       </div>

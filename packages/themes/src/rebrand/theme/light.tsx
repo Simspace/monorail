@@ -91,7 +91,7 @@ export enum RawColor {
   Purple300 = '#A79EEF',
   Purple400 = '#9282E7',
   Purple500 = '#7F66DC',
-  Purple600 = '#7F66DC',
+  Purple600 = '#6D4ACD',
   Purple700 = '#5936A8',
   Purple800 = '#44277D',
   Purple900 = '#1D1275',
@@ -199,7 +199,7 @@ const palette: PaletteOptions = {
   primary: {
     light: RawColor.Purple400,
     main: RawColor.Purple600,
-    dark: RawColor.Purple700,
+    dark: RawColor.Purple800,
     hover: RawColor.Purple700,
     active: RawColor.Purple800,
 
@@ -236,12 +236,12 @@ const palette: PaletteOptions = {
     },
   },
   secondary: {
-    light: RawColor.Orange100,
-    main: RawColor.Orange200,
-    dark: RawColor.Orange300,
+    light: RawColor.Orange300,
+    main: RawColor.Orange500,
+    dark: RawColor.Orange700,
   },
   default: {
-    light: RawColor.Grey300,
+    light: RawColor.Grey400,
     main: RawColor.Grey600,
     dark: RawColor.Grey800,
     contrastText: RawColor.White,
@@ -260,7 +260,7 @@ const palette: PaletteOptions = {
     border: {
       light: RawColor.Grey400,
       main: RawColor.Grey600,
-      dark: RawColor.Grey500,
+      dark: RawColor.Grey800,
     },
 
     focusRing: {
@@ -281,9 +281,9 @@ const palette: PaletteOptions = {
     },
   },
   success: {
-    light: RawColor.Green300,
-    main: RawColor.Green500,
-    dark: RawColor.Green700,
+    light: RawColor.Green400,
+    main: RawColor.Green600,
+    dark: RawColor.Green800,
     hover: RawColor.Green700,
     active: RawColor.Green800,
 
@@ -298,7 +298,7 @@ const palette: PaletteOptions = {
 
     border: {
       light: RawColor.Green400,
-      main: RawColor.Green500,
+      main: RawColor.Green600,
       dark: RawColor.Green800,
     },
 
@@ -321,8 +321,8 @@ const palette: PaletteOptions = {
   },
   error: {
     light: RawColor.Red400,
-    main: RawColor.Red500,
-    dark: RawColor.Red700,
+    main: RawColor.Red600,
+    dark: RawColor.Red800,
     hover: RawColor.Red700,
     active: RawColor.Red800,
 
@@ -337,7 +337,7 @@ const palette: PaletteOptions = {
 
     border: {
       light: RawColor.Red400,
-      main: RawColor.Red500,
+      main: RawColor.Red600,
       dark: RawColor.Red800,
     },
 
@@ -376,7 +376,7 @@ const palette: PaletteOptions = {
 
     border: {
       light: RawColor.Orange400,
-      main: RawColor.Orange500,
+      main: RawColor.Orange600,
       dark: RawColor.Orange800,
     },
 
@@ -400,7 +400,7 @@ const palette: PaletteOptions = {
   info: {
     light: RawColor.Blue400,
     main: RawColor.Blue600,
-    dark: RawColor.Blue700,
+    dark: RawColor.Blue800,
     hover: RawColor.Blue700,
     active: RawColor.Blue800,
 
@@ -415,7 +415,7 @@ const palette: PaletteOptions = {
 
     border: {
       light: RawColor.Blue400,
-      main: RawColor.Blue500,
+      main: RawColor.Blue600,
       dark: RawColor.Blue800,
     },
 
