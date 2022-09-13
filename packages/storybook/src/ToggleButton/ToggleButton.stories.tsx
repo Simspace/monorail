@@ -254,6 +254,7 @@ export const StandaloneToggleButton = story(() => {
       onChange={() => {
         setSelected(!selected)
       }}
+      aria-label="check"
     >
       <CheckIcon />
     </ToggleButton>

@@ -1,19 +1,6 @@
 import type { Components, Theme } from '@mui/material'
 import { buttonClasses } from '@mui/material'
 
-declare module '@mui/material/ButtonGroup' {
-  /**
-   * Extend the ButtonGroup color prop to allow for the other semantic styles.
-   */
-  interface ButtonGroupPropsColorOverrides {
-    info: true
-    success: true
-    warning: true
-    error: true
-    inherit: false
-  }
-}
-
 export const MonorailButtonGroupOverrides: Components<Theme>['MuiButtonGroup'] =
   {
     defaultProps: {
