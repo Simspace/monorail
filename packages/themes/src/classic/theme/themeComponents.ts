@@ -5,6 +5,8 @@ import type {} from '@mui/x-data-grid-pro/themeAugmentation'
 import type {} from '@mui/x-date-pickers/themeAugmentation'
 import type {} from '@mui/x-date-pickers-pro/themeAugmentation'
 
+import { MonorailBackdropOverrides } from '@monorail/themes/classic/components/Backdrop/themeOverrides.js'
+
 import { MonorailAccordionOverrides } from '../components/Accordion/themeOverrides.js'
 import { MonorailAccordionActionsOverrides } from '../components/AccordionActions/themeOverrides.js'
 import { MonorailAccordionDetailsOverrides } from '../components/AccordionDetails/themeOverrides.js'
@@ -112,6 +114,7 @@ export const getThemeComponents = (
   MuiAlertTitle: MonorailAlertTitleOverrides,
   MuiAutocomplete: MonorailAutocompleteOverrides,
   MuiAvatar: MonorailAvatarOverrides,
+  MuiBackdrop: MonorailBackdropOverrides,
   MuiBadge: MonorailBadgeOverrides,
   MuiButton: MonorailButtonOverrides,
   MuiButtonBase: MonorailButtonBaseOverrides,

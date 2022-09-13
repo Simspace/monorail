@@ -491,6 +491,7 @@ const palette: PaletteOptions = {
   },
   divider: RawColor.Grey800,
   rating: RawColor.Yellow,
+  backdropOverlay: `rgba(${RawColor.Black}, 0.5)`,
   background: {
     default: '#FAFAFA',
     paper: RawColor.Grey900,

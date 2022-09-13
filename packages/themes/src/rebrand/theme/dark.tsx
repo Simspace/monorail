@@ -515,12 +515,12 @@ const palette: PaletteOptions = {
   },
   divider: RawColor.Grey800,
   rating: RawColor.Yellow400,
+  backdropOverlay: `rgba(${RawColor.Grey800}, 0.7)`,
   background: {
     default: RawColor.Grey800,
     paper: RawColor.Grey900,
   },
   action: action,
-
   chart: DefaultLightChartColors,
   score: DefaultLightScoreColors,
   tiers: DefaultLightTierColors,

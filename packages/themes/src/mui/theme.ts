@@ -499,6 +499,7 @@ const palette: PaletteOptions = {
     A700: RawColor.GreyA900,
   },
   rating: RawColor.Yellow,
+  backdropOverlay: `rgba(${RawColor.Black}, 0.5)`,
   // Accept defaults for the following: text, divider, background (paper), action.
   // Dark mode for these tokens are handled internally by MUI.
 
