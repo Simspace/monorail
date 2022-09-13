@@ -107,7 +107,7 @@ export const Color = story<TimelineProps>(
       <Timeline {...rest}>
         <TimelineItem>
           <TimelineSeparator>
-            <TimelineDot color="secondary" />
+            <TimelineDot />
             <TimelineConnector />
           </TimelineSeparator>
           <TimelineContent>Secondary</TimelineContent>
@@ -156,7 +156,7 @@ export const Outlined = story<TimelineProps>(
         </TimelineItem>
         <TimelineItem>
           <TimelineSeparator>
-            <TimelineDot variant="outlined" color="secondary" />
+            <TimelineDot variant="outlined" />
             <TimelineConnector />
           </TimelineSeparator>
           <TimelineContent>Sleep</TimelineContent>
@@ -295,7 +295,7 @@ export const Customization = story<TimelineProps>(
             <TimelineDot color="primary" variant="outlined">
               <HotelIcon />
             </TimelineDot>
-            <TimelineConnector sx={{ bgcolor: 'secondary.main' }} />
+            <TimelineConnector sx={{ bgcolor: 'success.main' }} />
           </TimelineSeparator>
           <TimelineContent sx={{ py: '12px', px: 2 }}>
             <Typography variant="h3" component="span">
@@ -306,11 +306,11 @@ export const Customization = story<TimelineProps>(
         </TimelineItem>
         <TimelineItem>
           <TimelineSeparator>
-            <TimelineConnector sx={{ bgcolor: 'secondary.main' }} />
-            <TimelineDot color="secondary">
+            <TimelineConnector sx={{ bgcolor: 'success.main' }} />
+            <TimelineDot color="success">
               <RepeatIcon />
             </TimelineDot>
-            <TimelineConnector />
+            <TimelineConnector sx={{ bgcolor: 'success.main' }} />
           </TimelineSeparator>
           <TimelineContent sx={{ py: '12px', px: 2 }}>
             <Typography variant="h3" component="span">

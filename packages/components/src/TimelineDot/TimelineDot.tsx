@@ -1,4 +1,11 @@
 import { TimelineDot as MuiTimelineDot } from '@mui/lab'
+import type {} from '@mui/lab/themeAugmentation'
+
+declare module '@mui/lab/TimelineDot' {
+  interface TimelineDotPropsColorOverrides {
+    secondary: false
+  }
+}
 
 /**
  *

@@ -507,7 +507,6 @@ export const Color = story(
       autoComplete="off"
       aria-label="color form"
     >
-      <TextField id="secondary" label="Secondary" color="secondary" focused />
       <TextField id="success" label="Success" color="success" focused />
       <TextField id="warning" label="Warning" color="warning" focused />
     </Box>
