@@ -29,6 +29,7 @@ export const ResizeHandleRoot = styled('div', {
     'direction',
     'computedSize',
     'propagate',
+    'orientation',
   ),
 })<ResizeHandleOwnerState>(({ theme, orientation }) => {
   const baseStyles: CSSObject = {
@@ -113,7 +114,12 @@ const ResizeHandleHint = styled(Divider)(({ orientation = 'vertical' }) => {
   }
 })
 
-const ResizeHandleGrip = styled('div')<{
+const ResizeHandleGrip = styled('div', {
+  name: 'MonorailResizeHandle',
+  slot: 'Grip',
+  overridesResolver: (props, styles) => styles.root,
+  shouldForwardProp: excludeProps('orientation', 'gripPosition'),
+})<{
   orientation: ResizableContainerOrientation
   gripPosition: 'center' | 'top' | 'bottom' | 'left' | 'right'
 }>(({ theme, orientation, gripPosition }) => {
@@ -157,7 +163,12 @@ const ResizeHandleGrip = styled('div')<{
   }
 })
 
-const ResizeHandleInner = styled('div')<{
+const ResizeHandleInner = styled('div', {
+  name: 'MonorailResizeHandle',
+  slot: 'Handle',
+  overridesResolver: (props, styles) => styles.grip,
+  shouldForwardProp: excludeProps('orientation'),
+})<{
   orientation: ResizableContainerOrientation
 }>(({ orientation }) => {
   switch (orientation) {

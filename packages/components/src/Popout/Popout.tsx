@@ -2,6 +2,8 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { CssBaseline, ThemeProvider, useTheme } from '@mui/material'
 
+import { useForceUpdate } from '@monorail/utils'
+
 import { useStyledEngineContext } from '../StyledEngineContext.js'
 import type { PopoutProps } from './popoutProps.js'
 
@@ -15,6 +17,7 @@ import type { PopoutProps } from './popoutProps.js'
 export function Popout(props: PopoutProps): JSX.Element | null {
   const {
     title,
+    open,
     onWindowClose,
     onWindowOpen,
     children,
@@ -28,43 +31,67 @@ export function Popout(props: PopoutProps): JSX.Element | null {
 
   const providedTheme = useTheme()
 
-  const [externalWindow, setExternalWindow] = React.useState<Window | null>(
-    null,
-  )
-  const [externalRoot, setExternalRoot] = React.useState<HTMLElement | null>(
-    null,
-  )
+  const externalWindow = React.useRef<Window | null>(null)
+  const externalRoot = React.useRef<HTMLElement | null>(null)
+
+  const forceUpdate = useForceUpdate()
 
   React.useEffect(() => {
-    const windowFeatures = processWindowFeatures(features)
-
-    const externalWindow = window.open(url, target, windowFeatures)
-
-    onWindowOpen?.(externalWindow)
-
-    let containerElement = null
-
-    if (externalWindow) {
-      containerElement = externalWindow.document.createElement('div')
-      externalWindow.document.body.appendChild(containerElement)
-      externalWindow.document.title = title
-      onWindowClose &&
-        externalWindow.addEventListener('beforeunload', onWindowClose)
-    }
-
-    setExternalWindow(externalWindow)
-    setExternalRoot(containerElement)
-    return () => {
-      if (externalWindow) {
-        externalWindow.close()
-        onWindowClose &&
-          externalWindow.removeEventListener('beforeunload', onWindowClose)
+    const onBeforeUnload = () => {
+      if (externalWindow.current) {
+        externalWindow.current.close()
+        externalWindow.current = null
       }
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    window.addEventListener('beforeunload', onBeforeUnload)
+    return () => {
+      window.removeEventListener('beforeunload', onBeforeUnload)
+      onBeforeUnload()
+    }
   }, [])
 
-  if (!externalRoot) {
+  React.useEffect(() => {
+    if (open && externalWindow.current === null) {
+      const windowFeatures = processWindowFeatures(features)
+
+      const newExternalWindow = window.open(url, target, windowFeatures)
+
+      onWindowOpen?.(newExternalWindow)
+
+      let newExternalRoot = null
+
+      if (newExternalWindow) {
+        newExternalRoot = newExternalWindow.document.createElement('div')
+        newExternalWindow.document.body.appendChild(newExternalRoot)
+        newExternalWindow.document.title = title
+        onWindowClose &&
+          newExternalWindow.addEventListener('beforeunload', onWindowClose)
+      }
+
+      externalWindow.current = newExternalWindow
+      externalRoot.current = newExternalRoot
+
+      forceUpdate()
+    }
+
+    if (!open && externalWindow.current !== null) {
+      externalWindow.current.close()
+      externalWindow.current = null
+
+      forceUpdate()
+    }
+  }, [
+    open,
+    features,
+    onWindowClose,
+    onWindowOpen,
+    forceUpdate,
+    target,
+    title,
+    url,
+  ])
+
+  if (!externalRoot.current || !externalWindow.current) {
     return null
   }
 
@@ -75,14 +102,14 @@ export function Popout(props: PopoutProps): JSX.Element | null {
   return ReactDOM.createPortal(
     <ThemeProvider theme={theme ?? providedTheme}>
       <StyledEngineProvider
-        container={externalWindow!.document.head}
+        container={externalWindow.current.document.head}
         injectFirst
       >
         <CssBaseline />
         {children}
       </StyledEngineProvider>
     </ThemeProvider>,
-    externalRoot,
+    externalRoot.current,
   )
 }
 

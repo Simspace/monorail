@@ -16,10 +16,10 @@ import {
   Stack,
   Typography,
 } from '@monorail/components'
-import { OpenInNew } from '@monorail/components/icons'
+import { Close, OpenInNew } from '@monorail/components/icons'
 
 export default {
-  title: 'ICT/ConsoleTask',
+  title: 'Patterns/ConsoleTask',
 }
 
 const Template: Story<{}> = () => {
@@ -104,26 +104,49 @@ const Template: Story<{}> = () => {
                 </Stack>
               )}
               {isPopoutOpen && (
-                <Popout
-                  title="Console"
-                  onWindowClose={() => setPopoutOpen(false)}
+                <Box
+                  sx={theme => ({
+                    height: 500,
+                    backgroundColor: theme.palette.default.lowEmphasis.light,
+                  })}
                 >
-                  <Stack
-                    direction="row"
-                    justifyContent="space-between"
-                    sx={theme => ({
-                      height: 500,
-                      backgroundColor: theme.palette.common.black,
-                    })}
+                  <Typography>Console is open in an external window</Typography>
+                  <Button
+                    onClick={() => setPopoutOpen(false)}
+                    sx={{ m: 2 }}
                   >
-                    <Typography
-                      sx={theme => ({ color: theme.palette.common.white })}
-                    >
-                      Console
-                    </Typography>
-                  </Stack>
-                </Popout>
+                    Close Popout Console
+                  </Button>
+                </Box>
               )}
+              <Popout
+                title="Console"
+                open={isPopoutOpen}
+                onWindowClose={() => setPopoutOpen(false)}
+              >
+                <Stack
+                  direction="row"
+                  justifyContent="space-between"
+                  sx={theme => ({
+                    height: 500,
+                    backgroundColor: theme.palette.common.black,
+                  })}
+                >
+                  <Typography
+                    sx={theme => ({ color: theme.palette.common.white })}
+                  >
+                    Console
+                  </Typography>
+                  <IconButton
+                    aria-label="Close Popout Console"
+                    onClick={() => setPopoutOpen(false)}
+                  >
+                    <Close
+                      sx={theme => ({ color: theme.palette.common.white })}
+                    />
+                  </IconButton>
+                </Stack>
+              </Popout>
             </Box>
           </ResizableElement>
         </ResizableContainer>

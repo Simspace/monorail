@@ -6,6 +6,10 @@ export interface PopoutProps {
    */
   title: string
   /**
+   * Is the popout window open?
+   */
+  open: boolean
+  /**
    * The URL of the window or tab
    *
    * @default undefined
