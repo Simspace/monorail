@@ -111,10 +111,7 @@ const Template: Story<{}> = () => {
                   })}
                 >
                   <Typography>Console is open in an external window</Typography>
-                  <Button
-                    onClick={() => setPopoutOpen(false)}
-                    sx={{ m: 2 }}
-                  >
+                  <Button onClick={() => setPopoutOpen(false)} sx={{ m: 2 }}>
                     Close Popout Console
                   </Button>
                 </Box>
