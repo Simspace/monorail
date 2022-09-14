@@ -16,7 +16,7 @@ import {
   Stack,
   Typography,
 } from '@monorail/components'
-import { Close, OpenInNew } from '@monorail/components/icons'
+import { ExitToApp, OpenInNew } from '@monorail/components/icons'
 
 export default {
   title: 'Patterns/ConsoleTask',
@@ -138,7 +138,7 @@ const Template: Story<{}> = () => {
                     aria-label="Close Popout Console"
                     onClick={() => setPopoutOpen(false)}
                   >
-                    <Close
+                    <ExitToApp
                       sx={theme => ({ color: theme.palette.common.white })}
                     />
                   </IconButton>
