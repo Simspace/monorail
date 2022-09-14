@@ -14,6 +14,10 @@ import { DecoratorFn, Parameters } from '@storybook/react'
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import { StyledEngineProvider } from '@monorail/components/StyledEngineProviderEmotion'
+import { menlo } from '../assets/menlo'
+import { inter } from '../assets/inter'
+import { ibmPlex } from '../assets/ibmPlex'
+import { gotham } from '../assets/gotham'
 
 /**
  * Global storybook parameters
@@ -153,6 +157,11 @@ export const withTheme: DecoratorFn = (Story, context) => {
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <StyledEngineProvider injectFirst>
         <MUI.ThemeProvider theme={theme}>
+          <MUI.GlobalStyles
+            styles={[...inter, ...ibmPlex, ...menlo, ...gotham].map(font => ({
+              '@font-face': font,
+            }))}
+          />
           <MUI.CssBaseline />
           <Story />
         </MUI.ThemeProvider>
