@@ -1,5 +1,7 @@
 import type { ButtonTypeMap, ExtendButtonBase } from '@mui/material'
-import { Button as MuiButton } from '@mui/material'
+import { Button as MuiButton, styled } from '@mui/material'
+
+import { excludeProps } from '@monorail/utils'
 
 declare module '@mui/material/Button' {
   /**
@@ -30,13 +32,15 @@ declare module '@mui/material/Button' {
  * - [Button API](https://mui.com/material-ui/api/button/)
  * - inherits [ButtonBase API](https://mui.com/material-ui/api/button-base/)
  */
-export const Button: ExtendButtonBase<
+export const Button = styled(MuiButton, {
+  shouldForwardProp: excludeProps('inverted'),
+})({}) as ExtendButtonBase<
   ButtonTypeMap<
     {
       inverted?: boolean
     },
     'button'
   >
-> = MuiButton
+>
 
 export * from '@mui/material/Button'

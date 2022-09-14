@@ -2,14 +2,22 @@
 import React from 'react'
 
 import type { TableCellProps } from '@monorail/components'
-import { TableCell } from '@monorail/components'
+import { Table, TableBody, TableCell, TableRow } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 
 export default { title: 'Data Display/Table/TableCell', component: TableCell }
 
 const Template = story<TableCellProps>(
-  args => <TableCell {...args}>Cell 1</TableCell>,
+  args => (
+    <Table>
+      <TableBody>
+        <TableRow>
+          <TableCell {...args}>Cell 1</TableCell>
+        </TableRow>
+      </TableBody>
+    </Table>
+  ),
   { muiName: 'MuiTableCell' },
 )
 

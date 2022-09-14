@@ -4,7 +4,6 @@ export const MonorailOutlinedInputOverrides: Components<Theme>['MuiOutlinedInput
   {
     defaultProps: {
       notched: false,
-      minRows: 3,
     },
     styleOverrides: {
       multiline: {

@@ -17,6 +17,7 @@ import {
   Stepper,
   Typography,
 } from '@monorail/components'
+import { excludeProps } from '@monorail/utils'
 
 import { story } from '../helpers/storybook.js'
 /**
@@ -399,7 +400,9 @@ const QontoConnector = styled(StepConnector)(({ theme }) => ({
   },
 }))
 
-const QontoStepIconRoot = styled('div')<{ styleProps: { active?: boolean } }>(
+const QontoStepIconRoot = styled('div', {
+  shouldForwardProp: excludeProps('styleProps'),
+})<{ styleProps: { active?: boolean } }>(
   ({ theme, styleProps: { active = false } }) => ({
     color: theme.palette.mode === 'dark' ? theme.palette.grey[700] : '#eaeaf0',
     display: 'flex',
@@ -461,7 +464,9 @@ const ColorlibConnector = styled(StepConnector)(({ theme }) => ({
   },
 }))
 
-const ColorlibStepIconRoot = styled('div')<{
+const ColorlibStepIconRoot = styled('div', {
+  shouldForwardProp: excludeProps('styleProps')
+})<{
   styleProps: { completed?: boolean; active?: boolean }
 }>(({ theme, styleProps: { completed = false, active = false } }) => ({
   backgroundColor:

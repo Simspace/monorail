@@ -3,7 +3,7 @@
 
 import React from 'react'
 import type { Theme } from '@mui/material'
-import { CssBaseline, StyledEngineProvider, ThemeProvider } from '@mui/material'
+import { CssBaseline, ThemeProvider } from '@mui/material'
 import { css, GlobalStyles } from '@mui/styled-engine'
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
@@ -11,6 +11,7 @@ import type { Story } from '@storybook/react'
 import type { RenderOptions, RenderResult } from '@testing-library/react'
 import { render } from '@testing-library/react'
 
+import { StyledEngineProvider } from '@monorail/components/StyledEngineProviderEmotion'
 import { classicLight } from '@monorail/themes'
 
 declare module '@mui/styles/defaultTheme' {

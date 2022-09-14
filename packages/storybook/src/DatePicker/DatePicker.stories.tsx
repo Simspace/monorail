@@ -254,7 +254,7 @@ export const Localization = story<DatePickerProps<Date>>(
     return (
       <LocalizationProvider
         dateAdapter={AdapterDateFns}
-        locale={localeMap[locale]}
+        adapterLocale={localeMap[locale]}
       >
         <div>
           <ToggleButtonGroup

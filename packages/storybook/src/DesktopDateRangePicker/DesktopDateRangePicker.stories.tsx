@@ -20,8 +20,7 @@ import { story } from '../helpers/storybook.js'
  */
 export default {
   title: 'Inputs/Date and Time/Date Range/DesktopDateRangePicker',
-  // TODO: not working with stories
-  //component: DesktopDateRangePicker,
+  component: DesktopDateRangePicker,
 }
 
 const Template = story<DesktopDateRangePickerProps<Date>>(
@@ -31,7 +30,6 @@ const Template = story<DesktopDateRangePickerProps<Date>>(
     return (
       <LocalizationProvider dateAdapter={AdapterDateFns}>
         <DesktopDateRangePicker
-          startText="Desktop start"
           value={value}
           onChange={newValue => {
             setValue(newValue)

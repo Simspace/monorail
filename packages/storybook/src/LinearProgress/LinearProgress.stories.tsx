@@ -33,18 +33,19 @@ const colors = ['primary', 'error', 'default'] as const
 export function LinearIndeterminate() {
   return (
     <Stack spacing={8}>
-      {colors.flatMap(color => (
-        <Stack direction="row" spacing={8} alignItems="center">
+      {colors.map(color => (
+        <Stack
+          key={`linear-progress-indeterminate-${color}`}
+          direction="row"
+          spacing={8}
+          alignItems="center"
+        >
           {sizes.map(size => (
             <Box
-              key={`linear-progress-buffer-${color}-${size}`}
+              key={`linear-progress-indeterminate-${color}-${size}`}
               sx={{ width: 156 }}
             >
-              <LinearProgress
-                key={`linear-progress-indeterminate-${color}-${size}`}
-                color={color}
-                size={size}
-              />
+              <LinearProgress color={color} size={size} />
             </Box>
           ))}
         </Stack>
@@ -74,15 +75,19 @@ export function LinearDeterminate() {
 
   return (
     <Stack spacing={8}>
-      {colors.flatMap(color => (
-        <Stack direction="row" spacing={8} alignItems="center">
+      {colors.map(color => (
+        <Stack
+          key={`linear-progress-determinate-${color}`}
+          direction="row"
+          spacing={8}
+          alignItems="center"
+        >
           {sizes.map(size => (
             <Box
-              key={`linear-progress-buffer-${color}-${size}`}
+              key={`linear-progress-determinate-${color}-${size}`}
               sx={{ width: 156 }}
             >
               <LinearProgress
-                key={`linear-progress-determinate-${color}-${size}`}
                 variant="determinate"
                 color={color}
                 size={size}
@@ -131,8 +136,13 @@ export function LinearBuffer() {
 
   return (
     <Stack spacing={8}>
-      {colors.flatMap(color => (
-        <Stack direction="row" spacing={8} alignItems="center">
+      {colors.map(color => (
+        <Stack
+          key={`linear-progress-buffer-${color}`}
+          direction="row"
+          spacing={8}
+          alignItems="center"
+        >
           {sizes.map(size => (
             <Box
               key={`linear-progress-buffer-${color}-${size}`}
@@ -158,8 +168,12 @@ function LinearProgressWithLabel(
 ) {
   return (
     <Stack direction="column" spacing={8}>
-      {colors.flatMap(color => (
-        <Stack direction="row" spacing={8}>
+      {colors.map(color => (
+        <Stack
+          key={`linear-progress-label-${color}`}
+          direction="row"
+          spacing={8}
+        >
           {sizes.map(size => (
             <Box
               key={`linear-progress-label-${color}-${size}`}

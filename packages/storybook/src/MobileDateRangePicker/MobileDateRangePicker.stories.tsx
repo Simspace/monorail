@@ -31,7 +31,6 @@ const Template = story<MobileDateRangePickerProps<Date>>(args => {
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <MobileDateRangePicker
         aria-label="Mobile Date Range Picker"
-        startText="Mobile start"
         value={value}
         onChange={newValue => {
           setValue(newValue)
