@@ -465,7 +465,7 @@ const ColorlibConnector = styled(StepConnector)(({ theme }) => ({
 }))
 
 const ColorlibStepIconRoot = styled('div', {
-  shouldForwardProp: excludeProps('styleProps')
+  shouldForwardProp: excludeProps('styleProps'),
 })<{
   styleProps: { completed?: boolean; active?: boolean }
 }>(({ theme, styleProps: { completed = false, active = false } }) => ({
