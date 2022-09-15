@@ -44,12 +44,12 @@ const Template: Story<{}> = () => {
         <Divider />
       </Container>
 
-      <Container component="main">
+      <Container component="main" sx={{ pt: 4 }}>
         <ResizableContainer>
           <ResizableElement minSize={0.25}>
-            <Box p={6}>
+            <Box pr={8}>
               <Paper
-                elevation={2}
+                elevation={4}
                 sx={[
                   {
                     '& > p': { py: 3 },
@@ -86,7 +86,7 @@ const Template: Story<{}> = () => {
           </ResizableElement>
           <ResizeHandle />
           <ResizableElement minSize={0.25}>
-            <Box flex="0 0 100%" p={6}>
+            <Box flex="0 0 100%" pl={8}>
               {!isPopoutOpen && (
                 <Stack
                   direction="row"

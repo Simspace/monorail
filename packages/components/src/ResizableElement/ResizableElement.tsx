@@ -19,7 +19,8 @@ const ResizableElementRoot = styled('div', {
   position: 'relative',
   width: '100%',
   height: '100%',
-  overflow: 'hidden',
+  minWidth: 0,
+  minHeight: 0,
 })
 
 export const ResizableElement = React.forwardRef(function ResizableElement(
@@ -30,7 +31,7 @@ export const ResizableElement = React.forwardRef(function ResizableElement(
     name: 'MonorailResizableElement',
     props: inProps,
   })
-  const { index, size, direction = 1 } = inProps
+  const { index, size, direction = 1, sx } = inProps
   const context = useResizableContainerContext()
 
   useDidUpdate(() => {
@@ -55,6 +56,7 @@ export const ResizableElement = React.forwardRef(function ResizableElement(
       className={clsx(classes.root, props.className)}
       style={style}
       ref={ref}
+      sx={sx}
     >
       {inProps.children}
     </ResizableElementRoot>
