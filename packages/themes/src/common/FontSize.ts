@@ -48,6 +48,8 @@ export const PixelFontSize: Record<TypographyVariant, number> = {
   Body2: Scale.FontSize14,
   Subtitle1: Scale.FontSize16,
   Subtitle2: Scale.FontSize14,
+  MonoBody1: Scale.FontSize16,
+  MonoBody2: Scale.FontSize14,
   Overline: Scale.FontSize12,
   Caption: Scale.FontSize12,
   Button: Scale.FontSize16,
@@ -67,6 +69,8 @@ export const FontSize: Record<TypographyVariant, `${number}rem`> = {
   Body2: pxToRem(DEFAULT_ROOT_SIZE, PixelFontSize.Body2),
   Subtitle1: pxToRem(DEFAULT_ROOT_SIZE, PixelFontSize.Subtitle1),
   Subtitle2: pxToRem(DEFAULT_ROOT_SIZE, PixelFontSize.Subtitle2),
+  MonoBody1: pxToRem(DEFAULT_ROOT_SIZE, PixelFontSize.MonoBody1),
+  MonoBody2: pxToRem(DEFAULT_ROOT_SIZE, PixelFontSize.MonoBody2),
   Overline: pxToRem(DEFAULT_ROOT_SIZE, PixelFontSize.Overline),
   Caption: pxToRem(DEFAULT_ROOT_SIZE, PixelFontSize.Caption),
   Button: pxToRem(DEFAULT_ROOT_SIZE, PixelFontSize.Button),
@@ -75,7 +79,7 @@ export const FontSize: Record<TypographyVariant, `${number}rem`> = {
 /**
  * Typography alias tokens for line height. OK to use on components.
  */
-export const LineHeight: Record<TypographyVariant, string | number> = {
+export const LineHeight: Record<TypographyVariant, number> = {
   Data1: pxToLineHeight(PixelFontSize.Data1, Scale.LineHeight56),
   Data2: pxToLineHeight(PixelFontSize.Data2, Scale.LineHeight52),
   Data3: pxToLineHeight(PixelFontSize.Data3, Scale.LineHeight48),
@@ -86,6 +90,8 @@ export const LineHeight: Record<TypographyVariant, string | number> = {
   Body2: pxToLineHeight(PixelFontSize.Body2, Scale.LineHeight22),
   Subtitle1: pxToLineHeight(PixelFontSize.Subtitle1, Scale.LineHeight24),
   Subtitle2: pxToLineHeight(PixelFontSize.Subtitle2, Scale.LineHeight22),
+  MonoBody1: pxToLineHeight(PixelFontSize.MonoBody1, Scale.LineHeight24),
+  MonoBody2: pxToLineHeight(PixelFontSize.MonoBody2, Scale.LineHeight22),
   Overline: pxToLineHeight(PixelFontSize.Overline, Scale.LineHeight20),
   Caption: pxToLineHeight(PixelFontSize.Caption, Scale.LineHeight20),
   Button: pxToLineHeight(PixelFontSize.Button, Scale.LineHeight20),

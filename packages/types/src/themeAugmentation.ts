@@ -237,16 +237,20 @@ declare module '@mui/material/styles/createPalette' {
 
 declare module '@mui/material/styles/createTypography' {
   interface Typography {
-    data1: React.CSSProperties
-    data2: React.CSSProperties
-    data3: React.CSSProperties
+    data1: TypographyStyleOptions
+    data2: TypographyStyleOptions
+    data3: TypographyStyleOptions
+    monoBody1: TypographyStyleOptions
+    monoBody2: TypographyStyleOptions
   }
 
   // allow configuration using `createTheme`
   interface TypographyOptions {
-    data1?: React.CSSProperties
-    data2?: React.CSSProperties
-    data3?: React.CSSProperties
+    data1?: TypographyStyleOptions
+    data2?: TypographyStyleOptions
+    data3?: TypographyStyleOptions
+    monoBody1?: TypographyStyleOptions
+    monoBody2?: TypographyStyleOptions
   }
 }
 
@@ -255,6 +259,8 @@ declare module '@mui/material/Typography' {
     data1: true
     data2: true
     data3: true
+    monoBody1: true
+    monoBody2: true
     h4: false
     h5: false
     h6: false

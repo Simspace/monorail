@@ -3,7 +3,7 @@ import React from 'react'
 import { styled } from '@mui/material'
 
 import type { TypographyProps } from '@monorail/components'
-import { Box, Stack, Typography } from '@monorail/components'
+import { Box, Divider, Stack, Typography } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 
@@ -32,47 +32,69 @@ export const Variants = story<TypographyProps>(
       <Typography variant="data1" gutterBottom component="div">
         data1. Heading
       </Typography>
+      <Divider />
       <Typography variant="data2" gutterBottom component="div">
         data2. Heading
       </Typography>
+      <Divider />
       <Typography variant="data3" gutterBottom component="div">
         data3. Heading
       </Typography>
+      <Divider />
       <Typography variant="h1" component="div" gutterBottom>
         h1. Heading
       </Typography>
+      <Divider />
       <Typography variant="h2" gutterBottom component="div">
         h2. Heading
       </Typography>
+      <Divider />
       <Typography variant="h3" gutterBottom component="div">
         h3. Heading
       </Typography>
+      <Divider />
       <Typography variant="subtitle1" gutterBottom component="div">
         subtitle1. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
         Quos blanditiis tenetur
       </Typography>
+      <Divider />
       <Typography variant="subtitle2" gutterBottom component="div">
         subtitle2. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
         Quos blanditiis tenetur
       </Typography>
+      <Divider />
+      <Typography variant="monoBody1" gutterBottom component="div">
+        monoBody1. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+        Quos blanditiis tenetur
+      </Typography>
+      <Divider />
+      <Typography variant="monoBody2" gutterBottom component="div">
+        monoBody2. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+        Quos blanditiis tenetur
+      </Typography>
+      <Divider />
       <Typography variant="body1" gutterBottom>
         body1. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos
         blanditiis tenetur unde suscipit, quam beatae rerum inventore
         consectetur, neque doloribus, cupiditate numquam dignissimos laborum
         fugiat deleniti? Eum quasi quidem quibusdam.
       </Typography>
+      <Divider />
       <Typography variant="body2" gutterBottom>
         body2. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos
         blanditiis tenetur unde suscipit, quam beatae rerum inventore
         consectetur, neque doloribus, cupiditate numquam dignissimos laborum
         fugiat deleniti? Eum quasi quidem quibusdam.
       </Typography>
+      <Divider />
       <Typography variant="button" display="block" gutterBottom>
         button text
       </Typography>
+      <Divider />
       <Typography variant="caption" display="block" gutterBottom>
         caption text
       </Typography>
+      <Divider />
       <Typography variant="overline" display="block" gutterBottom>
         overline text
       </Typography>

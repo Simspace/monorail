@@ -11,6 +11,29 @@ import { FontWeight } from '../../common/FontWeight.js'
 // Specific themes can override these settings, but hopefully won't want/need to.
 // All other themes should use this as a baseline.
 
+const BASE_FONT_STACK = [
+  'Gotham SSm A',
+  'Gotham SSm B',
+  '-apple-system',
+  'BlinkMacSystemFont',
+  'Segoe UI',
+  'Helvetica',
+  'Arial',
+  'sans-serif',
+  'Apple Color Emoji',
+  'Segoe UI Emoji',
+  'Segoe UI Symbol',
+].join(',')
+
+const BASE_MONOSPACE_FONT_STACK = [
+  'Menlo',
+  'SFMono-Regular',
+  'Consolas',
+  'Liberation Mono',
+  'Courier',
+  'monospace',
+].join(',')
+
 export const baseTheme = createTheme(
   {
     // TODO[M3 Phase 2]: Define breakpoints in preparation for rebrand
@@ -20,9 +43,7 @@ export const baseTheme = createTheme(
 
     typography: {
       htmlFontSize: 16,
-      fontFamily: `'Gotham SSm A', 'Gotham SSm B', -apple-system, BlinkMacSystemFont,
-      'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji',
-      'Segoe UI Emoji', 'Segoe UI Symbol'`,
+      fontFamily: BASE_FONT_STACK,
       data1: {
         fontSize: FontSize.Data1,
         lineHeight: LineHeight.Data1,
@@ -71,6 +92,18 @@ export const baseTheme = createTheme(
       subtitle2: {
         fontSize: FontSize.Subtitle2,
         lineHeight: LineHeight.Subtitle2,
+        fontWeight: FontWeight.Book,
+      },
+      monoBody1: {
+        fontFamily: BASE_MONOSPACE_FONT_STACK,
+        fontSize: FontSize.MonoBody1,
+        lineHeight: LineHeight.MonoBody1,
+        fontWeight: FontWeight.Book,
+      },
+      monoBody2: {
+        fontFamily: BASE_MONOSPACE_FONT_STACK,
+        fontSize: FontSize.MonoBody2,
+        lineHeight: LineHeight.MonoBody2,
         fontWeight: FontWeight.Book,
       },
       overline: {
