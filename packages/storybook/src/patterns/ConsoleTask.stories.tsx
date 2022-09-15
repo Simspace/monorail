@@ -16,7 +16,13 @@ import {
   Stack,
   Typography,
 } from '@monorail/components'
-import { ExitToApp, OpenInNew } from '@monorail/components/icons'
+import {
+  ChevronDoubleLeft,
+  ChevronDoubleRight,
+  ExitToApp,
+  OpenInNew,
+  PictureInPicture,
+} from '@monorail/components/icons'
 
 export default {
   title: 'Patterns/ConsoleTask',
@@ -71,8 +77,10 @@ const Template: Story<{}> = () => {
                 </Typography>
               </Paper>
               <Stack py={3} direction="row" justifyContent="space-between">
-                <Button variant="outlined">&laquo; Previous</Button>
-                <Button>Next &raquo;</Button>
+                <Button startIcon={<ChevronDoubleLeft />} variant="outlined">
+                  Previous
+                </Button>
+                <Button endIcon={<ChevronDoubleRight />}>Next</Button>
               </Stack>
             </Box>
           </ResizableElement>
@@ -104,17 +112,27 @@ const Template: Story<{}> = () => {
                 </Stack>
               )}
               {isPopoutOpen && (
-                <Box
+                <Stack
+                  direction="column"
+                  alignItems="center"
+                  justifyContent="center"
                   sx={theme => ({
                     height: 500,
                     backgroundColor: theme.palette.default.lowEmphasis.light,
                   })}
                 >
-                  <Typography>Console is open in an external window</Typography>
-                  <Button onClick={() => setPopoutOpen(false)} sx={{ m: 2 }}>
-                    Close Popout Console
+                  <Typography variant="subtitle1" color="text.secondary">
+                    The console is open in an external window
+                  </Typography>
+                  <Button
+                    variant="text"
+                    onClick={() => setPopoutOpen(false)}
+                    sx={{ mt: 4 }}
+                    startIcon={<PictureInPicture />}
+                  >
+                    Redock Console
                   </Button>
-                </Box>
+                </Stack>
               )}
               <Popout
                 title="Console"
