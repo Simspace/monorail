@@ -7,8 +7,8 @@ import type {
 } from '@mui/material'
 import { alpha, createTheme } from '@mui/material'
 
-import { baseTheme } from '@monorail/themes/classic/theme/baseTheme'
 import { getThemeComponents } from '@monorail/themes/classic/theme/themeComponents'
+import { baseTheme } from '@monorail/themes/rebrand/theme/baseTheme'
 
 // #region Raw Colors (Option Tokens)
 /**

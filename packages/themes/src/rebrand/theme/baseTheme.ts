@@ -17,17 +17,9 @@ import { FontWeight } from '../../common/FontWeight.js'
 // All other themes should use this as a baseline.
 
 const fontStack: Record<string, React.CSSProperties['fontFamily']> = {
-  base: [
-    FontFamily.GothamSsmA,
-    FontFamily.GothamSsmB,
-    ...fontFamilyFallback,
-  ].join(','),
-  headings: [
-    FontFamily.GothamSsmA,
-    FontFamily.GothamSsmB,
-    ...fontFamilyFallback,
-  ].join(','),
-  mono: [FontFamily.Menlo, ...monospaceFallback].join(','),
+  base: [FontFamily.Inter, ...fontFamilyFallback].join(','),
+  headings: [FontFamily.IBMPlexSans, ...fontFamilyFallback].join(','),
+  mono: [FontFamily.IBMPlexMono, ...monospaceFallback].join(','),
 }
 
 export const baseTheme = createTheme(
@@ -59,16 +51,19 @@ export const baseTheme = createTheme(
         fontWeight: FontWeight.Light,
       },
       h1: {
+        fontFamily: fontStack.headings,
         fontSize: FontSize.H1,
         lineHeight: LineHeight.H1,
         fontWeight: FontWeight.Medium,
       },
       h2: {
+        fontFamily: fontStack.headings,
         fontSize: FontSize.H2,
         lineHeight: LineHeight.H2,
         fontWeight: FontWeight.Medium,
       },
       h3: {
+        fontFamily: fontStack.headings,
         fontSize: FontSize.H3,
         lineHeight: LineHeight.H3,
         fontWeight: FontWeight.Medium,
