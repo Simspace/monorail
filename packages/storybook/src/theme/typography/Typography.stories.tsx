@@ -1,7 +1,6 @@
 import React from 'react'
 import { alpha, styled, useTheme } from '@mui/material'
 
-import type { TableCellProps, TypographyProps } from '@monorail/components'
 import {
   Box,
   Paper,
@@ -17,6 +16,11 @@ import {
   PixelFontSize,
   PixelLineHeight,
 } from '@monorail/themes/common/FontSize.js'
+
+import type {
+  TypographyTokenColumns,
+  TypographyTokenRowProps,
+} from './typography.types'
 
 export default {
   title: 'Theme/Fonts',
@@ -35,28 +39,6 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 const StyledTableCell = styled(TableCell)(() => ({
   wordBreak: 'break-word',
 }))
-
-type TypographyStyles = {
-  fontFamily?: React.CSSProperties['fontFamily']
-  fontSize?: React.CSSProperties['fontSize']
-  fontWeight?: React.CSSProperties['fontWeight']
-  lineHeight?: React.CSSProperties['lineHeight']
-}
-
-type TypographyTokenRowProps = {
-  token: TypographyProps['variant']
-  figmaStyle: string
-  fontSizePx: number
-  lineHeightPx: number
-  description?: string
-  styles: TypographyStyles
-}
-
-type TypographyTokenColumns = Array<{
-  id: string
-  label: string
-  align?: TableCellProps['align']
-}>
 
 const TypographyTokenRow = ({
   token,
@@ -116,9 +98,7 @@ export const Fonts = () => {
         lineHeightPx: PixelLineHeight.Data1,
         description:
           'Use this style for data wells and designing eye-catching numbers.',
-        styles: {
-          ...theme.typography.data1,
-        },
+        styles: theme.typography.data1,
       },
       {
         token: 'data2',
@@ -127,9 +107,7 @@ export const Fonts = () => {
         lineHeightPx: PixelLineHeight.Data2,
         description:
           'Use this style for data wells and designing eye-catching numbers.',
-        styles: {
-          ...theme.typography.data2,
-        },
+        styles: theme.typography.data2,
       },
       {
         token: 'data3',
@@ -138,9 +116,7 @@ export const Fonts = () => {
         lineHeightPx: PixelLineHeight.Data3,
         description:
           'Use this style for data wells and designing eye-catching numbers.',
-        styles: {
-          ...theme.typography.data3,
-        },
+        styles: theme.typography.data3,
       },
       {
         token: 'h1',
@@ -148,27 +124,21 @@ export const Fonts = () => {
         fontSizePx: PixelFontSize.H1,
         lineHeightPx: PixelLineHeight.H1,
         description: 'Each UI page should include these.',
-        styles: {
-          ...theme.typography.h1,
-        },
+        styles: theme.typography.h1,
       },
       {
         token: 'h2',
         figmaStyle: 'Typography/H2',
         fontSizePx: PixelFontSize.H2,
         lineHeightPx: PixelLineHeight.H2,
-        styles: {
-          ...theme.typography.h2,
-        },
+        styles: theme.typography.h2,
       },
       {
         token: 'h3',
         figmaStyle: 'Typography/H3',
         fontSizePx: PixelFontSize.H3,
         lineHeightPx: PixelLineHeight.H3,
-        styles: {
-          ...theme.typography.h3,
-        },
+        styles: theme.typography.h3,
       },
       {
         token: 'body1',
@@ -176,9 +146,7 @@ export const Fonts = () => {
         fontSizePx: PixelFontSize.Body1,
         lineHeightPx: PixelLineHeight.Body1,
         description: 'Use for most body text.',
-        styles: {
-          ...theme.typography.body1,
-        },
+        styles: theme.typography.body1,
       },
       {
         token: 'body2',
@@ -186,9 +154,7 @@ export const Fonts = () => {
         fontSizePx: PixelFontSize.Body2,
         lineHeightPx: PixelLineHeight.Body2,
         description: 'Use for metadata, e.g. values in key:value pairs.',
-        styles: {
-          ...theme.typography.body2,
-        },
+        styles: theme.typography.body2,
       },
       {
         token: 'subtitle1',
@@ -196,9 +162,7 @@ export const Fonts = () => {
         fontSizePx: PixelFontSize.Subtitle1,
         lineHeightPx: PixelLineHeight.Subtitle1,
         description: 'Use for metadata, e.g. values in key:value pairs.',
-        styles: {
-          ...theme.typography.subtitle1,
-        },
+        styles: theme.typography.subtitle1,
       },
       {
         token: 'subtitle2',
@@ -206,45 +170,35 @@ export const Fonts = () => {
         fontSizePx: PixelFontSize.Subtitle2,
         lineHeightPx: PixelLineHeight.Subtitle2,
         description: 'Use for metadata, e.g. values in key:value pairs.',
-        styles: {
-          ...theme.typography.subtitle2,
-        },
+        styles: theme.typography.subtitle2,
       },
       {
         token: 'monoBody1',
         figmaStyle: 'Typography/Mono Body 1',
         fontSizePx: PixelFontSize.MonoBody1,
         lineHeightPx: PixelLineHeight.MonoBody1,
-        styles: {
-          ...theme.typography.monoBody1,
-        },
+        styles: theme.typography.monoBody1,
       },
       {
         token: 'monoBody2',
         figmaStyle: 'Typography/Mono Body 2',
         fontSizePx: PixelFontSize.MonoBody2,
         lineHeightPx: PixelLineHeight.MonoBody2,
-        styles: {
-          ...theme.typography.monoBody2,
-        },
+        styles: theme.typography.monoBody2,
       },
       {
         token: 'overline',
         figmaStyle: 'Typography/Overline',
         fontSizePx: PixelFontSize.Overline,
         lineHeightPx: PixelLineHeight.Overline,
-        styles: {
-          ...theme.typography.overline,
-        },
+        styles: theme.typography.overline,
       },
       {
         token: 'caption',
         figmaStyle: 'Typography/Caption',
         fontSizePx: PixelFontSize.Caption,
         lineHeightPx: PixelLineHeight.Caption,
-        styles: {
-          ...theme.typography.caption,
-        },
+        styles: theme.typography.caption,
       },
     ],
     [theme.typography],
