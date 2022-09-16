@@ -45,16 +45,19 @@ export const baseTheme = createTheme(
       htmlFontSize: 16,
       fontFamily: BASE_FONT_STACK,
       data1: {
+        fontFamily: BASE_FONT_STACK,
         fontSize: FontSize.Data1,
         lineHeight: LineHeight.Data1,
         fontWeight: FontWeight.Light,
       },
       data2: {
+        fontFamily: BASE_FONT_STACK,
         fontSize: FontSize.Data2,
         lineHeight: LineHeight.Data2,
         fontWeight: FontWeight.Light,
       },
       data3: {
+        fontFamily: BASE_FONT_STACK,
         fontSize: FontSize.Data3,
         lineHeight: LineHeight.Data3,
         fontWeight: FontWeight.Light,
@@ -82,7 +85,7 @@ export const baseTheme = createTheme(
       body2: {
         fontSize: FontSize.Body2,
         lineHeight: LineHeight.Body2,
-        fontWeight: FontWeight.Medium,
+        fontWeight: FontWeight.Book,
       },
       subtitle1: {
         fontSize: FontSize.Subtitle1,
@@ -92,7 +95,7 @@ export const baseTheme = createTheme(
       subtitle2: {
         fontSize: FontSize.Subtitle2,
         lineHeight: LineHeight.Subtitle2,
-        fontWeight: FontWeight.Book,
+        fontWeight: FontWeight.Medium,
       },
       monoBody1: {
         fontFamily: BASE_MONOSPACE_FONT_STACK,
