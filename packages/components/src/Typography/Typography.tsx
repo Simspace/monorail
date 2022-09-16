@@ -1,5 +1,18 @@
 import { Typography as MuiTypography } from '@mui/material'
 
+declare module '@mui/material/Typography' {
+  interface TypographyPropsVariantOverrides {
+    data1: true
+    data2: true
+    data3: true
+    monoBody1: true
+    monoBody2: true
+    h4: false
+    h5: false
+    h6: false
+  }
+}
+
 /**
  *
  * Demos:
