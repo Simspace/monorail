@@ -36,7 +36,7 @@ module.exports = {
     "@0x706b/module-specifier-extensions/module-specifier-extensions": [
       "error",
       {
-        remove: ["^@@monorail.*$"],
+        remove: ["^@monorail.*$"],
         extensions: {
           ".tsx": ".js",
         }
