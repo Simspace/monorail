@@ -15,7 +15,7 @@ import {
 import {
   PixelFontSize,
   PixelLineHeight,
-} from '@monorail/themes/common/FontSize.js'
+} from '@monorail/themes/common/FontSize'
 
 import type {
   TypographyTokenColumns,

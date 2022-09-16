@@ -5,9 +5,9 @@ import {
   FontFamily,
   fontFamilyFallback,
   monospaceFallback,
-} from '@monorail/themes/common/FontFamily.js'
-import { FontSize, LineHeight } from '@monorail/themes/common/FontSize.js'
-import { FontWeight } from '@monorail/themes/common/FontWeight.js'
+} from '@monorail/themes/common/FontFamily'
+import { FontSize, LineHeight } from '@monorail/themes/common/FontSize'
+import { FontWeight } from '@monorail/themes/common/FontWeight'
 import type {} from '@monorail/types'
 
 // This "default" theme should house the global defaults that apply to all themes. This would likely include
