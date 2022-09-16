@@ -57,7 +57,9 @@ const TypographyTokenRow = ({
         >{`.${token}`}</Typography>
       </TableCell>
       <StyledTableCell sx={{ width: '20%' }}>{figmaStyle}</StyledTableCell>
-      <TableCell>{`${getFirstFontFamily(styles.fontFamily)}`}</TableCell>
+      <TableCell sx={{ width: '10%' }}>{`${getFirstFontFamily(
+        styles.fontFamily,
+      )}`}</TableCell>
       <TableCell sx={{ width: '10%' }} align="center">
         {styles.fontWeight}
       </TableCell>
