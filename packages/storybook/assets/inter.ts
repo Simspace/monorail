@@ -20,186 +20,164 @@ import InterVarWoff2 from './Inter/Inter.var.woff2'
 import InterRomanVarWoff2 from './Inter/Inter-roman.var.woff2'
 import InterItalicVarWoff2 from './Inter/Inter-italic.var.woff2'
 
-export const inter = [
-  {
-    fontFamily: 'Inter',
-    fontStyle: 'normal',
-    fontWeight: 100,
-    fontDisplay: 'swap',
-    src: `url("${InterThinWoff2}") format("woff2");`,
-  },
-  {
-    fontFamily: 'Inter',
-    fontStyle: 'italic',
-    fontWeight: 100,
-    fontDisplay: 'swap',
-    src: `url("${InterThinItalicWoff2}") format("woff2");`,
-  },
+export const inter = `
+  @font-face {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 100;
+    font-display: swap;
+    src: url("${InterThinWoff2}") format("woff2");
+  }
+  @font-face {
+    font-family: "Inter";
+    font-style: italic;
+    font-weight: 100;
+    font-display: swap;
+    src: url("${InterThinItalicWoff2}") format("woff2");
+  }
 
-  {
-    fontFamily: 'Inter',
-    fontStyle: 'normal',
-    fontWeight: 200,
-    fontDisplay: 'swap',
-    src: `url("${InterExtraLightWoff2}") format("woff2");`,
-  },
-  {
-    fontFamily: 'Inter',
-    fontStyle: 'italic',
-    fontWeight: 200,
-    fontDisplay: 'swap',
-    src: `url("${InterExtraLightItalicWoff2}") format("woff2");`,
-  },
+  @font-face {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 200;
+    font-display: swap;
+    src: url("${InterExtraLightWoff2}") format("woff2");
+  }
+  @font-face {
+    font-family: "Inter";
+    font-style: italic;
+    font-weight: 200;
+    font-display: swap;
+    src: url("${InterExtraLightItalicWoff2}") format("woff2");
+  }
 
-  {
-    fontFamily: 'Inter',
-    fontStyle: 'normal',
-    fontWeight: 300,
-    fontDisplay: 'swap',
-    src: `url("${InterLightWoff2}") format("woff2");`,
-  },
-  {
-    fontFamily: 'Inter',
-    fontStyle: 'italic',
-    fontWeight: 300,
-    fontDisplay: 'swap',
-    src: `url("${InterLightItalicWoff2}") format("woff2");`,
-  },
+  @font-face {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 300;
+    font-display: swap;
+    src: url("${InterLightWoff2}") format("woff2");
+  }
+  @font-face {
+    font-family: "Inter";
+    font-style: italic;
+    font-weight: 300;
+    font-display: swap;
+    src: url("${InterLightItalicWoff2}") format("woff2");
+  }
 
-  {
-    fontFamily: 'Inter',
-    fontStyle: 'normal',
-    fontWeight: 400,
-    fontDisplay: 'swap',
-    src: `url("${InterRegularWoff2}") format("woff2");`,
-  },
-  {
-    fontFamily: 'Inter',
-    fontStyle: 'italic',
-    fontWeight: 400,
-    fontDisplay: 'swap',
-    src: `url("${InterItalicWoff2}") format("woff2");`,
-  },
+  @font-face {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("${InterRegularWoff2}") format("woff2");
+  }
+  @font-face {
+    font-family: "Inter";
+    font-style: italic;
+    font-weight: 400;
+    font-display: swap;
+    src: url("${InterItalicWoff2}") format("woff2");
+  }
 
-  {
-    fontFamily: 'Inter',
-    fontStyle: 'normal',
-    fontWeight: 500,
-    fontDisplay: 'swap',
-    src: `url("${InterMediumWoff2}") format("woff2");`,
-  },
-  {
-    fontFamily: 'Inter',
-    fontStyle: 'italic',
-    fontWeight: 500,
-    fontDisplay: 'swap',
-    src: `url("${InterMediumItalicWoff2}") format("woff2");`,
-  },
+  @font-face {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url("${InterMediumWoff2}") format("woff2");
+  }
+  @font-face {
+    font-family: "Inter";
+    font-style: italic;
+    font-weight: 500;
+    font-display: swap;
+    src: url("${InterMediumItalicWoff2}") format("woff2");
+  }
 
-  {
-    fontFamily: 'Inter',
-    fontStyle: 'normal',
-    fontWeight: 600,
-    fontDisplay: 'swap',
-    src: `url("${InterSemiBoldWoff2}") format("woff2");`,
-  },
-  {
-    fontFamily: 'Inter',
-    fontStyle: 'italic',
-    fontWeight: 600,
-    fontDisplay: 'swap',
-    src: `url("${InterSemiBoldItalicWoff2}") format("woff2");`,
-  },
+  @font-face {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: url("${InterSemiBoldWoff2}") format("woff2");
+  }
+  @font-face {
+    font-family: "Inter";
+    font-style: italic;
+    font-weight: 600;
+    font-display: swap;
+    src: url("${InterSemiBoldItalicWoff2}") format("woff2");
+  }
 
-  {
-    fontFamily: 'Inter',
-    fontStyle: 'normal',
-    fontWeight: 700,
-    fontDisplay: 'swap',
-    src: `url("${InterBoldWoff2}") format("woff2");`,
-  },
-  {
-    fontFamily: 'Inter',
-    fontStyle: 'italic',
-    fontWeight: 700,
-    fontDisplay: 'swap',
-    src: `url("${InterBoldItalicWoff2}") format("woff2");`,
-  },
+  @font-face {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url("${InterBoldWoff2}") format("woff2");
+  }
+  @font-face {
+    font-family: "Inter";
+    font-style: italic;
+    font-weight: 700;
+    font-display: swap;
+    src: url("${InterBoldItalicWoff2}") format("woff2");
+  }
 
-  {
-    fontFamily: 'Inter',
-    fontStyle: 'normal',
-    fontWeight: 800,
-    fontDisplay: 'swap',
-    src: `url("${InterExtraBoldWoff2}") format("woff2");`,
-  },
-  {
-    fontFamily: 'Inter',
-    fontStyle: 'italic',
-    fontWeight: 800,
-    fontDisplay: 'swap',
-    src: `url("${InterExtraBoldItalicWoff2}") format("woff2");`,
-  },
+  @font-face {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 800;
+    font-display: swap;
+    src: url("${InterExtraBoldWoff2}") format("woff2");
+  }
+  @font-face {
+    font-family: "Inter";
+    font-style: italic;
+    font-weight: 800;
+    font-display: swap;
+    src: url("${InterExtraBoldItalicWoff2}") format("woff2");
+  }
 
-  {
-    fontFamily: 'Inter',
-    fontStyle: 'normal',
-    fontWeight: 900,
-    fontDisplay: 'swap',
-    src: `url("${InterBlackWoff2}") format("woff2");`,
-  },
-  {
-    fontFamily: 'Inter',
-    fontStyle: 'italic',
-    fontWeight: 900,
-    fontDisplay: 'swap',
-    src: `url("${InterBlackItalicWoff2}") format("woff2");`,
-  },
+  @font-face {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 900;
+    font-display: swap;
+    src: url("${InterBlackWoff2}") format("woff2");
+  }
+  @font-face {
+    font-family: "Inter";
+    font-style: italic;
+    font-weight: 900;
+    font-display: swap;
+    src: url("${InterBlackItalicWoff2}") format("woff2");
+  }
 
-  /* -------------------------------------------------------
-Variable font.
-Usage:
+  @font-face {
+    font-family: "Inter var";
+    font-weight: "100 900";
+    font-display: swap;
+    font-style: normal;
+    font-named-instance: "Regular";
+    src: url("${InterRomanVarWoff2}") format("woff2");
+  }
+  @font-face {
+    font-family: "Inter var";
+    font-weight: "100 900";
+    font-display: swap;
+    font-style: italic;
+    font-named-instance: "Italic";
+    src: url("${InterItalicVarWoff2}") format("woff2");
+  }
 
-  html { fontFamily: 'Inter', sans-serif, },
-  @supports (font-variation-settings: normal) {
-    html { fontFamily: 'Inter var', sans-serif, },
-  },
-*/
-  {
-    fontFamily: 'Inter var',
-    fontWeight: '100 900',
-    fontDisplay: 'swap',
-    fontStyle: 'normal',
-    fontNamedInstance: 'Regular',
-    src: `url("${InterRomanVarWoff2}") format("woff2");`,
-  },
-  {
-    fontFamily: 'Inter var',
-    fontWeight: '100 900',
-    fontDisplay: 'swap',
-    fontStyle: 'italic',
-    fontNamedInstance: 'Italic',
-    src: `url("${InterItalicVarWoff2}") format("woff2");`,
-  },
-
-  /* --------------------------------------------------------------------------
-[EXPERIMENTAL] Multi-axis, single variable font.
-
-Slant axis is not yet widely supported (as of February 2019) and thus this
-multi-axis single variable font is opt-in rather than the default.
-
-When using this, you will probably need to set font-variation-settings
-explicitly, e.g.
-
-  * { font-variation-settings: "slnt" 0deg },
-  .italic { font-variation-settings: "slnt" 10deg },
-
-*/
-  {
-    fontFamily: 'Inter var experimental',
-    fontWeight: '100 900',
-    fontDisplay: 'swap',
-    fontStyle: 'oblique 0deg 10deg',
-    src: `url("${InterVarWoff2}") format("woff2");`,
-  },
-]
+  @font-face {
+    font-family: "Inter var experimental";
+    font-weight: "100 900";
+    font-display: swap;
+    font-style: oblique 0deg 10deg;
+    src: url("${InterVarWoff2}") format("woff2");
+  }
+`

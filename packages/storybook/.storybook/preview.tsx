@@ -9,6 +9,7 @@ import {
   muiDark,
   muiLight,
 } from '@monorail/themes'
+import { CssBaseline, GlobalStyles, ThemeProvider } from '@monorail/components'
 import * as MUI from '@mui/material'
 import { DecoratorFn, Parameters } from '@storybook/react'
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
@@ -156,15 +157,11 @@ export const withTheme: DecoratorFn = (Story, context) => {
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <StyledEngineProvider injectFirst>
-        <MUI.ThemeProvider theme={theme}>
-          <MUI.GlobalStyles
-            styles={[...inter, ...ibmPlex, ...menlo, ...gotham].map(font => ({
-              '@font-face': font,
-            }))}
-          />
-          <MUI.CssBaseline />
+        <ThemeProvider theme={theme}>
+          <GlobalStyles styles={inter + ibmPlex + gotham + menlo} />
+          <CssBaseline />
           <Story />
-        </MUI.ThemeProvider>
+        </ThemeProvider>
       </StyledEngineProvider>
     </LocalizationProvider>
   )
