@@ -47,6 +47,8 @@ export const parameters: Parameters = {
             'Score',
             'Tiers',
           ],
+          'Typography',
+          ['Fonts', 'Components'],
           'Shadows',
         ],
         'Surfaces',

@@ -187,39 +187,63 @@ export const LineHeight: Record<TypographyVariant, number> = {
   Button: pxToLineHeight(PixelFontSize.Button, PixelLineHeight.Button),
 
   // Components
-  AlertTitle: pxToLineHeight(PixelFontSize.Data1, PixelLineHeight.AlertTitle),
+  AlertTitle: pxToLineHeight(
+    PixelFontSize.AlertTitle,
+    PixelLineHeight.AlertTitle,
+  ),
   AvatarInitials: pxToLineHeight(
-    PixelFontSize.Data1,
+    PixelFontSize.AvatarInitials,
     PixelLineHeight.AvatarInitials,
   ),
-  BadgeLabel: pxToLineHeight(PixelFontSize.Data1, PixelLineHeight.BadgeLabel),
+  BadgeLabel: pxToLineHeight(
+    PixelFontSize.BadgeLabel,
+    PixelLineHeight.BadgeLabel,
+  ),
   BottomNavActiveLabel: pxToLineHeight(
-    PixelFontSize.Data1,
+    PixelFontSize.BottomNavActiveLabel,
     PixelLineHeight.BottomNavActiveLabel,
   ),
-  ButtonLarge: pxToLineHeight(PixelFontSize.Data1, PixelLineHeight.ButtonLarge),
+  ButtonLarge: pxToLineHeight(
+    PixelFontSize.ButtonLarge,
+    PixelLineHeight.ButtonLarge,
+  ),
   ButtonMedium: pxToLineHeight(
-    PixelFontSize.Data1,
+    PixelFontSize.ButtonMedium,
     PixelLineHeight.ButtonMedium,
   ),
-  ButtonSmall: pxToLineHeight(PixelFontSize.Data1, PixelLineHeight.ButtonSmall),
-  Chip: pxToLineHeight(PixelFontSize.Data1, PixelLineHeight.Chip),
-  InputLabel: pxToLineHeight(PixelFontSize.Data1, PixelLineHeight.InputLabel),
-  HelperText: pxToLineHeight(PixelFontSize.Data1, PixelLineHeight.HelperText),
-  InputText: pxToLineHeight(PixelFontSize.Data1, PixelLineHeight.InputText),
-  TableHeader: pxToLineHeight(PixelFontSize.Data1, PixelLineHeight.TableHeader),
+  ButtonSmall: pxToLineHeight(
+    PixelFontSize.ButtonSmall,
+    PixelLineHeight.ButtonSmall,
+  ),
+  Chip: pxToLineHeight(PixelFontSize.Chip, PixelLineHeight.Chip),
+  InputLabel: pxToLineHeight(
+    PixelFontSize.InputLabel,
+    PixelLineHeight.InputLabel,
+  ),
+  HelperText: pxToLineHeight(
+    PixelFontSize.HelperText,
+    PixelLineHeight.HelperText,
+  ),
+  InputText: pxToLineHeight(PixelFontSize.InputText, PixelLineHeight.InputText),
+  TableHeader: pxToLineHeight(
+    PixelFontSize.TableHeader,
+    PixelLineHeight.TableHeader,
+  ),
   ListSubheader: pxToLineHeight(
-    PixelFontSize.Data1,
+    PixelFontSize.ListSubheader,
     PixelLineHeight.ListSubheader,
   ),
-  MenuItem: pxToLineHeight(PixelFontSize.Data1, PixelLineHeight.MenuItem),
+  MenuItem: pxToLineHeight(PixelFontSize.MenuItem, PixelLineHeight.MenuItem),
   MenuItemDense: pxToLineHeight(
-    PixelFontSize.Data1,
+    PixelFontSize.MenuItemDense,
     PixelLineHeight.MenuItemDense,
   ),
-  TabActive: pxToLineHeight(PixelFontSize.Data1, PixelLineHeight.TabActive),
-  TabInactive: pxToLineHeight(PixelFontSize.Data1, PixelLineHeight.TabInactive),
-  Tooltip: pxToLineHeight(PixelFontSize.Data1, PixelLineHeight.Tooltip),
+  TabActive: pxToLineHeight(PixelFontSize.TabActive, PixelLineHeight.TabActive),
+  TabInactive: pxToLineHeight(
+    PixelFontSize.TabInactive,
+    PixelLineHeight.TabInactive,
+  ),
+  Tooltip: pxToLineHeight(PixelFontSize.Tooltip, PixelLineHeight.Tooltip),
 }
 
 /**

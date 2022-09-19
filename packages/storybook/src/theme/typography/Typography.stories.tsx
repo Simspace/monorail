@@ -11,7 +11,7 @@ import { TypographyTokenTable } from './typography.components'
 import type { TypographyTokenRowProps } from './typography.types'
 
 export default {
-  title: 'Theme/Typography',
+  title: 'Theme/Typography/Fonts',
   parameters: {
     layout: 'fullscreen',
     options: { showPanel: false },
@@ -21,7 +21,7 @@ export default {
 export const Fonts = () => {
   const theme = useTheme()
 
-  const typographyTokenRows: Array<TypographyTokenRowProps> = React.useMemo(
+  const rows: Array<TypographyTokenRowProps> = React.useMemo(
     () => [
       {
         token: 'data1',
@@ -144,7 +144,7 @@ export const Fonts = () => {
         </Typography>
         <Typography gutterBottom>{`theme.typography`}</Typography>
       </Box>
-      <TypographyTokenTable rows={typographyTokenRows} />
+      <TypographyTokenTable rows={rows} />
     </Box>
   )
 }
