@@ -12,6 +12,7 @@ export const MonorailMenuItemOverrides: Components<Theme>['MuiMenuItem'] = {
       paddingTop: theme.spacing(3),
       paddingBottom: theme.spacing(3),
       paddingRight: theme.spacing(6),
+      ...theme.typography.menuItem,
       [`&.${menuItemClasses.focusVisible}`]: {
         boxShadow: `0 0 0 4px ${theme.palette.primary.focusRing.outer}`,
         outline: `1px solid ${theme.palette.primary.focusRing.inner}`,
@@ -34,6 +35,7 @@ export const MonorailMenuItemOverrides: Components<Theme>['MuiMenuItem'] = {
     dense: ({ theme }) => ({
       paddingTop: theme.spacing(1),
       paddingBottom: theme.spacing(1),
+      ...theme.typography.menuItemDense,
       [`& .${listItemIconClasses.root}`]: {
         minWidth: 40,
       },

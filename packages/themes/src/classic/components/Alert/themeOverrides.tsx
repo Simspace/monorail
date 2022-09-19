@@ -73,6 +73,7 @@ export const MonorailAlertTitleOverrides: Components<Theme>['MuiAlertTitle'] = {
   styleOverrides: {
     root: ({ theme }) => ({
       marginBottom: theme.spacing(0.5),
+      ...theme.typography.alertTitle,
     }),
   },
 }

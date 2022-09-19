@@ -10,6 +10,7 @@ export const MonorailBadgeOverrides: Components<Theme>['MuiBadge'] = {
       return {
         backgroundColor: theme.palette[color].main,
         color: theme.palette.getContrastText(theme.palette[color].main),
+        ...theme.typography.badgeLabel,
       }
     },
     standard: ({ theme }) => ({

@@ -1,5 +1,5 @@
 import type { Components, Theme } from '@mui/material'
-import { checkboxClasses } from '@mui/material'
+import { checkboxClasses, typographyClasses } from '@mui/material'
 
 import { dataGridClasses } from '@monorail/components'
 
@@ -62,14 +62,17 @@ export const MonorailDataGridOverrides: Components<Theme>['MuiDataGrid'] = {
         height: '100%',
       }
     },
-    columnHeaderTitleContainer: {
+    columnHeaderTitleContainer: ({ theme }) => ({
       height: '100%',
       [`& > .${dataGridClasses.columnHeaderTitleContainerContent}`]: {
         justifyContent: 'center',
         width: '100%',
         height: '100%',
+        [`& .${typographyClasses.root}`]: {
+          ...theme.typography.tableHeader,
+        },
       },
-    },
+    }),
     columnHeaderCheckbox: {
       padding: 0,
     },

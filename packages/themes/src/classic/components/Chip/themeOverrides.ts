@@ -29,6 +29,9 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
         }),
       }
     },
+    label: ({ theme }) => ({
+      ...theme.typography.chip,
+    }),
     filled: ({ ownerState: { color = 'default' }, theme }) => {
       return {
         border: '1px solid transparent',
