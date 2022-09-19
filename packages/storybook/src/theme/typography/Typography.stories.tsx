@@ -1,92 +1,22 @@
 import React from 'react'
-import { alpha, styled, useTheme } from '@mui/material'
+import { useTheme } from '@mui/material'
 
-import {
-  Box,
-  Paper,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Typography,
-} from '@monorail/components'
+import { Box, Typography } from '@monorail/components'
 import {
   PixelFontSize,
   PixelLineHeight,
 } from '@monorail/themes/common/FontSize'
 
-import type {
-  TypographyTokenColumns,
-  TypographyTokenRowProps,
-} from './typography.types'
+import { TypographyTokenTable } from './typography.components'
+import type { TypographyTokenRowProps } from './typography.types'
 
 export default {
-  title: 'Theme/Fonts',
+  title: 'Theme/Typography',
   parameters: {
     layout: 'fullscreen',
     options: { showPanel: false },
   },
 }
-
-const StyledTableRow = styled(TableRow)(({ theme }) => ({
-  ' > td, > th': {
-    borderBottom: `1px solid ${theme.palette.divider}`,
-  },
-}))
-
-const StyledTableCell = styled(TableCell)(() => ({
-  wordBreak: 'break-word',
-}))
-
-const TypographyTokenRow = ({
-  token,
-  figmaStyle,
-  fontSizePx,
-  lineHeightPx,
-  description,
-  styles,
-}: TypographyTokenRowProps) => {
-  return (
-    <StyledTableRow>
-      <TableCell component="th" scope="row" sx={{ width: '20%' }}>
-        <Typography
-          variant={token}
-          sx={theme => ({ bgcolor: alpha(theme.palette.error.light, 0.18) })}
-        >{`.${token}`}</Typography>
-      </TableCell>
-      <StyledTableCell sx={{ width: '20%' }}>{figmaStyle}</StyledTableCell>
-      <TableCell sx={{ width: '10%' }}>{`${getFirstFontFamily(
-        styles.fontFamily,
-      )}`}</TableCell>
-      <TableCell sx={{ width: '10%' }} align="center">
-        {styles.fontWeight}
-      </TableCell>
-      <TableCell sx={{ width: '5%' }}>{`${styles.fontSize}`}</TableCell>
-      <TableCell sx={{ width: '5%' }}>{`${fontSizePx}px`}</TableCell>
-      <TableCell sx={{ width: '5%' }}>{`${styles.lineHeight}`}</TableCell>
-      <TableCell sx={{ width: '5%' }}>{`${lineHeightPx}px`}</TableCell>
-      <StyledTableCell sx={{ width: '30%' }}>
-        <Typography sx={{ maxWidth: '80ch' }} variant="body2">
-          {description ?? '---'}
-        </Typography>
-      </StyledTableCell>
-    </StyledTableRow>
-  )
-}
-
-const typographyTokenColumns: TypographyTokenColumns = [
-  { id: 'column-token', label: 'Token' },
-  { id: 'column-figma-style', label: 'Figma Style' },
-  { id: 'column-font-family', label: 'Font Family' },
-  { id: 'column-font-weight', label: 'Font Weight', align: 'center' },
-  { id: 'column-font-size-rem', label: 'Font Size' },
-  { id: 'column-font-size-px', label: '(px)' },
-  { id: 'column-line-height-unitless', label: 'Line Height' },
-  { id: 'column-line-height-px', label: '(px)' },
-  { id: 'column-description', label: 'Description' },
-]
 
 export const Fonts = () => {
   const theme = useTheme()
@@ -214,46 +144,7 @@ export const Fonts = () => {
         </Typography>
         <Typography gutterBottom>{`theme.typography`}</Typography>
       </Box>
-      <TableContainer
-        component={Paper}
-        elevation={0}
-        sx={{ mb: 10, borderColor: 'divider' }}
-      >
-        <Table sx={{ minWidth: 1040 }}>
-          <TableHead>
-            <StyledTableRow>
-              {typographyTokenColumns.map(column => (
-                <TableCell key={column.id} variant="head" align={column.align}>
-                  {column.label}
-                </TableCell>
-              ))}
-            </StyledTableRow>
-          </TableHead>
-          <TableBody>
-            {typographyTokenRows !== undefined ? (
-              typographyTokenRows.map(font => {
-                return (
-                  <TypographyTokenRow
-                    key={font.token}
-                    token={font.token}
-                    figmaStyle={font.figmaStyle}
-                    fontSizePx={font.fontSizePx}
-                    lineHeightPx={font.lineHeightPx}
-                    styles={font.styles}
-                    description={font.description}
-                  />
-                )
-              })
-            ) : (
-              <></>
-            )}
-          </TableBody>
-        </Table>
-      </TableContainer>
+      <TypographyTokenTable rows={typographyTokenRows} />
     </Box>
   )
-}
-
-function getFirstFontFamily(fontFamily: React.CSSProperties['fontFamily']) {
-  return fontFamily?.split(',')[0]
 }
