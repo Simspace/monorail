@@ -21,6 +21,8 @@ const fontStack: Record<string, React.CSSProperties['fontFamily']> = {
   mono: [FontFamily.IBMPlexMono, ...monospaceFallback].join(','),
 }
 
+const BASE_FONT_STACK = fontStack.base
+
 export const baseTheme = createTheme(
   {
     // TODO[M3 Phase 2]: Define breakpoints in preparation for rebrand
@@ -30,7 +32,7 @@ export const baseTheme = createTheme(
 
     typography: {
       htmlFontSize: 16,
-      fontFamily: fontStack.base,
+      fontFamily: BASE_FONT_STACK,
       data1: {
         fontFamily: fontStack.headings,
         fontSize: FontSize.Data1,
@@ -110,11 +112,123 @@ export const baseTheme = createTheme(
         lineHeight: LineHeight.Caption,
         fontWeight: FontWeight.Book,
       },
+      // Components
       button: {
         fontSize: FontSize.Button,
         lineHeight: LineHeight.Button,
         fontWeight: FontWeight.Bold,
         textTransform: 'capitalize',
+      },
+      alertTitle: {
+        fontFamily: BASE_FONT_STACK,
+        fontSize: FontSize.AlertTitle,
+        lineHeight: LineHeight.AlertTitle,
+        fontWeight: FontWeight.SemiBold,
+      },
+      avatarInitials: {
+        fontFamily: BASE_FONT_STACK,
+        fontSize: FontSize.AvatarInitials,
+        lineHeight: LineHeight.AvatarInitials,
+        fontWeight: FontWeight.SemiBold,
+      },
+      badgeLabel: {
+        fontFamily: BASE_FONT_STACK,
+        fontSize: FontSize.BadgeLabel,
+        lineHeight: LineHeight.BadgeLabel,
+        fontWeight: FontWeight.SemiBold,
+      },
+      bottomNavActiveLabel: {
+        fontFamily: BASE_FONT_STACK,
+        fontSize: FontSize.BottomNavActiveLabel,
+        lineHeight: LineHeight.BottomNavActiveLabel,
+        fontWeight: FontWeight.Book,
+        letterSpacing: 0.2,
+      },
+      buttonLarge: {
+        fontFamily: BASE_FONT_STACK,
+        fontSize: FontSize.ButtonLarge,
+        lineHeight: LineHeight.ButtonLarge,
+        fontWeight: FontWeight.SemiBold,
+      },
+      buttonMedium: {
+        fontFamily: BASE_FONT_STACK,
+        fontSize: FontSize.ButtonMedium,
+        lineHeight: LineHeight.ButtonMedium,
+        fontWeight: FontWeight.SemiBold,
+      },
+      buttonSmall: {
+        fontFamily: BASE_FONT_STACK,
+        fontSize: FontSize.ButtonSmall,
+        lineHeight: LineHeight.ButtonSmall,
+        fontWeight: FontWeight.SemiBold,
+      },
+      chip: {
+        fontFamily: BASE_FONT_STACK,
+        fontSize: FontSize.Chip,
+        lineHeight: LineHeight.Chip,
+        fontWeight: FontWeight.SemiBold,
+      },
+      inputLabel: {
+        fontFamily: BASE_FONT_STACK,
+        fontSize: FontSize.InputLabel,
+        lineHeight: LineHeight.InputLabel,
+        fontWeight: FontWeight.Medium,
+      },
+      helperText: {
+        fontFamily: BASE_FONT_STACK,
+        fontSize: FontSize.HelperText,
+        lineHeight: LineHeight.HelperText,
+        fontWeight: FontWeight.Medium,
+      },
+      inputText: {
+        fontFamily: BASE_FONT_STACK,
+        fontSize: FontSize.InputText,
+        lineHeight: LineHeight.InputText,
+        fontWeight: FontWeight.Book,
+      },
+      tableHeader: {
+        fontFamily: BASE_FONT_STACK,
+        fontSize: FontSize.TableHeader,
+        lineHeight: LineHeight.TableHeader,
+        fontWeight: FontWeight.Medium,
+        letterSpacing: 0.2,
+      },
+      listSubheader: {
+        fontFamily: BASE_FONT_STACK,
+        fontSize: FontSize.ListSubheader,
+        lineHeight: LineHeight.ListSubheader,
+        fontWeight: FontWeight.Medium,
+      },
+      menuItem: {
+        fontFamily: BASE_FONT_STACK,
+        fontSize: FontSize.MenuItem,
+        lineHeight: LineHeight.MenuItem,
+        fontWeight: FontWeight.Medium,
+      },
+      menuItemDense: {
+        fontFamily: BASE_FONT_STACK,
+        fontSize: FontSize.MenuItemDense,
+        lineHeight: LineHeight.MenuItemDense,
+        fontWeight: FontWeight.Medium,
+        letterSpacing: 0.2,
+      },
+      tabActive: {
+        fontFamily: BASE_FONT_STACK,
+        fontSize: FontSize.TabActive,
+        lineHeight: LineHeight.TabActive,
+        fontWeight: FontWeight.SemiBold,
+      },
+      tabInactive: {
+        fontFamily: BASE_FONT_STACK,
+        fontSize: FontSize.TabInactive,
+        lineHeight: LineHeight.TabInactive,
+        fontWeight: FontWeight.Medium,
+      },
+      tooltip: {
+        fontFamily: BASE_FONT_STACK,
+        fontSize: FontSize.Tooltip,
+        lineHeight: LineHeight.Tooltip,
+        fontWeight: FontWeight.Medium,
       },
     },
 

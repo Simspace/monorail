@@ -30,6 +30,7 @@ enum Scale {
   LineHeight20 = 20,
   LineHeight18 = 18,
   LineHeight16 = 16,
+  LineHeight14 = 14,
 
   LetterSpacing17 = 0.17,
   LetterSpacing15 = 0.15,
@@ -57,6 +58,26 @@ export const PixelFontSize: Record<TypographyVariant, number> = {
   Overline: Scale.FontSize12,
   Caption: Scale.FontSize12,
   Button: Scale.FontSize16,
+
+  // Components
+  AlertTitle: Scale.FontSize16,
+  AvatarInitials: Scale.FontSize14,
+  BadgeLabel: Scale.FontSize14,
+  BottomNavActiveLabel: Scale.FontSize14,
+  ButtonLarge: Scale.FontSize16,
+  ButtonMedium: Scale.FontSize16,
+  ButtonSmall: Scale.FontSize14,
+  Chip: Scale.FontSize16,
+  InputLabel: Scale.FontSize16,
+  HelperText: Scale.FontSize14,
+  InputText: Scale.FontSize16,
+  TableHeader: Scale.FontSize14,
+  ListSubheader: Scale.FontSize14,
+  MenuItem: Scale.FontSize16,
+  MenuItemDense: Scale.FontSize14,
+  TabActive: Scale.FontSize16,
+  TabInactive: Scale.FontSize16,
+  Tooltip: Scale.FontSize14,
 }
 
 /**
@@ -79,6 +100,26 @@ export const PixelLineHeight: Record<TypographyVariant, number> = {
   Overline: Scale.LineHeight20,
   Caption: Scale.LineHeight20,
   Button: Scale.LineHeight20,
+
+  // Components
+  AlertTitle: Scale.LineHeight24,
+  AvatarInitials: Scale.LineHeight14,
+  BadgeLabel: Scale.LineHeight18,
+  BottomNavActiveLabel: Scale.LineHeight24,
+  ButtonLarge: Scale.LineHeight20,
+  ButtonMedium: Scale.LineHeight20,
+  ButtonSmall: Scale.LineHeight16,
+  Chip: Scale.LineHeight20,
+  InputLabel: Scale.LineHeight24,
+  HelperText: Scale.LineHeight20,
+  InputText: Scale.LineHeight24,
+  TableHeader: Scale.LineHeight24,
+  ListSubheader: Scale.LineHeight24,
+  MenuItem: Scale.LineHeight24,
+  MenuItemDense: Scale.LineHeight20,
+  TabActive: Scale.LineHeight20,
+  TabInactive: Scale.LineHeight20,
+  Tooltip: Scale.LineHeight20,
 }
 
 /**
@@ -100,6 +141,29 @@ export const FontSize: Record<TypographyVariant, `${number}rem`> = {
   Overline: pxToRem(DEFAULT_ROOT_SIZE, PixelFontSize.Overline),
   Caption: pxToRem(DEFAULT_ROOT_SIZE, PixelFontSize.Caption),
   Button: pxToRem(DEFAULT_ROOT_SIZE, PixelFontSize.Button),
+
+  // Components
+  AlertTitle: pxToRem(DEFAULT_ROOT_SIZE, PixelFontSize.AlertTitle),
+  AvatarInitials: pxToRem(DEFAULT_ROOT_SIZE, PixelFontSize.AvatarInitials),
+  BadgeLabel: pxToRem(DEFAULT_ROOT_SIZE, PixelFontSize.BadgeLabel),
+  BottomNavActiveLabel: pxToRem(
+    DEFAULT_ROOT_SIZE,
+    PixelFontSize.BottomNavActiveLabel,
+  ),
+  ButtonLarge: pxToRem(DEFAULT_ROOT_SIZE, PixelFontSize.ButtonLarge),
+  ButtonMedium: pxToRem(DEFAULT_ROOT_SIZE, PixelFontSize.ButtonMedium),
+  ButtonSmall: pxToRem(DEFAULT_ROOT_SIZE, PixelFontSize.ButtonSmall),
+  Chip: pxToRem(DEFAULT_ROOT_SIZE, PixelFontSize.Chip),
+  InputLabel: pxToRem(DEFAULT_ROOT_SIZE, PixelFontSize.InputLabel),
+  HelperText: pxToRem(DEFAULT_ROOT_SIZE, PixelFontSize.HelperText),
+  InputText: pxToRem(DEFAULT_ROOT_SIZE, PixelFontSize.InputText),
+  TableHeader: pxToRem(DEFAULT_ROOT_SIZE, PixelFontSize.TableHeader),
+  ListSubheader: pxToRem(DEFAULT_ROOT_SIZE, PixelFontSize.ListSubheader),
+  MenuItem: pxToRem(DEFAULT_ROOT_SIZE, PixelFontSize.MenuItem),
+  MenuItemDense: pxToRem(DEFAULT_ROOT_SIZE, PixelFontSize.MenuItemDense),
+  TabActive: pxToRem(DEFAULT_ROOT_SIZE, PixelFontSize.TabActive),
+  TabInactive: pxToRem(DEFAULT_ROOT_SIZE, PixelFontSize.TabInactive),
+  Tooltip: pxToRem(DEFAULT_ROOT_SIZE, PixelFontSize.Tooltip),
 }
 
 /**
@@ -121,6 +185,41 @@ export const LineHeight: Record<TypographyVariant, number> = {
   Overline: pxToLineHeight(PixelFontSize.Overline, PixelLineHeight.Overline),
   Caption: pxToLineHeight(PixelFontSize.Caption, PixelLineHeight.Caption),
   Button: pxToLineHeight(PixelFontSize.Button, PixelLineHeight.Button),
+
+  // Components
+  AlertTitle: pxToLineHeight(PixelFontSize.Data1, PixelLineHeight.AlertTitle),
+  AvatarInitials: pxToLineHeight(
+    PixelFontSize.Data1,
+    PixelLineHeight.AvatarInitials,
+  ),
+  BadgeLabel: pxToLineHeight(PixelFontSize.Data1, PixelLineHeight.BadgeLabel),
+  BottomNavActiveLabel: pxToLineHeight(
+    PixelFontSize.Data1,
+    PixelLineHeight.BottomNavActiveLabel,
+  ),
+  ButtonLarge: pxToLineHeight(PixelFontSize.Data1, PixelLineHeight.ButtonLarge),
+  ButtonMedium: pxToLineHeight(
+    PixelFontSize.Data1,
+    PixelLineHeight.ButtonMedium,
+  ),
+  ButtonSmall: pxToLineHeight(PixelFontSize.Data1, PixelLineHeight.ButtonSmall),
+  Chip: pxToLineHeight(PixelFontSize.Data1, PixelLineHeight.Chip),
+  InputLabel: pxToLineHeight(PixelFontSize.Data1, PixelLineHeight.InputLabel),
+  HelperText: pxToLineHeight(PixelFontSize.Data1, PixelLineHeight.HelperText),
+  InputText: pxToLineHeight(PixelFontSize.Data1, PixelLineHeight.InputText),
+  TableHeader: pxToLineHeight(PixelFontSize.Data1, PixelLineHeight.TableHeader),
+  ListSubheader: pxToLineHeight(
+    PixelFontSize.Data1,
+    PixelLineHeight.ListSubheader,
+  ),
+  MenuItem: pxToLineHeight(PixelFontSize.Data1, PixelLineHeight.MenuItem),
+  MenuItemDense: pxToLineHeight(
+    PixelFontSize.Data1,
+    PixelLineHeight.MenuItemDense,
+  ),
+  TabActive: pxToLineHeight(PixelFontSize.Data1, PixelLineHeight.TabActive),
+  TabInactive: pxToLineHeight(PixelFontSize.Data1, PixelLineHeight.TabInactive),
+  Tooltip: pxToLineHeight(PixelFontSize.Data1, PixelLineHeight.Tooltip),
 }
 
 /**

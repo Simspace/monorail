@@ -10,6 +10,24 @@ declare module '@mui/material/Typography' {
     h4: false
     h5: false
     h6: false
+    alertTitle: true
+    avatarInitials: true
+    badgeLabel: true
+    bottomNavActiveLabel: true
+    buttonLarge: true
+    buttonMedium: true
+    buttonSmall: true
+    chip: true
+    inputLabel: true
+    helperText: true
+    inputText: true
+    tableHeader: true
+    listSubheader: true
+    menuItem: true
+    menuItemDense: true
+    tabActive: true
+    tabInactive: true
+    tooltip: true
   }
 }
 

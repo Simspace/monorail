@@ -242,6 +242,24 @@ declare module '@mui/material/styles/createTypography' {
     data3: React.CSSProperties
     monoBody1: React.CSSProperties
     monoBody2: React.CSSProperties
+    alertTitle: React.CSSProperties
+    avatarInitials: React.CSSProperties
+    badgeLabel: React.CSSProperties
+    bottomNavActiveLabel: React.CSSProperties
+    buttonLarge: React.CSSProperties
+    buttonMedium: React.CSSProperties
+    buttonSmall: React.CSSProperties
+    chip: React.CSSProperties
+    inputLabel: React.CSSProperties
+    helperText: React.CSSProperties
+    inputText: React.CSSProperties
+    tableHeader: React.CSSProperties
+    listSubheader: React.CSSProperties
+    menuItem: React.CSSProperties
+    menuItemDense: React.CSSProperties
+    tabActive: React.CSSProperties
+    tabInactive: React.CSSProperties
+    tooltip: React.CSSProperties
   }
 
   // allow configuration using `createTheme`
@@ -251,5 +269,23 @@ declare module '@mui/material/styles/createTypography' {
     data3?: React.CSSProperties
     monoBody1?: React.CSSProperties
     monoBody2?: React.CSSProperties
+    alertTitle?: React.CSSProperties
+    avatarInitials?: React.CSSProperties
+    badgeLabel?: React.CSSProperties
+    bottomNavActiveLabel?: React.CSSProperties
+    buttonLarge?: React.CSSProperties
+    buttonMedium?: React.CSSProperties
+    buttonSmall?: React.CSSProperties
+    chip?: React.CSSProperties
+    inputLabel?: React.CSSProperties
+    helperText?: React.CSSProperties
+    inputText?: React.CSSProperties
+    tableHeader?: React.CSSProperties
+    listSubheader?: React.CSSProperties
+    menuItem?: React.CSSProperties
+    menuItemDense?: React.CSSProperties
+    tabActive?: React.CSSProperties
+    tabInactive?: React.CSSProperties
+    tooltip?: React.CSSProperties
   }
 }
