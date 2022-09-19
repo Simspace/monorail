@@ -70,119 +70,113 @@ export const MonorailButtonOverrides: Components<Theme>['MuiButton'] = {
       },
     }),
     contained: ({
-      ownerState: { color = 'primary', inverted = false },
+      ownerState: { color = 'primary' },
       theme,
     }: {
       ownerState: {
         color?: ButtonProps['color']
-        inverted?: boolean
       }
       theme: Theme
     }) => {
-      return inverted
-        ? {
-            backgroundColor: theme.palette.common.white,
-            color: theme.palette[color].lowEmphasis.contrastText,
-            // Making an exception to not use .hover and .active tokens because of this variant needs a special visual treatment.
-            // We can tokenize this pattern if it becomes more common. GS 9/9/22
-            '&:hover': {
-              backgroundColor: alpha(theme.palette.common.white, 0.8),
-            },
-            '&:active': {
-              backgroundColor: alpha(theme.palette.common.white, 0.5),
-            },
-          }
-        : {
-            color: theme.palette[color].contrastText,
-            '&:hover': {
-              backgroundColor: theme.palette[color].hover,
-            },
-            '&:active': {
-              backgroundColor: theme.palette[color].active,
-            },
-          }
+      return {
+        color: theme.palette[color].contrastText,
+        '&:hover': {
+          backgroundColor: theme.palette[color].hover,
+        },
+        '&:active': {
+          backgroundColor: theme.palette[color].active,
+        },
+        '&.MonorailButton-inverted': {
+          backgroundColor: theme.palette.common.white,
+          color: theme.palette[color].lowEmphasis.contrastText,
+          // Making an exception to not use .hover and .active tokens because of this variant needs a special visual treatment.
+          // We can tokenize this pattern if it becomes more common. GS 9/9/22
+          '&:hover': {
+            backgroundColor: alpha(theme.palette.common.white, 0.8),
+          },
+          '&:active': {
+            backgroundColor: alpha(theme.palette.common.white, 0.5),
+          },
+        },
+      }
     },
     outlined: ({
-      ownerState: { color = 'primary', inverted = false },
+      ownerState: { color = 'primary' },
       theme,
     }: {
       ownerState: {
         color?: ButtonProps['color']
-        inverted?: boolean
       }
       theme: Theme
     }) => {
-      return inverted
-        ? {
-            backgroundColor: 'transparent',
-            color: 'currentColor',
+      return {
+        backgroundColor: theme.palette.background.paper,
+        boxShadow: `inset 0 0 0 1px ${theme.palette[color].border.light}`,
+        color: theme.palette[color].lowEmphasis.contrastText,
+        '&:hover': {
+          border: 'none',
+          backgroundColor: theme.palette[color].lowEmphasis.hover,
+          boxShadow: `inset 0 0 0 1px ${theme.palette[color].border.main}`,
+        },
+        '&:active': {
+          backgroundColor: theme.palette[color].lowEmphasis.active,
+        },
+        '&.MonorailButton-inverted': {
+          backgroundColor: 'transparent',
+          color: 'currentColor',
+          boxShadow: `inset 0 0 0 1px currentColor`,
+          '&:hover': {
+            border: 'none',
+            backgroundColor: alpha(
+              theme.palette.grey[900],
+              theme.palette.action.hoverOpacity,
+            ),
             boxShadow: `inset 0 0 0 1px currentColor`,
-            '&:hover': {
-              border: 'none',
-              backgroundColor: alpha(
-                theme.palette.grey[900],
-                theme.palette.action.hoverOpacity,
-              ),
-              boxShadow: `inset 0 0 0 1px currentColor`,
-            },
-            '&:active': {
-              backgroundColor: alpha(
-                theme.palette.grey[900],
-                theme.palette.action.activatedOpacity,
-              ),
-              boxShadow: `inset 0 0 0 1px currentColor`,
-            },
-          }
-        : {
-            backgroundColor: theme.palette.background.paper,
-            boxShadow: `inset 0 0 0 1px ${theme.palette[color].border.light}`,
-            color: theme.palette[color].lowEmphasis.contrastText,
-            '&:hover': {
-              border: 'none',
-              backgroundColor: theme.palette[color].lowEmphasis.hover,
-              boxShadow: `inset 0 0 0 1px ${theme.palette[color].border.main}`,
-            },
-            '&:active': {
-              backgroundColor: theme.palette[color].lowEmphasis.active,
-            },
-          }
+          },
+          '&:active': {
+            backgroundColor: alpha(
+              theme.palette.grey[900],
+              theme.palette.action.activatedOpacity,
+            ),
+            boxShadow: `inset 0 0 0 1px currentColor`,
+          },
+        },
+      }
     },
     text: ({
-      ownerState: { color = 'primary', inverted = false },
+      ownerState: { color = 'primary' },
       theme,
     }: {
       ownerState: {
         color?: ButtonProps['color']
-        inverted?: boolean
       }
       theme: Theme
     }) => {
-      return inverted
-        ? {
-            backgroundColor: 'transparent',
-            color: 'currentColor',
-            '&:hover': {
-              backgroundColor: alpha(
-                theme.palette.grey[900],
-                theme.palette.action.hoverOpacity,
-              ),
-            },
-            '&:active': {
-              backgroundColor: alpha(
-                theme.palette.grey[900],
-                theme.palette.action.activatedOpacity,
-              ),
-            },
-          }
-        : {
-            color: theme.palette[color].lowEmphasis.contrastText,
-            '&:hover': {
-              backgroundColor: theme.palette[color].lowEmphasis.hover,
-            },
-            '&:active': {
-              backgroundColor: theme.palette[color].lowEmphasis.active,
-            },
-          }
+      return {
+        color: theme.palette[color].lowEmphasis.contrastText,
+        '&:hover': {
+          backgroundColor: theme.palette[color].lowEmphasis.hover,
+        },
+        '&:active': {
+          backgroundColor: theme.palette[color].lowEmphasis.active,
+        },
+        '&.MonorailButton-inverted': {
+          backgroundColor: 'transparent',
+          color: 'currentColor',
+          '&:hover': {
+            backgroundColor: alpha(
+              theme.palette.grey[900],
+              theme.palette.action.hoverOpacity,
+            ),
+          },
+          '&:active': {
+            backgroundColor: alpha(
+              theme.palette.grey[900],
+              theme.palette.action.activatedOpacity,
+            ),
+          },
+        },
+      }
     },
     startIcon: ({ ownerState, theme }) => {
       switch (ownerState.size) {

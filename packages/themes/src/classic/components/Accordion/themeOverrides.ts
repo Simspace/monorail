@@ -1,4 +1,4 @@
-import type { Components, CSSInterpolation, Theme } from '@mui/material'
+import type { Components, Theme } from '@mui/material'
 import { accordionClasses } from '@mui/material'
 
 export const MonorailAccordionOverrides: Components<Theme>['MuiAccordion'] = {
@@ -8,27 +8,26 @@ export const MonorailAccordionOverrides: Components<Theme>['MuiAccordion'] = {
     disableGutters: true,
   },
   styleOverrides: {
-    root: ({ ownerState }) => {
-      const overrides: CSSInterpolation = {}
-      if (ownerState.borderless === true) {
-        overrides[`&.${accordionClasses.root}:not(:first-of-type)`] = {
+    root: () => {
+      return {
+        '&:not(:first-of-type)': {
           borderTop: 'none',
-        }
-        overrides[`&.${accordionClasses.root}:not(:last-of-type)`] = {
-          borderBottom: 'none',
-        }
-        overrides[`&.${accordionClasses.root}::before`] = {
-          display: 'none',
-        }
-      } else {
-        overrides[`&.${accordionClasses.root}:not(:first-of-type)`] = {
-          borderTop: 'none',
-        }
+        },
+        '&.MonorailAccordion-borderless': {
+          [`&:not(:first-of-type)`]: {
+            borderTop: 'none',
+          },
+          [`&:not(:last-of-type)`]: {
+            borderBottom: 'none',
+          },
+          [`&::before`]: {
+            display: 'none',
+          },
+        },
+        [`&.${accordionClasses.disabled}`]: {
+          backgroundColor: 'transparent',
+        },
       }
-      overrides[`&.${accordionClasses.disabled}`] = {
-        backgroundColor: 'transparent',
-      }
-      return overrides
     },
   },
 }

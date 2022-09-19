@@ -1,4 +1,6 @@
+import React from 'react'
 import { Accordion as MuiAccordion } from '@mui/material'
+import clsx from 'clsx'
 
 declare module '@mui/material/Accordion' {
   interface AccordionProps {
@@ -21,6 +23,21 @@ declare module '@mui/material/Accordion' {
  * - [Accordion API](https://mui.com/material-ui/api/accordion/)
  * - inherits [Paper API](https://mui.com/material-ui/api/paper/)
  */
-export const Accordion: typeof MuiAccordion = MuiAccordion
+export const Accordion = React.forwardRef(
+  ({ className, borderless, ...props }, ref) => (
+    <MuiAccordion
+      ref={ref}
+      className={clsx(
+        borderless === true && 'MonorailAccordion-borderless',
+        className,
+      )}
+      {...props}
+    />
+  ),
+) as typeof MuiAccordion
+
+// @ts-expect-error
+// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+Accordion.muiName = MuiAccordion.muiName
 
 export * from '@mui/material/Accordion'
