@@ -1,0 +1,109 @@
+<!-- Checkbox.stories.mdx -->
+
+import { Meta } from '@storybook/addon-docs'
+
+<Meta title="Theme/Layout/Spacing and Sizing (MDX)" />
+
+## Spacing
+
+There are three methods to create spacing:
+
+### 1. `theme.spacing()`
+
+This method is recommended when wrapping a component.
+
+`theme.spacing()` accepts up to 4 arguments. OK to mix numbers and strings.
+
+One spacing unit === 4px.
+
+```tsx
+margin: theme.spacing(2) // 8px
+margin: theme.spacing(0.5) // 2px
+margin: theme.spacing(1, 'auto'), // '4px auto'
+
+const StyledDiv = styled('div')(({ theme }) => ({
+  padding: theme.spacing(0, 2), // padding: '0 8px'; ✅
+	padding: 2, // padding: '2px'; ❌
+	...
+}))
+```
+
+**If you prefer the `sx` method**
+
+```tsx
+import { sx } from '@monorail/utils'
+
+const StyledDiv = styled('div')(sx({
+  px: 2, // padding: '0 8px';
+	...
+}))
+```
+
+### 2. `sx` prop
+
+This method is recommended when overriding only a handful of properties.
+
+**Shorthand system prop**
+
+For a full list of shorthand props, see the [MUI docs](https://mui.com/system/spacing/#api).
+
+```tsx
+<Box sx={{ mr: 2 }}>
+```
+
+**Theme access**
+
+```tsx
+<Box sx={theme => ({ mr: theme.spacing(2) })}>
+```
+
+**Full property name**
+
+```tsx
+<Box sx={{ marginRight: 2 }}>
+```
+
+### 3. Systems keys
+
+This method is recommended if you only need to add spacing.
+
+```tsx
+<Box mb={3} />
+// or
+<Box marginBottom={3} />
+```
+
+### Exceptions
+
+- For `<Typography />`, use the `gutterBottom` prop, instead of adding a margin-bottom.
+- For `<ListItem />`, use `disableGutters`and `disablePadding` instead of overriding its paddings.
+- For `<Accordion />`, use `disableGutters` instead of overriding its paddings.
+
+---
+
+## Sizing
+
+### Width and height
+
+By default, `width` and `height` aren’t calculated by `theme.spacing`.
+
+Use `theme.spacing` instead of pixel values. Other CSS units are also valid as strings and should be used when appropriate.
+
+```tsx
+<Box sx={{ width: 100 }} /> // width: 100px; ❌
+
+<Box sx={theme => ({ width: theme.spacing(100) })} /> // width: 400px; ✅
+
+<Box sx={{ width: '50%' }} /> ✅
+<Box sx={{ maxWidth: '80ch' }} /> ✅
+```
+
+### Borders
+
+```tsx
+<Box sx={{ border: 1, borderColor: 'primary.border.light' }} />
+// border: 1px solid ${theme.palette.primary.border.light}
+
+// Or
+<Box sx={theme => ({ border: `1px solid ${theme.palette.primary.border.light}` })} />
+```
