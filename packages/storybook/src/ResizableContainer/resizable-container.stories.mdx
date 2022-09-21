@@ -1,0 +1,41 @@
+import { Meta } from '@storybook/addon-docs'
+
+<Meta title="Utils/ResizableContainer/Usage Guide" />
+
+## Resizable Container
+
+`ResizableContainer` is a multi-part component used for creating resizable flex layouts. There are three components that make up this layout:
+
+- `ResizableContainer` is the root of the layout, and creates a new resizable flex layout context.
+  - `ResizableContainer` may be nested within `ResizableElement` to define secondary layouts.
+  - The `orientation` prop defines whether elements will be laid out in rows or a columns (`vertical` for columns, `horizontal` for rows)
+- `ResizableElement` defines a row or column that can be resized
+  - The size (`width` if `orientation` is `vertical`, `height` if `horizontal`) can be dynamically set in pixels with the `size` prop
+  - The initial flex (percentage of parent container) can be set as a decimal with the `flex` prop
+  - The minimum and maximum size of the pane can be set through the `minSize` and `maxSize` props in either pixels, or decimal or percent of the parent container
+- `ResizeHandle` creates a divider and resize handle between two `ResizableElements`
+  - The `propagate` prop will propagate the resize to the next `ResizeHandle`, when it reaches its position
+
+```tsx
+<Box height={500}>
+  <ResizableContainer orientation="vertical">
+    <ResizableElement flex={0.25} minSize="20%">
+      <Box p={4}>
+        <Typography>First resizable pane</Typography>
+      </Box>
+    </ResizableElement>
+    <ResizeHandle />
+    <ResizableElement>
+      <Box p={4}>
+        <Typography>Second resizable pane</Typography>
+      </Box>
+    </ResizableElement>
+    <ResizeHandle propagate />
+    <ResizableElement>
+      <Box p={4}>
+        <Typography>Third resizable pane</Typography>
+      </Box>
+    </ResizableElement>
+  </ResizableContainer>
+</Box>
+```
