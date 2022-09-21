@@ -1,0 +1,16 @@
+import { Meta } from '@storybook/addon-docs'
+
+<Meta title="Theme/Layout/Layout Components" />
+
+## Stack vs Box
+
+A rule of thumb is to use `Stack` whenever you need a `<div>` with `display=”flex”` and use `Box` instead of a plain `<div>`.
+
+## MUI Grid
+
+Alternatively, you can use the [Grid](https://mui.com/material-ui/react-grid/) component to achieve a Flexbox layout.
+
+- MUI `<Grid />` ≠ CSS Grid. It uses Flexbox internally.
+- MUI Grid is more akin to Bootstrap’s 12-column grid system.
+  - The `spacing` prop uses `theme.spacing()` helper.
+- If you need to use CSS Grid, MUI recommends using `<Box />`. (See [MUI CSS Grid](https://mui.com/system/grid/))

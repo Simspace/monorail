@@ -49,6 +49,8 @@ export const parameters: Parameters = {
           ],
           'Typography',
           ['Fonts', 'Components'],
+          'Layout',
+          ['Spacing and Sizing', 'Layout Components'],
           'Shadows',
         ],
         'Surfaces',
