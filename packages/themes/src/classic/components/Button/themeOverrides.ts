@@ -40,16 +40,16 @@ export const MonorailButtonOverrides: Components<Theme>['MuiButton'] = {
       }
     },
     sizeSmall: ({ theme }) => ({
-      padding: theme.spacing(1.5, 4),
+      padding: theme.spacing(0.5, 4),
       minWidth: 'auto',
       ...theme.typography.buttonSmall,
     }),
     sizeMedium: ({ theme }) => ({
-      padding: theme.spacing(2.5, 4),
+      padding: theme.spacing(2, 4),
       ...theme.typography.buttonMedium,
     }),
     sizeLarge: ({ theme }) => ({
-      padding: theme.spacing(3.5, 6),
+      padding: theme.spacing(3, 6),
       ...theme.typography.buttonLarge,
     }),
     iconSizeSmall: ({ theme }) => ({
