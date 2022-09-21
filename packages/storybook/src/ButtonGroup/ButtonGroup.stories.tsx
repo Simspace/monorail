@@ -1,20 +1,8 @@
 // Edit this file to add new stories
 import React from 'react'
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
 
 import type { ButtonGroupProps } from '@monorail/components'
-import {
-  Box,
-  Button,
-  ButtonGroup,
-  ClickAwayListener,
-  Grow,
-  MenuItem,
-  MenuList,
-  Paper,
-  Popper,
-  Stack,
-} from '@monorail/components'
+import { Button, ButtonGroup, Stack } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 
@@ -125,116 +113,6 @@ export const VerticalGroup = story<ButtonGroupProps>(
       docs: {
         description: {
           story: `The button group can be displayed vertically using the orientation prop.`,
-        },
-      },
-    },
-  },
-)
-
-export const SplitButton = story<ButtonGroupProps>(
-  () => {
-    const options = [
-      'Create a merge commit',
-      'Squash and merge',
-      'Rebase and merge',
-    ]
-
-    const [open, setOpen] = React.useState(false)
-    const anchorRef = React.useRef<HTMLDivElement>(null)
-    const [selectedIndex, setSelectedIndex] = React.useState(1)
-
-    const handleClick = () => {
-      /* eslint-disable no-console */
-      console.info(`You clicked ${options[selectedIndex]}`)
-      /* eslint-enable no-console */
-    }
-
-    const handleMenuItemClick = (
-      event: React.MouseEvent<HTMLLIElement, MouseEvent>,
-      index: number,
-    ) => {
-      setSelectedIndex(index)
-      setOpen(false)
-    }
-
-    const handleToggle = () => {
-      setOpen(prevOpen => !prevOpen)
-    }
-
-    const handleClose = (event: Event) => {
-      if (
-        anchorRef.current &&
-        anchorRef.current.contains(event.target as HTMLElement)
-      ) {
-        return
-      }
-
-      setOpen(false)
-    }
-
-    return (
-      <Box minHeight={180}>
-        <ButtonGroup
-          variant="contained"
-          ref={anchorRef}
-          aria-label="split button"
-        >
-          <Button onClick={handleClick}>{options[selectedIndex]}</Button>
-          <Button
-            size="small"
-            aria-controls={open ? 'split-button-menu' : undefined}
-            aria-expanded={open ? 'true' : undefined}
-            aria-label="select merge strategy"
-            aria-haspopup="menu"
-            onClick={handleToggle}
-          >
-            <ArrowDropDownIcon />
-          </Button>
-        </ButtonGroup>
-        <Popper
-          open={open}
-          anchorEl={anchorRef.current}
-          role={undefined}
-          transition
-          disablePortal
-        >
-          {({ TransitionProps, placement }) => (
-            <Grow
-              {...TransitionProps}
-              style={{
-                transformOrigin:
-                  placement === 'bottom' ? 'center top' : 'center bottom',
-              }}
-            >
-              <Paper>
-                <ClickAwayListener onClickAway={handleClose}>
-                  <MenuList id="split-button-menu">
-                    {options.map((option, index) => (
-                      <MenuItem
-                        key={option}
-                        disabled={index === 2}
-                        selected={index === selectedIndex}
-                        onClick={(
-                          event: React.MouseEvent<HTMLLIElement, MouseEvent>,
-                        ) => handleMenuItemClick(event, index)}
-                      >
-                        {option}
-                      </MenuItem>
-                    ))}
-                  </MenuList>
-                </ClickAwayListener>
-              </Paper>
-            </Grow>
-          )}
-        </Popper>
-      </Box>
-    )
-  },
-  {
-    parameters: {
-      docs: {
-        description: {
-          story: `ButtonGroup can also be used to create a split button. The dropdown can change the button action (as in this example) or be used to immediately trigger a related action.`,
         },
       },
     },
