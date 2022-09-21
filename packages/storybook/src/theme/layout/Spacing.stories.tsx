@@ -16,8 +16,12 @@ const InlineMono = ({ text }: { text: string }) => (
     variant="monoBody1"
     fontSize="inherit"
     fontWeight="medium"
-    color="primary"
-    sx={{ bgcolor: 'background.default', borderRadius: 1, px: 1 }}
+    sx={{
+      color: 'secondary.dark',
+      bgcolor: 'background.default',
+      borderRadius: 1,
+      px: 1,
+    }}
   >
     {text}
   </Typography>
