@@ -1,5 +1,6 @@
 // codegen:start { preset: barrel, include: ./*.ts }
 export * from './array.js'
+export * from './colorManipulator.js'
 export * from './helpers.js'
 export * from './hooks.js'
 export * from './styled.js'
