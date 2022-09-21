@@ -4,4 +4,5 @@ export type {} from './EmphaticFormControlLabel/themeAugmentation.js'
 export type {} from './Popup/themeAugmentation.js'
 export type {} from './ScrollShadow/themeAugmentation.js'
 export type {} from './SelectionFooter/themeAugmentation.js'
+export type {} from './SplitButton/themeAugmentation.js'
 // codegen:end

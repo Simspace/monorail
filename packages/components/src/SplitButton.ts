@@ -2,5 +2,5 @@
 export * from './SplitButton/SplitButton.js'
 export * from './SplitButton/splitButtonClasses.js'
 export * from './SplitButton/splitButtonProps.js'
+export * from './SplitButton/themeAugmentation.js'
 // codegen:end
-export type {} from './SplitButton/themeAugmentation'

@@ -25,7 +25,15 @@ const SplitButtonRoot = styled(ButtonGroup, {
   overridesResolver: (props, styles) => styles.root,
 })({})
 
-export const SplitButton = React.forwardRef((inProps, ref) => {
+/**
+ * A component composed of ButtonGroup, Popper, Paper, and MenuList. Has a main button and a secondary
+ * button that opens a list of options.
+ *
+ * Demos:
+ *
+ * - [SplitButton](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/inputs-splitbutton--default)
+ */
+export const SplitButton = React.forwardRef(function SplitButton(inProps, ref) {
   const props = useThemeProps({
     name: 'MonorailSplitButton',
     props: inProps,
@@ -154,6 +162,7 @@ export const SplitButton = React.forwardRef((inProps, ref) => {
                         <MenuItem
                           key={index}
                           onClick={event => handleMenuItemClick(event, index)}
+                          selected={selectedIndex === index}
                           {...rest}
                         >
                           {title}
