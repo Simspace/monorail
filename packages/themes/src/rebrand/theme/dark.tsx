@@ -127,46 +127,6 @@ export enum RawColor {
 }
 // #endregion Raw Colors (Option Tokens)
 
-export const DefaultLightScoreColors = {
-  high: {
-    light: '#0FBD6F',
-    main: '#007544',
-    dark: '#004E2D',
-    contrastText: baseTheme.palette.getContrastText('#007544'),
-  },
-  highModerate: {
-    light: '#A8CD14',
-    main: '#70840F',
-    dark: '#566706',
-    contrastText: baseTheme.palette.getContrastText('#70840F'),
-  },
-  moderate: {
-    light: '#F7CF08',
-    main: '#D18105',
-    dark: '#A36403',
-    contrastText: baseTheme.palette.getContrastText('#D18105'),
-  },
-  lowModerate: {
-    light: '#FF8000',
-    main: '#B84514',
-    dark: '#93340B',
-    contrastText: baseTheme.palette.getContrastText('#B84514'),
-  },
-  low: {
-    light: '#FF6B66',
-    main: '#D41C0B',
-    dark: '#B51405',
-    contrastText: baseTheme.palette.getContrastText('#D41C0B'),
-  },
-}
-
-export const DefaultLightTierColors = {
-  one: '#8D74F1',
-  two: '#F54545',
-  three: '#E56000',
-  four: '#08A45E',
-}
-
 export const DefaultLightChartColors = {
   blue: {
     50: RawColor.Blue050,
@@ -522,8 +482,6 @@ const palette: PaletteOptions = {
   },
   action: action,
   chart: DefaultLightChartColors,
-  score: DefaultLightScoreColors,
-  tiers: DefaultLightTierColors,
 }
 
 // Construct a Theme with the base settings plus our customizations, but without the components overrides provided yet.
