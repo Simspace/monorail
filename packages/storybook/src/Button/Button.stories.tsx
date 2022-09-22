@@ -3,6 +3,7 @@ import React from 'react'
 import SaveIcon from '@mui/icons-material/Save'
 import SelectAllOutlined from '@mui/icons-material/SelectAllOutlined'
 import { LoadingButton } from '@mui/lab'
+import { capitalize } from '@mui/material'
 
 import type { ButtonProps } from '@monorail/components'
 import { Box, Button, Stack, Typography } from '@monorail/components'
@@ -41,11 +42,11 @@ const sizes = ['small', 'medium', 'large'] as const
 
 const buttons = variants.map(variant => (
   <Box mb={10} key={variant}>
-    <Typography variant="h1">{variant}</Typography>
+    <Typography variant="h1">{capitalize(variant)}</Typography>
     {sizes.map(size => (
       <React.Fragment key={size}>
-        <Typography variant="h2" my={2}>
-          {size}
+        <Typography variant="subtitle1" my={2}>
+          {capitalize(size)}
         </Typography>
         <Stack direction="row" spacing={2} my={2}>
           {colors.map(color => (
@@ -61,8 +62,8 @@ const buttons = variants.map(variant => (
         </Stack>
       </React.Fragment>
     ))}
-    <Typography variant="h2" my={2}>
-      disabled
+    <Typography variant="subtitle1" my={2}>
+      Disabled
     </Typography>
     <Stack direction="row" spacing={2} my={2}>
       {colors.map(color => (
@@ -77,8 +78,8 @@ const buttons = variants.map(variant => (
         </Button>
       ))}
     </Stack>
-    <Typography variant="h2" my={2}>
-      inverted
+    <Typography variant="subtitle1" my={2}>
+      Inverted
     </Typography>
     <Typography>
       Used when placing buttons on top of colored containers to create contrast.
@@ -159,7 +160,7 @@ export const ButtonsWithIconsAndLabel = story<ButtonProps>(
     <React.Fragment>
       {variants.map(variant => (
         <Box mb={10} key={variant}>
-          <Typography variant="h1">{variant}</Typography>
+          <Typography variant="h1">{capitalize(variant)}</Typography>
           <Stack direction="column" spacing={4} margin={2}>
             {sizes.map(size => (
               <Stack direction="row" spacing={2} key={size}>
