@@ -2,6 +2,7 @@ import React from 'react'
 import { alpha, styled } from '@mui/material'
 
 import {
+  Box,
   Paper,
   Table,
   TableBody,
@@ -38,10 +39,12 @@ const TypographyTokenRow = ({
   return (
     <StyledTableRow>
       <TableCell component="th" scope="row" sx={{ width: '20%' }}>
-        <Typography
-          variant={token}
+        <Box
+          width="max-content"
           sx={theme => ({ bgcolor: alpha(theme.palette.error.light, 0.18) })}
-        >{`.${token}`}</Typography>
+        >
+          <Typography variant={token}>{`.${token}`}</Typography>
+        </Box>
       </TableCell>
       <StyledTableCell sx={{ width: '20%' }}>{figmaStyle}</StyledTableCell>
       <TableCell sx={{ width: '10%' }}>{`${getFirstFontFamily(
