@@ -95,6 +95,7 @@ import {
 import { MonorailTooltipOverrides } from '../components/Tooltip/themeOverrides.js'
 import { MonorailTreeItemOverrides } from '../components/TreeItem/themeOverrides.js'
 import { MonorailTreeViewOverrides } from '../components/TreeView/themeOverrides.js'
+import { MonorailTypographyOverrides } from '../components/Typography/themeOverrides.js'
 import { baseTheme } from './baseTheme.js'
 
 /**
@@ -190,4 +191,5 @@ export const getThemeComponents = (
   MuiTooltip: MonorailTooltipOverrides,
   MuiTreeItem: MonorailTreeItemOverrides,
   MuiTreeView: MonorailTreeViewOverrides,
+  MuiTypography: MonorailTypographyOverrides,
 })
