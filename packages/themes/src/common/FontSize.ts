@@ -31,9 +31,6 @@ enum Scale {
   LineHeight18 = 18,
   LineHeight16 = 16,
   LineHeight14 = 14,
-
-  LetterSpacing17 = 0.17,
-  LetterSpacing15 = 0.15,
 }
 
 const DEFAULT_ROOT_SIZE = Scale.FontSize16

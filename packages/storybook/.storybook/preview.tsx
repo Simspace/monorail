@@ -48,7 +48,7 @@ export const parameters: Parameters = {
             'Tiers',
           ],
           'Typography',
-          ['Fonts', 'Components'],
+          ['Guidelines', 'Fonts', 'Components'],
           'Layout',
           ['Spacing and Sizing', 'Layout Components'],
           'Shadows',
