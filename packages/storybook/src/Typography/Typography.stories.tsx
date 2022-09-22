@@ -1,9 +1,10 @@
 // Edit this file to add new stories
 import React from 'react'
 import { styled } from '@mui/material'
+import { loremIpsum } from 'lorem-ipsum'
 
 import type { TypographyProps } from '@monorail/components'
-import { Box, Divider, Stack, Typography } from '@monorail/components'
+import { Box, Divider, Slider, Stack, Typography } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 
@@ -105,6 +106,43 @@ export const Variants = story<TypographyProps>(
       docs: {
         description: {
           story: `The Typography component makes it easy to apply a default set of font weights and sizes in your application. Note: you can create custom variants which can be styled with any custom styles.`,
+        },
+      },
+    },
+  },
+)
+
+export const LineClamp = story<TypographyProps>(
+  () => {
+    const [lineClamp, setLineClamp] = React.useState(3)
+    return (
+      <Stack direction="column" minHeight={400} justifyContent="space-between">
+        <Typography lineClamp={lineClamp}>
+          {loremIpsum({ count: 20 })}
+        </Typography>
+        <Box p={2}>
+          <Stack direction="column">
+            <Typography id="lineClamp-value-label" variant="monoBody1">
+              lineClamp={lineClamp}
+            </Typography>
+            <Slider
+              aria-labelledby="lineClamp-value-label"
+              value={lineClamp}
+              onChange={(_, value) => setLineClamp(value as number)}
+              min={1}
+              max={10}
+            />
+          </Stack>
+        </Box>
+      </Stack>
+    )
+  },
+  {
+    parameters: {
+      docs: {
+        description: {
+          story:
+            'The `lineClamp` prop can be used to truncate text to a certain number of lines, while maintaing accessibility (i.e. the text that overflows will still be read by screen readers)',
         },
       },
     },
