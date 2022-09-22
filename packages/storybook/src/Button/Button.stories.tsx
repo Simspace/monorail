@@ -177,14 +177,6 @@ export const ButtonsWithIconsAndLabel = story<ButtonProps>(
                 >
                   {size}
                 </Button>
-                <Button
-                  variant={variant}
-                  size={size}
-                  startIcon={<SelectAllOutlined />}
-                  endIcon={<SelectAllOutlined />}
-                >
-                  {size}
-                </Button>
               </Stack>
             ))}
           </Stack>
