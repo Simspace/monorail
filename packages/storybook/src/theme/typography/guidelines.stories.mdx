@@ -2,51 +2,54 @@ import { Meta } from '@storybook/addon-docs'
 
 import { Alert } from '@monorail/components'
 
+import img from '@monorail/storybook/assets/images/figma-inspect-typography.png'
+
 <Meta title="Theme/Typography/Guidelines" />
 
 ## Guidelines
 
-It is recommended to use our typography tokens at all times. Our tokens have a pre-defined combination of the following properties: `font-family`, `font-size`, `font-weight`, `line-height`, `text-transform`, and `letter-spacing`.
+Always use typography tokens. Our tokens have a pre-defined combination of the following properties: `font-family`, `font-size`, `font-weight`, `line-height`, `text-transform`, and `letter-spacing`.
 
 ### For developers
 
 <Alert severity="warning">
-  There is a known Figma bug that sometimes displays the wrong Style name and/or
-  values. If a font style seems inaccurate (e.g. a bold text that has a
-  font-weight of 400), this is likely the cause.
+  There is a known Figma bug for non-editors where the incorrect Style name
+  and/or values are displayed. If a font style seems inaccurate (e.g., a bold
+  text that has a font-weight of 400), check with your designer.
 </Alert>
 
-If you come across fonts in designs that don’t use Figma’s Typography Styles, consult with your designer/s on what typography token to use.
+Developers should expect that all hi-fi designs use Typography Styles. If you notice a design does not use Typography Styles that match an existing design token in the code, let the designer know their design should be updated.
 
 You can find Figma Styles by inspecting a text in Figma. In the Inspect panel, you should see a **Typography/[Variant]** under Typography. If it’s hidden, it means the text isn’t utilizing a typography token.
 
-You can also check the CSS section in the Inspect panel. There should be a CSS comment above the font style declarations like so:
+You can also check the CSS section in the Inspect panel. The CSS comment above the declarations is the name of the design token.
 
-```css
-/* Typography/H1 */
-font-family: 'IBM Plex Sans';
-font-style: normal;
-font-weight: 300;
-font-size: 36px;
-line-height: 48px;
-```
+<img src={img} alt="Inspecting a Typography component in Figma." />
 
 ### Sizing
 
-In most cases, you won’t need to override font sizes. Here are some options in the event that you do:
+Typography variants apply the correct font size.
 
-1. Some components have a `fontSize` prop. Be sure to check before applying overrides.
+```tsx
+<Typography variant="h1">
+```
 
-   ```tsx
-   <HomeIcon fontSize="large" />
-   ```
+Some components have a `fontSize` prop. Be sure to check before applying overrides.
 
-2. Typography variants’ font sizes can be accessed.
+```tsx
+<HomeIcon fontSize="large" />
+```
 
-   ```tsx
-   <Box sx={theme => ({ fontSize: theme.typography.body1.fontSize })}>
-   // Or
-   <Typography fontSize="body1.fontSize">
-   ```
+If you need to assign a custom pixel value, use `theme.typography.pxToRem()` instead. This should be the last resort.
 
-3. If you need to assign a custom pixel value, use `theme.typography.pxToRem()` instead. This should be the last resort.
+```tsx
+<Logo sx={theme => ({ fontSize: theme.typography.pxToRem(160) })} />
+```
+
+### Truncation
+
+The `Typography` component has a `lineClamp` prop that allows text to be truncated to the specified number of lines with ellipsis. The full text will still be available to be read by screen readers.
+
+```tsx
+<Typography lineClamp={3}>
+```
