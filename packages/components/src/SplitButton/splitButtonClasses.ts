@@ -9,6 +9,10 @@ export interface SplitButtonClasses {
   paper: string
   /** Styles applied to the menu list element */
   menuList: string
+  /** Styles applied to the primary button */
+  primaryButton: string
+  /** Styles applied to the secondary (dropdown) button */
+  secondaryButton: string
 }
 
 export type SplitButtonClassKey = keyof SplitButtonClasses
@@ -19,5 +23,5 @@ export function getSplitButtonUtilityClass(slot: string): string {
 
 export const splitButtonClasses: SplitButtonClasses = generateUtilityClasses(
   'MonorailSplitButton',
-  ['root', 'popper', 'paper', 'menuList'],
+  ['root', 'popper', 'paper', 'menuList', 'primaryButton', 'secondaryButton'],
 )

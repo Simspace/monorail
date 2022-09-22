@@ -1,4 +1,5 @@
 import React from 'react'
+import { Stack } from '@mui/material'
 import type { Story } from '@storybook/react'
 
 import type { SplitButtonProps } from '@monorail/components'
@@ -38,3 +39,11 @@ export const Default = Template.bind({})
 Default.args = {
   variant: 'contained',
 }
+
+export const Sizes = () => (
+  <Stack direction="column" gap={4}>
+    <Template size="small" variant="contained" />
+    <Template size="medium" variant="contained" />
+    <Template size="large" variant="contained" />
+  </Stack>
+)

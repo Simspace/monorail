@@ -1,5 +1,6 @@
 import React from 'react'
 import { ArrowDropDown } from '@mui/icons-material'
+import type { CSSObject } from '@mui/material'
 import composeClasses from '@mui/utils/composeClasses'
 import useId from '@mui/utils/useId'
 import clsx from 'clsx'
@@ -14,16 +15,58 @@ import { MenuItem } from '../MenuItem.js'
 import { MenuList } from '../MenuList.js'
 import { Paper } from '../Paper.js'
 import { Popper } from '../Popper.js'
-import { getSplitButtonUtilityClass } from './splitButtonClasses.js'
+import type { SplitButtonClassKey } from './splitButtonClasses.js'
+import {
+  getSplitButtonUtilityClass,
+  splitButtonClasses,
+} from './splitButtonClasses.js'
 import type { SplitButtonProps } from './splitButtonProps.js'
 
-interface SplitButtonOwnerState extends SplitButtonProps {}
+interface SplitButtonOwnerState extends Omit<SplitButtonProps, 'size'> {
+  size: NonNullable<SplitButtonProps['size']>
+}
+
+function overridesResolver(
+  props: { ownerState: SplitButtonOwnerState },
+  styles: Partial<Record<SplitButtonClassKey, CSSObject>>,
+) {
+  return [
+    { [`& .${splitButtonClasses.menuList}`]: styles.menuList },
+    { [`& .${splitButtonClasses.paper}`]: styles.paper },
+    { [`& .${splitButtonClasses.popper}`]: styles.popper },
+    { [`& .${splitButtonClasses.primaryButton}`]: styles.primaryButton },
+    { [`& .${splitButtonClasses.secondaryButton}`]: styles.secondaryButton },
+    styles.root,
+  ]
+}
 
 const SplitButtonRoot = styled(ButtonGroup, {
   name: 'MonorailSplitButton',
   slot: 'Root',
-  overridesResolver: (props, styles) => styles.root,
-})({})
+  overridesResolver,
+})<{ ownerState: SplitButtonOwnerState }>(({ theme, ownerState }) => ({
+  [`& .${splitButtonClasses.secondaryButton}`]: {
+    ...(ownerState.size === 'small' && {
+      paddingLeft: theme.spacing(2),
+      paddingRight: theme.spacing(2),
+    }),
+    ...(ownerState.size === 'medium' && {
+      paddingLeft: theme.spacing(3),
+      paddingRight: theme.spacing(3),
+    }),
+    ...(ownerState.size === 'large' && {
+      paddingLeft: theme.spacing(4),
+      paddingRight: theme.spacing(4),
+    }),
+  },
+}))
+
+const SplitButtonPopper = styled(Popper, {
+  name: 'MonorailSplitButton',
+  slot: 'Popper',
+})(({ theme }) => ({
+  zIndex: theme.zIndex.tooltip,
+}))
 
 /**
  * A component composed of ButtonGroup, Popper, Paper, and MenuList. Has a main button and a secondary
@@ -44,6 +87,7 @@ export const SplitButton = React.forwardRef(function SplitButton(inProps, ref) {
     components = {},
     componentsProps = {},
     select = false,
+    size = 'medium',
     ...other
   } = props
 
@@ -53,7 +97,7 @@ export const SplitButton = React.forwardRef(function SplitButton(inProps, ref) {
   const [selectedIndex, setSelectedIndex] = React.useState(0)
   const anchorRef = React.useRef<HTMLButtonElement>(null)
 
-  const PopperComponent = components.Popper ?? Popper
+  const PopperComponent = components.Popper ?? SplitButtonPopper
 
   const TransitionComponent = components.Transition ?? Grow
 
@@ -98,20 +142,38 @@ export const SplitButton = React.forwardRef(function SplitButton(inProps, ref) {
     }
   }
 
-  const classes = useUtilityClasses(props)
+  const ownerState = {
+    ...props,
+    size,
+  }
+
+  const classes = useUtilityClasses(ownerState)
 
   return (
     <React.Fragment>
       <SplitButtonRoot
         {...other}
+        ownerState={ownerState}
+        size={size}
         ref={ref}
         className={clsx(classes.root, props.className)}
       >
-        <Button {...componentsProps.mainButton} onClick={handleMainButtonClick}>
+        <Button
+          {...componentsProps.primaryButton}
+          className={clsx(
+            componentsProps.primaryButton?.className,
+            classes.primaryButton,
+          )}
+          onClick={handleMainButtonClick}
+        >
           {select ? options[selectedIndex].title : options[0].title}
         </Button>
         <Button
           {...componentsProps.secondaryButton}
+          className={clsx(
+            componentsProps.secondaryButton?.className,
+            classes.secondaryButton,
+          )}
           ref={anchorRef}
           onClick={handleToggle}
           aria-controls={open ? menuListId : undefined}
@@ -188,6 +250,8 @@ function useUtilityClasses(ownerState: SplitButtonOwnerState) {
     popper: ['popper'],
     paper: ['paper'],
     menuList: ['menuList'],
+    primaryButton: ['primaryButton'],
+    secondaryButton: ['secondaryButton'],
   }
 
   return composeClasses(slots, getSplitButtonUtilityClass, classes)

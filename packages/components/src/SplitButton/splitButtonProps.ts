@@ -91,12 +91,12 @@ export interface SplitButtonProps
      */
     menuList?: Partial<MenuListProps>
     /**
-     * Props applied to the main Button component
+     * Props applied to the primary Button component
      * @default {}
      */
-    mainButton?: Partial<ButtonProps>
+    primaryButton?: Partial<ButtonProps>
     /**
-     * Props applied to the secondary Button component
+     * Props applied to the secondary (dropdown) Button component
      * @default {}
      */
     secondaryButton?: Partial<ButtonProps>
