@@ -89,7 +89,7 @@ async function writePackageJson(project: Project, workspace: Workspace) {
   rawManifest.exports = exports;
 
   rawManifest.publishConfig = {
-    access: "restricted",
+    access: "public",
   };
 
   const content = JSON.stringify(rawManifest, null, 2);
@@ -132,6 +132,8 @@ if (await exists("./build/cjs")) {
 if (await exists("./build/dts")) {
   await exec("cp -r ./build/dts/* ./dist");
 }
+
+await exec("cp ../../LICENSE ./dist")
 
 await writePackageJson(project, workspace);
 

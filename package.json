@@ -1,10 +1,10 @@
 {
   "name": "monorail",
-  "version": "0.0.3",
+  "version": "0.0.0",
   "private": true,
   "description": "Monorail 3",
   "repository": "https://gitlab.com/simspace/monorail",
-  "license": "UNLICENSED",
+  "license": "Apache-2.0",
   "author": "SimSpace",
   "workspaces": [
     "packages/*"

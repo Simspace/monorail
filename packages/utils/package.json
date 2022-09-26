@@ -1,6 +1,7 @@
 {
   "name": "@monorail/utils",
   "version": "0.0.13",
+  "license": "Apache-2.0",
   "exports": {
     "./*": {
       "import": "./build/esm/*.js",
