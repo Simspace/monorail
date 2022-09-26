@@ -133,12 +133,6 @@ publish:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH || $CI_COMMIT_REF_NAME =~ /^v\d+\.\d+\.\d+.*$/
   script:
     - |
-      {
-        echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}"
-      } >> .npmrc
-      echo ".npmrc" >> .npmignore
-      echo "Created the following .npmrc:"
-      cat .npmrc
       for f in ./packages/* ;
         do if [ -d "$f" ]; then
           echo $f
@@ -148,6 +142,14 @@ publish:
             cd ../../
             continue
           fi
+
+          {
+            echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}"
+          } >> dist/.npmrc
+
+          echo ".npmrc" >> dist/.npmignore
+          echo "Created the following .npmrc:"
+          cat dist/.npmrc
 
           # Extract a few values from package.json
           NPM_PACKAGE_NAME=$(node -p "require('./package.json').name")
