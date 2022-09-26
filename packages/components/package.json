@@ -1,8 +1,7 @@
 {
   "name": "@monorail/components",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "description": "Monorail 3 Components Library",
-  "repository": "https://gitlab.com/simspace/monorail",
   "license": "Apache-2.0",
   "author": "SimSpace",
   "exports": {
