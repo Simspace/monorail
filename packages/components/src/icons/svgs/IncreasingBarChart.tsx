@@ -3,11 +3,11 @@ import type { SvgIconProps } from '@mui/material/SvgIcon'
 import SvgIcon from '@mui/material/SvgIcon'
 
 export const IncreasingBarChart = (props: SvgIconProps) => (
-  <SvgIcon viewBox="0 0 12 12" {...props}>
+  <SvgIcon {...props}>
     <path
-      fillRule="evenodd"
-      clipRule="evenodd"
-      d="M8.5 2H10v8H8.5V2zm-6 5H4v3H2.5V7zM7 4.5H5.5V10H7V4.5z"
+      fill-rule="evenodd"
+      clip-rule="evenodd"
+      d="M17 4H20V20H17V4ZM5 14H8V20H5V14ZM14 9H11V20H14V9Z"
     />
   </SvgIcon>
 )

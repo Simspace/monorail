@@ -3,7 +3,7 @@ import type { SvgIconProps } from '@mui/material/SvgIcon'
 import SvgIcon from '@mui/material/SvgIcon'
 
 export const Puppet = (props: SvgIconProps) => (
-  <SvgIcon viewBox={'0 0 24 24'} {...props}>
+  <SvgIcon {...props}>
     <path
       fillRule="evenodd"
       clipRule="evenodd"

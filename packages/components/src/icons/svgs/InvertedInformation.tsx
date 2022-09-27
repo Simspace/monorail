@@ -2,14 +2,12 @@ import React from 'react'
 import type { SvgIconProps } from '@mui/material/SvgIcon'
 import SvgIcon from '@mui/material/SvgIcon'
 
-export function InvertedInformation(props: SvgIconProps) {
-  return (
-    <SvgIcon width="10" height="10" viewBox="0 0 10 10" {...props}>
-      <path
-        fillRule="evenodd"
-        clipRule="evenodd"
-        d="M5 0C2.24 0 0 2.24 0 5C0 7.76 2.24 10 5 10C7.76 10 10 7.76 10 5C10 2.24 7.76 0 5 0ZM4.5 7.5V4.5H5.5V7.5H4.5ZM4.5 2.5V3.5H5.5V2.5H4.5Z"
-      />
-    </SvgIcon>
-  )
-}
+export const InvertedInformation = (props: SvgIconProps) => (
+  <SvgIcon {...props}>
+    <path
+      fill-rule="evenodd"
+      clip-rule="evenodd"
+      d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM11 17V11H13V17H11ZM11 7V9H13V7H11Z"
+    />
+  </SvgIcon>
+)

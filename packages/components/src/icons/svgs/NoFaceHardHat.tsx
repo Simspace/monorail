@@ -3,7 +3,7 @@ import type { SvgIconProps } from '@mui/material/SvgIcon'
 import SvgIcon from '@mui/material/SvgIcon'
 
 export const NoFaceHardHat = (props: SvgIconProps) => (
-  <SvgIcon width="24" height="24" viewBox="0 0 24 24" fill="none" {...props}>
+  <SvgIcon {...props}>
     <g clipPath="url(#noFaceHardhatClip0)">
       <path
         fillRule="evenodd"

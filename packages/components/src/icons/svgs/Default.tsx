@@ -3,7 +3,7 @@ import type { SvgIconProps } from '@mui/material/SvgIcon'
 import SvgIcon from '@mui/material/SvgIcon'
 
 export const Default = (props: SvgIconProps) => (
-  <SvgIcon viewBox="0 0 24 24" {...props}>
+  <SvgIcon {...props}>
     <path d="M1 1H2V0H0V2H1V1Z" fill="#757575" />
     <path d="M6 1H10V0H6V1Z" fill="#757575" />
     <path d="M14 1H18V0H14V1Z" fill="#757575" />

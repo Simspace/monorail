@@ -3,7 +3,7 @@ import type { SvgIconProps } from '@mui/material/SvgIcon'
 import SvgIcon from '@mui/material/SvgIcon'
 
 export const PersonSearch = (props: SvgIconProps) => (
-  <SvgIcon width="24" height="24" fill="none" viewBox="0 0 24 24" {...props}>
+  <SvgIcon {...props}>
     <path d="M15.951 15.32h.814l5.135 5.147L20.367 22l-5.146-5.136v-.813l.73-.73z"></path>
     <path
       fillRule="evenodd"
