@@ -3,12 +3,12 @@ import type { SvgIconProps } from '@mui/material/SvgIcon'
 import SvgIcon from '@mui/material/SvgIcon'
 
 export const Ribbon = (props: SvgIconProps) => (
-  <SvgIcon width={10} height={13} viewBox="0 0 10 13" fill="none" {...props}>
+  <SvgIcon {...props}>
     <path
-      fillRule="evenodd"
-      clipRule="evenodd"
-      d="M1.389 1.857v6.81L6.11 7.119l1.667.62V13l-3.89-1.857L0 13V3.095c0-.68.5-1.238 1.111-1.238h.278z"
+      fill-rule="evenodd"
+      clip-rule="evenodd"
+      d="M5.5 5V16L14 13.5L17 14.5V23L10 20L3 23V7C3 5.9 3.9 5 5 5H5.5Z"
     />
-    <path d="M8.889 0H3.333c-.61 0-1.11.371-1.11.825V7.43L6.11 6.19 10 7.43V.825C10 .371 9.5 0 8.889 0z" />
+    <path d="M19 2H9C7.9 2 7 2.6 7 3.33333V14L14 12L21 14V3.33333C21 2.6 20.1 2 19 2Z" />
   </SvgIcon>
 )
