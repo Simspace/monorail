@@ -66,7 +66,7 @@ export const parameters: Parameters = {
   },
 }
 
-const enum ThemeOption {
+enum ThemeOption {
   Classic = 'Classic',
   PCTE = 'PCTE',
   Rebrand = 'Rebrand',

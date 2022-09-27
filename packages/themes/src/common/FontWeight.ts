@@ -1,4 +1,4 @@
-export const enum FontWeight {
+export enum FontWeight {
   ExtraLight = 200,
   Light = 300,
   Book = 400,
