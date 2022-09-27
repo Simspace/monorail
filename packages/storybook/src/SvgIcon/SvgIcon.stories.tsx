@@ -358,20 +358,9 @@ export const Illustrations = story<IconProps>(() => (
         }
       />
       <IconContainer
-        label="Target Archery"
-        icon={
-          <Icons.TargetArchery
-            sx={{
-              width: ILLUSTRATION_SIZE,
-              height: ILLUSTRATION_SIZE,
-            }}
-          />
-        }
-      />
-      <IconContainer
         label="Target Empty"
         icon={
-          <Icons.TargetEmpty
+          <Icons.EmptyTarget
             sx={{
               width: ILLUSTRATION_SIZE,
               height: ILLUSTRATION_SIZE,

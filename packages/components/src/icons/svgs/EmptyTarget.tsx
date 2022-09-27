@@ -2,7 +2,7 @@ import React from 'react'
 import type { SvgIconProps } from '@mui/material/SvgIcon'
 import SvgIcon from '@mui/material/SvgIcon'
 
-export const TargetEmpty = (props: SvgIconProps) => {
+export const EmptyTarget = (props: SvgIconProps) => {
   return (
     <SvgIcon width="56" height="56" viewBox="0 0 56 56" fill="none" {...props}>
       <path
