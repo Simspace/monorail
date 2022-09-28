@@ -61,7 +61,7 @@ export const Animations = story<SkeletonProps>(
   () => {
     return (
       <Box sx={{ width: 300 }}>
-        <Skeleton />
+        <Skeleton animation="pulse" />
         <Skeleton animation="wave" />
         <Skeleton animation={false} />
       </Box>
@@ -125,7 +125,12 @@ const YouTube = (props: MediaProps) => {
               src={item.src}
             />
           ) : (
-            <Skeleton variant="rectangular" width={210} height={118} />
+            <Skeleton
+              animation="pulse"
+              variant="rectangular"
+              width={210}
+              height={118}
+            />
           )}
           {item !== undefined ? (
             <Box sx={{ pr: 4 }}>
@@ -145,8 +150,8 @@ const YouTube = (props: MediaProps) => {
             </Box>
           ) : (
             <Box sx={{ pt: 1 }}>
-              <Skeleton />
-              <Skeleton width="60%" />
+              <Skeleton animation="pulse" />
+              <Skeleton animation="pulse" width="60%" />
             </Box>
           )}
         </Box>
