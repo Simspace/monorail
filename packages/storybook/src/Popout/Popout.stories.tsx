@@ -31,18 +31,15 @@ const Template: Story<Partial<PopoutProps>> = args => {
           </IconButton>
         </Stack>
       )}
-      {isPopoutOpen && (
-        <>
-          <Typography>Popout is currently open</Typography>
-          <Popout
-            title="Console"
-            onWindowClose={() => setPopoutOpen(false)}
-            {...args}
-          >
-            <Typography>This content is in the Popout</Typography>
-          </Popout>
-        </>
-      )}
+      {isPopoutOpen && <Typography>Popout is currently open</Typography>}
+      <Popout
+        title="Console"
+        onWindowClose={() => setPopoutOpen(false)}
+        open={isPopoutOpen}
+        {...args}
+      >
+        <Typography>This content is in the Popout</Typography>
+      </Popout>
     </Box>
   )
 }

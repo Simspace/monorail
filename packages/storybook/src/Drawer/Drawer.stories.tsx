@@ -407,7 +407,11 @@ export const PersistentDrawer = story<DrawerProps>(
           open={open}
         >
           <PersistentDrawerHeader>
-            <IconButton onClick={handleDrawerClose} size="large">
+            <IconButton
+              onClick={handleDrawerClose}
+              size="large"
+              aria-label="close"
+            >
               {theme.direction === 'ltr' ? (
                 <ChevronLeftIcon />
               ) : (

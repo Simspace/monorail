@@ -935,6 +935,7 @@ export const CustomizedList = story<ListProps>(
                   </ListItemButton>
                   <Tooltip title="Project Settings">
                     <IconButton
+                      aria-label="settings"
                       size="large"
                       sx={{
                         '& svg': {

@@ -3,6 +3,8 @@ import type React from 'react'
 import type { MenuItemProps, MenuListProps } from '@mui/material'
 import type { TransitionProps } from '@mui/material/transitions'
 
+import type { RequireKeysUnion } from '@monorail/types'
+
 import type { ButtonProps } from '../Button.js'
 import type { ButtonGroupProps } from '../ButtonGroup.js'
 import type { PaperProps } from '../Paper.js'
@@ -66,7 +68,7 @@ export interface SplitButtonProps
    * The props used for each slot inside the Popup.
    * @default {}
    */
-  componentsProps?: {
+  componentsProps: {
     /**
      * Props applied to the Popper element.
      * @default {}
@@ -99,6 +101,9 @@ export interface SplitButtonProps
      * Props applied to the secondary (dropdown) Button component
      * @default {}
      */
-    secondaryButton?: Partial<ButtonProps>
+    secondaryButton: RequireKeysUnion<
+      Partial<ButtonProps>,
+      ['aria-label', 'aria-labelledby', 'aria-hidden']
+    >
   }
 }

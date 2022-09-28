@@ -19,7 +19,7 @@ export default { title: 'Inputs/IconButton', component: IconButton }
  * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
  */
 const Template = story<IconButtonProps>(
-  (args: IconButtonProps) => (
+  (args: Partial<IconButtonProps>) => (
     <IconButton aria-label="default" {...args}>
       <DeleteIcon />
     </IconButton>

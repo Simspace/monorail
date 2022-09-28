@@ -156,7 +156,14 @@ export const SelectionDialog = story(() => {
     <div style={{ display: 'flex', justifyContent: 'center' }}>
       <Button onClick={handleClickOpen}>Open dialog</Button>
       <Dialog maxWidth="sm" fullWidth open={open} onClose={handleClickClose}>
-        <DialogHeader title="Dialog Title" />
+        <DialogHeader
+          title="Dialog Title"
+          componentsProps={{
+            closeButton: {
+              'aria-label': 'close',
+            },
+          }}
+        />
         <DialogContent disablePadding>
           <List disablePadding>{items}</List>
         </DialogContent>

@@ -2,8 +2,9 @@ import type React from 'react'
 import type { Theme } from '@mui/material'
 import type { SxProps } from '@mui/system'
 
-import type { StandardElementProps } from '@monorail/types'
+import type { RequireKeysUnion, StandardElementProps } from '@monorail/types'
 
+import type { IconButtonProps } from '../IconButton.js'
 import type { TypographyProps } from '../Typography.js'
 import type { DialogHeaderClasses } from './dialogHeaderClasses.js'
 
@@ -26,12 +27,20 @@ export interface DialogHeaderProps
    * The props used for each slot inside.
    * @default {}
    */
-  componentsProps?: {
+  componentsProps: {
     /**
      * Props applied to the Typography component
      * @default {}
      */
-    typography?: TypographyProps
+    typography?: Partial<TypographyProps>
+    /**
+     * Props applied to the IconButton component
+     * @default {}
+     */
+    closeButton: RequireKeysUnion<
+      Partial<IconButtonProps>,
+      ['aria-label', 'aria-labelledby']
+    >
   }
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.

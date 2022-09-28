@@ -350,8 +350,12 @@ export const AccountMenu = story<MenuProps>(
           <Typography sx={{ minWidth: 100 }}>Contact</Typography>
           <Typography sx={{ minWidth: 100 }}>Profile</Typography>
           <Tooltip title="Account settings">
-            <IconButton onClick={handleClick} sx={{ ml: 2.5 }}>
-              <Avatar>M</Avatar>
+            <IconButton
+              aria-labelledby="menu-avatar-1"
+              onClick={handleClick}
+              sx={{ ml: 2.5 }}
+            >
+              <Avatar id="menu-avatar-1">M</Avatar>
             </IconButton>
           </Tooltip>
         </Box>

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/unified-signatures */
 /* eslint-disable eqeqeq */
 import React from 'react'
 import { Close } from '@mui/icons-material'
@@ -11,7 +12,8 @@ import { IconButton } from '../IconButton.js'
 import { Typography } from '../Typography.js'
 import type { DialogHeaderProps } from './dialogHeaderProps.js'
 
-interface DialogHeaderRootProps extends Omit<DialogHeaderProps, 'title'> {
+interface DialogHeaderRootProps
+  extends Omit<DialogHeaderProps, 'title' | 'componentsProps'> {
   ownerState: DialogHeaderProps
 }
 
@@ -49,61 +51,61 @@ const DialogIconContainer = styled('div', {
  *
  * - [DialogHeader](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/feedback-dialog-dialogheader--default)
  */
-export const DialogHeader: (props: DialogHeaderProps) => JSX.Element =
-  React.forwardRef(function DialogHeader(
-    inProps: DialogHeaderProps,
-    ref: React.ForwardedRef<HTMLDivElement>,
-  ) {
-    const props = useThemeProps({
-      props: inProps,
-      name: 'MonorailDialogHeader',
-    })
+export const DialogHeader = React.forwardRef(function DialogHeader(
+  inProps,
+  ref,
+) {
+  const props = useThemeProps({
+    props: inProps,
+    name: 'MonorailDialogHeader',
+  })
 
-    const {
-      title: titleProp,
-      classes = {},
-      componentsProps = {},
-      icon,
-      ...other
-    } = props
+  const {
+    title: titleProp,
+    classes = {},
+    componentsProps,
+    icon,
+    ...other
+  } = props
 
-    const dialogEvents = React.useContext(DialogEventContext)
+  const dialogEvents = React.useContext(DialogEventContext)
 
-    let title = titleProp
-    if (title != null && (title as React.ReactElement).type !== Typography) {
-      title = (
-        <Typography
-          component="span"
-          variant="h3"
-          className={classes.title}
-          flex="1 0 auto"
-          {...componentsProps.typography}
-        >
-          {title}
-        </Typography>
-      )
-    }
-
-    const closeButton = React.useMemo(
-      () => (
-        <IconButton
-          shape="rounded"
-          onClick={() => {
-            dialogEvents.onClose?.({}, 'headerCloseButtonClick')
-          }}
-        >
-          <Close />
-        </IconButton>
-      ),
-      [dialogEvents],
-    )
-
-    return (
-      <DialogHeaderRoot ref={ref} ownerState={props} {...other}>
-        {icon && <DialogIconContainer>{icon}</DialogIconContainer>}
+  let title = titleProp
+  if (title != null && (title as React.ReactElement).type !== Typography) {
+    title = (
+      <Typography
+        component="span"
+        variant="h3"
+        className={classes.title}
+        flex="1 0 auto"
+        {...componentsProps.typography}
+      >
         {title}
-        <Box sx={{ width: '100%' }} />
-        {closeButton}
-      </DialogHeaderRoot>
+      </Typography>
     )
-  }) as (props: DialogHeaderProps) => JSX.Element
+  }
+
+  const closeButton = React.useMemo(
+    () => (
+      <IconButton
+        shape="rounded"
+        onClick={() => {
+          dialogEvents.onClose?.({}, 'headerCloseButtonClick')
+        }}
+        {...componentsProps.closeButton}
+      >
+        <Close />
+      </IconButton>
+    ),
+    [dialogEvents, componentsProps.closeButton],
+  )
+
+  return (
+    <DialogHeaderRoot ref={ref} ownerState={props} {...other}>
+      {icon && <DialogIconContainer>{icon}</DialogIconContainer>}
+      {title}
+      <Box sx={{ width: '100%' }} />
+      {closeButton}
+    </DialogHeaderRoot>
+  )
+}) as (props: DialogHeaderProps) => JSX.Element

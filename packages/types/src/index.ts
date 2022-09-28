@@ -1,2 +1,5 @@
 export type {} from './themeAugmentation'
 export * from './standardElementProps.js'
+export * from './OverridableComponent.js'
+export * from './ExtendButtonBase.js'
+export * from './RequireKeysUnion.js'

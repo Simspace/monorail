@@ -85,7 +85,7 @@ export const SplitButton = React.forwardRef(function SplitButton(inProps, ref) {
   const {
     options,
     components = {},
-    componentsProps = {},
+    componentsProps,
     select = false,
     size = 'medium',
     ...other

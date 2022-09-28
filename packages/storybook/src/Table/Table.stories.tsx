@@ -407,13 +407,13 @@ export const SortingAndSelecting = story<TableProps>(
           )}
           {numSelected > 0 ? (
             <Tooltip title="Delete">
-              <IconButton size="large">
+              <IconButton aria-label="delete" size="large">
                 <DeleteIcon />
               </IconButton>
             </Tooltip>
           ) : (
             <Tooltip title="Filter list">
-              <IconButton size="large">
+              <IconButton aria-label="filter" size="large">
                 <FilterListIcon />
               </IconButton>
             </Tooltip>

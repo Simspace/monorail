@@ -47,7 +47,7 @@ export const Default = story(Template)
 
 export const BasicTooltip = story<TooltipProps>(() => (
   <Tooltip title="Delete">
-    <IconButton size="large">
+    <IconButton aria-label="delete" size="large">
       <DeleteIcon />
     </IconButton>
   </Tooltip>

@@ -56,7 +56,11 @@ const SimpleDialog = ({
 
   return (
     <Dialog onClose={handleClose} {...props}>
-      <DialogHeader title="Dialog Header" icon={<Person color="default" />} />
+      <DialogHeader
+        title="Dialog Header"
+        icon={<Person color="default" />}
+        componentsProps={{ closeButton: { 'aria-label': 'close' } }}
+      />
       <DialogContent>
         <DialogContentText>
           Content goes here. Detach to set a fixed height on the content area.

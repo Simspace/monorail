@@ -1,11 +1,22 @@
-import type { ExtendButtonBase, IconButtonTypeMap } from '@mui/material'
+import type { IconButtonTypeMap } from '@mui/material'
 import { IconButton as MuiIconButton } from '@mui/material'
+
+import type { ExtendButtonBase, OverrideProps } from '@monorail/types'
 
 declare module '@mui/material/IconButton' {
   interface IconButtonPropsColorOverrides {
     secondary: false
   }
 }
+
+export type IconButtonProps<
+  D extends React.ElementType = IconButtonTypeMap['defaultComponent'],
+  P = {},
+> = OverrideProps<
+  IconButtonTypeMap<P, D>,
+  D,
+  ['aria-label', 'aria-labelledby', 'aria-hidden']
+>
 
 /**
  * Refer to the [Icons](https://mui.com/material-ui/icons/) section of the documentation
@@ -21,14 +32,15 @@ declare module '@mui/material/IconButton' {
  * - [IconButton API](https://mui.com/material-ui/api/icon-button/)
  * - inherits [ButtonBase API](https://mui.com/material-ui/api/button-base/)
  */
-export const IconButton: ExtendButtonBase<
+export const IconButton = MuiIconButton as ExtendButtonBase<
   IconButtonTypeMap<
     {
       variant?: 'contained' | 'outlined' | 'chromeless'
       shape?: 'circular' | 'rounded'
     },
     'button'
-  >
-> = MuiIconButton
+  >,
+  ['aria-label', 'aria-labelledby', 'aria-hidden']
+>
 
 export * from '@mui/material/IconButton'
