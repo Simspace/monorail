@@ -28,8 +28,79 @@ export default {
   title: 'Patterns/ConsoleTask',
 }
 
+const Task1 = () => (
+  <>
+    <Typography variant="h2" pb={6}>
+      Task Content
+    </Typography>
+    <Typography variant="body1">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    </Typography>
+    <Typography variant="body1">
+      Mi quis hendrerit dolor magna eget est lorem. A arcu cursus vitae congue
+      mauris rhoncus aenean vel.
+    </Typography>
+    <Typography variant="body1">
+      Ut diam quam nulla porttitor massa id neque aliquam. Quis eleifend quam
+      adipiscing vitae proin sagittis nisl rhoncus mattis. Est ultricies integer
+      quis auctor elit sed.{' '}
+    </Typography>
+    <Typography variant="body1">
+      Integer vitae justo eget magna fermentum iaculis eu non diam.
+    </Typography>
+  </>
+)
+
+const Task2 = () => (
+  <>
+    <Typography variant="h2" pb={6}>
+      Task Content
+    </Typography>
+    <Typography variant="body1">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    </Typography>
+    <Typography variant="body1">
+      Mi quis hendrerit dolor magna eget est lorem. A arcu cursus vitae congue
+      mauris rhoncus aenean vel.
+    </Typography>
+    <Typography variant="body1">
+      Ut diam quam nulla porttitor massa id neque aliquam. Quis eleifend quam
+      adipiscing vitae proin sagittis nisl rhoncus mattis. Est ultricies integer
+      quis auctor elit sed.{' '}
+    </Typography>
+    <Typography variant="body1">
+      Integer vitae justo eget magna fermentum iaculis eu non diam.
+    </Typography>
+    <Typography variant="body1">
+      Mi quis hendrerit dolor magna eget est lorem. A arcu cursus vitae congue
+      mauris rhoncus aenean vel.
+    </Typography>
+    <Typography variant="body1">
+      Ut diam quam nulla porttitor massa id neque aliquam. Quis eleifend quam
+      adipiscing vitae proin sagittis nisl rhoncus mattis. Est ultricies integer
+      quis auctor elit sed.{' '}
+    </Typography>
+    <Typography variant="body1">
+      Integer vitae justo eget magna fermentum iaculis eu non diam.
+    </Typography>
+    <Typography variant="body1">
+      Mi quis hendrerit dolor magna eget est lorem. A arcu cursus vitae congue
+      mauris rhoncus aenean vel.
+    </Typography>
+    <Typography variant="body1">
+      Ut diam quam nulla porttitor massa id neque aliquam. Quis eleifend quam
+      adipiscing vitae proin sagittis nisl rhoncus mattis. Est ultricies integer
+      quis auctor elit sed.{' '}
+    </Typography>
+    <Typography variant="body1">
+      Integer vitae justo eget magna fermentum iaculis eu non diam.
+    </Typography>
+  </>
+)
+
 const Template: Story<{}> = () => {
   const [isPopoutOpen, setPopoutOpen] = React.useState(false)
+  const [task, setTask] = React.useState(0)
   return (
     <>
       <Container component="header">
@@ -57,30 +128,22 @@ const Template: Story<{}> = () => {
                   },
                 ]}
               >
-                <Typography variant="h2" pb={6}>
-                  Task Content
-                </Typography>
-                <Typography variant="body1">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                </Typography>
-                <Typography variant="body1">
-                  Mi quis hendrerit dolor magna eget est lorem. A arcu cursus
-                  vitae congue mauris rhoncus aenean vel.
-                </Typography>
-                <Typography variant="body1">
-                  Ut diam quam nulla porttitor massa id neque aliquam. Quis
-                  eleifend quam adipiscing vitae proin sagittis nisl rhoncus
-                  mattis. Est ultricies integer quis auctor elit sed.{' '}
-                </Typography>
-                <Typography variant="body1">
-                  Integer vitae justo eget magna fermentum iaculis eu non diam.
-                </Typography>
+                {task % 2 === 0 ? <Task1 /> : <Task2 />}
               </Paper>
               <Stack py={3} direction="row" justifyContent="space-between">
-                <Button startIcon={<ChevronDoubleLeft />} variant="outlined">
+                <Button
+                  onClick={() => setTask(t => t - 1)}
+                  startIcon={<ChevronDoubleLeft />}
+                  variant="outlined"
+                >
                   Previous
                 </Button>
-                <Button endIcon={<ChevronDoubleRight />}>Next</Button>
+                <Button
+                  onClick={() => setTask(t => t + 1)}
+                  endIcon={<ChevronDoubleRight />}
+                >
+                  Next
+                </Button>
               </Stack>
             </Box>
           </ResizableElement>

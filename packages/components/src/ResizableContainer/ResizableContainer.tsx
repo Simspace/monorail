@@ -444,16 +444,14 @@ export const ResizableContainer = React.forwardRef(function ResizableContainer(
       setFlexData(computeInitialFlexData())
     }
 
-    if (!isInitialized.current) {
-      for (const element of processedChildren.current) {
-        if (!element.ref || !element.ref.current) {
-          return
-        }
+    for (const element of processedChildren.current) {
+      if (!element.ref || !element.ref.current) {
+        return
       }
-      computeSize(processedChildren.current)
-      isInitialized.current = true
-      events.current.dispatchEvent('forceUpdate', undefined)
     }
+    computeSize(processedChildren.current)
+    isInitialized.current = true
+    events.current.dispatchEvent('forceUpdate', undefined)
   })
 
   useEnhancedEffect(() => {
@@ -484,12 +482,12 @@ export const ResizableContainer = React.forwardRef(function ResizableContainer(
   const schedule = useRequestAnimationFrame()
 
   const handleParentResize = React.useCallback(() => {
-    schedule(() => {
-      if (isInitialized.current) {
-        computeSize(processedChildren.current)
-        forceUpdate()
-      }
-    })
+    // schedule(() => {
+    if (isInitialized.current) {
+      computeSize(processedChildren.current)
+      forceUpdate()
+    }
+    // })
   }, [computeSize, forceUpdate, schedule])
 
   useResizeObserver({
