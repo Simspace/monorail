@@ -10,5 +10,9 @@ export const MonorailSelectOverrides: Components<Theme>['MuiSelect'] = {
       },
     },
   },
-  styleOverrides: {},
+  styleOverrides: {
+    icon: ({ theme }) => ({
+      color: theme.palette.default.main,
+    }),
+  },
 }

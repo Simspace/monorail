@@ -38,5 +38,8 @@ export const MonorailAccordionSummaryOverrides: Components<Theme>['MuiAccordionS
           },
         }
       },
+      expandIconWrapper: ({ theme }) => ({
+        color: theme.palette.default.main,
+      }),
     },
   }
