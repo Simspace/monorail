@@ -125,7 +125,7 @@ export const BadgeVisibility = story(
     return (
       <Box
         sx={{
-          color: 'action.active',
+          color: 'default.main',
           display: 'flex',
           flexDirection: 'column',
           '& > *': {
@@ -188,7 +188,7 @@ export const BadgeVisibility = story(
 
 export const ShowZeroBadge = story(
   () => (
-    <Stack spacing={4} direction="row" sx={{ color: 'action.active' }}>
+    <Stack spacing={4} direction="row" sx={{ color: 'default.main' }}>
       <Badge badgeContent={0}>
         <MailIcon />
       </Badge>
@@ -211,7 +211,7 @@ export const ShowZeroBadge = story(
 
 export const MaximumValue = story(
   () => (
-    <Stack spacing={8} direction="row" sx={{ color: 'action.active' }}>
+    <Stack spacing={8} direction="row" sx={{ color: 'default.main' }}>
       <Badge badgeContent={99}>
         <MailIcon />
       </Badge>
@@ -237,7 +237,7 @@ export const MaximumValue = story(
 
 export const DotBadge = story(
   () => (
-    <Box sx={{ color: 'action.active' }}>
+    <Box sx={{ color: 'default.main' }}>
       <Badge variant="dot">
         <MailIcon />
       </Badge>
