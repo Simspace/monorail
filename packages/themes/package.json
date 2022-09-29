@@ -1,6 +1,6 @@
 {
   "name": "@monorail/themes",
-  "version": "0.0.15",
+  "version": "0.0.16",
   "description": "Monorail 3 Themes Library",
   "license": "Apache-2.0",
   "author": "SimSpace",
@@ -40,16 +40,20 @@
     ]
   },
   "dependencies": {
-    "@monorail/types": "workspace:*",
+    "@monorail/types": "workspace:*"
+  },
+  "devDependencies": {
+    "@monorail/scripts": "workspace:*",
     "@mui/icons-material": "5.8.4",
     "@mui/lab": "5.0.0-alpha.92",
     "@mui/material": "5.9.2",
-    "@mui/x-date-pickers-pro": "^5.0.0-beta.3"
-  },
-  "devDependencies": {
-    "@monorail/scripts": "workspace:*"
+    "@mui/x-date-pickers-pro": "5.0.0-beta.3"
   },
   "peerDependencies": {
+    "@mui/icons-material": "^5.8.4",
+    "@mui/lab": "^5.0.0-alpha.92",
+    "@mui/material": "^5.9.2",
+    "@mui/x-date-pickers-pro": "^5.0.0-beta.3",
     "react": ">=17.0.2"
   },
   "publishConfig": {

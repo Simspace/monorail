@@ -1,6 +1,6 @@
 {
   "name": "@monorail/utils",
-  "version": "0.0.15",
+  "version": "0.0.16",
   "license": "Apache-2.0",
   "exports": {
     "./*": {
@@ -29,17 +29,19 @@
     "prettier:check": "prettier './src/**/*{.js,.ts,.tsx}' --list-different",
     "prettier:write": "prettier './src/**/*{.js,.ts,.tsx}' --write"
   },
-  "dependencies": {
+  "devDependencies": {
+    "@monorail/scripts": "workspace:*",
     "@mui/material": "5.9.2",
     "@mui/styles": "5.9.2",
     "@mui/system": "5.9.2",
-    "@mui/utils": "5.9.1"
-  },
-  "devDependencies": {
-    "@monorail/scripts": "workspace:*",
+    "@mui/utils": "5.9.1",
     "react": "17.0.2"
   },
   "peerDependencies": {
+    "@mui/material": "^5.9.2",
+    "@mui/styles": "^5.9.2",
+    "@mui/system": "^5.9.2",
+    "@mui/utils": "^5.9.1",
     "react": ">=17.0.2"
   }
 }
