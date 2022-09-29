@@ -2,9 +2,11 @@ import type { Components, Theme } from '@mui/material'
 import { alpha, switchClasses } from '@mui/material'
 
 export const MonorailSwitchOverrides: Components<Theme>['MuiSwitch'] = {
-  defaultProps: {},
+  defaultProps: {
+    edge: 'start',
+  },
   styleOverrides: {
-    root: ({ theme }) => ({
+    root: ({ ownerState, theme }) => ({
       padding: theme.spacing(1, 4, 1, 2),
       '&:hover': {
         [`& .${switchClasses.track}`]: {
@@ -12,6 +14,9 @@ export const MonorailSwitchOverrides: Components<Theme>['MuiSwitch'] = {
           backgroundColor: theme.palette.default.lowEmphasis.hover,
         },
       },
+      ...(ownerState.edge === false && {
+        marginLeft: 8,
+      }),
     }),
     switchBase: ({ ownerState: { color = 'primary' }, theme }) => ({
       padding: theme.spacing(2),

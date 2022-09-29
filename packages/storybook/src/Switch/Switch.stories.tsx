@@ -80,25 +80,25 @@ export const FormControlLabelPosition = story(() => (
     <FormGroup aria-label="position" row>
       <FormControlLabel
         value="top"
-        control={<Switch color="primary" />}
+        control={<Switch color="primary" edge={false} />}
         label="Top"
         labelPlacement="top"
       />
       <FormControlLabel
         value="start"
-        control={<Switch color="primary" />}
+        control={<Switch color="primary" edge={false} />}
         label="Start"
         labelPlacement="start"
       />
       <FormControlLabel
         value="bottom"
-        control={<Switch color="primary" />}
+        control={<Switch color="primary" edge={false} />}
         label="Bottom"
         labelPlacement="bottom"
       />
       <FormControlLabel
         value="end"
-        control={<Switch color="primary" />}
+        control={<Switch color="primary" edge={false} />}
         label="End"
         labelPlacement="end"
       />
