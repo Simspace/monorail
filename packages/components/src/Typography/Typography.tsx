@@ -36,7 +36,7 @@ declare module '@mui/material/Typography' {
   }
 }
 
-interface TypographyExtraProps {
+export interface TypographyExtraProps {
   lineClamp?: number
 }
 
