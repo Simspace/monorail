@@ -482,12 +482,12 @@ export const ResizableContainer = React.forwardRef(function ResizableContainer(
   const schedule = useRequestAnimationFrame()
 
   const handleParentResize = React.useCallback(() => {
-    // schedule(() => {
-    if (isInitialized.current) {
-      computeSize(processedChildren.current)
-      forceUpdate()
-    }
-    // })
+    schedule(() => {
+      if (isInitialized.current) {
+        computeSize(processedChildren.current)
+        forceUpdate()
+      }
+    })
   }, [computeSize, forceUpdate, schedule])
 
   useResizeObserver({
