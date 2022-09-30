@@ -1,5 +1,5 @@
 import React from 'react'
-import type { IUtils } from '@date-io/core/IUtils'
+import type { MuiPickersAdapter } from '@mui/x-date-pickers/internals'
 
 import type { GridApi } from '../../../internal.js'
 import { gridColumnLookupSelector } from '../../../internal.js'
@@ -8,7 +8,7 @@ import { getDateFilterInitialState } from '../models.js'
 
 export function useInitializeDateFilterState(
   apiRef: React.MutableRefObject<GridApi>,
-  adapter: IUtils<Date>,
+  adapter: MuiPickersAdapter<Date>,
   field: string,
   external?: boolean,
 ): void {

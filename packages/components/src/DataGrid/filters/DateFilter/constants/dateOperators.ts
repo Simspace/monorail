@@ -1,10 +1,10 @@
-import type { IUtils } from '@date-io/core/IUtils'
+import type { MuiPickersAdapter } from '@mui/x-date-pickers/internals'
 
 import type { RangeFilterOperator } from '../../RangeFilter.js'
 import type { DateFilterOperator } from '../models.js'
 
 export const getDateOperators = <TDate>(
-  adapter: IUtils<TDate>,
+  adapter: MuiPickersAdapter<TDate>,
 ): {
   [K in DateFilterOperator]: RangeFilterOperator<K, TDate>
 } => ({

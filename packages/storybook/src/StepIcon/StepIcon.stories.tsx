@@ -34,8 +34,8 @@ export const Default = story<StepIconProps>(
   (args: Partial<StepIconProps>) => (
     <Box sx={{ width: '100%' }}>
       <Stepper>
-        <Step {...args}>
-          <StepLabel />
+        <Step>
+          <StepLabel StepIconProps={args} />
         </Step>
       </Stepper>
     </Box>

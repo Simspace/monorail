@@ -31,17 +31,17 @@
   },
   "devDependencies": {
     "@monorail/scripts": "workspace:*",
-    "@mui/material": "5.9.2",
-    "@mui/styles": "5.9.2",
-    "@mui/system": "5.9.2",
-    "@mui/utils": "5.9.1",
+    "@mui/material": "5.10.7",
+    "@mui/styles": "5.10.7",
+    "@mui/system": "5.10.7",
+    "@mui/utils": "5.10.6",
     "react": "17.0.2"
   },
   "peerDependencies": {
-    "@mui/material": "^5.9.2",
-    "@mui/styles": "^5.9.2",
-    "@mui/system": "^5.9.2",
-    "@mui/utils": "^5.9.1",
+    "@mui/material": "^5.10.7",
+    "@mui/styles": "^5.10.7",
+    "@mui/system": "^5.10.7",
+    "@mui/utils": "^5.10.6",
     "react": ">=17.0.2"
   }
 }

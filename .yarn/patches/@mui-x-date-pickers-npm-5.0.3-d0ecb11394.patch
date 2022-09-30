@@ -1,8 +1,8 @@
 diff --git a/themeAugmentation/components.d.ts b/themeAugmentation/components.d.ts
-index 9827b5f8e8abdd0eef2d61440e07d82769c5f73d..1511ea17280cc5229c87658dcdc2aca85ece5032 100644
+index 7f5e08bd2c5084264c249678595a231fa093e005..6250ef2bc5d48df7f8e855a963fda31d63f1399d 100644
 --- a/themeAugmentation/components.d.ts
 +++ b/themeAugmentation/components.d.ts
-@@ -48,6 +48,6 @@ export interface PickerComponents<Theme = unknown> {
+@@ -182,6 +182,6 @@ export interface PickerComponents<Theme = unknown> {
    };
  }
  
@@ -11,11 +11,11 @@ index 9827b5f8e8abdd0eef2d61440e07d82769c5f73d..1511ea17280cc5229c87658dcdc2aca8
    interface Components<Theme = unknown> extends PickerComponents<Theme> {}
  }
 diff --git a/themeAugmentation/overrides.d.ts b/themeAugmentation/overrides.d.ts
-index 4383e1b810bba3ab1adfea386ea66985c9386fc1..f401d57f1d28db8fecbdbbae2067b3ddd5aad905 100644
+index ff4db5ee4c9913c9ad0dc238cf68e6fa16ecd701..46ab40ec78183002b216707ccee0b34f487af2cf 100644
 --- a/themeAugmentation/overrides.d.ts
 +++ b/themeAugmentation/overrides.d.ts
-@@ -19,7 +19,7 @@ export interface PickersComponentNameToClassKey {
-   MuiPickerStaticWrapper: PickerStaticWrapperClassKey;
+@@ -71,7 +71,7 @@ export interface PickersComponentNameToClassKey {
+   PrivatePickersYear: PickersYearClassKey;
  }
  
 -declare module '@mui/material/styles' {
@@ -24,11 +24,11 @@ index 4383e1b810bba3ab1adfea386ea66985c9386fc1..f401d57f1d28db8fecbdbbae2067b3dd
  }
  
 diff --git a/themeAugmentation/props.d.ts b/themeAugmentation/props.d.ts
-index 6a3fbd371fc122319730d7005c5732ad91e87ee4..66988b5f9ede7113fe25e66b71a9c5f3a54c3b74 100644
+index e6c802f5122ad3d64e6e5b0fa7d2a8991f9db7a7..bb2bcf35c8ee267c6e81bcbff0f4e2d6a6226690 100644
 --- a/themeAugmentation/props.d.ts
 +++ b/themeAugmentation/props.d.ts
-@@ -38,7 +38,7 @@ export interface PickersComponentsPropsList {
-   MuiPickerStaticWrapper: PickerStaticWrapperProps;
+@@ -78,7 +78,7 @@ export interface PickersComponentsPropsList {
+   PrivatePickersYear: never;
  }
  
 -declare module '@mui/material/styles' {

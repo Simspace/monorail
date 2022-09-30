@@ -17,8 +17,8 @@
   "devDependencies": {
     "@monorail/config": "workspace:*",
     "@monorail/eslint-config": "workspace:*",
-    "@yarnpkg/cli": "4.0.0-rc.14",
-    "@yarnpkg/core": "4.0.0-rc.14",
-    "typescript": "^4.7.4"
+    "@yarnpkg/cli": "4.0.0-rc.22",
+    "@yarnpkg/core": "4.0.0-rc.22",
+    "typescript": "^4.8.4"
   }
 }

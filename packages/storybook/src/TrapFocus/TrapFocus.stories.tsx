@@ -2,17 +2,14 @@ import React from 'react'
 import Box from '@mui/material/Box'
 import Portal from '@mui/material/Portal'
 
-import type { TrapFocusProps } from '@monorail/components'
-import { TrapFocus } from '@monorail/components'
+import type { FocusTrapProps } from '@monorail/components'
+import { FocusTrap } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 
-/**
- * Metadata for Unstable_TrapFocus stories - update/extend as needed
- */
-export default { title: 'Utils/TrapFocus' }
+export default { title: 'Utils/FocusTrap' }
 
-const Template = story<TrapFocusProps>(
+const Template = story<Partial<FocusTrapProps>>(
   args => {
     const [open, setOpen] = React.useState(args.open ?? false)
 
@@ -28,7 +25,7 @@ const Template = story<TrapFocusProps>(
           Open
         </button>
         {open && (
-          <TrapFocus open={open}>
+          <FocusTrap open={open}>
             <Box tabIndex={-1} sx={{ mt: 1, p: 1 }}>
               <label>
                 First name: <input type="text" />
@@ -38,7 +35,7 @@ const Template = story<TrapFocusProps>(
                 Close
               </button>
             </Box>
-          </TrapFocus>
+          </FocusTrap>
         )}
       </Box>
     )
@@ -52,11 +49,11 @@ export const Default = story(Template, {
     docs: {
       description: {
         component: `
-TrapFocus is a component that manages focus for its descendants. This is useful when implementing overlays such as modal dialogs, which should not allow the focus to escape while open.
+FocusTrap is a component that manages focus for its descendants. This is useful when implementing overlays such as modal dialogs, which should not allow the focus to escape while open.
 
 When open={true} the trap is enabled, and pressing Tab or Shift+Tab will rotate focus within the inner focusable elements of the component.
 
-https://next.material-ui.com/components/trap-focus/
+https://mui.com/base/react-focus-trap/
 `,
       },
     },
@@ -114,7 +111,7 @@ export const PortalExample = story(
           Open
         </button>
         {open && (
-          <TrapFocus open>
+          <FocusTrap open>
             <Box tabIndex={-1} sx={{ mt: 1, p: 1 }}>
               <label>
                 First name: <input type="text" />
@@ -130,7 +127,7 @@ export const PortalExample = story(
                 Close
               </button>
             </Box>
-          </TrapFocus>
+          </FocusTrap>
         )}
         <div ref={setContainer} />
       </Box>

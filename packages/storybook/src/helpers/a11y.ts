@@ -22,6 +22,12 @@ const axe = configureAxe({
     'aria-progressbar-name': { enabled: false },
     'nested-interactive': { enabled: false },
     'duplicate-id': { enabled: false },
+    // @mui/x-date-pickers has role="gridcell" on buttons
+    'aria-allowed-role': { enabled: false },
+    // @mui/x-date-pickers
+    'label-title-only': { enabled: false },
+    // @mui/x-date-pickers
+    'presentation-role-conflict': { enabled: false },
   },
 })
 

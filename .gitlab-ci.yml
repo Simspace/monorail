@@ -113,7 +113,7 @@ pages:
       git config --global user.email "<>"
       git config --global user.name "CI"
       git remote set-url origin https://${CI_REGISTRY_USER}:${CI_PUSH_TOKEN}@${CI_REPOSITORY_URL#*@}
-      rm -rf public
+      rm -rf public .yarn
       git fetch
       git checkout pages
       rm -rf public/${CI_COMMIT_REF_SLUG}

@@ -18,7 +18,11 @@ import type {
   TextFilterState,
 } from '../filters/TextFilter.js'
 
-export interface GridColFilterTypeMap<R = GridValidRowModel, V = any, F = V> {
+export interface GridColFilterTypeMap<
+  R extends GridValidRowModel = GridValidRowModel,
+  V = any,
+  F = V,
+> {
   enum: {
     state: EnumFilterState<V>
     config: Omit<EnumFilterDefinition<R, V, F>, 'type'>
@@ -38,21 +42,23 @@ export interface GridColFilterTypeMap<R = GridValidRowModel, V = any, F = V> {
 }
 
 export type GridColFilterState<
-  R = GridValidRowModel,
+  R extends GridValidRowModel = GridValidRowModel,
   V = any,
   F = V,
 > = GridColFilterTypeMap<R, V, F>[GridColFilterType]['state']
 
-export type GridColFilterDef<R = GridValidRowModel, V = any, F = V> = [
-  R,
-  V,
-  F,
-] extends [infer R1, infer V1, infer F1]
-  ? {
-      [K in keyof GridColFilterTypeMap<R1, V1, F1>]: {
-        type: K
-      } & GridColFilterTypeMap<R1, V1, F1>[K]['config']
-    }[keyof GridColFilterTypeMap<R1, V1, F1>]
+export type GridColFilterDef<
+  R extends GridValidRowModel = GridValidRowModel,
+  V = any,
+  F = V,
+> = [R, V, F] extends [infer R1, infer V1, infer F1]
+  ? R1 extends GridValidRowModel
+    ? {
+        [K in keyof GridColFilterTypeMap<R1, V1, F1>]: {
+          type: K
+        } & GridColFilterTypeMap<R1, V1, F1>[K]['config']
+      }[keyof GridColFilterTypeMap<R1, V1, F1>]
+    : never
   : never
 
 export type GridColFilterTypeToDef<R = GridValidRowModel, V = any, F = V> = [
@@ -60,11 +66,13 @@ export type GridColFilterTypeToDef<R = GridValidRowModel, V = any, F = V> = [
   V,
   F,
 ] extends [infer R1, infer V1, infer F1]
-  ? {
-      [K in keyof GridColFilterTypeMap<R1, V1, F1>]: {
-        type: K
-      } & GridColFilterTypeMap<R1, V1, F1>[K]['config']
-    }
+  ? R1 extends GridValidRowModel
+    ? {
+        [K in keyof GridColFilterTypeMap<R1, V1, F1>]: {
+          type: K
+        } & GridColFilterTypeMap<R1, V1, F1>[K]['config']
+      }
+    : never
   : never
 
 export type GridColFilterType = keyof GridColFilterTypeToDef
