@@ -1,5 +1,6 @@
 import type { Components, Theme } from '@mui/material'
 import {
+  alpha,
   listItemIconClasses,
   listItemTextClasses,
   menuItemClasses,
@@ -14,10 +15,13 @@ export const MonorailMenuItemOverrides: Components<Theme>['MuiMenuItem'] = {
       paddingRight: theme.spacing(6),
       ...theme.typography.menuItem,
       [`&.${menuItemClasses.focusVisible}`]: {
-        boxShadow: `0 0 0 4px ${theme.palette.primary.focusRing.outer}`,
-        outline: `1px solid ${theme.palette.primary.focusRing.inner}`,
+        outline: 'none',
+        boxShadow: `inset 0 0 0 1px ${theme.palette.primary.focusRing.inner}, inset 0 0 0 4px ${theme.palette.primary.focusRing.outer}`,
         backgroundColor: 'inherit',
         borderRadius: 3,
+        '&:hover': {
+          backgroundColor: theme.palette.action.hover,
+        },
       },
       [`& .${listItemIconClasses.root}`]: {
         minWidth: 48,
@@ -27,6 +31,16 @@ export const MonorailMenuItemOverrides: Components<Theme>['MuiMenuItem'] = {
       },
       [`&.${menuItemClasses.selected}`]: {
         backgroundColor: theme.palette.action.selected,
+        [`&.${menuItemClasses.focusVisible}`]: {
+          backgroundColor: theme.palette.action.selected,
+          '&:hover': {
+            backgroundColor: alpha(
+              theme.palette.primary.main,
+              theme.palette.action.selectedOpacity +
+                theme.palette.action.hoverOpacity,
+            ),
+          },
+        },
       },
       [`& .${listItemTextClasses.inset}`]: {
         paddingLeft: theme.spacing(12),
