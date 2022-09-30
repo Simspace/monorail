@@ -9,6 +9,7 @@ export const MonorailFormHelperTextOverrides: Components<Theme>['MuiFormHelperTe
         marginTop: theme.spacing(0.5),
         marginLeft: theme.spacing(1),
         marginRight: theme.spacing(1),
+        ...theme.typography.helperText,
       }),
     },
   }
