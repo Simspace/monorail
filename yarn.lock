@@ -4477,6 +4477,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@monorail/themes@workspace:packages/themes"
   dependencies:
+    "@monorail/components": "workspace:*"
     "@monorail/scripts": "workspace:*"
     "@monorail/types": "workspace:*"
     "@mui/icons-material": 5.10.6

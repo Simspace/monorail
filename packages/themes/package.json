@@ -1,6 +1,6 @@
 {
   "name": "@monorail/themes",
-  "version": "0.0.17",
+  "version": "0.0.18",
   "description": "Monorail 3 Themes Library",
   "license": "Apache-2.0",
   "author": "SimSpace",
@@ -40,6 +40,7 @@
     ]
   },
   "dependencies": {
+    "@monorail/components": "workspace:*",
     "@monorail/types": "workspace:*"
   },
   "devDependencies": {
