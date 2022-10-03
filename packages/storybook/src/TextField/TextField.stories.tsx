@@ -465,11 +465,11 @@ export const ComposedTextField = story(
         <FormControl sx={{ display: 'flex', flexDirection: 'row' }}>
           <InputLabel
             htmlFor="label-on-left"
-            sx={{ fontWeight: 700, m: 0, mt: 3, mr: 3, left: 0 }}
+            sx={{ m: 0, mt: 3, mr: 3, left: 0 }}
           >
             Select
           </InputLabel>
-          <div>
+          <Box>
             <OutlinedInput
               id="label-on-left"
               value={name}
@@ -479,7 +479,7 @@ export const ComposedTextField = story(
             <FormHelperText id="label-on-left-text">
               Some important helper text
             </FormHelperText>
-          </div>
+          </Box>
         </FormControl>
       </Box>
     )
@@ -490,33 +490,6 @@ export const ComposedTextField = story(
         description: {
           story: `\`TextField\` is composed of smaller components ( [FormControl](https://next.material-ui.com/api/form-control/), [Input](https://next.material-ui.com/api/input/), [FilledInput](https://next.material-ui.com/api/filled-input/), [InputLabel](https://next.material-ui.com/api/input-label/), [OutlinedInput](https://next.material-ui.com/api/outlined-input/), and [FormHelperText](https://next.material-ui.com/api/form-helper-text/) ) that you can leverage directly to significantly customize your form inputs.
 You might also have noticed that some native HTML input properties are missing from the \`TextField\` component. This is on purpose. The component takes care of the most used properties. Then, it's up to the user to use the underlying component shown in the following demo. Still, you can use \`inputProps\` (and \`InputProps\`, \`InputLabelProps\` properties) if you want to avoid some boilerplate.`,
-        },
-      },
-    },
-  },
-)
-
-export const Color = story(
-  () => (
-    <Box
-      component="form"
-      sx={{
-        '& > :not(style)': { mr: 2, width: '25ch' },
-      }}
-      noValidate
-      autoComplete="off"
-      aria-label="color form"
-    >
-      <TextField id="success" label="Success" color="success" focused />
-      <TextField id="warning" label="Warning" color="warning" focused />
-    </Box>
-  ),
-  {
-    parameters: {
-      docs: {
-        description: {
-          story:
-            'The `color` prop changes the highlight color of the text field when focused.',
         },
       },
     },

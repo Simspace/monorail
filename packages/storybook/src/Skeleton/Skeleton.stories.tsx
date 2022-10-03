@@ -403,26 +403,3 @@ export const SkeletonColor = story<SkeletonProps>(
     },
   },
 )
-
-export const Accessibility = story<SkeletonProps>(
-  () => {
-    return <></>
-  },
-  {
-    parameters: {
-      docs: {
-        description: {
-          story: `Skeleton screens provide an alternative to the traditional spinner method. Rather than showing an abstract widget, skeleton screens create anticipation of what is to come and reduce cognitive load.
-
-The background color of the skeleton uses the least amount of luminance to be visible in good conditions (good ambient light, good screen, no visual impairments).
-
-### ARIA
-None.
-
-### Keyboard
-The skeleton is not focusable.`,
-        },
-      },
-    },
-  },
-)
