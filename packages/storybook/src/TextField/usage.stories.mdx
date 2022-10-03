@@ -1,0 +1,46 @@
+import { Meta } from '@storybook/addon-docs'
+
+<Meta title="Inputs/TextField/Usage Guide" />
+
+## Integration with 3rd party input libraries
+
+## Accessibility
+
+In order for the text field to be accessible, the input should be linked to the label and the helper text. The underlying DOM nodes should have this structure:
+
+```tsx
+<div class="form-control">
+  <label for="my-input">Email address</label>
+  <input id="my-input" aria-describedby="my-helper-text" />
+  <span id="my-helper-text">We'll never share your email.</span>
+</div>
+```
+
+If you are using the `TextField` component, you just have to provide a unique id unless you're using the TextField only client side. Until the UI is hydrated TextField without an explicit id will not have associated labels.
+If you are composing the component:
+
+```tsx
+<FormControl>
+  <InputLabel htmlFor="my-input">Email address</InputLabel>
+  <Input id="my-input" aria-describedby="my-helper-text" />
+  <FormHelperText id="my-helper-text">
+    We'll never share your email.
+  </FormHelperText>
+</FormControl>
+```
+
+## Complementary projects
+
+For more advanced use cases, you might be able to take advantage of:
+
+- [react-hook-form](https://react-hook-form.com/): React hook for form validation.
+- [react-hook-form-mui](https://github.com/dohomi/react-hook-form-mui): MUI and react-hook-form combined.
+- [formik-material-ui](https://github.com/stackworx/formik-mui): Bindings for using MUI with [formik](https://formik.org/).
+- [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui): Bindings for using MUI with [Redux Form](https://redux-form.com/).
+- [mui-rff](https://github.com/lookfirst/mui-rff): Bindings for using MUI with [React Final Form](https://final-form.org/react).
+- [@ui-schema/ds-material](https://www.npmjs.com/package/@ui-schema/ds-material) Bindings for using Material UI with [UI Schema](https://github.com/ui-schema/ui-schema). JSON Schema compatible.
+- [@data-driven-forms/mui-component-mapper](https://data-driven-forms.org/provided-mappers/mui-component-mapper): Bindings for using Material UI with [Data Driven Forms](https://github.com/data-driven-forms/react-forms).
+
+## Unstyled
+
+The component also comes with an unstyled version. It's ideal for doing heavy customizations and minimizing bundle size.
