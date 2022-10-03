@@ -74,6 +74,24 @@ export const baseTheme = createTheme(
         lineHeight: LineHeight.H3,
         fontWeight: FontWeight.Medium,
       },
+      h4: {
+        fontFamily: fontStack.headings,
+        fontSize: FontSize.H4,
+        lineHeight: LineHeight.H4,
+        fontWeight: FontWeight.Medium,
+      },
+      h5: {
+        fontFamily: fontStack.headings,
+        fontSize: FontSize.H5,
+        lineHeight: LineHeight.H5,
+        fontWeight: FontWeight.Medium,
+      },
+      h6: {
+        fontFamily: fontStack.headings,
+        fontSize: FontSize.H6,
+        lineHeight: LineHeight.H6,
+        fontWeight: FontWeight.Medium,
+      },
       body1: {
         fontSize: FontSize.Body1,
         lineHeight: LineHeight.Body1,

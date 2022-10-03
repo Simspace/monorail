@@ -35,6 +35,7 @@ const TypographyTokenRow = ({
   lineHeightPx,
   description,
   styles,
+  underlyingElement,
 }: TypographyTokenRowProps) => {
   return (
     <StyledTableRow>
@@ -57,6 +58,9 @@ const TypographyTokenRow = ({
       <TableCell sx={{ width: '5%' }}>{`${fontSizePx}px`}</TableCell>
       <TableCell sx={{ width: '5%' }}>{`${styles.lineHeight}`}</TableCell>
       <TableCell sx={{ width: '5%' }}>{`${lineHeightPx}px`}</TableCell>
+      <TableCell sx={{ width: '5%' }}>
+        <Typography variant="monoBody1">{underlyingElement}</Typography>
+      </TableCell>
       <StyledTableCell sx={{ width: '30%' }}>
         <Typography sx={{ maxWidth: '80ch' }} variant="body2">
           {description ?? '---'}
@@ -75,6 +79,7 @@ const typographyTokenColumns: TypographyTokenColumns = [
   { id: 'column-font-size-px', label: '(px)' },
   { id: 'column-line-height-unitless', label: 'Line Height' },
   { id: 'column-line-height-px', label: '(px)' },
+  { id: 'column-underlying-element', label: 'Underlying HTML Element' },
   { id: 'column-description', label: 'Description' },
 ]
 
@@ -111,6 +116,7 @@ export const TypographyTokenTable = ({
                   lineHeightPx={font.lineHeightPx}
                   styles={font.styles}
                   description={font.description}
+                  underlyingElement={font.underlyingElement}
                 />
               )
             })

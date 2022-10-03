@@ -14,6 +14,7 @@ export type TypographyTokenRowProps = {
   lineHeightPx: number
   description?: string
   styles: TypographyStyles
+  underlyingElement: string
 }
 
 export type TypographyTokenColumns = Array<{

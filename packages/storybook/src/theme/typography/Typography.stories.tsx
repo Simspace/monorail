@@ -31,6 +31,7 @@ export const Fonts = () => {
         description:
           'Use this style for data wells and designing eye-catching numbers.',
         styles: theme.typography.data1,
+        underlyingElement: 'span',
       },
       {
         token: 'data2',
@@ -40,6 +41,7 @@ export const Fonts = () => {
         description:
           'Use this style for data wells and designing eye-catching numbers.',
         styles: theme.typography.data2,
+        underlyingElement: 'span',
       },
       {
         token: 'data3',
@@ -49,6 +51,7 @@ export const Fonts = () => {
         description:
           'Use this style for data wells and designing eye-catching numbers.',
         styles: theme.typography.data3,
+        underlyingElement: 'span',
       },
       {
         token: 'h1',
@@ -57,6 +60,7 @@ export const Fonts = () => {
         lineHeightPx: PixelLineHeight.H1,
         description: 'Each UI page should include these.',
         styles: theme.typography.h1,
+        underlyingElement: 'h1',
       },
       {
         token: 'h2',
@@ -64,6 +68,7 @@ export const Fonts = () => {
         fontSizePx: PixelFontSize.H2,
         lineHeightPx: PixelLineHeight.H2,
         styles: theme.typography.h2,
+        underlyingElement: 'h2',
       },
       {
         token: 'h3',
@@ -71,6 +76,31 @@ export const Fonts = () => {
         fontSizePx: PixelFontSize.H3,
         lineHeightPx: PixelLineHeight.H3,
         styles: theme.typography.h3,
+        underlyingElement: 'h3',
+      },
+      {
+        token: 'h4',
+        figmaStyle: 'Typography/H4',
+        fontSizePx: PixelFontSize.H3,
+        lineHeightPx: PixelLineHeight.H3,
+        styles: theme.typography.h3,
+        underlyingElement: 'h4',
+      },
+      {
+        token: 'h5',
+        figmaStyle: 'Typography/H5',
+        fontSizePx: PixelFontSize.H3,
+        lineHeightPx: PixelLineHeight.H3,
+        styles: theme.typography.h3,
+        underlyingElement: 'h5',
+      },
+      {
+        token: 'h6',
+        figmaStyle: 'Typography/H6',
+        fontSizePx: PixelFontSize.H3,
+        lineHeightPx: PixelLineHeight.H3,
+        styles: theme.typography.h3,
+        underlyingElement: 'h6',
       },
       {
         token: 'body1',
@@ -79,6 +109,7 @@ export const Fonts = () => {
         lineHeightPx: PixelLineHeight.Body1,
         description: 'Use for most body text.',
         styles: theme.typography.body1,
+        underlyingElement: 'p',
       },
       {
         token: 'body2',
@@ -87,6 +118,7 @@ export const Fonts = () => {
         lineHeightPx: PixelLineHeight.Body2,
         description: 'Use for metadata, e.g. values in key:value pairs.',
         styles: theme.typography.body2,
+        underlyingElement: 'p',
       },
       {
         token: 'subtitle1',
@@ -95,6 +127,7 @@ export const Fonts = () => {
         lineHeightPx: PixelLineHeight.Subtitle1,
         description: 'Use for metadata, e.g. values in key:value pairs.',
         styles: theme.typography.subtitle1,
+        underlyingElement: 'h6',
       },
       {
         token: 'subtitle2',
@@ -103,6 +136,7 @@ export const Fonts = () => {
         lineHeightPx: PixelLineHeight.Subtitle2,
         description: 'Use for metadata, e.g. values in key:value pairs.',
         styles: theme.typography.subtitle2,
+        underlyingElement: 'h6',
       },
       {
         token: 'monoBody1',
@@ -110,6 +144,7 @@ export const Fonts = () => {
         fontSizePx: PixelFontSize.MonoBody1,
         lineHeightPx: PixelLineHeight.MonoBody1,
         styles: theme.typography.monoBody1,
+        underlyingElement: 'code',
       },
       {
         token: 'monoBody2',
@@ -117,6 +152,7 @@ export const Fonts = () => {
         fontSizePx: PixelFontSize.MonoBody2,
         lineHeightPx: PixelLineHeight.MonoBody2,
         styles: theme.typography.monoBody2,
+        underlyingElement: 'code',
       },
       {
         token: 'overline',
@@ -124,6 +160,7 @@ export const Fonts = () => {
         fontSizePx: PixelFontSize.Overline,
         lineHeightPx: PixelLineHeight.Overline,
         styles: theme.typography.overline,
+        underlyingElement: 'span',
       },
       {
         token: 'caption',
@@ -131,6 +168,7 @@ export const Fonts = () => {
         fontSizePx: PixelFontSize.Caption,
         lineHeightPx: PixelLineHeight.Caption,
         styles: theme.typography.caption,
+        underlyingElement: 'span',
       },
     ],
     [theme.typography],

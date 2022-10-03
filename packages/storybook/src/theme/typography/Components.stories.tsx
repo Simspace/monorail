@@ -29,6 +29,8 @@ export const Components = () => {
         fontSizePx: PixelFontSize.AlertTitle,
         lineHeightPx: PixelLineHeight.AlertTitle,
         styles: theme.typography.alertTitle,
+        underlyingElement: 'span',
+        description: 'Font styles applied to AlertTitle.',
       },
       {
         token: 'avatarInitials',
@@ -36,6 +38,8 @@ export const Components = () => {
         fontSizePx: PixelFontSize.AvatarInitials,
         lineHeightPx: PixelLineHeight.AvatarInitials,
         styles: theme.typography.avatarInitials,
+        underlyingElement: 'span',
+        description: 'Font styles applied to Avatar when child is a string.',
       },
       {
         token: 'badgeLabel',
@@ -43,6 +47,8 @@ export const Components = () => {
         fontSizePx: PixelFontSize.BadgeLabel,
         lineHeightPx: PixelLineHeight.BadgeLabel,
         styles: theme.typography.badgeLabel,
+        underlyingElement: 'span',
+        description: 'Font styles applied to the Badge component’s content.',
       },
       {
         token: 'bottomNavActiveLabel',
@@ -50,6 +56,8 @@ export const Components = () => {
         fontSizePx: PixelFontSize.BottomNavActiveLabel,
         lineHeightPx: PixelLineHeight.BottomNavActiveLabel,
         styles: theme.typography.bottomNavActiveLabel,
+        underlyingElement: 'span',
+        description: 'Font styles applied to BottomNavigation when selected.',
       },
       {
         token: 'buttonLarge',
@@ -57,6 +65,8 @@ export const Components = () => {
         fontSizePx: PixelFontSize.ButtonLarge,
         lineHeightPx: PixelLineHeight.ButtonLarge,
         styles: theme.typography.buttonLarge,
+        underlyingElement: 'span',
+        description: 'Font styles applied to Button when size=”large”.',
       },
       {
         token: 'buttonMedium',
@@ -64,6 +74,8 @@ export const Components = () => {
         fontSizePx: PixelFontSize.ButtonMedium,
         lineHeightPx: PixelLineHeight.ButtonMedium,
         styles: theme.typography.buttonMedium,
+        underlyingElement: 'span',
+        description: 'Font styles applied to Button when size=”medium”.',
       },
       {
         token: 'buttonSmall',
@@ -71,6 +83,8 @@ export const Components = () => {
         fontSizePx: PixelFontSize.ButtonSmall,
         lineHeightPx: PixelLineHeight.ButtonSmall,
         styles: theme.typography.buttonSmall,
+        underlyingElement: 'span',
+        description: 'Font styles applied to Button when size=”small”.',
       },
       {
         token: 'chip',
@@ -78,6 +92,8 @@ export const Components = () => {
         fontSizePx: PixelFontSize.Chip,
         lineHeightPx: PixelLineHeight.Chip,
         styles: theme.typography.chip,
+        underlyingElement: 'span',
+        description: 'Font styles applied to Chip’s label.',
       },
       {
         token: 'inputLabel',
@@ -85,6 +101,8 @@ export const Components = () => {
         fontSizePx: PixelFontSize.InputLabel,
         lineHeightPx: PixelLineHeight.InputLabel,
         styles: theme.typography.inputLabel,
+        underlyingElement: 'span',
+        description: 'Font styles applied to FormLabel and InputLabel.',
       },
       {
         token: 'helperText',
@@ -92,6 +110,8 @@ export const Components = () => {
         fontSizePx: PixelFontSize.HelperText,
         lineHeightPx: PixelLineHeight.HelperText,
         styles: theme.typography.helperText,
+        underlyingElement: 'span',
+        description: 'Font styles applied to FormHelperText.',
       },
       {
         token: 'inputText',
@@ -99,6 +119,8 @@ export const Components = () => {
         fontSizePx: PixelFontSize.InputText,
         lineHeightPx: PixelLineHeight.InputText,
         styles: theme.typography.inputText,
+        underlyingElement: 'span',
+        description: 'Font styles applied to Input.',
       },
       {
         token: 'tableHeader',
@@ -106,6 +128,8 @@ export const Components = () => {
         fontSizePx: PixelFontSize.TableHeader,
         lineHeightPx: PixelLineHeight.TableHeader,
         styles: theme.typography.tableHeader,
+        underlyingElement: 'span',
+        description: 'Font styles applied to DataGridColumnHeader.',
       },
       {
         token: 'listSubheader',
@@ -113,6 +137,8 @@ export const Components = () => {
         fontSizePx: PixelFontSize.ListSubheader,
         lineHeightPx: PixelLineHeight.ListSubheader,
         styles: theme.typography.listSubheader,
+        underlyingElement: 'span',
+        description: 'Font styles applied to ListSubheader.',
       },
       {
         token: 'menuItem',
@@ -120,6 +146,8 @@ export const Components = () => {
         fontSizePx: PixelFontSize.MenuItem,
         lineHeightPx: PixelLineHeight.MenuItem,
         styles: theme.typography.menuItem,
+        underlyingElement: 'span',
+        description: 'Font styles applied to MenuItem if dense={false}.',
       },
       {
         token: 'menuItemDense',
@@ -127,6 +155,8 @@ export const Components = () => {
         fontSizePx: PixelFontSize.MenuItemDense,
         lineHeightPx: PixelLineHeight.MenuItemDense,
         styles: theme.typography.menuItemDense,
+        underlyingElement: 'span',
+        description: 'Font styles applied to MenuItem if dense={true}.',
       },
       {
         token: 'tabActive',
@@ -134,6 +164,8 @@ export const Components = () => {
         fontSizePx: PixelFontSize.TabActive,
         lineHeightPx: PixelLineHeight.TabActive,
         styles: theme.typography.tabActive,
+        underlyingElement: 'span',
+        description: 'Font styles applied to Tab if selected={true}.',
       },
       {
         token: 'tabInactive',
@@ -141,6 +173,8 @@ export const Components = () => {
         fontSizePx: PixelFontSize.TabInactive,
         lineHeightPx: PixelLineHeight.TabInactive,
         styles: theme.typography.tabInactive,
+        underlyingElement: 'span',
+        description: 'Font styles applied to Tab if selected={false}.',
       },
       {
         token: 'tooltip',
@@ -148,6 +182,8 @@ export const Components = () => {
         fontSizePx: PixelFontSize.Tooltip,
         lineHeightPx: PixelLineHeight.Tooltip,
         styles: theme.typography.tooltip,
+        underlyingElement: 'span',
+        description: 'Font styles applied to Tooltip.',
       },
     ],
     [theme.typography],

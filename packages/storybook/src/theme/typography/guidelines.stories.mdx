@@ -26,7 +26,7 @@ You can also check the CSS section in the Inspect panel. The CSS comment above t
 
 <img src={img} alt="Inspecting a Typography component in Figma." />
 
-### Sizing
+### Font Size
 
 Typography variants apply the correct font size.
 
@@ -44,6 +44,14 @@ If you need to assign a custom pixel value, use `theme.typography.pxToRem()` ins
 
 ```tsx
 <Logo sx={theme => ({ fontSize: theme.typography.pxToRem(160) })} />
+```
+
+### Margins
+
+Use the `gutterBottom` prop instead of applying a margin-bottom override. `gutterBottom` adds a margin-bottom of `0.35em`. All `<p>`s automatically get a 16px margin-bottom. 
+
+```tsx
+<Typography gutterButtom>
 ```
 
 ### Truncation
