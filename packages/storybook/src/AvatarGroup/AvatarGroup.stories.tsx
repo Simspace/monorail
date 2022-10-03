@@ -2,7 +2,13 @@
 import React from 'react'
 
 import type { AvatarGroupProps } from '@monorail/components'
-import { Avatar, AvatarGroup, Box, Stack } from '@monorail/components'
+import {
+  Avatar,
+  AvatarGroup,
+  Box,
+  Stack,
+  Typography,
+} from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 
@@ -81,26 +87,25 @@ Max.parameters = {
 export const Spacing = story<AvatarGroupProps>(() => {
   return (
     <Stack direction="column" gap={4}>
-      <AvatarGroup max={4} spacing="medium">
-        <Avatar>WW</Avatar>
-        <Avatar>WW</Avatar>
-        <Avatar>WW</Avatar>
-        <Avatar>WW</Avatar>
-        <Avatar>WW</Avatar>
+      <Typography variant="subtitle1">Medium</Typography>
+      <AvatarGroup spacing="medium">
+        <Avatar>OP</Avatar>
+        <Avatar>OP</Avatar>
+        <Avatar>OP</Avatar>
+        <Avatar>OP</Avatar>
+        <Avatar>OP</Avatar>
+        <Avatar>OP</Avatar>
+        <Avatar>OP</Avatar>
       </AvatarGroup>
-      <AvatarGroup max={4} spacing="small">
-        <Avatar>WW</Avatar>
-        <Avatar>WW</Avatar>
-        <Avatar>WW</Avatar>
-        <Avatar>WW</Avatar>
-        <Avatar>WW</Avatar>
-      </AvatarGroup>
-      <AvatarGroup max={4} spacing={0}>
-        <Avatar>WW</Avatar>
-        <Avatar>WW</Avatar>
-        <Avatar>WW</Avatar>
-        <Avatar>WW</Avatar>
-        <Avatar>WW</Avatar>
+      <Typography variant="subtitle1">Small</Typography>
+      <AvatarGroup spacing="small">
+        <Avatar>OP</Avatar>
+        <Avatar>OP</Avatar>
+        <Avatar>OP</Avatar>
+        <Avatar>OP</Avatar>
+        <Avatar>OP</Avatar>
+        <Avatar>OP</Avatar>
+        <Avatar>OP</Avatar>
       </AvatarGroup>
     </Stack>
   )
@@ -110,11 +115,11 @@ export const Total = story<AvatarGroupProps>(() => {
   return (
     <Stack direction="column" gap={4}>
       <AvatarGroup total={10}>
-        <Avatar>WW</Avatar>
-        <Avatar>WW</Avatar>
-        <Avatar>WW</Avatar>
-        <Avatar>WW</Avatar>
-        <Avatar>WW</Avatar>
+        <Avatar>OP</Avatar>
+        <Avatar>OP</Avatar>
+        <Avatar>OP</Avatar>
+        <Avatar>OP</Avatar>
+        <Avatar>OP</Avatar>
       </AvatarGroup>
     </Stack>
   )
