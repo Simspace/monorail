@@ -13,7 +13,7 @@ import type { OutlinedInputProps } from '@mui/material/OutlinedInput'
 import OutlinedInput from '@mui/material/OutlinedInput'
 
 import type { TextFieldProps } from '@monorail/components'
-import { TextField } from '@monorail/components'
+import { MenuItem, TextField, useFormControl } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 
@@ -44,7 +44,7 @@ export const BasicTextField = story(
       docs: {
         description: {
           story:
-            'The `TextField` wrapper component is a complete form control including a label, input, and help text. It comes with three variants: outlined (default), filled, and standard.',
+            'The `TextField` wrapper component is a complete form control including a label, input, and help text. We only use the outlined variant in Monorail.',
         },
       },
     },
@@ -204,6 +204,80 @@ export const Multiline = story(
   },
 )
 
+const currencies = [
+  {
+    value: 'USD',
+    label: '$',
+  },
+  {
+    value: 'EUR',
+    label: '€',
+  },
+  {
+    value: 'BTC',
+    label: '฿',
+  },
+  {
+    value: 'JPY',
+    label: '¥',
+  },
+]
+
+export const SelectTextFields = story<TextFieldProps>(args => {
+  const [currency, setCurrency] = React.useState('EUR')
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setCurrency(event.target.value)
+  }
+
+  return (
+    <Box
+      component="form"
+      sx={{
+        '& .MuiTextField-root': { m: 1, width: '25ch' },
+      }}
+      noValidate
+      autoComplete="off"
+    >
+      <div>
+        <TextField
+          id="outlined-select-currency"
+          select
+          label="Select"
+          value={currency}
+          onChange={handleChange}
+          helperText="Please select your currency"
+          {...args}
+        >
+          {currencies.map(option => (
+            <MenuItem key={option.value} value={option.value}>
+              {option.label}
+            </MenuItem>
+          ))}
+        </TextField>
+        <TextField
+          id="outlined-select-currency-native"
+          select
+          label="Native select"
+          value={currency}
+          onChange={handleChange}
+          SelectProps={{
+            native: true,
+          }}
+          helperText="Please select your currency"
+          {...args}
+        >
+          {currencies.map(option => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </TextField>
+      </div>
+    </Box>
+  )
+})
+
 export const InputAdornments = story(
   () => {
     interface State {
@@ -338,8 +412,8 @@ export const Sizes = story(
         />
         <TextField
           label="Size"
-          id="outlined-size-normal"
-          defaultValue="Normal"
+          id="outlined-size-medium"
+          defaultValue="Medium"
         />
       </div>
     </Box>
@@ -403,6 +477,51 @@ export const Margin = story(
     },
   },
 )
+
+export const FullWidth = story<TextFieldProps>(args => {
+  return (
+    <Box
+      sx={{
+        width: 500,
+        maxWidth: '100%',
+      }}
+    >
+      <TextField fullWidth label="fullWidth" id="fullWidth" {...args} />
+    </Box>
+  )
+})
+
+export const ControlledVsUncontrolled = story<TextFieldProps>(args => {
+  const [name, setName] = React.useState('Cat in the Hat')
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setName(event.target.value)
+  }
+
+  return (
+    <Box
+      component="form"
+      sx={{
+        '& > :not(style)': { m: 1, width: '25ch' },
+      }}
+      noValidate
+      autoComplete="off"
+    >
+      <TextField
+        id="outlined-name"
+        label="Name"
+        value={name}
+        onChange={handleChange}
+        {...args}
+      />
+      <TextField
+        id="outlined-uncontrolled"
+        label="Uncontrolled"
+        defaultValue="foo"
+        {...args}
+      />
+    </Box>
+  )
+})
 
 export const ComposedTextField = story(
   () => {
@@ -634,6 +753,65 @@ export const Customization = story(
         description: {
           story:
             'Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](https://next.material-ui.com/customization/how-to-customize/).',
+        },
+      },
+    },
+  },
+)
+
+function MyFormHelperText() {
+  const { focused } = useFormControl() || {}
+
+  const helperText = React.useMemo(() => {
+    if (focused !== undefined) {
+      return 'This field is being focused'
+    }
+
+    return 'Helper text'
+  }, [focused])
+
+  return <FormHelperText>{helperText}</FormHelperText>
+}
+
+export const UseFormControl = story<TextFieldProps>(
+  () => {
+    return (
+      <Box component="form" noValidate autoComplete="off">
+        <FormControl sx={{ width: '25ch' }}>
+          <OutlinedInput placeholder="Please enter text" />
+          <MyFormHelperText />
+        </FormControl>
+      </Box>
+    )
+  },
+  {
+    parameters: {
+      docs: {
+        title: 'useFormControl()',
+        description: {
+          story: `For advanced customization use cases, a useFormControl() hook is exposed. This hook returns the context value of the parent FormControl component.
+
+**Returns**
+
+value (object):
+
+- value.adornedStart (bool): Indicate whether the child Input or Select component has a start adornment.
+- value.setAdornedStart (func): Setter function for adornedStart state value.
+- value.color (string): The theme color is being used, inherited from FormControl color prop .
+- value.disabled (bool): Indicate whether the component is being displayed in a disabled state, inherited from FormControl disabled prop.
+- value.error (bool): Indicate whether the component is being displayed in an error state, inherited from FormControl error prop
+- value.filled (bool): Indicate whether input is filled
+- value.focused (bool): Indicate whether the component and its children are being displayed in a focused state
+- value.fullWidth (bool): Indicate whether the component is taking up the full width of its container, inherited from FormControl fullWidth prop
+- value.hiddenLabel (bool): Indicate whether the label is being hidden, inherited from FormControl hiddenLabel prop
+- value.required (bool): Indicate whether the label is indicating that the input is required input, inherited from the FormControl required prop
+- value.size (string): The size of the component, inherited from the FormControl size prop
+- value.variant (string): The variant is being used by the FormControl component and its children, inherited from FormControl variant prop
+- value.onBlur (func): Should be called when the input is blurred
+- value.onFocus (func): Should be called when the input is focused
+- value.onEmpty (func): Should be called when the input is emptied
+- value.onFilled (func): Should be called when the input is filled
+        `,
         },
       },
     },
