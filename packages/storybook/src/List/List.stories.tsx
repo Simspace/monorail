@@ -1,5 +1,7 @@
 // Edit this file to add new stories
 import React from 'react'
+import type { ListChildComponentProps } from 'react-window'
+import { FixedSizeList } from 'react-window'
 import BeachAccessIcon from '@mui/icons-material/BeachAccess'
 import BluetoothIcon from '@mui/icons-material/Bluetooth'
 import CommentIcon from '@mui/icons-material/Comment'
@@ -20,7 +22,6 @@ import { styled } from '@mui/material'
 
 import type { ListProps } from '@monorail/components'
 import {
-  Alert,
   Avatar,
   Box,
   Checkbox,
@@ -831,10 +832,24 @@ export const GutterlessListItem = story<ListProps>(
 export const VirtualizedList = story<ListProps>(
   () => {
     return (
-      <Alert severity="warning">
-        This example requires react-window, which is not installed. See MUI
-        docs.
-      </Alert>
+      <Box
+        sx={{
+          width: '100%',
+          height: 400,
+          maxWidth: 360,
+          bgcolor: 'background.paper',
+        }}
+      >
+        <FixedSizeList
+          height={400}
+          width={360}
+          itemSize={46}
+          itemCount={200}
+          overscanCount={5}
+        >
+          {renderRow}
+        </FixedSizeList>
+      </Box>
     )
   },
   {
@@ -847,3 +862,15 @@ export const VirtualizedList = story<ListProps>(
     },
   },
 )
+
+function renderRow(props: ListChildComponentProps) {
+  const { index, style } = props
+
+  return (
+    <ListItem style={style} key={index} component="div" disablePadding>
+      <ListItemButton>
+        <ListItemText primary={`Item ${index + 1}`} />
+      </ListItemButton>
+    </ListItem>
+  )
+}
