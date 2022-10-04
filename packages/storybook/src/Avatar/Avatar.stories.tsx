@@ -4,7 +4,6 @@ import { Person } from '@mui/icons-material'
 import AssignmentIcon from '@mui/icons-material/Assignment'
 import FolderIcon from '@mui/icons-material/Folder'
 import PageviewIcon from '@mui/icons-material/Pageview'
-import { useTheme } from '@mui/material'
 import { styled } from '@mui/material/styles'
 
 import type { AvatarProps } from '@monorail/components'
@@ -66,11 +65,18 @@ ImageAvatars.parameters = {
 
 export const LetterAvatars = story<AvatarProps>(
   () => {
-    const theme = useTheme()
     return (
       <Stack direction="row" spacing={2}>
-        <Avatar sx={{ bgcolor: theme.palette.primary.main }}>N</Avatar>
-        <Avatar sx={{ bgcolor: theme.palette.warning.main }}>OP</Avatar>
+        <Avatar sx={{ bgcolor: 'primary.main' }}>N</Avatar>
+        {/* or */}
+        <Avatar
+          sx={theme => ({
+            bgcolor: theme.palette.warning.main,
+            color: theme.palette.warning.contrastText,
+          })}
+        >
+          OP
+        </Avatar>
       </Stack>
     )
   },
@@ -128,7 +134,6 @@ We only use two sizes: 40px x 40px (default) and 32px x 32px.`,
 
 export const IconAvatars = story<AvatarProps>(
   () => {
-    const theme = useTheme()
     return (
       <Stack direction="row" spacing={2}>
         <Avatar>
@@ -140,10 +145,10 @@ export const IconAvatars = story<AvatarProps>(
         <Avatar variant="rounded">
           <AccountGroup fontSize="large" />
         </Avatar>
-        <Avatar sx={{ bgcolor: theme.palette.primary.main }}>
+        <Avatar sx={{ bgcolor: 'primary.main' }}>
           <PageviewIcon />
         </Avatar>
-        <Avatar sx={{ bgcolor: theme.palette.secondary.main }}>
+        <Avatar sx={{ bgcolor: 'secondary.main' }}>
           <AssignmentIcon />
         </Avatar>
       </Stack>
@@ -209,18 +214,17 @@ export const Variants = story<AvatarProps>(
 
 export const Fallbacks = story<AvatarProps>(
   () => {
-    const theme = useTheme()
     return (
       <Stack direction="row" spacing={2}>
         <Avatar
-          sx={{ bgcolor: theme.palette.primary.main }}
+          sx={{ bgcolor: 'primary.main' }}
           alt="Remy Sharp"
           src="/broken-image.jpg"
         >
           B
         </Avatar>
         <Avatar
-          sx={{ bgcolor: theme.palette.primary.main }}
+          sx={{ bgcolor: 'primary.main' }}
           alt="Remy Sharp"
           src="/broken-image.jpg"
         />
