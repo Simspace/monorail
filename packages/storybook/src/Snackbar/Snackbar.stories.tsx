@@ -267,107 +267,6 @@ export const Positioned = story<SnackbarProps>(
   },
 )
 
-interface SnackbarMessage {
-  message: string
-  key: number
-}
-
-export const ConsecutiveSnackbars = story<SnackbarProps>(
-  () => {
-    const [snackPack, setSnackPack] = React.useState<
-      ReadonlyArray<SnackbarMessage>
-    >([])
-    const [open, setOpen] = React.useState(false)
-    const [messageInfo, setMessageInfo] = React.useState<
-      SnackbarMessage | undefined
-    >(undefined)
-    const [transition, setTransition] = React.useState<
-      React.ComponentType<TransitionPropsWithChild> | undefined
-    >(undefined)
-
-    React.useEffect(() => {
-      if (snackPack.length && !messageInfo) {
-        // Set a new snack when we don't have an active one
-        setMessageInfo({ ...snackPack[0] })
-        setSnackPack(prev => prev.slice(1))
-        setOpen(true)
-      } else if (snackPack.length && messageInfo && open) {
-        // Close an active snack when a new one is added
-        setOpen(false)
-      }
-    }, [snackPack, messageInfo, open])
-
-    function TransitionRight(props: TransitionPropsWithChild) {
-      return <Slide {...props} direction="left" />
-    }
-
-    const handleClick =
-      (
-        message: string,
-        Transition: React.ComponentType<TransitionPropsWithChild>,
-      ) =>
-      () => {
-        setSnackPack(prev => [
-          ...prev,
-          { message, key: new Date('2021-01-01T12:34:00.000Z').getTime() },
-        ])
-        setTransition(() => Transition)
-      }
-
-    const handleClose = (
-      _event: React.SyntheticEvent | Event,
-      reason?: string,
-    ) => {
-      if (reason === 'clickaway') {
-        return
-      }
-      setOpen(false)
-    }
-
-    const handleExited = () => {
-      setMessageInfo(undefined)
-    }
-
-    return (
-      <div>
-        <Button
-          variant="text"
-          onClick={handleClick('Message A', TransitionRight)}
-        >
-          Show message A
-        </Button>
-        <Button
-          variant="text"
-          onClick={handleClick('Message B', TransitionRight)}
-        >
-          Show message B
-        </Button>
-        <Snackbar
-          key={messageInfo ? messageInfo.key : undefined}
-          open={open}
-          autoHideDuration={6000}
-          onClose={handleClose}
-          TransitionComponent={transition}
-          TransitionProps={{ onExited: handleExited }}
-        >
-          <Alert severity="info" onClose={handleClose}>
-            {messageInfo ? messageInfo.message : undefined}
-          </Alert>
-        </Snackbar>
-      </div>
-    )
-  },
-  {
-    parameters: {
-      docs: {
-        description: {
-          story: `When multiple snackbar updates are necessary, they should appear one at a time. This behavior can be augmented using external libraries like \`notistack\`.`,
-        },
-      },
-    },
-  },
-)
-
 type PillStatus = 'success' | 'error'
 
 export const Autosave = story<SnackbarProps>(() => {
@@ -640,7 +539,7 @@ const MyApp = () => {
   )
 }
 
-export const IntegrationNotistack = story<SnackbarProps>(
+export const ConsecutiveSnackbars = story<SnackbarProps>(
   () => {
     return (
       <SnackbarProvider maxSnack={3}>
