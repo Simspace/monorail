@@ -324,7 +324,10 @@ const StyledAccordionSummary = styled((props: AccordionSummaryProps) => (
     transform: 'rotate(90deg)',
   },
   '& .MuiAccordionSummary-content': {
-    marginLeft: theme.spacing(1),
+    marginLeft: theme.spacing(2),
+    '&.Mui-expanded': {
+      marginLeft: theme.spacing(2),
+    },
   },
 }))
 

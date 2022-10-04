@@ -240,7 +240,7 @@ export const baseTheme = createTheme(
         fontFamily: BASE_FONT_STACK,
         fontSize: FontSize.TabInactive,
         lineHeight: LineHeight.TabInactive,
-        fontWeight: FontWeight.Medium,
+        fontWeight: FontWeight.SemiBold,
       },
       tooltip: {
         fontFamily: BASE_FONT_STACK,

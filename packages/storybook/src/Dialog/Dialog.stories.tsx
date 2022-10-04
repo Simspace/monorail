@@ -461,15 +461,6 @@ export const FormDialog = story<DialogProps>(
   },
 )
 
-const FullScreenTransition = React.forwardRef(function Transition(
-  props: TransitionProps & {
-    children: React.ReactElement
-  },
-  ref: React.Ref<unknown>,
-) {
-  return <Slide direction="up" ref={ref} {...props} />
-})
-
 export const FullScreenDialog = story<DialogProps>(() => {
   const [open, setOpen] = React.useState(false)
 
@@ -484,13 +475,7 @@ export const FullScreenDialog = story<DialogProps>(() => {
   return (
     <div style={{ display: 'flex', justifyContent: 'center' }}>
       <Button onClick={handleClickOpen}>Open full-screen dialog</Button>
-      <Dialog
-        fullScreen
-        maxWidth={false}
-        open={open}
-        onClose={handleClose}
-        TransitionComponent={FullScreenTransition}
-      >
+      <Dialog fullScreen maxWidth={false} open={open} onClose={handleClose}>
         <DialogTitle>Dialog Title</DialogTitle>
         <DialogContent>
           <DialogContentText>

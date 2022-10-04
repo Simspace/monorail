@@ -103,6 +103,12 @@ export const Actions = story<AlertProps>(
         <Alert onClose={() => {}}>
           This is a success alert — check it out!
         </Alert>
+        <Alert onClose={() => {}} variant="filled">
+          This is a success alert — check it out!
+        </Alert>
+        <Alert onClose={() => {}} variant="standard">
+          This is a success alert — check it out!
+        </Alert>
         <Alert
           action={
             <Stack direction="row" gap={2}>

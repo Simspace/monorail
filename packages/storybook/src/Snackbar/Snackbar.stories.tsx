@@ -11,9 +11,11 @@ import type { SnackbarOrigin, SnackbarProps } from '@monorail/components'
 import {
   Alert,
   AlertTitle,
+  Box,
   Button,
   Chip,
   Fade,
+  Grid,
   Grow,
   Slide,
   Snackbar,
@@ -116,11 +118,10 @@ export const Toast = story<SnackbarProps>(() => {
   }
 
   return (
-    <Stack sx={{ width: '100%' }}>
+    <Stack>
       <Button
-        variant="outlined"
         onClick={handleClick(TransitionRight)}
-        sx={{ mb: 4 }}
+        sx={{ mb: 4, alignSelf: 'center' }}
       >
         Open snackbar
       </Button>
@@ -175,65 +176,75 @@ export const Positioned = story<SnackbarProps>(
 
     const buttons = (
       <React.Fragment>
-        <Button
-          variant="text"
-          onClick={handleClick({
-            vertical: 'top',
-            horizontal: 'center',
-          })}
-        >
-          Top-Center
-        </Button>
-        <Button
-          variant="text"
-          onClick={handleClick({
-            vertical: 'top',
-            horizontal: 'right',
-          })}
-        >
-          Top-Right
-        </Button>
-        <Button
-          variant="text"
-          onClick={handleClick({
-            vertical: 'bottom',
-            horizontal: 'right',
-          })}
-        >
-          Bottom-Right
-        </Button>
-        <Button
-          variant="text"
-          onClick={handleClick({
-            vertical: 'bottom',
-            horizontal: 'center',
-          })}
-        >
-          Bottom-Center
-        </Button>
-        <Button
-          variant="text"
-          onClick={handleClick({
-            vertical: 'bottom',
-            horizontal: 'left',
-          })}
-        >
-          Bottom-Left
-        </Button>
-        <Button
-          variant="text"
-          onClick={handleClick({
-            vertical: 'top',
-            horizontal: 'left',
-          })}
-        >
-          Top-Left
-        </Button>
+        <Grid container justifyContent="center">
+          <Grid item>
+            <Button
+              variant="text"
+              onClick={handleClick({
+                vertical: 'top',
+                horizontal: 'left',
+              })}
+            >
+              Top-Left
+            </Button>
+
+            <Button
+              variant="text"
+              onClick={handleClick({
+                vertical: 'top',
+                horizontal: 'center',
+              })}
+            >
+              Top-Center
+            </Button>
+
+            <Button
+              variant="text"
+              onClick={handleClick({
+                vertical: 'top',
+                horizontal: 'right',
+              })}
+            >
+              Top-Right
+            </Button>
+          </Grid>
+        </Grid>
+        <Grid container justifyContent="center">
+          <Grid item>
+            <Button
+              variant="text"
+              onClick={handleClick({
+                vertical: 'bottom',
+                horizontal: 'left',
+              })}
+            >
+              Bottom-Left
+            </Button>
+            <Button
+              variant="text"
+              onClick={handleClick({
+                vertical: 'bottom',
+                horizontal: 'center',
+              })}
+            >
+              Bottom-Center
+            </Button>
+            <Button
+              variant="text"
+              onClick={handleClick({
+                vertical: 'bottom',
+                horizontal: 'right',
+              })}
+            >
+              Bottom-Right
+            </Button>
+          </Grid>
+        </Grid>
       </React.Fragment>
     )
 
     return (
-      <div>
+      <Box>
         {buttons}
         <Snackbar
           anchorOrigin={{ vertical, horizontal }}
@@ -242,7 +253,7 @@ export const Positioned = story<SnackbarProps>(
         >
           <Chip label="I love snacks" onDelete={handleClose} />
         </Snackbar>
-      </div>
+      </Box>
     )
   },
   {
@@ -261,7 +272,7 @@ interface SnackbarMessage {
   key: number
 }
 
-export const Transitions = story<SnackbarProps>(
+export const ConsecutiveSnackbars = story<SnackbarProps>(
   () => {
     const [snackPack, setSnackPack] = React.useState<
       ReadonlyArray<SnackbarMessage>
@@ -424,15 +435,6 @@ export const Autosave = story<SnackbarProps>(() => {
         )}
       </Snackbar>
     </div>
-  )
-})
-
-export const WithFloatingActionButtons = story<SnackbarProps>(() => {
-  return (
-    <Alert severity="warning">
-      Snackbars show above <code>Fab</code>s on mobile- see MUI docs for an
-      example.
-    </Alert>
   )
 })
 
