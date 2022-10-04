@@ -10,7 +10,7 @@ import { story } from '../helpers/storybook.js'
 /**
  * Metadata for Toolbar stories - update/extend as needed
  */
-export default { title: 'Inputs/Toolbar', component: Toolbar }
+export default { title: 'Patterns/Toolbar', component: Toolbar }
 /**
  * Story template (edit/remove by hand if needed)
  *
