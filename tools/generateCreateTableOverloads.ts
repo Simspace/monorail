@@ -12,7 +12,7 @@ const project = new Project()
 const file = project.createSourceFile(
   path.resolve(
     __dirname,
-    '../src/components/DataGrid/generated/CreateTableOverloads.ts',
+    '../packages/components/src/DataGrid/generated/CreateTableOverloads.ts',
   ),
   undefined,
   { overwrite: true },

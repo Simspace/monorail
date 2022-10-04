@@ -284,7 +284,6 @@ export const ContentComponentPropExample1 = story(
       }
 
       return (
-        // eslint-disable-next-line jsx-a11y/no-static-element-interactions
         <div
           className={[
             className,
@@ -296,7 +295,6 @@ export const ContentComponentPropExample1 = story(
           onMouseDown={handleMouseDown}
           ref={ref as React.Ref<HTMLDivElement>}
         >
-          {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
           <div onClick={handleExpansionClick} className={classes.iconContainer}>
             {icon}
           </div>
