@@ -39,6 +39,13 @@ export interface ResizeHandleProps
    * @default undefined
    */
   onDragEnd?: (event: MouseEvent | TouchEvent) => void
+  /**
+   * Should the size of the handle be computed from the largest sibling ResizableElement?
+   *
+   * @note only use this when the height of the parent is indeterminate
+   * @default false
+   */
+  computeSize?: boolean
 
   /** @internal */
   index?: number

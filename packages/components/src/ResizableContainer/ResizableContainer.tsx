@@ -69,6 +69,8 @@ export const ResizableContainer = React.forwardRef(function ResizableContainer(
 
   const events = React.useRef(new ResizeEventTarget())
 
+  const hasComputeSizeChild = React.useRef(false)
+
   const innerForceUpdate = useForceUpdate()
   const forceUpdate = React.useCallback(() => {
     innerForceUpdate()
@@ -359,29 +361,31 @@ export const ResizableContainer = React.forwardRef(function ResizableContainer(
 
   const computeSize = React.useCallback(
     (elements: Array<ResizeChild>) => {
-      computedSize.current = 0
-      switch (orientation) {
-        case 'vertical': {
-          elements.forEach(element => {
-            if (element.type === getComponentType(ResizeHandle)) {
-              return
-            }
-            if (element.ref?.current && computedSize.current < element.ref.current.offsetHeight) {
-              computedSize.current = element.ref.current.offsetHeight
-            }
-          })
-          break
-        }
-        case 'horizontal': {
-          elements.forEach(element => {
-            if (element.type === getComponentType(ResizeHandle)) {
-              return
-            }
-            if (element.ref?.current && computedSize.current < element.ref.current.offsetWidth) {
-              computedSize.current = element.ref.current.offsetWidth
-            }
-          })
-          break
+      if (hasComputeSizeChild.current) {
+        computedSize.current = 0
+        switch (orientation) {
+          case 'vertical': {
+            elements.forEach(element => {
+              if (element.type === getComponentType(ResizeHandle)) {
+                return
+              }
+              if (element.ref?.current && computedSize.current < element.ref.current.offsetHeight) {
+                computedSize.current = element.ref.current.offsetHeight
+              }
+            })
+            break
+          }
+          case 'horizontal': {
+            elements.forEach(element => {
+              if (element.type === getComponentType(ResizeHandle)) {
+                return
+              }
+              if (element.ref?.current && computedSize.current < element.ref.current.offsetWidth) {
+                computedSize.current = element.ref.current.offsetWidth
+              }
+            })
+            break
+          }
         }
       }
     },
@@ -504,7 +508,11 @@ export const ResizableContainer = React.forwardRef(function ResizableContainer(
   const classes = useUtilityClasses(ownerState)
 
   const renderChildren = () => {
+    let shouldComputeSize = false
     processedChildren.current = React.Children.map(getValidChildren(children), (child, index) => {
+      if (child.type === getComponentType(ResizeHandle)) {
+        shouldComputeSize = shouldComputeSize || (child.props.computeSize ?? false)
+      }
       const childFlexData: FlexData = flexData[index]
       if (!childFlexData) {
         return <div />
@@ -525,6 +533,7 @@ export const ResizableContainer = React.forwardRef(function ResizableContainer(
       }
       return React.cloneElement(child, props)
     }) as Array<ResizeChild>
+    hasComputeSizeChild.current = shouldComputeSize
     computeSize(processedChildren.current)
     return processedChildren.current
   }
@@ -590,6 +599,7 @@ interface ResizeChildProps {
   propagate: boolean
   direction: ResizableContainerOrientation
   index: number
+  computeSize?: boolean
 }
 
 interface ResizeChild extends React.ReactElement<ResizeChildProps> {

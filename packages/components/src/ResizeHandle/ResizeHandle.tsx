@@ -212,6 +212,7 @@ export const ResizeHandle = React.forwardRef(function ResizeHandle(
     onDragStart,
     onDragEnd,
     onDrag,
+    computeSize,
     ...other
   } = props
 
@@ -324,11 +325,13 @@ export const ResizeHandle = React.forwardRef(function ResizeHandle(
 
   const style = {
     ...other.style,
-    ...(context.orientation === 'vertical' && {
-      height: props.computedSize?.current,
-    }),
-    ...(context.orientation === 'horizontal' && {
-      width: props.computedSize?.current,
+    ...(computeSize === true && {
+      ...(context.orientation === 'vertical' && {
+        height: props.computedSize?.current,
+      }),
+      ...(context.orientation === 'horizontal' && {
+        width: props.computedSize?.current,
+      }),
     }),
   }
 

@@ -147,7 +147,7 @@ const Template: Story<{}> = () => {
               </Stack>
             </Box>
           </ResizableElement>
-          <ResizeHandle />
+          <ResizeHandle computeSize />
           <ResizableElement minSize={0.25}>
             <Box pl={8}>
               {!isPopoutOpen && (
