@@ -272,8 +272,8 @@ const palette: PaletteOptions = {
     },
 
     focusRing: {
-      inner: RawColor.Blue800,
-      outer: RawColor.Blue400,
+      inner: RawColor.Purple800,
+      outer: RawColor.Purple400,
     },
 
     shades: {
