@@ -3,15 +3,15 @@ import { chipClasses, darken, getContrastRatio } from '@mui/material'
 
 export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
   defaultProps: {
-    variant: 'default',
+    variant: 'muted',
   },
   styleOverrides: {
     root: ({
-      ownerState: { clickable = false, color = 'default', variant = 'default' },
+      ownerState: { clickable = false, color = 'default', variant = 'muted' },
       theme,
     }) => {
-      const defaultVariantStyles: CSSInterpolation = {
-        color: theme.palette.default.dark,
+      const mutedVariantStyles: CSSInterpolation = {
+        color: theme.palette.text.primary,
         backgroundColor: theme.palette.default.lowEmphasis.main,
         [`&.${chipClasses.focusVisible}`]: {
           backgroundColor: theme.palette.default.lowEmphasis.main,
@@ -22,7 +22,7 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
 
       const readOnlyRectangularStyles: CSSInterpolation = {
         borderRadius: 4,
-        ...defaultVariantStyles,
+        ...mutedVariantStyles,
       }
 
       const clickableRectangularStyles: CSSInterpolation = {
@@ -44,7 +44,7 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
           boxShadow: `0 0 0 3px ${theme.palette[color].focusRing.outer}`,
           border: `1px solid ${theme.palette[color].focusRing.inner}`,
         },
-        ...(variant === 'default' && defaultVariantStyles),
+        ...(variant === 'muted' && mutedVariantStyles),
         ...(variant === 'rectangular' && readOnlyRectangularStyles),
         ...(variant === 'rectangular' &&
           clickable &&
@@ -66,17 +66,20 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
       return {
         backgroundColor: theme.palette.background.paper,
         borderColor: theme.palette[color].border.light,
-        color: theme.palette[color].lowEmphasis.contrastText,
+        color:
+          color === 'default'
+            ? theme.palette.text.primary
+            : theme.palette[color].lowEmphasis.contrastText,
         [`&.${chipClasses.focusVisible}`]: {
           backgroundColor: theme.palette.background.paper,
         },
       }
     },
     clickable: ({
-      ownerState: { color = 'default', variant = 'default' },
+      ownerState: { color = 'default', variant = 'muted' },
       theme,
     }) => {
-      const defaultVariantStyles: CSSInterpolation = {
+      const mutedVariantStyles: CSSInterpolation = {
         '&:hover': {
           backgroundColor: darken(
             theme.palette.default.lowEmphasis.main,
@@ -136,7 +139,7 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
       }
 
       return {
-        ...(variant === 'default' && defaultVariantStyles),
+        ...(variant === 'muted' && mutedVariantStyles),
         ...(variant === 'filled' && filledVariantStyles),
         ...(variant === 'outlined' && outlinedVariantStyles),
         ...(variant === 'rectangular' && clickableRectangularStyles),
@@ -155,7 +158,7 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
       ownerState: { clickable = false, color = 'default', variant = 'filled' },
       theme,
     }) => {
-      const defaultVariantStyles: CSSInterpolation = {
+      const mutedVariantStyles: CSSInterpolation = {
         color: theme.palette.default.lowEmphasis.contrastText,
         '&:hover': {
           color: theme.palette.default.lowEmphasis.contrastText,
@@ -186,7 +189,7 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
         },
       }
 
-      const readOnlyRectangularStyles: CSSInterpolation = defaultVariantStyles
+      const readOnlyRectangularStyles: CSSInterpolation = mutedVariantStyles
 
       const clickableRectangularStyles: CSSInterpolation = {
         color: theme.palette.primary.lowEmphasis.contrastText,
@@ -197,7 +200,7 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
 
       return {
         marginRight: 3,
-        ...(variant === 'default' && defaultVariantStyles),
+        ...(variant === 'muted' && mutedVariantStyles),
         ...(variant === 'filled' && filledStyles),
         ...(variant === 'outlined' && outlinedStyles),
         ...(variant === 'rectangular' && readOnlyRectangularStyles),
@@ -207,11 +210,11 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
       }
     },
     avatar: ({
-      ownerState: { clickable = false, color = 'default', variant = 'default' },
+      ownerState: { clickable = false, color = 'default', variant = 'muted' },
       theme,
     }) => {
-      const defaultVariantStyles: CSSInterpolation = {
-        color: theme.palette.default.dark,
+      const mutedVariantStyles: CSSInterpolation = {
+        color: theme.palette.text.primary,
         backgroundColor: theme.palette.default.lowEmphasis.dark,
       }
 
@@ -225,7 +228,7 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
         backgroundColor: theme.palette[color].lowEmphasis.contrastText,
       }
 
-      const readOnlyRectangularStyles: CSSInterpolation = defaultVariantStyles
+      const readOnlyRectangularStyles: CSSInterpolation = mutedVariantStyles
 
       const clickableRectangularStyles: CSSInterpolation = {
         color: theme.palette.primary.dark,
@@ -234,7 +237,7 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
 
       return {
         marginLeft: 4,
-        ...(variant === 'default' && defaultVariantStyles),
+        ...(variant === 'muted' && mutedVariantStyles),
         ...(variant === 'filled' && filledVariantStyles),
         ...(variant === 'outlined' && outlinedVariantStyles),
         ...(variant === 'rectangular' && readOnlyRectangularStyles),

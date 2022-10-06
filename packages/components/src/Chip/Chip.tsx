@@ -6,7 +6,7 @@ declare module '@mui/material/Chip' {
    */
   interface ChipPropsVariantOverrides {
     rectangular: true
-    default: true
+    muted: true
   }
 
   interface ChipPropsColorOverrides {
