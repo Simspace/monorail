@@ -49,6 +49,7 @@ export const Showcase = story<ChipProps>(() => (
     <Stack direction="column" alignItems="flex-start" spacing={2}>
       {colors.map(color => (
         <Chip
+          variant="filled"
           color={color}
           label={capitalizeFirstLetter(color)}
           key={`chip-filled-${color}`}
@@ -68,6 +69,7 @@ export const Showcase = story<ChipProps>(() => (
     <Stack direction="column" alignItems="flex-start" spacing={2}>
       {colors.map(color => (
         <Chip
+          variant="filled"
           color={color}
           label={capitalizeFirstLetter(color)}
           key={`chip-filled-${color}`}
@@ -89,6 +91,7 @@ export const Showcase = story<ChipProps>(() => (
     <Stack direction="column" alignItems="flex-start" spacing={2}>
       {colors.map(color => (
         <Chip
+          variant="filled"
           avatar={<Avatar>F</Avatar>}
           clickable
           onDelete={action('onDelete')}
@@ -114,6 +117,7 @@ export const Showcase = story<ChipProps>(() => (
     <Stack direction="column" alignItems="flex-start" spacing={2}>
       {colors.map(color => (
         <Chip
+          variant="filled"
           icon={<AccountBoxIcon />}
           clickable
           color={color}
@@ -169,6 +173,17 @@ export const Showcase = story<ChipProps>(() => (
         avatar={<Avatar>F</Avatar>}
         onDelete={action('onDelete')}
         label="Rectangular"
+      />
+    </Stack>
+    <Stack direction="column" alignItems="flex-start" spacing={2}>
+      <Chip clickable label="Default Variant" />
+      <Chip clickable icon={<FaceIcon />} label="Default Variant" />
+      <Chip clickable avatar={<Avatar>F</Avatar>} label="Default Variant" />
+      <Chip
+        clickable
+        avatar={<Avatar>F</Avatar>}
+        onDelete={action('onDelete')}
+        label="Default Variant"
       />
     </Stack>
   </Stack>
