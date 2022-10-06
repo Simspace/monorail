@@ -1,6 +1,5 @@
 // Edit this file to add new stories
 import React from 'react'
-import AccountBoxIcon from '@mui/icons-material/AccountBox'
 import DeleteIcon from '@mui/icons-material/Delete'
 import DoneIcon from '@mui/icons-material/Done'
 import FaceIcon from '@mui/icons-material/Face'
@@ -44,154 +43,10 @@ const colors = [
   'warning',
 ] as const
 
-export const Showcase = story<ChipProps>(() => (
-  <Stack direction="row" spacing={2}>
-    <Stack direction="column" alignItems="flex-start" spacing={2}>
-      {colors.map(color => (
-        <Chip
-          variant="filled"
-          color={color}
-          label={capitalizeFirstLetter(color)}
-          key={`chip-filled-${color}`}
-        />
-      ))}
-    </Stack>
-    <Stack direction="column" alignItems="flex-start" spacing={2}>
-      {colors.map(color => (
-        <Chip
-          variant="outlined"
-          color={color}
-          label={capitalizeFirstLetter(color)}
-          key={`chip-outlined-${color}`}
-        />
-      ))}
-    </Stack>
-    <Stack direction="column" alignItems="flex-start" spacing={2}>
-      {colors.map(color => (
-        <Chip
-          variant="filled"
-          color={color}
-          label={capitalizeFirstLetter(color)}
-          key={`chip-filled-${color}`}
-          onDelete={action('onDelete')}
-        />
-      ))}
-    </Stack>
-    <Stack direction="column" alignItems="flex-start" spacing={2}>
-      {colors.map(color => (
-        <Chip
-          variant="outlined"
-          color={color}
-          label={capitalizeFirstLetter(color)}
-          key={`chip-outlined-${color}`}
-          onDelete={action('onDelete')}
-        />
-      ))}
-    </Stack>
-    <Stack direction="column" alignItems="flex-start" spacing={2}>
-      {colors.map(color => (
-        <Chip
-          variant="filled"
-          avatar={<Avatar>F</Avatar>}
-          clickable
-          onDelete={action('onDelete')}
-          color={color}
-          label={capitalizeFirstLetter(color)}
-          key={`chip-filled-with-avatar-${color}-clickable`}
-        />
-      ))}
-    </Stack>
-    <Stack direction="column" alignItems="flex-start" spacing={2}>
-      {colors.map(color => (
-        <Chip
-          variant="outlined"
-          avatar={<Avatar>F</Avatar>}
-          clickable
-          onDelete={action('onDelete')}
-          color={color}
-          label={capitalizeFirstLetter(color)}
-          key={`chip-outlined-with-avatar-${color}-clickable`}
-        />
-      ))}
-    </Stack>
-    <Stack direction="column" alignItems="flex-start" spacing={2}>
-      {colors.map(color => (
-        <Chip
-          variant="filled"
-          icon={<AccountBoxIcon />}
-          clickable
-          color={color}
-          label={capitalizeFirstLetter(color)}
-          key={`chip-filled-with-icon-${color}-clickable`}
-        />
-      ))}
-    </Stack>
-    <Stack direction="column" alignItems="flex-start" spacing={2}>
-      {colors.map(color => (
-        <Chip
-          variant="outlined"
-          icon={<FaceIcon />}
-          clickable
-          color={color}
-          label={capitalizeFirstLetter(color)}
-          key={`chip-outlined-with-icon-${color}-clickable`}
-        />
-      ))}
-    </Stack>
-    <Stack direction="column" alignItems="flex-start" spacing={2}>
-      <Chip variant="rectangular" label="Rectangular" />
-      <Chip variant="rectangular" icon={<FaceIcon />} label="Rectangular" />
-      <Chip
-        variant="rectangular"
-        avatar={<Avatar>F</Avatar>}
-        label="Rectangular"
-      />
-      <Chip
-        variant="rectangular"
-        avatar={<Avatar>F</Avatar>}
-        onDelete={action('onDelete')}
-        label="Rectangular"
-      />
-    </Stack>
-    <Stack direction="column" alignItems="flex-start" spacing={2}>
-      <Chip clickable variant="rectangular" label="Rectangular" />
-      <Chip
-        clickable
-        variant="rectangular"
-        icon={<FaceIcon />}
-        label="Rectangular"
-      />
-      <Chip
-        clickable
-        variant="rectangular"
-        avatar={<Avatar>F</Avatar>}
-        label="Rectangular"
-      />
-      <Chip
-        clickable
-        variant="rectangular"
-        avatar={<Avatar>F</Avatar>}
-        onDelete={action('onDelete')}
-        label="Rectangular"
-      />
-    </Stack>
-    <Stack direction="column" alignItems="flex-start" spacing={2}>
-      <Chip clickable label="Default Variant" />
-      <Chip clickable icon={<FaceIcon />} label="Default Variant" />
-      <Chip clickable avatar={<Avatar>F</Avatar>} label="Default Variant" />
-      <Chip
-        clickable
-        avatar={<Avatar>F</Avatar>}
-        onDelete={action('onDelete')}
-        label="Default Variant"
-      />
-    </Stack>
-  </Stack>
-))
-
 export const Variants = story<ChipProps>(
   () => (
     <Stack direction="row" spacing={2}>
+      <Chip label="Muted" variant="muted" />
       <Chip label="Filled" variant="filled" />
       <Chip label="Outlined" variant="outlined" />
       <Chip label="Rectangular" variant="rectangular" />
@@ -401,6 +256,7 @@ export const Colors = story<ChipProps>(
             color={color}
             label={capitalizeFirstLetter(color)}
             key={`chip-filled-${color}`}
+            variant="filled"
           />
         ))}
       </Stack>
@@ -413,6 +269,7 @@ export const Colors = story<ChipProps>(
             color={color}
             label={capitalizeFirstLetter(color)}
             key={`chip-filled-${color}-disabled`}
+            variant="filled"
           />
         ))}
       </Stack>
