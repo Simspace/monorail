@@ -92,9 +92,9 @@ export const MonorailIconButtonOverrides: Components<Theme>['MuiIconButton'] = {
       },
     }),
     sizeSmall: ({ theme }) => ({
-      height: 32,
-      width: 32,
-      fontSize: theme.typography.pxToRem(20),
+      height: 28,
+      width: 28,
+      fontSize: theme.typography.pxToRem(16),
     }),
     sizeMedium: ({ theme }) => ({
       height: 40,
