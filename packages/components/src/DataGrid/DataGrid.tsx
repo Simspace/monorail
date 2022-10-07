@@ -83,6 +83,7 @@ export const DataGrid: <R extends GridValidRowModel>(
         Row: DataGridRow,
         Header: DataGridHeader,
         ColumnResizeIcon: Divider,
+        ...props.components,
       }}
       groupingColDef={{
         renderHeader: DataGridColumnHeader,
