@@ -508,6 +508,7 @@ const palette: PaletteOptions = {
   },
   divider: RawColor.Grey200,
   rating: RawColor.Yellow,
+  tooltip: RawColor.Grey800,
   backdropOverlay: `rgba(${RawColor.Black}, 0.5)`,
   background: {
     default: '#FAFAFA',

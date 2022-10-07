@@ -77,6 +77,8 @@ declare module '@mui/material/styles/createPalette' {
 
     /** Color token for `Rating` when filled */
     rating: string
+    /** Background color for the `Tooltip` component */
+    tooltip: string
     /** Background color for Backdrop component. */
     backdropOverlay: string
   }
@@ -118,6 +120,8 @@ declare module '@mui/material/styles/createPalette' {
 
     /** Color token for `Rating` when filled */
     rating?: string
+    /** Background color for the `Tooltip` component */
+    tooltip?: string
     /** Background color for Backdrop component. */
     backdropOverlay?: string
   }

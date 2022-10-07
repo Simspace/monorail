@@ -21,7 +21,7 @@ export enum RawColor {
   Paper = '#141414',
 
   Grey050 = '#2E2E35',
-  Grey100 = '#515359',
+  Grey100 = '#525260',
   Grey200 = '#616173',
   Grey300 = '#77778C',
   Grey400 = '#9797A4',
@@ -96,6 +96,17 @@ export enum RawColor {
   Purple700 = '#D5CEFA',
   Purple800 = '#E3DFFB',
   Purple900 = '#F3F1FD',
+
+  Fuchsia050 = '#56035A',
+  Fuchsia100 = '#8D0D96',
+  Fuchsia200 = '#A916B4',
+  Fuchsia300 = '#CB21DA',
+  Fuchsia400 = '#E65CF8',
+  Fuchsia500 = '#E889F9',
+  Fuchsia600 = '#EBABFA',
+  Fuchsia700 = '#EFC5FB',
+  Fuchsia800 = '#F3DAFC',
+  Fuchsia900 = '#FAEFFD',
 
   Teal050 = '#113430',
   Teal100 = '#215952',
@@ -180,6 +191,18 @@ export const DefaultLightChartColors = {
     800: RawColor.Purple800,
     900: RawColor.Purple900,
   },
+  fuchsia: {
+    50: RawColor.Fuchsia050,
+    100: RawColor.Fuchsia100,
+    200: RawColor.Fuchsia200,
+    300: RawColor.Fuchsia300,
+    400: RawColor.Fuchsia400,
+    500: RawColor.Fuchsia500,
+    600: RawColor.Fuchsia600,
+    700: RawColor.Fuchsia700,
+    800: RawColor.Fuchsia800,
+    900: RawColor.Fuchsia900,
+  },
 }
 
 enum Opacities {
@@ -191,16 +214,16 @@ enum Opacities {
 }
 
 const action: TypeAction = {
-  active: alpha(RawColor.Purple600, Opacities.Active),
+  active: alpha(RawColor.White, Opacities.Active),
   activatedOpacity: Opacities.Active,
   disabled: RawColor.Grey300,
   disabledBackground: alpha(RawColor.Black, 0.32),
   disabledOpacity: Opacities.Disabled,
-  focus: alpha(RawColor.Purple600, Opacities.Focus),
+  focus: alpha(RawColor.White, Opacities.Focus),
   focusOpacity: Opacities.Focus,
-  hover: alpha(RawColor.Purple600, Opacities.Hover),
+  hover: alpha(RawColor.White, Opacities.Hover),
   hoverOpacity: Opacities.Hover,
-  selected: alpha(RawColor.Purple600, Opacities.Selected),
+  selected: alpha(RawColor.White, Opacities.Selected),
   selectedOpacity: Opacities.Selected,
 }
 
@@ -380,42 +403,42 @@ const palette: PaletteOptions = {
     },
   },
   warning: {
-    light: RawColor.Orange100,
-    main: RawColor.Orange200,
-    dark: RawColor.Orange300,
-    hover: RawColor.Orange300,
-    active: RawColor.Orange400,
+    light: RawColor.Yellow400,
+    main: RawColor.Yellow600,
+    dark: RawColor.Yellow800,
+    hover: RawColor.Yellow300,
+    active: RawColor.Yellow400,
 
     lowEmphasis: {
-      light: RawColor.Orange050,
-      main: RawColor.Orange100,
-      dark: RawColor.Orange300,
-      contrastText: RawColor.Orange600,
-      hover: alpha(RawColor.Orange400, action.hoverOpacity),
-      active: alpha(RawColor.Orange400, action.activatedOpacity),
+      light: RawColor.Yellow050,
+      main: RawColor.Yellow100,
+      dark: RawColor.Yellow300,
+      contrastText: RawColor.Yellow600,
+      hover: alpha(RawColor.Yellow400, action.hoverOpacity),
+      active: alpha(RawColor.Yellow400, action.activatedOpacity),
     },
 
     border: {
-      light: RawColor.Orange400,
-      main: RawColor.Orange600,
-      dark: RawColor.Orange800,
+      light: RawColor.Yellow400,
+      main: RawColor.Yellow600,
+      dark: RawColor.Yellow800,
     },
 
     focusRing: {
-      inner: RawColor.Orange800,
-      outer: RawColor.Orange400,
+      inner: RawColor.Yellow800,
+      outer: RawColor.Yellow400,
     },
 
     shades: {
-      50: RawColor.Orange050,
-      100: RawColor.Orange100,
-      200: RawColor.Orange200,
-      300: RawColor.Orange300,
-      400: RawColor.Orange400,
-      500: RawColor.Orange500,
-      600: RawColor.Orange600,
-      700: RawColor.Orange700,
-      800: RawColor.Orange800,
+      50: RawColor.Yellow050,
+      100: RawColor.Yellow100,
+      200: RawColor.Yellow200,
+      300: RawColor.Yellow300,
+      400: RawColor.Yellow400,
+      500: RawColor.Yellow500,
+      600: RawColor.Yellow600,
+      700: RawColor.Yellow700,
+      800: RawColor.Yellow800,
     },
   },
   info: {
@@ -475,7 +498,8 @@ const palette: PaletteOptions = {
     900: RawColor.Grey900,
   },
   divider: RawColor.Grey100,
-  rating: RawColor.Yellow300,
+  rating: RawColor.Yellow600,
+  tooltip: RawColor.Grey300,
   backdropOverlay: `rgba(${RawColor.Grey800}, 0.7)`,
   background: {
     default: RawColor.Grey050,

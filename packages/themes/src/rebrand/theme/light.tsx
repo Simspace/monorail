@@ -463,6 +463,7 @@ const palette: PaletteOptions = {
   },
   divider: RawColor.Grey100,
   rating: RawColor.Yellow300,
+  tooltip: RawColor.Grey800,
   backdropOverlay: `rgba(${RawColor.Grey800}, 0.7)`,
   background: {
     default: RawColor.Grey050,
