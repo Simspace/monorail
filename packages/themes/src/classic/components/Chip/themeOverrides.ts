@@ -148,14 +148,14 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
     sizeSmall: ({ theme }) => ({
       padding: theme.spacing(0.5, 1.25),
     }),
-    icon: ({ ownerState: { variant = 'filled' }, theme }) => ({
+    icon: ({ ownerState: { variant = 'muted' }, theme }) => ({
       color: 'inherit',
       marginLeft:
         variant === 'rectangular' ? theme.spacing(1) : theme.spacing(2),
       marginRight: theme.spacing(-2),
     }),
     deleteIcon: ({
-      ownerState: { clickable = false, color = 'default', variant = 'filled' },
+      ownerState: { clickable = false, color = 'default', variant = 'muted' },
       theme,
     }) => {
       const mutedVariantStyles: CSSInterpolation = {
