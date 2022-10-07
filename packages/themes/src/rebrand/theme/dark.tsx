@@ -183,11 +183,11 @@ export const DefaultLightChartColors = {
 }
 
 enum Opacities {
-  Hover = 0.04,
-  Focus = 0.12,
-  Selected = 0.08,
-  Active = 0.12,
-  Disabled = 0.6,
+  Hover = 0.08,
+  Focus = 0.24,
+  Selected = 0.16,
+  Active = 0.24,
+  Disabled = 0.4,
 }
 
 const action: TypeAction = {
@@ -218,42 +218,42 @@ const palette: PaletteOptions = {
     black: RawColor.Black,
   },
   primary: {
-    light: RawColor.Purple400,
-    main: RawColor.Purple600,
-    dark: RawColor.Purple800,
-    hover: RawColor.Purple700,
-    active: RawColor.Purple800,
+    light: RawColor.Chartreuse400,
+    main: RawColor.Chartreuse600,
+    dark: RawColor.Chartreuse800,
+    hover: RawColor.Chartreuse700,
+    active: RawColor.Chartreuse800,
 
     lowEmphasis: {
-      light: RawColor.Purple050,
-      main: RawColor.Purple100,
-      dark: RawColor.Purple300,
-      contrastText: RawColor.Purple600,
-      hover: alpha(RawColor.Purple400, action.hoverOpacity),
-      active: alpha(RawColor.Purple400, action.activatedOpacity),
+      light: RawColor.Chartreuse050,
+      main: RawColor.Chartreuse100,
+      dark: RawColor.Chartreuse300,
+      contrastText: RawColor.Chartreuse600,
+      hover: alpha(RawColor.Chartreuse400, action.hoverOpacity),
+      active: alpha(RawColor.Chartreuse400, action.activatedOpacity),
     },
 
     border: {
-      light: RawColor.Purple400,
-      main: RawColor.Purple600,
-      dark: RawColor.Purple800,
+      light: RawColor.Chartreuse400,
+      main: RawColor.Chartreuse600,
+      dark: RawColor.Chartreuse800,
     },
 
     focusRing: {
-      inner: RawColor.Purple800,
-      outer: RawColor.Purple400,
+      inner: RawColor.Chartreuse800,
+      outer: RawColor.Chartreuse400,
     },
 
     shades: {
-      50: RawColor.Purple050,
-      100: RawColor.Purple100,
-      200: RawColor.Purple200,
-      300: RawColor.Purple300,
-      400: RawColor.Purple400,
-      500: RawColor.Purple500,
-      600: RawColor.Purple600,
-      700: RawColor.Purple700,
-      800: RawColor.Purple800,
+      50: RawColor.Chartreuse050,
+      100: RawColor.Chartreuse100,
+      200: RawColor.Chartreuse200,
+      300: RawColor.Chartreuse300,
+      400: RawColor.Chartreuse400,
+      500: RawColor.Chartreuse500,
+      600: RawColor.Chartreuse600,
+      700: RawColor.Chartreuse700,
+      800: RawColor.Chartreuse800,
     },
   },
   secondary: {
