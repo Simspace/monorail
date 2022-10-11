@@ -4,7 +4,7 @@ import ErrorIcon from '@mui/icons-material/Error'
 import InfoIcon from '@mui/icons-material/Info'
 import WarningIcon from '@mui/icons-material/Warning'
 import type { Components, Theme } from '@mui/material'
-import { alertClasses } from '@mui/material'
+import { alertClasses, alpha, iconButtonClasses } from '@mui/material'
 
 export const MonorailAlertOverrides: Components<Theme>['MuiAlert'] = {
   defaultProps: {
@@ -40,6 +40,9 @@ export const MonorailAlertOverrides: Components<Theme>['MuiAlert'] = {
         [`& .${alertClasses.icon}`]: {
           color: theme.palette[severity].lowEmphasis.contrastText,
         },
+        [`& .${iconButtonClasses.root}`]: {
+          color: theme.palette.default.main,
+        },
       }
     },
     outlined: ({ ownerState, theme }) => {
@@ -49,9 +52,12 @@ export const MonorailAlertOverrides: Components<Theme>['MuiAlert'] = {
         color: theme.palette.getContrastText(
           theme.palette[severity].lowEmphasis.light,
         ),
-        borderColor: theme.palette[severity].border.main,
+        borderColor: theme.palette[severity].border.light,
         [`& .${alertClasses.icon}`]: {
           color: theme.palette[severity].lowEmphasis.contrastText,
+        },
+        [`& .${iconButtonClasses.root}`]: {
+          color: theme.palette.default.main,
         },
       }
     },
@@ -62,6 +68,20 @@ export const MonorailAlertOverrides: Components<Theme>['MuiAlert'] = {
         backgroundColor: theme.palette[severity].main,
         [`& .${alertClasses.icon}`]: {
           color: theme.palette.getContrastText(theme.palette[severity].main),
+        },
+        [`& .${iconButtonClasses.root}`]: {
+          '&:hover': {
+            backgroundColor: alpha(
+              theme.palette.common.black,
+              theme.palette.action.hoverOpacity,
+            ),
+          },
+          '&:active': {
+            backgroundColor: alpha(
+              theme.palette.common.black,
+              theme.palette.action.activatedOpacity,
+            ),
+          },
         },
       }
     },

@@ -66,19 +66,19 @@ export const WithTitleAndDescriptions = story<AlertProps>(
   () => {
     return (
       <Stack sx={{ width: '100%' }} spacing={2}>
-        <Alert severity="error">
+        <Alert severity="error" onClose={() => {}}>
           <AlertTitle>Error</AlertTitle>
           This is an error alert — <strong>check it out!</strong>
         </Alert>
-        <Alert severity="warning">
+        <Alert severity="warning" onClose={() => {}}>
           <AlertTitle>Warning</AlertTitle>
           This is a warning alert — <strong>check it out!</strong>
         </Alert>
-        <Alert severity="info">
+        <Alert severity="info" onClose={() => {}}>
           <AlertTitle>Info</AlertTitle>
           This is an info alert — <strong>check it out!</strong>
         </Alert>
-        <Alert severity="success">
+        <Alert severity="success" onClose={() => {}}>
           <AlertTitle>Success</AlertTitle>
           This is a success alert — <strong>check it out!</strong>
         </Alert>
@@ -112,10 +112,10 @@ export const Actions = story<AlertProps>(
         <Alert
           action={
             <Stack direction="row" gap={2}>
+              <Button size="small">Undo</Button>
               <Button variant="outlined" size="small">
                 Close
               </Button>
-              <Button size="small">Undo</Button>
             </Stack>
           }
         >
@@ -129,7 +129,7 @@ export const Actions = story<AlertProps>(
               <Button variant="outlined" size="small" color="error" inverted>
                 Close
               </Button>
-              <Button size="small" color="error" inverted>
+              <Button size="small" variant="text" color="error" inverted>
                 Undo
               </Button>
             </Stack>
@@ -145,7 +145,7 @@ export const Actions = story<AlertProps>(
               <Button variant="outlined" size="small" color="warning" inverted>
                 Close
               </Button>
-              <Button size="small" color="warning" inverted>
+              <Button size="small" variant="text" color="warning" inverted>
                 Undo
               </Button>
             </Stack>
@@ -161,7 +161,7 @@ export const Actions = story<AlertProps>(
               <Button variant="outlined" size="small" color="info" inverted>
                 Close
               </Button>
-              <Button size="small" color="info" inverted>
+              <Button size="small" variant="text" color="info" inverted>
                 Undo
               </Button>
             </Stack>
@@ -177,23 +177,7 @@ export const Actions = story<AlertProps>(
               <Button variant="outlined" size="small" color="success" inverted>
                 Close
               </Button>
-              <Button size="small" color="success" inverted>
-                Undo
-              </Button>
-            </Stack>
-          }
-        >
-          This is a success alert — check it out!
-        </Alert>
-        <Alert
-          variant="filled"
-          severity="success"
-          action={
-            <Stack direction="row" gap={2}>
-              <Button variant="text" size="small" color="success" inverted>
-                Close
-              </Button>
-              <Button size="small" color="success" inverted>
+              <Button size="small" variant="text" color="success" inverted>
                 Undo
               </Button>
             </Stack>
@@ -306,46 +290,46 @@ export const Variants = story<AlertProps>(
       <Stack direction="column" spacing={2}>
         <Stack sx={{ width: '100%' }} spacing={2}>
           <Typography>Outlined (Default)</Typography>
-          <Alert variant="outlined" severity="error">
+          <Alert variant="outlined" severity="error" onClose={() => {}}>
             This is an error alert — check it out!
           </Alert>
-          <Alert variant="outlined" severity="warning">
+          <Alert variant="outlined" severity="warning" onClose={() => {}}>
             This is a warning alert — check it out!
           </Alert>
-          <Alert variant="outlined" severity="info">
+          <Alert variant="outlined" severity="info" onClose={() => {}}>
             This is an info alert — check it out!
           </Alert>
-          <Alert variant="outlined" severity="success">
+          <Alert variant="outlined" severity="success" onClose={() => {}}>
             This is a success alert — check it out!
           </Alert>
         </Stack>
         <Stack sx={{ width: '100%' }} spacing={2}>
           <Typography>Standard</Typography>
-          <Alert variant="standard" severity="error">
+          <Alert variant="standard" severity="error" onClose={() => {}}>
             This is an error alert — check it out!
           </Alert>
-          <Alert variant="standard" severity="warning">
+          <Alert variant="standard" severity="warning" onClose={() => {}}>
             This is a warning alert — check it out!
           </Alert>
-          <Alert variant="standard" severity="info">
+          <Alert variant="standard" severity="info" onClose={() => {}}>
             This is an info alert — check it out!
           </Alert>
-          <Alert variant="standard" severity="success">
+          <Alert variant="standard" severity="success" onClose={() => {}}>
             This is a success alert — check it out!
           </Alert>
         </Stack>
         <Stack sx={{ width: '100%' }} spacing={2}>
           <Typography>Filled</Typography>
-          <Alert variant="filled" severity="error">
+          <Alert variant="filled" severity="error" onClose={() => {}}>
             This is an error alert — check it out!
           </Alert>
-          <Alert variant="filled" severity="warning">
+          <Alert variant="filled" severity="warning" onClose={() => {}}>
             This is a warning alert — check it out!
           </Alert>
-          <Alert variant="filled" severity="info">
+          <Alert variant="filled" severity="info" onClose={() => {}}>
             This is an info alert — check it out!
           </Alert>
-          <Alert variant="filled" severity="success">
+          <Alert variant="filled" severity="success" onClose={() => {}}>
             This is a success alert — check it out!
           </Alert>
         </Stack>

@@ -214,16 +214,16 @@ enum Opacities {
 }
 
 const action: TypeAction = {
-  active: alpha(RawColor.White, Opacities.Active),
+  active: alpha(RawColor.Chartreuse600, Opacities.Active),
   activatedOpacity: Opacities.Active,
   disabled: RawColor.Grey300,
   disabledBackground: alpha(RawColor.Black, 0.32),
   disabledOpacity: Opacities.Disabled,
-  focus: alpha(RawColor.White, Opacities.Focus),
+  focus: alpha(RawColor.Chartreuse600, Opacities.Focus),
   focusOpacity: Opacities.Focus,
-  hover: alpha(RawColor.White, Opacities.Hover),
+  hover: alpha(RawColor.Chartreuse600, Opacities.Hover),
   hoverOpacity: Opacities.Hover,
-  selected: alpha(RawColor.White, Opacities.Selected),
+  selected: alpha(RawColor.Chartreuse600, Opacities.Selected),
   selectedOpacity: Opacities.Selected,
 }
 
@@ -406,16 +406,16 @@ const palette: PaletteOptions = {
     light: RawColor.Yellow400,
     main: RawColor.Yellow600,
     dark: RawColor.Yellow800,
-    hover: RawColor.Yellow300,
-    active: RawColor.Yellow400,
+    hover: RawColor.Yellow700,
+    active: RawColor.Yellow800,
 
     lowEmphasis: {
       light: RawColor.Yellow050,
       main: RawColor.Yellow100,
       dark: RawColor.Yellow300,
       contrastText: RawColor.Yellow600,
-      hover: alpha(RawColor.Yellow400, action.hoverOpacity),
-      active: alpha(RawColor.Yellow400, action.activatedOpacity),
+      hover: alpha(RawColor.Yellow600, action.hoverOpacity),
+      active: alpha(RawColor.Yellow600, action.activatedOpacity),
     },
 
     border: {
