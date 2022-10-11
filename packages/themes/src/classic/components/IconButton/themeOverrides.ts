@@ -67,7 +67,7 @@ export const MonorailIconButtonOverrides: Components<Theme>['MuiIconButton'] = {
           }),
           ...(variant === 'outlined' && {
             border: `1px solid ${theme.palette[color].border.main}`,
-            backgroundColor: theme.palette.common.white,
+            backgroundColor: theme.palette.background.paper,
             '&:hover': {
               backgroundColor: theme.palette[color].lowEmphasis.hover,
             },

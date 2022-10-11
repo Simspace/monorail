@@ -55,10 +55,12 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
       ...theme.typography.chip,
     }),
     filled: ({ ownerState: { color = 'default' }, theme }) => {
+      const background = theme.palette[color].main
       return {
-        backgroundColor: theme.palette[color].main,
+        color: theme.palette.getContrastText(background),
+        backgroundColor: background,
         [`&.${chipClasses.focusVisible}`]: {
-          backgroundColor: theme.palette[color].main,
+          backgroundColor: background,
         },
       }
     },
@@ -147,6 +149,10 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
     },
     sizeSmall: ({ theme }) => ({
       padding: theme.spacing(0.5, 1.25),
+      [`& .${chipClasses.icon}`]: {
+        marginLeft: 0,
+        marginRight: theme.spacing(-1),
+      },
     }),
     icon: ({ ownerState: { variant = 'muted' }, theme }) => ({
       color: 'inherit',
@@ -219,12 +225,16 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
       }
 
       const filledVariantStyles: CSSInterpolation = {
-        color: theme.palette.common.white,
+        color: theme.palette.getContrastText(
+          theme.palette[color].lowEmphasis.contrastText,
+        ),
         backgroundColor: theme.palette[color].lowEmphasis.contrastText,
       }
 
       const outlinedVariantStyles: CSSInterpolation = {
-        color: theme.palette.common.white,
+        color: theme.palette.getContrastText(
+          theme.palette[color].lowEmphasis.contrastText,
+        ),
         backgroundColor: theme.palette[color].lowEmphasis.contrastText,
       }
 

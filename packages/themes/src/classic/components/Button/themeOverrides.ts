@@ -85,7 +85,7 @@ export const MonorailButtonOverrides: Components<Theme>['MuiButton'] = {
           backgroundColor: theme.palette[color].active,
         },
         '&.MonorailButton-inverted': {
-          backgroundColor: theme.palette.common.white,
+          backgroundColor: theme.palette.background.paper,
           color: theme.palette[color].lowEmphasis.contrastText,
           // Making an exception to not use .hover and .active tokens because of this variant needs a special visual treatment.
           // We can tokenize this pattern if it becomes more common. GS 9/9/22
@@ -126,14 +126,14 @@ export const MonorailButtonOverrides: Components<Theme>['MuiButton'] = {
           '&:hover': {
             border: 'none',
             backgroundColor: alpha(
-              theme.palette.grey[900],
+              theme.palette.common.black,
               theme.palette.action.hoverOpacity,
             ),
             boxShadow: `inset 0 0 0 1px currentColor`,
           },
           '&:active': {
             backgroundColor: alpha(
-              theme.palette.grey[900],
+              theme.palette.common.black,
               theme.palette.action.activatedOpacity,
             ),
             boxShadow: `inset 0 0 0 1px currentColor`,
@@ -163,13 +163,13 @@ export const MonorailButtonOverrides: Components<Theme>['MuiButton'] = {
           color: 'currentColor',
           '&:hover': {
             backgroundColor: alpha(
-              theme.palette.grey[900],
+              theme.palette.common.black,
               theme.palette.action.hoverOpacity,
             ),
           },
           '&:active': {
             backgroundColor: alpha(
-              theme.palette.grey[900],
+              theme.palette.common.black,
               theme.palette.action.activatedOpacity,
             ),
           },
