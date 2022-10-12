@@ -1,5 +1,9 @@
 import type { Components, Theme } from '@mui/material'
-import { toggleButtonClasses, toggleButtonGroupClasses } from '@mui/material'
+import {
+  alpha,
+  toggleButtonClasses,
+  toggleButtonGroupClasses,
+} from '@mui/material'
 
 export const MonorailToggleButtonOverrides: Components<Theme>['MuiToggleButton'] =
   {
@@ -9,23 +13,44 @@ export const MonorailToggleButtonOverrides: Components<Theme>['MuiToggleButton']
     styleOverrides: {
       root: ({ ownerState: { color = 'default' }, theme }) => ({
         // Keep backgroundColor transparent, otherwise will hide vertical borders.
-        border: `1px solid ${theme.palette.default.border.light}`,
-        color: theme.palette.text.secondary,
+        border: `1px solid ${theme.palette[color].border.light}`,
+        color:
+          color === 'default'
+            ? theme.palette.text.secondary
+            : theme.palette[color].lowEmphasis.contrastText,
 
         '&:hover': {
           zIndex: 1,
-          border: `1px solid ${theme.palette.default.border.main}`,
+          border: `1px solid ${theme.palette[color].border.main}`,
+          backgroundColor: alpha(
+            theme.palette[color].main,
+            theme.palette.action.hoverOpacity,
+          ),
           [`&.${toggleButtonGroupClasses.grouped}:not(:first-of-type)`]: {
             // Theming this using MuiToggleButtonGroup wasn't successful.
-            borderLeft: `1px solid ${theme.palette.default.border.main}`,
+            borderLeft: `1px solid ${theme.palette[color].border.main}`,
           },
         },
         [`&.Mui-selected`]: {
           // There is a styleOverrides.selected key but it doesn't seem to work.
-          color: theme.palette.text.primary,
-          borderColor: theme.palette.default.border.main,
+          color:
+            color === 'default'
+              ? theme.palette.text.primary
+              : theme.palette[color].dark,
+          borderColor: theme.palette[color].border.main,
+          backgroundColor: alpha(
+            theme.palette[color].main,
+            theme.palette.action.selectedOpacity,
+          ),
+          '&:hover': {
+            backgroundColor: alpha(
+              theme.palette[color].main,
+              theme.palette.action.selectedOpacity +
+                theme.palette.action.hoverOpacity,
+            ),
+          },
           [`&.${toggleButtonGroupClasses.grouped}:not(:first-of-type)`]: {
-            borderLeft: `1px solid ${theme.palette.default.border.main}`,
+            borderLeft: `1px solid ${theme.palette[color].border.main}`,
           },
         },
         [`&.Mui-focusVisible`]: {
@@ -37,8 +62,11 @@ export const MonorailToggleButtonOverrides: Components<Theme>['MuiToggleButton']
           },
         },
         [`&.${toggleButtonClasses.disabled}`]: {
-          color: theme.palette.text.secondary,
-          border: `1px solid ${theme.palette.default.border.light}`,
+          color:
+            color === 'default'
+              ? theme.palette.text.secondary
+              : theme.palette[color].lowEmphasis.contrastText,
+          border: `1px solid ${theme.palette[color].border.light}`,
         },
       }),
     },
