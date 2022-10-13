@@ -4,7 +4,10 @@ export const MonorailAvatarOverrides: Components<Theme>['MuiAvatar'] = {
   defaultProps: {},
   styleOverrides: {
     root: ({ theme }) => ({
-      backgroundColor: theme.palette.secondary.dark,
+      backgroundColor:
+        theme.palette.mode === 'dark'
+          ? theme.palette.secondary.main
+          : theme.palette.secondary.dark,
       color: theme.palette.secondary.contrastText,
       ...theme.typography.avatarInitials,
     }),

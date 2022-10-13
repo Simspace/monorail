@@ -144,15 +144,7 @@ const DropTargetAction = ({
         </Button>
       )
     case DROP_TARGET_STATUS.Initial:
-      return (
-        <Button
-          variant="outlined"
-          sx={theme => ({ mt: 2, bgcolor: theme.palette.common.white })}
-          onClick={onClick}
-        >
-          Choose File
-        </Button>
-      )
+      return <Button onClick={onClick}>Choose File</Button>
     case DROP_TARGET_STATUS.Uploading:
       return uploadProgress !== null ? (
         <Box
@@ -205,11 +197,11 @@ const DropTarget = styled('div', {
         border: `2px dashed ${theme.palette.default.border.light}`,
       },
       [DROP_TARGET_STATUS.HasFile]: {
-        background: theme.palette.common.white,
+        background: theme.palette.background.paper,
         border: `1px solid ${theme.palette.default.border.light}`,
       },
       [DROP_TARGET_STATUS.Uploading]: {
-        background: theme.palette.common.white,
+        background: theme.palette.background.paper,
         border: `1px solid ${theme.palette.default.border.light}`,
       },
       error: {

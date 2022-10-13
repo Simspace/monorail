@@ -42,7 +42,10 @@ export const MonorailSwitchOverrides: Components<Theme>['MuiSwitch'] = {
           ),
         },
         [`& + .${switchClasses.track}`]: {
-          backgroundColor: theme.palette[color].main,
+          backgroundColor:
+            theme.palette.mode === 'dark'
+              ? theme.palette[color].light
+              : theme.palette[color].main,
           opacity: 1,
           borderColor: 'transparent',
         },
@@ -83,7 +86,7 @@ export const MonorailSwitchOverrides: Components<Theme>['MuiSwitch'] = {
     }),
     track: ({ theme }) => ({
       border: `2px solid ${theme.palette.default.border.light}`,
-      backgroundColor: theme.palette.common.white,
+      backgroundColor: theme.palette.background.paper,
       borderRadius: 100,
       opacity: 1,
     }),
