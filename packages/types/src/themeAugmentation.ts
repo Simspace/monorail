@@ -156,12 +156,8 @@ declare module '@mui/material/styles/createPalette' {
       contrastText: string
       /** Shade: 100 */
       hover: string
-      /** Shade: 200 */
-      selected: string
       /** Shade: 300 */
       active: string
-      /** Shade: 400 */
-      selectedHovered: string
     }
     border: {
       /** Shade: 400 */
@@ -212,12 +208,8 @@ declare module '@mui/material/styles/createPalette' {
       contrastText: string
       /** Shade: 100 */
       hover: string
-      /** Shade: 200 */
-      selected: string
       /** Shade: 300 */
       active: string
-      /** Shade: 400 */
-      selectedHovered: string
     }>
     border?: Partial<{
       /** Shade: 400 */

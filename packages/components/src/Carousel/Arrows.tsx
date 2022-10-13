@@ -2,7 +2,7 @@ import type { VFC } from 'react'
 import React from 'react'
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft'
 import ChevronRightIcon from '@mui/icons-material/ChevronRight'
-import { styled } from '@mui/material'
+import { darken, lighten, styled } from '@mui/material'
 
 import type { IconButtonProps } from '../IconButton.js'
 import { IconButton } from '../IconButton.js'
@@ -74,21 +74,87 @@ export const NextButtonContainer = styled('div')(() => ({
   flexDirection: 'column',
 }))
 
-export const PrevButton = styled(IconButton)(({ theme }) => ({
-  position: 'relative',
-  top: '50%',
-  transform: 'translate(16%, -50%)',
-  pointerEvents: 'auto',
-  margin: theme.spacing(0, 2),
-}))
+export const PrevButton = styled(IconButton)(({ theme }) => {
+  const interactions =
+    theme.palette.mode === 'dark'
+      ? {
+          '&:hover': {
+            backgroundColor: lighten(
+              theme.palette.background.paper,
+              theme.palette.action.hoverOpacity,
+            ),
+          },
+          '&:active': {
+            backgroundColor: lighten(
+              theme.palette.background.paper,
+              theme.palette.action.activatedOpacity,
+            ),
+          },
+        }
+      : {
+          '&:hover': {
+            backgroundColor: darken(
+              theme.palette.background.paper,
+              theme.palette.action.hoverOpacity,
+            ),
+          },
+          '&:active': {
+            backgroundColor: darken(
+              theme.palette.background.paper,
+              theme.palette.action.activatedOpacity,
+            ),
+          },
+        }
+  return {
+    position: 'relative',
+    top: '50%',
+    transform: 'translate(16%, -50%)',
+    pointerEvents: 'auto',
+    margin: theme.spacing(0, 2),
+    ...interactions,
+  }
+})
 
-export const NextButton = styled(IconButton)(({ theme }) => ({
-  position: 'relative',
-  top: '50%',
-  transform: 'translate(-16%, -50%)',
-  pointerEvents: 'auto',
-  margin: theme.spacing(0, 2),
-}))
+export const NextButton = styled(IconButton)(({ theme }) => {
+  const interactions =
+    theme.palette.mode === 'dark'
+      ? {
+          '&:hover': {
+            backgroundColor: lighten(
+              theme.palette.background.paper,
+              theme.palette.action.hoverOpacity,
+            ),
+          },
+          '&:active': {
+            backgroundColor: lighten(
+              theme.palette.background.paper,
+              theme.palette.action.activatedOpacity,
+            ),
+          },
+        }
+      : {
+          '&:hover': {
+            backgroundColor: darken(
+              theme.palette.background.paper,
+              theme.palette.action.hoverOpacity,
+            ),
+          },
+          '&:active': {
+            backgroundColor: darken(
+              theme.palette.background.paper,
+              theme.palette.action.activatedOpacity,
+            ),
+          },
+        }
+  return {
+    position: 'relative',
+    top: '50%',
+    transform: 'translate(-16%, -50%)',
+    pointerEvents: 'auto',
+    margin: theme.spacing(0, 2),
+    ...interactions,
+  }
+})
 
 const gradientOpacity = {
   none: '00',
@@ -98,14 +164,14 @@ const gradientOpacity = {
 
 export const NextGradient = styled('div')(({ theme }) => ({
   position: 'relative',
-  transform: 'translate(0%, -32px)',
+  transform: `translate(0%, ${theme.spacing(-10)})`,
   height: '100%',
   background: `linear-gradient(
     90deg,
-    ${theme.palette.common.white}${gradientOpacity.none} 0%,
-    ${theme.palette.common.white}${gradientOpacity.low} 33%,
-    ${theme.palette.common.white}${gradientOpacity.medium} 71%,
-    ${theme.palette.common.white} 100%
+    ${theme.palette.background.paper}${gradientOpacity.none} 0%,
+    ${theme.palette.background.paper}${gradientOpacity.low} 33%,
+    ${theme.palette.background.paper}${gradientOpacity.medium} 71%,
+    ${theme.palette.background.paper} 100%
     )`,
   transition: 'opacity 0.2s',
   pointerEvents: 'none',
@@ -114,14 +180,14 @@ export const NextGradient = styled('div')(({ theme }) => ({
 
 export const PrevGradient = styled('div')(({ theme }) => ({
   position: 'relative',
-  transform: 'translate(0%, -32px)',
+  transform: `translate(0%, ${theme.spacing(-10)})`,
   height: '100%',
   background: `linear-gradient(
     90deg,
-    ${theme.palette.common.white} 0%,
-    ${theme.palette.common.white}${gradientOpacity.medium} 33%,
-    ${theme.palette.common.white}${gradientOpacity.low} 71%,
-    ${theme.palette.common.white}${gradientOpacity.none} 100%
+    ${theme.palette.background.paper} 0%,
+    ${theme.palette.background.paper}${gradientOpacity.medium} 33%,
+    ${theme.palette.background.paper}${gradientOpacity.low} 71%,
+    ${theme.palette.background.paper}${gradientOpacity.none} 100%
     )`,
   transition: 'opacity 0.2s',
   pointerEvents: 'none',

@@ -1,5 +1,5 @@
 import type { Components, Theme } from '@mui/material'
-import { sliderClasses } from '@mui/material'
+import { darken, sliderClasses } from '@mui/material'
 
 export const MonorailSliderOverrides: Components<Theme>['MuiSlider'] = {
   defaultProps: {},
@@ -38,7 +38,10 @@ export const MonorailSliderOverrides: Components<Theme>['MuiSlider'] = {
           border: `1px solid ${theme.palette[color].focusRing.inner}`,
         },
         '&:hover': {
-          backgroundColor: theme.palette.default.lowEmphasis.light,
+          backgroundColor: darken(
+            theme.palette.common.white,
+            theme.palette.action.hoverOpacity,
+          ),
           boxShadow: `0 0 0 4px ${theme.palette[color].focusRing.outer}`,
           border: `1px solid ${theme.palette[color].focusRing.inner}`,
           [`&.${sliderClasses.thumbSizeSmall}`]: {
@@ -46,7 +49,10 @@ export const MonorailSliderOverrides: Components<Theme>['MuiSlider'] = {
           },
         },
         [`&.${sliderClasses.active}`]: {
-          backgroundColor: theme.palette.default.lowEmphasis.dark,
+          backgroundColor: darken(
+            theme.palette.common.white,
+            theme.palette.action.activatedOpacity,
+          ),
           boxShadow: `0 0 0 4px ${theme.palette[color].focusRing.outer}`,
           [`&.${sliderClasses.thumbSizeSmall}`]: {
             backgroundColor: theme.palette[color].active,
@@ -108,5 +114,8 @@ export const MonorailSliderOverrides: Components<Theme>['MuiSlider'] = {
       width: 4,
       borderRadius: '50%',
     },
+    valueLabel: ({ theme }) => ({
+      backgroundColor: theme.palette.tooltip,
+    }),
   },
 }

@@ -1,5 +1,5 @@
 import type { Components, Theme } from '@mui/material'
-import { paginationItemClasses } from '@mui/material'
+import { alpha, paginationItemClasses } from '@mui/material'
 
 export const MonorailPaginationItemOverrides: Components<Theme>['MuiPaginationItem'] =
   {
@@ -32,22 +32,25 @@ export const MonorailPaginationItemOverrides: Components<Theme>['MuiPaginationIt
           },
           // selected
           [`&.${paginationItemClasses.selected}`]: {
-            backgroundColor: theme.palette.default.lowEmphasis.selected,
+            backgroundColor: theme.palette.action.selected,
             color: theme.palette.text.primary,
             fontWeight: theme.typography.fontWeightBold,
             '&:hover': {
-              backgroundColor:
-                theme.palette.default.lowEmphasis.selectedHovered,
+              backgroundColor: alpha(
+                theme.palette.primary.main,
+                theme.palette.action.selectedOpacity +
+                  theme.palette.action.hoverOpacity,
+              ),
             },
           },
           [`&.${paginationItemClasses.selected}.${paginationItemClasses.focusVisible}`]:
             {
               zIndex: 1,
-              backgroundColor: theme.palette.default.lowEmphasis.selected,
+              backgroundColor: theme.palette.action.selected,
             },
           [`&.${paginationItemClasses.selected}.${paginationItemClasses.disabled}`]:
             {
-              backgroundColor: theme.palette.default.lowEmphasis.selected,
+              backgroundColor: theme.palette.action.selected,
             },
           // disabled
           [`&.${paginationItemClasses.disabled}`]: {

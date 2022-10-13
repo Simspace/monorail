@@ -1,5 +1,5 @@
 import type { Components, Theme } from '@mui/material'
-import { listItemButtonClasses } from '@mui/material'
+import { alpha, listItemButtonClasses } from '@mui/material'
 
 export const MonorailListItemButtonOverrides: Components<Theme>['MuiListItemButton'] =
   {
@@ -8,6 +8,16 @@ export const MonorailListItemButtonOverrides: Components<Theme>['MuiListItemButt
       root: ({ theme }) => ({
         [`&.${listItemButtonClasses.selected}`]: {
           backgroundColor: theme.palette.action.selected,
+          [`&.${listItemButtonClasses.focusVisible}`]: {
+            backgroundColor: theme.palette.action.selected,
+            '&:hover': {
+              backgroundColor: alpha(
+                theme.palette.primary.main,
+                theme.palette.action.selectedOpacity +
+                  theme.palette.action.hoverOpacity,
+              ),
+            },
+          },
         },
         [`&.${listItemButtonClasses.focusVisible}`]: {
           boxShadow: `0 0 0 4px ${theme.palette.primary.focusRing.outer}`,
