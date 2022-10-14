@@ -1,5 +1,10 @@
 import type {} from '@mui/lab/themeAugmentation'
-import type { ButtonProps, Components, Theme } from '@mui/material'
+import type {
+  ButtonProps,
+  Components,
+  CSSInterpolation,
+  Theme,
+} from '@mui/material'
 import { alpha, buttonClasses } from '@mui/material'
 
 export const MonorailButtonOverrides: Components<Theme>['MuiButton'] = {
@@ -90,10 +95,10 @@ export const MonorailButtonOverrides: Components<Theme>['MuiButton'] = {
           // Making an exception to not use .hover and .active tokens because of this variant needs a special visual treatment.
           // We can tokenize this pattern if it becomes more common. GS 9/9/22
           '&:hover': {
-            backgroundColor: alpha(theme.palette.common.white, 0.8),
+            backgroundColor: alpha(theme.palette.background.paper, 0.8),
           },
           '&:active': {
-            backgroundColor: alpha(theme.palette.common.white, 0.5),
+            backgroundColor: alpha(theme.palette.background.paper, 0.5),
           },
         },
       }
@@ -107,18 +112,38 @@ export const MonorailButtonOverrides: Components<Theme>['MuiButton'] = {
       }
       theme: Theme
     }) => {
-      return {
-        backgroundColor: theme.palette.background.paper,
-        boxShadow: `inset 0 0 0 1px ${theme.palette[color].border.light}`,
-        color: theme.palette[color].lowEmphasis.contrastText,
+      const darkModeInteractionStates: CSSInterpolation = {
         '&:hover': {
           border: 'none',
-          backgroundColor: theme.palette[color].lowEmphasis.hover,
           boxShadow: `inset 0 0 0 1px ${theme.palette[color].border.main}`,
+          backgroundColor: theme.palette.background.paper,
+          backgroundImage: `linear-gradient(${theme.palette[color].lowEmphasis.hover}, ${theme.palette[color].lowEmphasis.hover})`,
+        },
+        '&:active': {
+          backgroundColor: theme.palette.background.paper,
+          backgroundImage: `linear-gradient(${theme.palette[color].lowEmphasis.active}, ${theme.palette[color].lowEmphasis.active})`,
+        },
+      }
+      const lightModeInteractionStates: CSSInterpolation = {
+        '&:hover': {
+          border: 'none',
+          boxShadow: `inset 0 0 0 1px ${theme.palette[color].border.main}`,
+          backgroundColor: theme.palette[color].lowEmphasis.hover,
         },
         '&:active': {
           backgroundColor: theme.palette[color].lowEmphasis.active,
         },
+      }
+      const outlinedButtonInteractionStates =
+        theme.palette.mode === 'dark'
+          ? darkModeInteractionStates
+          : lightModeInteractionStates
+
+      return {
+        backgroundColor: theme.palette.background.paper,
+        boxShadow: `inset 0 0 0 1px ${theme.palette[color].border.light}`,
+        color: theme.palette[color].lowEmphasis.contrastText,
+        ...outlinedButtonInteractionStates,
         '&.MonorailButton-inverted': {
           backgroundColor: 'transparent',
           color: 'currentColor',
