@@ -201,18 +201,26 @@ export const DefaultLightChartColors = {
   },
 }
 
+enum Opacities {
+  Hover = 0.08,
+  Focus = 0.24,
+  Selected = 0.16,
+  Active = 0.24,
+  Disabled = 0.4,
+}
+
 const action: TypeAction = {
-  active: alpha(RawColor.Blue600, 0.48),
-  activatedOpacity: 0.48,
+  active: alpha(RawColor.Blue600, Opacities.Active),
+  activatedOpacity: Opacities.Active,
   disabled: RawColor.Grey300,
-  disabledBackground: alpha(RawColor.Black, 0.4),
-  disabledOpacity: 0.4,
-  focus: alpha(RawColor.Blue600, 0.56),
-  focusOpacity: 0.56,
-  hover: alpha(RawColor.Blue600, 0.24),
-  hoverOpacity: 0.24,
-  selected: alpha(RawColor.Blue600, 0.4),
-  selectedOpacity: 0.4,
+  disabledBackground: alpha(RawColor.Black, 0.32),
+  disabledOpacity: Opacities.Disabled,
+  focus: alpha(RawColor.Blue600, Opacities.Focus),
+  focusOpacity: Opacities.Focus,
+  hover: alpha(RawColor.Blue600, Opacities.Hover),
+  hoverOpacity: Opacities.Hover,
+  selected: alpha(RawColor.Blue600, Opacities.Selected),
+  selectedOpacity: Opacities.Selected,
 }
 
 // https://www.figma.com/file/dKL9YeHgWyxmRHuIjs38f3O9/Monorail-Components?node-id=23496%3A27

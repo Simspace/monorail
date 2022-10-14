@@ -299,8 +299,6 @@ const palette: PaletteOptions = {
       contrastText: RawColor.Grey600,
       hover: RawColor.Grey100,
       active: RawColor.Grey300,
-      selected: RawColor.Grey200,
-      selectedHovered: RawColor.Grey400,
     },
 
     border: {
