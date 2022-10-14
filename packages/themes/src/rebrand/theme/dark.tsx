@@ -375,8 +375,8 @@ const palette: PaletteOptions = {
       main: RawColor.Red100,
       dark: RawColor.Red300,
       contrastText: RawColor.Red600,
-      hover: alpha(RawColor.Red600, action.hoverOpacity),
-      active: alpha(RawColor.Red600, action.activatedOpacity),
+      hover: alpha(RawColor.Red400, action.hoverOpacity),
+      active: alpha(RawColor.Red400, action.activatedOpacity),
     },
 
     border: {
@@ -414,8 +414,8 @@ const palette: PaletteOptions = {
       main: RawColor.Yellow100,
       dark: RawColor.Yellow300,
       contrastText: RawColor.Yellow600,
-      hover: alpha(RawColor.Yellow600, action.hoverOpacity),
-      active: alpha(RawColor.Yellow600, action.activatedOpacity),
+      hover: alpha(RawColor.Yellow400, action.hoverOpacity),
+      active: alpha(RawColor.Yellow400, action.activatedOpacity),
     },
 
     border: {

@@ -10,7 +10,7 @@ export const MonorailDateRangePickerDayOverrides: Components<Theme>['MuiDateRang
     defaultProps: {},
     styleOverrides: {
       root: ({ theme }) => {
-        const BORDER_RADIUS = 4
+        const BORDER_RADIUS = theme.shape.borderRadius
         const classes = {
           /**
            * (Default) Day on the calendar that is not selected
@@ -71,11 +71,15 @@ export const MonorailDateRangePickerDayOverrides: Components<Theme>['MuiDateRang
             },
           },
           [classes.dayInsideRangeUnselected]: {
+            color: theme.palette.text.primary,
+            backgroundColor: theme.palette.primary.lowEmphasis.main,
             '&:hover': {
+              borderRadius: 0,
               border: `1px solid ${theme.palette.primary.border.light}`,
               backgroundColor: theme.palette.primary.lowEmphasis.main,
             },
             '&:active': {
+              borderRadius: 0,
               border: `1px solid ${theme.palette.primary.border.main}`,
               backgroundColor: theme.palette.primary.lowEmphasis.dark,
             },
