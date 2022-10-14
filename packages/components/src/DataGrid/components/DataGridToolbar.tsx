@@ -92,7 +92,7 @@ export function DataGridToolbar(props: DataGridToolbarProps) {
               </InputAdornment>
             ),
             sx: theme => ({
-              backgroundColor: theme.palette.common.white,
+              backgroundColor: theme.palette.background.paper,
               borderRadius: theme.spacing(6),
             }),
           }}
@@ -107,7 +107,7 @@ export function DataGridToolbar(props: DataGridToolbarProps) {
         <Select
           sx={theme => ({
             width: theme.spacing(60),
-            backgroundColor: theme.palette.common.white,
+            backgroundColor: theme.palette.background.paper,
           })}
         ></Select>
         <ToggleButtonGroup
@@ -115,7 +115,7 @@ export function DataGridToolbar(props: DataGridToolbarProps) {
           exclusive
           onChange={handleViewStyleChange}
           sx={theme => ({
-            backgroundColor: theme.palette.common.white,
+            backgroundColor: theme.palette.background.paper,
           })}
         >
           <ToggleButton aria-label="table view" value="table">
