@@ -20,7 +20,11 @@ import { story } from '../helpers/storybook.js'
 export default { title: 'Inputs/TextField', component: TextField }
 
 const Template = story<TextFieldProps>(args => <TextField {...args} />, {
-  args: { label: 'Text Field', inputProps: { 'aria-label': 'Text Field' } },
+  args: {
+    label: 'Text Field',
+    placeholder: 'Placeholder',
+    inputProps: { 'aria-label': 'Text Field' },
+  },
   muiName: 'MuiTextField',
 })
 
