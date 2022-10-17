@@ -10,8 +10,8 @@ export enum ThemeName {
   MUIDark = 'muiDark',
   PCTELight = 'pcteLight',
   PCTEDark = 'pcteDark',
-  RebrandLight = 'rebrandLight',
-  RebrandDark = 'rebrandDark',
+  HalloweenLight = 'halloweenLight',
+  HalloweenDark = 'halloweenDark',
 }
 
 export type ColorTokenRowProps = {

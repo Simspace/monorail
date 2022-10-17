@@ -4,8 +4,8 @@ import {
   classicDark,
   pcteDark,
   pcteLight,
-  rebrandDarkTheme,
-  rebrandLightTheme,
+  halloweenDarkTheme,
+  halloweenLightTheme,
   muiDark,
   muiLight,
 } from '@monorail/themes'
@@ -69,7 +69,7 @@ export const parameters: Parameters = {
 enum ThemeOption {
   Classic = 'Classic',
   PCTE = 'PCTE',
-  Rebrand = 'Rebrand',
+  Halloween = 'Halloween',
   MUI = 'MUI',
 }
 
@@ -85,7 +85,7 @@ export const globalTypes = {
       items: [
         ThemeOption.Classic,
         ThemeOption.PCTE,
-        ThemeOption.Rebrand,
+        ThemeOption.Halloween,
         ThemeOption.MUI,
       ],
       title: true,
@@ -126,8 +126,8 @@ export const withTheme: DecoratorFn = (Story, context) => {
           return classicDark
         case ThemeOption.PCTE:
           return pcteDark
-        case ThemeOption.Rebrand:
-          return rebrandDarkTheme
+        case ThemeOption.Halloween:
+          return halloweenDarkTheme
         case ThemeOption.MUI:
           return muiDark
       }
@@ -137,8 +137,8 @@ export const withTheme: DecoratorFn = (Story, context) => {
         return classicLight
       case ThemeOption.PCTE:
         return pcteLight
-      case ThemeOption.Rebrand:
-        return rebrandLightTheme
+      case ThemeOption.Halloween:
+        return halloweenLightTheme
       case ThemeOption.MUI:
         return muiLight
     }

@@ -25,21 +25,14 @@ export const MonorailDataGridOverrides: Components<Theme>['MuiDataGrid'] = {
         [`&.${dataGridClasses.grouped}:hover`]: {
           cursor: 'pointer',
         },
-        [`&.even`]: {
-          backgroundColor:
-            theme.palette.mode === 'dark'
-              ? theme.palette.default.lowEmphasis.main
-              : theme.palette.default.lowEmphasis.light,
+        [`&.odd`]: {
+          backgroundColor: theme.palette.default.lowEmphasis.light,
         },
       }
     },
     columnHeaders: ({ theme }) => {
-      const columnHeaderBgColor =
-        theme.palette.mode === 'dark'
-          ? theme.palette.background.paper
-          : theme.palette.default.lowEmphasis.main
       return {
-        backgroundColor: columnHeaderBgColor,
+        backgroundColor: theme.palette.default.lowEmphasis.light,
         borderBottom: 'none',
         boxShadow: `inset 0px -1px ${theme.palette.divider}`,
         borderRadius: '0',
