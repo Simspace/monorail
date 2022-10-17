@@ -2,11 +2,16 @@
 import React from 'react'
 import SaveIcon from '@mui/icons-material/Save'
 import SelectAllOutlined from '@mui/icons-material/SelectAllOutlined'
-import { LoadingButton } from '@mui/lab'
 import { capitalize } from '@mui/material'
 
 import type { ButtonProps } from '@monorail/components'
-import { Box, Button, Stack, Typography } from '@monorail/components'
+import {
+  Box,
+  Button,
+  LoadingButton,
+  Stack,
+  Typography,
+} from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 
