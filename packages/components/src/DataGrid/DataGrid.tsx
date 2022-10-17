@@ -104,7 +104,7 @@ function getDataGridStyles(
   const overrides: CSSInterpolation = {}
   if (props.stripedRows === true) {
     overrides[`& .${dataGridClasses.row}:nth-of-type(even)`] = {
-      backgroundColor: theme.palette.default.lowEmphasis.main,
+      backgroundColor: theme.palette.default.lowEmphasis.light,
     }
   }
   return overrides

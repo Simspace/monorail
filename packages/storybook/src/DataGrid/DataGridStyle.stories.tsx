@@ -575,14 +575,7 @@ export const StripedGrid = story<DataGridProps>(args => {
 
   return (
     <div style={{ height: 400, width: '100%' }}>
-      <DataGrid
-        loading={loading}
-        {...data}
-        getRowClassName={params =>
-          params.indexRelativeToCurrentPage % 2 === 0 ? 'even' : 'odd'
-        }
-        {...args}
-      />
+      <DataGrid loading={loading} stripedRows {...data} {...args} />
     </div>
   )
 })

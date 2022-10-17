@@ -25,9 +25,6 @@ export const MonorailDataGridOverrides: Components<Theme>['MuiDataGrid'] = {
         [`&.${dataGridClasses.grouped}:hover`]: {
           cursor: 'pointer',
         },
-        [`&.odd`]: {
-          backgroundColor: theme.palette.default.lowEmphasis.light,
-        },
       }
     },
     columnHeaders: ({ theme }) => {
