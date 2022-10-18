@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import type { GridValidRowModel } from '@mui/x-data-grid'
-import type { GridColDef } from '@mui/x-data-grid-premium'
+import type { DistributiveOmit } from '@emotion/react'
+import type { GridEnrichedColDef, GridValidRowModel } from '@mui/x-data-grid'
 
 import type {
   GridColFilterType,
@@ -18,13 +18,13 @@ type MakeGridFilterTypeDef<
   ? GridColFilterTypeToDef<R, V, F>[Filter]
   : { type: Filter }
 
-export interface MakeTypedColDef<
+export type MakeTypedColDef<
   R extends GridValidRowModel,
   Field extends string,
   V,
   F,
   Filter extends GridColFilterType,
-> extends Omit<GridColDef<R, V, F>, GridColDefOmits> {
+> = DistributiveOmit<GridEnrichedColDef<R, V, F>, GridColDefOmits> & {
   /**
    * The column identifier. It's used to map with [[GridRowModel]] values.
    */

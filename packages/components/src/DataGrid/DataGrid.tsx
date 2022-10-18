@@ -46,15 +46,18 @@ export const DataGrid: <R extends GridValidRowModel>(
 
   const processedColumns: Array<GridEnrichedColDef> = React.useMemo(
     () =>
-      columns.map(col => ({
-        ...col,
-        originalColDef: col,
-        renderHeader: DataGridColumnHeader,
-        disableColumnMenu: true,
-        hideSortIcons: true,
-        headerAlign: 'left',
-        flex: 1,
-      })),
+      columns.map(col => {
+        const flex = col.type === 'actions' ? undefined : col.flex ?? 1
+        return {
+          ...col,
+          originalColDef: col,
+          renderHeader: DataGridColumnHeader,
+          disableColumnMenu: true,
+          hideSortIcons: true,
+          headerAlign: 'left',
+          flex,
+        }
+      }),
     [columns],
   )
 

@@ -1,16 +1,17 @@
 // Edit this file to add new stories
 import React from 'react'
-import { Person } from '@mui/icons-material'
 
 import type { DataGridProps, GridValueGetterParams } from '@monorail/components'
 import {
   createTable,
   DataGrid,
   DataGridToolbar,
+  GridActionsCellItem,
   MenuItem,
   Typography,
   useGridApiRef,
 } from '@monorail/components'
+import * as Icons from '@monorail/components/icons'
 
 import { story } from '../helpers/storybook.js'
 
@@ -33,7 +34,7 @@ const columns: DataGridProps['columns'] = [
     editable: true,
     renderHeader: ({ colDef }) => (
       <React.Fragment>
-        <Person />
+        <Icons.Person />
         <Typography variant="body2">{colDef.headerName}</Typography>
       </React.Fragment>
     ),
@@ -126,7 +127,7 @@ const filterStoryColumns = createTable<FilterStoryRow>()(
     minWidth: 150,
     renderHeader: ({ colDef }) => (
       <React.Fragment>
-        <Person />
+        <Icons.Person />
         <Typography variant="body2">{colDef.headerName}</Typography>
       </React.Fragment>
     ),
@@ -190,6 +191,18 @@ const filterStoryColumns = createTable<FilterStoryRow>()(
     filter: {
       type: 'text',
     },
+  },
+  {
+    type: 'actions',
+    field: 'actions',
+    getActions: () => [
+      <GridActionsCellItem
+        key={0}
+        showInMenu={false}
+        icon={<Icons.MoreVert />}
+        label="Action"
+      />,
+    ],
   },
 )
 
