@@ -204,6 +204,9 @@ export const ButtonsWithIconsAndLabel = story<ButtonProps>(
 export const LoadingButtons = story<ButtonProps>(
   () => (
     <Stack direction="row" spacing={2}>
+      <LoadingButton variant="contained" loading>
+        Submit
+      </LoadingButton>
       <LoadingButton loading>Submit</LoadingButton>
       <LoadingButton
         loading

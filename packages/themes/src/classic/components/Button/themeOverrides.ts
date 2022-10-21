@@ -255,10 +255,19 @@ export const MonorailLoadingButtonOverrides: Components<Theme>['MuiLoadingButton
       // - loadingIndicator: [Logo Spinner component here]
     },
     styleOverrides: {
-      loadingIndicator: ({ ownerState: { color = 'primary' }, theme }) => {
-        return {
-          color: theme.palette[color].lowEmphasis.contrastText,
-        }
+      loadingIndicator: ({
+        ownerState: { color = 'primary', variant = 'contained' },
+        theme,
+      }) => {
+        return variant === 'contained'
+          ? {
+              color: theme.palette.getContrastText(
+                theme.palette[color].lowEmphasis.contrastText,
+              ),
+            }
+          : {
+              color: theme.palette[color].lowEmphasis.contrastText,
+            }
       },
     },
   }
