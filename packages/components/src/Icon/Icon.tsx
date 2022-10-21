@@ -1,5 +1,14 @@
 import { Icon as MuiIcon } from '@mui/material'
 
+declare module '@mui/material/Icon' {
+  /**
+   * Extend the Icon color prop to apply a default grey color.
+   */
+  interface IconPropsColorOverrides {
+    default: true
+  }
+}
+
 /**
  *
  * Demos:

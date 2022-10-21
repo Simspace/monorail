@@ -46,6 +46,7 @@ import { MonorailFormControlOverrides } from '../components/FormControl/themeOve
 import { MonorailFormControlLabelOverrides } from '../components/FormControlLabel/themeOverrides.js'
 import { MonorailFormHelperTextOverrides } from '../components/FormHelperText/themeOverrides.js'
 import { MonorailFormLabelOverrides } from '../components/FormLabel/themeOverrides.js'
+import { MonorailIconOverrides } from '../components/Icon/themeOverrides.js'
 import { MonorailIconButtonOverrides } from '../components/IconButton/themeOverrides.js'
 import { MonorailInputAdornmentOverrides } from '../components/InputAdornment/themeOverrides.js'
 import { MonorailInputBaseOverrides } from '../components/InputBase/themeOverrides.js'
@@ -146,6 +147,7 @@ export const getThemeComponents = (
   MuiFormControlLabel: MonorailFormControlLabelOverrides,
   MuiFormHelperText: MonorailFormHelperTextOverrides,
   MuiFormLabel: MonorailFormLabelOverrides,
+  MuiIcon: MonorailIconOverrides,
   MuiIconButton: MonorailIconButtonOverrides,
   MuiInputAdornment: MonorailInputAdornmentOverrides,
   MuiInputBase: MonorailInputBaseOverrides,
