@@ -163,45 +163,6 @@ export function LinearBuffer() {
   )
 }
 
-function LinearProgressWithLabel(
-  props: LinearProgressProps & { value: number },
-) {
-  return (
-    <Stack direction="column" spacing={8}>
-      {colors.map(color => (
-        <Stack
-          key={`linear-progress-label-${color}`}
-          direction="row"
-          spacing={8}
-        >
-          {sizes.map(size => (
-            <Box
-              key={`linear-progress-label-${color}-${size}`}
-              sx={{ display: 'flex', alignItems: 'center' }}
-            >
-              <Box sx={{ width: 156, mr: 1 }}>
-                <LinearProgress
-                  color={color}
-                  size={size}
-                  variant="determinate"
-                  {...props}
-                />
-              </Box>
-              <Box justifyContent="space-between" sx={{ width: 35 }}>
-                <Typography
-                  sx={{ ml: 1 }}
-                  variant="body2"
-                  color="text.secondary"
-                >{`${Math.round(props.value)}%`}</Typography>
-              </Box>
-            </Box>
-          ))}
-        </Stack>
-      ))}
-    </Stack>
-  )
-}
-
 export function LinearWithValueLabel() {
   const [progress, setProgress] = React.useState(10)
 
@@ -218,7 +179,38 @@ export function LinearWithValueLabel() {
 
   return (
     <Box sx={{ width: '100%' }}>
-      <LinearProgressWithLabel value={progress} />
+      <Stack direction="column" spacing={8}>
+        {colors.map(color => (
+          <Stack
+            key={`linear-progress-label-${color}`}
+            direction="row"
+            spacing={8}
+          >
+            {sizes.map(size => (
+              <Box
+                key={`linear-progress-label-${color}-${size}`}
+                sx={{ display: 'flex', alignItems: 'center' }}
+              >
+                <Box sx={{ width: 156, mr: 1 }}>
+                  <LinearProgress
+                    color={color}
+                    size={size}
+                    variant="determinate"
+                    value={progress}
+                  />
+                </Box>
+                <Box justifyContent="space-between" sx={{ width: 35 }}>
+                  <Typography
+                    sx={{ ml: 1 }}
+                    variant="body2"
+                    color="text.secondary"
+                  >{`${Math.round(progress)}%`}</Typography>
+                </Box>
+              </Box>
+            ))}
+          </Stack>
+        ))}
+      </Stack>
     </Box>
   )
 }
