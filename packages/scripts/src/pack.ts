@@ -38,6 +38,7 @@ async function writePackageJson(project: Project, workspace: Workspace) {
   carry("dependencies", originalManifest, rawManifest);
   carry("peerDependencies", originalManifest, rawManifest);
   carry("peerDependenciesMeta", originalManifest, rawManifest);
+  carry("sideEffects", originalManifest, rawManifest);
 
   for (const dependencyType of DEPENDENCY_TYPE) {
     for (const descriptor of workspace.manifest.getForScope(dependencyType).values()) {
