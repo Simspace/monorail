@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import Box from '@mui/material/Box'
-import { unstable_debounce } from '@mui/utils'
+import { unstable_debounce as debounce } from '@mui/utils'
 
 import type { SearchProps } from '@monorail/components'
 import {
@@ -159,27 +159,11 @@ export const ControlledVsUncontrolled = story<SearchProps>(args => {
 })
 
 export const DebouncedSearch = story<SearchProps>(args => {
-  const [filterText, setFilterText] = React.useState('')
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setFilterText(event.target.value)
+  const [searchTerm, setSearchTerm] = React.useState('')
+
+  const handleChange = (str: string) => {
+    setSearchTerm(str)
   }
-
-  const filterSearch = React.useCallback(
-    () => unstable_debounce(handleChange),
-    [],
-  )
-
-  const renderMovies = movies.map(movie => {
-    const label = movie.label.toLowerCase()
-    const search = filterText.toLowerCase()
-    if (label.includes(search)) {
-      return (
-        <ListItem key={`movie-${movie.label}`}>
-          <ListItemText>{movie.label}</ListItemText>
-        </ListItem>
-      )
-    }
-  })
 
   return (
     <Stack
@@ -191,18 +175,27 @@ export const DebouncedSearch = story<SearchProps>(args => {
       <Search
         id="search-controlled"
         label="Filter movies"
-        value={filterText}
-        onChange={filterSearch}
-        componentsProps={{
-          clearButton: {
-            onClick: () => setFilterText(''),
-          },
-        }}
+        helperText={searchTerm}
+        defaultValue="default"
+        onChange={handleChange}
+        debounceTime={300}
         fullWidth
         {...args}
       />
       <ScrollShadow bottom>
-        <List sx={{ maxHeight: 400 }}>{renderMovies}</List>
+        <List sx={{ maxHeight: 400 }}>
+          {movies.map(movie => {
+            const label = movie.label.toLowerCase()
+            const search = searchTerm.toLowerCase()
+            if (label.includes(search)) {
+              return (
+                <ListItem key={`movie-${movie.label}`}>
+                  <ListItemText>{movie.label}</ListItemText>
+                </ListItem>
+              )
+            }
+          })}
+        </List>
       </ScrollShadow>
     </Stack>
   )

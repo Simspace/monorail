@@ -19,6 +19,7 @@ export interface SearchProps
     | 'SelectProps'
     | 'InputProps'
     | 'inputProps'
+    | 'onChange'
   > {
   /**
    * Override or extend the styles applied to the component.
@@ -56,4 +57,8 @@ export interface SearchProps
    * @default false
    */
   disableClearable?: boolean
+
+  onChange?: (str: string) => void
+
+  debounceTime?: number
 }

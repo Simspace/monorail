@@ -1,6 +1,7 @@
 import React from 'react'
 import { Clear, Search as SearchIcon } from '@mui/icons-material'
 import type { CSSObject } from '@mui/material'
+import { unstable_debounce as debounce } from '@mui/utils'
 import composeClasses from '@mui/utils/composeClasses'
 import clsx from 'clsx'
 
@@ -12,7 +13,9 @@ import type { SearchClassKey } from './searchClasses.js'
 import { getSearchUtilityClass, searchClasses } from './searchClasses.js'
 import type { SearchProps } from './searchProps'
 
-interface SearchOwnerState extends SearchProps {}
+interface SearchOwnerState extends Omit<SearchProps, 'disableClearable'> {
+  disableClearable: SearchProps['disableClearable']
+}
 
 interface SearchRootProps {
   ownerState: SearchOwnerState
@@ -40,7 +43,7 @@ const ClearButton = styled(IconButton, {
 })({})
 
 /**
- * `Search` is a convenience wrapper for `<TextField type="search" />`.
+ * `Search` is a convenience wrapper for `TextField`.
  *
  * ## Advanced Configuration
  *
@@ -54,6 +57,10 @@ const ClearButton = styled(IconButton, {
  * - [FormHelperText](https://mui.com/material-ui/api/form-helper-text/)
  *
  * Search is compatible with [Autocomplete](https://mui.com/material-ui/api/autocomplete/)'s `renderInput` prop.
+ *
+ * Demos:
+ *
+ * - [Search](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/inputs-search--default)
  */
 export const Search = React.forwardRef(function Search(inProps, ref) {
   const props = useThemeProps({
@@ -61,22 +68,57 @@ export const Search = React.forwardRef(function Search(inProps, ref) {
     props: inProps,
   })
 
-  const { className, componentsProps = {}, onChange, sx, ...other } = props
-
-  const { clearButton, Input, input, formHelperText, inputLabel } =
-    componentsProps
+  const {
+    className,
+    componentsProps = {},
+    debounceTime = 0,
+    defaultValue: defaultValueProp,
+    disableClearable = false,
+    onChange,
+    value,
+    ...other
+  } = props
 
   const ownerState = {
     ...props,
+    disableClearable,
   }
 
   const classes = useUtilityClasses(ownerState)
 
-  const [filterText, setFilterText] = React.useState('')
+  const [defaultValue, setDefaultValue] = React.useState(defaultValueProp)
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setFilterText(event.target.value)
-    onChange?.(event)
+    setDefaultValue(event.target.value)
+    debouncedSearch(event)
+  }
+
+  const debouncedSearch = React.useMemo(() => {
+    if (debounceTime > 0) {
+      return debounce((event: React.ChangeEvent<HTMLInputElement>) => {
+        onChange?.(event.target.value)
+      })
+    } else {
+      return (event: React.ChangeEvent<HTMLInputElement>) => {
+        onChange?.(event.target.value)
+      }
+    }
+  }, [onChange, debounceTime])
+
+  const isClearable =
+    (!disableClearable &&
+      typeof defaultValue === 'string' &&
+      defaultValue.length > 0) ||
+    (!disableClearable && typeof value === 'string' && value.length > 0)
+
+  const handleClear = (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+  ) => {
+    setDefaultValue('')
+    onChange?.('')
+    if (componentsProps.clearButton?.onClick) {
+      componentsProps.clearButton.onClick(event)
+    }
   }
 
   return (
@@ -85,25 +127,29 @@ export const Search = React.forwardRef(function Search(inProps, ref) {
       ref={ref}
       variant="outlined"
       ownerState={ownerState}
+      defaultValue={defaultValue}
+      value={value}
       InputProps={{
-        startAdornment: <SearchIcon />,
-        endAdornment: filterText.length > 0 && (
+        endAdornment: isClearable && (
           <ClearButton
-            onClick={() => setFilterText('')}
+            onClick={handleClear}
             aria-label="search-input-clear-button"
             edge="end"
-            {...clearButton}
+            sx={{ mr: -2 }}
+            {...componentsProps.clearButton}
           >
             <Clear />
           </ClearButton>
         ),
+        ...componentsProps.Input,
+        startAdornment: <SearchIcon color="default" sx={{ mr: 2 }} />,
         onChange: handleChange,
-        ...Input,
+        sx: { borderRadius: '100px', ...componentsProps.Input?.sx },
+        role: 'searchbox',
       }}
-      inputProps={input}
-      FormHelperTextProps={formHelperText}
-      InputLabelProps={inputLabel}
-      sx={{ borderRadius: '50%', ...sx }}
+      inputProps={componentsProps.input}
+      FormHelperTextProps={componentsProps.formHelperText}
+      InputLabelProps={componentsProps.inputLabel}
       {...other}
     />
   )
