@@ -1,11 +1,16 @@
 import React from 'react'
 import { Clear, Search as SearchIcon } from '@mui/icons-material'
 import type { CSSObject } from '@mui/material'
-import { unstable_debounce as debounce } from '@mui/utils'
 import composeClasses from '@mui/utils/composeClasses'
 import clsx from 'clsx'
 
-import { styled, useThemeProps } from '@monorail/utils'
+import {
+  combineSxProps,
+  styled,
+  useControlled,
+  useDeboucedCallback,
+  useThemeProps,
+} from '@monorail/utils'
 
 import { IconButton } from '../IconButton.js'
 import { TextField } from '../TextField.js'
@@ -72,10 +77,11 @@ export const Search = React.forwardRef(function Search(inProps, ref) {
     className,
     componentsProps = {},
     debounceTime = 0,
-    defaultValue: defaultValueProp,
+    defaultValue,
     disableClearable = false,
     onChange,
-    value,
+    onChangeDebounced = () => {},
+    value: valueProp,
     ...other
   } = props
 
@@ -86,39 +92,41 @@ export const Search = React.forwardRef(function Search(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState)
 
-  const [defaultValue, setDefaultValue] = React.useState(defaultValueProp)
+  const [value, setValue] = useControlled({
+    controlled: valueProp,
+    default: defaultValue,
+    name: 'Search',
+    state: 'value',
+  })
+
+  const handleChangeDebounced = useDeboucedCallback(
+    onChangeDebounced,
+    debounceTime,
+  )
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setDefaultValue(event.target.value)
-    debouncedSearch(event)
+    setValue(event.target.value)
+    onChange?.(event, event.target.value, 'input')
+    if (debounceTime > 0) {
+      handleChangeDebounced(event, event.target.value, 'input')
+    }
   }
 
-  const debouncedSearch = React.useMemo(() => {
-    if (debounceTime > 0) {
-      return debounce((event: React.ChangeEvent<HTMLInputElement>) => {
-        onChange?.(event.target.value)
-      })
-    } else {
-      return (event: React.ChangeEvent<HTMLInputElement>) => {
-        onChange?.(event.target.value)
-      }
+  const isClearable = React.useMemo(() => {
+    if (disableClearable) {
+      return false
     }
-  }, [onChange, debounceTime])
-
-  const isClearable =
-    (!disableClearable &&
-      typeof defaultValue === 'string' &&
-      defaultValue.length > 0) ||
-    (!disableClearable && typeof value === 'string' && value.length > 0)
+    return typeof value === 'string' && value.length > 0
+  }, [disableClearable, value])
 
   const handleClear = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ) => {
-    setDefaultValue('')
-    onChange?.('')
-    if (componentsProps.clearButton?.onClick) {
-      componentsProps.clearButton.onClick(event)
+    setValue('')
+    if (debounceTime > 0) {
+      handleChangeDebounced(event, '', 'clear')
     }
+    componentsProps.clearButton?.onClick?.(event)
   }
 
   return (
@@ -127,16 +135,15 @@ export const Search = React.forwardRef(function Search(inProps, ref) {
       ref={ref}
       variant="outlined"
       ownerState={ownerState}
-      defaultValue={defaultValue}
       value={value}
       InputProps={{
         endAdornment: isClearable && (
           <ClearButton
-            onClick={handleClear}
             aria-label="search-input-clear-button"
             edge="end"
-            sx={{ mr: -2 }}
             {...componentsProps.clearButton}
+            onClick={handleClear}
+            sx={combineSxProps({ mr: -2 }, componentsProps.clearButton?.sx)}
           >
             <Clear />
           </ClearButton>

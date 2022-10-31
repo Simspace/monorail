@@ -1,6 +1,5 @@
-import React, { useMemo } from 'react'
+import React from 'react'
 import Box from '@mui/material/Box'
-import { unstable_debounce as debounce } from '@mui/utils'
 
 import type { SearchProps } from '@monorail/components'
 import {
@@ -11,6 +10,7 @@ import {
   ScrollShadow,
   Search,
   Stack,
+  Typography,
 } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
@@ -160,9 +160,18 @@ export const ControlledVsUncontrolled = story<SearchProps>(args => {
 
 export const DebouncedSearch = story<SearchProps>(args => {
   const [searchTerm, setSearchTerm] = React.useState('')
+  const [searchTermDebounced, setSearchTermDebounced] = React.useState('')
 
-  const handleChange = (str: string) => {
-    setSearchTerm(str)
+  const handleChange: SearchProps['onChange'] = (_event, value, _reason) => {
+    setSearchTerm(value)
+  }
+
+  const handleChangeDebounced: SearchProps['onChangeDebounced'] = (
+    _event,
+    value,
+    _reason,
+  ) => {
+    setSearchTermDebounced(value)
   }
 
   return (
@@ -175,11 +184,18 @@ export const DebouncedSearch = story<SearchProps>(args => {
       <Search
         id="search-controlled"
         label="Filter movies"
-        helperText={searchTerm}
-        defaultValue="default"
+        value={searchTerm}
         onChange={handleChange}
-        debounceTime={300}
+        onChangeDebounced={handleChangeDebounced}
+        debounceTime={1000}
         fullWidth
+        componentsProps={{
+          clearButton: {
+            onClick: () => {
+              setSearchTerm('')
+            },
+          },
+        }}
         {...args}
       />
       <ScrollShadow bottom>
@@ -197,6 +213,7 @@ export const DebouncedSearch = story<SearchProps>(args => {
           })}
         </List>
       </ScrollShadow>
+      <Typography>Debounced Value: {searchTermDebounced}</Typography>
     </Stack>
   )
 })

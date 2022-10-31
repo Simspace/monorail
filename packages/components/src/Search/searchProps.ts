@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import type React from 'react'
 import type { InputBaseProps } from '@mui/material'
 
 import type { FormHelperTextProps } from '../FormHelperText.js'
@@ -53,12 +54,37 @@ export interface SearchProps
     inputLabel?: Partial<InputLabelProps>
   }
   /**
+   * Callback fired when the value is changed.
+   *
+   * @param {object} event The event source of the callback.
+   * You can pull out the new value by accessing `event.target.value` (string).
+   */
+  onChange?: (
+    event: React.SyntheticEvent,
+    value: string,
+    reason: 'input' | 'clear',
+  ) => void
+  /**
+   * Callback fired when the value is changed, debounced by the `debounceTime` prop.
+   *
+   * @note if `debounceTime` is `0` or `undefined`, this callback will not be called.
+   * @param {object} event The event source of the callback.
+   * You can pull out the new value by accessing `event.target.value` (string).
+   */
+  onChangeDebounced?: (
+    event: React.SyntheticEvent,
+    value: string,
+    reason: 'input' | 'clear',
+  ) => void
+  /**
    * If `true`, the input can't be cleared.
    * @default false
    */
   disableClearable?: boolean
-
-  onChange?: (str: string) => void
-
+  /**
+   * Time to debounce `onChangeDebounced` by.
+   * @note if this prop is `0` or `undefined`, `onChangeDebounced` will not be called.
+   * @default 0
+   */
   debounceTime?: number
 }
