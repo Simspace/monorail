@@ -51,4 +51,9 @@ export interface SearchProps
      */
     inputLabel?: Partial<InputLabelProps>
   }
+  /**
+   * If `true`, the input can't be cleared.
+   * @default false
+   */
+  disableClearable?: boolean
 }
