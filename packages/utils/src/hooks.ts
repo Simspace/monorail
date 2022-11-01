@@ -12,4 +12,12 @@ export {
   useControlled,
   useForkRef,
   useColorScheme,
+  useEventCallback,
 } from '@mui/material'
+
+export {
+  unstable_useId as useId,
+  unstable_useEnhancedEffect as useEnhancedEffect,
+  unstable_useIsFocusVisible as useIsFocusVisible,
+  usePreviousProps,
+} from '@mui/utils'
