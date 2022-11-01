@@ -56,8 +56,9 @@ export interface SearchProps
   /**
    * Callback fired when the value is changed.
    *
-   * @param {object} event The event source of the callback.
-   * You can pull out the new value by accessing `event.target.value` (string).
+   * @param event The event source of the callback.
+   * @param value The new value
+   * @param reason The reason that this callback was called
    */
   onChange?: (
     event: React.SyntheticEvent,
@@ -68,8 +69,9 @@ export interface SearchProps
    * Callback fired when the value is changed, debounced by the `debounceTime` prop.
    *
    * @note if `debounceTime` is `0` or `undefined`, this callback will not be called.
-   * @param {object} event The event source of the callback.
-   * You can pull out the new value by accessing `event.target.value` (string).
+   * @param event The event source of the callback.
+   * @param value The new value
+   * @param reason The reason that this callback was called
    */
   onChangeDebounced?: (
     event: React.SyntheticEvent,

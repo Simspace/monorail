@@ -19,12 +19,17 @@ import { movies } from '../helpers/testData.js'
 export default { title: 'Inputs/Search', component: Search }
 
 const Template = story<SearchProps>(
-  (args: Partial<SearchProps>) => <Search {...args} />,
+  (args: Partial<SearchProps>) => (
+    <Box component="form" width={300} noValidate autoComplete="off">
+      <Search {...args} />
+    </Box>
+  ),
   {
     args: {
       label: 'Search',
       placeholder: 'Placeholder',
       componentsProps: { input: { 'aria-label': 'Search' } },
+      fullWidth: true,
     },
     muiName: 'MonorailSearch',
   },
@@ -123,8 +128,8 @@ export const WithAutocomplete = story<SearchProps>(
 
 export const ControlledVsUncontrolled = story<SearchProps>(args => {
   const [name, setName] = React.useState('Cat in the Hat')
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setName(event.target.value)
+  const handleChange: SearchProps['onChange'] = (_event, value, _reason) => {
+    setName(value)
   }
 
   return (
