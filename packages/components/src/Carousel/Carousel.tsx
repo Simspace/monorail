@@ -10,6 +10,7 @@ import { GliderCarousel, Wrapper } from './Carousel.styled.js'
 
 type Props = {
   itemWidth?: number
+  uid: string
 }
 
 export type CarouselProps = Props & { GliderProps?: Partial<GliderProps> } & {
@@ -25,8 +26,8 @@ export type CarouselProps = Props & { GliderProps?: Partial<GliderProps> } & {
  * - [Carousel](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/data-display-carousel--default)
  */
 export const Carousel: FC<CarouselProps> = props => {
-  const { children, itemWidth } = props
-  const uid = useId()!
+  const defaultUid = useId()!
+  const { children, itemWidth, uid = defaultUid } = props
   if (children !== null) {
     return (
       <GliderCarousel>
@@ -47,17 +48,14 @@ export const Carousel: FC<CarouselProps> = props => {
           >
             {children}
           </Glider>
-          <Arrows
-            uniqueIdentifier={uid}
-            IconButtonProps={props.IconButtonProps}
-          />
+          <Arrows uid={uid} IconButtonProps={props.IconButtonProps} />
         </Wrapper>
       </GliderCarousel>
     )
   } else {
     return (
       <Arrows
-        uniqueIdentifier={uid}
+        uid={uid}
         IconButtonProps={{ ...props.IconButtonProps, disabled: true }}
       />
     )

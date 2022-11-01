@@ -8,7 +8,7 @@ import type { IconButtonProps } from '../IconButton.js'
 import { IconButton } from '../IconButton.js'
 
 type Props = {
-  uniqueIdentifier: string
+  uid: string
 }
 
 export const Arrows: VFC<
@@ -18,7 +18,7 @@ export const Arrows: VFC<
     <>
       <PrevButtonContainer>
         <PrevButton
-          id={`prev-arrow-${props.uniqueIdentifier}`}
+          id={`prev-arrow-${props.uid}`}
           color="primary"
           shape="circular"
           size="medium"
@@ -35,7 +35,7 @@ export const Arrows: VFC<
 
       <NextButtonContainer>
         <NextButton
-          id={`next-arrow-${props.uniqueIdentifier}`}
+          id={`next-arrow-${props.uid}`}
           color="primary"
           shape="circular"
           size="medium"

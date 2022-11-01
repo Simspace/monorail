@@ -152,6 +152,8 @@ export const Search = React.forwardRef(function Search(inProps, ref) {
         startAdornment: <SearchIcon color="default" sx={{ mr: 2 }} />,
         onChange: handleChange,
         sx: { borderRadius: '100px', ...componentsProps.Input?.sx },
+        // Opted not to use type="search" to keep clear buttons consistent. - GS 11/01/2022
+        // https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/searchbox_role
         role: 'searchbox',
       }}
       inputProps={componentsProps.input}

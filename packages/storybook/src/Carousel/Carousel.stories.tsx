@@ -54,7 +54,7 @@ const Slides = () => (
 
 const Template = story<CarouselProps>(args => {
   return (
-    <Carousel itemWidth={256} {...args}>
+    <Carousel uid="default-carousel" itemWidth={256} {...args}>
       <Slides />
     </Carousel>
   )
@@ -73,10 +73,10 @@ export const ShowSingleItem = story(Template, {
 
 export const StackedCarousel = story(_args => (
   <div style={{ paddingBottom: '16px' }}>
-    <Carousel itemWidth={256}>
+    <Carousel uid="stacked-1" itemWidth={256}>
       <Slides />
     </Carousel>
-    <Carousel itemWidth={256}>
+    <Carousel uid="stacked-2" itemWidth={256}>
       <Slides />
     </Carousel>
   </div>
@@ -100,9 +100,9 @@ export const HasDots = story(Template, {
 })
 
 export const NoData = story(args => {
-  return <Carousel {...args} />
+  return <Carousel uid="no-data" {...args} />
 })
 
 export const NoSlides = story(args => {
-  return <Carousel {...args} />
+  return <Carousel uid="no-slides" {...args} />
 })
