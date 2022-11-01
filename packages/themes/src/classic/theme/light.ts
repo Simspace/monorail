@@ -5,7 +5,7 @@ import type {
   ThemeOptions,
   TypeAction,
 } from '@mui/material'
-import { alpha, createTheme, lighten } from '@mui/material'
+import { alpha, createTheme } from '@mui/material'
 
 import { baseTheme } from './baseTheme.js'
 import { getThemeComponents } from './themeComponents.js'
@@ -275,8 +275,8 @@ const palette: PaletteOptions = {
     },
   },
   secondary: {
-    light: lighten('#0C3D99', 0.5),
-    main: '#0C3D99',
+    light: '#0C3D99',
+    main: '#1A2974',
     dark: '#161C4F',
   },
   default: {
