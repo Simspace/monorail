@@ -6,6 +6,7 @@ export type {} from './ResizableContainer/themeAugmentation.js'
 export type {} from './ResizableElement/themeAugmentation.js'
 export type {} from './ResizeHandle/themeAugmentation.js'
 export type {} from './ScrollShadow/themeAugmentation.js'
+export type {} from './Search/themeAugmentation.js'
 export type {} from './SelectionFooter/themeAugmentation.js'
 export type {} from './SplitButton/themeAugmentation.js'
 // codegen:end
