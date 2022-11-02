@@ -1,7 +1,9 @@
 import type { Components, Theme } from '@mui/material'
 
 export const MonorailTooltipOverrides: Components<Theme>['MuiTooltip'] = {
-  defaultProps: {},
+  defaultProps: {
+    arrow: true,
+  },
   styleOverrides: {
     tooltip: ({ theme }) => ({
       backgroundColor: theme.palette.tooltip,
