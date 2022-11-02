@@ -100,7 +100,7 @@ function HorizontalLinearStepperBase() {
   }
 
   return (
-    <Box sx={{ width: '100%' }}>
+    <Box sx={{ width: '100%', py: 6 }}>
       <Stepper activeStep={activeStep}>
         {steps.map((label, index) => {
           const stepProps: { completed?: boolean } = {}
@@ -227,7 +227,7 @@ export const HorizontalNonLinearStepper = story(
     }
 
     return (
-      <Box sx={{ width: '100%' }}>
+      <Box sx={{ width: '100%', py: 6 }}>
         <Stepper nonLinear activeStep={activeStep}>
           {steps.map((label, index) => (
             <Step key={label} completed={completed[index]}>
@@ -237,7 +237,7 @@ export const HorizontalNonLinearStepper = story(
             </Step>
           ))}
         </Stepper>
-        <div>
+        <Box mt={10}>
           {allStepsCompleted() ? (
             <React.Fragment>
               <Typography sx={{ mt: 2, mb: 1 }}>
@@ -284,7 +284,7 @@ export const HorizontalNonLinearStepper = story(
               </Box>
             </React.Fragment>
           )}
-        </div>
+        </Box>
       </Box>
     )
   },
