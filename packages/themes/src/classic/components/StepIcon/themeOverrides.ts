@@ -35,5 +35,8 @@ export const MonorailStepIconOverrides: Components<Theme>['MuiStepIcon'] = {
         },
       }
     },
+    text: ({ theme }) => ({
+      fontWeight: theme.typography.fontWeightMedium,
+    }),
   },
 }

@@ -4,6 +4,7 @@ import { buttonBaseClasses } from '@mui/material'
 export const MonorailStepButtonOverrides: Components<Theme>['MuiStepButton'] = {
   styleOverrides: {
     root: ({ theme }) => ({
+      padding: theme.spacing(3, 4),
       borderRadius: theme.shape.borderRadius,
       [`&:hover`]: {
         backgroundColor: theme.palette.default.lowEmphasis.hover,
