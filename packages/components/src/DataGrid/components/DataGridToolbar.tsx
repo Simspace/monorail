@@ -1,32 +1,32 @@
 import React from 'react'
-import { Search, ViewColumn, ViewModule } from '@mui/icons-material'
-import { unstable_debounce } from '@mui/utils'
+import { ViewColumn, ViewModule } from '@mui/icons-material'
 import type { GridApi } from '@mui/x-data-grid-premium'
 import { SUBMIT_FILTER_STROKE_TIME } from '@mui/x-data-grid-premium'
 
 import { Box } from '../../Box.js'
-import { InputAdornment } from '../../InputAdornment.js'
+import type { SearchProps } from '../../Search.js'
+import { Search } from '../../Search.js'
 import { Select } from '../../Select.js'
-import { Stack } from '../../Stack.js'
-import { TextField } from '../../TextField.js'
 import { ToggleButton } from '../../ToggleButton.js'
 import { ToggleButtonGroup } from '../../ToggleButtonGroup.js'
 import { Typography } from '../../Typography.js'
 
 export interface DataGridToolbarProps {
   apiRef: React.MutableRefObject<GridApi>
-  onSearchChange?: (
-    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-  ) => void
+  onSearchChange?: SearchProps['onChange']
   onViewStyleChange?: (
     event: React.MouseEvent<HTMLElement>,
     newViewStyle: 'table' | 'gallery',
   ) => void
+  disableSortBy?: boolean
+  disableViewStyleToggle?: boolean
 }
 
 export function DataGridToolbar(props: DataGridToolbarProps) {
   const {
     apiRef,
+    disableSortBy,
+    disableViewStyleToggle,
     onSearchChange = () => {},
     onViewStyleChange = () => {},
   } = props
@@ -46,21 +46,17 @@ export function DataGridToolbar(props: DataGridToolbarProps) {
     [onViewStyleChange],
   )
 
-  const handleSearchChange = React.useMemo(
-    () =>
-      unstable_debounce(
-        (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-          // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
-          if (apiRef.current.setFilterModel) {
-            apiRef.current.setFilterModel({
-              items: [],
-              quickFilterValues: [event.target.value],
-            })
-          }
-          onSearchChange(event)
-        },
-        SUBMIT_FILTER_STROKE_TIME,
-      ),
+  const handleSearchChange = React.useCallback(
+    (event: React.SyntheticEvent, value: string, reason: 'input' | 'clear') => {
+      // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+      if (apiRef.current.setFilterModel) {
+        apiRef.current.setFilterModel({
+          items: [],
+          quickFilterValues: [value],
+        })
+      }
+      onSearchChange(event, value, reason)
+    },
     [apiRef, onSearchChange],
   )
 
@@ -75,41 +71,41 @@ export function DataGridToolbar(props: DataGridToolbarProps) {
         gap: theme.spacing(2),
       })}
     >
+      {disableSortBy !== true && (
+        <>
+          <Typography variant="subtitle1">Sort By</Typography>
+          <Select
+            sx={theme => ({
+              width: theme.spacing(60),
+              backgroundColor: theme.palette.background.paper,
+            })}
+          ></Select>
+        </>
+      )}
+      <Box flex="1 1 0" />
       <Box
         sx={theme => ({
           flexShrink: 1,
           width: theme.spacing(120),
         })}
       >
-        <TextField
-          size="medium"
+        <Search
           placeholder="Search"
-          onChange={handleSearchChange}
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <Search />
-              </InputAdornment>
-            ),
-            sx: theme => ({
-              backgroundColor: theme.palette.background.paper,
-              borderRadius: theme.spacing(6),
-            }),
-          }}
+          onChangeDebounced={handleSearchChange}
+          debounceTime={SUBMIT_FILTER_STROKE_TIME}
           sx={{
             width: '100%',
           }}
+          componentsProps={{
+            Input: {
+              sx: theme => ({
+                backgroundColor: theme.palette.background.paper,
+              }),
+            },
+          }}
         />
       </Box>
-      <Box flex="1 1 0" />
-      <Stack direction="row" alignItems="center" gap={2} flexShrink={0}>
-        <Typography variant="subtitle1">Sort By</Typography>
-        <Select
-          sx={theme => ({
-            width: theme.spacing(60),
-            backgroundColor: theme.palette.background.paper,
-          })}
-        ></Select>
+      {disableViewStyleToggle !== true && (
         <ToggleButtonGroup
           value={viewStyle}
           exclusive
@@ -125,7 +121,7 @@ export function DataGridToolbar(props: DataGridToolbarProps) {
             <ViewModule />
           </ToggleButton>
         </ToggleButtonGroup>
-      </Stack>
+      )}
     </Box>
   )
 }

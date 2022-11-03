@@ -7,7 +7,6 @@ import clsx from 'clsx'
 import {
   combineSxProps,
   styled,
-  useControlled,
   useDeboucedCallback,
   useThemeProps,
 } from '@monorail/utils'
@@ -77,7 +76,7 @@ export const Search = React.forwardRef(function Search(inProps, ref) {
     className,
     componentsProps = {},
     debounceTime = 0,
-    defaultValue,
+    defaultValue = '',
     disableClearable = false,
     onChange,
     onChangeDebounced = () => {},
@@ -92,12 +91,7 @@ export const Search = React.forwardRef(function Search(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState)
 
-  const [value, setValue] = useControlled({
-    controlled: valueProp,
-    default: defaultValue,
-    name: 'Search',
-    state: 'value',
-  })
+  const [value, setValue] = React.useState(defaultValue ?? '')
 
   const handleChangeDebounced = useDeboucedCallback(
     onChangeDebounced,
@@ -123,6 +117,7 @@ export const Search = React.forwardRef(function Search(inProps, ref) {
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ) => {
     setValue('')
+    onChange?.(event, '', 'clear')
     if (debounceTime > 0) {
       handleChangeDebounced(event, '', 'clear')
     }
@@ -135,7 +130,7 @@ export const Search = React.forwardRef(function Search(inProps, ref) {
       ref={ref}
       variant="outlined"
       ownerState={ownerState}
-      value={value}
+      value={valueProp ?? value}
       InputProps={{
         endAdornment: isClearable && (
           <ClearButton
@@ -151,7 +146,10 @@ export const Search = React.forwardRef(function Search(inProps, ref) {
         ...componentsProps.Input,
         startAdornment: <SearchIcon color="default" sx={{ mr: 2 }} />,
         onChange: handleChange,
-        sx: { borderRadius: '100px', ...componentsProps.Input?.sx },
+        sx: combineSxProps(
+          { borderRadius: '100px' },
+          componentsProps.Input?.sx,
+        ),
         // Opted not to use type="search" to keep clear buttons consistent. - GS 11/01/2022
         // https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/searchbox_role
         role: 'searchbox',

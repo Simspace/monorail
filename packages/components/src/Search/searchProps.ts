@@ -20,6 +20,7 @@ export interface SearchProps
     | 'SelectProps'
     | 'InputProps'
     | 'inputProps'
+    | 'FormHelperTextProps'
     | 'onChange'
   > {
   /**
