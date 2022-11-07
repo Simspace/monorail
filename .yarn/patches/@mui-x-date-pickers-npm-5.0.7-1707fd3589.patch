@@ -1,0 +1,38 @@
+diff --git a/themeAugmentation/components.d.ts b/themeAugmentation/components.d.ts
+index 7f5e08bd2c5084264c249678595a231fa093e005..6250ef2bc5d48df7f8e855a963fda31d63f1399d 100644
+--- a/themeAugmentation/components.d.ts
++++ b/themeAugmentation/components.d.ts
+@@ -182,6 +182,6 @@ export interface PickerComponents<Theme = unknown> {
+   };
+ }
+ 
+-declare module '@mui/material/styles' {
++declare module '@mui/material/styles/components' {
+   interface Components<Theme = unknown> extends PickerComponents<Theme> {}
+ }
+diff --git a/themeAugmentation/overrides.d.ts b/themeAugmentation/overrides.d.ts
+index ff4db5ee4c9913c9ad0dc238cf68e6fa16ecd701..46ab40ec78183002b216707ccee0b34f487af2cf 100644
+--- a/themeAugmentation/overrides.d.ts
++++ b/themeAugmentation/overrides.d.ts
+@@ -71,7 +71,7 @@ export interface PickersComponentNameToClassKey {
+   PrivatePickersYear: PickersYearClassKey;
+ }
+ 
+-declare module '@mui/material/styles' {
++declare module '@mui/material/styles/overrides' {
+   interface ComponentNameToClassKey extends PickersComponentNameToClassKey {}
+ }
+ 
+diff --git a/themeAugmentation/props.d.ts b/themeAugmentation/props.d.ts
+index ee03cff2253768acfb5e5a7a7faf30a1f5a4254a..245b402c59009c15ab2e4495e3c39483201c12c8 100644
+--- a/themeAugmentation/props.d.ts
++++ b/themeAugmentation/props.d.ts
+@@ -79,7 +79,7 @@ export interface PickersComponentsPropsList {
+   PrivatePickersYear: never;
+ }
+ 
+-declare module '@mui/material/styles' {
++declare module '@mui/material/styles/props' {
+   interface ComponentsPropsList extends PickersComponentsPropsList {}
+ }
+ 

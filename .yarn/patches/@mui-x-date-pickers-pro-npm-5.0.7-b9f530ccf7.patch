@@ -1,0 +1,38 @@
+diff --git a/themeAugmentation/components.d.ts b/themeAugmentation/components.d.ts
+index 6ec2c8ed42c739c5ccec635bb8e88fb1ed802d34..fbed544b0eeb18ad87a78f3c956628404ff75183 100644
+--- a/themeAugmentation/components.d.ts
++++ b/themeAugmentation/components.d.ts
+@@ -43,6 +43,6 @@ export interface PickersProComponents<Theme = unknown> {
+   };
+ }
+ 
+-declare module '@mui/material/styles' {
++declare module '@mui/material/styles/components' {
+   interface Components<Theme = unknown> extends PickersProComponents<Theme> {}
+ }
+diff --git a/themeAugmentation/overrides.d.ts b/themeAugmentation/overrides.d.ts
+index 440234c6fdab4ce87218e9491afdbaa2ec4504c4..a5a9e25c4bfab41f7c9639ce2a8934d577f07361 100644
+--- a/themeAugmentation/overrides.d.ts
++++ b/themeAugmentation/overrides.d.ts
+@@ -15,7 +15,7 @@ export interface PickersProComponentNameToClassKey {
+   MuiStaticDateRangePicker: never;
+ }
+ 
+-declare module '@mui/material/styles' {
++declare module '@mui/material/styles/overrides' {
+   interface ComponentNameToClassKey extends PickersProComponentNameToClassKey {}
+ }
+ 
+diff --git a/themeAugmentation/props.d.ts b/themeAugmentation/props.d.ts
+index 143d003939e3fe114d7440bba984ca9fd8cdecc8..b0da10e24719cffaac0597734a442b73b7da5689 100644
+--- a/themeAugmentation/props.d.ts
++++ b/themeAugmentation/props.d.ts
+@@ -18,7 +18,7 @@ export interface PickersProComponentsPropsList {
+   MuiStaticDateRangePicker: StaticDateRangePickerProps<unknown, unknown>;
+ }
+ 
+-declare module '@mui/material/styles' {
++declare module '@mui/material/styles/props' {
+   interface ComponentsPropsList extends PickersProComponentsPropsList {}
+ }
+ 

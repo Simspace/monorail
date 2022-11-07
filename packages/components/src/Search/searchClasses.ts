@@ -1,4 +1,4 @@
-import { generateUtilityClass, generateUtilityClasses } from '@mui/base'
+import { generateUtilityClass, generateUtilityClasses } from '@monorail/utils'
 
 export interface SearchClasses {
   /**	Styles applied to the root element. */

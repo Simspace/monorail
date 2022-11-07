@@ -108,8 +108,8 @@ export const ModalUnstyledDemo = story<ModalProps>(
           aria-describedby="unstyled-modal-description"
           open={open}
           onClose={handleClose}
-          components={{
-            Backdrop: ModalUnstyledBackdrop,
+          slots={{
+            backdrop: ModalUnstyledBackdrop,
           }}
         >
           <Box

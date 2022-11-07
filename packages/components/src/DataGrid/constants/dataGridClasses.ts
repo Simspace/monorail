@@ -1,6 +1,7 @@
-import { generateUtilityClasses } from '@mui/base'
 import type { GridClasses } from '@mui/x-data-grid-premium'
 import { gridClasses } from '@mui/x-data-grid-premium'
+
+import { generateUtilityClasses } from '@monorail/utils'
 
 export interface DataGridGroupedClasses {
   grouped: string
