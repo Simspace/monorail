@@ -12,6 +12,7 @@ import { styled } from '@mui/material'
 import type { IconProps, SvgIconProps } from '@monorail/components'
 import { Box, SvgIcon, Typography } from '@monorail/components'
 import * as Icons from '@monorail/components/icons/svgs'
+import { WarningTwoColor } from '@monorail/components/icons/svgs'
 
 import { story } from '../helpers/storybook.js'
 
@@ -442,3 +443,11 @@ export const Illustrations = story<IconProps>(() => (
     </Box>
   </Box>
 ))
+
+export const TwoColor = () => (
+  <WarningTwoColor
+    fontSize="large"
+    color="warning"
+    secondaryColor="text.primary"
+  />
+)

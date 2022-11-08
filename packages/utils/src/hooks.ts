@@ -1,4 +1,5 @@
 // codegen:start { preset: barrel, include: ./hooks/*.ts }
+export * from './hooks/useColorProp.js'
 export * from './hooks/useDebouncedCallback.js'
 export * from './hooks/useDidUpdate.js'
 export * from './hooks/useForceUpdate.js'

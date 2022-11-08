@@ -171,5 +171,6 @@ export * from './svgs/VCenter.js'
 export * from './svgs/VmGroup.js'
 export * from './svgs/VMTemplates.js'
 export * from './svgs/Wand.js'
+export * from './svgs/WarningTwoColor.js'
 export * from './svgs/Welcome.js'
 // codegen:end
