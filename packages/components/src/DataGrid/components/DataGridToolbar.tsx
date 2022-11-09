@@ -13,6 +13,7 @@ import { Typography } from '../../Typography.js'
 
 export interface DataGridToolbarProps {
   apiRef: React.MutableRefObject<GridApi>
+  children?: React.ReactChild | Array<React.ReactChild>
   onSearchChange?: SearchProps['onChange']
   onViewStyleChange?: (
     event: React.MouseEvent<HTMLElement>,
@@ -25,6 +26,7 @@ export interface DataGridToolbarProps {
 export function DataGridToolbar(props: DataGridToolbarProps) {
   const {
     apiRef,
+    children,
     disableSortBy,
     disableViewStyleToggle,
     onSearchChange = () => {},
@@ -82,7 +84,7 @@ export function DataGridToolbar(props: DataGridToolbarProps) {
           ></Select>
         </>
       )}
-      <Box flex="1 1 0" />
+      <Box flex="1 1 0">{children}</Box>
       <Box
         sx={theme => ({
           flexShrink: 1,
