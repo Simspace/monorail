@@ -49,13 +49,13 @@ export const DataGrid: <R extends GridValidRowModel>(
       columns.map(col => {
         const flex = col.type === 'actions' ? undefined : col.flex ?? 1
         return {
-          ...col,
           originalColDef: col,
           renderHeader: DataGridColumnHeader,
           disableColumnMenu: true,
           hideSortIcons: true,
           headerAlign: 'left',
           flex,
+          ...col,
         }
       }),
     [columns],
@@ -94,6 +94,7 @@ export const DataGrid: <R extends GridValidRowModel>(
         hideSortIcons: true,
         headerAlign: 'left',
         flex: 1,
+        ...props.groupingColDef,
       }}
       sx={combineSxProps(dataGridStyles, sx)}
     />
