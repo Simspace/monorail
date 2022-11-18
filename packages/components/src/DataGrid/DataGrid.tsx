@@ -50,12 +50,12 @@ export const DataGrid: <R extends GridValidRowModel>(
         const flex = col.type === 'actions' ? undefined : col.flex ?? 1
         return {
           originalColDef: col,
-          renderHeader: DataGridColumnHeader,
           disableColumnMenu: true,
           hideSortIcons: true,
           headerAlign: 'left',
           flex,
           ...col,
+          renderHeader: DataGridColumnHeader,
         }
       }),
     [columns],
