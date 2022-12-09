@@ -7,11 +7,5 @@ export const MonorailTypographyOverrides: Components<Theme>['MuiTypography'] = {
       monoBody2: 'code',
     },
   },
-  styleOverrides: {
-    root: ({ ownerState, theme }) => ({
-      ...(ownerState.color === undefined && {
-        color: theme.palette.text.primary,
-      }),
-    }),
-  },
+  styleOverrides: {},
 }
