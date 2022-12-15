@@ -1,6 +1,10 @@
 import React from 'react'
 import type { CSSInterpolation, Theme } from '@mui/material'
 import type { SystemStyleObject } from '@mui/system'
+import type {
+  GridGroupingColDefOverride,
+  GridGroupingColDefOverrideParams,
+} from '@mui/x-data-grid-premium'
 import { DataGridPremium, useGridApiRef } from '@mui/x-data-grid-premium'
 
 import { combineSxProps } from '@monorail/utils/sx'
@@ -39,7 +43,15 @@ export const DataGrid: <R extends GridValidRowModel>(
   initProps: DataGridProps,
   ref: React.ForwardedRef<HTMLDivElement>,
 ) {
-  const { columns, sx, ...props } = initProps
+  const {
+    columns,
+    sx,
+    groupingColDef,
+    components,
+    localeText,
+    stripedRows,
+    ...props
+  } = initProps
 
   const apiRef = useGridApiRef()
   React.useImperativeHandle(props.apiRef, () => apiRef.current)
@@ -62,8 +74,56 @@ export const DataGrid: <R extends GridValidRowModel>(
   )
 
   const dataGridStyles = React.useCallback(
-    (theme: Theme) => getDataGridStyles(initProps, theme),
-    [initProps],
+    (theme: Theme) => getDataGridStyles(stripedRows, theme),
+    [stripedRows],
+  )
+
+  const localeTextProp = React.useMemo(
+    () => ({
+      EnumFilter: ENUM_FILTER_DEFAULT_LOCALE_TEXT,
+      TextFilter: TEXT_FILTER_DEFAULT_LOCALE_TEXT,
+      NumericFilter: NUMERIC_FILTER_DEFAULT_LOCALE_TEXT,
+      DateFilter: DATE_FILTER_DEFAULT_LOCALE_TEXT,
+      ...localeText,
+    }),
+    [localeText],
+  )
+
+  const componentsProp = React.useMemo(
+    () => ({
+      Footer: DataGridFooter,
+      Row: DataGridRow,
+      Header: DataGridHeader,
+      ColumnResizeIcon: Divider,
+      ...components,
+    }),
+    [components],
+  )
+
+  const groupingColDefProp = React.useMemo(() => {
+    const groupingColDefDefaults: GridGroupingColDefOverride = {
+      renderHeader: DataGridColumnHeader,
+      disableColumnMenu: true,
+      hideSortIcons: true,
+      headerAlign: 'left',
+      flex: 1,
+    }
+    if (typeof groupingColDef === 'function') {
+      return (params: GridGroupingColDefOverrideParams) => ({
+        ...groupingColDefDefaults,
+        ...groupingColDef(params),
+      })
+    } else {
+      return {
+        ...groupingColDefDefaults,
+        ...groupingColDef,
+      }
+    }
+  }, [groupingColDef])
+
+  const sxProp = React.useMemo(
+    () => combineSxProps(dataGridStyles, sx),
+    [dataGridStyles, sx],
   )
 
   return (
@@ -73,40 +133,21 @@ export const DataGrid: <R extends GridValidRowModel>(
       ref={ref}
       disableColumnFilter
       disableSelectionOnClick
-      localeText={{
-        EnumFilter: ENUM_FILTER_DEFAULT_LOCALE_TEXT,
-        TextFilter: TEXT_FILTER_DEFAULT_LOCALE_TEXT,
-        NumericFilter: NUMERIC_FILTER_DEFAULT_LOCALE_TEXT,
-        DateFilter: DATE_FILTER_DEFAULT_LOCALE_TEXT,
-        ...props.localeText,
-      }}
+      localeText={localeTextProp}
       columns={processedColumns}
-      components={{
-        Footer: DataGridFooter,
-        Row: DataGridRow,
-        Header: DataGridHeader,
-        ColumnResizeIcon: Divider,
-        ...props.components,
-      }}
-      groupingColDef={{
-        renderHeader: DataGridColumnHeader,
-        disableColumnMenu: true,
-        hideSortIcons: true,
-        headerAlign: 'left',
-        flex: 1,
-        ...props.groupingColDef,
-      }}
-      sx={combineSxProps(dataGridStyles, sx)}
+      components={componentsProp}
+      groupingColDef={groupingColDefProp}
+      sx={sxProp}
     />
   )
 })
 
 function getDataGridStyles(
-  props: DataGridProps,
+  stripedRows: boolean | undefined,
   theme: Theme,
 ): SystemStyleObject<Theme> {
   const overrides: CSSInterpolation = {}
-  if (props.stripedRows === true) {
+  if (stripedRows === true) {
     overrides[`& .${dataGridClasses.row}:nth-of-type(even)`] = {
       backgroundColor: theme.palette.default.lowEmphasis.light,
     }
