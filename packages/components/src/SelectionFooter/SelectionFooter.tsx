@@ -19,8 +19,7 @@ const SelectionFooterRoot = styled('div', {
 })<SelectionFooterRootProps>(({ ownerState }) =>
   sx(theme => ({
     minHeight: theme.spacing(9.5),
-    // TODO: use a design token
-    backgroundColor: theme.palette.background.default,
+    backgroundColor: theme.palette.default.lowEmphasis.main,
     padding: theme.spacing(0, 6),
     display: 'flex',
     flexDirection: 'row',
