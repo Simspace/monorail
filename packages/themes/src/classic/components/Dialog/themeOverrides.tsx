@@ -11,19 +11,19 @@ export const MonorailDialogOverrides: Components<Theme>['MuiDialog'] = {
       borderRadius: theme.spacing(2),
     }),
     paperWidthXs: ({ theme }) => ({
-      maxWidth: theme.spacing(76),
-    }),
-    paperWidthSm: ({ theme }) => ({
       maxWidth: theme.spacing(111),
     }),
+    paperWidthSm: ({ theme }) => ({
+      maxWidth: theme.spacing(150),
+    }),
     paperWidthMd: ({ theme }) => ({
-      maxWidth: theme.spacing(146),
+      maxWidth: theme.spacing(225),
     }),
     paperWidthLg: ({ theme }) => ({
-      maxWidth: theme.spacing(181),
+      maxWidth: theme.spacing(300),
     }),
     paperWidthXl: ({ theme }) => ({
-      maxWidth: theme.spacing(304),
+      maxWidth: theme.spacing(384),
     }),
   },
 }

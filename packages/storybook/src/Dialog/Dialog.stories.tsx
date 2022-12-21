@@ -173,7 +173,7 @@ export const SelectionDialog = story(() => {
           totalCount={items.length}
           disableBorder
         />
-        <DialogActions>
+        <DialogActions divider>
           <Button variant="text">Medium</Button>
           <Button onClick={handleClickClose}>Close</Button>
         </DialogActions>

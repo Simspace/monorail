@@ -1,5 +1,15 @@
 import { DialogActions as MuiDialogActions } from '@mui/material'
 
+declare module '@mui/material/DialogActions/DialogActions' {
+  interface DialogActionsProps {
+    /**
+     * Display the top divider.
+     * @default false
+     */
+    divider?: boolean
+  }
+}
+
 /**
  *
  * Demos:
