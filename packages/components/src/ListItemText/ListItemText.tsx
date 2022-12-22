@@ -1,5 +1,12 @@
-import type { ListItemTextProps as MuiListItemTextProps } from '@mui/material'
+/* eslint-disable @typescript-eslint/strict-boolean-expressions */
+import React from 'react'
+import type {
+  CSSObject,
+  ListItemTextProps as MuiListItemTextProps,
+} from '@mui/material'
 import { ListItemText as MuiListItemText } from '@mui/material'
+
+import { combineSxProps } from '@monorail/utils'
 
 import type { TypographyProps } from '../Typography.js'
 
@@ -42,7 +49,53 @@ export interface ListItemTextProps<
  *
  * - [ListItemText API](https://mui.com/material-ui/api/list-item-text/)
  */
-export const ListItemText = MuiListItemText as <
+export const ListItemText = React.forwardRef(function ListItemText(props, ref) {
+  const {
+    primaryTypographyProps: primaryTypographyPropsProp = {},
+    secondaryTypographyProps: secondaryTypographyPropsProp = {},
+    ...others
+  } = props
+
+  const {
+    lineClamp: primaryLineClamp,
+    sx: primarySx,
+    ...restPrimaryTypographyProps
+  } = (primaryTypographyPropsProp ?? {}) as TypographyProps & {
+    lineClamp?: number
+  }
+  const {
+    lineClamp: secondaryLineClamp,
+    sx: secondarySx,
+    ...restSecondaryTypographyProps
+  } = (secondaryTypographyPropsProp ?? {}) as TypographyProps<'p'> & {
+    lineClamp?: number
+  }
+
+  const primaryTypographyProps = {
+    ...restPrimaryTypographyProps,
+    sx: combineSxProps(
+      { ...(primaryLineClamp && getLineClampStyles(primaryLineClamp)) },
+      primarySx,
+    ),
+  }
+
+  const secondaryTypographyProps = {
+    ...restSecondaryTypographyProps,
+    sx: combineSxProps(
+      { ...(secondaryLineClamp && getLineClampStyles(secondaryLineClamp)) },
+      secondarySx,
+    ),
+  }
+
+  return (
+    <MuiListItemText
+      ref={ref}
+      {...others}
+      primaryTypographyProps={primaryTypographyProps}
+      secondaryTypographyProps={secondaryTypographyProps}
+    />
+  )
+}) as <
   PrimaryTypographyComponent extends React.ElementType = 'span',
   SecondaryTypographyComponent extends React.ElementType = 'p',
 >(
@@ -53,3 +106,21 @@ export const ListItemText = MuiListItemText as <
 ) => JSX.Element
 
 export * from '@mui/material/ListItemText'
+
+function getLineClampStyles(lineClamp: number): CSSObject {
+  if (lineClamp === 1) {
+    return {
+      overflow: 'hidden',
+      textOverflow: 'ellipsis',
+      whiteSpace: 'nowrap',
+    }
+  } else {
+    return {
+      display: '-webkit-box',
+      overflow: 'hidden',
+      textOverflow: 'ellipsis',
+      WebkitLineClamp: lineClamp,
+      WebkitBoxOrient: 'vertical',
+    }
+  }
+}

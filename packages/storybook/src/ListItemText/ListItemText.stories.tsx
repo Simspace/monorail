@@ -1,5 +1,6 @@
 // Edit this file to add new stories
 import React from 'react'
+import { loremIpsum } from 'lorem-ipsum'
 
 import type { ListItemTextProps } from '@monorail/components'
 import { ListItemText } from '@monorail/components'
@@ -25,3 +26,9 @@ const Template = story<ListItemTextProps>(args => <ListItemText {...args} />, {
 /** Default story for ListItemText (edit/remove by hand if needed) */
 export const Default = story(Template)
 // TODO: add more stories below
+
+export const LineClamp = () => (
+  <ListItemText primaryTypographyProps={{ lineClamp: 1 }}>
+    {loremIpsum({ count: 100 })}
+  </ListItemText>
+)

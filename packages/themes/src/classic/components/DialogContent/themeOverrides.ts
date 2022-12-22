@@ -6,12 +6,9 @@ export const MonorailDialogContentOverrides: Components<Theme>['MuiDialogContent
       dividers: true,
     },
     styleOverrides: {
-      root: ({ theme, ownerState }) => {
+      root: ({ theme }) => {
         return {
           padding: theme.spacing(6),
-          ...(ownerState.disablePadding === true && {
-            padding: 0,
-          }),
         }
       },
     },
