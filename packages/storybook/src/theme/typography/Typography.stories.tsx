@@ -8,7 +8,10 @@ import {
 } from '@monorail/themes/common/FontSize'
 
 import { TypographyTokenTable } from './typography.components'
-import type { TypographyTokenRowProps } from './typography.types'
+import type {
+  TypographyTokenColumns,
+  TypographyTokenRowProps,
+} from './typography.types'
 
 export default {
   title: 'Theme/Typography/Fonts',
@@ -18,13 +21,26 @@ export default {
   },
 }
 
+const columns: TypographyTokenColumns = [
+  { id: 'column-variant', label: 'Token Name' },
+  { id: 'column-figmaStyle', label: 'Figma Style' },
+  { id: 'column-fontFamily', label: 'Font Family' },
+  { id: 'column-fontWeight', label: 'Font Weight', align: 'center' },
+  { id: 'column-fontSize', label: 'Font Size' },
+  { id: 'column-fontSizePx', label: '(px)' },
+  { id: 'column-lineHeight', label: 'Line Height' },
+  { id: 'column-lineHeightPx', label: '(px)' },
+  { id: 'column-underlyingElement', label: 'Underlying HTML Element' },
+  { id: 'column-description', label: 'Description' },
+]
+
 export const Fonts = () => {
   const theme = useTheme()
 
   const rows: Array<TypographyTokenRowProps> = React.useMemo(
     () => [
       {
-        token: 'data1',
+        variant: 'data1',
         figmaStyle: 'Typography/Data Display 1',
         fontSizePx: PixelFontSize.Data1,
         lineHeightPx: PixelLineHeight.Data1,
@@ -34,7 +50,7 @@ export const Fonts = () => {
         underlyingElement: 'span',
       },
       {
-        token: 'data2',
+        variant: 'data2',
         figmaStyle: 'Typography/Data Display 2',
         fontSizePx: PixelFontSize.Data2,
         lineHeightPx: PixelLineHeight.Data2,
@@ -44,7 +60,7 @@ export const Fonts = () => {
         underlyingElement: 'span',
       },
       {
-        token: 'data3',
+        variant: 'data3',
         figmaStyle: 'Typography/Data Display 3',
         fontSizePx: PixelFontSize.Data3,
         lineHeightPx: PixelLineHeight.Data3,
@@ -54,7 +70,7 @@ export const Fonts = () => {
         underlyingElement: 'span',
       },
       {
-        token: 'h1',
+        variant: 'h1',
         figmaStyle: 'Typography/H1',
         fontSizePx: PixelFontSize.H1,
         lineHeightPx: PixelLineHeight.H1,
@@ -63,7 +79,7 @@ export const Fonts = () => {
         underlyingElement: 'h1',
       },
       {
-        token: 'h2',
+        variant: 'h2',
         figmaStyle: 'Typography/H2',
         fontSizePx: PixelFontSize.H2,
         lineHeightPx: PixelLineHeight.H2,
@@ -71,7 +87,7 @@ export const Fonts = () => {
         underlyingElement: 'h2',
       },
       {
-        token: 'h3',
+        variant: 'h3',
         figmaStyle: 'Typography/H3',
         fontSizePx: PixelFontSize.H3,
         lineHeightPx: PixelLineHeight.H3,
@@ -79,7 +95,7 @@ export const Fonts = () => {
         underlyingElement: 'h3',
       },
       {
-        token: 'h4',
+        variant: 'h4',
         figmaStyle: 'Typography/H4',
         fontSizePx: PixelFontSize.H3,
         lineHeightPx: PixelLineHeight.H3,
@@ -87,7 +103,7 @@ export const Fonts = () => {
         underlyingElement: 'h4',
       },
       {
-        token: 'h5',
+        variant: 'h5',
         figmaStyle: 'Typography/H5',
         fontSizePx: PixelFontSize.H3,
         lineHeightPx: PixelLineHeight.H3,
@@ -95,7 +111,7 @@ export const Fonts = () => {
         underlyingElement: 'h5',
       },
       {
-        token: 'h6',
+        variant: 'h6',
         figmaStyle: 'Typography/H6',
         fontSizePx: PixelFontSize.H3,
         lineHeightPx: PixelLineHeight.H3,
@@ -103,7 +119,7 @@ export const Fonts = () => {
         underlyingElement: 'h6',
       },
       {
-        token: 'body1',
+        variant: 'body1',
         figmaStyle: 'Typography/Body 1',
         fontSizePx: PixelFontSize.Body1,
         lineHeightPx: PixelLineHeight.Body1,
@@ -112,7 +128,7 @@ export const Fonts = () => {
         underlyingElement: 'p',
       },
       {
-        token: 'body2',
+        variant: 'body2',
         figmaStyle: 'Typography/Body 2',
         fontSizePx: PixelFontSize.Body2,
         lineHeightPx: PixelLineHeight.Body2,
@@ -121,7 +137,7 @@ export const Fonts = () => {
         underlyingElement: 'p',
       },
       {
-        token: 'subtitle1',
+        variant: 'subtitle1',
         figmaStyle: 'Typography/Subtitle 1',
         fontSizePx: PixelFontSize.Subtitle1,
         lineHeightPx: PixelLineHeight.Subtitle1,
@@ -130,7 +146,7 @@ export const Fonts = () => {
         underlyingElement: 'h6',
       },
       {
-        token: 'subtitle2',
+        variant: 'subtitle2',
         figmaStyle: 'Typography/Subtitle 2',
         fontSizePx: PixelFontSize.Subtitle2,
         lineHeightPx: PixelLineHeight.Subtitle2,
@@ -139,7 +155,7 @@ export const Fonts = () => {
         underlyingElement: 'h6',
       },
       {
-        token: 'monoBody1',
+        variant: 'monoBody1',
         figmaStyle: 'Typography/Mono Body 1',
         fontSizePx: PixelFontSize.MonoBody1,
         lineHeightPx: PixelLineHeight.MonoBody1,
@@ -147,7 +163,7 @@ export const Fonts = () => {
         underlyingElement: 'code',
       },
       {
-        token: 'monoBody2',
+        variant: 'monoBody2',
         figmaStyle: 'Typography/Mono Body 2',
         fontSizePx: PixelFontSize.MonoBody2,
         lineHeightPx: PixelLineHeight.MonoBody2,
@@ -155,7 +171,7 @@ export const Fonts = () => {
         underlyingElement: 'code',
       },
       {
-        token: 'overline',
+        variant: 'overline',
         figmaStyle: 'Typography/Overline',
         fontSizePx: PixelFontSize.Overline,
         lineHeightPx: PixelLineHeight.Overline,
@@ -163,7 +179,7 @@ export const Fonts = () => {
         underlyingElement: 'span',
       },
       {
-        token: 'caption',
+        variant: 'caption',
         figmaStyle: 'Typography/Caption',
         fontSizePx: PixelFontSize.Caption,
         lineHeightPx: PixelLineHeight.Caption,
@@ -182,7 +198,7 @@ export const Fonts = () => {
         </Typography>
         <Typography gutterBottom>{`theme.typography`}</Typography>
       </Box>
-      <TypographyTokenTable rows={rows} />
+      <TypographyTokenTable columns={columns} rows={rows} />
     </Box>
   )
 }

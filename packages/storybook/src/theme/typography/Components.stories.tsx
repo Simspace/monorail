@@ -8,7 +8,10 @@ import {
 } from '@monorail/themes/common/FontSize'
 
 import { TypographyTokenTable } from './typography.components'
-import type { TypographyTokenRowProps } from './typography.types'
+import type {
+  TypographyTokenColumns,
+  TypographyTokenRowProps,
+} from './typography.types'
 
 export default {
   title: 'Theme/Typography/Components',
@@ -18,13 +21,26 @@ export default {
   },
 }
 
+const columns: TypographyTokenColumns = [
+  { id: 'column-variant', label: 'Token Name' },
+  { id: 'column-figmaStyle', label: 'Figma Style' },
+  { id: 'column-fontFamily', label: 'Font Family' },
+  { id: 'column-fontWeight', label: 'Font Weight', align: 'center' },
+  { id: 'column-fontSize', label: 'Font Size' },
+  { id: 'column-fontSizePx', label: '(px)' },
+  { id: 'column-lineHeight', label: 'Line Height' },
+  { id: 'column-lineHeightPx', label: '(px)' },
+  { id: 'column-underlyingElement', label: 'Underlying HTML Element' },
+  { id: 'column-description', label: 'Description' },
+]
+
 export const Components = () => {
   const theme = useTheme()
 
   const rows: Array<TypographyTokenRowProps> = React.useMemo(
     () => [
       {
-        token: 'alertTitle',
+        variant: 'alertTitle',
         figmaStyle: 'Typography/Alert Title',
         fontSizePx: PixelFontSize.AlertTitle,
         lineHeightPx: PixelLineHeight.AlertTitle,
@@ -33,7 +49,7 @@ export const Components = () => {
         description: 'Font styles applied to AlertTitle.',
       },
       {
-        token: 'avatarInitials',
+        variant: 'avatarInitials',
         figmaStyle: 'Typography/Avatar Initials',
         fontSizePx: PixelFontSize.AvatarInitials,
         lineHeightPx: PixelLineHeight.AvatarInitials,
@@ -42,7 +58,7 @@ export const Components = () => {
         description: 'Font styles applied to Avatar when child is a string.',
       },
       {
-        token: 'badgeLabel',
+        variant: 'badgeLabel',
         figmaStyle: 'Typography/Badge Label',
         fontSizePx: PixelFontSize.BadgeLabel,
         lineHeightPx: PixelLineHeight.BadgeLabel,
@@ -51,7 +67,7 @@ export const Components = () => {
         description: 'Font styles applied to the Badge component’s content.',
       },
       {
-        token: 'bottomNavActiveLabel',
+        variant: 'bottomNavActiveLabel',
         figmaStyle: 'Typography/Bottom Navigation Active Label',
         fontSizePx: PixelFontSize.BottomNavActiveLabel,
         lineHeightPx: PixelLineHeight.BottomNavActiveLabel,
@@ -60,7 +76,7 @@ export const Components = () => {
         description: 'Font styles applied to BottomNavigation when selected.',
       },
       {
-        token: 'buttonLarge',
+        variant: 'buttonLarge',
         figmaStyle: 'Typography/Button Large',
         fontSizePx: PixelFontSize.ButtonLarge,
         lineHeightPx: PixelLineHeight.ButtonLarge,
@@ -69,7 +85,7 @@ export const Components = () => {
         description: 'Font styles applied to Button when size=”large”.',
       },
       {
-        token: 'buttonMedium',
+        variant: 'buttonMedium',
         figmaStyle: 'Typography/Button Medium',
         fontSizePx: PixelFontSize.ButtonMedium,
         lineHeightPx: PixelLineHeight.ButtonMedium,
@@ -78,7 +94,7 @@ export const Components = () => {
         description: 'Font styles applied to Button when size=”medium”.',
       },
       {
-        token: 'buttonSmall',
+        variant: 'buttonSmall',
         figmaStyle: 'Typography/Button Small',
         fontSizePx: PixelFontSize.ButtonSmall,
         lineHeightPx: PixelLineHeight.ButtonSmall,
@@ -87,7 +103,7 @@ export const Components = () => {
         description: 'Font styles applied to Button when size=”small”.',
       },
       {
-        token: 'chip',
+        variant: 'chip',
         figmaStyle: 'Typography/Chip',
         fontSizePx: PixelFontSize.Chip,
         lineHeightPx: PixelLineHeight.Chip,
@@ -96,7 +112,7 @@ export const Components = () => {
         description: 'Font styles applied to Chip’s label.',
       },
       {
-        token: 'inputLabel',
+        variant: 'inputLabel',
         figmaStyle: 'Typography/Input Label',
         fontSizePx: PixelFontSize.InputLabel,
         lineHeightPx: PixelLineHeight.InputLabel,
@@ -105,7 +121,7 @@ export const Components = () => {
         description: 'Font styles applied to FormLabel and InputLabel.',
       },
       {
-        token: 'helperText',
+        variant: 'helperText',
         figmaStyle: 'Typography/Helper Text',
         fontSizePx: PixelFontSize.HelperText,
         lineHeightPx: PixelLineHeight.HelperText,
@@ -114,7 +130,7 @@ export const Components = () => {
         description: 'Font styles applied to FormHelperText.',
       },
       {
-        token: 'inputText',
+        variant: 'inputText',
         figmaStyle: 'Typography/Input Text',
         fontSizePx: PixelFontSize.InputText,
         lineHeightPx: PixelLineHeight.InputText,
@@ -123,7 +139,7 @@ export const Components = () => {
         description: 'Font styles applied to Input.',
       },
       {
-        token: 'tableHeader',
+        variant: 'tableHeader',
         figmaStyle: 'Typography/Table Header',
         fontSizePx: PixelFontSize.TableHeader,
         lineHeightPx: PixelLineHeight.TableHeader,
@@ -132,7 +148,7 @@ export const Components = () => {
         description: 'Font styles applied to DataGridColumnHeader.',
       },
       {
-        token: 'listSubheader',
+        variant: 'listSubheader',
         figmaStyle: 'Typography/List Subheader',
         fontSizePx: PixelFontSize.ListSubheader,
         lineHeightPx: PixelLineHeight.ListSubheader,
@@ -141,7 +157,7 @@ export const Components = () => {
         description: 'Font styles applied to ListSubheader.',
       },
       {
-        token: 'menuItem',
+        variant: 'menuItem',
         figmaStyle: 'Typography/Menu Item',
         fontSizePx: PixelFontSize.MenuItem,
         lineHeightPx: PixelLineHeight.MenuItem,
@@ -150,7 +166,7 @@ export const Components = () => {
         description: 'Font styles applied to MenuItem if dense={false}.',
       },
       {
-        token: 'menuItemDense',
+        variant: 'menuItemDense',
         figmaStyle: 'Typography/Menu Item Dense',
         fontSizePx: PixelFontSize.MenuItemDense,
         lineHeightPx: PixelLineHeight.MenuItemDense,
@@ -159,7 +175,7 @@ export const Components = () => {
         description: 'Font styles applied to MenuItem if dense={true}.',
       },
       {
-        token: 'tabActive',
+        variant: 'tabActive',
         figmaStyle: 'Typography/Tab Active',
         fontSizePx: PixelFontSize.TabActive,
         lineHeightPx: PixelLineHeight.TabActive,
@@ -168,7 +184,7 @@ export const Components = () => {
         description: 'Font styles applied to Tab if selected={true}.',
       },
       {
-        token: 'tabInactive',
+        variant: 'tabInactive',
         figmaStyle: 'Typography/Tab Inactive',
         fontSizePx: PixelFontSize.TabInactive,
         lineHeightPx: PixelLineHeight.TabInactive,
@@ -177,7 +193,7 @@ export const Components = () => {
         description: 'Font styles applied to Tab if selected={false}.',
       },
       {
-        token: 'tooltip',
+        variant: 'tooltip',
         figmaStyle: 'Typography/Tooltip',
         fontSizePx: PixelFontSize.Tooltip,
         lineHeightPx: PixelLineHeight.Tooltip,
@@ -197,7 +213,7 @@ export const Components = () => {
         </Typography>
         <Typography gutterBottom>{`theme.typography`}</Typography>
       </Box>
-      <TypographyTokenTable rows={rows} />
+      <TypographyTokenTable columns={columns} rows={rows} />
     </Box>
   )
 }

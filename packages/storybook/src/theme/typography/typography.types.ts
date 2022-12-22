@@ -1,20 +1,25 @@
+import type { FontStyle } from '@mui/material/styles/createTypography'
+
 import type { TableCellProps, TypographyProps } from '@monorail/components'
 
-export type TypographyStyles = {
-  fontFamily?: React.CSSProperties['fontFamily']
-  fontSize?: React.CSSProperties['fontSize']
-  fontWeight?: React.CSSProperties['fontWeight']
-  lineHeight?: React.CSSProperties['lineHeight']
-}
-
 export type TypographyTokenRowProps = {
-  token: TypographyProps['variant']
-  figmaStyle: string
-  fontSizePx: number
-  lineHeightPx: number
-  description?: string
-  styles: TypographyStyles
-  underlyingElement: string
+  variant?: TypographyProps['variant']
+  fontWeightToken?: keyof Omit<
+    FontStyle,
+    'fontFamily' | 'fontSize' | 'htmlFontSize'
+  >
+  figmaStyle?: string
+  fontSizePx?: number
+  lineHeightPx?: number
+  description?: JSX.Element | string
+  styles?: Partial<
+    Omit<FontStyle, 'fontSize'> & {
+      fontWeight: React.CSSProperties['fontWeight']
+      lineHeight: React.CSSProperties['lineHeight']
+      fontSize: React.CSSProperties['fontSize']
+    }
+  >
+  underlyingElement?: string
 }
 
 export type TypographyTokenColumns = Array<{

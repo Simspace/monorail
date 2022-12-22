@@ -41,6 +41,13 @@ export const baseTheme = createTheme(
     typography: {
       htmlFontSize: 16,
       fontFamily: BASE_FONT_STACK,
+      fontWeightExtraLight: FontWeight.ExtraLight,
+      fontWeightLight: FontWeight.Light,
+      fontWeightRegular: FontWeight.Book,
+      fontWeightMedium: FontWeight.Medium,
+      fontWeightSemiBold: FontWeight.SemiBold,
+      fontWeightBold: FontWeight.Bold,
+      fontWeightBlack: FontWeight.Black,
       data1: {
         fontFamily: fontStack.headings,
         fontSize: FontSize.Data1,
