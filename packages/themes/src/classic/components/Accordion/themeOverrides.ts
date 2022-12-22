@@ -24,6 +24,18 @@ export const MonorailAccordionOverrides: Components<Theme>['MuiAccordion'] = {
             display: 'none',
           },
         },
+        '&.MonorailAccordion-removeBorderX': {
+          borderLeft: 'none',
+          borderRight: 'none',
+        },
+        '&.MonorailAccordion-removeBorderY': {
+          [`&:first-of-type`]: {
+            borderTop: 'none',
+          },
+          [`&:last-of-type`]: {
+            borderBottom: 'none',
+          },
+        },
         [`&.${accordionClasses.disabled}`]: {
           backgroundColor: 'transparent',
         },

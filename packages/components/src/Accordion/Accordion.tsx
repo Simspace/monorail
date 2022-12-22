@@ -8,6 +8,14 @@ declare module '@mui/material/Accordion' {
      * If `true`, adjacent Accordions will not have borders between them
      */
     borderless?: boolean
+    /**
+     * If `true`, Accordions will not have left and right borders.
+     */
+    removeBorderX?: boolean
+    /**
+     * If `true`, Accordions will not have top and bottom borders.
+     */
+    removeBorderY?: boolean
   }
 }
 
@@ -24,11 +32,13 @@ declare module '@mui/material/Accordion' {
  * - inherits [Paper API](https://mui.com/material-ui/api/paper/)
  */
 export const Accordion = React.forwardRef(
-  ({ className, borderless, ...props }, ref) => (
+  ({ className, borderless, removeBorderX, removeBorderY, ...props }, ref) => (
     <MuiAccordion
       ref={ref}
       className={clsx(
         borderless === true && 'MonorailAccordion-borderless',
+        removeBorderX === true && 'MonorailAccordion-removeBorderX',
+        removeBorderY === true && 'MonorailAccordion-removeBorderY',
         className,
       )}
       {...props}
