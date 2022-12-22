@@ -11,9 +11,9 @@ export const MonorailAccordionSummaryOverrides: Components<Theme>['MuiAccordionS
     styleOverrides: {
       root: ({ theme }) => {
         return {
+          ...theme.typography.subtitle1,
           padding: theme.spacing(0, 6, 0, 4),
           minHeight: theme.spacing(12),
-          fontWeight: theme.typography.subtitle1.fontWeight,
           [`&.${accordionSummaryClasses.expanded}`]: {
             minHeight: theme.spacing(12),
           },
@@ -24,7 +24,7 @@ export const MonorailAccordionSummaryOverrides: Components<Theme>['MuiAccordionS
             zIndex: 1,
           },
           [`&.${accordionSummaryClasses.disabled}`]: {
-            fontWeight: theme.typography.body1.fontWeight,
+            opacity: theme.palette.action.disabledOpacity,
           },
           [':hover']: {
             backgroundColor: theme.palette.default.lowEmphasis.hover,
