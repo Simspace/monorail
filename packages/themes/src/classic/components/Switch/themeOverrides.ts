@@ -8,11 +8,9 @@ export const MonorailSwitchOverrides: Components<Theme>['MuiSwitch'] = {
   styleOverrides: {
     root: ({ ownerState, theme }) => ({
       padding: theme.spacing(1, 4, 1, 2),
-      '&:hover': {
-        [`& .${switchClasses.track}`]: {
-          borderColor: theme.palette.default.border.main,
-          backgroundColor: theme.palette.default.lowEmphasis.hover,
-        },
+      [`&:hover :not(.${switchClasses.checked}) + .${switchClasses.track}`]: {
+        borderColor: theme.palette.default.border.main,
+        backgroundColor: theme.palette.default.lowEmphasis.hover,
       },
       ...(ownerState.edge === false && {
         marginLeft: 8,
@@ -76,8 +74,6 @@ export const MonorailSwitchOverrides: Components<Theme>['MuiSwitch'] = {
         },
       },
     }),
-    // checked doesn't seem to work, so I used `.Mui-checked` inside `switchBase` -GS 4/15/22
-    checked: {},
     thumb: ({ theme }) => ({
       backgroundColor: theme.palette.default.light,
       boxShadow: 'none',
@@ -94,7 +90,6 @@ export const MonorailSwitchOverrides: Components<Theme>['MuiSwitch'] = {
       height: 40,
       width: 84,
     },
-    disabled: {},
     sizeSmall: ({ ownerState: { color = 'primary' }, theme }) => ({
       height: 40,
       width: 62,
