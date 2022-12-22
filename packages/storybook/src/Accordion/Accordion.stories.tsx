@@ -20,7 +20,12 @@ import {
   Button,
   Chip,
   Divider,
+  FormControl,
+  FormControlLabel,
+  FormGroup,
+  FormLabel,
   Stack,
+  Switch,
   Typography,
 } from '@monorail/components'
 
@@ -165,10 +170,170 @@ export const StackedBorderless = story(
   },
 )
 
+export const Borders = story(
+  () => {
+    const [borderless, setBorderless] = React.useState(true)
+    const [removeBorderX, setRemoveBorderX] = React.useState(true)
+    const [removeBorderY, setRemoveBorderY] = React.useState(true)
+    const [containerBorder, setContainerBorder] = React.useState(true)
+    const [headerBorder, setHeaderBorder] = React.useState(true)
+
+    return (
+      <Stack direction="row" gap={10}>
+        <FormControl component="fieldset" variant="standard">
+          <FormLabel component="legend">Accordion borders</FormLabel>
+          <FormGroup>
+            <FormControlLabel
+              control={
+                <Switch
+                  size="small"
+                  checked={borderless}
+                  onChange={event => setBorderless(event.target.checked)}
+                />
+              }
+              label="In between"
+            />
+            <FormControlLabel
+              control={
+                <Switch
+                  size="small"
+                  checked={removeBorderX}
+                  onChange={event => setRemoveBorderX(event.target.checked)}
+                />
+              }
+              label="Left and right"
+            />
+            <FormControlLabel
+              control={
+                <Switch
+                  size="small"
+                  checked={removeBorderY}
+                  onChange={event => setRemoveBorderY(event.target.checked)}
+                />
+              }
+              label="Top and bottom"
+            />
+          </FormGroup>
+          <FormGroup sx={{ mt: 4 }}>
+            <FormLabel component="legend">Container borders</FormLabel>
+            <FormControlLabel
+              control={
+                <Switch
+                  size="small"
+                  checked={containerBorder}
+                  onChange={event => setContainerBorder(event.target.checked)}
+                />
+              }
+              label="Outer"
+            />
+            <FormControlLabel
+              control={
+                <Switch
+                  size="small"
+                  checked={headerBorder}
+                  onChange={event => setHeaderBorder(event.target.checked)}
+                />
+              }
+              label="Header"
+            />
+          </FormGroup>
+        </FormControl>
+
+        <Box
+          width={320}
+          height={480}
+          overflow="auto"
+          border={theme =>
+            containerBorder ? `1px solid ${theme.palette.divider}` : 'none'
+          }
+        >
+          <Box
+            p={4}
+            borderBottom={theme =>
+              headerBorder ? `1px solid ${theme.palette.divider}` : 'none'
+            }
+          >
+            <Typography variant="h3">Header</Typography>
+          </Box>
+
+          <Box>
+            <Accordion
+              borderless={!borderless}
+              removeBorderX={!removeBorderX}
+              removeBorderY={!removeBorderY}
+              square
+            >
+              <AccordionSummary
+                aria-controls="borderless-panel1a-content"
+                id="borderless-panel1a-header"
+              >
+                Accordion 1
+              </AccordionSummary>
+              <AccordionDetails id="borderless-panel1a-content">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
+                eget.
+              </AccordionDetails>
+            </Accordion>
+            <Accordion
+              borderless={!borderless}
+              removeBorderX={!removeBorderX}
+              removeBorderY={!removeBorderY}
+              square
+            >
+              <AccordionSummary
+                aria-controls="borderless-panel2a-content"
+                id="borderless-panel2a-header"
+              >
+                Accordion 2
+              </AccordionSummary>
+              <AccordionDetails id="borderless-panel2a-content">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
+                eget.
+              </AccordionDetails>
+            </Accordion>
+            <Accordion
+              borderless={!borderless}
+              removeBorderX={!removeBorderX}
+              removeBorderY={!removeBorderY}
+              square
+              disabled
+            >
+              <AccordionSummary
+                aria-controls="borderless-panel3a-content"
+                id="borderless-panel3a-header"
+              >
+                Disabled Accordion
+              </AccordionSummary>
+            </Accordion>
+          </Box>
+          <Box p={4} mt={2} bgcolor="error.lowEmphasis.main">
+            <Typography variant="subtitle1">A Section</Typography>
+          </Box>
+        </Box>
+      </Stack>
+    )
+  },
+  {
+    parameters: {
+      docs: {
+        description: {
+          story: `⚠️ It's important to wrap a group of Accordions with its own container, otherwise the pseudo selectors that apply the border styles might break. 
+Prevents double borders when the Accordion is within a container that already has borders.`,
+        },
+      },
+      a11y: {
+        disable: true, // a11y considers having aria-controls on summary and the same id on details a violation, but this is how uncontrolled accordion works
+      },
+    },
+  },
+)
+
 export const AccordionWithChip = story(
   () => {
     return (
-      <div>
+      <Box>
         <Accordion borderless>
           <AccordionSummary
             aria-controls="chip-panel1a-content"
@@ -210,7 +375,7 @@ export const AccordionWithChip = story(
             </Stack>
           </AccordionSummary>
         </Accordion>
-      </div>
+      </Box>
     )
   },
   {
