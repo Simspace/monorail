@@ -19,6 +19,7 @@ export const MonorailListItemOverrides: Components<Theme>['MuiListItem'] = {
     }),
     dense: ({ theme }) => ({
       [`& > .${listItemAvatarClasses.root}`]: {
+        minWidth: theme.spacing(12),
         [`& > .${avatarClasses.root}`]: {
           width: 32,
           height: 32,
