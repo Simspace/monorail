@@ -874,3 +874,20 @@ function renderRow(props: ListChildComponentProps) {
     </ListItem>
   )
 }
+
+export const NumberedList = story<ListProps>(() => {
+  return (
+    <Box sx={{ width: 360 }}>
+      <Typography variant="h3">Instructions</Typography>
+      <List component="ol" sx={{ listStyle: 'auto', pl: 8 }}>
+        {[1, 2, 3, 4, 5].map(item => (
+          <ListItem key={item} sx={{ display: 'list-item' }}>
+            <ListItemText
+              sx={{ display: 'inline-block' }}
+            >{`Step ${item}`}</ListItemText>
+          </ListItem>
+        ))}
+      </List>
+    </Box>
+  )
+})
