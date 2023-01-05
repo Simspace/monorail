@@ -19,7 +19,7 @@ export interface TextFilterProps extends Omit<TextFilterDefinition, 'field'> {
 }
 
 export function TextFilter(props: TextFilterProps) {
-  const { field, external } = props
+  const { field, external, componentsProps = {} } = props
 
   const apiRef = useGridApiContext()
   useInitializeTextFilterState(field, 'contains', external)
@@ -82,6 +82,7 @@ export function TextFilter(props: TextFilterProps) {
         }}
         onChange={handleOperatorSelectChange}
         value={state.operator}
+        {...componentsProps.select}
       >
         <MenuItem value="contains">{localeText.contains}</MenuItem>
         <MenuItem value="exact">{localeText.exact}</MenuItem>
@@ -90,10 +91,12 @@ export function TextFilter(props: TextFilterProps) {
         value={state.searchText}
         placeholder={localeText.inputPlaceholder}
         onChange={handleSearchTextChange}
+        {...componentsProps.textField}
       />
       <ClearFilterButton
         isFiltered={isFiltered}
         onClick={handleClearFilterButtonClick}
+        {...componentsProps.clearFilterButton}
       >
         {localeText.clearFilterButton}
       </ClearFilterButton>

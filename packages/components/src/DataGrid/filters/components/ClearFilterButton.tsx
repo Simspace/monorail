@@ -1,10 +1,10 @@
 import React from 'react'
-import type { SxProps, Theme } from '@mui/material'
 import { styled } from '@mui/material'
 
 import { excludeProps } from '@monorail/utils/styled'
 import { sx } from '@monorail/utils/sx'
 
+import type { ButtonProps } from '../../../Button.js'
 import { Button } from '../../../Button.js'
 
 interface ClearFilterContainerProps {
@@ -26,19 +26,16 @@ export const ClearFilterContainer = styled('div', {
   })),
 )
 
-export interface ClearFilterButtonProps {
+export interface ClearFilterButtonProps extends ButtonProps {
   isFiltered: boolean
-  onClick: () => void
-  sx?: SxProps<Theme>
-  children: React.ReactNode
 }
 
 export function ClearFilterButton(props: ClearFilterButtonProps) {
-  const { isFiltered, onClick, sx, children } = props
+  const { isFiltered, onClick, sx, children, ...others } = props
 
   return (
     <ClearFilterContainer isFiltered={isFiltered} sx={sx}>
-      <Button onClick={onClick} variant="text" fullWidth>
+      <Button onClick={onClick} variant="text" fullWidth {...others}>
         {children}
       </Button>
     </ClearFilterContainer>

@@ -144,6 +144,7 @@ export function DataGridColumnHeader(props: DataGridColumnHeaderProps) {
             size="small"
             tabIndex={-1}
             onClick={handleFilterButtonClick}
+            {...colDef.filter.componentsProps?.columnHeaderButton}
           >
             <Badge color="primary" variant="dot" invisible={!isFiltered}>
               <Filter />

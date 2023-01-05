@@ -23,7 +23,7 @@ interface NumericFilterProps extends Omit<NumericFilterDefinition, 'field'> {
 }
 
 export function NumericFilter(props: NumericFilterProps) {
-  const { field, external } = props
+  const { field, external, componentsProps = {} } = props
 
   const apiRef = useGridApiContext()
   useInitializeNumericFilterState(apiRef, field, external)
@@ -92,6 +92,7 @@ export function NumericFilter(props: NumericFilterProps) {
             type="number"
             value={state.first ?? ''}
             onChange={handleFirstInputChange}
+            {...componentsProps.firstTextField}
           />
         )
       }
@@ -102,11 +103,13 @@ export function NumericFilter(props: NumericFilterProps) {
               type="number"
               value={state.first ?? ''}
               onChange={handleFirstInputChange}
+              {...componentsProps.firstTextField}
             />
             <TextField
               type="number"
               value={state.second ?? ''}
               onChange={handleSecondInputChange}
+              {...componentsProps.secondTextField}
             />
           </>
         )
@@ -118,6 +121,8 @@ export function NumericFilter(props: NumericFilterProps) {
     state.operator.type,
     handleFirstInputChange,
     handleSecondInputChange,
+    componentsProps.firstTextField,
+    componentsProps.secondTextField,
   ])
 
   return (
@@ -126,6 +131,7 @@ export function NumericFilter(props: NumericFilterProps) {
         onBlur={event => event.stopPropagation()}
         value={state.operator.key}
         onChange={handleOperatorSelectChange}
+        {...componentsProps.select}
       >
         {Object.values(numericOperators).map(value => (
           <MenuItem key={value.key} value={value.key}>
@@ -137,6 +143,7 @@ export function NumericFilter(props: NumericFilterProps) {
       <ClearFilterButton
         isFiltered={isChanged}
         onClick={handleClearFilterButtonClick}
+        {...componentsProps.clearFilterButton}
       >
         {apiRef.current.getLocaleText('NumericFilter').clearFilterButton}
       </ClearFilterButton>

@@ -31,7 +31,7 @@ interface DateFilterProps extends Omit<DateFilterDefinition, 'type'> {
 }
 
 export function DateFilter(props: DateFilterProps) {
-  const { field, external } = props
+  const { field, external, componentsProps = {} } = props
 
   const apiRef = useGridApiContext()
   const adapter = useDateAdapter()
@@ -101,10 +101,13 @@ export function DateFilter(props: DateFilterProps) {
       case 'oneField': {
         return (
           <DatePicker
+            {...componentsProps.firstDatePicker}
             components={{
+              ...componentsProps.firstDatePicker?.components,
               OpenPickerIcon: getOpenPickerIcon(state.operator.key),
             }}
             InputAdornmentProps={{
+              ...componentsProps.firstDatePicker?.InputAdornmentProps,
               position: 'start',
             }}
             value={state.first}
@@ -117,10 +120,13 @@ export function DateFilter(props: DateFilterProps) {
         return (
           <>
             <DatePicker
+              {...componentsProps.firstDatePicker}
               components={{
+                ...componentsProps.firstDatePicker?.components,
                 OpenPickerIcon: getOpenPickerIcon(state.operator.key),
               }}
               InputAdornmentProps={{
+                ...componentsProps.firstDatePicker?.InputAdornmentProps,
                 position: 'start',
               }}
               value={state.first}
@@ -128,10 +134,13 @@ export function DateFilter(props: DateFilterProps) {
               renderInput={params => <TextField {...params} />}
             />
             <DatePicker
+              {...componentsProps.secondDatePicker}
               components={{
+                ...componentsProps.secondDatePicker?.components,
                 OpenPickerIcon: getOpenPickerIcon(state.operator.key),
               }}
               InputAdornmentProps={{
+                ...componentsProps.secondDatePicker?.InputAdornmentProps,
                 position: 'start',
               }}
               value={state.second}
@@ -148,6 +157,8 @@ export function DateFilter(props: DateFilterProps) {
     state.second,
     handleFirstInputChange,
     handleSecondInputChange,
+    componentsProps.firstDatePicker,
+    componentsProps.secondDatePicker,
   ])
 
   return (
@@ -156,6 +167,7 @@ export function DateFilter(props: DateFilterProps) {
         onBlur={event => event.stopPropagation()}
         value={state.operator.key}
         onChange={handleOperatorSelectChange}
+        {...componentsProps.select}
       >
         {Object.values(dateOperators).map(value => (
           <MenuItem key={value.key} value={value.key}>
@@ -167,6 +179,7 @@ export function DateFilter(props: DateFilterProps) {
       <ClearFilterButton
         isFiltered={isChanged}
         onClick={handleClearFilterButtonClick}
+        {...componentsProps.clearFilterButton}
       >
         {apiRef.current.getLocaleText('DateFilter').clearFilterButton}
       </ClearFilterButton>

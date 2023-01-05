@@ -3,6 +3,8 @@ import { ViewColumn, ViewModule } from '@mui/icons-material'
 import type { GridApi } from '@mui/x-data-grid-premium'
 import { SUBMIT_FILTER_STROKE_TIME } from '@mui/x-data-grid-premium'
 
+import { combineSxProps } from '@monorail/utils'
+
 import { Box } from '../../Box.js'
 import type { SearchProps } from '../../Search.js'
 import { Search } from '../../Search.js'
@@ -21,6 +23,9 @@ export interface DataGridToolbarProps {
   ) => void
   disableSortBy?: boolean
   disableViewStyleToggle?: boolean
+  componentsProps?: {
+    search?: Omit<Partial<SearchProps>, 'onChange' | 'onChangeDebounced'>
+  }
 }
 
 export function DataGridToolbar(props: DataGridToolbarProps) {
@@ -31,6 +36,7 @@ export function DataGridToolbar(props: DataGridToolbarProps) {
     disableViewStyleToggle,
     onSearchChange = () => {},
     onViewStyleChange = () => {},
+    componentsProps = {},
   } = props
 
   const [viewStyle, setViewStyle] = React.useState<'table' | 'gallery'>('table')
@@ -62,6 +68,32 @@ export function DataGridToolbar(props: DataGridToolbarProps) {
     [apiRef, onSearchChange],
   )
 
+  const searchProps: SearchProps = {
+    ...componentsProps.search,
+    placeholder: componentsProps.search?.placeholder ?? 'Search',
+    onChangeDebounced: handleSearchChange,
+    debounceTime:
+      componentsProps.search?.debounceTime ?? SUBMIT_FILTER_STROKE_TIME,
+    sx: combineSxProps(
+      {
+        width: '100%',
+      },
+      componentsProps.search?.sx,
+    ),
+    componentsProps: {
+      ...componentsProps.search?.componentsProps,
+      Input: {
+        ...componentsProps.search?.componentsProps?.Input,
+        sx: combineSxProps(
+          theme => ({
+            backgroundColor: theme.palette.background.paper,
+          }),
+          componentsProps.search?.componentsProps?.Input?.sx,
+        ),
+      },
+    },
+  }
+
   return (
     <Box
       sx={theme => ({
@@ -91,21 +123,7 @@ export function DataGridToolbar(props: DataGridToolbarProps) {
           width: theme.spacing(120),
         })}
       >
-        <Search
-          placeholder="Search"
-          onChangeDebounced={handleSearchChange}
-          debounceTime={SUBMIT_FILTER_STROKE_TIME}
-          sx={{
-            width: '100%',
-          }}
-          componentsProps={{
-            Input: {
-              sx: theme => ({
-                backgroundColor: theme.palette.background.paper,
-              }),
-            },
-          }}
-        />
+        <Search {...searchProps} />
       </Box>
       {disableViewStyleToggle !== true && (
         <ToggleButtonGroup

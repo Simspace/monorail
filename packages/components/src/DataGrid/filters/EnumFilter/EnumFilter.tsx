@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import React from 'react'
 import { Search } from '@mui/icons-material'
-import type { SxProps, Theme } from '@mui/material'
+import type { SxProps, TextFieldProps, Theme } from '@mui/material'
 
 import { combineSxProps, filterMap, useForceUpdate } from '@monorail/utils'
 
@@ -25,7 +25,7 @@ import { useInitializeEnumFilterState } from './hooks.js'
 import type { EnumFilterProps } from './models/EnumFilterProps.js'
 
 export function EnumFilter(props: EnumFilterProps) {
-  const { field, renderValue, values, external } = props
+  const { field, renderValue, values, external, componentsProps = {} } = props
 
   const apiRef = useGridApiContext()
   useInitializeEnumFilterState(field, external)
@@ -92,6 +92,35 @@ export function EnumFilter(props: EnumFilterProps) {
     syncFilter()
   }, [state, forceUpdate, syncFilter])
 
+  const searchProps: TextFieldProps = {
+    ...componentsProps.search,
+    size: 'medium',
+    placeholder: componentsProps.search?.placeholder ?? 'Search',
+    InputProps: {
+      ...componentsProps.search?.InputProps,
+      startAdornment: componentsProps.search?.InputProps?.startAdornment ?? (
+        <InputAdornment position="start">
+          <Search />
+        </InputAdornment>
+      ),
+      sx: combineSxProps(
+        theme => ({
+          borderRadius: theme.spacing(6),
+        }),
+        componentsProps.search?.InputProps?.sx,
+      ),
+    },
+    value: searchText,
+    onChange: handleSearchTextChange,
+    sx: combineSxProps(
+      theme => ({
+        margin: theme.spacing(4),
+      }),
+      componentsProps.search?.sx,
+    ),
+    autoFocus: true,
+  }
+
   return (
     <Stack
       ref={handleMinWidthCallback}
@@ -102,26 +131,7 @@ export function EnumFilter(props: EnumFilterProps) {
       style={{ minWidth: `${state.width}px` }}
       direction="column"
     >
-      <TextField
-        size="medium"
-        placeholder="Search"
-        InputProps={{
-          startAdornment: (
-            <InputAdornment position="start">
-              <Search />
-            </InputAdornment>
-          ),
-          sx: theme => ({
-            borderRadius: theme.spacing(6),
-          }),
-        }}
-        value={searchText}
-        onChange={handleSearchTextChange}
-        sx={theme => ({
-          margin: theme.spacing(4),
-        })}
-        autoFocus
-      />
+      <TextField {...searchProps} />
       <ScrollShadow bottom={isFiltered}>
         <List
           disablePadding
@@ -146,10 +156,14 @@ export function EnumFilter(props: EnumFilterProps) {
         </List>
       </ScrollShadow>
       <ClearFilterButton
-        sx={theme => ({
-          marginBottom: isFiltered ? '0px' : theme.spacing(-18),
-          padding: theme.spacing(4),
-        })}
+        {...componentsProps.clearFilterButton}
+        sx={combineSxProps(
+          theme => ({
+            marginBottom: isFiltered ? '0px' : theme.spacing(-18),
+            padding: theme.spacing(4),
+          }),
+          componentsProps.clearFilterButton?.sx,
+        )}
         isFiltered={isFiltered}
         onClick={handleClearFilter}
       >
