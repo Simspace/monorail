@@ -3,6 +3,7 @@ import { ViewColumn, ViewModule } from '@mui/icons-material'
 import type { GridApi } from '@mui/x-data-grid-premium'
 import { SUBMIT_FILTER_STROKE_TIME } from '@mui/x-data-grid-premium'
 
+import type { DataAttributes } from '@monorail/types'
 import { combineSxProps } from '@monorail/utils'
 
 import { Box } from '../../Box.js'
@@ -24,7 +25,10 @@ export interface DataGridToolbarProps {
   disableSortBy?: boolean
   disableViewStyleToggle?: boolean
   componentsProps?: {
-    search?: Omit<Partial<SearchProps>, 'onChange' | 'onChangeDebounced'>
+    search?: Omit<
+      Partial<SearchProps & DataAttributes>,
+      'onChange' | 'onChangeDebounced'
+    >
   }
 }
 

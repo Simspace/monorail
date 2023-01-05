@@ -1,6 +1,6 @@
 {
   "name": "@monorail/storybook",
-  "version": "0.0.36",
+  "version": "0.0.37",
   "private": true,
   "description": "Monorail 3 Storybook",
   "repository": "https://gitlab.com/simspace/monorail",
