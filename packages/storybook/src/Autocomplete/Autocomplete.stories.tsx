@@ -11,6 +11,7 @@ import {
   Chip,
   Stack,
   TextField,
+  VirtualizedAutocomplete,
 } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
@@ -294,3 +295,32 @@ export const CheckboxesTags = story(args => {
     />
   )
 })
+
+function random(length: number) {
+  const characters =
+    'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+  let result = ''
+
+  for (let i = 0; i < length; i += 1) {
+    result += characters.charAt(Math.floor(Math.random() * characters.length))
+  }
+
+  return result
+}
+
+const OPTIONS = Array.from(new Array(10000))
+  .map(() => random(10 + Math.ceil(Math.random() * 20)))
+  .sort((a: string, b: string) =>
+    a.toUpperCase().localeCompare(b.toUpperCase()),
+  )
+
+export const Virtualized = () => (
+  <VirtualizedAutocomplete
+    options={OPTIONS}
+    estimatedItemSize={48}
+    renderInput={params => (
+      <TextField label="Virtualized" placeholder="Virtualized" {...params} />
+    )}
+    groupBy={option => option[0].toUpperCase()}
+  />
+)
