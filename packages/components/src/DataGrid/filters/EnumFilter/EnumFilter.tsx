@@ -1,7 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import React from 'react'
 import { Search } from '@mui/icons-material'
-import type { SxProps, TextFieldProps, Theme } from '@mui/material'
+import type {
+  ListItemProps,
+  SxProps,
+  TextFieldProps,
+  Theme,
+} from '@mui/material'
 
 import { combineSxProps, filterMap, useForceUpdate } from '@monorail/utils'
 
@@ -134,17 +139,22 @@ export function EnumFilter(props: EnumFilterProps) {
       <TextField {...searchProps} />
       <ScrollShadow bottom={isFiltered}>
         <List
+          {...componentsProps.list}
           disablePadding
-          sx={theme => ({
-            maxHeight: theme.spacing(76),
-            flexDirection: 'column',
-          })}
+          sx={combineSxProps(
+            theme => ({
+              maxHeight: theme.spacing(76),
+              flexDirection: 'column',
+            }),
+            componentsProps.list?.sx,
+          )}
         >
           {filterMap(values, (value, index) => {
             if (String(value).includes(searchText)) {
               const label = renderValue?.(value) ?? value
               return (
                 <EnumFilterItem
+                  {...componentsProps.listItem}
                   key={index}
                   label={label}
                   checked={state.uiSelected.has(value)}
@@ -175,7 +185,7 @@ export function EnumFilter(props: EnumFilterProps) {
   )
 }
 
-interface EnumFilterItemProps {
+export interface EnumFilterItemProps extends Omit<ListItemProps, 'onClick'> {
   label: string
   checked: boolean
   onClick: (event: React.MouseEvent<HTMLDivElement>) => void
@@ -185,9 +195,10 @@ interface EnumFilterItemProps {
 const EnumFilterItem = React.memo(function EnumFilterItem(
   props: EnumFilterItemProps,
 ) {
-  const { label, sx, checked, onClick } = props
+  const { label, sx, checked, onClick, ...listItemProps } = props
   return (
     <ListItem
+      {...listItemProps}
       disableGutters
       disablePadding
       dense

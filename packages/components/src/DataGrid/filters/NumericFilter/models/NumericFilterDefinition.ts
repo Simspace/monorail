@@ -3,6 +3,7 @@
 import type { IconButtonProps } from '@monorail/components/IconButton'
 import type { SelectProps } from '@monorail/components/Select'
 import type { TextFieldProps } from '@monorail/components/TextField'
+import type { DataAttributes } from '@monorail/types'
 
 import type { GridValidRowModel } from '../../../internal.js'
 import type { ClearFilterButtonProps } from '../../components/ClearFilterButton.js'
@@ -15,21 +16,21 @@ export interface NumericFilterDefinition<
 > {
   type: 'numeric'
   componentsProps?: {
-    columnHeaderButton?: Partial<IconButtonProps>
+    columnHeaderButton?: Partial<IconButtonProps & DataAttributes>
     select?: Omit<
-      Partial<SelectProps<NumericFilterOperator>>,
+      Partial<SelectProps<NumericFilterOperator> & DataAttributes>,
       'onChange' | 'value' | 'onBlur'
     >
     firstTextField?: Omit<
-      Partial<TextFieldProps>,
+      Partial<TextFieldProps & DataAttributes>,
       'value' | 'onChange' | 'placeholder'
     >
     secondTextField?: Omit<
-      Partial<TextFieldProps>,
+      Partial<TextFieldProps & DataAttributes>,
       'value' | 'onChange' | 'placeholder'
     >
     clearFilterButton?: Omit<
-      Partial<ClearFilterButtonProps>,
+      Partial<ClearFilterButtonProps & DataAttributes>,
       'onClick' | 'isFiltered'
     >
   }

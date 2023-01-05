@@ -3,6 +3,7 @@
 import type { DatePickerProps } from '@monorail/components/DatePicker'
 import type { IconButtonProps } from '@monorail/components/IconButton'
 import type { SelectProps } from '@monorail/components/Select'
+import type { DataAttributes } from '@monorail/types'
 
 import type { GridValidRowModel } from '../../../internal.js'
 import type { ClearFilterButtonProps } from '../../components/ClearFilterButton.js'
@@ -15,21 +16,21 @@ export interface DateFilterDefinition<
 > {
   type: 'date'
   componentsProps?: {
-    columnHeaderButton?: Partial<IconButtonProps>
+    columnHeaderButton?: Partial<IconButtonProps & DataAttributes>
     select?: Omit<
-      Partial<SelectProps<DateFilterOperator>>,
+      Partial<SelectProps<DateFilterOperator> & DataAttributes>,
       'onChange' | 'value' | 'onBlur'
     >
     firstDatePicker?: Omit<
-      Partial<DatePickerProps>,
+      Partial<DatePickerProps & DataAttributes>,
       'value' | 'onChange' | 'renderInput'
     >
     secondDatePicker?: Omit<
-      Partial<DatePickerProps>,
+      Partial<DatePickerProps & DataAttributes>,
       'value' | 'onChange' | 'renderInput'
     >
     clearFilterButton?: Omit<
-      Partial<ClearFilterButtonProps>,
+      Partial<ClearFilterButtonProps & DataAttributes>,
       'onClick' | 'isFiltered'
     >
   }
