@@ -18,7 +18,9 @@ export const textFilterOperator: GridFilterOperator = {
       const state = filterItem.value as TextFilterState
       switch (state.operator) {
         case 'contains': {
-          return String(params.value).includes(state.searchText)
+          return String(params.value)
+            .toLocaleLowerCase()
+            .includes(state.searchText.toLocaleLowerCase())
         }
         case 'exact': {
           if (state.searchText.length === 0) {
