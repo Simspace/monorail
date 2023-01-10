@@ -7,7 +7,7 @@ import clsx from 'clsx'
 import {
   combineSxProps,
   styled,
-  useDeboucedCallback,
+  useDebouncedCallback,
   useThemeProps,
 } from '@monorail/utils'
 
@@ -93,7 +93,7 @@ export const Search = React.forwardRef(function Search(inProps, ref) {
 
   const [value, setValue] = React.useState(defaultValue ?? '')
 
-  const handleChangeDebounced = useDeboucedCallback(
+  const handleChangeDebounced = useDebouncedCallback(
     onChangeDebounced,
     debounceTime,
   )

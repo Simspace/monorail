@@ -11,7 +11,7 @@ import debounce from '@mui/utils/debounce'
  * @param wait The time by which to debounce the call of `callback`
  * @returns A function that will call `callback` when
  */
-export function useDeboucedCallback<A extends ReadonlyArray<unknown>>(
+export function useDebouncedCallback<A extends ReadonlyArray<unknown>>(
   callback: (...args: A) => void,
   wait?: number,
 ): ((...args: A) => void) & Cancelable {
