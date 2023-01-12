@@ -3,6 +3,7 @@ import React from 'react'
 
 import type { CreateTableOverloads } from '../generated/CreateTableOverloads.js'
 import type { GridApi, GridColDef, GridValidRowModel } from '../internal.js'
+import { clearAllFilterState, clearFilterState } from '../utils.js'
 import type {
   GridColFilterState,
   GridColFilterTypeMap,
@@ -93,8 +94,22 @@ export interface TableDef<Cols extends ErasedMakeTypedColDefs> {
    * @returns The reactive state of the filter
    */
   useFilterState: <K extends this[FilterableField]>(
+    apiRef: React.MutableRefObject<GridApi>,
     field: K,
   ) => this[FieldToFilterState][K] | undefined
+
+  /**
+   * Clears the state of a specific column filter
+   */
+  clearFilterState: <K extends this[FilterableField]>(
+    apiRef: React.MutableRefObject<GridApi>,
+    field: K,
+  ) => void
+
+  /**
+   * Clears the state of all column filters
+   */
+  clearAllFilterState: (apiRef: React.MutableRefObject<GridApi>) => void
 
   // Phantom types
 
@@ -228,6 +243,8 @@ export function createTable<
       columns,
       subscribeToFilter,
       useFilterState,
+      clearFilterState,
+      clearAllFilterState,
     } as TableDef<any>
   }
 }
