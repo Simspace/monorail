@@ -264,9 +264,15 @@ export const StandaloneToggleButton = story(() => {
 const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
   '& .MuiToggleButtonGroup-grouped': {
     margin: theme.spacing(1),
-    border: 0,
+    border: `1px solid transparent`,
+    '&:hover:not(.Mui-focusVisible)': {
+      border: `1px solid transparent`,
+      '&.Mui-selected:not(:first-of-type)': {
+        borderLeft: `1px solid transparent`,
+      },
+    },
     '&.Mui-disabled': {
-      border: 0,
+      border: `1px solid transparent`,
     },
     '&:not(:first-of-type)': {
       borderRadius: theme.shape.borderRadius,
