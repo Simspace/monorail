@@ -1,9 +1,5 @@
 import type { Components, Theme } from '@mui/material'
-import {
-  alpha,
-  toggleButtonClasses,
-  toggleButtonGroupClasses,
-} from '@mui/material'
+import { alpha } from '@mui/material'
 
 export const MonorailToggleButtonOverrides: Components<Theme>['MuiToggleButton'] =
   {
@@ -14,59 +10,18 @@ export const MonorailToggleButtonOverrides: Components<Theme>['MuiToggleButton']
       root: ({ ownerState: { color = 'default' }, theme }) => ({
         // Keep backgroundColor transparent, otherwise will hide vertical borders.
         border: `1px solid ${theme.palette[color].border.light}`,
-        color:
-          color === 'default'
-            ? theme.palette.text.secondary
-            : theme.palette[color].lowEmphasis.contrastText,
-
+        color: theme.palette[color].lowEmphasis.contrastText,
         '&:hover': {
-          zIndex: 1,
           border: `1px solid ${theme.palette[color].border.main}`,
           backgroundColor: alpha(
             theme.palette[color].main,
             theme.palette.action.hoverOpacity,
           ),
-          [`&.${toggleButtonGroupClasses.grouped}:not(:first-of-type)`]: {
-            // Theming this using MuiToggleButtonGroup wasn't successful.
-            borderLeft: `1px solid ${theme.palette[color].border.main}`,
-          },
-        },
-        [`&.Mui-selected`]: {
-          // There is a styleOverrides.selected key but it doesn't seem to work.
-          color:
-            color === 'default'
-              ? theme.palette.text.primary
-              : theme.palette[color].dark,
-          borderColor: theme.palette[color].border.main,
-          backgroundColor: alpha(
-            theme.palette[color].main,
-            theme.palette.action.selectedOpacity,
-          ),
-          '&:hover': {
-            backgroundColor: alpha(
-              theme.palette[color].main,
-              theme.palette.action.selectedOpacity +
-                theme.palette.action.hoverOpacity,
-            ),
-          },
-          [`&.${toggleButtonGroupClasses.grouped}:not(:first-of-type)`]: {
-            borderLeft: `1px solid ${theme.palette[color].border.main}`,
-          },
         },
         [`&.Mui-focusVisible`]: {
           boxShadow: `0 0 0 4px ${theme.palette[color].focusRing.outer}`,
           border: `1px solid ${theme.palette[color].focusRing.inner}`,
-          zIndex: 1,
-          [`&.${toggleButtonGroupClasses.grouped}:not(:first-of-type)`]: {
-            borderLeft: `1px solid ${theme.palette[color].focusRing.inner}`,
-          },
-        },
-        [`&.${toggleButtonClasses.disabled}`]: {
-          color:
-            color === 'default'
-              ? theme.palette.text.secondary
-              : theme.palette[color].lowEmphasis.contrastText,
-          border: `1px solid ${theme.palette[color].border.light}`,
+          zIndex: 2,
         },
       }),
     },
@@ -77,5 +32,48 @@ export const MonorailToggleButtonGroupOverrides: Components<Theme>['MuiToggleBut
     defaultProps: {
       color: 'default',
     },
-    styleOverrides: {},
+    styleOverrides: {
+      groupedHorizontal: ({ ownerState: { color = 'default' }, theme }) => ({
+        '&:hover': {
+          '&:not(:first-of-type)': {
+            zIndex: 1,
+            borderLeft: `1px solid ${theme.palette[color].border.main}`,
+            '&.Mui-selected': {
+              marginLeft: -1,
+              borderLeft: `1px solid ${theme.palette[color].border.main}`,
+            },
+          },
+        },
+        [`&.Mui-focusVisible`]: {
+          '&:not(:first-of-type)': {
+            borderLeft: `1px solid ${theme.palette[color].focusRing.inner}`,
+            '&.Mui-selected': {
+              marginLeft: -1,
+              borderLeft: `1px solid ${theme.palette[color].focusRing.inner}`,
+            },
+          },
+        },
+      }),
+      groupedVertical: ({ ownerState: { color = 'default' }, theme }) => ({
+        '&:hover': {
+          '&:not(:first-of-type)': {
+            zIndex: 1,
+            borderTop: `1px solid ${theme.palette[color].border.main}`,
+            '&.Mui-selected': {
+              marginTop: -1,
+              borderTop: `1px solid ${theme.palette[color].border.main}`,
+            },
+          },
+        },
+        [`&.Mui-focusVisible`]: {
+          '&:not(:first-of-type)': {
+            borderTop: `1px solid ${theme.palette[color].focusRing.inner}`,
+            '&.Mui-selected': {
+              marginTop: -1,
+              borderTop: `1px solid ${theme.palette[color].focusRing.inner}`,
+            },
+          },
+        },
+      }),
+    },
   }
