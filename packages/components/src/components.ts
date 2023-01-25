@@ -171,6 +171,7 @@ export { FocusTrap as TrapFocus } from './FocusTrap.js'
 export { TreeItem } from './TreeItem.js'
 export { TreeView } from './TreeView.js'
 export { Typography } from './Typography.js'
+export { WidgetHeader } from './WidgetHeader.js'
 export { YearPicker } from './YearPicker.js'
 export { Zoom } from './Zoom.js'
 
