@@ -8,6 +8,8 @@ import {
   halloweenLightTheme,
   muiDark,
   muiLight,
+  legacyLight,
+  legacyDark,
 } from '@monorail/themes'
 import { CssBaseline, GlobalStyles, ThemeProvider } from '@monorail/components'
 import * as MUI from '@mui/material'
@@ -68,6 +70,7 @@ export const parameters: Parameters = {
 
 enum ThemeOption {
   Classic = 'Classic',
+  Legacy = 'Legacy',
   PCTE = 'PCTE',
   Halloween = 'Halloween',
   MUI = 'MUI',
@@ -84,6 +87,7 @@ export const globalTypes = {
     toolbar: {
       items: [
         ThemeOption.Classic,
+        ThemeOption.Legacy,
         ThemeOption.PCTE,
         ThemeOption.Halloween,
         ThemeOption.MUI,
@@ -124,6 +128,8 @@ export const withTheme: DecoratorFn = (Story, context) => {
       switch (sbTheme) {
         case ThemeOption.Classic:
           return classicDark
+        case ThemeOption.Legacy:
+          return legacyDark
         case ThemeOption.PCTE:
           return pcteDark
         case ThemeOption.Halloween:
@@ -135,6 +141,8 @@ export const withTheme: DecoratorFn = (Story, context) => {
     switch (sbTheme) {
       case ThemeOption.Classic:
         return classicLight
+      case ThemeOption.Legacy:
+        return legacyLight
       case ThemeOption.PCTE:
         return pcteLight
       case ThemeOption.Halloween:
