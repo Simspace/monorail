@@ -10,6 +10,8 @@ import {
   MonorailButtonOverrides,
   MonorailLoadingButtonOverrides,
 } from '../components/Button/themeOverrides.js'
+import { MonorailInputBaseOverrides } from '../components/InputBase/themeOverrides.js'
+import { MonorailOutlinedInputOverrides } from '../components/OutlinedInput/themeOverrides.js'
 import { MonorailSwitchOverrides } from '../components/Switch/themeOverrides.js'
 import { baseTheme } from './baseTheme.js'
 
@@ -23,6 +25,8 @@ export const getThemeComponents = (
   ...baseTheme.components,
   ...getClassicThemeComponents(theme),
   MuiButton: MonorailButtonOverrides,
+  MuiInputBase: MonorailInputBaseOverrides,
   MuiLoadingButton: MonorailLoadingButtonOverrides,
+  MuiOutlinedInput: MonorailOutlinedInputOverrides,
   MuiSwitch: MonorailSwitchOverrides,
 })
