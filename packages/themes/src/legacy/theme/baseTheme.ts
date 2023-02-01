@@ -40,7 +40,7 @@ export const baseTheme = createTheme(
     spacing: 4,
 
     typography: {
-      htmlFontSize: 20,
+      htmlFontSize: 12,
       fontFamily: BASE_FONT_STACK,
       fontWeightExtraLight: FontWeight.ExtraLight,
       fontWeightLight: FontWeight.Light,
