@@ -17,8 +17,8 @@ export const MonorailSwitchOverrides: Components<Theme>['MuiSwitch'] = {
       }),
     }),
     switchBase: ({ ownerState: { color = 'primary' }, theme }) => ({
-      padding: theme.spacing(2),
-      transform: `translate(${theme.spacing(1.25)})`,
+      padding: theme.spacing(1.5),
+      transform: `translate(${theme.spacing(1)})`,
       '&.Mui-focusVisible': {
         [`& + .${switchClasses.track}`]: {
           boxShadow: `0 0 0 3px ${theme.palette.primary.focusRing.outer}`,
@@ -32,7 +32,7 @@ export const MonorailSwitchOverrides: Components<Theme>['MuiSwitch'] = {
         },
       },
       [`&.${switchClasses.checked}`]: {
-        transform: `translate(${theme.spacing(8)})`,
+        transform: `translateX(${theme.spacing(4)})`,
         ':hover': {
           backgroundColor: alpha(
             theme.palette[color].main,
@@ -77,33 +77,37 @@ export const MonorailSwitchOverrides: Components<Theme>['MuiSwitch'] = {
     thumb: ({ theme }) => ({
       backgroundColor: theme.palette.default.light,
       boxShadow: 'none',
-      width: theme.spacing(6),
-      height: theme.spacing(6),
+      width: theme.spacing(3.5),
+      height: theme.spacing(3.5),
     }),
     track: ({ theme }) => ({
-      border: `2px solid ${theme.palette.default.border.light}`,
+      border: `1px solid ${theme.palette.default.border.light}`,
       backgroundColor: theme.palette.background.paper,
-      borderRadius: 100,
+      borderRadius: 9,
       opacity: 1,
     }),
     sizeMedium: ({ theme }) => ({
-      height: theme.spacing(10),
-      width: theme.spacing(21),
+      height: theme.spacing(6.5),
+      width: theme.spacing(13.5),
     }),
     sizeSmall: ({ ownerState: { color = 'primary' }, theme }) => ({
-      height: theme.spacing(10),
-      width: theme.spacing(15.5),
+      height: theme.spacing(7),
+      width: theme.spacing(9.5),
       padding: theme.spacing(2, 3, 2, 1.5),
       [`&>.${switchClasses.switchBase}`]: {
-        padding: theme.spacing(2),
+        padding: theme.spacing(1.5),
         transform: `translate(${theme.spacing(0.5)}, ${theme.spacing(1)})`,
       },
+      [`& .${switchClasses.track}`]: {
+        borderRadius: theme.spacing(1.5),
+      },
       [`& .${switchClasses.thumb}`]: {
-        height: theme.spacing(4),
-        width: theme.spacing(4),
+        height: theme.spacing(2),
+        width: theme.spacing(2),
+        padding: theme.spacing(0.25),
       },
       [`& .${switchClasses.switchBase}.${switchClasses.checked}`]: {
-        transform: `translate(${theme.spacing(5.5)}, ${theme.spacing(1)})`,
+        transform: `translate(${theme.spacing(2.5)}, ${theme.spacing(1)})`,
         [`& + .${switchClasses.track}`]: {
           backgroundColor: theme.palette[color].main,
         },

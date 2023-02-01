@@ -13,7 +13,6 @@ export const MonorailInputBaseOverrides: Components<Theme>['MuiInputBase'] = {
             borderWidth: '1px',
           },
         },
-        minHeight: theme.spacing(12),
         ...theme.typography.inputText,
       }
     },
@@ -27,7 +26,6 @@ export const MonorailInputBaseOverrides: Components<Theme>['MuiInputBase'] = {
       },
     }),
     sizeSmall: ({ theme }) => ({
-      minHeight: theme.spacing(10),
       [`& .${inputBaseClasses.inputSizeSmall}`]: {
         paddingTop: theme.spacing(2),
         paddingBottom: theme.spacing(2),
