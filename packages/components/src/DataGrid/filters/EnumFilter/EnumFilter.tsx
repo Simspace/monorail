@@ -169,7 +169,7 @@ export function EnumFilter(props: EnumFilterProps) {
         {...componentsProps.clearFilterButton}
         sx={combineSxProps(
           theme => ({
-            marginBottom: isFiltered ? '0px' : theme.spacing(-18),
+            mb: isFiltered ? 0 : -8,
             padding: theme.spacing(4),
           }),
           componentsProps.clearFilterButton?.sx,
@@ -219,8 +219,8 @@ const EnumFilterItem = React.memo(function EnumFilterItem(
     >
       <ListItemButton
         sx={theme => ({
-          minHeight: theme.spacing(12),
-          padding: 0,
+          py: theme.spacing(2),
+          px: 0,
           [`&.${listItemButtonClasses.focusVisible}`]: {
             outline: 'none',
             boxShadow: `inset 0 0 0 1px ${theme.palette.primary.focusRing.inner}, inset 0 0 0 4px ${theme.palette.primary.focusRing.outer}`,

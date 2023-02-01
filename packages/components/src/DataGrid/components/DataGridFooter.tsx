@@ -64,7 +64,6 @@ export function DataGridPaginationFooter() {
   return (
     <Box
       sx={theme => ({
-        height: theme.spacing(14),
         backgroundColor: theme.palette.default.lowEmphasis.main,
         // TODO: codify this upper drop shadow
         boxShadow: '0 -2px 1px -1px rgba(0,0,0,.2)',
@@ -105,8 +104,6 @@ export function DataGridPaginationFooter() {
               <Select<number>
                 sx={theme => ({
                   backgroundColor: theme.palette.background.default,
-                  minHeight: theme.spacing(10),
-                  maxHeight: theme.spacing(10),
                   minWidth: theme.spacing(24),
                 })}
                 value={gridPageSizeSelector(apiRef)}

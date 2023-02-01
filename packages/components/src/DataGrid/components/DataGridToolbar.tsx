@@ -101,7 +101,6 @@ export function DataGridToolbar(props: DataGridToolbarProps) {
   return (
     <Box
       sx={theme => ({
-        height: theme.spacing(20),
         padding: theme.spacing(4, 8),
         backgroundColor: theme.palette.default.lowEmphasis.light,
         display: 'flex',
