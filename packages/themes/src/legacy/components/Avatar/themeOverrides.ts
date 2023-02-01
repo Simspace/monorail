@@ -12,9 +12,12 @@ export const MonorailAvatarOverrides: Components<Theme>['MuiAvatar'] = {
           : theme.palette.secondary.dark,
       color: theme.palette.secondary.contrastText,
       ...theme.typography.avatarInitials,
+      width: theme.spacing(8),
+      height: theme.spacing(8),
+      fontSize: theme.typography.pxToRem(10),
       [`&.${avatarClasses.sizeSmall}`]: {
-        width: theme.spacing(8),
-        height: theme.spacing(8),
+        width: theme.spacing(6),
+        height: theme.spacing(6),
       },
     }),
     rounded: {

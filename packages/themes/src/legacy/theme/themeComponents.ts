@@ -6,6 +6,7 @@ import type {} from '@mui/x-date-pickers/themeAugmentation'
 import type {} from '@mui/x-date-pickers-pro/themeAugmentation'
 
 import { getThemeComponents as getClassicThemeComponents } from '../../classic/theme/themeComponents.js'
+import { MonorailAvatarOverrides } from '../components/Avatar/themeOverrides.js'
 import {
   MonorailButtonOverrides,
   MonorailLoadingButtonOverrides,
@@ -27,6 +28,7 @@ export const getThemeComponents = (
   // Make sure we apply the defaults here
   ...baseTheme.components,
   ...getClassicThemeComponents(theme),
+  MuiAvatar: MonorailAvatarOverrides,
   MuiButton: MonorailButtonOverrides,
   MuiCssBaseline: MonorailCssBaselineOverrides,
   MuiIconButton: MonorailIconButtonOverrides,

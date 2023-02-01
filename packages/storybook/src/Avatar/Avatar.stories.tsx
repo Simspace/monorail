@@ -97,19 +97,19 @@ export const Sizes = story<AvatarProps>(() => {
       <Avatar
         alt="Good Boi"
         src="https://images.dog.ceo/breeds/labrador/n02099712_4323.jpg"
-        sx={{ width: 32, height: 32 }}
+        size="small"
       />
       <Avatar
         alt="Good Boi"
         src="https://images.dog.ceo/breeds/labrador/n02099712_4323.jpg"
       />
-      <Avatar sx={{ width: 32, height: 32 }}>
+      <Avatar size="small">
         <Person />
       </Avatar>
       <Avatar>
         <Person fontSize="large" />
       </Avatar>
-      <Avatar variant="rounded" sx={{ width: 32, height: 32 }}>
+      <Avatar variant="rounded" size="small">
         <AccountGroup />
       </Avatar>
       <Avatar variant="rounded">
@@ -179,13 +179,13 @@ export const Variants = story<AvatarProps>(
           >
             <Typography variant="h3">{variant}</Typography>
             <Typography>32px x 32px</Typography>
-            <Avatar variant={variant} sx={{ width: 32, height: 32 }}>
+            <Avatar variant={variant} size="small">
               WW
             </Avatar>
-            <Avatar variant={variant} sx={{ width: 32, height: 32 }}>
+            <Avatar variant={variant} size="small">
               <Person />
             </Avatar>
-            <Avatar variant={variant} sx={{ width: 32, height: 32 }}>
+            <Avatar variant={variant} size="small">
               <AccountGroup />
             </Avatar>
             <Typography>40px x 40px</Typography>
