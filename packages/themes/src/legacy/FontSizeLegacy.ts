@@ -75,7 +75,7 @@ export const PixelFontSize: Record<TypographyVariant, number> = {
   InputText: Scale.FontSize11,
   TableHeader: Scale.FontSize11,
   ListSubheader: Scale.FontSize11,
-  MenuItem: Scale.FontSize12,
+  MenuItem: Scale.FontSize11,
   MenuItemDense: Scale.FontSize11,
   TabActive: Scale.FontSize12,
   TabInactive: Scale.FontSize12,
