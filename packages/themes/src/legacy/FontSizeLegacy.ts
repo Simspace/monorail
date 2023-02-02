@@ -23,6 +23,7 @@ enum Scale {
   FontSize12 = 12,
   FontSize11 = 11,
   FontSize10 = 10,
+  FontSize8 = 8,
 
   LineHeight56 = 56,
   LineHeight52 = 52,
@@ -57,8 +58,8 @@ export const PixelFontSize: Record<TypographyVariant, number> = {
   Subtitle2: Scale.FontSize11,
   MonoBody1: Scale.FontSize12,
   MonoBody2: Scale.FontSize11,
-  Overline: Scale.FontSize10,
-  Caption: Scale.FontSize10,
+  Overline: Scale.FontSize8,
+  Caption: Scale.FontSize8,
   Button: Scale.FontSize11,
 
   // Components
