@@ -20,6 +20,7 @@ export const MonorailAlertOverrides: Components<Theme>['MuiAlert'] = {
     root: ({ theme }) => ({
       paddingTop: theme.spacing(2),
       paddingBottom: theme.spacing(2),
+      alignItems: 'center',
     }),
     icon: {
       opacity: 1,
