@@ -59,17 +59,23 @@ export const MonorailButtonOverrides: Components<Theme>['MuiButton'] = {
     }),
     iconSizeSmall: ({ theme }) => ({
       '> *:nth-of-type(1)': {
+        marginTop: '-2px',
+        marginBottom: '-2px',
         fontSize: theme.typography.pxToRem(20),
       },
     }),
     iconSizeMedium: ({ theme }) => ({
       '> *:nth-of-type(1)': {
-        fontSize: theme.typography.pxToRem(24),
+        marginTop: '-4px',
+        marginBottom: '-4px',
+        fontSize: theme.typography.pxToRem(20),
       },
     }),
     iconSizeLarge: ({ theme }) => ({
       '> *:nth-of-type(1)': {
-        fontSize: theme.typography.pxToRem(24),
+        marginTop: '-4px',
+        marginBottom: '-4px',
+        fontSize: theme.typography.pxToRem(20),
       },
     }),
     contained: ({

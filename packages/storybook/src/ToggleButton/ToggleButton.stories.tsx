@@ -136,16 +136,16 @@ export const Size = story(
 
     const children = [
       <ToggleButton value="left" key="left" aria-label="left">
-        <FormatAlignLeftIcon fontSize="small" />
+        <FormatAlignLeftIcon />
       </ToggleButton>,
       <ToggleButton value="center" key="center" aria-label="center">
-        <FormatAlignCenterIcon fontSize="small" />
+        <FormatAlignCenterIcon />
       </ToggleButton>,
       <ToggleButton value="right" key="right" aria-label="right">
-        <FormatAlignRightIcon fontSize="small" />
+        <FormatAlignRightIcon />
       </ToggleButton>,
       <ToggleButton value="justify" key="justify" aria-label="justify">
-        <FormatAlignJustifyIcon fontSize="small" />
+        <FormatAlignJustifyIcon />
       </ToggleButton>,
     ]
 
