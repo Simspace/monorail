@@ -10,6 +10,9 @@ export const MonorailOutlinedInputOverrides: Components<Theme>['MuiOutlinedInput
         padding: 0,
       },
       input: ({ theme }) => ({
+        padding: theme.spacing(2, 1.5),
+      }),
+      inputSizeSmall: ({ theme }) => ({
         padding: theme.spacing(1, 1.5),
       }),
       inputAdornedStart: {

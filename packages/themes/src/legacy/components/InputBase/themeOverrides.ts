@@ -13,10 +13,13 @@ export const MonorailInputBaseOverrides: Components<Theme>['MuiInputBase'] = {
             borderWidth: '1px',
           },
         },
-        minHeight: theme.spacing(6),
+        minHeight: theme.spacing(8),
         ...theme.typography.inputText,
       }
     },
+    sizeSmall: ({ theme }) => ({
+      minHeight: theme.spacing(6),
+    }),
     error: ({ theme }) => ({
       [`&.${inputBaseClasses.focused}`]: {
         boxShadow: `0 0 0 3px ${theme.palette.error.focusRing.outer}`,
