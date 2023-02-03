@@ -99,7 +99,7 @@ export const PixelLineHeight: Record<TypographyVariant, string | number> = {
   H5: 'normal',
   H6: 'normal',
   Body1: 'normal',
-  Body2: 'normal',
+  Body2: `${Scale.LineHeight14}px`,
   Subtitle1: 'normal',
   Subtitle2: 'normal',
   MonoBody1: 'normal',

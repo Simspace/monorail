@@ -27,12 +27,16 @@ import { MonorailDialogActionsOverrides } from '../components/DialogActions/them
 import { MonorailDialogContentOverrides } from '../components/DialogContent/themeOverrides.js'
 import { MonorailDialogHeaderOverrides } from '../components/DialogHeader/themeOverrides.js'
 import { MonorailDialogTitleOverrides } from '../components/DialogTitle/themeOverrides.js'
+import { MonorailDividerOverrides } from '../components/Divider/themeOverrides.js'
 import { MonorailIconButtonOverrides } from '../components/IconButton/themeOverrides.js'
 import { MonorailInputBaseOverrides } from '../components/InputBase/themeOverrides.js'
+import { MonorailListOverrides } from '../components/List/themeOverrides.js'
 import { MonorailListItemOverrides } from '../components/ListItem/themeOverrides.js'
 import { MonorailListItemAvatarOverrides } from '../components/ListItemAvatar/themeOverrides.js'
 import { MonorailListItemButtonOverrides } from '../components/ListItemButton/themeOverrides.js'
 import { MonorailListItemIconOverrides } from '../components/ListItemIcon/themeOverrides.js'
+import { MonorailListItemTextOverrides } from '../components/ListItemText/themeOverrides.js'
+import { MonorailListSubheaderOverrides } from '../components/ListSubheader/themeOverrides.js'
 import { MonorailMenuItemOverrides } from '../components/MenuItem/themeOverrides.js'
 import { MonorailOutlinedInputOverrides } from '../components/OutlinedInput/themeOverrides.js'
 import { MonorailRadioOverrides } from '../components/Radio/themeOverrides.js'
@@ -75,12 +79,16 @@ export const getThemeComponents = (
   MuiDialogActions: MonorailDialogActionsOverrides,
   MuiDialogContent: MonorailDialogContentOverrides,
   MuiDialogTitle: MonorailDialogTitleOverrides,
+  MuiDivider: MonorailDividerOverrides,
   MuiIconButton: MonorailIconButtonOverrides,
   MuiInputBase: MonorailInputBaseOverrides,
+  MuiList: MonorailListOverrides,
   MuiListItem: MonorailListItemOverrides,
   MuiListItemAvatar: MonorailListItemAvatarOverrides,
   MuiListItemButton: MonorailListItemButtonOverrides,
   MuiListItemIcon: MonorailListItemIconOverrides,
+  MuiListItemText: MonorailListItemTextOverrides,
+  MuiListSubheader: MonorailListSubheaderOverrides,
   MuiLoadingButton: MonorailLoadingButtonOverrides,
   MuiMenuItem: MonorailMenuItemOverrides,
   MuiOutlinedInput: MonorailOutlinedInputOverrides,

@@ -181,7 +181,7 @@ export const FolderList = story<ListProps>(
       <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
         <ListItem>
           <ListItemAvatar>
-            <Avatar>
+            <Avatar size="small">
               <ImageIcon />
             </Avatar>
           </ListItemAvatar>
@@ -189,7 +189,7 @@ export const FolderList = story<ListProps>(
         </ListItem>
         <ListItem>
           <ListItemAvatar>
-            <Avatar>
+            <Avatar size="small">
               <WorkIcon />
             </Avatar>
           </ListItemAvatar>
@@ -197,7 +197,7 @@ export const FolderList = story<ListProps>(
         </ListItem>
         <ListItem>
           <ListItemAvatar>
-            <Avatar>
+            <Avatar size="small">
               <BeachAccessIcon />
             </Avatar>
           </ListItemAvatar>
@@ -284,11 +284,7 @@ export const InteractiveList = story<ListProps>(
                 {generate('interactive-list-item-1', () => (
                   <ListItem
                     secondaryAction={
-                      <IconButton
-                        edge="end"
-                        aria-label="delete"
-                        size={dense ? 'small' : 'medium'}
-                      >
+                      <IconButton edge="end" aria-label="delete" size="small">
                         <DeleteIcon />
                       </IconButton>
                     }
@@ -317,7 +313,7 @@ export const InteractiveList = story<ListProps>(
                   <ListItem>
                     <ListItemIcon>
                       <Checkbox
-                        size={dense ? 'small' : 'medium'}
+                        size="small"
                         inputProps={{ 'aria-labelledby': id }}
                       />
                     </ListItemIcon>
@@ -346,7 +342,7 @@ export const InteractiveList = story<ListProps>(
                     }
                   >
                     <ListItemAvatar>
-                      <Avatar>
+                      <Avatar size="small">
                         <FolderIcon />
                       </Avatar>
                     </ListItemAvatar>
@@ -439,8 +435,8 @@ export const AlignListItems = story<ListProps>(
       <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
         <ListItem alignItems="flex-start">
           <ListItemAvatar>
-            <Avatar alt="Remy Sharp">
-              <Typography fontWeight="bold">RS</Typography>
+            <Avatar size="small" alt="Remy Sharp">
+              RS
             </Avatar>
           </ListItemAvatar>
           <ListItemText
@@ -463,8 +459,8 @@ export const AlignListItems = story<ListProps>(
         <Divider variant="inset" component="li" />
         <ListItem alignItems="flex-start">
           <ListItemAvatar>
-            <Avatar alt="Travis Howard">
-              <Typography fontWeight="bold">TH</Typography>
+            <Avatar size="small" alt="Travis Howard">
+              TH
             </Avatar>
           </ListItemAvatar>
           <ListItemText
@@ -487,8 +483,8 @@ export const AlignListItems = story<ListProps>(
         <Divider variant="inset" component="li" />
         <ListItem alignItems="flex-start">
           <ListItemAvatar>
-            <Avatar alt="Cindy Baker">
-              <Typography fontWeight="bold">CB</Typography>
+            <Avatar size="small" alt="Cindy Baker">
+              CB
             </Avatar>
           </ListItemAvatar>
           <ListItemText
@@ -561,7 +557,9 @@ export const ListControlsCheckbox = story<ListProps>(
               >
                 <ListItemIcon>
                   <Checkbox
+                    size="small"
                     edge="start"
+                    security="small"
                     checked={checked.indexOf(value) !== -1}
                     tabIndex={-1}
                     disableRipple
@@ -618,6 +616,7 @@ export const ListControlsCheckboxSecondary = story<ListProps>(
               key={value}
               secondaryAction={
                 <Checkbox
+                  size="small"
                   edge="end"
                   onChange={handleToggle(value)}
                   checked={checked.indexOf(value) !== -1}
@@ -628,16 +627,7 @@ export const ListControlsCheckboxSecondary = story<ListProps>(
             >
               <ListItemButton>
                 <ListItemAvatar>
-                  <Avatar sx={{ height: 32, width: 32 }}>
-                    <Typography
-                      sx={{
-                        typography: 'body2',
-                        fontWeight: 'bold',
-                      }}
-                    >
-                      AA
-                    </Typography>
-                  </Avatar>
+                  <Avatar size="small">AA</Avatar>
                 </ListItemAvatar>
                 <ListItemText id={labelId} primary={`Line item ${value + 1}`} />
               </ListItemButton>
@@ -740,7 +730,9 @@ export const StickySubheader = story<ListProps>(
         {[0, 1, 2, 3, 4].map(sectionId => (
           <li key={`section-${sectionId}`}>
             <ul>
-              <ListSubheader>{`I'm sticky ${sectionId}`}</ListSubheader>
+              <ListSubheader
+                sx={{ bgcolor: 'background.paper', top: -1 }}
+              >{`I'm sticky ${sectionId}`}</ListSubheader>
               {[0, 1, 2].map(item => (
                 <ListItem key={`item-${sectionId}-${item}`}>
                   <ListItemText primary={`Item ${item}`} />
@@ -801,7 +793,7 @@ export const InsetListItem = story<ListProps>(
 export const GutterlessListItem = story<ListProps>(
   () => {
     return (
-      <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+      <List sx={{ width: '100%', maxWidth: 240, bgcolor: 'background.paper' }}>
         {[1, 2, 3].map(value => (
           <ListItem
             key={value}
@@ -843,7 +835,7 @@ export const VirtualizedList = story<ListProps>(
         <FixedSizeList
           height={400}
           width={360}
-          itemSize={46}
+          itemSize={32}
           itemCount={200}
           overscanCount={5}
         >
@@ -879,7 +871,7 @@ export const NumberedList = story<ListProps>(() => {
   return (
     <Box sx={{ width: 360 }}>
       <Typography variant="h3">Instructions</Typography>
-      <List component="ol" sx={{ listStyle: 'auto', pl: 8 }}>
+      <List component="ol" sx={{ listStyle: 'auto', pl: 6 }}>
         {[1, 2, 3, 4, 5].map(item => (
           <ListItem key={item} sx={{ display: 'list-item' }}>
             <ListItemText
