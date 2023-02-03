@@ -15,11 +15,13 @@ import {
   MonorailButtonOverrides,
   MonorailLoadingButtonOverrides,
 } from '../components/Button/themeOverrides.js'
+import { MonorailCheckboxOverrides } from '../components/Checkbox/themeOverrides.js'
 import { MonorailCircularProgressOverrides } from '../components/CircularProgress/themeOverrides.js'
 import { MonorailCssBaselineOverrides } from '../components/CssBaseline/themeOverrides.js'
 import { MonorailIconButtonOverrides } from '../components/IconButton/themeOverrides.js'
 import { MonorailInputBaseOverrides } from '../components/InputBase/themeOverrides.js'
 import { MonorailOutlinedInputOverrides } from '../components/OutlinedInput/themeOverrides.js'
+import { MonorailRadioOverrides } from '../components/Radio/themeOverrides.js'
 import { MonorailSvgIconOverrides } from '../components/SvgIcon/themeOverrides.js'
 import { MonorailSwitchOverrides } from '../components/Switch/themeOverrides.js'
 import {
@@ -41,12 +43,14 @@ export const getThemeComponents = (
   MuiAlertTitle: MonorailAlertTitleOverrides,
   MuiAvatar: MonorailAvatarOverrides,
   MuiButton: MonorailButtonOverrides,
+  MuiCheckbox: MonorailCheckboxOverrides,
   MuiCircularProgress: MonorailCircularProgressOverrides,
   MuiCssBaseline: MonorailCssBaselineOverrides,
   MuiIconButton: MonorailIconButtonOverrides,
   MuiInputBase: MonorailInputBaseOverrides,
   MuiLoadingButton: MonorailLoadingButtonOverrides,
   MuiOutlinedInput: MonorailOutlinedInputOverrides,
+  MuiRadio: MonorailRadioOverrides,
   MuiSvgIcon: MonorailSvgIconOverrides,
   MuiSwitch: MonorailSwitchOverrides,
   MuiToggleButton: MonorailToggleButtonOverrides,

@@ -7,7 +7,7 @@ export const MonorailSwitchOverrides: Components<Theme>['MuiSwitch'] = {
   },
   styleOverrides: {
     root: ({ ownerState, theme }) => ({
-      padding: theme.spacing(1, 4, 1, 2),
+      padding: theme.spacing(1, 3, 1, 1.5),
       [`&:hover :not(.${switchClasses.checked}) + .${switchClasses.track}`]: {
         borderColor: theme.palette.default.border.main,
         backgroundColor: theme.palette.default.lowEmphasis.hover,
@@ -17,8 +17,8 @@ export const MonorailSwitchOverrides: Components<Theme>['MuiSwitch'] = {
       }),
     }),
     switchBase: ({ ownerState: { color = 'primary' }, theme }) => ({
-      padding: theme.spacing(1.5),
-      transform: `translate(${theme.spacing(1)})`,
+      padding: theme.spacing(1),
+      transform: `translate(${theme.spacing(1)}, ${theme.spacing(0.5)})`,
       '&.Mui-focusVisible': {
         [`& + .${switchClasses.track}`]: {
           boxShadow: `0 0 0 3px ${theme.palette.primary.focusRing.outer}`,
@@ -32,7 +32,7 @@ export const MonorailSwitchOverrides: Components<Theme>['MuiSwitch'] = {
         },
       },
       [`&.${switchClasses.checked}`]: {
-        transform: `translateX(${theme.spacing(4)})`,
+        transform: `translate(${theme.spacing(4)}, ${theme.spacing(0.5)})`,
         ':hover': {
           backgroundColor: alpha(
             theme.palette[color].main,
@@ -88,15 +88,15 @@ export const MonorailSwitchOverrides: Components<Theme>['MuiSwitch'] = {
     }),
     sizeMedium: ({ theme }) => ({
       height: theme.spacing(6.5),
-      width: theme.spacing(13.5),
+      width: theme.spacing(12),
     }),
     sizeSmall: ({ ownerState: { color = 'primary' }, theme }) => ({
       height: theme.spacing(7),
       width: theme.spacing(9.5),
       padding: theme.spacing(2, 3, 2, 1.5),
       [`&>.${switchClasses.switchBase}`]: {
-        padding: theme.spacing(1.5),
-        transform: `translate(${theme.spacing(0.5)}, ${theme.spacing(1)})`,
+        padding: theme.spacing(1),
+        transform: `translate(${theme.spacing(1)}, ${theme.spacing(1.5)})`,
       },
       [`& .${switchClasses.track}`]: {
         borderRadius: theme.spacing(1.5),
@@ -107,7 +107,7 @@ export const MonorailSwitchOverrides: Components<Theme>['MuiSwitch'] = {
         padding: theme.spacing(0.25),
       },
       [`& .${switchClasses.switchBase}.${switchClasses.checked}`]: {
-        transform: `translate(${theme.spacing(2.5)}, ${theme.spacing(1)})`,
+        transform: `translate(${theme.spacing(3)}, ${theme.spacing(1.5)})`,
         [`& + .${switchClasses.track}`]: {
           backgroundColor: theme.palette[color].main,
         },
