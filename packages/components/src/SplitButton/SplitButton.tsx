@@ -34,8 +34,28 @@ function overridesResolver(
     { [`& .${splitButtonClasses.menuList}`]: styles.menuList },
     { [`& .${splitButtonClasses.paper}`]: styles.paper },
     { [`& .${splitButtonClasses.popper}`]: styles.popper },
-    { [`& .${splitButtonClasses.primaryButton}`]: styles.primaryButton },
-    { [`& .${splitButtonClasses.secondaryButton}`]: styles.secondaryButton },
+    {
+      [`& .${splitButtonClasses.primaryButton}`]: styles.primaryButton,
+      ...(props.ownerState.size === 'small' && {
+        [`& .${splitButtonClasses.primaryButtonSmall}`]:
+          styles.primaryButtonSmall,
+      }),
+      ...(props.ownerState.size === 'large' && {
+        [`& .${splitButtonClasses.primaryButtonLarge}`]:
+          styles.primaryButtonLarge,
+      }),
+    },
+    {
+      [`& .${splitButtonClasses.secondaryButton}`]: styles.secondaryButton,
+      ...(props.ownerState.size === 'small' && {
+        [`& .${splitButtonClasses.secondaryButtonSmall}`]:
+          styles.secondaryButtonSmall,
+      }),
+      ...(props.ownerState.size === 'large' && {
+        [`& .${splitButtonClasses.secondaryButtonLarge}`]:
+          styles.secondaryButtonLarge,
+      }),
+    },
     styles.root,
   ]
 }
@@ -243,15 +263,23 @@ export const SplitButton = React.forwardRef(function SplitButton(inProps, ref) {
 }) as (props: SplitButtonProps) => JSX.Element
 
 function useUtilityClasses(ownerState: SplitButtonOwnerState) {
-  const { classes } = ownerState
+  const { classes, size } = ownerState
 
   const slots = {
     root: ['root'],
     popper: ['popper'],
     paper: ['paper'],
     menuList: ['menuList'],
-    primaryButton: ['primaryButton'],
-    secondaryButton: ['secondaryButton'],
+    primaryButton: [
+      'primaryButton',
+      size === 'small' && 'primaryButtonSmall',
+      size === 'large' && 'primaryButtonLarge',
+    ],
+    secondaryButton: [
+      'secondaryButton',
+      size === 'small' && 'secondaryButtonSmall',
+      size === 'large' && 'secondaryButtonLarge',
+    ],
   }
 
   return composeClasses(slots, getSplitButtonUtilityClass, classes)

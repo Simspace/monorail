@@ -23,6 +23,7 @@ import { MonorailIconButtonOverrides } from '../components/IconButton/themeOverr
 import { MonorailInputBaseOverrides } from '../components/InputBase/themeOverrides.js'
 import { MonorailOutlinedInputOverrides } from '../components/OutlinedInput/themeOverrides.js'
 import { MonorailRadioOverrides } from '../components/Radio/themeOverrides.js'
+import { MonorailSplitButtonOverrides } from '../components/SplitButton/themeOverrides.js'
 import { MonorailSvgIconOverrides } from '../components/SvgIcon/themeOverrides.js'
 import { MonorailSwitchOverrides } from '../components/Switch/themeOverrides.js'
 import {
@@ -40,6 +41,7 @@ export const getThemeComponents = (
   // Make sure we apply the defaults here
   ...baseTheme.components,
   ...getClassicThemeComponents(theme),
+  MonorailSplitButton: MonorailSplitButtonOverrides,
   MuiAlert: MonorailAlertOverrides,
   MuiAlertTitle: MonorailAlertTitleOverrides,
   MuiAvatar: MonorailAvatarOverrides,
