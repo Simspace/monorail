@@ -21,6 +21,11 @@ import { MonorailCssBaselineOverrides } from '../components/CssBaseline/themeOve
 import { MonorailDataGridOverrides } from '../components/DataGrid/themeOverrides.js'
 import { MonorailIconButtonOverrides } from '../components/IconButton/themeOverrides.js'
 import { MonorailInputBaseOverrides } from '../components/InputBase/themeOverrides.js'
+import { MonorailListItemOverrides } from '../components/ListItem/themeOverrides.js'
+import { MonorailListItemAvatarOverrides } from '../components/ListItemAvatar/themeOverrides.js'
+import { MonorailListItemButtonOverrides } from '../components/ListItemButton/themeOverrides.js'
+import { MonorailListItemIconOverrides } from '../components/ListItemIcon/themeOverrides.js'
+import { MonorailMenuItemOverrides } from '../components/MenuItem/themeOverrides.js'
 import { MonorailOutlinedInputOverrides } from '../components/OutlinedInput/themeOverrides.js'
 import { MonorailRadioOverrides } from '../components/Radio/themeOverrides.js'
 import { MonorailSplitButtonOverrides } from '../components/SplitButton/themeOverrides.js'
@@ -52,7 +57,12 @@ export const getThemeComponents = (
   MuiDataGrid: MonorailDataGridOverrides,
   MuiIconButton: MonorailIconButtonOverrides,
   MuiInputBase: MonorailInputBaseOverrides,
+  MuiListItem: MonorailListItemOverrides,
+  MuiListItemAvatar: MonorailListItemAvatarOverrides,
+  MuiListItemButton: MonorailListItemButtonOverrides,
+  MuiListItemIcon: MonorailListItemIconOverrides,
   MuiLoadingButton: MonorailLoadingButtonOverrides,
+  MuiMenuItem: MonorailMenuItemOverrides,
   MuiOutlinedInput: MonorailOutlinedInputOverrides,
   MuiRadio: MonorailRadioOverrides,
   MuiSvgIcon: MonorailSvgIconOverrides,
