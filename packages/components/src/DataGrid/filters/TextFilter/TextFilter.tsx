@@ -1,6 +1,11 @@
 import React from 'react'
 
-import { useForceUpdate } from '@monorail/utils'
+import {
+  composeClasses,
+  styled,
+  useForceUpdate,
+  useThemeProps,
+} from '@monorail/utils'
 
 import { MenuItem } from '../../../MenuItem.js'
 import type { SelectChangeEvent } from '../../../Select.js'
@@ -10,16 +15,32 @@ import { useGridApiContext } from '../../internal.js'
 import { ClearFilterButton } from '../components/ClearFilterButton.js'
 import { FilterContainer } from '../components/FilterContainer.js'
 import { useDebouncedSyncFilter } from '../hooks/useDebouncedSyncFilter.js'
+import type { TextFilterClasses } from './constants/textFilterClasses.js'
+import { getTextFilterUtilityClass } from './constants/textFilterClasses.js'
 import { useInitializeTextFilterState } from './hooks/useInitializeTextFilterState.js'
 import type { TextFilterDefinition } from './models.js'
 import type { TextFilterOperator } from './models/TextFilterOperator.js'
 
+const TextFilterRoot = styled(FilterContainer, {
+  name: 'MonorailTextFilter',
+  slot: 'Root',
+  overridesResolver: (props, styles) => styles,
+})({})
+
 export interface TextFilterProps extends Omit<TextFilterDefinition, 'field'> {
+  classes?: Partial<TextFilterClasses>
   field: string
 }
 
-export function TextFilter(props: TextFilterProps) {
+export function TextFilter(inProps: TextFilterProps) {
+  const props = useThemeProps({
+    name: 'MonorailTextFilter',
+    props: inProps,
+  })
+
   const { field, external, componentsProps = {} } = props
+
+  const classes = useUtilityClasses(props)
 
   const apiRef = useGridApiContext()
   useInitializeTextFilterState(field, 'contains', external)
@@ -75,7 +96,7 @@ export function TextFilter(props: TextFilterProps) {
   }
 
   return (
-    <FilterContainer>
+    <TextFilterRoot className={classes.root}>
       <Select
         onBlur={event => {
           event.stopPropagation()
@@ -100,6 +121,16 @@ export function TextFilter(props: TextFilterProps) {
       >
         {localeText.clearFilterButton}
       </ClearFilterButton>
-    </FilterContainer>
+    </TextFilterRoot>
   )
+}
+
+function useUtilityClasses(props: TextFilterProps) {
+  const { classes } = props
+
+  const slots = {
+    root: ['root'],
+  }
+
+  return composeClasses(slots, getTextFilterUtilityClass, classes)
 }

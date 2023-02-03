@@ -7,8 +7,15 @@ import type {
   TextFieldProps,
   Theme,
 } from '@mui/material'
+import { useThemeProps } from '@mui/material'
 
-import { combineSxProps, filterMap, useForceUpdate } from '@monorail/utils'
+import {
+  combineSxProps,
+  composeClasses,
+  filterMap,
+  styled,
+  useForceUpdate,
+} from '@monorail/utils'
 
 import { Checkbox } from '../../../Checkbox.js'
 import { InputAdornment } from '../../../InputAdornment.js'
@@ -21,16 +28,33 @@ import {
 import { ListItemIcon } from '../../../ListItemIcon.js'
 import { ListItemText } from '../../../ListItemText.js'
 import { ScrollShadow } from '../../../ScrollShadow.js'
-import { Stack } from '../../../Stack.js'
 import { TextField } from '../../../TextField.js'
 import { useGridApiContext } from '../../internal.js'
 import { ClearFilterButton } from '../components/ClearFilterButton.js'
 import { useDebouncedSyncFilter } from '../hooks/useDebouncedSyncFilter.js'
+import { getEnumFilterUtilityClass } from './constants/enumFilterClasses.js'
 import { useInitializeEnumFilterState } from './hooks.js'
 import type { EnumFilterProps } from './models/EnumFilterProps.js'
 
-export function EnumFilter(props: EnumFilterProps) {
+const EnumFilterRoot = styled('div', {
+  name: 'MonorailEnumFilter',
+  slot: 'Root',
+  overridesResolver: (props, styles) => styles,
+})(({ theme }) => ({
+  display: 'flex',
+  flexDirection: 'column',
+  maxWidth: theme.spacing(120),
+}))
+
+export function EnumFilter(inProps: EnumFilterProps) {
+  const props = useThemeProps({
+    name: 'MonorailEnumFilter',
+    props: inProps,
+  })
+
   const { field, renderValue, values, external, componentsProps = {} } = props
+
+  const classes = useUtilityClasses(props)
 
   const apiRef = useGridApiContext()
   useInitializeEnumFilterState(field, external)
@@ -127,14 +151,10 @@ export function EnumFilter(props: EnumFilterProps) {
   }
 
   return (
-    <Stack
+    <EnumFilterRoot
+      className={classes.root}
       ref={handleMinWidthCallback}
-      sx={theme => ({
-        height: '100%',
-        maxWidth: theme.spacing(120),
-      })}
       style={{ minWidth: `${state.width}px` }}
-      direction="column"
     >
       <TextField {...searchProps} />
       <ScrollShadow bottom={isFiltered}>
@@ -181,7 +201,7 @@ export function EnumFilter(props: EnumFilterProps) {
           .getLocaleText('EnumFilter')
           .clearSelectionButton(selectedSize)}
       </ClearFilterButton>
-    </Stack>
+    </EnumFilterRoot>
   )
 }
 
@@ -241,3 +261,13 @@ const EnumFilterItem = React.memo(function EnumFilterItem(
     </ListItem>
   )
 })
+
+function useUtilityClasses(props: EnumFilterProps) {
+  const { classes } = props
+
+  const slots = {
+    root: ['root'],
+  }
+
+  return composeClasses(slots, getEnumFilterUtilityClass, classes)
+}

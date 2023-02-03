@@ -1,7 +1,8 @@
 import React from 'react'
 import type { SelectChangeEvent } from '@mui/material'
+import { useThemeProps } from '@mui/material'
 
-import { useForceUpdate } from '@monorail/utils'
+import { composeClasses, styled, useForceUpdate } from '@monorail/utils'
 
 import { MenuItem } from '../../../MenuItem.js'
 import { Select } from '../../../Select.js'
@@ -11,6 +12,8 @@ import { ClearFilterButton } from '../components/ClearFilterButton.js'
 import { FilterContainer } from '../components/FilterContainer.js'
 import { useDebouncedSyncFilter } from '../hooks/useDebouncedSyncFilter.js'
 import { numericOperators } from './constants.js'
+import type { NumericFilterClasses } from './constants/numericFilterClasses.js'
+import { getNumericFilterUtilityClass } from './constants/numericFilterClasses.js'
 import { useInitializeNumericFilterState } from './hooks.js'
 import type {
   NumericFilterDefinition,
@@ -18,12 +21,27 @@ import type {
   NumericFilterState,
 } from './models.js'
 
-interface NumericFilterProps extends Omit<NumericFilterDefinition, 'field'> {
+const NumericFilterRoot = styled(FilterContainer, {
+  name: 'MonorailNumericFilter',
+  slot: 'Root',
+  overridesResolver: (props, styles) => styles,
+})({})
+
+export interface NumericFilterProps
+  extends Omit<NumericFilterDefinition, 'field'> {
+  classes?: Partial<NumericFilterClasses>
   field: string
 }
 
-export function NumericFilter(props: NumericFilterProps) {
+export function NumericFilter(inProps: NumericFilterProps) {
+  const props = useThemeProps({
+    name: 'MonorailNumericFilter',
+    props: inProps,
+  })
+
   const { field, external, componentsProps = {} } = props
+
+  const classes = useUtilityClasses(props)
 
   const apiRef = useGridApiContext()
   useInitializeNumericFilterState(apiRef, field, external)
@@ -126,7 +144,7 @@ export function NumericFilter(props: NumericFilterProps) {
   ])
 
   return (
-    <FilterContainer>
+    <NumericFilterRoot className={classes.root}>
       <Select
         onBlur={event => event.stopPropagation()}
         value={state.operator.key}
@@ -147,7 +165,7 @@ export function NumericFilter(props: NumericFilterProps) {
       >
         {apiRef.current.getLocaleText('NumericFilter').clearFilterButton}
       </ClearFilterButton>
-    </FilterContainer>
+    </NumericFilterRoot>
   )
 }
 
@@ -182,4 +200,14 @@ function parseNumber(value: string): number | null {
     return null
   }
   return parsed
+}
+
+function useUtilityClasses(props: NumericFilterProps) {
+  const { classes } = props
+
+  const slots = {
+    root: ['root'],
+  }
+
+  return composeClasses(slots, getNumericFilterUtilityClass, classes)
 }

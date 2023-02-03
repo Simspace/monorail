@@ -7,3 +7,4 @@ export * from './DataGrid/utils.js'
 // codegen:end
 
 export * from './DataGrid/components/DataGridToolbar.js'
+export type {} from './DataGrid/filters/themeOverrides'

@@ -5,7 +5,12 @@ import {
   EventBusy,
 } from '@mui/icons-material'
 
-import { useForceUpdate } from '@monorail/utils'
+import {
+  composeClasses,
+  styled,
+  useForceUpdate,
+  useThemeProps,
+} from '@monorail/utils'
 
 import { DatePicker } from '../../../DatePicker.js'
 import { ChevronDoubleLeft, ChevronDoubleRight } from '../../../icons.js'
@@ -18,6 +23,8 @@ import { ClearFilterButton } from '../components/ClearFilterButton.js'
 import { FilterContainer } from '../components/FilterContainer.js'
 import { useDebouncedSyncFilter } from '../hooks/useDebouncedSyncFilter.js'
 import { getDateOperators } from './constants.js'
+import type { DateFilterClasses } from './constants/dateFilterClasses.js'
+import { getDateFilterUtilityClass } from './constants/dateFilterClasses.js'
 import { useInitializeDateFilterState } from './hooks.js'
 import { useDateAdapter } from './hooks/useDateAdapter.js'
 import type {
@@ -26,12 +33,26 @@ import type {
   DateFilterState,
 } from './models.js'
 
-interface DateFilterProps extends Omit<DateFilterDefinition, 'type'> {
+const DateFilterRoot = styled(FilterContainer, {
+  name: 'MonorailDateFilter',
+  slot: 'Root',
+  overridesResolver: (props, styles) => styles,
+})({})
+
+export interface DateFilterProps extends Omit<DateFilterDefinition, 'type'> {
+  classes?: Partial<DateFilterClasses>
   field: string
 }
 
-export function DateFilter(props: DateFilterProps) {
+export function DateFilter(inProps: DateFilterProps) {
+  const props = useThemeProps({
+    name: 'MonorailDateFilter',
+    props: inProps,
+  })
+
   const { field, external, componentsProps = {} } = props
+
+  const classes = useUtilityClasses(props)
 
   const apiRef = useGridApiContext()
   const adapter = useDateAdapter()
@@ -162,7 +183,7 @@ export function DateFilter(props: DateFilterProps) {
   ])
 
   return (
-    <FilterContainer>
+    <DateFilterRoot className={classes.root}>
       <Select
         onBlur={event => event.stopPropagation()}
         value={state.operator.key}
@@ -183,7 +204,7 @@ export function DateFilter(props: DateFilterProps) {
       >
         {apiRef.current.getLocaleText('DateFilter').clearFilterButton}
       </ClearFilterButton>
-    </FilterContainer>
+    </DateFilterRoot>
   )
 }
 
@@ -233,4 +254,14 @@ function getOpenPickerIcon(operator: DateFilterOperator) {
       return undefined
     }
   }
+}
+
+function useUtilityClasses(props: DateFilterProps) {
+  const { classes } = props
+
+  const slots = {
+    root: ['root'],
+  }
+
+  return composeClasses(slots, getDateFilterUtilityClass, classes)
 }
