@@ -7,10 +7,13 @@ export const MonorailRadioOverrides: Components<Theme>['MuiRadio'] = {
     root: ({ ownerState: { color = 'primary', size = 'medium' }, theme }) => ({
       color: theme.palette.default.lowEmphasis.contrastText,
       padding: theme.spacing(1),
+      [`& .${svgIconClasses.root}`]: {
+        fontSize: theme.typography.pxToRem(20),
+      },
       ...(size === 'small' && {
         padding: 3,
         [`& .${svgIconClasses.root}`]: {
-          fontSize: theme.typography.pxToRem(20),
+          fontSize: theme.typography.pxToRem(16),
         },
       }),
       '&:hover': {

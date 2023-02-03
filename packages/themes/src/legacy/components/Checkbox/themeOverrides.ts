@@ -8,10 +8,13 @@ export const MonorailCheckboxOverrides: Components<Theme>['MuiCheckbox'] = {
       color: theme.palette.default.main,
       padding: 4,
       borderRadius: 4,
+      [`& .${svgIconClasses.root}`]: {
+        fontSize: theme.typography.pxToRem(20),
+      },
       ...(size === 'small' && {
         padding: theme.spacing(0.75),
         [`& .${svgIconClasses.root}`]: {
-          fontSize: theme.typography.pxToRem(20),
+          fontSize: theme.typography.pxToRem(16),
         },
       }),
       '&:hover': {
