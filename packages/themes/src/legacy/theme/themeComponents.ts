@@ -13,6 +13,7 @@ import {
   MonorailAlertOverrides,
   MonorailAlertTitleOverrides,
 } from '../components/Alert/themeOverrides.js'
+import { MonorailAutocompleteOverrides } from '../components/Autocomplete/themeOverrides.js'
 import { MonorailAvatarOverrides } from '../components/Avatar/themeOverrides.js'
 import {
   MonorailButtonOverrides,
@@ -64,6 +65,7 @@ export const getThemeComponents = (
   MuiAccordionSummary: MonorailAccordionSummaryOverrides,
   MuiAlert: MonorailAlertOverrides,
   MuiAlertTitle: MonorailAlertTitleOverrides,
+  MuiAutocomplete: MonorailAutocompleteOverrides,
   MuiAvatar: MonorailAvatarOverrides,
   MuiButton: MonorailButtonOverrides,
   MuiCheckbox: MonorailCheckboxOverrides,
