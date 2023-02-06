@@ -49,10 +49,10 @@ export const MonorailAutocompleteOverrides: Components<Theme>['MuiAutocomplete']
         ownerState: { multiple?: boolean }
       }) => ({
         [`.${outlinedInputClasses.root}`]: {
-          // Tags have a built-in 3px margin + 9px = 12px
-          padding: multiple ? '2px 9px' : theme.spacing(0, 1.5),
+          padding: multiple ? '2px 3px' : theme.spacing(0, 1.5),
           [`& .${autocompleteClasses.input}`]: {
             padding: 0,
+            paddingLeft: theme.spacing(1),
           },
         },
         [`& .${outlinedInputClasses.root}`]: {
@@ -81,5 +81,8 @@ export const MonorailAutocompleteOverrides: Components<Theme>['MuiAutocomplete']
       input: {
         padding: 0,
       },
+      tag: ({ theme }) => ({
+        margin: theme.spacing(0.5),
+      }),
     },
   }
