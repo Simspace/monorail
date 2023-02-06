@@ -2,14 +2,21 @@
 /* eslint-disable eqeqeq */
 import React from 'react'
 import { Close } from '@mui/icons-material'
+import type { CSSObject } from '@mui/material'
 import { styled, useThemeProps } from '@mui/material'
+import clsx from 'clsx'
 
-import { sx } from '@monorail/utils'
+import { composeClasses, sx } from '@monorail/utils'
 
 import { Box } from '../Box.js'
 import { DialogEventContext } from '../Dialog/dialogEventContext.js'
 import { IconButton } from '../IconButton.js'
 import { Typography } from '../Typography.js'
+import type { DialogHeaderClassKey } from './dialogHeaderClasses.js'
+import {
+  dialogHeaderClasses,
+  getDialogHeaderUtilityClass,
+} from './dialogHeaderClasses.js'
 import type { DialogHeaderProps } from './dialogHeaderProps.js'
 
 interface DialogHeaderRootProps
@@ -17,10 +24,21 @@ interface DialogHeaderRootProps
   ownerState: DialogHeaderProps
 }
 
+function overridesResolver(
+  props: DialogHeaderRootProps,
+  styles: Partial<Record<DialogHeaderClassKey, CSSObject>>,
+) {
+  return [
+    { [`& .${dialogHeaderClasses.iconContainer}`]: styles.iconContainer },
+    { [`& .${dialogHeaderClasses.title}`]: styles.title },
+    styles.root,
+  ]
+}
+
 const DialogHeaderRoot = styled('div', {
   name: 'MonorailDialogHeader',
   slot: 'Root',
-  overridesResolver: (props, styles) => styles.root,
+  overridesResolver,
 })<DialogHeaderRootProps>(
   sx(theme => ({
     padding: theme.spacing(4, 6),
@@ -35,7 +53,6 @@ const DialogHeaderRoot = styled('div', {
 const DialogIconContainer = styled('div', {
   name: 'MonorailDialogHeader',
   slot: 'Icon',
-  overridesResolver: (props, styles) => styles.icon,
 })(
   sx(theme => ({
     display: 'flex',
@@ -60,13 +77,9 @@ export const DialogHeader = React.forwardRef(function DialogHeader(
     name: 'MonorailDialogHeader',
   })
 
-  const {
-    title: titleProp,
-    classes = {},
-    componentsProps,
-    icon,
-    ...other
-  } = props
+  const { className, title: titleProp, componentsProps, icon, ...other } = props
+
+  const classes = useUtilityClasses(props)
 
   const dialogEvents = React.useContext(DialogEventContext)
 
@@ -101,11 +114,32 @@ export const DialogHeader = React.forwardRef(function DialogHeader(
   )
 
   return (
-    <DialogHeaderRoot ref={ref} ownerState={props} {...other}>
-      {icon && <DialogIconContainer>{icon}</DialogIconContainer>}
+    <DialogHeaderRoot
+      className={clsx(classes.root, className)}
+      ref={ref}
+      ownerState={props}
+      {...other}
+    >
+      {icon && (
+        <DialogIconContainer className={classes.iconContainer}>
+          {icon}
+        </DialogIconContainer>
+      )}
       {title}
       <Box sx={{ width: '100%' }} />
       {closeButton}
     </DialogHeaderRoot>
   )
 }) as (props: DialogHeaderProps) => JSX.Element
+
+function useUtilityClasses(props: DialogHeaderProps) {
+  const { classes } = props
+
+  const slots = {
+    root: ['root'],
+    title: ['title'],
+    iconContainer: ['iconContainer'],
+  }
+
+  return composeClasses(slots, getDialogHeaderUtilityClass, classes)
+}

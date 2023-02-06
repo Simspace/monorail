@@ -3,7 +3,7 @@ import { generateUtilityClass, generateUtilityClasses } from '@monorail/utils'
 export interface DialogHeaderClasses {
   root: string
   title: string
-  icon: string
+  iconContainer: string
 }
 
 export type DialogHeaderClassKey = keyof DialogHeaderClasses
@@ -13,6 +13,6 @@ export function getDialogHeaderUtilityClass(slot: string): string {
 }
 
 export const dialogHeaderClasses: DialogHeaderClasses = generateUtilityClasses(
-  'MonorailDailogHeader',
-  ['root', 'title', 'icon'],
+  'MonorailDialogHeader',
+  ['root', 'title', 'iconContainer'],
 )

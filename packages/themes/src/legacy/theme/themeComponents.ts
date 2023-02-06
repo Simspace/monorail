@@ -19,6 +19,10 @@ import { MonorailCheckboxOverrides } from '../components/Checkbox/themeOverrides
 import { MonorailCircularProgressOverrides } from '../components/CircularProgress/themeOverrides.js'
 import { MonorailCssBaselineOverrides } from '../components/CssBaseline/themeOverrides.js'
 import { MonorailDataGridOverrides } from '../components/DataGrid/themeOverrides.js'
+import { MonorailDialogActionsOverrides } from '../components/DialogActions/themeOverrides.js'
+import { MonorailDialogContentOverrides } from '../components/DialogContent/themeOverrides.js'
+import { MonorailDialogHeaderOverrides } from '../components/DialogHeader/themeOverrides.js'
+import { MonorailDialogTitleOverrides } from '../components/DialogTitle/themeOverrides.js'
 import { MonorailIconButtonOverrides } from '../components/IconButton/themeOverrides.js'
 import { MonorailInputBaseOverrides } from '../components/InputBase/themeOverrides.js'
 import { MonorailListItemOverrides } from '../components/ListItem/themeOverrides.js'
@@ -46,6 +50,7 @@ export const getThemeComponents = (
   // Make sure we apply the defaults here
   ...baseTheme.components,
   ...getClassicThemeComponents(theme),
+  MonorailDialogHeader: MonorailDialogHeaderOverrides,
   MonorailSplitButton: MonorailSplitButtonOverrides,
   MuiAlert: MonorailAlertOverrides,
   MuiAlertTitle: MonorailAlertTitleOverrides,
@@ -55,6 +60,9 @@ export const getThemeComponents = (
   MuiCircularProgress: MonorailCircularProgressOverrides,
   MuiCssBaseline: MonorailCssBaselineOverrides,
   MuiDataGrid: MonorailDataGridOverrides,
+  MuiDialogActions: MonorailDialogActionsOverrides,
+  MuiDialogContent: MonorailDialogContentOverrides,
+  MuiDialogTitle: MonorailDialogTitleOverrides,
   MuiIconButton: MonorailIconButtonOverrides,
   MuiInputBase: MonorailInputBaseOverrides,
   MuiListItem: MonorailListItemOverrides,
