@@ -441,18 +441,13 @@ export const CustomizedMenu = story<MenuProps>(
         elevation={0}
         anchorOrigin={{
           vertical: 'bottom',
-          horizontal: 'right',
-        }}
-        transformOrigin={{
-          vertical: 'top',
-          horizontal: 'right',
+          horizontal: 'left',
         }}
         {...props}
       />
     ))(({ theme }) => ({
       '& .MuiPaper-root': {
         borderRadius: 6,
-        marginTop: theme.spacing(1),
         minWidth: 180,
         color:
           theme.palette.mode === 'light'
