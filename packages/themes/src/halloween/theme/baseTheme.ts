@@ -100,12 +100,12 @@ export const baseTheme = createTheme(
       subtitle1: {
         fontSize: FontSize.Subtitle1,
         lineHeight: LineHeight.Subtitle1,
-        fontWeight: FontWeight.Medium,
+        fontWeight: FontWeight.SemiBold,
       },
       subtitle2: {
         fontSize: FontSize.Subtitle2,
         lineHeight: LineHeight.Subtitle2,
-        fontWeight: FontWeight.Medium,
+        fontWeight: FontWeight.SemiBold,
       },
       monoBody1: {
         fontFamily: fontStack.mono,
@@ -118,6 +118,13 @@ export const baseTheme = createTheme(
         fontSize: FontSize.MonoBody2,
         lineHeight: LineHeight.MonoBody2,
         fontWeight: FontWeight.Book,
+      },
+      monoBody3: {
+        fontFamily: fontStack.mono,
+        fontSize: FontSize.MonoBody3,
+        lineHeight: LineHeight.MonoBody3,
+        fontWeight: FontWeight.Medium,
+        letterSpacing: 0,
       },
       overline: {
         fontSize: FontSize.Overline,

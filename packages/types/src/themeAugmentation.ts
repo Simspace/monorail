@@ -238,6 +238,7 @@ declare module '@mui/material/styles/createTypography' {
     data3: React.CSSProperties
     monoBody1: React.CSSProperties
     monoBody2: React.CSSProperties
+    monoBody3: React.CSSProperties
     alertTitle: React.CSSProperties
     avatarInitials: React.CSSProperties
     badgeLabel: React.CSSProperties
@@ -271,6 +272,7 @@ declare module '@mui/material/styles/createTypography' {
     data3?: React.CSSProperties
     monoBody1?: React.CSSProperties
     monoBody2?: React.CSSProperties
+    monoBody3?: React.CSSProperties
     alertTitle?: React.CSSProperties
     avatarInitials?: React.CSSProperties
     badgeLabel?: React.CSSProperties

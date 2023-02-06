@@ -15,6 +15,7 @@ declare module '@mui/material/Typography' {
     data3: true
     monoBody1: true
     monoBody2: true
+    monoBody3: true
     alertTitle: true
     avatarInitials: true
     badgeLabel: true

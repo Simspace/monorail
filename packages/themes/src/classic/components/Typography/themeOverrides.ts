@@ -5,6 +5,7 @@ export const MonorailTypographyOverrides: Components<Theme>['MuiTypography'] = {
     variantMapping: {
       monoBody1: 'code',
       monoBody2: 'code',
+      monoBody3: 'code',
     },
   },
   styleOverrides: {},

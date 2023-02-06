@@ -171,6 +171,14 @@ export const Fonts = () => {
         underlyingElement: 'code',
       },
       {
+        variant: 'monoBody3',
+        figmaStyle: 'Typography/Mono Body 3',
+        fontSizePx: PixelFontSize.MonoBody3,
+        lineHeightPx: PixelLineHeight.MonoBody3,
+        styles: theme.typography.monoBody3,
+        underlyingElement: 'code',
+      },
+      {
         variant: 'overline',
         figmaStyle: 'Typography/Overline',
         fontSizePx: PixelFontSize.Overline,
