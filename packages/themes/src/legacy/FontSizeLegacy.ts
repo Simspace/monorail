@@ -60,7 +60,7 @@ export const PixelFontSize: Record<TypographyVariant, number> = {
   MonoBody2: Scale.FontSize11,
   MonoBody3: Scale.FontSize10,
   Overline: Scale.FontSize8,
-  Caption: Scale.FontSize8,
+  Caption: Scale.FontSize11,
   Button: Scale.FontSize11,
 
   // Components

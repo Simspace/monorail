@@ -10,6 +10,7 @@ export const MonorailStepLabelOverrides: Components<Theme>['MuiStepLabel'] = {
         },
         [`&.${stepLabelClasses.alternativeLabel}`]: {
           textAlign: 'center',
+          ...theme.typography.caption,
         },
         [`&.${stepLabelClasses.vertical}`]: {
           padding: theme.spacing(4, 0),
@@ -29,6 +30,13 @@ export const MonorailStepLabelOverrides: Components<Theme>['MuiStepLabel'] = {
           color: theme.palette.text.primary,
         },
         [`&.${stepLabelClasses.disabled}`]: {},
+      }
+    },
+    alternativeLabel: ({ theme }) => {
+      return {
+        [`$.${stepLabelClasses.labelContainer}`]: {
+          ...theme.typography.caption,
+        },
       }
     },
   },
