@@ -6,6 +6,9 @@ import type {} from '@mui/x-date-pickers/themeAugmentation'
 import type {} from '@mui/x-date-pickers-pro/themeAugmentation'
 
 import { getThemeComponents as getClassicThemeComponents } from '../../classic/theme/themeComponents.js'
+import { MonorailAccordionActionsOverrides } from '../components/AccordionActions/themeOverrides.js'
+import { MonorailAccordionDetailsOverrides } from '../components/AccordionDetails/themeOverrides.js'
+import { MonorailAccordionSummaryOverrides } from '../components/AccordionSummary/themeOverrides.js'
 import {
   MonorailAlertOverrides,
   MonorailAlertTitleOverrides,
@@ -52,6 +55,9 @@ export const getThemeComponents = (
   ...getClassicThemeComponents(theme),
   MonorailDialogHeader: MonorailDialogHeaderOverrides,
   MonorailSplitButton: MonorailSplitButtonOverrides,
+  MuiAccordionActions: MonorailAccordionActionsOverrides,
+  MuiAccordionDetails: MonorailAccordionDetailsOverrides,
+  MuiAccordionSummary: MonorailAccordionSummaryOverrides,
   MuiAlert: MonorailAlertOverrides,
   MuiAlertTitle: MonorailAlertTitleOverrides,
   MuiAvatar: MonorailAvatarOverrides,

@@ -339,7 +339,7 @@ export const AccordionWithChip = story(
             aria-controls="chip-panel1a-content"
             id="chip-panel1a-header"
           >
-            <Stack direction="row" spacing={2}>
+            <Stack direction="row" spacing={2} alignItems="center">
               <Chip size="small" color="default" label="10" />
               <span>Accordion 1</span>
             </Stack>
@@ -354,7 +354,7 @@ export const AccordionWithChip = story(
             aria-controls="chip-panel2a-content"
             id="chip-panel2a-header"
           >
-            <Stack direction="row" spacing={2}>
+            <Stack direction="row" spacing={2} alignItems="center">
               <Chip size="small" color="default" label="10" />
               <span>Accordion 2</span>
             </Stack>
@@ -369,7 +369,7 @@ export const AccordionWithChip = story(
             aria-controls="chip-panel3a-content"
             id="chip-panel3a-header"
           >
-            <Stack direction="row" spacing={2}>
+            <Stack direction="row" spacing={2} alignItems="center">
               <Chip size="small" color="default" label="10" />
               <span>Disabled Accordion</span>
             </Stack>
