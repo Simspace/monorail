@@ -154,23 +154,27 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
         ...(variant === 'rectangular' && clickableRectangularStyles),
       }
     },
-    sizeSmall: ({ theme }) => ({
+    sizeSmall: ({ ownerState: { variant = 'muted' }, theme }) => ({
       height: theme.spacing(4),
-      // padding: theme.spacing(0.5, 1.25),
+      ...(variant === 'rectangular' && {
+        borderRadius: theme.shape.borderRadius / 2,
+      }),
       [`& .${chipClasses.label}`]: {
         paddingLeft: theme.spacing(1.5),
         paddingRight: theme.spacing(1.5),
       },
-      [`& .${chipClasses.icon}`]: {
-        // marginLeft: 0,
-        // marginRight: theme.spacing(-1),
+      [`& .${chipClasses.avatar}`]: {
+        height: theme.spacing(3),
+        width: theme.spacing(3),
+      },
+      [`& .${chipClasses.deleteIcon}`]: {
+        fontSize: theme.typography.pxToRem(12),
       },
     }),
-    icon: ({ ownerState: { variant = 'muted' }, theme }) => ({
+    icon: ({ theme }) => ({
       color: 'inherit',
-      marginLeft:
-        variant === 'rectangular' ? theme.spacing(1) : theme.spacing(2),
-      marginRight: theme.spacing(-2),
+      marginLeft: theme.spacing(1),
+      marginRight: theme.spacing(-1),
     }),
     deleteIcon: ({
       ownerState: { clickable = false, color = 'default', variant = 'muted' },
@@ -217,6 +221,7 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
       }
 
       return {
+        fontSize: theme.typography.pxToRem(16),
         marginRight: 3,
         ...(variant === 'muted' && mutedVariantStyles),
         ...(variant === 'filled' && filledStyles),
@@ -258,7 +263,9 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
       }
 
       return {
-        marginLeft: 4,
+        height: theme.spacing(4.5),
+        width: theme.spacing(4.5),
+        marginLeft: theme.spacing(0.5),
         ...(variant === 'muted' && mutedVariantStyles),
         ...(variant === 'filled' && filledVariantStyles),
         ...(variant === 'outlined' && outlinedVariantStyles),

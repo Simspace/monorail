@@ -6,8 +6,8 @@ export const MonorailListItemTextOverrides: Components<Theme>['MuiListItemText']
     defaultProps: {},
     styleOverrides: {
       root: ({ theme }) => ({
-        marginTop: theme.spacing(0),
-        marginBottom: theme.spacing(0),
+        marginTop: theme.spacing(0.25),
+        marginBottom: theme.spacing(0.25),
       }),
       secondary: ({ theme }) => ({
         marginTop: theme.spacing(0.5),
@@ -16,8 +16,8 @@ export const MonorailListItemTextOverrides: Components<Theme>['MuiListItemText']
         ...theme.typography.body2,
       }),
       multiline: ({ theme }) => ({
-        marginTop: theme.spacing(0),
-        marginBottom: theme.spacing(0),
+        marginTop: theme.spacing(0.75),
+        marginBottom: theme.spacing(0.75),
         [`&.${listItemTextClasses.dense}`]: {
           marginTop: theme.spacing(0.25),
           marginBottom: theme.spacing(0.25),
@@ -31,7 +31,7 @@ export const MonorailListItemTextOverrides: Components<Theme>['MuiListItemText']
         },
       }),
       inset: ({ theme }) => ({
-        paddingLeft: theme.spacing(7),
+        paddingLeft: theme.spacing(6),
       }),
     },
   }

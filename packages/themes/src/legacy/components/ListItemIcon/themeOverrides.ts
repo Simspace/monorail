@@ -6,11 +6,10 @@ export const MonorailListItemIconOverrides: Components<Theme>['MuiListItemIcon']
     defaultProps: {},
     styleOverrides: {
       root: ({ theme }) => ({
-        minWidth: 36,
-        paddingLeft: theme.spacing(1),
+        minWidth: theme.spacing(7),
         color: theme.palette.default.main,
         [`& > .${checkboxClasses.root}`]: {
-          marginLeft: theme.spacing(-1),
+          margin: theme.spacing(-0.75),
           marginRight: theme.spacing(1),
         },
       }),

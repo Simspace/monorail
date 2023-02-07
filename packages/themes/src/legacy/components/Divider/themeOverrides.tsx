@@ -4,7 +4,7 @@ export const MonorailDividerOverrides: Components<Theme>['MuiDivider'] = {
   defaultProps: {},
   styleOverrides: {
     inset: ({ theme }) => ({
-      marginLeft: theme.spacing(12),
+      marginLeft: theme.spacing(14),
     }),
   },
 }

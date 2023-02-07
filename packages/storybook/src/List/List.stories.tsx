@@ -342,8 +342,8 @@ export const InteractiveList = story<ListProps>(
                     }
                   >
                     <ListItemAvatar>
-                      <Avatar size="small">
-                        <FolderIcon />
+                      <Avatar size={dense ? 'small' : 'medium'}>
+                        <FolderIcon fontSize={dense ? 'medium' : 'large'} />
                       </Avatar>
                     </ListItemAvatar>
                     <ListItemText
@@ -835,7 +835,7 @@ export const VirtualizedList = story<ListProps>(
         <FixedSizeList
           height={400}
           width={360}
-          itemSize={32}
+          itemSize={24}
           itemCount={200}
           overscanCount={5}
         >
