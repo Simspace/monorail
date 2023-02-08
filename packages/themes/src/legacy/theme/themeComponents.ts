@@ -15,6 +15,7 @@ import {
 } from '../components/Alert/themeOverrides.js'
 import { MonorailAutocompleteOverrides } from '../components/Autocomplete/themeOverrides.js'
 import { MonorailAvatarOverrides } from '../components/Avatar/themeOverrides.js'
+import { MonorailBreadcrumbsOverrides } from '../components/Breadcrumbs/themeOverrides.js'
 import {
   MonorailButtonOverrides,
   MonorailLoadingButtonOverrides,
@@ -39,6 +40,7 @@ import { MonorailListItemButtonOverrides } from '../components/ListItemButton/th
 import { MonorailListItemIconOverrides } from '../components/ListItemIcon/themeOverrides.js'
 import { MonorailListItemTextOverrides } from '../components/ListItemText/themeOverrides.js'
 import { MonorailListSubheaderOverrides } from '../components/ListSubheader/themeOverrides.js'
+import { MonorailMenuOverrides } from '../components/Menu/themeOverrides.js'
 import { MonorailMenuItemOverrides } from '../components/MenuItem/themeOverrides.js'
 import { MonorailOutlinedInputOverrides } from '../components/OutlinedInput/themeOverrides.js'
 import { MonorailRadioOverrides } from '../components/Radio/themeOverrides.js'
@@ -75,6 +77,7 @@ export const getThemeComponents = (
   MuiAlertTitle: MonorailAlertTitleOverrides,
   MuiAutocomplete: MonorailAutocompleteOverrides,
   MuiAvatar: MonorailAvatarOverrides,
+  MuiBreadcrumbs: MonorailBreadcrumbsOverrides,
   MuiButton: MonorailButtonOverrides,
   MuiCheckbox: MonorailCheckboxOverrides,
   MuiChip: MonorailChipOverrides,
@@ -96,6 +99,7 @@ export const getThemeComponents = (
   MuiListItemText: MonorailListItemTextOverrides,
   MuiListSubheader: MonorailListSubheaderOverrides,
   MuiLoadingButton: MonorailLoadingButtonOverrides,
+  MuiMenu: MonorailMenuOverrides,
   MuiMenuItem: MonorailMenuItemOverrides,
   MuiOutlinedInput: MonorailOutlinedInputOverrides,
   MuiRadio: MonorailRadioOverrides,
