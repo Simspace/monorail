@@ -146,6 +146,8 @@ export const FreeSolo = () => (
 )
 
 export const MultipleValues = story<MovieAutocompleteProps>(args => {
+  const [value, setValue] = React.useState<Array<Movie>>([movies[13]])
+
   return (
     <Stack spacing={3} sx={{ width: 500 }}>
       <MovieAutocomplete
@@ -153,12 +155,13 @@ export const MultipleValues = story<MovieAutocompleteProps>(args => {
         id="tags-standard"
         options={movies}
         getOptionLabel={option => option.label}
-        defaultValue={[movies[13]]}
+        value={value}
+        onChange={(_event, newValue) => setValue(newValue as Array<Movie>)}
         renderInput={params => (
           <TextField
             {...params}
             label="Multiple values"
-            placeholder="Favorites"
+            placeholder={value.length > 0 ? '' : 'Favorites'}
           />
         )}
         {...args}
@@ -168,13 +171,14 @@ export const MultipleValues = story<MovieAutocompleteProps>(args => {
         id="tags-outlined"
         options={movies}
         getOptionLabel={option => option.label}
-        defaultValue={[movies[13]]}
         filterSelectedOptions
+        value={value}
+        onChange={(_event, newValue) => setValue(newValue as Array<Movie>)}
         renderInput={params => (
           <TextField
             {...params}
             label="filterSelectedOptions"
-            placeholder="Favorites"
+            placeholder={value.length > 0 ? '' : 'Favorites'}
           />
         )}
         {...args}
@@ -184,7 +188,9 @@ export const MultipleValues = story<MovieAutocompleteProps>(args => {
         freeSolo
         id="tags-filled"
         options={movies}
-        defaultValue={[movies[13]]}
+        value={value}
+        // @ts-ignore
+        onChange={(_event, newValue) => setValue(newValue as Array<Movie>)}
         // @ts-expect-error -- Incorrect conditional type in @mui/material/Autocomplete
         renderTags={(value, getTagProps) =>
           value.map((option: Movie, index: number) => (
@@ -197,7 +203,11 @@ export const MultipleValues = story<MovieAutocompleteProps>(args => {
           ))
         }
         renderInput={params => (
-          <TextField {...params} label="freeSolo" placeholder="Favorites" />
+          <TextField
+            {...params}
+            label="freeSolo"
+            placeholder={value.length > 0 ? '' : 'Favorites'}
+          />
         )}
         {...args}
       />
@@ -205,11 +215,15 @@ export const MultipleValues = story<MovieAutocompleteProps>(args => {
         multiple
         id="tags-readOnly"
         options={movies}
-        defaultValue={[movies[12], movies[13]]}
+        value={value}
         readOnly
         ChipProps={{ clickable: false, variant: 'rectangular' }}
         renderInput={params => (
-          <TextField {...params} label="readOnly" placeholder="Favorites" />
+          <TextField
+            {...params}
+            label="readOnly"
+            placeholder={value.length > 0 ? '' : 'Favorites'}
+          />
         )}
         {...args}
       />
