@@ -119,7 +119,7 @@ export const HoverFeedback = story<RatingProps>(
           onChangeActive={(_, newHover) => {
             setHover(newHover)
           }}
-          emptyIcon={<StarIcon fontSize="large" />}
+          emptyIcon={<StarIcon fontSize="inherit" />}
         />
         {value !== null && (
           <Box sx={{ ml: 2 }}>{labels[hover !== -1 ? hover : value]}</Box>
