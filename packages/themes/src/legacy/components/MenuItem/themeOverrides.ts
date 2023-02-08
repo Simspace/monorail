@@ -43,7 +43,7 @@ export const MonorailMenuItemOverrides: Components<Theme>['MuiMenuItem'] = {
         },
       },
       [`& .${listItemTextClasses.inset}`]: {
-        paddingLeft: theme.spacing(12),
+        paddingLeft: theme.spacing(9),
       },
     }),
     dense: ({ theme }) => ({
@@ -54,7 +54,7 @@ export const MonorailMenuItemOverrides: Components<Theme>['MuiMenuItem'] = {
         minWidth: 30,
       },
       [`& .${listItemTextClasses.inset}`]: {
-        paddingLeft: theme.spacing(10),
+        paddingLeft: theme.spacing(8),
       },
     }),
   },
