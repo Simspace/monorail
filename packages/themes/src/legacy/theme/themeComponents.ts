@@ -53,6 +53,7 @@ import {
   MonorailToggleButtonGroupOverrides,
   MonorailToggleButtonOverrides,
 } from '../components/ToggleButton/themeOverrides.js'
+import { MonorailTooltipOverrides } from '../components/Tooltip/themeOverrides.js'
 import { baseTheme } from './baseTheme.js'
 
 /**
@@ -105,4 +106,5 @@ export const getThemeComponents = (
   MuiSwitch: MonorailSwitchOverrides,
   MuiToggleButton: MonorailToggleButtonOverrides,
   MuiToggleButtonGroup: MonorailToggleButtonGroupOverrides,
+  MuiTooltip: MonorailTooltipOverrides,
 })

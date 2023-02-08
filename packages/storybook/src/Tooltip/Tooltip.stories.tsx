@@ -130,6 +130,9 @@ export const PositionedTooltips = story<TooltipProps>(
 const LightTooltip = styled(({ className, ...props }: TooltipProps) => (
   <Tooltip {...props} classes={{ popper: className }} />
 ))(({ theme }) => ({
+  [` .${tooltipClasses.arrow}`]: {
+    color: theme.palette.common.white,
+  },
   [`& .${tooltipClasses.tooltip}`]: {
     backgroundColor: theme.palette.common.white,
     color: 'rgba(0, 0, 0, 0.87)',
@@ -145,6 +148,7 @@ const BootstrapTooltip = styled(({ className, ...props }: TooltipProps) => (
     color: theme.palette.common.black,
   },
   [`& .${tooltipClasses.tooltip}`]: {
+    color: theme.palette.common.white,
     backgroundColor: theme.palette.common.black,
   },
 }))
@@ -171,6 +175,7 @@ export const CustomizedTooltips = story<TooltipProps>(
         <Button>Bootstrap</Button>
       </BootstrapTooltip>
       <HtmlTooltip
+        arrow={false}
         title={
           <React.Fragment>
             <Typography color="inherit">Tooltip with HTML</Typography>
