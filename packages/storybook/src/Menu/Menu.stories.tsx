@@ -354,71 +354,63 @@ export const AccountMenu = story<MenuProps>(
               aria-labelledby="menu-avatar-1"
               onClick={handleClick}
               sx={{ ml: 2.5 }}
+              aria-controls={open ? 'account-menu' : undefined}
+              aria-haspopup="true"
+              aria-expanded={open ? 'true' : undefined}
             >
               <Avatar id="menu-avatar-1">M</Avatar>
             </IconButton>
           </Tooltip>
+          <Menu
+            anchorEl={anchorEl}
+            id="account-menu"
+            open={open}
+            onClose={handleClose}
+            onClick={handleClose}
+            PaperProps={{
+              elevation: 0,
+              sx: {
+                overflow: 'visible',
+                filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
+                '& .MuiAvatar-root': {
+                  ml: -0.5,
+                  mr: 4.5,
+                },
+                '& .MuiListItemIcon-root': {
+                  pl: 0,
+                },
+              },
+            }}
+            transformOrigin={{ horizontal: 'right', vertical: 'top' }}
+            anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+          >
+            <MenuItem>
+              <Avatar size="small" /> Profile
+            </MenuItem>
+            <MenuItem>
+              <Avatar size="small" /> My account
+            </MenuItem>
+            <Divider />
+            <MenuItem>
+              <ListItemIcon>
+                <PersonAdd />
+              </ListItemIcon>
+              Add another account
+            </MenuItem>
+            <MenuItem>
+              <ListItemIcon>
+                <Settings />
+              </ListItemIcon>
+              Settings
+            </MenuItem>
+            <MenuItem>
+              <ListItemIcon>
+                <Logout />
+              </ListItemIcon>
+              Logout
+            </MenuItem>
+          </Menu>
         </Box>
-        <Menu
-          anchorEl={anchorEl}
-          open={open}
-          onClose={handleClose}
-          onClick={handleClose}
-          PaperProps={{
-            elevation: 0,
-            sx: {
-              overflow: 'visible',
-              filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
-              mt: 6,
-              '& .MuiAvatar-root': {
-                width: 32,
-                height: 32,
-                ml: 1.5,
-                mr: 2.5,
-              },
-              '&:before': {
-                content: '""',
-                display: 'block',
-                position: 'absolute',
-                top: 0,
-                right: 28,
-                width: 20,
-                height: 20,
-                bgcolor: 'background.paper',
-                transform: 'translateY(-50%) rotate(45deg)',
-                zIndex: 0,
-              },
-            },
-          }}
-          transformOrigin={{ horizontal: 'right', vertical: 'top' }}
-          anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
-        >
-          <MenuItem>
-            <Avatar /> Profile
-          </MenuItem>
-          <MenuItem>
-            <Avatar /> My account
-          </MenuItem>
-          <Divider />
-          <MenuItem>
-            <ListItemIcon>
-              <PersonAdd />
-            </ListItemIcon>
-            Add another account
-          </MenuItem>
-          <MenuItem>
-            <ListItemIcon>
-              <Settings />
-            </ListItemIcon>
-            Settings
-          </MenuItem>
-          <MenuItem>
-            <ListItemIcon>
-              <Logout />
-            </ListItemIcon>
-            Logout
-          </MenuItem>
-        </Menu>
       </React.Fragment>
     )
   },
