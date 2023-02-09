@@ -46,6 +46,7 @@ import { MonorailMenuItemOverrides } from '../components/MenuItem/themeOverrides
 import { MonorailOutlinedInputOverrides } from '../components/OutlinedInput/themeOverrides.js'
 import { MonorailRadioOverrides } from '../components/Radio/themeOverrides.js'
 import { MonorailRatingOverrides } from '../components/Rating/themeOverrides.js'
+import { MonorailSearchOverrides } from '../components/Search/themeOverrides.js'
 import { MonorailSplitButtonOverrides } from '../components/SplitButton/themeOverrides.js'
 import { MonorailStepOverrides } from '../components/Step/themeOverrides.js'
 import { MonorailStepConnectorOverrides } from '../components/StepConnector/themeOverrides.js'
@@ -73,6 +74,7 @@ export const getThemeComponents = (
   ...getClassicThemeComponents(theme),
   MonorailDialogHeader: MonorailDialogHeaderOverrides,
   MonorailSplitButton: MonorailSplitButtonOverrides,
+  MonorailSearch: MonorailSearchOverrides,
   MuiAccordionActions: MonorailAccordionActionsOverrides,
   MuiAccordionDetails: MonorailAccordionDetailsOverrides,
   MuiAccordionSummary: MonorailAccordionSummaryOverrides,

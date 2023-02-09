@@ -136,6 +136,7 @@ export const Search = React.forwardRef(function Search(inProps, ref) {
           <ClearButton
             aria-label="search-input-clear-button"
             edge="end"
+            size={ownerState.size === 'small' ? 'small' : 'medium'}
             {...componentsProps.clearButton}
             onClick={handleClear}
             sx={combineSxProps({ mr: -2 }, componentsProps.clearButton?.sx)}
