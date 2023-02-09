@@ -13,7 +13,7 @@ export const MonorailSwitchOverrides: Components<Theme>['MuiSwitch'] = {
         backgroundColor: theme.palette.default.lowEmphasis.hover,
       },
       ...(ownerState.edge === false && {
-        marginLeft: theme.spacing(2),
+        marginLeft: theme.spacing(1),
       }),
     }),
     switchBase: ({ ownerState: { color = 'primary' }, theme }) => ({
