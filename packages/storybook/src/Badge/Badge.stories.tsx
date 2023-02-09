@@ -35,7 +35,7 @@ export default { title: 'Data Display/Badge', component: Badge }
 const Template = story<BadgeProps>(
   args => (
     <Badge {...args}>
-      <MailIcon color="action" />
+      <MailIcon color="default" />
     </Badge>
   ),
   {
@@ -66,7 +66,7 @@ export const Color = story(
           spacing={6}
         >
           <Badge badgeContent={4} color={color}>
-            <MailIcon color="action" />
+            <MailIcon color="default" />
           </Badge>
           <Typography>{color}</Typography>
         </Stack>
