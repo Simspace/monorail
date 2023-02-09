@@ -5,7 +5,9 @@ export const MonorailTabOverrides: Components<Theme>['MuiTab'] = {
   defaultProps: {},
   styleOverrides: {
     root: ({ ownerState, theme }) => ({
-      padding: theme.spacing(3.5, 6),
+      padding: theme.spacing(2, 3),
+      minHeight: theme.spacing(6),
+      minWidth: 'min-content',
       ...theme.typography.tabInactive,
       [`&.${tabClasses.selected}`]: {
         ...theme.typography.tabActive,
@@ -17,13 +19,12 @@ export const MonorailTabOverrides: Components<Theme>['MuiTab'] = {
         },
       }),
     }),
-    labelIcon: ({ theme }) => ({
-      padding: theme.spacing(2.85, 6), // 11px 24px
+    labelIcon: {
       [`& .${svgIconClasses.root}`]: {
         marginTop: 'auto',
         marginBottom: 'auto',
       },
-    }),
+    },
     textColorPrimary: ({ theme }) => ({
       '&.Mui-focusVisible': {
         boxShadow: `inset 0 0 0 3px ${theme.palette.primary.focusRing.outer}`,
