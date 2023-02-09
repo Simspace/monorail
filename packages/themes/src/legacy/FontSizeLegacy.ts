@@ -125,8 +125,8 @@ export const PixelLineHeight: Record<TypographyVariant, string | number> = {
   ListSubheader: 'normal',
   MenuItem: 'normal',
   MenuItemDense: 'normal',
-  TabActive: 'normal',
-  TabInactive: 'normal',
+  TabActive: `${Scale.LineHeight16}px`,
+  TabInactive: `${Scale.LineHeight16}px`,
   Tooltip: 'normal',
 }
 

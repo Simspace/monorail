@@ -6,7 +6,7 @@ export const MonorailTabOverrides: Components<Theme>['MuiTab'] = {
   styleOverrides: {
     root: ({ ownerState, theme }) => ({
       padding: theme.spacing(2, 3),
-      minHeight: theme.spacing(6),
+      minHeight: 'inherit',
       minWidth: 'min-content',
       ...theme.typography.tabInactive,
       [`&.${tabClasses.selected}`]: {
