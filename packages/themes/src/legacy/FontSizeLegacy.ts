@@ -66,7 +66,7 @@ export const PixelFontSize: Record<TypographyVariant, number> = {
   // Components
   AlertTitle: Scale.FontSize14,
   AvatarInitials: Scale.FontSize11,
-  BadgeLabel: Scale.FontSize11,
+  BadgeLabel: Scale.FontSize10,
   BottomNavActiveLabel: Scale.FontSize11,
   ButtonLarge: Scale.FontSize11,
   ButtonMedium: Scale.FontSize11,
@@ -112,7 +112,7 @@ export const PixelLineHeight: Record<TypographyVariant, string | number> = {
   // Components
   AlertTitle: 'normal',
   AvatarInitials: 'normal',
-  BadgeLabel: 'normal',
+  BadgeLabel: `${Scale.LineHeight14}px`,
   BottomNavActiveLabel: 'normal',
   ButtonLarge: `${Scale.LineHeight16}px`,
   ButtonMedium: `${Scale.LineHeight16}px`,
