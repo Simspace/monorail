@@ -1,5 +1,5 @@
 import type { Components, Theme } from '@mui/material'
-import { avatarClasses } from '@mui/material'
+import { avatarClasses, listItemClasses } from '@mui/material'
 
 export const MonorailListItemAvatarOverrides: Components<Theme>['MuiListItemAvatar'] =
   {
@@ -8,6 +8,9 @@ export const MonorailListItemAvatarOverrides: Components<Theme>['MuiListItemAvat
       root: ({ theme }) => ({
         minWidth: theme.spacing(10),
         [`& .${avatarClasses.root}.${avatarClasses.sizeSmall}`]: {
+          minWidth: theme.spacing(8),
+        },
+        [`.${listItemClasses.dense} > &`]: {
           minWidth: theme.spacing(8),
         },
       }),
