@@ -99,9 +99,11 @@ export function DataGridPaginationFooter() {
           <FormControlLabel
             sx={theme => ({
               marginRight: theme.spacing(2),
+              my: 2,
             })}
             control={
               <Select<number>
+                size="small"
                 sx={theme => ({
                   backgroundColor: theme.palette.background.default,
                   minWidth: theme.spacing(24),
