@@ -1,5 +1,5 @@
 import type { Components, Theme } from '@mui/material'
-import { darken, lighten, sliderClasses } from '@mui/material'
+import { darken, sliderClasses } from '@mui/material'
 
 export const MonorailSliderOverrides: Components<Theme>['MuiSlider'] = {
   defaultProps: {},
@@ -71,25 +71,8 @@ export const MonorailSliderOverrides: Components<Theme>['MuiSlider'] = {
       transform: 'translate(-4px, -50%)',
     },
     sizeSmall: {
-      height: 2,
+      height: 4,
       borderRadius: 2,
-    },
-    trackInverted: ({ ownerState: { color = 'primary' }, theme }) => {
-      const paletteColor =
-        theme.palette.mode === 'light'
-          ? lighten(theme.palette[color].main, 0.62)
-          : darken(theme.palette[color].main, 0.5)
-      return {
-        [`&.${sliderClasses.colorPrimary}`]: {
-          [`& .${sliderClasses.track}`]: {
-            backgroundColor: paletteColor,
-            borderColor: paletteColor,
-          },
-          [`& .${sliderClasses.rail}`]: {
-            backgroundColor: theme.palette.secondary.light,
-          },
-        },
-      }
     },
     thumbSizeSmall: ({ ownerState, theme }) => {
       const color = ownerState.color ?? 'primary'
@@ -99,18 +82,6 @@ export const MonorailSliderOverrides: Components<Theme>['MuiSlider'] = {
         borderRadius: '50%',
         backgroundColor: theme.palette[color].main,
         border: 'none',
-      }
-    },
-    colorPrimary: ({ ownerState: { size = 'medium' }, theme }) => {
-      const color =
-        size === 'medium'
-          ? theme.palette.secondary.light
-          : theme.palette.primary.main
-      return {
-        [`& .${sliderClasses.track}`]: {
-          backgroundColor: color,
-          borderColor: color,
-        },
       }
     },
     mark: {
