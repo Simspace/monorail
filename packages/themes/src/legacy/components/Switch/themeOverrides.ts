@@ -16,6 +16,9 @@ export const MonorailSwitchOverrides: Components<Theme>['MuiSwitch'] = {
         marginLeft: theme.spacing(1),
       }),
     }),
+    edgeStart: ({ theme }) => ({
+      marginLeft: theme.spacing(-1),
+    }),
     switchBase: ({ ownerState: { color = 'primary' }, theme }) => ({
       padding: theme.spacing(1),
       transform: `translate(${theme.spacing(1)}, ${theme.spacing(0.5)})`,
