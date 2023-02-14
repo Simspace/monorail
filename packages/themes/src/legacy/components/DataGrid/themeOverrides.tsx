@@ -97,6 +97,14 @@ export const MonorailDataGridOverrides: Components<Theme>['MuiDataGrid'] = {
         },
       }
     },
+    'cell--editing': ({ theme }) => ({
+      boxShadow: 'none',
+      '&:focus-within': {
+        outline: 'none',
+        boxShadow: `inset 0 0 0 1px ${theme.palette.primary.focusRing.inner}, inset 0 0 0 4px ${theme.palette.primary.focusRing.outer}`,
+        zIndex: 1,
+      },
+    }),
     footerContainer: ({ theme }) => {
       return {
         backgroundColor: theme.palette.default.lowEmphasis.main,
@@ -135,6 +143,11 @@ export const MonorailDataGridOverrides: Components<Theme>['MuiDataGrid'] = {
         justifyContent: 'space-between',
         alignItems: 'center',
       }
+    },
+    editInputCell: {
+      ['&.Mui-focused']: {
+        boxShadow: 'none',
+      },
     },
   },
 }
