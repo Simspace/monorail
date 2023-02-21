@@ -2,7 +2,7 @@ import React from 'react'
 import type { SvgIconProps } from '@mui/material/SvgIcon'
 import SvgIcon from '@mui/material/SvgIcon'
 
-export const Catalog = (props: SvgIconProps) => (
+export const CatalogApp = (props: SvgIconProps) => (
   <SvgIcon {...props} viewBox="0 0 40 40" height="40" width="40">
     <rect
       x="4"

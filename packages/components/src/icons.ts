@@ -10,7 +10,6 @@ export {
   Download,
   Filter,
   Grade,
-  Home,
   Memory,
   PersonSearch,
   QuestionMark,

@@ -2,7 +2,7 @@ import React from 'react'
 import type { SvgIconProps } from '@mui/material/SvgIcon'
 import SvgIcon from '@mui/material/SvgIcon'
 
-export const Home = (props: SvgIconProps) => (
+export const HomeApp = (props: SvgIconProps) => (
   <SvgIcon {...props} viewBox="0 0 40 40" height="40" width="40">
     <path
       d="M0 4C0 1.79086 1.79086 0 4 0H34.4C36.6091 0 38.4 1.79086 38.4 4V34.4C38.4 36.6091 36.6091 38.4 34.4 38.4H4C1.79086 38.4 0 36.6091 0 34.4V4Z"

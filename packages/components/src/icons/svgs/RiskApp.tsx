@@ -2,7 +2,7 @@ import React from 'react'
 import type { SvgIconProps } from '@mui/material/SvgIcon'
 import SvgIcon from '@mui/material/SvgIcon'
 
-export const Risk = (props: SvgIconProps) => (
+export const RiskApp = (props: SvgIconProps) => (
   <SvgIcon viewBox="0 0 48 48" height="48" width="48" {...props}>
     <path
       d="M4.79999 9.5998C4.79999 6.94884 6.94902 4.7998 9.59999 4.7998H38.4C41.051 4.7998 43.2 6.94884 43.2 9.5998V38.3998C43.2 41.0508 41.051 43.1998 38.4 43.1998H9.59999C6.94902 43.1998 4.79999 41.0508 4.79999 38.3998V9.5998Z"

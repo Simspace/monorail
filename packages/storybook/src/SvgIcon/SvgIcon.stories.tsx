@@ -168,19 +168,22 @@ export const AllCustomIcons = story<IconProps>(args => (
 export const AppIcons = story<IconProps>(() => (
   <IconsContainer>
     <Box display="grid" gridTemplateColumns="repeat(12, 1fr)" gap={8}>
-      <IconContainer label="Admin" icon={<Icons.Admin />} />
-      <IconContainer label="Catalog" icon={<Icons.Catalog />} />
-      <IconContainer label="Events" icon={<Icons.Events />} />
-      <IconContainer label="Home" icon={<Icons.Home />} />
-      <IconContainer label="My Org" icon={<Icons.MyOrg />} />
-      <IconContainer label="Product Scoring" icon={<Icons.ProductScoring />} />
+      <IconContainer label="Admin" icon={<Icons.AdminApp />} />
+      <IconContainer label="Catalog" icon={<Icons.CatalogApp />} />
+      <IconContainer label="Events" icon={<Icons.EventsApp />} />
+      <IconContainer label="Home" icon={<Icons.HomeApp />} />
+      <IconContainer label="My Org" icon={<Icons.MyOrgApp />} />
+      <IconContainer
+        label="Product Scoring"
+        icon={<Icons.ProductScoringApp />}
+      />
       <IconContainer
         label="Reports Analytics"
-        icon={<Icons.ReportsAnalytics />}
+        icon={<Icons.ReportsAnalyticsApp />}
       />
-      <IconContainer label="Risk" icon={<Icons.Risk />} />
-      <IconContainer label="Tech Ops" icon={<Icons.TechOps />} />
-      <IconContainer label="Training" icon={<Icons.Training />} />
+      <IconContainer label="Risk" icon={<Icons.RiskApp />} />
+      <IconContainer label="Tech Ops" icon={<Icons.TechOpsApp />} />
+      <IconContainer label="Training" icon={<Icons.TrainingApp />} />
     </Box>
   </IconsContainer>
 ))

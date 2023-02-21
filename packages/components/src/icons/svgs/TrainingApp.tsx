@@ -2,7 +2,7 @@ import React from 'react'
 import type { SvgIconProps } from '@mui/material/SvgIcon'
 import SvgIcon from '@mui/material/SvgIcon'
 
-export const Training = (props: SvgIconProps) => (
+export const TrainingApp = (props: SvgIconProps) => (
   <SvgIcon
     width="40"
     height="40"
