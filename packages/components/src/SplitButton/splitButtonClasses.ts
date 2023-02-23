@@ -3,12 +3,8 @@ import { generateUtilityClass, generateUtilityClasses } from '@monorail/utils'
 export interface SplitButtonClasses {
   /** Styles applied to the root element */
   root: string
-  /** Styles applied to the popper element */
-  popper: string
-  /** Styles applied to the paper element */
-  paper: string
   /** Styles applied to the menu list element */
-  menuList: string
+  menu: string
   /** Styles applied to the primary button */
   primaryButton: string
   primaryButtonSmall: string
@@ -29,9 +25,7 @@ export const splitButtonClasses: SplitButtonClasses = generateUtilityClasses(
   'MonorailSplitButton',
   [
     'root',
-    'popper',
-    'paper',
-    'menuList',
+    'menu',
     'primaryButton',
     'primaryButtonSmall',
     'primaryButtonLarge',

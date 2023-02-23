@@ -15,15 +15,15 @@ const Template: Story<Partial<SplitButtonProps>> = args => (
     {...args}
     options={[
       {
-        title: 'Create a merge commit',
+        label: 'Create a merge commit',
         onClick: () => {},
       },
       {
-        title: 'Squash and merge',
+        label: 'Squash and merge',
         onClick: () => {},
       },
       {
-        title: 'Rebase and merge',
+        label: 'Rebase and merge',
         onClick: () => {},
       },
     ]}

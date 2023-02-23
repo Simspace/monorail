@@ -31,7 +31,7 @@
  * @returns The resulting filtered and mapped array
  */
 export function filterMap<A, B>(
-  array: Array<A>,
+  array: ReadonlyArray<A>,
   f: (value: A, index: number) => B | undefined,
 ): Array<B> {
   if (array.length === 0) {

@@ -1,18 +1,16 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import type React from 'react'
-import type { MenuItemProps, MenuListProps } from '@mui/material'
-import type { TransitionProps } from '@mui/material/transitions'
+import type { MenuItemProps, MenuProps, PopoverProps } from '@mui/material'
 
 import type { RequireKeysUnion } from '@monorail/types'
 
 import type { ButtonProps } from '../Button.js'
 import type { ButtonGroupProps } from '../ButtonGroup.js'
-import type { PaperProps } from '../Paper.js'
-import type { PopperProps } from '../Popper.js'
 import type { SplitButtonClasses } from './splitButtonClasses.js'
 
-interface SplitButtonMenuItem extends Omit<MenuItemProps, 'onClick' | 'title'> {
-  title: React.ReactNode
+interface SplitButtonMenuItem extends Omit<MenuItemProps, 'onClick'> {
+  startIcon?: JSX.Element
+  label: React.ReactNode
   onClick: (event: React.MouseEvent<HTMLElement>) => void
 }
 
@@ -29,7 +27,7 @@ export interface SplitButtonProps
   /**
    * The MenuItems that will populate the SplitButton menu
    */
-  options: Array<SplitButtonMenuItem>
+  options: ReadonlyArray<SplitButtonMenuItem>
   /**
    * The components used for each slot inside the Popup.
    * @default {}
@@ -37,27 +35,14 @@ export interface SplitButtonProps
   components?: {
     /**
      * The component used for the popper.
-     * @default Popper
+     * @default Popover
      */
-    Popper?: React.JSXElementConstructor<PopperProps>
-    /**
-     * The component used for paper.
-     * @default Popper
-     */
-    Paper?: React.JSXElementConstructor<PaperProps>
-    /**
-     * The component used for the transition.
-     * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
-     * @default Grow
-     */
-    Transition?: React.JSXElementConstructor<
-      TransitionProps & { children: React.ReactElement<any, any> }
-    >
+    Popover?: React.JSXElementConstructor<PopoverProps>
     /**
      * The component used for the MenuList.
      * @default MenuList
      */
-    MenuList?: React.JSXElementConstructor<MenuListProps>
+    Menu?: React.JSXElementConstructor<MenuProps>
     /**
      * The component used for the MenuItems.
      * @default MenuItem
@@ -70,28 +55,10 @@ export interface SplitButtonProps
    */
   componentsProps: {
     /**
-     * Props applied to the Popper element.
+     * Props applied to the Menu element.
      * @default {}
      */
-    popper?: Omit<
-      Partial<PopperProps>,
-      'anchorEl' | 'children' | 'open' | 'placement' | 'sx'
-    >
-    /**
-     * Props applied to the [`Paper`](/material-ui/api/paper/) element.
-     * @default {}
-     */
-    paper?: Partial<PaperProps>
-    /**
-     * Props applied to the transition element.
-     * By default, the element is based on this [`Transition`](http://reactcommunity.org/react-transition-group/transition/) component.
-     */
-    transition?: Partial<TransitionProps>
-    /**
-     * Props applied to the MenuList component
-     * @default {}
-     */
-    menuList?: Partial<MenuListProps>
+    menu?: Omit<Partial<MenuProps>, 'anchorEl' | 'children' | 'open'>
     /**
      * Props applied to the primary Button component
      * @default {}

@@ -9,12 +9,10 @@ import { filterMap, styled, useThemeProps } from '@monorail/utils'
 
 import { Button } from '../Button.js'
 import { ButtonGroup } from '../ButtonGroup.js'
-import { ClickAwayListener } from '../ClickAwayListener.js'
-import { Grow } from '../Grow.js'
+import { ListItemIcon } from '../ListItemIcon.js'
+import { ListItemText } from '../ListItemText.js'
+import { Menu } from '../Menu.js'
 import { MenuItem } from '../MenuItem.js'
-import { MenuList } from '../MenuList.js'
-import { Paper } from '../Paper.js'
-import { Popper } from '../Popper.js'
 import type { SplitButtonClassKey } from './splitButtonClasses.js'
 import {
   getSplitButtonUtilityClass,
@@ -31,9 +29,7 @@ function overridesResolver(
   styles: Partial<Record<SplitButtonClassKey, CSSObject>>,
 ) {
   return [
-    { [`& .${splitButtonClasses.menuList}`]: styles.menuList },
-    { [`& .${splitButtonClasses.paper}`]: styles.paper },
-    { [`& .${splitButtonClasses.popper}`]: styles.popper },
+    { [`& .${splitButtonClasses.menu}`]: styles.menu },
     {
       [`& .${splitButtonClasses.primaryButton}`]: styles.primaryButton,
       ...(props.ownerState.size === 'small' && {
@@ -81,9 +77,9 @@ const SplitButtonRoot = styled(ButtonGroup, {
   },
 }))
 
-const SplitButtonPopper = styled(Popper, {
+const SplitButtonMenu = styled(Menu, {
   name: 'MonorailSplitButton',
-  slot: 'Popper',
+  slot: 'Menu',
 })(({ theme }) => ({
   zIndex: theme.zIndex.tooltip,
 }))
@@ -117,13 +113,7 @@ export const SplitButton = React.forwardRef(function SplitButton(inProps, ref) {
   const [selectedIndex, setSelectedIndex] = React.useState(0)
   const anchorRef = React.useRef<HTMLButtonElement>(null)
 
-  const PopperComponent = components.Popper ?? SplitButtonPopper
-
-  const TransitionComponent = components.Transition ?? Grow
-
-  const PaperComponent = components.Paper ?? Paper
-
-  const MenuListComponent = components.MenuList ?? MenuList
+  const MenuComponent = components.Menu ?? SplitButtonMenu
 
   const handleClose = (event: Event) => {
     if (
@@ -180,13 +170,14 @@ export const SplitButton = React.forwardRef(function SplitButton(inProps, ref) {
       >
         <Button
           {...componentsProps.primaryButton}
+          startIcon={options[0]?.startIcon}
           className={clsx(
             componentsProps.primaryButton?.className,
             classes.primaryButton,
           )}
           onClick={handleMainButtonClick}
         >
-          {select ? options[selectedIndex].title : options[0].title}
+          {select ? options[selectedIndex]?.label : options[0]?.label}
         </Button>
         <Button
           {...componentsProps.secondaryButton}
@@ -203,61 +194,47 @@ export const SplitButton = React.forwardRef(function SplitButton(inProps, ref) {
           <ArrowDropDown />
         </Button>
       </SplitButtonRoot>
-      <PopperComponent
-        {...componentsProps.popper}
-        className={clsx(componentsProps.popper?.className, classes.popper)}
+      <MenuComponent
+        id={menuListId}
+        className={clsx(componentsProps.menu?.className, classes.menu)}
+        {...componentsProps.menu}
+        anchorOrigin={
+          componentsProps.menu?.anchorOrigin ?? {
+            horizontal: 'right',
+            vertical: 'bottom',
+          }
+        }
+        transformOrigin={
+          componentsProps.menu?.transformOrigin ?? {
+            horizontal: 'right',
+            vertical: 'top',
+          }
+        }
+        onClose={handleClose}
         anchorEl={anchorRef.current}
         open={open}
-        placement="bottom-end"
-        popperOptions={{
-          strategy: 'fixed',
-          ...componentsProps.popper?.popperOptions,
-        }}
-        disablePortal
-        transition
       >
-        {({ TransitionProps }) => (
-          <TransitionComponent
-            {...TransitionProps}
-            {...componentsProps.transition}
-          >
-            <PaperComponent
-              {...componentsProps.paper}
-              className={clsx(componentsProps.paper?.className, classes.paper)}
-            >
-              <ClickAwayListener onClickAway={handleClose}>
-                <MenuListComponent
-                  {...componentsProps.menuList}
-                  id={menuListId}
-                  className={clsx(
-                    componentsProps.menuList?.className,
-                    classes.menuList,
-                  )}
-                >
-                  {filterMap(
-                    options,
-                    ({ title, onClick: _onClick, ...rest }, index) => {
-                      if (index === 0 && !select) {
-                        return undefined
-                      }
-                      return (
-                        <MenuItem
-                          key={index}
-                          onClick={event => handleMenuItemClick(event, index)}
-                          selected={selectedIndex === index}
-                          {...rest}
-                        >
-                          {title}
-                        </MenuItem>
-                      )
-                    },
-                  )}
-                </MenuListComponent>
-              </ClickAwayListener>
-            </PaperComponent>
-          </TransitionComponent>
+        {filterMap(
+          options,
+          ({ label, startIcon, onClick: _onClick, ...rest }, index) => {
+            return (
+              <MenuItem
+                key={index}
+                onClick={event => handleMenuItemClick(event, index)}
+                selected={select ? selectedIndex === index : undefined}
+                {...rest}
+              >
+                {startIcon && <ListItemIcon>{startIcon}</ListItemIcon>}
+                {typeof label === 'string' ? (
+                  <ListItemText>{label}</ListItemText>
+                ) : (
+                  label
+                )}
+              </MenuItem>
+            )
+          },
         )}
-      </PopperComponent>
+      </MenuComponent>
     </React.Fragment>
   )
 }) as (props: SplitButtonProps) => JSX.Element
@@ -267,9 +244,7 @@ function useUtilityClasses(ownerState: SplitButtonOwnerState) {
 
   const slots = {
     root: ['root'],
-    popper: ['popper'],
-    paper: ['paper'],
-    menuList: ['menuList'],
+    menu: ['menu'],
     primaryButton: [
       'primaryButton',
       size === 'small' && 'primaryButtonSmall',
