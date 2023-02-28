@@ -4551,6 +4551,7 @@ __metadata:
     "@types/jest-axe": 3.5.5
     "@types/react": 17.0.52
     "@types/react-transition-group": 4.4.5
+    "@types/react-virtualized-auto-sizer": ^1.0.1
     "@types/styled-components": ^5.1.26
     babel-jest: 29.3.0
     clsx: ^1.2.1
@@ -4564,6 +4565,7 @@ __metadata:
     react-draggable: 4.4.5
     react-glider: ^3.1.0
     react-transition-group: 4.4.5
+    react-virtualized-auto-sizer: ^1.0.7
     react-window: ^1.8.8
     start-server-and-test: 1.14.0
     styled-components: ^5.3.6
@@ -7819,6 +7821,15 @@ __metadata:
   dependencies:
     "@types/react": "*"
   checksum: 265f1c74061556708ffe8d15559e35c60d6c11478c9950d3735575d2c116ca69f461d85effa06d73a613eb8b73c84fd32682feb57cf7c5f9e4284021dbca25b0
+  languageName: node
+  linkType: hard
+
+"@types/react-virtualized-auto-sizer@npm:^1.0.1":
+  version: 1.0.1
+  resolution: "@types/react-virtualized-auto-sizer@npm:1.0.1"
+  dependencies:
+    "@types/react": "*"
+  checksum: 67eff0670a1991c2b16992274ada5f0b3f9d5c2d6209ef38e8f8ae2c0218211a3292882f5b7dd6f09519000dc20847629f049c9acc267e000626b7141e5927a6
   languageName: node
   linkType: hard
 
@@ -20712,6 +20723,16 @@ __metadata:
     react: ^16.8.0  || ^17.0.0 || ^18.0.0
     react-dom: ^16.8.0  || ^17.0.0 || ^18.0.0
   checksum: 0889da919b49a186de375ec15d2778b954ae981c523acd17dd496e4a4da7b6190efe7993491e1b85fdd6de3e745d08a4eaba4caa35408d570b5f1de550f35d11
+  languageName: node
+  linkType: hard
+
+"react-virtualized-auto-sizer@npm:^1.0.7":
+  version: 1.0.7
+  resolution: "react-virtualized-auto-sizer@npm:1.0.7"
+  peerDependencies:
+    react: ^15.3.0 || ^16.0.0-alpha || ^17.0.0 || ^18.0.0-rc
+    react-dom: ^15.3.0 || ^16.0.0-alpha || ^17.0.0 || ^18.0.0-rc
+  checksum: 7f2f013c422771828c6613c7890f792aa90a033ea2b41c489c67ca2c6793eefa94d25232c1050fdf69cdd626fad9e3821c5003d45fa6fc831184cd09232023c2
   languageName: node
   linkType: hard
 

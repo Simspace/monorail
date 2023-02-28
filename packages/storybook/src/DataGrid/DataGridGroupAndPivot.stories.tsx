@@ -91,6 +91,7 @@ export const Grouping = story<DataGridProps>(() => {
         {...data}
         apiRef={apiRef}
         rowGroupingColumnMode="single"
+        checkboxSelection
         initialState={initialState}
       />
     </div>

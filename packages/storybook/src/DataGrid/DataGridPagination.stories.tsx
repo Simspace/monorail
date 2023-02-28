@@ -9,7 +9,7 @@ import type {
   GridRowModel,
   GridRowsProp,
 } from '@monorail/components'
-import { DataGrid, DataGridToolbar, useGridApiRef } from '@monorail/components'
+import { DataGrid, useGridApiRef } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 
@@ -25,7 +25,6 @@ const Template = story<DataGridProps>(args => {
 
   return (
     <div style={{ height: 800, width: '100%' }}>
-      <DataGridToolbar apiRef={apiRef} />
       <DataGrid
         apiRef={apiRef}
         pagination

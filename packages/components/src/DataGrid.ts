@@ -8,3 +8,4 @@ export * from './DataGrid/utils.js'
 
 export * from './DataGrid/components/DataGridToolbar.js'
 export type {} from './DataGrid/filters/themeOverrides'
+export type {} from './DataGrid/components/DataGallery/themeAugmentation'

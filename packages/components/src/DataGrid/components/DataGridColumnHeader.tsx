@@ -28,7 +28,9 @@ import {
   useGridSelector,
 } from '../internal.js'
 
-interface DataGridColumnHeaderProps extends GridColumnHeaderParams {}
+interface DataGridColumnHeaderProps extends GridColumnHeaderParams {
+  className?: string
+}
 
 export function DataGridColumnHeader(props: DataGridColumnHeaderProps) {
   const { field, colDef } = props
@@ -123,6 +125,7 @@ export function DataGridColumnHeader(props: DataGridColumnHeaderProps) {
 
   return (
     <Stack
+      className={props.className}
       direction="row"
       alignItems="center"
       flex="1 1 0"

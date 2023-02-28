@@ -1,8 +1,14 @@
 import React from 'react'
 import { ViewColumn, ViewModule } from '@mui/icons-material'
-import type { GridApi } from '@mui/x-data-grid-premium'
-import { SUBMIT_FILTER_STROKE_TIME } from '@mui/x-data-grid-premium'
+import {
+  gridColumnLookupSelector,
+  gridSortModelSelector,
+  SUBMIT_FILTER_STROKE_TIME,
+  useGridApiContext,
+  useGridSelector,
+} from '@mui/x-data-grid-premium'
 
+import { MenuItem } from '@monorail/components/MenuItem'
 import type { DataAttributes } from '@monorail/types'
 import { combineSxProps } from '@monorail/utils'
 
@@ -14,8 +20,9 @@ import { ToggleButton } from '../../ToggleButton.js'
 import { ToggleButtonGroup } from '../../ToggleButtonGroup.js'
 import { Typography } from '../../Typography.js'
 
+const MULTIPLE_SYMBOL = Symbol()
+
 export interface DataGridToolbarProps {
-  apiRef: React.MutableRefObject<GridApi>
   children?: React.ReactChild | Array<React.ReactChild>
   onSearchChange?: SearchProps['onChange']
   onViewStyleChange?: (
@@ -34,7 +41,6 @@ export interface DataGridToolbarProps {
 
 export function DataGridToolbar(props: DataGridToolbarProps) {
   const {
-    apiRef,
     children,
     disableSortBy,
     disableViewStyleToggle,
@@ -43,22 +49,23 @@ export function DataGridToolbar(props: DataGridToolbarProps) {
     componentsProps = {},
   } = props
 
-  const [viewStyle, setViewStyle] = React.useState<'table' | 'gallery'>('table')
+  const apiRef = useGridApiContext()
 
   const handleViewStyleChange = React.useCallback(
     (
       event: React.MouseEvent<HTMLElement>,
-      newViewStyle: 'table' | 'gallery' | null,
+      newViewStyle: 'table' | 'gallery',
     ) => {
       if (newViewStyle !== null) {
-        setViewStyle(newViewStyle)
+        apiRef.current.state.viewStyle = newViewStyle
+        apiRef.current.forceUpdate()
         onViewStyleChange(event, newViewStyle)
       }
     },
-    [onViewStyleChange],
+    [apiRef, onViewStyleChange],
   )
 
-  const handleSearchChange = React.useCallback(
+  const handleSearchChangeDebounced = React.useCallback(
     (event: React.SyntheticEvent, value: string, reason: 'input' | 'clear') => {
       // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
       if (apiRef.current.setFilterModel) {
@@ -75,7 +82,7 @@ export function DataGridToolbar(props: DataGridToolbarProps) {
   const searchProps: SearchProps = {
     ...componentsProps.search,
     placeholder: componentsProps.search?.placeholder ?? 'Search',
-    onChangeDebounced: handleSearchChange,
+    onChangeDebounced: handleSearchChangeDebounced,
     debounceTime:
       componentsProps.search?.debounceTime ?? SUBMIT_FILTER_STROKE_TIME,
     sx: combineSxProps(
@@ -98,6 +105,9 @@ export function DataGridToolbar(props: DataGridToolbarProps) {
     },
   }
 
+  const sortModel = useGridSelector(apiRef, gridSortModelSelector)
+  const columnLookup = useGridSelector(apiRef, gridColumnLookupSelector)
+
   return (
     <Box
       sx={theme => ({
@@ -112,11 +122,46 @@ export function DataGridToolbar(props: DataGridToolbarProps) {
         <>
           <Typography variant="subtitle1">Sort By</Typography>
           <Select
+            value={
+              sortModel.length === 0
+                ? ''
+                : sortModel.length > 1
+                ? MULTIPLE_SYMBOL
+                : sortModel[0].field
+            }
+            renderValue={field =>
+              field === ''
+                ? 'Select a Column'
+                : typeof field === 'symbol'
+                ? 'Multiple'
+                : columnLookup[field].headerName ?? field
+            }
+            onChange={event => {
+              const field = event.target.value
+              if (field === '' || typeof field === 'symbol') {
+                return
+              }
+
+              apiRef.current.setSortModel([{ field, sort: 'desc' }])
+            }}
+            displayEmpty
             sx={theme => ({
               width: theme.spacing(60),
               backgroundColor: theme.palette.background.paper,
             })}
-          ></Select>
+          >
+            {apiRef.current?.state?.columns.all.map(field => {
+              const colDef = apiRef.current.state.columns.lookup[field]
+              if (colDef.sortable !== false) {
+                return (
+                  <MenuItem key={colDef.field} value={colDef.field}>
+                    {colDef.headerName ?? colDef.field}
+                  </MenuItem>
+                )
+              }
+              return null
+            })}
+          </Select>
         </>
       )}
       <Box flex="1 1 0">{children}</Box>
@@ -130,7 +175,7 @@ export function DataGridToolbar(props: DataGridToolbarProps) {
       </Box>
       {disableViewStyleToggle !== true && (
         <ToggleButtonGroup
-          value={viewStyle}
+          value={apiRef.current.state.viewStyle}
           exclusive
           onChange={handleViewStyleChange}
           sx={theme => ({

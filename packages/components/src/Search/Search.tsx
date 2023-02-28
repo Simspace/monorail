@@ -110,8 +110,11 @@ export const Search = React.forwardRef(function Search(inProps, ref) {
     if (disableClearable) {
       return false
     }
-    return typeof value === 'string' && value.length > 0
-  }, [disableClearable, value])
+    return (
+      (typeof value === 'string' && value.length > 0) ||
+      (typeof valueProp === 'string' && valueProp.length > 0)
+    )
+  }, [disableClearable, value, valueProp])
 
   const handleClear = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
