@@ -9,6 +9,12 @@ function resolve(request, options) {
     return options.defaultResolver(request.replace('.js', ''), options)
   } else if (request.indexOf('@monorail') === 0) {
     return resolver(options.basedir, request)
+  } else if (request.indexOf('@mui/x-data-grid-premium/') === 0) {
+    const [_, path] = request.split('@mui/x-data-grid-premium/')
+    return options.defaultResolver(
+      `@mui/x-data-grid-premium/node/${path}`,
+      options,
+    )
   } else {
     return options.defaultResolver(request, options)
   }
