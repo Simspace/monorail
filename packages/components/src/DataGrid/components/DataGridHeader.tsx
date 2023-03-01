@@ -6,6 +6,7 @@ import { dataGridClasses } from '../internal.js'
 import { DataGridToolbar } from './DataGridToolbar.js'
 
 export interface DataGridHeaderProps {
+  children?: React.ReactNode
   onViewStyleChange?: (
     event: React.MouseEvent<HTMLElement>,
     newViewStyle: 'table' | 'gallery',
@@ -13,7 +14,7 @@ export interface DataGridHeaderProps {
 }
 
 export function DataGridHeader(props: DataGridHeaderProps) {
-  const { onViewStyleChange } = props
+  const { onViewStyleChange, children } = props
   const apiRef = useGridApiContext()
   const { toolbar, galleryProps } = useGridRootProps()
 
@@ -47,7 +48,9 @@ export function DataGridHeader(props: DataGridHeaderProps) {
       <DataGridToolbar
         disableViewStyleToggle={galleryProps === undefined}
         onViewStyleChange={onViewStyleChange}
-      />
+      >
+        {children}
+      </DataGridToolbar>
     )
   }
 

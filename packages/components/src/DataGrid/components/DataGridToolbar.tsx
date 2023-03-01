@@ -23,7 +23,7 @@ import { Typography } from '../../Typography.js'
 const MULTIPLE_SYMBOL = Symbol()
 
 export interface DataGridToolbarProps {
-  children?: React.ReactChild | Array<React.ReactChild>
+  children?: React.ReactNode
   onSearchChange?: SearchProps['onChange']
   onViewStyleChange?: (
     event: React.MouseEvent<HTMLElement>,
