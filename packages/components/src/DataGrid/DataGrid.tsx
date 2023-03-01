@@ -39,12 +39,9 @@ import { DATE_FILTER_DEFAULT_LOCALE_TEXT } from './filters/DateFilter.js'
 import { ENUM_FILTER_DEFAULT_LOCALE_TEXT } from './filters/EnumFilter.js'
 import { NUMERIC_FILTER_DEFAULT_LOCALE_TEXT } from './filters/NumericFilter.js'
 import { TEXT_FILTER_DEFAULT_LOCALE_TEXT } from './filters/TextFilter.js'
-import type {
-  DataGridProps,
-  GridEnrichedColDef,
-  GridValidRowModel,
-} from './internal.js'
+import type { GridEnrichedColDef, GridValidRowModel } from './internal.js'
 import { dataGridClasses } from './internal.js'
+import type { DataGridPremiumProps } from './models.js'
 
 const releaseInfo = getReleaseInfo()
 
@@ -61,9 +58,9 @@ const releaseInfo = getReleaseInfo()
  * - [DataGrid API](https://mui.com/x/api/data-grid/)
  */
 export const DataGrid: <R extends GridValidRowModel>(
-  props: DataGridProps<R> & React.RefAttributes<HTMLDivElement>,
+  props: DataGridPremiumProps<R> & React.RefAttributes<HTMLDivElement>,
 ) => React.ReactElement | null = React.forwardRef(function DataGrid(
-  initProps: DataGridProps,
+  initProps: DataGridPremiumProps,
   ref: React.ForwardedRef<HTMLDivElement>,
 ) {
   const { localeText, components, columns, groupingColDef, componentsProps } =
@@ -105,11 +102,11 @@ export const DataGrid: <R extends GridValidRowModel>(
 
   const componentsPropsProp = React.useMemo<Partial<GridSlotsComponentsProps>>(
     () => ({
+      ...componentsProps,
       header: {
         ...componentsProps?.header,
         onViewStyleChange: handleViewStyleChange,
       },
-      ...componentsProps,
     }),
     [componentsProps, handleViewStyleChange],
   )

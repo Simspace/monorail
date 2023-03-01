@@ -3,6 +3,7 @@ import React from 'react'
 
 import type { DataGridProps, GridValueGetterParams } from '@monorail/components'
 import {
+  Button,
   createTable,
   DataGrid,
   GridActionsCellItem,
@@ -97,6 +98,11 @@ const Template = story<DataGridProps>(args => {
         rows={rows}
         checkboxSelection
         disableSelectionOnClick
+        componentsProps={{
+          header: {
+            renderChildren: () => <Button>Toolbar Button</Button>,
+          },
+        }}
         {...args}
       />
     </div>

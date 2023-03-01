@@ -1,6 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import type { GridChildComponentProps } from 'react-window'
+import type {
+  DataGridPremiumProps as MuiDataGridPremiumProps,
+  GridSlotsComponentsProps as MuiGridSlotsComponentsProps,
+} from '@mui/x-data-grid-premium'
 
+import type { DataGridHeaderProps } from '../components/DataGridHeader.js'
 import type { GridValidRowModel } from '../internal.js'
 
 export interface RenderCardParams<R> extends GridChildComponentProps<R> {
@@ -13,8 +18,19 @@ interface GalleryProps<R extends GridValidRowModel = any> {
   renderCard: (params: RenderCardParams<R>) => JSX.Element
 }
 
+export interface GridSlotsComponentsProps
+  extends Omit<MuiGridSlotsComponentsProps, 'header'> {
+  header?: Partial<DataGridHeaderProps>
+}
+
+export interface DataGridPremiumProps<R extends GridValidRowModel = any>
+  extends Omit<MuiDataGridPremiumProps<R>, 'componentsProps'> {
+  componentsProps?: GridSlotsComponentsProps
+}
+
+export type { DataGridPremiumProps as DataGridProps }
+
 declare module '@mui/x-data-grid-premium/models/dataGridPremiumProps' {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-explicit-any
   interface DataGridPremiumProps<R extends GridValidRowModel = any> {
     /**
      * Display rows with alternating background colors?
@@ -28,7 +44,7 @@ declare module '@mui/x-data-grid-premium/models/dataGridPremiumProps' {
       newViewStyle: 'table' | 'gallery',
     ) => void
 
-    toolbar?: boolean
+    hideToolbar?: boolean
 
     galleryProps?: GalleryProps<R>
   }
@@ -43,7 +59,7 @@ declare module '@mui/x-data-grid-premium/models/dataGridPremiumProps' {
      */
     stripedRows?: boolean
     galleryProps?: GalleryProps<R>
-    toolbar?: boolean
+    hideToolbar?: boolean
   }
 }
 

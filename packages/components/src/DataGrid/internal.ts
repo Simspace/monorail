@@ -19,10 +19,7 @@ export * from '@mui/x-data-grid-pro/utils'
 export * from '@mui/x-data-grid-premium/hooks'
 export * from '@mui/x-data-grid-premium/models'
 export * from '@mui/x-data-grid-premium/components'
-export type {
-  DataGridPremiumProps as DataGridProps,
-  GridExperimentalPremiumFeatures,
-} from '@mui/x-data-grid-premium/models/dataGridPremiumProps'
+export type { GridExperimentalPremiumFeatures } from '@mui/x-data-grid-premium/models/dataGridPremiumProps'
 export {
   useGridApiContext,
   useGridApiRef,

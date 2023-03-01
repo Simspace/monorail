@@ -1,22 +1,22 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import React from 'react'
 import { useGridApiContext, useGridRootProps } from '@mui/x-data-grid-premium'
 
 import { useInitializeGridSubState } from '../hooks/useInitializeGridSubState.js'
 import { dataGridClasses } from '../internal.js'
+import type { DataGridToolbarProps } from './DataGridToolbar.js'
 import { DataGridToolbar } from './DataGridToolbar.js'
 
-export interface DataGridHeaderProps {
-  children?: React.ReactNode
-  onViewStyleChange?: (
-    event: React.MouseEvent<HTMLElement>,
-    newViewStyle: 'table' | 'gallery',
-  ) => void
+export interface DataGridHeaderProps
+  extends Omit<DataGridToolbarProps, 'children'> {
+  renderChildren?: () => JSX.Element
 }
 
 export function DataGridHeader(props: DataGridHeaderProps) {
-  const { onViewStyleChange, children } = props
   const apiRef = useGridApiContext()
-  const { toolbar, galleryProps } = useGridRootProps()
+  const { hideToolbar, galleryProps } = useGridRootProps()
+
+  const { renderChildren, disableViewStyleToggle, ...others } = props
 
   useInitializeGridSubState(apiRef, 'textFilter', () => new Map())
   useInitializeGridSubState(apiRef, 'dateFilter', () => new Map())
@@ -43,13 +43,15 @@ export function DataGridHeader(props: DataGridHeaderProps) {
     }
   }, [apiRef, isGrouped])
 
-  if (toolbar !== false) {
+  if (hideToolbar !== true) {
     return (
       <DataGridToolbar
-        disableViewStyleToggle={galleryProps === undefined}
-        onViewStyleChange={onViewStyleChange}
+        {...others}
+        disableViewStyleToggle={
+          galleryProps === undefined || disableViewStyleToggle === true
+        }
       >
-        {children}
+        {renderChildren?.()}
       </DataGridToolbar>
     )
   }
