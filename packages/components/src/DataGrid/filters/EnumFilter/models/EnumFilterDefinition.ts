@@ -18,6 +18,7 @@ export interface EnumFilterDefinition<
 > {
   type: 'enum'
   values: Array<V>
+  compare?: (rowValue: V, filterValue: V) => boolean
   renderValue?: (value: V) => React.ReactNode
   componentsProps?: {
     columnHeaderButton?: Partial<IconButtonProps & DataAttributes>

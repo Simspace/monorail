@@ -7,10 +7,17 @@ import {
 import { enumFilterOperator } from '../constants.js'
 import { getEnumFilterInitialState } from '../models.js'
 
-export function useInitializeEnumFilterState(
-  field: string,
-  external?: boolean,
-): void {
+interface UseInitializeEnumFilterStateParams {
+  field: string
+  compare?: (rowValue: unknown, filterValue: unknown) => boolean
+  external?: boolean
+}
+
+export function useInitializeEnumFilterState({
+  field,
+  compare,
+  external,
+}: UseInitializeEnumFilterStateParams): void {
   const apiRef = useGridApiContext()
 
   const initState = React.useCallback(() => {
@@ -22,9 +29,12 @@ export function useInitializeEnumFilterState(
       }
     }
     if (!apiRef.current.state.enumFilter.has(field)) {
-      apiRef.current.state.enumFilter.set(field, getEnumFilterInitialState())
+      apiRef.current.state.enumFilter.set(
+        field,
+        getEnumFilterInitialState({ compare }),
+      )
     }
-  }, [apiRef, field, external])
+  }, [apiRef, field, external, compare])
 
   React.useEffect(() => {
     initState()

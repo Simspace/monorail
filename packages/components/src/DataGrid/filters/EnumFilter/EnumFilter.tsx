@@ -52,12 +52,19 @@ export function EnumFilter(inProps: EnumFilterProps) {
     props: inProps,
   })
 
-  const { field, renderValue, values, external, componentsProps = {} } = props
+  const {
+    field,
+    renderValue,
+    values,
+    external,
+    compare,
+    componentsProps = {},
+  } = props
 
   const classes = useUtilityClasses(props)
 
   const apiRef = useGridApiContext()
-  useInitializeEnumFilterState(field, external)
+  useInitializeEnumFilterState({ field, compare, external })
 
   const state = apiRef.current.state.enumFilter.get(field)!
   const selectedSize = state.uiSelected.size

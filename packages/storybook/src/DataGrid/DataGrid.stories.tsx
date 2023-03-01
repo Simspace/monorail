@@ -115,7 +115,9 @@ interface FilterStoryRow {
   id: number
   firstName: string
   lastName: string
-  occupation: string
+  occupation: {
+    name: string
+  }
   hireDate: Date
 }
 
@@ -158,20 +160,23 @@ const filterStoryColumns = createTable<FilterStoryRow>()(
     field: 'occupation',
     headerName: 'Occupation',
     type: 'string',
+    valueFormatter: ({ value }) => value.name,
     minWidth: 110,
     filter: {
       type: 'enum',
       values: [
-        'barista',
-        'lifeguard',
-        'waiter',
-        'engineer',
-        'designer',
-        'doctor',
-        'nurse',
-        'other',
-        'some really really long item that overflows the container',
+        { name: 'barista' },
+        { name: 'lifeguard' },
+        { name: 'waiter' },
+        { name: 'engineer' },
+        { name: 'designer' },
+        { name: 'doctor' },
+        { name: 'nurse' },
+        { name: 'other' },
+        { name: 'some really really long item that overflows the container' },
       ],
+      renderValue: ({ name }) => name,
+      compare: (rowValue, filterValue) => filterValue.name === rowValue.name,
     },
   },
   {
@@ -218,77 +223,77 @@ export const Filters = story(() => {
       id: 1,
       lastName: 'Snow',
       firstName: 'Jon',
-      occupation: 'barista',
+      occupation: { name: 'barista' },
       hireDate: getRandomDate(),
     },
     {
       id: 2,
       lastName: 'Lannister',
       firstName: 'Cersei',
-      occupation: 'barista',
+      occupation: { name: 'barista' },
       hireDate: getRandomDate(),
     },
     {
       id: 3,
       lastName: 'Lannister',
       firstName: 'Jaime',
-      occupation: 'lifeguard',
+      occupation: { name: 'lifeguard' },
       hireDate: getRandomDate(),
     },
     {
       id: 4,
       lastName: 'Stark',
       firstName: 'Arya',
-      occupation: 'waiter',
+      occupation: { name: 'waiter' },
       hireDate: getRandomDate(),
     },
     {
       id: 5,
       lastName: 'Targaryen',
       firstName: 'Daenerys',
-      occupation: 'lifeguard',
+      occupation: { name: 'lifeguard' },
       hireDate: getRandomDate(),
     },
     {
       id: 6,
       lastName: 'Melisandre',
       firstName: 'David',
-      occupation: 'barista',
+      occupation: { name: 'barista' },
       hireDate: getRandomDate(),
     },
     {
       id: 7,
       lastName: 'Clifford',
       firstName: 'Ferrara',
-      occupation: 'waiter',
+      occupation: { name: 'waiter' },
       hireDate: getRandomDate(),
     },
     {
       id: 8,
       lastName: 'Frances',
       firstName: 'Rossini',
-      occupation: 'waiter',
+      occupation: { name: 'waiter' },
       hireDate: getRandomDate(),
     },
     {
       id: 9,
       lastName: 'Roxie',
       firstName: 'Harvey',
-      occupation: 'lifeguard',
+      occupation: { name: 'lifeguard' },
       hireDate: getRandomDate(),
     },
     {
       id: 10,
       lastName: 'Smith',
       firstName: 'John',
-      occupation: 'designer',
+      occupation: { name: 'designer' },
       hireDate: getRandomDate(),
     },
     {
       id: 11,
       lastName: 'Doe',
       firstName: 'Jane',
-      occupation: 'engineer',
+      occupation: { name: 'engineer' },
       hireDate: getRandomDate(),
     },
   ]
