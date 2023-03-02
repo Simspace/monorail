@@ -25,10 +25,6 @@ const MULTIPLE_SYMBOL = Symbol()
 export interface DataGridToolbarProps {
   children?: React.ReactNode
   onSearchChange?: SearchProps['onChange']
-  onViewStyleChange?: (
-    event: React.MouseEvent<HTMLElement>,
-    newViewStyle: 'table' | 'gallery',
-  ) => void
   disableSortBy?: boolean
   disableViewStyleToggle?: boolean
   componentsProps?: {
@@ -45,7 +41,6 @@ export function DataGridToolbar(props: DataGridToolbarProps) {
     disableSortBy,
     disableViewStyleToggle,
     onSearchChange = () => {},
-    onViewStyleChange = () => {},
     componentsProps = {},
   } = props
 
@@ -53,16 +48,14 @@ export function DataGridToolbar(props: DataGridToolbarProps) {
 
   const handleViewStyleChange = React.useCallback(
     (
-      event: React.MouseEvent<HTMLElement>,
+      _event: React.MouseEvent<HTMLElement>,
       newViewStyle: 'table' | 'gallery',
     ) => {
       if (newViewStyle !== null) {
-        apiRef.current.state.viewStyle = newViewStyle
-        apiRef.current.forceUpdate()
-        onViewStyleChange(event, newViewStyle)
+        apiRef.current.setViewStyle(newViewStyle)
       }
     },
-    [apiRef, onViewStyleChange],
+    [apiRef],
   )
 
   const handleSearchChangeDebounced = React.useCallback(

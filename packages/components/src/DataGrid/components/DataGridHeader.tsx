@@ -8,8 +8,8 @@ import type { DataGridToolbarProps } from './DataGridToolbar.js'
 import { DataGridToolbar } from './DataGridToolbar.js'
 
 export interface DataGridHeaderProps
-  extends Omit<DataGridToolbarProps, 'children'> {
-  renderChildren?: () => JSX.Element
+  extends Omit<DataGridToolbarProps, 'children' | 'onViewStyleChange'> {
+  renderChildren?: () => React.ReactNode
 }
 
 export function DataGridHeader(props: DataGridHeaderProps) {
@@ -23,7 +23,6 @@ export function DataGridHeader(props: DataGridHeaderProps) {
   useInitializeGridSubState(apiRef, 'enumFilter', () => new Map())
   useInitializeGridSubState(apiRef, 'numericFilter', () => new Map())
   useInitializeGridSubState(apiRef, 'filterSubscriptions', () => new Map())
-  useInitializeGridSubState(apiRef, 'viewStyle', () => 'table' as const)
   useInitializeGridSubState(apiRef, 'toolbarSearchValue', () => '')
 
   const isGrouped = React.useMemo(

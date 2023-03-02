@@ -12,10 +12,11 @@ import useResizeObserver from 'use-resize-observer'
 
 export const DataGalleryVirtualScroller = React.forwardRef<
   HTMLDivElement,
-  { width: number; height: number }
+  { mainRef: React.RefObject<HTMLDivElement>; width: number; height: number }
 >(function DataGalleryVirtualScroller(props, ref) {
-  const { width, height } = props
+  const { mainRef, width, height } = props
 
+  const preventResizeRecursion = React.useRef(false)
   const [itemWidth, setItemWidth] = React.useState(1)
   const [itemHeight, setItemHeight] = React.useState(1)
 
@@ -27,19 +28,25 @@ export const DataGalleryVirtualScroller = React.forwardRef<
     gridDensityTotalHeaderHeightSelector,
   )
 
-  useResizeObserver({
-    ref: apiRef.current.windowRef,
-    onResize: () => {
-      const { width, height } = getItemDimensions(
-        rootProps.galleryProps!.itemWidth,
-        rootProps.galleryProps!.itemHeight,
-        apiRef.current.windowRef!.current,
-        totalHeaderHeight,
-      )
+  const handleResize = React.useCallback(() => {
+    const { width, height } = getItemDimensions(
+      rootProps.galleryProps!.itemWidth,
+      rootProps.galleryProps!.itemHeight,
+      apiRef.current.windowRef!.current,
+      totalHeaderHeight,
+    )
+    setItemWidth(width)
+    setItemHeight(height)
+    preventResizeRecursion.current = true
+  }, [apiRef, rootProps.galleryProps, totalHeaderHeight])
 
-      setItemWidth(width)
-      setItemHeight(height)
-    },
+  React.useEffect(() => {
+    handleResize()
+  }, [handleResize])
+
+  useResizeObserver({
+    ref: mainRef,
+    onResize: handleResize,
   })
 
   const columnCount = Math.max(1, Math.floor((width - 20) / itemWidth))

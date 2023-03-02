@@ -3,6 +3,7 @@ import type { CSSObject } from '@mui/material'
 import clsx from 'clsx'
 
 import { dataGridClasses } from '@monorail/components/DataGrid'
+import type { StandardElementProps } from '@monorail/types'
 import { composeClasses, styled } from '@monorail/utils'
 
 import type {
@@ -42,21 +43,24 @@ const DataGalleryMainContainerRoot = styled('div', {
   width: '100%',
 }))
 
-interface DataGalleryMainContainerProps {
+interface DataGalleryMainContainerProps extends StandardElementProps<'div'> {
   classes?: Partial<DataGalleryClasses>
   children: React.ReactNode
 }
 
-export function DataGalleryMainContainer(props: DataGalleryMainContainerProps) {
-  const classes = useUtilityClasses(props)
-  return (
-    <DataGalleryMainContainerRoot
-      className={clsx(classes.main, dataGridClasses.main)}
-    >
-      {props.children}
-    </DataGalleryMainContainerRoot>
-  )
-}
+export const DataGalleryMainContainer = React.forwardRef(
+  function DataGalleryMainContainer(props, ref) {
+    const classes = useUtilityClasses(props)
+    return (
+      <DataGalleryMainContainerRoot
+        ref={ref}
+        className={clsx(classes.main, dataGridClasses.main)}
+      >
+        {props.children}
+      </DataGalleryMainContainerRoot>
+    )
+  },
+) as (props: DataGalleryMainContainerProps) => JSX.Element
 
 function useUtilityClasses(props: DataGalleryMainContainerProps) {
   const { classes } = props

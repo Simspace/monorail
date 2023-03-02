@@ -8,6 +8,7 @@ import type {
 
 import type { DataGridHeaderProps } from '../components/DataGridHeader.js'
 import type { GridValidRowModel } from '../internal.js'
+import type { DataGridViewStyle } from './dataGridViewStyle.js'
 
 export interface RenderCardParams<R> extends GridChildComponentProps<R> {
   row: R
@@ -43,14 +44,30 @@ declare module '@mui/x-data-grid-premium/models/dataGridPremiumProps' {
      * @default false
      */
     stripedRows?: boolean
-
-    onViewStyleChange?: (
-      event: React.MouseEvent<HTMLElement>,
-      newViewStyle: 'table' | 'gallery',
-    ) => void
-
+    /**
+     * The style in which data will be displayed, can be either 'table' or 'gallery'.
+     * @note 'gallery' view requires 'galleryProps' to be defined
+     *
+     * @default "table"
+     */
+    viewStyle?: DataGridViewStyle
+    /**
+     * A callback that will be called when the view style is changed using the toolbar buttons
+     *
+     * @default undefined
+     */
+    onViewStyleChange?: (newViewStyle: 'table' | 'gallery') => void
+    /**
+     * Should the toolbar be hidden?
+     *
+     * @default false
+     */
     hideToolbar?: boolean
-
+    /**
+     * Props used to define the visual presentation of the gallery view.
+     *
+     * @default undefined
+     */
     galleryProps?: GalleryProps<R>
   }
 
@@ -63,8 +80,31 @@ declare module '@mui/x-data-grid-premium/models/dataGridPremiumProps' {
      * @default false
      */
     stripedRows?: boolean
-    galleryProps?: GalleryProps<R>
+    /**
+     * The style in which data will be displayed, can be either 'table' or 'gallery'.
+     * @note 'gallery' view requires 'galleryProps' to be defined
+     *
+     * @default "table"
+     */
+    viewStyle?: DataGridViewStyle
+    /**
+     * A callback that will be called when the view style is changed using the toolbar buttons
+     *
+     * @default undefined
+     */
+    onViewStyleChange?: (newViewStyle: 'table' | 'gallery') => void
+    /**
+     * Should the toolbar be hidden?
+     *
+     * @default false
+     */
     hideToolbar?: boolean
+    /**
+     * Props used to define the visual presentation of the gallery view.
+     *
+     * @default undefined
+     */
+    galleryProps?: GalleryProps<R>
   }
 }
 

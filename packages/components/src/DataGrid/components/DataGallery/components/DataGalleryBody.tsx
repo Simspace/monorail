@@ -15,6 +15,7 @@ interface DataGalleryBodyProps {
   VirtualScrollerComponent: React.JSXElementConstructor<
     React.HTMLAttributes<HTMLDivElement> & {
       ref: React.Ref<HTMLDivElement>
+      mainRef: React.RefObject<HTMLDivElement>
       disableVirtualization: boolean
       width: number
       height: number
@@ -59,15 +60,14 @@ export function DataGalleryBody(props: DataGalleryBodyProps) {
   apiRef.current.unstable_disableVirtualization = disableVirtualization
   apiRef.current.unstable_enableVirtualization = enableVirtualization
 
+  const mainRef = React.useRef<HTMLDivElement>(null)
   const columnHeadersRef = React.useRef<HTMLDivElement>(null)
   const columnsContainerRef = React.useRef<HTMLDivElement>(null)
   const windowRef = React.useRef<HTMLDivElement>(null)
-  const renderingZoneRef = React.useRef<HTMLDivElement>(null)
 
   apiRef.current.columnHeadersContainerElementRef = columnsContainerRef
   apiRef.current.columnHeadersElementRef = columnHeadersRef
   apiRef.current.windowRef = windowRef // TODO rename, it's not attached to the window anymore
-  apiRef.current.renderingZoneRef = renderingZoneRef // TODO remove, nobody should have access to internal parts of the virtualization
 
   const handleResize = React.useCallback(
     (size: ElementSize) => {
@@ -77,7 +77,7 @@ export function DataGalleryBody(props: DataGalleryBodyProps) {
   )
 
   return (
-    <DataGalleryMainContainer classes={rootProps.classes}>
+    <DataGalleryMainContainer ref={mainRef} classes={rootProps.classes}>
       <GridOverlays />
       <ColumnHeadersComponent
         ref={columnsContainerRef}
@@ -92,6 +92,7 @@ export function DataGalleryBody(props: DataGalleryBodyProps) {
           return (
             <VirtualScrollerComponent
               ref={windowRef}
+              mainRef={mainRef}
               disableVirtualization={isVirtualizationDisabled}
               width={size.width}
               height={size.height ?? 0}

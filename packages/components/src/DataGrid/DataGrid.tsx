@@ -2,12 +2,6 @@
 import React from 'react'
 import type { CSSInterpolation, Theme } from '@mui/material'
 import type { SystemStyleObject } from '@mui/system'
-import type {
-  GridGroupingColDefOverride,
-  GridGroupingColDefOverrideParams,
-  GridSlotsComponent,
-  GridSlotsComponentsProps,
-} from '@mui/x-data-grid-premium'
 import {
   GridBody,
   GridContextProvider,
@@ -16,8 +10,6 @@ import {
   GridHeaderPlaceholder,
   GridRoot,
 } from '@mui/x-data-grid-premium'
-import { useDataGridPremiumComponent } from '@mui/x-data-grid-premium/DataGridPremium/useDataGridPremiumComponent'
-import { useDataGridPremiumProps } from '@mui/x-data-grid-premium/DataGridPremium/useDataGridPremiumProps'
 import { getReleaseInfo } from '@mui/x-data-grid-premium/utils/releaseInfo'
 import {
   DataGridProColumnHeaders,
@@ -27,19 +19,12 @@ import { useLicenseVerifier, Watermark } from '@mui/x-license-pro'
 
 import { combineSxProps } from '@monorail/utils/sx'
 
-import { Divider } from '../Divider.js'
 import { DataGalleryBody } from './components/DataGallery/components/DataGalleryBody.js'
 import { DataGalleryColumnHeaders } from './components/DataGallery/components/DataGalleryColumnHeaders.js'
 import { DataGalleryVirtualScroller } from './components/DataGallery/components/DataGalleryVirtualScroller.js'
-import { DataGridColumnHeader } from './components/DataGridColumnHeader.js'
-import { DataGridFooter } from './components/DataGridFooter.js'
-import { DataGridHeader } from './components/DataGridHeader.js'
-import { DataGridRow } from './components/DataGridRow.js'
-import { DATE_FILTER_DEFAULT_LOCALE_TEXT } from './filters/DateFilter.js'
-import { ENUM_FILTER_DEFAULT_LOCALE_TEXT } from './filters/EnumFilter.js'
-import { NUMERIC_FILTER_DEFAULT_LOCALE_TEXT } from './filters/NumericFilter.js'
-import { TEXT_FILTER_DEFAULT_LOCALE_TEXT } from './filters/TextFilter.js'
-import type { GridEnrichedColDef, GridValidRowModel } from './internal.js'
+import { useDataGridComponent } from './hooks/useDataGridComponent.js'
+import { useDataGridProps } from './hooks/useDataGridProps.js'
+import type { GridValidRowModel } from './internal.js'
 import { dataGridClasses } from './internal.js'
 import type { DataGridPremiumProps } from './models.js'
 
@@ -63,108 +48,12 @@ export const DataGrid: <R extends GridValidRowModel>(
   initProps: DataGridPremiumProps,
   ref: React.ForwardedRef<HTMLDivElement>,
 ) {
-  const { localeText, components, columns, groupingColDef, componentsProps } =
-    initProps
+  const props = useDataGridProps(initProps)
 
-  const [viewStyle, setViewStyle] = React.useState<'table' | 'gallery'>('table')
-
-  const handleViewStyleChange = React.useCallback(
-    (
-      _event: React.MouseEvent<HTMLElement>,
-      newViewStyle: 'table' | 'gallery',
-    ) => {
-      setViewStyle(newViewStyle)
-    },
-    [],
-  )
-
-  const localeTextProp = React.useMemo(
-    () => ({
-      EnumFilter: ENUM_FILTER_DEFAULT_LOCALE_TEXT,
-      TextFilter: TEXT_FILTER_DEFAULT_LOCALE_TEXT,
-      NumericFilter: NUMERIC_FILTER_DEFAULT_LOCALE_TEXT,
-      DateFilter: DATE_FILTER_DEFAULT_LOCALE_TEXT,
-      ...localeText,
-    }),
-    [localeText],
-  )
-
-  const componentsProp = React.useMemo<Partial<GridSlotsComponent>>(
-    () => ({
-      Footer: DataGridFooter,
-      Row: DataGridRow,
-      Header: DataGridHeader,
-      ColumnResizeIcon: Divider,
-      ...components,
-    }),
-    [components],
-  )
-
-  const componentsPropsProp = React.useMemo<Partial<GridSlotsComponentsProps>>(
-    () => ({
-      ...componentsProps,
-      header: {
-        ...componentsProps?.header,
-        onViewStyleChange: handleViewStyleChange,
-      },
-    }),
-    [componentsProps, handleViewStyleChange],
-  )
-
-  const processedColumns: Array<GridEnrichedColDef> = React.useMemo(
-    () =>
-      columns.map(col => {
-        const flex = col.type === 'actions' ? undefined : col.flex ?? 1
-        return {
-          originalColDef: col,
-          disableColumnMenu: true,
-          hideSortIcons: true,
-          headerAlign: 'left',
-          flex,
-          ...col,
-          renderHeader: DataGridColumnHeader,
-        }
-      }),
-    [columns],
-  )
-
-  const groupingColDefProp = React.useMemo(() => {
-    const groupingColDefDefaults: GridGroupingColDefOverride = {
-      renderHeader: DataGridColumnHeader,
-      disableColumnMenu: true,
-      hideSortIcons: true,
-      headerAlign: 'left',
-      flex: 1,
-    }
-    if (typeof groupingColDef === 'function') {
-      return (params: GridGroupingColDefOverrideParams) => ({
-        ...groupingColDefDefaults,
-        ...groupingColDef(params),
-      })
-    } else {
-      return {
-        ...groupingColDefDefaults,
-        ...groupingColDef,
-      }
-    }
-  }, [groupingColDef])
-
-  const props = useDataGridPremiumProps({
-    ...initProps,
-    disableColumnFilter: true,
-    disableSelectionOnClick: true,
-    columns: processedColumns,
-    localeText: localeTextProp,
-    components: componentsProp,
-    groupingColDef: groupingColDefProp,
-    componentsProps: componentsPropsProp,
-  })
-
-  const apiRef = useDataGridPremiumComponent(props.apiRef, props)
+  const apiRef = useDataGridComponent(props.apiRef, props)
+  React.useImperativeHandle(props.apiRef, () => apiRef.current)
 
   const { sx, stripedRows } = props
-
-  React.useImperativeHandle(props.apiRef, () => apiRef.current)
 
   const dataGridStyles = React.useCallback(
     (theme: Theme) => getDataGridStyles(stripedRows, theme),
@@ -188,7 +77,7 @@ export const DataGrid: <R extends GridValidRowModel>(
       >
         <GridErrorHandler>
           <GridHeaderPlaceholder />
-          {viewStyle === 'table' && (
+          {apiRef.current.state.viewStyle === 'table' && (
             <GridBody
               ColumnHeadersComponent={DataGridProColumnHeaders}
               VirtualScrollerComponent={DataGridProVirtualScroller}
@@ -199,7 +88,7 @@ export const DataGrid: <R extends GridValidRowModel>(
               />
             </GridBody>
           )}
-          {viewStyle === 'gallery' && (
+          {apiRef.current.state.viewStyle === 'gallery' && (
             <DataGalleryBody
               ColumnHeadersComponent={DataGalleryColumnHeaders}
               VirtualScrollerComponent={DataGalleryVirtualScroller}

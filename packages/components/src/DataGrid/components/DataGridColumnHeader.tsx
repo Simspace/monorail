@@ -240,7 +240,9 @@ function DataGridColumnHeaderLabel(props: DataGridColumnHeaderLabelProps) {
         {headerComponent !== null ? (
           headerComponent
         ) : (
-          <Typography variant="body2">{colDef.headerName}</Typography>
+          <Typography minWidth={0} lineClamp={1} variant="body2">
+            {colDef.headerName}
+          </Typography>
         )}
       </Stack>
       {isSortable && (

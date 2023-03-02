@@ -207,6 +207,7 @@ const Template = story<DataGridProps<{}>>(() => {
         apiRef={apiRef}
         columns={columns}
         rows={rows}
+        checkboxSelection
         galleryProps={{
           itemWidth: '100%',
           itemHeight: 300,

@@ -2,7 +2,7 @@ import React from 'react'
 import { useGridApiContext, useGridRootProps } from '@mui/x-data-grid-premium'
 
 import { Divider, dividerClasses } from '@monorail/components/Divider'
-import { composeClasses, styled } from '@monorail/utils'
+import { composeClasses, filterMap, styled } from '@monorail/utils'
 
 import type { DataGalleryClasses } from '../constants/dataGalleryClasses'
 import { getDataGalleryUtilityClass } from '../constants/dataGalleryClasses.js'
@@ -59,14 +59,19 @@ export const DataGalleryColumnHeaders = React.forwardRef<
         lineHeight: rootProps.headerHeight,
       }}
     >
-      {apiRef.current.getAllColumns().map(colDef => (
-        <React.Fragment key={colDef.field}>
-          <DataGalleryColumnHeader colDef={colDef} classes={props.classes} />
-          <DataGalleryColumnSeparator>
-            <Divider orientation="vertical" />
-          </DataGalleryColumnSeparator>
-        </React.Fragment>
-      ))}
+      {filterMap(apiRef.current.getAllColumns(), colDef => {
+        if (colDef.field === '__check__') {
+          return null
+        }
+        return (
+          <React.Fragment key={colDef.field}>
+            <DataGalleryColumnHeader colDef={colDef} classes={props.classes} />
+            <DataGalleryColumnSeparator>
+              <Divider orientation="vertical" />
+            </DataGalleryColumnSeparator>
+          </React.Fragment>
+        )
+      })}
     </DataGalleryColumnHeadersRoot>
   )
 })
