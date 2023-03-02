@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import type React from 'react'
 import type { GridChildComponentProps } from 'react-window'
 import type {
   DataGridPremiumProps as MuiDataGridPremiumProps,
@@ -10,12 +11,16 @@ import type { GridValidRowModel } from '../internal.js'
 
 export interface RenderCardParams<R> extends GridChildComponentProps<R> {
   row: R
+  columnIndex: number
+  rowIndex: number
+  style: React.CSSProperties
+  isScrolling?: boolean | undefined
 }
 
 interface GalleryProps<R extends GridValidRowModel = any> {
   itemWidth: `${number}%` | number
   itemHeight: `${number}%` | number
-  renderCard: (params: RenderCardParams<R>) => JSX.Element
+  renderCard: (params: RenderCardParams<R>) => React.ReactElement | null
 }
 
 export interface GridSlotsComponentsProps
