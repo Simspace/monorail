@@ -6,6 +6,7 @@ import type {
   GridSlotsComponentsProps as MuiGridSlotsComponentsProps,
 } from '@mui/x-data-grid-premium'
 
+import type { DataGridFooterProps } from '../components/DataGridFooter.js'
 import type { DataGridHeaderProps } from '../components/DataGridHeader.js'
 import type { GridValidRowModel } from '../internal.js'
 import type { DataGridViewStyle } from './dataGridViewStyle.js'
@@ -25,8 +26,9 @@ interface GalleryProps<R extends GridValidRowModel = any> {
 }
 
 export interface GridSlotsComponentsProps
-  extends Omit<MuiGridSlotsComponentsProps, 'header'> {
+  extends Omit<MuiGridSlotsComponentsProps, 'header' | 'footer'> {
   header?: Partial<DataGridHeaderProps>
+  footer?: Partial<DataGridFooterProps>
 }
 
 export interface DataGridPremiumProps<R extends GridValidRowModel = any>

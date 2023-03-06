@@ -1,8 +1,15 @@
 import React from 'react'
 
+import { PaginationItem } from '@monorail/components/PaginationItem'
+import { combineSxProps } from '@monorail/utils'
+
 import { Box } from '../../Box.js'
 import { FormControlLabel } from '../../FormControlLabel.js'
 import { MenuItem } from '../../MenuItem.js'
+import type {
+  PaginationProps,
+  PaginationRenderItemParams,
+} from '../../Pagination.js'
 import { Pagination } from '../../Pagination.js'
 import type { SelectChangeEvent } from '../../Select.js'
 import { Select } from '../../Select.js'
@@ -20,10 +27,17 @@ import {
   useGridSelector,
 } from '../internal.js'
 
-export function DataGridFooter() {
+export interface DataGridFooterProps extends PaginationProps {
+  disablePageSizeSelect?: boolean
+  disablePageButtons?: boolean
+  hasNextPage?: boolean
+  hasPreviousPage?: boolean
+}
+
+export function DataGridFooter(props: DataGridFooterProps) {
   const rootProps = useGridRootProps()
   if (rootProps.pagination === true) {
-    return <DataGridPaginationFooter />
+    return <DataGridPaginationFooter {...props} />
   } else {
     return <DataGridSimpleFooter />
   }
@@ -41,7 +55,14 @@ function DataGridSimpleFooter() {
   )
 }
 
-export function DataGridPaginationFooter() {
+export function DataGridPaginationFooter(props: DataGridFooterProps) {
+  const {
+    disablePageSizeSelect,
+    disablePageButtons,
+    hasNextPage,
+    hasPreviousPage,
+    ...paginationProps
+  } = props
   const apiRef = useGridApiContext()
   const page = useGridSelector(apiRef, gridPageSelector)
 
@@ -59,6 +80,31 @@ export function DataGridPaginationFooter() {
       apiRef.current.setPageSize(Number(event.target.value))
     },
     [apiRef],
+  )
+
+  const renderPaginationItem = React.useCallback(
+    (params: PaginationRenderItemParams) => {
+      if (disablePageButtons === true) {
+        if (
+          params.type === 'page' ||
+          params.type === 'start-ellipsis' ||
+          params.type === 'end-ellipsis'
+        ) {
+          return null
+        }
+      }
+
+      if (params.type === 'next' && hasNextPage === false) {
+        return <PaginationItem {...params} disabled />
+      }
+
+      if (params.type === 'previous' && hasPreviousPage === false) {
+        return <PaginationItem {...params} disabled />
+      }
+
+      return <PaginationItem {...params} />
+    },
+    [disablePageButtons, hasNextPage, hasPreviousPage],
   )
 
   return (
@@ -81,14 +127,19 @@ export function DataGridPaginationFooter() {
           page={page + 1}
           onChange={onPageChangeHandler}
           siblingCount={1}
-          sx={theme => ({
-            display: 'flex',
-            minWidth: theme.spacing(90),
-            flex: '1 0 0',
-            flexDirection: 'row',
-            justifyContent: 'center',
-            alignItems: 'center',
-          })}
+          renderItem={renderPaginationItem}
+          {...paginationProps}
+          sx={combineSxProps(
+            theme => ({
+              display: 'flex',
+              minWidth: theme.spacing(90),
+              flex: '1 0 0',
+              flexDirection: 'row',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }),
+            paginationProps.sx,
+          )}
         />
         <Stack
           flex="1 1 0"
@@ -96,35 +147,37 @@ export function DataGridPaginationFooter() {
           justifyContent="flex-end"
           direction="row"
         >
-          <FormControlLabel
-            sx={theme => ({
-              marginRight: theme.spacing(2),
-              my: 2,
-            })}
-            control={
-              <Select<number>
-                size="small"
-                sx={theme => ({
-                  backgroundColor: theme.palette.background.default,
-                  minWidth: theme.spacing(24),
-                })}
-                value={gridPageSizeSelector(apiRef)}
-                onChange={onPageSizeChangeHandler}
-              >
-                <MenuItem value={20}>20</MenuItem>
-                <MenuItem value={50}>50</MenuItem>
-                <MenuItem value={100}>100</MenuItem>
-              </Select>
-            }
-            componentsProps={{
-              typography: {
-                marginRight: 2,
-                variant: 'subtitle1',
-              },
-            }}
-            label="Show:"
-            labelPlacement="start"
-          />
+          {disablePageSizeSelect !== true && (
+            <FormControlLabel
+              sx={theme => ({
+                marginRight: theme.spacing(2),
+                my: 2,
+              })}
+              control={
+                <Select<number>
+                  size="small"
+                  sx={theme => ({
+                    backgroundColor: theme.palette.background.default,
+                    minWidth: theme.spacing(24),
+                  })}
+                  value={gridPageSizeSelector(apiRef)}
+                  onChange={onPageSizeChangeHandler}
+                >
+                  <MenuItem value={20}>20</MenuItem>
+                  <MenuItem value={50}>50</MenuItem>
+                  <MenuItem value={100}>100</MenuItem>
+                </Select>
+              }
+              componentsProps={{
+                typography: {
+                  marginRight: 2,
+                  variant: 'subtitle1',
+                },
+              }}
+              label="Show:"
+              labelPlacement="start"
+            />
+          )}
           <Typography
             textAlign="right"
             variant="subtitle2"

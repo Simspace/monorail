@@ -1,5 +1,11 @@
 import { Pagination as MuiPagination } from '@mui/material'
 
+declare module '@mui/material/Pagination' {
+  interface PaginationPropsColorOverrides {
+    standard: false
+  }
+}
+
 /**
  *
  * Demos:
