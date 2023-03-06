@@ -14,6 +14,9 @@ import { story } from '../helpers/storybook.js'
 export default {
   title: 'Surfaces/Card/CardActionArea',
   component: CardActionArea,
+  argTypes: {
+    disabled: { control: 'boolean' },
+  },
 }
 
 /**

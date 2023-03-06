@@ -15,6 +15,10 @@ export const MonorailSwitchOverrides: Components<Theme>['MuiSwitch'] = {
       ...(ownerState.edge === false && {
         marginLeft: theme.spacing(1),
       }),
+      ...(ownerState.disabled !== undefined &&
+        ownerState.disabled === true && {
+          pointerEvents: 'none',
+        }),
     }),
     edgeStart: ({ theme }) => ({
       marginLeft: theme.spacing(-1),

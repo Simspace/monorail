@@ -15,6 +15,10 @@ export const MonorailSwitchOverrides: Components<Theme>['MuiSwitch'] = {
       ...(ownerState.edge === false && {
         marginLeft: 8,
       }),
+      ...(ownerState.disabled !== undefined &&
+        ownerState.disabled === true && {
+          pointerEvents: 'none',
+        }),
     }),
     switchBase: ({ ownerState: { color = 'primary' }, theme }) => ({
       padding: theme.spacing(2),

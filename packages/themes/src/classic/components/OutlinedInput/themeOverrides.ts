@@ -6,6 +6,9 @@ export const MonorailOutlinedInputOverrides: Components<Theme>['MuiOutlinedInput
       notched: false,
     },
     styleOverrides: {
+      notchedOutline: ({ theme }) => ({
+        borderColor: theme.palette.default.border.light,
+      }),
       multiline: {
         padding: 0,
       },

@@ -22,9 +22,6 @@ export const MonorailCheckboxOverrides: Components<Theme>['MuiCheckbox'] = {
       },
       [`&.${checkboxClasses.checked}`]: {
         color: theme.palette[color].main,
-        [`&.${checkboxClasses.disabled}`]: {
-          color: theme.palette.action.disabled,
-        },
         '&:hover': {
           backgroundColor: theme.palette[color].lowEmphasis.hover,
           [`& .${svgIconClasses.root}`]: {
@@ -37,6 +34,10 @@ export const MonorailCheckboxOverrides: Components<Theme>['MuiCheckbox'] = {
         outline: `1px solid ${theme.palette[color].focusRing.inner}`,
         zIndex: 1,
       },
+      [`&.${checkboxClasses.disabled}, &.${checkboxClasses.checked}.${checkboxClasses.disabled}`]:
+        {
+          color: theme.palette.default.main, // ButtonBase applies action.disabledOpacity
+        },
     }),
     indeterminate: ({ ownerState: { color = 'primary' }, theme }) => ({
       '&:hover': {

@@ -21,9 +21,6 @@ export const MonorailRadioOverrides: Components<Theme>['MuiRadio'] = {
       },
       [`&.${radioClasses.checked}`]: {
         color: theme.palette[color].main,
-        [`&.${radioClasses.disabled}`]: {
-          color: theme.palette.text.disabled,
-        },
         '&:hover': {
           backgroundColor: theme.palette[color].lowEmphasis.hover,
           [`& .${svgIconClasses.root}`]: {
@@ -35,6 +32,10 @@ export const MonorailRadioOverrides: Components<Theme>['MuiRadio'] = {
         boxShadow: `0 0 0 4px ${theme.palette[color].focusRing.outer}`,
         outline: `1px solid ${theme.palette[color].focusRing.inner}`,
       },
+      [`&.${radioClasses.disabled}, &.${radioClasses.checked}.${radioClasses.disabled}`]:
+        {
+          color: theme.palette.default.main, // ButtonBase applies action.disabledOpacity
+        },
     }),
   },
 }

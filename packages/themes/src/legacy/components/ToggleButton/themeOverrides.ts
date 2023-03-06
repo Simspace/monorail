@@ -1,5 +1,5 @@
 import type { Components, Theme } from '@mui/material'
-import { alpha } from '@mui/material'
+import { alpha, toggleButtonClasses } from '@mui/material'
 
 export const MonorailToggleButtonOverrides: Components<Theme>['MuiToggleButton'] =
   {
@@ -22,6 +22,10 @@ export const MonorailToggleButtonOverrides: Components<Theme>['MuiToggleButton']
           boxShadow: `0 0 0 4px ${theme.palette[color].focusRing.outer}`,
           border: `1px solid ${theme.palette[color].focusRing.inner}`,
           zIndex: 2,
+        },
+        [`&.${toggleButtonClasses.disabled}`]: {
+          color: theme.palette[color].lowEmphasis.contrastText,
+          borderColor: theme.palette[color].border.light,
         },
       }),
       sizeLarge: {

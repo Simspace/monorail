@@ -791,7 +791,6 @@ export const UseFormControl = story<TextFieldProps>(
   {
     parameters: {
       docs: {
-        title: 'useFormControl()',
         description: {
           story: `For advanced customization use cases, a useFormControl() hook is exposed. This hook returns the context value of the parent FormControl component.
 

@@ -12,6 +12,7 @@ import {
 } from '@monorail/utils'
 
 import { IconButton } from '../IconButton.js'
+import { InputAdornment } from '../InputAdornment.js'
 import { TextField } from '../TextField.js'
 import type { SearchClassKey } from './searchClasses.js'
 import { getSearchUtilityClass, searchClasses } from './searchClasses.js'
@@ -78,6 +79,7 @@ export const Search = React.forwardRef(function Search(inProps, ref) {
     debounceTime = 0,
     defaultValue = '',
     disableClearable = false,
+    disabled,
     onChange,
     onChangeDebounced = () => {},
     value: valueProp,
@@ -134,12 +136,14 @@ export const Search = React.forwardRef(function Search(inProps, ref) {
       variant="outlined"
       ownerState={ownerState}
       value={valueProp ?? value}
+      disabled={disabled}
       InputProps={{
         endAdornment: isClearable && (
           <ClearButton
             aria-label="search-input-clear-button"
             edge="end"
             size={ownerState.size === 'small' ? 'small' : 'medium'}
+            disabled={disabled}
             {...componentsProps.clearButton}
             onClick={handleClear}
             sx={combineSxProps({ mr: -2 }, componentsProps.clearButton?.sx)}
@@ -148,7 +152,11 @@ export const Search = React.forwardRef(function Search(inProps, ref) {
           </ClearButton>
         ),
         ...componentsProps.Input,
-        startAdornment: <SearchIcon color="default" sx={{ mr: 2 }} />,
+        startAdornment: (
+          <InputAdornment position="start">
+            <SearchIcon />
+          </InputAdornment>
+        ),
         onChange: handleChange,
         sx: combineSxProps(
           { borderRadius: '100px' },

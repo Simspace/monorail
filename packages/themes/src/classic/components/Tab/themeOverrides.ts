@@ -16,9 +16,12 @@ export const MonorailTabOverrides: Components<Theme>['MuiTab'] = {
           marginBottom: theme.spacing(-0.5),
         },
       }),
+      [`&.${tabClasses.disabled}`]: {
+        color: theme.palette.text.secondary, // ButtonBase applies action.disabledOpacity
+      },
     }),
     labelIcon: ({ theme }) => ({
-      padding: theme.spacing(2.85, 6), // 11px 24px
+      padding: theme.spacing(2.85, 6),
       [`& .${svgIconClasses.root}`]: {
         marginTop: 'auto',
         marginBottom: 'auto',
