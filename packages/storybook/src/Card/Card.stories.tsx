@@ -6,7 +6,7 @@ import SkipNextIcon from '@mui/icons-material/SkipNext'
 import SkipPreviousIcon from '@mui/icons-material/SkipPrevious'
 import { useTheme } from '@mui/material'
 
-import type { CardProps } from '@monorail/components'
+import type { CardActionAreaProps, CardProps } from '@monorail/components'
 import {
   Box,
   Button,
@@ -200,10 +200,10 @@ ResponsiveMediaCard.parameters = {
   },
 }
 
-export const ActionAreaCard = story<CardProps>(() => {
+export const ActionAreaCard = story<CardActionAreaProps>(args => {
   return (
     <Card sx={{ maxWidth: 345 }}>
-      <CardActionArea>
+      <CardActionArea {...args}>
         <CardMedia
           sx={{ height: 140 }}
           image={images.lizard.url}
@@ -222,7 +222,9 @@ export const ActionAreaCard = story<CardProps>(() => {
     </Card>
   )
 })
-
+ActionAreaCard.args = {
+  disabled: false,
+}
 ActionAreaCard.parameters = {
   a11y: {
     config: { rules: { 'aria-roles': { enabled: false } } }, // MUI has invalid aria role on CardMedia (image instead of img)
