@@ -44,11 +44,15 @@ const Template = story<EmphaticFormControlLabelProps>(
 
 export const Default = story(Template)
 
-export const States = story(() => {
+export const States = story(args => {
   return (
     <Stack direction="row">
       <FormGroup sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-        <EmphaticFormControlLabel label="Checkbox" control={Checkbox} />
+        <EmphaticFormControlLabel
+          label="Checkbox"
+          control={Checkbox}
+          {...args}
+        />
         <EmphaticFormControlLabel
           label="Checkbox"
           control={Checkbox}
@@ -59,6 +63,7 @@ export const States = story(() => {
           }}
           state="error"
           checked
+          {...args}
         />
         <EmphaticFormControlLabel
           label="Checkbox"
@@ -70,16 +75,18 @@ export const States = story(() => {
           }}
           state="error"
           checked
+          {...args}
         />
         <EmphaticFormControlLabel
           label="Checkbox"
           control={Checkbox}
           state="success"
           checked
+          {...args}
         />
       </FormGroup>
       <FormGroup sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-        <EmphaticFormControlLabel label="Radio" control={Radio} />
+        <EmphaticFormControlLabel label="Radio" control={Radio} {...args} />
         <EmphaticFormControlLabel
           label="Radio"
           control={Radio}
@@ -90,6 +97,7 @@ export const States = story(() => {
           }}
           state="error"
           checked
+          {...args}
         />
         <EmphaticFormControlLabel
           label="Radio"
@@ -101,6 +109,7 @@ export const States = story(() => {
           }}
           state="error"
           checked
+          {...args}
         />
         <EmphaticFormControlLabel
           label="Radio"
@@ -112,6 +121,7 @@ export const States = story(() => {
           }}
           state="success"
           checked
+          {...args}
         />
       </FormGroup>
     </Stack>

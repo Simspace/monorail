@@ -57,6 +57,7 @@ const EmphaticFormControlLabelRoot = styled('label', {
   },
   [`&.${emphaticFormControlLabelClasses.disabled}`]: {
     cursor: 'default',
+    pointerEvents: 'none',
     borderColor: theme.palette.action.disabled,
     '&:hover': {
       backgroundColor: 'transparent',
