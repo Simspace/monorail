@@ -138,7 +138,7 @@ export const Search = React.forwardRef(function Search(inProps, ref) {
       value={valueProp ?? value}
       disabled={disabled}
       InputProps={{
-        endAdornment: isClearable && (
+        endAdornment: (
           <ClearButton
             aria-label="search-input-clear-button"
             edge="end"
@@ -146,7 +146,10 @@ export const Search = React.forwardRef(function Search(inProps, ref) {
             disabled={disabled}
             {...componentsProps.clearButton}
             onClick={handleClear}
-            sx={combineSxProps({ mr: -2 }, componentsProps.clearButton?.sx)}
+            sx={combineSxProps(
+              { mr: -2, visibility: isClearable ? 'visible' : 'hidden' },
+              componentsProps.clearButton?.sx,
+            )}
           >
             <Clear />
           </ClearButton>
