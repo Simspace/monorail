@@ -24,14 +24,11 @@ const MULTIPLE_SYMBOL = Symbol()
 
 export interface DataGridToolbarProps {
   children?: React.ReactNode
-  onSearchChange?: SearchProps['onChange']
+  disableQuickFilter?: boolean
   disableSortBy?: boolean
   disableViewStyleToggle?: boolean
   componentsProps?: {
-    search?: Omit<
-      Partial<SearchProps & DataAttributes>,
-      'onChange' | 'onChangeDebounced'
-    >
+    search?: Partial<SearchProps & DataAttributes>
   }
 }
 
@@ -40,7 +37,7 @@ export function DataGridToolbar(props: DataGridToolbarProps) {
     children,
     disableSortBy,
     disableViewStyleToggle,
-    onSearchChange = () => {},
+    disableQuickFilter,
     componentsProps = {},
   } = props
 
@@ -61,15 +58,15 @@ export function DataGridToolbar(props: DataGridToolbarProps) {
   const handleSearchChangeDebounced = React.useCallback(
     (event: React.SyntheticEvent, value: string, reason: 'input' | 'clear') => {
       // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
-      if (apiRef.current.setFilterModel) {
+      if (disableQuickFilter !== true && apiRef.current.setFilterModel) {
         apiRef.current.setFilterModel({
           items: [],
           quickFilterValues: [value],
         })
       }
-      onSearchChange(event, value, reason)
+      componentsProps.search?.onChangeDebounced?.(event, value, reason)
     },
-    [apiRef, onSearchChange],
+    [apiRef, disableQuickFilter, componentsProps.search],
   )
 
   const searchProps: SearchProps = {
