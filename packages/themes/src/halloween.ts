@@ -1,1 +1,1 @@
-export { halloweenDarkTheme, halloweenLightTheme } from './halloween/theme.js'
+export { meteorDarkTheme, meteorLightTheme } from './meteor/theme.js'
