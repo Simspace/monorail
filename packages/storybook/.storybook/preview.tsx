@@ -4,8 +4,8 @@ import {
   classicDark,
   pcteDark,
   pcteLight,
-  halloweenDarkTheme,
-  halloweenLightTheme,
+  meteorDarkTheme,
+  meteorLightTheme,
   muiDark,
   muiLight,
   legacyLight,
@@ -72,7 +72,7 @@ enum ThemeOption {
   Classic = 'Classic',
   Legacy = 'Legacy',
   PCTE = 'PCTE',
-  Halloween = 'Halloween',
+  Meteor = 'Meteor',
   MUI = 'MUI',
 }
 
@@ -89,7 +89,7 @@ export const globalTypes = {
         ThemeOption.Classic,
         ThemeOption.Legacy,
         ThemeOption.PCTE,
-        ThemeOption.Halloween,
+        ThemeOption.Meteor,
         ThemeOption.MUI,
       ],
       title: true,
@@ -132,8 +132,8 @@ export const withTheme: DecoratorFn = (Story, context) => {
           return legacyDark
         case ThemeOption.PCTE:
           return pcteDark
-        case ThemeOption.Halloween:
-          return halloweenDarkTheme
+        case ThemeOption.Meteor:
+          return meteorDarkTheme
         case ThemeOption.MUI:
           return muiDark
       }
@@ -145,8 +145,8 @@ export const withTheme: DecoratorFn = (Story, context) => {
         return legacyLight
       case ThemeOption.PCTE:
         return pcteLight
-      case ThemeOption.Halloween:
-        return halloweenLightTheme
+      case ThemeOption.Meteor:
+        return meteorLightTheme
       case ThemeOption.MUI:
         return muiLight
     }

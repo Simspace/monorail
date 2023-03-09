@@ -8,7 +8,7 @@ import type {
 import { alpha, createTheme } from '@mui/material'
 
 import { getThemeComponents } from '@monorail/themes/classic/theme/themeComponents'
-import { baseTheme } from '@monorail/themes/halloween/theme/baseTheme'
+import { baseTheme } from '@monorail/themes/meteor/theme/baseTheme'
 
 // #region Raw Colors (Option Tokens)
 /**
@@ -470,15 +470,15 @@ const components: ThemeOptions['components'] = getThemeComponents(
   themeWithoutComponents,
 )
 
-/** The Halloween light theme which combines:
+/** The Meteor light theme which combines:
  * - `baseTheme`
  * - Extended color tokens
  * - `themeComponents` component overrides
  */
-export const halloweenLightTheme: Theme = createTheme(
+export const meteorLightTheme: Theme = createTheme(
   {
     ...themeWithoutComponents,
-    name: 'halloweenLight',
+    name: 'meteorLight',
     components: components,
   },
   {},

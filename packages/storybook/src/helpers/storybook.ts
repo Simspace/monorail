@@ -15,8 +15,8 @@ import type {
 import { classicLight } from '@monorail/themes'
 import { RawColor as ClassicDarkRawColors } from '@monorail/themes/classic/theme/dark'
 import { RawColor as ClassicLightRawColors } from '@monorail/themes/classic/theme/light'
-import { RawColor as HalloweenDarkRawColors } from '@monorail/themes/halloween/theme/dark'
-import { RawColor as HalloweenLightRawColors } from '@monorail/themes/halloween/theme/light'
+import { RawColor as MeteorDarkRawColors } from '@monorail/themes/meteor/theme/dark'
+import { RawColor as MeteorLightRawColors } from '@monorail/themes/meteor/theme/light'
 import { RawColor as MuiRawColors } from '@monorail/themes/mui/theme'
 import { RawColor as PcteDarkRawColors } from '@monorail/themes/pcte/theme/dark'
 import { RawColor as PcteLightRawColors } from '@monorail/themes/pcte/theme/light'
@@ -254,9 +254,9 @@ export const getRawColorObject = (themeName: ThemeName) => {
       return PcteLightRawColors
     case ThemeName.PCTEDark:
       return PcteDarkRawColors
-    case ThemeName.HalloweenLight:
-      return HalloweenLightRawColors
-    case ThemeName.HalloweenDark:
-      return HalloweenDarkRawColors
+    case ThemeName.MeteorLight:
+      return MeteorLightRawColors
+    case ThemeName.MeteorDark:
+      return MeteorDarkRawColors
   }
 }
