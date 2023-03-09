@@ -10,7 +10,7 @@ import {
 
 import { MenuItem } from '@monorail/components/MenuItem'
 import type { DataAttributes } from '@monorail/types'
-import { combineSxProps } from '@monorail/utils'
+import { combineSxProps, useForceUpdate } from '@monorail/utils'
 
 import { Box } from '../../Box.js'
 import type { SearchProps } from '../../Search.js'
@@ -54,46 +54,6 @@ export function DataGridToolbar(props: DataGridToolbarProps) {
     },
     [apiRef],
   )
-
-  const handleSearchChangeDebounced = React.useCallback(
-    (event: React.SyntheticEvent, value: string, reason: 'input' | 'clear') => {
-      // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
-      if (disableQuickFilter !== true && apiRef.current.setFilterModel) {
-        apiRef.current.setFilterModel({
-          items: [],
-          quickFilterValues: [value],
-        })
-      }
-      componentsProps.search?.onChangeDebounced?.(event, value, reason)
-    },
-    [apiRef, disableQuickFilter, componentsProps.search],
-  )
-
-  const searchProps: SearchProps = {
-    ...componentsProps.search,
-    placeholder: componentsProps.search?.placeholder ?? 'Search',
-    onChangeDebounced: handleSearchChangeDebounced,
-    debounceTime:
-      componentsProps.search?.debounceTime ?? SUBMIT_FILTER_STROKE_TIME,
-    sx: combineSxProps(
-      {
-        width: '100%',
-      },
-      componentsProps.search?.sx,
-    ),
-    componentsProps: {
-      ...componentsProps.search?.componentsProps,
-      Input: {
-        ...componentsProps.search?.componentsProps?.Input,
-        sx: combineSxProps(
-          theme => ({
-            backgroundColor: theme.palette.background.paper,
-          }),
-          componentsProps.search?.componentsProps?.Input?.sx,
-        ),
-      },
-    },
-  }
 
   const sortModel = useGridSelector(apiRef, gridSortModelSelector)
   const columnLookup = useGridSelector(apiRef, gridColumnLookupSelector)
@@ -161,7 +121,10 @@ export function DataGridToolbar(props: DataGridToolbarProps) {
           width: theme.spacing(120),
         })}
       >
-        <Search {...searchProps} />
+        <DataGridGlobalSearch
+          disableQuickFilter={disableQuickFilter}
+          {...componentsProps.search}
+        />
       </Box>
       {disableViewStyleToggle !== true && (
         <ToggleButtonGroup
@@ -181,5 +144,68 @@ export function DataGridToolbar(props: DataGridToolbarProps) {
         </ToggleButtonGroup>
       )}
     </Box>
+  )
+}
+
+interface DataGridGlobalSearchProps extends SearchProps {
+  disableQuickFilter?: boolean
+}
+
+function DataGridGlobalSearch(props: DataGridGlobalSearchProps) {
+  const { disableQuickFilter, ...others } = props
+
+  const apiRef = useGridApiContext()
+  const forceUpdate = useForceUpdate()
+  apiRef.current.state.globalSearch.forceUpdate = forceUpdate
+
+  const handleSearchChange = React.useCallback(
+    (event: React.SyntheticEvent, value: string, reason: 'input' | 'clear') => {
+      apiRef.current.setGlobalSearchValue(value)
+      others.onChange?.(event, value, reason)
+    },
+    [apiRef, others],
+  )
+
+  const handleSearchChangeDebounced = React.useCallback(
+    (event: React.SyntheticEvent, value: string, reason: 'input' | 'clear') => {
+      // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+      if (disableQuickFilter !== true && apiRef.current.setFilterModel) {
+        apiRef.current.setFilterModel({
+          items: [],
+          quickFilterValues: [value],
+        })
+      }
+      others.onChangeDebounced?.(event, value, reason)
+    },
+    [apiRef, disableQuickFilter, others],
+  )
+
+  return (
+    <Search
+      {...others}
+      value={apiRef.current.state.globalSearch.value}
+      placeholder={others.placeholder ?? 'Search'}
+      onChange={handleSearchChange}
+      onChangeDebounced={handleSearchChangeDebounced}
+      debounceTime={others?.debounceTime ?? SUBMIT_FILTER_STROKE_TIME}
+      sx={combineSxProps(
+        {
+          width: '100%',
+        },
+        others?.sx,
+      )}
+      componentsProps={{
+        ...others.componentsProps,
+        Input: {
+          ...others.componentsProps?.Input,
+          sx: combineSxProps(
+            theme => ({
+              backgroundColor: theme.palette.background.paper,
+            }),
+            others.componentsProps?.Input?.sx,
+          ),
+        },
+      }}
+    />
   )
 }

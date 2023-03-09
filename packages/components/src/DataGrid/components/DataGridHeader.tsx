@@ -2,7 +2,6 @@
 import React from 'react'
 import { useGridApiContext, useGridRootProps } from '@mui/x-data-grid-premium'
 
-import { useInitializeGridSubState } from '../hooks/useInitializeGridSubState.js'
 import { dataGridClasses } from '../internal.js'
 import type { DataGridToolbarProps } from './DataGridToolbar.js'
 import { DataGridToolbar } from './DataGridToolbar.js'
@@ -17,13 +16,6 @@ export function DataGridHeader(props: DataGridHeaderProps) {
   const { hideToolbar, galleryProps } = useGridRootProps()
 
   const { renderChildren, disableViewStyleToggle, ...others } = props
-
-  useInitializeGridSubState(apiRef, 'textFilter', () => new Map())
-  useInitializeGridSubState(apiRef, 'dateFilter', () => new Map())
-  useInitializeGridSubState(apiRef, 'enumFilter', () => new Map())
-  useInitializeGridSubState(apiRef, 'numericFilter', () => new Map())
-  useInitializeGridSubState(apiRef, 'filterSubscriptions', () => new Map())
-  useInitializeGridSubState(apiRef, 'toolbarSearchValue', () => '')
 
   const isGrouped = React.useMemo(
     () => apiRef.current.state?.rowGrouping?.model.length !== 0,

@@ -12,6 +12,9 @@ declare module '@mui/x-data-grid-premium/models/gridStatePremium' {
     textFilter: Map<string, TextFilterState>
     filterSubscriptions: Map<string, Set<(state: any) => void>>
     viewStyle: 'table' | 'gallery'
-    toolbarSearchValue: string
+    globalSearch: {
+      value: string
+      forceUpdate: () => void
+    }
   }
 }
