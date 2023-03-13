@@ -19,7 +19,7 @@ export enum RawColor {
   White = '#FFFFFF',
   Black = '#000000',
 
-  Grey050 = '#E5E5E6',
+  Grey050 = '#EAEAEB',
   Grey100 = '#D2D2D6',
   Grey200 = '#B8B8BE',
   Grey300 = '#96979F',
@@ -293,7 +293,7 @@ const palette: PaletteOptions = {
     border: {
       light: RawColor.Green400,
       main: RawColor.Green600,
-      dark: RawColor.Green700,
+      dark: RawColor.Green800,
     },
 
     focusRing: {
@@ -332,7 +332,7 @@ const palette: PaletteOptions = {
     border: {
       light: RawColor.Red400,
       main: RawColor.Red600,
-      dark: RawColor.Red700,
+      dark: RawColor.Red800,
     },
 
     focusRing: {
@@ -355,7 +355,7 @@ const palette: PaletteOptions = {
     light: RawColor.Yellow300,
     main: RawColor.Yellow500,
     dark: RawColor.Yellow600,
-    contrastText: RawColor.Grey700, // text.primary
+    contrastText: RawColor.Yellow900,
     hover: RawColor.Yellow600,
     active: RawColor.Yellow700,
 
@@ -363,7 +363,7 @@ const palette: PaletteOptions = {
       light: RawColor.Yellow200,
       main: RawColor.Yellow300,
       dark: RawColor.Yellow400,
-      contrastText: RawColor.Yellow900,
+      contrastText: RawColor.Yellow700,
       hover: alpha(RawColor.Yellow700, action.hoverOpacity),
       active: alpha(RawColor.Yellow700, action.activatedOpacity),
     },
