@@ -410,7 +410,7 @@ const palette: PaletteOptions = {
     border: {
       light: RawColor.Blue400,
       main: RawColor.Blue600,
-      dark: RawColor.Blue700,
+      dark: RawColor.Blue800,
     },
 
     focusRing: {
