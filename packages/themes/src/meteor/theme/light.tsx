@@ -164,16 +164,16 @@ enum Opacities {
 }
 
 const action: TypeAction = {
-  active: alpha(RawColor.Grey600, Opacities.Active),
+  active: alpha(RawColor.Orange600, Opacities.Active),
   activatedOpacity: Opacities.Active,
   disabled: RawColor.Grey300,
   disabledBackground: alpha(RawColor.Black, 0.32),
   disabledOpacity: Opacities.Disabled,
-  focus: alpha(RawColor.Grey600, Opacities.Focus),
+  focus: alpha(RawColor.Orange600, Opacities.Focus),
   focusOpacity: Opacities.Focus,
-  hover: alpha(RawColor.Grey600, Opacities.Hover),
+  hover: alpha(RawColor.Orange600, Opacities.Hover),
   hoverOpacity: Opacities.Hover,
-  selected: alpha(RawColor.Grey600, Opacities.Selected),
+  selected: alpha(RawColor.Orange600, Opacities.Selected),
   selectedOpacity: Opacities.Selected,
 }
 
@@ -202,8 +202,8 @@ const palette: PaletteOptions = {
       main: RawColor.Grey200,
       dark: RawColor.Grey300,
       contrastText: RawColor.Grey500,
-      hover: alpha(RawColor.Grey600, action.hoverOpacity),
-      active: alpha(RawColor.Grey600, action.activatedOpacity),
+      hover: RawColor.Grey100,
+      active: RawColor.Grey200,
     },
 
     border: {
@@ -247,8 +247,8 @@ const palette: PaletteOptions = {
       main: RawColor.Grey200,
       dark: RawColor.Grey300,
       contrastText: RawColor.Grey500,
-      hover: alpha(RawColor.Grey600, action.hoverOpacity),
-      active: alpha(RawColor.Grey600, action.activatedOpacity),
+      hover: RawColor.Grey100,
+      active: RawColor.Grey200,
     },
 
     border: {
@@ -286,8 +286,8 @@ const palette: PaletteOptions = {
       main: RawColor.Green300,
       dark: RawColor.Green400,
       contrastText: RawColor.Green600,
-      hover: alpha(RawColor.Green600, action.hoverOpacity),
-      active: alpha(RawColor.Green600, action.activatedOpacity),
+      hover: RawColor.Green200,
+      active: RawColor.Green300,
     },
 
     border: {
@@ -325,8 +325,8 @@ const palette: PaletteOptions = {
       main: RawColor.Red300,
       dark: RawColor.Red400,
       contrastText: RawColor.Red600,
-      hover: alpha(RawColor.Red600, action.hoverOpacity),
-      active: alpha(RawColor.Red600, action.activatedOpacity),
+      hover: RawColor.Red200,
+      active: RawColor.Red300,
     },
 
     border: {
@@ -364,8 +364,8 @@ const palette: PaletteOptions = {
       main: RawColor.Yellow300,
       dark: RawColor.Yellow400,
       contrastText: RawColor.Yellow700,
-      hover: alpha(RawColor.Yellow700, action.hoverOpacity),
-      active: alpha(RawColor.Yellow700, action.activatedOpacity),
+      hover: RawColor.Yellow200,
+      active: RawColor.Yellow300,
     },
 
     border: {
@@ -403,8 +403,8 @@ const palette: PaletteOptions = {
       main: RawColor.Blue300,
       dark: RawColor.Blue400,
       contrastText: RawColor.Blue600,
-      hover: alpha(RawColor.Blue600, action.hoverOpacity),
-      active: alpha(RawColor.Blue600, action.activatedOpacity),
+      hover: RawColor.Blue200,
+      active: RawColor.Blue300,
     },
 
     border: {
