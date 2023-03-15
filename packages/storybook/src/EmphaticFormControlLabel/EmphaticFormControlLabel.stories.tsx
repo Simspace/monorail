@@ -56,7 +56,7 @@ export const States = story(args => {
         <EmphaticFormControlLabel
           label="Checkbox"
           control={Checkbox}
-          componentsProps={{
+          slotProps={{
             control: {
               checkedIcon: <CheckBoxWarning />,
             },
@@ -68,7 +68,7 @@ export const States = story(args => {
         <EmphaticFormControlLabel
           label="Checkbox"
           control={Checkbox}
-          componentsProps={{
+          slotProps={{
             control: {
               checkedIcon: <CheckBoxError />,
             },
@@ -90,7 +90,7 @@ export const States = story(args => {
         <EmphaticFormControlLabel
           label="Radio"
           control={Radio}
-          componentsProps={{
+          slotProps={{
             control: {
               checkedIcon: <Error />,
             },
@@ -102,7 +102,7 @@ export const States = story(args => {
         <EmphaticFormControlLabel
           label="Radio"
           control={Radio}
-          componentsProps={{
+          slotProps={{
             control: {
               checkedIcon: <Cancel />,
             },
@@ -114,7 +114,7 @@ export const States = story(args => {
         <EmphaticFormControlLabel
           label="Radio"
           control={Radio}
-          componentsProps={{
+          slotProps={{
             control: {
               checkedIcon: <CheckCircle />,
             },

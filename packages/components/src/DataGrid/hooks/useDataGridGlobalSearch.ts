@@ -1,12 +1,12 @@
 import React from 'react'
 import type { DataGridPremiumProcessedProps } from '@mui/x-data-grid-premium/models/dataGridPremiumProps'
-import type { GridApiPremium } from '@mui/x-data-grid-premium/models/gridApiPremium'
+import type { GridPrivateApiPremium } from '@mui/x-data-grid-premium/models/gridApiPremium'
 
 import { useGridApiMethod } from '../internal.js'
 
 export function useDataGridGlobalSearch(
-  apiRef: React.MutableRefObject<GridApiPremium>,
-  _props: Pick<DataGridPremiumProcessedProps, 'componentsProps'>,
+  apiRef: React.MutableRefObject<GridPrivateApiPremium>,
+  _props: Pick<DataGridPremiumProcessedProps, 'slotProps'>,
 ): void {
   const setGlobalSearchValue = React.useCallback(
     (value: string) => {
@@ -16,5 +16,5 @@ export function useDataGridGlobalSearch(
     [apiRef],
   )
 
-  useGridApiMethod(apiRef, { setGlobalSearchValue }, 'globalSearchApi')
+  useGridApiMethod(apiRef, { setGlobalSearchValue }, 'public')
 }

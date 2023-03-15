@@ -2,7 +2,7 @@
 import React from 'react'
 
 import type { DesktopTimePickerProps } from '@monorail/components'
-import { DesktopTimePicker, TextField } from '@monorail/components'
+import { DesktopTimePicker } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 
@@ -33,9 +33,6 @@ const Template = story<DesktopTimePickerProps<Date>>(
         onChange={newValue => {
           setValue(newValue)
         }}
-        renderInput={params => (
-          <TextField id="picker" aria-label="time picker" {...params} />
-        )}
         {...args}
       />
     )

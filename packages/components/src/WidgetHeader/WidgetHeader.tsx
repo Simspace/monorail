@@ -54,7 +54,7 @@ export const WidgetHeader = React.forwardRef(function WidgetHeader(
 
   const {
     className,
-    componentsProps = {},
+    slotProps = {},
     title: titleProp,
     subtitle: subtitleProp = null,
     children,
@@ -69,11 +69,11 @@ export const WidgetHeader = React.forwardRef(function WidgetHeader(
       <Typography
         component="span"
         variant="subtitle1"
-        className={clsx(classes.title, componentsProps.title?.className)}
+        className={clsx(classes.title, slotProps.title?.className)}
         lineClamp={1}
         flexShrink={1}
         minWidth={0}
-        {...componentsProps.title}
+        {...slotProps.title}
       >
         {title}
       </Typography>
@@ -90,11 +90,11 @@ export const WidgetHeader = React.forwardRef(function WidgetHeader(
         component="span"
         variant="subtitle2"
         color={theme => theme.palette.text.secondary}
-        className={clsx(classes.subtitle, componentsProps.subtitle?.className)}
+        className={clsx(classes.subtitle, slotProps.subtitle?.className)}
         flexShrink={1}
         lineClamp={1}
         minWidth={0}
-        {...componentsProps.subtitle}
+        {...slotProps.subtitle}
       >
         {subtitle}
       </Typography>

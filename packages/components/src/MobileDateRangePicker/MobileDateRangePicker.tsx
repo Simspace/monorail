@@ -14,9 +14,7 @@ import { MobileDateRangePicker as MuiMobileDateRangePicker } from '@mui/x-date-p
 export const MobileDateRangePicker: typeof MuiMobileDateRangePicker =
   MuiMobileDateRangePicker
 
-export interface MobileDateRangePickerProps<
-  TInputDate = Date,
-  TDate = TInputDate,
-> extends MuiMobileDateRangePickerProps<TInputDate, TDate> {}
+export interface MobileDateRangePickerProps<TDate = Date>
+  extends MuiMobileDateRangePickerProps<TDate> {}
 
 export * from '@mui/x-date-pickers-pro/MobileDateRangePicker'

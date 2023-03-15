@@ -46,11 +46,11 @@
   },
   "devDependencies": {
     "@monorail/scripts": "workspace:*",
-    "@mui/icons-material": "5.10.9",
-    "@mui/lab": "5.0.0-alpha.107",
-    "@mui/material": "5.10.13",
-    "@mui/system": "5.10.13",
-    "@mui/x-date-pickers-pro": "5.0.7",
+    "@mui/icons-material": "5.11.11",
+    "@mui/lab": "5.0.0-alpha.122",
+    "@mui/material": "5.11.13",
+    "@mui/system": "5.11.13",
+    "@mui/x-date-pickers-pro": "6.0.1",
     "react": "17.0.2",
     "react-dom": "17.0.2"
   },

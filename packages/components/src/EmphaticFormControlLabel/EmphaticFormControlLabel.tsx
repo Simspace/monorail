@@ -126,7 +126,7 @@ const EmphaticFormControlLabelRoot = styled('label', {
 
 interface EmphaticFormControlLabelPropsInternal
   extends EmphaticFormControlLabelProps {
-  componentsProps?: {
+  slotProps?: {
     typography?: TypographyProps
     control?: { className?: string }
   }
@@ -155,7 +155,7 @@ export const EmphaticFormControlLabel = React.forwardRef(
       checked: checkedProp,
       defaultChecked,
       className,
-      componentsProps = {},
+      slotProps = {},
       control,
       disabled: disabledProp,
       disableTypography,
@@ -215,17 +215,14 @@ export const EmphaticFormControlLabel = React.forwardRef(
           component="span"
           variant="subtitle1"
           className={classes.label}
-          {...componentsProps.typography}
+          {...slotProps.typography}
         >
           {label}
         </Typography>
       )
     }
 
-    const controlClassName = clsx(
-      classes.control,
-      componentsProps.control?.className,
-    )
+    const controlClassName = clsx(classes.control, slotProps.control?.className)
 
     const controlProps = {
       checked,
@@ -234,7 +231,7 @@ export const EmphaticFormControlLabel = React.forwardRef(
       name,
       value,
       onChange: handleOnChange,
-      ...componentsProps.control,
+      ...slotProps.control,
       className: controlClassName,
     }
 

@@ -16,10 +16,10 @@ import { EnumFilter } from '../filters/EnumFilter.js'
 import { NumericFilter } from '../filters/NumericFilter.js'
 import { TextFilter } from '../filters/TextFilter.js'
 import type {
+  GridColDef,
   GridColumnHeaderEventLookup,
   GridColumnHeaderParams,
-  GridEnrichedColDef,
-  GridEventsStr,
+  GridEvents,
   GridSortDirection,
 } from '../internal.js'
 import {
@@ -72,19 +72,19 @@ export function DataGridColumnHeader(props: DataGridColumnHeaderProps) {
 
   const isFiltered =
     apiRef.current.state.filter.filterModel.items.find(
-      item => item.columnField === field,
+      item => item.field === field,
     ) !== undefined
 
   const publishEvent = React.useCallback(
     function <E extends keyof GridColumnHeaderEventLookup>(
       eventName: E,
-    ): (event: GridColumnHeaderEventLookup[E]['event']) => void {
+    ): (event: React.SyntheticEvent) => void {
       return event => {
         if (!event.currentTarget.contains(event.target as Element)) {
           return
         }
         apiRef.current.publishEvent(
-          eventName as GridEventsStr,
+          eventName as GridEvents,
           apiRef.current.getColumnHeaderParams(field),
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           event as any,
@@ -147,7 +147,7 @@ export function DataGridColumnHeader(props: DataGridColumnHeaderProps) {
             size="small"
             tabIndex={-1}
             onClick={handleFilterButtonClick}
-            {...colDef.filter.componentsProps?.columnHeaderButton}
+            {...colDef.filter.slotProps?.columnHeaderButton}
           >
             <Badge color="primary" variant="dot" invisible={!isFiltered}>
               <Filter />
@@ -201,7 +201,7 @@ export function DataGridColumnHeader(props: DataGridColumnHeaderProps) {
 }
 
 interface DataGridColumnHeaderLabelProps extends GridColumnHeaderParams {
-  originalColDef?: GridEnrichedColDef
+  originalColDef?: GridColDef
 }
 
 function DataGridColumnHeaderLabel(props: DataGridColumnHeaderLabelProps) {

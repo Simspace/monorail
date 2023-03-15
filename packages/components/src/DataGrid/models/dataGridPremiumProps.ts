@@ -1,10 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import type React from 'react'
 import type { GridChildComponentProps } from 'react-window'
-import type {
-  DataGridPremiumProps as MuiDataGridPremiumProps,
-  GridSlotsComponentsProps as MuiGridSlotsComponentsProps,
-} from '@mui/x-data-grid-premium'
 
 import type { DataGridFooterProps } from '../components/DataGridFooter.js'
 import type { DataGridHeaderProps } from '../components/DataGridHeader.js'
@@ -25,18 +21,14 @@ interface GalleryProps<R extends GridValidRowModel = any> {
   renderCard: (params: RenderCardParams<R>) => React.ReactElement | null
 }
 
-export interface GridSlotsComponentsProps
-  extends Omit<MuiGridSlotsComponentsProps, 'header' | 'footer'> {
-  header?: Partial<DataGridHeaderProps>
-  footer?: Partial<DataGridFooterProps>
+declare module '@mui/x-data-grid/models/gridSlotsComponentsProps' {
+  interface FooterPropsOverrides
+    extends Partial<DataGridFooterProps>,
+      Record<string, unknown> {}
+  interface ToolbarPropsOverrides
+    extends Partial<DataGridHeaderProps>,
+      Record<string, unknown> {}
 }
-
-export interface DataGridPremiumProps<R extends GridValidRowModel = any>
-  extends Omit<MuiDataGridPremiumProps<R>, 'componentsProps'> {
-  componentsProps?: GridSlotsComponentsProps
-}
-
-export type { DataGridPremiumProps as DataGridProps }
 
 declare module '@mui/x-data-grid-premium/models/dataGridPremiumProps' {
   interface DataGridPremiumProps<R extends GridValidRowModel = any> {

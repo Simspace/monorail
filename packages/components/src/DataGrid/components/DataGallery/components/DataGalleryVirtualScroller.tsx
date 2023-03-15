@@ -1,9 +1,10 @@
 /* eslint-disable @typescript-eslint/strict-boolean-expressions */
 import React from 'react'
 import { FixedSizeGrid } from 'react-window'
+import { getTotalHeaderHeight } from '@mui/x-data-grid/hooks/features/columns/gridColumnsUtils'
 import { useGridVisibleRows } from '@mui/x-data-grid/internals'
 import {
-  gridDensityTotalHeaderHeightSelector,
+  gridDensityFactorSelector,
   useGridApiContext,
   useGridRootProps,
   useGridSelector,
@@ -23,10 +24,12 @@ export const DataGalleryVirtualScroller = React.forwardRef<
   const rootProps = useGridRootProps()
   const apiRef = useGridApiContext()
   const currentPage = useGridVisibleRows(apiRef, rootProps)
-  const totalHeaderHeight = useGridSelector(
+  const densityFactor = useGridSelector(apiRef, gridDensityFactorSelector)
+  const totalHeaderHeight = getTotalHeaderHeight(
     apiRef,
-    gridDensityTotalHeaderHeightSelector,
+    rootProps.columnHeaderHeight,
   )
+  const headerHeight = Math.floor(rootProps.columnHeaderHeight * densityFactor)
 
   const handleResize = React.useCallback(() => {
     const { width, height } = getItemDimensions(
@@ -64,7 +67,7 @@ export const DataGalleryVirtualScroller = React.forwardRef<
       columnWidth={itemWidth}
       rowHeight={itemHeight}
       width={width}
-      height={height - totalHeaderHeight}
+      height={height - headerHeight}
     >
       {params => {
         const index = params.rowIndex * columnCount + params.columnIndex

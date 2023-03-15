@@ -31,7 +31,7 @@ export interface SearchProps
    * The props used for each slot inside.
    * @default {}
    */
-  componentsProps?: {
+  slotProps?: {
     /**
      * Props applied to the [`IconButton`](https://mui.com/material-ui/api/icon-button/) element.
      */

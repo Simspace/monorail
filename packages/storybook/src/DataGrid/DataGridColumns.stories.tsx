@@ -12,7 +12,6 @@ import {
 
 import type {
   DataGridProps,
-  GridCellValue,
   GridColDef,
   GridColTypeDef,
   GridRenderCellParams,
@@ -248,37 +247,6 @@ To set a minimum width for a \`flex\` column set the \`minWidth\` property in \`
   },
 )
 
-export const ColumnHidingGrid = story<DataGridProps>(
-  args => {
-    const rows = [
-      {
-        id: 1,
-        username: '@MaterialUI',
-        age: 20,
-      },
-    ]
-    return (
-      <div style={{ height: 250, width: '100%' }}>
-        <DataGrid
-          columns={[{ field: 'id', hide: true }]}
-          rows={rows}
-          {...args}
-        />
-      </div>
-    )
-  },
-  {
-    parameters: {
-      docs: {
-        description: {
-          story:
-            'Set the column definition attribute `hide` to `true` to hide the column.',
-        },
-      },
-    },
-  },
-)
-
 export const ColumnSizingGrid = story(() => {
   return <></>
 })
@@ -307,8 +275,10 @@ To capture changes in the width of a column there are two callbacks that are cal
 
 //#region Value getter
 const getFullName = (params: GridValueGetterParams) => {
-  return `${params.getValue(params.id, 'firstName') ?? ''} ${
-    params.getValue(params.id, 'lastName') ?? ''
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+  return `${(params.row.firstName as string) ?? ''} ${
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+    (params.row.lastName as string) ?? ''
   }`
 }
 
@@ -467,7 +437,7 @@ export const ValueParserGrid = story<DataGridProps>(
                 ).toLocaleString()
                 return `${valueFormatted} %`
               },
-              valueParser: (value: GridCellValue) => Number(value) / 100,
+              valueParser: value => Number(value) / 100,
             },
           ]}
         />
@@ -688,7 +658,7 @@ const GridCellExpand = React.memo(function GridCellExpand(
   )
 })
 
-function renderCellExpand(params: GridRenderCellParams<string>) {
+function renderCellExpand(params: GridRenderCellParams<{}, string>) {
   return (
     <GridCellExpand
       value={

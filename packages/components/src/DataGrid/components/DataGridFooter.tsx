@@ -48,7 +48,7 @@ function DataGridSimpleFooter() {
   const rowCount = useGridSelector(apiRef, gridRowCountSelector)
   return (
     <SelectionFooter
-      selectedCount={apiRef.current.state.selection.length}
+      selectedCount={apiRef.current.state.rowSelection.length}
       shownCount={rowCount}
       totalCount={rowCount}
     />
@@ -119,7 +119,7 @@ export function DataGridPaginationFooter(props: DataGridFooterProps) {
       <Stack height={1} direction="row" justifyContent="space-between">
         <Box display="flex" flex="1 1 0" alignItems="center">
           <Typography variant="body2">
-            {apiRef.current.state.selection.length} Selected
+            {apiRef.current.state.rowSelection.length} Selected
           </Typography>
         </Box>
         <Pagination
@@ -168,7 +168,7 @@ export function DataGridPaginationFooter(props: DataGridFooterProps) {
                   <MenuItem value={100}>100</MenuItem>
                 </Select>
               }
-              componentsProps={{
+              slotProps={{
                 typography: {
                   marginRight: 2,
                   variant: 'subtitle1',

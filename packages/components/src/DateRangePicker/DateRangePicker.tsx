@@ -14,7 +14,8 @@ import { DateRangePicker as MuiDateRangePicker } from '@mui/x-date-pickers-pro'
  */
 export const DateRangePicker: typeof MuiDateRangePicker = MuiDateRangePicker
 
-export interface DateRangePickerProps<TInputDate = Date, TDate = TInputDate>
-  extends MuiDateRangePickerProps<TInputDate, TDate> {}
+export interface DateRangePickerProps<TDate = Date>
+  extends MuiDateRangePickerProps<TDate> {}
 
 export * from '@mui/x-date-pickers-pro/DateRangePicker'
+export type { DateRange } from '@mui/x-date-pickers-pro'

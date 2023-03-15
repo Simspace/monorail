@@ -14,9 +14,7 @@ import { StaticDateRangePicker as MuiStaticDateRangePicker } from '@mui/x-date-p
 export const StaticDateRangePicker: typeof MuiStaticDateRangePicker =
   MuiStaticDateRangePicker
 
-export interface StaticDateRangePickerProps<
-  TInputDate = Date,
-  TDate = TInputDate,
-> extends MuiStaticDateRangePickerProps<TInputDate, TDate> {}
+export interface StaticDateRangePickerProps<TDate = Date>
+  extends MuiStaticDateRangePickerProps<TDate> {}
 
 export * from '@mui/x-date-pickers-pro/StaticDateRangePicker'

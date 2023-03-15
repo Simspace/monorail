@@ -15,8 +15,8 @@ import type {
   GridFilterItem,
   GridFilterModel,
   GridFilterOperator,
-  GridRowData,
   GridRowModel,
+  GridValidRowModel,
 } from '@monorail/components'
 import {
   DataGrid,
@@ -52,8 +52,8 @@ const Template = story<DataGridProps>(args => {
         filterModel={{
           items: [
             {
-              columnField: 'commodity',
-              operatorValue: 'contains',
+              field: 'commodity',
+              operator: 'contains',
               value: 'rice',
             },
           ],
@@ -231,7 +231,7 @@ export const ExtendNumericOperator = story<DataGridProps>(args => {
   const columns = [...(data.columns as Array<GridColDef>)]
 
   const [filterModel, setFilterModel] = React.useState<GridFilterModel>({
-    items: [{ columnField: 'rating', value: '3.5', operatorValue: '>=' }],
+    items: [{ field: 'rating', value: '3.5', operator: '>=' }],
   })
 
   if (columns.length > 0) {
@@ -303,15 +303,18 @@ export const ColumnTypeFilteringGrid = story<DataGridProps>(args => {
   const { data } = useDemoData({ dataSet: 'Commodity', rowLength: 100 })
   const columns = React.useMemo(() => {
     if (data.columns.length > 0) {
-      const visibleFields = ['desk', 'commodity', 'totalPrice']
+      // const visibleFields = ['desk', 'commodity', 'totalPrice']
       const mappedColumns = data.columns.map(dataColumn => {
-        const mappedColumn: GridColDef = {
+        let mappedColumn: GridColDef = {
           ...dataColumn,
-          hide: visibleFields.indexOf((dataColumn as GridColDef).field) === -1,
+          // hide: visibleFields.indexOf((dataColumn as GridColDef).field) === -1,
         } as GridColDef
         if (mappedColumn.field === 'totalPrice') {
-          mappedColumn.type = 'price'
-          mappedColumn.width = 180
+          mappedColumn = {
+            ...mappedColumn,
+            ...priceColumnType,
+            width: 180,
+          }
         }
         return mappedColumn
       })
@@ -326,11 +329,8 @@ export const ColumnTypeFilteringGrid = story<DataGridProps>(args => {
         {...args}
         rows={data.rows}
         columns={columns}
-        columnTypes={{ price: priceColumnType }}
         filterModel={{
-          items: [
-            { columnField: 'totalPrice', value: '3000000', operatorValue: '>' },
-          ],
+          items: [{ field: 'totalPrice', value: '3000000', operator: '>' }],
         }}
       />
     </div>
@@ -360,9 +360,9 @@ const ratingOnlyOperators = [
     value: 'from',
     getApplyFilterFn: (filterItem: GridFilterItem) => {
       if (
-        filterItem.columnField === undefined ||
+        filterItem.field === undefined ||
         filterItem.value === undefined ||
-        filterItem.operatorValue === undefined
+        filterItem.operator === undefined
       ) {
         return null
       }
@@ -380,7 +380,7 @@ export const CustomRatingOperator = story<DataGridProps>(args => {
   const { data } = useDemoData({ dataSet: 'Employee', rowLength: 100 })
   const columns = [...(data.columns as Array<GridColDef>)]
   const [filterModel, setFilterModel] = React.useState<GridFilterModel>({
-    items: [{ columnField: 'rating', value: '3.5', operatorValue: 'from' }],
+    items: [{ field: 'rating', value: '3.5', operator: 'from' }],
   })
 
   if (columns.length > 0) {
@@ -446,7 +446,7 @@ In this demo, you can see how to create a completely new operator for the Rating
  */
 function loadServerRows(
   commodityFilterValue?: string,
-): Promise<Array<GridRowData>> {
+): Promise<Array<GridValidRowModel>> {
   const serverRows = [
     { id: '1', commodity: 'rice' },
     { id: '2', commodity: 'soybeans' },
@@ -455,7 +455,7 @@ function loadServerRows(
     { id: '5', commodity: 'oats' },
   ]
 
-  return new Promise<Array<GridRowData>>(resolve => {
+  return new Promise<Array<GridValidRowModel>>(resolve => {
     setTimeout(() => {
       if (commodityFilterValue === undefined) {
         resolve(serverRows)
@@ -728,12 +728,12 @@ export const QuickFilteringGrid = story<DataGridProps>(args => {
     maxColumns: 6,
   })
   const [searchText, setSearchText] = React.useState('')
-  const [rows, setRows] = React.useState<Array<GridRowData>>(data.rows)
+  const [rows, setRows] = React.useState<Array<GridValidRowModel>>(data.rows)
 
   const requestSearch = (searchValue: string) => {
     setSearchText(searchValue)
     const searchRegex = new RegExp(escapeRegExp(searchValue), 'i')
-    const filteredRows = data.rows.filter((row: GridRowData) => {
+    const filteredRows = data.rows.filter((row: GridValidRowModel) => {
       /* eslint-disable @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access */
       return Object.keys(row).some((field: any) => {
         return searchRegex.test(row[field].toString())

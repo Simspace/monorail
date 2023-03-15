@@ -7,10 +7,8 @@ import type {
   StaticDateRangePickerProps,
 } from '@monorail/components'
 import {
-  Box,
   LocalizationProvider,
   StaticDateRangePicker,
-  TextField,
 } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
@@ -36,13 +34,6 @@ const Template = story<StaticDateRangePickerProps<Date>>(args => {
         onChange={newValue => {
           setValue(newValue)
         }}
-        renderInput={(startProps, endProps) => (
-          <React.Fragment>
-            <TextField {...startProps} />
-            <Box sx={{ mx: 2 }}> to </Box>
-            <TextField {...endProps} />
-          </React.Fragment>
-        )}
         {...args}
       />
     </LocalizationProvider>

@@ -8,7 +8,7 @@ import { useDemoData } from '@mui/x-data-grid-generator'
 import type {
   DataGridProps,
   GridCellParams,
-  GridColumns,
+  GridColDef,
 } from '@monorail/components'
 import {
   DataGrid,
@@ -32,7 +32,7 @@ export default {
 
 const defaultTheme = createTheme()
 
-const columns: GridColumns = [
+const columns: Array<GridColDef> = [
   {
     field: 'first',
     headerClassName: 'super-app-theme--header',
@@ -180,7 +180,8 @@ export const StylingRowsGrid = story<DataGridProps>(args => {
         {...args}
         {...data}
         getRowClassName={params =>
-          `super-app-theme--${params.getValue(params.id, 'status')}`
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+          `super-app-theme--${params.row.status}`
         }
       />
     </div>
@@ -252,7 +253,7 @@ const useStylesStylingCells = makeStyles({
 export const StylingCellsGrid = story<DataGridProps>(args => {
   const classes = useStylesStylingCells()
 
-  const columns: GridColumns = [
+  const columns: Array<GridColDef> = [
     {
       field: 'name',
       cellClassName: 'super-app-theme--cell',
@@ -346,7 +347,7 @@ const useStylesStylingAllCells = makeStyles({
 
 export const StylingAllCells = story<DataGridProps>(args => {
   const classes = useStylesStylingAllCells()
-  const columns: GridColumns = [
+  const columns: Array<GridColDef> = [
     { field: 'city' },
     {
       field: 'oct',
@@ -537,10 +538,9 @@ export const AntDesignGrid = story<DataGridProps>(
           {...args}
           className={classes.root}
           checkboxSelection
-          pageSize={5}
-          rowsPerPageOptions={[5]}
-          components={{
-            Pagination: CustomPagination,
+          pageSizeOptions={[5]}
+          slots={{
+            pagination: CustomPagination,
           }}
           {...data}
         />

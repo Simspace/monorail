@@ -88,7 +88,7 @@ export const AvatarGroup = React.forwardRef(function AvatarGroup(
     children: childrenProp,
     className,
     component = 'div',
-    componentsProps = {},
+    slotProps = {},
     max = 5,
     spacing = 'medium',
     total,
@@ -170,12 +170,12 @@ export const AvatarGroup = React.forwardRef(function AvatarGroup(
         <AvatarGroupAvatar
           ownerState={ownerState}
           variant={variant}
-          {...componentsProps.additionalAvatar}
+          {...slotProps.additionalAvatar}
           className={clsx(
             classes.avatar,
-            componentsProps.additionalAvatar?.className,
+            slotProps.additionalAvatar?.className,
           )}
-          style={{ marginLeft, ...componentsProps.additionalAvatar?.style }}
+          style={{ marginLeft, ...slotProps.additionalAvatar?.style }}
         >
           +{extraAvatars}
         </AvatarGroupAvatar>

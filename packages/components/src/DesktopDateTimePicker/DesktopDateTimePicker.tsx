@@ -14,9 +14,7 @@ import { DesktopDateTimePicker as MuiDesktopDateTimePicker } from '@mui/x-date-p
 export const DesktopDateTimePicker: typeof MuiDesktopDateTimePicker =
   MuiDesktopDateTimePicker
 
-export interface DesktopDateTimePickerProps<
-  TInputDate = Date,
-  TDate = TInputDate,
-> extends MuiDesktopDateTimePickerProps<TInputDate, TDate> {}
+export interface DesktopDateTimePickerProps<TDate = Date>
+  extends MuiDesktopDateTimePickerProps<TDate> {}
 
 export * from '@mui/x-date-pickers/DesktopDateTimePicker'

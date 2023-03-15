@@ -1,7 +1,7 @@
 import React from 'react'
 import { capitalize } from '@mui/material'
 
-import type { DataGridProps, GridValueGetterParams } from '@monorail/components'
+import type { DataGridProps } from '@monorail/components'
 import {
   Box,
   Card,
@@ -97,10 +97,7 @@ const { columns } = createTable<FilterStoryRow>()(
     description: 'This column has a value getter and is not sortable.',
     sortable: false,
     minWidth: 160,
-    valueGetter: (params: GridValueGetterParams) =>
-      `${params.getValue(params.id, 'firstName') ?? ''} ${
-        params.getValue(params.id, 'lastName') ?? ''
-      }`,
+    valueGetter: params => `${params.row.firstName} ${params.row.lastName}`,
     filter: {
       type: 'text',
     },

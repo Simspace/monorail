@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import type React from 'react'
-import type { MenuItemProps, MenuProps, PopoverProps } from '@mui/material'
+import type { MenuItemProps, MenuProps } from '@mui/material'
 
 import type { RequireKeysUnion } from '@monorail/types'
 
@@ -32,15 +32,10 @@ export interface SplitButtonProps
    * The components used for each slot inside the Popup.
    * @default {}
    */
-  components?: {
+  slots?: {
     /**
-     * The component used for the popper.
-     * @default Popover
-     */
-    Popover?: React.JSXElementConstructor<PopoverProps>
-    /**
-     * The component used for the MenuList.
-     * @default MenuList
+     * The component used for the Menu.
+     * @default Menu
      */
     Menu?: React.JSXElementConstructor<MenuProps>
     /**
@@ -53,7 +48,7 @@ export interface SplitButtonProps
    * The props used for each slot inside the Popup.
    * @default {}
    */
-  componentsProps: {
+  slotProps: {
     /**
      * Props applied to the Menu element.
      * @default {}

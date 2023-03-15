@@ -18,7 +18,6 @@ import {
   MobileDateRangePicker,
   Stack,
   StaticDateRangePicker,
-  TextField,
   Typography,
 } from '@monorail/components'
 
@@ -49,19 +48,11 @@ const Template = story<DateRangePickerProps<Date>>(
     return (
       <LocalizationProvider dateAdapter={AdapterDateFns}>
         <DateRangePicker
-          startText="Check-in"
-          endText="Check-out"
+          localeText={{ start: 'Check-in', end: 'Check-out' }}
           value={value}
           onChange={newValue => {
             setValue(newValue)
           }}
-          renderInput={(startProps, endProps) => (
-            <React.Fragment>
-              <TextField id="start" {...startProps} />
-              <Box sx={{ mx: 2 }}> to </Box>
-              <TextField id="end" {...endProps} />
-            </React.Fragment>
-          )}
           {...args}
         />
       </LocalizationProvider>
@@ -94,13 +85,6 @@ export const StaticMode = story(
           onChange={newValue => {
             setValue(newValue)
           }}
-          renderInput={(startProps, endProps) => (
-            <React.Fragment>
-              <TextField id="start" {...startProps} />
-              <Box sx={{ mx: 2 }}> to </Box>
-              <TextField id="end" {...endProps} />
-            </React.Fragment>
-          )}
         />
       </LocalizationProvider>
     )
@@ -127,32 +111,18 @@ export const Responsiveness = story(
       <LocalizationProvider dateAdapter={AdapterDateFns}>
         <Stack spacing={3}>
           <MobileDateRangePicker
-            startText="Mobile start"
+            localeText={{ start: 'Mobile start' }}
             value={value}
             onChange={newValue => {
               setValue(newValue)
             }}
-            renderInput={(startProps, endProps) => (
-              <React.Fragment>
-                <TextField id="start" {...startProps} />
-                <Box sx={{ mx: 2 }}> to </Box>
-                <TextField id="end" {...endProps} />
-              </React.Fragment>
-            )}
           />
           <DesktopDateRangePicker
-            startText="Desktop start"
+            localeText={{ start: 'Desktop start' }}
             value={value}
             onChange={newValue => {
               setValue(newValue)
             }}
-            renderInput={(startProps, endProps) => (
-              <React.Fragment>
-                <TextField id="start2" {...startProps} />
-                <Box sx={{ mx: 2 }}> to </Box>
-                <TextField id="end2" {...endProps} />
-              </React.Fragment>
-            )}
           />
         </Stack>
       </LocalizationProvider>
@@ -187,35 +157,19 @@ export const FormProps = story(
         <Stack spacing={3}>
           <DateRangePicker
             disabled
-            startText="disabled start"
-            endText="disabled end"
+            localeText={{ start: 'disabled start', end: 'disabled end' }}
             value={value}
             onChange={newValue => {
               setValue(newValue)
             }}
-            renderInput={(startProps, endProps) => (
-              <React.Fragment>
-                <TextField id="start" {...startProps} />
-                <Box sx={{ mx: 2 }}> to </Box>
-                <TextField id="end" {...endProps} />
-              </React.Fragment>
-            )}
           />
           <DateRangePicker
             readOnly
-            startText="read-only start"
-            endText="read-only end"
+            localeText={{ start: 'read-only start', end: 'read-only end' }}
             value={value}
             onChange={newValue => {
               setValue(newValue)
             }}
-            renderInput={(startProps, endProps) => (
-              <React.Fragment>
-                <TextField id="start2" {...startProps} />
-                <Box sx={{ mx: 2 }}> to </Box>
-                <TextField id="end2" {...endProps} />
-              </React.Fragment>
-            )}
           />
         </Stack>
       </LocalizationProvider>
@@ -249,13 +203,6 @@ export const DifferentNumberOfMonths = story(
             onChange={newValue => {
               setValue(newValue)
             }}
-            renderInput={(startProps, endProps) => (
-              <React.Fragment>
-                <TextField id="start" {...startProps} />
-                <Box sx={{ mx: 2 }}> to </Box>
-                <TextField id="end" {...endProps} />
-              </React.Fragment>
-            )}
           />
           <Typography sx={{ mt: 2, mb: 1 }}>2 calendars</Typography>
           <DateRangePicker
@@ -264,13 +211,6 @@ export const DifferentNumberOfMonths = story(
             onChange={newValue => {
               setValue(newValue)
             }}
-            renderInput={(startProps, endProps) => (
-              <React.Fragment>
-                <TextField id="start2" {...startProps} />
-                <Box sx={{ mx: 2 }}> to </Box>
-                <TextField id="end2" {...endProps} />
-              </React.Fragment>
-            )}
           />
           <Typography sx={{ mt: 2, mb: 1 }}>3 calendars</Typography>
           <DateRangePicker
@@ -279,13 +219,6 @@ export const DifferentNumberOfMonths = story(
             onChange={newValue => {
               setValue(newValue)
             }}
-            renderInput={(startProps, endProps) => (
-              <React.Fragment>
-                <TextField id="start3" {...startProps} />
-                <Box sx={{ mx: 2 }}> to </Box>
-                <TextField id="end3" {...endProps} />
-              </React.Fragment>
-            )}
           />
         </Box>
       </LocalizationProvider>
@@ -322,13 +255,6 @@ export const DisablingDates = story(
           onChange={newValue => {
             setValue(newValue)
           }}
-          renderInput={(startProps, endProps) => (
-            <React.Fragment>
-              <TextField id="start" {...startProps} />
-              <Box sx={{ mx: 2 }}> to </Box>
-              <TextField id="end" {...endProps} />
-            </React.Fragment>
-          )}
         />
       </LocalizationProvider>
     )
@@ -351,24 +277,17 @@ export const CustomInputComponent = story(
     return (
       <LocalizationProvider dateAdapter={AdapterDateFns}>
         <DateRangePicker
-          label="Advanced keyboard"
           value={value}
           onChange={newValue => setValue(newValue)}
-          renderInput={(startProps, endProps) => (
-            <React.Fragment>
+          slots={{
+            textField: props => (
               <input
                 aria-label="start"
-                ref={startProps.inputRef as React.Ref<HTMLInputElement>}
-                {...startProps.inputProps}
+                ref={props.inputRef as React.Ref<HTMLInputElement>}
+                {...props.inputProps}
               />
-              <Box sx={{ mx: 1 }}> to </Box>
-              <input
-                aria-label="end"
-                ref={endProps.inputRef as React.Ref<HTMLInputElement>}
-                {...endProps.inputProps}
-              />
-            </React.Fragment>
-          )}
+            ),
+          }}
         />
       </LocalizationProvider>
     )
@@ -414,28 +333,15 @@ export const CustomizedDayRendering = story(
       new Date('2021-01-09T12:34:00.000Z'),
     ])
 
-    const renderWeekPickerDay = (
-      date: Date,
-      dateRangePickerDayProps: DateRangePickerDayProps<Date>,
-    ) => {
-      return <StyledDateRangePickerDay {...dateRangePickerDayProps} />
-    }
-
     return (
       <LocalizationProvider dateAdapter={AdapterDateFns}>
         <StaticDateRangePicker
           displayStaticWrapperAs="desktop"
-          label="date range"
           value={value}
           onChange={newValue => setValue(newValue)}
-          renderDay={renderWeekPickerDay}
-          renderInput={(startProps, endProps) => (
-            <React.Fragment>
-              <TextField id="start" {...startProps} />
-              <Box sx={{ mx: 2 }}> to </Box>
-              <TextField id="end" {...endProps} />
-            </React.Fragment>
-          )}
+          slots={{
+            day: StyledDateRangePickerDay,
+          }}
         />
       </LocalizationProvider>
     )

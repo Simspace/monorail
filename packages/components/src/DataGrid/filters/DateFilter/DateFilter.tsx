@@ -17,7 +17,6 @@ import { ChevronDoubleLeft, ChevronDoubleRight } from '../../../icons.js'
 import { MenuItem } from '../../../MenuItem.js'
 import type { SelectChangeEvent } from '../../../Select.js'
 import { Select } from '../../../Select.js'
-import { TextField } from '../../../TextField.js'
 import { useGridApiContext } from '../../internal.js'
 import { ClearFilterButton } from '../components/ClearFilterButton.js'
 import { FilterContainer } from '../components/FilterContainer.js'
@@ -50,7 +49,7 @@ export function DateFilter(inProps: DateFilterProps) {
     props: inProps,
   })
 
-  const { field, external, componentsProps = {} } = props
+  const { field, external, slotProps = {} } = props
 
   const classes = useUtilityClasses(props)
 
@@ -122,18 +121,19 @@ export function DateFilter(inProps: DateFilterProps) {
       case 'oneField': {
         return (
           <DatePicker
-            {...componentsProps.firstDatePicker}
-            components={{
-              ...componentsProps.firstDatePicker?.components,
-              OpenPickerIcon: getOpenPickerIcon(state.operator.key),
+            {...slotProps.firstDatePicker}
+            slots={{
+              ...slotProps.firstDatePicker?.slots,
+              openPickerIcon: getOpenPickerIcon(state.operator.key),
             }}
-            InputAdornmentProps={{
-              ...componentsProps.firstDatePicker?.InputAdornmentProps,
-              position: 'start',
+            slotProps={{
+              inputAdornment: {
+                ...slotProps.firstDatePicker?.slotProps?.inputAdornment,
+                position: 'start',
+              },
             }}
             value={state.first}
             onChange={handleFirstInputChange}
-            renderInput={params => <TextField {...params} />}
           />
         )
       }
@@ -141,32 +141,34 @@ export function DateFilter(inProps: DateFilterProps) {
         return (
           <>
             <DatePicker
-              {...componentsProps.firstDatePicker}
-              components={{
-                ...componentsProps.firstDatePicker?.components,
-                OpenPickerIcon: getOpenPickerIcon(state.operator.key),
+              {...slotProps.firstDatePicker}
+              slots={{
+                ...slotProps.firstDatePicker?.slots,
+                openPickerIcon: getOpenPickerIcon(state.operator.key),
               }}
-              InputAdornmentProps={{
-                ...componentsProps.firstDatePicker?.InputAdornmentProps,
-                position: 'start',
+              slotProps={{
+                inputAdornment: {
+                  ...slotProps.firstDatePicker?.slotProps?.inputAdornment,
+                  position: 'start',
+                },
               }}
               value={state.first}
               onChange={handleFirstInputChange}
-              renderInput={params => <TextField {...params} />}
             />
             <DatePicker
-              {...componentsProps.secondDatePicker}
-              components={{
-                ...componentsProps.secondDatePicker?.components,
-                OpenPickerIcon: getOpenPickerIcon(state.operator.key),
+              {...slotProps.secondDatePicker}
+              slots={{
+                ...slotProps.secondDatePicker?.slots,
+                openPickerIcon: getOpenPickerIcon(state.operator.key),
               }}
-              InputAdornmentProps={{
-                ...componentsProps.secondDatePicker?.InputAdornmentProps,
-                position: 'start',
+              slotProps={{
+                inputAdornment: {
+                  ...slotProps.secondDatePicker?.slotProps?.inputAdornment,
+                  position: 'start',
+                },
               }}
               value={state.second}
               onChange={handleSecondInputChange}
-              renderInput={params => <TextField {...params} />}
             />
           </>
         )
@@ -178,8 +180,8 @@ export function DateFilter(inProps: DateFilterProps) {
     state.second,
     handleFirstInputChange,
     handleSecondInputChange,
-    componentsProps.firstDatePicker,
-    componentsProps.secondDatePicker,
+    slotProps.firstDatePicker,
+    slotProps.secondDatePicker,
   ])
 
   return (
@@ -188,7 +190,7 @@ export function DateFilter(inProps: DateFilterProps) {
         onBlur={event => event.stopPropagation()}
         value={state.operator.key}
         onChange={handleOperatorSelectChange}
-        {...componentsProps.select}
+        {...slotProps.select}
       >
         {Object.values(dateOperators).map(value => (
           <MenuItem key={value.key} value={value.key}>
@@ -200,7 +202,7 @@ export function DateFilter(inProps: DateFilterProps) {
       <ClearFilterButton
         isFiltered={isChanged}
         onClick={handleClearFilterButtonClick}
-        {...componentsProps.clearFilterButton}
+        {...slotProps.clearFilterButton}
       >
         {apiRef.current.getLocaleText('DateFilter').clearFilterButton}
       </ClearFilterButton>

@@ -15,7 +15,7 @@ export interface TextFilterDefinition<
   F = V,
 > {
   type: 'text'
-  componentsProps?: {
+  slotProps?: {
     columnHeaderButton?: Partial<IconButtonProps & DataAttributes>
     select?: Omit<
       Partial<SelectProps<TextFilterOperator> & DataAttributes>,

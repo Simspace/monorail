@@ -12,7 +12,7 @@ export interface WidgetHeaderProps
   title: React.ReactChild
   subtitle?: React.ReactChild
   children?: React.ReactChild | ReadonlyArray<React.ReactChild>
-  componentsProps?: {
+  slotProps?: {
     title?: Partial<TypographyProps>
     subtitle?: Partial<TypographyProps>
   }

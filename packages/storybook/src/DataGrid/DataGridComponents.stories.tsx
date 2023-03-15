@@ -17,7 +17,8 @@ import {
   DataGrid,
   GridColumnMenu,
   GridColumnMenuContainer,
-  GridFilterMenuItem,
+  GridColumnMenuFilterItem,
+  GridColumnMenuSortItem,
   GridOverlay,
   gridPageCountSelector,
   gridPageSelector,
@@ -29,7 +30,6 @@ import {
   GridToolbarFilterButton,
   LinearProgress,
   Pagination,
-  SortGridMenuItems,
   useGridApiContext,
 } from '@monorail/components'
 
@@ -64,26 +64,26 @@ const CustomColumnMenuComponent = (
   props: GridColumnMenuProps & { color: string },
 ) => {
   const classes = useStyles()
-  const { hideMenu, currentColumn, ...other } = props
+  const { hideMenu, colDef, ...other } = props
 
-  if (currentColumn.field === 'name') {
+  if (colDef.field === 'name') {
     return (
       <GridColumnMenuContainer
         hideMenu={hideMenu}
-        currentColumn={currentColumn}
+        colDef={colDef}
         className={classes.primary}
         {...other}
       >
-        <SortGridMenuItems onClick={hideMenu} column={currentColumn!} />
-        <GridFilterMenuItem onClick={hideMenu} column={currentColumn!} />
+        <GridColumnMenuSortItem colDef={colDef} onClick={hideMenu} />
+        <GridColumnMenuFilterItem colDef={colDef} onClick={hideMenu} />
       </GridColumnMenuContainer>
     )
   }
-  if (currentColumn.field === 'stars') {
+  if (colDef.field === 'stars') {
     return (
       <GridColumnMenuContainer
         hideMenu={hideMenu}
-        currentColumn={currentColumn}
+        colDef={colDef}
         className={classes.primary}
         {...other}
       >
@@ -105,7 +105,7 @@ const CustomColumnMenuComponent = (
   return (
     <GridColumnMenu
       hideMenu={hideMenu}
-      currentColumn={currentColumn}
+      colDef={colDef}
       className={classes.primary}
       {...other}
     />
@@ -150,8 +150,8 @@ const Template = story<DataGridProps>(args => {
               default: 'Enterprise',
             },
           ]}
-          components={{
-            ColumnMenu: CustomColumnMenuComponent,
+          slots={{
+            columnMenu: CustomColumnMenuComponent,
           }}
         />
       </div>
@@ -402,10 +402,10 @@ export const CustomFooter = story<DataGridProps>(args => {
         <DataGrid
           {...args}
           {...data}
-          components={{
-            Footer: CustomFooterStatusComponent,
+          slots={{
+            footer: CustomFooterStatusComponent,
           }}
-          componentsProps={{
+          slotProps={{
             footer: { status },
           }}
         />
@@ -478,10 +478,9 @@ export const CustomPaginationGrid = story<DataGridProps>(args => {
       <DataGrid
         {...args}
         pagination
-        pageSize={5}
-        rowsPerPageOptions={[5]}
-        components={{
-          Pagination: CustomPagination,
+        pageSizeOptions={[5]}
+        slots={{
+          pagination: CustomPagination,
         }}
         {...data}
       />

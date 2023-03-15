@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/strict-boolean-expressions */
 import React from 'react'
+import type { GridStateColDef } from '@mui/x-data-grid/internals'
 
-import type { GridStateColDef } from '@monorail/components/DataGrid'
 import { DataGridColumnHeader } from '@monorail/components/DataGrid/components/DataGridColumnHeader'
 import { typographyClasses } from '@monorail/components/Typography'
 import { composeClasses, styled } from '@monorail/utils'

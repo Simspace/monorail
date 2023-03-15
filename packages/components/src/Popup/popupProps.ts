@@ -74,7 +74,7 @@ export interface PopupProps extends StandardElementProps<'div', 'title'> {
    * The props used for each slot inside the Popup.
    * @default {}
    */
-  componentsProps?: {
+  slotProps?: {
     arrow?: React.HTMLProps<HTMLSpanElement> & MUIStyledCommonProps
     /**
      * Props applied to the Popper element.

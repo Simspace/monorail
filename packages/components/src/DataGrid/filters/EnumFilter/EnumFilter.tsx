@@ -58,7 +58,7 @@ export function EnumFilter(inProps: EnumFilterProps) {
     values,
     external,
     compare,
-    componentsProps = {},
+    slotProps = {},
   } = props
 
   const classes = useUtilityClasses(props)
@@ -129,12 +129,12 @@ export function EnumFilter(inProps: EnumFilterProps) {
   }, [state, forceUpdate, syncFilter])
 
   const searchProps: TextFieldProps = {
-    ...componentsProps.search,
+    ...slotProps.search,
     size: 'medium',
-    placeholder: componentsProps.search?.placeholder ?? 'Search',
+    placeholder: slotProps.search?.placeholder ?? 'Search',
     InputProps: {
-      ...componentsProps.search?.InputProps,
-      startAdornment: componentsProps.search?.InputProps?.startAdornment ?? (
+      ...slotProps.search?.InputProps,
+      startAdornment: slotProps.search?.InputProps?.startAdornment ?? (
         <InputAdornment position="start">
           <Search />
         </InputAdornment>
@@ -143,7 +143,7 @@ export function EnumFilter(inProps: EnumFilterProps) {
         theme => ({
           borderRadius: theme.spacing(6),
         }),
-        componentsProps.search?.InputProps?.sx,
+        slotProps.search?.InputProps?.sx,
       ),
     },
     value: searchText,
@@ -152,7 +152,7 @@ export function EnumFilter(inProps: EnumFilterProps) {
       theme => ({
         margin: theme.spacing(4),
       }),
-      componentsProps.search?.sx,
+      slotProps.search?.sx,
     ),
     autoFocus: true,
   }
@@ -166,14 +166,14 @@ export function EnumFilter(inProps: EnumFilterProps) {
       <TextField {...searchProps} />
       <ScrollShadow bottom={isFiltered}>
         <List
-          {...componentsProps.list}
+          {...slotProps.list}
           disablePadding
           sx={combineSxProps(
             theme => ({
               maxHeight: theme.spacing(76),
               flexDirection: 'column',
             }),
-            componentsProps.list?.sx,
+            slotProps.list?.sx,
           )}
         >
           {filterMap(values, (value, index) => {
@@ -181,7 +181,7 @@ export function EnumFilter(inProps: EnumFilterProps) {
               const label = renderValue?.(value) ?? value
               return (
                 <EnumFilterItem
-                  {...componentsProps.listItem}
+                  {...slotProps.listItem}
                   key={index}
                   label={label}
                   checked={state.uiSelected.has(value)}
@@ -193,13 +193,13 @@ export function EnumFilter(inProps: EnumFilterProps) {
         </List>
       </ScrollShadow>
       <ClearFilterButton
-        {...componentsProps.clearFilterButton}
+        {...slotProps.clearFilterButton}
         sx={combineSxProps(
           theme => ({
             mb: isFiltered ? 0 : -8,
             padding: theme.spacing(4),
           }),
-          componentsProps.clearFilterButton?.sx,
+          slotProps.clearFilterButton?.sx,
         )}
         isFiltered={isFiltered}
         onClick={handleClearFilter}

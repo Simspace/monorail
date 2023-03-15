@@ -27,7 +27,7 @@ export interface DataGridToolbarProps {
   disableQuickFilter?: boolean
   disableSortBy?: boolean
   disableViewStyleToggle?: boolean
-  componentsProps?: {
+  slotProps?: {
     search?: Partial<SearchProps & DataAttributes>
   }
 }
@@ -38,7 +38,7 @@ export function DataGridToolbar(props: DataGridToolbarProps) {
     disableSortBy,
     disableViewStyleToggle,
     disableQuickFilter,
-    componentsProps = {},
+    slotProps = {},
   } = props
 
   const apiRef = useGridApiContext()
@@ -100,7 +100,7 @@ export function DataGridToolbar(props: DataGridToolbarProps) {
               backgroundColor: theme.palette.background.paper,
             })}
           >
-            {apiRef.current?.state?.columns.all.map(field => {
+            {apiRef.current?.state?.columns.orderedFields.map(field => {
               const colDef = apiRef.current.state.columns.lookup[field]
               if (colDef.sortable !== false) {
                 return (
@@ -123,7 +123,7 @@ export function DataGridToolbar(props: DataGridToolbarProps) {
       >
         <DataGridGlobalSearch
           disableQuickFilter={disableQuickFilter}
-          {...componentsProps.search}
+          {...slotProps.search}
         />
       </Box>
       {disableViewStyleToggle !== true && (
@@ -194,15 +194,15 @@ function DataGridGlobalSearch(props: DataGridGlobalSearchProps) {
         },
         others?.sx,
       )}
-      componentsProps={{
-        ...others.componentsProps,
+      slotProps={{
+        ...others.slotProps,
         Input: {
-          ...others.componentsProps?.Input,
+          ...others.slotProps?.Input,
           sx: combineSxProps(
             theme => ({
               backgroundColor: theme.palette.background.paper,
             }),
-            others.componentsProps?.Input?.sx,
+            others.slotProps?.Input?.sx,
           ),
         },
       }}

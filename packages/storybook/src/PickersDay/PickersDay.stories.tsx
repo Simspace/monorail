@@ -4,7 +4,7 @@ import { styled } from '@mui/material'
 import { endOfWeek, isSameDay, isWithinInterval, startOfWeek } from 'date-fns'
 
 import type { PickersDayProps } from '@monorail/components'
-import { PickersDay, StaticDatePicker, TextField } from '@monorail/components'
+import { PickersDay, StaticDatePicker } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 
@@ -56,25 +56,21 @@ const Template = story<PickersDayProps<Date>>(
       new Date('2021-01-01T12:34:00.000Z'),
     )
 
-    const renderWeekPickerDay = (
-      date: Date,
-      selectedDates: Array<Date | null>,
-      pickersDayProps: PickersDayProps<Date>,
-    ) => {
+    const renderWeekPickerDay = (props: PickersDayProps<Date>) => {
       if (!value) {
-        return <PickersDay {...pickersDayProps} />
+        return <PickersDay {...props} />
       }
 
       const start = startOfWeek(value)
       const end = endOfWeek(value)
 
-      const dayIsBetween = isWithinInterval(date, { start, end })
-      const isFirstDay = isSameDay(date, start)
-      const isLastDay = isSameDay(date, end)
+      const dayIsBetween = isWithinInterval(props.day, { start, end })
+      const isFirstDay = isSameDay(props.day, start)
+      const isLastDay = isSameDay(props.day, end)
 
       return (
         <CustomPickersDay
-          {...pickersDayProps}
+          {...props}
           disableMargin
           dayIsBetween={dayIsBetween}
           isFirstDay={isFirstDay}
@@ -87,14 +83,13 @@ const Template = story<PickersDayProps<Date>>(
     return (
       <StaticDatePicker
         displayStaticWrapperAs="desktop"
-        label="Week picker"
         value={value}
         onChange={newValue => {
           setValue(newValue)
         }}
-        renderDay={renderWeekPickerDay}
-        renderInput={params => <TextField {...params} />}
-        inputFormat="'Week of' MMM d"
+        slots={{
+          day: renderWeekPickerDay,
+        }}
       />
     )
   },

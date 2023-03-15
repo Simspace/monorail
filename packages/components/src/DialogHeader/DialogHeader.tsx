@@ -20,7 +20,7 @@ import {
 import type { DialogHeaderProps } from './dialogHeaderProps.js'
 
 interface DialogHeaderRootProps
-  extends Omit<DialogHeaderProps, 'title' | 'componentsProps'> {
+  extends Omit<DialogHeaderProps, 'title' | 'slotProps'> {
   ownerState: DialogHeaderProps
 }
 
@@ -77,7 +77,7 @@ export const DialogHeader = React.forwardRef(function DialogHeader(
     name: 'MonorailDialogHeader',
   })
 
-  const { className, title: titleProp, componentsProps, icon, ...other } = props
+  const { className, title: titleProp, slotProps, icon, ...other } = props
 
   const classes = useUtilityClasses(props)
 
@@ -91,7 +91,7 @@ export const DialogHeader = React.forwardRef(function DialogHeader(
         variant="h3"
         className={classes.title}
         flex="1 0 auto"
-        {...componentsProps.typography}
+        {...slotProps.typography}
       >
         {title}
       </Typography>
@@ -105,12 +105,12 @@ export const DialogHeader = React.forwardRef(function DialogHeader(
         onClick={() => {
           dialogEvents.onClose?.({}, 'headerCloseButtonClick')
         }}
-        {...componentsProps.closeButton}
+        {...slotProps.closeButton}
       >
         <Close />
       </IconButton>
     ),
-    [dialogEvents, componentsProps.closeButton],
+    [dialogEvents, slotProps.closeButton],
   )
 
   return (

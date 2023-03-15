@@ -2,7 +2,7 @@
 import React from 'react'
 
 import type { MobileTimePickerProps } from '@monorail/components'
-import { MobileTimePicker, TextField } from '@monorail/components'
+import { MobileTimePicker } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 
@@ -23,7 +23,6 @@ const Template = story<MobileTimePickerProps>(args => {
       onChange={newValue => {
         setValue(newValue as Date)
       }}
-      renderInput={params => <TextField {...params} />}
       {...args}
     />
   )

@@ -15,7 +15,7 @@ import { TimePicker as MuiTimePicker } from '@mui/x-date-pickers'
  */
 export const TimePicker: typeof MuiTimePicker = MuiTimePicker
 
-export interface TimePickerProps<TInputDate = Date, TDate = TInputDate>
-  extends MuiTimePickerProps<TInputDate, TDate> {}
+export interface TimePickerProps<TDate = Date>
+  extends MuiTimePickerProps<TDate> {}
 
 export * from '@mui/x-date-pickers/TimePicker'

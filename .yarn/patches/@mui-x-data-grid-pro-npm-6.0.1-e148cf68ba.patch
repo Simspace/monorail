@@ -1,0 +1,17 @@
+diff --git a/themeAugmentation/props.d.ts b/themeAugmentation/props.d.ts
+index ab08495311ae6bd8474e84149712b4313ae86641..15821a9c7188f0dc40295822639da7c0fb09a96c 100644
+--- a/themeAugmentation/props.d.ts
++++ b/themeAugmentation/props.d.ts
+@@ -9,9 +9,11 @@ export interface DataGridProComponents<Theme = unknown> {
+         styleOverrides?: ComponentsOverrides<Theme>['MuiDataGrid'];
+     };
+ }
+-declare module '@mui/material/styles' {
++declare module '@mui/material/styles/props' {
+     interface ComponentsPropsList extends DataGridProComponentsPropsList {
+     }
++}
++declare module '@mui/material/styles/components' {
+     interface Components<Theme = unknown> extends DataGridProComponents<Theme> {
+     }
+ }

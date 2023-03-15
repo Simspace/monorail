@@ -41,7 +41,6 @@ const Template = story<DateTimePickerProps<Date>>(
     return (
       <LocalizationProvider dateAdapter={AdapterDateFns}>
         <DateTimePicker
-          renderInput={props => <TextField {...props} />}
           label="DateTimePicker"
           value={value}
           onChange={newValue => {
@@ -112,29 +111,34 @@ export const Responsiveness = story<DateTimePickerProps<Date>>(
             onChange={newValue => {
               setValue(newValue)
             }}
-            renderInput={params => (
-              <TextField aria-label="mobile" id="mobile" {...params} />
-            )}
+            slotProps={{
+              textField: {
+                id: 'mobile-picker',
+              },
+            }}
           />
           <DesktopDateTimePicker
-            label="Desktop picker" // for some reason, the aria-label isn't being put on the input, so this is needed to pass a11y
             aria-label="desktop picker"
             value={value}
             onChange={newValue => {
               setValue(newValue)
             }}
-            renderInput={params => (
-              <TextField aria-label="desktop" id="desktop" {...params} />
-            )}
+            slotProps={{
+              textField: {
+                id: 'desktop-picker',
+              },
+            }}
           />
           <DateTimePicker
             aria-label="some other picker"
-            renderInput={params => (
-              <TextField aria-label="wut" id="wut" {...params} />
-            )}
             value={value}
             onChange={newValue => {
               setValue(newValue)
+            }}
+            slotProps={{
+              textField: {
+                id: 'some-other-picker',
+              },
             }}
             {...args}
           />
@@ -166,23 +170,19 @@ export const FormProps = story<DateTimePickerProps<Date>>(
       <LocalizationProvider dateAdapter={AdapterDateFns}>
         <Stack spacing={3}>
           <DateTimePicker
-            label="disabled"
             disabled
             value={value}
             onChange={newValue => {
               setValue(newValue)
             }}
-            renderInput={params => <TextField {...params} />}
             {...args}
           />
           <DateTimePicker
-            label="read-only"
             readOnly
             value={value}
             onChange={newValue => {
               setValue(newValue)
             }}
-            renderInput={params => <TextField {...params} />}
             {...args}
           />
         </Stack>
@@ -210,8 +210,6 @@ export const DateAndTimeValidation = story<DateTimePickerProps<Date>>(
       <LocalizationProvider dateAdapter={AdapterDateFns}>
         <Stack spacing={3}>
           <DateTimePicker
-            renderInput={params => <TextField {...params} />}
-            label="Ignore date and time"
             value={value}
             onChange={newValue => {
               setValue(newValue)
@@ -220,8 +218,6 @@ export const DateAndTimeValidation = story<DateTimePickerProps<Date>>(
             {...args}
           />
           <DateTimePicker
-            renderInput={params => <TextField {...params} />}
-            label="Ignore time in each day"
             value={value}
             onChange={newValue => {
               setValue(newValue)
@@ -264,7 +260,6 @@ export const StaticMode = story<DateTimePickerProps<Date>>(
           onChange={newValue => {
             setValue(newValue)
           }}
-          renderInput={params => <TextField {...params} />}
           {...args}
         />
       </LocalizationProvider>
@@ -294,25 +289,24 @@ export const Customization = story<DateTimePickerProps<Date>>(
         <Stack spacing={3}>
           <DateTimePicker
             disableFuture
-            hideTabs
             openTo="hours"
             value={value}
             onChange={newValue => {
               setValue(newValue)
             }}
             minDate={new Date('2018-01-01')}
-            components={{
-              LeftArrowIcon: AlarmIcon,
-              RightArrowIcon: SnoozeIcon,
-              OpenPickerIcon: ClockIcon,
+            slots={{
+              leftArrowIcon: AlarmIcon,
+              rightArrowIcon: SnoozeIcon,
+              openPickerIcon: ClockIcon,
             }}
-            leftArrowButtonText="Open previous month"
-            rightArrowButtonText="Open next month"
             minTime={new Date(0, 0, 0, 9)}
             maxTime={new Date(0, 0, 0, 20)}
-            renderInput={params => (
-              <TextField {...params} helperText="Hardcoded helper text" />
-            )}
+            slotProps={{
+              textField: {
+                helperText: 'Hardcoded helper text',
+              },
+            }}
             {...args}
           />
           <MobileDateTimePicker
@@ -325,16 +319,16 @@ export const Customization = story<DateTimePickerProps<Date>>(
             onError={console.log}
             // eslint-enable-next-line no-console
             minDate={new Date('2018-01-01T00:00')}
-            inputFormat="yyyy/MM/dd hh:mm a"
-            mask="___/__/__ __:__ _M"
-            renderInput={params => <TextField {...params} />}
+            format="yyyy/MM/dd hh:mm a"
           />
           <DateTimePicker
             value={clearedDate}
             onChange={newValue => setClearedDate(newValue)}
-            renderInput={params => (
-              <TextField {...params} helperText="Clear Initial State" />
-            )}
+            slotProps={{
+              textField: {
+                helperText: 'Clear Initial State',
+              },
+            }}
             {...args}
           />
         </Stack>

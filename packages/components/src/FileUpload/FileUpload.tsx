@@ -7,7 +7,7 @@ import DescriptionIcon from '@mui/icons-material/Description'
 import FileUploadIcon from '@mui/icons-material/FileUpload'
 import WarningIcon from '@mui/icons-material/Warning'
 import type { SxProps, Theme } from '@mui/material'
-import { experimental_sx, styled } from '@mui/material'
+import { styled } from '@mui/material'
 
 import { excludeProps, sx } from '@monorail/utils'
 import {
@@ -186,7 +186,7 @@ const DropTarget = styled('div', {
     'sx',
   ),
 })<DropTargetProps>(
-  ({ theme, onlyVisibleWhileDragging, isDragging, status, sx }) => {
+  ({ theme, onlyVisibleWhileDragging, isDragging, status, sx: sxProp }) => {
     const dropTargetStatusStyles: Record<string, CSSProperties> = {
       [DROP_TARGET_STATUS.Active]: {
         background: theme.palette.primary.lowEmphasis.light,
@@ -210,7 +210,7 @@ const DropTarget = styled('div', {
       },
     }
 
-    return experimental_sx({
+    return sx({
       boxSizing: 'border-box',
       position: 'relative',
       display: onlyVisibleWhileDragging && !isDragging ? 'none' : 'flex',
@@ -224,7 +224,7 @@ const DropTarget = styled('div', {
       justifyContent: 'center',
       textAlign: 'center',
       ...dropTargetStatusStyles[status],
-      ...(sx !== undefined && sx),
+      ...(sxProp !== undefined && sxProp),
     })
   },
 )

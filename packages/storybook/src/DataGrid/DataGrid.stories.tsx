@@ -1,7 +1,7 @@
 // Edit this file to add new stories
 import React from 'react'
 
-import type { DataGridProps, GridValueGetterParams } from '@monorail/components'
+import type { DataGridProps } from '@monorail/components'
 import {
   Button,
   createTable,
@@ -25,7 +25,7 @@ export default {
   },
 }
 
-const columns: DataGridProps['columns'] = [
+const { columns } = createTable<FilterStoryRow>()(
   { field: 'id', headerName: 'ID' },
   {
     field: 'firstName',
@@ -70,12 +70,9 @@ const columns: DataGridProps['columns'] = [
     description: 'This column has a value getter and is not sortable.',
     sortable: false,
     minWidth: 160,
-    valueGetter: (params: GridValueGetterParams) =>
-      `${params.getValue(params.id, 'firstName') ?? ''} ${
-        params.getValue(params.id, 'lastName') ?? ''
-      }`,
+    valueGetter: params => `${params.row.firstName} ${params.row.lastName}`,
   },
-]
+)
 
 const Template = story<DataGridProps>(args => {
   const apiRef = useGridApiRef()
@@ -97,9 +94,8 @@ const Template = story<DataGridProps>(args => {
         columns={columns}
         rows={rows}
         checkboxSelection
-        disableSelectionOnClick
-        componentsProps={{
-          header: {
+        slotProps={{
+          toolbar: {
             renderChildren: () => <Button>Toolbar Button</Button>,
           },
         }}
@@ -194,10 +190,7 @@ const filterStoryColumns = createTable<FilterStoryRow>()(
     description: 'This column has a value getter and is not sortable.',
     sortable: false,
     minWidth: 160,
-    valueGetter: (params: GridValueGetterParams) =>
-      `${params.getValue(params.id, 'firstName') ?? ''} ${
-        params.getValue(params.id, 'lastName') ?? ''
-      }`,
+    valueGetter: params => `${params.row.firstName} ${params.row.lastName}`,
     filter: {
       type: 'text',
     },
@@ -305,7 +298,6 @@ export const Filters = story(() => {
         columns={filterStoryColumns.columns}
         rows={rows}
         checkboxSelection
-        disableSelectionOnClick
       />
     </div>
   )

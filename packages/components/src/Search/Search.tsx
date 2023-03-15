@@ -75,7 +75,7 @@ export const Search = React.forwardRef(function Search(inProps, ref) {
 
   const {
     className,
-    componentsProps = {},
+    slotProps = {},
     debounceTime = 0,
     defaultValue = '',
     disableClearable = false,
@@ -126,7 +126,7 @@ export const Search = React.forwardRef(function Search(inProps, ref) {
     if (debounceTime > 0) {
       handleChangeDebounced(event, '', 'clear')
     }
-    componentsProps.clearButton?.onClick?.(event)
+    slotProps.clearButton?.onClick?.(event)
   }
 
   return (
@@ -144,34 +144,31 @@ export const Search = React.forwardRef(function Search(inProps, ref) {
             edge="end"
             size={ownerState.size === 'small' ? 'small' : 'medium'}
             disabled={disabled}
-            {...componentsProps.clearButton}
+            {...slotProps.clearButton}
             onClick={handleClear}
             sx={combineSxProps(
               { mr: -2, visibility: isClearable ? 'visible' : 'hidden' },
-              componentsProps.clearButton?.sx,
+              slotProps.clearButton?.sx,
             )}
           >
             <Clear />
           </ClearButton>
         ),
-        ...componentsProps.Input,
+        ...slotProps.Input,
         startAdornment: (
           <InputAdornment position="start">
             <SearchIcon />
           </InputAdornment>
         ),
         onChange: handleChange,
-        sx: combineSxProps(
-          { borderRadius: '100px' },
-          componentsProps.Input?.sx,
-        ),
+        sx: combineSxProps({ borderRadius: '100px' }, slotProps.Input?.sx),
         // Opted not to use type="search" to keep clear buttons consistent. - GS 11/01/2022
         // https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/searchbox_role
         role: 'searchbox',
       }}
-      inputProps={componentsProps.input}
-      FormHelperTextProps={componentsProps.formHelperText}
-      InputLabelProps={componentsProps.inputLabel}
+      inputProps={slotProps.input}
+      FormHelperTextProps={slotProps.formHelperText}
+      InputLabelProps={slotProps.inputLabel}
       {...other}
     />
   )

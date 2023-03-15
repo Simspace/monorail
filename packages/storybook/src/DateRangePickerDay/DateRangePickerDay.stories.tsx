@@ -5,11 +5,9 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
 
 import type { DateRange, DateRangePickerDayProps } from '@monorail/components'
 import {
-  Box,
   DateRangePickerDay,
   LocalizationProvider,
   StaticDateRangePicker,
-  TextField,
 } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
@@ -52,28 +50,15 @@ const Template = story<DateRangePickerDayProps<Date>>(
       new Date('2021-01-09T12:34:00.000Z'),
     ])
 
-    const renderWeekPickerDay = (
-      date: Date,
-      dateRangePickerDayProps: DateRangePickerDayProps<Date>,
-    ) => {
-      return <StyledDateRangePickerDay {...dateRangePickerDayProps} />
-    }
-
     return (
       <LocalizationProvider dateAdapter={AdapterDateFns}>
         <StaticDateRangePicker
           displayStaticWrapperAs="desktop"
-          label="date range"
           value={value}
           onChange={newValue => setValue(newValue)}
-          renderDay={renderWeekPickerDay}
-          renderInput={(startProps, endProps) => (
-            <React.Fragment>
-              <TextField {...startProps} />
-              <Box sx={{ mx: 2 }}> to </Box>
-              <TextField {...endProps} />
-            </React.Fragment>
-          )}
+          slots={{
+            day: StyledDateRangePickerDay,
+          }}
         />
       </LocalizationProvider>
     )

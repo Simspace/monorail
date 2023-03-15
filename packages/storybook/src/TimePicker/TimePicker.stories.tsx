@@ -29,7 +29,6 @@ const Template = story<TimePickerProps<Date>>(args => {
       onChange={newValue => {
         setValue(newValue)
       }}
-      renderInput={params => <TextField {...params} />}
       {...args}
     />
   )

@@ -42,53 +42,56 @@ const PopupPopper = styled(MuiPopper, {
 
     return [styles.popper, ownerState.arrow && styles.popperArrow]
   },
-})<PopupPopperProps>(({ theme, ownerState }) => ({
-  zIndex: 1,
-  ...(ownerState.arrow && {
-    [`&[data-popper-placement*="bottom"] .${popupClasses.arrow}`]: {
-      top: 0,
-      left: 0,
-      '&::before': {
-        transform: 'translate(50%, 51%) rotate(-45deg)',
-        clipPath:
-          'polygon(300% 300%, calc(100% + 4px) -4px, -4px -4px, calc(100% + 4px) calc(100% + 4px))',
-        boxShadow: theme.shadows[ownerState.elevation],
-        borderTopRightRadius: '1px',
+})<PopupPopperProps>(({ theme, ownerState: ownerState_ }) => {
+  const ownerState = ownerState_ as PopupOwnerState
+  return {
+    zIndex: 1,
+    ...(ownerState.arrow && {
+      [`&[data-popper-placement*="bottom"] .${popupClasses.arrow}`]: {
+        top: 0,
+        left: 0,
+        '&::before': {
+          transform: 'translate(50%, 51%) rotate(-45deg)',
+          clipPath:
+            'polygon(300% 300%, calc(100% + 4px) -4px, -4px -4px, calc(100% + 4px) calc(100% + 4px))',
+          boxShadow: theme.shadows[ownerState.elevation],
+          borderTopRightRadius: '1px',
+        },
       },
-    },
-    [`&[data-popper-placement*="top"] .${popupClasses.arrow}`]: {
-      bottom: 0,
-      left: 0,
-      '&::before': {
-        transform: 'translate(50%, 49%) rotate(315deg)',
-        clipPath:
-          'polygon(300% 300%, calc(100% + 4px) calc(100% + 4px), -4px -4px, -300% 300%)',
-        boxShadow: theme.shadows[ownerState.elevation],
-        borderBottomLeftRadius: '1px',
+      [`&[data-popper-placement*="top"] .${popupClasses.arrow}`]: {
+        bottom: 0,
+        left: 0,
+        '&::before': {
+          transform: 'translate(50%, 49%) rotate(315deg)',
+          clipPath:
+            'polygon(300% 300%, calc(100% + 4px) calc(100% + 4px), -4px -4px, -300% 300%)',
+          boxShadow: theme.shadows[ownerState.elevation],
+          borderBottomLeftRadius: '1px',
+        },
       },
-    },
-    [`&[data-popper-placement*="right"] .${popupClasses.arrow}`]: {
-      left: 0,
-      '&::before': {
-        transform: 'translate(51%, 50%) rotate(45deg)',
-        clipPath:
-          'polygon(-4px -4px, -300% calc(100% + 4px), 300% 300%, calc(100% + 4px) calc(100% + 4px))',
-        boxShadow: theme.shadows[ownerState.elevation],
-        borderBottomLeftRadius: '1px',
+      [`&[data-popper-placement*="right"] .${popupClasses.arrow}`]: {
+        left: 0,
+        '&::before': {
+          transform: 'translate(51%, 50%) rotate(45deg)',
+          clipPath:
+            'polygon(-4px -4px, -300% calc(100% + 4px), 300% 300%, calc(100% + 4px) calc(100% + 4px))',
+          boxShadow: theme.shadows[ownerState.elevation],
+          borderBottomLeftRadius: '1px',
+        },
       },
-    },
-    [`&[data-popper-placement*="left"] .${popupClasses.arrow}`]: {
-      right: 0,
-      '&::before': {
-        transform: 'translate(49%, 50%) rotate(315deg)',
-        clipPath:
-          'polygon(-100% calc(100% + 8px), 300% 300%, 300% 300%, calc(100% + 4px) -4px)',
-        boxShadow: theme.shadows[ownerState.elevation],
-        borderBottomRightRadius: '1px',
+      [`&[data-popper-placement*="left"] .${popupClasses.arrow}`]: {
+        right: 0,
+        '&::before': {
+          transform: 'translate(49%, 50%) rotate(315deg)',
+          clipPath:
+            'polygon(-100% calc(100% + 8px), 300% 300%, 300% 300%, calc(100% + 4px) -4px)',
+          boxShadow: theme.shadows[ownerState.elevation],
+          borderBottomRightRadius: '1px',
+        },
       },
-    },
-  }),
-}))
+    }),
+  }
+})
 
 /**
  * A precomposed Popper + Paper + Transition + an optional arrow
@@ -114,7 +117,7 @@ export const Popup = React.forwardRef(function Popup(
     placement = 'bottom',
     elevation = 5,
     components = {},
-    componentsProps = {},
+    slotProps = {},
     children,
     ...other
   } = props
@@ -133,7 +136,7 @@ export const Popup = React.forwardRef(function Popup(
 
   const arrowProps = appendOwnerState(
     ArrowComponent,
-    { ...componentsProps.arrow },
+    { ...slotProps.arrow },
     ownerState,
   )
 
@@ -146,19 +149,19 @@ export const Popup = React.forwardRef(function Popup(
       open,
       modifiers,
       placement,
-      ...componentsProps.popper,
+      ...slotProps.popper,
     },
     ownerState,
   )
 
   const TransitionComponent = components.Transition ?? Fade
 
-  const transitionProps = { ...componentsProps.transition }
+  const transitionProps = { ...slotProps.transition }
 
   const PaperComponent = components.Paper ?? Paper
 
   const paperProps: PaperProps = {
-    ...componentsProps.paper,
+    ...slotProps.paper,
     elevation,
   }
 

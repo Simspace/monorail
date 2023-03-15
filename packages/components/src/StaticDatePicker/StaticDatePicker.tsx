@@ -13,7 +13,7 @@ import { StaticDatePicker as MuiStaticDatePicker } from '@mui/x-date-pickers/Sta
  */
 export const StaticDatePicker: typeof MuiStaticDatePicker = MuiStaticDatePicker
 
-export interface StaticDatePickerProps<TInputDate = Date, TDate = TInputDate>
-  extends MuiStaticDatePickerProps<TInputDate, TDate> {}
+export interface StaticDatePickerProps<TDate = Date>
+  extends MuiStaticDatePickerProps<TDate> {}
 
 export * from '@mui/x-date-pickers/StaticDatePicker'

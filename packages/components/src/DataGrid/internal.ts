@@ -19,17 +19,25 @@ export * from '@mui/x-data-grid-pro/utils'
 export * from '@mui/x-data-grid-premium/hooks'
 export * from '@mui/x-data-grid-premium/models'
 export * from '@mui/x-data-grid-premium/components'
-export type { GridExperimentalPremiumFeatures } from '@mui/x-data-grid-premium/models/dataGridPremiumProps'
+export type {
+  GridExperimentalPremiumFeatures,
+  DataGridPremiumProps as DataGridProps,
+} from '@mui/x-data-grid-premium/models/dataGridPremiumProps'
 export {
   useGridApiContext,
   useGridApiRef,
   useGridRootProps,
 } from '@mui/x-data-grid-premium'
 export type {
-  GridApiRef,
   GridApi,
   GridInitialState,
   GridState,
 } from '@mui/x-data-grid-premium/typeOverloads/reexports'
+export type { GridSortItem } from '@mui/x-data-grid-pro'
+export {
+  GridColumnMenu,
+  GridColumnMenuFilterItem,
+  GridColumnMenuSortItem,
+} from '@mui/x-data-grid-pro'
 
 export * from './constants.js'

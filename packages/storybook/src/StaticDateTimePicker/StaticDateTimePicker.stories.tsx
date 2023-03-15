@@ -2,7 +2,7 @@
 import React from 'react'
 
 import type { StaticDateTimePickerProps } from '@monorail/components'
-import { StaticDateTimePicker, TextField } from '@monorail/components'
+import { StaticDateTimePicker } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 /**
@@ -32,7 +32,6 @@ const Template = story<StaticDateTimePickerProps<Date>>(args => {
       onChange={newValue => {
         setValue(newValue)
       }}
-      renderInput={params => <TextField {...params} />}
       {...args}
     />
   )

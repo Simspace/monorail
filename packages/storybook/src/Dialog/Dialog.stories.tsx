@@ -158,7 +158,7 @@ export const SelectionDialog = story(() => {
       <Dialog maxWidth="sm" fullWidth open={open} onClose={handleClickClose}>
         <DialogHeader
           title="Dialog Title"
-          componentsProps={{
+          slotProps={{
             closeButton: {
               'aria-label': 'close',
             },

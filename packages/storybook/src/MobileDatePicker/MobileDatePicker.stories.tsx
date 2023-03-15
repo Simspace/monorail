@@ -3,7 +3,7 @@ import React from 'react'
 import { action } from '@storybook/addon-actions'
 
 import type { MobileDatePickerProps } from '@monorail/components'
-import { MobileDatePicker, TextField } from '@monorail/components'
+import { MobileDatePicker } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 
@@ -21,7 +21,6 @@ const Template = story<MobileDatePickerProps<Date>>(args => {
     <MobileDatePicker
       aria-label="mobile picker"
       value={value}
-      renderInput={params => <TextField id="mobile-input" {...params} />}
       onChange={newValue => {
         setValue(newValue)
         action('onChange')

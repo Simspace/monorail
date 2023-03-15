@@ -14,9 +14,7 @@ import { DesktopDateRangePicker as MuiDesktopDateRangePicker } from '@mui/x-date
 export const DesktopDateRangePicker: typeof MuiDesktopDateRangePicker =
   MuiDesktopDateRangePicker
 
-export interface DesktopDateRangePickerProps<
-  TInputDate = Date,
-  TDate = TInputDate,
-> extends MuiDesktopDateRangePickerProps<TInputDate, TDate> {}
+export interface DesktopDateRangePickerProps<TDate = Date>
+  extends MuiDesktopDateRangePickerProps<TDate> {}
 
 export * from '@mui/x-date-pickers-pro/DesktopDateRangePicker'

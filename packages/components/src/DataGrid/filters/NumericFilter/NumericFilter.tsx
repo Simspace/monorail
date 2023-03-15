@@ -39,7 +39,7 @@ export function NumericFilter(inProps: NumericFilterProps) {
     props: inProps,
   })
 
-  const { field, external, componentsProps = {} } = props
+  const { field, external, slotProps = {} } = props
 
   const classes = useUtilityClasses(props)
 
@@ -110,7 +110,7 @@ export function NumericFilter(inProps: NumericFilterProps) {
             type="number"
             value={state.first ?? ''}
             onChange={handleFirstInputChange}
-            {...componentsProps.firstTextField}
+            {...slotProps.firstTextField}
           />
         )
       }
@@ -121,13 +121,13 @@ export function NumericFilter(inProps: NumericFilterProps) {
               type="number"
               value={state.first ?? ''}
               onChange={handleFirstInputChange}
-              {...componentsProps.firstTextField}
+              {...slotProps.firstTextField}
             />
             <TextField
               type="number"
               value={state.second ?? ''}
               onChange={handleSecondInputChange}
-              {...componentsProps.secondTextField}
+              {...slotProps.secondTextField}
             />
           </>
         )
@@ -139,8 +139,8 @@ export function NumericFilter(inProps: NumericFilterProps) {
     state.operator.type,
     handleFirstInputChange,
     handleSecondInputChange,
-    componentsProps.firstTextField,
-    componentsProps.secondTextField,
+    slotProps.firstTextField,
+    slotProps.secondTextField,
   ])
 
   return (
@@ -149,7 +149,7 @@ export function NumericFilter(inProps: NumericFilterProps) {
         onBlur={event => event.stopPropagation()}
         value={state.operator.key}
         onChange={handleOperatorSelectChange}
-        {...componentsProps.select}
+        {...slotProps.select}
       >
         {Object.values(numericOperators).map(value => (
           <MenuItem key={value.key} value={value.key}>
@@ -161,7 +161,7 @@ export function NumericFilter(inProps: NumericFilterProps) {
       <ClearFilterButton
         isFiltered={isChanged}
         onClick={handleClearFilterButtonClick}
-        {...componentsProps.clearFilterButton}
+        {...slotProps.clearFilterButton}
       >
         {apiRef.current.getLocaleText('NumericFilter').clearFilterButton}
       </ClearFilterButton>

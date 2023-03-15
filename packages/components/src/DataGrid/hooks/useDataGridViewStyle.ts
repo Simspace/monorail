@@ -2,10 +2,10 @@
 import React from 'react'
 import { useGridApiMethod } from '@mui/x-data-grid-premium'
 import type { DataGridPremiumProcessedProps } from '@mui/x-data-grid-premium/models/dataGridPremiumProps'
-import type { GridApiPremium } from '@mui/x-data-grid-premium/models/gridApiPremium'
+import type { GridPrivateApiPremium } from '@mui/x-data-grid-premium/models/gridApiPremium'
 
 export function useDataGridViewStyle(
-  apiRef: React.MutableRefObject<GridApiPremium>,
+  apiRef: React.MutableRefObject<GridPrivateApiPremium>,
   props: Pick<
     DataGridPremiumProcessedProps,
     'viewStyle' | 'onViewStyleChange' | 'galleryProps'
@@ -37,7 +37,7 @@ export function useDataGridViewStyle(
     [onViewStyleChange, apiRef, galleryProps],
   )
 
-  useGridApiMethod(apiRef, { setViewStyle }, 'viewStyleApi')
+  useGridApiMethod(apiRef, { setViewStyle }, 'public')
 
   React.useEffect(() => {
     if (viewStyle) {

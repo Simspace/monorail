@@ -9,11 +9,9 @@ import {
 import type {
   DataGridProps,
   GridColDef,
-  GridColumns,
   GridRowsProp,
   GridSortDirection,
   GridSortModel,
-  GridValueGetterParams,
 } from '@monorail/components'
 import { DataGrid } from '@monorail/components'
 
@@ -62,14 +60,16 @@ A sorted column can be can pre-configured using the  \`sortModel\`  prop of the 
   },
 }
 
-const columns: GridColumns = [
+const columns: Array<GridColDef> = [
   { field: 'name' },
   { field: 'age', type: 'number' },
   {
     field: 'username',
-    valueGetter: (params: GridValueGetterParams) =>
-      `${params.getValue(params.id, 'name') ?? 'unknown'} - ${
-        params.getValue(params.id, 'age') ?? 'x'
+    valueGetter: params =>
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+      `${params.row.name ?? 'unknown'} - ${
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+        params.row.age ?? 'x'
       }`,
     sortComparator: (v1, v2, param1, param2) =>
       /* eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call */

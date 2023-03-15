@@ -54,9 +54,9 @@ export const DataGalleryColumnHeaders = React.forwardRef<
       className={classes.columnHeaders}
       ref={ref}
       style={{
-        minHeight: rootProps.headerHeight,
-        maxHeight: rootProps.headerHeight,
-        lineHeight: rootProps.headerHeight,
+        minHeight: rootProps.columnHeaderHeight,
+        maxHeight: rootProps.columnHeaderHeight,
+        lineHeight: rootProps.columnHeaderHeight,
       }}
     >
       {filterMap(apiRef.current.getAllColumns(), colDef => {

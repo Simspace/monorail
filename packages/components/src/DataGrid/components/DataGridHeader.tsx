@@ -1,6 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import React from 'react'
-import { useGridApiContext, useGridRootProps } from '@mui/x-data-grid-premium'
+import { useGridPrivateApiContext } from '@mui/x-data-grid/internals'
+import { useGridRootProps } from '@mui/x-data-grid-premium'
+import type { GridPrivateApiPremium } from '@mui/x-data-grid-premium/models/gridApiPremium'
 
 import { dataGridClasses } from '../internal.js'
 import type { DataGridToolbarProps } from './DataGridToolbar.js'
@@ -12,7 +14,7 @@ export interface DataGridHeaderProps
 }
 
 export function DataGridHeader(props: DataGridHeaderProps) {
-  const apiRef = useGridApiContext()
+  const apiRef = useGridPrivateApiContext<GridPrivateApiPremium>()
   const { hideToolbar, galleryProps } = useGridRootProps()
 
   const { renderChildren, disableViewStyleToggle, ...others } = props

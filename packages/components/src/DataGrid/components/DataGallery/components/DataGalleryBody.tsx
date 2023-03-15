@@ -65,9 +65,7 @@ export function DataGalleryBody(props: DataGalleryBodyProps) {
   const columnsContainerRef = React.useRef<HTMLDivElement>(null)
   const windowRef = React.useRef<HTMLDivElement>(null)
 
-  apiRef.current.columnHeadersContainerElementRef = columnsContainerRef
-  apiRef.current.columnHeadersElementRef = columnHeadersRef
-  apiRef.current.windowRef = windowRef // TODO rename, it's not attached to the window anymore
+  apiRef.current.windowRef = windowRef
 
   const handleResize = React.useCallback(
     (size: ElementSize) => {

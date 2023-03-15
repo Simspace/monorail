@@ -28,7 +28,7 @@ const Template = story<SearchProps>(
     args: {
       label: 'Search',
       placeholder: 'Placeholder',
-      componentsProps: { input: { 'aria-label': 'Search' } },
+      slotProps: { input: { 'aria-label': 'Search' } },
       fullWidth: true,
     },
     muiName: 'MonorailSearch',
@@ -102,7 +102,7 @@ export const WithAutocomplete = story<SearchProps>(
               ref={params.InputProps.ref}
               label="Search movies"
               disableClearable
-              componentsProps={{
+              slotProps={{
                 Input: params.InputProps,
                 input: params.inputProps,
               }}
@@ -146,7 +146,7 @@ export const ControlledVsUncontrolled = story<SearchProps>(args => {
         label="Controlled"
         value={name}
         onChange={handleChange}
-        componentsProps={{
+        slotProps={{
           clearButton: {
             onClick: () => setName(''),
           },
@@ -194,7 +194,7 @@ export const DebouncedSearch = story<SearchProps>(args => {
         onChangeDebounced={handleChangeDebounced}
         debounceTime={1000}
         fullWidth
-        componentsProps={{
+        slotProps={{
           clearButton: {
             onClick: () => {
               setSearchTerm('')

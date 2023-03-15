@@ -34,12 +34,12 @@
     "@types/react-syntax-highlighter": "^11.0.5",
     "react-syntax-highlighter": "^13.5.3",
     "webpack": "5.74.0",
-    "@mui/lab@5.0.0-alpha.107": "patch:@mui/lab@npm:5.0.0-alpha.107#.yarn/patches/@mui-lab-npm-5.0.0-alpha.107-b19221e5be.patch",
-    "@mui/x-data-grid@5.17.10": "patch:@mui/x-data-grid@npm:5.17.10#.yarn/patches/@mui-x-data-grid-npm-5.17.10-bfcfe0827d.patch",
-    "@mui/x-data-grid-pro@5.17.10": "patch:@mui/x-data-grid-pro@npm:5.17.10#.yarn/patches/@mui-x-data-grid-pro-npm-5.17.10-9b287a1a5e.patch",
-    "@mui/x-data-grid-premium@5.17.10": "patch:@mui/x-data-grid-premium@npm:5.17.10#.yarn/patches/@mui-x-data-grid-premium-npm-5.17.10-fc8e97b8eb.patch",
-    "@mui/x-date-pickers@5.0.7": "patch:@mui/x-date-pickers@npm:5.0.7#.yarn/patches/@mui-x-date-pickers-npm-5.0.7-1707fd3589.patch",
-    "@mui/x-date-pickers-pro@5.0.7": "patch:@mui/x-date-pickers-pro@npm:5.0.7#.yarn/patches/@mui-x-date-pickers-pro-npm-5.0.7-b9f530ccf7.patch"
+    "@mui/x-data-grid@6.0.1": "patch:@mui/x-data-grid@npm:6.0.1#.yarn/patches/@mui-x-data-grid-npm-6.0.1-9c2a21edb1.patch",
+    "@mui/x-data-grid-pro@6.0.1": "patch:@mui/x-data-grid-pro@npm:6.0.1#.yarn/patches/@mui-x-data-grid-pro-npm-6.0.1-e148cf68ba.patch",
+    "@mui/x-data-grid-premium@6.0.1": "patch:@mui/x-data-grid-premium@npm:6.0.1#.yarn/patches/@mui-x-data-grid-premium-npm-6.0.1-cf68b61705.patch",
+    "@mui/x-date-pickers@6.0.1": "patch:@mui/x-date-pickers@npm:6.0.1#.yarn/patches/@mui-x-date-pickers-npm-6.0.1-46efb3859e.patch",
+    "@mui/x-date-pickers-pro@6.0.1": "patch:@mui/x-date-pickers-pro@npm:6.0.1#.yarn/patches/@mui-x-date-pickers-pro-npm-6.0.1-6844cc2dac.patch",
+    "@mui/lab@5.0.0-alpha.122": "patch:@mui/lab@npm:5.0.0-alpha.122#.yarn/patches/@mui-lab-npm-5.0.0-alpha.122-7a86b38646.patch"
   },
   "devDependencies": {
     "@0x706b/eslint-plugin-module-specifier-extensions": "0.1.8",

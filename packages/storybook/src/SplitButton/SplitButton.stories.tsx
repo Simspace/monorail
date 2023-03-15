@@ -27,7 +27,7 @@ const Template: Story<Partial<SplitButtonProps>> = args => (
         onClick: () => {},
       },
     ]}
-    componentsProps={{
+    slotProps={{
       secondaryButton: {
         'aria-label': 'Open more options',
       },

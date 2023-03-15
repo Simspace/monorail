@@ -20,7 +20,7 @@ export interface EnumFilterDefinition<
   values: Array<V>
   compare?: (rowValue: V, filterValue: V) => boolean
   renderValue?: (value: V) => React.ReactNode
-  componentsProps?: {
+  slotProps?: {
     columnHeaderButton?: Partial<IconButtonProps & DataAttributes>
     search?: Partial<TextFieldProps & DataAttributes>
     clearFilterButton?: Omit<

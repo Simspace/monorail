@@ -8,8 +8,8 @@ import { useDemoData } from '@mui/x-data-grid-generator'
 import type {
   DataGridProps,
   GridRowParams,
+  GridRowSelectionModel,
   GridRowsProp,
-  GridSelectionModel,
 } from '@monorail/components'
 import { DataGrid } from '@monorail/components'
 
@@ -134,7 +134,12 @@ export const DisableClickSelectionGrid = story<DataGridProps>(args => {
 
   return (
     <div style={{ height: 400, width: '100%' }}>
-      <DataGrid checkboxSelection disableSelectionOnClick {...args} {...data} />
+      <DataGrid
+        checkboxSelection
+        disableRowSelectionOnClick
+        {...args}
+        {...data}
+      />
     </div>
   )
 })
@@ -200,16 +205,16 @@ export const ControlledSelectionGrid = story<DataGridProps>(args => {
   })
 
   const [selectionModel, setSelectionModel] =
-    React.useState<GridSelectionModel>([])
+    React.useState<GridRowSelectionModel>([])
 
   return (
     <div style={{ height: 400, width: '100%' }}>
       <DataGrid
         checkboxSelection
-        onSelectionModelChange={newSelectionModel => {
+        onRowSelectionModelChange={newSelectionModel => {
           setSelectionModel(newSelectionModel)
         }}
-        selectionModel={selectionModel}
+        rowSelectionModel={selectionModel}
         {...data}
         {...args}
       />
@@ -252,8 +257,9 @@ export const ControlledSelectionServerPaginationGrid = story<DataGridProps>(
     const [rows, setRows] = React.useState<GridRowsProp>([])
     const [loading, setLoading] = React.useState(false)
     const [selectionModel, setSelectionModel] =
-      React.useState<GridSelectionModel>([])
-    const prevSelectionModel = React.useRef<GridSelectionModel>(selectionModel)
+      React.useState<GridRowSelectionModel>([])
+    const prevSelectionModel =
+      React.useRef<GridRowSelectionModel>(selectionModel)
 
     React.useEffect(() => {
       let active = true
@@ -286,18 +292,17 @@ export const ControlledSelectionServerPaginationGrid = story<DataGridProps>(
           columns={data.columns}
           pagination
           checkboxSelection
-          pageSize={5}
-          rowsPerPageOptions={[5]}
+          pageSizeOptions={[5]}
           rowCount={100}
           paginationMode="server"
-          onPageChange={newPage => {
+          onPaginationModelChange={newPaginationModel => {
             prevSelectionModel.current = selectionModel
-            setPage(newPage)
+            setPage(newPaginationModel.page)
           }}
-          onSelectionModelChange={newSelectionModel => {
+          onRowSelectionModelChange={newSelectionModel => {
             setSelectionModel(newSelectionModel)
           }}
-          selectionModel={selectionModel}
+          rowSelectionModel={selectionModel}
           loading={loading}
         />
       </div>

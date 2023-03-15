@@ -18,14 +18,16 @@ export function useDebouncedSyncFilter<S>(
       if (check(state)) {
         apiRef.current.upsertFilterItem({
           id,
-          columnField: field,
+          field,
           value: state,
+          operator: '',
         })
       } else {
         apiRef.current.deleteFilterItem({
           id,
-          columnField: field,
+          field,
           value: null,
+          operator: '',
         })
       }
     }, SUBMIT_FILTER_STROKE_TIME),

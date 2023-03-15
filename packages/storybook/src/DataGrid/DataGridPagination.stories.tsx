@@ -5,7 +5,6 @@ import { useDemoData } from '@mui/x-data-grid-generator'
 
 import type {
   DataGridProps,
-  GridRowData,
   GridRowModel,
   GridRowsProp,
 } from '@monorail/components'
@@ -29,7 +28,7 @@ const Template = story<DataGridProps>(args => {
         apiRef={apiRef}
         pagination
         checkboxSelection
-        disableSelectionOnClick
+        disableRowSelectionOnClick
         {...args}
         {...data}
       />
@@ -60,6 +59,7 @@ On the other hand, the commercial  \`DataGridPro\`  component displays, by defau
  */
 export const SizePaginationGrid = story<DataGridProps>(args => {
   const [pageSize, setPageSize] = React.useState<number>(5)
+  const [page, setPage] = React.useState(1)
 
   const { data } = useDemoData({
     dataSet: 'Commodity',
@@ -71,9 +71,12 @@ export const SizePaginationGrid = story<DataGridProps>(args => {
     <div style={{ height: 400, width: '100%' }}>
       <DataGrid
         {...args}
-        pageSize={pageSize}
-        onPageSizeChange={newPageSize => setPageSize(newPageSize)}
-        rowsPerPageOptions={[5, 10, 20]}
+        pageSizeOptions={[5, 10, 20]}
+        onPaginationModelChange={({ page, pageSize }) => {
+          setPage(page)
+          setPageSize(pageSize)
+        }}
+        paginationModel={{ pageSize, page }}
         pagination
         {...data}
       />
@@ -109,10 +112,9 @@ export const ControlledPaginationGrid = story<DataGridProps>(args => {
     <div style={{ height: 400, width: '100%' }}>
       <DataGrid
         {...args}
-        page={page}
-        onPageChange={newPage => setPage(newPage)}
-        pageSize={5}
-        rowsPerPageOptions={[5]}
+        onPaginationModelChange={({ page }) => setPage(page)}
+        paginationModel={{ page, pageSize: 5 }}
+        pageSizeOptions={[5]}
         pagination
         {...data}
       />
@@ -168,7 +170,7 @@ function loadServerRows(
   page: number,
   data: GridDemoData,
 ): Promise<Array<GridRowModel>> {
-  return new Promise<Array<GridRowData>>(resolve => {
+  return new Promise<Array<GridRowModel>>(resolve => {
     setTimeout(() => {
       resolve(data.rows.slice(page * 5, (page + 1) * 5))
     }, Math.random() * 500 + 100) // simulate network latency
@@ -212,11 +214,11 @@ export const ServerPaginationGrid = story<DataGridProps>(args => {
         rows={rows}
         columns={data.columns}
         pagination
-        pageSize={5}
-        rowsPerPageOptions={[5]}
+        paginationModel={{ pageSize: 5, page }}
+        pageSizeOptions={[5]}
         rowCount={100}
         paginationMode="server"
-        onPageChange={newPage => setPage(newPage)}
+        onPaginationModelChange={({ page }) => setPage(page)}
         loading={loading}
       />
     </div>

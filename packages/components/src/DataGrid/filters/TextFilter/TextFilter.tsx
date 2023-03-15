@@ -38,7 +38,7 @@ export function TextFilter(inProps: TextFilterProps) {
     props: inProps,
   })
 
-  const { field, external, componentsProps = {} } = props
+  const { field, external, slotProps = {} } = props
 
   const classes = useUtilityClasses(props)
 
@@ -103,7 +103,7 @@ export function TextFilter(inProps: TextFilterProps) {
         }}
         onChange={handleOperatorSelectChange}
         value={state.operator}
-        {...componentsProps.select}
+        {...slotProps.select}
       >
         <MenuItem value="contains">{localeText.contains}</MenuItem>
         <MenuItem value="exact">{localeText.exact}</MenuItem>
@@ -112,12 +112,12 @@ export function TextFilter(inProps: TextFilterProps) {
         value={state.searchText}
         placeholder={localeText.inputPlaceholder}
         onChange={handleSearchTextChange}
-        {...componentsProps.textField}
+        {...slotProps.textField}
       />
       <ClearFilterButton
         isFiltered={isFiltered}
         onClick={handleClearFilterButtonClick}
-        {...componentsProps.clearFilterButton}
+        {...slotProps.clearFilterButton}
       >
         {localeText.clearFilterButton}
       </ClearFilterButton>

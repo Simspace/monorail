@@ -27,7 +27,7 @@ export interface DialogHeaderProps
    * The props used for each slot inside.
    * @default {}
    */
-  componentsProps: {
+  slotProps: {
     /**
      * Props applied to the Typography component
      * @default {}

@@ -2,7 +2,7 @@
 import React from 'react'
 import { Divider } from '@mui/material'
 import type {
-  GridEnrichedColDef,
+  GridColDef,
   GridSlotsComponent,
   GridValidRowModel,
 } from '@mui/x-data-grid'
@@ -43,14 +43,14 @@ export function useDataGridProps<R extends GridValidRowModel>(
     () => ({
       Footer: DataGridFooter,
       Row: DataGridRow,
-      Header: DataGridHeader,
+      Toolbar: DataGridHeader,
       ColumnResizeIcon: Divider,
       ...components,
     }),
     [components],
   )
 
-  const processedColumns: Array<GridEnrichedColDef> = React.useMemo(
+  const processedColumns: Array<GridColDef> = React.useMemo(
     () =>
       columns.map(col => {
         const flex = col.type === 'actions' ? undefined : col.flex ?? 1
@@ -91,7 +91,7 @@ export function useDataGridProps<R extends GridValidRowModel>(
   return useDataGridPremiumProps({
     ...initProps,
     disableColumnFilter: true,
-    disableSelectionOnClick: true,
+    disableRowSelectionOnClick: true,
     columns: processedColumns,
     localeText: localeTextProp,
     components: componentsProp,

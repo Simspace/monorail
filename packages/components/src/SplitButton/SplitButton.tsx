@@ -100,8 +100,8 @@ export const SplitButton = React.forwardRef(function SplitButton(inProps, ref) {
 
   const {
     options,
-    components = {},
-    componentsProps,
+    slots = {},
+    slotProps,
     select = false,
     size = 'medium',
     ...other
@@ -113,7 +113,8 @@ export const SplitButton = React.forwardRef(function SplitButton(inProps, ref) {
   const [selectedIndex, setSelectedIndex] = React.useState(0)
   const anchorRef = React.useRef<HTMLButtonElement>(null)
 
-  const MenuComponent = components.Menu ?? SplitButtonMenu
+  const MenuComponent = slots.Menu ?? SplitButtonMenu
+  const MenuItemComponent = slots.MenuItem ?? MenuItem
 
   const handleClose = (event: Event) => {
     if (
@@ -169,10 +170,10 @@ export const SplitButton = React.forwardRef(function SplitButton(inProps, ref) {
         className={clsx(classes.root, props.className)}
       >
         <Button
-          {...componentsProps.primaryButton}
+          {...slotProps.primaryButton}
           startIcon={options[0]?.startIcon}
           className={clsx(
-            componentsProps.primaryButton?.className,
+            slotProps.primaryButton?.className,
             classes.primaryButton,
           )}
           onClick={handleMainButtonClick}
@@ -180,9 +181,9 @@ export const SplitButton = React.forwardRef(function SplitButton(inProps, ref) {
           {select ? options[selectedIndex]?.label : options[0]?.label}
         </Button>
         <Button
-          {...componentsProps.secondaryButton}
+          {...slotProps.secondaryButton}
           className={clsx(
-            componentsProps.secondaryButton?.className,
+            slotProps.secondaryButton?.className,
             classes.secondaryButton,
           )}
           ref={anchorRef}
@@ -196,16 +197,16 @@ export const SplitButton = React.forwardRef(function SplitButton(inProps, ref) {
       </SplitButtonRoot>
       <MenuComponent
         id={menuListId}
-        className={clsx(componentsProps.menu?.className, classes.menu)}
-        {...componentsProps.menu}
+        className={clsx(slotProps.menu?.className, classes.menu)}
+        {...slotProps.menu}
         anchorOrigin={
-          componentsProps.menu?.anchorOrigin ?? {
+          slotProps.menu?.anchorOrigin ?? {
             horizontal: 'right',
             vertical: 'bottom',
           }
         }
         transformOrigin={
-          componentsProps.menu?.transformOrigin ?? {
+          slotProps.menu?.transformOrigin ?? {
             horizontal: 'right',
             vertical: 'top',
           }
@@ -218,7 +219,7 @@ export const SplitButton = React.forwardRef(function SplitButton(inProps, ref) {
           options,
           ({ label, startIcon, onClick: _onClick, ...rest }, index) => {
             return (
-              <MenuItem
+              <MenuItemComponent
                 key={index}
                 onClick={event => handleMenuItemClick(event, index)}
                 selected={select ? selectedIndex === index : undefined}
@@ -230,7 +231,7 @@ export const SplitButton = React.forwardRef(function SplitButton(inProps, ref) {
                 ) : (
                   label
                 )}
-              </MenuItem>
+              </MenuItemComponent>
             )
           },
         )}

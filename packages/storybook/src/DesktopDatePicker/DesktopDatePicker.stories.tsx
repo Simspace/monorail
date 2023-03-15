@@ -3,7 +3,7 @@ import React from 'react'
 import { action } from '@storybook/addon-actions'
 
 import type { DesktopDatePickerProps } from '@monorail/components'
-import { DesktopDatePicker, TextField } from '@monorail/components'
+import { DesktopDatePicker } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 
@@ -22,7 +22,6 @@ const Template = story<DesktopDatePickerProps<Date>>(
       <DesktopDatePicker
         label="Desktop Date Picker"
         value={value}
-        renderInput={params => <TextField id="desktop" {...params} />}
         onChange={newValue => {
           setValue(newValue)
           action('onChange')

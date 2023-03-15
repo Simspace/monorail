@@ -15,7 +15,7 @@ export interface DateFilterDefinition<
   F = V,
 > {
   type: 'date'
-  componentsProps?: {
+  slotProps?: {
     columnHeaderButton?: Partial<IconButtonProps & DataAttributes>
     select?: Omit<
       Partial<SelectProps<DateFilterOperator> & DataAttributes>,

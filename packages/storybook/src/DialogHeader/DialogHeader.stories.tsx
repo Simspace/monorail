@@ -59,7 +59,7 @@ const SimpleDialog = ({
       <DialogHeader
         title="Dialog Header"
         icon={<Person color="default" />}
-        componentsProps={{ closeButton: { 'aria-label': 'close' } }}
+        slotProps={{ closeButton: { 'aria-label': 'close' } }}
       />
       <DialogContent>
         <DialogContentText>

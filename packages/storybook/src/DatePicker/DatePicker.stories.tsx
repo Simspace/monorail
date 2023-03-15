@@ -1,32 +1,20 @@
 // Edit this file to add new stories
 import React from 'react'
-import { styled } from '@mui/material'
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import { action } from '@storybook/addon-actions'
-import {
-  endOfWeek,
-  getDaysInMonth,
-  isSameDay,
-  isWeekend,
-  isWithinInterval,
-  startOfWeek,
-} from 'date-fns'
+import { getDaysInMonth, isWeekend } from 'date-fns'
 import deLocale from 'date-fns/locale/de'
 import enLocale from 'date-fns/locale/en-US'
 import frLocale from 'date-fns/locale/fr'
 import ruLocale from 'date-fns/locale/ru'
 
-import type {
-  DatePickerProps,
-  PickersDayProps,
-  TextFieldProps,
-} from '@monorail/components'
+import type { DatePickerProps } from '@monorail/components'
 import {
   Badge,
   Box,
-  CalendarPickerSkeleton,
   DatePicker,
+  DayCalendarSkeleton,
   DesktopDatePicker,
   MobileDatePicker,
   PickersDay,
@@ -64,7 +52,6 @@ const Template = story<DatePickerProps<Date>>(
           setValue(newValue)
           action('onChange')
         }}
-        renderInput={(params: TextFieldProps) => <TextField {...params} />}
         {...args}
       />
     )
@@ -110,7 +97,6 @@ export const StaticMode = story<DatePickerProps<Date>>(
         onChange={newValue => {
           setValue(newValue)
         }}
-        renderInput={params => <TextField {...params} />}
       />
     )
   },
@@ -140,7 +126,6 @@ export const Responsiveness = story<DatePickerProps<Date>>(
           onChange={newValue => {
             setValue(newValue)
           }}
-          renderInput={params => <TextField {...params} />}
         />
         <DesktopDatePicker
           aria-label="for desktop"
@@ -150,7 +135,6 @@ export const Responsiveness = story<DatePickerProps<Date>>(
           onChange={newValue => {
             setValue(newValue)
           }}
-          renderInput={params => <TextField id="desktop" {...params} />}
         />
         <DatePicker
           disableFuture
@@ -161,7 +145,6 @@ export const Responsiveness = story<DatePickerProps<Date>>(
           onChange={newValue => {
             setValue(newValue)
           }}
-          renderInput={params => <TextField {...params} />}
         />
       </Stack>
     )
@@ -198,7 +181,6 @@ export const FormProps = story<DatePickerProps<Date>>(
           onChange={newValue => {
             setValue(newValue)
           }}
-          renderInput={params => <TextField {...params} />}
         />
         <DatePicker
           label="read-only"
@@ -207,7 +189,6 @@ export const FormProps = story<DatePickerProps<Date>>(
           onChange={newValue => {
             setValue(newValue)
           }}
-          renderInput={params => <TextField {...params} />}
         />
       </Stack>
     )
@@ -234,14 +215,7 @@ export const Localization = story<DatePickerProps<Date>>(
       de: deLocale,
     }
 
-    const maskMap = {
-      fr: '__/__/____',
-      en: '__/__/____',
-      ru: '__.__.____',
-      de: '__.__.____',
-    }
-
-    const [locale, setLocale] = React.useState<keyof typeof maskMap>('ru')
+    const [locale, setLocale] = React.useState<keyof typeof localeMap>('ru')
 
     const [value, setValue] = React.useState<Date | null>(
       new Date('2021-01-01T12:34:00.000Z'),
@@ -272,12 +246,7 @@ export const Localization = story<DatePickerProps<Date>>(
               </ToggleButton>
             ))}
           </ToggleButtonGroup>
-          <DatePicker
-            mask={maskMap[locale]}
-            value={value}
-            onChange={newValue => setValue(newValue)}
-            renderInput={params => <TextField {...params} />}
-          />
+          <DatePicker value={value} onChange={newValue => setValue(newValue)} />
         </div>
       </LocalizationProvider>
     )
@@ -309,7 +278,6 @@ export const ViewsPlayground = story<DatePickerProps<Date>>(
             onChange={newValue => {
               setValue(newValue)
             }}
-            renderInput={params => <TextField {...params} helperText={null} />}
           />
           <DatePicker
             views={['year', 'month']}
@@ -320,7 +288,6 @@ export const ViewsPlayground = story<DatePickerProps<Date>>(
             onChange={newValue => {
               setValue(newValue)
             }}
-            renderInput={params => <TextField {...params} helperText={null} />}
           />
           <DatePicker
             openTo="year"
@@ -330,7 +297,6 @@ export const ViewsPlayground = story<DatePickerProps<Date>>(
             onChange={newValue => {
               setValue(newValue)
             }}
-            renderInput={params => <TextField {...params} helperText={null} />}
           />
           <DatePicker
             views={['day', 'month', 'year']}
@@ -339,7 +305,6 @@ export const ViewsPlayground = story<DatePickerProps<Date>>(
             onChange={newValue => {
               setValue(newValue)
             }}
-            renderInput={params => <TextField {...params} helperText={null} />}
           />
           <DatePicker
             views={['day']}
@@ -348,7 +313,6 @@ export const ViewsPlayground = story<DatePickerProps<Date>>(
             onChange={newValue => {
               setValue(newValue)
             }}
-            renderInput={params => <TextField {...params} helperText={null} />}
           />
         </Stack>
       </LocalizationProvider>
@@ -384,7 +348,6 @@ export const LandscapeOrientation = story<DatePickerProps<Date>>(
           onChange={newValue => {
             setValue(newValue)
           }}
-          renderInput={params => <TextField {...params} />}
         />
       </LocalizationProvider>
     )
@@ -414,107 +377,20 @@ export const CustomInputComponent = story<DatePickerProps<Date>>(
           onChange={newValue => {
             setValue(newValue)
           }}
-          renderInput={({ inputRef, inputProps, InputProps }) => (
-            <Box sx={{ display: 'flex', alignItems: 'center' }}>
-              <input aria-label="input" ref={inputRef} {...inputProps} />
-              {InputProps?.endAdornment}
-            </Box>
-          )}
-        />
-      </LocalizationProvider>
-    )
-  },
-  {
-    parameters: {
-      docs: {
-        description: {
-          story: `You can customize the rendering of the input with the renderInput prop. Make sure to spread ref and inputProps correctly to the custom input component.`,
-        },
-      },
-    },
-  },
-)
-
-type CustomPickerDayProps = PickersDayProps<Date> & {
-  dayIsBetween: boolean
-  isFirstDay: boolean
-  isLastDay: boolean
-}
-
-const CustomPickersDay = styled(PickersDay, {
-  shouldForwardProp: prop =>
-    prop !== 'dayIsBetween' && prop !== 'isFirstDay' && prop !== 'isLastDay',
-})<CustomPickerDayProps>(({ theme, dayIsBetween, isFirstDay, isLastDay }) => ({
-  ...(dayIsBetween && {
-    borderRadius: 0,
-    backgroundColor: theme.palette.primary.main,
-    color: theme.palette.common.white,
-    '&:hover, &:focus': {
-      backgroundColor: theme.palette.primary.dark,
-    },
-  }),
-  ...(isFirstDay && {
-    borderTopLeftRadius: '50%',
-    borderBottomLeftRadius: '50%',
-  }),
-  ...(isLastDay && {
-    borderTopRightRadius: '50%',
-    borderBottomRightRadius: '50%',
-  }),
-})) as React.ComponentType<CustomPickerDayProps>
-
-export const CustomizedDayRendering = story<DatePickerProps<Date>>(
-  () => {
-    const [value, setValue] = React.useState<Date | null>(
-      new Date('2021-01-01T12:34:00.000Z'),
-    )
-
-    const renderWeekPickerDay = (
-      date: Date,
-      selectedDates: Array<Date | null>,
-      pickersDayProps: PickersDayProps<Date>,
-    ) => {
-      if (!value) {
-        return <PickersDay {...pickersDayProps} />
-      }
-
-      const start = startOfWeek(value)
-      const end = endOfWeek(value)
-
-      const dayIsBetween = isWithinInterval(date, { start, end })
-      const isFirstDay = isSameDay(date, start)
-      const isLastDay = isSameDay(date, end)
-
-      return (
-        <CustomPickersDay
-          {...pickersDayProps}
-          disableMargin
-          dayIsBetween={dayIsBetween}
-          isFirstDay={isFirstDay}
-          isLastDay={isLastDay}
-        />
-      )
-    }
-
-    return (
-      <LocalizationProvider dateAdapter={AdapterDateFns}>
-        <StaticDatePicker
-          displayStaticWrapperAs="desktop"
-          label="Week picker"
-          value={value}
-          onChange={newValue => {
-            setValue(newValue)
+          slots={{
+            textField: ({ inputRef, inputProps, InputProps }) => (
+              <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                <input aria-label="input" ref={inputRef} {...inputProps} />
+                {InputProps?.endAdornment}
+              </Box>
+            ),
           }}
-          renderDay={renderWeekPickerDay}
-          renderInput={params => <TextField {...params} />}
-          inputFormat="'Week of' MMM d"
         />
       </LocalizationProvider>
     )
   },
   {
     parameters: {
-      a11y: { disable: true }, // MUI component is violating a11y rule; revisit when datepickers are out of lab
       docs: {
         description: {
           story: `You can customize the rendering of the input with the renderInput prop. Make sure to spread ref and inputProps correctly to the custom input component.`,
@@ -605,22 +481,23 @@ export const DynamicData = story<DatePickerProps<Date>>(
             setValue(newValue)
           }}
           onMonthChange={handleMonthChange}
-          renderInput={params => <TextField {...params} />}
-          renderLoading={() => <CalendarPickerSkeleton />}
-          renderDay={(day, _value, DayComponentProps) => {
-            const isSelected =
-              !DayComponentProps.outsideCurrentMonth &&
-              highlightedDays.indexOf(day.getDate()) > 0
+          renderLoading={() => <DayCalendarSkeleton />}
+          slots={{
+            day: ({ day, ...props }) => {
+              const isSelected =
+                !props.outsideCurrentMonth &&
+                highlightedDays.indexOf(day.getDate()) > 0
 
-            return (
-              <Badge
-                key={day.toString()}
-                overlap="circular"
-                badgeContent={isSelected ? '🌚' : undefined}
-              >
-                <PickersDay {...DayComponentProps} />
-              </Badge>
-            )
+              return (
+                <Badge
+                  key={day.toString()}
+                  overlap="circular"
+                  badgeContent={isSelected ? '🌚' : undefined}
+                >
+                  <PickersDay day={day} {...props} />
+                </Badge>
+              )
+            },
           }}
         />
       </LocalizationProvider>
@@ -649,12 +526,14 @@ export const HelperText = story<DatePickerProps<Date>>(
           onChange={newValue => {
             setValue(newValue)
           }}
-          renderInput={params => (
-            <TextField
-              {...params}
-              helperText={params?.inputProps?.placeholder}
-            />
-          )}
+          slots={{
+            textField: params => (
+              <TextField
+                {...params}
+                helperText={params?.inputProps?.placeholder}
+              />
+            ),
+          }}
         />
       </LocalizationProvider>
     )

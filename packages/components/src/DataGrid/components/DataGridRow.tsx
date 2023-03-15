@@ -10,7 +10,7 @@ export function DataGridRow(props: GridRowProps) {
   const rowNode = apiRef.current.getRowNode(rowId)
 
   const isRowGroup = React.useMemo(() => {
-    if (rowNode === null) {
+    if (rowNode === null || rowNode.type !== 'group') {
       return false
     }
     return rowNode.groupingField !== null
@@ -20,7 +20,7 @@ export function DataGridRow(props: GridRowProps) {
 
   const handleClick = React.useCallback(
     (_event: React.MouseEvent<HTMLDivElement>) => {
-      if (!rowNode || !isRowGroup) {
+      if (!rowNode || rowNode.type !== 'group' || !isRowGroup) {
         return
       }
       // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions

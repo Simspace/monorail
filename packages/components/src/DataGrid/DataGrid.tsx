@@ -2,19 +2,15 @@
 import React from 'react'
 import type { CSSInterpolation, Theme } from '@mui/material'
 import type { SystemStyleObject } from '@mui/system'
+import type { DataGridPremiumProps } from '@mui/x-data-grid-premium'
 import {
   GridBody,
   GridContextProvider,
-  GridErrorHandler,
   GridFooterPlaceholder,
-  GridHeaderPlaceholder,
   GridRoot,
 } from '@mui/x-data-grid-premium'
 import { getReleaseInfo } from '@mui/x-data-grid-premium/utils/releaseInfo'
-import {
-  DataGridProColumnHeaders,
-  DataGridProVirtualScroller,
-} from '@mui/x-data-grid-pro/internals'
+import { DataGridProVirtualScroller } from '@mui/x-data-grid-pro/internals'
 import { useLicenseVerifier, Watermark } from '@mui/x-license-pro'
 
 import { combineSxProps } from '@monorail/utils/sx'
@@ -26,7 +22,6 @@ import { useDataGridComponent } from './hooks/useDataGridComponent.js'
 import { useDataGridProps } from './hooks/useDataGridProps.js'
 import type { GridValidRowModel } from './internal.js'
 import { dataGridClasses } from './internal.js'
-import type { DataGridPremiumProps } from './models.js'
 
 const releaseInfo = getReleaseInfo()
 
@@ -68,39 +63,33 @@ export const DataGrid: <R extends GridValidRowModel>(
   useLicenseVerifier('x-data-grid-premium', releaseInfo)
 
   return (
-    <GridContextProvider apiRef={apiRef} props={props}>
+    <GridContextProvider privateApiRef={apiRef} props={props}>
       <GridRoot
         className={props.className}
         style={props.style}
         sx={sxProp}
         ref={ref}
       >
-        <GridErrorHandler>
-          <GridHeaderPlaceholder />
-          {apiRef.current.state.viewStyle === 'table' && (
-            <GridBody
-              ColumnHeadersComponent={DataGridProColumnHeaders}
-              VirtualScrollerComponent={DataGridProVirtualScroller}
-            >
-              <Watermark
-                packageName="x-data-grid-premium"
-                releaseInfo={releaseInfo}
-              />
-            </GridBody>
-          )}
-          {apiRef.current.state.viewStyle === 'gallery' && (
-            <DataGalleryBody
-              ColumnHeadersComponent={DataGalleryColumnHeaders}
-              VirtualScrollerComponent={DataGalleryVirtualScroller}
-            >
-              <Watermark
-                packageName="x-data-grid-premium"
-                releaseInfo={releaseInfo}
-              />
-            </DataGalleryBody>
-          )}
-          <GridFooterPlaceholder />
-        </GridErrorHandler>
+        {apiRef.current.state.viewStyle === 'table' && (
+          <GridBody VirtualScrollerComponent={DataGridProVirtualScroller}>
+            <Watermark
+              packageName="x-data-grid-premium"
+              releaseInfo={releaseInfo}
+            />
+          </GridBody>
+        )}
+        {apiRef.current.state.viewStyle === 'gallery' && (
+          <DataGalleryBody
+            ColumnHeadersComponent={DataGalleryColumnHeaders}
+            VirtualScrollerComponent={DataGalleryVirtualScroller}
+          >
+            <Watermark
+              packageName="x-data-grid-premium"
+              releaseInfo={releaseInfo}
+            />
+          </DataGalleryBody>
+        )}
+        <GridFooterPlaceholder />
       </GridRoot>
     </GridContextProvider>
   )

@@ -14,9 +14,7 @@ import { MobileDateTimePicker as MuiMobileDateTimePicker } from '@mui/x-date-pic
 export const MobileDateTimePicker: typeof MuiMobileDateTimePicker =
   MuiMobileDateTimePicker
 
-export interface MobileDateTimePickerProps<
-  TInputDate = Date,
-  TDate = TInputDate,
-> extends MuiMobileDateTimePickerProps<TInputDate, TDate> {}
+export interface MobileDateTimePickerProps<TDate = Date>
+  extends MuiMobileDateTimePickerProps<TDate> {}
 
 export * from '@mui/x-date-pickers/MobileDateTimePicker'

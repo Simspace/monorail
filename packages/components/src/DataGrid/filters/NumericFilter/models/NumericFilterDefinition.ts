@@ -15,7 +15,7 @@ export interface NumericFilterDefinition<
   F = V,
 > {
   type: 'numeric'
-  componentsProps?: {
+  slotProps?: {
     columnHeaderButton?: Partial<IconButtonProps & DataAttributes>
     select?: Omit<
       Partial<SelectProps<NumericFilterOperator> & DataAttributes>,

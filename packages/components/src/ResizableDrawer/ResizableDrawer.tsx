@@ -147,7 +147,7 @@ export const ResizableDrawer = React.forwardRef(
       anchor = 'left',
       className,
       children,
-      componentsProps = {},
+      slotProps = {},
       maxSize = MAX_DRAWER_SIZE,
       minSize = MIN_DRAWER_SIZE,
       initialSize = DRAWER_SIZE,
@@ -257,7 +257,7 @@ export const ResizableDrawer = React.forwardRef(
     const ownerState = {
       anchor,
       children,
-      componentsProps,
+      slotProps,
       maxSize,
       minSize,
       isDragging,
@@ -267,29 +267,25 @@ export const ResizableDrawer = React.forwardRef(
     const classes = useUtilityClasses(ownerState)
 
     const paperProps = {
-      ...componentsProps.paper,
+      ...slotProps.paper,
       style: getDrawerSizeStyle(drawerSize),
     }
 
     return (
       <ResizableDrawerRoot
-        {...componentsProps.drawer}
+        {...slotProps.drawer}
         {...other}
         variant={variant}
-        className={clsx(
-          classes.root,
-          className,
-          componentsProps.drawer?.className,
-        )}
+        className={clsx(classes.root, className, slotProps.drawer?.className)}
         anchor={anchor}
         ownerState={ownerState}
         ref={ref}
         style={{
-          ...componentsProps.drawer?.style,
+          ...slotProps.drawer?.style,
           ...getDrawerSizeStyle(drawerSize),
         }}
         PaperProps={paperProps}
-        ModalProps={componentsProps.modal}
+        ModalProps={slotProps.modal}
       >
         <div
           style={getHandlePositionStyle(drawerSize)}

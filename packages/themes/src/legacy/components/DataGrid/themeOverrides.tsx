@@ -6,7 +6,7 @@ import { dataGridClasses } from '@monorail/components'
 export const MonorailDataGridOverrides: Components<Theme>['MuiDataGrid'] = {
   defaultProps: {
     rowHeight: 40,
-    headerHeight: 42,
+    columnHeaderHeight: 42,
   },
   styleOverrides: {
     root: ({ theme }) => {

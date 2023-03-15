@@ -59,7 +59,7 @@ export interface ResizableDrawerProps extends StandardElementProps<'div'> {
    */
   handleSize?: number
 
-  componentsProps?: {
+  slotProps?: {
     drawer?: Omit<Partial<DrawerProps>, 'anchor' | 'variant' | 'sx'>
     paper?: Partial<PaperProps>
     modal?: Partial<ModalProps>

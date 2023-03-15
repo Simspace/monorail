@@ -22,7 +22,7 @@ export interface EmphaticFormControlLabelProps<
    * The props used for each slot inside.
    * @default {}
    */
-  componentsProps?: {
+  slotProps?: {
     /**
      * Props applied to the Typography wrapper of the passed label.
      * This is unused if disableTypography is true.
