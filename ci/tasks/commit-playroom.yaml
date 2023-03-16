@@ -1,0 +1,22 @@
+
+platform: linux
+inputs:
+- name: repo
+- name: pages
+- name: playroom
+outputs:
+- name: pages
+run:
+  path: sh
+  args:
+    - -cx
+    - |
+      GIT_BRANCH_SLUG=$(node ci/tasks/get-git-branch-slug.mjs)
+      cd ../pages
+      rm -rf playroom/$GIT_BRANCH_SLUG
+      mkdir -p playroom/$GIT_BRANCH_SLUG
+      cp -r ../playroom ./$GIT_BRANCH_SLUG
+      git config --global user.email "<>"
+      git config --global user.name "Concourse CI"
+      git add . && git commit -m "ci: playroom $GIT_BRANCH_SLUG"
+  dir: repo

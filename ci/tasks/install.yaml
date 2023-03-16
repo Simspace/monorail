@@ -1,0 +1,14 @@
+platform: linux
+caches:
+- path: repo/node_modules
+inputs:
+- name: repo
+outputs:
+- name: node-modules
+  path: repo/node_modules
+- name: yarn-cache
+  path: repo/.yarn/cache
+run:
+  path: yarn
+  args: [install, --immutable]
+  dir: repo

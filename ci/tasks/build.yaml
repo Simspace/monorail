@@ -1,0 +1,37 @@
+platform: linux
+inputs:
+- name: repo
+- name: node-modules
+  path: repo/node_modules
+- name: yarn-cache
+  path: repo/.yarn/cache
+outputs:
+- name: components-build
+- name: themes-build
+- name: utils-build
+- name: types-build
+run:
+  path: sh
+  args:
+  - -cx
+  - |
+    yarn install --immutable
+    yarn build
+    yarn build-pack
+    mkdir -p ../components-build/dist
+    mkdir -p ../components-build/build
+    mv packages/components/dist/* ../components-build/dist
+    mv packages/components/build/* ../components-build/build
+    mkdir -p ../themes-build/dist
+    mkdir -p ../themes-build/build
+    mv packages/themes/dist/* ../themes-build/dist
+    mv packages/themes/build/* ../themes-build/build
+    mkdir -p ../utils-build/dist
+    mkdir -p ../utils-build/build
+    mv packages/utils/dist/* ../utils-build/dist
+    mv packages/utils/build/* ../utils-build/build
+    mkdir -p ../types-build/dist
+    mkdir -p ../types-build/build
+    mv packages/types/dist/* ../types-build/dist
+    mv packages/types/build/* ../types-build/build
+  dir: repo
