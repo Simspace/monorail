@@ -279,6 +279,6 @@ jobs:
     attempts: 3
     params:
       repository: pages
-      rabse: true
+      rebase: true
       branch: pages
 
