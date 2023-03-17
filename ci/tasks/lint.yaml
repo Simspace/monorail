@@ -1,0 +1,24 @@
+platform: linux
+inputs:
+- name: repo
+- name: node-modules
+  path: repo/node_modules
+- name: yarn-cache
+  path: repo/.yarn/cache
+- name: components-build
+  path: repo/packages/components/dist
+- name: themes-build
+  path: repo/packages/themes/dist
+- name: utils-build
+  path: repo/packages/utils/dist
+- name: types-build
+  path: repo/packages/types/dist
+run:
+  path: sh
+  args:
+  - -cx
+  - |
+    yarn install --immutable
+    yarn eslint
+    yarn prettier:check
+  dir: repo

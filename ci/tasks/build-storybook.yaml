@@ -1,0 +1,18 @@
+platform: linux
+inputs:
+- name: repo
+- name: node-modules
+  path: repo/node_modules
+- name: yarn-cache
+  path: repo/.yarn/cache
+outputs:
+- name: storybook
+  path: repo/packages/storybook/storybook
+run:
+  path: sh
+  args:
+    - -cx
+    - |
+      yarn install --immutable
+      yarn build-storybook --output-dir storybook
+  dir: repo
