@@ -1,0 +1,23 @@
+platform: linux
+inputs:
+- name: repo
+- name: node-modules
+  path: repo/node_modules
+- name: yarn-cache
+  path: repo/.yarn/cache
+- name: components-build
+- name: themes-build
+- name: utils-build
+- name: types-build
+run:
+  path: sh
+  args:
+  - -cx
+  - |
+    mv ../components-build/* packages/components
+    mv ../utils-build/* packages/utils
+    mv ../themes-build/* packages/themes
+    mv ../types-build/* packages/types
+    yarn install --immutable
+    yarn test
+  dir: repo

@@ -1,0 +1,15 @@
+platform: linux
+inputs:
+- name: pages
+outputs:
+- name: pages
+run:
+  path: sh
+  args:
+  - -cx
+  - |
+    rm -rf ((git-branch-slug))
+    git config --global user.email "concourseci@simspace.com"
+    git config --global user.name "concourse ci"
+    git add . && git commit -m "ci: delete artifacts ((git-branch-slug))"
+  dir: pages
