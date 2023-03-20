@@ -41,7 +41,7 @@ resources:
       access_token: ((concourse-github.token))
       base_branch: main
       states:
-      - OPEN
+        - OPEN
 
   - name: pr-closed
     type: simspace-pull-request
@@ -51,234 +51,227 @@ resources:
       access_token: ((concourse-github.token))
       base_branch: main
       states:
-      - MERGED
-      - CLOSED
+        - MERGED
+        - CLOSED
 
 jobs:
-- name: main
-  plan:
-  - get: pages
+  - name: main
+    plan:
+      - get: pages
 
-  - get: monorail
-    trigger: true
-    params:
-      git_depth: 1
+      - get: monorail
+        trigger: true
+        params:
+          git_depth: 1
 
-  - get: node-image
+      - get: node-image
 
-  # - put: update-status
-  #   resource: monorail
-  #   params:
-  #     path: monorail
-  #     status: pending
+      # - put: update-status
+      #   resource: monorail
+      #   params:
+      #     path: monorail
+      #     status: pending
 
-  - task: install
-    image: node-image
-    file: monorail/ci/tasks/install.yaml
-    input_mapping:
-      repo: monorail
+      - task: install
+        image: node-image
+        file: monorail/ci/tasks/install.yaml
+        input_mapping:
+          repo: monorail
 
-  - task: build
-    image: node-image
-    file: monorail/ci/tasks/build.yaml
-    input_mapping:
-      repo: monorail
+      - task: build
+        image: node-image
+        file: monorail/ci/tasks/build.yaml
+        input_mapping:
+          repo: monorail
 
-  - task: lint
-    image: node-image
-    file: monorail/ci/tasks/lint.yaml
-    input_mapping:
-      repo: monorail
+      - task: lint
+        image: node-image
+        file: monorail/ci/tasks/lint.yaml
+        input_mapping:
+          repo: monorail
 
-  # TODO: Tests are disabled until worker RAM can be increased
-  #
-  # - task: test
-  #   image: node-image
-  #   file: pr/ci/tasks/test.yaml
-  #   input_mapping:
-  #     repo: monorail
+      - task: test
+        image: node-image
+        file: pr/ci/tasks/test.yaml
+        input_mapping:
+          repo: monorail
 
-  - task: build-storybook
-    image: node-image
-    file: monorail/ci/tasks/build-storybook.yaml
-    input_mapping:
-      repo: monorail
+      - task: build-storybook
+        image: node-image
+        file: monorail/ci/tasks/build-storybook.yaml
+        input_mapping:
+          repo: monorail
 
-  - task: commit-storybook
-    image: node-image
-    file: monorail/ci/tasks/commit-storybook.yaml
-    input_mapping:
-      repo: monorail
-    vars:
-      git-branch-slug: "main"
+      - task: commit-storybook
+        image: node-image
+        file: monorail/ci/tasks/commit-storybook.yaml
+        input_mapping:
+          repo: monorail
+        vars:
+          git-branch-slug: "main"
 
-  # TODO: Playroom build is disabled until worker RAM can be increased
-  #
-  # - task: build-playroom
-  #   image: node-image
-  #   file: monorail/ci/tasks/build-playroom.yaml
-  #   input_mapping:
-  #     repo: monorail
+      - task: build-playroom
+        image: node-image
+        file: monorail/ci/tasks/build-playroom.yaml
+        input_mapping:
+          repo: monorail
 
-  # - task: commit-playroom
-  #   image: node-image
-  #   file: monorail/ci/tasks/commit-playroom.yaml
-  #   input_mapping:
-  #     repo: monorail
-  #   vars:
-  #     git-branch-slug: "main"
+      - task: commit-playroom
+        image: node-image
+        file: monorail/ci/tasks/commit-playroom.yaml
+        input_mapping:
+          repo: monorail
+        vars:
+          git-branch-slug: "main"
 
-  - put: pages
-    attempts: 3
-    params:
-      repository: pages
-      rebase: true
-      branch: pages
+      - put: pages
+        attempts: 3
+        params:
+          repository: pages
+          rebase: true
+          branch: pages
 
-  # on_failure:
-  #   put: update-status
-  #   resource: monorail
-  #   params:
-  #     path: monorail
-  #     status: failure
-  #   get_params: {skip_download: true}
+    # on_failure:
+    #   put: update-status
+    #   resource: monorail
+    #   params:
+    #     path: monorail
+    #     status: failure
+    #   get_params: {skip_download: true}
 
-  # on_success:
-  #   put: update-status
-  #   resource: monorail
-  #   params:
-  #     path: monorail
-  #     status: success
-  #   get_params: {skip_download: true}
+    # on_success:
+    #   put: update-status
+    #   resource: monorail
+    #   params:
+    #     path: monorail
+    #     status: success
+    #   get_params: {skip_download: true}
 
-- name: pr
-  plan:
-  - get: pages
+  - name: pr
+    plan:
+      - get: pages
 
-  - get: pr
-    trigger: true
-    params:
-      integration_tool: checkout
-      git_depth: 1
+      - get: pr
+        trigger: true
+        params:
+          integration_tool: checkout
+          git_depth: 1
 
-  - get: node-image
+      - get: node-image
 
-  - put: update-status
-    resource: pr
-    params:
-      path: pr
-      status: pending
+      - put: update-status
+        resource: pr
+        params:
+          path: pr
+          status: pending
 
-  - task: get-git-branch-slug
-    image: node-image
-    file: pr/ci/tasks/get-git-branch-slug.yaml
-    input_mapping:
-      repo: pr
+      - task: get-git-branch-slug
+        image: node-image
+        file: pr/ci/tasks/get-git-branch-slug.yaml
+        input_mapping:
+          repo: pr
 
-  - load_var: git-branch-slug
-    file: git-branch-slug/output
+      - load_var: git-branch-slug
+        file: git-branch-slug/output
 
-  - task: install
-    image: node-image
-    file: pr/ci/tasks/install.yaml
-    input_mapping:
-      repo: pr
+      - task: install
+        image: node-image
+        file: pr/ci/tasks/install.yaml
+        input_mapping:
+          repo: pr
 
-  - task: build
-    image: node-image
-    file: pr/ci/tasks/build.yaml
-    input_mapping:
-      repo: pr
+      - task: build
+        image: node-image
+        file: pr/ci/tasks/build.yaml
+        input_mapping:
+          repo: pr
 
-  - task: lint
-    image: node-image
-    file: pr/ci/tasks/lint.yaml
-    input_mapping:
-      repo: pr
+      - task: lint
+        image: node-image
+        file: pr/ci/tasks/lint.yaml
+        input_mapping:
+          repo: pr
 
-  # TODO: Tests are disabled until worker RAM can be increased
-  #
-  # - task: test
-  #   image: node-image
-  #   file: pr/ci/tasks/test.yaml
-  #   input_mapping:
-  #     repo: pr
+      - task: test
+        image: node-image
+        file: pr/ci/tasks/test.yaml
+        input_mapping:
+          repo: pr
 
-  - task: build-storybook
-    image: node-image
-    file: pr/ci/tasks/build-storybook.yaml
-    input_mapping:
-      repo: pr
+      - task: build-storybook
+        image: node-image
+        file: pr/ci/tasks/build-storybook.yaml
+        input_mapping:
+          repo: pr
 
-  - task: commit-storybook
-    image: node-image
-    file: pr/ci/tasks/commit-storybook.yaml
-    input_mapping:
-      repo: pr
-    vars:
-      git-branch-slug: ((.:git-branch-slug))
+      - task: commit-storybook
+        image: node-image
+        file: pr/ci/tasks/commit-storybook.yaml
+        input_mapping:
+          repo: pr
+        vars:
+          git-branch-slug: ((.:git-branch-slug))
 
-  - put: pages
-    attempts: 3
-    params:
-      repository: pages
-      rabse: true
-      branch: pages
+      - put: pages
+        attempts: 3
+        params:
+          repository: pages
+          rabse: true
+          branch: pages
 
-  - put: storybook-comment
-    attempts: 3
-    resource: pr
-    params:
-      path: pr
-      comment: "Storybook: https://simspace.github.io/monorail/((.:git-branch-slug))/storybook"
-      delete_previous_comments: true
+      - put: storybook-comment
+        attempts: 3
+        resource: pr
+        params:
+          path: pr
+          comment: "Storybook: https://simspace.github.io/monorail/((.:git-branch-slug))/storybook"
+          delete_previous_comments: true
 
-  on_failure:
-    put: update-status
-    resource: pr
-    params:
-      path: pr
-      status: failure
-    get_params: {skip_download: true}
-  on_success:
-    put: update-status
-    resource: pr
-    params:
-      path: pr
-      status: success
-    get_params: {skip_download: true}
+    on_failure:
+      put: update-status
+      resource: pr
+      params:
+        path: pr
+        status: failure
+      get_params: { skip_download: true }
+    on_success:
+      put: update-status
+      resource: pr
+      params:
+        path: pr
+        status: success
+      get_params: { skip_download: true }
 
-- name: pr-closed
-  plan:
-  - get: pages
+  - name: pr-closed
+    plan:
+      - get: pages
 
-  - get: pr-closed
-    trigger: true
-    params:
-      integration_tool: checkout
-      git_depth: 1
+      - get: pr-closed
+        trigger: true
+        params:
+          integration_tool: checkout
+          git_depth: 1
 
-  - get: node-image
+      - get: node-image
 
-  - task: get-git-branch-slug
-    image: node-image
-    file: pr-closed/ci/tasks/get-git-branch-slug.yaml
-    input_mapping:
-      repo: pr-closed
+      - task: get-git-branch-slug
+        image: node-image
+        file: pr-closed/ci/tasks/get-git-branch-slug.yaml
+        input_mapping:
+          repo: pr-closed
 
-  - load_var: git-branch-slug
-    file: git-branch-slug/output
+      - load_var: git-branch-slug
+        file: git-branch-slug/output
 
-  - task: delete-artifacts
-    image: node-image
-    file: pr-closed/ci/tasks/delete-artifacts.yaml
-    vars:
-      git-branch-slug: ((.:git-branch-slug))
+      - task: delete-artifacts
+        image: node-image
+        file: pr-closed/ci/tasks/delete-artifacts.yaml
+        vars:
+          git-branch-slug: ((.:git-branch-slug))
 
-  - put: pages
-    attempts: 3
-    params:
-      repository: pages
-      rebase: true
-      branch: pages
-
+      - put: pages
+        attempts: 3
+        params:
+          repository: pages
+          rebase: true
+          branch: pages
