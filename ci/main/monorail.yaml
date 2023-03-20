@@ -131,6 +131,14 @@ jobs:
           rebase: true
           branch: pages
 
+      - task: publish
+        image: node-image
+        file: monorail/ci/tasks/publish.yaml
+        input_mapping:
+          repo: monorail
+        params:
+          NPM_TOKEN: ((concourse-monorail.npm-access-token))
+
     # on_failure:
     #   put: update-status
     #   resource: monorail
@@ -216,7 +224,7 @@ jobs:
         attempts: 3
         params:
           repository: pages
-          rabse: true
+          rebase: true
           branch: pages
 
       - put: storybook-comment
