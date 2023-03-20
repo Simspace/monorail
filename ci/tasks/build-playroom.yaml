@@ -5,6 +5,10 @@ inputs:
   path: repo/node_modules
 - name: yarn-cache
   path: repo/.yarn/cache
+- name: components-build
+- name: themes-build
+- name: utils-build
+- name: types-build
 outputs:
 - name: playroom
   path: repo/playroom
@@ -13,6 +17,10 @@ run:
   args:
     - -cx
     - |
+      mv ../components-build/* packages/components
+      mv ../utils-build/* packages/utils
+      mv ../themes-build/* packages/themes
+      mv ../types-build/* packages/types
       yarn install --immutable
       yarn build-playroom
   dir: repo
