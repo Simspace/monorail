@@ -14,7 +14,7 @@
     "prettier:check": "prettier './src/**/*{.js,.ts,.tsx}' --list-different",
     "prettier:write": "prettier './src/**/*{.js,.ts,.tsx}' --write",
     "storybook": "TS_NODE_PROJECT=./.storybook/tsconfig.json start-storybook --debug-webpack -p 6006 -s assets",
-    "test": "yarn org:jest"
+    "test": "yarn org:jest --maxWorkers=2"
   },
   "devDependencies": {
     "@babel/core": "^7.20.2",

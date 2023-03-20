@@ -19,5 +19,5 @@ run:
     mv ../themes-build/* packages/themes
     mv ../types-build/* packages/types
     yarn install --immutable
-    yarn test
+    NODE_OPTIONS=--max-old-space-size=8192 yarn test
   dir: repo
