@@ -92,7 +92,7 @@ jobs:
 
       - task: test
         image: node-image
-        file: pr/ci/tasks/test.yaml
+        file: monorail/ci/tasks/test.yaml
         input_mapping:
           repo: monorail
 
