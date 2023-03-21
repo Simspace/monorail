@@ -1,11 +1,10 @@
-
 platform: linux
 inputs:
-- name: repo
-- name: pages
-- name: playroom
+  - name: repo
+  - name: pages
+  - name: playroom
 outputs:
-- name: pages
+  - name: pages
 run:
   path: sh
   args:
@@ -13,9 +12,10 @@ run:
     - |
       cd ../pages
       rm -rf ((git-branch-slug))/playroom
-      mkdir -p ((git-branch-slug))/playroom
+      mkdir -p ((git-branch-slug))
       cp -r ../playroom ./((git-branch-slug))
       git config --global user.email "concourseci@simspace.com"
       git config --global user.name "Concourse CI"
-      git add . && git commit -m "ci: ((git-branch-slug)) playroom"
+      git reset --soft HEAD^
+      git add . && git commit -m "ci: pages"
   dir: repo
