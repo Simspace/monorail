@@ -128,7 +128,7 @@ jobs:
         attempts: 3
         params:
           repository: pages
-          rebase: true
+          force: true
           branch: pages
 
       - task: publish
@@ -224,7 +224,7 @@ jobs:
         attempts: 3
         params:
           repository: pages
-          rebase: true
+          force: true
           branch: pages
 
       - put: storybook-comment
@@ -281,5 +281,5 @@ jobs:
         attempts: 3
         params:
           repository: pages
-          rebase: true
+          force: true
           branch: pages

@@ -1,10 +1,10 @@
 platform: linux
 inputs:
-- name: repo
-- name: pages
-- name: storybook
+  - name: repo
+  - name: pages
+  - name: storybook
 outputs:
-- name: pages
+  - name: pages
 run:
   path: sh
   args:
@@ -16,5 +16,6 @@ run:
       cp -r ../storybook ./((git-branch-slug))
       git config --global user.email "concourseci@simspace.com"
       git config --global user.name "Concourse CI"
-      git add . && git commit -m "ci: ((git-branch-slug)) storybook"
+      git reset --soft HEAD^
+      git add . && git commit -m "ci: pages"
   dir: repo

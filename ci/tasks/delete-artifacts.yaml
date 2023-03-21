@@ -11,5 +11,6 @@ run:
     rm -rf ((git-branch-slug))
     git config --global user.email "concourseci@simspace.com"
     git config --global user.name "concourse ci"
-    git add . && git commit -m "ci: delete artifacts ((git-branch-slug))"
+    git reset --soft HEAD^
+    git add . && git commit -m "ci: pages"
   dir: pages
