@@ -227,6 +227,7 @@ const palette: PaletteOptions = {
       500: RawColor.Grey500,
       600: RawColor.Grey600,
       700: RawColor.Grey700,
+      800: RawColor.Grey800,
     },
   },
   secondary: {
@@ -272,6 +273,7 @@ const palette: PaletteOptions = {
       500: RawColor.Grey500,
       600: RawColor.Grey600,
       700: RawColor.Grey700,
+      800: RawColor.Grey800,
     },
   },
   success: {
