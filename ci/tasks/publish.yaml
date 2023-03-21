@@ -1,5 +1,6 @@
 platform: linux
 inputs:
+- name: repo
 - name: node-modules
   path: repo/node_modules
 - name: yarn-cache
@@ -17,5 +18,5 @@ run:
     mv ../utils-build/* packages/utils
     mv ../themes-build/* packages/themes
     mv ../types-build/* packages/types
-    sh repo/tasks/publish.sh
+    sh tasks/publish.sh
   dir: repo
