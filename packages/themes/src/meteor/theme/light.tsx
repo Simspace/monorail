@@ -26,7 +26,8 @@ export enum RawColor {
   Grey400 = '#757681',
   Grey500 = '#565865',
   Grey600 = '#393A4A',
-  Grey700 = '#181621',
+  Grey700 = '#2B2B3B',
+  Grey800 = '#181621',
   GreyA300 = '#B8B8BE',
   GreyA700 = '#565865',
   GreyA900 = '#181621',
@@ -192,10 +193,10 @@ const palette: PaletteOptions = {
   primary: {
     light: RawColor.Grey500,
     main: RawColor.Grey600,
-    dark: RawColor.Grey700,
+    dark: RawColor.Grey800,
     contrastText: RawColor.White,
-    hover: RawColor.Grey500,
-    active: RawColor.Grey400,
+    hover: RawColor.Grey700,
+    active: RawColor.Grey800,
 
     lowEmphasis: {
       light: RawColor.Grey100,
@@ -239,8 +240,8 @@ const palette: PaletteOptions = {
     main: RawColor.Grey600,
     dark: RawColor.Grey700,
     contrastText: RawColor.White,
-    hover: RawColor.Grey500,
-    active: RawColor.Grey400,
+    hover: RawColor.Grey700,
+    active: RawColor.Grey800,
 
     lowEmphasis: {
       light: RawColor.Grey100,
