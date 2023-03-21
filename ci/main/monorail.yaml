@@ -57,8 +57,6 @@ resources:
 jobs:
   - name: main
     plan:
-      - get: pages
-
       - get: monorail
         trigger: true
         params:
@@ -124,6 +122,8 @@ jobs:
         vars:
           git-branch-slug: "main"
 
+      - get: pages
+
       - put: pages
         attempts: 3
         params:
@@ -157,8 +157,6 @@ jobs:
 
   - name: pr
     plan:
-      - get: pages
-
       - get: pr
         trigger: true
         params:
@@ -219,6 +217,8 @@ jobs:
           repo: pr
         vars:
           git-branch-slug: ((.:git-branch-slug))
+
+      - get: pages
 
       - put: pages
         attempts: 3
