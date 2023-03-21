@@ -10,7 +10,7 @@ inputs:
 - name: utils-build
 - name: types-build
 run:
-  path: sh
+  path: bash
   args:
   - -cx
   - |
@@ -18,5 +18,5 @@ run:
     mv ../utils-build/* packages/utils
     mv ../themes-build/* packages/themes
     mv ../types-build/* packages/types
-    sh ci/tasks/publish.sh
+    bash ci/tasks/publish.sh
   dir: repo
