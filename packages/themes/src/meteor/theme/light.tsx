@@ -210,7 +210,7 @@ const palette: PaletteOptions = {
     border: {
       light: RawColor.Grey300,
       main: RawColor.Grey600,
-      dark: RawColor.Grey700,
+      dark: RawColor.Grey800,
     },
 
     focusRing: {
@@ -256,7 +256,7 @@ const palette: PaletteOptions = {
     border: {
       light: RawColor.Grey300,
       main: RawColor.Grey600,
-      dark: RawColor.Grey700,
+      dark: RawColor.Grey800,
     },
 
     focusRing: {
