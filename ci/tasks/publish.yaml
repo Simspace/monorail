@@ -18,5 +18,5 @@ run:
     mv ../utils-build/* packages/utils
     mv ../themes-build/* packages/themes
     mv ../types-build/* packages/types
-    sh tasks/publish.sh
+    sh ci/tasks/publish.sh
   dir: repo
