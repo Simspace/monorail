@@ -109,17 +109,7 @@ export const MonorailDataGridOverrides: Components<Theme>['MuiDataGrid'] = {
     },
     columnSeparator: () => {
       return {
-        width: '16px',
-        alignItems: 'center',
-      }
-    },
-    iconSeparator: ({ theme }) => {
-      return {
-        color: theme.palette.divider,
-        backgroundColor: theme.palette.divider,
-        borderColor: theme.palette.divider,
-        width: '1px',
-        height: theme.spacing(10),
+        visibility: 'visible',
       }
     },
     checkboxInput: {
