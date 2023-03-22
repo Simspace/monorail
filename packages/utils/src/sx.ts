@@ -1,6 +1,5 @@
 import type { Theme } from '@mui/material'
 import type { CSSObject, SxProps, SystemStyleObject } from '@mui/system'
-import muiSx from '@mui/system/styleFunctionSx'
 
 /**
  * The `sx` function, pre-applied with MUI's `Theme` type
@@ -9,7 +8,10 @@ import muiSx from '@mui/system/styleFunctionSx'
  * @returns A CSS object
  */
 // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-explicit-any
-export const sx: (styles: SxProps<Theme>) => CSSObject = muiSx as any
+export const sx =
+  (styles: SxProps<Theme>): (({ theme }: { theme: Theme }) => CSSObject) =>
+  ({ theme }) =>
+    theme.unstable_sx(styles)
 
 type SxPropsInner<Theme extends object> =
   | boolean

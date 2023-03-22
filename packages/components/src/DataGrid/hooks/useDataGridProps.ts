@@ -1,11 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import React from 'react'
-import { Divider } from '@mui/material'
-import type {
-  GridColDef,
-  GridSlotsComponent,
-  GridValidRowModel,
-} from '@mui/x-data-grid'
+import type { GridColDef, GridValidRowModel } from '@mui/x-data-grid'
 import type {
   DataGridPremiumProps,
   GridGroupingColDefOverride,
@@ -15,6 +10,7 @@ import { useDataGridPremiumProps } from '@mui/x-data-grid-premium/DataGridPremiu
 import type { DataGridPremiumProcessedProps } from '@mui/x-data-grid-premium/models/dataGridPremiumProps'
 
 import { DataGridColumnHeader } from '../components/DataGridColumnHeader.js'
+import { DataGridColumnSeparator } from '../components/DataGridColumnSeparator.js'
 import { DataGridFooter } from '../components/DataGridFooter.js'
 import { DataGridHeader } from '../components/DataGridHeader.js'
 import { DataGridRow } from '../components/DataGridRow.js'
@@ -26,7 +22,7 @@ import { TEXT_FILTER_DEFAULT_LOCALE_TEXT } from '../filters/TextFilter.js'
 export function useDataGridProps<R extends GridValidRowModel>(
   initProps: DataGridPremiumProps<R>,
 ): DataGridPremiumProcessedProps {
-  const { localeText, components, columns, groupingColDef } = initProps
+  const { localeText, slots, columns, groupingColDef } = initProps
 
   const localeTextProp = React.useMemo(
     () => ({
@@ -39,15 +35,15 @@ export function useDataGridProps<R extends GridValidRowModel>(
     [localeText],
   )
 
-  const componentsProp = React.useMemo<Partial<GridSlotsComponent>>(
+  const slotsProp = React.useMemo<DataGridPremiumProps['slots']>(
     () => ({
-      Footer: DataGridFooter,
-      Row: DataGridRow,
-      Toolbar: DataGridHeader,
-      ColumnResizeIcon: Divider,
-      ...components,
+      footer: DataGridFooter,
+      row: DataGridRow,
+      toolbar: DataGridHeader,
+      columnResizeIcon: DataGridColumnSeparator,
+      ...slots,
     }),
-    [components],
+    [slots],
   )
 
   const processedColumns: Array<GridColDef> = React.useMemo(
@@ -94,7 +90,7 @@ export function useDataGridProps<R extends GridValidRowModel>(
     disableRowSelectionOnClick: true,
     columns: processedColumns,
     localeText: localeTextProp,
-    components: componentsProp,
+    slots: slotsProp,
     groupingColDef: groupingColDefProp,
     viewStyle: initProps.viewStyle ?? 'table',
   })

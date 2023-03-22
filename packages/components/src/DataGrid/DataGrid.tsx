@@ -7,7 +7,10 @@ import {
   GridBody,
   GridContextProvider,
   GridFooterPlaceholder,
+  GridHeader,
+  gridPinnedColumnsSelector,
   GridRoot,
+  useGridSelector,
 } from '@mui/x-data-grid-premium'
 import { getReleaseInfo } from '@mui/x-data-grid-premium/utils/releaseInfo'
 import { DataGridProVirtualScroller } from '@mui/x-data-grid-pro/internals'
@@ -45,8 +48,7 @@ export const DataGrid: <R extends GridValidRowModel>(
 ) {
   const props = useDataGridProps(initProps)
 
-  const apiRef = useDataGridComponent(props.apiRef, props)
-  React.useImperativeHandle(props.apiRef, () => apiRef.current)
+  const privateApiRef = useDataGridComponent(props.apiRef, props)
 
   const { sx, stripedRows } = props
 
@@ -60,25 +62,34 @@ export const DataGrid: <R extends GridValidRowModel>(
     [dataGridStyles, sx],
   )
 
+  const pinnedColumns = useGridSelector(
+    privateApiRef,
+    gridPinnedColumnsSelector,
+  )
+
   useLicenseVerifier('x-data-grid-premium', releaseInfo)
 
   return (
-    <GridContextProvider privateApiRef={apiRef} props={props}>
+    <GridContextProvider privateApiRef={privateApiRef} props={props}>
       <GridRoot
         className={props.className}
         style={props.style}
         sx={sxProp}
         ref={ref}
       >
-        {apiRef.current.state.viewStyle === 'table' && (
-          <GridBody VirtualScrollerComponent={DataGridProVirtualScroller}>
+        <GridHeader />
+        {privateApiRef.current.state.viewStyle === 'table' && (
+          <GridBody
+            VirtualScrollerComponent={DataGridProVirtualScroller}
+            ColumnHeadersProps={{ pinnedColumns }}
+          >
             <Watermark
               packageName="x-data-grid-premium"
               releaseInfo={releaseInfo}
             />
           </GridBody>
         )}
-        {apiRef.current.state.viewStyle === 'gallery' && (
+        {privateApiRef.current.state.viewStyle === 'gallery' && (
           <DataGalleryBody
             ColumnHeadersComponent={DataGalleryColumnHeaders}
             VirtualScrollerComponent={DataGalleryVirtualScroller}

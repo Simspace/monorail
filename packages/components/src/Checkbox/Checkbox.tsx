@@ -1,4 +1,4 @@
-import type { CheckboxProps, CSSObject } from '@mui/material'
+import type { CheckboxProps } from '@mui/material'
 import { Checkbox as MuiCheckbox, checkboxClasses, styled } from '@mui/material'
 
 import { excludeProps, sx } from '@monorail/utils'
@@ -29,7 +29,7 @@ export const Checkbox: typeof MuiCheckbox = styled(MuiCheckbox, {
   shouldForwardProp: excludeProps('disableHover'),
 })(getCheckboxStyles) as typeof MuiCheckbox
 
-function getCheckboxStyles({ disableHover }: CheckboxProps): CSSObject {
+function getCheckboxStyles({ disableHover }: CheckboxProps) {
   return sx({
     ...(disableHover === true && {
       '&:hover': {
