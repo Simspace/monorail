@@ -85,9 +85,9 @@ const Template = story<CardProps>(
 export const Default = story(Template)
 
 export const OutlinedCard = story<CardProps>(
-  () => {
+  args => {
     return (
-      <Card sx={{ maxWidth: 275 }} variant="outlined">
+      <Card sx={{ maxWidth: 275 }} variant="outlined" {...args}>
         <CardContent>
           <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
             Word of the Day
@@ -121,9 +121,9 @@ export const OutlinedCard = story<CardProps>(
   },
 )
 
-export const MediaCard = story<CardProps>(() => {
+export const MediaCard = story<CardProps>(args => {
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ maxWidth: 345 }} {...args}>
       <CardMedia
         sx={{ height: 140 }}
         image={images.lizard.url}
@@ -158,9 +158,9 @@ MediaCard.parameters = {
   creevey: { skip: 'Images load unreliably' },
 }
 
-export const ResponsiveMediaCard = story<CardProps>(() => {
+export const ResponsiveMediaCard = story<CardProps>(args => {
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ maxWidth: 345 }} {...args}>
       <CardMedia
         component="img"
         alt={images.lizard.alt}
@@ -240,9 +240,9 @@ ActionAreaCard.parameters = {
   },
 }
 
-export const MultiActionAreaCard = story<CardProps>(() => {
+export const MultiActionAreaCard = story<CardProps>(args => {
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ maxWidth: 345 }} {...args}>
       <CardActionArea>
         <CardMedia
           sx={{ height: 140 }}
@@ -284,9 +284,9 @@ MultiActionAreaCard.parameters = {
 }
 
 export const SimpleActionCard = story<CardProps>(
-  () => {
+  args => {
     return (
-      <Card sx={{ maxWidth: 444 }}>
+      <Card sx={{ maxWidth: 444 }} {...args}>
         <CardHeader
           title="Card header"
           subheader="Subheader"
@@ -295,6 +295,7 @@ export const SimpleActionCard = story<CardProps>(
               <MoreVertIcon />
             </IconButton>
           }
+          sx={{ minHeight: 72 }}
         />
         <CardContent>
           <Typography>Content Goes Here</Typography>
@@ -322,12 +323,13 @@ export const SimpleActionCard = story<CardProps>(
   },
 )
 
-export const MediaControlCard = story<CardProps>(() => {
+export const MediaControlCard = story<CardProps>(args => {
   const theme = useTheme()
 
   return (
     <Card
       sx={{ display: 'flex', maxWidth: 400, justifyContent: 'space-between' }}
+      {...args}
     >
       <Box sx={{ display: 'flex', flexDirection: 'column' }}>
         <CardContent sx={{ flex: '1 0 auto' }}>
