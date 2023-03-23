@@ -181,7 +181,7 @@ export const Borders = story(
     return (
       <Stack direction="row" gap={10}>
         <FormControl component="fieldset" variant="standard">
-          <FormLabel component="legend">Accordion borders</FormLabel>
+          <FormLabel component="legend">Accordion props</FormLabel>
           <FormGroup>
             <FormControlLabel
               control={
@@ -191,7 +191,7 @@ export const Borders = story(
                   onChange={event => setBorderless(event.target.checked)}
                 />
               }
-              label="In between"
+              label="borderless"
             />
             <FormControlLabel
               control={
@@ -201,7 +201,7 @@ export const Borders = story(
                   onChange={event => setRemoveBorderX(event.target.checked)}
                 />
               }
-              label="Left and right"
+              label="removeBorderX"
             />
             <FormControlLabel
               control={
@@ -211,7 +211,7 @@ export const Borders = story(
                   onChange={event => setRemoveBorderY(event.target.checked)}
                 />
               }
-              label="Top and bottom"
+              label="removeBorderY"
             />
           </FormGroup>
           <FormGroup sx={{ mt: 4 }}>
@@ -258,9 +258,9 @@ export const Borders = story(
 
           <Box>
             <Accordion
-              borderless={!borderless}
-              removeBorderX={!removeBorderX}
-              removeBorderY={!removeBorderY}
+              borderless={borderless}
+              removeBorderX={removeBorderX}
+              removeBorderY={removeBorderY}
               square
             >
               <AccordionSummary
@@ -276,9 +276,9 @@ export const Borders = story(
               </AccordionDetails>
             </Accordion>
             <Accordion
-              borderless={!borderless}
-              removeBorderX={!removeBorderX}
-              removeBorderY={!removeBorderY}
+              borderless={borderless}
+              removeBorderX={removeBorderX}
+              removeBorderY={removeBorderY}
               square
             >
               <AccordionSummary
@@ -294,9 +294,9 @@ export const Borders = story(
               </AccordionDetails>
             </Accordion>
             <Accordion
-              borderless={!borderless}
-              removeBorderX={!removeBorderX}
-              removeBorderY={!removeBorderY}
+              borderless={borderless}
+              removeBorderX={removeBorderX}
+              removeBorderY={removeBorderY}
               square
               disabled
             >
