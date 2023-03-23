@@ -61,6 +61,7 @@ const LoadingIndicatorRoot = styled('svg')<LoadingIndicatorProps>(
     animation: `${rotateAnimation} var(--total-duration) var(--easing) infinite`,
     width: size + 'px',
     height: size + 'px',
+    willChange: 'transform',
   }),
 )
 
