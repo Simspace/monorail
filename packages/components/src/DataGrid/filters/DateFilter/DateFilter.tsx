@@ -74,7 +74,7 @@ export function DateFilter(inProps: DateFilterProps) {
 
   const syncFilter = useDebouncedSyncFilter(
     apiRef,
-    `numeric-${field}`,
+    'date',
     field,
     state,
     getIsFiltered,

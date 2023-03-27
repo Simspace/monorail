@@ -5,7 +5,7 @@ import { SUBMIT_FILTER_STROKE_TIME } from '@mui/x-data-grid-premium'
 
 export function useDebouncedSyncFilter<S>(
   apiRef: React.MutableRefObject<GridApi>,
-  id: string,
+  name: string,
   field: string,
   state: S,
   check: (state: S) => boolean,
@@ -17,17 +17,17 @@ export function useDebouncedSyncFilter<S>(
       before?.()
       if (check(state)) {
         apiRef.current.upsertFilterItem({
-          id,
+          id: `${name}-${field}`,
           field,
           value: state,
-          operator: '',
+          operator: name,
         })
       } else {
         apiRef.current.deleteFilterItem({
-          id,
+          id: `${name}-${field}`,
           field,
           value: null,
-          operator: '',
+          operator: name,
         })
       }
     }, SUBMIT_FILTER_STROKE_TIME),

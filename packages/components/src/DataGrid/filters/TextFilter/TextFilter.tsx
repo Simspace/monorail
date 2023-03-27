@@ -60,7 +60,7 @@ export function TextFilter(inProps: TextFilterProps) {
 
   const syncFilter = useDebouncedSyncFilter(
     apiRef,
-    `text-${field}`,
+    'text',
     field,
     state,
     state => state.searchText.length !== 0,
