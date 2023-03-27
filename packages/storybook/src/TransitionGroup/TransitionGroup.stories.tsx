@@ -11,7 +11,10 @@ import {
   List,
   ListItem,
   ListItemText,
+  ScrollShadow,
+  Stack,
   TransitionGroup,
+  Typography,
 } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
@@ -116,3 +119,38 @@ const Template = story<TransitionGroupProps>(
 
 /** Default story for Typography (edit/remove by hand if needed) */
 export const Default = story(Template)
+
+export const Test = () => {
+  const [items, setItems] = React.useState<Array<number>>([])
+
+  const addItem = () => {
+    setItems(items => {
+      return [...items, items.length]
+    })
+  }
+
+  const removeItem = () => {
+    setItems(items => {
+      return items.slice(0, -1)
+    })
+  }
+
+  return (
+    <Stack height="100vh">
+      <Box>
+        <Typography variant="h1">Header</Typography>
+      </Box>
+      <ScrollShadow>
+        <Button onClick={addItem}>Add Item</Button>
+        <Button onClick={removeItem}>Remove Item</Button>
+        <TransitionGroup component={List}>
+          {items.map((_, index) => (
+            <Collapse component={ListItem} key={index}>
+              Item {index}
+            </Collapse>
+          ))}
+        </TransitionGroup>
+      </ScrollShadow>
+    </Stack>
+  )
+}
