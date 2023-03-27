@@ -6,8 +6,13 @@ import type {} from '@mui/x-date-pickers/themeAugmentation'
 import type {} from '@mui/x-date-pickers-pro/themeAugmentation'
 
 import { getThemeComponents as getClassicThemeComponents } from '../../classic/theme/themeComponents.js'
+import {
+  MonorailAlertOverrides,
+  MonorailAlertTitleOverrides,
+} from '../components/Alert/themeOverrides.js'
 import { MonorailCardOverrides } from '../components/Card/themeOverrides.js'
 import { MonorailCardHeaderOverrides } from '../components/CardHeader/themeOverrides.js'
+import { MonorailCircularProgressOverrides } from '../components/CircularProgress/themeOverrides.js'
 import { MonorailSkeletonOverrides } from '../components/Skeleton/themeOverrides.js'
 import { baseTheme } from './baseTheme.js'
 
@@ -20,7 +25,10 @@ export const getThemeComponents = (
   // Make sure we apply the defaults here
   ...baseTheme.components,
   ...getClassicThemeComponents(theme),
+  MuiAlert: MonorailAlertOverrides,
+  MuiAlertTitle: MonorailAlertTitleOverrides,
   MuiCard: MonorailCardOverrides,
   MuiCardHeader: MonorailCardHeaderOverrides,
+  MuiCircularProgress: MonorailCircularProgressOverrides,
   MuiSkeleton: MonorailSkeletonOverrides,
 })
