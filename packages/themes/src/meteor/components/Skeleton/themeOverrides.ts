@@ -12,7 +12,7 @@ export const MonorailSkeletonOverrides: Components<Theme>['MuiSkeleton'] = {
         background: `linear-gradient(
           90deg,
           transparent,
-          ${alpha(theme.palette.default.lowEmphasis.light, 0.6)},
+          ${alpha(theme.palette.default.lowEmphasis.light, 0.95)},
           transparent
         )`,
       },

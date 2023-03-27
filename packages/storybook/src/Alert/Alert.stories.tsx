@@ -24,6 +24,15 @@ import { story } from '../helpers/storybook.js'
  */
 export default { title: 'Feedback/Alert', component: Alert }
 
+// Story controls
+const argTypes = {
+  variant: {
+    options: ['filled', 'outlined', 'standard'],
+    control: {
+      type: 'radio',
+    },
+  },
+}
 /**
  * Story template (edit/remove by hand if needed)
  *
@@ -34,24 +43,37 @@ const Template = story<AlertProps>(
   args => (
     <Alert {...args}>This is a test of the emergency broadcast system</Alert>
   ),
-  { args: { severity: 'warning' }, muiName: 'MuiAlert' },
+  {
+    muiName: 'MuiAlert',
+    argTypes,
+    args: { severity: 'warning', variant: 'outlined' },
+  },
 )
 
 /** Default story for Alert (edit/remove by hand if needed) */
 export const Default = story(Template)
 
 export const Severities = story<AlertProps>(
-  () => {
+  args => {
     return (
       <Stack sx={{ width: '100%' }} spacing={2}>
-        <Alert severity="info">Info message</Alert>
-        <Alert severity="success">Success message</Alert>
-        <Alert severity="warning">Warning message</Alert>
-        <Alert severity="error">Error message</Alert>
+        <Alert severity="info" {...args}>
+          Info message
+        </Alert>
+        <Alert severity="success" {...args}>
+          Success message
+        </Alert>
+        <Alert severity="warning" {...args}>
+          Warning message
+        </Alert>
+        <Alert severity="error" {...args}>
+          Error message
+        </Alert>
       </Stack>
     )
   },
   {
+    argTypes,
     parameters: {
       docs: {
         description: {
@@ -63,22 +85,22 @@ export const Severities = story<AlertProps>(
 )
 
 export const WithTitleAndDescriptions = story<AlertProps>(
-  () => {
+  args => {
     return (
       <Stack sx={{ width: '100%' }} spacing={2}>
-        <Alert severity="error" onClose={() => {}}>
+        <Alert severity="error" onClose={() => {}} {...args}>
           <AlertTitle>Error</AlertTitle>
           This is an error alert — <strong>check it out!</strong>
         </Alert>
-        <Alert severity="warning" onClose={() => {}}>
+        <Alert severity="warning" onClose={() => {}} {...args}>
           <AlertTitle>Warning</AlertTitle>
           This is a warning alert — <strong>check it out!</strong>
         </Alert>
-        <Alert severity="info" onClose={() => {}}>
+        <Alert severity="info" onClose={() => {}} {...args}>
           <AlertTitle>Info</AlertTitle>
           This is an info alert — <strong>check it out!</strong>
         </Alert>
-        <Alert severity="success" onClose={() => {}}>
+        <Alert severity="success" onClose={() => {}} {...args}>
           <AlertTitle>Success</AlertTitle>
           This is a success alert — <strong>check it out!</strong>
         </Alert>
@@ -86,6 +108,7 @@ export const WithTitleAndDescriptions = story<AlertProps>(
     )
   },
   {
+    argTypes,
     parameters: {
       docs: {
         description: {
@@ -97,16 +120,16 @@ export const WithTitleAndDescriptions = story<AlertProps>(
 )
 
 export const Actions = story<AlertProps>(
-  () => {
+  args => {
     return (
       <Stack sx={{ width: '100%' }} spacing={2}>
-        <Alert onClose={() => {}}>
+        <Alert onClose={() => {}} {...args}>
           This is a success alert — check it out!
         </Alert>
-        <Alert onClose={() => {}} variant="filled">
+        <Alert onClose={() => {}} variant="filled" {...args}>
           This is a success alert — check it out!
         </Alert>
-        <Alert onClose={() => {}} variant="standard">
+        <Alert onClose={() => {}} variant="standard" {...args}>
           This is a success alert — check it out!
         </Alert>
         <Alert
@@ -118,6 +141,7 @@ export const Actions = story<AlertProps>(
               </Button>
             </Stack>
           }
+          {...args}
         >
           This is a success alert — check it out!
         </Alert>
@@ -134,6 +158,7 @@ export const Actions = story<AlertProps>(
               </Button>
             </Stack>
           }
+          {...args}
         >
           This is an error alert — check it out!
         </Alert>
@@ -150,6 +175,7 @@ export const Actions = story<AlertProps>(
               </Button>
             </Stack>
           }
+          {...args}
         >
           This is a warning alert — check it out!
         </Alert>
@@ -166,6 +192,7 @@ export const Actions = story<AlertProps>(
               </Button>
             </Stack>
           }
+          {...args}
         >
           This is an info alert — check it out!
         </Alert>
@@ -182,6 +209,7 @@ export const Actions = story<AlertProps>(
               </Button>
             </Stack>
           }
+          {...args}
         >
           This is a success alert — check it out!
         </Alert>
@@ -202,7 +230,7 @@ If an onClose callback is provided and no action prop is set, a close icon is di
 )
 
 export const Transition = story<AlertProps>(
-  () => {
+  args => {
     const [open, setOpen] = React.useState(true)
 
     return (
@@ -222,6 +250,7 @@ export const Transition = story<AlertProps>(
               </IconButton>
             }
             sx={{ mb: 2 }}
+            {...args}
           >
             Close me!
           </Alert>
@@ -250,20 +279,25 @@ export const Transition = story<AlertProps>(
 )
 
 export const Icons = story<AlertProps>(
-  () => {
+  args => {
     return (
       <Stack sx={{ width: '100%' }} spacing={2}>
-        <Alert icon={<CheckIcon fontSize="inherit" />} severity="success">
+        <Alert
+          icon={<CheckIcon fontSize="inherit" />}
+          severity="success"
+          {...args}
+        >
           This is a success alert — check it out!
         </Alert>
         <Alert
           iconMapping={{
             success: <CheckCircleOutlineIcon fontSize="inherit" />,
           }}
+          {...args}
         >
           This is a success alert — check it out!
         </Alert>
-        <Alert icon={false} severity="success">
+        <Alert icon={false} severity="success" {...args}>
           This is a success alert — check it out!
         </Alert>
       </Stack>
@@ -285,51 +319,101 @@ Setting the icon prop to false will remove the icon altogether.`,
 )
 
 export const Variants = story<AlertProps>(
-  () => {
+  args => {
     return (
       <Stack direction="column" spacing={2}>
         <Stack sx={{ width: '100%' }} spacing={2}>
           <Typography>Outlined (Default)</Typography>
-          <Alert variant="outlined" severity="error" onClose={() => {}}>
+          <Alert
+            variant="outlined"
+            severity="error"
+            onClose={() => {}}
+            {...args}
+          >
             This is an error alert — check it out!
           </Alert>
-          <Alert variant="outlined" severity="warning" onClose={() => {}}>
+          <Alert
+            variant="outlined"
+            severity="warning"
+            onClose={() => {}}
+            {...args}
+          >
             This is a warning alert — check it out!
           </Alert>
-          <Alert variant="outlined" severity="info" onClose={() => {}}>
+          <Alert
+            variant="outlined"
+            severity="info"
+            onClose={() => {}}
+            {...args}
+          >
             This is an info alert — check it out!
           </Alert>
-          <Alert variant="outlined" severity="success" onClose={() => {}}>
+          <Alert
+            variant="outlined"
+            severity="success"
+            onClose={() => {}}
+            {...args}
+          >
             This is a success alert — check it out!
           </Alert>
         </Stack>
         <Stack sx={{ width: '100%' }} spacing={2}>
           <Typography>Standard</Typography>
-          <Alert variant="standard" severity="error" onClose={() => {}}>
+          <Alert
+            variant="standard"
+            severity="error"
+            onClose={() => {}}
+            {...args}
+          >
             This is an error alert — check it out!
           </Alert>
-          <Alert variant="standard" severity="warning" onClose={() => {}}>
+          <Alert
+            variant="standard"
+            severity="warning"
+            onClose={() => {}}
+            {...args}
+          >
             This is a warning alert — check it out!
           </Alert>
-          <Alert variant="standard" severity="info" onClose={() => {}}>
+          <Alert
+            variant="standard"
+            severity="info"
+            onClose={() => {}}
+            {...args}
+          >
             This is an info alert — check it out!
           </Alert>
-          <Alert variant="standard" severity="success" onClose={() => {}}>
+          <Alert
+            variant="standard"
+            severity="success"
+            onClose={() => {}}
+            {...args}
+          >
             This is a success alert — check it out!
           </Alert>
         </Stack>
         <Stack sx={{ width: '100%' }} spacing={2}>
           <Typography>Filled</Typography>
-          <Alert variant="filled" severity="error" onClose={() => {}}>
+          <Alert variant="filled" severity="error" onClose={() => {}} {...args}>
             This is an error alert — check it out!
           </Alert>
-          <Alert variant="filled" severity="warning" onClose={() => {}}>
+          <Alert
+            variant="filled"
+            severity="warning"
+            onClose={() => {}}
+            {...args}
+          >
             This is a warning alert — check it out!
           </Alert>
-          <Alert variant="filled" severity="info" onClose={() => {}}>
+          <Alert variant="filled" severity="info" onClose={() => {}} {...args}>
             This is an info alert — check it out!
           </Alert>
-          <Alert variant="filled" severity="success" onClose={() => {}}>
+          <Alert
+            variant="filled"
+            severity="success"
+            onClose={() => {}}
+            {...args}
+          >
             This is a success alert — check it out!
           </Alert>
         </Stack>
@@ -356,7 +440,7 @@ const ToastAlert = React.forwardRef<HTMLDivElement, AlertProps>(function (
 })
 
 export const WithSnackbar = story<AlertProps>(
-  () => {
+  args => {
     const [open, setOpen] = React.useState(false)
 
     const handleClick = () => {
@@ -391,6 +475,7 @@ export const WithSnackbar = story<AlertProps>(
             onClose={handleClose}
             severity="success"
             sx={{ width: '100%' }}
+            {...args}
           >
             This is a success message!
           </ToastAlert>
@@ -410,9 +495,9 @@ export const WithSnackbar = story<AlertProps>(
 )
 
 export const Color = story<AlertProps>(
-  () => {
+  args => {
     return (
-      <Alert severity="success" color="info">
+      <Alert severity="success" color="info" {...args}>
         This is a success alert — check it out!
       </Alert>
     )
