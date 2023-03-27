@@ -82,7 +82,7 @@ export function EnumFilter(inProps: EnumFilterProps) {
 
   const syncFilter = useDebouncedSyncFilter(
     apiRef,
-    `enum-${field}`,
+    'enum',
     field,
     state,
     state => state.selected.size > 0,

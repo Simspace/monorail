@@ -59,7 +59,7 @@ export function NumericFilter(inProps: NumericFilterProps) {
 
   const syncFilter = useDebouncedSyncFilter(
     apiRef,
-    `numeric-${field}`,
+    'numeric',
     field,
     state,
     getIsFiltered,

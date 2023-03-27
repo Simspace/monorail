@@ -1,5 +1,9 @@
 import type { Components, Theme } from '@mui/material'
-import { checkboxClasses, typographyClasses } from '@mui/material'
+import {
+  checkboxClasses,
+  dividerClasses,
+  typographyClasses,
+} from '@mui/material'
 
 import { dataGridClasses } from '@monorail/components'
 
@@ -113,17 +117,14 @@ export const MonorailDataGridOverrides: Components<Theme>['MuiDataGrid'] = {
     },
     columnSeparator: () => {
       return {
-        width: '16px',
-        alignItems: 'center',
+        visibility: 'visible',
       }
     },
     iconSeparator: ({ theme }) => {
       return {
-        color: theme.palette.divider,
-        backgroundColor: theme.palette.divider,
-        borderColor: theme.palette.divider,
-        width: '1px',
-        height: theme.spacing(7.5),
+        [`& .${dividerClasses.root}`]: {
+          height: theme.spacing(7.5),
+        },
       }
     },
     checkboxInput: {
