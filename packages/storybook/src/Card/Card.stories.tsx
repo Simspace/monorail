@@ -63,7 +63,7 @@ const Template = story<CardProps>(
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Learn More</Button>
+        <Button>Learn More</Button>
       </CardActions>
     </Card>
   ),
@@ -105,7 +105,7 @@ export const OutlinedCard = story<CardProps>(
           </Typography>
         </CardContent>
         <CardActions>
-          <Button size="small">Learn More</Button>
+          <Button>Learn More</Button>
         </CardActions>
       </Card>
     )
@@ -139,8 +139,8 @@ export const MediaCard = story<CardProps>(args => {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Share</Button>
-        <Button size="small">Learn More</Button>
+        <Button>Share</Button>
+        <Button>Learn More</Button>
       </CardActions>
     </Card>
   )
@@ -178,8 +178,8 @@ export const ResponsiveMediaCard = story<CardProps>(args => {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Share</Button>
-        <Button size="small">Learn More</Button>
+        <Button>Share</Button>
+        <Button>Learn More</Button>
       </CardActions>
     </Card>
   )
@@ -260,9 +260,7 @@ export const MultiActionAreaCard = story<CardProps>(args => {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button size="small" color="primary">
-          Share
-        </Button>
+        <Button color="primary">Share</Button>
       </CardActions>
     </Card>
   )
@@ -301,12 +299,8 @@ export const SimpleActionCard = story<CardProps>(
           <Typography>Content Goes Here</Typography>
         </CardContent>
         <CardActions>
-          <Button size="small" variant="text">
-            Small
-          </Button>
-          <Button size="small" variant="outlined">
-            Small
-          </Button>
+          <Button variant="text">Small</Button>
+          <Button variant="outlined">Small</Button>
         </CardActions>
       </Card>
     )
