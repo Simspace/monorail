@@ -165,16 +165,16 @@ enum Opacities {
 }
 
 const action: TypeAction = {
-  active: alpha(RawColor.Orange600, Opacities.Active),
+  active: alpha(RawColor.Grey600, Opacities.Active),
   activatedOpacity: Opacities.Active,
   disabled: RawColor.Grey300,
   disabledBackground: alpha(RawColor.Black, 0.32),
   disabledOpacity: Opacities.Disabled,
-  focus: alpha(RawColor.Orange600, Opacities.Focus),
+  focus: alpha(RawColor.Grey600, Opacities.Focus),
   focusOpacity: Opacities.Focus,
-  hover: alpha(RawColor.Orange600, Opacities.Hover),
+  hover: alpha(RawColor.Grey600, Opacities.Hover),
   hoverOpacity: Opacities.Hover,
-  selected: alpha(RawColor.Orange600, Opacities.Selected),
+  selected: alpha(RawColor.Grey600, Opacities.Selected),
   selectedOpacity: Opacities.Selected,
 }
 

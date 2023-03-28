@@ -35,7 +35,7 @@ export const MonorailAlertOverrides: Components<Theme>['MuiAlert'] = {
         ),
         backgroundColor: theme.palette[severity].lowEmphasis.light,
         [`& .${alertClasses.icon}`]: {
-          color: theme.palette[severity].lowEmphasis.contrastText,
+          color: theme.palette[severity].main,
         },
         [`& .${iconButtonClasses.root}`]: {
           color: theme.palette.default.main,
@@ -55,12 +55,6 @@ export const MonorailAlertOverrides: Components<Theme>['MuiAlert'] = {
         },
         [`& .${iconButtonClasses.root}`]: {
           color: theme.palette.default.main,
-          '&:hover': {
-            backgroundColor: theme.palette[severity].lowEmphasis.hover,
-          },
-          '&:active': {
-            backgroundColor: theme.palette[severity].lowEmphasis.active,
-          },
         },
       }
     },
@@ -70,7 +64,13 @@ export const MonorailAlertOverrides: Components<Theme>['MuiAlert'] = {
         color: theme.palette.getContrastText(theme.palette[severity].main),
         backgroundColor: theme.palette[severity].main,
         [`& .${alertClasses.icon}`]: {
+          opacity: 1,
           color: theme.palette.getContrastText(theme.palette[severity].main),
+          ...(severity === 'warning' && {
+            '& path[data-color="secondary-color"]': {
+              fill: theme.palette.warning.main,
+            },
+          }),
         },
         [`& .${iconButtonClasses.root}`]: {
           '&:hover': {

@@ -24,7 +24,11 @@ export const WarningTwoColor = (props: WarningTwoColorProps) => {
   return (
     <SvgIcon {...others}>
       <path d="M1 21L12 2L23 21H1ZM11 18V16H13V18H11ZM11 10V14H13V10H11Z" />
-      <path d="M11 14H13V10H11V14ZM11 18H13V16H11V18Z" fill={secondaryColor} />
+      <path
+        d="M11 14H13V10H11V14ZM11 18H13V16H11V18Z"
+        data-color="secondary-color"
+        fill={secondaryColor}
+      />
     </SvgIcon>
   )
 }

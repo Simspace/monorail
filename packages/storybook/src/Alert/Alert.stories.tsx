@@ -123,21 +123,67 @@ export const Actions = story<AlertProps>(
   args => {
     return (
       <Stack sx={{ width: '100%' }} spacing={2}>
-        <Alert onClose={() => {}} {...args}>
-          This is a success alert — check it out!
-        </Alert>
-        <Alert onClose={() => {}} variant="filled" {...args}>
-          This is a success alert — check it out!
-        </Alert>
-        <Alert onClose={() => {}} variant="standard" {...args}>
-          This is a success alert — check it out!
-        </Alert>
         <Alert
+          variant="outlined"
+          severity="error"
           action={
             <Stack direction="row" gap={2}>
-              <Button size="small">Undo</Button>
-              <Button variant="outlined" size="small">
+              <Button size="small" color="primary">
                 Close
+              </Button>
+              <Button variant="outlined" size="small" color="primary">
+                Undo
+              </Button>
+            </Stack>
+          }
+          {...args}
+        >
+          This is an error alert — check it out!
+        </Alert>
+        <Alert
+          variant="outlined"
+          severity="warning"
+          action={
+            <Stack direction="row" gap={2}>
+              <Button size="small" color="primary">
+                Close
+              </Button>
+              <Button variant="outlined" size="small" color="primary">
+                Undo
+              </Button>
+            </Stack>
+          }
+          {...args}
+        >
+          This is a warning alert — check it out!
+        </Alert>
+        <Alert
+          variant="outlined"
+          severity="info"
+          action={
+            <Stack direction="row" gap={2}>
+              <Button size="small" color="primary">
+                Close
+              </Button>
+              <Button variant="outlined" size="small" color="primary">
+                Undo
+              </Button>
+            </Stack>
+          }
+          {...args}
+        >
+          This is an info alert — check it out!
+        </Alert>
+        <Alert
+          variant="outlined"
+          severity="success"
+          action={
+            <Stack direction="row" gap={2}>
+              <Button size="small" color="primary">
+                Close
+              </Button>
+              <Button variant="outlined" size="small" color="primary">
+                Undo
               </Button>
             </Stack>
           }
