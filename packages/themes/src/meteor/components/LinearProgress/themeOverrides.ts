@@ -33,5 +33,21 @@ export const MonorailLinearProgressOverrides: Components<Theme>['MuiLinearProgre
           visibility: 'hidden',
         },
       },
+      colorPrimary: ({ theme }) => ({
+        backgroundColor: theme.palette.info.lowEmphasis.light,
+        boxShadow: `inset 0 0 0 1px ${theme.palette.info.lowEmphasis.dark}`,
+        [`&.${linearProgressClasses.determinate}`]: {
+          backgroundColor: theme.palette.info.lowEmphasis.dark,
+        },
+        [`& .${linearProgressClasses.bar}`]: {
+          backgroundColor: theme.palette.info.main,
+        },
+        [`& .${linearProgressClasses.bar2Buffer}`]: {
+          backgroundColor: theme.palette.info.lowEmphasis.dark,
+        },
+      }),
+      barColorPrimary: ({ theme }) => ({
+        backgroundColor: theme.palette.info.lowEmphasis.main,
+      }),
     },
   }
