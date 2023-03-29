@@ -67,9 +67,12 @@ export function DataGalleryBody(props: DataGalleryBodyProps) {
 
   apiRef.current.windowRef = windowRef
 
+  const [size, setSize] = React.useState<ElementSize>({ width: 0, height: 0 })
+
   const handleResize = React.useCallback(
     (size: ElementSize) => {
       apiRef.current.publishEvent('resize', size)
+      setSize(size)
     },
     [apiRef],
   )
@@ -86,17 +89,13 @@ export function DataGalleryBody(props: DataGalleryBodyProps) {
         disableHeight={rootProps.autoHeight}
         onResize={handleResize}
       >
-        {(size: { height?: number; width: number }) => {
-          return (
-            <VirtualScrollerComponent
-              ref={windowRef}
-              mainRef={mainRef}
-              disableVirtualization={isVirtualizationDisabled}
-              width={size.width}
-              height={size.height ?? 0}
-            />
-          )
-        }}
+        <VirtualScrollerComponent
+          ref={windowRef}
+          mainRef={mainRef}
+          disableVirtualization={isVirtualizationDisabled}
+          width={size.width}
+          height={size.height}
+        />
       </GridAutoSizer>
       {children}
     </DataGalleryMainContainer>
