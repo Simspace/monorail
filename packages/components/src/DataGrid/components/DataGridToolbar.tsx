@@ -70,7 +70,9 @@ export function DataGridToolbar(props: DataGridToolbarProps) {
     >
       {disableSortBy !== true && (
         <>
-          <Typography variant="subtitle1">Sort By</Typography>
+          <Typography lineClamp={1} variant="subtitle1">
+            Sort By
+          </Typography>
           <Select
             value={
               sortModel.length === 0

@@ -129,6 +129,7 @@ export function DataGridColumnHeader(props: DataGridColumnHeaderProps) {
       direction="row"
       alignItems="center"
       flex="1 1 0"
+      minWidth={0}
       sx={theme => ({ margin: theme.spacing(0, 2) })}
       onClick={publishEvent('columnHeaderClick')}
       onKeyDown={publishEvent('columnHeaderKeyDown')}
@@ -235,8 +236,9 @@ function DataGridColumnHeaderLabel(props: DataGridColumnHeaderLabelProps) {
       justifyContent="space-between"
       direction="row"
       alignItems="center"
+      minWidth={0}
     >
-      <Stack alignItems="center" direction="row" gap={2}>
+      <Stack alignItems="center" direction="row" gap={2} minWidth={0}>
         {headerComponent !== null ? (
           headerComponent
         ) : (
