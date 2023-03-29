@@ -28,6 +28,7 @@ const DataGalleryColumnHeaderRoot = styled('div', {
 })(({ theme }) => ({
   display: 'flex',
   flex: 1,
+  minWidth: 0,
   '&:focus': {
     outline: 'none',
   },
