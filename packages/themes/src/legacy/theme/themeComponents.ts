@@ -32,8 +32,10 @@ import { MonorailDialogContentOverrides } from '../components/DialogContent/them
 import { MonorailDialogHeaderOverrides } from '../components/DialogHeader/themeOverrides.js'
 import { MonorailDialogTitleOverrides } from '../components/DialogTitle/themeOverrides.js'
 import { MonorailDividerOverrides } from '../components/Divider/themeOverrides.js'
+import { MonorailFormHelperTextOverrides } from '../components/FormHelperText/themeOverrides.js'
 import { MonorailIconButtonOverrides } from '../components/IconButton/themeOverrides.js'
 import { MonorailInputBaseOverrides } from '../components/InputBase/themeOverrides.js'
+import { MonorailInputLabelOverrides } from '../components/InputLabel/themeOverrides.js'
 import { MonorailListOverrides } from '../components/List/themeOverrides.js'
 import { MonorailListItemOverrides } from '../components/ListItem/themeOverrides.js'
 import { MonorailListItemAvatarOverrides } from '../components/ListItemAvatar/themeOverrides.js'
@@ -99,8 +101,10 @@ export const getThemeComponents = (
   MuiDialogContent: MonorailDialogContentOverrides,
   MuiDialogTitle: MonorailDialogTitleOverrides,
   MuiDivider: MonorailDividerOverrides,
+  MuiFormHelperText: MonorailFormHelperTextOverrides,
   MuiIconButton: MonorailIconButtonOverrides,
   MuiInputBase: MonorailInputBaseOverrides,
+  MuiInputLabel: MonorailInputLabelOverrides,
   MuiList: MonorailListOverrides,
   MuiListItem: MonorailListItemOverrides,
   MuiListItemAvatar: MonorailListItemAvatarOverrides,

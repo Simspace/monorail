@@ -195,6 +195,7 @@ export const MultipleValues = story<MovieAutocompleteProps>(args => {
         renderTags={(value, getTagProps) =>
           value.map((option: Movie, index: number) => (
             <Chip
+              size={args.size}
               variant="outlined"
               label={option.label}
               {...getTagProps({ index })}
