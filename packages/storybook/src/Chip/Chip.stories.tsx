@@ -230,10 +230,15 @@ export const WithAvatar = story<ChipProps>(
 )
 
 export const WithIcon = story<ChipProps>(
-  () => (
+  args => (
     <Stack direction="row" spacing={2}>
-      <Chip icon={<FaceIcon />} label="With Icon" />
-      <Chip icon={<FaceIcon />} label="With Icon" variant="outlined" />
+      <Chip icon={<FaceIcon />} label="With Icon" {...args} />
+      <Chip
+        icon={<FaceIcon />}
+        label="With Icon"
+        variant="outlined"
+        {...args}
+      />
     </Stack>
   ),
   {
