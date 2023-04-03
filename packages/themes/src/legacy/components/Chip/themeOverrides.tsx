@@ -170,6 +170,9 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
       [`& .${chipClasses.deleteIcon}`]: {
         fontSize: theme.typography.pxToRem(12),
       },
+      [`& .${chipClasses.icon}`]: {
+        fontSize: theme.typography.pxToRem(12),
+      },
     }),
     icon: ({ theme }) => ({
       color: 'inherit',
