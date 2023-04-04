@@ -264,8 +264,6 @@ export const FixedTabs = story<TabsProps>(
           <Tabs
             value={value}
             onChange={handleChange}
-            indicatorColor="primary"
-            textColor="inherit"
             variant="fullWidth"
             aria-label="full width tabs example"
             {...args}
