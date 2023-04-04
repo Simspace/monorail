@@ -10,11 +10,20 @@ import {
   MonorailAlertOverrides,
   MonorailAlertTitleOverrides,
 } from '../components/Alert/themeOverrides.js'
+import { MonorailAvatarOverrides } from '../components/Avatar/themeOverrides.js'
+import { MonorailAvatarGroupOverrides } from '../components/AvatarGroup/themeOverrides.js'
+import { MonorailBadgeOverrides } from '../components/Badge/themeOverrides.js'
+import { MonorailBreadcrumbsOverrides } from '../components/Breadcrumbs/themeOverrides.js'
 import { MonorailCardOverrides } from '../components/Card/themeOverrides.js'
 import { MonorailCardHeaderOverrides } from '../components/CardHeader/themeOverrides.js'
 import { MonorailCircularProgressOverrides } from '../components/CircularProgress/themeOverrides.js'
 import { MonorailLinearProgressOverrides } from '../components/LinearProgress/themeOverrides.js'
+import { MonorailLinkOverrides } from '../components/Link/themeOverrides.js'
+import { MonorailPaginationItemOverrides } from '../components/PaginationItem/themeOverrides.js'
 import { MonorailSkeletonOverrides } from '../components/Skeleton/themeOverrides.js'
+import { MonorailTabOverrides } from '../components/Tab/themeOverrides.js'
+import { MonorailTablePaginationOverrides } from '../components/TablePagination/themeOverrides.js'
+import { MonorailTabsOverrides } from '../components/Tabs/themeOverrides.js'
 import { baseTheme } from './baseTheme.js'
 
 /**
@@ -28,9 +37,18 @@ export const getThemeComponents = (
   ...getClassicThemeComponents(theme),
   MuiAlert: MonorailAlertOverrides,
   MuiAlertTitle: MonorailAlertTitleOverrides,
+  MuiAvatar: MonorailAvatarOverrides,
+  MuiAvatarGroup: MonorailAvatarGroupOverrides,
+  MuiBadge: MonorailBadgeOverrides,
+  MuiBreadcrumbs: MonorailBreadcrumbsOverrides,
   MuiCard: MonorailCardOverrides,
   MuiCardHeader: MonorailCardHeaderOverrides,
   MuiCircularProgress: MonorailCircularProgressOverrides,
   MuiLinearProgress: MonorailLinearProgressOverrides,
+  MuiLink: MonorailLinkOverrides,
+  MuiPaginationItem: MonorailPaginationItemOverrides,
   MuiSkeleton: MonorailSkeletonOverrides,
+  MuiTab: MonorailTabOverrides,
+  MuiTabs: MonorailTabsOverrides,
+  MuiTablePagination: MonorailTablePaginationOverrides,
 })
