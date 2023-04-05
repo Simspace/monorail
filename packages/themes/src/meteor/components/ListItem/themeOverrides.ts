@@ -1,0 +1,37 @@
+import type { Components, Theme } from '@mui/material'
+import {
+  checkboxClasses,
+  listItemAvatarClasses,
+  listItemIconClasses,
+  svgIconClasses,
+} from '@mui/material'
+
+export const MonorailListItemOverrides: Components<Theme>['MuiListItem'] = {
+  defaultProps: {},
+  styleOverrides: {
+    root: {
+      paddingTop: 0,
+      paddingBottom: 0,
+      [`& .${listItemIconClasses.root}`]: {
+        minWidth: 40,
+      },
+    },
+    dense: ({ theme }) => ({
+      [`& > .${listItemAvatarClasses.root}`]: {
+        minWidth: theme.spacing(12),
+      },
+      [`& .${listItemIconClasses.root}`]: {
+        minWidth: 40,
+        [`& > .${svgIconClasses.root}`]: {
+          fontSize: theme.typography.pxToRem(16),
+        },
+        [`& > .${checkboxClasses.root}`]: {
+          // <Checkbox size="small"/> adds unwanted height.
+          // Do the same for Radio if needed - GS 04/26/2022
+          marginTop: theme.spacing(-1),
+          marginBottom: theme.spacing(-1),
+        },
+      },
+    }),
+  },
+}

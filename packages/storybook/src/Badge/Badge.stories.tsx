@@ -17,6 +17,7 @@ import {
   Switch,
   Typography,
 } from '@monorail/components'
+import { PriorityHigh } from '@monorail/components/icons'
 
 import { story } from '../helpers/storybook.js'
 
@@ -83,6 +84,12 @@ export const Color = story(
     },
   },
 )
+
+export const Icon = story(args => (
+  <Badge badgeContent={<PriorityHigh />} color="error" {...args}>
+    <MailIcon color="default" />
+  </Badge>
+))
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   '& .MuiBadge-badge': {
