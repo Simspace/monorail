@@ -291,7 +291,7 @@ export const IconOnly = story<ChipProps>(
         sx={{ bgcolor: 'secondary.main' }}
       />
       <Chip icon={<PriorityHigh />} color="error" {...args} />
-      <Tooltip title="3 Warnings">
+      <Tooltip title="3 Warnings" describeChild>
         <Chip icon={<Warning />} color="warning" {...args} />
       </Tooltip>
     </Stack>
