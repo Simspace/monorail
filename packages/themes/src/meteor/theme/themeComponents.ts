@@ -19,6 +19,9 @@ import { MonorailCardHeaderOverrides } from '../components/CardHeader/themeOverr
 import { MonorailCircularProgressOverrides } from '../components/CircularProgress/themeOverrides.js'
 import { MonorailLinearProgressOverrides } from '../components/LinearProgress/themeOverrides.js'
 import { MonorailLinkOverrides } from '../components/Link/themeOverrides.js'
+import { MonorailListItemOverrides } from '../components/ListItem/themeOverrides.js'
+import { MonorailListItemButtonOverrides } from '../components/ListItemButton/themeOverrides.js'
+import { MonorailMenuItemOverrides } from '../components/MenuItem/themeOverrides.js'
 import { MonorailPaginationItemOverrides } from '../components/PaginationItem/themeOverrides.js'
 import { MonorailSkeletonOverrides } from '../components/Skeleton/themeOverrides.js'
 import { MonorailTabOverrides } from '../components/Tab/themeOverrides.js'
@@ -46,6 +49,9 @@ export const getThemeComponents = (
   MuiCircularProgress: MonorailCircularProgressOverrides,
   MuiLinearProgress: MonorailLinearProgressOverrides,
   MuiLink: MonorailLinkOverrides,
+  MuiListItem: MonorailListItemOverrides,
+  MuiListItemButton: MonorailListItemButtonOverrides,
+  MuiMenuItem: MonorailMenuItemOverrides,
   MuiPaginationItem: MonorailPaginationItemOverrides,
   MuiSkeleton: MonorailSkeletonOverrides,
   MuiTab: MonorailTabOverrides,
