@@ -8,16 +8,25 @@ import { styled } from '@mui/material/styles'
 import type { BadgeProps } from '@monorail/components'
 import {
   Badge,
+  badgeClasses,
   Box,
   Button,
   ButtonGroup,
+  Chip,
   FormControlLabel,
   IconButton,
   Stack,
+  svgIconClasses,
   Switch,
+  Tooltip,
   Typography,
 } from '@monorail/components'
-import { PriorityHigh } from '@monorail/components/icons'
+import {
+  CloudDone,
+  PriorityHigh,
+  Target,
+  Warning,
+} from '@monorail/components/icons'
 
 import { story } from '../helpers/storybook.js'
 
@@ -46,6 +55,129 @@ const Template = story<BadgeProps>(
 )
 /** Default story for Badge (edit/remove by hand if needed) */
 export const Default = story(Template)
+
+const IconBadge = styled(Badge)({
+  position: 'revert',
+  [`& .${badgeClasses.badge}`]: {
+    position: 'revert',
+    transform: 'revert',
+  },
+  [`& .${svgIconClasses.root}`]: {
+    fontSize: 'inherit',
+  },
+})
+
+export const IconBadgeExperimental = story<BadgeProps>(args => (
+  <Stack gap={6}>
+    <Stack direction="row" gap={2}>
+      <Typography>Modified Badge</Typography>
+      <IconBadge badgeContent={<MailIcon />} {...args}></IconBadge>
+      <IconBadge badgeContent={<MailIcon />} {...args}></IconBadge>
+      <IconBadge badgeContent={<MailIcon />} {...args}></IconBadge>
+    </Stack>
+
+    <Stack direction="row" gap={2}>
+      <Typography>Icon provided to badgeContent prop</Typography>
+      <Tooltip title="3 Warnings">
+        <Badge badgeContent={<Warning />} {...args} color="warning">
+          <MailIcon color="default" />
+        </Badge>
+      </Tooltip>
+    </Stack>
+    <Stack direction="row" gap={2}>
+      <Typography>Chip as badgeContent</Typography>
+      <Tooltip title="3 Warnings">
+        <Badge
+          badgeContent={
+            <Chip
+              icon={<Warning />}
+              size="small"
+              variant="filled"
+              color="warning"
+            />
+          }
+          {...args}
+          sx={{
+            '& .MuiBadge-badge': {
+              p: 0,
+            },
+          }}
+        >
+          <MailIcon color="default" />
+        </Badge>
+      </Tooltip>
+    </Stack>
+    <Stack direction="row" gap={2}>
+      <Typography>Stack of Chips as badgeContent</Typography>
+      <Badge
+        badgeContent={
+          <Stack direction="row">
+            <Chip
+              icon={<Warning />}
+              size="small"
+              variant="filled"
+              color="warning"
+            />
+            <Chip
+              icon={<CloudDone />}
+              size="small"
+              variant="filled"
+              color="success"
+            />
+            <Chip
+              icon={<PriorityHigh />}
+              size="small"
+              variant="filled"
+              color="error"
+            />
+          </Stack>
+        }
+        {...args}
+        sx={theme => ({
+          '& .MuiBadge-badge': {
+            borderRadius: 100,
+            bgcolor: theme.palette.default.lowEmphasis.light,
+            p: '2px',
+            height: 'auto',
+            transform: 'translate(85%, -50%)',
+          },
+        })}
+      >
+        <MailIcon color="default" />
+      </Badge>
+    </Stack>
+    <Stack direction="row" spacing={2}>
+      <Typography>Small Chips (icon only, no label)</Typography>
+      <Chip
+        icon={<CloudDone />}
+        color="success"
+        size="small"
+        variant="filled"
+      />
+      <Chip
+        icon={<Target />}
+        color="primary"
+        size="small"
+        variant="filled"
+        sx={{ bgcolor: 'secondary.main' }}
+      />
+      <Chip
+        icon={<PriorityHigh />}
+        color="error"
+        size="small"
+        variant="filled"
+      />
+      <Tooltip title="3 Warnings">
+        <Chip
+          icon={<Warning />}
+          color="warning"
+          size="small"
+          variant="filled"
+        />
+      </Tooltip>
+    </Stack>
+  </Stack>
+))
 
 const colors = [
   'default',
