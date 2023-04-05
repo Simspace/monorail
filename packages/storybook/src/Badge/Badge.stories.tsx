@@ -78,7 +78,7 @@ export const IconBadgeExperimental = story<BadgeProps>(args => (
 
     <Stack direction="row" gap={2}>
       <Typography>Icon provided to badgeContent prop</Typography>
-      <Tooltip title="3 Warnings">
+      <Tooltip title="3 Warnings" describeChild>
         <Badge badgeContent={<Warning />} {...args} color="warning">
           <MailIcon color="default" />
         </Badge>
@@ -86,7 +86,7 @@ export const IconBadgeExperimental = story<BadgeProps>(args => (
     </Stack>
     <Stack direction="row" gap={2}>
       <Typography>Chip as badgeContent</Typography>
-      <Tooltip title="3 Warnings">
+      <Tooltip title="3 Warnings" describeChild>
         <Badge
           badgeContent={
             <Chip
@@ -167,7 +167,7 @@ export const IconBadgeExperimental = story<BadgeProps>(args => (
         size="small"
         variant="filled"
       />
-      <Tooltip title="3 Warnings">
+      <Tooltip title="3 Warnings" describeChild>
         <Chip
           icon={<Warning />}
           color="warning"
