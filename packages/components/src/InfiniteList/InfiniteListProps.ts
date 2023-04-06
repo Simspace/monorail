@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import type {
   FixedSizeListProps,
   ListChildComponentProps,
@@ -18,6 +19,7 @@ export type InfiniteListProps<
     | React.ComponentType<VariableSizeListProps<T>> = React.ComponentType<
     FixedSizeListProps<T>
   >,
+  L extends React.ComponentType<any> = React.ComponentType<ListProps>,
 > = Omit<
   C extends React.ComponentType<infer P> ? P : {},
   'itemData' | 'children' | 'itemCount'
@@ -57,10 +59,10 @@ export type InfiniteListProps<
   threshold?: number
   slots?: {
     loader?: React.ComponentType<InfiniteListItemProps>
-    list?: React.ComponentType<ListProps>
+    list?: L
   }
   slotProps?: {
     loader?: Partial<InfiniteListItemProps>
-    list?: Partial<ListProps>
+    list?: Partial<React.ComponentProps<L>>
   }
 }

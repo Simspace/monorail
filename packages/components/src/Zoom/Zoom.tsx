@@ -1,4 +1,12 @@
+import type { ZoomProps as MuiZoomProps } from '@mui/material'
 import { Zoom as MuiZoom } from '@mui/material'
+
+import type { OverridableComponent } from '@monorail/types'
+
+export interface ZoomTypeMap<P = {}, D extends React.ElementType = 'div'> {
+  props: P & MuiZoomProps
+  defaultComponent: D
+}
 
 /**
  * The Zoom transition can be used for the floating variant of the
@@ -15,6 +23,6 @@ import { Zoom as MuiZoom } from '@mui/material'
  * - [Zoom API](https://mui.com/material-ui/api/zoom/)
  * - inherits [Transition API](http://reactcommunity.org/react-transition-group/transition/#Transition-props)
  */
-export const Zoom: typeof MuiZoom = MuiZoom
+export const Zoom: OverridableComponent<ZoomTypeMap> = MuiZoom
 
 export * from '@mui/material/Zoom'
