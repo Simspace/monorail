@@ -188,6 +188,7 @@ export const InfiniteList = React.forwardRef(function InfiniteList(
   C extends
     | React.ComponentType<FixedSizeListProps<T>>
     | React.ComponentType<VariableSizeListProps<T>>,
+  L extends React.ComponentType<any> = React.ComponentType<ListProps>,
 >(
-  props: InfiniteListProps<T, C>,
+  props: InfiniteListProps<T, C, L>,
 ) => JSX.Element

@@ -1,4 +1,12 @@
+import type { FadeProps as MuiFadeProps } from '@mui/material'
 import { Fade as MuiFade } from '@mui/material'
+
+import type { OverridableComponent } from '@monorail/types'
+
+export interface FadeTypeMap<P = {}, D extends React.ElementType = 'div'> {
+  props: P & MuiFadeProps
+  defaultComponent: D
+}
 
 /**
  * The Fade transition is used by the [Modal](https://mui.com/material-ui/react-modal/) component.
@@ -14,6 +22,6 @@ import { Fade as MuiFade } from '@mui/material'
  * - [Fade API](https://mui.com/material-ui/api/fade/)
  * - inherits [Transition API](http://reactcommunity.org/react-transition-group/transition/#Transition-props)
  */
-export const Fade: typeof MuiFade = MuiFade
+export const Fade: OverridableComponent<FadeTypeMap> = MuiFade
 
 export * from '@mui/material/Fade'

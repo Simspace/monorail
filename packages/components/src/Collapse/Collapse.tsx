@@ -1,4 +1,12 @@
+import type { CollapseProps as MuiCollapseProps } from '@mui/material'
 import { Collapse as MuiCollapse } from '@mui/material'
+
+import type { OverridableComponent } from '@monorail/types'
+
+export interface CollapseTypeMap<P = {}, D extends React.ElementType = 'div'> {
+  props: P & MuiCollapseProps
+  defaultComponent: D
+}
 
 /**
  * The Collapse transition is used by the
@@ -17,6 +25,6 @@ import { Collapse as MuiCollapse } from '@mui/material'
  * - [Collapse API](https://mui.com/material-ui/api/collapse/)
  * - inherits [Transition API](http://reactcommunity.org/react-transition-group/transition/#Transition-props)
  */
-export const Collapse: typeof MuiCollapse = MuiCollapse
+export const Collapse: OverridableComponent<CollapseTypeMap> = MuiCollapse
 
 export * from '@mui/material/Collapse'

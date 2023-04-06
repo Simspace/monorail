@@ -1,4 +1,13 @@
+import type React from 'react'
+import type { SlideProps as MuiSlideProps } from '@mui/material'
 import { Slide as MuiSlide } from '@mui/material'
+
+import type { OverridableComponent } from '@monorail/types'
+
+export interface SlideTypeMap<P = {}, D extends React.ElementType = 'div'> {
+  props: P & MuiSlideProps
+  defaultComponent: D
+}
 
 /**
  * The Slide transition is used by the [Drawer](https://mui.com/material-ui/react-drawer/) component.
@@ -15,6 +24,6 @@ import { Slide as MuiSlide } from '@mui/material'
  * - [Slide API](https://mui.com/material-ui/api/slide/)
  * - inherits [Transition API](http://reactcommunity.org/react-transition-group/transition/#Transition-props)
  */
-export const Slide: typeof MuiSlide = MuiSlide
+export const Slide: OverridableComponent<SlideTypeMap> = MuiSlide
 
 export * from '@mui/material/Slide'
