@@ -6,10 +6,7 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
     variant: 'muted',
   },
   styleOverrides: {
-    root: ({
-      ownerState: { clickable = false, color = 'default', variant = 'muted' },
-      theme,
-    }) => {
+    root: ({ ownerState: { color = 'default', variant = 'muted' }, theme }) => {
       const mutedVariantStyles: CSSInterpolation = {
         color: theme.palette.text.primary,
         backgroundColor: theme.palette.default.lowEmphasis.main,
@@ -25,30 +22,15 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
         ...mutedVariantStyles,
       }
 
-      const clickableRectangularStyles: CSSInterpolation = {
-        borderRadius: 4,
-        color: theme.palette.text.primary,
-        backgroundColor: theme.palette.primary.lowEmphasis.main,
-        [`&.${chipClasses.focusVisible}`]: {
-          backgroundColor: theme.palette.primary.lowEmphasis.main,
-          boxShadow: `0 0 0 3px ${theme.palette.default.focusRing.outer}`,
-          border: `1px solid ${theme.palette.default.focusRing.inner}`,
-        },
-      }
-
       return {
         border: '1px solid transparent',
         color: theme.palette[color].contrastText,
-        fontWeight: theme.typography.fontWeightBold,
         [`&.${chipClasses.focusVisible}`]: {
           boxShadow: `0 0 0 3px ${theme.palette[color].focusRing.outer}`,
           border: `1px solid ${theme.palette[color].focusRing.inner}`,
         },
         ...(variant === 'muted' && mutedVariantStyles),
         ...(variant === 'rectangular' && readOnlyRectangularStyles),
-        ...(variant === 'rectangular' &&
-          clickable &&
-          clickableRectangularStyles),
       }
     },
     label: ({ theme }) => ({
@@ -118,6 +100,8 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
       }
 
       const clickableRectangularStyles: CSSInterpolation = {
+        borderRadius: 4,
+        color: theme.palette.text.primary,
         backgroundColor: theme.palette.primary.lowEmphasis.main,
         '&:hover': {
           backgroundColor: darken(
@@ -132,8 +116,10 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
             theme.palette.action.activatedOpacity,
           ),
         },
-        [`& > .${chipClasses.deleteIcon}`]: {
-          color: theme.palette.primary.lowEmphasis.contrastText,
+        [`&.${chipClasses.focusVisible}`]: {
+          backgroundColor: theme.palette.primary.lowEmphasis.main,
+          boxShadow: `0 0 0 3px ${theme.palette.default.focusRing.outer}`,
+          border: `1px solid ${theme.palette.default.focusRing.inner}`,
         },
         [`& > .${chipClasses.icon}`]: {
           color: theme.palette.primary.lowEmphasis.contrastText,
