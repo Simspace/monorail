@@ -3,19 +3,12 @@ import { stepLabelClasses } from '@mui/material'
 
 export const MonorailStepLabelOverrides: Components<Theme>['MuiStepLabel'] = {
   styleOverrides: {
-    root: ({ theme }) => {
-      return {
-        [`&.${stepLabelClasses.completed}`]: {
-          color: theme.palette.text.primary,
-        },
-        [`&.${stepLabelClasses.alternativeLabel}`]: {
-          textAlign: 'center',
-        },
-        [`&.${stepLabelClasses.vertical}`]: {
-          padding: theme.spacing(4, 0),
-        },
-      }
+    alternativeLabel: {
+      textAlign: 'center',
     },
+    vertical: ({ theme }) => ({
+      padding: theme.spacing(4, 0),
+    }),
     active: ({ theme }) => {
       return {
         color: theme.palette.text.primary,
@@ -28,7 +21,6 @@ export const MonorailStepLabelOverrides: Components<Theme>['MuiStepLabel'] = {
         [`&.${stepLabelClasses.completed}`]: {
           color: theme.palette.text.primary,
         },
-        [`&.${stepLabelClasses.disabled}`]: {},
       }
     },
     labelContainer: ({ theme }) => ({
@@ -37,6 +29,9 @@ export const MonorailStepLabelOverrides: Components<Theme>['MuiStepLabel'] = {
       color: theme.palette.text.disabled,
       [`.${stepLabelClasses.active} + &`]: {
         color: theme.palette.text.primary,
+      },
+      [`.${stepLabelClasses.completed} + &`]: {
+        color: theme.palette.text.secondary,
       },
       [`.${stepLabelClasses.error} + &`]: {
         color: theme.palette.error.main,

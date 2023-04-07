@@ -6,12 +6,12 @@ export const MonorailStepLabelOverrides: Components<Theme>['MuiStepLabel'] = {
     root: ({ theme }) => ({
       textAlign: 'start',
       color: theme.palette.text.secondary,
-      [`&.${stepLabelClasses.alternativeLabel}`]: {
-        textAlign: 'center',
-      },
-      [`&.${stepLabelClasses.vertical}`]: {
-        padding: theme.spacing(4, 0),
-      },
+    }),
+    alternativeLabel: {
+      textAlign: 'center',
+    },
+    vertical: ({ theme }) => ({
+      padding: theme.spacing(4, 0),
     }),
     label: ({ theme }) => ({
       ...theme.typography.subtitle1,
