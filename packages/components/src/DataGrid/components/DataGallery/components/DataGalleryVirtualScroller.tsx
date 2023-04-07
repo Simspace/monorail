@@ -1,12 +1,9 @@
 /* eslint-disable @typescript-eslint/strict-boolean-expressions */
 import React from 'react'
-import type { GridItemProps, GridListProps} from 'react-virtuoso';
+import type { GridItemProps, GridListProps } from 'react-virtuoso'
 import { VirtuosoGrid } from 'react-virtuoso'
 import { useGridVisibleRows } from '@mui/x-data-grid/internals'
-import {
-  useGridApiContext,
-  useGridRootProps,
-} from '@mui/x-data-grid-premium'
+import { useGridApiContext, useGridRootProps } from '@mui/x-data-grid-premium'
 
 import { styled } from '@monorail/utils'
 
