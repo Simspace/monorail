@@ -8,25 +8,16 @@ import { styled } from '@mui/material/styles'
 import type { BadgeProps } from '@monorail/components'
 import {
   Badge,
-  badgeClasses,
   Box,
   Button,
   ButtonGroup,
-  Chip,
   FormControlLabel,
   IconButton,
   Stack,
-  svgIconClasses,
   Switch,
-  Tooltip,
   Typography,
 } from '@monorail/components'
-import {
-  CloudDone,
-  PriorityHigh,
-  Target,
-  Warning,
-} from '@monorail/components/icons'
+import { PriorityHigh } from '@monorail/components/icons'
 
 import { story } from '../helpers/storybook.js'
 
@@ -55,129 +46,6 @@ const Template = story<BadgeProps>(
 )
 /** Default story for Badge (edit/remove by hand if needed) */
 export const Default = story(Template)
-
-const IconBadge = styled(Badge)({
-  position: 'revert',
-  [`& .${badgeClasses.badge}`]: {
-    position: 'revert',
-    transform: 'revert',
-  },
-  [`& .${svgIconClasses.root}`]: {
-    fontSize: 'inherit',
-  },
-})
-
-export const IconBadgeExperimental = story<BadgeProps>(args => (
-  <Stack gap={6}>
-    <Stack direction="row" gap={2}>
-      <Typography>Modified Badge</Typography>
-      <IconBadge badgeContent={<MailIcon />} {...args}></IconBadge>
-      <IconBadge badgeContent={<MailIcon />} {...args}></IconBadge>
-      <IconBadge badgeContent={<MailIcon />} {...args}></IconBadge>
-    </Stack>
-
-    <Stack direction="row" gap={2}>
-      <Typography>Icon provided to badgeContent prop</Typography>
-      <Tooltip title="3 Warnings" describeChild>
-        <Badge badgeContent={<Warning />} {...args} color="warning">
-          <MailIcon color="default" />
-        </Badge>
-      </Tooltip>
-    </Stack>
-    <Stack direction="row" gap={2}>
-      <Typography>Chip as badgeContent</Typography>
-      <Tooltip title="3 Warnings" describeChild>
-        <Badge
-          badgeContent={
-            <Chip
-              icon={<Warning />}
-              size="small"
-              variant="filled"
-              color="warning"
-            />
-          }
-          {...args}
-          sx={{
-            '& .MuiBadge-badge': {
-              p: 0,
-            },
-          }}
-        >
-          <MailIcon color="default" />
-        </Badge>
-      </Tooltip>
-    </Stack>
-    <Stack direction="row" gap={2}>
-      <Typography>Stack of Chips as badgeContent</Typography>
-      <Badge
-        badgeContent={
-          <Stack direction="row">
-            <Chip
-              icon={<Warning />}
-              size="small"
-              variant="filled"
-              color="warning"
-            />
-            <Chip
-              icon={<CloudDone />}
-              size="small"
-              variant="filled"
-              color="success"
-            />
-            <Chip
-              icon={<PriorityHigh />}
-              size="small"
-              variant="filled"
-              color="error"
-            />
-          </Stack>
-        }
-        {...args}
-        sx={theme => ({
-          '& .MuiBadge-badge': {
-            borderRadius: 100,
-            bgcolor: theme.palette.default.lowEmphasis.light,
-            p: '2px',
-            height: 'auto',
-            transform: 'translate(85%, -50%)',
-          },
-        })}
-      >
-        <MailIcon color="default" />
-      </Badge>
-    </Stack>
-    <Stack direction="row" spacing={2}>
-      <Typography>Small Chips (icon only, no label)</Typography>
-      <Chip
-        icon={<CloudDone />}
-        color="success"
-        size="small"
-        variant="filled"
-      />
-      <Chip
-        icon={<Target />}
-        color="primary"
-        size="small"
-        variant="filled"
-        sx={{ bgcolor: 'secondary.main' }}
-      />
-      <Chip
-        icon={<PriorityHigh />}
-        color="error"
-        size="small"
-        variant="filled"
-      />
-      <Tooltip title="3 Warnings" describeChild>
-        <Chip
-          icon={<Warning />}
-          color="warning"
-          size="small"
-          variant="filled"
-        />
-      </Tooltip>
-    </Stack>
-  </Stack>
-))
 
 const colors = [
   'default',
@@ -217,11 +85,22 @@ export const Color = story(
   },
 )
 
-export const Icon = story(args => (
-  <Badge badgeContent={<PriorityHigh />} color="error" {...args}>
-    <MailIcon color="default" />
-  </Badge>
-))
+export const Icon = story(
+  args => (
+    <Badge badgeContent={<PriorityHigh />} color="error" {...args}>
+      <MailIcon color="default" />
+    </Badge>
+  ),
+  {
+    parameters: {
+      docs: {
+        description: {
+          story: `Use the \`badgeContent\` prop to display an icon.`,
+        },
+      },
+    },
+  },
+)
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   '& .MuiBadge-badge': {
@@ -444,97 +323,6 @@ export const BadgeAlignment = story(Template, {
     },
   },
 })
-
-// const StyledBadgeUnstyled = styled(BadgeUnstyled)`
-//   box-sizing: border-box;
-//   margin: 0;
-//   padding: 0;
-//   color: rgba(0, 0, 0, 0.85);
-//   font-size: 14px;
-//   font-variant: tabular-nums;
-//   list-style: none;
-//   font-feature-settings: 'tnum';
-//   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-//     'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-//     'Segoe UI Symbol';
-//   position: relative;
-//   display: inline-block;
-//   line-height: 1;
-
-//   & .MuiBadge-badge {
-//     z-index: auto;
-//     min-width: 20px;
-//     height: 20px;
-//     padding: 0 6px;
-//     color: #fff;
-//     font-weight: 400;
-//     font-size: 12px;
-//     line-height: 20px;
-//     white-space: nowrap;
-//     text-align: center;
-//     background: #ff4d4f;
-//     border-radius: 10px;
-//     box-shadow: 0 0 0 1px #fff;
-//   }
-
-//   & .MuiBadge-dot {
-//     padding: 0;
-//     z-index: auto;
-//     min-width: 6px;
-//     width: 6px;
-//     height: 6px;
-//     background: #ff4d4f;
-//     border-radius: 100%;
-//     box-shadow: 0 0 0 1px #fff;
-//   }
-
-//   & .MuiBadge-anchorOriginTopRightCircular {
-//     position: absolute;
-//     top: 0;
-//     right: 0;
-//     transform: translate(50%, -50%);
-//     transform-origin: 100% 0;
-//   }
-// `
-
-// function BadgeContent() {
-//   return (
-//     <Box
-//       component="span"
-//       sx={{
-//         width: 42,
-//         height: 42,
-//         borderRadius: '2px',
-//         background: '#eee',
-//         display: 'inline-block',
-//         verticalAlign: 'middle',
-//       }}
-//     />
-//   )
-// }
-
-// This story has not been updated for MUI v5 (GS 10/25/2021)
-// export const Unstyled = story(
-//   () => (
-//     <Box sx={{ '& > :not(style) + :not(style)': { ml: 4 } }}>
-//       <StyledBadgeUnstyled badgeContent={5} overlap="circular">
-//         <BadgeContent />
-//       </StyledBadgeUnstyled>
-//       <StyledBadgeUnstyled badgeContent={5} variant="dot" overlap="circular">
-//         <BadgeContent />
-//       </StyledBadgeUnstyled>
-//     </Box>
-//   ),
-//   {
-//     parameters: {
-//       docs: {
-//         description: {
-//           story: `The badge also comes with an unstyled version. It's ideal for doing heavy customizations and minimizing bundle size.`,
-//         },
-//       },
-//     },
-//   },
-// )
 
 function notificationsLabel(count: number) {
   if (count === 0) {

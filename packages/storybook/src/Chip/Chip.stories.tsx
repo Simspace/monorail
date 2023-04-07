@@ -7,6 +7,7 @@ import type { ChipProps } from '@monorail/components'
 import {
   Avatar,
   Chip,
+  chipClasses,
   Paper,
   Stack,
   Tooltip,
@@ -18,10 +19,11 @@ import {
   Done,
   Face,
   PriorityHigh,
+  Rocket,
   TagFaces,
-  Target,
   Warning,
 } from '@monorail/components/icons'
+import { useTheme } from '@monorail/utils'
 
 import { capitalizeFirstLetter } from '../helpers/helpers.js'
 import { story } from '../helpers/storybook.js'
@@ -281,21 +283,43 @@ export const WithIcon = story<ChipProps>(
 )
 
 export const IconOnly = story<ChipProps>(
-  args => (
-    <Stack direction="row" spacing={2}>
-      <Chip icon={<CloudDone />} color="success" {...args} />
-      <Chip
-        icon={<Target />}
-        color="primary"
-        {...args}
-        sx={{ bgcolor: 'secondary.main' }}
-      />
-      <Chip icon={<PriorityHigh />} color="error" {...args} />
-      <Tooltip title="3 Warnings" describeChild>
-        <Chip icon={<Warning />} color="warning" {...args} />
-      </Tooltip>
-    </Stack>
-  ),
+  args => {
+    const theme = useTheme()
+    const disabledStyles = {
+      [`&.${chipClasses.disabled}`]: {
+        color: theme.palette.text.disabled,
+        backgroundColor: 'transparent',
+        borderColor: 'transparent',
+        opacity: 1,
+      },
+    }
+
+    return (
+      <Stack direction="row" spacing={2}>
+        <Chip
+          icon={<CloudDone />}
+          color="success"
+          {...args}
+          sx={disabledStyles}
+        />
+        <Chip icon={<Rocket />} color="info" {...args} sx={disabledStyles} />
+        <Chip
+          icon={<PriorityHigh />}
+          color="error"
+          {...args}
+          sx={disabledStyles}
+        />
+        <Tooltip title="3 Warnings" describeChild>
+          <Chip
+            icon={<Warning />}
+            color="warning"
+            {...args}
+            sx={disabledStyles}
+          />
+        </Tooltip>
+      </Stack>
+    )
+  },
   {
     argTypes,
     args: { variant: 'filled' },
