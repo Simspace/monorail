@@ -3,15 +3,12 @@ import React from 'react'
 import CheckBoxIcon from '@mui/icons-material/CheckBox'
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank'
 
-import type {
-  AutocompleteProps} from '@monorail/components';
+import type { AutocompleteProps } from '@monorail/components'
 import {
   Autocomplete,
   Box,
   Checkbox,
   Chip,
-  ListItem,
-  ListItemButton,
   Stack,
   TextField,
   VirtualizedAutocomplete,
@@ -338,8 +335,8 @@ export const Virtualized = () => (
     ListboxProps={{
       overscan: 200,
       style: {
-        height: 400
-      }
+        height: 400,
+      },
     }}
     renderInput={params => (
       <TextField label="Virtualized" placeholder="Virtualized" {...params} />
