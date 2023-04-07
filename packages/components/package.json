@@ -98,7 +98,6 @@
     "react-transition-group": "4.4.5",
     "react-virtualized-auto-sizer": "^1.0.7",
     "react-virtuoso": "^4.2.0",
-    "react-window": "^1.8.8",
     "start-server-and-test": "1.14.0",
     "styled-components": "^5.3.6",
     "typescript": "^4.8.4"
@@ -132,7 +131,6 @@
     "react-is": ">=17.0.2",
     "react-transition-group": "^4.4.2",
     "react-virtuoso": "^4.2.0",
-    "react-window": "^1.8.8",
     "styled-components": "^5.3.5"
   },
   "peerDependenciesMeta": {

@@ -1,7 +1,6 @@
 // Edit this file to add new stories
 import React from 'react'
-import type { ListChildComponentProps } from 'react-window'
-import { FixedSizeList } from 'react-window'
+import { Virtuoso } from 'react-virtuoso'
 import BeachAccessIcon from '@mui/icons-material/BeachAccess'
 import BluetoothIcon from '@mui/icons-material/Bluetooth'
 import CommentIcon from '@mui/icons-material/Comment'
@@ -832,15 +831,7 @@ export const VirtualizedList = story<ListProps>(
           bgcolor: 'background.paper',
         }}
       >
-        <FixedSizeList
-          height={400}
-          width={360}
-          itemSize={24}
-          itemCount={200}
-          overscanCount={5}
-        >
-          {renderRow}
-        </FixedSizeList>
+        <Virtuoso totalCount={200} overscan={200} itemContent={renderRow} />
       </Box>
     )
   },
@@ -848,18 +839,16 @@ export const VirtualizedList = story<ListProps>(
     parameters: {
       docs: {
         description: {
-          story: `In the following example, we demonstrate how to use react-window with the List component. It renders 200 rows and can easily handle more. Virtualization helps with performance issues.`,
+          story: `In the following example, we demonstrate how to use react-virtuoso with the List component. It renders 200 rows and can easily handle more. Virtualization helps with performance issues.`,
         },
       },
     },
   },
 )
 
-function renderRow(props: ListChildComponentProps) {
-  const { index, style } = props
-
+function renderRow(index: number) {
   return (
-    <ListItem style={style} key={index} component="div" disablePadding>
+    <ListItem key={index} component="div" disablePadding>
       <ListItemButton>
         <ListItemText primary={`Item ${index + 1}`} />
       </ListItemButton>
