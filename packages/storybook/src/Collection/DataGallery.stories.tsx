@@ -206,11 +206,11 @@ const Template = story<DataGridProps<{}>>(() => {
         rows={rows}
         checkboxSelection
         galleryProps={{
-          itemWidth: '100%',
-          itemHeight: 300,
-          renderCard: ({ row, style }) => {
+          itemWidth: '400px',
+          overscan: 500,
+          itemContent: (_, row) => {
             return (
-              <Box style={style} sx={{ p: 2 }}>
+              <Box sx={{ p: 2 }}>
                 <Card sx={{ height: '100%' }}>
                   <CardHeader title={`${row.firstName} ${row.lastName}`} />
                   <CardContent>
