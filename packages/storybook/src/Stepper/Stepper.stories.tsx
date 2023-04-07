@@ -1,5 +1,4 @@
 import React from 'react'
-import { Check, GroupAdd, Settings, VideoLabel } from '@mui/icons-material'
 import { styled } from '@mui/material'
 
 import type { StepIconProps, StepperProps } from '@monorail/components'
@@ -17,6 +16,15 @@ import {
   Stepper,
   Typography,
 } from '@monorail/components'
+import {
+  Check,
+  CheckCircle,
+  Error,
+  GroupAdd,
+  Settings,
+  VideoLabel,
+  WarningTwoColor,
+} from '@monorail/components/icons'
 import { excludeProps } from '@monorail/utils'
 
 import { story } from '../helpers/storybook.js'
@@ -108,14 +116,10 @@ function HorizontalLinearStepperBase() {
             optional?: React.ReactNode
           } = {}
           if (isStepComplete(index)) {
-            labelProps.optional = (
-              <Typography variant="caption">Complete</Typography>
-            )
+            labelProps.optional = 'Complete'
           }
           if (isStepIncomplete(index)) {
-            labelProps.optional = (
-              <Typography variant="caption">Incomplete</Typography>
-            )
+            labelProps.optional = 'Incomplete'
           }
           return (
             <Step key={label} {...stepProps}>
@@ -355,11 +359,7 @@ export const ErrorStep = story(function () {
             error?: boolean
           } = {}
           if (isStepFailed(index)) {
-            labelProps.optional = (
-              <Typography variant="caption" color="error">
-                Alert message
-              </Typography>
-            )
+            labelProps.optional = 'Alert message'
             labelProps.error = true
           }
 
@@ -511,8 +511,35 @@ function ColorlibStepIcon(props: StepIconProps) {
 
 export const CustomizedSteppers = story(
   function () {
+    const status = [
+      {
+        step: steps[0],
+        icon: CheckCircle,
+        iconProps: {
+          color: 'success',
+        },
+      },
+      {
+        step: steps[1],
+        icon: WarningTwoColor,
+        iconProps: {
+          color: 'warning',
+        },
+      },
+      {
+        step: steps[2],
+        icon: Error,
+        iconProps: {
+          color: 'error',
+        },
+      },
+      {
+        step: steps[3],
+        icon: undefined,
+      },
+    ]
     return (
-      <Stack sx={{ width: '100%' }} spacing={4}>
+      <Stack sx={{ width: '100%' }} spacing={10}>
         <Stepper alternativeLabel activeStep={1} connector={<QontoConnector />}>
           {steps.map(label => (
             <Step key={label}>
@@ -529,6 +556,20 @@ export const CustomizedSteppers = story(
             <Step key={label}>
               <StepLabel StepIconComponent={ColorlibStepIcon}>
                 {label}
+              </StepLabel>
+            </Step>
+          ))}
+        </Stepper>
+        <Stepper activeStep={2}>
+          {status.map((s, i) => (
+            <Step key={s.step}>
+              <StepLabel
+                error={i === 2}
+                StepIconComponent={s.icon}
+                StepIconProps={s.iconProps}
+                optional="Optional text"
+              >
+                {s.step}
               </StepLabel>
             </Step>
           ))}

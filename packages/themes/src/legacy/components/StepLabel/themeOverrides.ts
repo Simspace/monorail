@@ -32,12 +32,19 @@ export const MonorailStepLabelOverrides: Components<Theme>['MuiStepLabel'] = {
         [`&.${stepLabelClasses.disabled}`]: {},
       }
     },
-    alternativeLabel: ({ theme }) => {
-      return {
-        [`$.${stepLabelClasses.labelContainer}`]: {
-          ...theme.typography.caption,
-        },
-      }
-    },
+    labelContainer: ({ theme }) => ({
+      // Default styles if a string is provided to the optional prop
+      ...theme.typography.caption,
+      color: theme.palette.text.disabled,
+      [`.${stepLabelClasses.active} + &`]: {
+        color: theme.palette.text.primary,
+      },
+      [`.${stepLabelClasses.error} + &`]: {
+        color: theme.palette.error.main,
+      },
+      [`.${stepLabelClasses.disabled} + &`]: {
+        color: theme.palette.text.disabled,
+      },
+    }),
   },
 }
