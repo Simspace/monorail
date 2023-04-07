@@ -4569,6 +4569,7 @@ __metadata:
     react-glider: ^3.1.0
     react-transition-group: 4.4.5
     react-virtualized-auto-sizer: ^1.0.7
+    react-virtuoso: ^4.2.0
     react-window: ^1.8.8
     start-server-and-test: 1.14.0
     styled-components: ^5.3.6
@@ -20801,6 +20802,16 @@ __metadata:
     react: ^15.3.0 || ^16.0.0-alpha || ^17.0.0 || ^18.0.0-rc
     react-dom: ^15.3.0 || ^16.0.0-alpha || ^17.0.0 || ^18.0.0-rc
   checksum: 7f2f013c422771828c6613c7890f792aa90a033ea2b41c489c67ca2c6793eefa94d25232c1050fdf69cdd626fad9e3821c5003d45fa6fc831184cd09232023c2
+  languageName: node
+  linkType: hard
+
+"react-virtuoso@npm:^4.2.0":
+  version: 4.2.0
+  resolution: "react-virtuoso@npm:4.2.0"
+  peerDependencies:
+    react: ">=16 || >=17 || >= 18"
+    react-dom: ">=16 || >=17 || >= 18"
+  checksum: b8f6e7b80c1de31d37bfccbf7c859a86bd1b82bcc95ef2d1c7b735e63b09ea3c2690aefbe41f2056742e5cd66def903a9f1e7b7ab03a0ed4cfe34bf0c35c60a5
   languageName: node
   linkType: hard
 
