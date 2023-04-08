@@ -332,12 +332,7 @@ const OPTIONS = Array.from(new Array(10000))
 export const Virtualized = () => (
   <VirtualizedAutocomplete
     options={OPTIONS}
-    ListboxProps={{
-      overscan: 200,
-      style: {
-        height: 400,
-      },
-    }}
+    estimatedItemSize={48}
     renderInput={params => (
       <TextField label="Virtualized" placeholder="Virtualized" {...params} />
     )}

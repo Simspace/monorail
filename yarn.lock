@@ -4569,7 +4569,7 @@ __metadata:
     react-glider: ^3.1.0
     react-transition-group: 4.4.5
     react-virtualized-auto-sizer: ^1.0.7
-    react-virtuoso: ^4.2.0
+    react-window: ^1.8.8
     start-server-and-test: 1.14.0
     styled-components: ^5.3.6
     typescript: ^4.8.4
@@ -4602,7 +4602,7 @@ __metadata:
     react-draggable: ^4.4.4
     react-is: ">=17.0.2"
     react-transition-group: ^4.4.2
-    react-virtuoso: ^4.2.0
+    react-window: ^1.8.8
     styled-components: ^5.3.5
   peerDependenciesMeta:
     "@emotion/cache":
@@ -4671,12 +4671,14 @@ __metadata:
     "@testing-library/jest-dom": 5.16.5
     "@testing-library/react": 11.2.7
     "@testing-library/user-event": 12.8.3
+    "@types/react-window": ^1.8.5
     creevey: 0.7.39
     enhanced-resolve: ^5.10.0
     jest-environment-jsdom: ^29.3.0
     lorem-ipsum: ^2.0.8
     react: ^17.0.2
     react-dom: ^17.0.2
+    react-window: ^1.8.8
     webpack: ^5.74.0
   languageName: unknown
   linkType: soft
@@ -7896,6 +7898,15 @@ __metadata:
   dependencies:
     "@types/react": "*"
   checksum: 67eff0670a1991c2b16992274ada5f0b3f9d5c2d6209ef38e8f8ae2c0218211a3292882f5b7dd6f09519000dc20847629f049c9acc267e000626b7141e5927a6
+  languageName: node
+  linkType: hard
+
+"@types/react-window@npm:^1.8.5":
+  version: 1.8.5
+  resolution: "@types/react-window@npm:1.8.5"
+  dependencies:
+    "@types/react": "*"
+  checksum: 5f519e1402300d11b6e6595223feb6499f3227e38da166cbc565773cd7f71862abcf855b7835d391b5119fcfacdfba79d73a965b45f60a293fc1ff25986319ed
   languageName: node
   linkType: hard
 
@@ -18226,6 +18237,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"memoize-one@npm:>=3.1.1 <6":
+  version: 5.2.1
+  resolution: "memoize-one@npm:5.2.1"
+  checksum: a3cba7b824ebcf24cdfcd234aa7f86f3ad6394b8d9be4c96ff756dafb8b51c7f71320785fbc2304f1af48a0467cbbd2a409efc9333025700ed523f254cb52e3d
+  languageName: node
+  linkType: hard
+
 "memoizerific@npm:^1.11.3":
   version: 1.11.3
   resolution: "memoizerific@npm:1.11.3"
@@ -20786,13 +20804,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-virtuoso@npm:^4.2.0":
-  version: 4.2.0
-  resolution: "react-virtuoso@npm:4.2.0"
+"react-window@npm:^1.8.8":
+  version: 1.8.8
+  resolution: "react-window@npm:1.8.8"
+  dependencies:
+    "@babel/runtime": ^7.0.0
+    memoize-one: ">=3.1.1 <6"
   peerDependencies:
-    react: ">=16 || >=17 || >= 18"
-    react-dom: ">=16 || >=17 || >= 18"
-  checksum: b8f6e7b80c1de31d37bfccbf7c859a86bd1b82bcc95ef2d1c7b735e63b09ea3c2690aefbe41f2056742e5cd66def903a9f1e7b7ab03a0ed4cfe34bf0c35c60a5
+    react: ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0
+    react-dom: ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0
+  checksum: a19f43b9015fb84e16db983617dac618a8b298881d2ca96ffc2fb00534afd958ee57a00fd0017733b56f8c34dd84e5be59337877aed3c66329ed3b84e8d018ba
   languageName: node
   linkType: hard
 

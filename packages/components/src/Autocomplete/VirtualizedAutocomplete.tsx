@@ -1,7 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react'
-import type { VirtuosoProps } from 'react-virtuoso'
-import { Virtuoso } from 'react-virtuoso'
+import type { ListChildComponentProps } from 'react-window'
+import { VariableSizeList } from 'react-window'
+
+import type { StandardElementProps } from '@monorail/types'
 
 import type { ChipTypeMap } from '../Chip.js'
 import { ListItem } from '../ListItem.js'
@@ -14,6 +16,12 @@ import type {
 } from './Autocomplete.js'
 import { Autocomplete, autocompleteClasses } from './Autocomplete.js'
 
+const LISTBOX_PADDING = 8
+
+interface AutocompleteRenderGroupProps {
+  style: React.CSSProperties
+}
+
 export interface VirtualizedAutocompleteProps<
   T,
   Multiple extends boolean | undefined,
@@ -22,9 +30,10 @@ export interface VirtualizedAutocompleteProps<
   ChipComponent extends React.ElementType = ChipTypeMap['defaultComponent'],
 > extends Omit<
     AutocompleteProps<T, Multiple, DisableClearable, FreeSolo, ChipComponent>,
-    'ListboxComponent' | 'ListboxProps' | 'renderGroup'
+    'ListboxComponent' | 'renderGroup'
   > {
-  ListboxProps?: Omit<VirtuosoProps<T, unknown>, 'data' | 'itemContent'>
+  estimatedItemSize: number
+  getItemSize?: (item: ChildData<T>) => number
   /**
    * Render the group.
    *
@@ -32,25 +41,36 @@ export interface VirtualizedAutocompleteProps<
    * @param {AutocompleteRenderGroupParams} params The group to render.
    * @returns {ReactNode}
    */
-  renderGroup?: (params: AutocompleteRenderGroupParams) => React.ReactNode
+  renderGroup?: (
+    props: AutocompleteRenderGroupProps,
+    params: AutocompleteRenderGroupParams,
+  ) => React.ReactNode
 }
 
-interface RenderRowProps<T> {
-  data: ChildData<T>
+interface RenderRowProps<T> extends Omit<ListChildComponentProps, 'data'> {
+  data: ReadonlyArray<ChildData<T>>
   renderOption?: (
     props: React.HTMLAttributes<HTMLLIElement>,
     option: T,
     state: AutocompleteRenderOptionState,
   ) => React.ReactNode
-  renderGroup?: (params: AutocompleteRenderGroupParams) => React.ReactNode
+  renderGroup?: (
+    props: AutocompleteRenderGroupProps,
+    params: AutocompleteRenderGroupParams,
+  ) => React.ReactNode
 }
 
 export function RenderRow<T>(props: RenderRowProps<T>) {
-  const { data, renderGroup, renderOption } = props
+  const { data, index, style, renderGroup, renderOption } = props
+  const dataSet = data[index]
+  const inlineStyle: React.CSSProperties = {
+    ...style,
+    top: (style.top! as number) + LISTBOX_PADDING,
+  }
 
-  if ('group' in data) {
+  if ('group' in dataSet) {
     if (renderGroup) {
-      const node = renderGroup(data)
+      const node = renderGroup({ style: inlineStyle }, dataSet)
       if (React.isValidElement(node)) {
         return node
       } else {
@@ -59,16 +79,21 @@ export function RenderRow<T>(props: RenderRowProps<T>) {
     } else {
       return (
         <ListSubheader
-          key={data.key}
+          key={dataSet.key}
           className={autocompleteClasses.groupLabel}
+          style={inlineStyle}
         >
-          {data.group}
+          {dataSet.group}
         </ListSubheader>
       )
     }
   } else {
     if (renderOption) {
-      const node = renderOption(data[0], data[1], data[2])
+      const node = renderOption(
+        { ...dataSet[0], style: inlineStyle },
+        dataSet[1],
+        dataSet[2],
+      )
       if (React.isValidElement(node)) {
         return node
       } else {
@@ -76,14 +101,31 @@ export function RenderRow<T>(props: RenderRowProps<T>) {
       }
     } else {
       return (
-        <ListItem {...data[0]}>
+        <ListItem {...dataSet[0]} style={inlineStyle}>
           <ListItemText primaryTypographyProps={{ noWrap: true }}>
-            {data[1]}
+            {dataSet[1]}
           </ListItemText>
         </ListItem>
       )
     }
   }
+}
+
+const OuterElementContext = React.createContext({})
+
+const OuterElementType = React.forwardRef<HTMLDivElement>((props, ref) => {
+  const outerProps = React.useContext(OuterElementContext)
+  return <div ref={ref} {...props} {...outerProps} />
+})
+
+function useResetCache(data: unknown) {
+  const ref = React.useRef<VariableSizeList>(null)
+  React.useEffect(() => {
+    if (ref.current !== null) {
+      ref.current.resetAfterIndex(0, true)
+    }
+  }, [data])
+  return ref
 }
 
 type ChildData<T> =
@@ -102,23 +144,32 @@ type ChildData<T> =
       >
     })
 
-interface ListboxComponentProps<T>
-  extends VirtuosoProps<ChildData<T>, unknown> {
-  ref: React.Ref<HTMLDivElement>
-  children?: React.ReactNode
+interface ListboxComponentProps<T> extends StandardElementProps<'div'> {
+  estimatedItemSize: number
+  getItemSize?: (child: ChildData<T>) => number
   renderOption?: (
     props: React.HTMLAttributes<HTMLLIElement>,
     option: T,
     state: AutocompleteRenderOptionState,
   ) => React.ReactNode
-  renderGroup?: (params: AutocompleteRenderGroupParams) => React.ReactNode
+  renderGroup?: (
+    props: AutocompleteRenderGroupProps,
+    params: AutocompleteRenderGroupParams,
+  ) => React.ReactNode
 }
 
 export const ListboxComponent = React.forwardRef(function ListboxComponent(
   props,
   ref,
 ) {
-  const { ref: _, children, renderOption, renderGroup, ...others } = props
+  const {
+    children,
+    estimatedItemSize,
+    renderOption,
+    renderGroup,
+    getItemSize: getItemSizeProp,
+    ...others
+  } = props
 
   const data = (children as Array<ChildData<any>>).flatMap(
     (item: ChildData<any>) => [
@@ -129,26 +180,63 @@ export const ListboxComponent = React.forwardRef(function ListboxComponent(
     ],
   )
 
+  const itemCount = data.length
+
+  const getItemSize = (data: ChildData<any>) => {
+    if (getItemSizeProp !== undefined) {
+      return getItemSizeProp(data)
+    }
+    if (Object.prototype.hasOwnProperty.call(data, 'group')) {
+      return 24
+    }
+    return 48
+  }
+
+  const getHeight = () => {
+    if (itemCount > 8) {
+      return 8 * estimatedItemSize
+    }
+    return data.reduce((a, b) => a + getItemSize(b), 0)
+  }
+
+  const listRef = useResetCache(itemCount)
+
   return (
     <div ref={ref}>
-      <Virtuoso
-        data={data}
-        itemContent={(_, data) => (
-          <RenderRow
-            data={data}
-            renderOption={renderOption}
-            renderGroup={renderGroup}
-          />
-        )}
-        {...others}
-      />
+      <OuterElementContext.Provider value={others}>
+        <VariableSizeList
+          itemData={data}
+          height={getHeight() + 2 * LISTBOX_PADDING}
+          width="100%"
+          ref={listRef}
+          outerElementType={OuterElementType}
+          innerElementType="ul"
+          itemSize={index => getItemSize(data[index])}
+          overscanCount={5}
+          itemCount={itemCount}
+        >
+          {props => (
+            <RenderRow
+              {...props}
+              renderOption={renderOption}
+              renderGroup={renderGroup}
+            />
+          )}
+        </VariableSizeList>
+      </OuterElementContext.Provider>
     </div>
   )
 }) as <T>(props: ListboxComponentProps<T>) => JSX.Element
 
 export const VirtualizedAutocomplete = React.forwardRef(
   function VirtualizedAutocomplete(props, ref) {
-    const { renderOption, renderGroup, ...others } = props
+    const {
+      estimatedItemSize,
+      renderOption,
+      renderGroup,
+      getItemSize,
+      ...others
+    } = props
 
     const InnerListboxComponent = React.useMemo(() => {
       return React.forwardRef<HTMLDivElement>(function InnerListboxComponent(
@@ -159,12 +247,14 @@ export const VirtualizedAutocomplete = React.forwardRef(
           <ListboxComponent
             {...props}
             ref={ref}
+            getItemSize={getItemSize}
+            estimatedItemSize={estimatedItemSize}
             renderOption={renderOption}
             renderGroup={renderGroup}
           />
         )
       }) as (props: React.HTMLAttributes<HTMLElement>) => JSX.Element
-    }, [renderOption, renderGroup])
+    }, [estimatedItemSize, renderOption, renderGroup, getItemSize])
 
     return (
       <Autocomplete
@@ -172,12 +262,7 @@ export const VirtualizedAutocomplete = React.forwardRef(
         ListboxComponent={InnerListboxComponent}
         renderOption={(props, options, state) => [props, options, state]}
         renderGroup={params => params}
-        {...(others as AutocompleteProps<
-          unknown,
-          undefined,
-          undefined,
-          undefined
-        >)}
+        {...others}
       />
     )
   },
