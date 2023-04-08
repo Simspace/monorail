@@ -1,10 +1,15 @@
+import type React from 'react'
 import type { SxProps, Theme } from '@mui/material'
 
 import type { StandardElementProps } from '@monorail/types'
 
 import type { ScrollShadowClasses } from './scrollShadowClasses.js'
 
-export interface ScrollShadowProps extends StandardElementProps<'div'> {
+export interface ScrollShadowProps<D extends React.ElementType = 'div'>
+  extends StandardElementProps<'div'> {
+  scrollerRef?:
+    | React.RefCallback<HTMLDivElement>
+    | React.MutableRefObject<HTMLDivElement | null>
   /**
    * The content of the component.
    */
@@ -25,6 +30,12 @@ export interface ScrollShadowProps extends StandardElementProps<'div'> {
    * @default false
    */
   bottom?: boolean
+  slots?: {
+    scrollContainer?: D
+  }
+  slotProps?: {
+    scrollContainer?: Partial<React.ComponentProps<D>>
+  }
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
