@@ -97,7 +97,15 @@ export const ScrollShadow = React.forwardRef(function ScrollShadow(
     name: 'MonorailScrollShadow',
     props: inProps,
   })
-  const { className, top = true, bottom = false, children, ...other } = props
+  const {
+    className,
+    top = true,
+    bottom = false,
+    children,
+    slots = {},
+    slotProps = {},
+    ...other
+  } = props
 
   const scrollContainerRef = React.useRef<HTMLDivElement | null>(null)
   const topShadowRef = React.useRef<HTMLDivElement>(null)
@@ -139,6 +147,14 @@ export const ScrollShadow = React.forwardRef(function ScrollShadow(
   }
 
   const handleScrollContainerRefCallback = (element: HTMLDivElement | null) => {
+    if (slotProps.scrollContainer?.ref !== undefined) {
+      if (typeof slotProps.scrollContainer.ref === 'function') {
+        slotProps.scrollContainer.ref(element)
+      } else {
+        // @ts-expect-error
+        slotProps.scrollContainer.ref.current = element
+      }
+    }
     scrollContainerRef.current = element
     if (!bottom) {
       scheduleAnimation(updateShadows)
@@ -160,8 +176,8 @@ export const ScrollShadow = React.forwardRef(function ScrollShadow(
 
   return (
     <ScrollShadowRoot
-      className={clsx(classes.root, className)}
       ref={ref}
+      className={clsx(classes.root, className)}
       {...other}
     >
       {top && (
@@ -172,7 +188,12 @@ export const ScrollShadow = React.forwardRef(function ScrollShadow(
         />
       )}
       <ScrollContainer
-        className={classes.scrollContainer}
+        as={slots.scrollContainer}
+        className={clsx(
+          classes.scrollContainer,
+          slotProps.scrollContainer?.className,
+        )}
+        {...slotProps.scrollContainer}
         onScroll={updateShadows}
         ref={handleScrollContainerRefCallback}
       >
@@ -187,7 +208,9 @@ export const ScrollShadow = React.forwardRef(function ScrollShadow(
       )}
     </ScrollShadowRoot>
   )
-}) as (props: ScrollShadowProps) => JSX.Element
+}) as <D extends React.ElementType = 'div'>(
+  props: ScrollShadowProps<D>,
+) => JSX.Element
 
 function shouldAnimateShadowOpacity(
   shadowElement: HTMLDivElement,
