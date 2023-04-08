@@ -291,6 +291,8 @@ export const Filters = story(() => {
     },
   ]
 
+  console.log(apiRef)
+
   return (
     <div style={{ height: 600, width: '100%' }}>
       <DataGrid

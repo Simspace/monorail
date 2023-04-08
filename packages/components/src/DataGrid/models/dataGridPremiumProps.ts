@@ -1,14 +1,24 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import type { VirtuosoGridProps } from 'react-virtuoso'
+import type React from 'react'
+import type { GridChildComponentProps } from 'react-window'
 
 import type { DataGridFooterProps } from '../components/DataGridFooter.js'
 import type { DataGridHeaderProps } from '../components/DataGridHeader.js'
 import type { GridValidRowModel } from '../internal.js'
 import type { DataGridViewStyle } from './dataGridViewStyle.js'
 
-interface GalleryProps<R extends GridValidRowModel = any>
-  extends VirtuosoGridProps<R> {
-  itemWidth: string
+export interface RenderCardParams<R> extends GridChildComponentProps<R> {
+  row: R
+  columnIndex: number
+  rowIndex: number
+  style: React.CSSProperties
+  isScrolling?: boolean | undefined
+}
+
+interface GalleryProps<R extends GridValidRowModel = any> {
+  itemWidth: `${number}%` | number
+  itemHeight: `${number}%` | number
+  renderCard: (params: RenderCardParams<R>) => React.ReactElement | null
 }
 
 declare module '@mui/x-data-grid/models/gridSlotsComponentsProps' {
