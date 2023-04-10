@@ -90,7 +90,7 @@ const SplitButtonMenu = styled(Menu, {
  *
  * Demos:
  *
- * - [SplitButton](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/inputs-splitbutton--default)
+ * - [SplitButton](https://simspace.github.io/monorail/main/storybook/?path=/docs/inputs-splitbutton--default)
  */
 export const SplitButton = React.forwardRef(function SplitButton(inProps, ref) {
   const props = useThemeProps({

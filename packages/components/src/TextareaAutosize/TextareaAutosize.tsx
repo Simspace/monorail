@@ -4,7 +4,7 @@ import { TextareaAutosize as MuiTextareaAutosize } from '@mui/material'
  *
  * Demos:
  *
- * - [Textarea autosize](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/inputs-textareaautosize--default)
+ * - [Textarea autosize](https://simspace.github.io/monorail/main/storybook/?path=/docs/inputs-textareaautosize--default)
  * - [Textarea autosize (MUI)](https://mui.com/base/react-textarea-autosize/)
  * - [Textarea autosize (MUI)](https://mui.com/material-ui/react-textarea-autosize/)
  *

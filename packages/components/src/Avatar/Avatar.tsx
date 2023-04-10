@@ -34,7 +34,7 @@ export interface AvatarTypeMap<P = {}, D extends React.ElementType = 'div'>
  *
  * Demos:
  *
- * - [Avatar](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/data-display-avatar--default)
+ * - [Avatar](https://simspace.github.io/monorail/main/storybook/?path=/docs/data-display-avatar--default)
  * - [Avatars (MUI)](https://mui.com/material-ui/react-avatar/)
  *
  * API:

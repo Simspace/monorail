@@ -4,7 +4,7 @@ import { ListItemButton as MuiListItemButton } from '@mui/material'
  *
  * Demos:
  *
- * - [List Item Button](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/data-display-list-listitembutton--default)
+ * - [List Item Button](https://simspace.github.io/monorail/main/storybook/?path=/docs/data-display-list-listitembutton--default)
  * - [Lists (MUI)](https://mui.com/material-ui/react-list/)
  *
  * API:

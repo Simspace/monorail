@@ -13,7 +13,7 @@ declare module '@mui/material/Icon' {
  *
  * Demos:
  *
- * - [Icon](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/data-display-icon--default)
+ * - [Icon](https://simspace.github.io/monorail/main/storybook/?path=/docs/data-display-icon--default)
  * - [Icons (MUI)](https://mui.com/material-ui/icons/)
  * - [Material icons (MUI)](https://mui.com/material-ui/material-icons/)
  *

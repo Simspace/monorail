@@ -4,7 +4,7 @@ import { Grid as MuiGrid } from '@mui/material'
  *
  * Demos:
  *
- * - [Grid](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/layout-grid--default)
+ * - [Grid](https://simspace.github.io/monorail/main/storybook/?path=/docs/layout-grid--default)
  * - [Grid (MUI)](https://mui.com/material-ui/react-grid/)
  *
  * API:

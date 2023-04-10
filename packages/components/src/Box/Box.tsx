@@ -4,7 +4,7 @@ import { Box as MuiBox } from '@mui/material'
  *
  * Demos:
  *
- * - [Box](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/layout-box--default)
+ * - [Box](https://simspace.github.io/monorail/main/storybook/?path=/docs/layout-box--default)
  * - [Box (MUI)](https://mui.com/material-ui/react-box/)
  *
  * API:

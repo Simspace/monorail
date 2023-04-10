@@ -5,7 +5,7 @@ import { NativeSelect as MuiNativeSelect } from '@mui/material'
  *
  * Demos:
  *
- * - [Native Select](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/inputs-nativeselect--default)
+ * - [Native Select](https://simspace.github.io/monorail/main/storybook/?path=/docs/inputs-nativeselect--default)
  * - [Selects (MUI)](https://mui.com/material-ui/react-select/)
  *
  * API:

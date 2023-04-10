@@ -23,7 +23,7 @@ export type CarouselProps = Props & { GliderProps?: Partial<GliderProps> } & {
  *
  * Demos:
  *
- * - [Carousel](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/data-display-carousel--default)
+ * - [Carousel](https://simspace.github.io/monorail/main/storybook/?path=/docs/data-display-carousel--default)
  */
 export const Carousel: FC<CarouselProps> = props => {
   const defaultUid = useId()!

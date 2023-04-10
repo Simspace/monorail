@@ -68,7 +68,7 @@ const AvatarGroupAvatar = styled(Avatar, {
  *
  * Demos:
  *
- * - [AvatarGroup](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/data-display-avatargroup--default)
+ * - [AvatarGroup](https://simspace.github.io/monorail/main/storybook/?path=/docs/data-display-avatargroup--default)
  * - [Avatars (MUI)](https://mui.com/material-ui/react-avatar/)
  *
  * API:

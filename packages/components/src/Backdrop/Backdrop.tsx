@@ -4,7 +4,7 @@ import { Backdrop as MuiBackdrop } from '@mui/material'
  *
  * Demos:
  *
- * - [Backdrop](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/feedback-backdrop--default)
+ * - [Backdrop](https://simspace.github.io/monorail/main/storybook/?path=/docs/feedback-backdrop--default)
  * - [Backdrop (MUI)](https://mui.com/material-ui/react-backdrop/)
  *
  * API:

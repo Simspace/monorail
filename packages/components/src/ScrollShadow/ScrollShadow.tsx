@@ -87,7 +87,7 @@ const MAX_SCROLL_AMOUNT = 128
  *
  * Demos:
  *
- * - [ScrollShadow](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/utils-scrollshadow--default)
+ * - [ScrollShadow](https://simspace.github.io/monorail/main/storybook/?path=/docs/utils-scrollshadow--default)
  */
 export const ScrollShadow = React.forwardRef(function ScrollShadow(
   inProps: ScrollShadowProps,

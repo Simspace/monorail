@@ -59,7 +59,7 @@ import { TransitionGroup as _TransitionGroup } from 'react-transition-group'
  *
  * Demos:
  *
- * - [Transition Group](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/utils-transitiongroup--default)
+ * - [Transition Group](https://simspace.github.io/monorail/main/storybook/?path=/docs/utils-transitiongroup--default)
  */
 export const TransitionGroup: typeof _TransitionGroup = _TransitionGroup
 

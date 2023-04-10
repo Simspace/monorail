@@ -15,7 +15,7 @@ export interface GrowTypeMap<P = {}, D extends React.ElementType = 'div'> {
  *
  * Demos:
  *
- * - [Grow](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/utils-transitions-grow--default)
+ * - [Grow](https://simspace.github.io/monorail/main/storybook/?path=/docs/utils-transitions-grow--default)
  * - [Popover (MUI)](https://mui.com/material-ui/react-popover/)
  * - [Transitions (MUI)](https://mui.com/material-ui/transitions/)
  *

@@ -16,7 +16,7 @@ declare module '@mui/material/Checkbox/Checkbox' {
  *
  * Demos:
  *
- * - [Checkbox](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/inputs-checkbox--default)
+ * - [Checkbox](https://simspace.github.io/monorail/main/storybook/?path=/docs/inputs-checkbox--default)
  * - [Checkboxes (MUI)](https://mui.com/material-ui/react-checkbox/)
  * - [Transfer list (MUI)](https://mui.com/material-ui/react-transfer-list/)
  *

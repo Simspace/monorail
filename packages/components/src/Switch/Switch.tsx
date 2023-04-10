@@ -10,7 +10,7 @@ declare module '@mui/material/Switch' {
  *
  * Demos:
  *
- * - [Switch](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/inputs-switch--default)
+ * - [Switch](https://simspace.github.io/monorail/main/storybook/?path=/docs/inputs-switch--default)
  * - [Switches (MUI)](https://mui.com/material-ui/react-switch/)
  * - [Transfer list (MUI)](https://mui.com/material-ui/react-transfer-list/)
  *

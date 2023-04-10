@@ -15,7 +15,7 @@ export interface CollapseTypeMap<P = {}, D extends React.ElementType = 'div'> {
  *
  * Demos:
  *
- * - [Collapse](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/utils-transitions-collapse--default)
+ * - [Collapse](https://simspace.github.io/monorail/main/storybook/?path=/docs/utils-transitions-collapse--default)
  * - [Cards (MUI)](https://mui.com/material-ui/react-card/)
  * - [Lists (MUI)](https://mui.com/material-ui/react-list/)
  * - [Transitions (MUI)](https://mui.com/material-ui/transitions/)

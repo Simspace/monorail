@@ -5,7 +5,7 @@ import MuiFocusTrap from '@mui/base/FocusTrap'
  *
  * Demos:
  *
- * - [Focus trap](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/utils-focustrap--default)
+ * - [Focus trap](https://simspace.github.io/monorail/main/storybook/?path=/docs/utils-focustrap--default)
  * - [Focus trap (MUI)](https://mui.com/base/react-focus-trap/)
  *
  * API:

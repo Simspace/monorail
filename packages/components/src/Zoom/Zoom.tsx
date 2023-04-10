@@ -15,7 +15,7 @@ export interface ZoomTypeMap<P = {}, D extends React.ElementType = 'div'> {
  *
  * Demos:
  *
- * - [Zoom](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/utils-transitions-zoom--default)
+ * - [Zoom](https://simspace.github.io/monorail/main/storybook/?path=/docs/utils-transitions-zoom--default)
  * - [Transitions](https://mui.com/material-ui/transitions/)
  *
  * API:

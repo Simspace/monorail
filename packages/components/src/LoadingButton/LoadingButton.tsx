@@ -4,7 +4,7 @@ import { LoadingButton as MuiLoadingButton } from '@mui/lab'
  *
  * Demos:
  *
- * - [Loading Button](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/story/inputs-button--loading-buttons)
+ * - [Loading Button](https://simspace.github.io/monorail/main/storybook/?path=/story/inputs-button--loading-buttons)
  * - [LoadingButton (MUI)](https://mui.com/material-ui/react-button/#loading-button)
  *
  * API:

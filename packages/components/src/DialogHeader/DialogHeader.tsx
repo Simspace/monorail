@@ -66,7 +66,7 @@ const DialogIconContainer = styled('div', {
  *
  * Demos:
  *
- * - [DialogHeader](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/feedback-dialog-dialogheader--default)
+ * - [DialogHeader](https://simspace.github.io/monorail/main/storybook/?path=/docs/feedback-dialog-dialogheader--default)
  */
 export const DialogHeader = React.forwardRef(function DialogHeader(
   inProps,

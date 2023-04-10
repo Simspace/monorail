@@ -23,7 +23,7 @@ declare module '@mui/material/Button' {
  *
  * Demos:
  *
- * - [Button](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/inputs-button--default)
+ * - [Button](https://simspace.github.io/monorail/main/storybook/?path=/docs/inputs-button--default)
  * - [Button group (MUI)](https://mui.com/material-ui/react-button-group/)
  * - [Buttons (MUI)](https://mui.com/material-ui/react-button/)
  *

@@ -19,7 +19,7 @@ declare module '@mui/material/Chip' {
  *
  * Demos:
  *
- * - [Chip](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/data-display-chip--default)
+ * - [Chip](https://simspace.github.io/monorail/main/storybook/?path=/docs/data-display-chip--default)
  * - [Chips (MUI)](https://mui.com/material-ui/react-chip/)
  *
  * API:

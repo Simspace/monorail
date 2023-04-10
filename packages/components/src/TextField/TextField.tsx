@@ -34,7 +34,7 @@ import { TextField as MuiTextField } from '@mui/material'
  *
  * Demos:
  *
- * - [Text Field](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/inputs-textfield--default)
+ * - [Text Field](https://simspace.github.io/monorail/main/storybook/?path=/docs/inputs-textfield--default)
  * - [Autocomplete (MUI)](https://mui.com/material-ui/react-autocomplete/)
  * - [Text fields (MUI)](https://mui.com/material-ui/react-text-field/)
  *

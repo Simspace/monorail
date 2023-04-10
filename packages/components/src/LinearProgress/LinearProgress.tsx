@@ -20,7 +20,7 @@ declare module '@mui/material/LinearProgress' {
  *
  * Demos:
  *
- * - [Linear Progress](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/feedback-linearprogress--default)
+ * - [Linear Progress](https://simspace.github.io/monorail/main/storybook/?path=/docs/feedback-linearprogress--default)
  * - [Progress (MUI)](https://mui.com/material-ui/react-progress/)
  *
  * API:

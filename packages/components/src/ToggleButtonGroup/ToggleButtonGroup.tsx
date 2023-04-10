@@ -14,7 +14,7 @@ declare module '@mui/material/ToggleButtonGroup' {
  *
  * Demos:
  *
- * - [Toggle button](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/inputs-togglebutton--default)
+ * - [Toggle button](https://simspace.github.io/monorail/main/storybook/?path=/docs/inputs-togglebutton--default)
  * - [Toggle button (MUI)](https://mui.com/material-ui/react-toggle-button/)
  *
  * API:

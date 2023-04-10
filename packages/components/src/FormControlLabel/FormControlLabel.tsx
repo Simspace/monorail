@@ -6,7 +6,7 @@ import { FormControlLabel as MuiFormControlLabel } from '@mui/material'
  *
  * Demos:
  *
- * - [Form Control Label](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/inputs-formcontrollabel--default)
+ * - [Form Control Label](https://simspace.github.io/monorail/main/storybook/?path=/docs/inputs-formcontrollabel--default)
  * - [Checkboxes (MUI)](https://mui.com/material-ui/react-checkbox/)
  * - [Radio buttons (MUI)](https://mui.com/material-ui/react-radio-button/)
  * - [Switches (MUI)](https://mui.com/material-ui/react-switch/)

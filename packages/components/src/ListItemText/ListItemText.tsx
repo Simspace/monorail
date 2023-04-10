@@ -42,7 +42,7 @@ export interface ListItemTextProps<
  *
  * Demos:
  *
- * - [List Item Text](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/data-display-list-listitemtext--default)
+ * - [List Item Text](https://simspace.github.io/monorail/main/storybook/?path=/docs/data-display-list-listitemtext--default)
  * - [Lists (MUI)](https://mui.com/material-ui/react-list/)
  *
  * API:

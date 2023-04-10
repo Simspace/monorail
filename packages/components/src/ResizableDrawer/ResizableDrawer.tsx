@@ -139,7 +139,7 @@ const ResizeHandle = styled('div', {
  *
  * Demos:
  *
- * - [ResizableDrawer](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/story/navigation-drawer--resizable-drawer)
+ * - [ResizableDrawer](https://simspace.github.io/monorail/main/storybook/?path=/story/navigation-drawer--resizable-drawer)
  */
 export const ResizableDrawer = React.forwardRef(
   (props, ref: React.ForwardedRef<HTMLDivElement>) => {

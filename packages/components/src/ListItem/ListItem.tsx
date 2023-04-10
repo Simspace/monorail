@@ -5,7 +5,7 @@ import { ListItem as MuiListItem } from '@mui/material'
  *
  * Demos:
  *
- * - [List Item](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/data-display-list-listitem--default)
+ * - [List Item](https://simspace.github.io/monorail/main/storybook/?path=/docs/data-display-list-listitem--default)
  * - [Lists (MUI)](https://mui.com/material-ui/react-list/)
  * - [Transfer list (MUI)](https://mui.com/material-ui/react-transfer-list/)
  *

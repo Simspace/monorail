@@ -36,7 +36,7 @@ const SelectionFooterRoot = styled('div', {
  *
  * Demos:
  *
- * - [SelectionDialog](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/feedback-dialog--selection-dialog)
+ * - [SelectionDialog](https://simspace.github.io/monorail/main/storybook/?path=/docs/feedback-dialog--selection-dialog)
  */
 export const SelectionFooter = React.forwardRef((inProps, ref) => {
   const props = useThemeProps({

@@ -10,7 +10,7 @@ declare module '@mui/material/Slider' {
  *
  * Demos:
  *
- * - [Slider](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/inputs-slider--default)
+ * - [Slider](https://simspace.github.io/monorail/main/storybook/?path=/docs/inputs-slider--default)
  * - [Slider (MUI)](https://mui.com/material-ui/react-slider/)
  *
  * API:

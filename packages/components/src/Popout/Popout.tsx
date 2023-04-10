@@ -12,7 +12,7 @@ import type { PopoutProps } from './popoutProps.js'
  *
  * Demos:
  *
- * - [Popout](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/story/utils-popout--default)
+ * - [Popout](https://simspace.github.io/monorail/main/storybook/?path=/story/utils-popout--default)
  */
 export function Popout(props: PopoutProps): JSX.Element | null {
   const {

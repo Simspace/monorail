@@ -4,7 +4,7 @@ import { DateCalendar as MuiDateCalendar } from '@mui/x-date-pickers'
  *
  * Demos:
  *
- * - [Date Calendar](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/inputs-date-and-time-date-calendarpicker--default)
+ * - [Date Calendar](https://simspace.github.io/monorail/main/storybook/?path=/docs/inputs-date-and-time-date-calendarpicker--default)
  * - [Date Calendar (MUI)](https://mui.com/x/api/date-pickers/date-calendar/)
  *
  * API:

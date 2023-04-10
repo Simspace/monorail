@@ -140,7 +140,7 @@ interface EmphaticFormControlLabelPropsInternal
  *
  * Demos:
  *
- * - [EmphaticFormControlLabel](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/inputs-emphaticformcontrollabel--default)
+ * - [EmphaticFormControlLabel](https://simspace.github.io/monorail/main/storybook/?path=/docs/inputs-emphaticformcontrollabel--default)
  */
 export const EmphaticFormControlLabel = React.forwardRef(
   function EmphaticFormControlLabel(

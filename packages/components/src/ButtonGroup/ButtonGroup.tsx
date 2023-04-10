@@ -18,7 +18,7 @@ declare module '@mui/material/ButtonGroup' {
  *
  * Demos:
  *
- * - [Button group](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/inputs-buttongroup--default)
+ * - [Button group](https://simspace.github.io/monorail/main/storybook/?path=/docs/inputs-buttongroup--default)
  * - [Button group (MUI)](https://mui.com/material-ui/react-button-group/)
  *
  * API:

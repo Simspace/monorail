@@ -4,7 +4,7 @@ import { InputAdornment as MuiInputAdornment } from '@mui/material'
  *
  * Demos:
  *
- * - [Input Adornment](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/inputs-input-inputadornment--default)
+ * - [Input Adornment](https://simspace.github.io/monorail/main/storybook/?path=/docs/inputs-input-inputadornment--default)
  * - [Text fields](https://mui.com/material-ui/react-text-field/)
  *
  * API:

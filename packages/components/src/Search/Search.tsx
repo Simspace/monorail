@@ -65,7 +65,7 @@ const ClearButton = styled(IconButton, {
  *
  * Demos:
  *
- * - [Search](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/inputs-search--default)
+ * - [Search](https://simspace.github.io/monorail/main/storybook/?path=/docs/inputs-search--default)
  */
 export const Search = React.forwardRef(function Search(inProps, ref) {
   const props = useThemeProps({

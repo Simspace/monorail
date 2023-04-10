@@ -33,7 +33,7 @@ const releaseInfo = getReleaseInfo()
  *
  * Demos:
  *
- * - [DataGrid](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook//?path=/docs/data-grid-datagrid--default)
+ * - [DataGrid](https://simspace.github.io/monorail/main/storybook/?path=/docs/data-grid-datagrid--default)
  * - [DataGrid (MUI)](https://mui.com/x/react-data-grid/demo/)
  *
  * API:

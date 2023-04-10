@@ -14,7 +14,7 @@ export interface FadeTypeMap<P = {}, D extends React.ElementType = 'div'> {
  *
  * Demos:
  *
- * - [Fade](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/utils-transitions-fade--default)
+ * - [Fade](https://simspace.github.io/monorail/main/storybook/?path=/docs/utils-transitions-fade--default)
  * - [Transitions (MUI)](https://mui.com/material-ui/transitions/)
  *
  * API:

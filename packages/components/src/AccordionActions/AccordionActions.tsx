@@ -4,7 +4,7 @@ import { AccordionActions as MuiAccordionActions } from '@mui/material'
  *
  * Demos:
  *
- * - [Accordion)](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/surfaces-accordion--default)
+ * - [Accordion)](https://simspace.github.io/monorail/main/storybook/?path=/docs/surfaces-accordion--default)
  * - [Accordion (MUI)](https://mui.com/material-ui/react-accordion/)
  *
  * API:

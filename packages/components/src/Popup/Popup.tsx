@@ -98,7 +98,7 @@ const PopupPopper = styled(MuiPopper, {
  *
  * Demos:
  *
- * - [Popup](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/utils-popup--default)
+ * - [Popup](https://simspace.github.io/monorail/main/storybook/?path=/docs/utils-popup--default)
  */
 export const Popup = React.forwardRef(function Popup(
   inProps,

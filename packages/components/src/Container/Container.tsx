@@ -4,7 +4,7 @@ import { Container as MuiContainer } from '@mui/material'
  *
  * Demos:
  *
- * - [Container](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/layout-container--default)
+ * - [Container](https://simspace.github.io/monorail/main/storybook/?path=/docs/layout-container--default)
  * - [Container (MUI)](https://mui.com/material-ui/react-container/)
  *
  * API:

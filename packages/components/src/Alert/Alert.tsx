@@ -4,7 +4,7 @@ import { Alert as MuiAlert } from '@mui/material'
  *
  * Demos:
  *
- * - [Alert](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/feedback-alert--default)
+ * - [Alert](https://simspace.github.io/monorail/main/storybook/?path=/docs/feedback-alert--default)
  * - [Alert (MUI)](https://mui.com/material-ui/react-alert/)
  *
  * API:

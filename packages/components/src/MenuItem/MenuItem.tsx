@@ -16,7 +16,7 @@ export type MenuItemProps<
  *
  * Demos:
  *
- * - [Menu Item](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/navigation-menu-menuitem--default)
+ * - [Menu Item](https://simspace.github.io/monorail/main/storybook/?path=/docs/navigation-menu-menuitem--default)
  * - [Menus](https://mui.com/material-ui/react-menu/)
  *
  * API:

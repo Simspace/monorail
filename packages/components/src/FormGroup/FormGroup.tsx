@@ -7,7 +7,7 @@ import { FormGroup as MuiFormGroup } from '@mui/material'
  *
  * Demos:
  *
- * - [Form Group](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/inputs-formgroup--default)
+ * - [Form Group](https://simspace.github.io/monorail/main/storybook/?path=/docs/inputs-formgroup--default)
  * - [Checkboxes (MUI)](https://mui.com/material-ui/react-checkbox/)
  * - [Switches (MUI)](https://mui.com/material-ui/react-switch/)
  *

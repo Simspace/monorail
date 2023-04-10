@@ -4,7 +4,7 @@ import { StepConnector as MuiStepConnector } from '@mui/material'
  *
  * Demos:
  *
- * - [Step Connector](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/navigation-stepper-stepconnector--default)
+ * - [Step Connector](https://simspace.github.io/monorail/main/storybook/?path=/docs/navigation-stepper-stepconnector--default)
  * - [Steppers (MUI)](https://mui.com/material-ui/react-stepper/)
  *
  * API:

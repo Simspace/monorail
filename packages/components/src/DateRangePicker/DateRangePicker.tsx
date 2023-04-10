@@ -5,7 +5,7 @@ import { DateRangePicker as MuiDateRangePicker } from '@mui/x-date-pickers-pro'
  *
  * Demos:
  *
- * - [Date Range Picker](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/inputs-date-and-time-date-range-daterangepicker--default)
+ * - [Date Range Picker](https://simspace.github.io/monorail/main/storybook/?path=/docs/inputs-date-and-time-date-range-daterangepicker--default)
  * - [Date Range Picker (MUI)](https://mui.com/x/react-date-pickers/date-range-picker/)
  *
  * API:

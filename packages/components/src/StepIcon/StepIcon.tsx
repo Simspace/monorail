@@ -4,7 +4,7 @@ import { StepIcon as MuiStepIcon } from '@mui/material'
  *
  * Demos:
  *
- * - [Step Icon](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/navigation-stepper-stepicon--default)
+ * - [Step Icon](https://simspace.github.io/monorail/main/storybook/?path=/docs/navigation-stepper-stepicon--default)
  * - [Steppers (MUI)](https://mui.com/material-ui/react-stepper/)
  *
  * API:

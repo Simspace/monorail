@@ -10,7 +10,7 @@ declare module '@mui/material/Badge' {
  *
  * Demos:
  *
- * - [Badge](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/data-display-badge--default)
+ * - [Badge](https://simspace.github.io/monorail/main/storybook/?path=/docs/data-display-badge--default)
  * - [Avatars (MUI)](https://mui.com/material-ui/react-avatar/)
  * - [Badges (MUI)](https://mui.com/material-ui/react-badge/)
  *

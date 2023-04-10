@@ -15,7 +15,7 @@ export interface SlideTypeMap<P = {}, D extends React.ElementType = 'div'> {
  *
  * Demos:
  *
- * - [Slide](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/utils-transitions-slide--default)
+ * - [Slide](https://simspace.github.io/monorail/main/storybook/?path=/docs/utils-transitions-slide--default)
  * - [Dialogs (MUI)](https://mui.com/material-ui/react-dialog/)
  * - [Transitions (MUI)](https://mui.com/material-ui/transitions/)
  *

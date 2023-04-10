@@ -5,7 +5,7 @@ import { CssBaseline as MuiCssBaseline } from '@mui/material'
  *
  * Demos:
  *
- * - [CSS Baseline](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/utils-cssbaseline--default)
+ * - [CSS Baseline](https://simspace.github.io/monorail/main/storybook/?path=/docs/utils-cssbaseline--default)
  * - [CSS Baseline (MUI)](https://mui.com/material-ui/react-css-baseline/)
  *
  * API:

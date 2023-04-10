@@ -268,7 +268,7 @@ type DropTargetMonitor = {
  *
  * Demos:
  *
- * - [FileUpload](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/inputs-fileupload--default)
+ * - [FileUpload](https://simspace.github.io/monorail/main/storybook/?path=/docs/inputs-fileupload--default)
  */
 export const FileUpload: React.VFC<FileUploadProps> = ({
   required = false,

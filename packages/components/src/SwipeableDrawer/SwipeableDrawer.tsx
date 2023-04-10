@@ -4,7 +4,7 @@ import { SwipeableDrawer as MuiSwipeableDrawer } from '@mui/material'
  *
  * Demos:
  *
- * - [Swipeable Drawer](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/navigation-drawer-swipeabledrawer--default)
+ * - [Swipeable Drawer](https://simspace.github.io/monorail/main/storybook/?path=/docs/navigation-drawer-swipeabledrawer--default)
  * - [Drawers (MUI)](https://mui.com/material-ui/react-drawer/)
  *
  * API:

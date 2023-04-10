@@ -4,7 +4,7 @@ import { SpeedDialAction as MuiSpeedDialAction } from '@mui/material'
  *
  * Demos:
  *
- * - [Speed dial](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/navigation-speeddial--default)
+ * - [Speed dial](https://simspace.github.io/monorail/main/storybook/?path=/docs/navigation-speeddial--default)
  * - [Speed dial (MUI)](https://mui.com/material-ui/react-speed-dial/)
  *
  * API:
