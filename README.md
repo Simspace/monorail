@@ -9,7 +9,6 @@
 - [Overview](#Overview)
 - [Goals/core ideas](#goalscore-ideas)
 - [Setup](#setup)
-- [Installing in a GitLab repo](#installing-in-a-gitlab-repo)
 - [Storybook](#storybook)
 - [Testing](#testing)
   - [Running Creevey](#running-creevey)
