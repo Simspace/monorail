@@ -239,7 +239,7 @@ const palette: PaletteOptions = {
   default: {
     light: RawColor.Grey500,
     main: RawColor.Grey600,
-    dark: RawColor.Grey700,
+    dark: RawColor.Grey800,
     contrastText: RawColor.White,
     hover: RawColor.Grey700,
     active: RawColor.Grey800,
