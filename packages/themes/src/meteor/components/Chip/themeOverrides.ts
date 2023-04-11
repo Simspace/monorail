@@ -1,5 +1,5 @@
 import type { Components, CSSInterpolation, Theme } from '@mui/material'
-import { chipClasses, darken, getContrastRatio } from '@mui/material'
+import { chipClasses, darken } from '@mui/material'
 
 export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
   defaultProps: {
@@ -39,7 +39,6 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
     filled: ({ ownerState: { color = 'default' }, theme }) => {
       const background = theme.palette[color].main
       return {
-        color: theme.palette.getContrastText(background),
         backgroundColor: background,
         [`&.${chipClasses.focusVisible}`]: {
           backgroundColor: background,
@@ -134,7 +133,12 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
       padding: theme.spacing(0.5, 1.25),
     }),
     icon: ({
-      ownerState: { variant = 'muted', size = 'medium', label },
+      ownerState: {
+        variant = 'muted',
+        color = 'default',
+        size = 'medium',
+        label,
+      },
       theme,
     }) => {
       const iconOnlyStyles: CSSInterpolation = {
@@ -150,6 +154,12 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
         },
       }
 
+      const outlinedStyles: CSSInterpolation = {
+        ...(color === 'warning' && {
+          color: theme.palette.warning.contrastText,
+        }),
+      }
+
       return {
         color: 'inherit',
         marginLeft:
@@ -157,6 +167,7 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
             ? theme.spacing(1)
             : theme.spacing(2),
         marginRight: theme.spacing(-2),
+        ...(variant === 'outlined' && outlinedStyles),
         ...(size === 'small' && {
           marginLeft: 0,
           marginRight: theme.spacing(-1),
@@ -176,21 +187,17 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
         },
       }
 
-      const filledBackgroundColor = theme.palette[color].main
-
-      const filledDeleteIconColor =
-        getContrastRatio(
-          theme.palette.default.lowEmphasis.contrastText,
-          filledBackgroundColor,
-        ) <= theme.palette.contrastThreshold
-          ? theme.palette[color].lowEmphasis.light
-          : theme.palette[color].lowEmphasis.contrastText
-
       const filledStyles: CSSInterpolation = {
+        color: theme.palette[color].lowEmphasis.main,
         '&:hover': {
-          color: filledDeleteIconColor,
+          color: theme.palette[color].lowEmphasis.main,
         },
-        color: filledDeleteIconColor,
+        ...(color === 'warning' && {
+          color: theme.palette.warning.lowEmphasis.contrastText,
+          '&:hover': {
+            color: theme.palette.warning.lowEmphasis.contrastText,
+          },
+        }),
       }
 
       const outlinedStyles: CSSInterpolation = {
@@ -230,15 +237,20 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
       }
 
       const filledVariantStyles: CSSInterpolation = {
-        color: theme.palette.getContrastText(
-          theme.palette[color].lowEmphasis.contrastText,
-        ),
-        backgroundColor: theme.palette[color].lowEmphasis.contrastText,
+        color: theme.palette.getContrastText(theme.palette[color].dark),
+        backgroundColor: theme.palette[color].dark,
+        ...(color === 'warning' && {
+          color: theme.palette.warning.contrastText,
+          backgroundColor: theme.palette.warning.lowEmphasis.contrastText,
+        }),
       }
 
       const outlinedVariantStyles: CSSInterpolation = {
         color: theme.palette[color].contrastText,
-        backgroundColor: theme.palette[color].main,
+        backgroundColor:
+          color === 'warning'
+            ? theme.palette.warning.dark
+            : theme.palette[color].main,
       }
 
       const readOnlyRectangularStyles: CSSInterpolation = mutedVariantStyles

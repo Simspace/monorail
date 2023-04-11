@@ -8,6 +8,7 @@ export const MonorailTablePaginationOverrides: Components<Theme>['MuiTablePagina
       input: ({ theme }) => ({
         marginRight: theme.spacing(4),
         minHeight: theme.spacing(10),
+        // Increase specificity to override MUI's NativeSelectInput
         [`&&& .${tablePaginationClasses.select}`]: {
           paddingRight: theme.spacing(15),
         },
