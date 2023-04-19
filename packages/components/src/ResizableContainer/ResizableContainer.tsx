@@ -9,7 +9,7 @@ import useResizeObserver from 'use-resize-observer'
 
 import { useDidUpdate, useForceUpdate, usePrevious, useRequestAnimationFrame } from '@monorail/utils'
 
-import { ResizeHandle } from '../ResizeHandle.js'
+import { ResizableHandle } from '../ResizableHandle.js'
 import { getResizableContainerUtilityClass } from './resizableContainerClasses.js'
 import { ResizableContainerContext } from './ResizableContainerContext.js'
 import type { ResizableContainerOrientation, ResizableContainerProps } from './resizableContainerProps.js'
@@ -105,7 +105,7 @@ export const ResizableContainer = React.forwardRef(function ResizableContainer(
       const freeFlex = computeFreeFlex(flexData)
 
       flexData = flexData.map(entry => {
-        if (entry.type === getComponentType(ResizeHandle)) {
+        if (entry.type === getComponentType(ResizableHandle)) {
           return entry
         }
 
@@ -129,7 +129,7 @@ export const ResizableContainer = React.forwardRef(function ResizableContainer(
     }
 
     return flexData.map(entry => ({
-      flex: entry.type !== getComponentType(ResizeHandle) ? entry.flex : 0.0,
+      flex: entry.type !== getComponentType(ResizableHandle) ? entry.flex : 0.0,
       ref: React.createRef(),
     }))
   }, [maxDepth, props.children, orientation])
@@ -158,11 +158,11 @@ export const ResizableContainer = React.forwardRef(function ResizableContainer(
     if (direction > 0) {
       if (idx < processedChildren.current.length - 2) {
         const child = processedChildren.current[idx + 2]
-        return child.type === getComponentType(ResizeHandle) && child.props.propagate
+        return child.type === getComponentType(ResizableHandle) && child.props.propagate
       }
     } else if (idx > 2) {
       const child = processedChildren.current[idx - 2]
-      return child.type === getComponentType(ResizeHandle) && child.props.propagate
+      return child.type === getComponentType(ResizableHandle) && child.props.propagate
     }
 
     return false
@@ -366,7 +366,7 @@ export const ResizableContainer = React.forwardRef(function ResizableContainer(
         switch (orientation) {
           case 'vertical': {
             elements.forEach(element => {
-              if (element.type === getComponentType(ResizeHandle)) {
+              if (element.type === getComponentType(ResizableHandle)) {
                 return
               }
               if (element.ref?.current && computedSize.current < element.ref.current.offsetHeight) {
@@ -377,7 +377,7 @@ export const ResizableContainer = React.forwardRef(function ResizableContainer(
           }
           case 'horizontal': {
             elements.forEach(element => {
-              if (element.type === getComponentType(ResizeHandle)) {
+              if (element.type === getComponentType(ResizableHandle)) {
                 return
               }
               if (element.ref?.current && computedSize.current < element.ref.current.offsetWidth) {
@@ -510,7 +510,7 @@ export const ResizableContainer = React.forwardRef(function ResizableContainer(
   const renderChildren = () => {
     let shouldComputeSize = false
     processedChildren.current = React.Children.map(getValidChildren(children), (child, index) => {
-      if (child.type === getComponentType(ResizeHandle)) {
+      if (child.type === getComponentType(ResizableHandle)) {
         shouldComputeSize = shouldComputeSize || (child.props.computeSize ?? false)
       }
       const childFlexData: FlexData = flexData[index]
@@ -522,12 +522,12 @@ export const ResizableContainer = React.forwardRef(function ResizableContainer(
         flex: childFlexData.flex,
         ref: childFlexData.ref,
         index,
-        ...(child.type !== getComponentType(ResizeHandle) && {
+        ...(child.type !== getComponentType(ResizableHandle) && {
           maxSize: computeSizeBound(parentRef.current, orientation, child.props.maxSize, Number.MAX_VALUE),
           minSize: computeSizeBound(parentRef.current, orientation, child.props.minSize, 1),
           size: computeSizeBound(parentRef.current, orientation, child.props.size, Number.MAX_VALUE),
         }),
-        ...(child.type === getComponentType(ResizeHandle) && {
+        ...(child.type === getComponentType(ResizableHandle) && {
           computedSize,
         }),
       }
@@ -648,7 +648,7 @@ function computePixelFlex(target: HTMLElement | null, direction: ResizableContai
  */
 function computeFreeFlex(flexData: Array<InitialFlexData>): number {
   return flexData.reduce((freeFlex, entry) => {
-    if (entry.type !== getComponentType(ResizeHandle) && entry.constrained) {
+    if (entry.type !== getComponentType(ResizableHandle) && entry.constrained) {
       return freeFlex - entry.flex
     }
     return freeFlex
@@ -660,7 +660,7 @@ function computeFreeFlex(flexData: Array<InitialFlexData>): number {
  */
 function computeFreeElements(flexData: Array<InitialFlexData>): number {
   return flexData.reduce((sum, entry) => {
-    if (entry.type !== getComponentType(ResizeHandle) && !entry.constrained) {
+    if (entry.type !== getComponentType(ResizableHandle) && !entry.constrained) {
       return sum + 1
     }
     return sum

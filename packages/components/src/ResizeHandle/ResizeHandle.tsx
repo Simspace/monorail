@@ -2,13 +2,11 @@ import React from 'react'
 import type { CSSObject } from '@mui/material'
 import { Divider, styled, useThemeProps } from '@mui/material'
 import composeClasses from '@mui/utils/composeClasses'
-import useEnhancedEffect from '@mui/utils/useEnhancedEffect.js'
 import clsx from 'clsx'
 
-import { excludeProps, useForceUpdate } from '@monorail/utils'
+import { excludeProps } from '@monorail/utils'
 
 import type { ResizableContainerOrientation } from '../ResizableContainer.js'
-import { useResizableContainerContext } from '../ResizableContainer/ResizableContainerContext.js'
 import {
   getResizeHandleUtilityClass,
   resizeHandleClasses,
@@ -30,6 +28,8 @@ export const ResizeHandleRoot = styled('div', {
     'computedSize',
     'propagate',
     'orientation',
+    'sx',
+    'ownerState',
   ),
 })<ResizeHandleOwnerState>(({ theme, orientation }) => {
   const baseStyles: CSSObject = {
@@ -192,8 +192,6 @@ export const ResizeHandle = React.forwardRef(function ResizeHandle(
   inProps,
   ref,
 ) {
-  const active = React.useRef(false)
-  const [isDragging, setIsDragging] = React.useState(false)
   const innerRef = React.useRef<HTMLDivElement | null>(null)
   React.useImperativeHandle(ref, () => innerRef.current!)
 
@@ -206,158 +204,48 @@ export const ResizeHandle = React.forwardRef(function ResizeHandle(
   })
 
   const {
-    index,
+    orientation,
     grip = true,
     gripPosition = 'center',
     onDragStart,
-    onDragEnd,
-    onDrag,
-    computeSize,
+    isDragging,
     ...other
   } = props
 
-  const context = useResizableContainerContext()
-
-  const forceUpdate = useForceUpdate()
-  useEnhancedEffect(() => {
-    context.events.addEventListener('forceUpdate', forceUpdate)
-  }, [])
-
   const handleMouseDown = (event: React.MouseEvent<HTMLDivElement>) => {
-    active.current = true
-    setIsDragging(true)
-    onDragStart?.(event)
-    document.addEventListener('mouseup', handleMouseUp)
-    document.addEventListener('mousemove', handleMouseMove)
-    context.events.dispatchEvent('startResize', {
-      source: 'mouse',
-      index: index!,
-      event,
-    })
+    onDragStart?.(event, 'mouse')
   }
 
   const handleTouchStart = (event: React.TouchEvent<HTMLDivElement>) => {
-    active.current = true
-    setIsDragging(true)
-    onDragStart?.(event)
-    document.addEventListener('touchend', handleTouchEnd)
-    document.addEventListener('touchmove', handleTouchMove)
-    context.events.dispatchEvent('startResize', {
-      source: 'touch',
-      index: index!,
-      event,
-    })
-  }
-
-  const handleMouseUp = (event: MouseEvent) => {
-    if (active.current) {
-      active.current = false
-      setIsDragging(false)
-      onDragEnd?.(event)
-      document.removeEventListener('mouseup', handleMouseUp)
-      document.removeEventListener('mousemove', handleMouseMove)
-      context.events.dispatchEvent('stopResize', {
-        source: 'mouse',
-        index: index!,
-        event,
-      })
-    }
-  }
-
-  const handleTouchEnd = (event: TouchEvent) => {
-    if (active.current) {
-      active.current = false
-      setIsDragging(false)
-      onDragEnd?.(event)
-      document.removeEventListener('touchend', handleTouchEnd)
-      document.removeEventListener('touchmove', handleTouchMove)
-      context.events.dispatchEvent('stopResize', {
-        source: 'touch',
-        index: index!,
-        event,
-      })
-    }
-  }
-
-  const handleMouseMove = (event: MouseEvent) => {
-    if (active.current) {
-      const domElement = innerRef.current!
-
-      onDrag?.(event)
-
-      context.events.dispatchEvent('resize', {
-        source: 'mouse',
-        index: index!,
-        target: domElement,
-        event,
-      })
-
-      event.stopPropagation()
-      event.preventDefault()
-    }
-  }
-
-  const handleTouchMove = (event: TouchEvent) => {
-    if (active.current) {
-      const domElement = innerRef.current!
-
-      onDrag?.(event)
-
-      context.events.dispatchEvent('resize', {
-        source: 'touch',
-        index: index!,
-        target: domElement,
-        event,
-      })
-
-      event.stopPropagation()
-      event.preventDefault()
-    }
+    onDragStart?.(event, 'touch')
   }
 
   const ownerState = {
     ...props,
     isDragging,
-    orientation: context.orientation,
   }
 
   const classes = useUtilityClasses(ownerState)
 
-  const style = {
-    ...other.style,
-    ...(computeSize === true && {
-      ...(context.orientation === 'vertical' && {
-        height: props.computedSize?.current,
-      }),
-      ...(context.orientation === 'horizontal' && {
-        width: props.computedSize?.current,
-      }),
-    }),
-  }
-
   return (
     <ResizeHandleRoot
       {...other}
+      orientation={orientation}
       isDragging={isDragging}
-      orientation={context.orientation}
       ref={innerRef}
       className={clsx(classes.root, props.className)}
       onMouseDown={handleMouseDown}
       onTouchStart={handleTouchStart}
-      style={style}
     >
-      <ResizeHandleHint orientation={context.orientation} />
+      <ResizeHandleHint orientation={orientation} />
       {grip && (
         <ResizeHandleGrip
           className={classes.grip}
-          orientation={context.orientation}
+          orientation={orientation}
           gripPosition={gripPosition}
         />
       )}
-      <ResizeHandleInner
-        orientation={context.orientation}
-        className={classes.handle}
-      />
+      <ResizeHandleInner orientation={orientation} className={classes.handle} />
     </ResizeHandleRoot>
   )
 }) as (props: ResizeHandleProps) => JSX.Element

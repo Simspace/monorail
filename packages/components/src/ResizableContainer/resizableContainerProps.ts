@@ -5,7 +5,7 @@ import type { Theme } from '@mui/system'
 import type { StandardElementProps } from '@monorail/types'
 
 import type { ResizableElementProps } from '../ResizableElement.js'
-import type { ResizeHandleProps } from '../ResizeHandle.js'
+import type { ResizableHandleProps } from '../ResizableHandle.js'
 import type { ResizableContainerClasses } from './resizableContainerClasses'
 
 export type ResizableContainerOrientation = 'vertical' | 'horizontal'
@@ -25,8 +25,8 @@ export interface ResizableContainerProps
         React.JSXElementConstructor<ResizableElementProps>
       >
     | React.ReactElement<
-        ResizeHandleProps,
-        React.JSXElementConstructor<ResizeHandleProps>
+        ResizableHandleProps,
+        React.JSXElementConstructor<ResizableHandleProps>
       >
   >
   /**
