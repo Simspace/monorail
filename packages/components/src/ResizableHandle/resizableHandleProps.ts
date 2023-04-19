@@ -1,15 +1,9 @@
 import type React from 'react'
-import type { Theme } from '@mui/material'
-import type { SxProps } from '@mui/system'
 
 import type { StandardElementProps } from '@monorail/types'
 
-import type { ResizeHandleClasses } from './resizeHandleClasses.js'
-
-export interface ResizeHandleProps
+export interface ResizableHandleProps
   extends StandardElementProps<'div', 'onDragStart' | 'onDragEnd' | 'onDrag'> {
-  classes?: Partial<ResizeHandleClasses>
-  isDragging: boolean
   /**
    * Should the handle have a "grip"?
    * @default true
@@ -31,10 +25,29 @@ export interface ResizeHandleProps
    */
   onDragStart?: (
     event: React.MouseEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>,
-    source: 'mouse' | 'touch',
   ) => void
+  /**
+   * An event handler that will be called each time a MouseMove or TouchMove event is fired while dragging
+   * @default undefined
+   */
+  onDrag?: (event: MouseEvent | TouchEvent) => void
+  /**
+   * An event handler that will be called when a drag is finished
+   * @default undefined
+   */
+  onDragEnd?: (event: MouseEvent | TouchEvent) => void
+  /**
+   * Should the size of the handle be computed from the largest sibling ResizableElement?
+   *
+   * @note only use this when the height of the parent is indeterminate
+   * @default false
+   */
+  computeSize?: boolean
 
-  orientation: 'vertical' | 'horizontal'
-
-  sx?: SxProps<Theme>
+  /** @internal */
+  index?: number
+  /** @internal */
+  flex?: number
+  /** @internal */
+  computedSize?: React.MutableRefObject<number>
 }

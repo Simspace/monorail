@@ -1,17 +1,26 @@
 import type React from 'react'
 import type {
+  BackdropProps,
   DrawerProps,
   ModalProps,
   PaperProps,
+  SlideProps,
   SxProps,
 } from '@mui/material'
 import type { Theme } from '@mui/system'
 
-import type { StandardElementProps } from '@monorail/types'
-
 import type { ResizableDrawerClasses } from './resizableDrawerClasses.js'
 
-export interface ResizableDrawerProps extends StandardElementProps<'div'> {
+export interface ResizableDrawerProps
+  extends Omit<
+    DrawerProps,
+    | 'slotProps'
+    | 'variant'
+    | 'BackdropProps'
+    | 'SlideProps'
+    | 'PaperProps'
+    | 'TransitionComponent'
+  > {
   /**
    * Override or extend the styles applied to the component.
    */
@@ -20,16 +29,7 @@ export interface ResizableDrawerProps extends StandardElementProps<'div'> {
    * The content of the component.
    */
   children?: React.ReactNode
-  /**
-   * Side from which the drawer will appear.
-   * @default 'left'
-   */
-  anchor?: DrawerProps['anchor']
-  /**
-   * The variant to use.
-   * @default 'permanent'
-   */
-  variant?: DrawerProps['variant']
+  variant?: 'temporary' | 'persistent'
   /**
    * The initial size of the drawer, in pixels. This corresponds to width if anchor="left" or anchor="right",
    * or height if anchor="top" or anchor="bottom".
@@ -53,16 +53,12 @@ export interface ResizableDrawerProps extends StandardElementProps<'div'> {
    * @default 12
    */
   dragAreaSize?: number
-  /**
-   * The size of the resize handle, in pixels.
-   * @default 2
-   */
-  handleSize?: number
 
   slotProps?: {
-    drawer?: Omit<Partial<DrawerProps>, 'anchor' | 'variant' | 'sx'>
     paper?: Partial<PaperProps>
     modal?: Partial<ModalProps>
+    backdrop?: Partial<BackdropProps>
+    slide?: Partial<SlideProps>
   }
 
   sx?: SxProps<Theme>
