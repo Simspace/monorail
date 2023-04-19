@@ -6,8 +6,8 @@ import type {
   PaperProps,
   SlideProps,
   SxProps,
+  Theme,
 } from '@mui/material'
-import type { Theme } from '@mui/system'
 
 import type { ResizableDrawerClasses } from './resizableDrawerClasses.js'
 
