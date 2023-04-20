@@ -1,7 +1,7 @@
 import React from 'react'
 import { styled, useThemeProps } from '@mui/material'
 
-import { sx } from '@monorail/utils'
+import { excludeProps, sx } from '@monorail/utils'
 
 import { Stack } from '../Stack.js'
 import { Typography } from '../Typography.js'
@@ -16,6 +16,7 @@ const SelectionFooterRoot = styled('div', {
   name: 'MonorailSelectionFooter',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
+  shouldForwardProp: excludeProps('disableBorder', 'ownerState'),
 })<SelectionFooterRootProps>(({ ownerState }) =>
   sx(theme => ({
     minHeight: theme.spacing(9.5),
