@@ -41,6 +41,7 @@ import {
   Switch,
   Typography,
 } from '@monorail/components'
+import { useTheme } from '@monorail/utils'
 
 import { story } from '../helpers/storybook.js'
 
@@ -840,6 +841,8 @@ export const GutterlessListItem = story<ListProps>(
 
 export const VirtualizedList = story<ListProps>(
   () => {
+    const theme = useTheme()
+    const itemSize = theme.name.includes('legacy') ? 24 : 48
     return (
       <Box
         sx={{
@@ -852,7 +855,7 @@ export const VirtualizedList = story<ListProps>(
         <FixedSizeList
           height={400}
           width={360}
-          itemSize={24}
+          itemSize={itemSize}
           itemCount={200}
           overscanCount={5}
         >
