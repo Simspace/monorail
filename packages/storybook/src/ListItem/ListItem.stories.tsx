@@ -5,6 +5,7 @@ import FolderIcon from '@mui/icons-material/Folder'
 import type { ListItemProps } from '@monorail/components'
 import {
   Avatar,
+  Checkbox,
   IconButton,
   ListItem,
   ListItemAvatar,
@@ -27,6 +28,7 @@ export default {
 type ListItemStoryArgs = ListItemProps & {
   avatar: boolean
   icon: boolean
+  checkbox: boolean
   secondaryText: boolean
 }
 
@@ -40,6 +42,7 @@ const args: ListItemStoryArgs = {
   // Subcomponents
   avatar: false,
   icon: false,
+  checkbox: false,
   secondaryText: false,
   secondaryAction: false,
 }
@@ -62,6 +65,10 @@ const argTypes = {
     table: { category: 'Subcomponents' },
   },
   icon: { control: { type: 'boolean' }, table: { category: 'Subcomponents' } },
+  checkbox: {
+    control: { type: 'boolean' },
+    table: { category: 'Subcomponents' },
+  },
   secondaryText: {
     control: { type: 'boolean' },
     table: { category: 'Subcomponents' },
@@ -93,8 +100,8 @@ const Template = story<ListItemStoryArgs>(
       >
         {args.avatar! && (
           <ListItemAvatar>
-            <Avatar size={args.dense! ? 'small' : 'medium'}>
-              <FolderIcon fontSize={args.dense! ? 'medium' : 'large'} />
+            <Avatar size="small">
+              <FolderIcon fontSize="medium" />
             </Avatar>
           </ListItemAvatar>
         )}
@@ -103,9 +110,14 @@ const Template = story<ListItemStoryArgs>(
             <FolderIcon />
           </ListItemIcon>
         )}
+        {args.checkbox! && (
+          <ListItemIcon>
+            <Checkbox disableRipple />
+          </ListItemIcon>
+        )}
         <ListItemText
           primary="Primary text"
-          secondary={args.secondaryText! && 'Secondary text'}
+          secondary={args.secondaryText! ? 'Secondary text' : null}
         />
       </ListItem>
     </ul>
