@@ -1,38 +1,4 @@
 import type { Components, Theme } from '@mui/material'
-import {
-  checkboxClasses,
-  listItemAvatarClasses,
-  listItemIconClasses,
-  svgIconClasses,
-} from '@mui/material'
 
+// Use MUI default styles. Don't inherit from baseTheme.components.
 export const MonorailListItemOverrides: Components<Theme>['MuiListItem'] = {}
-// export const MonorailListItemOverrides: Components<Theme>['MuiListItem'] = {
-//   defaultProps: {},
-//   styleOverrides: {
-//     root: {
-//       paddingTop: 8,
-//       paddingBottom: 8,
-//       [`& .${listItemIconClasses.root}`]: {
-//         minWidth: 40,
-//       },
-//     },
-//     dense: ({ theme }) => ({
-//       [`& > .${listItemAvatarClasses.root}`]: {
-//         minWidth: theme.spacing(12),
-//       },
-//       [`& .${listItemIconClasses.root}`]: {
-//         minWidth: 40,
-//         [`& > .${svgIconClasses.root}`]: {
-//           fontSize: theme.typography.pxToRem(16),
-//         },
-//         [`& > .${checkboxClasses.root}`]: {
-//           // <Checkbox size="small"/> adds unwanted height.
-//           // Do the same for Radio if needed - GS 04/26/2022
-//           marginTop: theme.spacing(-1),
-//           marginBottom: theme.spacing(-1),
-//         },
-//       },
-//     }),
-//   },
-// }

@@ -21,7 +21,9 @@ import { MonorailCircularProgressOverrides } from '../components/CircularProgres
 import { MonorailLinearProgressOverrides } from '../components/LinearProgress/themeOverrides.js'
 import { MonorailLinkOverrides } from '../components/Link/themeOverrides.js'
 import { MonorailListItemOverrides } from '../components/ListItem/themeOverrides.js'
+import { MonorailListItemAvatarOverrides } from '../components/ListItemAvatar/themeOverrides.js'
 import { MonorailListItemButtonOverrides } from '../components/ListItemButton/themeOverrides.js'
+import { MonorailListItemIconOverrides } from '../components/ListItemIcon/themeOverrides.js'
 import { MonorailListItemTextOverrides } from '../components/ListItemText/themeOverrides.js'
 import { MonorailMenuItemOverrides } from '../components/MenuItem/themeOverrides.js'
 import { MonorailPaginationItemOverrides } from '../components/PaginationItem/themeOverrides.js'
@@ -55,7 +57,9 @@ export const getThemeComponents = (
   MuiLinearProgress: MonorailLinearProgressOverrides,
   MuiLink: MonorailLinkOverrides,
   MuiListItem: MonorailListItemOverrides,
+  MuiListItemAvatar: MonorailListItemAvatarOverrides,
   MuiListItemButton: MonorailListItemButtonOverrides,
+  MuiListItemIcon: MonorailListItemIconOverrides,
   MuiListItemText: MonorailListItemTextOverrides,
   MuiMenuItem: MonorailMenuItemOverrides,
   MuiPaginationItem: MonorailPaginationItemOverrides,
