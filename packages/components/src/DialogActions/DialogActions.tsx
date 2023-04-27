@@ -2,6 +2,8 @@ import React from 'react'
 import { DialogActions as MuiDialogActions } from '@mui/material'
 import clsx from 'clsx'
 
+import { dialogActionsClasses } from '@monorail/components/DialogActions/dialogActionsClasses'
+
 declare module '@mui/material/DialogActions' {
   interface DialogActionsProps {
     /**
@@ -28,7 +30,7 @@ export const DialogActions = React.forwardRef((inProps, ref) => {
     <MuiDialogActions
       ref={ref}
       className={clsx(
-        divider === true && 'MonorailDialogActions-divider',
+        divider === true && dialogActionsClasses.divider,
         className,
       )}
       {...other}
