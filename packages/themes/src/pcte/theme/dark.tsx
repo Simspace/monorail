@@ -43,16 +43,16 @@ export enum RawColor {
   Blue700 = '#1050CB',
   Blue800 = '#0C3D9C',
 
-  Purple050 = '#ebdbfd',
-  Purple100 = '#dbbffc',
-  Purple200 = '#cba2f8',
-  Purple300 = '#bb86f2',
-  Purple400 = '#a86ae8',
-  Purple500 = '#9550da',
-  Purple600 = '#7b3fbb',
-  Purple700 = '#613395',
-  Purple800 = '#472672',
-  Purple900 = '#331a54',
+  Purple050 = '#F5E2FF',
+  Purple100 = '#D6B7E7',
+  Purple200 = '#cba2f8', // unused
+  Purple300 = '#A872C5',
+  Purple400 = '#85539F',
+  Purple500 = '#9550da', // unused
+  Purple600 = '#4A235E',
+  Purple700 = '#613395', // unused
+  Purple800 = '#4A235E',
+  Purple900 = '#280078', // unused
 
   Orange050 = '#FFF8F0',
   Orange100 = '#FFE6C7',
