@@ -10,7 +10,7 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
       const mutedVariantStyles: CSSInterpolation = {
         color: theme.palette.text.primary,
         backgroundColor: theme.palette.default.lowEmphasis.light,
-        [`&.${chipClasses.focusVisible}`]: {
+        [`&.${chipClasses.focusVisible}:not(.Mui-disabled)`]: {
           backgroundColor: theme.palette.default.lowEmphasis.light,
           boxShadow: `0 0 0 3px ${theme.palette.default.focusRing.outer}`,
           border: `1px solid ${theme.palette.default.focusRing.inner}`,
@@ -22,26 +22,50 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
         ...mutedVariantStyles,
       }
 
+      const baseDraggableStyles: CSSInterpolation = {
+        '&.react-draggable': {
+          cursor: 'grab',
+          '&:hover': {
+            color:
+              color === 'warning'
+                ? theme.palette.warning.contrastText
+                : theme.palette[color].dark,
+            backgroundColor: theme.palette[color].lowEmphasis.main,
+          },
+        },
+        '&.react-draggable-dragging': {
+          cursor: 'grabbing',
+          boxShadow: theme.shadows[4],
+        },
+      }
+
       return {
         border: '1px solid transparent',
         color: theme.palette[color].contrastText,
-        [`&.${chipClasses.focusVisible}`]: {
+        [`&.${chipClasses.focusVisible}:not(.Mui-disabled)`]: {
           boxShadow: `0 0 0 3px ${theme.palette[color].focusRing.outer}`,
           border: `1px solid ${theme.palette[color].focusRing.inner}`,
         },
         ...(variant === 'muted' && mutedVariantStyles),
         ...(variant === 'rectangular' && readOnlyRectangularStyles),
+        ...baseDraggableStyles,
       }
     },
     label: ({ theme }) => ({
       ...theme.typography.chip,
     }),
     filled: ({ ownerState: { color = 'default' }, theme }) => {
-      const background = theme.palette[color].main
+      const backgroundColor = theme.palette[color].lowEmphasis.light
+      const textColor =
+        color === 'warning'
+          ? theme.palette.warning.contrastText
+          : theme.palette[color].main
+
       return {
-        backgroundColor: background,
+        backgroundColor,
+        color: textColor,
         [`&.${chipClasses.focusVisible}`]: {
-          backgroundColor: background,
+          backgroundColor,
         },
       }
     },
@@ -80,11 +104,19 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
 
       const filledVariantStyles: CSSInterpolation = {
         '&:hover': {
-          backgroundColor: theme.palette[color].hover,
+          color:
+            color === 'warning'
+              ? theme.palette.warning.contrastText
+              : theme.palette[color].dark,
+          backgroundColor: theme.palette[color].lowEmphasis.main,
         },
         '&:active': {
           boxShadow: 'none',
-          backgroundColor: theme.palette[color].active,
+          color:
+            color === 'warning'
+              ? theme.palette.warning.contrastText
+              : theme.palette[color].contrastText,
+          backgroundColor: theme.palette[color].main,
         },
       }
 
@@ -133,12 +165,7 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
       padding: theme.spacing(0.5, 1.25),
     }),
     icon: ({
-      ownerState: {
-        variant = 'muted',
-        color = 'default',
-        size = 'medium',
-        label,
-      },
+      ownerState: { variant = 'muted', size = 'medium', label },
       theme,
     }) => {
       const iconOnlyStyles: CSSInterpolation = {
@@ -154,20 +181,13 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
         },
       }
 
-      const outlinedStyles: CSSInterpolation = {
-        ...(color === 'warning' && {
-          color: theme.palette.warning.contrastText,
-        }),
-      }
-
       return {
-        color: 'inherit',
+        color: theme.palette.default.light,
         marginLeft:
           variant === 'rectangular' || variant === 'outlined'
             ? theme.spacing(1)
             : theme.spacing(2),
         marginRight: theme.spacing(-2),
-        ...(variant === 'outlined' && outlinedStyles),
         ...(size === 'small' && {
           marginLeft: 0,
           marginRight: theme.spacing(-1),
@@ -176,57 +196,13 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
         ...(label === undefined && iconOnlyStyles),
       }
     },
-    deleteIcon: ({
-      ownerState: { clickable = false, color = 'default', variant = 'muted' },
-      theme,
-    }) => {
-      const mutedVariantStyles: CSSInterpolation = {
-        color: theme.palette.default.lowEmphasis.contrastText,
-        '&:hover': {
-          color: theme.palette.default.lowEmphasis.contrastText,
-        },
-      }
-
-      const filledStyles: CSSInterpolation = {
-        color: theme.palette[color].lowEmphasis.main,
-        '&:hover': {
-          color: theme.palette[color].lowEmphasis.main,
-        },
-        ...(color === 'warning' && {
-          color: theme.palette.warning.lowEmphasis.contrastText,
-          '&:hover': {
-            color: theme.palette.warning.lowEmphasis.contrastText,
-          },
-        }),
-      }
-
-      const outlinedStyles: CSSInterpolation = {
-        color: theme.palette[color].lowEmphasis.contrastText,
-        '&:hover': {
-          color: theme.palette[color].lowEmphasis.contrastText,
-        },
-      }
-
-      const readOnlyRectangularStyles: CSSInterpolation = mutedVariantStyles
-
-      const clickableRectangularStyles: CSSInterpolation = {
-        color: theme.palette.info.main,
-        '&:hover': {
-          color: theme.palette.info.main,
-        },
-      }
-
-      return {
-        marginRight: 3,
-        ...(variant === 'muted' && mutedVariantStyles),
-        ...(variant === 'filled' && filledStyles),
-        ...(variant === 'outlined' && outlinedStyles),
-        ...(variant === 'rectangular' && readOnlyRectangularStyles),
-        ...(variant === 'rectangular' &&
-          clickable &&
-          clickableRectangularStyles),
-      }
-    },
+    deleteIcon: ({ theme }) => ({
+      marginRight: 3,
+      color: theme.palette.default.light,
+      '&:hover': {
+        color: theme.palette.default.light,
+      },
+    }),
     avatar: ({
       ownerState: { clickable = false, color = 'default', variant = 'muted' },
       theme,

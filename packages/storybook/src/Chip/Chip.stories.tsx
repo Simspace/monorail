@@ -1,5 +1,6 @@
 // Edit this file to add new stories
 import React from 'react'
+import Draggable from 'react-draggable'
 import { styled } from '@mui/material'
 import { action } from '@storybook/addon-actions'
 
@@ -171,6 +172,31 @@ export const ClickableAndDeletable = story<ChipProps>(
       docs: {
         description: {
           story: `Chips can be both clickable and deletable.`,
+        },
+      },
+    },
+  },
+)
+
+export const DraggableChip = story<ChipProps>(
+  args => (
+    <Stack direction="row" spacing={2}>
+      <Draggable handle="#draggable-chip">
+        <Chip
+          label="Draggable"
+          variant="filled"
+          {...args}
+          id="draggable-chip"
+        />
+      </Draggable>
+    </Stack>
+  ),
+  {
+    argTypes,
+    parameters: {
+      docs: {
+        description: {
+          story: `Chips can be made draggable by wrapping them in react-draggable's Draggable component.`,
         },
       },
     },
