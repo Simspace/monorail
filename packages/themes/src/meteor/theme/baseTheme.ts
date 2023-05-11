@@ -191,7 +191,7 @@ export const baseTheme = createTheme(
         fontFamily: BASE_FONT_STACK,
         fontSize: FontSize.Chip,
         lineHeight: LineHeight.Chip,
-        fontWeight: FontWeight.SemiBold,
+        fontWeight: FontWeight.Medium,
       },
       inputLabel: {
         fontFamily: BASE_FONT_STACK,

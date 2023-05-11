@@ -68,7 +68,7 @@ export const PixelFontSize: Record<TypographyVariant, number> = {
   ButtonLarge: Scale.FontSize16,
   ButtonMedium: Scale.FontSize16,
   ButtonSmall: Scale.FontSize14,
-  Chip: Scale.FontSize16,
+  Chip: Scale.FontSize14,
   InputLabel: Scale.FontSize16,
   HelperText: Scale.FontSize14,
   InputText: Scale.FontSize16,
