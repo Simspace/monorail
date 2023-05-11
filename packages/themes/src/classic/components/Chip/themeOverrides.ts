@@ -10,7 +10,7 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
       const mutedVariantStyles: CSSInterpolation = {
         color: theme.palette.text.primary,
         backgroundColor: theme.palette.default.lowEmphasis.main,
-        [`&.${chipClasses.focusVisible}`]: {
+        [`&.${chipClasses.focusVisible}:not(.Mui-disabled)`]: {
           backgroundColor: theme.palette.default.lowEmphasis.main,
           boxShadow: `0 0 0 3px ${theme.palette.default.focusRing.outer}`,
           border: `1px solid ${theme.palette.default.focusRing.inner}`,
@@ -22,15 +22,26 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
         ...mutedVariantStyles,
       }
 
+      const baseDraggableStyles: CSSInterpolation = {
+        '&.react-draggable': {
+          cursor: 'grab',
+        },
+        '&.react-draggable-dragging': {
+          cursor: 'grabbing',
+          boxShadow: theme.shadows[4],
+        },
+      }
+
       return {
         border: '1px solid transparent',
         color: theme.palette[color].contrastText,
-        [`&.${chipClasses.focusVisible}`]: {
+        [`&.${chipClasses.focusVisible}:not(.Mui-disabled)`]: {
           boxShadow: `0 0 0 3px ${theme.palette[color].focusRing.outer}`,
           border: `1px solid ${theme.palette[color].focusRing.inner}`,
         },
         ...(variant === 'muted' && mutedVariantStyles),
         ...(variant === 'rectangular' && readOnlyRectangularStyles),
+        baseDraggableStyles,
       }
     },
     label: ({ theme }) => ({
