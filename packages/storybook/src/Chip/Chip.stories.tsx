@@ -4,11 +4,11 @@ import Draggable from 'react-draggable'
 import { styled } from '@mui/material'
 import { action } from '@storybook/addon-actions'
 
-import type { ChipProps } from '@monorail/components'
+import type { ChipProps, IconChipProps } from '@monorail/components'
 import {
   Avatar,
   Chip,
-  chipClasses,
+  IconChip,
   Paper,
   Stack,
   Tooltip,
@@ -20,11 +20,9 @@ import {
   Done,
   Face,
   PriorityHigh,
-  Rocket,
   TagFaces,
   Warning,
 } from '@monorail/components/icons'
-import { useTheme } from '@monorail/utils'
 
 import { capitalizeFirstLetter } from '../helpers/helpers.js'
 import { story } from '../helpers/storybook.js'
@@ -308,46 +306,31 @@ export const WithIcon = story<ChipProps>(
   },
 )
 
-export const IconOnly = story<ChipProps>(
-  args => {
-    const theme = useTheme()
-    const disabledStyles = {
-      [`&.${chipClasses.disabled}`]: {
-        color: theme.palette.text.disabled,
-        backgroundColor: 'transparent',
-        borderColor: 'transparent',
-        opacity: 1,
-      },
-    }
-
-    return (
-      <Stack direction="row" spacing={2}>
-        <Chip
-          icon={<CloudDone />}
-          color="success"
-          {...args}
-          sx={disabledStyles}
-        />
-        <Chip icon={<Rocket />} color="info" {...args} sx={disabledStyles} />
-        <Chip
-          icon={<PriorityHigh />}
-          color="error"
-          {...args}
-          sx={disabledStyles}
-        />
-        <Tooltip title="3 Warnings" describeChild>
-          <Chip
-            icon={<Warning />}
-            color="warning"
-            {...args}
-            sx={disabledStyles}
-          />
-        </Tooltip>
-      </Stack>
-    )
-  },
+export const IconOnly = story<IconChipProps>(
+  args => (
+    <Stack direction="row" spacing={2}>
+      <IconChip color="success" icon={<CloudDone />} {...args} />
+      <IconChip color="error" icon={<PriorityHigh />} {...args} />
+      <Tooltip title="3 Warnings" describeChild>
+        <IconChip color="warning" icon={<Warning />} {...args} />
+      </Tooltip>
+    </Stack>
+  ),
   {
-    argTypes,
+    argTypes: {
+      variant: {
+        options: ['filled', 'outlined'],
+        control: {
+          type: 'radio',
+        },
+      },
+      avatar: {
+        table: { disable: true },
+      },
+      clickable: {
+        table: { disable: true },
+      },
+    },
     args: { variant: 'filled' },
     parameters: {
       docs: {

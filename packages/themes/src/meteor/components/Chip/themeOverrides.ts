@@ -115,8 +115,8 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
           color:
             color === 'warning'
               ? theme.palette.warning.contrastText
-              : theme.palette[color].contrastText,
-          backgroundColor: theme.palette[color].main,
+              : theme.palette[color].dark,
+          backgroundColor: theme.palette[color].lowEmphasis.dark,
         },
       }
 
@@ -165,24 +165,14 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
       padding: theme.spacing(0.5, 1.25),
     }),
     icon: ({
-      ownerState: { variant = 'muted', size = 'medium', label },
+      ownerState: { variant = 'muted', size = 'medium', color = 'default' },
       theme,
     }) => {
-      const iconOnlyStyles: CSSInterpolation = {
-        // Hide the label if only an icon is provided
-        marginLeft: theme.spacing(0.75),
-        marginRight: theme.spacing(0.75),
-        ...(size === 'small' && {
-          marginLeft: theme.spacing(-0.5),
-          marginRight: theme.spacing(-0.5),
-        }),
-        [`& + .${chipClasses.label}`]: {
-          display: 'none',
-        },
-      }
-
       return {
-        color: theme.palette.default.light,
+        color:
+          color === 'warning'
+            ? theme.palette.warning.contrastText
+            : theme.palette[color].main,
         marginLeft:
           variant === 'rectangular' || variant === 'outlined'
             ? theme.spacing(1)
@@ -193,7 +183,6 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
           marginRight: theme.spacing(-1),
           fontSize: theme.typography.pxToRem(16),
         }),
-        ...(label === undefined && iconOnlyStyles),
       }
     },
     deleteIcon: ({ theme }) => ({
