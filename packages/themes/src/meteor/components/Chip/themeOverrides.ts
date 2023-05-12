@@ -173,6 +173,9 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
           color === 'warning'
             ? theme.palette.warning.contrastText
             : theme.palette[color].main,
+        ...((variant === 'muted' || variant === 'rectangular') && {
+          color: theme.palette.default.main,
+        }),
         marginLeft:
           variant === 'rectangular' || variant === 'outlined'
             ? theme.spacing(1)
@@ -185,12 +188,29 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
         }),
       }
     },
-    deleteIcon: ({ theme }) => ({
+    deleteIcon: ({
+      theme,
+      ownerState: { variant = 'muted', color = 'default', clickable = false },
+    }) => ({
       marginRight: 3,
-      color: theme.palette.default.light,
+      color: theme.palette[color].lowEmphasis.contrastText,
       '&:hover': {
-        color: theme.palette.default.light,
+        color: theme.palette[color].main,
       },
+      // Muted and Rectangular variants should not inherit the `color` prop
+      ...((variant === 'muted' || variant === 'rectangular') && {
+        color: theme.palette.default.lowEmphasis.contrastText,
+        '&:hover': {
+          color: theme.palette.default.main,
+        },
+      }),
+      ...(variant === 'rectangular' &&
+        clickable === true && {
+          color: theme.palette.info.lowEmphasis.contrastText,
+          '&:hover': {
+            color: theme.palette.info.main,
+          },
+        }),
     }),
     avatar: ({
       ownerState: { clickable = false, color = 'default', variant = 'muted' },

@@ -37,6 +37,18 @@ export default { title: 'Data Display/Chip', component: Chip }
 /**
  * Story controls
  */
+type ChipStoryArgs = Omit<ChipProps, 'icon' | 'avatar'> & {
+  avatar: boolean
+  icon: boolean
+  dismissible: boolean
+}
+
+const args: Partial<ChipStoryArgs> = {
+  avatar: false,
+  icon: false,
+  dismissible: false,
+}
+
 const argTypes = {
   variant: {
     options: ['filled', 'outlined', 'muted', 'rectangular'],
@@ -44,6 +56,9 @@ const argTypes = {
       type: 'radio',
     },
   },
+  avatar: { control: { type: 'boolean' } },
+  icon: { control: { type: 'boolean' } },
+  dismissible: { control: { type: 'boolean' } },
 }
 
 /**
@@ -70,16 +85,49 @@ const colors = [
   'warning',
 ] as const
 
-export const Variants = story<ChipProps>(
-  args => (
-    <Stack direction="row" spacing={2}>
-      <Chip label="Muted" variant="muted" {...args} />
-      <Chip label="Filled" variant="filled" {...args} />
-      <Chip label="Outlined" variant="outlined" {...args} />
-      <Chip label="Rectangular" variant="rectangular" {...args} />
-    </Stack>
-  ),
+export const Variants = story<ChipStoryArgs>(
+  args => {
+    const { avatar, icon, dismissible, ...chipArgs } = args
+    return (
+      <Stack direction="row" spacing={2}>
+        <Chip
+          label="Muted"
+          variant="muted"
+          {...chipArgs}
+          avatar={avatar === true ? <Avatar>WW</Avatar> : undefined}
+          icon={icon === true ? <Face /> : undefined}
+          onDelete={dismissible === true ? action('onDelete') : undefined}
+        />
+        <Chip
+          label="Filled"
+          variant="filled"
+          {...chipArgs}
+          avatar={avatar === true ? <Avatar>WW</Avatar> : undefined}
+          icon={icon === true ? <Face /> : undefined}
+          onDelete={dismissible === true ? action('onDelete') : undefined}
+        />
+        <Chip
+          label="Outlined"
+          variant="outlined"
+          {...chipArgs}
+          avatar={avatar === true ? <Avatar>WW</Avatar> : undefined}
+          icon={icon === true ? <Face /> : undefined}
+          onDelete={dismissible === true ? action('onDelete') : undefined}
+        />
+        <Chip
+          label="Rectangular"
+          variant="rectangular"
+          {...chipArgs}
+          avatar={avatar === true ? <Avatar>WW</Avatar> : undefined}
+          icon={icon === true ? <Face /> : undefined}
+          onDelete={dismissible === true ? action('onDelete') : undefined}
+        />
+      </Stack>
+    )
+  },
   {
+    args,
+    argTypes,
     parameters: {
       docs: {
         description: {
