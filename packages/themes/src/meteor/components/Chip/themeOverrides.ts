@@ -222,11 +222,10 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
       }
 
       const filledVariantStyles: CSSInterpolation = {
-        color: theme.palette.getContrastText(theme.palette[color].dark),
-        backgroundColor: theme.palette[color].dark,
+        color: theme.palette[color].main,
+        backgroundColor: theme.palette[color].lowEmphasis.dark,
         ...(color === 'warning' && {
           color: theme.palette.warning.contrastText,
-          backgroundColor: theme.palette.warning.lowEmphasis.contrastText,
         }),
       }
 
