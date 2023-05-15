@@ -161,9 +161,6 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
         ...(variant === 'rectangular' && clickableRectangularStyles),
       }
     },
-    sizeSmall: ({ theme }) => ({
-      padding: theme.spacing(0.5, 1.25),
-    }),
     icon: ({
       ownerState: { variant = 'muted', size = 'medium', color = 'default' },
       theme,
@@ -176,13 +173,9 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
         ...((variant === 'muted' || variant === 'rectangular') && {
           color: theme.palette.default.main,
         }),
-        marginLeft:
-          variant === 'rectangular' || variant === 'outlined'
-            ? theme.spacing(1)
-            : theme.spacing(2),
-        marginRight: theme.spacing(-2),
+        marginLeft: theme.spacing(1),
+        marginRight: theme.spacing(-1.5),
         ...(size === 'small' && {
-          marginLeft: 0,
           marginRight: theme.spacing(-1),
           fontSize: theme.typography.pxToRem(16),
         }),
@@ -192,28 +185,35 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
       theme,
       ownerState: { variant = 'muted', color = 'default', clickable = false },
     }) => ({
-      marginRight: 3,
+      marginRight: theme.spacing(1),
       color: theme.palette[color].lowEmphasis.contrastText,
       '&:hover': {
-        color: theme.palette[color].main,
+        // We don't have hover token for lowEmphasis.contrastText
+        // darken() is used to approximate the hover state
+        color: darken(theme.palette[color].lowEmphasis.contrastText, 0.2),
       },
       // Muted and Rectangular variants should not inherit the `color` prop
       ...((variant === 'muted' || variant === 'rectangular') && {
         color: theme.palette.default.lowEmphasis.contrastText,
         '&:hover': {
-          color: theme.palette.default.main,
+          color: darken(theme.palette.default.lowEmphasis.contrastText, 0.2),
         },
       }),
       ...(variant === 'rectangular' &&
         clickable === true && {
           color: theme.palette.info.lowEmphasis.contrastText,
           '&:hover': {
-            color: theme.palette.info.main,
+            color: darken(theme.palette.info.lowEmphasis.contrastText, 0.2),
           },
         }),
     }),
     avatar: ({
-      ownerState: { clickable = false, color = 'default', variant = 'muted' },
+      ownerState: {
+        clickable = false,
+        color = 'default',
+        variant = 'muted',
+        size = 'medium',
+      },
       theme,
     }) => {
       const mutedVariantStyles: CSSInterpolation = {
@@ -244,8 +244,14 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
         backgroundColor: theme.palette.info.main,
       }
 
+      const sizeSmallStyles: CSSInterpolation = {
+        width: theme.spacing(4),
+        height: theme.spacing(4),
+      }
+
       return {
         marginLeft: 4,
+        ...theme.typography.body2,
         ...(variant === 'muted' && mutedVariantStyles),
         ...(variant === 'filled' && filledVariantStyles),
         ...(variant === 'outlined' && outlinedVariantStyles),
@@ -253,6 +259,7 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
         ...(variant === 'rectangular' &&
           clickable &&
           clickableRectangularStyles),
+        ...(size === 'small' && sizeSmallStyles),
       }
     },
   },
