@@ -39,12 +39,14 @@ export default { title: 'Data Display/Chip', component: Chip }
  */
 type ChipStoryArgs = Omit<ChipProps, 'icon' | 'avatar'> & {
   avatar: boolean
+  avatarText: string
   icon: boolean
   dismissible: boolean
 }
 
 const args: Partial<ChipStoryArgs> = {
   avatar: false,
+  avatarText: 'W',
   icon: false,
   dismissible: false,
 }
@@ -57,6 +59,7 @@ const argTypes = {
     },
   },
   avatar: { control: { type: 'boolean' } },
+  avatarText: { control: { type: 'text' } },
   icon: { control: { type: 'boolean' } },
   dismissible: { control: { type: 'boolean' } },
 }
@@ -87,14 +90,14 @@ const colors = [
 
 export const Variants = story<ChipStoryArgs>(
   args => {
-    const { avatar, icon, dismissible, ...chipArgs } = args
+    const { avatar, avatarText, icon, dismissible, ...chipArgs } = args
     return (
       <Stack direction="row" spacing={2}>
         <Chip
           label="Muted"
           variant="muted"
           {...chipArgs}
-          avatar={avatar === true ? <Avatar>WW</Avatar> : undefined}
+          avatar={avatar === true ? <Avatar>{avatarText}</Avatar> : undefined}
           icon={icon === true ? <Face /> : undefined}
           onDelete={dismissible === true ? action('onDelete') : undefined}
         />
@@ -102,7 +105,7 @@ export const Variants = story<ChipStoryArgs>(
           label="Filled"
           variant="filled"
           {...chipArgs}
-          avatar={avatar === true ? <Avatar>WW</Avatar> : undefined}
+          avatar={avatar === true ? <Avatar>{avatarText}</Avatar> : undefined}
           icon={icon === true ? <Face /> : undefined}
           onDelete={dismissible === true ? action('onDelete') : undefined}
         />
@@ -110,7 +113,7 @@ export const Variants = story<ChipStoryArgs>(
           label="Outlined"
           variant="outlined"
           {...chipArgs}
-          avatar={avatar === true ? <Avatar>WW</Avatar> : undefined}
+          avatar={avatar === true ? <Avatar>{avatarText}</Avatar> : undefined}
           icon={icon === true ? <Face /> : undefined}
           onDelete={dismissible === true ? action('onDelete') : undefined}
         />
@@ -118,7 +121,7 @@ export const Variants = story<ChipStoryArgs>(
           label="Rectangular"
           variant="rectangular"
           {...chipArgs}
-          avatar={avatar === true ? <Avatar>WW</Avatar> : undefined}
+          avatar={avatar === true ? <Avatar>{avatarText}</Avatar> : undefined}
           icon={icon === true ? <Face /> : undefined}
           onDelete={dismissible === true ? action('onDelete') : undefined}
         />
