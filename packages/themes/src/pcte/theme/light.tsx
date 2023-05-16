@@ -49,9 +49,9 @@ export enum RawColor {
   Purple300 = '#A872C5',
   Purple400 = '#85539F',
   Purple500 = '#9550da', // unused
-  Purple600 = '#4A235E',
-  Purple700 = '#613395', // unused
-  Purple800 = '#4A235E',
+  Purple600 = '#9A37B9',
+  Purple700 = '#4A235E',
+  Purple800 = '#33054A',
   Purple900 = '#280078', // unused
 
   Orange050 = '#FFF8F0',
@@ -220,16 +220,16 @@ enum Opacities {
 }
 
 const action: TypeAction = {
-  active: alpha(RawColor.Purple600, Opacities.Active),
+  active: alpha(RawColor.Blue600, Opacities.Active),
   activatedOpacity: Opacities.Active,
   disabled: RawColor.Grey300,
   disabledBackground: alpha(RawColor.Black, 0.32),
   disabledOpacity: Opacities.Disabled,
-  focus: alpha(RawColor.Purple600, Opacities.Focus),
+  focus: alpha(RawColor.Blue600, Opacities.Focus),
   focusOpacity: Opacities.Focus,
-  hover: alpha(RawColor.Purple600, Opacities.Hover),
+  hover: alpha(RawColor.Blue600, Opacities.Hover),
   hoverOpacity: Opacities.Hover,
-  selected: alpha(RawColor.Purple600, Opacities.Selected),
+  selected: alpha(RawColor.Blue600, Opacities.Selected),
   selectedOpacity: Opacities.Selected,
 }
 
@@ -246,48 +246,49 @@ const palette: PaletteOptions = {
     black: RawColor.Black,
   },
   primary: {
-    light: RawColor.Purple400,
-    main: RawColor.Purple600,
-    dark: RawColor.Purple800,
-    hover: RawColor.Purple800,
-    active: RawColor.Purple800, // Need a step for this
+    light: RawColor.Blue400,
+    main: RawColor.Blue600,
+    dark: RawColor.Blue800,
+    hover: RawColor.Blue700,
+    active: RawColor.Blue800,
 
     lowEmphasis: {
-      light: RawColor.Purple050,
-      main: RawColor.Purple100,
-      dark: RawColor.Purple300,
-      contrastText: RawColor.Purple600,
-      hover: alpha(RawColor.Purple400, action.hoverOpacity),
-      active: alpha(RawColor.Purple400, action.activatedOpacity),
+      light: RawColor.Blue050,
+      main: RawColor.Blue100,
+      dark: RawColor.Blue300,
+      contrastText: RawColor.Blue600,
+      hover: alpha(RawColor.Blue400, action.hoverOpacity),
+      active: alpha(RawColor.Blue400, action.activatedOpacity),
     },
 
     border: {
-      light: RawColor.Purple400,
-      main: RawColor.Purple600,
-      dark: RawColor.Purple800,
+      light: RawColor.Blue400,
+      main: RawColor.Blue600,
+      dark: RawColor.Blue800,
     },
 
     focusRing: {
-      inner: RawColor.Purple800,
-      outer: RawColor.Purple400,
+      inner: RawColor.Blue800,
+      outer: RawColor.Blue400,
     },
 
     shades: {
-      50: RawColor.Purple050,
-      100: RawColor.Purple100,
-      200: RawColor.Purple200,
-      300: RawColor.Purple300,
-      400: RawColor.Purple400,
-      500: RawColor.Purple500,
-      600: RawColor.Purple600,
-      700: RawColor.Purple700,
-      800: RawColor.Purple800,
+      50: RawColor.Blue050,
+      100: RawColor.Blue100,
+      200: RawColor.Blue200,
+      300: RawColor.Blue300,
+      400: RawColor.Blue400,
+      500: RawColor.Blue500,
+      600: RawColor.Blue600,
+      700: RawColor.Blue700,
+      800: RawColor.Blue800,
     },
   },
+  // Use as brand colors
   secondary: {
-    light: '#BF61EE',
-    main: '#70169D',
-    dark: '#29013D',
+    light: RawColor.Purple300,
+    main: RawColor.Purple600,
+    dark: RawColor.Purple700,
   },
   default: {
     light: RawColor.Grey400,
@@ -520,7 +521,7 @@ const palette: PaletteOptions = {
   tiers: DefaultLightTierColors,
 }
 
-// Constuct a Theme with the base settings plus our customizations, but without the components overrides provided yet.
+// Construct a Theme with the base settings plus our customizations, but without the components overrides provided yet.
 // We're doing this so we have all the base theme settings populated for doing the component-level overrides. We want
 // a Theme here, rather than ThemeOptions because we want all the values to be non-optional and filled-in for the
 // component overrides.

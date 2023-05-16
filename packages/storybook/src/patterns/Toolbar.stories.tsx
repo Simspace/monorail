@@ -19,7 +19,13 @@ export default { title: 'Patterns/Toolbar', component: Toolbar }
  */
 const Template = story<ToolbarProps>(
   args => (
-    <Toolbar {...args} sx={{ bgcolor: 'secondary.dark' }}>
+    <Toolbar
+      {...args}
+      sx={theme => ({
+        bgcolor: theme.palette.secondary.dark,
+        color: theme.palette.getContrastText(theme.palette.secondary.dark),
+      })}
+    >
       <IconButton
         size="large"
         edge="start"
@@ -29,7 +35,12 @@ const Template = story<ToolbarProps>(
       >
         <MenuIcon />
       </IconButton>
-      <Typography variant="h3" component="div" sx={{ flexGrow: 1 }}>
+      <Typography
+        variant="h3"
+        component="div"
+        color="inherit"
+        sx={{ flexGrow: 1 }}
+      >
         News
       </Typography>
       <Button>Login</Button>
