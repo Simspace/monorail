@@ -24,6 +24,7 @@ const MULTIPLE_SYMBOL = Symbol()
 
 export interface DataGridToolbarProps {
   children?: React.ReactNode
+  disableSearch?: boolean
   disableQuickFilter?: boolean
   disableSortBy?: boolean
   disableViewStyleToggle?: boolean
@@ -35,6 +36,7 @@ export interface DataGridToolbarProps {
 export function DataGridToolbar(props: DataGridToolbarProps) {
   const {
     children,
+    disableSearch,
     disableSortBy,
     disableViewStyleToggle,
     disableQuickFilter,
@@ -117,17 +119,19 @@ export function DataGridToolbar(props: DataGridToolbarProps) {
         </>
       )}
       <Box flex="1 1 0">{children}</Box>
-      <Box
-        sx={theme => ({
-          flexShrink: 1,
-          width: theme.spacing(120),
-        })}
-      >
-        <DataGridGlobalSearch
-          disableQuickFilter={disableQuickFilter}
-          {...slotProps.search}
-        />
-      </Box>
+      {disableSearch !== true && (
+        <Box
+          sx={theme => ({
+            flexShrink: 1,
+            width: theme.spacing(120),
+          })}
+        >
+          <DataGridGlobalSearch
+            disableQuickFilter={disableQuickFilter}
+            {...slotProps.search}
+          />
+        </Box>
+      )}
       {disableViewStyleToggle !== true && (
         <ToggleButtonGroup
           value={apiRef.current.state.viewStyle}
