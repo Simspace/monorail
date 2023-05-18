@@ -1,16 +1,24 @@
 import React from 'react'
 import { ViewColumn, ViewModule } from '@mui/icons-material'
+import type { DataGridProcessedProps } from '@mui/x-data-grid/models/props/DataGridProps'
 import {
+  getDataGridUtilityClass,
   gridColumnLookupSelector,
   gridSortModelSelector,
   SUBMIT_FILTER_STROKE_TIME,
   useGridApiContext,
+  useGridRootProps,
   useGridSelector,
 } from '@mui/x-data-grid-premium'
 
 import { MenuItem } from '@monorail/components/MenuItem'
 import type { DataAttributes } from '@monorail/types'
-import { combineSxProps, useForceUpdate } from '@monorail/utils'
+import {
+  combineSxProps,
+  composeClasses,
+  styled,
+  useForceUpdate,
+} from '@monorail/utils'
 
 import { Box } from '../../Box.js'
 import type { SearchProps } from '../../Search.js'
@@ -21,6 +29,30 @@ import { ToggleButtonGroup } from '../../ToggleButtonGroup.js'
 import { Typography } from '../../Typography.js'
 
 const MULTIPLE_SYMBOL = Symbol()
+
+type OwnerState = DataGridProcessedProps
+
+const useUtilityClasses = (ownerState: OwnerState) => {
+  const { classes } = ownerState
+
+  const slots = {
+    root: ['toolbarContainer'],
+  }
+
+  return composeClasses(slots, getDataGridUtilityClass, classes)
+}
+
+const DataGridToolbarRoot = styled('div', {
+  name: 'MuiDataGrid',
+  slot: 'ToolbarContainer',
+  overridesResolver: (_, styles) => styles.toolbarContainer,
+})<{ ownerState: OwnerState }>(({ theme }) => ({
+  padding: theme.spacing(4, 8),
+  backgroundColor: theme.palette.default.lowEmphasis.light,
+  display: 'flex',
+  alignItems: 'center',
+  gap: theme.spacing(2),
+}))
 
 export interface DataGridToolbarProps {
   children?: React.ReactNode
@@ -44,6 +76,7 @@ export function DataGridToolbar(props: DataGridToolbarProps) {
   } = props
 
   const apiRef = useGridApiContext()
+  const rootProps = useGridRootProps()
 
   const handleViewStyleChange = React.useCallback(
     (
@@ -59,17 +92,10 @@ export function DataGridToolbar(props: DataGridToolbarProps) {
 
   const sortModel = useGridSelector(apiRef, gridSortModelSelector)
   const columnLookup = useGridSelector(apiRef, gridColumnLookupSelector)
+  const classes = useUtilityClasses(rootProps)
 
   return (
-    <Box
-      sx={theme => ({
-        padding: theme.spacing(4, 8),
-        backgroundColor: theme.palette.default.lowEmphasis.light,
-        display: 'flex',
-        alignItems: 'center',
-        gap: theme.spacing(2),
-      })}
-    >
+    <DataGridToolbarRoot ownerState={rootProps} className={classes.root}>
       {disableSortBy !== true && (
         <>
           <Typography lineClamp={1} variant="subtitle1">
@@ -149,7 +175,7 @@ export function DataGridToolbar(props: DataGridToolbarProps) {
           </ToggleButton>
         </ToggleButtonGroup>
       )}
-    </Box>
+    </DataGridToolbarRoot>
   )
 }
 
