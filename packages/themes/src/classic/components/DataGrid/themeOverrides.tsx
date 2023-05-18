@@ -16,6 +16,7 @@ export const MonorailDataGridOverrides: Components<Theme>['MuiDataGrid'] = {
     },
     row: ({ theme }) => {
       return {
+        width: '100%',
         [`&.${dataGridClasses.grouped}`]: {
           backgroundColor: theme.palette.default.lowEmphasis.light,
         },
@@ -26,6 +27,9 @@ export const MonorailDataGridOverrides: Components<Theme>['MuiDataGrid'] = {
           cursor: 'pointer',
         },
       }
+    },
+    virtualScrollerRenderZone: {
+      width: '100%',
     },
     columnHeaders: ({ theme }) => {
       return {

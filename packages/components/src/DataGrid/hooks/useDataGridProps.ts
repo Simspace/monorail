@@ -9,6 +9,7 @@ import type {
 import { useDataGridPremiumProps } from '@mui/x-data-grid-premium/DataGridPremium/useDataGridPremiumProps'
 import type { DataGridPremiumProcessedProps } from '@mui/x-data-grid-premium/models/dataGridPremiumProps'
 
+import { DataGridCell } from '../components/DataGridCell.js'
 import { DataGridColumnHeader } from '../components/DataGridColumnHeader.js'
 import { DataGridColumnSeparator } from '../components/DataGridColumnSeparator.js'
 import { DataGridFooter } from '../components/DataGridFooter.js'
@@ -41,6 +42,7 @@ export function useDataGridProps<R extends GridValidRowModel>(
       row: DataGridRow,
       toolbar: DataGridHeader,
       columnResizeIcon: DataGridColumnSeparator,
+      cell: DataGridCell,
       ...slots,
     }),
     [slots],

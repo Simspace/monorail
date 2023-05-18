@@ -30,6 +30,12 @@ declare module '@mui/x-data-grid/models/gridSlotsComponentsProps' {
       Record<string, unknown> {}
 }
 
+declare module '@mui/x-data-grid-pro/models/gridGroupingColDefOverride' {
+  interface GridGroupingColDefOverride {
+    fullWidth?: boolean
+  }
+}
+
 declare module '@mui/x-data-grid-premium/models/dataGridPremiumProps' {
   interface DataGridPremiumProps<R extends GridValidRowModel = any> {
     /**
