@@ -6,6 +6,7 @@ import type {} from '@mui/x-date-pickers/themeAugmentation'
 import type {} from '@mui/x-date-pickers-pro/themeAugmentation'
 
 import { getThemeComponents as getClassicThemeComponents } from '../../classic/theme/themeComponents.js'
+import { MonorailAccordionSummaryOverrides } from '../components/AccordionSummary/themeOverrides.js'
 import {
   MonorailAlertOverrides,
   MonorailAlertTitleOverrides,
@@ -18,6 +19,8 @@ import { MonorailCardOverrides } from '../components/Card/themeOverrides.js'
 import { MonorailCardHeaderOverrides } from '../components/CardHeader/themeOverrides.js'
 import { MonorailChipOverrides } from '../components/Chip/themeOverrides.js'
 import { MonorailCircularProgressOverrides } from '../components/CircularProgress/themeOverrides.js'
+import { MonorailDataGridOverrides } from '../components/DataGrid/themeOverrides.js'
+import { MonorailDateRangePickerDayOverrides } from '../components/DateRangePickerDay/themeOverrides.js'
 import { MonorailLinearProgressOverrides } from '../components/LinearProgress/themeOverrides.js'
 import { MonorailLinkOverrides } from '../components/Link/themeOverrides.js'
 import { MonorailListItemOverrides } from '../components/ListItem/themeOverrides.js'
@@ -27,6 +30,7 @@ import { MonorailListItemIconOverrides } from '../components/ListItemIcon/themeO
 import { MonorailListItemTextOverrides } from '../components/ListItemText/themeOverrides.js'
 import { MonorailMenuItemOverrides } from '../components/MenuItem/themeOverrides.js'
 import { MonorailPaginationItemOverrides } from '../components/PaginationItem/themeOverrides.js'
+import { MonorailSelectionFooterOverrides } from '../components/SelectionFooter/themeOverrides.js'
 import { MonorailSkeletonOverrides } from '../components/Skeleton/themeOverrides.js'
 import { MonorailStepIconOverrides } from '../components/StepIcon/themeOverrides.js'
 import { MonorailStepLabelOverrides } from '../components/StepLabel/themeOverrides.js'
@@ -44,6 +48,8 @@ export const getThemeComponents = (
   // Make sure we apply the defaults here
   ...baseTheme.components,
   ...getClassicThemeComponents(theme),
+  MonorailSelectionFooter: MonorailSelectionFooterOverrides,
+  MuiAccordionSummary: MonorailAccordionSummaryOverrides,
   MuiAlert: MonorailAlertOverrides,
   MuiAlertTitle: MonorailAlertTitleOverrides,
   MuiAvatar: MonorailAvatarOverrides,
@@ -54,6 +60,8 @@ export const getThemeComponents = (
   MuiCardHeader: MonorailCardHeaderOverrides,
   MuiChip: MonorailChipOverrides,
   MuiCircularProgress: MonorailCircularProgressOverrides,
+  MuiDataGrid: MonorailDataGridOverrides,
+  MuiDateRangePickerDay: MonorailDateRangePickerDayOverrides,
   MuiLinearProgress: MonorailLinearProgressOverrides,
   MuiLink: MonorailLinkOverrides,
   MuiListItem: MonorailListItemOverrides,
