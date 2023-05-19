@@ -11,7 +11,7 @@ export const DataGridCell = React.forwardRef<HTMLDivElement, GridCellProps>(
     const rootProps = useGridRootProps()
 
     const isFirstCell = React.useMemo(
-      () => (rootProps.rowSelection ? colIndex === 1 : colIndex === 0),
+      () => (rootProps.checkboxSelection ? colIndex === 1 : colIndex === 0),
       [rootProps, colIndex],
     )
 
