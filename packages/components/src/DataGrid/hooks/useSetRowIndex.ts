@@ -6,11 +6,14 @@ import {
   gridRowTreeSelector,
   useGridLogger,
 } from '@mui/x-data-grid'
+import { useGridRootProps } from '@mui/x-data-grid-premium'
 import type { GridPrivateApiPro } from '@mui/x-data-grid-pro/models/gridApiPro'
 
 export function useSetRowIndex(
   apiRef: React.MutableRefObject<GridPrivateApiPro>,
 ) {
+  const rootProps = useGridRootProps()
+
   const logger = useGridLogger(apiRef, 'useSetRowIndex')
 
   const setRowIndex = React.useCallback(
@@ -78,10 +81,12 @@ export function useSetRowIndex(
               ...state.rows,
               dataRowIdToModelLookup: {
                 ...state.rows.dataRowIdToModelLookup,
-                [rowId]: {
-                  ...state.rows.dataRowIdToModelLookup[rowId],
-                  [newGroup.groupingField!]: newGroup.groupingKey,
-                },
+                ...(rootProps.updateRowWhenReparented && {
+                  [rowId]: {
+                    ...state.rows.dataRowIdToModelLookup[rowId],
+                    [newGroup.groupingField!]: newGroup.groupingKey,
+                  },
+                }),
               },
               tree: {
                 ...state.rows.tree,
@@ -129,7 +134,7 @@ export function useSetRowIndex(
       })
       apiRef.current.publishEvent('rowsSet')
     },
-    [apiRef, logger],
+    [apiRef, logger, rootProps.updateRowWhenReparented],
   )
 
   // @ts-expect-error
