@@ -15,6 +15,7 @@ import { DataGridColumnSeparator } from '../components/DataGridColumnSeparator.j
 import { DataGridFooter } from '../components/DataGridFooter.js'
 import { DataGridHeader } from '../components/DataGridHeader.js'
 import { DataGridRow } from '../components/DataGridRow.js'
+import { DataGridRowReorderCell } from '../components/DataGridRowReorderCell.js'
 import { DATE_FILTER_DEFAULT_LOCALE_TEXT } from '../filters/DateFilter.js'
 import { ENUM_FILTER_DEFAULT_LOCALE_TEXT } from '../filters/EnumFilter.js'
 import { NUMERIC_FILTER_DEFAULT_LOCALE_TEXT } from '../filters/NumericFilter.js'
@@ -51,7 +52,10 @@ export function useDataGridProps<R extends GridValidRowModel>(
   const processedColumns: Array<GridColDef> = React.useMemo(
     () =>
       columns.map(col => {
-        const flex = col.type === 'actions' ? undefined : col.flex ?? 1
+        const flex =
+          col.type === 'actions' || col.field === '__reorder__'
+            ? undefined
+            : col.flex ?? 1
         return {
           originalColDef: col,
           disableColumnMenu: true,
@@ -60,6 +64,9 @@ export function useDataGridProps<R extends GridValidRowModel>(
           flex,
           ...col,
           renderHeader: DataGridColumnHeader,
+          ...(col.field === '__reorder__' && {
+            renderCell: DataGridRowReorderCell,
+          }),
         }
       }),
     [columns],
