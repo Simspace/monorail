@@ -69,6 +69,12 @@ declare module '@mui/x-data-grid-premium/models/dataGridPremiumProps' {
      * @default undefined
      */
     galleryProps?: GalleryProps<R>
+    /**
+     * Should the row be updated when reparented through reordering?
+     *
+     * @default false
+     */
+    updateRowWhenReparented?: boolean
   }
 
   interface DataGridPremiumPropsWithDefaultValue<
@@ -105,6 +111,12 @@ declare module '@mui/x-data-grid-premium/models/dataGridPremiumProps' {
      * @default undefined
      */
     galleryProps?: GalleryProps<R>
+    /**
+     * Should the row be updated when reparented through reordering?
+     *
+     * @default false
+     */
+    updateRowWhenReparented?: boolean
   }
 }
 

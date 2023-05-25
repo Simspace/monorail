@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/strict-boolean-expressions */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import * as React from 'react'
@@ -12,6 +13,7 @@ import {
   useGridSelector,
 } from '@mui/x-data-grid'
 import { gridEditRowsStateSelector } from '@mui/x-data-grid/internals'
+import type { DataGridPremiumProcessedProps } from '@mui/x-data-grid-premium/models/dataGridPremiumProps'
 import type { DataGridProProcessedProps } from '@mui/x-data-grid-pro/models/dataGridProProps'
 import type { GridPrivateApiPro } from '@mui/x-data-grid-pro/models/gridApiPro'
 import type { GridRowOrderChangeParams } from '@mui/x-data-grid-pro/models/gridRowOrderChangeParams'
@@ -35,8 +37,8 @@ const useUtilityClasses = (ownerState: OwnerState) => {
 export const useGridRowReorder = (
   apiRef: React.MutableRefObject<GridPrivateApiPro>,
   props: Pick<
-    DataGridProProcessedProps,
-    'rowReordering' | 'onRowOrderChange' | 'classes'
+    DataGridPremiumProcessedProps,
+    'rowReordering' | 'onRowOrderChange' | 'classes' | 'updateRowWhenReparented'
   >,
 ): void => {
   const logger = useGridLogger(apiRef, 'useGridRowReorder')
@@ -151,11 +153,18 @@ export const useGridRowReorder = (
             oldParent: dragRowNode.parent!,
             newParent: rowNode.parent,
           })
-          apiRef.current.publishEvent('rowEditCommit', dragRowNode.id)
+          props.updateRowWhenReparented &&
+            apiRef.current.publishEvent('rowEditCommit', dragRowNode.id)
         }
       }
     },
-    [dragRowId, apiRef, logger, getRowIndexRelativeToGroup],
+    [
+      dragRowId,
+      apiRef,
+      logger,
+      getRowIndexRelativeToGroup,
+      props.updateRowWhenReparented,
+    ],
   )
 
   const handleDragEnd = React.useCallback<GridEventListener<'rowDragEnd'>>(
