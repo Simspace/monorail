@@ -6,14 +6,13 @@ import {
   gridRowTreeSelector,
   useGridLogger,
 } from '@mui/x-data-grid'
-import { useGridRootProps } from '@mui/x-data-grid-premium'
+import type { DataGridPremiumProcessedProps } from '@mui/x-data-grid-premium/models/dataGridPremiumProps'
 import type { GridPrivateApiPro } from '@mui/x-data-grid-pro/models/gridApiPro'
 
 export function useSetRowIndex(
   apiRef: React.MutableRefObject<GridPrivateApiPro>,
+  rootProps: DataGridPremiumProcessedProps,
 ) {
-  const rootProps = useGridRootProps()
-
   const logger = useGridLogger(apiRef, 'useSetRowIndex')
 
   const setRowIndex = React.useCallback(
