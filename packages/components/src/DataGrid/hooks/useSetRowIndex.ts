@@ -35,7 +35,10 @@ export function useSetRowIndex(
 
       apiRef.current.setState(state => {
         if (newParent) {
-          if (newParent === GRID_ROOT_GROUP_ID) {
+          if (
+            newParent === GRID_ROOT_GROUP_ID &&
+            node.parent !== GRID_ROOT_GROUP_ID
+          ) {
             return state
           }
 
@@ -52,7 +55,7 @@ export function useSetRowIndex(
           const oldRows = originalGroup.children
           const oldIndex = oldRows.findIndex(row => row === rowId)
 
-          if (oldIndex === -1 || oldIndex === targetIndex) {
+          if (oldIndex === -1) {
             return state
           }
 

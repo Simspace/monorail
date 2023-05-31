@@ -6,6 +6,7 @@ import { unstable_composeClasses as composeClasses } from '@mui/utils'
 import type { GridEventListener, GridRowId } from '@mui/x-data-grid'
 import {
   getDataGridUtilityClass,
+  GRID_ROOT_GROUP_ID,
   gridSortModelSelector,
   useGridApiEventHandler,
   useGridApiOptionHandler,
@@ -17,6 +18,8 @@ import type { DataGridPremiumProcessedProps } from '@mui/x-data-grid-premium/mod
 import type { DataGridProProcessedProps } from '@mui/x-data-grid-pro/models/dataGridProProps'
 import type { GridPrivateApiPro } from '@mui/x-data-grid-pro/models/gridApiPro'
 import type { GridRowOrderChangeParams } from '@mui/x-data-grid-pro/models/gridRowOrderChangeParams'
+
+import { dataGridClasses } from '../constants/dataGridClasses.js'
 
 type OwnerState = { classes: DataGridProProcessedProps['classes'] }
 
@@ -38,17 +41,23 @@ export const useGridRowReorder = (
   apiRef: React.MutableRefObject<GridPrivateApiPro>,
   props: Pick<
     DataGridPremiumProcessedProps,
-    'rowReordering' | 'onRowOrderChange' | 'classes' | 'updateRowWhenReparented'
+    | 'customRowReordering'
+    | 'onRowOrderChange'
+    | 'classes'
+    | 'updateRowWhenReparented'
   >,
 ): void => {
   const logger = useGridLogger(apiRef, 'useGridRowReorder')
   const sortModel = useGridSelector(apiRef, gridSortModelSelector)
-  const dragRowNode = React.useRef<HTMLElement | null>(null)
+  const dragRowElement = React.useRef<HTMLElement | null>(null)
   const originRowIndex = React.useRef<number | null>(null)
   const removeDnDStylesTimeout = React.useRef<any>()
   const ownerState = { classes: props.classes }
   const classes = useUtilityClasses(ownerState)
   const [dragRowId, setDragRowId] = React.useState<GridRowId>('')
+
+  const previousRowId = React.useRef<GridRowId | null>(null)
+  const previousRowElement = React.useRef<HTMLElement | null>(null)
 
   React.useEffect(() => {
     return () => {
@@ -59,8 +68,8 @@ export const useGridRowReorder = (
   // TODO: remove sortModel check once row reorder is sorting compatible
   // remove treeDepth once row reorder is tree compatible
   const isRowReorderDisabled = React.useMemo((): boolean => {
-    return !props.rowReordering || !!sortModel.length
-  }, [props.rowReordering, sortModel])
+    return !props.customRowReordering || !!sortModel.length
+  }, [props.customRowReordering, sortModel])
 
   const getRowIndexRelativeToGroup = React.useCallback(
     (group: GridRowId, id: GridRowId) => {
@@ -89,13 +98,13 @@ export const useGridRowReorder = (
       // For more information check here https://github.com/mui/mui-x/issues/2680.
       event.stopPropagation()
 
-      dragRowNode.current = event.currentTarget
-      dragRowNode.current.classList.add(classes.rowDragging)
+      dragRowElement.current = event.currentTarget
+      dragRowElement.current.classList.add(classes.rowDragging)
 
       setDragRowId(params.id)
 
       removeDnDStylesTimeout.current = setTimeout(() => {
-        dragRowNode.current!.classList.remove(classes.rowDragging)
+        dragRowElement.current!.classList.remove(classes.rowDragging)
       })
 
       originRowIndex.current = apiRef.current.getRowIndexRelativeToVisibleRows(
@@ -116,6 +125,8 @@ export const useGridRowReorder = (
       const dragRowNode = apiRef.current.getRowNode(dragRowId)
       const rowNode = apiRef.current.getRowNode(params.id)
 
+      const rowElement = apiRef.current.getRowElement(params.id)
+
       if (
         !dragRowNode ||
         !rowNode ||
@@ -133,38 +144,36 @@ export const useGridRowReorder = (
       // For more information check here https://github.com/mui/mui-x/issues/2680.
       event.stopPropagation()
 
-      if (params.id !== dragRowId || dragRowNode.parent !== rowNode.parent) {
-        const targetRowIndex = getRowIndexRelativeToGroup(
-          rowNode.parent,
-          params.id,
+      if (previousRowId.current !== params.id) {
+        const currentRowIndex =
+          dragRowNode.parent === GRID_ROOT_GROUP_ID
+            ? apiRef.current.getRowIndexRelativeToVisibleRows(dragRowNode.id)
+            : getRowIndexRelativeToGroup(dragRowNode.parent!, dragRowNode.id)
+
+        const targetRowIndex =
+          dragRowNode.parent === GRID_ROOT_GROUP_ID &&
+          rowNode.parent === GRID_ROOT_GROUP_ID
+            ? apiRef.current.getRowIndexRelativeToVisibleRows(rowNode.id)
+            : getRowIndexRelativeToGroup(rowNode.parent, rowNode.id)
+
+        previousRowElement.current?.classList.remove(
+          dataGridClasses.rowDragOverBottom,
+          dataGridClasses.rowDragOverTop,
         )
-        apiRef.current.setRowIndexWithNewParent(
-          dragRowId,
-          targetRowIndex,
-          dragRowNode.parent !== rowNode.parent ? rowNode.parent : undefined,
-        )
-        if (dragRowNode.parent !== rowNode.parent) {
-          apiRef.current.publishEvent('rowParentChange', {
-            rowParams: {
-              id: dragRowNode.id,
-              row: apiRef.current.getRow(dragRowId),
-              columns: apiRef.current.getAllColumns(),
-            },
-            oldParent: dragRowNode.parent!,
-            newParent: rowNode.parent,
-          })
-          props.updateRowWhenReparented &&
-            apiRef.current.publishEvent('rowEditCommit', dragRowNode.id)
+        if (
+          targetRowIndex >= currentRowIndex &&
+          dragRowNode.parent === rowNode.parent
+        ) {
+          rowElement?.classList.add(dataGridClasses.rowDragOverBottom)
+        } else {
+          rowElement?.classList.add(dataGridClasses.rowDragOverTop)
         }
+
+        previousRowId.current = params.id
+        previousRowElement.current = rowElement
       }
     },
-    [
-      dragRowId,
-      apiRef,
-      logger,
-      getRowIndexRelativeToGroup,
-      props.updateRowWhenReparented,
-    ],
+    [dragRowId, apiRef, logger, getRowIndexRelativeToGroup],
   )
 
   const handleDragEnd = React.useCallback<GridEventListener<'rowDragEnd'>>(
@@ -186,34 +195,78 @@ export const useGridRowReorder = (
       event.stopPropagation()
 
       clearTimeout(removeDnDStylesTimeout.current)
-      dragRowNode.current = null
+      dragRowElement.current = null
+      previousRowElement.current?.classList.remove(
+        dataGridClasses.rowDragOverBottom,
+        dataGridClasses.rowDragOverTop,
+      )
 
-      // Check if the row was dropped outside the grid.
-      if (event.dataTransfer.dropEffect === 'none') {
-        // Accessing params.field may contain the wrong field as header elements are reused
-        apiRef.current.setRowIndex(dragRowId, originRowIndex.current!)
-        originRowIndex.current = null
-      } else {
-        // Emit the rowOrderChange event only once when the reordering stops.
-        const rowOrderChangeParams: GridRowOrderChangeParams = {
-          row: apiRef.current.getRow(dragRowId)!,
-          targetIndex: apiRef.current.getRowIndexRelativeToVisibleRows(
-            params.id,
-          ),
-          oldIndex: originRowIndex.current!,
-        }
-
-        apiRef.current.publishEvent('rowOrderChange', rowOrderChangeParams)
+      if (previousRowId.current === null) {
+        return
       }
+
+      const dragRowNode = apiRef.current.getRowNode(dragRowId)
+      const rowNode = apiRef.current.getRowNode(previousRowId.current)
+
+      if (
+        !dragRowNode ||
+        !rowNode ||
+        rowNode.type === 'group' ||
+        rowNode.type === 'footer' ||
+        rowNode.type === 'pinnedRow'
+      ) {
+        return
+      }
+
+      const targetRowIndex =
+        dragRowNode.parent === GRID_ROOT_GROUP_ID &&
+        rowNode.parent === GRID_ROOT_GROUP_ID
+          ? apiRef.current.getRowIndexRelativeToVisibleRows(rowNode.id)
+          : getRowIndexRelativeToGroup(rowNode.parent, rowNode.id)
+
+      apiRef.current.setRowIndexWithNewParent(
+        dragRowId,
+        targetRowIndex,
+        dragRowNode.parent !== rowNode.parent ? rowNode.parent : undefined,
+      )
+
+      if (dragRowNode.parent !== rowNode.parent) {
+        apiRef.current.publishEvent('rowParentChange', {
+          rowParams: {
+            id: dragRowNode.id,
+            row: apiRef.current.getRow(dragRowId),
+            columns: apiRef.current.getAllColumns(),
+          },
+          oldParent: dragRowNode.parent!,
+          newParent: rowNode.parent,
+        })
+        props.updateRowWhenReparented &&
+          apiRef.current.publishEvent('rowEditCommit', dragRowNode.id)
+      }
+
+      const rowOrderChangeParams: GridRowOrderChangeParams = {
+        row: apiRef.current.getRow(dragRowId)!,
+        targetIndex: apiRef.current.getRowIndexRelativeToVisibleRows(params.id),
+        oldIndex: originRowIndex.current!,
+      }
+
+      apiRef.current.publishEvent('rowOrderChange', rowOrderChangeParams)
 
       setDragRowId('')
     },
-    [isRowReorderDisabled, logger, apiRef, dragRowId],
+    [
+      apiRef,
+      dragRowId,
+      isRowReorderDisabled,
+      logger,
+      getRowIndexRelativeToGroup,
+      props.updateRowWhenReparented,
+    ],
   )
 
-  useGridApiEventHandler(apiRef, 'rowDragStart', handleDragStart)
-  useGridApiEventHandler(apiRef, 'rowDragOver', handleDragOver)
-  useGridApiEventHandler(apiRef, 'rowDragEnd', handleDragEnd)
+  useGridApiEventHandler(apiRef, 'monorailRowDragStart', handleDragStart)
+  useGridApiEventHandler(apiRef, 'monorailRowDragOver', handleDragOver)
+  useGridApiEventHandler(apiRef, 'monorailRowDragEnd', handleDragEnd)
   useGridApiEventHandler(apiRef, 'cellDragOver', handleDragOver)
   useGridApiOptionHandler(apiRef, 'rowOrderChange', props.onRowOrderChange)
 }

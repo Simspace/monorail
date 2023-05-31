@@ -5,14 +5,16 @@ import { generateUtilityClasses } from '@monorail/utils'
 
 export interface DataGridGroupedClasses {
   grouped: string
+  rowDragOverTop: string
+  rowDragOverBottom: string
 }
 
-const groupedClasses = generateUtilityClasses<keyof DataGridGroupedClasses>(
+const extraClasses = generateUtilityClasses<keyof DataGridGroupedClasses>(
   'MuiDataGrid',
-  ['grouped'],
+  ['grouped', 'rowDragOverTop', 'rowDragOverBottom'],
 )
 
 export const dataGridClasses: GridClasses & DataGridGroupedClasses = {
   ...gridClasses,
-  ...groupedClasses,
+  ...extraClasses,
 }

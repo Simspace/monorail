@@ -26,6 +26,12 @@ export const MonorailDataGridOverrides: Components<Theme>['MuiDataGrid'] = {
         [`&.${dataGridClasses.grouped}:hover`]: {
           cursor: 'pointer',
         },
+        [`&.${dataGridClasses.rowDragOverBottom}`]: {
+          boxShadow: `inset 0px -2px ${theme.palette.primary.main}`,
+        },
+        [`&.${dataGridClasses.rowDragOverTop}`]: {
+          boxShadow: `inset 0px 2px ${theme.palette.primary.main}`,
+        },
       }
     },
     virtualScrollerRenderZone: {

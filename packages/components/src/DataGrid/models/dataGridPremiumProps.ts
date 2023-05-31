@@ -70,6 +70,12 @@ declare module '@mui/x-data-grid-premium/models/dataGridPremiumProps' {
      */
     galleryProps?: GalleryProps<R>
     /**
+     * Should custom row reordering be enabled?
+     *
+     * @default false
+     */
+    customRowReordering?: boolean
+    /**
      * Should the row be updated when reparented through reordering?
      *
      * @default false
@@ -111,6 +117,12 @@ declare module '@mui/x-data-grid-premium/models/dataGridPremiumProps' {
      * @default undefined
      */
     galleryProps?: GalleryProps<R>
+    /**
+     * Should custom row reordering be enabled?
+     *
+     * @default false
+     */
+    customRowReordering?: boolean
     /**
      * Should the row be updated when reparented through reordering?
      *
