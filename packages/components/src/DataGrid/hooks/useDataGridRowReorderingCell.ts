@@ -21,10 +21,10 @@ export function useDataGridRowReorderingCell(id: GridRowId) {
 
   const isDraggable = React.useMemo(
     () =>
-      !!rootProps.rowReordering &&
+      !!rootProps.customRowReordering &&
       !sortModel.length &&
       Object.keys(editRowsState).length === 0,
-    [rootProps.rowReordering, sortModel, editRowsState],
+    [rootProps.customRowReordering, sortModel, editRowsState],
   )
 
   const publish = React.useCallback(
@@ -62,9 +62,9 @@ export function useDataGridRowReorderingCell(id: GridRowId) {
   )
 
   const draggableEventHandlers = {
-    onDragStart: publish('rowDragStart'),
-    onDragOver: publish('rowDragOver'),
-    onDragEnd: publish('rowDragEnd'),
+    onDragStart: publish('monorailRowDragStart'),
+    onDragOver: publish('monorailRowDragOver'),
+    onDragEnd: publish('monorailRowDragEnd'),
   }
 
   return {
