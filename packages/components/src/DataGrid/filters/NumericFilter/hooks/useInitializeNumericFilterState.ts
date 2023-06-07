@@ -14,8 +14,10 @@ export function useInitializeNumericFilterState(
     const column = gridColumnLookupSelector(apiRef)[field]
     if (external !== true) {
       // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
-      if (!column.filterOperators?.includes(numericFilterOperator)) {
-        column.filterOperators = [numericFilterOperator]
+      if (
+        !column.filterOperators?.find(operator => operator.value === 'numeric')
+      ) {
+        ;(column.filterOperators ??= []).push(numericFilterOperator)
       }
     }
     if (!apiRef.current.state.numericFilter.has(field)) {
