@@ -408,10 +408,12 @@ export function InputSlider() {
   }
 
   const handleBlur = () => {
-    if (value < 0) {
-      setValue(0)
-    } else if (value > 100) {
-      setValue(100)
+    if (typeof value === 'number') {
+      if (value < 0) {
+        setValue(0)
+      } else if (value > 100) {
+        setValue(100)
+      }
     }
   }
 

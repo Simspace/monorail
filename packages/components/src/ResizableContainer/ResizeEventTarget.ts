@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import type React from 'react'
 
 export class ResizeEventTarget {
@@ -9,7 +10,8 @@ export class ResizeEventTarget {
     type: K,
     callback: (data: ResizeEventMap[K]) => void,
   ): this {
-    this.events[type] ||= new Set<(data: ResizeEventMap[ResizeEvent]) => void>()
+    // @ts-expect-error
+    this.events[type] ||= new Set()
     this.events[type]!.add(callback)
     return this
   }
