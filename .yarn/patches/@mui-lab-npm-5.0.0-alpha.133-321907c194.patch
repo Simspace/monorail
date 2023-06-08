@@ -1,8 +1,8 @@
 diff --git a/themeAugmentation/components.d.ts b/themeAugmentation/components.d.ts
-index 05fa0cf3d92ba06747599c0cea83e3949eb9fb7e..0045158fea463ce2beafadd38ff274e586a4ede1 100644
+index 20c908847f6efaeb8308816c744bd850301a82de..12727942b33284aa8b90c06b98a8b2227d54b2b8 100644
 --- a/themeAugmentation/components.d.ts
 +++ b/themeAugmentation/components.d.ts
-@@ -73,6 +73,6 @@ export interface LabComponents {
+@@ -78,6 +78,6 @@ export interface LabComponents {
    };
  }
  
@@ -11,10 +11,10 @@ index 05fa0cf3d92ba06747599c0cea83e3949eb9fb7e..0045158fea463ce2beafadd38ff274e5
    interface Components extends LabComponents {}
  }
 diff --git a/themeAugmentation/overrides.d.ts b/themeAugmentation/overrides.d.ts
-index 422fda85f0b55076279456973318e2aacf858d1f..fd5a3ef006de47b99876bfb0ab11a3f9a38a0b2e 100644
+index bf8e7a6e718558e0bfbcd7bcb3873e8af3f25dec..aa73e3ed6ad621afb818833a3a39c7a083fa50e6 100644
 --- a/themeAugmentation/overrides.d.ts
 +++ b/themeAugmentation/overrides.d.ts
-@@ -27,7 +27,7 @@ export interface LabComponentNameToClassKey {
+@@ -29,7 +29,7 @@ export interface LabComponentNameToClassKey {
    MuiTreeView: TreeViewClassKey;
  }
  
@@ -24,10 +24,10 @@ index 422fda85f0b55076279456973318e2aacf858d1f..fd5a3ef006de47b99876bfb0ab11a3f9
  }
  
 diff --git a/themeAugmentation/props.d.ts b/themeAugmentation/props.d.ts
-index c8fcc683b3dda7971bcf64f17565c5dbada33493..92b9d74d49e75bd3c5f2d441a19ee8aac1da4701 100644
+index 0024906b9b8eb27f883612f29b84e92eae704bcb..b3eb2dfdbb4cacd0b9c9261a9957391a0ea71c62 100644
 --- a/themeAugmentation/props.d.ts
 +++ b/themeAugmentation/props.d.ts
-@@ -28,7 +28,7 @@ export interface LabComponentsPropsList {
+@@ -30,7 +30,7 @@ export interface LabComponentsPropsList {
    MuiTreeView: TreeViewProps;
  }
  

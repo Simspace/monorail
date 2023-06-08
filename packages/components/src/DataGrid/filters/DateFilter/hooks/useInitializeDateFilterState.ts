@@ -1,5 +1,5 @@
 import React from 'react'
-import type { MuiPickersAdapter } from '@mui/x-date-pickers/internals'
+import type { MuiPickersAdapter } from '@mui/x-date-pickers/models'
 
 import type { GridApi } from '../../../internal.js'
 import { gridColumnLookupSelector } from '../../../internal.js'
