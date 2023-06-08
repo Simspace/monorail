@@ -2,7 +2,7 @@
 import React from 'react'
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
 
-import type { TimePickerProps } from '@monorail/components'
+import type { StaticTimePickerProps } from '@monorail/components'
 import { LocalizationProvider, StaticTimePicker } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
@@ -15,7 +15,7 @@ export default {
   component: StaticTimePicker,
 }
 
-const Template = story<TimePickerProps<Date>>(args => {
+const Template = story<StaticTimePickerProps<Date>>(args => {
   const [value, setValue] = React.useState<Date | null>(
     new Date('2021-01-01T12:34:00.000Z'),
   )
