@@ -1,5 +1,5 @@
 import type { ExtendableDateType } from '@date-io/core/IUtils'
-import type { MuiPickersAdapter } from '@mui/x-date-pickers/internals'
+import type { MuiPickersAdapter } from '@mui/x-date-pickers/models'
 
 import type { RangeFilterState } from '../../RangeFilter.js'
 import { RangeFilterStateTypeId } from '../../RangeFilter.js'

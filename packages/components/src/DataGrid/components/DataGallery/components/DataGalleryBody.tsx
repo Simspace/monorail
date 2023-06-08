@@ -1,12 +1,9 @@
 /* eslint-disable @typescript-eslint/strict-boolean-expressions */
 import React from 'react'
-import type { ElementSize } from '@mui/x-data-grid-premium'
-import {
-  GridAutoSizer,
-  GridOverlays,
-  useGridApiContext,
-  useGridRootProps,
-} from '@mui/x-data-grid-premium'
+import { useGridPrivateApiContext } from '@mui/x-data-grid/internals'
+import { GridOverlays, useGridRootProps } from '@mui/x-data-grid-premium'
+
+import { useEnhancedEffect } from '@monorail/utils'
 
 import { DataGalleryMainContainer } from './DataGalleryMainContainer.js'
 
@@ -15,10 +12,7 @@ interface DataGalleryBodyProps {
   VirtualScrollerComponent: React.JSXElementConstructor<
     React.HTMLAttributes<HTMLDivElement> & {
       ref: React.Ref<HTMLDivElement>
-      mainRef: React.RefObject<HTMLDivElement>
       disableVirtualization: boolean
-      width: number
-      height: number
     }
   >
 
@@ -33,8 +27,9 @@ interface DataGalleryBodyProps {
 export function DataGalleryBody(props: DataGalleryBodyProps) {
   const { ColumnHeadersComponent, VirtualScrollerComponent, children } = props
 
-  const apiRef = useGridApiContext()
+  const apiRef = useGridPrivateApiContext()
   const rootProps = useGridRootProps()
+  const rootRef = React.useRef<HTMLDivElement>(null)
 
   const [isVirtualizationDisabled, setIsVirtualizationDisabled] =
     React.useState(rootProps.disableVirtualization)
@@ -51,6 +46,37 @@ export function DataGalleryBody(props: DataGalleryBodyProps) {
     setIsVirtualizationDisabled(rootProps.disableVirtualization)
   }, [rootProps.disableVirtualization])
 
+  useEnhancedEffect(() => {
+    apiRef.current.computeSizeAndPublishResizeEvent()
+
+    const elementToObserve = rootRef.current
+    if (typeof ResizeObserver === 'undefined') {
+      return () => {}
+    }
+
+    let animationFrame: number
+    const observer = new ResizeObserver(() => {
+      // See https://github.com/mui/mui-x/issues/8733
+      animationFrame = window.requestAnimationFrame(() => {
+        apiRef.current.computeSizeAndPublishResizeEvent()
+      })
+    })
+
+    if (elementToObserve) {
+      observer.observe(elementToObserve)
+    }
+
+    return () => {
+      if (animationFrame) {
+        window.cancelAnimationFrame(animationFrame)
+      }
+
+      if (elementToObserve) {
+        observer.unobserve(elementToObserve)
+      }
+    }
+  }, [apiRef])
+
   // The `useGridApiMethod` hook can't be used here, because it only installs the
   // method if it doesn't exist yet. Once installed, it's never updated again.
   // This break the methods above, since their closure comes from the first time
@@ -60,43 +86,28 @@ export function DataGalleryBody(props: DataGalleryBodyProps) {
   apiRef.current.unstable_disableVirtualization = disableVirtualization
   apiRef.current.unstable_enableVirtualization = enableVirtualization
 
-  const mainRef = React.useRef<HTMLDivElement>(null)
   const columnHeadersRef = React.useRef<HTMLDivElement>(null)
   const columnsContainerRef = React.useRef<HTMLDivElement>(null)
-  const windowRef = React.useRef<HTMLDivElement>(null)
+  const virtualScrollerRef = React.useRef<HTMLDivElement>(null)
 
-  apiRef.current.windowRef = windowRef
-
-  const [size, setSize] = React.useState<ElementSize>({ width: 0, height: 0 })
-
-  const handleResize = React.useCallback(
-    (size: ElementSize) => {
-      apiRef.current.publishEvent('resize', size)
-      setSize(size)
-    },
-    [apiRef],
-  )
+  apiRef.current.register('private', {
+    columnHeadersContainerElementRef: columnsContainerRef,
+    columnHeadersElementRef: columnHeadersRef,
+    virtualScrollerRef,
+    mainElementRef: rootRef,
+  })
 
   return (
-    <DataGalleryMainContainer ref={mainRef} classes={rootProps.classes}>
+    <DataGalleryMainContainer ref={rootRef} classes={rootProps.classes}>
       <GridOverlays />
       <ColumnHeadersComponent
         ref={columnsContainerRef}
         innerRef={columnHeadersRef}
       />
-      <GridAutoSizer
-        nonce={rootProps.nonce}
-        disableHeight={rootProps.autoHeight}
-        onResize={handleResize}
-      >
-        <VirtualScrollerComponent
-          ref={windowRef}
-          mainRef={mainRef}
-          disableVirtualization={isVirtualizationDisabled}
-          width={size.width}
-          height={size.height}
-        />
-      </GridAutoSizer>
+      <VirtualScrollerComponent
+        ref={virtualScrollerRef}
+        disableVirtualization={isVirtualizationDisabled}
+      />
       {children}
     </DataGalleryMainContainer>
   )

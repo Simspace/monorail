@@ -1,8 +1,8 @@
 diff --git a/themeAugmentation/components.d.ts b/themeAugmentation/components.d.ts
-index 7f5e08bd2c5084264c249678595a231fa093e005..6250ef2bc5d48df7f8e855a963fda31d63f1399d 100644
+index a394afa83a253a0e6caa0ffed264a2398fc68ed3..58d0b7888644d78abe954d41269f4915a01426f0 100644
 --- a/themeAugmentation/components.d.ts
 +++ b/themeAugmentation/components.d.ts
-@@ -182,6 +182,6 @@ export interface PickerComponents<Theme = unknown> {
+@@ -177,6 +177,6 @@ export interface PickerComponents<Theme = unknown> {
    };
  }
  
@@ -11,11 +11,11 @@ index 7f5e08bd2c5084264c249678595a231fa093e005..6250ef2bc5d48df7f8e855a963fda31d
    interface Components<Theme = unknown> extends PickerComponents<Theme> {}
  }
 diff --git a/themeAugmentation/overrides.d.ts b/themeAugmentation/overrides.d.ts
-index ff4db5ee4c9913c9ad0dc238cf68e6fa16ecd701..46ab40ec78183002b216707ccee0b34f487af2cf 100644
+index d250c8731c83140e09cf9c74efb7896dda469f0c..f4dfef10e37fe6046eeea072694e5a1dd0dbfcd7 100644
 --- a/themeAugmentation/overrides.d.ts
 +++ b/themeAugmentation/overrides.d.ts
-@@ -71,7 +71,7 @@ export interface PickersComponentNameToClassKey {
-   PrivatePickersYear: PickersYearClassKey;
+@@ -84,7 +84,7 @@ export interface PickersComponentNameToClassKey {
+   MuiStaticDateTimePicker: never;
  }
  
 -declare module '@mui/material/styles' {
@@ -24,11 +24,11 @@ index ff4db5ee4c9913c9ad0dc238cf68e6fa16ecd701..46ab40ec78183002b216707ccee0b34f
  }
  
 diff --git a/themeAugmentation/props.d.ts b/themeAugmentation/props.d.ts
-index ee03cff2253768acfb5e5a7a7faf30a1f5a4254a..245b402c59009c15ab2e4495e3c39483201c12c8 100644
+index e57057df31ef0152bb96a281affcccadde58f2b7..2cb484814554eaaa6ad7fd792fd4726ad2b416fc 100644
 --- a/themeAugmentation/props.d.ts
 +++ b/themeAugmentation/props.d.ts
-@@ -79,7 +79,7 @@ export interface PickersComponentsPropsList {
-   PrivatePickersYear: never;
+@@ -97,7 +97,7 @@ export interface PickersComponentsPropsList {
+   MuiStaticDateTimePicker: StaticDateTimePickerProps<unknown>;
  }
  
 -declare module '@mui/material/styles' {

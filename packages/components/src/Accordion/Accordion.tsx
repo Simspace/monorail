@@ -1,23 +1,32 @@
 import React from 'react'
+import type {
+  AccordionProps as MuiAccordionProps,
+  AccordionTypeMap,
+} from '@mui/material'
 import { Accordion as MuiAccordion } from '@mui/material'
 import clsx from 'clsx'
 
-declare module '@mui/material/Accordion' {
-  interface AccordionProps {
-    /**
-     * If `true`, adjacent Accordions will not have borders between them
-     */
-    borderless?: boolean
-    /**
-     * If `true`, Accordions will not have left and right borders.
-     */
-    removeBorderX?: boolean
-    /**
-     * If `true`, Accordions will not have top and bottom borders.
-     */
-    removeBorderY?: boolean
-  }
+import type { OverridableComponent } from '@monorail/types'
+
+export interface AccordionExtraProps {
+  /**
+   * If `true`, adjacent Accordions will not have borders between them
+   */
+  borderless?: boolean
+  /**
+   * If `true`, Accordions will not have left and right borders.
+   */
+  removeBorderX?: boolean
+  /**
+   * If `true`, Accordions will not have top and bottom borders.
+   */
+  removeBorderY?: boolean
 }
+
+export type AccordionProps<
+  D extends React.ElementType = AccordionTypeMap['defaultComponent'],
+  P = {},
+> = MuiAccordionProps<D, AccordionExtraProps & P>
 
 /**
  *
@@ -44,7 +53,7 @@ export const Accordion = React.forwardRef(
       {...props}
     />
   ),
-) as typeof MuiAccordion
+) as OverridableComponent<AccordionTypeMap<AccordionExtraProps, 'div'>>
 
 // @ts-expect-error
 // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment

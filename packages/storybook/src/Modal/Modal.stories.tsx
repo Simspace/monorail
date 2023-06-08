@@ -1,6 +1,5 @@
 // Edit this file to add new stories
 import React from 'react'
-import { ModalUnstyled } from '@mui/base'
 import { styled } from '@mui/material'
 
 import type { ModalProps } from '@monorail/components'
@@ -69,7 +68,7 @@ const Template = story<ModalProps>(
 /** Default story for Modal (edit/remove by hand if needed) */
 export const Default = story(Template)
 
-const StyledModal = styled(ModalUnstyled)`
+const StyledModal = styled(Modal)`
   position: fixed;
   z-index: 1300;
   right: 0;
@@ -81,7 +80,7 @@ const StyledModal = styled(ModalUnstyled)`
   justify-content: center;
 `
 
-const ModalUnstyledBackdrop = styled('div')`
+const StyledModalBackdrop = styled('div')`
   z-index: -1;
   position: fixed;
   right: 0;
@@ -92,53 +91,42 @@ const ModalUnstyledBackdrop = styled('div')`
   -webkit-tap-highlight-color: transparent;
 `
 
-export const ModalUnstyledDemo = story<ModalProps>(
-  () => {
-    const [open, setOpen] = React.useState(false)
-    const handleOpen = () => setOpen(true)
-    const handleClose = () => setOpen(false)
+export const StyledModalDemo = story<ModalProps>(() => {
+  const [open, setOpen] = React.useState(false)
+  const handleOpen = () => setOpen(true)
+  const handleClose = () => setOpen(false)
 
-    return (
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <button type="button" onClick={handleOpen}>
-          Open modal
-        </button>
-        <StyledModal
-          aria-labelledby="unstyled-modal-title"
-          aria-describedby="unstyled-modal-description"
-          open={open}
-          onClose={handleClose}
-          slots={{
-            backdrop: ModalUnstyledBackdrop,
+  return (
+    <div style={{ display: 'flex', justifyContent: 'center' }}>
+      <button type="button" onClick={handleOpen}>
+        Open modal
+      </button>
+      <StyledModal
+        aria-labelledby="styled-modal-title"
+        aria-describedby="styled-modal-description"
+        open={open}
+        onClose={handleClose}
+        slots={{
+          backdrop: StyledModalBackdrop,
+        }}
+      >
+        <Box
+          sx={{
+            width: 400,
+            bgcolor: 'background.paper',
+            border: '2px solid #000',
+            p: 2,
+            px: 4,
+            pb: 3,
           }}
         >
-          <Box
-            sx={{
-              width: 400,
-              bgcolor: 'background.paper',
-              border: '2px solid #000',
-              p: 2,
-              px: 4,
-              pb: 3,
-            }}
-          >
-            <h2 id="unstyled-modal-title">Text in a modal</h2>
-            <p id="unstyled-modal-description">Aliquid amet deserunt earum!</p>
-          </Box>
-        </StyledModal>
-      </div>
-    )
-  },
-  {
-    parameters: {
-      docs: {
-        description: {
-          story: `The modal also comes with an unstyled version. It's ideal for doing heavy customizations and minimizing bundle size.`,
-        },
-      },
-    },
-  },
-)
+          <h2 id="styled-modal-title">Text in a modal</h2>
+          <p id="styled-modal-description">Aliquid amet deserunt earum!</p>
+        </Box>
+      </StyledModal>
+    </div>
+  )
+})
 
 const nestedModalStyles = {
   position: 'absolute' as 'absolute',
