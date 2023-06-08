@@ -8,7 +8,6 @@ import { story } from '../helpers/storybook.js'
 export default { title: 'Inputs/TextareaAutosize', component: TextareaAutosize }
 
 const Template = story<TextareaAutosizeProps>(
-  // @ts-expect-error
   args => <TextareaAutosize aria-label="Demo Textarea" {...args} />,
   { args: {} },
 )
@@ -16,7 +15,6 @@ const Template = story<TextareaAutosizeProps>(
 export const Default = story(Template)
 
 export const Empty = story(() => (
-  // @ts-expect-error
   <TextareaAutosize
     aria-label="empty textarea"
     placeholder="Empty"
@@ -25,7 +23,6 @@ export const Empty = story(() => (
 ))
 
 export const MinimumHeight = story(() => (
-  // @ts-expect-error
   <TextareaAutosize
     aria-label="minimum height"
     minRows={3}
@@ -35,7 +32,6 @@ export const MinimumHeight = story(() => (
 ))
 
 export const MaximumHeight = story(() => (
-  // @ts-expect-error
   <TextareaAutosize
     maxRows={4}
     aria-label="maximum height"

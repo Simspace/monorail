@@ -9,8 +9,9 @@ import type {
   ArgTypes as StorybookArgTypes,
   Meta as StorybookMeta,
   Parameters as StorybookParameters,
-  Story as StorybookStory,
+  ReactRenderer,
 } from '@storybook/react'
+import type { AnnotatedStoryFn } from '@storybook/types'
 
 import { classicLight } from '@monorail/themes'
 import { RawColor as ClassicDarkRawColors } from '@monorail/themes/classic/theme/dark'
@@ -66,7 +67,10 @@ type LayoutParameter = {
 }
 
 export type Meta = StorybookMeta & A11yParameters
-export type Story<Args = DefaultArgs> = StorybookStory<Partial<Args>> &
+export type Story<Args = DefaultArgs> = AnnotatedStoryFn<
+  ReactRenderer,
+  Partial<Args>
+> &
   A11yParameters
 
 /**
@@ -221,7 +225,7 @@ export function story<T extends DefaultArgs>(
   if (muiName) {
     themeProps = classicLight.components?.[muiName]?.defaultProps
   }
-  const NewStory = Template.bind({})
+  const NewStory = Template.bind({}) as Story<T>
   NewStory.args = { ...themeProps, ...Template.args, ...args } as Partial<T>
   NewStory.argTypes = { ...Template.argTypes, ...argTypes } as Partial<
     ArgTypes<Partial<T>>
