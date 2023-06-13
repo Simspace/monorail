@@ -3,7 +3,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import * as React from 'react'
 import { unstable_composeClasses as composeClasses } from '@mui/utils'
-import type { GridEventListener, GridRowId } from '@mui/x-data-grid'
+import type {
+  GridEventListener,
+  GridGroupNode,
+  GridRowId,
+} from '@mui/x-data-grid'
 import {
   getDataGridUtilityClass,
   GRID_ROOT_GROUP_ID,
@@ -45,6 +49,9 @@ export const useGridRowReorder = (
     | 'onRowOrderChange'
     | 'classes'
     | 'updateRowWhenReparented'
+    | 'pagination'
+    | 'paginationMode'
+    | 'isRowReorderable'
   >,
 ): void => {
   const logger = useGridLogger(apiRef, 'useGridRowReorder')
@@ -59,20 +66,31 @@ export const useGridRowReorder = (
   const previousRowId = React.useRef<GridRowId | null>(null)
   const previousRowElement = React.useRef<HTMLElement | null>(null)
 
+  const isRowReorderable = React.useMemo(
+    () => props.isRowReorderable ?? (() => true),
+    [props.isRowReorderable],
+  )
+
   React.useEffect(() => {
     return () => {
       clearTimeout(removeDnDStylesTimeout.current)
     }
   }, [])
 
-  // TODO: remove sortModel check once row reorder is sorting compatible
-  // remove treeDepth once row reorder is tree compatible
   const isRowReorderDisabled = React.useMemo((): boolean => {
-    return !props.customRowReordering || !!sortModel.length
+    return (
+      !props.customRowReordering ||
+      (props.customRowReordering === true && !!sortModel.length)
+    )
   }, [props.customRowReordering, sortModel])
 
   const getRowIndexRelativeToGroup = React.useCallback(
-    (group: GridRowId, id: GridRowId) => {
+    (
+      group: GridRowId,
+      id: GridRowId,
+      currentAbsoluteRowIndex: number,
+      targetAbsoluteRowIndex: number,
+    ) => {
       const groupNode = apiRef.current.getRowNode(group)
       if (!groupNode) {
         return -1
@@ -80,7 +98,14 @@ export const useGridRowReorder = (
       if (groupNode.type !== 'group') {
         return -1
       }
-      return groupNode.children.findIndex(childId => childId === id)
+
+      const index = groupNode.children.findIndex(childId => childId === id)
+
+      if (targetAbsoluteRowIndex > currentAbsoluteRowIndex) {
+        return index + 1
+      }
+
+      return index
     },
     [apiRef],
   )
@@ -130,7 +155,6 @@ export const useGridRowReorder = (
       if (
         !dragRowNode ||
         !rowNode ||
-        rowNode.type === 'group' ||
         rowNode.type === 'footer' ||
         rowNode.type === 'pinnedRow'
       ) {
@@ -145,25 +169,16 @@ export const useGridRowReorder = (
       event.stopPropagation()
 
       if (previousRowId.current !== params.id) {
-        const currentRowIndex =
-          dragRowNode.parent === GRID_ROOT_GROUP_ID
-            ? apiRef.current.getRowIndexRelativeToVisibleRows(dragRowNode.id)
-            : getRowIndexRelativeToGroup(dragRowNode.parent!, dragRowNode.id)
-
-        const targetRowIndex =
-          dragRowNode.parent === GRID_ROOT_GROUP_ID &&
-          rowNode.parent === GRID_ROOT_GROUP_ID
-            ? apiRef.current.getRowIndexRelativeToVisibleRows(rowNode.id)
-            : getRowIndexRelativeToGroup(rowNode.parent, rowNode.id)
+        const currentAbsoluteRowIndex =
+          apiRef.current.getRowIndexRelativeToVisibleRows(dragRowNode.id)
+        const targetAbsoluteRowIndex =
+          apiRef.current.getRowIndexRelativeToVisibleRows(rowNode.id)
 
         previousRowElement.current?.classList.remove(
           dataGridClasses.rowDragOverBottom,
           dataGridClasses.rowDragOverTop,
         )
-        if (
-          targetRowIndex >= currentRowIndex &&
-          dragRowNode.parent === rowNode.parent
-        ) {
+        if (targetAbsoluteRowIndex >= currentAbsoluteRowIndex) {
           rowElement?.classList.add(dataGridClasses.rowDragOverBottom)
         } else {
           rowElement?.classList.add(dataGridClasses.rowDragOverTop)
@@ -173,7 +188,7 @@ export const useGridRowReorder = (
         previousRowElement.current = rowElement
       }
     },
-    [dragRowId, apiRef, logger, getRowIndexRelativeToGroup],
+    [dragRowId, apiRef, logger],
   )
 
   const handleDragEnd = React.useCallback<GridEventListener<'rowDragEnd'>>(
@@ -211,46 +226,116 @@ export const useGridRowReorder = (
       if (
         !dragRowNode ||
         !rowNode ||
-        rowNode.type === 'group' ||
         rowNode.type === 'footer' ||
         rowNode.type === 'pinnedRow'
       ) {
         return
       }
 
-      const targetRowIndex =
-        dragRowNode.parent === GRID_ROOT_GROUP_ID &&
-        rowNode.parent === GRID_ROOT_GROUP_ID
-          ? apiRef.current.getRowIndexRelativeToVisibleRows(rowNode.id)
-          : getRowIndexRelativeToGroup(rowNode.parent, rowNode.id)
+      const currentAbsoluteRowIndex =
+        apiRef.current.getRowIndexRelativeToVisibleRows(dragRowNode.id)
+      const targetAbsoluteRowIndex =
+        apiRef.current.getRowIndexRelativeToVisibleRows(rowNode.id)
 
-      apiRef.current.setRowIndexWithNewParent(
-        dragRowId,
-        targetRowIndex,
-        dragRowNode.parent !== rowNode.parent ? rowNode.parent : undefined,
-      )
-
-      if (dragRowNode.parent !== rowNode.parent) {
-        apiRef.current.publishEvent('rowParentChange', {
-          rowParams: {
-            id: dragRowNode.id,
-            row: apiRef.current.getRow(dragRowId),
-            columns: apiRef.current.getAllColumns(),
-          },
-          oldParent: dragRowNode.parent!,
-          newParent: rowNode.parent,
-        })
-        props.updateRowWhenReparented &&
-          apiRef.current.publishEvent('rowEditCommit', dragRowNode.id)
+      if (
+        !isRowReorderable(
+          dragRowId,
+          apiRef.current.getRowIdFromRowIndex(targetAbsoluteRowIndex),
+        )
+      ) {
+        return
       }
 
-      const rowOrderChangeParams: GridRowOrderChangeParams = {
-        row: apiRef.current.getRow(dragRowId)!,
-        targetIndex: apiRef.current.getRowIndexRelativeToVisibleRows(params.id),
-        oldIndex: originRowIndex.current!,
-      }
+      if (rowNode.type === 'group' && rowNode.parent === GRID_ROOT_GROUP_ID) {
+        let targetGroupNode: GridGroupNode | undefined
 
-      apiRef.current.publishEvent('rowOrderChange', rowOrderChangeParams)
+        if (targetAbsoluteRowIndex >= currentAbsoluteRowIndex) {
+          targetGroupNode = rowNode
+        } else {
+          for (const rowId of apiRef.current.getSortedRowIds()) {
+            const node = apiRef.current.getRowNode(rowId)
+            if (!node) {
+              continue
+            }
+            if (node.id === rowNode.id) {
+              break
+            }
+            if (node.type === 'group' && node.id !== GRID_ROOT_GROUP_ID) {
+              targetGroupNode = node
+            }
+          }
+        }
+
+        if (!targetGroupNode) {
+          return
+        }
+
+        const targetRowIndex =
+          currentAbsoluteRowIndex < targetAbsoluteRowIndex
+            ? 0
+            : targetGroupNode.children.length
+
+        apiRef.current.setRowIndexWithNewParent(
+          dragRowId,
+          targetRowIndex,
+          targetGroupNode.id,
+        )
+
+        const rowOrderChangeParams: GridRowOrderChangeParams = {
+          row: apiRef.current.getRow(dragRowId)!,
+          rowId: dragRowId,
+          targetRowId: rowNode.id,
+          targetIndex: targetRowIndex,
+          oldIndex: originRowIndex.current!,
+          oldParent: dragRowNode.parent,
+          newParent: targetGroupNode.id,
+        }
+
+        apiRef.current.publishEvent('rowOrderChange', rowOrderChangeParams)
+      } else if (rowNode.type !== 'group') {
+        const targetIndex =
+          dragRowNode.parent === GRID_ROOT_GROUP_ID &&
+          rowNode.parent === GRID_ROOT_GROUP_ID
+            ? apiRef.current.getRowIndexRelativeToVisibleRows(rowNode.id)
+            : getRowIndexRelativeToGroup(
+                rowNode.parent,
+                rowNode.id,
+                currentAbsoluteRowIndex,
+                targetAbsoluteRowIndex,
+              )
+
+        apiRef.current.setRowIndexWithNewParent(
+          dragRowId,
+          targetIndex,
+          dragRowNode.parent !== rowNode.parent ? rowNode.parent : undefined,
+        )
+
+        if (dragRowNode.parent !== rowNode.parent) {
+          apiRef.current.publishEvent('rowParentChange', {
+            rowParams: {
+              id: dragRowNode.id,
+              row: apiRef.current.getRow(dragRowId),
+              columns: apiRef.current.getAllColumns(),
+            },
+            oldParent: dragRowNode.parent!,
+            newParent: rowNode.parent,
+          })
+        }
+
+        const rowOrderChangeParams: GridRowOrderChangeParams = {
+          row: apiRef.current.getRow(dragRowId)!,
+          rowId: dragRowId,
+          targetRowId: rowNode.id,
+          targetIndex,
+          oldIndex: originRowIndex.current!,
+          ...(dragRowNode.parent !== rowNode.parent && {
+            oldParent: dragRowNode.parent,
+            newParent: rowNode.parent,
+          }),
+        }
+
+        apiRef.current.publishEvent('rowOrderChange', rowOrderChangeParams)
+      }
 
       setDragRowId('')
     },
@@ -260,7 +345,7 @@ export const useGridRowReorder = (
       isRowReorderDisabled,
       logger,
       getRowIndexRelativeToGroup,
-      props.updateRowWhenReparented,
+      isRowReorderable,
     ],
   )
 

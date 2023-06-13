@@ -21,7 +21,7 @@ export function useDataGridComponent(
   // The following two hooks include a custom implementation of grouped row reordering.
   // Once grouped row reordering is officially implemented in MUI, please remove these
   useGridRowReorder(apiRef, props)
-  useSetRowIndex(apiRef, props)
+  useSetRowIndex(apiRef)
 
   useInitializeGridSubState(apiRef, 'textFilter', () => new Map())
   useInitializeGridSubState(apiRef, 'dateFilter', () => new Map())

@@ -21,8 +21,8 @@ export function useDataGridRowReorderingCell(id: GridRowId) {
 
   const isDraggable = React.useMemo(
     () =>
-      !!rootProps.customRowReordering &&
-      !sortModel.length &&
+      ((rootProps.customRowReordering === true && !sortModel.length) ||
+        rootProps.customRowReordering === 'sorted') &&
       Object.keys(editRowsState).length === 0,
     [rootProps.customRowReordering, sortModel, editRowsState],
   )
