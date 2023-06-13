@@ -4,7 +4,7 @@ import type { GridChildComponentProps } from 'react-window'
 
 import type { DataGridFooterProps } from '../components/DataGridFooter.js'
 import type { DataGridHeaderProps } from '../components/DataGridHeader.js'
-import type { GridValidRowModel } from '../internal.js'
+import type { GridRowId, GridValidRowModel } from '../internal.js'
 import type { DataGridViewStyle } from './dataGridViewStyle.js'
 
 export interface RenderCardParams<R> extends GridChildComponentProps<R> {
@@ -74,7 +74,13 @@ declare module '@mui/x-data-grid-premium/models/dataGridPremiumProps' {
      *
      * @default false
      */
-    customRowReordering?: boolean
+    customRowReordering?: boolean | 'sorted'
+    /**
+     * Should a row reorder be allowed to take place?
+     *
+     * @default undefined
+     */
+    isRowReorderable?: (source: GridRowId, target: GridRowId) => boolean
     /**
      * Should the row be updated when reparented through reordering?
      *
@@ -122,7 +128,13 @@ declare module '@mui/x-data-grid-premium/models/dataGridPremiumProps' {
      *
      * @default false
      */
-    customRowReordering?: boolean
+    customRowReordering?: boolean | 'sorted'
+    /**
+     * Should a row reorder be allowed to take place?
+     *
+     * @default undefined
+     */
+    isRowReorderable?: (source: GridRowId, target: GridRowId) => boolean
     /**
      * Should the row be updated when reparented through reordering?
      *
