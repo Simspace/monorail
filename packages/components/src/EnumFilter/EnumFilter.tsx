@@ -153,7 +153,11 @@ export function EnumFilter<V>(inProps: EnumFilterProps<V>) {
           )}
         >
           {filterMap(values, (value, index) => {
-            if (stringifyValue(value).includes(searchText)) {
+            if (
+              stringifyValue(value)
+                .toLocaleLowerCase()
+                .includes(searchText.toLocaleLowerCase())
+            ) {
               const label = renderValue?.(value) ?? value
               return (
                 <EnumFilterItem
