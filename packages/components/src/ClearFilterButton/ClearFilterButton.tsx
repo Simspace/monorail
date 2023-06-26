@@ -5,8 +5,8 @@ import { Collapse } from '@monorail/components/Collapse'
 import { excludeProps } from '@monorail/utils/styled'
 import { sx } from '@monorail/utils/sx'
 
-import type { ButtonProps } from '../../../Button.js'
-import { Button } from '../../../Button.js'
+import { Button } from '../Button.js'
+import type { ClearFilterButtonProps } from './ClearFilterButtonProps.js'
 
 interface ClearFilterContainerProps {
   isFiltered: boolean
@@ -24,10 +24,6 @@ export const ClearFilterContainer = styled('div', {
     transition: `all ${isFiltered ? 'ease-in' : 'ease-out'} 112ms`,
   }),
 )
-
-export interface ClearFilterButtonProps extends ButtonProps {
-  isFiltered: boolean
-}
 
 export function ClearFilterButton(props: ClearFilterButtonProps) {
   const { isFiltered, onClick, sx, children, ...others } = props

@@ -1,27 +1,20 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import type React from 'react'
-import type { GridValidRowModel } from '@mui/x-data-grid-premium'
-
-import type { IconButtonProps } from '@monorail/components/IconButton'
+import type { ClearFilterButtonProps } from '@monorail/components/ClearFilterButton'
 import type { ListProps } from '@monorail/components/List'
 import type { TextFieldProps } from '@monorail/components/TextField'
 import type { DataAttributes } from '@monorail/types'
 
-import type { ClearFilterButtonProps } from '../../components/ClearFilterButton.js'
+import type { EnumFilterClasses } from '../constants/enumFilterClasses.js'
 import type { EnumFilterItemProps } from '../EnumFilter.js'
+import type { EnumFilterLocaleText } from './EnumFilterLocaleText.js'
 
-export interface EnumFilterDefinition<
-  R extends GridValidRowModel = any,
-  V = any,
-  F = V,
-> {
-  type: 'enum'
+export interface EnumFilterProps<V = any> {
+  classes?: Partial<EnumFilterClasses>
   values: Array<V>
-  compare?: (rowValue: V, filterValue: V) => boolean
   renderValue?: (value: V) => React.ReactNode
+  stringifyValue?: (value: V) => string
+  onChange?: (values: Set<V>) => void
   slotProps?: {
-    columnHeaderButton?: Partial<IconButtonProps & DataAttributes>
     search?: Partial<TextFieldProps & DataAttributes>
     clearFilterButton?: Omit<
       Partial<ClearFilterButtonProps & DataAttributes>,
@@ -33,5 +26,5 @@ export interface EnumFilterDefinition<
       'onClick' | 'label' | 'checked'
     >
   }
-  external?: boolean
+  localeText: EnumFilterLocaleText
 }

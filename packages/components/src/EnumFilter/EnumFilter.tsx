@@ -14,26 +14,19 @@ import {
   composeClasses,
   filterMap,
   styled,
-  useForceUpdate,
 } from '@monorail/utils'
 
-import { Checkbox } from '../../../Checkbox.js'
-import { InputAdornment } from '../../../InputAdornment.js'
-import { List } from '../../../List.js'
-import { ListItem } from '../../../ListItem.js'
-import {
-  ListItemButton,
-  listItemButtonClasses,
-} from '../../../ListItemButton.js'
-import { ListItemIcon } from '../../../ListItemIcon.js'
-import { ListItemText } from '../../../ListItemText.js'
-import { ScrollShadow } from '../../../ScrollShadow.js'
-import { TextField } from '../../../TextField.js'
-import { useGridApiContext } from '../../internal.js'
-import { ClearFilterButton } from '../components/ClearFilterButton.js'
-import { useDebouncedSyncFilter } from '../hooks/useDebouncedSyncFilter.js'
+import { Checkbox } from '../Checkbox.js'
+import { ClearFilterButton } from '../ClearFilterButton.js'
+import { InputAdornment } from '../InputAdornment.js'
+import { List } from '../List.js'
+import { ListItem } from '../ListItem.js'
+import { ListItemButton, listItemButtonClasses } from '../ListItemButton.js'
+import { ListItemIcon } from '../ListItemIcon.js'
+import { ListItemText } from '../ListItemText.js'
+import { ScrollShadow } from '../ScrollShadow.js'
+import { TextField } from '../TextField.js'
 import { getEnumFilterUtilityClass } from './constants/enumFilterClasses.js'
-import { useInitializeEnumFilterState } from './hooks.js'
 import type { EnumFilterProps } from './models/EnumFilterProps.js'
 
 const EnumFilterRoot = styled('div', {
@@ -46,87 +39,70 @@ const EnumFilterRoot = styled('div', {
   maxWidth: theme.spacing(120),
 }))
 
-export function EnumFilter(inProps: EnumFilterProps) {
+export function EnumFilter<V>(inProps: EnumFilterProps<V>) {
   const props = useThemeProps({
     name: 'MonorailEnumFilter',
     props: inProps,
   })
 
+  const [width, setWidth] = React.useState(0)
+  const [searchText, setSearchText] = React.useState('')
+  const [selected, setSelected] = React.useState(new Set<V>())
+
   const {
-    field,
     renderValue,
     values,
-    external,
-    compare,
     slotProps = {},
+    localeText,
+    onChange,
+    stringifyValue = value => String(value),
   } = props
 
   const classes = useUtilityClasses(props)
 
-  const apiRef = useGridApiContext()
-  useInitializeEnumFilterState({ field, compare, external })
-
-  const state = apiRef.current.state.enumFilter.get(field)!
-  const selectedSize = state.uiSelected.size
-  const searchText = state.searchText
+  const selectedSize = selected.size
   const isFiltered = selectedSize > 0
-
-  const forceUpdate = useForceUpdate()
-
-  const beforeSyncFilter = () => {
-    state.selected = new Set(state.uiSelected)
-    apiRef.current.state.filterSubscriptions.get(field)?.forEach(f => {
-      f(state)
-    })
-  }
-
-  const syncFilter = useDebouncedSyncFilter(
-    apiRef,
-    'enum',
-    field,
-    state,
-    state => state.selected.size > 0,
-    beforeSyncFilter,
-  )
 
   const handleMinWidthCallback = React.useCallback(
     (element: HTMLDivElement | null) => {
       if (element) {
-        const width = element.clientWidth
-        if (state.width < width) {
-          state.width = width
+        const elementWidth = element.clientWidth
+        if (width < elementWidth) {
+          setWidth(elementWidth)
         }
       }
     },
-    [state],
+    [width],
   )
 
   const handleSearchTextChange = React.useCallback(
     (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-      state.searchText = event.currentTarget.value
-      forceUpdate()
+      setSearchText(event.currentTarget.value)
     },
-    [state, forceUpdate],
+    [],
   )
 
   const handleFilterItemClick = React.useCallback(
-    (value: unknown) => (_event: React.MouseEvent<HTMLDivElement>) => {
-      if (state.uiSelected.has(value)) {
-        state.uiSelected.delete(value)
+    (value: V) => (_event: React.MouseEvent<HTMLDivElement>) => {
+      const newSelected = new Set(selected)
+      if (selected.has(value)) {
+        newSelected.delete(value)
+        setSelected(newSelected)
       } else {
-        state.uiSelected.add(value)
+        newSelected.add(value)
+        setSelected(newSelected)
       }
-      forceUpdate()
-      syncFilter()
+
+      onChange?.(newSelected)
     },
-    [state, forceUpdate, syncFilter],
+    [selected, onChange],
   )
 
   const handleClearFilter = React.useCallback(() => {
-    state.uiSelected.clear()
-    forceUpdate()
-    syncFilter()
-  }, [state, forceUpdate, syncFilter])
+    const newSelected = new Set<V>()
+    setSelected(newSelected)
+    onChange?.(newSelected)
+  }, [onChange])
 
   const searchProps: TextFieldProps = {
     ...slotProps.search,
@@ -161,7 +137,7 @@ export function EnumFilter(inProps: EnumFilterProps) {
     <EnumFilterRoot
       className={classes.root}
       ref={handleMinWidthCallback}
-      style={{ minWidth: `${state.width}px` }}
+      style={{ minWidth: `${width}px` }}
     >
       <TextField {...searchProps} />
       <ScrollShadow bottom={isFiltered}>
@@ -177,14 +153,14 @@ export function EnumFilter(inProps: EnumFilterProps) {
           )}
         >
           {filterMap(values, (value, index) => {
-            if (String(value).includes(searchText)) {
+            if (stringifyValue(value).includes(searchText)) {
               const label = renderValue?.(value) ?? value
               return (
                 <EnumFilterItem
                   {...slotProps.listItem}
                   key={index}
-                  label={label}
-                  checked={state.uiSelected.has(value)}
+                  label={label as React.ReactNode}
+                  checked={selected.has(value)}
                   onClick={handleFilterItemClick(value)}
                 />
               )
@@ -204,16 +180,14 @@ export function EnumFilter(inProps: EnumFilterProps) {
         isFiltered={isFiltered}
         onClick={handleClearFilter}
       >
-        {apiRef.current
-          .getLocaleText('EnumFilter')
-          .clearSelectionButton(selectedSize)}
+        {localeText.clearSelectionButton(selectedSize)}
       </ClearFilterButton>
     </EnumFilterRoot>
   )
 }
 
 export interface EnumFilterItemProps extends Omit<ListItemProps, 'onClick'> {
-  label: string
+  label: React.ReactNode
   checked: boolean
   onClick: (event: React.MouseEvent<HTMLDivElement>) => void
   sx?: SxProps<Theme>

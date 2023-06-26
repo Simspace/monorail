@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import type { DateFilterState } from '../filters/DateFilter.js'
-import type { EnumFilterState } from '../filters/EnumFilter.js'
+import type { EnumFilterState } from '../filters/GridEnumFilter.js'
 import type { NumericFilterState } from '../filters/NumericFilter.js'
 import type { TextFilterState } from '../filters/TextFilter.js'
 

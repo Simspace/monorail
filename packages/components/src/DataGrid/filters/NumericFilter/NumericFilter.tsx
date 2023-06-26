@@ -4,11 +4,11 @@ import { useThemeProps } from '@mui/material'
 
 import { composeClasses, styled, useForceUpdate } from '@monorail/utils'
 
+import { ClearFilterButton } from '../../../ClearFilterButton.js'
 import { MenuItem } from '../../../MenuItem.js'
 import { Select } from '../../../Select.js'
 import { TextField } from '../../../TextField.js'
 import { useGridApiContext } from '../../internal.js'
-import { ClearFilterButton } from '../components/ClearFilterButton.js'
 import { FilterContainer } from '../components/FilterContainer.js'
 import { useDebouncedSyncFilter } from '../hooks/useDebouncedSyncFilter.js'
 import { numericOperators } from './constants.js'

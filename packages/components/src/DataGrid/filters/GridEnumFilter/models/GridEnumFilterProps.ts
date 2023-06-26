@@ -3,7 +3,7 @@ import type { GridValidRowModel } from '../../../internal.js'
 import type { EnumFilterClasses } from '../constants/enumFilterClasses.js'
 import type { EnumFilterDefinition } from './EnumFilterDefinition.js'
 
-export interface EnumFilterProps<
+export interface GridEnumFilterProps<
   R extends GridValidRowModel = any,
   V = any,
   F = V,

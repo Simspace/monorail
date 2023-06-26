@@ -7,12 +7,12 @@ import {
   useThemeProps,
 } from '@monorail/utils'
 
+import { ClearFilterButton } from '../../../ClearFilterButton.js'
 import { MenuItem } from '../../../MenuItem.js'
 import type { SelectChangeEvent } from '../../../Select.js'
 import { Select } from '../../../Select.js'
 import { TextField } from '../../../TextField.js'
 import { useGridApiContext } from '../../internal.js'
-import { ClearFilterButton } from '../components/ClearFilterButton.js'
 import { FilterContainer } from '../components/FilterContainer.js'
 import { useDebouncedSyncFilter } from '../hooks/useDebouncedSyncFilter.js'
 import type { TextFilterClasses } from './constants/textFilterClasses.js'
