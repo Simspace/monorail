@@ -12,7 +12,7 @@ import { Popover } from '../../Popover.js'
 import { Stack } from '../../Stack.js'
 import { Typography } from '../../Typography.js'
 import { DateFilter } from '../filters/DateFilter.js'
-import { EnumFilter } from '../filters/EnumFilter.js'
+import { GridEnumFilter } from '../filters/GridEnumFilter.js'
 import { NumericFilter } from '../filters/NumericFilter.js'
 import { TextFilter } from '../filters/TextFilter.js'
 import type {
@@ -98,7 +98,7 @@ export function DataGridColumnHeader(props: DataGridColumnHeaderProps) {
     if (colDef.filter) {
       switch (colDef.filter.type) {
         case 'enum': {
-          return <EnumFilter field={colDef.field} {...colDef.filter} />
+          return <GridEnumFilter field={colDef.field} {...colDef.filter} />
         }
         case 'numeric': {
           return <NumericFilter field={colDef.field} {...colDef.filter} />

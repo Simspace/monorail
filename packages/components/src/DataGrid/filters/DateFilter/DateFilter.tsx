@@ -5,6 +5,7 @@ import {
   EventBusy,
 } from '@mui/icons-material'
 
+import { ClearFilterButton } from '@monorail/components/ClearFilterButton'
 import {
   composeClasses,
   styled,
@@ -18,7 +19,6 @@ import { MenuItem } from '../../../MenuItem.js'
 import type { SelectChangeEvent } from '../../../Select.js'
 import { Select } from '../../../Select.js'
 import { useGridApiContext } from '../../internal.js'
-import { ClearFilterButton } from '../components/ClearFilterButton.js'
 import { FilterContainer } from '../components/FilterContainer.js'
 import { useDebouncedSyncFilter } from '../hooks/useDebouncedSyncFilter.js'
 import { getDateOperators } from './constants.js'

@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import type { ClearFilterButtonProps } from '@monorail/components/ClearFilterButton'
 import type { DatePickerProps } from '@monorail/components/DatePicker'
 import type { IconButtonProps } from '@monorail/components/IconButton'
 import type { SelectProps } from '@monorail/components/Select'
 import type { DataAttributes } from '@monorail/types'
 
 import type { GridValidRowModel } from '../../../internal.js'
-import type { ClearFilterButtonProps } from '../../components/ClearFilterButton.js'
 import type { DateFilterOperator } from './DateFilterOperators.js'
 
 export interface DateFilterDefinition<

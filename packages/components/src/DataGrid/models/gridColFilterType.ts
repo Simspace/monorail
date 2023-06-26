@@ -8,7 +8,7 @@ import type {
 import type {
   EnumFilterDefinition,
   EnumFilterState,
-} from '../filters/EnumFilter.js'
+} from '../filters/GridEnumFilter.js'
 import type {
   NumericFilterDefinition,
   NumericFilterState,

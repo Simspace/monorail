@@ -17,7 +17,7 @@ import { DataGridHeader } from '../components/DataGridHeader.js'
 import { DataGridRow } from '../components/DataGridRow.js'
 import { DataGridRowReorderCell } from '../components/DataGridRowReorderCell.js'
 import { DATE_FILTER_DEFAULT_LOCALE_TEXT } from '../filters/DateFilter.js'
-import { ENUM_FILTER_DEFAULT_LOCALE_TEXT } from '../filters/EnumFilter.js'
+import { ENUM_FILTER_DEFAULT_LOCALE_TEXT } from '../filters/GridEnumFilter.js'
 import { NUMERIC_FILTER_DEFAULT_LOCALE_TEXT } from '../filters/NumericFilter.js'
 import { TEXT_FILTER_DEFAULT_LOCALE_TEXT } from '../filters/TextFilter.js'
 
