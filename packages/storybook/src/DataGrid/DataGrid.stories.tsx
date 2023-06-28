@@ -8,6 +8,7 @@ import {
   DataGrid,
   GridActionsCellItem,
   MenuItem,
+  TextField,
   Typography,
   useGridApiRef,
 } from '@monorail/components'
@@ -117,11 +118,14 @@ interface FilterStoryRow {
   hireDate: Date
 }
 
+interface CustomFilterState {
+  value: string
+}
+
 const filterStoryColumns = createTable<FilterStoryRow>()(
   {
     field: 'id',
     headerName: 'ID',
-    type: 'number',
     filter: { type: 'numeric' },
   },
   {
@@ -191,8 +195,38 @@ const filterStoryColumns = createTable<FilterStoryRow>()(
     sortable: false,
     minWidth: 160,
     valueGetter: params => `${params.row.firstName} ${params.row.lastName}`,
+    filterOperators: [
+      {
+        value: 'my-custom-filter',
+        getApplyFilterFn: filterItem => params => {
+          if (params.value === undefined) {
+            return true
+          }
+          return (params.value as string)
+            .toLocaleLowerCase()
+            .includes(
+              (filterItem.value as { value: string }).value.toLocaleLowerCase(),
+            )
+        },
+      },
+    ],
     filter: {
-      type: 'text',
+      type: 'custom',
+      operator: 'my-custom-filter',
+      renderFilter: params => (
+        <TextField
+          value={(params.state as CustomFilterState).value}
+          onChange={event => {
+            params.setState({ value: event.target.value })
+          }}
+        />
+      ),
+      getIsFiltered: state => {
+        return (state as CustomFilterState).value.length !== 0
+      },
+      getInitialState: () => ({
+        value: '',
+      }),
     },
   },
   {

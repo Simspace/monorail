@@ -11,6 +11,7 @@ import { Menu } from '../../Menu.js'
 import { Popover } from '../../Popover.js'
 import { Stack } from '../../Stack.js'
 import { Typography } from '../../Typography.js'
+import { CustomFilter } from '../filters/CustomFilter.js'
 import { DateFilter } from '../filters/DateFilter.js'
 import { GridEnumFilter } from '../filters/GridEnumFilter.js'
 import { NumericFilter } from '../filters/NumericFilter.js'
@@ -108,6 +109,9 @@ export function DataGridColumnHeader(props: DataGridColumnHeaderProps) {
         }
         case 'text': {
           return <TextFilter field={colDef.field} {...colDef.filter} />
+        }
+        case 'custom': {
+          return <CustomFilter field={colDef.field} {...colDef.filter} />
         }
       }
     }

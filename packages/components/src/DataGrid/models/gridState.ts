@@ -10,6 +10,7 @@ declare module '@mui/x-data-grid-premium/models/gridStatePremium' {
     dateFilter: Map<string, DateFilterState<Date>>
     numericFilter: Map<string, NumericFilterState>
     textFilter: Map<string, TextFilterState>
+    customFilter: Map<string, unknown>
     filterSubscriptions: Map<string, Set<(state: any) => void>>
     viewStyle: 'table' | 'gallery'
     globalSearch: {
