@@ -1,7 +1,8 @@
 import React from 'react'
-import { unstable_debounce } from '@mui/utils'
 import type { GridApi } from '@mui/x-data-grid-premium'
 import { SUBMIT_FILTER_STROKE_TIME } from '@mui/x-data-grid-premium'
+
+import { useDebouncedCallback } from '@monorail/utils'
 
 export function useDebouncedSyncFilter<S>(
   apiRef: React.MutableRefObject<GridApi>,
@@ -11,26 +12,24 @@ export function useDebouncedSyncFilter<S>(
   check: (state: S) => boolean,
   before?: () => void,
 ): () => void {
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  return React.useCallback(
-    unstable_debounce(() => {
-      before?.()
-      if (check(state)) {
-        apiRef.current.upsertFilterItem({
-          id: `${name}-${field}`,
-          field,
-          value: state,
-          operator: name,
-        })
-      } else {
-        apiRef.current.deleteFilterItem({
-          id: `${name}-${field}`,
-          field,
-          value: null,
-          operator: name,
-        })
-      }
-    }, SUBMIT_FILTER_STROKE_TIME),
-    [],
-  )
+  const callback = React.useCallback(() => {
+    before?.()
+    if (check(state)) {
+      apiRef.current.upsertFilterItem({
+        id: `${name}-${field}`,
+        field,
+        value: state,
+        operator: name,
+      })
+    } else {
+      apiRef.current.deleteFilterItem({
+        id: `${name}-${field}`,
+        field,
+        value: null,
+        operator: name,
+      })
+    }
+  }, [apiRef, before, check, field, name, state])
+
+  return useDebouncedCallback(callback, SUBMIT_FILTER_STROKE_TIME)
 }

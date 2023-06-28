@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import type { GridValidRowModel } from '@mui/x-data-grid'
 
+import type { CustomFilterDefinition } from '../filters/CustomFilter.js'
 import type {
   DateFilterDefinition,
   DateFilterState,
@@ -39,6 +40,10 @@ export interface GridColFilterTypeMap<
     state: TextFilterState
     config: Omit<TextFilterDefinition<R, V, F>, 'type'>
   }
+  custom: {
+    state: never
+    config: Omit<CustomFilterDefinition, 'type'>
+  }
 }
 
 export type GridColFilterState<
@@ -75,4 +80,4 @@ export type GridColFilterTypeToDef<R = GridValidRowModel, V = any, F = V> = [
     : never
   : never
 
-export type GridColFilterType = keyof GridColFilterTypeToDef
+export type GridColFilterType = keyof GridColFilterTypeMap

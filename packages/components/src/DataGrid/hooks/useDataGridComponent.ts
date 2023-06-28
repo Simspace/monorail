@@ -27,6 +27,7 @@ export function useDataGridComponent(
   useInitializeGridSubState(apiRef, 'dateFilter', () => new Map())
   useInitializeGridSubState(apiRef, 'enumFilter', () => new Map())
   useInitializeGridSubState(apiRef, 'numericFilter', () => new Map())
+  useInitializeGridSubState(apiRef, 'customFilter', () => new Map())
   useInitializeGridSubState(apiRef, 'filterSubscriptions', () => new Map())
   useInitializeGridSubState(apiRef, 'globalSearch', () => ({
     value: '',
