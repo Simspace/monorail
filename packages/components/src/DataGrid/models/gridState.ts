@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import type { DateFilterState } from '../filters/DateFilter.js'
 import type { EnumFilterState } from '../filters/GridEnumFilter.js'
-import type { NumericFilterState } from '../filters/NumericFilter.js'
+import type { NumericFilterState } from '../filters/GridNumericFilter.js'
 import type { TextFilterState } from '../filters/TextFilter.js'
 
 declare module '@mui/x-data-grid-premium/models/gridStatePremium' {

@@ -14,7 +14,7 @@ import { Typography } from '../../Typography.js'
 import { CustomFilter } from '../filters/CustomFilter.js'
 import { DateFilter } from '../filters/DateFilter.js'
 import { GridEnumFilter } from '../filters/GridEnumFilter.js'
-import { NumericFilter } from '../filters/NumericFilter.js'
+import { GridNumericFilter } from '../filters/GridNumericFilter.js'
 import { TextFilter } from '../filters/TextFilter.js'
 import type {
   GridColDef,
@@ -102,7 +102,7 @@ export function DataGridColumnHeader(props: DataGridColumnHeaderProps) {
           return <GridEnumFilter field={colDef.field} {...colDef.filter} />
         }
         case 'numeric': {
-          return <NumericFilter field={colDef.field} {...colDef.filter} />
+          return <GridNumericFilter field={colDef.field} {...colDef.filter} />
         }
         case 'date': {
           return <DateFilter field={colDef.field} {...colDef.filter} />

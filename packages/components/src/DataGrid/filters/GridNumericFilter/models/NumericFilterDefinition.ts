@@ -2,18 +2,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import type { ClearFilterButtonProps } from '@monorail/components/ClearFilterButton'
 import type { IconButtonProps } from '@monorail/components/IconButton'
+import type { NumericFilterOperator } from '@monorail/components/NumericFilter'
 import type { SelectProps } from '@monorail/components/Select'
 import type { TextFieldProps } from '@monorail/components/TextField'
 import type { DataAttributes } from '@monorail/types'
 
-import type { GridValidRowModel } from '../../../internal.js'
-import type { NumericFilterOperator } from './NumericFilterOperator.js'
-
-export interface NumericFilterDefinition<
-  R extends GridValidRowModel = any,
-  V = any,
-  F = V,
-> {
+export interface NumericFilterDefinition {
   type: 'numeric'
   slotProps?: {
     columnHeaderButton?: Partial<IconButtonProps & DataAttributes>

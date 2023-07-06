@@ -7,7 +7,7 @@ import type {
   TextFieldProps,
   Theme,
 } from '@mui/material'
-import { useThemeProps } from '@mui/material'
+import { useControlled, useThemeProps } from '@mui/material'
 
 import {
   combineSxProps,
@@ -45,18 +45,26 @@ export function EnumFilter<V>(inProps: EnumFilterProps<V>) {
     props: inProps,
   })
 
-  const [width, setWidth] = React.useState(0)
-  const [searchText, setSearchText] = React.useState('')
-  const [selected, setSelected] = React.useState(new Set<V>())
-
   const {
     renderValue,
     values,
     slotProps = {},
     localeText,
     onChange,
+    selected: selectedProp,
+    hideClearSelectionButton,
     stringifyValue = value => String(value),
   } = props
+
+  const [selected, setSelected] = useControlled({
+    controlled: selectedProp,
+    default: new Set(),
+    name: 'MonorailEnumFilter',
+    state: 'selected',
+  })
+
+  const [width, setWidth] = React.useState(0)
+  const [searchText, setSearchText] = React.useState('')
 
   const classes = useUtilityClasses(props)
 
@@ -84,7 +92,7 @@ export function EnumFilter<V>(inProps: EnumFilterProps<V>) {
 
   const handleFilterItemClick = React.useCallback(
     (value: V) => (_event: React.MouseEvent<HTMLDivElement>) => {
-      const newSelected = new Set(selected)
+      const newSelected = new Set(selected as Set<V>)
       if (selected.has(value)) {
         newSelected.delete(value)
         setSelected(newSelected)
@@ -95,14 +103,14 @@ export function EnumFilter<V>(inProps: EnumFilterProps<V>) {
 
       onChange?.(newSelected)
     },
-    [selected, onChange],
+    [selected, setSelected, onChange],
   )
 
   const handleClearFilter = React.useCallback(() => {
     const newSelected = new Set<V>()
     setSelected(newSelected)
     onChange?.(newSelected)
-  }, [onChange])
+  }, [onChange, setSelected])
 
   const searchProps: TextFieldProps = {
     ...slotProps.search,
@@ -172,20 +180,22 @@ export function EnumFilter<V>(inProps: EnumFilterProps<V>) {
           })}
         </List>
       </ScrollShadow>
-      <ClearFilterButton
-        {...slotProps.clearFilterButton}
-        sx={combineSxProps(
-          theme => ({
-            mb: isFiltered ? 0 : -8,
-            padding: theme.spacing(4),
-          }),
-          slotProps.clearFilterButton?.sx,
-        )}
-        isFiltered={isFiltered}
-        onClick={handleClearFilter}
-      >
-        {localeText.clearSelectionButton(selectedSize)}
-      </ClearFilterButton>
+      {hideClearSelectionButton !== true && (
+        <ClearFilterButton
+          {...slotProps.clearFilterButton}
+          sx={combineSxProps(
+            theme => ({
+              mb: isFiltered ? 0 : -8,
+              padding: theme.spacing(4),
+            }),
+            slotProps.clearFilterButton?.sx,
+          )}
+          isFiltered={isFiltered}
+          onClick={handleClearFilter}
+        >
+          {localeText.clearSelectionButton(selectedSize)}
+        </ClearFilterButton>
+      )}
     </EnumFilterRoot>
   )
 }

@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import type { GridFilterOperator } from '../../../internal.js'
+import type { GridFilterOperator } from '@mui/x-data-grid'
+
 import { rangeFilterGetApplyFilterFn } from '../../RangeFilter.js'
 
 export const numericFilterOperator: GridFilterOperator = {

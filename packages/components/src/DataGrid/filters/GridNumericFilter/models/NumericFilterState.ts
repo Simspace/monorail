@@ -1,7 +1,7 @@
-import type { RangeFilterState } from '../../RangeFilter.js'
-import { RangeFilterStateTypeId } from '../../RangeFilter.js'
-import { numericOperators } from '../constants.js'
-import type { NumericFilterOperator } from './NumericFilterOperator.js'
+import type { NumericFilterOperator } from '@monorail/components/NumericFilter'
+import { numericOperators } from '@monorail/components/NumericFilter'
+import { RangeFilterStateTypeId } from '@monorail/components/RangeFilter'
+import type { RangeFilterState } from '@monorail/components/RangeFilter.js'
 
 export interface NumericFilterState
   extends RangeFilterState<NumericFilterOperator, number> {}

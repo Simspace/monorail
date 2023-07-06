@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 
-import type { GridFilterOperator } from '../../../internal.js'
+import type { GridFilterOperator } from '@monorail/components/DataGrid'
+
 import type { RangeFilterState } from '../models.js'
 import { isRangeFilterState } from '../models.js'
 

@@ -10,10 +10,12 @@ import type { EnumFilterLocaleText } from './EnumFilterLocaleText.js'
 
 export interface EnumFilterProps<V = any> {
   classes?: Partial<EnumFilterClasses>
+  selected?: Set<V>
   values: Array<V>
   renderValue?: (value: V) => React.ReactNode
   stringifyValue?: (value: V) => string
   onChange?: (values: Set<V>) => void
+  hideClearSelectionButton?: boolean
   slotProps?: {
     search?: Partial<TextFieldProps & DataAttributes>
     clearFilterButton?: Omit<
