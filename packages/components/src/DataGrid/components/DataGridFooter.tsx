@@ -32,7 +32,6 @@ import {
 export interface DataGridFooterProps extends PaginationProps {
   disablePageSizeSelect?: boolean
   disablePageButtons?: boolean
-  disableSelectionCount?: boolean
   hasNextPage?: boolean
   hasPreviousPage?: boolean
 }
@@ -88,7 +87,6 @@ export function DataGridPaginationFooter(props: DataGridFooterProps) {
   const {
     disablePageSizeSelect,
     disablePageButtons,
-    disableSelectionCount,
     hasNextPage,
     hasPreviousPage,
     ...paginationProps
@@ -144,7 +142,7 @@ export function DataGridPaginationFooter(props: DataGridFooterProps) {
   return (
     <DataGridFooterRoot ownerState={rootProps} className={classes.root}>
       <Box display="flex" flex="1 1 0" alignItems="center">
-        {disableSelectionCount !== true && (
+        {rootProps.hideFooterSelectedRowCount !== true && (
           <Typography variant="body2">
             {apiRef.current.state.rowSelection.length} Selected
           </Typography>
