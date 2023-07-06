@@ -3,6 +3,7 @@ import React from 'react'
 
 import type { DataGridProps } from '@monorail/components'
 import {
+  Autocomplete,
   Button,
   createTable,
   DataGrid,
@@ -340,4 +341,180 @@ export const Filters = story(() => {
 
 function getRandomDate(): Date {
   return new Date(new Date().getTime() - Math.random() * 1e12)
+}
+
+const operatorFilterStoryColumns = createTable<FilterStoryRow>()(
+  {
+    field: 'id',
+    headerName: 'ID',
+    filterOperators: [
+      {
+        label: 'Test',
+        value: 'test',
+        getApplyFilterFn: () => () => true,
+        InputComponent: Autocomplete,
+        InputComponentProps: {
+          options: ['One', 'Two', 'Three'],
+          renderInput: (params: Record<string, unknown>) => (
+            <TextField label="Value" {...params} />
+          ),
+        },
+      },
+    ],
+  },
+  {
+    field: 'firstName',
+    headerName: 'First name',
+    minWidth: 150,
+    renderHeader: ({ colDef }) => (
+      <React.Fragment>
+        <Icons.Person />
+        <Typography variant="body2" lineClamp={1}>
+          {colDef.headerName}
+        </Typography>
+      </React.Fragment>
+    ),
+  },
+  {
+    field: 'lastName',
+    headerName: 'Last name',
+    minWidth: 150,
+    headerActions: ({ closeMenu }) => [
+      <MenuItem
+        key="lastName-action1"
+        onClick={() => {
+          closeMenu()
+        }}
+      >
+        Action 1
+      </MenuItem>,
+      <MenuItem key="lastName-action2">Action 2</MenuItem>,
+      <MenuItem key="lastName-action3">Action 3</MenuItem>,
+    ],
+  },
+  {
+    field: 'occupation',
+    headerName: 'Occupation',
+    type: 'string',
+    valueFormatter: ({ value }) => value.name,
+    minWidth: 110,
+  },
+  {
+    field: 'hireDate',
+    headerName: 'Hire Date',
+    type: 'date',
+    minWidth: 110,
+  },
+  {
+    field: 'fullName',
+    headerName: 'Full name',
+    description: 'This column has a value getter and is not sortable.',
+    sortable: false,
+    minWidth: 160,
+    valueGetter: params => `${params.row.firstName} ${params.row.lastName}`,
+  },
+  {
+    type: 'actions',
+    field: 'actions',
+    getActions: () => [
+      <GridActionsCellItem
+        key={0}
+        showInMenu={false}
+        icon={<Icons.MoreVert />}
+        label="Action"
+      />,
+    ],
+  },
+)
+export const OperatorFilter = () => {
+  const rows: Array<FilterStoryRow> = [
+    {
+      id: 1,
+      lastName: 'Snow',
+      firstName: 'Jon',
+      occupation: { name: 'barista' },
+      hireDate: getRandomDate(),
+    },
+    {
+      id: 2,
+      lastName: 'Lannister',
+      firstName: 'Cersei',
+      occupation: { name: 'barista' },
+      hireDate: getRandomDate(),
+    },
+    {
+      id: 3,
+      lastName: 'Lannister',
+      firstName: 'Jaime',
+      occupation: { name: 'lifeguard' },
+      hireDate: getRandomDate(),
+    },
+    {
+      id: 4,
+      lastName: 'Stark',
+      firstName: 'Arya',
+      occupation: { name: 'waiter' },
+      hireDate: getRandomDate(),
+    },
+    {
+      id: 5,
+      lastName: 'Targaryen',
+      firstName: 'Daenerys',
+      occupation: { name: 'lifeguard' },
+      hireDate: getRandomDate(),
+    },
+    {
+      id: 6,
+      lastName: 'Melisandre',
+      firstName: 'David',
+      occupation: { name: 'barista' },
+      hireDate: getRandomDate(),
+    },
+    {
+      id: 7,
+      lastName: 'Clifford',
+      firstName: 'Ferrara',
+      occupation: { name: 'waiter' },
+      hireDate: getRandomDate(),
+    },
+    {
+      id: 8,
+      lastName: 'Frances',
+      firstName: 'Rossini',
+      occupation: { name: 'waiter' },
+      hireDate: getRandomDate(),
+    },
+    {
+      id: 9,
+      lastName: 'Roxie',
+      firstName: 'Harvey',
+      occupation: { name: 'lifeguard' },
+      hireDate: getRandomDate(),
+    },
+    {
+      id: 10,
+      lastName: 'Smith',
+      firstName: 'John',
+      occupation: { name: 'designer' },
+      hireDate: getRandomDate(),
+    },
+    {
+      id: 11,
+      lastName: 'Doe',
+      firstName: 'Jane',
+      occupation: { name: 'engineer' },
+      hireDate: getRandomDate(),
+    },
+  ]
+
+  return (
+    <div style={{ height: 600, width: '100%' }}>
+      <DataGrid
+        columns={operatorFilterStoryColumns.columns}
+        rows={rows}
+        checkboxSelection
+        filter="operator"
+      />
+    </div>
+  )
 }

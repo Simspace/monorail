@@ -144,5 +144,15 @@ export const MonorailDataGridOverrides: Components<Theme>['MuiDataGrid'] = {
         boxShadow: 'none',
       },
     },
+    panelFooter: ({ theme }) => ({
+      padding: theme.spacing(0, 4, 4, 4),
+    }),
+    filterForm: ({ theme }) => ({
+      padding: theme.spacing(4),
+      gap: theme.spacing(4),
+    }),
+    filterFormDeleteIcon: ({ theme }) => ({
+      marginBottom: theme.spacing(2),
+    }),
   },
 }
