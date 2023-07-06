@@ -20,10 +20,10 @@ import { Typography } from '../../Typography.js'
 import type { GridApi } from '../internal.js'
 import {
   getDataGridUtilityClass,
+  gridExpandedRowCountSelector,
   gridPageCountSelector,
   gridPageSelector,
   gridPageSizeSelector,
-  gridRowCountSelector,
   useGridApiContext,
   useGridRootProps,
   useGridSelector,
@@ -48,7 +48,7 @@ export function DataGridFooter(props: DataGridFooterProps) {
 
 function DataGridSimpleFooter() {
   const apiRef = useGridApiContext()
-  const rowCount = useGridSelector(apiRef, gridRowCountSelector)
+  const rowCount = useGridSelector(apiRef, gridExpandedRowCountSelector)
   return (
     <SelectionFooter
       selectedCount={apiRef.current.state.rowSelection.length}
@@ -211,7 +211,7 @@ export function DataGridPaginationFooter(props: DataGridFooterProps) {
           variant="subtitle2"
           sx={theme => ({ margin: theme.spacing(2, 0, 2, 2) })}
         >
-          {firstRow} - {lastRow} of {gridRowCountSelector(apiRef)}
+          {firstRow} - {lastRow} of {gridExpandedRowCountSelector(apiRef)}
         </Typography>
       </Stack>
     </DataGridFooterRoot>
@@ -225,7 +225,7 @@ function getPageRange(apiRef: React.MutableRefObject<GridApi>): {
   const firstRow = gridPageSelector(apiRef) * gridPageSizeSelector(apiRef)
   const lastRow = Math.min(
     firstRow + gridPageSizeSelector(apiRef),
-    gridRowCountSelector(apiRef),
+    gridExpandedRowCountSelector(apiRef),
   )
   return { firstRow: firstRow + 1, lastRow }
 }

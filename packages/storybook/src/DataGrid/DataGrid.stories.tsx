@@ -328,6 +328,7 @@ export const Filters = story(() => {
   return (
     <div style={{ height: 600, width: '100%' }}>
       <DataGrid
+        pagination
         apiRef={apiRef}
         columns={filterStoryColumns.columns}
         rows={rows}
