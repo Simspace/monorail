@@ -4,6 +4,7 @@ import React from 'react'
 import { useThemeProps } from '@mui/material'
 
 import { EnumFilter } from '@monorail/components/EnumFilter'
+import { useForceUpdate } from '@monorail/utils'
 
 import { useGridApiContext } from '../../internal.js'
 import { useDebouncedSyncFilter } from '../hooks/useDebouncedSyncFilter.js'
@@ -26,6 +27,7 @@ export function GridEnumFilter(inProps: GridEnumFilterProps) {
   } = props
 
   const apiRef = useGridApiContext()
+  const forceUpdate = useForceUpdate()
   useInitializeEnumFilterState({ field, compare, external })
 
   const state = apiRef.current.state.enumFilter.get(field)!
@@ -48,13 +50,15 @@ export function GridEnumFilter(inProps: GridEnumFilterProps) {
   const handleChange = React.useCallback(
     (values: Set<any>) => {
       state.selected = values
+      forceUpdate()
       syncFilter()
     },
-    [state, syncFilter],
+    [state, syncFilter, forceUpdate],
   )
 
   return (
     <EnumFilter
+      selected={state.selected}
       values={values}
       renderValue={renderValue}
       onChange={handleChange}

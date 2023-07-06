@@ -9,6 +9,8 @@ import type {
 import { useDataGridPremiumProps } from '@mui/x-data-grid-premium/DataGridPremium/useDataGridPremiumProps'
 import type { DataGridPremiumProcessedProps } from '@mui/x-data-grid-premium/models/dataGridPremiumProps'
 
+import { NUMERIC_FILTER_DEFAULT_LOCALE_TEXT } from '@monorail/components/NumericFilter'
+
 import { DataGridCell } from '../components/DataGridCell.js'
 import { DataGridColumnHeader } from '../components/DataGridColumnHeader.js'
 import { DataGridColumnSeparator } from '../components/DataGridColumnSeparator.js'
@@ -18,7 +20,6 @@ import { DataGridRow } from '../components/DataGridRow.js'
 import { DataGridRowReorderCell } from '../components/DataGridRowReorderCell.js'
 import { DATE_FILTER_DEFAULT_LOCALE_TEXT } from '../filters/DateFilter.js'
 import { ENUM_FILTER_DEFAULT_LOCALE_TEXT } from '../filters/GridEnumFilter.js'
-import { NUMERIC_FILTER_DEFAULT_LOCALE_TEXT } from '../filters/NumericFilter.js'
 import { TEXT_FILTER_DEFAULT_LOCALE_TEXT } from '../filters/TextFilter.js'
 
 export function useDataGridProps<R extends GridValidRowModel>(

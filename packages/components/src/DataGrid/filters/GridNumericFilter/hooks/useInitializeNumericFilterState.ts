@@ -1,8 +1,9 @@
 import React from 'react'
 
+import { numericFilterOperator } from '@monorail/components/NumericFilter'
+
 import type { GridApi } from '../../../internal.js'
 import { gridColumnLookupSelector } from '../../../internal.js'
-import { numericFilterOperator } from '../constants/numericFilterOperator.js'
 import { getNumericFilterInitialState } from '../models.js'
 
 export function useInitializeNumericFilterState(

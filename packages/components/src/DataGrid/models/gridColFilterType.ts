@@ -13,7 +13,7 @@ import type {
 import type {
   NumericFilterDefinition,
   NumericFilterState,
-} from '../filters/NumericFilter.js'
+} from '../filters/GridNumericFilter.js'
 import type {
   TextFilterDefinition,
   TextFilterState,
