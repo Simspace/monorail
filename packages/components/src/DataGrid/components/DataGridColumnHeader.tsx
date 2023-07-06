@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/strict-boolean-expressions */
 import React from 'react'
 import MoreVert from '@mui/icons-material/MoreVert'
 import Sort from '@mui/icons-material/Sort'
@@ -26,6 +27,7 @@ import type {
 import {
   gridSortColumnLookupSelector,
   useGridApiContext,
+  useGridRootProps,
   useGridSelector,
 } from '../internal.js'
 
@@ -35,6 +37,7 @@ interface DataGridColumnHeaderProps extends GridColumnHeaderParams {
 
 export function DataGridColumnHeader(props: DataGridColumnHeaderProps) {
   const { field, colDef } = props
+  const rootProps = useGridRootProps()
   const apiRef = useGridApiContext()
   const [actionsAnchorEl, setActionsAnchorEl] =
     React.useState<HTMLButtonElement | null>(null)
@@ -67,6 +70,14 @@ export function DataGridColumnHeader(props: DataGridColumnHeaderProps) {
     [],
   )
 
+  const handleOperatorFilterButtonClick = React.useCallback(
+    (event: React.MouseEvent<HTMLButtonElement>) => {
+      event.stopPropagation()
+      apiRef.current.showFilterPanel(field)
+    },
+    [apiRef, field],
+  )
+
   const handleFilterPopoverClose = React.useCallback(() => {
     setFilterAnchorEl(null)
   }, [])
@@ -96,7 +107,7 @@ export function DataGridColumnHeader(props: DataGridColumnHeaderProps) {
   )
 
   const filter = React.useMemo(() => {
-    if (colDef.filter) {
+    if (colDef.filter && rootProps.filter === 'column') {
       switch (colDef.filter.type) {
         case 'enum': {
           return <GridEnumFilter field={colDef.field} {...colDef.filter} />
@@ -115,7 +126,7 @@ export function DataGridColumnHeader(props: DataGridColumnHeaderProps) {
         }
       }
     }
-  }, [colDef])
+  }, [colDef, rootProps.filter])
 
   const headerActions = React.useMemo(() => {
     // eslint-disable-next-line eqeqeq
@@ -143,6 +154,20 @@ export function DataGridColumnHeader(props: DataGridColumnHeaderProps) {
         colDef={colDef}
         originalColDef={originalColDef}
       />
+      {colDef.filterable && rootProps.filter === 'operator' && (
+        <IconButton
+          aria-label="filter"
+          color="default"
+          variant="chromeless"
+          size="small"
+          tabIndex={-1}
+          onClick={handleOperatorFilterButtonClick}
+        >
+          <Badge color="primary" variant="dot" invisible={!isFiltered}>
+            <Filter />
+          </Badge>
+        </IconButton>
+      )}
       {colDef.filter !== undefined && (
         <>
           <IconButton

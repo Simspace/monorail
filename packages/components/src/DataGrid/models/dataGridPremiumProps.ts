@@ -87,6 +87,10 @@ declare module '@mui/x-data-grid-premium/models/dataGridPremiumProps' {
      * @default false
      */
     updateRowWhenReparented?: boolean
+    /**
+     * @default column
+     */
+    filter?: 'column' | 'operator'
   }
 
   interface DataGridPremiumPropsWithDefaultValue<
@@ -141,6 +145,10 @@ declare module '@mui/x-data-grid-premium/models/dataGridPremiumProps' {
      * @default false
      */
     updateRowWhenReparented?: boolean
+    /**
+     * @default column
+     */
+    filter: 'column' | 'operator'
   }
 }
 

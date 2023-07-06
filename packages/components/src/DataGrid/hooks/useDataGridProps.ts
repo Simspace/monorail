@@ -10,6 +10,7 @@ import { useDataGridPremiumProps } from '@mui/x-data-grid-premium/DataGridPremiu
 import type { DataGridPremiumProcessedProps } from '@mui/x-data-grid-premium/models/dataGridPremiumProps'
 
 import { NUMERIC_FILTER_DEFAULT_LOCALE_TEXT } from '@monorail/components/NumericFilter'
+import { useTheme } from '@monorail/utils'
 
 import { DataGridCell } from '../components/DataGridCell.js'
 import { DataGridColumnHeader } from '../components/DataGridColumnHeader.js'
@@ -25,7 +26,9 @@ import { TEXT_FILTER_DEFAULT_LOCALE_TEXT } from '../filters/TextFilter.js'
 export function useDataGridProps<R extends GridValidRowModel>(
   initProps: DataGridPremiumProps<R>,
 ): DataGridPremiumProcessedProps {
-  const { localeText, slots, columns, groupingColDef } = initProps
+  const { localeText, slots, slotProps, columns, groupingColDef } = initProps
+
+  const theme = useTheme()
 
   const localeTextProp = React.useMemo(
     () => ({
@@ -48,6 +51,25 @@ export function useDataGridProps<R extends GridValidRowModel>(
       ...slots,
     }),
     [slots],
+  )
+
+  const slotPropsProp = React.useMemo<DataGridPremiumProps['slotProps']>(
+    () => ({
+      ...slotProps,
+      baseSelect: {
+        native: false,
+        variant: 'outlined',
+        ...theme.components?.MuiSelect?.defaultProps,
+        ...slotProps?.baseSelect,
+      },
+      baseTextField: {
+        variant: 'outlined',
+        InputProps: theme.components?.MuiOutlinedInput?.defaultProps,
+        ...theme.components?.MuiTextField?.defaultProps,
+        ...slotProps?.baseTextField,
+      },
+    }),
+    [slotProps, theme],
   )
 
   const processedColumns: Array<GridColDef> = React.useMemo(
@@ -101,7 +123,9 @@ export function useDataGridProps<R extends GridValidRowModel>(
     columns: processedColumns,
     localeText: localeTextProp,
     slots: slotsProp,
+    slotProps: slotPropsProp,
     groupingColDef: groupingColDefProp,
     viewStyle: initProps.viewStyle ?? 'table',
+    filter: initProps.filter ?? 'column',
   })
 }
