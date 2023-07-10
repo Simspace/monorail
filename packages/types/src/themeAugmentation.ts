@@ -77,6 +77,8 @@ declare module '@mui/material/styles/createPalette' {
 
     /** Color token for `Rating` when filled */
     rating: string
+    /** Commonly used for outlined input fields */
+    outlinedBorder: string
     /** Background color for the `Tooltip` component */
     tooltip: string
     /** Background color for Backdrop component. */
@@ -120,6 +122,8 @@ declare module '@mui/material/styles/createPalette' {
 
     /** Color token for `Rating` when filled */
     rating?: string
+    /** Commonly used for outlined input fields */
+    outlinedBorder: string
     /** Background color for the `Tooltip` component */
     tooltip?: string
     /** Background color for Backdrop component. */

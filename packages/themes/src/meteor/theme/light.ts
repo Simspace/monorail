@@ -17,17 +17,17 @@ import { getThemeComponents } from './themeComponents.js'
 export enum RawColor {
   Transparent = 'transparent',
   White = '#FFFFFF',
-  Black = '#000000',
+  Black = '#181621',
 
-  Grey050 = '#EAEAEB',
-  Grey100 = '#D2D2D6',
-  Grey200 = '#B8B8BE',
-  Grey300 = '#96979F',
-  Grey400 = '#757681',
-  Grey500 = '#565865',
-  Grey600 = '#393A4A',
-  Grey700 = '#2B2B3B',
-  Grey800 = '#181621',
+  Grey100 = '#E5E5E6',
+  Grey200 = '#D2D2D5',
+  Grey300 = '#B8B8BE',
+  Grey400 = '#96979F',
+  Grey500 = '#757681',
+  Grey600 = '#565865',
+  Grey700 = '#393A4A',
+  Grey800 = '#2B2B3B',
+  Grey900 = '#181621',
   GreyA300 = '#B8B8BE',
   GreyA700 = '#565865',
   GreyA900 = '#181621',
@@ -78,7 +78,7 @@ export enum RawColor {
   Yellow400 = '#FFE29C',
   Yellow500 = '#FFD570',
   Yellow600 = '#FFC53C',
-  Yellow700 = '#B88D28',
+  Yellow700 = '#AF841D',
   Yellow800 = '#614A15',
   Yellow900 = '#342400',
 
@@ -219,7 +219,6 @@ const palette: PaletteOptions = {
     },
 
     shades: {
-      50: RawColor.Grey050,
       100: RawColor.Grey100,
       200: RawColor.Grey200,
       300: RawColor.Grey300,
@@ -228,6 +227,7 @@ const palette: PaletteOptions = {
       600: RawColor.Grey600,
       700: RawColor.Grey700,
       800: RawColor.Grey800,
+      900: RawColor.Grey900,
     },
   },
   secondary: {
@@ -265,7 +265,6 @@ const palette: PaletteOptions = {
     },
 
     shades: {
-      50: RawColor.Grey050,
       100: RawColor.Grey100,
       200: RawColor.Grey200,
       300: RawColor.Grey300,
@@ -274,6 +273,7 @@ const palette: PaletteOptions = {
       600: RawColor.Grey600,
       700: RawColor.Grey700,
       800: RawColor.Grey800,
+      900: RawColor.Grey900,
     },
   },
   success: {
@@ -438,7 +438,6 @@ const palette: PaletteOptions = {
     disabled: RawColor.Grey400,
   },
   grey: {
-    50: RawColor.Grey050,
     100: RawColor.Grey100,
     200: RawColor.Grey200,
     300: RawColor.Grey300,
@@ -446,19 +445,21 @@ const palette: PaletteOptions = {
     500: RawColor.Grey500,
     600: RawColor.Grey600,
     700: RawColor.Grey700,
+    800: RawColor.Grey800,
+    900: RawColor.Grey900,
   },
-  divider: RawColor.Grey100,
+  divider: RawColor.Grey200,
+  outlinedBorder: RawColor.Grey200,
   rating: RawColor.Yellow600,
   tooltip: RawColor.Grey500,
   backdropOverlay: alpha(RawColor.Grey600, 0.7),
   background: {
-    default: RawColor.Grey050,
+    default: RawColor.Grey100,
     paper: RawColor.White,
   },
   action: action,
   chart: DefaultLightChartColors,
 }
-
 // Construct a Theme with the base settings plus our customizations, but without the components overrides provided yet.
 // We're doing this so we have all the base theme settings populated for doing the component-level overrides. We want
 // a Theme here, rather than ThemeOptions because we want all the values to be non-optional and filled-in for the
