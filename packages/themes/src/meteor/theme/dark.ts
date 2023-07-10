@@ -17,30 +17,27 @@ import { getThemeComponents } from './themeComponents.js'
 export enum RawColor {
   Transparent = 'transparent',
   White = '#FFFFFF',
-  Black = '#000000',
-  Paper = '#141414',
+  Black = '#0D0F13',
 
-  Grey050 = '#2E2E35',
-  Grey100 = '#525260',
-  Grey200 = '#616173',
-  Grey300 = '#77778C',
-  Grey400 = '#9797A4',
-  Grey500 = '#ADADB7',
-  Grey600 = '#C1C1C9',
-  Grey700 = '#D3D3D8',
-  Grey800 = '#E2E2E4',
-  Grey900 = '#F3F3F3',
+  Grey100 = '#FFFFFF',
+  Grey200 = '#E3E5E7',
+  Grey300 = '#CCD0D6',
+  Grey400 = '#ABB1BA',
+  Grey500 = '#8A9099',
+  Grey600 = '#5B626B',
+  Grey700 = '#42474F',
+  Grey800 = '#2B2E34',
+  Grey900 = '#181A20',
 
-  Blue050 = '#0F3050',
-  Blue100 = '#205480',
-  Blue200 = '#2A659E',
-  Blue300 = '#377CBE',
-  Blue400 = '#499CEC',
-  Blue500 = '#7FB0F1',
-  Blue600 = '#A4C4F4',
-  Blue700 = '#C1D4F6',
-  Blue800 = '#D6E3F9',
-  Blue900 = '#EEF3FC',
+  Blue100 = '#FFFFFF',
+  Blue200 = '#D0E4FB',
+  Blue300 = '#9FCBFE',
+  Blue400 = '#5696D7',
+  Blue500 = '#2B6BAB',
+  Blue600 = '#23578B',
+  Blue700 = '#22426D',
+  Blue800 = '#223E62',
+  Blue900 = '#1C304A',
 
   Orange050 = '#591808',
   Orange100 = '#913015',
@@ -53,38 +50,35 @@ export enum RawColor {
   Orange800 = '#FFDAD1',
   Orange900 = '#FFF0EB',
 
-  Yellow050 = '#4A2404',
-  Yellow100 = '#7B440F',
-  Yellow200 = '#8F5315',
-  Yellow300 = '#AB691F',
-  Yellow400 = '#D3872C',
-  Yellow500 = '#EC9D37',
-  Yellow600 = '#F9B464',
-  Yellow700 = '#FBCA99',
-  Yellow800 = '#FCDDBE',
-  Yellow900 = '#FDF1E5',
+  Yellow100 = '#FFFFFF',
+  Yellow200 = '#FDE6AF',
+  Yellow300 = '#FFDB84',
+  Yellow400 = '#F5BB29',
+  Yellow500 = '#CC9814',
+  Yellow600 = '#7E6007',
+  Yellow700 = '#614A05',
+  Yellow800 = '#3F3005',
+  Yellow900 = '#13110D',
 
-  Green050 = '#043712',
-  Green100 = '#0E5D28',
-  Green200 = '#157135',
-  Green300 = '#1F8A47',
-  Green400 = '#2DAD60',
-  Green500 = '#38C573',
-  Green600 = '#43DC86',
-  Green700 = '#4EEE99',
-  Green800 = '#73FCAF',
-  Green900 = '#D0FDE1',
+  Green100 = '#FFFFFF',
+  Green200 = '#DEF1DA',
+  Green300 = '#A8CCA3',
+  Green400 = '#76B06D',
+  Green500 = '#40773C',
+  Green600 = '#385936',
+  Green700 = '#284125',
+  Green800 = '#263923',
+  Green900 = '#233021',
 
-  Red050 = '#5C1404',
-  Red100 = '#9F1B0E',
-  Red200 = '#BE2416',
-  Red300 = '#E43220',
-  Red400 = '#F86A65',
-  Red500 = '#F89091',
-  Red600 = '#F9AFB0',
-  Red700 = '#FAC7C8',
-  Red800 = '#FBDADC',
-  Red900 = '#FDF0F0',
+  Red100 = '#FFFFFF',
+  Red200 = '#FFD6DD',
+  Red300 = '#FFADBB',
+  Red400 = '#D2324C',
+  Red500 = '#A7112F',
+  Red600 = '#7E162B',
+  Red700 = '#61242E',
+  Red800 = '#521E27',
+  Red900 = '#421A20',
 
   Purple050 = '#460976',
   Purple100 = '#7318C1',
@@ -144,7 +138,6 @@ export enum RawColor {
 
 export const DefaultLightChartColors = {
   blue: {
-    50: RawColor.Blue050,
     100: RawColor.Blue100,
     200: RawColor.Blue200,
     300: RawColor.Blue300,
@@ -280,9 +273,9 @@ const palette: PaletteOptions = {
     },
   },
   secondary: {
-    light: RawColor.Orange300,
-    main: RawColor.Orange500,
-    dark: RawColor.Orange700,
+    light: RawColor.Orange400,
+    main: RawColor.Orange600,
+    dark: RawColor.Orange800,
   },
   default: {
     light: RawColor.Grey400,
@@ -293,7 +286,7 @@ const palette: PaletteOptions = {
     active: RawColor.Grey800,
 
     lowEmphasis: {
-      light: RawColor.Grey050,
+      light: RawColor.Grey100,
       main: RawColor.Grey100,
       dark: RawColor.Grey300,
       contrastText: RawColor.Grey600,
@@ -313,7 +306,6 @@ const palette: PaletteOptions = {
     },
 
     shades: {
-      50: RawColor.Grey050,
       100: RawColor.Grey100,
       200: RawColor.Grey200,
       300: RawColor.Grey300,
@@ -322,6 +314,7 @@ const palette: PaletteOptions = {
       600: RawColor.Grey600,
       700: RawColor.Grey700,
       800: RawColor.Grey800,
+      900: RawColor.Grey900,
     },
   },
   success: {
@@ -332,7 +325,7 @@ const palette: PaletteOptions = {
     active: RawColor.Green800,
 
     lowEmphasis: {
-      light: RawColor.Green050,
+      light: RawColor.Green100,
       main: RawColor.Green100,
       dark: RawColor.Green300,
       contrastText: RawColor.Green600,
@@ -352,7 +345,6 @@ const palette: PaletteOptions = {
     },
 
     shades: {
-      50: RawColor.Green050,
       100: RawColor.Green100,
       200: RawColor.Green200,
       300: RawColor.Green300,
@@ -361,6 +353,7 @@ const palette: PaletteOptions = {
       600: RawColor.Green600,
       700: RawColor.Green700,
       800: RawColor.Green800,
+      900: RawColor.Green900,
     },
   },
   error: {
@@ -371,7 +364,7 @@ const palette: PaletteOptions = {
     active: RawColor.Red800,
 
     lowEmphasis: {
-      light: RawColor.Red050,
+      light: RawColor.Red100,
       main: RawColor.Red100,
       dark: RawColor.Red300,
       contrastText: RawColor.Red600,
@@ -391,7 +384,6 @@ const palette: PaletteOptions = {
     },
 
     shades: {
-      50: RawColor.Red050,
       100: RawColor.Red100,
       200: RawColor.Red200,
       300: RawColor.Red300,
@@ -400,6 +392,7 @@ const palette: PaletteOptions = {
       600: RawColor.Red600,
       700: RawColor.Red700,
       800: RawColor.Red800,
+      900: RawColor.Red900,
     },
   },
   warning: {
@@ -410,7 +403,7 @@ const palette: PaletteOptions = {
     active: RawColor.Yellow800,
 
     lowEmphasis: {
-      light: RawColor.Yellow050,
+      light: RawColor.Yellow100,
       main: RawColor.Yellow100,
       dark: RawColor.Yellow300,
       contrastText: RawColor.Yellow600,
@@ -430,7 +423,6 @@ const palette: PaletteOptions = {
     },
 
     shades: {
-      50: RawColor.Yellow050,
       100: RawColor.Yellow100,
       200: RawColor.Yellow200,
       300: RawColor.Yellow300,
@@ -439,6 +431,7 @@ const palette: PaletteOptions = {
       600: RawColor.Yellow600,
       700: RawColor.Yellow700,
       800: RawColor.Yellow800,
+      900: RawColor.Yellow900,
     },
   },
   info: {
@@ -449,7 +442,7 @@ const palette: PaletteOptions = {
     active: RawColor.Blue800,
 
     lowEmphasis: {
-      light: RawColor.Blue050,
+      light: RawColor.Blue100,
       main: RawColor.Blue100,
       dark: RawColor.Blue300,
       contrastText: RawColor.Blue600,
@@ -469,7 +462,6 @@ const palette: PaletteOptions = {
     },
 
     shades: {
-      50: RawColor.Blue050,
       100: RawColor.Blue100,
       200: RawColor.Blue200,
       300: RawColor.Blue300,
@@ -478,6 +470,7 @@ const palette: PaletteOptions = {
       600: RawColor.Blue600,
       700: RawColor.Blue700,
       800: RawColor.Blue800,
+      900: RawColor.Blue900,
     },
   },
   text: {
@@ -486,7 +479,6 @@ const palette: PaletteOptions = {
     disabled: RawColor.Grey400,
   },
   grey: {
-    50: RawColor.Grey050,
     100: RawColor.Grey100,
     200: RawColor.Grey200,
     300: RawColor.Grey300,
@@ -497,13 +489,14 @@ const palette: PaletteOptions = {
     800: RawColor.Grey800,
     900: RawColor.Grey900,
   },
-  divider: RawColor.Grey100,
+  divider: RawColor.Grey200,
+  outlinedBorder: RawColor.Grey200,
   rating: RawColor.Yellow600,
   tooltip: RawColor.Grey300,
   backdropOverlay: `rgba(${RawColor.Grey800}, 0.7)`,
   background: {
-    default: RawColor.Grey050,
-    paper: RawColor.Paper,
+    default: RawColor.Grey100,
+    paper: RawColor.Black,
   },
   action: action,
   chart: DefaultLightChartColors,
