@@ -97,7 +97,7 @@ export function DataGridToolbar(props: DataGridToolbarProps) {
   return (
     <DataGridToolbarRoot ownerState={rootProps} className={classes.root}>
       {disableSortBy !== true && (
-        <>
+        <Box display="flex" alignItems="baseline" gap={2}>
           <Typography lineClamp={1} variant="subtitle1">
             Sort By
           </Typography>
@@ -142,7 +142,7 @@ export function DataGridToolbar(props: DataGridToolbarProps) {
               return null
             })}
           </Select>
-        </>
+        </Box>
       )}
       <Box flex="1 1 0">{children}</Box>
       {disableSearch !== true && (
