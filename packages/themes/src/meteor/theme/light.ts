@@ -191,26 +191,26 @@ const palette: PaletteOptions = {
     black: RawColor.Black,
   },
   primary: {
-    light: RawColor.Grey500,
-    main: RawColor.Grey600,
-    dark: RawColor.Grey800,
+    light: RawColor.Grey600,
+    main: RawColor.Grey700,
+    dark: RawColor.Grey900,
     contrastText: RawColor.White,
-    hover: RawColor.Grey700,
-    active: RawColor.Grey800,
+    hover: RawColor.Grey800,
+    active: RawColor.Grey900,
 
     lowEmphasis: {
-      light: RawColor.Grey100,
-      main: RawColor.Grey200,
-      dark: RawColor.Grey300,
-      contrastText: RawColor.Grey500,
-      hover: RawColor.Grey100,
-      active: RawColor.Grey200,
+      light: RawColor.Grey200,
+      main: RawColor.Grey300,
+      dark: RawColor.Grey400,
+      contrastText: RawColor.Grey600,
+      hover: RawColor.Grey400,
+      active: RawColor.Grey500,
     },
 
     border: {
-      light: RawColor.Grey300,
-      main: RawColor.Grey600,
-      dark: RawColor.Grey800,
+      light: RawColor.Grey400,
+      main: RawColor.Grey700,
+      dark: RawColor.Grey900,
     },
 
     focusRing: {
@@ -237,26 +237,26 @@ const palette: PaletteOptions = {
     contrastText: RawColor.White,
   },
   default: {
-    light: RawColor.Grey500,
-    main: RawColor.Grey600,
-    dark: RawColor.Grey800,
+    light: RawColor.Grey600,
+    main: RawColor.Grey700,
+    dark: RawColor.Grey900,
     contrastText: RawColor.White,
-    hover: RawColor.Grey700,
-    active: RawColor.Grey800,
+    hover: RawColor.Grey800,
+    active: RawColor.Grey900,
 
     lowEmphasis: {
-      light: RawColor.Grey100,
-      main: RawColor.Grey200,
-      dark: RawColor.Grey300,
-      contrastText: RawColor.Grey500,
-      hover: RawColor.Grey100,
-      active: RawColor.Grey200,
+      light: RawColor.Grey200,
+      main: RawColor.Grey300,
+      dark: RawColor.Grey400,
+      contrastText: RawColor.Grey600,
+      hover: RawColor.Grey400,
+      active: RawColor.Grey500,
     },
 
     border: {
-      light: RawColor.Grey300,
-      main: RawColor.Grey600,
-      dark: RawColor.Grey800,
+      light: RawColor.Grey400,
+      main: RawColor.Grey700,
+      dark: RawColor.Grey900,
     },
 
     focusRing: {
@@ -289,8 +289,8 @@ const palette: PaletteOptions = {
       main: RawColor.Green300,
       dark: RawColor.Green400,
       contrastText: RawColor.Green600,
-      hover: RawColor.Green200,
-      active: RawColor.Green300,
+      hover: RawColor.Green400,
+      active: RawColor.Green500,
     },
 
     border: {
@@ -328,8 +328,8 @@ const palette: PaletteOptions = {
       main: RawColor.Red300,
       dark: RawColor.Red400,
       contrastText: RawColor.Red600,
-      hover: RawColor.Red200,
-      active: RawColor.Red300,
+      hover: RawColor.Red400,
+      active: RawColor.Red500,
     },
 
     border: {
@@ -367,8 +367,8 @@ const palette: PaletteOptions = {
       main: RawColor.Yellow300,
       dark: RawColor.Yellow400,
       contrastText: RawColor.Yellow700,
-      hover: RawColor.Yellow200,
-      active: RawColor.Yellow300,
+      hover: RawColor.Yellow400,
+      active: RawColor.Yellow500,
     },
 
     border: {
@@ -394,7 +394,7 @@ const palette: PaletteOptions = {
     },
   },
   info: {
-    light: RawColor.Blue500,
+    light: RawColor.Blue600,
     main: RawColor.Blue700,
     dark: RawColor.Blue800,
     contrastText: RawColor.White,
@@ -406,8 +406,8 @@ const palette: PaletteOptions = {
       main: RawColor.Blue300,
       dark: RawColor.Blue400,
       contrastText: RawColor.Blue600,
-      hover: RawColor.Blue200,
-      active: RawColor.Blue300,
+      hover: RawColor.Blue400,
+      active: RawColor.Blue500,
     },
 
     border: {
@@ -433,9 +433,9 @@ const palette: PaletteOptions = {
     },
   },
   text: {
-    primary: RawColor.Grey700,
-    secondary: RawColor.Grey500,
-    disabled: RawColor.Grey400,
+    primary: RawColor.Grey900,
+    secondary: RawColor.Grey600,
+    disabled: RawColor.Grey500,
   },
   grey: {
     100: RawColor.Grey100,
@@ -451,8 +451,9 @@ const palette: PaletteOptions = {
   divider: RawColor.Grey200,
   outlinedBorder: RawColor.Grey200,
   rating: RawColor.Yellow600,
-  tooltip: RawColor.Grey500,
-  backdropOverlay: alpha(RawColor.Grey600, 0.7),
+  tooltip: RawColor.Grey600,
+  snackbar: RawColor.Grey700,
+  backdropOverlay: alpha(RawColor.Grey700, 0.7),
   background: {
     default: RawColor.Grey100,
     paper: RawColor.White,

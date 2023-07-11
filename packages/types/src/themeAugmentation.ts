@@ -81,7 +81,9 @@ declare module '@mui/material/styles/createPalette' {
     outlinedBorder: string
     /** Background color for the `Tooltip` component */
     tooltip: string
-    /** Background color for Backdrop component. */
+    /** Background color for the `Snackbar` component if no children are provided */
+    snackbar: string
+    /** Background color for Backdrop component (AKA "scrim"). */
     backdropOverlay: string
   }
 
@@ -123,10 +125,12 @@ declare module '@mui/material/styles/createPalette' {
     /** Color token for `Rating` when filled */
     rating?: string
     /** Commonly used for outlined input fields */
-    outlinedBorder: string
+    outlinedBorder?: string
     /** Background color for the `Tooltip` component */
     tooltip?: string
-    /** Background color for Backdrop component. */
+    /** Background color for the `Snackbar` component if no children are provided */
+    snackbar?: string
+    /** Background color for Backdrop component (AKA "scrim"). */
     backdropOverlay?: string
   }
 
