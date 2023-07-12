@@ -155,10 +155,10 @@ export const chartColors = {
 }
 
 enum Opacities {
-  Hover = 0.04,
+  Hover = 0.08,
   Focus = 0.12,
   Selected = 0.08,
-  Active = 0.12,
+  Active = 0.16,
   Disabled = 0.4,
 }
 
@@ -457,7 +457,7 @@ const palette: PaletteOptions = {
   snackbar: RawColor.Grey300,
   rating: RawColor.Yellow400,
   tooltip: RawColor.Grey700,
-  backdropOverlay: `rgba(${RawColor.Grey300}, 0.7)`,
+  backdropOverlay: alpha(RawColor.Grey300, 0.7),
   background: {
     default: RawColor.Black,
     paper: RawColor.Grey900,
