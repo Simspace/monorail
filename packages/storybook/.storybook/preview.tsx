@@ -40,15 +40,7 @@ export const parameters: Parameters = {
         'Theme',
         [
           'Palette',
-          [
-            'Semantic Colors',
-            'Foundation',
-            'Action',
-            'Utility',
-            'Charts',
-            'Score',
-            'Tiers',
-          ],
+          ['Semantic Colors', 'Foundation', 'Action', 'Other', 'Charts'],
           'Typography',
           ['Guidelines', 'Fonts', 'Components'],
           'Layout',

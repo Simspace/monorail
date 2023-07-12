@@ -28,14 +28,14 @@ export const Foundation = () => {
       description:
         'Elements that should remain white no matter what theme is used. Example: White text on a blue button.',
       colorValue: theme.palette.common.white,
-      figmaStyle: 'Common/White',
+      figmaStyle: 'common/white',
     },
     {
       token: '.black',
       description:
         'Elements that should remain black no matter what theme is used. Example: Black text on a yellow button.',
       colorValue: theme.palette.common.black,
-      figmaStyle: 'Common/Black',
+      figmaStyle: 'common/black',
     },
   ]
 
@@ -44,19 +44,19 @@ export const Foundation = () => {
       token: '.primary',
       description: 'Use for most texts. Headings, paragraphs, labels.',
       colorValue: theme.palette.text.primary,
-      figmaStyle: 'Text/Primary',
+      figmaStyle: 'text/primary',
     },
     {
       token: '.secondary',
       description: '',
       colorValue: theme.palette.text.secondary,
-      figmaStyle: 'Text/Secondary',
+      figmaStyle: 'text/secondary',
     },
     {
       token: '.disabled',
       description: '',
       colorValue: theme.palette.text.disabled,
-      figmaStyle: 'Text/Disabled',
+      figmaStyle: 'text/disabled',
     },
   ]
 
@@ -64,14 +64,14 @@ export const Foundation = () => {
     {
       token: '.default',
       colorValue: theme.palette.background.default,
-      figmaStyle: 'Background/Default',
+      figmaStyle: 'other/background',
     },
     {
       token: '.paper',
       colorValue: theme.palette.background.paper,
       description:
         'Commonly used on surfaces. As a rule of thumb, if the background should turn from light to dark when switching from light to dark mode, use background.paper.',
-      figmaStyle: 'Background/Default',
+      figmaStyle: 'other/paper',
     },
   ]
 
