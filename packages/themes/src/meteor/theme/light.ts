@@ -203,8 +203,8 @@ const palette: PaletteOptions = {
       main: RawColor.Grey300,
       dark: RawColor.Grey400,
       contrastText: RawColor.Grey600,
-      hover: RawColor.Grey400,
-      active: RawColor.Grey500,
+      hover: RawColor.Grey200,
+      active: RawColor.Grey300,
     },
 
     border: {
@@ -249,8 +249,8 @@ const palette: PaletteOptions = {
       main: RawColor.Grey300,
       dark: RawColor.Grey400,
       contrastText: RawColor.Grey600,
-      hover: RawColor.Grey400,
-      active: RawColor.Grey500,
+      hover: RawColor.Grey200,
+      active: RawColor.Grey300,
     },
 
     border: {
@@ -289,8 +289,8 @@ const palette: PaletteOptions = {
       main: RawColor.Green300,
       dark: RawColor.Green400,
       contrastText: RawColor.Green600,
-      hover: RawColor.Green400,
-      active: RawColor.Green500,
+      hover: RawColor.Green200,
+      active: RawColor.Green300,
     },
 
     border: {
@@ -328,8 +328,8 @@ const palette: PaletteOptions = {
       main: RawColor.Red300,
       dark: RawColor.Red400,
       contrastText: RawColor.Red600,
-      hover: RawColor.Red400,
-      active: RawColor.Red500,
+      hover: RawColor.Red200,
+      active: RawColor.Red300,
     },
 
     border: {
@@ -367,8 +367,8 @@ const palette: PaletteOptions = {
       main: RawColor.Yellow300,
       dark: RawColor.Yellow400,
       contrastText: RawColor.Yellow700,
-      hover: RawColor.Yellow400,
-      active: RawColor.Yellow500,
+      hover: RawColor.Yellow200,
+      active: RawColor.Yellow300,
     },
 
     border: {
@@ -406,8 +406,8 @@ const palette: PaletteOptions = {
       main: RawColor.Blue300,
       dark: RawColor.Blue400,
       contrastText: RawColor.Blue600,
-      hover: RawColor.Blue400,
-      active: RawColor.Blue500,
+      hover: RawColor.Blue200,
+      active: RawColor.Blue300,
     },
 
     border: {

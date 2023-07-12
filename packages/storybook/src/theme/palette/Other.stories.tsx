@@ -273,6 +273,13 @@ export const Other = () => {
       figmaStyle: 'other/standardInputLine',
     },
     {
+      token: 'theme.palette.backdropOverlay',
+      description:
+        'Background color for the Backdrop component when a Modal is opened.',
+      colorValue: theme.palette.backdropOverlay,
+      figmaStyle: 'other/backdropOverlay',
+    },
+    {
       token: 'theme.palette.tooltip',
       description: 'Background color for the Tooltip component.',
       colorValue: theme.palette.tooltip,
