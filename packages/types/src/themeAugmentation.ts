@@ -85,7 +85,7 @@ declare module '@mui/material/styles/createPalette' {
     tooltip: string
     /** Background color for the `Snackbar` component if no children are provided */
     snackbar: string
-    /** Background color for Backdrop component (AKA "scrim"). */
+    /** Background color for the Backdrop component (AKA "scrim"). */
     backdropOverlay: string
   }
 
@@ -134,7 +134,7 @@ declare module '@mui/material/styles/createPalette' {
     tooltip?: string
     /** Background color for the `Snackbar` component if no children are provided */
     snackbar?: string
-    /** Background color for Backdrop component (AKA "scrim"). */
+    /** Background color for the Backdrop component (AKA "scrim"). */
     backdropOverlay?: string
   }
 
