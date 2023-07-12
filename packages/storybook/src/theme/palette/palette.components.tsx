@@ -92,7 +92,7 @@ export const ColorTokenTable = ({
             <TableCell variant="head">Color</TableCell>
             <TableCell variant="head">Mapping</TableCell>
             <TableCell variant="head">Value</TableCell>
-            <TableCell variant="head">Figma Style</TableCell>
+            <TableCell variant="head">Figma Variable</TableCell>
             <TableCell variant="head">Description</TableCell>
           </StyledTableRow>
         </TableHead>
