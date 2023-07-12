@@ -450,7 +450,7 @@ const palette: PaletteOptions = {
     800: RawColor.Grey800,
     900: RawColor.Grey900,
   },
-  divider: RawColor.Grey900,
+  divider: RawColor.Grey600,
   outlinedBorder: RawColor.Grey600,
   filledInputBackground: RawColor.Grey900,
   standardInputLine: RawColor.Grey300,
