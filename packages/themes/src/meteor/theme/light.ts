@@ -117,7 +117,7 @@ export enum RawColor {
 }
 // #endregion Raw Colors (Option Tokens)
 
-export const DefaultLightChartColors = {
+export const chartColors = {
   magenta: {
     50: RawColor.Magenta050,
     100: RawColor.Magenta100,
@@ -461,7 +461,7 @@ const palette: PaletteOptions = {
     paper: RawColor.White,
   },
   action: action,
-  chart: DefaultLightChartColors,
+  chart: chartColors,
 }
 // Construct a Theme with the base settings plus our customizations, but without the components overrides provided yet.
 // We're doing this so we have all the base theme settings populated for doing the component-level overrides. We want
