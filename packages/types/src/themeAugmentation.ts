@@ -79,6 +79,8 @@ declare module '@mui/material/styles/createPalette' {
     rating: string
     /** Commonly used for outlined input fields */
     outlinedBorder: string
+    filledInputBackground: string
+    standardInputLine: string
     /** Background color for the `Tooltip` component */
     tooltip: string
     /** Background color for the `Snackbar` component if no children are provided */
@@ -126,6 +128,8 @@ declare module '@mui/material/styles/createPalette' {
     rating?: string
     /** Commonly used for outlined input fields */
     outlinedBorder?: string
+    filledInputBackground?: string
+    standardInputLine?: string
     /** Background color for the `Tooltip` component */
     tooltip?: string
     /** Background color for the `Snackbar` component if no children are provided */

@@ -450,9 +450,11 @@ const palette: PaletteOptions = {
   },
   divider: RawColor.Grey200,
   outlinedBorder: RawColor.Grey200,
+  filledInputBackground: RawColor.Grey100,
+  standardInputLine: RawColor.Grey500,
+  snackbar: RawColor.Grey700,
   rating: RawColor.Yellow600,
   tooltip: RawColor.Grey600,
-  snackbar: RawColor.Grey700,
   backdropOverlay: alpha(RawColor.Grey700, 0.7),
   background: {
     default: RawColor.Grey100,
