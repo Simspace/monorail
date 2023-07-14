@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import type React from 'react'
-import type { GridChildComponentProps } from 'react-window'
+import type { FixedSizeGridProps, GridChildComponentProps } from 'react-window'
 
 import type { DataGridFooterProps } from '../components/DataGridFooter.js'
 import type { DataGridHeaderProps } from '../components/DataGridHeader.js'
@@ -16,6 +16,10 @@ export interface RenderCardParams<R> extends GridChildComponentProps<R> {
 }
 
 interface GalleryProps<R extends GridValidRowModel = any> {
+  /**
+   * Props of `react-window`'s `FixedSizeGrid`
+   */
+  virtualScrollerProps?: Partial<FixedSizeGridProps<R>>
   itemWidth: `${number}%` | number
   itemHeight: `${number}%` | number
   renderCard: (params: RenderCardParams<R>) => React.ReactElement | null
