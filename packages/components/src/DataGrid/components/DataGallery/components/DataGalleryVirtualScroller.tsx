@@ -87,6 +87,7 @@ export const DataGalleryVirtualScroller = React.forwardRef<HTMLDivElement>(
         rowHeight={itemHeight}
         width={size.width}
         height={size.height}
+        {...rootProps.galleryProps?.virtualScrollerProps}
       >
         {params => {
           const index = params.rowIndex * columnCount + params.columnIndex
