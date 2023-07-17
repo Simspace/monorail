@@ -60,7 +60,7 @@ export const DataGalleryColumnHeaders = React.forwardRef<
       }}
     >
       {filterMap(apiRef.current.getAllColumns(), colDef => {
-        if (colDef.field === '__check__') {
+        if (colDef.field === '__check__' || colDef.field === 'actions') {
           return null
         }
         return (

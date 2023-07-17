@@ -8,7 +8,9 @@ import {
   CardContent,
   CardHeader,
   createTable,
+  dataGalleryClasses,
   DataGrid,
+  dataGridClasses,
   GridActionsCellItem,
   MenuItem,
   Typography,
@@ -354,6 +356,13 @@ export const CustomLayout = story<DataGridProps<{}>>(
                   </Card>
                 </Box>
               )
+            },
+          }}
+          sx={{
+            [`& .${dataGalleryClasses.columnHeader}:first-of-type`]: {
+              [`& .${dataGridClasses.columnHeaderTitle}`]: {
+                ml: 8,
+              },
             },
           }}
         />
