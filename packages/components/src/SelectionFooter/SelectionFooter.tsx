@@ -1,6 +1,7 @@
 import React from 'react'
 import { styled, useThemeProps } from '@mui/material'
 
+import { dataGridClasses } from '@monorail/components'
 import { excludeProps, sx } from '@monorail/utils'
 
 import { Stack } from '../Stack.js'
@@ -53,7 +54,7 @@ export const SelectionFooter = React.forwardRef((inProps, ref) => {
   } = props
   return (
     <SelectionFooterRoot ref={ref} ownerState={props} {...other}>
-      <Typography variant="body2">
+      <Typography className={dataGridClasses.selectedRowCount} variant="body2">
         {localeText.selected(selectedCount)}
       </Typography>
       <Stack direction="row">
