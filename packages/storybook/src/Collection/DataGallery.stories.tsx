@@ -12,6 +12,7 @@ import {
   dataGridClasses,
   GridActionsCellItem,
   MenuItem,
+  Stack,
   Typography,
   useGridApiRef,
 } from '@monorail/components'
@@ -336,48 +337,53 @@ export const ColumnAlignment = story<DataGridProps<{}>>(
     )
 
     return (
-      <div style={{ height: 600, width: '100%' }}>
-        <DataGrid
-          apiRef={apiRef}
-          viewStyle="gallery"
-          columns={columns}
-          rows={rows}
-          galleryProps={{
-            itemWidth: 256,
-            itemHeight: 306,
-            virtualScrollerProps: { innerElementType },
-            renderCard: ({ row, style }) => {
-              return (
-                <Box style={style} sx={{ p: 2 }}>
-                  <Card sx={{ height: '100%' }}>
-                    <CardHeader title={`${row.firstName} ${row.lastName}`} />
-                    <CardContent>
-                      <Typography>
-                        Occupation: {capitalize(row.occupation)}
-                      </Typography>
-                    </CardContent>
-                  </Card>
-                </Box>
-              )
-            },
-          }}
-          sx={{
-            // Aligning the first column header in table view
-            '& .firstColumn-header': {
-              pl: 6,
-            },
-            // Aligning the cell content of the first column in table view
-            // This won't affect the gallery view
-            '& .firstColumn-cell': {
-              pl: 8,
-            },
-            // Aligning the selected row count
-            [`& .${dataGridClasses.selectedRowCount}`]: {
-              ml: 2,
-            },
-          }}
-        />
-      </div>
+      <Stack>
+        <Stack direction="row" alignItems="center" p={8}>
+          <Typography variant="h1">Page Header</Typography>
+        </Stack>
+        <div style={{ height: 600, width: '100%' }}>
+          <DataGrid
+            apiRef={apiRef}
+            viewStyle="gallery"
+            columns={columns}
+            rows={rows}
+            galleryProps={{
+              itemWidth: 256,
+              itemHeight: 306,
+              virtualScrollerProps: { innerElementType },
+              renderCard: ({ row, style }) => {
+                return (
+                  <Box style={style} sx={{ p: 2 }}>
+                    <Card sx={{ height: '100%' }}>
+                      <CardHeader title={`${row.firstName} ${row.lastName}`} />
+                      <CardContent>
+                        <Typography>
+                          Occupation: {capitalize(row.occupation)}
+                        </Typography>
+                      </CardContent>
+                    </Card>
+                  </Box>
+                )
+              },
+            }}
+            sx={{
+              // Aligning the first column header in table view
+              '& .firstColumn-header': {
+                pl: 6,
+              },
+              // Aligning the cell content of the first column in table view
+              // This won't affect the gallery view
+              '& .firstColumn-cell': {
+                pl: 8,
+              },
+              // Aligning the selected row count
+              [`& .${dataGridClasses.selectedRowCount}`]: {
+                ml: 2,
+              },
+            }}
+          />
+        </div>
+      </Stack>
     )
   },
   {
@@ -391,6 +397,6 @@ export const ColumnAlignment = story<DataGridProps<{}>>(
   },
 )
 
-export function getRandomDate(): Date {
+function getRandomDate(): Date {
   return new Date(new Date().getTime() - Math.random() * 1e12)
 }
