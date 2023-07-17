@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/strict-boolean-expressions */
 import React from 'react'
 import type { GridStateColDef } from '@mui/x-data-grid/internals'
+import clsx from 'clsx'
 
 import { DataGridColumnHeader } from '@monorail/components/DataGrid/components/DataGridColumnHeader'
 import { typographyClasses } from '@monorail/components/Typography'
@@ -57,7 +58,10 @@ export const DataGalleryColumnHeader = React.forwardRef<
   })
 
   return (
-    <DataGalleryColumnHeaderRoot className={classes.root} ref={ref}>
+    <DataGalleryColumnHeaderRoot
+      className={clsx(classes.root, props.colDef.headerClassName)}
+      ref={ref}
+    >
       <DataGridColumnHeader field={props.colDef.field} colDef={props.colDef} />
     </DataGalleryColumnHeaderRoot>
   )

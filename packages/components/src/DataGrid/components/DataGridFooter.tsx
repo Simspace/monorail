@@ -19,6 +19,7 @@ import { Stack } from '../../Stack.js'
 import { Typography } from '../../Typography.js'
 import type { GridApi } from '../internal.js'
 import {
+  dataGridClasses,
   getDataGridUtilityClass,
   gridExpandedRowCountSelector,
   gridPageCountSelector,
@@ -143,7 +144,10 @@ export function DataGridPaginationFooter(props: DataGridFooterProps) {
     <DataGridFooterRoot ownerState={rootProps} className={classes.root}>
       <Box display="flex" flex="1 1 0" alignItems="center">
         {rootProps.hideFooterSelectedRowCount !== true && (
-          <Typography variant="body2">
+          <Typography
+            variant="body2"
+            className={dataGridClasses.selectedRowCount}
+          >
             {apiRef.current.state.rowSelection.length} Selected
           </Typography>
         )}

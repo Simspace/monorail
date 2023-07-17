@@ -8,7 +8,6 @@ import {
   CardContent,
   CardHeader,
   createTable,
-  dataGalleryClasses,
   DataGrid,
   dataGridClasses,
   GridActionsCellItem,
@@ -35,6 +34,9 @@ const { columns } = createTable<FilterStoryRow>()(
     field: 'id',
     headerName: 'ID',
     filter: { type: 'numeric' },
+    minWidth: 80,
+    headerClassName: 'firstColumn-header',
+    cellClassName: 'firstColumn-cell',
   },
   {
     field: 'firstName',
@@ -107,6 +109,7 @@ const { columns } = createTable<FilterStoryRow>()(
   {
     type: 'actions',
     field: 'actions',
+    maxWidth: 48,
     getActions: () => [
       <GridActionsCellItem
         key={0}
@@ -232,7 +235,7 @@ const Template = story<DataGridProps<{}>>(() => {
 
 export const Default = story(Template)
 
-export const CustomLayout = story<DataGridProps<{}>>(
+export const ColumnAlignment = story<DataGridProps<{}>>(
   () => {
     const apiRef = useGridApiRef()
 
@@ -336,9 +339,9 @@ export const CustomLayout = story<DataGridProps<{}>>(
       <div style={{ height: 600, width: '100%' }}>
         <DataGrid
           apiRef={apiRef}
+          viewStyle="gallery"
           columns={columns}
           rows={rows}
-          checkboxSelection
           galleryProps={{
             itemWidth: 256,
             itemHeight: 306,
@@ -359,10 +362,18 @@ export const CustomLayout = story<DataGridProps<{}>>(
             },
           }}
           sx={{
-            [`& .${dataGalleryClasses.columnHeader}:first-of-type`]: {
-              [`& .${dataGridClasses.columnHeaderTitle}`]: {
-                ml: 8,
-              },
+            // Aligning the first column header in table view
+            '& .firstColumn-header': {
+              pl: 6,
+            },
+            // Aligning the cell content of the first column in table view
+            // This won't affect the gallery view
+            '& .firstColumn-cell': {
+              pl: 8,
+            },
+            // Aligning the selected row count
+            [`& .${dataGridClasses.selectedRowCount}`]: {
+              ml: 2,
             },
           }}
         />
@@ -380,6 +391,6 @@ export const CustomLayout = story<DataGridProps<{}>>(
   },
 )
 
-function getRandomDate(): Date {
+export function getRandomDate(): Date {
   return new Date(new Date().getTime() - Math.random() * 1e12)
 }
