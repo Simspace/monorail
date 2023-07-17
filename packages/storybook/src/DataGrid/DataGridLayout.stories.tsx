@@ -14,7 +14,6 @@ import {
 } from '@monorail/components'
 import * as Icons from '@monorail/components/icons'
 
-import { getRandomDate } from '../Collection/DataGallery.stories.js'
 import { story } from '../helpers/storybook.js'
 
 export default { title: 'Data Grid/Layout', component: DataGrid }
@@ -327,3 +326,7 @@ export const ColumnAlignment = story<DataGridProps<{}>>(
     },
   },
 )
+
+function getRandomDate(): Date {
+  return new Date(new Date().getTime() - Math.random() * 1e12)
+}
