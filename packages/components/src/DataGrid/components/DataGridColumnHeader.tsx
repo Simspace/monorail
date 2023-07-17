@@ -4,6 +4,8 @@ import MoreVert from '@mui/icons-material/MoreVert'
 import Sort from '@mui/icons-material/Sort'
 import type { Theme } from '@mui/material'
 import type { SxProps } from '@mui/system'
+import { gridClasses } from '@mui/x-data-grid-premium'
+import clsx from 'clsx'
 
 import { Badge } from '../../Badge.js'
 import { IconButton } from '../../IconButton.js'
@@ -140,7 +142,7 @@ export function DataGridColumnHeader(props: DataGridColumnHeaderProps) {
 
   return (
     <Stack
-      className={props.className}
+      className={clsx(props.className, gridClasses.columnHeaderTitle)}
       direction="row"
       alignItems="center"
       flex="1 1 0"
