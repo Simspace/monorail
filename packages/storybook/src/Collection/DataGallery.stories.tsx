@@ -236,7 +236,7 @@ const Template = story<DataGridProps<{}>>(() => {
 
 export const Default = story(Template)
 
-export const ColumnAlignment = story<DataGridProps<{}>>(
+export const AlignmentAndSpacing = story<DataGridProps<{}>>(
   () => {
     const apiRef = useGridApiRef()
 
@@ -320,22 +320,6 @@ export const ColumnAlignment = story<DataGridProps<{}>>(
       },
     ]
 
-    const innerElementType = ({
-      style,
-      ...rest
-    }: {
-      style: React.CSSProperties
-    }) => (
-      <div
-        style={{
-          ...style,
-          position: 'relative',
-          marginLeft: 24,
-        }}
-        {...rest}
-      />
-    )
-
     return (
       <Stack>
         <Stack direction="row" alignItems="center" p={8}>
@@ -350,7 +334,15 @@ export const ColumnAlignment = story<DataGridProps<{}>>(
             galleryProps={{
               itemWidth: 256,
               itemHeight: 306,
-              virtualScrollerProps: { innerElementType },
+              slotProps: {
+                galleryContainer: {
+                  style: {
+                    // Explicitly setting `margin: 0 auto` for demo purposes.
+                    // It is centered by default if no additional styles are provided.
+                    margin: '0 auto',
+                  },
+                },
+              },
               renderCard: ({ row, style }) => {
                 return (
                   <Box style={style} sx={{ p: 2 }}>
@@ -390,7 +382,7 @@ export const ColumnAlignment = story<DataGridProps<{}>>(
     parameters: {
       docs: {
         description: {
-          story: `Each item in gallery view is explicitly \`position: absolute\`. This limits the options for layout. As a workaround, you can use \`react-window\`'s \`innerElementType\` prop to add margins. `,
+          story: `Each item in gallery view is explicitly \`position: absolute\`. This limits the options for layout, specifically the use of CSS Grid or Flexbox. As a workaround, you can spread additional styles to the gallery container using \`slotProps.galleryContainer.style\`. See https://github.com/bvaughn/react-window/issues/158 for how this is achieved.`,
         },
       },
     },

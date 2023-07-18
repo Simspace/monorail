@@ -78,6 +78,26 @@ export const DataGalleryVirtualScroller = React.forwardRef<HTMLDivElement>(
       return null
     }
 
+    const galleryContainerStyles = rootProps.galleryProps?.slotProps
+      ?.galleryContainer?.style ?? { margin: '0 auto' }
+
+    // https://github.com/bvaughn/react-window/issues/158
+    const innerElementType = ({
+      style: reactWindowStyles,
+      ...rest
+    }: {
+      style: React.CSSProperties
+    }) => (
+      <div
+        style={{
+          ...reactWindowStyles,
+          position: 'relative',
+          ...galleryContainerStyles,
+        }}
+        {...rest}
+      />
+    )
+
     return (
       <FixedSizeGrid
         outerRef={ref}
@@ -87,6 +107,7 @@ export const DataGalleryVirtualScroller = React.forwardRef<HTMLDivElement>(
         rowHeight={itemHeight}
         width={size.width}
         height={size.height}
+        innerElementType={innerElementType}
         {...rootProps.galleryProps?.virtualScrollerProps}
       >
         {params => {
