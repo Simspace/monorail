@@ -23,6 +23,16 @@ interface GalleryProps<R extends GridValidRowModel = any> {
   itemWidth: `${number}%` | number
   itemHeight: `${number}%` | number
   renderCard: (params: RenderCardParams<R>) => React.ReactElement | null
+  slotProps?: {
+    galleryContainer?: {
+      /**
+       * Additional inline styles applied to `react-windows`'s `FixedSizeGrid` inner container. Useful for adjusting the container's spacing.
+       *
+       * @default { position: 'relative', margin: '0 auto' }
+       */
+      style: React.CSSProperties
+    }
+  }
 }
 
 declare module '@mui/x-data-grid/models/gridSlotsComponentsProps' {
