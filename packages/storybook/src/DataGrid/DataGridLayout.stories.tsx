@@ -320,7 +320,11 @@ export const ColumnAlignment = story<DataGridProps<{}>>(
     parameters: {
       docs: {
         description: {
-          story: `Each item in gallery view is explicitly \`position: absolute\`. This limits the options for layout. As a workaround, you can use \`react-window\`'s \`innerElementType\` prop to add margins. `,
+          story: `MUI provides a set of props to apply custom \`className\`s to headers, cells, and rows:
+
+- [headerClassName](https://mui.com/x/react-data-grid/style/#styling-column-headers)
+- [getRowClassName](https://mui.com/x/react-data-grid/style/#styling-rows)
+- [cellClassName](https://mui.com/x/react-data-grid/style/#styling-rows)`,
         },
       },
     },
