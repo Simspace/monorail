@@ -100,6 +100,20 @@ export const Sizes = story<SelectProps<string>>(() => {
           <MenuItem value={30}>Thirty</MenuItem>
         </Select>
       </FormControl>
+      <FormControl sx={{ m: 2, minWidth: 120 }}>
+        <InputLabel id="demo-simple-select-large-label">Large</InputLabel>
+        <Select
+          size="large"
+          labelId="demo-simple-select-large-label"
+          id="demo-simple-select-filled"
+          value={age}
+          onChange={handleChange}
+        >
+          <MenuItem value={10}>Ten</MenuItem>
+          <MenuItem value={20}>Twenty</MenuItem>
+          <MenuItem value={30}>Thirty</MenuItem>
+        </Select>
+      </FormControl>
     </div>
   )
 })

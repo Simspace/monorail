@@ -31,7 +31,7 @@ const Template = story<TextFieldProps>(args => <TextField {...args} />, {
 export const Default = story(Template)
 
 export const BasicTextField = story(
-  () => (
+  args => (
     <Box
       component="form"
       sx={{
@@ -40,7 +40,12 @@ export const BasicTextField = story(
       noValidate
       autoComplete="off"
     >
-      <TextField id="outlined-basic" label="Outlined" variant="outlined" />
+      <TextField
+        id="outlined-basic"
+        label="Outlined"
+        variant="outlined"
+        {...args}
+      />
     </Box>
   ),
   {
@@ -418,6 +423,12 @@ export const Sizes = story(
           label="Size"
           id="outlined-size-medium"
           defaultValue="Medium"
+        />
+        <TextField
+          label="Size"
+          id="outlined-size-large"
+          defaultValue="Large"
+          size="large"
         />
       </div>
     </Box>
