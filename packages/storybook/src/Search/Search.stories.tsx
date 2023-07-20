@@ -75,6 +75,7 @@ export const Sizes = story(
       <div>
         <Search label="Small" id="size-small" size="small" />
         <Search label="Medium" id="size-medium" />
+        <Search label="Large" id="size-medium" size="large" />
       </div>
     </Box>
   ),
