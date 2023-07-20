@@ -11,6 +11,14 @@ export const MonorailDataGridOverrides: Components<Theme>['MuiDataGrid'] = {
   defaultProps: {
     rowHeight: 40,
     columnHeaderHeight: 42,
+    slotProps: {
+      baseIconButton: {
+        size: 'medium',
+        // Override the explicit { fontSize: 'small' } in GridActionsCellItem
+        // See https://github.com/mui/mui-x/blob/62725ed4ba26788f454e93a73c7273ac54d762fd/packages/grid/x-data-grid/src/components/cell/GridActionsCellItem.tsx#L39
+        sx: { [`& svg`]: { fontSize: 'inherit' } },
+      },
+    },
   },
   styleOverrides: {
     root: ({ theme }) => {
