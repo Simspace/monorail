@@ -54,21 +54,13 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
     label: ({ theme }) => ({
       ...theme.typography.chip,
     }),
-    filled: ({ ownerState: { color = 'default' }, theme }) => {
-      const backgroundColor = theme.palette[color].lowEmphasis.light
-      const textColor =
-        color === 'warning'
-          ? theme.palette.warning.contrastText
-          : theme.palette[color].main
-
-      return {
-        backgroundColor,
-        color: textColor,
-        [`&.${chipClasses.focusVisible}`]: {
-          backgroundColor,
-        },
-      }
-    },
+    filled: ({ ownerState: { color = 'default' }, theme }) => ({
+      backgroundColor: theme.palette[color].lowEmphasis.light,
+      color: theme.palette[color].lowEmphasis.contrastText,
+      [`&.${chipClasses.focusVisible}`]: {
+        backgroundColor: theme.palette[color].lowEmphasis.light,
+      },
+    }),
     outlined: ({ ownerState: { color = 'default' }, theme }) => {
       return {
         backgroundColor: theme.palette.background.paper,
@@ -104,18 +96,11 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
 
       const filledVariantStyles: CSSInterpolation = {
         '&:hover': {
-          color:
-            color === 'warning'
-              ? theme.palette.warning.contrastText
-              : theme.palette[color].dark,
+          color: theme.palette[color].lowEmphasis.contrastText,
           backgroundColor: theme.palette[color].lowEmphasis.main,
         },
         '&:active': {
           boxShadow: 'none',
-          color:
-            color === 'warning'
-              ? theme.palette.warning.contrastText
-              : theme.palette[color].dark,
           backgroundColor: theme.palette[color].lowEmphasis.dark,
         },
       }
@@ -166,10 +151,7 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
       theme,
     }) => {
       return {
-        color:
-          color === 'warning'
-            ? theme.palette.warning.contrastText
-            : theme.palette[color].main,
+        color: theme.palette[color].lowEmphasis.contrastText,
         ...((variant === 'muted' || variant === 'rectangular') && {
           color: theme.palette.default.main,
         }),
@@ -222,11 +204,8 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
       }
 
       const filledVariantStyles: CSSInterpolation = {
-        color: theme.palette[color].main,
-        backgroundColor: theme.palette[color].lowEmphasis.dark,
-        ...(color === 'warning' && {
-          color: theme.palette.warning.contrastText,
-        }),
+        color: theme.palette[color].lowEmphasis.contrastText,
+        backgroundColor: theme.palette[color].lowEmphasis.main,
       }
 
       const outlinedVariantStyles: CSSInterpolation = {
