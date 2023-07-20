@@ -24,6 +24,7 @@ import { MonorailDateRangePickerDayOverrides } from '../components/DateRangePick
 import { MonorailDialogContentOverrides } from '../components/DialogContent/themeOverrides.js'
 import { MonorailFormHelperTextOverrides } from '../components/FormHelperText/themeOverrides.js'
 import { MonorailFormLabelOverrides } from '../components/FormLabel/themeOverrides.js'
+import { MonorailInputBaseOverrides } from '../components/InputBase/themeOverrides.js'
 import { MonorailInputLabelOverrides } from '../components/InputLabel/themeOverrides.js'
 import { MonorailLinearProgressOverrides } from '../components/LinearProgress/themeOverrides.js'
 import { MonorailLinkOverrides } from '../components/Link/themeOverrides.js'
@@ -33,6 +34,7 @@ import { MonorailListItemButtonOverrides } from '../components/ListItemButton/th
 import { MonorailListItemIconOverrides } from '../components/ListItemIcon/themeOverrides.js'
 import { MonorailListItemTextOverrides } from '../components/ListItemText/themeOverrides.js'
 import { MonorailMenuItemOverrides } from '../components/MenuItem/themeOverrides.js'
+import { MonorailOutlinedInputOverrides } from '../components/OutlinedInput/themeOverrides.js'
 import { MonorailPaginationItemOverrides } from '../components/PaginationItem/themeOverrides.js'
 import { MonorailSelectionFooterOverrides } from '../components/SelectionFooter/themeOverrides.js'
 import { MonorailSkeletonOverrides } from '../components/Skeleton/themeOverrides.js'
@@ -69,6 +71,7 @@ export const getThemeComponents = (
   MuiDateRangePickerDay: MonorailDateRangePickerDayOverrides,
   MuiFormHelperText: MonorailFormHelperTextOverrides,
   MuiFormLabel: MonorailFormLabelOverrides,
+  MuiInputBase: MonorailInputBaseOverrides,
   MuiInputLabel: MonorailInputLabelOverrides,
   MuiLinearProgress: MonorailLinearProgressOverrides,
   MuiLink: MonorailLinkOverrides,
@@ -78,6 +81,7 @@ export const getThemeComponents = (
   MuiListItemIcon: MonorailListItemIconOverrides,
   MuiListItemText: MonorailListItemTextOverrides,
   MuiMenuItem: MonorailMenuItemOverrides,
+  MuiOutlinedInput: MonorailOutlinedInputOverrides,
   MuiPaginationItem: MonorailPaginationItemOverrides,
   MuiSkeleton: MonorailSkeletonOverrides,
   MuiStepIcon: MonorailStepIconOverrides,
