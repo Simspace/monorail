@@ -300,8 +300,8 @@ const palette: PaletteOptions = {
     },
 
     focusRing: {
-      inner: RawColor.Green800,
-      outer: RawColor.Green400,
+      inner: RawColor.Blue800,
+      outer: RawColor.Blue400,
     },
 
     shades: {
@@ -339,8 +339,8 @@ const palette: PaletteOptions = {
     },
 
     focusRing: {
-      inner: RawColor.Red800,
-      outer: RawColor.Red400,
+      inner: RawColor.Blue800,
+      outer: RawColor.Blue400,
     },
 
     shades: {
@@ -378,8 +378,8 @@ const palette: PaletteOptions = {
     },
 
     focusRing: {
-      inner: RawColor.Yellow800,
-      outer: RawColor.Yellow400,
+      inner: RawColor.Blue800,
+      outer: RawColor.Blue400,
     },
 
     shades: {
