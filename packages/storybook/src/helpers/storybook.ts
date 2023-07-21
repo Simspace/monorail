@@ -264,3 +264,6 @@ export const getRawColorObject = (themeName: ThemeName) => {
       return MeteorDarkRawColors
   }
 }
+
+export const isMeteorTheme = (themeName: ThemeName) =>
+  themeName === ThemeName.MeteorLight || themeName === ThemeName.MeteorDark

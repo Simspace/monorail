@@ -29,13 +29,24 @@ export type ColorShades = {
   A700?: string
 }
 
+enum ThemeName {
+  ClassicLight = 'classicLight',
+  ClassicDark = 'classicDark',
+  MUILight = 'muiLight',
+  MUIDark = 'muiDark',
+  PCTELight = 'pcteLight',
+  PCTEDark = 'pcteDark',
+  MeteorLight = 'meteorLight',
+  MeteorDark = 'meteorDark',
+}
+
 declare module '@mui/material/styles/createTheme' {
   interface ThemeOptions {
     name?: string
   }
 
   interface Theme {
-    name: string
+    name: ThemeName
   }
 }
 
