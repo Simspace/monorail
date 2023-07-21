@@ -6,9 +6,10 @@ import { action } from '@storybook/addon-actions'
 
 import type { ChipProps } from '@monorail/components'
 import { Avatar, Chip, Stack, Typography } from '@monorail/components'
+import { useTheme } from '@monorail/utils'
 
 import { capitalizeFirstLetter } from '../helpers/helpers.js'
-import { story } from '../helpers/storybook.js'
+import { isMeteorTheme, story } from '../helpers/storybook.js'
 
 /**
  * Metadata for Chip stories - update/extend as needed
@@ -95,6 +96,7 @@ export const Filled = story<ChipProps>(() => {
 })
 
 export const Outlined = story<ChipProps>(() => {
+  const theme = useTheme()
   const examples = React.useMemo(() => {
     return {
       readOnly: colors.map(color => (
@@ -138,7 +140,9 @@ export const Outlined = story<ChipProps>(() => {
     }
   }, [])
 
-  return (
+  return isMeteorTheme(theme.name) ? (
+    <Typography>This variant is not available in the Meteor theme</Typography>
+  ) : (
     <Stack>
       <Stack direction="row" spacing={4}>
         <Stack direction="column" alignItems="flex-start" spacing={2}>
@@ -163,7 +167,10 @@ export const Outlined = story<ChipProps>(() => {
 })
 
 export const Rectangular = story<ChipProps>(() => {
-  return (
+  const theme = useTheme()
+  return isMeteorTheme(theme.name) ? (
+    <Typography>This variant is not available in the Meteor theme</Typography>
+  ) : (
     <Stack>
       <Stack direction="row" spacing={4}>
         <Stack direction="column" alignItems="flex-start" spacing={2}>
@@ -212,7 +219,10 @@ export const Rectangular = story<ChipProps>(() => {
 })
 
 export const Muted = story<ChipProps>(() => {
-  return (
+  const theme = useTheme()
+  return isMeteorTheme(theme.name) ? (
+    <Typography>This variant is not available in the Meteor theme</Typography>
+  ) : (
     <Stack>
       <Stack direction="row" spacing={4}>
         <Stack direction="column" alignItems="flex-start" spacing={2}>

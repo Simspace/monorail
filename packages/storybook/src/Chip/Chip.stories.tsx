@@ -23,9 +23,10 @@ import {
   TagFaces,
   Warning,
 } from '@monorail/components/icons'
+import { useTheme } from '@monorail/utils'
 
 import { capitalizeFirstLetter } from '../helpers/helpers.js'
-import { story } from '../helpers/storybook.js'
+import { isMeteorTheme, story } from '../helpers/storybook.js'
 
 /**
  * Metadata for Chip stories - update/extend as needed
@@ -53,7 +54,12 @@ const args: Partial<ChipStoryArgs> = {
 
 const argTypes = {
   variant: {
-    options: ['filled', 'outlined', 'muted', 'rectangular'],
+    options: [
+      'filled',
+      'outlined (N/A in Meteor)',
+      'muted  (N/A in Meteor)',
+      'rectangular (N/A in Meteor)',
+    ],
     control: {
       type: 'radio',
     },
@@ -91,41 +97,60 @@ const colors = [
 export const Variants = story<ChipStoryArgs>(
   args => {
     const { avatar, avatarText, icon, dismissible, ...chipArgs } = args
+    const theme = useTheme()
     return (
-      <Stack direction="row" spacing={2}>
-        <Chip
-          label="Muted"
-          variant="muted"
-          {...chipArgs}
-          avatar={avatar === true ? <Avatar>{avatarText}</Avatar> : undefined}
-          icon={icon === true ? <Face /> : undefined}
-          onDelete={dismissible === true ? action('onDelete') : undefined}
-        />
-        <Chip
-          label="Filled"
-          variant="filled"
-          {...chipArgs}
-          avatar={avatar === true ? <Avatar>{avatarText}</Avatar> : undefined}
-          icon={icon === true ? <Face /> : undefined}
-          onDelete={dismissible === true ? action('onDelete') : undefined}
-        />
-        <Chip
-          label="Outlined"
-          variant="outlined"
-          {...chipArgs}
-          avatar={avatar === true ? <Avatar>{avatarText}</Avatar> : undefined}
-          icon={icon === true ? <Face /> : undefined}
-          onDelete={dismissible === true ? action('onDelete') : undefined}
-        />
-        <Chip
-          label="Rectangular"
-          variant="rectangular"
-          {...chipArgs}
-          avatar={avatar === true ? <Avatar>{avatarText}</Avatar> : undefined}
-          icon={icon === true ? <Face /> : undefined}
-          onDelete={dismissible === true ? action('onDelete') : undefined}
-        />
-      </Stack>
+      <div>
+        <Stack direction="row" spacing={2} alignItems="center">
+          <Chip
+            label="Filled"
+            variant="filled"
+            {...chipArgs}
+            avatar={avatar === true ? <Avatar>{avatarText}</Avatar> : undefined}
+            icon={icon === true ? <Face /> : undefined}
+            onDelete={dismissible === true ? action('onDelete') : undefined}
+          />
+          {!isMeteorTheme(theme.name) && (
+            <>
+              <Chip
+                label="Muted"
+                variant="muted"
+                {...chipArgs}
+                avatar={
+                  avatar === true ? <Avatar>{avatarText}</Avatar> : undefined
+                }
+                icon={icon === true ? <Face /> : undefined}
+                onDelete={dismissible === true ? action('onDelete') : undefined}
+              />
+              <Chip
+                label="Outlined"
+                variant="outlined"
+                {...chipArgs}
+                avatar={
+                  avatar === true ? <Avatar>{avatarText}</Avatar> : undefined
+                }
+                icon={icon === true ? <Face /> : undefined}
+                onDelete={dismissible === true ? action('onDelete') : undefined}
+              />
+              <Chip
+                label="Rectangular"
+                variant="rectangular"
+                {...chipArgs}
+                avatar={
+                  avatar === true ? <Avatar>{avatarText}</Avatar> : undefined
+                }
+                icon={icon === true ? <Face /> : undefined}
+                onDelete={dismissible === true ? action('onDelete') : undefined}
+              />
+            </>
+          )}
+        </Stack>
+        {isMeteorTheme(theme.name) && (
+          <Typography variant="body2" mt={6}>
+            The Muted, Outlined, and Rectangular variants are not available in
+            the Meteor theme.
+          </Typography>
+        )}
+      </div>
     )
   },
   {
