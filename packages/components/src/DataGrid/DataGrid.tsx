@@ -1,7 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import React from 'react'
-import type { CSSInterpolation, Theme } from '@mui/material'
-import type { SystemStyleObject } from '@mui/system'
 import type { DataGridPremiumProps } from '@mui/x-data-grid-premium'
 import {
   GridBody,
@@ -16,15 +14,12 @@ import { getReleaseInfo } from '@mui/x-data-grid-premium/utils/releaseInfo'
 import { DataGridProVirtualScroller } from '@mui/x-data-grid-pro/internals'
 import { useLicenseVerifier, Watermark } from '@mui/x-license-pro'
 
-import { combineSxProps } from '@monorail/utils/sx'
-
 import { DataGalleryBody } from './components/DataGallery/components/DataGalleryBody.js'
 import { DataGalleryColumnHeaders } from './components/DataGallery/components/DataGalleryColumnHeaders.js'
 import { DataGalleryVirtualScroller } from './components/DataGallery/components/DataGalleryVirtualScroller.js'
 import { useDataGridComponent } from './hooks/useDataGridComponent.js'
 import { useDataGridProps } from './hooks/useDataGridProps.js'
 import type { GridValidRowModel } from './internal.js'
-import { dataGridClasses } from './internal.js'
 
 const releaseInfo = getReleaseInfo()
 
@@ -50,18 +45,6 @@ export const DataGrid: <R extends GridValidRowModel>(
 
   const privateApiRef = useDataGridComponent(props.apiRef, props)
 
-  const { sx, stripedRows } = props
-
-  const dataGridStyles = React.useCallback(
-    (theme: Theme) => getDataGridStyles(stripedRows, theme),
-    [stripedRows],
-  )
-
-  const sxProp = React.useMemo(
-    () => combineSxProps(dataGridStyles, sx),
-    [dataGridStyles, sx],
-  )
-
   const pinnedColumns = useGridSelector(
     privateApiRef,
     gridPinnedColumnsSelector,
@@ -74,7 +57,7 @@ export const DataGrid: <R extends GridValidRowModel>(
       <GridRoot
         className={props.className}
         style={props.style}
-        sx={sxProp}
+        sx={props.sx}
         ref={ref}
       >
         <GridHeader />
@@ -105,16 +88,3 @@ export const DataGrid: <R extends GridValidRowModel>(
     </GridContextProvider>
   )
 })
-
-function getDataGridStyles(
-  stripedRows: boolean | undefined,
-  theme: Theme,
-): SystemStyleObject<Theme> {
-  const overrides: CSSInterpolation = {}
-  if (stripedRows === true) {
-    overrides[`& .${dataGridClasses.row}:nth-of-type(even)`] = {
-      backgroundColor: theme.palette.background.default,
-    }
-  }
-  return overrides
-}

@@ -41,6 +41,69 @@ export const MonorailDataGridOverrides: Components<Theme>['MuiDataGrid'] = {
         [`&.${dataGridClasses.grouped}:hover`]: {
           cursor: 'pointer',
         },
+        [`&.odd`]: {
+          backgroundColor: theme.palette.background.default,
+          '&:hover, &.Mui-hovered': {
+            background: `
+              linear-gradient(0deg, ${theme.palette.action.hover} 0%, ${theme.palette.action.hover} 100%),
+              ${theme.palette.background.default}
+            `,
+            '@media (hover: none)': {
+              backgroundColor: 'transparent',
+            },
+          },
+          '&.Mui-selected': {
+            background: `
+              linear-gradient(0deg, ${theme.palette.action.selected} 0%, ${theme.palette.action.selected} 100%),
+              ${theme.palette.background.default}
+            `,
+            '&:hover, &.Mui-hovered': {
+              background: `
+                linear-gradient(0deg, ${theme.palette.action.hover} 0%, ${theme.palette.action.hover} 100%),
+                linear-gradient(0deg, ${theme.palette.action.selected} 0%, ${theme.palette.action.selected} 100%),
+                ${theme.palette.background.default}
+              `,
+              // Reset on touch devices, it doesn't add specificity
+              '@media (hover: none)': {
+                background: `
+                  linear-gradient(0deg, ${theme.palette.action.selected} 0%, ${theme.palette.action.selected} 100%),
+                  ${theme.palette.background.default}
+                `,
+              },
+            },
+          },
+        },
+        [`&.even`]: {
+          '&:hover, &.Mui-hovered': {
+            background: `
+              linear-gradient(0deg, ${theme.palette.action.hover} 0%, ${theme.palette.action.hover} 100%),
+              ${theme.palette.background.paper}
+            `,
+            '@media (hover: none)': {
+              backgroundColor: 'transparent',
+            },
+          },
+          '&.Mui-selected': {
+            background: `
+              linear-gradient(0deg, ${theme.palette.action.selected} 0%, ${theme.palette.action.selected} 100%),
+              ${theme.palette.background.paper}
+            `,
+            '&:hover, &.Mui-hovered': {
+              background: `
+                linear-gradient(0deg, ${theme.palette.action.hover} 0%, ${theme.palette.action.hover} 100%),
+                linear-gradient(0deg, ${theme.palette.action.selected} 0%, ${theme.palette.action.selected} 100%),
+                ${theme.palette.background.paper}
+              `,
+              // Reset on touch devices, it doesn't add specificity
+              '@media (hover: none)': {
+                background: `
+                  linear-gradient(0deg, ${theme.palette.action.selected} 0%, ${theme.palette.action.selected} 100%),
+                  ${theme.palette.background.paper}
+                `,
+              },
+            },
+          },
+        },
       }
     },
     columnHeaders: ({ theme }) => {
