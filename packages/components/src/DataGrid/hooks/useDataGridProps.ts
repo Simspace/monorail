@@ -1,6 +1,10 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import React from 'react'
-import type { GridColDef, GridValidRowModel } from '@mui/x-data-grid'
+import type {
+  GridColDef,
+  GridRowClassNameParams,
+  GridValidRowModel,
+} from '@mui/x-data-grid'
 import type {
   DataGridPremiumProps,
   GridGroupingColDefOverride,
@@ -8,6 +12,7 @@ import type {
 } from '@mui/x-data-grid-premium'
 import { useDataGridPremiumProps } from '@mui/x-data-grid-premium/DataGridPremium/useDataGridPremiumProps'
 import type { DataGridPremiumProcessedProps } from '@mui/x-data-grid-premium/models/dataGridPremiumProps'
+import clsx from 'clsx'
 
 import { NUMERIC_FILTER_DEFAULT_LOCALE_TEXT } from '@monorail/components/NumericFilter'
 import { useTheme } from '@monorail/utils'
@@ -116,6 +121,24 @@ export function useDataGridProps<R extends GridValidRowModel>(
     }
   }, [groupingColDef])
 
+  const getRowClassName = React.useCallback(
+    (params: GridRowClassNameParams) => {
+      let rowClassName = ''
+      if (initProps.getRowClassName) {
+        rowClassName = initProps.getRowClassName(params)
+      }
+      if (initProps.stripedRows === true) {
+        rowClassName = clsx(
+          rowClassName,
+          params.indexRelativeToCurrentPage % 2 === 0 ? 'even' : 'odd',
+        )
+      }
+
+      return rowClassName
+    },
+    [initProps],
+  )
+
   return useDataGridPremiumProps({
     ...initProps,
     disableColumnFilter: true,
@@ -127,5 +150,6 @@ export function useDataGridProps<R extends GridValidRowModel>(
     groupingColDef: groupingColDefProp,
     viewStyle: initProps.viewStyle ?? 'table',
     filter: initProps.filter ?? 'column',
+    getRowClassName,
   })
 }
