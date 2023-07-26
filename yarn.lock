@@ -12843,6 +12843,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"chromatic@npm:^6.20.0":
+  version: 6.20.0
+  resolution: "chromatic@npm:6.20.0"
+  bin:
+    chroma: dist/bin.js
+    chromatic: dist/bin.js
+    chromatic-cli: dist/bin.js
+  checksum: 90d413144ea9502cb96fd0065a0cf2ece63d832da2d7fd93f9577fd09080cbeb829ce9ca1d2384d4f7739cc249aa09033ca61820ac3c1656ff92d6a4ba2fbd67
+  languageName: node
+  linkType: hard
+
 "chrome-trace-event@npm:^1.0.2":
   version: 1.0.3
   resolution: "chrome-trace-event@npm:1.0.3"
@@ -21443,6 +21454,7 @@ __metadata:
     assert: ^2.0.0
     babel-jest: 27.5.1
     babel-plugin-replace-import-extension: ^1.1.3
+    chromatic: ^6.20.0
     concurrently: ^8.1.0
     eslint: 8.42.0
     eslint-plugin-codegen: ^0.17.0

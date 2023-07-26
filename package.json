@@ -3,9 +3,14 @@
   "version": "0.0.0",
   "private": true,
   "description": "Monorail 3",
-  "repository": "https://gitlab.com/simspace/monorail",
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/simspace/monorail.git"
+  },
   "license": "Apache-2.0",
-  "author": "SimSpace",
+  "author": {
+    "name": "SimSpace"
+  },
   "workspaces": [
     "packages/*"
   ],
@@ -26,7 +31,8 @@
     "prettier:write": "ultra -r prettier:write",
     "storybook": "yarn workspace @monorail/storybook storybook",
     "start-playroom": "yarn playroom start",
-    "test": "ultra -r test"
+    "test": "ultra -r test",
+    "chromatic": "npx chromatic --project-token=chpt_587b7242164c74d"
   },
   "resolutions": {
     "@babel/core": "^7.22.1",
@@ -51,6 +57,7 @@
     "assert": "^2.0.0",
     "babel-jest": "27.5.1",
     "babel-plugin-replace-import-extension": "^1.1.3",
+    "chromatic": "^6.20.0",
     "concurrently": "^8.1.0",
     "eslint": "8.42.0",
     "eslint-plugin-codegen": "^0.17.0",
@@ -71,5 +78,11 @@
     "typescript": "4.9.5",
     "ultra-runner": "^3.10.5"
   },
-  "packageManager": "yarn@3.6.0"
+  "packageManager": "yarn@3.6.0",
+  "bugs": {
+    "url": "https://gitlab.com/simspace/monorail/issues"
+  },
+  "readme": "ERROR: No README data found!",
+  "homepage": "https://gitlab.com/simspace/monorail#readme",
+  "_id": "monorail@0.0.0"
 }
