@@ -285,31 +285,39 @@ export const Sizes = story(args => {
       />
       {theme.name.includes('meteor') && (
         <>
-      <Autocomplete
-        id="size-large-outlined"
-        size="large"
-        options={movies}
-        getOptionLabel={option => option.label}
-        defaultValue={movies[13]}
-        renderInput={params => (
-          <TextField {...params} label="Size large" placeholder="Favorites" />
-          )}
-          {...args}
+          <Autocomplete
+            id="size-large-outlined"
+            size="large"
+            options={movies}
+            getOptionLabel={option => option.label}
+            defaultValue={movies[13]}
+            renderInput={params => (
+              <TextField
+                {...params}
+                label="Size large"
+                placeholder="Favorites"
+              />
+            )}
+            {...args}
           />
-      <Autocomplete
-        multiple
-        id="size-large-outlined-multi"
-        size="large"
-        options={movies}
-        getOptionLabel={option => option.label}
-        defaultValue={[movies[13]]}
-        renderInput={params => (
-          <TextField {...params} label="Size large" placeholder="Favorites" />
-          )}
-          {...args}
+          <Autocomplete
+            multiple
+            id="size-large-outlined-multi"
+            size="large"
+            options={movies}
+            getOptionLabel={option => option.label}
+            defaultValue={[movies[13]]}
+            renderInput={params => (
+              <TextField
+                {...params}
+                label="Size large"
+                placeholder="Favorites"
+              />
+            )}
+            {...args}
           />
-          </>
-        )}
+        </>
+      )}
     </Stack>
   )
 })

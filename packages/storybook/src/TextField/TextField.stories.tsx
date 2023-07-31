@@ -14,6 +14,7 @@ import OutlinedInput from '@mui/material/OutlinedInput'
 
 import type { TextFieldProps } from '@monorail/components'
 import { MenuItem, TextField, useFormControl } from '@monorail/components'
+import { useTheme } from '@monorail/utils'
 
 import { story } from '../helpers/storybook.js'
 
@@ -403,36 +404,41 @@ export const InputAdornments = story(
 )
 
 export const Sizes = story(
-  () => (
-    <Box
-      component="form"
-      sx={{
-        '& .MuiTextField-root': { mr: 1, width: '25ch' },
-      }}
-      noValidate
-      autoComplete="off"
-    >
-      <div>
-        <TextField
-          label="Size"
-          id="outlined-size-small"
-          defaultValue="Small"
-          size="small"
-        />
-        <TextField
-          label="Size"
-          id="outlined-size-medium"
-          defaultValue="Medium"
-        />
-        <TextField
-          label="Size"
-          id="outlined-size-large"
-          defaultValue="Large"
-          size="large"
-        />
-      </div>
-    </Box>
-  ),
+  () => {
+    const theme = useTheme()
+    return (
+      <Box
+        component="form"
+        sx={{
+          '& .MuiTextField-root': { mr: 1, width: '25ch' },
+        }}
+        noValidate
+        autoComplete="off"
+      >
+        <div>
+          <TextField
+            label="Size"
+            id="outlined-size-small"
+            defaultValue="Small"
+            size="small"
+          />
+          <TextField
+            label="Size"
+            id="outlined-size-medium"
+            defaultValue="Medium"
+          />
+          {theme.name.includes('meteor') && (
+            <TextField
+              label="Size"
+              id="outlined-size-large"
+              defaultValue="Large"
+              size="large"
+            />
+          )}
+        </div>
+      </Box>
+    )
+  },
   {
     parameters: {
       docs: {
