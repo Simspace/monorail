@@ -11,11 +11,19 @@ export const MonorailOutlinedInputOverrides: Components<Theme>['MuiOutlinedInput
     },
     styleOverrides: {
       root: ({ ownerState, theme }) => ({
-        ...(ownerState.disabled === false && {
-          [`&:hover .${outlinedInputClasses.notchedOutline}`]: {
-            borderColor: theme.palette.default.border.main,
-          },
-        }),
+        ...(ownerState.disabled === false &&
+          ownerState.error === false && {
+            borderColor: theme.palette.outlinedBorder,
+            [`&:hover .${outlinedInputClasses.notchedOutline}`]: {
+              borderColor: theme.palette.default.border.main,
+            },
+          }),
+        [`&.Mui-focusVisible`]: {
+          borderColor: theme.palette.default.border.main,
+        },
+      }),
+      notchedOutline: ({ theme }) => ({
+        borderColor: theme.palette.outlinedBorder,
       }),
       multiline: {
         padding: 0,
