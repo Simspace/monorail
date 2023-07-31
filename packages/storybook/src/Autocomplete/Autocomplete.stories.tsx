@@ -13,6 +13,7 @@ import {
   TextField,
   VirtualizedAutocomplete,
 } from '@monorail/components'
+import { useTheme } from '@monorail/utils'
 
 import { story } from '../helpers/storybook.js'
 import type { Movie } from '../helpers/testData.js'
@@ -195,7 +196,7 @@ export const MultipleValues = story<MovieAutocompleteProps>(args => {
         renderTags={(value, getTagProps) =>
           value.map((option: Movie, index: number) => (
             <Chip
-              size={args.size}
+              size={args.size === 'small' ? 'small' : 'medium'}
               variant="outlined"
               label={option.label}
               {...getTagProps({ index })}
@@ -233,6 +234,7 @@ export const MultipleValues = story<MovieAutocompleteProps>(args => {
 })
 
 export const Sizes = story(args => {
+  const theme = useTheme()
   return (
     <Stack spacing={2} sx={{ width: 500 }}>
       <Autocomplete
@@ -258,6 +260,56 @@ export const Sizes = story(args => {
         )}
         {...args}
       />
+      <Autocomplete
+        id="size-medium-outlined"
+        size="medium"
+        options={movies}
+        getOptionLabel={option => option.label}
+        defaultValue={movies[13]}
+        renderInput={params => (
+          <TextField {...params} label="Size medium" placeholder="Favorites" />
+        )}
+        {...args}
+      />
+      <Autocomplete
+        multiple
+        id="size-medium-outlined-multi"
+        size="medium"
+        options={movies}
+        getOptionLabel={option => option.label}
+        defaultValue={[movies[13]]}
+        renderInput={params => (
+          <TextField {...params} label="Size medium" placeholder="Favorites" />
+        )}
+        {...args}
+      />
+      {theme.name.includes('meteor') && (
+        <>
+      <Autocomplete
+        id="size-large-outlined"
+        size="large"
+        options={movies}
+        getOptionLabel={option => option.label}
+        defaultValue={movies[13]}
+        renderInput={params => (
+          <TextField {...params} label="Size large" placeholder="Favorites" />
+          )}
+          {...args}
+          />
+      <Autocomplete
+        multiple
+        id="size-large-outlined-multi"
+        size="large"
+        options={movies}
+        getOptionLabel={option => option.label}
+        defaultValue={[movies[13]]}
+        renderInput={params => (
+          <TextField {...params} label="Size large" placeholder="Favorites" />
+          )}
+          {...args}
+          />
+          </>
+        )}
     </Stack>
   )
 })

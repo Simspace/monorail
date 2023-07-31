@@ -1,5 +1,11 @@
 import { Autocomplete as MuiAutocomplete } from '@mui/material'
 
+declare module '@mui/material/Autocomplete' {
+  interface AutocompletePropsSizeOverrides {
+    large: true
+  }
+}
+
 /**
  *
  * Demos:
