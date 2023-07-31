@@ -12,6 +12,7 @@ import {
   MenuItem,
   Select,
 } from '@monorail/components'
+import { useTheme } from '@monorail/utils'
 
 import { story } from '../helpers/storybook.js'
 
@@ -64,6 +65,7 @@ export const BasicSelect = story(Template, {
 })
 
 export const Sizes = story<SelectProps<string>>(() => {
+  const theme = useTheme()
   const [age, setAge] = React.useState('')
 
   const handleChange = (event: SelectChangeEvent<string>) => {
@@ -100,20 +102,22 @@ export const Sizes = story<SelectProps<string>>(() => {
           <MenuItem value={30}>Thirty</MenuItem>
         </Select>
       </FormControl>
-      <FormControl sx={{ m: 2, minWidth: 120 }}>
-        <InputLabel id="demo-simple-select-large-label">Large</InputLabel>
-        <Select
-          size="large"
-          labelId="demo-simple-select-large-label"
-          id="demo-simple-select-filled"
-          value={age}
-          onChange={handleChange}
-        >
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
-        </Select>
-      </FormControl>
+      {theme.name.includes('meteor') && (
+        <FormControl sx={{ m: 2, minWidth: 120 }}>
+          <InputLabel id="demo-simple-select-large-label">Large</InputLabel>
+          <Select
+            size="large"
+            labelId="demo-simple-select-large-label"
+            id="demo-simple-select-filled"
+            value={age}
+            onChange={handleChange}
+          >
+            <MenuItem value={10}>Ten</MenuItem>
+            <MenuItem value={20}>Twenty</MenuItem>
+            <MenuItem value={30}>Thirty</MenuItem>
+          </Select>
+        </FormControl>
+      )}
     </div>
   )
 })
