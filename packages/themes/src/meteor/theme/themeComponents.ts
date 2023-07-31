@@ -44,6 +44,7 @@ import { MonorailSelectionFooterOverrides } from '../components/SelectionFooter/
 import { MonorailSkeletonOverrides } from '../components/Skeleton/themeOverrides.js'
 import { MonorailStepIconOverrides } from '../components/StepIcon/themeOverrides.js'
 import { MonorailStepLabelOverrides } from '../components/StepLabel/themeOverrides.js'
+import { MonorailSwitchOverrides } from '../components/Switch/themeOverrides.js'
 import { MonorailTabOverrides } from '../components/Tab/themeOverrides.js'
 import { MonorailTablePaginationOverrides } from '../components/TablePagination/themeOverrides.js'
 import { MonorailTabsOverrides } from '../components/Tabs/themeOverrides.js'
@@ -98,6 +99,7 @@ export const getThemeComponents = (
   MuiSkeleton: MonorailSkeletonOverrides,
   MuiStepIcon: MonorailStepIconOverrides,
   MuiStepLabel: MonorailStepLabelOverrides,
+  MuiSwitch: MonorailSwitchOverrides,
   MuiTab: MonorailTabOverrides,
   MuiTabs: MonorailTabsOverrides,
   MuiTablePagination: MonorailTablePaginationOverrides,
