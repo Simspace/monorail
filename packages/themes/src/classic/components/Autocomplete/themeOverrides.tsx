@@ -4,6 +4,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import type { Components, Theme } from '@mui/material'
 import {
   autocompleteClasses,
+  inputBaseClasses,
   outlinedInputClasses,
   Popper,
 } from '@mui/material'
@@ -32,16 +33,18 @@ export const MonorailAutocompleteOverrides: Components<Theme>['MuiAutocomplete']
       ),
     },
     styleOverrides: {
-      root: ({
-        ownerState: { multiple = false },
-      }: {
-        ownerState: { multiple?: boolean }
-      }) => ({
-        [`.${outlinedInputClasses.root}`]: {
+      root: ({ ownerState: { multiple = false }, theme }) => ({
+        [` .${outlinedInputClasses.root}`]: {
           // Tags have a built-in 3px margin + 9px = 12px
-          padding: multiple ? '2px 9px' : '0 12px',
+          padding: multiple === true ? '2px 9px' : '0 12px',
           [`& .${autocompleteClasses.input}`]: {
             padding: 0,
+            ...(multiple === true && {
+              paddingLeft: theme.spacing(1),
+            }),
+          },
+          [`&.${inputBaseClasses.sizeSmall} .${autocompleteClasses.input}`]: {
+            paddingLeft: theme.spacing(1),
           },
         },
         [`& .${outlinedInputClasses.root}`]: {
@@ -50,11 +53,10 @@ export const MonorailAutocompleteOverrides: Components<Theme>['MuiAutocomplete']
           },
         },
       }),
-      endAdornment: {
-        top: 'calc(50% - 20px)',
-      },
-      input: {
-        padding: 0,
-      },
+      endAdornment: ({ ownerState: { size = 'medium' } }) => ({
+        ...(size !== 'small' && {
+          top: 'calc(50% - 20px)',
+        }),
+      }),
     },
   }

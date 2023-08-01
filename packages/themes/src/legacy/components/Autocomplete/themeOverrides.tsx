@@ -4,6 +4,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import type { Components, Theme } from '@mui/material'
 import {
   autocompleteClasses,
+  inputBaseClasses,
   outlinedInputClasses,
   Popper,
 } from '@mui/material'
@@ -17,7 +18,7 @@ export const MonorailAutocompleteOverrides: Components<Theme>['MuiAutocomplete']
         clickable: true,
         variant: 'rectangular',
       },
-      componentsProps: {
+      slotProps: {
         popupIndicator: {
           size: 'small',
         },
@@ -41,17 +42,14 @@ export const MonorailAutocompleteOverrides: Components<Theme>['MuiAutocomplete']
       ),
     },
     styleOverrides: {
-      root: ({
-        theme,
-        ownerState: { multiple = false },
-      }: {
-        theme: Theme
-        ownerState: { multiple?: boolean }
-      }) => ({
-        [`.${outlinedInputClasses.root}`]: {
-          padding: multiple ? '2px 3px' : theme.spacing(0, 1.5),
+      root: ({ theme, ownerState: { multiple = false } }) => ({
+        [` .${outlinedInputClasses.root}`]: {
+          padding: multiple === true ? '2px 3px' : theme.spacing(0, 1.5),
           [`& .${autocompleteClasses.input}`]: {
             padding: 0,
+            paddingLeft: theme.spacing(1),
+          },
+          [`&.${inputBaseClasses.sizeSmall} .${autocompleteClasses.input}`]: {
             paddingLeft: theme.spacing(1),
           },
         },
