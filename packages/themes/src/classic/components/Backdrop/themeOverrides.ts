@@ -8,6 +8,6 @@ export const MonorailBackdropOverrides: Components<Theme>['MuiBackdrop'] = {
     }),
     invisible: {
       backgroundColor: 'transparent',
-    }
+    },
   },
 }
