@@ -59,28 +59,44 @@ Icons are also appropriate for toggle buttons that allow a single choice to be s
   },
 )
 
-export const Variants = story<IconButtonProps>(() => (
+export const Variants = story<IconButtonProps>(args => (
   <Stack direction="row" spacing={4}>
-    <IconButton aria-label="delete" variant="chromeless" color="primary">
+    <IconButton
+      aria-label="delete"
+      variant="chromeless"
+      color="primary"
+      {...args}
+    >
       <DeleteIcon />
     </IconButton>
-    <IconButton aria-label="delete" variant="outlined" color="primary">
+    <IconButton
+      aria-label="delete"
+      variant="outlined"
+      color="primary"
+      {...args}
+    >
       <DeleteIcon />
     </IconButton>
-    <IconButton aria-label="delete" variant="contained" color="primary">
+    <IconButton
+      aria-label="delete"
+      variant="contained"
+      color="primary"
+      {...args}
+    >
       <DeleteIcon />
     </IconButton>
   </Stack>
 ))
 
 export const Sizes = story<IconButtonProps>(
-  () => (
+  args => (
     <Stack direction="row" spacing={4}>
       <IconButton
         aria-label="delete"
         size="small"
         variant="outlined"
         color="primary"
+        {...args}
       >
         <DeleteIcon fontSize="inherit" />
       </IconButton>
@@ -89,6 +105,7 @@ export const Sizes = story<IconButtonProps>(
         size="medium"
         variant="outlined"
         color="primary"
+        {...args}
       >
         <DeleteIcon />
       </IconButton>
@@ -97,6 +114,7 @@ export const Sizes = story<IconButtonProps>(
         size="large"
         variant="outlined"
         color="primary"
+        {...args}
       >
         <DeleteIcon fontSize="inherit" />
       </IconButton>
@@ -115,13 +133,14 @@ Use fontSize="inherit" for the icon when using size="small" or size="large". fon
   },
 )
 
-export const Shapes = story<IconButtonProps>(() => (
+export const Shapes = story<IconButtonProps>(args => (
   <Stack direction="row" spacing={4}>
     <IconButton
       aria-label="delete"
       shape="circular"
       variant="outlined"
       color="primary"
+      {...args}
     >
       <DeleteIcon />
     </IconButton>
@@ -130,6 +149,7 @@ export const Shapes = story<IconButtonProps>(() => (
       shape="rounded"
       variant="outlined"
       color="primary"
+      {...args}
     >
       <DeleteIcon />
     </IconButton>
@@ -138,6 +158,7 @@ export const Shapes = story<IconButtonProps>(() => (
       shape="circular"
       variant="contained"
       color="primary"
+      {...args}
     >
       <DeleteIcon />
     </IconButton>
@@ -146,6 +167,7 @@ export const Shapes = story<IconButtonProps>(() => (
       shape="rounded"
       variant="contained"
       color="primary"
+      {...args}
     >
       <DeleteIcon />
     </IconButton>

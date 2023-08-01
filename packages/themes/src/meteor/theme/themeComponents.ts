@@ -27,7 +27,11 @@ import { MonorailDialogContentOverrides } from '../components/DialogContent/them
 import { MonorailFileUploadOverrides } from '../components/FileUpload/themeOverrides.js'
 import { MonorailFormHelperTextOverrides } from '../components/FormHelperText/themeOverrides.js'
 import { MonorailFormLabelOverrides } from '../components/FormLabel/themeOverrides.js'
+<<<<<<< HEAD
 import { MonorailInputBaseOverrides } from '../components/InputBase/themeOverrides.js'
+=======
+import { MonorailIconButtonOverrides } from '../components/IconButton/themeOverrides.js'
+>>>>>>> feat: icon button
 import { MonorailInputLabelOverrides } from '../components/InputLabel/themeOverrides.js'
 import { MonorailLinearProgressOverrides } from '../components/LinearProgress/themeOverrides.js'
 import { MonorailLinkOverrides } from '../components/Link/themeOverrides.js'
@@ -78,6 +82,7 @@ export const getThemeComponents = (
   MuiFormHelperText: MonorailFormHelperTextOverrides,
   MuiFormLabel: MonorailFormLabelOverrides,
   MuiInputBase: MonorailInputBaseOverrides,
+  MuiIconButton: MonorailIconButtonOverrides,
   MuiInputLabel: MonorailInputLabelOverrides,
   MuiLinearProgress: MonorailLinearProgressOverrides,
   MuiLink: MonorailLinkOverrides,
