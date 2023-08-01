@@ -244,7 +244,7 @@ export const Vertical = story(
   },
 )
 
-export const StandaloneToggleButton = story(() => {
+export const StandaloneToggleButton = story(args => {
   const [selected, setSelected] = React.useState(false)
 
   return (
@@ -255,6 +255,7 @@ export const StandaloneToggleButton = story(() => {
         setSelected(!selected)
       }}
       aria-label="check"
+      {...args}
     >
       <CheckIcon />
     </ToggleButton>
