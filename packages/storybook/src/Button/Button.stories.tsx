@@ -161,7 +161,7 @@ export const Sizes = story<ButtonProps>(
 )
 
 export const ButtonsWithIconsAndLabel = story<ButtonProps>(
-  () => (
+  args => (
     <React.Fragment>
       {variants.map(variant => (
         <Box mb={10} key={variant}>
@@ -173,6 +173,7 @@ export const ButtonsWithIconsAndLabel = story<ButtonProps>(
                   variant={variant}
                   size={size}
                   startIcon={<SelectAllOutlined />}
+                  {...args}
                 >
                   {size}
                 </Button>
@@ -180,6 +181,7 @@ export const ButtonsWithIconsAndLabel = story<ButtonProps>(
                   variant={variant}
                   size={size}
                   endIcon={<SelectAllOutlined />}
+                  {...args}
                 >
                   {size}
                 </Button>

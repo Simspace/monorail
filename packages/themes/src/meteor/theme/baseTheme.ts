@@ -138,12 +138,6 @@ export const baseTheme = createTheme(
         fontWeight: FontWeight.Book,
       },
       // Components
-      button: {
-        fontSize: FontSize.Button,
-        lineHeight: LineHeight.Button,
-        fontWeight: FontWeight.Bold,
-        textTransform: 'capitalize',
-      },
       alertTitle: {
         fontFamily: BASE_FONT_STACK,
         fontSize: FontSize.AlertTitle,
@@ -169,23 +163,11 @@ export const baseTheme = createTheme(
         fontWeight: FontWeight.Book,
         letterSpacing: 0.2,
       },
-      buttonLarge: {
-        fontFamily: BASE_FONT_STACK,
-        fontSize: FontSize.ButtonLarge,
-        lineHeight: LineHeight.ButtonLarge,
-        fontWeight: FontWeight.SemiBold,
-      },
-      buttonMedium: {
-        fontFamily: BASE_FONT_STACK,
-        fontSize: FontSize.ButtonMedium,
+      button: {
+        fontSize: FontSize.Button,
         lineHeight: LineHeight.ButtonMedium,
-        fontWeight: FontWeight.SemiBold,
-      },
-      buttonSmall: {
-        fontFamily: BASE_FONT_STACK,
-        fontSize: FontSize.ButtonSmall,
-        lineHeight: LineHeight.ButtonSmall,
-        fontWeight: FontWeight.SemiBold,
+        fontWeight: FontWeight.Bold,
+        textTransform: 'capitalize',
       },
       chip: {
         fontFamily: BASE_FONT_STACK,
