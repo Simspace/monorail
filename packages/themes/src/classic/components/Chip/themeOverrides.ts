@@ -18,8 +18,9 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
       }
 
       const readOnlyRectangularStyles: CSSInterpolation = {
-        borderRadius: 4,
         ...mutedVariantStyles,
+        borderRadius: 4,
+        padding: theme.spacing(1),
       }
 
       const baseDraggableStyles: CSSInterpolation = {
@@ -44,8 +45,11 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
         baseDraggableStyles,
       }
     },
-    label: ({ theme }) => ({
+    label: ({ ownerState: { variant = 'muted' }, theme }) => ({
       ...theme.typography.chip,
+      ...(variant === 'rectangular' && {
+        padding: theme.spacing(0, 1),
+      }),
     }),
     filled: ({ ownerState: { color = 'default' }, theme }) => {
       const background = theme.palette[color].main
@@ -145,7 +149,7 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
       }
     },
     sizeSmall: ({ theme }) => ({
-      padding: theme.spacing(0.5, 1.25),
+      padding: theme.spacing(0.5, 1),
       [`& .${chipClasses.icon}`]: {
         marginLeft: 0,
         marginRight: theme.spacing(-1),
@@ -192,7 +196,10 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
         },
       }
 
-      const readOnlyRectangularStyles: CSSInterpolation = mutedVariantStyles
+      const readOnlyRectangularStyles: CSSInterpolation = {
+        ...mutedVariantStyles,
+        margin: 0,
+      }
 
       const clickableRectangularStyles: CSSInterpolation = {
         color: theme.palette.primary.lowEmphasis.contrastText,
