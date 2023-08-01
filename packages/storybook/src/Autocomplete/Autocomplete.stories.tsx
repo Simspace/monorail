@@ -246,6 +246,10 @@ export const Sizes = story(args => {
         renderInput={params => (
           <TextField {...params} label="Size small" placeholder="Favorites" />
         )}
+        slotProps={{
+          clearIndicator: { size: 'small' },
+          popupIndicator: { size: 'small' },
+        }}
         {...args}
       />
       <Autocomplete
@@ -258,6 +262,10 @@ export const Sizes = story(args => {
         renderInput={params => (
           <TextField {...params} label="Size small" placeholder="Favorites" />
         )}
+        slotProps={{
+          clearIndicator: { size: 'small' },
+          popupIndicator: { size: 'small' },
+        }}
         {...args}
       />
       <Autocomplete

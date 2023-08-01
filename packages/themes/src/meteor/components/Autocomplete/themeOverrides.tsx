@@ -13,8 +13,8 @@ import { inputBaseClasses } from '@monorail/components'
 export const MonorailAutocompleteOverrides: Components<Theme>['MuiAutocomplete'] =
   {
     defaultProps: {
-      popupIcon: <ExpandMoreIcon />,
-      clearIcon: <ClearIcon />,
+      popupIcon: <ExpandMoreIcon fontSize="inherit" />,
+      clearIcon: <ClearIcon fontSize="inherit" />,
       ChipProps: {
         clickable: true,
       },
@@ -59,9 +59,11 @@ export const MonorailAutocompleteOverrides: Components<Theme>['MuiAutocomplete']
           },
         },
       }),
-      endAdornment: {
-        top: 'calc(50% - 20px)',
-      },
+      endAdornment: ({ ownerState: { size = 'medium' } }) => ({
+        ...(size !== 'small' && {
+          top: 'calc(50% - 20px)',
+        }),
+      }),
       inputRoot: ({ ownerState: { size = 'medium' } }) => ({
         padding: 0,
         minHeight: 40,
