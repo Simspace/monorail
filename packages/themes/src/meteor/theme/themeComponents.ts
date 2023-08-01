@@ -16,6 +16,7 @@ import { MonorailAvatarOverrides } from '../components/Avatar/themeOverrides.js'
 import { MonorailAvatarGroupOverrides } from '../components/AvatarGroup/themeOverrides.js'
 import { MonorailBadgeOverrides } from '../components/Badge/themeOverrides.js'
 import { MonorailBreadcrumbsOverrides } from '../components/Breadcrumbs/themeOverrides.js'
+import { MonorailButtonOverrides } from '../components/Button/themeOverrides.js'
 import { MonorailCardOverrides } from '../components/Card/themeOverrides.js'
 import { MonorailCardHeaderOverrides } from '../components/CardHeader/themeOverrides.js'
 import { MonorailChipOverrides } from '../components/Chip/themeOverrides.js'
@@ -66,6 +67,7 @@ export const getThemeComponents = (
   MuiAvatarGroup: MonorailAvatarGroupOverrides,
   MuiBadge: MonorailBadgeOverrides,
   MuiBreadcrumbs: MonorailBreadcrumbsOverrides,
+  MuiButton: MonorailButtonOverrides,
   MuiCard: MonorailCardOverrides,
   MuiCardHeader: MonorailCardHeaderOverrides,
   MuiChip: MonorailChipOverrides,
