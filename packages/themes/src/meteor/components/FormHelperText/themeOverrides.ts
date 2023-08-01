@@ -5,7 +5,7 @@ export const MonorailFormHelperTextOverrides: Components<Theme>['MuiFormHelperTe
   {
     defaultProps: {},
     styleOverrides: {
-      root: ({  theme }) => ({
+      root: ({ theme }) => ({
         color: theme.palette.default.main,
         marginTop: theme.spacing(0.5),
         marginLeft: theme.spacing(3),
@@ -13,7 +13,7 @@ export const MonorailFormHelperTextOverrides: Components<Theme>['MuiFormHelperTe
         ...theme.typography.helperText,
         [`&.${formHelperTextClasses.error}`]: {
           color: theme.palette.error.lowEmphasis.contrastText,
-        }
+        },
       }),
     },
   }
