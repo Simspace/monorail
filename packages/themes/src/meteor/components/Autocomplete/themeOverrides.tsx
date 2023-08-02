@@ -42,7 +42,7 @@ export const MonorailAutocompleteOverrides: Components<Theme>['MuiAutocomplete']
       ),
     },
     styleOverrides: {
-      root: ({ ownerState: { multiple = false }, theme }) => ({
+      root: ({ ownerState: { multiple = false, size = 'medium' }, theme }) => ({
         [`.${outlinedInputClasses.root}`]: {
           // Tags have a built-in 3px margin + 9px = 12px
           padding: multiple === true ? '2px 9px' : '0 12px',
@@ -67,6 +67,10 @@ export const MonorailAutocompleteOverrides: Components<Theme>['MuiAutocomplete']
             borderColor: theme.palette.default.border.main,
           },
         },
+        ...(size === 'large' && {
+          [`&.${autocompleteClasses.hasPopupIcon}.${autocompleteClasses.hasClearIcon} .${outlinedInputClasses.root}`]:
+            { paddingRight: theme.spacing(21.25) },
+        }),
       }),
       endAdornment: ({ ownerState: { size = 'medium' } }) => ({
         ...(size === 'large' && {
