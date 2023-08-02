@@ -6,11 +6,13 @@ import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank'
 import type { AutocompleteProps } from '@monorail/components'
 import {
   Autocomplete,
+  autocompleteClasses,
   Box,
   Checkbox,
   Chip,
   Stack,
   TextField,
+  Typography,
   VirtualizedAutocomplete,
 } from '@monorail/components'
 import { useTheme } from '@monorail/utils'
@@ -332,19 +334,61 @@ export const Sizes = story(args => {
 
 export const LimitTags = story(args => {
   return (
-    <Autocomplete
-      multiple
-      limitTags={2}
-      id="multiple-limit-tags"
-      options={movies}
-      getOptionLabel={option => option.label}
-      defaultValue={[movies[13], movies[12], movies[11]]}
-      renderInput={params => (
-        <TextField {...params} label="limitTags" placeholder="Favorites" />
-      )}
-      sx={{ width: '500px' }}
-      {...args}
-    />
+    <Stack gap={6}>
+      <Autocomplete
+        multiple
+        limitTags={2}
+        id="multiple-limit-tags"
+        options={movies}
+        getOptionLabel={option => option.label}
+        defaultValue={[movies[13], movies[12], movies[11]]}
+        renderInput={params => (
+          <TextField {...params} label="limitTags" placeholder="Favorites" />
+        )}
+        sx={{ width: '500px' }}
+        {...args}
+      />
+      <Autocomplete
+        multiple
+        limitTags={2}
+        id="multiple-limit-tags-one-line"
+        options={movies}
+        getOptionLabel={option => option.label}
+        defaultValue={[movies[13], movies[12], movies[11]]}
+        renderTags={(value, getTagProps) => {
+          const numTags = value.length
+          const limitTags = 1
+
+          return (
+            <>
+              {value.slice(0, limitTags).map((option, index) => (
+                <Chip
+                  {...getTagProps({ index })}
+                  key={index}
+                  label={option.label}
+                />
+              ))}
+
+              <Typography
+                component="span"
+                className={`${autocompleteClasses.tag} ${autocompleteClasses.tagSizeMedium}`}
+              >
+                {numTags > limitTags && ` +${numTags - limitTags}`}
+              </Typography>
+            </>
+          )
+        }}
+        renderInput={params => (
+          <TextField
+            {...params}
+            label="limitTags (One line)"
+            placeholder="Favorites"
+          />
+        )}
+        sx={{ width: '500px' }}
+        {...args}
+      />
+    </Stack>
   )
 })
 
