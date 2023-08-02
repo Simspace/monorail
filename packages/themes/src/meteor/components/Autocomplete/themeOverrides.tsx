@@ -15,6 +15,15 @@ export const MonorailAutocompleteOverrides: Components<Theme>['MuiAutocomplete']
     defaultProps: {
       popupIcon: <ExpandMoreIcon fontSize="inherit" />,
       clearIcon: <ClearIcon fontSize="inherit" />,
+      slotProps: {
+        popupIndicator: { size: 'small' },
+        clearIndicator: {
+          size: 'small',
+          sx: {
+            visibility: 'visible',
+          },
+        },
+      },
       ChipProps: {
         clickable: true,
       },
@@ -60,7 +69,7 @@ export const MonorailAutocompleteOverrides: Components<Theme>['MuiAutocomplete']
         },
       }),
       endAdornment: ({ ownerState: { size = 'medium' } }) => ({
-        ...(size !== 'small' && {
+        ...(size === 'large' && {
           top: 'calc(50% - 20px)',
         }),
       }),

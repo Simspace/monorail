@@ -246,10 +246,6 @@ export const Sizes = story(args => {
         renderInput={params => (
           <TextField {...params} label="Size small" placeholder="Favorites" />
         )}
-        slotProps={{
-          clearIndicator: { size: 'small' },
-          popupIndicator: { size: 'small' },
-        }}
         {...args}
       />
       <Autocomplete
@@ -262,10 +258,6 @@ export const Sizes = story(args => {
         renderInput={params => (
           <TextField {...params} label="Size small" placeholder="Favorites" />
         )}
-        slotProps={{
-          clearIndicator: { size: 'small' },
-          popupIndicator: { size: 'small' },
-        }}
         {...args}
       />
       <Autocomplete
@@ -299,6 +291,10 @@ export const Sizes = story(args => {
             options={movies}
             getOptionLabel={option => option.label}
             defaultValue={movies[13]}
+            slotProps={{
+              clearIndicator: { size: 'medium' },
+              popupIndicator: { size: 'medium' },
+            }}
             renderInput={params => (
               <TextField
                 {...params}
@@ -315,6 +311,10 @@ export const Sizes = story(args => {
             options={movies}
             getOptionLabel={option => option.label}
             defaultValue={[movies[13]]}
+            slotProps={{
+              clearIndicator: { size: 'medium' },
+              popupIndicator: { size: 'medium' },
+            }}
             renderInput={params => (
               <TextField
                 {...params}
