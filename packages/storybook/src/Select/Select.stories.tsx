@@ -11,6 +11,7 @@ import {
   InputLabel,
   MenuItem,
   Select,
+  Stack,
 } from '@monorail/components'
 import { useTheme } from '@monorail/utils'
 
@@ -130,7 +131,7 @@ export const LabelsAndHelperText = story<SelectProps<string>>(() => {
   }
 
   return (
-    <div>
+    <Stack direction="row">
       <FormControl sx={{ m: 4, minWidth: 120 }}>
         <InputLabel id="demo-simple-select-helper-label">Age</InputLabel>
         <Select
@@ -160,11 +161,15 @@ export const LabelsAndHelperText = story<SelectProps<string>>(() => {
         </Select>
         <FormHelperText>Without label</FormHelperText>
       </FormControl>
-      <FormControl sx={{ m: 4, display: 'inline-flex', flexDirection: 'row' }}>
-        <InputLabel
-          sx={{ fontWeight: 700, m: 0, mt: 3, mr: 3, left: 0 }}
-          id="label-on-left"
-        >
+      <FormControl
+        sx={{
+          m: 4,
+          display: 'flex',
+          flexDirection: 'row',
+          alignItems: 'baseline',
+        }}
+      >
+        <InputLabel sx={{ left: 0, mr: 3 }} id="label-on-left">
           Select
         </InputLabel>
         <div>
@@ -173,6 +178,7 @@ export const LabelsAndHelperText = story<SelectProps<string>>(() => {
             onChange={handleChange}
             displayEmpty
             inputProps={{ 'aria-label': 'Without label' }}
+            sx={{ minWidth: 120 }}
           >
             <MenuItem value={10}>Ten</MenuItem>
             <MenuItem value={20}>Twenty</MenuItem>
@@ -181,7 +187,7 @@ export const LabelsAndHelperText = story<SelectProps<string>>(() => {
           <FormHelperText>Label on left</FormHelperText>
         </div>
       </FormControl>
-    </div>
+    </Stack>
   )
 })
 
