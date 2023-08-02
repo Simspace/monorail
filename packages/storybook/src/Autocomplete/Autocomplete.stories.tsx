@@ -236,7 +236,7 @@ export const MultipleValues = story<MovieAutocompleteProps>(args => {
 export const Sizes = story(args => {
   const theme = useTheme()
   return (
-    <Stack spacing={2} sx={{ width: 500 }}>
+    <Stack spacing={2} sx={{ maxWidth: 500 }}>
       <Autocomplete
         id="size-small-outlined"
         size="small"
