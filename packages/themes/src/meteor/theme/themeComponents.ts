@@ -23,6 +23,7 @@ import { MonorailCircularProgressOverrides } from '../components/CircularProgres
 import { MonorailDataGridOverrides } from '../components/DataGrid/themeOverrides.js'
 import { MonorailDateRangePickerDayOverrides } from '../components/DateRangePickerDay/themeOverrides.js'
 import { MonorailDialogContentOverrides } from '../components/DialogContent/themeOverrides.js'
+import { MonorailFileUploadOverrides } from '../components/FileUpload/themeOverrides.js'
 import { MonorailFormHelperTextOverrides } from '../components/FormHelperText/themeOverrides.js'
 import { MonorailFormLabelOverrides } from '../components/FormLabel/themeOverrides.js'
 import { MonorailInputBaseOverrides } from '../components/InputBase/themeOverrides.js'
@@ -55,6 +56,7 @@ export const getThemeComponents = (
   // Make sure we apply the defaults here
   ...baseTheme.components,
   ...getClassicThemeComponents(theme),
+  MonorailFileUpload: MonorailFileUploadOverrides,
   MonorailSelectionFooter: MonorailSelectionFooterOverrides,
   MuiAccordionSummary: MonorailAccordionSummaryOverrides,
   MuiAlert: MonorailAlertOverrides,
