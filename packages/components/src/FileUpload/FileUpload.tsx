@@ -1,259 +1,322 @@
-import type { CSSProperties } from 'react'
 import React from 'react'
 import { useDrop } from 'react-dnd'
 import { NativeTypes } from 'react-dnd-html5-backend'
-import CancelIcon from '@mui/icons-material/Cancel'
-import DescriptionIcon from '@mui/icons-material/Description'
-import FileUploadIcon from '@mui/icons-material/FileUpload'
-import WarningIcon from '@mui/icons-material/Warning'
-import type { SxProps, Theme } from '@mui/material'
-import { styled } from '@mui/material'
+import { styled, typographyClasses, useThemeProps } from '@mui/material'
+import clsx from 'clsx'
 
-import { excludeProps, sx } from '@monorail/utils'
+import { Error, Upload, UploadFile } from '@monorail/components/icons'
+import type { StandardElementProps } from '@monorail/types'
+import { composeClasses } from '@monorail/utils'
 import {
   bytesToSize,
   formatSize,
 } from '@monorail/utils/helpers/fileSizeFormatters'
 
 import { Box } from '../Box.js'
+import type { ButtonProps } from '../Button.js'
 import { Button } from '../Button.js'
 import { FormControl } from '../FormControl.js'
 import type { FormHelperTextProps } from '../FormHelperText.js'
 import { FormHelperText } from '../FormHelperText.js'
 import { FormLabel } from '../FormLabel.js'
-import { IconButton } from '../IconButton.js'
 import { LinearProgress } from '../LinearProgress.js'
+import { Stack } from '../Stack.js'
 import type { TypographyProps } from '../Typography.js'
 import { Typography } from '../Typography.js'
+import {
+  fileUploadClasses,
+  getFileUploadUtilityClasses,
+} from './fileUploadClasses.js'
+import type { FileUploadProps } from './fileUploadProps.js'
 
 //#region Status
-const DROP_TARGET_STATUS = {
-  Active: 'active',
-  HasFile: 'hasFile',
-  Initial: 'initial',
-  Uploading: 'uploading',
-} as const
-
-type Status = (typeof DROP_TARGET_STATUS)[keyof typeof DROP_TARGET_STATUS]
-
-const getDropTargetStatus = ({
-  isActive,
-  hasFile,
-  uploading,
-}: {
-  isActive: boolean
-  hasFile: boolean
-  uploading: boolean
-}): Status =>
-  isActive
-    ? DROP_TARGET_STATUS.Active
-    : uploading
-    ? DROP_TARGET_STATUS.Uploading
-    : hasFile
-    ? DROP_TARGET_STATUS.HasFile
-    : DROP_TARGET_STATUS.Initial
-//#endregion Status
-
-//#region DropTargetIcon
-const DropTargetIcon = ({ status }: { status: Status | 'error' }) => {
-  switch (status) {
-    case DROP_TARGET_STATUS.Active:
-      return <FileUploadIcon viewBox={'2 2 20 20'} color="primary" />
-    case 'error':
-      return <WarningIcon viewBox={'2 2 20 20'} color="error" />
-    case DROP_TARGET_STATUS.HasFile:
-      return <DescriptionIcon viewBox={'2 2 20 20'} color="default" />
-    case DROP_TARGET_STATUS.Initial:
-      return <FileUploadIcon viewBox={'2 2 20 20'} color="default" />
-    case DROP_TARGET_STATUS.Uploading:
-      return <DescriptionIcon viewBox={'2 2 20 20'} color="default" />
-    default:
-      return <></>
-  }
+enum DropTargetStatus {
+  Default = 'default',
+  Dropping = 'dropping',
+  Uploaded = 'uploaded',
+  Progress = 'progress',
+  Error = 'error',
 }
-//#end-region DropTargetIcon
 
-//#region DropTargetText
-const StyledHelperText = styled(FormHelperText)<FormHelperTextProps>(
-  ({ theme }) => ({
-    fontWeight: theme.typography.fontWeightMedium,
-    fontSize: theme.typography.body2.fontSize,
-    margin: theme.spacing(2),
-    color: theme.palette.text.primary,
+const defaultIconMapping = {
+  [DropTargetStatus.Default]: <Upload fontSize="inherit" />,
+  [DropTargetStatus.Dropping]: <Upload fontSize="inherit" />,
+  [DropTargetStatus.Progress]: <UploadFile fontSize="inherit" />,
+  [DropTargetStatus.Uploaded]: <UploadFile fontSize="inherit" />,
+  [DropTargetStatus.Error]: <Error fontSize="inherit" />,
+}
+
+const FileUploadIcon = styled('div', {
+  name: 'MonorailFileUpload',
+  slot: 'Icon',
+  overridesResolver: (props, styles) => styles.icon,
+})<{ ownerState: FileUploadProps }>(({ ownerState, theme }) => ({
+  display: 'flex',
+  fontSize: 32,
+  color: theme.palette.default.main,
+  ...(ownerState.status === DropTargetStatus.Dropping && {
+    color: theme.palette.info.main,
   }),
-)
+  ...(ownerState.status === DropTargetStatus.Error && {
+    color: theme.palette.error.main,
+  }),
+}))
 
-const StyledDropTargetText = styled(Typography)<TypographyProps>(
-  sx(theme => ({
-    fontWeight: theme.typography.fontWeightMedium,
-    fontSize: theme.typography.body2.fontSize,
-    my: theme.spacing(2),
-    color: theme.palette.text.primary,
-  })),
-)
+const FileUploadErrorMessage = styled(FormHelperText, {
+  name: 'MonorailFileUpload',
+  slot: 'ErrorMessage',
+  overridesResolver: (props, styles) => styles.errorMessage,
+})<FormHelperTextProps>(({ theme }) => ({
+  margin: 'unset',
+  color: theme.palette.text.primary,
+  flex: 1,
+}))
 
-interface DropTargetTextProps {
-  status: Status | 'error'
-  file: File | null
-  helperText?: string
+const FileUploadPrimaryText = styled(Typography, {
+  name: 'MonorailFileUpload',
+  slot: 'PrimaryText',
+})<TypographyProps>(({ theme }) => ({
+  ...theme.typography.alertTitle,
+  color: theme.palette.text.primary,
+  flex: 1,
+}))
+
+const FileUploadSecondaryText = styled(Typography, {
+  name: 'MonorailFileUpload',
+  slot: 'SecondaryText',
+})<TypographyProps>(({ theme }) => ({
+  ...theme.typography.subtitle2,
+  color: theme.palette.text.secondary,
+  flex: 1,
+}))
+
+const FileUploadFileName = styled(Typography, {
+  name: 'MonorailFileUpload',
+  slot: 'FileName',
+})<TypographyProps>(({ theme }) => ({
+  ...theme.typography.inputText,
+  color: theme.palette.text.primary,
+  flex: 1,
+}))
+
+const FileUploadFileSize = styled(Typography, {
+  name: 'MonorailFileUpload',
+  slot: 'FileSize',
+})<TypographyProps>(({ theme }) => ({
+  ...theme.typography.subtitle2,
+  color: theme.palette.text.secondary,
+  flex: 1,
+}))
+
+interface DropTargetTextProps
+  extends Pick<
+    FileUploadProps,
+    'file' | 'helperText' | 'errorMessage' | 'status'
+  > {
+  helperTextProps?: FormHelperTextProps
 }
 
-const DropTargetText = ({ status, file, helperText }: DropTargetTextProps) => {
-  if (status === DROP_TARGET_STATUS.Active) {
-    return (
-      <StyledDropTargetText sx={{ color: 'primary.main' }}>
-        Drop file here
-      </StyledDropTargetText>
-    )
+const renderFileUploadText = ({
+  status,
+  file,
+  helperText,
+  errorMessage,
+}: DropTargetTextProps) => {
+  switch (status) {
+    case DropTargetStatus.Default:
+      return (
+        <>
+          {helperText}
+          <FileUploadSecondaryText>or</FileUploadSecondaryText>
+        </>
+      )
+    case DropTargetStatus.Dropping:
+      return (
+        <FileUploadPrimaryText my={2} color="primary.main">
+          Drop file here
+        </FileUploadPrimaryText>
+      )
+    case DropTargetStatus.Uploaded:
+    case DropTargetStatus.Progress:
+      return (
+        file !== null && (
+          <Stack gap={1} width="100%">
+            <FileUploadFileName lineClamp={1} title={file.name}>
+              {file.name}
+            </FileUploadFileName>
+            <FileUploadFileSize>
+              ({formatSize(bytesToSize(file.size))})
+            </FileUploadFileSize>
+          </Stack>
+        )
+      )
+    case 'error':
+      return errorMessage
+    default:
+      return null
   }
-  if (file === null || file === undefined) {
-    return <StyledHelperText>{helperText}</StyledHelperText>
-  }
-  return (
-    <div>
-      <StyledDropTargetText>{file.name}</StyledDropTargetText>
-      <StyledDropTargetText
-        sx={{ fontWeight: 'regular', color: 'text.secondary' }}
-      >
-        ({formatSize(bytesToSize(file.size))})
-      </StyledDropTargetText>
-    </div>
-  )
 }
-//#endregion DropTargetText
-
-//#region DropTargetAction
-interface DropTargetActionProps {
-  status: Status
+interface DropTargetActionProps extends StandardElementProps<'div'> {
+  status: FileUploadProps['status']
   uploadProgress: number | null
   onClick: () => void
+  disabled: boolean
+  dropTargetActionSlotProps?: ButtonProps
 }
 
-const DropTargetAction = ({
+const renderDropTargetAction = ({
   status,
   uploadProgress,
   onClick,
+  disabled,
+  dropTargetActionSlotProps,
 }: DropTargetActionProps) => {
   switch (status) {
-    case DROP_TARGET_STATUS.Active:
+    case DropTargetStatus.Dropping:
       return <></>
-    case DROP_TARGET_STATUS.HasFile:
+    case DropTargetStatus.Uploaded:
       return (
-        <Button variant="text" onClick={onClick} sx={{ mt: 2 }}>
-          Change File
+        <Button
+          variant="text"
+          onClick={onClick}
+          sx={{ mt: 2 }}
+          {...dropTargetActionSlotProps}
+        >
+          Remove File
         </Button>
       )
-    case DROP_TARGET_STATUS.Initial:
-      return <Button onClick={onClick}>Choose File</Button>
-    case DROP_TARGET_STATUS.Uploading:
-      return uploadProgress !== null ? (
-        <Box
-          sx={{
-            display: 'flex',
-            alignItems: 'center',
-            width: '100%',
-            maxWidth: 240,
-          }}
+    case DropTargetStatus.Default:
+    case DropTargetStatus.Error:
+      return (
+        <Button
+          onClick={onClick}
+          disabled={disabled}
+          sx={{ textTransform: 'revert' }}
+          {...dropTargetActionSlotProps}
         >
-          <Box sx={{ flex: 1, mr: 2 }}>
-            <LinearProgress variant="determinate" value={uploadProgress} />
+          Select a File
+        </Button>
+      )
+    case DropTargetStatus.Progress:
+      return uploadProgress !== null ? (
+        <>
+          <Box
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              width: '100%',
+              maxWidth: 240,
+            }}
+          >
+            <Box sx={{ flex: 1, mr: 2 }}>
+              <LinearProgress variant="determinate" value={uploadProgress} />
+            </Box>
+            <Box>
+              <Typography variant="body2" color="text.secondary">{`${Math.round(
+                uploadProgress,
+              )}%`}</Typography>
+            </Box>
           </Box>
-          <Box>
-            <Typography variant="body2" color="text.secondary">{`${Math.round(
-              uploadProgress,
-            )}%`}</Typography>
-          </Box>
-        </Box>
+          <Button onClick={onClick} {...dropTargetActionSlotProps}>
+            Cancel
+          </Button>
+        </>
       ) : (
         <></>
       )
+    default:
+      return null
   }
 }
-//#endregion DropTargetAction
 
-type DropTargetProps = {
-  status: Status | 'error'
-  isDragging: boolean
-  onlyVisibleWhileDragging: boolean
-  sx?: SxProps<Theme>
+interface DropTargetContainerProps
+  extends Omit<
+    FileUploadProps,
+    'ref' | 'file' | 'uploadProgress' | 'onChange'
+  > {
+  ownerState: FileUploadProps
 }
 
-const DropTarget = styled('div', {
-  shouldForwardProp: excludeProps(
-    'status',
-    'isDragging',
-    'onlyVisibleWhileDragging',
-    'sx',
-  ),
-})<DropTargetProps>(
-  ({ theme, onlyVisibleWhileDragging, isDragging, status, sx: sxProp }) => {
-    const dropTargetStatusStyles: Record<string, CSSProperties> = {
-      [DROP_TARGET_STATUS.Active]: {
-        background: theme.palette.primary.lowEmphasis.light,
-        border: `2px dashed ${theme.palette.primary.border.light}`,
-      },
-      [DROP_TARGET_STATUS.Initial]: {
-        background: theme.palette.default.lowEmphasis.light,
-        border: `2px dashed ${theme.palette.default.border.light}`,
-      },
-      [DROP_TARGET_STATUS.HasFile]: {
-        background: theme.palette.background.paper,
-        border: `1px solid ${theme.palette.default.border.light}`,
-      },
-      [DROP_TARGET_STATUS.Uploading]: {
-        background: theme.palette.background.paper,
-        border: `1px solid ${theme.palette.default.border.light}`,
-      },
-      error: {
-        background: theme.palette.error.lowEmphasis.light,
-        border: `1px solid ${theme.palette.error.border.light}`,
-      },
-    }
-
-    return sx({
-      boxSizing: 'border-box',
-      position: 'relative',
-      display: onlyVisibleWhileDragging && !isDragging ? 'none' : 'flex',
-      flexDirection: 'column',
-      minWidth: 232,
-      p: 4,
-      borderRadius: 1,
-      height: '100%',
-      minHeight: 240,
-      alignItems: 'center',
-      justifyContent: 'center',
-      textAlign: 'center',
-      ...dropTargetStatusStyles[status],
-      ...(sxProp !== undefined && sxProp),
-    })
-  },
-)
-
-const DropTargetContent = styled('div')({
-  textAlign: 'center',
+const DropTarget = styled(Box, {
+  name: 'MonorailFileUpload',
+  slot: 'DropTarget',
+  overridesResolver: (props, styles) => styles.dropTarget,
+})<DropTargetContainerProps>(({ ownerState, theme }) => ({
+  boxSizing: 'border-box',
+  position: 'relative',
   display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
   alignItems: 'center',
-})
+  justifyContent: 'center',
+  flexDirection: 'column',
+  height: '100%',
+  minHeight: 240,
+  minWidth: 232,
+  padding: theme.spacing(4, '10%'),
+  borderRadius: theme.shape.borderRadius,
+  [`&.${fileUploadClasses.onlyVisibleWhileDragging}`]: {
+    display: 'none',
+  },
+  [`& .${fileUploadClasses.content}`]: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: theme.spacing(3),
+    minWidth: '50%',
+    maxWidth: '100%',
 
-export interface FileUploadProps {
-  file: File | null
-  uploadProgress: number | null
-  error?: boolean
-  onChange: (file: File | null) => void
-  onlyVisibleWhileDragging?: boolean
-  label?: string
-  required?: boolean
-  helperText?: string
-  DropTargetProps?: {
-    sx?: SxProps<Theme>
-  }
-}
+    [`& .${typographyClasses.root}`]: {
+      textAlign: 'center',
+      flex: '0 1 auto',
+      width: '100%',
+    },
+  },
+  ...(ownerState.status === DropTargetStatus.Default && {
+    backgroundColor: theme.palette.default.lowEmphasis.light,
+    border: `2px dashed ${theme.palette.default.border.light}`,
+  }),
+  ...(ownerState.status === DropTargetStatus.Dropping && {
+    backgroundColor: theme.palette.info.lowEmphasis.light,
+    border: `2px dashed ${theme.palette.info.border.light}`,
+  }),
+  ...(ownerState.status === DropTargetStatus.Progress && {
+    backgroundColor: theme.palette.background.paper,
+    border: `1px solid ${theme.palette.default.border.light}`,
+  }),
+  ...(ownerState.status === DropTargetStatus.Uploaded && {
+    backgroundColor: theme.palette.background.paper,
+    border: `1px solid ${theme.palette.default.border.light}`,
+  }),
+  ...(ownerState.status === DropTargetStatus.Error && {
+    backgroundColor: theme.palette.error.lowEmphasis.light,
+    border: `1px solid ${theme.palette.error.border.light}`,
+  }),
+}))
 
 type DropTargetMonitor = {
   getItem: () => { files: Array<File> }
 }
+
+interface FileUploadRootProps
+  extends Omit<FileUploadProps, 'file' | 'uploadProgress' | 'onChange'> {
+  ownerState: FileUploadProps
+}
+
+const FileUploadRoot = styled(FormControl, {
+  name: 'MonorailFileUpload',
+  slot: 'Root',
+  overridesResolver: (props: FileUploadRootProps, styles) => {
+    const {
+      ownerState: { status },
+    } = props
+    return [status !== undefined && styles[status], styles.root]
+  },
+})<FileUploadRootProps>(({ theme }) => ({
+  display: 'flex',
+  height: '100%',
+  [`&.${fileUploadClasses.disabled}`]: {
+    opacity: theme.palette.action.disabledOpacity,
+    pointerEvents: 'none',
+  },
+}))
 
 /**
  * File Upload Component that can handle both selecting files through a button
@@ -270,23 +333,37 @@ type DropTargetMonitor = {
  *
  * - [FileUpload](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/inputs-fileupload--default)
  */
-export const FileUpload: React.VFC<FileUploadProps> = ({
-  required = false,
-  onlyVisibleWhileDragging = false,
-  ...props
-}) => {
-  const inputRef = React.useRef<HTMLInputElement>(null)
+export const FileUpload = React.forwardRef(function FileUpload(
+  inProps,
+  ref: React.ForwardedRef<HTMLDivElement>,
+) {
+  const props = useThemeProps({ props: inProps, name: 'MonorailFileUpload' })
+  const {
+    className,
+    disabled = false,
+    error = false,
+    errorMessage: errorMessageProp,
+    file,
+    helperText: helperTextProp,
+    iconMapping = defaultIconMapping,
+    label,
+    onChange: onChangeProp,
+    onlyVisibleWhileDragging = false,
+    required = false,
+    uploadProgress,
+    slotProps = {},
+    ...other
+  } = props
 
-  const onClick = () => {
-    if (inputRef.current !== null) {
-      inputRef.current.click()
-    }
-  }
+  let errorMessage
+  let helperText
+  let icon
+
   const [{ canDrop, isOver }, drop] = useDrop({
     accept: [NativeTypes.FILE],
     drop(_, monitor: DropTargetMonitor) {
       const files = monitor.getItem().files
-      props.onChange(files[0] ?? null)
+      onChangeProp(files[0] ?? null)
     },
     collect: monitor => ({
       isOver: monitor.isOver(),
@@ -294,124 +371,201 @@ export const FileUpload: React.VFC<FileUploadProps> = ({
     }),
   })
 
-  const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const files = event.target.files
-    if (files !== null) {
-      props.onChange(files[0] ?? null)
+  const fileUploadStatus = React.useMemo(() => {
+    const isDropping = canDrop && isOver
+    return getDropTargetStatus({
+      isDropping,
+      uploaded: file !== null,
+      inProgress: uploadProgress !== null,
+      error: !isDropping && error,
+    })
+  }, [canDrop, isOver, file, uploadProgress, error])
 
-      if (inputRef.current !== null) {
-        event.target.value = ''
+  const ownerState: FileUploadProps = {
+    ...props,
+    required,
+    disabled,
+    error,
+    isDragging: canDrop,
+    onlyVisibleWhileDragging,
+    status: fileUploadStatus,
+  }
+
+  const inputRef = React.useRef<HTMLInputElement>(null)
+
+  const classes = useUtilityClasses(ownerState)
+
+  const onClick = () => {
+    if (inputRef.current !== null) {
+      if (
+        fileUploadStatus === DropTargetStatus.Uploaded ||
+        fileUploadStatus === DropTargetStatus.Progress
+      ) {
+        onChangeProp(null)
+      } else {
+        inputRef.current.click()
       }
     }
   }
 
-  const status = React.useMemo(
-    () =>
-      getDropTargetStatus({
-        isActive: canDrop && isOver,
-        hasFile: props.file !== null,
-        uploading: props.uploadProgress !== null,
-      }),
-    [props.file, props.uploadProgress, canDrop, isOver],
-  )
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const files = event.target.files
+    if (files !== null) {
+      onChangeProp(files[0] ?? null)
 
-  // Error status is used for container styles and icon
-  const statusWithError = React.useMemo(() => {
-    if (
-      status === DROP_TARGET_STATUS.Active ||
-      props.error === null ||
-      props.error === undefined
-    ) {
-      return status
-    }
-    return 'error' as const
-  }, [status, props.error])
-
-  const label = React.useMemo(() => {
-    if (props.label !== undefined) {
-      return (
-        <FormLabel
-          required={required}
-          sx={{
-            display: 'block',
-            mb: 0,
-          }}
-        >
-          {props.label}
-        </FormLabel>
-      )
-    }
-    return null
-  }, [props.label, required])
-
-  const removeFileButton = React.useMemo(
-    () =>
-      status === 'hasFile' && (
-        <IconButton
-          aria-label="Remove File"
-          sx={{
-            position: 'absolute',
-            top: 4,
-            right: 4,
-          }}
-          onClick={() => props.onChange(null)}
-        >
-          <CancelIcon />
-        </IconButton>
-      ),
-    [status, props],
-  )
-
-  const helperText = React.useMemo(() => {
-    const DEFAULT_ERROR_MESSAGE =
-      'Something went wrong, select another file and try again.'
-    const DEFAULT_HELPER_TEXT = 'Drop your file here.'
-    if (props.helperText !== undefined) {
-      return props.helperText
-    }
-    if (props.helperText === undefined) {
-      if (statusWithError === 'error') {
-        return DEFAULT_ERROR_MESSAGE
+      if (inputRef.current !== null) {
+        inputRef.current.value = ''
       }
-      return DEFAULT_HELPER_TEXT
     }
-  }, [statusWithError, props.helperText])
+  }
+
+  // if (helperTextProp === undefined) {
+  //   helperText = (
+  //     // Default helper text
+  //     <FileUploadPrimaryText {...slotProps.helperText}>
+  //       Drop a file here to upload
+  //     </FileUploadPrimaryText>
+  //   )
+  // } else {
+  //   if (typeof helperTextProp === 'string') {
+  //     helperText = (
+  //       <FileUploadPrimaryText {...slotProps.helperText}>
+  //         {helperTextProp}
+  //       </FileUploadPrimaryText>
+  //     )
+  //   } else {
+  //     errorMessage = helperTextProp
+  //   }
+  // }
+
+  // if (errorMessageProp === undefined) {
+  //   errorMessage = (
+  //     // Default error message
+  //     <FileUploadErrorMessage
+  //       className={classes.errorMessage}
+  //       sx={{ fontWeight: 600, textAlign: 'center' }}
+  //       {...slotProps.errorMessage}
+  //     >
+  //       Something went wrong.
+  //       <br />
+  //       <Typography component="span" variant="inherit" sx={{ fontWeight: 400 }}>
+  //         Select a file and try again.
+  //       </Typography>
+  //     </FileUploadErrorMessage>
+  //   )
+  // } else {
+  //   if (typeof errorMessageProp === 'string') {
+  //     errorMessage = (
+  //       <FileUploadErrorMessage {...slotProps.errorMessage}>
+  //         {errorMessageProp}
+  //       </FileUploadErrorMessage>
+  //     )
+  //   } else {
+  //     errorMessage = errorMessageProp
+  //   }
+  // }
+
+  if (fileUploadStatus !== undefined) {
+    icon = iconMapping[fileUploadStatus] ?? defaultIconMapping[fileUploadStatus]
+  }
 
   return (
-    <FormControl error={props.error} fullWidth sx={{ height: '100%' }}>
-      {label}
+    <FileUploadRoot
+      className={clsx(classes.root, className)}
+      ownerState={ownerState}
+      ref={ref}
+      error={error}
+      {...other}
+    >
+      {label !== undefined && label.length > 0 && (
+        <FormLabel className={classes.label} {...slotProps.label}>
+          {label}
+        </FormLabel>
+      )}
+
       <DropTarget
         ref={drop}
-        status={statusWithError}
-        onlyVisibleWhileDragging={onlyVisibleWhileDragging}
-        isDragging={canDrop}
-        sx={props.DropTargetProps?.sx}
+        className={classes.dropTarget}
+        ownerState={ownerState}
+        {...slotProps.dropTarget}
       >
-        {removeFileButton}
+        <Stack className={classes.content} {...slotProps.content}>
+          <FileUploadIcon className={classes.icon} ownerState={ownerState}>
+            {icon}
+          </FileUploadIcon>
 
-        <DropTargetContent>
-          <DropTargetIcon status={statusWithError} />
+          {/* {renderFileUploadText({
+            status: fileUploadStatus,
+            file,
+            helperText,
+            errorMessage,
+          })}
 
-          <DropTargetText
-            file={props.file}
-            status={statusWithError}
-            helperText={helperText}
-          />
-
-          <DropTargetAction
-            onClick={onClick}
-            uploadProgress={props.uploadProgress}
-            status={status}
-          />
-        </DropTargetContent>
+          {renderDropTargetAction({
+            status: fileUploadStatus,
+            uploadProgress,
+            onClick,
+            disabled,
+            dropTargetActionSlotProps: slotProps.dropTargetAction,
+          })} */}
+        </Stack>
         <input
-          onChange={onChange}
+          onChange={handleChange}
           ref={inputRef}
           style={{ display: 'none' }}
           type="file"
         />
       </DropTarget>
-    </FormControl>
+    </FileUploadRoot>
   )
+}) as (props: FileUploadProps) => JSX.Element
+
+function useUtilityClasses(ownerState: FileUploadProps) {
+  const { classes, disabled, status, onlyVisibleWhileDragging, isDragging } =
+    ownerState
+  const slots = {
+    root: [
+      'root',
+      disabled === true && 'disabled',
+      onlyVisibleWhileDragging === true && 'onlyVisibleWhileDragging',
+      `${status}`,
+    ],
+    label: ['label'],
+    helperText: ['helperText'],
+    errorMessage: ['errorMessage'],
+    dropTarget: [
+      'dropTarget',
+      onlyVisibleWhileDragging === true &&
+        isDragging === false &&
+        'onlyVisibleWhileDragging',
+    ],
+    content: ['content'],
+    icon: ['icon'],
+    dropTargetText: ['dropTargetText'],
+    dropTargetAction: ['dropTargetAction'],
+  }
+
+  return composeClasses(slots, getFileUploadUtilityClasses, classes)
 }
-//#endregion DropTarget
+
+function getDropTargetStatus({
+  isDropping,
+  uploaded,
+  inProgress,
+  error,
+}: {
+  isDropping: boolean
+  uploaded: boolean
+  inProgress: boolean
+  error: boolean
+}): DropTargetStatus {
+  return isDropping
+    ? DropTargetStatus.Dropping
+    : error
+    ? DropTargetStatus.Error
+    : inProgress
+    ? DropTargetStatus.Progress
+    : uploaded
+    ? DropTargetStatus.Uploaded
+    : DropTargetStatus.Default
+}
