@@ -4,34 +4,28 @@ import generateUtilityClasses from '@mui/utils/generateUtilityClasses'
 export interface FileUploadClasses {
   /** Styles applied to the root element. */
   root: string
-
-  dropping: string
-
-  uploaded: string
-
-  default: string
-
-  progress: string
-
-  icon: string
-
-  content: string
-
+  /** State class applied to the root element if status="default". */
+  statusDefault: string
+  /** State class applied to the root element if status="dropping". */
+  statusDropping: string
+  /** State class applied to the root element if status="progress". */
+  statusProgress: string
+  /** State class applied to the root element if status="uploaded". */
+  statusUploaded: string
+  /** Styles applied to the `FormLabel` component. */
+  label: string
+  /** Styles applied to `dropTarget`'s container element. */
   dropTarget: string
-
+  /** Styles applied to `dropTarget`'s content wrapper element. */
+  content: string
+  /** Styles applied to the icon wrapper element. */
+  icon: string
+  /** If `true`, the `dropTarget` element will only be visible while a file is being dragged into the window. */
   onlyVisibleWhileDragging: string
-
-  isDragging: string
-
-  status: string
-
   /** State class applied to the root element if `state="error"`. */
   error: string
-
   /** State class applied to the root element if `disabled={true}`. */
   disabled: string
-  /** Styles applied to the label's Typography component. */
-  label: string
 }
 
 export type FileUploadClassKey = keyof FileUploadClasses
@@ -44,18 +38,16 @@ export const fileUploadClasses: FileUploadClasses = generateUtilityClasses(
   'MonorailFileUpload',
   [
     'root',
-    'disabled',
-    'status',
-    'content',
-    'dropping',
+    'statusDefault',
+    'statusDropping',
+    'statusProgress',
+    'statusUploaded',
+    'label',
     'dropTarget',
-    'uploaded',
+    'content',
     'icon',
     'onlyVisibleWhileDragging',
-    'isDragging',
-    'default',
-    'progress',
     'error',
-    'label',
+    'disabled',
   ],
 )
