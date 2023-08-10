@@ -12,13 +12,41 @@ export default { title: 'Inputs/FileUpload', component: FileUpload }
 
 const Template = story<FileUploadProps>(
   args => {
+    const [file, setFile] = React.useState<File | null>(null)
+    const [progress, setProgress] = React.useState<number | null>(null)
+
+    React.useEffect(() => {
+      if (file === null) {
+        setProgress(null)
+        return
+      }
+
+      // Initialize progress to 0 if a file is present
+      setProgress(0)
+
+      const timer = setInterval(() => {
+        setProgress(prevProgress => {
+          // If progress has reached or exceeded 100, or if file is absent, reset progress
+          if (prevProgress === null || prevProgress >= 100) {
+            return null
+          }
+          return prevProgress >= 90 ? 100 : prevProgress + 10
+        })
+      }, 300)
+
+      // Clean up the interval when the effect is re-run or when component unmounts
+      return () => {
+        clearInterval(timer)
+      }
+    }, [file])
+
     return (
       <DndProvider backend={HTML5Backend}>
         <FileUpload
-          file={null}
+          file={file}
           helperText="File upload"
-          onChange={() => {}}
-          uploadProgress={null}
+          onChange={value => setFile(value)}
+          uploadProgress={progress}
           {...args}
         />
       </DndProvider>
@@ -35,14 +63,14 @@ export const Showcase = story<FileUploadProps>(args => (
       <FileUpload
         file={null}
         helperText="My custom text for drop target"
-        label={'Initial'}
+        label={'Default'}
         required
         onChange={() => void 0}
         uploadProgress={null}
         {...args}
       />
       <FileUpload
-        label="Has File"
+        label="Uploaded"
         file={
           {
             lastModified: new Date().getTime(),
@@ -56,11 +84,11 @@ export const Showcase = story<FileUploadProps>(args => (
         {...args}
       />
       <FileUpload
-        label="Uploading"
+        label="Progress"
         file={
           {
             lastModified: new Date().getTime(),
-            name: 'the_file_i_totally_dropped',
+            name: 'this_is_a_really_really_long_file_name_that_should_trigger_an_ellipsis_when_its_container_reaches_the_defined_max_width.csv',
             size: 3000,
             type: '',
           } as unknown as File
@@ -70,12 +98,20 @@ export const Showcase = story<FileUploadProps>(args => (
         {...args}
       />
       <FileUpload
-        label={'Has Error'}
+        label={'Error'}
         file={null}
         uploadProgress={null}
         onChange={() => void 0}
         error
-        helperText={'Something went wrong, select another file and try again.'}
+        {...args}
+      />
+      <FileUpload
+        disabled
+        file={null}
+        label={'Disabled'}
+        required
+        onChange={() => void 0}
+        uploadProgress={null}
         {...args}
       />
       <Box
@@ -83,14 +119,15 @@ export const Showcase = story<FileUploadProps>(args => (
           minHeight: 240,
           width: '100%',
           border: `1px solid ${palette.default.border.light}`,
-          textAlign: 'center',
-          pt: 4,
+          p: 4,
           mt: 4,
         })}
       >
-        <Typography>FileUpload only visible when dragging.</Typography>
-        <Typography color="text.secondary">
-          (Drag a file to view drop location.)
+        <Typography variant="h3">
+          FileUpload only visible when dragging
+        </Typography>
+        <Typography color="text.secondary" gutterBottom>
+          Drag a file to view drop location.
         </Typography>
         <FileUpload
           file={null}
