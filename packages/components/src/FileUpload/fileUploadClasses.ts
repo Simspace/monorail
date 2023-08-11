@@ -20,12 +20,23 @@ export interface FileUploadClasses {
   content: string
   /** Styles applied to the icon wrapper element. */
   icon: string
-  /** If `true`, the `dropTarget` element will only be visible while a file is being dragged into the window. */
+  action: string
+  /** If `true`, the `dropTarget` element will only be visible while a file is being dragged into the viewport. */
   onlyVisibleWhileDragging: string
+  /** State class applied to the root element if `isDragging={true}`. */
+  isDragging: string
   /** State class applied to the root element if `state="error"`. */
   error: string
   /** State class applied to the root element if `disabled={true}`. */
   disabled: string
+  /** Styles applied to the primary text element. */
+  textPrimary: string
+  /** Styles applied to the secondary text element. */
+  textSecondary: string
+  /** Styles applied to the file name's text element'. */
+  fileName: string
+  /** Styles applied to the file size's text element'. */
+  fileSize: string
 }
 
 export type FileUploadClassKey = keyof FileUploadClasses
@@ -46,8 +57,14 @@ export const fileUploadClasses: FileUploadClasses = generateUtilityClasses(
     'dropTarget',
     'content',
     'icon',
+    'action',
     'onlyVisibleWhileDragging',
+    'isDragging',
     'error',
     'disabled',
+    'textPrimary',
+    'textSecondary',
+    'fileName',
+    'fileSize',
   ],
 )
