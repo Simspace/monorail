@@ -1,17 +1,32 @@
 // Edit this file to add new stories
 import React from 'react'
-import DeleteIcon from '@mui/icons-material/Delete'
-import DoneIcon from '@mui/icons-material/Done'
-import FaceIcon from '@mui/icons-material/Face'
-import TagFacesIcon from '@mui/icons-material/TagFaces'
+import Draggable from 'react-draggable'
 import { styled } from '@mui/material'
 import { action } from '@storybook/addon-actions'
 
-import type { ChipProps } from '@monorail/components'
-import { Avatar, Chip, Paper, Stack, Typography } from '@monorail/components'
+import type { ChipProps, IconChipProps } from '@monorail/components'
+import {
+  Avatar,
+  Chip,
+  IconChip,
+  Paper,
+  Stack,
+  Tooltip,
+  Typography,
+} from '@monorail/components'
+import {
+  CloudDone,
+  Delete,
+  Done,
+  Face,
+  PriorityHigh,
+  TagFaces,
+  Warning,
+} from '@monorail/components/icons'
+import { useTheme } from '@monorail/utils'
 
 import { capitalizeFirstLetter } from '../helpers/helpers.js'
-import { story } from '../helpers/storybook.js'
+import { isMeteorTheme, story } from '../helpers/storybook.js'
 
 /**
  * Metadata for Chip stories - update/extend as needed
@@ -21,6 +36,41 @@ import { story } from '../helpers/storybook.js'
 export default { title: 'Data Display/Chip', component: Chip }
 
 /**
+ * Story controls
+ */
+type ChipStoryArgs = Omit<ChipProps, 'icon' | 'avatar'> & {
+  avatar: boolean
+  avatarText: string
+  icon: boolean
+  dismissible: boolean
+}
+
+const args: Partial<ChipStoryArgs> = {
+  avatar: false,
+  avatarText: 'W',
+  icon: false,
+  dismissible: false,
+}
+
+const argTypes = {
+  variant: {
+    options: [
+      'filled',
+      'outlined (N/A in Meteor)',
+      'muted  (N/A in Meteor)',
+      'rectangular (N/A in Meteor)',
+    ],
+    control: {
+      type: 'radio',
+    },
+  },
+  avatar: { control: { type: 'boolean' } },
+  avatarText: { control: { type: 'text' } },
+  icon: { control: { type: 'boolean' } },
+  dismissible: { control: { type: 'boolean' } },
+}
+
+/**
  * Story template (edit/remove by hand if needed)
  *
  * Note: there should be at least one "Default" story that uses this template with the "story" function.
@@ -28,6 +78,7 @@ export default { title: 'Data Display/Chip', component: Chip }
  */
 const Template = story<ChipProps>(args => <Chip {...args} />, {
   args: { label: 'Ahoy!' },
+  argTypes,
   muiName: 'MuiChip',
 })
 
@@ -43,16 +94,68 @@ const colors = [
   'warning',
 ] as const
 
-export const Variants = story<ChipProps>(
-  () => (
-    <Stack direction="row" spacing={2}>
-      <Chip label="Muted" variant="muted" />
-      <Chip label="Filled" variant="filled" />
-      <Chip label="Outlined" variant="outlined" />
-      <Chip label="Rectangular" variant="rectangular" />
-    </Stack>
-  ),
+export const Variants = story<ChipStoryArgs>(
+  args => {
+    const { avatar, avatarText, icon, dismissible, ...chipArgs } = args
+    const theme = useTheme()
+    return (
+      <div>
+        <Stack direction="row" spacing={2} alignItems="center">
+          <Chip
+            label="Filled"
+            variant="filled"
+            {...chipArgs}
+            avatar={avatar === true ? <Avatar>{avatarText}</Avatar> : undefined}
+            icon={icon === true ? <Face /> : undefined}
+            onDelete={dismissible === true ? action('onDelete') : undefined}
+          />
+          {!isMeteorTheme(theme.name) && (
+            <>
+              <Chip
+                label="Muted"
+                variant="muted"
+                {...chipArgs}
+                avatar={
+                  avatar === true ? <Avatar>{avatarText}</Avatar> : undefined
+                }
+                icon={icon === true ? <Face /> : undefined}
+                onDelete={dismissible === true ? action('onDelete') : undefined}
+              />
+              <Chip
+                label="Outlined"
+                variant="outlined"
+                {...chipArgs}
+                avatar={
+                  avatar === true ? <Avatar>{avatarText}</Avatar> : undefined
+                }
+                icon={icon === true ? <Face /> : undefined}
+                onDelete={dismissible === true ? action('onDelete') : undefined}
+              />
+              <Chip
+                label="Rectangular"
+                variant="rectangular"
+                {...chipArgs}
+                avatar={
+                  avatar === true ? <Avatar>{avatarText}</Avatar> : undefined
+                }
+                icon={icon === true ? <Face /> : undefined}
+                onDelete={dismissible === true ? action('onDelete') : undefined}
+              />
+            </>
+          )}
+        </Stack>
+        {isMeteorTheme(theme.name) && (
+          <Typography variant="body2" mt={6}>
+            The Muted, Outlined, and Rectangular variants are not available in
+            the Meteor theme.
+          </Typography>
+        )}
+      </div>
+    )
+  },
   {
+    args,
+    argTypes,
     parameters: {
       docs: {
         description: {
@@ -149,6 +252,31 @@ export const ClickableAndDeletable = story<ChipProps>(
   },
 )
 
+export const DraggableChip = story<ChipProps>(
+  args => (
+    <Stack direction="row" spacing={2}>
+      <Draggable handle="#draggable-chip">
+        <Chip
+          label="Draggable"
+          variant="filled"
+          {...args}
+          id="draggable-chip"
+        />
+      </Draggable>
+    </Stack>
+  ),
+  {
+    argTypes,
+    parameters: {
+      docs: {
+        description: {
+          story: `Chips can be made draggable by wrapping them in react-draggable's Draggable component.`,
+        },
+      },
+    },
+  },
+)
+
 export const AsLink = story<ChipProps>(
   () => (
     <Stack direction="row" spacing={2}>
@@ -180,13 +308,13 @@ export const CustomDeleteIcon = story<ChipProps>(
         label="Check it"
         onClick={action('onClick')}
         onDelete={action('onDelete')}
-        deleteIcon={<DoneIcon />}
+        deleteIcon={<Done />}
       />
       <Chip
         label="Trash it"
         onClick={action('onClick')}
         onDelete={action('onDelete')}
-        deleteIcon={<DeleteIcon />}
+        deleteIcon={<Delete />}
         variant="outlined"
       />
     </Stack>
@@ -232,16 +360,54 @@ export const WithAvatar = story<ChipProps>(
 export const WithIcon = story<ChipProps>(
   args => (
     <Stack direction="row" spacing={2}>
-      <Chip icon={<FaceIcon />} label="With Icon" {...args} />
+      <Chip icon={<Face />} label="Muted" {...args} />
+      <Chip icon={<Face />} label="Outlined" variant="outlined" {...args} />
+      <Chip icon={<Face />} label="Filled" variant="filled" {...args} />
       <Chip
-        icon={<FaceIcon />}
-        label="With Icon"
-        variant="outlined"
+        icon={<Face />}
+        label="Rectangular"
+        variant="rectangular"
         {...args}
       />
     </Stack>
   ),
   {
+    parameters: {
+      docs: {
+        description: {
+          story: `Use the icon prop to add an icon.`,
+        },
+      },
+    },
+  },
+)
+
+export const IconOnly = story<IconChipProps>(
+  args => (
+    <Stack direction="row" spacing={2}>
+      <IconChip color="success" icon={<CloudDone />} {...args} />
+      <IconChip color="error" icon={<PriorityHigh />} {...args} />
+      <Tooltip title="3 Warnings" describeChild>
+        <IconChip color="warning" icon={<Warning />} {...args} />
+      </Tooltip>
+    </Stack>
+  ),
+  {
+    argTypes: {
+      variant: {
+        options: ['filled', 'outlined'],
+        control: {
+          type: 'radio',
+        },
+      },
+      avatar: {
+        table: { disable: true },
+      },
+      clickable: {
+        table: { disable: true },
+      },
+    },
+    args: { variant: 'filled' },
     parameters: {
       docs: {
         description: {
@@ -269,7 +435,7 @@ export const Colors = story<ChipProps>(
         {colors.map(color => (
           <Chip
             disabled
-            icon={<FaceIcon />}
+            icon={<Face />}
             onDelete={action('onDelete')}
             color={color}
             label={capitalizeFirstLetter(color)}
@@ -292,7 +458,7 @@ export const Colors = story<ChipProps>(
         {colors.map(color => (
           <Chip
             disabled
-            icon={<FaceIcon />}
+            icon={<Face />}
             onDelete={action('onDelete')}
             variant="outlined"
             color={color}
@@ -371,7 +537,7 @@ export const ChipsArray = story<ChipProps>(
           let icon
 
           if (data.label === 'React') {
-            icon = <TagFacesIcon />
+            icon = <TagFaces />
           }
 
           return (

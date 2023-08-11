@@ -6,14 +6,11 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
     variant: 'muted',
   },
   styleOverrides: {
-    root: ({
-      ownerState: { clickable = false, color = 'default', variant = 'muted' },
-      theme,
-    }) => {
+    root: ({ ownerState: { color = 'default', variant = 'muted' }, theme }) => {
       const mutedVariantStyles: CSSInterpolation = {
         color: theme.palette.text.primary,
         backgroundColor: theme.palette.default.lowEmphasis.main,
-        [`&.${chipClasses.focusVisible}`]: {
+        [`&.${chipClasses.focusVisible}:not(.Mui-disabled)`]: {
           backgroundColor: theme.palette.default.lowEmphasis.main,
           boxShadow: `0 0 0 3px ${theme.palette.default.focusRing.outer}`,
           border: `1px solid ${theme.palette.default.focusRing.inner}`,
@@ -21,38 +18,38 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
       }
 
       const readOnlyRectangularStyles: CSSInterpolation = {
-        borderRadius: 4,
         ...mutedVariantStyles,
+        borderRadius: 4,
+        padding: theme.spacing(1),
       }
 
-      const clickableRectangularStyles: CSSInterpolation = {
-        borderRadius: 4,
-        color: theme.palette.text.primary,
-        backgroundColor: theme.palette.primary.lowEmphasis.main,
-        [`&.${chipClasses.focusVisible}`]: {
-          backgroundColor: theme.palette.primary.lowEmphasis.main,
-          boxShadow: `0 0 0 3px ${theme.palette.default.focusRing.outer}`,
-          border: `1px solid ${theme.palette.default.focusRing.inner}`,
+      const baseDraggableStyles: CSSInterpolation = {
+        '&.react-draggable': {
+          cursor: 'grab',
+        },
+        '&.react-draggable-dragging': {
+          cursor: 'grabbing',
+          boxShadow: theme.shadows[4],
         },
       }
 
       return {
         border: '1px solid transparent',
         color: theme.palette[color].contrastText,
-        fontWeight: theme.typography.fontWeightBold,
-        [`&.${chipClasses.focusVisible}`]: {
+        [`&.${chipClasses.focusVisible}:not(.Mui-disabled)`]: {
           boxShadow: `0 0 0 3px ${theme.palette[color].focusRing.outer}`,
           border: `1px solid ${theme.palette[color].focusRing.inner}`,
         },
         ...(variant === 'muted' && mutedVariantStyles),
         ...(variant === 'rectangular' && readOnlyRectangularStyles),
-        ...(variant === 'rectangular' &&
-          clickable &&
-          clickableRectangularStyles),
+        baseDraggableStyles,
       }
     },
-    label: ({ theme }) => ({
+    label: ({ ownerState: { variant = 'muted' }, theme }) => ({
       ...theme.typography.chip,
+      ...(variant === 'rectangular' && {
+        padding: theme.spacing(0, 1),
+      }),
     }),
     filled: ({ ownerState: { color = 'default' }, theme }) => {
       const background = theme.palette[color].main
@@ -118,6 +115,8 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
       }
 
       const clickableRectangularStyles: CSSInterpolation = {
+        borderRadius: 4,
+        color: theme.palette.text.primary,
         backgroundColor: theme.palette.primary.lowEmphasis.main,
         '&:hover': {
           backgroundColor: darken(
@@ -132,8 +131,10 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
             theme.palette.action.activatedOpacity,
           ),
         },
-        [`& > .${chipClasses.deleteIcon}`]: {
-          color: theme.palette.primary.lowEmphasis.contrastText,
+        [`&.${chipClasses.focusVisible}`]: {
+          backgroundColor: theme.palette.primary.lowEmphasis.main,
+          boxShadow: `0 0 0 3px ${theme.palette.default.focusRing.outer}`,
+          border: `1px solid ${theme.palette.default.focusRing.inner}`,
         },
         [`& > .${chipClasses.icon}`]: {
           color: theme.palette.primary.lowEmphasis.contrastText,
@@ -148,7 +149,7 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
       }
     },
     sizeSmall: ({ theme }) => ({
-      padding: theme.spacing(0.5, 1.25),
+      padding: theme.spacing(0.5, 1),
       [`& .${chipClasses.icon}`]: {
         marginLeft: 0,
         marginRight: theme.spacing(-1),
@@ -195,7 +196,10 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
         },
       }
 
-      const readOnlyRectangularStyles: CSSInterpolation = mutedVariantStyles
+      const readOnlyRectangularStyles: CSSInterpolation = {
+        ...mutedVariantStyles,
+        margin: 0,
+      }
 
       const clickableRectangularStyles: CSSInterpolation = {
         color: theme.palette.primary.lowEmphasis.contrastText,

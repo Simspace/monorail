@@ -1,5 +1,11 @@
 import { TextField as MuiTextField } from '@mui/material'
 
+declare module '@mui/material/TextField' {
+  interface TextFieldPropsSizeOverrides {
+    large: true
+  }
+}
+
 /**
  * The `TextField` is a convenience wrapper for the most common cases (80%).
  * It cannot be all things to all people, otherwise the API would grow out of control.

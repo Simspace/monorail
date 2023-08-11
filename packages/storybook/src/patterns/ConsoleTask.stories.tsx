@@ -12,7 +12,7 @@ import {
   Popout,
   ResizableContainer,
   ResizableElement,
-  ResizeHandle,
+  ResizableHandle,
   Stack,
   Typography,
 } from '@monorail/components'
@@ -147,7 +147,7 @@ const Template: Story<{}> = () => {
               </Stack>
             </Box>
           </ResizableElement>
-          <ResizeHandle computeSize />
+          <ResizableHandle computeSize />
           <ResizableElement minSize={0.25}>
             <Box pl={8}>
               {!isPopoutOpen && (

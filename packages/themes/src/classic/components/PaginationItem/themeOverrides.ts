@@ -14,11 +14,13 @@ export const MonorailPaginationItemOverrides: Components<Theme>['MuiPaginationIt
           color: theme.palette[color].lowEmphasis.contrastText,
           fontWeight: theme.typography.subtitle2.fontWeight,
           margin: 0,
-          '&:hover': {
-            backgroundColor: theme.palette[color].lowEmphasis.hover,
-          },
-          '&:active': {
-            backgroundColor: theme.palette[color].lowEmphasis.active,
+          [`&:not(.${paginationItemClasses.ellipsis})`]: {
+            '&:hover': {
+              backgroundColor: theme.palette[color].lowEmphasis.hover,
+            },
+            '&:active': {
+              backgroundColor: theme.palette[color].lowEmphasis.active,
+            },
           },
           // focus-visible
           [`&.${paginationItemClasses.focusVisible}`]: {

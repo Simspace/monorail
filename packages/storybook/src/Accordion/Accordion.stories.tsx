@@ -5,7 +5,7 @@ import CheckCircle from '@mui/icons-material/CheckCircle'
 import Error from '@mui/icons-material/Error'
 import ExpandMore from '@mui/icons-material/ExpandMore'
 import Warning from '@mui/icons-material/Warning'
-import { styled } from '@mui/material'
+import type { CSSInterpolation } from '@mui/material'
 
 import type {
   AccordionProps,
@@ -14,20 +14,26 @@ import type {
 import {
   Accordion,
   AccordionActions,
+  accordionClasses,
   AccordionDetails,
+  accordionDetailsClasses,
   AccordionSummary,
   Box,
   Button,
   Chip,
+  collapseClasses,
   Divider,
   FormControl,
   FormControlLabel,
   FormGroup,
   FormLabel,
+  Paper,
+  ScrollShadow,
   Stack,
   Switch,
   Typography,
 } from '@monorail/components'
+import { styled, useTheme } from '@monorail/utils'
 
 import { story } from '../helpers.js'
 
@@ -571,3 +577,76 @@ export const CustomStyled = () => {
     </div>
   )
 }
+
+const DummyCard = styled(Paper)({
+  height: 120,
+})
+
+const DummyCardStack = () => (
+  <Stack gap={2} p={2}>
+    <DummyCard />
+    <DummyCard />
+    <DummyCard />
+    <DummyCard />
+    <DummyCard />
+    <DummyCard />
+  </Stack>
+)
+
+export const InternalScroll = story<AccordionProps>(args => {
+  // For demo purposes. styled(Accordion) is recommended.
+  const theme = useTheme()
+  const accordionStyles: CSSInterpolation = {
+    display: 'flex',
+    flexDirection: 'column',
+    overflowY: 'hidden',
+    [`& > .${collapseClasses.root} > .${collapseClasses.wrapper}`]: {
+      height: '100%',
+    },
+    [`& .${accordionClasses.region}`]: {
+      height: '100%',
+    },
+    [`&.${accordionClasses.expanded}`]: {
+      flex: 1,
+    },
+    [`& .${accordionDetailsClasses.root}`]: {
+      backgroundColor: theme.palette.background.default,
+      padding: 0,
+      height: '100%',
+    },
+  }
+  return (
+    <Stack maxWidth={600} height="600px" bgcolor="background.default">
+      <Accordion
+        TransitionProps={{ timeout: 0 }}
+        square
+        sx={accordionStyles}
+        {...args}
+      >
+        <AccordionSummary>
+          <Typography>Collapsible Group Item #1</Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <ScrollShadow bottom>
+            <DummyCardStack />
+          </ScrollShadow>
+        </AccordionDetails>
+      </Accordion>
+      <Accordion
+        TransitionProps={{ timeout: 0 }}
+        square
+        sx={accordionStyles}
+        {...args}
+      >
+        <AccordionSummary>
+          <Typography>Collapsible Group Item #2</Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <ScrollShadow bottom>
+            <DummyCardStack />
+          </ScrollShadow>
+        </AccordionDetails>
+      </Accordion>
+    </Stack>
+  )
+})

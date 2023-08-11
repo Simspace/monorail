@@ -17,17 +17,17 @@ import { getThemeComponents } from './themeComponents.js'
 export enum RawColor {
   Transparent = 'transparent',
   White = '#FFFFFF',
-  Black = '#000000',
+  Black = '#181621',
 
-  Grey050 = '#EAEAEB',
-  Grey100 = '#D2D2D6',
-  Grey200 = '#B8B8BE',
-  Grey300 = '#96979F',
-  Grey400 = '#757681',
-  Grey500 = '#565865',
-  Grey600 = '#393A4A',
-  Grey700 = '#2B2B3B',
-  Grey800 = '#181621',
+  Grey100 = '#E5E5E6',
+  Grey200 = '#D2D2D5',
+  Grey300 = '#B8B8BE',
+  Grey400 = '#96979F',
+  Grey500 = '#757681',
+  Grey600 = '#565865',
+  Grey700 = '#393A4A',
+  Grey800 = '#2B2B3B',
+  Grey900 = '#181621',
   GreyA300 = '#B8B8BE',
   GreyA700 = '#565865',
   GreyA900 = '#181621',
@@ -78,7 +78,7 @@ export enum RawColor {
   Yellow400 = '#FFE29C',
   Yellow500 = '#FFD570',
   Yellow600 = '#FFC53C',
-  Yellow700 = '#B88D28',
+  Yellow700 = '#AF841D',
   Yellow800 = '#614A15',
   Yellow900 = '#342400',
 
@@ -117,7 +117,7 @@ export enum RawColor {
 }
 // #endregion Raw Colors (Option Tokens)
 
-export const DefaultLightChartColors = {
+export const chartColors = {
   magenta: {
     50: RawColor.Magenta050,
     100: RawColor.Magenta100,
@@ -191,26 +191,26 @@ const palette: PaletteOptions = {
     black: RawColor.Black,
   },
   primary: {
-    light: RawColor.Grey500,
-    main: RawColor.Grey600,
-    dark: RawColor.Grey800,
+    light: RawColor.Grey600,
+    main: RawColor.Grey700,
+    dark: RawColor.Grey900,
     contrastText: RawColor.White,
-    hover: RawColor.Grey700,
-    active: RawColor.Grey800,
+    hover: RawColor.Grey800,
+    active: RawColor.Grey900,
 
     lowEmphasis: {
-      light: RawColor.Grey100,
-      main: RawColor.Grey200,
-      dark: RawColor.Grey300,
-      contrastText: RawColor.Grey500,
-      hover: RawColor.Grey100,
-      active: RawColor.Grey200,
+      light: RawColor.Grey200,
+      main: RawColor.Grey300,
+      dark: RawColor.Grey400,
+      contrastText: RawColor.Grey600,
+      hover: RawColor.Grey200,
+      active: RawColor.Grey300,
     },
 
     border: {
-      light: RawColor.Grey300,
-      main: RawColor.Grey600,
-      dark: RawColor.Grey800,
+      light: RawColor.Grey400,
+      main: RawColor.Grey700,
+      dark: RawColor.Grey900,
     },
 
     focusRing: {
@@ -219,7 +219,6 @@ const palette: PaletteOptions = {
     },
 
     shades: {
-      50: RawColor.Grey050,
       100: RawColor.Grey100,
       200: RawColor.Grey200,
       300: RawColor.Grey300,
@@ -228,6 +227,7 @@ const palette: PaletteOptions = {
       600: RawColor.Grey600,
       700: RawColor.Grey700,
       800: RawColor.Grey800,
+      900: RawColor.Grey900,
     },
   },
   secondary: {
@@ -237,26 +237,26 @@ const palette: PaletteOptions = {
     contrastText: RawColor.White,
   },
   default: {
-    light: RawColor.Grey500,
-    main: RawColor.Grey600,
-    dark: RawColor.Grey700,
+    light: RawColor.Grey600,
+    main: RawColor.Grey700,
+    dark: RawColor.Grey900,
     contrastText: RawColor.White,
-    hover: RawColor.Grey700,
-    active: RawColor.Grey800,
+    hover: RawColor.Grey800,
+    active: RawColor.Grey900,
 
     lowEmphasis: {
-      light: RawColor.Grey100,
-      main: RawColor.Grey200,
-      dark: RawColor.Grey300,
-      contrastText: RawColor.Grey500,
-      hover: RawColor.Grey100,
-      active: RawColor.Grey200,
+      light: RawColor.Grey200,
+      main: RawColor.Grey300,
+      dark: RawColor.Grey400,
+      contrastText: RawColor.Grey600,
+      hover: RawColor.Grey200,
+      active: RawColor.Grey300,
     },
 
     border: {
-      light: RawColor.Grey300,
-      main: RawColor.Grey600,
-      dark: RawColor.Grey800,
+      light: RawColor.Grey400,
+      main: RawColor.Grey700,
+      dark: RawColor.Grey900,
     },
 
     focusRing: {
@@ -265,7 +265,6 @@ const palette: PaletteOptions = {
     },
 
     shades: {
-      50: RawColor.Grey050,
       100: RawColor.Grey100,
       200: RawColor.Grey200,
       300: RawColor.Grey300,
@@ -274,6 +273,7 @@ const palette: PaletteOptions = {
       600: RawColor.Grey600,
       700: RawColor.Grey700,
       800: RawColor.Grey800,
+      900: RawColor.Grey900,
     },
   },
   success: {
@@ -300,8 +300,8 @@ const palette: PaletteOptions = {
     },
 
     focusRing: {
-      inner: RawColor.Green800,
-      outer: RawColor.Green400,
+      inner: RawColor.Blue800,
+      outer: RawColor.Blue400,
     },
 
     shades: {
@@ -339,8 +339,8 @@ const palette: PaletteOptions = {
     },
 
     focusRing: {
-      inner: RawColor.Red800,
-      outer: RawColor.Red400,
+      inner: RawColor.Blue800,
+      outer: RawColor.Blue400,
     },
 
     shades: {
@@ -378,8 +378,8 @@ const palette: PaletteOptions = {
     },
 
     focusRing: {
-      inner: RawColor.Yellow800,
-      outer: RawColor.Yellow400,
+      inner: RawColor.Blue800,
+      outer: RawColor.Blue400,
     },
 
     shades: {
@@ -394,7 +394,7 @@ const palette: PaletteOptions = {
     },
   },
   info: {
-    light: RawColor.Blue500,
+    light: RawColor.Blue600,
     main: RawColor.Blue700,
     dark: RawColor.Blue800,
     contrastText: RawColor.White,
@@ -433,12 +433,11 @@ const palette: PaletteOptions = {
     },
   },
   text: {
-    primary: RawColor.Grey700,
-    secondary: RawColor.Grey500,
-    disabled: RawColor.Grey400,
+    primary: RawColor.Grey900,
+    secondary: RawColor.Grey600,
+    disabled: RawColor.Grey500,
   },
   grey: {
-    50: RawColor.Grey050,
     100: RawColor.Grey100,
     200: RawColor.Grey200,
     300: RawColor.Grey300,
@@ -446,19 +445,24 @@ const palette: PaletteOptions = {
     500: RawColor.Grey500,
     600: RawColor.Grey600,
     700: RawColor.Grey700,
+    800: RawColor.Grey800,
+    900: RawColor.Grey900,
   },
-  divider: RawColor.Grey100,
+  divider: RawColor.Grey200,
+  outlinedBorder: RawColor.Grey200,
+  filledInputBackground: RawColor.Grey100,
+  standardInputLine: RawColor.Grey500,
+  snackbar: RawColor.Grey700,
   rating: RawColor.Yellow600,
-  tooltip: RawColor.Grey500,
-  backdropOverlay: alpha(RawColor.Grey600, 0.7),
+  tooltip: RawColor.Grey600,
+  backdropOverlay: alpha(RawColor.Grey700, 0.7),
   background: {
-    default: RawColor.Grey050,
+    default: RawColor.Grey100,
     paper: RawColor.White,
   },
   action: action,
-  chart: DefaultLightChartColors,
+  chart: chartColors,
 }
-
 // Construct a Theme with the base settings plus our customizations, but without the components overrides provided yet.
 // We're doing this so we have all the base theme settings populated for doing the component-level overrides. We want
 // a Theme here, rather than ThemeOptions because we want all the values to be non-optional and filled-in for the

@@ -3,20 +3,13 @@ import { stepLabelClasses } from '@mui/material'
 
 export const MonorailStepLabelOverrides: Components<Theme>['MuiStepLabel'] = {
   styleOverrides: {
-    root: ({ theme }) => {
-      return {
-        [`&.${stepLabelClasses.completed}`]: {
-          color: theme.palette.text.primary,
-        },
-        [`&.${stepLabelClasses.alternativeLabel}`]: {
-          textAlign: 'center',
-          ...theme.typography.caption,
-        },
-        [`&.${stepLabelClasses.vertical}`]: {
-          padding: theme.spacing(4, 0),
-        },
-      }
-    },
+    alternativeLabel: ({ theme }) => ({
+      textAlign: 'center',
+      ...theme.typography.caption,
+    }),
+    vertical: ({ theme }) => ({
+      padding: theme.spacing(3, 0),
+    }),
     active: ({ theme }) => {
       return {
         color: theme.palette.text.primary,
@@ -29,15 +22,24 @@ export const MonorailStepLabelOverrides: Components<Theme>['MuiStepLabel'] = {
         [`&.${stepLabelClasses.completed}`]: {
           color: theme.palette.text.primary,
         },
-        [`&.${stepLabelClasses.disabled}`]: {},
       }
     },
-    alternativeLabel: ({ theme }) => {
-      return {
-        [`$.${stepLabelClasses.labelContainer}`]: {
-          ...theme.typography.caption,
-        },
-      }
-    },
+    labelContainer: ({ theme }) => ({
+      // Default styles if a string is provided to the optional prop
+      ...theme.typography.caption,
+      color: theme.palette.text.disabled,
+      [`.${stepLabelClasses.active} + &`]: {
+        color: theme.palette.text.primary,
+      },
+      [`.${stepLabelClasses.completed} + &`]: {
+        color: theme.palette.text.secondary,
+      },
+      [`.${stepLabelClasses.error} + &`]: {
+        color: theme.palette.error.main,
+      },
+      [`.${stepLabelClasses.disabled} + &`]: {
+        color: theme.palette.text.disabled,
+      },
+    }),
   },
 }

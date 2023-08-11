@@ -1,6 +1,10 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import React from 'react'
-import type { GridColDef, GridValidRowModel } from '@mui/x-data-grid'
+import type {
+  GridColDef,
+  GridRowClassNameParams,
+  GridValidRowModel,
+} from '@mui/x-data-grid'
 import type {
   DataGridPremiumProps,
   GridGroupingColDefOverride,
@@ -8,21 +12,28 @@ import type {
 } from '@mui/x-data-grid-premium'
 import { useDataGridPremiumProps } from '@mui/x-data-grid-premium/DataGridPremium/useDataGridPremiumProps'
 import type { DataGridPremiumProcessedProps } from '@mui/x-data-grid-premium/models/dataGridPremiumProps'
+import clsx from 'clsx'
 
+import { NUMERIC_FILTER_DEFAULT_LOCALE_TEXT } from '@monorail/components/NumericFilter'
+import { useTheme } from '@monorail/utils'
+
+import { DataGridCell } from '../components/DataGridCell.js'
 import { DataGridColumnHeader } from '../components/DataGridColumnHeader.js'
 import { DataGridColumnSeparator } from '../components/DataGridColumnSeparator.js'
 import { DataGridFooter } from '../components/DataGridFooter.js'
 import { DataGridHeader } from '../components/DataGridHeader.js'
 import { DataGridRow } from '../components/DataGridRow.js'
+import { DataGridRowReorderCell } from '../components/DataGridRowReorderCell.js'
 import { DATE_FILTER_DEFAULT_LOCALE_TEXT } from '../filters/DateFilter.js'
-import { ENUM_FILTER_DEFAULT_LOCALE_TEXT } from '../filters/EnumFilter.js'
-import { NUMERIC_FILTER_DEFAULT_LOCALE_TEXT } from '../filters/NumericFilter.js'
+import { ENUM_FILTER_DEFAULT_LOCALE_TEXT } from '../filters/GridEnumFilter.js'
 import { TEXT_FILTER_DEFAULT_LOCALE_TEXT } from '../filters/TextFilter.js'
 
 export function useDataGridProps<R extends GridValidRowModel>(
   initProps: DataGridPremiumProps<R>,
 ): DataGridPremiumProcessedProps {
-  const { localeText, slots, columns, groupingColDef } = initProps
+  const { localeText, slots, slotProps, columns, groupingColDef } = initProps
+
+  const theme = useTheme()
 
   const localeTextProp = React.useMemo(
     () => ({
@@ -41,15 +52,38 @@ export function useDataGridProps<R extends GridValidRowModel>(
       row: DataGridRow,
       toolbar: DataGridHeader,
       columnResizeIcon: DataGridColumnSeparator,
+      cell: DataGridCell,
       ...slots,
     }),
     [slots],
   )
 
+  const slotPropsProp = React.useMemo<DataGridPremiumProps['slotProps']>(
+    () => ({
+      ...slotProps,
+      baseSelect: {
+        native: false,
+        variant: 'outlined',
+        ...theme.components?.MuiSelect?.defaultProps,
+        ...slotProps?.baseSelect,
+      },
+      baseTextField: {
+        variant: 'outlined',
+        InputProps: theme.components?.MuiOutlinedInput?.defaultProps,
+        ...theme.components?.MuiTextField?.defaultProps,
+        ...slotProps?.baseTextField,
+      },
+    }),
+    [slotProps, theme],
+  )
+
   const processedColumns: Array<GridColDef> = React.useMemo(
     () =>
       columns.map(col => {
-        const flex = col.type === 'actions' ? undefined : col.flex ?? 1
+        const flex =
+          col.type === 'actions' || col.field === '__reorder__'
+            ? undefined
+            : col.flex ?? 1
         return {
           originalColDef: col,
           disableColumnMenu: true,
@@ -58,6 +92,9 @@ export function useDataGridProps<R extends GridValidRowModel>(
           flex,
           ...col,
           renderHeader: DataGridColumnHeader,
+          ...(col.field === '__reorder__' && {
+            renderCell: DataGridRowReorderCell,
+          }),
         }
       }),
     [columns],
@@ -84,6 +121,24 @@ export function useDataGridProps<R extends GridValidRowModel>(
     }
   }, [groupingColDef])
 
+  const getRowClassName = React.useCallback(
+    (params: GridRowClassNameParams) => {
+      let rowClassName = ''
+      if (initProps.getRowClassName) {
+        rowClassName = initProps.getRowClassName(params)
+      }
+      if (initProps.stripedRows === true) {
+        rowClassName = clsx(
+          rowClassName,
+          params.indexRelativeToCurrentPage % 2 === 0 ? 'even' : 'odd',
+        )
+      }
+
+      return rowClassName
+    },
+    [initProps],
+  )
+
   return useDataGridPremiumProps({
     ...initProps,
     disableColumnFilter: true,
@@ -91,7 +146,10 @@ export function useDataGridProps<R extends GridValidRowModel>(
     columns: processedColumns,
     localeText: localeTextProp,
     slots: slotsProp,
+    slotProps: slotPropsProp,
     groupingColDef: groupingColDefProp,
     viewStyle: initProps.viewStyle ?? 'table',
+    filter: initProps.filter ?? 'column',
+    getRowClassName,
   })
 }

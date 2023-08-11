@@ -12,6 +12,7 @@ import {
   Stack,
   Typography,
 } from '@monorail/components'
+import { useTheme } from '@monorail/utils'
 
 import { story } from '../helpers/storybook.js'
 import { movies } from '../helpers/testData.js'
@@ -63,21 +64,27 @@ export const BasicSearch = story(
 )
 
 export const Sizes = story(
-  () => (
-    <Box
-      component="form"
-      sx={{
-        '& .MonorailSearch-root': { mr: 4, width: '25ch' },
-      }}
-      noValidate
-      autoComplete="off"
-    >
-      <div>
-        <Search label="Small" id="size-small" size="small" />
-        <Search label="Medium" id="size-medium" />
-      </div>
-    </Box>
-  ),
+  () => {
+    const theme = useTheme()
+    return (
+      <Box
+        component="form"
+        sx={{
+          '& .MonorailSearch-root': { mr: 4, width: '25ch' },
+        }}
+        noValidate
+        autoComplete="off"
+      >
+        <div>
+          <Search label="Small" id="size-small" size="small" />
+          <Search label="Medium" id="size-medium" />
+          {theme.name.includes('meteor') && (
+            <Search label="Large" id="size-medium" size="large" />
+          )}
+        </div>
+      </Box>
+    )
+  },
   {
     parameters: {
       docs: {

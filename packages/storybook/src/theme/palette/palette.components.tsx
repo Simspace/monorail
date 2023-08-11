@@ -13,6 +13,7 @@ import {
   TableHead,
   TableRow,
 } from '@monorail/components'
+import { filterMap } from '@monorail/utils'
 
 import type { ColorTokenRowProps, ColorTokenTableProps } from './palette.types'
 
@@ -92,27 +93,27 @@ export const ColorTokenTable = ({
             <TableCell variant="head">Color</TableCell>
             <TableCell variant="head">Mapping</TableCell>
             <TableCell variant="head">Value</TableCell>
-            <TableCell variant="head">Figma Style</TableCell>
+            <TableCell variant="head">Figma Variable</TableCell>
             <TableCell variant="head">Description</TableCell>
           </StyledTableRow>
         </TableHead>
         <TableBody>
           {colorMetadata !== undefined ? (
-            colorMetadata.map(color => {
+            filterMap(colorMetadata, color => {
               const figmaStyle = getFigmaStyle(color.figmaStyle)
-              const colorValue = color.colorValue ?? ''
-
-              return (
-                <ColorTokenRow
-                  key={color.token}
-                  token={color.token}
-                  mapping={getObjectKey(colorValue)}
-                  opacity={color.opacity}
-                  colorValue={color.colorValue}
-                  figmaStyle={figmaStyle}
-                  description={color.description}
-                />
-              )
+              if (color.colorValue !== undefined) {
+                return (
+                  <ColorTokenRow
+                    key={color.token}
+                    token={color.token}
+                    mapping={getObjectKey(color.colorValue)}
+                    opacity={color.opacity}
+                    colorValue={color.colorValue}
+                    figmaStyle={figmaStyle}
+                    description={color.description}
+                  />
+                )
+              }
             })
           ) : (
             <></>

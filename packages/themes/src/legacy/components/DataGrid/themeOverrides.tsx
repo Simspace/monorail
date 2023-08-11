@@ -11,6 +11,14 @@ export const MonorailDataGridOverrides: Components<Theme>['MuiDataGrid'] = {
   defaultProps: {
     rowHeight: 40,
     columnHeaderHeight: 42,
+    slotProps: {
+      baseIconButton: {
+        size: 'medium',
+        // Override the explicit { fontSize: 'small' } in GridActionsCellItem
+        // See https://github.com/mui/mui-x/blob/62725ed4ba26788f454e93a73c7273ac54d762fd/packages/grid/x-data-grid/src/components/cell/GridActionsCellItem.tsx#L39
+        sx: { [`& svg`]: { fontSize: 'inherit' } },
+      },
+    },
   },
   styleOverrides: {
     root: ({ theme }) => {
@@ -32,6 +40,69 @@ export const MonorailDataGridOverrides: Components<Theme>['MuiDataGrid'] = {
         },
         [`&.${dataGridClasses.grouped}:hover`]: {
           cursor: 'pointer',
+        },
+        [`&.odd`]: {
+          backgroundColor: theme.palette.background.default,
+          '&:hover, &.Mui-hovered': {
+            background: `
+              linear-gradient(0deg, ${theme.palette.action.hover} 0%, ${theme.palette.action.hover} 100%),
+              ${theme.palette.background.default}
+            `,
+            '@media (hover: none)': {
+              backgroundColor: 'transparent',
+            },
+          },
+          '&.Mui-selected': {
+            background: `
+              linear-gradient(0deg, ${theme.palette.action.selected} 0%, ${theme.palette.action.selected} 100%),
+              ${theme.palette.background.default}
+            `,
+            '&:hover, &.Mui-hovered': {
+              background: `
+                linear-gradient(0deg, ${theme.palette.action.hover} 0%, ${theme.palette.action.hover} 100%),
+                linear-gradient(0deg, ${theme.palette.action.selected} 0%, ${theme.palette.action.selected} 100%),
+                ${theme.palette.background.default}
+              `,
+              // Reset on touch devices, it doesn't add specificity
+              '@media (hover: none)': {
+                background: `
+                  linear-gradient(0deg, ${theme.palette.action.selected} 0%, ${theme.palette.action.selected} 100%),
+                  ${theme.palette.background.default}
+                `,
+              },
+            },
+          },
+        },
+        [`&.even`]: {
+          '&:hover, &.Mui-hovered': {
+            background: `
+              linear-gradient(0deg, ${theme.palette.action.hover} 0%, ${theme.palette.action.hover} 100%),
+              ${theme.palette.background.paper}
+            `,
+            '@media (hover: none)': {
+              backgroundColor: 'transparent',
+            },
+          },
+          '&.Mui-selected': {
+            background: `
+              linear-gradient(0deg, ${theme.palette.action.selected} 0%, ${theme.palette.action.selected} 100%),
+              ${theme.palette.background.paper}
+            `,
+            '&:hover, &.Mui-hovered': {
+              background: `
+                linear-gradient(0deg, ${theme.palette.action.hover} 0%, ${theme.palette.action.hover} 100%),
+                linear-gradient(0deg, ${theme.palette.action.selected} 0%, ${theme.palette.action.selected} 100%),
+                ${theme.palette.background.paper}
+              `,
+              // Reset on touch devices, it doesn't add specificity
+              '@media (hover: none)': {
+                background: `
+                  linear-gradient(0deg, ${theme.palette.action.selected} 0%, ${theme.palette.action.selected} 100%),
+                  ${theme.palette.background.paper}
+                `,
+              },
+            },
+          },
         },
       }
     },
@@ -137,7 +208,6 @@ export const MonorailDataGridOverrides: Components<Theme>['MuiDataGrid'] = {
     },
     toolbarContainer: ({ theme }) => {
       return {
-        height: theme.spacing(20),
         padding: theme.spacing(4, 8),
         backgroundColor: theme.palette.default.lowEmphasis.light,
         display: 'flex',

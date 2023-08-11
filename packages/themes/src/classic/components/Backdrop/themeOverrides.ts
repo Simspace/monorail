@@ -6,5 +6,8 @@ export const MonorailBackdropOverrides: Components<Theme>['MuiBackdrop'] = {
     root: ({ theme }) => ({
       backgroundColor: theme.palette.backdropOverlay,
     }),
+    invisible: {
+      backgroundColor: 'transparent',
+    },
   },
 }

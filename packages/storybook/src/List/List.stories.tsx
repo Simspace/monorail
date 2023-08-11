@@ -41,6 +41,7 @@ import {
   Switch,
   Typography,
 } from '@monorail/components'
+import { useTheme } from '@monorail/utils'
 
 import { story } from '../helpers/storybook.js'
 
@@ -91,7 +92,7 @@ const Template = story<ListProps>(
         </nav>
         <Divider />
         <nav aria-label="secondary mailbox folders">
-          <List>
+          <List {...args}>
             <ListItem disablePadding>
               <ListItemButton>
                 <ListItemText primary="Trash" />
@@ -114,7 +115,7 @@ const Template = story<ListProps>(
 export const Default = story(Template)
 
 export const NestedList = story<ListProps>(
-  () => {
+  args => {
     const [open, setOpen] = React.useState(true)
 
     const handleClick = () => {
@@ -131,6 +132,7 @@ export const NestedList = story<ListProps>(
             Nested List Items
           </ListSubheader>
         }
+        {...args}
       >
         <ListItemButton>
           <ListItemIcon>
@@ -176,9 +178,12 @@ export const NestedList = story<ListProps>(
 )
 
 export const FolderList = story<ListProps>(
-  () => {
+  args => {
     return (
-      <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+      <List
+        sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
+        {...args}
+      >
         <ListItem>
           <ListItemAvatar>
             <Avatar size="small">
@@ -371,7 +376,7 @@ export const InteractiveList = story<ListProps>(
 )
 
 export const SelectedListItem = story<ListProps>(
-  () => {
+  args => {
     const [selectedIndex, setSelectedIndex] = React.useState(1)
 
     const handleListItemClick = (index: number) => () => {
@@ -380,7 +385,7 @@ export const SelectedListItem = story<ListProps>(
 
     return (
       <Box sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
-        <List component="nav" aria-label="main mailbox folders">
+        <List component="nav" aria-label="main mailbox folders" {...args}>
           <ListItemButton
             selected={selectedIndex === 0}
             onClick={handleListItemClick(0)}
@@ -401,7 +406,7 @@ export const SelectedListItem = story<ListProps>(
           </ListItemButton>
         </List>
         <Divider />
-        <List component="nav" aria-label="secondary mailbox folder">
+        <List component="nav" aria-label="secondary mailbox folder" {...args}>
           <ListItemButton
             selected={selectedIndex === 2}
             onClick={handleListItemClick(2)}
@@ -430,9 +435,12 @@ export const SelectedListItem = story<ListProps>(
 )
 
 export const AlignListItems = story<ListProps>(
-  () => {
+  args => {
     return (
-      <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+      <List
+        sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
+        {...args}
+      >
         <ListItem alignItems="flex-start">
           <ListItemAvatar>
             <Avatar size="small" alt="Remy Sharp">
@@ -519,7 +527,7 @@ export const AlignListItems = story<ListProps>(
 )
 
 export const ListControlsCheckbox = story<ListProps>(
-  () => {
+  args => {
     const [checked, setChecked] = React.useState([0])
 
     const handleToggle = (value: number) => () => {
@@ -536,7 +544,10 @@ export const ListControlsCheckbox = story<ListProps>(
     }
 
     return (
-      <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+      <List
+        sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
+        {...args}
+      >
         {[0, 1, 2, 3].map(value => {
           const labelId = `checkbox-list-label-${value}`
 
@@ -588,7 +599,7 @@ The checkbox is the primary action and the state indicator for the list item. Th
 )
 
 export const ListControlsCheckboxSecondary = story<ListProps>(
-  () => {
+  args => {
     const [checked, setChecked] = React.useState([1])
 
     const handleToggle = (value: number) => () => {
@@ -608,6 +619,7 @@ export const ListControlsCheckboxSecondary = story<ListProps>(
       <List
         dense
         sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
+        {...args}
       >
         {[0, 1, 2, 3].map(value => {
           const labelId = `checkbox-list-secondary-label-${value}`
@@ -649,7 +661,7 @@ export const ListControlsCheckboxSecondary = story<ListProps>(
 )
 
 export const ListControlsSwitch = story<ListProps>(
-  () => {
+  args => {
     const [checked, setChecked] = React.useState(['wifi'])
 
     const handleToggle = (value: string) => () => {
@@ -669,6 +681,7 @@ export const ListControlsSwitch = story<ListProps>(
       <List
         sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
         subheader={<ListSubheader>Settings</ListSubheader>}
+        {...args}
       >
         <ListItem>
           <ListItemIcon>
@@ -713,7 +726,7 @@ export const ListControlsSwitch = story<ListProps>(
 )
 
 export const StickySubheader = story<ListProps>(
-  () => {
+  args => {
     return (
       <List
         sx={{
@@ -726,6 +739,7 @@ export const StickySubheader = story<ListProps>(
           '& ul': { padding: 0 },
         }}
         subheader={<li />}
+        {...args}
       >
         {[0, 1, 2, 3, 4].map(sectionId => (
           <li key={`section-${sectionId}`}>
@@ -756,12 +770,13 @@ export const StickySubheader = story<ListProps>(
 )
 
 export const InsetListItem = story<ListProps>(
-  () => {
+  args => {
     return (
       <List
         sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
         aria-label="contacts"
         dense
+        {...args}
       >
         <ListItem disablePadding>
           <ListItemButton>
@@ -791,9 +806,12 @@ export const InsetListItem = story<ListProps>(
 )
 
 export const GutterlessListItem = story<ListProps>(
-  () => {
+  args => {
     return (
-      <List sx={{ width: '100%', maxWidth: 240, bgcolor: 'background.paper' }}>
+      <List
+        sx={{ width: '100%', maxWidth: 240, bgcolor: 'background.paper' }}
+        {...args}
+      >
         {[1, 2, 3].map(value => (
           <ListItem
             key={value}
@@ -823,6 +841,8 @@ export const GutterlessListItem = story<ListProps>(
 
 export const VirtualizedList = story<ListProps>(
   () => {
+    const theme = useTheme()
+    const itemSize = theme.name.includes('legacy') ? 24 : 48
     return (
       <Box
         sx={{
@@ -835,7 +855,7 @@ export const VirtualizedList = story<ListProps>(
         <FixedSizeList
           height={400}
           width={360}
-          itemSize={24}
+          itemSize={itemSize}
           itemCount={200}
           overscanCount={5}
         >

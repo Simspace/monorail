@@ -16,6 +16,7 @@ import {
   CssBaseline,
   Divider,
   Drawer,
+  GlobalStyles,
   IconButton,
   List,
   ListItem,
@@ -495,10 +496,27 @@ Persistent navigation drawers are acceptable for all sizes larger than mobile. T
 
 export const ResizableDrawer_ = story<DrawerProps>(
   () => {
+    const [open, setOpen] = React.useState(false)
     return (
-      <Box sx={{ display: 'flex' }}>
+      <Box overflow="hidden" height="100%" sx={{ display: 'flex' }}>
         <CssBaseline />
-        <ResizableDrawer>
+        <GlobalStyles
+          styles={{
+            'html, body, #root': {
+              height: '100%',
+            },
+          }}
+        />
+        <ResizableDrawer
+          variant="persistent"
+          onClose={() => setOpen(false)}
+          open={open}
+          slotProps={{
+            paper: {
+              elevation: 16,
+            },
+          }}
+        >
           <Toolbar />
           <Divider />
           <List>
@@ -557,7 +575,8 @@ export const ResizableDrawer_ = story<DrawerProps>(
               </Typography>
             </Toolbar>
           </AppBar>
-          <Box sx={{ p: 3 }}>
+          <Box sx={{ p: 3, overflowY: 'auto' }}>
+            <Button onClick={() => setOpen(!open)}>Open</Button>
             <Typography paragraph>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua.
@@ -595,6 +614,7 @@ export const ResizableDrawer_ = story<DrawerProps>(
   },
   {
     parameters: {
+      layout: 'fullscreen',
       docs: {
         description: {
           story: `Persistent navigation drawers can toggle open or closed. The drawer sits on the same surface elevation as the content. It is closed by default and opens by selecting the menu icon, and stays open until closed by the user. The state of the drawer is remembered from action to action and session to session.

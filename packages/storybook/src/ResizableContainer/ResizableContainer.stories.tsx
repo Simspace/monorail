@@ -9,7 +9,7 @@ import {
   ResizableElement,
   Typography,
 } from '@monorail/components'
-import { ResizeHandle } from '@monorail/components/ResizeHandle'
+import { ResizableHandle } from '@monorail/components/ResizableHandle'
 
 export default {
   title: 'Utils/ResizableContainer',
@@ -27,7 +27,7 @@ const Template: Story<Partial<ResizableContainerProps>> = args => {
             </Box>
           </Box>
         </ResizableElement>
-        <ResizeHandle />
+        <ResizableHandle />
         <ResizableElement>
           <Box overflow="hidden">
             <Box p={4}>
@@ -35,7 +35,7 @@ const Template: Story<Partial<ResizableContainerProps>> = args => {
             </Box>
           </Box>
         </ResizableElement>
-        <ResizeHandle propagate />
+        <ResizableHandle propagate />
         <ResizableElement>
           <Box overflow="hidden">
             <Box p={4}>
@@ -66,7 +66,7 @@ export const Horizontal: Story<Partial<ResizableContainerProps>> = args => (
           </Box>
         </Box>
       </ResizableElement>
-      <ResizeHandle />
+      <ResizableHandle />
       <ResizableElement>
         <Box height="100%" overflow="hidden">
           <Box p={4}>
@@ -88,7 +88,7 @@ export const Both = () => (
           </Box>
         </Box>
       </ResizableElement>
-      <ResizeHandle />
+      <ResizableHandle />
       <ResizableElement minSize="25%">
         <Box height="100%">
           <ResizableContainer orientation="horizontal">
@@ -99,7 +99,7 @@ export const Both = () => (
                 </Box>
               </Box>
             </ResizableElement>
-            <ResizeHandle />
+            <ResizableHandle />
             <ResizableElement>
               <Box height="100%" overflow="hidden">
                 <Box p={4}>

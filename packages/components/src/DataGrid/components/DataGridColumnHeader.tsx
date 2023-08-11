@@ -1,8 +1,11 @@
+/* eslint-disable @typescript-eslint/strict-boolean-expressions */
 import React from 'react'
 import MoreVert from '@mui/icons-material/MoreVert'
 import Sort from '@mui/icons-material/Sort'
 import type { Theme } from '@mui/material'
 import type { SxProps } from '@mui/system'
+import { gridClasses } from '@mui/x-data-grid-premium'
+import clsx from 'clsx'
 
 import { Badge } from '../../Badge.js'
 import { IconButton } from '../../IconButton.js'
@@ -11,9 +14,10 @@ import { Menu } from '../../Menu.js'
 import { Popover } from '../../Popover.js'
 import { Stack } from '../../Stack.js'
 import { Typography } from '../../Typography.js'
+import { CustomFilter } from '../filters/CustomFilter.js'
 import { DateFilter } from '../filters/DateFilter.js'
-import { EnumFilter } from '../filters/EnumFilter.js'
-import { NumericFilter } from '../filters/NumericFilter.js'
+import { GridEnumFilter } from '../filters/GridEnumFilter.js'
+import { GridNumericFilter } from '../filters/GridNumericFilter.js'
 import { TextFilter } from '../filters/TextFilter.js'
 import type {
   GridColDef,
@@ -25,6 +29,7 @@ import type {
 import {
   gridSortColumnLookupSelector,
   useGridApiContext,
+  useGridRootProps,
   useGridSelector,
 } from '../internal.js'
 
@@ -34,6 +39,7 @@ interface DataGridColumnHeaderProps extends GridColumnHeaderParams {
 
 export function DataGridColumnHeader(props: DataGridColumnHeaderProps) {
   const { field, colDef } = props
+  const rootProps = useGridRootProps()
   const apiRef = useGridApiContext()
   const [actionsAnchorEl, setActionsAnchorEl] =
     React.useState<HTMLButtonElement | null>(null)
@@ -66,6 +72,14 @@ export function DataGridColumnHeader(props: DataGridColumnHeaderProps) {
     [],
   )
 
+  const handleOperatorFilterButtonClick = React.useCallback(
+    (event: React.MouseEvent<HTMLButtonElement>) => {
+      event.stopPropagation()
+      apiRef.current.showFilterPanel(field)
+    },
+    [apiRef, field],
+  )
+
   const handleFilterPopoverClose = React.useCallback(() => {
     setFilterAnchorEl(null)
   }, [])
@@ -95,13 +109,13 @@ export function DataGridColumnHeader(props: DataGridColumnHeaderProps) {
   )
 
   const filter = React.useMemo(() => {
-    if (colDef.filter) {
+    if (colDef.filter && rootProps.filter === 'column') {
       switch (colDef.filter.type) {
         case 'enum': {
-          return <EnumFilter field={colDef.field} {...colDef.filter} />
+          return <GridEnumFilter field={colDef.field} {...colDef.filter} />
         }
         case 'numeric': {
-          return <NumericFilter field={colDef.field} {...colDef.filter} />
+          return <GridNumericFilter field={colDef.field} {...colDef.filter} />
         }
         case 'date': {
           return <DateFilter field={colDef.field} {...colDef.filter} />
@@ -109,9 +123,12 @@ export function DataGridColumnHeader(props: DataGridColumnHeaderProps) {
         case 'text': {
           return <TextFilter field={colDef.field} {...colDef.filter} />
         }
+        case 'custom': {
+          return <CustomFilter field={colDef.field} {...colDef.filter} />
+        }
       }
     }
-  }, [colDef])
+  }, [colDef, rootProps.filter])
 
   const headerActions = React.useMemo(() => {
     // eslint-disable-next-line eqeqeq
@@ -125,7 +142,7 @@ export function DataGridColumnHeader(props: DataGridColumnHeaderProps) {
 
   return (
     <Stack
-      className={props.className}
+      className={clsx(props.className, gridClasses.columnHeaderTitle)}
       direction="row"
       alignItems="center"
       flex="1 1 0"
@@ -139,6 +156,20 @@ export function DataGridColumnHeader(props: DataGridColumnHeaderProps) {
         colDef={colDef}
         originalColDef={originalColDef}
       />
+      {colDef.filterable && rootProps.filter === 'operator' && (
+        <IconButton
+          aria-label="filter"
+          color="default"
+          variant="chromeless"
+          size="small"
+          tabIndex={-1}
+          onClick={handleOperatorFilterButtonClick}
+        >
+          <Badge color="primary" variant="dot" invisible={!isFiltered}>
+            <Filter />
+          </Badge>
+        </IconButton>
+      )}
       {colDef.filter !== undefined && (
         <>
           <IconButton

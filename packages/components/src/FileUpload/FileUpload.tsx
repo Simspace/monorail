@@ -34,7 +34,7 @@ const DROP_TARGET_STATUS = {
   Uploading: 'uploading',
 } as const
 
-type Status = typeof DROP_TARGET_STATUS[keyof typeof DROP_TARGET_STATUS]
+type Status = (typeof DROP_TARGET_STATUS)[keyof typeof DROP_TARGET_STATUS]
 
 const getDropTargetStatus = ({
   isActive,

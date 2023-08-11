@@ -9,8 +9,10 @@ import {
   CardHeader,
   createTable,
   DataGrid,
+  dataGridClasses,
   GridActionsCellItem,
   MenuItem,
+  Stack,
   Typography,
   useGridApiRef,
 } from '@monorail/components'
@@ -33,6 +35,9 @@ const { columns } = createTable<FilterStoryRow>()(
     field: 'id',
     headerName: 'ID',
     filter: { type: 'numeric' },
+    minWidth: 80,
+    headerClassName: 'firstColumn-header',
+    cellClassName: 'firstColumn-cell',
   },
   {
     field: 'firstName',
@@ -105,6 +110,7 @@ const { columns } = createTable<FilterStoryRow>()(
   {
     type: 'actions',
     field: 'actions',
+    maxWidth: 48,
     getActions: () => [
       <GridActionsCellItem
         key={0}
@@ -229,6 +235,159 @@ const Template = story<DataGridProps<{}>>(() => {
 })
 
 export const Default = story(Template)
+
+export const AlignmentAndSpacing = story<DataGridProps<{}>>(
+  () => {
+    const apiRef = useGridApiRef()
+
+    const rows: Array<FilterStoryRow> = [
+      {
+        id: 1,
+        lastName: 'Snow',
+        firstName: 'Jon',
+        occupation: 'barista',
+        hireDate: getRandomDate(),
+      },
+      {
+        id: 2,
+        lastName: 'Lannister',
+        firstName: 'Cersei',
+        occupation: 'barista',
+        hireDate: getRandomDate(),
+      },
+      {
+        id: 3,
+        lastName: 'Lannister',
+        firstName: 'Jaime',
+        occupation: 'lifeguard',
+        hireDate: getRandomDate(),
+      },
+      {
+        id: 4,
+        lastName: 'Stark',
+        firstName: 'Arya',
+        occupation: 'waiter',
+        hireDate: getRandomDate(),
+      },
+      {
+        id: 5,
+        lastName: 'Targaryen',
+        firstName: 'Daenerys',
+        occupation: 'lifeguard',
+        hireDate: getRandomDate(),
+      },
+      {
+        id: 6,
+        lastName: 'Melisandre',
+        firstName: 'David',
+        occupation: 'barista',
+        hireDate: getRandomDate(),
+      },
+      {
+        id: 7,
+        lastName: 'Clifford',
+        firstName: 'Ferrara',
+        occupation: 'waiter',
+        hireDate: getRandomDate(),
+      },
+      {
+        id: 8,
+        lastName: 'Frances',
+        firstName: 'Rossini',
+        occupation: 'waiter',
+        hireDate: getRandomDate(),
+      },
+      {
+        id: 9,
+        lastName: 'Roxie',
+        firstName: 'Harvey',
+        occupation: 'lifeguard',
+        hireDate: getRandomDate(),
+      },
+      {
+        id: 10,
+        lastName: 'Smith',
+        firstName: 'John',
+        occupation: 'designer',
+        hireDate: getRandomDate(),
+      },
+      {
+        id: 11,
+        lastName: 'Doe',
+        firstName: 'Jane',
+        occupation: 'engineer',
+        hireDate: getRandomDate(),
+      },
+    ]
+
+    return (
+      <Stack>
+        <Stack direction="row" alignItems="center" p={8}>
+          <Typography variant="h1">Page Header</Typography>
+        </Stack>
+        <div style={{ height: 600, width: '100%' }}>
+          <DataGrid
+            apiRef={apiRef}
+            viewStyle="gallery"
+            columns={columns}
+            rows={rows}
+            galleryProps={{
+              itemWidth: 256,
+              itemHeight: 306,
+              slotProps: {
+                galleryContainer: {
+                  style: {
+                    // Explicitly setting `margin: 0 auto` for demo purposes.
+                    // It is centered by default if no additional styles are provided.
+                    margin: '0 auto',
+                  },
+                },
+              },
+              renderCard: ({ row, style }) => {
+                return (
+                  <Box style={style} sx={{ p: 2 }}>
+                    <Card sx={{ height: '100%' }}>
+                      <CardHeader title={`${row.firstName} ${row.lastName}`} />
+                      <CardContent>
+                        <Typography>
+                          Occupation: {capitalize(row.occupation)}
+                        </Typography>
+                      </CardContent>
+                    </Card>
+                  </Box>
+                )
+              },
+            }}
+            sx={{
+              // Aligning the first column header in table view
+              '& .firstColumn-header': {
+                pl: 6,
+              },
+              // Aligning the cell content of the first column in table view
+              // This won't affect the gallery view
+              '& .firstColumn-cell': {
+                pl: 8,
+              },
+              // Aligning the selected row count
+              [`& .${dataGridClasses.selectedRowCount}`]: {
+                ml: 2,
+              },
+            }}
+          />
+        </div>
+      </Stack>
+    )
+  },
+  {
+    parameters: {
+      docs: {
+        description: {
+          story: `Each item in gallery view is explicitly \`position: absolute\`. This limits the options for layout, specifically the use of CSS Grid or Flexbox. As a workaround, you can spread additional styles to the gallery container using \`slotProps.galleryContainer.style\`. See https://github.com/bvaughn/react-window/issues/158 for how this is achieved.`,
+        },
+      },
+    },
+  },
+)
 
 function getRandomDate(): Date {
   return new Date(new Date().getTime() - Math.random() * 1e12)

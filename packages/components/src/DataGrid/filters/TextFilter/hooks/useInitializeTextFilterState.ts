@@ -19,8 +19,10 @@ export function useInitializeTextFilterState(
     const column = gridColumnLookupSelector(apiRef)[field]
     if (external !== true) {
       // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
-      if (!column.filterOperators?.includes(textFilterOperator)) {
-        column.filterOperators = [textFilterOperator]
+      if (
+        !column.filterOperators?.find(operator => operator.value === 'text')
+      ) {
+        ;(column.filterOperators ??= []).push(textFilterOperator)
       }
     }
     if (!apiRef.current.state.textFilter.has(field)) {

@@ -29,13 +29,24 @@ export type ColorShades = {
   A700?: string
 }
 
+enum ThemeName {
+  ClassicLight = 'classicLight',
+  ClassicDark = 'classicDark',
+  MUILight = 'muiLight',
+  MUIDark = 'muiDark',
+  PCTELight = 'pcteLight',
+  PCTEDark = 'pcteDark',
+  MeteorLight = 'meteorLight',
+  MeteorDark = 'meteorDark',
+}
+
 declare module '@mui/material/styles/createTheme' {
   interface ThemeOptions {
     name?: string
   }
 
   interface Theme {
-    name: string
+    name: ThemeName
   }
 }
 
@@ -77,9 +88,15 @@ declare module '@mui/material/styles/createPalette' {
 
     /** Color token for `Rating` when filled */
     rating: string
+    /** Commonly used for outlined input fields */
+    outlinedBorder: string
+    filledInputBackground: string
+    standardInputLine: string
     /** Background color for the `Tooltip` component */
     tooltip: string
-    /** Background color for Backdrop component. */
+    /** Background color for the `Snackbar` component if no children are provided */
+    snackbar: string
+    /** Background color for the Backdrop component (AKA "scrim"). */
     backdropOverlay: string
   }
 
@@ -120,9 +137,15 @@ declare module '@mui/material/styles/createPalette' {
 
     /** Color token for `Rating` when filled */
     rating?: string
+    /** Commonly used for outlined input fields */
+    outlinedBorder?: string
+    filledInputBackground?: string
+    standardInputLine?: string
     /** Background color for the `Tooltip` component */
     tooltip?: string
-    /** Background color for Backdrop component. */
+    /** Background color for the `Snackbar` component if no children are provided */
+    snackbar?: string
+    /** Background color for the Backdrop component (AKA "scrim"). */
     backdropOverlay?: string
   }
 

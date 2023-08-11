@@ -163,7 +163,7 @@ export const SubheaderDividers = () => {
       <Divider component="li" variant="inset" />
       <li>
         <Typography
-          sx={{ mt: 0.5, ml: 9 }}
+          sx={{ mt: 0.5, ml: 18 }}
           color="text.secondary"
           display="block"
           variant="caption"

@@ -6,13 +6,16 @@ import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank'
 import type { AutocompleteProps } from '@monorail/components'
 import {
   Autocomplete,
+  autocompleteClasses,
   Box,
   Checkbox,
   Chip,
   Stack,
   TextField,
+  Typography,
   VirtualizedAutocomplete,
 } from '@monorail/components'
+import { useTheme } from '@monorail/utils'
 
 import { story } from '../helpers/storybook.js'
 import type { Movie } from '../helpers/testData.js'
@@ -195,7 +198,7 @@ export const MultipleValues = story<MovieAutocompleteProps>(args => {
         renderTags={(value, getTagProps) =>
           value.map((option: Movie, index: number) => (
             <Chip
-              size={args.size}
+              size={args.size === 'small' ? 'small' : 'medium'}
               variant="outlined"
               label={option.label}
               {...getTagProps({ index })}
@@ -233,8 +236,9 @@ export const MultipleValues = story<MovieAutocompleteProps>(args => {
 })
 
 export const Sizes = story(args => {
+  const theme = useTheme()
   return (
-    <Stack spacing={2} sx={{ width: 500 }}>
+    <Stack spacing={2} sx={{ maxWidth: 500 }}>
       <Autocomplete
         id="size-small-outlined"
         size="small"
@@ -258,25 +262,133 @@ export const Sizes = story(args => {
         )}
         {...args}
       />
+      <Autocomplete
+        id="size-medium-outlined"
+        size="medium"
+        options={movies}
+        getOptionLabel={option => option.label}
+        defaultValue={movies[13]}
+        renderInput={params => (
+          <TextField {...params} label="Size medium" placeholder="Favorites" />
+        )}
+        {...args}
+      />
+      <Autocomplete
+        multiple
+        id="size-medium-outlined-multi"
+        size="medium"
+        options={movies}
+        getOptionLabel={option => option.label}
+        defaultValue={[movies[13]]}
+        renderInput={params => (
+          <TextField {...params} label="Size medium" placeholder="Favorites" />
+        )}
+        {...args}
+      />
+      {theme.name.includes('meteor') && (
+        <>
+          <Autocomplete
+            id="size-large-outlined"
+            size="large"
+            options={movies}
+            getOptionLabel={option => option.label}
+            defaultValue={movies[13]}
+            slotProps={{
+              clearIndicator: { size: 'medium' },
+              popupIndicator: { size: 'medium' },
+            }}
+            renderInput={params => (
+              <TextField
+                {...params}
+                label="Size large"
+                placeholder="Favorites"
+              />
+            )}
+            {...args}
+          />
+          <Autocomplete
+            multiple
+            id="size-large-outlined-multi"
+            size="large"
+            options={movies}
+            getOptionLabel={option => option.label}
+            defaultValue={[movies[13]]}
+            slotProps={{
+              clearIndicator: { size: 'medium' },
+              popupIndicator: { size: 'medium' },
+            }}
+            renderInput={params => (
+              <TextField
+                {...params}
+                label="Size large"
+                placeholder="Favorites"
+              />
+            )}
+            {...args}
+          />
+        </>
+      )}
     </Stack>
   )
 })
 
 export const LimitTags = story(args => {
   return (
-    <Autocomplete
-      multiple
-      limitTags={2}
-      id="multiple-limit-tags"
-      options={movies}
-      getOptionLabel={option => option.label}
-      defaultValue={[movies[13], movies[12], movies[11]]}
-      renderInput={params => (
-        <TextField {...params} label="limitTags" placeholder="Favorites" />
-      )}
-      sx={{ width: '500px' }}
-      {...args}
-    />
+    <Stack gap={6}>
+      <Autocomplete
+        multiple
+        limitTags={2}
+        id="multiple-limit-tags"
+        options={movies}
+        getOptionLabel={option => option.label}
+        defaultValue={[movies[13], movies[12], movies[11]]}
+        renderInput={params => (
+          <TextField {...params} label="limitTags" placeholder="Favorites" />
+        )}
+        sx={{ width: '500px' }}
+        {...args}
+      />
+      <Autocomplete
+        multiple
+        limitTags={2}
+        id="multiple-limit-tags-one-line"
+        options={movies}
+        getOptionLabel={option => option.label}
+        defaultValue={[movies[13], movies[12], movies[11]]}
+        renderTags={(value, getTagProps) => {
+          const numTags = value.length
+          const limitTags = 1
+
+          return (
+            <>
+              {value.slice(0, limitTags).map((option, index) => (
+                <Chip
+                  {...getTagProps({ index })}
+                  key={index}
+                  label={option.label}
+                />
+              ))}
+
+              <Typography
+                component="span"
+                className={`${autocompleteClasses.tag} ${autocompleteClasses.tagSizeMedium}`}
+              >
+                {numTags > limitTags && ` +${numTags - limitTags}`}
+              </Typography>
+            </>
+          )
+        }}
+        renderInput={params => (
+          <TextField
+            {...params}
+            label="limitTags (One line)"
+            placeholder="Favorites"
+          />
+        )}
+        sx={{ width: '500px' }}
+        {...args}
+      />
+    </Stack>
   )
 })
 

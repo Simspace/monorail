@@ -19,7 +19,7 @@ import {
 
 import { story } from '../helpers/storybook.js'
 
-const defaultStoryMeta = {
+export default {
   title: 'Utils/TransitionGroup',
   component: TransitionGroup,
 }
@@ -56,11 +56,6 @@ function renderItem({ item, handleRemoveFruit }: RenderItemOptions) {
     </ListItem>
   )
 }
-
-/**
- * Metadata for Typography stories - update/extend as needed
- */
-export default { ...defaultStoryMeta }
 
 /**
  * Story template (edit/remove by hand if needed)

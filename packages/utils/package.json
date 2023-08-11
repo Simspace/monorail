@@ -1,6 +1,6 @@
 {
   "name": "@monorail/utils",
-  "version": "0.0.76",
+  "version": "3.0.100",
   "license": "Apache-2.0",
   "exports": {
     "./*": {
@@ -32,10 +32,10 @@
   "sideEffects": false,
   "devDependencies": {
     "@monorail/scripts": "workspace:*",
-    "@mui/material": "5.11.13",
-    "@mui/styles": "5.11.13",
-    "@mui/system": "5.11.13",
-    "@mui/utils": "5.11.13",
+    "@mui/material": "5.13.4",
+    "@mui/styles": "5.13.2",
+    "@mui/system": "5.13.2",
+    "@mui/utils": "5.13.1",
     "react": "17.0.2"
   },
   "peerDependencies": {

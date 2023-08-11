@@ -4,10 +4,11 @@ import type {
   ThemeOptions,
   TypeAction,
 } from '@mui/material'
-import { alpha, createTheme, lighten } from '@mui/material'
+import { alpha, createTheme } from '@mui/material'
 
-import { baseTheme } from '@monorail/themes/classic/theme/baseTheme'
-import { getThemeComponents } from '@monorail/themes/classic/theme/themeComponents'
+import { baseTheme } from '@monorail/themes/legacy/theme/baseTheme'
+
+import { getThemeComponents } from './themeComponents.js'
 
 // #region Raw Colors (Option Tokens)
 /**
@@ -43,16 +44,16 @@ export enum RawColor {
   Blue700 = '#1050CB',
   Blue800 = '#0C3D9C',
 
-  Purple050 = '#ebdbfd',
-  Purple100 = '#dbbffc',
-  Purple200 = '#cba2f8',
-  Purple300 = '#bb86f2',
-  Purple400 = '#a86ae8',
-  Purple500 = '#9550da',
-  Purple600 = '#7b3fbb',
-  Purple700 = '#613395',
-  Purple800 = '#472672',
-  Purple900 = '#331a54',
+  Purple050 = '#F5E2FF',
+  Purple100 = '#D6B7E7',
+  Purple200 = '#cba2f8', // unused
+  Purple300 = '#A872C5',
+  Purple400 = '#85539F',
+  Purple500 = '#9550da', // unused
+  Purple600 = '#9A37B9',
+  Purple700 = '#4A235E',
+  Purple800 = '#33054A',
+  Purple900 = '#280078', // unused
 
   Orange050 = '#FFF8F0',
   Orange100 = '#FFE6C7',
@@ -220,16 +221,16 @@ enum Opacities {
 }
 
 const action: TypeAction = {
-  active: alpha(RawColor.Purple600, Opacities.Active),
+  active: alpha(RawColor.Blue600, Opacities.Active),
   activatedOpacity: Opacities.Active,
   disabled: RawColor.Grey300,
   disabledBackground: alpha(RawColor.Black, 0.32),
   disabledOpacity: Opacities.Disabled,
-  focus: alpha(RawColor.Purple600, Opacities.Focus),
+  focus: alpha(RawColor.Blue600, Opacities.Focus),
   focusOpacity: Opacities.Focus,
-  hover: alpha(RawColor.Purple600, Opacities.Hover),
+  hover: alpha(RawColor.Blue600, Opacities.Hover),
   hoverOpacity: Opacities.Hover,
-  selected: alpha(RawColor.Purple600, Opacities.Selected),
+  selected: alpha(RawColor.Blue600, Opacities.Selected),
   selectedOpacity: Opacities.Selected,
 }
 
@@ -247,48 +248,49 @@ const palette: PaletteOptions = {
     black: RawColor.Black,
   },
   primary: {
-    light: RawColor.Purple200,
-    main: RawColor.Purple300,
-    dark: RawColor.Purple500,
-    hover: RawColor.Purple400,
-    active: RawColor.Purple500,
+    light: RawColor.Blue200,
+    main: RawColor.Blue300,
+    dark: RawColor.Blue500,
+    hover: RawColor.Blue400,
+    active: RawColor.Blue500,
 
     lowEmphasis: {
-      light: RawColor.Purple800,
+      light: RawColor.Blue800,
       main: RawColor.Grey900,
-      dark: RawColor.Purple700,
-      contrastText: RawColor.Purple300,
-      hover: alpha(RawColor.Purple600, action.hoverOpacity),
-      active: alpha(RawColor.Purple600, action.activatedOpacity),
+      dark: RawColor.Blue700,
+      contrastText: RawColor.Blue300,
+      hover: alpha(RawColor.Blue600, action.hoverOpacity),
+      active: alpha(RawColor.Blue600, action.activatedOpacity),
     },
 
     border: {
-      light: RawColor.Purple800,
-      main: RawColor.Purple500,
-      dark: RawColor.Purple400,
+      light: RawColor.Blue800,
+      main: RawColor.Blue500,
+      dark: RawColor.Blue400,
     },
 
     focusRing: {
-      inner: RawColor.Purple800,
-      outer: RawColor.Purple400,
+      inner: RawColor.Blue800,
+      outer: RawColor.Blue400,
     },
 
     shades: {
-      50: RawColor.Purple050,
-      100: RawColor.Purple100,
-      200: RawColor.Purple200,
-      300: RawColor.Purple300,
-      400: RawColor.Purple400,
-      500: RawColor.Purple500,
-      600: RawColor.Purple600,
-      700: RawColor.Purple700,
-      800: RawColor.Purple800,
+      50: RawColor.Blue050,
+      100: RawColor.Blue100,
+      200: RawColor.Blue200,
+      300: RawColor.Blue300,
+      400: RawColor.Blue400,
+      500: RawColor.Blue500,
+      600: RawColor.Blue600,
+      700: RawColor.Blue700,
+      800: RawColor.Blue800,
     },
   },
+  // Use as brand colors
   secondary: {
-    light: lighten('#0C3D99', 0.5),
-    main: '#0C3D99',
-    dark: '#161C4F',
+    light: RawColor.Purple300,
+    main: RawColor.Purple600,
+    dark: RawColor.Purple700,
   },
   default: {
     light: RawColor.Grey700,
@@ -507,12 +509,12 @@ const palette: PaletteOptions = {
     A400: RawColor.GreyA700,
     A700: RawColor.GreyA900,
   },
-  divider: RawColor.Grey200,
+  divider: RawColor.Grey800,
   rating: RawColor.Yellow,
   tooltip: RawColor.Grey800,
   backdropOverlay: `rgba(${RawColor.Black}, 0.5)`,
   background: {
-    default: RawColor.Grey800,
+    default: '#FAFAFA',
     paper: RawColor.Grey900,
   },
   action: action,

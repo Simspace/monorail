@@ -5,7 +5,10 @@ import AlarmIcon from '@mui/icons-material/Alarm'
 import SnoozeIcon from '@mui/icons-material/Snooze'
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
 
-import type { DateTimePickerProps } from '@monorail/components'
+import type {
+  DateTimePickerProps,
+  StaticDateTimePickerProps,
+} from '@monorail/components'
 import {
   DateTimePicker,
   DesktopDateTimePicker,
@@ -245,7 +248,7 @@ export const DateAndTimeValidation = story<DateTimePickerProps<Date>>(
   },
 )
 
-export const StaticMode = story<DateTimePickerProps<Date>>(
+export const StaticMode = story<StaticDateTimePickerProps<Date>>(
   args => {
     const [value, setValue] = React.useState<Date | null>(
       new Date('2021-01-01T12:34:00.000Z'),

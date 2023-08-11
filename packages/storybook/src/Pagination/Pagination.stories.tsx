@@ -39,7 +39,7 @@ export const BasicPagination = story<PaginationProps>(() => (
 export const PaginationSize = story<PaginationProps>(() => (
   <Stack spacing={2}>
     <Pagination count={10} size="small" aria-label="small" />
-    <Pagination count={10} aria-label="default" />
+    <Pagination count={10} aria-label="medium" />
     <Pagination count={10} size="large" aria-label="large" />
   </Stack>
 ))

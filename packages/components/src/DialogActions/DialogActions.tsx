@@ -1,14 +1,13 @@
 import React from 'react'
-import type { DialogActionsProps, Theme } from '@mui/material'
 import { DialogActions as MuiDialogActions } from '@mui/material'
+import clsx from 'clsx'
 
-import { combineSxProps } from '@monorail/utils'
+import { dialogActionsClasses } from '@monorail/components/DialogActions/dialogActionsClasses'
 
-declare module '@mui/material/DialogActions/DialogActions' {
+declare module '@mui/material/DialogActions' {
   interface DialogActionsProps {
     /**
      * Display the top divider.
-     * @default false
      */
     divider?: boolean
   }
@@ -25,30 +24,22 @@ declare module '@mui/material/DialogActions/DialogActions' {
  *
  * - [DialogActions API](https://mui.com/material-ui/api/dialog-actions/)
  */
-export const DialogActions = React.forwardRef(function DialogActions(
-  inProps,
-  ref,
-) {
-  const { divider, ...others } = inProps
+export const DialogActions = React.forwardRef((inProps, ref) => {
+  const { className, divider, ...other } = inProps
   return (
     <MuiDialogActions
       ref={ref}
-      {...others}
-      sx={combineSxProps(getDialogActionsStyles(divider), others.sx)}
+      className={clsx(
+        divider === true && dialogActionsClasses.divider,
+        className,
+      )}
+      {...other}
     />
   )
-}) as (props: DialogActionsProps) => JSX.Element
+}) as typeof MuiDialogActions
 
 // @ts-expect-error
 // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 DialogActions.muiName = MuiDialogActions.muiName
-
-function getDialogActionsStyles(divider: boolean | undefined) {
-  return (theme: Theme) => ({
-    ...(divider === true && {
-      borderTop: `1px solid ${theme.palette.divider}`,
-    }),
-  })
-}
 
 export * from '@mui/material/DialogActions'

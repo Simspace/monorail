@@ -86,9 +86,21 @@ export const Grouping = story<DataGridProps>(() => {
   })
 
   return (
-    <div style={{ height: 400, width: '100%' }}>
+    <div style={{ height: 800, width: '100%' }}>
       <DataGrid
-        {...data}
+        rows={data.rows}
+        columns={[
+          {
+            field: '__reorder__',
+            sortable: false,
+            valueGetter: params => {
+              // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+              return params.row.title as string
+            },
+          },
+          ...data.columns,
+        ]}
+        rowReordering
         apiRef={apiRef}
         rowGroupingColumnMode="single"
         checkboxSelection

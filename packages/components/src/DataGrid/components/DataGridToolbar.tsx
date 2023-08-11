@@ -1,16 +1,24 @@
 import React from 'react'
 import { ViewColumn, ViewModule } from '@mui/icons-material'
+import type { DataGridProcessedProps } from '@mui/x-data-grid/models/props/DataGridProps'
 import {
+  getDataGridUtilityClass,
   gridColumnLookupSelector,
   gridSortModelSelector,
   SUBMIT_FILTER_STROKE_TIME,
   useGridApiContext,
+  useGridRootProps,
   useGridSelector,
 } from '@mui/x-data-grid-premium'
 
 import { MenuItem } from '@monorail/components/MenuItem'
 import type { DataAttributes } from '@monorail/types'
-import { combineSxProps, useForceUpdate } from '@monorail/utils'
+import {
+  combineSxProps,
+  composeClasses,
+  styled,
+  useForceUpdate,
+} from '@monorail/utils'
 
 import { Box } from '../../Box.js'
 import type { SearchProps } from '../../Search.js'
@@ -22,8 +30,33 @@ import { Typography } from '../../Typography.js'
 
 const MULTIPLE_SYMBOL = Symbol()
 
+type OwnerState = DataGridProcessedProps
+
+const useUtilityClasses = (ownerState: OwnerState) => {
+  const { classes } = ownerState
+
+  const slots = {
+    root: ['toolbarContainer'],
+  }
+
+  return composeClasses(slots, getDataGridUtilityClass, classes)
+}
+
+const DataGridToolbarRoot = styled('div', {
+  name: 'MuiDataGrid',
+  slot: 'ToolbarContainer',
+  overridesResolver: (_, styles) => styles.toolbarContainer,
+})<{ ownerState: OwnerState }>(({ theme }) => ({
+  padding: theme.spacing(4, 8),
+  backgroundColor: theme.palette.default.lowEmphasis.light,
+  display: 'flex',
+  alignItems: 'center',
+  gap: theme.spacing(2),
+}))
+
 export interface DataGridToolbarProps {
   children?: React.ReactNode
+  disableSearch?: boolean
   disableQuickFilter?: boolean
   disableSortBy?: boolean
   disableViewStyleToggle?: boolean
@@ -35,6 +68,7 @@ export interface DataGridToolbarProps {
 export function DataGridToolbar(props: DataGridToolbarProps) {
   const {
     children,
+    disableSearch,
     disableSortBy,
     disableViewStyleToggle,
     disableQuickFilter,
@@ -42,6 +76,7 @@ export function DataGridToolbar(props: DataGridToolbarProps) {
   } = props
 
   const apiRef = useGridApiContext()
+  const rootProps = useGridRootProps()
 
   const handleViewStyleChange = React.useCallback(
     (
@@ -57,19 +92,12 @@ export function DataGridToolbar(props: DataGridToolbarProps) {
 
   const sortModel = useGridSelector(apiRef, gridSortModelSelector)
   const columnLookup = useGridSelector(apiRef, gridColumnLookupSelector)
+  const classes = useUtilityClasses(rootProps)
 
   return (
-    <Box
-      sx={theme => ({
-        padding: theme.spacing(4, 8),
-        backgroundColor: theme.palette.default.lowEmphasis.light,
-        display: 'flex',
-        alignItems: 'center',
-        gap: theme.spacing(2),
-      })}
-    >
+    <DataGridToolbarRoot ownerState={rootProps} className={classes.root}>
       {disableSortBy !== true && (
-        <>
+        <Box display="flex" alignItems="baseline" gap={2}>
           <Typography lineClamp={1} variant="subtitle1">
             Sort By
           </Typography>
@@ -114,20 +142,22 @@ export function DataGridToolbar(props: DataGridToolbarProps) {
               return null
             })}
           </Select>
-        </>
+        </Box>
       )}
       <Box flex="1 1 0">{children}</Box>
-      <Box
-        sx={theme => ({
-          flexShrink: 1,
-          width: theme.spacing(120),
-        })}
-      >
-        <DataGridGlobalSearch
-          disableQuickFilter={disableQuickFilter}
-          {...slotProps.search}
-        />
-      </Box>
+      {disableSearch !== true && (
+        <Box
+          sx={theme => ({
+            flexShrink: 1,
+            width: theme.spacing(120),
+          })}
+        >
+          <DataGridGlobalSearch
+            disableQuickFilter={disableQuickFilter}
+            {...slotProps.search}
+          />
+        </Box>
+      )}
       {disableViewStyleToggle !== true && (
         <ToggleButtonGroup
           value={apiRef.current.state.viewStyle}
@@ -145,7 +175,7 @@ export function DataGridToolbar(props: DataGridToolbarProps) {
           </ToggleButton>
         </ToggleButtonGroup>
       )}
-    </Box>
+    </DataGridToolbarRoot>
   )
 }
 

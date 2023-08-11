@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import type React from 'react'
-import type { GridChildComponentProps } from 'react-window'
+import type { FixedSizeGridProps, GridChildComponentProps } from 'react-window'
 
 import type { DataGridFooterProps } from '../components/DataGridFooter.js'
 import type { DataGridHeaderProps } from '../components/DataGridHeader.js'
-import type { GridValidRowModel } from '../internal.js'
+import type { GridRowId, GridValidRowModel } from '../internal.js'
 import type { DataGridViewStyle } from './dataGridViewStyle.js'
 
 export interface RenderCardParams<R> extends GridChildComponentProps<R> {
@@ -16,9 +16,23 @@ export interface RenderCardParams<R> extends GridChildComponentProps<R> {
 }
 
 interface GalleryProps<R extends GridValidRowModel = any> {
+  /**
+   * Props of `react-window`'s `FixedSizeGrid`
+   */
+  virtualScrollerProps?: Partial<FixedSizeGridProps<R>>
   itemWidth: `${number}%` | number
   itemHeight: `${number}%` | number
   renderCard: (params: RenderCardParams<R>) => React.ReactElement | null
+  slotProps?: {
+    galleryContainer?: {
+      /**
+       * Additional inline styles applied to `react-windows`'s `FixedSizeGrid` inner container. Useful for adjusting the container's spacing.
+       *
+       * @default { position: 'relative', margin: '0 auto' }
+       */
+      style: React.CSSProperties
+    }
+  }
 }
 
 declare module '@mui/x-data-grid/models/gridSlotsComponentsProps' {
@@ -28,6 +42,12 @@ declare module '@mui/x-data-grid/models/gridSlotsComponentsProps' {
   interface ToolbarPropsOverrides
     extends Partial<DataGridHeaderProps>,
       Record<string, unknown> {}
+}
+
+declare module '@mui/x-data-grid-pro/models/gridGroupingColDefOverride' {
+  interface GridGroupingColDefOverride {
+    fullWidth?: boolean
+  }
 }
 
 declare module '@mui/x-data-grid-premium/models/dataGridPremiumProps' {
@@ -63,6 +83,28 @@ declare module '@mui/x-data-grid-premium/models/dataGridPremiumProps' {
      * @default undefined
      */
     galleryProps?: GalleryProps<R>
+    /**
+     * Should custom row reordering be enabled?
+     *
+     * @default false
+     */
+    customRowReordering?: boolean | 'sorted'
+    /**
+     * Should a row reorder be allowed to take place?
+     *
+     * @default undefined
+     */
+    isRowReorderable?: (source: GridRowId, target: GridRowId) => boolean
+    /**
+     * Should the row be updated when reparented through reordering?
+     *
+     * @default false
+     */
+    updateRowWhenReparented?: boolean
+    /**
+     * @default column
+     */
+    filter?: 'column' | 'operator'
   }
 
   interface DataGridPremiumPropsWithDefaultValue<
@@ -99,6 +141,28 @@ declare module '@mui/x-data-grid-premium/models/dataGridPremiumProps' {
      * @default undefined
      */
     galleryProps?: GalleryProps<R>
+    /**
+     * Should custom row reordering be enabled?
+     *
+     * @default false
+     */
+    customRowReordering?: boolean | 'sorted'
+    /**
+     * Should a row reorder be allowed to take place?
+     *
+     * @default undefined
+     */
+    isRowReorderable?: (source: GridRowId, target: GridRowId) => boolean
+    /**
+     * Should the row be updated when reparented through reordering?
+     *
+     * @default false
+     */
+    updateRowWhenReparented?: boolean
+    /**
+     * @default column
+     */
+    filter: 'column' | 'operator'
   }
 }
 

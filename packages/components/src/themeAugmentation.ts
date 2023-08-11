@@ -2,6 +2,7 @@
 export type {} from './DataGrid/components/DataGallery/themeAugmentation.js'
 export type {} from './DialogHeader/themeAugmentation.js'
 export type {} from './EmphaticFormControlLabel/themeAugmentation.js'
+export type {} from './IconChip/themeAugmentation.js'
 export type {} from './Popup/themeAugmentation.js'
 export type {} from './ResizableContainer/themeAugmentation.js'
 export type {} from './ResizableElement/themeAugmentation.js'

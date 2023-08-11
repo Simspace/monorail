@@ -1,5 +1,11 @@
 import { InputBase as MuiInputBase } from '@mui/material'
 
+declare module '@mui/material/InputBase' {
+  interface InputBasePropsSizeOverrides {
+    large: true
+  }
+}
+
 /**
  * `InputBase` contains as few styles as possible.
  * It aims to be a simple building block for creating an input.
