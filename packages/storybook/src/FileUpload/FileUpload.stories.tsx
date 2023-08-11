@@ -17,24 +17,24 @@ const Template = story<FileUploadProps>(
 
     React.useEffect(() => {
       if (file === null) {
-        setProgress(null)
         return
       }
 
-      // Initialize progress to 0 if a file is present
       setProgress(0)
 
       const timer = setInterval(() => {
         setProgress(prevProgress => {
-          // If progress has reached or exceeded 100, or if file is absent, reset progress
-          if (prevProgress === null || prevProgress >= 100) {
+          if (prevProgress === null) {
             return null
           }
-          return prevProgress >= 90 ? 100 : prevProgress + 10
+          if (prevProgress >= 90) {
+            clearInterval(timer)
+            return null
+          }
+          return prevProgress + 10
         })
       }, 300)
 
-      // Clean up the interval when the effect is re-run or when component unmounts
       return () => {
         clearInterval(timer)
       }
@@ -44,7 +44,7 @@ const Template = story<FileUploadProps>(
       <DndProvider backend={HTML5Backend}>
         <FileUpload
           file={file}
-          helperText="File upload"
+          label="File upload"
           onChange={value => setFile(value)}
           uploadProgress={progress}
           {...args}
@@ -62,7 +62,7 @@ export const Showcase = story<FileUploadProps>(args => (
     <Stack gap={4}>
       <FileUpload
         file={null}
-        helperText="My custom text for drop target"
+        helperTextPrimary="My custom text for drop target"
         label={'Default'}
         required
         onChange={() => void 0}
