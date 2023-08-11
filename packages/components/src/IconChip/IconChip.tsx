@@ -59,7 +59,7 @@ const IconChipRoot = styled(Chip, {
  *
  *  Demos:
  *
- * - [IconChip](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/data-display-chip--icon-only)
+ * - [IconChip](https://simspace.github.io/monorail/main/storybook/?path=/docs/data-display-chip--icon-only)
  */
 export const IconChip = React.forwardRef(function IconChip(inProps, ref) {
   const props = useThemeProps({
