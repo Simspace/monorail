@@ -104,6 +104,9 @@ const DropTarget = styled(Box, {
   minWidth: 232,
   padding: theme.spacing(4, '10%'),
   borderRadius: theme.shape.borderRadius,
+  backgroundColor: theme.palette.background.paper,
+  border: `1px solid ${theme.palette.default.border.light}`,
+
   [`& .${fileUploadClasses.content}`]: {
     justifyContent: 'center',
     alignItems: 'center',
@@ -141,27 +144,19 @@ const DropTarget = styled(Box, {
       flex: 1,
     },
   },
-  ...(ownerState.status === DropTargetStatus.Default && {
+  [`.${fileUploadClasses.statusDefault} &`]: {
     backgroundColor: theme.palette.default.lowEmphasis.light,
     border: `2px dashed ${theme.palette.default.border.light}`,
-  }),
-  ...(ownerState.status === DropTargetStatus.Dropping && {
+  },
+  [`.${fileUploadClasses.statusDropping} &`]: {
     backgroundColor: theme.palette.info.lowEmphasis.light,
-    border: `2px dashed ${theme.palette.info.border.light}`,
+    border: `2px dashed ${theme.palette.info.border.main}`,
     [`& .${fileUploadClasses.textPrimary}`]: {
       ...theme.typography.alertTitle,
       color: theme.palette.text.primary,
     },
-  }),
-  ...(ownerState.status === DropTargetStatus.Progress && {
-    backgroundColor: theme.palette.background.paper,
-    border: `1px solid ${theme.palette.default.border.light}`,
-  }),
-  ...(ownerState.status === DropTargetStatus.Uploaded && {
-    backgroundColor: theme.palette.background.paper,
-    border: `1px solid ${theme.palette.default.border.light}`,
-  }),
-  ...(ownerState.status === DropTargetStatus.Error && {
+  },
+  [`.${fileUploadClasses.statusError} &`]: {
     backgroundColor: theme.palette.error.lowEmphasis.light,
     border: `1px solid ${theme.palette.error.border.light}`,
     [`& .${fileUploadClasses.textPrimary}`]: {
@@ -174,7 +169,7 @@ const DropTarget = styled(Box, {
       fontWeight: theme.typography.fontWeightMedium,
       marginBottom: theme.spacing(3),
     },
-  }),
+  },
 }))
 
 const FileUploadIcon = styled('div', {
@@ -427,27 +422,31 @@ export const FileUpload = React.forwardRef(function FileUpload(
             </Typography>
           )}
 
-          {uploadProgress !== null && !canDrop && (
-            <Box
-              sx={{
-                display: 'flex',
-                alignItems: 'center',
-                width: '100%',
-                maxWidth: 240,
-                mb: 3,
-              }}
-            >
-              <Box sx={{ flex: 1, mr: 2 }}>
-                <LinearProgress variant="determinate" value={uploadProgress} />
+          {uploadProgress !== null &&
+            fileUploadStatus !== DropTargetStatus.Dropping && (
+              <Box
+                sx={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  width: '100%',
+                  maxWidth: 240,
+                  mb: 3,
+                }}
+              >
+                <Box sx={{ flex: 1, mr: 2 }}>
+                  <LinearProgress
+                    variant="determinate"
+                    value={uploadProgress}
+                  />
+                </Box>
+                <Box>
+                  <Typography
+                    variant="body2"
+                    color="text.secondary"
+                  >{`${Math.round(uploadProgress)}%`}</Typography>
+                </Box>
               </Box>
-              <Box>
-                <Typography
-                  variant="body2"
-                  color="text.secondary"
-                >{`${Math.round(uploadProgress)}%`}</Typography>
-              </Box>
-            </Box>
-          )}
+            )}
 
           {buttonText !== null && (
             <Button

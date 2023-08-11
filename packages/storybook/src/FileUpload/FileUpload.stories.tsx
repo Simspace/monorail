@@ -116,7 +116,6 @@ export const Showcase = story<FileUploadProps>(args => (
       />
       <Box
         sx={({ palette }) => ({
-          minHeight: 240,
           width: '100%',
           border: `1px solid ${palette.default.border.light}`,
           p: 4,

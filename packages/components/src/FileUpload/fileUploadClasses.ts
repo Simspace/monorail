@@ -12,6 +12,8 @@ export interface FileUploadClasses {
   statusProgress: string
   /** State class applied to the root element if status="uploaded". */
   statusUploaded: string
+  /** State class applied to the root element if status="error". */
+  statusError: string
   /** Styles applied to the `FormLabel` component. */
   label: string
   /** Styles applied to `dropTarget`'s container element. */
@@ -25,8 +27,6 @@ export interface FileUploadClasses {
   onlyVisibleWhileDragging: string
   /** State class applied to the root element if `isDragging={true}`. */
   isDragging: string
-  /** State class applied to the root element if `state="error"`. */
-  error: string
   /** State class applied to the root element if `disabled={true}`. */
   disabled: string
   /** Styles applied to the primary text element. */
@@ -53,6 +53,7 @@ export const fileUploadClasses: FileUploadClasses = generateUtilityClasses(
     'statusDropping',
     'statusProgress',
     'statusUploaded',
+    'statusError',
     'label',
     'dropTarget',
     'content',
@@ -60,7 +61,6 @@ export const fileUploadClasses: FileUploadClasses = generateUtilityClasses(
     'action',
     'onlyVisibleWhileDragging',
     'isDragging',
-    'error',
     'disabled',
     'textPrimary',
     'textSecondary',
