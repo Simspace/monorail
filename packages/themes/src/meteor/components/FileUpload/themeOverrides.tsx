@@ -17,7 +17,7 @@ export const MonorailFileUploadOverrides: Components<Theme>['MonorailFileUpload'
       }),
       dropTarget: ({ theme }) => ({
         border: `1px solid ${theme.palette.outlinedBorder}`,
-        [`.${fileUploadClasses.statusDefault} &`]: {
+        [`.${fileUploadClasses.statusInitial} &`]: {
           border: `1px solid ${theme.palette.outlinedBorder}`,
           backgroundColor: theme.palette.background.paper,
         },

@@ -11,10 +11,10 @@ import type { TypographyProps } from '../Typography.js'
 import type { FileUploadClasses } from './fileUploadClasses'
 
 type FileUploadStatus =
-  | 'default'
+  | 'initial'
   | 'dropping'
   | 'uploaded'
-  | 'progress'
+  | 'inProgress'
   | 'error'
 
 export interface FileUploadProps
@@ -43,7 +43,7 @@ export interface FileUploadProps
   error?: boolean
   /**
    * The status of the FileUpload component.
-   * @default 'default'
+   * @default 'initial'
    */
   status?: FileUploadStatus
   /**

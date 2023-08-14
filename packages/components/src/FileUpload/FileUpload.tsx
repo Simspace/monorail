@@ -30,17 +30,17 @@ import {
 import type { FileUploadProps } from './fileUploadProps.js'
 
 enum DropTargetStatus {
-  Default = 'default',
+  Initial = 'initial',
   Dropping = 'dropping',
+  InProgress = 'inProgress',
   Uploaded = 'uploaded',
-  Progress = 'progress',
   Error = 'error',
 }
 
 const defaultIconMapping = {
-  [DropTargetStatus.Default]: <Upload fontSize="inherit" />,
+  [DropTargetStatus.Initial]: <Upload fontSize="inherit" />,
   [DropTargetStatus.Dropping]: <Upload fontSize="inherit" />,
-  [DropTargetStatus.Progress]: <UploadFile fontSize="inherit" />,
+  [DropTargetStatus.InProgress]: <UploadFile fontSize="inherit" />,
   [DropTargetStatus.Uploaded]: <UploadFile fontSize="inherit" />,
   [DropTargetStatus.Error]: <Error fontSize="inherit" />,
 }
@@ -144,7 +144,7 @@ const DropTarget = styled(Box, {
       flex: 1,
     },
   },
-  [`.${fileUploadClasses.statusDefault} &`]: {
+  [`.${fileUploadClasses.statusInitial} &`]: {
     backgroundColor: theme.palette.default.lowEmphasis.light,
     border: `2px dashed ${theme.palette.default.border.light}`,
   },
@@ -273,7 +273,7 @@ export const FileUpload = React.forwardRef(function FileUpload(
     if (inputRef.current !== null) {
       if (
         fileUploadStatus === DropTargetStatus.Uploaded ||
-        fileUploadStatus === DropTargetStatus.Progress
+        fileUploadStatus === DropTargetStatus.InProgress
       ) {
         onChangeProp(null)
       } else {
@@ -317,7 +317,7 @@ export const FileUpload = React.forwardRef(function FileUpload(
 
   const dropTargetText = React.useMemo(() => {
     switch (fileUploadStatus) {
-      case DropTargetStatus.Default:
+      case DropTargetStatus.Initial:
         return {
           primary: helperTextPrimary,
           secondary: helperTextSecondary,
@@ -327,8 +327,8 @@ export const FileUpload = React.forwardRef(function FileUpload(
           primary: 'Drop file here',
           secondary: null,
         }
+      case DropTargetStatus.InProgress:
       case DropTargetStatus.Uploaded:
-      case DropTargetStatus.Progress:
         return {
           primary: file !== null && file.name,
           secondary: file !== null && formatSize(bytesToSize(file.size)),
@@ -355,12 +355,12 @@ export const FileUpload = React.forwardRef(function FileUpload(
 
   const buttonText = React.useMemo(() => {
     switch (fileUploadStatus) {
-      case DropTargetStatus.Default:
+      case DropTargetStatus.Initial:
       case DropTargetStatus.Error:
         return 'Select a File'
       case DropTargetStatus.Dropping:
         return null
-      case DropTargetStatus.Progress:
+      case DropTargetStatus.InProgress:
         return 'Cancel'
       case DropTargetStatus.Uploaded:
         return 'Remove File'
@@ -524,8 +524,8 @@ function getDropTargetStatus({
     : error
     ? DropTargetStatus.Error
     : inProgress
-    ? DropTargetStatus.Progress
+    ? DropTargetStatus.InProgress
     : uploaded
     ? DropTargetStatus.Uploaded
-    : DropTargetStatus.Default
+    : DropTargetStatus.Initial
 }
