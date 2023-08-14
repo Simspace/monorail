@@ -4,12 +4,12 @@ import generateUtilityClasses from '@mui/utils/generateUtilityClasses'
 export interface FileUploadClasses {
   /** Styles applied to the root element. */
   root: string
-  /** State class applied to the root element if status="default". */
-  statusDefault: string
+  /** State class applied to the root element if status="initial". */
+  statusInitial: string
   /** State class applied to the root element if status="dropping". */
   statusDropping: string
-  /** State class applied to the root element if status="progress". */
-  statusProgress: string
+  /** State class applied to the root element if status="inProgress". */
+  statusInProgress: string
   /** State class applied to the root element if status="uploaded". */
   statusUploaded: string
   /** State class applied to the root element if status="error". */
@@ -49,9 +49,9 @@ export const fileUploadClasses: FileUploadClasses = generateUtilityClasses(
   'MonorailFileUpload',
   [
     'root',
-    'statusDefault',
+    'statusInitial',
     'statusDropping',
-    'statusProgress',
+    'statusInProgress',
     'statusUploaded',
     'statusError',
     'label',

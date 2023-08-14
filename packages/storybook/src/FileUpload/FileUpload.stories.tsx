@@ -17,6 +17,7 @@ const Template = story<FileUploadProps>(
 
     React.useEffect(() => {
       if (file === null) {
+        setProgress(null)
         return
       }
 
@@ -24,7 +25,7 @@ const Template = story<FileUploadProps>(
 
       const timer = setInterval(() => {
         setProgress(prevProgress => {
-          if (prevProgress === null) {
+          if (prevProgress === null || file === null) {
             return null
           }
           if (prevProgress >= 90) {
@@ -57,7 +58,7 @@ const Template = story<FileUploadProps>(
 
 export const Default = story<FileUploadProps>(Template)
 
-export const Showcase = story<FileUploadProps>(args => (
+export const Status = story<FileUploadProps>(args => (
   <DndProvider backend={HTML5Backend}>
     <Stack gap={4}>
       <FileUpload
@@ -67,6 +68,20 @@ export const Showcase = story<FileUploadProps>(args => (
         required
         onChange={() => void 0}
         uploadProgress={null}
+        {...args}
+      />
+      <FileUpload
+        label="In Progress"
+        file={
+          {
+            lastModified: new Date().getTime(),
+            name: 'this_is_a_really_really_long_file_name_that_should_trigger_an_ellipsis_when_its_container_reaches_the_defined_max_width.csv',
+            size: 3000,
+            type: '',
+          } as unknown as File
+        }
+        uploadProgress={67}
+        onChange={() => void 0}
         {...args}
       />
       <FileUpload
@@ -81,20 +96,6 @@ export const Showcase = story<FileUploadProps>(args => (
         }
         onChange={() => void 0}
         uploadProgress={null}
-        {...args}
-      />
-      <FileUpload
-        label="Progress"
-        file={
-          {
-            lastModified: new Date().getTime(),
-            name: 'this_is_a_really_really_long_file_name_that_should_trigger_an_ellipsis_when_its_container_reaches_the_defined_max_width.csv',
-            size: 3000,
-            type: '',
-          } as unknown as File
-        }
-        uploadProgress={67}
-        onChange={() => void 0}
         {...args}
       />
       <FileUpload
@@ -114,28 +115,38 @@ export const Showcase = story<FileUploadProps>(args => (
         uploadProgress={null}
         {...args}
       />
-      <Box
-        sx={({ palette }) => ({
-          width: '100%',
-          border: `1px solid ${palette.default.border.light}`,
-          p: 4,
-          mt: 4,
-        })}
+    </Stack>
+  </DndProvider>
+))
+
+export const OnlyVisibleWhileDragging = story<FileUploadProps>(args => (
+  <DndProvider backend={HTML5Backend}>
+    <Box
+      position="relative"
+      width="100%"
+      border={theme => `1px solid ${theme.palette.default.border.light}`}
+      p={4}
+    >
+      <Stack
+        position="absolute"
+        alignItems="center"
+        justifyContent="center"
+        sx={{ inset: '0%' }}
       >
         <Typography variant="h3">
           FileUpload only visible when dragging
         </Typography>
-        <Typography color="text.secondary" gutterBottom>
-          Drag a file to view drop location.
+        <Typography color="text.secondary">
+          Drag a file to view drop location
         </Typography>
-        <FileUpload
-          file={null}
-          onChange={() => void 0}
-          uploadProgress={null}
-          onlyVisibleWhileDragging
-          {...args}
-        />
-      </Box>
-    </Stack>
+      </Stack>
+      <FileUpload
+        file={null}
+        onChange={() => void 0}
+        uploadProgress={null}
+        onlyVisibleWhileDragging
+        {...args}
+      />
+    </Box>
   </DndProvider>
 ))
