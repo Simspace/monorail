@@ -1,5 +1,4 @@
 import type { Components, Theme } from '@mui/material'
-import { inputLabelClasses } from '@mui/material'
 
 export const MonorailInputLabelOverrides: Components<Theme>['MuiInputLabel'] = {
   defaultProps: {
@@ -17,9 +16,6 @@ export const MonorailInputLabelOverrides: Components<Theme>['MuiInputLabel'] = {
         color: theme.palette.default.main,
         marginBottom: theme.spacing(0.5),
         ...theme.typography.inputLabel,
-        [`&.${inputLabelClasses.error}`]: {
-          color: theme.palette.error.lowEmphasis.contrastText,
-        },
       }
     },
   },
