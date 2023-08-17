@@ -47,7 +47,10 @@ import { MonorailStepLabelOverrides } from '../components/StepLabel/themeOverrid
 import { MonorailTabOverrides } from '../components/Tab/themeOverrides.js'
 import { MonorailTablePaginationOverrides } from '../components/TablePagination/themeOverrides.js'
 import { MonorailTabsOverrides } from '../components/Tabs/themeOverrides.js'
-import { MonorailToggleButtonOverrides } from '../components/ToggleButton/themeOverrides.js'
+import {
+  MonorailToggleButtonGroupOverrides,
+  MonorailToggleButtonOverrides,
+} from '../components/ToggleButton/themeOverrides.js'
 import { baseTheme } from './baseTheme.js'
 
 /**
@@ -99,4 +102,5 @@ export const getThemeComponents = (
   MuiTabs: MonorailTabsOverrides,
   MuiTablePagination: MonorailTablePaginationOverrides,
   MuiToggleButton: MonorailToggleButtonOverrides,
+  MuiToggleButtonGroup: MonorailToggleButtonGroupOverrides,
 })
