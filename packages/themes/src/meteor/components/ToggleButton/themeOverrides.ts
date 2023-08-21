@@ -18,7 +18,15 @@ export const MonorailToggleButtonOverrides: Components<Theme>['MuiToggleButton']
         color: theme.palette.text.primary,
         '&:hover': {
           border: `1px solid ${theme.palette.primary.border.dark}`,
-          backgroundColor: theme.palette.action.hover,
+          // color-mix() achieves an opaque theme.palette.action.hover
+          // https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/color-mix
+          backgroundColor: `color-mix(in srgb, ${
+            theme.palette.background.paper
+          }, ${theme.palette.text.primary} ${
+            // Opted for text.primary as opposed to common.black or common.white
+            // to darken background colors in light mode and to lighten background colors in dark mode
+            theme.palette.action.hoverOpacity * 100
+          }%)`,
         },
         [`&.Mui-focusVisible`]: {
           boxShadow: `0 0 0 4px ${theme.palette.primary.focusRing.outer}`,
@@ -30,13 +38,16 @@ export const MonorailToggleButtonOverrides: Components<Theme>['MuiToggleButton']
           backgroundColor: theme.palette.primary.lowEmphasis.light,
           borderColor: theme.palette.primary.border.dark,
           '&:hover': {
-            backgroundColor: theme.palette.primary.lowEmphasis.main,
+            backgroundColor: `color-mix(in srgb, ${
+              theme.palette.primary.lowEmphasis.light
+            }, ${theme.palette.text.primary} ${
+              theme.palette.action.hoverOpacity * 100
+            }%)`,
           },
         },
         [`&.${toggleButtonClasses.disabled}`]: {
           backgroundColor: theme.palette.background.paper,
           borderColor: theme.palette.primary.border.main,
-          opacity: theme.palette.action.disabledOpacity,
         },
       }),
       sizeSmall: ({ theme }) => ({
@@ -57,8 +68,10 @@ export const MonorailToggleButtonGroupOverrides: Components<Theme>['MuiToggleBut
       root: ({ theme }) => ({
         [`& .${toggleButtonGroupClasses.grouped}`]: {
           '&:not(:first-of-type)': {
-            [`&.${toggleButtonGroupClasses.groupedHorizontal}`]: {},
             borderLeft: `1px solid ${theme.palette.primary.border.main}`,
+            [`&.${toggleButtonGroupClasses.groupedVertical}`]: {
+              borderTop: `1px solid ${theme.palette.primary.border.main}`,
+            },
           },
           '&.Mui-selected': {
             borderLeft: `1px solid ${theme.palette.primary.border.main}`,
