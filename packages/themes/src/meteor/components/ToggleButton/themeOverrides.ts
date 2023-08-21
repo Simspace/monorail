@@ -35,11 +35,11 @@ export const MonorailToggleButtonOverrides: Components<Theme>['MuiToggleButton']
         },
         [`&.${toggleButtonClasses.selected}`]: {
           color: theme.palette.text.primary,
-          backgroundColor: theme.palette.primary.lowEmphasis.light,
+          backgroundColor: theme.palette.primary.lowEmphasis.main,
           borderColor: theme.palette.primary.border.dark,
           '&:hover': {
             backgroundColor: `color-mix(in srgb, ${
-              theme.palette.primary.lowEmphasis.light
+              theme.palette.primary.lowEmphasis.main
             }, ${theme.palette.text.primary} ${
               theme.palette.action.hoverOpacity * 100
             }%)`,
