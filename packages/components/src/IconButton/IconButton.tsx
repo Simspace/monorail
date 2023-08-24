@@ -3,12 +3,6 @@ import { IconButton as MuiIconButton } from '@mui/material'
 
 import type { ExtendButtonBase, OverrideProps } from '@monorail/types'
 
-declare module '@mui/material/IconButton' {
-  interface IconButtonPropsColorOverrides {
-    secondary: false
-  }
-}
-
 export type IconButtonProps<
   D extends React.ElementType = IconButtonTypeMap['defaultComponent'],
   P = {},
