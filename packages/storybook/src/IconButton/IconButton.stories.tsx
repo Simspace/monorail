@@ -12,20 +12,47 @@ import { story } from '../helpers/storybook.js'
  * Metadata for IconButton stories - update/extend as needed
  */
 export default { title: 'Inputs/IconButton', component: IconButton }
-/**
- * Story template (edit/remove by hand if needed)
- *
- * Note: there should be at least one "Default" story that uses this template with the "story" function.
- * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
- */
+
+const colors = [
+  'inherit',
+  'primary',
+  'secondary',
+  'default',
+  'info',
+  'success',
+  'warning',
+  'error',
+] as const
+
+const argTypes = {
+  variant: {
+    options: ['contained', 'outlined', 'chromeless'],
+    control: { type: 'radio' },
+  },
+  color: {
+    options: colors,
+    control: { type: 'select' },
+  },
+  size: {
+    options: ['small', 'medium', 'large'],
+    control: { type: 'radio' },
+  },
+  shape: {
+    options: ['circular', 'rounded'],
+    control: { type: 'radio' },
+  },
+  disabled: { control: { type: 'boolean' } },
+}
+
 const Template = story<IconButtonProps>(
-  (args: Partial<IconButtonProps>) => (
+  args => (
     <IconButton aria-label="default" {...args}>
-      <DeleteIcon />
+      <DeleteIcon fontSize="inherit" />
     </IconButton>
   ),
   {
     args: {},
+    argTypes,
     muiName: 'MuiIconButton',
   },
 )
@@ -47,6 +74,7 @@ export const Showcase = story<IconButtonProps>(
     </Stack>
   ),
   {
+    argTypes,
     parameters: {
       docs: {
         description: {
@@ -59,34 +87,37 @@ Icons are also appropriate for toggle buttons that allow a single choice to be s
   },
 )
 
-export const Variants = story<IconButtonProps>(args => (
-  <Stack direction="row" spacing={4}>
-    <IconButton
-      aria-label="delete"
-      variant="chromeless"
-      color="primary"
-      {...args}
-    >
-      <DeleteIcon />
-    </IconButton>
-    <IconButton
-      aria-label="delete"
-      variant="outlined"
-      color="primary"
-      {...args}
-    >
-      <DeleteIcon />
-    </IconButton>
-    <IconButton
-      aria-label="delete"
-      variant="contained"
-      color="primary"
-      {...args}
-    >
-      <DeleteIcon />
-    </IconButton>
-  </Stack>
-))
+export const Variants = story<IconButtonProps>(
+  args => (
+    <Stack direction="row" spacing={4}>
+      <IconButton
+        aria-label="delete"
+        variant="chromeless"
+        color="primary"
+        {...args}
+      >
+        <DeleteIcon />
+      </IconButton>
+      <IconButton
+        aria-label="delete"
+        variant="outlined"
+        color="primary"
+        {...args}
+      >
+        <DeleteIcon />
+      </IconButton>
+      <IconButton
+        aria-label="delete"
+        variant="contained"
+        color="primary"
+        {...args}
+      >
+        <DeleteIcon />
+      </IconButton>
+    </Stack>
+  ),
+  { argTypes },
+)
 
 export const Sizes = story<IconButtonProps>(
   args => (
@@ -121,6 +152,7 @@ export const Sizes = story<IconButtonProps>(
     </Stack>
   ),
   {
+    argTypes,
     parameters: {
       docs: {
         description: {
@@ -133,57 +165,45 @@ Use fontSize="inherit" for the icon when using size="small" or size="large". fon
   },
 )
 
-export const Shapes = story<IconButtonProps>(args => (
-  <Stack direction="row" spacing={4}>
-    <IconButton
-      aria-label="delete"
-      shape="circular"
-      variant="outlined"
-      color="primary"
-      {...args}
-    >
-      <DeleteIcon />
-    </IconButton>
-    <IconButton
-      aria-label="delete"
-      shape="rounded"
-      variant="outlined"
-      color="primary"
-      {...args}
-    >
-      <DeleteIcon />
-    </IconButton>
-    <IconButton
-      aria-label="delete"
-      shape="circular"
-      variant="contained"
-      color="primary"
-      {...args}
-    >
-      <DeleteIcon />
-    </IconButton>
-    <IconButton
-      aria-label="delete"
-      shape="rounded"
-      variant="contained"
-      color="primary"
-      {...args}
-    >
-      <DeleteIcon />
-    </IconButton>
-  </Stack>
-))
-
-const colors = [
-  'inherit',
-  'primary',
-  'secondary',
-  'default',
-  'info',
-  'success',
-  'warning',
-  'error',
-] as const
+export const Shapes = story<IconButtonProps>(
+  () => (
+    <Stack direction="row" spacing={4}>
+      <IconButton
+        aria-label="delete"
+        shape="circular"
+        variant="outlined"
+        color="primary"
+      >
+        <DeleteIcon />
+      </IconButton>
+      <IconButton
+        aria-label="delete"
+        shape="rounded"
+        variant="outlined"
+        color="primary"
+      >
+        <DeleteIcon />
+      </IconButton>
+      <IconButton
+        aria-label="delete"
+        shape="circular"
+        variant="contained"
+        color="primary"
+      >
+        <DeleteIcon />
+      </IconButton>
+      <IconButton
+        aria-label="delete"
+        shape="rounded"
+        variant="contained"
+        color="primary"
+      >
+        <DeleteIcon />
+      </IconButton>
+    </Stack>
+  ),
+  { argTypes },
+)
 
 export const Colors = story<IconButtonProps>(
   () => (
