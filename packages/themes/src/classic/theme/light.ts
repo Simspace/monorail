@@ -5,7 +5,7 @@ import type {
   ThemeOptions,
   TypeAction,
 } from '@mui/material'
-import { alpha, createTheme } from '@mui/material'
+import { alpha, createTheme, lighten } from '@mui/material'
 
 import { baseTheme } from './baseTheme.js'
 import { getThemeComponents } from './themeComponents.js'
@@ -43,6 +43,8 @@ export enum RawColor {
   Blue600 = '#1465FF',
   Blue700 = '#1050CB',
   Blue800 = '#0C3D9C',
+  Blue900 = '#1A2974',
+  Blue950 = '#161C4F',
 
   Orange050 = '#FFF8F0',
   Orange100 = '#FFE6C7',
@@ -272,12 +274,51 @@ const palette: PaletteOptions = {
       600: RawColor.Blue600,
       700: RawColor.Blue700,
       800: RawColor.Blue800,
+      900: RawColor.Blue900,
+      950: RawColor.Blue800,
     },
   },
   secondary: {
-    light: '#0C3D99',
-    main: '#1A2974',
-    dark: '#161C4F',
+    light: RawColor.Blue800,
+    main: RawColor.Blue900,
+    dark: RawColor.Blue950,
+    hover: RawColor.Blue800,
+    active: lighten(RawColor.Blue800, action.activatedOpacity),
+    contrastText: RawColor.White,
+
+    lowEmphasis: {
+      light: RawColor.Blue050,
+      main: RawColor.Blue100,
+      dark: RawColor.Blue300,
+      contrastText: RawColor.Blue800,
+      hover: alpha(RawColor.Blue800, action.hoverOpacity),
+      active: alpha(RawColor.Blue800, action.activatedOpacity),
+    },
+
+    border: {
+      light: RawColor.Blue700,
+      main: RawColor.Blue800,
+      dark: RawColor.Blue950,
+    },
+
+    focusRing: {
+      inner: RawColor.Blue800,
+      outer: RawColor.Blue400,
+    },
+
+    shades: {
+      50: RawColor.Blue050,
+      100: RawColor.Blue100,
+      200: RawColor.Blue200,
+      300: RawColor.Blue300,
+      400: RawColor.Blue400,
+      500: RawColor.Blue500,
+      600: RawColor.Blue600,
+      700: RawColor.Blue700,
+      800: RawColor.Blue800,
+      900: RawColor.Blue900,
+      950: RawColor.Blue950,
+    },
   },
   default: {
     light: RawColor.Grey400,
