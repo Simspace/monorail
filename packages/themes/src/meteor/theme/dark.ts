@@ -233,6 +233,41 @@ const palette: PaletteOptions = {
     light: RawColor.Orange800,
     main: RawColor.Orange600,
     dark: RawColor.Orange400,
+    hover: RawColor.Orange400,
+    active: RawColor.Orange500,
+    contrastText: RawColor.Orange900,
+
+    lowEmphasis: {
+      light: RawColor.Orange800,
+      main: RawColor.Orange700,
+      dark: RawColor.Orange600,
+      contrastText: RawColor.Orange200,
+      hover: alpha(RawColor.Orange200, action.hoverOpacity),
+      active: alpha(RawColor.Orange200, action.activatedOpacity),
+    },
+
+    border: {
+      light: RawColor.Orange500,
+      main: RawColor.Orange300,
+      dark: RawColor.Orange100,
+    },
+
+    focusRing: {
+      inner: RawColor.Blue800,
+      outer: RawColor.Blue400,
+    },
+
+    shades: {
+      100: RawColor.Orange100,
+      200: RawColor.Orange200,
+      300: RawColor.Orange300,
+      400: RawColor.Orange400,
+      500: RawColor.Orange500,
+      600: RawColor.Orange600,
+      700: RawColor.Orange700,
+      800: RawColor.Orange800,
+      900: RawColor.Orange900,
+    },
   },
   default: {
     light: RawColor.Grey400,
