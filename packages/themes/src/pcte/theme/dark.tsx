@@ -4,7 +4,7 @@ import type {
   ThemeOptions,
   TypeAction,
 } from '@mui/material'
-import { alpha, createTheme } from '@mui/material'
+import { alpha, createTheme, darken } from '@mui/material'
 
 import { baseTheme } from '@monorail/themes/legacy/theme/baseTheme'
 
@@ -289,8 +289,43 @@ const palette: PaletteOptions = {
   // Use as brand colors
   secondary: {
     light: RawColor.Purple300,
-    main: RawColor.Purple600,
-    dark: RawColor.Purple700,
+    main: RawColor.Purple500,
+    dark: RawColor.Purple600,
+    hover: darken(RawColor.Purple500, action.hoverOpacity),
+    active: darken(RawColor.Purple500, action.activatedOpacity),
+
+    lowEmphasis: {
+      light: RawColor.Purple900,
+      main: RawColor.Purple800,
+      dark: RawColor.Purple700,
+      contrastText: RawColor.Purple300,
+      hover: alpha(RawColor.Purple100, action.hoverOpacity),
+      active: alpha(RawColor.Purple100, action.activatedOpacity),
+    },
+
+    border: {
+      light: RawColor.Purple800,
+      main: RawColor.Purple500,
+      dark: RawColor.Purple400,
+    },
+
+    focusRing: {
+      inner: RawColor.Purple800,
+      outer: RawColor.Purple400,
+    },
+
+    shades: {
+      50: RawColor.Purple050,
+      100: RawColor.Purple100,
+      200: RawColor.Purple200,
+      300: RawColor.Purple300,
+      400: RawColor.Purple400,
+      500: RawColor.Purple500,
+      600: RawColor.Purple600,
+      700: RawColor.Purple700,
+      800: RawColor.Purple800,
+      900: RawColor.Purple900,
+    },
   },
   default: {
     light: RawColor.Grey700,
