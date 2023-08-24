@@ -29,16 +29,15 @@ export enum RawColor {
   Grey800 = '#2B2E34',
   Grey900 = '#181A20',
 
-  Orange050 = '#591808',
-  Orange100 = '#913015',
-  Orange200 = '#AC3D1A',
-  Orange300 = '#D65024',
-  Orange400 = '#FA6B40',
-  Orange500 = '#FC9172',
-  Orange600 = '#FDAF9A',
-  Orange700 = '#FEC7B7',
-  Orange800 = '#FFDAD1',
-  Orange900 = '#FFF0EB',
+  Orange100 = '#FDECE6',
+  Orange200 = '#FAD9CC',
+  Orange300 = '#F6B399',
+  Orange400 = '#F18E66',
+  Orange500 = '#ED6833',
+  Orange600 = '#E84200',
+  Orange700 = '#BA3500',
+  Orange800 = '#8B2800',
+  Orange900 = '#5D1A00',
 
   Red100 = '#FFFFFF',
   Red200 = '#FFD6DD',
@@ -233,14 +232,14 @@ const palette: PaletteOptions = {
     light: RawColor.Orange800,
     main: RawColor.Orange600,
     dark: RawColor.Orange400,
-    hover: RawColor.Orange400,
-    active: RawColor.Orange500,
-    contrastText: RawColor.Orange900,
+    hover: RawColor.Orange700,
+    active: RawColor.Orange800,
+    contrastText: RawColor.White,
 
     lowEmphasis: {
-      light: RawColor.Orange800,
-      main: RawColor.Orange700,
-      dark: RawColor.Orange600,
+      light: RawColor.Orange900,
+      main: RawColor.Orange800,
+      dark: RawColor.Orange700,
       contrastText: RawColor.Orange200,
       hover: alpha(RawColor.Orange200, action.hoverOpacity),
       active: alpha(RawColor.Orange200, action.activatedOpacity),
@@ -248,8 +247,8 @@ const palette: PaletteOptions = {
 
     border: {
       light: RawColor.Orange500,
-      main: RawColor.Orange300,
-      dark: RawColor.Orange100,
+      main: RawColor.Orange400,
+      dark: RawColor.Orange300,
     },
 
     focusRing: {
