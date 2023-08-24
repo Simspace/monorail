@@ -154,35 +154,6 @@ export const SemanticColors = () => {
     colorValue: theme.palette.grey[shade as keyof Color],
   }))
 
-  const secondaryColors: Array<ColorTokenRowProps> = [
-    {
-      token: `.light`,
-      colorValue: theme.palette.secondary.light,
-      figmaStyle: `secondary/light`,
-      description:
-        'Use to achieve lower contrast on components with Strong Emphasis. Don’t use for state colors.',
-    },
-    {
-      token: `.main`,
-      colorValue: theme.palette.secondary.main,
-      figmaStyle: `secondary/main`,
-    },
-    {
-      token: `.dark`,
-      colorValue: theme.palette.secondary.dark,
-      figmaStyle: `secondary/dark`,
-      description:
-        'Use to achieve higher contrast on components with Strong Emphasis. Don’t use for state colors.',
-    },
-    {
-      token: `.contrastText`,
-      colorValue: theme.palette.secondary.contrastText,
-      figmaStyle: `secondary/contrastText`,
-      description:
-        'Use for contrast text and icons on components with Strong Emphasis.',
-    },
-  ]
-
   const sentiment = (
     alias: ColorTokenTableProps['alias'],
     paletteColor: PaletteColor,
@@ -334,18 +305,12 @@ export const SemanticColors = () => {
         )
       case 'secondary':
         return (
-          <>
-            <Box mb={10}>
-              <Typography variant="h2" gutterBottom>
-                {`Secondary Colors`}
-              </Typography>
-              <Typography gutterBottom>{`theme.palette.secondary`}</Typography>
-            </Box>
-            <ColorTokenTable
-              colorMetadata={secondaryColors}
-              rawColorObj={rawColorMapping}
-            />
-          </>
+          <Sentiment
+            alias={alias}
+            sentiment={sentiment('secondary', theme.palette.secondary)}
+            colorMode={colorMode}
+            rawColorMapping={rawColorMapping}
+          />
         )
       case 'default':
         return (
