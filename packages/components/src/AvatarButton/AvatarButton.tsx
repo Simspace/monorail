@@ -1,10 +1,13 @@
 import React from 'react'
-import type { SxProps } from '@mui/material'
 import { useThemeProps } from '@mui/material'
 import clsx from 'clsx'
 
-import type { AvatarProps, ButtonBaseProps } from '@monorail/components'
-import { Avatar, avatarClasses, ButtonBase } from '@monorail/components'
+import {
+  Avatar,
+  avatarClasses,
+  ButtonBase,
+  buttonBaseClasses,
+} from '@monorail/components'
 import {
   capitalize,
   composeClasses,
@@ -13,35 +16,14 @@ import {
 } from '@monorail/utils'
 
 import { getAvatarButtonUtilityClasses } from './avatarButtonClasses.js'
-
-export interface AvatarButtonProps
-  extends Omit<ButtonBaseProps, 'color' | 'size'> {
-  /**
-   * The content of the Avatar
-   */
-  children?: React.ReactNode
-  color?:
-    | 'default'
-    | 'primary'
-    | 'secondary'
-    | 'error'
-    | 'info'
-    | 'success'
-    | 'warning'
-  size?: 'small' | 'medium'
-  slotProps?: {
-    root?: ButtonBaseProps
-    avatar?: AvatarProps
-  }
-  sx?: SxProps
-}
+import type { AvatarButtonProps } from './avatarButtonProps.js'
 
 interface AvatarButtonRootProps extends AvatarButtonProps {
   ownerState: AvatarButtonProps
 }
 
-const AvatarButtonRoot = styled(ButtonBase, {
-  name: 'ThirdrailAvatarButton',
+const AvatarButtonRoot = styled(Avatar, {
+  name: 'MonorailAvatarButton',
   slot: 'Root',
   shouldForwardProp: excludeProps('color'),
   overridesResolver: (props: AvatarButtonRootProps, styles) => {
@@ -54,34 +36,51 @@ const AvatarButtonRoot = styled(ButtonBase, {
     ]
   },
 })<AvatarButtonRootProps>(({ color = 'secondary', theme }) => ({
-  [`& .${avatarClasses.root}`]: {
-    backgroundColor: theme.palette[color].main,
-    transition: theme.transitions.create('background-color', {
+  backgroundColor: theme.palette[color].main,
+  color: theme.palette[color].contrastText,
+  transition: theme.transitions.create('background-color', {
+    duration: theme.transitions.duration.shortest,
+  }),
+  '&:hover': {
+    backgroundColor: theme.palette[color].hover,
+  },
+  '&:active': {
+    backgroundColor: theme.palette[color].active,
+  },
+  [`&.${buttonBaseClasses.focusVisible}`]: {
+    boxShadow: `inset 0 0 0 1px ${theme.palette[color].focusRing.inner}, 0 0 0 3px ${theme.palette[color].focusRing.outer}`,
+  },
+  [`& .${avatarClasses.img}`]: {
+    transition: theme.transitions.create('filter', {
       duration: theme.transitions.duration.shortest,
     }),
     '&:hover': {
-      backgroundColor: theme.palette[color].hover,
+      filter: `brightness(90%)`,
     },
     '&:active': {
-      backgroundColor: theme.palette[color].active,
+      filter: `brightness(75%)`,
     },
   },
 }))
 
+/**
+ * An interactive Avatar that is also a semantic button element.
+ */
 export const AvatarButton = React.forwardRef((inProps, ref) => {
-  const props = useThemeProps({ props: inProps, name: 'AvatarButton' })
+  const props = useThemeProps({ props: inProps, name: 'MonorailAvatarButton' })
 
   const {
     className,
     color = 'secondary',
-    size = 'small',
-    slotProps = {},
+    size = 'medium',
+    disabled = false,
     ...other
   } = props
 
   const ownerState = {
     ...props,
     color,
+    disabled,
     size,
   }
 
@@ -93,11 +92,12 @@ export const AvatarButton = React.forwardRef((inProps, ref) => {
       className={clsx(classes.root, className)}
       ownerState={ownerState}
       color={color}
+      disabled={disabled}
+      size={size}
+      as={ButtonBase}
       {...other}
     >
-      <Avatar size={size} {...slotProps?.avatar}>
-        {props.children}
-      </Avatar>
+      {props.children}
     </AvatarButtonRoot>
   )
 }) as (props: AvatarButtonProps) => JSX.Element
