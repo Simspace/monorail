@@ -1,6 +1,6 @@
 import type { Components, Theme } from '@mui/material'
 
-import { avatarClasses } from '@monorail/components'
+import { avatarClasses, svgIconClasses } from '@monorail/components'
 
 export const MonorailAvatarOverrides: Components<Theme>['MuiAvatar'] = {
   defaultProps: {},
@@ -12,9 +12,15 @@ export const MonorailAvatarOverrides: Components<Theme>['MuiAvatar'] = {
       width: theme.spacing(8),
       height: theme.spacing(8),
       fontSize: theme.typography.pxToRem(10),
+      [`& .${svgIconClasses.root}`]: {
+        fontSize: theme.typography.pxToRem(24),
+      },
       [`&.${avatarClasses.sizeSmall}`]: {
         width: theme.spacing(6),
         height: theme.spacing(6),
+        [`& .${svgIconClasses.root}`]: {
+          fontSize: theme.typography.pxToRem(16),
+        },
       },
     }),
     rounded: {

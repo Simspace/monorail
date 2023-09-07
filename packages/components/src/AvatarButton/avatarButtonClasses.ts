@@ -23,11 +23,11 @@ export interface AvatarButtonClasses {
 export type AvatarButtonClassKey = keyof AvatarButtonClasses
 
 export function getAvatarButtonUtilityClasses(slot: string): string {
-  return generateUtilityClass('ThirdrailAvatarButton', slot)
+  return generateUtilityClass('MonorailAvatarButton', slot)
 }
 
 export const avatarButtonClasses: AvatarButtonClasses = generateUtilityClasses(
-  'ThirdrailAvatarButton',
+  'MonorailAvatarButton',
   [
     'root',
     'colorDefault',
