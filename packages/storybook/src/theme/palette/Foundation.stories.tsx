@@ -53,6 +53,12 @@ export const Foundation = () => {
       figmaStyle: 'text/secondary',
     },
     {
+      token: '.link',
+      description: '',
+      colorValue: theme.palette.text.link,
+      figmaStyle: 'text/link',
+    },
+    {
       token: '.disabled',
       description: '',
       colorValue: theme.palette.text.disabled,
