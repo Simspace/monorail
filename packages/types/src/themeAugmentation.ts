@@ -253,6 +253,10 @@ declare module '@mui/material/styles/createPalette' {
       outer: string
     }>
   }
+
+  interface TypeText {
+    link: string
+  }
 }
 
 declare module '@mui/material/styles/createTypography' {

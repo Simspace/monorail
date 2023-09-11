@@ -53,6 +53,7 @@ import { MonorailInputAdornmentOverrides } from '../components/InputAdornment/th
 import { MonorailInputBaseOverrides } from '../components/InputBase/themeOverrides.js'
 import { MonorailInputLabelOverrides } from '../components/InputLabel/themeOverrides.js'
 import { MonorailLinearProgressOverrides } from '../components/LinearProgress/themeOverrides.js'
+import { MonorailLinkOverrides } from '../components/Link/themeOverrides.js'
 import { MonorailListOverrides } from '../components/List/themeOverrides.js'
 import { MonorailListItemOverrides } from '../components/ListItem/themeOverrides.js'
 import { MonorailListItemAvatarOverrides } from '../components/ListItemAvatar/themeOverrides.js'
@@ -156,6 +157,7 @@ export const getThemeComponents = (
   MuiInputLabel: MonorailInputLabelOverrides,
   MuiLoadingButton: MonorailLoadingButtonOverrides,
   MuiLinearProgress: MonorailLinearProgressOverrides,
+  MuiLink: MonorailLinkOverrides,
   MuiList: MonorailListOverrides,
   MuiListItem: MonorailListItemOverrides,
   MuiListItemAvatar: MonorailListItemAvatarOverrides,
