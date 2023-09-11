@@ -472,6 +472,7 @@ const palette: PaletteOptions = {
     primary: RawColor.Grey100,
     secondary: RawColor.Grey300,
     disabled: RawColor.Grey500,
+    link: RawColor.Blue300,
   },
   grey: {
     100: RawColor.Grey100,
