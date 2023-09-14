@@ -14,6 +14,7 @@ export {
   useForkRef,
   useColorScheme,
   useEventCallback,
+  useMediaQuery,
 } from '@mui/material'
 
 export {
