@@ -1,12 +1,11 @@
 import type {
-  CSSObject,
   TypographyProps as MuiTypographyProps,
   TypographyTypeMap,
 } from '@mui/material'
 import { Typography as MuiTypography } from '@mui/material'
 import type { OverridableComponent } from '@mui/material/OverridableComponent'
 
-import { excludeProps, styled } from '@monorail/utils'
+import { excludeProps, getLineClampStyles, styled } from '@monorail/utils'
 
 declare module '@mui/material/Typography' {
   interface TypographyPropsVariantOverrides {
@@ -71,23 +70,5 @@ export const Typography = TypographyRoot as OverridableComponent<
 // @ts-expect-error
 // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 Typography.muiName = MuiTypography.muiName
-
-function getLineClampStyles(lineClamp: number): CSSObject {
-  if (lineClamp === 1) {
-    return {
-      overflow: 'hidden',
-      textOverflow: 'ellipsis',
-      whiteSpace: 'nowrap',
-    }
-  } else {
-    return {
-      display: '-webkit-box',
-      overflow: 'hidden',
-      textOverflow: 'ellipsis',
-      WebkitLineClamp: lineClamp,
-      WebkitBoxOrient: 'vertical',
-    }
-  }
-}
 
 export * from '@mui/material/Typography'
