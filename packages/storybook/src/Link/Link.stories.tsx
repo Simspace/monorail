@@ -34,6 +34,11 @@ export const Basic = story<LinkProps>(
       <Link href="#" variant="body2">
         {'variant="body2"'}
       </Link>
+      <Stack direction="column" maxWidth={100}>
+        <Link lineClamp={1} href="#">
+          Truncated link
+        </Link>
+      </Stack>
     </Stack>
   ),
   {

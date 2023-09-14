@@ -1,12 +1,9 @@
 /* eslint-disable @typescript-eslint/strict-boolean-expressions */
 import React from 'react'
-import type {
-  CSSObject,
-  ListItemTextProps as MuiListItemTextProps,
-} from '@mui/material'
+import type { ListItemTextProps as MuiListItemTextProps } from '@mui/material'
 import { ListItemText as MuiListItemText } from '@mui/material'
 
-import { combineSxProps } from '@monorail/utils'
+import { combineSxProps, getLineClampStyles } from '@monorail/utils'
 
 import type { TypographyProps } from '../Typography.js'
 
@@ -106,21 +103,3 @@ export const ListItemText = React.forwardRef(function ListItemText(props, ref) {
 ) => JSX.Element
 
 export * from '@mui/material/ListItemText'
-
-function getLineClampStyles(lineClamp: number): CSSObject {
-  if (lineClamp === 1) {
-    return {
-      overflow: 'hidden',
-      textOverflow: 'ellipsis',
-      whiteSpace: 'nowrap',
-    }
-  } else {
-    return {
-      display: '-webkit-box',
-      overflow: 'hidden',
-      textOverflow: 'ellipsis',
-      WebkitLineClamp: lineClamp,
-      WebkitBoxOrient: 'vertical',
-    }
-  }
-}
