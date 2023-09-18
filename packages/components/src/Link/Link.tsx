@@ -1,14 +1,15 @@
 import React from 'react'
-import type { LinkProps as MuiLinkProps } from '@mui/material'
+import type { LinkTypeMap as MuiLinkTypeMap } from '@mui/material'
 import { Link as MuiLink } from '@mui/material'
 
+import type { OverridableComponent } from '@monorail/types'
 import { combineSxProps, getLineClampStyles } from '@monorail/utils'
 
 import type { TypographyProps } from '../Typography.js'
 
-export interface LinkProps
-  extends MuiLinkProps,
-    Pick<TypographyProps, 'lineClamp'> {}
+export interface LinkExtraProps {
+  lineClamp?: TypographyProps['lineClamp']
+}
 
 /**
  *
@@ -37,6 +38,6 @@ export const Link = React.forwardRef(function Link(props, ref) {
       )}
     />
   )
-}) as (props: LinkProps) => JSX.Element
+}) as OverridableComponent<MuiLinkTypeMap<LinkExtraProps>>
 
 export * from '@mui/material/Link'
