@@ -45,7 +45,7 @@ export const MonorailSwitchOverrides: Components<Theme>['MuiSwitch'] = {
           borderColor: 'transparent',
         },
         [`& .${switchClasses.thumb}`]: {
-          backgroundColor: theme.palette.common.white,
+          backgroundColor: theme.palette.background.paper,
         },
         '&.Mui-focusVisible': {
           [`& + .${switchClasses.track}`]: {
