@@ -908,171 +908,150 @@ export const NumberedList = story<ListProps>(() => {
   )
 })
 
-export const DraggableList = story<ListProps>(
-  () => {
-    const [checked, setChecked] = React.useState([0])
-    const [items, setItems] = React.useState([0, 1, 2, 3, 4, 5, 6])
-    const [toggleScrollContainer, setToggleScrollContainer] =
-      React.useState(false)
+const initialListItems = [
+  { id: 'draggable-list-item-1', primaryText: 'Item 1' },
+  { id: 'draggable-list-item-2', primaryText: 'Item 2' },
+  {
+    id: 'draggable-list-item-3',
+    primaryText: 'Item 3',
+    secondaryText: 'Warning message',
+  },
+  { id: 'draggable-list-item-4', primaryText: 'Item 4' },
+  { id: 'draggable-list-item-5', primaryText: 'Item 5' },
+  { id: 'draggable-list-item-6', primaryText: 'Item 6' },
+]
 
-    const onDragEnd = ({ destination, source }: DropResult) => {
-      // dropped outside the list
-      if (destination === null || destination === undefined) {
-        return
-      }
+export const DraggableList = story<ListProps>(() => {
+  const [listItems, setListItems] = React.useState(initialListItems)
+  const [toggleScrollContainer, setToggleScrollContainer] =
+    React.useState(false)
 
-      const newItems = reorder(items, source.index, destination.index)
-
-      setItems(newItems)
+  const onDragEnd = ({ destination, source }: DropResult) => {
+    // dropped outside the list
+    if (destination === null || destination === undefined) {
+      return
     }
 
-    const handleToggle = (value: number) => () => {
-      const currentIndex = checked.indexOf(value)
-      const newChecked = [...checked]
+    const newItems = reorder(listItems, source.index, destination.index)
 
-      if (currentIndex === -1) {
-        newChecked.push(value)
-      } else {
-        newChecked.splice(currentIndex, 1)
-      }
+    setListItems(newItems)
+  }
 
-      setChecked(newChecked)
-    }
-
-    return (
-      <Stack gap={4}>
-        <FormControlLabel
-          control={
-            <Switch
-              checked={toggleScrollContainer}
-              onChange={() => {
-                setToggleScrollContainer(!toggleScrollContainer)
+  return (
+    <Stack gap={4}>
+      <FormControlLabel
+        control={
+          <Switch
+            checked={toggleScrollContainer}
+            onChange={() => {
+              setToggleScrollContainer(!toggleScrollContainer)
+            }}
+          />
+        }
+        label="Toggle scroll container"
+      />
+      <DragDropContext onDragEnd={onDragEnd}>
+        <Droppable droppableId="droppable-list">
+          {(provided: DroppableProvided) => (
+            <List
+              ref={provided.innerRef}
+              {...provided.droppableProps}
+              sx={{
+                width: '100%',
+                maxWidth: 360,
+                bgcolor: 'background.paper',
+                isolation: 'isolate',
+                ...(toggleScrollContainer && {
+                  overflow: 'auto',
+                  maxHeight: 240,
+                }),
               }}
-            />
-          }
-          label="Toggle scroll container"
-        />
-        <DragDropContext onDragEnd={onDragEnd}>
-          <Droppable droppableId="droppable-list">
-            {(provided: DroppableProvided) => (
-              <List
-                ref={provided.innerRef}
-                {...provided.droppableProps}
-                sx={{
-                  width: '100%',
-                  maxWidth: 360,
-                  bgcolor: 'background.paper',
-                  isolation: 'isolate',
-                  ...(toggleScrollContainer && {
-                    overflow: 'auto',
-                    maxHeight: 240,
-                  }),
-                }}
-              >
-                {items.map((value, index) => {
-                  const labelId = `checkbox-list-label-${value}`
-                  const hasWarning = value === 3
+            >
+              {listItems.map((item, index) => {
+                const hasWarning = item.secondaryText !== undefined
 
-                  return (
-                    <Draggable
-                      key={value}
-                      index={index}
-                      draggableId={`draggable-${value}`}
-                    >
-                      {provided => (
-                        <ListItem
-                          ref={provided.innerRef}
-                          {...provided.draggableProps}
-                          disablePadding
-                          sx={theme => ({
-                            position: 'relative',
-                            bgcolor: hasWarning
-                              ? theme.palette.warning.lowEmphasis.light
-                              : undefined,
-                          })}
+                return (
+                  <Draggable key={item.id} index={index} draggableId={item.id}>
+                    {provided => (
+                      <ListItem
+                        ref={provided.innerRef}
+                        {...provided.draggableProps}
+                        disablePadding
+                        aria-label={`Draggable item: ${item.primaryText}`}
+                        sx={theme => ({
+                          position: 'relative',
+                          bgcolor: hasWarning
+                            ? theme.palette.warning.lowEmphasis.light
+                            : undefined,
+                        })}
+                      >
+                        <Box
+                          {...provided.dragHandleProps}
+                          aria-label={`Draggable handle for ${item.primaryText}`}
+                          sx={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            position: 'absolute',
+                            cursor: 'grab',
+                            zIndex: 1,
+                            '&:active': {
+                              cursor: 'grabbing',
+                            },
+                          }}
                         >
-                          <Box
-                            {...provided.dragHandleProps}
-                            sx={{
+                          <DragIndicator />
+                        </Box>
+                        <ListItemButton role={undefined} dense>
+                          <ListItemIcon>
+                            <Checkbox
+                              security="small"
+                              tabIndex={-1}
+                              disableRipple
+                              inputProps={{ 'aria-labelledby': item.id }}
+                            />
+                          </ListItemIcon>
+                          <ListItemText
+                            id={item.id}
+                            primary={item.primaryText}
+                            secondary={
+                              hasWarning && (
+                                <>
+                                  <WarningAmber
+                                    fontSize="inherit"
+                                    sx={{
+                                      color: 'warning.lowEmphasis.contrastText',
+                                    }}
+                                  />
+                                  <Typography
+                                    component="span"
+                                    variant="inherit"
+                                    color="inherit"
+                                  >
+                                    {item.secondaryText}
+                                  </Typography>
+                                </>
+                              )
+                            }
+                            secondaryTypographyProps={{
                               display: 'flex',
                               alignItems: 'center',
-                              position: 'absolute',
-                              cursor: 'grab',
-                              zIndex: 1,
-                              '&:active': {
-                                cursor: 'grabbing',
-                              },
+                              gap: 1,
                             }}
-                          >
-                            <DragIndicator />
-                          </Box>
-                          <ListItemButton
-                            role={undefined}
-                            onClick={handleToggle(value)}
-                            dense
-                          >
-                            <ListItemIcon>
-                              <Checkbox
-                                security="small"
-                                checked={checked.indexOf(value) !== -1}
-                                tabIndex={-1}
-                                disableRipple
-                                inputProps={{ 'aria-labelledby': labelId }}
-                              />
-                            </ListItemIcon>
-                            <ListItemText
-                              id={labelId}
-                              primary={`Line item ${value + 1}`}
-                              secondary={
-                                hasWarning && (
-                                  <>
-                                    <WarningAmber
-                                      fontSize="inherit"
-                                      color="inherit"
-                                    />
-                                    <Typography
-                                      component="span"
-                                      variant="inherit"
-                                      color="inherit"
-                                    >
-                                      Warning message
-                                    </Typography>
-                                  </>
-                                )
-                              }
-                              secondaryTypographyProps={{
-                                display: 'flex',
-                                alignItems: 'center',
-                                gap: 1,
-                                color: 'warning.lowEmphasis.contrastText',
-                              }}
-                            />
-                          </ListItemButton>
-                        </ListItem>
-                      )}
-                    </Draggable>
-                  )
-                })}
-                {provided.placeholder}
-              </List>
-            )}
-          </Droppable>
-        </DragDropContext>
-      </Stack>
-    )
-  },
-  {
-    parameters: {
-      docs: {
-        description: {
-          story: `A checkbox can either be a primary action or a secondary action.
-
-The checkbox is the primary action and the state indicator for the list item. The comment button is a secondary action and a separate target.`,
-        },
-      },
-    },
-  },
-)
+                          />
+                        </ListItemButton>
+                      </ListItem>
+                    )}
+                  </Draggable>
+                )
+              })}
+              {provided.placeholder}
+            </List>
+          )}
+        </Droppable>
+      </DragDropContext>
+    </Stack>
+  )
+})
 
 function reorder<T>(
   list: Array<T>,
