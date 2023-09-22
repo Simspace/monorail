@@ -1,5 +1,7 @@
 // Edit this file to add new stories
 import React from 'react'
+import type { DroppableProvided, DropResult } from 'react-beautiful-dnd'
+import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd'
 import type { ListChildComponentProps } from 'react-window'
 import { FixedSizeList } from 'react-window'
 import BeachAccessIcon from '@mui/icons-material/BeachAccess'
@@ -38,9 +40,11 @@ import {
   ListItemIcon,
   ListItemText,
   ListSubheader,
+  Stack,
   Switch,
   Typography,
 } from '@monorail/components'
+import { DragIndicator, WarningAmber } from '@monorail/components/icons'
 import { useTheme } from '@monorail/utils'
 
 import { story } from '../helpers/storybook.js'
@@ -903,3 +907,181 @@ export const NumberedList = story<ListProps>(() => {
     </Box>
   )
 })
+
+export const DraggableList = story<ListProps>(
+  () => {
+    const [checked, setChecked] = React.useState([0])
+    const [items, setItems] = React.useState([0, 1, 2, 3, 4, 5, 6])
+    const [toggleScrollContainer, setToggleScrollContainer] =
+      React.useState(false)
+
+    const onDragEnd = ({ destination, source }: DropResult) => {
+      // dropped outside the list
+      if (destination === null || destination === undefined) {
+        return
+      }
+
+      const newItems = reorder(items, source.index, destination.index)
+
+      setItems(newItems)
+    }
+
+    const handleToggle = (value: number) => () => {
+      const currentIndex = checked.indexOf(value)
+      const newChecked = [...checked]
+
+      if (currentIndex === -1) {
+        newChecked.push(value)
+      } else {
+        newChecked.splice(currentIndex, 1)
+      }
+
+      setChecked(newChecked)
+    }
+
+    return (
+      <Stack gap={4}>
+        <FormControlLabel
+          control={
+            <Switch
+              checked={toggleScrollContainer}
+              onChange={() => {
+                setToggleScrollContainer(!toggleScrollContainer)
+              }}
+            />
+          }
+          label="Toggle scroll container"
+        />
+        <DragDropContext onDragEnd={onDragEnd}>
+          <Droppable droppableId="droppable-list">
+            {(provided: DroppableProvided) => (
+              <List
+                ref={provided.innerRef}
+                {...provided.droppableProps}
+                sx={{
+                  width: '100%',
+                  maxWidth: 360,
+                  bgcolor: 'background.paper',
+                  isolation: 'isolate',
+                  ...(toggleScrollContainer && {
+                    overflow: 'auto',
+                    maxHeight: 240,
+                  }),
+                }}
+              >
+                {items.map((value, index) => {
+                  const labelId = `checkbox-list-label-${value}`
+                  const hasWarning = value === 3
+
+                  return (
+                    <Draggable
+                      key={value}
+                      index={index}
+                      draggableId={`draggable-${value}`}
+                    >
+                      {provided => (
+                        <ListItem
+                          ref={provided.innerRef}
+                          {...provided.draggableProps}
+                          disablePadding
+                          sx={theme => ({
+                            position: 'relative',
+                            bgcolor: hasWarning
+                              ? theme.palette.warning.lowEmphasis.light
+                              : undefined,
+                          })}
+                        >
+                          <Box
+                            {...provided.dragHandleProps}
+                            sx={{
+                              display: 'flex',
+                              alignItems: 'center',
+                              position: 'absolute',
+                              cursor: 'grab',
+                              zIndex: 1,
+                              '&:active': {
+                                cursor: 'grabbing',
+                              },
+                            }}
+                          >
+                            <DragIndicator />
+                          </Box>
+                          <ListItemButton
+                            role={undefined}
+                            onClick={handleToggle(value)}
+                            dense
+                          >
+                            <ListItemIcon>
+                              <Checkbox
+                                security="small"
+                                checked={checked.indexOf(value) !== -1}
+                                tabIndex={-1}
+                                disableRipple
+                                inputProps={{ 'aria-labelledby': labelId }}
+                              />
+                            </ListItemIcon>
+                            <ListItemText
+                              id={labelId}
+                              primary={`Line item ${value + 1}`}
+                              secondary={
+                                hasWarning && (
+                                  <>
+                                    <WarningAmber
+                                      fontSize="inherit"
+                                      color="inherit"
+                                    />
+                                    <Typography
+                                      component="span"
+                                      variant="inherit"
+                                      color="inherit"
+                                    >
+                                      Warning message
+                                    </Typography>
+                                  </>
+                                )
+                              }
+                              secondaryTypographyProps={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: 1,
+                                color: 'warning.lowEmphasis.contrastText',
+                              }}
+                            />
+                          </ListItemButton>
+                        </ListItem>
+                      )}
+                    </Draggable>
+                  )
+                })}
+                {provided.placeholder}
+              </List>
+            )}
+          </Droppable>
+        </DragDropContext>
+      </Stack>
+    )
+  },
+  {
+    parameters: {
+      docs: {
+        description: {
+          story: `A checkbox can either be a primary action or a secondary action.
+
+The checkbox is the primary action and the state indicator for the list item. The comment button is a secondary action and a separate target.`,
+        },
+      },
+    },
+  },
+)
+
+function reorder<T>(
+  list: Array<T>,
+  startIndex: number,
+  endIndex: number,
+): Array<T> {
+  const result = Array.from(list)
+  const [removed] = result.splice(startIndex, 1)
+  result.splice(endIndex, 0, removed)
+
+  return result
+}
