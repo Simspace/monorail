@@ -5,6 +5,9 @@ export const MonorailListItemTextOverrides: Components<Theme>['MuiListItemText']
   {
     defaultProps: {},
     styleOverrides: {
+      root: ({ theme }) => ({
+        paddingLeft: theme.spacing(2),
+      }),
       primary: ({ theme }) => ({
         ...theme.typography.body1,
       }),
