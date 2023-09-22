@@ -6,6 +6,7 @@ export const MonorailListItemIconOverrides: Components<Theme>['MuiListItemIcon']
     styleOverrides: {
       root: ({ theme }) => ({
         color: theme.palette.default.main,
+        minWidth: theme.spacing(10),
       }),
     },
   }
