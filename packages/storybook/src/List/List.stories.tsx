@@ -1,6 +1,11 @@
 // Edit this file to add new stories
 import React from 'react'
-import type { DroppableProvided, DropResult } from 'react-beautiful-dnd'
+import type {
+  DraggableProvided,
+  DraggableStateSnapshot,
+  DroppableProvided,
+  DropResult,
+} from 'react-beautiful-dnd'
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd'
 import type { ListChildComponentProps } from 'react-window'
 import { FixedSizeList } from 'react-window'
@@ -972,73 +977,91 @@ export const DraggableList = story<ListProps>(() => {
 
                 return (
                   <Draggable key={item.id} index={index} draggableId={item.id}>
-                    {provided => (
+                    {(
+                      provided: DraggableProvided,
+                      snapshot: DraggableStateSnapshot,
+                    ) => (
                       <ListItem
                         ref={provided.innerRef}
                         {...provided.draggableProps}
-                        disablePadding
+                        dense
                         aria-label={`Draggable item: ${item.primaryText}`}
                         sx={theme => ({
+                          ...provided.draggableProps.style,
                           position: 'relative',
                           bgcolor: hasWarning
                             ? theme.palette.warning.lowEmphasis.light
-                            : undefined,
+                            : theme.palette.background.paper,
+                          ...(snapshot.isDragging && {
+                            bgcolor: hasWarning
+                              ? theme.palette.warning.lowEmphasis.main
+                              : theme.palette.default.lowEmphasis.light,
+                          }),
+                          '&:hover': {
+                            '.drag-handle': {
+                              opacity: 1,
+                            },
+                          },
                         })}
                       >
                         <Box
                           {...provided.dragHandleProps}
                           aria-label={`Draggable handle for ${item.primaryText}`}
+                          className="drag-handle"
                           sx={{
                             display: 'flex',
                             alignItems: 'center',
                             position: 'absolute',
+                            left: 0,
+                            opacity: 0,
                             cursor: 'grab',
                             zIndex: 1,
+                            '&:focus': {
+                              opacity: 1,
+                            },
                             '&:active': {
+                              opacity: 1,
                               cursor: 'grabbing',
                             },
                           }}
                         >
                           <DragIndicator />
                         </Box>
-                        <ListItemButton role={undefined} dense>
-                          <ListItemIcon>
-                            <Checkbox
-                              security="small"
-                              tabIndex={-1}
-                              disableRipple
-                              inputProps={{ 'aria-labelledby': item.id }}
-                            />
-                          </ListItemIcon>
-                          <ListItemText
-                            id={item.id}
-                            primary={item.primaryText}
-                            secondary={
-                              hasWarning && (
-                                <>
-                                  <WarningAmber
-                                    fontSize="inherit"
-                                    sx={{
-                                      color: 'warning.lowEmphasis.contrastText',
-                                    }}
-                                  />
-                                  <Typography
-                                    component="span"
-                                    variant="inherit"
-                                    color="inherit"
-                                  >
-                                    {item.secondaryText}
-                                  </Typography>
-                                </>
-                              )
-                            }
-                            secondaryTypographyProps={{
-                              display: 'flex',
-                              alignItems: 'center',
-                              gap: 1,
-                            }}
+                        <ListItemIcon>
+                          <Checkbox
+                            security="small"
+                            disableRipple
+                            inputProps={{ 'aria-labelledby': item.id }}
                           />
-                        </ListItemButton>
+                        </ListItemIcon>
+                        <ListItemText
+                          id={item.id}
+                          primary={item.primaryText}
+                          secondary={
+                            hasWarning && (
+                              <>
+                                <WarningAmber
+                                  fontSize="inherit"
+                                  sx={{
+                                    color: 'warning.lowEmphasis.contrastText',
+                                  }}
+                                />
+                                <Typography
+                                  component="span"
+                                  variant="inherit"
+                                  color="inherit"
+                                >
+                                  {item.secondaryText}
+                                </Typography>
+                              </>
+                            )
+                          }
+                          secondaryTypographyProps={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: 1,
+                          }}
+                        />
                       </ListItem>
                     )}
                   </Draggable>
