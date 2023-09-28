@@ -210,13 +210,13 @@ export const baseTheme = createTheme(
         fontFamily: BASE_FONT_STACK,
         fontSize: FontSize.MenuItem,
         lineHeight: LineHeight.MenuItem,
-        fontWeight: FontWeight.Medium,
+        fontWeight: FontWeight.Book,
       },
       menuItemDense: {
         fontFamily: BASE_FONT_STACK,
         fontSize: FontSize.MenuItemDense,
         lineHeight: LineHeight.MenuItemDense,
-        fontWeight: FontWeight.Medium,
+        fontWeight: FontWeight.Book,
         letterSpacing: 0.2,
       },
       tabActive: {
