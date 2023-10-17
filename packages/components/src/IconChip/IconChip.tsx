@@ -25,34 +25,44 @@ const IconChipRoot = styled(Chip, {
   name: 'MonorailIconChip',
   slot: 'Root',
   overridesResolver,
-})<IconChipRootProps>(({ theme, ownerState: { size = 'medium' } }) => ({
-  height: theme.spacing(9),
-  width: theme.spacing(9),
-  borderRadius: theme.spacing(9 / 2),
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  ...(size === 'small' && {
-    height: theme.spacing(6),
-    width: theme.spacing(6),
-    borderRadius: theme.spacing(6 / 2),
-  }),
-  [`& .${chipClasses.icon}`]: {
-    marginLeft: 'auto',
-    marginRight: 'auto',
-    [`& + .${chipClasses.label}`]: {
-      display: 'none',
-    },
-  },
-  [`&.${chipClasses.disabled}`]: {
-    backgroundColor: 'transparent',
-    borderColor: 'transparent',
-    opacity: 1,
+})<IconChipRootProps>(
+  ({
+    theme,
+    ownerState: { size = 'medium', variant = 'filled', color = 'primary' },
+  }) => ({
+    height: theme.spacing(8),
+    width: theme.spacing(8),
+    borderRadius: '50%',
+    border: 'none',
+    alignItems: 'center',
+    justifyContent: 'center',
+    ...(variant === 'outlined' && {
+      backgroundColor: 'transparent',
+      border: `1px solid ${theme.palette[color].border.main}`,
+    }),
+    ...(size === 'small' && {
+      height: theme.spacing(6),
+      width: theme.spacing(6),
+    }),
     [`& .${chipClasses.icon}`]: {
-      color: theme.palette.text.disabled,
+      // Override Chip's default negative margins
+      marginLeft: 'initial',
+      marginRight: 'initial',
+      [`& + .${chipClasses.label}`]: {
+        // Empty label should not take up space
+        display: 'none',
+      },
     },
-  },
-}))
+    [`&.${chipClasses.disabled}`]: {
+      backgroundColor: 'transparent',
+      borderColor: 'transparent',
+      opacity: 1,
+      [`& .${chipClasses.icon}`]: {
+        color: theme.palette.text.disabled,
+      },
+    },
+  }),
+)
 
 /**
  * A wrapped `Chip` that only accepts an icon as a child and is styled to be circular.
