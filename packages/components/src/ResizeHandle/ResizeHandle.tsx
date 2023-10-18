@@ -38,7 +38,8 @@ export const ResizeHandleRoot = styled('div', {
     zIndex: theme.zIndex.drawer + 1,
     '&:hover': {
       [`& > .${resizeHandleClasses.handle}`]: {
-        backgroundColor: theme.palette.primary.lowEmphasis.main,
+        // border.light isn't the most semantic, but it translates well between light and dark mode
+        backgroundColor: theme.palette.primary.border.light,
         transitionDelay: `${theme.transitions.duration.standard}ms`,
       },
       [`& > .${resizeHandleClasses.grip}`]: {
@@ -48,7 +49,7 @@ export const ResizeHandleRoot = styled('div', {
     },
     '&:active': {
       [`& > .${resizeHandleClasses.handle}`]: {
-        backgroundColor: theme.palette.primary.lowEmphasis.main,
+        backgroundColor: theme.palette.primary.border.light,
       },
       [`& > .${resizeHandleClasses.grip}`]: {
         backgroundColor: theme.palette.primary.lowEmphasis.dark,
@@ -108,7 +109,7 @@ const ResizeHandleHint = styled(Divider)(({ orientation = 'vertical' }) => {
       return {
         position: 'relative',
         top: '5px',
-        height: '2px',
+        borderBottomWidth: '2px',
       }
     }
   }
