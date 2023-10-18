@@ -4,14 +4,14 @@ import type {
 } from '@mui/material/styles/createPalette'
 
 export enum ThemeName {
+  MeteorLight = 'meteorLight',
+  MeteorDark = 'meteorDark',
   ClassicLight = 'classicLight',
   ClassicDark = 'classicDark',
   MUILight = 'muiLight',
   MUIDark = 'muiDark',
   PCTELight = 'pcteLight',
   PCTEDark = 'pcteDark',
-  MeteorLight = 'meteorLight',
-  MeteorDark = 'meteorDark',
 }
 
 export type ColorTokenRowProps = {
