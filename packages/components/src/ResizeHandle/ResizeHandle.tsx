@@ -135,7 +135,7 @@ const ResizeHandleGrip = styled('div', {
       width: theme.spacing(3),
       height: theme.spacing(12),
       borderRadius: 12,
-      top: 'calc(50% - 40px)',
+      top: 'calc(50% - 24px)',
       '&::before': {
         content: '""',
         position: 'absolute',
@@ -150,17 +150,17 @@ const ResizeHandleGrip = styled('div', {
         left: 0,
       }),
       ...(gripPosition === 'left' && {
-        left: -10,
+        left: -12,
       }),
       ...(gripPosition === 'right' && {
-        left: 10,
+        left: 12,
       }),
     }),
     ...(orientation === 'horizontal' && {
       height: theme.spacing(3),
       width: theme.spacing(12),
       borderRadius: 12,
-      left: 'calc(50% - 40px)',
+      left: 'calc(50% - 24px)',
       '&::before': {
         content: '""',
         position: 'absolute',
@@ -175,10 +175,10 @@ const ResizeHandleGrip = styled('div', {
         top: 0,
       }),
       ...(gripPosition === 'top' && {
-        top: -10,
+        top: -12,
       }),
       ...(gripPosition === 'bottom' && {
-        top: 10,
+        top: 12,
       }),
     }),
   }
