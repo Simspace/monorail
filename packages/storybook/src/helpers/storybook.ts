@@ -262,8 +262,8 @@ export const getRawColorObject = (themeName: ThemeName) => {
       return PcteLightRawColors
     case ThemeName.PCTEDark:
       return PcteDarkRawColors
-    }
   }
+}
 
 export const isMeteorTheme = (themeName: ThemeName) =>
   themeName === ThemeName.MeteorLight || themeName === ThemeName.MeteorDark
