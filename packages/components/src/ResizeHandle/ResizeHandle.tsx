@@ -38,20 +38,20 @@ export const ResizeHandleRoot = styled('div', {
     zIndex: theme.zIndex.drawer + 1,
     '&:hover': {
       [`& > .${resizeHandleClasses.handle}`]: {
-        backgroundColor: theme.palette.primary.hover,
+        backgroundColor: theme.palette.primary.lowEmphasis.main,
         transitionDelay: `${theme.transitions.duration.standard}ms`,
       },
       [`& > .${resizeHandleClasses.grip}`]: {
-        backgroundColor: theme.palette.primary.hover,
+        backgroundColor: theme.palette.primary.lowEmphasis.dark,
         transitionDelay: `${theme.transitions.duration.standard}ms`,
       },
     },
     '&:active': {
       [`& > .${resizeHandleClasses.handle}`]: {
-        backgroundColor: theme.palette.primary.hover,
+        backgroundColor: theme.palette.primary.lowEmphasis.main,
       },
       [`& > .${resizeHandleClasses.grip}`]: {
-        backgroundColor: theme.palette.primary.hover,
+        backgroundColor: theme.palette.primary.lowEmphasis.dark,
       },
     },
   }
@@ -60,7 +60,7 @@ export const ResizeHandleRoot = styled('div', {
       return {
         ...baseStyles,
         flexDirection: 'row',
-        width: '10px',
+        width: '12px',
         height: '100%',
         top: 0,
         right: 0,
@@ -78,7 +78,7 @@ export const ResizeHandleRoot = styled('div', {
       return {
         ...baseStyles,
         flexDirection: 'column',
-        height: '10px',
+        height: '12px',
         width: '100%',
         left: 0,
         bottom: 0,
@@ -100,14 +100,14 @@ const ResizeHandleHint = styled(Divider)(({ orientation = 'vertical' }) => {
     case 'vertical': {
       return {
         position: 'absolute',
-        left: '4px',
+        left: '5px',
         borderRightWidth: '2px',
       }
     }
     case 'horizontal': {
       return {
         position: 'relative',
-        top: '4px',
+        top: '5px',
         height: '2px',
       }
     }
@@ -125,16 +125,26 @@ const ResizeHandleGrip = styled('div', {
 }>(({ theme, orientation, gripPosition }) => {
   return {
     position: 'absolute',
-    backgroundColor: theme.palette.default.light,
+    backgroundColor: theme.palette.primary.lowEmphasis.main,
     transition: `${theme.transitions.create(['background-color'], {
       duration: theme.transitions.duration.short,
     })}`,
     zIndex: theme.zIndex.drawer + 2,
     ...(orientation === 'vertical' && {
-      width: 10,
-      height: 80,
-      borderRadius: 120,
+      width: theme.spacing(3),
+      height: theme.spacing(12),
+      borderRadius: 12,
       top: 'calc(50% - 40px)',
+      '&::before': {
+        content: '""',
+        position: 'absolute',
+        top: 'calc(50% - 12px)',
+        left: 'calc(50% - 2px)',
+        width: theme.spacing(1),
+        height: theme.spacing(6),
+        borderLeft: `1px solid ${theme.palette.primary.border.dark}`,
+        borderRight: `1px solid ${theme.palette.primary.border.dark}`,
+      },
       ...(gripPosition === 'center' && {
         left: 0,
       }),
@@ -146,10 +156,20 @@ const ResizeHandleGrip = styled('div', {
       }),
     }),
     ...(orientation === 'horizontal' && {
-      height: 10,
-      width: 80,
-      borderRadius: 120,
+      height: theme.spacing(3),
+      width: theme.spacing(12),
+      borderRadius: 12,
       left: 'calc(50% - 40px)',
+      '&::before': {
+        content: '""',
+        position: 'absolute',
+        top: 'calc(50% - 2px)',
+        left: 'calc(50% - 12px)',
+        height: theme.spacing(1),
+        width: theme.spacing(6),
+        borderTop: `1px solid ${theme.palette.primary.border.dark}`,
+        borderBottom: `1px solid ${theme.palette.primary.border.dark}`,
+      },
       ...(gripPosition === 'center' && {
         top: 0,
       }),
@@ -175,14 +195,14 @@ const ResizeHandleInner = styled('div', {
     case 'vertical': {
       return {
         position: 'absolute',
-        left: '4px',
+        left: '5px',
         top: 0,
       }
     }
     case 'horizontal': {
       return {
         position: 'absolute',
-        top: '4px',
+        top: '5px',
       }
     }
   }
