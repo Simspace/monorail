@@ -109,6 +109,7 @@ export function TextFilter(inProps: TextFilterProps) {
         <MenuItem value="exact">{localeText.exact}</MenuItem>
       </Select>
       <TextField
+        autoFocus
         value={state.searchText}
         placeholder={localeText.inputPlaceholder}
         onChange={handleSearchTextChange}

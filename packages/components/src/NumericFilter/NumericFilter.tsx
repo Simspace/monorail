@@ -151,6 +151,7 @@ export function NumericFilter(inProps: NumericFilterProps) {
         return (
           <TextField
             type="number"
+            autoFocus
             value={state.first ?? ''}
             onChange={handleFirstInputChange}
             {...slotProps.firstTextField}
@@ -162,6 +163,7 @@ export function NumericFilter(inProps: NumericFilterProps) {
           <>
             <TextField
               type="number"
+              autoFocus
               value={state.first ?? ''}
               onChange={handleFirstInputChange}
               {...slotProps.firstTextField}
