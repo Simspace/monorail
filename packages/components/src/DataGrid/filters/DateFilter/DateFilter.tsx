@@ -121,6 +121,7 @@ export function DateFilter(inProps: DateFilterProps) {
       case 'oneField': {
         return (
           <DatePicker
+            autoFocus
             {...slotProps.firstDatePicker}
             slots={{
               ...slotProps.firstDatePicker?.slots,
@@ -141,6 +142,7 @@ export function DateFilter(inProps: DateFilterProps) {
         return (
           <>
             <DatePicker
+              autoFocus
               {...slotProps.firstDatePicker}
               slots={{
                 ...slotProps.firstDatePicker?.slots,
