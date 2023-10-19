@@ -61,10 +61,10 @@ export const parameters: Parameters = {
 }
 
 enum ThemeOption {
+  Meteor = 'Meteor',
   Classic = 'Classic',
   Legacy = 'Legacy',
   PCTE = 'PCTE',
-  Meteor = 'Meteor',
   MUI = 'MUI',
 }
 
@@ -75,13 +75,13 @@ export const globalTypes = {
   theme: {
     name: 'Theme',
     description: 'Theme switcher',
-    defaultValue: ThemeOption.Classic,
+    defaultValue: ThemeOption.Meteor,
     toolbar: {
       items: [
+        ThemeOption.Meteor,
         ThemeOption.Classic,
         ThemeOption.Legacy,
         ThemeOption.PCTE,
-        ThemeOption.Meteor,
         ThemeOption.MUI,
       ],
       title: true,
@@ -118,27 +118,27 @@ export const withTheme: DecoratorFn = (Story, context) => {
   const theme = React.useMemo(() => {
     if (sbMode === 'dark') {
       switch (sbTheme) {
+        case ThemeOption.Meteor:
+          return meteorDarkTheme
         case ThemeOption.Classic:
           return classicDark
         case ThemeOption.Legacy:
           return legacyDark
         case ThemeOption.PCTE:
           return pcteDark
-        case ThemeOption.Meteor:
-          return meteorDarkTheme
         case ThemeOption.MUI:
           return muiDark
       }
     }
     switch (sbTheme) {
+      case ThemeOption.Meteor:
+        return meteorLightTheme
       case ThemeOption.Classic:
         return classicLight
       case ThemeOption.Legacy:
         return legacyLight
       case ThemeOption.PCTE:
         return pcteLight
-      case ThemeOption.Meteor:
-        return meteorLightTheme
       case ThemeOption.MUI:
         return muiLight
     }

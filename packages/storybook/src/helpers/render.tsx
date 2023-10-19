@@ -12,7 +12,7 @@ import type { RenderOptions, RenderResult } from '@testing-library/react'
 import { render } from '@testing-library/react'
 
 import { StyledEngineProvider } from '@monorail/components/StyledEngineProviderEmotion'
-import { classicLight } from '@monorail/themes'
+import { meteorLightTheme } from '@monorail/themes'
 
 declare module '@mui/styles/defaultTheme' {
   // eslint-disable-next-line @typescript-eslint/no-empty-interface
@@ -45,7 +45,7 @@ export function renderWithTheme(
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <TemporaryJSDomFix />
       <StyledEngineProvider injectFirst>
-        <ThemeProvider theme={classicLight}>
+        <ThemeProvider theme={meteorLightTheme}>
           <CssBaseline />
           {ui}
         </ThemeProvider>

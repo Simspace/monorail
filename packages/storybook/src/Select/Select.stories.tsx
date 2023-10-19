@@ -80,7 +80,7 @@ export const Sizes = story<SelectProps<string>>(() => {
         <Select
           size="small"
           labelId="demo-simple-select-small-label"
-          id="demo-simple-select-standard"
+          id="demo-simple-select-small-standard"
           value={age}
           onChange={handleChange}
           label="Small"
@@ -94,7 +94,7 @@ export const Sizes = story<SelectProps<string>>(() => {
         <InputLabel id="demo-simple-select-medium-label">Medium</InputLabel>
         <Select
           labelId="demo-simple-select-medium-label"
-          id="demo-simple-select-filled"
+          id="demo-simple-select-medium-filled"
           value={age}
           onChange={handleChange}
         >
@@ -109,7 +109,7 @@ export const Sizes = story<SelectProps<string>>(() => {
           <Select
             size="large"
             labelId="demo-simple-select-large-label"
-            id="demo-simple-select-filled"
+            id="demo-simple-select-large-filled"
             value={age}
             onChange={handleChange}
           >

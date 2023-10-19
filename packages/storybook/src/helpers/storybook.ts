@@ -13,7 +13,7 @@ import type {
 } from '@storybook/react'
 import type { AnnotatedStoryFn } from '@storybook/types'
 
-import { classicLight } from '@monorail/themes'
+import { meteorLightTheme } from '@monorail/themes'
 import { RawColor as ClassicDarkRawColors } from '@monorail/themes/classic/theme/dark'
 import { RawColor as ClassicLightRawColors } from '@monorail/themes/classic/theme/light'
 import { RawColor as MeteorDarkRawColors } from '@monorail/themes/meteor/theme/dark'
@@ -223,7 +223,7 @@ export function story<T extends DefaultArgs>(
 ): Story<T> {
   let themeProps: {} | undefined = {}
   if (muiName) {
-    themeProps = classicLight.components?.[muiName]?.defaultProps
+    themeProps = meteorLightTheme.components?.[muiName]?.defaultProps
   }
   const NewStory = Template.bind({}) as Story<T>
   NewStory.args = { ...themeProps, ...Template.args, ...args } as Partial<T>
@@ -246,6 +246,10 @@ export function story<T extends DefaultArgs>(
  */
 export const getRawColorObject = (themeName: ThemeName) => {
   switch (themeName) {
+    case ThemeName.MeteorLight:
+      return MeteorLightRawColors
+    case ThemeName.MeteorDark:
+      return MeteorDarkRawColors
     case ThemeName.ClassicLight:
       return ClassicLightRawColors
     case ThemeName.ClassicDark:
@@ -258,10 +262,6 @@ export const getRawColorObject = (themeName: ThemeName) => {
       return PcteLightRawColors
     case ThemeName.PCTEDark:
       return PcteDarkRawColors
-    case ThemeName.MeteorLight:
-      return MeteorLightRawColors
-    case ThemeName.MeteorDark:
-      return MeteorDarkRawColors
   }
 }
 
