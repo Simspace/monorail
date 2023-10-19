@@ -143,6 +143,7 @@ const filterStoryColumns = createTable<FilterStoryRow>()(
     field: 'firstName',
     headerName: 'First name',
     minWidth: 150,
+    filter: { type: 'text' },
     renderHeader: ({ colDef }) => (
       <React.Fragment>
         <Icons.Person />
@@ -226,6 +227,8 @@ const filterStoryColumns = createTable<FilterStoryRow>()(
       operator: 'my-custom-filter',
       renderFilter: params => (
         <TextField
+          autoFocus
+          label="Custom filter"
           value={(params.state as CustomFilterState).value}
           onChange={event => {
             params.setState({ value: event.target.value })
