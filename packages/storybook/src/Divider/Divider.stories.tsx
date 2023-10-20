@@ -134,6 +134,69 @@ InsetDividers.parameters = {
   },
 }
 
+const spacingArgTypes = {
+  withText: {
+    control: {
+      type: 'boolean',
+    },
+  },
+  variant: {
+    options: ['fullWidth', 'inset', 'middle'],
+    control: {
+      type: 'radio',
+    },
+  },
+}
+
+const spacing = ['xs', 'sm', 'md', 'lg', 'xl'] as const
+
+export const Spacing = story<{
+  withText: boolean
+  variant: DividerProps['variant']
+}>(
+  args => {
+    const withText = args.withText!!
+    return (
+      <Stack>
+        <Stack>
+          {spacing.map(s => (
+            <Divider
+              key={`horizontal-spacing-${s}`}
+              spacing={s}
+              variant={args.variant}
+            >
+              {withText && s}
+            </Divider>
+          ))}
+        </Stack>
+        <Stack height={200} direction="row">
+          {spacing.map(s => (
+            <Divider
+              key={`vertical-spacing-${s}`}
+              spacing={s}
+              orientation="vertical"
+              variant={args.variant}
+            >
+              {withText && s}
+            </Divider>
+          ))}
+        </Stack>
+      </Stack>
+    )
+  },
+  {
+    argTypes: spacingArgTypes,
+    parameters: {
+      docs: {
+        description: {
+          story:
+            'You can use the `spacing` prop to increase the separation between two items.',
+        },
+      },
+    },
+  },
+)
+
 export const SubheaderDividers = () => {
   return (
     <List
