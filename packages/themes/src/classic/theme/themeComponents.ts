@@ -43,6 +43,7 @@ import { MonorailDialogActionsOverrides } from '../components/DialogActions/them
 import { MonorailDialogContentOverrides } from '../components/DialogContent/themeOverrides.js'
 import { MonorailDialogContentTextOverrides } from '../components/DialogContentText/themeOverrides.js'
 import { MonorailDialogTitleOverrides } from '../components/DialogTitle/themeOverrides.js'
+import { MonorailDividerOverrides } from '../components/Divider/themeOverrides.js'
 import { MonorailFormControlOverrides } from '../components/FormControl/themeOverrides.js'
 import { MonorailFormControlLabelOverrides } from '../components/FormControlLabel/themeOverrides.js'
 import { MonorailFormHelperTextOverrides } from '../components/FormHelperText/themeOverrides.js'
@@ -146,6 +147,7 @@ export const getThemeComponents = (
   MuiDialogContent: MonorailDialogContentOverrides,
   MuiDialogContentText: MonorailDialogContentTextOverrides,
   MuiDialogTitle: MonorailDialogTitleOverrides,
+  MuiDivider: MonorailDividerOverrides,
   MuiFormControl: MonorailFormControlOverrides,
   MuiFormControlLabel: MonorailFormControlLabelOverrides,
   MuiFormHelperText: MonorailFormHelperTextOverrides,
