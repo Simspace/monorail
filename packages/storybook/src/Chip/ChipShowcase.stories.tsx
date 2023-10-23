@@ -11,11 +11,6 @@ import { useTheme } from '@monorail/utils'
 import { capitalizeFirstLetter } from '../helpers/helpers.js'
 import { isMeteorTheme, story } from '../helpers/storybook.js'
 
-/**
- * Metadata for Chip stories - update/extend as needed
- * This is intended to be exported as story-level metadata from the main .stories.tsx file, like:
- * "export default { ...defaultStoryMeta } // Add/extend as needed
- */
 export default { title: 'Data Display/Chip/Showcase', component: Chip }
 
 const colors = [

@@ -13,9 +13,6 @@ import {
 
 import { story } from '../helpers/storybook.js'
 
-/**
- * Metadata for DesktopDateRangePicker stories - update/extend as needed
- */
 export default {
   title: 'Inputs/Date and Time/Date Range/DesktopDateRangePicker',
   component: DesktopDateRangePicker,
@@ -39,13 +36,7 @@ const Template = story<DesktopDateRangePickerProps<Date>>(
   },
 )
 
-/** Default story for DesktopDateRangePicker (edit/remove by hand if needed) */
-export const Default = story(Template, {
-  parameters: {
-    docs: {
-      description: {
-        component: `DesktopDateRangePicker is for picking a date range on a desktop browser. This should not likely be used directly.`,
-      },
-    },
-  },
-})
+/**
+ * `DesktopDateRangePicker` is for picking a date range on a desktop browser. This should not likely be used directly.
+ */
+export const Default = story(Template)
