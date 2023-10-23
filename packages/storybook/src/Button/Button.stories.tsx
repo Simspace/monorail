@@ -15,27 +15,13 @@ import {
 
 import { story } from '../helpers/storybook.js'
 
-/**
- * Metadata for Button stories - update/extend as needed
- * This is intended to be exported as story-level metadata from the main .stories.tsx file, like:
- * "export default { ...defaultStoryMeta } // Add/extend as needed
- */
 export default { title: 'Inputs/Button', component: Button }
 
-/**
- * Story template (edit/remove by hand if needed)
- *
- * Note: there should be at least one "Default" story that uses this template with the "story" function.
- * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
- */
 const Template = story<ButtonProps>(args => <Button {...args} />, {
   args: { children: 'It Worked!' },
   muiName: 'MuiButton',
 })
 
-/**
- * Default story for Button (edit/remove by hand if needed)
- * */
 export const Default = story(Template, {
   args: { children: 'Button', variant: 'contained' },
 })
@@ -115,13 +101,11 @@ const buttons = variants.map(variant => (
   </Box>
 ))
 
+/**
+ * Use `variant` to set the display style and `color` to set the coloring
+ */
 export const VariantsAndColors = story<ButtonProps>(() => <>{buttons}</>, {
   parameters: {
-    docs: {
-      description: {
-        story: `Use variant to set the display style and color to set the coloring`,
-      },
-    },
     a11y: {
       /**
        * Our orange buttons failed the WCAG 2.0 contrast test.
@@ -135,107 +119,83 @@ export const VariantsAndColors = story<ButtonProps>(() => <>{buttons}</>, {
   },
 })
 
-export const Sizes = story<ButtonProps>(
-  () => (
-    <Stack direction="row" spacing={2} alignItems="center">
-      <Button variant="contained" size={'small'}>
-        Small
-      </Button>
-      <Button variant="contained" size={'medium'}>
-        Medium
-      </Button>
-      <Button variant="contained" size={'large'}>
-        Large
-      </Button>
-    </Stack>
-  ),
-  {
-    parameters: {
-      docs: {
-        description: {
-          story: 'For larger or smaller buttons, use the size prop.',
-        },
-      },
-    },
-  },
-)
+/**
+ * For larger or smaller buttons, use the `size` prop.
+ */
+export const Sizes = story<ButtonProps>(() => (
+  <Stack direction="row" spacing={2} alignItems="center">
+    <Button variant="contained" size={'small'}>
+      Small
+    </Button>
+    <Button variant="contained" size={'medium'}>
+      Medium
+    </Button>
+    <Button variant="contained" size={'large'}>
+      Large
+    </Button>
+  </Stack>
+))
 
-export const ButtonsWithIconsAndLabel = story<ButtonProps>(
-  args => (
-    <React.Fragment>
-      {variants.map(variant => (
-        <Box mb={10} key={variant}>
-          <Typography variant="h1">{capitalize(variant)}</Typography>
-          <Stack direction="column" spacing={4} margin={2}>
-            {sizes.map(size => (
-              <Stack direction="row" spacing={2} key={size}>
-                <Button
-                  variant={variant}
-                  size={size}
-                  startIcon={<SelectAllOutlined />}
-                  {...args}
-                >
-                  {size}
-                </Button>
-                <Button
-                  variant={variant}
-                  size={size}
-                  endIcon={<SelectAllOutlined />}
-                  {...args}
-                >
-                  {size}
-                </Button>
-              </Stack>
-            ))}
-          </Stack>
-        </Box>
-      ))}
-    </React.Fragment>
-  ),
-  {
-    parameters: {
-      docs: {
-        description: {
-          story: `Sometimes you might want to have icons for certain buttons to enhance the UX of the application as we recognize logos more easily than plain text. For example, if you have a delete button you can label it with a dustbin icon.`,
-        },
-      },
-    },
-  },
-)
+/**
+ * Sometimes you might want to have icons for certain buttons to enhance the UX of the application as we recognize logos more easily than plain text. For example, if you have a delete button you can label it with a dustbin icon.
+ */
+export const ButtonsWithIconsAndLabel = story<ButtonProps>(args => (
+  <React.Fragment>
+    {variants.map(variant => (
+      <Box mb={10} key={variant}>
+        <Typography variant="h1">{capitalize(variant)}</Typography>
+        <Stack direction="column" spacing={4} margin={2}>
+          {sizes.map(size => (
+            <Stack direction="row" spacing={2} key={size}>
+              <Button
+                variant={variant}
+                size={size}
+                startIcon={<SelectAllOutlined />}
+                {...args}
+              >
+                {size}
+              </Button>
+              <Button
+                variant={variant}
+                size={size}
+                endIcon={<SelectAllOutlined />}
+                {...args}
+              >
+                {size}
+              </Button>
+            </Stack>
+          ))}
+        </Stack>
+      </Box>
+    ))}
+  </React.Fragment>
+))
 
-export const LoadingButtons = story<ButtonProps>(
-  () => (
-    <Stack direction="row" spacing={2}>
-      <LoadingButton variant="contained" loading>
-        Submit
-      </LoadingButton>
-      <LoadingButton loading>Submit</LoadingButton>
-      <LoadingButton
-        loading
-        loadingIndicator="Loading..."
-        variant="outlined"
-        color="success"
-      >
-        Fetch data
-      </LoadingButton>
-      <LoadingButton
-        loading
-        loadingPosition="start"
-        startIcon={<SaveIcon />}
-        variant="text"
-        color="error"
-      >
-        Save
-      </LoadingButton>
-    </Stack>
-  ),
-  {
-    parameters: {
-      docs: {
-        description: {
-          story: `The loading buttons can show loading state and disable interactions.`,
-        },
-      },
-    },
-  },
-)
+/**
+ * The loading buttons can show loading state and disable interactions.
+ */
+export const LoadingButtons = story<ButtonProps>(() => (
+  <Stack direction="row" spacing={2}>
+    <LoadingButton variant="contained" loading>
+      Submit
+    </LoadingButton>
+    <LoadingButton loading>Submit</LoadingButton>
+    <LoadingButton
+      loading
+      loadingIndicator="Loading..."
+      variant="outlined"
+      color="success"
+    >
+      Fetch data
+    </LoadingButton>
+    <LoadingButton
+      loading
+      loadingPosition="start"
+      startIcon={<SaveIcon />}
+      variant="text"
+      color="error"
+    >
+      Save
+    </LoadingButton>
+  </Stack>
+))
