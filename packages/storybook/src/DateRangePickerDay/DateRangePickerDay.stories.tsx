@@ -12,9 +12,6 @@ import {
 
 import { story } from '../helpers/storybook.js'
 
-/**
- * Metadata for DateRangePickerDay stories - update/extend as needed
- */
 export default {
   title: 'Inputs/Date and Time/Date Range/DateRangePicker/DateRangePickerDay',
   component: DateRangePickerDay,
@@ -66,12 +63,7 @@ const Template = story<DateRangePickerDayProps<Date>>(
   { muiName: 'MuiDateRangePickerDay' },
 )
 
-export const Default = story(Template, {
-  parameters: {
-    docs: {
-      description: {
-        component: `The displayed days are customizable with the renderDay function prop. You can take advantage of the internal DateRangePickerDay component.`,
-      },
-    },
-  },
-})
+/**
+ * The displayed days are customizable with the `renderDay` function prop. You can take advantage of the internal `DateRangePickerDay` component.
+ */
+export const Default = story(Template)

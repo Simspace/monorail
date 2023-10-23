@@ -6,17 +6,8 @@ import { CssBaseline } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 
-/**
- * Metadata for CssBaseline stories - update/extend as needed
- */
 export default { title: 'Utils/CssBaseline', component: CssBaseline }
 
-/**
- * Story template (edit/remove by hand if needed)
- *
- * Note: there should be at least one "Default" story that uses this template with the "story" function.
- * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
- */
 const Template = story<CssBaselineProps>(
   args => (
     <>
@@ -35,5 +26,4 @@ const Template = story<CssBaselineProps>(
   },
 )
 
-/** Default story for CssBaseline (edit/remove by hand if needed) */
 export const Default = story(Template)

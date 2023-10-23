@@ -24,16 +24,9 @@ import {
 } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
-/**
- * Metadata for Divider stories - update/extend as needed
- */
+
 export default { title: 'Data Display/Divider', component: Divider }
-/**
- * Story template (edit/remove by hand if needed)
- *
- * Note: there should be at least one "Default" story that uses this template with the "story" function.
- * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
- */
+
 const Template = story<DividerProps>(
   (args: DividerProps) => <Divider {...args} />,
   {
@@ -42,52 +35,42 @@ const Template = story<DividerProps>(
   },
 )
 
-/** Default story for Divider (edit/remove by hand if needed) */
 export const Default = story(Template)
 
-export const ListDividers = story<DividerProps>(
-  () => {
-    return (
-      <List
-        sx={{
-          width: '100%',
-          maxWidth: 360,
-          bgcolor: 'background.paper',
-        }}
-        component="nav"
-        aria-label="mailbox folders"
-      >
-        <ListItem button>
-          <ListItemText primary="Inbox" />
-        </ListItem>
-        <Divider />
-        <ListItem button divider>
-          <ListItemText primary="Drafts" />
-        </ListItem>
-        <ListItem button>
-          <ListItemText primary="Trash" />
-        </ListItem>
-        <Divider light />
-        <ListItem button>
-          <ListItemText primary="Spam" />
-        </ListItem>
-      </List>
-    )
-  },
-  {
-    parameters: {
-      docs: {
-        description: {
-          story:
-            'The divider renders as an `<hr>` by default. You can save rendering this DOM element by using the `divider` prop on the `ListItem` component.',
-        },
-      },
-    },
-  },
-)
-
-export const InsetDividers = () => {
+/**
+ * The divider renders as an `<hr>` by default. You can save rendering this DOM element by using the `divider` prop on the `ListItem` component.
+ */
+export const ListDividers = story<DividerProps>(() => {
   return (
+    <List
+      sx={{
+        width: '100%',
+        maxWidth: 360,
+        bgcolor: 'background.paper',
+      }}
+      component="nav"
+      aria-label="mailbox folders"
+    >
+      <ListItem button>
+        <ListItemText primary="Inbox" />
+      </ListItem>
+      <Divider />
+      <ListItem button divider>
+        <ListItemText primary="Drafts" />
+      </ListItem>
+      <ListItem button>
+        <ListItemText primary="Trash" />
+      </ListItem>
+      <Divider light />
+      <ListItem button>
+        <ListItemText primary="Spam" />
+      </ListItem>
+    </List>
+  )
+})
+
+export const InsetDividers = story<DividerProps>(
+  () => (
     <List
       sx={{
         width: '100%',
@@ -125,14 +108,15 @@ export const InsetDividers = () => {
         <ListItemText primary="Vacation" secondary="July 20, 2014" />
       </ListItem>
     </List>
-  )
-}
-
-InsetDividers.parameters = {
-  creevey: {
-    skip: 'Images load unreliably',
+  ),
+  {
+    parameters: {
+      creevey: {
+        skip: 'Images load unreliably',
+      },
+    },
   },
-}
+)
 
 const spacingArgTypes = {
   withText: {
@@ -197,8 +181,8 @@ export const Spacing = story<{
   },
 )
 
-export const SubheaderDividers = () => {
-  return (
+export const SubheaderDividers = story<DividerProps>(
+  () => (
     <List
       sx={{
         width: '100%',
@@ -244,14 +228,15 @@ export const SubheaderDividers = () => {
         <ListItemText primary="Vacation" secondary="July 20, 2014" />
       </ListItem>
     </List>
-  )
-}
-
-SubheaderDividers.parameters = {
-  creevey: {
-    skip: 'Images load unreliably',
+  ),
+  {
+    parameters: {
+      creevey: {
+        skip: 'Images load unreliably',
+      },
+    },
   },
-}
+)
 
 export const MiddleDividers = () => {
   return (
@@ -301,128 +286,102 @@ const Root = styled('div')(({ theme }) => ({
   },
 }))
 
-export const DividerText = story<DividerProps>(
-  () => {
-    const content = (
-      <div>
-        {`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus id dignissim justo.
+/**
+ * You can also render a divider with content.
+ */
+export const DividerText = story<DividerProps>(() => {
+  const content = (
+    <div>
+      {`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus id dignissim justo.
    Nulla ut facilisis ligula. Interdum et malesuada fames ac ante ipsum primis in faucibus.
    Sed malesuada lobortis pretium.`}
-      </div>
-    )
+    </div>
+  )
 
-    return (
-      <Root>
-        {content}
-        <Divider>CENTER</Divider>
-        {content}
-        <Divider textAlign="left">LEFT</Divider>
-        {content}
-        <Divider textAlign="right">RIGHT</Divider>
-        {content}
-        <Divider>
-          <Chip label="CHIP" />
-        </Divider>
-        {content}
-      </Root>
-    )
-  },
-  {
-    parameters: {
-      docs: {
-        description: {
-          story: `You can also render a divider with content.`,
-        },
-      },
-    },
-  },
-)
+  return (
+    <Root>
+      {content}
+      <Divider>CENTER</Divider>
+      {content}
+      <Divider textAlign="left">LEFT</Divider>
+      {content}
+      <Divider textAlign="right">RIGHT</Divider>
+      {content}
+      <Divider>
+        <Chip label="CHIP" />
+      </Divider>
+      {content}
+    </Root>
+  )
+})
 
-export const VerticalDividers = story<DividerProps>(
-  () => {
-    return (
-      <div>
-        <Box
-          sx={{
-            display: 'flex',
-            alignItems: 'center',
-            width: 'fit-content',
-            border: theme => `1px solid ${theme.palette.divider}`,
-            borderRadius: 1,
-            bgcolor: 'background.paper',
-            color: 'text.secondary',
-            '& svg': {
-              m: 1.5,
-            },
-            '& hr': {
-              mx: 0.5,
-            },
-          }}
-        >
-          <FormatAlignLeftIcon />
-          <FormatAlignCenterIcon />
-          <FormatAlignRightIcon />
-          <Divider orientation="vertical" flexItem />
-          <FormatBoldIcon />
-          <FormatItalicIcon />
-        </Box>
-      </div>
-    )
-  },
-  {
-    parameters: {
-      docs: {
-        description: {
-          story:
-            'You can also render a divider vertically using the `orientation` prop.',
-        },
-      },
-    },
-  },
-)
+/**
+ * You can also render a divider vertically using the `orientation` prop.
+ */
+export const VerticalDividers = story<DividerProps>(() => {
+  return (
+    <div>
+      <Box
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          width: 'fit-content',
+          border: theme => `1px solid ${theme.palette.divider}`,
+          borderRadius: 1,
+          bgcolor: 'background.paper',
+          color: 'text.secondary',
+          '& svg': {
+            m: 1.5,
+          },
+          '& hr': {
+            mx: 0.5,
+          },
+        }}
+      >
+        <FormatAlignLeftIcon />
+        <FormatAlignCenterIcon />
+        <FormatAlignRightIcon />
+        <Divider orientation="vertical" flexItem />
+        <FormatBoldIcon />
+        <FormatItalicIcon />
+      </Box>
+    </div>
+  )
+})
 
-export const VerticalDividerMiddle = story<DividerProps>(
-  () => {
-    return (
-      <div>
-        <Box
-          sx={{
-            display: 'flex',
-            alignItems: 'center',
-            width: 'fit-content',
-            border: theme => `1px solid ${theme.palette.divider}`,
-            borderRadius: 1,
-            bgcolor: 'background.paper',
-            color: 'text.secondary',
-            '& svg': {
-              m: 1.5,
-            },
-            '& hr': {
-              mx: 0.5,
-            },
-          }}
-        >
-          <FormatAlignLeftIcon />
-          <FormatAlignCenterIcon />
-          <FormatAlignRightIcon />
-          <Divider orientation="vertical" variant="middle" flexItem />
-          <FormatBoldIcon />
-          <FormatItalicIcon />
-        </Box>
-      </div>
-    )
-  },
-  {
-    parameters: {
-      docs: {
-        description: {
-          story:
-            'You can also render a vertical divider with `variant="middle"`.',
-        },
-      },
-    },
-  },
-)
+/**
+ * You can also render a vertical divider with `variant="middle"`.
+ */
+export const VerticalDividerMiddle = story<DividerProps>(() => {
+  return (
+    <div>
+      <Box
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          width: 'fit-content',
+          border: theme => `1px solid ${theme.palette.divider}`,
+          borderRadius: 1,
+          bgcolor: 'background.paper',
+          color: 'text.secondary',
+          '& svg': {
+            m: 1.5,
+          },
+          '& hr': {
+            mx: 0.5,
+          },
+        }}
+      >
+        <FormatAlignLeftIcon />
+        <FormatAlignCenterIcon />
+        <FormatAlignRightIcon />
+        <Divider orientation="vertical" variant="middle" flexItem />
+        <FormatBoldIcon />
+        <FormatItalicIcon />
+      </Box>
+    </div>
+  )
+})
 
 const StyledGrid = styled(Grid)(({ theme }) => ({
   width: '100%',
@@ -432,37 +391,29 @@ const StyledGrid = styled(Grid)(({ theme }) => ({
   },
 }))
 
-export const VerticalDividerText = story<DividerProps>(
-  () => {
-    const content = (
-      <div>
-        {`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus id dignissim justo.
+/**
+ * You can also render a vertical divider with content.
+ */
+export const VerticalDividerText = story<DividerProps>(() => {
+  const content = (
+    <div>
+      {`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus id dignissim justo.
    Nulla ut facilisis ligula. Interdum et malesuada fames ac ante ipsum primis in faucibus.
    Sed malesuada lobortis pretium.`}
-      </div>
-    )
+    </div>
+  )
 
-    return (
-      <StyledGrid container>
-        <StyledGrid item xs>
-          {content}
-        </StyledGrid>
-        <Divider orientation="vertical" flexItem>
-          VERTICAL
-        </Divider>
-        <StyledGrid item xs>
-          {content}
-        </StyledGrid>
+  return (
+    <StyledGrid container>
+      <StyledGrid item xs>
+        {content}
       </StyledGrid>
-    )
-  },
-  {
-    parameters: {
-      docs: {
-        description: {
-          story: 'You can also render a vertical divider with content.',
-        },
-      },
-    },
-  },
-)
+      <Divider orientation="vertical" flexItem>
+        VERTICAL
+      </Divider>
+      <StyledGrid item xs>
+        {content}
+      </StyledGrid>
+    </StyledGrid>
+  )
+})
