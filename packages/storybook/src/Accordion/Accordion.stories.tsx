@@ -37,21 +37,12 @@ import { styled, useTheme } from '@monorail/utils'
 
 import { story } from '../helpers.js'
 
-/**
- * Metadata for Accordion stories - update/extend as needed
- */
 export default {
   title: 'Surfaces/Accordion',
   component: Accordion,
   subcomponents: { AccordionDetails, AccordionSummary }, // This adds docgen tabs to the Docs page for the Default story - not super helpful
 }
 
-/**
- * Story template (edit/remove by hand if needed)
- *
- * Note: there should be at least one "Default" story that uses this template with the "story" function.
- * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
- */
 const Template = story<AccordionProps>(
   args => (
     <Box minHeight={288}>
@@ -77,7 +68,6 @@ const Template = story<AccordionProps>(
   },
 )
 
-/** Default story for Accordion (edit/remove by hand if needed) */
 export const Default = story(Template)
 
 export const Stacked = story(
@@ -176,6 +166,10 @@ export const StackedBorderless = story(
   },
 )
 
+/**
+ * `borderless`, `removeBorderX`, and `removeBorderY` are utility props that help manage border stacking in cases where an Accordion or a group of Accordions are surrounded by elements that also have borders.
+ * ⚠️ Remember to wrap Accordions in a container in order for these props to work.
+ */
 export const Borders = story(
   () => {
     const [borderless, setBorderless] = React.useState(true)
@@ -323,12 +317,6 @@ export const Borders = story(
   },
   {
     parameters: {
-      docs: {
-        description: {
-          story: `⚠️ It's important to wrap a group of Accordions with its own container, otherwise the pseudo selectors that apply the border styles might break. 
-Prevents double borders when the Accordion is within a container that already has borders.`,
-        },
-      },
       a11y: {
         disable: true, // a11y considers having aria-controls on summary and the same id on details a violation, but this is how uncontrolled accordion works
       },

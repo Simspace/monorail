@@ -20,11 +20,7 @@ import { useTheme } from '@monorail/utils'
 import { story } from '../helpers/storybook.js'
 import type { Movie } from '../helpers/testData.js'
 import { countries, countryToFlag, movies } from '../helpers/testData.js'
-/**
- * Metadata for Autocomplete stories - update/extend as needed
- * This is intended to be exported as story-level metadata from the main .stories.tsx file, like:
- * "export default { ...defaultStoryMeta } // Add/extend as needed
- */
+
 export default { title: 'Inputs/Autocomplete', component: Autocomplete }
 
 type MovieAutocompleteProps = AutocompleteProps<
@@ -51,12 +47,6 @@ const MovieAutocompleteFreeSolo = (props: MovieAutocompleteFreeSoloProps) => (
   <Autocomplete<Movie, boolean, boolean, boolean> {...props} />
 )
 
-/**
- * Story template (edit/remove by hand if needed)
- *
- * Note: there should be at least one "Default" story that uses this template with the "story" function.
- * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
- */
 const Template = story<MovieAutocompleteProps>(
   args => (
     <MovieAutocomplete
@@ -71,7 +61,6 @@ const Template = story<MovieAutocompleteProps>(
   },
 )
 
-/** Default story for Autocomplete (edit/remove by hand if needed) */
 export const Default = story(Template)
 
 export const ComboBox = () => (

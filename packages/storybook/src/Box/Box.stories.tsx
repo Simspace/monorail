@@ -7,11 +7,6 @@ import { Box, Button, Stack, Typography } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 
-/**
- * Metadata for Box stories - update/extend as needed
- * This is intended to be exported as story-level metadata from the main .stories.tsx file, like:
- * "export default { ...defaultStoryMeta } // Add/extend as needed
- */
 export default { title: 'Layout/Box', component: Box }
 
 const Template = story<BoxProps>(args => <Box {...args} />, {
@@ -21,7 +16,7 @@ const Template = story<BoxProps>(args => <Box {...args} />, {
     children: "Hello, I'm a box! Use me for component containers!",
   },
 })
-/** Default story for Box */
+
 export const Default = story(Template)
 
 export const WaysToStyleABox = () => {
