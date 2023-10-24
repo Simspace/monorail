@@ -5,20 +5,12 @@ import type { MonthCalendarProps } from '@monorail/components'
 import { MonthCalendar } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
-/**
- * Metadata for MonthCalendar stories - update/extend as needed
- */
+
 export default {
   title: 'Inputs/Date and Time/Date/MonthCalendar',
   component: MonthCalendar,
 }
 
-/**
- * Story template (edit/remove by hand if needed)
- *
- * Note: there should be at least one "Default" story that uses this template with the "story" function.
- * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
- */
 const Template = story<MonthCalendarProps<Date>>(
   args => {
     const minDate = new Date('2020-01-01T00:00:00.000')
@@ -43,13 +35,7 @@ const Template = story<MonthCalendarProps<Date>>(
   },
 )
 
-/** Default story for MonthCalendar (edit/remove by hand if needed) */
-export const Default = story(Template, {
-  parameters: {
-    docs: {
-      description: {
-        component: `MonthCalendar is a low-level component used for selecting a month.`,
-      },
-    },
-  },
-})
+/**
+ * `MonthCalendar` is a low-level component used for selecting a month.
+ */
+export const Default = story(Template)

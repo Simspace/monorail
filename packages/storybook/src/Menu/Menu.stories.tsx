@@ -40,9 +40,6 @@ import {
 
 import { story } from '../helpers/storybook.js'
 
-/**
- * Metadata for Menu stories - update/extend as needed
- */
 export default { title: 'Navigation/Menu', component: Menu }
 
 const Template = story<MenuProps>(
@@ -79,117 +76,94 @@ const Template = story<MenuProps>(
   },
 )
 
-/** Default story for Menu */
-export const Default = story(Template, {
-  parameters: {
-    docs: {
-      description: {
-        component: `A basic menu opens over the anchor element by default (this option can be [changed](https://next.material-ui.com/components/menus/#menu-positioning) via props). When close to a screen edge, a basic menu vertically realigns to make sure that all menu items are completely visible.
+/**
+ * A basic menu opens over the anchor element by default (this option can be [changed](https://next.material-ui.com/components/menus/#menu-positioning) via props). When close to a screen edge, a basic menu vertically realigns to make sure that all menu items are completely visible.
+ *
+ * Choosing an option should immediately ideally commit the option and close the menu.
+ *
+ * Disambiguation: In contrast to simple menus, simple dialogs can present additional detail related to the options available for a list item or provide navigational or orthogonal actions related to the primary task. Although they can display the same content, simple menus are preferred over simple dialogs because simple menus are less disruptive to the user's current context.
+ */
+export const Default = story(Template)
 
-Choosing an option should immediately ideally commit the option and close the menu.
-        
-Disambiguation: In contrast to simple menus, simple dialogs can present additional detail related to the options available for a list item or provide navigational or orthogonal actions related to the primary task. Although they can display the same content, simple menus are preferred over simple dialogs because simple menus are less disruptive to the user's current context.`,
-      },
-    },
-  },
-})
+/**
+ * In desktop viewport, padding is increased to give more space to the menu.
+ */
+export const IconMenu = story<MenuProps>(() => (
+  <Paper sx={{ width: 320, maxWidth: '100%' }}>
+    <MenuList>
+      <MenuItem>
+        <ListItemIcon>
+          <ContentCut />
+        </ListItemIcon>
+        <ListItemText>Cut</ListItemText>
+        <Typography variant="body2" color="text.secondary">
+          ⌘X
+        </Typography>
+      </MenuItem>
+      <MenuItem>
+        <ListItemIcon>
+          <ContentCopy />
+        </ListItemIcon>
+        <ListItemText>Copy</ListItemText>
+        <Typography variant="body2" color="text.secondary">
+          ⌘C
+        </Typography>
+      </MenuItem>
+      <MenuItem>
+        <ListItemIcon>
+          <ContentPaste />
+        </ListItemIcon>
+        <ListItemText>Paste</ListItemText>
+        <Typography variant="body2" color="text.secondary">
+          ⌘V
+        </Typography>
+      </MenuItem>
+      <Divider />
+      <MenuItem>
+        <ListItemIcon>
+          <Cloud />
+        </ListItemIcon>
+        <ListItemText>Web Clipboard</ListItemText>
+      </MenuItem>
+    </MenuList>
+  </Paper>
+))
 
-export const IconMenu = story<MenuProps>(
-  () => (
-    <Paper sx={{ width: 320, maxWidth: '100%' }}>
-      <MenuList>
-        <MenuItem>
-          <ListItemIcon>
-            <ContentCut />
-          </ListItemIcon>
-          <ListItemText>Cut</ListItemText>
-          <Typography variant="body2" color="text.secondary">
-            ⌘X
-          </Typography>
-        </MenuItem>
-        <MenuItem>
-          <ListItemIcon>
-            <ContentCopy />
-          </ListItemIcon>
-          <ListItemText>Copy</ListItemText>
-          <Typography variant="body2" color="text.secondary">
-            ⌘C
-          </Typography>
-        </MenuItem>
-        <MenuItem>
-          <ListItemIcon>
-            <ContentPaste />
-          </ListItemIcon>
-          <ListItemText>Paste</ListItemText>
-          <Typography variant="body2" color="text.secondary">
-            ⌘V
-          </Typography>
-        </MenuItem>
-        <Divider />
-        <MenuItem>
-          <ListItemIcon>
-            <Cloud />
-          </ListItemIcon>
-          <ListItemText>Web Clipboard</ListItemText>
-        </MenuItem>
-      </MenuList>
-    </Paper>
-  ),
-  {
-    parameters: {
-      docs: {
-        description: {
-          story: `In desktop viewport, padding is increased to give more space to the menu.`,
-        },
-      },
-    },
-  },
-)
-
-export const DenseMenu = story<MenuProps>(
-  () => (
-    <Paper sx={{ width: 320 }}>
-      <MenuList dense>
-        <MenuItem>
-          <ListItemText inset>Single</ListItemText>
-        </MenuItem>
-        <MenuItem>
-          <ListItemText inset>1.15</ListItemText>
-        </MenuItem>
-        <MenuItem>
-          <ListItemText inset>Double</ListItemText>
-        </MenuItem>
-        <MenuItem>
-          <ListItemIcon>
-            <Check />
-          </ListItemIcon>
-          Custom: 1.2
-        </MenuItem>
-        <Divider />
-        <MenuItem>
-          <ListItemText>Add space before paragraph</ListItemText>
-        </MenuItem>
-        <MenuItem>
-          <ListItemText>Add space after paragraph</ListItemText>
-        </MenuItem>
-        <Divider />
-        <MenuItem>
-          <ListItemText>Custom spacing...</ListItemText>
-        </MenuItem>
-      </MenuList>
-    </Paper>
-  ),
-  {
-    parameters: {
-      docs: {
-        description: {
-          story:
-            'For the menu that has long list and long text, you can use the `dense` prop to reduce the padding (this property only affects desktop viewport).',
-        },
-      },
-    },
-  },
-)
+/**
+ * For the menu that has long list and long text, you can use the `dense` prop to reduce the padding (this property only affects desktop viewport).
+ */
+export const DenseMenu = story<MenuProps>(() => (
+  <Paper sx={{ width: 320 }}>
+    <MenuList dense>
+      <MenuItem>
+        <ListItemText inset>Single</ListItemText>
+      </MenuItem>
+      <MenuItem>
+        <ListItemText inset>1.15</ListItemText>
+      </MenuItem>
+      <MenuItem>
+        <ListItemText inset>Double</ListItemText>
+      </MenuItem>
+      <MenuItem>
+        <ListItemIcon>
+          <Check />
+        </ListItemIcon>
+        Custom: 1.2
+      </MenuItem>
+      <Divider />
+      <MenuItem>
+        <ListItemText>Add space before paragraph</ListItemText>
+      </MenuItem>
+      <MenuItem>
+        <ListItemText>Add space after paragraph</ListItemText>
+      </MenuItem>
+      <Divider />
+      <MenuItem>
+        <ListItemText>Custom spacing...</ListItemText>
+      </MenuItem>
+    </MenuList>
+  </Paper>
+))
 
 const selectedMenuOptions = [
   'Show sensitive notification content',
@@ -198,6 +172,9 @@ const selectedMenuOptions = [
   'Hide all notification content',
 ]
 
+/**
+ * If used for item selection, when opened, simple menus places the initial focus on the selected menu item. The currently selected menu item is set using the `selected` prop (from [ListItem](https://next.material-ui.com/api/list-item/)). To use a selected menu item without impacting the initial focus, set the `variant` prop to "menu".
+ */
 export const SelectedMenu = story<MenuProps>(
   () => {
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
@@ -265,16 +242,13 @@ export const SelectedMenu = story<MenuProps>(
   {
     parameters: {
       a11y: { disable: true }, // Axe says aria-controls value is invalid, but this is how MUI controls menus
-      docs: {
-        description: {
-          story:
-            'If used for item selection, when opened, simple menus places the initial focus on the selected menu item. The currently selected menu item is set using the `selected` prop (from [ListItem](https://next.material-ui.com/api/list-item/)). To use a selected menu item without impacting the initial focus, set the `variant` prop to "menu".',
-        },
-      },
     },
   },
 )
 
+/**
+ * Because the `Menu` component uses the `Popover` component to position itself, you can use the same [positioning props](https://next.material-ui.com/components/popover/#anchor-playground) to position it. For instance, you can display the menu on top of the anchor:
+ */
 export const PositionedMenu = story<MenuProps>(
   () => {
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
@@ -322,110 +296,96 @@ export const PositionedMenu = story<MenuProps>(
   {
     parameters: {
       a11y: { disable: true }, // Axe says aria-controls value is invalid, but this is how MUI controls menus
-      docs: {
-        description: {
-          story:
-            'Because the `Menu` component uses the `Popover` component to position itself, you can use the same [positioning props](https://next.material-ui.com/components/popover/#anchor-playground) to position it. For instance, you can display the menu on top of the anchor:',
-        },
-      },
     },
   },
 )
 
-export const AccountMenu = story<MenuProps>(
-  () => {
-    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
-    const open = Boolean(anchorEl)
-    const handleClick = (event: React.MouseEvent<HTMLElement>) => {
-      setAnchorEl(event.currentTarget)
-    }
-    const handleClose = () => {
-      setAnchorEl(null)
-    }
-    return (
-      <React.Fragment>
-        <Box
-          sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}
-        >
-          <Typography sx={{ minWidth: 100 }}>Contact</Typography>
-          <Typography sx={{ minWidth: 100 }}>Profile</Typography>
-          <Tooltip title="Account settings">
-            <IconButton
-              aria-labelledby="menu-avatar-1"
-              onClick={handleClick}
-              sx={{ ml: 2.5 }}
-              aria-controls={open ? 'account-menu' : undefined}
-              aria-haspopup="true"
-              aria-expanded={open ? 'true' : undefined}
-            >
-              <Avatar id="menu-avatar-1">M</Avatar>
-            </IconButton>
-          </Tooltip>
-          <Menu
-            anchorEl={anchorEl}
-            id="account-menu"
-            open={open}
-            onClose={handleClose}
-            onClick={handleClose}
-            PaperProps={{
-              elevation: 0,
-              sx: {
-                overflow: 'visible',
-                filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
-                '& .MuiAvatar-root': {
-                  ml: -0.5,
-                  mr: 4.5,
-                },
-                '& .MuiListItemIcon-root': {
-                  pl: 0,
-                },
-              },
-            }}
-            transformOrigin={{ horizontal: 'right', vertical: 'top' }}
-            anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+/**
+ * `Menu` content can be mixed with other components like `Avatar`.
+ */
+export const AccountMenu = story<MenuProps>(() => {
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
+  const open = Boolean(anchorEl)
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget)
+  }
+  const handleClose = () => {
+    setAnchorEl(null)
+  }
+  return (
+    <React.Fragment>
+      <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
+        <Typography sx={{ minWidth: 100 }}>Contact</Typography>
+        <Typography sx={{ minWidth: 100 }}>Profile</Typography>
+        <Tooltip title="Account settings">
+          <IconButton
+            aria-labelledby="menu-avatar-1"
+            onClick={handleClick}
+            sx={{ ml: 2.5 }}
+            aria-controls={open ? 'account-menu' : undefined}
+            aria-haspopup="true"
+            aria-expanded={open ? 'true' : undefined}
           >
-            <MenuItem>
-              <Avatar size="small" /> Profile
-            </MenuItem>
-            <MenuItem>
-              <Avatar size="small" /> My account
-            </MenuItem>
-            <Divider />
-            <MenuItem>
-              <ListItemIcon>
-                <PersonAdd />
-              </ListItemIcon>
-              Add another account
-            </MenuItem>
-            <MenuItem>
-              <ListItemIcon>
-                <Settings />
-              </ListItemIcon>
-              Settings
-            </MenuItem>
-            <MenuItem>
-              <ListItemIcon>
-                <Logout />
-              </ListItemIcon>
-              Logout
-            </MenuItem>
-          </Menu>
-        </Box>
-      </React.Fragment>
-    )
-  },
-  {
-    parameters: {
-      docs: {
-        description: {
-          story:
-            '`Menu` content can be mixed with other components like `Avatar`.',
-        },
-      },
-    },
-  },
-)
+            <Avatar id="menu-avatar-1">M</Avatar>
+          </IconButton>
+        </Tooltip>
+        <Menu
+          anchorEl={anchorEl}
+          id="account-menu"
+          open={open}
+          onClose={handleClose}
+          onClick={handleClose}
+          PaperProps={{
+            elevation: 0,
+            sx: {
+              overflow: 'visible',
+              filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
+              '& .MuiAvatar-root': {
+                ml: -0.5,
+                mr: 4.5,
+              },
+              '& .MuiListItemIcon-root': {
+                pl: 0,
+              },
+            },
+          }}
+          transformOrigin={{ horizontal: 'right', vertical: 'top' }}
+          anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+        >
+          <MenuItem>
+            <Avatar size="small" /> Profile
+          </MenuItem>
+          <MenuItem>
+            <Avatar size="small" /> My account
+          </MenuItem>
+          <Divider />
+          <MenuItem>
+            <ListItemIcon>
+              <PersonAdd />
+            </ListItemIcon>
+            Add another account
+          </MenuItem>
+          <MenuItem>
+            <ListItemIcon>
+              <Settings />
+            </ListItemIcon>
+            Settings
+          </MenuItem>
+          <MenuItem>
+            <ListItemIcon>
+              <Logout />
+            </ListItemIcon>
+            Logout
+          </MenuItem>
+        </Menu>
+      </Box>
+    </React.Fragment>
+  )
+})
 
+/**
+ * Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](https://next.material-ui.com/customization/how-to-customize/).
+ */
 export const CustomizedMenu = story<MenuProps>(
   () => {
     const StyledMenu = styled((props: MenuProps) => (
@@ -522,12 +482,6 @@ export const CustomizedMenu = story<MenuProps>(
   {
     parameters: {
       a11y: { disable: true }, // Axe says aria-controls value is invalid, but this is how MUI controls menus
-      docs: {
-        description: {
-          story:
-            'Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](https://next.material-ui.com/customization/how-to-customize/).',
-        },
-      },
     },
   },
 )
@@ -551,6 +505,9 @@ const maxHeightOptions = [
 
 const MAX_HEIGHT_MAX_HEIGHT = 48
 
+/**
+ * If the height of a menu prevents all menu items from being displayed, the menu can scroll internally.
+ */
 export const MaxHeight = story<MenuProps>(
   () => {
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
@@ -606,53 +563,38 @@ export const MaxHeight = story<MenuProps>(
   {
     parameters: {
       a11y: { disable: true }, // Axe says aria-controls value is invalid, but this is how MUI controls menus
-      docs: {
-        description: {
-          story:
-            'If the height of a menu prevents all menu items from being displayed, the menu can scroll internally.',
-        },
-      },
     },
   },
 )
 
-export const Limitations = story<MenuProps>(
-  () => (
-    <Paper sx={{ width: 230 }}>
-      <MenuList>
-        <MenuItem>
-          <ListItemIcon>
-            <Send />
-          </ListItemIcon>
-          <Typography variant="inherit">A short message</Typography>
-        </MenuItem>
-        <MenuItem>
-          <ListItemIcon>
-            <PriorityHigh />
-          </ListItemIcon>
-          <Typography variant="inherit">
-            A very long text that overflows
-          </Typography>
-        </MenuItem>
-        <MenuItem>
-          <ListItemIcon>
-            <Drafts />
-          </ListItemIcon>
-          <Typography variant="inherit" noWrap>
-            A very long text that overflows
-          </Typography>
-        </MenuItem>
-      </MenuList>
-    </Paper>
-  ),
-  {
-    parameters: {
-      docs: {
-        description: {
-          story:
-            'There is [a flexbox bug](https://bugs.chromium.org/p/chromium/issues/detail?id=327437) that prevents `text-overflow: ellipsis` from working in a flexbox layout. You can use the `Typography` component with `noWrap` to workaround this issue:',
-        },
-      },
-    },
-  },
-)
+/**
+ * There is [a flexbox bug](https://bugs.chromium.org/p/chromium/issues/detail?id=327437) that prevents `text-overflow: ellipsis` from working in a flexbox layout. You can use the `Typography` component with `noWrap` to workaround this issue:
+ */
+export const Limitations = story<MenuProps>(() => (
+  <Paper sx={{ width: 230 }}>
+    <MenuList>
+      <MenuItem>
+        <ListItemIcon>
+          <Send />
+        </ListItemIcon>
+        <Typography variant="inherit">A short message</Typography>
+      </MenuItem>
+      <MenuItem>
+        <ListItemIcon>
+          <PriorityHigh />
+        </ListItemIcon>
+        <Typography variant="inherit">
+          A very long text that overflows
+        </Typography>
+      </MenuItem>
+      <MenuItem>
+        <ListItemIcon>
+          <Drafts />
+        </ListItemIcon>
+        <Typography variant="inherit" noWrap>
+          A very long text that overflows
+        </Typography>
+      </MenuItem>
+    </MenuList>
+  </Paper>
+))

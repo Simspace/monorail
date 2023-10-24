@@ -5,9 +5,7 @@ import type { MenuItemProps } from '@monorail/components'
 import { MenuItem } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
-/**
- * Metadata for MenuItem stories - update/extend as needed
- */
+
 export default { title: 'Navigation/Menu/MenuItem', component: MenuItem }
 
 const Template = story<MenuItemProps>(

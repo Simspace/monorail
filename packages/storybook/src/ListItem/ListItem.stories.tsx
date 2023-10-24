@@ -16,9 +16,6 @@ import { Comment } from '@monorail/components/icons'
 
 import { story } from '../helpers/storybook.js'
 
-/**
- * Metadata for ListItem stories - update/extend as needed
- */
 export default {
   title: 'Data Display/List/ListItem',
   // TODO: ListItemBaseProps is not exported, so tsc complains here
@@ -79,12 +76,6 @@ const argTypes = {
   },
 }
 
-/**
- * Story template (edit/remove by hand if needed)
- *
- * Note: there should be at least one "Default" story that uses this template with the "story" function.
- * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
- */
 const Template = story<ListItemStoryArgs>(
   args => (
     <ul>
@@ -128,6 +119,5 @@ const Template = story<ListItemStoryArgs>(
     muiName: 'MuiListItem',
   },
 )
-/** Default story for ListItem (edit/remove by hand if needed) */
+
 export const Default = story(Template)
-// TODO: add more stories below

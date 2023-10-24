@@ -13,9 +13,6 @@ import {
 
 import { story } from '../helpers/storybook.js'
 
-/**
- * Metadata for MobileDateRangePicker stories - update/extend as needed
- */
 export default {
   title: 'Inputs/Date and Time/Date Range/MobileDateRangePicker',
   // TODO: This component type is non-standard and not compatible with the expected types
@@ -39,12 +36,7 @@ const Template = story<MobileDateRangePickerProps<Date>>(args => {
   )
 })
 
-export const Default = story(Template, {
-  parameters: {
-    docs: {
-      description: {
-        component: `MobileDateRangePicker is for picking a date range on mobile. This should not likely be used directly.`,
-      },
-    },
-  },
-})
+/**
+ * `MobileDateRangePicker` is for picking a date range on mobile. This should not likely be used directly.
+ */
+export const Default = story(Template)

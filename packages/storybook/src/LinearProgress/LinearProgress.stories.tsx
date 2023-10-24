@@ -6,16 +6,8 @@ import { Box, LinearProgress, Stack, Typography } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 
-/**
- * Metadata for LinearProgress stories - update/extend as needed
- */
 export default { title: 'Feedback/LinearProgress', component: LinearProgress }
-/**
- * Story template (edit/remove by hand if needed)
- *
- * Note: there should be at least one "Default" story that uses this template with the "story" function.
- * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
- */
+
 const Template = story<LinearProgressProps>(
   args => <LinearProgress {...args} />,
   {
@@ -24,7 +16,6 @@ const Template = story<LinearProgressProps>(
   },
 )
 
-/** Default story for LinearProgress (edit/remove by hand if needed) */
 export const Default = story(Template)
 
 const sizes = ['small', 'medium'] as const
