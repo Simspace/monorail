@@ -1,8 +1,12 @@
 // codegen:start { preset: type-barrel, include: ./**/themeAugmentation.ts }
+export type {} from './AvatarButton/themeAugmentation.js'
 export type {} from './DataGrid/components/DataGallery/themeAugmentation.js'
 export type {} from './DialogHeader/themeAugmentation.js'
 export type {} from './EmphaticFormControlLabel/themeAugmentation.js'
+export type {} from './EnumFilter/themeAugmentation.js'
+export type {} from './FileUpload/themeAugmentation.js'
 export type {} from './IconChip/themeAugmentation.js'
+export type {} from './NumericFilter/themeAugmentation.js'
 export type {} from './Popup/themeAugmentation.js'
 export type {} from './ResizableContainer/themeAugmentation.js'
 export type {} from './ResizableElement/themeAugmentation.js'
