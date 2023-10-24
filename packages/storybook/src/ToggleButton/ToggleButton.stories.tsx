@@ -26,19 +26,11 @@ import {
 
 import { story } from '../helpers/storybook.js'
 
-/**
- * Metadata for ToggleButtonGroup stories - update/extend as needed
- */
 export default {
   title: 'Inputs/ToggleButton',
   component: ToggleButton,
 }
-/**
- * Story template (edit/remove by hand if needed)
- *
- * Note: there should be at least one "Default" story that uses this template with the "story" function.
- * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
- */
+
 const Template = story<ToggleButtonGroupProps>(
   args => {
     const [alignment, setAlignment] = React.useState<string | null>('left')
@@ -75,9 +67,12 @@ const Template = story<ToggleButtonGroupProps>(
   },
   { args: {}, muiName: 'MuiToggleButton' },
 )
-/** Default story for ToggleButtonGroup (edit/remove by hand if needed) */
+
 export const Default = story(Template)
 
+/**
+ * Multiple selection allows for logically-grouped options, like bold, italic, and underline, to have multiple options selected. Simply do not use the `"exclusive"` prop.
+ */
 export const MultipleSelection = story(
   () => {
     const [formats, setFormats] = React.useState(() => ['bold', 'italic'])
@@ -113,16 +108,12 @@ export const MultipleSelection = story(
   },
   {
     args: { exclusive: false },
-    parameters: {
-      docs: {
-        description: {
-          story: `Multiple selection allows for logically-grouped options, like bold, italic, and underline, to have multiple options selected. Simply do not use the "exclusive" prop.`,
-        },
-      },
-    },
   },
 )
 
+/**
+ * For larger or smaller buttons, use the `size` prop.
+ */
 export const Size = story(
   () => {
     const [alignment, setAlignment] = React.useState('left')
@@ -169,13 +160,6 @@ export const Size = story(
   },
   {
     args: { exclusive: false },
-    parameters: {
-      docs: {
-        description: {
-          story: `For larger or smaller buttons, use the size prop.`,
-        },
-      },
-    },
   },
 )
 
@@ -203,46 +187,38 @@ export const Color = story(() => {
   )
 })
 
-export const Vertical = story(
-  () => {
-    const [view, setView] = React.useState('list')
+/**
+ * The buttons can be stacked vertically with the orientation prop set to `"vertical"`.
+ */
+export const Vertical = story(() => {
+  const [view, setView] = React.useState('list')
 
-    const handleChange = (
-      event: React.MouseEvent<HTMLElement>,
-      nextView: string,
-    ) => {
-      setView(nextView)
-    }
+  const handleChange = (
+    event: React.MouseEvent<HTMLElement>,
+    nextView: string,
+  ) => {
+    setView(nextView)
+  }
 
-    return (
-      <ToggleButtonGroup
-        orientation="vertical"
-        value={view}
-        exclusive
-        onChange={handleChange}
-      >
-        <ToggleButton value="list" aria-label="list">
-          <ViewListIcon />
-        </ToggleButton>
-        <ToggleButton value="module" aria-label="module">
-          <ViewModuleIcon />
-        </ToggleButton>
-        <ToggleButton value="quilt" aria-label="quilt">
-          <ViewQuiltIcon />
-        </ToggleButton>
-      </ToggleButtonGroup>
-    )
-  },
-  {
-    parameters: {
-      docs: {
-        description: {
-          story: `The buttons can be stacked vertically with the orientation prop set to "vertical".`,
-        },
-      },
-    },
-  },
-)
+  return (
+    <ToggleButtonGroup
+      orientation="vertical"
+      value={view}
+      exclusive
+      onChange={handleChange}
+    >
+      <ToggleButton value="list" aria-label="list">
+        <ViewListIcon />
+      </ToggleButton>
+      <ToggleButton value="module" aria-label="module">
+        <ViewModuleIcon />
+      </ToggleButton>
+      <ToggleButton value="quilt" aria-label="quilt">
+        <ViewQuiltIcon />
+      </ToggleButton>
+    </ToggleButtonGroup>
+  )
+})
 
 export const StandaloneToggleButton = story(args => {
   const [selected, setSelected] = React.useState(false)

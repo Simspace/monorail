@@ -18,16 +18,9 @@ import {
 } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
-/**
- * Metadata for Timeline stories - update/extend as needed
- */
+
 export default { title: 'Data Display/Timeline', component: Timeline }
-/**
- * Story template (edit/remove by hand if needed)
- *
- * Note: there should be at least one "Default" story that uses this template with the "story" function.
- * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
- */
+
 const Template = story<TimelineProps>(
   args => {
     // TODO: Ignore the ref, there is a type error
@@ -63,43 +56,32 @@ const Template = story<TimelineProps>(
   },
 )
 
-/** Default story for Timeline (edit/remove by hand if needed) */
-export const Default = story(Template, {
-  parameters: {
-    docs: {
-      description: {
-        story: `A basic timeline showing list of events.`,
-      },
-    },
-  },
-})
+/**
+ * A basic timeline showing list of events.
+ */
+export const Default = story(Template)
 
+/**
+ * The main content of the timeline can be positioned on the left side relative to the time axis.
+ */
 export const LeftPositioned = story(Template, {
   args: {
     position: 'left',
   },
-  parameters: {
-    docs: {
-      description: {
-        story: `The main content of the timeline can be positioned on the left side relative to the time axis.`,
-      },
-    },
-  },
 })
 
+/**
+ * The main content of the timeline can be positioned on the left side relative to the time axis.
+ */
 export const Alternating = story(Template, {
   args: {
     position: 'alternate',
   },
-  parameters: {
-    docs: {
-      description: {
-        story: `The main content of the timeline can be positioned on the left side relative to the time axis.`,
-      },
-    },
-  },
 })
 
+/**
+ * The `TimelineDot` can appear in different colors from theme palette.
+ */
 export const Color = story<TimelineProps>(
   args => {
     const { ref: _ref, ...rest } = args
@@ -124,13 +106,6 @@ export const Color = story<TimelineProps>(
   {
     args: {
       position: 'alternate',
-    },
-    parameters: {
-      docs: {
-        description: {
-          story: `The **TimelineDot** can appear in different colors from theme palette.`,
-        },
-      },
     },
   },
 )
@@ -177,6 +152,9 @@ export const Outlined = story<TimelineProps>(
   },
 )
 
+/**
+ * The timeline can display content on opposite sides.
+ */
 export const OppositeContent = story<TimelineProps>(
   args => {
     const { ref: _ref, ...rest } = args
@@ -229,16 +207,12 @@ export const OppositeContent = story<TimelineProps>(
     args: {
       position: 'alternate',
     },
-    parameters: {
-      docs: {
-        description: {
-          story: `The timeline can display content on opposite sides.`,
-        },
-      },
-    },
   },
 )
 
+/**
+ * Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](https://next.material-ui.com/customization/how-to-customize/).
+ */
 export const Customization = story<TimelineProps>(
   args => {
     const { ref: _ref, ...rest } = args
@@ -325,13 +299,6 @@ export const Customization = story<TimelineProps>(
   {
     args: {
       position: 'alternate',
-    },
-    parameters: {
-      docs: {
-        description: {
-          story: `Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](https://next.material-ui.com/customization/how-to-customize/).`,
-        },
-      },
     },
   },
 )

@@ -6,20 +6,11 @@ import { Stack, TimeClock, Typography } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 
-/**
- * Metadata for TimeClock stories - update/extend as needed
- */
 export default {
   title: 'Inputs/Date and Time/Time/TimeClock',
   component: TimeClock,
 }
 
-/**
- * Story template (edit/remove by hand if needed)
- *
- * Note: there should be at least one "Default" story that uses this template with the "story" function.
- * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
- */
 const Template = story<TimeClockProps<Date>>(
   args => {
     const [date, setDate] = React.useState<Date>(
@@ -40,13 +31,7 @@ const Template = story<TimeClockProps<Date>>(
   { muiName: 'MuiTimeClock' },
 )
 
-/** Default story for ClockPicker (edit/remove by hand if needed) */
-export const Default = story(Template, {
-  parameters: {
-    docs: {
-      description: {
-        component: `ClockPicker is a lower-level sub-component which can be used for building more custom time pickers.`,
-      },
-    },
-  },
-})
+/**
+ * `ClockPicker` is a lower-level sub-component which can be used for building more custom time pickers.
+ */
+export const Default = story(Template)

@@ -5,16 +5,9 @@ import type { TreeItemProps } from '@monorail/components'
 import { TreeItem } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
-/**
- * Metadata for TreeItem stories - update/extend as needed
- */
+
 export default { title: 'Data Display/TreeView/TreeItem', component: TreeItem }
-/**
- * Story template (edit/remove by hand if needed)
- *
- * Note: there should be at least one "Default" story that uses this template with the "story" function.
- * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
- */
+
 const Template = story<TreeItemProps>(
   args => (
     <div role="tree">
@@ -26,14 +19,10 @@ const Template = story<TreeItemProps>(
     muiName: 'MuiTreeItem',
   },
 )
-/** Default story for TreeItem (edit/remove by hand if needed) */
+
+/**
+ * `TreeItem`s are used as children for `TreeView`
+ */
 export const Default = story(Template, {
   args: { label: "I'm a tree item!", nodeId: 'a' },
-  parameters: {
-    docs: {
-      description: {
-        component: `TreeItems are used as children for TreeView`,
-      },
-    },
-  },
 })
