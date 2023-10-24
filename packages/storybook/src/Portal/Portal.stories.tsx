@@ -5,16 +5,9 @@ import type { PortalProps } from '@monorail/components'
 import { Box, Portal } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
-/**
- * Metadata for Portal stories - update/extend as needed
- */
+
 export default { title: 'Utils/Portal', component: Portal }
-/**
- * Story template (edit/remove by hand if needed)
- *
- * Note: there should be at least one "Default" story that uses this template with the "story" function.
- * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
- */
+
 const Template = story<PortalProps>(
   args => {
     const [show, setShow] = React.useState(false)
@@ -40,14 +33,8 @@ const Template = story<PortalProps>(
   },
   { args: {} },
 )
-/** Default story for Portal (edit/remove by hand if needed) */
-export const Default = story(Template, {
-  parameters: {
-    docs: {
-      description: {
-        component: `The portal component renders its children into a new "subtree" outside of current DOM hierarchy.`,
-      },
-    },
-  },
-})
-// TODO: add more stories below
+
+/**
+ * The portal component renders its children into a new "subtree" outside of current DOM hierarchy.
+ */
+export const Default = story(Template)

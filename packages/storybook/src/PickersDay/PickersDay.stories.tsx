@@ -8,9 +8,6 @@ import { PickersDay, StaticDatePicker } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 
-/**
- * Metadata for PickersDay stories - update/extend as needed
- */
 export default {
   title: 'Inputs/Date and Time/Date/PickersDay',
   component: PickersDay,
@@ -44,12 +41,6 @@ const CustomPickersDay = styled(PickersDay, {
   }),
 })) as React.ComponentType<CustomPickerDayProps>
 
-/**
- * Story template (edit/remove by hand if needed)
- *
- * Note: there should be at least one "Default" story that uses this template with the "story" function.
- * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
- */
 const Template = story<PickersDayProps<Date>>(
   args => {
     const [value, setValue] = React.useState<Date | null>(
@@ -96,16 +87,14 @@ const Template = story<PickersDayProps<Date>>(
   { muiName: 'MuiPickersDay' },
 )
 
+/**
+ * `PickersDay` can be used to customize how the day is rendered in a `DatePicker`
+ */
 export const Default = story(Template, {
   parameters: {
     a11y: {
       config: {
         rules: { 'aria-required-children': { enabled: false } }, // MUI component violates a11y
-      },
-    },
-    docs: {
-      description: {
-        component: `PickersDay can be used to customize how the day is rendered in a DatePicker`,
       },
     },
   },

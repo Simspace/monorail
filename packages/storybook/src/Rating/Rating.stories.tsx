@@ -15,21 +15,13 @@ import { Box, Rating, Stack, Typography } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 
-/**
- * Metadata for Rating stories - update/extend as needed
- */
 export default { title: 'Inputs/Rating', component: Rating }
-/**
- * Story template (edit/remove by hand if needed)
- *
- * Note: there should be at least one "Default" story that uses this template with the "story" function.
- * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
- */
+
 const Template = story<RatingProps>(args => <Rating {...args} />, {
   args: {},
   muiName: 'MuiRating',
 })
-/** Default story for Rating (edit/remove by hand if needed) */
+
 export const Default = story(Template)
 
 export const BasicRating = story<RatingProps>(() => {
@@ -58,30 +50,22 @@ export const BasicRating = story<RatingProps>(() => {
   )
 })
 
-export const HalfRating = story<RatingProps>(
-  () => {
-    return (
-      <Stack spacing={1}>
-        <Rating name="half-rating" defaultValue={2.5} precision={0.5} />
-        <Rating
-          name="half-rating-read"
-          defaultValue={2.5}
-          precision={0.5}
-          readOnly
-        />
-      </Stack>
-    )
-  },
-  {
-    parameters: {
-      docs: {
-        description: {
-          story: `The rating can display any float number with the value prop. Use the precision prop to define the minimum increment value change allowed.`,
-        },
-      },
-    },
-  },
-)
+/**
+ * The rating can display any float number with the `value` prop. Use the `precision` prop to define the minimum increment value change allowed.
+ */
+export const HalfRating = story<RatingProps>(() => {
+  return (
+    <Stack spacing={1}>
+      <Rating name="half-rating" defaultValue={2.5} precision={0.5} />
+      <Rating
+        name="half-rating-read"
+        defaultValue={2.5}
+        precision={0.5}
+        readOnly
+      />
+    </Stack>
+  )
+})
 
 const labels: { [index: string]: string } = {
   0.5: 'Useless',
@@ -96,112 +80,88 @@ const labels: { [index: string]: string } = {
   5: 'Excellent+',
 }
 
-export const HoverFeedback = story<RatingProps>(
-  () => {
-    const [value, setValue] = React.useState<number | null>(2)
-    const [hover, setHover] = React.useState(-1)
+/**
+ * You can display a label on hover to help the user pick the correct rating value. The demo uses the `onChangeActive` prop.
+ */
+export const HoverFeedback = story<RatingProps>(() => {
+  const [value, setValue] = React.useState<number | null>(2)
+  const [hover, setHover] = React.useState(-1)
 
-    return (
-      <Box
-        sx={{
-          width: 200,
-          display: 'flex',
-          alignItems: 'center',
+  return (
+    <Box
+      sx={{
+        width: 200,
+        display: 'flex',
+        alignItems: 'center',
+      }}
+    >
+      <Rating
+        name="hover-feedback"
+        value={value}
+        precision={0.5}
+        onChange={(_, newValue) => {
+          setValue(newValue)
         }}
-      >
-        <Rating
-          name="hover-feedback"
-          value={value}
-          precision={0.5}
-          onChange={(_, newValue) => {
-            setValue(newValue)
-          }}
-          onChangeActive={(_, newHover) => {
-            setHover(newHover)
-          }}
-          emptyIcon={<StarIcon fontSize="inherit" />}
-        />
-        {value !== null && (
-          <Box sx={{ ml: 2 }}>{labels[hover !== -1 ? hover : value]}</Box>
-        )}
-      </Box>
-    )
-  },
-  {
-    parameters: {
-      docs: {
-        description: {
-          story: `You can display a label on hover to help the user pick the correct rating value. The demo uses the onChangeActive prop.`,
-        },
-      },
-    },
-  },
-)
-
-export const Sizes = story<RatingProps>(
-  () => {
-    return (
-      <Stack spacing={1}>
-        <Rating name="size-small" defaultValue={2} size="small" />
-        <Rating name="size-medium" defaultValue={2} />
-        <Rating name="size-large" defaultValue={2} size="large" />
-      </Stack>
-    )
-  },
-  {
-    parameters: {
-      docs: {
-        description: {
-          story: `For larger or smaller ratings use the size prop.`,
-        },
-      },
-    },
-  },
-)
-
-export const CustomizedRating = story<RatingProps>(
-  () => {
-    const StyledRating = styled(Rating)({
-      '& .MuiRating-iconFilled': {
-        color: '#ff6d75',
-      },
-      '& .MuiRating-iconHover': {
-        color: '#ff3d47',
-      },
-    })
-
-    return (
-      <Box
-        sx={{
-          '& > legend': { mt: 2 },
+        onChangeActive={(_, newHover) => {
+          setHover(newHover)
         }}
-      >
-        <Typography component="legend">Custom icon and color</Typography>
-        <StyledRating
-          name="customized-color"
-          defaultValue={2}
-          getLabelText={(value: number) =>
-            `${value} Heart${value !== 1 ? 's' : ''}`
-          }
-          precision={0.5}
-          icon={<FavoriteIcon fontSize="inherit" />}
-          emptyIcon={<FavoriteBorderIcon fontSize="inherit" />}
-        />
-        <Typography component="legend">10 stars</Typography>
-        <Rating name="customized-10" defaultValue={2} max={10} />
-      </Box>
-    )
-  },
-  {
-    parameters: {
-      docs: {
-        description: {
-          story: `Here are some examples of customizing the component. You can learn more about this in the overrides documentation page.`,
-        },
-      },
+        emptyIcon={<StarIcon fontSize="inherit" />}
+      />
+      {value !== null && (
+        <Box sx={{ ml: 2 }}>{labels[hover !== -1 ? hover : value]}</Box>
+      )}
+    </Box>
+  )
+})
+
+/**
+ * For larger or smaller ratings use the `size` prop.
+ */
+export const Sizes = story<RatingProps>(() => {
+  return (
+    <Stack spacing={1}>
+      <Rating name="size-small" defaultValue={2} size="small" />
+      <Rating name="size-medium" defaultValue={2} />
+      <Rating name="size-large" defaultValue={2} size="large" />
+    </Stack>
+  )
+})
+
+/**
+ * Here are some examples of customizing the component. You can learn more about this in the overrides documentation page.
+ */
+export const CustomizedRating = story<RatingProps>(() => {
+  const StyledRating = styled(Rating)({
+    '& .MuiRating-iconFilled': {
+      color: '#ff6d75',
     },
-  },
-)
+    '& .MuiRating-iconHover': {
+      color: '#ff3d47',
+    },
+  })
+
+  return (
+    <Box
+      sx={{
+        '& > legend': { mt: 2 },
+      }}
+    >
+      <Typography component="legend">Custom icon and color</Typography>
+      <StyledRating
+        name="customized-color"
+        defaultValue={2}
+        getLabelText={(value: number) =>
+          `${value} Heart${value !== 1 ? 's' : ''}`
+        }
+        precision={0.5}
+        icon={<FavoriteIcon fontSize="inherit" />}
+        emptyIcon={<FavoriteBorderIcon fontSize="inherit" />}
+      />
+      <Typography component="legend">10 stars</Typography>
+      <Rating name="customized-10" defaultValue={2} max={10} />
+    </Box>
+  )
+})
 
 const customIcons: {
   [index: string]: {
@@ -236,24 +196,16 @@ const IconContainer = (props: IconContainerProps) => {
   return <span {...other}>{customIcons[value].icon}</span>
 }
 
-export const RadioGroup = story<RatingProps>(
-  () => {
-    return (
-      <Rating
-        name="highlight-selected-only"
-        defaultValue={2}
-        IconContainerComponent={IconContainer}
-        highlightSelectedOnly
-      />
-    )
-  },
-  {
-    parameters: {
-      docs: {
-        description: {
-          story: `The rating is implemented with a radio group, set highlightSelectedOnly to restore the natural behavior.`,
-        },
-      },
-    },
-  },
-)
+/**
+ * The rating is implemented with a radio group, set `highlightSelectedOnly` to restore the natural behavior.
+ */
+export const RadioGroup = story<RatingProps>(() => {
+  return (
+    <Rating
+      name="highlight-selected-only"
+      defaultValue={2}
+      IconContainerComponent={IconContainer}
+      highlightSelectedOnly
+    />
+  )
+})
