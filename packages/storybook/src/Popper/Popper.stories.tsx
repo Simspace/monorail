@@ -13,16 +13,9 @@ import {
 } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
-/**
- * Metadata for Popper stories - update/extend as needed
- */
+
 export default { title: 'Utils/Popper', component: Popper }
-/**
- * Story template (edit/remove by hand if needed)
- *
- * Note: there should be at least one "Default" story that uses this template with the "story" function.
- * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
- */
+
 const Template = story<PopperProps>(
   args => {
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
@@ -61,16 +54,11 @@ const Template = story<PopperProps>(
   },
   { args: {} },
 )
-/** Default story for Popper (edit/remove by hand if needed) */
-export const Default = story(Template, {
-  parameters: {
-    docs: {
-      description: {
-        component: `A Popper can be used to display some content on top of another. It's an alternative to react-popper.`,
-      },
-    },
-  },
-})
+
+/**
+ * A Popper can be used to display some content on top of another. It's an alternative to `react-popper`.
+ */
+export const Default = story(Template)
 
 export const TransitionPopper = story<PopperProps>(
   args => {

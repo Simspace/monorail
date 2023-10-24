@@ -6,9 +6,6 @@ import { Box, Tab, Tabs, Typography } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 
-/**
- * Metadata for Tabs stories - update/extend as needed
- */
 export default {
   title: 'Patterns/Outline Layout',
   component: Tabs,
@@ -53,72 +50,63 @@ function a11yPropsV(index: number) {
   }
 }
 
-export const VerticalTabs = story<TabsProps>(
-  args => {
-    const [value, setValue] = React.useState(0)
+/**
+ * To make vertical tabs instead of default horizontal ones, there is `orientation="vertical"`:
+ */
+export const VerticalTabs = story<TabsProps>(args => {
+  const [value, setValue] = React.useState(0)
 
-    const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-      setValue(newValue)
-    }
+  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+    setValue(newValue)
+  }
 
-    return (
-      <Box
-        sx={{
-          flexGrow: 1,
-          bgcolor: 'background.paper',
-          display: 'flex',
-          height: 320,
-        }}
+  return (
+    <Box
+      sx={{
+        flexGrow: 1,
+        bgcolor: 'background.paper',
+        display: 'flex',
+        height: 320,
+      }}
+    >
+      <Tabs
+        orientation="vertical"
+        variant="scrollable"
+        value={value}
+        onChange={handleChange}
+        aria-label="Vertical tabs example"
+        sx={{ borderRight: 1, borderColor: 'divider' }}
+        {...args}
       >
-        <Tabs
-          orientation="vertical"
-          variant="scrollable"
-          value={value}
-          onChange={handleChange}
-          aria-label="Vertical tabs example"
-          sx={{ borderRight: 1, borderColor: 'divider' }}
-          {...args}
-        >
-          <Tab label="Item One" {...a11yPropsV(0)} />
-          <Tab label="Item Two" {...a11yPropsV(1)} />
-          <Tab label="Item Three" {...a11yPropsV(2)} />
-          <Tab label="Item Four" {...a11yPropsV(3)} />
-          <Tab label="Item Five" {...a11yPropsV(4)} />
-          <Tab label="Item Six" {...a11yPropsV(5)} />
-          <Tab label="Item Seven" {...a11yPropsV(6)} />
-        </Tabs>
-        <TabPanelV value={value} index={0}>
-          Item One
-        </TabPanelV>
-        <TabPanelV value={value} index={1}>
-          Item Two
-        </TabPanelV>
-        <TabPanelV value={value} index={2}>
-          Item Three
-        </TabPanelV>
-        <TabPanelV value={value} index={3}>
-          Item Four
-        </TabPanelV>
-        <TabPanelV value={value} index={4}>
-          Item Five
-        </TabPanelV>
-        <TabPanelV value={value} index={5}>
-          Item Six
-        </TabPanelV>
-        <TabPanelV value={value} index={6}>
-          Item Seven
-        </TabPanelV>
-      </Box>
-    )
-  },
-  {
-    parameters: {
-      docs: {
-        description: {
-          story:
-            'To make vertical tabs instead of default horizontal ones, there is `orientation="vertical"`:',
-        },
-      },
-    },
-  },
-)
+        <Tab label="Item One" {...a11yPropsV(0)} />
+        <Tab label="Item Two" {...a11yPropsV(1)} />
+        <Tab label="Item Three" {...a11yPropsV(2)} />
+        <Tab label="Item Four" {...a11yPropsV(3)} />
+        <Tab label="Item Five" {...a11yPropsV(4)} />
+        <Tab label="Item Six" {...a11yPropsV(5)} />
+        <Tab label="Item Seven" {...a11yPropsV(6)} />
+      </Tabs>
+      <TabPanelV value={value} index={0}>
+        Item One
+      </TabPanelV>
+      <TabPanelV value={value} index={1}>
+        Item Two
+      </TabPanelV>
+      <TabPanelV value={value} index={2}>
+        Item Three
+      </TabPanelV>
+      <TabPanelV value={value} index={3}>
+        Item Four
+      </TabPanelV>
+      <TabPanelV value={value} index={4}>
+        Item Five
+      </TabPanelV>
+      <TabPanelV value={value} index={5}>
+        Item Six
+      </TabPanelV>
+      <TabPanelV value={value} index={6}>
+        Item Seven
+      </TabPanelV>
+    </Box>
+  )
+})

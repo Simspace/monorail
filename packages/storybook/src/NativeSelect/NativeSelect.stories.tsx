@@ -10,16 +10,8 @@ import {
 } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
-/**
- * Metadata for NativeSelect stories - update/extend as needed
- */
+
 export default { title: 'Inputs/NativeSelect', component: NativeSelect }
-/**
- * Story template (edit/remove by hand if needed)
- *
- * Note: there should be at least one "Default" story that uses this template with the "story" function.
- * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
- */
 
 const Template = story<NativeSelectProps>(
   args => {
@@ -50,15 +42,10 @@ const Template = story<NativeSelectProps>(
     muiName: 'MuiNativeSelect',
   },
 )
-/** Default story for NativeSelect (edit/remove by hand if needed) */
+
 export const Default = story(Template)
 
-export const BasicNativeSelect = story(Template, {
-  parameters: {
-    docs: {
-      description: {
-        story: `As the user experience can be improved on mobile using the native select of the platform, we allow such pattern. [Docs](https://next.material-ui.com/components/selects/#native-select)`,
-      },
-    },
-  },
-})
+/**
+ * As the user experience can be improved on mobile using the native select of the platform, we allow such pattern. [Docs](https://next.material-ui.com/components/selects/#native-select)
+ */
+export const BasicNativeSelect = story(Template)
