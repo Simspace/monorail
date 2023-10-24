@@ -15,9 +15,6 @@ import {
 
 import { story } from '../helpers/storybook.js'
 
-/**
- * Metadata for SwipeableDrawer stories - update/extend as needed
- */
 export default {
   title: 'Navigation/Drawer/SwipeableDrawer',
   component: SwipeableDrawer,
@@ -26,12 +23,6 @@ export default {
   },
 }
 
-/**
- * Story template (edit/remove by hand if needed)
- *
- * Note: there should be at least one "Default" story that uses this template with the "story" function.
- * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
- */
 const Template = story<SwipeableDrawerProps>(
   args => {
     const [open, setOpen] = React.useState(false)
@@ -59,7 +50,6 @@ const Template = story<SwipeableDrawerProps>(
   { args: { anchor: 'left' } },
 )
 
-/** Default story for SwipeableDrawer (edit/remove by hand if needed) */
 export const Default = story(Template)
 
 const drawerBleeding = 56
@@ -94,22 +84,26 @@ const Puller = styled(Box)(({ theme }) => ({
   left: 'calc(50% - 15px)',
 }))
 
-export const SwipeableEdgeDrawer = story<Props>(
-  (props: Props) => {
-    const { window } = props
+/**
+ * You can configure the `SwipeableDrawer` to have a visible edge when closed.
+ *
+ * If you are on a desktop, you can toggle the drawer with the "OPEN" button. If you are on mobile, you can open the demo in CodeSandbox ("edit" icon) and swipe.
+ */
+export const SwipeableEdgeDrawer = story<Props>((props: Props) => {
+  const { window } = props
 
-    const [visible, setVisible] = React.useState(false)
+  const [visible, setVisible] = React.useState(false)
 
-    const [open, setOpen] = React.useState(false)
+  const [open, setOpen] = React.useState(false)
 
-    // This is used only for the example
-    const container =
-      window !== undefined ? () => window().document.body : undefined
+  // This is used only for the example
+  const container =
+    window !== undefined ? () => window().document.body : undefined
 
-    return (
-      <Root>
-        <CssBaseline />
-        {/*
+  return (
+    <Root>
+      <CssBaseline />
+      {/*
       <Global
         styles={{
           '.MuiDrawer-root > .MuiPaper-root': {
@@ -119,81 +113,69 @@ export const SwipeableEdgeDrawer = story<Props>(
         }}
       />
         */}
-        <style type="text/css">{`
+      <style type="text/css">{`
           /* Scope these styles to this example only. This is very hacky and is just to serve as a demonstration. */
           .swipable-edge-drawer.MuiDrawer-root > .MuiPaper-root {
             height: calc(50% - ${drawerBleeding}px);
             overflow: visible;
           }
       `}</style>
-        <Box sx={{ textAlign: 'center', pt: 1 }}>
-          <Typography>
-            View this example in a mobile device emulator (e.g. Chrome dev
-            tools). Click the `Show Drawer` button to show the drawer at the
-            bottom of the page, then click `Open Drawer` or swipe up to open it.
-            Swipe down or click the backdrop to close it.
-          </Typography>
-          <Button onClick={() => setVisible(!visible)}>
-            {visible ? 'Hide' : 'Show'} Drawer
-          </Button>
-          {visible && (
-            <Button onClick={() => setOpen(!open)}>Toggle Drawer</Button>
-          )}
-        </Box>
+      <Box sx={{ textAlign: 'center', pt: 1 }}>
+        <Typography>
+          View this example in a mobile device emulator (e.g. Chrome dev tools).
+          Click the `Show Drawer` button to show the drawer at the bottom of the
+          page, then click `Open Drawer` or swipe up to open it. Swipe down or
+          click the backdrop to close it.
+        </Typography>
+        <Button onClick={() => setVisible(!visible)}>
+          {visible ? 'Hide' : 'Show'} Drawer
+        </Button>
         {visible && (
-          <SwipeableDrawer
-            className="swipable-edge-drawer"
-            container={container}
-            anchor="bottom"
-            open={open}
-            onClose={() => setOpen(false)}
-            onOpen={() => setOpen(true)}
-            swipeAreaWidth={drawerBleeding}
-            disableSwipeToOpen={false}
-            ModalProps={{
-              keepMounted: true,
+          <Button onClick={() => setOpen(!open)}>Toggle Drawer</Button>
+        )}
+      </Box>
+      {visible && (
+        <SwipeableDrawer
+          className="swipable-edge-drawer"
+          container={container}
+          anchor="bottom"
+          open={open}
+          onClose={() => setOpen(false)}
+          onOpen={() => setOpen(true)}
+          swipeAreaWidth={drawerBleeding}
+          disableSwipeToOpen={false}
+          ModalProps={{
+            keepMounted: true,
+          }}
+        >
+          <StyledBox
+            sx={{
+              position: 'absolute',
+              top: -drawerBleeding,
+              borderTopLeftRadius: 8,
+              borderTopRightRadius: 8,
+              visibility: 'visible',
+              right: 0,
+              left: 0,
             }}
           >
-            <StyledBox
-              sx={{
-                position: 'absolute',
-                top: -drawerBleeding,
-                borderTopLeftRadius: 8,
-                borderTopRightRadius: 8,
-                visibility: 'visible',
-                right: 0,
-                left: 0,
-              }}
-            >
-              <Puller />
-              <Typography sx={{ p: 2, color: 'text.secondary' }}>
-                51 results
-              </Typography>
-            </StyledBox>
-            <StyledBox
-              sx={{
-                px: 2,
-                pb: 2,
-                height: '100%',
-                overflow: 'auto',
-              }}
-            >
-              <Skeleton variant="rectangular" height="100%" />
-            </StyledBox>
-          </SwipeableDrawer>
-        )}
-      </Root>
-    )
-  },
-  {
-    parameters: {
-      docs: {
-        description: {
-          story: `You can configure the SwipeableDrawer to have a visible edge when closed.
-
-If you are on a desktop, you can toggle the drawer with the "OPEN" button. If you are on mobile, you can open the demo in CodeSandbox ("edit" icon) and swipe.`,
-        },
-      },
-    },
-  },
-)
+            <Puller />
+            <Typography sx={{ p: 2, color: 'text.secondary' }}>
+              51 results
+            </Typography>
+          </StyledBox>
+          <StyledBox
+            sx={{
+              px: 2,
+              pb: 2,
+              height: '100%',
+              overflow: 'auto',
+            }}
+          >
+            <Skeleton variant="rectangular" height="100%" />
+          </StyledBox>
+        </SwipeableDrawer>
+      )}
+    </Root>
+  )
+})

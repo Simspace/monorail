@@ -14,19 +14,11 @@ import {
 
 import { story } from '../helpers/storybook.js'
 
-/**
- * Metadata for Switch stories - update/extend as needed
- */
 export default {
   title: 'Inputs/Switch',
   component: Switch,
 }
-/**
- * Story template (edit/remove by hand if needed)
- *
- * Note: there should be at least one "Default" story that uses this template with the "story" function.
- * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
- */
+
 const Template = story<SwitchProps>(
   args => <Switch inputProps={{ 'aria-label': 'Switch' }} {...args} />,
   {
@@ -34,7 +26,7 @@ const Template = story<SwitchProps>(
     muiName: 'MuiSwitch',
   },
 )
-/** Default story for Switch (edit/remove by hand if needed) */
+
 export const Default = story(Template)
 
 const label = { inputProps: { 'aria-label': 'Switch demo' } }

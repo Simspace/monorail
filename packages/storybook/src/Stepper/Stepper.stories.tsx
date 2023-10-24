@@ -28,16 +28,9 @@ import {
 import { excludeProps } from '@monorail/utils'
 
 import { story } from '../helpers/storybook.js'
-/**
- * Metadata for Stepper stories - update/extend as needed
- */
+
 export default { title: 'Navigation/Stepper', component: Stepper }
-/**
- * Story template (edit/remove by hand if needed)
- *
- * Note: there should be at least one "Default" story that uses this template with the "story" function.
- * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
- */
+
 const Template = story<StepperProps>(
   (args: StepperProps) => (
     <Stepper {...args}>
@@ -54,7 +47,7 @@ const Template = story<StepperProps>(
   ),
   { muiName: 'MuiStepper' },
 )
-/** Default story for Stepper (edit/remove by hand if needed) */
+
 export const Default = story(Template, {
   args: { activeStep: 0 },
 })
@@ -159,159 +152,136 @@ function HorizontalLinearStepperBase() {
   )
 }
 
-export const HorizontalLinearStepper = story(HorizontalLinearStepperBase, {
-  storyName: 'Horizontal Linear Stepper',
-  parameters: {
-    docs: {
-      description: {
-        story: `
-The \`Stepper\` can be controlled by passing the current step index (zero-based) 
-as the activeStep property. Stepper orientation is set using the \`orientation\` property.
-This example also shows the use of an optional step by placing the optional property on 
-the second Step component. Note that it's up to you to manage when an optional step is skipped.
-Once you've determined this for a particular step you must set \`completed={false}\` to signify 
-that even though the active step index has gone beyond the optional step, it's not actually 
-complete.`,
-      },
-    },
-  },
+/**
+ * The `Stepper` can be controlled by passing the current step index (zero-based) as the `activeStep` property. Stepper orientation is set using the `orientation` property. This example also shows the use of an optional step by placing the optional property on the second `Step` component.
+ *
+ * Note that it's up to you to manage when an optional step is skipped.Once you've determined this for a particular step you must set `completed={false}` to signify that even though the active step index has gone beyond the optional step, it's not actually complete.
+ */
+export const HorizontalLinearStepper = story(HorizontalLinearStepperBase)
+
+/**
+ * Non-linear steppers allow users to enter a multi-step flow at any point.
+ *
+ * This example is similar to the regular horizontal stepper, except steps are no longer automatically set to `disabled={true}` based on the `activeStep` property.
+ *
+ * The use of the `StepButton` here demonstrates clickable step labels, as well as setting the `completed` flag. However because steps can be accessed in a non-linear fashion, it's up to your own implementation to determine when all steps are completed (or even if they need to be completed).
+ */
+export const HorizontalNonLinearStepper = story(function () {
+  const [activeStep, setActiveStep] = React.useState(0)
+  const [completed, setCompleted] = React.useState<{
+    [k: number]: boolean
+  }>({})
+
+  const totalSteps = () => {
+    return steps.length
+  }
+
+  const completedSteps = () => {
+    return Object.keys(completed).length
+  }
+
+  const isLastStep = () => {
+    return activeStep === totalSteps() - 1
+  }
+
+  const allStepsCompleted = () => {
+    return completedSteps() === totalSteps()
+  }
+
+  const handleNext = () => {
+    const newActiveStep =
+      isLastStep() && !allStepsCompleted()
+        ? // It's the last step, but not all steps have been completed,
+          // find the first step that has been completed
+          steps.findIndex((_step, i) => !(i in completed))
+        : activeStep + 1
+    setActiveStep(newActiveStep)
+  }
+
+  const handleBack = () => {
+    setActiveStep(prevActiveStep => prevActiveStep - 1)
+  }
+
+  const handleStep = (step: number) => () => {
+    setActiveStep(step)
+  }
+
+  const handleComplete = () => {
+    const newCompleted = completed
+    newCompleted[activeStep] = true
+    setCompleted(newCompleted)
+    handleNext()
+  }
+
+  const handleReset = () => {
+    setActiveStep(0)
+    setCompleted({})
+  }
+
+  return (
+    <Box sx={{ width: '100%', py: 6 }}>
+      <Stepper nonLinear activeStep={activeStep}>
+        {steps.map((label, index) => (
+          <Step key={label} completed={completed[index]}>
+            <StepButton color="inherit" onClick={handleStep(index)}>
+              {label}
+            </StepButton>
+          </Step>
+        ))}
+      </Stepper>
+      <Box mt={10}>
+        {allStepsCompleted() ? (
+          <React.Fragment>
+            <Typography sx={{ mt: 2, mb: 1 }}>
+              All steps completed - you&apos;re finished
+            </Typography>
+            <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
+              <Box sx={{ flex: '1 1 auto' }} />
+              <Button onClick={handleReset}>Reset</Button>
+            </Box>
+          </React.Fragment>
+        ) : (
+          <React.Fragment>
+            <Typography sx={{ mt: 2, mb: 1 }}>Step {activeStep + 1}</Typography>
+            <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
+              <Button
+                variant="text"
+                disabled={activeStep === 0}
+                onClick={handleBack}
+                sx={{ mr: 2 }}
+              >
+                Back
+              </Button>
+              <Button onClick={handleNext} sx={{ mr: 2 }}>
+                Next
+              </Button>
+              <Box sx={{ flex: '1 1 auto' }} />
+              {activeStep !== steps.length &&
+                (completed[activeStep] ? (
+                  <Typography
+                    variant="caption"
+                    sx={{ display: 'inline-block' }}
+                  >
+                    Step {activeStep + 1} already completed
+                  </Typography>
+                ) : (
+                  <Button onClick={handleComplete}>
+                    {completedSteps() === totalSteps() - 1
+                      ? 'Finish'
+                      : 'Complete Step'}
+                  </Button>
+                ))}
+            </Box>
+          </React.Fragment>
+        )}
+      </Box>
+    </Box>
+  )
 })
 
-export const HorizontalNonLinearStepper = story(
-  function () {
-    const [activeStep, setActiveStep] = React.useState(0)
-    const [completed, setCompleted] = React.useState<{
-      [k: number]: boolean
-    }>({})
-
-    const totalSteps = () => {
-      return steps.length
-    }
-
-    const completedSteps = () => {
-      return Object.keys(completed).length
-    }
-
-    const isLastStep = () => {
-      return activeStep === totalSteps() - 1
-    }
-
-    const allStepsCompleted = () => {
-      return completedSteps() === totalSteps()
-    }
-
-    const handleNext = () => {
-      const newActiveStep =
-        isLastStep() && !allStepsCompleted()
-          ? // It's the last step, but not all steps have been completed,
-            // find the first step that has been completed
-            steps.findIndex((_step, i) => !(i in completed))
-          : activeStep + 1
-      setActiveStep(newActiveStep)
-    }
-
-    const handleBack = () => {
-      setActiveStep(prevActiveStep => prevActiveStep - 1)
-    }
-
-    const handleStep = (step: number) => () => {
-      setActiveStep(step)
-    }
-
-    const handleComplete = () => {
-      const newCompleted = completed
-      newCompleted[activeStep] = true
-      setCompleted(newCompleted)
-      handleNext()
-    }
-
-    const handleReset = () => {
-      setActiveStep(0)
-      setCompleted({})
-    }
-
-    return (
-      <Box sx={{ width: '100%', py: 6 }}>
-        <Stepper nonLinear activeStep={activeStep}>
-          {steps.map((label, index) => (
-            <Step key={label} completed={completed[index]}>
-              <StepButton color="inherit" onClick={handleStep(index)}>
-                {label}
-              </StepButton>
-            </Step>
-          ))}
-        </Stepper>
-        <Box mt={10}>
-          {allStepsCompleted() ? (
-            <React.Fragment>
-              <Typography sx={{ mt: 2, mb: 1 }}>
-                All steps completed - you&apos;re finished
-              </Typography>
-              <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
-                <Box sx={{ flex: '1 1 auto' }} />
-                <Button onClick={handleReset}>Reset</Button>
-              </Box>
-            </React.Fragment>
-          ) : (
-            <React.Fragment>
-              <Typography sx={{ mt: 2, mb: 1 }}>
-                Step {activeStep + 1}
-              </Typography>
-              <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
-                <Button
-                  variant="text"
-                  disabled={activeStep === 0}
-                  onClick={handleBack}
-                  sx={{ mr: 2 }}
-                >
-                  Back
-                </Button>
-                <Button onClick={handleNext} sx={{ mr: 2 }}>
-                  Next
-                </Button>
-                <Box sx={{ flex: '1 1 auto' }} />
-                {activeStep !== steps.length &&
-                  (completed[activeStep] ? (
-                    <Typography
-                      variant="caption"
-                      sx={{ display: 'inline-block' }}
-                    >
-                      Step {activeStep + 1} already completed
-                    </Typography>
-                  ) : (
-                    <Button onClick={handleComplete}>
-                      {completedSteps() === totalSteps() - 1
-                        ? 'Finish'
-                        : 'Complete Step'}
-                    </Button>
-                  ))}
-              </Box>
-            </React.Fragment>
-          )}
-        </Box>
-      </Box>
-    )
-  },
-  {
-    storyName: 'Horizontal Nonlinear Stepper',
-    parameters: {
-      docs: {
-        description: {
-          story: `
-Non-linear steppers allow users to enter a multi-step flow at any point.
-This example is similar to the regular horizontal stepper, except steps are 
-no longer automatically set to \`disabled={true}\` based on the \`activeStep\` property.
-The use of the \`StepButton\` here demonstrates clickable step labels, as well as setting
-the \`completed\` flag. However because steps can be accessed in a non-linear fashion, 
-it's up to your own implementation to determine when all steps are completed (or even 
-if they need to be completed).
-`,
-        },
-      },
-    },
-  },
-)
-
+/**
+ * Labels can be placed below the step icon by setting the `alternativeLabel` prop on the `Stepper` component.
+ */
 export const HorizontalLabelPositionBelowStepper = story(
   function () {
     return (
@@ -333,15 +303,6 @@ export const HorizontalLabelPositionBelowStepper = story(
 
   {
     storyName: 'Alternative label',
-    parameters: {
-      docs: {
-        description: {
-          story: `
-Labels can be placed below the step icon by setting the \`alternativeLabel\` prop on the \`Stepper\` component.
-`,
-        },
-      },
-    },
   },
 )
 
@@ -509,6 +470,9 @@ function ColorlibStepIcon(props: StepIconProps) {
   )
 }
 
+/**
+ * Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](https://next.material-ui.com/customization/how-to-customize/).
+ */
 export const CustomizedSteppers = story(
   function () {
     const status = [
@@ -579,19 +543,12 @@ export const CustomizedSteppers = story(
   },
   {
     storyName: 'Customized horizontal stepper',
-    parameters: {
-      docs: {
-        description: {
-          story: `
-Here is an example of customizing the component. You can learn more about 
-this in the [overrides documentation page](https://next.material-ui.com/customization/how-to-customize/).
-`,
-        },
-      },
-    },
   },
 )
 
+/**
+ * Vertical steppers are designed for narrow screen sizes. They are ideal for mobile. All the features of the horizontal stepper can be implemented.
+ */
 export const VerticalLinearStepper = story(
   function () {
     const [activeStep, setActiveStep] = React.useState(0)
@@ -659,15 +616,5 @@ export const VerticalLinearStepper = story(
   },
   {
     storyName: 'Vertical stepper',
-    parameters: {
-      docs: {
-        description: {
-          story: `
-Vertical steppers are designed for narrow screen sizes. They are 
-ideal for mobile. All the features of the horizontal stepper can be implemented.
-`,
-        },
-      },
-    },
   },
 )
