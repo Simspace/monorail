@@ -10,9 +10,6 @@ import { Box, Grid, Slider, Stack, Typography } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 
-/**
- * Metadata for Slider stories - update/extend as needed
- */
 export default {
   title: 'Inputs/Slider',
   component: Slider,
@@ -24,12 +21,7 @@ export default {
     },
   },
 }
-/**
- * Story template (edit/remove by hand if needed)
- *
- * Note: there should be at least one "Default" story that uses this template with the "story" function.
- * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
- */
+
 const Template = story<SliderProps>(
   args => <Slider aria-label="I am aria-labeled" {...args} />,
   {
@@ -37,7 +29,7 @@ const Template = story<SliderProps>(
     muiName: 'MuiSlider',
   },
 )
-/** Default story for Slider (edit/remove by hand if needed) */
+
 export const Default = story(Template)
 
 export function ContinuousSlider() {

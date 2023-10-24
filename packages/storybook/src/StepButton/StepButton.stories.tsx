@@ -12,9 +12,7 @@ import {
 } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
-/**
- * Metadata for StepButton stories - update/extend as needed
- */
+
 export default { title: 'Navigation/Stepper/StepButton', component: StepButton }
 
 export const Default = story<StepButtonProps>(
@@ -39,46 +37,24 @@ A clickable, labeled step.
   },
 )
 
-export const OptionalStepButton = story(
-  () => (
-    <Box sx={{ width: '100%' }}>
-      <StepButton
-        optional={<Typography variant="caption">Optional</Typography>}
-      >
-        <StepLabel>Create an ad group</StepLabel>
-      </StepButton>
-    </Box>
-  ),
-  {
-    parameters: {
-      docs: {
-        description: {
-          story: `
-The \`optional\` prop can be used to provide text below the main button label.
-`,
-        },
-      },
-    },
-  },
-)
+/**
+ * The `optional` prop can be used to provide text below the main button label.
+ */
+export const OptionalStepButton = story(() => (
+  <Box sx={{ width: '100%' }}>
+    <StepButton optional={<Typography variant="caption">Optional</Typography>}>
+      <StepLabel>Create an ad group</StepLabel>
+    </StepButton>
+  </Box>
+))
 
-export const IconStepButton = story(
-  () => (
-    <Box sx={{ width: '100%' }}>
-      <StepButton icon={<WarningAmberTwoTone />}>
-        <StepLabel>Warning</StepLabel>
-      </StepButton>
-    </Box>
-  ),
-  {
-    parameters: {
-      docs: {
-        description: {
-          story: `
-Similarly, the \`icon\` prop can be used to provide an icon next to the main button label.
-`,
-        },
-      },
-    },
-  },
-)
+/**
+ * Similarly, the `icon` prop can be used to provide an icon next to the main button label.
+ */
+export const IconStepButton = story(() => (
+  <Box sx={{ width: '100%' }}>
+    <StepButton icon={<WarningAmberTwoTone />}>
+      <StepLabel>Warning</StepLabel>
+    </StepButton>
+  </Box>
+))

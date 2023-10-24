@@ -19,64 +19,41 @@ import {
 } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
-/**
- * Metadata for Skeleton stories - update/extend as needed
- */
+
 export default { title: 'Feedback/Skeleton', component: Skeleton }
-/**
- * Story template (edit/remove by hand if needed)
- *
- * Note: there should be at least one "Default" story that uses this template with the "story" function.
- * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
- */
+
 const Template = story<SkeletonProps>(args => <Skeleton {...args} />, {
   args: {},
   muiName: 'MuiSkeleton',
 })
-/** Default story for Skeleton (edit/remove by hand if needed) */
+
 export const Default = story(Template)
 
-export const Variants = story<SkeletonProps>(
-  () => {
-    return (
-      <Stack spacing={2}>
-        <Skeleton variant="text" />
-        <Skeleton variant="circular" width={40} height={40} />
-        <Skeleton variant="rectangular" width={210} height={118} />
-      </Stack>
-    )
-  },
-  {
-    parameters: {
-      docs: {
-        description: {
-          story: `The component supports 3 shape variants.`,
-        },
-      },
-    },
-  },
-)
+/**
+ * The component supports three shape variants.
+ */
+export const Variants = story<SkeletonProps>(() => {
+  return (
+    <Stack spacing={2}>
+      <Skeleton variant="text" />
+      <Skeleton variant="circular" width={40} height={40} />
+      <Skeleton variant="rectangular" width={210} height={118} />
+    </Stack>
+  )
+})
 
-export const Animations = story<SkeletonProps>(
-  () => {
-    return (
-      <Box sx={{ width: 300 }}>
-        <Skeleton animation="pulse" />
-        <Skeleton animation="wave" />
-        <Skeleton animation={false} />
-      </Box>
-    )
-  },
-  {
-    parameters: {
-      docs: {
-        description: {
-          story: `By default, the skeleton pulsates, but you can change the animation to a wave or disable it entirely.`,
-        },
-      },
-    },
-  },
-)
+/**
+ * By default, the skeleton pulsates, but you can change the animation to a wave or disable it entirely.
+ */
+export const Animations = story<SkeletonProps>(() => {
+  return (
+    <Box sx={{ width: 300 }}>
+      <Skeleton animation="pulse" />
+      <Skeleton animation="wave" />
+      <Skeleton animation={false} />
+    </Box>
+  )
+})
 
 type YouTube = 'src' | 'title' | 'channel' | 'views' | 'createdAt'
 
@@ -276,31 +253,23 @@ const TypographyDemo = (props: { loading?: boolean }) => {
   )
 }
 
-export const InferringDimensions = story<SkeletonProps>(
-  () => {
-    return (
-      <Grid container spacing={8}>
-        <Grid item xs>
-          <TypographyDemo loading />
-        </Grid>
-        <Grid item xs>
-          <TypographyDemo />
-        </Grid>
+/**
+ * In addition to accepting `width` and `height` props, the component can also infer the dimensions.
+ *
+ * It works well when it comes to typography as its height is set using `em` units.
+ */
+export const InferringDimensions = story<SkeletonProps>(() => {
+  return (
+    <Grid container spacing={8}>
+      <Grid item xs>
+        <TypographyDemo loading />
       </Grid>
-    )
-  },
-  {
-    parameters: {
-      docs: {
-        description: {
-          story: `In addition to accepting width and height props, the component can also infer the dimensions.
-
-It works well when it comes to typography as its height is set using em units.`,
-        },
-      },
-    },
-  },
-)
+      <Grid item xs>
+        <TypographyDemo />
+      </Grid>
+    </Grid>
+  )
+})
 
 const Image = styled('img')({
   width: '100%',
@@ -348,58 +317,42 @@ const SkeletonChildrenDemo = (props: { loading?: boolean }) => {
   )
 }
 
-export const SkeletonChildren = story<SkeletonProps>(
-  () => {
-    return (
-      <Grid container spacing={8}>
-        <Grid item xs>
-          <SkeletonChildrenDemo loading />
-        </Grid>
-        <Grid item xs>
-          <SkeletonChildrenDemo />
-        </Grid>
+/**
+ * But when it comes to other components, you may not want to repeat the width and height. In these instances, you can pass children and it will infer its width and height from them.
+ */
+export const SkeletonChildren = story<SkeletonProps>(() => {
+  return (
+    <Grid container spacing={8}>
+      <Grid item xs>
+        <SkeletonChildrenDemo loading />
       </Grid>
-    )
-  },
-  {
-    parameters: {
-      docs: {
-        description: {
-          story: `But when it comes to other components, you may not want to repeat the width and height. In these instances, you can pass children and it will infer its width and height from them.`,
-        },
-      },
-    },
-  },
-)
+      <Grid item xs>
+        <SkeletonChildrenDemo />
+      </Grid>
+    </Grid>
+  )
+})
 
-export const SkeletonColor = story<SkeletonProps>(
-  () => {
-    return (
-      <Box
-        sx={{
-          bgcolor: '#121212',
-          p: 8,
-          width: '100%',
-          display: 'flex',
-          justifyContent: 'center',
-        }}
-      >
-        <Skeleton
-          sx={{ bgcolor: 'grey.800' }}
-          variant="rectangular"
-          width={210}
-          height={118}
-        />
-      </Box>
-    )
-  },
-  {
-    parameters: {
-      docs: {
-        description: {
-          story: `The color of the component can be customized by changing its background-color CSS property. This is especially useful when on a black background (as the skeleton will otherwise be invisible).`,
-        },
-      },
-    },
-  },
-)
+/**
+ * The color of the component can be customized by changing its `background-color` CSS property. This is especially useful when on a black background (as the skeleton will otherwise be invisible).
+ */
+export const SkeletonColor = story<SkeletonProps>(() => {
+  return (
+    <Box
+      sx={{
+        bgcolor: '#121212',
+        p: 8,
+        width: '100%',
+        display: 'flex',
+        justifyContent: 'center',
+      }}
+    >
+      <Skeleton
+        sx={{ bgcolor: 'grey.800' }}
+        variant="rectangular"
+        width={210}
+        height={118}
+      />
+    </Box>
+  )
+})

@@ -24,17 +24,8 @@ import {
 
 import { story } from '../helpers/storybook.js'
 
-/**
- * Metadata for Snackbar stories - update/extend as needed
- */
 export default { title: 'Feedback/Snackbar', component: Snackbar }
 
-/**
- * Story template (edit/remove by hand if needed)
- *
- * Note: there should be at least one "Default" story that uses this template with the "story" function.
- * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
- */
 const Template = story<SnackbarProps>(
   args => {
     const [open, setOpen] = React.useState(false)
@@ -87,7 +78,6 @@ const Template = story<SnackbarProps>(
   },
 )
 
-/** Default story for Snackbar (edit/remove by hand if needed) */
 export const Default = story(Template)
 
 export const Toast = story<SnackbarProps>(() => {
@@ -157,115 +147,107 @@ interface State extends SnackbarOrigin {
   open: boolean
 }
 
-export const Positioned = story<SnackbarProps>(
-  () => {
-    const [state, setState] = React.useState<State>({
-      open: false,
-      vertical: 'top',
-      horizontal: 'center',
-    })
-    const { vertical, horizontal, open } = state
+/**
+ * In wide layouts, snackbars can be left-aligned or center-aligned if they are consistently placed on the same spot at the bottom of the screen, however there may be circumstances where the placement of the snackbar needs to be more flexible. You can control the position of the snackbar by specifying the `anchorOrigin` prop.
+ */
+export const Positioned = story<SnackbarProps>(() => {
+  const [state, setState] = React.useState<State>({
+    open: false,
+    vertical: 'top',
+    horizontal: 'center',
+  })
+  const { vertical, horizontal, open } = state
 
-    const handleClick = (newState: SnackbarOrigin) => () => {
-      setState({ open: true, ...newState })
-    }
+  const handleClick = (newState: SnackbarOrigin) => () => {
+    setState({ open: true, ...newState })
+  }
 
-    const handleClose = () => {
-      setState({ ...state, open: false })
-    }
+  const handleClose = () => {
+    setState({ ...state, open: false })
+  }
 
-    const buttons = (
-      <React.Fragment>
-        <Grid container justifyContent="center">
-          <Grid item>
-            <Button
-              variant="text"
-              onClick={handleClick({
-                vertical: 'top',
-                horizontal: 'left',
-              })}
-            >
-              Top-Left
-            </Button>
+  const buttons = (
+    <React.Fragment>
+      <Grid container justifyContent="center">
+        <Grid item>
+          <Button
+            variant="text"
+            onClick={handleClick({
+              vertical: 'top',
+              horizontal: 'left',
+            })}
+          >
+            Top-Left
+          </Button>
 
-            <Button
-              variant="text"
-              onClick={handleClick({
-                vertical: 'top',
-                horizontal: 'center',
-              })}
-            >
-              Top-Center
-            </Button>
+          <Button
+            variant="text"
+            onClick={handleClick({
+              vertical: 'top',
+              horizontal: 'center',
+            })}
+          >
+            Top-Center
+          </Button>
 
-            <Button
-              variant="text"
-              onClick={handleClick({
-                vertical: 'top',
-                horizontal: 'right',
-              })}
-            >
-              Top-Right
-            </Button>
-          </Grid>
+          <Button
+            variant="text"
+            onClick={handleClick({
+              vertical: 'top',
+              horizontal: 'right',
+            })}
+          >
+            Top-Right
+          </Button>
         </Grid>
-        <Grid container justifyContent="center">
-          <Grid item>
-            <Button
-              variant="text"
-              onClick={handleClick({
-                vertical: 'bottom',
-                horizontal: 'left',
-              })}
-            >
-              Bottom-Left
-            </Button>
-            <Button
-              variant="text"
-              onClick={handleClick({
-                vertical: 'bottom',
-                horizontal: 'center',
-              })}
-            >
-              Bottom-Center
-            </Button>
-            <Button
-              variant="text"
-              onClick={handleClick({
-                vertical: 'bottom',
-                horizontal: 'right',
-              })}
-            >
-              Bottom-Right
-            </Button>
-          </Grid>
+      </Grid>
+      <Grid container justifyContent="center">
+        <Grid item>
+          <Button
+            variant="text"
+            onClick={handleClick({
+              vertical: 'bottom',
+              horizontal: 'left',
+            })}
+          >
+            Bottom-Left
+          </Button>
+          <Button
+            variant="text"
+            onClick={handleClick({
+              vertical: 'bottom',
+              horizontal: 'center',
+            })}
+          >
+            Bottom-Center
+          </Button>
+          <Button
+            variant="text"
+            onClick={handleClick({
+              vertical: 'bottom',
+              horizontal: 'right',
+            })}
+          >
+            Bottom-Right
+          </Button>
         </Grid>
-      </React.Fragment>
-    )
+      </Grid>
+    </React.Fragment>
+  )
 
-    return (
-      <Box>
-        {buttons}
-        <Snackbar
-          anchorOrigin={{ vertical, horizontal }}
-          open={open}
-          key={vertical + horizontal}
-        >
-          <Chip label="I love snacks" onDelete={handleClose} />
-        </Snackbar>
-      </Box>
-    )
-  },
-  {
-    parameters: {
-      docs: {
-        description: {
-          story: `In wide layouts, snackbars can be left-aligned or center-aligned if they are consistently placed on the same spot at the bottom of the screen, however there may be circumstances where the placement of the snackbar needs to be more flexible. You can control the position of the snackbar by specifying the anchorOrigin prop.`,
-        },
-      },
-    },
-  },
-)
+  return (
+    <Box>
+      {buttons}
+      <Snackbar
+        anchorOrigin={{ vertical, horizontal }}
+        open={open}
+        key={vertical + horizontal}
+      >
+        <Chip label="I love snacks" onDelete={handleClose} />
+      </Snackbar>
+    </Box>
+  )
+})
 
 type PillStatus = 'success' | 'error'
 
@@ -344,149 +326,133 @@ type TransitionPropsWithChild = TransitionProps & {
   children: React.ReactElement<unknown>
 }
 
-export const OtherTransitions = story<SnackbarProps>(
-  () => {
-    function SlideTransition(props: TransitionPropsWithChild) {
-      return <Slide {...props} direction="left" />
-    }
+/**
+ * `Grow` is the default transition but you can use a different one.
+ */
+export const OtherTransitions = story<SnackbarProps>(() => {
+  function SlideTransition(props: TransitionPropsWithChild) {
+    return <Slide {...props} direction="left" />
+  }
 
-    function GrowTransition(props: TransitionPropsWithChild) {
-      return <Grow {...props} />
-    }
+  function GrowTransition(props: TransitionPropsWithChild) {
+    return <Grow {...props} />
+  }
 
-    const [state, setState] = React.useState<{
-      open: boolean
-      Transition: React.ComponentType<TransitionPropsWithChild>
-    }>({
-      open: false,
-      Transition: Fade,
-    })
+  const [state, setState] = React.useState<{
+    open: boolean
+    Transition: React.ComponentType<TransitionPropsWithChild>
+  }>({
+    open: false,
+    Transition: Fade,
+  })
 
-    const handleClick =
-      (
-        Transition: React.ComponentType<
-          TransitionProps & {
-            children: React.ReactElement<unknown>
-          }
-        >,
-      ) =>
-      () => {
-        setState({
-          open: true,
-          Transition,
-        })
-      }
-
-    const handleClose = () => {
+  const handleClick =
+    (
+      Transition: React.ComponentType<
+        TransitionProps & {
+          children: React.ReactElement<unknown>
+        }
+      >,
+    ) =>
+    () => {
       setState({
-        ...state,
-        open: false,
+        open: true,
+        Transition,
       })
     }
 
-    return (
-      <div>
-        <Button variant="text" onClick={handleClick(GrowTransition)}>
-          Grow Transition
-        </Button>
-        <Button variant="text" onClick={handleClick(Fade)}>
-          Fade Transition
-        </Button>
-        <Button variant="text" onClick={handleClick(SlideTransition)}>
-          Slide Transition
-        </Button>
-        <Snackbar
-          open={state.open}
-          TransitionComponent={state.Transition}
-          key={state.Transition.name}
-        >
-          <Alert severity="info" onClose={handleClose}>
-            I love snacks
-          </Alert>
-        </Snackbar>
-      </div>
-    )
-  },
-  {
-    parameters: {
-      docs: {
-        description: {
-          story: `Grow is the default transition but you can use a different one.`,
-        },
-      },
-    },
-  },
-)
+  const handleClose = () => {
+    setState({
+      ...state,
+      open: false,
+    })
+  }
 
-export const SlideDirection = story<SnackbarProps>(
-  () => {
-    function TransitionLeft(props: TransitionPropsWithChild) {
-      return <Slide {...props} direction="left" />
+  return (
+    <div>
+      <Button variant="text" onClick={handleClick(GrowTransition)}>
+        Grow Transition
+      </Button>
+      <Button variant="text" onClick={handleClick(Fade)}>
+        Fade Transition
+      </Button>
+      <Button variant="text" onClick={handleClick(SlideTransition)}>
+        Slide Transition
+      </Button>
+      <Snackbar
+        open={state.open}
+        TransitionComponent={state.Transition}
+        key={state.Transition.name}
+      >
+        <Alert severity="info" onClose={handleClose}>
+          I love snacks
+        </Alert>
+      </Snackbar>
+    </div>
+  )
+})
+
+/**
+ * You can change the direction of the `Slide` transition.
+ */
+export const SlideDirection = story<SnackbarProps>(() => {
+  function TransitionLeft(props: TransitionPropsWithChild) {
+    return <Slide {...props} direction="left" />
+  }
+
+  function TransitionUp(props: TransitionPropsWithChild) {
+    return <Slide {...props} direction="up" />
+  }
+
+  function TransitionRight(props: TransitionPropsWithChild) {
+    return <Slide {...props} direction="right" />
+  }
+
+  function TransitionDown(props: TransitionPropsWithChild) {
+    return <Slide {...props} direction="down" />
+  }
+
+  const [open, setOpen] = React.useState(false)
+  const [transition, setTransition] = React.useState<
+    React.ComponentType<TransitionPropsWithChild> | undefined
+  >(undefined)
+
+  const handleClick =
+    (Transition: React.ComponentType<TransitionPropsWithChild>) => () => {
+      setTransition(() => Transition)
+      setOpen(true)
     }
 
-    function TransitionUp(props: TransitionPropsWithChild) {
-      return <Slide {...props} direction="up" />
-    }
+  const handleClose = () => {
+    setOpen(false)
+  }
 
-    function TransitionRight(props: TransitionPropsWithChild) {
-      return <Slide {...props} direction="right" />
-    }
-
-    function TransitionDown(props: TransitionPropsWithChild) {
-      return <Slide {...props} direction="down" />
-    }
-
-    const [open, setOpen] = React.useState(false)
-    const [transition, setTransition] = React.useState<
-      React.ComponentType<TransitionPropsWithChild> | undefined
-    >(undefined)
-
-    const handleClick =
-      (Transition: React.ComponentType<TransitionPropsWithChild>) => () => {
-        setTransition(() => Transition)
-        setOpen(true)
-      }
-
-    const handleClose = () => {
-      setOpen(false)
-    }
-
-    return (
-      <div>
-        <Button variant="text" onClick={handleClick(TransitionLeft)}>
-          Right
-        </Button>
-        <Button variant="text" onClick={handleClick(TransitionUp)}>
-          Up
-        </Button>
-        <Button variant="text" onClick={handleClick(TransitionRight)}>
-          Left
-        </Button>
-        <Button variant="text" onClick={handleClick(TransitionDown)}>
-          Down
-        </Button>
-        <Snackbar
-          open={open}
-          TransitionComponent={transition}
-          key={transition ? transition.name : ''}
-        >
-          <Alert severity="success" onClose={handleClose}>
-            I love snacks
-          </Alert>
-        </Snackbar>
-      </div>
-    )
-  },
-  {
-    parameters: {
-      docs: {
-        description: {
-          story: `You can change the direction of the Slide transition.`,
-        },
-      },
-    },
-  },
-)
+  return (
+    <div>
+      <Button variant="text" onClick={handleClick(TransitionLeft)}>
+        Right
+      </Button>
+      <Button variant="text" onClick={handleClick(TransitionUp)}>
+        Up
+      </Button>
+      <Button variant="text" onClick={handleClick(TransitionRight)}>
+        Left
+      </Button>
+      <Button variant="text" onClick={handleClick(TransitionDown)}>
+        Down
+      </Button>
+      <Snackbar
+        open={open}
+        TransitionComponent={transition}
+        key={transition ? transition.name : ''}
+      >
+        <Alert severity="success" onClose={handleClose}>
+          I love snacks
+        </Alert>
+      </Snackbar>
+    </div>
+  )
+})
 
 const StyledAlert = styled(Alert)`
   min-width: 480px;
@@ -539,21 +505,13 @@ const MyApp = () => {
   )
 }
 
-export const ConsecutiveSnackbars = story<SnackbarProps>(
-  () => {
-    return (
-      <SnackbarProvider maxSnack={3}>
-        <MyApp />
-      </SnackbarProvider>
-    )
-  },
-  {
-    parameters: {
-      docs: {
-        description: {
-          story: `This example demonstrates how to use [notistack](https://github.com/iamhosseindhv/notistack). notistack has an imperative API that makes it easy to display snackbars, without having to handle their open/close state. It also enables you to stack them on top of one another (although this is discouraged by the Material Design guidelines).`,
-        },
-      },
-    },
-  },
-)
+/**
+ * This example demonstrates how to use [notistack](https://github.com/iamhosseindhv/notistack). notistack has an imperative API that makes it easy to display snackbars, without having to handle their open/close state. It also enables you to stack them on top of one another (although this is discouraged by the Material Design guidelines).
+ */
+export const ConsecutiveSnackbars = story<SnackbarProps>(() => {
+  return (
+    <SnackbarProvider maxSnack={3}>
+      <MyApp />
+    </SnackbarProvider>
+  )
+})

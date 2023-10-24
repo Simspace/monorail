@@ -16,9 +16,7 @@ import {
 } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
-/**
- * Metadata for StepContent stories - update/extend as needed
- */
+
 export default {
   title: 'Navigation/Stepper/StepContent',
   component: StepContent,
@@ -112,20 +110,18 @@ const Template = (args: StepContentProps) => {
   )
 }
 
+/**
+ * When using a `Stepper` component with vertical orientation, `StepContent` can be used to show additional information for each step. It has nice transition properties built in.
+ */
 export const Default = story(Template, {
-  parameters: {
-    docs: {
-      description: {
-        component: `
-When using a \`Stepper\` component with vertical orientation, \`StepContent\` can be used to show
-additional information for each step. It has nice transition properties built in.
-`,
-      },
-    },
-  },
   muiName: 'MuiStepContent',
 })
 
+/**
+ * Using `Fade` for the `TransitionComponent` prop.
+ *
+ * See https://next.material-ui.com/components/transitions/#transitioncomponent-prop for more.
+ */
 export const FadeTransition = story(Template, {
   args: {
     // MUI 5.4.1 has a bug in the TransitionComponent type for StepContentProps:
@@ -135,19 +131,15 @@ export const FadeTransition = story(Template, {
       appear: false,
     },
   },
-  parameters: {
-    docs: {
-      description: {
-        story: `
-Using \`Fade\` for the \`TransitionComponent\` prop.
-
-@see https://next.material-ui.com/components/transitions/#transitioncomponent-prop for more.
-`,
-      },
-    },
-  },
 })
 
+/**
+ * You can provide different components to the `TransitionComponent` prop.
+ *
+ * Here we've also made the `transitionDuration` very high (1 second).
+ *
+ * See https://next.material-ui.com/components/transitions/#transitioncomponent-prop for more.
+ */
 export const ZoomTransition = story(Template, {
   args: {
     // MUI 5.4.1 has a bug in the TransitionComponent type for StepContentProps:
@@ -157,18 +149,5 @@ export const ZoomTransition = story(Template, {
       appear: false,
     },
     transitionDuration: { appear: 1000, enter: 1000, exit: 1000 },
-  },
-  parameters: {
-    docs: {
-      description: {
-        story: `
-You can provide different components to the \`TransitionComponent\` prop.
-
-Here we've also made the \`transitionDuration\` very high (1 second).
-
-@see https://next.material-ui.com/components/transitions/#transitioncomponent-prop for more.
-`,
-      },
-    },
   },
 })

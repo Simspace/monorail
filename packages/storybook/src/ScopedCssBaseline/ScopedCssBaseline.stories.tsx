@@ -5,19 +5,12 @@ import type { ScopedCssBaselineProps } from '@monorail/components'
 import { ScopedCssBaseline } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
-/**
- * Metadata for ScopedCssBaseline stories - update/extend as needed
- */
+
 export default {
   title: 'Utils/ScopedCssBaseline',
   component: ScopedCssBaseline,
 }
-/**
- * Story template (edit/remove by hand if needed)
- *
- * Note: there should be at least one "Default" story that uses this template with the "story" function.
- * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
- */
+
 const Template = story<ScopedCssBaselineProps>(
   args => (
     <ScopedCssBaseline {...args}>
@@ -33,5 +26,4 @@ const Template = story<ScopedCssBaselineProps>(
   { args: {}, muiName: 'MuiScopedCssBaseline' },
 )
 
-/** Default story for ScopedCssBaseline (edit/remove by hand if needed) */
 export const Default = story(Template)

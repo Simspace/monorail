@@ -7,9 +7,6 @@ import { LocalizationProvider, StaticTimePicker } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 
-/**
- * Metadata for StaticTimePicker stories - update/extend as needed
- */
 export default {
   title: 'Inputs/Date and Time/Time/StaticTimePicker',
   component: StaticTimePicker,
@@ -34,13 +31,7 @@ const Template = story<StaticTimePickerProps<Date>>(args => {
   )
 })
 
-/** Default story for StaticTimePicker (edit/remove by hand if needed) */
-export const Default = story(Template, {
-  parameters: {
-    docs: {
-      description: {
-        component: `It's possible to render any time picker inline. This will enable building custom popover/modal containers.`,
-      },
-    },
-  },
-})
+/**
+ * It's possible to render any time picker inline. This will enable building custom popover/modal containers.
+ */
+export const Default = story(Template)

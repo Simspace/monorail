@@ -13,9 +13,6 @@ import {
 
 import { story } from '../helpers/storybook.js'
 
-/**
- * Metadata for StaticDateRangePicker stories - update/extend as needed
- */
 export default {
   title: 'Inputs/Date and Time/Date Range/StaticDateRangePicker',
 }
@@ -40,13 +37,7 @@ const Template = story<StaticDateRangePickerProps<Date>>(args => {
   )
 })
 
-/** Default story for StaticDateRangePicker (edit/remove by hand if needed) */
-export const Default = story(Template, {
-  parameters: {
-    docs: {
-      description: {
-        component: `It's possible to render any picker inline. This will enable building custom popover/modal containers.`,
-      },
-    },
-  },
-})
+/**
+ * It's possible to render any picker inline. This will enable building custom popover/modal containers.
+ */
+export const Default = story(Template)
