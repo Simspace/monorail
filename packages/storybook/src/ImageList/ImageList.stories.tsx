@@ -14,9 +14,6 @@ import {
 
 import { story } from '../helpers/storybook.js'
 
-/**
- * Metadata for ImageList stories - update/extend as needed
- */
 export default {
   title: 'Layout/ImageList',
   component: ImageList,
@@ -26,12 +23,7 @@ export default {
     },
   },
 }
-/**
- * Story template (edit/remove by hand if needed)
- *
- * Note: there should be at least one "Default" story that uses this template with the "story" function.
- * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
- */
+
 const Template = story<ImageListProps>(
   (args: Partial<ImageListProps>) => (
     <ImageList {...args}>
@@ -55,23 +47,21 @@ const Template = story<ImageListProps>(
   },
 )
 
-/** Default story for ImageList (edit/remove by hand if needed) */
 export const Default = story(Template)
 
+/**
+ * Standard image lists are best for items of equal importance. They have a uniform container size, ratio, and spacing.
+ */
 export const Standard = story(Template, {
   args: {
     cols: 3,
     rowHeight: 164,
   },
-  parameters: {
-    docs: {
-      description: {
-        story: `Standard image lists are best for items of equal importance. They have a uniform container size, ratio, and spacing.`,
-      },
-    },
-  },
 })
 
+/**
+ * Quilted image lists emphasize certain items over others in a collection. They create hierarchy using varied container sizes and ratios.
+ */
 export const Quilted = story<ImageListProps>(
   args => (
     <ImageList {...args}>
@@ -97,146 +87,115 @@ export const Quilted = story<ImageListProps>(
       sx: { width: 500, height: 450 },
       variant: 'quilted',
     },
-    parameters: {
-      docs: {
-        description: {
-          story: `Quilted image lists emphasize certain items over others in a collection. They create hierarchy using varied container sizes and ratios.`,
-        },
-      },
-    },
   },
 )
 
-export const WithTitleBars = story<ImageListProps>(
-  () => (
-    <ImageList sx={{ width: 500, height: 450 }}>
-      <ImageListItem key="Subheader" cols={2}>
-        <ListSubheader component="div">December</ListSubheader>
+/**
+ * This example demonstrates the use of the `ImageListItemBar` to add an overlay to each item. The overlay can accommodate a `title`, `subtitle` and secondary action - in this example an `IconButton`.
+ */
+export const WithTitleBars = story<ImageListProps>(() => (
+  <ImageList sx={{ width: 500, height: 450 }}>
+    <ImageListItem key="Subheader" cols={2}>
+      <ListSubheader component="div">December</ListSubheader>
+    </ImageListItem>
+    {withTitleItemData.map(item => (
+      <ImageListItem key={item.img}>
+        <img
+          src={`${item.img}?w=248&fit=crop&auto=format`}
+          srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
+          alt={item.title}
+          loading="lazy"
+        />
+        <ImageListItemBar
+          title={item.title}
+          subtitle={item.author}
+          actionIcon={
+            <IconButton
+              sx={{ color: 'rgba(255, 255, 255, 0.54)' }}
+              aria-label={`info about ${item.title}`}
+              size="large"
+            >
+              <InfoIcon />
+            </IconButton>
+          }
+        />
       </ImageListItem>
-      {withTitleItemData.map(item => (
-        <ImageListItem key={item.img}>
+    ))}
+  </ImageList>
+))
+
+/**
+ * The title bar can be placed below the image.
+ */
+export const TitleBarBelowImage = story<ImageListProps>(() => (
+  <ImageList sx={{ width: 500, height: 450 }}>
+    {withTitleItemData.map(item => (
+      <ImageListItem key={item.img}>
+        <img
+          src={`${item.img}?w=248&fit=crop&auto=format`}
+          srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
+          alt={item.title}
+          loading="lazy"
+        />
+        <ImageListItemBar
+          title={item.title}
+          subtitle={<span>by: {item.author}</span>}
+          position="below"
+        />
+      </ImageListItem>
+    ))}
+  </ImageList>
+))
+
+/**
+ * In this example the items have a customized titlebar, positioned at the top and with a custom gradient `titleBackground`. The secondary action `IconButton` is positioned on the left. The `gap` prop is used to adjust the gap between items.
+ */
+export const Custom = story<ImageListProps>(() => (
+  <ImageList
+    sx={{
+      width: 500,
+      height: 450,
+      // Promote the list into its own layer in Chrome. This costs memory, but helps keeping high FPS.
+      transform: 'translateZ(0)',
+    }}
+    rowHeight={200}
+    gap={1}
+  >
+    {withTitleItemData.map(item => {
+      const cols = item.featured === true ? 2 : 1
+      const rows = item.featured === true ? 2 : 1
+
+      return (
+        <ImageListItem key={item.img} cols={cols} rows={rows}>
           <img
-            src={`${item.img}?w=248&fit=crop&auto=format`}
-            srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
-            alt={item.title}
+            {...customSrcset(item.img, 250, 200, rows, cols)}
+            alt={`${item.title} image`}
             loading="lazy"
           />
           <ImageListItemBar
+            sx={{
+              background:
+                'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, ' +
+                'rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
+            }}
             title={item.title}
-            subtitle={item.author}
+            position="top"
             actionIcon={
               <IconButton
-                sx={{ color: 'rgba(255, 255, 255, 0.54)' }}
-                aria-label={`info about ${item.title}`}
+                sx={{ color: 'white' }}
+                aria-label={`star ${item.title}`}
                 size="large"
               >
-                <InfoIcon />
+                <StarBorderIcon />
               </IconButton>
             }
+            actionPosition="left"
           />
         </ImageListItem>
-      ))}
-    </ImageList>
-  ),
-  {
-    parameters: {
-      docs: {
-        description: {
-          story: `This example demonstrates the use of the \`ImageListItemBar\` to add an overlay to each item. The overlay can accommodate a \`title\`, \`subtitle\` and secondary action - in this example an \`IconButton\`.`,
-        },
-      },
-    },
-  },
-)
-
-export const TitleBarBelowImage = story<ImageListProps>(
-  () => (
-    <ImageList sx={{ width: 500, height: 450 }}>
-      {withTitleItemData.map(item => (
-        <ImageListItem key={item.img}>
-          <img
-            src={`${item.img}?w=248&fit=crop&auto=format`}
-            srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
-            alt={item.title}
-            loading="lazy"
-          />
-          <ImageListItemBar
-            title={item.title}
-            subtitle={<span>by: {item.author}</span>}
-            position="below"
-          />
-        </ImageListItem>
-      ))}
-    </ImageList>
-  ),
-  {
-    parameters: {
-      docs: {
-        description: {
-          story: `The title bar can be placed below the image.`,
-        },
-      },
-    },
-  },
-)
-
-export const Custom = story<ImageListProps>(
-  () => (
-    <ImageList
-      sx={{
-        width: 500,
-        height: 450,
-        // Promote the list into its own layer in Chrome. This costs memory, but helps keeping high FPS.
-        transform: 'translateZ(0)',
-      }}
-      rowHeight={200}
-      gap={1}
-    >
-      {withTitleItemData.map(item => {
-        const cols = item.featured === true ? 2 : 1
-        const rows = item.featured === true ? 2 : 1
-
-        return (
-          <ImageListItem key={item.img} cols={cols} rows={rows}>
-            <img
-              {...customSrcset(item.img, 250, 200, rows, cols)}
-              alt={`${item.title} image`}
-              loading="lazy"
-            />
-            <ImageListItemBar
-              sx={{
-                background:
-                  'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, ' +
-                  'rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
-              }}
-              title={item.title}
-              position="top"
-              actionIcon={
-                <IconButton
-                  sx={{ color: 'white' }}
-                  aria-label={`star ${item.title}`}
-                  size="large"
-                >
-                  <StarBorderIcon />
-                </IconButton>
-              }
-              actionPosition="left"
-            />
-          </ImageListItem>
-        )
-      })}
-    </ImageList>
-  ),
-  {
-    parameters: {
-      docs: {
-        description: {
-          story: `In this example the items have a customized titlebar, positioned at the top and with a custom gradient \`titleBackground\`. The secondary action \`IconButton\` is positioned on the left. The \`gap\` prop is used to adjust the gap between items.`,
-        },
-      },
-    },
-  },
-)
+      )
+    })}
+  </ImageList>
+))
 
 const itemData = [
   {

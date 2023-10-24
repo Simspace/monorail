@@ -6,9 +6,6 @@ import { Checkbox, FormControlLabel, FormGroup } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 
-/**
- * Metadata for FormGroup stories - update/extend as needed
- */
 export default { title: 'Inputs/FormGroup', component: FormGroup }
 
 const Template = story<FormGroupProps>(
@@ -21,15 +18,11 @@ const Template = story<FormGroupProps>(
   ),
   {
     args: {},
-    parameters: {
-      docs: {
-        description: {
-          component:
-            'FormGroup is a helpful wrapper used to group selection control components.',
-        },
-      },
-    },
     muiName: 'MuiFormGroup',
   },
 )
+
+/**
+ * `FormGroup` is a helpful wrapper used to group selection control components.
+ */
 export const Default = story(Template)

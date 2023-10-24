@@ -8,9 +8,6 @@ import { IconButton, Stack, Typography } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 
-/**
- * Metadata for IconButton stories - update/extend as needed
- */
 export default { title: 'Inputs/IconButton', component: IconButton }
 
 const colors = [
@@ -56,9 +53,14 @@ const Template = story<IconButtonProps>(
     muiName: 'MuiIconButton',
   },
 )
-/** Default story for IconButton (edit/remove by hand if needed) */
+
 export const Default = story(Template)
 
+/**
+ * Icon buttons are commonly found in app bars and toolbars.
+ *
+ * Icons are also appropriate for toggle buttons that allow a single choice to be selected or deselected, such as adding or removing a star to an item.
+ */
 export const Showcase = story<IconButtonProps>(
   () => (
     <Stack direction="row" spacing={4}>
@@ -75,15 +77,6 @@ export const Showcase = story<IconButtonProps>(
   ),
   {
     argTypes,
-    parameters: {
-      docs: {
-        description: {
-          story: `Icon buttons are commonly found in app bars and toolbars.
-
-Icons are also appropriate for toggle buttons that allow a single choice to be selected or deselected, such as adding or removing a star to an item.`,
-        },
-      },
-    },
   },
 )
 
@@ -119,6 +112,11 @@ export const Variants = story<IconButtonProps>(
   { argTypes },
 )
 
+/**
+ * For larger or smaller icon buttons, use the `size` prop.
+ *
+ * Use `fontSize="inherit"` for the icon when using `size="small"` or `size="large"`. fontSizes are defined in the theme.
+ */
 export const Sizes = story<IconButtonProps>(
   args => (
     <Stack direction="row" spacing={4}>
@@ -153,15 +151,6 @@ export const Sizes = story<IconButtonProps>(
   ),
   {
     argTypes,
-    parameters: {
-      docs: {
-        description: {
-          story: `For larger or smaller icon buttons, use the size prop. 
-
-Use fontSize="inherit" for the icon when using size="small" or size="large". fontSizes are defined in the theme.`,
-        },
-      },
-    },
   },
 )
 
@@ -205,56 +194,48 @@ export const Shapes = story<IconButtonProps>(
   { argTypes },
 )
 
-export const Colors = story<IconButtonProps>(
-  () => (
-    <Stack spacing={4}>
-      {colors.map(color => (
-        <Stack
-          direction="row"
-          spacing={4}
-          alignItems="center"
-          key={`icon-button-color-${color}`}
+/**
+ * Use `color` prop to apply theme color palette to component.
+ */
+export const Colors = story<IconButtonProps>(() => (
+  <Stack spacing={4}>
+    {colors.map(color => (
+      <Stack
+        direction="row"
+        spacing={4}
+        alignItems="center"
+        key={`icon-button-color-${color}`}
+      >
+        <Typography sx={{ minWidth: 90 }}>{color}</Typography>
+        <IconButton aria-label="delete" color={color}>
+          <DeleteIcon />
+        </IconButton>
+        <IconButton aria-label="delete" disabled color={color}>
+          <DeleteIcon />
+        </IconButton>
+        <IconButton variant="outlined" aria-label="delete" color={color}>
+          <DeleteIcon />
+        </IconButton>
+        <IconButton
+          variant="outlined"
+          aria-label="delete"
+          disabled
+          color={color}
         >
-          <Typography sx={{ minWidth: 90 }}>{color}</Typography>
-          <IconButton aria-label="delete" color={color}>
-            <DeleteIcon />
-          </IconButton>
-          <IconButton aria-label="delete" disabled color={color}>
-            <DeleteIcon />
-          </IconButton>
-          <IconButton variant="outlined" aria-label="delete" color={color}>
-            <DeleteIcon />
-          </IconButton>
-          <IconButton
-            variant="outlined"
-            aria-label="delete"
-            disabled
-            color={color}
-          >
-            <DeleteIcon />
-          </IconButton>
-          <IconButton variant="contained" aria-label="delete" color={color}>
-            <DeleteIcon />
-          </IconButton>
-          <IconButton
-            variant="contained"
-            aria-label="delete"
-            disabled
-            color={color}
-          >
-            <DeleteIcon />
-          </IconButton>
-        </Stack>
-      ))}
-    </Stack>
-  ),
-  {
-    parameters: {
-      docs: {
-        description: {
-          story: `Use color prop to apply theme color palette to component.`,
-        },
-      },
-    },
-  },
-)
+          <DeleteIcon />
+        </IconButton>
+        <IconButton variant="contained" aria-label="delete" color={color}>
+          <DeleteIcon />
+        </IconButton>
+        <IconButton
+          variant="contained"
+          aria-label="delete"
+          disabled
+          color={color}
+        >
+          <DeleteIcon />
+        </IconButton>
+      </Stack>
+    ))}
+  </Stack>
+))

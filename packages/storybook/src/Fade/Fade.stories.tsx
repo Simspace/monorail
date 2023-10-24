@@ -11,9 +11,7 @@ import {
 } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
-/**
- * Metadata for Fade stories - update/extend as needed
- */
+
 export default { title: 'Utils/Transitions/Fade', component: Fade }
 
 const box = (
@@ -21,12 +19,7 @@ const box = (
     <Box component="svg" sx={{ width: 100, height: 100 }}></Box>
   </Paper>
 )
-/**
- * Story template (edit/remove by hand if needed)
- *
- * Note: there should be at least one "Default" story that uses this template with the "story" function.
- * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
- */
+
 const Template = story<FadeProps>(
   (args: Partial<FadeProps>) => {
     const [checked, setChecked] = React.useState(false)
@@ -51,6 +44,5 @@ const Template = story<FadeProps>(
   },
   { args: {} },
 )
-/** Default story for Fade (edit/remove by hand if needed) */
+
 export const Default = story(Template)
-// TODO: add more stories below

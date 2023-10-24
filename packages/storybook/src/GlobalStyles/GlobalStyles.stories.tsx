@@ -5,9 +5,7 @@ import type { GlobalStylesProps } from '@monorail/components'
 import { GlobalStyles } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
-/**
- * Metadata for GlobalStyles stories - update/extend as needed
- */
+
 export default {
   title: 'Utils/GlobalStyles',
   component: GlobalStyles,
@@ -17,12 +15,7 @@ export default {
     },
   },
 }
-/**
- * Story template (edit/remove by hand if needed)
- *
- * Note: there should be at least one "Default" story that uses this template with the "story" function.
- * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
- */
+
 const Template = story<GlobalStylesProps>(
   (args: Partial<GlobalStylesProps>) => <GlobalStyles styles={{}} {...args} />,
   {
@@ -34,7 +27,7 @@ const Template = story<GlobalStylesProps>(
     },
   },
 )
-/** Default story for GlobalStyles (edit/remove by hand if needed) */
+
 export const Default = story(Template, {
   parameters: {
     creevey: {
@@ -42,4 +35,3 @@ export const Default = story(Template, {
     },
   },
 })
-// TODO: add more stories below

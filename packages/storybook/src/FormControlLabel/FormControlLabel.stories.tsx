@@ -11,11 +11,8 @@ import {
 } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
-/**
- * Metadata for FormControlLabel stories - update/extend as needed
- */
-export default { title: 'Inputs/FormControlLabel', component: FormControlLabel }
 
+export default { title: 'Inputs/FormControlLabel', component: FormControlLabel }
 const Template = story<FormControlLabelProps>(
   (args: Partial<FormControlLabelProps>) => (
     <FormGroup>
@@ -26,15 +23,11 @@ const Template = story<FormControlLabelProps>(
   ),
   {
     args: {},
-    parameters: {
-      docs: {
-        description: {
-          component:
-            'FormControlLabel can be used to add an aligned label to an input ',
-        },
-      },
-    },
     muiName: 'MuiFormControlLabel',
   },
 )
+
+/**
+ * `FormControlLabel` can be used to add an aligned label to an input.
+ */
 export const Default = story(Template)
