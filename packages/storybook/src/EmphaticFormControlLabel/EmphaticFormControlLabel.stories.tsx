@@ -13,9 +13,6 @@ import { CheckBoxError, CheckBoxWarning } from '@monorail/components/icons'
 
 import { story } from '../helpers/storybook.js'
 
-/**
- * Metadata for FormControlLabel stories - update/extend as needed
- */
 export default {
   title: 'Inputs/EmphaticFormControlLabel',
   component: EmphaticFormControlLabel,
@@ -30,18 +27,13 @@ const Template = story<EmphaticFormControlLabelProps>(
   ),
   {
     args: {},
-    parameters: {
-      docs: {
-        description: {
-          component:
-            'Emphatic Checkboxes and Emphatic Radiobuttons are used when the choice/selection action is the primary action on that page. Thus, they are more visualy prominent than regular checkboxes and radiobuttons.',
-        },
-      },
-    },
     muiName: 'MonorailEmphaticFormControlLabel',
   },
 )
 
+/**
+ * Emphatic Checkboxes and Emphatic Radiobuttons are used when the choice/selection action is the primary action on that page. Thus, they are more visualy prominent than regular checkboxes and radiobuttons.
+ */
 export const Default = story(Template)
 
 export const States = story(args => {
