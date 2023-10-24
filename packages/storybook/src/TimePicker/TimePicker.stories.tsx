@@ -5,20 +5,12 @@ import type { TimePickerProps } from '@monorail/components'
 import { Box, TextField, TimePicker } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
-/**
- * Metadata for TimePicker stories - update/extend as needed
- */
+
 export default {
   title: 'Inputs/Date and Time/Time/TimePicker',
   component: TimePicker,
 }
 
-/**
- * Story template (edit/remove by hand if needed)
- *
- * Note: there should be at least one "Default" story that uses this template with the "story" function.
- * The Template and "story" function allow the story to be setup so that it works with the Controls addon and docgen
- */
 const Template = story<TimePickerProps<Date>>(args => {
   const [value, setValue] = React.useState<Date | null>(null)
 
@@ -34,16 +26,10 @@ const Template = story<TimePickerProps<Date>>(args => {
   )
 })
 
-/** Default story for TimePicker (edit/remove by hand if needed) */
-export const Default = story(Template, {
-  parameters: {
-    docs: {
-      description: {
-        component: `TimePicker is a control for choosing a time. The time picker is rendered as a modal dialog on mobile, and a textbox with a popup on desktop.`,
-      },
-    },
-  },
-})
+/**
+ * `TimePicker` is a control for choosing a time. The time picker is rendered as a modal dialog on mobile, and a textbox with a popup on desktop.
+ */
+export const Default = story(Template)
 
 export const NativeTimePicker = story<TimePickerProps>(() => {
   return (
