@@ -7,8 +7,9 @@ export const MonorailListSubheaderOverrides: Components<Theme>['MuiListSubheader
       root: ({ theme }) => ({
         backgroundColor: 'transparent',
         ...theme.typography.listSubheader,
-        lineHeight: theme.spacing(6),
-        paddingLeft: theme.spacing(2),
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
       }),
     },
   }
