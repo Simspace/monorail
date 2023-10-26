@@ -19,9 +19,9 @@ export enum RawColor {
   White = '#FFFFFF',
   Black = '#181621',
 
-  Grey100 = '#E5E5E6',
-  Grey200 = '#D2D2D5',
-  Grey300 = '#B8B8BE',
+  Grey100 = '#F4F5F6',
+  Grey200 = '#DCDCDF',
+  Grey300 = '#BDBDC2',
   Grey400 = '#96979F',
   Grey500 = '#757681',
   Grey600 = '#565865',
