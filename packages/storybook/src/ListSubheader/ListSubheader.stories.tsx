@@ -2,13 +2,8 @@
 import React from 'react'
 
 import type { ListSubheaderProps } from '@monorail/components'
-import {
-  IconButton,
-  ListSubheader,
-  Stack,
-  Typography,
-} from '@monorail/components'
-import { Add, Close } from '@monorail/components/icons'
+import { IconButton, ListSubheader, Typography } from '@monorail/components'
+import { Add } from '@monorail/components/icons'
 
 import { story } from '../helpers/storybook.js'
 
@@ -31,24 +26,13 @@ export const Default = story(Template)
 /**
  * Additional elements are pushed to the right by default.
  */
-export const WithActionButtons = story<ListSubheaderProps>(args => (
+export const WithActionButton = story<ListSubheaderProps>(args => (
   <ul>
     <ListSubheader {...args} sx={{ maxWidth: 300 }}>
       <Typography variant="inherit">List Subheader</Typography>
       <IconButton onClick={() => {}} aria-hidden>
         <Add />
       </IconButton>
-    </ListSubheader>
-    <ListSubheader {...args} sx={{ maxWidth: 300 }}>
-      <Typography variant="inherit">List Subheader</Typography>
-      <Stack direction="row">
-        <IconButton onClick={() => {}} aria-hidden>
-          <Close />
-        </IconButton>
-        <IconButton onClick={() => {}} aria-hidden>
-          <Add />
-        </IconButton>
-      </Stack>
     </ListSubheader>
   </ul>
 ))
