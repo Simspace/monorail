@@ -168,11 +168,32 @@ AutoPaginationGrid.parameters = {
  */
 function loadServerRows(
   page: number,
+  filter: string,
   data: GridDemoData,
-): Promise<Array<GridRowModel>> {
-  return new Promise<Array<GridRowModel>>(resolve => {
+): Promise<{
+  page: number
+  rowCount: number
+  data: Array<GridRowModel>
+}> {
+  return new Promise<{
+    page: number
+    rowCount: number
+    data: Array<GridRowModel>
+  }>(resolve => {
     setTimeout(() => {
-      resolve(data.rows.slice(page * 5, (page + 1) * 5))
+      const filteredData = data.rows.filter(row =>
+        (row.commodity as string)
+          .toLocaleLowerCase()
+          .includes(filter.toLocaleLowerCase()),
+      )
+
+      const paginatedData = filteredData.slice(page * 20, (page + 1) * 20)
+
+      resolve({
+        page,
+        rowCount: filteredData.length,
+        data: paginatedData,
+      })
     }, Math.random() * 500 + 100) // simulate network latency
   })
 }
@@ -184,41 +205,56 @@ export const ServerPaginationGrid = story<DataGridProps>(args => {
     maxColumns: 6,
   })
   const [page, setPage] = React.useState(0)
+  const [rowCount, setRowCount] = React.useState(0)
   const [rows, setRows] = React.useState<GridRowsProp>([])
   const [loading, setLoading] = React.useState<boolean>(false)
+  const [filter, setFilter] = React.useState('')
 
   React.useEffect(() => {
     let active = true
 
     ;(async () => {
       setLoading(true)
-      const newRows = await loadServerRows(page, data)
+      const newRows = await loadServerRows(page, filter, data)
 
       if (!active) {
         return
       }
 
-      setRows(newRows)
+      setRowCount(newRows.rowCount)
+      setRows(newRows.data)
+
       setLoading(false)
     })()
 
     return () => {
       active = false
     }
-  }, [page, data])
+  }, [page, data, filter])
 
   return (
-    <div style={{ height: 400, width: '100%' }}>
+    <div style={{ height: 800, width: '100%' }}>
       <DataGrid
         {...args}
         rows={rows}
         columns={data.columns}
         pagination
-        paginationModel={{ pageSize: 5, page }}
-        pageSizeOptions={[5]}
-        rowCount={100}
+        paginationModel={{ pageSize: 20, page }}
+        pageSizeOptions={[20, 50, 100]}
+        rowCount={rowCount}
         paginationMode="server"
         onPaginationModelChange={({ page }) => setPage(page)}
+        slotProps={{
+          toolbar: {
+            slotProps: {
+              search: {
+                onChangeDebounced: (_, value) => {
+                  setFilter(value)
+                },
+              },
+            },
+          },
+        }}
         loading={loading}
       />
     </div>
