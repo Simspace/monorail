@@ -168,6 +168,7 @@ AutoPaginationGrid.parameters = {
  */
 function loadServerRows(
   page: number,
+  pageSize: number,
   filter: string,
   data: GridDemoData,
 ): Promise<{
@@ -187,7 +188,10 @@ function loadServerRows(
           .includes(filter.toLocaleLowerCase()),
       )
 
-      const paginatedData = filteredData.slice(page * 20, (page + 1) * 20)
+      const paginatedData = filteredData.slice(
+        page * pageSize,
+        (page + 1) * pageSize,
+      )
 
       resolve({
         page,
@@ -205,6 +209,7 @@ export const ServerPaginationGrid = story<DataGridProps>(args => {
     maxColumns: 6,
   })
   const [page, setPage] = React.useState(0)
+  const [pageSize, setPageSize] = React.useState(20)
   const [rowCount, setRowCount] = React.useState(0)
   const [rows, setRows] = React.useState<GridRowsProp>([])
   const [loading, setLoading] = React.useState<boolean>(false)
@@ -215,7 +220,7 @@ export const ServerPaginationGrid = story<DataGridProps>(args => {
 
     ;(async () => {
       setLoading(true)
-      const newRows = await loadServerRows(page, filter, data)
+      const newRows = await loadServerRows(page, pageSize, filter, data)
 
       if (!active) {
         return
@@ -230,7 +235,7 @@ export const ServerPaginationGrid = story<DataGridProps>(args => {
     return () => {
       active = false
     }
-  }, [page, data, filter])
+  }, [page, pageSize, data, filter])
 
   return (
     <div style={{ height: 800, width: '100%' }}>
@@ -239,11 +244,14 @@ export const ServerPaginationGrid = story<DataGridProps>(args => {
         rows={rows}
         columns={data.columns}
         pagination
-        paginationModel={{ pageSize: 20, page }}
+        paginationModel={{ pageSize, page }}
         pageSizeOptions={[20, 50, 100]}
         rowCount={rowCount}
         paginationMode="server"
-        onPaginationModelChange={({ page }) => setPage(page)}
+        onPaginationModelChange={({ page, pageSize }) => {
+          setPageSize(pageSize)
+          setPage(page)
+        }}
         slotProps={{
           toolbar: {
             slotProps: {

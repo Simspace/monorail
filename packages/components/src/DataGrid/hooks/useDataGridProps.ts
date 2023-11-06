@@ -139,6 +139,8 @@ export function useDataGridProps<R extends GridValidRowModel>(
     [initProps],
   )
 
+  const pageSizeOptions = initProps.pageSizeOptions ?? [20, 50, 100]
+
   return useDataGridPremiumProps({
     ...initProps,
     disableColumnFilter: true,
@@ -151,5 +153,6 @@ export function useDataGridProps<R extends GridValidRowModel>(
     viewStyle: initProps.viewStyle ?? 'table',
     filter: initProps.filter ?? 'column',
     getRowClassName,
+    pageSizeOptions,
   })
 }

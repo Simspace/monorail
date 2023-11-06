@@ -135,14 +135,14 @@ export function DataGridPaginationFooter(props: DataGridFooterProps) {
     }
   }, [clientPageCount, pageSize, paginationMode, totalRowCount])
 
-  const onPageChangeHandler = React.useCallback(
+  const handlePageChange = React.useCallback(
     (_event: React.ChangeEvent<unknown>, page: number) => {
       apiRef.current.setPage(page - 1)
     },
     [apiRef],
   )
 
-  const onPageSizeChangeHandler = React.useCallback(
+  const handlePageSizeChange = React.useCallback(
     (event: SelectChangeEvent<number>) => {
       apiRef.current.setPageSize(Number(event.target.value))
     },
@@ -189,7 +189,7 @@ export function DataGridPaginationFooter(props: DataGridFooterProps) {
       <Pagination
         count={pageCount}
         page={page + 1}
-        onChange={onPageChangeHandler}
+        onChange={handlePageChange}
         siblingCount={1}
         renderItem={renderPaginationItem}
         {...paginationProps}
@@ -225,11 +225,13 @@ export function DataGridPaginationFooter(props: DataGridFooterProps) {
                   minWidth: theme.spacing(24),
                 })}
                 value={gridPageSizeSelector(apiRef)}
-                onChange={onPageSizeChangeHandler}
+                onChange={handlePageSizeChange}
               >
-                <MenuItem value={20}>20</MenuItem>
-                <MenuItem value={50}>50</MenuItem>
-                <MenuItem value={100}>100</MenuItem>
+                {rootProps.pageSizeOptions.map(pageSize => (
+                  <MenuItem value={pageSize} key={pageSize}>
+                    {pageSize}
+                  </MenuItem>
+                ))}
               </Select>
             }
             slotProps={{
