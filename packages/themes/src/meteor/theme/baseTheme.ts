@@ -7,8 +7,9 @@ import {
   monospaceFallback,
 } from '@monorail/themes/common/FontFamily'
 import { FontSize, LineHeight } from '@monorail/themes/common/FontSize'
-import { FontWeight } from '@monorail/themes/common/FontWeight'
 import type {} from '@monorail/types'
+
+import { FontWeight } from './FontWeight.js'
 
 // This "default" theme should house the global defaults that apply to all themes. This would likely include
 // common settings that are not likely to differ between specific themes, like spacing, shadows, breakpoints, etc.
@@ -33,6 +34,13 @@ export const baseTheme = createTheme(
     typography: {
       htmlFontSize: 16,
       fontFamily: BASE_FONT_STACK,
+      fontWeightExtraLight: FontWeight.ExtraLight,
+      fontWeightLight: FontWeight.Light,
+      fontWeightRegular: FontWeight.Regular,
+      fontWeightMedium: FontWeight.Medium,
+      fontWeightSemiBold: FontWeight.SemiBold,
+      fontWeightBold: FontWeight.Bold,
+      fontWeightBlack: FontWeight.Black,
       data1: {
         fontFamily: fontStack.headings,
         fontSize: FontSize.Data1,
@@ -90,12 +98,12 @@ export const baseTheme = createTheme(
       body1: {
         fontSize: FontSize.Body1,
         lineHeight: LineHeight.Body1,
-        fontWeight: FontWeight.Book,
+        fontWeight: FontWeight.Regular,
       },
       body2: {
         fontSize: FontSize.Body2,
         lineHeight: LineHeight.Body2,
-        fontWeight: FontWeight.Book,
+        fontWeight: FontWeight.Regular,
       },
       subtitle1: {
         fontSize: FontSize.Subtitle1,
@@ -111,13 +119,13 @@ export const baseTheme = createTheme(
         fontFamily: fontStack.mono,
         fontSize: FontSize.MonoBody1,
         lineHeight: LineHeight.MonoBody1,
-        fontWeight: FontWeight.Book,
+        fontWeight: FontWeight.Regular,
       },
       monoBody2: {
         fontFamily: fontStack.mono,
         fontSize: FontSize.MonoBody2,
         lineHeight: LineHeight.MonoBody2,
-        fontWeight: FontWeight.Book,
+        fontWeight: FontWeight.Regular,
       },
       monoBody3: {
         fontFamily: fontStack.mono,
@@ -129,13 +137,13 @@ export const baseTheme = createTheme(
       overline: {
         fontSize: FontSize.Overline,
         lineHeight: LineHeight.Overline,
-        fontWeight: FontWeight.Book,
+        fontWeight: FontWeight.Regular,
         textTransform: 'uppercase',
       },
       caption: {
         fontSize: FontSize.Caption,
         lineHeight: LineHeight.Caption,
-        fontWeight: FontWeight.Book,
+        fontWeight: FontWeight.Regular,
       },
       // Components
       alertTitle: {
@@ -160,7 +168,7 @@ export const baseTheme = createTheme(
         fontFamily: BASE_FONT_STACK,
         fontSize: FontSize.BottomNavActiveLabel,
         lineHeight: LineHeight.BottomNavActiveLabel,
-        fontWeight: FontWeight.Book,
+        fontWeight: FontWeight.Regular,
         letterSpacing: 0.2,
       },
       button: {
@@ -191,7 +199,7 @@ export const baseTheme = createTheme(
         fontFamily: BASE_FONT_STACK,
         fontSize: FontSize.InputText,
         lineHeight: LineHeight.InputText,
-        fontWeight: FontWeight.Book,
+        fontWeight: FontWeight.Regular,
       },
       tableHeader: {
         fontFamily: BASE_FONT_STACK,
@@ -210,13 +218,13 @@ export const baseTheme = createTheme(
         fontFamily: BASE_FONT_STACK,
         fontSize: FontSize.MenuItem,
         lineHeight: LineHeight.MenuItem,
-        fontWeight: FontWeight.Book,
+        fontWeight: FontWeight.Regular,
       },
       menuItemDense: {
         fontFamily: BASE_FONT_STACK,
         fontSize: FontSize.MenuItemDense,
         lineHeight: LineHeight.MenuItemDense,
-        fontWeight: FontWeight.Book,
+        fontWeight: FontWeight.Regular,
         letterSpacing: 0.2,
       },
       tabActive: {

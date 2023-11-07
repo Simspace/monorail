@@ -1,9 +1,8 @@
 export enum FontWeight {
-  ExtraLight = 200,
+  ExtraLight = 275,
   Light = 300,
-  Book = 400,
-  Medium = 500,
-  SemiBold = 600,
-  Bold = 700,
-  Black = 800,
+  Book = 325,
+  Medium = 350,
+  Bold = 400,
+  Black = 450,
 }
