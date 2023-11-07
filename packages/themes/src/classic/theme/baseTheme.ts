@@ -43,8 +43,9 @@ export const baseTheme = createTheme(
       fontFamily: BASE_FONT_STACK,
       fontWeightExtraLight: FontWeight.ExtraLight,
       fontWeightLight: FontWeight.Light,
-      fontWeightBook: FontWeight.Book,
+      fontWeightRegular: FontWeight.Book,
       fontWeightMedium: FontWeight.Medium,
+      fontWeightSemiBold: FontWeight.SemiBold,
       fontWeightBold: FontWeight.Bold,
       fontWeightBlack: FontWeight.Black,
       data1: {

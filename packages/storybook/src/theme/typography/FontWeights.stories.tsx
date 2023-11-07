@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { Box, Typography } from '@monorail/components'
-import { FontWeight } from '@monorail/themes/common/FontWeight'
+import { useTheme } from '@monorail/utils'
 
 import { TypographyTokenTable } from './typography.components'
 import type {
@@ -24,59 +24,60 @@ const columns: TypographyTokenColumns = [
 ]
 
 export const FontWeights = () => {
+  const theme = useTheme()
   const rows: Array<TypographyTokenRowProps> = React.useMemo(
     () => [
       {
         fontWeightToken: 'fontWeightExtraLight',
-        styles: { fontWeight: FontWeight.ExtraLight },
+        styles: { fontWeight: theme.typography.fontWeightExtraLight ?? 'N/A' },
         description: (
           <Typography variant="monoBody1">{`<Typography fontWeight="fontWeightExtraLight" />`}</Typography>
         ),
       },
       {
         fontWeightToken: 'fontWeightLight',
-        styles: { fontWeight: FontWeight.Light },
+        styles: { fontWeight: theme.typography.fontWeightLight },
         description: (
           <Typography variant="monoBody1">{`<Typography fontWeight="fontWeightLight" />`}</Typography>
         ),
       },
       {
         fontWeightToken: 'fontWeightRegular',
-        styles: { fontWeight: FontWeight.Book },
+        styles: { fontWeight: theme.typography.fontWeightRegular },
         description: (
           <Typography variant="monoBody1">{`<Typography fontWeight="fontWeightRegular" />`}</Typography>
         ),
       },
       {
         fontWeightToken: 'fontWeightMedium',
-        styles: { fontWeight: FontWeight.Medium },
+        styles: { fontWeight: theme.typography.fontWeightMedium },
         description: (
           <Typography variant="monoBody1">{`<Typography fontWeight="fontWeightMedium" />`}</Typography>
         ),
       },
       {
         fontWeightToken: 'fontWeightSemiBold',
-        styles: { fontWeight: FontWeight.SemiBold },
+        styles: { fontWeight: theme.typography.fontWeightSemiBold ?? 'N/A' },
         description: (
           <Typography variant="monoBody1">{`<Typography fontWeight="fontWeightSemiBold" />`}</Typography>
         ),
       },
       {
         fontWeightToken: 'fontWeightBold',
-        styles: { fontWeight: FontWeight.Bold },
+        styles: { fontWeight: theme.typography.fontWeightBold },
         description: (
           <Typography variant="monoBody1">{`<Typography fontWeight="fontWeightBold" />`}</Typography>
         ),
       },
       {
         fontWeightToken: 'fontWeightBlack',
-        styles: { fontWeight: FontWeight.Black },
+        styles: { fontWeight: theme.typography.fontWeightBlack ?? 'N/A' },
         description: (
           <Typography variant="monoBody1">{`<Typography fontWeight="fontWeightBlack" />`}</Typography>
         ),
       },
     ],
-    [],
+    [theme.typography],
   )
 
   return (

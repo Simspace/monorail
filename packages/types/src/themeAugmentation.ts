@@ -289,7 +289,6 @@ declare module '@mui/material/styles/createTypography' {
 
   export interface FontStyle {
     fontWeightExtraLight: React.CSSProperties['fontWeight']
-    fontWeightBook: React.CSSProperties['fontWeight']
     fontWeightSemiBold: React.CSSProperties['fontWeight']
     fontWeightBlack: React.CSSProperties['fontWeight']
   }
@@ -321,7 +320,6 @@ declare module '@mui/material/styles/createTypography' {
     tabInactive?: React.CSSProperties
     tooltip?: React.CSSProperties
     fontWeightExtraLight?: React.CSSProperties['fontWeight']
-    fontWeightBook?: React.CSSProperties['fontWeight']
     fontWeightSemiBold?: React.CSSProperties['fontWeight']
     fontWeightBlack?: React.CSSProperties['fontWeight']
   }
