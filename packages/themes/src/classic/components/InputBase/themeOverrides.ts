@@ -17,6 +17,12 @@ export const MonorailInputBaseOverrides: Components<Theme>['MuiInputBase'] = {
         ...theme.typography.inputText,
       }
     },
+    input: ({ theme }) => ({
+      '&::placeholder': {
+        color: theme.palette.text.placeholder,
+        opacity: 1,
+      },
+    }),
     error: ({ theme }) => ({
       [`&.${inputBaseClasses.focused}`]: {
         boxShadow: `0 0 0 3px ${theme.palette.error.focusRing.outer}`,

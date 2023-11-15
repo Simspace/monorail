@@ -17,6 +17,12 @@ export const MonorailInputBaseOverrides: Components<Theme>['MuiInputBase'] = {
         ...theme.typography.inputText,
       }
     },
+    input: ({ theme }) => ({
+      '&::placeholder': {
+        color: theme.palette.text.placeholder,
+        opacity: 1,
+      },
+    }),
     sizeSmall: ({ theme }) => ({
       minHeight: theme.spacing(6),
     }),
