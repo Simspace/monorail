@@ -8,6 +8,7 @@ export const MonorailTreeItemOverrides: Components<Theme>['MuiTreeItem'] = {
     root: { borderRadius: 2 },
     label: ({ theme }) => ({
       ...theme.typography.body2,
+      display: 'flex',
     }),
     iconContainer: ({ theme }) => ({
       width: theme.spacing(4),
@@ -16,6 +17,7 @@ export const MonorailTreeItemOverrides: Components<Theme>['MuiTreeItem'] = {
         fontSize: theme.typography.pxToRem(16),
       },
     }),
+    group: ({ theme }) => ({ marginLeft: theme.spacing(4) }),
     content: ({ theme }) => ({
       alignItems: 'flex-start',
       padding: theme.spacing(1.25, 1),
