@@ -51,6 +51,7 @@ import {
   MonorailToggleButtonGroupOverrides,
   MonorailToggleButtonOverrides,
 } from '../components/ToggleButton/themeOverrides.js'
+import { MonorailTreeItemOverrides } from '../components/TreeItem/themeOverrides.js'
 import { baseTheme } from './baseTheme.js'
 
 /**
@@ -103,4 +104,5 @@ export const getThemeComponents = (
   MuiTablePagination: MonorailTablePaginationOverrides,
   MuiToggleButton: MonorailToggleButtonOverrides,
   MuiToggleButtonGroup: MonorailToggleButtonGroupOverrides,
+  MuiTreeItem: MonorailTreeItemOverrides,
 })
