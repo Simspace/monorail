@@ -12,8 +12,8 @@ export const MonorailPaginationItemOverrides: Components<Theme>['MuiPaginationIt
       root: ({ ownerState: { color = 'primary' }, theme }) => {
         const colorAlias =
           color !== undefined && color === 'primary'
-            ? theme.palette.info.main
-            : theme.palette[color].main
+            ? theme.palette.info.lowEmphasis.contrastText
+            : theme.palette[color].lowEmphasis.contrastText
         return {
           color: colorAlias,
           fontWeight: theme.typography.subtitle2.fontWeight,
