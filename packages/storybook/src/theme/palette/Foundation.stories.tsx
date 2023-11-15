@@ -64,6 +64,12 @@ export const Foundation = () => {
       colorValue: theme.palette.text.disabled,
       figmaStyle: 'text/disabled',
     },
+    {
+      token: '.placeholder',
+      description: '',
+      colorValue: theme.palette.text.placeholder,
+      figmaStyle: 'text/placeholder',
+    },
   ]
 
   const backgroundColors = [
