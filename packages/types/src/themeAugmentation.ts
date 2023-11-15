@@ -256,6 +256,7 @@ declare module '@mui/material/styles/createPalette' {
 
   interface TypeText {
     link: string
+    placeholder: string
   }
 }
 
