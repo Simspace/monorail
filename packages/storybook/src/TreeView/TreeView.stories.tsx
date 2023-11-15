@@ -508,7 +508,7 @@ export const CustomizedTreeView = story(() => {
     [`& .${treeItemClasses.group}`]: {
       marginLeft: 0,
       [`& .${treeItemClasses.content}`]: {
-        paddingLeft: theme.spacing(2),
+        paddingLeft: theme.spacing(4),
       },
     },
   }))
