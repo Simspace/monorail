@@ -53,10 +53,6 @@ export const MonorailAutocompleteOverrides: Components<Theme>['MuiAutocomplete']
           },
         },
       }),
-      endAdornment: ({ ownerState: { size = 'medium' } }) => ({
-        ...(size !== 'small' && {
-          top: 'calc(50% - 20px)',
-        }),
-      }),
+      endAdornment: { top: 'calc(50% - 20px)' },
     },
   }

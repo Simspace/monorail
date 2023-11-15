@@ -48,6 +48,7 @@ export const MonorailAutocompleteOverrides: Components<Theme>['MuiAutocomplete']
           padding: multiple === true ? '2px 9px' : '0 12px',
           [`& .${autocompleteClasses.input}`]: {
             padding: 0,
+            ...(multiple === true && { paddingLeft: 3 }),
           },
           [`&.${inputBaseClasses.sizeSmall}`]: {
             padding: theme.spacing(1.25, 3),
@@ -72,11 +73,7 @@ export const MonorailAutocompleteOverrides: Components<Theme>['MuiAutocomplete']
             { paddingRight: theme.spacing(21.25) },
         }),
       }),
-      endAdornment: ({ ownerState: { size = 'medium' } }) => ({
-        ...(size === 'large' && {
-          top: 'calc(50% - 20px)',
-        }),
-      }),
+      endAdornment: { top: 'calc(50% - 17px)' },
       inputRoot: ({ ownerState: { size = 'medium' } }) => ({
         padding: 0,
         minHeight: 40,
