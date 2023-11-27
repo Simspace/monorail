@@ -1,0 +1,38 @@
+diff --git a/themeAugmentation/components.d.ts b/themeAugmentation/components.d.ts
+index b72bc1aa8c699a982c1bf64e9de3296986332947..422bf7595e89f510e3e536c976853bffce591b70 100644
+--- a/themeAugmentation/components.d.ts
++++ b/themeAugmentation/components.d.ts
+@@ -13,6 +13,6 @@ export interface TreeViewComponents<Theme = unknown> {
+   };
+ }
+ 
+-declare module '@mui/material/styles' {
++declare module '@mui/material/styles/components' {
+   interface Components<Theme = unknown> extends TreeViewComponents<Theme> {}
+ }
+diff --git a/themeAugmentation/overrides.d.ts b/themeAugmentation/overrides.d.ts
+index b2af07f2a4849f02ed2cc78a4f70e6f3285b60b0..a4aa0135e10ec0112d06983bf0669f908b53ac0b 100644
+--- a/themeAugmentation/overrides.d.ts
++++ b/themeAugmentation/overrides.d.ts
+@@ -7,7 +7,7 @@ export interface PickersComponentNameToClassKey {
+   MuiTreeView: TreeViewClassKey;
+ }
+ 
+-declare module '@mui/material/styles' {
++declare module '@mui/material/styles/overrides' {
+   interface ComponentNameToClassKey extends PickersComponentNameToClassKey {}
+ }
+ 
+diff --git a/themeAugmentation/props.d.ts b/themeAugmentation/props.d.ts
+index ee458ec469d307fb5398034c88b0e3895b352a2e..c9fd16bfbd8f0f06d003a518789c770fa2fae567 100644
+--- a/themeAugmentation/props.d.ts
++++ b/themeAugmentation/props.d.ts
+@@ -6,7 +6,7 @@ export interface PickersComponentsPropsList {
+   MuiTreeView: TreeViewProps<any>;
+ }
+ 
+-declare module '@mui/material/styles' {
++declare module '@mui/material/styles/props' {
+   interface ComponentsPropsList extends PickersComponentsPropsList {}
+ }
+ 

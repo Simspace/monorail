@@ -1,0 +1,30 @@
+diff --git a/themeAugmentation/overrides.d.ts b/themeAugmentation/overrides.d.ts
+index 28b0d898070cd2c5dab6b20fc84ef8998fbdfec3..79705a208e856865b1490ebeea0fdf99f88b0c11 100644
+--- a/themeAugmentation/overrides.d.ts
++++ b/themeAugmentation/overrides.d.ts
+@@ -2,7 +2,7 @@ import { GridClassKey } from '@mui/x-data-grid';
+ export interface DataGridProComponentNameToClassKey {
+     MuiDataGrid: GridClassKey;
+ }
+-declare module '@mui/material/styles' {
++declare module '@mui/material/styles/overrides' {
+     interface ComponentNameToClassKey extends DataGridProComponentNameToClassKey {
+     }
+ }
+diff --git a/themeAugmentation/props.d.ts b/themeAugmentation/props.d.ts
+index ab08495311ae6bd8474e84149712b4313ae86641..15821a9c7188f0dc40295822639da7c0fb09a96c 100644
+--- a/themeAugmentation/props.d.ts
++++ b/themeAugmentation/props.d.ts
+@@ -9,9 +9,11 @@ export interface DataGridProComponents<Theme = unknown> {
+         styleOverrides?: ComponentsOverrides<Theme>['MuiDataGrid'];
+     };
+ }
+-declare module '@mui/material/styles' {
++declare module '@mui/material/styles/props' {
+     interface ComponentsPropsList extends DataGridProComponentsPropsList {
+     }
++}
++declare module '@mui/material/styles/components' {
+     interface Components<Theme = unknown> extends DataGridProComponents<Theme> {
+     }
+ }
