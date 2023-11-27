@@ -1,0 +1,38 @@
+diff --git a/themeAugmentation/components.d.ts b/themeAugmentation/components.d.ts
+index 4dd31b61b92d4d8cbd4837c40984ea98c462562d..b1c379a684117403d7a20b8b6de9b83c3535fc87 100644
+--- a/themeAugmentation/components.d.ts
++++ b/themeAugmentation/components.d.ts
+@@ -68,6 +68,6 @@ export interface LabComponents {
+   };
+ }
+ 
+-declare module '@mui/material/styles' {
++declare module '@mui/material/styles/components' {
+   interface Components extends LabComponents {}
+ }
+diff --git a/themeAugmentation/overrides.d.ts b/themeAugmentation/overrides.d.ts
+index 7e8c81418ed3aca1f9ffd4954d66162815173a9c..ad449205516eec0e238f1b304554016e88d5bf6c 100644
+--- a/themeAugmentation/overrides.d.ts
++++ b/themeAugmentation/overrides.d.ts
+@@ -25,7 +25,7 @@ export interface LabComponentNameToClassKey {
+   MuiTimelineSeparator: TimelineSeparatorClassKey;
+ }
+ 
+-declare module '@mui/material/styles' {
++declare module '@mui/material/styles/overrides' {
+   interface ComponentNameToClassKey extends LabComponentNameToClassKey {}
+ }
+ 
+diff --git a/themeAugmentation/props.d.ts b/themeAugmentation/props.d.ts
+index 44b9e13dc49fe3a0946c94dec192846e26c5a14b..0b19211ea6e218d488d48fe28072da85e85c45ce 100644
+--- a/themeAugmentation/props.d.ts
++++ b/themeAugmentation/props.d.ts
+@@ -26,7 +26,7 @@ export interface LabComponentsPropsList {
+   MuiTimelineSeparator: TimelineSeparatorProps;
+ }
+ 
+-declare module '@mui/material/styles' {
++declare module '@mui/material/styles/props' {
+   interface ComponentsPropsList extends LabComponentsPropsList {}
+ }
+ 

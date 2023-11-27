@@ -33,12 +33,13 @@
     "@types/react": "17.0.39",
     "@types/react-syntax-highlighter": "^11.0.5",
     "react-syntax-highlighter": "^13.5.3",
-    "@mui/x-data-grid@6.6.0": "patch:@mui/x-data-grid@npm%3A6.6.0#./.yarn/patches/@mui-x-data-grid-npm-6.6.0-a053a557eb.patch",
-    "@mui/x-data-grid-pro@6.6.0": "patch:@mui/x-data-grid-pro@npm%3A6.6.0#./.yarn/patches/@mui-x-data-grid-pro-npm-6.6.0-8bfb982d0f.patch",
-    "@mui/x-data-grid-premium@6.6.0": "patch:@mui/x-data-grid-premium@npm%3A6.6.0#./.yarn/patches/@mui-x-data-grid-premium-npm-6.6.0-e12793f49c.patch",
-    "@mui/lab@5.0.0-alpha.133": "patch:@mui/lab@npm%3A5.0.0-alpha.133#./.yarn/patches/@mui-lab-npm-5.0.0-alpha.133-321907c194.patch",
-    "@mui/x-date-pickers@6.6.0": "patch:@mui/x-date-pickers@npm%3A6.6.0#./.yarn/patches/@mui-x-date-pickers-npm-6.6.0-d552c4dac4.patch",
-    "@mui/x-date-pickers-pro@6.6.0": "patch:@mui/x-date-pickers-pro@npm%3A6.6.0#./.yarn/patches/@mui-x-date-pickers-pro-npm-6.6.0-d18188e4d2.patch"
+    "@mui/x-tree-view@^6.17.0": "patch:@mui/x-tree-view@npm%3A6.17.0#./.yarn/patches/@mui-x-tree-view-npm-6.17.0-76eee6376d.patch",
+    "@mui/x-date-pickers@6.18.1": "patch:@mui/x-date-pickers@npm%3A6.18.1#./.yarn/patches/@mui-x-date-pickers-npm-6.18.1-79bdefe4ec.patch",
+    "@mui/x-date-pickers-pro@6.18.1": "patch:@mui/x-date-pickers-pro@npm%3A6.18.1#./.yarn/patches/@mui-x-date-pickers-pro-npm-6.18.1-1f00a415d9.patch",
+    "@mui/lab@5.0.0-alpha.153": "patch:@mui/lab@npm%3A5.0.0-alpha.153#./.yarn/patches/@mui-lab-npm-5.0.0-alpha.153-d6d65ebdd5.patch",
+    "@mui/x-data-grid@6.18.1": "patch:@mui/x-data-grid@npm%3A6.18.1#./.yarn/patches/@mui-x-data-grid-npm-6.18.1-d32d68fcf9.patch",
+    "@mui/x-data-grid-premium@6.18.1": "patch:@mui/x-data-grid-premium@npm%3A6.18.1#./.yarn/patches/@mui-x-data-grid-premium-npm-6.18.1-aeb54fa10a.patch",
+    "@mui/x-data-grid-pro@6.18.1": "patch:@mui/x-data-grid-pro@npm%3A6.18.1#./.yarn/patches/@mui-x-data-grid-pro-npm-6.18.1-96c92648e4.patch"
   },
   "devDependencies": {
     "@0x706b/eslint-plugin-module-specifier-extensions": "0.1.8",

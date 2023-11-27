@@ -1,0 +1,38 @@
+diff --git a/themeAugmentation/components.d.ts b/themeAugmentation/components.d.ts
+index 02d6502118a474c6575bf6ba02bd93714c1610a7..34d2e2cd7eba91fe690c97dd8a5b7da205bc6ced 100644
+--- a/themeAugmentation/components.d.ts
++++ b/themeAugmentation/components.d.ts
+@@ -169,6 +169,6 @@ export interface PickerComponents<Theme = unknown> {
+   };
+ }
+ 
+-declare module '@mui/material/styles' {
++declare module '@mui/material/styles/components' {
+   interface Components<Theme = unknown> extends PickerComponents<Theme> {}
+ }
+diff --git a/themeAugmentation/overrides.d.ts b/themeAugmentation/overrides.d.ts
+index 82f9058691ee2628ff72d4489c9e49da6c1ddf51..89ee5e704a5bdc49999d59fa9a076ce76cd07dd9 100644
+--- a/themeAugmentation/overrides.d.ts
++++ b/themeAugmentation/overrides.d.ts
+@@ -64,7 +64,7 @@ export interface PickersComponentNameToClassKey {
+   MuiYearCalendar: YearCalendarClassKey;
+ }
+ 
+-declare module '@mui/material/styles' {
++declare module '@mui/material/styles/overrides' {
+   interface ComponentNameToClassKey extends PickersComponentNameToClassKey {}
+ }
+ 
+diff --git a/themeAugmentation/props.d.ts b/themeAugmentation/props.d.ts
+index 7feb5264bfb9f785af4c2da3ecb41afe7eed5fe5..b34b536f8690280055f9eb21dd77eda9acc16dad 100644
+--- a/themeAugmentation/props.d.ts
++++ b/themeAugmentation/props.d.ts
+@@ -101,7 +101,7 @@ export interface PickersComponentsPropsList {
+   MuiStaticDateTimePicker: StaticDateTimePickerProps<unknown>;
+ }
+ 
+-declare module '@mui/material/styles' {
++declare module '@mui/material/styles/props' {
+   interface ComponentsPropsList extends PickersComponentsPropsList {}
+ }
+ 
