@@ -4,6 +4,7 @@ import type { Theme, ThemeOptions } from '@mui/material'
 import type {} from '@mui/x-data-grid-pro/themeAugmentation'
 import type {} from '@mui/x-date-pickers/themeAugmentation'
 import type {} from '@mui/x-date-pickers-pro/themeAugmentation'
+import type {} from '@mui/x-tree-view/themeAugmentation'
 
 import { baseTheme } from '../../legacy/theme/baseTheme.js'
 import { getThemeComponents as getLegacyThemeComponents } from '../../legacy/theme/themeComponents.js'

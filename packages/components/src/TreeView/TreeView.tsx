@@ -1,4 +1,4 @@
-import { TreeView as MuiTreeView } from '@mui/lab'
+import { TreeView as MuiTreeView } from '@mui/x-tree-view'
 
 /**
  *
@@ -13,4 +13,4 @@ import { TreeView as MuiTreeView } from '@mui/lab'
  */
 export const TreeView: typeof MuiTreeView = MuiTreeView
 
-export * from '@mui/lab/TreeView'
+export * from '@mui/x-tree-view/TreeView'

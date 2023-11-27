@@ -1,6 +1,7 @@
-import { treeItemClasses } from '@mui/lab'
 import type { Components, Theme } from '@mui/material'
 import { alpha } from '@mui/material'
+import { treeItemClasses } from '@mui/x-tree-view'
+import type {} from '@mui/x-tree-view/themeAugmentation'
 
 export const MonorailTreeItemOverrides: Components<Theme>['MuiTreeItem'] = {
   defaultProps: {},
