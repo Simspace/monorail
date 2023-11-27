@@ -1,8 +1,7 @@
 import React from 'react'
 import { useThemeProps } from '@mui/material'
-import useEnhancedEffect from '@mui/utils/useEnhancedEffect.js'
 
-import { useForceUpdate } from '@monorail/utils'
+import { useEnhancedEffect, useForceUpdate } from '@monorail/utils'
 
 import { useResizableContainerContext } from '../ResizableContainer/ResizableContainerContext.js'
 import { ResizeHandle } from '../ResizeHandle/ResizeHandle.js'

@@ -4,6 +4,7 @@ import type { Theme, ThemeOptions } from '@mui/material'
 import type {} from '@mui/x-data-grid-pro/themeAugmentation'
 import type {} from '@mui/x-date-pickers/themeAugmentation'
 import type {} from '@mui/x-date-pickers-pro/themeAugmentation'
+import type {} from '@mui/x-tree-view/themeAugmentation'
 
 import { getThemeComponents as getClassicThemeComponents } from '../../classic/theme/themeComponents.js'
 import { MonorailAccordionActionsOverrides } from '../components/AccordionActions/themeOverrides.js'

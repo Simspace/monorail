@@ -36,25 +36,26 @@ import { story } from '../helpers/storybook.js'
 
 export default { title: 'Data Display/TreeView', component: TreeView }
 
-const Template = story<TreeViewProps>(
+const Template = story<TreeViewProps<false>>(
   args => (
-    <TreeView
-      aria-label="file system navigator"
-      defaultCollapseIcon={<ExpandMoreIcon />}
-      defaultExpandIcon={<ChevronRightIcon />}
-      sx={{ height: 240, flexGrow: 1, maxWidth: 400, overflowY: 'auto' }}
-      {...args}
-    >
-      <TreeItem nodeId="1" label="Applications">
-        <TreeItem nodeId="2" label="Calendar" />
-      </TreeItem>
-      <TreeItem nodeId="5" label="Documents">
-        <TreeItem nodeId="10" label="OSS" />
-        <TreeItem nodeId="6" label="Material-UI">
-          <TreeItem nodeId="8" label="index.js" />
+    <Box sx={{ minHeight: 180, flexGrow: 1, maxWidth: 300 }}>
+      <TreeView
+        aria-label="file system navigator"
+        defaultCollapseIcon={<ExpandMoreIcon />}
+        defaultExpandIcon={<ChevronRightIcon />}
+        {...args}
+      >
+        <TreeItem nodeId="1" label="Applications">
+          <TreeItem nodeId="2" label="Calendar" />
         </TreeItem>
-      </TreeItem>
-    </TreeView>
+        <TreeItem nodeId="5" label="Documents">
+          <TreeItem nodeId="10" label="OSS" />
+          <TreeItem nodeId="6" label="MUI">
+            <TreeItem nodeId="8" label="index.js" />
+          </TreeItem>
+        </TreeItem>
+      </TreeView>
+    </Box>
   ),
   {
     args: {},
@@ -70,9 +71,31 @@ export const Default = story(Template)
 /**
  * Tree views also support multi-selection.
  */
-export const MultiSelection = story(Template, {
-  args: { multiSelect: true },
-})
+export const MultiSelection = story<TreeViewProps<true>>(args => (
+  <Box sx={{ minHeight: 220, flexGrow: 1, maxWidth: 300 }}>
+    <TreeView
+      aria-label="multi-select"
+      defaultCollapseIcon={<ExpandMoreIcon />}
+      defaultExpandIcon={<ChevronRightIcon />}
+      multiSelect
+      {...args}
+    >
+      <TreeItem nodeId="1" label="Applications">
+        <TreeItem nodeId="2" label="Calendar" />
+        <TreeItem nodeId="3" label="Chrome" />
+        <TreeItem nodeId="4" label="Webstorm" />
+      </TreeItem>
+      <TreeItem nodeId="5" label="Documents">
+        <TreeItem nodeId="6" label="MUI">
+          <TreeItem nodeId="7" label="src">
+            <TreeItem nodeId="8" label="index.js" />
+            <TreeItem nodeId="9" label="tree-view.js" />
+          </TreeItem>
+        </TreeItem>
+      </TreeItem>
+    </TreeView>
+  </Box>
+))
 
 /**
  * The tree view also offers a controlled API.
@@ -147,58 +170,62 @@ export const Controlled = story(() => {
   )
 })
 
+interface RenderTree {
+  id: string
+  name: string
+  children?: ReadonlyArray<RenderTree>
+}
+
+const data: RenderTree = {
+  id: 'root',
+  name: 'Parent',
+  children: [
+    {
+      id: '1',
+      name: 'Child - 1',
+    },
+    {
+      id: '3',
+      name: 'Child - 3',
+      children: [
+        {
+          id: '4',
+          name: 'Child - 4',
+        },
+      ],
+    },
+  ],
+}
+
 /**
  * While the `TreeView`/`TreeItem` component API maximizes flexibility, an extra step is needed to handle a rich object.
  *
  * Let's consider a data variable with the following shape, recursion can be used to handle it.
  */
-export const RichObject = story(() => {
-  interface RenderTree {
-    id: string
-    name: string
-    children?: ReadonlyArray<RenderTree>
+export const RichObject = story<TreeViewProps<true>>(args => {
+  {
+    const renderTree = (nodes: RenderTree) => (
+      <TreeItem key={nodes.id} nodeId={nodes.id} label={nodes.name}>
+        {Array.isArray(nodes.children)
+          ? nodes.children.map(node => renderTree(node))
+          : null}
+      </TreeItem>
+    )
+
+    return (
+      <Box sx={{ minHeight: 110, flexGrow: 1, maxWidth: 300 }}>
+        <TreeView
+          aria-label="rich object"
+          defaultCollapseIcon={<ExpandMoreIcon />}
+          defaultExpanded={['root']}
+          defaultExpandIcon={<ChevronRightIcon />}
+          {...args}
+        >
+          {renderTree(data)}
+        </TreeView>
+      </Box>
+    )
   }
-
-  const data: RenderTree = {
-    id: 'root',
-    name: 'Parent',
-    children: [
-      {
-        id: '1',
-        name: 'Child - 1',
-      },
-      {
-        id: '3',
-        name: 'Child - 3',
-        children: [
-          {
-            id: '4',
-            name: 'Child - 4',
-          },
-        ],
-      },
-    ],
-  }
-
-  const renderTree = (nodes: RenderTree) => (
-    <TreeItem key={nodes.id} nodeId={nodes.id} label={nodes.name}>
-      {Array.isArray(nodes.children)
-        ? nodes.children.map(node => renderTree(node))
-        : null}
-    </TreeItem>
-  )
-
-  return (
-    <TreeView
-      aria-label="rich object"
-      defaultCollapseIcon={<ExpandMoreIcon />}
-      defaultExpanded={['root']}
-      defaultExpandIcon={<ChevronRightIcon />}
-      sx={{ height: 110, flexGrow: 1, maxWidth: 400, overflowY: 'auto' }}
-    >
-      {renderTree(data)}
-    </TreeView>
-  )
 })
 
 /**

@@ -3,11 +3,10 @@
 import React from 'react'
 import { styled, useThemeProps } from '@mui/material'
 import composeClasses from '@mui/utils/composeClasses'
-import useEnhancedEffect from '@mui/utils/useEnhancedEffect.js'
 import clsx from 'clsx'
 import useResizeObserver from 'use-resize-observer'
 
-import { useDidUpdate, useForceUpdate, usePrevious, useRequestAnimationFrame } from '@monorail/utils'
+import { useDidUpdate, useEnhancedEffect, useForceUpdate, usePrevious, useRequestAnimationFrame } from '@monorail/utils'
 
 import { ResizableHandle } from '../ResizableHandle.js'
 import { getResizableContainerUtilityClass } from './resizableContainerClasses.js'
