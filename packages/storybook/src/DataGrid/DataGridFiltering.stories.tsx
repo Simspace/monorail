@@ -284,7 +284,7 @@ In this demo, the Rating column reuses the numeric filter and the same rating co
  * Extend filter operators
  */
 const priceColumnType: GridColTypeDef = {
-  extendType: 'number',
+  type: 'number',
   filterOperators: getGridNumericOperators()
     .filter(operator => operator.value === '>' || operator.value === '<')
     .map(operator => {
