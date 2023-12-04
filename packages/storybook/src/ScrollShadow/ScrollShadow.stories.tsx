@@ -1,5 +1,5 @@
 import React from 'react'
-import type { Story } from '@storybook/react'
+import type { StoryFn } from '@storybook/react'
 
 import type { ScrollShadowProps } from '@monorail/components'
 import {
@@ -12,7 +12,7 @@ import {
 
 export default { title: 'Utils/ScrollShadow', component: ScrollShadow }
 
-const Template: Story<Partial<ScrollShadowProps>> = args => {
+const Template: StoryFn<Partial<ScrollShadowProps>> = args => {
   return (
     <ScrollShadow sx={theme => ({ height: theme.spacing(100) })} {...args}>
       <Box height={800} />

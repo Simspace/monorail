@@ -5447,6 +5447,7 @@ __metadata:
     "@types/jest": 29.2.2
     "@types/jest-axe": 3.5.5
     "@types/react": 17.0.52
+    "@types/react-is": ^18.2.4
     "@types/react-transition-group": 4.4.6
     "@types/react-virtualized-auto-sizer": ^1.0.1
     "@types/styled-components": ^5.1.26
@@ -9187,6 +9188,15 @@ __metadata:
   dependencies:
     "@types/react": "*"
   checksum: 8301f35cf1cbfec8c723e9477aecf87774e3c168bd457d353b23c45064737213d3e8008b067c6767b7b08e4f2b3823ee239242a6c225fc91e7f8725ef8734124
+  languageName: node
+  linkType: hard
+
+"@types/react-is@npm:^18.2.4":
+  version: 18.2.4
+  resolution: "@types/react-is@npm:18.2.4"
+  dependencies:
+    "@types/react": "*"
+  checksum: 2b69293a04609641be4963f5a9127aba3b7576cc15e3234fe6c341a940cbf3979e80bf848a43d93a24fb2ab09ad8faed54ac38c22037b159a0eea852e4dfa6eb
   languageName: node
   linkType: hard
 

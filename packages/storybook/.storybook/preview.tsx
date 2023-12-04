@@ -13,7 +13,7 @@ import {
 } from '@monorail/themes'
 import { CssBaseline, GlobalStyles, ThemeProvider } from '@monorail/components'
 import * as MUI from '@mui/material'
-import { DecoratorFn, Parameters } from '@storybook/react'
+import { Decorator, Parameters } from '@storybook/react'
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import { StyledEngineProvider } from '@monorail/components/StyledEngineProviderEmotion'
@@ -103,7 +103,7 @@ export const globalTypes = {
   },
 }
 
-export const withTheme: DecoratorFn = (Story, context) => {
+export const withTheme: Decorator = (Story, context) => {
   const sbTheme: ThemeOption = context.parameters.theme || context.globals.theme
   const sbMode: MUI.PaletteMode =
     context.parameters.colorMode || context.globals.colorMode

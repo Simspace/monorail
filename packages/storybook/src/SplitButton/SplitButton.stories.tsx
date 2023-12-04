@@ -1,6 +1,6 @@
 import React from 'react'
 import { Stack } from '@mui/material'
-import type { Story } from '@storybook/react'
+import type { StoryFn } from '@storybook/react'
 
 import type { SplitButtonProps } from '@monorail/components'
 import { SplitButton } from '@monorail/components'
@@ -10,7 +10,7 @@ export default {
   component: SplitButton,
 }
 
-const Template: Story<Partial<SplitButtonProps>> = args => (
+const Template: StoryFn<Partial<SplitButtonProps>> = args => (
   <SplitButton
     {...args}
     options={[

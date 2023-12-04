@@ -1,6 +1,6 @@
 import React from 'react'
 import { FixedSizeList } from 'react-window'
-import type { Story } from '@storybook/react'
+import type { StoryFn } from '@storybook/react'
 
 import type { InfiniteListProps } from '@monorail/components'
 import {
@@ -17,7 +17,7 @@ export default {
   component: InfiniteList,
 }
 
-const Template: Story<InfiniteListProps> = _ => {
+const Template: StoryFn<InfiniteListProps> = _ => {
   const [items, setItems] = React.useState<Array<string>>([])
   const [isNextPageLoading, setNextPageLoading] = React.useState(false)
   const ref = React.useRef(null)

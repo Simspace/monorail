@@ -7,7 +7,7 @@ import { CssBaseline, ThemeProvider } from '@mui/material'
 import { css, GlobalStyles } from '@mui/styled-engine'
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
-import type { Story } from '@storybook/react'
+import type { StoryFn } from '@storybook/react'
 import type { RenderOptions, RenderResult } from '@testing-library/react'
 import { render } from '@testing-library/react'
 
@@ -59,8 +59,8 @@ export function renderWithTheme(
  * Renders a Storybook story for testing in jest
  */
 export function renderStory(
-  Story: Story,
-  props?: Story['args'],
+  Story: StoryFn,
+  props?: StoryFn['args'],
   options?: Omit<RenderOptions, 'queries'>,
 ): RenderResult {
   return renderWithTheme(<Story {...Story.args} {...props} />, options)

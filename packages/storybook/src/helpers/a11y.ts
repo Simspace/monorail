@@ -1,7 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import type {
   Meta as StorybookMeta,
-  Story as StorybookStory,
+  StoryFn as StorybookStory,
 } from '@storybook/react'
 import { configureAxe } from 'jest-axe'
 
@@ -28,6 +28,8 @@ const axe = configureAxe({
     'label-title-only': { enabled: false },
     // @mui/x-date-pickers
     'presentation-role-conflict': { enabled: false },
+    // @mui/material Select Menu has a role="combobox"
+    'aria-required-children': { enabled: false },
   },
 })
 

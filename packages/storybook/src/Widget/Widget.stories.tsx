@@ -1,5 +1,5 @@
 import React from 'react'
-import type { Story } from '@storybook/react'
+import type { StoryFn } from '@storybook/react'
 
 import type { WidgetProps } from '@monorail/components'
 import {
@@ -14,7 +14,7 @@ import { MoreVert } from '@monorail/components/icons'
 
 export default { title: 'Data Display/Widget', component: Widget }
 
-const Template: Story<Partial<WidgetProps>> = args => (
+const Template: StoryFn<Partial<WidgetProps>> = args => (
   <Widget>
     <WidgetHeader title="Widget Name" subtitle="Subtitle" {...args}>
       <Button variant="text">Button</Button>
