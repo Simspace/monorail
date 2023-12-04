@@ -228,7 +228,7 @@ export function DataGridPaginationFooter(props: DataGridFooterProps) {
                 onChange={handlePageSizeChange}
               >
                 {rootProps.pageSizeOptions.map(pageSize => (
-                  <MenuItem value={pageSize} key={pageSize}>
+                  <MenuItem value={pageSize} key={`${pageSize}`}>
                     {pageSize}
                   </MenuItem>
                 ))}

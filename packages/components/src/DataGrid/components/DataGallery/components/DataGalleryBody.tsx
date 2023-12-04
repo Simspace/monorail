@@ -31,19 +31,19 @@ export function DataGalleryBody(props: DataGalleryBodyProps) {
   const rootProps = useGridRootProps()
   const rootRef = React.useRef<HTMLDivElement>(null)
 
-  const [isVirtualizationDisabled, setIsVirtualizationDisabled] =
-    React.useState(rootProps.disableVirtualization)
+  const [isVirtualizationEnabled, setIsVirtualizationEnabled] = React.useState(
+    !rootProps.disableVirtualization,
+  )
 
-  const disableVirtualization = React.useCallback(() => {
-    setIsVirtualizationDisabled(true)
-  }, [])
-
-  const enableVirtualization = React.useCallback(() => {
-    setIsVirtualizationDisabled(false)
-  }, [])
+  const setVirtualization = React.useCallback(
+    (enabled: boolean) => {
+      setIsVirtualizationEnabled(enabled)
+    },
+    [setIsVirtualizationEnabled],
+  )
 
   React.useEffect(() => {
-    setIsVirtualizationDisabled(rootProps.disableVirtualization)
+    setIsVirtualizationEnabled(!rootProps.disableVirtualization)
   }, [rootProps.disableVirtualization])
 
   useEnhancedEffect(() => {
@@ -83,8 +83,7 @@ export function DataGalleryBody(props: DataGalleryBodyProps) {
   // they were installed. Which means that calling `setIsVirtualizationDisabled`
   // will trigger a re-render, but it won't update the state. That can be solved
   // by migrating the virtualization status to the global state.
-  apiRef.current.unstable_disableVirtualization = disableVirtualization
-  apiRef.current.unstable_enableVirtualization = enableVirtualization
+  apiRef.current.unstable_setVirtualization = setVirtualization
 
   const columnHeadersRef = React.useRef<HTMLDivElement>(null)
   const columnsContainerRef = React.useRef<HTMLDivElement>(null)
@@ -106,7 +105,7 @@ export function DataGalleryBody(props: DataGalleryBodyProps) {
       />
       <VirtualScrollerComponent
         ref={virtualScrollerRef}
-        disableVirtualization={isVirtualizationDisabled}
+        disableVirtualization={isVirtualizationEnabled}
       />
       {children}
     </DataGalleryMainContainer>

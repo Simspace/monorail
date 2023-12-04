@@ -1,4 +1,4 @@
-import MuiFocusTrap from '@mui/base/FocusTrap'
+import { FocusTrap as MuiFocusTrap } from '@mui/base/FocusTrap'
 
 /**
  * Utility component that locks focus inside the component.

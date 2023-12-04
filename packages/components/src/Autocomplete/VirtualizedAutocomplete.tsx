@@ -30,7 +30,7 @@ export interface VirtualizedAutocompleteProps<
   ChipComponent extends React.ElementType = ChipTypeMap['defaultComponent'],
 > extends Omit<
     AutocompleteProps<T, Multiple, DisableClearable, FreeSolo, ChipComponent>,
-    'ListboxComponent' | 'renderGroup'
+    'ListboxComponent' | 'renderGroup' | 'renderOption'
   > {
   estimatedItemSize: number
   getItemSize?: (item: ChildData<T>) => number
@@ -44,6 +44,19 @@ export interface VirtualizedAutocompleteProps<
   renderGroup?: (
     props: AutocompleteRenderGroupProps,
     params: AutocompleteRenderGroupParams,
+  ) => React.ReactNode
+  /**
+   * Render the option.
+   *
+   * @param props  The props to apply on the li element.
+   * @param option The option to render.
+   * @param state The state of each option.
+   * @returns {ReactNode}
+   */
+  renderOption?: (
+    props: React.HTMLAttributes<HTMLLIElement>,
+    option: T,
+    state: AutocompleteRenderOptionState,
   ) => React.ReactNode
 }
 
