@@ -1,5 +1,5 @@
 import React from 'react'
-import type { Story } from '@storybook/react'
+import type { StoryFn } from '@storybook/react'
 
 import type { PopoutProps } from '@monorail/components'
 import {
@@ -16,7 +16,7 @@ export default {
   component: Popout,
 }
 
-const Template: Story<Partial<PopoutProps>> = args => {
+const Template: StoryFn<Partial<PopoutProps>> = args => {
   const [isPopoutOpen, setPopoutOpen] = React.useState(false)
   return (
     <Box width={500}>

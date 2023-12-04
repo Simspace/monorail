@@ -1,5 +1,5 @@
 import React from 'react'
-import type { Story } from '@storybook/react'
+import type { StoryFn } from '@storybook/react'
 import { loremIpsum } from 'lorem-ipsum'
 
 import type { ResizableContainerProps } from '@monorail/components'
@@ -16,7 +16,7 @@ export default {
   component: ResizableContainer,
 }
 
-const Template: Story<Partial<ResizableContainerProps>> = args => {
+const Template: StoryFn<Partial<ResizableContainerProps>> = args => {
   return (
     <Box height={500}>
       <ResizableContainer orientation="vertical" {...args}>
@@ -48,7 +48,7 @@ const Template: Story<Partial<ResizableContainerProps>> = args => {
   )
 }
 
-export const Default: Story<Partial<ResizableContainerProps>> = Template.bind(
+export const Default: StoryFn<Partial<ResizableContainerProps>> = Template.bind(
   {},
 )
 
@@ -56,7 +56,7 @@ Default.parameters = {
   layout: 'fullscreen',
 }
 
-export const Horizontal: Story<Partial<ResizableContainerProps>> = args => (
+export const Horizontal: StoryFn<Partial<ResizableContainerProps>> = args => (
   <div style={{ height: '600px', padding: '16px' }}>
     <ResizableContainer orientation="horizontal" {...args}>
       <ResizableElement>

@@ -85,6 +85,7 @@
     "@types/jest": "29.2.2",
     "@types/jest-axe": "3.5.5",
     "@types/react": "17.0.52",
+    "@types/react-is": "^18.2.4",
     "@types/react-transition-group": "4.4.6",
     "@types/react-virtualized-auto-sizer": "^1.0.1",
     "@types/styled-components": "^5.1.26",

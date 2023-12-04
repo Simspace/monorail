@@ -1,12 +1,12 @@
 import React from 'react'
-import type { Story } from '@storybook/react'
+import type { StoryFn } from '@storybook/react'
 
 import type { PopupProps } from '@monorail/components'
 import { Box, Button, Popup, Typography } from '@monorail/components'
 
 export default { title: 'Utils/Popup', component: Popup }
 
-const Template: Story<Partial<PopupProps>> = args => {
+const Template: StoryFn<Partial<PopupProps>> = args => {
   const [open, setOpen] = React.useState(false)
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
 
@@ -50,10 +50,10 @@ Template.argTypes = {
   },
 }
 
-export const Default: Story<Partial<PopupProps>> = Template.bind({})
+export const Default: StoryFn<Partial<PopupProps>> = Template.bind({})
 Default.args = {}
 
-export const WithArrow: Story<Partial<PopupProps>> = Template.bind({})
+export const WithArrow: StoryFn<Partial<PopupProps>> = Template.bind({})
 WithArrow.args = {
   arrow: true,
 }

@@ -110,6 +110,7 @@ export const AvatarGroup = React.forwardRef(function AvatarGroup(
   const children = React.Children.toArray(childrenProp).filter(
     (child): child is React.ReactElement<AvatarProps> => {
       if (process.env.NODE_ENV !== 'production') {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-call
         if (isFragment(child)) {
           // eslint-disable-next-line no-console
           console.error(

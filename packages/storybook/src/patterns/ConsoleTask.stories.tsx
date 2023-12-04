@@ -1,5 +1,5 @@
 import React from 'react'
-import type { Story } from '@storybook/react'
+import type { StoryFn } from '@storybook/react'
 
 import {
   Box,
@@ -98,7 +98,7 @@ const Task2 = () => (
   </>
 )
 
-const Template: Story<{}> = () => {
+const Template: StoryFn<{}> = () => {
   const [isPopoutOpen, setPopoutOpen] = React.useState(false)
   const [task, setTask] = React.useState(0)
   return (
