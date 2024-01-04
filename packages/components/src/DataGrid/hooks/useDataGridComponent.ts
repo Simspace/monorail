@@ -8,6 +8,7 @@ import type {
 
 import { useDataGridGlobalSearch } from './useDataGridGlobalSearch.js'
 import { useDataGridViewStyle } from './useDataGridViewStyle.js'
+import { useGetScrollHeight } from './useGetScrollHeight.js'
 import { useGridRowReorder } from './useGridRowReorder.js'
 import { useInitializeGridSubState } from './useInitializeGridSubState.js'
 import { useSetRowIndex } from './useSetRowIndex.js'
@@ -35,5 +36,6 @@ export function useDataGridComponent(
   }))
   useDataGridViewStyle(apiRef, props)
   useDataGridGlobalSearch(apiRef, props)
+  useGetScrollHeight(apiRef)
   return apiRef
 }
