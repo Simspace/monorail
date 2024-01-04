@@ -7,6 +7,11 @@ declare module '@mui/x-data-grid-premium/models/gridApiPremium' {
   interface GridApiPremium {
     setViewStyle: (viewStyle: DataGridViewStyle, external?: boolean) => void
     setGlobalSearchValue: (value: string) => void
+    /**
+     * Returns the scroll height of the virtual scroller. If the grid is not initialized,
+     * null will be returned
+     */
+    getScrollHeight: () => number | null
   }
 }
 
