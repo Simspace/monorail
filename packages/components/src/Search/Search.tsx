@@ -11,6 +11,7 @@ import {
   useThemeProps,
 } from '@monorail/utils'
 
+import { buttonClasses } from '../Button.js'
 import { IconButton } from '../IconButton.js'
 import { InputAdornment } from '../InputAdornment.js'
 import { TextField } from '../TextField.js'
@@ -40,12 +41,19 @@ const SearchRoot = styled(TextField, {
   name: 'MonorailSearch',
   slot: 'Root',
   overridesResolver,
-})<SearchRootProps>({})
+})<SearchRootProps>({
+  isolation: 'isolate',
+})
 
 const ClearButton = styled(IconButton, {
   name: 'MonorailSearch',
   slot: 'ClearButton',
-})({})
+})({
+  [`&.${buttonClasses.focusVisible}`]: {
+    // For focus state only to prevent hover background color from overlapping the input's outline.
+    zIndex: 1,
+  },
+})
 
 /**
  * `Search` is a convenience wrapper for `TextField`.
@@ -147,7 +155,7 @@ export const Search = React.forwardRef(function Search(inProps, ref) {
             {...slotProps.clearButton}
             onClick={handleClear}
             sx={combineSxProps(
-              { mr: -2, visibility: isClearable ? 'visible' : 'hidden' },
+              { mr: -2, display: isClearable ? 'inline-flex' : 'none' },
               slotProps.clearButton?.sx,
             )}
           >
