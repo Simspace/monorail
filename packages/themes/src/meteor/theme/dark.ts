@@ -493,7 +493,7 @@ const palette: PaletteOptions = {
   snackbar: RawColor.Grey300,
   rating: RawColor.Yellow400,
   tooltip: RawColor.Grey700,
-  backdropOverlay: alpha(RawColor.Grey300, 0.7),
+  backdropOverlay: alpha(RawColor.Black, 0.7),
   background: {
     default: RawColor.Black,
     paper: RawColor.Grey900,
