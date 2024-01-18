@@ -87,6 +87,26 @@ declare module '@mui/material/styles/createPalette' {
       purple: Color
     }
 
+    appIcon: {
+      orange: {
+        main: string
+      }
+      blue: {
+        main: string
+        dark: string
+      }
+    }
+    illustration: {
+      orange: {
+        light: string
+        dark: string
+      }
+      blue: {
+        light: string
+        main: string
+      }
+    }
+
     /** Color token for `Rating` when filled */
     rating: string
     /** Commonly used for outlined input fields */
@@ -135,6 +155,26 @@ declare module '@mui/material/styles/createPalette' {
       fuchsia: PaletteColorOptions | Record<string, string>
       purple: PaletteColorOptions | Record<string, string>
     }>
+
+    appIcon?: {
+      orange: {
+        main: string
+      }
+      blue: {
+        main: string
+        dark: string
+      }
+    }
+    illustration?: {
+      orange: {
+        light: string
+        dark: string
+      }
+      blue: {
+        light: string
+        main: string
+      }
+    }
 
     /** Color token for `Rating` when filled */
     rating?: string

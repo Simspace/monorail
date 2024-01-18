@@ -500,6 +500,25 @@ const palette: PaletteOptions = {
   },
   action: action,
   chart: chartColors,
+  appIcon: {
+    orange: {
+      main: '#F95A1A',
+    },
+    blue: {
+      main: '#7B9DD5',
+      dark: '#C8D6ED',
+    },
+  },
+  illustration: {
+    orange: {
+      light: RawColor.Orange400,
+      dark: RawColor.Orange800,
+    },
+    blue: {
+      light: '#D2E4F3',
+      main: '#B1D0EA',
+    },
+  },
 }
 
 // Construct a Theme with the base settings plus our customizations, but without the components overrides provided yet.
