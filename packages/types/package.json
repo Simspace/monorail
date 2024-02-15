@@ -1,6 +1,6 @@
 {
   "name": "@monorail/types",
-  "version": "3.0.119",
+  "version": "3.0.120",
   "license": "Apache-2.0",
   "typesVersions": {
     "*": {

@@ -16,7 +16,7 @@ export const MonorailDataGridOverrides: Components<Theme>['MuiDataGrid'] = {
     },
     row: ({ theme }) => {
       return {
-        width: '100%',
+        minWidth: '100%',
         [`&.${dataGridClasses.grouped}`]: {
           backgroundColor: theme.palette.background.default,
         },
