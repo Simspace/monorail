@@ -275,8 +275,13 @@ function useGridRowRange(
 
   const visibleRows = useGridVisibleRows(apiRef, rootProps)
 
+  const visibleTopLevelRowCount = useGridSelector(
+    apiRef,
+    gridFilteredTopLevelRowCountSelector,
+  )
+
   const clientRowCount = useGridSelector(apiRef, gridExpandedRowCountSelector)
-  const totalRowCount = useGridSelector(apiRef, gridRowCountSelector)
+  const totalRowCount = rootProps.rowCount ?? visibleTopLevelRowCount ?? 0
 
   if (!visibleRows?.range) {
     return {
