@@ -18,7 +18,7 @@ declare module '@mui/material/LinearProgress' {
   interface LinearProgressProps {
     size?: 'small' | 'medium'
     /**
-     * If `true`, the value will be displayed as a percentage.
+     * If `true`, the value will be displayed as a percentage. This prop is only enabled for `variant="indeterminate"`.
      * @default false
      */
     showPercentage?: boolean

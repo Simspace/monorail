@@ -45,6 +45,48 @@ export function LinearIndeterminate() {
   )
 }
 
+export const IndeterminateWithPercentage = story<LinearProgressProps>(
+  () => {
+    const [progress, setProgress] = React.useState(0)
+
+    React.useEffect(() => {
+      const timer = setInterval(() => {
+        setProgress(oldProgress => {
+          if (oldProgress === 100) {
+            return 0
+          }
+          const diff = Math.random() * 10
+          return Math.min(oldProgress + diff, 100)
+        })
+      }, 500)
+
+      return () => {
+        clearInterval(timer)
+      }
+    }, [])
+    return (
+      <Box width={256}>
+        <LinearProgress
+          size={'small'}
+          variant="indeterminate"
+          value={progress}
+          showPercentage
+        />
+      </Box>
+    )
+  },
+  {
+    parameters: {
+      docs: {
+        description: {
+          story:
+            'Setting the `showPercentage` prop to `true` will display the percentage of the progress.',
+        },
+      },
+    },
+  },
+)
+
 export function LinearDeterminate() {
   const [progress, setProgress] = React.useState(0)
 
@@ -83,6 +125,7 @@ export function LinearDeterminate() {
                 color={color}
                 size={size}
                 value={progress}
+                showPercentage
               />
             </Box>
           ))}
