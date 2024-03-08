@@ -1,5 +1,6 @@
 import type { Components, Theme } from '@mui/material'
-import { linearProgressClasses } from '@mui/material'
+
+import { linearProgressClasses, typographyClasses } from '@monorail/components'
 
 export const MonorailLinearProgressOverrides: Components<Theme>['MuiLinearProgress'] =
   {
@@ -17,6 +18,11 @@ export const MonorailLinearProgressOverrides: Components<Theme>['MuiLinearProgre
             borderRadius: theme.typography.pxToRem(8),
             height: theme.typography.pxToRem(16),
           }),
+          [`&.${linearProgressClasses.showPercentage}`]: {
+            width: '100%',
+            // 4ch does not compute as expected in Gotham.
+            [`& + .${typographyClasses.root}`]: { minWidth: '6ch' },
+          },
         }
       },
       bar: ({ ownerState: { color = 'primary' }, theme }) => ({
