@@ -1,6 +1,6 @@
 {
   "name": "@monorail/utils",
-  "version": "3.0.121",
+  "version": "3.0.122",
   "license": "Apache-2.0",
   "exports": {
     "./*": {
