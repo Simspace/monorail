@@ -5,13 +5,7 @@ import type { DataGridPremiumProcessedProps } from '@mui/x-data-grid-premium/mod
 import type { GridApiPremium } from '@mui/x-data-grid-premium/models/gridApiPremium'
 
 import { PaginationItem } from '@monorail/components/PaginationItem'
-import {
-  combineSxProps,
-  composeClasses,
-  styled,
-  useLatch,
-  usePrevious,
-} from '@monorail/utils'
+import { combineSxProps, composeClasses, styled } from '@monorail/utils'
 
 import { Box } from '../../Box.js'
 import { FormControlLabel } from '../../FormControlLabel.js'
@@ -35,7 +29,6 @@ import {
   gridPageSelector,
   gridPageSizeSelector,
   gridRowCountSelector,
-  gridRowsLoadingSelector,
   useGridApiContext,
   useGridRootProps,
   useGridSelector,
@@ -114,10 +107,11 @@ export function DataGridPaginationFooter(props: DataGridFooterProps) {
 
   const page = useGridSelector(apiRef, gridPageSelector)
   const clientPageCount = useGridSelector(apiRef, gridPageCountSelector)
-  const totalRowCount = useGridSelector(apiRef, gridRowCountSelector)
   const pageSize = useGridSelector(apiRef, gridPageSizeSelector)
 
   const paginationMode = rootProps.paginationMode
+
+  const totalRowCount = useTotalRowCount(apiRef, rootProps)
 
   const { firstRow, lastRow, totalRows } = useGridRowRange(apiRef, rootProps)
 
@@ -256,41 +250,45 @@ export function DataGridPaginationFooter(props: DataGridFooterProps) {
   )
 }
 
+function useTotalRowCount(
+  apiRef: React.MutableRefObject<GridApiPremium>,
+  rootProps: DataGridPremiumProcessedProps,
+): number {
+  const paginationMode = rootProps.paginationMode
+
+  const visibleTopLevelRowCount = useGridSelector(
+    apiRef,
+    gridFilteredTopLevelRowCountSelector,
+  )
+  const clientRowCount = useGridSelector(apiRef, gridExpandedRowCountSelector)
+  const totalRowCount = rootProps.rowCount ?? visibleTopLevelRowCount ?? 0
+
+  if (paginationMode === 'client') {
+    return clientRowCount
+  } else {
+    return totalRowCount
+  }
+}
+
 function useGridRowRange(
   apiRef: React.MutableRefObject<GridApiPremium>,
   rootProps: DataGridPremiumProcessedProps,
 ): { firstRow: string; lastRow: string; totalRows: string } {
   const paginationMode = rootProps.paginationMode
 
-  const loading = useGridSelector(apiRef, gridRowsLoadingSelector) ?? false
-
-  const latch =
-    (paginationMode === 'server' && !loading) || paginationMode === 'client'
-
   const page = useGridSelector(apiRef, gridPageSelector)
-
-  const loadedPage = useLatch(latch, usePrevious(page))
 
   const pageSize = useGridSelector(apiRef, gridPageSizeSelector)
 
   const visibleRows = useGridVisibleRows(apiRef, rootProps)
 
-  const visibleTopLevelRowCount = useGridSelector(
-    apiRef,
-    gridFilteredTopLevelRowCountSelector,
-  )
-
-  const clientRowCount = useGridSelector(apiRef, gridExpandedRowCountSelector)
-  const totalRowCount = rootProps.rowCount ?? visibleTopLevelRowCount ?? 0
+  const totalRowCount = useTotalRowCount(apiRef, rootProps)
 
   if (!visibleRows?.range) {
     return {
       firstRow: '...',
       lastRow: '...',
-      totalRows: (paginationMode === 'client'
-        ? clientRowCount
-        : totalRowCount
-      ).toString(10),
+      totalRows: totalRowCount.toString(10),
     }
   }
 
@@ -298,16 +296,14 @@ function useGridRowRange(
     return {
       firstRow: (visibleRows.range.firstRowIndex + 1).toString(10),
       lastRow: (visibleRows.range.lastRowIndex + 1).toString(10),
-      totalRows: clientRowCount.toString(10),
+      totalRows: totalRowCount.toString(10),
     }
   } else {
     return {
-      firstRow: (loadedPage * pageSize + 1).toString(10),
-      lastRow: (
-        visibleRows.range.lastRowIndex +
-        1 +
-        loadedPage * pageSize
-      ).toString(10),
+      firstRow: (page * pageSize + 1).toString(10),
+      lastRow: (visibleRows.range.lastRowIndex + 1 + page * pageSize).toString(
+        10,
+      ),
       totalRows: totalRowCount.toString(10),
     }
   }
