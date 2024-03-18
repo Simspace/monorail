@@ -21,6 +21,7 @@
     "@babel/preset-typescript": "^7.21.5",
     "@monorail/components": "workspace:*",
     "@monorail/themes": "workspace:*",
+    "@mui/x-charts": "^6.18.3",
     "@storybook/addon-a11y": "^7.0.20",
     "@storybook/addon-actions": "^7.0.20",
     "@storybook/addon-controls": "^7.0.20",
