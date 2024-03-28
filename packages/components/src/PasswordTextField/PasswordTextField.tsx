@@ -127,7 +127,7 @@ export const PasswordTextField = React.forwardRef(function PasswordTextField(
     toggleVisibility,
   ])
 
-  const getType = React.useMemo(() => {
+  const type = React.useMemo(() => {
     if (isVisible) {
       return 'text'
     }
@@ -137,10 +137,10 @@ export const PasswordTextField = React.forwardRef(function PasswordTextField(
 
   return (
     <PasswordTextFieldRoot
-      ownerState={props} // do I need this?
+      ownerState={props}
       inputRef={inputRef}
       ref={ref}
-      type={getType}
+      type={type}
       InputProps={{
         ...props.InputProps,
         endAdornment,
