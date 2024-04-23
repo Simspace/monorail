@@ -59,9 +59,6 @@ export const MonorailAutocompleteOverrides: Components<Theme>['MuiAutocomplete']
           },
         },
       }),
-      endAdornment: {
-        top: 'calc(50% - 8px)',
-      },
       hasPopupIcon: ({ theme }) => ({
         [`&.${autocompleteClasses.root} .${outlinedInputClasses.root}`]: {
           paddingRight: theme.spacing(5.5),
