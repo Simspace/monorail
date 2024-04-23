@@ -53,6 +53,5 @@ export const MonorailAutocompleteOverrides: Components<Theme>['MuiAutocomplete']
           },
         },
       }),
-      endAdornment: { top: 'calc(50% - 20px)' },
     },
   }

@@ -73,7 +73,6 @@ export const MonorailAutocompleteOverrides: Components<Theme>['MuiAutocomplete']
             { paddingRight: theme.spacing(21.25) },
         }),
       }),
-      endAdornment: { top: 'calc(50% - 17px)' },
       inputRoot: ({ ownerState: { size = 'medium' } }) => ({
         padding: 0,
         minHeight: 40,
