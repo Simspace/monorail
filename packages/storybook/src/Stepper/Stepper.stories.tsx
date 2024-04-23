@@ -1,4 +1,5 @@
 import React from 'react'
+import type { SvgIconProps } from '@mui/material';
 import { styled } from '@mui/material'
 
 import type { StepIconProps, StepperProps } from '@monorail/components'
@@ -475,24 +476,30 @@ function ColorlibStepIcon(props: StepIconProps) {
  */
 export const CustomizedSteppers = story(
   function () {
-    const status = [
+    const status: Array<{
+      step: string,
+      icon: ((props: StepIconProps) => JSX.Element) | undefined,
+      iconProps?: {
+        color: SvgIconProps['color']
+      }
+    }> = [
       {
         step: steps[0],
-        icon: CheckCircle,
+        icon: ({color}) => <CheckCircle color={color as SvgIconProps['color']} />,
         iconProps: {
           color: 'success',
         },
       },
       {
         step: steps[1],
-        icon: WarningTwoColor,
+        icon: ({color}) => <WarningTwoColor color={color as SvgIconProps['color']} />,
         iconProps: {
           color: 'warning',
         },
       },
       {
         step: steps[2],
-        icon: Error,
+        icon: ({color}) => <Error color={color as SvgIconProps['color']} />,
         iconProps: {
           color: 'error',
         },
