@@ -5520,14 +5520,14 @@ __metadata:
     "@emotion/cache": ^11.9.3
     "@emotion/react": ^11.10.5
     "@emotion/styled": ^11.10.5
-    "@mui/base": ^5.0.0-beta.4
-    "@mui/icons-material": ^5.11.16
+    "@mui/base": ^5.0.0-beta.40
+    "@mui/icons-material": ^5.15.15
     "@mui/lab": ^5.0.0-alpha.133
-    "@mui/material": ^5.13.4
-    "@mui/styled-engine": ^5.13.2
-    "@mui/styles": ^5.13.2
-    "@mui/system": ^5.13.2
-    "@mui/utils": ^5.13.1
+    "@mui/material": ^5.15.15
+    "@mui/styled-engine": ^5.15.14
+    "@mui/styles": ^5.15.15
+    "@mui/system": ^5.15.15
+    "@mui/utils": ^5.15.14
     "@mui/x-data-grid": ^6.6.0
     "@mui/x-data-grid-generator": ^6.6.0
     "@mui/x-data-grid-premium": ^6.6.0
@@ -5646,8 +5646,8 @@ __metadata:
   peerDependencies:
     "@mui/icons-material": ^5.10.9
     "@mui/lab": ^5.0.0-alpha.107
-    "@mui/material": ^5.10.13
-    "@mui/system": ^5.10.13
+    "@mui/material": ^5.15.15
+    "@mui/system": ^5.15.15
     "@mui/x-date-pickers-pro": ^5.0.7
     "@mui/x-tree-view": ^6.17.0
     react: ">=17.0.2"
@@ -5664,7 +5664,7 @@ __metadata:
     "@types/react": 17.0.52
     react: 17.0.2
   peerDependencies:
-    "@mui/material": ^5.10.13
+    "@mui/material": ^5.15.15
     react: ">=17.0.2"
     react-dom: ">=17.0.2"
   languageName: unknown
@@ -5681,10 +5681,10 @@ __metadata:
     "@mui/utils": 5.15.14
     react: 17.0.2
   peerDependencies:
-    "@mui/material": ^5.10.13
-    "@mui/styles": ^5.10.10
-    "@mui/system": ^5.10.13
-    "@mui/utils": ^5.10.9
+    "@mui/material": ^5.15.15
+    "@mui/styles": ^5.15.15
+    "@mui/system": ^5.15.15
+    "@mui/utils": ^5.15.14
     react: ">=17.0.2"
   languageName: unknown
   linkType: soft
