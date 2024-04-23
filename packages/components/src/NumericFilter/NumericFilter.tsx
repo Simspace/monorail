@@ -1,8 +1,8 @@
 import React from 'react'
 import type {
+  BaseSelectProps,
   IconButtonProps,
   SelectChangeEvent,
-  SelectProps,
   TextFieldProps,
 } from '@mui/material'
 import { useControlled, useThemeProps } from '@mui/material'
@@ -48,7 +48,7 @@ export interface NumericFilterProps {
   slotProps?: {
     columnHeaderButton?: Partial<IconButtonProps & DataAttributes>
     select?: Omit<
-      Partial<SelectProps<NumericFilterOperator> & DataAttributes>,
+      Partial<BaseSelectProps<NumericFilterOperator> & DataAttributes>,
       'onChange' | 'value' | 'onBlur'
     >
     firstTextField?: Omit<
