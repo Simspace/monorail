@@ -5,9 +5,10 @@ import type {
   SelectChangeEvent,
   Theme,
 } from '@monorail/components'
-import type { PaginationFooterClassKey } from '@monorail/components/PaginationFooter/PaginationFooterClasses'
-import type { PaginationFooterLocaleText } from '@monorail/components/PaginationFooter/PaginationFooterLocaleText'
 import type { StandardElementProps } from '@monorail/types'
+
+import type { PaginationFooterClassKey } from './PaginationFooterClasses'
+import type { PaginationFooterLocaleText } from './PaginationFooterLocaleText'
 
 export interface PaginationFooterProps extends StandardElementProps<'div'> {
   /**

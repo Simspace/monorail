@@ -20,9 +20,9 @@ import { Typography } from '../Typography.js'
 import {
   getPaginationFooterUtilityClass,
   PaginationFooterClasses,
-} from './paginationFooterClasses.js'
+} from './PaginationFooterClasses.js'
 import { PAGINATION_FOOTER_DEFAULT_LOCALE_TEXT } from './PaginationFooterLocaleText.js'
-import type { PaginationFooterProps } from './paginationFooterProps'
+import type { PaginationFooterProps } from './PaginationFooterProps'
 
 interface PaginationFooterRootProps {
   ownerState: PaginationFooterProps
