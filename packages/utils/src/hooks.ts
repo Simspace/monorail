@@ -5,6 +5,7 @@ export * from './hooks/useDidUpdate.js'
 export * from './hooks/useForceUpdate.js'
 export * from './hooks/usePrevious.js'
 export * from './hooks/useRequestAnimationFrame.js'
+export * from './hooks/useThemeSpacingMultiplier.js'
 // codegen:end
 
 export {
