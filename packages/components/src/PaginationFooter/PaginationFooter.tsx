@@ -201,8 +201,8 @@ export const PaginationFooter = React.forwardRef(function PaginationFooter(
     leftComponent = <PaginationFooterSpacer className={classes.left} />
   }
 
-  const pageCountStart = page > 1 ? (page - 1) * pageSize + 1 : 1
-  const pageCountEnd = pageSize > pageItems ? totalItems : pageSize * page
+  const itemCountStart = page > 1 ? (page - 1) * pageSize + 1 : 1
+  const itemCountEnd = pageSize > pageItems ? totalItems : pageSize * page
 
   const shouldDisplaySizeSelector = onPageSizeChange !== undefined
 
@@ -211,7 +211,7 @@ export const PaginationFooter = React.forwardRef(function PaginationFooter(
       variant={shouldDisplaySizeSelector ? 'subtitle2' : 'body2'}
       noWrap
     >
-      {pageCountStart}-{pageCountEnd} of {totalItems}
+      {localeText.pageItemCount(itemCountStart, itemCountEnd, totalItems)}
     </Typography>
   )
 
