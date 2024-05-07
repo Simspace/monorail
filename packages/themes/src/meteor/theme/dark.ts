@@ -19,65 +19,65 @@ export enum RawColor {
   White = '#FFFFFF',
   Black = '#0D0F13',
 
-  Grey100 = '#FFFFFF',
-  Grey200 = '#E3E5E7',
-  Grey300 = '#CCD0D6',
-  Grey400 = '#ABB1BA',
-  Grey500 = '#8A9099',
-  Grey600 = '#5B626B',
-  Grey700 = '#42474F',
-  Grey800 = '#2B2E34',
-  Grey900 = '#181A20',
+  Grey100 = '#f4f5f5',
+  Grey200 = '#c8cbd0',
+  Grey300 = '#b6bbc3',
+  Grey400 = '#9ca0aa',
+  Grey500 = '#656b7b',
+  Grey600 = '#424957',
+  Grey700 = '#303540',
+  Grey800 = '#1e212a',
+  Grey900 = '#101219',
 
-  Orange100 = '#FDECE6',
-  Orange200 = '#FAD9CC',
-  Orange300 = '#F6B399',
-  Orange400 = '#F18E66',
-  Orange500 = '#ED6833',
-  Orange600 = '#E84200',
-  Orange700 = '#BA3500',
-  Orange800 = '#8B2800',
-  Orange900 = '#5D1A00',
+  Orange100 = '#fef8f5',
+  Orange200 = '#f9c0a9',
+  Orange300 = '#fb8d60',
+  Orange400 = '#f95e1f',
+  Orange500 = '#e84200',
+  Orange600 = '#ad3200',
+  Orange700 = '#882c07',
+  Orange800 = '#631e03',
+  Orange900 = '#521700',
 
-  Red100 = '#FFFFFF',
-  Red200 = '#FFD6DD',
-  Red300 = '#FFADBB',
-  Red400 = '#D2324C',
-  Red500 = '#A7112F',
-  Red600 = '#7E162B',
-  Red700 = '#61242E',
-  Red800 = '#521E27',
-  Red900 = '#421A20',
+  Red100 = '#ffffff',
+  Red200 = '#ffc2cc',
+  Red300 = '#ff8095',
+  Red400 = '#d84b62',
+  Red500 = '#d2324c',
+  Red600 = '#a7112f',
+  Red700 = '#6e2b36',
+  Red800 = '#61242e',
+  Red900 = '#521e27',
 
   Blue100 = '#FFFFFF',
-  Blue200 = '#D0E4FB',
-  Blue300 = '#9FCBFE',
-  Blue400 = '#5696D7',
-  Blue500 = '#2B6BAB',
-  Blue600 = '#23578B',
-  Blue700 = '#22426D',
-  Blue800 = '#223E62',
-  Blue900 = '#1C304A',
+  Blue200 = '#d0e4fb',
+  Blue300 = '#9fcbfe',
+  Blue400 = '#5696d7',
+  Blue500 = '#2b6bab',
+  Blue600 = '#23578b',
+  Blue700 = '#22426d',
+  Blue800 = '#223e62',
+  Blue900 = '#1c304a',
 
-  Green100 = '#FFFFFF',
-  Green200 = '#DEF1DA',
-  Green300 = '#A8CCA3',
-  Green400 = '#76B06D',
-  Green500 = '#40773C',
+  Green100 = '#ffffff',
+  Green200 = '#def1da',
+  Green300 = '#a8cca3',
+  Green400 = '#76b06d',
+  Green500 = '#40773c',
   Green600 = '#385936',
   Green700 = '#284125',
   Green800 = '#263923',
   Green900 = '#233021',
 
-  Yellow100 = '#FFFFFF',
-  Yellow200 = '#FDE6AF',
-  Yellow300 = '#FFDB84',
-  Yellow400 = '#F5BB29',
-  Yellow500 = '#CC9814',
-  Yellow600 = '#7E6007',
-  Yellow700 = '#614A05',
-  Yellow800 = '#3F3005',
-  Yellow900 = '#13110D',
+  Yellow100 = '#ffffff',
+  Yellow200 = '#fde6af',
+  Yellow300 = '#ffdb84',
+  Yellow400 = '#f5bb29',
+  Yellow500 = '#cc9814',
+  Yellow600 = '#7e6007',
+  Yellow700 = '#614a05',
+  Yellow800 = '#3f3005',
+  Yellow900 = '#13110d',
 
   Magenta050 = '#FCE0F9',
   Magenta100 = '#F7C2F3',
@@ -155,27 +155,26 @@ export const chartColors = {
 
 enum Opacities {
   Hover = 0.08,
-  Focus = 0.12,
-  Selected = 0.08,
+  Focus = 0.16,
+  Selected = 0.12,
   Active = 0.16,
   Disabled = 0.4,
 }
 
 const action: TypeAction = {
-  active: alpha(RawColor.Grey200, Opacities.Active),
+  active: alpha(RawColor.Grey100, Opacities.Active),
   activatedOpacity: Opacities.Active,
   disabled: RawColor.Grey500,
   disabledBackground: alpha(RawColor.Grey500, 0.32),
   disabledOpacity: Opacities.Disabled,
-  focus: alpha(RawColor.Grey200, Opacities.Focus),
+  focus: alpha(RawColor.Grey100, Opacities.Focus),
   focusOpacity: Opacities.Focus,
-  hover: alpha(RawColor.Grey200, Opacities.Hover),
+  hover: alpha(RawColor.Grey100, Opacities.Hover),
   hoverOpacity: Opacities.Hover,
-  selected: alpha(RawColor.Grey200, Opacities.Selected),
+  selected: alpha(RawColor.Grey100, Opacities.Selected),
   selectedOpacity: Opacities.Selected,
 }
 
-// https://www.figma.com/file/dKL9YeHgWyxmRHuIjs38f3O9/Monorail-Components?node-id=23496%3A27
 /**
  * MUI Palette with additional Monorail colors.
  * Raw colors available globally (use sparingly).
@@ -190,16 +189,16 @@ const palette: PaletteOptions = {
   },
   primary: {
     light: RawColor.Grey400,
-    main: RawColor.Grey200,
+    main: RawColor.Grey300,
     dark: RawColor.Grey100,
     hover: RawColor.Grey400,
     active: RawColor.Grey500,
     contrastText: RawColor.Grey900,
 
     lowEmphasis: {
-      light: RawColor.Grey800,
-      main: RawColor.Grey700,
-      dark: RawColor.Grey600,
+      light: RawColor.Grey700,
+      main: RawColor.Grey600,
+      dark: RawColor.Grey500,
       contrastText: RawColor.Grey200,
       hover: alpha(RawColor.Grey200, action.hoverOpacity),
       active: alpha(RawColor.Grey200, action.activatedOpacity),
@@ -207,13 +206,13 @@ const palette: PaletteOptions = {
 
     border: {
       light: RawColor.Grey500,
-      main: RawColor.Grey300,
-      dark: RawColor.Grey100,
+      main: RawColor.Grey400,
+      dark: RawColor.Grey200,
     },
 
     focusRing: {
-      inner: RawColor.Blue800,
-      outer: RawColor.Blue400,
+      inner: RawColor.Blue400,
+      outer: RawColor.Blue600,
     },
 
     shades: {
@@ -229,12 +228,12 @@ const palette: PaletteOptions = {
     },
   },
   secondary: {
-    light: RawColor.Orange800,
-    main: RawColor.Orange600,
+    light: RawColor.Orange600,
+    main: RawColor.Orange500,
     dark: RawColor.Orange400,
     hover: RawColor.Orange700,
     active: RawColor.Orange800,
-    contrastText: RawColor.White,
+    contrastText: RawColor.Orange100,
 
     lowEmphasis: {
       light: RawColor.Orange900,
@@ -252,8 +251,8 @@ const palette: PaletteOptions = {
     },
 
     focusRing: {
-      inner: RawColor.Blue800,
-      outer: RawColor.Blue400,
+      inner: RawColor.Blue400,
+      outer: RawColor.Blue600,
     },
 
     shades: {
@@ -270,16 +269,16 @@ const palette: PaletteOptions = {
   },
   default: {
     light: RawColor.Grey400,
-    main: RawColor.Grey200,
+    main: RawColor.Grey300,
     dark: RawColor.Grey100,
     contrastText: RawColor.Grey900,
     hover: RawColor.Grey400,
     active: RawColor.Grey500,
 
     lowEmphasis: {
-      light: RawColor.Grey800,
-      main: RawColor.Grey700,
-      dark: RawColor.Grey600,
+      light: RawColor.Grey700,
+      main: RawColor.Grey600,
+      dark: RawColor.Grey500,
       contrastText: RawColor.Grey200,
       hover: alpha(RawColor.Grey200, action.hoverOpacity),
       active: alpha(RawColor.Grey200, action.activatedOpacity),
@@ -287,13 +286,13 @@ const palette: PaletteOptions = {
 
     border: {
       light: RawColor.Grey500,
-      main: RawColor.Grey300,
-      dark: RawColor.Grey100,
+      main: RawColor.Grey400,
+      dark: RawColor.Grey200,
     },
 
     focusRing: {
-      inner: RawColor.Blue800,
-      outer: RawColor.Blue400,
+      inner: RawColor.Blue400,
+      outer: RawColor.Blue600,
     },
 
     shades: {
@@ -326,14 +325,14 @@ const palette: PaletteOptions = {
     },
 
     border: {
-      light: RawColor.Green400,
-      main: RawColor.Green300,
-      dark: RawColor.Green200,
+      light: RawColor.Green500,
+      main: RawColor.Green400,
+      dark: RawColor.Green300,
     },
 
     focusRing: {
-      inner: RawColor.Blue800,
-      outer: RawColor.Blue400,
+      inner: RawColor.Blue400,
+      outer: RawColor.Blue600,
     },
 
     shades: {
@@ -360,7 +359,7 @@ const palette: PaletteOptions = {
       light: RawColor.Red900,
       main: RawColor.Red800,
       dark: RawColor.Red700,
-      contrastText: RawColor.Red300,
+      contrastText: RawColor.Red200,
       hover: alpha(RawColor.Red300, action.hoverOpacity),
       active: alpha(RawColor.Red300, action.activatedOpacity),
     },
@@ -372,8 +371,8 @@ const palette: PaletteOptions = {
     },
 
     focusRing: {
-      inner: RawColor.Blue800,
-      outer: RawColor.Blue400,
+      inner: RawColor.Blue400,
+      outer: RawColor.Blue600,
     },
 
     shades: {
@@ -412,8 +411,8 @@ const palette: PaletteOptions = {
     },
 
     focusRing: {
-      inner: RawColor.Blue800,
-      outer: RawColor.Blue400,
+      inner: RawColor.Blue400,
+      outer: RawColor.Blue600,
     },
 
     shades: {
@@ -452,8 +451,8 @@ const palette: PaletteOptions = {
     },
 
     focusRing: {
-      inner: RawColor.Blue800,
-      outer: RawColor.Blue400,
+      inner: RawColor.Blue400,
+      outer: RawColor.Blue600,
     },
 
     shades: {
@@ -470,10 +469,10 @@ const palette: PaletteOptions = {
   },
   text: {
     primary: RawColor.Grey100,
-    secondary: RawColor.Grey300,
+    secondary: RawColor.Grey200,
     disabled: RawColor.Grey500,
     link: RawColor.Blue300,
-    placeholder: RawColor.Grey600,
+    placeholder: RawColor.Grey400,
   },
   grey: {
     100: RawColor.Grey100,
@@ -486,17 +485,17 @@ const palette: PaletteOptions = {
     800: RawColor.Grey800,
     900: RawColor.Grey900,
   },
-  divider: RawColor.Grey600,
-  outlinedBorder: RawColor.Grey600,
+  divider: RawColor.Grey700,
+  outlinedBorder: RawColor.Grey700,
   filledInputBackground: RawColor.Grey900,
-  standardInputLine: RawColor.Grey300,
-  snackbar: RawColor.Grey300,
+  standardInputLine: RawColor.Grey400,
+  snackbar: RawColor.Grey400,
   rating: RawColor.Yellow400,
-  tooltip: RawColor.Grey700,
-  backdropOverlay: alpha(RawColor.Black, 0.7),
+  tooltip: RawColor.Grey600,
+  backdropOverlay: alpha(RawColor.Grey900, 0.7),
   background: {
-    default: RawColor.Black,
-    paper: RawColor.Grey900,
+    default: RawColor.Grey900,
+    paper: RawColor.Grey800,
   },
   action: action,
   chart: chartColors,
