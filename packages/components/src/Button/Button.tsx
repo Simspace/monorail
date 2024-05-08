@@ -15,7 +15,7 @@ declare module '@mui/material/Button' {
     warning: true
     error: true
     inherit: false
-    secondary: false
+    secondary: true
   }
 }
 

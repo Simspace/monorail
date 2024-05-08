@@ -26,8 +26,14 @@ export const Default = story(Template, {
   args: { children: 'Button', variant: 'contained' },
 })
 
-// TODO: Add tertiary color
-const colors = ['primary', 'success', 'error', 'warning', 'info'] as const
+const colors = [
+  'primary',
+  'secondary',
+  'success',
+  'error',
+  'warning',
+  'info',
+] as const
 const variants = ['contained', 'outlined', 'text'] as const
 const sizes = ['small', 'medium', 'large'] as const
 

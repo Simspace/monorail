@@ -166,7 +166,7 @@ export const baseTheme = createTheme(
       button: {
         fontSize: FontSize.Button,
         lineHeight: LineHeight.ButtonMedium,
-        fontWeight: FontWeight.Bold,
+        fontWeight: FontWeight.SemiBold,
         textTransform: 'capitalize',
       },
       chip: {
