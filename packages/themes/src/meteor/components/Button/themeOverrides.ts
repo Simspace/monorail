@@ -5,7 +5,7 @@ import type {
   CSSInterpolation,
   Theme,
 } from '@mui/material'
-import { alpha, buttonClasses } from '@mui/material'
+import { buttonClasses } from '@mui/material'
 
 export const MonorailButtonOverrides: Components<Theme>['MuiButton'] = {
   defaultProps: {
@@ -28,11 +28,14 @@ export const MonorailButtonOverrides: Components<Theme>['MuiButton'] = {
         },
         [`&.${buttonClasses.disabled}`]: {
           border: 'none',
-          // I tried using the disabled prop, https://mui.com/api/button/#css
-          // but it wouldn't override the default styles
-          // This pattern seems to work better for .Mui-[state]
+          opacity: theme.palette.action.disabledOpacity,
+          // The `disabled` class key doesn't work, https://mui.com/api/button/#css
+          // This pattern seems to work better for .Mui-[state] overrides
           ...(variant === 'contained' && {
-            backgroundColor: theme.palette[color].main,
+            backgroundColor:
+              color === 'primary'
+                ? theme.palette[color].dark
+                : theme.palette[color].main,
             color: theme.palette[color].contrastText,
           }),
           ...(variant === 'outlined' && {
@@ -81,23 +84,17 @@ export const MonorailButtonOverrides: Components<Theme>['MuiButton'] = {
     }) => {
       return {
         color: theme.palette[color].contrastText,
+        backgroundColor:
+          color === 'primary'
+            ? theme.palette[color].dark
+            : theme.palette[color].main,
         '&:hover': {
-          backgroundColor: theme.palette[color].hover,
+          background: theme.palette[color].hover,
+          boxShadow: `inset 0 0 0 1px ${theme.palette[color].border.dark}`,
         },
         '&:active': {
-          backgroundColor: theme.palette[color].active,
-        },
-        '&.MonorailButton-inverted': {
-          backgroundColor: theme.palette.background.paper,
-          color: theme.palette[color].lowEmphasis.contrastText,
-          // Making an exception to not use .hover and .active tokens because of this variant needs a special visual treatment.
-          // We can tokenize this pattern if it becomes more common. GS 9/9/22
-          '&:hover': {
-            backgroundColor: alpha(theme.palette.background.paper, 0.8),
-          },
-          '&:active': {
-            backgroundColor: alpha(theme.palette.background.paper, 0.5),
-          },
+          background: theme.palette[color].active,
+          boxShadow: `inset 0 0 0 1px ${theme.palette[color].border.dark}`,
         },
       }
     },
@@ -142,26 +139,6 @@ export const MonorailButtonOverrides: Components<Theme>['MuiButton'] = {
         boxShadow: `inset 0 0 0 1px ${theme.palette[color].border.light}`,
         color: theme.palette[color].lowEmphasis.contrastText,
         ...outlinedButtonInteractionStates,
-        '&.MonorailButton-inverted': {
-          backgroundColor: 'transparent',
-          color: 'currentColor',
-          boxShadow: `inset 0 0 0 1px currentColor`,
-          '&:hover': {
-            border: 'none',
-            backgroundColor: alpha(
-              theme.palette.common.black,
-              theme.palette.action.hoverOpacity,
-            ),
-            boxShadow: `inset 0 0 0 1px currentColor`,
-          },
-          '&:active': {
-            backgroundColor: alpha(
-              theme.palette.common.black,
-              theme.palette.action.activatedOpacity,
-            ),
-            boxShadow: `inset 0 0 0 1px currentColor`,
-          },
-        },
       }
     },
     text: ({
@@ -180,22 +157,6 @@ export const MonorailButtonOverrides: Components<Theme>['MuiButton'] = {
         },
         '&:active': {
           backgroundColor: theme.palette[color].lowEmphasis.active,
-        },
-        '&.MonorailButton-inverted': {
-          backgroundColor: 'transparent',
-          color: 'currentColor',
-          '&:hover': {
-            backgroundColor: alpha(
-              theme.palette.common.black,
-              theme.palette.action.hoverOpacity,
-            ),
-          },
-          '&:active': {
-            backgroundColor: alpha(
-              theme.palette.common.black,
-              theme.palette.action.activatedOpacity,
-            ),
-          },
         },
       }
     },
