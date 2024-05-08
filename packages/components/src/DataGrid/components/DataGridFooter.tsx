@@ -5,27 +5,19 @@ import type { DataGridPremiumProcessedProps } from '@mui/x-data-grid-premium/mod
 import type { GridApiPremium } from '@mui/x-data-grid-premium/models/gridApiPremium'
 
 import { PaginationItem } from '@monorail/components/PaginationItem'
-import { combineSxProps, composeClasses, styled } from '@monorail/utils'
+import { composeClasses, styled } from '@monorail/utils'
 
-import { Box } from '../../Box.js'
-import { FormControlLabel } from '../../FormControlLabel.js'
-import { MenuItem } from '../../MenuItem.js'
 import type {
   PaginationProps,
   PaginationRenderItemParams,
 } from '../../Pagination.js'
-import { Pagination } from '../../Pagination.js'
+import { PaginationFooter } from '../../PaginationFooter.js'
 import type { SelectChangeEvent } from '../../Select.js'
-import { Select } from '../../Select.js'
 import { SelectionFooter } from '../../SelectionFooter.js'
-import { Stack } from '../../Stack.js'
-import { Typography } from '../../Typography.js'
 import {
-  dataGridClasses,
   getDataGridUtilityClass,
   gridExpandedRowCountSelector,
   gridFilteredTopLevelRowCountSelector,
-  gridPageCountSelector,
   gridPageSelector,
   gridPageSizeSelector,
   gridRowCountSelector,
@@ -86,7 +78,7 @@ const DataGridFooterRoot = styled('div', {
   backgroundColor: theme.palette.default.lowEmphasis.main,
   // TODO: codify this upper drop shadow
   boxShadow: '0 -2px 1px -1px rgba(0,0,0,.2)',
-  padding: theme.spacing(0, 6),
+  padding: theme.spacing(1, 6),
   display: 'flex',
   flexDirection: 'row',
   justifyContent: 'space-between',
@@ -106,28 +98,11 @@ export function DataGridPaginationFooter(props: DataGridFooterProps) {
   const classes = useUtilityClasses(rootProps)
 
   const page = useGridSelector(apiRef, gridPageSelector)
-  const clientPageCount = useGridSelector(apiRef, gridPageCountSelector)
   const pageSize = useGridSelector(apiRef, gridPageSizeSelector)
-
-  const paginationMode = rootProps.paginationMode
 
   const totalRowCount = useTotalRowCount(apiRef, rootProps)
 
-  const { firstRow, lastRow, totalRows } = useGridRowRange(apiRef, rootProps)
-
-  const pageCount = React.useMemo(() => {
-    if (paginationMode === 'client') {
-      return clientPageCount
-    }
-
-    if (paginationMode === 'server') {
-      if (pageSize > 0 && totalRowCount > 0) {
-        return Math.ceil(totalRowCount / pageSize)
-      }
-
-      return 0
-    }
-  }, [clientPageCount, pageSize, paginationMode, totalRowCount])
+  const visibleRows = useGridVisibleRows(apiRef, rootProps)
 
   const handlePageChange = React.useCallback(
     (_event: React.ChangeEvent<unknown>, page: number) => {
@@ -170,82 +145,28 @@ export function DataGridPaginationFooter(props: DataGridFooterProps) {
 
   return (
     <DataGridFooterRoot ownerState={rootProps} className={classes.root}>
-      <Box display="flex" flex="1 1 0" alignItems="center">
-        {rootProps.hideFooterSelectedRowCount !== true && (
-          <Typography
-            variant="body2"
-            className={dataGridClasses.selectedRowCount}
-          >
-            {apiRef.current.state.rowSelection.length} Selected
-          </Typography>
-        )}
-      </Box>
-      <Pagination
-        count={pageCount}
+      <PaginationFooter
+        totalItems={totalRowCount}
+        selectedCount={
+          rootProps.hideFooterSelectedRowCount === true
+            ? undefined
+            : apiRef.current.state.rowSelection.length
+        }
         page={page + 1}
-        onChange={handlePageChange}
-        siblingCount={1}
-        renderItem={renderPaginationItem}
-        {...paginationProps}
-        sx={combineSxProps(
-          theme => ({
-            display: 'flex',
-            minWidth: theme.spacing(90),
-            flex: '1 0 0',
-            flexDirection: 'row',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }),
-          paginationProps.sx,
-        )}
+        onPageChange={handlePageChange}
+        pageItems={visibleRows.rows.length}
+        pageSize={pageSize}
+        onPageSizeChange={
+          disablePageSizeSelect === true ? undefined : handlePageSizeChange
+        }
+        pageSizeOptions={rootProps.pageSizeOptions}
+        slotProps={{
+          pagination: {
+            ...paginationProps,
+            renderItem: renderPaginationItem,
+          },
+        }}
       />
-      <Stack
-        flex="1 1 0"
-        alignItems="center"
-        justifyContent="flex-end"
-        direction="row"
-      >
-        {disablePageSizeSelect !== true && (
-          <FormControlLabel
-            sx={theme => ({
-              marginRight: theme.spacing(2),
-              my: 2,
-            })}
-            control={
-              <Select<number>
-                size="small"
-                sx={theme => ({
-                  backgroundColor: theme.palette.background.paper,
-                  minWidth: theme.spacing(24),
-                })}
-                value={gridPageSizeSelector(apiRef)}
-                onChange={handlePageSizeChange}
-              >
-                {rootProps.pageSizeOptions.map(pageSize => (
-                  <MenuItem value={pageSize} key={`${pageSize}`}>
-                    {pageSize}
-                  </MenuItem>
-                ))}
-              </Select>
-            }
-            slotProps={{
-              typography: {
-                marginRight: 2,
-                variant: 'subtitle1',
-              },
-            }}
-            label="Show:"
-            labelPlacement="start"
-          />
-        )}
-        <Typography
-          textAlign="right"
-          variant="subtitle2"
-          sx={theme => ({ margin: theme.spacing(2, 0, 2, 2) })}
-        >
-          {firstRow} - {lastRow} of {totalRows}
-        </Typography>
-      </Stack>
     </DataGridFooterRoot>
   )
 }
@@ -267,44 +188,5 @@ function useTotalRowCount(
     return clientRowCount
   } else {
     return totalRowCount
-  }
-}
-
-function useGridRowRange(
-  apiRef: React.MutableRefObject<GridApiPremium>,
-  rootProps: DataGridPremiumProcessedProps,
-): { firstRow: string; lastRow: string; totalRows: string } {
-  const paginationMode = rootProps.paginationMode
-
-  const page = useGridSelector(apiRef, gridPageSelector)
-
-  const pageSize = useGridSelector(apiRef, gridPageSizeSelector)
-
-  const visibleRows = useGridVisibleRows(apiRef, rootProps)
-
-  const totalRowCount = useTotalRowCount(apiRef, rootProps)
-
-  if (!visibleRows?.range) {
-    return {
-      firstRow: '...',
-      lastRow: '...',
-      totalRows: totalRowCount.toString(10),
-    }
-  }
-
-  if (paginationMode === 'client') {
-    return {
-      firstRow: (visibleRows.range.firstRowIndex + 1).toString(10),
-      lastRow: (visibleRows.range.lastRowIndex + 1).toString(10),
-      totalRows: totalRowCount.toString(10),
-    }
-  } else {
-    return {
-      firstRow: (page * pageSize + 1).toString(10),
-      lastRow: (visibleRows.range.lastRowIndex + 1 + page * pageSize).toString(
-        10,
-      ),
-      totalRows: totalRowCount.toString(10),
-    }
   }
 }
