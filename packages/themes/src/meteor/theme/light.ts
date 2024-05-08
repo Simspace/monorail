@@ -69,7 +69,7 @@ export enum RawColor {
   Green800 = '#2C5C2E',
   Green900 = '#162E17',
 
-  Yellow100 = '#fff4db',
+  Yellow100 = '#FFF4DB',
   Yellow200 = '#FFECBF',
   Yellow300 = '#FFE29C',
   Yellow400 = '#FFD570',
