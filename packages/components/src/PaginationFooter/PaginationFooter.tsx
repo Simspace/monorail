@@ -225,14 +225,35 @@ export const PaginationFooter = React.forwardRef(function PaginationFooter(
         <Select
           value={pageSize}
           onChange={handlePageSizeChange}
-          sx={{ mr: 2 }}
+          sx={theme => ({
+            mr: 2,
+            backgroundColor: theme.palette.background.paper,
+          })}
           disabled={disabled}
         >
-          {pageSizeOptions.map(size => (
-            <MenuItem key={size} selected={size === pageSize} value={size}>
-              {size}
-            </MenuItem>
-          ))}
+          {pageSizeOptions.map(option => {
+            if (typeof option === 'number') {
+              return (
+                <MenuItem
+                  key={option}
+                  selected={option === pageSize}
+                  value={option}
+                >
+                  {option}
+                </MenuItem>
+              )
+            } else {
+              return (
+                <MenuItem
+                  key={option.value}
+                  selected={option.value === pageSize}
+                  value={option.value}
+                >
+                  {option.label}
+                </MenuItem>
+              )
+            }
+          })}
         </Select>
         {shownCount}
       </PaginationFooterPageSizeSelectContainer>
@@ -282,6 +303,17 @@ export const PaginationFooter = React.forwardRef(function PaginationFooter(
           type: 'previous',
           page,
           selected: false,
+        })}
+        {renderItem({
+          variant,
+          size,
+          color,
+          shape,
+          onClick: () => {},
+          disabled: disabled === true,
+          type: 'page',
+          page,
+          selected: true,
         })}
         {renderItem({
           variant,
