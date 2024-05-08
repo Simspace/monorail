@@ -17,15 +17,6 @@ import { story } from '../helpers/storybook.js'
 
 export default { title: 'Inputs/Button', component: Button }
 
-const Template = story<ButtonProps>(args => <Button {...args} />, {
-  args: { children: 'It Worked!' },
-  muiName: 'MuiButton',
-})
-
-export const Default = story(Template, {
-  args: { children: 'Button', variant: 'contained' },
-})
-
 const colors = [
   'primary',
   'secondary',
@@ -36,6 +27,31 @@ const colors = [
 ] as const
 const variants = ['contained', 'outlined', 'text'] as const
 const sizes = ['small', 'medium', 'large'] as const
+
+const argTypes = {
+  variant: {
+    options: variants,
+    control: {
+      type: 'radio',
+    },
+  },
+  color: {
+    options: colors,
+    control: {
+      type: 'radio',
+    },
+  },
+}
+
+const Template = story<ButtonProps>(args => <Button {...args} />, {
+  args: { children: 'It Worked!' },
+  argTypes,
+  muiName: 'MuiButton',
+})
+
+export const Default = story(Template, {
+  args: { children: 'Button', variant: 'contained' },
+})
 
 const buttons = variants.map(variant => (
   <Box mb={10} key={variant}>

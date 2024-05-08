@@ -40,7 +40,6 @@ export const MonorailButtonOverrides: Components<Theme>['MuiButton'] = {
           }),
           ...(variant === 'outlined' && {
             color: theme.palette[color].lowEmphasis.contrastText,
-            boxShadow: `inset 0 0 0 1px ${theme.palette[color].border.light}`,
           }),
           ...(variant === 'text' && {
             color: theme.palette[color].lowEmphasis.contrastText,
@@ -107,16 +106,25 @@ export const MonorailButtonOverrides: Components<Theme>['MuiButton'] = {
       }
       theme: Theme
     }) => {
+      const colorPrimaryStyles: CSSInterpolation = {
+        color: theme.palette.text.primary,
+      }
+      const colorSecondaryStyles: CSSInterpolation = {
+        color: theme.palette.secondary.contrastText,
+      }
       const darkModeInteractionStates: CSSInterpolation = {
         '&:hover': {
           border: 'none',
-          boxShadow: `inset 0 0 0 1px ${theme.palette[color].border.main}`,
-          backgroundColor: theme.palette.background.paper,
-          backgroundImage: `linear-gradient(${theme.palette[color].lowEmphasis.hover}, ${theme.palette[color].lowEmphasis.hover})`,
+          boxShadow: `inset 0 0 0 1px ${theme.palette[color].border.light}`,
+          background: theme.palette[color].lowEmphasis.hover,
+          ...(color === 'secondary' && colorSecondaryStyles),
         },
         '&:active': {
-          backgroundColor: theme.palette.background.paper,
-          backgroundImage: `linear-gradient(${theme.palette[color].lowEmphasis.active}, ${theme.palette[color].lowEmphasis.active})`,
+          background: theme.palette[color].lowEmphasis.active,
+          ...(color === 'secondary' && {
+            ...colorSecondaryStyles,
+            boxShadow: `inset 0 0 0 1px ${theme.palette[color].border.main}`,
+          }),
         },
       }
       const lightModeInteractionStates: CSSInterpolation = {
@@ -135,10 +143,10 @@ export const MonorailButtonOverrides: Components<Theme>['MuiButton'] = {
           : lightModeInteractionStates
 
       return {
-        backgroundColor: theme.palette.background.paper,
-        boxShadow: `inset 0 0 0 1px ${theme.palette[color].border.light}`,
+        backgroundColor: theme.palette[color].lowEmphasis.light,
         color: theme.palette[color].lowEmphasis.contrastText,
         ...outlinedButtonInteractionStates,
+        ...(color === 'primary' && colorPrimaryStyles),
       }
     },
     text: ({
