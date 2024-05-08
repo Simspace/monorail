@@ -161,10 +161,10 @@ export const MonorailButtonOverrides: Components<Theme>['MuiButton'] = {
       return {
         color: theme.palette[color].lowEmphasis.contrastText,
         '&:hover': {
-          backgroundColor: theme.palette[color].lowEmphasis.hover,
+          backgroundColor: theme.palette.action.hover,
         },
         '&:active': {
-          backgroundColor: theme.palette[color].lowEmphasis.active,
+          backgroundColor: theme.palette.action.active,
         },
       }
     },
