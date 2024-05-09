@@ -230,7 +230,7 @@ const palette: PaletteOptions = {
     light: RawColor.Orange500,
     main: RawColor.Orange600,
     dark: RawColor.Orange800,
-    contrastText: RawColor.Orange700,
+    contrastText: RawColor.White,
     hover: RawColor.Orange700,
     active: RawColor.Orange800,
 
