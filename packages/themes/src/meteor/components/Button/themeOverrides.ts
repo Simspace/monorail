@@ -39,7 +39,10 @@ export const MonorailButtonOverrides: Components<Theme>['MuiButton'] = {
             color: theme.palette[color].contrastText,
           }),
           ...(variant === 'outlined' && {
-            color: theme.palette[color].lowEmphasis.contrastText,
+            color:
+              color === 'primary'
+                ? theme.palette.text.primary
+                : theme.palette[color].lowEmphasis.contrastText,
           }),
           ...(variant === 'text' && {
             color: theme.palette[color].lowEmphasis.contrastText,
@@ -112,23 +115,15 @@ export const MonorailButtonOverrides: Components<Theme>['MuiButton'] = {
       }
       theme: Theme
     }) => {
-      const colorPrimaryStyles: CSSInterpolation = {
-        color: theme.palette.text.primary,
-      }
-      const colorSecondaryStyles: CSSInterpolation = {
-        color: theme.palette.secondary.contrastText,
-      }
       const outlinedButtonInteractionStates: CSSInterpolation = {
         '&:hover': {
           border: 'none',
           boxShadow: `inset 0 0 0 1px ${theme.palette[color].border.light}`,
           background: `linear-gradient(0deg, ${theme.palette.action.hover} 0%, ${theme.palette.action.hover} 100%), ${theme.palette[color].lowEmphasis.light}`,
-          ...(color === 'secondary' && colorSecondaryStyles),
         },
         '&:active': {
           background: `linear-gradient(0deg, ${theme.palette.action.active} 0%, ${theme.palette.action.active} 100%), ${theme.palette[color].lowEmphasis.light}`,
           ...(color === 'secondary' && {
-            ...colorSecondaryStyles,
             boxShadow: `inset 0 0 0 1px ${theme.palette[color].border.main}`,
           }),
         },
@@ -138,7 +133,9 @@ export const MonorailButtonOverrides: Components<Theme>['MuiButton'] = {
         backgroundColor: theme.palette[color].lowEmphasis.light,
         color: theme.palette[color].lowEmphasis.contrastText,
         ...outlinedButtonInteractionStates,
-        ...(color === 'primary' && colorPrimaryStyles),
+        ...(color === 'primary' && {
+          color: theme.palette.text.primary,
+        }),
       }
     },
     text: ({
