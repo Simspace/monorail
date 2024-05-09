@@ -41,6 +41,11 @@ const argTypes = {
       type: 'radio',
     },
   },
+  disabled: {
+    control: {
+      type: 'boolean',
+    },
+  },
 }
 
 const Template = story<ButtonProps>(args => <Button {...args} />, {
