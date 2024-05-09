@@ -85,15 +85,21 @@ export const MonorailButtonOverrides: Components<Theme>['MuiButton'] = {
         color: theme.palette[color].contrastText,
         backgroundColor:
           color === 'primary'
-            ? theme.palette[color].dark
+            ? theme.palette.primary.dark
             : theme.palette[color].main,
         '&:hover': {
-          background: theme.palette[color].hover,
           boxShadow: `inset 0 0 0 1px ${theme.palette[color].border.dark}`,
+          background: `linear-gradient(0deg, ${theme.palette.action.hover} 0%, ${theme.palette.action.hover} 100%), ${theme.palette[color].main}`,
+          ...(color === 'secondary' && {
+            background: `linear-gradient(0deg, ${theme.palette.action.hover} 0%, ${theme.palette.action.hover} 100%), ${theme.palette[color].light}`,
+          }),
         },
         '&:active': {
-          background: theme.palette[color].active,
           boxShadow: `inset 0 0 0 1px ${theme.palette[color].border.dark}`,
+          background: `linear-gradient(0deg, ${theme.palette.action.active} 0%, ${theme.palette.action.active} 100%), ${theme.palette[color].main}`,
+          ...(color === 'secondary' && {
+            background: `linear-gradient(0deg, ${theme.palette.action.active} 0%, ${theme.palette.action.active} 100%), ${theme.palette[color].light}`,
+          }),
         },
       }
     },
@@ -112,35 +118,21 @@ export const MonorailButtonOverrides: Components<Theme>['MuiButton'] = {
       const colorSecondaryStyles: CSSInterpolation = {
         color: theme.palette.secondary.contrastText,
       }
-      const darkModeInteractionStates: CSSInterpolation = {
+      const outlinedButtonInteractionStates: CSSInterpolation = {
         '&:hover': {
           border: 'none',
           boxShadow: `inset 0 0 0 1px ${theme.palette[color].border.light}`,
-          background: theme.palette[color].lowEmphasis.hover,
+          background: `linear-gradient(0deg, ${theme.palette.action.hover} 0%, ${theme.palette.action.hover} 100%), ${theme.palette[color].lowEmphasis.light}`,
           ...(color === 'secondary' && colorSecondaryStyles),
         },
         '&:active': {
-          background: theme.palette[color].lowEmphasis.active,
+          background: `linear-gradient(0deg, ${theme.palette.action.active} 0%, ${theme.palette.action.active} 100%), ${theme.palette[color].lowEmphasis.light}`,
           ...(color === 'secondary' && {
             ...colorSecondaryStyles,
             boxShadow: `inset 0 0 0 1px ${theme.palette[color].border.main}`,
           }),
         },
       }
-      const lightModeInteractionStates: CSSInterpolation = {
-        '&:hover': {
-          border: 'none',
-          boxShadow: `inset 0 0 0 1px ${theme.palette[color].border.main}`,
-          backgroundColor: theme.palette[color].lowEmphasis.hover,
-        },
-        '&:active': {
-          backgroundColor: theme.palette[color].lowEmphasis.active,
-        },
-      }
-      const outlinedButtonInteractionStates =
-        theme.palette.mode === 'dark'
-          ? darkModeInteractionStates
-          : lightModeInteractionStates
 
       return {
         backgroundColor: theme.palette[color].lowEmphasis.light,

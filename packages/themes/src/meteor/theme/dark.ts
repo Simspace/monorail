@@ -191,8 +191,8 @@ const palette: PaletteOptions = {
     light: RawColor.Grey400,
     main: RawColor.Grey300,
     dark: RawColor.Grey100,
-    hover: `linear-gradient(0deg, ${action.hover} 0%, ${action.hover} 100%), ${RawColor.Grey300}`,
-    active: `linear-gradient(0deg, ${action.active} 0%, ${action.active} 100%), ${RawColor.Grey300}`,
+    hover: RawColor.Grey400,
+    active: RawColor.Grey500,
     contrastText: RawColor.Grey900,
 
     lowEmphasis: {
@@ -200,8 +200,8 @@ const palette: PaletteOptions = {
       main: RawColor.Grey600,
       dark: RawColor.Grey500,
       contrastText: RawColor.Grey200,
-      hover: `linear-gradient(0deg, ${action.hover} 0%, ${action.hover} 100%), ${RawColor.Grey700}`,
-      active: `linear-gradient(0deg, ${action.active} 0%, ${action.active} 100%), ${RawColor.Grey700}`,
+      hover: alpha(RawColor.Grey200, action.hoverOpacity),
+      active: alpha(RawColor.Grey200, action.activatedOpacity),
     },
 
     border: {
@@ -231,8 +231,8 @@ const palette: PaletteOptions = {
     light: RawColor.Orange600,
     main: RawColor.Orange500,
     dark: RawColor.Orange400,
-    hover: `linear-gradient(0deg, ${action.hover} 0%, ${action.hover} 100%), ${RawColor.Orange600}`,
-    active: `linear-gradient(0deg, ${action.active} 0%, ${action.active} 100%), ${RawColor.Orange600}`,
+    hover: RawColor.Orange700,
+    active: RawColor.Orange800,
     contrastText: RawColor.Orange100,
 
     lowEmphasis: {
@@ -240,8 +240,8 @@ const palette: PaletteOptions = {
       main: RawColor.Orange800,
       dark: RawColor.Orange700,
       contrastText: RawColor.Orange200,
-      hover: `linear-gradient(0deg, ${action.hover} 0%, ${action.hover} 100%), ${RawColor.Orange900}`,
-      active: `linear-gradient(0deg, ${action.active} 0%, ${action.active} 100%), ${RawColor.Orange900}`,
+      hover: alpha(RawColor.Orange200, action.hoverOpacity),
+      active: alpha(RawColor.Orange200, action.activatedOpacity),
     },
 
     border: {
@@ -271,17 +271,17 @@ const palette: PaletteOptions = {
     light: RawColor.Grey400,
     main: RawColor.Grey300,
     dark: RawColor.Grey100,
+    hover: RawColor.Grey400,
+    active: RawColor.Grey500,
     contrastText: RawColor.Grey900,
-    hover: `linear-gradient(0deg, ${action.hover} 0%, ${action.hover} 100%), ${RawColor.Grey300}`,
-    active: `linear-gradient(0deg, ${action.active} 0%, ${action.active} 100%), ${RawColor.Grey300}`,
 
     lowEmphasis: {
       light: RawColor.Grey700,
       main: RawColor.Grey600,
       dark: RawColor.Grey500,
       contrastText: RawColor.Grey200,
-      hover: `linear-gradient(0deg, ${action.hover} 0%, ${action.hover} 100%), ${RawColor.Grey700}`,
-      active: `linear-gradient(0deg, ${action.active} 0%, ${action.active} 100%), ${RawColor.Grey700}`,
+      hover: alpha(RawColor.Grey200, action.hoverOpacity),
+      active: alpha(RawColor.Grey200, action.activatedOpacity),
     },
 
     border: {
@@ -311,17 +311,17 @@ const palette: PaletteOptions = {
     light: RawColor.Green600,
     main: RawColor.Green500,
     dark: RawColor.Green400,
-    hover: `linear-gradient(0deg, ${action.hover} 0%, ${action.hover} 100%), ${RawColor.Green500}`,
-    active: `linear-gradient(0deg, ${action.active} 0%, ${action.active} 100%), ${RawColor.Green500}`,
+    hover: RawColor.Green600,
+    active: RawColor.Green700,
     contrastText: RawColor.White,
 
     lowEmphasis: {
       light: RawColor.Green900,
       main: RawColor.Green800,
       dark: RawColor.Green700,
+      hover: alpha(RawColor.Green300, action.hoverOpacity),
+      active: alpha(RawColor.Green300, action.activatedOpacity),
       contrastText: RawColor.Green300,
-      hover: `linear-gradient(0deg, ${action.hover} 0%, ${action.hover} 100%), ${RawColor.Green900}`,
-      active: `linear-gradient(0deg, ${action.active} 0%, ${action.active} 100%), ${RawColor.Green900}`,
     },
 
     border: {
@@ -351,17 +351,17 @@ const palette: PaletteOptions = {
     light: RawColor.Red600,
     main: RawColor.Red500,
     dark: RawColor.Red400,
+    hover: RawColor.Red600,
+    active: RawColor.Red700,
     contrastText: RawColor.White,
-    hover: `linear-gradient(0deg, ${action.hover} 0%, ${action.hover} 100%), ${RawColor.Red500}`,
-    active: `linear-gradient(0deg, ${action.active} 0%, ${action.active} 100%), ${RawColor.Red500}`,
 
     lowEmphasis: {
       light: RawColor.Red900,
       main: RawColor.Red800,
       dark: RawColor.Red700,
+      hover: alpha(RawColor.Red300, action.hoverOpacity),
+      active: alpha(RawColor.Red300, action.activatedOpacity),
       contrastText: RawColor.Red200,
-      hover: `linear-gradient(0deg, ${action.hover} 0%, ${action.hover} 100%), ${RawColor.Red900}`,
-      active: `linear-gradient(0deg, ${action.active} 0%, ${action.active} 100%), ${RawColor.Red900}`,
     },
 
     border: {
@@ -391,17 +391,17 @@ const palette: PaletteOptions = {
     light: RawColor.Yellow500,
     main: RawColor.Yellow400,
     dark: RawColor.Yellow300,
+    hover: RawColor.Yellow500,
+    active: RawColor.Yellow600,
     contrastText: RawColor.Yellow900,
-    hover: `linear-gradient(0deg, ${action.hover} 0%, ${action.hover} 100%), ${RawColor.Yellow400}`,
-    active: `linear-gradient(0deg, ${action.active} 0%, ${action.active} 100%), ${RawColor.Yellow400}`,
 
     lowEmphasis: {
       light: RawColor.Yellow800,
       main: RawColor.Yellow700,
       dark: RawColor.Yellow600,
+      hover: alpha(RawColor.Yellow200, action.hoverOpacity),
+      active: alpha(RawColor.Yellow200, action.activatedOpacity),
       contrastText: RawColor.Yellow200,
-      hover: `linear-gradient(0deg, ${action.hover} 0%, ${action.hover} 100%), ${RawColor.Yellow800}`,
-      active: `linear-gradient(0deg, ${action.active} 0%, ${action.active} 100%), ${RawColor.Yellow800}`,
     },
 
     border: {
@@ -431,17 +431,17 @@ const palette: PaletteOptions = {
     light: RawColor.Blue600,
     main: RawColor.Blue500,
     dark: RawColor.Blue400,
-    hover: `linear-gradient(0deg, ${action.hover} 0%, ${action.hover} 100%), ${RawColor.Blue500}`,
-    active: `linear-gradient(0deg, ${action.active} 0%, ${action.active} 100%), ${RawColor.Blue500}`,
+    hover: RawColor.Blue600,
+    active: RawColor.Blue700,
     contrastText: RawColor.White,
 
     lowEmphasis: {
       light: RawColor.Blue900,
       main: RawColor.Blue800,
       dark: RawColor.Blue700,
+      hover: alpha(RawColor.Blue300, action.hoverOpacity),
+      active: alpha(RawColor.Blue300, action.activatedOpacity),
       contrastText: RawColor.Blue300,
-      hover: `linear-gradient(0deg, ${action.hover} 0%, ${action.hover} 100%), ${RawColor.Blue900}`,
-      active: `linear-gradient(0deg, ${action.active} 0%, ${action.active} 100%), ${RawColor.Blue900}`,
     },
 
     border: {
