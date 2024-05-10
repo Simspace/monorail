@@ -152,6 +152,7 @@ export const Search = React.forwardRef(function Search(inProps, ref) {
             edge="end"
             size={ownerState.size === 'small' ? 'small' : 'medium'}
             disabled={disabled}
+            shape="circular"
             {...slotProps.clearButton}
             onClick={handleClear}
             sx={combineSxProps(

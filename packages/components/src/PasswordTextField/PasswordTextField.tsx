@@ -97,10 +97,11 @@ export const PasswordTextField = React.forwardRef(function PasswordTextField(
   const endAdornment = React.useMemo(() => {
     return (
       <IconButton
-        {...slotProps?.iconButton}
+        shape="circular"
         aria-label="toggle visibility"
         onClick={toggleVisibility}
         edge="end"
+        {...slotProps?.iconButton}
         className={classes.toggleVisibilityButton}
       >
         {isVisible ? (

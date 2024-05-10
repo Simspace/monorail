@@ -1,23 +1,6 @@
 import type { Components, Theme } from '@mui/material'
 import { alpha, buttonBaseClasses } from '@mui/material'
 
-declare module '@mui/material/IconButton' {
-  /**
-   * Extend the IconButton color prop to allow for the other semantic styles.
-   */
-  interface IconButtonPropsColorOverrides {
-    info: true
-    success: true
-    warning: true
-    error: true
-    default: true
-    /**
-     * Warning: Disabling 'inherit' will break Alert, because Alert's close button uses 'inherit' internally.
-     */
-    inherit: true
-  }
-}
-
 export const MonorailIconButtonOverrides: Components<Theme>['MuiIconButton'] = {
   defaultProps: {},
   styleOverrides: {
@@ -25,12 +8,15 @@ export const MonorailIconButtonOverrides: Components<Theme>['MuiIconButton'] = {
       ownerState: {
         color = 'primary',
         variant = 'chromeless',
-        shape = 'circular',
+        shape = 'rounded',
       },
       theme,
     }) => {
-      return (
-        color !== 'inherit' && {
+      return {
+        ...(shape === 'rounded' && {
+          borderRadius: 4,
+        }),
+        ...(color !== 'inherit' && {
           color: theme.palette[color].lowEmphasis.contrastText,
           [`&.${buttonBaseClasses.focusVisible}`]: {
             boxShadow: `0 0 0 3px ${theme.palette[color].focusRing.outer}`,
@@ -40,45 +26,99 @@ export const MonorailIconButtonOverrides: Components<Theme>['MuiIconButton'] = {
             color: theme.palette[color].lowEmphasis.contrastText,
             ...(variant === 'contained' && {
               backgroundColor: theme.palette[color].main,
-              color: theme.palette.getContrastText(theme.palette[color].main),
+              color: theme.palette.common.white,
+              ...((color === 'default' || color === 'primary') && {
+                backgroundColor: theme.palette[color].dark,
+                color: theme.palette[color].contrastText,
+              }),
+            }),
+            ...(variant === 'outlined' && {
+              backgroundColor: theme.palette[color].lowEmphasis.light,
             }),
           },
-          ...(shape === 'rounded' && {
-            borderRadius: 4,
-          }),
           ...(variant === 'chromeless' && {
             backgroundColor: 'transparent',
+            color: theme.palette[color].lowEmphasis.contrastText,
             '&:hover': {
-              backgroundColor: theme.palette[color].lowEmphasis.hover,
+              background: theme.palette.action.hover,
+              ...((color === 'default' || color === 'primary') && {
+                color: theme.palette.text.primary,
+              }),
             },
             '&:active': {
-              backgroundColor: theme.palette[color].lowEmphasis.active,
+              background: theme.palette.action.active,
+              ...((color === 'default' || color === 'primary') && {
+                color: theme.palette.text.primary,
+              }),
             },
           }),
           ...(variant === 'contained' && {
             backgroundColor: theme.palette[color].main,
-            color: theme.palette.getContrastText(theme.palette[color].main),
+            color: theme.palette.common.white,
+            ...((color === 'default' || color === 'primary') && {
+              backgroundColor: theme.palette[color].dark,
+              color: theme.palette[color].contrastText,
+            }),
             '&:hover': {
-              backgroundColor: theme.palette[color].hover,
+              border: `1px solid ${theme.palette[color].border.dark}`,
+              background: `linear-gradient(
+                  0deg,
+                  ${theme.palette.action.hover} 0%,
+                  ${theme.palette.action.hover} 100%
+                ),
+              ${theme.palette[color].dark}`,
+              ...((color === 'primary' || color === 'default') && {
+                background: theme.palette[color].main,
+              }),
             },
             '&:active': {
-              backgroundColor: theme.palette[color].active,
+              background: `linear-gradient(
+                0deg, ${theme.palette.action.active} 0%,
+                ${theme.palette.action.active} 100%
+              ),
+              ${theme.palette[color].dark}`,
+              border: `1px solid ${theme.palette[color].border.dark}`,
+              ...((color === 'default' || color === 'primary') && {
+                background: `linear-gradient(
+                  0deg, ${theme.palette.action.active} 0%,
+                  ${theme.palette.action.active} 100%
+                ),
+                ${theme.palette[color].main}`,
+              }),
             },
           }),
           ...(variant === 'outlined' && {
-            border: `1px solid ${theme.palette[color].border.main}`,
-            backgroundColor: theme.palette.background.paper,
+            backgroundColor: theme.palette[color].lowEmphasis.light,
+            color: theme.palette[color].lowEmphasis.contrastText,
             '&:hover': {
-              borderColor: theme.palette[color].border.dark,
-              backgroundColor: theme.palette[color].lowEmphasis.hover,
+              border: `1px solid ${theme.palette[color].border.light}`,
+              background: `linear-gradient(
+                0deg, 
+                ${theme.palette.action.hover} 0%, 
+                ${theme.palette.action.hover} 100%
+              ), 
+              ${theme.palette[color].lowEmphasis.light}`,
             },
             '&:active': {
-              borderColor: theme.palette[color].border.dark,
-              backgroundColor: theme.palette[color].lowEmphasis.active,
+              border: `1px solid ${theme.palette[color].border.light}`,
+              background: `linear-gradient(
+                0deg,
+                ${theme.palette.action.active} 0%,
+                ${theme.palette.action.active} 100%
+              ),
+              ${theme.palette[color].lowEmphasis.main}`,
+              ...((color === 'default' || color === 'primary') && {
+                background: `linear-gradient(
+                  0deg,
+                  ${theme.palette.action.active} 0%,
+                  ${theme.palette.action.active} 100%
+                ),
+                ${theme.palette[color].lowEmphasis.light}`,
+              }),
             },
           }),
-        }
-      )
+        }),
+      }
     },
     colorInherit: ({ theme }) => ({
       '&:active': {
