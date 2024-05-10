@@ -17,6 +17,7 @@ import {
 } from '@monorail/components'
 import { useTheme } from '@monorail/utils'
 
+import { isMeteorTheme } from '../helpers/helpers.js'
 import { story } from '../helpers/storybook.js'
 import type { Movie } from '../helpers/testData.js'
 import { countries, countryToFlag, movies } from '../helpers/testData.js'
@@ -274,7 +275,7 @@ export const Sizes = story(args => {
         )}
         {...args}
       />
-      {theme.name.includes('meteor') && (
+      {isMeteorTheme(theme.name) && (
         <>
           <Autocomplete
             id="size-large-outlined"

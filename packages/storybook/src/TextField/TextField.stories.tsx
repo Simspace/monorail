@@ -16,6 +16,7 @@ import type { TextFieldProps } from '@monorail/components'
 import { MenuItem, TextField, useFormControl } from '@monorail/components'
 import { useTheme } from '@monorail/utils'
 
+import { isMeteorTheme } from '../helpers/helpers.js'
 import { story } from '../helpers/storybook.js'
 
 export default { title: 'Inputs/TextField', component: TextField }
@@ -427,7 +428,7 @@ export const Sizes = story(
             id="outlined-size-medium"
             defaultValue="Medium"
           />
-          {theme.name.includes('meteor') && (
+          {isMeteorTheme(theme.name) && (
             <TextField
               label="Size"
               id="outlined-size-large"

@@ -8,6 +8,8 @@ export enum ThemeName {
   MeteorDark = 'meteorDark',
   ClassicLight = 'classicLight',
   ClassicDark = 'classicDark',
+  LegacyLight = 'legacyLight',
+  LegacyDark = 'legacyDark',
   MUILight = 'muiLight',
   MUIDark = 'muiDark',
   PCTELight = 'pcteLight',

@@ -15,6 +15,7 @@ import {
 } from '@monorail/components'
 import { useTheme } from '@monorail/utils'
 
+import { isMeteorTheme } from '../helpers/helpers.js'
 import { story } from '../helpers/storybook.js'
 
 export default { title: 'Inputs/Select', component: Select }
@@ -103,7 +104,7 @@ export const Sizes = story<SelectProps<string>>(() => {
           <MenuItem value={30}>Thirty</MenuItem>
         </Select>
       </FormControl>
-      {theme.name.includes('meteor') && (
+      {isMeteorTheme(theme.name) && (
         <FormControl sx={{ m: 2, minWidth: 120 }}>
           <InputLabel id="demo-simple-select-large-label">Large</InputLabel>
           <Select

@@ -52,6 +52,7 @@ import {
 import { DragIndicator, WarningAmber } from '@monorail/components/icons'
 import { useTheme } from '@monorail/utils'
 
+import { isLegacyTheme } from '../helpers/helpers.js'
 import { story } from '../helpers/storybook.js'
 
 declare module '@mui/styles/defaultTheme' {
@@ -755,7 +756,7 @@ export const GutterlessListItem = story<ListProps>(args => {
  */
 export const VirtualizedList = story<ListProps>(() => {
   const theme = useTheme()
-  const itemSize = theme.name.includes('legacy') ? 24 : 48
+  const itemSize = isLegacyTheme(theme.name) ? 24 : 48
   return (
     <Box
       sx={{

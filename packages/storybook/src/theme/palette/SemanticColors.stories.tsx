@@ -6,13 +6,9 @@ import Box from '@mui/material/Box'
 import type { TabPanelProps } from '@monorail/components'
 import { Tab, Tabs } from '@monorail/components'
 
-import { getRawColorObject } from '../../helpers.js'
+import { getRawColorObject } from '../../helpers/helpers.js'
 import { ColorTokenTable } from './palette.components'
-import type {
-  ColorTokenRowProps,
-  ColorTokenTableProps,
-  ThemeName,
-} from './palette.types'
+import type { ColorTokenRowProps, ColorTokenTableProps } from './palette.types'
 
 export default {
   title: 'Theme/Palette/Semantic Colors',
@@ -145,7 +141,7 @@ export const SemanticColors = () => {
   }
 
   const rawColorMapping = React.useMemo(
-    () => getRawColorObject(theme.name as ThemeName),
+    () => getRawColorObject(theme.name),
     [theme.name],
   )
 
