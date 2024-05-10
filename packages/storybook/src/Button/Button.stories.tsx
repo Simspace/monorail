@@ -12,7 +12,9 @@ import {
   Stack,
   Typography,
 } from '@monorail/components'
+import { useTheme } from '@monorail/utils'
 
+import { isMeteorTheme } from '../helpers/helpers.js'
 import { story } from '../helpers/storybook.js'
 
 export default { title: 'Inputs/Button', component: Button }
@@ -58,110 +60,130 @@ export const Default = story(Template, {
   args: { children: 'Button', variant: 'contained' },
 })
 
-const buttons = variants.map(variant => (
-  <Box mb={10} key={variant}>
-    <Typography variant="h1">{capitalize(variant)}</Typography>
-    {sizes.map(size => (
-      <React.Fragment key={size}>
-        <Typography variant="subtitle1" my={2}>
-          {capitalize(size)}
-        </Typography>
-        <Stack direction="row" spacing={2} my={2}>
-          {colors.map(color => (
-            <Button
-              key={`${variant}-${size}-${color}`}
-              variant={variant}
-              color={color}
-              size={size}
-            >
-              {color}
-            </Button>
-          ))}
-        </Stack>
-      </React.Fragment>
-    ))}
-    <Typography variant="subtitle1" my={2}>
-      Disabled
-    </Typography>
-    <Stack direction="row" spacing={2} my={2}>
-      {colors.map(color => (
-        <Button
-          disabled
-          variant={variant}
-          color={color}
-          size="medium"
-          key={`${variant}-${color}-disabled`}
-        >
-          Disabled
-        </Button>
-      ))}
-    </Stack>
-    <Typography variant="subtitle1" my={2}>
-      Inverted
-    </Typography>
-    <Typography>
-      Used when placing buttons on top of colored containers to create contrast.
-      Inverted text and inverted outlined Buttons inherit the text color of the
-      containing element. See the Alert/Actions story for examples.
-    </Typography>
-    <Stack
-      direction="row"
-      spacing={2}
-      my={2}
-      sx={{
-        p: 2,
-        bgcolor: 'default.light',
-      }}
-    >
-      {colors.map(color => (
-        <Button
-          variant={variant}
-          color={color}
-          size="medium"
-          key={`${variant}-${color}-inverted`}
-          inverted
-        >
-          {color}
-        </Button>
-      ))}
-    </Stack>
-  </Box>
-))
-
 /**
  * Use `variant` to set the display style and `color` to set the coloring
  */
-export const VariantsAndColors = story<ButtonProps>(() => <>{buttons}</>, {
-  parameters: {
-    a11y: {
-      /**
-       * Our orange buttons failed the WCAG 2.0 contrast test.
-       * It does pass APCA (WCAG 3), which is what we used for our Monorail3 color palette.
-       * Unfortunately, APCA isn't supported yet in axe's config options, but it something we should track.
-       * https://github.com/dequelabs/axe-core/issues/3325
-       * GS 6/13/22
-       */
-      disable: true,
+export const VariantsAndColors = story<ButtonProps>(
+  args => {
+    const theme = useTheme()
+    return (
+      <>
+        {variants.map(variant => (
+          <Box mb={10} key={variant}>
+            <Typography variant="h1">{capitalize(variant)}</Typography>
+            <Stack direction="row" spacing={2} my={2}>
+              {colors.map(color => (
+                <Button
+                  key={`${variant}-${color}`}
+                  variant={variant}
+                  color={color}
+                  size={args.size}
+                  disabled={args.disabled}
+                >
+                  {color}
+                </Button>
+              ))}
+            </Stack>
+            <Typography variant="subtitle1" mt={4} mb={2}>
+              Inverted
+            </Typography>
+            {isMeteorTheme(theme.name) ? (
+              <Typography>
+                Inverted variants are not supported in the Meteor theme.
+              </Typography>
+            ) : (
+              <>
+                <Typography>
+                  Used when placing buttons on top of colored containers to
+                  create contrast. Inverted text and inverted outlined Buttons
+                  inherit the text color of the containing element. See the
+                  Alert/Actions story for examples.
+                </Typography>
+                <Stack
+                  direction="row"
+                  spacing={2}
+                  my={2}
+                  sx={{
+                    p: 2,
+                    bgcolor: 'default.light',
+                  }}
+                >
+                  {colors.map(color => (
+                    <Button
+                      variant={variant}
+                      color={color}
+                      size="medium"
+                      key={`${variant}-${color}-inverted`}
+                      inverted
+                    >
+                      {color}
+                    </Button>
+                  ))}
+                </Stack>
+              </>
+            )}
+          </Box>
+        ))}
+      </>
+    )
+  },
+  {
+    parameters: {
+      a11y: {
+        /**
+         * Our orange buttons failed the WCAG 2.0 contrast test.
+         * It does pass APCA (WCAG 3), which is what we used for our Monorail3 color palette.
+         * Unfortunately, APCA isn't supported yet in axe's config options, but it something we should track.
+         * https://github.com/dequelabs/axe-core/issues/3325
+         * GS 6/13/22
+         */
+        disable: true,
+      },
+    },
+    args: {
+      disabled: false,
+    },
+    argTypes: {
+      disabled: {
+        control: {
+          type: 'boolean',
+        },
+      },
     },
   },
-})
+)
 
 /**
  * For larger or smaller buttons, use the `size` prop.
  */
-export const Sizes = story<ButtonProps>(() => (
-  <Stack direction="row" spacing={2} alignItems="center">
-    <Button variant="contained" size={'small'}>
-      Small
-    </Button>
-    <Button variant="contained" size={'medium'}>
-      Medium
-    </Button>
-    <Button variant="contained" size={'large'}>
-      Large
-    </Button>
-  </Stack>
-))
+export const Sizes = story<ButtonProps>(
+  args => (
+    <Stack direction="row" spacing={2} alignItems="center">
+      <Button variant="contained" size={'small'} color={args.color}>
+        Small
+      </Button>
+      <Button variant="contained" size={'medium'} color={args.color}>
+        Medium
+      </Button>
+      <Button variant="contained" size={'large'} color={args.color}>
+        Large
+      </Button>
+    </Stack>
+  ),
+  {
+    args: {
+      color: 'primary',
+    },
+    argTypes: {
+      color: {
+        options: colors,
+        control: {
+          type: 'radio',
+        },
+      },
+    },
+  },
+)
 
 /**
  * Sometimes you might want to have icons for certain buttons to enhance the UX of the application as we recognize logos more easily than plain text. For example, if you have a delete button you can label it with a dustbin icon.
