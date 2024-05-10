@@ -86,24 +86,47 @@ export const MonorailButtonOverrides: Components<Theme>['MuiButton'] = {
     }) => {
       return {
         color: theme.palette[color].contrastText,
-        backgroundColor:
-          color === 'primary'
-            ? theme.palette.primary.dark
-            : theme.palette[color].main,
+        backgroundColor: theme.palette[color].main,
         '&:hover': {
-          boxShadow: `inset 0 0 0 1px ${theme.palette[color].border.dark}`,
-          background: `linear-gradient(0deg, ${theme.palette.action.hover} 0%, ${theme.palette.action.hover} 100%), ${theme.palette[color].main}`,
-          ...(color === 'secondary' && {
-            background: `linear-gradient(0deg, ${theme.palette.action.hover} 0%, ${theme.palette.action.hover} 100%), ${theme.palette[color].light}`,
-          }),
+          boxShadow: `inset 0 0 0 1px ${theme.palette[color].border.main}`,
+          background: `linear-gradient(0deg, ${theme.palette.action.hover} 0%, ${theme.palette.action.hover} 100%), ${theme.palette[color].dark}`,
         },
         '&:active': {
-          boxShadow: `inset 0 0 0 1px ${theme.palette[color].border.dark}`,
-          background: `linear-gradient(0deg, ${theme.palette.action.active} 0%, ${theme.palette.action.active} 100%), ${theme.palette[color].main}`,
-          ...(color === 'secondary' && {
-            background: `linear-gradient(0deg, ${theme.palette.action.active} 0%, ${theme.palette.action.active} 100%), ${theme.palette[color].light}`,
-          }),
+          boxShadow: `inset 0 0 0 1px ${theme.palette[color].border.main}`,
+          background: `linear-gradient(0deg, ${theme.palette.action.active} 0%, ${theme.palette.action.active} 100%), ${theme.palette[color].dark}`,
         },
+        ...(color === 'primary' && {
+          backgroundColor: theme.palette[color].dark,
+          '&:hover': {
+            boxShadow: `inset 0 0 0 1px ${theme.palette[color].border.dark}`,
+            background: `linear-gradient(0deg, ${theme.palette.action.hover} 0%, ${theme.palette.action.hover} 100%), ${theme.palette[color].main}`,
+          },
+          '&:active': {
+            boxShadow: `inset 0 0 0 1px ${theme.palette[color].border.dark}`,
+            background: `linear-gradient(0deg, ${theme.palette.action.active} 0%, ${theme.palette.action.active} 100%), ${theme.palette[color].main}`,
+          },
+        }),
+        ...(color === 'secondary' && {
+          '&:hover': {
+            boxShadow: `inset 0 0 0 1px ${theme.palette[color].border.dark}`,
+            background: `linear-gradient(0deg, ${theme.palette.action.hover} 0%, ${theme.palette.action.hover} 100%), ${theme.palette[color].dark}`,
+          },
+          '&:active': {
+            boxShadow: `inset 0 0 0 1px ${theme.palette[color].border.dark}`,
+            background: `linear-gradient(0deg, ${theme.palette.action.active} 0%, ${theme.palette.action.active} 100%), ${theme.palette[color].dark}`,
+          },
+        }),
+        ...(color === 'warning' && {
+          backgroundColor: theme.palette[color].main,
+          '&:hover': {
+            boxShadow: `inset 0 0 0 1px ${theme.palette[color].border.main}`,
+            background: `linear-gradient(0deg, ${theme.palette.action.hover} 0%, ${theme.palette.action.hover} 100%), ${theme.palette[color].main}`,
+          },
+          '&:active': {
+            boxShadow: `inset 0 0 0 1px ${theme.palette[color].border.main}`,
+            background: `linear-gradient(0deg, ${theme.palette.action.active} 0%, ${theme.palette.action.active} 100%), ${theme.palette[color].main}`,
+          },
+        }),
       }
     },
     outlined: ({
