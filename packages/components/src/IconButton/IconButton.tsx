@@ -8,10 +8,10 @@ declare module '@mui/material/IconButton' {
    * Extend the IconButton color prop to allow for the other semantic styles.
    */
   interface IconButtonPropsColorOverrides {
-    info: false
-    success: false
-    warning: false
-    error: false
+    info: true
+    success: true
+    warning: true
+    error: true
     default: true
     secondary: true
     /**

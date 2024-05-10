@@ -8,7 +8,7 @@ export const MonorailIconButtonOverrides: Components<Theme>['MuiIconButton'] = {
       ownerState: {
         color = 'primary',
         variant = 'chromeless',
-        shape = 'rounded',
+        shape = 'circular',
       },
       theme,
     }) => {
