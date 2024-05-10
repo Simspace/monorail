@@ -14,6 +14,7 @@ import {
 } from '@monorail/components'
 import { useTheme } from '@monorail/utils'
 
+import { isMeteorTheme } from '../helpers/helpers.js'
 import { story } from '../helpers/storybook.js'
 import { movies } from '../helpers/testData.js'
 
@@ -78,7 +79,7 @@ export const Sizes = story(
         <div>
           <Search label="Small" id="size-small" size="small" />
           <Search label="Medium" id="size-medium" />
-          {theme.name.includes('meteor') && (
+          {isMeteorTheme(theme.name) && (
             <Search label="Large" id="size-medium" size="large" />
           )}
         </div>

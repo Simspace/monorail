@@ -8,8 +8,8 @@ import type { ChipProps } from '@monorail/components'
 import { Avatar, Chip, Stack, Typography } from '@monorail/components'
 import { useTheme } from '@monorail/utils'
 
-import { capitalizeFirstLetter } from '../helpers/helpers.js'
-import { isMeteorTheme, story } from '../helpers/storybook.js'
+import { capitalizeFirstLetter, isMeteorTheme } from '../helpers/helpers.js'
+import { story } from '../helpers/storybook.js'
 
 export default { title: 'Data Display/Chip/Showcase', component: Chip }
 

@@ -2,9 +2,9 @@ import React from 'react'
 import { Typography, useTheme } from '@mui/material'
 import Box from '@mui/material/Box'
 
-import { getRawColorObject } from '../../helpers.js'
+import { getRawColorObject } from '../../helpers/helpers.js'
 import { ColorTokenTable } from './palette.components.js'
-import type { ColorTokenRowProps, ThemeName } from './palette.types.js'
+import type { ColorTokenRowProps } from './palette.types.js'
 
 export default {
   title: 'Theme/Palette/Other',
@@ -18,7 +18,7 @@ const TierColors = () => {
   const theme = useTheme()
 
   const rawColorMapping = React.useMemo(
-    () => getRawColorObject(theme.name as ThemeName),
+    () => getRawColorObject(theme.name),
     [theme.name],
   )
 
@@ -67,7 +67,7 @@ const ScoreColors = () => {
   const theme = useTheme()
 
   const rawColorMapping = React.useMemo(
-    () => getRawColorObject(theme.name as ThemeName),
+    () => getRawColorObject(theme.name),
     [theme.name],
   )
 
@@ -246,7 +246,7 @@ export const Other = () => {
   const theme = useTheme()
 
   const rawColorMapping = React.useMemo(
-    () => getRawColorObject(theme.name as ThemeName),
+    () => getRawColorObject(theme.name),
     [theme.name],
   )
 

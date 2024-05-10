@@ -2,9 +2,9 @@ import React from 'react'
 import { Typography, useTheme } from '@mui/material'
 import Box from '@mui/material/Box'
 
-import { getRawColorObject } from '../../helpers.js'
+import { getRawColorObject } from '../../helpers/helpers.js'
 import { ColorTokenTable } from './palette.components'
-import type { ColorTokenRowProps, ThemeName } from './palette.types'
+import type { ColorTokenRowProps } from './palette.types'
 
 export default {
   title: 'Theme/Palette/Foundation',
@@ -18,7 +18,7 @@ export const Foundation = () => {
   const theme = useTheme()
 
   const rawColorMapping = React.useMemo(
-    () => getRawColorObject(theme.name as ThemeName),
+    () => getRawColorObject(theme.name),
     [theme.name],
   )
 

@@ -3,9 +3,9 @@ import { alpha, useTheme } from '@mui/material'
 
 import { Box, Typography } from '@monorail/components'
 
-import { getRawColorObject } from '../../helpers.js'
+import { getRawColorObject } from '../../helpers/helpers.js'
 import { ColorTokenTable } from './palette.components'
-import type { ColorTokenRowProps, ThemeName } from './palette.types'
+import type { ColorTokenRowProps } from './palette.types'
 
 export default {
   title: 'Theme/Palette/Action',
@@ -19,7 +19,7 @@ export const Action = () => {
   const theme = useTheme()
 
   const rawColorMapping = React.useMemo(
-    () => getRawColorObject(theme.name as ThemeName),
+    () => getRawColorObject(theme.name),
     [theme.name],
   )
 
