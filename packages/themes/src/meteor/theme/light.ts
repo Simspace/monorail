@@ -154,7 +154,7 @@ export const chartColors = {
 }
 
 enum Opacities {
-  Hover = 0.08,
+  Hover = 0.1,
   Focus = 0.16,
   Selected = 0.12,
   Active = 0.16,

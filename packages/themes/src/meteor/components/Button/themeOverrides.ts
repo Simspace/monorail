@@ -89,7 +89,7 @@ export const MonorailButtonOverrides: Components<Theme>['MuiButton'] = {
         backgroundColor: theme.palette[color].main,
         '&:hover': {
           boxShadow: `inset 0 0 0 1px ${theme.palette[color].border.main}`,
-          background: `linear-gradient(0deg, ${theme.palette.action.hover} 0%, ${theme.palette.action.hover} 100%), ${theme.palette[color].dark}`,
+          background: `linear-gradient(0deg, ${theme.palette.action.hover} 0%, ${theme.palette.action.hover} 100%), ${theme.palette[color].main}`,
         },
         '&:active': {
           boxShadow: `inset 0 0 0 1px ${theme.palette[color].border.main}`,
@@ -103,13 +103,13 @@ export const MonorailButtonOverrides: Components<Theme>['MuiButton'] = {
           },
           '&:active': {
             boxShadow: `inset 0 0 0 1px ${theme.palette[color].border.dark}`,
-            background: `linear-gradient(0deg, ${theme.palette.action.active} 0%, ${theme.palette.action.active} 100%), ${theme.palette[color].main}`,
+            background: `linear-gradient(0deg, ${theme.palette.action.active} 0%, ${theme.palette.action.active} 100%), ${theme.palette[color].dark}`,
           },
         }),
         ...(color === 'secondary' && {
           '&:hover': {
             boxShadow: `inset 0 0 0 1px ${theme.palette[color].border.dark}`,
-            background: `linear-gradient(0deg, ${theme.palette.action.hover} 0%, ${theme.palette.action.hover} 100%), ${theme.palette[color].dark}`,
+            background: `linear-gradient(0deg, ${theme.palette.action.hover} 0%, ${theme.palette.action.hover} 100%), ${theme.palette[color].main}`,
           },
           '&:active': {
             boxShadow: `inset 0 0 0 1px ${theme.palette[color].border.dark}`,

@@ -66,7 +66,7 @@ export const MonorailIconButtonOverrides: Components<Theme>['MuiIconButton'] = {
                   ${theme.palette.action.hover} 0%,
                   ${theme.palette.action.hover} 100%
                 ),
-              ${theme.palette[color].dark}`,
+              ${theme.palette[color].main}`,
               ...((color === 'primary' || color === 'default') && {
                 background: theme.palette[color].main,
               }),
@@ -83,7 +83,7 @@ export const MonorailIconButtonOverrides: Components<Theme>['MuiIconButton'] = {
                   0deg, ${theme.palette.action.active} 0%,
                   ${theme.palette.action.active} 100%
                 ),
-                ${theme.palette[color].main}`,
+                ${theme.palette[color].dark}`,
               }),
             },
           }),
