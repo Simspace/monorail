@@ -1,23 +1,6 @@
 import type { Components, Theme } from '@mui/material'
 import { alpha, buttonBaseClasses } from '@mui/material'
 
-declare module '@mui/material/IconButton' {
-  /**
-   * Extend the IconButton color prop to allow for the other semantic styles.
-   */
-  interface IconButtonPropsColorOverrides {
-    info: true
-    success: true
-    warning: true
-    error: true
-    default: true
-    /**
-     * Warning: Disabling 'inherit' will break Alert, because Alert's close button uses 'inherit' internally.
-     */
-    inherit: true
-  }
-}
-
 export const MonorailIconButtonOverrides: Components<Theme>['MuiIconButton'] = {
   defaultProps: {},
   styleOverrides: {
@@ -29,8 +12,11 @@ export const MonorailIconButtonOverrides: Components<Theme>['MuiIconButton'] = {
       },
       theme,
     }) => {
-      return (
-        color !== 'inherit' && {
+      return {
+        ...(shape === 'rounded' && {
+          borderRadius: 4,
+        }),
+        ...(color !== 'inherit' && {
           color: theme.palette[color].lowEmphasis.contrastText,
           [`&.${buttonBaseClasses.focusVisible}`]: {
             boxShadow: `0 0 0 3px ${theme.palette[color].focusRing.outer}`,
@@ -43,9 +29,6 @@ export const MonorailIconButtonOverrides: Components<Theme>['MuiIconButton'] = {
               color: theme.palette.getContrastText(theme.palette[color].main),
             }),
           },
-          ...(shape === 'rounded' && {
-            borderRadius: 4,
-          }),
           ...(variant === 'chromeless' && {
             backgroundColor: 'transparent',
             '&:hover': {
@@ -75,8 +58,8 @@ export const MonorailIconButtonOverrides: Components<Theme>['MuiIconButton'] = {
               backgroundColor: theme.palette[color].lowEmphasis.active,
             },
           }),
-        }
-      )
+        }),
+      }
     },
     colorInherit: ({ theme }) => ({
       '&:active': {

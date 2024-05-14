@@ -8,6 +8,7 @@ import {
   Popper,
 } from '@mui/material'
 
+import type { IconButtonProps } from '@monorail/components'
 import { inputBaseClasses } from '@monorail/components'
 
 export const MonorailAutocompleteOverrides: Components<Theme>['MuiAutocomplete'] =
@@ -16,13 +17,17 @@ export const MonorailAutocompleteOverrides: Components<Theme>['MuiAutocomplete']
       popupIcon: <ExpandMoreIcon fontSize="inherit" />,
       clearIcon: <ClearIcon fontSize="inherit" />,
       slotProps: {
-        popupIndicator: { size: 'small' },
+        popupIndicator: {
+          size: 'small',
+          shape: 'circular',
+        } as Partial<IconButtonProps>,
         clearIndicator: {
           size: 'small',
+          shape: 'circular',
           sx: {
             visibility: 'visible',
           },
-        },
+        } as Partial<IconButtonProps>,
       },
       ChipProps: {
         clickable: true,

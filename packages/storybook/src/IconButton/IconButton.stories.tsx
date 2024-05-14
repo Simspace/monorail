@@ -10,16 +10,7 @@ import { story } from '../helpers/storybook.js'
 
 export default { title: 'Inputs/IconButton', component: IconButton }
 
-const colors = [
-  'inherit',
-  'primary',
-  'secondary',
-  'default',
-  'info',
-  'success',
-  'warning',
-  'error',
-] as const
+const colors = ['inherit', 'primary', 'secondary', 'default'] as const
 
 const argTypes = {
   variant: {
