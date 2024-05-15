@@ -91,7 +91,6 @@ export const Filled = story<ChipProps>(() => {
 })
 
 export const Outlined = story<ChipProps>(() => {
-  const theme = useTheme()
   const examples = React.useMemo(() => {
     return {
       readOnly: colors.map(color => (
@@ -135,9 +134,7 @@ export const Outlined = story<ChipProps>(() => {
     }
   }, [])
 
-  return isMeteorTheme(theme.name) ? (
-    <Typography>This variant is not available in the Meteor theme</Typography>
-  ) : (
+  return (
     <Stack>
       <Stack direction="row" spacing={4}>
         <Stack direction="column" alignItems="flex-start" spacing={2}>
