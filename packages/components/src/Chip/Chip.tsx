@@ -8,10 +8,6 @@ declare module '@mui/material/Chip' {
     rectangular: true
     muted: true
   }
-
-  interface ChipPropsColorOverrides {
-    secondary: false
-  }
 }
 
 /**
