@@ -25,7 +25,6 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
       }
 
       return {
-        backgroundColor: theme.palette[color].lowEmphasis.light,
         color: theme.palette[color].lowEmphasis.contrastText,
         border: '1px solid transparent',
         [`&.${chipClasses.focusVisible}`]: {
@@ -44,26 +43,7 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
     filled: ({ ownerState: { color = 'default' }, theme }) => ({
       backgroundColor: theme.palette[color].lowEmphasis.main,
       color: theme.palette[color].lowEmphasis.contrastText,
-      [`&.${chipClasses.focusVisible}`]: {
-        backgroundColor: theme.palette[color].lowEmphasis.main,
-      },
-    }),
-    outlined: ({ ownerState: { color = 'default' }, theme }) => {
-      return {
-        [`&.${chipClasses.clickable}`]: {
-          '&:hover': {
-            color: theme.palette[color].lowEmphasis.contrastText,
-            backgroundColor: theme.palette[color].lowEmphasis.main,
-          },
-          '&:active': {
-            boxShadow: 'none',
-            backgroundColor: theme.palette[color].lowEmphasis.dark,
-          },
-        },
-      }
-    },
-    clickable: ({ ownerState: { color = 'default' }, theme }) => {
-      return {
+      [`&.${chipClasses.clickable}`]: {
         '&:hover': {
           color: theme.palette[color].lowEmphasis.contrastText,
           background: `linear-gradient(0deg, ${theme.palette.action.hover} 0%, ${theme.palette.action.hover} 100%), ${theme.palette[color].lowEmphasis.main}`,
@@ -71,6 +51,27 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
         '&:active': {
           boxShadow: 'none',
           background: `linear-gradient(0deg, ${theme.palette.action.active} 0%, ${theme.palette.action.active} 100%), ${theme.palette[color].lowEmphasis.main}`,
+        },
+        [`&.${chipClasses.focusVisible}`]: {
+          backgroundColor: theme.palette[color].lowEmphasis.main,
+        },
+      },
+    }),
+    outlined: ({ ownerState: { color = 'default' }, theme }) => {
+      return {
+        border: `1px solid ${theme.palette[color].main}`,
+        [`&.${chipClasses.clickable}`]: {
+          '&:hover': {
+            color: theme.palette[color].lowEmphasis.contrastText,
+            backgroundColor: theme.palette[color].lowEmphasis.light,
+          },
+          '&:active': {
+            boxShadow: 'none',
+            backgroundColor: theme.palette[color].lowEmphasis.main,
+          },
+          [`&.${chipClasses.focusVisible}`]: {
+            backgroundColor: 'transparent',
+          },
         },
       }
     },

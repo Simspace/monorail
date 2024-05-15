@@ -31,7 +31,6 @@ import { story } from '../helpers/storybook.js'
 export default { title: 'Data Display/Chip', component: Chip }
 
 const colors = [
-  'default',
   'primary',
   'secondary',
   'error',
@@ -92,7 +91,14 @@ export const Default = story(Template)
  */
 export const Variants = story<ChipStoryArgs>(
   args => {
-    const { avatar, avatarText, icon, dismissible, ...chipArgs } = args
+    const {
+      avatar,
+      avatarText,
+      icon,
+      dismissible,
+      variant: _variant,
+      ...chipArgs
+    } = args
     const theme = useTheme()
     return (
       <div>
