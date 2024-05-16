@@ -1,6 +1,10 @@
 {
   "name": "@monorail/utils",
+<<<<<<< Updated upstream
   "version": "3.0.132",
+=======
+  "version": "3.0.134",
+>>>>>>> Stashed changes
   "license": "Apache-2.0",
   "exports": {
     "./*": {
