@@ -10,7 +10,8 @@ declare module '@mui/material/ButtonGroup' {
     warning: true
     error: true
     inherit: false
-    secondary: false
+    secondary: true
+    primary: true
   }
 }
 
