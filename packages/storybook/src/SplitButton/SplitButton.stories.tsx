@@ -19,7 +19,7 @@ const colors = [
   'warning',
   'info',
 ] as const
-const variants = ['contained', 'outlined', 'text'] as const
+const variants = ['contained', 'outlined'] as const
 
 const Template: StoryFn<Partial<SplitButtonProps>> = args => (
   <SplitButton
@@ -61,7 +61,7 @@ export const Colors = () => (
   </Stack>
 )
 
-export const ColorsAndVariants = () => {
+export const Variants = () => {
   return variants.map(variant => {
     return (
       <Box key={variant}>

@@ -1,5 +1,5 @@
 import type { Components, Theme } from '@mui/material'
-import { buttonClasses } from '@mui/material'
+import { buttonClasses, menuClasses } from '@mui/material'
 
 import { type SplitButtonProps } from '@monorail/components'
 
@@ -37,17 +37,8 @@ export const MonorailSplitButtonOverrides: Components<Theme>['MonorailSplitButto
             }),
           }),
           ...(variant === 'outlined' && {
-            borderRight: `1px solid ${theme.palette[color].border.light}`,
             color: theme.palette[color].lowEmphasis.contrastText,
-            '&:hover': {
-              borderRight: `1px solid ${theme.palette[color].border.light}`,
-            },
-            '&:active': {
-              borderRight: `1px solid ${theme.palette[color].border.light}`,
-            },
-            [`&.${buttonClasses.disabled}`]: {
-              borderRight: `1px solid ${theme.palette[color].border.light}`,
-            },
+            [`&.${buttonClasses.disabled}`]: {},
           }),
         }
       },
@@ -72,6 +63,11 @@ export const MonorailSplitButtonOverrides: Components<Theme>['MonorailSplitButto
             color: theme.palette[color].lowEmphasis.contrastText,
           }),
         }
+      },
+      menu: {
+        [`& .${menuClasses.paper}`]: {
+          margin: 0,
+        },
       },
     },
   }
