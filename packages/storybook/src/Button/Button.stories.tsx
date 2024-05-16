@@ -159,13 +159,13 @@ export const VariantsAndColors = story<ButtonProps>(
 export const Sizes = story<ButtonProps>(
   args => (
     <Stack direction="row" spacing={2} alignItems="center">
-      <Button variant="contained" size={'small'} color={args.color}>
+      <Button variant="contained" size="small" color={args.color}>
         Small
       </Button>
-      <Button variant="contained" size={'medium'} color={args.color}>
+      <Button variant="contained" size="medium" color={args.color}>
         Medium
       </Button>
-      <Button variant="contained" size={'large'} color={args.color}>
+      <Button variant="contained" size="large" color={args.color}>
         Large
       </Button>
     </Stack>

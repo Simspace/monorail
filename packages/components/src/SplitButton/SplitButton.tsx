@@ -20,9 +20,11 @@ import {
 } from './splitButtonClasses.js'
 import type { SplitButtonProps } from './splitButtonProps.js'
 
-interface SplitButtonOwnerState extends Omit<SplitButtonProps, 'size'> {
+interface SplitButtonOwnerState
+  extends Omit<SplitButtonProps, 'size' | 'options' | 'slotProps'> {
   size: NonNullable<SplitButtonProps['size']>
 }
+interface SplitButtonMenuOwnerState extends Pick<SplitButtonProps, 'options'> {}
 
 function overridesResolver(
   props: { ownerState: SplitButtonOwnerState },
@@ -55,7 +57,6 @@ function overridesResolver(
     styles.root,
   ]
 }
-
 const SplitButtonRoot = styled(ButtonGroup, {
   name: 'MonorailSplitButton',
   slot: 'Root',
@@ -80,7 +81,7 @@ const SplitButtonRoot = styled(ButtonGroup, {
 const SplitButtonMenu = styled(Menu, {
   name: 'MonorailSplitButton',
   slot: 'Menu',
-})(({ theme }) => ({
+})<{ ownerState: SplitButtonMenuOwnerState }>(({ theme }) => ({
   zIndex: theme.zIndex.tooltip,
 }))
 
@@ -104,6 +105,8 @@ export const SplitButton = React.forwardRef(function SplitButton(inProps, ref) {
     slotProps,
     select = false,
     size = 'medium',
+    color = 'primary',
+    variant = 'contained',
     ...other
   } = props
 
@@ -153,18 +156,24 @@ export const SplitButton = React.forwardRef(function SplitButton(inProps, ref) {
     }
   }
 
-  const ownerState = {
-    ...props,
+  const splitButtonOwnerState = {
+    variant,
+    color,
     size,
   }
+  const menuOwnerState = {
+    options,
+  }
 
-  const classes = useUtilityClasses(ownerState)
+  const classes = useUtilityClasses(splitButtonOwnerState)
 
   return (
     <React.Fragment>
       <SplitButtonRoot
         {...other}
-        ownerState={ownerState}
+        ownerState={splitButtonOwnerState}
+        color={color}
+        variant={variant}
         size={size}
         ref={ref}
         className={clsx(classes.root, props.className)}
@@ -199,6 +208,7 @@ export const SplitButton = React.forwardRef(function SplitButton(inProps, ref) {
         id={menuListId}
         className={clsx(slotProps.menu?.className, classes.menu)}
         {...slotProps.menu}
+        ownerState={menuOwnerState}
         anchorOrigin={
           slotProps.menu?.anchorOrigin ?? {
             horizontal: 'right',
