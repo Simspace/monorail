@@ -25,7 +25,6 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
       }
 
       return {
-        backgroundColor: theme.palette[color].lowEmphasis.light,
         color: theme.palette[color].lowEmphasis.contrastText,
         border: '1px solid transparent',
         [`&.${chipClasses.focusVisible}`]: {
@@ -42,35 +41,37 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
       ...theme.typography.chip,
     }),
     filled: ({ ownerState: { color = 'default' }, theme }) => ({
-      backgroundColor: theme.palette[color].lowEmphasis.light,
+      backgroundColor: theme.palette[color].lowEmphasis.main,
       color: theme.palette[color].lowEmphasis.contrastText,
-      [`&.${chipClasses.focusVisible}`]: {
-        backgroundColor: theme.palette[color].lowEmphasis.light,
+      [`&.${chipClasses.clickable}`]: {
+        '&:hover': {
+          color: theme.palette[color].lowEmphasis.contrastText,
+          background: `linear-gradient(0deg, ${theme.palette.action.hover} 0%, ${theme.palette.action.hover} 100%), ${theme.palette[color].lowEmphasis.main}`,
+        },
+        '&:active': {
+          boxShadow: 'none',
+          background: `linear-gradient(0deg, ${theme.palette.action.active} 0%, ${theme.palette.action.active} 100%), ${theme.palette[color].lowEmphasis.main}`,
+        },
+        [`&.${chipClasses.focusVisible}`]: {
+          backgroundColor: theme.palette[color].lowEmphasis.main,
+        },
       },
     }),
     outlined: ({ ownerState: { color = 'default' }, theme }) => {
       return {
+        border: `1px solid ${theme.palette[color].main}`,
         [`&.${chipClasses.clickable}`]: {
           '&:hover': {
             color: theme.palette[color].lowEmphasis.contrastText,
-            backgroundColor: theme.palette[color].lowEmphasis.main,
+            backgroundColor: theme.palette[color].lowEmphasis.light,
           },
           '&:active': {
             boxShadow: 'none',
-            backgroundColor: theme.palette[color].lowEmphasis.dark,
+            backgroundColor: theme.palette[color].lowEmphasis.main,
           },
-        },
-      }
-    },
-    clickable: ({ ownerState: { color = 'default' }, theme }) => {
-      return {
-        '&:hover': {
-          color: theme.palette[color].lowEmphasis.contrastText,
-          backgroundColor: theme.palette[color].lowEmphasis.main,
-        },
-        '&:active': {
-          boxShadow: 'none',
-          backgroundColor: theme.palette[color].lowEmphasis.dark,
+          [`&.${chipClasses.focusVisible}`]: {
+            backgroundColor: 'transparent',
+          },
         },
       }
     },
@@ -96,8 +97,8 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
     }),
     avatar: ({ ownerState: { color = 'default', size = 'medium' }, theme }) => {
       const filledVariantStyles: CSSInterpolation = {
-        color: theme.palette[color].lowEmphasis.contrastText,
-        backgroundColor: theme.palette[color].lowEmphasis.main,
+        color: theme.palette[color].contrastText,
+        backgroundColor: theme.palette[color].main,
       }
 
       const sizeSmallStyles: CSSInterpolation = {
@@ -107,7 +108,7 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
 
       return {
         marginLeft: 4,
-        ...theme.typography.body2,
+        ...theme.typography.avatarInitials,
         ...filledVariantStyles,
         ...(size === 'small' && sizeSmallStyles),
       }

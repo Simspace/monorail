@@ -30,6 +30,15 @@ import { story } from '../helpers/storybook.js'
 
 export default { title: 'Data Display/Chip', component: Chip }
 
+const colors = [
+  'primary',
+  'secondary',
+  'error',
+  'info',
+  'success',
+  'warning',
+] as const
+
 // Story controls
 type ChipStoryArgs = Omit<ChipProps, 'icon' | 'avatar'> & {
   avatar: boolean
@@ -49,12 +58,18 @@ const argTypes = {
   variant: {
     options: [
       'filled',
-      'outlined (N/A in Meteor)',
+      'outlined',
       'muted  (N/A in Meteor)',
       'rectangular (N/A in Meteor)',
     ],
     control: {
       type: 'radio',
+    },
+  },
+  color: {
+    options: colors,
+    control: {
+      type: 'select',
     },
   },
   avatar: { control: { type: 'boolean' } },
@@ -71,21 +86,19 @@ const Template = story<ChipProps>(args => <Chip {...args} />, {
 
 export const Default = story(Template)
 
-const colors = [
-  'default',
-  'primary',
-  'error',
-  'info',
-  'success',
-  'warning',
-] as const
-
 /**
  * The Chip component supports outlined and filled styling.
  */
 export const Variants = story<ChipStoryArgs>(
   args => {
-    const { avatar, avatarText, icon, dismissible, ...chipArgs } = args
+    const {
+      avatar,
+      avatarText,
+      icon,
+      dismissible,
+      variant: _variant,
+      ...chipArgs
+    } = args
     const theme = useTheme()
     return (
       <div>
@@ -98,21 +111,19 @@ export const Variants = story<ChipStoryArgs>(
             icon={icon === true ? <Face /> : undefined}
             onDelete={dismissible === true ? action('onDelete') : undefined}
           />
+          <Chip
+            label="Outlined"
+            variant="outlined"
+            {...chipArgs}
+            avatar={avatar === true ? <Avatar>{avatarText}</Avatar> : undefined}
+            icon={icon === true ? <Face /> : undefined}
+            onDelete={dismissible === true ? action('onDelete') : undefined}
+          />
           {!isMeteorTheme(theme.name) && (
             <>
               <Chip
                 label="Muted"
                 variant="muted"
-                {...chipArgs}
-                avatar={
-                  avatar === true ? <Avatar>{avatarText}</Avatar> : undefined
-                }
-                icon={icon === true ? <Face /> : undefined}
-                onDelete={dismissible === true ? action('onDelete') : undefined}
-              />
-              <Chip
-                label="Outlined"
-                variant="outlined"
                 {...chipArgs}
                 avatar={
                   avatar === true ? <Avatar>{avatarText}</Avatar> : undefined
@@ -135,8 +146,8 @@ export const Variants = story<ChipStoryArgs>(
         </Stack>
         {isMeteorTheme(theme.name) && (
           <Typography variant="body2" mt={6}>
-            The Muted, Outlined, and Rectangular variants are not available in
-            the Meteor theme.
+            The Muted and Rectangular variants are not available in the Meteor
+            theme.
           </Typography>
         )}
       </div>
