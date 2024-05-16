@@ -10,20 +10,24 @@ export const MonorailOutlinedInputOverrides: Components<Theme>['MuiOutlinedInput
       notched: false,
     },
     styleOverrides: {
-      root: ({ ownerState, theme }) => ({
-        ...(ownerState.disabled === false &&
-          ownerState.error === false && {
-            borderColor: theme.palette.outlinedBorder,
-            [`&:hover .${outlinedInputClasses.notchedOutline}`]: {
-              borderColor: theme.palette.default.border.main,
-            },
-          }),
+      root: ({ theme }) => ({
+        [`&.${outlinedInputClasses.disabled} .${outlinedInputClasses.notchedOutline}`]:
+          {
+            borderColor: theme.palette.action.disabled,
+          },
+        [`&.${outlinedInputClasses.error} .${outlinedInputClasses.notchedOutline}`]:
+          {
+            borderColor: theme.palette.error.border.main,
+          },
+        [`&:hover .${outlinedInputClasses.notchedOutline}`]: {
+          borderColor: theme.palette.default.border.main,
+        },
         [`&.Mui-focusVisible`]: {
           borderColor: theme.palette.default.border.main,
         },
       }),
       notchedOutline: ({ theme }) => ({
-        borderColor: theme.palette.outlinedBorder,
+        borderColor: theme.palette.default.border.light,
       }),
       multiline: {
         padding: 0,
