@@ -13,7 +13,7 @@ export const MonorailInputLabelOverrides: Components<Theme>['MuiInputLabel'] = {
         top: 'auto',
         transform: 'none',
         background: 'transparent',
-        color: theme.palette.default.main,
+        color: theme.palette.text.secondary,
         marginBottom: theme.spacing(0.5),
         ...theme.typography.inputLabel,
       }
