@@ -13,81 +13,72 @@ export const MonorailAlertOverrides: Components<Theme>['MuiAlert'] = {
     iconMapping: {
       success: <CheckCircleIcon fontSize="inherit" />,
       info: <InfoIcon fontSize="inherit" />,
-      warning: <WarningTwoColor fontSize="inherit" />,
       error: <ErrorIcon fontSize="inherit" />,
+      warning: (
+        <WarningTwoColor
+          fontSize="inherit"
+          secondaryColor="warning.contrastText"
+          sx={{ color: 'warning.main' }}
+        />
+      ),
     },
   },
   styleOverrides: {
+    root: ({ ownerState: { severity = 'success' }, theme }) => ({
+      [`& .${alertClasses.icon}`]: {
+        color: theme.palette[severity].lowEmphasis.contrastText,
+      },
+    }),
     icon: ({ theme }) => ({
       padding: theme.spacing(2, 0),
     }),
-    message: {},
+    message: ({ theme }) => ({
+      color: theme.palette.text.primary,
+    }),
     action: {
       alignItems: 'center',
       marginRight: 0,
       paddingTop: 0,
     },
-    standard: ({ ownerState, theme }) => {
-      const severity = ownerState?.severity ?? 'success'
-      return {
-        color: theme.palette.getContrastText(
-          theme.palette[severity].lowEmphasis.light,
-        ),
-        backgroundColor: theme.palette[severity].lowEmphasis.light,
-        [`& .${alertClasses.icon}`]: {
-          color: theme.palette[severity].main,
-        },
-        [`& .${iconButtonClasses.root}`]: {
-          color: theme.palette.default.main,
-        },
-      }
-    },
-    outlined: ({ ownerState, theme }) => {
-      const severity = ownerState?.severity ?? 'success'
-      return {
-        backgroundColor: theme.palette.background.paper,
-        color: theme.palette.getContrastText(
-          theme.palette[severity].lowEmphasis.light,
-        ),
-        borderColor: theme.palette[severity].border.main,
-        [`& .${alertClasses.icon}`]: {
-          color: theme.palette[severity].main,
-        },
-        [`& .${iconButtonClasses.root}`]: {
-          color: theme.palette.default.main,
-        },
-      }
-    },
-    filled: ({ ownerState, theme }) => {
-      const severity = ownerState?.severity ?? 'success'
-      return {
+    standard: ({ ownerState: { severity = 'success' }, theme }) => ({
+      color: theme.palette.getContrastText(
+        theme.palette[severity].lowEmphasis.light,
+      ),
+      backgroundColor: theme.palette[severity].lowEmphasis.light,
+      [`& .${iconButtonClasses.root}`]: {
+        color: theme.palette.default.main,
+      },
+    }),
+    outlined: ({ ownerState: { severity = 'success' }, theme }) => ({
+      backgroundColor: theme.palette[severity].lowEmphasis.light,
+      color: theme.palette.text.primary,
+      borderColor: theme.palette[severity].border.main,
+      [`& .${iconButtonClasses.root}`]: {
+        color: theme.palette[severity].lowEmphasis.contrastText,
+      },
+    }),
+    filled: ({ ownerState: { severity = 'success' }, theme }) => ({
+      color: theme.palette.getContrastText(theme.palette[severity].main),
+      backgroundColor: theme.palette[severity].main,
+      [`& .${alertClasses.icon}`]: {
+        opacity: 1,
         color: theme.palette.getContrastText(theme.palette[severity].main),
-        backgroundColor: theme.palette[severity].main,
-        [`& .${alertClasses.icon}`]: {
-          opacity: 1,
-          color: theme.palette.getContrastText(theme.palette[severity].main),
-          ...(severity === 'warning' && {
-            '& path[data-color="secondary-color"]': {
-              fill: theme.palette.warning.main,
-            },
-          }),
+      },
+      [`& .${iconButtonClasses.root}`]: {
+        '&:hover': {
+          backgroundColor: alpha(
+            theme.palette.common.black,
+            theme.palette.action.hoverOpacity,
+          ),
         },
-        [`& .${iconButtonClasses.root}`]: {
-          '&:hover': {
-            backgroundColor: alpha(
-              theme.palette.common.black,
-              theme.palette.action.hoverOpacity,
-            ),
-          },
-          '&:active': {
-            backgroundColor: alpha(
-              theme.palette.common.black,
-              theme.palette.action.activatedOpacity,
-            ),
-          },
+        '&:active': {
+          backgroundColor: alpha(
+            theme.palette.common.black,
+            theme.palette.action.activatedOpacity,
+          ),
         },
-      }
-    },
+      },
+    }),
   },
 }
 
