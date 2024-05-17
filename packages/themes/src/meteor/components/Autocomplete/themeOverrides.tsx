@@ -67,12 +67,6 @@ export const MonorailAutocompleteOverrides: Components<Theme>['MuiAutocomplete']
             right: 7,
           },
         },
-        [`& .${outlinedInputClasses.notchedOutline}`]: {
-          borderColor: theme.palette.outlinedBorder,
-          '&:hover': {
-            borderColor: theme.palette.default.border.main,
-          },
-        },
         ...(size === 'large' && {
           [`&.${autocompleteClasses.hasPopupIcon}.${autocompleteClasses.hasClearIcon} .${outlinedInputClasses.root}`]:
             { paddingRight: theme.spacing(21.25) },
