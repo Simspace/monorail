@@ -7,7 +7,7 @@ export const MonorailInputBaseOverrides: Components<Theme>['MuiInputBase'] = {
     root: ({ ownerState: { color = 'primary', size = 'medium' }, theme }) => {
       return {
         [`&.${inputBaseClasses.focused}`]: {
-          boxShadow: `0 0 0 3px ${theme.palette[color].focusRing.outer}`,
+          boxShadow: `0 0 0 2px ${theme.palette[color].focusRing.outer}`,
           [`& > fieldset.${outlinedInputClasses.notchedOutline}`]: {
             borderColor: `${theme.palette.default.border.main}`,
             borderWidth: '1px',
@@ -31,7 +31,7 @@ export const MonorailInputBaseOverrides: Components<Theme>['MuiInputBase'] = {
     }),
     error: ({ theme }) => ({
       [`&.${inputBaseClasses.focused}`]: {
-        boxShadow: `0 0 0 3px ${theme.palette.error.border.main}`,
+        boxShadow: `0 0 0 2px ${theme.palette.error.border.main}`,
         [`& > fieldset.${outlinedInputClasses.notchedOutline}`]: {
           borderColor: `${theme.palette.error.border.main}`,
           borderWidth: '1px',
