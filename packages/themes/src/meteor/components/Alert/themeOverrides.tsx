@@ -28,6 +28,9 @@ export const MonorailAlertOverrides: Components<Theme>['MuiAlert'] = {
       [`& .${alertClasses.icon}`]: {
         color: theme.palette[severity].lowEmphasis.contrastText,
       },
+      [`& .${iconButtonClasses.root}`]: {
+        color: theme.palette[severity].lowEmphasis.contrastText,
+      },
     }),
     icon: ({ theme }) => ({
       padding: theme.spacing(2, 0),
@@ -53,9 +56,6 @@ export const MonorailAlertOverrides: Components<Theme>['MuiAlert'] = {
       backgroundColor: theme.palette[severity].lowEmphasis.light,
       color: theme.palette.text.primary,
       borderColor: theme.palette[severity].border.main,
-      [`& .${iconButtonClasses.root}`]: {
-        color: theme.palette[severity].lowEmphasis.contrastText,
-      },
     }),
     filled: ({ ownerState: { severity = 'success' }, theme }) => ({
       color: theme.palette.getContrastText(theme.palette[severity].main),
