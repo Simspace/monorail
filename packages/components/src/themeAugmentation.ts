@@ -17,6 +17,7 @@ export type {} from './ScrollShadow/themeAugmentation.js'
 export type {} from './Search/themeAugmentation.js'
 export type {} from './SelectionFooter/themeAugmentation.js'
 export type {} from './SplitButton/themeAugmentation.js'
+export type {} from './TextAlert/themeAugmentation.js'
 // codegen:end
 
 export type {} from '@mui/lab/themeAugmentation'
