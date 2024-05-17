@@ -15,7 +15,8 @@ interface SplitButtonMenuItem extends Omit<MenuItemProps, 'onClick'> {
 }
 
 export interface SplitButtonProps
-  extends Omit<ButtonGroupProps, 'classes' | 'orientation'> {
+  extends Omit<ButtonGroupProps, 'classes' | 'orientation' | 'variant'> {
+  variant?: Exclude<ButtonGroupProps['variant'], 'text'>
   classes?: Partial<SplitButtonClasses>
   /**
    * Sets the SplitButton to select mode. When selecting a MenuItem,
