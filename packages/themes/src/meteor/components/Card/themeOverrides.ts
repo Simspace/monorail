@@ -1,10 +1,12 @@
 import type { Components, Theme } from '@mui/material'
 
 export const MonorailCardOverrides: Components<Theme>['MuiCard'] = {
-  defaultProps: {},
+  defaultProps: {
+    elevation: 2,
+  },
   styleOverrides: {
     root: ({ ownerState: { raised = false }, theme }) => ({
-      boxShadow: raised ? theme.shadows[8] : theme.shadows[4],
+      ...(raised && { boxShadow: theme.shadows[8] }),
     }),
   },
 }

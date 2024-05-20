@@ -12,10 +12,10 @@ export const MonorailSnackbarOverrides: Components<Theme>['MuiSnackbar'] = {
   styleOverrides: {
     root: ({ ownerState: { anchorOrigin }, theme }) => ({
       [`& .${chipClasses.root}`]: {
-        boxShadow: theme.shadows[6],
+        boxShadow: theme.shadows[4],
       },
       [`& .${alertClasses.root}`]: {
-        boxShadow: theme.shadows[6],
+        boxShadow: theme.shadows[4],
         width: '100%',
         maxWidth: 480,
       },
