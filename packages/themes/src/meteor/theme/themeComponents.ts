@@ -24,7 +24,9 @@ import { MonorailChipOverrides } from '../components/Chip/themeOverrides.js'
 import { MonorailCircularProgressOverrides } from '../components/CircularProgress/themeOverrides.js'
 import { MonorailDataGridOverrides } from '../components/DataGrid/themeOverrides.js'
 import { MonorailDateRangePickerDayOverrides } from '../components/DateRangePickerDay/themeOverrides.js'
+import { MonorailDialogOverrides } from '../components/Dialog/themeOverrides.js'
 import { MonorailDialogContentOverrides } from '../components/DialogContent/themeOverrides.js'
+import { MonorailDrawerOverrides } from '../components/Drawer/themeOverrides.js'
 import { MonorailFileUploadOverrides } from '../components/FileUpload/themeOverrides.js'
 import { MonorailFormHelperTextOverrides } from '../components/FormHelperText/themeOverrides.js'
 import { MonorailFormLabelOverrides } from '../components/FormLabel/themeOverrides.js'
@@ -40,8 +42,11 @@ import { MonorailListItemTextOverrides } from '../components/ListItemText/themeO
 import { MonorailMenuItemOverrides } from '../components/MenuItem/themeOverrides.js'
 import { MonorailOutlinedInputOverrides } from '../components/OutlinedInput/themeOverrides.js'
 import { MonorailPaginationItemOverrides } from '../components/PaginationItem/themeOverrides.js'
+import { MonorailPopoverOverrides } from '../components/Popover/themeOverrides.js'
+import { MonorailPopupOverrides } from '../components/Popup/themeOverrides.js'
 import { MonorailSelectionFooterOverrides } from '../components/SelectionFooter/themeOverrides.js'
 import { MonorailSkeletonOverrides } from '../components/Skeleton/themeOverrides.js'
+import { MonorailSnackbarOverrides } from '../components/Snackbar/themeOverrides.js'
 import { MonorailSplitButtonOverrides } from '../components/SplitButton/themeOverrides.js'
 import { MonorailStepIconOverrides } from '../components/StepIcon/themeOverrides.js'
 import { MonorailStepLabelOverrides } from '../components/StepLabel/themeOverrides.js'
@@ -66,6 +71,7 @@ export const getThemeComponents = (
   ...baseTheme.components,
   ...getClassicThemeComponents(theme),
   MonorailFileUpload: MonorailFileUploadOverrides,
+  MonorailPopup: MonorailPopupOverrides,
   MonorailSelectionFooter: MonorailSelectionFooterOverrides,
   MuiAccordionSummary: MonorailAccordionSummaryOverrides,
   MuiAlert: MonorailAlertOverrides,
@@ -81,6 +87,8 @@ export const getThemeComponents = (
   MuiChip: MonorailChipOverrides,
   MuiCircularProgress: MonorailCircularProgressOverrides,
   MuiDataGrid: MonorailDataGridOverrides,
+  MuiDialog: MonorailDialogOverrides,
+  MuiDrawer: MonorailDrawerOverrides,
   MuiDialogContent: MonorailDialogContentOverrides,
   MuiDateRangePickerDay: MonorailDateRangePickerDayOverrides,
   MuiFormHelperText: MonorailFormHelperTextOverrides,
@@ -97,7 +105,9 @@ export const getThemeComponents = (
   MuiMenuItem: MonorailMenuItemOverrides,
   MuiOutlinedInput: MonorailOutlinedInputOverrides,
   MuiPaginationItem: MonorailPaginationItemOverrides,
+  MuiPopover: MonorailPopoverOverrides,
   MuiSkeleton: MonorailSkeletonOverrides,
+  MuiSnackbar: MonorailSnackbarOverrides,
   MonorailSplitButton: MonorailSplitButtonOverrides,
   MuiStepIcon: MonorailStepIconOverrides,
   MuiStepLabel: MonorailStepLabelOverrides,
