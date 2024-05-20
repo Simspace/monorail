@@ -12,7 +12,7 @@ import {
 } from '@monorail/utils'
 
 import { MenuItem } from '../MenuItem.js'
-import type { PaginationProps } from '../Pagination'
+import type { PaginationProps, PaginationRenderItemParams } from '../Pagination'
 import { Pagination, paginationClasses } from '../Pagination.js'
 import { PaginationItem } from '../PaginationItem.js'
 import { Select } from '../Select.js'
@@ -94,9 +94,20 @@ const PaginationFooterMinimalContainer = styled('div')({
   flexDirection: 'row',
 })
 
-const defaultRenderItem: NonNullable<
-  PaginationProps['renderItem']
-> = params => <PaginationItem {...params} />
+const defaultRenderItem = (
+  params: PaginationRenderItemParams & { 'aria-label': string },
+) => <PaginationItem {...params} />
+
+const defaultGetAriaLabel: NonNullable<PaginationProps['getItemAriaLabel']> = (
+  type,
+  page,
+  selected,
+) => {
+  if (type === 'page') {
+    return `${selected ? '' : 'Go to '}page ${page}`
+  }
+  return `Go to ${type} page`
+}
 
 export const PaginationFooter = React.forwardRef(function PaginationFooter(
   props,
@@ -136,6 +147,9 @@ export const PaginationFooter = React.forwardRef(function PaginationFooter(
     defaultPage,
     ...otherPaginationProps
   } = paginationProps
+
+  const getItemAriaLabel =
+    paginationProps.getItemAriaLabel ?? defaultGetAriaLabel
 
   const { pagination: PaginationComponent = Pagination } = slots
 
@@ -301,8 +315,9 @@ export const PaginationFooter = React.forwardRef(function PaginationFooter(
           onClick: handlePreviousClick,
           disabled: disabled === true || page === 1,
           type: 'previous',
-          page,
+          page: page - 1,
           selected: false,
+          'aria-label': getItemAriaLabel('previous', page - 1, false),
         })}
         {renderItem({
           variant,
@@ -314,6 +329,7 @@ export const PaginationFooter = React.forwardRef(function PaginationFooter(
           type: 'page',
           page,
           selected: true,
+          'aria-label': getItemAriaLabel('page', page, true),
         })}
         {renderItem({
           variant,
@@ -323,8 +339,9 @@ export const PaginationFooter = React.forwardRef(function PaginationFooter(
           onClick: handleNextClick,
           disabled: disabled === true || page === totalPages,
           type: 'next',
-          page,
+          page: page + 1,
           selected: false,
+          'aria-label': getItemAriaLabel('page', page + 1, false),
         })}
       </PaginationFooterMinimalContainer>
     )
