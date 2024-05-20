@@ -341,7 +341,7 @@ export const PaginationFooter = React.forwardRef(function PaginationFooter(
           type: 'next',
           page: page + 1,
           selected: false,
-          'aria-label': getItemAriaLabel('page', page + 1, false),
+          'aria-label': getItemAriaLabel('next', page + 1, false),
         })}
       </PaginationFooterMinimalContainer>
     )
