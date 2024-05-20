@@ -17,7 +17,9 @@ import {
   TextAlert,
   Typography,
 } from '@monorail/components'
+import { useTheme } from '@monorail/utils'
 
+import { isMeteorTheme } from '../helpers.js'
 import { story } from '../helpers/storybook.js'
 
 export default { title: 'Feedback/Alert', component: Alert }
@@ -109,20 +111,16 @@ export const WithTitleAndDescriptions = story<AlertProps>(
  * If an `onClose` callback is provided and no action prop is set, a close icon is displayed. The action prop can be used to provide an alternative action, for example using a `Button` or `IconButton`.
  */
 export const Actions = story<AlertProps>(args => {
+  const theme = useTheme()
   return (
     <Stack sx={{ width: '100%' }} spacing={2}>
       <Alert
         variant="outlined"
         severity="error"
         action={
-          <Stack direction="row" gap={2}>
-            <Button size="small" color="primary">
-              Close
-            </Button>
-            <Button variant="outlined" size="small" color="primary">
-              Undo
-            </Button>
-          </Stack>
+          <Button size="small" color="primary">
+            Action
+          </Button>
         }
         {...args}
       >
@@ -132,14 +130,9 @@ export const Actions = story<AlertProps>(args => {
         variant="outlined"
         severity="warning"
         action={
-          <Stack direction="row" gap={2}>
-            <Button size="small" color="primary">
-              Close
-            </Button>
-            <Button variant="outlined" size="small" color="primary">
-              Undo
-            </Button>
-          </Stack>
+          <Button size="small" color="primary">
+            Action
+          </Button>
         }
         {...args}
       >
@@ -149,14 +142,9 @@ export const Actions = story<AlertProps>(args => {
         variant="outlined"
         severity="info"
         action={
-          <Stack direction="row" gap={2}>
-            <Button size="small" color="primary">
-              Close
-            </Button>
-            <Button variant="outlined" size="small" color="primary">
-              Undo
-            </Button>
-          </Stack>
+          <Button size="small" color="primary">
+            Action
+          </Button>
         }
         {...args}
       >
@@ -166,87 +154,66 @@ export const Actions = story<AlertProps>(args => {
         variant="outlined"
         severity="success"
         action={
-          <Stack direction="row" gap={2}>
-            <Button size="small" color="primary">
-              Close
-            </Button>
-            <Button variant="outlined" size="small" color="primary">
-              Undo
-            </Button>
-          </Stack>
+          <Button size="small" color="primary">
+            Action
+          </Button>
         }
         {...args}
       >
         This is a success alert — check it out!
       </Alert>
-      <Alert
-        variant="filled"
-        severity="error"
-        action={
-          <Stack direction="row" gap={2}>
-            <Button variant="outlined" size="small" color="error" inverted>
-              Close
-            </Button>
-            <Button size="small" variant="text" color="error" inverted>
-              Undo
-            </Button>
-          </Stack>
-        }
-        {...args}
-      >
-        This is an error alert — check it out!
-      </Alert>
-      <Alert
-        variant="filled"
-        severity="warning"
-        action={
-          <Stack direction="row" gap={2}>
-            <Button variant="outlined" size="small" color="warning" inverted>
-              Close
-            </Button>
-            <Button size="small" variant="text" color="warning" inverted>
-              Undo
-            </Button>
-          </Stack>
-        }
-        {...args}
-      >
-        This is a warning alert — check it out!
-      </Alert>
-      <Alert
-        variant="filled"
-        severity="info"
-        action={
-          <Stack direction="row" gap={2}>
-            <Button variant="outlined" size="small" color="info" inverted>
-              Close
-            </Button>
-            <Button size="small" variant="text" color="info" inverted>
-              Undo
-            </Button>
-          </Stack>
-        }
-        {...args}
-      >
-        This is an info alert — check it out!
-      </Alert>
-      <Alert
-        variant="filled"
-        severity="success"
-        action={
-          <Stack direction="row" gap={2}>
-            <Button variant="outlined" size="small" color="success" inverted>
-              Close
-            </Button>
-            <Button size="small" variant="text" color="success" inverted>
-              Undo
-            </Button>
-          </Stack>
-        }
-        {...args}
-      >
-        This is a success alert — check it out!
-      </Alert>
+      {!isMeteorTheme(theme.name) && (
+        <>
+          <Alert
+            variant="filled"
+            severity="error"
+            action={
+              <Button size="small" color="primary">
+                Action
+              </Button>
+            }
+            {...args}
+          >
+            This is an error alert — check it out!
+          </Alert>
+          <Alert
+            variant="filled"
+            severity="warning"
+            action={
+              <Button size="small" color="primary">
+                Action
+              </Button>
+            }
+            {...args}
+          >
+            This is a warning alert — check it out!
+          </Alert>
+          <Alert
+            variant="filled"
+            severity="info"
+            action={
+              <Button size="small" color="primary">
+                Action
+              </Button>
+            }
+            {...args}
+          >
+            This is an info alert — check it out!
+          </Alert>
+          <Alert
+            variant="filled"
+            severity="success"
+            action={
+              <Button size="small" color="primary">
+                Action
+              </Button>
+            }
+            {...args}
+          >
+            This is a success alert — check it out!
+          </Alert>
+        </>
+      )}
     </Stack>
   )
 })
@@ -328,6 +295,7 @@ export const Icons = story<AlertProps>(args => {
  * Three variants are available – `standard`, `outlined`, and `filled`.
  */
 export const Variants = story<AlertProps>(args => {
+  const theme = useTheme()
   return (
     <Stack direction="column" spacing={2}>
       <Stack sx={{ width: '100%' }} spacing={2}>
@@ -355,46 +323,80 @@ export const Variants = story<AlertProps>(args => {
           This is a success alert — check it out!
         </Alert>
       </Stack>
-      <Stack sx={{ width: '100%' }} spacing={2}>
-        <Typography>Standard</Typography>
-        <Alert variant="standard" severity="error" onClose={() => {}} {...args}>
-          This is an error alert — check it out!
-        </Alert>
-        <Alert
-          variant="standard"
-          severity="warning"
-          onClose={() => {}}
-          {...args}
-        >
-          This is a warning alert — check it out!
-        </Alert>
-        <Alert variant="standard" severity="info" onClose={() => {}} {...args}>
-          This is an info alert — check it out!
-        </Alert>
-        <Alert
-          variant="standard"
-          severity="success"
-          onClose={() => {}}
-          {...args}
-        >
-          This is a success alert — check it out!
-        </Alert>
-      </Stack>
-      <Stack sx={{ width: '100%' }} spacing={2}>
-        <Typography>Filled</Typography>
-        <Alert variant="filled" severity="error" onClose={() => {}} {...args}>
-          This is an error alert — check it out!
-        </Alert>
-        <Alert variant="filled" severity="warning" onClose={() => {}} {...args}>
-          This is a warning alert — check it out!
-        </Alert>
-        <Alert variant="filled" severity="info" onClose={() => {}} {...args}>
-          This is an info alert — check it out!
-        </Alert>
-        <Alert variant="filled" severity="success" onClose={() => {}} {...args}>
-          This is a success alert — check it out!
-        </Alert>
-      </Stack>
+      {!isMeteorTheme(theme.name) && (
+        <>
+          <Stack sx={{ width: '100%' }} spacing={2}>
+            <Typography>Standard</Typography>
+            <Alert
+              variant="standard"
+              severity="error"
+              onClose={() => {}}
+              {...args}
+            >
+              This is an error alert — check it out!
+            </Alert>
+            <Alert
+              variant="standard"
+              severity="warning"
+              onClose={() => {}}
+              {...args}
+            >
+              This is a warning alert — check it out!
+            </Alert>
+            <Alert
+              variant="standard"
+              severity="info"
+              onClose={() => {}}
+              {...args}
+            >
+              This is an info alert — check it out!
+            </Alert>
+            <Alert
+              variant="standard"
+              severity="success"
+              onClose={() => {}}
+              {...args}
+            >
+              This is a success alert — check it out!
+            </Alert>
+          </Stack>
+          <Stack sx={{ width: '100%' }} spacing={2}>
+            <Typography>Filled</Typography>
+            <Alert
+              variant="filled"
+              severity="error"
+              onClose={() => {}}
+              {...args}
+            >
+              This is an error alert — check it out!
+            </Alert>
+            <Alert
+              variant="filled"
+              severity="warning"
+              onClose={() => {}}
+              {...args}
+            >
+              This is a warning alert — check it out!
+            </Alert>
+            <Alert
+              variant="filled"
+              severity="info"
+              onClose={() => {}}
+              {...args}
+            >
+              This is an info alert — check it out!
+            </Alert>
+            <Alert
+              variant="filled"
+              severity="success"
+              onClose={() => {}}
+              {...args}
+            >
+              This is a success alert — check it out!
+            </Alert>
+          </Stack>
+        </>
+      )}
     </Stack>
   )
 })
