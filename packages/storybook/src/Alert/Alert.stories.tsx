@@ -4,7 +4,7 @@ import CheckIcon from '@mui/icons-material/Check'
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
 import CloseIcon from '@mui/icons-material/Close'
 
-import type { AlertProps, TextAlertProps } from '@monorail/components'
+import type { AlertProps } from '@monorail/components'
 import {
   Alert,
   AlertTitle,
@@ -14,7 +14,6 @@ import {
   IconButton,
   Snackbar,
   Stack,
-  TextAlert,
   Typography,
 } from '@monorail/components'
 import { useTheme } from '@monorail/utils'
@@ -30,6 +29,11 @@ const argTypes = {
     options: ['filled (N/A in Meteor)', 'outlined', 'standard (N/A in Meteor)'],
     control: {
       type: 'radio',
+    },
+  },
+  disableGutters: {
+    control: {
+      type: 'boolean',
     },
   },
 }
@@ -300,7 +304,13 @@ export const Variants = story<AlertProps>(args => {
     <Stack direction="column" spacing={2}>
       <Stack sx={{ width: '100%' }} spacing={2}>
         <Typography>Outlined (Default)</Typography>
-        <Alert variant="outlined" severity="error" onClose={() => {}} {...args}>
+        <Alert
+          variant="outlined"
+          severity="error"
+          onClose={() => {}}
+          {...args}
+          disableGutters
+        >
           This is an error alert — check it out!
         </Alert>
         <Alert
@@ -323,7 +333,23 @@ export const Variants = story<AlertProps>(args => {
           This is a success alert — check it out!
         </Alert>
       </Stack>
-      {!isMeteorTheme(theme.name) && (
+      {isMeteorTheme(theme.name) ? (
+        <Stack sx={{ width: '100%' }} spacing={2}>
+          <Typography>Text</Typography>
+          <Alert variant="text" severity="error" {...args}>
+            This is an error alert — check it out!
+          </Alert>
+          <Alert variant="text" severity="warning" {...args}>
+            This is a warning alert — check it out!
+          </Alert>
+          <Alert variant="text" severity="info" {...args}>
+            This is an info alert — check it out!
+          </Alert>
+          <Alert variant="text" severity="success" {...args}>
+            This is a success alert — check it out!
+          </Alert>
+        </Stack>
+      ) : (
         <>
           <Stack sx={{ width: '100%' }} spacing={2}>
             <Typography>Standard</Typography>
@@ -400,65 +426,6 @@ export const Variants = story<AlertProps>(args => {
     </Stack>
   )
 })
-
-export const Text = story<TextAlertProps>(
-  args => {
-    return (
-      <Stack sx={{ width: '100%' }} spacing={2}>
-        <TextAlert severity="info" {...args}>
-          Info message
-        </TextAlert>
-        <TextAlert severity="success" {...args}>
-          Success message
-        </TextAlert>
-        <TextAlert severity="warning" {...args}>
-          Warning message
-        </TextAlert>
-        <TextAlert severity="error" {...args}>
-          Error message
-        </TextAlert>
-      </Stack>
-    )
-  },
-  {
-    argTypes: {
-      disableGutters: {
-        control: {
-          type: 'boolean',
-        },
-      },
-    },
-  },
-)
-
-export const TextWithActions = story<TextAlertProps>(
-  args => {
-    return (
-      <Stack sx={{ width: '100%' }} spacing={2}>
-        <TextAlert
-          severity="info"
-          action={<Button size="small">Action</Button>}
-          onClose={() => {}}
-          {...args}
-        >
-          Info message
-        </TextAlert>
-        <TextAlert severity="info" onClose={() => {}} {...args}>
-          Success message
-        </TextAlert>
-      </Stack>
-    )
-  },
-  {
-    argTypes: {
-      disableGutters: {
-        control: {
-          type: 'boolean',
-        },
-      },
-    },
-  },
-)
 
 // TODO: this was copied from the MUI docs, but could probably become its own custom component
 const ToastAlert = React.forwardRef<HTMLDivElement, AlertProps>(function (
