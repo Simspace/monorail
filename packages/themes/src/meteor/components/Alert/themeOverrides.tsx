@@ -62,10 +62,6 @@ export const MonorailAlertOverrides: Components<Theme>['MuiAlert'] = {
       [`& .${alertClasses.message}`]: {
         color: theme.palette[severity].lowEmphasis.contrastText,
       },
-      // [`&.${alertClasses.disableGutters}`]: {
-      //   paddingLeft: 0,
-      //   paddingRight: 0,
-      // },
       ...(disableGutters === true && {
         paddingLeft: 0,
         paddingRight: 0,
