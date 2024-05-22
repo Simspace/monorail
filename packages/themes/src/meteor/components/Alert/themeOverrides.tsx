@@ -52,20 +52,13 @@ export const MonorailAlertOverrides: Components<Theme>['MuiAlert'] = {
         color: theme.palette.default.main,
       },
     }),
-    text: ({
-      ownerState: { severity = 'success', disableGutters = false },
-      theme,
-    }) => ({
+    text: ({ ownerState: { severity = 'success' }, theme }) => ({
       backgroundColor: 'transparent',
       paddingTop: 0,
       paddingBottom: 0,
       [`& .${alertClasses.message}`]: {
         color: theme.palette[severity].lowEmphasis.contrastText,
       },
-      ...(disableGutters === true && {
-        paddingLeft: 0,
-        paddingRight: 0,
-      }),
     }),
     outlined: ({ ownerState: { severity = 'success' }, theme }) => ({
       backgroundColor: theme.palette[severity].lowEmphasis.light,
