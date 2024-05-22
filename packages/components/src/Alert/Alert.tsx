@@ -4,8 +4,11 @@ import {
   Alert as MuiAlert,
   alertClasses as muiAlertClasses,
   generateUtilityClasses,
+  styled,
 } from '@mui/material'
 import clsx from 'clsx'
+
+import { excludeProps } from '@monorail/utils'
 
 declare module '@mui/material/Alert' {
   interface AlertPropsVariantOverrides {
@@ -31,6 +34,10 @@ export const alertClasses: AlertClasses = {
   ...muiAlertClasses,
   ...generateUtilityClasses('MuiAlert', ['text', 'disableGutters']),
 }
+
+const StyledMuiAlert = styled(MuiAlert, {
+  shouldForwardProp: excludeProps('disableGutters'),
+})``
 
 /**
  *
@@ -60,7 +67,7 @@ export const Alert = React.forwardRef((inProps, ref) => {
       : ''
 
   return (
-    <MuiAlert
+    <StyledMuiAlert
       className={clsx(className, disableGuttersClassName, textVariantClassName)}
       ref={ref}
       disableGutters={disableGutters}
