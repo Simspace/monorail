@@ -37,7 +37,12 @@ export const alertClasses: AlertClasses = {
 
 const StyledMuiAlert = styled(MuiAlert, {
   shouldForwardProp: excludeProps('disableGutters'),
-})``
+})({
+  [`&.${alertClasses.disableGutters}`]: {
+    paddingLeft: 0,
+    paddingRight: 0,
+  },
+})
 
 /**
  *

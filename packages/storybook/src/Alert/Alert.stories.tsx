@@ -32,6 +32,12 @@ const argTypes = {
       'standard (N/A in Meteor)',
       'text',
     ],
+    mapping: {
+      ['filled (N/A in Meteor)']: 'filled',
+      outlined: 'outlined',
+      ['standard (N/A in Meteor)']: 'standard',
+      text: 'text',
+    },
     control: {
       type: 'radio',
     },
