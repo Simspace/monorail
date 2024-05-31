@@ -136,7 +136,6 @@ const ResizeHandleGrip = styled('div', {
       height: theme.spacing(12),
       borderRadius: 12,
       top: 'calc(min(50%, 50vh) - 24px)',
-      // top: 'calc(50% - 24px)',
       '&::before': {
         content: '""',
         position: 'absolute',
