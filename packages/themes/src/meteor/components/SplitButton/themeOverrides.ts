@@ -68,7 +68,7 @@ export const MonorailSplitButtonOverrides: Components<Theme>['MonorailSplitButto
           }),
           ...(variant === 'outlined' && {
             color: theme.palette[color].lowEmphasis.contrastText,
-            marginLeft: 0
+            marginLeft: 0,
           }),
         }
       },
