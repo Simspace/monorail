@@ -24,7 +24,6 @@ export const MonorailSplitButtonOverrides: Components<Theme>['MonorailSplitButto
         theme: Theme
       }) => {
         return {
-          zIndex: 1,
           ...(variant === 'contained' && {
             color: theme.palette[color].contrastText,
             borderRight: `1px solid ${theme.palette.divider}`,
@@ -69,6 +68,7 @@ export const MonorailSplitButtonOverrides: Components<Theme>['MonorailSplitButto
           }),
           ...(variant === 'outlined' && {
             color: theme.palette[color].lowEmphasis.contrastText,
+            marginLeft: 0
           }),
         }
       },
