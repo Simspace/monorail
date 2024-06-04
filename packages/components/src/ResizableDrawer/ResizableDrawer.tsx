@@ -112,6 +112,10 @@ const ResizableDrawerTemporaryContainer = styled('div', {
 })({
   width: 'min-content',
   height: '100%',
+  [`& .${resizableDrawerClasses.paper}`]: {
+    boxSizing: 'border-box',
+    overflowX: 'hidden',
+  },
 })
 
 const ResizableDrawerModalRoot = styled(Modal, {
@@ -219,6 +223,16 @@ export const ResizableDrawer = React.forwardRef((props, ref) => {
 
   const [drawerSize, setDrawerSize] = React.useState(initialSize)
   const [isDragging, setIsDragging] = React.useState(false)
+  const [offset, setOffset] = React.useState(0)
+
+  const drawerPaperRef = React.useRef<HTMLDivElement | null>(null)
+
+  React.useEffect(() => {
+    // Account for adjacent elements that may affect the drawer's width while resizing
+    if (drawerPaperRef !== null) {
+      setOffset(drawerPaperRef.current?.getBoundingClientRect().x ?? 0)
+    }
+  }, [])
 
   const handleMouseDown = (
     _event: React.MouseEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>,
@@ -241,7 +255,10 @@ export const ResizableDrawer = React.forwardRef((props, ref) => {
 
       switch (anchor) {
         case 'left': {
-          let newWidth = event.clientX - document.body.offsetLeft
+          let newWidth =
+            event.clientX -
+            document.body.offsetLeft -
+            (variant === 'persistent' ? initialSize + offset : 0)
           if (newWidth < minSize) {
             newWidth = minSize
           } else if (newWidth > maxSize) {
@@ -286,7 +303,7 @@ export const ResizableDrawer = React.forwardRef((props, ref) => {
         }
       }
     },
-    [anchor, maxSize, minSize],
+    [anchor, initialSize, maxSize, minSize, offset, variant],
   )
 
   const getDrawerStyle = React.useCallback(
@@ -390,6 +407,7 @@ export const ResizableDrawer = React.forwardRef((props, ref) => {
     <ResizableDrawerPaper
       square
       {...paperProps}
+      ref={drawerPaperRef}
       className={clsx(classes.paper, paperProps?.className)}
       ownerState={ownerState}
     >
