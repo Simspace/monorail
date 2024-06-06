@@ -882,15 +882,18 @@ export const ResizableDrawerBottom_ = story<ResizableDrawerProps>(
             </Typography>
           </Box>
         </ResizableDrawer>
-        <AppBar
-          position="static"
-          color="default"
-          sx={{ top: 'auto', bottom: 0 }}
+        <Box
+          sx={{
+            p: 3,
+            bgcolor: theme => theme.palette.background.paper,
+            boxShadow: 1,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
         >
-          <Toolbar>
-            <Typography sx={{ ml: 2 }}>Footer Content</Typography>
-          </Toolbar>
-        </AppBar>
+          <Typography sx={{ ml: 2 }}>Footer Example</Typography>
+        </Box>
       </Box>
     )
   },
