@@ -904,33 +904,6 @@ export const ResizableDrawerBottom_ = story<ResizableDrawerProps>(
   },
 )
 
-export const ResizableDrawer_2 = story<ResizableDrawerProps>(
-  () => {
-    return (
-      <Stack direction="row" minHeight={0} flex={1}>
-        <Box>ANOTHER BOX</Box>
-        <ResizableDrawer
-          variant="persistent"
-          open
-          slotProps={{
-            paper: {
-              elevation: 16,
-            },
-          }}
-        >
-          <Box>THIS IS A BOX</Box>
-        </ResizableDrawer>
-        <Stack direction="column" />
-      </Stack>
-    )
-  },
-  {
-    parameters: {
-      layout: 'fullscreen',
-    },
-  },
-)
-
 const miniVariantDrawerWidth = 240
 
 const openedMixin = (theme: Theme): CSSObject => ({
