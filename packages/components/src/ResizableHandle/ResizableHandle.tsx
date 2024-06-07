@@ -1,7 +1,11 @@
 import React from 'react'
 import { useThemeProps } from '@mui/material'
 
-import { useEnhancedEffect, useForceUpdate } from '@monorail/utils'
+import {
+  combineSxProps,
+  useEnhancedEffect,
+  useForceUpdate,
+} from '@monorail/utils'
 
 import { useResizableContainerContext } from '../ResizableContainer/ResizableContainerContext.js'
 import { ResizeHandle } from '../ResizeHandle/ResizeHandle.js'
@@ -32,6 +36,7 @@ export const ResizableHandle = React.forwardRef(function ResizableHandle(
     onDragEnd,
     onDrag,
     computeSize,
+    sx,
     ...other
   } = props
 
@@ -146,6 +151,22 @@ export const ResizableHandle = React.forwardRef(function ResizableHandle(
     }
   }
 
+  const sxProp = React.useMemo(() => {
+    return combineSxProps(
+      {
+        ...(context.orientation === 'vertical' && {
+          marginLeft: '-5px',
+          marginRight: '-5px',
+        }),
+        ...(context.orientation === 'horizontal' && {
+          marginTop: '-5px',
+          marginBottom: '-5px',
+        }),
+      },
+      sx,
+    )
+  }, [context.orientation, sx])
+
   const style = {
     ...other.style,
     ...(computeSize === true && {
@@ -167,6 +188,7 @@ export const ResizableHandle = React.forwardRef(function ResizableHandle(
       isDragging={isDragging}
       style={style}
       onDragStart={handleDragStart}
+      sx={sxProp}
       {...other}
     />
   )

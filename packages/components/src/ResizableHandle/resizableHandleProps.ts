@@ -1,4 +1,6 @@
 import type React from 'react'
+import type { Theme } from '@mui/material'
+import type { SxProps } from '@mui/system'
 
 import type { StandardElementProps } from '@monorail/types'
 
@@ -43,6 +45,8 @@ export interface ResizableHandleProps
    * @default false
    */
   computeSize?: boolean
+
+  sx?: SxProps<Theme>
 
   /** @internal */
   index?: number
