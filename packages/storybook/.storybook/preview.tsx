@@ -10,6 +10,8 @@ import {
   muiLight,
   legacyLight,
   legacyDark,
+  legacyPlexDark,
+  legacyPlexLight,
 } from '@monorail/themes'
 import { CssBaseline, GlobalStyles, ThemeProvider } from '@monorail/components'
 import * as MUI from '@mui/material'
@@ -64,6 +66,7 @@ enum ThemeOption {
   Meteor = 'Meteor',
   Classic = 'Classic',
   Legacy = 'Legacy',
+  LegacyPlex = 'LegacyPlex',
   PCTE = 'PCTE',
   MUI = 'MUI',
 }
@@ -81,6 +84,7 @@ export const globalTypes = {
         ThemeOption.Meteor,
         ThemeOption.Classic,
         ThemeOption.Legacy,
+        ThemeOption.LegacyPlex,
         ThemeOption.PCTE,
         ThemeOption.MUI,
       ],
@@ -124,6 +128,8 @@ export const withTheme: Decorator = (Story, context) => {
           return classicDark
         case ThemeOption.Legacy:
           return legacyDark
+        case ThemeOption.LegacyPlex:
+          return legacyPlexDark
         case ThemeOption.PCTE:
           return pcteDark
         case ThemeOption.MUI:
@@ -137,6 +143,8 @@ export const withTheme: Decorator = (Story, context) => {
         return classicLight
       case ThemeOption.Legacy:
         return legacyLight
+      case ThemeOption.LegacyPlex:
+        return legacyPlexLight
       case ThemeOption.PCTE:
         return pcteLight
       case ThemeOption.MUI:

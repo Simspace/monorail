@@ -10,6 +10,8 @@ export enum ThemeName {
   ClassicDark = 'classicDark',
   LegacyLight = 'legacyLight',
   LegacyDark = 'legacyDark',
+  LegacyPlexLight = 'legacyPlexLight',
+  LegacyPlexDark = 'legacyPlexDark',
   MUILight = 'muiLight',
   MUIDark = 'muiDark',
   PCTELight = 'pcteLight',

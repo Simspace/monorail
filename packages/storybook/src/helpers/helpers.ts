@@ -36,8 +36,10 @@ export const getRawColorObject = (themeName: ThemeName) => {
     case ThemeName.ClassicDark:
       return ClassicDarkRawColors
     case ThemeName.LegacyLight:
+    case ThemeName.LegacyPlexLight:
       return LegacyLightRawColors
     case ThemeName.LegacyDark:
+    case ThemeName.LegacyPlexDark:
       return LegacyDarkRawColors
     case ThemeName.MUILight:
       return MuiRawColors

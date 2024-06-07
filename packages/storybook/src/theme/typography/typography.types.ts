@@ -10,7 +10,7 @@ export type TypographyTokenRowProps = {
   >
   figmaStyle?: string
   fontSizePx?: number
-  lineHeightPx?: number
+  lineHeightPx?: number | string
   description?: JSX.Element | string
   styles?: Partial<
     Omit<FontStyle, 'fontSize'> & {

@@ -3,10 +3,15 @@ import { useTheme } from '@mui/material'
 
 import { Box, Typography } from '@monorail/components'
 import {
-  PixelFontSize,
-  PixelLineHeight,
+  PixelFontSize as CommonPixelFontSize,
+  PixelLineHeight as CommonPixelLineHeight,
 } from '@monorail/themes/common/FontSize'
+import {
+  PixelFontSize as LegacyPixelFontSize,
+  PixelLineHeight as LegacyPixelLineHeight,
+} from '@monorail/themes/legacy/FontSizeLegacy'
 
+import { ThemeName } from '../palette/palette.types'
 import { TypographyTokenTable } from './typography.components'
 import type {
   TypographyTokenColumns,
@@ -19,6 +24,31 @@ export default {
     layout: 'fullscreen',
     options: { showPanel: false },
   },
+}
+
+const getPixelFontProperties = (themeName: ThemeName) => {
+  switch (themeName) {
+    case ThemeName.MeteorLight:
+    case ThemeName.MeteorDark:
+    case ThemeName.ClassicLight:
+    case ThemeName.ClassicDark:
+    case ThemeName.MUILight:
+    case ThemeName.MUIDark:
+      return {
+        PixelFontSize: CommonPixelFontSize,
+        PixelLineHeight: CommonPixelLineHeight,
+      }
+    case ThemeName.LegacyLight:
+    case ThemeName.LegacyDark:
+    case ThemeName.LegacyPlexLight:
+    case ThemeName.LegacyPlexDark:
+    case ThemeName.PCTELight:
+    case ThemeName.PCTEDark:
+      return {
+        PixelFontSize: LegacyPixelFontSize,
+        PixelLineHeight: LegacyPixelLineHeight,
+      }
+  }
 }
 
 const columns: TypographyTokenColumns = [
@@ -36,6 +66,8 @@ const columns: TypographyTokenColumns = [
 
 export const Components = () => {
   const theme = useTheme()
+
+  const { PixelFontSize, PixelLineHeight } = getPixelFontProperties(theme.name)
 
   const rows: Array<TypographyTokenRowProps> = React.useMemo(
     () => [
@@ -202,7 +234,62 @@ export const Components = () => {
         description: 'Font styles applied to Tooltip.',
       },
     ],
-    [theme.typography],
+    [
+      PixelFontSize.AlertTitle,
+      PixelFontSize.AvatarInitials,
+      PixelFontSize.BadgeLabel,
+      PixelFontSize.BottomNavActiveLabel,
+      PixelFontSize.ButtonLarge,
+      PixelFontSize.ButtonMedium,
+      PixelFontSize.ButtonSmall,
+      PixelFontSize.Chip,
+      PixelFontSize.HelperText,
+      PixelFontSize.InputLabel,
+      PixelFontSize.InputText,
+      PixelFontSize.ListSubheader,
+      PixelFontSize.MenuItem,
+      PixelFontSize.MenuItemDense,
+      PixelFontSize.TabActive,
+      PixelFontSize.TabInactive,
+      PixelFontSize.TableHeader,
+      PixelFontSize.Tooltip,
+      PixelLineHeight.AlertTitle,
+      PixelLineHeight.AvatarInitials,
+      PixelLineHeight.BadgeLabel,
+      PixelLineHeight.BottomNavActiveLabel,
+      PixelLineHeight.ButtonLarge,
+      PixelLineHeight.ButtonMedium,
+      PixelLineHeight.ButtonSmall,
+      PixelLineHeight.Chip,
+      PixelLineHeight.HelperText,
+      PixelLineHeight.InputLabel,
+      PixelLineHeight.InputText,
+      PixelLineHeight.ListSubheader,
+      PixelLineHeight.MenuItem,
+      PixelLineHeight.MenuItemDense,
+      PixelLineHeight.TabActive,
+      PixelLineHeight.TabInactive,
+      PixelLineHeight.TableHeader,
+      PixelLineHeight.Tooltip,
+      theme.typography.alertTitle,
+      theme.typography.avatarInitials,
+      theme.typography.badgeLabel,
+      theme.typography.bottomNavActiveLabel,
+      theme.typography.buttonLarge,
+      theme.typography.buttonMedium,
+      theme.typography.buttonSmall,
+      theme.typography.chip,
+      theme.typography.helperText,
+      theme.typography.inputLabel,
+      theme.typography.inputText,
+      theme.typography.listSubheader,
+      theme.typography.menuItem,
+      theme.typography.menuItemDense,
+      theme.typography.tabActive,
+      theme.typography.tabInactive,
+      theme.typography.tableHeader,
+      theme.typography.tooltip,
+    ],
   )
 
   return (
