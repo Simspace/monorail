@@ -3,7 +3,7 @@ import { styled, useThemeProps } from '@mui/material'
 import composeClasses from '@mui/utils/composeClasses'
 import clsx from 'clsx'
 
-import { useDidUpdate } from '@monorail/utils'
+import { omit, useDidUpdate } from '@monorail/utils'
 
 import { useResizableContainerContext } from '../ResizableContainer/ResizableContainerContext.js'
 import { getResizableElementUtilityClass } from './resizableElementClasses.js'
@@ -53,9 +53,20 @@ export const ResizableElement = React.forwardRef(function ResizableElement(
 
   return (
     <ResizableElementRoot
+      ref={ref}
+      {...omit(props, [
+        'classes',
+        'children',
+        'maxSize',
+        'minSize',
+        'size',
+        'flex',
+        'direction',
+        'sx',
+        'index',
+      ])}
       className={clsx(classes.root, props.className)}
       style={style}
-      ref={ref}
       sx={sx}
     >
       {inProps.children}
