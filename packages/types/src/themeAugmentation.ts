@@ -30,7 +30,7 @@ export type ColorShades = {
   A700?: string
 }
 
-enum ThemeName {
+export enum ThemeName {
   ClassicLight = 'classicLight',
   ClassicDark = 'classicDark',
   MUILight = 'muiLight',
