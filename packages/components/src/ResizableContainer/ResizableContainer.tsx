@@ -93,6 +93,7 @@ export const ResizableContainer = React.forwardRef(function ResizableContainer(
         constrained: props.flex !== undefined,
         flex: props.flex || 0,
         type: child.type,
+        ref: child.ref,
       } as InitialFlexData
     })
 
@@ -129,7 +130,7 @@ export const ResizableContainer = React.forwardRef(function ResizableContainer(
 
     return flexData.map(entry => ({
       flex: entry.type !== getComponentType(ResizableHandle) ? entry.flex : 0.0,
-      ref: React.createRef(),
+      ref: entry.ref ?? React.createRef(),
     }))
   }, [maxDepth, props.children, orientation])
 
@@ -266,12 +267,20 @@ export const ResizableContainer = React.forwardRef(function ResizableContainer(
       }
 
       activeElements.current = [processedChildren.current[data.index - 1], processedChildren.current[data.index + 1]]
+      activeElements.current.forEach(element => {
+        element.ref!.current!.style.setProperty('pointer-events', 'none')
+        element.ref!.current!.style.setProperty('user-select', 'none')
+      })
     },
     [orientation],
   )
 
   const handleStopResize = React.useCallback((_: ResizeEventMap['stopResize']) => {
     document.body.style.cursor = ''
+    activeElements.current.forEach(element => {
+      element.ref!.current!.style.removeProperty('pointer-events')
+      element.ref!.current!.style.removeProperty('user-select')
+    })
   }, [])
 
   const addOffset = React.useCallback(
@@ -599,6 +608,7 @@ interface ResizeChildProps {
   direction: ResizableContainerOrientation
   index: number
   computeSize?: boolean
+  ref?: React.Ref<HTMLElement>
 }
 
 interface ResizeChild extends React.ReactElement<ResizeChildProps> {
@@ -612,6 +622,7 @@ interface InitialFlexData {
   constrained: boolean
   flex: number
   type: React.JSXElementConstructor<any>
+  ref?: React.RefObject<HTMLElement>
 }
 
 interface FlexData {

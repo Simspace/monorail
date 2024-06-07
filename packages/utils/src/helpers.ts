@@ -1,6 +1,7 @@
 export * from './helpers/fileSizeFormatters.js'
 export * from './helpers/getLineClampStyles.js'
 export * from './helpers/math.js'
+export * from './helpers/omit.js'
 
 export {
   unstable_capitalize as capitalize,
