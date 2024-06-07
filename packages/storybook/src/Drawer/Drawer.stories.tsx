@@ -471,38 +471,206 @@ export const PersistentDrawer = story<DrawerProps>(() => {
  *
  * Persistent navigation drawers are acceptable for all sizes larger than mobile. They are not recommended for apps with multiple levels of hierarchy that require using an up arrow for navigation.
  */
-export const ResizableDrawer_ = story<ResizableDrawerProps>(
+export const ResizableDrawerLeft_ = story<ResizableDrawerProps>(
   () => {
     const [open, setOpen] = React.useState(false)
 
     return (
-      <Stack direction="row">
-        <Stack
-          minWidth={64}
-          flexGrow={1}
-          alignItems="center"
-          bgcolor="common.black"
-          py={4}
-        >
-          <Home
-            fontSize="large"
-            sx={theme => ({ fill: theme.palette.common.white })}
-          />
-        </Stack>
+      <Stack direction="column" width="100vw" height="100vh">
+        <Stack direction="row" height={1}>
+          <Stack
+            minWidth={64}
+            flexGrow={1}
+            alignItems="center"
+            bgcolor="common.black"
+            py={4}
+          >
+            <Home
+              fontSize="large"
+              sx={theme => ({ fill: theme.palette.common.white })}
+            />
+          </Stack>
 
-        <Box overflow="hidden" height="100%" sx={{ display: 'flex' }}>
-          <CssBaseline />
-          <GlobalStyles
-            styles={{
-              'html, body, #root': {
-                height: '100%',
-              },
-            }}
-          />
+          <Box overflow="hidden" height="100%" sx={{ display: 'flex' }}>
+            <CssBaseline />
+            <GlobalStyles
+              styles={{
+                'html, body, #root': {
+                  height: '100%',
+                },
+              }}
+            />
+            <ResizableDrawer
+              variant="persistent"
+              onClose={() => setOpen(false)}
+              open={open}
+              slotProps={{
+                paper: {
+                  elevation: 16,
+                },
+              }}
+            >
+              <Toolbar />
+              <Divider />
+              <List>
+                {['Inbox', 'Starred', 'Send email', 'Drafts'].map(
+                  (text, index) => (
+                    <ListItem key={text} disablePadding>
+                      <ListItemButton sx={{ width: '100%' }}>
+                        <ListItemIcon>
+                          {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                        </ListItemIcon>
+                        <ListItemText
+                          primary={text}
+                          sx={{
+                            '& > span': {
+                              whiteSpace: 'nowrap',
+                              overflow: 'hidden',
+                              textOverflow: 'ellipsis',
+                            },
+                          }}
+                        />
+                      </ListItemButton>
+                    </ListItem>
+                  ),
+                )}
+              </List>
+              <Divider />
+              <List>
+                {['All mail', 'Trash', 'Spam'].map((text, index) => (
+                  <ListItem key={text} disablePadding>
+                    <ListItemButton sx={{ width: '100%' }}>
+                      <ListItemIcon>
+                        {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                      </ListItemIcon>
+                      <ListItemText
+                        primary={text}
+                        sx={{
+                          '& > span': {
+                            whiteSpace: 'nowrap',
+                            overflow: 'hidden',
+                            textOverflow: 'ellipsis',
+                          },
+                        }}
+                      />
+                    </ListItemButton>
+                  </ListItem>
+                ))}
+              </List>
+            </ResizableDrawer>
+
+            <Box
+              component="main"
+              sx={{ flexGrow: 1, bgcolor: 'background.default' }}
+            >
+              <Box sx={{ p: 3, overflowY: 'auto' }}>
+                <Button onClick={() => setOpen(!open)}>Open</Button>
+                <Typography paragraph>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  Rhoncus dolor purus non enim praesent elementum facilisis leo
+                  vel. Risus at ultrices mi tempus imperdiet. Semper risus in
+                  hendrerit gravida rutrum quisque non tellus. Convallis
+                  convallis tellus id interdum velit laoreet id donec ultrices.
+                  Odio morbi quis commodo odio aenean sed adipiscing. Amet nisl
+                  suscipit adipiscing bibendum est ultricies integer quis.
+                  Cursus euismod quis viverra nibh cras. Metus vulputate eu
+                  scelerisque felis imperdiet proin fermentum leo. Mauris
+                  commodo quis imperdiet massa tincidunt. Cras tincidunt
+                  lobortis feugiat vivamus at augue. At augue eget arcu dictum
+                  varius duis at consectetur lorem. Velit sed ullamcorper morbi
+                  tincidunt. Lorem donec massa sapien faucibus et molestie ac.
+                </Typography>
+                <Typography paragraph>
+                  Consequat mauris nunc congue nisi vitae suscipit. Fringilla
+                  est ullamcorper eget nulla facilisi etiam dignissim diam.
+                  Pulvinar elementum integer enim neque volutpat ac tincidunt.
+                  Ornare suspendisse sed nisi lacus sed viverra tellus. Purus
+                  sit amet volutpat consequat mauris. Elementum eu facilisis sed
+                  odio morbi. Euismod lacinia at quis risus sed vulputate odio.
+                  Morbi tincidunt ornare massa eget egestas purus viverra
+                  accumsan in. In hendrerit gravida rutrum quisque non tellus
+                  orci ac. Pellentesque nec nam aliquam sem et tortor. Habitant
+                  morbi tristique senectus et. Adipiscing elit duis tristique
+                  sollicitudin nibh sit. Ornare aenean euismod elementum nisi
+                  quis eleifend. Commodo viverra maecenas accumsan lacus vel
+                  facilisis. Nulla posuere sollicitudin aliquam ultrices
+                  sagittis orci a.
+                </Typography>
+              </Box>
+            </Box>
+          </Box>
+        </Stack>
+      </Stack>
+    )
+  },
+  {
+    parameters: {
+      layout: 'fullscreen',
+    },
+  },
+)
+
+export const ResizableDrawerRight_ = story<ResizableDrawerProps>(
+  () => {
+    return (
+      <Stack direction="column" width="100vw" height="100vh">
+        <Stack direction="row" height={1}>
+          <Box overflow="hidden" height="100%" sx={{ display: 'flex' }}>
+            <CssBaseline />
+            <GlobalStyles
+              styles={{
+                'html, body, #root': {
+                  height: '100%',
+                },
+              }}
+            />
+
+            <Box
+              component="main"
+              sx={{ flexGrow: 1, bgcolor: 'background.default' }}
+            >
+              <Box sx={{ p: 3, overflowY: 'auto' }}>
+                <Typography paragraph>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  Rhoncus dolor purus non enim praesent elementum facilisis leo
+                  vel. Risus at ultrices mi tempus imperdiet. Semper risus in
+                  hendrerit gravida rutrum quisque non tellus. Convallis
+                  convallis tellus id interdum velit laoreet id donec ultrices.
+                  Odio morbi quis commodo odio aenean sed adipiscing. Amet nisl
+                  suscipit adipiscing bibendum est ultricies integer quis.
+                  Cursus euismod quis viverra nibh cras. Metus vulputate eu
+                  scelerisque felis imperdiet proin fermentum leo. Mauris
+                  commodo quis imperdiet massa tincidunt. Cras tincidunt
+                  lobortis feugiat vivamus at augue. At augue eget arcu dictum
+                  varius duis at consectetur lorem. Velit sed ullamcorper morbi
+                  tincidunt. Lorem donec massa sapien faucibus et molestie ac.
+                </Typography>
+                <Typography paragraph>
+                  Consequat mauris nunc congue nisi vitae suscipit. Fringilla
+                  est ullamcorper eget nulla facilisi etiam dignissim diam.
+                  Pulvinar elementum integer enim neque volutpat ac tincidunt.
+                  Ornare suspendisse sed nisi lacus sed viverra tellus. Purus
+                  sit amet volutpat consequat mauris. Elementum eu facilisis sed
+                  odio morbi. Euismod lacinia at quis risus sed vulputate odio.
+                  Morbi tincidunt ornare massa eget egestas purus viverra
+                  accumsan in. In hendrerit gravida rutrum quisque non tellus
+                  orci ac. Pellentesque nec nam aliquam sem et tortor. Habitant
+                  morbi tristique senectus et. Adipiscing elit duis tristique
+                  sollicitudin nibh sit. Ornare aenean euismod elementum nisi
+                  quis eleifend. Commodo viverra maecenas accumsan lacus vel
+                  facilisis. Nulla posuere sollicitudin aliquam ultrices
+                  sagittis orci a.
+                </Typography>
+              </Box>
+            </Box>
+          </Box>
+
           <ResizableDrawer
             variant="persistent"
-            onClose={() => setOpen(false)}
-            open={open}
+            open={true}
+            anchor="right"
             slotProps={{
               paper: {
                 elevation: 16,
@@ -558,47 +726,175 @@ export const ResizableDrawer_ = story<ResizableDrawerProps>(
             </List>
           </ResizableDrawer>
 
-          <Box
-            component="main"
-            sx={{ flexGrow: 1, bgcolor: 'background.default' }}
+          <Stack
+            minWidth={64}
+            flexGrow={1}
+            alignItems="center"
+            bgcolor="common.black"
+            py={4}
           >
-            <Box sx={{ p: 3, overflowY: 'auto' }}>
-              <Button onClick={() => setOpen(!open)}>Open</Button>
-              <Typography paragraph>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                Rhoncus dolor purus non enim praesent elementum facilisis leo
-                vel. Risus at ultrices mi tempus imperdiet. Semper risus in
-                hendrerit gravida rutrum quisque non tellus. Convallis convallis
-                tellus id interdum velit laoreet id donec ultrices. Odio morbi
-                quis commodo odio aenean sed adipiscing. Amet nisl suscipit
-                adipiscing bibendum est ultricies integer quis. Cursus euismod
-                quis viverra nibh cras. Metus vulputate eu scelerisque felis
-                imperdiet proin fermentum leo. Mauris commodo quis imperdiet
-                massa tincidunt. Cras tincidunt lobortis feugiat vivamus at
-                augue. At augue eget arcu dictum varius duis at consectetur
-                lorem. Velit sed ullamcorper morbi tincidunt. Lorem donec massa
-                sapien faucibus et molestie ac.
-              </Typography>
-              <Typography paragraph>
-                Consequat mauris nunc congue nisi vitae suscipit. Fringilla est
-                ullamcorper eget nulla facilisi etiam dignissim diam. Pulvinar
-                elementum integer enim neque volutpat ac tincidunt. Ornare
-                suspendisse sed nisi lacus sed viverra tellus. Purus sit amet
-                volutpat consequat mauris. Elementum eu facilisis sed odio
-                morbi. Euismod lacinia at quis risus sed vulputate odio. Morbi
-                tincidunt ornare massa eget egestas purus viverra accumsan in.
-                In hendrerit gravida rutrum quisque non tellus orci ac.
-                Pellentesque nec nam aliquam sem et tortor. Habitant morbi
-                tristique senectus et. Adipiscing elit duis tristique
-                sollicitudin nibh sit. Ornare aenean euismod elementum nisi quis
-                eleifend. Commodo viverra maecenas accumsan lacus vel facilisis.
-                Nulla posuere sollicitudin aliquam ultrices sagittis orci a.
-              </Typography>
-            </Box>
-          </Box>
-        </Box>
+            <Home
+              fontSize="large"
+              sx={theme => ({ fill: theme.palette.common.white })}
+            />
+          </Stack>
+        </Stack>
       </Stack>
+    )
+  },
+  {
+    parameters: {
+      layout: 'fullscreen',
+    },
+  },
+)
+
+export const ResizableDrawerTop_ = story<ResizableDrawerProps>(
+  () => {
+    return (
+      <Box sx={{ height: '100vh', overflow: 'hidden' }}>
+        <AppBar position="static">
+          <Toolbar>
+            <Typography variant="h6">Resizable Drawer Example</Typography>
+          </Toolbar>
+        </AppBar>
+        <ResizableDrawer
+          variant="persistent"
+          open={true}
+          anchor="top"
+          slotProps={{
+            paper: {
+              elevation: 16,
+            },
+          }}
+        >
+          <Box p={3}>
+            <Typography variant="h6">Drawer Content</Typography>
+            <Typography>
+              This is some random content inside the drawer.
+            </Typography>
+          </Box>
+        </ResizableDrawer>
+        <Box sx={{ p: 3, overflowY: 'auto' }}>
+          <Typography paragraph>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Rhoncus
+            dolor purus non enim praesent elementum facilisis leo vel. Risus at
+            ultrices mi tempus imperdiet. Semper risus in hendrerit gravida
+            rutrum quisque non tellus. Convallis convallis tellus id interdum
+            velit laoreet id donec ultrices. Odio morbi quis commodo odio aenean
+            sed adipiscing. Amet nisl suscipit adipiscing bibendum est ultricies
+            integer quis. Cursus euismod quis viverra nibh cras. Metus vulputate
+            eu scelerisque felis imperdiet proin fermentum leo. Mauris commodo
+            quis imperdiet massa tincidunt. Cras tincidunt lobortis feugiat
+            vivamus at augue. At augue eget arcu dictum varius duis at
+            consectetur lorem. Velit sed ullamcorper morbi tincidunt. Lorem
+            donec massa sapien faucibus et molestie ac.
+          </Typography>
+          <Typography paragraph>
+            Consequat mauris nunc congue nisi vitae suscipit. Fringilla est
+            ullamcorper eget nulla facilisi etiam dignissim diam. Pulvinar
+            elementum integer enim neque volutpat ac tincidunt. Ornare
+            suspendisse sed nisi lacus sed viverra tellus. Purus sit amet
+            volutpat consequat mauris. Elementum eu facilisis sed odio morbi.
+            Euismod lacinia at quis risus sed vulputate odio. Morbi tincidunt
+            ornare massa eget egestas purus viverra accumsan in. In hendrerit
+            gravida rutrum quisque non tellus orci ac. Pellentesque nec nam
+            aliquam sem et tortor. Habitant morbi tristique senectus et.
+            Adipiscing elit duis tristique sollicitudin nibh sit. Ornare aenean
+            euismod elementum nisi quis eleifend. Commodo viverra maecenas
+            accumsan lacus vel facilisis. Nulla posuere sollicitudin aliquam
+            ultrices sagittis orci a.
+          </Typography>
+        </Box>
+      </Box>
+    )
+  },
+  {
+    parameters: {
+      layout: 'fullscreen',
+    },
+  },
+)
+
+export const ResizableDrawerBottom_ = story<ResizableDrawerProps>(
+  () => {
+    return (
+      <Box
+        sx={{
+          height: '100vh',
+          display: 'flex',
+          flexDirection: 'column',
+          overflow: 'hidden',
+        }}
+      >
+        <AppBar position="static">
+          <Toolbar>
+            <Typography variant="h6">Resizable Drawer Example</Typography>
+          </Toolbar>
+        </AppBar>
+        <Box sx={{ p: 3, flexGrow: 1, overflowY: 'auto' }}>
+          <Typography paragraph>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Rhoncus
+            dolor purus non enim praesent elementum facilisis leo vel. Risus at
+            ultrices mi tempus imperdiet. Semper risus in hendrerit gravida
+            rutrum quisque non tellus. Convallis convallis tellus id interdum
+            velit laoreet id donec ultrices. Odio morbi quis commodo odio aenean
+            sed adipiscing. Amet nisl suscipit adipiscing bibendum est ultricies
+            integer quis. Cursus euismod quis viverra nibh cras. Metus vulputate
+            eu scelerisque felis imperdiet proin fermentum leo. Mauris commodo
+            quis imperdiet massa tincidunt. Cras tincidunt lobortis feugiat
+            vivamus at augue. At augue eget arcu dictum varius duis at
+            consectetur lorem. Velit sed ullamcorper morbi tincidunt. Lorem
+            donec massa sapien faucibus et molestie ac.
+          </Typography>
+          <Typography paragraph>
+            Consequat mauris nunc congue nisi vitae suscipit. Fringilla est
+            ullamcorper eget nulla facilisi etiam dignissim diam. Pulvinar
+            elementum integer enim neque volutpat ac tincidunt. Ornare
+            suspendisse sed nisi lacus sed viverra tellus. Purus sit amet
+            volutpat consequat mauris. Elementum eu facilisis sed odio morbi.
+            Euismod lacinia at quis risus sed vulputate odio. Morbi tincidunt
+            ornare massa eget egestas purus viverra accumsan in. In hendrerit
+            gravida rutrum quisque non tellus orci ac. Pellentesque nec nam
+            aliquam sem et tortor. Habitant morbi tristique senectus et.
+            Adipiscing elit duis tristique sollicitudin nibh sit. Ornare aenean
+            euismod elementum nisi quis eleifend. Commodo viverra maecenas
+            accumsan lacus vel facilisis. Nulla posuere sollicitudin aliquam
+            ultrices sagittis orci a.
+          </Typography>
+        </Box>
+        <ResizableDrawer
+          variant="persistent"
+          open={true}
+          anchor="bottom"
+          slotProps={{
+            paper: {
+              elevation: 16,
+            },
+          }}
+        >
+          <Box p={3}>
+            <Typography variant="h6">Drawer Content</Typography>
+            <Typography>
+              This is some random content inside the drawer.
+            </Typography>
+          </Box>
+        </ResizableDrawer>
+        <Box
+          sx={{
+            p: 3,
+            bgcolor: theme => theme.palette.background.paper,
+            boxShadow: 1,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <Typography sx={{ ml: 2 }}>Footer Example</Typography>
+        </Box>
+      </Box>
     )
   },
   {
