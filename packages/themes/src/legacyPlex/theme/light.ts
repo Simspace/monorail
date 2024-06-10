@@ -3,8 +3,8 @@ import type { Theme, ThemeOptions } from '@mui/material'
 import { createTheme } from '@mui/material'
 
 import { palette } from '../../legacy/theme/light.js'
+import { getThemeComponents } from '../../legacy/theme/themeComponents.js'
 import { baseTheme } from './baseTheme.js'
-import { getThemeComponents } from './themeComponents.js'
 
 // #region Raw Colors (Option Tokens)
 /**
@@ -34,7 +34,7 @@ export const legacyPlexLight: Theme = createTheme(
   {
     ...themeWithoutComponents,
     name: 'legacyPlexLight',
-    components: components,
+    components,
   },
   {},
 )

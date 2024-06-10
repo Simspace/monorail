@@ -3,8 +3,8 @@ import type { Theme, ThemeOptions } from '@mui/material'
 import { createTheme } from '@mui/material'
 
 import { palette } from '../../legacy/theme/dark.js'
+import { getThemeComponents } from '../../legacy/theme/themeComponents.js'
 import { baseTheme } from './baseTheme.js'
-import { getThemeComponents } from './themeComponents.js'
 
 // Construct a Theme with the base settings plus our customizations, but without the components overrides provided yet.
 // We're doing this so we have all the base theme settings populated for doing the component-level overrides. We want
@@ -32,7 +32,7 @@ export const legacyPlexDark: Theme = createTheme(
   {
     ...themeWithoutComponents,
     name: 'legacyPlexDark',
-    components: components,
+    components,
   },
   {},
 )
