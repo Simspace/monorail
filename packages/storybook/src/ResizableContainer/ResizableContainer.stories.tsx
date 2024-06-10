@@ -20,15 +20,7 @@ const Template: StoryFn<Partial<ResizableContainerProps>> = args => {
   return (
     <Box height={500}>
       <ResizableContainer orientation="vertical" {...args}>
-        <ResizableElement size={300} minSize="20%">
-          <Box overflow="hidden">
-            <Box p={4}>
-              <Typography>{loremIpsum({ count: 10 })}</Typography>
-            </Box>
-          </Box>
-        </ResizableElement>
-        <ResizableHandle />
-        <ResizableElement>
+        <ResizableElement size={300} minSize="10%">
           <Box overflow="hidden">
             <Box p={4}>
               <Typography>{loremIpsum({ count: 10 })}</Typography>
@@ -36,7 +28,15 @@ const Template: StoryFn<Partial<ResizableContainerProps>> = args => {
           </Box>
         </ResizableElement>
         <ResizableHandle propagate />
-        <ResizableElement>
+        <ResizableElement minSize="30%">
+          <Box overflow="hidden">
+            <Box p={4}>
+              <Typography>{loremIpsum({ count: 10 })}</Typography>
+            </Box>
+          </Box>
+        </ResizableElement>
+        <ResizableHandle propagate />
+        <ResizableElement minSize="40%">
           <Box overflow="hidden">
             <Box p={4}>
               <Typography>{loremIpsum({ count: 10 })}</Typography>
