@@ -226,7 +226,7 @@ export const baseTheme = createTheme(
         fontFamily: BASE_FONT_STACK,
         fontSize: FontSize.MenuItem,
         lineHeight: LineHeight.MenuItem,
-        fontWeight: FontWeight.Medium,
+        fontWeight: FontWeight.Book,
       },
       menuItemDense: {
         fontFamily: BASE_FONT_STACK,
