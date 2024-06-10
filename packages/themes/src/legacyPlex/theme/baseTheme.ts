@@ -110,7 +110,7 @@ export const baseTheme = createTheme(
       subtitle2: {
         fontSize: FontSize.Subtitle2,
         lineHeight: LineHeight.Subtitle2,
-        fontWeight: FontWeight.Medium,
+        fontWeight: FontWeight.SemiBold,
       },
       monoBody1: {
         fontFamily: fontStack.mono,
