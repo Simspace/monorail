@@ -231,7 +231,7 @@ const action: TypeAction = {
  * Raw colors available globally (use sparingly).
  * Mainly used to assign to component tokens in themeOverrides files.
  */
-const palette: PaletteOptions = {
+export const palette: PaletteOptions = {
   // sentiment > emphasis > state/usage
   common: {
     white: RawColor.White,

@@ -3,10 +3,15 @@ import { useTheme } from '@mui/material'
 
 import { Box, Typography } from '@monorail/components'
 import {
-  PixelFontSize,
-  PixelLineHeight,
+  PixelFontSize as CommonPixelFontSize,
+  PixelLineHeight as CommonPixelLineHeight,
 } from '@monorail/themes/common/FontSize'
+import {
+  PixelFontSize as LegacyPixelFontSize,
+  PixelLineHeight as LegacyPixelLineHeight,
+} from '@monorail/themes/legacy/FontSizeLegacy'
 
+import { ThemeName } from '../palette/palette.types'
 import { TypographyTokenTable } from './typography.components'
 import type {
   TypographyTokenColumns,
@@ -20,7 +25,6 @@ export default {
     options: { showPanel: false },
   },
 }
-
 const columns: TypographyTokenColumns = [
   { id: 'column-variant', label: 'Token Name' },
   { id: 'column-figmaStyle', label: 'Figma Style' },
@@ -34,8 +38,34 @@ const columns: TypographyTokenColumns = [
   { id: 'column-description', label: 'Description' },
 ]
 
+const getPixelFontProperties = (themeName: ThemeName) => {
+  switch (themeName) {
+    case ThemeName.MeteorLight:
+    case ThemeName.MeteorDark:
+    case ThemeName.ClassicLight:
+    case ThemeName.ClassicDark:
+    case ThemeName.MUILight:
+    case ThemeName.MUIDark:
+      return {
+        PixelFontSize: CommonPixelFontSize,
+        PixelLineHeight: CommonPixelLineHeight,
+      }
+    case ThemeName.LegacyLight:
+    case ThemeName.LegacyDark:
+    case ThemeName.LegacyPlexLight:
+    case ThemeName.LegacyPlexDark:
+    case ThemeName.PCTELight:
+    case ThemeName.PCTEDark:
+      return {
+        PixelFontSize: LegacyPixelFontSize,
+        PixelLineHeight: LegacyPixelLineHeight,
+      }
+  }
+}
+
 export const Fonts = () => {
   const theme = useTheme()
+  const { PixelFontSize, PixelLineHeight } = getPixelFontProperties(theme.name)
 
   const rows: Array<TypographyTokenRowProps> = React.useMemo(
     () => [
@@ -195,7 +225,53 @@ export const Fonts = () => {
         underlyingElement: 'span',
       },
     ],
-    [theme.typography],
+    [
+      PixelFontSize.Body1,
+      PixelFontSize.Body2,
+      PixelFontSize.Caption,
+      PixelFontSize.Data1,
+      PixelFontSize.Data2,
+      PixelFontSize.Data3,
+      PixelFontSize.H1,
+      PixelFontSize.H2,
+      PixelFontSize.H3,
+      PixelFontSize.MonoBody1,
+      PixelFontSize.MonoBody2,
+      PixelFontSize.MonoBody3,
+      PixelFontSize.Overline,
+      PixelFontSize.Subtitle1,
+      PixelFontSize.Subtitle2,
+      PixelLineHeight.Body1,
+      PixelLineHeight.Body2,
+      PixelLineHeight.Caption,
+      PixelLineHeight.Data1,
+      PixelLineHeight.Data2,
+      PixelLineHeight.Data3,
+      PixelLineHeight.H1,
+      PixelLineHeight.H2,
+      PixelLineHeight.H3,
+      PixelLineHeight.MonoBody1,
+      PixelLineHeight.MonoBody2,
+      PixelLineHeight.MonoBody3,
+      PixelLineHeight.Overline,
+      PixelLineHeight.Subtitle1,
+      PixelLineHeight.Subtitle2,
+      theme.typography.body1,
+      theme.typography.body2,
+      theme.typography.caption,
+      theme.typography.data1,
+      theme.typography.data2,
+      theme.typography.data3,
+      theme.typography.h1,
+      theme.typography.h2,
+      theme.typography.h3,
+      theme.typography.monoBody1,
+      theme.typography.monoBody2,
+      theme.typography.monoBody3,
+      theme.typography.overline,
+      theme.typography.subtitle1,
+      theme.typography.subtitle2,
+    ],
   )
 
   return (
