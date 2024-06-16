@@ -116,8 +116,8 @@ const Template: StoryFn<{}> = () => {
       </Container>
 
       <Container component="main" sx={{ pt: 4 }}>
-        <ResizableContainer>
-          <ResizableElement minSize={0.25}>
+        <ResizableContainer id="console-task-group" direction="row">
+          <ResizableElement id="console-task-group-1" minSize={0.25}>
             <Box pr={8}>
               <Paper
                 elevation={4}
@@ -147,8 +147,8 @@ const Template: StoryFn<{}> = () => {
               </Stack>
             </Box>
           </ResizableElement>
-          <ResizableHandle computeSize />
-          <ResizableElement minSize={0.25}>
+          <ResizableHandle />
+          <ResizableElement id="console-task-group-2" minSize={0.25}>
             <Box pl={8}>
               {!isPopoutOpen && (
                 <Stack

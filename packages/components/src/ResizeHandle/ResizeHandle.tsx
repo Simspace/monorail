@@ -6,7 +6,6 @@ import clsx from 'clsx'
 
 import { excludeProps } from '@monorail/utils'
 
-import type { ResizableContainerOrientation } from '../ResizableContainer.js'
 import {
   getResizeHandleUtilityClass,
   resizeHandleClasses,
@@ -14,7 +13,7 @@ import {
 import type { ResizeHandleProps } from './resizeHandleProps.js'
 
 interface ResizeHandleOwnerState extends ResizeHandleProps {
-  orientation: ResizableContainerOrientation
+  orientation: 'vertical' | 'horizontal'
   isDragging: boolean
 }
 
@@ -121,7 +120,7 @@ const ResizeHandleGrip = styled('div', {
   overridesResolver: (props, styles) => styles.root,
   shouldForwardProp: excludeProps('orientation', 'gripPosition'),
 })<{
-  orientation: ResizableContainerOrientation
+  orientation: 'vertical' | 'horizontal'
   gripPosition: 'center' | 'top' | 'bottom' | 'left' | 'right'
 }>(({ theme, orientation, gripPosition }) => {
   return {
@@ -190,7 +189,7 @@ const ResizeHandleInner = styled('div', {
   overridesResolver: (props, styles) => styles.grip,
   shouldForwardProp: excludeProps('orientation'),
 })<{
-  orientation: ResizableContainerOrientation
+  orientation: 'vertical' | 'horizontal'
 }>(({ orientation }) => {
   switch (orientation) {
     case 'vertical': {

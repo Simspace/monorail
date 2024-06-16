@@ -19,24 +19,28 @@ export default {
 const Template: StoryFn<Partial<ResizableContainerProps>> = args => {
   return (
     <Box height={500}>
-      <ResizableContainer orientation="vertical" {...args}>
-        <ResizableElement size={300} minSize="10%">
+      <ResizableContainer id="resizable-group-1" direction="row" {...args}>
+        <ResizableElement
+          id="resizable-group-1-1"
+          defaultSize={300}
+          minSize={100}
+        >
           <Box overflow="hidden">
             <Box p={4}>
               <Typography>{loremIpsum({ count: 10 })}</Typography>
             </Box>
           </Box>
         </ResizableElement>
-        <ResizableHandle propagate />
-        <ResizableElement minSize="30%">
+        <ResizableHandle />
+        <ResizableElement id="resizable-group-1-2" minSize="30%">
           <Box overflow="hidden">
             <Box p={4}>
               <Typography>{loremIpsum({ count: 10 })}</Typography>
             </Box>
           </Box>
         </ResizableElement>
-        <ResizableHandle propagate />
-        <ResizableElement minSize="40%">
+        <ResizableHandle />
+        <ResizableElement id="resizable-group-1-3" minSize="40%">
           <Box overflow="hidden">
             <Box p={4}>
               <Typography>{loremIpsum({ count: 10 })}</Typography>
@@ -58,8 +62,8 @@ Default.parameters = {
 
 export const Horizontal: StoryFn<Partial<ResizableContainerProps>> = args => (
   <div style={{ height: '600px', padding: '16px' }}>
-    <ResizableContainer orientation="horizontal" {...args}>
-      <ResizableElement>
+    <ResizableContainer id="resizable-group-2" direction="column" {...args}>
+      <ResizableElement id="resizable-group-2-1">
         <Box height="100%" overflow="hidden">
           <Box p={4}>
             <Typography>{loremIpsum({ count: 10 })}</Typography>
@@ -67,7 +71,7 @@ export const Horizontal: StoryFn<Partial<ResizableContainerProps>> = args => (
         </Box>
       </ResizableElement>
       <ResizableHandle />
-      <ResizableElement>
+      <ResizableElement id="resizable-group-2-2">
         <Box height="100%" overflow="hidden">
           <Box p={4}>
             <Typography>{loremIpsum({ count: 10 })}</Typography>
@@ -80,8 +84,8 @@ export const Horizontal: StoryFn<Partial<ResizableContainerProps>> = args => (
 
 export const Both = () => (
   <div style={{ height: '600px', padding: '16px' }}>
-    <ResizableContainer orientation="vertical">
-      <ResizableElement>
+    <ResizableContainer id="resizable-group-3" direction="row">
+      <ResizableElement id="resizable-group-3-1">
         <Box overflow="hidden">
           <Box p={4}>
             <Typography>{loremIpsum({ count: 10 })}</Typography>
@@ -89,10 +93,10 @@ export const Both = () => (
         </Box>
       </ResizableElement>
       <ResizableHandle />
-      <ResizableElement minSize="25%">
+      <ResizableElement id="resizable-group-3-2" minSize="25%">
         <Box height="100%">
-          <ResizableContainer orientation="horizontal">
-            <ResizableElement>
+          <ResizableContainer id="resizable-group-4" direction="column">
+            <ResizableElement id="resizable-group-4-1">
               <Box height="100%" overflow="hidden">
                 <Box p={4}>
                   <Typography>{loremIpsum({ count: 10 })}</Typography>
@@ -100,7 +104,7 @@ export const Both = () => (
               </Box>
             </ResizableElement>
             <ResizableHandle />
-            <ResizableElement>
+            <ResizableElement id="resizable-group-4-2">
               <Box height="100%" overflow="hidden">
                 <Box p={4}>
                   <Typography>{loremIpsum({ count: 10 })}</Typography>

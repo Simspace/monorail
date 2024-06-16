@@ -45,8 +45,8 @@ export const Resize: StoryObj<typeof PaginationFooter> = {
 
     return (
       <Box height={100}>
-        <ResizableContainer>
-          <ResizableElement minSize="10%">
+        <ResizableContainer id="pagination-footer-group" direction="row">
+          <ResizableElement id="pagination-footer-group-1" minSize="10%">
             <Box
               flex={1}
               width={1}
@@ -70,7 +70,7 @@ export const Resize: StoryObj<typeof PaginationFooter> = {
             </Box>
           </ResizableElement>
           <ResizableHandle />
-          <ResizableElement minSize="10%" />
+          <ResizableElement id="pagination-footer-group-2" minSize="10%" />
         </ResizableContainer>
       </Box>
     )

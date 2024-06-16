@@ -1,22 +1,24 @@
 import React from 'react'
 
-import type { ResizableContainerOrientation } from './resizableContainerProps.js'
-import type { ResizeEventTarget } from './ResizeEventTarget.js'
+import type { ResizableContainerDirection } from './resizableContainerProps.js'
 
 export interface ResizableContainerContext {
-  events: ResizeEventTarget
-  orientation: ResizableContainerOrientation
+  groupId: string
+  groupElement: React.RefObject<HTMLDivElement>
+  direction: ResizableContainerDirection
+  register: (cb: () => void) => void
+  unregister: (cb: () => void) => void
 }
 
 export const ResizableContainerContext =
-  React.createContext<ResizableContainerContext>(null!)
+  React.createContext<ResizableContainerContext | null>(null)
 
 export function useResizableContainerContext(): ResizableContainerContext {
   const context = React.useContext(ResizableContainerContext)
+
   if (context === null) {
-    throw new Error(
-      'Monorail: ResizableContainerContext uninitialized or not found.',
-    )
+    throw new Error('[Monorail] ResizableContainerContext not found')
   }
+
   return context
 }

@@ -62,21 +62,35 @@ export const Colors = () => (
 )
 
 export const Variants = () => {
-  return variants.map(variant => {
-    return (
-      <Box key={variant}>
-        <Typography variant="h1">{capitalize(variant)}</Typography>
-        {colors.map(color => (
-          <Stack direction="row" spacing={2} my={2} key={`${variant}-${color}`}>
-            <Template variant={variant} color={color} size="medium">
-              {color}
-            </Template>
-            <Template disabled variant={variant} color={color} size="medium">
-              {color}
-            </Template>
-          </Stack>
-        ))}
-      </Box>
-    )
-  })
+  return (
+    <React.Fragment>
+      {variants.map(variant => {
+        return (
+          <Box key={variant}>
+            <Typography variant="h1">{capitalize(variant)}</Typography>
+            {colors.map(color => (
+              <Stack
+                direction="row"
+                spacing={2}
+                my={2}
+                key={`${variant}-${color}`}
+              >
+                <Template variant={variant} color={color} size="medium">
+                  {color}
+                </Template>
+                <Template
+                  disabled
+                  variant={variant}
+                  color={color}
+                  size="medium"
+                >
+                  {color}
+                </Template>
+              </Stack>
+            ))}
+          </Box>
+        )
+      })}
+    </React.Fragment>
+  )
 }
