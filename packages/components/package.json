@@ -53,6 +53,7 @@
     "clsx": "^1.2.1",
     "date-fns": "^2.30.0",
     "react-glider": "^3.1.0",
+    "react-resizable-panels": "^2.0.19",
     "use-resize-observer": "^9.1.0"
   },
   "devDependencies": {

@@ -1,19 +1,18 @@
+import type { ImperativePanelHandle, PanelProps } from 'react-resizable-panels'
 import type { Theme } from '@mui/material'
 import type { SxProps } from '@mui/system'
 
-import type { StandardElementProps } from '@monorail/types'
-
 import type { ResizableElementClasses } from './resizableElementClasses.js'
 
-export interface ResizableElementProps extends StandardElementProps<'div'> {
+export interface ResizableElementProps
+  extends Omit<PanelProps, 'ref' | 'maxSize' | 'minSize' | 'defaultSize'> {
+  id: string
+  ref?: React.Ref<HTMLDivElement>
+  apiRef?: React.Ref<ImperativePanelHandle>
   /**
    * Override or extend the styles applied to the component.
    */
   classes?: Partial<ResizableElementClasses>
-  /**
-   * The content of the ResizableElement
-   */
-  children?: React.ReactElement | Array<React.ReactElement>
   /**
    * The maximum size of the container, in pixels, decimal, or percentage of parent container.
    * @default '100%'
@@ -26,24 +25,11 @@ export interface ResizableElementProps extends StandardElementProps<'div'> {
   minSize?: string | number
   /**
    * The minimum size of the container, in pixels, decimal, or percentage of parent container.
-   * @default '1'
+   * @default '0%'
    */
-  size?: string | number
-  /**
-   * The initial flex size of the container
-   * @default undefined
-   */
-  flex?: number
-  /**
-   * The direction that the element should stretch or shrink when `size` is changed
-   * @default 1
-   */
-  direction?: 1 | -1
+  defaultSize?: string | number
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx?: SxProps<Theme>
-
-  /** @internal */
-  index?: number
 }

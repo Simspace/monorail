@@ -1,9 +1,12 @@
+/* eslint-disable no-console */
 import React from 'react'
+import type { ImperativePanelHandle } from 'react-resizable-panels'
+import { Panel } from 'react-resizable-panels'
 import { styled, useThemeProps } from '@mui/material'
 import composeClasses from '@mui/utils/composeClasses'
 import clsx from 'clsx'
 
-import { omit, useDidUpdate } from '@monorail/utils'
+import { useEnhancedEffect } from '@monorail/utils'
 
 import { useResizableContainerContext } from '../ResizableContainer/ResizableContainerContext.js'
 import { getResizableElementUtilityClass } from './resizableElementClasses.js'
@@ -11,17 +14,14 @@ import type { ResizableElementProps } from './resizableElementProps.js'
 
 interface ResizableElementOwnerState extends ResizableElementProps {}
 
-const ResizableElementRoot = styled('div', {
+const ResizableElementRoot = styled(Panel, {
   name: 'MonorailResizableElement',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})({
-  position: 'relative',
-  width: '100%',
-  height: '100%',
-  minWidth: 0,
-  minHeight: 0,
-})
+})({})
+
+const MIN_SIZE_DEFAULT = 0.1
+const MAX_SIZE_DEFAULT = 1
 
 export const ResizableElement = React.forwardRef(function ResizableElement(
   inProps,
@@ -31,43 +31,135 @@ export const ResizableElement = React.forwardRef(function ResizableElement(
     name: 'MonorailResizableElement',
     props: inProps,
   })
-  const { index, size, direction = 1, sx } = inProps
-  const context = useResizableContainerContext()
 
-  useDidUpdate(() => {
-    context.events.dispatchEvent('elementSizeChange', {
-      index: index!,
-      size,
-      direction,
-    })
-  }, [props.size])
+  const {
+    ref: _,
+    apiRef: apiRefProp,
+    maxSize: maxSizeProp,
+    minSize: minSizeProp,
+    defaultSize: defaultSizeProp,
+    ...others
+  } = props
+
+  const { groupId, direction, groupElement, register, unregister } =
+    useResizableContainerContext()
+
+  const [minSize, setMinSize] = React.useState(10)
+  const [maxSize, setMaxSize] = React.useState(100)
+  const [defaultSize, setDefaultSize] = React.useState<number | undefined>(
+    undefined,
+  )
+
+  const apiRef = React.useRef<ImperativePanelHandle | null>(null)
+  React.useImperativeHandle(apiRefProp, () => apiRef.current!)
+
+  const elementRef = React.useRef<HTMLDivElement | null>(null)
+  React.useImperativeHandle(ref, () => elementRef.current!)
 
   const classes = useUtilityClasses(props)
 
-  const style = {
-    ...props.style,
-    flexGrow: props.flex,
-    flexShrink: 1,
-    flexBasis: '0%',
-  }
+  const [updater, update] = React.useState(false)
+
+  useEnhancedEffect(() => {
+    const cb = () => update(_ => !_)
+    register(cb)
+    return () => {
+      unregister(cb)
+    }
+  }, [])
+
+  useEnhancedEffect(() => {
+    const panelGroup = groupElement.current
+
+    if (!panelGroup) {
+      return
+    }
+
+    const minSizeInput = parseBoundValue(minSizeProp) ?? MIN_SIZE_DEFAULT
+    const maxSizeInput = parseBoundValue(maxSizeProp) ?? MAX_SIZE_DEFAULT
+    const defaultSizeInput = parseBoundValue(defaultSizeProp)
+
+    if (
+      isPercentageBound(minSizeInput) &&
+      isPercentageBound(maxSizeInput) &&
+      (defaultSizeInput === null || isPercentageBound(defaultSizeInput))
+    ) {
+      setMinSize(minSizeInput * 100)
+      setMaxSize(maxSizeInput * 100)
+      if (defaultSizeInput !== null) {
+        setDefaultSize(defaultSizeInput * 100)
+      }
+      return
+    }
+
+    const resizeHandles = document.querySelectorAll(
+      `[data-panel-group-id=${groupId}][data-panel-resize-handle-id]`,
+    ) as NodeListOf<HTMLDivElement>
+
+    const observer = new ResizeObserver(() => {
+      if (direction === 'column') {
+        let height = panelGroup.offsetHeight
+
+        resizeHandles.forEach(resizeHandle => {
+          height -= resizeHandle.offsetHeight
+        })
+
+        // Minimum size in pixels is a percentage of the PanelGroup's height,
+        // minus the (fixed) height of the resize handles.
+        setMinSize(computeBound(minSizeInput, height))
+        setMaxSize(computeBound(maxSizeInput, height))
+        if (defaultSizeInput !== null) {
+          setDefaultSize(computeBound(defaultSizeInput!, height))
+        }
+        return
+      }
+
+      if (direction === 'row') {
+        let width = panelGroup.offsetWidth
+
+        resizeHandles.forEach(resizeHandle => {
+          width -= resizeHandle.offsetWidth
+        })
+
+        // Minimum size in pixels is a percentage of the PanelGroup's width,
+        // minus the (fixed) width of the resize handles.
+        setMinSize(computeBound(minSizeInput, width))
+        setMaxSize(computeBound(maxSizeInput, width))
+        if (defaultSizeInput !== null) {
+          setDefaultSize(computeBound(defaultSizeInput, width))
+        }
+        return
+      }
+    })
+    observer.observe(panelGroup)
+    resizeHandles.forEach(resizeHandle => {
+      observer.observe(resizeHandle)
+    })
+
+    return () => {
+      observer.disconnect()
+    }
+  }, [updater])
+
+  const refCallback = React.useCallback(
+    (api: ImperativePanelHandle | null) => {
+      apiRef.current = api
+      const element = document.querySelector(
+        `[data-panel-group-id=${groupId}][data-panel-id=${props.id}]`,
+      ) as HTMLDivElement
+      elementRef.current = element
+    },
+    [groupId, props.id],
+  )
 
   return (
     <ResizableElementRoot
-      ref={ref}
-      {...omit(props, [
-        'classes',
-        'children',
-        'maxSize',
-        'minSize',
-        'size',
-        'flex',
-        'direction',
-        'sx',
-        'index',
-      ])}
+      ref={refCallback}
+      {...others}
+      minSize={minSize}
+      maxSize={maxSize}
+      defaultSize={defaultSize}
       className={clsx(classes.root, props.className)}
-      style={style}
-      sx={sx}
     >
       {inProps.children}
     </ResizableElementRoot>
@@ -82,4 +174,46 @@ function useUtilityClasses(ownerState: ResizableElementOwnerState) {
   }
 
   return composeClasses(slots, getResizableElementUtilityClass, classes)
+}
+
+function computeBound(input: number, container: number) {
+  if (isPercentageBound(input)) {
+    return input * 100
+  } else {
+    return (input / container) * 100
+  }
+}
+
+function isPercentageBound(input: number | null): boolean {
+  if (input === null) {
+    return true
+  }
+  return input <= 1 && input !== 0
+}
+
+function parseBoundValue(input: string | number | undefined): number | null {
+  if (input === undefined) {
+    return null
+  }
+  if (typeof input === 'string') {
+    if (input.endsWith('%')) {
+      const parsed = parseFloat(input.substring(0, input.length - 1))
+      if (isNaN(parsed)) {
+        console.error(
+          `Monorail: Could not parse value ${input}, using default.`,
+        )
+        return null
+      }
+      return parsed / 100
+    }
+    const parsed = parseFloat(input)
+    if (isNaN(parsed)) {
+      console.error(`Monorail: Could not parse value ${input}, using default.`)
+      return null
+    } else {
+      return parsed
+    }
+  } else {
+    return input
+  }
 }

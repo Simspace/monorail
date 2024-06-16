@@ -5509,6 +5509,7 @@ __metadata:
     react-dom: 17.0.2
     react-draggable: 4.4.5
     react-glider: ^3.1.0
+    react-resizable-panels: ^2.0.19
     react-transition-group: 4.4.5
     react-virtualized-auto-sizer: ^1.0.20
     react-virtuoso: ^4.7.11
@@ -24264,6 +24265,16 @@ __metadata:
   version: 0.11.0
   resolution: "react-refresh@npm:0.11.0"
   checksum: 112178a05b1e0ffeaf5d9fb4e56b4410a34a73adeb04dbf13abdc50d9ac9df2ada83e81485156cca0b3fa296aa3612751b3d6cd13be4464642a43679b819cbc7
+  languageName: node
+  linkType: hard
+
+"react-resizable-panels@npm:^2.0.19":
+  version: 2.0.19
+  resolution: "react-resizable-panels@npm:2.0.19"
+  peerDependencies:
+    react: ^16.14.0 || ^17.0.0 || ^18.0.0
+    react-dom: ^16.14.0 || ^17.0.0 || ^18.0.0
+  checksum: d09e07bf2514fb8bb60b6150708943bb784ca1827c4c45dfe8354fb33e4edde795292789b56383886e974d381503333112194679d606808fbc9bab7ec232430e
   languageName: node
   linkType: hard
 

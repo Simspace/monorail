@@ -1,49 +1,27 @@
-import type React from 'react'
+import type {
+  ImperativePanelGroupHandle,
+  PanelGroupProps,
+} from 'react-resizable-panels'
 import type { SxProps } from '@mui/material'
 import type { Theme } from '@mui/system'
 
-import type { StandardElementProps } from '@monorail/types'
-
-import type { ResizableElementProps } from '../ResizableElement.js'
-import type { ResizableHandleProps } from '../ResizableHandle.js'
 import type { ResizableContainerClasses } from './resizableContainerClasses'
 
-export type ResizableContainerOrientation = 'vertical' | 'horizontal'
+export type ResizableContainerDirection = 'row' | 'column'
 
 export interface ResizableContainerProps
-  extends Omit<StandardElementProps<'div'>, 'children'> {
+  extends Omit<PanelGroupProps, 'ref' | 'direction'> {
+  ref?: React.Ref<HTMLDivElement>
+  apiRef?: React.Ref<ImperativePanelGroupHandle>
+
+  direction: ResizableContainerDirection
+
   /**
    * Override or extend the styles applied to the component.
    */
   classes?: Partial<ResizableContainerClasses>
-  /**
-   * The content of the component.
-   */
-  children: Array<
-    | React.ReactElement<
-        ResizableElementProps,
-        React.JSXElementConstructor<ResizableElementProps>
-      >
-    | React.ReactElement<
-        ResizableHandleProps,
-        React.JSXElementConstructor<ResizableHandleProps>
-      >
-  >
-  /**
-   * Orientation in which descendent elements will be layed out
-   * @default 'vertical'
-   */
-  orientation?: ResizableContainerOrientation
-  /**
-   * The maximum depth used to compute flex values
-   * @default 100
-   */
-  maxDepth?: number
-  /**
-   * Should flex be recomputed when the window is resized?
-   * @default false
-   */
-  windowResizeAware?: boolean
+
+  id: string
 
   sx?: SxProps<Theme>
 }
