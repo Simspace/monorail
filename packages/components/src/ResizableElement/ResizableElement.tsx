@@ -66,6 +66,8 @@ export const ResizableElement = React.forwardRef(function ResizableElement(
     }
   }, [])
 
+  // defaultSize must be set before ResizableElementRoot mounts for the first time,
+  // so this calculation must be done in render
   if (defaultSize.current === undefined) {
     const panelGroup = groupElement.current
 
