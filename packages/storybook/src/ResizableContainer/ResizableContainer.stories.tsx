@@ -5,6 +5,7 @@ import { loremIpsum } from 'lorem-ipsum'
 import type { ResizableContainerProps } from '@monorail/components'
 import {
   Box,
+  Button,
   ResizableContainer,
   ResizableElement,
   Typography,
@@ -17,14 +18,29 @@ export default {
 }
 
 const Template: StoryFn<Partial<ResizableContainerProps>> = args => {
+  const [open, setOpen] = React.useState(false)
   return (
     <Box height={500}>
+      <Button onClick={() => setOpen(!open)}>Open</Button>
       <ResizableContainer id="resizable-group-1" direction="row" {...args}>
-        <ResizableElement
-          id="resizable-group-1-1"
-          defaultSize={300}
-          minSize={100}
-        >
+        {open && (
+          <>
+            <ResizableElement
+              order={1}
+              id="resizable-group-1-1"
+              defaultSize="10%"
+              minSize={100}
+            >
+              <Box overflow="hidden">
+                <Box p={4}>
+                  <Typography>{loremIpsum({ count: 10 })}</Typography>
+                </Box>
+              </Box>
+            </ResizableElement>
+            <ResizableHandle />
+          </>
+        )}
+        <ResizableElement order={2} id="resizable-group-1-2" minSize="30%">
           <Box overflow="hidden">
             <Box p={4}>
               <Typography>{loremIpsum({ count: 10 })}</Typography>
@@ -32,15 +48,7 @@ const Template: StoryFn<Partial<ResizableContainerProps>> = args => {
           </Box>
         </ResizableElement>
         <ResizableHandle />
-        <ResizableElement id="resizable-group-1-2" minSize="30%">
-          <Box overflow="hidden">
-            <Box p={4}>
-              <Typography>{loremIpsum({ count: 10 })}</Typography>
-            </Box>
-          </Box>
-        </ResizableElement>
-        <ResizableHandle />
-        <ResizableElement id="resizable-group-1-3" minSize="40%">
+        <ResizableElement order={3} id="resizable-group-1-3" minSize="20%">
           <Box overflow="hidden">
             <Box p={4}>
               <Typography>{loremIpsum({ count: 10 })}</Typography>
