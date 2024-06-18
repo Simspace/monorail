@@ -46,7 +46,41 @@ export const ResizableElement = React.forwardRef(function ResizableElement(
 
   const [minSize, setMinSize] = React.useState(10)
   const [maxSize, setMaxSize] = React.useState(100)
-  const defaultSize = React.useRef<number | undefined>(undefined)
+
+  const [defaultSize] = React.useState(() => {
+    // defaultSize must be set before ResizableElementRoot mounts for the first time
+
+    const panelGroup = groupElement.current
+
+    if (panelGroup !== null) {
+      const defaultSizeInput = parseBoundValue(defaultSizeProp)
+      if (defaultSizeInput !== null) {
+        const resizeHandles = document.querySelectorAll(
+          `[data-panel-group-id=${groupId}][data-panel-resize-handle-id]`,
+        ) as NodeListOf<HTMLDivElement>
+
+        if (direction === 'column') {
+          let height = panelGroup.offsetHeight
+
+          resizeHandles.forEach(resizeHandle => {
+            height -= resizeHandle.offsetHeight
+          })
+
+          return computeBound(defaultSizeInput, height)
+        }
+
+        if (direction === 'row') {
+          let width = panelGroup.offsetWidth
+
+          resizeHandles.forEach(resizeHandle => {
+            width -= resizeHandle.offsetWidth
+          })
+
+          return computeBound(defaultSizeInput, width)
+        }
+      }
+    }
+  })
 
   const apiRef = React.useRef<ImperativePanelHandle | null>(null)
   React.useImperativeHandle(apiRefProp, () => apiRef.current!)
@@ -65,41 +99,6 @@ export const ResizableElement = React.forwardRef(function ResizableElement(
       unregister(cb)
     }
   }, [])
-
-  // defaultSize must be set before ResizableElementRoot mounts for the first time,
-  // so this calculation must be done in render
-  if (defaultSize.current === undefined) {
-    const panelGroup = groupElement.current
-
-    if (panelGroup !== null) {
-      const defaultSizeInput = parseBoundValue(defaultSizeProp)
-      if (defaultSizeInput !== null) {
-        const resizeHandles = document.querySelectorAll(
-          `[data-panel-group-id=${groupId}][data-panel-resize-handle-id]`,
-        ) as NodeListOf<HTMLDivElement>
-
-        if (direction === 'column') {
-          let height = panelGroup.offsetHeight
-
-          resizeHandles.forEach(resizeHandle => {
-            height -= resizeHandle.offsetHeight
-          })
-
-          defaultSize.current = computeBound(defaultSizeInput, height)
-        }
-
-        if (direction === 'row') {
-          let width = panelGroup.offsetWidth
-
-          resizeHandles.forEach(resizeHandle => {
-            width -= resizeHandle.offsetWidth
-          })
-
-          defaultSize.current = computeBound(defaultSizeInput, width)
-        }
-      }
-    }
-  }
 
   useEnhancedEffect(() => {
     const panelGroup = groupElement.current
@@ -181,7 +180,7 @@ export const ResizableElement = React.forwardRef(function ResizableElement(
       {...others}
       minSize={minSize}
       maxSize={maxSize}
-      defaultSize={defaultSize.current}
+      defaultSize={defaultSize}
       className={clsx(classes.root, props.className)}
     >
       {inProps.children}
