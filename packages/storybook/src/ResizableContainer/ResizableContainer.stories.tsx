@@ -40,7 +40,7 @@ const Template: StoryFn<Partial<ResizableContainerProps>> = args => {
           </Box>
         </ResizableElement>
         <ResizableHandle />
-        <ResizableElement id="resizable-group-1-3" minSize="40%">
+        <ResizableElement id="resizable-group-1-3" minSize="20%">
           <Box overflow="hidden">
             <Box p={4}>
               <Typography>{loremIpsum({ count: 10 })}</Typography>

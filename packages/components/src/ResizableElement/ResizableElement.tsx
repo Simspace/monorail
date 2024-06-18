@@ -46,9 +46,41 @@ export const ResizableElement = React.forwardRef(function ResizableElement(
 
   const [minSize, setMinSize] = React.useState(10)
   const [maxSize, setMaxSize] = React.useState(100)
-  const [defaultSize, setDefaultSize] = React.useState<number | undefined>(
-    undefined,
-  )
+
+  const [defaultSize] = React.useState(() => {
+    // defaultSize must be set before ResizableElementRoot mounts for the first time
+
+    const panelGroup = groupElement.current
+
+    if (panelGroup !== null) {
+      const defaultSizeInput = parseBoundValue(defaultSizeProp)
+      if (defaultSizeInput !== null) {
+        const resizeHandles = document.querySelectorAll(
+          `[data-panel-group-id=${groupId}][data-panel-resize-handle-id]`,
+        ) as NodeListOf<HTMLDivElement>
+
+        if (direction === 'column') {
+          let height = panelGroup.offsetHeight
+
+          resizeHandles.forEach(resizeHandle => {
+            height -= resizeHandle.offsetHeight
+          })
+
+          return computeBound(defaultSizeInput, height)
+        }
+
+        if (direction === 'row') {
+          let width = panelGroup.offsetWidth
+
+          resizeHandles.forEach(resizeHandle => {
+            width -= resizeHandle.offsetWidth
+          })
+
+          return computeBound(defaultSizeInput, width)
+        }
+      }
+    }
+  })
 
   const apiRef = React.useRef<ImperativePanelHandle | null>(null)
   React.useImperativeHandle(apiRefProp, () => apiRef.current!)
@@ -77,18 +109,10 @@ export const ResizableElement = React.forwardRef(function ResizableElement(
 
     const minSizeInput = parseBoundValue(minSizeProp) ?? MIN_SIZE_DEFAULT
     const maxSizeInput = parseBoundValue(maxSizeProp) ?? MAX_SIZE_DEFAULT
-    const defaultSizeInput = parseBoundValue(defaultSizeProp)
 
-    if (
-      isPercentageBound(minSizeInput) &&
-      isPercentageBound(maxSizeInput) &&
-      (defaultSizeInput === null || isPercentageBound(defaultSizeInput))
-    ) {
+    if (isPercentageBound(minSizeInput) && isPercentageBound(maxSizeInput)) {
       setMinSize(minSizeInput * 100)
       setMaxSize(maxSizeInput * 100)
-      if (defaultSizeInput !== null) {
-        setDefaultSize(defaultSizeInput * 100)
-      }
       return
     }
 
@@ -108,9 +132,7 @@ export const ResizableElement = React.forwardRef(function ResizableElement(
         // minus the (fixed) height of the resize handles.
         setMinSize(computeBound(minSizeInput, height))
         setMaxSize(computeBound(maxSizeInput, height))
-        if (defaultSizeInput !== null) {
-          setDefaultSize(computeBound(defaultSizeInput!, height))
-        }
+
         return
       }
 
@@ -125,13 +147,13 @@ export const ResizableElement = React.forwardRef(function ResizableElement(
         // minus the (fixed) width of the resize handles.
         setMinSize(computeBound(minSizeInput, width))
         setMaxSize(computeBound(maxSizeInput, width))
-        if (defaultSizeInput !== null) {
-          setDefaultSize(computeBound(defaultSizeInput, width))
-        }
+
         return
       }
     })
+
     observer.observe(panelGroup)
+
     resizeHandles.forEach(resizeHandle => {
       observer.observe(resizeHandle)
     })
@@ -139,7 +161,7 @@ export const ResizableElement = React.forwardRef(function ResizableElement(
     return () => {
       observer.disconnect()
     }
-  }, [updater])
+  }, [updater, minSizeProp, maxSizeProp])
 
   const refCallback = React.useCallback(
     (api: ImperativePanelHandle | null) => {
