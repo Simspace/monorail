@@ -156,7 +156,7 @@ export const Search = React.forwardRef(function Search(inProps, ref) {
             {...slotProps.clearButton}
             onClick={handleClear}
             sx={combineSxProps(
-              { mr: -2, display: isClearable ? 'inline-flex' : 'none' },
+              { mr: -3.5, display: isClearable ? 'inline-flex' : 'none' },
               slotProps.clearButton?.sx,
             )}
           >
