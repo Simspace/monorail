@@ -5,7 +5,6 @@ import {
   getDataGridUtilityClass,
   gridColumnLookupSelector,
   gridSortModelSelector,
-  SUBMIT_FILTER_STROKE_TIME,
   useGridApiContext,
   useGridRootProps,
   useGridSelector,
@@ -27,6 +26,7 @@ import { Select } from '../../Select.js'
 import { ToggleButton } from '../../ToggleButton.js'
 import { ToggleButtonGroup } from '../../ToggleButtonGroup.js'
 import { Typography } from '../../Typography.js'
+import { FILTER_DELAY_MS } from '../constants/dataGridConstants.js'
 
 const MULTIPLE_SYMBOL = Symbol()
 
@@ -219,7 +219,7 @@ function DataGridGlobalSearch(props: DataGridGlobalSearchProps) {
       placeholder={others.placeholder ?? 'Search'}
       onChange={handleSearchChange}
       onChangeDebounced={handleSearchChangeDebounced}
-      debounceTime={others?.debounceTime ?? SUBMIT_FILTER_STROKE_TIME}
+      debounceTime={others?.debounceTime ?? FILTER_DELAY_MS}
       sx={combineSxProps(
         {
           width: '100%',

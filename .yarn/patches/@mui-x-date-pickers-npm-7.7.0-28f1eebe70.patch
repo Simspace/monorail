@@ -1,8 +1,8 @@
 diff --git a/themeAugmentation/components.d.ts b/themeAugmentation/components.d.ts
-index a394afa83a253a0e6caa0ffed264a2398fc68ed3..58d0b7888644d78abe954d41269f4915a01426f0 100644
+index 7ec1df957c5555c872ef4630fd36ba1de674b2b1..ff9f15d42fd25fcd5566f30728a06382ebba268c 100644
 --- a/themeAugmentation/components.d.ts
 +++ b/themeAugmentation/components.d.ts
-@@ -177,6 +177,6 @@ export interface PickerComponents<Theme = unknown> {
+@@ -195,6 +195,6 @@ export interface PickerComponents<Theme = unknown> {
    };
  }
  
@@ -11,11 +11,11 @@ index a394afa83a253a0e6caa0ffed264a2398fc68ed3..58d0b7888644d78abe954d41269f4915
    interface Components<Theme = unknown> extends PickerComponents<Theme> {}
  }
 diff --git a/themeAugmentation/overrides.d.ts b/themeAugmentation/overrides.d.ts
-index d250c8731c83140e09cf9c74efb7896dda469f0c..f4dfef10e37fe6046eeea072694e5a1dd0dbfcd7 100644
+index 0a845aa4d33d51824675323b2891c4cc0607e400..dd1a404d72212690343daca0f716e8e4b53440c9 100644
 --- a/themeAugmentation/overrides.d.ts
 +++ b/themeAugmentation/overrides.d.ts
-@@ -84,7 +84,7 @@ export interface PickersComponentNameToClassKey {
-   MuiStaticDateTimePicker: never;
+@@ -78,7 +78,7 @@ export interface PickersComponentNameToClassKey {
+   MuiPickersSectionList: PickersSectionListClassKey
  }
  
 -declare module '@mui/material/styles' {
@@ -24,11 +24,11 @@ index d250c8731c83140e09cf9c74efb7896dda469f0c..f4dfef10e37fe6046eeea072694e5a1d
  }
  
 diff --git a/themeAugmentation/props.d.ts b/themeAugmentation/props.d.ts
-index e57057df31ef0152bb96a281affcccadde58f2b7..2cb484814554eaaa6ad7fd792fd4726ad2b416fc 100644
+index c8fc7f3949c2a52b297848ed8659ade1f00e04bf..ed3c5dbfeeddbc33db37ad74c25fb1d91b5762d6 100644
 --- a/themeAugmentation/props.d.ts
 +++ b/themeAugmentation/props.d.ts
-@@ -97,7 +97,7 @@ export interface PickersComponentsPropsList {
-   MuiStaticDateTimePicker: StaticDateTimePickerProps<unknown>;
+@@ -114,7 +114,7 @@ export interface PickersComponentsPropsList {
+   MuiPickersSectionList: PickersSectionListProps;
  }
  
 -declare module '@mui/material/styles' {

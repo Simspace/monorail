@@ -3,7 +3,7 @@ import React from 'react'
 import { useGridPrivateApiContext } from '@mui/x-data-grid/internals'
 import { GridOverlays, useGridRootProps } from '@mui/x-data-grid-premium'
 
-import { useEnhancedEffect } from '@monorail/utils'
+import { ownerWindow, useEnhancedEffect } from '@monorail/utils'
 
 import { DataGalleryMainContainer } from './DataGalleryMainContainer.js'
 
@@ -47,8 +47,7 @@ export function DataGalleryBody(props: DataGalleryBodyProps) {
   }, [rootProps.disableVirtualization])
 
   useEnhancedEffect(() => {
-    apiRef.current.computeSizeAndPublishResizeEvent()
-
+    apiRef.current.resize()
     const elementToObserve = rootRef.current
     if (typeof ResizeObserver === 'undefined') {
       return () => {}
@@ -58,7 +57,7 @@ export function DataGalleryBody(props: DataGalleryBodyProps) {
     const observer = new ResizeObserver(() => {
       // See https://github.com/mui/mui-x/issues/8733
       animationFrame = window.requestAnimationFrame(() => {
-        apiRef.current.computeSizeAndPublishResizeEvent()
+        apiRef.current.resize()
       })
     })
 
