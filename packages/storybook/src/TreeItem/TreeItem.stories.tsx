@@ -11,7 +11,7 @@ export default { title: 'Data Display/TreeView/TreeItem', component: TreeItem }
 const Template = story<TreeItemProps>(
   args => (
     <div role="tree">
-      <TreeItem nodeId={'a'} {...args} />
+      <TreeItem itemId="a" {...args} />
     </div>
   ),
   {
@@ -24,13 +24,13 @@ const Template = story<TreeItemProps>(
  * `TreeItem`s are used as children for `TreeView`
  */
 export const Default = story(Template, {
-  args: { label: "I'm a tree item!", nodeId: 'a' },
+  args: { label: "I'm a tree item!", itemId: 'a' },
 })
 
 export const WithSecondaryLabel = story(args => (
   <div role="tree">
     <TreeItem
-      nodeId={'a'}
+      itemId="a"
       label={
         <Stack direction="row" alignItems="baseline">
           <Typography variant="inherit" flexGrow={1}>
@@ -50,7 +50,7 @@ export const WithSecondaryLabel = story(args => (
 export const TruncatedLabel = story(args => (
   <div role="tree">
     <TreeItem
-      nodeId={'a'}
+      itemId="a"
       label={
         <Stack direction="row" alignItems="baseline" minWidth={0}>
           <Typography variant="inherit" flexGrow={1} lineClamp={1}>

@@ -3,7 +3,7 @@ import React from 'react'
 import { useGridPrivateApiContext } from '@mui/x-data-grid/internals'
 import { GridOverlays, useGridRootProps } from '@mui/x-data-grid-premium'
 
-import { ownerWindow, useEnhancedEffect } from '@monorail/utils'
+import { useEnhancedEffect } from '@monorail/utils'
 
 import { DataGalleryMainContainer } from './DataGalleryMainContainer.js'
 

@@ -67,12 +67,13 @@ const { columns } = createTable<FilterStoryRow>()(
     editable: true,
   },
   {
-    field: 'fullName',
+    field: 'firstName',
     headerName: 'Full name',
     description: 'This column has a value getter and is not sortable.',
     sortable: false,
     minWidth: 160,
-    valueGetter: params => `${params.row.firstName} ${params.row.lastName}`,
+    valueGetter: (_value, row: FilterStoryRow) =>
+      `${row.firstName} ${row.lastName}`,
   },
 )
 
@@ -172,7 +173,7 @@ const filterStoryColumns = createTable<FilterStoryRow>()(
     field: 'occupation',
     headerName: 'Occupation',
     type: 'string',
-    valueFormatter: ({ value }) => value.name,
+    valueFormatter: value => value.name,
     minWidth: 110,
     filter: {
       type: 'enum',
