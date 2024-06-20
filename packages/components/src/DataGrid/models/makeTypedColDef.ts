@@ -40,19 +40,15 @@ export type MakeTypedColDef<
    * Function that allows to get a specific data instead of field to render in the cell.
    */
   valueGetter?: GridValueGetter<R, VG, F, V>
-  // valueGetter?: GridValueGetter<R, VG extends never ? V : VG, F, V>
 
   /**
    * Function that allows to apply a formatter before rendering its value.
    */
-  // valueFormatter?: GridValueFormatter<R, V, F, VG extends never ? V : VG>
-
   valueFormatter?: GridValueFormatter<
     R,
-    VG extends never ? V : VG,
+    [VG] extends [never] ? V : VG,
     F,
-    // Using V by itself works. Using VG proves to be 'never'. Using VG extends never ? V : VG does not work
-    VG extends never ? V : VG
+    [VG] extends [never] ? V : VG
   >
 
   /**
