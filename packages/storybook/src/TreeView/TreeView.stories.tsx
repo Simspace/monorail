@@ -472,17 +472,17 @@ export const ContentComponentPropExample2 = story(() => {
       defaultExpandIcon={<ChevronRightIcon />}
       sx={{ height: 240, flexGrow: 1, maxWidth: 400, position: 'relative' }}
     >
-      <CustomTreeItem nodeId="1" label="Applications">
-        <CustomTreeItem nodeId="2" label="Calendar" />
-        <CustomTreeItem nodeId="3" label="Chrome" />
-        <CustomTreeItem nodeId="4" label="Webstorm" />
+      <CustomTreeItem treeId="1" label="Applications">
+        <CustomTreeItem treeId="2" label="Calendar" />
+        <CustomTreeItem treeId="3" label="Chrome" />
+        <CustomTreeItem treeId="4" label="Webstorm" />
       </CustomTreeItem>
-      <CustomTreeItem nodeId="5" label="Documents">
-        <CustomTreeItem nodeId="10" label="OSS" />
-        <CustomTreeItem nodeId="6" label="Material-UI">
-          <CustomTreeItem nodeId="7" label="src">
-            <CustomTreeItem nodeId="8" label="index.js" />
-            <CustomTreeItem nodeId="9" label="tree-view.js" />
+      <CustomTreeItem treeId="5" label="Documents">
+        <CustomTreeItem treeId="10" label="OSS" />
+        <CustomTreeItem treeId="6" label="Material-UI">
+          <CustomTreeItem treeId="7" label="src">
+            <CustomTreeItem treeId="8" label="index.js" />
+            <CustomTreeItem treeId="9" label="tree-view.js" />
           </CustomTreeItem>
         </CustomTreeItem>
       </CustomTreeItem>
@@ -681,20 +681,20 @@ export const DisabledTreeItems = story(() => {
         disabledItemsFocusable={focusDisabledItems}
         multiSelect
       >
-        <TreeItem nodeId="1" label="One">
-          <TreeItem nodeId="2" label="Two" />
-          <TreeItem nodeId="3" label="Three" />
-          <TreeItem nodeId="4" label="Four" />
+        <TreeItem treeId="1" label="One">
+          <TreeItem treeId="2" label="Two" />
+          <TreeItem treeId="3" label="Three" />
+          <TreeItem treeId="4" label="Four" />
         </TreeItem>
-        <TreeItem nodeId="5" label="Five" disabled>
-          <TreeItem nodeId="6" label="Six" />
+        <TreeItem treeId="5" label="Five" disabled>
+          <TreeItem treeId="6" label="Six" />
         </TreeItem>
-        <TreeItem nodeId="7" label="Seven">
-          <TreeItem nodeId="8" label="Eight" />
-          <TreeItem nodeId="9" label="Nine">
-            <TreeItem nodeId="10" label="Ten">
-              <TreeItem nodeId="11" label="Eleven" />
-              <TreeItem nodeId="12" label="Twelve" />
+        <TreeItem treeId="7" label="Seven">
+          <TreeItem treeId="8" label="Eight" />
+          <TreeItem treeId="9" label="Nine">
+            <TreeItem treeId="10" label="Ten">
+              <TreeItem treeId="11" label="Eleven" />
+              <TreeItem treeId="12" label="Twelve" />
             </TreeItem>
           </TreeItem>
         </TreeItem>
