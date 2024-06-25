@@ -1,5 +1,5 @@
 diff --git a/themeAugmentation/overrides.d.ts b/themeAugmentation/overrides.d.ts
-index 923764acbad4b11f11d196d628a8ba10e9e64699..fb9e2a854a6512d542a9d84d3c4401a46d48a95e 100644
+index 577d78333a4afe2bfb9413eb9071cdf037ad83cd..d8d49ee860efc21b61c60171bc650f8730e883d7 100644
 --- a/themeAugmentation/overrides.d.ts
 +++ b/themeAugmentation/overrides.d.ts
 @@ -2,7 +2,7 @@ import { GridClassKey } from '../constants/gridClasses';
@@ -10,12 +10,12 @@ index 923764acbad4b11f11d196d628a8ba10e9e64699..fb9e2a854a6512d542a9d84d3c4401a4
 +declare module '@mui/material/styles/overrides' {
      interface ComponentNameToClassKey extends DataGridComponentNameToClassKey {
      }
- }
+     interface Mixins {
 diff --git a/themeAugmentation/props.d.ts b/themeAugmentation/props.d.ts
-index 83c835c9ce370d4aafc82f19f5f84eb32143d61a..7fce855cb2ca4fd94a27ca3b9785fe0bf6eef903 100644
+index 83c835c9ce370d4aafc82f19f5f84eb32143d61a..f395cc75a647ee154e011ac3819cafc23d769187 100644
 --- a/themeAugmentation/props.d.ts
 +++ b/themeAugmentation/props.d.ts
-@@ -9,9 +9,11 @@ export interface DataGridComponents<Theme = unknown> {
+@@ -9,7 +9,7 @@ export interface DataGridComponents<Theme = unknown> {
          styleOverrides?: ComponentsOverrides<Theme>['MuiDataGrid'];
      };
  }
@@ -23,8 +23,4 @@ index 83c835c9ce370d4aafc82f19f5f84eb32143d61a..7fce855cb2ca4fd94a27ca3b9785fe0b
 +declare module '@mui/material/styles/props' {
      interface ComponentsPropsList extends DataGridComponentsPropsList {
      }
-+}
-+declare module '@mui/material/styles/components' {
      interface Components<Theme = unknown> extends DataGridComponents<Theme> {
-     }
- }

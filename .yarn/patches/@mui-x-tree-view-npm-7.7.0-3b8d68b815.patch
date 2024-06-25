@@ -1,8 +1,8 @@
 diff --git a/themeAugmentation/components.d.ts b/themeAugmentation/components.d.ts
-index b72bc1aa8c699a982c1bf64e9de3296986332947..422bf7595e89f510e3e536c976853bffce591b70 100644
+index 8dbd4cff0aa8b24fc749192eae8bf578d2b0e252..8b14bedd517c4dce5340c228779055a0d04cf758 100644
 --- a/themeAugmentation/components.d.ts
 +++ b/themeAugmentation/components.d.ts
-@@ -13,6 +13,6 @@ export interface TreeViewComponents<Theme = unknown> {
+@@ -28,6 +28,6 @@ export interface TreeViewComponents<Theme = unknown> {
    };
  }
  
@@ -11,28 +11,28 @@ index b72bc1aa8c699a982c1bf64e9de3296986332947..422bf7595e89f510e3e536c976853bff
    interface Components<Theme = unknown> extends TreeViewComponents<Theme> {}
  }
 diff --git a/themeAugmentation/overrides.d.ts b/themeAugmentation/overrides.d.ts
-index b2af07f2a4849f02ed2cc78a4f70e6f3285b60b0..a4aa0135e10ec0112d06983bf0669f908b53ac0b 100644
+index 6402fef94e92277a5656960ab98701ee99f4063b..74f8399c53edb7ee958a111915ffa20ba22fb150 100644
 --- a/themeAugmentation/overrides.d.ts
 +++ b/themeAugmentation/overrides.d.ts
-@@ -7,7 +7,7 @@ export interface PickersComponentNameToClassKey {
-   MuiTreeView: TreeViewClassKey;
+@@ -12,7 +12,7 @@ export interface TreeViewComponentNameToClassKey {
+   MuiTreeItem2: TreeItemClassKey;
  }
  
 -declare module '@mui/material/styles' {
 +declare module '@mui/material/styles/overrides' {
-   interface ComponentNameToClassKey extends PickersComponentNameToClassKey {}
+   interface ComponentNameToClassKey extends TreeViewComponentNameToClassKey {}
  }
  
 diff --git a/themeAugmentation/props.d.ts b/themeAugmentation/props.d.ts
-index ee458ec469d307fb5398034c88b0e3895b352a2e..c9fd16bfbd8f0f06d003a518789c770fa2fae567 100644
+index da5ae41f5bd464117537244433f3a58ebf909f14..7240d9a586b94c03f9111f73f8a0f1c12da12850 100644
 --- a/themeAugmentation/props.d.ts
 +++ b/themeAugmentation/props.d.ts
-@@ -6,7 +6,7 @@ export interface PickersComponentsPropsList {
-   MuiTreeView: TreeViewProps<any>;
+@@ -12,7 +12,7 @@ export interface TreeViewComponentsPropsList {
+   MuiTreeItem2: TreeItem2Props;
  }
  
 -declare module '@mui/material/styles' {
 +declare module '@mui/material/styles/props' {
-   interface ComponentsPropsList extends PickersComponentsPropsList {}
+   interface ComponentsPropsList extends TreeViewComponentsPropsList {}
  }
  

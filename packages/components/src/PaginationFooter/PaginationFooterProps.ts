@@ -61,7 +61,7 @@ export interface PaginationFooterProps extends StandardElementProps<'div'> {
   /**
    * An array of maximum page size options
    */
-  pageSizeOptions?: Array<number | { label: string; value: number }>
+  pageSizeOptions?: Readonly<Array<number | { label: string; value: number }>>
 
   /**
    * Callback fired when the maximum page size option is changed
