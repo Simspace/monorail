@@ -41,8 +41,8 @@ const Template = story<DataGridProps>(args => {
       <DataGrid
         {...args}
         {...data}
-        components={{
-          Toolbar: CustomToolbar,
+        slots={{
+          toolbar: CustomToolbar,
         }}
       />
     </div>
@@ -102,8 +102,8 @@ export const DensitySelectorSmallGrid = story<DataGridProps>(args => {
         {...args}
         {...data}
         density="compact"
-        components={{
-          Toolbar: CustomToolbar,
+        slots={{
+          toolbar: CustomToolbar,
         }}
       />
     </div>

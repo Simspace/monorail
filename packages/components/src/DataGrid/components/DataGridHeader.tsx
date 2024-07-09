@@ -26,11 +26,11 @@ export function DataGridHeader(props: DataGridHeaderProps) {
 
   React.useEffect(() => {
     if (isGrouped) {
-      apiRef.current.columnHeadersContainerElementRef?.current?.classList.add(
+      apiRef.current.columnHeadersContainerRef?.current?.classList.add(
         dataGridClasses.grouped,
       )
     } else {
-      apiRef.current.columnHeadersContainerElementRef?.current?.classList.remove(
+      apiRef.current.columnHeadersContainerRef?.current?.classList.remove(
         dataGridClasses.grouped,
       )
     }

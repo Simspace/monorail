@@ -190,12 +190,12 @@ export const ColumnAlignment = story<DataGridProps<{}>>(
         },
       },
       {
-        field: 'fullName',
+        field: 'firstName',
         headerName: 'Full name',
         description: 'This column has a value getter and is not sortable.',
         sortable: false,
         minWidth: 160,
-        valueGetter: params => `${params.row.firstName} ${params.row.lastName}`,
+        valueGetter: (_value, row) => `${row.firstName} ${row.lastName}`,
         filter: {
           type: 'text',
         },

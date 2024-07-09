@@ -334,7 +334,17 @@ export const CustomInputComponent = story<DatePickerProps<Date>>(() => {
           setValue(newValue)
         }}
         slots={{
-          textField: ({ inputRef, inputProps, InputProps }) => (
+          textField: ({
+            inputRef,
+            inputProps,
+            InputProps,
+          }: {
+            inputRef: React.Ref<HTMLInputElement>
+            inputProps: React.InputHTMLAttributes<HTMLInputElement>
+            InputProps?: {
+              endAdornment?: React.ReactNode
+            }
+          }) => (
             <Box sx={{ display: 'flex', alignItems: 'center' }}>
               <input aria-label="input" ref={inputRef} {...inputProps} />
               {InputProps?.endAdornment}
@@ -467,7 +477,10 @@ export const HelperText = story<DatePickerProps<Date>>(() => {
           setValue(newValue)
         }}
         slots={{
-          textField: params => (
+          textField: (params: {
+            inputRef: React.Ref<HTMLInputElement>
+            inputProps: React.InputHTMLAttributes<HTMLInputElement>
+          }) => (
             <TextField
               {...params}
               helperText={params?.inputProps?.placeholder}

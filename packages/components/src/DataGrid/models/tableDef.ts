@@ -68,6 +68,7 @@ export interface TableDef<Cols extends ErasedMakeTypedColDefs> {
       infer R,
       any,
       infer V,
+      any,
       infer F,
       any
     >
@@ -118,6 +119,7 @@ export interface TableDef<Cols extends ErasedMakeTypedColDefs> {
       any,
       infer F,
       any,
+      infer _,
       any,
       any
     >
@@ -136,6 +138,7 @@ export interface TableDef<Cols extends ErasedMakeTypedColDefs> {
       infer R,
       any,
       any,
+      infer _,
       any,
       any
     >
@@ -148,6 +151,7 @@ export interface TableDef<Cols extends ErasedMakeTypedColDefs> {
       any,
       any,
       any,
+      infer _,
       infer F,
       any
     >
@@ -160,10 +164,13 @@ export interface TableDef<Cols extends ErasedMakeTypedColDefs> {
       any,
       any,
       infer V,
+      infer VG,
       any,
       any
     >
-      ? V
+      ? VG extends never
+        ? V
+        : VG
       : never
   }
 
@@ -172,6 +179,7 @@ export interface TableDef<Cols extends ErasedMakeTypedColDefs> {
       any,
       any,
       any,
+      infer _,
       any,
       infer Filter
     >
@@ -252,6 +260,7 @@ export function createTable<
 type ErasedMakeTypedColDef = MakeTypedColDef<
   any,
   string,
+  any,
   any,
   any,
   keyof GridColFilterTypeMap<any, any, any>

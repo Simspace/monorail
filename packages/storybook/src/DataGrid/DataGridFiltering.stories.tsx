@@ -16,6 +16,7 @@ import type {
   GridFilterModel,
   GridFilterOperator,
   GridRowModel,
+  GridToolbarProps,
   GridValidRowModel,
 } from '@monorail/components'
 import {
@@ -46,8 +47,8 @@ const Template = story<DataGridProps>(args => {
       <DataGrid
         {...args}
         {...data}
-        components={{
-          Toolbar: GridToolbar,
+        slots={{
+          toolbar: GridToolbar,
         }}
         filterModel={{
           items: [
@@ -89,7 +90,7 @@ The filter applied to a column can be pre-configured using the  \`filterModel\` 
 /**
  * Predefined filters
  */
-const columns = [
+const columns: Array<GridColDef> = [
   { field: 'name', headerName: 'Name', width: 180 },
   {
     field: 'rating',
@@ -681,10 +682,10 @@ const useStylesQuickFilter = makeStyles(
   { defaultTheme },
 )
 
-interface QuickSearchToolbarProps {
-  clearSearch: () => void
-  onChange: () => void
+interface QuickSearchToolbarProps extends GridToolbarProps {
   value: string
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void
+  clearSearch: () => void
 }
 
 function QuickSearchToolbar(props: QuickSearchToolbarProps) {
@@ -751,17 +752,20 @@ export const QuickFilteringGrid = story<DataGridProps>(args => {
     <div style={{ height: 400, width: '100%' }}>
       <DataGrid
         {...args}
-        components={{ Toolbar: QuickSearchToolbar }}
+        slots={{
+          toolbar: props => (
+            <QuickSearchToolbar
+              {...props}
+              value={searchText}
+              onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+                requestSearch(event.target.value)
+              }
+              clearSearch={() => requestSearch('')}
+            />
+          ),
+        }}
         rows={rows}
         columns={data.columns}
-        componentsProps={{
-          toolbar: {
-            value: searchText,
-            onChange: (event: React.ChangeEvent<HTMLInputElement>) =>
-              requestSearch(event.target.value),
-            clearSearch: () => requestSearch(''),
-          },
-        }}
       />
     </div>
   )

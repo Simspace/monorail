@@ -65,11 +65,11 @@ const columns: Array<GridColDef> = [
   { field: 'age', type: 'number' },
   {
     field: 'username',
-    valueGetter: params =>
+    valueGetter: (_value, row) =>
       // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-      `${params.row.name ?? 'unknown'} - ${
+      `${row.name ?? 'unknown'} - ${
         // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-        params.row.age ?? 'x'
+        row.age ?? 'x'
       }`,
     sortComparator: (v1, v2, param1, param2) =>
       /* eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call */

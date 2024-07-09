@@ -28,8 +28,8 @@ const Template = story<DataGridProps>(args => {
           toolbarDensityStandard: 'Medium',
           toolbarDensityComfortable: 'Large',
         }}
-        components={{
-          Toolbar: GridToolbar,
+        slots={{
+          toolbar: GridToolbar,
         }}
       />
     </div>

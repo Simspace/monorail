@@ -4,10 +4,7 @@ const resolver = require('enhanced-resolve').create.sync({
   conditionNames: ['require', 'node', 'default', 'import'],
 })
 
-const NEEDS_EXPLICIT_NODE_PATH = [
-  '@mui/x-data-grid/',
-  '@mui/x-data-grid-premium/',
-]
+const NEEDS_EXPLICIT_NODE_PATH = ['@mui/x-data-grid/']
 
 function resolve(request, options) {
   if (!options.basedir.includes('node_modules') && request.startsWith('.')) {

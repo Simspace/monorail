@@ -67,12 +67,12 @@ const { columns } = createTable<FilterStoryRow>()(
     editable: true,
   },
   {
-    field: 'fullName',
+    field: 'firstName',
     headerName: 'Full name',
     description: 'This column has a value getter and is not sortable.',
     sortable: false,
     minWidth: 160,
-    valueGetter: params => `${params.row.firstName} ${params.row.lastName}`,
+    valueGetter: (_value, row) => `${row.firstName} ${row.lastName}`,
   },
 )
 
@@ -172,7 +172,7 @@ const filterStoryColumns = createTable<FilterStoryRow>()(
     field: 'occupation',
     headerName: 'Occupation',
     type: 'string',
-    valueFormatter: ({ value }) => value.name,
+    valueFormatter: value => value.name,
     minWidth: 110,
     filter: {
       type: 'enum',
@@ -201,20 +201,20 @@ const filterStoryColumns = createTable<FilterStoryRow>()(
     },
   },
   {
-    field: 'fullName',
+    field: 'firstName',
     headerName: 'Full name',
     description: 'This column has a value getter and is not sortable.',
     sortable: false,
     minWidth: 160,
-    valueGetter: params => `${params.row.firstName} ${params.row.lastName}`,
+    valueGetter: (_value, row) => `${row.firstName} ${row.lastName}`,
     filterOperators: [
       {
         value: 'my-custom-filter',
-        getApplyFilterFn: filterItem => params => {
-          if (params.value === undefined) {
+        getApplyFilterFn: filterItem => value => {
+          if (value === undefined) {
             return true
           }
-          return (params.value as string)
+          return (value as string)
             .toLocaleLowerCase()
             .includes(
               (filterItem.value as { value: string }).value.toLocaleLowerCase(),
@@ -409,7 +409,7 @@ const operatorFilterStoryColumns = createTable<FilterStoryRow>()(
     field: 'occupation',
     headerName: 'Occupation',
     type: 'string',
-    valueFormatter: ({ value }) => value.name,
+    valueFormatter: value => value.name,
     minWidth: 110,
   },
   {
@@ -424,7 +424,7 @@ const operatorFilterStoryColumns = createTable<FilterStoryRow>()(
     description: 'This column has a value getter and is not sortable.',
     sortable: false,
     minWidth: 160,
-    valueGetter: params => `${params.row.firstName} ${params.row.lastName}`,
+    valueGetter: (_value, row) => `${row.firstName} ${row.lastName}`,
   },
   {
     type: 'actions',

@@ -127,9 +127,6 @@ export const MonorailDataGridOverrides: Components<Theme>['MuiDataGrid'] = {
         },
       }
     },
-    columnHeadersInner: {
-      height: '100%',
-    },
     columnHeaderDraggableContainer: () => {
       return {
         height: '100%',

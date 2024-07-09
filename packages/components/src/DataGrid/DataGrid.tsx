@@ -6,14 +6,12 @@ import {
   GridContextProvider,
   GridFooterPlaceholder,
   GridHeader,
-  gridPinnedColumnsSelector,
   GridRoot,
-  useGridSelector,
 } from '@mui/x-data-grid-premium'
-import { getReleaseInfo } from '@mui/x-data-grid-premium/utils/releaseInfo'
-import { DataGridProVirtualScroller } from '@mui/x-data-grid-pro/internals'
+// import { getReleaseInfo } from '@mui/x-data-grid-premium/utils/releaseInfo'
 import { useLicenseVerifier, Watermark } from '@mui/x-license-pro'
 
+import { getReleaseInfo } from '../DataGrid/internal.js'
 import { DataGalleryBody } from './components/DataGallery/components/DataGalleryBody.js'
 import { DataGalleryColumnHeaders } from './components/DataGallery/components/DataGalleryColumnHeaders.js'
 import { DataGalleryVirtualScroller } from './components/DataGallery/components/DataGalleryVirtualScroller.js'
@@ -45,11 +43,6 @@ export const DataGrid: <R extends GridValidRowModel>(
 
   const privateApiRef = useDataGridComponent(props.apiRef, props)
 
-  const pinnedColumns = useGridSelector(
-    privateApiRef,
-    gridPinnedColumnsSelector,
-  )
-
   useLicenseVerifier('x-data-grid-premium', releaseInfo)
 
   return (
@@ -62,10 +55,7 @@ export const DataGrid: <R extends GridValidRowModel>(
       >
         <GridHeader />
         {privateApiRef.current.state.viewStyle === 'table' && (
-          <GridBody
-            VirtualScrollerComponent={DataGridProVirtualScroller}
-            ColumnHeadersProps={{ pinnedColumns }}
-          >
+          <GridBody>
             <Watermark
               packageName="x-data-grid-premium"
               releaseInfo={releaseInfo}

@@ -15,46 +15,51 @@ import SupervisorAccountIcon from '@mui/icons-material/SupervisorAccount'
 import { alpha, styled } from '@mui/material'
 
 import type {
+  SimpleTreeViewProps,
   SvgIconProps,
   TreeItemContentProps,
   TreeItemProps,
-  TreeViewProps,
 } from '@monorail/components'
 import {
   Box,
   Button,
   FormControlLabel,
+  SimpleTreeView,
   Switch,
   TreeItem,
   treeItemClasses,
-  TreeView,
   Typography,
-  useTreeItem,
+  useTreeItemState,
 } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 
-export default { title: 'Data Display/TreeView', component: TreeView }
+export default {
+  title: 'Data Display/SimpleTreeView',
+  component: SimpleTreeView,
+}
 
-const Template = story<TreeViewProps<false>>(
+const Template = story<SimpleTreeViewProps<false>>(
   args => (
     <Box sx={{ minHeight: 180, flexGrow: 1, maxWidth: 300 }}>
-      <TreeView
+      <SimpleTreeView
         aria-label="file system navigator"
-        defaultCollapseIcon={<ExpandMoreIcon />}
-        defaultExpandIcon={<ChevronRightIcon />}
+        slots={{
+          collapseIcon: ExpandMoreIcon,
+          expandIcon: ChevronRightIcon,
+        }}
         {...args}
       >
-        <TreeItem nodeId="1" label="Applications">
-          <TreeItem nodeId="2" label="Calendar" />
+        <TreeItem itemId="1" label="Applications">
+          <TreeItem itemId="2" label="Calendar" />
         </TreeItem>
-        <TreeItem nodeId="5" label="Documents">
-          <TreeItem nodeId="10" label="OSS" />
-          <TreeItem nodeId="6" label="MUI">
-            <TreeItem nodeId="8" label="index.js" />
+        <TreeItem itemId="5" label="Documents">
+          <TreeItem itemId="10" label="OSS" />
+          <TreeItem itemId="6" label="MUI">
+            <TreeItem itemId="8" label="index.js" />
           </TreeItem>
         </TreeItem>
-      </TreeView>
+      </SimpleTreeView>
     </Box>
   ),
   {
@@ -71,29 +76,31 @@ export const Default = story(Template)
 /**
  * Tree views also support multi-selection.
  */
-export const MultiSelection = story<TreeViewProps<true>>(args => (
+export const MultiSelection = story<SimpleTreeViewProps<true>>(args => (
   <Box sx={{ minHeight: 220, flexGrow: 1, maxWidth: 300 }}>
-    <TreeView
+    <SimpleTreeView
       aria-label="multi-select"
-      defaultCollapseIcon={<ExpandMoreIcon />}
-      defaultExpandIcon={<ChevronRightIcon />}
+      slots={{
+        collapseIcon: ExpandMoreIcon,
+        expandIcon: ChevronRightIcon,
+      }}
       multiSelect
       {...args}
     >
-      <TreeItem nodeId="1" label="Applications">
-        <TreeItem nodeId="2" label="Calendar" />
-        <TreeItem nodeId="3" label="Chrome" />
-        <TreeItem nodeId="4" label="Webstorm" />
+      <TreeItem itemId="1" label="Applications">
+        <TreeItem itemId="2" label="Calendar" />
+        <TreeItem itemId="3" label="Chrome" />
+        <TreeItem itemId="4" label="Webstorm" />
       </TreeItem>
-      <TreeItem nodeId="5" label="Documents">
-        <TreeItem nodeId="6" label="MUI">
-          <TreeItem nodeId="7" label="src">
-            <TreeItem nodeId="8" label="index.js" />
-            <TreeItem nodeId="9" label="tree-view.js" />
+      <TreeItem itemId="5" label="Documents">
+        <TreeItem itemId="6" label="MUI">
+          <TreeItem itemId="7" label="src">
+            <TreeItem itemId="8" label="index.js" />
+            <TreeItem itemId="9" label="tree-view.js" />
           </TreeItem>
         </TreeItem>
       </TreeItem>
-    </TreeView>
+    </SimpleTreeView>
   </Box>
 ))
 
@@ -106,16 +113,16 @@ export const Controlled = story(() => {
 
   const handleToggle = (
     event: React.SyntheticEvent,
-    nodeIds: Array<string>,
+    itemIds: Array<string>,
   ) => {
-    setExpanded(nodeIds)
+    setExpanded(itemIds)
   }
 
   const handleSelect = (
     event: React.SyntheticEvent,
-    nodeIds: Array<string>,
+    itemIds: Array<string>,
   ) => {
-    setSelected(nodeIds)
+    setSelected(itemIds)
   }
 
   const handleExpandClick = () => {
@@ -142,30 +149,32 @@ export const Controlled = story(() => {
           {selected.length === 0 ? 'Select all' : 'Unselect all'}
         </Button>
       </Box>
-      <TreeView
+      <SimpleTreeView
         aria-label="controlled"
-        defaultCollapseIcon={<ExpandMoreIcon />}
-        defaultExpandIcon={<ChevronRightIcon />}
-        expanded={expanded}
-        selected={selected}
-        onNodeToggle={handleToggle}
-        onNodeSelect={handleSelect}
+        slots={{
+          collapseIcon: ExpandMoreIcon,
+          expandIcon: ChevronRightIcon,
+        }}
+        expandedItems={expanded}
+        selectedItems={selected}
+        onExpandedItemsChange={handleToggle}
+        onSelectedItemsChange={handleSelect}
         multiSelect
       >
-        <TreeItem nodeId="1" label="Applications">
-          <TreeItem nodeId="2" label="Calendar" />
-          <TreeItem nodeId="3" label="Chrome" />
-          <TreeItem nodeId="4" label="Webstorm" />
+        <TreeItem itemId="1" label="Applications">
+          <TreeItem itemId="2" label="Calendar" />
+          <TreeItem itemId="3" label="Chrome" />
+          <TreeItem itemId="4" label="Webstorm" />
         </TreeItem>
-        <TreeItem nodeId="5" label="Documents">
-          <TreeItem nodeId="6" label="Material-UI">
-            <TreeItem nodeId="7" label="src">
-              <TreeItem nodeId="8" label="index.js" />
-              <TreeItem nodeId="9" label="tree-view.js" />
+        <TreeItem itemId="5" label="Documents">
+          <TreeItem itemId="6" label="Material-UI">
+            <TreeItem itemId="7" label="src">
+              <TreeItem itemId="8" label="index.js" />
+              <TreeItem itemId="9" label="tree-view.js" />
             </TreeItem>
           </TreeItem>
         </TreeItem>
-      </TreeView>
+      </SimpleTreeView>
     </Box>
   )
 })
@@ -202,10 +211,10 @@ const data: RenderTree = {
  *
  * Let's consider a data variable with the following shape, recursion can be used to handle it.
  */
-export const RichObject = story<TreeViewProps<true>>(args => {
+export const RichObject = story<SimpleTreeViewProps<true>>(args => {
   {
     const renderTree = (nodes: RenderTree) => (
-      <TreeItem key={nodes.id} nodeId={nodes.id} label={nodes.name}>
+      <TreeItem key={nodes.id} itemId={nodes.id} label={nodes.name}>
         {Array.isArray(nodes.children)
           ? nodes.children.map(node => renderTree(node))
           : null}
@@ -214,22 +223,24 @@ export const RichObject = story<TreeViewProps<true>>(args => {
 
     return (
       <Box sx={{ minHeight: 110, flexGrow: 1, maxWidth: 300 }}>
-        <TreeView
+        <SimpleTreeView
           aria-label="rich object"
-          defaultCollapseIcon={<ExpandMoreIcon />}
-          defaultExpanded={['root']}
-          defaultExpandIcon={<ChevronRightIcon />}
+          slots={{
+            collapseIcon: ExpandMoreIcon,
+            expandIcon: ChevronRightIcon,
+          }}
+          defaultExpandedItems={['root']}
           {...args}
         >
           {renderTree(data)}
-        </TreeView>
+        </SimpleTreeView>
       </Box>
     )
   }
 })
 
 /**
- * You can use the `ContentComponent` prop and the `useTreeItem` hook to further customize the behavior of the `TreeItem`.
+ * You can use the `ContentComponent` prop and the `useTreeItemState` hook to further customize the behavior of the `TreeItem`.
  *
  * Such as limiting expansion to clicking the icon.
  */
@@ -242,7 +253,7 @@ export const ContentComponentPropExample1 = story(() => {
       classes,
       className,
       label,
-      nodeId,
+      itemId,
       icon: iconProp,
       expansionIcon,
       displayIcon,
@@ -256,7 +267,7 @@ export const ContentComponentPropExample1 = story(() => {
       handleExpansion,
       handleSelection,
       preventSelection,
-    } = useTreeItem(nodeId)
+    } = useTreeItemState(itemId)
 
     const icon = iconProp ?? expansionIcon ?? displayIcon
 
@@ -311,27 +322,30 @@ export const ContentComponentPropExample1 = story(() => {
   return (
     <>
       <Typography>Limiting expansion to clicking the icon:</Typography>
-      <TreeView
+      <SimpleTreeView
         aria-label="icon expansion"
-        defaultCollapseIcon={<ExpandMoreIcon />}
-        defaultExpandIcon={<ChevronRightIcon />}
+        slots={{
+          collapseIcon: ExpandMoreIcon,
+          expandIcon: ChevronRightIcon,
+          endIcon: ChevronRightIcon,
+        }}
         sx={{ height: 240, flexGrow: 1, maxWidth: 400, overflowY: 'auto' }}
       >
-        <CustomTreeItem nodeId="1" label="Applications">
-          <CustomTreeItem nodeId="2" label="Calendar" />
-          <CustomTreeItem nodeId="3" label="Chrome" />
-          <CustomTreeItem nodeId="4" label="Webstorm" />
+        <CustomTreeItem itemId="1" label="Applications">
+          <CustomTreeItem itemId="2" label="Calendar" />
+          <CustomTreeItem itemId="3" label="Chrome" />
+          <CustomTreeItem itemId="4" label="Webstorm" />
         </CustomTreeItem>
-        <CustomTreeItem nodeId="5" label="Documents">
-          <CustomTreeItem nodeId="10" label="OSS" />
-          <CustomTreeItem nodeId="6" label="Material-UI">
-            <CustomTreeItem nodeId="7" label="src">
-              <CustomTreeItem nodeId="8" label="index.js" />
-              <CustomTreeItem nodeId="9" label="tree-view.js" />
+        <CustomTreeItem itemId="5" label="Documents">
+          <CustomTreeItem itemId="10" label="OSS" />
+          <CustomTreeItem itemId="6" label="Material-UI">
+            <CustomTreeItem itemId="7" label="src">
+              <CustomTreeItem itemId="8" label="index.js" />
+              <CustomTreeItem itemId="9" label="tree-view.js" />
             </CustomTreeItem>
           </CustomTreeItem>
         </CustomTreeItem>
-      </TreeView>
+      </SimpleTreeView>
 
       <Typography>Increasing the width of the state indicator: </Typography>
     </>
@@ -407,7 +421,7 @@ export const ContentComponentPropExample2 = story(() => {
       className,
       classes,
       label,
-      nodeId,
+      itemId,
       icon: iconProp,
       expansionIcon,
       displayIcon,
@@ -421,7 +435,7 @@ export const ContentComponentPropExample2 = story(() => {
       handleExpansion,
       handleSelection,
       preventSelection,
-    } = useTreeItem(nodeId)
+    } = useTreeItemState(itemId)
 
     const icon = iconProp ?? expansionIcon ?? displayIcon
 
@@ -466,27 +480,29 @@ export const ContentComponentPropExample2 = story(() => {
   )
 
   return (
-    <TreeView
+    <SimpleTreeView
       aria-label="icon expansion"
-      defaultCollapseIcon={<ExpandMoreIcon />}
-      defaultExpandIcon={<ChevronRightIcon />}
+      slots={{
+        collapseIcon: ExpandMoreIcon,
+        expandIcon: ChevronRightIcon,
+      }}
       sx={{ height: 240, flexGrow: 1, maxWidth: 400, position: 'relative' }}
     >
-      <CustomTreeItem nodeId="1" label="Applications">
-        <CustomTreeItem nodeId="2" label="Calendar" />
-        <CustomTreeItem nodeId="3" label="Chrome" />
-        <CustomTreeItem nodeId="4" label="Webstorm" />
+      <CustomTreeItem itemId="1" label="Applications">
+        <CustomTreeItem itemId="2" label="Calendar" />
+        <CustomTreeItem itemId="3" label="Chrome" />
+        <CustomTreeItem itemId="4" label="Webstorm" />
       </CustomTreeItem>
-      <CustomTreeItem nodeId="5" label="Documents">
-        <CustomTreeItem nodeId="10" label="OSS" />
-        <CustomTreeItem nodeId="6" label="Material-UI">
-          <CustomTreeItem nodeId="7" label="src">
-            <CustomTreeItem nodeId="8" label="index.js" />
-            <CustomTreeItem nodeId="9" label="tree-view.js" />
+      <CustomTreeItem itemId="5" label="Documents">
+        <CustomTreeItem itemId="10" label="OSS" />
+        <CustomTreeItem itemId="6" label="Material-UI">
+          <CustomTreeItem itemId="7" label="src">
+            <CustomTreeItem itemId="8" label="index.js" />
+            <CustomTreeItem itemId="9" label="tree-view.js" />
           </CustomTreeItem>
         </CustomTreeItem>
       </CustomTreeItem>
-    </TreeView>
+    </SimpleTreeView>
   )
 })
 declare module 'react' {
@@ -532,7 +548,7 @@ export const CustomizedTreeView = story(() => {
         color: 'inherit',
       },
     },
-    [`& .${treeItemClasses.group}`]: {
+    [`& .${treeItemClasses.groupTransition}`]: {
       marginLeft: 0,
       [`& .${treeItemClasses.content}`]: {
         paddingLeft: theme.spacing(4),
@@ -584,19 +600,22 @@ export const CustomizedTreeView = story(() => {
   }
 
   return (
-    <TreeView
+    <SimpleTreeView
       aria-label="gmail"
-      defaultExpanded={['3']}
-      defaultCollapseIcon={<ArrowDropDownIcon />}
-      defaultExpandIcon={<ArrowRightIcon />}
-      defaultEndIcon={<div style={{ width: 24 }} />}
+      defaultExpandedItems={['3']}
+      slots={{
+        collapseIcon: ArrowDropDownIcon,
+        expandIcon: ArrowRightIcon,
+        endIcon: () => <div style={{ width: 24 }} />,
+      }}
+      // defaultEndIcon={<div style={{ width: 24 }} />}
       sx={{ height: 264, flexGrow: 1, maxWidth: 400, overflowY: 'auto' }}
     >
-      <StyledTreeItem nodeId="1" labelText="All Mail" labelIcon={MailIcon} />
-      <StyledTreeItem nodeId="2" labelText="Trash" labelIcon={DeleteIcon} />
-      <StyledTreeItem nodeId="3" labelText="Categories" labelIcon={Label}>
+      <StyledTreeItem itemId="1" labelText="All Mail" labelIcon={MailIcon} />
+      <StyledTreeItem itemId="2" labelText="Trash" labelIcon={DeleteIcon} />
+      <StyledTreeItem itemId="3" labelText="Categories" labelIcon={Label}>
         <StyledTreeItem
-          nodeId="5"
+          itemId="5"
           labelText="Social"
           labelIcon={SupervisorAccountIcon}
           labelInfo="90"
@@ -604,7 +623,7 @@ export const CustomizedTreeView = story(() => {
           bgColor="#e8f0fe"
         />
         <StyledTreeItem
-          nodeId="6"
+          itemId="6"
           labelText="Updates"
           labelIcon={InfoIcon}
           labelInfo="2,294"
@@ -612,7 +631,7 @@ export const CustomizedTreeView = story(() => {
           bgColor="#fcefe3"
         />
         <StyledTreeItem
-          nodeId="7"
+          itemId="7"
           labelText="Forums"
           labelIcon={ForumIcon}
           labelInfo="3,566"
@@ -620,7 +639,7 @@ export const CustomizedTreeView = story(() => {
           bgColor="#f3e8fd"
         />
         <StyledTreeItem
-          nodeId="8"
+          itemId="8"
           labelText="Promotions"
           labelIcon={LocalOfferIcon}
           labelInfo="733"
@@ -628,8 +647,8 @@ export const CustomizedTreeView = story(() => {
           bgColor="#e6f4ea"
         />
       </StyledTreeItem>
-      <StyledTreeItem nodeId="4" labelText="History" labelIcon={Label} />
-    </TreeView>
+      <StyledTreeItem itemId="4" labelText="History" labelIcon={Label} />
+    </SimpleTreeView>
   )
 })
 
@@ -674,31 +693,33 @@ export const DisabledTreeItems = story(() => {
           label="Focus disabled items"
         />
       </Box>
-      <TreeView
+      <SimpleTreeView
         aria-label="disabled items"
-        defaultCollapseIcon={<ExpandMoreIcon />}
-        defaultExpandIcon={<ChevronRightIcon />}
+        slots={{
+          collapseIcon: ExpandMoreIcon,
+          expandIcon: ChevronRightIcon,
+        }}
         disabledItemsFocusable={focusDisabledItems}
         multiSelect
       >
-        <TreeItem nodeId="1" label="One">
-          <TreeItem nodeId="2" label="Two" />
-          <TreeItem nodeId="3" label="Three" />
-          <TreeItem nodeId="4" label="Four" />
+        <TreeItem itemId="1" label="One">
+          <TreeItem itemId="2" label="Two" />
+          <TreeItem itemId="3" label="Three" />
+          <TreeItem itemId="4" label="Four" />
         </TreeItem>
-        <TreeItem nodeId="5" label="Five" disabled>
-          <TreeItem nodeId="6" label="Six" />
+        <TreeItem itemId="5" label="Five" disabled>
+          <TreeItem itemId="6" label="Six" />
         </TreeItem>
-        <TreeItem nodeId="7" label="Seven">
-          <TreeItem nodeId="8" label="Eight" />
-          <TreeItem nodeId="9" label="Nine">
-            <TreeItem nodeId="10" label="Ten">
-              <TreeItem nodeId="11" label="Eleven" />
-              <TreeItem nodeId="12" label="Twelve" />
+        <TreeItem itemId="7" label="Seven">
+          <TreeItem itemId="8" label="Eight" />
+          <TreeItem itemId="9" label="Nine">
+            <TreeItem itemId="10" label="Ten">
+              <TreeItem itemId="11" label="Eleven" />
+              <TreeItem itemId="12" label="Twelve" />
             </TreeItem>
           </TreeItem>
         </TreeItem>
-      </TreeView>
+      </SimpleTreeView>
     </Box>
   )
 })

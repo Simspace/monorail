@@ -93,9 +93,9 @@ export const Grouping = story<DataGridProps>(() => {
           {
             field: '__reorder__',
             sortable: false,
-            valueGetter: params => {
+            valueGetter: (_value, row) => {
               // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-              return params.row.title as string
+              return row.title as string
             },
           },
           ...data.columns,

@@ -61,7 +61,7 @@ const useStyles = makeStyles(
 )
 
 const CustomColumnMenuComponent = (
-  props: GridColumnMenuProps & { color: string },
+  props: GridColumnMenuProps & { color?: string },
 ) => {
   const classes = useStyles()
   const { hideMenu, colDef, ...other } = props
@@ -275,8 +275,8 @@ export const ToolbarGrid = story<DataGridProps>(args => {
       <DataGrid
         {...args}
         {...data}
-        components={{
-          Toolbar: GridToolbar,
+        slots={{
+          toolbar: GridToolbar,
         }}
       />
     </div>
@@ -321,8 +321,8 @@ export const CustomToolbarGrid = story<DataGridProps>(args => {
       <DataGrid
         {...args}
         {...data}
-        components={{
-          Toolbar: CustomToolbar,
+        slots={{
+          toolbar: CustomToolbar,
         }}
       />
     </div>
@@ -354,6 +354,8 @@ CustomToolbarGrid.parameters = {
   },
 }
 
+type FooterStatus = 'connected' | 'disconnected'
+
 /**
  * Footer
  */
@@ -372,9 +374,7 @@ const useStylesFooter = makeStyles({
   },
 })
 
-const CustomFooterStatusComponent = (props: {
-  status: 'connected' | 'disconnected'
-}) => {
+const CustomFooterStatusComponent = (props: { status: FooterStatus }) => {
   const classes = useStylesFooter()
 
   return (
@@ -386,7 +386,7 @@ const CustomFooterStatusComponent = (props: {
 }
 
 export const CustomFooter = story<DataGridProps>(args => {
-  const [status, setStatus] = React.useState('connected')
+  const [status, setStatus] = React.useState<FooterStatus>('connected')
   const { data } = useDemoData({
     dataSet: 'Employee',
     rowLength: 4,
@@ -403,10 +403,9 @@ export const CustomFooter = story<DataGridProps>(args => {
           {...args}
           {...data}
           slots={{
-            footer: CustomFooterStatusComponent,
-          }}
-          slotProps={{
-            footer: { status },
+            footer: props => (
+              <CustomFooterStatusComponent {...props} status={status} />
+            ),
           }}
         />
       </div>
@@ -524,8 +523,8 @@ export const CustomLoadingOverlayGrid = story<DataGridProps>(args => {
     <div style={{ height: 400, width: '100%' }}>
       <DataGrid
         {...args}
-        components={{
-          LoadingOverlay: CustomLoadingOverlay,
+        slots={{
+          loadingOverlay: CustomLoadingOverlay,
         }}
         loading
         {...data}
@@ -638,8 +637,8 @@ export const CustomEmptyOverlayGrid = story<DataGridProps>(args => {
     <div style={{ height: 400, width: '100%' }}>
       <DataGrid
         {...args}
-        components={{
-          NoRowsOverlay: CustomNoRowsOverlay,
+        slots={{
+          noRowsOverlay: CustomNoRowsOverlay,
         }}
         rows={[]}
         columns={data.columns}
@@ -702,9 +701,9 @@ export const CustomSortIcons = story<DataGridProps>(args => {
           { field: 'name', sort: 'asc' },
           { field: 'stars', sort: 'desc' },
         ]}
-        components={{
-          ColumnSortedDescendingIcon: SortedDescendingIcon,
-          ColumnSortedAscendingIcon: SortedAscendingIcon,
+        slots={{
+          columnSortedAscendingIcon: SortedAscendingIcon,
+          columnSortedDescendingIcon: SortedDescendingIcon,
         }}
       />
     </div>
