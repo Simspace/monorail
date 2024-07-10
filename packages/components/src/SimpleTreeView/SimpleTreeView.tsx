@@ -4,8 +4,8 @@ import { SimpleTreeView as MuiTreeView } from '@mui/x-tree-view'
  *
  * Demos:
  *
- * - [Tree view](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/data-display-treeview--default)
- * - [Tree view (MUI)](https://mui.com/material-ui/react-tree-view/)
+ * - [Simple Tree View](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/docs/data-display-treeview--default)
+ * - [Simple Tree View (MUI)](https://mui.com/material-ui/react-tree-view/)
  *
  * API:
  *
