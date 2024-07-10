@@ -8,10 +8,9 @@ import {
   GridHeader,
   GridRoot,
 } from '@mui/x-data-grid-premium'
-// import { getReleaseInfo } from '@mui/x-data-grid-premium/utils/releaseInfo'
+import { getReleaseInfo } from '@mui/x-data-grid-premium/utils/releaseInfo'
 import { useLicenseVerifier, Watermark } from '@mui/x-license-pro'
 
-import { getReleaseInfo } from '../DataGrid/internal.js'
 import { DataGalleryBody } from './components/DataGallery/components/DataGalleryBody.js'
 import { DataGalleryColumnHeaders } from './components/DataGallery/components/DataGalleryColumnHeaders.js'
 import { DataGalleryVirtualScroller } from './components/DataGallery/components/DataGalleryVirtualScroller.js'
