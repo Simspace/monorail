@@ -67,7 +67,7 @@ const { columns } = createTable<FilterStoryRow>()(
     editable: true,
   },
   {
-    field: 'firstName',
+    field: 'fullName',
     headerName: 'Full name',
     description: 'This column has a value getter and is not sortable.',
     sortable: false,
@@ -201,7 +201,7 @@ const filterStoryColumns = createTable<FilterStoryRow>()(
     },
   },
   {
-    field: 'firstName',
+    field: 'fullName',
     headerName: 'Full name',
     description: 'This column has a value getter and is not sortable.',
     sortable: false,

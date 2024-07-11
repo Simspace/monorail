@@ -106,6 +106,7 @@ export const MonorailDataGridOverrides: Components<Theme>['MuiDataGrid'] = {
         },
       }
     },
+
     columnHeaders: ({ theme }) => {
       return {
         backgroundColor: theme.palette.default.lowEmphasis.light,
