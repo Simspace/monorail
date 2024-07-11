@@ -17,6 +17,7 @@ export const MonorailDataGridOverrides: Components<Theme>['MuiDataGrid'] = {
     row: ({ theme }) => {
       return {
         minWidth: '100%',
+        '--rowBorderColor': 'transparent', // This is a workaround to remove the border on the rows
         [`&.${dataGridClasses.grouped}`]: {
           backgroundColor: theme.palette.background.default,
         },
@@ -102,9 +103,12 @@ export const MonorailDataGridOverrides: Components<Theme>['MuiDataGrid'] = {
     },
     columnHeaders: ({ theme }) => {
       return {
-        backgroundColor: theme.palette.background.paper,
-        borderBottom: 'none',
-        boxShadow: `inset 0px -1px ${theme.palette.divider}`,
+        // Mui V7 updated the styles for the column headers. This is a workaround to get the old styles back.
+        '--DataGrid-containerBackground': theme.palette.background.paper,
+        [`& div[class$="columnHeaderRow"]`]: {
+          borderBottom: 'none',
+          boxShadow: `inset 0px -2px ${theme.palette.divider}`,
+        },
         borderRadius: '0',
         [`&.${dataGridClasses.grouped}`]: {
           backgroundColor: 'transparent',
