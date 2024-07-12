@@ -171,7 +171,7 @@ function VirtualizedGroupComponent<Value>(props: VirtualizedGroupProps<Value>) {
   }
 }
 
-const VirtualizedListboxRoot = styled('div')()
+const VirtualizedListboxRoot = styled('div')({})
 
 export const VirtualizedListboxComponent = React.forwardRef(
   function ListboxComponent(props, ref: React.ForwardedRef<HTMLDivElement>) {
