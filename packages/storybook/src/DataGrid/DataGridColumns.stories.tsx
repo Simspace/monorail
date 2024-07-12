@@ -18,8 +18,8 @@ import type {
   GridRowId,
   GridRowModel,
   GridRowParams,
-  GridValueFormatterParams,
-  GridValueGetterParams,
+  GridValueFormatter,
+  GridValueGetter,
 } from '@monorail/components'
 import {
   Button,
@@ -274,11 +274,11 @@ To capture changes in the width of a column there are two callbacks that are cal
 }
 
 //#region Value getter
-const getFullName = (params: GridValueGetterParams) => {
+const getFullName: GridValueGetter = (_params, row) => {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-  return `${(params.row.firstName as string) ?? ''} ${
+  return `${(row.firstName as string) ?? ''} ${
     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-    (params.row.lastName as string) ?? ''
+    (row.lastName as string) ?? ''
   }`
 }
 
@@ -363,6 +363,12 @@ export const ValueFormatterGrid = story<DataGridProps>(
         taxRate: 0.3,
       },
     ]
+
+    const formatTaxRate: GridValueFormatter = (value: number) => {
+      const valueFormatted = Number(value * 100).toLocaleString()
+      return `${valueFormatted} %`
+    }
+
     return (
       <div style={{ height: 300, width: '100%' }}>
         <DataGrid
@@ -374,12 +380,7 @@ export const ValueFormatterGrid = story<DataGridProps>(
               field: 'taxRate',
               headerName: 'Tax Rate',
               width: 150,
-              valueFormatter: (params: GridValueFormatterParams) => {
-                const valueFormatted = Number(
-                  (params.value as number) * 100,
-                ).toLocaleString()
-                return `${valueFormatted} %`
-              },
+              valueFormatter: formatTaxRate,
             },
           ]}
         />
@@ -420,6 +421,12 @@ export const ValueParserGrid = story<DataGridProps>(
         taxRate: 0.3,
       },
     ]
+
+    const formatTaxRate: GridValueFormatter = (value: number) => {
+      const valueFormatted = Number(value * 100).toLocaleString()
+      return `${valueFormatted} %`
+    }
+
     return (
       <div style={{ height: 300, width: '100%' }}>
         <DataGrid
@@ -431,12 +438,7 @@ export const ValueParserGrid = story<DataGridProps>(
               field: 'taxRate',
               headerName: 'Tax Rate',
               width: 150,
-              valueFormatter: (params: GridValueFormatterParams) => {
-                const valueFormatted = Number(
-                  (params.value as number) * 100,
-                ).toLocaleString()
-                return `${valueFormatted} %`
-              },
+              valueFormatter: formatTaxRate,
               valueParser: value => Number(value) / 100,
             },
           ]}
@@ -822,39 +824,41 @@ You can check the  [styling cells](https://mui.com/components/data-grid/style/#s
   },
 )
 
+const initialRows = [
+  {
+    id: 1,
+    name: 'Damien',
+    age: 25,
+    dateCreated: randomCreatedDate(),
+    lastLogin: randomUpdatedDate(),
+    isAdmin: true,
+    country: 'Spain',
+  },
+  {
+    id: 2,
+    name: 'Nicolas',
+    age: 36,
+    dateCreated: randomCreatedDate(),
+    lastLogin: randomUpdatedDate(),
+    isAdmin: false,
+    country: 'France',
+  },
+  {
+    id: 3,
+    name: 'Kate',
+    age: 19,
+    dateCreated: randomCreatedDate(),
+    lastLogin: randomUpdatedDate(),
+    isAdmin: false,
+    country: 'Brazil',
+  },
+]
+
+type Row = (typeof initialRows)[number]
+
 //#region Column Types
 export const ColumnTypesGrid = story<DataGridProps>(args => {
-  const initialRows = [
-    {
-      id: 1,
-      name: 'Damien',
-      age: 25,
-      dateCreated: randomCreatedDate(),
-      lastLogin: randomUpdatedDate(),
-      isAdmin: true,
-      country: 'Spain',
-    },
-    {
-      id: 2,
-      name: 'Nicolas',
-      age: 36,
-      dateCreated: randomCreatedDate(),
-      lastLogin: randomUpdatedDate(),
-      isAdmin: false,
-      country: 'France',
-    },
-    {
-      id: 3,
-      name: 'Kate',
-      age: 19,
-      dateCreated: randomCreatedDate(),
-      lastLogin: randomUpdatedDate(),
-      isAdmin: false,
-      country: 'Brazil',
-    },
-  ]
-
-  const [rows, setRows] = React.useState(initialRows)
+  const [rows, setRows] = React.useState<Array<Row>>(initialRows)
 
   const deleteUser = React.useCallback(
     (id: GridRowId) => () => {
@@ -885,7 +889,7 @@ export const ColumnTypesGrid = story<DataGridProps>(args => {
     [],
   )
 
-  const columns = React.useMemo(
+  const columns = React.useMemo<Array<GridColDef<Row>>>(
     () => [
       { field: 'name', type: 'string' },
       { field: 'age', type: 'number' },
@@ -1108,8 +1112,8 @@ export const ColumnSelectorGrid = story<DataGridProps>(args => {
       <DataGrid
         {...args}
         {...data}
-        components={{
-          Toolbar: GridToolbar,
+        slots={{
+          toolbar: GridToolbar,
         }}
       />
     </div>

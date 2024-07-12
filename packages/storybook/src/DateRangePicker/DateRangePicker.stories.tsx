@@ -227,10 +227,13 @@ export const CustomInputComponent = story(() => {
         value={value}
         onChange={newValue => setValue(newValue)}
         slots={{
-          textField: props => (
+          textField: (props: {
+            inputRef: React.Ref<HTMLInputElement>
+            inputProps: React.InputHTMLAttributes<HTMLInputElement>
+          }) => (
             <input
               aria-label="start"
-              ref={props.inputRef as React.Ref<HTMLInputElement>}
+              ref={props.inputRef}
               {...props.inputProps}
             />
           ),

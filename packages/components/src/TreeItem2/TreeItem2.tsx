@@ -1,4 +1,4 @@
-import { TreeView as MuiTreeView } from '@mui/x-tree-view'
+import { TreeItem2 as MuiTreeItem2 } from '@mui/x-tree-view'
 
 /**
  *
@@ -9,8 +9,8 @@ import { TreeView as MuiTreeView } from '@mui/x-tree-view'
  *
  * API:
  *
- * - [TreeView API](https://mui.com/material-ui/api/tree-view/)
+ * - [TreeItem2 API](https://mui.com/x/api/tree-view/tree-item-2/)
  */
-export const TreeView: typeof MuiTreeView = MuiTreeView
+export const TreeItem2: typeof MuiTreeItem2 = MuiTreeItem2
 
-export * from '@mui/x-tree-view/TreeView'
+export * from '@mui/x-tree-view/TreeItem2'

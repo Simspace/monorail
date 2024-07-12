@@ -14,18 +14,18 @@ export const enumFilterOperator: GridFilterOperator = {
     if (!isEnumFilterState(filterItem.value)) {
       return null
     }
-    return params => {
+    return value => {
       const state = filterItem.value as EnumFilterState
 
       if (state.compare !== undefined) {
         for (const selectedItem of state.selected) {
-          if (state.compare(params.value, selectedItem)) {
+          if (state.compare(value, selectedItem)) {
             return true
           }
         }
         return false
       } else {
-        return (filterItem.value as EnumFilterState).selected.has(params.value)
+        return (filterItem.value as EnumFilterState).selected.has(value)
       }
     }
   },

@@ -24,17 +24,17 @@ export const rangeFilterGetApplyFilterFn: GridFilterOperator['getApplyFilterFn']
     ) {
       return null
     }
-    return params => {
+    return value => {
       if (state.operator.type === 'oneField') {
         return state.operator.predicate({
           value: state.first!,
-          cell: params.value,
+          cell: value,
         })
       } else {
         return state.operator.predicate({
           first: state.first!,
           second: state.second!,
-          cell: params.value,
+          cell: value,
         })
       }
     }

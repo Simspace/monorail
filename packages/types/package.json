@@ -1,6 +1,6 @@
 {
   "name": "@monorail/types",
-  "version": "3.0.148",
+  "version": "3.0.149",
   "license": "Apache-2.0",
   "typesVersions": {
     "*": {
@@ -22,7 +22,7 @@
   "sideEffects": false,
   "devDependencies": {
     "@monorail/scripts": "workspace:*",
-    "@mui/material": "5.15.15",
+    "@mui/material": "5.15.20",
     "@types/react": "17.0.52",
     "react": "17.0.2"
   },

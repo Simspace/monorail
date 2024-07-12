@@ -23,6 +23,7 @@ export const MonorailDataGridOverrides: Components<Theme>['MuiDataGrid'] = {
   styleOverrides: {
     root: ({ theme }) => {
       return {
+        '--DataGrid-containerBackground': `${theme.palette.background.paper}`,
         border: 'none',
         borderRadius: 0,
         [`& .${dataGridClasses['columnSeparator--sideRight']}`]: {
@@ -106,9 +107,14 @@ export const MonorailDataGridOverrides: Components<Theme>['MuiDataGrid'] = {
         },
       }
     },
+
     columnHeaders: ({ theme }) => {
       return {
         backgroundColor: theme.palette.default.lowEmphasis.light,
+
+        [`.${dataGridClasses['container--top']}`]: {
+          backgroundColor: theme.palette.background.paper,
+        },
         borderBottom: 'none',
         boxShadow: `inset 0px -1px ${theme.palette.divider}`,
         borderRadius: '0',
@@ -132,9 +138,6 @@ export const MonorailDataGridOverrides: Components<Theme>['MuiDataGrid'] = {
           zIndex: 1,
         },
       }
-    },
-    columnHeadersInner: {
-      height: '100%',
     },
     columnHeaderDraggableContainer: () => {
       return {

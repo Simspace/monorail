@@ -20,10 +20,9 @@ export const DataGalleryVirtualScroller = React.forwardRef<HTMLDivElement>(
     const rootProps = useGridRootProps()
     const apiRef = useGridPrivateApiContext()
     const currentPage = useGridVisibleRows(apiRef, rootProps)
-    const totalHeaderHeight = getTotalHeaderHeight(
-      apiRef,
-      rootProps.columnHeaderHeight,
-    )
+    const totalHeaderHeight = getTotalHeaderHeight(apiRef, {
+      columnHeaderHeight: rootProps.columnHeaderHeight,
+    })
 
     const [size, setSize] = React.useState({ width: 0, height: 0 })
 

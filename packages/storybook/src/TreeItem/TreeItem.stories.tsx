@@ -2,17 +2,25 @@
 import React from 'react'
 
 import type { TreeItemProps } from '@monorail/components'
-import { Stack, TreeItem, Typography } from '@monorail/components'
+import {
+  SimpleTreeView,
+  Stack,
+  TreeItem,
+  Typography,
+} from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 
-export default { title: 'Data Display/TreeView/TreeItem', component: TreeItem }
+export default {
+  title: 'Data Display/SimpleTreeView/TreeItem',
+  component: TreeItem,
+}
 
 const Template = story<TreeItemProps>(
   args => (
-    <div role="tree">
-      <TreeItem nodeId={'a'} {...args} />
-    </div>
+    <SimpleTreeView>
+      <TreeItem itemId="a" {...args} />
+    </SimpleTreeView>
   ),
   {
     args: {},
@@ -24,13 +32,13 @@ const Template = story<TreeItemProps>(
  * `TreeItem`s are used as children for `TreeView`
  */
 export const Default = story(Template, {
-  args: { label: "I'm a tree item!", nodeId: 'a' },
+  args: { label: "I'm a tree item!", itemId: 'a' },
 })
 
 export const WithSecondaryLabel = story(args => (
-  <div role="tree">
+  <SimpleTreeView>
     <TreeItem
-      nodeId={'a'}
+      itemId="a"
       label={
         <Stack direction="row" alignItems="baseline">
           <Typography variant="inherit" flexGrow={1}>
@@ -44,13 +52,13 @@ export const WithSecondaryLabel = story(args => (
       sx={{ maxWidth: 240 }}
       {...args}
     />
-  </div>
+  </SimpleTreeView>
 ))
 
 export const TruncatedLabel = story(args => (
-  <div role="tree">
+  <SimpleTreeView>
     <TreeItem
-      nodeId={'a'}
+      itemId="a"
       label={
         <Stack direction="row" alignItems="baseline" minWidth={0}>
           <Typography variant="inherit" flexGrow={1} lineClamp={1}>
@@ -64,5 +72,5 @@ export const TruncatedLabel = story(args => (
       sx={{ maxWidth: 240 }}
       {...args}
     />
-  </div>
+  </SimpleTreeView>
 ))

@@ -64,7 +64,7 @@ const Template = story<DataGridProps>(args => {
 
   return (
     <div style={{ height: 400, width: '100%' }}>
-      <DataGrid {...args} {...data} columnBuffer={2} stripedRows />
+      <DataGrid {...args} {...data} columnBufferPx={2} stripedRows />
     </div>
   )
 })

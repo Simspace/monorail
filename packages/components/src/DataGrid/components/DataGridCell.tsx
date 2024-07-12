@@ -6,7 +6,7 @@ import { useGridApiContext, useGridRootProps } from '@mui/x-data-grid-premium'
 
 export const DataGridCell = React.forwardRef<HTMLDivElement, GridCellProps>(
   (props, ref) => {
-    const { colIndex, rowId, field, width, height } = props
+    const { colIndex, rowId, field, width } = props
     const apiRef = useGridApiContext()
     const rootProps = useGridRootProps()
 
@@ -46,8 +46,6 @@ export const DataGridCell = React.forwardRef<HTMLDivElement, GridCellProps>(
       ...(isFullWidth && {
         flex: 1,
       }),
-      minHeight: height,
-      maxHeight: height === 'auto' ? 'none' : height, // max-height doesn't support "auto"
     }
 
     if (!isFirstCell && isSiblingFullWidth) {
