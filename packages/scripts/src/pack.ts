@@ -81,11 +81,13 @@ async function writePackageJson(project: Project, workspace: Workspace) {
     browser: "./_esm/*.js",
     import: "./_mjs/*.mjs",
     require: "./_cjs/*.cjs",
+    types: "./*.d.ts",
   };
   exports["."] = {
     browser: "./_esm/index.js",
     import: "./_mjs/index.mjs",
     require: "./_cjs/index.cjs",
+    types: "./index.d.ts",
   };
   rawManifest.exports = exports;
 
