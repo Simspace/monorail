@@ -3,28 +3,26 @@ import type { GridCellProps } from '@mui/x-data-grid'
 import { GridCell } from '@mui/x-data-grid'
 import type { GridGroupingColDefOverride } from '@mui/x-data-grid-premium'
 import { useGridApiContext, useGridRootProps } from '@mui/x-data-grid-premium'
+import clsx from 'clsx'
+
+import { dataGridClasses } from '@monorail/components/DataGrid/constants'
 
 export const DataGridCell = React.forwardRef<HTMLDivElement, GridCellProps>(
   (props, ref) => {
-    const { colIndex, rowId, field, width } = props
+    const { colIndex, rowId, width, column, className } = props
     const apiRef = useGridApiContext()
     const rootProps = useGridRootProps()
+    const rowNode = apiRef.current.getRowNode(rowId)
 
-    const isFirstCell = React.useMemo(
-      () => (rootProps.checkboxSelection ? colIndex === 1 : colIndex === 0),
-      [rootProps, colIndex],
-    )
+    const isFirstCell = rootProps.checkboxSelection
+      ? colIndex === 1
+      : colIndex === 0
 
-    const isFullWidth = React.useMemo(
-      () =>
-        apiRef.current.getRowNode(rowId)?.type === 'group' &&
-        (apiRef.current.getColumn(field) as GridGroupingColDefOverride)
-          .fullWidth === true,
-      [rowId, field, apiRef],
-    )
+    const isFullWidth =
+      rowNode?.type === 'group' &&
+      (column as GridGroupingColDefOverride).fullWidth === true
 
     const isSiblingFullWidth = React.useMemo(() => {
-      const rowNode = apiRef.current.getRowNode(rowId)
       if (
         rowNode !== null &&
         rowNode.type === 'group' &&
@@ -36,7 +34,7 @@ export const DataGridCell = React.forwardRef<HTMLDivElement, GridCellProps>(
         return (groupColDef as GridGroupingColDefOverride).fullWidth === true
       }
       return false
-    }, [apiRef, rowId])
+    }, [apiRef, rowNode])
 
     const style = {
       ...(!isFullWidth && {
@@ -56,6 +54,10 @@ export const DataGridCell = React.forwardRef<HTMLDivElement, GridCellProps>(
       <GridCell
         ref={ref}
         {...props}
+        className={clsx(
+          className,
+          isFullWidth && dataGridClasses.cellFullWidth,
+        )}
         data-colindex={isFullWidth ? `full-width-${colIndex}` : colIndex}
         style={style}
       />

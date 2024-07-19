@@ -144,6 +144,9 @@ export const MonorailDataGridOverrides: Components<Theme>['MuiDataGrid'] = {
       return {
         borderBottom: 'none',
         padding: theme.spacing(0, 2),
+        [`&.${dataGridClasses.cellFullWidth}`]: {
+          maxWidth: 'unset',
+        },
         '&:focus-visible': {
           outline: 'none',
           boxShadow: `inset 0 0 0 1px ${theme.palette.primary.focusRing.inner}, inset 0 0 0 4px ${theme.palette.primary.focusRing.outer}`,
