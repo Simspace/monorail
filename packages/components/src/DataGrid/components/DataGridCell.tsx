@@ -12,21 +12,17 @@ export const DataGridCell = React.forwardRef<HTMLDivElement, GridCellProps>(
     const { colIndex, rowId, width, column, className } = props
     const apiRef = useGridApiContext()
     const rootProps = useGridRootProps()
+    const rowNode = apiRef.current.getRowNode(rowId)
 
-    const isFirstCell = React.useMemo(
-      () => (rootProps.checkboxSelection ? colIndex === 1 : colIndex === 0),
-      [rootProps, colIndex],
-    )
+    const isFirstCell = rootProps.checkboxSelection
+      ? colIndex === 1
+      : colIndex === 0
 
-    const isFullWidth = React.useMemo(() => {
-      return (
-        apiRef.current.getRowNode(rowId)?.type === 'group' &&
-        (column as GridGroupingColDefOverride).fullWidth === true
-      )
-    }, [apiRef, rowId, column])
+    const isFullWidth =
+      rowNode?.type === 'group' &&
+      (column as GridGroupingColDefOverride).fullWidth === true
 
     const isSiblingFullWidth = React.useMemo(() => {
-      const rowNode = apiRef.current.getRowNode(rowId)
       if (
         rowNode !== null &&
         rowNode.type === 'group' &&
@@ -38,7 +34,7 @@ export const DataGridCell = React.forwardRef<HTMLDivElement, GridCellProps>(
         return (groupColDef as GridGroupingColDefOverride).fullWidth === true
       }
       return false
-    }, [apiRef, rowId])
+    }, [apiRef, rowNode])
 
     const style = {
       ...(!isFullWidth && {
