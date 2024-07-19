@@ -3,10 +3,13 @@ import type { GridCellProps } from '@mui/x-data-grid'
 import { GridCell } from '@mui/x-data-grid'
 import type { GridGroupingColDefOverride } from '@mui/x-data-grid-premium'
 import { useGridApiContext, useGridRootProps } from '@mui/x-data-grid-premium'
+import clsx from 'clsx'
+
+import { dataGridClasses } from '@monorail/components/DataGrid/constants'
 
 export const DataGridCell = React.forwardRef<HTMLDivElement, GridCellProps>(
   (props, ref) => {
-    const { colIndex, rowId, field, width } = props
+    const { colIndex, rowId, width, column, className } = props
     const apiRef = useGridApiContext()
     const rootProps = useGridRootProps()
 
@@ -15,13 +18,12 @@ export const DataGridCell = React.forwardRef<HTMLDivElement, GridCellProps>(
       [rootProps, colIndex],
     )
 
-    const isFullWidth = React.useMemo(
-      () =>
+    const isFullWidth = React.useMemo(() => {
+      return (
         apiRef.current.getRowNode(rowId)?.type === 'group' &&
-        (apiRef.current.getColumn(field) as GridGroupingColDefOverride)
-          .fullWidth === true,
-      [rowId, field, apiRef],
-    )
+        (column as GridGroupingColDefOverride).fullWidth === true
+      )
+    }, [apiRef, rowId, column])
 
     const isSiblingFullWidth = React.useMemo(() => {
       const rowNode = apiRef.current.getRowNode(rowId)
@@ -56,6 +58,10 @@ export const DataGridCell = React.forwardRef<HTMLDivElement, GridCellProps>(
       <GridCell
         ref={ref}
         {...props}
+        className={clsx(
+          className,
+          isFullWidth && dataGridClasses.cellFullWidth,
+        )}
         data-colindex={isFullWidth ? `full-width-${colIndex}` : colIndex}
         style={style}
       />
