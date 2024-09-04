@@ -240,6 +240,7 @@ export const VirtualizedListboxComponent = React.forwardRef(
           />
         ) : (
           <Virtuoso
+            totalCount={items.length}
             scrollerRef={scrollerRefCallback}
             totalListHeightChanged={handleTotalListHeightChanged}
             context={{
