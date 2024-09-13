@@ -14,22 +14,25 @@ export const MonorailPickersDayOverrides: Components<Theme>['MuiPickersDay'] = {
 
       return {
         [classes.unselectedDay]: {
-          borderRadius: BORDER_RADIUS, // TODO: confirm with UX the border radius on over
+          borderRadius: BORDER_RADIUS,
         },
         [classes.selectedDay]: {
           borderRadius: BORDER_RADIUS,
           backgroundColor: theme.palette.secondary.light,
           color: theme.palette.default.dark,
           ['&:hover']: {
-            backgroundColor: theme.palette.secondary.main, // TODO: confirm with UX the over color
+            backgroundColor: theme.palette.secondary.main,
           },
           ['&:focus']: {
-            backgroundColor: theme.palette.secondary.main, // TODO: config with UX the focus color
+            backgroundColor: theme.palette.secondary.main,
           },
         },
         [classes.disabledDay]: {
           [`&:not(.${pickersDayClasses.selected})`]: {
             color: theme.palette.primary.dark,
+            ['&:hover']: {
+              backgroundColor: theme.palette.action.hover,
+            },
           },
         },
       }
