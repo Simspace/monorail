@@ -3,6 +3,7 @@ import React from 'react'
 import ClockIcon from '@mui/icons-material/AccessTime'
 import AlarmIcon from '@mui/icons-material/Alarm'
 import SnoozeIcon from '@mui/icons-material/Snooze'
+// import { PickersActionBar } from '@mui/x-date-pickers'
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
 
 import type {
@@ -10,6 +11,8 @@ import type {
   StaticDateTimePickerProps,
 } from '@monorail/components'
 import {
+  Box,
+  Button,
   DateTimePicker,
   DesktopDateTimePicker,
   LocalizationProvider,
@@ -39,6 +42,15 @@ const Template = story<DateTimePickerProps<Date>>(
           value={value}
           onChange={newValue => {
             setValue(newValue)
+          }}
+          slots={{
+            actionBar: props => (
+              <Box gridRow={5} gridColumn={'1 / 4'}>
+                <Button onClick={props.onSetToday} variant={'text'}>
+                  Today
+                </Button>
+              </Box>
+            ),
           }}
           {...args}
         />

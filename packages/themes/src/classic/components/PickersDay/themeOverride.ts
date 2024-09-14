@@ -8,13 +8,16 @@ export const MonorailPickersDayOverrides: Components<Theme>['MuiPickersDay'] = {
       const BORDER_RADIUS = theme.shape.borderRadius
       const classes = {
         selectedDay: `&.${pickersDayClasses.selected}`,
-        unselectedDay: `&.${pickersDayClasses.root}`,
+        defaultDay: `&.${pickersDayClasses.root}`,
         disabledDay: `&.${pickersDayClasses.disabled}`,
       }
 
       return {
-        [classes.unselectedDay]: {
+        [classes.defaultDay]: {
           borderRadius: BORDER_RADIUS,
+          /* height: theme.spacing(8),
+          width: theme.spacing(8),
+          margin: 0, */
         },
         [classes.selectedDay]: {
           borderRadius: BORDER_RADIUS,
