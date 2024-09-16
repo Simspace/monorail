@@ -11,6 +11,7 @@ export const MonorailPickersLayoutOverrides: Components<Theme>['MuiPickersLayout
     defaultProps: {},
     styleOverrides: {
       root: ({ theme }) => {
+        const BORDER_RADIUS = theme.shape.borderRadius
         return {
           '&': {
             padding: theme.spacing(4),
@@ -26,10 +27,33 @@ export const MonorailPickersLayoutOverrides: Components<Theme>['MuiPickersLayout
             width: 'auto',
             padding: theme.spacing(1),
           },
+
+          /** Days styles */
           [`& .${pickersDayClasses.root}`]: {
-            height: 32,
-            width: 32,
+            height: theme.spacing(8),
+            width: theme.spacing(8),
             margin: 0,
+            borderRadius: BORDER_RADIUS,
+
+            /** Selected day */
+            [`&.${pickersDayClasses.selected}`]: {
+              backgroundColor: theme.palette.secondary.light,
+              color: theme.palette.default.dark,
+              ['&:hover']: {
+                backgroundColor: theme.palette.secondary.main,
+              },
+              ['&:focus']: {
+                backgroundColor: theme.palette.secondary.main,
+              },
+            },
+
+            /** Disabled days */
+            [`&.${pickersDayClasses.disabled}`]: {
+              color: theme.palette.primary.dark,
+              ['&:hover']: {
+                backgroundColor: theme.palette.action.hover,
+              },
+            },
           },
           [`& .${pickersCalendarHeaderClasses.label}`]: {
             whiteSpace: 'nowrap',

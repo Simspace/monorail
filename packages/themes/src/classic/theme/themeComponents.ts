@@ -71,7 +71,6 @@ import { MonorailMobileStepperOverrides } from '../components/MobileStepper/them
 import { MonorailOutlinedInputOverrides } from '../components/OutlinedInput/themeOverrides.js'
 import { MonorailPaginationOverrides } from '../components/Pagination/themeOverrides.js'
 import { MonorailPaginationItemOverrides } from '../components/PaginationItem/themeOverrides.js'
-import { MonorailPickersDayOverrides } from '../components/PickersDay/themeOverride.js'
 import { MonorailPickersLayoutOverrides } from '../components/PickersLayout/themeOverrides.js'
 import { MonorailPopoverOverrides } from '../components/Popover/themeOverrides.js'
 import { MonorailRadioOverrides } from '../components/Radio/themeOverrides.js'
@@ -210,7 +209,6 @@ export const getThemeComponents = (
   MuiTreeItem: MonorailTreeItemOverrides,
   MuiTreeView: MonorailTreeViewOverrides,
   MuiTypography: MonorailTypographyOverrides,
-  MuiPickersDay: MonorailPickersDayOverrides,
   MuiDateCalendar: MonorailDateCalendarOverrides,
   MuiPickersLayout: MonorailPickersLayoutOverrides,
 })
