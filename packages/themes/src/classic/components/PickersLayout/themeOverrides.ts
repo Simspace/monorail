@@ -1,5 +1,8 @@
 import { type Components, dividerClasses, type Theme } from '@mui/material'
-import { pickersLayoutClasses } from '@mui/x-date-pickers-pro'
+import {
+  multiSectionDigitalClockSectionClasses,
+  pickersLayoutClasses,
+} from '@mui/x-date-pickers-pro'
 
 export const MonorailPickersLayoutOverrides: Components<Theme>['MuiPickersLayout'] =
   {
@@ -20,6 +23,10 @@ export const MonorailPickersLayoutOverrides: Components<Theme>['MuiPickersLayout
             [`&:last-of-type`]: {
               display: 'none',
             },
+          },
+          [`& .${multiSectionDigitalClockSectionClasses.root}`]: {
+            width: 'auto',
+            padding: theme.spacing(1),
           },
         }
       },
