@@ -11,8 +11,6 @@ import type {
   StaticDateTimePickerProps,
 } from '@monorail/components'
 import {
-  Box,
-  Button,
   DateTimePicker,
   DesktopDateTimePicker,
   LocalizationProvider,
@@ -42,15 +40,6 @@ const Template = story<DateTimePickerProps<Date>>(
           value={value}
           onChange={newValue => {
             setValue(newValue)
-          }}
-          slots={{
-            actionBar: props => (
-              <Box gridRow={5} gridColumn={'1 / 4'}>
-                <Button onClick={props.onSetToday} variant={'text'}>
-                  Today
-                </Button>
-              </Box>
-            ),
           }}
           {...args}
         />
