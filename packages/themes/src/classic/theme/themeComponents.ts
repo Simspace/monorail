@@ -38,7 +38,6 @@ import { MonorailCheckboxOverrides } from '../components/Checkbox/themeOverrides
 import { MonorailChipOverrides } from '../components/Chip/themeOverrides.js'
 import { MonorailCircularProgressOverrides } from '../components/CircularProgress/themeOverrides.js'
 import { MonorailDataGridOverrides } from '../components/DataGrid/themeOverrides.js'
-import { MonorailDateCalendarOverrides } from '../components/DateCalendar/themeOverrides.js'
 import { MonorailDateRangePickerDayOverrides } from '../components/DateRangePickerDay/themeOverrides.js'
 import { MonorailDialogOverrides } from '../components/Dialog/themeOverrides.js'
 import { MonorailDialogActionsOverrides } from '../components/DialogActions/themeOverrides.js'
@@ -209,6 +208,5 @@ export const getThemeComponents = (
   MuiTreeItem: MonorailTreeItemOverrides,
   MuiTreeView: MonorailTreeViewOverrides,
   MuiTypography: MonorailTypographyOverrides,
-  MuiDateCalendar: MonorailDateCalendarOverrides,
   MuiPickersLayout: MonorailPickersLayoutOverrides,
 })

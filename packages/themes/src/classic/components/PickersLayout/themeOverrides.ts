@@ -1,5 +1,6 @@
 import { type Components, dividerClasses, type Theme } from '@mui/material'
 import {
+  dateCalendarClasses,
   multiSectionDigitalClockSectionClasses,
   pickersCalendarHeaderClasses,
   pickersDayClasses,
@@ -28,6 +29,27 @@ export const MonorailPickersLayoutOverrides: Components<Theme>['MuiPickersLayout
             padding: theme.spacing(1),
           },
 
+          /** Calendar container */
+          [`& .${dateCalendarClasses.root}`]: {
+            width: theme.spacing(58),
+            padding: 0,
+
+            [`& .${dateCalendarClasses.viewTransitionContainer}`]: {
+              width: theme.spacing(56),
+            },
+
+            /** Calendar header */
+            [`& .${pickersCalendarHeaderClasses.root}`]: {
+              padding: 0,
+              marginBottom: theme.spacing(4),
+              marginTop: 0,
+
+              [`& .${pickersCalendarHeaderClasses.label}`]: {
+                whiteSpace: 'nowrap',
+              },
+            },
+          },
+
           /** Days styles */
           [`& .${pickersDayClasses.root}`]: {
             height: theme.spacing(8),
@@ -54,9 +76,6 @@ export const MonorailPickersLayoutOverrides: Components<Theme>['MuiPickersLayout
                 backgroundColor: theme.palette.action.hover,
               },
             },
-          },
-          [`& .${pickersCalendarHeaderClasses.label}`]: {
-            whiteSpace: 'nowrap',
           },
         }
       },
