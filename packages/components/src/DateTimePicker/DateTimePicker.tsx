@@ -31,7 +31,7 @@ export const DateTimePicker: typeof MuiDateTimePicker = React.forwardRef(
       {...props}
     />
   ),
-)
+) as typeof MuiDateTimePicker
 
 export interface DateTimePickerProps<TDate = Date>
   extends MuiDateTimePickerProps<TDate> {}
