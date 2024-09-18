@@ -1,3 +1,5 @@
+import React from 'react'
+import { Box, Button } from '@mui/material'
 import type { DateTimePickerProps as MuiDateTimePickerProps } from '@mui/x-date-pickers'
 import { DateTimePicker as MuiDateTimePicker } from '@mui/x-date-pickers'
 
@@ -13,7 +15,23 @@ import { DateTimePicker as MuiDateTimePicker } from '@mui/x-date-pickers'
  *
  * - [DateTimePicker API](https://mui.com/x/api/date-pickers/date-time-picker/)
  */
-export const DateTimePicker: typeof MuiDateTimePicker = MuiDateTimePicker
+export const DateTimePicker: typeof MuiDateTimePicker = React.forwardRef(
+  (props, ref) => (
+    <MuiDateTimePicker
+      ref={ref}
+      slots={{
+        actionBar: props => (
+          <Box gridRow={5} gridColumn={'1 / 4'}>
+            <Button onClick={props.onSetToday} variant={'text'}>
+              Today
+            </Button>
+          </Box>
+        ),
+      }}
+      {...props}
+    />
+  ),
+) as typeof MuiDateTimePicker
 
 export interface DateTimePickerProps<TDate = Date>
   extends MuiDateTimePickerProps<TDate> {}
