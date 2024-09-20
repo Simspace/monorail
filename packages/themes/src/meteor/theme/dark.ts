@@ -243,7 +243,7 @@ const palette: PaletteOptions = {
     dark: RawColor.Slate400,
     hover: RawColor.Slate600,
     active: RawColor.Slate700,
-    contrastText: RawColor.Slate900,
+    contrastText: RawColor.Slate100,
 
     lowEmphasis: {
       light: RawColor.Slate900,
