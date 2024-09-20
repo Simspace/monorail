@@ -79,6 +79,16 @@ export enum RawColor {
   Yellow800 = '#3F3005',
   Yellow900 = '#13110D',
 
+  Slate100 = '#F9FAFB',
+  Slate200 = '#D0D7E5',
+  Slate300 = '#A1AFCB',
+  Slate400 = '#687FAA',
+  Slate500 = '#576A8F',
+  Slate600 = '#465574',
+  Slate700 = '#354059',
+  Slate800 = '#232B3D',
+  Slate900 = '#181C2F',
+
   Magenta050 = '#FCE0F9',
   Magenta100 = '#F7C2F3',
   Magenta200 = '#F09EEB',
@@ -188,46 +198,6 @@ const palette: PaletteOptions = {
     black: RawColor.Black,
   },
   primary: {
-    light: RawColor.Grey400,
-    main: RawColor.Grey300,
-    dark: RawColor.Grey100,
-    hover: RawColor.Grey400,
-    active: RawColor.Grey500,
-    contrastText: RawColor.Grey900,
-
-    lowEmphasis: {
-      light: RawColor.Grey700,
-      main: RawColor.Grey600,
-      dark: RawColor.Grey500,
-      contrastText: RawColor.Grey200,
-      hover: alpha(RawColor.Grey200, action.hoverOpacity),
-      active: alpha(RawColor.Grey200, action.activatedOpacity),
-    },
-
-    border: {
-      light: RawColor.Grey500,
-      main: RawColor.Grey400,
-      dark: RawColor.Grey200,
-    },
-
-    focusRing: {
-      inner: RawColor.Blue400,
-      outer: RawColor.Blue600,
-    },
-
-    shades: {
-      100: RawColor.Grey100,
-      200: RawColor.Grey200,
-      300: RawColor.Grey300,
-      400: RawColor.Grey400,
-      500: RawColor.Grey500,
-      600: RawColor.Grey600,
-      700: RawColor.Grey700,
-      800: RawColor.Grey800,
-      900: RawColor.Grey900,
-    },
-  },
-  secondary: {
     light: RawColor.Orange600,
     main: RawColor.Orange500,
     dark: RawColor.Orange400,
@@ -265,6 +235,46 @@ const palette: PaletteOptions = {
       700: RawColor.Orange700,
       800: RawColor.Orange800,
       900: RawColor.Orange900,
+    },
+  },
+  secondary: {
+    light: RawColor.Slate600,
+    main: RawColor.Slate500,
+    dark: RawColor.Slate400,
+    hover: RawColor.Slate600,
+    active: RawColor.Slate700,
+    contrastText: RawColor.Slate900,
+
+    lowEmphasis: {
+      light: RawColor.Slate900,
+      main: RawColor.Slate800,
+      dark: RawColor.Slate700,
+      contrastText: RawColor.Slate200,
+      hover: alpha(RawColor.Slate200, action.hoverOpacity),
+      active: alpha(RawColor.Slate200, action.activatedOpacity),
+    },
+
+    border: {
+      light: RawColor.Grey500,
+      main: RawColor.Slate400,
+      dark: RawColor.Slate300,
+    },
+
+    focusRing: {
+      inner: RawColor.Blue400,
+      outer: RawColor.Blue600,
+    },
+
+    shades: {
+      100: RawColor.Slate100,
+      200: RawColor.Slate200,
+      300: RawColor.Slate300,
+      400: RawColor.Slate400,
+      500: RawColor.Slate500,
+      600: RawColor.Slate600,
+      700: RawColor.Slate700,
+      800: RawColor.Slate800,
+      900: RawColor.Slate900,
     },
   },
   default: {
@@ -485,8 +495,8 @@ const palette: PaletteOptions = {
     800: RawColor.Grey800,
     900: RawColor.Grey900,
   },
-  divider: RawColor.Grey700,
-  outlinedBorder: RawColor.Grey700,
+  divider: RawColor.Grey600,
+  outlinedBorder: RawColor.Grey600,
   filledInputBackground: RawColor.Grey900,
   standardInputLine: RawColor.Grey400,
   snackbar: RawColor.Grey400,

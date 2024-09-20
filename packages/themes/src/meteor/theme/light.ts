@@ -39,15 +39,15 @@ export enum RawColor {
   Orange800 = '#8B2800',
   Orange900 = '#5D1A00',
 
-  Red100 = '#FDFAFA',
-  Red200 = '#F8E9E9',
-  Red300 = '#EFCECE',
-  Red400 = '#E3AAAA',
-  Red500 = '#D57C7C',
-  Red600 = '#C44747',
-  Red700 = '#A61D1D',
-  Red800 = '#711414',
-  Red900 = '#390A0A',
+  Red100 = '#FEFBFC',
+  Red200 = '#FFE1E6',
+  Red300 = '#FFC2CC',
+  Red400 = '#F093A0',
+  Red500 = '#DE5466',
+  Red600 = '#C7051F',
+  Red700 = '#AF071B',
+  Red800 = '#840914',
+  Red900 = '#4C090B',
 
   Blue100 = '#FAFCFE',
   Blue200 = '#EBF3FA',
@@ -100,6 +100,16 @@ export enum RawColor {
   Teal700 = '#1B534A',
   Teal800 = '#103E36',
   Teal900 = '#072924',
+
+  Slate100 = '#F9FAFB',
+  Slate200 = '#E5E9F0',
+  Slate300 = '#CBD3E1',
+  Slate400 = '#B1BDD3',
+  Slate500 = '#8E9FBF',
+  Slate600 = '#687FAA',
+  Slate700 = '#55678C',
+  Slate800 = '#414F6D',
+  Slate900 = '#36445E',
 
   Chartreuse050 = '#CEF7B3',
   Chartreuse100 = '#AFE189',
@@ -187,46 +197,6 @@ const palette: PaletteOptions = {
     black: RawColor.Black,
   },
   primary: {
-    light: RawColor.Grey600,
-    main: RawColor.Grey700,
-    dark: RawColor.Grey900,
-    contrastText: RawColor.White,
-    hover: RawColor.Grey800,
-    active: RawColor.Grey900,
-
-    lowEmphasis: {
-      light: RawColor.Grey200,
-      main: RawColor.Grey300,
-      dark: RawColor.Grey400,
-      contrastText: RawColor.Grey800,
-      hover: RawColor.Grey200,
-      active: RawColor.Grey300,
-    },
-
-    border: {
-      light: RawColor.Grey400,
-      main: RawColor.Grey700,
-      dark: RawColor.Grey900,
-    },
-
-    focusRing: {
-      inner: RawColor.Blue400,
-      outer: RawColor.Blue600,
-    },
-
-    shades: {
-      100: RawColor.Grey100,
-      200: RawColor.Grey200,
-      300: RawColor.Grey300,
-      400: RawColor.Grey400,
-      500: RawColor.Grey500,
-      600: RawColor.Grey600,
-      700: RawColor.Grey700,
-      800: RawColor.Grey800,
-      900: RawColor.Grey900,
-    },
-  },
-  secondary: {
     light: RawColor.Orange500,
     main: RawColor.Orange600,
     dark: RawColor.Orange800,
@@ -264,6 +234,46 @@ const palette: PaletteOptions = {
       700: RawColor.Orange700,
       800: RawColor.Orange800,
       900: RawColor.Orange900,
+    },
+  },
+  secondary: {
+    light: RawColor.Slate500,
+    main: RawColor.Slate600,
+    dark: RawColor.Slate800,
+    contrastText: RawColor.Slate100,
+    hover: RawColor.Slate800,
+    active: RawColor.Slate900,
+
+    lowEmphasis: {
+      light: RawColor.Slate200,
+      main: RawColor.Slate300,
+      dark: RawColor.Slate400,
+      contrastText: RawColor.Slate900,
+      hover: RawColor.Slate200,
+      active: RawColor.Slate300,
+    },
+
+    border: {
+      light: RawColor.Slate400,
+      main: RawColor.Slate500,
+      dark: RawColor.Slate700,
+    },
+
+    focusRing: {
+      inner: RawColor.Blue400,
+      outer: RawColor.Blue600,
+    },
+
+    shades: {
+      100: RawColor.Slate100,
+      200: RawColor.Slate200,
+      300: RawColor.Slate300,
+      400: RawColor.Slate400,
+      500: RawColor.Slate500,
+      600: RawColor.Slate600,
+      700: RawColor.Slate700,
+      800: RawColor.Slate800,
+      900: RawColor.Slate900,
     },
   },
   default: {
