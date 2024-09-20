@@ -1,10 +1,5 @@
 import type {} from '@mui/lab/themeAugmentation'
-import type {
-  ButtonProps,
-  Components,
-  CSSInterpolation,
-  Theme,
-} from '@mui/material'
+import type { ButtonProps, Components, Theme } from '@mui/material'
 import { buttonClasses } from '@mui/material'
 
 export const MonorailButtonOverrides: Components<Theme>['MuiButton'] = {
@@ -16,10 +11,7 @@ export const MonorailButtonOverrides: Components<Theme>['MuiButton'] = {
     variant: 'contained',
   },
   styleOverrides: {
-    root: ({
-      ownerState: { color = 'primary', variant = 'contained' },
-      theme,
-    }) => {
+    root: ({ ownerState: { color = 'primary' }, theme }) => {
       return {
         ...theme.typography.button,
         border: 'none',
@@ -27,26 +19,7 @@ export const MonorailButtonOverrides: Components<Theme>['MuiButton'] = {
           boxShadow: `inset 0 0 0 1px ${theme.palette[color].focusRing.inner}, 0 0 0 3px ${theme.palette[color].focusRing.outer}`,
         },
         [`&.${buttonClasses.disabled}`]: {
-          border: 'none',
           opacity: theme.palette.action.disabledOpacity,
-          // The `disabled` class key doesn't work, https://mui.com/api/button/#css
-          // This pattern seems to work better for .Mui-[state] overrides
-          ...(variant === 'contained' && {
-            backgroundColor:
-              color === 'primary'
-                ? theme.palette[color].dark
-                : theme.palette[color].main,
-            color: theme.palette[color].contrastText,
-          }),
-          ...(variant === 'outlined' && {
-            color:
-              color === 'primary'
-                ? theme.palette.text.primary
-                : theme.palette[color].lowEmphasis.contrastText,
-          }),
-          ...(variant === 'text' && {
-            color: theme.palette[color].lowEmphasis.contrastText,
-          }),
         },
       }
     },
@@ -85,48 +58,36 @@ export const MonorailButtonOverrides: Components<Theme>['MuiButton'] = {
       theme: Theme
     }) => {
       return {
+        '&::before': {
+          content: '""',
+          position: 'absolute',
+          top: '1px',
+          left: '1px',
+          zIndex: 1,
+          borderRadius: theme.spacing(1),
+          width: 'calc(100% - 2px)',
+          height: 'calc(100% - 2px)',
+          backgroundColor: 'transparent',
+          transition: theme.transitions.create(['background-color'], {
+            duration: theme.transitions.duration.standard,
+          }),
+        },
         color: theme.palette[color].contrastText,
         backgroundColor: theme.palette[color].main,
         '&:hover': {
-          boxShadow: `inset 0 0 0 1px ${theme.palette[color].border.main}`,
-          background: `linear-gradient(0deg, ${theme.palette.action.hover} 0%, ${theme.palette.action.hover} 100%), ${theme.palette[color].main}`,
+          boxShadow: `inset 0 0 0 1px ${theme.palette[color].border.dark}`,
+          backgroundColor: theme.palette[color].main,
+          '&::before': {
+            backgroundColor: theme.palette.action.hover,
+          },
         },
         '&:active': {
-          boxShadow: `inset 0 0 0 1px ${theme.palette[color].border.main}`,
-          background: `linear-gradient(0deg, ${theme.palette.action.active} 0%, ${theme.palette.action.active} 100%), ${theme.palette[color].dark}`,
-        },
-        ...(color === 'primary' && {
           backgroundColor: theme.palette[color].dark,
-          '&:hover': {
-            boxShadow: `inset 0 0 0 1px ${theme.palette[color].border.dark}`,
-            background: `linear-gradient(0deg, ${theme.palette.action.hover} 0%, ${theme.palette.action.hover} 100%), ${theme.palette[color].main}`,
+          boxShadow: `inset 0 0 0 1px ${theme.palette[color].border.dark}`,
+          '&::before': {
+            backgroundColor: theme.palette.action.active,
           },
-          '&:active': {
-            boxShadow: `inset 0 0 0 1px ${theme.palette[color].border.dark}`,
-            background: `linear-gradient(0deg, ${theme.palette.action.active} 0%, ${theme.palette.action.active} 100%), ${theme.palette[color].dark}`,
-          },
-        }),
-        ...(color === 'secondary' && {
-          '&:hover': {
-            boxShadow: `inset 0 0 0 1px ${theme.palette[color].border.dark}`,
-            background: `linear-gradient(0deg, ${theme.palette.action.hover} 0%, ${theme.palette.action.hover} 100%), ${theme.palette[color].main}`,
-          },
-          '&:active': {
-            boxShadow: `inset 0 0 0 1px ${theme.palette[color].border.dark}`,
-            background: `linear-gradient(0deg, ${theme.palette.action.active} 0%, ${theme.palette.action.active} 100%), ${theme.palette[color].dark}`,
-          },
-        }),
-        ...(color === 'warning' && {
-          backgroundColor: theme.palette[color].main,
-          '&:hover': {
-            boxShadow: `inset 0 0 0 1px ${theme.palette[color].border.main}`,
-            background: `linear-gradient(0deg, ${theme.palette.action.hover} 0%, ${theme.palette.action.hover} 100%), ${theme.palette[color].main}`,
-          },
-          '&:active': {
-            boxShadow: `inset 0 0 0 1px ${theme.palette[color].border.main}`,
-            background: `linear-gradient(0deg, ${theme.palette.action.active} 0%, ${theme.palette.action.active} 100%), ${theme.palette[color].main}`,
-          },
-        }),
+        },
       }
     },
     outlined: ({
@@ -138,26 +99,48 @@ export const MonorailButtonOverrides: Components<Theme>['MuiButton'] = {
       }
       theme: Theme
     }) => {
-      const outlinedButtonInteractionStates: CSSInterpolation = {
+      return {
+        '&::before': {
+          content: '""',
+          position: 'absolute',
+          top: '1px',
+          left: '1px',
+          zIndex: 1,
+          borderRadius: theme.spacing(1),
+          width: 'calc(100% - 2px)',
+          height: 'calc(100% - 2px)',
+          backgroundColor: 'transparent',
+          transition: theme.transitions.create(['background-color'], {
+            duration: theme.transitions.duration.standard,
+          }),
+        },
+        backgroundColor: theme.palette[color].lowEmphasis.light,
+        color: theme.palette[color].lowEmphasis.contrastText,
+        boxShadow: `inset 0 0 0 1px ${theme.palette[color].border.light}`,
+        transition: theme.transitions.create(['box-shadow'], {
+          duration: theme.transitions.duration.standard,
+        }),
         '&:hover': {
           border: 'none',
-          boxShadow: `inset 0 0 0 1px ${theme.palette[color].border.light}`,
-          background: `linear-gradient(0deg, ${theme.palette.action.hover} 0%, ${theme.palette.action.hover} 100%), ${theme.palette[color].lowEmphasis.light}`,
+          backgroundColor: theme.palette[color].lowEmphasis.light,
+          boxShadow: `inset 0 0 0 1px ${theme.palette[color].border.main}`,
+          '&::before': {
+            backgroundColor: theme.palette.action.hover,
+          },
         },
         '&:active': {
-          background: `linear-gradient(0deg, ${theme.palette.action.active} 0%, ${theme.palette.action.active} 100%), ${theme.palette[color].lowEmphasis.light}`,
+          backgroundColor: theme.palette[color].lowEmphasis.light,
+          '&::before': {
+            backgroundColor: theme.palette.action.active,
+          },
           ...(color === 'secondary' && {
             boxShadow: `inset 0 0 0 1px ${theme.palette[color].border.main}`,
           }),
         },
-      }
-
-      return {
-        backgroundColor: theme.palette[color].lowEmphasis.light,
-        color: theme.palette[color].lowEmphasis.contrastText,
-        ...outlinedButtonInteractionStates,
-        ...(color === 'primary' && {
-          color: theme.palette.text.primary,
+        ...(color === 'error' && {
+          [`&.${buttonClasses.disabled}`]: {
+            border: 'none',
+          },
         }),
       }
     },
