@@ -29,7 +29,7 @@ export const MonorailPickersLayoutOverrides: Components<Theme>['MuiPickersLayout
           padding: theme.spacing(1),
 
           [`& .${multiSectionDigitalClockSectionClasses.item}`]: {
-            borderRadius: theme.shape.borderRadius,
+            borderRadius: 2,
           },
         },
 
