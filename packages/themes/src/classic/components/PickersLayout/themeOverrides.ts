@@ -22,9 +22,15 @@ export const MonorailPickersLayoutOverrides: Components<Theme>['MuiPickersLayout
         [`& .${dividerClasses.root}`]: {
           display: 'none',
         },
+
+        /** Time buttons */
         [`& .${multiSectionDigitalClockSectionClasses.root}`]: {
           width: 'auto',
           padding: theme.spacing(1),
+
+          [`& .${multiSectionDigitalClockSectionClasses.item}`]: {
+            borderRadius: theme.shape.borderRadius,
+          },
         },
 
         /** Calendar container */
@@ -63,7 +69,7 @@ export const MonorailPickersLayoutOverrides: Components<Theme>['MuiPickersLayout
               backgroundColor: theme.palette.secondary.main,
             },
             ['&:focus']: {
-              backgroundColor: theme.palette.secondary.main,
+              backgroundColor: theme.palette.secondary.light,
             },
           },
 
