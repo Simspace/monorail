@@ -30,6 +30,10 @@ export const MonorailPickersLayoutOverrides: Components<Theme>['MuiPickersLayout
 
           [`& .${multiSectionDigitalClockSectionClasses.item}`]: {
             borderRadius: 2,
+
+            [`&.Mui-selected`]: {
+              backgroundColor: theme.palette.default.main,
+            },
           },
         },
 
@@ -61,15 +65,19 @@ export const MonorailPickersLayoutOverrides: Components<Theme>['MuiPickersLayout
           margin: 0,
           borderRadius: theme.shape.borderRadius,
 
+          [`&:hover`]: {
+            backgroundColor: theme.palette.action.hover,
+          },
+
           /** Selected day */
           [`&.${pickersDayClasses.selected}`]: {
-            backgroundColor: theme.palette.secondary.light,
+            backgroundColor: theme.palette.primary.light,
             color: theme.palette.default.dark,
             ['&:hover']: {
-              backgroundColor: theme.palette.secondary.main,
+              backgroundColor: theme.palette.primary.main,
             },
             ['&:focus']: {
-              backgroundColor: theme.palette.secondary.light,
+              backgroundColor: theme.palette.primary.light,
             },
           },
 
