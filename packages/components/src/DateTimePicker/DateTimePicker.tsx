@@ -28,11 +28,6 @@ export const DateTimePicker: typeof MuiDateTimePicker = React.forwardRef(
           </Box>
         ),
       }}
-      slotProps={{
-        calendarHeader: {
-          
-        }
-      }}
       {...props}
     />
   ),

@@ -46,6 +46,10 @@ export const MonorailPickersLayoutOverrides: Components<Theme>['MuiPickersLayout
             width: theme.spacing(56),
           },
 
+          [`& .${pickersCalendarHeaderClasses.label}`]: {
+            fontSize: theme.typography.h3.fontSize,
+          },
+
           /** Calendar header */
           [`& .${pickersCalendarHeaderClasses.root}`]: {
             padding: 0,
