@@ -5,7 +5,10 @@ import DeleteIcon from '@mui/icons-material/Delete'
 
 import type { IconButtonProps } from '@monorail/components'
 import { IconButton, Stack, Typography } from '@monorail/components'
+import { Default as DefaultIcon } from '@monorail/components/icons'
+import { useTheme } from '@monorail/utils'
 
+import { isMeteorTheme } from '../helpers.js'
 import { story } from '../helpers/storybook.js'
 
 export default { title: 'Inputs/IconButton', component: IconButton }
@@ -34,7 +37,12 @@ const argTypes = {
 
 const Template = story<IconButtonProps>(
   args => (
-    <IconButton aria-label="default" {...args}>
+    <IconButton
+      variant="contained"
+      color="primary"
+      aria-label="default"
+      {...args}
+    >
       <DeleteIcon fontSize="inherit" />
     </IconButton>
   ),
@@ -55,10 +63,15 @@ export const Default = story(Template)
 export const Showcase = story<IconButtonProps>(
   () => (
     <Stack direction="row" spacing={4}>
-      <IconButton aria-label="delete">
+      <IconButton aria-label="delete" color="primary">
         <DeleteIcon />
       </IconButton>
-      <IconButton aria-label="delete" disabled>
+      <IconButton
+        color="primary"
+        variant="contained"
+        aria-label="delete"
+        disabled
+      >
         <DeleteIcon />
       </IconButton>
       <IconButton color="primary" aria-label="add to shopping cart">
@@ -71,35 +84,60 @@ export const Showcase = story<IconButtonProps>(
   },
 )
 
+const VariantsMeteor = () => (
+  <Stack direction="row" gap={4}>
+    <IconButton color="primary" variant="contained" aria-label="">
+      <DefaultIcon />
+    </IconButton>
+    <IconButton color="secondary" variant="outlined" aria-label="">
+      <DefaultIcon />
+    </IconButton>
+    <IconButton color="error" variant="outlined" aria-label="">
+      <DefaultIcon />
+    </IconButton>
+    <IconButton color="secondary" variant="chromeless" aria-label="">
+      <DefaultIcon />
+    </IconButton>
+  </Stack>
+)
+
 export const Variants = story<IconButtonProps>(
-  args => (
-    <Stack direction="row" spacing={4}>
-      <IconButton
-        aria-label="delete"
-        variant="chromeless"
-        color="primary"
-        {...args}
-      >
-        <DeleteIcon />
-      </IconButton>
-      <IconButton
-        aria-label="delete"
-        variant="outlined"
-        color="primary"
-        {...args}
-      >
-        <DeleteIcon />
-      </IconButton>
-      <IconButton
-        aria-label="delete"
-        variant="contained"
-        color="primary"
-        {...args}
-      >
-        <DeleteIcon />
-      </IconButton>
-    </Stack>
-  ),
+  args => {
+    const theme = useTheme()
+
+    if (isMeteorTheme(theme.name)) {
+      return <VariantsMeteor />
+    }
+
+    return (
+      <Stack direction="row" spacing={4}>
+        <IconButton
+          aria-label="delete"
+          variant="chromeless"
+          color="primary"
+          {...args}
+        >
+          <DeleteIcon />
+        </IconButton>
+        <IconButton
+          aria-label="delete"
+          variant="outlined"
+          color="primary"
+          {...args}
+        >
+          <DeleteIcon />
+        </IconButton>
+        <IconButton
+          aria-label="delete"
+          variant="contained"
+          color="primary"
+          {...args}
+        >
+          <DeleteIcon />
+        </IconButton>
+      </Stack>
+    )
+  },
   { argTypes },
 )
 
@@ -114,7 +152,7 @@ export const Sizes = story<IconButtonProps>(
       <IconButton
         aria-label="delete"
         size="small"
-        variant="outlined"
+        variant="contained"
         color="primary"
         {...args}
       >
@@ -123,7 +161,7 @@ export const Sizes = story<IconButtonProps>(
       <IconButton
         aria-label="delete"
         size="medium"
-        variant="outlined"
+        variant="contained"
         color="primary"
         {...args}
       >
@@ -132,7 +170,7 @@ export const Sizes = story<IconButtonProps>(
       <IconButton
         aria-label="delete"
         size="large"
-        variant="outlined"
+        variant="contained"
         color="primary"
         {...args}
       >
@@ -151,7 +189,7 @@ export const Shapes = story<IconButtonProps>(
       <IconButton
         aria-label="delete"
         shape="circular"
-        variant="outlined"
+        variant="contained"
         color="primary"
       >
         <DeleteIcon />
@@ -159,7 +197,7 @@ export const Shapes = story<IconButtonProps>(
       <IconButton
         aria-label="delete"
         shape="rounded"
-        variant="outlined"
+        variant="contained"
         color="primary"
       >
         <DeleteIcon />
@@ -167,16 +205,16 @@ export const Shapes = story<IconButtonProps>(
       <IconButton
         aria-label="delete"
         shape="circular"
-        variant="contained"
-        color="primary"
+        variant="outlined"
+        color="secondary"
       >
         <DeleteIcon />
       </IconButton>
       <IconButton
         aria-label="delete"
         shape="rounded"
-        variant="contained"
-        color="primary"
+        variant="outlined"
+        color="secondary"
       >
         <DeleteIcon />
       </IconButton>
@@ -188,45 +226,116 @@ export const Shapes = story<IconButtonProps>(
 /**
  * Use `color` prop to apply theme color palette to component.
  */
-export const Colors = story<IconButtonProps>(() => (
-  <Stack spacing={4}>
-    {colors.map(color => (
-      <Stack
-        direction="row"
-        spacing={4}
-        alignItems="center"
-        key={`icon-button-color-${color}`}
-      >
-        <Typography sx={{ minWidth: 90 }}>{color}</Typography>
-        <IconButton aria-label="delete" color={color}>
-          <DeleteIcon />
-        </IconButton>
-        <IconButton aria-label="delete" disabled color={color}>
-          <DeleteIcon />
-        </IconButton>
-        <IconButton variant="outlined" aria-label="delete" color={color}>
-          <DeleteIcon />
-        </IconButton>
-        <IconButton
-          variant="outlined"
-          aria-label="delete"
-          disabled
-          color={color}
-        >
-          <DeleteIcon />
-        </IconButton>
-        <IconButton variant="contained" aria-label="delete" color={color}>
-          <DeleteIcon />
-        </IconButton>
-        <IconButton
-          variant="contained"
-          aria-label="delete"
-          disabled
-          color={color}
-        >
-          <DeleteIcon />
-        </IconButton>
+export const Colors = story<IconButtonProps>(() => {
+  const theme = useTheme()
+
+  if (isMeteorTheme(theme.name)) {
+    return (
+      <Stack gap={4}>
+        <Stack direction="row" gap={4} alignItems="center">
+          <Typography sx={{ minWidth: 200 }}>Primary</Typography>
+          <IconButton aria-label="delete" color="primary" variant="contained">
+            <DeleteIcon />
+          </IconButton>
+          <IconButton
+            aria-label="delete"
+            color="primary"
+            variant="contained"
+            disabled
+          >
+            <DeleteIcon />
+          </IconButton>
+        </Stack>
+        <Stack direction="row" gap={4} alignItems="center">
+          <Typography sx={{ minWidth: 200 }}>Secondary</Typography>
+          <IconButton aria-label="delete" color="secondary" variant="outlined">
+            <DeleteIcon />
+          </IconButton>
+          <IconButton
+            aria-label="delete"
+            color="secondary"
+            variant="outlined"
+            disabled
+          >
+            <DeleteIcon />
+          </IconButton>
+        </Stack>
+        <Stack direction="row" gap={4} alignItems="center">
+          <Typography sx={{ minWidth: 200 }}>Error</Typography>
+          <IconButton aria-label="delete" color="error" variant="outlined">
+            <DeleteIcon />
+          </IconButton>
+          <IconButton
+            aria-label="delete"
+            color="error"
+            variant="outlined"
+            disabled
+          >
+            <DeleteIcon />
+          </IconButton>
+        </Stack>
+        <Stack direction="row" gap={4} alignItems="center">
+          <Typography sx={{ minWidth: 200 }}>Secondary (Chromeless)</Typography>
+          <IconButton
+            aria-label="delete"
+            color="secondary"
+            variant="chromeless"
+          >
+            <DeleteIcon />
+          </IconButton>
+          <IconButton
+            aria-label="delete"
+            color="secondary"
+            variant="chromeless"
+            disabled
+          >
+            <DeleteIcon />
+          </IconButton>
+        </Stack>
       </Stack>
-    ))}
-  </Stack>
-))
+    )
+  }
+
+  return (
+    <Stack spacing={4}>
+      {colors.map(color => (
+        <Stack
+          direction="row"
+          spacing={4}
+          alignItems="center"
+          key={`icon-button-color-${color}`}
+        >
+          <Typography sx={{ minWidth: 90 }}>{color}</Typography>
+          <IconButton aria-label="delete" color={color}>
+            <DeleteIcon />
+          </IconButton>
+          <IconButton aria-label="delete" disabled color={color}>
+            <DeleteIcon />
+          </IconButton>
+          <IconButton variant="outlined" aria-label="delete" color={color}>
+            <DeleteIcon />
+          </IconButton>
+          <IconButton
+            variant="outlined"
+            aria-label="delete"
+            disabled
+            color={color}
+          >
+            <DeleteIcon />
+          </IconButton>
+          <IconButton variant="contained" aria-label="delete" color={color}>
+            <DeleteIcon />
+          </IconButton>
+          <IconButton
+            variant="contained"
+            aria-label="delete"
+            disabled
+            color={color}
+          >
+            <DeleteIcon />
+          </IconButton>
+        </Stack>
+      ))}
+    </Stack>
+  )
+})

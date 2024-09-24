@@ -69,7 +69,7 @@ export const MonorailButtonOverrides: Components<Theme>['MuiButton'] = {
           height: 'calc(100% - 2px)',
           backgroundColor: 'transparent',
           transition: theme.transitions.create(['background-color'], {
-            duration: theme.transitions.duration.standard,
+            duration: theme.transitions.duration.shortest,
           }),
         },
         color: theme.palette[color].contrastText,
@@ -111,14 +111,14 @@ export const MonorailButtonOverrides: Components<Theme>['MuiButton'] = {
           height: 'calc(100% - 2px)',
           backgroundColor: 'transparent',
           transition: theme.transitions.create(['background-color'], {
-            duration: theme.transitions.duration.standard,
+            duration: theme.transitions.duration.shortest,
           }),
         },
         backgroundColor: theme.palette[color].lowEmphasis.light,
         color: theme.palette[color].lowEmphasis.contrastText,
         boxShadow: `inset 0 0 0 1px ${theme.palette[color].border.light}`,
         transition: theme.transitions.create(['box-shadow'], {
-          duration: theme.transitions.duration.standard,
+          duration: theme.transitions.duration.shortest,
         }),
         '&:hover': {
           border: 'none',
