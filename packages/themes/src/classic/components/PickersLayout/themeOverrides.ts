@@ -22,9 +22,19 @@ export const MonorailPickersLayoutOverrides: Components<Theme>['MuiPickersLayout
         [`& .${dividerClasses.root}`]: {
           display: 'none',
         },
+
+        /** Time buttons */
         [`& .${multiSectionDigitalClockSectionClasses.root}`]: {
           width: 'auto',
           padding: theme.spacing(1),
+
+          [`& .${multiSectionDigitalClockSectionClasses.item}`]: {
+            borderRadius: 2,
+
+            [`&.Mui-selected`]: {
+              backgroundColor: theme.palette.default.main,
+            },
+          },
         },
 
         /** Calendar container */
@@ -34,6 +44,10 @@ export const MonorailPickersLayoutOverrides: Components<Theme>['MuiPickersLayout
 
           [`& .${dateCalendarClasses.viewTransitionContainer}`]: {
             width: theme.spacing(56),
+          },
+
+          [`& .${pickersCalendarHeaderClasses.label}`]: {
+            fontSize: theme.typography.h3.fontSize,
           },
 
           /** Calendar header */
@@ -55,15 +69,19 @@ export const MonorailPickersLayoutOverrides: Components<Theme>['MuiPickersLayout
           margin: 0,
           borderRadius: theme.shape.borderRadius,
 
+          [`&:hover`]: {
+            backgroundColor: theme.palette.action.hover,
+          },
+
           /** Selected day */
           [`&.${pickersDayClasses.selected}`]: {
-            backgroundColor: theme.palette.secondary.light,
+            backgroundColor: theme.palette.primary.light,
             color: theme.palette.default.dark,
             ['&:hover']: {
-              backgroundColor: theme.palette.secondary.main,
+              backgroundColor: theme.palette.primary.main,
             },
             ['&:focus']: {
-              backgroundColor: theme.palette.secondary.main,
+              backgroundColor: theme.palette.primary.light,
             },
           },
 
