@@ -28,6 +28,7 @@ export const DateTimePicker: typeof MuiDateTimePicker = React.forwardRef(
           </Box>
         ),
       }}
+      closeOnSelect={false}
       {...props}
     />
   ),
