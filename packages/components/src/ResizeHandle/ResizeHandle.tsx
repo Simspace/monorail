@@ -38,20 +38,20 @@ export const ResizeHandleRoot = styled('div', {
     '&:hover': {
       [`& > .${resizeHandleClasses.handle}`]: {
         // border.light isn't the most semantic, but it translates well between light and dark mode
-        backgroundColor: theme.palette.primary.border.light,
+        backgroundColor: theme.palette.default.border.light,
         transitionDelay: `${theme.transitions.duration.standard}ms`,
       },
       [`& > .${resizeHandleClasses.grip}`]: {
-        backgroundColor: theme.palette.primary.lowEmphasis.dark,
+        backgroundColor: theme.palette.default.lowEmphasis.dark,
         transitionDelay: `${theme.transitions.duration.standard}ms`,
       },
     },
     '&:active': {
       [`& > .${resizeHandleClasses.handle}`]: {
-        backgroundColor: theme.palette.primary.border.light,
+        backgroundColor: theme.palette.default.border.light,
       },
       [`& > .${resizeHandleClasses.grip}`]: {
-        backgroundColor: theme.palette.primary.lowEmphasis.dark,
+        backgroundColor: theme.palette.default.lowEmphasis.dark,
       },
     },
   }
@@ -70,7 +70,7 @@ export const ResizeHandleRoot = styled('div', {
           height: '100%',
           backgroundColor: 'transparent',
           transition: `${theme.transitions.create(['background-color'], {
-            duration: theme.transitions.duration.short,
+            duration: theme.transitions.duration.shortest,
           })}`,
         },
       }
@@ -88,7 +88,7 @@ export const ResizeHandleRoot = styled('div', {
           width: '100%',
           backgroundColor: 'transparent',
           transition: `${theme.transitions.create(['background-color'], {
-            duration: theme.transitions.duration.short,
+            duration: theme.transitions.duration.shortest,
           })}`,
         },
       }
@@ -125,9 +125,9 @@ const ResizeHandleGrip = styled('div', {
 }>(({ theme, orientation, gripPosition }) => {
   return {
     position: 'absolute',
-    backgroundColor: theme.palette.primary.lowEmphasis.main,
+    backgroundColor: theme.palette.default.lowEmphasis.main,
     transition: `${theme.transitions.create(['background-color'], {
-      duration: theme.transitions.duration.short,
+      duration: theme.transitions.duration.shortest,
     })}`,
     zIndex: theme.zIndex.drawer + 2,
     ...(orientation === 'vertical' && {
@@ -142,8 +142,8 @@ const ResizeHandleGrip = styled('div', {
         left: 'calc(50% - 2px)',
         width: theme.spacing(1),
         height: theme.spacing(6),
-        borderLeft: `1px solid ${theme.palette.primary.border.dark}`,
-        borderRight: `1px solid ${theme.palette.primary.border.dark}`,
+        borderLeft: `1px solid ${theme.palette.default.border.dark}`,
+        borderRight: `1px solid ${theme.palette.default.border.dark}`,
       },
       ...(gripPosition === 'center' && {
         left: 0,
@@ -167,8 +167,8 @@ const ResizeHandleGrip = styled('div', {
         left: 'calc(50% - 12px)',
         height: theme.spacing(1),
         width: theme.spacing(6),
-        borderTop: `1px solid ${theme.palette.primary.border.dark}`,
-        borderBottom: `1px solid ${theme.palette.primary.border.dark}`,
+        borderTop: `1px solid ${theme.palette.default.border.dark}`,
+        borderBottom: `1px solid ${theme.palette.default.border.dark}`,
       },
       ...(gripPosition === 'center' && {
         top: 0,
