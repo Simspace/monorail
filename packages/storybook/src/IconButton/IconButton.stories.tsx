@@ -86,16 +86,16 @@ export const Showcase = story<IconButtonProps>(
 
 const VariantsMeteor = () => (
   <Stack direction="row" gap={4}>
-    <IconButton color="primary" variant="contained" aria-label="">
+    <IconButton color="primary" variant="contained" aria-label="button">
       <DefaultIcon />
     </IconButton>
-    <IconButton color="secondary" variant="outlined" aria-label="">
+    <IconButton color="secondary" variant="outlined" aria-label="button">
       <DefaultIcon />
     </IconButton>
-    <IconButton color="error" variant="outlined" aria-label="">
+    <IconButton color="error" variant="outlined" aria-label="button">
       <DefaultIcon />
     </IconButton>
-    <IconButton color="secondary" variant="chromeless" aria-label="">
+    <IconButton color="secondary" variant="chromeless" aria-label="button">
       <DefaultIcon />
     </IconButton>
   </Stack>
