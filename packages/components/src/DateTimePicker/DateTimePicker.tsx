@@ -22,7 +22,12 @@ export const DateTimePicker: typeof MuiDateTimePicker = React.forwardRef(
       slots={{
         actionBar: props => (
           <Box gridRow={5} gridColumn={'1 / 4'}>
-            <Button onClick={props.onSetToday} variant={'text'} size="large">
+            <Button
+              onClick={props.onSetToday}
+              variant={'text'}
+              size="large"
+              color="secondary"
+            >
               Today
             </Button>
           </Box>
