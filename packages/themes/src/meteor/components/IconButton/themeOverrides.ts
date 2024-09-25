@@ -34,7 +34,7 @@ export const MonorailIconButtonOverrides: Components<Theme>['MuiIconButton'] = {
                   duration: theme.transitions.duration.shortest,
                 }),
               },
-              color: theme.palette[color].lowEmphasis.contrastText,
+              color: theme.palette[color].contrastText,
               backgroundColor: theme.palette[color].main,
               transition: theme.transitions.create(['box-shadow'], {
                 duration: theme.transitions.duration.shortest,
@@ -43,7 +43,7 @@ export const MonorailIconButtonOverrides: Components<Theme>['MuiIconButton'] = {
                 boxShadow: `inset 0 0 0 1px ${theme.palette[color].focusRing.inner}, 0 0 0 3px ${theme.palette[color].focusRing.outer}`,
               },
               [`&.${buttonBaseClasses.disabled}`]: {
-                color: theme.palette[color].lowEmphasis.contrastText,
+                color: theme.palette[color].contrastText,
                 backgroundColor: theme.palette[color].main,
               },
               '&:hover': {
