@@ -2,122 +2,142 @@ import type { Components, Theme } from '@mui/material'
 import { alpha, buttonBaseClasses } from '@mui/material'
 
 export const MonorailIconButtonOverrides: Components<Theme>['MuiIconButton'] = {
-  defaultProps: {},
   styleOverrides: {
     root: ({
-      ownerState: {
-        color = 'primary',
-        variant = 'chromeless',
-        shape = 'rounded',
-      },
+      ownerState: { color = 'primary', variant = 'contained' },
       theme,
     }) => {
-      return {
-        ...(shape === 'rounded' && {
-          borderRadius: 4,
-        }),
-        ...(color !== 'inherit' && {
-          color: theme.palette[color].lowEmphasis.contrastText,
-          [`&.${buttonBaseClasses.focusVisible}`]: {
-            boxShadow: `0 0 0 3px ${theme.palette[color].focusRing.outer}`,
-            border: `1px solid ${theme.palette[color].focusRing.inner}`,
-          },
-          [`&.${buttonBaseClasses.disabled}`]: {
-            color: theme.palette[color].lowEmphasis.contrastText,
-            ...(variant === 'contained' && {
-              backgroundColor: theme.palette[color].main,
-              color: theme.palette.common.white,
-              ...((color === 'default' || color === 'primary') && {
-                backgroundColor: theme.palette[color].dark,
-                color: theme.palette[color].contrastText,
-              }),
-            }),
-            ...(variant === 'outlined' && {
-              backgroundColor: theme.palette[color].lowEmphasis.light,
-            }),
-          },
-          ...(variant === 'chromeless' && {
-            backgroundColor: 'transparent',
-            color: theme.palette[color].lowEmphasis.contrastText,
-            '&:hover': {
-              background: theme.palette.action.hover,
-              ...((color === 'default' || color === 'primary') && {
-                color: theme.palette.text.primary,
-              }),
-            },
-            '&:active': {
-              background: theme.palette.action.active,
-              ...((color === 'default' || color === 'primary') && {
-                color: theme.palette.text.primary,
-              }),
-            },
-          }),
-          ...(variant === 'contained' && {
-            backgroundColor: theme.palette[color].main,
-            color: theme.palette.common.white,
-            ...((color === 'default' || color === 'primary') && {
-              backgroundColor: theme.palette[color].dark,
+      const roundedStyles = {
+        borderRadius: '4px',
+      }
+
+      const disabledStyles = {
+        [`&.${buttonBaseClasses.disabled}`]: {
+          opacity: theme.palette.action.disabledOpacity,
+        },
+      }
+
+      const containedStyles =
+        color !== 'inherit'
+          ? {
+              '&::before': {
+                content: '""',
+                position: 'absolute',
+                top: '1px',
+                left: '1px',
+                zIndex: 1,
+                borderRadius: theme.spacing(1),
+                width: 'calc(100% - 2px)',
+                height: 'calc(100% - 2px)',
+                backgroundColor: 'transparent',
+                transition: theme.transitions.create(['background-color'], {
+                  duration: theme.transitions.duration.shortest,
+                }),
+              },
               color: theme.palette[color].contrastText,
-            }),
-            '&:hover': {
-              border: `1px solid ${theme.palette[color].border.dark}`,
-              background: `linear-gradient(
-                  0deg,
-                  ${theme.palette.action.hover} 0%,
-                  ${theme.palette.action.hover} 100%
-                ),
-              ${theme.palette[color].main}`,
-              ...((color === 'primary' || color === 'default') && {
-                background: theme.palette[color].main,
+              backgroundColor: theme.palette[color].main,
+              transition: theme.transitions.create(['box-shadow'], {
+                duration: theme.transitions.duration.shortest,
               }),
-            },
-            '&:active': {
-              background: `linear-gradient(
-                0deg, ${theme.palette.action.active} 0%,
-                ${theme.palette.action.active} 100%
+              [`&.${buttonBaseClasses.focusVisible}`]: {
+                boxShadow: `inset 0 0 0 1px ${theme.palette[color].focusRing.inner}, 0 0 0 3px ${theme.palette[color].focusRing.outer}`,
+              },
+              [`&.${buttonBaseClasses.disabled}`]: {
+                color: theme.palette[color].contrastText,
+                backgroundColor: theme.palette[color].main,
+              },
+              '&:hover': {
+                backgroundColor: theme.palette[color].main,
+                boxShadow: `inset 0 0 0 1px ${theme.palette[color].border.dark}`,
+                '&::before': {
+                  backgroundColor: theme.palette.action.hover,
+                },
+              },
+              '&:active': {
+                backgroundColor: theme.palette[color].main,
+                boxShadow: `inset 0 0 0 1px ${theme.palette[color].border.dark}`,
+                '&::before': {
+                  backgroundColor: theme.palette.action.active,
+                },
+              },
+            }
+          : {}
+
+      const outlinedStyles =
+        color !== 'inherit'
+          ? {
+              '&::before': {
+                content: '""',
+                position: 'absolute',
+                top: '1px',
+                left: '1px',
+                zIndex: 1,
+                borderRadius: theme.spacing(1),
+                width: 'calc(100% - 2px)',
+                height: 'calc(100% - 2px)',
+                backgroundColor: 'transparent',
+                transition: theme.transitions.create(['background-color'], {
+                  duration: theme.transitions.duration.shortest,
+                }),
+              },
+              color: theme.palette[color].lowEmphasis.contrastText,
+              backgroundColor: theme.palette[color].lowEmphasis.light,
+              boxShadow: `inset 0 0 0 1px ${theme.palette[color].border.light}`,
+              transition: theme.transitions.create(['box-shadow'], {
+                duration: theme.transitions.duration.shortest,
+              }),
+              [`&.${buttonBaseClasses.focusVisible}`]: {
+                boxShadow: `inset 0 0 0 1px ${theme.palette[color].focusRing.inner}, 0 0 0 3px ${theme.palette[color].focusRing.outer}`,
+              },
+              [`&.${buttonBaseClasses.disabled}`]: {
+                color: theme.palette[color].lowEmphasis.contrastText,
+                backgroundColor: theme.palette[color].lowEmphasis.light,
+              },
+              '&:hover': {
+                backgroundColor: theme.palette[color].lowEmphasis.light,
+                boxShadow: `inset 0 0 0 1px ${theme.palette[color].border.main}`,
+                '&::before': {
+                  backgroundColor: theme.palette.action.hover,
+                },
+              },
+              '&:active': {
+                backgroundColor: theme.palette[color].lowEmphasis.light,
+                boxShadow: `inset 0 0 0 1px ${theme.palette[color].border.main}`,
+                '&::before': {
+                  backgroundColor: theme.palette.action.active,
+                },
+              },
+            }
+          : {}
+
+      const chromelessStyles =
+        color !== 'inherit'
+          ? {
+              color: theme.palette[color].lowEmphasis.contrastText,
+              transition: theme.transitions.create(
+                ['box-shadow', 'background-color'],
+                {
+                  duration: theme.transitions.duration.shortest,
+                },
               ),
-              ${theme.palette[color].dark}`,
-              border: `1px solid ${theme.palette[color].border.dark}`,
-              ...((color === 'default' || color === 'primary') && {
-                background: `linear-gradient(
-                  0deg, ${theme.palette.action.active} 0%,
-                  ${theme.palette.action.active} 100%
-                ),
-                ${theme.palette[color].dark}`,
-              }),
-            },
-          }),
-          ...(variant === 'outlined' && {
-            backgroundColor: theme.palette[color].lowEmphasis.light,
-            color: theme.palette[color].lowEmphasis.contrastText,
-            '&:hover': {
-              border: `1px solid ${theme.palette[color].border.light}`,
-              background: `linear-gradient(
-                0deg, 
-                ${theme.palette.action.hover} 0%, 
-                ${theme.palette.action.hover} 100%
-              ), 
-              ${theme.palette[color].lowEmphasis.light}`,
-            },
-            '&:active': {
-              border: `1px solid ${theme.palette[color].border.light}`,
-              background: `linear-gradient(
-                0deg,
-                ${theme.palette.action.active} 0%,
-                ${theme.palette.action.active} 100%
-              ),
-              ${theme.palette[color].lowEmphasis.main}`,
-              ...((color === 'default' || color === 'primary') && {
-                background: `linear-gradient(
-                  0deg,
-                  ${theme.palette.action.active} 0%,
-                  ${theme.palette.action.active} 100%
-                ),
-                ${theme.palette[color].lowEmphasis.light}`,
-              }),
-            },
-          }),
-        }),
+              '&:hover': {
+                backgroundColor: theme.palette.action.hover,
+              },
+              '&:active': {
+                backgroundColor: theme.palette.action.active,
+              },
+              [`&.${buttonBaseClasses.focusVisible}`]: {
+                boxShadow: `inset 0 0 0 1px ${theme.palette[color].focusRing.inner}, 0 0 0 3px ${theme.palette[color].focusRing.outer}`,
+              },
+            }
+          : {}
+
+      return {
+        ...roundedStyles,
+        ...disabledStyles,
+        ...(variant === 'contained' && containedStyles),
+        ...(variant === 'outlined' && outlinedStyles),
+        ...(variant === 'chromeless' && chromelessStyles),
       }
     },
     colorInherit: ({ theme }) => ({
