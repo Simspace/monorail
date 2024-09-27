@@ -28,6 +28,9 @@ export const MonorailAutocompleteOverrides: Components<Theme>['MuiAutocomplete']
             visibility: 'visible',
           },
         } as Partial<IconButtonProps>,
+        paper: {
+          elevation: 6,
+        },
       },
       ChipProps: {
         clickable: true,
