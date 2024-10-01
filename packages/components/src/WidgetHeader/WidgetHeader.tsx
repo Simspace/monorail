@@ -89,7 +89,7 @@ export const WidgetHeader = React.forwardRef(function WidgetHeader(
       <Typography
         component="span"
         variant="subtitle2"
-        color={theme => theme.palette.text.secondary}
+        sx={theme => ({ color: theme.palette.text.secondary })}
         className={clsx(classes.subtitle, slotProps.subtitle?.className)}
         flexShrink={1}
         lineClamp={1}

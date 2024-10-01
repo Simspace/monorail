@@ -12,8 +12,6 @@ export {
   unstable_ownerWindow as ownerWindow,
   unstable_setRef as setRef,
   unstable_getScrollbarSize as getScrollbarSize,
-  unstable_detectScrollType as detectScrollType,
-  unstable_getNormalizedScrollLeft as getNormalizedScrollLeft,
   visuallyHidden,
   unstable_composeClasses as composeClasses,
   unstable_generateUtilityClass as generateUtilityClass,

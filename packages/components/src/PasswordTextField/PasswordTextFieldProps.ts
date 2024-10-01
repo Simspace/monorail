@@ -1,10 +1,11 @@
 import type React from 'react'
-import type { SvgIconProps, TextField } from '@mui/material'
+import type { SvgIconProps } from '@mui/material'
 
 import type { IconButtonProps } from '../IconButton.js'
+import type { TextFieldProps } from '../TextField.js'
 
 export interface PasswordTextFieldProps
-  extends React.ComponentProps<typeof TextField> {
+  extends Omit<TextFieldProps, 'slotProps'> {
   /**
    * Props applied to the isVisible state
    */

@@ -31,7 +31,6 @@ type ListItemStoryArgs = ListItemProps & {
 
 const args: ListItemStoryArgs = {
   alignItems: 'center',
-  disabled: false,
   dense: false,
   disableGutters: false,
   disablePadding: false,

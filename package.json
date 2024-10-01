@@ -45,7 +45,7 @@
     "@0x706b/eslint-plugin-module-specifier-extensions": "0.1.8",
     "@babel/cli": "^7.21.5",
     "@babel/core": "^7.22.1",
-    "@fncts/codegen": "0.0.12",
+    "@fncts/codegen": "0.0.20",
     "@typescript-eslint/eslint-plugin": "^5.59.9",
     "@typescript-eslint/experimental-utils": "^5.59.9",
     "@typescript-eslint/parser": "^5.59.9",

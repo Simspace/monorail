@@ -7,7 +7,7 @@ import FormatBoldIcon from '@mui/icons-material/FormatBold'
 import FormatItalicIcon from '@mui/icons-material/FormatItalic'
 import { styled } from '@mui/material'
 
-import type { DividerProps } from '@monorail/components'
+import { DividerProps, ListItemButton } from '@monorail/components'
 import {
   Avatar,
   Box,
@@ -51,20 +51,20 @@ export const ListDividers = story<DividerProps>(() => {
       component="nav"
       aria-label="mailbox folders"
     >
-      <ListItem button>
+      <ListItemButton>
         <ListItemText primary="Inbox" />
-      </ListItem>
+      </ListItemButton>
       <Divider />
-      <ListItem button divider>
+      <ListItemButton divider>
         <ListItemText primary="Drafts" />
-      </ListItem>
-      <ListItem button>
+      </ListItemButton>
+      <ListItemButton>
         <ListItemText primary="Trash" />
-      </ListItem>
-      <Divider light />
-      <ListItem button>
+      </ListItemButton>
+      <Divider sx={{ opacity: 0.6 }} />
+      <ListItemButton>
         <ListItemText primary="Spam" />
-      </ListItem>
+      </ListItemButton>
     </List>
   )
 })
