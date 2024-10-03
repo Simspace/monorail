@@ -19,7 +19,7 @@ import Send from '@mui/icons-material/Send'
 import Settings from '@mui/icons-material/Settings'
 import { alpha, styled } from '@mui/material'
 
-import type { MenuProps } from '@monorail/components'
+import { ListItemButton, MenuProps } from '@monorail/components'
 import {
   Avatar,
   Box,
@@ -200,8 +200,7 @@ export const SelectedMenu = story<MenuProps>(
           aria-label="Device settings"
           sx={{ bgcolor: 'background.paper' }}
         >
-          <ListItem
-            button
+          <ListItemButton
             id="lock-button"
             aria-haspopup="listbox"
             aria-controls="lock-menu"
@@ -213,7 +212,7 @@ export const SelectedMenu = story<MenuProps>(
               primary="When device is locked"
               secondary={selectedMenuOptions[selectedIndex]}
             />
-          </ListItem>
+          </ListItemButton>
         </List>
         <Menu
           id="lock-menu"

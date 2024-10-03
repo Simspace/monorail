@@ -151,7 +151,6 @@ export const AvatarGroup = React.forwardRef(function AvatarGroup(
       as={component}
       ownerState={ownerState}
       className={clsx(classes.root, className)}
-      // @ts-expect-error
       ref={ref}
       {...other}
     >

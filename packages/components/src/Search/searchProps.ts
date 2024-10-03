@@ -22,6 +22,7 @@ export interface SearchProps
     | 'inputProps'
     | 'FormHelperTextProps'
     | 'onChange'
+    | 'slotProps'
   > {
   /**
    * Override or extend the styles applied to the component.

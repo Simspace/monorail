@@ -21,6 +21,5 @@ export {
 export {
   unstable_useId as useId,
   unstable_useEnhancedEffect as useEnhancedEffect,
-  unstable_useIsFocusVisible as useIsFocusVisible,
   usePreviousProps,
 } from '@mui/utils'

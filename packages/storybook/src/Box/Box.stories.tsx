@@ -7,7 +7,11 @@ import { Box, Button, Stack, Typography } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 
-export default { title: 'Layout/Box', component: Box }
+import type { Meta } from '@storybook/react'
+
+const meta: Meta<typeof Box> = { title: 'Layout/Box', component: Box }
+
+export default meta
 
 const Template = story<BoxProps>(args => <Box {...args} />, {
   args: {
@@ -20,7 +24,7 @@ const Template = story<BoxProps>(args => <Box {...args} />, {
 export const Default = story(Template)
 
 export const WaysToStyleABox = () => {
-  const BorderedBox = styled(Box)(
+  const BorderedBox = styled('div')(
     ({ theme }) => `
     border: 1px solid ${theme.palette.primary.main}
   `,
@@ -44,7 +48,7 @@ export const WaysToStyleABox = () => {
       <pre>{`
 import { styled } from '@monorail/components'
 
-export const BorderedBox = styled(Box)(
+export const BorderedBox = styled('div')(
   ({ theme }) => \`
   border: 1px solid \${theme.palette.primary.main}
 \`
