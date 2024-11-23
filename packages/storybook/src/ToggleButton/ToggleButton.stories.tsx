@@ -239,25 +239,8 @@ export const StandaloneToggleButton = story(args => {
 })
 
 const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
-  '& .MuiToggleButtonGroup-grouped': {
-    margin: theme.spacing(1),
-    border: `1px solid transparent`,
-    '&:hover:not(.Mui-focusVisible)': {
-      border: `1px solid transparent`,
-      '&.Mui-selected:not(:first-of-type)': {
-        borderLeft: `1px solid transparent`,
-      },
-    },
-    '&.Mui-disabled': {
-      border: `1px solid transparent`,
-    },
-    '&:not(:first-of-type)': {
-      borderRadius: theme.shape.borderRadius,
-    },
-    '&:first-of-type': {
-      borderRadius: theme.shape.borderRadius,
-    },
-  },
+  padding: theme.spacing(1),
+  gap: theme.spacing(1),
 }))
 
 export const CustomizedDividers = story(() => {
@@ -294,6 +277,7 @@ export const CustomizedDividers = story(() => {
           exclusive
           onChange={handleAlignment}
           aria-label="text alignment"
+          borderless
         >
           <ToggleButton value="left" aria-label="left aligned">
             <FormatAlignLeftIcon />
@@ -314,6 +298,7 @@ export const CustomizedDividers = story(() => {
           value={formats}
           onChange={handleFormat}
           aria-label="text formatting"
+          borderless
         >
           <ToggleButton value="bold" aria-label="bold">
             <FormatBoldIcon />
