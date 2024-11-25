@@ -9,10 +9,10 @@ import { Paper } from '../Paper.js'
 import { ResizeHandle } from '../ResizeHandle.js'
 import { Slide } from '../Slide.js'
 import {
-  getResizableDrawerUtilityClass,
-  resizableDrawerClasses,
-} from './resizableDrawerClasses.js'
-import type { ResizableDrawerProps } from './resizableDrawerProps.js'
+  getFlexDrawerUtilityClass,
+  flexDrawerClasses,
+} from './flexDrawerClasses.js'
+import type { FlexDrawerProps } from './flexDrawerProps.js'
 
 const DRAWER_SIZE = 240
 const MIN_DRAWER_SIZE = 60
@@ -20,8 +20,8 @@ const MAX_DRAWER_SIZE = 600
 const DRAG_AREA_SIZE = 10
 
 const oppositeAnchorPosition: Record<
-  NonNullable<ResizableDrawerProps['anchor']>,
-  NonNullable<ResizableDrawerProps['anchor']>
+  NonNullable<FlexDrawerProps['anchor']>,
+  NonNullable<FlexDrawerProps['anchor']>
 > = {
   top: 'bottom',
   bottom: 'top',
@@ -30,7 +30,7 @@ const oppositeAnchorPosition: Record<
 }
 
 const oppositeAnchorDirection: Record<
-  NonNullable<ResizableDrawerProps['anchor']>,
+  NonNullable<FlexDrawerProps['anchor']>,
   NonNullable<SlideProps['direction']>
 > = {
   top: 'down',
@@ -39,9 +39,9 @@ const oppositeAnchorDirection: Record<
   right: 'left',
 }
 
-interface ResizableDrawerOwnerState
-  extends Omit<ResizableDrawerProps, 'anchor' | 'transitionDuration'> {
-  anchor: NonNullable<ResizableDrawerProps['anchor']>
+interface FlexDrawerOwnerState
+  extends Omit<FlexDrawerProps, 'anchor' | 'transitionDuration'> {
+  anchor: NonNullable<FlexDrawerProps['anchor']>
   isDragging: boolean
   transitionDuration: {
     enter: number
@@ -49,12 +49,12 @@ interface ResizableDrawerOwnerState
   }
 }
 
-interface ResizableDrawerRootProps {
-  ownerState: ResizableDrawerOwnerState
+interface FlexDrawerRootProps {
+  ownerState: FlexDrawerOwnerState
 }
 
 const overridesResolver = (
-  props: ResizableDrawerRootProps,
+  props: FlexDrawerRootProps,
   styles: Record<string, CSSInterpolation>,
 ) => {
   const { ownerState } = props
@@ -66,11 +66,11 @@ const overridesResolver = (
   ]
 }
 
-const ResizableDrawerDockedRoot = styled('div', {
-  name: 'MonorailResizableDrawer',
+const FlexDrawerDockedRoot = styled('div', {
+  name: 'MonorailFlexDrawer',
   slot: 'Docked',
   overridesResolver,
-})<ResizableDrawerRootProps>(({ ownerState, theme }) => ({
+})<FlexDrawerRootProps>(({ ownerState, theme }) => ({
   position: 'relative',
   zIndex: theme.zIndex.drawer,
   flexShrink: 0,
@@ -91,7 +91,7 @@ const ResizableDrawerDockedRoot = styled('div', {
     minHeight: ownerState.minSize,
     maxHeight: ownerState.maxSize,
   }),
-  [`& .${resizableDrawerClasses.paper}`]: {
+  [`& .${flexDrawerClasses.paper}`]: {
     boxSizing: 'border-box',
     overflowX: 'hidden',
     ...((ownerState.anchor === 'left' || ownerState.anchor === 'right') && {
@@ -105,31 +105,31 @@ const ResizableDrawerDockedRoot = styled('div', {
   },
 }))
 
-const ResizableDrawerTemporaryContainer = styled('div', {
-  name: 'MonorailResizableDrawer',
+const FlexDrawerTemporaryContainer = styled('div', {
+  name: 'MonorailFlexDrawer',
   slot: 'TemporaryContainer',
   overridesResolver: (_, styles) => [styles.temporaryContainer],
 })({
   width: 'min-content',
   height: '100%',
-  [`& .${resizableDrawerClasses.paper}`]: {
+  [`& .${flexDrawerClasses.paper}`]: {
     boxSizing: 'border-box',
     overflowX: 'hidden',
   },
 })
 
-const ResizableDrawerModalRoot = styled(Modal, {
-  name: 'MonorailResizableDrawer',
+const FlexDrawerModalRoot = styled(Modal, {
+  name: 'MonorailFlexDrawer',
   slot: 'Root',
   overridesResolver,
 })(({ theme }) => ({
   zIndex: theme.zIndex.drawer,
 }))
 
-const ResizableDrawerPaper = styled(Paper, {
-  name: 'MonorailResizableDrawer',
+const FlexDrawerPaper = styled(Paper, {
+  name: 'MonorailFlexDrawer',
   slot: 'Paper',
-  overridesResolver: (props: ResizableDrawerRootProps, styles) => {
+  overridesResolver: (props: FlexDrawerRootProps, styles) => {
     const { ownerState } = props
 
     return [
@@ -139,7 +139,7 @@ const ResizableDrawerPaper = styled(Paper, {
         styles[`paperAnchorDocked${capitalize(ownerState.anchor)}`],
     ]
   },
-})<ResizableDrawerRootProps>(({ ownerState, theme }) => ({
+})<FlexDrawerRootProps>(({ ownerState, theme }) => ({
   overflowY: 'auto',
   display: 'flex',
   flexDirection: 'column',
@@ -176,15 +176,15 @@ export function getAnchor(
 }
 
 /**
- * A precomposed container that can be resized using the mouse.
+ * Like `Drawer` but uses a non-fixed flex container. Can optionally be turned into a resizable drawer by setting the `resizable`
+ * prop to true.
  *
  * @note Though it is techincally a `Drawer`, it can be made permanent to act as a resizable region of the page.
  *
  * Demos:
- *
- * - [ResizableDrawer](https://simspace.gitlab.io/engineering/ux-engineering/monorail/main/storybook/?path=/story/navigation-drawer--resizable-drawer)
+ * [FlexDrawer](https://simspace.github.io/monorail/main/storybook/?path=/story/navigation-drawer--resizable-drawer-left)
  */
-export const ResizableDrawer = React.forwardRef((props, ref) => {
+export const FlexDrawer = React.forwardRef((props, ref) => {
   const theme = useTheme()
 
   const defaultTransitionDuration = {
@@ -411,7 +411,7 @@ export const ResizableDrawer = React.forwardRef((props, ref) => {
       style={getHandleStyle(drawerSize)}
       isDragging={isDragging}
       orientation={orientation}
-      onDragStart={handleMouseDown}
+      onDragStart={props.resizable ? handleMouseDown : undefined}
       sx={theme => ({
         position: 'absolute',
         transition: theme.transitions.create('opacity', {
@@ -422,18 +422,18 @@ export const ResizableDrawer = React.forwardRef((props, ref) => {
   )
 
   const drawerPaper = (
-    <ResizableDrawerPaper
+    <FlexDrawerPaper
       square
       {...paperProps}
       className={clsx(classes.paper, paperProps?.className)}
       ownerState={ownerState}
     >
       {children}
-    </ResizableDrawerPaper>
+    </FlexDrawerPaper>
   )
 
   const temporaryDrawerPaper = (
-    <ResizableDrawerPaper
+    <FlexDrawerPaper
       square
       {...paperProps}
       className={clsx(classes.paper, paperProps?.className)}
@@ -441,12 +441,12 @@ export const ResizableDrawer = React.forwardRef((props, ref) => {
       ownerState={ownerState}
     >
       {children}
-    </ResizableDrawerPaper>
+    </FlexDrawerPaper>
   )
 
   if (variant === 'persistent') {
     return (
-      <ResizableDrawerDockedRoot
+      <FlexDrawerDockedRoot
         className={clsx(classes.root, classes.docked, className)}
         ownerState={ownerState}
         ref={drawerRef}
@@ -456,14 +456,14 @@ export const ResizableDrawer = React.forwardRef((props, ref) => {
         }}
         {...other}
       >
-        {resizeHandle}
+        {props.resizable && resizeHandle}
         {drawerPaper}
-      </ResizableDrawerDockedRoot>
+      </FlexDrawerDockedRoot>
     )
   }
 
   return (
-    <ResizableDrawerModalRoot
+    <FlexDrawerModalRoot
       className={clsx(classes.root, classes.modal, className)}
       open={open}
       onClose={onClose}
@@ -477,18 +477,16 @@ export const ResizableDrawer = React.forwardRef((props, ref) => {
         in={open}
         timeout={transitionDuration}
       >
-        <ResizableDrawerTemporaryContainer
-          className={classes.temporaryContainer}
-        >
-          {resizeHandle}
+        <FlexDrawerTemporaryContainer className={classes.temporaryContainer}>
+          {props.resizable && resizeHandle}
           {temporaryDrawerPaper}
-        </ResizableDrawerTemporaryContainer>
+        </FlexDrawerTemporaryContainer>
       </Slide>
-    </ResizableDrawerModalRoot>
+    </FlexDrawerModalRoot>
   )
-}) as (props: ResizableDrawerProps) => JSX.Element
+}) as (props: FlexDrawerProps) => JSX.Element
 
-function useUtilityClasses(ownerState: ResizableDrawerOwnerState) {
+function useUtilityClasses(ownerState: FlexDrawerOwnerState) {
   const { classes, variant, isDragging, anchor } = ownerState
 
   const slots = {
@@ -505,5 +503,5 @@ function useUtilityClasses(ownerState: ResizableDrawerOwnerState) {
     handle: ['handle', isDragging && 'handleDragging'],
   }
 
-  return composeClasses(slots, getResizableDrawerUtilityClass, classes)
+  return composeClasses(slots, getFlexDrawerUtilityClass, classes)
 }
